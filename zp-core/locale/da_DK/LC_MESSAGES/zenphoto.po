@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-29 22:28+0100\n"
-"PO-Revision-Date: 2012-11-02 19:02+0100\n"
+"POT-Creation-Date: 2012-11-05 15:24+0100\n"
+"PO-Revision-Date: 2012-11-05 16:15+0100\n"
 "Last-Translator: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language-Team: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language: danish\n"
@@ -283,10 +283,10 @@ msgstr "Seneste nyt"
 #: /home/jes/work/translations/zenphoto/zp-core/lib-auth.php:554
 #: /home/jes/work/translations/zenphoto/zp-core/lib-auth.php:556
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1526
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2380
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2381
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2410
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2411
 #: /home/jes/work/translations/zenphoto/zp-core/setup/setup-option-defaults.php:430
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:118
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:115
 msgid "Gallery"
 msgstr "Galleri"
 
@@ -406,7 +406,7 @@ msgstr "Se metadata"
 #: /home/jes/work/translations/zenphoto/zp-core/lib-auth.php:550
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:3002
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:3100
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:113
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:108
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/related_items.php:163
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/related_items.php:209
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/comment_form.php:79
@@ -587,7 +587,7 @@ msgstr "Hjem"
 #: /home/jes/work/translations/zenphoto/zp-core/lib-auth.php:551
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:3002
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:3115
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:114
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:109
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/related_items.php:163
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/comment_form.php:79
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/tweet_news.php:87
@@ -885,7 +885,7 @@ msgstr "Skriv dine søgrkriterier."
 #, php-format
 msgid "Sorry, no matches for <em>%s</em>. Try refining your search."
 msgstr ""
-"Beklager, intet resultat for <em>%s</em>. Prøv at omdefiner din søgning."
+"Beklager, intet resultat for <em>%s</em>. Prøv at omformuler din søgning."
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/album.php:160
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/favorites.php:197
@@ -1228,10 +1228,10 @@ msgstr "Separat"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:121
 #: /home/jes/work/translations/zenphoto/themes/garland/themeoptions.php:82
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2297
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2314
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2331
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2348
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2327
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2344
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2361
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2378
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/register_user.php:69
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/comment_form.php:85
 msgid "Omit"
@@ -1251,10 +1251,11 @@ msgstr "Indexbillede"
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:134
 #: /home/jes/work/translations/zenphoto/themes/zenpage/themeoptions.php:88
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1234
+#: /home/jes/work/translations/zenphoto/zp-core/functions-basic.php:208
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1887
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1900
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1920
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2722
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2752
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/slideshow.php:95
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/image_effects.php:124
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/image_effects.php:128
@@ -1487,7 +1488,7 @@ msgstr "album"
 #: /home/jes/work/translations/zenphoto/themes/garland/functions.php:110
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1345
 #: /home/jes/work/translations/zenphoto/zp-core/admin-globals.php:129
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2657
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2687
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/image_album_statistics.php:215
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage.php:174
 msgid "image"
@@ -1501,7 +1502,7 @@ msgstr "video"
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:347
 #: /home/jes/work/translations/zenphoto/themes/garland/functions.php:110
 #: /home/jes/work/translations/zenphoto/zp-core/admin-globals.php:91
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/tweet_news.php:401
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/tweet_news.php:396
 msgid "news"
 msgstr "nyheder"
 
@@ -1734,7 +1735,7 @@ msgstr ""
 
 #: /home/jes/work/translations/zenphoto/themes/zenpage/themeoptions.php:63
 msgid "Use standard contact page"
-msgstr ""
+msgstr "Benyt standard kontaktside"
 
 #: /home/jes/work/translations/zenphoto/themes/zenpage/themeoptions.php:63
 msgid ""
@@ -1742,10 +1743,13 @@ msgid ""
 "contact form. You can also use the codeblock of a page for this. See the "
 "contact_form plugin documentation for more info."
 msgstr ""
+"Deaktiver dette hvis du ike ønsker at bruge den seperate kontaktside med "
+"kontaktformular. Du kan også bruge kodeblokken for en side til dette. Se "
+"contact_form plugin dokumentationen for mere information."
 
 #: /home/jes/work/translations/zenphoto/themes/zenpage/themeoptions.php:64
 msgid "Use custom menu"
-msgstr ""
+msgstr "Brug brugerdefineret menu"
 
 #: /home/jes/work/translations/zenphoto/themes/zenpage/themeoptions.php:64
 msgid ""
@@ -1753,46 +1757,52 @@ msgid ""
 "build a custom menu instead of the separate standard ones. A standard menu "
 "named \"zenpage\" is created and used automatically."
 msgstr ""
+"Afkryds dette hvis du ønsker at bruge <em>menu_manager</em> plugin, hvis den "
+"er aktiveret til at bygge en brugerdefineret menu i stedet for de separate "
+"standard menuer. En standard menu ved navn \"zenpage\" er oprettet og "
+"anvendes automatisk."
 
 #: /home/jes/work/translations/zenphoto/themes/zenpage/themeoptions.php:76
 msgid "No unpublished pages available"
-msgstr ""
+msgstr "Ingen ikke-offentliggjorte sider tilgængelige"
 
 #: /home/jes/work/translations/zenphoto/themes/zenpage/sidebar.php:49
 msgid "Gallery And News"
-msgstr ""
+msgstr "Galleri og Nyheder"
 
 #: /home/jes/work/translations/zenphoto/themes/zenpage/sidebar.php:64
 #: /home/jes/work/translations/zenphoto/themes/default/album.php:72
 msgid "Album RSS"
-msgstr ""
+msgstr "Album RSS"
 
 #: /home/jes/work/translations/zenphoto/themes/zenpage/footer.php:5
 msgid ""
 "Zenpage theme designed by <a href=\"http://www.maltem.de\">Malte Müller</a>"
 msgstr ""
+"Zenpage tema designet af <a href=\"http://www.maltem.de\">Malte Müller</a>"
 
 #: /home/jes/work/translations/zenphoto/themes/default/search.php:47
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/search.php:155
 #, php-format
 msgid "Total matches for <em>%1$s</em>: %2$u"
-msgstr ""
+msgstr "Totale matcher for <em>%1$s</em>: %2$u"
 
 #: /home/jes/work/translations/zenphoto/themes/default/search.php:60
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1310
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1316
 msgid "Date:"
-msgstr ""
+msgstr "Dato:"
 
 #: /home/jes/work/translations/zenphoto/themes/default/search.php:77
 msgid "Sorry, no image matches found. Try refining your search."
 msgstr ""
+"Beklager, ingen matchende billeder fundet. Prøv at omformulere din søgning."
 
 #: /home/jes/work/translations/zenphoto/themes/default/album.php:22
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/album.php:39
 #: /home/jes/work/translations/zenphoto/zp-core/admin-globals.php:137
 msgid "search"
-msgstr ""
+msgstr "søg"
 
 #: /home/jes/work/translations/zenphoto/themes/default/404.php:21
 #: /home/jes/work/translations/zenphoto/themes/default/password.php:22
@@ -1825,13 +1835,15 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/themes/garland/favorites.php:21
 #: /home/jes/work/translations/zenphoto/themes/garland/favorites.php:38
 msgid "Gallery Index"
-msgstr ""
+msgstr "Galleri Index"
 
 #: /home/jes/work/translations/zenphoto/themes/default/theme_description.php:4
 msgid ""
 "<a href=\"http://www.noscope.com\" target=\"_blank\">Joen Asmussen</a> and "
 "<a href=\"http://www.levibuzolic.com\" target=\"_blank\">Levi Buzolic</a>"
 msgstr ""
+"<a href=\"http://www.noscope.com\" target=\"_blank\">Joen Asmussen</a> og <a "
+"href=\"http://www.levibuzolic.com\" target=\"_blank\">Levi Buzolic</a>"
 
 #: /home/jes/work/translations/zenphoto/themes/default/theme_description.php:7
 msgid ""
@@ -1839,35 +1851,38 @@ msgid ""
 "pick the theme color by going to the Admin Options tab and changing the "
 "<em>Theme colors</em> option."
 msgstr ""
+"Starndard temaet i 4 forskellige smagsvarianter. Efter at have valgt dette "
+"tema kan du vælge temaets farve ved at gå til til Admin instillinger fanen "
+"og ændre <em>Tema farver</em>."
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/comment.php:8
 msgid "SHOW"
-msgstr ""
+msgstr "VIS"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/comment.php:9
 msgid "HIDE"
-msgstr ""
+msgstr "SKJUL"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/comment.php:15
 msgid "No comments yet"
-msgstr ""
+msgstr "Ingen kommentarer endnu"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/comment.php:17
 #, php-format
 msgid "%u comment so far"
 msgid_plural "%u comments so far"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u kommentar indtil nu"
+msgstr[1] "%u kommentarer indtil nu"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/comment.php:36
 #, php-format
 msgid "Link to Comment %u"
-msgstr ""
+msgstr "Link til Kommentar %u"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/comment.php:37
 #, php-format
 msgid "%s wrote:"
-msgstr ""
+msgstr "%s skrev:"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/comment.php:39
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:287
@@ -1883,38 +1898,38 @@ msgstr "Ret"
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/index.php:42
 #, php-format
 msgid "View album: %s"
-msgstr ""
+msgstr "Se album: %s"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/search.php:57
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/album.php:69
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/favorites.php:67
 #, php-format
 msgid "1 image"
-msgstr ""
+msgstr "1 billede"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/search.php:59
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/album.php:71
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/favorites.php:69
 #, php-format
 msgid "%u images"
-msgstr ""
+msgstr "%u billeder"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/search.php:61
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/album.php:73
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/favorites.php:71
 #, php-format
 msgid "1 album,&nbsp;1 image"
-msgstr ""
+msgstr "1 album,&nbsp;1 billede"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/search.php:63
 #, php-format
 msgid "%u albums,&nbsp;1 image"
-msgstr ""
+msgstr "%u albums,&nbsp;1 billede"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/search.php:65
 #, php-format
 msgid "%1$u albums,&nbsp;%2$u images"
-msgstr ""
+msgstr "%1$u albums,&nbsp;%2$u billeder"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/search.php:67
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/index.php:57
@@ -1923,19 +1938,19 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/favorites.php:77
 #, php-format
 msgid "1 album"
-msgstr ""
+msgstr "1 album"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/search.php:69
 #, php-format
 msgid "%u albums"
-msgstr ""
+msgstr "%u albums"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/search.php:71
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/album.php:83
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/favorites.php:81
 #, php-format
 msgid "1 album,&nbsp;%u images"
-msgstr ""
+msgstr "1 album,&nbsp;%u billeder"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/search.php:94
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/search.php:123
@@ -1945,33 +1960,33 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:2413
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1615
 msgid "Next page"
-msgstr ""
+msgstr "Næste side"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/search.php:143
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/album.php:157
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/gallery.php:88
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/favorites.php:146
 msgid "prev page"
-msgstr ""
+msgstr "forrige side"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/search.php:151
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/album.php:165
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/gallery.php:91
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/favorites.php:154
 msgid "next page"
-msgstr ""
+msgstr "næste side"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/index.php:32
 msgid "Recently Updated Galleries"
-msgstr ""
+msgstr "Gallerier opdateret for nylig"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/index.php:55
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/gallery.php:56
 #, php-format
 msgid "1 album,&nbsp;%u image"
 msgid_plural "1 album,&nbsp;%u images"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "1 album,&nbsp;%u billede"
+msgstr[1] "1 album,&nbsp;%u billeder"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/index.php:61
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/album.php:75
@@ -1980,21 +1995,21 @@ msgstr[1] ""
 #, php-format
 msgid "%u album,&nbsp;1 image"
 msgid_plural "%u albums,&nbsp;1 image"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u album,&nbsp;1 billede"
+msgstr[1] "%u albums,&nbsp;1 billede"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/index.php:63
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/gallery.php:64
 #, php-format
 msgid "%1$u album,&nbsp;%2$s"
 msgid_plural "%1$u albums,&nbsp;%2$s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1$u album,&nbsp;%2$s"
+msgstr[1] "%1$u albums,&nbsp;%2$s"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/index.php:83
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/gallery.php:111
 msgid "Gallery Archive"
-msgstr ""
+msgstr "Galleri Arkiv"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/index.php:88
 #: /home/jes/work/translations/zenphoto/zp-core/class-search.php:58
@@ -2007,12 +2022,12 @@ msgstr "Beskrivelse"
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/index.php:98
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/themeoptions.php:38
 msgid "Recent images"
-msgstr ""
+msgstr "Seneste billeder"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/index.php:117
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/index.php:145
 msgid "View image:"
-msgstr ""
+msgstr "Se billede:"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/index.php:128
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/themeoptions.php:38
@@ -2022,16 +2037,16 @@ msgstr "Tilfældige billeder"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/index.php:157
 msgid "Gallery data"
-msgstr ""
+msgstr "Galleri data"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/index.php:160
 msgid "Galleries"
-msgstr ""
+msgstr "Gallerier"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/index.php:165
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/gallery.php:100
 msgid "Photos"
-msgstr ""
+msgstr "Fotos"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/index.php:171
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/gallery.php:101
@@ -2051,26 +2066,28 @@ msgid ""
 "<a href=\"http://stopdesign.com/templates/photos/\">Photo Templates</a> from "
 "Stopdesign."
 msgstr ""
+"<a href=\"http://stopdesign.com/templates/photos/\">Foto Skabeloner</a> fra "
+"Stopdesign."
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/album.php:77
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/favorites.php:75
 #, php-format
 msgid "%1$u album,&nbsp;%2$u images"
-msgstr ""
+msgstr "%1$u album,&nbsp;%2$u billeder"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/album.php:142
 msgid "Album RSS feed"
-msgstr ""
+msgstr "Album RSS-feed"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/album.php:148
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/favorites.php:138
 #, php-format
 msgid "images %1$u-%2$u of %3$u"
-msgstr ""
+msgstr "billede %1$u-%2$u af %3$u"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/theme_description.php:7
 msgid "Ported to Zenphoto by Mark Galeassi and Stephen Billard"
-msgstr ""
+msgstr "Omarbejdet for Zenphoto af Mark Galeassi and Stephen Billard"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/theme_description.php:10
 msgid ""
@@ -2079,41 +2096,45 @@ msgid ""
 "\"http://creativecommons.org/licenses/by-nc-sa/2.5/\">Creative Commons "
 "Attribution-NonCommercial-ShareAlike 2.5</a> License."
 msgstr ""
+"Et tema baseret på et design fra <a href=\"http://stopdesign.com/templates/"
+"photos/\">Douglas Bowman</a>. Dette tema er licenseret under <a href="
+"\"http://creativecommons.org/licenses/by-nc-sa/2.5/\">Creative Commons "
+"Attribution-NonCommercial-ShareAlike 2.5</a> Licens."
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/image.php:81
 #, php-format
 msgid "%1$u of %2$u images"
-msgstr ""
+msgstr "%1$u af %2$u billeder"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/image.php:94
 msgid "Full Size"
-msgstr ""
+msgstr "Fuld Størrelse"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/image.php:132
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/slideshow.php:568
 msgid "Previous"
-msgstr ""
+msgstr "Forrige"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/image.php:152
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/slideshow.php:574
 msgid "Next"
-msgstr ""
+msgstr "Næste"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/password.php:25
 msgid "A password is required"
-msgstr ""
+msgstr "Et Kodeord kræves"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/themeoptions.php:37
 msgid "Mini slide selector"
-msgstr ""
+msgstr "Mini billedvælger"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/themeoptions.php:39
 msgid "Select what you want for the six special slides."
-msgstr ""
+msgstr "Vælg hvad du ønsker for seks særlige dias."
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/contact.php:13
 msgid "Contact form"
-msgstr ""
+msgstr "Kontakt formular"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/contact.php:43
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/register.php:42
@@ -2122,74 +2143,76 @@ msgid ""
 "<a href=\"http://stopdesign.com/templates/photos/\">Photo Templates</a> from "
 "Stopdesign"
 msgstr ""
+"<a href=\"http://stopdesign.com/templates/photos/\">Foto Skabeloner</a> fra "
+"Stopdesign"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/gallery.php:32
 msgid "All galleries"
-msgstr ""
+msgstr "Alle Gallerier"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/gallery.php:98
 msgid "Gallery Feeds"
-msgstr ""
+msgstr "Galleri Feeds"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/comment_form/comment_form.php:32
 #, php-format
 msgid "%sName:"
-msgstr ""
+msgstr "%sNavn:"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/comment_form/comment_form.php:62
 #, php-format
 msgid "Email%s:"
-msgstr ""
+msgstr "Email%s:"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/comment_form/comment_form.php:76
 msgid "(not displayed)"
-msgstr ""
+msgstr "(ikke vist)"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/comment_form/comment_form.php:90
 #, php-format
 msgid "URL%s:"
-msgstr ""
+msgstr "URL%s:"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/comment_form/comment_form.php:117
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/comment_form/functions.php:193
 #, php-format
 msgid "Street%s:"
-msgstr ""
+msgstr "Gade%s:"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/comment_form/comment_form.php:134
 #, php-format
 msgid "City:%s"
-msgstr ""
+msgstr "By:%s"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/comment_form/comment_form.php:151
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/comment_form/functions.php:209
 #, php-format
 msgid "State%s:"
-msgstr ""
+msgstr "Stat%s:"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/comment_form/comment_form.php:168
 #, php-format
 msgid "Country:%s"
-msgstr ""
+msgstr "Land:%s"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/comment_form/comment_form.php:185
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/comment_form/functions.php:225
 #, php-format
 msgid "Postal code%s:"
-msgstr ""
+msgstr "Postnummer%s:"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/comment_form/comment_form.php:209
 #: /home/jes/work/translations/zenphoto/zp-core/lib-auth.php:1050
 msgid "Enter CAPTCHA"
-msgstr ""
+msgstr "Skriv CAPTCHA"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/comment_form/comment_form.php:213
 msgid "Private comment:"
-msgstr ""
+msgstr "Privat kommentar:"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/comment_form/comment_form.php:216
 msgid "(don't publish)"
-msgstr ""
+msgstr "(offentligør ikke)"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/comment_form/comment_form.php:223
 #: /home/jes/work/translations/zenphoto/zp-core/admin-comments.php:173
@@ -2198,114 +2221,114 @@ msgstr "Kommentar:"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/comment_form/comment_form.php:232
 msgid "Post"
-msgstr ""
+msgstr "Send"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/comment_form/comment_form.php:233
 msgid "Avoid clicking &ldquo;Post&rdquo; more than once."
-msgstr ""
+msgstr "Undå at klikke &ldquo;Send&rdquo; mere en én gang."
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/contact_form/form.php:12
 #: /home/jes/work/translations/zenphoto/themes/garland/contact_form/form.php:12
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/contact_form/form.php:14
 #, php-format
 msgid "Title<strong>%s</strong>:"
-msgstr ""
+msgstr "Titel<strong>%s</strong>:"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/contact_form/form.php:19
 #: /home/jes/work/translations/zenphoto/themes/garland/contact_form/form.php:19
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/contact_form/form.php:21
 #, php-format
 msgid "Name<strong>%s</strong>:"
-msgstr ""
+msgstr "Navn<strong>%s</strong>:"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/contact_form/form.php:26
 #: /home/jes/work/translations/zenphoto/themes/garland/contact_form/form.php:26
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/contact_form/form.php:33
 #, php-format
 msgid "Company<strong>%s</strong>:"
-msgstr ""
+msgstr "Firma<strong>%s</strong>:"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/contact_form/form.php:33
 #: /home/jes/work/translations/zenphoto/themes/garland/contact_form/form.php:33
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/contact_form/form.php:40
 #, php-format
 msgid "Street<strong>%s</strong>:"
-msgstr ""
+msgstr "Gade<strong>%s</strong>:"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/contact_form/form.php:40
 #: /home/jes/work/translations/zenphoto/themes/garland/contact_form/form.php:40
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/contact_form/form.php:47
 #, php-format
 msgid "City<strong>%s</strong>:"
-msgstr ""
+msgstr "By<strong>%s</strong>:"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/contact_form/form.php:47
 #: /home/jes/work/translations/zenphoto/themes/garland/contact_form/form.php:47
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/contact_form/form.php:54
 #, php-format
 msgid "State<strong>%s</strong>:"
-msgstr ""
+msgstr "Stat<strong>%s</strong>:"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/contact_form/form.php:54
 #: /home/jes/work/translations/zenphoto/themes/garland/contact_form/form.php:54
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/contact_form/form.php:61
 #, php-format
 msgid "Country<strong>%s</strong>:"
-msgstr ""
+msgstr "Land<strong>%s</strong>:"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/contact_form/form.php:61
 #: /home/jes/work/translations/zenphoto/themes/garland/contact_form/form.php:61
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/contact_form/form.php:68
 #, php-format
 msgid "Postal code<strong>%s</strong>:"
-msgstr ""
+msgstr "Postnummer<strong>%s</strong>:"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/contact_form/form.php:68
 #: /home/jes/work/translations/zenphoto/themes/garland/contact_form/form.php:68
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/contact_form/form.php:75
 #, php-format
 msgid "E-Mail<strong>%s</strong>:"
-msgstr ""
+msgstr "Email<strong>%s</strong>:"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/contact_form/form.php:75
 #: /home/jes/work/translations/zenphoto/themes/garland/contact_form/form.php:75
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/contact_form/form.php:82
 #, php-format
 msgid "Website<strong>%s</strong>:"
-msgstr ""
+msgstr "Hjemmeside<strong>%s</strong>:"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/contact_form/form.php:82
 #: /home/jes/work/translations/zenphoto/themes/garland/contact_form/form.php:82
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/contact_form/form.php:89
 #, php-format
 msgid "Phone<strong>%s</strong>:"
-msgstr ""
+msgstr "Telefon<strong>%s</strong>:"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/contact_form/form.php:93
 #: /home/jes/work/translations/zenphoto/themes/garland/contact_form/form.php:93
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/contact_form/form.php:100
 msgid "Enter CAPTCHA<strong>*</strong>:"
-msgstr ""
+msgstr "Skriv CAPTCHA<strong>*</strong>:"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/contact_form/form.php:107
 #: /home/jes/work/translations/zenphoto/themes/garland/contact_form/form.php:107
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/contact_form/form.php:114
 #, php-format
 msgid "Subject<strong>%s</strong>:"
-msgstr ""
+msgstr "Emne<strong>%s</strong>:"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/contact_form/form.php:113
 #: /home/jes/work/translations/zenphoto/themes/garland/contact_form/form.php:113
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/contact_form/form.php:120
 #, php-format
 msgid "Message<strong>%s</strong>:"
-msgstr ""
+msgstr "Meddelelse<strong>%s</strong>:"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/contact_form/form.php:121
 #: /home/jes/work/translations/zenphoto/themes/garland/contact_form/form.php:121
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/contact_form/form.php:128
 msgid "Send e-mail"
-msgstr ""
+msgstr "Send email"
 
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/contact_form/form.php:122
 #: /home/jes/work/translations/zenphoto/themes/garland/contact_form/form.php:122
@@ -2334,15 +2357,15 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1518
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1636
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1662
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2230
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2251
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2362
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2491
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2761
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2829
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2944
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2983
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3096
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2260
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2281
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2392
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2521
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2791
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2859
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2974
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3013
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3126
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1166
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1168
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1868
@@ -2364,11 +2387,11 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:475
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/contact_form/form.php:129
 msgid "Reset"
-msgstr ""
+msgstr "Nulstil"
 
 #: /home/jes/work/translations/zenphoto/themes/garland/search.php:94
 msgid "Sorry, no matches for your search."
-msgstr ""
+msgstr "Beklager, ingen matcher for din søgning."
 
 #: /home/jes/work/translations/zenphoto/themes/garland/search.php:200
 #: /home/jes/work/translations/zenphoto/themes/garland/search.php:205
@@ -2380,91 +2403,93 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/themes/garland/favorites.php:52
 #, php-format
 msgid "View album:  %s"
-msgstr ""
+msgstr "Se album: %s"
 
 #: /home/jes/work/translations/zenphoto/themes/garland/album.php:99
 #: /home/jes/work/translations/zenphoto/themes/garland/favorites.php:107
 msgid "Album Navigation"
-msgstr ""
+msgstr "Album navigering"
 
 #: /home/jes/work/translations/zenphoto/themes/garland/album.php:104
 #: /home/jes/work/translations/zenphoto/themes/garland/favorites.php:112
 msgid "Next album"
-msgstr ""
+msgstr "Næste album"
 
 #: /home/jes/work/translations/zenphoto/themes/garland/album.php:104
 #: /home/jes/work/translations/zenphoto/themes/garland/favorites.php:112
 msgid "Next album »"
-msgstr ""
+msgstr "Næste album »"
 
 #: /home/jes/work/translations/zenphoto/themes/garland/album.php:112
 #: /home/jes/work/translations/zenphoto/themes/garland/favorites.php:120
 msgid "Prev Album"
-msgstr ""
+msgstr "Forrige Album"
 
 #: /home/jes/work/translations/zenphoto/themes/garland/album.php:112
 #: /home/jes/work/translations/zenphoto/themes/garland/favorites.php:120
 msgid "« Prev Album"
-msgstr ""
+msgstr "« Forrige Album"
 
 #: /home/jes/work/translations/zenphoto/themes/garland/album.php:118
 #: /home/jes/work/translations/zenphoto/themes/garland/image.php:125
 #: /home/jes/work/translations/zenphoto/themes/garland/news.php:111
 #: /home/jes/work/translations/zenphoto/themes/garland/pages.php:63
 msgid "Tags: "
-msgstr ""
+msgstr "Tags: "
 
 #: /home/jes/work/translations/zenphoto/themes/garland/album.php:135
 #, php-format
 msgid "Latest Images for %s"
-msgstr ""
+msgstr "Seneste billeder for %s"
 
 #: /home/jes/work/translations/zenphoto/themes/garland/404.php:39
 #: /home/jes/work/translations/zenphoto/themes/garland/404.php:41
 msgid "Page not found"
-msgstr ""
+msgstr "Siden ikke fundet"
 
 #: /home/jes/work/translations/zenphoto/themes/garland/theme_description.php:10
 msgid ""
 "Modded Wordpress theme from, <a href=\"http://garlandtheme.blogspot.com/"
 "\">garland</a>"
 msgstr ""
+"Modded Wordpress tema fra, <a href=\"http://garlandtheme.blogspot.com/"
+"\">garland</a>"
 
 #: /home/jes/work/translations/zenphoto/themes/garland/image.php:106
 msgid "Next image"
-msgstr ""
+msgstr "Næste billede"
 
 #: /home/jes/work/translations/zenphoto/themes/garland/image.php:107
 msgid "Next »"
-msgstr ""
+msgstr "Næste »"
 
 #: /home/jes/work/translations/zenphoto/themes/garland/image.php:116
 msgid "Previous image"
-msgstr ""
+msgstr "Forrige billede"
 
 #: /home/jes/work/translations/zenphoto/themes/garland/image.php:117
 msgid "« Previous"
-msgstr ""
+msgstr "« Forrige"
 
 #: /home/jes/work/translations/zenphoto/themes/garland/password.php:40
 msgid "A password is required to access this page."
-msgstr ""
+msgstr "Der kræves et kodeord for at tilgå denne side."
 
 #: /home/jes/work/translations/zenphoto/themes/garland/themeoptions.php:72
 msgid "Set to enable search form."
-msgstr ""
+msgstr "Indstil for at aktivere søgeskemaet."
 
 #: /home/jes/work/translations/zenphoto/themes/garland/themeoptions.php:73
 msgid "Allow cloud"
-msgstr ""
+msgstr "Tillad cloud"
 
 #: /home/jes/work/translations/zenphoto/themes/garland/themeoptions.php:73
 msgid "Set to enable tag cloud for album page."
-msgstr ""
+msgstr "Afkryds for at aktivere tag cloud for albumsiden."
 
 #: /home/jes/work/translations/zenphoto/themes/garland/sidebar.php:18
 msgid "Search pages"
-msgstr ""
+msgstr "Søg sider"
 
 #: /home/jes/work/translations/zenphoto/themes/garland/sidebar.php:91
 #: /home/jes/work/translations/zenphoto/themes/garland/sidebar.php:105
@@ -2491,7 +2516,7 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/lib-auth.php:552
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1930
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:3087
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:111
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:106
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/related_items.php:163
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/comment_form.php:77
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/tweet_news.php:84
@@ -2546,7 +2571,7 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/crop_image.php:345
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/crop_image.php:350
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/crop_image.php:351
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:314
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:310
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:346
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:783
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:221
@@ -2739,7 +2764,7 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:653
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1954
 #: /home/jes/work/translations/zenphoto/zp-core/setup/index.php:978
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:168
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:160
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:143
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:149
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:249
@@ -2762,7 +2787,7 @@ msgid "Download %s ZIP file"
 msgstr ""
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-logs.php:128
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2106
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2136
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/downloadList/download_statistics.php:24
 msgid "Download"
 msgstr ""
@@ -2780,54 +2805,54 @@ msgstr ""
 msgid "There are no logs to view."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/reconfigure.php:79
+#: /home/jes/work/translations/zenphoto/zp-core/reconfigure.php:80
 msgid "an unknown release"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/reconfigure.php:164
+#: /home/jes/work/translations/zenphoto/zp-core/reconfigure.php:165
 msgid "Zenphoto has detected a change in your installation."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/reconfigure.php:174
+#: /home/jes/work/translations/zenphoto/zp-core/reconfigure.php:175
 #, php-format
 msgid "Your server software has changed from %1$s to %2$s."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/reconfigure.php:178
+#: /home/jes/work/translations/zenphoto/zp-core/reconfigure.php:179
 #, php-format
 msgid "Your database software has changed from %1$s to %2$s."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/reconfigure.php:181
+#: /home/jes/work/translations/zenphoto/zp-core/reconfigure.php:182
 #, php-format
 msgid "Zenphoto %1$s has been copied over %2$s."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/reconfigure.php:184
+#: /home/jes/work/translations/zenphoto/zp-core/reconfigure.php:185
 #, php-format
 msgid "Your installation has moved from %1$s to %2$s."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/reconfigure.php:188
+#: /home/jes/work/translations/zenphoto/zp-core/reconfigure.php:189
 #, php-format
 msgid "The script <code>%1$s</code> has changed."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/reconfigure.php:199
+#: /home/jes/work/translations/zenphoto/zp-core/reconfigure.php:200
 #: /home/jes/work/translations/zenphoto/zp-core/setup.php:25
 #, php-format
 msgid ""
 "Please reinstall the following setup files from the %1$s [%2$s] release:"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/reconfigure.php:230
+#: /home/jes/work/translations/zenphoto/zp-core/reconfigure.php:231
 #, php-format
 msgid ""
 "The change detected is critical. You <strong>must</strong> run %1$ssetup%2$s "
 "for your site to function."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/reconfigure.php:232
+#: /home/jes/work/translations/zenphoto/zp-core/reconfigure.php:233
 #, php-format
 msgid ""
 "The change detected may not be critical but you should run %1$ssetup%2$s at "
@@ -2919,22 +2944,22 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1517
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1635
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1661
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2229
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2250
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2361
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2489
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2759
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2828
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2943
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2982
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3095
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2259
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2280
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2391
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2519
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2789
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2858
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2973
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3012
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3125
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1162
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1164
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1864
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1866
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/crop_image.php:338
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/crop_image.php:339
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:261
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:257
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:119
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:121
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:177
@@ -2970,15 +2995,15 @@ msgstr "Anvend"
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1518
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1636
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1662
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2230
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2251
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2362
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2491
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2761
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2829
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2944
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2983
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3096
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2260
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2281
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2392
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2521
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2791
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2859
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2974
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3013
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3126
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/search_statistics/search_analysis.php:268
 msgid "reset"
 msgstr ""
@@ -2996,10 +3021,10 @@ msgid "Collapse all"
 msgstr ""
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:449
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2164
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2179
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2180
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2181
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2194
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2209
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2210
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2211
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/contact_form.php:75
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/GoogleMap.php:90
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:96
@@ -3160,7 +3185,7 @@ msgid "Forbidden"
 msgstr ""
 
 #: /home/jes/work/translations/zenphoto/zp-core/full-image.php:22
-#: /home/jes/work/translations/zenphoto/zp-core/i.php:41
+#: /home/jes/work/translations/zenphoto/zp-core/i.php:45
 msgid "Too few arguments! Image not found."
 msgstr ""
 
@@ -3495,7 +3520,7 @@ msgid "Show theme for: "
 msgstr ""
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:155
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2449
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2479
 msgid "There are no themes for which you have rights to administer."
 msgstr ""
 
@@ -3646,7 +3671,7 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1584
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1158
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1860
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:313
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:309
 msgid "Back to the album list"
 msgstr ""
 
@@ -3702,35 +3727,35 @@ msgstr ""
 msgid "%s not connected"
 msgstr "%s er ikke fobundet"
 
-#: /home/jes/work/translations/zenphoto/zp-core/i.php:58
+#: /home/jes/work/translations/zenphoto/zp-core/i.php:62
 msgid "Forbidden(1)"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/i.php:116
+#: /home/jes/work/translations/zenphoto/zp-core/i.php:120
 msgid "Forbidden(2)"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/i.php:153
+#: /home/jes/work/translations/zenphoto/zp-core/i.php:157
 msgid ""
 "The cache directory does not exist. Please create it and set the permissions "
 "to 0777."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/i.php:158
+#: /home/jes/work/translations/zenphoto/zp-core/i.php:162
 msgid "The cache directory is not writable! Attempts to chmod didn't work."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/i.php:193
+#: /home/jes/work/translations/zenphoto/zp-core/i.php:197
 #, php-format
 msgid "Image not found; file %s does not exist."
 msgstr "Billedet ikke fundet; filen %s  eksisterer ikke."
 
-#: /home/jes/work/translations/zenphoto/zp-core/i.php:225
+#: /home/jes/work/translations/zenphoto/zp-core/i.php:234
 #, php-format
 msgid "Image processing of %s resulted in a fatal error."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/i.php:247
+#: /home/jes/work/translations/zenphoto/zp-core/i.php:256
 #, php-format
 msgid "Suffix Not Allowed: %s"
 msgstr ""
@@ -4471,6 +4496,26 @@ msgstr ""
 msgid "There are no albums for you to edit."
 msgstr ""
 
+#: /home/jes/work/translations/zenphoto/zp-core/functions-basic.php:968
+#: /home/jes/work/translations/zenphoto/zp-core/admin.php:203
+#: /home/jes/work/translations/zenphoto/zp-core/setup/index.php:309
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/security-logger.php:123
+msgid "clone"
+msgstr "Klon"
+
+#: /home/jes/work/translations/zenphoto/zp-core/functions-basic.php:1363
+#, php-format
+msgid "Mutex %s was left locked."
+msgstr ""
+
+#: /home/jes/work/translations/zenphoto/zp-core/functions-basic.php:1381
+msgid "Error locking mutex"
+msgstr ""
+
+#: /home/jes/work/translations/zenphoto/zp-core/functions-basic.php:1399
+msgid "Error un-locking mutex"
+msgstr ""
+
 #: /home/jes/work/translations/zenphoto/zp-core/admin-thumbcrop.php:231
 msgid "Custom thumbnail cropping"
 msgstr ""
@@ -4537,7 +4582,7 @@ msgid "Owner"
 msgstr "Ejer"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-globals.php:58
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:119
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:116
 msgid "overview"
 msgstr ""
 
@@ -4550,7 +4595,7 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:2012
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:2015
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/image_album_statistics.php:217
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/tweet_news.php:426
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/tweet_news.php:421
 msgid "images"
 msgstr ""
 
@@ -4561,12 +4606,12 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/admin-globals.php:80
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:2013
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:2016
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/tweet_news.php:417
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/tweet_news.php:412
 msgid "albums"
 msgstr ""
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-globals.php:86
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/tweet_news.php:409
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/tweet_news.php:404
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:477
 msgid "pages"
 msgstr ""
@@ -4750,7 +4795,7 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/admin-refresh-metadata.php:121
 #: /home/jes/work/translations/zenphoto/zp-core/lib-auth.php:920
 #: /home/jes/work/translations/zenphoto/zp-core/setup/index.php:1488
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:298
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:294
 msgid "Refresh"
 msgstr ""
 
@@ -5430,12 +5475,6 @@ msgstr "<em>Debug build</em>"
 #: /home/jes/work/translations/zenphoto/zp-core/admin.php:200
 msgid "Official build"
 msgstr "Officiel Build"
-
-#: /home/jes/work/translations/zenphoto/zp-core/admin.php:203
-#: /home/jes/work/translations/zenphoto/zp-core/setup/index.php:309
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/security-logger.php:123
-msgid "clone"
-msgstr "Klon"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin.php:207
 #, php-format
@@ -6534,7 +6573,7 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/lib-auth.php:1214
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:978
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1334
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2061
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2091
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1263
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/downloadList.php:129
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:503
@@ -6582,48 +6621,35 @@ msgstr ""
 msgid "Repeat password"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/functions-common.php:26
-#, php-format
-msgid "Mutex %s was left locked."
-msgstr ""
-
-#: /home/jes/work/translations/zenphoto/zp-core/functions-common.php:44
-msgid "Error locking mutex"
-msgstr ""
-
-#: /home/jes/work/translations/zenphoto/zp-core/functions-common.php:62
-msgid "Error un-locking mutex"
-msgstr ""
-
-#: /home/jes/work/translations/zenphoto/zp-core/functions-common.php:97
+#: /home/jes/work/translations/zenphoto/zp-core/functions-common.php:35
 msgid "ERROR"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/functions-common.php:98
+#: /home/jes/work/translations/zenphoto/zp-core/functions-common.php:36
 msgid "WARNING"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/functions-common.php:99
+#: /home/jes/work/translations/zenphoto/zp-core/functions-common.php:37
 msgid "NOTICE"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/functions-common.php:100
+#: /home/jes/work/translations/zenphoto/zp-core/functions-common.php:38
 msgid "USER ERROR"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/functions-common.php:101
+#: /home/jes/work/translations/zenphoto/zp-core/functions-common.php:39
 msgid "USER WARNING"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/functions-common.php:102
+#: /home/jes/work/translations/zenphoto/zp-core/functions-common.php:40
 msgid "USER NOTICE"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/functions-common.php:103
+#: /home/jes/work/translations/zenphoto/zp-core/functions-common.php:41
 msgid "STRICT NOTICE"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/functions-common.php:114
+#: /home/jes/work/translations/zenphoto/zp-core/functions-common.php:52
 #, php-format
 msgid "%1$s: %2$s in %3$s on line %4$s"
 msgstr ""
@@ -6769,7 +6795,7 @@ msgid "<strong>Error parsing <em>plugin_disable</em> string!</strong>."
 msgstr ""
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-plugins.php:218
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2855
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2885
 msgid ""
 "<strong>Note:</strong> Instantiating the option interface within the plugin "
 "may cause performance issues. You should instead set <code>"
@@ -7327,10 +7353,10 @@ msgid ""
 msgstr ""
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:879
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2828
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2943
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2982
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3095
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2858
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2973
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3012
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3125
 #: /home/jes/work/translations/zenphoto/zp-core/setup/setup-sqlform.php:102
 msgid "save"
 msgstr ""
@@ -7384,7 +7410,7 @@ msgstr ""
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:955
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1313
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2043
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2073
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1249
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/downloadList.php:108
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:483
@@ -7407,7 +7433,7 @@ msgstr ""
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:991
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1347
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2071
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2101
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/downloadList.php:132
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:506
 msgid "(repeat)"
@@ -7882,9 +7908,9 @@ msgid "RSS cache"
 msgstr ""
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1611
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1992
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2001
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2126
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2022
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2031
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2156
 msgid "Enabled"
 msgstr ""
 
@@ -7963,7 +7989,7 @@ msgid "<em>full</em> Image"
 msgstr ""
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1766
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:195
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:187
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:114
 msgid "Thumbnail"
 msgstr ""
@@ -8022,7 +8048,7 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:440
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1510
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1931
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:111
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:106
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/related_items.php:163
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/comment_form.php:77
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/tweet_news.php:84
@@ -8154,41 +8180,56 @@ msgid ""
 msgstr ""
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1965
+msgid "Caching concurrency:"
+msgstr ""
+
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1990
+#, php-format
+msgid "Allow cache processing of %s concurrent images."
+msgstr ""
+
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1991
+msgid ""
+"More workers will get the job done faster so long as your server does not "
+"get swamped or run out of memory."
+msgstr ""
+
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1995
 msgid "Cache as:"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1968
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1998
 msgid "Original"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1979
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2009
 msgid ""
 "Select a type for the images stored in the image cache. Select <em>Original</"
 "em> to preserve the original image's type."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1982
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2012
 msgid "Obscure cache filenames"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1984
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3023
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3062
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2014
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3053
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3092
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:174
 msgid "enable"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1986
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2016
 msgid ""
 "Cause the filename of cached items to be obscured. This makes it difficult "
 "for someone to \"guess\" the name in a URL."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1989
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2019
 msgid "Protect image cache"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1994
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2024
 msgid ""
 "If checked all image URIs will link to the image processor and the image "
 "cache will be disabled to browsers via an <em>.htaccess</em> file. Images "
@@ -8196,7 +8237,7 @@ msgid ""
 "than allowing the browser to fetch the file."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1995
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2025
 msgid ""
 "<strong>WARNING\t:</strong> This option adds significant overhead to "
 "<strong>each and every</strong> image reference! Some <em>JavaScript</em> "
@@ -8204,61 +8245,61 @@ msgid ""
 "processor URI and are incompatible with this option."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1998
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2028
 msgid "Secure image processor"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2003
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2033
 msgid ""
 "When not checked, the image processor does not check for album access "
 "credentials."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2004
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2034
 msgid ""
 "<strong>WARNING\t:</strong> This option adds memory overhead to image "
 "caching! You may be unable to cache some images depending on your server "
 "memory availability."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2007
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2037
 msgid "Full image protection:"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2012
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2042
 msgid "Disable hotlinking"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2017
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2047
 msgid "cache the full image"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2030
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2067
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2060
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2097
 msgid "password:"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2052
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2082
 msgid "user:"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2092
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2122
 msgid "hint:"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2106
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2136
 msgid "Protected view"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2106
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2136
 msgid "No access"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2108
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2138
 msgid "Unprotected"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2116
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2146
 msgid ""
 "Disabling hotlinking prevents linking to the full image from other domains. "
 "If enabled, external links are redirect to the image page. If you are having "
@@ -8267,7 +8308,7 @@ msgid ""
 "<em>Unprotected</em> or if the image is cached."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2117
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2147
 msgid ""
 "If <em>Cache the full image</em> is checked the full image will be loaded to "
 "the cache and served from there after the first reference. <em>Full&nbsp;"
@@ -8276,14 +8317,14 @@ msgid ""
 "the image."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2118
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2148
 msgid ""
 "The <em>user</em>, <em>password</em>, and <em>hint</em> apply to the "
 "<em>Download</em> and <em>Protected view</em> level of protection. If there "
 "is a password set, the viewer must supply this password to access the image."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2119
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2149
 msgid ""
 "Select the level of protection for full sized images. <em>Download</em> "
 "forces a download dialog rather than displaying the image. <em>No&nbsp;"
@@ -8293,11 +8334,11 @@ msgid ""
 "<em>Unprotected</em> allows direct display of the image."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2123
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2153
 msgid "Use lock image"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2128
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2158
 msgid ""
 "Substitute a <em>lock</em> image for thumbnails of password protected albums "
 "when the viewer has not supplied the password. If your theme supplies an "
@@ -8305,107 +8346,107 @@ msgid ""
 "Otherwise the zenphoto default lock image is displayed."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2142
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2172
 msgid "Metadata"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2165
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2195
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/GoogleMap.php:90
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:90
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:91
 msgid "hide"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2166
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2196
 msgid "disabled"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2177
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2207
 msgid "Select how image metadata fields are handled."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2179
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2209
 msgid "Show the field"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2180
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2210
 msgid "Hide the field"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2181
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2211
 msgid "Do not process the field"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2185
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2215
 msgid ""
 "Hint: you can drag down the <em>drag handle</em> in the lower right corner "
 "to show more selections."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2195
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2225
 msgid "IPTC encoding:"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2201
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2231
 msgid "The default character encoding of image IPTC metadata."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2206
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2236
 msgid "Imbed IPTC copyright"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2207
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2237
 msgid ""
 "If checked and an image has no IPTC data a copyright notice will be imbedded "
 "cached copies."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2209
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2239
 msgid "Replicate IPTC metadata"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2210
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2240
 msgid ""
 "If checked IPTC data from the original image will be imbedded in cached "
 "copies. If the image has no IPTC data a copyright notice will be imbedded. "
 "(The text supplied will be used if the orginal image has no copyright.)"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2214
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2244
 msgid "IPTC Imbedding:"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2222
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2252
 msgid ""
 "<strong>NOTE:</strong> This option  applies only to JPEG format cached "
 "images."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2256
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2286
 msgid "Enable comment notification:"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2269
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2299
 msgid "Email the Admin when new comments are posted"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2273
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2303
 msgid "Spam filter:"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2281
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2311
 msgid "The SPAM filter plug-in you wish to use to check comments for SPAM"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2293
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2323
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/contact_form.php:104
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/contact_form.php:106
 msgid "Name field"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2301
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2318
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2335
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2331
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2348
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2365
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/register_user.php:69
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/comment_form.php:85
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:179
@@ -8413,106 +8454,106 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2305
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2322
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2339
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2335
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2352
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2369
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2382
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/register_user.php:69
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/comment_form.php:85
 msgid "Require"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2308
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2338
 msgid "If the <em>Name</em> field is required, the poster must provide a name."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2310
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2340
 msgid "Email field"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2325
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2355
 msgid ""
 "If the <em>Email</em> field is required, the poster must provide an email "
 "address."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2327
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2357
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/contact_form.php:128
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/contact_form.php:130
 msgid "Website field"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2342
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2372
 msgid ""
 "If the <em>Website</em> field is required, the poster must provide a website."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2344
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2374
 msgid "Captcha"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2355
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2385
 msgid ""
 "If <em>Captcha</em> is required, the form will include a Captcha "
 "verification."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2464
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2494
 #, php-format
 msgid "Options for <code><strong>%1$s</strong></code>: <em>%2$s</em>"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2466
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2496
 #, php-format
 msgid "Options for <em>%s</em>"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2474
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2504
 msgid "Show theme for:"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2490
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2760
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2520
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2790
 msgid "Revert to default"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2490
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2760
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2520
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2790
 msgid "Revert"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2497
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2527
 msgid "<strong>Standard options</strong>"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2499
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2529
 msgid ""
 "<em>These image and album presentation options provided by the Zenphoto core "
 "for all themes.</em>"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2499
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2529
 msgid ""
 "<strong>Note:</strong> These are <em>recommendations</em> as themes may "
 "choose to override them for design reasons"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2502
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2532
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/publishContent/publishContent.php:243
 msgid "Albums:"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2511
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2548
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2541
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2578
 msgid "thumbnails per row"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2520
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2557
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2550
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2587
 msgid "thumbnails per page"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2524
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2554
 msgid ""
 "These specify the Theme <a title=\"Look at your album page and count the "
 "number of album thumbnails that show up in one row. This is the value you "
@@ -8521,25 +8562,25 @@ msgid ""
 "page."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2529
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2566
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2559
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2596
 msgid ""
 "<strong>Note:</strong> If <em>thumbnails per row</em> is greater than 1, The "
 "actual number of thumbnails that are displayed on a page will be rounded up "
 "to  the next multiple of it."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2530
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2560
 #, php-format
 msgid "For album pages there will be %1$u rows of thumbnails."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2539
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2569
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/publishContent/publishContent.php:379
 msgid "Images:"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2561
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2591
 msgid ""
 "These specify the Theme <a title=\"Look at your album page and count the "
 "number of image thumbnails that show up in one row. This is the value you "
@@ -8548,24 +8589,24 @@ msgid ""
 "page."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2567
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2597
 #, php-format
 msgid "For pages containing images there will be %1$u rows of thumbnails."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2583
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2613
 msgid "Transition:"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2599
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2629
 msgid "separate"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2600
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2630
 msgid "combined"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2603
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2633
 msgid ""
 "if both album and image <em>thumbnails per row</em> are greater than 1 you "
 "can choose if album thumbnails and image thumbnails are placed together on "
@@ -8573,91 +8614,91 @@ msgid ""
 "thumbnails."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2620
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2650
 msgid "Thumb size:"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2624
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2654
 #, php-format
 msgid "Standard thumbnails will be scaled to %u pixels."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2634
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2664
 msgid "Crop thumbnails:"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2639
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2669
 #, php-format
 msgid "%s%% left &amp; right"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2643
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2673
 #, php-format
 msgid "%s%% top &amp; bottom"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2648
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2678
 #, php-format
 msgid ""
 "If checked the thumbnail will be cropped %1$.1f%% in from the top and the "
 "bottom margins and %2$.1f%% in from the left and the right margins."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2650
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2680
 msgid ""
 "<strong>Note:</strong> changing crop will invalidate existing custom crops."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2654
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2684
 msgid "Gray scale conversion:"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2661
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2691
 msgid "thumbnail"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2665
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2695
 msgid "If checked, images/thumbnails will be created in gray scale."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2675
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2705
 msgid "Image size:"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2686
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2716
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:47
 msgid "height"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2690
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2720
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:45
 msgid "width"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2697
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2727
 msgid "shortest side"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2701
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2731
 msgid "longest side"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2706
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2736
 msgid "Default image display size."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2707
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2737
 msgid ""
 "The image will be sized so that the <em>height</em>, <em>width</em>, "
 "<em>shortest side</em>, or the <em>longest side</em> will be equal to "
 "<em>image size</em>."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2719
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2749
 msgid "Gallery index page link:"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2738
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2768
 msgid ""
 "If this option is not empty, the Gallery Index URL that would normally link "
 "to the theme <code>index.php</code> script will instead link to this script. "
@@ -8666,47 +8707,47 @@ msgid ""
 "theme for the <em>Gallery</em>."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2746
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2776
 msgid "<strong>Custom theme options</strong>"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2748
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2778
 #, php-format
 msgid "The following are options specifically implemented by %s."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2836
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2866
 msgid "Expand plugin options"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2838
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2868
 msgid "Collapse all plugin options"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2890
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2920
 msgid "warning"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2926
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2956
 msgid "There are no plugin options to administer."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2988
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3018
 msgid "Server protocol:"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2994
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3024
 msgid "secure admin"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2998
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3028
 msgid ""
 "Normally this option should be set to <em>http</em>. If you're running a "
 "secure server, change this to <em>https</em>. Select <em>secure admin</em> "
 "if you need only to insure secure access to <code>admin</code> pages."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2999
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3029
 msgid ""
 "<strong>Note:</strong><br /><br />Login from the front-end user login form "
 "is secure only if <em>https</em> is selected.<br /><br />If you select "
@@ -8718,51 +8759,51 @@ msgid ""
 "<em>options</em> table of your database."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3008
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3038
 msgid "CAPTCHA generator:"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3017
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3047
 msgid "Select the <em>CAPTCHA</em> generator to be used by Zenphoto."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3021
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3051
 msgid "Cookie security"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3026
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3056
 msgid "Tie cookies to the IP address of the browser."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3030
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3060
 msgid ""
 "<strong>Note</strong>: If your browser does not present a consistant IP "
 "address during a session you may not be able to log into your site when this "
 "option is enabled."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3032
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3062
 msgid " You <strong>WILL</strong> have to login after changing this option."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3034
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3064
 msgid ""
 "If you set the option and cannot login, you will have to restore your "
 "database to a point when the option was not set, so you might want to backup "
 "your database first."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3046
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3076
 msgid "User name"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3068
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3098
 msgid ""
 "If enabled guest logon forms will include the <em>User Name</em> field. This "
 "allows <em>Zenphoto</em> users to logon from the form."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3070
+#: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3100
 msgid ""
 "<strong>Note</strong>: This field is required because one or more of the "
 "<em>Guest</em> passwords has a user name associated."
@@ -8788,6 +8829,7 @@ msgid "User guide"
 msgstr ""
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:33
+#: /home/jes/work/translations/zenphoto/zp-core/setup/setup-primitive.php:84
 msgid "Forum"
 msgstr ""
 
@@ -8796,10 +8838,12 @@ msgid "Bugtracker"
 msgstr ""
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:35
+#: /home/jes/work/translations/zenphoto/zp-core/setup/setup-primitive.php:84
 msgid "View Change log"
 msgstr ""
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:35
+#: /home/jes/work/translations/zenphoto/zp-core/setup/setup-primitive.php:84
 msgid "Change log"
 msgstr ""
 
@@ -12222,6 +12266,11 @@ msgstr ""
 msgid "The zenphoto.cfg file does not exist."
 msgstr "Filen zenphoto.cfg  eksisterer ikke."
 
+#: /home/jes/work/translations/zenphoto/zp-core/setup/setup-primitive.php:83
+#, fuzzy
+msgid "A simpler web album"
+msgstr "Se Album:"
+
 #: /home/jes/work/translations/zenphoto/zp-core/setup/setup_pluginOptions.php:12
 #, php-format
 msgid "Plugin:%s setup started"
@@ -12664,15 +12713,14 @@ msgstr ""
 msgid ""
 "<strong>NOTE</strong>: The image caching process requires that your WEB "
 "browser <em>fetch</em> each image size. For a full gallery cache this may "
-"exceed the capacity of your server. See the plugin option <em>Cache workers</"
-"em>."
+"exceed the capacity of your server and not complete."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:86
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:85
 msgid "Image caching sizes"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:89
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:88
 msgid ""
 "Cropped images will be made in these parameters if the <em>Create image</em> "
 "box is checked. Un-check to box to remove the settings.You can determine the "
@@ -12680,17 +12728,17 @@ msgid ""
 "look something like these:"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:92
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:91
 msgid "<code>photo_595.jpg</code>: sized to 595 pixels"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:93
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:92
 msgid ""
 "<code>photo_w180_cw180_ch80_thumb.jpg</code>: a size of 180px wide and 80px "
 "high and it is a thumbnail (<code>thumb</code>)"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:94
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:93
 msgid ""
 "<code>photo_85_cw72_ch72_thumb_copyright_gray.jpg</code>: sized 85px cropped "
 "at about 7.6% (one half of 72/85) from the horizontal and vertical sides "
@@ -12698,13 +12746,13 @@ msgid ""
 "(<code>gray</code>)."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:95
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:94
 msgid ""
 "<code>photo_w85_h85_cw350_ch350_cx43_cy169_thumb_copyright.jpg</code>: a "
 "custom cropped 85px thumbnail with watermark."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:99
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:98
 msgid ""
 "If a field is not represented in the cached name, leave the field blank. "
 "Custom crops (those with cx and cy) really cannot be cached easily since "
@@ -12712,7 +12760,7 @@ msgid ""
 "<code>getCustomImageURL()</code> comment block for details on these fields."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:103
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:102
 msgid ""
 "Some themes use <em>MaxSpace</em> image functions. To cache images "
 "referenced by these functions set the <em>width</em> and <em>height</em> "
@@ -12720,133 +12768,118 @@ msgid ""
 "<code>MaxSpace</code> checkbox."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:106
-msgid "Cache workers"
-msgstr ""
-
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:108
-#, php-format
-msgid "Use %s workers in caching the images."
-msgstr ""
-
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:109
-msgid ""
-"More workers will get the job done faster so long as your server does not "
-"get swamped or run out of memory."
-msgstr ""
-
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:119
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:114
 msgid "Purge cache files"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:122
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:117
 msgid ""
 "If a <em>type</em> is checked, the HTML and RSS caches for the item will be "
 "purged when the published state of an item of <em>type</em> changes."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:123
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:118
 msgid ""
 "<strong>NOTE:</strong> The entire cache is cleared since there is no way to "
 "ascertain if a gallery page contains dependencies on the item."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:174
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:166
 msgid "Size"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:174
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:166
 msgid "Width"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:174
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:166
 msgid "Height"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:175
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:167
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:49
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:49
 msgid "Crop width"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:175
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:167
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:51
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:51
 msgid "Crop height"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:175
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:167
 msgid "Crop X axis"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:176
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:168
 msgid "Crop Y axis"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:192
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:184
 msgid "Watermark"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:194
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:186
 msgid "MaxSpace"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:196
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:188
 msgid "Grayscale"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:311
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:375
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:274
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:338
 msgid "Finds images that have not been cached and creates the cached versions."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:314
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:277
 msgid "You must first set the plugin options for cached image parameters."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:318
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:331
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:344
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:356
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:137
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:138
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:281
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:294
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:307
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:319
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:133
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:134
 msgid "Cache"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:320
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:283
 msgid "Cache images"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:333
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:296
 msgid "Purge RSS cache"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:338
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:301
 msgid "Delete all files from the RSS cache"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:346
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:309
 msgid "Purge Image cache"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:351
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:314
 msgid "Delete all files from the Image cache"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:358
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:321
 msgid "Purge HTML cache"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:362
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:325
 msgid ""
 "Clear the static HTML cache. HTML pages will be re-cached as they are viewed."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:378
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:341
 msgid "You must first set the plugin's options for cached image parameters."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:380
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager.php:343
 msgid "Cache album images"
 msgstr ""
 
@@ -16821,36 +16854,34 @@ msgid ""
 "category assigned."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/tweet_news.php:299
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/tweet_news.php:319
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/tweet_news.php:332
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/tweet_news.php:295
 #, php-format
 msgid "Error tweeting <code>%1$s</code>: %2$s"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/tweet_news.php:306
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/tweet_news.php:320
 #, php-format
 msgid "New image: [%2$s]%1$s "
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/tweet_news.php:309
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/tweet_news.php:323
 #, php-format
 msgid "New album: %s "
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/tweet_news.php:429
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/tweet_news.php:424
 msgid "No scheduled news articles found."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/tweet_news.php:431
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/tweet_news.php:426
 msgid "Scheduled items have been noted for tweeting."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/tweet_news.php:460
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/tweet_news.php:455
 msgid "Tweet News Errors:"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/tweet_news.php:491
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/tweet_news.php:486
 msgid "Tweet me"
 msgstr ""
 
@@ -18525,63 +18556,63 @@ msgstr ""
 msgid "Site is avaiable for testing only."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:94
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:91
 #, php-format
 msgid "[%u image]"
 msgid_plural "[%u images]"
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:153
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:149
 #, php-format
 msgid "Refreshing cache for %s"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:217
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:213
 msgid "invalid_MaxSpace"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:236
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:232
 #, php-format
 msgid "all sizes for <i>%1$s</i>"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:280
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:276
 #, php-format
 msgid "%u cache size to apply."
 msgid_plural "%u cache sizes to apply."
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:295
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:291
 #, php-format
 msgid "%u cache size requested"
 msgid_plural "%u cache sizes requested"
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:296
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:292
 #, php-format
 msgid "Finished processing %1$u image (%2$s)."
 msgid_plural "Finished processing %1$u images (%2$s)."
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:298
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:294
 msgid ""
 "Refresh the caching of the selected image sizes if some images did not "
 "render."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:305
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:301
 msgid "No cache sizes enabled."
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:309
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:305
 msgid "Cache the images"
 msgstr ""
 
-#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:309
+#: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:305
 msgid "Executes the caching of the selected image sizes."
 msgstr ""
 
