@@ -136,13 +136,14 @@ class themeSwitcher {
 			} else {
 				$reloc .= '?themeSwitcher=%t';
 			}
+			$theme = $_zp_gallery->getCurrentTheme();
 			?>
 			<span class="themeSwitcherControlLink">
 				<?php echo $text; ?>
 				<select name="themeSwitcher" id="themeSwitcher" onchange="switchTheme('<?php echo html_encode($reloc); ?>')">
-					<?php generateListFromArray(array($_zp_gallery->getCurrentTheme()), $themes, false, true); ?>
+					<?php generateListFromArray(array($theme), $themes, false, true); ?>
 				</select>
-				<?php zp_apply_filter('themeSwitcher_Controllink',''); ?>
+				<?php zp_apply_filter('themeSwitcher_Controllink',$theme); ?>
 			</span>
 		<?php
 		}
