@@ -119,6 +119,16 @@ function sanitize_numeric($num) {
 	}
 }
 
+/**
+ * removes script tags
+ *
+ * @param string $text
+ * @return string
+ */
+function sanitize_script($text) {
+	return preg_replace('!<script.*>.*</script>!ixs', '', $text);
+}
+
 /** Make strings generally clean.  Takes an input string and cleans out
  * null-bytes, slashes (if magic_quotes_gpc is on), and optionally use KSES
  * library to prevent XSS attacks and other malicious user input.
@@ -135,12 +145,20 @@ function sanitize($input_string, $sanitize_level=3) {
 	if (is_array($input_string)) {
 		$output_string = array();
 		foreach ($input_string as $output_key => $output_value) {
-			$output_string[$output_key] = sanitize_string($output_value, $sanitize_level);
+			$output_string[$output_key] = sanitize($output_value, $sanitize_level);
 		}
 	} else {
 		$output_string = sanitize_string($input_string, $sanitize_level);
 	}
 	return $output_string;
+}
+
+function ksesProcess($input_string, $allowed_tags) {
+	if (function_exists('kses')) {
+		return kses($input_string, $allowed_tags);
+	} else {
+		return strip_tags($input_string);
+	}
 }
 
 /** returns a sanitized string for the sanitize function
@@ -149,40 +167,27 @@ function sanitize($input_string, $sanitize_level=3) {
  * @return string the sanitized string.
  */
 function sanitize_string($input_string, $sanitize_level) {
-	global $_user_tags, $_style_tags;
 	// Strip slashes if get_magic_quotes_gpc is enabled.
 	if (get_magic_quotes_gpc()) {
 		$input_string = stripslashes($input_string);
 	}
-	// Basic sanitation.
-	if ($sanitize_level === 0) {
-		return str_replace(chr(0), " ", $input_string);
+	switch($sanitize_level) {
+		case 0:
+			return str_replace(chr(0), " ", $input_string);
+		case 1:
+			// Text formatting sanititation.
+			return ksesProcess($input_string, getAllowedTags('allowed_tags'));
+		case 2:
+			// Strips non-style tags.
+			return ksesProcess($input_string, getAllowedTags('style_tags'));
+		case 3:
+			// Full sanitation.  Strips all code.
+			return ksesProcess($input_string, array());
+		case 4:
+		default:
+			// for internal use to eliminate security injections
+			return sanitize_script($input_string);
 	}
-	// User specified sanititation.
-	if (function_exists('kses')) {
-		switch($sanitize_level) {
-			case 1:
-				// Text formatting sanititation.
-				$allowed_tags = getAllowedTags('allowed_tags');
-				break;
-			case 2:
-				// Strips non-style tags.
-				$allowed_tags = getAllowedTags('style_tags');
-				break;
-			case 3:
-				// Full sanitation.  Strips all code.
-				$allowed_tags = array();
-				break;
-			case 4:
-				// for internal use to eliminate security injections
-				$allowed_tags = getAllowedTags('allowed_tags_default');
-				break;
-		}
-		$output_string = kses($input_string, $allowed_tags);
-	} else {	//	in a basic environment--allow NO HTML tags.
-		$output_string = strip_tags($input_string);
-	}
-	return $output_string;
 }
 
 ///// database helper functions
