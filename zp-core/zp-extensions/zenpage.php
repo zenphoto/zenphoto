@@ -245,7 +245,7 @@ class zenpagecms {
 		return $list;
 	}
 
-	static function switcher_controllink($ignore) {
+	static function switcher_controllink($theme) {
 		global $_cmsSwitch, $_zp_gallery_page;
 		if (is_null($_cmsSwitch)) {
 			$_cmsSwitch = true;
@@ -255,16 +255,17 @@ class zenpagecms {
 		} else {
 			$disabled = '';
 		}
-
-		?>
-		<span id="themeSwitcher_zenpage">
-			<label>
-				Zenpage
-				<input type="checkbox" name="cmsSwitch" id="cmsSwitch" value="1"<?php if($_cmsSwitch) echo $disabled.' checked="checked"'; ?> onclick="switchCMS(this.checked);" />
-			</label>
-		</span>
-		<?php
-		return $ignore;
+		if (getPlugin('pages.php', $theme)) {	// it supports zenpage
+			?>
+			<span id="themeSwitcher_zenpage">
+				<label>
+					Zenpage
+					<input type="checkbox" name="cmsSwitch" id="cmsSwitch" value="1"<?php if($_cmsSwitch) echo $disabled.' checked="checked"'; ?> onclick="switchCMS(this.checked);" />
+				</label>
+			</span>
+			<?php
+		}
+		return $theme;
 	}
 
 	static function switcher_setup($ignore) {
