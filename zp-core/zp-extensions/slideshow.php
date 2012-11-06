@@ -49,12 +49,11 @@ class slideshow {
 		setOptionDefault('slideshow_flow_player_height', '480');
 		setOptionDefault('slideshow_colorbox_imagetype', 'sizedimage');
 		setOptionDefault('slideshow_colorbox_imagetitle', 1);
-		/* Not sure exactly what sizes slideshow does use, so maybe it is better to let the site admin figure it out.
 		if (class_exists('cacheManager')) {
 			cacheManager::deleteThemeCacheSizes('slideshow');
 			cacheManager::addThemeCacheSize('slideshow', NULL, getOption('slideshow_width'), getOption('slideshow_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, true);
+			cacheManager::addThemeCacheSize('slideshow', NULL, getOption('slideshow_width'), getOption('slideshow_height'), getOption('slideshow_width'), getOption('slideshow_height'), NULL, NULL, NULL, NULL, NULL, false);
 		}
-		*/
 	}
 
 
