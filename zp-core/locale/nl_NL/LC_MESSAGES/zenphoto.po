@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-01 18:28+0100\n"
+"POT-Creation-Date: 2012-11-06 11:02+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -249,7 +249,6 @@ msgid "Album is empty"
 msgstr "Album is leeg"
 
 #: ZpFork-Dutch-Translation-Dev/themes/effervescence_plus/archive.php:9
-#: ZpFork-Dutch-Translation-Dev/themes/effervescence_plus/sidebar.php:62
 msgid "Archive"
 msgstr "Archief"
 
@@ -483,15 +482,12 @@ msgstr "Foto van de dag"
 
 #: ZpFork-Dutch-Translation-Dev/themes/effervescence_plus/indexpage.php:80
 #: ZpFork-Dutch-Translation-Dev/themes/effervescence_plus/indexpage.php:92
-#: ZpFork-Dutch-Translation-Dev/themes/effervescence_plus/sidebar.php:33
-#: ZpFork-Dutch-Translation-Dev/themes/effervescence_plus/sidebar.php:40
 msgid "Visit the image gallery"
 msgstr "Ga naar de fotogalerij"
 
 #: ZpFork-Dutch-Translation-Dev/themes/effervescence_plus/news.php:11
 #: ZpFork-Dutch-Translation-Dev/themes/effervescence_plus/news.php:56
 #: ZpFork-Dutch-Translation-Dev/themes/effervescence_plus/news.php:60
-#: ZpFork-Dutch-Translation-Dev/themes/effervescence_plus/sidebar.php:93
 msgid "News"
 msgstr "Nieuws"
 
@@ -509,7 +505,6 @@ msgid "Category"
 msgstr "Categorie"
 
 #: ZpFork-Dutch-Translation-Dev/themes/effervescence_plus/pages.php:11
-#: ZpFork-Dutch-Translation-Dev/themes/effervescence_plus/sidebar.php:52
 msgid "Pages"
 msgstr "Pagina's"
 
@@ -587,25 +582,31 @@ msgid "News articles"
 msgstr "Nieuwsartikelen"
 
 #: ZpFork-Dutch-Translation-Dev/themes/effervescence_plus/sidebar.php:21
+#: ZpFork-Dutch-Translation-Dev/themes/effervescence_plus/themeoptions.php:63
 msgid "All news"
 msgstr "nieuws"
 
 #: ZpFork-Dutch-Translation-Dev/themes/effervescence_plus/sidebar.php:33
 #: ZpFork-Dutch-Translation-Dev/themes/effervescence_plus/sidebar.php:38
 #: ZpFork-Dutch-Translation-Dev/themes/effervescence_plus/sidebar.php:89
+#: ZpFork-Dutch-Translation-Dev/themes/effervescence_plus/themeoptions.php:67
+#: ZpFork-Dutch-Translation-Dev/themes/effervescence_plus/themeoptions.php:77
 msgid "Gallery"
 msgstr "Galerij"
 
 #: ZpFork-Dutch-Translation-Dev/themes/effervescence_plus/sidebar.php:68
 #: ZpFork-Dutch-Translation-Dev/themes/effervescence_plus/sidebar.php:74
+#: ZpFork-Dutch-Translation-Dev/themes/effervescence_plus/themeoptions.php:74
 msgid "Gallery and News"
 msgstr "Galerij en Nieuws"
 
 #: ZpFork-Dutch-Translation-Dev/themes/effervescence_plus/sidebar.php:87
+#: ZpFork-Dutch-Translation-Dev/themes/effervescence_plus/themeoptions.php:76
 msgid "RSS"
 msgstr "RSS"
 
 #: ZpFork-Dutch-Translation-Dev/themes/effervescence_plus/sidebar.php:94
+#: ZpFork-Dutch-Translation-Dev/themes/effervescence_plus/themeoptions.php:79
 msgid "News and Gallery"
 msgstr "Nieuws en Galerij"
 
@@ -1016,42 +1017,62 @@ msgid "Reset"
 msgstr "Reset"
 
 #: ZpFork-Dutch-Translation-Dev/themes/stopdesign/album.php:69
+#: ZpFork-Dutch-Translation-Dev/themes/stopdesign/favorites.php:67
+#: ZpFork-Dutch-Translation-Dev/themes/stopdesign/search.php:57
 #, php-format
 msgid "1 image"
 msgstr "1 afbeelding"
 
 #: ZpFork-Dutch-Translation-Dev/themes/stopdesign/album.php:71
+#: ZpFork-Dutch-Translation-Dev/themes/stopdesign/favorites.php:69
+#: ZpFork-Dutch-Translation-Dev/themes/stopdesign/search.php:59
 #, php-format
 msgid "%u images"
 msgstr "%u afbeeldingen"
 
 #: ZpFork-Dutch-Translation-Dev/themes/stopdesign/album.php:73
+#: ZpFork-Dutch-Translation-Dev/themes/stopdesign/favorites.php:71
+#: ZpFork-Dutch-Translation-Dev/themes/stopdesign/search.php:61
 #, php-format
 msgid "1 album,&nbsp;1 image"
 msgstr "1 album,&nbsp;1 foto"
 
 #: ZpFork-Dutch-Translation-Dev/themes/stopdesign/album.php:75
+#: ZpFork-Dutch-Translation-Dev/themes/stopdesign/favorites.php:73
+#: ZpFork-Dutch-Translation-Dev/themes/stopdesign/gallery.php:62
+#: ZpFork-Dutch-Translation-Dev/themes/stopdesign/index.php:61
 #, php-format
 msgid "%u album,&nbsp;1 image"
-msgstr "%u album,&nbsp;1 afbeelding"
+msgid_plural "%u albums,&nbsp;1 image"
+msgstr[0] "%u album,&nbsp;1 afbeelding"
+msgstr[1] "%u albums,&nbsp;1 afbeelding"
 
 #: ZpFork-Dutch-Translation-Dev/themes/stopdesign/album.php:77
+#: ZpFork-Dutch-Translation-Dev/themes/stopdesign/favorites.php:75
 #, php-format
 msgid "%1$u album,&nbsp;%2$u images"
 msgstr "%1$u album,&nbsp;%2$u afbeeldingen"
 
 #: ZpFork-Dutch-Translation-Dev/themes/stopdesign/album.php:79
+#: ZpFork-Dutch-Translation-Dev/themes/stopdesign/favorites.php:77
+#: ZpFork-Dutch-Translation-Dev/themes/stopdesign/gallery.php:58
+#: ZpFork-Dutch-Translation-Dev/themes/stopdesign/index.php:57
+#: ZpFork-Dutch-Translation-Dev/themes/stopdesign/search.php:67
 #, php-format
 msgid "1 album"
 msgstr "1 album"
 
 #: ZpFork-Dutch-Translation-Dev/themes/stopdesign/album.php:83
+#: ZpFork-Dutch-Translation-Dev/themes/stopdesign/favorites.php:81
+#: ZpFork-Dutch-Translation-Dev/themes/stopdesign/search.php:71
 #, php-format
 msgid "1 album,&nbsp;%u images"
 msgstr "1 album,&nbsp;%u afbeeldingen"
 
 #: ZpFork-Dutch-Translation-Dev/themes/stopdesign/album.php:107
 #: ZpFork-Dutch-Translation-Dev/themes/stopdesign/album.php:134
+#: ZpFork-Dutch-Translation-Dev/themes/stopdesign/search.php:94
+#: ZpFork-Dutch-Translation-Dev/themes/stopdesign/search.php:123
 msgid "Next page"
 msgstr "Volgende pagina"
 
@@ -1060,15 +1081,22 @@ msgid "Album RSS feed"
 msgstr "Album RSS feed"
 
 #: ZpFork-Dutch-Translation-Dev/themes/stopdesign/album.php:148
+#: ZpFork-Dutch-Translation-Dev/themes/stopdesign/favorites.php:138
 #, php-format
 msgid "images %1$u-%2$u of %3$u"
 msgstr "afbeeldingen %1$u-%2$u van %3$u"
 
 #: ZpFork-Dutch-Translation-Dev/themes/stopdesign/album.php:157
+#: ZpFork-Dutch-Translation-Dev/themes/stopdesign/favorites.php:146
+#: ZpFork-Dutch-Translation-Dev/themes/stopdesign/gallery.php:88
+#: ZpFork-Dutch-Translation-Dev/themes/stopdesign/search.php:143
 msgid "prev page"
 msgstr "vorige pagina"
 
 #: ZpFork-Dutch-Translation-Dev/themes/stopdesign/album.php:165
+#: ZpFork-Dutch-Translation-Dev/themes/stopdesign/favorites.php:154
+#: ZpFork-Dutch-Translation-Dev/themes/stopdesign/gallery.php:91
+#: ZpFork-Dutch-Translation-Dev/themes/stopdesign/search.php:151
 msgid "next page"
 msgstr "volgende pagina"
 
@@ -1358,6 +1386,7 @@ msgid "next thumbs »"
 msgstr "volgende thumbnails »"
 
 #: ZpFork-Dutch-Translation-Dev/themes/zenpage/sidebar.php:26
+#: ZpFork-Dutch-Translation-Dev/themes/zenpage/themeoptions.php:50
 msgid "Gallery index"
 msgstr "Galerij index"
 
@@ -1568,7 +1597,7 @@ msgid "Image order saved"
 msgstr "Afbeeldingsvolgorde opgeslagen"
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-albumsort.php:118
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4457
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4472
 msgid "Nothing changed"
 msgstr "Er is niets veranderd"
 
@@ -1596,7 +1625,6 @@ msgstr "Terug naar de albumlijst"
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:1160
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:1862
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-refresh-metadata.php:145
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-themes-editor.php:102
 msgid "Back"
 msgstr "Terug"
 
@@ -1626,24 +1654,24 @@ msgstr "Terug"
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:1164
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:1864
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:1866
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:519
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:879
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:902
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1264
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1287
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1495
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1517
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1635
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1663
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2261
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2282
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2393
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2521
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2791
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2860
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2975
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3014
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3127
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:520
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:881
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:904
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1266
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1289
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1497
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1519
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1637
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1665
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2263
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2284
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2395
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2523
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2793
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2862
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2977
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3016
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3129
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-plugins.php:127
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-plugins.php:347
 msgid "Apply"
@@ -1770,7 +1798,7 @@ msgid "Comment does not exist"
 msgstr "Reactie bestaat niet."
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-comments.php:267
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4463
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4478
 msgid "Selected items deleted"
 msgstr "Geselecteerde onderdelen verwijderd"
 
@@ -1790,7 +1818,7 @@ msgstr[0] "%u reactie succesvol verwijderd."
 msgstr[1] "%u reacties succesvol verwijderd."
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-comments.php:295
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4454
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4469
 msgid "Changes applied"
 msgstr "Wijzigingen opgeslagen"
 
@@ -1822,7 +1850,7 @@ msgstr "Markeer als spam"
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-comments.php:352
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-edit.php:862
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-edit.php:1669
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3669
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3684
 msgid "Check All"
 msgstr "Selecteer alle"
 
@@ -2099,7 +2127,7 @@ msgstr "%s aflopend"
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-edit.php:955
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:1353
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1093
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1095
 msgid "Manual"
 msgstr "handmatig"
 
@@ -2353,7 +2381,7 @@ msgstr "Niets geselecteerd"
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-edit.php:1435
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:1627
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1253
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1255
 msgid "Codeblocks:"
 msgstr "Codeblocks:"
 
@@ -2478,8 +2506,8 @@ msgstr "Bekijk galerij index"
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:440
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:1510
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:1931
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1832
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1885
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1834
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1887
 msgid "Images"
 msgstr "Afbeeldingen"
 
@@ -2492,7 +2520,7 @@ msgid "Subalbums"
 msgstr "Subalbums"
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:779
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1418
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1420
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-tags.php:157
 msgid "all"
 msgstr "alles"
@@ -2521,9 +2549,9 @@ msgid "Album password:"
 msgstr "Albumwachtwoord:"
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:1249
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:955
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1313
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2075
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:957
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1315
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2077
 msgid "clear password"
 msgstr "maak wachtwoord leeg"
 
@@ -2532,9 +2560,9 @@ msgid "Album guest user:"
 msgstr "Album gastgebruiker:"
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:1263
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:978
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1334
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2093
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:980
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1336
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2095
 msgid "Show password"
 msgstr "Toon wachtwoord"
 
@@ -2547,9 +2575,9 @@ msgid "Password hint:"
 msgstr "Wachtwoord hint:"
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:1355
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:716
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1094
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1679
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:717
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1096
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1681
 msgid "Custom"
 msgstr "Eigen"
 
@@ -2567,20 +2595,20 @@ msgstr "*parent album subalbum sorteervolgorde"
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:1390
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:1441
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1128
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1706
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1130
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1708
 msgid "Descending"
 msgstr "Aflopend"
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:1404
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:1456
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1136
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1712
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1138
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1714
 msgid "custom fields:"
 msgstr "database veld(en)"
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:1411
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1674
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1676
 msgid "Sort images by:"
 msgstr "Sorteer afbeeldingen op:"
 
@@ -2605,7 +2633,7 @@ msgid "Album watermarks:"
 msgstr "Album watermerken:"
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:1525
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1836
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1838
 msgid "Thumbs"
 msgstr "Thumbnails"
 
@@ -2803,279 +2831,279 @@ msgstr "pagina %u"
 msgid "Previous page"
 msgstr "Vorige pagina"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:2765
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:2770
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:2775
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:2780
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:2766
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:2771
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:2776
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:2781
 msgid "Cannot create new theme."
 msgstr "Kan geen nieuw thema creëren"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:2765
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:2766
 #, php-format
 msgid "Directory \"%s\" already exists!"
 msgstr "De map \"%s\" bestaat al!"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:2770
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:2771
 #, php-format
 msgid "Cannot find theme directory \"%s\" to copy!"
 msgstr "Kan de te kopiëren map \"%s\" niet vinden!"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:2775
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:2776
 msgid "The <tt>/themes</tt> directory is not writable!"
 msgstr "Er kan niet naar de <tt>/thema</tt> map geschreven worden!"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:2780
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:2781
 msgid "Could not create directory for the new theme"
 msgstr "Kon geen map aanmaken voor het nieuwe thema"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:2813
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:2814
 #, php-format
 msgid "An error occurred while copying files. Please delete manually the new theme directory '%s' and retry or copy files manually."
 msgstr "Er is iets fout gegaan tijdens het kopiëren. Verwijder a.u.b. handmatig de nieuwe thema-map '%s' en probeer het nogmaals of kopiëer de bestanden handmatig."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:2821
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:2822
 #, php-format
 msgid "Your theme, based on theme %s"
 msgstr "Je thema, gebaseerd op het %s thema."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:2823
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:2824
 msgid "Your theme"
 msgstr "Je thema"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:2847
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:2848
 msgid "New custom theme created successfully!"
 msgstr "Nieuw zelfgemaakt thema met succes gereëerd!"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:2849
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:2850
 msgid "New custom theme created, but its description could not be updated"
 msgstr "Nieuw aangepast thema gecreëerd maar de beschrijving kon niet ge-update worden."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:2996
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:2997
 msgid "Rights:"
 msgstr "Rechten:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3054
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3055
 msgid "edit rights"
 msgstr "gebruikersrechten"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3055
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3056
 msgid "view unpublished items"
 msgstr "Bekijk niet-gepubliceerde afbeeldingen."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3056
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3057
 msgid "upload rights"
 msgstr "upload rechten"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3057
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3058
 msgid "the album is dynamic"
 msgstr "het album is dynamisch"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3059
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3060
 msgid "Primary album"
 msgstr "Startalbum"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3061
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3062
 msgid "edit"
 msgstr "Bewerken"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3062
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3063
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-globals.php:63
 msgid "upload"
 msgstr "upload"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3063
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3064
 msgid "view unpublished"
 msgstr "bekijk niet-gepubliceerde"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3086
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3101
 msgid "Managed albums:"
 msgstr "Beheerde albums:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3099
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3114
 msgid "Managed news categories:"
 msgstr "Beheerde nieuwscategorieën."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3101
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3116
 msgid "News categories"
 msgstr "Nieuwscategorieën"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3114
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3128
 msgid "Managed pages:"
 msgstr "Beheerde pagina's"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3121
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3134
 #, php-format
 msgid "Select one or more %1$s for the %2$s to manage."
 msgstr "Selecteer één of meer %1$s voor de %2$s om te beheren."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3122
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3135
 msgid "user"
 msgstr "gebruiker"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3123
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3136
 #, php-format
 msgid "Users with \"Admin\" or \"Manage all %1$s\" rights can manage all %2$s. All others may manage only those that are selected."
 msgstr "Gebruikers met \"Admin\" of  \"Beheer alle %1$s\" rechten  kunnen alle %2$s beheren. Anderen kunnen alleen de geselecteerde onderdelen beheren."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3126
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3139
 #, php-format
 msgid "You may manage these %s subject to the above rights."
 msgstr "Je kunt de %s beheren op basis van bovenstaande rechten."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3534
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3549
 #, php-format
 msgid "Show %u album level"
 msgid_plural "Show %u album levels"
 msgstr[0] "Toon %u album level"
 msgstr[1] "Toon %u album levels"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3537
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3552
 #, php-format
 msgid "%u image per page"
 msgid_plural "%u images per page"
 msgstr[0] "%u afbeelding per pagina"
 msgstr[1] "%u afbeeldingen per pagina"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3612
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3624
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3636
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3648
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3627
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3639
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3651
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3663
 msgid "ok"
 msgstr "ok"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3719
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3734
 msgid "Destination"
 msgstr "Bestemming"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:3999
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4031
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4014
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4046
 #, php-format
 msgid "codeblock %u"
 msgstr "codeblock %u"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4000
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4035
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4015
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4050
 msgid "add codeblock"
 msgstr "codeblock toevoegen"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4122
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4137
 #, php-format
 msgid "\"%s\" Cross Site Request Forgery blocked."
 msgstr "\"%s\" Cross Site Request Forgery geblokkeerd."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4306
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4321
 msgid "setup"
 msgstr "setup"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4306
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4321
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-globals.php:127
 msgid "security"
 msgstr "beveiliging"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4306
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4321
 msgid "debug"
 msgstr "debug"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4423
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4438
 #, php-format
 msgid "%s failed to delete."
 msgstr "%s te verwijderen mislukt."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4425
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4440
 #, php-format
 msgid "%s deleted successfully."
 msgstr "%s succesvol verwijderd."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4430
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4445
 msgid "You must supply a  password."
 msgstr "Je moet een wachtwoord invoeren."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4432
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4447
 msgid "Your passwords did not match."
 msgstr "Je wachtwoorden komen niet overeen."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4439
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4454
 msgid "The image edit form submission has been truncated. Try displaying fewer images on a page."
 msgstr "De veranderingen zijn niet volledig bewaard. Probeer het nogmaals maar met minder afbeeldingen per pagina."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4442
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4457
 msgid "Hit counters have been reset."
 msgstr "Hittellers zijn gereset."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4445
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4460
 msgid "Cache has been purged."
 msgstr "Cache is gewist."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4448
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4463
 msgid "Your files have been uploaded."
 msgstr "Je bestanden zijn geupload."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4451
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4466
 #, php-format
 msgid "<em>%s</em> already exists."
 msgstr "<em>%s</em> bestaat al."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4466
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4481
 msgid "Selected items published"
 msgstr "Geselecteerde onderdelen gepubliceerd"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4469
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4484
 msgid "Selected items unpublished"
 msgstr "Geselecteerde onderdelen niet gepubliceerd"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4472
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4487
 msgid "Comments enabled for selected items"
 msgstr "Reacties geactiveerd voor de geselecteerde onderdelen"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4475
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4490
 msgid "Comments disabled for selected items"
 msgstr "Reacties niet geactiveerd voor de geselecteerde onderdelen"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4478
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4493
 msgid "Hitcounter for selected items"
 msgstr "Hitteller voor geselecteerd onderdeel"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4481
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4496
 msgid "Tags added for selected items"
 msgstr "Tags toegevoegd aan geselecteerde onderdelen."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4484
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4499
 msgid "Tags cleared for selected items"
 msgstr "Tags verwijderd uit de geselecteerde onderdelen."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4487
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4502
 msgid "Tags added for images of selected items"
 msgstr "Tags toegevoegd aan afbeeldingen van de geselecteerde onderdelen."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4490
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4505
 msgid "Tags cleared for images of selected items"
 msgstr "Tags verwijderd uit afbeeldingen van de geselecteerde onderdelen."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4500
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4515
 msgid "Image already exists."
 msgstr "Afbeelding bestaat al."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4503
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4518
 msgid "Album already exists."
 msgstr "Album bestaat al."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4506
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4521
 msgid "Cannot move, copy, or rename to a subalbum of this album."
 msgstr "Verplaatsen, kopiëren of hernoemen naar een subalbum is niet mogelijk met dit album."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4509
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4524
 msgid "Cannot move, copy, or rename to a dynamic album."
 msgstr "Verplaatsen, kopiëren of hernoemen naar een dynamisch album is niet mogelijk."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4512
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4527
 msgid "Cannot rename an image to a different suffix"
 msgstr "Het is niet mogelijk om een bestand een andere extensie te geven."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4515
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4530
 msgid "Album delete failed"
 msgstr "Verwijderen van album mislukt!"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4518
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-functions.php:4533
 msgid "There was an error with a move, copy, or rename operation."
 msgstr "Er was een fout tijdens een verplaats-, kopieer- of hernoembewerking."
 
@@ -3225,7 +3253,7 @@ msgid "Download %s ZIP file"
 msgstr "Download %s ZIP-bestand"
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-logs.php:128
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2138
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2140
 msgid "Download"
 msgstr "Download"
 
@@ -3241,1530 +3269,1530 @@ msgstr "Updaten"
 msgid "There are no logs to view."
 msgstr "Er zijn geen logs om te bekijken."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:469
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:470
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-plugins.php:105
 msgid "Applied"
 msgstr "Toegepast"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:479
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:480
 msgid "Your browser did not post all the fields. Some options may not have been set."
 msgstr "Niet alle velden zijn door je browser verzonden. Sommige opties zijn misschien niet ingesteld."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:487
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:488
 #, php-format
 msgid "You must supply a password for the <em>%s</em> guest user"
 msgstr "Je moet een wachtwoord invoeren voor de <em>%s</em> gastgebruiker"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:490
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:491
 msgid "Your passwords did not match"
 msgstr "Je wachtwoorden komen niet overeen."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:503
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:504
 #, php-format
 msgid "<em>%s</em> is not available."
 msgstr "<em>%s</em> is niet beschikbaar."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:504
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:505
 #, php-format
 msgid "The locale %s is not supported on your server."
 msgstr "De localisatie %s wordt niet ondersteund door de server."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:505
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:506
 msgid "See the troubleshooting guide on zenphoto.org for details."
 msgstr "Raadpleeg de troubleshooting uitleg op zenphoto.org voor details."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:520
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:880
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:903
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1265
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1288
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1496
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1518
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1636
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1664
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2262
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2283
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2394
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2523
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2793
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2861
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2976
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3015
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3128
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:521
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:882
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:905
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1267
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1290
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1498
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1520
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1638
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1666
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2264
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2285
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2396
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2525
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2795
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2863
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2978
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3017
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3130
 msgid "reset"
 msgstr "reset"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:529
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:530
 msgid "Time zone:"
 msgstr "Tijdzone:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:535
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:536
 msgid "*not specified"
 msgstr "*niet gespecificeerd"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:540
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:541
 #, php-format
 msgid "Your server reports its time zone as: <code>%s</code>."
 msgstr "Je server geeft de tijdzone als volgt weer: <code>%s</code>."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:541
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:542
 #, php-format
 msgid "Your time zone offset is %d hour. If your time zone is different from the servers, select the correct time zone here."
 msgid_plural "Your time zone offset is: %d hours. If your time zone is different from the servers, select the correct time zone here."
 msgstr[0] "Het tijdverschil met de server is %d uur.  Als je je in een andere tijdzone bevindt dan de server, selecteer hier dan de juiste tijdzone."
 msgstr[1] "Het tijdverschil met de server is %d uur.  Als je je in een andere tijdzone bevindt dan de server, selecteer hier dan de juiste tijdzone."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:547
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:548
 msgid "Time offset (hours):"
 msgstr "Tijd offset (uren):"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:552
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:553
 msgid "If you're in a different time zone from your server, set the offset in hours of your time zone from that of the server. For instance if your server is on the US East Coast (<em>GMT</em> - 5) and you are on the Pacific Coast (<em>GMT</em> - 8), set the offset to 3 (-5 - (-8))."
 msgstr "Als je je in een andere tijdzone bevindt dan de server, vul dan het verschil in uren in tussen jouw tijdzone en die van de server. Bijvoorbeeld als de server zich bevindt aan de oostkust van Amerika (<em>GMT</em> - 5) en je woont zelf aan de westkust (<em>GMT</em> - 8), vul dan bij tijd-offset 3 in (-5-(-8))."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:559
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:560
 msgid "URL options:"
 msgstr "URL opties:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:574
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:575
 msgid "mod rewrite"
 msgstr "mod_rewrite"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:580
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:581
 msgid "UTF8 image URIs"
 msgstr "UTF8 afbeelding URI's"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:583
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:584
 msgid "mod_rewrite suffix:"
 msgstr "mod_rewrite toevoeging:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:588
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:589
 msgid "If you have Apache <em>mod rewrite</em>, put a checkmark on the <em>mod rewrite</em> option and you'll get nice cruft-free URLs."
 msgstr "Als de Apache <em>mod_rewrite</em> module aanwezig is, vink de optie <em>mod_rewrite</em> dan aan voor nette URL's.<br />"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:589
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:590
 msgid "If the checkbox is disabled, setup did not detect a working Apache <em>mod_rewrite</em> facility and proper <em>.htaccess</em> file."
 msgstr "Indien het <em>mod_rewrite</em> vakje net actief is heeft setup geen Apache <em>mod_rewrite</em> en een correct <em>.htaccess</em> bestand kunnen vinden."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:592
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:593
 msgid "If you are having problems with images whose names contain characters with diacritical marks try changing the <em>UTF8 image URIs</em> setting."
 msgstr "Als je problemen hebt met betandsnamen met speciale karakters probeer dan de <em>UTF8 afbeelding URI</em> optie."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:593
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:594
 msgid "If <em>mod_rewrite</em> is checked above, zenphoto will append the <em>mod_rewrite suffix</em> to the end of image URLs. (This helps search engines.) Examples: <em>.html, .php</em>, etc."
 msgstr "Als <em>mod_rewrite</em> hierboven ingeschakeld is zal Zenphoto de <em>mod_rewrite toevoeging</em> toevoegen aan het eind van de afbeeldings URL  (hulpvol voor zoekmachines). Voorbeelden: <em>.html, .php</em>, etc."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:597
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:598
 msgid "Language:"
 msgstr "Taal:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:606
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:607
 msgid "HTTP_Accept_Language"
 msgstr "HTTP Accept Language"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:699
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:700
 #, php-format
 msgid "Highlighted languages are not current with Zenphoto Version %1$s. (The version Zenphoto of the out-of-date language is shown in braces.) Please check the <a href=\"%2$s\">translation repository</a> for new and updated language translations."
 msgstr "De geaccentueerde vertalingen (gele achtergrond) zijn niet volledig voor deze versie van Zenphoto (%1$s). De Zenphotoversie waarvoor ze wél volledig zijn staat tussen accolades.<br />Controleer de <a href=\"%2$s\"><em>translation tickets</em></a> voor de laatste vertalingen."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:701
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:702
 msgid "Multi-lingual"
 msgstr "Meertalig"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:705
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:706
 msgid "You can disable languages by unchecking their checkboxes. Only checked languages will be available to the installation."
 msgstr "Je kunt talen deactiveren door de checkbox uit te vinken. Alleen aangevinkte talen worden beschikbaar in de installatie."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:706
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:707
 msgid "Select the preferred language to display text in. (Set to <em>HTTP_Accept_Language</em> to use the language preference specified by the viewer's browser.)"
 msgstr "Selecteer de voorkeurtaal om tekst weer te geven. (Zet op <em>HTTP Accept Language</em> om de taalvoorkeur van de bezoeker's browser te gebruiken.)"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:707
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:708
 msgid "Set <em>Multi-lingual</em> to enable multiple languages for database fields."
 msgstr "Zet <em>Meertalig</em> aan om meerdere talen in databasevelden mogelijk te maken."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:708
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:709
 msgid "<strong>Note:</strong> if you have created multi-language strings, uncheck this option, then save anything, you will lose your strings."
 msgstr "<strong>Let op:</strong> als je meertalige strings hebt aangemaakt en daarna deze optie weer uitzet zul je bij het opslaan deze strings verliezen."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:712
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:713
 msgid "Date format:"
 msgstr "Datumweergave:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:717
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:718
 msgid "Preferred date representation"
 msgstr "Voorkeur datumweergave"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:718
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:719
 msgid "02/25/08 15:30"
 msgstr "02/25/08 15:30"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:719
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:720
 msgid "02/25/08"
 msgstr "02/25/08"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:720
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:721
 msgid "02/25/2008 15:30"
 msgstr "02/25/2008 15:30"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:721
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:722
 msgid "02/25/2008"
 msgstr "02/25/2008"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:722
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:723
 msgid "02-25-08 15:30"
 msgstr "02-25-08 15:30"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:723
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:724
 msgid "02-25-08"
 msgstr "02-25-08"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:724
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:725
 msgid "02-25-2008 15:30"
 msgstr "02-25-2008 15:30"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:725
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:726
 msgid "02-25-2008"
 msgstr "02-25-2008"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:726
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:727
 msgid "2008. February 25. 15:30"
 msgstr "2008. Februari 25. 15:30"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:727
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:728
 msgid "2008. February 25."
 msgstr "2008. Februari 25."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:728
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:729
 msgid "2008-02-25 15:30"
 msgstr "2008-02-25 15:30"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:729
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:730
 msgid "2008-02-25"
 msgstr "2008-02-25"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:730
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:731
 msgid "25 Feb 2008 15:30"
 msgstr "25 Feb 2008 15:30"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:731
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:732
 msgid "25 Feb 2008"
 msgstr "25 Feb 2008"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:732
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:733
 msgid "25 February 2008 15:30"
 msgstr "25 Februari 2008 15:30"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:733
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:734
 msgid "25 February 2008"
 msgstr "25 Februari 2008"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:734
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:735
 msgid "25. Feb 2008 15:30"
 msgstr "25. Feb 2008 15:30"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:735
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:736
 msgid "25. Feb 2008"
 msgstr "25. Feb 2008"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:736
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:737
 msgid "25. Feb. 08 15:30"
 msgstr "25. Feb. 08 15:30"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:737
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:738
 msgid "25. Feb. 08"
 msgstr "25. Feb. 08"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:738
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:739
 msgid "25. February 2008 15:30"
 msgstr "25. Februari 2008 15:30"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:739
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:740
 msgid "25. February 2008"
 msgstr "25. Februari 2008"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:740
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:741
 msgid "25.02.08 15:30"
 msgstr "25.02.08 15:30"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:741
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:742
 msgid "25.02.08"
 msgstr "25.02.08"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:742
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:743
 msgid "25.02.2008 15:30"
 msgstr "25.02.2008 15:30"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:743
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:744
 msgid "25.02.2008"
 msgstr "25.02.2008"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:744
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:745
 msgid "25-02-08 15:30"
 msgstr "25-02-08 15:30"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:745
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:746
 msgid "25-02-08"
 msgstr "25-02-08"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:746
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:747
 msgid "25-02-2008 15:30"
 msgstr "25-02-2008 15:30"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:747
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:748
 msgid "25-02-2008"
 msgstr "25-02-2008"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:748
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:749
 msgid "25-Feb-08 15:30"
 msgstr "25-Feb-08 15:30"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:749
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:750
 msgid "25-Feb-08"
 msgstr "25-Feb-08"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:750
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:751
 msgid "25-Feb-2008 15:30"
 msgstr "25-Feb-2008 15:30"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:751
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:752
 msgid "25-Feb-2008"
 msgstr "25-Feb-2008"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:752
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:753
 msgid "Feb 25, 2008 15:30"
 msgstr "Feb 25, 2008 15:30"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:753
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:754
 msgid "Feb 25, 2008"
 msgstr "Feb 25, 2008"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:754
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:755
 msgid "February 25, 2008 15:30"
 msgstr "Februari 25, 2008 15:30"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:755
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:756
 msgid "February 25, 2008"
 msgstr "Februari 25, 2008"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:773
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:774
 msgid "Format for dates. Select from the list or set to <code>custom</code> and provide a <a href=\"http://us2.php.net/manual/en/function.strftime.php\"><span class=\"nowrap\"><code>strftime()</code></span></a> format string in the text box."
 msgstr "Weegave van de datum. Selecteer uit de lijst of kies voor <code>Custom</code> en voer een <a href=\"http://us2.php.net/manual/en/function.strftime.php\"><span class=\"nowrap\"><code>strftime()</code></span></a> formaat in,  in het tekstveld."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:776
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:777
 msgid "Charset:"
 msgstr "Karakterset:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:793
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:794
 msgid "The character encoding to use internally. Leave at <em>Unicode (UTF-8)</em> if you are unsure."
 msgstr "De karaktercodering die intern gebruikt wordt. Laat deze op <em>Unicode (UTF-8)</em> staan als je niet zeker bent."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:795
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:796
 msgid "Character sets <span style=\"color:gray\">shown in gray</span> have no character translation support."
 msgstr "Karaktersets <span style=\"color:gray\">aangegeven in grijs</span> kunnen niet vertaald worden."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:801
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:802
 msgid "Allowed tags:"
 msgstr "Toegestane HTML tags:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:829
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:831
 msgid "Tags and attributes allowed in comments, descriptions, and other fields."
 msgstr "HTML tags en attributen toegestaan in reacties, beschrijvingen en andere velden."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:830
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:832
 msgid "Follow the form <em>tag</em> =&gt; (<em>attribute</em> =&gt; (<em>attribute</em>=&gt; (), <em>attribute</em> =&gt; ()...)))"
 msgstr "Gebruik de volgende syntax: <em>tag</em> =&gt; (<em>attribuut</em> =&gt; () <em>attribuut</em>=&gt; () <em>attribuut</em> =&gt; ()...))"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:832
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:834
 msgid "reset to default"
 msgstr "Herstel de standaard waarden"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:838
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:840
 msgid "Name:"
 msgstr "Naam:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:840
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:842
 msgid "Email:"
 msgstr "E-mail:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:846
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:848
 msgid "This email name and address will be used as the <em>From</em> address for all mails sent by Zenphoto."
 msgstr "Dit e-mailadres wordt gebruikt als het <em>afzender</em>-adres voor alle e-mails die door Zenphoto worden verzonden."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:850
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:852
 msgid "Users per page:"
 msgstr "Gebruikers per pagina:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:852
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:854
 msgid "Plugins per page:"
 msgstr "Plugins per pagina:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:856
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:858
 msgid "Articles per page:"
 msgstr "Artikelen per pagina:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:873
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:875
 msgid "These options control the number of items displayed on their tabs. If you have problems using these tabs, reduce the number shown here."
 msgstr "Deze opties bepalen het aantal onderdelen die worden getoond. Als je problemen hebt met de weergave verlaag dan het aantal."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:879
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2860
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2975
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3014
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3127
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:881
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2862
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2977
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3016
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3129
 msgid "save"
 msgstr "opslaan"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:908
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:910
 msgid "Gallery title:"
 msgstr "Galerijtitel:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:912
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:914
 msgid "What you want to call your Zenphoto site."
 msgstr "Hoe wil je je Zenphoto site noemen noemen?"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:915
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:917
 msgid "Gallery description:"
 msgstr "Galerijbeschrijving:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:919
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:921
 msgid "A brief description of your gallery. Some themes may display this text."
 msgstr "Een korte beschrijving van de galerij. Sommige thema's tonen deze tekst."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:922
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:924
 msgid "Gallery type"
 msgstr "Soort galerij"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:924
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:926
 msgid "public"
 msgstr "publiek"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:925
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:927
 msgid "private"
 msgstr "privé"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:926
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:928
 msgid "restricted"
 msgstr "beperkt"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:929
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:931
 msgid "Private galleries are viewable only by registered users."
 msgstr "Privé galerieën zijn alleen zichtbaar voor geregistreerde gebruikers."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:931
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:933
 msgid "Restricted galleries are private galleries but users may see only their managed albums."
 msgstr "Beperkte galerieën zijn privé galerieën maar gebruikers kunnen alleen hun eigen toegewezen album zien."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:941
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:987
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:943
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:989
 msgid "Gallery password:"
 msgstr "Galerijwachtwoord:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:962
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:964
 msgid "Master password for the gallery. Click on <em>Gallery password</em> to change."
 msgstr "Hoofdwachtwoord voor de galerij. Klik op <em>Galerijwachtwoord</em> om te wijzigen."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:969
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:971
 msgid "Gallery guest user:"
 msgstr "Galerij gastgebruiker:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:981
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:983
 msgid "User ID for the gallery guest user"
 msgstr "Gebruikers ID voor de gastgebruiker."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:991
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1347
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2103
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:993
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1349
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2105
 msgid "(repeat)"
 msgstr "(herhaal)"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1010
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1012
 msgid "Master password for the gallery. If this is set, visitors must know this password to view the gallery."
 msgstr "Hoofdwachtwoord voor de galerij. Als deze ingevuld is moeten bezoekers dit wachtwoord weten om de galerij te bekijken."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1015
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1017
 msgid "Gallery password hint:"
 msgstr "Galerijwachtwoord hint:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1021
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1377
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1023
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1379
 msgid "A reminder hint for the password."
 msgstr "Een herinnering voor het wachtwoord."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1028
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1030
 msgid "Unprotected pages:"
 msgstr "Onbeschermde pagina's:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1056
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1058
 msgid "Place a checkmark on any pages which should not be protected by the gallery password."
 msgstr "Vink aan welke pagina's NIET beschermd moeten worden met het galerijwachtwoord."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1059
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1061
 msgid "Website title:"
 msgstr "Website titel:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1063
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1065
 msgid "Your web site title."
 msgstr "De titel van de website."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1066
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1068
 msgid "Website url:"
 msgstr "Website URL:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1069
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1071
 msgid "This is used to link back to your main site, but your theme must support it."
 msgstr "Deze URL wordt gebruikt om naar je hoofdsite te linken maar het thema moet dit ondersteunen."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1073
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1075
 msgid "Album thumbnails:"
 msgstr "Album thumbnails:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1087
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1089
 msgid "Default thumbnail selection for albums."
 msgstr "Standaard thumbnail selectie voor albums."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1089
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1091
 msgid "Sort gallery by:"
 msgstr "Sorteer galerij op:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1145
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1147
 msgid "Sort order for the albums on the index of the gallery. Custom sort values must be database field names. You can have multiple fields separated by commas. This option is also the default sort for albums and subalbums."
 msgstr "Sorteervolgorde voor de albums op de index pagina. Eigen sorteerwaarden moeten database veldnamen zijn. Je mag meerdere veldnamen gebruiken, gescheiden door komma's. Deze optie bepaalt ook de standaard volgorde voor albums en subalbums."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1150
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1152
 msgid "Gallery behavior:"
 msgstr "Algemene galerij-instellingen:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1155
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1157
 msgid "Publish albums by default"
 msgstr "Albums meteen publiceren"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1161
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1163
 msgid "Publish images by default"
 msgstr "Afbeeldingen meteen publiceren"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1168
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1170
 msgid "use latest image date as album date"
 msgstr "Gebruik datum laatste afbeelding als datum voor album"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1175
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1177
 msgid "visual thumb selection"
 msgstr "Visuele selectie van thumbnails"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1182
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1184
 msgid "show subalbum thumbs"
 msgstr "Toon subalbum thumbnails"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1189
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1191
 msgid "enable gallery sessions"
 msgstr "Galerij sessies"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1196
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1198
 msgid "Cookie duration"
 msgstr "Cookie levensduur"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1206
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1208
 msgid "<a href=\"javascript:toggle('albumpub');\" >Details</a> for <em>publish albums by default</em>"
 msgstr "<a href=\"javascript:toggle('albumpub');\" >Info</a> voor <em>Albums meteen publiceren</em>"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1208
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1210
 msgid "This sets the default behavior for when Zenphoto discovers an album. If checked, the album will be published, if unchecked it will be unpublished."
 msgstr "Bepaalt wat Zenphoto moet doen wanneer er een nieuw album wordt ontdekt. Als dit is aangevinkt wordt het album meteen gepubliceerd, anders niet."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1210
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1212
 msgid "<a href=\"javascript:toggle('imagepub');\" >Details</a> for <em>publish images by default</em>"
 msgstr "<a href=\"javascript:toggle('imagepub');\" >Info</a> voor <em>Afbeeldingen meteen publiceren</em>"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1212
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1214
 msgid "This sets the default behavior for when Zenphoto discovers an image. If checked, the image will be published, if unchecked it will be unpublished."
 msgstr "Bepaalt wat Zenphoto moet doen wanneer er een nieuwe afbeelding wordt ontdekt. Als dit is aangevinkt wordt de afbeelding meteen gepubliceerd, anders niet."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1214
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1216
 msgid "<a href=\"javascript:toggle('albumdate');\" >Details</a> for <em>use latest image date as album date</em>"
 msgstr "<a href=\"javascript: toggle('albumdate');\" >Info</a> voor <em>Gebruik datum laatste afbeelding als datum voor album</em>"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1217
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1219
 msgid "If you wish your album date to reflect the date of the latest image uploaded set this option. Otherwise the date will be set initially to the date the album was created."
 msgstr "Zet deze optie aan als je de albumdatum gelijk wilt laten zijn met de datum van de laatst geuploade afbeelding. Anders zal de datum gebruikt worden waarop het album aangemaakt is."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1220
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1222
 msgid "<strong>NOTE</strong>: Zenphoto will update the album date only if an image is discovered which is newer than the current date of the album."
 msgstr "<strong>Opmerking</strong>: Zenphoto zal de datum van het album alleen veranderen als er een afbeelding gevonden wordt met een recentere datum dan die van het album."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1224
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1226
 msgid "<a href=\"javascript:toggle('visualthumb');\" >Details</a> for <em>visual thumb selection</em>"
 msgstr "<a href=\"javascript: toggle('visualthumb');\" >Info</a> voor <em>Visuele selectie van thumbnails</em>"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1226
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1228
 msgid "Setting this option places thumbnails in the album thumbnail selection list (the dropdown list on each album's edit page). In Firefox the dropdown shows the thumbs, but in IE and Safari only the names are displayed (even if the thumbs are loaded!). In albums with many images loading these thumbs takes much time and is unnecessary when the browser won't display them. Uncheck this option and the images will not be loaded. "
 msgstr "Deze optie zorgt ervoor dat thumbnails getoond worden in de album thumbnail selectielijst (de dropdownlijst op de bewerkingspagina van elk album). In Firefox toont de lijst thumbnails, maar in IE en Safari worden alleen de namen getoond (ook als de thumbnails geladen zijn!). In albums met veel afbeeldingen neemt het laden van deze thumbnails veel tijd in beslag wat onnodig is als ze toch niet getoond worden door de browser. Zet deze optie uit en de afbeeldingen zullen niet geladen worden."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1229
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1231
 msgid "<a href=\"javascript:toggle('multithumb');\" >Details</a> for <em>subalbum thumb selection</em>"
 msgstr "<a href=\"javascript: toggle('multithumb');\" >Info</a> voor <em>Toon subalbum thumbnails</em>"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1231
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1233
 msgid "Setting this option allows selecting images from subalbums as well as from the album. Naturally populating these images adds overhead. If your album edit tabs load too slowly, do not select this option."
 msgstr "Deze optie maakt het mogelijk om óók thumbnails te selecteren uit subalbums. Dit kan veel tijd kosten.  Als je merkt dat albumopties traag laden kan het verstandig zijn om deze optie niet te gebruiken."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1234
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1236
 msgid "<a href=\"javascript:toggle('gallerysessions');\" >Details</a> for <em>enable gallery sessions</em>"
 msgstr "<a href=\"javascript: toggle('gallerysessions');\" >Info</a> voor <em>Galerij sessies</em>"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1236
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1238
 msgid "If this option is selected Zenphoto will use <a href=\"http://www.w3schools.com/php/php_sessions.asp\">PHP sessions</a> instead of cookies to make visitor settings persistent."
 msgstr "Als deze optie is geactiveerd zal Zenphoto <a href=\"http://www.w3schools.com/php/php_sessions.asp\">PHP sessies</a> gebruiken in plaats van cookies om gebruikers-instellingen te behouden."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1237
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1239
 msgid "<strong>NOTE</strong>: Sessions will normally close when the browser closes causing all password and other data to be discarded. They may close more frequently depending on the runtime configuration. Longer <em>lifetime</em> of sessions is generally more conducive to a pleasant user experience. Cookies are the prefered storage option since their duration is determined by the <em>Cookie duration</em> option. "
 msgstr "<strong>Opmerking</strong>: Sessies worden afgesloten als de browser gesloten wordt. Hierbij worden wachtwoorden en andere informatie weggegooid. De (ingestelde) langere <em>levensduur</em> van een cookie zorgt doorgaans voor een prettigere browserervaring."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1242
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1244
 msgid "<a href=\"javascript:toggle('cookie_persistence');\" >Details</a> for <em>Cookie duration</em>"
 msgstr "<a href=\"javascript: toggle('cookie_persistence');\" >Info</a> voor <em>Cookie levensduur</em>"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1244
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1246
 msgid "Set to the time in seconds that cookies should be kept by browsers."
 msgstr "Stel de tijd in (in seconden) voor het bewaren van cookies door de browser."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1299
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1343
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1301
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1345
 msgid "Search password:"
 msgstr "Zoekwachtwoord:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1319
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1321
 msgid "Password for the search guest user. click on <em>Search password</em> to change."
 msgstr "Wachtwoord voor de gastgebruiker om de zoekfunctie te gebruiken. Klik op <em>Zoekwachtwoord</em> om te wijzigen."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1325
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1327
 msgid "Search guest user:"
 msgstr "Zoek gastgebruiker:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1337
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1339
 msgid "User ID for the search guest user"
 msgstr "Gastgebruikers ID voor de zoekfunctie"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1366
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1368
 msgid "Password for the search guest user. If this is set, visitors must know this password to view search results."
 msgstr "Wachtwoord voor de gastgebruiker om de zoekfunctie te gebruiken.<br />Als dit ingevuld is moeten bezoekers dit wachtwoord weten om zoekresultaten te bekijken."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1371
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1373
 msgid "Search password hint:"
 msgstr "Zoekwachtwoord hint:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1384
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1386
 msgid "Search behavior settings:"
 msgstr "Zoekfunctie instellingen:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1388
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1390
 msgid "partial"
 msgstr "gedeeltelijk"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1389
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1391
 msgid "exact"
 msgstr "exact"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1407
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1409
 msgid "Fields list:"
 msgstr "Lijst zoekvelden:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1438
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1440
 msgid "Treat spaces as"
 msgstr "Behandel spaties als"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1439
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1441
 msgid "<em>space</em>"
 msgstr "<em>spatie</em>"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1439
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1441
 msgid "<em>OR</em>"
 msgstr "<em>OF</em>"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1439
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1441
 msgid "<em>AND</em>"
 msgstr "<em>EN</em>"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1441
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1443
 msgid "Default search"
 msgstr "Standaard zoeken"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1442
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1444
 msgid "<em>New</em>"
 msgstr "<em>nieuwe</em>"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1442
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1444
 msgid "<em>Within</em>"
 msgstr "<em>binnen</em>"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1447
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1449
 msgid "Do not return <em>album</em> matches"
 msgstr "Geef geen albumnamen weer"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1453
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1455
 msgid "Do not return <em>image</em> matches"
 msgstr "Laat geen <em>afbeeldingen</em> zien"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1462
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1464
 msgid "Do not return <em>news</em> matches"
 msgstr "Laat geen <em>nieuws</em> zien"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1468
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1470
 msgid "Do not return <em>page</em> matches"
 msgstr "Laat geen <em>pagina's</em> zien"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1476
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1478
 msgid "<em>Field list</em> is the set of fields on which searches may be performed."
 msgstr "<em>Lijst zoekvelden</em> is de set van velden waarop zoekopdrachten gedaan worden."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1477
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1479
 msgid "Search does partial matches on all fields selected with the possible exception of <em>Tags</em>. This means that if the field contains the search criteria anywhere within it a result will be returned. If <em>exact</em> is selected for <em>Tags</em> then the search criteria must exactly match the tag for a result to be returned."
 msgstr "De zoekfunctie geeft gedeeltelijke overeenkomsten weer uit alle zoekvelden met de mogelijke uitzondering van <em>Tags</em>. Dit betekent dat wanneer het ergens in een zoekveld de opgegeven tekst vindt, er een resultaat wordt weergegeven. Als <em>exact</em> is geselecteerd voor <em>Tags</em>,  worden alleen resultaten weergegeven als het zoekgegeven exact hetzelfde is als de tag."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1478
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1480
 msgid "Setting <code>Treat spaces as</code> to <em>OR</em> will cause search to trigger on any of the words in a string separated by spaces. Setting it to <em>AND</em> will cause the search to trigger only when all strings are present. Leaving the option unchecked will treat the whole string as a search target."
 msgstr "Het gebruik van <code>Behandel spaties als</code> <em>OF </em> zorgt ervoor dat de zoekfunctie reageert op elk woord appart indien gescheiden door een spatie. Als je kiest voor <em>EN</em> krijg je alleen resultaten te zie die alle zoektermen bevatten. Indien NIET aangevinkt zullen alle woorden in het zoekvenster samen gezien worden als één zoekterm."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1479
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1481
 msgid "<code>Default search</code> sets how searches from search page results behave. The search will either be from <em>within</em> the results of the previous search or will be a fresh <em>new</em> search."
 msgstr "<code>Standaard zoeken</code> bepaalt hoe de zoekfunctie werkt. Het zoeken gebeurt óf <em>binnen</em> de zoekresultaten van de vorige zoekopdracht óf er wordt een totaal <em>nieuwe</em> zoekopdracht uitgevoerd."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1480
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1482
 msgid "Setting <code>Do not return <em>{item}</em> matches</code> will cause search to ignore <em>{items}</em> when looking for matches."
 msgstr "De optie <code>Laat geen <em>{onderdeel}</em> zien</code> zorgt ervoor dat <em>{onderdelen}</em> worden genegeerd bij het zoeken. "
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1483
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1485
 msgid "Cache expiry"
 msgstr "Cache verlooptijd"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1485
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1487
 #, php-format
 msgid "Redo search after %s minutes."
 msgstr "Zoek opnieuw na %s minuten."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1488
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1490
 msgid "Search will remember the results of particular searches so that it can quickly serve multiple pages, etc. Over time this remembered result can become obsolete, so it should be refreshed. This option lets you decide how long before a search will be considered obsolete and thus re-executed. Setting the option to <em>zero</em> disables caching of searches."
 msgstr "\"Zoeken\" onthoudt de resultaten van zoekopdrachten voor een sneller resultaat. De resultaten zijn na verloop van tijd natuurlijk niet meer actueel en moeten ververst worden. Deze optie geeft de mogelijkheid om te bepalen wanneer een zoekopdracht verouderd is. Als de optie op <em>nul (0)</em> is ingesteld worden zoekopdrachten niet bewaard."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1523
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1525
 msgid "RSS feeds enabled:"
 msgstr "RSS feeds ingeschakeld:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1535
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1537
 msgid "News/Page comments"
 msgstr "Nieuws/Pagina commentaren"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1542
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1544
 msgid "Check each RSS feed you wish to activate."
 msgstr "Vink de RSS feed aan die je wilt activeren. "
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1547
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1549
 msgid "<strong>Note:</strong> Theme support is required to display RSS links."
 msgstr "<strong>Opmerking:</strong> Het thema moet het weergeven van RSS links ondersteunen."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1553
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1555
 msgid "Number of RSS feed items:"
 msgstr "Aantal RSS Feed onderdelen:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1555
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1564
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1590
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1557
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1566
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1592
 msgid "Images RSS"
 msgstr "Afbeeldingen RSS"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1556
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1566
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1593
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1558
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1568
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1595
 msgid "Albums RSS"
 msgstr "Albums RSS"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1558
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1560
 msgid "The number of new items you want to appear in your site's RSS feed. The images and comments RSS share the value."
 msgstr "Het aantal nieuwe artikelen dat je wilt laten zien in Nieuws RSS feed. Voor reacties geldt hetzelfde aantal als voor afbeeldingen"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1561
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1563
 msgid "Size of RSS feed images:"
 msgstr "Grootte van de RSS feed afbeeldingen."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1568
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1570
 msgid "The size you want your images to have in your site's RSS feed."
 msgstr "De afmetingen van de afbeeldingen in de RSS feed van de site."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1571
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1573
 msgid "RSS feed sort order:"
 msgstr "RSS feed sorteervolgorde:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1575
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1581
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1577
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1583
 msgid "latest by id"
 msgstr "laatste volgens id"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1576
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1582
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1578
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1584
 msgid "latest by date"
 msgstr "laatste volgens datum"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1577
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1583
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1579
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1585
 msgid "latest by mtime"
 msgstr "laatste voglens mtime"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1578
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1584
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1580
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1586
 msgid "latest by publishdate"
 msgstr "laatste volgens publicatiedatum"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1585
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1587
 msgid "latest updated"
 msgstr "laatste veranderingen"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1595
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1597
 msgid "a) Images RSS: Choose between <em>latest by id</em> for the latest uploaded, <em>latest by date</em> for the latest uploaded fetched by date, or <em>latest by mtime</em> for the latest uploaded fetched by the file's last change timestamp.<br />b) Albums RSS: Choose between <em>latest by id</em> for the latest uploaded and <em>latest updated</em>"
 msgstr "a) Afbeeldingen RSS: Kies 'latest by id' voor de laatst ge-uploade opgehaald op ID, 'latest by date' voor de laatst ge-uploade opgehaald op datum of  'latest by mtime' voor de laatst ge-uploade opgehaald op op de tijd van de laatste verandering.<br />b) Albums RSS: Kies tussen <em>latest by id</em> voor de laatst ge-uploade en <em>laatste ge-update</em>"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1598
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1600
 msgid "RSS enclosure:"
 msgstr "RSS toevoeging:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1601
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1603
 msgid "Check if you want to enable the <em>RSS enclosure</em> feature which provides a direct download for full images, movies etc. from within certain RSS reader clients <em>(only Images RSS)</em>."
 msgstr "Vink aan als je gebruik wilt maken van de mogelijkheid om met sommige RSS readers direct volledige afbeeldingen, films, e.d. te downloaden <em>(alleen Afbeeldingen RSS)</em>."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1604
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1606
 msgid "Media RSS:"
 msgstr "Media RSS:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1606
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1608
 msgid "Check if <em>media RSS</em> support is to be enabled. This support is used by some services and programs <em>(only Images RSS)</em>."
 msgstr "Vink aan je wilt dat <em>media RSS</em> support actief wordt. Dit wordt gebruikt door sommige services en programma's <em>(alleen Afbeeldingen RSS)</em>."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1609
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1611
 msgid "RSS cache"
 msgstr "RSS cache"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1611
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2024
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2033
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2158
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1613
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2026
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2035
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2160
 msgid "Enabled"
 msgstr "Ingeschakeld"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1613
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1615
 msgid "RSS cache expire"
 msgstr "RSS cache verlooptijd"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1615
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1617
 msgid "Check if you want to enable static RSS feed caching. The cached file will be placed within the <em>cache_html</em> folder.<br /> Cache expire default is 86400 seconds (1 day  = 24 hrs * 60 min * 60 sec)."
 msgstr "Vink aan als je statische RSS feed wilt cachen. Het bestand wordt bewaard in de <em>cache_html</em> map. <br /> De cache wordt geleegd na 86400 seconden (1 dag  = 24 uur * 60 min * 60 sec)."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1618
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1620
 msgid "RSS hitcounter"
 msgstr "RSS hitteller"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1621
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1623
 msgid "Check if you want to store the hitcount on RSS feeds."
 msgstr "Vink aan als je het aantal hits op RSS-feeds wilt bewaren."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1624
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1626
 msgid "RSS title"
 msgstr "RSS titel"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1626
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1628
 msgid "Gallery title"
 msgstr "Galerij-titel"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1627
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1629
 msgid "Website title"
 msgstr "Website-titel"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1628
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1630
 msgid "Both"
 msgstr "Beide"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1630
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1632
 msgid "Select what you want to use as the main RSS feed (channel) title. 'Both' means Website title followed by Gallery title"
 msgstr "Selecteer wat je wilt gebruiken als de titel voor de RSS feed. 'Beide' betekend Website-titel gevolgd door Galerij-titel"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1656
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1658
 msgid "See also the <a href=\"?tab=theme\">Theme Options</a> tab for theme specific image options."
 msgstr "Zie ook de <a href=\"?tab=theme\">thema opties</a> tab voor de thema-specifieke afbeeldings opties."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1718
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1720
 msgid "Default sort order for images."
 msgstr "Sorteervolgorde voor afbeeldingen."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1719
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1721
 msgid "Custom sort values must be database field names. You can have multiple fields separated by commas."
 msgstr "Eigen sorteerwaarden moeten database veldnamen zijn. Je mag meerdere veldnamen gebruiken, gescheiden door komma's."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1723
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1725
 msgid "Image quality:"
 msgstr "Afbeeldingskwaliteit:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1726
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1728
 msgid "Normal Image"
 msgstr "normale afbeelding"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1747
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1749
 msgid "<em>full</em> Image"
 msgstr "volledige afbeelding"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1768
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1770
 msgid "Thumbnail"
 msgstr "thumbnail"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1790
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1792
 msgid "Compression quality for images and thumbnails generated by Zenphoto."
 msgstr "JPEG compressiekwaliteit voor afbeeldingen en thumbnails."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1791
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1793
 msgid "Quality ranges from 0 (worst quality, smallest file) to 100 (best quality, biggest file). "
 msgstr "De kwaliteit loopt van 0 (slechtste, kleinste bestandsformaat) tot 100 (beste, grootste bestandsformaat)"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1795
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1797
 msgid "Interlace:"
 msgstr "Interlace:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1797
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1799
 msgid "If checked, resized images will be created <em>interlaced</em> (if the format permits)."
 msgstr "Indien aangevinkt worden geschaalde afbeeldingen <em>interlaced</em> gecreëerd (indien het formaat het toestaat)."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1800
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1802
 msgid "Use embedded thumbnail"
 msgstr "Gebruik ingesloten thumbnail"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1811
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1813
 msgid "If set, Zenphoto will use the thumbnail imbedded in the image when creating a cached image that is equal or smaller in size. Note: the quality of this image varies by camera and its orientation may not match the master image."
 msgstr "Indien aangevinkt, zal Zenphoto de ingesloten thumbnail van de afbeelding gebruiken om een gecachte afbeelding te maken, indien deze kleiner of gelijk is aan de ingesloten thumbnail.<br />Opmerking: de kwaliteit van deze afbeelding is afhankelijk van de gebruikte camera en de oriëntatie (liggend/staand) kan verschillen van de échte afbeelding."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1815
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1817
 msgid "The PHP EXIF extension is required for this option."
 msgstr "De PHP EXIF extensie is vereist voor deze optie."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1822
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1824
 msgid "Allow upscale:"
 msgstr "Vergroten toestaan:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1824
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1826
 msgid "Allow images to be scaled up to the requested size. This could result in loss of quality, so it's off by default."
 msgstr "Sta toe dat afbeeldingen vergroot worden naar het gevraagde formaat. Dit kan resulteren in een verlies van kwaliteit dus standaard staat deze optie uit."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1827
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1829
 msgid "Sharpen:"
 msgstr "Verscherp:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1840
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1842
 msgid "Amount"
 msgstr "Hoeveelheid"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1864
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1866
 msgid "Radius"
 msgstr "Straal"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1868
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1870
 msgid "Threshold"
 msgstr "Drempel"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1874
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1876
 msgid "Add an unsharp mask to images and/or thumbnails."
 msgstr "Voeg verscherping toe aan afbeeldingen en/of thumbnails."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1874
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1876
 msgid "<strong>WARNING</strong>: can overload slow servers."
 msgstr "<strong>Waarschuwing</strong>: kan langzame servers overbelasten."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1875
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1877
 msgid "<em>Amount</em>: the strength of the sharpening effect. Values are between 0 (least sharpening) and 100 (most sharpening)."
 msgstr "<em>Hoeveelheid</em>: de sterkte van het verscherpen. De waarde kan tussen 0 en 100 liggen."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1876
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1878
 msgid "<em>Radius</em>: the pixel radius of the sharpening mask. A smaller radius sharpens smaller details, and a larger radius sharpens larger details."
 msgstr "<em>Straal</em>: de pixelstraal van de scherpte. Een kleine straal verscherpt kleine details. Een grotere straal verscherpt grotere details."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1877
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1879
 msgid "<em>Threshold</em>: the color difference threshold required for sharpening. A low threshold sharpens all edges including faint ones, while a higher threshold only sharpens more distinct edges."
 msgstr "<em>Drempel</em>: De kleurverschil-drempel. Een lage drempel verscherpt alle randen, inclusief de vage. Een hogere drempel verscherpt alleen duidelijker randen."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1881
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1883
 msgid "Watermarks:"
 msgstr "Watermerken:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1898
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1900
 msgid "Full sized images"
 msgstr "Afbeeldingen op het volledige formaat"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1919
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1921
 #, php-format
 msgid "%s thumbnails"
 msgstr "%s thumbnails"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1922
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1924
 msgid "image thumb"
 msgstr "afbeelding thumbnail"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1935
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1937
 msgid "cover"
 msgstr "bedek"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1937
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1939
 #, no-php-format
 msgid "% of image"
 msgstr "% van de afbeelding"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1940
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1942
 msgid "allow upscale"
 msgstr "vergroten toestaan"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1944
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1946
 msgid "offset h"
 msgstr "offset h"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1946
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1948
 #, no-php-format
 msgid "% w, "
 msgstr "% w,"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1948
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1950
 #, no-php-format
 msgid "%"
 msgstr "%"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1952
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1954
 msgid "The watermark image is scaled by to cover <em>cover percentage</em> of the image and placed relative to the upper left corner of the image."
 msgstr "De watermerkafbeelding wordt geschaald  om een <em> percentage</em> van de afbeelding te bedekken en wordt relatief aan de linker bovenhoek van de afbeelding geplaatst."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1953
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1955
 msgid "It is offset from there (moved toward the lower right corner) by the <em>offset</em> percentages of the height and width difference between the image and the watermark."
 msgstr "Het wordt vanuit daar ge-offset (richting de rechter onderhoek) met de <em>offset</em> percentages van het hoogte en breedte-verschil tussen de afbeelding en het watermerk."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1954
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1956
 msgid "If <em>allow upscale</em> is not checked the watermark will not be made larger than the original watermark image."
 msgstr "Als <em>Vergroten toestaan</em> niet aangevinkt is zal het watermerk niet groter dan de orginele watermerkafbeelding gemaakt worden."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1955
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1957
 #, php-format
 msgid "Custom watermarks should be placed in the <code>/%s/watermarks/</code> folder. The images must be in png-24 format."
 msgstr "Eigen watermerken moeten in de <code>/%s/watermarks/</code> map geplaatst worden. De afbeeldingen moeten PNG-24 zijn."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1959
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1961
 msgid "If a watermark image is selected for these <em>images classes</em> it will be used in place of the image thumbnail watermark."
 msgstr "Als een watermerk voor deze <em>images classes</em> is geselecteerd, wordt dit gebruikt in plaats van het <em>Afbeelding thumbnails</em> watermerk."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1967
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1969
 msgid "Caching concurrency:"
 msgstr "Gelijktijdig cashen:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1992
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1994
 #, php-format
 msgid "Cache processing worker limit: %s."
 msgstr "Cache processen limiet: %s."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1993
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1995
 msgid "More workers will get the job done faster so long as your server does not get swamped or run out of memory."
 msgstr "Meer processen maken dat het cashen sneller gaat zolang de server genoeg geheugen heeft."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1997
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1999
 msgid "Cache as:"
 msgstr "Cache als:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2000
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2002
 msgid "Original"
 msgstr "Origineel"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2011
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2013
 msgid "Select a type for the images stored in the image cache. Select <em>Original</em> to preserve the original image's type."
 msgstr "Selecteer het type afbeelding dat wordt gecached. Selecteer <em>Origineel</em> om het type onveranderd te laten."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2014
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2016
 msgid "Obscure cache filenames"
 msgstr "Maak gecachte bestandsnamen onduidelijk."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2016
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3055
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3094
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2018
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3057
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3096
 msgid "enable"
 msgstr "activeer"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2018
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2020
 msgid "Cause the filename of cached items to be obscured. This makes it difficult for someone to \"guess\" the name in a URL."
 msgstr "Vink aan om namen van gecachte afbeeldingen onduidelijk te maken. Dit maakt het lastig om de naam te \"raden\" in de URL."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2021
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2023
 msgid "Protect image cache"
 msgstr "Beveilig afbeeldingen-cache"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2026
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2028
 msgid "If checked all image URIs will link to the image processor and the image cache will be disabled to browsers via an <em>.htaccess</em> file. Images are still cached but the image processor is used to serve the image rather than allowing the browser to fetch the file."
 msgstr "Als dit is aangevinkt zullen alle afbeeldings URI's verwijzen naar de afbeeldings-processor. Bovendien wordt de afbeeldingen-cache onbereikbaar gemaakt voor browsers door middel van een <em>.htaccess</em> bestand. <br />(De afbeeldingen blijven in de cache maar kunnen niet meer opgevraagd worden door een browser. In plaats daarvan worden de afbeeldingen via de processor aangeboden)"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2027
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2029
 msgid "<strong>WARNING\t:</strong> This option adds significant overhead to <strong>each and every</strong> image reference! Some <em>JavaScript</em> and <em>Flash</em> based image handlers will not work with an image processor URI and are incompatible with this option."
 msgstr "<strong>WAARSCHUWING\t:</strong> Deze optie vraagt extra rekenkracht van de server! Sommige <em>JavaScript</em> and <em>Flash</em> afbeeldings-scripts werken niet met een URI via een afbeeldings-processor."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2030
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2032
 msgid "Secure image processor"
 msgstr "Beveiligde afbeeldings-processor"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2035
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2037
 msgid "When not checked, the image processor does not check for album access credentials."
 msgstr "Wanneer dit is aangevinkt zal de afbeeldings-processor controleren of toegang tot albums toegestaan is."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2036
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2038
 msgid "<strong>WARNING\t:</strong> This option adds memory overhead to image caching! You may be unable to cache some images depending on your server memory availability."
 msgstr "<strong>WAARSCHUWING\t:</strong> Deze optie vergt veel van het geheugen!. Afhankelijk van de geheugeninstelling van je server kan het zijn dat sommige afbeeldingen niet gecached kunnen worden."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2039
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2041
 msgid "Full image protection:"
 msgstr "Volledige afbeelding bescherming"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2044
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2046
 msgid "Disable hotlinking"
 msgstr "<em>Hotlinken uitzetten</em>"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2049
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2051
 msgid "cache the full image"
 msgstr "Cache de volledige afbeelding"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2062
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2099
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2064
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2101
 msgid "password:"
 msgstr "wachtwoord:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2084
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2086
 msgid "user:"
 msgstr "gebruiker:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2124
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2126
 msgid "hint:"
 msgstr "hint:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2138
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2140
 msgid "Protected view"
 msgstr "Beschermde weergave"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2138
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2140
 msgid "No access"
 msgstr "Geen toegang"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2140
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2142
 msgid "Unprotected"
 msgstr "Onbeschermd"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2148
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2150
 msgid "Disabling hotlinking prevents linking to the full image from other domains. If enabled, external links are redirect to the image page. If you are having problems with full images being displayed, try disabling this setting. Hotlinking is not prevented if <em>Full&nbsp;image&nbsp;protection</em> is <em>Unprotected</em> or if the image is cached."
 msgstr "Hotlinken uitzetten voorkomt linken naar de volledige afbeelding vanaf andere domeinen. Als deze optie aanstaat worden externe links naar de afbeeldingspagina gestuurd. Als je problemen heeft met het tonen van volledige afbeeldingen, probeer dan deze optie uit te zetten. Hotlinken wordt niet voorkomen als <em>Volledige afbeelding bescherming</em> op <em>Onbeschermd</em> staat of als de afbeelding gecached is."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2149
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2151
 msgid "If <em>Cache the full image</em> is checked the full image will be loaded to the cache and served from there after the first reference. <em>Full&nbsp;image&nbsp;protection</em> must be set to <em>Protected&nbsp;view</em> for the image to be cached. However, once cached, no protections are applied to the image."
 msgstr "Als <em>Cache de volledige afbeelding</em> ingeschakeld is zal de volledig afbeelding in de cache geladen worden en vanuit daar getoond worden na de eerste referentie. <em>Volledige afbeelding bescherming</em> moet op <em>Beschermde weergave</em> gezet worden zodat een afbeelding gechached kan worden. Echter, eens gechached wordt er geen bescherming toegepast op de afbeelding."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2150
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2152
 msgid "The <em>user</em>, <em>password</em>, and <em>hint</em> apply to the <em>Download</em> and <em>Protected view</em> level of protection. If there is a password set, the viewer must supply this password to access the image."
 msgstr "<em>Gebruiker</em>, <em>wachtwoord</em> en <em>hint</em> hebben betrekking op <em>Download</em> en <em>Beschermde weergave</em> op de mate van beveiliging. Indien een wachtwoord is ingesteld dient de bezoeker dit in te vullen alvorens toegang te krijgen tot de afbeelding."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2151
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2153
 msgid "Select the level of protection for full sized images. <em>Download</em> forces a download dialog rather than displaying the image. <em>No&nbsp;access</em> prevents a link to the image from being shown. <em>Protected&nbsp;view</em> forces image processing before the image is displayed, for instance to apply a watermark or to check passwords. <em>Unprotected</em> allows direct display of the image."
 msgstr "Selecteer de mate van beveiliging op volledige afbeeldingen. <em>Download</em> forceert een downloadvenster in plaats van het tonen van de afbeelding. <em>Geen toegang</em> voorkomt dat er een koppeling naar de afbeelding getoond wordt. <em>Beschermde weergave</em> forceert een afbeeldingsbewerking voordat de afbeelding getoond wordt, bijvoorbeeld om een watermerk toe te voegen of om wachtwoorden te controleren. <em>Onbeschermd</em> maakt het direct tonen van de afbeelding mogelijk."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2155
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2157
 msgid "Use lock image"
 msgstr "Gebruik slot-afbeelding"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2160
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2162
 msgid "Substitute a <em>lock</em> image for thumbnails of password protected albums when the viewer has not supplied the password. If your theme supplies an <code>images/err-passwordprotected.png</code> image, it will be shown. Otherwise the zenphoto default lock image is displayed."
 msgstr "Vervangt een <em>slot</em>-afbeelding voor thumbnails van met wachtwoord beveiligde albums. Als je thema een <code>images/err-passwordprotected.gif</code> afbeelding bevat, zal deze getoond worden. Anders wordt de standaard Zenphoto slotafbeelding getoond."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2174
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2176
 msgid "Metadata"
 msgstr "Metadata"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2196
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2211
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2212
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2198
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2213
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2214
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2215
 msgid "show"
 msgstr "toon"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2197
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2199
 msgid "hide"
 msgstr "verberg"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2198
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2200
 msgid "disabled"
 msgstr "uitgeschakeld"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2209
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2211
 msgid "Select how image metadata fields are handled."
 msgstr "Selecteer hoe de metadata velden behandeld moeten worden."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2211
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2213
 msgid "Show the field"
 msgstr "Tonen"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2212
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2214
 msgid "Hide the field"
 msgstr "Verbergen"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2213
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2215
 msgid "Do not process the field"
 msgstr "Negeren"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2217
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2219
 msgid "Hint: you can drag down the <em>drag handle</em> in the lower right corner to show more selections."
 msgstr "Tip: Je kunt dit venster groter maken door de hoek rechtsonder te slepen."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2227
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2229
 msgid "IPTC encoding:"
 msgstr "IPTC codering"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2233
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2235
 msgid "The default character encoding of image IPTC metadata."
 msgstr "De standaard karakter-codering van IPTC metadata."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2238
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2240
 msgid "Imbed IPTC copyright"
 msgstr "Voeg IPTC copyright toe"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2239
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2241
 msgid "If checked and an image has no IPTC data a copyright notice will be imbedded cached copies."
 msgstr "Als dit is aangevinkt en een afbeelding heeft géén IPTC info, wordt er copyright informatie in de afbeeldings-info van gecachte kopieën geplaatst."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2241
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2243
 msgid "Replicate IPTC metadata"
 msgstr "Kopiëer IPTC metadata"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2242
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2244
 msgid "If checked IPTC data from the original image will be imbedded in cached copies. If the image has no IPTC data a copyright notice will be imbedded. (The text supplied will be used if the orginal image has no copyright.)"
 msgstr "Als dit is aangevinkt wordt IPTC info van originele afbeeldingen geplaatst in gecachte kopieën. Als de afbeelding géén IPTC info heeft, wordt er copyright informatie in de afbeeldings-info van gecachte kopieën geplaatst. (De opgegeven tekst wordt gebruikt als de originele afbeelding geen copyright heeft)"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2246
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2248
 msgid "IPTC Imbedding:"
 msgstr "IPTC invoeging:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2254
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2256
 msgid "<strong>NOTE:</strong> This option  applies only to JPEG format cached images."
 msgstr "<strong>Opmerking:</strong> Deze optie geldt alleen voor als JPEG gecachte afbeeldingen."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2288
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2290
 msgid "Enable comment notification:"
 msgstr "Notificatie bij reactie:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2301
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2303
 msgid "Email the Admin when new comments are posted"
 msgstr "E-mail de admin bij een nieuwe reactie."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2305
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2307
 msgid "Spam filter:"
 msgstr "Spamfilter:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2313
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2315
 msgid "The SPAM filter plug-in you wish to use to check comments for SPAM"
 msgstr "Het spamfilter dat je wenst te gebruiken om reacties op SPAM te checken"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2325
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2327
 msgid "Name field"
 msgstr "Naam"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2333
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2350
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2367
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2335
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2352
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2369
 msgid "Show"
 msgstr "Zichtbaar"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2337
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2354
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2371
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2384
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2339
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2356
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2373
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2386
 msgid "Require"
 msgstr "verplicht"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2340
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2342
 msgid "If the <em>Name</em> field is required, the poster must provide a name."
 msgstr "Als de <em>Naam</em> verplicht is, moet de degene die reageert een naam invullen."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2342
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2344
 msgid "Email field"
 msgstr "E-mailadres"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2357
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2359
 msgid "If the <em>Email</em> field is required, the poster must provide an email address."
 msgstr "Als het <em>E-mailadres</em> verplicht is, moet de degene die reageert een e-mailadres invullen."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2359
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2361
 msgid "Website field"
 msgstr "Website"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2374
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2376
 msgid "If the <em>Website</em> field is required, the poster must provide a website."
 msgstr "Als de <em>Website</em> verplicht is, moet de degene die reageert een website invullen."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2376
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2378
 msgid "Captcha"
 msgstr "Captcha"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2387
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2389
 msgid "If <em>Captcha</em> is required, the form will include a Captcha verification."
 msgstr "Als de <em>Captcha</em> verplicht is, zal het formulier een Captcha verificatie tonen."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2481
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2483
 msgid "There are no themes for which you have rights to administer."
 msgstr "Er zijn geen thema's waarvan je de instellingen aan kunt passen."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2496
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2498
 #, php-format
 msgid "Options for <code><strong>%1$s</strong></code>: <em>%2$s</em>"
 msgstr "Opties voor <code><strong>%1$s</strong></code>: <em>%2$s</em>"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2498
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2500
 #, php-format
 msgid "Options for <em>%s</em>"
 msgstr "Opties voor <em>%s</em>"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2506
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2508
 msgid "Show theme for:"
 msgstr "Laat thema zien voor:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2522
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2792
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2524
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2794
 msgid "Revert to default"
 msgstr "Herstel standaard opties"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2522
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2792
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2524
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2794
 msgid "Revert"
 msgstr "Herstel standaard opties"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2529
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2531
 msgid "<strong>Standard options</strong>"
 msgstr "<strong>Standaard opties</strong>"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2531
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2533
 msgid "<em>These image and album presentation options provided by the Zenphoto core for all themes.</em>"
 msgstr "<em>Deze afbeeldings- en album-presentatieopties zijn standaard voor alle thema's.</em>"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2531
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2533
 msgid "<strong>Note:</strong> These are <em>recommendations</em> as themes may choose to override them for design reasons"
 msgstr "<strong>Opmerking:</strong> Dit zijn <em>aanbevelingen</em>. Sommige thema's gebruiken echter hun eigen instellingen i.v.m. de vormgeving."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2534
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2536
 msgid "Albums:"
 msgstr "Albums:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2543
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2580
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2545
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2582
 msgid "thumbnails per row"
 msgstr "thumbnails per rij"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2552
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2589
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2554
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2591
 msgid "thumbnails per page"
 msgstr "thumbnails per pagina"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2556
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2558
 msgid "These specify the Theme <a title=\"Look at your album page and count the number of album thumbnails that show up in one row. This is the value you should set for the option.\">CSS determined number</a> of album thumbnails that will fit in a \"row\" and the number of albums thumbnails you wish per page."
 msgstr "Dit specificeert het, <a title=\"Kijk op je album-pagina en tel het het aantal album thumbnails op een rij. Dat is de waarde die je moet instellen voor deze optie.\">door CSS bepaalde aantal</a> album thumbnails per rij en het aantal album thumbnails dat je wilt zien per pagina."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2561
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2598
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2563
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2600
 msgid "<strong>Note:</strong> If <em>thumbnails per row</em> is greater than 1, The actual number of thumbnails that are displayed on a page will be rounded up to  the next multiple of it."
 msgstr "<strong>Opmerking:</strong> Als het <em>aantal thumbnails per rij</em> groter is dan 1, wordt het aantal thumbnails naar boven afgerond tot een meervoud hiervan."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2562
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2564
 #, php-format
 msgid "For album pages there will be %1$u rows of thumbnails."
 msgstr "Op albumpagina's komen er %1$u rijen thumbnails."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2571
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2573
 msgid "Images:"
 msgstr "Afbeeldingen:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2593
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2595
 msgid "These specify the Theme <a title=\"Look at your album page and count the number of image thumbnails that show up in one row. This is the value you should set for the option.\">CSS determined number</a> of image thumbnails that will fit in a \"row\" and the number of image thumbnails you wish per page."
 msgstr "Dit specificeert het, <a title=\"Kijk op je album-pagina en tel het het aantal afbeeldings thumbnails op een rij. Dat is de waarde die je moet instellen voor deze optie.\">door CSS bepaalde aantal</a> afbeeldings thumbnails per rij en het aantal afbeeldings thumbnails dat je wilt zien per pagina."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2599
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2601
 #, php-format
 msgid "For pages containing images there will be %1$u rows of thumbnails."
 msgstr "Op afbeeldingspagina's komen er  %1$u rijen thumbnails."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2615
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2617
 msgid "Transition:"
 msgstr "Overgang:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2631
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2633
 msgid "separate"
 msgstr "apart"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2632
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2634
 msgid "combined"
 msgstr "gecombineerd"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2635
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2637
 msgid "if both album and image <em>thumbnails per row</em> are greater than 1 you can choose if album thumbnails and image thumbnails are placed together on the page that transitions from only album thumbnails to only image thumbnails."
 msgstr "Als zowel het aantal <em>album-thumbnails</em> als het aantal <em>afbeeldings-thumbnails</em> groter is dan 1, kun je hier kiezen of album-thumbnails en afbeeldings-thumbnails samen getoond worden op de pagina die zowel album-thumbnails als afbeeldings-thumbnails weergeeft. (Dit gaat dus op voor albums met daarin afbeeldingen én sub-albums)"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2652
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2654
 msgid "Thumb size:"
 msgstr "Thumbgrootte:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2656
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2658
 #, php-format
 msgid "Standard thumbnails will be scaled to %u pixels."
 msgstr "De standaard thumbnail wordt geschaald naar %u pixels."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2666
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2668
 msgid "Crop thumbnails:"
 msgstr "Crop thumbnails:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2671
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2673
 #, php-format
 msgid "%s%% left &amp; right"
 msgstr "%s%% links en rechts"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2675
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2677
 #, php-format
 msgid "%s%% top &amp; bottom"
 msgstr "%s%% boven en onder"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2680
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2682
 #, php-format
 msgid "If checked the thumbnail will be cropped %1$.1f%% in from the top and the bottom margins and %2$.1f%% in from the left and the right margins."
 msgstr "Indien aangevinkt wordt de thumbnail uitgesneden %1$.1f%% vanaf de boven- en onderkant en %2$.1f%% vanaf de linker- en rechterkant."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2682
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2684
 msgid "<strong>Note:</strong> changing crop will invalidate existing custom crops."
 msgstr "<strong>Opmerking</strong>: Het veranderen van de uitsnede maakt dat reeds bestaande uitsnedes vervallen."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2686
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2688
 msgid "Gray scale conversion:"
 msgstr "Zwart-wit conversie:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2693
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2695
 msgid "thumbnail"
 msgstr "thumbnail"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2697
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2699
 msgid "If checked, images/thumbnails will be created in gray scale."
 msgstr "Indien aangevinkt, worden afbeeldingen/thumbnails omgezet in zwart-wit."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2707
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2709
 msgid "Image size:"
 msgstr "Afbeeldingsgrootte:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2718
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2720
 msgid "height"
 msgstr "Hoogte"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2722
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2724
 msgid "width"
 msgstr "Breedte"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2729
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2731
 msgid "shortest side"
 msgstr "kortste zijde"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2733
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2735
 msgid "longest side"
 msgstr "langste zijde"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2738
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2740
 msgid "Default image display size."
 msgstr "Standaard afbeeldingsgrootte:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2739
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2741
 msgid "The image will be sized so that the <em>height</em>, <em>width</em>, <em>shortest side</em>, or the <em>longest side</em> will be equal to <em>image size</em>."
 msgstr "De afbeelding zal zo geschaald worden dat de<em> hoogte</em>, <em>breedte</em>, of de <em>langste zijde</em> gelijk is aan <em>afbeeldingsgrootte</em>."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2751
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2753
 msgid "Gallery index page link:"
 msgstr "Galerij index link:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2770
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2772
 msgid "If this option is not empty, the Gallery Index URL that would normally link to the theme <code>index.php</code> script will instead link to this script. This frees up the <code>index.php</code> script so that you can create a customized <em>Home page</em> script. This option applies only to the main theme for the <em>Gallery</em>."
 msgstr "Als hier een pagina/script gekozen is zal de Galerij-index URL, die normaal gesproken naar het <code>index.php</code> script van het thema verwijst, nu naar dit script verwijzen. Dit maakt het mogelijk een eigen <em>Homepage</em> script te maken. Deze optie is alleen van toepassing op het hoofdthema van de <em>galerij</em>."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2778
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2780
 msgid "<strong>Custom theme options</strong>"
 msgstr "<strong>Unieke themaopties</strong>"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2780
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2782
 #, php-format
 msgid "The following are options specifically implemented by %s."
 msgstr "De volgende opties zijn specifiek geïmplementeerd door %s."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2868
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2870
 msgid "Expand plugin options"
 msgstr "Toon alle pluginopties"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2870
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2872
 msgid "Collapse all plugin options"
 msgstr "Verberg alle pluginopties"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2887
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2889
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-plugins.php:218
 msgid "<strong>Note:</strong> Instantiating the option interface within the plugin may cause performance issues. You should instead set <code>$option_interface</code> to the name of the class as a string."
 msgstr "<strong>Opmerking:</strong> Het instantiëren van de optie-interface van de plugin kan problemen geven met de prestaties. Je zou in plaats hiervan de <code>$option_interface</code> de naam van de class als een string moeten geven."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2922
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2924
 msgid "warning"
 msgstr "waarschuwing"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2958
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:2960
 msgid "There are no plugin options to administer."
 msgstr "Er zijn geen pluginoptie's om te beheren."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3020
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3022
 msgid "Server protocol:"
 msgstr "Server protocol:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3026
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3028
 msgid "secure admin"
 msgstr "beveiligde toegang tot admin gedeelte"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3030
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3032
 msgid "Normally this option should be set to <em>http</em>. If you're running a secure server, change this to <em>https</em>. Select <em>secure admin</em> if you need only to insure secure access to <code>admin</code> pages."
 msgstr "Normaal staat deze optie op <em>http</em>. Als je een beveiligde server gebruikt stel dan <em>https</em> in. Selecteer <em>beveiligde toegang tot admin</em> voor beveiligde toegang tot de <code>admin</code> pagina's."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3031
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3033
 msgid "<strong>Note:</strong><br /><br />Login from the front-end user login form is secure only if <em>https</em> is selected.<br /><br />If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! Your only possibility then is to change the option named <span class=\"inlinecode\">server_protocol</span> in the <em>options</em> table of your database."
 msgstr "<strong>Opmerking:</strong><br /><br />Inloggen via het front-end login-formulier is alleen veilig als <em>https</em> is geselecteerd.<br /><br />Als je <em>https</em> of <em>beveiligde toegang tot admin</em> selecteerd <strong>MOET</strong> je server <em>https</em> ondersteunen.  Als je één van deze twee selecteerd voor een server die géén <em>https</em> ondersteund kun je de <code>admin</code> pagina's niet bereiken om de optie te veranderen! De enige mogelijkheid om die dan te veranderen is de optie <span class=\"inlinecode\">server_protocol</span> te veranderen in de <em>options</em> tabel van je database."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3040
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3042
 msgid "CAPTCHA generator:"
 msgstr "CAPTCHA generator:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3049
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3051
 msgid "Select the <em>CAPTCHA</em> generator to be used by Zenphoto."
 msgstr "Selecteer de <em>CAPTCHA</em> generator om te gebruiken."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3053
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3055
 msgid "Cookie security"
 msgstr "Cookie beveiliging"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3058
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3060
 msgid "Tie cookies to the IP address of the browser."
 msgstr "Koppel cookies aan het IP-adres van de browser."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3062
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3064
 msgid "<strong>Note</strong>: If your browser does not present a consistant IP address during a session you may not be able to log into your site when this option is enabled."
 msgstr "<strong>Opmerking</strong>: Als je browser tijdens een sessie geen statisch IP-adres heeft kun je mogelijk niet inloggen als deze optie geactiveerd is!"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3064
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3066
 msgid " You <strong>WILL</strong> have to login after changing this option."
 msgstr "Je <strong>MOET</strong> inloggen als je deze optie hebt veranderd."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3066
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3068
 msgid "If you set the option and cannot login, you will have to restore your database to a point when the option was not set, so you might want to backup your database first."
 msgstr "Als je de optie hebt geactiveerd en je kunt niet inloggen zul je de database moeten herstellen met een backup waarbij de optie niet was geactiveerd. Het is dus verstandig om eerst een backup van je database te maken!"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3078
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3080
 msgid "User name"
 msgstr "Gebruikersnaam veld <br />login-formulier"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3100
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3102
 msgid "If enabled guest logon forms will include the <em>User Name</em> field. This allows <em>Zenphoto</em> users to logon from the form."
 msgstr "Indien aangevinkt zal een login-formulier een veld voor een <em>gebruikersnaam</em> tonen."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3102
+#: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:3104
 msgid "<strong>Note</strong>: This field is required because one or more of the <em>Guest</em> passwords has a user name associated."
 msgstr "<strong>Opmerking:</strong> Dit veld is verplicht als een gast een gebruikersnaam moet invullen."
 
@@ -5750,45 +5778,45 @@ msgid_plural "<strong>%1$u</strong> Categories"
 msgstr[0] "<strong>%1$u</strong> categorie"
 msgstr[1] "<strong>%1$u</strong> categorieën"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/class-album.php:636
+#: ZpFork-Dutch-Translation-Dev/zp-core/class-album.php:641
 msgid "Invalid album instantiation: No album name"
 msgstr "Album niet gevonden: Geen albumnaam."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/class-album.php:639
+#: ZpFork-Dutch-Translation-Dev/zp-core/class-album.php:644
 #, php-format
 msgid "Invalid album instantiation: %1$s!=%2$s"
 msgstr "Album niet gevonden: %1$s!=%2$s"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/class-album.php:641
+#: ZpFork-Dutch-Translation-Dev/zp-core/class-album.php:646
 #, php-format
 msgid "Invalid album instantiation: %s does not exist."
 msgstr "Album niet gevonden: %s bestaat niet."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/class-album.php:1570
+#: ZpFork-Dutch-Translation-Dev/zp-core/class-album.php:1579
 #, php-format
 msgid "Error: The album named %s cannot be found."
 msgstr "Fout: Het album genaamd %s kan niet gevonden worden."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/class-album.php:1572
+#: ZpFork-Dutch-Translation-Dev/zp-core/class-album.php:1581
 #, php-format
 msgid "Error: The album %s is not readable."
 msgstr "Error: Het album %s is niet leesbaar."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/class-gallery.php:170
+#: ZpFork-Dutch-Translation-Dev/zp-core/class-gallery.php:197
 #, php-format
 msgid "Error: The 'albums' directory (%s) cannot be found."
 msgstr "Error: De 'albums' directory (%s) kon niet gevonden worden."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/class-gallery.php:172
+#: ZpFork-Dutch-Translation-Dev/zp-core/class-gallery.php:199
 #, php-format
 msgid "Error: The 'albums' directory (%s) is not readable."
 msgstr "Error: De 'albums' directory (%s) is niet leesbaar."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/class-gallery.php:247
+#: ZpFork-Dutch-Translation-Dev/zp-core/class-gallery.php:274
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/class-gallery.php:247
+#: ZpFork-Dutch-Translation-Dev/zp-core/class-gallery.php:274
 msgid "<strong>Missing theme info file!</strong>"
 msgstr "<strong>Er ontbreekt een thema!</strong>"
 
@@ -5953,21 +5981,9 @@ msgid "Forbidden"
 msgstr "Verboden"
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/full-image.php:22
+#: ZpFork-Dutch-Translation-Dev/zp-core/i.php:45
 msgid "Too few arguments! Image not found."
 msgstr "Te weinig argumenten! Afbeelding niet gevonden."
-
-#: ZpFork-Dutch-Translation-Dev/zp-core/functions-basic.php:1366
-#, php-format
-msgid "Mutex %s was left locked."
-msgstr "Mutex %s was left locked."
-
-#: ZpFork-Dutch-Translation-Dev/zp-core/functions-basic.php:1384
-msgid "Error locking mutex"
-msgstr "Error locking mutex"
-
-#: ZpFork-Dutch-Translation-Dev/zp-core/functions-basic.php:1402
-msgid "Error un-locking mutex"
-msgstr "Error un-locking mutex"
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/functions-common.php:35
 msgid "ERROR"
@@ -7049,29 +7065,29 @@ msgstr "XMP waardering"
 msgid "Forbidden(1)"
 msgstr "Verboden (1)"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/i.php:120
+#: ZpFork-Dutch-Translation-Dev/zp-core/i.php:121
 msgid "Forbidden(2)"
 msgstr "Verboden (2)"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/i.php:157
+#: ZpFork-Dutch-Translation-Dev/zp-core/i.php:158
 msgid "The cache directory does not exist. Please create it and set the permissions to 0777."
 msgstr "De cache map bestaat niet. Maak deze a.u.b aan en zet de permissies op 0777."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/i.php:162
+#: ZpFork-Dutch-Translation-Dev/zp-core/i.php:163
 msgid "The cache directory is not writable! Attempts to chmod didn't work."
 msgstr "De cache directory is niet schrijfbaar! Pogingen om te chmodden zijn mislukt."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/i.php:197
+#: ZpFork-Dutch-Translation-Dev/zp-core/i.php:198
 #, php-format
 msgid "Image not found; file %s does not exist."
 msgstr "Afbeelding niet gevonden; bestand %s bestaat niet."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/i.php:233
+#: ZpFork-Dutch-Translation-Dev/zp-core/i.php:235
 #, php-format
 msgid "Image processing of %s resulted in a fatal error."
 msgstr "Her verwerken van %s  resulteerde in een ernstige fout."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/i.php:255
+#: ZpFork-Dutch-Translation-Dev/zp-core/i.php:257
 #, php-format
 msgid "Suffix Not Allowed: %s"
 msgstr "Suffix niet toegestaan: %s"
@@ -8023,69 +8039,69 @@ msgstr "Keer terug naar <em>zoeken</em>"
 msgid "printField() invalid function call."
 msgstr "ongeldig gebruik van de functie printField() "
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:1981
+#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:1982
 msgid "The image is marked un-published."
 msgstr "Deze afbeelding is als niet-gepubliceerd gemarkeerd."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:2330
+#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:2331
 msgid "Image Info"
 msgstr "Fotoinformatie"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:2987
+#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:2988
 msgid "Anonymous"
 msgstr "Anoniem"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:3473
+#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:3474
 #, php-format
 msgid "View image: %s"
 msgstr "Bekijk afbeelding: %s"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:3641
+#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:3642
 msgid "No popular tags"
 msgstr "Geen populaire tags"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:3916
+#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:3917
 msgid "Latest images RSS"
 msgstr "Laatste afbeeldingen RSS"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:3972
+#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:3973
 msgid "getSearchURL $album_list parameter is deprecated. Pass array(\"albums\"=>array(album, album, ...)) instead."
 msgstr "getSearchURL $album_list parameter is verouderd. Gebruik in plaats daarvan array(\"albums\"=>array(album, album,...))."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:4091
+#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:4092
 msgid "printSearchForm $album_list parameter is deprecated. Pass array(\"albums\"=>array(album, album, ...)) instead."
 msgstr "printSearchForm $album_list parameter is verouderd. Gebruik in plaats daarvan array(\"albums\"=>aray(album, album,...))."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:4107
+#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:4108
 #, php-format
 msgid "%s within previous results"
 msgstr "%s binnen vorige resultaten"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:4181
+#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:4182
 msgid "search options"
 msgstr "zoekopties"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:4181
+#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:4182
 msgid "fields"
 msgstr "velden"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:4217
+#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:4218
 msgid "Within"
 msgstr "binnen"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:4221
+#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:4222
 msgid "New"
 msgstr "Nieuw"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:4275
+#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:4276
 msgid "no date"
 msgstr "geen datum"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:4509
+#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:4510
 msgid "The page you are trying to view is password protected."
 msgstr "Deze pagina is beveiligd met een wachtwoord."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:4549
+#: ZpFork-Dutch-Translation-Dev/zp-core/template-functions.php:4550
 msgid "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
 msgstr "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
 
@@ -10062,166 +10078,166 @@ msgstr "Controleer dat je het complete Zenphoto-pakket geupload hebt. Je moet op
 msgid "uploaded"
 msgstr "upload"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:1471
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:1472
 msgid "HTML cache"
 msgstr "HTML cache"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:1472
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:1473
 msgid "Third party plugins"
 msgstr "Third party plugins"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:1484
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:1485
 msgid "You need to address the problems indicated above then run <code>setup</code> again."
 msgstr "Los de aangegeven problemen op en voer daarna <code>setup</code> opnieuw uit."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:1487
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:1488
 msgid "Setup failed."
 msgstr "Setup mislukt."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:1498
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2547
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:1499
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2548
 msgid "You need <em>USER ADMIN</em> rights to run setup."
 msgstr "Je hebt <em>GEBRUIKERSADMIN</em> rechten nodig om setup uit te voeren."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:1500
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2549
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:1501
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2550
 msgid "You must be logged in to run setup."
 msgstr "Je moet ingelogd zijn om setup te starten."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:1521
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:1522
 msgid "database connected"
 msgstr "Verbonden met de database."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2263
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2264
 msgid "About to create tables"
 msgstr "Op het punt om tabellen aan te maken"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2265
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2266
 msgid "About to update tables"
 msgstr "Bezig met het updaten van database tabellen"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2267
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2268
 msgid "Begin table creation"
 msgstr "Beginnen met het aanmaken van tabellen"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2273
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2288
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2274
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2289
 #, php-format
 msgid "Query %1$s Failed. Error: %2$s"
 msgstr "Query %1$s mislukt. Fout: %2$s"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2275
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2276
 #, php-format
 msgid "Table creation failure:<br />Query: %1$s<br />Error: %2$s"
 msgstr "Fout tijdens het aanmaken van de tabellen: <br />Query: %1$s<br />Fout: %2$s"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2278
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2290
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2279
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2291
 #, php-format
 msgid "Query ( %s ) Success."
 msgstr "Query ( %s ) Succesvol."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2282
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2283
 msgid "Begin table updates"
 msgstr "Beginnen met het updaten van tabellen"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2295
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2296
 msgid "Done with database creation and update"
 msgstr "klaar met het creëren en updaten van de database"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2297
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2298
 #, php-format
 msgid "Previous Release was %s"
 msgstr "Vorige versie was %s"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2324
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2325
 msgid "Done with table create!"
 msgstr "Klaar met het aanmaken van de tabellen!"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2326
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2327
 msgid "Done with table create with errors!"
 msgstr "Klaar met het aanmaken van de tabellen met errors!"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2330
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2331
 msgid "Done with table update"
 msgstr "Klaar met het updaten van de tabellen!"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2332
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2333
 msgid "Done with table update with errors"
 msgstr "Klaar met het updaten van de tabellen met errors!"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2367
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2368
 msgid "Setup files deleted."
 msgstr "Setup bestanden verwijderd."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2374
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2375
 #, php-format
 msgid "Failed to delete: %s"
 msgstr "Verwijderen van: %s mislukt."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2382
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2383
 msgid "<strong>NOTE:</strong> We strongly recommend you remove the <em>setup</em> scripts from your zp-core folder at this time. You can always re-upload them should you find you need them again in the future."
 msgstr "<strong>BELANGRIJK:</strong> Het wordt sterk aangeraden de <em>setup</em> scripts te verwijderen uit de <em>zp-core</em> map.<br />Je kunt ze later altijd weer uploaden als je ze nodig mocht hebben."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2387
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2388
 msgid "Delete setup files"
 msgstr "Verwijder setup bestanden"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2392
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2393
 msgid "This is a clone of another installation. The setup files should be deleted from that installation"
 msgstr "Dit is een kloon van een andere installatie. De <code>setup</code> bestanden zouden verwijderd moeten worden uit die installatie."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2402
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2403
 #, php-format
 msgid "You may <a href=\"%1$s\">set your admin user and password</a> or <a href=\"%2$s\">run backup-restore</a>"
 msgstr "Je kunt hier <a href=\"%1$s\">je gebruikersnaam en wachtwoord instellen</a> of een<a href=\"%2$s\"> backup-restore uitvoeren</a>"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2407
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2408
 #, php-format
 msgid "You need to <a href=\"%1$s\">set your admin user and password</a>"
 msgstr "Je moet je <a href=\"%1$s\">admin gebruikersnaam en wachtwoord invoeren</a>"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2414
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2415
 #, php-format
 msgid "You can now <a href=\"%1$s\">View your gallery</a> or <a href=\"%2$s\">administer.</a>"
 msgstr "Je kunt nu <a href=\"%1$s\">de gallerij bekijken</a> of <a href=\"%2$s\">beheren.</a>"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2467
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2468
 #, php-format
 msgid "Database tables to create: %s"
 msgstr "Databasetabellen die worden aangemaakt: %s"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2485
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2486
 #, php-format
 msgid "Database tables to update: %s"
 msgstr "Database tabellen die worden ge-update: %s"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2516
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2517
 msgid "<strong>Warning!</strong> This upgrade makes structural changes to the database which are not easily reversed. Be sure you have a database backup before proceeding."
 msgstr "<strong>Waarschuwing !</strong> Deze upgrade maakt structurele veranderingen in de database. Dit kan niet eenvoudig ongedaan gemaakt worden.<br />Zorg ervoor dat je een backup van de database hebt voordat je verder gaat."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2519
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2520
 #, php-format
 msgid "%s I acknowledge that proceeding will restructure my database."
 msgstr "%s Ik begrijp dat m'n database ingrijpend veranderd wordt als ik doorga."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2577
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2578
 msgid "run setup"
 msgstr "Voer setup uit"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2577
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2578
 msgid "Go"
 msgstr "Gaan!"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2593
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2594
 msgid "database did not connect"
 msgstr "database is niet verbonden"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2595
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2596
 msgid "If you haven't created the database yet, now would be a good time."
 msgstr "Als je de database nog niet aangemaakt hebt is het daar nu een goed moment voor."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2604
+#: ZpFork-Dutch-Translation-Dev/zp-core/setup/index.php:2605
 msgid "The zenphoto.cfg file does not exist."
 msgstr "Het <em>zenphoto.cfg</em> bestand bestaat niet."
 
@@ -11151,12 +11167,10 @@ msgid "Provides a means for handling arbitrary file types. (No rendering provide
 msgstr "Mogelijkheid voor de verwerking van willekeurige bestandstypes. (Ze worden niet door Zenphoto gerenderd)"
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/class-AnyFile.php:47
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/class-textobject.php:77
 msgid "Watermark default images"
 msgstr "Watermerk  afbeeldingen"
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/class-AnyFile.php:48
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/class-textobject.php:78
 msgid "Check to place watermark image on default thumbnail images."
 msgstr "Vink aan om een watermerk te plaatsen op afbeeldingen."
 
@@ -14847,192 +14861,192 @@ msgstr "Maak of verwijder sitemap-cache bestanden."
 msgid "Adds a theme function to call a slideshow either based on jQuery (default) or Flash using Flowplayer3."
 msgstr "Voegt een themafunctie toe om een slideshow aan te roepen gebaseerd op jQuery (standaard) of Flash met gebruik van Flowplayer3."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:62
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:61
 msgid "Mode"
 msgstr "Methode"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:64
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:63
 msgid "jQuery Cycle"
 msgstr "jQuery Cycle"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:64
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:63
 msgid "jQuery Colorbox"
 msgstr "jQuery Colorbox"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:64
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:63
 msgid "Flowplayer3 (flash)"
 msgstr "Flowplayer3 (flash)"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:65
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:64
 msgid "<em>jQuery Cycle</em> for slideshow using the jQuery Cycle plugin<br /><em>jQuery Colorbox</em> for slideshow using Colorbox (Colorbox plugin required).<br /><em>flash</em> for flash based slideshow using Flowplayer3.<br /><br />NOTE: The jQuery Colorbox mode is attached to the link the printSlideShowLink() function prints and can neither be called directly nor used on the slideshow.php theme page."
 msgstr "<em>jQuery Cycle</em> gebruikt de jQuery Cycle voor de slideshow<br /><em>jQuery Colorbox</em> gebruikt Colorbox voor de slideshow (Colorbox plugin vereist).<br /><em>Flash</em> gebruikt Flash voor de slideshow (Flowplayer 3 plugin vereist).<br /><br /><strong>Opmerking</strong>: Het gebruik van de jQuery Colorbox optie werkt alléén via de <em>slideshow</em>- link die geprint wordt door de printSlideShowLink() functie ! <br />Hij kan niet rechtstreeks of op slideshow.php aangeroepen worden."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:66
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:65
 msgid "Speed"
 msgstr "Snelheid"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:68
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:67
 msgid "Speed of the transition in milliseconds."
 msgstr "Snelheid van de overgang in milliseconde."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:73
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:107
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:72
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:106
 msgid "Slide width"
 msgstr "Breedte"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:75
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:109
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:74
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:108
 msgid "Width of the images in the slideshow."
 msgstr "Breedte van de afbeeldingen in de slideshow."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:76
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:75
 msgid "Slide height"
 msgstr "Hoogte"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:78
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:77
 msgid "Height of the images in the slideshow."
 msgstr "Hoogte van de afbeeldingen in de slideshow."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:79
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:78
 msgid "Cycle Effect"
 msgstr "Cycle effect"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:81
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:95
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:80
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:94
 msgid "fade"
 msgstr "vervagen"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:81
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:80
 msgid "zoom"
 msgstr "zoom"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:81
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:80
 msgid "slide X"
 msgstr "slide X"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:81
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:80
 msgid "slide Y"
 msgstr "slide Y"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:81
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:80
 msgid "scroll up"
 msgstr "scroll naar boven"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:81
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:80
 msgid "scroll down"
 msgstr "scroll naar beneden"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:81
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:80
 msgid "scroll left"
 msgstr "scroll links"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:81
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:80
 msgid "scroll right"
 msgstr "scroll rechts"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:82
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:81
 msgid "The cycle slide effect to be used."
 msgstr "Het overgangseffect dat wordt gebruikt."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:83
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:82
 msgid "Timeout"
 msgstr "Timeout"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:85
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:84
 msgid "Milliseconds between slide transitions (0 to disable auto advance.)"
 msgstr "Milliseconden tussen slide-overgangen (zet op 0 (nul) om autoplay uit te zetten)."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:88
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:87
 msgid "Check if you want to show the image's description below the slideshow."
 msgstr "Vink aan als je de beschrijving van de afbeelding wilt tonen onder de slideshow."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:93
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:92
 msgid "Colorbox transition"
 msgstr "Colorbox overgang"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:95
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:94
 msgid "elastic"
 msgstr "elastisch"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:96
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:95
 msgid "The Colorbox transition slide effect to be used."
 msgstr "Het Colorbox overgangseffect dat wordt gebruikt."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:97
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:96
 msgid "Colorbox image type"
 msgstr "Colorbox afbeeldingstype"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:99
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:98
 msgid "sized image"
 msgstr "ingesteld formaat"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:100
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:99
 msgid "The image type you wish to use for the Colorbox. If you choose 'sized image' the slideshow width value will be used for the longest side of the image."
 msgstr "Het type afbeelding dat je wilt gebruiken voor Colorbox. Als je kiest voor afbeeldingen op een \"ingesteld formaat\" wordt de slideshow <em>Breedte</em> gebruikt als langste zijde van de afbeelding."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:101
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:100
 msgid "Colorbox image title"
 msgstr "Colorbox afbeeldingstitel"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:103
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:102
 msgid "If the image title should be shown at the bottom of the Colorbox."
 msgstr "Of de afbeeldingstitel getoond moet worden onderaan de Colorbox."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:117
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:116
 msgid "Width of the Flowplayer display for the slideshow."
 msgstr "Breedte van de Flowplayer voor de slideshow."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:120
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:119
 msgid "Height of the Flowplayer display for the slideshow."
 msgstr "Hoogte van de Flowplayer voor de slideshow."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:206
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:205
 #, php-format
 msgid "Slideshow not available because colorbox is not enabled on %1$s <em>%2$s</em> pages."
 msgstr "Slideshow is niet beschikbaar omdat Colorbox niet geactiveerd is in %1$s <em>%2$s</em> pagina's."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:225
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:224
 msgid "start slideshow"
 msgstr "start slideshow"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:226
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:225
 msgid "stop slideshow"
 msgstr "stop slideshow"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:230
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:229
 #, php-format
 msgid "image %1$s of %2$s"
 msgstr "Afbeelding %1$s van %2$s"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:340
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:339
 msgid "Invalid linking to the slideshow page."
 msgstr "Ongeldige verwijzing naar de slideshowpagina."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:417
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:416
 msgid "This album is password protected!"
 msgstr "Dit is album is beveiligd met een wachtwoord!"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:570
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:569
 msgid "Stop and return to album or image page"
 msgstr "Stop en keer terug naar de album of afbeeldingspagina"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:572
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:571
 msgid "Pause (to stop the slideshow without returning)"
 msgstr "Pauzeer (om de slideshow te stoppen zonder terug te keren)"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:573
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:572
 msgid "Play"
 msgstr "Speel af"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:600
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:599
 msgid ":"
 msgstr ":"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:647
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:646
 msgid "back"
 msgstr "terug"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:719
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/slideshow.php:718
 msgid "Click on the right in the player control bar to view full size."
 msgstr "Klik rechts in de controlebalk van de player voor volledige grootte."
 
@@ -15106,7 +15120,7 @@ msgstr "Thema's"
 msgid "These are the themes that may be selected among."
 msgstr "Dit zijn de thema's waaruit geselecteerd kan worden."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/themeSwitcher.php:129
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/themeSwitcher.php:131
 msgid "Theme"
 msgstr "Thema"
 
@@ -15370,20 +15384,20 @@ msgstr "Einde gebruikers ID"
 msgid "You have used that password recently. Please choose a different password."
 msgstr "Je hebt dit wachtwoord al eerder gebruikt. Kies een ander wachtwoord."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/user-expiry.php:270
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/user-expiry.php:271
 msgid "Expires soon"
 msgstr "Verloopt binnenkort"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/user-expiry.php:272
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/user-expiry.php:273
 #, php-format
 msgid "Your subscription expires on %s"
 msgstr "Je registratie verloopt op %s"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/user-expiry.php:288
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/user-expiry.php:289
 msgid "You must change your password."
 msgstr "Je moet een wachtwoord vernieuwen."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/user-expiry.php:291
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/user-expiry.php:292
 msgid "You have users whose credentials have expired."
 msgstr "Er zijn gebruikers waarvan de registratie verlopen is."
 
@@ -16079,35 +16093,35 @@ msgstr "Hoeveel nieuwe afbeeldingen je wilt laten zien in het <em>laatste afbeel
 msgid "* These options may be set via the <a href=\"javascript:gotoName('zenpage');\"><em>Zenpage</em></a> plugin options."
 msgstr "* Deze optie(s) worden gedeeld met de <a href=\"javascript:gotoName('zenpage');\"><em>Zenpage</em></a> plugin opties."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage.php:356
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage.php:363
 msgid "Edit Page"
 msgstr "Bewerk pagina"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage.php:361
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage.php:368
 msgid "Delete page"
 msgstr "Verwijder pagina"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage.php:361
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage.php:368
 msgid "Delete Page"
 msgstr "Verwijder pagina"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage.php:365
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage.php:372
 msgid "Add Page"
 msgstr "Voeg pagina toe"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage.php:375
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage.php:382
 msgid "Edit Article"
 msgstr "Bewerk Artikel"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage.php:381
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage.php:388
 msgid "Delete article"
 msgstr "Verwijder artikel"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage.php:381
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage.php:388
 msgid "Delete Article"
 msgstr "Verwijder artikel"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage.php:385
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage.php:392
 msgid "Add Article"
 msgstr "Voeg artikel toe"
 
@@ -16173,49 +16187,54 @@ msgstr[1] "[%u afbeeldingen]"
 msgid "Refreshing cache for %s"
 msgstr "Verversing van de cache voor %s"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:213
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:181
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:185
+msgid "Hide"
+msgstr "Verberg"
+
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:226
 msgid "invalid_MaxSpace"
 msgstr "invalid_MaxSpace"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:232
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:250
 #, php-format
 msgid "all sizes for <i>%1$s</i>"
 msgstr "alle formaten voor <i>%1$s</i>"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:276
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:296
 #, php-format
 msgid "%u cache size to apply."
 msgid_plural "%u cache sizes to apply."
 msgstr[0] "%u grootte van de cache instellen."
 msgstr[1] "%u groottes van de cache instellen."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:291
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:311
 #, php-format
 msgid "%u cache size requested"
 msgid_plural "%u cache sizes requested"
 msgstr[0] "%u gewenste grootte van de cache"
 msgstr[1] "%u gewenste groottes van de cache"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:292
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:312
 #, php-format
 msgid "Finished processing %1$u image (%2$s)."
 msgid_plural "Finished processing %1$u images (%2$s)."
 msgstr[0] "Klaar met het verwerken van %1$u afbeelding (%2$s)."
 msgstr[1] "Klaar met het verwerken van %1$u afbeeldingen (%2$s)."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:294
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:314
 msgid "Refresh the caching of the selected image sizes if some images did not render."
 msgstr "Ververs het cachen van de geselecteerde afbeeldinsformaten indien sommige afbeeldingen niet verwerkt zijn."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:301
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:321
 msgid "No cache sizes enabled."
 msgstr "Geen cache-formaten actief."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:305
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:325
 msgid "Cache the images"
 msgstr "Cache afbeeldingen"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:305
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:325
 msgid "Executes the caching of the selected image sizes."
 msgstr "Voert het cachen van de geselecteerde afbeeldingsformaten uit."
 
@@ -16752,40 +16771,40 @@ msgstr "Verisign gebruiker id:"
 msgid "back to Zenphoto"
 msgstr "Terug naar Zenphoto"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/GoogleMap/m.php:99
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/GoogleMap/m.php:102
 msgid "Map display error"
 msgstr "Fout in weergave van de kaart"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/GoogleMap/m.php:101
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/GoogleMap/m.php:104
 msgid "The GoogleMap plugin <em>map display</em> script has received a corrupt <em>Map</em> parameter.\tThis is most likely caused by URL character limitations from your browser."
 msgstr "De GoogleMap plugin heeft een corrupte <em>Map</em> parameter ontvangen. \tDit wordt waarschijnlijk veroorzaakt door beperkingen van URL karakters van je browser."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/GoogleMap/m.php:102
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/GoogleMap/m.php:105
 msgid "For information on URL limits visit <a href=\"javascript:parent.window.location='http://www.boutell.com/newfaq/misc/urllength.html';\">What is the maximum length of a URL</a>."
 msgstr "Ga voor informatie over URL karakterbeperkingen naar <a href=\"javascript:parent.window.location='http://www.boutell.com/newfaq/misc/urllength.html';\">What is the maximum length of a URL</a>."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/GoogleMap/m.php:105
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/GoogleMap/m.php:108
 msgid "You can try a different browser or contact the site manager for assistance."
 msgstr "Je kunt een andere browser proberen of contact opnemen met de beheerder van de site."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/GoogleMap/m.php:108
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/GoogleMap/m.php:111
 msgid "If you are the manager of this site you can try the following:"
 msgstr "Als je de beheerder van deze site bent kun je het volgende proberen:"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/GoogleMap/m.php:113
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/GoogleMap/m.php:116
 #, php-format
 msgid "Enable the <a href=\"javascript:parent.window.location=%s;\">GoogleMap option</a> <em>Map sessions</em>."
 msgstr "Activeer <a href=\"javascript:parent.window.location=%s;\">GoogleMap optie</a> <em>Kaart sessies</em>."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/GoogleMap/m.php:117
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/GoogleMap/m.php:120
 msgid "Reduce the number of <em>points</em> being displayed"
 msgstr "Verminder het aantal getoonde <em>punten</em>."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/GoogleMap/m.php:118
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/GoogleMap/m.php:121
 msgid "Reduce the text passed as the description of each <em>point</em>"
 msgstr "Verkort de beschrijvende tekst voor elk <em>punt</em>."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/GoogleMap/m.php:119
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/GoogleMap/m.php:122
 msgid "Truncate the titles of the <em>points</em>"
 msgstr "Verkort de titels van de <em>punten</em>."
 
@@ -17023,10 +17042,6 @@ msgstr "Menu manager opties"
 #: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/menu_manager/menu_tab.php:172
 msgid "Edit the menu"
 msgstr "Bewerk het menu"
-
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/menu_manager/menu_tab.php:180
-msgid "Hide"
-msgstr "Verberg"
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/menu_manager/menu_tab.php:188
 #, php-format
@@ -18850,7 +18865,7 @@ msgstr "Categorieën toegevoegd aan geselecteerde onderdelen."
 msgid "Categories cleared from selected items"
 msgstr "Categorieën verwijderd uit geselecteerde onderdelen."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage/zenpage-class-page.php:194
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage/zenpage-class-page.php:201
 msgid "Use the Zenpage Page class->getPages() method."
 msgstr "Gebruik in plaats hiervoor de Zenpage page <em>class->getPages()</em> methode."
 
@@ -18877,39 +18892,48 @@ msgid_plural "%u articles"
 msgstr[0] "%u artikel"
 msgstr[1] "%u artikelen"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2764
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2773
 msgid "This page is password protected"
 msgstr "Deze pagina is beveiligd met een wachtwoord!"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3065
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3074
 msgid "News RSS"
 msgstr "Nieuws RSS"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3122
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3131
 #, php-format
 msgid "View the %s album"
 msgstr "Bekijk het %s album"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3124
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3133
 #, php-format
 msgid "View the album %s"
 msgstr "Bekijk het album %s"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3128
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3129
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3137
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3138
 #, php-format
 msgid "View %s"
 msgstr "Album %s bekijken"
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3137
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3146
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the image %1$s:%2$s"
 msgstr "<code>zenpageAlbumImage()</code> kan afbeelding %1$s:%2$s niet vinden."
 
-#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3146
+#: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3155
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> kan album %1$s niet vinden."
+
+#~ msgid "Mutex %s was left locked."
+#~ msgstr "Mutex %s was left locked."
+
+#~ msgid "Error locking mutex"
+#~ msgstr "Error locking mutex"
+
+#~ msgid "Error un-locking mutex"
+#~ msgstr "Error un-locking mutex"
 
 #~ msgid "Allow cache processing of %s concurrent images."
 #~ msgstr "Sta toe dat %s afbeeldingen gelijktijdig gecashed worden."
