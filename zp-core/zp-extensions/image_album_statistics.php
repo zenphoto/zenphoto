@@ -361,9 +361,10 @@ function printLatestUpdatedAlbums($number=5,$showtitle=false, $showdate=false, $
  *		"random" for random order (yes, strictly no statistical order...)
  * @param string $albumfolder foldername of an specific album
  * @param bool $collection only if $albumfolder is set: true if you want to get statistics from this album and all of its subalbums
+ * @param integer $threshold the minimum number of ratings an image must have to be included in the list. (Default 0)
  * @return string
  */
-function getImageStatistic($number, $option, $albumfolder='',$collection=false) {
+function getImageStatistic($number, $option, $albumfolder='',$collection=false, $threshold=0) {
 	global $_zp_gallery;
 	$albumlist = array();
 	if ($albumfolder) {
@@ -377,6 +378,9 @@ function getImageStatistic($number, $option, $albumfolder='',$collection=false) 
 		return array();
 	}
 	$albumWhere = ' AND (albums.`id`='.implode(' OR albums.`id`=', $albumlist).')';
+	if ($threshold > 0) {
+		$albumWhere .= ' AND images.total_votes >= '.$threshold;
+	}
 	switch ($option) {
 		case "popular":
 			$sortorder = "images.hitcounter";
@@ -468,10 +472,11 @@ function getImageStatistic($number, $option, $albumfolder='',$collection=false) 
  * @param bool $crop 'true' (default) if the thumb should be cropped, 'false' if not
  * @param bool $collection only if $albumfolder is set: true if you want to get statistics from this album and all of its subalbums
  * @param bool $fullimagelink 'false' (default) for the image page link , 'true' for the unprotected full image link (to use Colorbox for example)
+ * @param integer $threshold the minimum number of ratings an image must have to be included in the list. (Default 0)
  * @return string
  */
-function printImageStatistic($number, $option, $albumfolder='', $showtitle=false, $showdate=false, $showdesc=false, $desclength=40,$showstatistic='',$width=NULL,$height=NULL,$crop=NULL,$collection=false,$fullimagelink=false) {
-	$images = getImageStatistic($number, $option, $albumfolder,$collection);
+function printImageStatistic($number, $option, $albumfolder='', $showtitle=false, $showdate=false, $showdesc=false, $desclength=40,$showstatistic='',$width=NULL,$height=NULL,$crop=NULL,$collection=false,$fullimagelink=false, $threshold=0) {
+	$images = getImageStatistic($number, $option, $albumfolder,$collection, $threshold);
 	if (is_null($crop) && is_null($width) && is_null($height)) {
 		$crop = 2;
 	} else {
@@ -572,9 +577,10 @@ function printPopularImages($number=5, $albumfolder='', $showtitle=false, $showd
  * @param bool $crop 'true' (default) if the thumb should be cropped, 'false' if not
  * @param bool $collection only if $albumfolder is set: true if you want to get statistics from this album and all of its subalbums
  * @param bool $fullimagelink 'false' (default) for the image page link , 'true' for the unprotected full image link (to use Colorbox for example)
+ * @param integer $threshold the minimum number of ratings an image must have to be included in the list. (Default 0)
  */
-function printTopRatedImages($number=5, $albumfolder="", $showtitle=false, $showdate=false, $showdesc=false, $desclength=40,$showstatistic='',$width=NULL,$height=NULL,$crop=NULL,$collection=false,$fullimagelink=false) {
-	printImageStatistic($number, "toprated",$albumfolder, $showtitle, $showdate, $showdesc, $desclength,$showstatistic,$width,$height,$crop,$collection,$fullimagelink);
+function printTopRatedImages($number=5, $albumfolder="", $showtitle=false, $showdate=false, $showdesc=false, $desclength=40,$showstatistic='',$width=NULL,$height=NULL,$crop=NULL,$collection=false,$fullimagelink=false, $threshold=0) {
+	printImageStatistic($number, "toprated",$albumfolder, $showtitle, $showdate, $showdesc, $desclength,$showstatistic,$width,$height,$crop,$collection,$fullimagelink, $threshold);
 }
 
 /**
