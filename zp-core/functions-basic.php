@@ -762,10 +762,8 @@ function getImageProcessorURI($args, $album, $image) {
 	} else {
 		$args[13] = NULL;
 	}
-	if (TEST_RELEASE) $uri .= '&check='.sha1(HASH_SEED.serialize($args));
-	/*
-	$uri .= '&actual='.serialize($args);
-	*/
+	$uri .= '&check='.sha1(HASH_SEED.serialize($args));
+	if (TEST_RELEASE) $uri .= '&actual='.serialize($args);
 
 	if (class_exists('static_html_cache')) {
 		// don't cache pages that have image processor URIs
