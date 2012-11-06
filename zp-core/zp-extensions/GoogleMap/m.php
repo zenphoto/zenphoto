@@ -61,10 +61,7 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 			} else {
 				$mapdata = gzuncompress($mapdata);
 			}
-			$mapdata = unserialize($mapdata);
-			foreach ($mapdata as $key=>$datum) {
-				$mapdata[$key] = sanitize($datum,4);
-			}
+			$mapdata = sanitize(unserialize($mapdata),4);
 		}
 	}
 	if (is_array($mapdata)) {
