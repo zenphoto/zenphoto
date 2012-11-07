@@ -4024,7 +4024,7 @@ msgstr "RSS feed sorteervolgorde:"
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1577
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1583
 msgid "latest by id"
-msgstr "laatste volgens id"
+msgstr "laatste volgens ID"
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1578
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1584
@@ -4047,7 +4047,7 @@ msgstr "laatste veranderingen"
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1597
 msgid "a) Images RSS: Choose between <em>latest by id</em> for the latest uploaded, <em>latest by date</em> for the latest uploaded fetched by date, or <em>latest by mtime</em> for the latest uploaded fetched by the file's last change timestamp.<br />b) Albums RSS: Choose between <em>latest by id</em> for the latest uploaded and <em>latest updated</em>"
-msgstr "a) Afbeeldingen RSS: Kies 'latest by id' voor de laatst ge-uploade opgehaald op ID, 'latest by date' voor de laatst ge-uploade opgehaald op datum of  'latest by mtime' voor de laatst ge-uploade opgehaald op op de tijd van de laatste verandering.<br />b) Albums RSS: Kies tussen <em>latest by id</em> voor de laatst ge-uploade en <em>laatste ge-update</em>"
+msgstr "a) Afbeeldingen RSS: Kies <em>laatste volgens ID</em> voor de laatst ge-uploade opgehaald op ID, <em>laatste volgens datum</em>voor de laatst ge-uploade opgehaald op datum of  <em>laatste volgens mtime</em>voor de laatst ge-uploade opgehaald op op de tijd van de laatste verandering.<br />b) Albums RSS: Kies tussen <em>laatste volgens ID</em> voor de laatst ge-uploade en <em>laatste ge-update</em>"
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1600
 msgid "RSS enclosure:"
@@ -4110,7 +4110,7 @@ msgstr "Beide"
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1632
 msgid "Select what you want to use as the main RSS feed (channel) title. 'Both' means Website title followed by Gallery title"
-msgstr "Selecteer wat je wilt gebruiken als de titel voor de RSS feed. 'Beide' betekend Website-titel gevolgd door Galerij-titel"
+msgstr "Selecteer wat je wilt gebruiken als de titel voor de RSS feed. <em>Beide</em> betekend <em>Website-titel</em> gevolgd door <em>Galerij-titel</em>."
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1658
 msgid "See also the <a href=\"?tab=theme\">Theme Options</a> tab for theme specific image options."
@@ -4154,7 +4154,7 @@ msgstr "Interlace:"
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1799
 msgid "If checked, resized images will be created <em>interlaced</em> (if the format permits)."
-msgstr "Indien aangevinkt worden geschaalde afbeeldingen <em>interlaced</em> gecreëerd (indien het formaat het toestaat)."
+msgstr "Indien aangevinkt worden geschaalde afbeeldingen <em>interlaced</em> gecreëerd (indien het formaat dit toestaat)."
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1802
 msgid "Use embedded thumbnail"
@@ -7482,7 +7482,7 @@ msgstr "Login"
 #: ZpFork-Dutch-Translation-Dev/zp-core/lib-auth.php:980
 #, php-format
 msgid "Logon using:%s"
-msgstr "Logon met: %s"
+msgstr "Login met: %s"
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/lib-auth.php:1006
 #: ZpFork-Dutch-Translation-Dev/zp-core/lib-auth.php:1120
@@ -17683,7 +17683,7 @@ msgstr "sta toe"
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/spamfilters/none.php:41
 msgid "moderate"
-msgstr "modereer"
+msgstr "eerst beoordelen"
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/spamfilters/none.php:41
 msgid "reject"
