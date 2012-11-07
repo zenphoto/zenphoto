@@ -385,7 +385,7 @@ class security_logger {
 	}
 
 	static function security_misc($success, $requestor, $auth, $txt) {
-		security_logger::Logger((int) ($success && true), NULL, NULL, NULL, $requestor, 'zp_admin_auth', $txt);
+		security_logger::Logger((int) ($success && true), NULL, NULL, $requestor, 'zp_admin_auth', $txt);
 		return $success;
 	}
 
