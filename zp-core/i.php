@@ -112,7 +112,7 @@ if (isset($_GET['effects'])) {	//13
 }
 
 if (!isset($_GET['check']) || $_GET['check']!=sha1(HASH_SEED.serialize($args))) {
-
+	//TODO: remove for before release of 1.4.4
 	if (TEST_RELEASE) {
 		debugLogVar('Forbidden: $_GET', $_GET);
 		if (isset($_GET['actual'])) debugLogVar('Forbidden: actual', unserialize($_GET['actual']));
