@@ -131,8 +131,8 @@ function zenphoto_PHPMailer($msg, $email_list, $subject, $message, $from_mail, $
 		}
 	}
 	if ($replyTo) {
-		$names = array_keys($replyTo)
-		$mail->AddReplyTo(array_shift($replyTo), array_shift($names)));
+		$names = array_keys($replyTo);
+		$mail->AddReplyTo(array_shift($replyTo), array_shift($names));
 	}
 	if (!$mail->Send()) {
 		if (!empty($msg)) $msg .= '<br />';
