@@ -164,7 +164,7 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 			mkdir ($folder, FOLDER_MOD);
 		}
 		@chmod($folder, FOLDER_MOD);
-		$handle = fopen($filename, 'w');
+		$writeresult = $handle = @fopen($filename, 'w');
 		if ($handle === false) {
 			printf(gettext('Failed to open %s for writing.'), $filename);
 		} else {
