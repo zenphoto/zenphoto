@@ -333,8 +333,9 @@ function is_valid($image, $valid_types) {
  * @param int $height The heigth of the images (jQuery mode). If set this overrides the size the slideshow_height plugin option that otherwise is used.
  * @param bool $crop Set to true if you want images cropped width x height (jQuery mode only)
  * @param bool $shuffle Set to true if you want random (shuffled) order
+ * @param bool $linkslides Set to true if you want the slides to be linked to their image pages (jQuery mode only)
  * */
-function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $imageobj = "", $width = "", $height = "",$crop=false,$shuffle=false) {
+function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $imageobj = "", $width = "", $height = "",$crop=false,$shuffle=false,$linkslides=false) {
 	if (!isset($_POST['albumid']) AND !is_object($albumobj)) {
 		echo "<div class=\"errorbox\" id=\"message\"><h2>".gettext("Invalid linking to the slideshow page.")."</h2></div>";
 		echo "</div></body></html>";
@@ -500,7 +501,23 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 							if (relativeSlot == 0) {relativeSlot = totalSlideCount;}
 							var htmlblock = "<span class='slideimage'><h4><strong>" + ThisGallery + ":</strong> ";
 							htmlblock += TitleList[currentImageNum]  + " (" + relativeSlot + "/" + totalSlideCount + ")</h4>";
+							<?php	
+							if($linkslides) { 
+								if(MOD_REWRITE) {
+								?>
+							htmlblock += "<a href='<?php echo pathurlencode($album->name); ?>/"+ImageNameList[currentImageNum]+"<?php echo getOption('mod_rewrite_image_suffix'); ?>'>";
+								<?php	
+								} else {  
+								?>
+								htmlblock += "<a href='index.php?album=<?php echo pathurlencode($album->name); ?>&image="+ImageNameList[currentImageNum]+"'>";
+								<?php	
+								}
+							}
+							?>
 							htmlblock += "<img src='" + ImageList[currentImageNum] + "'/>";
+							<?php	if($linkslides) { ?>
+							htmlblock += "</a>";
+							<?php	} ?>
 							htmlblock += "<p class='imgdesc'>" + DescList[currentImageNum] + "</p></span>";
 							opts.addSlide(htmlblock);
 						}
@@ -622,11 +639,13 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 										<a>';
 						} else {
 							makeImageCurrent($image);
+							if($linkslides) echo '<a href="'.html_encode($image->getImageLink()).'">';
 							if($crop) {
 								printCustomSizedImage('',NULL,$width, $height, $width, $height);
 							} else {
 								printCustomSizedImageMaxSpace('',$width,$height);
 							}
+							if($linkslides) echo '</a>';
 							//echo "<img src='".WEBPATH."/".ZENFOLDER."/i.php?a=".pathurlencode($folder)."&i=".urlencode($filename)."&s=".$imagesize."' alt='".html_encode($image->getTitle())."' title='".html_encode($image->getTitle())."' />\n";
 						}
 						if($showdesc) {
