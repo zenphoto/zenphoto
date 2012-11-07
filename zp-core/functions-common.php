@@ -153,6 +153,13 @@ function sanitize($input_string, $sanitize_level=3) {
 	return $output_string;
 }
 
+/**
+ * Internal "helper" function to apply the tag removal
+ *
+ * @param string $input_string
+ * @param array $allowed_tags
+ * @return string
+ */
 function ksesProcess($input_string, $allowed_tags) {
 	if (function_exists('kses')) {
 		return kses($input_string, $allowed_tags);
@@ -166,28 +173,31 @@ function ksesProcess($input_string, $allowed_tags) {
  * @param string $sanitize_level
  * @return string the sanitized string.
  */
-function sanitize_string($input_string, $sanitize_level) {
+function sanitize_string($input, $sanitize_level) {
 	// Strip slashes if get_magic_quotes_gpc is enabled.
-	if (get_magic_quotes_gpc()) {
-		$input_string = stripslashes($input_string);
+	if (is_string($input)) {
+		if (get_magic_quotes_gpc()) {
+			$input = stripslashes($input);
+		}
+		switch($sanitize_level) {
+			case 0:
+				return str_replace(chr(0), " ", $input);
+			case 1:
+				// Text formatting sanititation.
+				return ksesProcess($input, getAllowedTags('allowed_tags'));
+			case 2:
+				// Strips non-style tags.
+				return ksesProcess($input, getAllowedTags('style_tags'));
+			case 3:
+				// Full sanitation.  Strips all code.
+				return ksesProcess($input, array());
+			case 4:
+			default:
+				// for internal use to eliminate security injections
+				return sanitize_script($input);
+		}
 	}
-	switch($sanitize_level) {
-		case 0:
-			return str_replace(chr(0), " ", $input_string);
-		case 1:
-			// Text formatting sanititation.
-			return ksesProcess($input_string, getAllowedTags('allowed_tags'));
-		case 2:
-			// Strips non-style tags.
-			return ksesProcess($input_string, getAllowedTags('style_tags'));
-		case 3:
-			// Full sanitation.  Strips all code.
-			return ksesProcess($input_string, array());
-		case 4:
-		default:
-			// for internal use to eliminate security injections
-			return sanitize_script($input_string);
-	}
+	return $input;
 }
 
 ///// database helper functions

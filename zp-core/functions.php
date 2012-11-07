@@ -263,9 +263,18 @@ function is_valid_email_zp($input_email) {
  * @author Todd Papaioannou (lucky@luckyspin.org)
  * @since  1.0.0
  */
-function zp_mail($subject, $message, $email_list=NULL, $cc_addresses=NULL, $bcc_addresses=NULL) {
+function zp_mail($subject, $message, $email_list=NULL, $cc_addresses=NULL, $bcc_addresses=NULL, $replyTo=NULL) {
 	global $_zp_authority, $_zp_gallery;
 	$result = '';
+	if ($replyTo) {
+		$t = $replyTo;
+		if (!is_valid_email_zp($m = array_shift($t))) {
+			if (empty($result)) {
+				$result = gettext('Mail send failed.');
+			}
+			$result .= sprintf(gettext('Invalid "reply-to" mail address %s.'),$m);
+		}
+	}
 	if (is_null($email_list)) {
 		$email_list = $_zp_authority->getAdminEmail();
 	} else {
@@ -351,11 +360,11 @@ function zp_mail($subject, $message, $email_list=NULL, $cc_addresses=NULL, $bcc_
 
 			// Send the mail
 			if (count($email_list) > 0) {
-				$result = zp_apply_filter('sendmail', '', $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses); // will be true if all mailers succeeded
+				$result = zp_apply_filter('sendmail', '', $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $replyTo); // will be true if all mailers succeeded
 			}
 			if (count($bcc_addresses) > 0) {
 				foreach ($bcc_addresses as $bcc) {
-					$result = zp_apply_filter('sendmail', '', array($bcc), $subject, $message, $from_mail, $from_name, array()); // will be true if all mailers succeeded
+					$result = zp_apply_filter('sendmail', '', array($bcc), $subject, $message, $from_mail, $from_name, array(), $replyTo); // will be true if all mailers succeeded
 				}
 			}
 		} else {

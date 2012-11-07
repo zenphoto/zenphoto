@@ -763,6 +763,8 @@ function getImageProcessorURI($args, $album, $image) {
 		$args[13] = NULL;
 	}
 	$uri .= '&check='.sha1(HASH_SEED.serialize($args));
+
+	//TODO: remove for before release of 1.4.4
 	if (TEST_RELEASE) $uri .= '&actual='.serialize($args);
 
 	if (class_exists('static_html_cache')) {
