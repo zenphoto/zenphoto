@@ -95,9 +95,13 @@ class Zenpage {
 	 *
 	 * @param bool $published TRUE for published or FALSE for all pages including un-published
 	 * @param bool $toplevel TRUE for only the toplevel pages
+	 * @param string $sortorder 'sortorder' (default), 'title','date','popular','mostrated','toprated','random'
+	 * @param string $sortdirection "asc" or "desc", empty by default as pages are sorted manually actually.
+	 * @param integer $number number of pages to get, set 0 for all.
+	 * @param integer $threshold the minimum number of ratings an image must have to be included in the list. (Default 0). Only if $sortorder = "mostrated" or "toprated"
 	 * @return array
 	 */
-	function getPages($published=NULL,$toplevel=false) {
+	function getPages($published=NULL,$toplevel=false,$sortorder='sort_order',$sortdirection='',$number=0,$threshold=0) {
 		global $_zp_loggedin;
 		$this->processExpired('pages');
 		if (is_null($published)) {
@@ -108,16 +112,59 @@ class Zenpage {
 		}
 		$gettop = '';
 		if($published) {
-			if($toplevel) $gettop = " AND parentid IS NULL";
-			$show = " WHERE `show` = 1 AND date <= '".date('Y-m-d H:i:s')."'".$gettop;
+			$show = " WHERE `show` = 1 AND date <= '".date('Y-m-d H:i:s')."'";
+			if($toplevel) $show .= " AND parentid IS NULL";
 		} else {
 			if($toplevel) $gettop = " WHERE parentid IS NULL";
 			$show = $gettop;
 		}
+		switch($sortorder) {
+			case 'sortorder':
+			default:
+				$sortorder = 'sort_order';
+				break;
+			case 'title':
+				$sortorder = 'title';
+				break;
+			case 'date':
+				$sortorder = 'date';
+				break;
+			case 'popular':
+				$sortorder = 'hitcounter';
+				break;
+			case 'mostrated':
+				$sortorder = 'total_votes';
+				break;
+			case 'toprated':
+				$sortorder = '(total_value/total_votes) DESC, total_value';
+				break;
+			case 'random':
+				$sortorder = 'RAND()';
+				break;
+		}
+		if($sortorder == 'mostrated' || $sortorder == 'toprated') {
+			if ($threshold > 0) {
+			$show  .= ' AND total_votes >= '.$threshold;
+			}
+		}
+		switch($sortdirection) {
+			default: // not used by default as we follow the manual sort order!
+				$dir = "";
+			 	break;
+			case "desc":
+				$dir = " DESC";
+				break;
+			case "asc":
+				$dir = " ASC";
+				break;
+		}
 		$all_pages = array(); // Disabled cache var for now because it does not return un-publishded and published if logged on index.php somehow if logged in.
-		$result  = query("SELECT * FROM ".prefix('pages').$show." ORDER by `sort_order`");
+		$result  = query("SELECT * FROM ".prefix('pages').$show." ORDER by ".$sortorder.$dir);
+		
+		$count = '';
 		if ($result) {
 			while ($row = db_fetch_assoc($result)) {
+				$count++;
 				if ($all || $row['show']) {
 					$all_pages[] = $row;
 				} else if ($_zp_loggedin) {
@@ -126,6 +173,9 @@ class Zenpage {
 						$all_pages[] = $row;
 					}
 				}
+				if($number != 0 && $count == $number) {
+					break;
+				}	
 			}
 			db_free_result($result);
 		}
@@ -158,16 +208,17 @@ class Zenpage {
 	 * 													"sticky" for sticky articles (published or not!) for admin page use only,
 	 * 													"all" for all articles
 	 * @param boolean $ignorepagination Since also used for the news loop this function automatically paginates the results if the "page" GET variable is set. To avoid this behaviour if using it directly to get articles set this TRUE (default FALSE)
-	 * @param string $sortorder "date" for sorting by date (default)
-	 * 													"title" for sorting by title
+	 * @param string $sortorder ,'date' (default),'title', 'popular','mostrated','toprated','random'
 	 * 													This parameter is not used for date archives
 	 * @param string $sortdirection "desc" (default) for descending sort order
 	 * 													    "asc" for ascending sort order
+	 *															"none" for no specific sortdirection if using the other sortorderes
 	 * 											        This parameter is not used for date archives
 	 * @param bool $sticky set to true to place "sticky" articles at the front of the list.
+	 * @param integer $threshold the minimum number of ratings an image must have to be included in the list. (Default 0). Only if $sortorder = "mostrated" or "toprated"
 	 * @return array
 	 */
-	function getArticles($articles_per_page=0, $published=NULL,$ignorepagination=false,$sortorder='date', $sortdirection='desc',$sticky=true) {
+	function getArticles($articles_per_page=0, $published=NULL,$ignorepagination=false,$sortorder='date', $sortdirection='desc',$sticky=true,$threshold=0) {
 		global $_zp_current_category, $_zp_post_date;
 		$this->processExpired('news');
 		$getUnpublished = NULL;
@@ -194,12 +245,24 @@ class Zenpage {
 		}
 		// sortorder and sortdirection (only used for all news articles and categories naturally)
 		switch($sortorder) {
-			case "date":
+			case 'date':
 			default:
-				$sort1 = "date";
+				$sort1 = 'date';
 				break;
-			case "title":
-				$sort1 = "title";
+			case 'title':
+				$sort1 = 'title';
+				break;
+			case 'popular':
+				$sort1 = 'hitcounter';
+				break;
+			case 'mostrated':
+				$sort1 = 'total_votes';
+				break;
+			case 'toprated':
+				$sort1 = '(total_value/total_votes) DESC, total_value';
+				break;
+			case 'random':
+				$sort1 = 'RAND()';
 				break;
 		}
 		switch($sortdirection) {
@@ -209,6 +272,10 @@ class Zenpage {
 				break;
 			case "asc":
 				$dir = "ASC";
+				$sticky = false;	//makes no sense
+				break;
+			case "none":
+				$dir = "";
 				$sticky = false;	//makes no sense
 				break;
 		}
@@ -227,6 +294,11 @@ class Zenpage {
 			case "all":
 				$show = "";
 				break;
+		}
+		if($sort1 == 'mostrated' || $sort1 == 'toprated') {
+			if ($threshold > 0) {
+			$show  .= ' AND total_votes >= '.$threshold;
+			}
 		}
 		if(in_context(ZP_ZENPAGE_NEWS_DATE)) {
 			$datesearch = '';

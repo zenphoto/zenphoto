@@ -1845,8 +1845,8 @@ function printPrevNewsLink($prev="« ",$sortorder='date',$sortdirection='desc') 
  * 										 "random" for pages, news articles and categories
  * @return array
  */
-function getZenpageStatistic($number=10, $option="all",$mode="popular") {
-	global $_zp_current_zenpage_news, $_zp_current_zenpage_pages;
+function getZenpageStatistic($number=10, $option="all",$mode="popular",$threshold=0) {
+	global $_zp_zenpage, $_zp_current_zenpage_news, $_zp_current_zenpage_pages;
 	$statsarticles = array();
 	$statscats = array();
 	$statspages = array();
@@ -1865,7 +1865,8 @@ function getZenpageStatistic($number=10, $option="all",$mode="popular") {
 			break;
 		}
 	if($option == "all" OR $option == "news") {
-		$articles = query_full_array("SELECT titlelink FROM " . prefix('news')." ORDER BY $sortorder DESC LIMIT $number");
+		$articles = $_zp_zenpage->getArticles($number,NULL,true,$mode,'none',false,$threshold);
+		//$articles = query_full_array("SELECT titlelink FROM " . prefix('news')." ORDER BY $sortorder DESC LIMIT $number");
 		$counter = "";
 		$statsarticles = array();
 		foreach ($articles as $article) {
@@ -1876,8 +1877,8 @@ function getZenpageStatistic($number=10, $option="all",$mode="popular") {
 					"title" => $obj->getTitle(),
 					"titlelink" => $article['titlelink'],
 					"hitcounter" => $obj->getHitcounter(),
-					"total_votes" => $obj->getTotal_votes(),
-					"rating" => $obj->getRating(),
+					"total_votes" => $obj->get('total_votes'),
+					"rating" => $obj->get('rating'),
 					"content" => $obj->getContent(),
 					"date" => $obj->getDateTime(),
 					"type" => "News"
@@ -1906,7 +1907,8 @@ function getZenpageStatistic($number=10, $option="all",$mode="popular") {
 		$stats = $statscats;
 	}
 	if($option == "all" OR $option == "pages") {
-		$pages = query_full_array("SELECT titlelink FROM " . prefix('pages')." ORDER BY $sortorder DESC LIMIT $number");
+		$pages = $_zp_zenpage->getPages(NULL,false,$mode,'',$number,$threshold);
+		//$pages = query_full_array("SELECT titlelink FROM " . prefix('pages')." ORDER BY $sortorder DESC LIMIT $number");
 		$counter = "";
 		$statspages = array();
 		foreach ($pages as $page) {
