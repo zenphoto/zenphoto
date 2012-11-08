@@ -1843,6 +1843,7 @@ function printPrevNewsLink($prev="« ",$sortorder='date',$sortdirection='desc') 
  * 										 "mostrated" for news articles and pages
  * 										 "toprated" for news articles and pages
  * 										 "random" for pages, news articles and categories
+ * @param integer $threshold the minimum number of ratings an image must have to be included in the list. (Default 0). Only if $sortorder = "mostrated" or "toprated"
  * @return array
  */
 function getZenpageStatistic($number=10, $option="all",$mode="popular",$threshold=0) {
@@ -1951,9 +1952,10 @@ function getZenpageStatistic($number=10, $option="all",$mode="popular",$threshol
  * @param bool $showdate if the date should be shown (news articles and pages only)
  * @param bool $showcontent if the content should be shown (news articles and pages only)
  * @param bool $contentlength The shortened lenght of the content
+ * @param integer $threshold the minimum number of ratings an image must have to be included in the list. (Default 0). Only if $sortorder = "mostrated" or "toprated"
  */
-function printZenpageStatistic($number=10, $option="all",$mode="popular",$showstats=true,$showtype=true, $showdate=true, $showcontent=true, $contentlength=40) {
-	$stats = getZenpageStatistic($number, $option,$mode);
+function printZenpageStatistic($number=10, $option="all",$mode="popular",$showstats=true,$showtype=true, $showdate=true, $showcontent=true, $contentlength=40,$threshold=0) {
+	$stats = getZenpageStatistic($number, $option,$mode,$threshold);
 	$contentlength = sanitize_numeric($contentlength);
 	switch($mode) {
 		case 'popular':
