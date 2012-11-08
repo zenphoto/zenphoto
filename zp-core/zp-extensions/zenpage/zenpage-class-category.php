@@ -323,16 +323,16 @@ class ZenpageCategory extends ZenpageRoot {
 	 * 													"sticky" for sticky articles (published or not!) for Admin page use only,
 	 * 													"all" for all articles
 	 * @param boolean $ignorepagination Since also used for the news loop this function automatically paginates the results if the "page" GET variable is set. To avoid this behaviour if using it directly to get articles set this TRUE (default FALSE)
-	 * @param string $sortorder "date" for sorting by date (default)
-	 * 													"title" for sorting by title
+	 * @param string $sortorder ,'date' (default),'title', 'popular','mostrated','toprated','random'
 	 * 													This parameter is not used for date archives
 	 * @param string $sortdirection "desc" (default) for descending sort order
 	 * 													    "asc" for ascending sort order
 	 * 											        This parameter is not used for date archives
 	 * @param bool $sticky set to true to place "sticky" articles at the front of the list.
+	 * @param integer $threshold the minimum number of ratings an image must have to be included in the list. (Default 0). Only if $sortorder = "mostrated" or "toprated"
 	 * @return array
 	 */
-	function getArticles($articles_per_page=0, $published=NULL,$ignorepagination=false,$sortorder="date", $sortdirection="desc",$sticky=true) {
+	function getArticles($articles_per_page=0, $published=NULL,$ignorepagination=false,$sortorder="date", $sortdirection="desc",$sticky=true,$threshold=0) {
 		global $_zp_current_category, $_zp_post_date;
 		Zenpage::processExpired('news');
 		if (empty($published)) {
@@ -366,12 +366,24 @@ class ZenpageCategory extends ZenpageRoot {
 		}
 		// sortorder and sortdirection
 		switch($sortorder) {
-			case "date":
+			case 'date':
 			default:
-				$sort1 = "date";
+				$sort1 = 'date';
 				break;
-			case "title":
-				$sort1 = "title";
+			case 'title':
+				$sort1 = 'title';
+				break;
+			case 'popular':
+				$sort1 = 'hitcounter';
+				break;
+			case 'mostrated':
+				$sort1 = 'total_votes';
+				break;
+			case 'toprated':
+				$sort1 = '(total_value/total_votes) DESC, total_value';
+				break;
+			case 'random':
+				$sort1 = 'RAND()';
 				break;
 		}
 		switch($sortdirection) {
@@ -406,6 +418,11 @@ class ZenpageCategory extends ZenpageRoot {
 				$getUnpublished = true;
 				$show = "";
 				break;
+		}
+		if($sort1 == 'mostrated' || $sort1 == 'toprated') {
+			if ($threshold > 0) {
+			$show  .= ' AND news.total_votes >= '.$threshold;
+			}
 		}
 		$order = " ORDER BY ".$sticky."news.$sort1 $dir";
 		$sql = "SELECT DISTINCT news.date, news.title, news.titlelink FROM ".prefix('news')." as news, ".prefix('news2cat')." as cat WHERE".$cat.$show.$order;
