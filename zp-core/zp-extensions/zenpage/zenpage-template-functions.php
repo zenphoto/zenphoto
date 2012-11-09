@@ -1866,8 +1866,7 @@ function getZenpageStatistic($number=10, $option="all",$mode="popular",$threshol
 			break;
 		}
 	if($option == "all" OR $option == "news") {
-		$articles = $_zp_zenpage->getArticles($number,NULL,true,$mode,'none',false,$threshold);
-		//$articles = query_full_array("SELECT titlelink FROM " . prefix('news')." ORDER BY $sortorder DESC LIMIT $number");
+		$articles = $_zp_zenpage->getArticles($number,NULL,true,$mode,NULL,false,$threshold);
 		$counter = "";
 		$statsarticles = array();
 		foreach ($articles as $article) {
@@ -1888,7 +1887,7 @@ function getZenpageStatistic($number=10, $option="all",$mode="popular",$threshol
 		$stats = $statsarticles;
 	}
 	if(($option == "all" OR $option == "categories") && $mode != "mostrated" && $mode != "toprated") {
-		$categories = query_full_array("SELECT id, titlelink as title, title as titlelink, hitcounter FROM " . prefix('news_categories')." ORDER BY $sortorder DESC LIMIT $number");
+		$categories = $_zp_zenpage->getCategories(NULL,false,$mode,NULL,$number);
 		$counter = "";
 		$statscats = array();
 		foreach ($categories as $cat) {
@@ -1909,7 +1908,6 @@ function getZenpageStatistic($number=10, $option="all",$mode="popular",$threshol
 	}
 	if($option == "all" OR $option == "pages") {
 		$pages = $_zp_zenpage->getPages(NULL,false,$mode,'',$number,$threshold);
-		//$pages = query_full_array("SELECT titlelink FROM " . prefix('pages')." ORDER BY $sortorder DESC LIMIT $number");
 		$counter = "";
 		$statspages = array();
 		foreach ($pages as $page) {

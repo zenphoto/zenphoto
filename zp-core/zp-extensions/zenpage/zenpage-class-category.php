@@ -327,6 +327,7 @@ class ZenpageCategory extends ZenpageRoot {
 	 * 													This parameter is not used for date archives
 	 * @param string $sortdirection "desc" (default) for descending sort order
 	 * 													    "asc" for ascending sort order
+	 *															"none" for no specific sortdirection if using the other sortorderes
 	 * 											        This parameter is not used for date archives
 	 * @param bool $sticky set to true to place "sticky" articles at the front of the list.
 	 * @param integer $threshold the minimum number of ratings an image must have to be included in the list. (Default 0). Only if $sortorder = "mostrated" or "toprated"
@@ -393,6 +394,10 @@ class ZenpageCategory extends ZenpageRoot {
 				break;
 			case "asc":
 				$dir = "ASC";
+				$sticky = false;	//makes no sense
+				break;
+			case "none":
+				$dir = "";
 				$sticky = false;	//makes no sense
 				break;
 		}

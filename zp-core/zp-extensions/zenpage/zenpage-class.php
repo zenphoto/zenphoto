@@ -42,7 +42,7 @@ class Zenpage {
 	}
 
 	function getCategoryStructure() {
-		if (is_null($this->categoryStructure)) {
+		/* if (is_null($this->categoryStructure)) {
 			$allcategories = query_full_array("SELECT * FROM ".prefix('news_categories')." ORDER by sort_order");
 			$structure = array();
 			foreach ($allcategories as $cat) {
@@ -58,7 +58,8 @@ class Zenpage {
 			}
 			$structure = sortMultiArray($structure, 'sort_order', false, false, false, true);
 			$this->categoryStructure = $structure;
-		}
+		} */
+		$this->categoryStructure = $this->getCategories(false,false,'sort_order','none',0);
 		return $this->categoryStructure;
 	}
 
@@ -95,13 +96,13 @@ class Zenpage {
 	 *
 	 * @param bool $published TRUE for published or FALSE for all pages including un-published
 	 * @param bool $toplevel TRUE for only the toplevel pages
-	 * @param string $sortorder 'sortorder' (default), 'title','date','popular','mostrated','toprated','random'
-	 * @param string $sortdirection "asc" or "desc", empty by default as pages are sorted manually actually.
+	 * @param string $sortorder 'sort_order' (default), 'title','date','popular','mostrated','toprated','random'
+	 * @param string $sortdirection "asc" or "desc", NULL by default as pages are sorted manually actually.
 	 * @param integer $number number of pages to get, set 0 for all.
 	 * @param integer $threshold the minimum number of ratings an image must have to be included in the list. (Default 0). Only if $sortorder = "mostrated" or "toprated"
 	 * @return array
 	 */
-	function getPages($published=NULL,$toplevel=false,$sortorder='sort_order',$sortdirection='',$number=0,$threshold=0) {
+	function getPages($published=NULL,$toplevel=false,$sortorder='sort_order',$sortdirection=NULL,$number=0,$threshold=0) {
 		global $_zp_loggedin;
 		$this->processExpired('pages');
 		if (is_null($published)) {
@@ -119,7 +120,7 @@ class Zenpage {
 			$show = $gettop;
 		}
 		switch($sortorder) {
-			case 'sortorder':
+			case 'sort_order':
 			default:
 				$sortorder = 'sort_order';
 				break;
@@ -212,7 +213,7 @@ class Zenpage {
 	 * 													This parameter is not used for date archives
 	 * @param string $sortdirection "desc" (default) for descending sort order
 	 * 													    "asc" for ascending sort order
-	 *															"none" for no specific sortdirection if using the other sortorderes
+	 *															NULL for no specific sortdirection if using the other sortorderes
 	 * 											        This parameter is not used for date archives
 	 * @param bool $sticky set to true to place "sticky" articles at the front of the list.
 	 * @param integer $threshold the minimum number of ratings an image must have to be included in the list. (Default 0). Only if $sortorder = "mostrated" or "toprated"
@@ -274,7 +275,7 @@ class Zenpage {
 				$dir = "ASC";
 				$sticky = false;	//makes no sense
 				break;
-			case "none":
+			case NULL:
 				$dir = "";
 				$sticky = false;	//makes no sense
 				break;
@@ -854,7 +855,7 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	 * @return array
 	 */
 	function getAllCategories($visible=true) {
-		$structure = $this->getCategoryStructure();
+		/* $structure = $this->getCategoryStructure();
 		if ($visible) {
 			foreach ($structure as $key=>$cat) {
 				if (!$cat['show']) {
@@ -862,6 +863,91 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 				}
 			}
 		}
+		*/
+		$structure = $this->getCategories($visible,false,'sort_order',NULL,0);
+		return $structure;
+	}
+	
+	/**
+	 * TODO: Replacement method to combine getAllCategories() and getCategoryStructure() and make them more flexible like the getArticles/getPages 
+	 * 
+	 * Gets all categories
+	 * 
+	 * @param bool $published TRUE for published or FALSE for all categories including un-published, NULL for all if loggedin
+	 * @param bool $toplevel TRUE for only the toplevel pages
+	 * @param string $sortorder 'sort_order' (default), 'title','popular','random'
+	 * @param string $sortdirection "asc" or "desc", 'none' by default as categories are sorted manually actually.
+	 * @param integer $number number of categories to get, set 0 for all.
+	 * @return array
+	 */
+	function getCategories($published=true,$toplevel=false,$sortorder='sort_order',$sortdirection='none',$number=0) {
+		//if we allow custom data fetching we cannot use the class var actually as that would override any parameters
+		//if (is_null($this->categoryStructure)) {
+		$gettop = '';
+		if($published) {
+			$show = " WHERE `show` = 1";
+			if($toplevel) $show .= " AND parentid IS NULL";
+		} else {
+			if($toplevel) $gettop = " WHERE parentid IS NULL";
+			$show = $gettop;
+		}
+		switch($sortorder) {
+			case 'sort_order':
+			default:
+				$sortorder = 'sort_order';
+				break;
+			case 'title':
+				$sortorder = 'title';
+				break;
+			case 'popular':
+				$sortorder = 'hitcounter';
+				break;
+			case 'random':
+				$sortorder = 'RAND()';
+				break;
+		}
+		switch($sortdirection) {
+			default: // not used by default as we follow the manual sort order!
+				$dir = "";
+				break;
+			case "desc":
+				$dir = " DESC";
+				break;
+			case "asc":
+				$dir = " ASC";
+				break;
+		}
+		$allcategories = query_full_array("SELECT * FROM ".prefix('news_categories').$show." ORDER by ".$sortorder.$dir);
+		$structure = array();
+		$count = '';
+		foreach ($allcategories as $cat) {
+			$count++;
+			$catobj = new ZenpageCategory($cat['titlelink']);
+			if ($catobj->isMyItem(ALL_NEWS_RIGHTS)) {
+				$cat['show'] = 1;
+			} else {
+				if ($cat['show'] && $cat['parentid']) {
+					$cat['show'] = $structure[$cat['parentid']]['show'];
+				}
+			}
+			if($number != 0 && $count == $number) {
+				break;
+			}
+			$structure[$cat['id']] = $cat;
+		}
+		// is this needed? doesn't the query do this already?
+		//$structure = sortMultiArray($structure, 'sort_order', false, false, false, true);
+		// not needed the query does this already.
+		/* $this->categoryStructure = $structure;
+		if ($published) {
+			foreach ($structure as $key=>$cat) {
+				if (!$cat['show']) {
+					unset($structure[$key]);
+				}
+			}
+		} */
+		$this->categoryStructure = $structure;
+		//}
 		return $structure;
 	}
 
