@@ -75,6 +75,15 @@
  * - "Category" for only the latest news articles of the category
  * index.php?rss=news&lang=<locale>&category=<titlelink of category>
  *
+ * Optional parameters for "News" and "Category":
+ * "sortorder  with these values:
+ * - "latest" for latest articles. (If "sortorder" is not set at all "latest" order is used)
+ * - "popular" for most viewed articles
+ * - "mostrated" for most voted articles
+ * - "toprated" for top voted articles
+ * - "random" for random articles
+ *
+ * b. COMMENTS FEEDS
  * - "Comments" for all news articles and pages
  * index.php?rss=comments&type=zenpage&lang=<locale>
  *
@@ -84,19 +93,11 @@
  * - "Comments-page" for comments of only the page it is called from
  * index.php?rss=comments&id=<page id>&type=page&lang=<locale>
  *
- * - "Comments-all" for comments from all albums, images, news articels and pages
+ * - "Comments-all" for comments from all albums, images, news articles and pages
  * index.php?rss=comments&type=allcomments&lang=<locale>
  *
- * Optional parameters for "News" and "Category":
- * "sortorder  with these values:
- * - "latest" for latest articles. (If "sortorder" is not set at all "latest" order is used)
- * - "popular" for most viewed articles
- * - "mostrated" for most voted articles
- * - "toprated" for top voted articles
- * - "random" for random articles
  *
- *
- * b. COMBINEWS MODE RSS FEEDS (ARTICLES WITH IMAGES OR ALBUMS COMBINED)
+ * c. COMBINEWS MODE RSS FEEDS (ARTICLES WITH IMAGES OR ALBUMS COMBINED)
  * NOTE: These override the sortorder parameter. You can also only set one of these parameters at the time. For other custom feed needs use the mergedRSS plugin.
  *
  * - "withimages" for all latest news articles and latest images by date combined
@@ -179,7 +180,7 @@ class RSS {
 	*
 	*/
 	function __construct() {
-		global $_zp_gallery;
+		global $_zp_gallery,$_zp_zenpage;
 		if(isset($_GET['rss'])) {
 			require_once(SERVERPATH.'/'.ZENFOLDER.'/lib-MimeTypes.php');
 			// general feed setup
@@ -202,7 +203,11 @@ class RSS {
 					$this->channel_title = strip_tags(get_language_string($_zp_gallery->get('website_title'), $this->locale));
 					break;
 				case 'both':
-					$this->channel_title = strip_tags(get_language_string($_zp_gallery->get('website_title'), $this->locale).' - '.get_language_string($_zp_gallery->get('gallery_title'), $this->locale));
+					$website_title = get_language_string($_zp_gallery->get('website_title'), $this->locale);
+					$this->channel_title = strip_tags(get_language_string($_zp_gallery->get('gallery_title'), $this->locale));
+					if(!empty($website_title)) {
+						$this->channel_title = $website_title.' - '.$this->channel_title;
+					}
 					break;
 			}
 			$rssfeedtype = sanitize($_GET['rss']);
