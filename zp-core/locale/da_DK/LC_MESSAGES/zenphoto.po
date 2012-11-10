@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-05 15:24+0100\n"
-"PO-Revision-Date: 2012-11-05 16:15+0100\n"
+"PO-Revision-Date: 2012-11-10 17:19+0100\n"
 "Last-Translator: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language-Team: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language: danish\n"
@@ -374,7 +374,7 @@ msgstr "Direkte link"
 
 #: /home/jes/work/translations/zenphoto/themes/zpmobile/image.php:58
 msgid "Tags:"
-msgstr "Tags:"
+msgstr "Mærker:"
 
 #: /home/jes/work/translations/zenphoto/themes/zpmobile/image.php:67
 msgid "View meta data"
@@ -441,7 +441,7 @@ msgstr "Kategorier"
 #: /home/jes/work/translations/zenphoto/themes/default/album.php:64
 #: /home/jes/work/translations/zenphoto/themes/default/image.php:90
 msgid "<strong>Tags:</strong>"
-msgstr "<strong>Tags:</strong>"
+msgstr "<strong>Mærker:</strong>"
 
 #: /home/jes/work/translations/zenphoto/themes/zpmobile/news.php:50
 #: /home/jes/work/translations/zenphoto/themes/zpmobile/news.php:66
@@ -711,7 +711,7 @@ msgstr "Nyhedsarkiv"
 #: /home/jes/work/translations/zenphoto/themes/zenpage/archive.php:46
 #: /home/jes/work/translations/zenphoto/themes/default/archive.php:34
 msgid "Popular Tags"
-msgstr "Populære tags"
+msgstr "Populære Mærker"
 
 #: /home/jes/work/translations/zenphoto/themes/zpmobile/register.php:25
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/register.php:64
@@ -2435,7 +2435,7 @@ msgstr "« Forrige Album"
 #: /home/jes/work/translations/zenphoto/themes/garland/news.php:111
 #: /home/jes/work/translations/zenphoto/themes/garland/pages.php:63
 msgid "Tags: "
-msgstr "Tags: "
+msgstr "Mærker: "
 
 #: /home/jes/work/translations/zenphoto/themes/garland/album.php:135
 #, php-format
@@ -2485,7 +2485,7 @@ msgstr "Tillad cloud"
 
 #: /home/jes/work/translations/zenphoto/themes/garland/themeoptions.php:73
 msgid "Set to enable tag cloud for album page."
-msgstr "Afkryds for at aktivere tag cloud for albumsiden."
+msgstr "Afkryds for at aktivere Mærke cloud for albumsiden."
 
 #: /home/jes/work/translations/zenphoto/themes/garland/sidebar.php:18
 msgid "Search pages"
@@ -2496,7 +2496,7 @@ msgstr "Søg sider"
 #: /home/jes/work/translations/zenphoto/themes/garland/gallery.php:8
 #: /home/jes/work/translations/zenphoto/themes/garland/gallery.php:35
 msgid "Album index"
-msgstr ""
+msgstr "Album index"
 
 #: /home/jes/work/translations/zenphoto/themes/garland/sidebar.php:102
 #: /home/jes/work/translations/zenphoto/zp-core/template-functions.php:107
@@ -2524,34 +2524,34 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/utilities/gallery_statistics.php:71
 #: /home/jes/work/translations/zenphoto/zp-core/utilities/gallery_statistics.php:563
 msgid "Albums"
-msgstr ""
+msgstr "Albums"
 
 #: /home/jes/work/translations/zenphoto/themes/garland/main.php:52
 #: /home/jes/work/translations/zenphoto/themes/garland/gallery.php:78
 msgid "Latest Images"
-msgstr ""
+msgstr "Seneste billeder"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes-editor.php:52
 msgid "File updated successfully"
-msgstr ""
+msgstr "Filen er korrekt opdateret."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes-editor.php:54
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes-editor.php:57
 msgid "Could not write file. Please check its write permissions"
-msgstr ""
+msgstr "Kunne ikke skrive filen. Check venligst rettigheder."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes-editor.php:81
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes-editor.php:86
 msgid "Cannot edit this file!"
-msgstr ""
+msgstr "Kan ikke redigere denne fil!"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes-editor.php:91
 msgid "Theme File Editor"
-msgstr ""
+msgstr "Tema fileditor"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes-editor.php:100
 msgid "Back to the theme list"
-msgstr ""
+msgstr "Tilbage til temalisten"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes-editor.php:102
 #: /home/jes/work/translations/zenphoto/zp-core/admin-albumsort.php:136
@@ -2576,36 +2576,36 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:783
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:221
 msgid "Back"
-msgstr ""
+msgstr "Tilbage"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes-editor.php:114
 msgid "Theme template files (.php)"
-msgstr ""
+msgstr "Tema skabelonfiler (.php)"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes-editor.php:117
 msgid "JavaScript files (.js)"
-msgstr ""
+msgstr "JavaScriptfiler (.js)"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes-editor.php:120
 msgid "Style sheets (.css)"
-msgstr ""
+msgstr "Stilark (.css)"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes-editor.php:123
 msgid "Other text files"
-msgstr ""
+msgstr "Andre tekstfiler"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes-editor.php:128
 msgid "Edit this file"
-msgstr ""
+msgstr "Rediger denne fil"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes-editor.php:138
 #, php-format
 msgid "File <tt>%s</tt> from theme %s"
-msgstr ""
+msgstr "Fil <tt>%s</tt> fra tema %s"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes-editor.php:144
 msgid "Update File"
-msgstr ""
+msgstr "Opdater Fil"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes-editor.php:153
 msgid ""
@@ -2613,51 +2613,54 @@ msgid ""
 "you can <strong>break everything</strong> if you are not careful when "
 "updating files."
 msgstr ""
+"Vælg den fil du vil redigere fra listen til højre. Tænk over at du kan "
+"<strong>ødelægge alting</strong> hvis du ikke er forsigtig når du opdaterer "
+"filen."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-tags.php:33
 msgid "New tags added"
-msgstr ""
+msgstr "Nye mærker tilføjet"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-tags.php:62
 msgid "Checked tags deleted"
-msgstr ""
+msgstr "Valgte mærker slettede"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-tags.php:87
 msgid "Tags renamed"
-msgstr ""
+msgstr "Mærker omdøbte"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-tags.php:113
 msgid "Tag Management"
-msgstr ""
+msgstr "Mærkehåndtering"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-tags.php:117
 msgid "Sort the tags alphabetically"
-msgstr ""
+msgstr "Sortér mærker alfabetisk"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-tags.php:118
 msgid "Order alphabetically"
-msgstr ""
+msgstr "Orden alfabetisk"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-tags.php:128
 msgid "Sort the tags by most used"
-msgstr ""
+msgstr "Sorter mærker efter mest brugte"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-tags.php:129
 msgid "Order by most used"
-msgstr ""
+msgstr "Orden efter mest brugte"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-tags.php:141
 msgid "Delete tags from the gallery"
-msgstr ""
+msgstr "Slet mærker fra galleriet"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-tags.php:151
 #: /home/jes/work/translations/zenphoto/zp-core/admin-tags.php:152
 msgid "Delete checked tags"
-msgstr ""
+msgstr "Slet valgte mærker"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-tags.php:151
 msgid "Delete all the tags checked above."
-msgstr ""
+msgstr "Slet alle mærker valgt ovenfor"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-tags.php:157
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:451
@@ -2668,7 +2671,7 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/publishContent/publishContent.php:581
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/publishContent/publishContent.php:648
 msgid "all"
-msgstr ""
+msgstr "alle"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-tags.php:180
 msgid ""
@@ -2676,26 +2679,31 @@ msgid ""
 "<em>Delete checked tags</em> button. The brackets contain the number of "
 "times the tag appears."
 msgstr ""
+"Afkryds de mærker du ønsker at slette og klik derefter <em>Slet valgte "
+"mærker</em> knappen. Den kantede parentes angiver det antal gange mærket er "
+"vist."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-tags.php:185
 #: /home/jes/work/translations/zenphoto/zp-core/admin-tags.php:207
 #: /home/jes/work/translations/zenphoto/zp-core/admin-tags.php:208
 msgid "Rename tags"
-msgstr ""
+msgstr "Omdøb mærker"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-tags.php:207
 msgid "Apply all the changes entered above."
-msgstr ""
+msgstr "Anvend alle ændringer udført ovenfor."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-tags.php:216
 msgid ""
 "To change the value of a tag enter a new value in the text box below the "
 "tag. Then press the <em>Rename tags</em> button"
 msgstr ""
+"For at ændre værdien af mærket skal du indtaste en ny værdi i tekstboksen "
+"under mærket. Derefter klik <em>Omdøb mærke</em> knappen"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-tags.php:221
 msgid "New tags"
-msgstr ""
+msgstr "Nye mærker"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-tags.php:238
 #: /home/jes/work/translations/zenphoto/zp-core/admin-tags.php:239
@@ -2703,17 +2711,19 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:146
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:252
 msgid "Add tags"
-msgstr ""
+msgstr "Tilføj mærker"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-tags.php:238
 msgid "Add all the tags entered above."
-msgstr ""
+msgstr "Tilføj alle mærker der er angivet ovenfor."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-tags.php:248
 msgid ""
 "Add tags to the list by entering their names in the input fields of the "
 "<em>New tags</em> list. Then press the <em>Add tags</em> button"
 msgstr ""
+"Tilføj mærker til listen ved at indtaste deres navne i indtastningsfelterne "
+"for <em>Nye mærker</em> listen. Derefter klik <em>Tilføj mærker</em> knappen"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-logs.php:24
 #, php-format
@@ -3254,7 +3264,7 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/utilities/gallery_statistics.php:91
 #: /home/jes/work/translations/zenphoto/zp-core/utilities/gallery_statistics.php:574
 msgid "Tags"
-msgstr "Tags"
+msgstr "Mærker"
 
 #: /home/jes/work/translations/zenphoto/zp-core/template-functions.php:130
 msgid "Users"
