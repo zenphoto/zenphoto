@@ -814,8 +814,10 @@ protected function getRSSCombinewsAlbums() {
 			$ext = getSuffix($item->filename);
 			$albumobj = $item->getAlbum();
 			$itemlink = $this->host.pathurlencode($item->getImagelink());
-			$fullimagelink = $this->host.WEBPATH."/albums/".pathurlencode($albumobj->name)."/".$item->filename;
+			$fullimagelink = $this->host.pathurlencode($item->getFullImageURL());
+			/* $fullimagelink = $this->host.WEBPATH."/albums/".pathurlencode($albumobj->name)."/".$item->filename; */
 			$imagefile = "albums/".$albumobj->name."/".$item->filename;
+			/* $imagefile = pathurlencode($item->getFullImageURL()); */
 			$thumburl = '<img border="0" src="'.PROTOCOL.'://'.$this->host.$item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE).'" alt="'.get_language_string(get_language_string($item->get("title"),$this->locale)) .'" /><br />';
 			$title = get_language_string($item->get("title"),$this->locale);
 			$albumtitle = get_language_string($albumobj->get("title"),$this->locale);
@@ -883,9 +885,9 @@ protected function getRSSCombinewsAlbums() {
 				$categories = '';
 				foreach($plaincategories as $cat){
 					$catobj = new ZenpageCategory($cat['titlelink']);
-					$categories .= get_language_string($catobj->getTitle('all'), $this->locale).',';
+					$categories .= get_language_string($catobj->getTitle('all'), $this->locale).', ';
 				}
-				$categories = rtrim($categories, ',');
+				$categories = rtrim($categories, ', ');
 				$feeditem['desc'] = shortenContent(get_language_string($obj->get('content'),$this->locale),getOption('zenpage_rss_length'), '...');
 				break;
 			case 'images':
@@ -898,8 +900,8 @@ protected function getRSSCombinewsAlbums() {
 				$filename = $obj->getFilename();
 				$ext = getSuffix($filename);
 				$album = $albumobj->getFolder();
-				$fullimagelink = $this->host.WEBPATH.'/albums/'.$album.'/'.$filename;
-				$imagefile = "albums/".$album."/".$filename;
+				$fullimagelink = $this->host.pathurlencode($obj->getFullImageURL());
+				$imagefile = $imagefile = "albums/".$album."/".$obj->filename;
 				$content = shortenContent($obj->getDesc($this->locale),getOption('zenpage_rss_length'), '...');
 				if(isImagePhoto($obj)) {
 					$feeditem['desc'] = '<a title="'.html_encode($feeditem['title']).' in '.html_encode($categories).'" href="'.PROTOCOL.'://'.$this->host.$link.'"><img border="0" src="'.PROTOCOL.'://'.$this->host.WEBPATH.'/'.ZENFOLDER.'/i.php?a='.$album.'&i='.$filename.'&s='.$this->imagesize.'" alt="'. html_encode($feeditem['title']).'"></a><br />'.$content;
