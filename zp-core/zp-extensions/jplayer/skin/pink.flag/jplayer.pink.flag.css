@@ -4,24 +4,25 @@
  *
  * Skin Name: Pink Flag
  *
- * Copyright (c) 2011 Happyworm Ltd
+ * Copyright (c) 2012 Happyworm Ltd
  * Dual licensed under the MIT and GPL licenses.
  *  - http://www.opensource.org/licenses/mit-license.php
  *  - http://www.gnu.org/copyleft/gpl.html
  *
  * Author: Silvia Benvenuti
- * Skin Version: 1.0 (jPlayer 2.1.0)
- * Date: 1st September 2011
+ * Skin Version: 1.2 (jPlayer 2.2.0)
+ * Date: 22nd October 2012
  */
 
 div.jp-audio,
+div.jp-audio-stream,
 div.jp-video {
 
 	/* Edit the font-size to counteract inherited font sizing.
 	 * Eg. 1.25em = 1 / 0.8em
 	 */
 
-	font-size:1em; /* 1.25em for testing in site pages */ /* No parent CSS that can effect the size in the demos ZIP */
+	font-size:1.25em; /* 1.25em for testing in site pages */ /* No parent CSS that can effect the size in the demos ZIP */
 
 	font-family:Verdana, Arial, sans-serif;
 	line-height:1.6;
@@ -31,11 +32,15 @@ div.jp-video {
 	border-right:1px solid #180a1f;
 	border-bottom:1px solid #180a1f;
 	background-color:#3a2a45;
-	position:relative;
 }
 div.jp-audio {
 	width:201px;
 	padding:20px;
+}
+
+div.jp-audio-stream {
+	width:101px;
+	padding:20px 20px 10px 20px;
 }
 
 div.jp-video-270p {
@@ -49,7 +54,12 @@ div.jp-video-full {
 	width:480px;
 	height:270px;
 	/* Rules for IE7 (full-screen) - Otherwise the relative container causes other page items that are not position:static (default) to appear over the video/gui. */
-	position:static !important; position:relative
+	position:static !important; position:relative;
+}
+
+/* The z-index rule is defined in this manner to enable Popcorn plugins that add overlays to video area. EG. Subtitles. */
+div.jp-video-full div div {
+	z-index:1000;
 }
 
 div.jp-video-full div.jp-jplayer {
@@ -57,7 +67,6 @@ div.jp-video-full div.jp-jplayer {
 	left: 0;
 	position: fixed !important; position: relative; /* Rules for IE6 (full-screen) */
 	overflow: hidden;
-	z-index:1000;
 }
 
 div.jp-video-full div.jp-gui {
@@ -66,13 +75,12 @@ div.jp-video-full div.jp-gui {
 	left: 0;
 	width:100%;
 	height:100%;
-	z-index:1000;
+	z-index:1001; /* 1 layer above the others. */
 }
 div.jp-video-full div.jp-interface {
 	position: absolute !important; position: relative; /* Rules for IE6 (full-screen) */
 	bottom: 0;
 	left: 0;
-	z-index:1000;
 }
 
 div.jp-interface {
@@ -84,6 +92,11 @@ div.jp-interface {
 
 div.jp-audio .jp-interface {
 	height: 80px;
+	padding-top:30px;
+}
+
+div.jp-audio-stream .jp-interface {
+	height: 50px;
 	padding-top:30px;
 }
 
@@ -106,8 +119,13 @@ div.jp-interface ul.jp-controls {
 	height: 34px;
 }
 
-div.jp-audio ul.jp-controls {
+div.jp-audio ul.jp-controls,
+div.jp-audio-stream ul.jp-controls {
 	margin:0 auto;
+}
+
+div.jp-audio-stream ul.jp-controls {
+	width: 100px;
 }
 
 div.jp-video ul.jp-controls {
@@ -150,6 +168,12 @@ div.jp-type-single  .jp-pause {
 
 div.jp-type-single  .jp-pause:hover {
 	background: url("jplayer.pink.flag.jpg") -100px -120px no-repeat;
+}
+
+/* The right border is normally in the ul background image. */
+div.jp-audio-stream .jp-play,
+div.jp-audio-stream .jp-pause {
+	border-right:1px solid #180920;
 }
 
 div.jp-type-single  .jp-stop {
@@ -221,7 +245,6 @@ ul.jp-toggles {
 	list-style-type:none;
 	padding:0;
 	margin:0 auto;
-	z-index:20;
 	overflow:hidden;
 }
 
@@ -360,12 +383,15 @@ div.jp-interface ul.jp-controls a.jp-volume-max {
 }
 
 div.jp-audio ul.jp-controls a.jp-mute,
-div.jp-audio ul.jp-controls a.jp-unmute {
+div.jp-audio ul.jp-controls a.jp-unmute,
+div.jp-audio-stream ul.jp-controls a.jp-mute,
+div.jp-audio-stream ul.jp-controls a.jp-unmute {
 	top:-6px;
 	left: 0;
 }
 
-div.jp-audio ul.jp-controls a.jp-volume-max {
+div.jp-audio ul.jp-controls a.jp-volume-max,
+div.jp-audio-stream ul.jp-controls a.jp-volume-max {
 	top:-6px;
 	right: 0;
 }
@@ -416,16 +442,24 @@ div.jp-interface ul.jp-controls a.jp-volume-max:hover {
 }
 
 
-div.jp-audio .jp-interface .jp-volume-bar {
+div.jp-audio .jp-interface .jp-volume-bar,
+div.jp-audio-stream .jp-interface .jp-volume-bar {
 	top:10px;
 	left: 0;
+}
+
+div.jp-audio-stream .jp-interface .jp-volume-bar {
+	width: 97px;
+	border-right:1px solid #180920;
+	padding-right:1px;
 }
 
 div.jp-video .jp-volume-bar {
 	top: 0;
 	left: 0;
 	width:95px;
-	border-right:1px solid #000;
+	border-right:1px solid #180920;
+	padding-right:1px;
 	margin-top: 30px;
 }
 
@@ -565,22 +599,20 @@ span.jp-artist {
 
 
 div.jp-video div.jp-video-play {
-	position:absolute;
-	top:0;
-	left:0;
 	width:100%;
+	overflow:hidden; /* Important for nested negative margins to work in modern browsers */
 	cursor:pointer;
-	background-color:rgba(0,0,0,0); /* Makes IE9 work with the active area over the whole video area. IE6/7/8 only have the button as active area. */
 }
 div.jp-video-270p div.jp-video-play {
+	margin-top:-270px;
 	height:270px;
 }
 div.jp-video-360p div.jp-video-play {
+	margin-top:-360px;
 	height:360px;
 }
 div.jp-video-full div.jp-video-play {
 	height:100%;
-	z-index:1000;
 }
 a.jp-video-play-icon {
 	position:relative;
@@ -614,12 +646,6 @@ div.jp-jplayer {
 /* @group NO SOLUTION error feedback */
 
 .jp-no-solution {
-	position:absolute;
-	width:390px;
-	margin-left:-202px;
-	left:50%;
-	top: 10px;
-
 	padding:5px;
 	font-size:.8em;
 	background-color:#3a2a45;
@@ -641,10 +667,4 @@ div.jp-jplayer {
 	text-align:center;
 	font-weight:bold;
 }
-
-.jp-audio .jp-no-solution {
-	width:190px;
-	margin-left:-102px;
-}
-
 /* @end */
