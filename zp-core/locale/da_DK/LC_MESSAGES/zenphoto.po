@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-05 15:24+0100\n"
-"PO-Revision-Date: 2012-11-10 17:19+0100\n"
+"POT-Creation-Date: 2012-11-11 15:22+0100\n"
+"PO-Revision-Date: 2012-11-11 16:35+0100\n"
 "Last-Translator: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language-Team: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language: danish\n"
@@ -2728,41 +2728,41 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/admin-logs.php:24
 #, php-format
 msgid "%s log was emptied."
-msgstr ""
+msgstr "%s logfil blev tømt."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-logs.php:27
 #, php-format
 msgid "%s log could not be emptied."
-msgstr ""
+msgstr "%s logfil kunne ikke tømmes."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-logs.php:41
 #, php-format
 msgid "%s log was removed."
-msgstr ""
+msgstr "%s logfil blev fjernet."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-logs.php:44
 #, php-format
 msgid "%s log could not be removed."
-msgstr ""
+msgstr "%s logfil kunne ikke fjernes."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-logs.php:64
 #, php-format
 msgid "%s log maximum size changed."
-msgstr ""
+msgstr "%s logfils maximale størrelse ændres."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-logs.php:71
 #: /home/jes/work/translations/zenphoto/zp-core/admin-globals.php:167
 msgid "logs"
-msgstr ""
+msgstr "logfiler"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-logs.php:99
 msgid "View logs:"
-msgstr ""
+msgstr "Se logfiler"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-logs.php:115
 #, php-format
 msgid "Delete %s"
-msgstr ""
+msgstr "Slet %s"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-logs.php:117
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:297
@@ -2789,64 +2789,64 @@ msgstr "Slet"
 #: /home/jes/work/translations/zenphoto/zp-core/admin-logs.php:122
 #, php-format
 msgid "Reset %s"
-msgstr ""
+msgstr "Nulstil %s"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-logs.php:126
 #, php-format
 msgid "Download %s ZIP file"
-msgstr ""
+msgstr "Hent %s Zipfil"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-logs.php:128
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2136
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/downloadList/download_statistics.php:24
 msgid "Download"
-msgstr ""
+msgstr "Hent"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-logs.php:136
 msgid "Log file size limit"
-msgstr ""
+msgstr "Grænse for logfilstørrelse"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-logs.php:138
 #: /home/jes/work/translations/zenphoto/zp-core/setup/index.php:978
 msgid "Update"
-msgstr ""
+msgstr "Opdater"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-logs.php:218
 msgid "There are no logs to view."
-msgstr ""
+msgstr "Der er ingen logfiler at vise"
 
 #: /home/jes/work/translations/zenphoto/zp-core/reconfigure.php:80
 msgid "an unknown release"
-msgstr ""
+msgstr "en ukendt version"
 
 #: /home/jes/work/translations/zenphoto/zp-core/reconfigure.php:165
 msgid "Zenphoto has detected a change in your installation."
-msgstr ""
+msgstr "Zenphoto har opdaget en ændring i din installation."
 
 #: /home/jes/work/translations/zenphoto/zp-core/reconfigure.php:175
 #, php-format
 msgid "Your server software has changed from %1$s to %2$s."
-msgstr ""
+msgstr "Din serversoftware er ændret fra %1$s til %2$s."
 
 #: /home/jes/work/translations/zenphoto/zp-core/reconfigure.php:179
 #, php-format
 msgid "Your database software has changed from %1$s to %2$s."
-msgstr ""
+msgstr "Din database software er ændret fra %1$s til %2$s."
 
 #: /home/jes/work/translations/zenphoto/zp-core/reconfigure.php:182
 #, php-format
 msgid "Zenphoto %1$s has been copied over %2$s."
-msgstr ""
+msgstr "Zenphoto %1$s er kopieret ovenpå %2$s."
 
 #: /home/jes/work/translations/zenphoto/zp-core/reconfigure.php:185
 #, php-format
 msgid "Your installation has moved from %1$s to %2$s."
-msgstr ""
+msgstr "Din installation er flyttet fra %1$s til %2$s."
 
 #: /home/jes/work/translations/zenphoto/zp-core/reconfigure.php:189
 #, php-format
 msgid "The script <code>%1$s</code> has changed."
-msgstr ""
+msgstr "Skriptet <code>%1$s</code> er ændret."
 
 #: /home/jes/work/translations/zenphoto/zp-core/reconfigure.php:200
 #: /home/jes/work/translations/zenphoto/zp-core/setup.php:25
@@ -2854,6 +2854,7 @@ msgstr ""
 msgid ""
 "Please reinstall the following setup files from the %1$s [%2$s] release:"
 msgstr ""
+"Geninstaller venligst følgende installationsfiler fra %1$s [%2$s] udgaven:"
 
 #: /home/jes/work/translations/zenphoto/zp-core/reconfigure.php:231
 #, php-format
@@ -2861,6 +2862,8 @@ msgid ""
 "The change detected is critical. You <strong>must</strong> run %1$ssetup%2$s "
 "for your site to function."
 msgstr ""
+"Den fundne ændring er kritisk. Du <strong> skal</strong> køre %1$ssetup%2$s "
+"for at få dit websted til at fungere."
 
 #: /home/jes/work/translations/zenphoto/zp-core/reconfigure.php:233
 #, php-format
@@ -2868,54 +2871,58 @@ msgid ""
 "The change detected may not be critical but you should run %1$ssetup%2$s at "
 "your earliest convenience."
 msgstr ""
+"Den fundne ændring behøver ikke at være kritisk, men du bør køre %1$ssetup"
+"%2$s så snart det er muligt."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-filemanager.php:28
 msgid "File Manager"
-msgstr ""
+msgstr "Filhåndtering"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:136
 #, php-format
 msgid "%s password may not be empty!"
-msgstr ""
+msgstr "%s kodeord må ikke være tomt!"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:256
 msgid ""
 "Password reset request.<br />You may now set admin usernames and passwords."
 msgstr ""
+"Nulstilling af adgangskode.<br />Du kan nu indstille admin brugernavne og "
+"adgangskoder."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:266
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:139
 msgid "Saved"
-msgstr ""
+msgstr "Gemt"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:368
 msgid "Your Allowed tags change did not parse successfully."
-msgstr ""
+msgstr "Din tilladte mærkeændring tolkedes ikke korrekt."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:373
 msgid "Rights migration failed."
-msgstr ""
+msgstr "Rettighedsoverførsel mislykkes."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:378
 msgid "User id already used."
-msgstr ""
+msgstr "Bruger-id bruges allerede."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:385
 msgid "You must supply a password"
-msgstr ""
+msgstr "Du skal indtaste et kodeord."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:388
 msgid "User name not provided"
-msgstr ""
+msgstr "Brugernavn er ikke angivet"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:394
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:490
 msgid "Your passwords did not match"
-msgstr ""
+msgstr "Dine kodeord er ikke ens."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:401
 msgid "Your Website URL is not valid"
-msgstr ""
+msgstr "Dit websted URL-adresse er ikke gyldig"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:431
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:803
@@ -3016,19 +3023,19 @@ msgstr "Anvend"
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:3126
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/search_statistics/search_analysis.php:268
 msgid "reset"
-msgstr ""
+msgstr "nulstil"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:443
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:192
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:356
 msgid "Expand all"
-msgstr ""
+msgstr "Udvid alle"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:445
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:194
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:358
 msgid "Collapse all"
-msgstr ""
+msgstr "Skjul alle"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:449
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2194
@@ -3040,104 +3047,111 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:96
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:97
 msgid "show"
-msgstr ""
+msgstr "vis"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:452
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:504
 msgid "pending verification"
-msgstr ""
+msgstr "afventer verifikation"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:453
 msgid "no group"
-msgstr ""
+msgstr "ingen gruppe"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:510
 msgid "Master"
-msgstr ""
+msgstr "Master"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:542
 msgid "Show details"
-msgstr ""
+msgstr "Vis detaljer"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:543
 msgid "Hide details"
-msgstr ""
+msgstr "skjul detaljer"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:545
 #, php-format
 msgid "Show details for user %s"
-msgstr ""
+msgstr "Vis detaljer for bruger %s"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:546
 #, php-format
 msgid "Hide details for user %s"
-msgstr ""
+msgstr "Skjul detaljer for bruger %s"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:556
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:576
 msgid "New User"
-msgstr ""
+msgstr "Ny bruger"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:595
 msgid "Authenticate user"
-msgstr ""
+msgstr "Godkend bruger"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:606
 msgid "Are you sure you want to delete this user?"
-msgstr ""
+msgstr "Er du sikker på at du vil slette denne bruger?"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:608
 msgid ""
 "This is the master user account. If you delete it another user will be "
 "promoted to master user."
 msgstr ""
+"Dette er master brugerkontoen. Hvis du sletter den vil en anden bruger blive "
+"forfremmet til master bruger."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:614
 msgid "Delete this user."
-msgstr ""
+msgstr "Slet denne bruger."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:643
 msgid ""
 "<strong>Note:</strong> You must have ADMIN rights to alter anything but your "
 "personal information."
 msgstr ""
+"<strong>OBS:</strong> Du skal have ADMIN rettigheder for at ændre noget ud "
+"over dine personlige oplysninger."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:671
 msgid "Challenge phrase"
-msgstr ""
+msgstr "Sikkerhedsspørgsmål"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:675
 msgid "Challenge response"
-msgstr ""
+msgstr "Svar på sikkerhedsspørgsmål"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:680
 msgid "Full name"
-msgstr ""
+msgstr "Fulde navn"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:684
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/register_user/register_user_form.php:28
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:698
 msgid "create primary album"
-msgstr ""
+msgstr "Opret primært album"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:708
 #, php-format
 msgid "delink primary album <strong>%1$s</strong>(<em>%2$s</em>)"
-msgstr ""
+msgstr "afkoble primære album <strong>%1$s</strong>(<em>%2$s</em>)"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:712
 msgid ""
 "The primary album was created in association with the user. It will be "
 "removed if the user is deleted. Delinking the album removes this association."
 msgstr ""
+"Det primære album blev oprettet  i tilknytning til en bruger. Det vil blive "
+"fjernet hvis brugeren slettes. Afkobling af albummet fjerner denne "
+"tilknytning."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:720
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:597
 msgid "Language:"
-msgstr ""
+msgstr "Sprog:"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-users.php:751
 msgid "The <em>master</em> account has full rights to all albums."
@@ -12277,9 +12291,8 @@ msgid "The zenphoto.cfg file does not exist."
 msgstr "Filen zenphoto.cfg  eksisterer ikke."
 
 #: /home/jes/work/translations/zenphoto/zp-core/setup/setup-primitive.php:83
-#, fuzzy
 msgid "A simpler web album"
-msgstr "Se Album:"
+msgstr "Et enklere webalbum"
 
 #: /home/jes/work/translations/zenphoto/zp-core/setup/setup_pluginOptions.php:12
 #, php-format
