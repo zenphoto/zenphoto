@@ -185,6 +185,7 @@ if (isset($_GET['action'])) {
 			setOption('RSS_album_image', (int) isset($_POST['RSS_album_image']));
 			setOption('RSS_comments', (int) isset($_POST['RSS_comments']));
 			setOption('RSS_articles', (int) isset($_POST['RSS_articles']));
+			setOption('RSS_pages', (int) isset($_POST['RSS_pages']));
 			setOption('RSS_article_comments', (int) isset($_POST['RSS_article_comments']));
 			setOption('feed_hitcounter', (int) isset($_POST['feed_hitcounter']));
 			$returntab = "&tab=rss";
@@ -1532,6 +1533,9 @@ if ($subtab == 'rss' && zp_loggedin(OPTIONS_RIGHTS)) {
 					</label>
 					<label class="checkboxlabel">
 						<input type="checkbox" name="RSS_articles" value=<?php if (getOption('RSS_articles')) echo '"1" checked="checked"'; else echo '"0"'; ?> /> <?php echo gettext('All news'); ?>
+					</label>
+					<label class="checkboxlabel">
+						<input type="checkbox" name="RSS_pages" value=<?php if (getOption('RSS_pages')) echo '"1" checked="checked"'; else echo '"0"'; ?> /> <?php echo gettext('All pages'); ?>
 					</label>
 					<label class="checkboxlabel">
 						<input type="checkbox" name="RSS_article_comments" value=<?php if (getOption('RSS_article_comments')) echo '"1" checked="checked"'; else echo '"0"'; ?> /> <?php echo gettext('News/Page comments'); ?>

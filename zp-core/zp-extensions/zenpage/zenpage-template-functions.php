@@ -3022,6 +3022,11 @@ function getZenpageRSSLink($option='News', $categorylink='', $lang=NULL) {
 				return WEBPATH.'/index.php?rss=news&withimages&lang='.$lang;
 			}
 			break;
+		case 'Pages':
+			if (getOption('RSS_pages')) {
+				return WEBPATH.'/index.php?rss=pages&lang='.$lang;
+			}
+			break;
 		case 'Comments':
 			if (getOption('RSS_article_comments')) {
 				return WEBPATH.'/index.php?rss=comments&type=zenpage&lang='.$lang;

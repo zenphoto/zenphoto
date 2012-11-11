@@ -322,6 +322,7 @@ setOptionDefault('zp_plugin_zenphoto_sendmail', 5|CLASS_PLUGIN);
 setOptionDefault('RSS_album_image', 1);
 setOptionDefault('RSS_comments', 1);
 setOptionDefault('RSS_articles', 1);
+setOptionDefault('RSS_pages', 1);
 setOptionDefault('RSS_article_comments', 1);
 
 setOptionDefault('AlbumThumbSelect',1);
