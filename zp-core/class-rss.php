@@ -180,7 +180,7 @@ class RSS {
 	*
 	*/
 	function __construct() {
-		global $_zp_gallery,$_zp_zenpage;
+		global $_zp_gallery,$_zp_zenpage, $mime_types;
 		if(isset($_GET['rss'])) {
 			require_once(SERVERPATH.'/'.ZENFOLDER.'/lib-MimeTypes.php');
 			// general feed setup
@@ -786,7 +786,7 @@ protected function getRSSCombinewsAlbums() {
 			$totalimages = $albumobj->getNumImages();
 			$itemlink = $this->host.pathurlencode($albumobj->getAlbumLink());
 			$thumb = $albumobj->getAlbumThumbImage();
-			$thumburl = '<img border="0" src="'.$thumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE).'" alt="'.html_encode(get_language_string($albumobj->get("title"),$this->locale)) .'" />';
+			$thumburl = '<img border="0" src="'.pathurlencode($thumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'.html_encode(get_language_string($albumobj->get("title"),$this->locale)) .'" />';
 			$title =  get_language_string($albumobj->get("title"),$this->locale);
 			if(true || $this->sortorder == "latestupdated") {
 				$filechangedate = filectime(ALBUM_FOLDER_SERVERPATH.internalToFilesystem($albumobj->name));
@@ -816,16 +816,16 @@ protected function getRSSCombinewsAlbums() {
 			$itemlink = $this->host.pathurlencode($item->getImagelink());
 			$fullimagelink = $this->host.pathurlencode($item->getFullImageURL());
 			/* $fullimagelink = $this->host.WEBPATH."/albums/".pathurlencode($albumobj->name)."/".$item->filename; */
-			$imagefile = "albums/".$albumobj->name."/".$item->filename;
+			$imagefile = pathurlencode($item->getFullImage('')); /* "albums/".$albumobj->name."/".$item->filename; */
 			/* $imagefile = pathurlencode($item->getFullImageURL()); */
-			$thumburl = '<img border="0" src="'.PROTOCOL.'://'.$this->host.$item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE).'" alt="'.get_language_string(get_language_string($item->get("title"),$this->locale)) .'" /><br />';
+			$thumburl = '<img border="0" src="'.PROTOCOL.'://'.$this->host.pathurlencode($item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'.get_language_string(get_language_string($item->get("title"),$this->locale)) .'" /><br />';
 			$title = get_language_string($item->get("title"),$this->locale);
 			$albumtitle = get_language_string($albumobj->get("title"),$this->locale);
 			$datecontent = '<br />Date: '.zpFormattedDate(DATE_FORMAT,$item->get('mtime'));
 			if ((($ext == "flv") || ($ext == "mp3") || ($ext == "mp4") ||  ($ext == "3gp") ||  ($ext == "mov")) AND $this->rssmode != "album") {
 				$feeditem['desc'] = '<a title="'.html_encode($title).' in '.html_encode(get_language_string($albumobj->get("title"),$this->locale)).'" href="'.PROTOCOL.'://'.$itemlink.'">'.$thumburl.'</a>' . get_language_string(get_language_string($item->get("desc"),$this->locale)).$datecontent;
 			} else {
-				$feeditem['desc'] = '<a title="'.html_encode($title).' in '.html_encode(get_language_string($albumobj->get("title"),$this->locale)).'" href="'.PROTOCOL.'://'.$itemlink.'"><img src="'.PROTOCOL.'://'.$this->host.$item->getThumb().'" alt="'.html_encode($title).'" /></a>' . get_language_string(get_language_string($item->get("desc"),$this->locale)).$datecontent;
+				$feeditem['desc'] = '<a title="'.html_encode($title).' in '.html_encode(get_language_string($albumobj->get("title"),$this->locale)).'" href="'.PROTOCOL.'://'.$itemlink.'"><img src="'.PROTOCOL.'://'.$this->host.pathurlencode($item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'.html_encode($title).'" /></a>' . get_language_string(get_language_string($item->get("desc"),$this->locale)).$datecontent;
 			}
 		}
 		// title
@@ -896,15 +896,15 @@ protected function getRSSCombinewsAlbums() {
 				$categories = get_language_string($albumobj->getTitle('all'),$this->locale);
 				$feeditem['title'] = strip_tags(get_language_string($obj->getTitle('all'),$this->locale));
 				$title = get_language_string($obj->getTitle('all'),$this->locale);
-				$link = $obj->getImageLink();
+				$link = pathurlencode($obj->getImageLink());
 				$filename = $obj->getFilename();
 				$ext = getSuffix($filename);
 				$album = $albumobj->getFolder();
 				$fullimagelink = $this->host.pathurlencode($obj->getFullImageURL());
-				$imagefile = $imagefile = "albums/".$album."/".$obj->filename;
+				$imagefile = pathurlencode($obj->getFullImage('')); /* $imagefile = "albums/".$album."/".$obj->filename; */
 				$content = shortenContent($obj->getDesc($this->locale),getOption('zenpage_rss_length'), '...');
 				if(isImagePhoto($obj)) {
-					$feeditem['desc'] = '<a title="'.html_encode($feeditem['title']).' in '.html_encode($categories).'" href="'.PROTOCOL.'://'.$this->host.$link.'"><img border="0" src="'.PROTOCOL.'://'.$this->host.WEBPATH.'/'.ZENFOLDER.'/i.php?a='.$album.'&i='.$filename.'&s='.$this->imagesize.'" alt="'. html_encode($feeditem['title']).'"></a><br />'.$content;
+					$feeditem['desc'] = '<a title="'.html_encode($feeditem['title']).' in '.html_encode($categories).'" href="'.PROTOCOL.'://'.$this->host.$link.'"><img border="0" src="'.PROTOCOL.'://'.$this->host.pathurlencode($obj->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'. html_encode($feeditem['title']).'"></a><br />'.$content;
 				} else {
 					$feeditem['desc'] = '<a title="'.html_encode($feeditem['title']).' in '.html_encode($categories).'" href="'.PROTOCOL.'://'.$this->host.$link.'"><img src="'.pathurlencode($obj->getThumb()).'" alt="'.html_encode($feeditem['title']).'" /></a><br />'.$content;
 				}
@@ -917,12 +917,12 @@ protected function getRSSCombinewsAlbums() {
 				$categories = get_language_string($obj->getTitle('all'),$this->locale);
 				$feeditem['title'] = strip_tags(get_language_string($obj->getTitle('all'),$this->locale));
 				$title = get_language_string($obj->getTitle('all'),$this->locale);
-				$link = $obj->getAlbumLink();
+				$link = pathurlencode($obj->getAlbumLink());
 				$album = $obj->getFolder();
 				$albumthumb = $obj->getAlbumThumbImage();
 				$content = shortenContent($obj->getDesc($this->locale),getOption('zenpage_rss_length'), '...');
 				if(isImagePhoto($obj)) {
-					$feeditem['desc'] = '<a title="'.html_encode($feeditem['title']).'" href="'.PROTOCOL.'://'.$this->host.$link.'"><img border="0" src="'.PROTOCOL.'://'.$this->host.WEBPATH.'/'.ZENFOLDER.'/i.php?a='.$album.'&i='.html_encode($albumthumb->filename).'&s='.$this->imagesize.'" alt="'. html_encode($feeditem['title']).'"></a><br />'.$content;
+					$feeditem['desc'] = '<a title="'.html_encode($feeditem['title']).'" href="'.PROTOCOL.'://'.$this->host.$link.'"><img border="0" src="'.PROTOCOL.'://'.$this->host.pathurlencode($albumthumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'. html_encode($feeditem['title']).'"></a><br />'.$content;
 				} else {
 					$feeditem['desc'] = '<a title="'.html_encode($feeditem['title']).'" href="'.PROTOCOL.'://'.$this->host.$link.'"><img src="'.pathurlencode($obj->getAlbumThumb()).'" alt="'.html_encode($feeditem['title']).'" /></a><br />'.$content;
 				}
@@ -956,7 +956,7 @@ protected function getRSSCombinewsAlbums() {
 			case 'images':
 				$title = get_language_string($item['title']);
 				$obj = newImage(NULL, array('folder'=>$item['folder'],'filename'=>$item['filename']));
-				$link = $obj->getImagelink();
+				$link = pathurlencode($obj->getImagelink());
 				$feeditem['pubdate'] = date("r",strtotime($item['date']));
 				$category = $item['albumtitle'];
 				$website =$item['website'];
@@ -965,7 +965,7 @@ protected function getRSSCombinewsAlbums() {
 				} else {
 					$title = $category.": ".$title;
 				}
-				$commentpath = PROTOCOL.'://'.$this->host.html_encode($link)."#".$item['id'];
+				$commentpath = PROTOCOL.'://'.$this->host.$link."#".$item['id'];
 				break;
 			case 'albums':
 				$obj = new Album(NULL,$item['folder']);
@@ -1046,8 +1046,8 @@ protected function getRSSCombinewsAlbums() {
 						<link><?php echo $item['link']; ?></link>
 						<description><![CDATA[<?php echo $item['desc']; ?>]]></description>
 						<?php
-						if(!empty($item_['enclosure'])) {
-							echo $item_['enclosure']; //prints xml as well
+						if(!empty($item['enclosure'])) {
+							echo $item['enclosure']; //prints xml as well
 						}
 						if(!empty($item['category'])) {
 							?>
