@@ -152,7 +152,6 @@
 
 class RSS {
 	//general feed type gallery, news or comments
-	protected $zpfunctions = ''; // placeholder for the static class for the protable image urls
 	protected $feedtype = NULL;
 	protected $itemnumber = NULL;
 	protected $locale = NULL; // standard locale for lang parameter
@@ -398,7 +397,6 @@ class RSS {
 					$this->itemnumber = getOption('feed_items');
 				}
 			}
-			$this->feeditems = $this->getRSSitems();
 		}
 	}
 
@@ -1092,46 +1090,49 @@ protected function getRSSCombinewsAlbums() {
 				<generator>Zenphoto RSS Generator</generator>
 				<?php
 				$feeditems = $this->getRSSitems();
-				foreach($feeditems as $feeditem) {
-					switch($this->feedtype) {
-						case 'gallery':
-							$item = $this->getRSSitemGallery($feeditem);
-							break;
-						case 'news':
-							$item = $this->getRSSitemNews($feeditem);
-							break;
-						case 'pages':
-							$item = $this->getRSSitemPages($feeditem);
-							break;
-						case 'comments':
-							$item = $this->getRSSitemComments($feeditem);
-							break;
-					}
-					?>
-					<item>
-						<title><![CDATA[<?php echo $item['title']; ?>]]></title>
-						<link><?php echo $item['link']; ?></link>
-						<description><![CDATA[<?php echo $item['desc']; ?>]]></description>
-						<?php
-						if(!empty($item['enclosure'])) {
-							echo $item['enclosure']; //prints xml as well
-						}
-						if(!empty($item['category'])) {
-							?>
-							<category><![CDATA[<?php echo $item['category']; ?>]]></category>
-							<?php
-						}
-						if(!empty($item['media_content'])) {
-							echo $item['media_content']; //prints xml as well
-						}
-						if(!empty($item['media_thumbnail'])) {
-							echo $item['media_thumbnail']; //prints xml as well
+				if(is_array($feeditems)) {
+					foreach($feeditems as $feeditem) {
+						switch($this->feedtype) {
+							case 'gallery':
+								$item = $this->getRSSitemGallery($feeditem);
+								break;
+							case 'news':
+								$item = $this->getRSSitemNews($feeditem);
+								break;
+							case 'pages':
+								$item = $this->getRSSitemPages($feeditem);
+								break;
+							case 'comments':
+								$item = $this->getRSSitemComments($feeditem);
+								break;
 						}
 						?>
-						<guid><?php echo $item['link']; ?></guid>
-						<pubDate><?php echo $item['pubdate'];  ?></pubDate>
-					</item>
-				<?php } ?>
+						<item>
+							<title><![CDATA[<?php echo $item['title']; ?>]]></title>
+							<link><?php echo $item['link']; ?></link>
+							<description><![CDATA[<?php echo $item['desc']; ?>]]></description>
+							<?php
+							if(!empty($item['enclosure'])) {
+								echo $item['enclosure']; //prints xml as well
+							}
+							if(!empty($item['category'])) {
+								?>
+								<category><![CDATA[<?php echo $item['category']; ?>]]></category>
+								<?php
+							}
+							if(!empty($item['media_content'])) {
+								echo $item['media_content']; //prints xml as well
+							}
+							if(!empty($item['media_thumbnail'])) {
+								echo $item['media_thumbnail']; //prints xml as well
+							}
+							?>
+							<guid><?php echo $item['link']; ?></guid>
+							<pubDate><?php echo $item['pubdate'];  ?></pubDate>
+						</item>
+					<?php 
+					} 
+				}?>
 				</channel>
 			</rss>
 		<?php
