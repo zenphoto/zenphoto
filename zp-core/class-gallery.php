@@ -50,6 +50,15 @@ class Gallery {
 		return $text;
 	}
 
+	/**
+	 * Returns a tag stripped title
+	 * @param string $locale
+	 * @return string
+	 */
+	function getBareTitle($locale=NULL) {
+		return strip_tags($this->getTitle($locale));
+	}
+
 	function setTitle($title) {
 		$this->set('gallery_title',zpFunctions::tagURLs($title));
 	}
