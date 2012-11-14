@@ -150,6 +150,8 @@
  * @package classes
  */
 
+require_once(SERVERPATH.'/'.ZENFOLDER.'/lib-MimeTypes.php');
+
 class RSS {
 	//general feed type gallery, news or comments
 	protected $feedtype = NULL;
@@ -192,9 +194,8 @@ class RSS {
 	*
 	*/
 	function __construct() {
-		global $_zp_gallery,$_zp_zenpage, $mime_types;
+		global $_zp_gallery,$_zp_zenpage;
 		if(isset($_GET['rss'])) {
-			require_once(SERVERPATH.'/'.ZENFOLDER.'/lib-MimeTypes.php');
 			// general feed setup
 			$channeltitlemode = getOption('feed_title');
 			$this->host = html_encode($_SERVER["HTTP_HOST"]);
@@ -209,14 +210,14 @@ class RSS {
 			//channeltitle general
 			switch($channeltitlemode) {
 				case 'gallery':
-					$this->channel_title = strip_tags(get_language_string($_zp_gallery->get('gallery_title'), $this->locale));
+					$this->channel_title = $_zp_gallery->getBareTitle($this->locale);
 					break;
 				case 'website':
-					$this->channel_title = strip_tags(get_language_string($_zp_gallery->get('website_title'), $this->locale));
+					$this->channel_title = strip_tags($_zp_gallery->getWebsiteTitle($this->locale));
 					break;
 				case 'both':
-					$website_title = get_language_string($_zp_gallery->get('website_title'), $this->locale);
-					$this->channel_title = strip_tags(get_language_string($_zp_gallery->get('gallery_title'), $this->locale));
+					$website_title = $_zp_gallery->getWebsiteTitle($this->locale);
+					$this->channel_title = $_zp_gallery->getBareTitle($this->locale);
 					if(!empty($website_title)) {
 						$this->channel_title = $website_title.' - '.$this->channel_title;
 					}
@@ -314,7 +315,7 @@ class RSS {
 					require_once(ZENFOLDER . '/'.PLUGIN_FOLDER . '/image_album_statistics.php');
 					require_once(ZENFOLDER . '/'.PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
 					break;
-					
+
 				case 'pages':
 					if (!getOption('RSS_pages')) {
 						header("HTTP/1.0 404 Not Found");
@@ -344,7 +345,7 @@ class RSS {
 					$this->channel_title = html_encode($this->channel_title.$titleappendix);
 					require_once(ZENFOLDER . '/'.PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
 					break;
-					
+
 				case 'comments':	//Comments RSS
 					if (!getOption('RSS_comments')) {
 						header("HTTP/1.0 404 Not Found");
@@ -830,8 +831,8 @@ protected function getRSSCombinewsAlbums() {
 			$totalimages = $albumobj->getNumImages();
 			$itemlink = $this->host.pathurlencode($albumobj->getAlbumLink());
 			$thumb = $albumobj->getAlbumThumbImage();
-			$thumburl = '<img border="0" src="'.pathurlencode($thumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'.html_encode(get_language_string($albumobj->get("title"),$this->locale)) .'" />';
-			$title =  get_language_string($albumobj->get("title"),$this->locale);
+			$thumburl = '<img border="0" src="'.pathurlencode($thumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'.html_encode($albumobj->getTitle($this->locale)) .'" />';
+			$title =  $albumobj->getTtitle($this->locale);
 			if(true || $this->sortorder == "latestupdated") {
 				$filechangedate = filectime(ALBUM_FOLDER_SERVERPATH.internalToFilesystem($albumobj->name));
 				$latestimage = query_single_row("SELECT mtime FROM " . prefix('images'). " WHERE albumid = ".$albumobj->getID() . " AND `show` = 1 ORDER BY id DESC");
@@ -846,33 +847,33 @@ protected function getRSSCombinewsAlbums() {
 					$imagenumber = $title;
 				}
 				$feeditem['desc'] = '<a title="'.$title.'" href="'.PROTOCOL.'://'.$itemlink.'">'.$thumburl.'</a>'.
-										'<p>'.html_encode($imagenumber).'</p>'.get_language_string($albumobj->get("desc"),$this->locale).'<br />'.sprintf(gettext("Last update: %s"),zpFormattedDate(DATE_FORMAT,$filechangedate));
+										'<p>'.html_encode($imagenumber).'</p>'.$albumobj->getDesc($this->locale).'<br />'.sprintf(gettext("Last update: %s"),zpFormattedDate(DATE_FORMAT,$filechangedate));
 			} else {
 				if($totalimages != 0) {
 					$imagenumber = sprintf(ngettext('%s (%u image)','%s (%u images)',$totalimages),$title, $totalimages);
 				}
-				$feeditem['desc'] = '<a title="'.html_encode($title).'" href="'.PROTOCOL.'://'.$itemlink.'">'.$thumburl.'</a>'.zpfunctions::unTagURLs(get_language_string($item->get("desc"),$this->locale)).'<br />'.sprintf(gettext("Date: %s"),zpFormattedDate(DATE_FORMAT,$item->get('mtime')));
+				$feeditem['desc'] = '<a title="'.html_encode($title).'" href="'.PROTOCOL.'://'.$itemlink.'">'.$thumburl.'</a>'.$item->getDesc($this->locale).'<br />'.sprintf(gettext("Date: %s"),zpFormattedDate(DATE_FORMAT,$item->get('mtime')));
 			}
 			$ext = getSuffix($thumb->filename);
 		} else {
 			$ext = getSuffix($item->filename);
 			$albumobj = $item->getAlbum();
-			$itemlink = $this->host.pathurlencode($item->getImagelink());
+			$itemlink = $this->host.$item->getImagelink();
 			$fullimagelink = $this->host.pathurlencode($item->getFullImageURL());
-			$imagefile = "albums/".pathurlencode($albumobj->name)."/".$item->filename; 
-			$thumburl = '<img border="0" src="'.PROTOCOL.'://'.$this->host.pathurlencode($item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'.get_language_string(get_language_string($item->get("title"),$this->locale)) .'" /><br />';
-			$title = get_language_string($item->get("title"),$this->locale);
-			$albumtitle = get_language_string($albumobj->get("title"),$this->locale);
+			$imagefile = "albums/".pathurlencode($albumobj->name)."/".$item->filename;
+			$thumburl = '<img border="0" src="'.PROTOCOL.'://'.$this->host.pathurlencode($item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'.$item->getTitle($this->locale) .'" /><br />';
+			$title = $item->getTitle($this->locale);
+			$albumtitle = $albumobj->getTitle($this->locale);
 			$datecontent = '<br />Date: '.zpFormattedDate(DATE_FORMAT,$item->get('mtime'));
 			if ((($ext == "flv") || ($ext == "mp3") || ($ext == "mp4") ||  ($ext == "3gp") ||  ($ext == "mov")) AND $this->rssmode != "album") {
-				$feeditem['desc'] = '<a title="'.html_encode($title).' in '.html_encode(get_language_string($albumobj->get("title"),$this->locale)).'" href="'.PROTOCOL.'://'.$itemlink.'">'.$thumburl.'</a>' . zpfunctions::unTagURLs(get_language_string(get_language_string($item->get("desc"),$this->locale))).$datecontent;
+				$feeditem['desc'] = '<a title="'.html_encode($title).' in '.html_encode($albumobj->getTitle($this->locale)).'" href="'.PROTOCOL.'://'.$itemlink.'">'.$thumburl.'</a>' . $item->getDesc($this->locale).$datecontent;
 			} else {
-				$feeditem['desc'] = '<a title="'.html_encode($title).' in '.html_encode(get_language_string($albumobj->get("title"),$this->locale)).'" href="'.PROTOCOL.'://'.$itemlink.'"><img src="'.PROTOCOL.'://'.$this->host.pathurlencode($item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'.html_encode($title).'" /></a>' . zpfunctions::unTagURLs(get_language_string(get_language_string($item->get("desc"),$this->locale))).$datecontent;
+				$feeditem['desc'] = '<a title="'.html_encode($title).' in '.html_encode($albumobj->getTitle($this->locale)).'" href="'.PROTOCOL.'://'.$itemlink.'"><img src="'.PROTOCOL.'://'.$this->host.pathurlencode($item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'.html_encode($title).'" /></a>' . $item->getDesc($this->locale).$datecontent;
 			}
 		}
 		// title
 		if($this->rssmode != "albums") {
-			$feeditem['title'] = sprintf('%1$s (%2$s)', get_language_string($item->get("title"),$this->locale), get_language_string($albumobj->get("title"),$this->locale));
+			$feeditem['title'] = sprintf('%1$s (%2$s)', $item->getTitle($this->locale), $albumobj->getTitle($this->locale));
 		} else {
 			$feeditem['title'] = $imagenumber;
 		}
@@ -886,9 +887,9 @@ protected function getRSSCombinewsAlbums() {
 		}
 		//category
 		if($this->rssmode != "albums") {
-			$feeditem['category'] = html_encode(get_language_string($albumobj->get("title"),$this->locale));
+			$feeditem['category'] = html_encode($albumobj->getTitle($this->locale));
 		} else {
-			$feeditem['category'] = html_encode(get_language_string($albumobj->get("title"),$this->locale));
+			$feeditem['category'] = html_encode($albumobj->getTitle($this->locale));
 		}
 		//media content
 		$feeditem['media_content'] = '';
@@ -899,9 +900,9 @@ protected function getRSSCombinewsAlbums() {
 		}
 		//date
 		if($this->rssmode != "albums") {
-			$feeditem['pubdate'] = date("r",strtotime($item->get('date')));
+			$feeditem['pubdate'] = date("r",strtotime($item->getDateTime()));
 		} else {
-			$feeditem['pubdate'] = date("r",strtotime($albumobj->get('date')));
+			$feeditem['pubdate'] = date("r",strtotime($albumobj->getDateTime()));
 		}
 		return $feeditem;
 	}
@@ -930,7 +931,7 @@ protected function getRSSCombinewsAlbums() {
 					$categories .= get_language_string($catobj->getTitle('all'), $this->locale).', ';
 				}
 				$categories = rtrim($categories, ', ');
-				$feeditem['desc'] = zpfunctions::unTagURLs(shortenContent(get_language_string($obj->get('content'),$this->locale),getOption('zenpage_rss_length'), '...'));
+				$feeditem['desc'] = shortenContent($obj->getContent($this->locale),getOption('zenpage_rss_length'), '...');
 				break;
 			case 'images':
 				$albumobj = new Album(NULL,$item['albumname']);
@@ -938,7 +939,7 @@ protected function getRSSCombinewsAlbums() {
 				$categories = get_language_string($albumobj->getTitle('all'),$this->locale);
 				$feeditem['title'] = strip_tags(get_language_string($obj->getTitle('all'),$this->locale));
 				$title = get_language_string($obj->getTitle('all'),$this->locale);
-				$link = pathurlencode($obj->getImageLink());
+				$link = $obj->getImageLink();
 				$filename = $obj->getFilename();
 				$ext = getSuffix($filename);
 				$album = $albumobj->getFolder();
@@ -963,7 +964,7 @@ protected function getRSSCombinewsAlbums() {
 				$album = $obj->getFolder();
 				$albumthumb = $obj->getAlbumThumbImage();
 				$content = zpfunctions::unTagURLs(shortenContent($obj->getDesc($this->locale),getOption('zenpage_rss_length'), '...'));
-				
+
 				if(isImagePhoto($obj)) {
 					$feeditem['desc'] = '<a title="'.html_encode($feeditem['title']).'" href="'.PROTOCOL.'://'.$this->host.$link.'"><img border="0" src="'.PROTOCOL.'://'.$this->host.pathurlencode($albumthumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'. html_encode($feeditem['title']).'"></a><br />'.$content;
 				} else {
@@ -981,7 +982,7 @@ protected function getRSSCombinewsAlbums() {
 		$feeditem['pubdate'] = date("r",strtotime($item['date']));
 		return $feeditem;
 	}
-	
+
 	/**
 	 * Gets the feed item data in a pages feed
 	 *
@@ -995,11 +996,11 @@ protected function getRSSCombinewsAlbums() {
 		$feeditem['media_content'] = '';
 		$feeditem['media_thumbnail'] = '';
 		$feeditem['enclosure'] = '';
-		$feeditem['desc'] = zpfunctions::unTagURLs(shortenContent(get_language_string($obj->get('content'),$this->locale),getOption('zenpage_rss_length'), '...'));
+		$feeditem['desc'] = shortenContent($obj->getContent($this->locale),getOption('zenpage_rss_length'), '...');
 		$feeditem['link'] = PROTOCOL.'://'.$this->host.$obj->getPageLink();
-		$feeditem['pubdate'] = date("r",strtotime($obj->getDatetime())); 
+		$feeditem['pubdate'] = date("r",strtotime($obj->getDatetime()));
 		return $feeditem;
-	}	
+	}
 
 	/**
 	 * Gets the feed item data in a comments feed
@@ -1018,7 +1019,7 @@ protected function getRSSCombinewsAlbums() {
 			case 'images':
 				$title = get_language_string($item['title']);
 				$obj = newImage(NULL, array('folder'=>$item['folder'],'filename'=>$item['filename']));
-				$link = pathurlencode($obj->getImagelink());
+				$link = $obj->getImagelink();
 				$feeditem['pubdate'] = date("r",strtotime($item['date']));
 				$category = $item['albumtitle'];
 				$website =$item['website'];
@@ -1082,7 +1083,7 @@ protected function getRSSCombinewsAlbums() {
 				<title><?php echo $this->channel_title; ?></title>
 				<link><?php echo PROTOCOL.'://'.$this->host.WEBPATH; ?></link>
 				<atom:link href="<?php echo PROTOCOL; ?>://<?php echo $this->host; ?><?php echo html_encode(getRequestURI());; ?>" rel="self"	type="application/rss+xml" />
-				<description><?php echo strip_tags(get_language_string($_zp_gallery->get('Gallery_description'), $this->locale)); ?></description>
+				<description><?php echo strip_tags($_zp_gallery->getDesc($this->locale)); ?></description>
 				<language><?php echo $this->locale_xml; ?></language>
 				<pubDate><?php echo date("r", time()); ?></pubDate>
 				<lastBuildDate><?php echo date("r", time()); ?></lastBuildDate>
@@ -1130,8 +1131,8 @@ protected function getRSSCombinewsAlbums() {
 							<guid><?php echo $item['link']; ?></guid>
 							<pubDate><?php echo $item['pubdate'];  ?></pubDate>
 						</item>
-					<?php 
-					} 
+					<?php
+					}
 				}?>
 				</channel>
 			</rss>
