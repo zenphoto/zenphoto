@@ -850,7 +850,7 @@ class _Image extends MediaObject {
 	/**** Image Methods ****/
 
 	/**
-	 * Returns an image page link for the image
+	 * Returns a path urlencoded image page link for the image
 	 *
 	 * @return string
 	 */
