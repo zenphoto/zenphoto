@@ -858,7 +858,7 @@ protected function getRSSCombinewsAlbums() {
 		} else {
 			$ext = getSuffix($item->filename);
 			$albumobj = $item->getAlbum();
-			$itemlink = $this->host.pathurlencode($item->getImagelink());
+			$itemlink = $this->host.$item->getImagelink();
 			$fullimagelink = $this->host.pathurlencode($item->getFullImageURL());
 			$imagefile = "albums/".pathurlencode($albumobj->name)."/".$item->filename;
 			$thumburl = '<img border="0" src="'.PROTOCOL.'://'.$this->host.pathurlencode($item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'.$item->getTitle($this->locale) .'" /><br />';
@@ -939,7 +939,7 @@ protected function getRSSCombinewsAlbums() {
 				$categories = get_language_string($albumobj->getTitle('all'),$this->locale);
 				$feeditem['title'] = strip_tags(get_language_string($obj->getTitle('all'),$this->locale));
 				$title = get_language_string($obj->getTitle('all'),$this->locale);
-				$link = pathurlencode($obj->getImageLink());
+				$link = $obj->getImageLink();
 				$filename = $obj->getFilename();
 				$ext = getSuffix($filename);
 				$album = $albumobj->getFolder();
@@ -1019,7 +1019,7 @@ protected function getRSSCombinewsAlbums() {
 			case 'images':
 				$title = get_language_string($item['title']);
 				$obj = newImage(NULL, array('folder'=>$item['folder'],'filename'=>$item['filename']));
-				$link = pathurlencode($obj->getImagelink());
+				$link = $obj->getImagelink();
 				$feeditem['pubdate'] = date("r",strtotime($item['date']));
 				$category = $item['albumtitle'];
 				$website =$item['website'];
