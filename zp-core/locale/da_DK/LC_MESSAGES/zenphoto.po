@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-11 15:22+0100\n"
-"PO-Revision-Date: 2012-11-11 21:42+0100\n"
+"PO-Revision-Date: 2012-11-14 23:19+0100\n"
 "Last-Translator: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language-Team: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language: danish\n"
@@ -3478,48 +3478,54 @@ msgid ""
 "getSearchURL $album_list parameter is deprecated. Pass array(\"albums"
 "\"=>array(album, album, ...)) instead."
 msgstr ""
+"getSearchURL $album_list parameter frarådes. Brug array(\"albums\"=>array"
+"(album, album, ...)) i stedet."
 
 #: /home/jes/work/translations/zenphoto/zp-core/template-functions.php:4091
 msgid ""
 "printSearchForm $album_list parameter is deprecated. Pass array(\"albums"
 "\"=>array(album, album, ...)) instead."
 msgstr ""
+"printSearchForm $album_list parameter frarådes. Brug array(\"albums\"=>array"
+"(album, album, ...)) i stedet."
 
 #: /home/jes/work/translations/zenphoto/zp-core/template-functions.php:4107
 #, php-format
 msgid "%s within previous results"
-msgstr ""
+msgstr "%s inden for tidligere resultater"
 
 #: /home/jes/work/translations/zenphoto/zp-core/template-functions.php:4181
 msgid "search options"
-msgstr ""
+msgstr "Søgeindstillinger"
 
 #: /home/jes/work/translations/zenphoto/zp-core/template-functions.php:4181
 msgid "fields"
-msgstr ""
+msgstr "felter"
 
 #: /home/jes/work/translations/zenphoto/zp-core/template-functions.php:4217
 msgid "Within"
-msgstr ""
+msgstr "Inden for"
 
 #: /home/jes/work/translations/zenphoto/zp-core/template-functions.php:4221
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:89
 msgid "New"
-msgstr ""
+msgstr "Ny"
 
 #: /home/jes/work/translations/zenphoto/zp-core/template-functions.php:4275
 msgid "no date"
-msgstr ""
+msgstr "ingen dato"
 
 #: /home/jes/work/translations/zenphoto/zp-core/template-functions.php:4509
 msgid "The page you are trying to view is password protected."
-msgstr ""
+msgstr "Den side du prøver at se er beskyttet med adgangskode."
 
 #: /home/jes/work/translations/zenphoto/zp-core/template-functions.php:4549
 msgid ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
 "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
 msgstr ""
+"Kører på <a href=\"http://www.zenphoto.org\" title=\"Et enklere webalbum"
+"\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:55
 #, php-format
