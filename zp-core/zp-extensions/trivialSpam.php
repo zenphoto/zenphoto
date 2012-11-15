@@ -4,7 +4,20 @@
  * for more robust SPAM filters.
  * @author Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage spam
  */
+
+$plugin_is_filter = 5|CLASS_PLUGIN;
+$plugin_description = gettext("Trivial SPAM filter.");
+$plugin_author = "Stephen Billard (sbillard)";
+$plugin_disable = (isset($_zp_spamFilter) && !getoption('zp_plugin_trivialSpam'))?sprintf(gettext('Only one SPAM handler plugin may be enalbed. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'),$_zp_spamFilter->name):'';
+$option_interface = 'zpTrivialSpam';
+
+if ($plugin_disable) {
+	setOption('zp_plugin_trivialSpam', 0);
+} else {
+	$_zp_spamFilter = new zpTrivialSpam();
+}
 
 /**
  * This implements the standard SpamFilter class for the none spam filter.
@@ -13,15 +26,21 @@
  * on the commented object.
  *
  */
-class SpamFilter  {
+class zpTrivialSpam  {
+
+	var $name = 'trivialSpam';
 
 	/**
 	 * The SpamFilter class instantiation function.
 	 *
 	 * @return SpamFilter
 	 */
-	function SpamFilter() {
+	function __construct() {
 		setOptionDefault('spamFilter_none_action', 'pass');
+	}
+
+	function displayName() {
+		return $this->name;
 	}
 
 	/**

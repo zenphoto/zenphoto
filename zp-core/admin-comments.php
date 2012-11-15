@@ -17,11 +17,6 @@ if (isset($_GET['page'])) {
 	$page = '';
 }
 
-if (!(false === ($requirePath = getPlugin('spamfilters/'.getOption('spam_filter').'.php')))) {
-	require_once($requirePath);
-	$spamfilter = new SpamFilter();
-}
-
 if (isset($_GET['fulltext']) && $_GET['fulltext']) $fulltext = true; else $fulltext = false;
 if (isset($_GET['viewall'])) $viewall = true; else $viewall = false;
 
