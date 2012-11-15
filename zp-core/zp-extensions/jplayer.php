@@ -42,6 +42,7 @@
  *
  * @author Malte Müller (acrylian)
  * @package plugins
+ * @subpackage multimedia
  */
 
 $plugin_description = gettext("Enable <strong>jPlayer</strong> to handle multimedia files.");

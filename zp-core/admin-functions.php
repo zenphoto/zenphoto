@@ -4364,7 +4364,7 @@ function getPluginTabs() {
 			'users'=>gettext('users'),
 			'utilities'=>gettext('utilities'));
 
-	$classes = array();
+	$currentlist = $classes = array();
 	foreach ($paths as $plugin=>$path) {
 		$p = file_get_contents($path);
 		preg_match('|\* @subpackage (.*)?\n|i', $p, $matches);
@@ -4375,7 +4375,7 @@ function getPluginTabs() {
 		}
 	}
 
-	$classes['all'] = array_keys($paths);;
+	$classes['all'] = array_keys($paths);
 
 	foreach ($classes as $class=>$list) {
 		if (array_key_exists($key = $class, $classXlate)) {

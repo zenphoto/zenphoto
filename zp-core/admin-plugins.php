@@ -57,7 +57,7 @@ if (isset($_GET['action'])) {
 				setOption($opt, 0);
 			}
 		}
-		header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-plugins.php?saved?page=plugins&tab=".$subtab."&subpage=".$subpage);
+		header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-plugins.php?saved&page=plugins&tab=".$subtab."&subpage=".$subpage);
 		exitZP();
 	}
 }
@@ -138,7 +138,7 @@ echo gettext("If the plugin checkbox is checked, the plugin will be loaded and i
 <table class="bordered options">
 <tr>
 	<th id="imagenav" colspan="3">
-		<?php printPageSelector($subpage, $rangeset, 'admin-plugins.php', array()); ?>
+		<?php printPageSelector($subpage, $rangeset, 'admin-plugins.php', array('page'=>'plugins','tab'=>$subtab)); ?>
 	</th>
 </tr>
 <tr>

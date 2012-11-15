@@ -12,6 +12,8 @@
  *
  * <b>Note:</b> Enabling this plugin will affect both the front-end and the admin pages of Zenphoto.
  *
+ * @package plugins
+ * @subpackage development
  */
 
 $plugin_is_filter = 99|CLASS_PLUGIN;

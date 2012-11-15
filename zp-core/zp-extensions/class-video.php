@@ -12,7 +12,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package classes
- * @subpackage image
+ * @subpackage multimedia
  */
 
 // force UTF-8 Ø
