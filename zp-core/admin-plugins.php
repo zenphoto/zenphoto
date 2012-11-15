@@ -21,13 +21,9 @@ if (isset($_GET['subpage'])) {
 		$subpage = 0;
 	}
 }
-if (isset($_GET['tab'])) {
-	$subtab = sanitize($_GET['tab']);
-} else {
-	$subtab = gettext('general');
-}
 
 $_GET['page'] = 'plugins';
+list($tabs,$subtab,$pluginlist, $paths) = getPluginTabs();
 
 /* handle posts */
 if (isset($_GET['action'])) {
@@ -64,8 +60,6 @@ if (isset($_GET['action'])) {
 $saved = isset($_GET['saved']);
 printAdminHeader('plugins');
 zp_apply_filter('texteditor_config', '','zenphoto');
-
-list($tabs,$default,$pluginlist, $paths) = getPluginTabs();
 
 natcasesort($pluginlist);
 $rangeset = getPageSelector($pluginlist,PLUGINS_PER_PAGE);

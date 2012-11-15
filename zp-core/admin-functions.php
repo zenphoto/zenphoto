@@ -4348,7 +4348,7 @@ function getPluginTabs() {
 	if (isset($_GET['tab'])) {
 		$default = sanitize($_GET['tab']);
 	} else {
-		$default = gettext('general');
+		$default = gettext('all');
 	}
 	$paths = getPluginFiles('*.php');
 
@@ -4371,7 +4371,7 @@ function getPluginTabs() {
 		if (array_key_exists(1, $matches)) {
 			$classes[trim($matches[1])][] = $plugin;
 		} else {
-			$classes[gettext('general')][] = $plugin;
+			$classes[gettext('misc')][] = $plugin;
 		}
 	}
 
