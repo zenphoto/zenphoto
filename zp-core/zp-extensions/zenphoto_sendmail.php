@@ -4,6 +4,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage mail
  */
 $plugin_is_filter = 5|CLASS_PLUGIN;
 $plugin_description = gettext("Zenphoto outgoing mail handler based on the PHP <em>mail</em> facility.");

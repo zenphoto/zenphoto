@@ -4529,7 +4529,7 @@ function printPasswordForm($_password_hint, $_password_showuser=NULL, $_password
  **/
 function printCaptcha($preText='', $midText='', $postText='', $size=4) {
 	global $_zp_captcha;
-	if (getOption('Use_Captcha')) {
+	if ($_zp_captcha && getOption('Use_Captcha')) {
 		$captcha = $_zp_captcha->getCaptcha();
 		if (isset($captcha['hidden'])) echo $captcha['hidden'];
 		echo $preText;

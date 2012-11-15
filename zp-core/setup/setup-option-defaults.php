@@ -233,7 +233,7 @@ foreach ($_zp_exifvars as $key=>$item) {
 setOptionDefault('IPTC_encoding', 'ISO-8859-1');
 
 setOptionDefault('UTF8_image_URI', 0);
-setOptionDefault('captcha', 'zenphoto');
+setOptionDefault('zenphoto_plugun_zpCaptcha', 5|CLASS_PLUGIN);
 
 setOptionDefault('sharpen_amount', 40);
 setOptionDefault('sharpen_radius', 0.5);

@@ -9,6 +9,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage seo
  */
 if (defined('OFFSET_PATH')) {
 	$plugin_is_filter = 5|ADMIN_PLUGIN;

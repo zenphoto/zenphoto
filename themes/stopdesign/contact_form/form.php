@@ -84,7 +84,7 @@
 		</tr>
 		<?php
 		}
-		if(getOption("contactform_captcha") && !$_processing_post) {
+		if($_zp_captcha && getOption("contactform_captcha") && !$_processing_post) {
 			$captcha = $_zp_captcha->getCaptcha();
 		?>
 		<tr>
