@@ -41,10 +41,11 @@ if (!defined('OFFSET_PATH')) {
 	$real_locale = $_zp_current_locale;
 	$extension = sanitize($_GET['extension']);
 	$thirdparty = isset($_GET['thirdparty']);
+
 	if ($thirdparty) {
-		$path = SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/'.$extension.'.php';
+		$pluginToBeDocPath = SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/'.$extension.'.php';
 	} else {
-		$path = SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/'.$extension.'.php';
+		$pluginToBeDocPath = SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/'.$extension.'.php';
 	}
 
 	$plugin_description = '';
@@ -57,14 +58,15 @@ if (!defined('OFFSET_PATH')) {
 	$option_interface = '';
 	$doclink = '';
 
-	@require_once($path);
+	@require_once($pluginToBeDocPath);
+
 	$buttonlist = zp_apply_filter('admin_utilities_buttons', array());
 	$album = new ALbumbase(NULL, false);
 	$image = new Transientimage($album, '');
 	$imagebuttons = zp_apply_filter('edit_image_utilities', '', $image, 0, '', ''); //pass space as HTML because there is already a button shown for cropimage
 	$albumbuttons = zp_apply_filter('edit_album_utilities', '', $album, '');
 
-	$pluginStream = @file_get_contents($path);
+	$pluginStream = @file_get_contents($pluginToBeDocPath);
 	$i = strpos($pluginStream, '/*');
 	$j = strpos($pluginStream, '*/');
 	$links = array();

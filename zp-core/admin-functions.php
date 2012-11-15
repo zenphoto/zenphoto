@@ -4340,6 +4340,58 @@ function getLogTabs() {
 	}
 	return array($subtabs,$default);
 }
+
+/**
+ * Figures out which plugin tabs to display
+ */
+function getPluginTabs() {
+	if (isset($_GET['tab'])) {
+		$default = sanitize($_GET['tab']);
+	} else {
+		$default = gettext('general');
+	}
+	$paths = getPluginFiles('*.php');
+
+	$classXlate = array('all'=>gettext('all'),
+			'admin'=>gettext('admin'),
+			'captcha'=>gettext('captcha'),
+			'development'=>gettext('development'),
+			'general'=>gettext('general'),
+			'image'=>gettext('image'),
+			'mail'=>gettext('mail'),
+			'seo'=>gettext('seo'),
+			'uploader'=>gettext('uploader'),
+			'users'=>gettext('users'),
+			'utilities'=>gettext('utilities'));
+
+	$classes = array();
+	foreach ($paths as $plugin=>$path) {
+		$p = file_get_contents($path);
+		preg_match('|\* @subpackage (.*)?\n|i', $p, $matches);
+		if (array_key_exists(1, $matches)) {
+			$classes[trim($matches[1])][] = $plugin;
+		} else {
+			$classes[gettext('general')][] = $plugin;
+		}
+	}
+
+	$classes['all'] = array_keys($paths);;
+
+	foreach ($classes as $class=>$list) {
+		if (array_key_exists($key = $class, $classXlate)) {
+			$key = $classXlate[$class];
+		} else {
+			$classXlate[$key] = $key;
+		}
+		$tabs[$key] = 'admin-plugins.php?page=plugins&amp;tab='.$class;
+		if ($class == $default) {
+			$currentlist = $list;
+		}
+	}
+	ksort($tabs);
+	return array($tabs,$default,$currentlist, $paths);
+}
+
 /**
  *
  * Displays the "new version available" message on admin pages

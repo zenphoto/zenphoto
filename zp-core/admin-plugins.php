@@ -64,47 +64,8 @@ if (isset($_GET['action'])) {
 $saved = isset($_GET['saved']);
 printAdminHeader('plugins');
 zp_apply_filter('texteditor_config', '','zenphoto');
-$paths = getPluginFiles('*.php');
 
-$classXlate = array('all'=>gettext('all'),
-										'admin'=>gettext('admin'),
-										'captcha'=>gettext('captcha'),
-										'development'=>gettext('development'),
-										'general'=>gettext('general'),
-										'image'=>gettext('image'),
-										'mail'=>gettext('mail'),
-										'seo'=>gettext('seo'),
-										'uploader'=>gettext('uploader'),
-										'users'=>gettext('users'),
-										'utilities'=>gettext('utilities'));
-
-$classes = array();
-foreach ($paths as $plugin=>$path) {
-	$p = file_get_contents($path);
-	preg_match('|\* @subpackage (.*)?\n|i', $p, $matches);
-	if (array_key_exists(1, $matches)) {
-		$classes[trim($matches[1])][] = $plugin;
-	} else {
-		$classes[gettext('general')][] = $plugin;
-	}
-}
-
-$pluginlist = array();
-
-$classes['all'] = array_keys($paths);;
-
-foreach ($classes as $class=>$list) {
-	if (array_key_exists($key = $class, $classXlate)) {
-		$key = $classXlate[$class];
-	} else {
-		$classXlate[$key] = $key;
-	}
-	$zenphoto_tabs['plugins']['subtabs'][$key] = 'admin-plugins.php?page=plugins&amp;tab='.$class;
-	if ($class == $subtab) {
-		$pluginlist = $list;
-	}
-}
-ksort($zenphoto_tabs['plugins']['subtabs']);
+list($tabs,$default,$pluginlist, $paths) = getPluginTabs();
 
 natcasesort($pluginlist);
 $rangeset = getPageSelector($pluginlist,PLUGINS_PER_PAGE);

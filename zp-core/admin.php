@@ -316,7 +316,14 @@ zp_apply_filter('admin_note','Overview', NULL);
 		}
 		?>
 		</li>
-		<li><?php printf(gettext('Spam filter: <strong>%s</strong>'), getOption('spam_filter')) ?></li>
+		<li>
+		<?php
+		if (isset($_zp_spamFilter)) {
+			$filter = $_zp_spamFilter->displayName();
+		} else {
+			$filter = gettext('No spam filter configured');
+		}
+		printf(gettext('Spam filter: <strong>%s</strong>'), $filter) ?></li>
 		<?php
 		if ($_zp_captcha) {
 			?>

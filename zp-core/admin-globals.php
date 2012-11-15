@@ -153,9 +153,11 @@ if ($_zp_loggedin) {
 	}
 
 	if ($_zp_loggedin & ADMIN_RIGHTS) {
+		list($subtabs,$default)  = getPluginTabs();
 		$zenphoto_tabs['plugins'] = array('text'=>gettext("plugins"),
 																			'link'=>WEBPATH."/".ZENFOLDER.'/admin-plugins.php',
-																			'subtabs'=>NULL);
+																			'subtabs'=>$subtabs,
+																			'default'=>$default);
 	}
 
 	if ($_zp_loggedin & ADMIN_RIGHTS) {
