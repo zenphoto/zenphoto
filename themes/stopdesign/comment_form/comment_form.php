@@ -205,7 +205,7 @@ global $_zp_themeroot;
 					<tr><td colspan="2"><?php echo gettext('*Required fields'); ?></td></tr>
 					<?php
 				}
-				if (getOption('Use_Captcha')) {
+				if ($_zp_captcha && getOption('Use_Captcha')) {
 					printCaptcha("<tr valign=\"top\" align=\"left\"><th>" .gettext('Enter CAPTCHA').' ', "</th><td>", "</td></tr>\n", 16);
 				}
 				?>

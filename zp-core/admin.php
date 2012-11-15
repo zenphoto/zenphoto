@@ -317,8 +317,12 @@ zp_apply_filter('admin_note','Overview', NULL);
 		?>
 		</li>
 		<li><?php printf(gettext('Spam filter: <strong>%s</strong>'), getOption('spam_filter')) ?></li>
-		<li><?php printf(gettext('CAPTCHA generator: <strong>%s</strong>'), getOption('captcha')) ?></li>
 		<?php
+		if ($_zp_captcha) {
+			?>
+			<li><?php printf(gettext('CAPTCHA generator: <strong>%s</strong>'), $_zp_captcha->name) ?></li>
+			<?php
+		}
 		zp_apply_filter('installation_information');
 		if (!zp_has_filter('sendmail')) {
 			?>

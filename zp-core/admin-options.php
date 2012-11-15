@@ -396,7 +396,6 @@ if (isset($_GET['action'])) {
 			if ($protocol == 'http') {
 				zp_clearCookie("zenphoto_ssl");
 			}
-			setOption('captcha', sanitize($_POST['captcha']));
 			setOption('IP_tied_cookies', (int) isset($_POST['IP_tied_cookies']));
 			$_zp_gallery->save();
 			$returntab = "&tab=security";
@@ -3045,16 +3044,17 @@ if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 				<tr>
 					<td width="175"><?php echo gettext('CAPTCHA generator:'); ?></td>
 					<td width="350">
-						<select id="captcha" name="captcha">
 						<?php
-						$captchas = getPluginFiles('*.php','captcha');
-						generateListFromArray(array(getOption('captcha')), array_keys($captchas),false,false);
+						if ($_zp_captcha) {
+							echo $_zp_captcha->name;
+						} else {
+							echo gettext('not configured');
+						}
 						?>
-						</select>
 					</td>
-					<td><?php echo gettext('Select the <em>CAPTCHA</em> generator to be used by Zenphoto.'); ?></td>
+					<td></td>
 				</tr>
-					<?php customOptions($_zp_captcha, "&nbsp;&nbsp;&nbsp;-&nbsp;"); ?>
+					<?php if ($_zp_captcha) customOptions($_zp_captcha, "&nbsp;&nbsp;&nbsp;-&nbsp;"); ?>
 				<tr>
 					<td><?php echo gettext('Cookie security')?></td>
 					<td>

@@ -2,18 +2,34 @@
 /**
  * Zenphoto default captcha handler
  *
+ * @author Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage captcha
  */
 
 // force UTF-8 Ø
 
-class captcha {
+$plugin_is_filter = 5|CLASS_PLUGIN;
+$plugin_description = gettext("Zenphoto captcha hanlder.");
+$plugin_author = "Stephen Billard (sbillard)";
+$plugin_disable = ($_zp_captcha && !getoption('zp_plugin_zpCaptcha'))?sprintf(gettext('Only one Captcha handler plugin may be enalbed. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'),$_zp_captcha->name):'';
+
+if ($plugin_disable) {
+	setOption('zp_plugin_zpCaptcha', 0);
+} else {
+	$_zp_captcha = new zpCaptcha();
+}
+
+class zpCaptcha {
+
+	var $name='zpCaptcha';
+
 	/**
 	 * Class instantiator
 	 *
 	 * @return captcha
 	 */
-	function captcha() {
+	function __construct() {
 		setOptionDefault('zenphoto_captcha_length', 5);
 		setOptionDefault('zenphoto_captcha_key', sha1($_SERVER['HTTP_HOST'].'a9606420399a77387af2a4b541414ee5'.getUserIP()));
 		setOptionDefault('zenphoto_captcha_string', 'abcdefghijkmnpqrstuvwxyz23456789ABCDEFGHJKLMNPQRSTUVWXYZ');
@@ -133,7 +149,7 @@ class captcha {
 		$code=sha1($cypher);
 		query('DELETE FROM '.prefix('captcha').' WHERE `ptime`<'.(time()-3600), false);  // expired tickets
 		query("INSERT INTO " . prefix('captcha') . " (ptime, hash) VALUES (" . db_quote(time()) . "," . db_quote($code) . ")", false);
-		$html = '<img src="'.WEBPATH .'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/captcha/zenphoto/c.php?i='.$cypher.'" alt="Code" align="middle" />';
+		$html = '<img src="'.WEBPATH .'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zpCaptcha/c.php?i='.$cypher.'" alt="Code" align="middle" />';
 		$input = '<input type="text" id="code" name="code" class="captchainputbox" />';
 		$hidden = '<input type="hidden" name="code_h" value="'.$code.'" />';
 		return array('input'=>$input, 'html'=>$html, 'hidden'=>$hidden);

@@ -5,6 +5,7 @@
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage admin
  */
 $plugin_is_filter = 7|ADMIN_PLUGIN;
 $plugin_description = gettext("Places the latest 3 news articles from Zenphoto.org on the admin overview page.");

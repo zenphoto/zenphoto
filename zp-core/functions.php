@@ -19,15 +19,7 @@ require_once(dirname(__FILE__).'/functions-basic.php');
 require_once(dirname(__FILE__).'/functions-filter.php');
 require_once(SERVERPATH.'/'.ZENFOLDER.'/lib-kses.php');
 
-
-$_zp_captcha = getOption('captcha');
-if (empty($_zp_captcha)) 	{
-	$_zp_captcha = 'zenphoto';
-}
-$_zp_captcha = getPlugin('captcha/'.$_zp_captcha.'.php');
-require_once($_zp_captcha);
-$_zp_captcha = new Captcha();
-
+$_zp_captcha = NULL;
 //setup session before checking for logon cookie
 require_once(dirname(__FILE__).'/functions-i18n.php');
 

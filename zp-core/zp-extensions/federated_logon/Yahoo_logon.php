@@ -6,7 +6,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage usermanagement
+ * @subpackage users
  */
 
 require_once("OpenID_common.php");

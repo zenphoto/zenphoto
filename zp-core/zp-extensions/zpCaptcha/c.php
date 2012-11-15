@@ -6,7 +6,7 @@
 
 // force UTF-8 Ø
 define('OFFSET_PATH',3);
-require_once('../../../functions.php');
+require_once('../../functions.php');
 
 header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 header ("Content-type: image/png");

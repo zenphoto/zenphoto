@@ -3,6 +3,8 @@
  *
  * This plugin provides an HTTP based image upload handler for the <i>upload/images</i> admin tab.
  *
+ * @package plugins
+ * @subpackage uploader
  *
  */
 $plugin_is_filter = 5|ADMIN_PLUGIN;

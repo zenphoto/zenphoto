@@ -5,6 +5,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage admin
  */
 
 $plugin_is_filter = 9|THEME_PLUGIN;

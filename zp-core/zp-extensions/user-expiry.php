@@ -22,7 +22,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage usermanagement
+ * @subpackage users
  */
 
 // force UTF-8 Ø

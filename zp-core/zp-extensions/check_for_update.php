@@ -4,7 +4,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage admin
+ * @subpackage utilities
  */
 
 $plugin_is_filter = 5|ADMIN_PLUGIN;
