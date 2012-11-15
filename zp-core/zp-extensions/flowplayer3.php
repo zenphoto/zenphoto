@@ -12,6 +12,7 @@
  *
  * @author Malte Müller (acrylian)
  * @package plugins
+ * @subpackage media
  */
 
 
