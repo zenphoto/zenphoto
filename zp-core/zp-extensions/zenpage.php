@@ -54,7 +54,7 @@ zp_register_filter('admin_toolbox_news', 'zenpagecms::admin_toolbox_news');
 zp_register_filter('admin_toolbox_pages', 'zenpagecms::admin_toolbox_pages');
 zp_register_filter('themeSwitcher_head', 'zenpagecms::switcher_head');
 zp_register_filter('themeSwitcher_Controllink', 'zenpagecms::switcher_controllink', 0);
-zp_register_filter('load_theme_script', 'zenpagecms::switcher_setup', 0);
+zp_register_filter('load_theme_script', 'zenpagecms::switcher_setup', 99);
 
 require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-class.php');
 require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-class-news.php');
