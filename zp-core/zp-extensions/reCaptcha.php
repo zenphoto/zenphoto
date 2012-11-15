@@ -3,7 +3,7 @@
  * reCaptcha handler (http://www.google.com/recaptcha)
  *
  * @package plugins
- * @subpackage captcha
+ * @subpackage spam
  */
 
 // force UTF-8 Ø
