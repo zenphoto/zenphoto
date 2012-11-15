@@ -112,7 +112,6 @@ if (getOption('perform_video_watermark')) {
 	setoptionDefault('Video_watermark', $v);
 }
 
-setOptionDefault('spam_filter', 'none');
 setOptionDefault('email_new_comments', 1);
 setOptionDefault('image_sorttype', 'Filename');
 setOptionDefault('image_sortdirection', '0');
@@ -584,6 +583,17 @@ purgeOption('combinews-customtitle-singular');
 purgeOption('combinews-customtitle-plural');
 setOptionDefault('debug_log_size', 5000000);
 setOptionDefault('imageProcessorConcurrency',30);
+switch (getOption('spam_filter')) {
+	case 'none':
+		setOptionDefault('zp_plugin_trivialSpam', 5|CLASS_PLUGIN);
+		break;
+	case 'simple':
+		setOptionDefault('zp_plugin_simpleSpam', 5|CLASS_PLUGIN);
+		break;
+	default:
+		setOptionDefault('zp_plugin_legacySpam', 5|CLASS_PLUGIN);
+		break;
+}
 
 query('UPDATE '.prefix('administrators').' SET `passhash`='.((int) getOption('strong_hash')).' WHERE `valid`>=1 AND `passhash` IS NULL');
 query('UPDATE '.prefix('administrators').' SET `passupdate`='.db_quote(date('Y-m-d H:i:s')).' WHERE `valid`>=1 AND `passupdate` IS NULL');

@@ -277,7 +277,6 @@ if (isset($_GET['action'])) {
 		/*** Comment options ***/
 
 		if (isset($_POST['savecommentoptions'])) {
-			setOption('spam_filter', sanitize($_POST['spam_filter'],3));
 			setOption('email_new_comments', (int) isset($_POST['email_new_comments'])&&$_POST['email_new_comments']);
 			setOption('comment_name_required', sanitize($_POST['comment_name_required']));
 			setOption('comment_email_required',sanitize($_POST['comment_email_required']));
@@ -2308,21 +2307,21 @@ if ($subtab == 'comments' && zp_loggedin(OPTIONS_RIGHTS)) {
 		<!-- SPAM filter options -->
 		<tr>
 			<td><?php echo gettext("Spam filter:"); ?></td>
-			<td><select id="spam_filter" name="spam_filter">
+			<td>
 				<?php
-			$currentValue = getOption('spam_filter');
-			$filters = getPluginFiles('*.php','spamfilters');
-			generateListFromArray(array($currentValue), array_keys($filters),false,false);
-			?>
-			</select></td>
+				if (isset($_zp_spamFilter)) {
+					echo $_zp_spamFilter->name;
+				} else {
+					echo gettext('No spam filter configured');
+				}
+				?>
+			</td>
 			<td><?php echo gettext("The SPAM filter plug-in you wish to use to check comments for SPAM"); ?></td>
 		</tr>
 		<?php
 		/* procss filter based options here */
-		if (!(false === ($requirePath = getPlugin('spamfilters/'.getOption('spam_filter').'.php')))) {
-			require_once($requirePath);
-			$optionHandler = new SpamFilter();
-			customOptions($optionHandler, "&nbsp;&nbsp;&nbsp;-&nbsp;");
+		if (isset($_zp_spamFilter)) {
+			customOptions($_zp_spamFilter, "&nbsp;&nbsp;&nbsp;-&nbsp;");
 		}
 		?>
 		<!-- end of SPAM filter options -->
