@@ -15,6 +15,7 @@
  *
  * @author Malte Müller (acrylian) based on the plugin by Jeppe Toustrup (Tenzer) http://github.com/Tenzer/zenphoto-sitemap and on contributions by timo, Blue Dragonfly and Francois Marechal (frankm)
  * @package plugins
+ * @subpackage seo
  */
 
 $plugin_is_filter = 5|CLASS_PLUGIN;

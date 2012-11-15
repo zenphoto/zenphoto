@@ -8,7 +8,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @package admin
+ * @subpackage admin
  */
 $plugin_is_filter = 8|CLASS_PLUGIN;
 $plugin_description = gettext("Blocks access from an IP address which has had multiple failed logon attempts.");
