@@ -21,6 +21,7 @@
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard), Don Peterson (dpeterson)
  * @package plugins
+ * @subpackage media
  */
 
 $plugin_description = gettext("Adds a theme function to call a slideshow either based on jQuery (default) or Flash using Flowplayer3.");
@@ -501,16 +502,16 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 							if (relativeSlot == 0) {relativeSlot = totalSlideCount;}
 							var htmlblock = "<span class='slideimage'><h4><strong>" + ThisGallery + ":</strong> ";
 							htmlblock += TitleList[currentImageNum]  + " (" + relativeSlot + "/" + totalSlideCount + ")</h4>";
-							<?php	
-							if($linkslides) { 
+							<?php
+							if($linkslides) {
 								if(MOD_REWRITE) {
 								?>
 							htmlblock += "<a href='<?php echo pathurlencode($album->name); ?>/"+ImageNameList[currentImageNum]+"<?php echo getOption('mod_rewrite_image_suffix'); ?>'>";
-								<?php	
-								} else {  
+								<?php
+								} else {
 								?>
 								htmlblock += "<a href='index.php?album=<?php echo pathurlencode($album->name); ?>&image="+ImageNameList[currentImageNum]+"'>";
-								<?php	
+								<?php
 								}
 							}
 							?>
