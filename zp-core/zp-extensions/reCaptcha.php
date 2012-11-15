@@ -3,18 +3,32 @@
  * reCaptcha handler (http://www.google.com/recaptcha)
  *
  * @package plugins
+ * @subpackage captcha
  */
 
 // force UTF-8 Ø
+$plugin_is_filter = 5|CLASS_PLUGIN;
+$plugin_description = gettext("Zenphoto captcha hanlder.");
+$plugin_author = "Stephen Billard (sbillard)";
+$plugin_disable = ($_zp_captcha && !getoption('zp_plugin_reCaptcha'))?sprintf(gettext('Only one Captcha handler plugin may be enalbed. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'),$_zp_captcha->name):'';
+
+if ($plugin_disable) {
+	setOption('zp_plugin_reCaptcha', 0);
+} else {
+	$_zp_captcha = new reCaptcha();
+}
 require_once(dirname(__FILE__).'/reCaptcha/recaptchalib.php');
 
-class captcha {
+class reCaptcha {
+
+	var $name='zpCaptcha';
+
 	/**
 	 * Class instantiator
 	 *
 	 * @return captcha
 	 */
-	function captcha() {
+	function __construct() {
 	}
 
 	/**
