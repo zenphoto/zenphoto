@@ -1843,11 +1843,10 @@ function printPrevNewsLink($prev="« ",$sortorder='date',$sortdirection='desc') 
  * 										 "mostrated" for news articles and pages
  * 										 "toprated" for news articles and pages
  * 										 "random" for pages, news articles and categories
- * @param integer $threshold the minimum number of ratings an image must have to be included in the list. (Default 0). Only if $sortorder = "mostrated" or "toprated"
  * @return array
  */
-function getZenpageStatistic($number=10, $option="all",$mode="popular",$threshold=0) {
-	global $_zp_zenpage, $_zp_current_zenpage_news, $_zp_current_zenpage_pages;
+function getZenpageStatistic($number=10, $option="all",$mode="popular") {
+	global $_zp_current_zenpage_news, $_zp_current_zenpage_pages;
 	$statsarticles = array();
 	$statscats = array();
 	$statspages = array();
@@ -1866,7 +1865,7 @@ function getZenpageStatistic($number=10, $option="all",$mode="popular",$threshol
 			break;
 		}
 	if($option == "all" OR $option == "news") {
-		$articles = $_zp_zenpage->getArticles($number,NULL,true,$mode,NULL,false,$threshold);
+		$articles = query_full_array("SELECT titlelink FROM " . prefix('news')." ORDER BY $sortorder DESC LIMIT $number");
 		$counter = "";
 		$statsarticles = array();
 		foreach ($articles as $article) {
@@ -1877,8 +1876,8 @@ function getZenpageStatistic($number=10, $option="all",$mode="popular",$threshol
 					"title" => $obj->getTitle(),
 					"titlelink" => $article['titlelink'],
 					"hitcounter" => $obj->getHitcounter(),
-					"total_votes" => $obj->get('total_votes'),
-					"rating" => $obj->get('rating'),
+					"total_votes" => $obj->getTotal_votes(),
+					"rating" => $obj->getRating(),
 					"content" => $obj->getContent(),
 					"date" => $obj->getDateTime(),
 					"type" => "News"
@@ -1887,7 +1886,7 @@ function getZenpageStatistic($number=10, $option="all",$mode="popular",$threshol
 		$stats = $statsarticles;
 	}
 	if(($option == "all" OR $option == "categories") && $mode != "mostrated" && $mode != "toprated") {
-		$categories = $_zp_zenpage->getCategories(NULL,false,$mode,NULL,$number);
+		$categories = query_full_array("SELECT id, titlelink as title, title as titlelink, hitcounter FROM " . prefix('news_categories')." ORDER BY $sortorder DESC LIMIT $number");
 		$counter = "";
 		$statscats = array();
 		foreach ($categories as $cat) {
@@ -1907,7 +1906,7 @@ function getZenpageStatistic($number=10, $option="all",$mode="popular",$threshol
 		$stats = $statscats;
 	}
 	if($option == "all" OR $option == "pages") {
-		$pages = $_zp_zenpage->getPages(NULL,false,$mode,'',$number,$threshold);
+		$pages = query_full_array("SELECT titlelink FROM " . prefix('pages')." ORDER BY $sortorder DESC LIMIT $number");
 		$counter = "";
 		$statspages = array();
 		foreach ($pages as $page) {
@@ -1950,10 +1949,9 @@ function getZenpageStatistic($number=10, $option="all",$mode="popular",$threshol
  * @param bool $showdate if the date should be shown (news articles and pages only)
  * @param bool $showcontent if the content should be shown (news articles and pages only)
  * @param bool $contentlength The shortened lenght of the content
- * @param integer $threshold the minimum number of ratings an image must have to be included in the list. (Default 0). Only if $sortorder = "mostrated" or "toprated"
  */
-function printZenpageStatistic($number=10, $option="all",$mode="popular",$showstats=true,$showtype=true, $showdate=true, $showcontent=true, $contentlength=40,$threshold=0) {
-	$stats = getZenpageStatistic($number, $option,$mode,$threshold);
+function printZenpageStatistic($number=10, $option="all",$mode="popular",$showstats=true,$showtype=true, $showdate=true, $showcontent=true, $contentlength=40) {
+	$stats = getZenpageStatistic($number, $option,$mode);
 	$contentlength = sanitize_numeric($contentlength);
 	switch($mode) {
 		case 'popular':
@@ -3020,11 +3018,6 @@ function getZenpageRSSLink($option='News', $categorylink='', $lang=NULL) {
 		case 'NewsWithImages':
 			if (getOption('RSS_articles')) {
 				return WEBPATH.'/index.php?rss=news&withimages&lang='.$lang;
-			}
-			break;
-		case 'Pages':
-			if (getOption('RSS_pages')) {
-				return WEBPATH.'/index.php?rss=pages&lang='.$lang;
 			}
 			break;
 		case 'Comments':
