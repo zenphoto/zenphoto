@@ -4,7 +4,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage captcha
+ * @subpackage spam
  */
 
 // force UTF-8 Ø
