@@ -8,6 +8,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage image
  *
  */
 

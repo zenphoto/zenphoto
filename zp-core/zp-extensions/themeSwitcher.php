@@ -16,6 +16,7 @@
  * the control links.
  *
  * @package plugins
+ * @subpackage development
  */
 
 $plugin_is_filter = 98|CLASS_PLUGIN;

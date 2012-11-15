@@ -25,6 +25,7 @@
 
  * @author Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage admin
  */
 $plugin_is_filter = 8|CLASS_PLUGIN;
 $plugin_description = gettext("Tools to block hacker access to your site.");

@@ -43,7 +43,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage usermanagement
+ * @subpackage users
  */
 $plugin_is_filter = 9|CLASS_PLUGIN;
 $plugin_description = gettext('Handles logon from <em>OpenID</em> credential providers.');

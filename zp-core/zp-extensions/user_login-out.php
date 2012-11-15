@@ -6,7 +6,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage usermanagement
+ * @subpackage users
  */
 
 $plugin_is_filter = 99|THEME_PLUGIN;
