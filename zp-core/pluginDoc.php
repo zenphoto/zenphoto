@@ -25,6 +25,7 @@
  * to the actual image. E.g. <var><img src="%WEBPATH%/%ZENFOLDER%/images/action.png" /></var>
  *
  * @package admin
+ * @subpackage development
  */
 
 // force UTF-8 Ø
