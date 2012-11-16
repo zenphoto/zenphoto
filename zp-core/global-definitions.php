@@ -19,6 +19,7 @@ define('ADMIN_PLUGIN',2048);
 define('THEME_PLUGIN',1024);
 define('PLUGIN_PRIORITY',1023);
 
+define('SYMLINK',function_exists('symlink') && strpos(@ini_get("suhosin.executor.func.blacklist"),'symlink')===false);
 define('TEST_RELEASE',strpos(ZENPHOTO_VERSION, '-')!==false);
 
 define('DEBUG_LOGIN', false); // set to true to log admin saves and login attempts
