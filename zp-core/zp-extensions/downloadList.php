@@ -31,6 +31,7 @@
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage tools
  * @tags "file download", "download manager", download
  */
 $plugin_is_filter = 20|ADMIN_PLUGIN|THEME_PLUGIN;

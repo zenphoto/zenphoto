@@ -8,6 +8,7 @@
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage tools
  */
 $plugin_is_filter = 5|ADMIN_PLUGIN;
 $plugin_description = gettext("Tiny MCE<span id='tinymceversion'></span> text editor for backend <em>textareas</em>").' <script type="text/javascript">	if (tinymce) $("#tinymceversion").html(" v"+tinymce.majorVersion + "." + tinymce.minorVersion);	</script>';
