@@ -48,15 +48,17 @@ class user_groups {
 						$userobj->setObjects($group->getObjects());
 					}
 				} else {
-					$before = Zenphoto_Authority::newAdministrator($userobj->getUser(), 1);
 					$group = Zenphoto_Authority::newAdministrator($groupname, 0);
 					$rights = $group->getRights();
 					$objects = $group->getObjects();
 					if ($group->getName() == 'template') {
 						$groupname = '';
 						$updated = true;
-						$rights = $rights | $before->getRights();
-						$objects = array_merge($objects, $before->getObjects());
+						if ($userobj->getID() > 0) {
+							$before = Zenphoto_Authority::newAdministrator($userobj->getUser(), 1);
+							$rights = $rights | $before->getRights();
+							$objects = array_merge($objects, $before->getObjects());
+						}
 					}
 					$userobj->setRights($rights);
 					$userobj->setObjects($objects);
