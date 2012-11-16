@@ -1,4 +1,4 @@
-﻿editAreaLoader.lang["ja"]={
+editAreaLoader.lang["ja"]={
 new_document: "新規作成",
 search_button: "検索・置換",
 search_command: "次を検索 / 検索窓を表示",
