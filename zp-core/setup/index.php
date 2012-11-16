@@ -523,6 +523,26 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	}
 	checkMark($safe, gettext("PHP <code>Safe Mode</code>"), gettext("PHP <code>Safe Mode</code> [is set]"), gettext("Zenphoto functionality is reduced when PHP <code>safe mode</code> restrictions are in effect."));
 
+	if (!extension_loaded('suhosin')) {
+		$blacklist = @ini_get("suhosin.executor.func.blacklist");
+		if ($blacklist) {
+			$zpUses = array('symlink'=>0);
+			$abort = $issue = 0;
+			$blacklist = explode(',', $blacklist);
+			foreach ($blacklist as $key=>$func) {
+				if (array_key_exists($func, $zpUses)) {
+					$abort = true;
+					$issue = $issue | $zpUses[$func];
+					if ($zpUses[$func]) {
+						$blacklist[$key] = '<span style="color:red;">'.$func.'*</span>';
+					}
+				}
+			}
+			$issue--;
+			$good = checkMark($issue, '',gettext('<code>Suhosin</code> module [is enabled]'),sprintf(gettext('The following PHP functions are blocked: %s. Flagged functions are required by Zenphoto. Other functions in the list may be used by Zenphoto, possibly causing reduced functionality or Zenphoto failures.'),'<code>'.implode('</code>, <code>',$blacklist).'</code>'),$abort) && $good;
+		}
+	}
+
 	primeMark(gettext('Magic_quotes'));
 	if (get_magic_quotes_gpc()) {
 		$magic_quotes_disabled = -1;
