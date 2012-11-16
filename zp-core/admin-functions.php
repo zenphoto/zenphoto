@@ -989,14 +989,14 @@ function generateUnorderedListFromArray($currentValue, $list, $prefix, $alterrig
 						}
 						?>
 						<label class="displayinlineright">
-							<input type="<?php echo $type; ?>" id="<?php echo strtolower($listitem).'_'.$box['name'].$unique; ?>" name="<?php echo $listitem.'_'.$box['name']; ?>"
+							<input type="<?php echo $type; ?>" id="<?php echo strtolower($listitem).'_'.$box['name'].$unique; ?>"<?php echo $class;?> name="<?php echo $listitem.'_'.$box['name']; ?>"
 									 value="<?php echo html_encode($box['value']); ?>" <?php if ($box['checked']) {echo ' checked="checked"';	} ?>
 									 <?php echo $disable; ?> /> <?php echo $box['display'];?>
 						</label>
 						<?php
 					} else {
 						?>
-						<input type="hidden" id="<?php echo strtolower($listitem.'_'.$box['name']); ?>" name="<?php echo $listitem.'_'.$box['name']; ?>"
+						<input type="hidden" id="<?php echo strtolower($listitem.'_'.$box['name']); ?>" name="<?php echo $listitem.'_'.$box['name']; ?>"<?php echo $class;?>
 									 value="<?php echo html_encode($box['value']); ?>" />
 						<?php
 					}
@@ -3014,7 +3014,7 @@ function printAdminRightsTable($id, $background, $alterrights, $rights) {
 					}
 					?>
 					<label title="<?php echo html_encode(get_language_string($right['hint'])); ?>">
-						<input type="checkbox" name="<?php echo $id.'-'.$rightselement; ?>" id="<?php echo $rightselement.'-'.$id; ?>"
+						<input type="checkbox" name="<?php echo $id.'-'.$rightselement; ?>" id="<?php echo $rightselement.'-'.$id; ?>" class="user-<?php echo $id; ?>"
 									value="<?php echo $right['value']; ?>"<?php if ($rights & $right['value']) echo ' checked="checked"';	echo $alterrights; ?> /> <?php echo $right['name']; ?>
 					</label>
 					<?php
@@ -3041,7 +3041,7 @@ function printAdminRightsTable($id, $background, $alterrights, $rights) {
  * @param int $prefix the admin row
  * @param bit $rights the privileges  of the user
  */
-function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $rights, $kind, $flag) {
+function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix_id, $rights, $kind, $flag) {
 	$rest = $extra = $extra2 = array();
 	$legend = '';
 	switch ($type) {
@@ -3100,7 +3100,7 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 			}
 			$text = gettext("Managed albums:");
 			$simplename = $objectname = gettext('Albums');
-			$prefix = 'managed_albums_list_'.$prefix.'_';
+			$prefix = 'managed_albums_list_'.$prefix_id.'_';
 			break;
 		case 'news':
 			if ($rights & (MANAGE_ALL_NEWS_RIGHTS | ADMIN_RIGHTS)) {
@@ -3114,7 +3114,7 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 			$text = gettext("Managed news categories:");
 			$simplename = gettext ('News');
 			$objectname = gettext ('News categories');
-			$prefix = 'managed_news_list_'.$prefix.'_';
+			$prefix = 'managed_news_list_'.$prefix_id.'_';
 			break;
 		case 'pages':
 			if ($rights & (MANAGE_ALL_PAGES_RIGHTS | ADMIN_RIGHTS)) {
@@ -3127,7 +3127,7 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 			}
 			$text = gettext("Managed pages:");
 			$simplename = $objectname = gettext('Pages');
-			$prefix = 'managed_pages_list_'.$prefix.'_';
+			$prefix = 'managed_pages_list_'.$prefix_id.'_';
 			break;
 	}
 	if (empty($alterrights)) {
@@ -3152,8 +3152,8 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 		<div id="<?php echo $prefix ?>" style="display:none;">
 			<ul class="albumchecklist">
 				<?php
-				generateUnorderedListFromArray($cv, $cv, $prefix, $alterrights, true, true, NULL, $extra);
-				generateUnorderedListFromArray(array(), $rest, $prefix, $alterrights, true, true, NULL, $extra2);
+				generateUnorderedListFromArray($cv, $cv, $prefix, $alterrights, true, true, 'user-'.$prefix_id, $extra);
+				generateUnorderedListFromArray(array(), $rest, $prefix, $alterrights, true, true, 'user-'.$prefix_id, $extra2);
 				?>
 			</ul>
 			<span class="floatright"><?php echo $legend; ?>&nbsp;&nbsp;&nbsp;&nbsp;</span>
