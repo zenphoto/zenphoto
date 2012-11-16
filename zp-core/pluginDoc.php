@@ -76,7 +76,7 @@ if (!defined('OFFSET_PATH')) {
 
 		if ($thirdparty) {
 			$whose = 'third party plugin';
-			$path = stripSuffix($path).'/logo.png';
+			$path = stripSuffix($pluginToBeDocPath).'/logo.png';
 			if (file_exists($path)) {
 				$ico = str_replace(SERVERPATH, WEBPATH, $path);
 			} else {
