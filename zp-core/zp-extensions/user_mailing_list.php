@@ -5,7 +5,7 @@
  *
  * @author Malte Müller (acrylian)
  * @package plugins
- * @subpackage tools
+ * @subpackage users
  */
 
 if (defined('OFFSET_PATH')) {

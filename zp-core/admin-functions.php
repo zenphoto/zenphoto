@@ -4175,6 +4175,16 @@ function minDiff($string1, $string2) {
 }
 
 /**
+ * Used when you want getPgeSelector to show the full text of the items
+ * @param string $string1
+ * @param string $string2
+ * @return string
+ */
+function fullText($string1, $string2) {
+	return $string2;
+}
+
+/**
  *
  * returns the shortest "date" difference
  * @param string $date1
@@ -4211,7 +4221,19 @@ function dateDiff($date1, $date2) {
 	return rtrim($date, ':-');
 }
 
-function getPageSelector($list, $itmes_per_page, $diff='minDiff') {
+/**
+ * returns a selector list based on the "names" of the list items
+ *
+ *
+ * @param array $list
+ * @param int $itmes_per_page
+ * @param string $diff
+ * 									"fullText" for the complete names
+ * 									"minDiff" for a truncated string showing just the unique characters of the names
+ * 									"dateDiff" it the "names" are really dates.
+ * @return array
+ */
+function getPageSelector($list, $itmes_per_page, $diff='fullText') {
 	$rangeset = array();
 	$pages = round(ceil(count($list) / (int) $itmes_per_page));
 	$list = array_values($list);
@@ -4360,7 +4382,7 @@ function getPluginTabs() {
 			'mail'=>gettext('mail'),
 			'media'=>gettext('media'),
 			'misc'=>gettext('misc'),
-			'spam'=>gettext('sapm'),
+			'spam'=>gettext('spam'),
 			'seo'=>gettext('seo'),
 			'tools'=>gettext('tools'),
 			'uploader'=>gettext('uploader'),
