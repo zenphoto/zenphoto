@@ -4352,17 +4352,21 @@ function getPluginTabs() {
 	}
 	$paths = getPluginFiles('*.php');
 
-	$classXlate = array('all'=>gettext('all'),
+	$classXlate = array(
 			'admin'=>gettext('admin'),
-			'captcha'=>gettext('captcha'),
+			'all'=>gettext('all'),
+			'demo'=>gettext('demo'),
 			'development'=>gettext('development'),
-			'general'=>gettext('general'),
-			'image'=>gettext('image'),
 			'mail'=>gettext('mail'),
+			'media'=>gettext('media'),
+			'misc'=>gettext('misc'),
+			'spam'=>gettext('sapm'),
 			'seo'=>gettext('seo'),
+			'tools'=>gettext('tools'),
 			'uploader'=>gettext('uploader'),
 			'users'=>gettext('users'),
-			'utilities'=>gettext('utilities'));
+			'utilities'=>gettext('utilities')
+			);
 
 	$currentlist = $classes = array();
 	foreach ($paths as $plugin=>$path) {
