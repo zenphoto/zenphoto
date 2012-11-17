@@ -13,6 +13,8 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: /Applications/MAMP/htdocs\n"
 "Language: nl_NL\n"
+"X-Poedit-Language: Dutch\n"
+"X-Poedit-Country: NETHERLANDS\n"
 "X-Poedit-SearchPath-0: ZpFork-Dutch-Translation-Dev\n"
 
 #: ZpFork-Dutch-Translation-Dev/index.php:125
