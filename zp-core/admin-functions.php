@@ -2856,7 +2856,6 @@ function copyThemeDirectory($source, $target, $newname) {
 	else if (file_exists("$target/theme.jpg")) $themeimage = "$target/theme.jpg";
 	else $themeimage = false;
 	if ($themeimage) {
-		require_once(dirname(__FILE__).'/functions-image.php');
 		if ($im = zp_imageGet($themeimage)) {
 			$x = zp_imageWidth($im)/2 - 45;
 			$y = zp_imageHeight($im)/2 - 10;
