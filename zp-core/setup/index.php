@@ -523,6 +523,26 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	}
 	checkMark($safe, gettext("PHP <code>Safe Mode</code>"), gettext("PHP <code>Safe Mode</code> [is set]"), gettext("Zenphoto functionality is reduced when PHP <code>safe mode</code> restrictions are in effect."));
 
+	if (!extension_loaded('suhosin')) {
+		$blacklist = @ini_get("suhosin.executor.func.blacklist");
+		if ($blacklist) {
+			$zpUses = array('symlink'=>0);
+			$abort = $issue = 0;
+			$blacklist = explode(',', $blacklist);
+			foreach ($blacklist as $key=>$func) {
+				if (array_key_exists($func, $zpUses)) {
+					$abort = true;
+					$issue = $issue | $zpUses[$func];
+					if ($zpUses[$func]) {
+						$blacklist[$key] = '<span style="color:red;">'.$func.'*</span>';
+					}
+				}
+			}
+			$issue--;
+			$good = checkMark($issue, '',gettext('<code>Suhosin</code> module [is enabled]'),sprintf(gettext('The following PHP functions are blocked: %s. Flagged functions are required by Zenphoto. Other functions in the list may be used by Zenphoto, possibly causing reduced functionality or Zenphoto failures.'),'<code>'.implode('</code>, <code>',$blacklist).'</code>'),$abort) && $good;
+		}
+	}
+
 	primeMark(gettext('Magic_quotes'));
 	if (get_magic_quotes_gpc()) {
 		$magic_quotes_disabled = -1;
@@ -1422,10 +1442,10 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		if (file_exists($serverpath.'/robots.txt')) {
 			checkmark(-2, gettext('<em>robots.txt</em> file'), gettext('<em>robots.txt</em> file [Not created]'), gettext('Setup did not create a <em>robots.txt</em> file because one already exists.'));
 		} else {
-			$text = explode('****delete all lines above and including this one *******'."\n", $robots);
-			$d = dirname(dirname($_SERVER['SCRIPT_NAME']));
+			$text = explode('****delete all lines above and including this one *******', $robots);
+			$d = dirname(dirname(dirname($_SERVER['SCRIPT_NAME'])));
 			if ($d == '/') $d = '';
-			$robots = str_replace('/zenphoto', $d, $text[1]);
+			$robots = str_replace('/zenphoto', $d, trim($text[1]));
 			$rslt = file_put_contents($serverpath.'/robots.txt', $robots);
 			if ($rslt === false) {
 				$rslt = -1;
@@ -1468,6 +1488,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	$good = checkmark(file_exists($en_US), gettext('<em>locale</em> folders'), gettext('<em>locale</em> folders [Are not complete]'), gettext('Be sure you have uploaded the complete Zenphoto package. You must have at least the <em>en_US</em> folder.')) && $good;
 	$good = folderCheck(gettext('uploaded'), $serverpath . '/'.UPLOAD_FOLDER.'/', 'std', NULL, false, $chmod | 0311, $updatechmod) && $good;
 	$good = folderCheck(DATA_FOLDER, $serverpath . '/'.DATA_FOLDER.'/', 'std', NULL, false, $chmod | 0311, $updatechmod) && $good;
+	@mkdir(SERVERPATH.'/'.DATA_FOLDER.'/mutex', $chmod | 0311);
 	$good = folderCheck(gettext('HTML cache'), $serverpath . '/'.STATIC_CACHE_FOLDER.'/', 'std', $Cache_html_subfolders, true, $chmod | 0311, $updatechmod) && $good;
 	$good = folderCheck(gettext('Third party plugins'), $serverpath . '/'.USER_PLUGIN_FOLDER.'/', 'std', $plugin_subfolders, true, $chmod | 0311, $updatechmod) && $good;
 

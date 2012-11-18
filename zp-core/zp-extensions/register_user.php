@@ -20,7 +20,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage usermanagement
+ * @subpackage users
  */
 $plugin_is_filter = 5|ADMIN_PLUGIN|THEME_PLUGIN;
 $plugin_description = gettext("Provides a means for placing a user registration form on your theme pages.");

@@ -544,8 +544,8 @@ zp-core/locale
 zp-core/locale/auto.png
 zp-core/locale/da_DK
 zp-core/locale/da_DK/LC_MESSAGES
-zp-core/locale/da_DK/LC_MESSAGES/da_DK.mo
-zp-core/locale/da_DK/LC_MESSAGES/da_DK.po
+zp-core/locale/da_DK/LC_MESSAGES/zenphoto.mo
+zp-core/locale/da_DK/LC_MESSAGES/zenphoto.po
 zp-core/locale/da_DK/flag.png
 zp-core/locale/da_DK/select_files_button.png
 zp-core/locale/de_DE
@@ -680,14 +680,6 @@ zp-core/zp-extensions/auto_backup.php
 zp-core/zp-extensions/cacheManager
 zp-core/zp-extensions/cacheManager.php
 zp-core/zp-extensions/cacheManager/cacheImages.php
-zp-core/zp-extensions/cacheManager/i.php
-zp-core/zp-extensions/captcha
-zp-core/zp-extensions/captcha/reCaptcha
-zp-core/zp-extensions/captcha/reCaptcha.php
-zp-core/zp-extensions/captcha/reCaptcha/recaptchalib.php
-zp-core/zp-extensions/captcha/zenphoto
-zp-core/zp-extensions/captcha/zenphoto.php
-zp-core/zp-extensions/captcha/zenphoto/c.php
 zp-core/zp-extensions/check_for_update.php
 zp-core/zp-extensions/class-AnyFile
 zp-core/zp-extensions/class-AnyFile.php
@@ -994,6 +986,7 @@ zp-core/zp-extensions/jplayer/skin/zenphotolight/jplayer.zenphoto.play.png
 zp-core/zp-extensions/jplayer/skin/zenphotolight/jplayer.zenphoto.png
 zp-core/zp-extensions/jplayer/skin/zenphotolight/jplayer.zenphoto.seeking.gif
 zp-core/zp-extensions/jplayer/skin/zenphotolight/jplayer.zenphotolight.css
+zp-core/zp-extensions/legacySpam.php
 zp-core/zp-extensions/menu_manager
 zp-core/zp-extensions/menu_manager.php
 zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php
@@ -1019,6 +1012,9 @@ zp-core/zp-extensions/rating/jquery.MetaData.js
 zp-core/zp-extensions/rating/jquery.rating.css
 zp-core/zp-extensions/rating/jquery.rating.js
 zp-core/zp-extensions/rating/update.php
+zp-core/zp-extensions/reCaptcha
+zp-core/zp-extensions/reCaptcha.php
+zp-core/zp-extensions/reCaptcha/recaptchalib.php
 zp-core/zp-extensions/register_user
 zp-core/zp-extensions/register_user.php
 zp-core/zp-extensions/register_user/register_user_form.php
@@ -1032,6 +1028,7 @@ zp-core/zp-extensions/seo_locale.php
 zp-core/zp-extensions/seo_null.php
 zp-core/zp-extensions/seo_zenphoto.php
 zp-core/zp-extensions/show_not_logged-in.php
+zp-core/zp-extensions/simpleSpam.php
 zp-core/zp-extensions/site_upgrade
 zp-core/zp-extensions/site_upgrade.php
 zp-core/zp-extensions/site_upgrade/closed.php
@@ -1046,9 +1043,6 @@ zp-core/zp-extensions/slideshow/controls.png
 zp-core/zp-extensions/slideshow/flowplayerfullsizeicon.png
 zp-core/zp-extensions/slideshow/jquery.cycle.all.js
 zp-core/zp-extensions/slideshow/slideshow-counter.php
-zp-core/zp-extensions/spamfilters
-zp-core/zp-extensions/spamfilters/none.php
-zp-core/zp-extensions/spamfilters/simple.php
 zp-core/zp-extensions/static_html_cache.php
 zp-core/zp-extensions/tag_extras.php
 zp-core/zp-extensions/tag_suggest
@@ -1850,6 +1844,7 @@ zp-core/zp-extensions/tiny_mce/utils/editable_selects.js
 zp-core/zp-extensions/tiny_mce/utils/form_utils.js
 zp-core/zp-extensions/tiny_mce/utils/mctabs.js
 zp-core/zp-extensions/tiny_mce/utils/validate.js
+zp-core/zp-extensions/trivialSpam.php
 zp-core/zp-extensions/tweet_news
 zp-core/zp-extensions/tweet_news.php
 zp-core/zp-extensions/tweet_news/OAuth.php
@@ -1925,4 +1920,7 @@ zp-core/zp-extensions/zenphoto_news
 zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
-1927
+zp-core/zp-extensions/zpCaptcha
+zp-core/zp-extensions/zpCaptcha.php
+zp-core/zp-extensions/zpCaptcha/c.php
+1925

@@ -26,7 +26,7 @@ $buttonlist[] = array(
 								'title'=>gettext('Shows statistical graphs and info about your gallery\'s images and albums.'),
 								'alt'=>'',
 								'hidden'=>'',
-								'rights'=> OVERVIEW_RIGHTS | ADMIN_RIGHTS
+								'rights'=> ADMIN_RIGHTS
 								);
 
 admin_securityChecks(OVERVIEW_RIGHTS, currentRelativeURL());
@@ -198,7 +198,7 @@ function printBarGraph($sortorder="mostimages",$type="albums",$from_number=0, $t
 					$albums = array();
 					foreach ($allalbums as $album) {
 						$albumobj = new Album(NULL,$album['folder']);
-						$albumentry = array("id" => $albumobj->get('id'), "title" => $albumobj->getTitle(), "folder" => $albumobj->name,"imagenumber" => $albumobj->getNumImages(), "show" => $albumobj->get("show"));
+						$albumentry = array("id" => $albumobj->getID(), "title" => $albumobj->getTitle(), "folder" => $albumobj->name,"imagenumber" => $albumobj->getNumImages(), "show" => $albumobj->getShow());
 						array_unshift($albums,$albumentry);
 					}
 					$maxvalue = 1;

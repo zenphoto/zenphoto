@@ -16,6 +16,7 @@
  *
  * @author Malte Müller (acrylian)
  * @package plugins
+ * @subpackage admin
  */
 
 $plugin_is_filter = 90|THEME_PLUGIN;

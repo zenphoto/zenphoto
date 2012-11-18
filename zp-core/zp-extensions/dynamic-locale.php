@@ -23,6 +23,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage seo
  */
 $plugin_description = gettext("Allows viewers of your site to select the language translation of their choice.");
 $plugin_author = "Stephen Billard (sbillard)";

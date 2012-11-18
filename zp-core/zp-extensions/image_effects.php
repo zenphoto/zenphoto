@@ -53,6 +53,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage media
  */
 
 $plugin_description = gettext('Attaches "Image effects" to images and thumbnails.');

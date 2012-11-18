@@ -2,6 +2,7 @@
 /**
  * Translates characters with diacritical marks to simple equivilents
  * @package plugins
+ * @subpackage seo
  */
 
 $plugin_is_filter = 5|ADMIN_PLUGIN;

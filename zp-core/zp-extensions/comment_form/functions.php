@@ -487,13 +487,13 @@ define ('COMMENT_SEND_EMAIL', 32);
  * @return object
  */
 function comment_form_addCcomment($name, $email, $website, $comment, $code, $code_ok, $receiver, $ip, $private, $anon, $check=false) {
-	global $_zp_captcha, $_zp_gallery, $_zp_authority, $_zp_comment_on_hold;
+	global $_zp_captcha, $_zp_gallery, $_zp_authority, $_zp_comment_on_hold, $_zp_spamFilter;
 	if ($check === false) {
 		$whattocheck = 0;
 		if (getOption('comment_email_required')=='required') $whattocheck = $whattocheck | COMMENT_EMAIL_REQUIRED;
 		if (getOption('comment_name_required')) $whattocheck = $whattocheck | COMMENT_NAME_REQUIRED;
 		if (getOption('comment_web_required')=='required') $whattocheck = $whattocheck | COMMENT_WEB_REQUIRED;
-		if (getOption('Use_Captcha')) $whattocheck = $whattocheck | USE_CAPTCHA;
+		if ($_zp_captcha && getOption('Use_Captcha')) $whattocheck = $whattocheck | USE_CAPTCHA;
 		if (getOption('comment_body_requiired')) $whattocheck = $whattocheck | COMMENT_BODY_REQUIRED;
 		IF (getOption('email_new_comments')) $whattocheck = $whattocheck | COMMENT_SEND_EMAIL;
 	} else {
@@ -555,18 +555,16 @@ function comment_form_addCcomment($name, $email, $website, $comment, $code, $cod
 		$goodMessage = false;
 	}
 	$moderate = 0;
-	if ($goodMessage && !(false === ($requirePath = getPlugin('spamfilters/'.internalToFilesystem(getOption('spam_filter')).".php")))) {
-		require_once($requirePath);
-		$spamfilter = new SpamFilter();
-		$goodMessage = $spamfilter->filterMessage($name, $email, $website, $comment, $receiver, $ip);
+	if ($goodMessage && isset($_zp_spamFilter)) {
+		$goodMessage = $_zp_spamFilter->filterMessage($name, $email, $website, $comment, $receiver, $ip);
 		switch ($goodMessage) {
 			case	 0:
 				$commentobj->setInModeration(2);
-				$commentobj->comment_error_text .= sprintf(gettext('Your comment was rejected by the <em>%s</em> SPAM filter.'),getOption('spam_filter'));
+				$commentobj->comment_error_text .= sprintf(gettext('Your comment was rejected by the <em>%s</em> SPAM filter.'),$_zp_spamFilter->name);
 				$goodMessage = false;
 				break;
 			case   1:
-				$_zp_comment_on_hold = sprintf(gettext('Your comment has been marked for moderation by the <em>%s</em> SPAM filter.'),getOption('spam_filter'));
+				$_zp_comment_on_hold = sprintf(gettext('Your comment has been marked for moderation by the <em>%s</em> SPAM filter.'),$_zp_spamFilter->name);
 				$commentobj->comment_error_text .= $_zp_comment_on_hold;
 				$commentobj->setInModeration(1);
 				$moderate = 1;

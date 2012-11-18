@@ -4,6 +4,7 @@
  *
  * @package plugins
  * @author Stephen Billard (sbillard)
+ * @subpackage tools
  */
 $plugin_is_filter = 9|THEME_PLUGIN|ADMIN_PLUGIN;
 $plugin_description = gettext('Tweet news articles when published.');
@@ -276,19 +277,21 @@ class tweet {
 	 *
 	 * @return string
 	 */
-	private static function truncateMessage($link, $title, $text) {
+	private static function composeStatus($link, $title, $text) {
 		$text = trim(html_decode(strip_tags($text)));
-		$title = trim(html_decode(strip_tags($title)));
-		if (strlen($text.' '.$link) > 140) {
+		if ($title) {
+			$title = trim(html_decode(strip_tags($title))).': ';
+		}
+		if (strlen($title.$text.' '.$link) > 140) {
 			$c = 140 - strlen($link);
 			if (mb_strlen($title) >= ($c - 25)) {	//	not much point in the body if shorter than 25
 				$text = truncate_string($title, $c - 4, '... ').$link;	//	allow for ellipsis
 			} else {
 				$c = $c - mb_strlen($title) - 5;
-				$text = $title.': '.truncate_string($text, $c, '... ').$link;
+				$text = $title.truncate_string($text, $c, '... ').$link;
 			}
 		} else {
-			$text .= ' '.$link;
+			$text = $title.$text.' '.$link;
 		}
 		$error = self::sendTweet($text);
 		if ($error) {
@@ -312,7 +315,7 @@ class tweet {
 		switch ($type = $obj->table) {
 			case 'pages':
 			case 'news':
-				$error = self::truncateMessage($link,$obj->getTitle(),$obj->getContent());
+				$error = self::composeStatus($link,$obj->getTitle(),$obj->getContent());
 				break;
 			case 'albums':
 			case 'images':
@@ -322,10 +325,10 @@ class tweet {
 				} else {
 					$text = sprintf(gettext('New album: %s '),$item = $obj->getTitle());
 				}
-				$error = self::truncateMessage($link, '', $item);
+				$error = self::composeStatus($link, '', $item);
 				break;
 			case 'comments':
-				$error = self::truncateMessage($link, '', $obj->getComment());
+				$error = self::composeStatus($link, '', $obj->getComment());
 				break;
 		}
 		if (isset($cur_locale)) {

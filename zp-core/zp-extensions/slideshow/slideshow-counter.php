@@ -15,7 +15,7 @@ if ($album_name && $img_name ) {
 	$image = newImage($album, $img_name);
 	//update hit counter
 	if (!$album->isMyItem(LIST_RIGHTS)) {
-		$hc = $image->get('hitcounter')+1;
+		$hc = $image->getHitcounter()+1;
 		$image->set('hitcounter', $hc);
 		$image->save();
 	}

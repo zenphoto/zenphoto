@@ -50,7 +50,7 @@
 										}
 								?>
 								</td>
-								
+
 								</tr>
 								<?php
 							}
@@ -244,7 +244,7 @@
 								<tr><td colspan="2"><?php echo gettext('*Required fields'); ?></td></tr>
 								<?php
 							}
-							if (getOption('Use_Captcha')) {
+							if ($_zp_captcha && getOption('Use_Captcha')) {
  								$captcha = $_zp_captcha->getCaptcha();
  								?>
  								<tr>

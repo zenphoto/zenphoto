@@ -989,14 +989,14 @@ function generateUnorderedListFromArray($currentValue, $list, $prefix, $alterrig
 						}
 						?>
 						<label class="displayinlineright">
-							<input type="<?php echo $type; ?>" id="<?php echo strtolower($listitem).'_'.$box['name'].$unique; ?>" name="<?php echo $listitem.'_'.$box['name']; ?>"
+							<input type="<?php echo $type; ?>" id="<?php echo strtolower($listitem).'_'.$box['name'].$unique; ?>"<?php echo $class;?> name="<?php echo $listitem.'_'.$box['name']; ?>"
 									 value="<?php echo html_encode($box['value']); ?>" <?php if ($box['checked']) {echo ' checked="checked"';	} ?>
 									 <?php echo $disable; ?> /> <?php echo $box['display'];?>
 						</label>
 						<?php
 					} else {
 						?>
-						<input type="hidden" id="<?php echo strtolower($listitem.'_'.$box['name']); ?>" name="<?php echo $listitem.'_'.$box['name']; ?>"
+						<input type="hidden" id="<?php echo strtolower($listitem.'_'.$box['name']); ?>" name="<?php echo $listitem.'_'.$box['name']; ?>"<?php echo $class;?>
 									 value="<?php echo html_encode($box['value']); ?>" />
 						<?php
 					}
@@ -1213,7 +1213,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 						<?php echo gettext("Album Title"); ?>:
 						</td>
 						<td class="middlecolumn">
-						<?php print_language_string_list($album->get('title'), $prefix."albumtitle",false,null,'','100%'); ?>
+						<?php print_language_string_list($album->getTitle('all'), $prefix."albumtitle",false,null,'','100%'); ?>
 						</td>
 					</tr>
 
@@ -1222,13 +1222,13 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 						<?php echo gettext("Album Description:"); ?>
 						</td>
 						<td>
-						<?php	print_language_string_list($album->get('desc'), $prefix."albumdesc", true, NULL, 'texteditor','100%'); ?>
+						<?php	print_language_string_list($album->getDesc('all'), $prefix."albumdesc", true, NULL, 'texteditor','100%'); ?>
 						</td>
 					</tr>
 					<?php
 					if (GALLERY_SECURITY == 'public') {
 						?>
-						<tr class="password<?php echo $suffix; ?>extrashow" <?php if (GALLERY_SECURITY != 'public') echo 'style="display:none"'; ?> >
+						<tr class="password<?php echo $suffix; ?>extrashow">
 							<td class="leftcolumn">
 								<p>
 									<a href="javascript:toggle_passwords('<?php echo $suffix; ?>',true);">
@@ -1299,7 +1299,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 									</span>
 								</p>
 								<p>
-								<?php print_language_string_list($album->get('password_hint'), "hint".$suffix, false, NULL, 'hint','100%'); ?>
+								<?php print_language_string_list($album->getPasswordHint('all'), "hint".$suffix, false, NULL, 'hint','100%'); ?>
 								</p>
 							</td>
 						</tr>
@@ -1342,7 +1342,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 						?>
 						<tr>
 							<td class="leftcolumn"><?php echo gettext("Custom data:"); ?></td>
-							<td><?php print_language_string_list($album->get('custom_data'), $prefix."album_custom_data", true , NULL, 'texteditor_albumcustomdata','100%'); ?></td>
+							<td><?php print_language_string_list($album->getCustomData('all'), $prefix."album_custom_data", true , NULL, 'texteditor_albumcustomdata','100%'); ?></td>
 						</tr>
 						<?php
 					} else {
@@ -2430,6 +2430,7 @@ $_zp_current_locale = NULL;
  */
 function print_language_string_list($dbstring, $name, $textbox=false, $locale=NULL, $edit='', $wide=TEXT_INPUT_SIZE, $ulclass='language_string_list', $rows=6) {
 	global $_zp_active_languages, $_zp_current_locale;
+	$dbstring = zpFunctions::unTagURLs($dbstring);
 	if (!empty($edit)) $edit = ' class="'.$edit.'"';
 	if (is_null($locale)) {
 		if (is_null($_zp_current_locale)) {
@@ -2855,7 +2856,6 @@ function copyThemeDirectory($source, $target, $newname) {
 	else if (file_exists("$target/theme.jpg")) $themeimage = "$target/theme.jpg";
 	else $themeimage = false;
 	if ($themeimage) {
-		require_once(dirname(__FILE__).'/functions-image.php');
 		if ($im = zp_imageGet($themeimage)) {
 			$x = zp_imageWidth($im)/2 - 45;
 			$y = zp_imageHeight($im)/2 - 10;
@@ -3013,7 +3013,7 @@ function printAdminRightsTable($id, $background, $alterrights, $rights) {
 					}
 					?>
 					<label title="<?php echo html_encode(get_language_string($right['hint'])); ?>">
-						<input type="checkbox" name="<?php echo $id.'-'.$rightselement; ?>" id="<?php echo $rightselement.'-'.$id; ?>"
+						<input type="checkbox" name="<?php echo $id.'-'.$rightselement; ?>" id="<?php echo $rightselement.'-'.$id; ?>" class="user-<?php echo $id; ?>"
 									value="<?php echo $right['value']; ?>"<?php if ($rights & $right['value']) echo ' checked="checked"';	echo $alterrights; ?> /> <?php echo $right['name']; ?>
 					</label>
 					<?php
@@ -3040,13 +3040,13 @@ function printAdminRightsTable($id, $background, $alterrights, $rights) {
  * @param int $prefix the admin row
  * @param bit $rights the privileges  of the user
  */
-function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $rights, $kind, $flag) {
+function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix_id, $rights, $kind, $flag) {
+	$rest = $extra = $extra2 = array();
 	$legend = '';
 	switch ($type) {
 		case 'albums':
 			if ($rights & (MANAGE_ALL_ALBUM_RIGHTS | ADMIN_RIGHTS)) {
 				$cv = $objlist;
-				$rest = $extra = array();
 				$alterrights = ' disabled="disabled"';
 			} else {
 				$full = populateManagedObjectsList('album', $adminid, true);
@@ -3082,10 +3082,24 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 					}
 				}
 				$rest = array_diff($objlist, $cv);
+				foreach($rest as $unmanaged) {
+					$extra2[$unmanaged][] = array('name'=>'name','value'=>$unmanaged,'display'=>'','checked'=>0);
+					$extra2[$unmanaged][] = array('name'=>'edit','value'=>MANAGED_OBJECT_RIGHTS_EDIT,'display'=>$icon_edit_album,'checked'=>1);
+					if (($rights&UPLOAD_RIGHTS)) {
+						if (hasDynamicAlbumSuffix($unmanaged)) {
+							$extra2[$unmanaged][] = array('name'=>'upload','value'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'display'=>$icon_upload_disabled,'checked'=>0,'disable'=>true);
+						} else{
+							$extra2[$unmanaged][] = array('name'=>'upload','value'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'display'=>$icon_upload,'checked'=>1);
+						}
+					}
+					if (!($rights & VIEW_UNPUBLISHED_RIGHTS)) {
+						$extra2[$unmanaged][] = array('name'=>'view','value'=>MANAGED_OBJECT_RIGHTS_VIEW,'display'=>$icon_view_image,'checked'=>1);
+					}
+				}
 			}
 			$text = gettext("Managed albums:");
 			$simplename = $objectname = gettext('Albums');
-			$prefix = 'managed_albums_list_'.$prefix.'_';
+			$prefix = 'managed_albums_list_'.$prefix_id.'_';
 			break;
 		case 'news':
 			if ($rights & (MANAGE_ALL_NEWS_RIGHTS | ADMIN_RIGHTS)) {
@@ -3099,8 +3113,7 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 			$text = gettext("Managed news categories:");
 			$simplename = gettext ('News');
 			$objectname = gettext ('News categories');
-			$prefix = 'managed_news_list_'.$prefix.'_';
-			$extra = array();
+			$prefix = 'managed_news_list_'.$prefix_id.'_';
 			break;
 		case 'pages':
 			if ($rights & (MANAGE_ALL_PAGES_RIGHTS | ADMIN_RIGHTS)) {
@@ -3113,8 +3126,7 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 			}
 			$text = gettext("Managed pages:");
 			$simplename = $objectname = gettext('Pages');
-			$prefix = 'managed_pages_list_'.$prefix.'_';
-			$extra = array();
+			$prefix = 'managed_pages_list_'.$prefix_id.'_';
 			break;
 	}
 	if (empty($alterrights)) {
@@ -3139,8 +3151,8 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 		<div id="<?php echo $prefix ?>" style="display:none;">
 			<ul class="albumchecklist">
 				<?php
-				generateUnorderedListFromArray($cv, $cv, $prefix, $alterrights, true, true, NULL, $extra);
-				generateUnorderedListFromArray(array(), $rest, $prefix, $alterrights, true, true);
+				generateUnorderedListFromArray($cv, $cv, $prefix, $alterrights, true, true, 'user-'.$prefix_id, $extra);
+				generateUnorderedListFromArray(array(), $rest, $prefix, $alterrights, true, true, 'user-'.$prefix_id, $extra2);
 				?>
 			</ul>
 			<span class="floatright"><?php echo $legend; ?>&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -3193,19 +3205,21 @@ function processManagedObjects($i, &$rights) {
 			$key = substr($key, $l_a);
 			if (preg_match('/(.*)(_edit|_view|_upload|_name)$/', $key, $matches)) {
 				$key = $matches[1];
-				switch ($matches[2]) {
-					case '_edit':
-						$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_EDIT;
-						break;
-					case '_upload':
-						$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_UPLOAD;
-						break;
-					case '_view':
-						$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_VIEW;
-						break;
-					case '_name':
-						$albums[$key]['name'] = $value;
-						break;
+				if (array_key_exists($key, $albums)) {
+					switch ($matches[2]) {
+						case '_edit':
+							$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_EDIT;
+							break;
+						case '_upload':
+							$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_UPLOAD;
+							break;
+						case '_view':
+							$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_VIEW;
+							break;
+						case '_name':
+							$albums[$key]['name'] = $value;
+							break;
+					}
 				}
 			} else if ($value) {
 				$albums[$key] = array('data'=>$key, 'name'=>'', 'type'=>'album', 'edit'=>32767 & ~(MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_VIEW));
@@ -3478,7 +3492,7 @@ function printNestedAlbumsList($albums, $show_thumb) {
 		} else {
 			$nonest = '';
 		}
-		echo str_pad("\t",$indent-1,"\t")."<li id=\"id_".$albumobj->get('id')."\"$nonest >";
+		echo str_pad("\t",$indent-1,"\t")."<li id=\"id_".$albumobj->getID()."\"$nonest >";
 		printAlbumEditRow($albumobj, $show_thumb);
 		$open[$indent]++;
 	}
@@ -4160,6 +4174,16 @@ function minDiff($string1, $string2) {
 }
 
 /**
+ * Used when you want getPgeSelector to show the full text of the items
+ * @param string $string1
+ * @param string $string2
+ * @return string
+ */
+function fullText($string1, $string2) {
+	return $string2;
+}
+
+/**
  *
  * returns the shortest "date" difference
  * @param string $date1
@@ -4196,7 +4220,19 @@ function dateDiff($date1, $date2) {
 	return rtrim($date, ':-');
 }
 
-function getPageSelector($list, $itmes_per_page, $diff='minDiff') {
+/**
+ * returns a selector list based on the "names" of the list items
+ *
+ *
+ * @param array $list
+ * @param int $itmes_per_page
+ * @param string $diff
+ * 									"fullText" for the complete names
+ * 									"minDiff" for a truncated string showing just the unique characters of the names
+ * 									"dateDiff" it the "names" are really dates.
+ * @return array
+ */
+function getPageSelector($list, $itmes_per_page, $diff='fullText') {
 	$rangeset = array();
 	$pages = round(ceil(count($list) / (int) $itmes_per_page));
 	$list = array_values($list);
@@ -4325,6 +4361,62 @@ function getLogTabs() {
 	}
 	return array($subtabs,$default);
 }
+
+/**
+ * Figures out which plugin tabs to display
+ */
+function getPluginTabs() {
+	if (isset($_GET['tab'])) {
+		$default = sanitize($_GET['tab']);
+	} else {
+		$default = gettext('all');
+	}
+	$paths = getPluginFiles('*.php');
+
+	$classXlate = array(
+			'admin'=>gettext('admin'),
+			'all'=>gettext('all'),
+			'demo'=>gettext('demo'),
+			'development'=>gettext('development'),
+			'mail'=>gettext('mail'),
+			'media'=>gettext('media'),
+			'misc'=>gettext('misc'),
+			'spam'=>gettext('spam'),
+			'seo'=>gettext('seo'),
+			'tools'=>gettext('tools'),
+			'uploader'=>gettext('uploader'),
+			'users'=>gettext('users'),
+			'utilities'=>gettext('utilities')
+			);
+
+	$currentlist = $classes = array();
+	foreach ($paths as $plugin=>$path) {
+		$p = file_get_contents($path);
+		preg_match('|\* @subpackage (.*)?\n|i', $p, $matches);
+		if (array_key_exists(1, $matches)) {
+			$classes[trim($matches[1])][] = $plugin;
+		} else {
+			$classes[gettext('misc')][] = $plugin;
+		}
+	}
+
+	$classes['all'] = array_keys($paths);
+
+	foreach ($classes as $class=>$list) {
+		if (array_key_exists($key = $class, $classXlate)) {
+			$key = $classXlate[$class];
+		} else {
+			$classXlate[$key] = $key;
+		}
+		$tabs[$key] = 'admin-plugins.php?page=plugins&amp;tab='.$class;
+		if ($class == $default) {
+			$currentlist = $list;
+		}
+	}
+	ksort($tabs);
+	return array($tabs,$default,$currentlist, $paths);
+}
+
 /**
  *
  * Displays the "new version available" message on admin pages

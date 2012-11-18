@@ -45,8 +45,6 @@ $plugin_notice = gettext("<strong>Note:</strong> This feature must be integrated
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $option_interface = 'zenpagecms';
 
-$_cmsSwitch = true;
-
 zp_register_filter('checkForGuest', 'zenpagecms::checkForGuest');
 zp_register_filter('isMyItemToView', 'zenpagecms::isMyItemToView');
 zp_register_filter('admin_toolbox_global', 'zenpagecms::admin_toolbox_global');
@@ -54,7 +52,7 @@ zp_register_filter('admin_toolbox_news', 'zenpagecms::admin_toolbox_news');
 zp_register_filter('admin_toolbox_pages', 'zenpagecms::admin_toolbox_pages');
 zp_register_filter('themeSwitcher_head', 'zenpagecms::switcher_head');
 zp_register_filter('themeSwitcher_Controllink', 'zenpagecms::switcher_controllink', 0);
-zp_register_filter('load_theme_script', 'zenpagecms::switcher_setup', 0);
+zp_register_filter('load_theme_script', 'zenpagecms::switcher_setup', 99);
 
 require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-class.php');
 require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-class-news.php');
@@ -245,37 +243,41 @@ class zenpagecms {
 		return $list;
 	}
 
-	static function switcher_controllink($ignore) {
-		global $_cmsSwitch;
-		if (is_null($_cmsSwitch)) {
-			$_cmsSwitch = true;
+	static function switcher_controllink($theme) {
+		global $_zp_gallery_page;
+		if ($_zp_gallery_page=='pages.php' || $_zp_gallery_page=='news.php') {
+			$disabled = ' disabled="disalbed"';
+		} else {
+			$disabled = '';
 		}
-		?>
-		<span id="themeSwitcher_zenpage">
-			<label>
-				Zenpage
-				<input type="checkbox" name="cmsSwitch" id="cmsSwitch" value="1"<?php if($_cmsSwitch) echo ' checked="checked"'; ?> onclick="switchCMS(this.checked);" />
-			</label>
-		</span>
-		<?php
-		return $ignore;
+		if (getPlugin('pages.php', $theme)) {	// it supports zenpage
+			?>
+			<span id="themeSwitcher_zenpage">
+				<label>
+					Zenpage
+					<input type="checkbox" name="cmsSwitch" id="cmsSwitch" value="1"<?php if(getOption('zp_plugin_zenpage')) echo $disabled.' checked="checked"'; ?> onclick="switchCMS(this.checked);" />
+				</label>
+			</span>
+			<?php
+		}
+		return $theme;
 	}
 
 	static function switcher_setup($ignore) {
-		global $_cmsSwitch, $_zp_zenpage;
+		global $_zp_zenpage;
 		if (class_exists('themeSwitcher') && themeSwitcher::active()) {
 			if (isset($_GET['cmsSwitch'])) {
-				setOption('themeSwitcher_zenpage_switch',$_cmsSwitch = (int) ($_GET['cmsSwitch']=='true'));
-				if (!$_cmsSwitch) {
+				setOption('themeSwitcher_zenpage_switch',$cmsSwitch = (int) ($_GET['cmsSwitch']=='true'));
+				if (!$cmsSwitch) {
 					setOption('zp_plugin_zenpage', 0, false);
 				}
 			} else {
-				if (!is_null($_cmsSwitch = getOption('themeSwitcher_zenpage_switch')) &&  !$_cmsSwitch) {
+				if (!is_null(getOption('themeSwitcher_zenpage_switch'))) {
 					setOption('zp_plugin_zenpage', 0, false);
 				}
 			}
 		}
-		if ($_cmsSwitch) {
+		if (getOption('zp_plugin_zenpage')) {
 			require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-template-functions.php');
 		} else {
 			$_zp_zenpage = NULL;

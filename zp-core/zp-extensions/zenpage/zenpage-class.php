@@ -892,7 +892,12 @@ class ZenpageItems extends ZenpageRoot {
 	 * @return string
 	 */
 	function getContent($locale=NULL) {
-		return get_language_string($this->get("content"),$locale);
+		$text = $this->get("content");
+		if ($locale!=='all') {
+			$text = get_language_string($text,$locale);
+		}
+		$text = zpFunctions::unTagURLs($text);
+		return $text;
 	}
 
 	/**
@@ -901,6 +906,7 @@ class ZenpageItems extends ZenpageRoot {
 	 * @param $c full language string
 	 */
 	function setContent($c) {
+		$c = zpFunctions::tagURLs($c);
 		$this->set("content",$c);
 	}
 
@@ -967,7 +973,12 @@ class ZenpageItems extends ZenpageRoot {
 	 * @return string
 	 */
 	function getExtraContent($locale=NULL) {
-		return get_language_string($this->get("extracontent"),$locale);
+		$text =  $this->get("extracontent");
+		if ($locale!=='all') {
+			$text = get_language_string($text,$locale);
+		}
+		$text = zpFunctions::unTagURLs($text);
+		return $text;
 	}
 
 	/**
@@ -975,7 +986,7 @@ class ZenpageItems extends ZenpageRoot {
 	 *
 	 */
 	function setExtraContent($ec) {
-		$this->set("extracontent",$ec);
+		$this->set("extracontent",zpFunctions::tagURLs($ec));
 	}
 
 	/**

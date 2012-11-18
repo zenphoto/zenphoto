@@ -2,6 +2,7 @@
 /**
  * Changes <i>white space</i> characters to hyphens.
  * @package plugins
+ * @subpackage seo
  */
 
 $plugin_is_filter = 5|ADMIN_PLUGIN;

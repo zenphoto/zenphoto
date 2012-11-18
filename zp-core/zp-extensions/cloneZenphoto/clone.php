@@ -48,7 +48,7 @@ if (trim($folder,'/') == SERVERPATH) {
 					if (empty($link) || $link == $folder.$target) {
 						// an actual folder
 						if (zpFunctions::removeDir($folder.$target)) {
-							if (@symlink(SERVERPATH.'/'.$target, $folder.$target)) {
+							if (SYMLINK && @symlink(SERVERPATH.'/'.$target, $folder.$target)) {
 								$msg[] = sprintf(gettext('The existing folder <code>%s</code> was replaced.'), $folder.filesystemToInternal($target))."<br />\n";
 							} else {
 								$msg[] = sprintf(gettext('The existing folder <code>%1$s</code> was removed but Link creation failed.'),$target)."<br />\n";
@@ -66,7 +66,7 @@ if (trim($folder,'/') == SERVERPATH) {
 							$success = @unlink($folder.$target);
 						}
 						if ($success) {
-							if (@symlink(SERVERPATH.'/'.$target, $folder.$target)) {
+							if (SYMLINK && @symlink(SERVERPATH.'/'.$target, $folder.$target)) {
 								$msg[] = sprintf(gettext('The existing symlink <code>%s</code> was replaced.'), $folder.filesystemToInternal($target))."<br />\n";
 							} else {
 								$msg[] = sprintf(gettext('The existing symlink <code>%s</code> was removed but Link creation failed.'),$target)."<br />\n";
@@ -81,7 +81,7 @@ if (trim($folder,'/') == SERVERPATH) {
 				case 'file':
 					@chmod($folder.$target, 0777);
 					if (@unlink($folder.$target)) {
-						if (@symlink(SERVERPATH.'/'.$target, $folder.$target)) {
+						if (SYMLINK && @symlink(SERVERPATH.'/'.$target, $folder.$target)) {
 							if ($folder.$target == $link) {
 								$msg[] = sprintf(gettext('The existing file <code>%s</code> was replaced.'), $folder.filesystemToInternal($target))."<br />\n";
 							} else {
@@ -102,7 +102,7 @@ if (trim($folder,'/') == SERVERPATH) {
 					break;
 			}
 		} else {
-			if (@symlink(SERVERPATH.'/'.$target, $folder.$target)) {
+			if (SYMLINK && @symlink(SERVERPATH.'/'.$target, $folder.$target)) {
 				$msg[] = sprintf(gettext('<code>%s</code> Link created.'),$target)."<br />\n";
 			} else {
 				$msg[] = sprintf(gettext('<code>%s</code> Link creation failed.'),$target)."<br />\n";

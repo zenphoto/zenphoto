@@ -19,15 +19,7 @@ require_once(dirname(__FILE__).'/functions-basic.php');
 require_once(dirname(__FILE__).'/functions-filter.php');
 require_once(SERVERPATH.'/'.ZENFOLDER.'/lib-kses.php');
 
-
-$_zp_captcha = getOption('captcha');
-if (empty($_zp_captcha)) 	{
-	$_zp_captcha = 'zenphoto';
-}
-$_zp_captcha = getPlugin('captcha/'.$_zp_captcha.'.php');
-require_once($_zp_captcha);
-$_zp_captcha = new Captcha();
-
+$_zp_captcha = NULL;
 //setup session before checking for logon cookie
 require_once(dirname(__FILE__).'/functions-i18n.php');
 
@@ -263,9 +255,18 @@ function is_valid_email_zp($input_email) {
  * @author Todd Papaioannou (lucky@luckyspin.org)
  * @since  1.0.0
  */
-function zp_mail($subject, $message, $email_list=NULL, $cc_addresses=NULL, $bcc_addresses=NULL) {
+function zp_mail($subject, $message, $email_list=NULL, $cc_addresses=NULL, $bcc_addresses=NULL, $replyTo=NULL) {
 	global $_zp_authority, $_zp_gallery;
 	$result = '';
+	if ($replyTo) {
+		$t = $replyTo;
+		if (!is_valid_email_zp($m = array_shift($t))) {
+			if (empty($result)) {
+				$result = gettext('Mail send failed.');
+			}
+			$result .= sprintf(gettext('Invalid "reply-to" mail address %s.'),$m);
+		}
+	}
 	if (is_null($email_list)) {
 		$email_list = $_zp_authority->getAdminEmail();
 	} else {
@@ -351,11 +352,11 @@ function zp_mail($subject, $message, $email_list=NULL, $cc_addresses=NULL, $bcc_
 
 			// Send the mail
 			if (count($email_list) > 0) {
-				$result = zp_apply_filter('sendmail', '', $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses); // will be true if all mailers succeeded
+				$result = zp_apply_filter('sendmail', '', $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $replyTo); // will be true if all mailers succeeded
 			}
 			if (count($bcc_addresses) > 0) {
 				foreach ($bcc_addresses as $bcc) {
-					$result = zp_apply_filter('sendmail', '', array($bcc), $subject, $message, $from_mail, $from_name, array()); // will be true if all mailers succeeded
+					$result = zp_apply_filter('sendmail', '', array($bcc), $subject, $message, $from_mail, $from_name, array(), $replyTo); // will be true if all mailers succeeded
 				}
 			}
 		} else {
@@ -419,7 +420,7 @@ function checkAlbumPassword($album, &$hint=NULL) {
 		$album = $album->getParent();
 		while (!is_null($album)) {
 			$hash = $album->getPassword();
-			$authType = "zp_album_auth_" . $album->get('id');
+			$authType = "zp_album_auth_" . $album->getID();
 			$saved_auth = zp_getCookie($authType);
 
 			if (!empty($hash)) {
@@ -446,7 +447,7 @@ function checkAlbumPassword($album, &$hint=NULL) {
 			}
 		}
 	} else {
-		$authType = "zp_album_auth_" . $album->get('id');
+		$authType = "zp_album_auth_" . $album->getID();
 		$saved_auth = zp_getCookie($authType);
 		if ($saved_auth != $hash) {
 			$hint = $album->getPasswordHint();
@@ -693,7 +694,7 @@ function populateManagedObjectsList($type,$id,$rights=false) {
 		return array();
 	}
 	$cv = array();
-	if (empty($type) || $type=='albums' || $type=='album') {
+	if (empty($type) || substr($type,0,5)=='album') {
 		$sql = "SELECT ".prefix('albums').".`folder`,".prefix('albums').".`title`,".prefix('admin_to_object').".`edit` FROM ".prefix('albums').", ".
 						prefix('admin_to_object')." WHERE ".prefix('admin_to_object').".adminid=".$id.
 						" AND ".prefix('albums').".id=".prefix('admin_to_object').".objectid AND ".prefix('admin_to_object').".type LIKE 'album%'";
@@ -1580,7 +1581,7 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
 			$check_auth = getOption('search_password');
 			$check_user = getOption('search_user');
 		} else if (in_context(ZP_ALBUM)) { // album page
-			$authType = "zp_album_auth_" . $_zp_current_album->get('id');
+			$authType = "zp_album_auth_" . $_zp_current_album->getID();
 			$check_auth = $_zp_current_album->getPassword();
 			$check_user = $_zp_current_album->getUser();
 			if (empty($check_auth)) {
@@ -1588,13 +1589,13 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
 				while (!is_null($parent)) {
 					$check_auth = $parent->getPassword();
 					$check_user = $parent->getUser();
-					$authType = "zp_album_auth_" . $parent->get('id');
+					$authType = "zp_album_auth_" . $parent->getID();
 					if (!empty($check_auth)) { break; }
 					$parent = $parent->getParent();
 				}
 			}
 		} else if (in_context(ZP_ZENPAGE_PAGE)) {
-			$authType = "zp_page_auth_" . $_zp_current_zenpage_page->get('id');
+			$authType = "zp_page_auth_" . $_zp_current_zenpage_page->getID();
 			$check_auth = $_zp_current_zenpage_page->getPassword();
 			$check_user = $_zp_current_zenpage_page->getUser();
 			if (empty($check_auth)) {
@@ -1605,7 +1606,7 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
 					$sql = 'SELECT `titlelink` FROM '.prefix('pages').' WHERE `id`='.$parentID;
 					$result = query_single_row($sql);
 					$pageobj = new ZenpagePage($result['titlelink']);
-					$authType = "zp_page_auth_" . $pageobj->get('id');
+					$authType = "zp_page_auth_" . $pageobj->getID();
 					$check_auth = $pageobj->getPassword();
 					$check_user = $pageobj->getUser();
 				}
@@ -2256,6 +2257,17 @@ class zpFunctions {
 			return true;
 		}
 		return false;
+	}
+
+	static function tagURLs($text) {
+		$text = preg_replace('|'.FULLWEBPATH.'|is', '{*FULLWEBPATH*}', $text);
+		$text = preg_replace('|'.WEBPATH.'|is', '{*WEBPATH*}', $text);
+		return $text;
+	}
+	static function unTagURLs($text) {
+		$text = preg_replace('|\{\*FULLWEBPATH\*\}|', FULLWEBPATH, $text);
+		$text = preg_replace('|\{\*WEBPATH\*\}|', WEBPATH, $text);
+		return $text;
 	}
 
 }

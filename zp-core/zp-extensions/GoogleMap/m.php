@@ -61,13 +61,13 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 			} else {
 				$mapdata = gzuncompress($mapdata);
 			}
-			$mapdata = unserialize($mapdata);
+			$mapdata = sanitize(unserialize($mapdata),4);
 		}
 	}
 	if (is_array($mapdata)) {
 		$MAP_OBJECT = new GoogleMapAPI(sanitize($_GET['type']));
 		foreach ($mapdata as $key=>$datum) {
-			$MAP_OBJECT->$key = sanitize($datum);
+			$MAP_OBJECT->$key = $datum;
 		}
 		$MAP_OBJECT->setJSAlert('<b>Javascript must be enabled in order to use Google Maps.</b>');
 		$MAP_OBJECT->setBrowserAlert('Sorry, the Google Maps API is not compatible with this browser.');

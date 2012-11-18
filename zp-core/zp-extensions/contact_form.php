@@ -321,7 +321,7 @@ function printContactForm($subject_override='') {
 
 		// If honeypot was triggered, silently don't send the message
 		if (empty($mailcontent['honeypot'])) {
-			$err_msg = zp_mail($subject, $message, $mailinglist, $sendcopy);
+			$err_msg = zp_mail($subject, $message, $mailinglist, $sendcopy, NULL, array($name=>$mailaddress));
 		}
 		if ($err_msg) {
 			$msgs = explode('.',$err_msg);

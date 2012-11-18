@@ -15,6 +15,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage development
  */
 $plugin_description = gettext("Provides deprecated Zenphoto functions.");
 $plugin_notice = gettext("This plugin is <strong>NOT</strong> required for the Zenphoto distributed functions.");

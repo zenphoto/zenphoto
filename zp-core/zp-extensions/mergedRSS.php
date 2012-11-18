@@ -40,7 +40,7 @@ if(isset($_GET['mergedrss'])) {
 	}
 	$gallery = new Gallery();
 	// Create new MergedRSS object with desired parameters
-	$MergedRSS = new MergedRSS($feeds, strip_tags(get_language_string($gallery->get('gallery_title'), $locale)), FULLWEBPATH, strip_tags(get_language_string($gallery->get('Gallery_description'), $locale)), $feed_date);
+	$MergedRSS = new MergedRSS($feeds, strip_tags(get_language_string($gallery->getTitle(), $locale)), FULLWEBPATH, strip_tags(get_language_string($gallery->getDesc(), $locale)), $feed_date);
 
 	//Export the first 10 items to screen
 	$MergedRSS->export(false, true, 20); //getOption('feed_items')

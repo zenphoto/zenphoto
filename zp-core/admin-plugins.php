@@ -22,9 +22,8 @@ if (isset($_GET['subpage'])) {
 	}
 }
 
-
-
 $_GET['page'] = 'plugins';
+list($tabs,$subtab,$pluginlist, $paths) = getPluginTabs();
 
 /* handle posts */
 if (isset($_GET['action'])) {
@@ -54,15 +53,14 @@ if (isset($_GET['action'])) {
 				setOption($opt, 0);
 			}
 		}
-		header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-plugins.php?saved&subpage=".$subpage);
+		header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-plugins.php?saved&page=plugins&tab=".$subtab."&subpage=".$subpage);
 		exitZP();
 	}
 }
 $saved = isset($_GET['saved']);
 printAdminHeader('plugins');
 zp_apply_filter('texteditor_config', '','zenphoto');
-$paths = getPluginFiles('*.php');
-$pluginlist = array_keys($paths);
+
 natcasesort($pluginlist);
 $rangeset = getPageSelector($pluginlist,PLUGINS_PER_PAGE);
 $filelist = array_slice($pluginlist,$subpage*PLUGINS_PER_PAGE,PLUGINS_PER_PAGE);
@@ -85,7 +83,7 @@ $filelist = array_slice($pluginlist,$subpage*PLUGINS_PER_PAGE,PLUGINS_PER_PAGE);
 	var pluginsToPage = ['<?php echo implode("','",$pluginlist); ?>'];
 	function gotoPlugin(plugin) {
 		i = Math.floor(jQuery.inArray(plugin, pluginsToPage) / <?php echo PLUGINS_PER_PAGE; ?>);
-		window.location = '<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-plugins.php?page=plugins&subpage='+i+'&show='+plugin+'#'+plugin;
+		window.location = '<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-plugins.php?page=plugins&tab=<?php echo $subtab; ?>&subpage='+i+'&show='+plugin+'#'+plugin;
 	}
 	//-->
 </script>
@@ -108,6 +106,10 @@ if ($saved) {
 
 ?>
 <h1><?php echo gettext('Plugins'); ?></h1>
+<?php
+$subtab = printSubtabs();
+?>
+<div class="tabbox">
 <p>
 <?php
 echo gettext("Plugins provide optional functionality for Zenphoto.").' ';
@@ -119,7 +121,7 @@ echo gettext("If the plugin checkbox is checked, the plugin will be loaded and i
 </p>
 <p class='notebox'><?php echo gettext("<strong>Note:</strong> Support for a particular plugin may be theme dependent! You may need to add the plugin theme functions if the theme does not currently provide support."); ?>
 </p>
-<form action="?action=saveplugins" method="post">
+<form action="?action=saveplugins&page=plugins&tab=<?php echo $subtab; ?>" method="post">
 	<?php XSRFToken('saveplugins');?>
 	<input type="hidden" name="saveplugins" value="yes" />
 	<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
@@ -130,7 +132,7 @@ echo gettext("If the plugin checkbox is checked, the plugin will be loaded and i
 <table class="bordered options">
 <tr>
 	<th id="imagenav" colspan="3">
-		<?php printPageSelector($subpage, $rangeset, 'admin-plugins.php', array()); ?>
+		<?php printPageSelector($subpage, $rangeset, 'admin-plugins.php', array('page'=>'plugins','tab'=>$subtab)); ?>
 	</th>
 </tr>
 <tr>
@@ -347,9 +349,9 @@ foreach ($filelist as $extension) {
 <button type="submit" value="<?php echo gettext('Apply') ?>" title="<?php echo gettext("Apply"); ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 <button type="reset" value="<?php echo gettext('Reset') ?>" title="<?php echo gettext("Reset"); ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 </p><br />
+</form>
+</div>
 <?php
-echo "</form>\n";
-
 echo "\n" . '</div>';  //content
 printAdminFooter();
 echo "\n" . '</div>';  //main

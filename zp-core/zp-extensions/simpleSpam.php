@@ -4,19 +4,31 @@
  * It uses a word black list and checks for excessive URLs
  *
  * @author Stephen Billard (sbillard)
-  * @package plugins
+ * @package plugins
+ * @subpackage spam
  */
+
+$plugin_is_filter = 5|CLASS_PLUGIN;
+$plugin_description = gettext("Simple SPAM filter.");
+$plugin_author = "Stephen Billard (sbillard)";
+$plugin_disable = (isset($_zp_spamFilter) && !getoption('zp_plugin_simpleSpam'))?sprintf(gettext('Only one SPAM handler plugin may be enalbed. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'),$_zp_spamFilter->name):'';
+$option_interface = 'zpSimpleSpam';
+
+if ($plugin_disable) {
+	setOption('zp_plugin_simpleSpam', 0);
+} else {
+	$_zp_spamFilter = new zpSimpleSpam();
+}
 
 /**
  * This implements the standard SpamFilter class for the Simple spam filter.
  *
  */
-class SpamFilter  {
+class zpSimpleSpam  {
 
+	var $name = 'simpleSpam';
 	var $wordsToDieOn = array('cialis','ebony','nude','porn','porno','pussy','upskirt','ringtones','phentermine','viagra', 'levitra'); /* the word black list */
-
 	var $patternsToDieOn = array('\[url=.*\]');
-
 	var $excessiveURLCount = 5;
 
 	/**
@@ -24,12 +36,16 @@ class SpamFilter  {
 	 *
 	 * @return SpamFilter
 	 */
-	function SpamFilter() {
+	function __construct() {
 		setOptionDefault('Words_to_die_on', implode(',', $this->wordsToDieOn));
 		setOptionDefault('Patterns_to_die_on', implode(' ', $this->patternsToDieOn));
 		setOptionDefault('Excessive_URL_count', $this->excessiveURLCount);
 		setOptionDefault('Forgiving', 0);
 		setOptionDefault('Banned_IP_list', serialize(array()));
+	}
+
+	function displayName() {
+		return $this->name;
 	}
 
 	/**

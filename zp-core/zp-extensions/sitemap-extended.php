@@ -15,6 +15,7 @@
  *
  * @author Malte Müller (acrylian) based on the plugin by Jeppe Toustrup (Tenzer) http://github.com/Tenzer/zenphoto-sitemap and on contributions by timo, Blue Dragonfly and Francois Marechal (frankm)
  * @package plugins
+ * @subpackage seo
  */
 
 $plugin_is_filter = 5|CLASS_PLUGIN;
@@ -674,18 +675,18 @@ function getSitemapGoogleImageVideoExtras($albumobj,$imageobj,$locale) {
 	//$path = FULLWEBPATH.'/'.rewrite_path($locale.'/'.pathurlencode($albumobj->name).'/'.urlencode($imageobj->filename).IM_SUFFIX,'?album='.pathurlencode($albumobj->name).'&amp;image='.urlencode($imageobj->filename),false);
 	if(isImageVideo($imageobj) && in_array($ext,array('.mpg','.mpeg','.mp4','.m4v','.mov','.wmv','.asf','.avi','.ra','.ram','.flv','.swf'))) { // google says it can index these so we list them even if unsupported by Zenphoto
 		$data .= sitemap_echonl("\t\t<video:video>\n\t\t\t<video:thumbnail_loc>".$host.html_encode($imageobj->getThumb())."</video:thumbnail_loc>\n");
-		$data .= sitemap_echonl("\t\t\t<video:title>".html_encode(get_language_string($imageobj->get('title'),$locale))."</video:title>");
+		$data .= sitemap_echonl("\t\t\t<video:title>".html_encode($imageobj->getTitle($locale))."</video:title>");
 		if ($imageobj->getDesc()) {
-			$data .= sitemap_echonl("\t\t\t<video:description>".html_encode(strip_tags(get_language_string($imageobj->get('desc'),$locale)))."</video:description>");
+			$data .= sitemap_echonl("\t\t\t<video:description>".html_encode(strip_tags($imageobj->getDesc($locale)))."</video:description>");
 		}
 		$data .= sitemap_echonl("\t\t\t<video:content_loc>".$host.pathurlencode($imageobj->getFullImageURL())."</video:content_loc>");
 		$data .= sitemap_echonl("\t\t</video:video>");
 	} else if (in_array($ext,array('.jpg','.jpeg','.gif','.png'))) { // this might need to be extended!
 		$data .= sitemap_echonl("\t\t<image:image>\n\t\t\t<image:loc>".$host.html_encode($imageobj->getSizedImage(getOption('image_size')))."</image:loc>\n");
 		// disabled for the multilingual reasons above
-		$data .= sitemap_echonl("\t\t\t<image:title>".html_encode(get_language_string($imageobj->get('title'),$locale))."</image:title>");
+		$data .= sitemap_echonl("\t\t\t<image:title>".html_encode($imageobj->getTitle($locale))."</image:title>");
 		if ($imageobj->getDesc()) {
-			$data .= sitemap_echonl("\t\t\t<image:caption>".html_encode(strip_tags(get_language_string($imageobj->get('desc'),$locale)))."</image:caption>");
+			$data .= sitemap_echonl("\t\t\t<image:caption>".html_encode(strip_tags($imageobj->getDesc($locale)))."</image:caption>");
 		}
 		if(!empty($license)) {
 			$data .= sitemap_echonl("\t\t\t<image:license>".$license."</image:license>");

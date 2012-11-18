@@ -3,7 +3,7 @@
  * Form for registering users
  *
  * @package plugins
- * @subpackage usermanagement
+ * @subpackage users
  */
 
 Zenphoto_Authority::printPasswordFormJS();

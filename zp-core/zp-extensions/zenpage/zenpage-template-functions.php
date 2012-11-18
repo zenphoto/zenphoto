@@ -724,7 +724,7 @@ function getNewsVideoContent($imageobj) {
 				$videocontent = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/err-noflashplayer.png" alt="'.gettext('No flash player installed.').'" />';
 			} else {
 				$_zp_current_image = $imageobj;
-				$videocontent = $_zp_flash_player->getPlayerConfig(getFullNewsImage(),getNewsTitle(),$_zp_current_image->get("id"));
+				$videocontent = $_zp_flash_player->getPlayerConfig(getFullNewsImage(),getNewsTitle(),$_zp_current_image->getID());
 			}
 			break;
 		case '.3gp':
@@ -1876,8 +1876,8 @@ function getZenpageStatistic($number=10, $option="all",$mode="popular") {
 					"title" => $obj->getTitle(),
 					"titlelink" => $article['titlelink'],
 					"hitcounter" => $obj->getHitcounter(),
-					"total_votes" => $obj->get('total_votes'),
-					"rating" => $obj->get('rating'),
+					"total_votes" => $obj->getTotal_votes(),
+					"rating" => $obj->getRating(),
 					"content" => $obj->getContent(),
 					"date" => $obj->getDateTime(),
 					"type" => "News"
@@ -2442,6 +2442,15 @@ function getBarePageTitle() {
 }
 
 /**
+ * prints the raw title of a page.
+ *
+ * @return string
+ */
+function printBarePageTitle() {
+	echo html_encode(getBarePageTitle());
+}
+
+/**
  * Returns titlelink of a page
  *
  * @return string
@@ -2833,7 +2842,7 @@ function zenpageOpenedForComments() {
 	if(is_Pages()) {
 		$obj = $_zp_current_zenpage_page;
 	}
-	return $obj->get('commentson');
+	return $obj->getCommentsAllowed();
 }
 
 

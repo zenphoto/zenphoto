@@ -7,6 +7,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage tools
  */
 
 if (isset($_REQUEST['performcrop'])) {

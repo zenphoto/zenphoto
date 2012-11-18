@@ -185,10 +185,11 @@ if (!empty($msg)) {
 }
 zp_apply_filter('admin_note','Overview', NULL);
 ?>
-<?php
-if (zp_loggedin(OVERVIEW_RIGHTS)) {
+<div id="overviewboxes">
+
+	<?php
+	if (zp_loggedin(ADMIN_RIGHTS)) {
 	?>
-	<div id="overviewboxes">
 	<div class="box overview-utility overview-install-info">
 		<h2 class="h2_bordered"><?php echo gettext("Installation information"); ?></h2>
 		<ul>
@@ -315,9 +316,20 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 		}
 		?>
 		</li>
-		<li><?php printf(gettext('Spam filter: <strong>%s</strong>'), getOption('spam_filter')) ?></li>
-		<li><?php printf(gettext('CAPTCHA generator: <strong>%s</strong>'), getOption('captcha')) ?></li>
+		<li>
 		<?php
+		if (isset($_zp_spamFilter)) {
+			$filter = $_zp_spamFilter->displayName();
+		} else {
+			$filter = gettext('No spam filter configured');
+		}
+		printf(gettext('Spam filter: <strong>%s</strong>'), $filter) ?></li>
+		<?php
+		if ($_zp_captcha) {
+			?>
+			<li><?php printf(gettext('CAPTCHA generator: <strong>%s</strong>'), $_zp_captcha->name) ?></li>
+			<?php
+		}
 		zp_apply_filter('installation_information');
 		if (!zp_has_filter('sendmail')) {
 			?>
@@ -418,7 +430,7 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 
 	</div><!-- overview-info -->
 	<?php
-if (zp_loggedin(OVERVIEW_RIGHTS)) {
+	}
 	$buttonlist = array();
 	$curdir = getcwd();
 	chdir(SERVERPATH . "/" . ZENFOLDER . '/'.UTILITIES_FOLDER.'/');
@@ -492,9 +504,7 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 		}
 		?>
 	</div><!-- overview-utility -->
-	<?php
-	}
-	?>
+
 	<div class="box overview-utility overiew-gallery-stats">
 		<h2 class="h2_bordered"><?php echo gettext("Gallery Stats"); ?></h2>
 		<ul>
@@ -567,7 +577,7 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 
 	<?php
 	zp_apply_filter('admin_overview');
-}
+
 
 ?>
 
