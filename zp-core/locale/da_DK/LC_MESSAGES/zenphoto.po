@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-11 15:22+0100\n"
-"PO-Revision-Date: 2012-11-14 23:19+0100\n"
+"PO-Revision-Date: 2012-11-18 12:58+0100\n"
 "Last-Translator: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language-Team: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language: danish\n"
@@ -3530,52 +3530,52 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:55
 #, php-format
 msgid "Theme <em>%s</em> removed."
-msgstr ""
+msgstr "Tema <em>%s</em> fjernet."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:57
 #, php-format
 msgid "Error removing theme <em>%s</em>"
-msgstr ""
+msgstr "Fjernelse af tema <em>%s</em> mislykket"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:74
 msgid "New theme name?"
-msgstr ""
+msgstr "Nyt Tema navn?"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:74
 #, php-format
 msgid "Copy of %s"
-msgstr ""
+msgstr "Kopi af %s"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:76
 msgid "Theme folder name?"
-msgstr ""
+msgstr "Temamappe navn?"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:137
 msgid "no theme assigned, defaulting to Gallery theme"
-msgstr ""
+msgstr "intet tema aktiveret, falder tilbage på Galleri temaet"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:147
 msgid "Show theme for: "
-msgstr ""
+msgstr "Vis tema for:"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:155
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:2479
 msgid "There are no themes for which you have rights to administer."
-msgstr ""
+msgstr "Der er ingen temaer du har rettigheder til at administrere."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:159
 #, php-format
 msgid "Current theme for <code><strong>%1$s</strong></code>: <em>%2$s</em>"
-msgstr ""
+msgstr "Nuværende tema for <code><strong>%1$s</strong></code>: <em>%2$s</em>"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:163
 #, php-format
 msgid "Clear theme assignment for %s"
-msgstr ""
+msgstr "Fjern tema aktivering for %s"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:164
 msgid "Clear theme assignment"
-msgstr ""
+msgstr "Fjern tema aktivering"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:178
 msgid ""
@@ -3583,12 +3583,17 @@ msgid ""
 "gallery. Theme files are located in your Zenphoto <code>/themes</code> "
 "folder."
 msgstr ""
+"Temaer giver dig mulighed for visuelt at ændre hele udseendet og "
+"fornemmelsen af ​​dit galleri. Tema filer er lokaliserede i din Zenphoto "
+"<code>/themes</code> mappe."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:179
 msgid ""
 "You can download more themes from the <a href=\"http://www.zenphoto.org/zp/"
 "theme/\">zenphoto themes page</a>."
 msgstr ""
+"Du kan hente flere temaer fra <a href=\"http://www.zenphoto.org/zp/theme/"
+"\">'zenphoto themes page'</a>."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:180
 msgid ""
