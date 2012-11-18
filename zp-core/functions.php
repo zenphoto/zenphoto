@@ -19,7 +19,7 @@ require_once(dirname(__FILE__).'/functions-basic.php');
 require_once(dirname(__FILE__).'/functions-filter.php');
 require_once(SERVERPATH.'/'.ZENFOLDER.'/lib-kses.php');
 
-$_zp_captcha = NULL;
+$_zp_captcha = new zpFunctions();	// this will be overridden by the plugin if enabled.
 //setup session before checking for logon cookie
 require_once(dirname(__FILE__).'/functions-i18n.php');
 
@@ -2074,6 +2074,8 @@ function reveal($content, $visible=false) {
 
 class zpFunctions {
 
+	var $name = NULL;	// "captcha" name if no captcha plugin loaded
+
 	/**
 	 *
 	 * creates an SEO language prefix list
@@ -2259,15 +2261,34 @@ class zpFunctions {
 		return false;
 	}
 
+	/**
+	 * inserts location independent WEB path tags in place of site path tags
+	 * @param string $text
+	 */
 	static function tagURLs($text) {
 		$text = preg_replace('|'.FULLWEBPATH.'|is', '{*FULLWEBPATH*}', $text);
 		$text = preg_replace('|'.WEBPATH.'|is', '{*WEBPATH*}', $text);
 		return $text;
 	}
+	/**
+	 * reverses tagURLs()
+	 * @param string $text
+	 * @return string
+	 */
 	static function unTagURLs($text) {
 		$text = preg_replace('|\{\*FULLWEBPATH\*\}|', FULLWEBPATH, $text);
 		$text = preg_replace('|\{\*WEBPATH\*\}|', WEBPATH, $text);
 		return $text;
+	}
+
+	/**
+	 * Standins for when no captcha is enabled
+	 */
+	function getCaptcha() {
+		return array('input'=>'', 'html'=>'<p class="errorbox">'.gettext('No captcha handler is enabled').'</p>', 'hidden'=>'');
+	}
+	function checkCaptcha($s1, $s2) {
+		return true;
 	}
 
 }
