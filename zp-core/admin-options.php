@@ -2379,16 +2379,33 @@ if ($subtab == 'comments' && zp_loggedin(OPTIONS_RIGHTS)) {
 		</tr>
 			<td><?php echo gettext('Captcha'); ?></td>
 			<td>
+				<?php
+				if ($_zp_captcha->name) {
+					$captchadisable = '';
+					$checked = getOption('Use_Captcha');
+				} else {
+					$captchadisable = ' disabled="disabled"';
+					$checked = false;
+				}
+				?>
 				<label class="checkboxlabel">
-					<input type="radio" name="Use_Captcha" id="Use_Captcha" value="0"<?php if (!getOption('Use_Captcha')) echo ' checked="checked"'; ?>  />
+					<input type="radio" name="Use_Captcha" id="Use_Captcha" value="0"<?php echo $captchadisable; if (!$checked) echo ' checked="checked"'; ?>  />
 						<?php echo gettext('Omit'); ?>
 				</label>
 				<label class="checkboxlabel">
-					<input type="radio" name="Use_Captcha" id="Use_Captcha" value="1"<?php if (getOption('Use_Captcha')) echo ' checked="checked"'; ?> />
+					<input type="radio" name="Use_Captcha" id="Use_Captcha" value="1"<?php echo $captchadisable; if ($checked) echo ' checked="checked"'; ?> />
 						<?php echo gettext('Require'); ?>
 					</label>
 			</td>
-			<td><?php echo gettext('If <em>Captcha</em> is required, the form will include a Captcha verification.'); ?></td>
+			<td>
+			<?php
+			if ($captchadisable) {
+				echo '<span class="notebox">'.gettext('No captcha handler is enabled.').'</span>';
+			} else {
+				echo gettext('If <em>Captcha</em> is required, the form will include a Captcha verification.');
+			}
+			?>
+			</td>
 		</tr>
 		<?php zp_apply_filter('options_comments', ''); ?>
 		<tr>

@@ -2285,7 +2285,7 @@ class zpFunctions {
 	 * Standins for when no captcha is enabled
 	 */
 	function getCaptcha() {
-		return array('input'=>'', 'html'=>'<p class="errorbox">'.gettext('No captcha handler is enabled').'</p>', 'hidden'=>'');
+		return array('input'=>'', 'html'=>'<p class="errorbox">'.gettext('No captcha handler is enabled.').'</p>', 'hidden'=>'');
 	}
 	function checkCaptcha($s1, $s2) {
 		return true;

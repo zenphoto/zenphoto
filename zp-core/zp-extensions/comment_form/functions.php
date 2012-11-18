@@ -493,7 +493,7 @@ function comment_form_addCcomment($name, $email, $website, $comment, $code, $cod
 		if (getOption('comment_email_required')=='required') $whattocheck = $whattocheck | COMMENT_EMAIL_REQUIRED;
 		if (getOption('comment_name_required')) $whattocheck = $whattocheck | COMMENT_NAME_REQUIRED;
 		if (getOption('comment_web_required')=='required') $whattocheck = $whattocheck | COMMENT_WEB_REQUIRED;
-		if ($_zp_captcha && getOption('Use_Captcha')) $whattocheck = $whattocheck | USE_CAPTCHA;
+		if (getOption('Use_Captcha')) $whattocheck = $whattocheck | USE_CAPTCHA;
 		if (getOption('comment_body_requiired')) $whattocheck = $whattocheck | COMMENT_BODY_REQUIRED;
 		IF (getOption('email_new_comments')) $whattocheck = $whattocheck | COMMENT_SEND_EMAIL;
 	} else {
