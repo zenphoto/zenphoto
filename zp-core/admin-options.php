@@ -373,14 +373,15 @@ if (isset($_GET['action'])) {
 		}
 		/*** Plugin Options ***/
 		if (isset($_POST['savepluginoptions'])) {
-			// all plugin options are handled by the custom option code.
-			if (isset($_GET['single'])) {
-				$returntab = "&tab=plugin&single=".sanitize($_GET['single']);
+			if (isset($_POST['checkForPostTruncation'])) {
+				// all plugin options are handled by the custom option code.
+				if (isset($_GET['single'])) {
+					$returntab = "&tab=plugin&single=".sanitize($_GET['single']);
+				} else {
+					$returntab = "&tab=plugin&subpage=$subpage";
+				}
 			} else {
-				$returntab = "&tab=plugin&subpage=$subpage";
-			}
-			if (!isset($_POST['last_plugin_option'])) {
-				$notify = '?saved&missing';
+				$notify = '?post_error';
 			}
 		}
 		/*** Security Options ***/
@@ -464,6 +465,12 @@ Zenphoto_Authority::printPasswordFormJS();
 <div id="container">
 <?php
 $subtab = getSubtabs();
+if (isset($_GET['post_error'])) {
+	echo '<div class="errorbox">';
+	echo  "<h2>".gettext('Error')."</h2>";
+	echo gettext('The form submission is incomplete. Perhaps the form size exceeds configured server or browser limits.');
+	echo '</div>';
+}
 if (isset($_GET['saved'])) {
 	echo '<div class="messagebox fade-message">';
 	echo  "<h2>".gettext("Applied")."</h2>";
@@ -2998,7 +3005,7 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 					</td>
 				</tr>
 			</table> <!-- single plugin page table -->
-			<input type="hidden" name="last_plugin_option"	value="1" />
+			<input type="hidden" name="checkForPostTruncation" value="1" />
 			<?php
 			}
 			?>
