@@ -66,12 +66,15 @@ if (isset($_GET['action'])) {
 
 				if ($group->getName()=='group') {
 					//have to update any users who have this group designate.
+					$groupname = $group->getUser();
 					foreach ($admins as $admin) {
-						if ($admin['valid'] && $admin['group']===$groupname) {
-							$user = Zenphoto_Authority::newAdministrator($admin['user'], $admin['valid']);
-							$user->setRights($group->getRights());
-							$user->setObjects($group->getObjects());
-							$user->save();
+						if ($admin['valid']) {
+							$hisgroups = explode(',',$admin['group']);
+							if (in_array($groupname, $hisgroups)) {
+								$user = Zenphoto_Authority::newAdministrator($admin['user'], $admin['valid']);
+								user_groups::merge_rights($user, $hisgroups);
+								$user->save();
+							}
 						}
 					}
 					//user assignments: first clear out existing ones
