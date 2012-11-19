@@ -83,7 +83,7 @@ echo '</head>';
 			echo '<ol>';
 			foreach($dirs as $dir) {
 				$filemtime = filemtime($cachefolder.$dir);
-				$lastchange = zpFormattedDate(DATE_FORMAT,$filemtime);
+				$lastchange = zpFormattedDate('Y-m-d H:i:s',$filemtime);
 				?>
 				<li><a target="_blank" href="<?php echo FULLWEBPATH; ?>/cache_html/sitemap/<?php echo $dir; ?>"><?php echo $dir; ?></a> (<small><?php echo $lastchange; ?>)</small>
 				</li>

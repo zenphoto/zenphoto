@@ -155,7 +155,7 @@ zp_apply_filter('admin_note','comments', $subtab);
 			</tr>
 			<tr>
 				<td><?php echo gettext("Date/Time:"); ?></td>
-				<td><input type="text" size="18" name="date" value="<?php echo html_encode($date); ?>" /></td>
+				<td><input type="text" size="18" name="date" value="<?php echo date('Y-m-d H:i:s',strtotime($date)); ?>" /></td>
 			</tr>
 			<tr>
 				<td><?php echo gettext("IP:"); ?></td>
@@ -432,7 +432,7 @@ if ($totalpages > 1) {
 		?>
 	<tr class="newstr">
 		<td><?php echo ($fulltext) ? $fullcomment : $shortcomment; ?></td>
-		<td><?php echo $date; ?></td>
+		<td><?php echo date('Y-m-d H:i:s',strtotime($date)); ?></td>
 		<td>
 		<?php
 		echo $website ? "<a href=\"$website\">$author</a>" : $author;
