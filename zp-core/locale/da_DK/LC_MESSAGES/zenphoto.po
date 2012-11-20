@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-11 15:22+0100\n"
-"PO-Revision-Date: 2012-11-18 12:58+0100\n"
+"PO-Revision-Date: 2012-11-21 00:04+0100\n"
 "Last-Translator: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language-Team: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language: danish\n"
@@ -3600,12 +3600,17 @@ msgid ""
 "Place the downloaded themes in the <code>/themes</code> folder and they will "
 "be available for your use."
 msgstr ""
+"Placér de hentede temaer i <code>/themes</code> mappen, så er de klar til "
+"brug."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:184
 msgid ""
 "You can edit files from custom themes. Official themes shipped with Zenphoto "
 "are not editable, since your changes would be lost on next update."
 msgstr ""
+"Du kan redigere files fra brugerdefinerede temaer. Officielle temar der "
+"udsendes med Zenphoto kan ikke redigeres, fordi dine ændringer ville "
+"forsvinde i næste opdatering."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:185
 msgid ""
@@ -3613,89 +3618,92 @@ msgid ""
 "it. This will place a copy in your <code>/themes</code> folder for you to "
 "edit."
 msgstr ""
+"Hvis du vil tilpasse et officiel tema, skal du først <em> duplikere </ em> "
+"det. Dette vil placere en kopi som du kan redigere i din <code> / themes </ "
+"code> mappe."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:189
 msgid "Installed themes"
-msgstr ""
+msgstr "Installerede temaer"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:190
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/ipBlocker.php:84
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/spamfilters/none.php:40
 msgid "Action"
-msgstr ""
+msgstr "Handling"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:203
 msgid "third party theme"
-msgstr ""
+msgstr "tredje parts temaer"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:232
 #: /home/jes/work/translations/zenphoto/zp-core/admin-plugins.php:250
 msgid "logo"
-msgstr ""
+msgstr "logo"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:245
 msgid "Version"
-msgstr ""
+msgstr "Version"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:250
 #, php-format
 msgid "Set <em>%s</em> theme options"
-msgstr ""
+msgstr "Sæt <em>%s</em> tema indstillinger"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:259
 #, php-format
 msgid "Set %s as your theme"
-msgstr ""
+msgstr "Vælg %s som dit tema"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:260
 msgid "Activate"
-msgstr ""
+msgstr "Aktiver"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:271
 #, php-format
 msgid "Assign %s as your album theme"
-msgstr ""
+msgstr "Vælg %s som dit albumtema"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:272
 msgid "Assign"
-msgstr ""
+msgstr "Vælg"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:278
 msgid "Current Theme"
-msgstr ""
+msgstr "Nuværende tema"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:286
 #, php-format
 msgid "Edit %s"
-msgstr ""
+msgstr "Rediger %s"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:296
 #, php-format
 msgid "Delete this %s"
-msgstr ""
+msgstr "Slet dette %s"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:307
 #, php-format
 msgid "Duplicate %s"
-msgstr ""
+msgstr "Dupliker %s"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-themes.php:308
 msgid "Duplicate"
-msgstr ""
+msgstr "Dubliker"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-albumsort.php:71
 msgid "No album provided to sort."
-msgstr ""
+msgstr "Der er intet album at sortere."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-albumsort.php:92
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:758
 #, php-format
 msgid "Edit Album: <em>%1$s%2$s</em>"
-msgstr ""
+msgstr "Rediger Album: <em>%1$s%2$s</em>"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-albumsort.php:112
 msgid "Image order saved"
-msgstr ""
+msgstr "Billedorden gemt"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-albumsort.php:118
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:4457
@@ -3703,7 +3711,7 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:36
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:12
 msgid "Nothing changed"
-msgstr ""
+msgstr "Intet ændret"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-albumsort.php:136
 #: /home/jes/work/translations/zenphoto/zp-core/admin-albumsort.php:162
@@ -3717,7 +3725,7 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1860
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:309
 msgid "Back to the album list"
-msgstr ""
+msgstr "Tilbage til albumlisten"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-albumsort.php:141
 #: /home/jes/work/translations/zenphoto/zp-core/admin-albumsort.php:143
@@ -3728,15 +3736,15 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1883
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1885
 msgid "View Album"
-msgstr ""
+msgstr "Se Album"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-albumsort.php:147
 msgid "Set the image order by dragging them to the positions you desire."
-msgstr ""
+msgstr "Sæt billedordnen ved at trække billederne til den position du ønsker."
 
 #: /home/jes/work/translations/zenphoto/zp-core/functions-db-MySQLi.php:32
 msgid "MySQLi Error: Zenphoto could not instantiate a connection."
-msgstr ""
+msgstr "MySQLi Fejl: Zenphoto kan ikke lave en forbindelse."
 
 #: /home/jes/work/translations/zenphoto/zp-core/functions-db-MySQLi.php:38
 #, php-format
@@ -3744,6 +3752,8 @@ msgid ""
 "MySQLi Error: MySQLi returned the error %1$s when Zenphoto tried to select "
 "the database %2$s."
 msgstr ""
+"MySQLi Fejl: MySQLi returnerede fejl %1$s da Zenphoto forsøgte at vælge "
+"databasen %2$s."
 
 #: /home/jes/work/translations/zenphoto/zp-core/functions-db-MySQLi.php:64
 #: /home/jes/work/translations/zenphoto/zp-core/functions-db-MySQL.php:61
@@ -3773,21 +3783,24 @@ msgstr "%s er ikke fobundet"
 
 #: /home/jes/work/translations/zenphoto/zp-core/i.php:62
 msgid "Forbidden(1)"
-msgstr ""
+msgstr "Forbudt(1)"
 
 #: /home/jes/work/translations/zenphoto/zp-core/i.php:120
 msgid "Forbidden(2)"
-msgstr ""
+msgstr "Forbudt(2)"
 
 #: /home/jes/work/translations/zenphoto/zp-core/i.php:157
 msgid ""
 "The cache directory does not exist. Please create it and set the permissions "
 "to 0777."
 msgstr ""
+"Cachemappen eksisterer ikke. Opret venligst mappen og sæt rettigheder til "
+"0777."
 
 #: /home/jes/work/translations/zenphoto/zp-core/i.php:162
 msgid "The cache directory is not writable! Attempts to chmod didn't work."
 msgstr ""
+"Cachemappen er ikke skrivbar! Forsøg på at ændre rettigheder virkede ikke."
 
 #: /home/jes/work/translations/zenphoto/zp-core/i.php:197
 #, php-format
@@ -3797,12 +3810,12 @@ msgstr "Billedet ikke fundet; filen %s  eksisterer ikke."
 #: /home/jes/work/translations/zenphoto/zp-core/i.php:234
 #, php-format
 msgid "Image processing of %s resulted in a fatal error."
-msgstr ""
+msgstr "Billedbehandling af %s resulterede i en fatal fejl."
 
 #: /home/jes/work/translations/zenphoto/zp-core/i.php:256
 #, php-format
 msgid "Suffix Not Allowed: %s"
-msgstr ""
+msgstr "Suffiks ikke tilladt: %s"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-comments.php:95
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:621
@@ -4047,20 +4060,24 @@ msgid ""
 "permissions problem. Try setting the permissions on the albums and cache "
 "folders to be world-writable using a shell:"
 msgstr ""
+"Albummet kunne ikke oprettes i 'album' mappen.Dette er normalt et problem "
+"vedrørende rettigheder. Forsøg at sætte rettighederne på album og "
+"cachemapperne til at være skrivbare for alle ved hjælp af en skal:"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:516
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/uploader_http/uploader.php:68
 msgid ""
 "or use your FTP program to give everyone write permissions to those folders."
 msgstr ""
+"eller brug dit FTP-program til at give alle skriveret til disse mapper."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:646
 msgid "Show thumbnail stand-in"
-msgstr ""
+msgstr "Vis miniature stedfortræder"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:649
 msgid "Show album thumb"
-msgstr ""
+msgstr "Vis album miniature"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:654
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:144
