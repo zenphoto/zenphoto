@@ -1296,7 +1296,8 @@ function safe_glob($pattern, $flags=0) {
  * Check to see if the setup script needs to be run
  */
 function checkInstall() {
-	if (!($i = getOption('zenphoto_install')) || getOption('zenphoto_version') != ZENPHOTO_VERSION.' ['.ZENPHOTO_RELEASE.']'
+	preg_match('|\[(.*)\]|', getOption('zenphoto_version'), $matches);
+	if (!($i = getOption('zenphoto_install')) || $matches[1] != ZENPHOTO_RELEASE
 									|| ((time() & 7)==0) && OFFSET_PATH!=2 && $i != serialize(installSignature())) {
 		require_once(dirname(__FILE__).'/reconfigure.php');
 		reconfigureAction(false);
@@ -1334,9 +1335,14 @@ function installSignature() {
 		$s = 'software unknown';
 	}
 	$dbs = db_software();
+	$version = ZENPHOTO_VERSION;
+	$i = strpos($version, '-');
+	if ($i !== false) {
+		$version = substr($version, 0, $i);
+	}
 	return array_merge($testFiles,
 											array('SERVER_SOFTWARE'=>$s,
-														'ZENPHOTO'=>ZENPHOTO_VERSION.'['.ZENPHOTO_RELEASE.']',
+														'ZENPHOTO'=>$version.'['.ZENPHOTO_RELEASE.']',
 														'FOLDER'=>dirname(SERVERPATH.'/'.ZENFOLDER),
 														'DATABASE'=>$dbs['application'].' '.$dbs['version']
 														)

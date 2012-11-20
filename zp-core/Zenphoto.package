@@ -798,7 +798,6 @@ zp-core/zp-extensions/deprecated-functions.php
 zp-core/zp-extensions/deprecated_functions
 zp-core/zp-extensions/deprecated_functions/check_for_deprecated.php
 zp-core/zp-extensions/deprecated_functions/functions.php
-zp-core/zp-extensions/displayErrors.php
 zp-core/zp-extensions/downloadList
 zp-core/zp-extensions/downloadList.php
 zp-core/zp-extensions/downloadList/download_statistics.php
@@ -987,6 +986,7 @@ zp-core/zp-extensions/jplayer/skin/zenphotolight/jplayer.zenphoto.png
 zp-core/zp-extensions/jplayer/skin/zenphotolight/jplayer.zenphoto.seeking.gif
 zp-core/zp-extensions/jplayer/skin/zenphotolight/jplayer.zenphotolight.css
 zp-core/zp-extensions/legacySpam.php
+zp-core/zp-extensions/markRelease.php
 zp-core/zp-extensions/menu_manager
 zp-core/zp-extensions/menu_manager.php
 zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php
