@@ -95,6 +95,7 @@ function shortentitle($title,$length) {
  */
 function printImageslist($number) {
 	global $_zp_gallery, $host;
+	$args = array(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 	if(isset($_GET['album']) AND !empty($_GET['album'])) {
 
@@ -117,7 +118,7 @@ function printImageslist($number) {
 		$albumthumbalbum = $albumthumb->getAlbum();
 		$albumdesc = $albumobj->getDesc();
 		$imagedesc = $albumthumb->getDesc();
-		$imgurl = $host.WEBPATH.'/'.ZENFOLDER."/i.php?a=". urlencode(pathurlencode($albumthumbalbum->name))."&amp;i=".urlencode(urlencode($albumthumb->filename));
+		$imgurl = getImageProcessorURI($args, $albumthumbalbum->name, $albumthumb->filename);
 		$fullimage = pathurlencode(addslashes($albumthumb->getFullImage()));
 		$imageType = getImageType($albumthumb);
 		if($imageType) {
@@ -126,7 +127,7 @@ function printImageslist($number) {
 			$imgurl = $albumthumb->getThumb();
 		} else {
 			$backgroundcss = 'albumthumb-other';
-			$imgurl = $host.WEBPATH.'/'.ZENFOLDER."/i.php?a=". urlencode(pathurlencode($albumthumbalbum->name))."&amp;i=".urlencode(urlencode($albumthumb->filename));
+			$imgurl = getImageProcessorURI($args, $albumthumbalbum->name, $albumthumb->filename);
 		}
 		$imgsizeurl = $albumthumb->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, TRUE);
 		echo "<div class='thumb'>";
@@ -180,7 +181,7 @@ function printImageslist($number) {
 					case '':
 						// image photo
 						$backgroundcss = 'thumb-image';
-						$imgurl = $host.WEBPATH.'/'.ZENFOLDER."/i.php?a=".urlencode(pathurlencode($linkalbumobj->name))."&amp;i=".urlencode(urlencode($imageobj->filename));
+						$imgurl = getImageProcessorURI($args, $linkalbumobj->name, $imageobj->filename);
 						$sizedimage = $imageobj->getSizedImage(getOption('image_size'));
 						$sizedimage = '<img src="'.$sizedimage.'" alt="'.$imageobj->getTitle().'" class="zenpage_sizedimage" />';
 						break;
@@ -192,7 +193,7 @@ function printImageslist($number) {
 						}
 						$sizedimage = $imageobj->getSizedImage(getOption('image_size'));
 						$sizedimage = str_replace('class="textobject"', 'class="textobject zenpage_sizedimage"', $sizedimage);
-						$imgurl = $host.WEBPATH.'/'.ZENFOLDER."/i.php?a=".urlencode(pathurlencode($linkalbumobj->name))."&amp;i=".urlencode(urlencode($filename));
+						$imgurl = getImageProcessorURI($args, $linkalbumobj->name, $imageobj->filename);
 						$backgroundcss = 'thumb-textobject';
 						break;
 					case 'video':
@@ -204,7 +205,7 @@ function printImageslist($number) {
 						} else {
 							$filename = $imageobj->objectsThumb;
 						}
-						$imgurl = $host.WEBPATH.'/'.ZENFOLDER."/i.php?a=".urlencode(pathurlencode($linkalbumobj->name))."&amp;i=".urlencode(urlencode($filename));
+						$imgurl = getImageProcessorURI($args, $linkalbumobj->name, $imageobj->filename);
 						$backgroundcss = 'thumb-multimedia';
 						break;
 					default:

@@ -462,7 +462,6 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 								} else {
 									$img = getCustomSizedImageMaxSpace($width,$height);
 								}
-								//$img = WEBPATH . '/' . ZENFOLDER . '/i.php?a=' . pathurlencode($image->album->name) . '&i=' . pathurlencode($filename) . '&s=' . $imagesize;
 								echo 'ImageList[' . $cntr . '] = "' . $img . '";'. "\n";
 								echo 'TitleList[' . $cntr . '] = "' . js_encode($image->getTitle()) . '";'. "\n";
 								if($showdesc) {
@@ -647,7 +646,6 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 								printCustomSizedImageMaxSpace('',$width,$height);
 							}
 							if($linkslides) echo '</a>';
-							//echo "<img src='".WEBPATH."/".ZENFOLDER."/i.php?a=".pathurlencode($folder)."&i=".urlencode($filename)."&s=".$imagesize."' alt='".html_encode($image->getTitle())."' title='".html_encode($image->getTitle())."' />\n";
 						}
 						if($showdesc) {
 							$desc = $image->getDesc();
