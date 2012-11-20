@@ -252,7 +252,7 @@ class zenpagecms {
 		}
 		if (getPlugin('pages.php', $theme)) {	// it supports zenpage
 			?>
-			<span id="themeSwitcher_zenpage">
+			<span id="themeSwitcher_zenpage" title="<?php echo gettext("Enable Zenpage CMS plugin"); ?>">
 				<label>
 					Zenpage
 					<input type="checkbox" name="cmsSwitch" id="cmsSwitch" value="1"<?php if(getOption('zp_plugin_zenpage')) echo $disabled.' checked="checked"'; ?> onclick="switchCMS(this.checked);" />
@@ -269,10 +269,6 @@ class zenpagecms {
 			if (isset($_GET['cmsSwitch'])) {
 				setOption('themeSwitcher_zenpage_switch',$cmsSwitch = (int) ($_GET['cmsSwitch']=='true'));
 				if (!$cmsSwitch) {
-					setOption('zp_plugin_zenpage', 0, false);
-				}
-			} else {
-				if (!is_null(getOption('themeSwitcher_zenpage_switch'))) {
 					setOption('zp_plugin_zenpage', 0, false);
 				}
 			}

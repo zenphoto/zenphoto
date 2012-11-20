@@ -140,10 +140,12 @@ class themeSwitcher {
 			$theme = $_zp_gallery->getCurrentTheme();
 			?>
 			<span class="themeSwitcherControlLink">
-				<?php echo $text; ?>
-				<select name="themeSwitcher" id="themeSwitcher" onchange="switchTheme('<?php echo html_encode($reloc); ?>')">
-					<?php generateListFromArray(array($theme), $themes, false, true); ?>
-				</select>
+				 <span title="<?php echo gettext("Themes will not show in this list if selecting them would reslt in a 'not found' error."); ?>">
+					<?php echo $text; ?>
+					<select name="themeSwitcher" id="themeSwitcher" onchange="switchTheme('<?php echo html_encode($reloc); ?>')">
+						<?php generateListFromArray(array($theme), $themes, false, true); ?>
+					</select>
+				</span>
 				<?php zp_apply_filter('themeSwitcher_Controllink',$theme); ?>
 			</span>
 		<?php
