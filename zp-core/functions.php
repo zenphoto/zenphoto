@@ -1331,11 +1331,6 @@ function zp_setCookie($name, $value, $time=NULL, $path=NULL, $secure=false) {
 	}
 	if (substr($path, -1, 1) != '/') $path .= '/';
 	if (DEBUG_LOGIN) {
-		if (isset($_SESSION[$name])) {
-			$sessionv = $_SESSION[$name];
-		} else {
-			$sessionv = '';
-		}
 		debugLog("zp_setCookie($name, $value, $time, $path)::album_session=".GALLERY_SESSION."; SESSION=".session_id());
 	}
 	if (($time < 0) || !GALLERY_SESSION) {
