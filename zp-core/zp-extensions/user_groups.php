@@ -163,7 +163,7 @@ class user_groups {
 			$grouppart .= '<label title="'.gettext('*no group affiliation').'"><input type="checkbox" id="noGroup_'.$i.'" name="'.$i.'group[]" value="" onclick="groupchange'.$i.'(0);" />'.gettext('*no group selected').'</label>'."\n";
 
 			if ($userobj->getID()>=0) {
-				$notice = ' '.gettext("Applying a template to will merge the template with the current <em>rights</em> and <em>objects</em>.");
+				$notice = ' '.gettext("Applying a template will merge the template with the current <em>rights</em> and <em>objects</em>.");
 			} else {
 				$notice = '';
 			}
