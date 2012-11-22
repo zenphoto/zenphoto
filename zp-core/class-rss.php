@@ -788,7 +788,7 @@ protected function getRSSCombinewsAlbums() {
 			$itemlink = $this->host.pathurlencode($albumobj->getAlbumLink());
 			$thumb = $albumobj->getAlbumThumbImage();
 			$thumburl = '<img border="0" src="'.pathurlencode($thumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'.html_encode($albumobj->getTitle($this->locale)) .'" />';
-			$title =  $albumobj->getTtitle($this->locale);
+			$title =  $albumobj->getTitle($this->locale);
 			if(true || $this->sortorder == "latestupdated") {
 				$filechangedate = filectime(ALBUM_FOLDER_SERVERPATH.internalToFilesystem($albumobj->name));
 				$latestimage = query_single_row("SELECT mtime FROM " . prefix('images'). " WHERE albumid = ".$albumobj->getID() . " AND `show` = 1 ORDER BY id DESC");
@@ -1029,6 +1029,7 @@ protected function getRSSCombinewsAlbums() {
 				<generator>Zenphoto RSS Generator</generator>
 				<?php
 				$feeditems = $this->getRSSitems();
+				if(is_array($feeditems)) {
 					foreach($feeditems as $feeditem) {
 						switch($this->feedtype) {
 							case 'gallery':
@@ -1047,8 +1048,8 @@ protected function getRSSCombinewsAlbums() {
 							<link><?php echo $item['link']; ?></link>
 							<description><![CDATA[<?php echo $item['desc']; ?>]]></description>
 							<?php
-						if(!empty($item_['enclosure'])) {
-							echo $item_['enclosure']; //prints xml as well
+						if(!empty($item['enclosure'])) {
+							echo $item['enclosure']; //prints xml as well
 							}
 							if(!empty($item['category'])) {
 								?>
@@ -1065,7 +1066,9 @@ protected function getRSSCombinewsAlbums() {
 							<guid><?php echo $item['link']; ?></guid>
 							<pubDate><?php echo $item['pubdate'];  ?></pubDate>
 						</item>
-				<?php } ?>
+				<?php 
+						} // foreach
+					}	?>
 				</channel>
 			</rss>
 		<?php
