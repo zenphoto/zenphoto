@@ -756,6 +756,7 @@ class Zenphoto_Authority {
 		foreach (self::getAuthCookies() as $cookie=>$value) {
 			zp_clearCookie($cookie);
 		}
+		zp_clearCookie("zp_user_id");
 		$_zp_loggedin = false;
 		$_zp_pre_authorization = array();
 	}
@@ -774,6 +775,7 @@ class Zenphoto_Authority {
 			return $loggedin;
 		} else {
 			zp_clearCookie("zp_user_auth");
+			zp_clearCookie("zp_user_id");
 			return NULL;
 		}
 	}
