@@ -9,8 +9,8 @@ require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/print_album_menu.php')
 function jqm_loadScripts() {
 global $_zp_themeroot;
 	?>
-	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/jquerymobile/jquery.mobile-1.2.0.min.css" />
-	<script type="text/javascript" src="<?php echo $_zp_themeroot; ?>/jquerymobile/jquery.mobile-1.2.0.min.js"></script>
+	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/jquerymobile/jquery.mobile-1.1.1.min.css" />
+	<script type="text/javascript" src="<?php echo $_zp_themeroot; ?>/jquerymobile/jquery.mobile-1.1.1.min.js"></script>
 	<?php
 	printZDSearchToggleJS();
 }
@@ -25,19 +25,19 @@ function jqm_printRSSlinks() {
 		<ul>
 	<?php // these links must change to ones with rel="external" so they are actually loaded via jquerymobile!
 		if(getOption('zp_plugin_zenpage')) {
-		  ?>
-		  <li class="rsslink"><a href="<?php echo html_encode(getZenpageRSSLink('News')); ?>" rel="external" data-ajax="false"><?php echo gettext('News'); ?></a></li>
-		  <li class="rsslink"><a href="<?php echo html_encode(getZenpageRSSLink('NewsWithImages')); ?>" rel="external" data-ajax="false"><?php echo gettext('News and Gallery'); ?></a></li>
-		  <?php
+			?>
+			<li class="rsslink"><a href="<?php echo html_encode(getZenpageRSSLink('News')); ?>" rel="external" data-ajax="false"><?php echo gettext('News'); ?></a></li>
+			<li class="rsslink"><a href="<?php echo html_encode(getZenpageRSSLink('NewsWithImages')); ?>" rel="external" data-ajax="false"><?php echo gettext('News and Gallery'); ?></a></li>
+			<?php
 		}
 		 ?>
-		  <li class="rsslink"><a href="<?php echo html_encode(getRSSLink('Gallery')); ?>" rel="external" data-ajax="false"><?php echo gettext('Gallery'); ?></a></li>
+			<li class="rsslink"><a href="<?php echo html_encode(getRSSLink('Gallery')); ?>" rel="external" data-ajax="false"><?php echo gettext('Gallery'); ?></a></li>
 		 <?php
 		 if($_zp_gallery_page == 'album.php') {
 		 ?>
 		 <li class="rsslink"><a href="<?php echo html_encode(getRSSLink('Album')); ?>" rel="external" data-ajax="false"><?php echo gettext('Album'); ?></a></li>
-		  <?php
-		  }
+			<?php
+			}
 		?>
 		</ul>
 <?php
@@ -92,7 +92,7 @@ function jqm_printFooterNav() {
 					}
 				?>
 				<?php
-				if (function_exists('printFavoritesLink')) { 
+				if (function_exists('printFavoritesLink')) {
 					?>
 					<li><?php printFavoritesLink();?></li><?php
 				}

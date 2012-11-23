@@ -93,8 +93,8 @@ class Mobile_Detect {
 																						$this->operatingSystems,
 																						$this->userAgents
 																						);
-				$this->userAgent = $_SERVER['HTTP_USER_AGENT'];
-				$this->accept = $_SERVER['HTTP_ACCEPT'];
+				$this->userAgent = @$_SERVER['HTTP_USER_AGENT'];
+				$this->accept = @$_SERVER['HTTP_ACCEPT'];
 
 				if (
 		isset($_SERVER['HTTP_X_WAP_PROFILE']) ||
