@@ -75,27 +75,6 @@
  * - "Category" for only the latest news articles of the category
  * index.php?rss=news&lang=<locale>&category=<titlelink of category>
  *
- * Optional parameters for "News" and "Category":
- * "sortorder  with these values:
- * - "latest" for latest articles. (If "sortorder" is not set at all "latest" order is used)
- * - "popular" for most viewed articles
- * - "mostrated" for most voted articles
- * - "toprated" for top voted articles
- * - "random" for random articles
- *
- * b. PAGES FEEDS
- * - "pages" feed for latest news articles
- * index.php?rss=pages&lang=<locale>
- *
- * Optional parameters:
- * "sortorder  with these values:
- * - "latest" for latest pages by date (If "sortorder" is not set at all "latest" order is used)
- * - "popular" for most viewed pages
- * - "mostrated" for most voted pages
- * - "toprated" for top voted pages
- * - "random" for random pages
- *
- * c. COMMENTS FEEDS
  * - "Comments" for all news articles and pages
  * index.php?rss=comments&type=zenpage&lang=<locale>
  *
@@ -105,11 +84,19 @@
  * - "Comments-page" for comments of only the page it is called from
  * index.php?rss=comments&id=<page id>&type=page&lang=<locale>
  *
- * - "Comments-all" for comments from all albums, images, news articles and pages
+ * - "Comments-all" for comments from all albums, images, news articels and pages
  * index.php?rss=comments&type=allcomments&lang=<locale>
  *
+ * Optional parameters for "News" and "Category":
+ * "sortorder  with these values:
+ * - "latest" for latest articles. (If "sortorder" is not set at all "latest" order is used)
+ * - "popular" for most viewed articles
+ * - "mostrated" for most voted articles
+ * - "toprated" for top voted articles
+ * - "random" for random articles
  *
- * d. COMBINEWS MODE RSS FEEDS (ARTICLES WITH IMAGES OR ALBUMS COMBINED)
+ *
+ * b. COMBINEWS MODE RSS FEEDS (ARTICLES WITH IMAGES OR ALBUMS COMBINED)
  * NOTE: These override the sortorder parameter. You can also only set one of these parameters at the time. For other custom feed needs use the mergedRSS plugin.
  *
  * - "withimages" for all latest news articles and latest images by date combined
@@ -194,7 +181,7 @@ class RSS {
 	*
 	*/
 	function __construct() {
-		global $_zp_gallery,$_zp_zenpage;
+		global $_zp_gallery;
 		if(isset($_GET['rss'])) {
 			// general feed setup
 			$channeltitlemode = getOption('feed_title');
@@ -316,35 +303,6 @@ class RSS {
 					require_once(ZENFOLDER . '/'.PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
 					break;
 
-				case 'pages':
-					if (!getOption('RSS_pages')) {
-						header("HTTP/1.0 404 Not Found");
-						header("Status: 404 Not Found");
-						include(ZENFOLDER. '/404.php');
-						exitZP();
-					}
-					$this->feedtype = 'pages';
-					$this->sortorder = $this->getRSSSortorder();
-					switch($this->sortorder) {
-						default:
-							$titleappendix = gettext(' (Latest pages)');
-							break;
-						case 'popular':
-							$titleappendix = gettext(' (Most popular pages)');
-							break;
-						case 'mostrated':
-							$titleappendix = gettext(' (Most rated pages)');
-							break;
-						case 'toprated':
-							$titleappendix = gettext(' (Top rated pages)');
-							break;
-						case 'random':
-							$titleappendix = gettext(' (Random pages)');
-							break;
-					}
-					$this->channel_title = html_encode($this->channel_title.$titleappendix);
-					require_once(ZENFOLDER . '/'.PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
-					break;
 
 				case 'comments':	//Comments RSS
 					if (!getOption('RSS_comments')) {
@@ -398,6 +356,7 @@ class RSS {
 					$this->itemnumber = getOption('feed_items');
 				}
 			}
+			$this->feeditems = $this->getRSSitems();
 		}
 	}
 
@@ -727,7 +686,6 @@ protected function getRSSCombinewsAlbums() {
 	 * @return array
 	 */
 	public function getRSSitems() {
-		global $_zp_zenpage;
 		switch($this->feedtype) {
 			case 'gallery':
 				if ($this->rssmode == "albums") {
@@ -742,7 +700,7 @@ protected function getRSSCombinewsAlbums() {
 						if($this->sortorder) {
 							$items = getZenpageStatistic($this->itemnumber,'categories',$this->sortorder);
 						} else {
-						 	$items = getLatestNews($this->itemnumber,"none",$this->catlink,false);
+							$items = getLatestNews($this->itemnumber,"none",$this->catlink,false);
 						}
 						break;
 					case "news":
@@ -775,9 +733,7 @@ protected function getRSSCombinewsAlbums() {
 						break;
 				}
 				break;
-			case 'pages':
-				$items = $_zp_zenpage->getPages(NULL,false,$this->sortorder,NULL,$this->itemnumber);
-				break;
+
 			case 'comments':
 				switch($type = $this->commentrsstype) {
 					case 'gallery':
@@ -832,7 +788,7 @@ protected function getRSSCombinewsAlbums() {
 			$itemlink = $this->host.pathurlencode($albumobj->getAlbumLink());
 			$thumb = $albumobj->getAlbumThumbImage();
 			$thumburl = '<img border="0" src="'.pathurlencode($thumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'.html_encode($albumobj->getTitle($this->locale)) .'" />';
-			$title =  $albumobj->getTtitle($this->locale);
+			$title =  $albumobj->getTitle($this->locale);
 			if(true || $this->sortorder == "latestupdated") {
 				$filechangedate = filectime(ALBUM_FOLDER_SERVERPATH.internalToFilesystem($albumobj->name));
 				$latestimage = query_single_row("SELECT mtime FROM " . prefix('images'). " WHERE albumid = ".$albumobj->getID() . " AND `show` = 1 ORDER BY id DESC");
@@ -945,7 +901,7 @@ protected function getRSSCombinewsAlbums() {
 				$album = $albumobj->getFolder();
 				$fullimagelink = $this->host.pathurlencode($obj->getFullImageURL());
 				$imagefile = pathurlencode($obj->getFullImage('')); /* $imagefile = "albums/".$album."/".$obj->filename; */
-				$content = zpfunctions::unTagURLs(shortenContent($obj->getDesc($this->locale),getOption('zenpage_rss_length'), '...'));
+				$content = shortenContent($obj->getDesc($this->locale),getOption('zenpage_rss_length'), '...');
 				if(isImagePhoto($obj)) {
 					$feeditem['desc'] = '<a title="'.html_encode($feeditem['title']).' in '.html_encode($categories).'" href="'.PROTOCOL.'://'.$this->host.$link.'"><img border="0" src="'.PROTOCOL.'://'.$this->host.pathurlencode($obj->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'. html_encode($feeditem['title']).'"></a><br />'.$content;
 				} else {
@@ -963,7 +919,7 @@ protected function getRSSCombinewsAlbums() {
 				$link = pathurlencode($obj->getAlbumLink());
 				$album = $obj->getFolder();
 				$albumthumb = $obj->getAlbumThumbImage();
-				$content = zpfunctions::unTagURLs(shortenContent($obj->getDesc($this->locale),getOption('zenpage_rss_length'), '...'));
+				$content = shortenContent($obj->getDesc($this->locale),getOption('zenpage_rss_length'), '...');
 
 				if(isImagePhoto($obj)) {
 					$feeditem['desc'] = '<a title="'.html_encode($feeditem['title']).'" href="'.PROTOCOL.'://'.$this->host.$link.'"><img border="0" src="'.PROTOCOL.'://'.$this->host.pathurlencode($albumthumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'. html_encode($feeditem['title']).'"></a><br />'.$content;
@@ -980,25 +936,7 @@ protected function getRSSCombinewsAlbums() {
 		$feeditem['media_content'] = '';
 		$feeditem['media_thumbnail'] = '';
 		$feeditem['pubdate'] = date("r",strtotime($item['date']));
-		return $feeditem;
-	}
 
-	/**
-	 * Gets the feed item data in a pages feed
-	 *
-	 * @param array $item Array of a page
-	 * @return array
-	 */
-	protected function getRSSitemPages($item) {
-		$obj = new ZenpagePage($item['titlelink']);
-		$feeditem['title'] = html_encode(get_language_string($obj->getTitle('all'),$this->locale));
-		$feeditem['category'] = '';
-		$feeditem['media_content'] = '';
-		$feeditem['media_thumbnail'] = '';
-		$feeditem['enclosure'] = '';
-		$feeditem['desc'] = shortenContent($obj->getContent($this->locale),getOption('zenpage_rss_length'), '...');
-		$feeditem['link'] = PROTOCOL.'://'.$this->host.$obj->getPageLink();
-		$feeditem['pubdate'] = date("r",strtotime($obj->getDatetime()));
 		return $feeditem;
 	}
 
@@ -1100,9 +1038,6 @@ protected function getRSSCombinewsAlbums() {
 							case 'news':
 								$item = $this->getRSSitemNews($feeditem);
 								break;
-							case 'pages':
-								$item = $this->getRSSitemPages($feeditem);
-								break;
 							case 'comments':
 								$item = $this->getRSSitemComments($feeditem);
 								break;
@@ -1113,8 +1048,8 @@ protected function getRSSCombinewsAlbums() {
 							<link><?php echo $item['link']; ?></link>
 							<description><![CDATA[<?php echo $item['desc']; ?>]]></description>
 							<?php
-							if(!empty($item['enclosure'])) {
-								echo $item['enclosure']; //prints xml as well
+						if(!empty($item['enclosure'])) {
+							echo $item['enclosure']; //prints xml as well
 							}
 							if(!empty($item['category'])) {
 								?>
@@ -1131,9 +1066,9 @@ protected function getRSSCombinewsAlbums() {
 							<guid><?php echo $item['link']; ?></guid>
 							<pubDate><?php echo $item['pubdate'];  ?></pubDate>
 						</item>
-					<?php
-					}
-				}?>
+				<?php 
+						} // foreach
+					}	?>
 				</channel>
 			</rss>
 		<?php

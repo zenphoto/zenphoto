@@ -28,32 +28,38 @@ list($tabs,$subtab,$pluginlist, $paths) = getPluginTabs();
 /* handle posts */
 if (isset($_GET['action'])) {
 	if ($_GET['action'] == 'saveplugins') {
-		XSRFdefender('saveplugins');
-		$filelist = array();
-		foreach ($_POST as $plugin=>$value) {
-			preg_match('/^present_zp_plugin_(.*)$/xis', $plugin, $matches);
-			if ($matches) {
-				$filelist[] = $matches[1];
-			}
-		}
-		foreach ($filelist as $extension) {
-			$extension = filesystemToInternal($extension);
-			$opt = 'zp_plugin_'.$extension;
-			if (isset($_POST[$opt])) {
-				$value = sanitize_numeric($_POST[$opt]);
-				if (!getOption($opt)) {
-					$option_interface = NULL;
-					require_once(getPlugin($extension.'.php'));
-					if (is_string($option_interface)) {
-						$if = new $option_interface;	//	prime the default options
-					}
+		if (isset($_POST['checkForPostTruncation'])) {
+			XSRFdefender('saveplugins');
+			$filelist = array();
+			foreach ($_POST as $plugin=>$value) {
+				preg_match('/^present_zp_plugin_(.*)$/xis', $plugin, $matches);
+				if ($matches) {
+					$filelist[] = $matches[1];
 				}
-				setOption($opt, $value);
-			} else {
-				setOption($opt, 0);
 			}
+			foreach ($filelist as $extension) {
+				$extension = filesystemToInternal($extension);
+				$opt = 'zp_plugin_'.$extension;
+				if (isset($_POST[$opt])) {
+					$value = sanitize_numeric($_POST[$opt]);
+					if (!getOption($opt)) {
+						$option_interface = NULL;
+						require_once(getPlugin($extension.'.php'));
+						if (is_string($option_interface)) {
+							$if = new $option_interface;	//	prime the default options
+						}
+					}
+					setOption($opt, $value);
+				} else {
+					setOption($opt, 0);
+				}
+			}
+			$notify = '&saved';
+		} else {
+			$notify = '&post_error';
 		}
-		header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-plugins.php?saved&page=plugins&tab=".$subtab."&subpage=".$subpage);
+
+		header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-plugins.php?page=plugins&tab=".$subtab."&subpage=".$subpage.$notify);
 		exitZP();
 	}
 }
@@ -110,6 +116,14 @@ if ($saved) {
 $subtab = printSubtabs();
 ?>
 <div class="tabbox">
+<?php
+if (isset($_GET['post_error'])) {
+	echo '<div class="errorbox">';
+	echo  "<h2>".gettext('Error')."</h2>";
+	echo gettext('The form submission is incomplete. Perhaps the form size exceeds configured server or browser limits.');
+	echo '</div>';
+}
+?>
 <p>
 <?php
 echo gettext("Plugins provide optional functionality for Zenphoto.").' ';
@@ -349,6 +363,7 @@ foreach ($filelist as $extension) {
 <button type="submit" value="<?php echo gettext('Apply') ?>" title="<?php echo gettext("Apply"); ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 <button type="reset" value="<?php echo gettext('Reset') ?>" title="<?php echo gettext("Reset"); ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 </p><br />
+<input type="hidden" name="checkForPostTruncation" value="1" />
 </form>
 </div>
 <?php

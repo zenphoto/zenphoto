@@ -739,8 +739,12 @@ class Zenphoto_Authority {
 		if (isset($_SESSION)) {
 			$candidates = array_merge($candidates,$_SESSION);
 		}
-		preg_match_all('/zp_.+?_auth[_[0-9]*]*?/', implode(' ',array_keys($candidates)).',', $matches);
-		return array_intersect_key($candidates, array_flip($matches[0]));
+		foreach ($candidates as $key=>$candidate) {
+			if (strpos($key, '_auth') === false) {
+				unset($candidates[$key]);
+			}
+		}
+		return $candidates;
 	}
 
 	/**
@@ -752,6 +756,7 @@ class Zenphoto_Authority {
 		foreach (self::getAuthCookies() as $cookie=>$value) {
 			zp_clearCookie($cookie);
 		}
+		zp_clearCookie("zp_user_id");
 		$_zp_loggedin = false;
 		$_zp_pre_authorization = array();
 	}
@@ -770,6 +775,7 @@ class Zenphoto_Authority {
 			return $loggedin;
 		} else {
 			zp_clearCookie("zp_user_auth");
+			zp_clearCookie("zp_user_id");
 			return NULL;
 		}
 	}
@@ -1236,21 +1242,21 @@ class Zenphoto_Authority {
 	 *  @return string derived key
 	*/
 	static function pbkdf2($p, $s, $c=1000, $kl=32, $a = 'sha256') {
-	    $hl = strlen(hash($a, null, true)); # Hash length
-	    $kb = ceil($kl / $hl);              # Key blocks to compute
-	    $dk = '';                           # Derived key
-	    # Create key
-	    for ( $block = 1; $block <= $kb; $block ++ ) {
-	        # Initial hash for this block
-	        $ib = $b = hash_hmac($a, $s . pack('N', $block), $p, true);
-	        # Perform block iterations
-	        for ( $i = 1; $i < $c; $i ++ )
-	            # XOR each iterate
-	            $ib ^= ($b = hash_hmac($a, $b, $p, true));
-	        $dk .= $ib; # Append iterated block
-	   }
-	    # Return derived key of correct length
-	    return substr($dk, 0, $kl);
+			$hl = strlen(hash($a, null, true)); # Hash length
+			$kb = ceil($kl / $hl);              # Key blocks to compute
+			$dk = '';                           # Derived key
+			# Create key
+			for ( $block = 1; $block <= $kb; $block ++ ) {
+					# Initial hash for this block
+					$ib = $b = hash_hmac($a, $s . pack('N', $block), $p, true);
+					# Perform block iterations
+					for ( $i = 1; $i < $c; $i ++ )
+							# XOR each iterate
+							$ib ^= ($b = hash_hmac($a, $b, $p, true));
+					$dk .= $ib; # Append iterated block
+		 }
+			# Return derived key of correct length
+			return substr($dk, 0, $kl);
 	}
 
 }

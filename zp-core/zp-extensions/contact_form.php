@@ -69,6 +69,10 @@ class contactformOptions {
 
 
 	function getOptionsSupported() {
+		global $_zp_captcha;
+			if (empty($_zp_captcha->name)) {
+			setOption('contactform_captcha', 0);
+		}
 		$mailinglist = explode(';',getOption("contactform_mailaddress"));
 		array_walk($mailinglist, 'contactformOptions::trim_value');
 		setOption('contactform_mailaddress',implode(';',$mailinglist));
@@ -129,8 +133,9 @@ class contactformOptions {
 										'order' => 8,
 										'desc' => sprintf($mailfieldinstruction,gettext("Website field"))),
 									gettext('CAPTCHA') => array('key' => 'contactform_captcha', 'type' => OPTION_TYPE_CHECKBOX,
+										'disabled'=>empty($_zp_captcha->name),
 										'order' => 9,
-										'desc' => gettext("Check if CAPTCHA should be required.")),
+										'desc' => (empty($_zp_captcha->name))?'<span class="notebox">'.gettext('No captcha handler is enabled.').'</span>':gettext("Check if CAPTCHA should be required.")),
 									gettext('Phone field') => array('key' => 'contactform_phone', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
 										'order' => 10,
 										'desc' => sprintf($mailfieldinstruction,gettext("Phone number field"))),

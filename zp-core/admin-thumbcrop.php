@@ -103,8 +103,8 @@ switch ($use_side) {
 		$sizedheight = $size;
 		break;
 }
-
-$imageurl = "i.php?a=".pathurlencode($albumname)."&i=".urlencode($imagepart)."&s=".$size.'&admin';
+$args = array($size, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL);
+$imageurl = getImageProcessorURI($args, $albumname, $imagepart);
 
 $iY = round($imageobj->get('thumbY')*$sr);
 $cr = max($cropwidth,$cropheight)/getOption('thumb_size');

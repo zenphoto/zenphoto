@@ -373,14 +373,15 @@ if (isset($_GET['action'])) {
 		}
 		/*** Plugin Options ***/
 		if (isset($_POST['savepluginoptions'])) {
-			// all plugin options are handled by the custom option code.
-			if (isset($_GET['single'])) {
-				$returntab = "&tab=plugin&single=".sanitize($_GET['single']);
+			if (isset($_POST['checkForPostTruncation'])) {
+				// all plugin options are handled by the custom option code.
+				if (isset($_GET['single'])) {
+					$returntab = "&tab=plugin&single=".sanitize($_GET['single']);
+				} else {
+					$returntab = "&tab=plugin&subpage=$subpage";
+				}
 			} else {
-				$returntab = "&tab=plugin&subpage=$subpage";
-			}
-			if (!isset($_POST['last_plugin_option'])) {
-				$notify = '?saved&missing';
+				$notify = '?post_error';
 			}
 		}
 		/*** Security Options ***/
@@ -464,6 +465,12 @@ Zenphoto_Authority::printPasswordFormJS();
 <div id="container">
 <?php
 $subtab = getSubtabs();
+if (isset($_GET['post_error'])) {
+	echo '<div class="errorbox">';
+	echo  "<h2>".gettext('Error')."</h2>";
+	echo gettext('The form submission is incomplete. Perhaps the form size exceeds configured server or browser limits.');
+	echo '</div>';
+}
 if (isset($_GET['saved'])) {
 	echo '<div class="messagebox fade-message">';
 	echo  "<h2>".gettext("Applied")."</h2>";
@@ -766,8 +773,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 						</select>
 						<div id="customTextBox" class="customText" style="display:<?php echo $dsp; ?>">
 						<br />
-						<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" name="date_format"
-						value="<?php echo html_encode(DATE_FORMAT);?>" />
+						<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" name="date_format" value="<?php echo html_encode(DATE_FORMAT);?>" />
 						</div>
 						</td>
 					<td><?php echo gettext('Format for dates. Select from the list or set to <code>custom</code> and provide a <a href="http://us2.php.net/manual/en/function.strftime.php"><span class="nowrap"><code>strftime()</code></span></a> format string in the text box.'); ?></td>
@@ -2379,16 +2385,33 @@ if ($subtab == 'comments' && zp_loggedin(OPTIONS_RIGHTS)) {
 		</tr>
 			<td><?php echo gettext('Captcha'); ?></td>
 			<td>
+				<?php
+				if ($_zp_captcha->name) {
+					$captchadisable = '';
+					$checked = getOption('Use_Captcha');
+				} else {
+					$captchadisable = ' disabled="disabled"';
+					$checked = false;
+				}
+				?>
 				<label class="checkboxlabel">
-					<input type="radio" name="Use_Captcha" id="Use_Captcha" value="0"<?php if (!getOption('Use_Captcha')) echo ' checked="checked"'; ?>  />
+					<input type="radio" name="Use_Captcha" id="Use_Captcha" value="0"<?php echo $captchadisable; if (!$checked) echo ' checked="checked"'; ?>  />
 						<?php echo gettext('Omit'); ?>
 				</label>
 				<label class="checkboxlabel">
-					<input type="radio" name="Use_Captcha" id="Use_Captcha" value="1"<?php if (getOption('Use_Captcha')) echo ' checked="checked"'; ?> />
+					<input type="radio" name="Use_Captcha" id="Use_Captcha" value="1"<?php echo $captchadisable; if ($checked) echo ' checked="checked"'; ?> />
 						<?php echo gettext('Require'); ?>
 					</label>
 			</td>
-			<td><?php echo gettext('If <em>Captcha</em> is required, the form will include a Captcha verification.'); ?></td>
+			<td>
+			<?php
+			if ($captchadisable) {
+				echo '<span class="notebox">'.gettext('No captcha handler is enabled.').'</span>';
+			} else {
+				echo gettext('If <em>Captcha</em> is required, the form will include a Captcha verification.');
+			}
+			?>
+			</td>
 		</tr>
 		<?php zp_apply_filter('options_comments', ''); ?>
 		<tr>
@@ -2982,7 +3005,7 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 					</td>
 				</tr>
 			</table> <!-- single plugin page table -->
-			<input type="hidden" name="last_plugin_option"	value="1" />
+			<input type="hidden" name="checkForPostTruncation" value="1" />
 			<?php
 			}
 			?>
