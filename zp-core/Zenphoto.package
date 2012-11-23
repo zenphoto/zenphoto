@@ -1572,15 +1572,12 @@ zp-core/zp-extensions/tiny_mce/plugins/searchreplace/langs/zh-cn_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/searchreplace/langs/zh-tw_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/searchreplace/searchreplace.htm
 zp-core/zp-extensions/tiny_mce/plugins/spellchecker
-zp-core/zp-extensions/tiny_mce/plugins/spellchecker/classes
-zp-core/zp-extensions/tiny_mce/plugins/spellchecker/classes/utils
 zp-core/zp-extensions/tiny_mce/plugins/spellchecker/css
 zp-core/zp-extensions/tiny_mce/plugins/spellchecker/css/content.css
 zp-core/zp-extensions/tiny_mce/plugins/spellchecker/editor_plugin.js
 zp-core/zp-extensions/tiny_mce/plugins/spellchecker/editor_plugin_src.js
 zp-core/zp-extensions/tiny_mce/plugins/spellchecker/img
 zp-core/zp-extensions/tiny_mce/plugins/spellchecker/img/wline.gif
-zp-core/zp-extensions/tiny_mce/plugins/spellchecker/includes
 zp-core/zp-extensions/tiny_mce/plugins/style
 zp-core/zp-extensions/tiny_mce/plugins/style/css
 zp-core/zp-extensions/tiny_mce/plugins/style/css/props.css
@@ -1924,4 +1921,4 @@ zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zpCaptcha
 zp-core/zp-extensions/zpCaptcha.php
 zp-core/zp-extensions/zpCaptcha/c.php
-1926
+1923
