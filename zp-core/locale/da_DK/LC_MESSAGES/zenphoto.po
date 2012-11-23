@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-11 15:22+0100\n"
-"PO-Revision-Date: 2012-11-21 00:04+0100\n"
+"PO-Revision-Date: 2012-11-23 20:55+0100\n"
 "Last-Translator: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language-Team: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language: danish\n"
@@ -4084,20 +4084,20 @@ msgstr "Vis album miniature"
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:146
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:250
 msgid "Set to published"
-msgstr ""
+msgstr "Indstillet til offentliggjort"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:655
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:145
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:147
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:251
 msgid "Set to unpublished"
-msgstr ""
+msgstr "Indstillet til ikke offentliggjort"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:657
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:147
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:253
 msgid "Clear tags"
-msgstr ""
+msgstr "Nulstil mærker"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:658
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:2079
@@ -4106,7 +4106,7 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:323
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:275
 msgid "Disable comments"
-msgstr ""
+msgstr "Deaktiver kommentarer"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:659
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:2093
@@ -4115,55 +4115,55 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:329
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:281
 msgid "Enable comments"
-msgstr ""
+msgstr "Aktiver kommentarer"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:660
 msgid "Change owner"
-msgstr ""
+msgstr "Skift ejer"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:666
 msgid "Add tags to images"
-msgstr ""
+msgstr "Tilføj mærker til billederne"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:667
 msgid "Clear tags of images"
-msgstr ""
+msgstr "Fjern mærker fra billederne"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:670
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1165
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1745
 msgid "Move"
-msgstr ""
+msgstr "Flyt"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:671
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1169
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1751
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:527
 msgid "Copy"
-msgstr ""
+msgstr "Kopier"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:742
 msgid "Hitcounters have been reset"
-msgstr ""
+msgstr "Besøgstællere er blevet nulstillet"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:747
 msgid "Image metadata refreshed."
-msgstr ""
+msgstr "Billed metadata er opdaterede."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:794
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1609
 msgid " descending"
-msgstr ""
+msgstr "faldende"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:803
 #, php-format
 msgid "Current sort: <em>%1$s%2$s</em>. "
-msgstr ""
+msgstr "Nuværende sortering: <em>%1$s%2$s</em>."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:807
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1623
 msgid "Drag the albums into the order you wish them displayed."
-msgstr ""
+msgstr "Træk albummerne til den orden du ønsker dem vist."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:810
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1626
@@ -4171,6 +4171,9 @@ msgid ""
 "<strong>Note:</strong> Dragging an album under a different parent will move "
 "the album. You cannot move albums under a <em>dynamic</em> album."
 msgstr ""
+"<strong>OBS:</strong> Hvis du trækker et album under et andet album, vil du "
+"flytte albummet. Du kan ikke flytte albummer under et <em>dynamisk</em> "
+"album."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:816
 #, php-format
@@ -4179,6 +4182,9 @@ msgid ""
 "page=edit&amp;album=%s&amp;massedit\">mass-edit</a> all first level "
 "subalbums."
 msgstr ""
+"Vælg et album for at redigere dets beskrivelse og data, eller <a href=\"?"
+"page=edit&amp;album=%s&amp;massedit\">masse-rediger</a> alle første niveau "
+"underalbums."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:835
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:837
@@ -4189,12 +4195,12 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1876
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1878
 msgid "New subalbum"
-msgstr ""
+msgstr "Nyt underalbum"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:846
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1659
 msgid "Edit this album"
-msgstr ""
+msgstr "Rediger dette album"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:855
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1664
@@ -4202,23 +4208,25 @@ msgid ""
 "Thumbnail generation may be time consuming on slow servers on when there are "
 "a lot of images."
 msgstr ""
+"Dannelse af miniaturer kan tage lang tid på langsomme servere når der er en "
+"masse billeder."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:944
 msgid "Click on the image to change the thumbnail cropping."
-msgstr ""
+msgstr "Klik på billedet for at ændre miniature beskæringen."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:946
 msgid "expand all fields"
-msgstr ""
+msgstr "Udvid alle felter"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:947
 msgid "collapse all fields"
-msgstr ""
+msgstr "skjul alle felter"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:953
 #, php-format
 msgid "%s (descending)"
-msgstr ""
+msgstr "%s (faldende)"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:955
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1093
@@ -4234,25 +4242,25 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/exif/makers/panasonic.php:113
 #: /home/jes/work/translations/zenphoto/zp-core/exif/makers/panasonic.php:139
 msgid "Manual"
-msgstr ""
+msgstr "Manuelt"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:958
 msgid "Display images by:"
-msgstr ""
+msgstr "Vis billeder efter:"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1028
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1259
 #, php-format
 msgid "crop %s"
-msgstr ""
+msgstr "beskær %s"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1037
 msgid "Zoom"
-msgstr ""
+msgstr "Zoom"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1039
 msgid "View image on website"
-msgstr ""
+msgstr "Vis billede på websted"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1039
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:365
@@ -4269,31 +4277,31 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/utilities/gallery_statistics.php:437
 #: /home/jes/work/translations/zenphoto/zp-core/utilities/gallery_statistics.php:440
 msgid "View"
-msgstr ""
+msgstr "Vis"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1040
 msgid "<strong>Filename:</strong>"
-msgstr ""
+msgstr "<strong>Filnavn:</strong>"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1041
 msgid "<strong>Image id:</strong>"
-msgstr ""
+msgstr "<strong>Billed id:</strong>"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1042
 msgid "<strong>Dimensions:</strong>"
-msgstr ""
+msgstr "<strong>Dimensioner:</strong>"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1042
 msgid "px"
-msgstr ""
+msgstr "px"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1043
 msgid "<strong>Size:</strong>"
-msgstr ""
+msgstr "<strong>Størrelse:</strong>"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1045
 msgid "Owner:"
-msgstr ""
+msgstr "Ejer:"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1060
 #: /home/jes/work/translations/zenphoto/zp-core/lib-auth.php:491
@@ -4309,7 +4317,7 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1637
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:626
 msgid "General"
-msgstr ""
+msgstr "Alment"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1064
 #: /home/jes/work/translations/zenphoto/zp-core/admin-globals.php:31
@@ -4319,33 +4327,33 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:721
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1587
 msgid "Published"
-msgstr ""
+msgstr "Offentliggjort"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1068
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1645
 msgid "Allow Comments"
-msgstr ""
+msgstr "Tillad kommentarer"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1077
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:639
 #, php-format
 msgid "Reset hitcounter (%u hit)"
 msgid_plural "Reset hitcounter (%u hits)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Nulstil besøgstæller (%u hit)"
+msgstr[1] "Nulstil besøgstæller (%u hits)"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1090
 #, php-format
 msgid "Reset rating (%u star)"
 msgid_plural "Reset rating (%u stars)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "nulstil vurdering (%u stjerne)"
+msgstr[1] "nulstil vurdering (%u stjerner)"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1097
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1674
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:662
 msgid "Reset rating (unrated)"
-msgstr ""
+msgstr "Nulstil vurdering (ikke bedømt)"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1111
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1318
@@ -4355,207 +4363,209 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:594
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/publishContent/publishContent.php:319
 msgid "calendar"
-msgstr ""
+msgstr "kalender"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1118
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1143
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1695
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1720
 msgid "Future publishing date."
-msgstr ""
+msgstr "Fremtidig publikationsdato."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1129
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1153
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1706
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1730
 msgid "Expired!"
-msgstr ""
+msgstr "Udløbet!"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1138
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1715
 msgid "Publish date"
-msgstr ""
+msgstr "Offentliggør dato"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1148
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1725
 msgid "Expiration date"
-msgstr ""
+msgstr "Udløber dato"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1160
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1739
 msgid "Utilities"
-msgstr ""
+msgstr "Hjælpeprogrammer"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1173
 msgid "Rename File"
-msgstr ""
+msgstr "Omdøb Fil"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1177
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/publishContent/publishContent.php:361
 msgid "Are you sure you want to select this image for deletion?"
-msgstr ""
+msgstr "Er du sikker på at du vil markere dette billede til sletning?"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1181
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1208
 msgid "to"
-msgstr ""
+msgstr "til"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1215
 msgid "Image will be deleted when changes are applied."
-msgstr ""
+msgstr "Billede vil blive slettet når du anvender ændringerne."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1224
 msgid "Rotation:"
-msgstr ""
+msgstr "Rotation:"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1238
 msgid "90 degrees"
-msgstr ""
+msgstr "90 grader"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1242
 msgid "180 degrees"
-msgstr ""
+msgstr "180 grader"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1246
 msgid "270 degrees"
-msgstr ""
+msgstr "270 grader"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1253
 #, php-format
 msgid "Refresh %s metadata"
-msgstr ""
+msgstr "Opdater %s metadata"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1255
 #: /home/jes/work/translations/zenphoto/zp-core/admin-refresh-metadata.php:40
 #: /home/jes/work/translations/zenphoto/zp-core/utilities/refresh_metadata.php:6
 msgid "Refresh Metadata"
-msgstr ""
+msgstr "Opdater metadata"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1261
 msgid "Crop thumbnail"
-msgstr ""
+msgstr "Beskær miniature"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1284
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:405
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:296
 msgid "Title:"
-msgstr ""
+msgstr "Titel:"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1289
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:292
 msgid "Description:"
-msgstr ""
+msgstr "Beskrivelse:"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1297
 msgid "Set as thumbnail for:"
-msgstr ""
+msgstr "Angiv som miniaturebillede for:"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1333
 msgid "Image watermark:"
-msgstr ""
+msgstr "Billede vandmærke:"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1336
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1503
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1518
 msgid "*no watermark"
-msgstr ""
+msgstr "*ingen vandmærke"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1337
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1504
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1519
 msgid "*default"
-msgstr ""
+msgstr "*standard"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1346
 msgid "thumb"
-msgstr ""
+msgstr "miniature"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1347
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/slideshow.php:99
 msgid "full image"
-msgstr ""
+msgstr "hele billedet"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1356
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1344
 msgid "Custom data:"
-msgstr ""
+msgstr "Brugerdefinerede data:"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1366
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1334
 msgid "Location:"
-msgstr ""
+msgstr "Lokalitet:"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1372
 msgid "City:"
-msgstr ""
+msgstr "By:"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1378
 msgid "State:"
-msgstr ""
+msgstr "Stat:"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1384
 msgid "Country:"
-msgstr ""
+msgstr "Land:"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1390
 msgid "Credit:"
-msgstr ""
+msgstr "Kredit:"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1396
 msgid "Copyright:"
-msgstr ""
+msgstr "Copyright:"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1404
 msgid "Metadata:"
-msgstr ""
+msgstr "Metadata:"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1421
 msgid "None selected for display"
-msgstr ""
+msgstr "Ingen valgt for visning"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1435
 #: /home/jes/work/translations/zenphoto/zp-core/admin-options.php:1253
 #: /home/jes/work/translations/zenphoto/zp-core/admin-functions.php:1627
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:773
 msgid "Codeblocks:"
-msgstr ""
+msgstr "Codeblocks:"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1447
 msgid "show more fields"
-msgstr ""
+msgstr "vis flere felter"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1449
 msgid "show fewer fields"
-msgstr ""
+msgstr "vis færre felter"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1547
 msgid "Edit All Albums in"
-msgstr ""
+msgstr "Rediger alle Albums i "
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1601
 msgid "Edit Gallery"
-msgstr ""
+msgstr "Rediger Galleri"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1620
 #, php-format
 msgid "Current sort: <em>%1$s%2$s</em>."
-msgstr ""
+msgstr "Nuværende sortering: <em>%1$s%2$s</em>."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1633
 msgid ""
 "Select an album to edit its description and data, or <a href=\"?"
 "page=edit&amp;massedit\">mass-edit</a> all gallery level albums."
 msgstr ""
+"Vælg et album for at redigere dets beskrivelse og data, eller <a href=\"?"
+"page=edit&amp;massedit\">masse-rediger</a> alle galleriniveau albums."
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1652
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1693
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1707
 msgid "New album"
-msgstr ""
+msgstr "Nyt album"
 
 #: /home/jes/work/translations/zenphoto/zp-core/admin-edit.php:1704
 msgid "There are no albums for you to edit."
-msgstr ""
+msgstr "Der er ingen albums at redigere."
 
 #: /home/jes/work/translations/zenphoto/zp-core/functions-basic.php:968
 #: /home/jes/work/translations/zenphoto/zp-core/admin.php:203
@@ -4567,11 +4577,11 @@ msgstr "Klon"
 #: /home/jes/work/translations/zenphoto/zp-core/functions-basic.php:1363
 #, php-format
 msgid "Mutex %s was left locked."
-msgstr ""
+msgstr "Mutex %s blev efterladt låst."
 
 #: /home/jes/work/translations/zenphoto/zp-core/functions-basic.php:1381
 msgid "Error locking mutex"
-msgstr ""
+msgstr "Fejl ved låsning af mutex"
 
 #: /home/jes/work/translations/zenphoto/zp-core/functions-basic.php:1399
 msgid "Error un-locking mutex"
