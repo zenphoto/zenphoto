@@ -205,7 +205,7 @@ zp_apply_filter('admin_note','Overview', NULL);
 	}
 	$graphics_lib = zp_graphicsLibInfo();
 	?>
-	<li><?php printf(gettext('Zenphoto version <strong>%1$s [%2$s] (%3$s)</strong>'),ZENPHOTO_VERSION,ZENPHOTO_RELEASE,$official); ?></li>
+	<li><?php printf(gettext('Zenphoto version <strong>%1$s [%2$s] (%3$s)</strong>'),ZENPHOTO_VERSION,'<a title="'.ZENPHOTO_FULL_RELEASE.'">'.ZENPHOTO_RELEASE.'</a>',$official); ?></li>
 	<li><?php if (ZENPHOTO_LOCALE) {
 							printf(gettext('Current locale setting: <strong>%1$s</strong>'),ZENPHOTO_LOCALE);
 						} else {

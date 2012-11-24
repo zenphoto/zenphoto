@@ -356,6 +356,7 @@ zp-core/gd_fonts/automatic.gdf
 zp-core/gd_fonts/azimov.gdf
 zp-core/gd_fonts/bubblebath.gdf
 zp-core/gd_fonts/cry.gdf
+zp-core/githead
 zp-core/global-definitions.php
 zp-core/gpl-2.0-standalone.htm
 zp-core/htaccess
@@ -1921,4 +1922,4 @@ zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zpCaptcha
 zp-core/zp-extensions/zpCaptcha.php
 zp-core/zp-extensions/zpCaptcha/c.php
-1923
+1924
