@@ -771,15 +771,14 @@ function getImageProcessorURI($args, $album, $image) {
 	return $uri;
 }
 
+// Don't let anything get above this, to save the server from burning up...
+define('MAX_SIZE', 3000);
 /**
  * Extract the image parameters from the input variables
  * @param array $set
  * @return array
  */
 function getImageArgs($set) {
-	// Don't let anything get above this, to save the server from burning up...
-	define('MAX_SIZE', 3000);
-
 	$args = array(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 	if (isset($set['s'])) { //0
 		if (is_numeric($s = $set['s'])) {
@@ -1041,7 +1040,7 @@ function debugLog($message, $reset=false) {
 			} else {
 				$clone = ' '.gettext('clone');
 			}
-			fwrite($f, '{'.$me.':'.gmdate('D, d M Y H:i:s')." GMT} Zenphoto v".ZENPHOTO_VERSION.'['.ZENPHOTO_RELEASE.']'.$clone."\n");
+			fwrite($f, '{'.$me.':'.gmdate('D, d M Y H:i:s')." GMT} Zenphoto v".ZENPHOTO_VERSION.'['.ZENPHOTO_FULL_RELEASE.']'.$clone."\n");
 		}
 	} else {
 		$f = fopen($path, 'a');
