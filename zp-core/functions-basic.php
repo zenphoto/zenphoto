@@ -764,14 +764,72 @@ function getImageProcessorURI($args, $album, $image) {
 	}
 	$uri .= '&check='.sha1(HASH_SEED.serialize($args));
 
-	//TODO: remove for before release of 1.4.4
-	if (TEST_RELEASE) $uri .= '&actual='.serialize($args);
-
 	if (class_exists('static_html_cache')) {
 		// don't cache pages that have image processor URIs
 		static_html_cache::disable();
 	}
 	return $uri;
+}
+
+/**
+ * Extract the image parameters from the input variables
+ * @param array $set
+ * @return array
+ */
+function getImageArgs($set) {
+	// Don't let anything get above this, to save the server from burning up...
+	define('MAX_SIZE', 3000);
+
+	$args = array(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+	if (isset($set['s'])) { //0
+		if (is_numeric($s = $set['s'])) {
+			if ($s) {
+				$args[0] = (int) min(abs($s), MAX_SIZE);
+			}
+		} else {
+			$args[0] = sanitize($set['s']);
+		}
+	} else {
+		if (!isset($set['w']) && !isset($set['h'])) {
+			$args[0] = MAX_SIZE;
+		}
+	}
+	if (isset($set['w'])) {  //1
+		$args[1] = (int) min(abs(sanitize_numeric($set['w'])), MAX_SIZE);
+	}
+	if (isset($set['h'])) { //2
+		$args[2] = (int) min(abs(sanitize_numeric($set['h'])), MAX_SIZE);
+	}
+	if (isset($set['cw'])) { //3
+		$args[3] = (int) sanitize_numeric(($set['cw']));
+	}
+	if (isset($set['ch'])) { //4
+		$args[4] = (int) sanitize_numeric($set['ch']);
+	}
+	if (isset($set['cx'])) { //5
+		$args[5] = (int) sanitize_numeric($set['cx']);
+	}
+	if (isset($set['cy'])) { //6
+		$args[6] = (int) sanitize_numeric($set['cy']);
+	}
+	if (isset($set['q'])) { //7
+		$args[7] = (int) sanitize_numeric($set['q']);
+	}
+	if (isset($set['c'])) {// 9
+		$args[9] = (int) sanitize($set['c']);
+	}
+	if (isset($set['t'])) { //10
+		$args[10] = (int) sanitize($set['t']);
+	}
+	if (isset($set['wmk']) && !isset($_GET['admin'])) { //11
+		$args[11] = sanitize($set['wmk']);
+	}
+	$args[12] = (bool) isset($_GET['admin']); //12
+
+	if (isset($set['effects'])) {	//13
+		$args[13] = sanitize($set['effects']);
+	}
+	return $args;
 }
 
 /**

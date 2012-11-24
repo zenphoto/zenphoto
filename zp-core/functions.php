@@ -2285,6 +2285,29 @@ class zpFunctions {
 		return true;
 	}
 
+	/**
+	 * Searches out i.php image links and replaces them with cache links if image is cached
+	 * @param string $text
+	 * @return string
+	 */
+	static function updateImageProcessorLink($text) {
+		preg_match_all('|\<\s*img.*?\ssrc\s*=\s*"(.*i\.php\?([^"]*)).*/\>|', $text, $matches);
+		foreach ($matches[2] as $key=>$match) {
+			$match = explode('&amp;',$match);
+			$set = array();
+			foreach ($match as $v) {
+				$s = explode('=',$v);
+				$set[$s[0]] = $s[1];
+			}
+			$args = getImageArgs($set);
+			$imageuri = getImageURI($args, $set['a'], $set['i'], NULL);
+			if (strpos($imageuri, 'i.php')===false) {
+				$text = str_replace($matches[1], $imageuri, $text);
+			}
+		}
+		return $text;
+	}
+
 }
 
 zpFunctions::setexifvars();

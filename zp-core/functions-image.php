@@ -9,9 +9,6 @@
 
 // functions-image.php - HEADERS NOT SENT YET!
 
-// Don't let anything get above this, to save the server from burning up...
-
-define('MAX_SIZE', 3000);
 
 /**
  * If in debug mode, prints the given error message and continues; otherwise redirects

@@ -54,7 +54,6 @@ $rimage = internalToFilesystem($rimage);
 $album = sanitize_path($ralbum);
 $image = sanitize_path($rimage);
 $theme = themeSetup(filesystemToInternal($album)); // loads the theme based image options.
-$adminrequest = isset($_GET['admin']);
 if (getOption('secure_image_processor')) {
 	require_once(dirname(__FILE__).'/functions.php');
 	$albumobj = new Album(NULL, filesystemToInternal($album));
@@ -63,63 +62,10 @@ if (getOption('secure_image_processor')) {
 	}
 }
 
-// Extract the image parameters from the input variables
-// This validates the input as well.
-$args = array(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-if (isset($_GET['s'])) { //0
-	if (is_numeric($s = $_GET['s'])) {
-		if ($s) {
-			$args[0] = (int) min(abs($s), MAX_SIZE);
-		}
-	} else {
-		$args[0] = sanitize($_GET['s']);
-	}
-}
-if (isset($_GET['w'])) {  //1
-	$args[1] = (int) min(abs(sanitize_numeric($_GET['w'])), MAX_SIZE);
-}
-if (isset($_GET['h'])) { //2
-	$args[2] = (int) min(abs(sanitize_numeric($_GET['h'])), MAX_SIZE);
-}
-if (isset($_GET['cw'])) { //3
-	$args[3] = (int) sanitize_numeric(($_GET['cw']));
-}
-if (isset($_GET['ch'])) { //4
-	$args[4] = (int) sanitize_numeric($_GET['ch']);
-}
-if (isset($_GET['cx'])) { //5
-	$args[5] = (int) sanitize_numeric($_GET['cx']);
-}
-if (isset($_GET['cy'])) { //6
-	$args[6] = (int) sanitize_numeric($_GET['cy']);
-}
-if (isset($_GET['q'])) { //7
-	$args[7] = (int) sanitize_numeric($_GET['q']);
-}
-if (isset($_GET['c'])) {// 9
-	$args[9] = (int) sanitize($_GET['c']);
-}
-if (isset($_GET['t'])) { //10
-	$args[10] = (int) sanitize($_GET['t']);
-}
-if (isset($_GET['wmk']) && !$adminrequest) { //11
-	$args[11] = sanitize($_GET['wmk']);
-}
-$args [12] = (bool) $adminrequest; //12
+$args = getImageArgs($_GET);
+$adminrequest = $args[12];
 
-if (isset($_GET['effects'])) {	//13
-	$args[13] = sanitize($_GET['effects']);
-}
-
-if (!isset($_GET['check']) || $_GET['check']!=sha1(HASH_SEED.serialize($args))) {
-	//TODO: remove for before release of 1.4.4
-	if (TEST_RELEASE) {
-		debugLogVar('Forbidden: $_GET', $_GET);
-		if (isset($_GET['actual'])) debugLogVar('Forbidden: actual', unserialize($_GET['actual']));
-		debugLogVar('Forbidden: args', $args);
-	}
-	imageError('403 Forbidden', gettext("Forbidden(2)"));
-}
+$forbidden = !isset($_GET['check']) || $_GET['check']!=sha1(HASH_SEED.serialize($args));
 
 if ( !isset($_GET['s']) && !isset($_GET['w']) && !isset($_GET['h'])) {
 	// No image parameters specified
@@ -127,8 +73,6 @@ if ( !isset($_GET['s']) && !isset($_GET['w']) && !isset($_GET['h'])) {
 		header("Location: " . getAlbumFolder(FULLWEBPATH) . pathurlencode(filesystemToInternal($album)) . "/" . rawurlencode(filesystemToInternal($image)));
 		return;
 	}
-	// external album, Web server cannot serve original image. Force resize to as big as we can do
-	$args[0] = MAX_SIZE;
 }
 
 $args = getImageParameters($args,filesystemToInternal($album));
@@ -225,6 +169,9 @@ if (file_exists($newfile) & !$adminrequest) {
 }
 
 if ($process) { // If the file hasn't been cached yet, create it.
+	if ($forbidden) {
+		imageError('403 Forbidden', gettext("Forbidden(2)"));
+	}
 
 	$iMutex = new Mutex('i',getOption('imageProcessorConcurrency'));
 	$iMutex-> lock();
