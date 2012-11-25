@@ -113,7 +113,7 @@ class comment_form {
 												'order'=>1,
 												'selections' => $configarray,
 												'null_selection' => gettext('Disabled'),
-												'desc' => gettext('Configuration file for TinyMCE when used for comments. Set to <code>TinyMCE disabled</code> to disable visual editing.')),
+												'desc' => gettext('Configuration file for TinyMCE when used for comments. Set to <code>Disabled</code> to disable visual editing.')),
 											gettext('Pagination') => array('key' => 'comment_form_pagination', 'type' => OPTION_TYPE_CHECKBOX,
 												'order' => 3,
 												'desc' => gettext('Uncheck to disable the jQuery pagination of comments. Enabled by default.')),

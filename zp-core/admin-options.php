@@ -2906,6 +2906,14 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 					$option_interface = NULL;
 					$path = getPlugin($extension.'.php');
 					$pluginStream = file_get_contents($path);
+					if ($str = isolate('$plugin_description', $pluginStream)) {
+						if (false === eval($str)) {
+							$plugin_description = '';
+						}
+					} else {
+						$plugin_description = '';
+					}
+
 					$str = isolate('$option_interface', $pluginStream);
 					if (false !== $str) {
 						require_once($path);
@@ -2938,7 +2946,7 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 								$v= 0;
 							}
 							?>
-							<th  colspan="3" style="text-align:left">
+							<th style="text-align:left">
 								<span id="<?php echo $extension; ?>" ></span>
 								<input type="hidden" name="show-<?php echo $extension;?>" id="show-<?php echo $extension;?>" value="<?php echo $v; ?>" />
 								<span style="display:<?php echo $show_show; ?>;" class="pluginextrashow">
@@ -2954,6 +2962,9 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 								<span style="display:<?php echo $show_hide; ?>;" class="pluginextrahide">
 									<a href="javascript:$('#show-<?php echo $extension;?>').val(0);toggleExtraInfo('<?php echo $extension;?>','plugin',false);"><?php echo $extension; ?></a>
 								</span>
+							</th>
+							<th colspan="2" style="text-align:left">
+								<?php echo $plugin_description; //TODO: this needs CSS help!!!!?>
 							</th>
 						</tr>
 						<?php
