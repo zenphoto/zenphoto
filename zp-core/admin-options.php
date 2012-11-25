@@ -2946,7 +2946,7 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 								$v= 0;
 							}
 							?>
-							<th style="text-align:left">
+							<th style="text-align:left; width: 200px;">
 								<span id="<?php echo $extension; ?>" ></span>
 								<input type="hidden" name="show-<?php echo $extension;?>" id="show-<?php echo $extension;?>" value="<?php echo $v; ?>" />
 								<span style="display:<?php echo $show_show; ?>;" class="pluginextrashow">
@@ -2963,8 +2963,8 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 									<a href="javascript:$('#show-<?php echo $extension;?>').val(0);toggleExtraInfo('<?php echo $extension;?>','plugin',false);"><?php echo $extension; ?></a>
 								</span>
 							</th>
-							<th colspan="2" style="text-align:left">
-								<?php echo $plugin_description; //TODO: this needs CSS help!!!!?>
+							<th style="text-align:left; font-weight: normal;">
+								<?php echo $plugin_description; //TODO: this needs CSS help!!!! ?>
 							</th>
 						</tr>
 						<?php
