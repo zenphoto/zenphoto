@@ -27,7 +27,11 @@ header('Content-Type: text/html; charset=UTF-8');
 header("Cache-Control: no-store, no-cache, must-revalidate, pre-check=0, post-check=0, max-age=0");
 
 require_once(dirname(__FILE__).'/setup-functions.php');
-$debug = isset($_REQUEST['debug']);
+if ($debug = isset($_REQUEST['debug'])) {
+	if (!$debug = $_REQUEST['debug']) {
+		$debug = true;
+	}
+}
 
 $setup_checked = isset($_GET['checked']);
 $upgrade = false;
@@ -2319,23 +2323,25 @@ if (file_exists(CONFIGFILE)) {
 			}
 			require(dirname(__FILE__).'/setup-option-defaults.php');
 
-			// update zenpage codeblocks--remove the base64 encoding
-			$sql = 'SELECT `id`, `codeblock` FROM '.prefix('news').' WHERE `codeblock` NOT REGEXP "^a:[0-9]+:{"';
-			$result = query_full_array($sql,false);
-			if (is_array($result)) {
-				foreach ($result as $row) {
-					$codeblock = base64_decode($row['codeblock']);
-					$sql = 'UPDATE '.prefix('news').' SET `codeblock`='.db_quote($codeblock).' WHERE `id`='.$row['id'];
-					query($sql);
+			if ($debug=='base64') {
+				// update zenpage codeblocks--remove the base64 encoding
+				$sql = 'SELECT `id`, `codeblock` FROM '.prefix('news').' WHERE `codeblock` NOT REGEXP "^a:[0-9]+:{"';
+				$result = query_full_array($sql,false);
+				if (is_array($result)) {
+					foreach ($result as $row) {
+						$codeblock = base64_decode($row['codeblock']);
+						$sql = 'UPDATE '.prefix('news').' SET `codeblock`='.db_quote($codeblock).' WHERE `id`='.$row['id'];
+						query($sql);
+					}
 				}
-			}
-			$sql = 'SELECT `id`, `codeblock` FROM '.prefix('pages').' WHERE `codeblock` NOT REGEXP "^a:[0-9]+:{"';
-			$result = query_full_array($sql,false);
-			if (is_array($result)) {
-				foreach ($result as $row) {
-					$codeblock = base64_decode($row['codeblock']);
-					$sql = 'UPDATE '.prefix('pages').' SET `codeblock`='.db_quote($codeblock).' WHERE `id`='.$row['id'];
-					query($sql);
+				$sql = 'SELECT `id`, `codeblock` FROM '.prefix('pages').' WHERE `codeblock` NOT REGEXP "^a:[0-9]+:{"';
+				$result = query_full_array($sql,false);
+				if (is_array($result)) {
+					foreach ($result as $row) {
+						$codeblock = base64_decode($row['codeblock']);
+						$sql = 'UPDATE '.prefix('pages').' SET `codeblock`='.db_quote($codeblock).' WHERE `id`='.$row['id'];
+						query($sql);
+					}
 				}
 			}
 
@@ -2355,12 +2361,15 @@ if (file_exists(CONFIGFILE)) {
 			}
 			echo "</h3>";
 
-			// fixes 1.2 move/copy albums with wrong ids
-			$albums = $_zp_gallery->getAlbums();
-			foreach ($albums as $album) {
-				checkAlbumParentid($album, NULL);
+			if ($debug=='albumids') {
+				// fixes 1.2 move/copy albums with wrong ids
+				$albums = $_zp_gallery->getAlbums();
+				foreach ($albums as $album) {
+					checkAlbumParentid($album, NULL);
+				}
 			}
 		}
+
 		if ($createTables) {
 			if (isset($_GET['delete_files']) || ($autorun && defined("RELEASE") && zpFunctions::hasPrimaryScripts())) {
 				require_once(dirname(dirname(__FILE__)).'/'.PLUGIN_FOLDER.'/security-logger.php');
@@ -2524,7 +2533,7 @@ if (file_exists(CONFIGFILE)) {
 				}
 			}
 			if ($debug) {
-				$task .= '&debug';
+				$task .= '&debug='.$debug;
 			}
 		}
 
