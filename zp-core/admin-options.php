@@ -2963,8 +2963,8 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 									<a href="javascript:$('#show-<?php echo $extension;?>').val(0);toggleExtraInfo('<?php echo $extension;?>','plugin',false);"><?php echo $extension; ?></a>
 								</span>
 							</th>
-							<th style="text-align:left; font-weight: normal;">
-								<?php echo $plugin_description; //TODO: this needs CSS help!!!! ?>
+							<th style="text-align:left; font-weight: normal;" colspan="2">
+								<?php echo $plugin_description; ?>
 							</th>
 						</tr>
 						<?php
