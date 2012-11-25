@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-24 11:13-0500\n"
-"PO-Revision-Date: 2012-11-24 12:14-0500\n"
+"PO-Revision-Date: 2012-11-24 20:34-0500\n"
 "Last-Translator: \n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon <michgagnon@gmail.com>\n"
 "Language: fr_FR\n"
@@ -641,15 +641,13 @@ msgid "Effervescence color scheme."
 msgstr "Palette de couleurs Effervescence"
 
 #: F:\sites\zenphoto/themes/effervescence_plus/functions.php:95
-#, fuzzy
 msgid "Effervescence image display handling."
-msgstr "Gestion de l’affichage des images du thème Effervescence."
+msgstr "Mode d’affichage des images du thème Effervescence."
 
 #: F:\sites\zenphoto/themes/effervescence_plus/functions.php:96
 #: F:\sites\zenphoto/themes/garland/functions.php:45
-#, fuzzy
 msgid "Personality"
-msgstr "Présentation du thème"
+msgstr "Présentation"
 
 #: F:\sites\zenphoto/themes/effervescence_plus/functions.php:126
 #: F:\sites\zenphoto/themes/effervescence_plus/indexpage.php:84
@@ -1610,9 +1608,8 @@ msgid "Latest Images for %s"
 msgstr "Images récentes de %s"
 
 #: F:\sites\zenphoto/themes/garland/functions.php:44
-#, fuzzy
 msgid "Garland image display handling."
-msgstr "Gestion de l’affichage des images du thème Garland."
+msgstr "Mode dl’affichage des images du thème Garland."
 
 #: F:\sites\zenphoto/themes/garland/gallery.php:8
 #: F:\sites\zenphoto/themes/garland/gallery.php:35
@@ -3733,7 +3730,7 @@ msgstr "Sous-albums"
 #: F:\sites\zenphoto/zp-core/zp-extensions/publishContent/publishContent.php:586
 #: F:\sites\zenphoto/zp-core/zp-extensions/publishContent/publishContent.php:653
 msgid "all"
-msgstr "Tous"
+msgstr "tous"
 
 #: F:\sites\zenphoto/zp-core/admin-functions.php:1080
 #: F:\sites\zenphoto/zp-core/admin-functions.php:1081
@@ -4275,9 +4272,8 @@ msgid "development"
 msgstr "développement"
 
 #: F:\sites\zenphoto/zp-core/admin-functions.php:4381
-#, fuzzy
 msgid "mail"
-msgstr "Emails"
+msgstr "Email"
 
 #: F:\sites\zenphoto/zp-core/admin-functions.php:4382
 msgid "media"
@@ -4293,9 +4289,8 @@ msgid "spam"
 msgstr "indésirables"
 
 #: F:\sites\zenphoto/zp-core/admin-functions.php:4385
-#, fuzzy
 msgid "seo"
-msgstr "optimisation pour moteurs de recherche"
+msgstr "moteurs de recherche"
 
 #: F:\sites\zenphoto/zp-core/admin-functions.php:4386
 msgid "tools"
@@ -4303,7 +4298,7 @@ msgstr "outils"
 
 #: F:\sites\zenphoto/zp-core/admin-functions.php:4387
 msgid "uploader"
-msgstr "Chargement en amont"
+msgstr "chargement"
 
 #: F:\sites\zenphoto/zp-core/admin-functions.php:4388
 #: F:\sites\zenphoto/zp-core/admin-globals.php:110
@@ -4616,7 +4611,6 @@ msgstr "Aucun journal à visualiser."
 #: F:\sites\zenphoto/zp-core/admin-plugins.php:122
 #: F:\sites\zenphoto/zp-core/admin-users.php:271
 #: F:\sites\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:142
-#, fuzzy
 msgid "Error"
 msgstr "Erreur !"
 
@@ -6446,8 +6440,8 @@ msgid ""
 "If <em>Captcha</em> is required, the form will include a Captcha "
 "verification."
 msgstr ""
-"Si un <em>Captcha</em> est obligatoire, le formulaire comportera la "
-"validation par Captcha."
+"Si un <em>Captcha</em> est obligatoire, le formulaire comporte la validation "
+"par Captcha."
 
 #: F:\sites\zenphoto/zp-core/admin-options.php:2508
 #: F:\sites\zenphoto/zp-core/admin-themes.php:155
@@ -6876,7 +6870,7 @@ msgid ""
 msgstr ""
 "Si la case à cocher de l’extension est activée, elle est chargée et ses "
 "fonctions sont accessibles depuis les pages du thème. Dans le cas contraire, "
-"l’extension est désactivée et n’utilise aucune ressource."
+"l’extension est désactivée et n’utilise aucune ressource.  •  "
 
 #: F:\sites\zenphoto/zp-core/admin-plugins.php:134
 msgid "Find more plugins"
@@ -6942,16 +6936,16 @@ msgstr ""
 #: F:\sites\zenphoto/zp-core/admin-plugins.php:299
 #, php-format
 msgid "More information on %s"
-msgstr "Plus de renseignements sur %s"
+msgstr "Information sur %s"
 
 #: F:\sites\zenphoto/zp-core/admin-plugins.php:303
 #, php-format
 msgid "Change %s options"
-msgstr "Modifier les options de %s"
+msgstr "Modifier les paramètres de %s"
 
 #: F:\sites\zenphoto/zp-core/admin-plugins.php:308
 msgid "Plugin warnings"
-msgstr "Avertissements sur les extensions"
+msgstr "Mises en garde sur l’extension"
 
 #: F:\sites\zenphoto/zp-core/admin-plugins.php:357
 msgid "Official plugin"
@@ -7725,8 +7719,8 @@ msgid ""
 "gain the new functionality this version provides."
 msgstr ""
 "L’objet <em>Zenphoto_Authority</em> supporte une version plus élevée des "
-"droits utilisateur que celle actuellement sélectionnée. Envisagez de migrer "
-"ces droits pour bénéficier des nouvelles fonctionnalités."
+"droits d’utilisateurs que celle présentement sélectionnée. Envisagez de "
+"migrer ces droits pour bénéficier des nouvelles fonctionnalités."
 
 #: F:\sites\zenphoto/zp-core/admin-users.php:828
 msgid "Migrate rights"
@@ -7738,7 +7732,7 @@ msgid ""
 "You may wish to revert the <em>Zenphoto_Authority</em> user rights to "
 "version %s for backwards compatibility with prior Zenphoto releases."
 msgstr ""
-"Vous pouvez choisir de ramener les droits d’utilisateur "
+"Vous pouvez choisir de ramener les droits d’utilisateurs "
 "<em>Zenphoto_Authority</em> à la version %s pour la compatibilité avec les "
 "versions antérieures de Zenphoto."
 
@@ -7826,11 +7820,11 @@ msgstr "<strong>Le paramètre régional a échoué !</strong>"
 
 #: F:\sites\zenphoto/zp-core/admin.php:217
 msgid "Server path:"
-msgstr "Chemin du serveur :"
+msgstr "Chemin d’accès du serveur :"
 
 #: F:\sites\zenphoto/zp-core/admin.php:220
 msgid "WEB path:"
-msgstr "Chemin internet :"
+msgstr "Chemin d’accès internet :"
 
 #: F:\sites\zenphoto/zp-core/admin.php:229
 #, php-format
@@ -14079,12 +14073,11 @@ msgstr ""
 #: F:\sites\zenphoto/zp-core/zp-extensions/ajaxFilemanager.php:20
 msgid "Provides file handling in tinyMCE and the \"files\" upload tab."
 msgstr ""
-"Gestionnaire de fichiers dans tinyMCE et pour l’onglet de chargement de "
-"fichiers."
+"Gestionnaire de fichiers pour tinyMCE et l’onglet de chargement de fichiers."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/auto_backup.php:19
 msgid "Periodically backup the Zenphoto database."
-msgstr "Sauvegarde régulièrement la base de données de Zenphoto."
+msgstr "Archive régulièrement la base de données de Zenphoto."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/auto_backup.php:50
 msgid "Run interval"
@@ -14223,8 +14216,8 @@ msgid ""
 "<strong>NOTE:</strong> The entire cache is cleared since there is no way to "
 "ascertain if a gallery page contains dependencies on the item."
 msgstr ""
-"<strong>NOTE.</strong> Le cache complet est vidé car il est impossible de "
-"déterminer si une page a des dépendants."
+"<strong>NOTE.</strong> Le cache complet est alors vidé car il est impossible "
+"de déterminer si une page a des dépendants."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/cacheManager.php:166
 msgid "Size"
@@ -14385,7 +14378,7 @@ msgstr "Permet de traiter tous les types de fichiers (sans en faire de rendu)."
 #: F:\sites\zenphoto/zp-core/zp-extensions/class-video.php:59
 #: F:\sites\zenphoto/zp-core/zp-extensions/class-WEBdocs.php:53
 msgid "Watermark default images"
-msgstr "Images de filigrane par défaut"
+msgstr "Filigrane sur les images par défaut"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/class-AnyFile.php:49
 #: F:\sites\zenphoto/zp-core/zp-extensions/class-textobject.php:79
@@ -14409,7 +14402,7 @@ msgstr "Ajouter les extensions"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/class-AnyFile.php:54
 msgid "Add a file suffix to be handled by the plugin"
-msgstr "Ajouter les extensions de fichiers qui doivent être traités"
+msgstr "Saisir ici chacune des extensions de fichiers qui doivent être traités"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/class-textobject.php:57
 msgid "Provides a means for showing text type documents (.txt, .html, .htm)."
@@ -14642,8 +14635,8 @@ msgid ""
 "in each address field."
 msgstr ""
 "Si les <em>Champs d’adresse</em> sont affichés ou obligatoires, le "
-"formulaire comprtera des champs pour les détails de l’adresse. Si ces champs "
-"sont obligatoires, l’utilisateur devra tous les remplir."
+"formulaire comporte des champs pour les détails de l’adresse. Si ces champs "
+"sont obligatoires, l’utilisateur doit tous les remplir."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/comment_form.php:87
 msgid "Allow comments on"
@@ -14741,8 +14734,8 @@ msgid ""
 "disabled</code> to disable visual editing."
 msgstr ""
 "Fichier de configuration de TinyMCE lorsqu’il est utilisé pour les "
-"commentaires. Choisir <code>TinyMCE désactivé</code> pour désactiver "
-"l’édition visuelle."
+"commentaires. Choisir <code>désactivé</code> pour désactiver l’édition "
+"visuelle."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/comment_form.php:117
 msgid "Pagination"
@@ -14767,8 +14760,8 @@ msgid ""
 "<p>Fields with <strong>*</strong> are required. HTML or any other code is "
 "not allowed.</p>"
 msgstr ""
-"<p> Les champs avec <strong>*</strong> sont obligatoires. Aucun code HTML "
-"n’est autorisé.</p>"
+"<p> Les champs identifiés de <strong>*</strong> sont obligatoires. Aucun "
+"code HTML n’est autorisé.</p>"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/contact_form.php:36
 msgid "<p>Please confirm that you really want to send this email. Thanks.</p>"
@@ -14777,7 +14770,7 @@ msgstr ""
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/contact_form.php:38
 msgid "<p>Thanks for your message.</p>"
-msgstr "<p>Merci pour votre message.</p>"
+msgstr "<p>Merci de votre message.</p>"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/contact_form.php:40
 msgid "Send another message."
@@ -14804,8 +14797,8 @@ msgstr "omis"
 msgid ""
 "Set if the <code>%s</code> field should be required, just shown or omitted"
 msgstr ""
-" Spécifie si le <code>%s</code> est obligatoire, affiché et optionnel, ou "
-"omis"
+" <code>%s</code> : détermine si ce champ est obligatoire, affiché et "
+"optionnel, ou omis"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/contact_form.php:81
 msgid "Intro text"
@@ -14856,7 +14849,7 @@ msgid ""
 "If checked, a confirmation form will be presented before sending the contact "
 "message."
 msgstr ""
-"Si coché, un formulaire de confirmation est présenté avant d’envoyer le "
+"Si coché, un formulaire de confirmation sera présenté avant l’envoi du "
 "message au contact."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/contact_form.php:96
@@ -14874,10 +14867,10 @@ msgid ""
 msgstr ""
 "Si coché, une copie du message est envoyée à l’adresse fournie.<p "
 "class='notebox'><strong>Attention.</strong> Il est alors fortement "
-"recommandé d’utiliser le Captcha et l’option de confirmation. (Tenez compte "
-"du fait que cette utilisation peut être détournée à des fins de SPAM ; dans "
-"certains pays – comme dans la plupart des pays européens – vous pouvez en "
-"être tenu responsable !)</p>"
+"recommandé d’utiliser le Captcha et l’option de confirmation. (Il est tout-à-"
+"fait possible de détourner cette fonction aux fins de SPAM ; dans certains "
+"pays – comme dans la plupart des pays européens – vous pouvez en être tenu "
+"responsable !)</p>"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/contact_form.php:99
 msgid "Send copy note text"
@@ -14893,7 +14886,7 @@ msgstr ""
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/contact_form.php:102
 msgid "Contact recipients"
-msgstr "Contactez les récipiendaires"
+msgstr "Contact des récipiendaires"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/contact_form.php:104
 msgid ""
@@ -15568,7 +15561,7 @@ msgstr ""
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/downloadList.php:75
 msgid "Zip source"
-msgstr "Source du fichier zippé"
+msgstr "Origine du fichier compressé"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/downloadList.php:77
 msgid "From album"
@@ -15583,8 +15576,8 @@ msgid ""
 "Make the album zip form the album folder or from the sized images in the "
 "cache."
 msgstr ""
-"Créer un fichier zippé (compressé) du dossier de l’album ou des images "
-"redimensionnées du cache"
+"Créer un fichier compressé (.zip) à partir du dossier de l’album ou des "
+"images redimensionnées du cache"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/downloadList.php:79
 msgid "User rights"
@@ -15770,8 +15763,8 @@ msgid ""
 "Blocks access from an IP address which has had multiple failed logon "
 "attempts."
 msgstr ""
-"Bloque l’accès depuis une adresse IP qui est à l’origine de multiples "
-"tentatives de connexion infructueuses."
+"Bloque l’accès depuis une adresse IP à l’origine de multiples tentatives de "
+"connexion infructueuses."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/failed_access_blocker.php:46
 msgid "Attempt threshold"
@@ -15794,7 +15787,7 @@ msgstr "Le blocage sera supprimé après cette période d’attente."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/favoritesHandler.php:29
 msgid "Support for <em>favorites</em> handling."
-msgstr "Support du traitement des <em>favoris</em>."
+msgstr "Assure le traitement des <em>favoris</em>."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/favoritesHandler.php:38
 msgid "My favorites"
@@ -15913,8 +15906,8 @@ msgid ""
 "Of course there must be some Administrator with an e-mail address for this "
 "option to make sense!"
 msgstr ""
-"Bien sûr, au moins un administrateur doit posséder une adresse email pour "
-"que cette option ait un sens !"
+"Bien sûr, au moins un administrateur doit avoir une adresse email pour que "
+"cette option ait un sens !"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/federated_logon.php:130
 msgid ""
@@ -15978,7 +15971,7 @@ msgstr "Se connecter avec %s"
 #: F:\sites\zenphoto/zp-core/zp-extensions/flag_thumbnail.php:22
 msgid "Overlay icons over thumbnails to indicate image status."
 msgstr ""
-"Affiche un icône en surimpression sur les vignettes afin d’indiquer le "
+"Affiche une icône en surimpression sur les vignettes afin d’indiquer le "
 "statut des images."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/flag_thumbnail.php:63
@@ -16014,19 +16007,19 @@ msgstr "Icône"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/flag_thumbnail.php:70
 msgid "Select the icon that will show for \"new\" images."
-msgstr "Sélectionnez l’icône à utiliser pour les « nouvelles » images."
+msgstr "Sélectionnez l’icône utilisée pour les « nouvelles » images."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/flag_thumbnail.php:74
 msgid "Select the icon that will show for \"un-published\" images."
-msgstr "Sélectionnez l’icône à utiliser pour les images « non publiées »."
+msgstr "Sélectionnez l’icône utilisée pour les images « non publiées »."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/flag_thumbnail.php:78
 msgid "Select the icon that will show for \"Protected\" images."
-msgstr "Sélectionnez l’icône à utiliser pour les images « protégées »."
+msgstr "Sélectionnez l’icône utilisée pour les images « protégées »."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/flag_thumbnail.php:82
 msgid "Select the icon that will show for images tagged with geodata."
-msgstr "Séléctionnez l’icône à utiliser pour les images géolocalisées."
+msgstr "Séléctionnez l’icône utilisée pour les images géolocalisées."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/flag_thumbnail.php:83
 #: F:\sites\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:722
@@ -16182,7 +16175,7 @@ msgstr ""
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/flowplayer3.php:121
 msgid "Player background color gradient"
-msgstr "Dégradé de couleur d’arrière-plan du lecteur"
+msgstr "Dégradé de couleur de l’arrière-plan du lecteur"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/flowplayer3.php:122
 #: F:\sites\zenphoto/zp-core/zp-extensions/flowplayer3.php:127
@@ -16214,11 +16207,11 @@ msgstr "Paramètre de dégradé pour la couleur d’arrière-plan du lecteur."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/flowplayer3.php:124
 msgid "Controls background color"
-msgstr "Couleur d’arrière-plan des contrôles"
+msgstr "Couleur de l’arrière-plan des contrôles"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/flowplayer3.php:125
 msgid "Background color of the controls."
-msgstr "Couleur d’arrière-plan des contrôles."
+msgstr "Couleur de l’arrière-plan des contrôles."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/flowplayer3.php:126
 msgid "Controls background color gradient"
@@ -16226,7 +16219,7 @@ msgstr "Contrôle le dégradé de couleur d’arrière-plan"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/flowplayer3.php:128
 msgid "Gradient setting for background color of the controls."
-msgstr "Paramètre de dégradé pour la couleur d’arrière-plan des contrôles."
+msgstr "Paramètre de dégradé pour la couleur de l’arrière-plan des contrôles."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/flowplayer3.php:129
 msgid "Controls border color"
@@ -16553,9 +16546,9 @@ msgid ""
 "add the function flowplayerPlaylist() to your theme yourself. See the "
 "documentation of this function on how to do this."
 msgstr ""
-"Si les scripts de liste de lecture Flowplayer doivent être chargés. Vous "
-"devez ajouter la fonction flowplayerPlaylist() vous-même à votre thème "
-"(référez-vous à la documentation)."
+"Détermine si les scripts de liste de lecture Flowplayer doivent être "
+"chargés. Vous devez ajouter la fonction flowplayerPlaylist() vous-même à "
+"votre thème (référez-vous à la documentation)."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/flowplayer3.php:184
 #: F:\sites\zenphoto/zp-core/zp-extensions/jplayer.php:133
@@ -16582,7 +16575,7 @@ msgid ""
 "metadata in the images."
 msgstr ""
 "Permet de produire des cartes Google Maps à partir de la <em>latitude</em> "
-"et de la <em>longitude</em> stockées dans les métadata des images."
+"et de la <em>longitude</em> inscrites dans les métadata des images."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/GoogleMap.php:14
 #, php-format
@@ -16633,11 +16626,11 @@ msgstr "La hauteur par défaut de la carte."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/GoogleMap.php:73
 msgid "Initial Zoom"
-msgstr "Zoom initial"
+msgstr "Facteur d’échelle"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/GoogleMap.php:75
 msgid "The initial zoom of the map."
-msgstr "Le zoom initial de la carte."
+msgstr "Le facteur d’échelle de départ lorsque la carte est affichée."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/GoogleMap.php:76
 msgid "Allowed maps"
@@ -16666,7 +16659,7 @@ msgstr "Menu déroulant"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/GoogleMap.php:85
 msgid "Select the kind of map controls."
-msgstr "Sélection du genre de contrôles pour la carte."
+msgstr "Sélection du type de contrôles pour la carte."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/GoogleMap.php:86
 msgid "Initial map display selection"
@@ -16690,9 +16683,10 @@ msgid ""
 "the map to display in a colorbox. Select <em>show</em> and the map will "
 "display when the page loads."
 msgstr ""
-"Choisir <em>Masquer</em> pour ne pas afficher la carte immédiatement. "
-"Choisir <em>Colorbox</em> pour afficher la carte dans une fenêtre colorbox. "
-"Choisir <em>Afficher</em> pour afficher la carte dès que la page est chargée."
+"Choisir <em>Masquer</em> pour ne pas afficher la carte immédiatement. <br /"
+">Choisir <em>Colorbox</em> pour afficher la carte dans une fenêtre colorbox. "
+"<br />Choisir <em>Afficher</em> pour afficher la carte dès que la page est "
+"chargée."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/GoogleMap.php:93
 msgid "Map sessions"
@@ -16725,8 +16719,8 @@ msgid ""
 "Places a Google Site Verification metatag into the header of your site's "
 "pages."
 msgstr ""
-"Place une métabalise de vérification pour Google Site dans l’en-tête des "
-"pages de votre site."
+"Place une métabalise de validation pour Google Site dans l’en-tête des pages "
+"de votre site."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/googleVerify.php:41
 msgid "Verification content"
@@ -16734,7 +16728,9 @@ msgstr "Code de vérification"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/googleVerify.php:42
 msgid "Insert the <em>content</em> portion of the meta tag supplied by Google."
-msgstr "Insère la partie <em>content</em> de la métabalise fournie par Google."
+msgstr ""
+"Inscrire ici la portion « <em>content</em> » de la métabalise fournie par "
+"Google."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/hitcounter.php:28
 msgid "All hitcounters have been set to zero."
@@ -16809,8 +16805,8 @@ msgid ""
 "A plugin to print the most common HTML meta tags to the head of your site's "
 "pages."
 msgstr ""
-"Extension servant à inscrire dans l’en-tête (section Head) des pages HTML de "
-"votre site les métabalises les plus courantes."
+"Inscrit dans l’en-tête (section Head) des pages de votre site les "
+"métabalises les plus courantes."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/html_meta_tags.php:69
 msgid "Cache control"
@@ -17142,7 +17138,7 @@ msgstr "Nombre maximum d’images par album lors d’un chargement mutlifichier.
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/image_upload_limiter.php:52
 msgid "Disable new album creation"
-msgstr "Désactiver la création de nouveaux albums"
+msgstr "Empêcher la création de nouveaux albums"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/image_upload_limiter.php:53
 msgid "If checked users cannot create new albums."
@@ -17217,7 +17213,7 @@ msgstr "Seuil de connexion"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/ipBlocker.php:92
 msgid "Logon cool off"
-msgstr "Délai avant d’autoriser la connexion"
+msgstr "Délai avant d’autoriser la connexion"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/ipBlocker.php:94
 msgid "The block will be removed after this many minutes."
@@ -17280,7 +17276,7 @@ msgid ""
 "If checked the carousel will flow vertically instead of the default "
 "horizontal. Changing this may require theme changes!"
 msgstr ""
-"Si cette option est activée, le caroussel se déplacera verticalement et non "
+"Si ce paramètre est activé, le caroussel se déplacera verticalement et non "
 "horizontalement. Cela peut nécessiter des modifications à votre thème."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:74
@@ -17290,7 +17286,7 @@ msgid ""
 msgstr ""
 "Les scripts pour lesquels jCarousel est activé. {Les thèmes qui le "
 "requièrent peuvent activer ce paramètre ; sinon, vous devrez le faire vous-"
-"même !}"
+"même.!}"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/jplayer.php:48
 msgid "Enable <strong>jPlayer</strong> to handle multimedia files."
@@ -17551,12 +17547,12 @@ msgstr ""
 "Cette extension permet d’utiliser certains anciens filtres d’indésirables "
 "développés par des tierces parties. Veuillez contacter l’auteur du filtre "
 "utilisé pour lui demander de mettre à jour son filtre afin qu’il se conforme "
-"au modèle <i>d’extension</i>. Cette extension sera enlevée des versions "
-"ultérieures de Zenphoto."
+"au modèle courant <i>d’extension</i>. Cette extension sera enlevée des "
+"versions ultérieures de Zenphoto."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/markRelease.php:12
 msgid "Mark installation as \"released\"."
-msgstr "Définir cette installation comme « officielle »."
+msgstr "Permet de définir cette installation comme « officielle »."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/markRelease.php:42
 msgid "released"
@@ -17564,7 +17560,7 @@ msgstr "officielle"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/markRelease.php:55
 msgid "Mark release"
-msgstr "Identifier comme version officielle"
+msgstr "Définir comme version officielle"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/markRelease.php:59
 #, php-format
@@ -17583,19 +17579,19 @@ msgstr ""
 #: F:\sites\zenphoto/zp-core/zp-extensions/print_album_menu.php:56
 #: F:\sites\zenphoto/zp-core/zp-extensions/zenpage.php:211
 msgid "Truncate indicator*"
-msgstr "Indicateur de coupure*"
+msgstr "Indicateur de troncature*"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/menu_manager.php:55
 #: F:\sites\zenphoto/zp-core/zp-extensions/print_album_menu.php:59
 #: F:\sites\zenphoto/zp-core/zp-extensions/zenpage.php:214
 msgid "Append this string to truncated titles."
-msgstr "Chaîne de caractères à ajouter à la fin des titres coupés."
+msgstr "Chaîne de caractères à ajouter à la fin des titres tronqués."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/menu_manager.php:56
 #: F:\sites\zenphoto/zp-core/zp-extensions/print_album_menu.php:52
 #: F:\sites\zenphoto/zp-core/zp-extensions/zenpage.php:207
 msgid "Truncate titles*"
-msgstr "Couper les titres*"
+msgstr "Tronquer les titres*"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/menu_manager.php:58
 #: F:\sites\zenphoto/zp-core/zp-extensions/print_album_menu.php:55
@@ -17923,7 +17919,7 @@ msgstr "Cocher pour afficher la liste des pages."
 #: F:\sites\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:59
 msgid "Pages list prev and next links"
 msgstr ""
-"Liens de navigation « précédent » et « suivant » dans la liste de pages"
+"Liens de navigation « précédent » et « suivant » dans la liste des pages"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:60
 msgid ""
@@ -17934,7 +17930,7 @@ msgstr ""
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:61
 msgid "Pages list length"
-msgstr "Longueur de la liste de pages"
+msgstr "Longueur de la liste des pages"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:62
 msgid "The number of links for the page list."
@@ -18664,11 +18660,11 @@ msgstr "Analyse des recherches"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/security-logger.php:19
 msgid "Logs selected security events."
-msgstr "Journalise des événements de sécurité choisis."
+msgstr "Journalise les événements de sécurité choisis."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/security-logger.php:64
 msgid "Record logon attempts of"
-msgstr "Enregistrer les essais de connexion de"
+msgstr "Enregistrer les essais de connexion de…"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/security-logger.php:65
 msgid "Administrators"
@@ -18680,7 +18676,7 @@ msgstr "Invités"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/security-logger.php:66
 msgid "If checked login attempts will be logged."
-msgstr "Si l’option est activée, les essais de connexion seront enregistrés."
+msgstr "Si ce paramète est activé, les essais de connexion seront enregistrés."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/security-logger.php:67
 msgid "Record"
@@ -19583,8 +19579,8 @@ msgid ""
 "Change this box if you wish to style the theme switcher selector for your "
 "themes."
 msgstr ""
-"Modifiez cette boîte si vous souhaitez pouvoir configurer la présentation du "
-"sélecteur de thèmes dans votre propre thème."
+"Modifiez le contenu de cette boîte pour personnaliser la présentation du "
+"sélecteur de thèmes et l'adapter à votre thème."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/themeSwitcher.php:64
 msgid "Private"
@@ -19604,7 +19600,7 @@ msgstr "Liste des thèmes"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/themeSwitcher.php:68
 msgid "These are the themes that may be selected among."
-msgstr "Ce sont les thèmes parmi lesquels on peut choisir."
+msgstr "Liste des thèmes pouvant être choisis par l’utilisateur."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/themeSwitcher.php:132
 msgid "Theme"
@@ -19621,8 +19617,8 @@ msgid ""
 "Tiny MCE<span id='tinymceversion'></span> text editor for backend "
 "<em>textareas</em>"
 msgstr ""
-"Éditeur Tiny MCE<span id='tinymceversion'></span> pour les zones de texte de "
-"l’administration"
+"Éditeur Tiny MCE<span id='tinymceversion'></span> pour les champs de texte "
+"des pages administratives."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/tiny_mce.php:47
 msgid "Text editor configuration - Zenphoto"
@@ -19723,7 +19719,7 @@ msgstr "Filtre trivial d’indésirables"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/trivialSpam.php:60
 msgid "pass"
-msgstr "réussi"
+msgstr "accepter"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/trivialSpam.php:60
 msgid "moderate"
@@ -20005,12 +20001,12 @@ msgid "*no group selected"
 msgstr "*aucun groupe sélectionné"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/user_groups.php:166
-#, fuzzy
 msgid ""
 "Applying a template will merge the template with the current <em>rights</em> "
 "and <em>objects</em>."
 msgstr ""
-"Applique un modèle avec les <em>droits</em> et les <em>objets</em> courants."
+"Si vous attribuez un modèle, la gestion des droits et des éléments du modèle "
+"sera fusionnée aux <em>droits</em> et aux <em>éléments gérés</em> courants."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/user_groups.php:172
 msgid " (Template)"
@@ -20065,7 +20061,7 @@ msgid ""
 "If the user is not logged-in display an <em>in-line</em> logon form or a "
 "link to a modal <em>Colorbox</em> form."
 msgstr ""
-"Si l’utilisateur n’est pas connecté, afficher un formulaire de connexion "
+"Si l’utilisateur n’est pas connecté, affiche un formulaire de connexion "
 "<em>en ligne</em> ou une boîte modale  <em>Colorbox</em>."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/user_mailing_list.php:13
@@ -20235,8 +20231,8 @@ msgstr "Il y a une erreur de format dans le paramètre $default"
 #: F:\sites\zenphoto/zp-core/zp-extensions/wordpress_import.php:13
 msgid "Import Wordpress pages, posts, categories, and comments to Zenpage."
 msgstr ""
-"Offre la possibilité d’importer des pages, des articles, des catégories et "
-"des commentaires Wordpress vers Zenpage."
+"Importe vers Zenpage des pages, des articles, des catégories et des "
+"commentaires Wordpress."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/wordpress_import.php:23
 #: F:\sites\zenphoto/zp-core/zp-extensions/wordpress_import.php:389
@@ -20547,8 +20543,7 @@ msgid ""
 "A CMS plugin that adds the capability to run an entire gallery focused "
 "website with zenphoto."
 msgstr ""
-"Une extension CMS qui ajoute la possibilité de gérer un site complet à "
-"l’intérieur d’un site avec Zenphoto."
+"Une extension CMS pour permettre de gérer un site complet avec Zenphoto."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/zenpage.php:44
 msgid ""
@@ -20583,7 +20578,7 @@ msgid ""
 "How many news articles you want to show per page on the news or news "
 "category pages."
 msgstr ""
-"Le nombre d’articles à afficher par page dans les pages d’actualités ou de "
+"Le nombre d’articles à afficher dans chaque page d’actualités ou de "
 "catégories d’actualités."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/zenpage.php:123
@@ -20613,7 +20608,7 @@ msgstr ""
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/zenpage.php:131
 msgid "The text for the link to the full article."
-msgstr "Le texte du lien vers l’article intégral."
+msgstr "Le texte du lien vers l’article complet."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/zenpage.php:132
 msgid "RSS feed item number"
@@ -20754,7 +20749,7 @@ msgstr ""
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/zenpage.php:163
 msgid "CombiNews: Sized image size"
-msgstr "CombiNews: Taille de l’image redimensionnée"
+msgstr "CombiNews: taille de l’image redimensionnée"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/zenpage.php:165
 msgid ""
@@ -20806,7 +20801,7 @@ msgstr ""
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/zenpage.php:170
 msgid "CombiNews: Gallery link"
-msgstr "CombiNews: Lien de la galerie"
+msgstr "CombiNews: lien de la galerie"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/zenpage.php:173
 msgid ""
