@@ -29,18 +29,20 @@ processEditSelection($subtab);
 if (isset($_GET['album'])) {
 	$folder = sanitize_path($_GET['album']);
 	$album = new Album(NULL, $folder);
-	if (!$album->isMyItem(ALBUM_RIGHTS)) {
+	$allow = $album->isMyItem(ALBUM_RIGHTS);
+	if (!$allow) {
 		if (isset($_GET['uploaded'])) {	// it was an upload to an album which we cannot edit->return to sender
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-upload.php?uploaded=1');
-			exitZP();
-		}
-		if (!zp_apply_filter('admin_managed_albums_access',false, $return)) {
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $return);
 			exitZP();
 		}
 	}
 } else {
 	$album = NULL;
+	$allow = true;
+}
+if (!zp_apply_filter('admin_managed_albums_access',$allow, $return)) {
+	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $return);
+	exitZP();
 }
 
 $tagsort = getTagOrder();
