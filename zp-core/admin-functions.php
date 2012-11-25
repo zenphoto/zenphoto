@@ -435,7 +435,7 @@ function setAlbumSubtabs($album) {
 	}
 	$subrights = $album->albumSubRights();
 	if (!$album->isDynamic() && $album->getNumImages()) {
-		if ($subrights & MANAGED_OBJECT_RIGHTS_UPLOAD) {
+		if ($subrights & (MANAGED_OBJECT_RIGHTS_UPLOAD || MANAGED_OBJECT_RIGHTS_EDIT)) {
 			$zenphoto_tabs['edit']['subtabs'] = array_merge(
 				array(gettext('Images') => 'admin-edit.php'.$albumlink.'&amp;tab=imageinfo'),
 				$zenphoto_tabs['edit']['subtabs']
