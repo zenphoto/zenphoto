@@ -275,8 +275,8 @@ if (!defined('OFFSET_PATH')) {
 								<?php
 								$category = '';
 								foreach ($buttonlist as $button) {
-									$button_category = $button['category'];
-									$button_icon = $button['icon'];
+									$button_category = @$button['category'];
+									$button_icon = @$button['icon'];
 									if ($category != $button_category) {
 										if ($category) {
 											?>
