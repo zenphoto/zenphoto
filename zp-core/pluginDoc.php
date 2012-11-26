@@ -290,14 +290,14 @@ if (!defined('OFFSET_PATH')) {
 									}
 									?>
 									<form class="overview_utility_buttons">
-										<div class="moc_button tip" title="<?php echo $button['title']; ?>" >
+										<div class="moc_button tip" title="<?php echo @$button['title']; ?>" >
 											<?php
 											if(!empty($button_icon)) {
 												?>
-												<img src="<?php echo $button_icon; ?>" alt="<?php echo $button['alt']; ?>" />
+												<img src="<?php echo $button_icon; ?>" alt="<?php echo @$button['alt']; ?>" />
 												<?php
 											}
-											echo html_encode($button['button_text']);
+											echo html_encode(@$button['button_text']);
 											?>
 										</div>
 									</form>
