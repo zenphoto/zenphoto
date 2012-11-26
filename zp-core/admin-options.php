@@ -1041,11 +1041,12 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 						$filelist = safe_glob('*.php');
 						$list = array();
 						foreach($filelist as $file) {
-							$list[] = str_replace('.php', '', filesystemToInternal($file));
+							$file = filesystemToInternal($file);
+							$list[$file] = str_replace('.php', '', $file);
 						}
 						chdir($curdir);
 						$list = array_diff($list, standardScripts());
-						$list[] = 'index';
+						$list['index.php'] = 'index';
 						$current = array();
 						foreach ($list as $page) {
 							?>
@@ -1057,10 +1058,10 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 						}
 						?>
 						<ul class="customchecklist">
-							<?php generateUnorderedListFromArray($current, $list, 'gallery_page_unprotected_', false, true, false); ?>
+							<?php generateUnorderedListFromArray($current, $list, 'gallery_page_unprotected_', false, true, true); ?>
 						</ul>
 					</td>
-					<td><?php echo gettext('Place a checkmark on any pages which should not be protected by the gallery password.'); ?></td>
+					<td><?php echo gettext('Place a checkmark on any page scripts which should not be protected by the gallery password.'); ?></td>
 				</tr>
 				<tr>
 					<td><?php echo gettext("Website title:"); ?></td>
@@ -2786,10 +2787,11 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 						$filelist = safe_glob('*.php');
 						$list = array();
 						foreach($filelist as $file) {
-							$list[] = str_replace('.php', '', filesystemToInternal($file));
+							$file = filesystemToInternal($file);
+							$list[$file] = str_replace('.php', '', $file);
 						}
 						$list = array_diff($list, standardScripts());
-						generateListFromArray(array(getThemeOption('custom_index_page',$album,$themename)), $list, false, false);
+						generateListFromArray(array(getThemeOption('custom_index_page',$album,$themename)), $list, false, true);
 						chdir($curdir);
 						?>
 					</select>

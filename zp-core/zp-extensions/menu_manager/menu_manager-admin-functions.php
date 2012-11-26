@@ -863,9 +863,10 @@ function printCustomPageSelector($current) {
 		$filelist = safe_glob('*.php');
 		$list = array();
 		foreach($filelist as $file) {
-			$list[] = str_replace('.php', '', filesystemToInternal($file));
+			$file = filesystemToInternal($file);
+			$list[$file] = str_replace('.php', '', $file);
 		}
-		generateListFromArray(array($current), $list, false, false);
+		generateListFromArray(array($current), $list, false, true);
 		chdir($curdir);
 		?>
 	</select>

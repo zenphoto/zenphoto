@@ -55,8 +55,8 @@ class favoritesOptions {
 		$filelist = safe_glob('*.php');
 		$list = array();
 		foreach($filelist as $file) {
-			$file = str_replace('.php', '', filesystemToInternal(basename($file)));
-			$list[$file] = $file;
+			$file = filesystemToInternal($file);
+			$list[$file] = str_replace('.php', '', $file);
 		}
 		$list = array_diff($list, standardScripts());
 
@@ -67,7 +67,7 @@ class favoritesOptions {
 											gettext('Favorites page') => array('key' => 'favorites_link', 'type' => OPTION_TYPE_SELECTOR,
 																					'order'=>1,
 																					'selections' => $list,
-																					'desc' => gettext('Theme page for the favorites link')),
+																					'desc' => gettext('Theme script for the favorites page link')),
 											gettext('Add button') => array('key' => 'favorites_add_button', 'type' => OPTION_TYPE_TEXTBOX,
 																					'multilingual'=>true,
 																					'order'=>6,

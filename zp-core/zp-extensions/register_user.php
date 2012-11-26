@@ -154,10 +154,11 @@ class register_user_options {
 								$filelist = safe_glob('*.php');
 								$list = array();
 								foreach($filelist as $file) {
-									$list[] = str_replace('.php', '', filesystemToInternal($file));
+									$file = filesystemToInternal($file);
+									$list[$file] = str_replace('.php', '', $file);
 								}
 								$list = array_diff($list, standardScripts());
-								generateListFromArray(array(getOption('register_user_page_page')), $list, false, false);
+								generateListFromArray(array(getOption('register_user_page_page')), $list, false, true);
 								chdir($curdir);
 								?>
 							</select>
