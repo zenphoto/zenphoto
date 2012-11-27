@@ -4651,7 +4651,7 @@ function exposeZenPhotoInformations( $obj = '', $plugins = '', $theme = '' ) {
 
 	$a = basename($obj);
 	if ($a != 'full-image.php') {
-		echo "\n<!-- zenphoto version " . ZENPHOTO_VERSION . " [" . ZENPHOTO_RELEASE . "]";
+		echo "\n<!-- zenphoto version " . ZENPHOTO_VERSION . " [" . ZENPHOTO_FULL_RELEASE . "]";
 		echo " THEME: " . $theme . " (" . $a . ")";
 		$graphics = zp_graphicsLibInfo();
 		$graphics = sanitize(str_replace('<br />', ', ', $graphics['Library_desc']), 3);
