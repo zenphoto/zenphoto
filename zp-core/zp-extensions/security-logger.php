@@ -385,6 +385,13 @@ class security_logger {
 		return $success;
 	}
 
+	/**
+	 * Catch all logger for miscellaneous security records
+	 * @param bool $success
+	 * @param string $requestor
+	 * @param string $auth
+	 * @param string $txt
+	 */
 	static function security_misc($success, $requestor, $auth, $txt) {
 		security_logger::Logger((int) ($success && true), NULL, NULL, $requestor, 'zp_admin_auth', $txt);
 		return $success;
