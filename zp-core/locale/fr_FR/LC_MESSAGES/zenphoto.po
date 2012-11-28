@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-27 20:15-0500\n"
-"PO-Revision-Date: 2012-11-27 20:35-0500\n"
+"PO-Revision-Date: 2012-11-27 21:08-0500\n"
 "Last-Translator: \n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon <michgagnon@gmail.com>\n"
 "Language: fr_FR\n"
@@ -13143,8 +13143,8 @@ msgid ""
 "should you find you need them again in the future."
 msgstr ""
 "<strong>Note.</strong> Il est vivement conseillé de supprimer <em>les "
-"scripts d’installation</em> du dossier zp-core. Il est toujours possible de "
-"les charger de nouveau au besoin."
+"scripts d’installation</em> du dossier zp-core. Il est possible de les "
+"charger de nouveau au besoin."
 
 #: F:\sites\zenphoto/zp-core/setup/index.php:2420
 #: F:\sites\zenphoto/zp-core/zp-extensions/cloneZenphoto.php:54
@@ -13882,12 +13882,12 @@ msgid ""
 ">Un-published items are marked in dark red. Images are marked un-published "
 "if their (direct) album is, too."
 msgstr ""
-"Cette page vous montre des statistiques plus détaillées de votre galerie. "
-"Pour les statistiques d’un album, le graphique en barres affiche toujours le "
-"nombre total d’images de celui-ci. Pour les statistiques d’une image, le nom "
-"de l’album qui la contient est affiché également.<br />Les éléments non "
-"publiés sont marqués en rouge foncé. Les images sont marquées comme non "
-"publiées si leur album (direct) ne l’est pas."
+"Cette page affiche des statistiques détaillées de votre galerie. Pour les "
+"statistiques d’un album, l’histogramme affiche toujours le nombre total "
+"d’images de celui-ci. Pour les statistiques d’une image, le nom de l’album-"
+"parent est également affiché.<br />Les éléments non publiés sont marqués en "
+"rouge foncé. Les images sont marquées comme non publiées si leur album "
+"parent ne l’est pas."
 
 #: F:\sites\zenphoto/zp-core/utilities/gallery_statistics.php:479
 #, php-format
@@ -14422,7 +14422,7 @@ msgid ""
 "also need to enable a multimedia player. See the info of the player you use "
 "to see how it is configured."
 msgstr ""
-"Cette extension doit toujours être activée pour utiliser du contenu "
+"Cette extension doit absolument être activée pour utiliser du contenu "
 "multimédia. Vous devez également configurer un lecteur de médias. Veuillez "
 "consulter la notice du lecteur sélectionné pour savoir comment le configurer."
 
@@ -16283,7 +16283,7 @@ msgstr "Jamais"
 #: F:\sites\zenphoto/zp-core/zp-extensions/sitemap-extended.php:140
 #: F:\sites\zenphoto/zp-core/zp-extensions/sitemap-extended.php:150
 msgid "always"
-msgstr "Toujours"
+msgstr "toujours"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/flowplayer3.php:136
 msgid "fullscreen"
