@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-25 15:18+0100\n"
-"PO-Revision-Date: 2012-11-27 10:53+0100\n"
+"PO-Revision-Date: 2012-11-28 23:56+0100\n"
 "Last-Translator: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language-Team: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language: danish\n"
@@ -5522,25 +5522,25 @@ msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/license.php:48
 msgid "You must accept this license to continue to use Zenphoto."
-msgstr ""
+msgstr "Du skal acceptere denne licens for at forsætte med at bruge Zenphoto."
 
 #: /home/jes/workspace/zenphoto/zp-core/license.php:48
 msgid "I agree to these terms and conditions"
-msgstr ""
+msgstr "Jeg er enig i disse vilkår og betingelser"
 
 #: /home/jes/workspace/zenphoto/zp-core/class-album.php:641
 msgid "Invalid album instantiation: No album name"
-msgstr ""
+msgstr "Ugyldig album instantiering: Ingen album navn"
 
 #: /home/jes/workspace/zenphoto/zp-core/class-album.php:644
 #, php-format
 msgid "Invalid album instantiation: %1$s!=%2$s"
-msgstr ""
+msgstr "Ugyldig album instantiering: %1$s!=%2$s"
 
 #: /home/jes/workspace/zenphoto/zp-core/class-album.php:646
 #, php-format
 msgid "Invalid album instantiation: %s does not exist."
-msgstr ""
+msgstr "Ugyldig album instantiering: %s does not exist."
 
 #: /home/jes/workspace/zenphoto/zp-core/class-album.php:1579
 #, php-format
@@ -5645,11 +5645,11 @@ msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/admin.php:279
 msgid "<em>display_errors</em> is <strong>On</strong>"
-msgstr ""
+msgstr "<em>vis_fejl</em> er <strong>Til</strong>"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin.php:283
 msgid "<em>display_errors</em> is <strong>Off</strong>"
-msgstr ""
+msgstr "<em>vis_fejl</em> er <strong>Fra</strong>"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin.php:289
 #, php-format
@@ -5691,7 +5691,7 @@ msgstr "Tabel præfix: <strong>%1$s</strong>"
 #: /home/jes/workspace/zenphoto/zp-core/admin.php:324
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2321
 msgid "No spam filter configured"
-msgstr ""
+msgstr "Intet spamfilter konfigureret"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin.php:326
 #, php-format
@@ -5817,15 +5817,15 @@ msgstr[1] "<strong>%1$u</strong> Kategorier"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:38
 msgid "most recent"
-msgstr ""
+msgstr "seneste"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:39
 msgid "oldest"
-msgstr ""
+msgstr "ældste"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:40
 msgid "first alphabetically"
-msgstr ""
+msgstr "første alfabetisk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:41
 #: /home/jes/workspace/zenphoto/zp-core/utilities/gallery_statistics.php:139
@@ -5836,7 +5836,7 @@ msgstr ""
 #: /home/jes/workspace/zenphoto/zp-core/utilities/gallery_statistics.php:598
 #: /home/jes/workspace/zenphoto/zp-core/utilities/gallery_statistics.php:604
 msgid "most viewed"
-msgstr ""
+msgstr "Mest viste"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:264
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:276
@@ -5844,43 +5844,43 @@ msgstr ""
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:296
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:366
 msgid "Mail send failed."
-msgstr ""
+msgstr "Mail Send mislykkes."
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:266
 #, php-format
 msgid "Invalid \"reply-to\" mail address %s."
-msgstr ""
+msgstr "Ugyldig \"svar-til\" mail adresse %s"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:278
 #, php-format
 msgid "Invalid \"to\" mail address %s."
-msgstr ""
+msgstr "Ugyldig \"til\" mail adresse %s"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:289
 msgid "\"cc\" list provided without \"to\" address list."
-msgstr ""
+msgstr "\"cc\" liste, uden \"til\" adresse liste."
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:298
 #, php-format
 msgid "Invalid \"cc\" mail address %s."
-msgstr ""
+msgstr "Ugyldig \"cc\" mailadresse %s."
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:309
 msgid "Mail send failed. "
-msgstr ""
+msgstr "Mail Send mislykkes."
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:311
 #, php-format
 msgid "Invalid \"bcc\" mail address %s."
-msgstr ""
+msgstr "Ugyldig \"bcc\" mailadresse %s."
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:362
 msgid "Mail send failed. There is no mail handler configured."
-msgstr ""
+msgstr "Mail Send mislykkes. Der er ikke konfigureret et postprogram."
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:368
 msgid "No \"to\" address list provided."
-msgstr ""
+msgstr "Ingen \"til\" adresseliste angivet."
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:925
 #, php-format
@@ -5888,127 +5888,130 @@ msgid ""
 "Zenphoto found no theme scripts. Please check the <em>%s</em> folder of your "
 "installation."
 msgstr ""
+"Zenphoto fandt ingen tema skripter. Tjek venligst <em>%s</em> mappen i din "
+"installation."
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:1444
 msgid "0 Bytes"
-msgstr ""
+msgstr "0 Bytes"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:1870
 #, php-format
 msgid "Zenphoto processed a 404 error on %s. See the debug log for details."
 msgstr ""
+"Zenphoto behandlede en 404 fejl på %s. Se fejlfindingslog for detaljer."
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:2057
 msgid "Click to show content"
-msgstr ""
+msgstr "Klik for at vise indhold"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:2062
 msgid "Click to hide content"
-msgstr ""
+msgstr "Klik for at skjule indhold."
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:2115
 msgid "Camera Maker"
-msgstr ""
+msgstr "Kamera fabrikat"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:2116
 msgid "Camera Model"
-msgstr ""
+msgstr "Kamera model"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:2117
 msgid "Image Title"
-msgstr ""
+msgstr "Billedtitel"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:2118
 msgid "Object Name"
-msgstr ""
+msgstr "Objekt Navn"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:2119
 msgid "Image Headline"
-msgstr ""
+msgstr "Billed Overskrift"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:2120
 msgid "Image Caption"
-msgstr ""
+msgstr "Billede billedtekst"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:2121
 msgid "Image Caption Writer"
-msgstr ""
+msgstr "Billede billedtekst forfatter"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:2122
 msgid "Time Taken"
-msgstr ""
+msgstr "Taget Tidspunkt"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:2123
 msgid "Original Time Taken"
-msgstr ""
+msgstr "Oprindelige optagelsestid"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:2124
 msgid "Time Digitized"
-msgstr ""
+msgstr "Digitaliseret Tidspunkt"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:2125
 msgid "Date Created"
-msgstr ""
+msgstr "Oprettelsesdato"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:2126
 msgid "Time Created"
-msgstr ""
+msgstr "Oprettelsestid"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:2127
 msgid "Digital Creation Date"
-msgstr ""
+msgstr "Digital Oprettelsesdato"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:2128
 msgid "Digital Creation Time"
-msgstr ""
+msgstr "Digital Oprettelsestid"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:2129
 msgid "Artist"
-msgstr ""
+msgstr "Kunstner"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:2130
 msgid "Image Credit"
-msgstr ""
+msgstr "Billede kredit"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:2131
 msgid "Byline"
-msgstr ""
+msgstr "Byline"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:2132
 msgid "Byline Title"
-msgstr ""
+msgstr "Byline Titel"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:2133
 msgid "Image Source"
-msgstr ""
+msgstr "Billedkilde"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:2135
 msgid "Copyright Holder"
-msgstr ""
+msgstr "copyright Indehaver"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:2136
 msgid "Copyright Notice"
-msgstr ""
+msgstr "Ophavsret Meddelelse"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:2137
 msgid "Keywords"
-msgstr ""
+msgstr "Stikord"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:2138
 msgid "Shutter Speed"
-msgstr ""
+msgstr "Lukkerhastighed"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:2139
 msgid "Aperture"
-msgstr ""
+msgstr "Blændeåbning"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:2140
 msgid "ISO Sensitivity"
-msgstr ""
+msgstr "ISO Følsomhed"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:2141
 msgid "Exposure Compensation"
-msgstr ""
+msgstr "Eksponeringskompensation"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:2142
 msgid "Metering Mode"
