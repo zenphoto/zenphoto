@@ -2892,18 +2892,19 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 						</td>
 				</tr>
 				<tr>
-				<th colspan="2" style="text-align:center">
+				<th style="text-align:center" colspan="2">
 					<span style="font-weight: normal">
 						<a href="javascript:setShow(1);toggleExtraInfo('','plugin',true);"><?php echo gettext('Expand plugin options');?></a>
 						|
 						<a href="javascript:setShow(0);toggleExtraInfo('','plugin',false);"><?php echo gettext('Collapse all plugin options');?></a>
 					</span>
 				</th>
-				<th>
+				<th style="text-align:left">
 					<?php printPageSelector($subpage, $rangeset, 'admin-options.php', array('page'=>'options', 'tab'=>'plugin')); ?>
 				</th>
 			</tr>
 				<?php
+				$reveal = array();
 				foreach ($plugins as $extension) {
 					$option_interface = NULL;
 					$path = getPlugin($extension.'.php');
@@ -2932,26 +2933,23 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 						$showlist[] = '#_show-'.$extension;
 						$_zp_plugin_count++;
 						?>
-				<!-- <?php echo $extension; ?> -->
+						<!-- <?php echo $extension; ?> -->
 				<tr>
 					<td style="padding: 0;margin:0" colspan="3">
 						<table class="bordered options" style="border: 0" id="plugin-<?php echo $extension; ?>">
 							<tr>
 							<?php
-							if (isset($_GET['show-'.$extension])) {
-								$show_show = 'none';
-								$show_hide = 'block';
+							if (isset($_GET['show-'.$extension]) || count($plugins) == 1) {
+								$reveal[] = $extension;
 								$v = 1;
 							} else {
-								$show_show = 'block';
-								$show_hide = 'none';
 								$v= 0;
 							}
 							?>
-							<th style="text-align:left; width: 200px;">
+							<th style="text-align:left;">
 								<span id="<?php echo $extension; ?>" ></span>
 								<input type="hidden" name="show-<?php echo $extension;?>" id="show-<?php echo $extension;?>" value="<?php echo $v; ?>" />
-								<span style="display:<?php echo $show_show; ?>;" class="pluginextrashow">
+								<span style="display:block" class="pluginextrashow">
 									<a href="javascript:$('#show-<?php echo $extension;?>').val(1);toggleExtraInfo('<?php echo $extension;?>','plugin',true);"><?php echo $extension; ?></a>
 									<?php
 									if ($warn) {
@@ -2961,7 +2959,7 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 									}
 									?>
 								</span>
-								<span style="display:<?php echo $show_hide; ?>;" class="pluginextrahide">
+								<span style="display:none" class="pluginextrahide">
 									<a href="javascript:$('#show-<?php echo $extension;?>').val(0);toggleExtraInfo('<?php echo $extension;?>','plugin',false);"><?php echo $extension; ?></a>
 								</span>
 							</th>
@@ -2972,7 +2970,7 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 						<?php
 						if ($warn) {
 							?>
-							<tr style="display:<?php echo $show_hide; ?>;" class="pluginextrahide">
+							<tr style="display:none" class="pluginextrahide">
 								<td colspan="3">
 									<p class="notebox" ><?php echo $warn; ?></p>
 								</td>
@@ -2981,7 +2979,7 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 						}
 						$supportedOptions = $option_interface->getOptionsSupported();
 						if (count($supportedOptions) > 0) {
-							customOptions($option_interface, '', NULL, 'plugin', $supportedOptions, NULL, $show_hide, $extension);
+							customOptions($option_interface, '', NULL, 'plugin', $supportedOptions, NULL, 'none', $extension);
 						}
 						?>
 						</td>
@@ -3030,6 +3028,15 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 				foreach ($showlist as $show) {
 					?>
 					$('<?php echo $show; ?>').val(v);
+					<?php
+				}
+				?>
+			}
+			window.onload = function() {
+				<?php
+				foreach ($reveal as $extension) {
+					?>
+					toggleExtraInfo('<?php echo $extension;?>','plugin',true);
 					<?php
 				}
 				?>
