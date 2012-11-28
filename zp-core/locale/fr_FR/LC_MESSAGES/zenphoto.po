@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-27 20:15-0500\n"
-"PO-Revision-Date: 2012-11-27 20:20-0500\n"
+"PO-Revision-Date: 2012-11-27 20:35-0500\n"
 "Last-Translator: \n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon <michgagnon@gmail.com>\n"
 "Language: fr_FR\n"
@@ -4289,7 +4289,7 @@ msgstr "indésirables"
 
 #: F:\sites\zenphoto/zp-core/admin-functions.php:4384
 msgid "seo"
-msgstr "moteurs de recherche"
+msgstr "moteurs recherche"
 
 #: F:\sites\zenphoto/zp-core/admin-functions.php:4385
 msgid "tools"
