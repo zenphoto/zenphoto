@@ -133,9 +133,9 @@ function zp_filter_unique_id($hook, $function, $priority) {
  */
 function zp_apply_filter($hook, $value = '') {
 	global $_zp_filters;
-	if ( !isset($_zp_filters[$hook]) )
+	if ( !isset($_zp_filters[$hook]) ) {
 		return $value;
-
+	}
 	$args = func_get_args();
 	// Sort filters by priority
 	krsort($_zp_filters[$hook]);

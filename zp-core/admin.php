@@ -310,9 +310,9 @@ zp_apply_filter('admin_note','Overview', NULL);
 		<li><?php printf(gettext('Database name: <strong>%1$s</strong>'),db_name()); ?></li>
 		<li>
 		<?php
-		$prefix = prefix();
+		$prefix = trim(prefix(),'`');
 		if(!empty($prefix)) {
-			echo sprintf(gettext('Table prefix: <strong>%1$s</strong>'),prefix());
+			echo sprintf(gettext('Table prefix: <strong>%1$s</strong>'),$prefix);
 		}
 		?>
 		</li>

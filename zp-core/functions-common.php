@@ -210,12 +210,7 @@ function sanitize_string($input, $sanitize_level) {
  *@since 0.6
  */
 function prefix($tablename=NULL) {
-	global $_zp_conf_vars;
-	if (empty($tablename)) {
-		return $_zp_conf_vars['mysql_prefix'];
-	} else {
-		return '`' . $_zp_conf_vars['mysql_prefix'] . $tablename . '`';
-	}
+	return '`' . DATABASE_PREFIX . $tablename . '`';
 }
 
 /**
@@ -228,14 +223,11 @@ function prefix($tablename=NULL) {
  */
 function getWhereClause($unique_set) {
 	if (empty($unique_set)) return ' ';
-	$i = 0;
 	$where = ' WHERE';
 	foreach($unique_set as $var => $value) {
-		if ($i > 0) $where .= ' AND';
-		$where .= ' `' . $var . '` = ' . db_quote($value);
-		$i++;
+		$where .= ' `' . $var . '` = ' . db_quote($value). ' AND';
 	}
-	return $where;
+	return substr($where,0,-4);
 }
 
 /**
