@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-27 20:15-0500\n"
-"PO-Revision-Date: 2012-11-27 21:08-0500\n"
+"POT-Creation-Date: 2012-11-29 00:18-0500\n"
+"PO-Revision-Date: 2012-11-29 00:19-0500\n"
 "Last-Translator: \n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon <michgagnon@gmail.com>\n"
 "Language: fr_FR\n"
@@ -17,12 +17,12 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SearchPath-0: F:\\sites\\zenphoto\n"
 
-#: F:\sites\zenphoto/index.php:125
+#: F:\sites\zenphoto/index.php:126
 #, php-format
 msgid "Zenphoto script processing %1$s:%2$.4f seconds"
 msgstr "Temps de traitement du script Zenphoto %1$s :%2$.4f secondes"
 
-#: F:\sites\zenphoto/index.php:128
+#: F:\sites\zenphoto/index.php:129
 #, php-format
 msgid "Zenphoto script processing total:%.4f seconds"
 msgstr "Temps de traitement total du script Zenphoto : %.4f secondes"
@@ -1839,9 +1839,9 @@ msgstr "Envoyer l’email"
 #: F:\sites\zenphoto/zp-core/admin-options.php:2551
 #: F:\sites\zenphoto/zp-core/admin-options.php:2822
 #: F:\sites\zenphoto/zp-core/admin-options.php:2890
-#: F:\sites\zenphoto/zp-core/admin-options.php:3016
-#: F:\sites\zenphoto/zp-core/admin-options.php:3055
-#: F:\sites\zenphoto/zp-core/admin-options.php:3169
+#: F:\sites\zenphoto/zp-core/admin-options.php:3014
+#: F:\sites\zenphoto/zp-core/admin-options.php:3062
+#: F:\sites\zenphoto/zp-core/admin-options.php:3176
 #: F:\sites\zenphoto/zp-core/admin-plugins.php:144
 #: F:\sites\zenphoto/zp-core/admin-plugins.php:364
 #: F:\sites\zenphoto/zp-core/admin-themes-editor.php:145
@@ -2670,9 +2670,9 @@ msgstr "Retour"
 #: F:\sites\zenphoto/zp-core/admin-options.php:2549
 #: F:\sites\zenphoto/zp-core/admin-options.php:2820
 #: F:\sites\zenphoto/zp-core/admin-options.php:2889
-#: F:\sites\zenphoto/zp-core/admin-options.php:3015
-#: F:\sites\zenphoto/zp-core/admin-options.php:3054
-#: F:\sites\zenphoto/zp-core/admin-options.php:3168
+#: F:\sites\zenphoto/zp-core/admin-options.php:3013
+#: F:\sites\zenphoto/zp-core/admin-options.php:3061
+#: F:\sites\zenphoto/zp-core/admin-options.php:3175
 #: F:\sites\zenphoto/zp-core/admin-plugins.php:143
 #: F:\sites\zenphoto/zp-core/admin-plugins.php:363
 #: F:\sites\zenphoto/zp-core/admin-thumbcrop.php:271
@@ -4279,7 +4279,6 @@ msgid "media"
 msgstr "médias"
 
 #: F:\sites\zenphoto/zp-core/admin-functions.php:4382
-#: F:\sites\zenphoto/zp-core/admin-functions.php:4398
 msgid "misc"
 msgstr "varia"
 
@@ -4289,7 +4288,7 @@ msgstr "indésirables"
 
 #: F:\sites\zenphoto/zp-core/admin-functions.php:4384
 msgid "seo"
-msgstr "moteurs recherche"
+msgstr "moteurs de recherche"
 
 #: F:\sites\zenphoto/zp-core/admin-functions.php:4385
 msgid "tools"
@@ -4682,9 +4681,9 @@ msgstr "Lisez le guide de dépannage sur zenphoto.org pour plus de détails."
 #: F:\sites\zenphoto/zp-core/admin-options.php:2551
 #: F:\sites\zenphoto/zp-core/admin-options.php:2822
 #: F:\sites\zenphoto/zp-core/admin-options.php:2890
-#: F:\sites\zenphoto/zp-core/admin-options.php:3016
-#: F:\sites\zenphoto/zp-core/admin-options.php:3055
-#: F:\sites\zenphoto/zp-core/admin-options.php:3169
+#: F:\sites\zenphoto/zp-core/admin-options.php:3014
+#: F:\sites\zenphoto/zp-core/admin-options.php:3062
+#: F:\sites\zenphoto/zp-core/admin-options.php:3176
 #: F:\sites\zenphoto/zp-core/admin-users.php:443
 #: F:\sites\zenphoto/zp-core/zp-extensions/search_statistics/search_analysis.php:268
 msgid "reset"
@@ -4712,11 +4711,11 @@ msgid_plural ""
 "Your time zone offset is: %d hours. If your time zone is different from the "
 "servers, select the correct time zone here."
 msgstr[0] ""
-"Votre décalage horaire est d’%d heure. Si votre fuseau horaire est différent "
+"Le décalage horaire est de %d heure. Si votre fuseau horaire est différent "
 "de celui de votre serveur, veuillez sélectionner le bon fuseau."
 msgstr[1] ""
-"Votre décalage horaire est de %d heures. Si votre fuseau horaire est "
-"différent de celui de votre serveur, veuillez sélectionner le bon fuseau."
+"Le décalage horaire est de %d heures. Si votre fuseau horaire est différent "
+"de celui de votre serveur, veuillez sélectionner le bon fuseau."
 
 #: F:\sites\zenphoto/zp-core/admin-options.php:554
 msgid "Time offset (hours):"
@@ -5098,9 +5097,9 @@ msgstr ""
 
 #: F:\sites\zenphoto/zp-core/admin-options.php:886
 #: F:\sites\zenphoto/zp-core/admin-options.php:2889
-#: F:\sites\zenphoto/zp-core/admin-options.php:3015
-#: F:\sites\zenphoto/zp-core/admin-options.php:3054
-#: F:\sites\zenphoto/zp-core/admin-options.php:3168
+#: F:\sites\zenphoto/zp-core/admin-options.php:3013
+#: F:\sites\zenphoto/zp-core/admin-options.php:3061
+#: F:\sites\zenphoto/zp-core/admin-options.php:3175
 #: F:\sites\zenphoto/zp-core/setup/setup-sqlform.php:102
 msgid "save"
 msgstr "enregistrer"
@@ -6070,8 +6069,8 @@ msgid "Obscure cache filenames"
 msgstr "Masquer les noms des fichiers mis en cache"
 
 #: F:\sites\zenphoto/zp-core/admin-options.php:2027
-#: F:\sites\zenphoto/zp-core/admin-options.php:3096
-#: F:\sites\zenphoto/zp-core/admin-options.php:3135
+#: F:\sites\zenphoto/zp-core/admin-options.php:3103
+#: F:\sites\zenphoto/zp-core/admin-options.php:3142
 #: F:\sites\zenphoto/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:174
 msgid "enable"
 msgstr "activé"
@@ -6704,7 +6703,7 @@ msgstr "Afficher les options des extensions "
 msgid "Collapse all plugin options"
 msgstr " Masquer les options des extensions"
 
-#: F:\sites\zenphoto/zp-core/admin-options.php:2924
+#: F:\sites\zenphoto/zp-core/admin-options.php:2925
 #: F:\sites\zenphoto/zp-core/admin-plugins.php:234
 msgid ""
 "<strong>Note:</strong> Instantiating the option interface within the plugin "
@@ -6716,23 +6715,23 @@ msgstr ""
 "définir <code>$option_interface</code> à la valeur de la classe (sous forme "
 "de chaîne)."
 
-#: F:\sites\zenphoto/zp-core/admin-options.php:2959
+#: F:\sites\zenphoto/zp-core/admin-options.php:2957
 msgid "warning"
 msgstr "avertissement"
 
-#: F:\sites\zenphoto/zp-core/admin-options.php:2998
+#: F:\sites\zenphoto/zp-core/admin-options.php:2996
 msgid "There are no plugin options to administer."
 msgstr "Il n’y a aucune option d’extension à gérer."
 
-#: F:\sites\zenphoto/zp-core/admin-options.php:3060
+#: F:\sites\zenphoto/zp-core/admin-options.php:3067
 msgid "Server protocol:"
 msgstr "Protocole du serveur : "
 
-#: F:\sites\zenphoto/zp-core/admin-options.php:3066
+#: F:\sites\zenphoto/zp-core/admin-options.php:3073
 msgid "secure admin"
 msgstr "gestion sécurisée"
 
-#: F:\sites\zenphoto/zp-core/admin-options.php:3070
+#: F:\sites\zenphoto/zp-core/admin-options.php:3077
 msgid ""
 "Normally this option should be set to <em>http</em>. If you're running a "
 "secure server, change this to <em>https</em>. Select <em>secure admin</em> "
@@ -6743,7 +6742,7 @@ msgstr ""
 "sécurisée</em> pour permettre l’accès sécurisé uniquement aux pages "
 "<code>d’administration</code>."
 
-#: F:\sites\zenphoto/zp-core/admin-options.php:3071
+#: F:\sites\zenphoto/zp-core/admin-options.php:3078
 msgid ""
 "<strong>Note:</strong><br /><br />Login from the front-end user login form "
 "is secure only if <em>https</em> is selected.<br /><br />If you select "
@@ -6765,23 +6764,23 @@ msgstr ""
 "\"inlinecode\">server_protocol</span> dans la table <em>options</em> de la "
 "base de données."
 
-#: F:\sites\zenphoto/zp-core/admin-options.php:3080
+#: F:\sites\zenphoto/zp-core/admin-options.php:3087
 msgid "CAPTCHA generator:"
 msgstr "Générateur de Captcha :"
 
-#: F:\sites\zenphoto/zp-core/admin-options.php:3086
+#: F:\sites\zenphoto/zp-core/admin-options.php:3093
 msgid "not configured"
 msgstr "pas configuré"
 
-#: F:\sites\zenphoto/zp-core/admin-options.php:3094
+#: F:\sites\zenphoto/zp-core/admin-options.php:3101
 msgid "Cookie security"
 msgstr "Sécurité des cookies"
 
-#: F:\sites\zenphoto/zp-core/admin-options.php:3099
+#: F:\sites\zenphoto/zp-core/admin-options.php:3106
 msgid "Tie cookies to the IP address of the browser."
 msgstr "Rattache les cookies à l’adresse IP du navigateur."
 
-#: F:\sites\zenphoto/zp-core/admin-options.php:3103
+#: F:\sites\zenphoto/zp-core/admin-options.php:3110
 msgid ""
 "<strong>Note</strong>: If your browser does not present a consistant IP "
 "address during a session you may not be able to log into your site when this "
@@ -6795,13 +6794,13 @@ msgstr ""
 "de session. Et dans tous les cas, vous devrez vous reconnecter à chaque "
 "session."
 
-#: F:\sites\zenphoto/zp-core/admin-options.php:3105
+#: F:\sites\zenphoto/zp-core/admin-options.php:3112
 msgid " You <strong>WILL</strong> have to login after changing this option."
 msgstr ""
 "Vous <strong>DEVREZ</strong> vous connecter de nouveau après avoir activé "
 "cette option."
 
-#: F:\sites\zenphoto/zp-core/admin-options.php:3107
+#: F:\sites\zenphoto/zp-core/admin-options.php:3114
 msgid ""
 "If you set the option and cannot login, you will have to restore your "
 "database to a point when the option was not set, so you might want to backup "
@@ -6812,11 +6811,11 @@ msgstr ""
 "de cette option. Vous devriez donc faire d’abord une copie de sauvegarde de "
 "la base de données."
 
-#: F:\sites\zenphoto/zp-core/admin-options.php:3119
+#: F:\sites\zenphoto/zp-core/admin-options.php:3126
 msgid "User name"
 msgstr "Nom de l’utilisateur"
 
-#: F:\sites\zenphoto/zp-core/admin-options.php:3141
+#: F:\sites\zenphoto/zp-core/admin-options.php:3148
 msgid ""
 "If enabled guest logon forms will include the <em>User Name</em> field. This "
 "allows <em>Zenphoto</em> users to logon from the form."
@@ -6825,7 +6824,7 @@ msgstr ""
 "champ pour le <em>Nom de l’utilisateur</em>. Cela permet aux utilisateurs de "
 "<em>Zenphoto</em> de se connecter à partir du formulaire."
 
-#: F:\sites\zenphoto/zp-core/admin-options.php:3143
+#: F:\sites\zenphoto/zp-core/admin-options.php:3150
 msgid ""
 "<strong>Note</strong>: This field is required because one or more of the "
 "<em>Guest</em> passwords has a user name associated."
@@ -8122,16 +8121,16 @@ msgstr "<strong>Fichier d’informations du thème absent !</strong>"
 msgid "Bad album object parameter to newImage(%s)"
 msgstr "Mauvais paramètre de l’objet album pour newImage(%s)"
 
-#: F:\sites\zenphoto/zp-core/class-image.php:58
+#: F:\sites\zenphoto/zp-core/class-image.php:57
 #, php-format
 msgid "Bad filename suffix in newImage(%s)"
 msgstr "Mauvais suffixe de nom de fichier dans newImage(%s)"
 
-#: F:\sites\zenphoto/zp-core/class-image.php:120
+#: F:\sites\zenphoto/zp-core/class-image.php:119
 msgid "Invalid image instantiation: Album does not exist"
 msgstr "Instanciation invalide de l’image : l’album n’existe pas"
 
-#: F:\sites\zenphoto/zp-core/class-image.php:123
+#: F:\sites\zenphoto/zp-core/class-image.php:122
 msgid "Invalid image instantiation: file does not exist"
 msgstr "Instanciation invalide de l’image : le fichier n’existe pas"
 
@@ -14067,7 +14066,7 @@ msgid ""
 "state of objects."
 msgstr ""
 "Permet uniquement aux utilisateurs qui ont les droits d’administrateur ou de "
-"gestion des droits de modifier l’état de publication des éléments."
+"gestionnaire universel de modifier l’état de publication des éléments."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/admin-approval.php:39
 msgid "You do not have rights to change the <em>publish</em> state."
@@ -14377,14 +14376,14 @@ msgid ""
 "Provides a means for handling arbitrary file types. (No rendering provided!)"
 msgstr "Permet de traiter tous les types de fichiers (sans en faire de rendu)."
 
-#: F:\sites\zenphoto/zp-core/zp-extensions/class-AnyFile.php:48
+#: F:\sites\zenphoto/zp-core/zp-extensions/class-AnyFile.php:39
 #: F:\sites\zenphoto/zp-core/zp-extensions/class-textobject.php:78
 #: F:\sites\zenphoto/zp-core/zp-extensions/class-video.php:59
 #: F:\sites\zenphoto/zp-core/zp-extensions/class-WEBdocs.php:53
 msgid "Watermark default images"
 msgstr "Filigrane sur les images par défaut"
 
-#: F:\sites\zenphoto/zp-core/zp-extensions/class-AnyFile.php:49
+#: F:\sites\zenphoto/zp-core/zp-extensions/class-AnyFile.php:40
 #: F:\sites\zenphoto/zp-core/zp-extensions/class-textobject.php:79
 #: F:\sites\zenphoto/zp-core/zp-extensions/class-video.php:61
 #: F:\sites\zenphoto/zp-core/zp-extensions/class-WEBdocs.php:54
@@ -14392,25 +14391,25 @@ msgid "Check to place watermark image on default thumbnail images."
 msgstr ""
 "Cocher pour afficher une image de filigrane sur les vignettes par défaut."
 
-#: F:\sites\zenphoto/zp-core/zp-extensions/class-AnyFile.php:50
+#: F:\sites\zenphoto/zp-core/zp-extensions/class-AnyFile.php:41
 msgid "Handled files"
 msgstr "Fichiers traités"
 
-#: F:\sites\zenphoto/zp-core/zp-extensions/class-AnyFile.php:52
+#: F:\sites\zenphoto/zp-core/zp-extensions/class-AnyFile.php:42
 msgid "File suffixes to be handled."
 msgstr "Extensions de fichiers traités par Zenphoto."
 
-#: F:\sites\zenphoto/zp-core/zp-extensions/class-AnyFile.php:53
+#: F:\sites\zenphoto/zp-core/zp-extensions/class-AnyFile.php:43
 msgid "Add file suffix"
 msgstr "Ajouter les extensions"
 
-#: F:\sites\zenphoto/zp-core/zp-extensions/class-AnyFile.php:54
+#: F:\sites\zenphoto/zp-core/zp-extensions/class-AnyFile.php:44
 msgid "Add a file suffix to be handled by the plugin"
 msgstr "Saisir ici chacune des extensions de fichiers qui doivent être traités"
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/class-textobject.php:57
 msgid "Provides a means for showing text type documents (.txt, .html, .htm)."
-msgstr "Permet d’afficher des documents de texte (.txt, .html, .htm)."
+msgstr "Permet d’afficher les documents de texte (.txt, .html, .htm)."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/class-video.php:21
 msgid "The Zenphoto <em>audio-video</em> handler."
@@ -18857,9 +18856,9 @@ msgid ""
 "em> (administrative) URLs. However, once activated, the language is "
 "remembered, even for the <em>back&#8209;end</em>."
 msgstr ""
-"<strong>Note.</strong>  Cette extension n’est pas activée pour les URL "
-"<em>des pages d’administration</em>. Cependant, une fois activée, la langue "
-"choisie est retenue, même pour ces pages."
+"<strong>Note.</strong>  Cette extension n’est pas fonctionnelle pour les URL "
+"<em>des pages d’administration</em>. Cependant, la langue choisie dans les "
+"pages est retenue, même pour ces pages."
 
 #: F:\sites\zenphoto/zp-core/zp-extensions/seo_locale.php:30
 msgid "<em>mod_rewrite</em> must be enabled for this plugin to function."
