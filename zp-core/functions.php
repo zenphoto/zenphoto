@@ -560,10 +560,10 @@ function getEnabledPlugins() {
 	foreach ($sortlist as $extension=>$path) {
 		$opt = 'zp_plugin_'.$extension;
 		if ($option = getOption($opt)) {
-			$_EnabledPlugins[$extension] = $option;
+			$_EnabledPlugins[$extension] = array('priority'=>$option, 'path'=>$path);
 		}
 	}
-	arsort($_EnabledPlugins);
+	$_EnabledPlugins = sortMultiArray($_EnabledPlugins, 'priority', true);
 	return $_EnabledPlugins;
 }
 

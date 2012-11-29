@@ -24,13 +24,14 @@ if (OFFSET_PATH != 2) {	// setup does not need (and might have problems with) pl
 		}
 	}
 	foreach ($masks as $mask) {
-		foreach (getEnabledPlugins() as $extension => $priority) {
+		foreach (getEnabledPlugins() as $extension => $plugin) {
+			$priority = $plugin['priority'];
 			if ($priority & $mask) {
 				if (DEBUG_PLUGINS) {
 					list($usec, $sec) = explode(" ", microtime());
 					$start = (float)$usec + (float)$sec;
 				}
-				require_once(getPlugin($extension.'.php'));
+				require_once($plugin['path']);
 				if (DEBUG_PLUGINS) {
 					list($usec, $sec) = explode(" ", microtime());
 					$end = (float)$usec + (float)$sec;

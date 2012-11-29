@@ -1120,8 +1120,7 @@ function getAlbumArray($albumstring, $includepaths=false) {
  */
 function is_valid_image($filename) {
 	global $_zp_supported_images;
-	$ext = strtolower(substr(strrchr($filename, "."), 1));
-	return in_array($ext, $_zp_supported_images);
+	return in_array(getSuffix($filename), $_zp_supported_images);
 }
 
 /**
@@ -1132,12 +1131,7 @@ function is_valid_image($filename) {
  */
 function is_valid_other_type($filename) {
 	global $_zp_extra_filetypes;
-	$ext = strtolower(substr(strrchr($filename, "."), 1));
-	if (array_key_exists($ext, $_zp_extra_filetypes)) {
-		return $ext;
-	} else {
-		return false;
-	}
+	return @$_zp_extra_filetypes[getSuffix($filename)];
 }
 
 /**

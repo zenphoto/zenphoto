@@ -35,8 +35,7 @@ function newImage($album, $filename, $quiet=false) {
 		}
 		return NULL;
 	}
-	if ($ext = is_valid_other_type($filename)) {
-		$object = $_zp_extra_filetypes[$ext];
+	if ($object = is_valid_other_type($filename)) {
 		$image = New $object($xalbum, $filename, $quiet);
 	} else {
 		if (is_valid_image($filename)) {

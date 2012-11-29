@@ -4391,11 +4391,11 @@ function getPluginTabs() {
 	$currentlist = $classes = array();
 	foreach ($paths as $plugin=>$path) {
 		$p = file_get_contents($path);
-		preg_match('|\* @subpackage (.*)?\n|i', $p, $matches);
-		if (array_key_exists(1, $matches)) {
-			$classes[trim($matches[1])][] = $plugin;
-		} else {
-			$classes[gettext('misc')][] = $plugin;
+		$i = strpos($p, '* @subpackage');
+		if ($i !== false) {
+			if ($key = trim(substr($p,$i+13,strpos($p, "\n", $i)-$i-13))) {
+				$classes[$key][] = $plugin;
+			}
 		}
 	}
 
