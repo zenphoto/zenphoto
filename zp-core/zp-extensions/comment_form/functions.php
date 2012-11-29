@@ -160,7 +160,7 @@ function comment_form_print10Most() {
 				}
 				break;
 		}
-		$comment = truncate_string($comment['comment'], 123);
+		$comment = shortenContent($comment['comment'], 123, '...');
 		echo "<li><div class=\"commentmeta\">".sprintf(gettext('<em>%1$s</em> commented on %2$s:'),$author,$link)."</div><div class=\"commentbody\">$comment</div></li>";
 	}
 	?>
