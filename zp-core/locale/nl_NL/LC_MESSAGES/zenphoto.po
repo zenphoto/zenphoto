@@ -1677,7 +1677,7 @@ msgstr "Weet je zeker dat je de geselecteerde onderdelen wilt verwijderen?"
 
 #: ZpTranslation-Development/zp-core/admin-comments.php:109
 msgid "edit comment"
-msgstr "bewerk reactie"
+msgstr "Bewerk reactie"
 
 #: ZpTranslation-Development/zp-core/admin-comments.php:122
 #: ZpTranslation-Development/zp-core/admin-comments.php:473
@@ -1803,7 +1803,7 @@ msgstr "Wijzigingen opgeslagen"
 
 #: ZpTranslation-Development/zp-core/admin-comments.php:300
 msgid "You can edit or delete comments on your images."
-msgstr "Je kunt reacties op de afbeeldingen bewerken of verwijderen."
+msgstr "Hier kun je reacties bewerken en eventueel verwijderen."
 
 #: ZpTranslation-Development/zp-core/admin-comments.php:320
 msgid "View full text"
