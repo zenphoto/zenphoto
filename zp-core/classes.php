@@ -65,11 +65,15 @@ class PersistentObject {
 	 * @param $allowCreate Set true to allow a new object to be made.
 	 */
 	function PersistentObject($tablename, $unique_set, $cache_by=NULL, $use_cache=true, $is_transient=false, $allowCreate=true) {
+		global $_zp_object_cache;
+		//	insure a cache entry
+		$classname = get_class($this);
+		if (!isset($_zp_object_cache[$classname])) {
+			$_zp_object_cache[$classname] = array();
+		}
 		// Initialize the variables.
 		// Load the data into the data array using $this->load()
-		$this->data = array();
-		$this->tempdata = array();
-		$this->updates = array();
+		$this->data = $this->tempdata = $this->updates = array();
 		$this->loaded = false;
 		$this->table = $tablename;
 		$this->unique_set = $unique_set;
@@ -80,8 +84,7 @@ class PersistentObject {
 		}
 		$this->use_cache = $use_cache;
 		$this->transient = $is_transient;
-		$result = $this->load($allowCreate);
-		return $result;
+		return $this->load($allowCreate);
 	}
 
 	/**
@@ -91,12 +94,10 @@ class PersistentObject {
 	 */
 	private function getFromCache() {
 		global $_zp_object_cache;
-		$classname = get_class($this);
-		if (isset($_zp_object_cache[$classname])) {
-			$cache = @$_zp_object_cache[$classname][$this->cache_by];
-			return $cache;
+		if (isset($_zp_object_cache[$c = get_class($this)]) && isset($_zp_object_cache[$c][$this->cache_by])) {
+			return $_zp_object_cache[$c][$this->cache_by];
 		}
-		return false;
+		return NULL;
 	}
 
 	/**
@@ -107,11 +108,7 @@ class PersistentObject {
 	private function addToCache($entry) {
 		global $_zp_object_cache;
 		if ($entry) {
-			$classname = get_class($this);
-			if (!isset($_zp_object_cache[$classname])) {
-				$_zp_object_cache[$classname] = array();
-			}
-			if (count($_zp_object_cache[$classname]) >= OBJECT_CACHE_DEPTH) {
+			if (count($_zp_object_cache[$classname = get_class($this)]) >= OBJECT_CACHE_DEPTH) {
 				array_shift($_zp_object_cache[$classname]);	//	discard the oldest
 			}
 			$_zp_object_cache[$classname][$this->cache_by] = $entry;
@@ -236,7 +233,7 @@ class PersistentObject {
 	 * @return string
 	 */
 	function getID() {
-		return (int) $this->get('id');
+		return $this->id;
 	}
 
 	/**
@@ -273,8 +270,7 @@ class PersistentObject {
 	* @return false if the record already exists, true if a new record was created.
 	*/
 	private function load($allowCreate) {
-		$new = false;
-		$entry = null;
+		$new = $entry = null;
 		// Set up the SQL query in case we need it...
 		$sql = 'SELECT * FROM ' . prefix($this->table) . getWhereClause($this->unique_set) . ' LIMIT 1;';
 		// But first, try the cache.
@@ -285,7 +281,7 @@ class PersistentObject {
 		if (empty($entry)) {
 			$entry = query_single_row($sql,false);
 			// Save this entry into the cache so we get a hit next time.
-			$this->addToCache($entry);
+			if ($entry) $this->addToCache($entry);
 		}
 
 		// If we don't have an entry yet, this is a new record. Create it.

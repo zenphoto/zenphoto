@@ -677,9 +677,8 @@ function printPreloadScript() {
  * @since 1.4.1
  */
 function processExpired($table) {
-	deprecated_functions::notify(gettext('Use the Zenpage class method instead.'));
+	deprecated_functions::notify(gettext('This happens automatically.'));
 	global $_zp_zenpage;
-	Zenpage::processExpired($table);
 }
 
 /**

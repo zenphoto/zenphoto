@@ -97,19 +97,14 @@ function getNewsType($newsobj=NULL) {
 	}
 	switch($ownerclass) {
 		case "video":
-			$newstype = "video";
-			break;
+			return "video";
 		case "album":
-			$newstype = "album";
-			break;
+			return "album";
 		case "zenpagenews":
-			$newstype = "news";
-			break;
+			return "news";
 		default:
-			$newstype = 'image';
-			break;
+			return 'image';
 	}
- return $newstype;
 }
 
 /**
@@ -194,7 +189,6 @@ function getAuthor($fullname=false) {
  */
 function getNumNews($total=false) {
 	global $_zp_zenpage, $_zp_current_zenpage_news, $_zp_current_zenpage_news_restore, $_zp_zenpage_articles, $_zp_gallery, $_zp_current_search;
-	Zenpage::processExpired('news');
 	if ($total) {
 		return count($_zp_zenpage->getArticles(0));
 	} else if (in_context(ZP_SEARCH)) {
@@ -228,7 +222,6 @@ function next_news($sortorder="date", $sortdirection="desc") {
 	$_zp_current_zenpage_news_restore = $_zp_current_zenpage_news;
 	if (is_null($_zp_zenpage_articles)) {
 		if (in_context(ZP_SEARCH)) {
-			Zenpage::processExpired('news');
 			//note: we do not know how to paginate the search page, so for now we will return all news articles
 			$_zp_zenpage_articles = $_zp_current_search->getArticles(ZP_ARTICLES_PER_PAGE,NULL,true,$sortorder, $sortdirection);
 		} else if(ZP_COMBINEWS AND !is_NewsCategory() AND !is_NewsArchive()) {
@@ -2366,7 +2359,6 @@ $_zp_zenpage_pagelist = NULL;
  */
 function getNumPages($total=false) {
 	global $_zp_zenpage, $_zp_zenpage_pagelist, $_zp_current_search, $_zp_current_zenpage_page;
-	Zenpage::processExpired('pages');
 	$addquery = '';
 	if (!$total) {
 		if (in_context(ZP_SEARCH)) {
@@ -2397,7 +2389,6 @@ function next_page() {
 	}
 	add_context(ZP_ZENPAGE_PAGE);
 	if (is_null($_zp_zenpage_pagelist)) {
-		Zenpage::processExpired('pages');
 		$_zp_zenpage_pagelist = $_zp_current_search->getPages();
 	}
 	if (empty($_zp_zenpage_pagelist)) {

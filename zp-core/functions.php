@@ -2260,9 +2260,7 @@ class zpFunctions {
 	 * @param string $text
 	 */
 	static function tagURLs($text) {
-		$text = preg_replace('|'.FULLWEBPATH.'|is', '{*FULLWEBPATH*}', $text);
-		$text = preg_replace('|'.WEBPATH.'|is', '{*WEBPATH*}', $text);
-		return $text;
+		return str_replace(WEBPATH, '{*WEBPATH*}', str_replace(FULLWEBPATH, '{*FULLWEBPATH*}', $text));
 	}
 	/**
 	 * reverses tagURLs()
@@ -2270,9 +2268,7 @@ class zpFunctions {
 	 * @return string
 	 */
 	static function unTagURLs($text) {
-		$text = preg_replace('|\{\*FULLWEBPATH\*\}|', FULLWEBPATH, $text);
-		$text = preg_replace('|\{\*WEBPATH\*\}|', WEBPATH, $text);
-		return $text;
+		return str_replace('{*WEBPATH*}', WEBPATH, str_replace('{*FULLWEBPATH*}', FULLWEBPATH, $text));
 	}
 
 	/**

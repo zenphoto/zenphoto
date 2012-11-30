@@ -925,7 +925,7 @@ function rewrite_path($rewrite, $plain, $webpath=true) {
 	} else {
 		$path = $plain;
 	}
-	if (substr($path, 0, 1) == "/"  && $webpath) $path = substr($path, 1);
+	if ($webpath && $path{0} == "/") $path = substr($path, 1);
 	if($webpath) {
 		if (class_exists('seo_locale')) {
 			return seo_locale::localePath() . "/" . $path;
@@ -951,8 +951,7 @@ function pathurlencode($path) {
 		//	some kind of query link
 		$link .= '?'.html_encode($parts[1]);
 	}
-	$link = $matches[1].$link;
-	return $link;
+	return $matches[1].$link;
 }
 
 /**

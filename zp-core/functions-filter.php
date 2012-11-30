@@ -47,26 +47,24 @@ function zp_register_filter($hook, $function_name, $priority = NULL) {
 	if (is_array($bt)) {
 		$b = array_shift($bt);
 		$base = basename($b['file']);
+		if (is_null($priority) && isset($_EnabledPlugins[stripSuffix($base)])) {
+			$priority = $_EnabledPlugins[stripSuffix($base)]['priority'];
+		}
 	} else {
 		$base = 'unknown';
 	}
 	if (is_null($priority)) {
-		$priority = @$_EnabledPlugins[stripSuffix($base)];
-		if (is_null($priority)) {
-			$priority = 5;
-		} else {
-			$priority = $priority & PLUGIN_PRIORITY;
-		}
-
+		$priority = 5;
 	}
+
 	// At this point, we cannot check if the function exists, as it may well be defined later (which is OK)
 
 	$id = zp_filter_unique_id($hook, $function_name, $priority);
 
 	$_zp_filters[$hook][$priority][$id] = array(
-		'function' => $function_name,
-		'script' => $base
-	);
+																								'function' => $function_name,
+																								'script' => $base
+																							);
 	if (DEBUG_FILTERS) debugLog($base.'=>'.$function_name.' registered to '.$hook.' at priority '.$priority);
 }
 

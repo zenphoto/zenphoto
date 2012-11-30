@@ -717,6 +717,9 @@ class Gallery {
 	 * @since  1.0.0
 	 */
 	function sortAlbumArray($parentalbum, $albums, $sortkey='`sort_order`', $sortdirection=NULL, $mine=NULL) {
+		if (count($albums) == 0) {
+			return array();
+		}
 		if (is_null($mine) && zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 			$mine = true;
 		}
@@ -739,7 +742,6 @@ class Gallery {
 				$order = $obj->getSortDirection('album');
 			}
 		}
-		if (count($albums) == 0) return array();
 		$sql = 'SELECT * FROM ' .	prefix("albums") . ' WHERE `parentid`'.$albumid. ' ORDER BY '.$sortkey.' '.$sortdirection;
 		$result = query($sql);
 		$results = array();

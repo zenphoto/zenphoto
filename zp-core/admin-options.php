@@ -46,7 +46,7 @@ if (isset($_GET['action'])) {
 		/*** General options ***/
 		if (isset($_POST['savegeneraloptions'])) {
 
-			$tags = sanitize($_POST['allowed_tags'],0);
+			$tags = strtolower(sanitize($_POST['allowed_tags'],0));
 			$test = "(".$tags.")";
 			$a = parseAllowedTags($test);
 			if ($a !== false) {

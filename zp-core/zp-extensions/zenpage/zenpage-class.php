@@ -39,6 +39,25 @@ class Zenpage {
 	 * Class instantiator
 	 */
 	function __construct() {
+		/**
+		 * Un-publishes pages/news whose expiration date has been reached
+		 *
+		 */
+		$sql = ' WHERE `date`<="'.date('Y-m-d H:i:s').'" AND `show`="1"'.
+																				' AND `expiredate`<="'.date('Y-m-d H:i:s').'"'.
+																				' AND `expiredate`!="0000-00-00 00:00:00"'.
+																				' AND `expiredate` IS NOT NULL';
+		foreach (array('news','pages') as $table) {
+			$result = query_full_array('SELECT * FROM '.prefix($table).$sql);
+			if ($result) {
+				foreach ($result as $item) {
+					$class = 'Zenpage'.$table;
+					$obj = new $class($item['titlelink']);
+					$obj->setShow(0);
+					$obj->save();
+				}
+			}
+		}
 	}
 
 	function getCategoryStructure() {
@@ -62,27 +81,6 @@ class Zenpage {
 		return $this->categoryStructure;
 	}
 
-	/**
-	 * Un-publishes pages/news whose expiration date has been reached
-	 *
-	 */
-	static function processExpired($table) {
-		$expire = date('Y-m-d H:i:s');
-		$sql = 'SELECT * FROM '.prefix($table).' WHERE `date`<="'.$expire.'"'.
-						' AND `show`="1"'.
-						' AND `expiredate`<="'.$expire.'"'.
-						' AND `expiredate`!="0000-00-00 00:00:00"'.
-						' AND `expiredate` IS NOT NULL';
-		$result = query_full_array($sql);
-		if ($result) {
-			foreach ($result as $item) {
-				$class = 'Zenpage'.$table;
-				$obj = new $class($item['titlelink']);
-				$obj->setShow(0);
-				$obj->save();
-			}
-		}
-	}
 
 /************************************/
 /* general page functions   */
@@ -99,7 +97,6 @@ class Zenpage {
 	 */
 	function getPages($published=NULL,$toplevel=false) {
 		global $_zp_loggedin;
-		$this->processExpired('pages');
 		if (is_null($published)) {
 			$published = !zp_loggedin();
 			$all = zp_loggedin(MANAGE_ALL_PAGES_RIGHTS);
@@ -169,7 +166,6 @@ class Zenpage {
 	 */
 	function getArticles($articles_per_page=0, $published=NULL,$ignorepagination=false,$sortorder='date', $sortdirection='desc',$sticky=true) {
 		global $_zp_current_category, $_zp_post_date;
-		$this->processExpired('news');
 		$getUnpublished = NULL;
 		if (empty($published)) {
 			if(zp_loggedin( ALL_NEWS_RIGHTS)) {
@@ -438,7 +434,6 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	 */
 	function getCombiNews($articles_per_page='', $mode='',$published=NULL,$sortorder='',$sticky=true) {
 		global $_zp_gallery, $_zp_flash_player;
-		$this->processExpired('news');
 		if (is_null($published)) {
 			if(zp_loggedin(ZENPAGE_NEWS_RIGHTS | ALL_NEWS_RIGHTS)) {
 				$published = "all";

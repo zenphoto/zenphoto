@@ -168,6 +168,9 @@ setOptionDefault('style_tags',
 									 "i => () \n" .
 									 "strike => ()\n" .
 									 "strong => ()\n");
+//	insure tags are in lower case!
+setOption('allowed_tags',strtolower(getOption('allowed_tags')));
+
 setOptionDefault('comment_name_required', 1);
 setOptionDefault('comment_email_required', 1);
 setOptionDefault('comment_web_required', 'show');

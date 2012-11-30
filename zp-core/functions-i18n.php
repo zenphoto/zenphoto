@@ -144,11 +144,11 @@ function setupLanguageArray() {
  */
 function generateLanguageList($all=false) {
 	global $_zp_languages, $_zp_active_languages, $_zp_all_languages;
-	if (is_null($_zp_languages)) {
-		setupLanguageArray();
-	}
-	$dir = @opendir(SERVERPATH . "/" . ZENFOLDER ."/locale/");
 	if (is_null($_zp_all_languages)) {
+		if (is_null($_zp_languages)) {
+			setupLanguageArray();
+		}
+		$dir = @opendir(SERVERPATH . "/" . ZENFOLDER ."/locale/");
 		$_zp_active_languages = $_zp_all_languages = array();
 		if ($dir !== false) {
 			while ($dirname = readdir($dir)) {
