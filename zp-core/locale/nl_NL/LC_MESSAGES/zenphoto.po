@@ -11554,7 +11554,7 @@ msgstr "De introductietekst voor het contactformulier"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:84
 msgid "Confirm text"
-msgstr "Bevestig tekst"
+msgstr "Bevestigingstekst"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:86
 msgid "The text that asks the visitor to confirm that he really wants to send the message."
