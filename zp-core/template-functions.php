@@ -629,7 +629,7 @@ function getPageURL($page, $total=null) {
 				}
 			} else {
 				if (in_context(ZP_INDEX)) {
-					$pagination1 = '';
+					$pagination1 = '/';
 					$pagination2 = 'index.php';
 					if ($page > 1) {
 						$pagination1 .= '/page/'.$page;
