@@ -13,13 +13,14 @@ $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (!class_exists('DOMDocument')) ? gettext('PHP <em>DOM Object Model</em> is required.') : false;
 
 if (OFFSET_PATH != 2) {
-	if (basename(explode('?',getRequestURI())[0])=='admin.php') {
+	$me = explode('?',getRequestURI());
+	if (basename(array_shift($me))=='admin.php') {
 		$last = getOption('last_update_check');
 		if (empty($last) || is_numeric($last)) {
 			if (time() > $last+1728000) {
 				//	check each 20 days
-				setOption('last_update_check', time());
 				$v = checkForUpdate();
+				setOption('last_update_check', time());
 				if (!empty($v)) {
 					if ($v != 'X') {
 						setOption('last_update_check','<a href="http://www.zenphoto.org" alt="'.gettext('Zenphoto download page').'">'.gettext("A new version of Zenphoto version is available.").'</a>');
@@ -42,40 +43,37 @@ if (OFFSET_PATH != 2) {
  * @since 1.1.3
  */
 function checkForUpdate() {
-	if (!is_connected()) return 'X';
-	$c = ZENPHOTO_VERSION;
-	$v = @file_get_contents('http://www.zenphoto.org/files/LATESTVERSION');
-	if (empty($v)) {
-		$webVersion = 'X';
-	} else {
-		if ($i = strpos($v, 'RC')) {
-			$v_candidate = intval(substr($v, $i+2));
-		} else {
-			$v_candidate = 9999;
-		}
-		if ($i = strpos($c, 'RC')) {
-			$c_candidate = intval(substr($c, $i+2));
-		} else {
-			$c_candidate = 9999;
-		}
-		$pot = array(1000000000, 10000000, 100000, 1);
-		$wv = explode('.', $v);
-		$wvd = 0;
-		foreach ($wv as $i => $d) {
-			$wvd = $wvd + $d * $pot[$i];
-		}
-		$cv = explode('.', $c);
-		$cvd = 0;
-		foreach ($cv as $i => $d) {
-			$cvd = $cvd + $d * $pot[$i];
-		}
-		if ($wvd > $cvd || (($wvd == $cvd) && ($c_candidate < $v_candidate))) {
-			$webVersion = $v;
-		} else {
-			$webVersion = '';
+	if (is_connected() && class_exists('DOMDocument')) {
+		require_once(dirname(__FILE__).'/zenphoto_news/rsslib.php');
+		$recents = RSS_Retrieve("http://www.zenphoto.org/index.php?rss=news&category=changelog");
+		if ($recents) {
+			array_shift($recents);
+			$article = array_shift($recents);	//	most recent changelog article
+			$v = trim(str_replace('zenphoto-', '', basename($article['link'])));
+			$c = explode('-',ZENPHOTO_VERSION);
+			$c = array_shift($c);
+			if (!empty($v)) {
+				$pot = array(1000000000, 10000000, 100000, 1);
+				$wv = explode('.', $v);
+				$wvd = 0;
+				foreach ($wv as $i => $d) {
+					$wvd = $wvd + $d * $pot[$i];
+				}
+				$cv = explode('.', $c);
+				$cvd = 0;
+				foreach ($cv as $i => $d) {
+					$cvd = $cvd + $d * $pot[$i];
+				}
+				if ($wvd > $cvd || $wvd == $cvd) {
+					$webVersion = $v;
+				} else {
+					$webVersion = '';
+				}
+			}
+			Return $webVersion;
 		}
 	}
-	Return $webVersion;
+	return 'X';
 }
 
 /**
@@ -85,11 +83,13 @@ function checkForUpdate() {
  * @param unknown_type $subtab
  */
 function admin_showupdate($tab, $subtab) {
+	$current = getOption('last_update_check');
 	?>
 	<div class="notebox">
-		<h2><?php echo getOption('last_update_check'); ?></h2>
+		<h2><?php echo $current; ?></h2>
 	</div>
 	<?php
+	setOption('last_update_check', time());
 	return $tab;
 }
 

@@ -468,26 +468,30 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 			if ($v != 'X') {
 				$autorun = false;
 			}
-	}
-	if (TEST_RELEASE || $v != 'X') {
-		?>
-		<div class="notebox">
-			<?php
-			if ($v != 'X') echo '<p>'.gettext('You are not installing the latest version of Zenphoto.').'<a href="http://www.zenphoto.org">'.sprintf(gettext("Version %s is available."), $v).'</a></p>';
-			if (TEST_RELEASE) echo '<p>'.gettext('<strong>Note:</strong> The release you are installing has debugging settings enabled!').'</p>';
+		} else {
+			$v = 'X';
+		}
+		if (TEST_RELEASE || $v != 'X') {
 			?>
-		</div>
+			<div class="notebox">
+				<?php
+				if ($v != 'X') echo '<p>'.gettext('You are not installing the latest version of Zenphoto.').'<a href="http://www.zenphoto.org">'.sprintf(gettext("Version %s is available."), $v).'</a></p>';
+				if (TEST_RELEASE) echo '<p>'.gettext('<strong>Note:</strong> The release you are installing has debugging settings enabled!').'</p>';
+				?>
+			</div>
+			<?php
+		}
+		?>
+		<ul>
 		<?php
+		checkmark($check,$release,$release.' '.sprintf(ngettext('[%u release skipped]','[%u releases skipped]',$c),$c),gettext('We do not test upgrades that skip releases. We recommend you upgrade in sequence.'));
+	} else {
+		?>
+		<ul>
+		<?php
+		$prevRel = false;
+		checkmark(1,sprintf(gettext('Installing Zenphoto v%s'),ZENPHOTO_VERSION),'','');
 	}
-	?>
-	<ul>
-	<?php
-
-	checkmark($check,$release,$release.' '.sprintf(ngettext('[%u release skipped]','[%u releases skipped]',$c),$c),gettext('We do not test upgrades that skip releases. We recommend you upgrade in sequence.'));
-} else {
-	$prevRel = false;
-	checkmark(1,sprintf(gettext('Installing Zenphoto v%s'),ZENPHOTO_VERSION),'','');
-}
 
 	$permission = fileperms(SETUPLOG)&0777;
 	if (checkPermissions($permission, 0600)) {
