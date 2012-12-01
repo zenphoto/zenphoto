@@ -53,14 +53,12 @@ function switcher_controllink($html) {
 }
 
 function gMapOptionsImage($map) {
-	$map->setWidth(535);
 }
 function gMapOptionsAlbum($map) {
 	global $points;
 	foreach ($points as $coord) {
 		addGeoCoord($map, $coord);
 	}
-	$map->setWidth(535);
 }
 
 function footer() {
