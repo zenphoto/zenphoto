@@ -284,7 +284,7 @@ class Zenphoto_Authority {
 	 */
 	protected static function checkLogon($user, $pass) {
 		$userobj = self::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
-		if ($user) {
+		if ($userobj) {
 			$hash = self::passwordHash($user, $pass, $userobj->get('passhash'));
 			if ($hash != $userobj->getPass()) {
 				$userobj = NULL;
