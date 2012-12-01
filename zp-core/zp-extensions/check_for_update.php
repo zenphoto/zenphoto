@@ -10,6 +10,7 @@
 $plugin_is_filter = 5|ADMIN_PLUGIN;
 $plugin_description = gettext("Checks if there is a Zenphoto versions that is newer than the installed version.");
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_disable = (!class_exists('DOMDocument')) ? gettext('PHP <em>DOM Object Model</em> is required.') : false;
 
 if (OFFSET_PATH != 2) {
 	if (basename(explode('?',getRequestURI())[0])=='admin.php') {
@@ -44,9 +45,6 @@ function checkForUpdate() {
 	if (!is_connected()) return 'X';
 	$c = ZENPHOTO_VERSION;
 	$v = @file_get_contents('http://www.zenphoto.org/files/LATESTVERSION');
-
-$v='1.4.5';
-
 	if (empty($v)) {
 		$webVersion = 'X';
 	} else {
