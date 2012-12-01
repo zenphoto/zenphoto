@@ -182,22 +182,6 @@ if ($_zp_loggedin) {
 	if (OFFSET_PATH != 2) {
 		require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/colorbox_js.php');
 	}
-	$last = getOption('last_update_check');
-	if (empty($last) || is_numeric($last)) {
-		if (time() > $last+1728000) {
-			//	check each 20 days
-			setOption('last_update_check', time());
-			$v = checkForUpdate();
-			if (!empty($v)) {
-				if ($v != 'X') {
-					setOption('last_update_check','<a href="http://www.zenphoto.org" alt="'.gettext('Zenphoto download page').'">'.gettext("A new version of Zenphoto version is available.").'</a>');
-				}
-			}
-		}
-	} else {
-		zp_register_filter('admin_note', 'admin_showupdate');
-	}
-	unset($last);
 
 	loadLocalOptions(false, $_zp_gallery->getCurrentTheme());
 }

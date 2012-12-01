@@ -449,15 +449,6 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 	<p>
 		<?php printf( gettext("Welcome to Zenphoto! This page will set up Zenphoto %s on your web server."),ZENPHOTO_VERSION); ?>
 	</p>
-	<?php
-	if (TEST_RELEASE) {
-		?>
-		<p class="notebox">
-			<?php echo gettext('<strong>Note:</strong> The release you are installing has debugging settings enabled!'); ?>
-		</p>
-		<?php
-	}
-	?>
 	<h2><?php echo gettext("Systems Check:"); ?></h2>
 	<?php
 
@@ -470,21 +461,23 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 	global $_zp_conf_vars;
 	$good = true;
 
-if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
-
-	if (function_exists('checkForUpdate')) {
+	if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
+		require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/check_for_update.php');
 		$v = checkForUpdate();
 		if (!empty($v)) {
 			if ($v != 'X') {
 				$autorun = false;
-				?>
-				<p class="notebox">
-				<?php echo gettext('You are not installing the latest version of Zenphoto.'); ?>
-					<a href="http://www.zenphoto.org"><?php printf(gettext("Version %s is available."), $v); ?></a>
-				</p>
-				<?php
 			}
-		}
+	}
+	if (TEST_RELEASE || $v != 'X') {
+		?>
+		<div class="notebox">
+			<?php
+			if ($v != 'X') echo '<p>'.gettext('You are not installing the latest version of Zenphoto.').'<a href="http://www.zenphoto.org">'.sprintf(gettext("Version %s is available."), $v).'</a></p>';
+			if (TEST_RELEASE) echo '<p>'.gettext('<strong>Note:</strong> The release you are installing has debugging settings enabled!').'</p>';
+			?>
+		</div>
+		<?php
 	}
 	?>
 	<ul>
