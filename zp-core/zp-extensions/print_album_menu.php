@@ -197,7 +197,7 @@ function printAlbumMenuList($option,$showcount=NULL,$css_id='',$css_class_topact
  * @param int $limit truncation of display text
  */
 function printAlbumMenuListAlbum($albums, $path, $folder, $option, $showcount, $showsubs, $css_class, $css_class_topactive, $css_class_active,$firstimagelink,$keeptopactive,$limit=NULL) {
-	global $_zp_gallery,$_zp_current_album;
+	global $_zp_gallery,$_zp_current_album,$_zp_current_search;
 	if (is_null($limit)) {
 		$limit = MENU_TRUNCATE_STRING;
 	}
@@ -251,7 +251,7 @@ function printAlbumMenuListAlbum($albums, $path, $folder, $option, $showcount, $
 				}
 			}
 
-			if(in_context(ZP_ALBUM) && !in_context(ZP_SEARCH_LINKED) && (@$_zp_current_album->getID() == $topalbum->getID() || $topalbum->name == $currenturalbumname)) {
+			if((in_context(ZP_ALBUM) && !in_context(ZP_SEARCH_LINKED) && (@$_zp_current_album->getID() == $topalbum->getID() || $topalbum->name == $currenturalbumname)) || (in_context(ZP_SEARCH_LINKED)) && $_zp_current_search->dynalbumname == $topalbum->name) {
 				$current = $css_class_t.' ';
 			} else {
 				$current = "";
