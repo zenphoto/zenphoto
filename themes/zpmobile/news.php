@@ -23,7 +23,7 @@ if (!defined('WEBPATH') || !class_exists('Zenpage')) die();
 
 <div data-role="content">
 	<div class="content-primary">
-		<h2 class="breadcrumb"><?php printNewsIndexURL(gettext('News'),''); ?><strong><?php printZenpageItemsBreadcrumb(' ',''); printCurrentNewsCategory(" "); ?><?php printNewsTitle(" "); printCurrentNewsArchive(" | "); ?></strong></h2>
+		<h2 class="breadcrumb"><?php printNewsIndexURL(); ?><strong><?php printZenpageItemsBreadcrumb(' ',''); printCurrentNewsCategory(" "); ?><?php printNewsTitle(" "); printCurrentNewsArchive(" | "); ?></strong></h2>
 		<?php
 // single news article
 if(is_NewsArticle()) {

@@ -1122,6 +1122,33 @@ function printAlbumBreadcrumb($before='', $after='', $title=NULL) {
 }
 
 /**
+ * Prints the "breadcrumb" for a search page
+ * 		if the search was for a data range, the breadcrumb is "Archive"
+ * 		otherwise it is "Search"
+ * @param string $between Insert here the text to be printed between the links
+ * @param string $class is the class for the link (if present)
+ * @param string $textdecoration how the page name should be embellished
+ */
+function printSearchBreadcrumb($between=NULL, $class=NULL, $textdecoration='<em>') {
+	global $_zp_current_search;
+	if (is_null($between)) {
+		$between = ' | ';
+	}
+	if ($class) {
+		$class =' class="'.$classs.'"';
+	}
+	if ($d = $_zp_current_search->getSearchDate()) {
+		echo "<a href=\"".html_encode(getCustomPageURL('archive', NULL))."\"$class title=\"".gettext('Archive')."\">";
+		printf('%1$s'.gettext('Archive').'%1$s',$textdecoration);
+		echo "</a>";
+		echo '<span class="betweentext">'.html_encode($between).'</span>';
+		echo $d;
+	} else {
+		printf('%1$s'.gettext('Search').'%1$s',$textdecoration);
+	}
+}
+
+/**
  * returns the breadcrumb navigation for album, gallery and image view.
  *
  * @return array
@@ -1141,11 +1168,15 @@ function getParentBreadcrumb() {
 		$searchpagepath = getSearchURL($searchwords, $searchdate, $searchfields, $page, array('albums'=>$search_album_list));
 		$dynamic_album = $_zp_current_search->getDynamicAlbum();
 		if (empty($dynamic_album)) {
-			$output[] = array('link' => $searchpagepath, 'title' => gettext("Return to search"), 'text' => gettext("Search"));
-			if (is_null($_zp_current_album)) {
-				return $output;
+			if (empty($searchdate)) {
+				$output[] = array('link' => $searchpagepath, 'title' => gettext("Return to search"), 'text' => gettext("Search"));
+				if (is_null($_zp_current_album)) {
+					return $output;
+				} else {
+					$parents = getParentAlbums();
+				}
 			} else {
-				$parents = getParentAlbums();
+				return array('link' => $searchpagepath, 'title' => gettext("Return to archive"), 'text' => gettext("Archive"));
 			}
 		} else {
 			$album = $dynamic_album;

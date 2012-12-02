@@ -20,7 +20,7 @@
 	<div data-role="content">
 		<div class="content-primary">
 
-	<h2><?php echo gettext('Search'); ?></h2>
+	<h2><?php printSearchBreadcrumb(); ?></h2>
 	<?php
 		$zenpage = getOption('zp_plugin_zenpage');
 		$numimages = getNumImages();

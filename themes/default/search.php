@@ -31,9 +31,7 @@ if (!defined('WEBPATH')) die();
 						<?php printHomeLink('', ' | '); ?>
 						<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo ('Gallery Index'); ?>"><?php printGalleryTitle(); ?></a>
 					</span> |
-					<?php
-					echo "<em>" . gettext("Search") . "</em>";
-					?>
+					<?php printSearchBreadcrumb(' | '); ?>
 				</h2>
 			</div>
 			<div id="padbox">

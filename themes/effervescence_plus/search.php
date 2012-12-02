@@ -122,7 +122,7 @@ $backgroundImagePath="";
 			if (is_array($categorylist)) {
 				echo "<em>".sprintf(ngettext('Search category: %s','Search categories: %s',count($categorylist)),implode(',',$categorylist))."</em>";
 			} else {
-				echo "<em>".gettext('Search')."</em>";
+				printSearchBreadcrumb();
 			}
 		}
 		?>

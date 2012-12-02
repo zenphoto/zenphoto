@@ -30,9 +30,9 @@ require_once('normalizer.php');
 	<div id="content">
 
 		<div class="galleryinfo">
-		<?php
-		  echo "<h1><em>". gettext('Search'). "</em></h1>";
-		?>
+			<h1>
+			<?php printSearchBreadcrumb(NULL, NULL, ''); ?>
+			</h1>
 		</div>
 		<?php
 		$results = getNumAlbums() + getNumImages();

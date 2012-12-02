@@ -38,7 +38,9 @@ if (!defined('WEBPATH') || !class_exists('Zenpage')) die();
 <div id="content">
 
 	<div id="breadcrumb">
-	<h2><a href="<?php echo getGalleryIndexURL(false); ?>"><?php echo gettext("Index"); ?></a> <?php printNewsIndexURL(gettext('News'),' » '); ?><strong><?php printZenpageItemsBreadcrumb(' » ',''); printCurrentNewsCategory(" » "); ?><?php printNewsTitle(" » "); printCurrentNewsArchive(" » "); ?></strong>
+	<h2>
+		<a href="<?php echo getGalleryIndexURL(false); ?>"><?php echo gettext("Index"); ?></a>
+		<?php printNewsIndexURL(NULL,' » '); ?><strong><?php printZenpageItemsBreadcrumb(' » ',''); printCurrentNewsCategory(" » "); ?><?php printNewsTitle(" » "); printCurrentNewsArchive(" » "); ?></strong>
 	</h2>
 	</div>
 

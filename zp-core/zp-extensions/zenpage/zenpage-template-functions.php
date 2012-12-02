@@ -1413,11 +1413,22 @@ function getNewsIndexURL() {
  * @param string $before The text to appear before the link text
  * @return string
  */
-function printNewsIndexURL($name='', $before='') {
+function printNewsIndexURL($name=NULL, $before='') {
+	global $_zp_post_date;
+
+	if ($_zp_post_date) {
+		$name = '<em>'.gettext('Archive').'</em>';
+	} else {
+		if (is_null($name)) {
+			$name = gettext('News');
+		} else {
+			$name = strip_tags(html_encode($name));
+		}
+	}
 	if ($before) {
 		echo '<span class="beforetext">'.html_encode($before).'</span>';
 	}
-	echo "<a href=\"".html_encode(getNewsIndexURL())."\" title=\"".strip_tags(html_encode($name))."\">".html_encode($name)."</a>";
+	echo "<a href=\"".html_encode(getNewsIndexURL())."\" title=\"".$name."\">".$name."</a>";
 }
 
 
@@ -2300,7 +2311,6 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 	}
 	if ($startlist) echo "</ul>\n";
 }
-
 
 /**
  * Prints the parent items breadcrumb navigation for pages or categories

@@ -54,7 +54,7 @@ if (!defined('WEBPATH')) die();
 		</div>
 
 <div id="breadcrumb">
-		<h2><a href="<?php echo getGalleryIndexURL(false);?>" title="<?php gettext('Index'); ?>"><?php echo gettext("Index"); ?></a> » <?php echo "<strong>".gettext("Search")."</strong>";	?>
+		<h2><a href="<?php echo getGalleryIndexURL(false);?>" title="<?php gettext('Index'); ?>"><?php printSearchBreadcrumb(" » ");	?>
 			</h2>
 			</div>
 
