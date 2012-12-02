@@ -48,7 +48,7 @@ function zp_register_filter($hook, $function_name, $priority = NULL) {
 		$b = array_shift($bt);
 		$base = basename($b['file']);
 		if (is_null($priority) && isset($_EnabledPlugins[stripSuffix($base)])) {
-			$priority = $_EnabledPlugins[stripSuffix($base)]['priority'];
+			$priority = $_EnabledPlugins[stripSuffix($base)]['priority'] & PLUGIN_PRIORITY;
 		}
 	} else {
 		$base = 'unknown';
