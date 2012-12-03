@@ -1127,9 +1127,11 @@ function printAlbumBreadcrumb($before='', $after='', $title=NULL) {
  * 		otherwise it is "Search"
  * @param string $between Insert here the text to be printed between the links
  * @param string $class is the class for the link (if present)
- * @param string $textdecoration how the page name should be embellished
+ * @param string $search text for a search page title
+ * @param string $archive text for an archive page title
+ * @param string $format data format for archive page crumb
  */
-function printSearchBreadcrumb($between=NULL, $class=NULL, $textdecoration='<em>') {
+function printSearchBreadcrumb($between=NULL, $class=NULL, $search=NULL, $archive=NULL, $format='%B %Y') {
 	global $_zp_current_search;
 	if (is_null($between)) {
 		$between = ' | ';
@@ -1138,13 +1140,31 @@ function printSearchBreadcrumb($between=NULL, $class=NULL, $textdecoration='<em>
 		$class =' class="'.$classs.'"';
 	}
 	if ($d = $_zp_current_search->getSearchDate()) {
-		echo "<a href=\"".html_encode(getCustomPageURL('archive', NULL))."\"$class title=\"".gettext('Archive')."\">";
-		printf('%1$s'.gettext('Archive').'%1$s',$textdecoration);
+		if (is_null($archive)) {
+			$text = gettext('Archive');
+			$textdecoration = true;
+		} else {
+			$text = strip_tags(html_encode($archive));
+			$textdecoration = false;
+		}
+		echo "<a href=\"".html_encode(getCustomPageURL('archive', NULL))."\"$class title=\"".$text."\">";
+		printf('%s'.$text.'%s',$textdecoration?'<em>':'', $textdecoration?'</em>':'');
 		echo "</a>";
 		echo '<span class="betweentext">'.html_encode($between).'</span>';
+		if ($format) {
+			$d = strtotime($d);
+			$d = strftime($format,$d);
+		}
 		echo $d;
 	} else {
-		printf('%1$s'.gettext('Search').'%1$s',$textdecoration);
+		if (is_null($search)) {
+			$text = gettext('Search');
+			$textdecoration = true;
+		} else {
+			$text = strip_tags(html_encode($search));
+			$textdecoration = false;
+		}
+		printf('%s'.$text.'%s',$textdecoration?'<em>':'', $textdecoration?'</em>':'');
 	}
 }
 

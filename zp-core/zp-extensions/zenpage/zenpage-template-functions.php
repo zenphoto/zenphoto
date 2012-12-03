@@ -1411,13 +1411,17 @@ function getNewsIndexURL() {
  *
  * @param string $name The linktext
  * @param string $before The text to appear before the link text
- * @return string
- */
-function printNewsIndexURL($name=NULL, $before='') {
+ * @param string $archive the link text for an archive page
+  */
+function printNewsIndexURL($name=NULL, $before='', $archive=NULL) {
 	global $_zp_post_date;
 
 	if ($_zp_post_date) {
-		$name = '<em>'.gettext('Archive').'</em>';
+		if (is_null($archive)) {
+			$name = '<em>'.gettext('Archive').'</em>';
+		} else {
+			$name = strip_tags(html_encode($archive));
+		}
 	} else {
 		if (is_null($name)) {
 			$name = gettext('News');
