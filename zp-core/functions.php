@@ -243,11 +243,10 @@ function is_valid_email_zp($input_email) {
  *
  * @param string $subject  The subject of the email.
  * @param string $message  The message contents of the email.
- * @param string $from_mail Optional sender for the email.
- * @param string $from_name Optional sender for the name.
- * @param array $email_list a list of email addresses
+ * @param array $email_list a list of email addresses to send to
  * @param array $cc_addresses a list of addresses to send copies to.
  * @param array $bcc_addresses a list of addresses to send blind copies to.
+ * @param string $replyTo reply-to address
  *
  * @return string
  *
