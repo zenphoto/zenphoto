@@ -899,7 +899,6 @@ protected function getRSSCombinewsAlbums() {
 				$filename = $obj->getFilename();
 				$ext = getSuffix($filename);
 				$album = $albumobj->getFolder();
-				$imagefile = pathurlencode($obj->getFullImage('')); /* $imagefile = "albums/".$album."/".$obj->filename; */
 				$fullimagelink = $this->host.pathurlencode($obj->getFullImageURL());
 				$imagefile = pathurlencode($obj->getFullImage(SERVERPATH)); /* $imagefile = "albums/".$album."/".$obj->filename; */
 				$content = shortenContent($obj->getDesc($this->locale),getOption('zenpage_rss_length'), '...');
