@@ -816,7 +816,7 @@ protected function getRSSCombinewsAlbums() {
 			$albumobj = $item->getAlbum();
 			$itemlink = $this->host.$item->getImagelink();
 			$fullimagelink = $this->host.pathurlencode($item->getFullImageURL());
-			$imagefile = "albums/".pathurlencode($albumobj->name)."/".$item->filename;
+			$imagefile = pathurlencode($item->getFullImage(SERVERPATH));
 			$thumburl = '<img border="0" src="'.PROTOCOL.'://'.$this->host.pathurlencode($item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'.$item->getTitle($this->locale) .'" /><br />';
 			$title = $item->getTitle($this->locale);
 			$albumtitle = $albumobj->getTitle($this->locale);
@@ -899,8 +899,9 @@ protected function getRSSCombinewsAlbums() {
 				$filename = $obj->getFilename();
 				$ext = getSuffix($filename);
 				$album = $albumobj->getFolder();
-				$fullimagelink = $this->host.pathurlencode($obj->getFullImageURL());
 				$imagefile = pathurlencode($obj->getFullImage('')); /* $imagefile = "albums/".$album."/".$obj->filename; */
+				$fullimagelink = $this->host.pathurlencode($obj->getFullImageURL());
+				$imagefile = pathurlencode($obj->getFullImage(SERVERPATH)); /* $imagefile = "albums/".$album."/".$obj->filename; */
 				$content = shortenContent($obj->getDesc($this->locale),getOption('zenpage_rss_length'), '...');
 				if(isImagePhoto($obj)) {
 					$feeditem['desc'] = '<a title="'.html_encode($feeditem['title']).' in '.html_encode($categories).'" href="'.PROTOCOL.'://'.$this->host.$link.'"><img border="0" src="'.PROTOCOL.'://'.$this->host.pathurlencode($obj->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'. html_encode($feeditem['title']).'"></a><br />'.$content;
