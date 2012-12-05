@@ -171,8 +171,8 @@ setOptionDefault('style_tags',
 //	insure tags are in lower case!
 setOption('allowed_tags',strtolower(getOption('allowed_tags')));
 
-setOptionDefault('comment_name_required', 1);
-setOptionDefault('comment_email_required', 1);
+setOptionDefault('comment_name_required', 'required');
+setOptionDefault('comment_email_required', 'required');
 setOptionDefault('comment_web_required', 'show');
 setOptionDefault('Use_Captcha', false);
 setOptionDefault('full_image_quality', 75);
