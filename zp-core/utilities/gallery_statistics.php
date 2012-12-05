@@ -65,7 +65,7 @@ function gallerystats_filesize_r($path){
 function printBarGraph($sortorder="mostimages",$type="albums",$from_number=0, $to_number=10) {
 	global $webpath;
 	$limit = $from_number.",".$to_number;
-	$bargraphmaxsize = 400;
+	$bargraphmaxsize = 90;
 	switch ($type) {
 		case "albums":
 			$typename = gettext("Albums");
@@ -427,7 +427,7 @@ function printBarGraph($sortorder="mostimages",$type="albums",$from_number=0, $t
 		<strong<?php echo $show; ?>><?php echo $title; ?></strong> <?php echo $name; ?>
 		</td>
 		<td class="statistic_graphwrap" <?php echo $style; ?>>
-		<div class="statistic_bargraph" style="width: <?php echo $barsize; ?>px"></div>
+		<div class="statistic_bargraph" style="width: <?php echo $barsize; ?>%"></div>
 		<div class="statistic_value"><?php echo $value; ?></div>
 		</td>
 		<td class="statistic_link" <?php echo $style; ?>>

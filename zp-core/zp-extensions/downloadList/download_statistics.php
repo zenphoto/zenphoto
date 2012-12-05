@@ -31,10 +31,10 @@ printAdminHeader('overview','download');
  */
 function printBarGraph() {
 	//$limit = $from_number.",".$to_number;
-	$bargraphmaxsize = 400;
+	$bargraphmaxsize = 90;
 	$maxvalue = 0;
 	$items = query_full_array("SELECT `aux`,`data` FROM ".prefix('plugin_storage')." WHERE `type` = 'downloadList' AND `data` != 0 ORDER BY `data` DESC");
-	$items = sortMultiArray($items, 'data', true, true, false, true);
+	$items = sortMultiArray($items, 'data', true, true, false, false);
 	if($items) {
 		$maxvalue = $items[0]['data'];
 		$no_statistic_message = "";
@@ -77,7 +77,7 @@ function printBarGraph() {
 			</strong>
 			</td>
 			<td class="statistic_graphwrap" <?php echo $style; ?>>
-			<div class="statistic_bargraph" style="width: <?php echo $barsize; ?>px"></div>
+			<div class="statistic_bargraph" style="width: <?php echo $barsize; ?>%"></div>
 			<div class="statistic_value"><?php echo $value; ?></div>
 			</td>
 			</tr>
