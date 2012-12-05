@@ -544,11 +544,11 @@ function printDownloadLinkAlbumZip($linktext=NULL,$albumobj=NULL,$fromcache=NULL
 		if(!empty($linktext)) {
 			$file = $linktext;
 		}
-		$link = DOWNLOADLIST_LINKPATH.$albumobj->name.'&albumzip';
+		$link = DOWNLOADLIST_LINKPATH.pathurlencode($albumobj->name).'&albumzip';
 		if ($fromcache) {
 			$link .= '&fromcache';
 		}
-		echo '<a href="'.pathurlencode($link).'" rel="nofollow">'.html_encode($file).'</a>'.$filesize;
+		echo '<a href="'.html_encode($link).'" rel="nofollow">'.html_encode($file).'</a>'.$filesize;
 	}
 }
 
