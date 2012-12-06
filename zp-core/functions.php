@@ -1242,6 +1242,9 @@ function sortMultiArray($array, $index, $descending=false, $natsort=true, $case_
 					$temp[$key] .= $row[$index];
 				}
 			}
+			if ($temp[$key]==='') {
+				$temp[$key] = 'ZZZ';
+			}
 		}
 		if($natsort) {
 			if ($case_sensitive) {
