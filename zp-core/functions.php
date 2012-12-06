@@ -2339,6 +2339,12 @@ class zpFunctions {
 	function checkCaptcha($s1, $s2) {
 		return true;
 	}
+	function getOptionsSupported() {
+		$option['note'] = array('key' => 'captcha_note',
+														'type' => OPTION_TYPE_NOTE,
+														'desc' => gettext('<p class="notebox">'.gettext('No captcha handler is enabled.').'</p>'));
+		return $option;
+	}
 
 	/**
 	 * Searches out i.php image links and replaces them with cache links if image is cached
