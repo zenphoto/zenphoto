@@ -384,6 +384,7 @@ ul.nav li:hover > ul {
 	_top: 1px; /* IE Only */
 }
 
+/* TODO: Fix the following line */
 .subnav li   . a:hover {
 	border-top: 1px solid #CBCBCB;
 	border-left: 1px solid #CBCBCB;
@@ -997,6 +998,7 @@ acronym {
 	width: 365px;
 	margin: 25px auto;
 	margin-top: 15%;
+	/* TODO: Fix the following line */
 	margin-left: 0 auto;
 	font-size: 100%;
 	background: #F7F8F9;
@@ -1370,7 +1372,7 @@ width: 90% !important;
 	border-right:none;
 	border-bottom: 1px dotted #BAC9CF;
 	text-decoration: none;
-	outline: none
+	outline: none;
 	margin: 0;
 	padding: 0;
 }
@@ -1944,7 +1946,7 @@ fieldset,
 }
 
 .box-rights legend {
-	text-weight: bold;
+	font-weight: bold;
 	color: black;
 }
 
@@ -2167,14 +2169,14 @@ button.positive,.log_buttons a.positive {
 }
 
 .resizeable_metadata {
-	height=240px;
+	height:240px;
 	overflow:scroll;
 }
 
 /* Codeblock fields tabs
 -------------------------------------------------*/
 .codeblock {
-	background-color: none;
+	background-color: transparent;
 	margin-left: 0px;
 }
 
