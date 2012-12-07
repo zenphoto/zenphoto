@@ -85,8 +85,7 @@ function query_full_array($sql, $errorstop=true, $key=NULL) {
  */
 function db_quote($string) {
 	global $_zp_DB_connection;
-	$string = $_zp_DB_connection->quote($string);
-	return $string;
+	return $_zp_DB_connection->quote($string);
 }
 
 /*

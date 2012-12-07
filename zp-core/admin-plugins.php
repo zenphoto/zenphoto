@@ -22,47 +22,51 @@ if (isset($_GET['subpage'])) {
 	}
 }
 
-
-
 $_GET['page'] = 'plugins';
+list($tabs,$subtab,$pluginlist, $paths) = getPluginTabs();
 
 /* handle posts */
 if (isset($_GET['action'])) {
 	if ($_GET['action'] == 'saveplugins') {
-		XSRFdefender('saveplugins');
-		$filelist = array();
-		foreach ($_POST as $plugin=>$value) {
-			preg_match('/^present_zp_plugin_(.*)$/xis', $plugin, $matches);
-			if ($matches) {
-				$filelist[] = $matches[1];
-			}
-		}
-		foreach ($filelist as $extension) {
-			$extension = filesystemToInternal($extension);
-			$opt = 'zp_plugin_'.$extension;
-			if (isset($_POST[$opt])) {
-				$value = sanitize_numeric($_POST[$opt]);
-				if (!getOption($opt)) {
-					$option_interface = NULL;
-					require_once(getPlugin($extension.'.php'));
-					if (is_string($option_interface)) {
-						$if = new $option_interface;	//	prime the default options
-					}
+		if (isset($_POST['checkForPostTruncation'])) {
+			XSRFdefender('saveplugins');
+			$filelist = array();
+			foreach ($_POST as $plugin=>$value) {
+				preg_match('/^present_zp_plugin_(.*)$/xis', $plugin, $matches);
+				if ($matches) {
+					$filelist[] = $matches[1];
 				}
-				setOption($opt, $value);
-			} else {
-				setOption($opt, 0);
 			}
+			foreach ($filelist as $extension) {
+				$extension = filesystemToInternal($extension);
+				$opt = 'zp_plugin_'.$extension;
+				if (isset($_POST[$opt])) {
+					$value = sanitize_numeric($_POST[$opt]);
+					if (!getOption($opt)) {
+						$option_interface = NULL;
+						require_once(getPlugin($extension.'.php'));
+						if ($option_interface && is_string($option_interface)) {
+							$if = new $option_interface;	//	prime the default options
+						}
+					}
+					setOption($opt, $value);
+				} else {
+					setOption($opt, 0);
+				}
+			}
+			$notify = '&saved';
+		} else {
+			$notify = '&post_error';
 		}
-		header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-plugins.php?saved&subpage=".$subpage);
+
+		header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-plugins.php?page=plugins&tab=".$subtab."&subpage=".$subpage.$notify);
 		exitZP();
 	}
 }
 $saved = isset($_GET['saved']);
 printAdminHeader('plugins');
 zp_apply_filter('texteditor_config', '','zenphoto');
-$paths = getPluginFiles('*.php');
-$pluginlist = array_keys($paths);
+
 natcasesort($pluginlist);
 $rangeset = getPageSelector($pluginlist,PLUGINS_PER_PAGE);
 $filelist = array_slice($pluginlist,$subpage*PLUGINS_PER_PAGE,PLUGINS_PER_PAGE);
@@ -85,7 +89,7 @@ $filelist = array_slice($pluginlist,$subpage*PLUGINS_PER_PAGE,PLUGINS_PER_PAGE);
 	var pluginsToPage = ['<?php echo implode("','",$pluginlist); ?>'];
 	function gotoPlugin(plugin) {
 		i = Math.floor(jQuery.inArray(plugin, pluginsToPage) / <?php echo PLUGINS_PER_PAGE; ?>);
-		window.location = '<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-plugins.php?page=plugins&subpage='+i+'&show='+plugin+'#'+plugin;
+		window.location = '<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-plugins.php?page=plugins&tab=<?php echo $subtab; ?>&subpage='+i+'&show='+plugin+'#'+plugin;
 	}
 	//-->
 </script>
@@ -108,6 +112,18 @@ if ($saved) {
 
 ?>
 <h1><?php echo gettext('Plugins'); ?></h1>
+<?php
+$subtab = printSubtabs();
+?>
+<div class="tabbox">
+<?php
+if (isset($_GET['post_error'])) {
+	echo '<div class="errorbox">';
+	echo  "<h2>".gettext('Error')."</h2>";
+	echo gettext('The form submission is incomplete. Perhaps the form size exceeds configured server or browser limits.');
+	echo '</div>';
+}
+?>
 <p>
 <?php
 echo gettext("Plugins provide optional functionality for Zenphoto.").' ';
@@ -119,7 +135,7 @@ echo gettext("If the plugin checkbox is checked, the plugin will be loaded and i
 </p>
 <p class='notebox'><?php echo gettext("<strong>Note:</strong> Support for a particular plugin may be theme dependent! You may need to add the plugin theme functions if the theme does not currently provide support."); ?>
 </p>
-<form action="?action=saveplugins" method="post">
+<form action="?action=saveplugins&page=plugins&tab=<?php echo $subtab; ?>" method="post">
 	<?php XSRFToken('saveplugins');?>
 	<input type="hidden" name="saveplugins" value="yes" />
 	<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
@@ -130,7 +146,7 @@ echo gettext("If the plugin checkbox is checked, the plugin will be loaded and i
 <table class="bordered options">
 <tr>
 	<th id="imagenav" colspan="3">
-		<?php printPageSelector($subpage, $rangeset, 'admin-plugins.php', array()); ?>
+		<?php printPageSelector($subpage, $rangeset, 'admin-plugins.php', array('page'=>'plugins','tab'=>$subtab)); ?>
 	</th>
 </tr>
 <tr>
@@ -213,13 +229,17 @@ foreach ($filelist as $extension) {
 			setOption($opt, $plugin_is_filter);	//	the script has changed its setting!
 		}
 	}
-	if ($optionlink = isolate('$option_interface', $pluginStream)) {
-		if (preg_match('/\s*=\s*new\s(.*)\(/i',$optionlink)) {
+	$optionlink = NULL;
+	if ($str = isolate('$option_interface', $pluginStream)) {
+		if (preg_match('/\s*=\s*new\s(.*)\(/i',$str)) {
 			$plugin_notice .= '<br /><br />'.gettext('<strong>Note:</strong> Instantiating the option interface within the plugin may cause performance issues. You should instead set <code>$option_interface</code> to the name of the class as a string.');
+		} else {
+			$option_interface = NULL;
+			eval($str);
+			if ($option_interface) {
+				$optionlink = FULLWEBPATH.'/'.ZENFOLDER.'/admin-options.php?page=options&amp;tab=plugin&amp;single='.$extension;
+			}
 		}
-		$optionlink = FULLWEBPATH.'/'.ZENFOLDER.'/admin-options.php?page=options&amp;tab=plugin&amp;single='.$extension;
-	} else {
-		$optionlink = NULL;
 	}
 	$selected_style = '';
 	if ($currentsetting > THEME_PLUGIN) {
@@ -282,7 +302,7 @@ foreach ($filelist as $extension) {
 		<td width="60">
 			<span class="icons"><a class="plugin_doc" href="<?php echo $plugin_URL; ?>"><img class="icon-position-top3" src="images/info.png" title="<?php printf(gettext('More information on %s'),$extension); ?>" alt=""></a></span>
 			<?php
-			if ($optionlink && !$plugin_disable) {
+			if ($optionlink) {
 				?>
 				<span class="icons"><a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"),$extension); ?>"><img class="icon-position-top3" src="images/options.png" alt="" /></a></span>
 				<?php
@@ -347,9 +367,10 @@ foreach ($filelist as $extension) {
 <button type="submit" value="<?php echo gettext('Apply') ?>" title="<?php echo gettext("Apply"); ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 <button type="reset" value="<?php echo gettext('Reset') ?>" title="<?php echo gettext("Reset"); ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 </p><br />
+<input type="hidden" name="checkForPostTruncation" value="1" />
+</form>
+</div>
 <?php
-echo "</form>\n";
-
 echo "\n" . '</div>';  //content
 printAdminFooter();
 echo "\n" . '</div>';  //main

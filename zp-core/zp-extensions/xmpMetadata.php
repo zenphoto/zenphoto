@@ -28,6 +28,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage media
  */
 
 $plugin_is_filter = 9|CLASS_PLUGIN;

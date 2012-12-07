@@ -20,7 +20,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage usermanagement
+ * @subpackage users
  */
 $plugin_is_filter = 5|ADMIN_PLUGIN|THEME_PLUGIN;
 $plugin_description = gettext("Provides a means for placing a user registration form on your theme pages.");
@@ -154,10 +154,11 @@ class register_user_options {
 								$filelist = safe_glob('*.php');
 								$list = array();
 								foreach($filelist as $file) {
-									$list[] = str_replace('.php', '', filesystemToInternal($file));
+									$file = filesystemToInternal($file);
+									$list[$file] = str_replace('.php', '', $file);
 								}
 								$list = array_diff($list, standardScripts());
-								generateListFromArray(array(getOption('register_user_page_page')), $list, false, false);
+								generateListFromArray(array(getOption('register_user_page_page')), $list, false, true);
 								chdir($curdir);
 								?>
 							</select>

@@ -9,9 +9,6 @@
 
 // functions-image.php - HEADERS NOT SENT YET!
 
-// Don't let anything get above this, to save the server from burning up...
-
-define('MAX_SIZE', 3000);
 
 /**
  * If in debug mode, prints the given error message and continues; otherwise redirects
@@ -352,7 +349,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 		} else {
 			if ($newh>=$h && $neww>=$w && !$rotate && !$effects && !$watermark_image && (!$upscale || $newh==$h && $neww==$w)) {
 				// we can just use the original!
-				if (@symlink($imgfile, $newfile)) {
+				if (SYMLINK && @symlink($imgfile, $newfile)) {
 					if (DEBUG_IMAGE) debugLog("cacheImage:symlink original ".basename($imgfile).":\$size=$size, \$width=$width, \$height=$height, \$dim=$dim, \$neww=$neww; \$newh=$newh; \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$rotate=$rotate; \$allowscale=$allowscale;");
 					clearstatcache();
 					return true;

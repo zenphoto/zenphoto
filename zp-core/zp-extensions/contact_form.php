@@ -69,6 +69,10 @@ class contactformOptions {
 
 
 	function getOptionsSupported() {
+		global $_zp_captcha;
+			if (empty($_zp_captcha->name)) {
+			setOption('contactform_captcha', 0);
+		}
 		$mailinglist = explode(';',getOption("contactform_mailaddress"));
 		array_walk($mailinglist, 'contactformOptions::trim_value');
 		setOption('contactform_mailaddress',implode(';',$mailinglist));
@@ -98,48 +102,49 @@ class contactformOptions {
 									gettext('Contact recipients') => array('key' => 'contactform_mailaddress', 'type' => OPTION_TYPE_TEXTBOX,
 										'order' => 17,
 										'desc' => gettext("The e-mail address the messages should be sent to. Enter one or more address separated by semicolons.")),
-									gettext('Title field') => array('key' => 'contactform_title', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
+									gettext('Title') => array('key' => 'contactform_title', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
 										'order' => 1,
-										'desc' => sprintf($mailfieldinstruction,gettext("Title field"))),
-									gettext('Name field') => array('key' => 'contactform_name', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
+										'desc' => sprintf($mailfieldinstruction,gettext("Title"))),
+									gettext('Name') => array('key' => 'contactform_name', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
 										'order' => 2,
-										'desc' => sprintf($mailfieldinstruction,gettext("Name field"))),
-									gettext('Company field') => array('key' => 'contactform_company', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
+										'desc' => sprintf($mailfieldinstruction,gettext("Name"))),
+									gettext('Company') => array('key' => 'contactform_company', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
 										'order' => 3,
-										'desc' => sprintf($mailfieldinstruction,gettext("Company field."))),
-									gettext('Street field') => array('key' => 'contactform_street', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
+										'desc' => sprintf($mailfieldinstruction,gettext("Company"))),
+									gettext('Street') => array('key' => 'contactform_street', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
 										'order' => 4,
-										'desc' => sprintf($mailfieldinstruction,gettext("Street field"))),
-									gettext('City field') => array('key' => 'contactform_city', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
+										'desc' => sprintf($mailfieldinstruction,gettext("Street"))),
+									gettext('City') => array('key' => 'contactform_city', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
 										'order' => 5,
-										'desc' => sprintf($mailfieldinstruction,gettext("City field"))),
-									gettext('State field') => array('key' => 'contactform_state', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
+										'desc' => sprintf($mailfieldinstruction,gettext("City"))),
+									gettext('State') => array('key' => 'contactform_state', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
 										'order' => 5.1,
-										'desc' => sprintf($mailfieldinstruction,gettext("State field"))),
-									gettext('Postal code field') => array('key' => 'contactform_postal', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
+										'desc' => sprintf($mailfieldinstruction,gettext("State"))),
+									gettext('Postal code') => array('key' => 'contactform_postal', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
 										'order' => 5.2,
-										'desc' => sprintf($mailfieldinstruction,gettext("Postal code field"))),
-									gettext('Country field') => array('key' => 'contactform_country', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
+										'desc' => sprintf($mailfieldinstruction,gettext("Postal code"))),
+									gettext('Country') => array('key' => 'contactform_country', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
 										'order' => 6,
-										'desc' => sprintf($mailfieldinstruction,gettext("Country field"))),
-									gettext('E-mail field') => array('key' => 'contactform_email', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
+										'desc' => sprintf($mailfieldinstruction,gettext("Country"))),
+									gettext('E-mail') => array('key' => 'contactform_email', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
 										'order' => 7,
-										'desc' => sprintf($mailfieldinstruction,gettext("E-mail field"))),
-									gettext('Website field') => array('key' => 'contactform_website', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
+										'desc' => sprintf($mailfieldinstruction,gettext("E-mail"))),
+									gettext('Website') => array('key' => 'contactform_website', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
 										'order' => 8,
-										'desc' => sprintf($mailfieldinstruction,gettext("Website field"))),
+										'desc' => sprintf($mailfieldinstruction,gettext("Website"))),
 									gettext('CAPTCHA') => array('key' => 'contactform_captcha', 'type' => OPTION_TYPE_CHECKBOX,
+										'disabled'=>empty($_zp_captcha->name),
 										'order' => 9,
-										'desc' => gettext("Check if CAPTCHA should be required.")),
-									gettext('Phone field') => array('key' => 'contactform_phone', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
+										'desc' => (empty($_zp_captcha->name))?'<span class="notebox">'.gettext('No captcha handler is enabled.').'</span>':gettext("Check if CAPTCHA should be required.")),
+									gettext('Phone') => array('key' => 'contactform_phone', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
 										'order' => 10,
-										'desc' => sprintf($mailfieldinstruction,gettext("Phone number field"))),
-									gettext('Subject field') => array('key' => 'contactform_subject', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
+										'desc' => sprintf($mailfieldinstruction,gettext("Phone number"))),
+									gettext('Subject') => array('key' => 'contactform_subject', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
 										'order' => 11,
-										'desc' => sprintf($mailfieldinstruction,gettext("Subject field"))),
-									gettext('Message field') => array('key' => 'contactform_message', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
+										'desc' => sprintf($mailfieldinstruction,gettext("Subject"))),
+									gettext('Message') => array('key' => 'contactform_message', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
 										'order' => 12,
-										'desc' => sprintf($mailfieldinstruction,gettext("Message field")))
+										'desc' => sprintf($mailfieldinstruction,gettext("Message")))
 		);
 		return $options;
 	}
@@ -321,7 +326,7 @@ function printContactForm($subject_override='') {
 
 		// If honeypot was triggered, silently don't send the message
 		if (empty($mailcontent['honeypot'])) {
-			$err_msg = zp_mail($subject, $message, $mailinglist, $sendcopy);
+			$err_msg = zp_mail($subject, $message, $mailinglist, $sendcopy, NULL, array($name=>$mailaddress));
 		}
 		if ($err_msg) {
 			$msgs = explode('.',$err_msg);

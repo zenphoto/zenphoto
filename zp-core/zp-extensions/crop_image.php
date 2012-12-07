@@ -7,6 +7,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage tools
  */
 
 if (isset($_REQUEST['performcrop'])) {
@@ -124,7 +125,8 @@ switch ($use_side) {
 		break;
 }
 
-$imageurl = "../i.php?a=".pathurlencode($albumname)."&i=".urlencode($imagename)."&s=".$size.'&admin';
+$args = array($size, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL);
+$imageurl = getImageProcessorURI($args, $albumname, $imagepart);
 $iW = round($sizedwidth*0.9);
 $iH = round($sizedheight*0.9);
 $iX = round($sizedwidth*0.05);

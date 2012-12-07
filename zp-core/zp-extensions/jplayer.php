@@ -42,12 +42,14 @@
  *
  * @author Malte Müller (acrylian)
  * @package plugins
+ * @subpackage media
  */
 
 $plugin_description = gettext("Enable <strong>jPlayer</strong> to handle multimedia files.");
 $plugin_notice = gettext("<strong>IMPORTANT</strong>: Only one multimedia player plugin can be enabled at the time and the class-video plugin must be enabled, too.").'<br /><br />'.gettext("Please see <a href='http://jplayer.org'>jplayer.org</a> for more info about the player and its license.");
 $plugin_author = "Malte Müller (acrylian)";
 $plugin_disable = (getOption('album_folder_class') === 'external')?gettext('This player does not support <em>External Albums</em>.'):false;
+
 $option_interface = 'jplayer_options';
 
 if (isset($_zp_flash_player) || $plugin_disable) {
@@ -261,7 +263,7 @@ class jPlayer {
 				$splashimagerwidth = $this->width;
 				$splashimageheight = $this->height;
 				//getMaxSpaceContainer($splashimagerwidth, $splashimageheight, $_zp_current_image, true); // jplayer squishes always if not the right aspect ratio
-				$videoThumb = ',poster:"'.$_zp_current_image->getCustomImage(null, $this->width, $this->height, $this->width, $this->height, null, null, true).'"';
+				$videoThumb = ',poster:"'.html_encode($_zp_current_image->getCustomImage(null, $this->width, $this->height, $this->width, $this->height, null, null, true)).'"';
 			}
 		}
 		$playerconfig = '
@@ -626,7 +628,7 @@ class jPlayer {
 								$this->setModeAndSuppliedFormat($ext);
 								if($option == 'playlist' && getOption('jplayer_poster')) {
 									$albumfolder = $albumobj->name;
-									$videoThumb = ',poster:"'.$video->getCustomImage(null, $this->width, $this->height, $this->width, $this->height, null, null, true).'"';
+									$videoThumb = ',poster:"'.html_encode($video->getCustomImage(null, $this->width, $this->height, $this->width, $this->height, null, null, true)).'"';
 								}
 								$playtime = '';
 								if(getOption('jplayer_playlist_playtime')) {

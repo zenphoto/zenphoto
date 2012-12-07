@@ -205,7 +205,7 @@ zp_apply_filter('admin_note','Overview', NULL);
 	}
 	$graphics_lib = zp_graphicsLibInfo();
 	?>
-	<li><?php printf(gettext('Zenphoto version <strong>%1$s [%2$s] (%3$s)</strong>'),ZENPHOTO_VERSION,ZENPHOTO_RELEASE,$official); ?></li>
+	<li><?php printf(gettext('Zenphoto version <strong>%1$s [%2$s] (%3$s)</strong>'),ZENPHOTO_VERSION,'<a title="'.ZENPHOTO_FULL_RELEASE.'">'.ZENPHOTO_RELEASE.'</a>',$official); ?></li>
 	<li><?php if (ZENPHOTO_LOCALE) {
 							printf(gettext('Current locale setting: <strong>%1$s</strong>'),ZENPHOTO_LOCALE);
 						} else {
@@ -310,15 +310,26 @@ zp_apply_filter('admin_note','Overview', NULL);
 		<li><?php printf(gettext('Database name: <strong>%1$s</strong>'),db_name()); ?></li>
 		<li>
 		<?php
-		$prefix = prefix();
+		$prefix = trim(prefix(),'`');
 		if(!empty($prefix)) {
-			echo sprintf(gettext('Table prefix: <strong>%1$s</strong>'),prefix());
+			echo sprintf(gettext('Table prefix: <strong>%1$s</strong>'),$prefix);
 		}
 		?>
 		</li>
-		<li><?php printf(gettext('Spam filter: <strong>%s</strong>'), getOption('spam_filter')) ?></li>
-		<li><?php printf(gettext('CAPTCHA generator: <strong>%s</strong>'), getOption('captcha')) ?></li>
+		<li>
 		<?php
+		if (isset($_zp_spamFilter)) {
+			$filter = $_zp_spamFilter->displayName();
+		} else {
+			$filter = gettext('No spam filter configured');
+		}
+		printf(gettext('Spam filter: <strong>%s</strong>'), $filter) ?></li>
+		<?php
+		if ($_zp_captcha) {
+			?>
+			<li><?php printf(gettext('CAPTCHA generator: <strong>%s</strong>'), $_zp_captcha->name) ?></li>
+			<?php
+		}
 		zp_apply_filter('installation_information');
 		if (!zp_has_filter('sendmail')) {
 			?>

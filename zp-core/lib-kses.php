@@ -49,8 +49,8 @@ function kses($string, $allowed_html, $allowed_protocols =
   $string = kses_js_entities($string);
 //  $string = kses_normalize_entities($string); Zenphoto does not want & encoded
   $string = kses_hook($string);
-  $allowed_html_fixed = kses_array_lc($allowed_html);
-  return kses_split($string, $allowed_html_fixed, $allowed_protocols);
+//  $allowed_html = kses_array_lc($allowed_html); Zenphoto insures that these are already lowercase
+  return kses_split($string, $allowed_html, $allowed_protocols);
 } # function kses
 
 

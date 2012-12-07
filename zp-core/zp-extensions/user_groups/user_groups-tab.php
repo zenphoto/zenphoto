@@ -3,7 +3,7 @@
  * user_groups plugin--tabs
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage usermanagement
+ * @subpackage users
  */
 define ('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))).'/admin-globals.php');
@@ -43,56 +43,64 @@ if (isset($_GET['action'])) {
 		header("Location: ".FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER.'/user_groups/user_groups-tab.php?page=users&tab=groups&deleted&subpage='.$subpage);
 		exitZP();
 	} else if ($action == 'savegroups') {
-		for ($i = 0; $i < $_POST['totalgroups']; $i++) {
-			$groupname = trim(sanitize($_POST[$i.'-group'],0));
-			if (!empty($groupname)) {
-				$rights = 0;
-				$group = Zenphoto_Authority::newAdministrator($groupname, 0);
-				if (isset($_POST[$i.'-initgroup']) && !empty($_POST[$i.'-initgroup'])) {
-					$initgroupname = trim(sanitize($_POST[$i.'-initgroup'],3));
-					$initgroup = Zenphoto_Authority::newAdministrator($initgroupname, 0);
-					$rights = $initgroup->getRights();
-					$group->setObjects(processManagedObjects($group->getID(),$rights));
-					$group->setRights(NO_RIGHTS | $rights);
-				} else {
-					$rights = processRights($i);
-					$group->setObjects(processManagedObjects($i,$rights));
-					$group->setRights(NO_RIGHTS | $rights);
-				}
-				$group->setCustomData(trim(sanitize($_POST[$i.'-desc'], 3)));
-				$group->setName(trim(sanitize($_POST[$i.'-type'], 3)));
-				$group->setValid(0);
-				$group->save();
-
-				if ($group->getName()=='group') {
-					//have to update any users who have this group designate.
-					foreach ($admins as $admin) {
-						if ($admin['valid'] && $admin['group']===$groupname) {
-							$user = Zenphoto_Authority::newAdministrator($admin['user'], $admin['valid']);
-							$user->setRights($group->getRights());
-							$user->setObjects($group->getObjects());
-							$user->save();
-						}
+		if (isset($_POST['checkForPostTruncation'])) {
+			for ($i = 0; $i < $_POST['totalgroups']; $i++) {
+				$groupname = trim(sanitize($_POST[$i.'-group'],0));
+				if (!empty($groupname)) {
+					$rights = 0;
+					$group = Zenphoto_Authority::newAdministrator($groupname, 0);
+					if (isset($_POST[$i.'-initgroup']) && !empty($_POST[$i.'-initgroup'])) {
+						$initgroupname = trim(sanitize($_POST[$i.'-initgroup'],3));
+						$initgroup = Zenphoto_Authority::newAdministrator($initgroupname, 0);
+						$rights = $initgroup->getRights();
+						$group->setObjects(processManagedObjects($group->getID(),$rights));
+						$group->setRights(NO_RIGHTS | $rights);
+					} else {
+						$rights = processRights($i);
+						$group->setObjects(processManagedObjects($i,$rights));
+						$group->setRights(NO_RIGHTS | $rights);
 					}
-					//user assignments: first clear out existing ones
-					Zenphoto_Authority::updateAdminField('group', NULL, array('`valid`>='=>'1', '`group`='=>$groupname));
-					//then add the ones marked
-					$target = 'user_'.$i.'-';
-					foreach ($_POST as $item=>$username) {
-						$item = sanitize(postIndexDecode($item));
-						if (strpos($item, $target)!==false) {
-							$username = substr($item, strlen($target));
-							$user = Zenphoto_Authority::getAnAdmin(array('`user`=' => $username, '`valid`>=' => 1));
-							$user->setRights($group->getRights());
-							$user->setObjects($group->getObjects());
-							$user->setGroup($groupname);
-							$user->save();
+					$group->setCustomData(trim(sanitize($_POST[$i.'-desc'], 3)));
+					$group->setName(trim(sanitize($_POST[$i.'-type'], 3)));
+					$group->setValid(0);
+					$group->save();
+
+					if ($group->getName()=='group') {
+						//have to update any users who have this group designate.
+						$groupname = $group->getUser();
+						foreach ($admins as $admin) {
+							if ($admin['valid']) {
+								$hisgroups = explode(',',$admin['group']);
+								if (in_array($groupname, $hisgroups)) {
+									$user = Zenphoto_Authority::newAdministrator($admin['user'], $admin['valid']);
+									user_groups::merge_rights($user, $hisgroups);
+									$user->save();
+								}
+							}
+						}
+						//user assignments: first clear out existing ones
+						Zenphoto_Authority::updateAdminField('group', NULL, array('`valid`>='=>'1', '`group`='=>$groupname));
+						//then add the ones marked
+						$target = 'user_'.$i.'-';
+						foreach ($_POST as $item=>$username) {
+							$item = sanitize(postIndexDecode($item));
+							if (strpos($item, $target)!==false) {
+								$username = substr($item, strlen($target));
+								$user = Zenphoto_Authority::getAnAdmin(array('`user`=' => $username, '`valid`>=' => 1));
+								$user->setRights($group->getRights());
+								$user->setObjects($group->getObjects());
+								$user->setGroup($groupname);
+								$user->save();
+							}
 						}
 					}
 				}
 			}
+			$notify = '&saved';
+		} else {
+			$notify = '&post_error';
 		}
-		header("Location: ".FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER.'/user_groups/user_groups-tab.php?page=users&tab=groups&saved&subpage='.$subpage);
+		header("Location: ".FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER.'/user_groups/user_groups-tab.php?page=users&tab=groups&subpage='.$subpage.$notify);
 		exitZP();
 	} else if ($action == 'saveauserassignments') {
 		for ($i = 0; $i < $_POST['totalusers']; $i++) {
@@ -129,6 +137,12 @@ echo '</head>'."\n";
 		<?php printTabs(); ?>
 		<div id="content">
 			<?php
+			if (isset($_GET['post_error'])) {
+				echo '<div class="errorbox">';
+				echo  "<h2>".gettext('Error')."</h2>";
+				echo gettext('The form submission is incomplete. Perhaps the form size exceeds configured server or browser limits.');
+				echo '</div>';
+			}
 			if (isset($_GET['deleted'])) {
 				echo '<div class="messagebox fade-message">';
 				echo  "<h2>".gettext('Deleted')."</h2>";
@@ -369,6 +383,7 @@ echo '</head>'."\n";
 							<button type="reset" title="<?php echo gettext("Reset"); ?>"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 							</p>
 							<input type="hidden" name="totalgroups" value="<?php echo $id; ?>" />
+							<input type="hidden" name="checkForPostTruncation" value="1" />
 						</form>
 						<script type="text/javascript">
 							//<!-- <![CDATA[
@@ -475,6 +490,7 @@ echo '</head>'."\n";
 							<button type="reset" title="<?php echo gettext("Reset"); ?>"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 							</p>
 						<input type="hidden" name="totalusers" value="<?php echo $id; ?>" />
+						<input type="hidden" name="checkForPostTruncation" value="1" />
 						</form>
 						<br clear="all" /><br />
 						<?php

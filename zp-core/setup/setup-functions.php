@@ -376,7 +376,7 @@ function permissionsSelector($permission_names, $select) {
 }
 
 function setupLog($message, $anyway=false, $reset=false) {
-	global $debug, $_zp_mutex;
+	global $debug, $_zp_mutex, $chmod;
 	if ($debug || $anyway) {
 		if (is_object($_zp_mutex)) $_zp_mutex->lock();
 		if (!file_exists(dirname(SETUPLOG))) {
@@ -421,7 +421,7 @@ function updateConfigItem($item, $value, $quote=true) {
 function checkAlbumParentid($albumname, $id) {
 	Global $_zp_gallery;
 	$album = new Album(NULL, $albumname);
-	$oldid = $album->get('parentid');
+	$oldid = $album->getParentID();
 	if ($oldid != $id) {
 		$album->set('parentid', $id);
 		$album->save();
@@ -594,8 +594,8 @@ function close_site($nht) {
 
 function acknowledge($value) {
 	global $xsrftoken, $_zp_conf_vars;
-	$link = WEBPATH.'/'.ZENFOLDER.'/setup/index.php?security_ack='.$value.'&amp;xsrfToken='.$xsrftoken;
-	return sprintf(gettext('Click <a href="%s">here</a> to acknowledge that you wish to ignore this issue. It will then become a warning.'),@$_zp_conf_vars['security_ack'] | $link);
+	$link = WEBPATH.'/'.ZENFOLDER.'/setup/index.php?security_ack='.(@$_zp_conf_vars['security_ack'] | $value).'&amp;xsrfToken='.$xsrftoken;
+	return sprintf(gettext('Click <a href="%s">here</a> to acknowledge that you wish to ignore this issue. It will then become a warning.'), $link);
 }
 
 ?>

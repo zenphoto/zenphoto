@@ -10,6 +10,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage media
  *
  */
 
@@ -35,30 +36,48 @@ class AnyFile_Options {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		$listi = array();
-		foreach (get_AnyFile_suffixes() as $suffix) {
-			$listi[$suffix] = 'AnyFile_file_list_'.$suffix;
-		}
-		if ($suffix = getOption('AnyFile_file_new')) {
-			setOption('AnyFile_file_new', '');
-			$listi[$suffix] = 'AnyFile_file_list_'.$suffix;
-			setOption('AnyFile_file_list_'.$suffix, 1);
-		}
 		return array(gettext('Watermark default images') => array ('key' => 'AnyFile_watermark_default_images', 'type' => OPTION_TYPE_CHECKBOX,
 																	'desc' => gettext('Check to place watermark image on default thumbnail images.')),
-									gettext('Handled files') => array ('key'=> 'AnyFile_file_list', 'type'=>OPTION_TYPE_CHECKBOX_UL,
-																	'checkboxes' => $listi,
+									gettext('Handled files') => array ('key'=> 'AnyFile_file_list', 'type'=>OPTION_TYPE_CUSTOM,
 																	'desc' => gettext('File suffixes to be handled.')),
 									gettext('Add file suffix') => array('key'=> 'AnyFile_file_new', 'type'=>OPTION_TYPE_TEXTBOX,
 																	'desc' => gettext('Add a file suffix to be handled by the plugin'))
 		);
 	}
 	function handleOption($option, $currentValue) {
+		$list = get_AnyFile_suffixes();
+		?>
+		<ul class="customchecklist">
+			<?php
+			generateUnorderedListFromArray($list, $list, 'AnyFile_file_list_', false, false, false);
+			?>
+		</ul>
+		<?php
+	}
+	function handleOptionSave($themename, $themealbum) {
+		$mysetoptions = array();
+		foreach ($_POST as $key=>$option) {
+			if (strpos($key, 'AnyFile_file_list_') === 0) {
+				$mysetoptions[] = str_replace('AnyFile_file_list_', '', $key);
+				purgeOption($key);
+			}
+		}
+		if ($_POST['AnyFile_file_new']) {
+			$mysetoptions[] = sanitize($_POST['AnyFile_file_new']);
+			$suffix = getOption('AnyFile_file_new');
+			purgeOption('AnyFile_file_new');
+		}
+		setOption('AnyFileSuffixList',serialize($mysetoptions));
+		return false;
 	}
 }
 
 function get_AnyFile_suffixes() {
 	$mysetoptions = array();
+	if ($list = getOption('AnyFileSuffixList')) {
+		return unserialize($list);
+	}
+	//TODO: remove on 1.5
 	$alloptionlist = getOptionList();
 	foreach ($alloptionlist as $key=>$option) {
 		if (strpos($key, 'AnyFile_file_list_') === 0) {
@@ -75,6 +94,7 @@ function get_AnyFile_suffixes() {
 require_once(dirname(__FILE__).'/class-textobject/class-textobject_core.php');
 
 class AnyFile extends TextObject {
+
 	/**
 	 * creates a WEBdocs (image standin)
 	 *

@@ -13,6 +13,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage admin
  */
 $plugin_is_filter = 10|CLASS_PLUGIN;
 $plugin_description = gettext('Logs selected security events.');
@@ -384,8 +385,15 @@ class security_logger {
 		return $success;
 	}
 
+	/**
+	 * Catch all logger for miscellaneous security records
+	 * @param bool $success
+	 * @param string $requestor
+	 * @param string $auth
+	 * @param string $txt
+	 */
 	static function security_misc($success, $requestor, $auth, $txt) {
-		security_logger::Logger((int) ($success && true), NULL, NULL, NULL, $requestor, 'zp_admin_auth', $txt);
+		security_logger::Logger((int) ($success && true), NULL, NULL, $requestor, 'zp_admin_auth', $txt);
 		return $success;
 	}
 

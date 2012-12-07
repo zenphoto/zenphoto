@@ -15,6 +15,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage development
  */
 $plugin_description = gettext("Provides deprecated Zenphoto functions.");
 $plugin_notice = gettext("This plugin is <strong>NOT</strong> required for the Zenphoto distributed functions.");
@@ -676,9 +677,8 @@ function printPreloadScript() {
  * @since 1.4.1
  */
 function processExpired($table) {
-	deprecated_functions::notify(gettext('Use the Zenpage class method instead.'));
+	deprecated_functions::notify(gettext('This happens automatically.'));
 	global $_zp_zenpage;
-	Zenpage::processExpired($table);
 }
 
 /**

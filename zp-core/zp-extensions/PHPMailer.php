@@ -5,6 +5,7 @@
  * Configure the plugin options as necessary for your e-mail server.
  *
  * @package plugins
+ * @subpackage mail
  */
 $plugin_is_filter = 8|CLASS_PLUGIN;
 $plugin_description = gettext("Zenphoto outgoing mail handler based on the <em>PHPMailer</em> class mailing facility.");
@@ -83,7 +84,7 @@ class zp_PHPMailer {
 
 }
 
-function zenphoto_PHPMailer($msg, $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses) {
+function zenphoto_PHPMailer($msg, $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $replyTo) {
 	require_once(dirname(__FILE__).'/PHPMailer/class.phpmailer.php');
 	switch (getOption('PHPMailer_mail_protocol')) {
 		case 'pop3':
@@ -129,6 +130,10 @@ function zenphoto_PHPMailer($msg, $email_list, $subject, $message, $from_mail, $
 		foreach ($cc_addresses as $cc_name=>$cc_mail) {
 			$mail->AddCC($cc_mail);
 		}
+	}
+	if ($replyTo) {
+		$names = array_keys($replyTo);
+		$mail->AddReplyTo(array_shift($replyTo), array_shift($names));
 	}
 	if (!$mail->Send()) {
 		if (!empty($msg)) $msg .= '<br />';

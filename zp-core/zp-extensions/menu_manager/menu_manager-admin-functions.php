@@ -297,7 +297,7 @@ function publishItem($id,$show,$menuset) {
  */
 function addSubalbumMenus($menuset, $id, $link, $sort) {
 	$album = new Album(NULL, $link);
-	$show = $album->get('show');
+	$show = $album->getShow();
 	$title = $album->getTitle();
 	$sql = "INSERT INTO ".prefix('menu')." (`link`,`type`,`title`,`show`,`menuset`,`sort_order`, `parentid`) ".
 																				'VALUES ('.db_quote($link).', "album",'.db_quote($album->name).', '.$show.','.db_quote($menuset).','.db_quote($sort).','.$id.')';
@@ -863,9 +863,10 @@ function printCustomPageSelector($current) {
 		$filelist = safe_glob('*.php');
 		$list = array();
 		foreach($filelist as $file) {
-			$list[] = str_replace('.php', '', filesystemToInternal($file));
+			$file = filesystemToInternal($file);
+			$list[$file] = str_replace('.php', '', $file);
 		}
-		generateListFromArray(array($current), $list, false, false);
+		generateListFromArray(array($current), $list, false, true);
 		chdir($curdir);
 		?>
 	</select>

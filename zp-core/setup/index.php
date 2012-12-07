@@ -27,7 +27,11 @@ header('Content-Type: text/html; charset=UTF-8');
 header("Cache-Control: no-store, no-cache, must-revalidate, pre-check=0, post-check=0, max-age=0");
 
 require_once(dirname(__FILE__).'/setup-functions.php');
-$debug = isset($_REQUEST['debug']);
+if ($debug = isset($_REQUEST['debug'])) {
+	if (!$debug = $_REQUEST['debug']) {
+		$debug = true;
+	}
+}
 
 $setup_checked = isset($_GET['checked']);
 $upgrade = false;
@@ -214,7 +218,7 @@ if (file_exists(CONFIGFILE)) {
 		$result = query("SELECT `id` FROM " . $_zp_conf_vars['mysql_prefix'].'options' . " LIMIT 1", false);
 		if ($result) {
 			if (db_num_rows($result) > 0) {
-				$upgrade = true;
+				$upgrade = gettext("upgrade");
 				// apply some critical updates to the database for migration issues
 				query('ALTER TABLE '.$_zp_conf_vars['mysql_prefix'].'administrators'.' ADD COLUMN `valid` int(1) default 1', false);
 				query('ALTER TABLE '.$_zp_conf_vars['mysql_prefix'].'administrators'.' CHANGE `password` `pass` varchar(64)', false);
@@ -328,6 +332,63 @@ if (!isset($_zp_setupCurrentLocale_result) || empty($_zp_setupCurrentLocale_resu
 }
 
 $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"));
+$prevRel = getOption('zenphoto_version');
+if (empty($prevRel)) {
+	// pre 1.4.2 release, compute the version
+	$prevRel = getOption('zenphoto_release');
+	$zp_versions = array(	'1.2'=>'2213','1.2.1'=>'2635','1.2.2'=>'2983','1.2.3'=>'3427','1.2.4'=>'3716','1.2.5'=>'4022',
+												'1.2.6'=>'4335', '1.2.7'=>'4741','1.2.8'=>'4881','1.2.9'=>'5088',
+												'1.3.0'=>'5088','1.3.1'=>'5736',
+												'1.4'=>'6454','1.4.1'=>'6506',
+												'x.x.x'=>'99999999');
+	if (empty($prevRel)) {
+		$release = gettext('Upgrade from before Zenphoto v1.2');
+		$prevRel = '1.x';
+		$c = count($zp_versions);
+		$check = -1;
+	} else {
+		$c = 0;
+		foreach ($zp_versions as $rel=>$build) {
+			if ($build > $prevRel) {
+				break;
+			} else {
+				$c++;
+				$release = sprintf(gettext('Upgrade from Zenphoto v%s'),$rel);
+			}
+		}
+		if ($c == count($zp_versions)-1) {
+			$check = 1;
+			$release = gettext('Reinstalling current Zenphoto release');
+			$upgrade = gettext('reinstall');
+		} else {
+			$check = -1;
+			$c = count($zp_versions) - 1 - $c;
+		}
+	}
+} else {
+	preg_match('/[0-9,\.]*/', ZENPHOTO_VERSION, $matches);
+	$rel = explode('.', $matches[0].'.0');
+	preg_match('/[0-9,\.]*/', $prevRel, $matches);
+	$prevRel = explode('.', $matches[0].'.0');
+	$release = sprintf(gettext('Upgrade from Zenphoto v%s'),$matches[0]);
+	$c = ($rel[0]-$prevRel[0])*100 + ($rel[1]-$prevRel[1])*10+($rel[1]-$prevRel[1]);
+	if ($prevRel[0] == 1 && $prevRel[1] <= 3) {
+		$c = $c-8;	// there were only two 1.3.x releases
+	}
+	switch ($c) {
+		case 1:
+			$check = 1;
+			break;
+		default:
+			$check = -1;
+		break;
+	}
+}
+if ($c<=0) {
+	$check = 1;
+	$release = gettext('Reinstalling current Zenphoto release');
+	$upgrade = gettext('reinstall');
+}
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -337,7 +398,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 <head>
 
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title><?php echo $upgrade ? gettext("Zenphoto upgrade") : gettext("Zenphoto setup") ; ?></title>
+<title><?php printf('Zenphoto %s',$upgrade?$upgrade:gettext('install')) ; ?></title>
 <link rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.css" type="text/css" />
 
 <script src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/js/jquery.js" type="text/javascript"></script>
@@ -360,7 +421,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 <div id="main">
 
 <h1><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/zen-logo.png" title="<?php echo gettext('Zenphoto Setup'); ?>" alt="<?php echo gettext('Zenphoto Setup'); ?>" align="bottom" />
-<span><?php echo $upgrade ? gettext("Upgrade") : gettext("Setup") ; ?></span>
+<span><?php echo $upgrade ? $upgrade : gettext("Setup") ; ?></span>
 </h1>
 
 <div id="content">
@@ -388,15 +449,6 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 	<p>
 		<?php printf( gettext("Welcome to Zenphoto! This page will set up Zenphoto %s on your web server."),ZENPHOTO_VERSION); ?>
 	</p>
-	<?php
-	if (TEST_RELEASE) {
-		?>
-		<p class="notebox">
-			<?php echo gettext('<strong>Note:</strong> The release you are installing has debugging settings enabled!'); ?>
-		</p>
-		<?php
-	}
-	?>
 	<h2><?php echo gettext("Systems Check:"); ?></h2>
 	<?php
 
@@ -409,85 +461,37 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 	global $_zp_conf_vars;
 	$good = true;
 
-if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
-
-	if (function_exists('checkForUpdate')) {
+	if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
+		require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/check_for_update.php');
 		$v = checkForUpdate();
 		if (!empty($v)) {
 			if ($v != 'X') {
 				$autorun = false;
-				?>
-				<p class="notebox">
-				<?php echo gettext('You are not installing the latest version of Zenphoto.'); ?>
-					<a href="http://www.zenphoto.org"><?php printf(gettext("Version %s is available."), $v); ?></a>
-				</p>
-				<?php
 			}
-		}
-	}
-	?>
-	<ul>
-	<?php
-	$prevRel = getOption('zenphoto_version');
-	if (empty($prevRel)) {
-		// pre 1.4.2 release, compute the version
-		$prevRel = getOption('zenphoto_release');
-		$zp_versions = array(	'1.2'=>'2213','1.2.1'=>'2635','1.2.2'=>'2983','1.2.3'=>'3427','1.2.4'=>'3716','1.2.5'=>'4022',
-													'1.2.6'=>'4335', '1.2.7'=>'4741','1.2.8'=>'4881','1.2.9'=>'5088',
-													'1.3.0'=>'5088','1.3.1'=>'5736',
-													'1.4'=>'6454','1.4.1'=>'6506',
-													'x.x.x'=>'99999999');
-		if (empty($prevRel)) {
-			$release = gettext('Upgrade from before Zenphoto v1.2');
-			$prevRel = '1.x';
-			$c = count($zp_versions);
-			$check = -1;
 		} else {
-			$c = 0;
-			foreach ($zp_versions as $rel=>$build) {
-				if ($build > $prevRel) {
-					break;
-				} else {
-					$c++;
-					$release = sprintf(gettext('Upgrade from Zenphoto v%s'),$rel);
-				}
-			}
-			if ($c == count($zp_versions)-1) {
-				$check = 1;
-				$release = gettext('Updating current Zenphoto release');
-			} else {
-				$check = -1;
-				$c = count($zp_versions) - 1 - $c;
-			}
+			$v = 'X';
 		}
+		if (TEST_RELEASE || $v != 'X') {
+			?>
+			<div class="notebox">
+				<?php
+				if ($v != 'X') echo '<p>'.gettext('You are not installing the latest version of Zenphoto.').'<a href="http://www.zenphoto.org">'.sprintf(gettext("Version %s is available."), $v).'</a></p>';
+				if (TEST_RELEASE) echo '<p>'.gettext('<strong>Note:</strong> The release you are installing has debugging settings enabled!').'</p>';
+				?>
+			</div>
+			<?php
+		}
+		?>
+		<ul>
+		<?php
+		checkmark($check,$release,$release.' '.sprintf(ngettext('[%u release skipped]','[%u releases skipped]',$c),$c),gettext('We do not test upgrades that skip releases. We recommend you upgrade in sequence.'));
 	} else {
-		preg_match('/[0-9,\.]*/', ZENPHOTO_VERSION, $matches);
-		$rel = explode('.', $matches[0].'.0');
-		preg_match('/[0-9,\.]*/', $prevRel, $matches);
-		$prevRel = explode('.', $matches[0].'.0');
-		$release = sprintf(gettext('Upgrade from Zenphoto v%s'),$matches[0]);
-		$c = ($rel[0]-$prevRel[0])*100 + ($rel[1]-$prevRel[1])*10+($rel[1]-$prevRel[1]);
-		if ($prevRel[0] == 1 && $prevRel[1] <= 3) {
-			$c = $c-8;	// there were only two 1.3.x releases
-		}
-		switch ($c) {
-			case 1:
-				$check = 1;
-				break;
-			default:
-				$check = -1;
-			break;
-		}
+		?>
+		<ul>
+		<?php
+		$prevRel = false;
+		checkmark(1,sprintf(gettext('Installing Zenphoto v%s'),ZENPHOTO_VERSION),'','');
 	}
-	if ($c<=0) {
-		$check = 1;
-		$release = gettext('Updating current Zenphoto release');
-	}
-	checkmark($check,$release,$release.' '.sprintf(ngettext('[%u release skipped]','[%u releases skipped]',$c),$c),gettext('We do not test upgrades that skip releases. We recommend you upgrade in sequence.'));
-} else {
-	$prevRel = false;
-	checkmark(1,sprintf(gettext('Installing Zenphoto v%s'),ZENPHOTO_VERSION),'','');
-}
 
 	$permission = fileperms(SETUPLOG)&0777;
 	if (checkPermissions($permission, 0600)) {
@@ -522,6 +526,26 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		$safe = true;
 	}
 	checkMark($safe, gettext("PHP <code>Safe Mode</code>"), gettext("PHP <code>Safe Mode</code> [is set]"), gettext("Zenphoto functionality is reduced when PHP <code>safe mode</code> restrictions are in effect."));
+
+	if (!extension_loaded('suhosin')) {
+		$blacklist = @ini_get("suhosin.executor.func.blacklist");
+		if ($blacklist) {
+			$zpUses = array('symlink'=>0);
+			$abort = $issue = 0;
+			$blacklist = explode(',', $blacklist);
+			foreach ($blacklist as $key=>$func) {
+				if (array_key_exists($func, $zpUses)) {
+					$abort = true;
+					$issue = $issue | $zpUses[$func];
+					if ($zpUses[$func]) {
+						$blacklist[$key] = '<span style="color:red;">'.$func.'*</span>';
+					}
+				}
+			}
+			$issue--;
+			$good = checkMark($issue, '',gettext('<code>Suhosin</code> module [is enabled]'),sprintf(gettext('The following PHP functions are blocked: %s. Flagged functions are required by Zenphoto. Other functions in the list may be used by Zenphoto, possibly causing reduced functionality or Zenphoto failures.'),'<code>'.implode('</code>, <code>',$blacklist).'</code>'),$abort) && $good;
+		}
+	}
 
 	primeMark(gettext('Magic_quotes'));
 	if (get_magic_quotes_gpc()) {
@@ -1422,10 +1446,10 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		if (file_exists($serverpath.'/robots.txt')) {
 			checkmark(-2, gettext('<em>robots.txt</em> file'), gettext('<em>robots.txt</em> file [Not created]'), gettext('Setup did not create a <em>robots.txt</em> file because one already exists.'));
 		} else {
-			$text = explode('****delete all lines above and including this one *******'."\n", $robots);
-			$d = dirname(dirname($_SERVER['SCRIPT_NAME']));
+			$text = explode('****delete all lines above and including this one *******', $robots);
+			$d = dirname(dirname(dirname($_SERVER['SCRIPT_NAME'])));
 			if ($d == '/') $d = '';
-			$robots = str_replace('/zenphoto', $d, $text[1]);
+			$robots = str_replace('/zenphoto', $d, trim($text[1]));
 			$rslt = file_put_contents($serverpath.'/robots.txt', $robots);
 			if ($rslt === false) {
 				$rslt = -1;
@@ -1468,6 +1492,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	$good = checkmark(file_exists($en_US), gettext('<em>locale</em> folders'), gettext('<em>locale</em> folders [Are not complete]'), gettext('Be sure you have uploaded the complete Zenphoto package. You must have at least the <em>en_US</em> folder.')) && $good;
 	$good = folderCheck(gettext('uploaded'), $serverpath . '/'.UPLOAD_FOLDER.'/', 'std', NULL, false, $chmod | 0311, $updatechmod) && $good;
 	$good = folderCheck(DATA_FOLDER, $serverpath . '/'.DATA_FOLDER.'/', 'std', NULL, false, $chmod | 0311, $updatechmod) && $good;
+	@mkdir(SERVERPATH.'/'.DATA_FOLDER.'/mutex', $chmod | 0311);
 	$good = folderCheck(gettext('HTML cache'), $serverpath . '/'.STATIC_CACHE_FOLDER.'/', 'std', $Cache_html_subfolders, true, $chmod | 0311, $updatechmod) && $good;
 	$good = folderCheck(gettext('Third party plugins'), $serverpath . '/'.USER_PLUGIN_FOLDER.'/', 'std', $plugin_subfolders, true, $chmod | 0311, $updatechmod) && $good;
 
@@ -2298,23 +2323,25 @@ if (file_exists(CONFIGFILE)) {
 			}
 			require(dirname(__FILE__).'/setup-option-defaults.php');
 
-			// update zenpage codeblocks--remove the base64 encoding
-			$sql = 'SELECT `id`, `codeblock` FROM '.prefix('news').' WHERE `codeblock` NOT REGEXP "^a:[0-9]+:{"';
-			$result = query_full_array($sql,false);
-			if (is_array($result)) {
-				foreach ($result as $row) {
-					$codeblock = base64_decode($row['codeblock']);
-					$sql = 'UPDATE '.prefix('news').' SET `codeblock`='.db_quote($codeblock).' WHERE `id`='.$row['id'];
-					query($sql);
+			if ($debug=='base64') {
+				// update zenpage codeblocks--remove the base64 encoding
+				$sql = 'SELECT `id`, `codeblock` FROM '.prefix('news').' WHERE `codeblock` NOT REGEXP "^a:[0-9]+:{"';
+				$result = query_full_array($sql,false);
+				if (is_array($result)) {
+					foreach ($result as $row) {
+						$codeblock = base64_decode($row['codeblock']);
+						$sql = 'UPDATE '.prefix('news').' SET `codeblock`='.db_quote($codeblock).' WHERE `id`='.$row['id'];
+						query($sql);
+					}
 				}
-			}
-			$sql = 'SELECT `id`, `codeblock` FROM '.prefix('pages').' WHERE `codeblock` NOT REGEXP "^a:[0-9]+:{"';
-			$result = query_full_array($sql,false);
-			if (is_array($result)) {
-				foreach ($result as $row) {
-					$codeblock = base64_decode($row['codeblock']);
-					$sql = 'UPDATE '.prefix('pages').' SET `codeblock`='.db_quote($codeblock).' WHERE `id`='.$row['id'];
-					query($sql);
+				$sql = 'SELECT `id`, `codeblock` FROM '.prefix('pages').' WHERE `codeblock` NOT REGEXP "^a:[0-9]+:{"';
+				$result = query_full_array($sql,false);
+				if (is_array($result)) {
+					foreach ($result as $row) {
+						$codeblock = base64_decode($row['codeblock']);
+						$sql = 'UPDATE '.prefix('pages').' SET `codeblock`='.db_quote($codeblock).' WHERE `id`='.$row['id'];
+						query($sql);
+					}
 				}
 			}
 
@@ -2334,12 +2361,15 @@ if (file_exists(CONFIGFILE)) {
 			}
 			echo "</h3>";
 
-			// fixes 1.2 move/copy albums with wrong ids
-			$albums = $_zp_gallery->getAlbums();
-			foreach ($albums as $album) {
-				checkAlbumParentid($album, NULL);
+			if ($debug=='albumids') {
+				// fixes 1.2 move/copy albums with wrong ids
+				$albums = $_zp_gallery->getAlbums();
+				foreach ($albums as $album) {
+					checkAlbumParentid($album, NULL);
+				}
 			}
 		}
+
 		if ($createTables) {
 			if (isset($_GET['delete_files']) || ($autorun && defined("RELEASE") && zpFunctions::hasPrimaryScripts())) {
 				require_once(dirname(dirname(__FILE__)).'/'.PLUGIN_FOLDER.'/security-logger.php');
@@ -2503,7 +2533,7 @@ if (file_exists(CONFIGFILE)) {
 				}
 			}
 			if ($debug) {
-				$task .= '&debug';
+				$task .= '&debug='.$debug;
 			}
 		}
 

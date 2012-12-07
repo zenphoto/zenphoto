@@ -78,22 +78,26 @@ function switcher_controllink($ignore) {
 	if (!$color) {
 		$color = getOption('Theme_colors');
 	}
-	echo gettext('Theme Color');
 	?>
 	<span id="themeSwitcher_effervescence">
-		<select name="themeColor" id="themeColor" onchange="switchColors();">
-			<?php  generateListFromArray(array($color), $themecolors, false, false); ?>
-		</select>
+		<span title="<?php echo gettext("Effervescence color scheme."); ?>">
+			<?php echo gettext('Theme Color'); ?>
+			<select name="themeColor" id="themeColor" onchange="switchColors();">
+				<?php  generateListFromArray(array($color), $themecolors, false, false); ?>
+			</select>
+		</span>
 		<?php
 		$personality =getOption('themeSwitcher_effervescence_personality');
 		if (!$personality) {
 			$personality = getOption('effervescence_personality');
 		}
-		echo gettext('Personality');
 		?>
-		<select name="themePersonality" id="themePersonality" onchange="switchPersonality();">
-			<?php generateListFromArray(array($personality), $personalities, false, true); ?>
-		</select>
+		<span title="<?php echo gettext("Effervescence image display handling."); ?>">
+			<?php echo gettext('Personality'); ?>
+			<select name="themePersonality" id="themePersonality" onchange="switchPersonality();">
+				<?php generateListFromArray(array($personality), $personalities, false, true); ?>
+			</select>
+		</span>
 	</span>
 	<?php
 	return $ignore;

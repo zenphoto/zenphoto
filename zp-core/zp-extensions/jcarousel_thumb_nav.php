@@ -65,7 +65,8 @@ class jcarouselOptions {
 			$list = array();
 			foreach($filelist as $file) {
 				if (!in_array($file,$exclude)) {
-					$list[$script = stripSuffix(filesystemToInternal($file))] = 'jcarousel_'.$theme.'_'.$script;
+					$script = filesystemToInternal($file);
+					$list[$script] = 'colorbox_'.$theme.'_'.stripSuffix($script);
 				}
 			}
 			chdir($curdir);

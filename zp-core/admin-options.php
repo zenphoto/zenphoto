@@ -46,7 +46,7 @@ if (isset($_GET['action'])) {
 		/*** General options ***/
 		if (isset($_POST['savegeneraloptions'])) {
 
-			$tags = sanitize($_POST['allowed_tags'],0);
+			$tags = strtolower(sanitize($_POST['allowed_tags'],0));
 			$test = "(".$tags.")";
 			$a = parseAllowedTags($test);
 			if ($a !== false) {
@@ -118,9 +118,9 @@ if (isset($_GET['action'])) {
 			$_zp_gallery->setGallerySession((int) isset($_POST['album_session']));
 			$_zp_gallery->setThumbSelectImages((int) isset($_POST['thumb_select_images']));
 			$_zp_gallery->setSecondLevelThumbs((int) isset($_POST['multilevel_thumb_select_images']));
-			$_zp_gallery->set('gallery_title', process_language_string_save('gallery_title', 2));
-			$_zp_gallery->set('Gallery_description', process_language_string_save('Gallery_description', 1));
-			$_zp_gallery->set('website_title', process_language_string_save('website_title', 2));
+			$_zp_gallery->setTitle( process_language_string_save('gallery_title', 2));
+			$_zp_gallery->setDesc(process_language_string_save('Gallery_description', 1));
+			$_zp_gallery->setWebsiteTitle(process_language_string_save('website_title', 2));
 			$web = sanitize($_POST['website_url'],3);
 			$_zp_gallery->setWebsiteURL($web);
 			$_zp_gallery->setAlbumUseImagedate((int) isset($_POST['album_use_new_image_date']));
@@ -185,6 +185,7 @@ if (isset($_GET['action'])) {
 			setOption('RSS_album_image', (int) isset($_POST['RSS_album_image']));
 			setOption('RSS_comments', (int) isset($_POST['RSS_comments']));
 			setOption('RSS_articles', (int) isset($_POST['RSS_articles']));
+			setOption('RSS_pages', (int) isset($_POST['RSS_pages']));
 			setOption('RSS_article_comments', (int) isset($_POST['RSS_article_comments']));
 			setOption('feed_hitcounter', (int) isset($_POST['feed_hitcounter']));
 			$returntab = "&tab=rss";
@@ -234,6 +235,7 @@ if (isset($_GET['action'])) {
 			setOption('full_image_quality', sanitize($_POST['full_image_quality'],3));
 			setOption('cache_full_image', (int) isset($_POST['cache_full_image']));
 			setOption('protect_full_image', sanitize($_POST['protect_full_image'],3));
+			setOption('imageProcessorConcurrency', $_POST['imageProcessorConcurrency']);
 			$notify = processCredentials('protected_image');
 
 			setOption('secure_image_processor', (int) isset($_POST['secure_image_processor']));
@@ -275,7 +277,6 @@ if (isset($_GET['action'])) {
 		/*** Comment options ***/
 
 		if (isset($_POST['savecommentoptions'])) {
-			setOption('spam_filter', sanitize($_POST['spam_filter'],3));
 			setOption('email_new_comments', (int) isset($_POST['email_new_comments'])&&$_POST['email_new_comments']);
 			setOption('comment_name_required', sanitize($_POST['comment_name_required']));
 			setOption('comment_email_required',sanitize($_POST['comment_email_required']));
@@ -372,14 +373,15 @@ if (isset($_GET['action'])) {
 		}
 		/*** Plugin Options ***/
 		if (isset($_POST['savepluginoptions'])) {
-			// all plugin options are handled by the custom option code.
-			if (isset($_GET['single'])) {
-				$returntab = "&tab=plugin&single=".sanitize($_GET['single']);
+			if (isset($_POST['checkForPostTruncation'])) {
+				// all plugin options are handled by the custom option code.
+				if (isset($_GET['single'])) {
+					$returntab = "&tab=plugin&single=".sanitize($_GET['single']);
+				} else {
+					$returntab = "&tab=plugin&subpage=$subpage";
+				}
 			} else {
-				$returntab = "&tab=plugin&subpage=$subpage";
-			}
-			if (!isset($_POST['last_plugin_option'])) {
-				$notify = '?saved&missing';
+				$notify = '?post_error';
 			}
 		}
 		/*** Security Options ***/
@@ -394,7 +396,6 @@ if (isset($_GET['action'])) {
 			if ($protocol == 'http') {
 				zp_clearCookie("zenphoto_ssl");
 			}
-			setOption('captcha', sanitize($_POST['captcha']));
 			setOption('IP_tied_cookies', (int) isset($_POST['IP_tied_cookies']));
 			$_zp_gallery->save();
 			$returntab = "&tab=security";
@@ -464,6 +465,12 @@ Zenphoto_Authority::printPasswordFormJS();
 <div id="container">
 <?php
 $subtab = getSubtabs();
+if (isset($_GET['post_error'])) {
+	echo '<div class="errorbox">';
+	echo  "<h2>".gettext('Error')."</h2>";
+	echo gettext('The form submission is incomplete. Perhaps the form size exceeds configured server or browser limits.');
+	echo '</div>';
+}
 if (isset($_GET['saved'])) {
 	echo '<div class="messagebox fade-message">';
 	echo  "<h2>".gettext("Applied")."</h2>";
@@ -766,8 +773,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 						</select>
 						<div id="customTextBox" class="customText" style="display:<?php echo $dsp; ?>">
 						<br />
-						<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" name="date_format"
-						value="<?php echo html_encode(DATE_FORMAT);?>" />
+						<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" name="date_format" value="<?php echo html_encode(DATE_FORMAT);?>" />
 						</div>
 						</td>
 					<td><?php echo gettext('Format for dates. Select from the list or set to <code>custom</code> and provide a <a href="http://us2.php.net/manual/en/function.strftime.php"><span class="nowrap"><code>strftime()</code></span></a> format string in the text box.'); ?></td>
@@ -811,6 +817,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 								$tags = explode("\n",$t);
 								$c = 0;
 								foreach($tags as $t) {
+									$t = trim($t);
 									if (!empty($t)) {
 										if ($c>0) {
 											echo '+';
@@ -907,14 +914,14 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 				<tr>
 					<td width="175"><?php echo gettext("Gallery title:"); ?></td>
 					<td width="350">
-					<?php print_language_string_list($_zp_gallery->get('gallery_title'), 'gallery_title') ?>
+					<?php print_language_string_list($_zp_gallery->getTitle('all'), 'gallery_title') ?>
 					</td>
 					<td><?php echo gettext("What you want to call your Zenphoto site."); ?></td>
 				</tr>
 				<tr>
 					<td width="175"><?php echo gettext("Gallery description:"); ?></td>
 					<td width="350">
-					<?php print_language_string_list($_zp_gallery->get('Gallery_description'), 'Gallery_description', true, NULL, 'texteditor') ?>
+					<?php print_language_string_list($_zp_gallery->getDesc('all'), 'Gallery_description', true, NULL, 'texteditor') ?>
 					</td>
 					<td><?php echo gettext("A brief description of your gallery. Some themes may display this text."); ?></td>
 				</tr>
@@ -934,7 +941,7 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 				<?php
 				if (GALLERY_SECURITY == 'public') {
 					?>
-					<tr class="passwordextrashow public_gallery" <?php if (GALLERY_SECURITY != 'public') echo 'style="display:none"'; ?> >
+					<tr class="passwordextrashow public_gallery">
 						<td style="background-color: #ECF1F2;">
 							<p>
 								<a href="javascript:toggle_passwords('',true);">
@@ -1015,7 +1022,7 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 							<?php echo gettext("Gallery password hint:"); ?>
 						</td>
 						<td>
-							<?php print_language_string_list($_zp_gallery->get('gallery_hint'), 'hint', false, NULL, 'hint') ?>
+							<?php print_language_string_list($_zp_gallery->getPasswordHint('all'), 'hint', false, NULL, 'hint') ?>
 						</td>
 						<td>
 							<?php echo gettext("A reminder hint for the password."); ?>
@@ -1034,11 +1041,12 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 						$filelist = safe_glob('*.php');
 						$list = array();
 						foreach($filelist as $file) {
-							$list[] = str_replace('.php', '', filesystemToInternal($file));
+							$file = filesystemToInternal($file);
+							$list[$file] = str_replace('.php', '', $file);
 						}
 						chdir($curdir);
 						$list = array_diff($list, standardScripts());
-						$list[] = 'index';
+						$list['index.php'] = 'index';
 						$current = array();
 						foreach ($list as $page) {
 							?>
@@ -1050,15 +1058,15 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 						}
 						?>
 						<ul class="customchecklist">
-							<?php generateUnorderedListFromArray($current, $list, 'gallery_page_unprotected_', false, true, false); ?>
+							<?php generateUnorderedListFromArray($current, $list, 'gallery_page_unprotected_', false, true, true); ?>
 						</ul>
 					</td>
-					<td><?php echo gettext('Place a checkmark on any pages which should not be protected by the gallery password.'); ?></td>
+					<td><?php echo gettext('Place a checkmark on any page scripts which should not be protected by the gallery password.'); ?></td>
 				</tr>
 				<tr>
 					<td><?php echo gettext("Website title:"); ?></td>
 					<td>
-					<?php print_language_string_list($_zp_gallery->get('website_title'), 'website_title') ?>
+					<?php print_language_string_list($_zp_gallery->getWebsiteTitle('all'), 'website_title') ?>
 					</td>
 					<td><?php echo gettext("Your web site title."); ?></td>
 				</tr>
@@ -1532,6 +1540,9 @@ if ($subtab == 'rss' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<input type="checkbox" name="RSS_articles" value=<?php if (getOption('RSS_articles')) echo '"1" checked="checked"'; else echo '"0"'; ?> /> <?php echo gettext('All news'); ?>
 					</label>
 					<label class="checkboxlabel">
+						<input type="checkbox" name="RSS_pages" value=<?php if (getOption('RSS_pages')) echo '"1" checked="checked"'; else echo '"0"'; ?> /> <?php echo gettext('All pages'); ?>
+					</label>
+					<label class="checkboxlabel">
 						<input type="checkbox" name="RSS_article_comments" value=<?php if (getOption('RSS_article_comments')) echo '"1" checked="checked"'; else echo '"0"'; ?> /> <?php echo gettext('News/Page comments'); ?>
 					</label>
 				</span>
@@ -1986,7 +1997,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 					// ]]> -->
 				</script>
 				<div id="slider-workers"></div>
-				<input type="hidden" id="cache-workers" name="cacheManager_workers" value="<?php echo getOption('cacheManager_workers');?>" />
+				<input type="hidden" id="cache-workers" name="imageProcessorConcurrency" value="<?php echo getOption('imageProcessorConcurrency');?>" />
 			</td>
 			<td>
 			<?php printf(gettext('Cache processing worker limit: %s.'),'<span id="cache_processes">'.getOption('imageProcessorConcurrency').'</span>').
@@ -2032,7 +2043,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 				<input type="checkbox" name="secure_image_processor" value="1"
 				<?php echo checked('1', getOption('secure_image_processor')); ?> />&nbsp;<?php echo gettext("Enabled"); ?>
 			</td>
-			<td><?php echo gettext('When not checked, the image processor does not check for album access credentials.').
+			<td><?php echo gettext('When enabled, the image processor will check album access credentials.').
 								'<p class="notebox">'.gettext('<strong>WARNING	:</strong> This option adds memory overhead to image caching! You may be unable to cache some images depending on your server memory availability.').'</p>'; ?></td>
 		</tr>
 		<tr>
@@ -2303,21 +2314,21 @@ if ($subtab == 'comments' && zp_loggedin(OPTIONS_RIGHTS)) {
 		<!-- SPAM filter options -->
 		<tr>
 			<td><?php echo gettext("Spam filter:"); ?></td>
-			<td><select id="spam_filter" name="spam_filter">
+			<td>
 				<?php
-			$currentValue = getOption('spam_filter');
-			$filters = getPluginFiles('*.php','spamfilters');
-			generateListFromArray(array($currentValue), array_keys($filters),false,false);
-			?>
-			</select></td>
+				if (isset($_zp_spamFilter)) {
+					echo $_zp_spamFilter->name;
+				} else {
+					echo gettext('No spam filter configured');
+				}
+				?>
+			</td>
 			<td><?php echo gettext("The SPAM filter plug-in you wish to use to check comments for SPAM"); ?></td>
 		</tr>
 		<?php
 		/* procss filter based options here */
-		if (!(false === ($requirePath = getPlugin('spamfilters/'.getOption('spam_filter').'.php')))) {
-			require_once($requirePath);
-			$optionHandler = new SpamFilter();
-			customOptions($optionHandler, "&nbsp;&nbsp;&nbsp;-&nbsp;");
+		if (isset($_zp_spamFilter)) {
+			customOptions($_zp_spamFilter, "&nbsp;&nbsp;&nbsp;-&nbsp;");
 		}
 		?>
 		<!-- end of SPAM filter options -->
@@ -2375,16 +2386,33 @@ if ($subtab == 'comments' && zp_loggedin(OPTIONS_RIGHTS)) {
 		</tr>
 			<td><?php echo gettext('Captcha'); ?></td>
 			<td>
+				<?php
+				if ($_zp_captcha->name) {
+					$captchadisable = '';
+					$checked = getOption('Use_Captcha');
+				} else {
+					$captchadisable = ' disabled="disabled"';
+					$checked = false;
+				}
+				?>
 				<label class="checkboxlabel">
-					<input type="radio" name="Use_Captcha" id="Use_Captcha" value="0"<?php if (!getOption('Use_Captcha')) echo ' checked="checked"'; ?>  />
+					<input type="radio" name="Use_Captcha" id="Use_Captcha" value="0"<?php echo $captchadisable; if (!$checked) echo ' checked="checked"'; ?>  />
 						<?php echo gettext('Omit'); ?>
 				</label>
 				<label class="checkboxlabel">
-					<input type="radio" name="Use_Captcha" id="Use_Captcha" value="1"<?php if (getOption('Use_Captcha')) echo ' checked="checked"'; ?> />
+					<input type="radio" name="Use_Captcha" id="Use_Captcha" value="1"<?php echo $captchadisable; if ($checked) echo ' checked="checked"'; ?> />
 						<?php echo gettext('Require'); ?>
 					</label>
 			</td>
-			<td><?php echo gettext('If <em>Captcha</em> is required, the form will include a Captcha verification.'); ?></td>
+			<td>
+			<?php
+			if ($captchadisable) {
+				echo '<span class="notebox">'.gettext('No captcha handler is enabled.').'</span>';
+			} else {
+				echo gettext('If <em>Captcha</em> is required, the form will include a Captcha verification.');
+			}
+			?>
+			</td>
 		</tr>
 		<?php zp_apply_filter('options_comments', ''); ?>
 		<tr>
@@ -2759,10 +2787,11 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 						$filelist = safe_glob('*.php');
 						$list = array();
 						foreach($filelist as $file) {
-							$list[] = str_replace('.php', '', filesystemToInternal($file));
+							$file = filesystemToInternal($file);
+							$list[$file] = str_replace('.php', '', $file);
 						}
 						$list = array_diff($list, standardScripts());
-						generateListFromArray(array(getThemeOption('custom_index_page',$album,$themename)), $list, false, false);
+						generateListFromArray(array(getThemeOption('custom_index_page',$album,$themename)), $list, false, true);
 						chdir($curdir);
 						?>
 					</select>
@@ -2863,22 +2892,31 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 						</td>
 				</tr>
 				<tr>
-				<th colspan="2" style="text-align:center">
+				<th style="text-align:center" colspan="2">
 					<span style="font-weight: normal">
 						<a href="javascript:setShow(1);toggleExtraInfo('','plugin',true);"><?php echo gettext('Expand plugin options');?></a>
 						|
 						<a href="javascript:setShow(0);toggleExtraInfo('','plugin',false);"><?php echo gettext('Collapse all plugin options');?></a>
 					</span>
 				</th>
-				<th>
+				<th style="text-align:left">
 					<?php printPageSelector($subpage, $rangeset, 'admin-options.php', array('page'=>'options', 'tab'=>'plugin')); ?>
 				</th>
 			</tr>
 				<?php
+				$reveal = array();
 				foreach ($plugins as $extension) {
 					$option_interface = NULL;
 					$path = getPlugin($extension.'.php');
 					$pluginStream = file_get_contents($path);
+					if ($str = isolate('$plugin_description', $pluginStream)) {
+						if (false === eval($str)) {
+							$plugin_description = '';
+						}
+					} else {
+						$plugin_description = '';
+					}
+
 					$str = isolate('$option_interface', $pluginStream);
 					if (false !== $str) {
 						require_once($path);
@@ -2895,26 +2933,23 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 						$showlist[] = '#_show-'.$extension;
 						$_zp_plugin_count++;
 						?>
-				<!-- <?php echo $extension; ?> -->
+						<!-- <?php echo $extension; ?> -->
 				<tr>
 					<td style="padding: 0;margin:0" colspan="3">
 						<table class="bordered options" style="border: 0" id="plugin-<?php echo $extension; ?>">
 							<tr>
 							<?php
-							if (isset($_GET['show-'.$extension])) {
-								$show_show = 'none';
-								$show_hide = 'block';
+							if (isset($_GET['show-'.$extension]) || count($plugins) == 1) {
+								$reveal[] = $extension;
 								$v = 1;
 							} else {
-								$show_show = 'block';
-								$show_hide = 'none';
 								$v= 0;
 							}
 							?>
-							<th  colspan="3" style="text-align:left">
+							<th style="text-align:left;">
 								<span id="<?php echo $extension; ?>" ></span>
 								<input type="hidden" name="show-<?php echo $extension;?>" id="show-<?php echo $extension;?>" value="<?php echo $v; ?>" />
-								<span style="display:<?php echo $show_show; ?>;" class="pluginextrashow">
+								<span style="display:block" class="pluginextrashow">
 									<a href="javascript:$('#show-<?php echo $extension;?>').val(1);toggleExtraInfo('<?php echo $extension;?>','plugin',true);"><?php echo $extension; ?></a>
 									<?php
 									if ($warn) {
@@ -2924,15 +2959,18 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 									}
 									?>
 								</span>
-								<span style="display:<?php echo $show_hide; ?>;" class="pluginextrahide">
+								<span style="display:none" class="pluginextrahide">
 									<a href="javascript:$('#show-<?php echo $extension;?>').val(0);toggleExtraInfo('<?php echo $extension;?>','plugin',false);"><?php echo $extension; ?></a>
 								</span>
+							</th>
+							<th style="text-align:left; font-weight: normal;" colspan="2">
+								<?php echo $plugin_description; ?>
 							</th>
 						</tr>
 						<?php
 						if ($warn) {
 							?>
-							<tr style="display:<?php echo $show_hide; ?>;" class="pluginextrahide">
+							<tr style="display:none" class="pluginextrahide">
 								<td colspan="3">
 									<p class="notebox" ><?php echo $warn; ?></p>
 								</td>
@@ -2941,7 +2979,7 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 						}
 						$supportedOptions = $option_interface->getOptionsSupported();
 						if (count($supportedOptions) > 0) {
-							customOptions($option_interface, '', NULL, 'plugin', $supportedOptions, NULL, $show_hide, $extension);
+							customOptions($option_interface, '', NULL, 'plugin', $supportedOptions, NULL, 'none', $extension);
 						}
 						?>
 						</td>
@@ -2978,7 +3016,7 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 					</td>
 				</tr>
 			</table> <!-- single plugin page table -->
-			<input type="hidden" name="last_plugin_option"	value="1" />
+			<input type="hidden" name="checkForPostTruncation" value="1" />
 			<?php
 			}
 			?>
@@ -2990,6 +3028,15 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 				foreach ($showlist as $show) {
 					?>
 					$('<?php echo $show; ?>').val(v);
+					<?php
+				}
+				?>
+			}
+			window.onload = function() {
+				<?php
+				foreach ($reveal as $extension) {
+					?>
+					toggleExtraInfo('<?php echo $extension;?>','plugin',true);
 					<?php
 				}
 				?>
@@ -3039,16 +3086,17 @@ if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 				<tr>
 					<td width="175"><?php echo gettext('CAPTCHA generator:'); ?></td>
 					<td width="350">
-						<select id="captcha" name="captcha">
 						<?php
-						$captchas = getPluginFiles('*.php','captcha');
-						generateListFromArray(array(getOption('captcha')), array_keys($captchas),false,false);
+						if ($_zp_captcha) {
+							echo $_zp_captcha->name;
+						} else {
+							echo gettext('not configured');
+						}
 						?>
-						</select>
 					</td>
-					<td><?php echo gettext('Select the <em>CAPTCHA</em> generator to be used by Zenphoto.'); ?></td>
+					<td></td>
 				</tr>
-					<?php customOptions($_zp_captcha, "&nbsp;&nbsp;&nbsp;-&nbsp;"); ?>
+					<?php if ($_zp_captcha) customOptions($_zp_captcha, "&nbsp;&nbsp;&nbsp;-&nbsp;"); ?>
 				<tr>
 					<td><?php echo gettext('Cookie security')?></td>
 					<td>
@@ -3073,7 +3121,7 @@ if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 					if (GALLERY_SECURITY =='public') {
 						$disable = $_zp_gallery->getUser() || getOption('search_user') || getOption('protected_image_user') || getOption('downloadList_user');
 						?>
-						<div class="public_gallery"<?php if (GALLERY_SECURITY != 'public') echo ' style="display:none"'; ?>>
+						<div class="public_gallery">
 							<tr>
 							<td><?php echo gettext('User name'); ?></td>
 							<td>

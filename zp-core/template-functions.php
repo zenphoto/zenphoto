@@ -446,7 +446,7 @@ function getGalleryIndexURL($relative=true) {
 		if ($specialpage) {
 			return rewrite_path('/page/'.$gallink1, '?'.substr($gallink2, 0, -1));
 		}
-		return rewrite_path('','');
+		return WEBPATH . "/";
 	}
 }
 
@@ -629,7 +629,7 @@ function getPageURL($page, $total=null) {
 				}
 			} else {
 				if (in_context(ZP_INDEX)) {
-					$pagination1 = '';
+					$pagination1 = '/';
 					$pagination2 = 'index.php';
 					if ($page > 1) {
 						$pagination1 .= '/page/'.$page;
@@ -1122,6 +1122,53 @@ function printAlbumBreadcrumb($before='', $after='', $title=NULL) {
 }
 
 /**
+ * Prints the "breadcrumb" for a search page
+ * 		if the search was for a data range, the breadcrumb is "Archive"
+ * 		otherwise it is "Search"
+ * @param string $between Insert here the text to be printed between the links
+ * @param string $class is the class for the link (if present)
+ * @param string $search text for a search page title
+ * @param string $archive text for an archive page title
+ * @param string $format data format for archive page crumb
+ */
+function printSearchBreadcrumb($between=NULL, $class=NULL, $search=NULL, $archive=NULL, $format='%B %Y') {
+	global $_zp_current_search;
+	if (is_null($between)) {
+		$between = ' | ';
+	}
+	if ($class) {
+		$class =' class="'.$classs.'"';
+	}
+	if ($d = $_zp_current_search->getSearchDate()) {
+		if (is_null($archive)) {
+			$text = gettext('Archive');
+			$textdecoration = true;
+		} else {
+			$text = strip_tags(html_encode($archive));
+			$textdecoration = false;
+		}
+		echo "<a href=\"".html_encode(getCustomPageURL('archive', NULL))."\"$class title=\"".$text."\">";
+		printf('%s'.$text.'%s',$textdecoration?'<em>':'', $textdecoration?'</em>':'');
+		echo "</a>";
+		echo '<span class="betweentext">'.html_encode($between).'</span>';
+		if ($format) {
+			$d = strtotime($d);
+			$d = strftime($format,$d);
+		}
+		echo $d;
+	} else {
+		if (is_null($search)) {
+			$text = gettext('Search');
+			$textdecoration = true;
+		} else {
+			$text = strip_tags(html_encode($search));
+			$textdecoration = false;
+		}
+		printf('%s'.$text.'%s',$textdecoration?'<em>':'', $textdecoration?'</em>':'');
+	}
+}
+
+/**
  * returns the breadcrumb navigation for album, gallery and image view.
  *
  * @return array
@@ -1141,11 +1188,15 @@ function getParentBreadcrumb() {
 		$searchpagepath = getSearchURL($searchwords, $searchdate, $searchfields, $page, array('albums'=>$search_album_list));
 		$dynamic_album = $_zp_current_search->getDynamicAlbum();
 		if (empty($dynamic_album)) {
-			$output[] = array('link' => $searchpagepath, 'title' => gettext("Return to search"), 'text' => gettext("Search"));
-			if (is_null($_zp_current_album)) {
-				return $output;
+			if (empty($searchdate)) {
+				$output[] = array('link' => $searchpagepath, 'title' => gettext("Return to search"), 'text' => gettext("Search"));
+				if (is_null($_zp_current_album)) {
+					return $output;
+				} else {
+					$parents = getParentAlbums();
+				}
 			} else {
-				$parents = getParentAlbums();
+				return array('link' => $searchpagepath, 'title' => gettext("Return to archive"), 'text' => gettext("Archive"));
 			}
 		} else {
 			$album = $dynamic_album;
@@ -1393,6 +1444,7 @@ function printField($context, $field, $convertBR = NULL, $override = false, $lab
 	} else {
 		$text = trim(get_language_string($object->get($field)));
 	}
+	$text = zpFunctions::unTagURLs($text);
 
 	$text = html_encodeTagged($text);
 	if ($convertBR) {
@@ -4528,7 +4580,7 @@ function printPasswordForm($_password_hint, $_password_showuser=NULL, $_password
  **/
 function printCaptcha($preText='', $midText='', $postText='', $size=4) {
 	global $_zp_captcha;
-	if (getOption('Use_Captcha')) {
+	if ($_zp_captcha && getOption('Use_Captcha')) {
 		$captcha = $_zp_captcha->getCaptcha();
 		if (isset($captcha['hidden'])) echo $captcha['hidden'];
 		echo $preText;
@@ -4582,61 +4634,6 @@ function cleanHTML($html) {
 }
 
 /**
- * Returns truncated html formatted content
- *
- * @param string $articlecontent the source string
- * @param int $shorten new size
- * @param string $shortenindicator
- * @param bool $forceindicator set to true to include the indicator no matter what
- * @return string
- */
-function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindicator=false) {
-	global $_user_tags;
-	if (!$shorten) {
-		return $articlecontent;
-	}
-	if ($forceindicator || (mb_strlen($articlecontent) > $shorten)) {
-		$allowed_tags = getAllowedTags('allowed_tags');
-		$short = mb_substr($articlecontent, 0, $shorten);
-		$short2 = kses($short.'</p>', $allowed_tags);
-		if (($l2 = mb_strlen($short2)) < $shorten)	{
-			$c = 0;
-			$l1 = $shorten;
-			$delta = $shorten-$l2;
-			while ($l2 < $shorten && $c++ < 5) {
-				$open = mb_strrpos($short, '<');
-				if ($open > mb_strrpos($short, '>')) {
-					$l1 = mb_strpos($articlecontent,'>',$l1+1)+$delta;
-				} else {
-					$l1 = $l1 + $delta;
-				}
-				$short = mb_substr($articlecontent, 0, $l1);
-				preg_match_all('/(<p>)/', $short, $open);
-				preg_match_all('/(<\/p>)/', $short, $close);
-				if (count($open) > count($close)) $short .= '</p>';
-				$short2 = kses($short, $allowed_tags);
-				$l2 = mb_strlen($short2);
-			}
-			$shorten = $l1;
-		}
-		$short = truncate_string($articlecontent, $shorten, '');
-		// drop open tag strings
-		$open = mb_strrpos($short, '<');
-		if ($open > mb_strrpos($short, '>')) {
-			$short = mb_substr($short, 0, $open);
-		}
-		if (class_exists('tidy')) {
-			$tidy = new tidy();
-			$tidy->parseString($short.$shortenindicator,array('show-body-only'=>true),'utf8');
-			$tidy->cleanRepair();
-			$short = trim($tidy);
-		} else {
-			$short = trim(cleanHTML($short.$shortenindicator));
-		}
-		return $short;
-	}
-	return $articlecontent;
-}
 
 /**
  * Expose some informations in a HTML comment
@@ -4650,7 +4647,7 @@ function exposeZenPhotoInformations( $obj = '', $plugins = '', $theme = '' ) {
 
 	$a = basename($obj);
 	if ($a != 'full-image.php') {
-		echo "\n<!-- zenphoto version " . ZENPHOTO_VERSION . " [" . ZENPHOTO_RELEASE . "]";
+		echo "\n<!-- zenphoto version " . ZENPHOTO_VERSION . " [" . ZENPHOTO_FULL_RELEASE . "]";
 		echo " THEME: " . $theme . " (" . $a . ")";
 		$graphics = zp_graphicsLibInfo();
 		$graphics = sanitize(str_replace('<br />', ', ', $graphics['Library_desc']), 3);

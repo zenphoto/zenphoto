@@ -42,7 +42,25 @@ class Gallery {
 	 * @return string
 	 */
 	function getTitle($locale=NULL) {
-		return get_language_string($this->get('gallery_title'),$locale);
+		$text = $this->get('gallery_title');
+		if ($locale!=='all') {
+			$text = get_language_string($text,$locale);
+		}
+		$text = zpFunctions::unTagURLs($text);
+		return $text;
+	}
+
+	/**
+	 * Returns a tag stripped title
+	 * @param string $locale
+	 * @return string
+	 */
+	function getBareTitle($locale=NULL) {
+		return strip_tags($this->getTitle($locale));
+	}
+
+	function setTitle($title) {
+		$this->set('gallery_title',zpFunctions::tagURLs($title));
 	}
 
 	/**
@@ -51,7 +69,20 @@ class Gallery {
 	 * @return string
 	 */
 	function getDesc($locale=NULL) {
-		return get_language_string($this->get('Gallery_description'),$locale);
+		$text = $this->get('Gallery_description');
+		if ($locale!=='all') {
+			$text = get_language_string($text,$locale);
+		}
+		$text = zpFunctions::unTagURLs($text);
+		return $text;
+	}
+	/**
+	 * Sets the gallery description
+	 * @param string $desc
+	 */
+	function setDesc($desc) {
+		$desc = zpFunctions::tagURLs($desc);
+		$this->set('Gallery_description', $desc);
 	}
 
 	/**
@@ -75,10 +106,15 @@ class Gallery {
 	 * @return string
 	 */
 	function getPasswordHint($locale=NULL) {
-		return get_language_string($this->get('gallery_hint'),$locale);
+		$text = $this->get('gallery_hint');
+		if ($locale!=='all') {
+			$text = get_language_string($text,$locale);
+		}
+		$text = zpFunctions::unTagURLs($text);
+		return $text;
 	}
 	function setPasswordHint($value) {
-		$this->set('gallery_hint', $value);
+		$this->set('gallery_hint', zpFunctions::tagURLs($value));
 	}
 
 	function getUser() {
@@ -681,6 +717,9 @@ class Gallery {
 	 * @since  1.0.0
 	 */
 	function sortAlbumArray($parentalbum, $albums, $sortkey='`sort_order`', $sortdirection=NULL, $mine=NULL) {
+		if (count($albums) == 0) {
+			return array();
+		}
 		if (is_null($mine) && zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 			$mine = true;
 		}
@@ -703,7 +742,6 @@ class Gallery {
 				$order = $obj->getSortDirection('album');
 			}
 		}
-		if (count($albums) == 0) return array();
 		$sql = 'SELECT * FROM ' .	prefix("albums") . ' WHERE `parentid`'.$albumid. ' ORDER BY '.$sortkey.' '.$sortdirection;
 		$result = query($sql);
 		$results = array();
@@ -771,10 +809,15 @@ class Gallery {
 	 * Title to be used for the home (not Zenphoto gallery) WEBsite
 	 */
 	function getWebsiteTitle($locale=NULL) {
-		return get_language_string($this->get('website_title'),$locale);
+		$text = $this->get('website_title');
+		if ($locale!=='all') {
+			$text = get_language_string($text,$locale);
+		}
+		$text = zpFunctions::unTagURLs($text);
+		return $text;
 	}
 	function setWebsiteTitle($value) {
-		$this->set('website_title', $value);
+		$this->set('website_title', zpFunctions::tagURLs($value));
 	}
 
 	/**

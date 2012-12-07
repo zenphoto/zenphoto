@@ -52,13 +52,11 @@ if (!defined('WEBPATH') || !class_exists('Zenpage')) die();
 				?>
 				<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle();?></a></span>
 				<?php
-				if (in_context(ZP_ZENPAGE_NEWS_CATEGORY) || getNewsTitle()) {
-					printNewsIndexURL(gettext("News")," | ");
-					printCurrentNewsCategory(" | ".gettext('Category')." - ");
-					printNewsTitle(" | ");
-				} else {
-					echo ' | '.gettext("News");
-				}
+				printNewsIndexURL(NULL,' | ');
+				printZenpageItemsBreadcrumb(' | ','');
+				printCurrentNewsCategory(" | ");
+				printNewsTitle(" » ");
+				printCurrentNewsArchive(" | ");
 				?>
 			</div>
 		</div> <!-- wrapnav -->

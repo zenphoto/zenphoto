@@ -75,7 +75,7 @@ h2 {
 </p>
 <?php
 $database_name = db_name();
-$prefix = prefix();
+$prefix = trim(prefix(),'`');
 $resource = db_show('tables');
 if ($resource) {
 	$result = array();

@@ -19,15 +19,7 @@ require_once(dirname(__FILE__).'/functions-basic.php');
 require_once(dirname(__FILE__).'/functions-filter.php');
 require_once(SERVERPATH.'/'.ZENFOLDER.'/lib-kses.php');
 
-
-$_zp_captcha = getOption('captcha');
-if (empty($_zp_captcha)) 	{
-	$_zp_captcha = 'zenphoto';
-}
-$_zp_captcha = getPlugin('captcha/'.$_zp_captcha.'.php');
-require_once($_zp_captcha);
-$_zp_captcha = new Captcha();
-
+$_zp_captcha = new zpFunctions();	// this will be overridden by the plugin if enabled.
 //setup session before checking for logon cookie
 require_once(dirname(__FILE__).'/functions-i18n.php');
 
@@ -39,7 +31,6 @@ define('ZENPHOTO_LOCALE',setMainDomain());
 define('SITE_LOCALE',getOptionFromDB('locale'));
 
 require_once(dirname(__FILE__).'/load_objectClasses.php');
-require_once(dirname(__FILE__).'/auth_zp.php');
 
 $_zp_current_context_stack = array();
 
@@ -115,6 +106,63 @@ function truncate_string($string, $length, $elipsis='...') {
 		}
 	}
 	return $string;
+}
+
+/**
+ * Returns truncated html formatted content
+ *
+ * @param string $articlecontent the source string
+ * @param int $shorten new size
+ * @param string $shortenindicator
+ * @param bool $forceindicator set to true to include the indicator no matter what
+ * @return string
+ */
+function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindicator=false) {
+	global $_user_tags;
+	if (!$shorten) {
+		return $articlecontent;
+	}
+	if ($forceindicator || (mb_strlen($articlecontent) > $shorten)) {
+		$allowed_tags = getAllowedTags('allowed_tags');
+		$short = mb_substr($articlecontent, 0, $shorten);
+		$short2 = kses($short.'</p>', $allowed_tags);
+		if (($l2 = mb_strlen($short2)) < $shorten)	{
+			$c = 0;
+			$l1 = $shorten;
+			$delta = $shorten-$l2;
+			while ($l2 < $shorten && $c++ < 5) {
+				$open = mb_strrpos($short, '<');
+				if ($open > mb_strrpos($short, '>')) {
+					$l1 = mb_strpos($articlecontent,'>',$l1+1)+$delta;
+				} else {
+					$l1 = $l1 + $delta;
+				}
+				$short = mb_substr($articlecontent, 0, $l1);
+				preg_match_all('/(<p>)/', $short, $open);
+				preg_match_all('/(<\/p>)/', $short, $close);
+				if (count($open) > count($close)) $short .= '</p>';
+				$short2 = kses($short, $allowed_tags);
+				$l2 = mb_strlen($short2);
+			}
+			$shorten = $l1;
+		}
+		$short = truncate_string($articlecontent, $shorten, '');
+		// drop open tag strings
+		$open = mb_strrpos($short, '<');
+		if ($open > mb_strrpos($short, '>')) {
+			$short = mb_substr($short, 0, $open);
+		}
+		if (class_exists('tidy')) {
+			$tidy = new tidy();
+			$tidy->parseString($short.$shortenindicator,array('show-body-only'=>true),'utf8');
+			$tidy->cleanRepair();
+			$short = trim($tidy);
+		} else {
+			$short = trim(cleanHTML($short.$shortenindicator));
+		}
+		return $short;
+	}
+	return $articlecontent;
 }
 
 /**
@@ -252,20 +300,28 @@ function is_valid_email_zp($input_email) {
  *
  * @param string $subject  The subject of the email.
  * @param string $message  The message contents of the email.
- * @param string $from_mail Optional sender for the email.
- * @param string $from_name Optional sender for the name.
- * @param array $email_list a list of email addresses
+ * @param array $email_list a list of email addresses to send to
  * @param array $cc_addresses a list of addresses to send copies to.
  * @param array $bcc_addresses a list of addresses to send blind copies to.
+ * @param string $replyTo reply-to address
  *
  * @return string
  *
  * @author Todd Papaioannou (lucky@luckyspin.org)
  * @since  1.0.0
  */
-function zp_mail($subject, $message, $email_list=NULL, $cc_addresses=NULL, $bcc_addresses=NULL) {
+function zp_mail($subject, $message, $email_list=NULL, $cc_addresses=NULL, $bcc_addresses=NULL, $replyTo=NULL) {
 	global $_zp_authority, $_zp_gallery;
 	$result = '';
+	if ($replyTo) {
+		$t = $replyTo;
+		if (!is_valid_email_zp($m = array_shift($t))) {
+			if (empty($result)) {
+				$result = gettext('Mail send failed.');
+			}
+			$result .= sprintf(gettext('Invalid "reply-to" mail address %s.'),$m);
+		}
+	}
 	if (is_null($email_list)) {
 		$email_list = $_zp_authority->getAdminEmail();
 	} else {
@@ -351,11 +407,11 @@ function zp_mail($subject, $message, $email_list=NULL, $cc_addresses=NULL, $bcc_
 
 			// Send the mail
 			if (count($email_list) > 0) {
-				$result = zp_apply_filter('sendmail', '', $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses); // will be true if all mailers succeeded
+				$result = zp_apply_filter('sendmail', '', $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $replyTo); // will be true if all mailers succeeded
 			}
 			if (count($bcc_addresses) > 0) {
 				foreach ($bcc_addresses as $bcc) {
-					$result = zp_apply_filter('sendmail', '', array($bcc), $subject, $message, $from_mail, $from_name, array()); // will be true if all mailers succeeded
+					$result = zp_apply_filter('sendmail', '', array($bcc), $subject, $message, $from_mail, $from_name, array(), $replyTo); // will be true if all mailers succeeded
 				}
 			}
 		} else {
@@ -419,7 +475,7 @@ function checkAlbumPassword($album, &$hint=NULL) {
 		$album = $album->getParent();
 		while (!is_null($album)) {
 			$hash = $album->getPassword();
-			$authType = "zp_album_auth_" . $album->get('id');
+			$authType = "zp_album_auth_" . $album->getID();
 			$saved_auth = zp_getCookie($authType);
 
 			if (!empty($hash)) {
@@ -446,7 +502,7 @@ function checkAlbumPassword($album, &$hint=NULL) {
 			}
 		}
 	} else {
-		$authType = "zp_album_auth_" . $album->get('id');
+		$authType = "zp_album_auth_" . $album->getID();
 		$saved_auth = zp_getCookie($authType);
 		if ($saved_auth != $hash) {
 			$hint = $album->getPasswordHint();
@@ -560,10 +616,10 @@ function getEnabledPlugins() {
 	foreach ($sortlist as $extension=>$path) {
 		$opt = 'zp_plugin_'.$extension;
 		if ($option = getOption($opt)) {
-			$_EnabledPlugins[$extension] = $option;
+			$_EnabledPlugins[$extension] = array('priority'=>$option, 'path'=>$path);
 		}
 	}
-	arsort($_EnabledPlugins);
+	$_EnabledPlugins = sortMultiArray($_EnabledPlugins, 'priority', true);
 	return $_EnabledPlugins;
 }
 
@@ -693,7 +749,7 @@ function populateManagedObjectsList($type,$id,$rights=false) {
 		return array();
 	}
 	$cv = array();
-	if (empty($type) || $type=='albums' || $type=='album') {
+	if (empty($type) || substr($type,0,5)=='album') {
 		$sql = "SELECT ".prefix('albums').".`folder`,".prefix('albums').".`title`,".prefix('admin_to_object').".`edit` FROM ".prefix('albums').", ".
 						prefix('admin_to_object')." WHERE ".prefix('admin_to_object').".adminid=".$id.
 						" AND ".prefix('albums').".id=".prefix('admin_to_object').".objectid AND ".prefix('admin_to_object').".type LIKE 'album%'";
@@ -1186,6 +1242,9 @@ function sortMultiArray($array, $index, $descending=false, $natsort=true, $case_
 					$temp[$key] .= $row[$index];
 				}
 			}
+			if ($temp[$key]==='') {
+				$temp[$key] = 'ZZZ';
+			}
 		}
 		if($natsort) {
 			if ($case_sensitive) {
@@ -1330,11 +1389,6 @@ function zp_setCookie($name, $value, $time=NULL, $path=NULL, $secure=false) {
 	}
 	if (substr($path, -1, 1) != '/') $path .= '/';
 	if (DEBUG_LOGIN) {
-		if (isset($_SESSION[$name])) {
-			$sessionv = $_SESSION[$name];
-		} else {
-			$sessionv = '';
-		}
 		debugLog("zp_setCookie($name, $value, $time, $path)::album_session=".GALLERY_SESSION."; SESSION=".session_id());
 	}
 	if (($time < 0) || !GALLERY_SESSION) {
@@ -1580,7 +1634,7 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
 			$check_auth = getOption('search_password');
 			$check_user = getOption('search_user');
 		} else if (in_context(ZP_ALBUM)) { // album page
-			$authType = "zp_album_auth_" . $_zp_current_album->get('id');
+			$authType = "zp_album_auth_" . $_zp_current_album->getID();
 			$check_auth = $_zp_current_album->getPassword();
 			$check_user = $_zp_current_album->getUser();
 			if (empty($check_auth)) {
@@ -1588,13 +1642,13 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
 				while (!is_null($parent)) {
 					$check_auth = $parent->getPassword();
 					$check_user = $parent->getUser();
-					$authType = "zp_album_auth_" . $parent->get('id');
+					$authType = "zp_album_auth_" . $parent->getID();
 					if (!empty($check_auth)) { break; }
 					$parent = $parent->getParent();
 				}
 			}
 		} else if (in_context(ZP_ZENPAGE_PAGE)) {
-			$authType = "zp_page_auth_" . $_zp_current_zenpage_page->get('id');
+			$authType = "zp_page_auth_" . $_zp_current_zenpage_page->getID();
 			$check_auth = $_zp_current_zenpage_page->getPassword();
 			$check_user = $_zp_current_zenpage_page->getUser();
 			if (empty($check_auth)) {
@@ -1605,7 +1659,7 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
 					$sql = 'SELECT `titlelink` FROM '.prefix('pages').' WHERE `id`='.$parentID;
 					$result = query_single_row($sql);
 					$pageobj = new ZenpagePage($result['titlelink']);
-					$authType = "zp_page_auth_" . $pageobj->get('id');
+					$authType = "zp_page_auth_" . $pageobj->getID();
 					$check_auth = $pageobj->getPassword();
 					$check_user = $pageobj->getUser();
 				}
@@ -2073,6 +2127,8 @@ function reveal($content, $visible=false) {
 
 class zpFunctions {
 
+	var $name = NULL;	// "captcha" name if no captcha plugin loaded
+
 	/**
 	 *
 	 * creates an SEO language prefix list
@@ -2256,6 +2312,61 @@ class zpFunctions {
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * inserts location independent WEB path tags in place of site path tags
+	 * @param string $text
+	 */
+	static function tagURLs($text) {
+		return str_replace(WEBPATH, '{*WEBPATH*}', str_replace(FULLWEBPATH, '{*FULLWEBPATH*}', $text));
+	}
+	/**
+	 * reverses tagURLs()
+	 * @param string $text
+	 * @return string
+	 */
+	static function unTagURLs($text) {
+		return str_replace('{*WEBPATH*}', WEBPATH, str_replace('{*FULLWEBPATH*}', FULLWEBPATH, $text));
+	}
+
+	/**
+	 * Standins for when no captcha is enabled
+	 */
+	function getCaptcha() {
+		return array('input'=>'', 'html'=>'<p class="errorbox">'.gettext('No captcha handler is enabled.').'</p>', 'hidden'=>'');
+	}
+	function checkCaptcha($s1, $s2) {
+		return true;
+	}
+	function getOptionsSupported() {
+		$option['note'] = array('key' => 'captcha_note',
+														'type' => OPTION_TYPE_NOTE,
+														'desc' => gettext('<p class="notebox">'.gettext('No captcha handler is enabled.').'</p>'));
+		return $option;
+	}
+
+	/**
+	 * Searches out i.php image links and replaces them with cache links if image is cached
+	 * @param string $text
+	 * @return string
+	 */
+	static function updateImageProcessorLink($text) {
+		preg_match_all('|\<\s*img.*?\ssrc\s*=\s*"(.*i\.php\?([^"]*)).*/\>|', $text, $matches);
+		foreach ($matches[2] as $key=>$match) {
+			$match = explode('&amp;',$match);
+			$set = array();
+			foreach ($match as $v) {
+				$s = explode('=',$v);
+				$set[$s[0]] = $s[1];
+			}
+			$args = getImageArgs($set);
+			$imageuri = getImageURI($args, $set['a'], $set['i'], NULL);
+			if (strpos($imageuri, 'i.php')===false) {
+				$text = str_replace($matches[1], $imageuri, $text);
+			}
+		}
+		return $text;
 	}
 
 }

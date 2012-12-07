@@ -51,13 +51,14 @@ if (DEBUG_PLUGINS) {
 	debugLog('Loading the "theme" plugins.');
 }
 $_zp_loaded_plugins = array();
-foreach (getEnabledPlugins() as $extension=>$loadtype) {
+foreach (getEnabledPlugins() as $extension=>$plugin) {
+	$loadtype = $plugin['priority'];
 	if ($loadtype&THEME_PLUGIN) {
 		if (DEBUG_PLUGINS) {
 			list($usec, $sec) = explode(" ", microtime());
 			$start = (float)$usec + (float)$sec;
 		}
-		require_once(getPlugin($extension.'.php'));
+		require_once($plugin['path']);
 		if (DEBUG_PLUGINS) {
 				list($usec, $sec) = explode(" ", microtime());
 				$end = (float)$usec + (float)$sec;

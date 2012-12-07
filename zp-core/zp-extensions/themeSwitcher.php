@@ -16,6 +16,7 @@
  * the control links.
  *
  * @package plugins
+ * @subpackage development
  */
 
 $plugin_is_filter = 98|CLASS_PLUGIN;
@@ -116,12 +117,14 @@ class themeSwitcher {
 	 * @param string $text link text
 	 */
 	static function controlLink($textIn=NULL) {
-		global $_zp_gallery, $_themeSwitcherThemelist;
+		global $_zp_gallery, $_themeSwitcherThemelist, $_zp_gallery_page;
 		if (self::active()) {
 			$themes = array();
 			foreach ($_zp_gallery->getThemes() as $theme=>$details) {
 				if ($_themeSwitcherThemelist[$theme]) {
-					$themes[$details['name']] = $theme;
+					if (getPlugin($_zp_gallery_page, $theme)) {
+						$themes[$details['name']] = $theme;
+					}
 				}
 			}
 			$text = $textIn;
@@ -134,13 +137,16 @@ class themeSwitcher {
 			} else {
 				$reloc .= '?themeSwitcher=%t';
 			}
+			$theme = $_zp_gallery->getCurrentTheme();
 			?>
 			<span class="themeSwitcherControlLink">
-				<?php echo $text; ?>
-				<select name="themeSwitcher" id="themeSwitcher" onchange="switchTheme('<?php echo html_encode($reloc); ?>')">
-					<?php generateListFromArray(array($_zp_gallery->getCurrentTheme()), $themes, false, true); ?>
-				</select>
-				<?php zp_apply_filter('themeSwitcher_Controllink',''); ?>
+				 <span title="<?php echo gettext("Themes will not show in this list if selecting them would result in a 'not found' error."); ?>">
+					<?php echo $text; ?>
+					<select name="themeSwitcher" id="themeSwitcher" onchange="switchTheme('<?php echo html_encode($reloc); ?>')">
+						<?php generateListFromArray(array($theme), $themes, false, true); ?>
+					</select>
+				</span>
+				<?php zp_apply_filter('themeSwitcher_Controllink',$theme); ?>
 			</span>
 		<?php
 		}

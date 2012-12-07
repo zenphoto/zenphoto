@@ -174,6 +174,19 @@ $last = '';
 			$('.'+theme).removeAttr('checked');
 		}
 	}
+	function showTheme(theme) {
+		html = $('#'+theme+'_arrow').html();
+		if (html.match(/down/)) {
+			html = html.replace(/_down/,'_up');
+			html = html.replace(/title="<?php echo gettext('Show'); ?>/,'title="<?php echo gettext('Hide'); ?>"');
+			$('#'+theme+'_list').show();
+		} else {
+			html = html.replace(/_up/,'_down');
+			html = html.replace(/title="<?php echo gettext('Hide'); ?>/,'title="<?php echo gettext('Show'); ?>"');
+			$('#'+theme+'_list').hide();
+		}
+		$('#'+theme+'_arrow').html(html);
+	}
 	//]]> -->
 </script>
 <form name="size_selections" action="?select&album=<?php echo $alb; ?>" method="post">
@@ -228,10 +241,16 @@ $last = '';
 					$last = $theme;
 					?>
 					<li>
+						<span class="icons" id="<?php echo $theme; ?>_arrow">
+							<a href="javascript:showTheme('<?php echo $theme; ?>');" title="<?php echo gettext('Show'); ?>">
+								<img class="icon-position-top4" src="<?php echo WEBPATH.'/'.ZENFOLDER.'/images/arrow_down.png'; ?>" alt="" />
+							</a>
+						</span>
 						<label>
 							<input type="checkbox" name="<?php echo $theme; ?>" id="<?php echo $theme; ?>" value="" onclick="checkTheme('<?php echo $theme; ?>');"<?php echo $checked; ?> /><?php printf(gettext('all sizes for <i>%1$s</i>'), $themeid); ?>
 						</label>
-						<ol class="no_bullets">
+						<span id="<?php echo $theme; ?>_list" style="display:none">
+							<ol class="no_bullets">
 					<?php
 				}
 				$show = true;
@@ -263,7 +282,8 @@ $last = '';
 		}
 		if (!is_array($enabled)) {
 		?>
-				</ol>
+					</ol>
+				</span>
 			</li>
 			<?php
 		}

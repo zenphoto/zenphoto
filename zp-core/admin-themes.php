@@ -190,7 +190,7 @@ echo "\n" . '<div id="content">';
 		<th><b><?php echo gettext('Action'); ?></b></th>
 	</tr>
 	<?php
-	$zenphoto_date = zpFormattedDate(DATE_FORMAT,filemtime(SERVERPATH.'/'.ZENFOLDER.'/version.php'));
+	$zenphoto_date = date('Y-m-d H:i:s',filemtime(SERVERPATH.'/'.ZENFOLDER.'/version.php'));
 $current_theme_style = 'class="currentselection"';
 foreach($themes as $theme => $themeinfo) {
 	$style = ($theme == $current_theme) ? ' '.$current_theme_style : '';

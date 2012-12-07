@@ -39,26 +39,26 @@ function switcher_controllink($html) {
 	if (!$personality) {
 		$personality = getOption('garland_personality');
 	}
-	echo gettext('Personality');
 	?>
 	<span id="themeSwitcher_garland">
-		<select name="themePersonality" id="themePersonality" onchange="switchPersonality();">
-			<?php generateListFromArray(array($personality), $personalities, false, true); ?>
-		</select>
+		<span title="<?php echo gettext("Garland image display handling."); ?>">
+			<?php echo gettext('Personality'); ?>
+			<select name="themePersonality" id="themePersonality" onchange="switchPersonality();">
+				<?php generateListFromArray(array($personality), $personalities, false, true); ?>
+			</select>
+		</span>
 	</span>
 	<?php
 	return $html;
 }
 
 function gMapOptionsImage($map) {
-	$map->setWidth(535);
 }
 function gMapOptionsAlbum($map) {
 	global $points;
 	foreach ($points as $coord) {
 		addGeoCoord($map, $coord);
 	}
-	$map->setWidth(535);
 }
 
 function footer() {

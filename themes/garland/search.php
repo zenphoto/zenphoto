@@ -78,7 +78,7 @@ if (!$total) {
             <div class="main section" id="main">
               <h2 id="gallerytitle">
               	<?php printHomeLink('',' » '); ?>
-              	<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a> » <?php echo gettext('Search'); ?>
+              	<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a> » <?php printSearchBreadcrumb(' » '); ?>
               </h2>
 
 				<?php

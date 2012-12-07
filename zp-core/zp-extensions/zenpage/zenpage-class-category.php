@@ -23,7 +23,12 @@ class ZenpageCategory extends ZenpageRoot {
 	 * @return string
 	 */
 	function getDesc($locale=NULL) {
-		return get_language_string($this->get('desc'),$locale);
+		$text = $this->get('desc');
+		if ($locale !=='all') {
+			$text = get_language_string($text,$locale);
+		}
+		$text = zpFunctions::unTagURLs($text);
+		return $text;
 	}
 
 	/**
@@ -31,7 +36,56 @@ class ZenpageCategory extends ZenpageRoot {
 	 *
 	 * @param string $desc description text
 	 */
-	function setDesc($desc) { $this->set('desc', $desc); }
+	function setDesc($desc) {
+		$desc = zpFunctions::tagURLs($desc);
+		$this->set('desc', $desc);
+	}
+
+	/**
+	 * Returns the content
+	 *
+	 * @return string
+	 */
+	function getContent($locale=NULL) {
+		$content = $this->get("content");
+		if ($locale!=='all') {
+			$content = get_language_string($text,$locale);
+		}
+		$content = zpFunctions::unTagURLs($content);
+		return $content;
+	}
+
+	/**
+	 *
+	 * Set the content datum
+	 * @param $c full language string
+	 */
+	function setContent($c) {
+		$c = zpFunctions::tagURLs($c);
+		$this->set("content",$c);
+	}
+
+	/**
+	 * Returns the extra content
+	 *
+	 * @return string
+	 */
+	function getExtraContent($locale=NULL) {
+		$text =  $this->get("extracontent");
+		if ($locale!=='all') {
+			$text = get_language_string($text,$locale);
+		}
+		$text = zpFunctions::unTagURLs($text);
+		return $text;
+	}
+
+	/**
+	 * sets the extra content
+	 *
+	 */
+	function setExtraContent($ec) {
+		$this->set("extracontent",zpFunctions::tagURLs($ec));
+	}
 
 	/**
 	 * Returns the sort order
@@ -128,9 +182,8 @@ class ZenpageCategory extends ZenpageRoot {
 		}
 		if(count($subcategories) != 0) {
 			return $subcategories;
-		} else {
-			return FALSE;
 		}
+		return FALSE;
 	}
 
 	/**
@@ -280,11 +333,11 @@ class ZenpageCategory extends ZenpageRoot {
 	 */
 	function getArticles($articles_per_page=0, $published=NULL,$ignorepagination=false,$sortorder="date", $sortdirection="desc",$sticky=true) {
 		global $_zp_current_category, $_zp_post_date;
-		Zenpage::processExpired('news');
 		if (empty($published)) {
-			$published = "published";
 			if(zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
 				$published = "all";
+			} else {
+				$published = "published";
 			}
 		}
 		$show = "";

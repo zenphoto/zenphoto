@@ -8,6 +8,7 @@
  *
  * @author Malte Müller (acrylian)
  * @package plugins
+ * @subpackage seo
  */
 
 $plugin_description = gettext("A plugin to print the most common HTML meta tags to the head of your site's pages.");

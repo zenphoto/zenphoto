@@ -144,11 +144,11 @@ function setupLanguageArray() {
  */
 function generateLanguageList($all=false) {
 	global $_zp_languages, $_zp_active_languages, $_zp_all_languages;
-	if (is_null($_zp_languages)) {
-		setupLanguageArray();
-	}
-	$dir = @opendir(SERVERPATH . "/" . ZENFOLDER ."/locale/");
 	if (is_null($_zp_all_languages)) {
+		if (is_null($_zp_languages)) {
+			setupLanguageArray();
+		}
+		$dir = @opendir(SERVERPATH . "/" . ZENFOLDER ."/locale/");
 		$_zp_active_languages = $_zp_all_languages = array();
 		if ($dir !== false) {
 			while ($dirname = readdir($dir)) {
@@ -392,12 +392,11 @@ function parseHttpAcceptLanguage($str=NULL) {
  */
 function validateLocale($userlocale,$source) {
 	if (DEBUG_LOCALE) debugLog("validateLocale($userlocale,$source)");
-	$userlocale = str_replace('-', '_', $userlocale);
+	$userlocale = strtoupper(str_replace('-', '_', $userlocale));
 	$languageSupport = generateLanguageList();
 	$locale = NULL;
 	if (!empty($userlocale)) {
-			foreach ($languageSupport as $key=>$value) {
-			$userlocale = strtoupper($userlocale);
+		foreach ($languageSupport as $key=>$value) {
 			if (strtoupper($value) == $userlocale) { // we got a match
 				$locale = $value;
 				if (DEBUG_LOCALE) debugLog("locale set from $source: ".$locale);

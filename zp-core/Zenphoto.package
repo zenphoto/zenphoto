@@ -279,8 +279,8 @@ themes/zpmobile/jquerymobile/images/icons-18-black.png
 themes/zpmobile/jquerymobile/images/icons-18-white.png
 themes/zpmobile/jquerymobile/images/icons-36-black.png
 themes/zpmobile/jquerymobile/images/icons-36-white.png
-themes/zpmobile/jquerymobile/jquery.mobile-1.1.1.min.css
-themes/zpmobile/jquerymobile/jquery.mobile-1.1.1.min.js
+themes/zpmobile/jquerymobile/jquery.mobile-1.2.0.min.css
+themes/zpmobile/jquerymobile/jquery.mobile-1.2.0.min.js
 themes/zpmobile/news.php
 themes/zpmobile/pages.php
 themes/zpmobile/password.php
@@ -356,6 +356,7 @@ zp-core/gd_fonts/automatic.gdf
 zp-core/gd_fonts/azimov.gdf
 zp-core/gd_fonts/bubblebath.gdf
 zp-core/gd_fonts/cry.gdf
+zp-core/githead
 zp-core/global-definitions.php
 zp-core/gpl-2.0-standalone.htm
 zp-core/htaccess
@@ -499,6 +500,7 @@ zp-core/js/jqueryui/i18n/jquery.ui.datepicker-it.js
 zp-core/js/jqueryui/i18n/jquery.ui.datepicker-ja.js
 zp-core/js/jqueryui/i18n/jquery.ui.datepicker-nl.js
 zp-core/js/jqueryui/i18n/jquery.ui.datepicker-pl.js
+zp-core/js/jqueryui/i18n/jquery.ui.datepicker-ru.js
 zp-core/js/jqueryui/i18n/jquery.ui.datepicker-sk.js
 zp-core/js/jqueryui/i18n/jquery.ui.datepicker-sv.js
 zp-core/js/jqueryui/i18n/jquery.ui.datepicker-zh-CN.js
@@ -680,13 +682,6 @@ zp-core/zp-extensions/auto_backup.php
 zp-core/zp-extensions/cacheManager
 zp-core/zp-extensions/cacheManager.php
 zp-core/zp-extensions/cacheManager/cacheImages.php
-zp-core/zp-extensions/captcha
-zp-core/zp-extensions/captcha/reCaptcha
-zp-core/zp-extensions/captcha/reCaptcha.php
-zp-core/zp-extensions/captcha/reCaptcha/recaptchalib.php
-zp-core/zp-extensions/captcha/zenphoto
-zp-core/zp-extensions/captcha/zenphoto.php
-zp-core/zp-extensions/captcha/zenphoto/c.php
 zp-core/zp-extensions/check_for_update.php
 zp-core/zp-extensions/class-AnyFile
 zp-core/zp-extensions/class-AnyFile.php
@@ -805,7 +800,6 @@ zp-core/zp-extensions/deprecated-functions.php
 zp-core/zp-extensions/deprecated_functions
 zp-core/zp-extensions/deprecated_functions/check_for_deprecated.php
 zp-core/zp-extensions/deprecated_functions/functions.php
-zp-core/zp-extensions/displayErrors.php
 zp-core/zp-extensions/downloadList
 zp-core/zp-extensions/downloadList.php
 zp-core/zp-extensions/downloadList/download_statistics.php
@@ -888,15 +882,14 @@ zp-core/zp-extensions/flowplayer3
 zp-core/zp-extensions/flowplayer3.php
 zp-core/zp-extensions/flowplayer3/LICENSE.txt
 zp-core/zp-extensions/flowplayer3/controls.css
-zp-core/zp-extensions/flowplayer3/flowplayer-3.2.10.min.js
-zp-core/zp-extensions/flowplayer3/flowplayer-3.2.11.swf
-zp-core/zp-extensions/flowplayer3/flowplayer.audio-3.2.9.swf
-zp-core/zp-extensions/flowplayer3/flowplayer.content-3.2.8.swf
-zp-core/zp-extensions/flowplayer3/flowplayer.controls-3.2.11.swf
-zp-core/zp-extensions/flowplayer3/flowplayer.embed-3.2.9.min.js
-zp-core/zp-extensions/flowplayer3/flowplayer.ipad-3.2.9.min.js
-zp-core/zp-extensions/flowplayer3/flowplayer.playlist-3.2.9.min.js
-zp-core/zp-extensions/flowplayer3/flowplayer.sharing-3.2.8.swf
+zp-core/zp-extensions/flowplayer3/flowplayer-3.2.11.min.js
+zp-core/zp-extensions/flowplayer3/flowplayer-3.2.15.swf
+zp-core/zp-extensions/flowplayer3/flowplayer.audio-3.2.10.swf
+zp-core/zp-extensions/flowplayer3/flowplayer.controls-3.2.14.swf
+zp-core/zp-extensions/flowplayer3/flowplayer.embed-3.2.10.min.js
+zp-core/zp-extensions/flowplayer3/flowplayer.ipad-3.2.12.min.js
+zp-core/zp-extensions/flowplayer3/flowplayer.playlist-3.2.10.min.js
+zp-core/zp-extensions/flowplayer3/flowplayer.sharing-3.2.10.swf
 zp-core/zp-extensions/flowplayer3/flowplayer3_playlist.css
 zp-core/zp-extensions/flowplayer3/images
 zp-core/zp-extensions/flowplayer3/images/arrow_bottom_blue.png
@@ -993,6 +986,8 @@ zp-core/zp-extensions/jplayer/skin/zenphotolight/jplayer.zenphoto.play.png
 zp-core/zp-extensions/jplayer/skin/zenphotolight/jplayer.zenphoto.png
 zp-core/zp-extensions/jplayer/skin/zenphotolight/jplayer.zenphoto.seeking.gif
 zp-core/zp-extensions/jplayer/skin/zenphotolight/jplayer.zenphotolight.css
+zp-core/zp-extensions/legacySpam.php
+zp-core/zp-extensions/markRelease.php
 zp-core/zp-extensions/menu_manager
 zp-core/zp-extensions/menu_manager.php
 zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php
@@ -1018,6 +1013,9 @@ zp-core/zp-extensions/rating/jquery.MetaData.js
 zp-core/zp-extensions/rating/jquery.rating.css
 zp-core/zp-extensions/rating/jquery.rating.js
 zp-core/zp-extensions/rating/update.php
+zp-core/zp-extensions/reCaptcha
+zp-core/zp-extensions/reCaptcha.php
+zp-core/zp-extensions/reCaptcha/recaptchalib.php
 zp-core/zp-extensions/register_user
 zp-core/zp-extensions/register_user.php
 zp-core/zp-extensions/register_user/register_user_form.php
@@ -1031,6 +1029,7 @@ zp-core/zp-extensions/seo_locale.php
 zp-core/zp-extensions/seo_null.php
 zp-core/zp-extensions/seo_zenphoto.php
 zp-core/zp-extensions/show_not_logged-in.php
+zp-core/zp-extensions/simpleSpam.php
 zp-core/zp-extensions/site_upgrade
 zp-core/zp-extensions/site_upgrade.php
 zp-core/zp-extensions/site_upgrade/closed.php
@@ -1045,9 +1044,6 @@ zp-core/zp-extensions/slideshow/controls.png
 zp-core/zp-extensions/slideshow/flowplayerfullsizeicon.png
 zp-core/zp-extensions/slideshow/jquery.cycle.all.js
 zp-core/zp-extensions/slideshow/slideshow-counter.php
-zp-core/zp-extensions/spamfilters
-zp-core/zp-extensions/spamfilters/none.php
-zp-core/zp-extensions/spamfilters/simple.php
 zp-core/zp-extensions/static_html_cache.php
 zp-core/zp-extensions/tag_extras.php
 zp-core/zp-extensions/tag_suggest
@@ -1064,7 +1060,6 @@ zp-core/zp-extensions/tiny_mce/config/zenpage-default-light.js.php
 zp-core/zp-extensions/tiny_mce/config/zenphoto-default-with-customdatafield.js.php
 zp-core/zp-extensions/tiny_mce/config/zenphoto-default.js.php
 zp-core/zp-extensions/tiny_mce/langs
-zp-core/zp-extensions/tiny_mce/langs/cn.js
 zp-core/zp-extensions/tiny_mce/langs/de.js
 zp-core/zp-extensions/tiny_mce/langs/en.js
 zp-core/zp-extensions/tiny_mce/langs/es.js
@@ -1076,6 +1071,7 @@ zp-core/zp-extensions/tiny_mce/langs/nl.js
 zp-core/zp-extensions/tiny_mce/langs/pl.js
 zp-core/zp-extensions/tiny_mce/langs/sk.js
 zp-core/zp-extensions/tiny_mce/langs/sv.js
+zp-core/zp-extensions/tiny_mce/langs/zh-cn.js
 zp-core/zp-extensions/tiny_mce/langs/zh-tw.js
 zp-core/zp-extensions/tiny_mce/plugins
 zp-core/zp-extensions/tiny_mce/plugins/advhr
@@ -1086,7 +1082,6 @@ zp-core/zp-extensions/tiny_mce/plugins/advhr/editor_plugin_src.js
 zp-core/zp-extensions/tiny_mce/plugins/advhr/js
 zp-core/zp-extensions/tiny_mce/plugins/advhr/js/rule.js
 zp-core/zp-extensions/tiny_mce/plugins/advhr/langs
-zp-core/zp-extensions/tiny_mce/plugins/advhr/langs/cn_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/advhr/langs/de_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/advhr/langs/en_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/advhr/langs/es_dlg.js
@@ -1098,6 +1093,7 @@ zp-core/zp-extensions/tiny_mce/plugins/advhr/langs/nl_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/advhr/langs/pl_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/advhr/langs/sk_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/advhr/langs/sv_dlg.js
+zp-core/zp-extensions/tiny_mce/plugins/advhr/langs/zh-cn_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/advhr/langs/zh-tw_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/advhr/rule.htm
 zp-core/zp-extensions/tiny_mce/plugins/advimage
@@ -1111,7 +1107,6 @@ zp-core/zp-extensions/tiny_mce/plugins/advimage/img/sample.gif
 zp-core/zp-extensions/tiny_mce/plugins/advimage/js
 zp-core/zp-extensions/tiny_mce/plugins/advimage/js/image.js
 zp-core/zp-extensions/tiny_mce/plugins/advimage/langs
-zp-core/zp-extensions/tiny_mce/plugins/advimage/langs/cn_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/advimage/langs/de_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/advimage/langs/en_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/advimage/langs/es_dlg.js
@@ -1123,6 +1118,7 @@ zp-core/zp-extensions/tiny_mce/plugins/advimage/langs/nl_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/advimage/langs/pl_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/advimage/langs/sk_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/advimage/langs/sv_dlg.js
+zp-core/zp-extensions/tiny_mce/plugins/advimage/langs/zh-cn_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/advimage/langs/zh-tw_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/advlink
 zp-core/zp-extensions/tiny_mce/plugins/advlink/css
@@ -1132,7 +1128,6 @@ zp-core/zp-extensions/tiny_mce/plugins/advlink/editor_plugin_src.js
 zp-core/zp-extensions/tiny_mce/plugins/advlink/js
 zp-core/zp-extensions/tiny_mce/plugins/advlink/js/advlink.js
 zp-core/zp-extensions/tiny_mce/plugins/advlink/langs
-zp-core/zp-extensions/tiny_mce/plugins/advlink/langs/cn_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/advlink/langs/de_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/advlink/langs/en_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/advlink/langs/es_dlg.js
@@ -1144,6 +1139,7 @@ zp-core/zp-extensions/tiny_mce/plugins/advlink/langs/nl_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/advlink/langs/pl_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/advlink/langs/sk_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/advlink/langs/sv_dlg.js
+zp-core/zp-extensions/tiny_mce/plugins/advlink/langs/zh-cn_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/advlink/langs/zh-tw_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/advlink/link.htm
 zp-core/zp-extensions/tiny_mce/plugins/advlist
@@ -1370,8 +1366,6 @@ zp-core/zp-extensions/tiny_mce/plugins/autoresize/editor_plugin_src.js
 zp-core/zp-extensions/tiny_mce/plugins/autosave
 zp-core/zp-extensions/tiny_mce/plugins/autosave/editor_plugin.js
 zp-core/zp-extensions/tiny_mce/plugins/autosave/editor_plugin_src.js
-zp-core/zp-extensions/tiny_mce/plugins/autosave/langs
-zp-core/zp-extensions/tiny_mce/plugins/autosave/langs/en.js
 zp-core/zp-extensions/tiny_mce/plugins/bbcode
 zp-core/zp-extensions/tiny_mce/plugins/bbcode/editor_plugin.js
 zp-core/zp-extensions/tiny_mce/plugins/bbcode/editor_plugin_src.js
@@ -1405,7 +1399,6 @@ zp-core/zp-extensions/tiny_mce/plugins/emotions/img/smiley-yell.gif
 zp-core/zp-extensions/tiny_mce/plugins/emotions/js
 zp-core/zp-extensions/tiny_mce/plugins/emotions/js/emotions.js
 zp-core/zp-extensions/tiny_mce/plugins/emotions/langs
-zp-core/zp-extensions/tiny_mce/plugins/emotions/langs/cn_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/emotions/langs/de_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/emotions/langs/en_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/emotions/langs/es_dlg.js
@@ -1417,6 +1410,7 @@ zp-core/zp-extensions/tiny_mce/plugins/emotions/langs/nl_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/emotions/langs/pl_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/emotions/langs/sk_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/emotions/langs/sv_dlg.js
+zp-core/zp-extensions/tiny_mce/plugins/emotions/langs/zh-cn_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/emotions/langs/zh-tw_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/example
 zp-core/zp-extensions/tiny_mce/plugins/example/dialog.htm
@@ -1441,7 +1435,6 @@ zp-core/zp-extensions/tiny_mce/plugins/fullpage/fullpage.htm
 zp-core/zp-extensions/tiny_mce/plugins/fullpage/js
 zp-core/zp-extensions/tiny_mce/plugins/fullpage/js/fullpage.js
 zp-core/zp-extensions/tiny_mce/plugins/fullpage/langs
-zp-core/zp-extensions/tiny_mce/plugins/fullpage/langs/cn_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/fullpage/langs/de_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/fullpage/langs/en_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/fullpage/langs/es_dlg.js
@@ -1453,6 +1446,7 @@ zp-core/zp-extensions/tiny_mce/plugins/fullpage/langs/nl_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/fullpage/langs/pl_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/fullpage/langs/sk_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/fullpage/langs/sv_dlg.js
+zp-core/zp-extensions/tiny_mce/plugins/fullpage/langs/zh-cn_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/fullpage/langs/zh-tw_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/fullscreen
 zp-core/zp-extensions/tiny_mce/plugins/fullscreen/editor_plugin.js
@@ -1497,7 +1491,6 @@ zp-core/zp-extensions/tiny_mce/plugins/media/js
 zp-core/zp-extensions/tiny_mce/plugins/media/js/embed.js
 zp-core/zp-extensions/tiny_mce/plugins/media/js/media.js
 zp-core/zp-extensions/tiny_mce/plugins/media/langs
-zp-core/zp-extensions/tiny_mce/plugins/media/langs/cn_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/media/langs/de_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/media/langs/en_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/media/langs/es_dlg.js
@@ -1509,6 +1502,7 @@ zp-core/zp-extensions/tiny_mce/plugins/media/langs/nl_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/media/langs/pl_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/media/langs/sk_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/media/langs/sv_dlg.js
+zp-core/zp-extensions/tiny_mce/plugins/media/langs/zh-cn_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/media/langs/zh-tw_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/media/media.htm
 zp-core/zp-extensions/tiny_mce/plugins/media/moxieplayer.swf
@@ -1528,7 +1522,6 @@ zp-core/zp-extensions/tiny_mce/plugins/paste/js
 zp-core/zp-extensions/tiny_mce/plugins/paste/js/pastetext.js
 zp-core/zp-extensions/tiny_mce/plugins/paste/js/pasteword.js
 zp-core/zp-extensions/tiny_mce/plugins/paste/langs
-zp-core/zp-extensions/tiny_mce/plugins/paste/langs/cn_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/paste/langs/de_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/paste/langs/en_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/paste/langs/es_dlg.js
@@ -1540,6 +1533,7 @@ zp-core/zp-extensions/tiny_mce/plugins/paste/langs/nl_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/paste/langs/pl_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/paste/langs/sk_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/paste/langs/sv_dlg.js
+zp-core/zp-extensions/tiny_mce/plugins/paste/langs/zh-cn_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/paste/langs/zh-tw_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/paste/pastetext.htm
 zp-core/zp-extensions/tiny_mce/plugins/paste/pasteword.htm
@@ -1564,7 +1558,6 @@ zp-core/zp-extensions/tiny_mce/plugins/searchreplace/editor_plugin_src.js
 zp-core/zp-extensions/tiny_mce/plugins/searchreplace/js
 zp-core/zp-extensions/tiny_mce/plugins/searchreplace/js/searchreplace.js
 zp-core/zp-extensions/tiny_mce/plugins/searchreplace/langs
-zp-core/zp-extensions/tiny_mce/plugins/searchreplace/langs/cn_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/searchreplace/langs/de_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/searchreplace/langs/en_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/searchreplace/langs/es_dlg.js
@@ -1576,6 +1569,7 @@ zp-core/zp-extensions/tiny_mce/plugins/searchreplace/langs/nl_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/searchreplace/langs/pl_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/searchreplace/langs/sk_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/searchreplace/langs/sv_dlg.js
+zp-core/zp-extensions/tiny_mce/plugins/searchreplace/langs/zh-cn_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/searchreplace/langs/zh-tw_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/searchreplace/searchreplace.htm
 zp-core/zp-extensions/tiny_mce/plugins/spellchecker
@@ -1593,7 +1587,6 @@ zp-core/zp-extensions/tiny_mce/plugins/style/editor_plugin_src.js
 zp-core/zp-extensions/tiny_mce/plugins/style/js
 zp-core/zp-extensions/tiny_mce/plugins/style/js/props.js
 zp-core/zp-extensions/tiny_mce/plugins/style/langs
-zp-core/zp-extensions/tiny_mce/plugins/style/langs/cn_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/style/langs/de_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/style/langs/en_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/style/langs/es_dlg.js
@@ -1605,6 +1598,7 @@ zp-core/zp-extensions/tiny_mce/plugins/style/langs/nl_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/style/langs/pl_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/style/langs/sk_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/style/langs/sv_dlg.js
+zp-core/zp-extensions/tiny_mce/plugins/style/langs/zh-cn_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/style/langs/zh-tw_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/style/props.htm
 zp-core/zp-extensions/tiny_mce/plugins/style/readme.txt
@@ -1625,7 +1619,6 @@ zp-core/zp-extensions/tiny_mce/plugins/table/js/merge_cells.js
 zp-core/zp-extensions/tiny_mce/plugins/table/js/row.js
 zp-core/zp-extensions/tiny_mce/plugins/table/js/table.js
 zp-core/zp-extensions/tiny_mce/plugins/table/langs
-zp-core/zp-extensions/tiny_mce/plugins/table/langs/cn_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/table/langs/de_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/table/langs/en_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/table/langs/es_dlg.js
@@ -1637,6 +1630,7 @@ zp-core/zp-extensions/tiny_mce/plugins/table/langs/nl_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/table/langs/pl_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/table/langs/sk_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/table/langs/sv_dlg.js
+zp-core/zp-extensions/tiny_mce/plugins/table/langs/zh-cn_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/table/langs/zh-tw_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/table/merge_cells.htm
 zp-core/zp-extensions/tiny_mce/plugins/table/row.htm
@@ -1650,7 +1644,6 @@ zp-core/zp-extensions/tiny_mce/plugins/template/editor_plugin_src.js
 zp-core/zp-extensions/tiny_mce/plugins/template/js
 zp-core/zp-extensions/tiny_mce/plugins/template/js/template.js
 zp-core/zp-extensions/tiny_mce/plugins/template/langs
-zp-core/zp-extensions/tiny_mce/plugins/template/langs/cn_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/template/langs/de_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/template/langs/en_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/template/langs/es_dlg.js
@@ -1662,6 +1655,7 @@ zp-core/zp-extensions/tiny_mce/plugins/template/langs/nl_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/template/langs/pl_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/template/langs/sk_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/template/langs/sv_dlg.js
+zp-core/zp-extensions/tiny_mce/plugins/template/langs/zh-cn_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/template/langs/zh-tw_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/template/template.htm
 zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage
@@ -1715,7 +1709,6 @@ zp-core/zp-extensions/tiny_mce/plugins/xhtmlxtras/js/del.js
 zp-core/zp-extensions/tiny_mce/plugins/xhtmlxtras/js/element_common.js
 zp-core/zp-extensions/tiny_mce/plugins/xhtmlxtras/js/ins.js
 zp-core/zp-extensions/tiny_mce/plugins/xhtmlxtras/langs
-zp-core/zp-extensions/tiny_mce/plugins/xhtmlxtras/langs/cn_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/xhtmlxtras/langs/de_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/xhtmlxtras/langs/en_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/xhtmlxtras/langs/es_dlg.js
@@ -1727,6 +1720,7 @@ zp-core/zp-extensions/tiny_mce/plugins/xhtmlxtras/langs/nl_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/xhtmlxtras/langs/pl_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/xhtmlxtras/langs/sk_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/xhtmlxtras/langs/sv_dlg.js
+zp-core/zp-extensions/tiny_mce/plugins/xhtmlxtras/langs/zh-cn_dlg.js
 zp-core/zp-extensions/tiny_mce/plugins/xhtmlxtras/langs/zh-tw_dlg.js
 zp-core/zp-extensions/tiny_mce/themes
 zp-core/zp-extensions/tiny_mce/themes/advanced
@@ -1758,8 +1752,6 @@ zp-core/zp-extensions/tiny_mce/themes/advanced/js/image.js
 zp-core/zp-extensions/tiny_mce/themes/advanced/js/link.js
 zp-core/zp-extensions/tiny_mce/themes/advanced/js/source_editor.js
 zp-core/zp-extensions/tiny_mce/themes/advanced/langs
-zp-core/zp-extensions/tiny_mce/themes/advanced/langs/cn.js
-zp-core/zp-extensions/tiny_mce/themes/advanced/langs/cn_dlg.js
 zp-core/zp-extensions/tiny_mce/themes/advanced/langs/de.js
 zp-core/zp-extensions/tiny_mce/themes/advanced/langs/de_dlg.js
 zp-core/zp-extensions/tiny_mce/themes/advanced/langs/en.js
@@ -1782,6 +1774,8 @@ zp-core/zp-extensions/tiny_mce/themes/advanced/langs/sk.js
 zp-core/zp-extensions/tiny_mce/themes/advanced/langs/sk_dlg.js
 zp-core/zp-extensions/tiny_mce/themes/advanced/langs/sv.js
 zp-core/zp-extensions/tiny_mce/themes/advanced/langs/sv_dlg.js
+zp-core/zp-extensions/tiny_mce/themes/advanced/langs/zh-cn.js
+zp-core/zp-extensions/tiny_mce/themes/advanced/langs/zh-cn_dlg.js
 zp-core/zp-extensions/tiny_mce/themes/advanced/langs/zh-tw.js
 zp-core/zp-extensions/tiny_mce/themes/advanced/langs/zh-tw_dlg.js
 zp-core/zp-extensions/tiny_mce/themes/advanced/link.htm
@@ -1819,7 +1813,6 @@ zp-core/zp-extensions/tiny_mce/themes/simple/editor_template_src.js
 zp-core/zp-extensions/tiny_mce/themes/simple/img
 zp-core/zp-extensions/tiny_mce/themes/simple/img/icons.gif
 zp-core/zp-extensions/tiny_mce/themes/simple/langs
-zp-core/zp-extensions/tiny_mce/themes/simple/langs/cn.js
 zp-core/zp-extensions/tiny_mce/themes/simple/langs/de.js
 zp-core/zp-extensions/tiny_mce/themes/simple/langs/en.js
 zp-core/zp-extensions/tiny_mce/themes/simple/langs/es.js
@@ -1831,6 +1824,7 @@ zp-core/zp-extensions/tiny_mce/themes/simple/langs/nl.js
 zp-core/zp-extensions/tiny_mce/themes/simple/langs/pl.js
 zp-core/zp-extensions/tiny_mce/themes/simple/langs/sk.js
 zp-core/zp-extensions/tiny_mce/themes/simple/langs/sv.js
+zp-core/zp-extensions/tiny_mce/themes/simple/langs/zh-cn.js
 zp-core/zp-extensions/tiny_mce/themes/simple/langs/zh-tw.js
 zp-core/zp-extensions/tiny_mce/themes/simple/skins
 zp-core/zp-extensions/tiny_mce/themes/simple/skins/default
@@ -1849,6 +1843,7 @@ zp-core/zp-extensions/tiny_mce/utils/editable_selects.js
 zp-core/zp-extensions/tiny_mce/utils/form_utils.js
 zp-core/zp-extensions/tiny_mce/utils/mctabs.js
 zp-core/zp-extensions/tiny_mce/utils/validate.js
+zp-core/zp-extensions/trivialSpam.php
 zp-core/zp-extensions/tweet_news
 zp-core/zp-extensions/tweet_news.php
 zp-core/zp-extensions/tweet_news/OAuth.php
@@ -1924,4 +1919,7 @@ zp-core/zp-extensions/zenphoto_news
 zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
-1926
+zp-core/zp-extensions/zpCaptcha
+zp-core/zp-extensions/zpCaptcha.php
+zp-core/zp-extensions/zpCaptcha/c.php
+1924

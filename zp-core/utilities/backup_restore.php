@@ -135,7 +135,7 @@ echo '</head>';
 
 $messages = '';
 
-$prefix = prefix();
+$prefix = trim(prefix(),'`');
 
 if (isset($_REQUEST['backup']) && db_connect()) {
 	$compression_level = sanitize($_REQUEST['compress'],3);
@@ -164,7 +164,7 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 			mkdir ($folder, FOLDER_MOD);
 		}
 		@chmod($folder, FOLDER_MOD);
-		$handle = fopen($filename, 'w');
+		$writeresult = $handle = @fopen($filename, 'w');
 		if ($handle === false) {
 			printf(gettext('Failed to open %s for writing.'), $filename);
 		} else {
@@ -250,7 +250,7 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 		if (file_exists($filename)) {
 			$handle = fopen($filename, 'r');
 			if ($handle !== false) {
-				$prefix = prefix();
+				$prefix = trim(prefix(),'`');
 				$resource = db_show('tables');
 				if ($resource) {
 					$result = array();
@@ -497,7 +497,7 @@ if (db_connect()) {
 	<p>
 		<?php printf(gettext("Database software <strong>%s</strong>"),DATABASE_SOFTWARE); ?><br />
 		<?php printf(gettext("Database name <strong>%s</strong>"),db_name()); ?><br />
-		<?php printf(gettext("Tables prefix <strong>%s</strong>"), prefix()); ?>
+		<?php printf(gettext("Tables prefix <strong>%s</strong>"), trim(prefix(),'`')); ?>
 	</p>
 	<br />
 	<br />

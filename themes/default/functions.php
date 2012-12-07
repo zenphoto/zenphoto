@@ -58,11 +58,13 @@ function switcher_controllink($ignore) {
 	if (!$color) {
 		$color = getOption('Theme_colors');
 	}
-	echo gettext('Theme Color');
 	?>
-	<select name="themeColor" id="themeColor" onchange="switchColors();">
-		<?php generateListFromArray(array($color), $themecolors, false, false); ?>
-	</select>
+	<span title="<?php echo gettext("Default theme color scheme."); ?>">
+		<?php echo gettext('Theme Color'); ?>
+		<select name="themeColor" id="themeColor" onchange="switchColors();">
+			<?php generateListFromArray(array($color), $themecolors, false, false); ?>
+		</select>
+	</span>
 	<?php
 	return $ignore;
 }

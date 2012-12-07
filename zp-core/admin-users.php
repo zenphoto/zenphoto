@@ -78,143 +78,148 @@ if (isset($_GET['action'])) {
 			XSRFdefender('saveadmin');
 			$notify = $returntab = $msg = '';
 			if (isset($_POST['saveadminoptions'])) {
-				if (isset($_POST['alter_enabled']) || sanitize_numeric($_POST['totaladmins']) > 1 ||
-											trim(sanitize($_POST['adminuser0'],0)) != $_zp_current_admin_obj->getUser() ||
-											isset($_POST['0-newuser'])) {
-					if (!$_zp_current_admin_obj->reset) {
-						admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
+				if (isset($_POST['checkForPostTruncation'])) {
+					if (isset($_POST['alter_enabled']) || sanitize_numeric($_POST['totaladmins']) > 1 ||
+							trim(sanitize($_POST['adminuser0'],0)) != $_zp_current_admin_obj->getUser() ||
+							isset($_POST['0-newuser'])) {
+						if (!$_zp_current_admin_obj->reset) {
+							admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
+						}
 					}
-				}
-				$alter = isset($_POST['alter_enabled']);
-				$nouser = true;
-				$returntab = $newuser = false;
-				for ($i = 0; $i < sanitize_numeric($_POST['totaladmins']); $i++) {
-					$updated = false;
-					$error = false;
-					$userobj = NULL;
-					$pass = trim(sanitize($_POST['pass'.$i]));
-					$user = trim(sanitize($_POST['adminuser'.$i],0));
-					if (empty($user) && !empty($pass)) {
-						$notify = '?mismatch=nothing';
-					}
-					if (!empty($user)) {
-						$nouser = false;
-						if (isset($_POST[$i.'-newuser'])) {
-							$newuser = $user;
-							$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
-							if (is_object($userobj)) {
-								$notify = '?exists';
-								break;
-							} else {
-								$what = 'new';
-								$userobj = Zenphoto_Authority::newAdministrator('');
-								$userobj->transient = false;
-								$userobj->setUser($user);
-								markUpdated();
-							}
-						} else {
-							$what = 'update';
-							$userobj = Zenphoto_Authority::newAdministrator($user);
+					$alter = isset($_POST['alter_enabled']);
+					$nouser = true;
+					$returntab = $newuser = false;
+					for ($i = 0; $i < sanitize_numeric($_POST['totaladmins']); $i++) {
+						$updated = false;
+						$error = false;
+						$userobj = NULL;
+						$pass = trim(sanitize($_POST['pass'.$i]));
+						$user = trim(sanitize($_POST['adminuser'.$i],0));
+						if (empty($user) && !empty($pass)) {
+							$notify = '?mismatch=nothing';
 						}
-
-						if (isset($_POST[$i.'-admin_name'])) {
-							$admin_n = trim(sanitize(sanitize($_POST[$i.'-admin_name'])));
-							if ($admin_n != $userobj->getName()) {
-								markUpdated();
-								$userobj->setName($admin_n);
-							}
-						}
-						if (isset($_POST[$i.'-admin_email'])) {
-							$admin_e = trim(sanitize($_POST[$i.'-admin_email']));
-							if ($admin_e != $userobj->getEmail()) {
-								markUpdated();
-								$userobj->setEmail($admin_e);
-							}
-						}
-						if (empty($pass)) {
-							if ($newuser || @$_POST['passrequired'.$i]) {
-								$msg = sprintf(gettext('%s password may not be empty!'),$admin_n);
-							}
-						} else {
-							if (isset($_POST['disclose_password'.$i])&&$_POST['disclose_password'.$i]=='on') {
-								$pass2 = $pass;
-							} else {
-								$pass2 = trim(sanitize($_POST['pass_r'.$i]));
-							}
-							if ($pass == $pass2) {
-								$pass2 = $userobj->getPass($pass);
-								if ($msg = zp_apply_filter('can_set_user_password', false, $pass, $userobj)) {
-									$notify = '?mismatch=format&error='.urlencode($msg);
+						if (!empty($user)) {
+							$nouser = false;
+							if (isset($_POST[$i.'-newuser'])) {
+								$newuser = $user;
+								$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
+								if (is_object($userobj)) {
+									$notify = '?exists';
+									break;
 								} else {
-									$userobj->setPass($pass);
-									if ($pass2 !=  $userobj->getPass($pass)) {
-										markUpdated();
-									}
+									$what = 'new';
+									$userobj = Zenphoto_Authority::newAdministrator('');
+									$userobj->transient = false;
+									$userobj->setUser($user);
+									markUpdated();
 								}
 							} else {
-								$notify = '?mismatch=password';
-								$error = true;
+								$what = 'update';
+								$userobj = Zenphoto_Authority::newAdministrator($user);
 							}
-						}
-						$challenge = sanitize($_POST[$i.'-challengephrase']);
-						$response = sanitize($_POST[$i.'-challengeresponse']);
-						$info = $userobj->getChallengePhraseInfo();
-						if ($challenge != $info['challenge'] || $response != $info['response']) {
-							$userobj ->setChallengePhraseInfo($challenge, $response);
-							markUpdated();
-						}
-						$lang = sanitize($_POST[$i.'-admin_language'],3);
-						if ($lang != $userobj->getLanguage()) {
-							$userobj->setLanguage($lang);
-							markUpdated();
-						}
-						$rights = 0;
-						if ($alter && !$userobj->getGroup()) {
-							$oldrights = $userobj->getRights() & ~(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS);
-							$rights = processRights($i);
-							if (($rights & ~(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS)) != $oldrights) {
-								$userobj->setRights($rights | NO_RIGHTS);
-								markUpdated();
+
+							if (isset($_POST[$i.'-admin_name'])) {
+								$admin_n = trim(sanitize(sanitize($_POST[$i.'-admin_name'])));
+								if ($admin_n != $userobj->getName()) {
+									markUpdated();
+									$userobj->setName($admin_n);
+								}
 							}
-							$oldobjects = sortMultiArray($userobj->getObjects(), 'data');
-							$objects = sortMultiArray(processManagedObjects($i, $rights), 'data');
-							if ($objects != $oldobjects) {
-								$userobj->setObjects($objects);
-								markUpdated();
+							if (isset($_POST[$i.'-admin_email'])) {
+								$admin_e = trim(sanitize($_POST[$i.'-admin_email']));
+								if ($admin_e != $userobj->getEmail()) {
+									markUpdated();
+									$userobj->setEmail($admin_e);
+								}
 							}
-						} else {
-							$oldobjects = $userobj->setObjects(NULL);	// indicates no change
-						}
-						$updated = zp_apply_filter('save_admin_custom_data', $updated, $userobj, $i, $alter);
-						if (isset($_POST['delinkAlbum_'.$i])) {
-							$userobj->setAlbum(NULL);
-							markUpdated();
-						}
-						if (isset($_POST['createAlbum_'.$i])) {
-							$userobj->createPrimealbum();
-							markUpdated();
-						}
-						if ($updated) {
-							$returntab .= '&show-'.$user;
-							$msg = zp_apply_filter('save_user', $msg, $userobj, $what);
-							if (empty($msg)) {
-								$userobj->save();
+							if (empty($pass)) {
+								if ($newuser || @$_POST['passrequired'.$i]) {
+									$msg = sprintf(gettext('%s password may not be empty!'),$admin_n);
+								}
 							} else {
-								$notify = '?mismatch=format&error='.urlencode($msg);
-								$error = true;
+								if (isset($_POST['disclose_password'.$i])&&$_POST['disclose_password'.$i]=='on') {
+									$pass2 = $pass;
+								} else {
+									$pass2 = trim(sanitize($_POST['pass_r'.$i]));
+								}
+								if ($pass == $pass2) {
+									$pass2 = $userobj->getPass($pass);
+									if ($msg = zp_apply_filter('can_set_user_password', false, $pass, $userobj)) {
+										$notify = '?mismatch=format&error='.urlencode($msg);
+									} else {
+										$userobj->setPass($pass);
+										if ($pass2 !=  $userobj->getPass($pass)) {
+											markUpdated();
+										}
+									}
+								} else {
+									$notify = '?mismatch=password';
+									$error = true;
+								}
+							}
+							$challenge = sanitize($_POST[$i.'-challengephrase']);
+							$response = sanitize($_POST[$i.'-challengeresponse']);
+							$info = $userobj->getChallengePhraseInfo();
+							if ($challenge != $info['challenge'] || $response != $info['response']) {
+								$userobj ->setChallengePhraseInfo($challenge, $response);
+								markUpdated();
+							}
+							$lang = sanitize($_POST[$i.'-admin_language'],3);
+							if ($lang != $userobj->getLanguage()) {
+								$userobj->setLanguage($lang);
+								markUpdated();
+							}
+							$rights = 0;
+							if ($alter && !$userobj->getGroup()) {
+								$oldrights = $userobj->getRights() & ~(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS);
+								$rights = processRights($i);
+								if (($rights & ~(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS)) != $oldrights) {
+									$userobj->setRights($rights | NO_RIGHTS);
+									markUpdated();
+								}
+								$oldobjects = sortMultiArray($userobj->getObjects(), 'data');
+								$objects = sortMultiArray(processManagedObjects($i, $rights), 'data');
+								if ($objects != $oldobjects) {
+									$userobj->setObjects($objects);
+									markUpdated();
+								}
+							} else {
+								$oldobjects = $userobj->setObjects(NULL);	// indicates no change
+							}
+							$updated = zp_apply_filter('save_admin_custom_data', $updated, $userobj, $i, $alter);
+							if (isset($_POST['delinkAlbum_'.$i])) {
+								$userobj->setAlbum(NULL);
+								markUpdated();
+							}
+							if (isset($_POST['createAlbum_'.$i])) {
+								$userobj->createPrimealbum();
+								markUpdated();
+							}
+							if ($updated) {
+								$returntab .= '&show-'.$user;
+								$msg = zp_apply_filter('save_user', $msg, $userobj, $what);
+								if (empty($msg)) {
+									$userobj->save();
+								} else {
+									$notify = '?mismatch=format&error='.urlencode($msg);
+									$error = true;
+								}
 							}
 						}
 					}
+					if ($nouser) {
+						$notify = '?mismatch=nothing';
+					}
+				} else {
+					$notify = '?post_error';
 				}
 			}
-			if ($nouser) {
-				$notify = '?mismatch=nothing';
-			}
-			$returntab .= "&page=users";
-			if (!empty($newuser)) {
-				$returntab .= '&show-'.$newuser;
-				unset($_POST['show-']);
-			}
+			break;
+	}
+	$returntab .= "&page=users";
+	if (!empty($newuser)) {
+		$returntab .= '&show-'.$newuser;
+		unset($_POST['show-']);
 	}
 	if (empty($notify)) {
 		$notify = '?saved';
@@ -261,7 +266,13 @@ if ($_zp_current_admin_obj->reset && !$refresh) {
 ?>
 <div id="container">
 <?php
-	if (isset($_GET['saved'])) {
+if (isset($_GET['post_error'])) {
+	echo '<div class="errorbox">';
+	echo  "<h2>".gettext('Error')."</h2>";
+	echo gettext('The form submission is incomplete. Perhaps the form size exceeds configured server or browser limits.');
+	echo '</div>';
+}
+if (isset($_GET['saved'])) {
 		echo '<div class="messagebox fade-message">';
 		echo  "<h2>".gettext("Saved")."</h2>";
 		echo '</div>';
@@ -798,6 +809,7 @@ function languageChange(id,lang) {
 </table> <!-- main admin table end -->
 
 <input type="hidden" name="totaladmins" value="<?php echo $id; ?>" />
+<input type="hidden" name="checkForPostTruncation" value="1" />
 <br />
 <p class="buttons">
 <button type="submit" title="<?php echo gettext("Apply"); ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>

@@ -23,7 +23,9 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage seo
  */
+$plugin_is_filter = 5|CLASS_PLUGIN;
 $plugin_description = gettext("Allows viewers of your site to select the language translation of their choice.");
 $plugin_author = "Stephen Billard (sbillard)";
 

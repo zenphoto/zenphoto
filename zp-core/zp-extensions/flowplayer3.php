@@ -12,6 +12,7 @@
  *
  * @author Malte Müller (acrylian)
  * @package plugins
+ * @subpackage media
  */
 
 
@@ -19,6 +20,7 @@ $plugin_description = gettext("Enable <strong>flowplayer 3</strong> to handle mu
 $plugin_notice = gettext("<strong>IMPORTANT</strong>: Only one multimedia player plugin can be enabled at the time and the class-video plugin must be enabled, too.").gettext('The former separate flowplayer3_playlist plugin is now incorporated. You can use it to show the content of an multimedia album only as a playlist or as separate players on one page with Flowplayer 3').'<br /><br />'.gettext("Please see <a href='http://flowplayer.org'>flowplayer.org</a> for more info about the player and its license.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $plugin_disable = (getOption('album_folder_class') === 'external')?gettext('Flash players do not support <em>External Albums</em>.'):false;
+
 $option_interface = 'flowplayer3_options';
 
 if (isset($_zp_flash_player) || $plugin_disable) {
@@ -465,7 +467,7 @@ function flowplayerPlaylist($option="playlist",$albumfolder="") {
 					$liststyle = 'div';
 				}
 			echo '<div class="flowplayer3_playlistwrapper">
-			<a id="player'.$album->get('id').'" class="flowplayer3_playlist" style="display:block; width: '.$playlistwidth.'px; height: '.$playlistheight.'px;">
+			<a id="player'.$album->getID().'" class="flowplayer3_playlist" style="display:block; width: '.$playlistwidth.'px; height: '.$playlistheight.'px;">
 			'.$videoThumbImg.'
 			</a>
 			<script type="text/javascript">
@@ -473,13 +475,13 @@ function flowplayerPlaylist($option="playlist",$albumfolder="") {
 			$(function() {
 
 			$("div.playlist").scrollable({
-				items:"'.$liststyle.'.clips'.$album->get('id').'",
+				items:"'.$liststyle.'.clips'.$album->getID().'",
 				vertical:true,
 				next:"a.down",
 				prev:"a.up",
 				mousewheel: true
 			});
-			flowplayer("player'.$album->get('id').'","'.WEBPATH . '/' . ZENFOLDER . '/'.PLUGIN_FOLDER . '/flowplayer3/'.$swf.'", {
+			flowplayer("player'.$album->getID().'","'.WEBPATH . '/' . ZENFOLDER . '/'.PLUGIN_FOLDER . '/flowplayer3/'.$swf.'", {
 			plugins: {
 				audio: {
 					url: "'.$audio.'"
@@ -536,7 +538,7 @@ function flowplayerPlaylist($option="playlist",$albumfolder="") {
 			} // foreach end
 			echo 'playlist: ['.substr($list,0,-1).']
 			});
-			flowplayer("player'.$album->get('id').'").playlist("'.$liststyle.'.clips'.$album->get('id').':first", {loop:true});
+			flowplayer("player'.$album->getID().'").playlist("'.$liststyle.'.clips'.$album->getID().':first", {loop:true});
 			});
 			// ]]> -->
 			</script>';
@@ -544,8 +546,8 @@ function flowplayerPlaylist($option="playlist",$albumfolder="") {
 		<div class="wrapper">
 					<a class="up" title="Up"></a>
 
-			<div class="playlist playlist<?php echo $album->get('id'); ?>">
-				<<?php echo $liststyle; ?> class="clips clips<?php echo $album->get('id'); ?>">
+			<div class="playlist playlist<?php echo $album->getID(); ?>">
+				<<?php echo $liststyle; ?> class="clips clips<?php echo $album->getID(); ?>">
 					<!-- single playlist entry as an "template" -->
 					<?php if($liststyle == 'ol') { ?> <li> <?php } ?>
 					<a href="${url}">${title}</a>

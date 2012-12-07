@@ -116,6 +116,8 @@ if (OFFSET_PATH != 2 && !file_exists($const_serverpath.'/'.DATA_FOLDER."/zenphot
 // Including the config file more than once is OK, and avoids $conf missing.
 eval(file_get_contents($const_serverpath.'/'.DATA_FOLDER.'/zenphoto.cfg'));
 
+define('DATABASE_PREFIX',$_zp_conf_vars['mysql_prefix']);
+
 if (!defined('WEBPATH')) {
 	define('WEBPATH', $const_webpath);
 }
@@ -125,6 +127,7 @@ if (!defined('SERVERPATH')) {
 	define('SERVERPATH', $const_serverpath);
 }
 unset($const_serverpath);
+$_zp_mutex = new Mutex();
 
 if (OFFSET_PATH != 2 && empty($_zp_conf_vars['mysql_database'])) {
 	require_once(dirname(__FILE__).'/reconfigure.php');
@@ -294,7 +297,7 @@ function getOption($key) {
 		return $_zp_options[$key];
 	} else {
 		$v = NULL;
-		if (is_null($_zp_options)) {
+		if (is_null($_zp_options) && function_exists('query_full_array')) {	// may be too early to use database!
 			// option table not yet loaded, load it (but not the theme options!)
 			$sql = "SELECT `name`, `value` FROM ".prefix('options').' WHERE (`theme`="" OR `theme` IS NULL) AND `ownerid`=0';
 			$optionlist = query_full_array($sql, false);
@@ -762,15 +765,72 @@ function getImageProcessorURI($args, $album, $image) {
 		$args[13] = NULL;
 	}
 	$uri .= '&check='.sha1(HASH_SEED.serialize($args));
-	/*
-	$uri .= '&actual='.serialize($args);
-	*/
 
 	if (class_exists('static_html_cache')) {
 		// don't cache pages that have image processor URIs
 		static_html_cache::disable();
 	}
 	return $uri;
+}
+
+// Don't let anything get above this, to save the server from burning up...
+define('MAX_SIZE', 3000);
+/**
+ * Extract the image parameters from the input variables
+ * @param array $set
+ * @return array
+ */
+function getImageArgs($set) {
+	$args = array(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+	if (isset($set['s'])) { //0
+		if (is_numeric($s = $set['s'])) {
+			if ($s) {
+				$args[0] = (int) min(abs($s), MAX_SIZE);
+			}
+		} else {
+			$args[0] = sanitize($set['s']);
+		}
+	} else {
+		if (!isset($set['w']) && !isset($set['h'])) {
+			$args[0] = MAX_SIZE;
+		}
+	}
+	if (isset($set['w'])) {  //1
+		$args[1] = (int) min(abs(sanitize_numeric($set['w'])), MAX_SIZE);
+	}
+	if (isset($set['h'])) { //2
+		$args[2] = (int) min(abs(sanitize_numeric($set['h'])), MAX_SIZE);
+	}
+	if (isset($set['cw'])) { //3
+		$args[3] = (int) sanitize_numeric(($set['cw']));
+	}
+	if (isset($set['ch'])) { //4
+		$args[4] = (int) sanitize_numeric($set['ch']);
+	}
+	if (isset($set['cx'])) { //5
+		$args[5] = (int) sanitize_numeric($set['cx']);
+	}
+	if (isset($set['cy'])) { //6
+		$args[6] = (int) sanitize_numeric($set['cy']);
+	}
+	if (isset($set['q'])) { //7
+		$args[7] = (int) sanitize_numeric($set['q']);
+	}
+	if (isset($set['c'])) {// 9
+		$args[9] = (int) sanitize($set['c']);
+	}
+	if (isset($set['t'])) { //10
+		$args[10] = (int) sanitize($set['t']);
+	}
+	if (isset($set['wmk']) && !isset($_GET['admin'])) { //11
+		$args[11] = sanitize($set['wmk']);
+	}
+	$args[12] = (bool) isset($_GET['admin']); //12
+
+	if (isset($set['effects'])) {	//13
+		$args[13] = sanitize($set['effects']);
+	}
+	return $args;
 }
 
 /**
@@ -805,28 +865,43 @@ function getImageURI($args, $album, $image, $mtime) {
  * @param string $which either 'allowed_tags' or 'style_tags' depending on which is wanted.
  */
 function getAllowedTags($which) {
-	global $_user_tags, $_style_tags;
-	if ($which == 'allowed_tags') {
-		if (is_null($_user_tags)) {
-			$user_tags = "(".getOption('allowed_tags').")";
-			$allowed_tags = parseAllowedTags($user_tags);
-			if ($allowed_tags === false) {  // someone has screwed with the 'allowed_tags' option row in the database, but better safe than sorry
-				$allowed_tags = array();
+	global $_user_tags, $_style_tags, $_default_tags;
+	switch ($which) {
+		case 'allowed_tags':
+			if (is_null($_user_tags)) {
+				$user_tags = "(".getOption('allowed_tags').")";
+				$allowed_tags = parseAllowedTags($user_tags);
+				if ($allowed_tags === false) {  // someone has screwed with the 'allowed_tags' option row in the database, but better safe than sorry
+					$allowed_tags = array();
+				}
+				$_user_tags = $allowed_tags;
 			}
-			$_user_tags = $allowed_tags;
-		}
-		return $_user_tags;
-	} else {
-		if (is_null($_style_tags)) {
-			$style_tags = "(".getOption('style_tags').")";
-			$allowed_tags = parseAllowedTags($style_tags);
-			if ($allowed_tags === false) {  // someone has screwed with the 'style_tags' option row in the database, but better safe than sorry
-				$allowed_tags = array();
+			return $_user_tags;
+			break;
+		case 'style_tags':
+			if (is_null($_style_tags)) {
+				$style_tags = "(".getOption('style_tags').")";
+				$allowed_tags = parseAllowedTags($style_tags);
+				if ($allowed_tags === false) {  // someone has screwed with the 'style_tags' option row in the database, but better safe than sorry
+					$allowed_tags = array();
+				}
+				$_style_tags = $allowed_tags;
 			}
-			$_style_tags = $allowed_tags;
-		}
-		return $_style_tags;
+			return $_style_tags;
+			break;
+		case 'allowed_tags_default':
+			if (is_null($_default_tags)) {
+				$default_tags = "(".getOption('allowed_tags_default').")";
+				$allowed_tags = parseAllowedTags($default_tags);
+				if ($allowed_tags === false) {  // someone has screwed with the 'allowed_tags' option row in the database, but better safe than sorry
+					$allowed_tags = array();
+				}
+				$_default_tags = $allowed_tags;
+			}
+			return $_default_tags;
+			break;
 	}
+	return array();
 }
 
 /**
@@ -850,7 +925,7 @@ function rewrite_path($rewrite, $plain, $webpath=true) {
 	} else {
 		$path = $plain;
 	}
-	if (substr($path, 0, 1) == "/"  && $webpath) $path = substr($path, 1);
+	if ($webpath && $path{0} == "/") $path = substr($path, 1);
 	if($webpath) {
 		if (class_exists('seo_locale')) {
 			return seo_locale::localePath() . "/" . $path;
@@ -876,8 +951,7 @@ function pathurlencode($path) {
 		//	some kind of query link
 		$link .= '?'.html_encode($parts[1]);
 	}
-	$link = $matches[1].$link;
-	return $link;
+	return $matches[1].$link;
 }
 
 /**
@@ -967,7 +1041,7 @@ function debugLog($message, $reset=false) {
 			} else {
 				$clone = ' '.gettext('clone');
 			}
-			fwrite($f, '{'.$me.':'.gmdate('D, d M Y H:i:s')." GMT} Zenphoto v".ZENPHOTO_VERSION.'['.ZENPHOTO_RELEASE.']'.$clone."\n");
+			fwrite($f, '{'.$me.':'.gmdate('D, d M Y H:i:s')." GMT} Zenphoto v".ZENPHOTO_VERSION.'['.ZENPHOTO_FULL_RELEASE.']'.$clone."\n");
 		}
 	} else {
 		$f = fopen($path, 'a');
@@ -1047,8 +1121,7 @@ function getAlbumArray($albumstring, $includepaths=false) {
  */
 function is_valid_image($filename) {
 	global $_zp_supported_images;
-	$ext = strtolower(substr(strrchr($filename, "."), 1));
-	return in_array($ext, $_zp_supported_images);
+	return in_array(getSuffix($filename), $_zp_supported_images);
 }
 
 /**
@@ -1059,12 +1132,7 @@ function is_valid_image($filename) {
  */
 function is_valid_other_type($filename) {
 	global $_zp_extra_filetypes;
-	$ext = strtolower(substr(strrchr($filename, "."), 1));
-	if (array_key_exists($ext, $_zp_extra_filetypes)) {
-		return $ext;
-	} else {
-		return false;
-	}
+	return @$_zp_extra_filetypes[getSuffix($filename)];
 }
 
 /**
@@ -1280,7 +1348,8 @@ function safe_glob($pattern, $flags=0) {
  * Check to see if the setup script needs to be run
  */
 function checkInstall() {
-	if (!($i = getOption('zenphoto_install')) || getOption('zenphoto_version') != ZENPHOTO_VERSION.' ['.ZENPHOTO_RELEASE.']'
+	preg_match('|\[(.*)\]|', getOption('zenphoto_version'), $matches);
+	if (!($i = getOption('zenphoto_install')) || $matches[1] != ZENPHOTO_RELEASE
 									|| ((time() & 7)==0) && OFFSET_PATH!=2 && $i != serialize(installSignature())) {
 		require_once(dirname(__FILE__).'/reconfigure.php');
 		reconfigureAction(false);
@@ -1318,9 +1387,14 @@ function installSignature() {
 		$s = 'software unknown';
 	}
 	$dbs = db_software();
+	$version = ZENPHOTO_VERSION;
+	$i = strpos($version, '-');
+	if ($i !== false) {
+		$version = substr($version, 0, $i);
+	}
 	return array_merge($testFiles,
 											array('SERVER_SOFTWARE'=>$s,
-														'ZENPHOTO'=>ZENPHOTO_VERSION.'['.ZENPHOTO_RELEASE.']',
+														'ZENPHOTO'=>$version.'['.ZENPHOTO_RELEASE.']',
 														'FOLDER'=>dirname(SERVERPATH.'/'.ZENFOLDER),
 														'DATABASE'=>$dbs['application'].' '.$dbs['version']
 														)
@@ -1351,37 +1425,55 @@ class Mutex {
 	private $locked = NULL;
 	private $ignoreUseAbort = NULL;
 	private $mutex = NULL;
-	private $lock;
+	private $lock = NULL;
 
 	function __construct($lock='zP',$concurrent=NULL) {
-		if ($concurrent) {
-			$lock .='_'.rand(1, $concurrent);
+	// if any of the construction fails, run in free mode (lock = NULL)
+		if (function_exists('flock') && defined('SERVERPATH')) {
+			if ($concurrent) {
+				If ($subLock = self::which_lock($lock, $concurrent)) {
+					$this->lock = $lock.'_'.$subLock;
+				}
+			} else {
+				$this->lock = $lock;
+			}
 		}
-		$this->lock = $lock;
+		return $this->lock;
+	}
+
+	// returns the integer id of the lock to be obtained
+	// rotates locks sequentially mod $concurrent
+	private static function which_lock($lock, $concurrent) {
+		global $_zp_mutex;
+		$counter_file = SERVERPATH.'/'.DATA_FOLDER.'/mutex/'.$lock.'_counter';
+		$_zp_mutex->lock();
+		// increment the lock id:
+		if (@file_put_contents($counter_file, $count = (((int) @file_get_contents($counter_file))+1) % $concurrent)) {
+			$count++;
+		} else {
+			$count = false;
+		}
+		$_zp_mutex->unlock();
+		return $count;
 	}
 
 	function __destruct() {
 		if ($this->locked) {
 			$this->unlock();
-			debugLog(sprintf(gettext('Mutex %s was left locked.'),$this->lock));
 		}
 	}
 
 	public function lock() {
 		//if "flock" is not supported run un-serialized
 		//Only lock an unlocked mutex, we don't support recursive mutex'es
-		if(!$this->locked && function_exists('flock')) {
-			if (!file_exists(SERVERPATH.'/'.DATA_FOLDER.'/mutex')) {
-				mkdir(SERVERPATH.'/'.DATA_FOLDER.'/mutex');
-			}
-			$this->mutex = fopen(SERVERPATH.'/'.DATA_FOLDER.'/mutex/'.$this->lock, 'wb');
-			if (function_exists('flock') && flock($this->mutex, LOCK_EX)) {
-				$this->locked = true;
-				//We are entering a critical section so we need to change the ignore_user_abort setting so that the
-				//script doesn't stop in the critical section.
-				$this->ignoreUserAbort = ignore_user_abort(true);
-			} else {
-				zp_error(gettext('Error locking mutex'));
+		if(!$this->locked && $this->lock) {
+			if ($this->mutex = @fopen(SERVERPATH.'/'.DATA_FOLDER.'/mutex/'.$this->lock, 'wb')) {
+				if (flock($this->mutex, LOCK_EX)) {
+					$this->locked = true;
+					//We are entering a critical section so we need to change the ignore_user_abort setting so that the
+					//script doesn't stop in the critical section.
+					$this->ignoreUserAbort = ignore_user_abort(true);
+				}
 			}
 		}
 		return $this->locked;
@@ -1391,22 +1483,17 @@ class Mutex {
 	 *	Unlock the mutex.
 	 */
 	public function unlock() {
-		if($this->locked)	{ //Only unlock a locked mutex.
+		if($this->locked)	{
+			//Only unlock a locked mutex.
 			$this->locked = false;
 			ignore_user_abort($this->ignoreUserAbort);	//Restore the ignore_user_abort setting.
-			if (flock($this->mutex, LOCK_UN)) {
-				fclose($this->mutex);
-				return true;
-			} else {
-				fclose($this->mutex);
-				zp_error(gettext('Error un-locking mutex'));
-				return false;
-			}
+			flock($this->mutex, LOCK_UN);
+			fclose($this->mutex);
+			return true;
 		}
+		return false;
 	}
 
 }
-
-$_zp_mutex = new Mutex();
 
 ?>
