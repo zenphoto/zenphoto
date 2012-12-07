@@ -4343,15 +4343,23 @@ function getPluginTabs() {
 			'utilities'=>gettext('utilities')
 			);
 
-	$currentlist = $classes = array();
+	$currentlist = $classes = $member = array();
 	foreach ($paths as $plugin=>$path) {
 		$p = file_get_contents($path);
 		$i = strpos($p, '* @subpackage');
-		if ($i !== false) {
-			if ($key = trim(substr($p,$i+13,strpos($p, "\n", $i)-$i-13))) {
-				$classes[$key][] = $plugin;
-			}
+		if (($key = $i) !== false) {
+			$key = trim(substr($p,$i+13,strpos($p, "\n", $i)-$i-13));
 		}
+		if (empty($key)) {
+			$key = 'misc';
+		}
+		$classes[$key]['list'][] = $plugin;
+		if (array_key_exists($key, $classXlate)) {
+			$local = $classXlate[$key];
+		} else {
+			$local = $classXlate[$key] = $key;
+		}
+		$member[$plugin] = $local;
 	}
 
 	ksort($classes);
@@ -4360,19 +4368,12 @@ function getPluginTabs() {
 
 
 	foreach ($classes as $class=>$list) {
-		if (array_key_exists($key = $class, $classXlate)) {
-			$key = $classXlate[$class];
-		} else {
-			if ($key) {
-				$classXlate[$key] = $key;
-			}
-		}
-		$tabs[$key] = 'admin-plugins.php?page=plugins&amp;tab='.$class;
+		$tabs[$class] = 'admin-plugins.php?page=plugins&amp;tab='.$class;
 		if ($class == $default) {
-			$currentlist = $list;
+			$currentlist = $list['list'];
 		}
 	}
-	return array($tabs,$default,$currentlist, $paths);
+	return array($tabs,$default,$currentlist, $paths, $member);
 }
 
 /**

@@ -2249,6 +2249,11 @@ div.tabs>div h2 {
 	float:right;
 	white-space:nowrap;
 }
+.displayrightsmall {
+	float:right;
+	white-space:nowrap;
+	font-size:85%;
+}
 
 .nomargin {
 	margin: 0 !important;

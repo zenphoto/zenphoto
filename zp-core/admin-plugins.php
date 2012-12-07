@@ -23,7 +23,7 @@ if (isset($_GET['subpage'])) {
 }
 
 $_GET['page'] = 'plugins';
-list($tabs,$subtab,$pluginlist, $paths) = getPluginTabs();
+list($tabs, $subtab, $pluginlist, $paths, $member) = getPluginTabs();
 
 /* handle posts */
 if (isset($_GET['action'])) {
@@ -295,6 +295,10 @@ foreach ($filelist as $extension) {
 				echo $extension;
 				if (!empty($plugin_version)) {
 					echo ' v'.$plugin_version;
+				}
+				if ($subtab=='all') {
+					$class = $member[$extension];
+					echo '<span class="displayrightsmall"><a href="'.$tabs[$class].'"><em>'.$class.'</em></a></span>';
 				}
 				?>
 			</label>
