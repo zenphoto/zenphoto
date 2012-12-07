@@ -2311,27 +2311,6 @@ if ($subtab == 'comments' && zp_loggedin(OPTIONS_RIGHTS)) {
 			</td>
 			<td><?php echo gettext("Email the Admin when new comments are posted"); ?></td>
 		</tr>
-		<!-- SPAM filter options -->
-		<tr>
-			<td><?php echo gettext("Spam filter:"); ?></td>
-			<td>
-				<?php
-				if (isset($_zp_spamFilter)) {
-					echo $_zp_spamFilter->name;
-				} else {
-					echo gettext('No spam filter configured');
-				}
-				?>
-			</td>
-			<td><?php echo gettext("The SPAM filter plug-in you wish to use to check comments for SPAM"); ?></td>
-		</tr>
-		<?php
-		/* procss filter based options here */
-		if (isset($_zp_spamFilter)) {
-			customOptions($_zp_spamFilter, "&nbsp;&nbsp;&nbsp;-&nbsp;");
-		}
-		?>
-		<!-- end of SPAM filter options -->
 		<tr>
 			<td><?php echo gettext('Name field'); ?></td>
 			<td>
@@ -3083,20 +3062,6 @@ if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 						</p>
 					</td>
 				</tr>
-				<tr>
-					<td width="175"><?php echo gettext('CAPTCHA generator:'); ?></td>
-					<td width="350">
-						<?php
-						if ($_zp_captcha) {
-							echo $_zp_captcha->name;
-						} else {
-							echo gettext('not configured');
-						}
-						?>
-					</td>
-					<td></td>
-				</tr>
-					<?php if ($_zp_captcha) customOptions($_zp_captcha, "&nbsp;&nbsp;&nbsp;-&nbsp;"); ?>
 				<tr>
 					<td><?php echo gettext('Cookie security')?></td>
 					<td>
