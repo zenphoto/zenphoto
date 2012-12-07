@@ -1341,7 +1341,7 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 				$desc .= ' '.gettext('<p class="buttons"><a href="?copyhtaccess" >Make setup create the file</a></p><br style="clear:both" /><br />');
 			}
 		} else {
-			$desc = gettext("Server seems not to be Apache or Apache-compatible, <code>.htaccess</code> not required.");
+			$desc = gettext("Server seems not to be Apache or Apache-compatible, <code>mod_rewrite</code> is not available.");
 		}
 	} else {
 		$i = strpos($htu, 'VERSION');
