@@ -81,7 +81,7 @@ function kses_split($string, $allowed_html, $allowed_protocols)
   return preg_replace('%(<'.   # EITHER: <
                       '[^>]*'. # things that aren't >
                       '(>|$)'. # > or end of string
-                      '|>)%e', # OR: just a >
+                      '|>)%', # OR: just a >
                       "kses_split2('\\1', \$allowed_html, ".
                       '$allowed_protocols)',
                       $string);
