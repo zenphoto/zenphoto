@@ -278,7 +278,7 @@ class Gallery {
 						if (file_exists($themefile)) {
 							$theme_description = array();
 							require($themefile);
-							$themes[$dir8] = sanitize($theme_description, 1);
+							$themes[$dir8] = $theme_description;
 						} else {
 							$themes[$dir8] = array('name'=>gettext('Unknown'), 'author'=>gettext('Unknown'), 'version'=>gettext('Unknown'), 'desc'=>gettext('<strong>Missing theme info file!</strong>'), 'date'=>gettext('Unknown'));
 						}
