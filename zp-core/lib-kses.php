@@ -78,17 +78,21 @@ function kses_split($string, $allowed_html, $allowed_protocols)
 # matches stray ">" characters.
 ###############################################################################
 {
-  return preg_replace('%(<'.   # EITHER: <
+	global $_allowed_html, $_allowed_protocols;
+	//Zenphoto:preg_replace with the "e" modifier is deprecated, use callback
+	$_allowed_html = $allowed_html;
+	$_allowed_protocols = $allowed_protocols;
+
+  return preg_replace_callback('%(<'.   # EITHER: <
                       '[^>]*'. # things that aren't >
                       '(>|$)'. # > or end of string
                       '|>)%', # OR: just a >
-                      "kses_split2('\\1', \$allowed_html, ".
-                      '$allowed_protocols)',
+                      "kses_split2",
                       $string);
 } # function kses_split
 
 
-function kses_split2($string, $allowed_html, $allowed_protocols)
+function kses_split2($matches)
 ###############################################################################
 # This function does a lot of work. It rejects some very malformed things
 # like <:::>. It returns an empty string, if the element isn't allowed (look
@@ -96,7 +100,11 @@ function kses_split2($string, $allowed_html, $allowed_protocols)
 # attribute list.
 ###############################################################################
 {
-  $string = kses_stripslashes($string);
+	//Zenphoto:preg_replace with the "e" modifier is deprecated, this is the callback
+	global $_allowed_html, $_allowed_protocols;
+	$allowed_html = $_allowed_html;
+	$allowed_protocols = $_allowed_protocols;
+  $string = kses_stripslashes($matches[1]);
   if (substr($string, 0, 1) != '<') {
     return '>';
     # It matched a ">" character
