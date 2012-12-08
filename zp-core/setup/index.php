@@ -196,9 +196,20 @@ if ($updatezp_config) {
 		fclose($handle);
 		clearstatcache();
 	}
-	@chmod(CONFIGFILE, $chmod);
-	$xsrftoken = sha1(CONFIGFILE.@file_get_contents(CONFIGFILE).session_id());
+	$mod = 0600;
+	$str = '';
+	while (empty($str)) {
+		@chmod(CONFIGFILE, $mod);
+		$str = @file_get_contents(CONFIGFILE);
+		if ($mod == 0666) {
+			break;
+		}
+		$mod = $mod | $mod>>3;
+	}
+	$xsrftoken = sha1(CONFIGFILE.$str.session_id());
 }
+
+
 $result = true;
 $environ = false;
 $DBcreated = false;
@@ -493,14 +504,15 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 		checkmark(1,sprintf(gettext('Installing Zenphoto v%s'),ZENPHOTO_VERSION),'','');
 	}
 
-	$permission = fileperms(SETUPLOG)&0777;
+	$permission = (fileperms(SETUPLOG)|fileperms(CONFIGFILE))&0777;
 	if (checkPermissions($permission, 0600)) {
 		$p = true;
 	} else {
 		$p = -1;
 	}
-	checkMark($p, gettext("Log security"), gettext("Log security [is compromised]"),
-							sprintf(gettext("Zenphoto attempts to make log files accessable by <em>owner</em> only (permissions = 0600). This attempt has failed. The log file permissions are %04o which may allow unauthorized access."),$permission));
+	checkMark($p, sprintf(gettext('<em>%s</em> security'),DATA_FOLDER), sprintf(gettext('<em>%s</em> security [is compromised]'),DATA_FOLDER),
+							sprintf(gettext('Zenphoto attempts to make sensitive files in the %1$s folder accessable by <em>owner</em> only (permissions = 0600). This attempt has failed. The file permissions are %2$04o which may allow unauthorized access.'),DATA_FOLDER,$permission));
+
 	$err = versionCheck(PHP_MIN_VERSION, PHP_DESIRED_VERSION, PHP_VERSION);
 	$good = checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('PHP Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk.'),PHP_MIN_VERSION, PHP_DESIRED_VERSION), false) && $good;
 	checkmark($session&& session_id(),gettext('PHP <code>Sessions</code>.'),gettext('PHP <code>Sessions</code> [appear to not be working].'),gettext('PHP Sessions are required for Zenphoto administrative functions.'),true);
