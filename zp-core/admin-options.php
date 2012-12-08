@@ -2871,14 +2871,14 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 						</td>
 				</tr>
 				<tr>
-				<th style="text-align:center" colspan="2">
+				<th style="text-align:left" colspan="2">
 					<span style="font-weight: normal">
 						<a href="javascript:setShow(1);toggleExtraInfo('','plugin',true);"><?php echo gettext('Expand plugin options');?></a>
 						|
 						<a href="javascript:setShow(0);toggleExtraInfo('','plugin',false);"><?php echo gettext('Collapse all plugin options');?></a>
 					</span>
 				</th>
-				<th style="text-align:left">
+				<th style="text-align:right; padding-right: 10px;">
 					<?php printPageSelector($subpage, $rangeset, 'admin-options.php', array('page'=>'options', 'tab'=>'plugin')); ?>
 				</th>
 			</tr>
@@ -2925,7 +2925,7 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 								$v= 0;
 							}
 							?>
-							<th style="text-align:left;">
+							<th style="text-align:left; width: 20%">
 								<span id="<?php echo $extension; ?>" ></span>
 								<input type="hidden" name="show-<?php echo $extension;?>" id="show-<?php echo $extension;?>" value="<?php echo $v; ?>" />
 								<span style="display:block" class="pluginextrashow">
@@ -2982,7 +2982,7 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 				<tr>
 					<th></th>
 					<th></th>
-					<th>
+					<th style="text-align:right; padding-right: 10px;">
 						<?php printPageSelector($subpage, $rangeset, 'admin-options.php', array('page'=>'options', 'tab'=>'plugin')); ?>
 					</th>
 				</tr>
