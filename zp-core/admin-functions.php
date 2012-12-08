@@ -4324,11 +4324,12 @@ function getPluginTabs() {
 	if (isset($_GET['tab'])) {
 		$default = sanitize($_GET['tab']);
 	} else {
-		$default = gettext('all');
+		$default = 'all';
 	}
 	$paths = getPluginFiles('*.php');
 
 	$classXlate = array(
+			'all'=>gettext('all'),
 			'admin'=>gettext('admin'),
 			'demo'=>gettext('demo'),
 			'development'=>gettext('development'),
@@ -4355,21 +4356,20 @@ function getPluginTabs() {
 		}
 		$classes[$key]['list'][] = $plugin;
 		if (array_key_exists($key, $classXlate)) {
-			$local = $key;
+			$local = $classXlate[$key];
 		} else {
 			$local = $classXlate[$key] = $key;
-			
 		}
 		$member[$plugin] = $local;
 	}
 
 	ksort($classes);
-	$tabs['all'] = 'admin-plugins.php?page=plugins&amp;tab=all';
+	$tabs[$classXlate['all']] = 'admin-plugins.php?page=plugins&amp;tab=all';
 	$currentlist = array_keys($paths);
 
 
 	foreach ($classes as $class=>$list) {
-		$tabs[$class] = 'admin-plugins.php?page=plugins&amp;tab='.$class;
+		$tabs[$classXlate[$class]] = 'admin-plugins.php?page=plugins&amp;tab='.$class;
 		if ($class == $default) {
 			$currentlist = $list['list'];
 		}

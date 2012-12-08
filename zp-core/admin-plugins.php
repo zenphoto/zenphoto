@@ -297,8 +297,8 @@ foreach ($filelist as $extension) {
 					echo ' v'.$plugin_version;
 				}
 				if ($subtab=='all') {
-					$class = $member[$extension];
-					echo '<span class="displayrightsmall"><a href="'.$tabs[$class].'"><em>'.$class.'</em></a></span>';
+					$tab = $member[$extension];
+					echo '<span class="displayrightsmall"><a href="'.$tabs[$tab].'"><em>'.$tab.'</em></a></span>';
 				}
 				?>
 			</label>
