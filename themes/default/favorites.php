@@ -65,6 +65,7 @@ if (!defined('WEBPATH')) die();
 			<?php printZenphotoLink(); ?>
 			<?php @call_user_func('printUserLogin_out'," | ");	?>
 		</div>
+		<?php
 		printAdminToolbox();
 		zp_apply_filter('theme_body_close');
 		?>
