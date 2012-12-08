@@ -15536,7 +15536,7 @@ msgstr "De albums en afbeeldingen die zijn geselcteerd als favorieten."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:43
 msgid "Add favorite"
-msgstr "Voeg favoriet toe"
+msgstr "Voeg toe aan favorieten"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:45
 msgid "Remove favorite"
