@@ -4355,9 +4355,10 @@ function getPluginTabs() {
 		}
 		$classes[$key]['list'][] = $plugin;
 		if (array_key_exists($key, $classXlate)) {
-			$local = $classXlate[$key];
+			$local = $key;
 		} else {
 			$local = $classXlate[$key] = $key;
+			
 		}
 		$member[$plugin] = $local;
 	}
