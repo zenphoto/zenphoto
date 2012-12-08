@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-28 23:56+0100\n"
-"PO-Revision-Date: 2012-12-03 00:31+0100\n"
+"PO-Revision-Date: 2012-12-08 23:47+0100\n"
 "Last-Translator: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language-Team: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language: danish\n"
@@ -478,7 +478,7 @@ msgstr "« forrige"
 #: /home/jes/workspace/zenphoto/themes/zenpage/password.php:28
 #: /home/jes/workspace/zenphoto/themes/default/password.php:24
 msgid "A password is required for the page you requested"
-msgstr "Der kræves kodeord for den side du har bedt om"
+msgstr "Der kræves adgangskode for den side du har bedt om"
 
 #: /home/jes/workspace/zenphoto/themes/zpmobile/password.php:33
 #: /home/jes/workspace/zenphoto/themes/effervescence_plus/functions.php:338
@@ -1415,7 +1415,7 @@ msgstr "Effervescence %1$s %2$s (ikke fundet)"
 #: /home/jes/workspace/zenphoto/themes/effervescence_plus/functions.php:267
 #: /home/jes/workspace/zenphoto/zp-core/template-functions.php:982
 msgid "The album is password protected."
-msgstr "Albummet er beskyttet af kodeord."
+msgstr "Albummet er beskyttet af adgangskode."
 
 #: /home/jes/workspace/zenphoto/themes/effervescence_plus/functions.php:270
 msgid "The album is not published."
@@ -1690,7 +1690,7 @@ msgstr "Kommentarer:"
 #: /home/jes/workspace/zenphoto/themes/garland/password.php:38
 #: /home/jes/workspace/zenphoto/zp-core/password.php:7
 msgid "Password required"
-msgstr "Kodeord krævet."
+msgstr "Adgangskode krævet."
 
 #: /home/jes/workspace/zenphoto/themes/zenpage/themeoptions.php:50
 #: /home/jes/workspace/zenphoto/themes/zenpage/sidebar.php:26
@@ -2135,7 +2135,7 @@ msgstr "Næste"
 
 #: /home/jes/workspace/zenphoto/themes/stopdesign/password.php:25
 msgid "A password is required"
-msgstr "Et Kodeord kræves"
+msgstr "En adgangskode kræves"
 
 #: /home/jes/workspace/zenphoto/themes/stopdesign/themeoptions.php:37
 msgid "Mini slide selector"
@@ -2486,7 +2486,7 @@ msgstr "« Forrige"
 
 #: /home/jes/workspace/zenphoto/themes/garland/password.php:40
 msgid "A password is required to access this page."
-msgstr "Der kræves et kodeord for at tilgå denne side."
+msgstr "Der kræves en adgangskode for at tilgå denne side."
 
 #: /home/jes/workspace/zenphoto/themes/garland/themeoptions.php:72
 msgid "Set to enable search form."
@@ -2899,7 +2899,7 @@ msgstr "Filhåndtering"
 #: /home/jes/workspace/zenphoto/zp-core/admin-users.php:137
 #, php-format
 msgid "%s password may not be empty!"
-msgstr "%s kodeord må ikke være tomt!"
+msgstr "%s adgangskode må ikke være tomt!"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-users.php:261
 msgid ""
@@ -2945,7 +2945,7 @@ msgstr "Bruger-id bruges allerede."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-users.php:396
 msgid "You must supply a password"
-msgstr "Du skal indtaste et kodeord."
+msgstr "Du skal indtaste en adgangskode."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-users.php:399
 msgid "User name not provided"
@@ -2954,7 +2954,7 @@ msgstr "Brugernavn er ikke angivet"
 #: /home/jes/workspace/zenphoto/zp-core/admin-users.php:405
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:497
 msgid "Your passwords did not match"
-msgstr "Dine kodeord er ikke ens."
+msgstr "Dine adgangskoder er ikke ens."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-users.php:412
 msgid "Your Website URL is not valid"
@@ -4960,7 +4960,7 @@ msgid ""
 "would be a good time."
 msgstr ""
 "Tjek din konfigurationsfil for at sikre at du har det rigtige brugernavn, "
-"kodeord, vært og database. Hvis du ikke har oprettet databasen endnu, vil "
+"adganskode, vært og database. Hvis du ikke har oprettet databasen endnu, vil "
 "dette være et godt tidspunkt."
 
 #: /home/jes/workspace/zenphoto/zp-core/404.php:10
@@ -6557,16 +6557,19 @@ msgstr "Se søgning"
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:534
 msgid "Users with this right may view search pages even if password protected."
 msgstr ""
+"Brugere med denne rettighed kan se søgeresultater selvom de er beskyttet med "
+"adgangskode."
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:502
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:535
 msgid "View fullimage"
-msgstr ""
+msgstr "Se billedet i fuld størrelse"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:502
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:535
 msgid "Users with this right may view all full sized (raw) images."
 msgstr ""
+"Brugere med denne rettighed kan se alle billeder i fuld størrelse (rå)."
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:503
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:504
@@ -6575,32 +6578,33 @@ msgstr ""
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:537
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:538
 msgid "Access all"
-msgstr ""
+msgstr "Tilgå alle"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:503
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:536
 msgid "Users with this right have access to all zenpage news articles."
-msgstr ""
+msgstr "Brugere med denne rettighed kan tilgå alle zenpage nyhedsartikler."
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:504
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:537
 msgid "Users with this right have access to all zenpage pages."
-msgstr ""
+msgstr "Brugere med denne rettighed kan tilgå alle zenpage sider."
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:505
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:538
 msgid "Users with this right have access to all albums."
-msgstr ""
+msgstr "Brugere med denne rettighed kan tilgå alle albums."
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:506
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:539
 msgid "View unpublished"
-msgstr ""
+msgstr "Se ikke-offentliggjorte"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:506
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:539
 msgid "Users with this right will see all unpublished items."
 msgstr ""
+"Brugere med denne rettighed kan se alle ikke-offentliggjorte elementer."
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:517
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:518
@@ -6609,37 +6613,40 @@ msgstr ""
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:551
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:552
 msgid "Manage all"
-msgstr ""
+msgstr "Administrer alle"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:531
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:897
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1006
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1049
 msgid "User"
-msgstr ""
+msgstr "Bruger"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:531
 msgid "Users must have this right to change their credentials."
 msgstr ""
+"Brugere skal have denne rettighed for at kunne ændre deres akkreditiver."
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:565
 msgid "All rights"
-msgstr ""
+msgstr "Alle rettigheder"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:566
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:131
 msgid "Default rights"
-msgstr ""
+msgstr "Standard rettigheder"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:654
 msgid "Sorry, that is not the answer."
-msgstr ""
+msgstr "Beklager, det er ikke svaret."
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:661
 msgid ""
 "You are receiving this e-mail because of a password reset request on your "
 "Zenphoto gallery."
 msgstr ""
+"Du modtager denne mail på grund af en anmodning om nulstilling af adganskode "
+"for dit Zenphoto galleri."
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:663
 #, php-format
@@ -6647,75 +6654,84 @@ msgid ""
 "You are receiving this e-mail because of a password reset request on your "
 "Zenphoto gallery from a user who tried to log in as %s."
 msgstr ""
+"Du modtager denne mail på grund af en anmodning om nulstilling af "
+"adgangskode for dit Zenphoto galleri fra en bruger som prøvede at logge ind "
+"som %s."
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:702
 msgid "There was no one to which to send the reset request."
 msgstr ""
+"Der er ikke nogen vi kunne sende anmodninge om nulstilling af adgangskode "
+"til."
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:706
 #, php-format
 msgid "To reset your Zenphoto Admin passwords visit: %s"
-msgstr ""
+msgstr "Nulstil din adgangskode ved at gå til: %s"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:707
 msgid ""
 "If you do not wish to reset your passwords just ignore this message. This "
 "ticket will automatically expire in 3 days."
 msgstr ""
+"Hvis du ikke ønsker at nulstille din adgangskode kan du blot ignorere denne "
+"meddelelse. Dette link vil automatisk udløbe om 3 dage."
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:708
 msgid "The Zenphoto information you requested"
-msgstr ""
+msgstr "Den Zenphoto information du bad om"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:716
 msgid "Your input did not match the captcha"
-msgstr ""
+msgstr "Dit input svarede ikke til captcha"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:825
 msgid "What is your father's middle name?"
-msgstr ""
+msgstr "Hvad er din fars mellemnavn?"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:826
 msgid "What street did your Grandmother live on?"
-msgstr ""
+msgstr "Hvilken gade boede din bestemor på?"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:827
 msgid "Who was your favorite singer?"
-msgstr ""
+msgstr "Hvem var din favoritsanger?"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:828
 msgid "When did you first get a computer?"
-msgstr ""
+msgstr "Hvornår fik du din første computer?"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:829
 msgid "How much wood could a woodchuck chuck if a woodchuck could chuck wood?"
-msgstr ""
+msgstr "Usikker"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:830
 msgid "What is the date of the Ides of March?"
-msgstr ""
+msgstr "Usikker"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:860
 msgid "There was an error logging in."
-msgstr ""
+msgstr "Der opstod en fejl under indlogning."
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:863
 msgid "Check your username and password and try again."
-msgstr ""
+msgstr "Tjek brugernavn og adgangskode og prøv igen."
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:865
 msgid "Check password and try again."
-msgstr ""
+msgstr "Tjek adgangskode og prøv igen."
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:874
 msgid "A reset request has been sent."
-msgstr ""
+msgstr "En anmodning om nulstilling er sendt."
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:903
 msgid ""
 "Supply the correct response to the question below and you will be directed "
 "to a page where you can change your password."
 msgstr ""
+"Lever det rigtige svar på spørgsmålet nedenfor og du vil blive sendt videre "
+"til en side, hvor du kan ændre din adgangskode."
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:904
 msgid "Challenge question:"
@@ -14477,7 +14493,7 @@ msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/user-expiry.php:81
 msgid "Password cycle"
-msgstr "Kodeord cyklus."
+msgstr "Adgangskode cyklus."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/user-expiry.php:83
 msgid ""
