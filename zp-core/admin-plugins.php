@@ -370,7 +370,7 @@ foreach ($filelist as $extension) {
 <p class="buttons">
 <button type="submit" value="<?php echo gettext('Apply') ?>" title="<?php echo gettext("Apply"); ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 <button type="reset" value="<?php echo gettext('Reset') ?>" title="<?php echo gettext("Reset"); ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
-</p><br />
+</p><br /><br />
 <input type="hidden" name="checkForPostTruncation" value="1" />
 </form>
 </div>
