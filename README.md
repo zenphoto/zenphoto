@@ -1,4 +1,4 @@
-Zenphoto test
+Zenphoto
 ========
 
 **http://www.zenphoto.org**
