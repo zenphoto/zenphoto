@@ -296,9 +296,11 @@ ul.nav ul.subdropdown li a {
 	padding: 6px 12px;
 	top: 0;
 	min-width: 100px;
+	width: 100%;
 	height: 21px;
 	_height: 24px;
 	background: #F8F8F8;
+	font-size: 14px;
 }
 
 ul.nav ul.subdropdown li a:hover {
@@ -326,10 +328,12 @@ ul.nav li:hover > ul {
 	_padding: 0 0 0 30px;
 	margin: 0 0 0 30px;
 	height: 30px;
+
 }
 
 .subnav li {
 	display: inline;
+
 }
 
 .subnav li a {
