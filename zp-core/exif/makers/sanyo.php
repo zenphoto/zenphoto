@@ -125,13 +125,13 @@ function parseSanyo($block,&$result,$seek, $globalOffset) {
 		$value = substr($block,$place,4);$place+=4;
 
 
-		if($bytesofdata<=4) {
+		if($bytesofdata<=4 || $bytesofdata/pow(1024,2)>substr(ini_get('memory_limit'),0,-1)) {
 			$data = substr($value,0,$bytesofdata);
 		} else {
 			$value = bin2hex($value);
 			if($intel==1) $value = intel2Moto($value);
 			$v = fseek($seek,$globalOffset+hexdec($value));  //offsets are from TIFF header which is 12 bytes from the start of the file
-			if($v==0) {
+			if($tag==0 && $v==0) {
 				$data = fread($seek, $bytesofdata);
 			} else if($v==-1) {
 				$result['Errors'] = $result['Errors']++;
