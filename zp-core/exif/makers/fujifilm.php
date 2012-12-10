@@ -213,7 +213,7 @@ function parseFujifilm($block,&$result) {
 			//4 byte count of number of data units
 		$count = bin2hex(substr($block,$place,4));$place+=4;
 		if($intel==1) $count = intel2Moto($count);
-		$bytesofdata = $size*hexdec($count);
+		$bytesofdata = validSize($size*hexdec($count));
 
 			//4 byte value of data or pointer to data
 		$value = substr($block,$place,4);$place+=4;

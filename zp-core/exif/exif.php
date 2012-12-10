@@ -349,6 +349,13 @@ function lookup_type(&$type,&$size) {
 }
 
 //================================================================================================
+// truncates unreasonable read data requests.
+//================================================================================================
+function validSize($bytesofdata) {
+	return min(8191,max(0,$bytesofdata));
+}
+
+//================================================================================================
 // processes a irrational number
 //================================================================================================
 function unRational($data, $type, $intel) {
@@ -706,7 +713,7 @@ function read_entry(&$result,$in,$seek,$intel,$ifd_name,$globalOffset) {
 	// 4 byte number of elements
 	$count = bin2hex(fread($in, 4));
 	if ($intel == 1) $count = intel2Moto($count);
-	$bytesofdata = $size*hexdec($count);
+	$bytesofdata = validSize($size*hexdec($count));
 
 	// 4 byte value or pointer to value if larger than 4 bytes
 	$value = fread( $in, 4 );
