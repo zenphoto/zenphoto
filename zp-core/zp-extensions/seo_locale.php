@@ -18,6 +18,14 @@
  * 			<i>standard url</i>?locale=<i>languageid</i><br>
  * Where <i>languageid</i> is the local identifier (e.g. en, en_US, fr_FR, etc.)
  *
+ *
+ * <b>NOTE:</b> the implementation of these URIs requires that Zenphoto parse the URI, save the
+ * language request to a cookie, then redirect to the "native" URI. This means that there is an extra
+ * redirect for <b>EACH</b> page request!
+ *
+ * If your site will support it, we suggest you use the dynamic_locales plugin <i>subdomain locales</i> option
+ * instead for better performance.
+ *
  * @author Stephen Billard (sbillard)
  * @package plugins
  * @subpackage seo
@@ -33,10 +41,10 @@ if ($plugin_disable) {
 	setOption('zp_plugin_seo_locale',0);
 } else {
 	zp_register_filter('load_request', 'seo_locale::load_request');
-}
-if (!defined('SEO_WEBPATH')) {
-	define('SEO_WEBPATH',seo_locale::localePath());
-	define('SEO_FULLWEBPATH',seo_locale::localePath(true));
+	if (!defined('SEO_WEBPATH')) {
+		define('SEO_WEBPATH',seo_locale::localePath());
+		define('SEO_FULLWEBPATH',seo_locale::localePath(true));
+	}
 }
 
 class seo_locale {
@@ -76,14 +84,19 @@ class seo_locale {
 		return $allow;
 	}
 
-	static function localePath($full=false) {
+	static function localePath($full=false, $loc=NULL) {
 		global $_locale_Subdomains;
 		if ($full) {
 			$path = FULLWEBPATH;
 		} else {
 			$path =  WEBPATH;
 		}
-		if($locale = @$_locale_Subdomains[zp_getCookie('dynamic_locale')]) {
+		if (is_null($loc)) {
+			$locale = @$_locale_Subdomains[zp_getCookie('dynamic_locale')];
+		} else {
+			$locale = @$_locale_Subdomains[$loc];
+		}
+		if($locale) {
 			$path .= '/'.$locale;
 		}
 		return $path;

@@ -18,6 +18,11 @@ if (!zp_loggedin(OVERVIEW_RIGHTS)) { // prevent nefarious access to this page.
 	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . currentRelativeURL());
 	exitZP();
 }
+if(isset($_GET['clearsitemapcache'])) {
+	clearSitemapCache();
+	header('location:'.WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/sitemap-extended/sitemap-extended-admin.php');
+	exitZP();
+}
 
 $webpath = WEBPATH.'/'.ZENFOLDER.'/';
 $zenphoto_tabs['overview']['subtabs']=array(gettext('Sitemap')=>'');
@@ -83,7 +88,7 @@ echo '</head>';
 			echo '<ol>';
 			foreach($dirs as $dir) {
 				$filemtime = filemtime($cachefolder.$dir);
-				$lastchange = zpFormattedDate('Y-m-d H:i:s',$filemtime);
+				$lastchange = zpFormattedDate('%Y-%m-%d %H:%M:%S',$filemtime);
 				?>
 				<li><a target="_blank" href="<?php echo FULLWEBPATH; ?>/cache_html/sitemap/<?php echo $dir; ?>"><?php echo $dir; ?></a> (<small><?php echo $lastchange; ?>)</small>
 				</li>
@@ -155,20 +160,16 @@ printLogoAndLinks();
 			echo '<p><img src="../../images/ajax-loader.gif" alt="" /><br /><br />'.gettext('Sitemap files are being generated...Patience please.').'</p>';
 		} else {
 			generateSitemapIndexCacheFile();
-		 ?>
-		<p><?php echo gettext('Finished!'); ?></p>
-		<p class="buttons"><a href="sitemap-extended-admin.php"><?php echo 'Back to Sitemap tools'; ?></a></p>
-		<br clear="left" />
-		<?php
+			?>
+			<script type="text/javascript">
+				// <!-- <![CDATA[
+				$(document).ready(function() {
+					window.location = "<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER; ?>/sitemap-extended/sitemap-extended-admin.php";
+				});
+				// ]]> -->
+			</script>
+			<?php
 		}
-	}
-	if(isset($_GET['clearsitemapcache'])) {
-		clearSitemapCache();
-		echo gettext('Sitemap cache cleared');
-		?>
-		<p class="buttons"><a href="sitemap-extended-admin.php"><?php echo 'Back to Sitemap tools'; ?></a></p>
-		<br clear="left" />
-		<?php
 	}
 	?>
 </div><!-- content -->
