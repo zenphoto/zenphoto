@@ -293,12 +293,11 @@ ul.nav ul.subdropdown li a {
 	-webkit-border-radius: 0px;
 	border-radius: 0px;
 	margin: 0;
-	padding: 6px 12px;
+	padding: 5px;
 	top: 0;
-	min-width: 100px;
 	width: 100%;
-	height: 21px;
-	_height: 24px;
+	min-width: 100px;
+	height: auto;
 	background: #F8F8F8;
 	font-size: 14px;
 }
@@ -306,10 +305,8 @@ ul.nav ul.subdropdown li a {
 ul.nav ul.subdropdown li a:hover {
  border: 1px solid #CBCBCB;
  margin: 0;
- padding: 6px 12px;
+ padding: 5px;
  top: 0;
- height: 21px;
- _height: 24px;
 }
 
 ul.nav ul ul {
