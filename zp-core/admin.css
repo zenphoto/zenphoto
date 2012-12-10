@@ -15,7 +15,7 @@ html { /* Force vertical scrollbar to prevent page shift "jog" */
 }
 
 body {
-	font: normal 82% "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font: normal 82% Arial, "Helvetica Neue", Helvetica, sans-serif;
 	color: #4B4B4B;
 	text-align: center;
 	background-color: #f1f1f1;
