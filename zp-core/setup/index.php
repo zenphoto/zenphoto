@@ -196,8 +196,8 @@ if ($updatezp_config) {
 		fclose($handle);
 		clearstatcache();
 	}
-	@chmod(CONFIGFILE, $chmod);
-	$xsrftoken = sha1(CONFIGFILE.@file_get_contents(CONFIGFILE).session_id());
+	$str = configMod();
+	$xsrftoken = sha1(CONFIGFILE.$str.session_id());
 }
 $result = true;
 $environ = false;
@@ -493,7 +493,10 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 		checkmark(1,sprintf(gettext('Installing Zenphoto v%s'),ZENPHOTO_VERSION),'','');
 	}
 
-	$permission = fileperms(SETUPLOG)&0777;
+	$permission = fileperms(CONFIGFILE)&0777;
+	if (!checkPermissions($permission, 0600)) {
+		configMod();
+	}
 	if (checkPermissions($permission, 0600)) {
 		$p = true;
 	} else {

@@ -598,4 +598,18 @@ function acknowledge($value) {
 	return sprintf(gettext('Click <a href="%s">here</a> to acknowledge that you wish to ignore this issue. It will then become a warning.'), $link);
 }
 
+function configMod() {
+	$mod = 0600;
+	$str = '';
+	while (empty($str)) {
+		@chmod(CONFIGFILE, $mod);
+		$str = @file_get_contents(CONFIGFILE);
+		if ($mod == 0666) {
+			break;
+		}
+		$mod = $mod | $mod>>3;
+	}
+	return $str;
+}
+
 ?>
