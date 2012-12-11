@@ -307,7 +307,7 @@ class htmlmetatags {
 						if($langcheck != $locale) {
 							switch (METATAG_LOCALE_TYPE) {
 								case 1:
-									$altlink = FULLWEBPATH.'/'.$lang;
+									$altlink = FULLWEBPATH.'/'.$lang.'/';
 									break;
 								case 2:
 									$altlink = dynamic_locale::fullHostPath($lang);
