@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-08 20:12-0500\n"
-"PO-Revision-Date: 2012-12-08 20:16-0500\n"
+"POT-Creation-Date: 2012-12-10 22:27-0500\n"
+"PO-Revision-Date: 2012-12-10 22:27-0500\n"
 "Last-Translator: \n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon <michgagnon@gmail.com>\n"
 "Language: fr_FR\n"
@@ -376,7 +376,7 @@ msgstr "Couleur du thème"
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/GoogleMap.php:380
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/slideshow.php:229
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/user_login-out.php:123
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:68
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:73
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:33
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:39
 msgid "close"
@@ -997,7 +997,7 @@ msgstr "Recherche dans les actualités"
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/related_items.php:163
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/tweet_news.php:88
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/zenpage.php:346
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:126
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:131
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:495
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/zenpage/admin-pages.php:105
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1385
@@ -1015,7 +1015,7 @@ msgstr "Pages"
 #: F:\sites\zenphoto-master/themes/zenpage/pages.php:31
 #: F:\sites\zenphoto-master/themes/zenpage/register.php:29
 #: F:\sites\zenphoto-master/themes/zenpage/search.php:57
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1002
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1005
 msgid "Index"
 msgstr "Accueil"
 
@@ -1201,7 +1201,7 @@ msgstr "Actualités et galerie"
 #: F:\sites\zenphoto-master/themes/garland/themeoptions.php:41
 #: F:\sites\zenphoto-master/themes/zenpage/themeoptions.php:47
 #: F:\sites\zenphoto-master/zp-core/utilities/gallery_statistics.php:83
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:124
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:129
 msgid "News Articles"
 msgstr "Articles d’actualité"
 
@@ -2738,7 +2738,7 @@ msgstr "Êtes-vous certain(e) de vous vouloir supprimer ce commentaire ?"
 #: F:\sites\zenphoto-master/zp-core/admin-functions.php:1954
 #: F:\sites\zenphoto-master/zp-core/admin-logs.php:117
 #: F:\sites\zenphoto-master/zp-core/admin-themes.php:297
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1002
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1005
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/cacheManager.php:160
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/menu_manager/menu_tab.php:178
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/menu_manager/menu_tab.php:240
@@ -3234,7 +3234,7 @@ msgstr "%s (décroissant)"
 #: F:\sites\zenphoto-master/zp-core/admin-edit.php:957
 #: F:\sites\zenphoto-master/zp-core/admin-functions.php:1353
 #: F:\sites\zenphoto-master/zp-core/admin-options.php:1101
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:484
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:491
 #: F:\sites\zenphoto-master/zp-core/exif/makers/canon.php:135
 #: F:\sites\zenphoto-master/zp-core/exif/makers/canon.php:198
 #: F:\sites\zenphoto-master/zp-core/exif/makers/canon.php:219
@@ -4159,7 +4159,7 @@ msgstr "Catégories d’actualités gérées :"
 #: F:\sites\zenphoto-master/zp-core/utilities/gallery_statistics.php:596
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/multiple_layouts.php:92
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/tweet_news.php:120
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:125
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:130
 msgid "News categories"
 msgstr "Catégories d’actualités"
 
@@ -4580,7 +4580,7 @@ msgid "Log file size limit"
 msgstr "Taille maximale du journal"
 
 #: F:\sites\zenphoto-master/zp-core/admin-logs.php:138
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1002
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1005
 msgid "Update"
 msgstr "Update"
 
@@ -6962,7 +6962,7 @@ msgstr "Poursuivre l’actualisation des métadonnées."
 
 #: F:\sites\zenphoto-master/zp-core/admin-refresh-metadata.php:121
 #: F:\sites\zenphoto-master/zp-core/lib-auth.php:926
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1513
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1516
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/cacheManager/cacheImages.php:314
 msgid "Refresh"
 msgstr "Actualiser"
@@ -7480,7 +7480,7 @@ msgid "Make a new Album"
 msgstr "Créer un nouvel album"
 
 #: F:\sites\zenphoto-master/zp-core/admin-upload.php:251
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1010
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1013
 msgid "and"
 msgstr "et"
 
@@ -8013,13 +8013,13 @@ msgid "Error: The 'albums' directory (%s) is not readable."
 msgstr "Erreur : le dossier « albums » (%s) est illisible."
 
 #: F:\sites\zenphoto-master/zp-core/class-gallery.php:283
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:492
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:504
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:530
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:561
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:576
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:588
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:596
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:499
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:511
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:537
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:568
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:583
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:595
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:603
 #: F:\sites\zenphoto-master/zp-core/exif/makers/canon.php:79
 #: F:\sites\zenphoto-master/zp-core/exif/makers/canon.php:91
 #: F:\sites\zenphoto-master/zp-core/exif/makers/canon.php:103
@@ -10661,371 +10661,371 @@ msgstr ""
 "plus simple\"><span id=\"zen-part\">Zen</span><span id=\"photo-part\">PHOTO</"
 "span></a>"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:456
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:463
 msgid "1: Normal (0 deg)"
 msgstr "1: Normal (0 degré)"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:457
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:464
 msgid "2: Mirrored"
 msgstr "2: Miroir"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:458
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:465
 msgid "3: Upside-down"
 msgstr "3 : Symétrie sur l’axe horizontal"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:459
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:466
 msgid "4: Upside-down Mirrored"
 msgstr "4 : Symétrie sur l’axe horizontal + miroir"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:460
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:467
 msgid "5: 90 deg CW Mirrored"
 msgstr "5: 90 degrés + miroir"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:461
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:468
 msgid "6: 90 deg CCW"
 msgstr "6: -90 degrés"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:462
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:469
 msgid "7: 90 deg CCW Mirrored"
 msgstr "7: -90 degrés + miroir"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:463
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:470
 msgid "8: 90 deg CW"
 msgstr "8: 90 degrés"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:464
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:471
 #, php-format
 msgid "%d: Unknown"
 msgstr "%d : inconnu"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:471
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:478
 msgid "No Unit"
 msgstr "Pas d’unité"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:472
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:479
 msgid "Inch"
 msgstr "Pouce"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:473
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:480
 msgid "Centimeter"
 msgstr "Centimètre"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:478
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:485
 msgid "Center of Pixel Array"
 msgstr "Centre du tableau de pixels"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:479
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:486
 msgid "Datum Point"
 msgstr "Point de référence"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:485
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:492
 #: F:\sites\zenphoto-master/zp-core/exif/makers/canon.php:216
 #: F:\sites\zenphoto-master/zp-core/exif/makers/panasonic.php:135
 msgid "Program"
 msgstr "Programmée"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:486
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:493
 #: F:\sites\zenphoto-master/zp-core/exif/makers/panasonic.php:136
 msgid "Aperture Priority"
 msgstr "Priorité à l’ouverture"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:487
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:494
 #: F:\sites\zenphoto-master/zp-core/exif/makers/fujifilm.php:138
 #: F:\sites\zenphoto-master/zp-core/exif/makers/panasonic.php:137
 msgid "Shutter Priority"
 msgstr "Priorité à la vitesse"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:488
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:495
 msgid "Program Creative"
 msgstr "Programme de priorité à la création"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:489
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:496
 msgid "Program Action"
 msgstr "Programme de priorité à l’action"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:490
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:497
 #: F:\sites\zenphoto-master/zp-core/exif/makers/canon.php:142
 #: F:\sites\zenphoto-master/zp-core/exif/makers/fujifilm.php:132
 #: F:\sites\zenphoto-master/zp-core/exif/makers/panasonic.php:131
 msgid "Portrait"
 msgstr "Portrait"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:491
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:498
 #: F:\sites\zenphoto-master/zp-core/exif/makers/canon.php:136
 #: F:\sites\zenphoto-master/zp-core/exif/makers/fujifilm.php:133
 msgid "Landscape"
 msgstr "Paysage"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:497
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:504
 msgid "Average"
 msgstr "Moyenne"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:498
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:505
 msgid "Center Weighted Average"
 msgstr "Mesure pondérée au centre"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:499
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:506
 msgid "Spot"
 msgstr "Point"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:500
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:507
 msgid "Multi-Spot"
 msgstr "Multi-point"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:501
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:508
 msgid "Pattern"
 msgstr "Motif"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:502
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:509
 #: F:\sites\zenphoto-master/zp-core/exif/makers/canon.php:192
 msgid "Partial"
 msgstr "Partiel"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:503
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:529
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:510
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:536
 msgid "Other"
 msgstr "Autre"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:509
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:516
 #: F:\sites\zenphoto-master/zp-core/exif/makers/fujifilm.php:87
 #: F:\sites\zenphoto-master/zp-core/exif/makers/nikon.php:209
 #: F:\sites\zenphoto-master/zp-core/exif/makers/panasonic.php:102
 msgid "Daylight"
 msgstr "Lumière du jour"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:510
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:517
 #: F:\sites\zenphoto-master/zp-core/exif/makers/canon.php:273
 msgid "Fluorescent"
 msgstr "Fluorescent"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:511
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:518
 #: F:\sites\zenphoto-master/zp-core/exif/makers/canon.php:272
 msgid "Tungsten"
 msgstr "Éclairage au tungstène"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:514
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:543
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:521
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:550
 #: F:\sites\zenphoto-master/zp-core/exif/makers/canon.php:274
 #: F:\sites\zenphoto-master/zp-core/exif/makers/panasonic.php:106
 msgid "Flash"
 msgstr "Flash"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:521
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:528
 msgid "Standard Light A"
 msgstr "Lumière standard A"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:522
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:529
 msgid "Standard Light B"
 msgstr "Lumière standard B"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:523
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:530
 msgid "Standard Light C"
 msgstr "Lumière standard C"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:524
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:531
 msgid "D55"
 msgstr "D55"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:525
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:532
 msgid "D65"
 msgstr "D65"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:526
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:533
 msgid "D75"
 msgstr "D75"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:527
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:534
 msgid "D50"
 msgstr "D50"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:528
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:535
 msgid "ISO Studio Tungsten"
 msgstr "ISO Studio Tungstène"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:542
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:549
 msgid "No Flash"
 msgstr "Sans flash"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:544
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:551
 msgid "Flash, strobe return light not detected"
 msgstr "Flash, lumière de retour du flash non détectée"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:545
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:552
 msgid "Flash, strobe return light detected"
 msgstr "Flash, lumière de retour du flash détectée"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:546
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:553
 msgid "Compulsory Flash"
 msgstr "Flash obligatoire"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:547
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:554
 msgid "Compulsory Flash, Return light not detected"
 msgstr "Flash obligatoire, lumière de retour du flash non détectée"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:548
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:555
 msgid "Compulsory Flash, Return light detected"
 msgstr "Flash obligatoire, lumière de retour"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:549
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:556
 msgid "Flash, Auto-Mode"
 msgstr "Flash, mode automatique"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:550
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:557
 msgid "Flash, Auto-Mode, Return light not detected"
 msgstr "Flash, mode automatique, lumière de retour du flash non détectée"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:551
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:558
 msgid "Flash, Auto-Mode, Return light detected"
 msgstr "Flash, mode automatique, lumière de retour du flash détectée"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:552
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:559
 msgid "Red Eye"
 msgstr "Anti yeux-rouges"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:553
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:560
 msgid "Red Eye, Return light not detected"
 msgstr "Anti-yeux rouges, lumière de retour du flash non détectée"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:554
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:561
 msgid "Red Eye, Return light detected"
 msgstr "Anti-yeux rouges, lumière de retour du flash détectée"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:555
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:562
 msgid "Red Eye, Compulsory Flash"
 msgstr "Anti-yeux rouges, flash obligatoire"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:556
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:563
 msgid "Red Eye, Compulsory Flash, Return light not detected"
 msgstr ""
 "Anti-yeux rouges, flash obligatoire, lumière de retour du flash non détectée"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:557
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:564
 msgid "Red Eye, Compulsory Flash, Return light detected"
 msgstr ""
 "Anti-yeux rouges, flash obligatoire, lumière de retour du flash détectée"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:558
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:565
 msgid "Red Eye, Auto-Mode"
 msgstr "Anti-yeux rouges, mode automatique"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:559
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:566
 msgid "Red Eye, Auto-Mode, Return light not detected"
 msgstr ""
 "Anti-yeux rouges, mode automatique, lumière de retour du flash non détectée"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:560
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:567
 msgid "Red Eye, Auto-Mode, Return light detected"
 msgstr ""
 "Anti-yeux rouges, mode automatique, lumière de retour du flash détectée"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:565
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:572
 msgid "sRGB"
 msgstr "sRVB"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:566
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:573
 msgid "Uncalibrated"
 msgstr "Non étalonné"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:570
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:577
 msgid "pixels"
 msgstr "pixels"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:574
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:581
 msgid "No Compression"
 msgstr "Aucune compression"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:575
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:582
 msgid "Jpeg Compression"
 msgstr "Compression jpeg"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:581
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:588
 msgid "Not defined"
 msgstr "Non définie"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:582
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:589
 msgid "One Chip Color Area Sensor"
 msgstr "Capteur de couleur à une puce"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:583
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:590
 msgid "Two Chip Color Area Sensor"
 msgstr "Capteur de couleur à deux puces"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:584
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:591
 msgid "Three Chip Color Area Sensor"
 msgstr "Capteur de couleur à trois puces"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:585
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:592
 msgid "Color Sequential Area Sensor"
 msgstr "Capteur de couleur de surface séquentiel"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:586
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:593
 msgid "Trilinear Sensor"
 msgstr "Capteur trilinéaire"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:587
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:594
 msgid "Color Sequential Linear Sensor"
 msgstr "Capteur de couleur linéaire séquentiel"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:593
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:600
 #: F:\sites\zenphoto-master/zp-core/exif/makers/nikon.php:176
 msgid "Monochrome"
 msgstr "Monochrome"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:594
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:601
 msgid "RGB"
 msgstr "RVB"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:595
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:602
 msgid "YCbCr"
 msgstr "YCbCr"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:631
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:638
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/security-logger.php:122
 msgid "version"
 msgstr "version"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:636
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:643
 msgid "Digital Still Camera"
 msgstr "Caméra en mode photo"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:641
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:648
 msgid "Directly Photographed"
 msgstr "Photographié directement"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:670
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:674
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:677
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:681
 msgid "sec"
 msgstr "sec"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:677
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:684
 msgid "Bulb"
 msgstr "Bulb"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:813
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:820
 msgid "The file could not be found."
 msgstr "Le fichier ne peut être trouvé."
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:992
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:999
 msgid "Could not Find SubIFD"
 msgstr "Impossible de trouver la valeur SubIFD"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:1008
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:1015
 msgid "Illegal size for SubIFD"
 msgstr "Taille non autorisée pour SubIFD"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:1029
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:1036
 msgid "Could not Find IFD1"
 msgstr "Impossible de trouver IFD1"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:1045
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:1052
 msgid "Illegal size for IFD1"
 msgstr "Dimension illégale pour IFD1"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:1069
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:1076
 msgid "Could not Find InteroperabilityIFD"
 msgstr "Impossible de trouver InteroperabilityIFD"
 
-#: F:\sites\zenphoto-master/zp-core/exif/exif.php:1085
+#: F:\sites\zenphoto-master/zp-core/exif/exif.php:1092
 msgid "Illegal size for InteroperabilityIFD"
 msgstr "Taille non autorisée pour InteroperabilityIFD"
 
@@ -11847,15 +11847,15 @@ msgstr ""
 msgid "Installing Zenphoto v%s"
 msgstr "Installation de Zenphoto v%s"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:502
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:505
 msgid "Log security"
 msgstr "Journal de sécurité"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:502
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:505
 msgid "Log security [is compromised]"
 msgstr "La sécurité de la journalisation [est compromise]"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:503
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:506
 #, php-format
 msgid ""
 "Zenphoto attempts to make log files accessable by <em>owner</em> only "
@@ -11867,12 +11867,12 @@ msgstr ""
 "droits a échoué ; ceux-ci sont réglés à %04o, ce qui en permet l’accès non "
 "autorisé."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:505
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:508
 #, php-format
 msgid "PHP version %s"
 msgstr "Version %s de PHP"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:505
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:508
 #, php-format
 msgid ""
 "PHP Version %1$s or greater is required. Version %2$s or greater is strongly "
@@ -11882,29 +11882,29 @@ msgstr ""
 "recommandé d’utiliser au moins la version %2$s. Utiliser les versions "
 "antérieures est à vos risques."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:506
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:509
 msgid "PHP <code>Sessions</code>."
 msgstr "Mode <code>Sessions</code> de PHP"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:506
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:509
 msgid "PHP <code>Sessions</code> [appear to not be working]."
 msgstr "Le mode <code>Sessions</em> de PHP [ne semble pas fonctionner]."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:506
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:509
 msgid "PHP Sessions are required for Zenphoto administrative functions."
 msgstr ""
 "Les fonctions administratives de Zenphoto requièrent les <em>sessions PHP</"
 "em>"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:520
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:523
 msgid "PHP <code>Register Globals</code>"
 msgstr "Directive <code>Register Globals</code> de PHP"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:520
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:523
 msgid "PHP <code>Register Globals</code> [is set]"
 msgstr "La directive <code>Register Globals</code> de PHP [est activée]"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:521
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:524
 msgid ""
 "PHP Register globals presents a security risk to any PHP application. See <a "
 "href=\"http://php.net/manual/en/security.globals.php\"><em>Using Register "
@@ -11917,15 +11917,15 @@ msgstr ""
 "a>. Veuillez modifier votre fichier <em>php.ini</em> afin d’inscrire le "
 "paramètre <code>register_globals = off</code>."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:528
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:531
 msgid "PHP <code>Safe Mode</code>"
 msgstr "Mode <code>Sans échec</code> de PHP"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:528
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:531
 msgid "PHP <code>Safe Mode</code> [is set]"
 msgstr "Le mode <code>Sans échec</code> de PHP est activé"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:528
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:531
 msgid ""
 "Zenphoto functionality is reduced when PHP <code>safe mode</code> "
 "restrictions are in effect."
@@ -11933,11 +11933,11 @@ msgstr ""
 "Les fonctionnalités de Zenphoto sont réduites quand le mode <code>sans "
 "échec</code> de PHP est activé."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:546
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:549
 msgid "<code>Suhosin</code> module [is enabled]"
 msgstr "Le module <code>Suhosin</code> est activé"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:546
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:549
 #, php-format
 msgid ""
 "The following PHP functions are blocked: %s. Flagged functions are required "
@@ -11949,19 +11949,19 @@ msgstr ""
 "autres fonctions de cette liste peuvent réduire les possibilités de Zenphoto "
 "ou même l’empêcher de fonctionner convenablement."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:550
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:553
 msgid "Magic_quotes"
 msgstr "Magic_quotes"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:556
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:559
 msgid "PHP <code>magic_quotes_gpc</code>"
 msgstr "Module <code>magic_quotes_gpc</code> de PHP"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:556
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:559
 msgid "PHP <code>magic_quotes_gpc</code> [is enabled]"
 msgstr "Le module <code>magic_quotes_gpc</code> de PHP est activé"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:556
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:559
 msgid ""
 "We strongly recommend disabling <code>magic_quotes_gpc</code>. For more "
 "information See <em><a href=\"http://www.zenphoto.org/news/troubleshooting-"
@@ -11976,42 +11976,42 @@ msgstr ""
 "\"><em>Qu’est-ce que le module magic_quotes_gpc et pourquoi il doit être "
 "désactivé</em></a> du Guide de dépannage de Zenphoto."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:562
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:565
 msgid "PHP <code>magic_quotes_runtime</code>"
 msgstr "Module <code>magic_quotes_runtime</code> de PHP"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:562
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:565
 msgid "PHP <code>magic_quotes_runtime</code> [is enabled]"
 msgstr "Le module <code>magic_quotes_runtime</code> de PHP est activé"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:562
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:565
 msgid "You must disable <code>magic_quotes_runtime</code>."
 msgstr ""
 "Vous devez désactiver le module <code>magic_quotes_runtime</code> de PHP."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:563
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:566
 msgid "PHP <code>magic_quotes_sybase</code>"
 msgstr "Module <code>magic_quotes_sybase</code> de PHP"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:563
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:566
 msgid "PHP <code>magic_quotes_sybase</code> [is enabled]"
 msgstr "Le module <code>magic_quotes_sybase</code> de PHP est activé"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:563
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:566
 msgid "You must disable <code>magic_quotes_sybase</code>."
 msgstr ""
 "Vous devez désactiver le module <code>magic_quotes_sybasec</code> de PHP."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:585
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:588
 msgid "PHP <code>display_errors</code>"
 msgstr "Directive <code>display_errors</code> de PHP"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:586
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:589
 #, php-format
 msgid "PHP <code>display_errors</code> [is enabled]"
 msgstr "Le paramètre <code>display_errors</code> de PHP est activé"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:587
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:590
 msgid ""
 "This setting may result in PHP error messages being displayed on WEB pages. "
 "These displays may contain sentsitive information about your site."
@@ -12020,30 +12020,30 @@ msgstr ""
 "apparaissent sur des pages internet. Ceux-ci peuvent divulguer des "
 "informations sensibles sur votre site."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:590
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:593
 msgid "PHP <code>gettext()</code> support"
 msgstr "Support de <code>gettext()</code> de PHP"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:590
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:593
 msgid "PHP <code>gettext()</code> support [is not present]"
 msgstr "Le support de <code>gettext()</code> de PHP n’est pas présent"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:590
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:593
 msgid ""
 "Localization of Zenphoto requires native PHP <code>gettext()</code> support"
 msgstr ""
 "La localisation de Zenphoto nécessite l’activation du module <code>gettext()"
 "</code> de PHP"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:591
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:594
 msgid "PHP <code>flock</code> support"
 msgstr "Fonction <code>flock</em> de PHP"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:591
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:594
 msgid "PHP <code>flock</code> support [is not present]"
 msgstr "La fonction <code>flock</code> de PHP n’est pas supportée"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:591
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:594
 msgid ""
 "Zenpoto uses <code>flock</code> for serializing critical regions of code. "
 "Without <code>flock</code> active sites may experience <em>race conditions</"
@@ -12054,15 +12054,15 @@ msgstr ""
 "<em>sousvirer</em> à cause de demandes conflictuelles et ainsi produire des "
 "résultats imprévisibles."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:593
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:596
 msgid "PHP <code>setlocale()</code>"
 msgstr "Fonction <code>setlocale()</code> de PHP"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:593
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:596
 msgid "PHP <code>setlocale()</code> failed"
 msgstr "La fonction <code>setlocale()</code> de PHP a échoué"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:593
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:596
 msgid ""
 "Locale functionality is not implemented on your platform or the specified "
 "locale does not exist. Language translation may not work."
@@ -12071,7 +12071,7 @@ msgstr ""
 "ou le paramètre régional spécifié n’existe pas. La localisation ne "
 "fonctionnera sans doute pas."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:593
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:596
 msgid ""
 "See the <a  href=\"http://www.zenphoto.org/news/troubleshooting-"
 "zenphoto#24\">troubleshooting guide</a> on zenphoto.org for details."
@@ -12079,11 +12079,11 @@ msgstr ""
 "Lisez le <a  href=\"http://www.zenphoto.org/news/troubleshooting-"
 "zenphoto#24\">Guide de dépannage</a> sur zenphoto.org pour plus de détails."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:595
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:598
 msgid "mb_strings"
 msgstr "mb_strings"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:603
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:606
 msgid ""
 "Setting <em>mbstring.internal_encoding</em> to <strong>UTF-8</strong> in "
 "your <em>php.ini</em> file is recommended to insure accented and multi-byte "
@@ -12093,11 +12093,11 @@ msgstr ""
 "à <strong>UTF-8</strong> dans votre fichier <em>php.ini</em> pour utiliser "
 "sans problème les caractères accentués et multi-octets."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:604
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:607
 msgid "PHP <code>mbstring</code> package"
 msgstr "Module <code>mbstring</code> de PHP"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:604
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:607
 #, php-format
 msgid ""
 "PHP <code>mbstring</code> package [Your internal character set is <strong>"
@@ -12106,7 +12106,7 @@ msgstr ""
 "Module <code>mbstring</code> de PHP : [le jeu de caractères interne est "
 "<strong>%s</strong>]"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:608
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:611
 msgid ""
 "You need to install the <code>mbstring</code> package or correct the issue "
 "with <code>iconv(()</code>"
@@ -12114,7 +12114,7 @@ msgstr ""
 "Vous devez installer le module <code>mbstring</code> de PHP ou corriger ce "
 "problème avec <code>iconv(()</code>"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:609
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:612
 msgid ""
 "PHP <code>mbstring</code> package [is not present and <code>iconv()</code> "
 "is not working]"
@@ -12122,31 +12122,31 @@ msgstr ""
 "Le module <code>mbstring</code> de PHP n’est pas présent et <code>iconv()</"
 "code> ne fonctionne pas"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:611
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:614
 msgid ""
 "Strings generated internally by PHP may not display correctly. (e.g. dates)"
 msgstr ""
 "Les chaînes de caractères générées par PHP (comme les dates) peuvent ne pas "
 "s’afficher correctement."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:612
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:615
 msgid "PHP <code>mbstring</code> package [is not present]"
 msgstr "Le module <code>mbstring</code> de PHP n’est pas présent"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:618
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:621
 msgid "Graphics library"
 msgstr "Bibliothèque graphique"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:626
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:629
 #, php-format
 msgid "Graphics support: <code>%s</code>"
 msgstr "Bibliothèque graphique : <code>%s</code>"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:626
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:629
 msgid "Graphics support [is not installed]"
 msgstr "Aucune bibliothèque graphique n’est installée"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:626
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:629
 msgid ""
 "You need to install a graphics support library such as the <em>GD library</"
 "em> in your PHP"
@@ -12154,20 +12154,20 @@ msgstr ""
 "Vous devez installer une bibliothèque graphique comme <em>GD</em> dans votre "
 "configuration PHP"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:635
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:638
 #, php-format
 msgid "Your PHP graphics library does not support %1$s or %2$s"
 msgstr ""
 "La bibliothèque graphique de votre configuration PHP ne supporte pas %1$s ou "
 "%2$s"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:637
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:640
 #, php-format
 msgid "Your PHP graphics library does not support %1$s"
 msgstr ""
 "La bibliothèque graphique de votre configuration PHP ne supporte pas %1$s"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:640
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:643
 msgid ""
 "To correct this you should install a graphics library with appropriate image "
 "support in your PHP"
@@ -12175,14 +12175,14 @@ msgstr ""
 "Pour corriger cela, vous devriez installer dans votre configuration PHP une "
 "bibliothèque graphique qui offre le support des types d’images adéquats"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:642
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:645
 #, php-format
 msgid "Your PHP graphics library does not support %1$s, %2$s, or %3$s"
 msgstr ""
 "La bibliothèque graphique de votre configuration PHP ne supporte pas %1$s, "
 "%2$s ou %3$s"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:645
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:648
 msgid ""
 "To correct this you need to install GD with appropriate image support in "
 "your PHP"
@@ -12190,31 +12190,31 @@ msgstr ""
 "Pour corriger cela, vous devez installer dans votre configuration PHP la "
 "bibliothèque graphique GD avec le support des formats d’images adéquats"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:647
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:650
 msgid "PHP graphics image support"
 msgstr "Support graphique de PHP"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:648
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:651
 msgid "The unsupported image types will not be viewable in your albums."
 msgstr ""
 "Les types d’images non supportés ne seront pas visibles dans vos albums."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:652
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:655
 msgid "Graphics Library rotation support [is not present]"
 msgstr ""
 "La bibliothèque graphique requise pour gérer la rotation d’images n’est pas "
 "installée"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:652
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:655
 msgid ""
 "The graphics support library does not provide support for image rotation."
 msgstr "La bibliothèque graphique utilisée ne gère pas la rotation d’images."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:660
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:663
 msgid "Graphics support [configuration error]"
 msgstr "Problème avec le support graphique [erreur de configuration]"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:660
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:663
 msgid ""
 "No Zenphoto image handling library was loaded. Be sure that your PHP has a "
 "graphics support."
@@ -12223,15 +12223,15 @@ msgstr ""
 "Assurez-vous que votre installation de PHP comporte une bibliothèque "
 "graphique."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:671
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:674
 msgid "<em>zenphoto.cfg</em> file"
 msgstr "Fichier <em>zenphoto.cfg</em>"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:671
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:674
 msgid "<em>zenphoto.cfg</em> file [does not exist]"
 msgstr "Le fichier <em>zenphoto.cfg</em> n’existe pas"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:672
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:675
 #, php-format
 msgid ""
 "Setup was not able to create this file. You will need to copy the <code>%1$s/"
@@ -12243,31 +12243,31 @@ msgstr ""
 "zenphoto.cfg</code>, puis l’éditer en suivant les instructions présentes "
 "dans les commentaires dudit fichier."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:674
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:677
 msgid "File permissions"
 msgstr "Droits des fichiers"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:676
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:679
 #, php-format
 msgid "Set File permissions to %s."
 msgstr "Établit les droits des fichiers à %s."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:679
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:682
 #, php-format
 msgid "<em>%1$s</em> (<code>0%2$o</code>)"
 msgstr "<em>%1$s</em> (<code>0%2$o</code>)"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:681
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:684
 #, php-format
 msgid "<em>unknown</em> (<code>%o</code>)"
 msgstr "<em>inconnu</em> (<code>%o</code>)"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:692
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:695
 #, php-format
 msgid "File Permissions [are %s]"
 msgstr "Les droits des fichiers sont : %s"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:693
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:696
 msgid ""
 "If file permissions are not set to <em>strict</em> or tighter there could be "
 "a security risk. However, on some servers Zenphoto does not function "
@@ -12280,11 +12280,11 @@ msgstr ""
 "rencontrez des problèmes, relancez l’installation en donnant un droit "
 "d’accès un peu plus ouvert."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:699
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:702
 msgid "Your filesystem is Macintosh"
 msgstr "Votre système de fichiers est celui du Macintosh"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:699
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:702
 msgid ""
 "Zenphoto is unable to deal with Macintosh file names containing diacritical "
 "marks. You should avoid these."
@@ -12292,11 +12292,11 @@ msgstr ""
 "Zenphoto ne peut traiter les noms de fichiers Macintosh qui contiennent des "
 "caractères diacritiques (des caractères accentués). Vous devriez les éviter."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:706
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:709
 msgid "Character set"
 msgstr "Encodage des caractères"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:747
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:750
 #, php-format
 msgid ""
 "If your server filesystem character set is different from <code>%s</code> "
@@ -12307,37 +12307,37 @@ msgstr ""
 "%s</code> et que vous créez des albums et des images dont les noms ont des "
 "caractères accentués, vous risquez d’avoir des problèmes avec ces objets."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:749
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:752
 #, php-format
 msgid "Change the filesystem character set define to %1$s"
 msgstr "Définissez l’encodage des caractères du système de fichier en %1$s"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:763
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:766
 #, php-format
 msgid "The Zenphoto filesystem character define is %1$s [confirmed]"
 msgstr "L’encodage des caractères du système de fichiers est %1$s [confirmé]"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:768
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:771
 msgid "The Zenphoto filesystem character define is ISO-8859-1 [assumed]"
 msgstr ""
 "L’encodage des caractères du système de fichiers est ISO-8859-1 [par "
 "déduction]"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:773
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:776
 #, php-format
 msgid "The Zenphoto filesystem character define is %1$s [which seems wrong]"
 msgstr ""
 "L’encodage des caractères du système de fichiers est %1$s [ce qui semble "
 "incorrect]"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:778
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:781
 #, php-format
 msgid "The Zenphoto filesystem character define is %1$s [no test performed]"
 msgstr ""
 "L’encodage des caractères du système de fichiers est %1$s [aucun test "
 "effectué]"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:779
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:782
 #, php-format
 msgid ""
 "Setup did not perform a test of the filesystem character set. You can cause "
@@ -12349,40 +12349,40 @@ msgstr ""
 "en créant un fichier <strong><code>%2$s</code></strong> dans le dossier "
 "<code>%1$s</code> et en relançant l’installation."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:792
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:795
 msgid "Image URIs appear require the <em>filesystem</em> character set."
 msgstr ""
 "Les URIs d’image nécessitent l’encodage du <em>système de fichiers</em>."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:793
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:796
 msgid "Image URIs appear to require the UTF-8 character set."
 msgstr "Les URIs d’image semblent nécessiter l’encodage UTF-8."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:814
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:817
 msgid "You should enable the URL option <em>UTF8 image URIs</em>."
 msgstr ""
 "Vous devriez activer le paramètre <em>URIs d’images au format UTF-8</em>."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:814
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:817
 msgid "<a href=\"javascript:uri(true)\">Please do</a>"
 msgstr "<a href=\"javascript:uri(true)\">Veuillez le faire</a>"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:831
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:834
 msgid "You should disable the URL option <em>UTF8 image URIs</em>."
 msgstr ""
 "Vous devriez désactiver le paramètre <em>URIs d’images au format UTF-8</em>."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:831
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:834
 msgid "<a href=\"javascript:uri(false)\">Please do</a>"
 msgstr "<a href=\"javascript:uri(false)\">Veuillez le faire</a>"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:853
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:856
 #: F:\sites\zenphoto-master/zp-core/setup/setup-functions.php:116
 #: F:\sites\zenphoto-master/zp-core/setup/setup-functions.php:131
 msgid "Warning!"
 msgstr "Attention !"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:879
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:882
 #: F:\sites\zenphoto-master/zp-core/utilities/database_reference.php:33
 #: F:\sites\zenphoto-master/zp-core/utilities/refresh_database.php:4
 #: F:\sites\zenphoto-master/zp-core/utilities/refresh_metadata.php:4
@@ -12392,26 +12392,26 @@ msgstr "Attention !"
 msgid "Database"
 msgstr "Base de données"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:884
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:887
 #, php-format
 msgid "PHP <code>%s support</code> for configured Database [is experimental]"
 msgstr ""
 "Le <code>support de %s</em> de PHP pour la base de données configurée [est "
 "expérimental]"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:886
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:889
 #, php-format
 msgid "PHP <code>%s</code> support for configured Database"
 msgstr "<code>Support de %s</em> de PHP pour la base de données configurée"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:886
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:889
 #, php-format
 msgid "PHP <code>%s support</code> for configured Database [is not installed]"
 msgstr ""
 "Le <code>support de %s</em> de PHP pour la base de données configurée [n’est "
 "pas installé]"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:886
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:889
 #, php-format
 msgid ""
 "Choose a different database engine or install %s support in your PHP to "
@@ -12420,7 +12420,7 @@ msgstr ""
 "Pour résoudre ce problème, choisir un autre langage de base de données ou "
 "installer le support de %s dans votre installation de PHP."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:892
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:895
 #, php-format
 msgid ""
 " <code>%1$s</code> support (<a onclick=\"$('#%1$s').toggle('show')\" "
@@ -12429,26 +12429,26 @@ msgstr ""
 " support de <code>%1$s</code> (<a onclick=\"$('#%1$s').toggle('show')\" "
 ">expérimental</a>)"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:901
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:904
 #, php-format
 msgid "PHP <code>%s</code> support"
 msgstr "Support de <code>%s</em> de PHP"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:907
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:910
 #, php-format
 msgid "PHP <code>%s</code> support [is not installed]"
 msgstr "Le support de <code>%s</em> de PHP [n’est pas installé]"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:917
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:920
 msgid "No database selected"
 msgstr "Aucune base de données n’est sélectionnée"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:929
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:932
 #, php-format
 msgid "%1$s version %2$s"
 msgstr "%1$s version %2$s"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:929
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:932
 #, php-format
 msgid ""
 "%1$s Version %2$s or greater is required. Version %3$s or greater is "
@@ -12458,20 +12458,20 @@ msgstr ""
 "recommandé d’utiliser au moins la version %3$s. Utiliser une version "
 "antérieure est à vos risques."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:931
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:934
 msgid "Database connection"
 msgstr "Connexion à la base de données"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:937
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:940
 msgid "Database credentials in configuration file"
 msgstr "Paramètres de la base de données dans le fichier de configuration"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:937
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:940
 #, php-format
 msgid "<em>%1$s</em> reported: %2$s"
 msgstr "<em>%1$s</em> rapporté : %2$s"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:944
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:947
 msgid ""
 "You have not correctly set your <strong>Database</strong> <code>user</code>, "
 "<code>password</code>, etc. in your configuration file and <strong>setup</"
@@ -12482,32 +12482,32 @@ msgstr ""
 "fichier de configuration, et <strong>le script d’installation</strong> "
 "(setup) n’est pas en mesure d’écrire dans ce fichier."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:946
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:949
 msgid "Database setup in configuration file"
 msgstr "Paramétrage de la base de données dans le fichier de configuration"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:949
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:952
 #, php-format
 msgid "Connect to %s"
 msgstr "Connexion à %s"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:949
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:952
 msgid "Connect to Database [<code>CONNECT</code> query failed]"
 msgstr ""
 "Connexion à la base de données : [la requête <code>CONNECT</code> a échoué]"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:956
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:959
 #, php-format
 msgid "Database <code>%s</code> created"
 msgstr "Base de données <code>%s</code> créée"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:964
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:967
 #, php-format
 msgid "Click here to attempt to create <a href=\"?Create_Database\" >%s</a>."
 msgstr ""
 "Cliquez ici pour essayer de créer <a href=\"?Create_Database\" >%s</a>."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:969
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:972
 #, php-format
 msgid ""
 "Database <code>%s</code> not created [<code>CREATE DATABASE</code> query "
@@ -12516,7 +12516,7 @@ msgstr ""
 "La base de données <code>%s</code> n’a pu être créée. [La requête "
 "<code>CREATE DATABASE</code> a échoué.]"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:975
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:978
 msgid ""
 "You may need to set <code>SQL mode</code> <em>empty</em> in your Database "
 "configuration."
@@ -12524,97 +12524,97 @@ msgstr ""
 "Mettez le paramètre <code>mode SQL</code> sur <em>vide</em> dans la "
 "configuration de la base de données."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:979
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:982
 #, php-format
 msgid "<code>SQL mode</code> [query failed]"
 msgstr "<code>Mode SQL</code> : la requête a échoué"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:982
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:985
 #, php-format
 msgid "<code>SQL mode</code> [<em>%s</em> overridden]"
 msgstr "<code>Mode SQL</code> : [<em>%s</em> supplanté]"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:982
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:985
 msgid "Consider setting it <em>empty</em> in your Database configuration."
 msgstr ""
 "Mettez ce paramètre à <em>vide</em> dans la configuration de votre base de "
 "données."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:989
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:992
 msgid "<code>SQL mode</code>"
 msgstr "<code>Mode SQL</code>"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:989
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:992
 #, php-format
 msgid "<code>SQL mode</code> [is set to <em>%s</em>]"
 msgstr "Le <code>mode SQL</code> [est à <em>%s</em>]"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:989
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:992
 msgid "Consider setting it <em>empty</em> if you get Database errors."
 msgstr ""
 "Mettez ce paramètre à <em>vide</em> si vous obtenez des erreurs de base de "
 "données."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:993
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:996
 msgid "<code>SQL mode</code> [SET SESSION failed]"
 msgstr "<code>Mode SQL</code> : [La requête SET SESSION a échoué]"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1001
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1004
 msgid "Select"
 msgstr "Select"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1001
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1004
 msgid "Create"
 msgstr "Create"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1001
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1004
 msgid "Drop"
 msgstr "Drop"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1001
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1004
 msgid "Insert"
 msgstr "Insert"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1002
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1005
 msgid "Alter"
 msgstr "Alter"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1012
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1015
 msgid "Grants found:"
 msgstr "Habilitations trouvées : "
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1040
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1043
 msgid "The <em>SHOW GRANTS</em> query failed."
 msgstr "La requête <em>SHOW GRANTS</em> a échoué."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1042
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1045
 msgid "Database <code>access rights</code>"
 msgstr "<code>Droits d’accès</code> à la base de données"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1042
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1045
 #, php-format
 msgid "Database <code>access rights</code> [%s]"
 msgstr "<code>Droits d’accès</code> à la base de données [%s]"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1043
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1046
 #, php-format
 msgid "Your Database user must have %s rights."
 msgstr "L’utilisateur de base de données doit avoir les droits %s."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1060
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1063
 msgid "<em>SHOW TABLES</em> [found no tables]"
 msgstr "La requête <em>SHOW TABLES</em> n’a trouvé aucune table"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1063
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1066
 #, php-format
 msgid "<em>SHOW TABLES</em> found: %s"
 msgstr "La requête <em>SHOW TABLES</em> a trouvé : %s"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1067
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1070
 msgid "<em>SHOW TABLES</em> [Failed]"
 msgstr "La requête <em>SHOW TABLES</em> a échoué."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1067
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1070
 #, php-format
 msgid ""
 "The database did not return a list of the database tables for <code>%s</"
@@ -12622,7 +12622,7 @@ msgid ""
 msgstr ""
 "La base de données n’a pas renvoyé de liste de tables pour <code>%s</code>."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1068
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1071
 msgid ""
 "<strong>Setup</strong> will attempt to create all tables. This will not over "
 "write any existing tables."
@@ -12631,33 +12631,33 @@ msgstr ""
 "tables. Cela n’effacera pas celles qui existent déjà."
 
 # Note : Les 5 champs suivants sont mis à jour parce qu'on supporte maintenant d'autres bases de données que le MySQL. J'ai donc remplacé "Paramètre MySQL..." par "... de la base de données"
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1094
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1097
 msgid "Database <code>field collations</code> [Image table]"
 msgstr ""
 "<code>Collation des champs</code> de la base de données : table d’images"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1097
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1100
 msgid "Database <code>field collations</code> [Album table]"
 msgstr ""
 "<code>Collation des champs</code> de la base de données : table d’albums"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1100
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1103
 msgid "Database <code>field collations</code> [Image and Album tables]"
 msgstr ""
 "<code>Collation des champs</code> de la base de données : tables d’images et "
 "d’albums"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1103
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1106
 msgid "Database <code>field collations</code> [SHOW COLUMNS query failed]"
 msgstr ""
 "<code>Collation des champs</code> de la base de données : la requête SHOW "
 "COLUMNS a échoué"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1106
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1109
 msgid "Database <code>field collations</code>"
 msgstr "<code>Collation des champs</code> de la base de données"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1106
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1109
 #, php-format
 msgid ""
 "%s is not UTF-8. You should consider porting your data to UTF-8 and changing "
@@ -12674,11 +12674,11 @@ msgstr[1] ""
 "format UTF-8 puis de modifier le paramètre « collation des champs » des "
 "tables de la base de données en <code>utf8_unicode_ci</code>"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1108
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1111
 msgid "Database <code>$conf[\"UTF-8\"]</code> [is not set <em>true</em>]"
 msgstr "Le paramètre <code>$conf[\"UTF-8\"]</code> [n’est pas à <em>vrai</em>]"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1108
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1111
 msgid ""
 "You should consider porting your data to UTF-8 and changing the collation of "
 "the database fields to <code>utf8_unicode_ci</code> and setting this "
@@ -12689,15 +12689,15 @@ msgstr ""
 "données en <code>utf8_unicode_ci</code>. Zenphoto fonctionne mieux avec un "
 "encodage entièrement en UTF-8."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1113
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1116
 msgid "Zenphoto files"
 msgstr "Fichiers de Zenphoto"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1143
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1146
 msgid "Zenphoto package [missing]"
 msgstr "Fichiers de base de Zenphoto [absents]"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1143
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1146
 msgid ""
 "The file <code>Zenphoto.package</code> is either missing, not readable, or "
 "defective. Your installation may be corrupt!"
@@ -12705,12 +12705,12 @@ msgstr ""
 "Le fichier <code>Zenphoto.package</code> est soit absent, illisible ou "
 "défectueux. Votre installation est sans doute corrompue !"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1149
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1152
 #, php-format
 msgid "Setting permissions (0%o) for Zenphoto package."
 msgstr "Paramétrage des droits d’accès (0%o) pour Zenphoto."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1252
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1255
 msgid ""
 "Zenphoto core files [This is a <em>debug</em> build. Some files are missing "
 "or seem wrong]"
@@ -12718,12 +12718,12 @@ msgstr ""
 "Fichiers de base de Zenphoto [Il s’agit d’une version de <em>développement</"
 "em>. Certains fichiers sont absents ou défectueux.]"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1254
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1257
 msgid "Zenphoto core files [Some files are missing or seem wrong]"
 msgstr ""
 "Fichiers de base de Zenphoto : certains fichiers sont absents ou défectueux."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1256
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1259
 msgid ""
 "Perhaps there was a problem with the upload. You should check the following "
 "files: "
@@ -12731,61 +12731,61 @@ msgstr ""
 "Il y a peut être eu un problème lors du chargement vers le serveur. Vous "
 "devriez vérifier les fichiers suivants :"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1261
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1264
 msgid "Zenphoto core files [This is a <em>debug</em> build]"
 msgstr ""
 "Fichiers de base de Zenphoto [Il s’agit d’une version de <em>développement</"
 "em>]"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1268
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1271
 msgid "Zenphoto core files"
 msgstr "Fichiers de base de Zenphoto"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1270
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1273
 msgid "Installation files"
 msgstr "Fichiers d’installation"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1284
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1287
 #, php-format
 msgid ".svn [%s instance]"
 msgid_plural ".svn [%s instances]"
 msgstr[0] ".svn [%s instance]"
 msgstr[1] ".svn [%s instances]"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1287
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1290
 #, php-format
 msgid "php.ini [%s instance]"
 msgid_plural "php.ini [%s instances]"
 msgstr[0] "php.ini [%s instance]"
 msgstr[1] "php.ini [%s instances]"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1310
 #: F:\sites\zenphoto-master/zp-core/setup/index.php:1313
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1316
 msgid "Zenphoto core folders [Some unknown files were found]"
 msgstr ""
 "Fichiers de base de Zenphoto [Certains fichiers inconnus ont été trouvés.]"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1310
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1313
 msgid "The following files could not be deleted."
 msgstr "Les fichiers suivants n’ont pu être supprimés."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1314
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1317
 msgid "You should remove the following files: "
 msgstr "Vous devriez supprimer les fichiers suivants :"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1315
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1318
 msgid "Delete extra files"
 msgstr "Supprimez les fichiers supplémentaires"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1318
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1321
 msgid "Zenphoto core file permissions"
 msgstr "Droits des fichiers de base de Zenphoto"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1318
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1321
 msgid "Zenphoto core file permissions [not correct]"
 msgstr "Les droits des fichiers de base de Zenphoto ne sont pas corrects"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1318
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1321
 msgid ""
 "Setup could not set the one or more components to the selected permissions "
 "level. You will have to set the permissions manually. See the <a href="
@@ -12797,15 +12797,15 @@ msgstr ""
 "<a href=\"http://www.zenphoto.org/news/troubleshooting-zenphoto#29\">Guide "
 "de dépannage</a> pour connaître les droits d’accès nécessaires."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1321
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1324
 msgid "<em>.htaccess</em> file"
 msgstr "Fichier <em>.htaccess</em>"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1332
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1335
 msgid "<em>.htaccess</em> file [is empty or does not exist]"
 msgstr "Le fichier <em>.htaccess</em> est vide ou n’existe pas"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1335
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1338
 msgid ""
 "If you have the mod_rewrite module enabled an <em>.htaccess</em> file is "
 "required the root zenphoto folder to create cruft-free URLs."
@@ -12813,7 +12813,7 @@ msgstr ""
 "Si le module d’Apache mod_rewrite est activé, il faut placer un fichier <em>."
 "htaccess</em> à la racine du dossier zenphoto pour créer des URL propres."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1336
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1339
 msgid ""
 "You can ignore this warning if you do not intend to set the "
 "<code>mod_rewrite</code> option."
@@ -12821,7 +12821,7 @@ msgstr ""
 "Vous pouvez ignorer cette alerte si vous ne comptez pas utiliser l’option "
 "<code>mod_rewrite</code>."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1338
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1341
 msgid ""
 "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Make setup create the file</"
 "a></p><br style=\"clear:both\" /><br />"
@@ -12829,8 +12829,8 @@ msgstr ""
 "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Laisser le script "
 "d’installation créer le fichier</a></p><br style=\"clear:both\" /><br />"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1341
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1377
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1344
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1380
 msgid ""
 "Server seems not to be Apache or Apache-compatible, <code>.htaccess</code> "
 "not required."
@@ -12838,7 +12838,7 @@ msgstr ""
 "Le serveur ne semble pas être un serveur Apache ni un compatible ; le "
 "fichier <code>.htaccess</code> n’est donc pas requis."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1380
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1383
 #, php-format
 msgid ""
 "The <em>.htaccess</em> file in your root folder is not the same version as "
@@ -12852,7 +12852,7 @@ msgstr ""
 "modifications au fichier <em>%s/htaccess</em> de cette version afin de "
 "produire un nouveau fichier <em>.htaccess</em>."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1382
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1385
 msgid ""
 "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Replace the existing <em>."
 "htaccess</em> file with the current version</a></p><br style=\"clear:both\" /"
@@ -12862,29 +12862,29 @@ msgstr ""
 "htaccess</em> existant avec la version courante de ce fichier.</a></p><br "
 "style=\"clear:both\" /><br />"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1385
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1388
 msgid "<em>.htaccess</em> file [wrong version]"
 msgstr "Le fichier <em>.htaccess</em> n’est pas de la bonne version"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1400
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1403
 #, php-format
 msgid "<em>.htaccess</em> file (<em>RewriteEngine</em> is <strong>%s</strong>)"
 msgstr ""
 "Fichier <em>.htaccess</em> : (le paramètre <em>RewriteEngine</em> est à "
 "<strong>%s</strong>)"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1413
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1416
 msgid "<em>.htaccess</em> RewriteBase [is <em>missing</em>]"
 msgstr ""
 "Le paramètre RewriteBase du fichier <em>.htaccess</em> est <em>manquant</em>"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1419
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1422
 #, php-format
 msgid "<em>.htaccess</em> RewriteBase is <code>%s</code>"
 msgstr ""
 "Le paramètre RewriteBase du fichier <em>.htaccess</em> est <code>%s</code>"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1420
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1423
 #, php-format
 msgid ""
 "<em>.htaccess</em> RewriteBase is <code>%s</code> [Does not match install "
@@ -12893,14 +12893,14 @@ msgstr ""
 "Le paramètre RewriteBase du fichier <em>.htaccess</em> est <code>%s</code> "
 "[Cela ne correspond pas au dossier d’installation]"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1430
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1433
 #, php-format
 msgid "<em>.htaccess</em> RewriteBase is <code>%s</code> (fixed)"
 msgstr ""
 "Le paramètre RewriteBase du fichier <em>.htaccess</em> est <code>%s</code> "
 "(corrigé)"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1438
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1441
 msgid ""
 "Setup was not able to write to the file change RewriteBase match the install "
 "folder."
@@ -12909,7 +12909,7 @@ msgstr ""
 "corrigez le paramètre RewriteBase pour correspondre à votre dossier "
 "d’installation."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1439
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1442
 #, php-format
 msgid ""
 "Either make the file writeable or set <code>RewriteBase</code> in your "
@@ -12919,44 +12919,44 @@ msgstr ""
 "paramètre <code>RewriteBase</code> dans le fichier <code>.htaccess</code> en "
 "<code>%s</code>."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1444
 #: F:\sites\zenphoto-master/zp-core/setup/index.php:1447
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1459
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1450
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1462
 msgid "<em>robots.txt</em> file"
 msgstr "Fichier <em>robots.txt</em>"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1444
 #: F:\sites\zenphoto-master/zp-core/setup/index.php:1447
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1459
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1450
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1462
 msgid "<em>robots.txt</em> file [Not created]"
 msgstr "Le fichier <em>robots.txt</em> n’a pas été créé"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1444
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1447
 msgid "Setup could not find the  <em>example_robots.txt</em> file."
 msgstr ""
 "Le script d’installation n’a pas réussi à trouver le fichier "
 "<em>example_robots.txt</em>."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1447
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1450
 msgid ""
 "Setup did not create a <em>robots.txt</em> file because one already exists."
 msgstr ""
 "Le fichier <em>robots.txt</em> existant déjà, le script d’installation de "
 "Zenphoto n’y a pas touché."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1459
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1462
 msgid "Setup could not create a <em>robots.txt</em> file."
 msgstr ""
 "Le script d’installation n’a pas pu créer un fichier <em>robots.txt</em>."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1464
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1467
 msgid "albums [<code>$conf['external_album_folder']</code> is deprecated]"
 msgstr ""
 "L’option [<code>$conf['external_album_folder']</code> des albums est "
 "obsolète]"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1464
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1488
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1467
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1491
 msgid ""
 "You should update your configuration file to conform to the current zenphoto."
 "cfg example file."
@@ -12964,11 +12964,11 @@ msgstr ""
 "Vous devriez mettre à jour votre fichier de configuration en utilisant le "
 "fichier zenphoto.cfg comme exemple."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1488
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1491
 msgid "<em>albums</em> folder"
 msgstr "Dossier <em>albums</em>"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1488
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1491
 msgid ""
 "<em>albums</em> folder [The line <code>$conf['album_folder']</code> is "
 "missing from your configuration file]"
@@ -12976,15 +12976,15 @@ msgstr ""
 "Dossier <em>albums</em> : [La ligne <code>$conf['album_folder']</code> est "
 "absente de votre fichier de configuration]"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1492
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1495
 msgid "<em>locale</em> folders"
 msgstr "Dossiers <em>locale</em>"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1492
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1495
 msgid "<em>locale</em> folders [Are not complete]"
 msgstr "Les dossiers <em>locale</em> sont incomplets"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1492
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1495
 msgid ""
 "Be sure you have uploaded the complete Zenphoto package. You must have at "
 "least the <em>en_US</em> folder."
@@ -12992,19 +12992,19 @@ msgstr ""
 "Vérifiez que vous avez bien transféré la totalité des fichiers de Zenphoto. "
 "Vous devez avoir au moins le dossier <em>en_US</em>."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1493
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1496
 msgid "uploaded"
 msgstr "chargé(s)"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1496
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1499
 msgid "HTML cache"
 msgstr "Cache HTML"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1497
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1500
 msgid "Third party plugins"
 msgstr "Extensions tierces"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1509
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1512
 msgid ""
 "You need to address the problems indicated above then run <code>setup</code> "
 "again."
@@ -13012,96 +13012,96 @@ msgstr ""
 "Vous devez corriger les problèmes susmentionnés et relancer l’installation "
 "via <code>setup</code>."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1512
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1515
 msgid "Setup failed."
 msgstr "L’installation a échoué."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1523
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2577
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1526
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2580
 msgid "You need <em>USER ADMIN</em> rights to run setup."
 msgstr ""
 "Vous avez besoin de droits d’administration (<em>USER ADMIN</em>) pour "
 "réaliser l’installation."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1525
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2579
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1528
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2582
 msgid "You must be logged in to run setup."
 msgstr "Vous devez être connecté pour lancer l’installation."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:1546
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:1549
 msgid "database connected"
 msgstr "base de données connectée"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2288
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2291
 msgid "About to create tables"
 msgstr "Prêt à créer les tables"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2290
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2293
 msgid "About to update tables"
 msgstr "Prêt à mettre à jour les tables"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2292
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2295
 msgid "Begin table creation"
 msgstr "Démarrage de la création de la table"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2298
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2313
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2301
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2316
 #, php-format
 msgid "Query %1$s Failed. Error: %2$s"
 msgstr "La requête <em>%1$s</em> a échoué. Erreur : %2$s"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2300
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2303
 #, php-format
 msgid "Table creation failure:<br />Query: %1$s<br />Error: %2$s"
 msgstr "Impossible de créer la table :<br />Requête : %1$s<br />Erreur : %2$s"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2303
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2315
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2306
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2318
 #, php-format
 msgid "Query ( %s ) Success."
 msgstr "La requête ( %s ) a réussi."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2307
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2310
 msgid "Begin table updates"
 msgstr "Démarrage de la mise à jour de la table"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2320
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2323
 msgid "Done with database creation and update"
 msgstr "Création et mise à jour de la table effectuée !"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2322
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2325
 #, php-format
 msgid "Previous Release was %s"
 msgstr "La version précédente était la version %s"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2351
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2354
 msgid "Done with table create!"
 msgstr "Création de la table effectuée !"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2353
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2356
 msgid "Done with table create with errors!"
 msgstr "Création de la table effectuée, mais avec des erreurs."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2357
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2360
 msgid "Done with table update"
 msgstr "Mise à jour de la table effectuée !"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2359
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2362
 msgid "Done with table update with errors"
 msgstr "Mise à jour de la table effectuée, mais avec des erreurs."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2397
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2400
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/cloneZenphoto.php:96
 msgid "Setup files deleted."
 msgstr "Fichiers d’installation supprimés."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2404
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2407
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/cloneZenphoto.php:101
 #, php-format
 msgid "Failed to delete: %s"
 msgstr "%s n’a pu être effacé(e)"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2412
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2415
 msgid ""
 "<strong>NOTE:</strong> We strongly recommend you remove the <em>setup</em> "
 "scripts from your zp-core folder at this time. You can always re-upload them "
@@ -13111,12 +13111,12 @@ msgstr ""
 "scripts d’installation</em> du dossier zp-core. Il est possible de les "
 "charger de nouveau au besoin."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2417
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2420
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/cloneZenphoto.php:54
 msgid "Delete setup files"
 msgstr "Supprimer les fichiers d’installation"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2422
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2425
 msgid ""
 "This is a clone of another installation. The setup files should be deleted "
 "from that installation"
@@ -13124,7 +13124,7 @@ msgstr ""
 "Il s’agit d’un clone d’une autre installation. Les fichiers d’installation "
 "devraient être effacés de cette autre installation"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2432
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2435
 #, php-format
 msgid ""
 "You may <a href=\"%1$s\">set your admin user and password</a> or <a href="
@@ -13134,14 +13134,14 @@ msgstr ""
 "l’administrateur</a> ou <a href=\"%2$s\">lancer la sauvegarde/restauration</"
 "a>"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2437
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2440
 #, php-format
 msgid "You need to <a href=\"%1$s\">set your admin user and password</a>"
 msgstr ""
 "Vous devez <a href=\"%1$s\">spécifier les identifiant et mot de passe de "
 "l’administrateur</a>"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2444
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2447
 #, php-format
 msgid ""
 "You can now <a href=\"%1$s\">View your gallery</a> or <a href=\"%2$s"
@@ -13150,17 +13150,17 @@ msgstr ""
 "Vous pouvez maintenant <a href=\"%1$s\">voir votre galerie</a> ou <a href="
 "\"%2$s\">la gérer</a>."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2497
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2500
 #, php-format
 msgid "Database tables to create: %s"
 msgstr "Tables de la base de données à créer : %s"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2515
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2518
 #, php-format
 msgid "Database tables to update: %s"
 msgstr "Tables de la base de données à mettre à jour : %s"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2546
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2549
 msgid ""
 "<strong>Warning!</strong> This upgrade makes structural changes to the "
 "database which are not easily reversed. Be sure you have a database backup "
@@ -13170,31 +13170,31 @@ msgstr ""
 "structurelles à la base de données. Ce sont des changements difficilement "
 "réversibles. Assurez-vous d’avoir une sauvegarde avant de continuer."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2549
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2552
 #, php-format
 msgid "%s I acknowledge that proceeding will restructure my database."
 msgstr ""
 "%s Je comprends que cette opération va restructurer ma base de données."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2607
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2610
 msgid "run setup"
 msgstr "lancer l’installation"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2607
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2610
 msgid "Go"
 msgstr "C’est parti !"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2623
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2626
 msgid "database did not connect"
 msgstr "Impossible de se connecter à la base de données"
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2625
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2628
 msgid "If you haven't created the database yet, now would be a good time."
 msgstr ""
 "Si vous n’avez pas encore créé la base de données, il serait temps de le "
 "faire."
 
-#: F:\sites\zenphoto-master/zp-core/setup/index.php:2634
+#: F:\sites\zenphoto-master/zp-core/setup/index.php:2637
 msgid "The zenphoto.cfg file does not exist."
 msgstr "Le fichier <em>zenphoto.cfg</em> n’existe pas"
 
@@ -15607,7 +15607,7 @@ msgstr "Permet aux visiteurs de voir ce site dans la langue de leur choix."
 
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/dynamic-locale.php:148
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/html_meta_tags.php:65
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:69
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:70
 msgid ""
 "If checked links to the alternative languages will be in the form "
 "<code><em>language</em>.domain</code> where <code><em>language</em></code> "
@@ -15619,7 +15619,7 @@ msgstr ""
 
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/dynamic-locale.php:150
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/html_meta_tags.php:67
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:71
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:72
 msgid ""
 "This requires that you have created the appropriate subdomains pointing to "
 "your Zenphoto installation. That is <code>fr.mydomain.com/zenphoto/</code> "
@@ -15646,7 +15646,7 @@ msgstr ""
 
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/dynamic-locale.php:155
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/html_meta_tags.php:134
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:168
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:169
 msgid "Use subdomains"
 msgstr "Utiliser des sous-domaines"
 
@@ -15662,7 +15662,7 @@ msgstr ""
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/federated_logon.php:134
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/html_meta_tags.php:148
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/register_user.php:96
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:182
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:183
 msgid ""
 "<p class=\"notebox\">*<strong>Note:</strong> The setting of this option is "
 "shared with other plugins.</p>"
@@ -15926,15 +15926,15 @@ msgid "Criteria"
 msgstr "Critères"
 
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/flag_thumbnail.php:65
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:80
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:85
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:81
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:86
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/zenpage.php:168
 msgid "date"
 msgstr "Date"
 
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/flag_thumbnail.php:65
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:81
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:86
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:82
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:87
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/zenpage.php:168
 msgid "mtime"
 msgstr "les dernières par date de modification"
@@ -16213,26 +16213,26 @@ msgstr "Masquage automatique des contrôles"
 
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/flowplayer3.php:137
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/flowplayer3.php:176
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:96
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:106
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:116
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:126
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:136
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:146
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:156
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:97
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:107
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:117
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:127
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:137
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:147
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:157
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:138
 msgid "never"
 msgstr "Jamais"
 
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/flowplayer3.php:137
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/flowplayer3.php:176
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:90
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:100
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:110
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:120
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:130
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:140
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:150
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:91
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:101
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:111
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:121
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:131
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:141
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:151
 msgid "always"
 msgstr "toujours"
 
@@ -17596,7 +17596,7 @@ msgstr[1] "page {%u}"
 
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/menu_manager.php:795
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:453
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:123
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:128
 msgid "News index"
 msgstr "Index des actualités"
 
@@ -18743,7 +18743,7 @@ msgstr ""
 "de les optimiser pour les moteurs de recherche."
 
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/seo_cleanup.php:24
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:197
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:198
 msgid "Seo"
 msgstr "Optimisation pour les moteurs de recherche"
 
@@ -18806,11 +18806,11 @@ msgstr[1] "%u noms de dossiers d’albums nettoyés."
 msgid "No album folder names needed cleaning."
 msgstr "Aucun nom de dossier d’album n’avait besoin d’être nettoyé."
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/seo_locale.php:27
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/seo_locale.php:35
 msgid "Allows setting language locale through the URI."
 msgstr "Permet de définir la langue par le biais de l’URL."
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/seo_locale.php:28
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/seo_locale.php:36
 msgid ""
 "<strong>Note:</strong> This plugin is not activated for <em>back&#8209;end</"
 "em> (administrative) URLs. However, once activated, the language is "
@@ -18820,13 +18820,13 @@ msgstr ""
 "<em>des pages d’administration</em>. Cependant, la langue choisie dans les "
 "pages est retenue, même pour ces pages."
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/seo_locale.php:30
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/seo_locale.php:38
 msgid "<em>mod_rewrite</em> must be enabled for this plugin to function."
 msgstr ""
 "Le module <em>mod_rewrite</em> doit être activé pour que cette extension "
 "fonctionne."
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/seo_locale.php:30
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/seo_locale.php:38
 msgid ""
 "This plugin is not compatible with the <code>dynamic locale</code> <em>Use "
 "subdomains</em> option"
@@ -18958,11 +18958,11 @@ msgstr ""
 "Le dossier du cache sitemap n’a pu être créé. Essayez de le créer "
 "manuellement via FTP avec les droits chmod 0777."
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:74
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:75
 msgid "Gallery index page"
 msgstr "Page d’accueil de la galerie"
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:77
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:78
 msgid ""
 "If your theme does not use the theme index.php page as the gallery index, "
 "enter the name of the page here. In the Zenpage theme for example this could "
@@ -18974,35 +18974,25 @@ msgstr ""
 "être par exemple galerie.php ; saisissez alors « galerie ». Si cette valeur "
 "n'est pas vide, la carte du site index.php ne sera pas générée."
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:78
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:79
 msgid "Album date"
 msgstr "Date de l’album"
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:82
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:83
 msgid "Field to use for the last modification date of albums."
 msgstr "Champ à utiliser pour la dernière date de modification des albums"
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:83
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:84
 msgid "Image date"
 msgstr "Date de l’image"
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:87
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:88
 msgid "Field to use for the last modification date of images."
 msgstr "Champ à utiliser pour la dernière date de modification des images"
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:88
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:89
 msgid "Change frequency - Zenphoto index"
 msgstr "Fréquence des modifications : index Zenphoto"
-
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:91
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:101
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:111
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:121
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:131
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:141
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:151
-msgid "hourly"
-msgstr "toutes les heures"
 
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:92
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:102
@@ -19011,8 +19001,8 @@ msgstr "toutes les heures"
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:132
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:142
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:152
-msgid "daily"
-msgstr "tous les jours"
+msgid "hourly"
+msgstr "toutes les heures"
 
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:93
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:103
@@ -19021,8 +19011,8 @@ msgstr "tous les jours"
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:133
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:143
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:153
-msgid "weekly"
-msgstr "toutes les semaines"
+msgid "daily"
+msgstr "tous les jours"
 
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:94
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:104
@@ -19031,8 +19021,8 @@ msgstr "toutes les semaines"
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:134
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:144
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:154
-msgid "monthly"
-msgstr "tous les mois"
+msgid "weekly"
+msgstr "toutes les semaines"
 
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:95
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:105
@@ -19041,38 +19031,48 @@ msgstr "tous les mois"
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:135
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:145
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:155
+msgid "monthly"
+msgstr "tous les mois"
+
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:96
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:106
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:116
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:126
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:136
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:146
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:156
 msgid "yearly"
 msgstr "tous les ans"
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:98
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:99
 msgid "Change frequency - albums"
 msgstr "Fréquence des modifications : albums"
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:108
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:109
 msgid "Change frequency - images"
 msgstr "Fréquence des modifications : images"
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:118
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:119
 msgid "Change frequency - Zenpage pages"
 msgstr "Fréquence des modifications : pages Zenpage"
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:128
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:129
 msgid "Change frequency - Zenpage news index"
 msgstr "Fréquence des modifications : index des actualités Zenpage"
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:138
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:139
 msgid "Change frequency: Zenpage news articles"
 msgstr "Fréquence des modifications : articles d’actualités Zenpage"
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:148
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:149
 msgid "Change frequency - Zenpage news categories"
 msgstr "Fréquence des modifications : catégories d’actualités Zenpage"
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:158
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:159
 msgid "Enable Google image and video extension"
 msgstr "Active l’extension Google image et vidéo"
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:160
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:161
 msgid ""
 "If checked, the XML output file will be formatted using the Google XML image "
 "and video extensions where applicable."
@@ -19080,7 +19080,7 @@ msgstr ""
 "Si cette option est activée, le fichier de sortie XML sera formaté en "
 "utilisant si possible les extensions Google image et vidéo."
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:160
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:161
 msgid ""
 "<strong>Note:</strong> Other search engines (Yahoo, Bing) might not be able "
 "to read your sitemap. Also the Google extensions cover only image and video "
@@ -19099,11 +19099,11 @@ msgstr ""
 "pensez-y sérieusement avant d’utiliser cette option car cela risque de "
 "surcharger le serveur."
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:161
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:162
 msgid "Google - URL to image license"
 msgstr "Google – URL vers la licence de l’image"
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:164
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:165
 msgid ""
 "Optional. Used only if the Google extension is checked. Must be an absolute "
 "URL address of the form: http://mydomain.com/license.html"
@@ -19111,11 +19111,11 @@ msgstr ""
 "Optionnelle. Utilisée seulement si l’extension Google est cochée (doit être "
 "une URL complète de la forme : http://mondomaine.com/license.html)."
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:165
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:166
 msgid "Sitemap processing chunk"
 msgstr "Nombre d’albums par fichier sitemap"
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:167
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:168
 msgid ""
 "The number of albums that will be processed for each sitemap file. Lower "
 "this value if you get script timeouts when creating the files."
@@ -19124,7 +19124,7 @@ msgstr ""
 "valeur si, lors de la création des fichiers, les scripts prennent trop de "
 "temps à répondre."
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:178
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:179
 msgid ""
 "* This option may be set via the <a href=\"javascript:gotoName('sitemap-"
 "extended');\"><em>sitemap-extended</em></a> plugin options."
@@ -19132,11 +19132,11 @@ msgstr ""
 "* Ce paramètre peut être configuré avec ceux de l’extension <a href="
 "\"javascript:gotoName('sitemap-extended');\"><em>sitemap-extended</em>."
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:199
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:200
 msgid "Sitemap tools"
 msgstr "Outils sitemap"
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:203
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended.php:204
 msgid "Generate or purge sitemap cache files."
 msgstr "Génère ou efface les fichiers sitemap mis en cache."
 
@@ -22547,19 +22547,19 @@ msgstr "IPs de recherche"
 msgid "Change <em>Threshold</em> values"
 msgstr "Modifier les valeurs de <em>seuil</em>"
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:23
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:28
 msgid "Sitemap"
 msgstr "Sitemap"
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:79
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:84
 msgid "Available sitemap files:"
 msgstr "Fichiers sitemap disponibles :"
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:81
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:86
 msgid "No sitemap files available."
 msgstr "Aucun fichier sitemap disponible"
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:111
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:116
 msgid ""
 "<strong>NOTE:</strong> If your theme uses different custom settings instead "
 "of the backend options the sitemaps may not match your site."
@@ -22568,33 +22568,33 @@ msgstr ""
 "lieu des réglages par défaut, les sitemaps peuvent ne pas correspondre à "
 "votre site."
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:112
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:117
 msgid ""
 "This creates individual static xml sitemap files of the following items:"
 msgstr ""
 "Ceci crée des fichiers sitemap individuels statiques des éléments suivants :"
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:114
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:119
 msgid "Zenphoto items"
 msgstr "Éléments de Zenphoto"
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:116
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:121
 msgid "Index pages"
 msgstr "Pages d’accueil"
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:117
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:122
 msgid "<em>Albums</em>: These are split into multiple sitemaps."
 msgstr "<em>Albums</em> : Ils sont répartis en plusieurs sitemaps."
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:118
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:123
 msgid "<em>Images</em>: These are split into multiple sitemaps."
 msgstr "<em>Images</em> : Elles sont réparties en plusieurs sitemaps."
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:121
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:126
 msgid "Zenpage CMS items (if the plugin is enabled)"
 msgstr "Éléments du CMS Zenpage (si l’extension est activée)."
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:130
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:135
 msgid ""
 "Additionally a sitemapindex file is created that points to the separate ones "
 "above. You can reference this sitemapindex file in your robots.txt file or "
@@ -22606,7 +22606,7 @@ msgstr ""
 "fichier robots.txt ou soumettre son adresse à des services comme Google via "
 "<code>www.yourdomain.com/zenphoto/index.php?sitemap</code>."
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:131
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:136
 msgid ""
 "The sitemap cache is cleared if you create new ones. All files are stored in "
 "the <code>/cache_html/sitemap/</code> folder."
@@ -22614,19 +22614,11 @@ msgstr ""
 "Le cache du sitemap est purgé si vous en créez un nouveau. Tous les fichiers "
 "sont enregistrés dans le dossier <code>/cache_html/sitemap/</code>."
 
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:155
+#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:160
 msgid "Sitemap files are being generated...Patience please."
 msgstr ""
 "Un peu de patience s.v.p... Les fichiers du sitemap sont en train d’être "
 "créés."
-
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:159
-msgid "Finished!"
-msgstr "Terminé !"
-
-#: F:\sites\zenphoto-master/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:167
-msgid "Sitemap cache cleared"
-msgstr "Cache du sitemap purgé"
 
 #: F:\sites\zenphoto-master/zp-core/zp-extensions/site_upgrade/site_upgrade.php:19
 msgid "Site is now marked in upgrade."
@@ -24164,6 +24156,12 @@ msgstr "<code>zenpageAlbumImage()</code> n’a pas trouvé l’image %1$s:%2$s"
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> n’a pas trouvé l’album %1$s"
+
+#~ msgid "Finished!"
+#~ msgstr "Terminé !"
+
+#~ msgid "Sitemap cache cleared"
+#~ msgstr "Cache du sitemap purgé"
 
 #~ msgid "Spam filter:"
 #~ msgstr "Filtre anti-spam : "
