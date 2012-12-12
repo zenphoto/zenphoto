@@ -2157,6 +2157,27 @@ class zpFunctions {
 	}
 
 	/**
+	 * Returns a canonical language name string for the location
+	 *
+	 * @param string $loc the location. If NULL use the current cookie
+	 * @param string separator will be used between the major and qualifier parts, e.g. en_US
+	 *
+	 * @return string
+	 */
+	static function getLanguageText($loc=NULL, $separator=NULL) {
+		global $_locale_Subdomains;
+		if (is_null($loc)) {
+			$text = @$_locale_Subdomains[zp_getCookie('dynamic_locale')];
+		} else {
+			$text = @$_locale_Subdomains[$loc];
+		}
+		if (!is_null($separator)) {
+			$text = str_replace('_', $separator, $text);
+		}
+		return $text;
+	}
+
+	/**
 	 * initializes the $_zp_exifvars array display state
 	 *
 	 */

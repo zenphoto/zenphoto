@@ -2818,14 +2818,9 @@ function printPageMenu($option='list',$css_id=NULL,$css_class_topactive=NULL,$cs
  * @return bool
  */
 function checkForPage($titlelink) {
-	global $_zp_current_zenpage_page;
 	if(!empty($titlelink)) {
-		$page = new ZenpagePage($titlelink);
-		if ($page->loaded) {
-			add_context(ZP_ZENPAGE_PAGE);
-			$_zp_current_zenpage_page = $page;
-			return true;
-		}
+		zenpage_load_page($titlelink);
+		return in_context(ZP_ZENPAGE_PAGE);
 	}
 	return false;
 }
@@ -2998,7 +2993,7 @@ function printLatestZenpageComments($number, $shorten='123', $id='showlatestcomm
 function getZenpageRSSLink($option='News', $categorylink='', $lang=NULL) {
 	global $_zp_current_category;
 	if(empty($lang)) {
-		$lang = getOption('locale');
+		$lang = zpFunctions::getLanguageText(getOption('locale'));
 	}
 	if($option == 'Category') {
 		if(!is_null($categorylink)) {

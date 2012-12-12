@@ -85,18 +85,12 @@ class seo_locale {
 	}
 
 	static function localePath($full=false, $loc=NULL) {
-		global $_locale_Subdomains;
 		if ($full) {
 			$path = FULLWEBPATH;
 		} else {
 			$path =  WEBPATH;
 		}
-		if (is_null($loc)) {
-			$locale = @$_locale_Subdomains[zp_getCookie('dynamic_locale')];
-		} else {
-			$locale = @$_locale_Subdomains[$loc];
-		}
-		if($locale) {
+		if($locale = zpFunctions::getLanguageText($loc)) {
 			$path .= '/'.$locale;
 		}
 		return $path;
