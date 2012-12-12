@@ -86,7 +86,7 @@ function printLanguageSelector($flags=NULL) {
 								break;
 							case 1:
 								?>
-								<a href="<?php echo str_replace(WEBPATH, WEBPATH.'/'.substr($lang,0,2), html_encode(getRequestURI())); ?>" >
+								<a href="<?php echo str_replace(WEBPATH, seo_locale::localePath(false, $lang), html_encode(getRequestURI())); ?>" >
 								<?php
 								break;
 							default:
