@@ -175,7 +175,7 @@ class htmlmetatags {
 		switch($_zp_gallery_page) {
 			case 'index.php':
 				$desc = getBareGalleryDesc();
-				$canonicalurl = $host.getGalleryIndexURL();
+				$canonicalurl = $host.getGalleryIndexURL(false);
 				$type = 'website';
 				break;
 			case 'album.php':
@@ -307,7 +307,7 @@ class htmlmetatags {
 						if($langcheck != $locale) {
 							switch (METATAG_LOCALE_TYPE) {
 								case 1:
-									$altlink = FULLWEBPATH.'/'.$lang.'/';
+									$altlink = seo_locale::localePath(true, $lang);
 									break;
 								case 2:
 									$altlink = dynamic_locale::fullHostPath($lang);
