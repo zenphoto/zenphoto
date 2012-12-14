@@ -1273,7 +1273,7 @@ class Zenphoto_Administrator extends PersistentObject {
 	var $objects = NULL;
 	var $master = false;	//	will be set to true if this is the inherited master user
 	var $msg = NULL;	//	a means of storing error messages from filter processing
-	var $no_zp_login = false;
+	var $logout_link = true;	// for a Zenphoto logout
 	var $reset = false;	// if true the user was setup by a "reset password" event
 	var $passhash;	// the hash algorithm used in creating the password
 

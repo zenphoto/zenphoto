@@ -309,10 +309,12 @@ function printAdminToolbox($id='admin', $customDIV=false) {
 				$redirect = zp_apply_filter('admin_toolbox_'.$gal,$redirect,$zf);
 				break;
 			}
-			if (!$_zp_current_admin_obj->no_zp_login)  {
+			if ($link = $_zp_current_admin_obj->logout_link)  {
 				// logout link
 				$sec = (int) ((SERVER_PROTOCOL=='https') & true);
-				$link = SEO_FULLWEBPATH.'/index.php?logout='.$sec.$redirect;
+				if (!$link) {
+					$link = SEO_FULLWEBPATH.'/index.php?logout='.$sec.$redirect;
+				}
 				?>
 				<li>
 					<a href="<?php echo $link; ?>"><?php echo gettext("Logout"); ?> </a>

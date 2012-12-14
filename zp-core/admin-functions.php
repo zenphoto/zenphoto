@@ -245,8 +245,11 @@ function printLogoAndLinks() {
 		} else {
 			printf(gettext('Logged in as %1$s (last login %2$s)'), $_zp_current_admin_obj->getUser(),$last);
 		}
-		if (!$_zp_current_admin_obj->no_zp_login)  {
-			echo " &nbsp; | &nbsp; <a href=\"".WEBPATH."/".ZENFOLDER."/admin.php?logout=".$sec."\">".gettext("Log Out")."</a> &nbsp; | &nbsp; ";
+		if ($link = $_zp_current_admin_obj->logout_link)  {
+			if (!is_string($link)) {
+				$link = WEBPATH."/".ZENFOLDER."/admin.php?logout=".$sec;
+			}
+			echo " &nbsp; | &nbsp; <a href=\"".$link."\">".gettext("Log Out")."</a> &nbsp; | &nbsp; ";
 		}
 	}
 	echo ' <a href="'.FULLWEBPATH.'/">';

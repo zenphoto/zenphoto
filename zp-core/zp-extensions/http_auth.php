@@ -105,7 +105,7 @@ class http_auth {
 				$userobj = Zenphoto_Authority::getAnAdmin($searchfor);
 				if ($userobj) {
 					$_zp_current_admin_obj = $userobj;
-					$_zp_current_admin_obj->no_zp_login = true;
+					$_zp_current_admin_obj->logout_link = false;
 					$authorized = $_zp_current_admin_obj->getRights();
 				}
 			}

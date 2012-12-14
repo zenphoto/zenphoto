@@ -107,10 +107,11 @@ if ($_zp_loggedin) {
 																				'link'=>WEBPATH."/".ZENFOLDER.'/admin-comments.php',
 																				'subtabs'=>NULL);
 	}
-	$zenphoto_tabs['users'] = array('text'=>gettext("users"),
-																	'link'=>WEBPATH."/".ZENFOLDER.'/admin-users.php?page=users',
-																	'subtabs'=>NULL);
-
+	if ($_zp_loggedin & USER_RIGHTS) {
+		$zenphoto_tabs['users'] = array('text'=>gettext("users"),
+																		'link'=>WEBPATH."/".ZENFOLDER.'/admin-users.php?page=users',
+																		'subtabs'=>NULL);
+	}
 
 
 	$subtabs = array();
