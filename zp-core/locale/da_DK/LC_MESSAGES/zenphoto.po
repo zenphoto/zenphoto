@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-28 23:56+0100\n"
-"PO-Revision-Date: 2012-12-08 23:47+0100\n"
+"PO-Revision-Date: 2012-12-15 00:16+0100\n"
 "Last-Translator: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language-Team: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language: danish\n"
@@ -6735,47 +6735,49 @@ msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:904
 msgid "Challenge question:"
-msgstr ""
+msgstr "Adgangskode spørgsmål:"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:909
 msgid "Your response"
-msgstr ""
+msgstr "Adgangsspørgsmål svar"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:918
 msgid ""
 "Enter your User ID and press <code>Refresh</code> to get your challenge "
 "question."
 msgstr ""
+"Indtast brugernavn og klik <code>Opdater</code> for at se dit adgangskode "
+"spørgsmål."
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:925
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user/register_user_form.php:70
 msgid "Submit"
-msgstr ""
+msgstr "Send"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:927
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1065
 msgid "Return"
-msgstr ""
+msgstr "Tilbage"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:937
 msgid "Request reset by e-mail"
-msgstr ""
+msgstr "Anmodning om nulstilling pr email"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:967
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/user_login-out.php:109
 msgid "Login"
-msgstr ""
+msgstr "Login"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:986
 #, php-format
 msgid "Logon using:%s"
-msgstr ""
+msgstr "Log på ved hjælp af: %s"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1012
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1126
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1211
 msgid "Password"
-msgstr ""
+msgstr "Adgangskode"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1014
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1220
@@ -6786,91 +6788,92 @@ msgstr ""
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:130
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:503
 msgid "Show password"
-msgstr ""
+msgstr "Vis adganskode"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1018
 msgid "Log in"
-msgstr ""
+msgstr "Log på"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1032
 msgid "I forgot my <strong>User ID</strong>/<strong>Password</strong>"
 msgstr ""
+"Jeg har glemt mit <strong>Brugernavn</strong> / <strong>adgangskode</strong>"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1064
 msgid "Request"
-msgstr ""
+msgstr "Anmodning"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1064
 msgid "Request password reset"
-msgstr ""
+msgstr "Anmoder om nulstilling af adgangskode"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1131
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1142
 msgid "password strength weak"
-msgstr ""
+msgstr "adgangskode svag"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1134
 msgid "password strength good"
-msgstr ""
+msgstr "adgangskode god"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1137
 msgid "password strength strong"
-msgstr ""
+msgstr "adgangskode stærk"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1160
 msgid "passwords match"
-msgstr ""
+msgstr "adgangskoder matcher"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1164
 msgid "passwords do not match"
-msgstr ""
+msgstr "adgangskoder matcher ikke"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1223
 msgid "Repeat password"
-msgstr ""
+msgstr "Gentag adgangskode"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-common.php:35
 msgid "ERROR"
-msgstr ""
+msgstr "ERROR"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-common.php:36
 msgid "WARNING"
-msgstr ""
+msgstr "WARNING"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-common.php:37
 msgid "NOTICE"
-msgstr ""
+msgstr "NOTICE"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-common.php:38
 msgid "USER ERROR"
-msgstr ""
+msgstr "USER ERROR"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-common.php:39
 msgid "USER WARNING"
-msgstr ""
+msgstr "USER WARNING"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-common.php:40
 msgid "USER NOTICE"
-msgstr ""
+msgstr "USER NOTICE"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-common.php:41
 msgid "STRICT NOTICE"
-msgstr ""
+msgstr "STRICT NOTICE"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-common.php:52
 #, php-format
 msgid "%1$s: %2$s in %3$s on line %4$s"
-msgstr ""
+msgstr "%1$s: %2$s i %3$s på linie %4$s"
 
 #: /home/jes/workspace/zenphoto/zp-core/class-gallery.php:206
 #, php-format
 msgid "Error: The 'albums' directory (%s) cannot be found."
-msgstr ""
+msgstr "Fejl: 'Albummets' mappe (%s) kan ikke findes."
 
 #: /home/jes/workspace/zenphoto/zp-core/class-gallery.php:208
 #, php-format
 msgid "Error: The 'albums' directory (%s) is not readable."
-msgstr ""
+msgstr "Fejl: 'Albummets' mappe (%s) er ikke læsbar."
 
 #: /home/jes/workspace/zenphoto/zp-core/class-gallery.php:283
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:492
@@ -6932,26 +6935,28 @@ msgstr ""
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/panasonic.php:205
 #: /home/jes/workspace/zenphoto/zp-core/setup/setup-functions.php:350
 msgid "Unknown"
-msgstr ""
+msgstr "Ukendt"
 
 #: /home/jes/workspace/zenphoto/zp-core/class-gallery.php:283
 msgid "<strong>Missing theme info file!</strong>"
-msgstr ""
+msgstr "<strong>Tema-info fil mangler!</strong>"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-plugins.php:109
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:476
 msgid "Applied"
-msgstr ""
+msgstr "Anvendt"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-plugins.php:129
 msgid "Plugins provide optional functionality for Zenphoto."
-msgstr ""
+msgstr "Plugins giver øget funktionalitet for Zenphoto."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-plugins.php:130
 msgid ""
 "They may be provided as part of the Zenphoto distribution or as offerings "
 "from third parties."
 msgstr ""
+"De leveres enten som del af Zenphoto distributionen eller som tilbud fra "
+"trediepart."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-plugins.php:131
 #, php-format
@@ -6959,6 +6964,8 @@ msgid ""
 "Third party plugins are placed in the <code>%s</code> folder and are "
 "automatically discovered."
 msgstr ""
+"Tredieparts plugin placeres i <code>%s</code> mappen og registreres "
+"automatisk."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-plugins.php:132
 msgid ""
@@ -6966,10 +6973,13 @@ msgid ""
 "functions made available to theme pages. If the checkbox is not checked the "
 "plugin is disabled and occupies no resources."
 msgstr ""
+"Hvis pluginnet er afkrydset, vil plugin blive læst ind og dets funktioner "
+"stillet til rådighed for temasider. Hvis afkrydsningsfeltet ikke er markeret "
+"er plugin deaktiveret og optager ingen ressourcer."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-plugins.php:134
 msgid "Find more plugins"
-msgstr ""
+msgstr "Find flere plugins"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-plugins.php:136
 msgid ""
@@ -6977,30 +6987,33 @@ msgid ""
 "dependent! You may need to add the plugin theme functions if the theme does "
 "not currently provide support."
 msgstr ""
+"<strong>Bemærk:</strong> Support for et bestemt plugin kan være afhængigt af "
+"temaet! Det kan være nødvendigt at tilføje pluginets temafunktion hvis "
+"temaet ikke selv yder support for tiden."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-plugins.php:153
 msgid "Available Plugins"
-msgstr ""
+msgstr "Tilgængelige Plugin"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-plugins.php:168
 msgid "<strong>Error parsing <em>plugin_description</em> string!</strong>."
-msgstr ""
+msgstr "Fejl ved indlæsning af <em>plugin_description</em> streng!</strong>."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-plugins.php:176
 msgid "<strong>Error parsing <em>plugin_notice</em> string!</strong>."
-msgstr ""
+msgstr "Fejl ved indlæsning af <em>plugin_notice</em> streng!</strong>."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-plugins.php:184
 msgid "<strong>Error parsing <em>plugin_author</em> string!</strong>."
-msgstr ""
+msgstr "Fejl ved indlæsning af <em>plugin_author</em> streng!</strong>."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-plugins.php:192
 msgid "<strong>Error parsing <em>plugin_version</em> string!</strong>."
-msgstr ""
+msgstr "Fejl ved indlæsning af <em>plugin_version</em> streng!</strong>."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-plugins.php:200
 msgid "<strong>Error parsing <em>plugin_disable</em> string!</strong>."
-msgstr ""
+msgstr "Fejl ved indlæsning af <em>plugin_disable</em> streng!</strong>."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-plugins.php:234
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2924
@@ -7009,62 +7022,66 @@ msgid ""
 "may cause performance issues. You should instead set <code>"
 "$option_interface</code> to the name of the class as a string."
 msgstr ""
+"<strong> Bemærk: </ strong> At instantiere option_interface inden for plugin "
+"kan forårsage problemer med ydeevnen. Du bør i stedet sætte <code> $ "
+"option_interface </ code> til navnet på klassen som en streng."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-plugins.php:254
 msgid "third party plugin"
-msgstr ""
+msgstr "trediepart plugin"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-plugins.php:280
 msgid "This plugin is disabled. Click for details."
-msgstr ""
+msgstr "Dette plugin er deaktiveret. Klik for detaljer."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-plugins.php:299
 #, php-format
 msgid "More information on %s"
-msgstr ""
+msgstr "Mere information om %s"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-plugins.php:303
 #, php-format
 msgid "Change %s options"
-msgstr ""
+msgstr "Ændre %s indstillinger"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-plugins.php:308
 msgid "Plugin warnings"
-msgstr ""
+msgstr "Plugin advarsler"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-plugins.php:357
 msgid "Official plugin"
-msgstr ""
+msgstr "Officielle plugin"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-plugins.php:358
 msgid "Usage info"
-msgstr ""
+msgstr "Info om brug"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-plugins.php:360
 msgid "Warning note"
-msgstr ""
+msgstr "Advarselsnote"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-upload.php:75
 msgid "Upload Images"
-msgstr ""
+msgstr "Overfør Billeder"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-upload.php:90
 #, php-format
 msgid "This web-based upload accepts the file formats: %s, and %s."
-msgstr ""
+msgstr "Denne webbaserede overførsel aksepterer filformaterne: %s og %s."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-upload.php:92
 #, php-format
 msgid "This web-based upload accepts the file formats: %s and %s."
-msgstr ""
+msgstr "Denne webbaserede overførsel aksepterer filformaterne: %s og %s."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-upload.php:98
 msgid "<strong>Note: </strong>"
-msgstr ""
+msgstr "<strong>Bemærk: </strong>"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-upload.php:103
 msgid "ZIP files must contain only Zenphoto supported <em>image</em> types."
 msgstr ""
+"ZIP-filer må kun indeholde <em>billedetyper</ em> understøttet af Zenphoto."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-upload.php:113
 #, php-format
@@ -7074,6 +7091,10 @@ msgid ""
 "configuration <code>upload_max_filesize</code> and <code>post_max_size</"
 "code>."
 msgstr ""
+"Den maksimale størrelse for en hvilken som helst fil er <strong>% sB </ "
+"strong> og den maksimale størrelse for en total upload er <strong>% sB </ "
+"strong>, som er fastsat af din PHP-konfiguration <code> upload_max_filesize "
+"</ code> og <code> post_max_size </ code>."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-upload.php:115
 #, php-format
@@ -7081,43 +7102,49 @@ msgid ""
 "The maximum size for your total upload is <strong>%sB</strong> which is set "
 "by your PHP configuration <code>post_max_size</code>."
 msgstr ""
+"Den maksimale størrelse for en total upload er <strong>% sB </ strong>, som "
+"er fastsat af din PHP-konfiguration <code>post_max_size</ code>."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-upload.php:122
 msgid ""
 "Don't forget, you can also use <acronym title=\"File Transfer Protocol"
 "\">FTP</acronym> to upload folders of images into the albums directory!"
 msgstr ""
+"Husk, du kan også bruge <acronym title=\"File Transfer Protocol\"> FTP</"
+"acronym> til at overføre mapper med billeder til mappen album!"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-upload.php:130
 msgid "Upload Error"
-msgstr ""
+msgstr "Upload Fejl"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-upload.php:131
 msgid "There was an error submitting the form. Please try again."
-msgstr ""
+msgstr "Der opstod en fejl under afsendelse af formular. Prøv igen."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-upload.php:138
 msgid "Upload complete"
-msgstr ""
+msgstr "Upload komplet"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-upload.php:139
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4543
 msgid "Your files have been uploaded."
-msgstr ""
+msgstr "Dine filer er blevet uploadet."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-upload.php:146
 msgid "PHP Safe Mode Restrictions in effect!"
-msgstr ""
+msgstr "PHP Safe Mode begrænsninger er aktiverede!"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-upload.php:147
 msgid ""
 "Zenphoto may be unable to perform uploads when PHP Safe Mode restrictions "
 "are in effect"
 msgstr ""
+"Zenphoto kan være ude af stand til at udføre uploads når PHP Safe Mode "
+"begrænsninger er aktiverede."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-upload.php:153
 msgid "Upload to:"
-msgstr ""
+msgstr "Upload til:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-upload.php:176
 #: /home/jes/workspace/zenphoto/zp-core/admin-upload.php:248
@@ -7125,7 +7152,7 @@ msgstr ""
 #: /home/jes/workspace/zenphoto/zp-core/admin-upload.php:265
 #: /home/jes/workspace/zenphoto/zp-core/admin-upload.php:304
 msgid "That name is already used."
-msgstr ""
+msgstr "Det navn er allerede i brug."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-upload.php:176
 #: /home/jes/workspace/zenphoto/zp-core/admin-upload.php:248
@@ -7135,81 +7162,85 @@ msgstr ""
 msgid ""
 "This upload has to have a folder. Type a title or folder name to continue..."
 msgstr ""
+"Denne upload skal have en mappe. Skriv en titel eller et mappenavn for at "
+"fortsætte..."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-upload.php:249
 msgid "Make a new Album"
-msgstr ""
+msgstr "Opret et nyt album"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-upload.php:251
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1013
 msgid "and"
-msgstr ""
+msgstr "og"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-upload.php:253
 msgid "Publish the album so everyone can see it."
-msgstr ""
+msgstr "Offentliggør albummet synligt for alle."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-upload.php:257
 msgid "titled:"
-msgstr ""
+msgstr "benævnt:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-upload.php:262
 msgid "with the folder name:"
-msgstr ""
+msgstr "med mappenavn:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-upload.php:268
 msgid "Auto-generate"
-msgstr ""
+msgstr "Opret automatisk"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-upload.php:283
 msgid "Upload handler:"
-msgstr ""
+msgstr "Upload modul:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-upload.php:339
 msgid "There are no albums to which you can upload."
-msgstr ""
+msgstr "Der ikke nogen albums som du kan uploade til."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:486
 msgid ""
 "Your browser did not post all the fields. Some options may not have been set."
 msgstr ""
+"Din browser har ikke sende alle felter. Nogle indstillinger er måske ikke "
+"blevet indstillet."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:494
 #, php-format
 msgid "You must supply a password for the <em>%s</em> guest user"
-msgstr ""
+msgstr "Du skal angive en adgangskode for <em>% s </ em> gæstebrugeren"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:510
 #: /home/jes/workspace/zenphoto/zp-core/setup/setup-functions.php:468
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/dynamic-locale.php:56
 #, php-format
 msgid "<em>%s</em> is not available."
-msgstr ""
+msgstr "<em>% s </ em> er ikke tilgængelig."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:511
 #: /home/jes/workspace/zenphoto/zp-core/setup/setup-functions.php:469
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/dynamic-locale.php:57
 #, php-format
 msgid "The locale %s is not supported on your server."
-msgstr ""
+msgstr "Landestandard %s er ikke understøttet på din server."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:512
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/dynamic-locale.php:59
 msgid "See the troubleshooting guide on zenphoto.org for details."
-msgstr ""
+msgstr "Se guiden troubleshooting på zenphoto.org angående detaljer."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:536
 msgid "Time zone:"
-msgstr ""
+msgstr "Tidszone:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:542
 msgid "*not specified"
-msgstr ""
+msgstr "*ikke specificeret"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:547
 #, php-format
 msgid "Your server reports its time zone as: <code>%s</code>."
-msgstr ""
+msgstr "Din server rapporterer sin tidszone som: <code>% s </ code>."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:548
 #, php-format
@@ -7220,11 +7251,15 @@ msgid_plural ""
 "Your time zone offset is: %d hours. If your time zone is different from the "
 "servers, select the correct time zone here."
 msgstr[0] ""
+"Din tidzones offset er%d time. Hvis din tidszone er forskellig fra serverne, "
+"skal du vælge den korrekte tidszone her."
 msgstr[1] ""
+"Din tidzones offset er%d timer. Hvis din tidszone er forskellig fra "
+"serverne, skal du vælge den korrekte tidszone her."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:554
 msgid "Time offset (hours):"
-msgstr ""
+msgstr "Tidszone offset (timer):"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:559
 msgid ""
@@ -7233,40 +7268,52 @@ msgid ""
 "the US East Coast (<em>GMT</em> - 5) and you are on the Pacific Coast "
 "(<em>GMT</em> - 8), set the offset to 3 (-5 - (-8))."
 msgstr ""
+"Hvis du er i en anden tidszone end din server, skal du indstille "
+"forskydningen i timer af din tid zone fra det på serveren. For eksempel hvis "
+"din server er på den amerikanske østkyst (<em> GMT </ em> - 5), og du er på "
+"Pacific Coast (<em> GMT </ em> - 8), skal du indstille offset til 3 (- 5 - "
+"(-8))."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:566
 msgid "URL options:"
-msgstr ""
+msgstr "ULR indstillinger:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:581
 msgid "mod rewrite"
-msgstr ""
+msgstr "mod rewrite"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:587
 msgid "UTF8 image URIs"
-msgstr ""
+msgstr "UTF8 billed URIs"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:590
 msgid "mod_rewrite suffix:"
-msgstr ""
+msgstr "mod_rewrite billedsuffix:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:595
 msgid ""
 "If you have Apache <em>mod rewrite</em>, put a checkmark on the <em>mod "
 "rewrite</em> option and you'll get nice cruft-free URLs."
 msgstr ""
+"Hvis du har Apache <em>mod rewrite</ em>, sætte et flueben ved <em>mod "
+"rewrite</ em> valgmuligheden, og du får flotte søgenemme webadresser."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:596
 msgid ""
 "If the checkbox is disabled, setup did not detect a working Apache "
 "<em>mod_rewrite</em> facility and proper <em>.htaccess</em> file."
 msgstr ""
+"Hvis checkboksen er deaktiveret, har setup ikke fundet et fungerende Apache "
+"<em>mod_rewrite</em> og en korrekt <em>.htaccess</em> fil."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:599
 msgid ""
 "If you are having problems with images whose names contain characters with "
 "diacritical marks try changing the <em>UTF8 image URIs</em> setting."
 msgstr ""
+"Hvis du har problemer med billeder hvis navne indeholder tegn med "
+"diakritiske tegn, prøv at ændre indstillingen for <em>UTF8 billed URI'er</"
+"em>."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:600
 msgid ""
@@ -7274,10 +7321,13 @@ msgid ""
 "<em>mod_rewrite suffix</em> to the end of image URLs. (This helps search "
 "engines.) Examples: <em>.html, .php</em>, etc."
 msgstr ""
+"Hvis <em> mod_rewrite </ em> er markeret ovenfor, vil zenphoto føje <em> "
+"mod_rewrite suffikset </ em> til slutningen af ​​billedets webadresser. (Dette "
+"hjælper søgemaskinerne.) Eksempler:. <em> Html, php </ em>, etc.."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:613
 msgid "HTTP_Accept_Language"
-msgstr ""
+msgstr "HTTP_Accept_Language"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:706
 #, php-format
@@ -7287,16 +7337,23 @@ msgid ""
 "check the <a href=\"%2$s\">translation repository</a> for new and updated "
 "language translations."
 msgstr ""
+"De fremhævede oversættelser er forældede for Zenphoto Version %1$s. "
+"(Zenphotoversionen med den forældede oversættelse er vist i firkantet "
+"parantes). Tjek <a href=\"%2$s\">oversættelsesarkiv</a> for en ny og "
+"opdateret oversættelse."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:708
 msgid "Multi-lingual"
-msgstr ""
+msgstr "Multi-lingual"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:712
 msgid ""
 "You can disable languages by unchecking their checkboxes. Only checked "
 "languages will be available to the installation."
 msgstr ""
+"Du kan deaktivere sprog ved at fjerne markeringen i deres "
+"afkrydsningsfelter. Kun markerede sprog vil være tilgængelige til "
+"installation."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:713
 msgid ""
@@ -7304,21 +7361,27 @@ msgid ""
 "<em>HTTP_Accept_Language</em> to use the language preference specified by "
 "the viewer's browser.)"
 msgstr ""
+"Vælg det foretrukne sprog til at vise tekst i. (Indstil til <em> "
+"HTTP_Accept_Language </ em> for at bruge sprogpræference angivet af "
+"beskuerens browser.)"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:714
 msgid ""
 "Set <em>Multi-lingual</em> to enable multiple languages for database fields."
 msgstr ""
+"Set <em>Multi-lingual</ em> for at aktivere flere sprog til databasefelter."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:715
 msgid ""
 "<strong>Note:</strong> if you have created multi-language strings, uncheck "
 "this option, then save anything, you will lose your strings."
 msgstr ""
+"<strong> Bemærk: </ strong>, hvis du har oprettet flersprogede strenge og "
+"fjerner denne markering, derefter gemme noget, vil du miste dine strenge."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:719
 msgid "Date format:"
-msgstr ""
+msgstr "Dato format:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:723
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1102
@@ -7327,163 +7390,163 @@ msgstr ""
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:93
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/canon.php:275
 msgid "Custom"
-msgstr ""
+msgstr "brugerdefineret"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:724
 msgid "Preferred date representation"
-msgstr ""
+msgstr "Foretrukken dato repræsentation"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:725
 msgid "02/25/08 15:30"
-msgstr ""
+msgstr "02/25/08 15:30"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:726
 msgid "02/25/08"
-msgstr ""
+msgstr "02/25/08"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:727
 msgid "02/25/2008 15:30"
-msgstr ""
+msgstr "02/25/2008 15:30"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:728
 msgid "02/25/2008"
-msgstr ""
+msgstr "02/25/2008"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:729
 msgid "02-25-08 15:30"
-msgstr ""
+msgstr "02-25-08 15:30"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:730
 msgid "02-25-08"
-msgstr ""
+msgstr "02-25-08"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:731
 msgid "02-25-2008 15:30"
-msgstr ""
+msgstr "02-25-2008 15:30"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:732
 msgid "02-25-2008"
-msgstr ""
+msgstr "02-25-2008"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:733
 msgid "2008. February 25. 15:30"
-msgstr ""
+msgstr "2008. Februar 25. 15:30"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:734
 msgid "2008. February 25."
-msgstr ""
+msgstr "2008. Februar 25."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:735
 msgid "2008-02-25 15:30"
-msgstr ""
+msgstr "2008-02-25 15:30"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:736
 msgid "2008-02-25"
-msgstr ""
+msgstr "2008-02-25"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:737
 msgid "25 Feb 2008 15:30"
-msgstr ""
+msgstr "25 Feb 2008 15:30"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:738
 msgid "25 Feb 2008"
-msgstr ""
+msgstr "25 Feb 2008"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:739
 msgid "25 February 2008 15:30"
-msgstr ""
+msgstr "25 Februar 2008 15:30"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:740
 msgid "25 February 2008"
-msgstr ""
+msgstr "25 Februar 2008"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:741
 msgid "25. Feb 2008 15:30"
-msgstr ""
+msgstr "25. Feb 2008 15:30"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:742
 msgid "25. Feb 2008"
-msgstr ""
+msgstr "25. Feb 2008"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:743
 msgid "25. Feb. 08 15:30"
-msgstr ""
+msgstr "25. Feb. 08 15:30"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:744
 msgid "25. Feb. 08"
-msgstr ""
+msgstr "25. Feb. 08"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:745
 msgid "25. February 2008 15:30"
-msgstr ""
+msgstr "25. Februar 2008 15:30"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:746
 msgid "25. February 2008"
-msgstr ""
+msgstr "25. Februar 2008"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:747
 msgid "25.02.08 15:30"
-msgstr ""
+msgstr "25.02.08 15:30"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:748
 msgid "25.02.08"
-msgstr ""
+msgstr "25.02.08"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:749
 msgid "25.02.2008 15:30"
-msgstr ""
+msgstr "25.02.2008 15:30"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:750
 msgid "25.02.2008"
-msgstr ""
+msgstr "25.02.2008"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:751
 msgid "25-02-08 15:30"
-msgstr ""
+msgstr "25-02-08 15:30"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:752
 msgid "25-02-08"
-msgstr ""
+msgstr "25-02-08"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:753
 msgid "25-02-2008 15:30"
-msgstr ""
+msgstr "25-02-2008 15:30"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:754
 msgid "25-02-2008"
-msgstr ""
+msgstr "25-02-2008"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:755
 msgid "25-Feb-08 15:30"
-msgstr ""
+msgstr "25-Feb-08 15:30"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:756
 msgid "25-Feb-08"
-msgstr ""
+msgstr "25-Feb-08"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:757
 msgid "25-Feb-2008 15:30"
-msgstr ""
+msgstr "25-Feb-2008 15:30"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:758
 msgid "25-Feb-2008"
-msgstr ""
+msgstr "25-Feb-2008"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:759
 msgid "Feb 25, 2008 15:30"
-msgstr ""
+msgstr "Feb 25, 2008 15:30"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:760
 msgid "Feb 25, 2008"
-msgstr ""
+msgstr "Feb 25, 2008"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:761
 msgid "February 25, 2008 15:30"
-msgstr ""
+msgstr "Februar 25, 2008 15:30"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:762
 msgid "February 25, 2008"
-msgstr ""
+msgstr "Februar 25, 2008"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:779
 msgid ""
@@ -7492,73 +7555,89 @@ msgid ""
 "\"><span class=\"nowrap\"><code>strftime()</code></span></a> format string "
 "in the text box."
 msgstr ""
+"Datoformater. Vælg fra listen eller sæt til <code>brugerdefineret</code> og "
+"lav en <a href=\"http://us2.php.net/manual/en/function.strftime.php\"><span "
+"class=\"nowrap\"><code>strftime()</code></span></a> formatstreng i "
+"tekstboksen."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:782
 msgid "Charset:"
-msgstr ""
+msgstr "Karaktersæt:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:799
 msgid ""
 "The character encoding to use internally. Leave at <em>Unicode (UTF-8)</em> "
 "if you are unsure."
 msgstr ""
+"Karakterkodningen som skal bruges internt. Hvis du er i tvivl, brug "
+"<em>Unicode (UTF-8)</em>."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:801
 msgid ""
 "Character sets <span style=\"color:gray\">shown in gray</span> have no "
 "character translation support."
 msgstr ""
+"Karaktersæt <span style=\"color:gray\">vist i gråt</span> har ingen "
+"understøttelse for tegnoversættelse."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:807
 msgid "Allowed tags:"
-msgstr ""
+msgstr "Tilladte mærker:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:836
 msgid ""
 "Tags and attributes allowed in comments, descriptions, and other fields."
 msgstr ""
+"Mærker og attributter der er tilladt i kommentarer, beskrivelser og andre "
+"områder."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:837
 msgid ""
 "Follow the form <em>tag</em> =&gt; (<em>attribute</em> =&gt; (<em>attribute</"
 "em>=&gt; (), <em>attribute</em> =&gt; ()...)))"
 msgstr ""
+"Følg formen <em>mærke</em> =&gt; (<em>attribut</em> =&gt; (<em>attribut</"
+"em>=&gt; (), <em>attribut</em> =&gt; ()...)))"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:839
 msgid "reset to default"
-msgstr ""
+msgstr "nulstil til standard"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:845
 msgid "Name:"
-msgstr ""
+msgstr "Navn:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:847
 msgid "Email:"
-msgstr ""
+msgstr "Email:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:853
 msgid ""
 "This email name and address will be used as the <em>From</em> address for "
 "all mails sent by Zenphoto."
 msgstr ""
+"Denne emails navn og adresse vil blive brugt som <em> Fra </ em>-adresse for "
+"alle mails, der sendes af Zenphoto."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:857
 msgid "Users per page:"
-msgstr ""
+msgstr "Brugere pr side:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:859
 msgid "Plugins per page:"
-msgstr ""
+msgstr "Plugins pr side:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:863
 msgid "Articles per page:"
-msgstr ""
+msgstr "Artikler pr side:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:880
 msgid ""
 "These options control the number of items displayed on their tabs. If you "
 "have problems using these tabs, reduce the number shown here."
 msgstr ""
+"Disse indstillinger styrer antallet af elementer, der vises på deres faner. "
+"Hvis du har problemer med at bruge disse faner, reducer antallet vist her."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:886
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2889
@@ -7567,54 +7646,56 @@ msgstr ""
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:3168
 #: /home/jes/workspace/zenphoto/zp-core/setup/setup-sqlform.php:102
 msgid "save"
-msgstr ""
+msgstr "gem"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:915
 msgid "Gallery title:"
-msgstr ""
+msgstr "Galleri titel:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:919
 msgid "What you want to call your Zenphoto site."
-msgstr ""
+msgstr "Hvad ønsker du at kalde dit Zenphoto websted."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:922
 msgid "Gallery description:"
-msgstr ""
+msgstr "Galleri beskrivelse:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:926
 msgid "A brief description of your gallery. Some themes may display this text."
-msgstr ""
+msgstr "En kort beskrivelse af dit galleri. Nogle temaer kan vise denne tekst."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:929
 msgid "Gallery type"
-msgstr ""
+msgstr "Galleri type:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:931
 msgid "public"
-msgstr ""
+msgstr "offentligt"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:932
 msgid "private"
-msgstr ""
+msgstr "privat"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:933
 msgid "restricted"
-msgstr ""
+msgstr "begrænset"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:936
 msgid "Private galleries are viewable only by registered users."
-msgstr ""
+msgstr "Private gallerier kan kun ses af registrerede brugere."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:938
 msgid ""
 "Restricted galleries are private galleries but users may see only their "
 "managed albums."
 msgstr ""
+"Begrænsede gallerier er private gallerier hvor brugere kun kan se deres egne "
+"albums."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:948
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:994
 msgid "Gallery password:"
-msgstr ""
+msgstr "Galleri adgangskode:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:962
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1321
@@ -7623,17 +7704,19 @@ msgstr ""
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:109
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:483
 msgid "clear password"
-msgstr ""
+msgstr "fjern kodeord"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:969
 msgid ""
 "Master password for the gallery. Click on <em>Gallery password</em> to "
 "change."
 msgstr ""
+"Master adgangskode for galleriet. Klik på <em>Galleri adganskode</em> for at "
+"ændre det."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:976
 msgid "Gallery guest user:"
-msgstr ""
+msgstr "Galleri gæstebruger:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:988
 msgid "User ID for the gallery guest user"
