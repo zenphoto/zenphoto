@@ -97,10 +97,14 @@ function printAdminToolbox($id='admin', $customDIV=false) {
 		?>
 
 		<ul<?php if (!$customDIV) echo ' style="list-style-type: none;"'; ?>>
-			<li>
-				<?php printLink($zf . '/admin.php', gettext("Overview"), NULL, NULL, NULL); ?>
-			</li>
 			<?php
+			if (zp_loggedin(OVERVIEW_RIGHTS)) {
+				?>
+				<li>
+					<?php printLink($zf . '/admin.php', gettext("Overview"), NULL, NULL, NULL); ?>
+				</li>
+				<?php
+			}
 			if (zp_loggedin(ALBUM_RIGHTS)) {
 				?>
 				<li>
