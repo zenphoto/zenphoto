@@ -105,13 +105,9 @@ function printUserLogin_out($before='', $after='', $showLoginForm=NULL, $logoutt
 			$params[] .= "'".$param.'='.urlencode($value)."'";
 		}
 	}
-	$logoutlink = "javascript:launchScript('".FULLWEBPATH."/',[".implode(',',$params)."]);";
 	if (is_object($_zp_current_admin_obj)) {
 		if (!$_zp_current_admin_obj->logout_link)  {
 			return;
-		}
-		if (is_string($_zp_current_admin_obj->logout_link)) {
-			$logoutlink = $_zp_current_admin_obj->logout_link;
 		}
 	} else {
 		if ($loginlink = zp_apply_filter('login_link',false)) {
@@ -177,6 +173,7 @@ function printUserLogin_out($before='', $after='', $showLoginForm=NULL, $logoutt
 		if ($before) {
 			echo '<span class="beforetext">'.html_encode($before).'</span>';
 		}
+		$logoutlink = "javascript:launchScript('".FULLWEBPATH."/',[".implode(',',$params)."]);";
 		?>
 		<a href="<?php echo $logoutlink; ?>"
 						title="<?php echo $logouttext; ?>"><?php echo $logouttext; ?></a>

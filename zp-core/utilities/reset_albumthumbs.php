@@ -48,7 +48,7 @@ echo '</head>';
 <?php zp_apply_filter('admin_note','reste_thumbs', ''); ?>
 <h1><?php echo (gettext('Reset your album thumbnails')); ?></h1>
 <?php
-if (isset($_REQUEST['thumbtype']) && db_connect()) {
+if (isset($_REQUEST['thumbtype']) && db_connect($_zp_conf_vars)) {
 	$key = sanitize_numeric($_REQUEST['thumbtype'], 3);
 	$sql = 'UPDATE '.prefix('albums').' SET `thumb`='.$key;
 	$text = $_zp_albumthumb_selector[$key]['desc'];
@@ -70,7 +70,7 @@ if (isset($_REQUEST['thumbtype']) && db_connect()) {
 }
 $current = getOption('AlbumThumbSelect');
 
-if (db_connect()) {
+if (db_connect($_zp_conf_vars)) {
 	$selections = array();
 	foreach ($_zp_albumthumb_selector as $key=>$selection) {
 		$selections[$selection['desc']] = $key;

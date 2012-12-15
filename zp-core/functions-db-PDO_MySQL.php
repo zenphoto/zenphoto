@@ -17,17 +17,19 @@ Define('DATABASE_DESIRED_VERSION','5.5.0');
 
 /**
  * Connect to the database server and select the database.
+ * @param array $config the db configuration parameters
  * @param bool $errorstop set to false to omit error messages
  * @return true if successful connection
-	*/
-function db_connect($errorstop=true) {
-	global $_zp_DB_connection, $_zp_DB_last_result, $_zp_conf_vars;
+ */
+function db_connect($config, $errorstop=true) {
+	global $_zp_DB_connection, $_zp_DB_details, $_zp_DB_last_result;
+	$_zp_DB_details = $config;
 	$_zp_DB_connection = $_zp_DB_last_result = NULL;
 	try {
-		$db = $_zp_conf_vars['mysql_database'];
-		$hostname = $_zp_conf_vars['mysql_host'];
-		$username = $_zp_conf_vars['mysql_user'];
-		$password = $_zp_conf_vars['mysql_pass'];
+		$db = $config['mysql_database'];
+		$hostname = $config['mysql_host'];
+		$username = $config['mysql_user'];
+		$password = $config['mysql_pass'];
 		$_zp_DB_connection = new PDO("mysql:host=$hostname;dbname=$db", $username, $password);
 	} catch(PDOException $e) {
 		$_zp_DB_last_result = $e;
@@ -37,7 +39,7 @@ function db_connect($errorstop=true) {
 		$_zp_DB_connection = NULL;
 		return false;
 	}
-	if (array_key_exists('UTF-8', $_zp_conf_vars) && $_zp_conf_vars['UTF-8']) {
+	if (array_key_exists('UTF-8', $config) && $config['UTF-8']) {
 		try {
 			$_zp_DB_connection->query("SET NAMES 'utf8'");
 		} catch (PDOException $e){
@@ -68,17 +70,17 @@ function db_software() {
  * create the database
  */
 function db_create() {
-	global $_zp_conf_vars;
-	$sql = 'CREATE DATABASE IF NOT EXISTS '.'`'.$_zp_conf_vars['mysql_database'].'`'.db_collation();
+	global $_zp_DB_details;
+	$sql = 'CREATE DATABASE IF NOT EXISTS '.'`'.$_zp_DB_details['mysql_database'].'`'.db_collation();
 	return query($sql, false);
 }
 
 /**
  * Returns user's permissions on the database
  */
-function db_permissions() {
-	global $_zp_conf_vars;
-	$sql = "SHOW GRANTS FOR " . $_zp_conf_vars['mysql_user'].";";
+function db_permissions($config) {
+	global $_zp_DB_details;
+	$sql = "SHOW GRANTS FOR " . $_zp_DB_details['mysql_user'].";";
 	$result = query($sql, false);
 	if (!$result) {
 		$result = query("SHOW GRANTS;", false);
@@ -126,19 +128,19 @@ function db_table_update(&$sql) {
 }
 
 function db_show($what,$aux='') {
-	global $_zp_conf_vars;
+	global $_zp_DB_details;
 	switch ($what) {
 		case 'tables':
-			$sql = "SHOW TABLES FROM `".$_zp_conf_vars['mysql_database']."` LIKE '".db_LIKE_escape($_zp_conf_vars['mysql_prefix'])."%'";
+			$sql = "SHOW TABLES FROM `".$_zp_DB_details['mysql_database']."` LIKE '".db_LIKE_escape($_zp_DB_details['mysql_prefix'])."%'";
 			return query($sql, false);
 		case 'columns':
-			$sql = 'SHOW FULL COLUMNS FROM `'.$_zp_conf_vars['mysql_prefix'].$aux.'`';
+			$sql = 'SHOW FULL COLUMNS FROM `'.$_zp_DB_details['mysql_prefix'].$aux.'`';
 			return query($sql, false);
 		case 'variables':
 			$sql = "SHOW VARIABLES LIKE '$aux'";
 			return query_full_array($sql);
 		case 'index':
-			$sql = "SHOW INDEX FROM `".$_zp_conf_vars['mysql_database'].'`.'.$aux;
+			$sql = "SHOW INDEX FROM `".$_zp_DB_details['mysql_database'].'`.'.$aux;
 			return query_full_array($sql);
 	}
 }
@@ -157,8 +159,8 @@ function db_list_fields($table) {
 }
 
 function db_truncate_table($table) {
-	global $_zp_conf_vars;
-	$sql = 'TRUNCATE '.$_zp_conf_vars['mysql_prefix'].$table;
+	global $_zp_DB_details;
+	$sql = 'TRUNCATE '.$_zp_DB_details['mysql_prefix'].$table;
 	return query($sql, false);
 }
 

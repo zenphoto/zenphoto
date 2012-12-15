@@ -137,7 +137,7 @@ $messages = '';
 
 $prefix = trim(prefix(),'`');
 
-if (isset($_REQUEST['backup']) && db_connect()) {
+if (isset($_REQUEST['backup']) && db_connect($_zp_conf_vars)) {
 	$compression_level = sanitize($_REQUEST['compress'],3);
 	setOption('backup_compression', $compression_level);
 	if ($compression_level > 0) {
@@ -239,7 +239,7 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 		</div>
 		';
 	}
-} else if (isset($_REQUEST['restore']) && db_connect()) {
+} else if (isset($_REQUEST['restore']) && db_connect($_zp_conf_vars)) {
 	$oldlibauth = Zenphoto_Authority::getVersion();
 	$errors = array(gettext('No backup set found.'));
 	if (isset($_REQUEST['backupfile'])) {
@@ -491,7 +491,7 @@ if (!$_zp_current_admin_obj->reset) {
 </h1>
 <?php
 echo $messages;
-if (db_connect()) {
+if (db_connect($_zp_conf_vars)) {
 	$compression_level = getOption('backup_compression');
 	?>
 	<p>

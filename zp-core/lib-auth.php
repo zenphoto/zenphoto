@@ -752,13 +752,14 @@ class Zenphoto_Authority {
 	 *
 	 */
 	static function handleLogout() {
-		global $_zp_loggedin, $_zp_pre_authorization;
+		global $_zp_loggedin, $_zp_pre_authorization, $_zp_current_admin_obj;
 		foreach (self::getAuthCookies() as $cookie=>$value) {
 			zp_clearCookie($cookie);
 		}
 		zp_clearCookie("zp_user_id");
 		$_zp_loggedin = false;
 		$_zp_pre_authorization = array();
+		return zp_apply_filter('zp_logout', NULL, $_zp_current_admin_obj);
 	}
 
 	/**
@@ -768,9 +769,7 @@ class Zenphoto_Authority {
 		$auth = zp_getCookie('zp_user_auth');
 		$id = zp_getCookie('zp_user_id');
 		$loggedin = $this->checkAuthorization($auth, $id);
-		if ($auth) {	// call filter if there was an auth cookie
-			$loggedin = zp_apply_filter('authorization_cookie',$loggedin);
-		}
+		$loggedin = zp_apply_filter('authorization_cookie',$loggedin, $auth);
 		if ($loggedin) {
 			return $loggedin;
 		} else {

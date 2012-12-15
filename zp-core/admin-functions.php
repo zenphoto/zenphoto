@@ -245,10 +245,8 @@ function printLogoAndLinks() {
 		} else {
 			printf(gettext('Logged in as %1$s (last login %2$s)'), $_zp_current_admin_obj->getUser(),$last);
 		}
-		if ($link = $_zp_current_admin_obj->logout_link)  {
-			if (!is_string($link)) {
-				$link = WEBPATH."/".ZENFOLDER."/admin.php?logout=".$sec;
-			}
+		if ($_zp_current_admin_obj->logout_link)  {
+			$link = WEBPATH."/".ZENFOLDER."/admin.php?logout=".$sec;
 			echo " &nbsp; | &nbsp; <a href=\"".$link."\">".gettext("Log Out")."</a> &nbsp; | &nbsp; ";
 		}
 	}
@@ -521,8 +519,9 @@ define ('CUSTOM_OPTION_PREFIX', '_ZP_CUSTOM_');
  * @param bool $theme set true if dealing with theme options
  * @param string $initial initila show/hide state
  *
- * There are four type of custom options:
+ * Custom options:
  *    OPTION_TYPE_TEXTBOX:          A textbox
+ *    OPTION_TYPE_PASSWORD:         A passowrd textbox
  *    OPTION_TYPE_CLEARTEXT:     	  A textbox, but no sanitization on save
  *    OPTION_TYPE_CHECKBOX:         A checkbox
  *    OPTION_TYPE_CUSTOM:           Handled by $optionHandler->handleOption()
@@ -549,6 +548,7 @@ define('OPTION_TYPE_CHECKBOX_UL',7);
 define('OPTION_TYPE_COLOR_PICKER',8);
 define('OPTION_TYPE_CLEARTEXT',9);
 define('OPTION_TYPE_NOTE',10);
+define('OPTION_TYPE_PASSWORD',11);
 
 function customOptions($optionHandler, $indent="", $album=NULL, $showhide=false, $supportedOptions=NULL, $theme=false, $initial='none',$extension=NULL) {
 	if (is_null($supportedOptions)) {
@@ -629,12 +629,19 @@ function customOptions($optionHandler, $indent="", $album=NULL, $showhide=false,
 					break;
 				case OPTION_TYPE_CLEARTEXT:
 					$multilingual = false;
+				case OPTION_TYPE_PASSWORD:
 				case OPTION_TYPE_TEXTBOX:
 				case OPTION_TYPE_TEXTAREA:
 					if ($type == OPTION_TYPE_CLEARTEXT) {
 						$clear = 'clear';
 					} else {
 						$clear = '';
+					}
+					if ($type == OPTION_TYPE_PASSWORD) {
+						$inputtype = 'password';
+						$multilingual = false;
+					} else {
+						$inputtype = 'text';
 					}
 					?>
 					<td width="350">
@@ -649,7 +656,7 @@ function customOptions($optionHandler, $indent="", $album=NULL, $showhide=false,
 								<?php
 							} else {
 								?>
-								<input type="text" size="40" id="<?php echo $key; ?>" name="<?php echo $key; ?>" style="width: 338px" value="<?php echo html_encode($v); ?>"<?php echo $disabled; ?> />
+								<input type="<?php echo $inputtype; ?>" size="40" id="<?php echo $key; ?>" name="<?php echo $key; ?>" style="width: 338px" value="<?php echo html_encode($v); ?>"<?php echo $disabled; ?> />
 								<?php
 							}
 						}

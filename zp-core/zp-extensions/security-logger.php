@@ -318,8 +318,8 @@ class security_logger {
 		return $allow;
 	}
 
-	static function adminCookie($allow) {
-		if (!$allow) {
+	static function adminCookie($allow, $auth) {
+		if (!$allow && $auth) {
 			security_logger::Logger(0, NULL, NULL, 'auth_cookie', '', NULL);
 		}
 		return $allow;
