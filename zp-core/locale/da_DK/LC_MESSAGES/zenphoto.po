@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-28 23:56+0100\n"
-"PO-Revision-Date: 2012-12-15 00:16+0100\n"
+"PO-Revision-Date: 2012-12-15 23:59+0100\n"
 "Last-Translator: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language-Team: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language: danish\n"
@@ -7720,7 +7720,7 @@ msgstr "Galleri gæstebruger:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:988
 msgid "User ID for the gallery guest user"
-msgstr ""
+msgstr "Bruger ID for galleriets gæstebruger"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:998
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1355
@@ -7728,75 +7728,81 @@ msgstr ""
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:133
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:506
 msgid "(repeat)"
-msgstr ""
+msgstr "(gentag)"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1017
 msgid ""
 "Master password for the gallery. If this is set, visitors must know this "
 "password to view the gallery."
 msgstr ""
+"Hovedadgangskode for galleriet. Hvis denne er oprettet, skal de besøgende "
+"kender denne adgangskode for at se galleriet."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1022
 msgid "Gallery password hint:"
-msgstr ""
+msgstr "Galleri adgangskodetip:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1028
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1385
 msgid "A reminder hint for the password."
-msgstr ""
+msgstr "En påmindelse om adgangskoden."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1035
 msgid "Unprotected pages:"
-msgstr ""
+msgstr "Ubeskyttede sider:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1064
 msgid ""
 "Place a checkmark on any page scripts which should not be protected by the "
 "gallery password."
 msgstr ""
+"Sæt en markering ved de sider, som ikke skal beskyttes af galleriets "
+"adgangskode. "
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1067
 msgid "Website title:"
-msgstr ""
+msgstr "Website titel:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1071
 msgid "Your web site title."
-msgstr ""
+msgstr "Titlen på dit website."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1074
 msgid "Website url:"
-msgstr ""
+msgstr "Website adresse:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1077
 msgid ""
 "This is used to link back to your main site, but your theme must support it."
 msgstr ""
+"Dette bruges til at linke tilbage til dit websites forside, men dit tema "
+"skal understøtte det."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1081
 msgid "Album thumbnails:"
-msgstr ""
+msgstr "Album miniaturer:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1095
 msgid "Default thumbnail selection for albums."
-msgstr ""
+msgstr "Standard miniaturevalg for albums."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1097
 msgid "Sort gallery by:"
-msgstr ""
+msgstr "Sorter galleri efter:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1136
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1717
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1390
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1441
 msgid "Descending"
-msgstr ""
+msgstr "Faldende"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1144
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1723
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1404
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1456
 msgid "custom fields:"
-msgstr ""
+msgstr "Bgrugervalgt felt:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1153
 msgid ""
@@ -7804,71 +7810,87 @@ msgid ""
 "must be database field names. You can have multiple fields separated by "
 "commas. This option is also the default sort for albums and subalbums."
 msgstr ""
+"Sorteringsrækkefølge for albums for galleriets indeks. Brugerdefinerede "
+"sorteringsværdier skal være database feltnavne. Du kan have flere felter "
+"adskilt af kommaer. Denne indstilling er også den standard sortering for "
+"albums og underalbums."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1158
 msgid "Gallery behavior:"
-msgstr ""
+msgstr "Galleri adfærd:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1163
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/publishContent/publishContent.php:200
 msgid "Publish albums by default"
-msgstr ""
+msgstr "Offentliggør som standard albums"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1169
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/publishContent/publishContent.php:202
 msgid "Publish images by default"
-msgstr ""
+msgstr "Offentliggør som standard billeder"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1176
 msgid "use latest image date as album date"
-msgstr ""
+msgstr "Brug seneste billeddato som albumdato"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1183
 msgid "visual thumb selection"
-msgstr ""
+msgstr "visuel miniaturevalg"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1190
 msgid "show subalbum thumbs"
-msgstr ""
+msgstr "vis underalbum miniaturer"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1197
 msgid "enable gallery sessions"
-msgstr ""
+msgstr "Aktiver gallerisessioner"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1204
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/themeSwitcher.php:60
 msgid "Cookie duration"
-msgstr ""
+msgstr "Cookie varighed"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1214
 msgid ""
 "<a href=\"javascript:toggle('albumpub');\" >Details</a> for <em>publish "
 "albums by default</em>"
 msgstr ""
+"<a href=\"javascript:toggle('albumpub');\" >Detaljer</a> for "
+"<em>offentliggør albums som standard</em>"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1216
 msgid ""
 "This sets the default behavior for when Zenphoto discovers an album. If "
 "checked, the album will be published, if unchecked it will be unpublished."
 msgstr ""
+"Dette sætter standard handling for når Zenphoto opdager et album. Hvis "
+"markeret, vil albummet blive offentliggjort, hvis ikke vil det ikke "
+"offentliggøres."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1218
 msgid ""
 "<a href=\"javascript:toggle('imagepub');\" >Details</a> for <em>publish "
 "images by default</em>"
 msgstr ""
+"<a href=\"javascript:toggle('imagepub');\" >Detaljer</a> for "
+"<em>offentliggør som standard billeder</em>"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1220
 msgid ""
 "This sets the default behavior for when Zenphoto discovers an image. If "
 "checked, the image will be published, if unchecked it will be unpublished."
 msgstr ""
+"Dette sætter standard handling for når Zenphoto opdager et billede. Hvis "
+"markeret, vil billedet blive offentliggjort, hvis ikke vil det ikke "
+"offentliggøres."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1222
 msgid ""
 "<a href=\"javascript:toggle('albumdate');\" >Details</a> for <em>use latest "
 "image date as album date</em>"
 msgstr ""
+"<a href=\"javascript:toggle('albumdate');\" >Detaljer</a> for <em>brug "
+"seneste billeds dato som albumdato</em>"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1225
 msgid ""
@@ -7876,18 +7898,24 @@ msgid ""
 "set this option. Otherwise the date will be set initially to the date the "
 "album was created."
 msgstr ""
+"Hvis du ønsker at albumdatoen afspeljer datoen for seneste billede, marker "
+"denne mulighed. Ellers bliver datoen sat til datoen for albummets oprettelse."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1228
 msgid ""
 "<strong>NOTE</strong>: Zenphoto will update the album date only if an image "
 "is discovered which is newer than the current date of the album."
 msgstr ""
+"<strong>Bemærk>/strong>: Zenphoto opdaterer kun albumdatoen hvis det opdager "
+"et billede som er nyere end albummets dato."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1232
 msgid ""
 "<a href=\"javascript:toggle('visualthumb');\" >Details</a> for <em>visual "
 "thumb selection</em>"
 msgstr ""
+"<a href=\"javascript:toggle('visualthumb');\" >Detaljer</a> for <em>visuel "
+"miniaturevalg</em>"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1234
 msgid ""
@@ -7898,12 +7926,21 @@ msgid ""
 "much time and is unnecessary when the browser won't display them. Uncheck "
 "this option and the images will not be loaded. "
 msgstr ""
+"Markering af denne indstilling placerer miniaturer i albummets "
+"miniaturevalgliste (listen på hvert album redigeringsside). I Firefox "
+"dropdown vises miniaturerne, men i IE og Safari vises kun navne (selv om "
+"miniaturerne er indlæst!). I albums med mange billeder vil indlæsning af "
+"disse miniaturer tager meget tid og er unødvendig, når browseren vil ikke "
+"vise dem. Fjern markeringen til dette valg, og billederne vil ikke blive "
+"indlæst."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1237
 msgid ""
 "<a href=\"javascript:toggle('multithumb');\" >Details</a> for <em>subalbum "
 "thumb selection</em>"
 msgstr ""
+"<a href=\"javascript:toggle('multithumb');\" >Detaljer</a> for "
+"<em>underalbum miniaturevalg</em>"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1239
 msgid ""
@@ -7911,12 +7948,17 @@ msgid ""
 "the album. Naturally populating these images adds overhead. If your album "
 "edit tabs load too slowly, do not select this option."
 msgstr ""
+"Vælges denne indstilling tillader valg af billeder fra både underalbummer og "
+"albummet. Naturligvis vil visning af disse billeder tage tid. Hvis dine "
+"album edit faner vises for langsomt, skal du ikke vælge denne indstilling."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1242
 msgid ""
 "<a href=\"javascript:toggle('gallerysessions');\" >Details</a> for "
 "<em>enable gallery sessions</em>"
 msgstr ""
+"<a href=\"javascript:toggle('gallerysessions');\" >Detaljer</a> for "
+"<em>aktiver galleri sessioner</em>"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1244
 msgid ""
@@ -7924,6 +7966,9 @@ msgid ""
 "com/php/php_sessions.asp\">PHP sessions</a> instead of cookies to make "
 "visitor settings persistent."
 msgstr ""
+"Hvis dette er valgt vil Zenphoto bruge <a href=\"http://www.w3schools.com/"
+"php/php_sessions.asp\"> PHP sessioner </ a> i stedet for cookies for at "
+"bevare den besøgendes indstillinger."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1245
 msgid ""
@@ -7934,110 +7979,122 @@ msgid ""
 "Cookies are the prefered storage option since their duration is determined "
 "by the <em>Cookie duration</em> option. "
 msgstr ""
+"Sessioner vil normalt lukke når browseren lukkes, hvilket medfører at alle "
+"adgangskoder og andre data til at blive kasseret. De kan lukke oftere "
+"afhængigt af konfigurationen af runtime. Længere <em>levetid</em> for "
+"sessioner er generelt mere befordrende for en behagelig brugeroplevelse. "
+"Cookies er den foretrukne løsning, da deres løbetid bestemmes af "
+"indstillingen <em>Cookie varighed</em>."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1250
 msgid ""
 "<a href=\"javascript:toggle('cookie_persistence');\" >Details</a> for "
 "<em>Cookie duration</em>"
 msgstr ""
+"<a href=\"javascript:toggle('cookie_persistence');\" >Detaljer</a> for "
+"<em>Cookie varighed</em>"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1252
 msgid "Set to the time in seconds that cookies should be kept by browsers."
-msgstr ""
+msgstr "Indstil til den tid i sekunder, at cookies skal bevares af browsere."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1307
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1351
 msgid "Search password:"
-msgstr ""
+msgstr "Søge adgangskode:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1327
 msgid ""
 "Password for the search guest user. click on <em>Search password</em> to "
 "change."
 msgstr ""
+"Adgangskode for søge-gæstebruger. Klik på <em>Søge adgangskode</em> for at "
+"ændre den."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1333
 msgid "Search guest user:"
-msgstr ""
+msgstr "Søge-gæstebruger:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1345
 msgid "User ID for the search guest user"
-msgstr ""
+msgstr "Bruger-ID for søge-gæstebruger"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1374
 msgid ""
 "Password for the search guest user. If this is set, visitors must know this "
 "password to view search results."
 msgstr ""
+"Adgangskode for søgegæstebruger. Hvis dette er udfyldt, skal brugere kende "
+"denne adgangskode for at kunne se søgeresultater."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1379
 msgid "Search password hint:"
-msgstr ""
+msgstr "Søge adgangskodetip:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1392
 msgid "Search behavior settings:"
-msgstr ""
+msgstr "Indstillinger for søgeadfærd:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1396
 msgid "partial"
-msgstr ""
+msgstr "delvis"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1397
 msgid "exact"
-msgstr ""
+msgstr "eksakt"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1415
 msgid "Fields list:"
-msgstr ""
+msgstr "Feltliste:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1446
 msgid "Treat spaces as"
-msgstr ""
+msgstr "Behandl mellemrum som"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1447
 msgid "<em>space</em>"
-msgstr ""
+msgstr "<em>mellerum</em>"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1447
 msgid "<em>OR</em>"
-msgstr ""
+msgstr "<em>OR</em>"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1447
 msgid "<em>AND</em>"
-msgstr ""
+msgstr "<em>AND</em>"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1449
 msgid "Default search"
-msgstr ""
+msgstr "Standard søgning"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1450
 msgid "<em>New</em>"
-msgstr ""
+msgstr "<em>Ny</em>"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1450
 msgid "<em>Within</em>"
-msgstr ""
+msgstr "<em>Indenfor</em>"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1455
 msgid "Do not return <em>album</em> matches"
-msgstr ""
+msgstr "Returner ikke matchende <em>album</em>."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1461
 msgid "Do not return <em>image</em> matches"
-msgstr ""
+msgstr "Returner ikke matchende <em>billeder</em>"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1470
 msgid "Do not return <em>news</em> matches"
-msgstr ""
+msgstr "Returner ikke matchende <em>nyheder</em>"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1476
 msgid "Do not return <em>page</em> matches"
-msgstr ""
+msgstr "Returner ikke matchende <em>sider</em>"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1484
 msgid ""
 "<em>Field list</em> is the set of fields on which searches may be performed."
-msgstr ""
+msgstr "<em>Feltliste</em> er det sæt af de felter som der vil søges på."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1485
 msgid ""
@@ -8047,6 +8104,11 @@ msgid ""
 "selected for <em>Tags</em> then the search criteria must exactly match the "
 "tag for a result to be returned."
 msgstr ""
+"Søg laver delvis match på alle felter valgt, med den mulige undtagelse af "
+"<em>Mærker</ em>. Det betyder, at hvis feltet indeholder søgekriterierne "
+"noget sted inden for et resultat, vil blive returneret. Hvis <em>eksakt</ "
+"em> er valgt  for <em>Mærker</ em> skal søgekriterierne svare nøjagtigt til "
+"mærket for at resultatet returneres."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1486
 msgid ""
@@ -8056,6 +8118,11 @@ msgid ""
 "present. Leaving the option unchecked will treat the whole string as a "
 "search target."
 msgstr ""
+"At sætte <em>Behandl mellemrum som</em> til <em>OR</em> vil medføre at "
+"søgningen vil udløses af alle ordene i en streng adskildt af mellemrum. At "
+"sætte den til <em>OG</em> vil medføre at søgningen kun udløses når ale ord "
+"er der i samme rækkefølge. At efterlade den blank vil medføre at hele "
+"strengen behandles som søgemål."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1487
 msgid ""
@@ -8063,21 +8130,27 @@ msgid ""
 "behave. The search will either be from <em>within</em> the results of the "
 "previous search or will be a fresh <em>new</em> search."
 msgstr ""
+"<code>Standard søgning</code> bestemmer hvorledes søgninger behandles. "
+"Søgningen vil enten være <em>indefra</em> søgeresultatet fra den sidste "
+"søgning eller være en frisk <em>ny</em> søgning."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1488
 msgid ""
 "Setting <code>Do not return <em>{item}</em> matches</code> will cause search "
 "to ignore <em>{items}</em> when looking for matches."
 msgstr ""
+"Indstilling <code>Returner ikke <em>{element}</em> matcher</code> vil få "
+"søgningen til at springe over <em>{elementer}</em> mens den leder efter "
+"resultater."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1491
 msgid "Cache expiry"
-msgstr ""
+msgstr "Cache udløber"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1493
 #, php-format
 msgid "Redo search after %s minutes."
-msgstr ""
+msgstr "Søg igen efter %s minutter."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1496
 msgid ""
@@ -8087,82 +8160,90 @@ msgid ""
 "long before a search will be considered obsolete and thus re-executed. "
 "Setting the option to <em>zero</em> disables caching of searches."
 msgstr ""
+"Søgning vil huske resutaterne af forskellige søgninger så den hurtigt kan "
+"servere mange sider etc. Over tid kan det huskede resultat blive obsolet, så "
+"det skal fornys. Denne indstilling lader dig bestemme hvor længe der skal gå "
+"før en søgning betragtes som obsolet og skal gentages. Sættes tiden til "
+"<em>zero</em> deaktiveres caching af søgningerne."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1531
 msgid "RSS feeds enabled:"
-msgstr ""
+msgstr "RSS feeds aktiveret:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1546
 msgid "News/Page comments"
-msgstr ""
+msgstr "Nyheder/Side kommentarer"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1553
 msgid "Check each RSS feed you wish to activate."
-msgstr ""
+msgstr "Afkryds hver RSS feed do ønsker at aktivere."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1558
 msgid "<strong>Note:</strong> Theme support is required to display RSS links."
 msgstr ""
+"<strong>Bemærk:</strong> Temasupport kræves for at kunne vise RSS links."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1564
 msgid "Number of RSS feed items:"
-msgstr ""
+msgstr "Antal RSS feed elementer:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1566
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1575
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1601
 msgid "Images RSS"
-msgstr ""
+msgstr "Billed RSS"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1567
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1577
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1604
 msgid "Albums RSS"
-msgstr ""
+msgstr "Albums RSS"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1569
 msgid ""
 "The number of new items you want to appear in your site's RSS feed. The "
 "images and comments RSS share the value."
 msgstr ""
+"Antal nye elementer du ønsker skal kunne ses på dit sites RSS feed. Billeder "
+"og kommentarer deler denne værdi."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1572
 msgid "Size of RSS feed images:"
-msgstr ""
+msgstr "Størrelsen af RSS feed billeder:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1579
 msgid "The size you want your images to have in your site's RSS feed."
-msgstr ""
+msgstr "Størrelsen som du ønsker billeder skal have i dit sites RSS feed."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1582
 msgid "RSS feed sort order:"
-msgstr ""
+msgstr "RSS feed sorteringsorden."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1586
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1592
 msgid "latest by id"
-msgstr ""
+msgstr "sidste efter ID"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1587
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1593
 msgid "latest by date"
-msgstr ""
+msgstr "sidste efter dato"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1588
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1594
 msgid "latest by mtime"
-msgstr ""
+msgstr "sidste efter mtime"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1589
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1595
 msgid "latest by publishdate"
-msgstr ""
+msgstr "Sidste efter publiser-dato"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1596
 #: /home/jes/workspace/zenphoto/zp-core/utilities/gallery_statistics.php:226
 #: /home/jes/workspace/zenphoto/zp-core/utilities/gallery_statistics.php:566
 msgid "latest updated"
-msgstr ""
+msgstr "Sidst opdateret"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1606
 msgid ""
@@ -8172,10 +8253,16 @@ msgid ""
 "change timestamp.<br />b) Albums RSS: Choose between <em>latest by id</em> "
 "for the latest uploaded and <em>latest updated</em>"
 msgstr ""
+"a) billeder RSS: Vælg mellem <em>seneste efter ID</em> for den seneste "
+"overførte, <em>seneste dato</em> for den seneste overførte hentet efter dato "
+"eller <em>seneste af LinkedIn</em> for den seneste overførte hentet af "
+"filens senest ændrede tidsstempel. < br / > b) Albums RSS: Vælg mellem "
+"<em>seneste efter id</em> for den seneste overførte og <em>nyeste "
+"opdaterede</em>"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1609
 msgid "RSS enclosure:"
-msgstr ""
+msgstr "RSS beholder:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1612
 msgid ""
@@ -8183,31 +8270,36 @@ msgid ""
 "provides a direct download for full images, movies etc. from within certain "
 "RSS reader clients <em>(only Images RSS)</em>."
 msgstr ""
+"Kontroller, om du ønsker at aktivere <em>RSS kabinet</ em> funktionen, som "
+"giver en direkte download til fulde billeder, film osv. fra visse RSS-læser "
+"klienter <em> (kun Billed RSS) </ em>."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1615
 msgid "Media RSS:"
-msgstr ""
+msgstr "Media RSS:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1617
 msgid ""
 "Check if <em>media RSS</em> support is to be enabled. This support is used "
 "by some services and programs <em>(only Images RSS)</em>."
 msgstr ""
+"Tjeck om <media RSS</em> understøttelse kan aktiveres. Denne support bruges "
+"af visse service og programmer <em>(kun Billed RSS)</em>"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1620
 msgid "RSS cache"
-msgstr ""
+msgstr "RSS cache"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1622
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2035
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2044
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2169
 msgid "Enabled"
-msgstr ""
+msgstr "aktiveret"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1624
 msgid "RSS cache expire"
-msgstr ""
+msgstr "RSS cache udløber"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1626
 msgid ""
@@ -8215,99 +8307,112 @@ msgid ""
 "placed within the <em>cache_html</em> folder.<br /> Cache expire default is "
 "86400 seconds (1 day  = 24 hrs * 60 min * 60 sec)."
 msgstr ""
+"Kontroller, om du vil aktivere statisk RSS-feed caching. Den cachede fil vil "
+"blive placeret inden for <em> cache_html </ em> mappen. <br /> Cachen "
+"udløber standard efter 86400 sekunder (1 dag = 24 timer * 60 min * 60 sek)."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1629
 msgid "RSS hitcounter"
-msgstr ""
+msgstr "RSS hit tæller"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1632
 msgid "Check if you want to store the hitcount on RSS feeds."
-msgstr ""
+msgstr "Marker om du ønsker at gemme hittal fra RSS feeds."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1635
 msgid "RSS title"
-msgstr ""
+msgstr "RSS titel"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1637
 msgid "Gallery title"
-msgstr ""
+msgstr "Galleri titel"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1638
 msgid "Website title"
-msgstr ""
+msgstr "website titel"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1639
 msgid "Both"
-msgstr ""
+msgstr "Begge"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1641
 msgid ""
 "Select what you want to use as the main RSS feed (channel) title. 'Both' "
 "means Website title followed by Gallery title"
 msgstr ""
+"Vælg hvad du ønsker at bruge som den vigtigste RSS-feed (kanal) titel. Ved "
+"»Begge« forstås Website titel efterfulgt af Galleri titel"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1667
 msgid ""
 "See also the <a href=\"?tab=theme\">Theme Options</a> tab for theme specific "
 "image options."
 msgstr ""
+"Se også <a href=\"?tab=theme\">Tema Indstillinger</ a> fanen for tema "
+"bestemte billedindstillinger."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1685
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1411
 msgid "Sort images by:"
-msgstr ""
+msgstr "Sorter billeder efter:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1729
 msgid "Default sort order for images."
-msgstr ""
+msgstr "Standard sorteringsorden for billede."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1730
 msgid ""
 "Custom sort values must be database field names. You can have multiple "
 "fields separated by commas."
 msgstr ""
+"Brugerdefinerede sorteringsværdier skal være database feltnavne. Du kan have "
+"flere felter adskilt af kommaer."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1734
 msgid "Image quality:"
-msgstr ""
+msgstr "Billedkvalitet:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1737
 msgid "Normal Image"
-msgstr ""
+msgstr "Normalt Billede"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1758
 msgid "<em>full</em> Image"
-msgstr ""
+msgstr "<em>fuldt</em> Billede"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1779
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:187
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:114
 msgid "Thumbnail"
-msgstr ""
+msgstr "Miniature"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1801
 msgid "Compression quality for images and thumbnails generated by Zenphoto."
-msgstr ""
+msgstr "Kompressionskvalitet for billede og miniaturer dannet af Zenphoto."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1802
 msgid ""
 "Quality ranges from 0 (worst quality, smallest file) to 100 (best quality, "
 "biggest file). "
 msgstr ""
+"Kvalitet varierer fra 0 (dårligste kvalitet, mindste fil) til 100 (bedste "
+"kvalitet, største fil)."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1806
 msgid "Interlace:"
-msgstr ""
+msgstr "Interlace:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1808
 msgid ""
 "If checked, resized images will be created <em>interlaced</em> (if the "
 "format permits)."
 msgstr ""
+"Hvis markeret, vil ændrede billeder blive oprettet <em>interlaced</em> (hvis "
+"formatet tillader)."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1811
 msgid "Use embedded thumbnail"
-msgstr ""
+msgstr "Brug integrerede miniaturer"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1822
 msgid ""
@@ -8315,24 +8420,30 @@ msgid ""
 "a cached image that is equal or smaller in size. Note: the quality of this "
 "image varies by camera and its orientation may not match the master image."
 msgstr ""
+"Hvis markeret, vil Zenphoto bruge miniaturen indlejret i billedet, når du "
+"opretter et cached billede, der er lig med eller mindre i størrelse. Bemærk: "
+"kvaliteten af ​​billedet afhænger af kamera og dets orientering og vil "
+"muligvis ikke passe med masterbilledet."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1826
 msgid "The PHP EXIF extension is required for this option."
-msgstr ""
+msgstr "PHP EXIF udvidelse er krævet for denne mulighed."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1833
 msgid "Allow upscale:"
-msgstr ""
+msgstr "Tillad opskalering:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1835
 msgid ""
 "Allow images to be scaled up to the requested size. This could result in "
 "loss of quality, so it's off by default."
 msgstr ""
+"Tillad at billeder skaleres op til den ønskede størrelse. Dette kan "
+"resultere i tab af kvalitet, så det er slået fra som standard."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1838
 msgid "Sharpen:"
-msgstr ""
+msgstr "Gør skarpere:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1843
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1896
@@ -8347,45 +8458,49 @@ msgstr ""
 #: /home/jes/workspace/zenphoto/zp-core/utilities/gallery_statistics.php:75
 #: /home/jes/workspace/zenphoto/zp-core/utilities/gallery_statistics.php:554
 msgid "Images"
-msgstr ""
+msgstr "Billeder"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1847
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1525
 #: /home/jes/workspace/zenphoto/zp-core/utilities/reset_albumthumbs.php:35
 msgid "Thumbs"
-msgstr ""
+msgstr "Miniaturer"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1851
 msgid "Amount"
-msgstr ""
+msgstr "Skarphedsgrad"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1875
 msgid "Radius"
-msgstr ""
+msgstr "Radius"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1879
 msgid "Threshold"
-msgstr ""
+msgstr "Tærskel"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1885
 msgid "Add an unsharp mask to images and/or thumbnails."
-msgstr ""
+msgstr "Tilføj en uskarphedsmaske til billeder og / eller miniaturer."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1885
 msgid "<strong>WARNING</strong>: can overload slow servers."
-msgstr ""
+msgstr "<strong> ADVARSEL </ strong>: kan overbelaste langsomme servere."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1886
 msgid ""
 "<em>Amount</em>: the strength of the sharpening effect. Values are between 0 "
 "(least sharpening) and 100 (most sharpening)."
 msgstr ""
+"<em>Skarphedsgrad</em>: styrken af ​​skarphes effekt. Værdier er mellem 0 "
+"(mindst skærpning) og 100 (mest skærpning)."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1887
 msgid ""
 "<em>Radius</em>: the pixel radius of the sharpening mask. A smaller radius "
 "sharpens smaller details, and a larger radius sharpens larger details."
 msgstr ""
+"<em>Radius</em>: Radius, i pixel, af skarphedsmasken. En mindre radius "
+"skærper mindre detaljer og en større radius skærper større detaljer."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1888
 msgid ""
@@ -8393,56 +8508,61 @@ msgid ""
 "A low threshold sharpens all edges including faint ones, while a higher "
 "threshold only sharpens more distinct edges."
 msgstr ""
+"<em>Tærskel</em>: Tærskel for farveforskel kræves for skarphed. En lav "
+"tærskel skærper alle kanter, herunder svage, mens en højere tærskel kun "
+"skærper mere tydelige kanter."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1892
 msgid "Watermarks:"
-msgstr ""
+msgstr "Vandmærker:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1909
 msgid "Full sized images"
-msgstr ""
+msgstr "Fuldstørrelse billeder"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1930
 #, php-format
 msgid "%s thumbnails"
-msgstr ""
+msgstr "%s miniaturer"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1933
 msgid "image thumb"
-msgstr ""
+msgstr "Billedminiature"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1946
 msgid "cover"
-msgstr ""
+msgstr "dække"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1948
 #, no-php-format
 msgid "% of image"
-msgstr ""
+msgstr "% af billede"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1951
 msgid "allow upscale"
-msgstr ""
+msgstr "tillad opskalering"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1955
 msgid "offset h"
-msgstr ""
+msgstr "offset h"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1957
 #, no-php-format
 msgid "% w, "
-msgstr ""
+msgstr "% w, "
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1959
 #, no-php-format
 msgid "%"
-msgstr ""
+msgstr "%"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1963
 msgid ""
 "The watermark image is scaled by to cover <em>cover percentage</em> of the "
 "image and placed relative to the upper left corner of the image."
 msgstr ""
+"Vandmærket skaleres ved at dække <em> dækningsprocent </ em> af billedet og "
+"placeres relativt til det øverste venstre hjørne af billedet."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1964
 msgid ""
@@ -8450,12 +8570,17 @@ msgid ""
 "<em>offset</em> percentages of the height and width difference between the "
 "image and the watermark."
 msgstr ""
+"Det er forskudt derfra (flyttet mod den nederste højre hjørne) af <em> "
+"offset </ em> procentdelen af højde- og breddeforskellen mellem billede og "
+"vandmærke."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1965
 msgid ""
 "If <em>allow upscale</em> is not checked the watermark will not be made "
 "larger than the original watermark image."
 msgstr ""
+"hvis <em>tillad opskalering</em> ikke er markeret, vil vandmærket ikke blive "
+"lavet støtte end det originale vandmærkebillede."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1966
 #, php-format
@@ -8463,21 +8588,25 @@ msgid ""
 "Custom watermarks should be placed in the <code>/%s/watermarks/</code> "
 "folder. The images must be in png-24 format."
 msgstr ""
+"Brugerdefineret vandmærke skal placeres i <code>/%s/watermarks/</code> "
+"mappen. Billedet skal være i png-24 format."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1970
 msgid ""
 "If a watermark image is selected for these <em>images classes</em> it will "
 "be used in place of the image thumbnail watermark."
 msgstr ""
+"Hvis et vandmærkebillede er valgt til disse <em>billeder klasser</em> vil "
+"det blive brugt i stedet for miniaturebilledvandmærket."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1978
 msgid "Caching concurrency:"
-msgstr ""
+msgstr "Caching concurrency:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2003
 #, php-format
 msgid "Cache processing worker limit: %s."
-msgstr ""
+msgstr "Cache processing arbejdsgrænse: %s."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2004
 msgid ""
