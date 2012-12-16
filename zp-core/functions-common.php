@@ -340,8 +340,8 @@ function html_encodeTagged($str, $allowScript=true) {
 
 /**
  * Makes directory recursively, returns TRUE if exists or was created sucessfuly.
- * Note: PHP5 includes a recursive parameter to mkdir, but PHP4 does not, so this
- *   is required to target PHP4.
+ * Note: PHP5 includes a recursive parameter to mkdir, but it apparently does not
+ * 				does not traverse symlinks!
  * @param string $pathname The directory path to be created.
  * @return boolean TRUE if exists or made or FALSE on failure.
  */

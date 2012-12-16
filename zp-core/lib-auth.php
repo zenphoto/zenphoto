@@ -1616,16 +1616,20 @@ class Zenphoto_Administrator extends PersistentObject {
 	/**
 	 * Creates a "prime" album for the user. Album name is based on the userid
 	 */
-	function createPrimealbum() {
+	function createPrimealbum($new=true, $name=NULL) {
 		//	create his album
 		$t = 0;
 		$ext = '';
-		$filename = internalToFilesystem(str_replace(array('<', '>', ':', '"'. '/'. '\\', '|', '?', '*'), '_', seoFriendly($this->getUser())));
-		while (file_exists(ALBUM_FOLDER_SERVERPATH.'/'.$filename.$ext)) {
+		if (is_null($name)) {
+			$filename = internalToFilesystem(str_replace(array('<', '>', ':', '"'. '/'. '\\', '|', '?', '*'), '_', seoFriendly($this->getUser())));
+		} else {
+			$filename = internalToFilesystem(str_replace(array('<', '>', ':', '"'. '/'. '\\', '|', '?', '*'), '_', $name));
+		}
+		while ($new && file_exists(ALBUM_FOLDER_SERVERPATH.$filename.$ext)) {
 			$t++;
 			$ext = '-'.$t;
 		}
-		$path = ALBUM_FOLDER_SERVERPATH.'/'.$filename.$ext;
+		$path = ALBUM_FOLDER_SERVERPATH.$filename.$ext;
 		$albumname = filesystemToInternal($filename.$ext);
 		if (@mkdir_recursive($path,FOLDER_MOD)) {
 			$album = new Album(NULL, $albumname);
