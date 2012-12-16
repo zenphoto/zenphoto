@@ -23,7 +23,7 @@ Define('DATABASE_DESIRED_VERSION','5.5.0');
 function db_connect($config, $errorstop=true) {
 	global $_zp_DB_connection, $_zp_DB_details;
 	$_zp_DB_details = $config;
-		$_zp_DB_connection = @mysql_connect($config['mysql_host'], $config['mysql_user'], $config['mysql_pass']);
+	$_zp_DB_connection = @mysql_connect($config['mysql_host'], $config['mysql_user'], $config['mysql_pass']);
 	if (!$_zp_DB_connection) {
 		if ($errorstop) {
 			zp_error(sprintf(gettext('MySQL Error: Zenphoto received the error %s when connecting to the database server.'),mysql_error()));
@@ -32,7 +32,7 @@ function db_connect($config, $errorstop=true) {
 	}
 	if (!@mysql_select_db($config['mysql_database'])) {
 		if ($errorstop) {
-			zp_error(sprintf(gettext('MySQL Error: MySQL returned the error %1$s when Zenphoto tried to select the database %2$s.'),mysql_error(),$db));
+			zp_error(sprintf(gettext('MySQL Error: MySQL returned the error %1$s when Zenphoto tried to select the database %2$s.'),mysql_error(),$config['mysql_database']));
 		}
 		return false;
 	}
