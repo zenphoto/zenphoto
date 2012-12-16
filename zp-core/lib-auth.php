@@ -258,7 +258,7 @@ class Zenphoto_Authority {
 		if (DEBUG_LOGIN) { debugLogVar("checkAuthorization: admins",$admins);	}
 		$rights = 0;
 		$criteria = array('`pass`=' => $authCode, '`valid`=' => 1);
-		if (!is_null($id)) {
+		if (!empty($id)) {
 			$criteria['`id`='] = $id;
 		}
 		$user = self::getAnAdmin($criteria);
@@ -612,8 +612,7 @@ class Zenphoto_Authority {
 		$user->set('lastloggedin', $user->get('loggedin'));
 		$user->set('loggedin',date('Y-m-d H:i:s'));
 		$user->save();
-		zp_setCookie("zp_user_auth", $user->getPass(), NULL, NULL, secureServer());
-		zp_setCookie('zp_user_id', $user->getID(), NULL, NULL, secureServer());
+		zp_setCookie("zp_user_auth", $user->getPass().'.'.$user->getID(), NULL, NULL, secureServer());
 	}
 
 	/**
@@ -756,7 +755,6 @@ class Zenphoto_Authority {
 		foreach (self::getAuthCookies() as $cookie=>$value) {
 			zp_clearCookie($cookie);
 		}
-		zp_clearCookie("zp_user_id");
 		$_zp_loggedin = false;
 		$_zp_pre_authorization = array();
 		return zp_apply_filter('zp_logout', NULL, $_zp_current_admin_obj);
@@ -766,15 +764,13 @@ class Zenphoto_Authority {
 	 * Checks saved cookies to see if a user is logged in
 	 */
 	function checkCookieCredentials() {
-		$auth = zp_getCookie('zp_user_auth');
-		$id = zp_getCookie('zp_user_id');
+		list($auth, $id) = explode('.',zp_getCookie('zp_user_auth').'.');
 		$loggedin = $this->checkAuthorization($auth, $id);
 		$loggedin = zp_apply_filter('authorization_cookie',$loggedin, $auth);
 		if ($loggedin) {
 			return $loggedin;
 		} else {
 			zp_clearCookie("zp_user_auth");
-			zp_clearCookie("zp_user_id");
 			return NULL;
 		}
 	}
