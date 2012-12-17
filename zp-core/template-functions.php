@@ -4553,8 +4553,8 @@ function printPasswordForm($_password_hint, $_password_showuser=NULL, $_password
 	global $_zp_login_error, $_zp_password_form_printed, $_zp_current_search, $_zp_gallery, $_zp_gallery_page,
 					$_zp_current_album, $_zp_current_image, $theme, $_zp_current_zenpage_page, $_zp_authority;
 	if ($_zp_password_form_printed) return;
-	if (is_null($_password_redirect)) $_password_redirect = getPageRedirect();
 	$_zp_password_form_printed = true;
+	if (is_null($_password_redirect)) $_password_redirect = getPageRedirect();
 	?>
 	<div id="passwordform">
 	<?php
@@ -4566,7 +4566,14 @@ function printPasswordForm($_password_hint, $_password_showuser=NULL, $_password
 		</p>
 		<?php
 	}
-	$_zp_authority->printLoginForm($_password_redirect, false, $_password_showuser, false, $_password_hint);
+	if ($loginlink = zp_apply_filter('login_link', NULL)) {
+		$logintext = gettext('login');
+		?>
+		<a href="<?php echo $loginlink; ?>" title="<?php echo $logintext; ?>"><?php echo $logintext; ?></a>
+		<?php
+	} else {
+		$_zp_authority->printLoginForm($_password_redirect, false, $_password_showuser, false, $_password_hint);
+	}
 	?>
 	</div>
 	<?php
