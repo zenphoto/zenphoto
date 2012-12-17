@@ -20,7 +20,30 @@ class external_auth {
 
 	/**
 	 * This is the cookie processor filter handler
-	 * Check if there is a valid MyBB cookie that can be used to authorize the visitor
+	 * it invokes the child class check() method to see if there is a valid visitor to the site
+	 * The check() method should return "false" if there is no valid visitor or an array of
+	 * User information if there is one.
+	 *
+	 * If there is a valid user, the user name is checked against Zenphoto users. If such user exists
+	 * he will be automatically logged in. If no user by that userid exists a transient user will be
+	 * created and logged in. User details are filled in from the user information in the passed array.
+	 *
+	 * Most enteries in the result array are simply stored into the user property of the same name. However,
+	 * there are some special handling items that may be present:
+	 * 	<ul>
+	 * 		<li>groups: an array of the user's group membership</li>
+	 * 		<li>objects: a Zenphoto "managed object list" array</li>
+	 * 		<li>album: the name of the user's primary album</li>
+	 * 		<li>logout_link: information that the plugin can use when a user loggs out</li>
+	 *	</ul>
+	 *
+	 * All the above may be missing. However, if there is no groups entry, there needs to be an
+	 * entry for the user's rights otherwise he will have none. There should not be both a rights entry
+	 * and a groups entry as they are mutually exclusive.
+	 *
+	 * album and objects entries should come last in the list so all other properties are processed first as
+	 * these methods may modify other properties.
+	 *
 	 * @param BIT $authorized
 	 */
 	function check($authorized) {
@@ -35,15 +58,19 @@ class external_auth {
 					//	create a transient user
 					$userobj = new Zenphoto_Administrator('', 1);
 					$userobj->setUser($user);
+					$userobj->setRights(NO_RIGHTS);	//	just incase none get set
 					//	Flag as external credentials for completeness
 					$userobj->setCredentials(array($this->auth,'user','email'));
-					//	populate the user properties
+				//	populate the user properties
+					$member = false;	//	no group membership (yet)
 					foreach ($result as $key=>$value) {
 						switch ($key) {
+							case 'id':
+								//	just incase this was passed!
+								break;
 							case 'groups':
-								//	find the Zenphoto group corresponding to the MyBB one (if it exists)
-								$member = false;
-								$rights = 0;
+								//	find the corresponding Zenphoto group (if it exists)
+								$rights = NO_RIGHTS;
 								$objects = array();
 								$groups = $value;
 								foreach ($groups as $key=>$group) {
@@ -59,20 +86,28 @@ class external_auth {
 										unset($groups[$key]);
 									}
 								}
-								if (!$member) {
-									//	No such Zenphoto group, use the default Zenphoto group for MyBB users
-									$group = getOption('MyBB_auth_myBB_default_group');
+								if ($member) {
+									$userobj->setGroup(implode(',',$groups));
+									$userobj->setRights($rights);
+									$userobj->setObjects($objects);
+								}
+								break;
+							case 'defaultgroup':
+								if (!$member && isset($result['defaultgroup'])) {
+									//	No Zenphoto group, use the default group
+									$group = $result['defaultgroup'];
 									$groupobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $group,'`valid`=' => 0));
-									$rights = $groupobj->getRights();
-									$objects = $groupobj->getObjects();
-									if ($groupobj->getName() != 'template') {
-										$groups = NULL;
+									if ($groupobj) {
+										$rights = $groupobj->getRights();
+										$objects = $groupobj->getObjects();
+										if ($groupobj->getName() != 'template') {
+											$group = NULL;
+										}
+										$userobj->setGroup($group);
+										$userobj->setRights($rights);
+										$userobj->setObjects($objects);
 									}
 								}
-								//	setup standard user items
-								$userobj->setGroup(implode(',',$groups));
-								$userobj->setRights($rights);
-								$userobj->setObjects($objects);
 								break;
 							case 'objects':
 								$userobj->setObjects($objects);

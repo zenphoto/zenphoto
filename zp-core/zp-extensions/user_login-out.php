@@ -69,17 +69,19 @@ if (isset($_GET['page'])) { $__redirect['page'] = sanitize($_GET['page']); }
 if (in_context(ZP_INDEX)) {
 	if (isset($_GET['userlog'])) { // process the logout.
 		if ($_GET['userlog'] == 0) {
-			Zenphoto_Authority::handleLogout();
-			if (empty($__redirect)) {
-				$params = '';
-			} else {
-				$params = '?';
-				foreach ($__redirect as $param=>$value) {
-					$params .= $param.'='.$value.'&';
+			if (!$location = Zenphoto_Authority::handleLogout()) {
+				if (empty($__redirect)) {
+					$params = '';
+				} else {
+					$params = '?';
+					foreach ($__redirect as $param=>$value) {
+						$params .= $param.'='.$value.'&';
+					}
+					$params = substr($params,0,-1);
 				}
-				$params = substr($params,0,-1);
+				$location = FULLWEBPATH . '/index.php'.$params;
 			}
-			header("Location: " . FULLWEBPATH . '/index.php'.$params);
+			header("Location: " . $location);
 			exitZP();
 		}
 	}
