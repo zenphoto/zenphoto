@@ -23,7 +23,7 @@ Define('DATABASE_DESIRED_VERSION','5.5.0');
  */
 function db_connect($config, $errorstop=true) {
 	global $_zp_DB_connection, $_zp_DB_details, $_zp_DB_last_result;
-	$_zp_DB_details = $config;
+	$_zp_DB_details = unserialize(DB_NOT_CONNECTED);
 	$_zp_DB_connection = $_zp_DB_last_result = NULL;
 	try {
 		$db = $config['mysql_database'];
@@ -39,6 +39,7 @@ function db_connect($config, $errorstop=true) {
 		$_zp_DB_connection = NULL;
 		return false;
 	}
+	$_zp_DB_details = $config;
 	if (array_key_exists('UTF-8', $config) && $config['UTF-8']) {
 		try {
 			$_zp_DB_connection->query("SET NAMES 'utf8'");

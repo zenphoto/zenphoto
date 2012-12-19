@@ -22,7 +22,7 @@ Define('DATABASE_DESIRED_VERSION','5.5.0');
  */
 function db_connect($config, $errorstop=true) {
 	global $_zp_DB_connection, $_zp_DB_details;
-	$_zp_DB_details = $config;
+	$_zp_DB_details = unserialize(DB_NOT_CONNECTED);
 	$_zp_DB_connection = @mysqli_connect($config['mysql_host'], $config['mysql_user'], $config['mysql_pass']);
 	if (!$_zp_DB_connection) {
 		if ($errorstop) {
@@ -30,12 +30,14 @@ function db_connect($config, $errorstop=true) {
 		}
 		return false;
 	}
+	$_zp_DB_details['mysql_host'] = $config['mysql_host'];
 	if (!$_zp_DB_connection->select_db($config['mysql_database'])) {
 		if ($errorstop) {
 			zp_error(sprintf(gettext('MySQLi Error: MySQLi returned the error %1$s when Zenphoto tried to select the database %2$s.'),$_zp_DB_connection->error,$config['mysql_database']));
 		}
 		return false;
 	}
+	$_zp_DB_details = $config;
 	if (array_key_exists('UTF-8', $config) && $config['UTF-8']) {
 		@$_zp_DB_connection->query("SET NAMES 'utf8'");
 	}
