@@ -188,6 +188,7 @@ class user_groups {
 
 			$grouppart .= "</ul>\n";
 		} else {
+			$notice = '';
 			if ($group) {
 				$grouppart = $group;
 			} else {

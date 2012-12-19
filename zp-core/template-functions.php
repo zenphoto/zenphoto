@@ -128,7 +128,7 @@ function printAdminToolbox($id='admin', $customDIV=false) {
 				</li>
 				<?php
 			}
-			if (zp_loggedin(ADMIN_RIGHTS)) {
+			if (zp_loggedin(USER_RIGHTS)) {
 				?>
 				<li>
 					<?php printLink($zf . '/admin-users.php', gettext("Users"), NULL, NULL, NULL); ?>
@@ -171,8 +171,7 @@ function printAdminToolbox($id='admin', $customDIV=false) {
 				case 'index.php':
 				case $gal:
 				// script is either index.php or the gallery index page
-				if (zp_loggedin(ALBUM_RIGHTS)) {
-					// admin has edit rights so he can sort the gallery (at least those albums he is assigned)
+				if (zp_loggedin(ADMIN_RIGHTS)) {
 					?>
 					<li>
 						<?php printLink($zf . '/admin-edit.php?page=edit', gettext("Sort Gallery"), NULL, NULL, NULL); ?>

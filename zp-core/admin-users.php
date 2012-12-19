@@ -157,12 +157,14 @@ if (isset($_GET['action'])) {
 									$error = true;
 								}
 							}
-							$challenge = sanitize($_POST[$i.'-challengephrase']);
-							$response = sanitize($_POST[$i.'-challengeresponse']);
-							$info = $userobj->getChallengePhraseInfo();
-							if ($challenge != $info['challenge'] || $response != $info['response']) {
-								$userobj ->setChallengePhraseInfo($challenge, $response);
-								markUpdated();
+							if (isset($_POST[$i.'-challengephrase'])) {
+								$challenge = sanitize($_POST[$i.'-challengephrase']);
+								$response = sanitize($_POST[$i.'-challengeresponse']);
+								$info = $userobj->getChallengePhraseInfo();
+								if ($challenge != $info['challenge'] || $response != $info['response']) {
+									$userobj ->setChallengePhraseInfo($challenge, $response);
+									markUpdated();
+								}
 							}
 							$lang = sanitize($_POST[$i.'-admin_language'],3);
 							if ($lang != $userobj->getLanguage()) {
@@ -504,7 +506,11 @@ function languageChange(id,lang) {
 		$userid = $user['user'];
 		$current = in_array($userid,$showset);
 		$showlist[] = '#show-'.$userid;
-		$userobj = Zenphoto_Authority::newAdministrator($userid);
+		if ($userid == $_zp_current_admin_obj->getuser()) {
+			$userobj = $_zp_current_admin_obj;	//	the only way here with a transient user is if it is the loggedin user
+		} else {
+			$userobj = Zenphoto_Authority::newAdministrator($userid);
+		}
 		if (empty($userid)) {
 			$userobj->setGroup($user['group']);
 			$userobj->setRights($user['rights']);
@@ -677,24 +683,29 @@ function languageChange(id,lang) {
 			?>
 				<br />
 				<?php
+				if (in_array('challenge_phrase', $no_change)) {
+					$_disable = ' disabled="disabled"';
+				} else {
+					$_disable = '';
+				}
 				$challenge = $userobj->getChallengePhraseInfo();
 				?>
 				<fieldset><legend><?php echo gettext('Challenge phrase')?></legend>
 					<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="challengephrase-<?php echo $id ?>" name="<?php echo $id ?>-challengephrase"
-									value="<?php echo html_encode($challenge['challenge']); ?>" />
+									value="<?php echo html_encode($challenge['challenge']); ?>"<?php echo $_disable; ?> />
 				</fieldset>
 				<fieldset><legend><?php echo gettext('Challenge response')?></legend>
 					<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="challengeresponse-<?php echo $id ?>" name="<?php echo $id ?>-challengeresponse"
-									value="<?php echo html_encode($challenge['response']); ?>" />
+									value="<?php echo html_encode($challenge['response']); ?>"<?php echo $_disable; ?> />
 				</fieldset>
 				<br />
 				<fieldset><legend><?php echo gettext("Full name"); ?></legend>
 					<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_name-<?php echo $id ?>" name="<?php echo $id ?>-admin_name"
-									value="<?php echo html_encode($userobj->getName()); ?>"<?php if ($userobj->getName() && in_array('name', $no_change)) echo ' disabled="disabled"'; ?> />
+									value="<?php echo html_encode($userobj->getName()); ?>"<?php if (in_array('name', $no_change)) echo ' disabled="disabled"'; ?> />
 				</fieldset>
 				<fieldset><legend><?php echo gettext("Email"); ?></legend>
 					<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_email-<?php echo $id ?>" name="<?php echo $id ?>-admin_email"
-								value="<?php echo html_encode($userobj->getEmail()); ?>"<?php if ($userobj->getEmail() && in_array('email', $no_change)) echo ' disabled="disabled"'; ?> />
+								value="<?php echo html_encode($userobj->getEmail()); ?>"<?php if (in_array('email', $no_change)) echo ' disabled="disabled"'; ?> />
 				</fieldset>
 				<br />
 				<?php
@@ -811,10 +822,16 @@ function languageChange(id,lang) {
 <input type="hidden" name="totaladmins" value="<?php echo $id; ?>" />
 <input type="hidden" name="checkForPostTruncation" value="1" />
 <br />
-<p class="buttons">
-<button type="submit" title="<?php echo gettext("Apply"); ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-<button type="reset" title="<?php echo gettext("Reset"); ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
-</p>
+<?php
+if (!$_zp_current_admin_obj->transient) {
+	?>
+	<p class="buttons">
+	<button type="submit" title="<?php echo gettext("Apply"); ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+	<button type="reset" title="<?php echo gettext("Reset"); ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+	</p>
+	<?php
+}
+?>
 </form>
 <?php
 if (zp_loggedin(ADMIN_RIGHTS)) {
