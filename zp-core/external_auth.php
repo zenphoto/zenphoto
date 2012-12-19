@@ -51,22 +51,27 @@ class external_auth {
 		if (!$authorized) {	// not logged in via normal Zenphoto handling
 			if ($result = $this->user()) {
 				$user = $result['user'];
-				unset($result['user']);
 				$searchfor = array('`user`=' => $user,  '`valid`=' => 1);
 				$userobj = Zenphoto_Authority::getAnAdmin($searchfor);
 				if (!$userobj) {
+					unset($result['id']);
+					unset($result['user']);
+					$authority = '';
 					//	create a transient user
 					$userobj = new Zenphoto_Administrator('', 1);
 					$userobj->setUser($user);
 					$userobj->setRights(NO_RIGHTS);	//	just incase none get set
 					//	Flag as external credentials for completeness
-					$userobj->setCredentials(array($this->auth,'user','email'));
-				//	populate the user properties
+					$properties = array_keys($result);	//	the list of things we got from the external authority
+					array_unshift($properties, $this->auth);
+					$userobj->setCredentials($properties);
+					//	populate the user properties
 					$member = false;	//	no group membership (yet)
 					foreach ($result as $key=>$value) {
 						switch ($key) {
-							case 'id':
-								//	just incase this was passed!
+							case 'authority':
+								$authority = '::'.$value;
+								unset($result['authority']);
 								break;
 							case 'groups':
 								//	find the corresponding Zenphoto group (if it exists)
@@ -120,6 +125,9 @@ class external_auth {
 								break;
 						}
 					}
+					$properties = array_keys($result);	//	the list of things we got from the external authority
+					array_unshift($properties, $this->auth.$authority);
+					$userobj->setCredentials($properties);
 				}
 				if (isset($result['logout_link'])) {
 					$userobj->logout_link = $result['logout_link'];
