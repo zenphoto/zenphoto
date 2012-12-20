@@ -939,57 +939,40 @@ class Zenphoto_Authority {
 				<?php
 				break;
 			default:
-				?>
-				<script type="text/javascript">
-					// <!-- <![CDATA[
-					function togglePassword() {
-						if($('#pass').attr('type')=='password') {
-							var oldp = $('#pass');
-							var newp = oldp.clone();
-							newp.attr('type', 'text');
-							newp.insertAfter(oldp);
-							oldp.remove();
-						} else {
-							var oldp = $('#pass');
-							var newp = oldp.clone();
-							newp.attr('type', 'password');
-							newp.insertAfter(oldp);
-							oldp.remove();
-						}
-					}
-					<?php
-						if (empty($alt_handlers)) {
-							$legend = gettext('Login');
-						} else {
-							?>
-							var handlers = [];
-							<?php
-							$list = '<select id="logon_choices" onchange="changeHandler(handlers[$(this).val()]);">'.
-												'<option value="0">'.html_encode(get_language_string($_zp_gallery->getTitle())).'</option>';
-							$c = 0;
-							foreach ($alt_handlers as $handler=>$details) {
-								$c++;
-								$details['params'][] = 'redirect='.$redirect;
-								if (!empty($requestor)) {
-									$details['params'][] = 'requestor='.$requestor;
-								}
-								echo "handlers[".$c."]=['".$details['script']."','".implode("','", $details['params'])."'];";
-
-								$list .= '<option value="'.$c.'">'.$handler.'</option>';
-							}
-							$list .= '</select>';
-							$legend = sprintf(gettext('Logon using:%s'),$list);
-							?>
-							function changeHandler(handler) {
-								handler.push('user='+$('#user').val());
-								var script = handler.shift();
-								launchScript(script,handler);
-							}
-							<?php
-						}
+				if (empty($alt_handlers)) {
+					$legend = gettext('Login');
+				} else {
 					?>
+					<script type="text/javascript">
+						// <!-- <![CDATA[
+						var handlers = [];
+						<?php
+						$list = '<select id="logon_choices" onchange="changeHandler(handlers[$(this).val()]);">'.
+											'<option value="0">'.html_encode(get_language_string($_zp_gallery->getTitle())).'</option>';
+						$c = 0;
+						foreach ($alt_handlers as $handler=>$details) {
+							$c++;
+							$details['params'][] = 'redirect='.$redirect;
+							if (!empty($requestor)) {
+								$details['params'][] = 'requestor='.$requestor;
+							}
+							echo "handlers[".$c."]=['".$details['script']."','".implode("','", $details['params'])."'];";
+
+							$list .= '<option value="'.$c.'">'.$handler.'</option>';
+						}
+						$list .= '</select>';
+						$legend = sprintf(gettext('Logon using:%s'),$list);
+						?>
+						function changeHandler(handler) {
+							handler.push('user='+$('#user').val());
+							var script = handler.shift();
+							launchScript(script,handler);
+						}
 					// ]]> -->
-				</script>
+					</script>
+					<?php
+				}
+				?>
 				<form name="login" action="<?php echo html_encode(getRequestURI()); ?>" method="post">
 					<input type="hidden" name="login" value="1" />
 					<input type="hidden" name="password" value="1" />
@@ -1172,7 +1155,7 @@ class Zenphoto_Authority {
 			}
 		}
 		function togglePassword(id) {
-			if($('#pass'+id).attr('type')=='password') {
+		if($('#pass'+id).attr('type')=='password') {
 				var oldp = $('#pass'+id);
 				var newp = oldp.clone();
 				newp.attr('type', 'text');
