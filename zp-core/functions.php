@@ -745,7 +745,7 @@ function getManagedAlbumList() {
  * @return array
  */
 function populateManagedObjectsList($type,$id,$rights=false) {
-	if (empty($id)) {
+	if ($id<=0) {
 		return array();
 	}
 	$cv = array();
