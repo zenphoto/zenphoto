@@ -31,7 +31,7 @@ function printAdminFooter($addl='') {
 		 | <a href="<?php echo FULLWEBPATH.'/'.ZENFOLDER.'/license.php'?>" title="<?php echo gettext('Zenphoto licence'); ?>"><?php echo gettext('License'); ?></a>
 		 | <a href="http://www.zenphoto.org/news/category/user-guide" title="<?php echo gettext('User guide'); ?>"><?php echo gettext('User guide'); ?></a>
 		 | <a href="http://www.zenphoto.org/support/" title="<?php echo gettext('Forum'); ?>"><?php echo gettext('Forum'); ?></a>
-		 | <a href="http://www.zenphoto.org/pages/bugtracker" title="<?php echo gettext('Bugtracker'); ?>"><?php echo gettext('Bugtracker'); ?></a>
+		 | <a href="https://github.com/zenphoto/zenphoto/issues" title="<?php echo gettext('Bugtracker'); ?>"><?php echo gettext('Bugtracker'); ?></a>
 		 | <a href="http://www.zenphoto.org/news/category/changelog" title="<?php echo gettext('View Change log'); ?>"><?php echo gettext('Change log'); ?></a>
 		 | <?php	printf(gettext('Server date: %s'),date('Y-m-d H:i:s')); 	?>
 	</div>
