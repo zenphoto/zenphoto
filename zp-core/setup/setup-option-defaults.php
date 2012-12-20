@@ -267,14 +267,14 @@ if (!in_array('viewers',$groupsdefined)) {
 	$groupobj->save();
 	$groupsdefined[] = 'viewers';
 }
-if (!in_array('bozos',$groupsdefined)) {
-	$groupobj = Zenphoto_Authority::newAdministrator('bozos',0);
+if (!in_array('blocked',$groupsdefined)) {
+	$groupobj = Zenphoto_Authority::newAdministrator('blocked',0);
 	$groupobj->setName('group');
 	$groupobj->setRights(0);
 	$groupobj->setCustomData(gettext('Banned users'));
 	$groupobj->setValid(0);
 	$groupobj->save();
-	$groupsdefined[] = 'bozos';
+	$groupsdefined[] = 'blocked';
 }
 if (!in_array('album managers',$groupsdefined)) {
 	$groupobj = Zenphoto_Authority::newAdministrator('album managers',0);
