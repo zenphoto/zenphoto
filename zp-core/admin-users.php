@@ -26,6 +26,11 @@ admin_securityChecks(USER_RIGHTS, currentRelativeURL());
 
 $newuser = array();
 $showset = array();
+foreach ($_REQUEST as $param=>$value) {
+	if (strpos($param, 'show-') === 0) {
+		$showset[] = substr($param,5);
+	}
+}
 if (isset($_GET['subpage'])) {
 	$subpage = sanitize_numeric($_GET['subpage']);
 } else {
@@ -33,11 +38,6 @@ if (isset($_GET['subpage'])) {
 		$subpage = sanitize_numeric($_POST['subpage']);
 	} else {
 		$subpage = 0;
-	}
-	foreach ($_GET as $param=>$value) {
-		if (strpos($param, 'show-') === 0) {
-			$showset[] = substr($param,5);
-		}
 	}
 }
 
@@ -507,7 +507,7 @@ function languageChange(id,lang) {
 		$current = in_array($userid,$showset);
 		$showlist[] = '#show-'.$userid;
 		if ($userid == $_zp_current_admin_obj->getuser()) {
-			$userobj = $_zp_current_admin_obj;	//	the only way here with a transient user is if it is the loggedin user
+			$userobj = $_zp_current_admin_obj;
 		} else {
 			$userobj = Zenphoto_Authority::newAdministrator($userid);
 		}
@@ -553,7 +553,7 @@ function languageChange(id,lang) {
 			<table class="bordered" style="border: 0" id='user-<?php echo $id;?>'>
 			<tr>
 				<td style="margin-top: 0px;<?php echo $background; ?>" valign="top">
-				<input type="hidden" name="show-<?php echo $userid; ?>" id="show-<?php echo $userid; ?>" value="<?php echo ($current);?>" />
+				<input type="hidden" name="show-<?php echo $userid; ?>" id="show_<?php echo $id; ?>" value="<?php echo ($current);?>" />
 				<?php
 				if (empty($userid)) {
 					$displaytitle = gettext("Show details");
@@ -564,7 +564,7 @@ function languageChange(id,lang) {
 				}
 				?>
 					<span<?php if ($current) echo ' style="display:none;"'; ?> class="userextrashow">
-						<a href="javascript:$('#show-<?php echo $userid; ?>').val(1);toggleExtraInfo('<?php echo $id;?>','user',true);" title="<?php echo $displaytitle; ?>" >
+						<a href="javascript:$('#show_<?php echo $id; ?>').val(1);toggleExtraInfo('<?php echo $id;?>','user',true);" title="<?php echo $displaytitle; ?>" >
 							<?php
 							if (empty($userid)) {
 								?>
@@ -585,7 +585,7 @@ function languageChange(id,lang) {
 						</a>
 					</span>
 					<span<?php if ($current) echo ' style="display:inline;"'; else echo ' style="display:none;"'; ?> class="userextrahide">
-						<a href="javascript:$('#show-<?php echo $userid; ?>').val(0);toggleExtraInfo('<?php echo $id;?>','user',false);" title="<?php echo $hidetitle; ?>">
+						<a href="javascript:$('#show_<?php echo $id; ?>').val(0);toggleExtraInfo('<?php echo $id;?>','user',false);" title="<?php echo $hidetitle; ?>">
 							<?php
 							if (empty($userid)) {
 								?>
@@ -777,7 +777,7 @@ function languageChange(id,lang) {
 					} else {
 						$flag = array();
 					}
-					printManagedObjects('albums', $albumlist, $album_alter_rights, $user['id'], $id, $userobj->getRights(), gettext('user'), $flag);
+					printManagedObjects('albums', $albumlist, $album_alter_rights, $userobj, $id, gettext('user'), $flag);
 					if (getOption('zp_plugin_zenpage')) {
 						$pagelist = array();
 						$pages = $_zp_zenpage->getPages(false);
@@ -786,13 +786,13 @@ function languageChange(id,lang) {
 								$pagelist[get_language_string($page['title'])] = $page['titlelink'];
 							}
 						}
-						printManagedObjects('pages',$pagelist, $album_alter_rights, $user['id'], $id, $userobj->getRights(), gettext('user'), NULL);
+						printManagedObjects('pages',$pagelist, $album_alter_rights, $userobj, $id, gettext('user'), NULL);
 						$newslist = array();
 						$categories = $_zp_zenpage->getAllCategories(false);
 						foreach ($categories as $category) {
 							$newslist[get_language_string($category['title'])] = $category['titlelink'];
 						}
-						printManagedObjects('news',$newslist, $album_alter_rights, $user['id'], $id, $userobj->getRights(), gettext('user'), NULL);
+						printManagedObjects('news',$newslist, $album_alter_rights, $userobj, $id, gettext('user'), NULL);
 					}
 				}
 				?>
