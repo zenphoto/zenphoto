@@ -3001,12 +3001,14 @@ function printAdminRightsTable($id, $background, $alterrights, $rights) {
  * @param string $type the kind of list
  * @param array $objlist list of objects
  * @param string $alterrights are the items changable
- * @param int $adminid ID of the admin
+ * @param object $userobj the user
  * @param int $prefix the admin row
- * @param bit $rights the privileges  of the user
+ * @param string $kind user, group, or template
+ * @param array $flat items to be flagged with an asterix
  */
-function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix_id, $rights, $kind, $flag) {
+function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id, $kind, $flag) {
 	$rest = $extra = $extra2 = array();
+	$rights = $userobj->getRights();
 	$legend = '';
 	switch ($type) {
 		case 'albums':
@@ -3014,7 +3016,7 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix_id
 				$cv = $objlist;
 				$alterrights = ' disabled="disabled"';
 			} else {
-				$full = populateManagedObjectsList('album', $adminid, true);
+				$full = $userobj->getObjects();
 				$cv = $extra = array();
 				$icon_edit_album = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/options.png" class="icon-position-top3" alt="" title="'.gettext('edit rights').'" />';
 				$icon_view_image = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/action.png" class="icon-position-top3" alt="" title="'.gettext('view unpublished items').'" />';
@@ -3027,23 +3029,25 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix_id
 				if ($rights & UPLOAD_RIGHTS) $legend .= $icon_upload.' '.gettext('upload').' ';
 				if (!($rights & VIEW_UNPUBLISHED_RIGHTS)) $legend .= $icon_view_image.' '.gettext('view unpublished').' ';
 				foreach ($full as $item) {
-					if (in_array($item['data'],$flag)) {
-						$note = '*';
-					} else {
-						$note = '';
-					}
-					$cv[$item['name'].$note] = $item['data'];
-					$extra[$item['data']][] = array('name'=>'name','value'=>$item['name'],'display'=>'','checked'=>0);
-					$extra[$item['data']][] = array('name'=>'edit','value'=>MANAGED_OBJECT_RIGHTS_EDIT,'display'=>$icon_edit_album,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_EDIT);
-					if (($rights&UPLOAD_RIGHTS)) {
-						if (hasDynamicAlbumSuffix($item['data'])) {
-							$extra[$item['data']][] = array('name'=>'upload','value'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'display'=>$icon_upload_disabled,'checked'=>0,'disable'=>true);
-						} else{
-							$extra[$item['data']][] = array('name'=>'upload','value'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'display'=>$icon_upload,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_UPLOAD);
+					if ($item['type']=='album') {
+						if (in_array($item['data'],$flag)) {
+							$note = '*';
+						} else {
+							$note = '';
 						}
-					}
-					if (!($rights & VIEW_UNPUBLISHED_RIGHTS)) {
-						$extra[$item['data']][] = array('name'=>'view','value'=>MANAGED_OBJECT_RIGHTS_VIEW,'display'=>$icon_view_image,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_VIEW);
+						$cv[$item['name'].$note] = $item['data'];
+						$extra[$item['data']][] = array('name'=>'name','value'=>$item['name'],'display'=>'','checked'=>0);
+						$extra[$item['data']][] = array('name'=>'edit','value'=>MANAGED_OBJECT_RIGHTS_EDIT,'display'=>$icon_edit_album,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_EDIT);
+						if (($rights&UPLOAD_RIGHTS)) {
+							if (hasDynamicAlbumSuffix($item['data'])) {
+								$extra[$item['data']][] = array('name'=>'upload','value'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'display'=>$icon_upload_disabled,'checked'=>0,'disable'=>true);
+							} else{
+								$extra[$item['data']][] = array('name'=>'upload','value'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'display'=>$icon_upload,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_UPLOAD);
+							}
+						}
+						if (!($rights & VIEW_UNPUBLISHED_RIGHTS)) {
+							$extra[$item['data']][] = array('name'=>'view','value'=>MANAGED_OBJECT_RIGHTS_VIEW,'display'=>$icon_view_image,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_VIEW);
+						}
 					}
 				}
 				$rest = array_diff($objlist, $cv);
@@ -3072,7 +3076,7 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix_id
 				$rest = array();
 				$alterrights = ' disabled="disabled"';
 			} else {
-				$cv = populateManagedObjectsList('news',$adminid);
+				$cv = $userobj->getObjects('news');
 				$rest = array_diff($objlist, $cv);
 			}
 			$text = gettext("Managed news categories:");
@@ -3086,7 +3090,7 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix_id
 				$rest = array();
 				$alterrights = ' disabled="disabled"';
 			} else {
-				$cv = populateManagedObjectsList('pages',$adminid);
+				$cv = $userobj->getObjects('pages');
 				$rest = array_diff($objlist, $cv);
 			}
 			$text = gettext("Managed pages:");
