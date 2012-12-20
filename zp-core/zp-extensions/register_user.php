@@ -384,7 +384,7 @@ function printRegistrationForm($thanks=NULL) {
 					$_SERVER['REQUEST_URI'] = $link . '&login';
 				}
 				require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/user_login-out.php');
-				printPasswordForm('', false, false, WEBPATH.'/'.ZENFOLDER.'/admin-users.php?page=users');
+				printPasswordForm('', true, false, WEBPATH.'/'.ZENFOLDER.'/admin-users.php?page=users');
 				$notify = 'success';
 				break;
 			case 'honeypot': //pretend it was accepted
