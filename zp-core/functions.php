@@ -721,15 +721,12 @@ function getManagedAlbumList() {
 		}
 	} else {
 		if ($_zp_current_admin_obj) {
-			$sql = 'SELECT '.prefix('albums').'.`folder`,'.prefix('admin_to_object').'.`edit` FROM '.prefix('albums').', '.
-			prefix('admin_to_object').' WHERE '.prefix('admin_to_object').'.adminid='.
-			$_zp_current_admin_obj->getID().' AND '.prefix('albums').'.id='.prefix('admin_to_object').'.objectid AND `type` LIKE "album%"';
-			$albums = query($sql);
-			if ($albums) {
-				while ($album = db_fetch_assoc($albums)) {
-					$_zp_admin_album_list[$album['folder']] = $album['edit'];
+			$_zp_admin_album_list = array();
+			$objects = $_zp_current_admin_obj->getObjects();
+			foreach ($objects as $object) {
+				if ($object['type'] == 'album') {
+					$_zp_admin_album_list[$object['data']] = $object['edit'];
 				}
-				db_free_result($albums);
 			}
 		}
 	}
