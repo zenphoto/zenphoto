@@ -1543,6 +1543,10 @@ width: 90% !important;
 	color: #fff;
 }
 
+.grouphighlight {
+	color: brown;
+}
+
 /* CSS for wide checklists */
 .fullchecklist {
 	border: 1px solid #ccc;

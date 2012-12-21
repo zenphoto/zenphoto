@@ -147,11 +147,11 @@ class user_groups {
 		foreach ($groups as $key=>$user) {
 			if ($user['name']=='template') {
 				$type = gettext(' (Template)');
-				$bg = ' style="background-color:lightGray;"';
+				$highlight = ' class="grouphighlight"';
 				$class = 'templatelist'.$i;
 				$case = 2;
 			} else {
-				$bg = $type = '';
+				$type = $highlight = '';
 				$class = 'grouplist'.$i;
 				$case = 1;
 			}
@@ -160,7 +160,7 @@ class user_groups {
 			} else {
 				$checked = '';
 			}
-			$grouppart .= '<label title="'.html_encode($user['custom_data']).$type.'"'.$bg.'><input type="checkbox" class="'.$class.'" name="'.$i.'group[]" value="'.$user['user'].'" onclick="groupchange'.$i.'('.$case.');"'.$checked.' />'.html_encode($user['user']).'</label>'."\n";
+			$grouppart .= '<label title="'.html_encode($user['custom_data']).$type.'"'.$highlight.'><input type="checkbox" class="'.$class.'" name="'.$i.'group[]" value="'.$user['user'].'" onclick="groupchange'.$i.'('.$case.');"'.$checked.' />'.html_encode($user['user']).'</label>'."\n";
 		}
 
 		$grouppart .= "</ul>\n";
@@ -198,7 +198,7 @@ class user_groups {
 		$result =
 			"\n".'<tr'.((!$current)? ' style="display:none;"':'').' class="userextrainfo">'."\n".
 				'<td width="20%"'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top">'."\n".sprintf(gettext('User group membership: %s'),$grouppart)."\n".
-							"</td>\n<td".((!empty($background)) ? ' style="'.$background.'"':'').">".'<div class="notebox"><p>'.gettext('Templates are highlighed in gray.').$notice.'</p><p>'.gettext('<strong>Note:</strong> When a group is assigned <em>rights</em> and <em>managed objects</em> are determined by the group!').'</p></div></td>'."\n".
+							"</td>\n<td".((!empty($background)) ? ' style="'.$background.'"':'').">".'<div class="notebox"><p>'.gettext('Templates are highlighed.').$notice.'</p><p>'.gettext('<strong>Note:</strong> When a group is assigned <em>rights</em> and <em>managed objects</em> are determined by the group!').'</p></div></td>'."\n".
 				"</tr>\n";
 		return $html.$result;
 	}

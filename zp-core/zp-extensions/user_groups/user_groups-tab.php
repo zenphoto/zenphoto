@@ -436,6 +436,9 @@ echo '</head>'."\n";
 							<button type="reset" title="<?php echo gettext("Reset"); ?>"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 							</p>
 							<br clear="all" /><br /><br />
+							<div class="notebox">
+							<?php echo gettext('<strong>Note:</strong> When a group is assigned <em>rights</em> and <em>managed objects</em> are determined by the group!'); ?>
+							</div>
 							<input type="hidden" name="saveauserassignments" value="yes" />
 							<table class="bordered">
 								<?php
