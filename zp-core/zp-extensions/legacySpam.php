@@ -63,6 +63,9 @@ if (class_exists('SpamFilter')) {
 
 	class zpLegacySpam {
 
+		var $name = 'legacySpam';
+		var $actingFor = NULL;
+
 		function getOptionsSupported() {
 			$list = array();
 			foreach (getPluginFiles('*.php','spamfilters') as $filter=>$path) {
