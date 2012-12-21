@@ -105,17 +105,9 @@ if (isset($_GET['action'])) {
 	} else if ($action == 'saveauserassignments') {
 		for ($i = 0; $i < $_POST['totalusers']; $i++) {
 			$username = trim(sanitize($_POST[$i.'-user'],3));
-			$user = Zenphoto_Authority::getAnAdmin(array('`user`=' => $username, '`valid`>=' => 1));
-			$groupname = trim(sanitize($_POST[$i.'-group'],3));
-			$group = Zenphoto_Authority::newAdministrator($groupname, 0);
-			if (empty($groupname)) {
-				$user->setGroup(NULL);
-			} else {
-				$user->setObjects(processManagedObjects($group->getID(),$rights));
-				$user->setRights($group->getRights() | NO_RIGHTS);
-				$user->setGroup($groupname);
-			}
-			$user->save();
+			$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $username, '`valid`>=' => 1));
+			user_groups::save_admin(true, $userobj, $i, true);
+			$userobj->save();
 		}
 		header("Location: ".FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER.'/user_groups/user_groups-tab.php?page=users&tab=assignments&saved&subpage='.$subpage);
 		exitZP();
@@ -462,36 +454,7 @@ echo '</head>'."\n";
 												<?php echo $user['user']; ?>
 											</td>
 											<td style="border-top: 1px solid #D1DBDF;" valign="top" >
-
-												<?php
-												echo user_groups::groupList($userobj, $id, '', $user['group']);
-/*
-												?>
-
-
-												<select name="<?php echo $id; ?>-group" onchange="javascript:$('#hint<?php echo $id; ?>').html(this.options[this.selectedIndex].title);">
-													<option title="<?php echo gettext('no group affiliation'); ?>"></option>
-													<?php
-													$selected_hint = gettext('no group affiliation');
-
-
-													foreach ($groups as $user) {
-														$hint = '<em>'.html_encode($user['custom_data']).'</em>';
-														if ($group == $user['user']) {
-															$selected = ' selected="selected"';
-															$selected_hint = $hint;
-															} else {
-															$selected = '';
-														}
-														?>
-														<option<?php echo $selected; ?> title="<?php echo $hint; ?>"><?php echo $user['user']; ?></option>
-														<?php
-													}
-													?>
-												</select>
-												<span class="hint<?php echo $id; ?>" id="hint<?php echo $id; ?>" style="width:15em;"><?php echo $selected_hint; ?></span>
-*/
-												?>
+												<?php echo user_groups::groupList($userobj, $id, '', $user['group'], false); ?>
 											</td>
 										</tr>
 										<?php

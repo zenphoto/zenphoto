@@ -102,23 +102,16 @@ class user_groups {
 		return $updated;
 	}
 
-	static function groupList($userobj, $i, $background, $current) {
+	static function groupList($userobj, $i, $background, $current, $template) {
 		global $_zp_authority, $_zp_zenpage, $_zp_gallery;
 		$group = $userobj->getGroup();
-		$admins = $_zp_authority->getAdministrators('all');
-		$ordered = array();
+		$admins = $_zp_authority->getAdministrators('groups');
 		$groups = array();
 		$hisgroups = explode(',',$userobj->getGroup());
-		$adminordered = array();
-		foreach ($admins as $key=>$admin) {
-			$ordered[$key] = $admin['user'];
-			if ($group == $admin['user']) $hisgroup = $admin;
-		}
-		asort($ordered);
-		foreach ($ordered as $key=>$user) {
-			$adminordered[] = $admins[$key];
-			if (!$admins[$key]['valid']) {
-				$groups[] = $admins[$key];
+		$admins = sortMultiArray($admins, 'user');
+		foreach ($admins as $user) {
+			if ($template || $user['name'] != 'template') {
+				$groups[] = $user;
 			}
 		}
 		if (empty($groups)) return gettext('no groups established'); // no groups setup yet
@@ -193,7 +186,7 @@ class user_groups {
 			} else {
 				$notice = '';
 			}
-			$grouppart =	self::groupList($userobj, $i, $background, $current);
+			$grouppart =	self::groupList($userobj, $i, $background, $current, true);
 		} else {
 			$notice = '';
 			if ($group = $userobj->getGroup()) {
