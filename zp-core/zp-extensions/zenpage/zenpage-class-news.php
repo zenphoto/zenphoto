@@ -202,7 +202,7 @@ class ZenpageNews extends ZenpageItems {
 			if (!empty($mycategories)) {
 				foreach ($this->getCategories() as $category) {
 					$cat = new ZenpageCategory($category['titlelink']);
-					if ($cat->isMyItem($action)) {
+					if ($cat->isMyItem(ZENPAGE_NEWS_RIGHTS)) {	// only override item visibility if we "own" the category
 						return true;
 					}
 				}
@@ -303,7 +303,7 @@ class ZenpageNews extends ZenpageItems {
 		$article = $_zp_zenpage->getArticle($index-1);
 		return $article;
 	}
-	
+
 	/**
 	 * Returns the next article.
 	 *
