@@ -62,12 +62,12 @@ if ($_zp_loggedin) {
 	if ($_zp_loggedin & UPLOAD_RIGHTS || $_zp_loggedin & FILES_RIGHTS) {
 		$zenphoto_tabs['upload'] = array('text'=>gettext("upload"),
 							'subtabs'=>NULL);
-		if ($_zp_loggedin & UPLOAD_RIGHTS) {
+		if ($_zp_loggedin & UPLOAD_RIGHTS && $_zp_loggedin & FILES_RIGHTS) {
 			$locale = substr(getOption("locale"),0,2);
 			if (empty($locale)) $locale = 'en';
 			$zenphoto_tabs['upload']['link'] = WEBPATH."/".ZENFOLDER.'/admin-upload.php';
-			$zenphoto_tabs['upload']['subtabs'] = array(gettext('images')=>'admin-upload.php?page=upload&amp;tab=albums',
-			gettext('files')=>'admin-filemanager.php?page=upload&amp;tab=files');
+																					$zenphoto_tabs['upload']['subtabs'] = array(gettext('images')=>'admin-upload.php?page=upload&amp;tab=albums',
+																					gettext('files')=>'admin-filemanager.php?page=upload&amp;tab=files');
 			$zenphoto_tabs['upload']['default'] = 'albums';
 		} else if ($_zp_loggedin & UPLOAD_RIGHTS) {
 			$zenphoto_tabs['upload']['link'] = WEBPATH."/".ZENFOLDER.'/admin-upload.php';
