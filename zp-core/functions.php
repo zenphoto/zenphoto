@@ -774,7 +774,7 @@ function populateManagedObjectsList($type,$id,$rights=false) {
 				if ($type) {
 					$cv[get_language_string($item['title'])] = $item['titlelink'];
 				} else {
-					$cv[] = array('data'=>$item['titlelink'],'type'=>'pages');
+					$cv[] = array('data'=>$item['titlelink'], 'name'=>$item['title'], 'type'=>'pages');
 				}
 			}
 			db_free_result($currentvalues);
@@ -790,7 +790,7 @@ function populateManagedObjectsList($type,$id,$rights=false) {
 				if ($type) {
 					$cv[get_language_string($item['title'])] = $item['titlelink'];
 				} else {
-					$cv[] = array('data'=>$item['titlelink'],'type'=>'news');
+					$cv[] = array('data'=>$item['titlelink'], 'name'=>$item['title'],'type'=>'news');
 				}
 			}
 			db_free_result($currentvalues);

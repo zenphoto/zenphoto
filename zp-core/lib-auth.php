@@ -1387,8 +1387,9 @@ class Zenphoto_Administrator extends PersistentObject {
 	 */
 	function getObjects($what=NULL) {
 		if (is_null($this->objects)) {
-			$this->objects = array();
-			if (!$this->transient) {
+			if ($this->transient) {
+				$this->objects = array();
+			} else {
 				$this->objects = populateManagedObjectsList(NULL,$this->getID());
 			}
 		}
@@ -1398,7 +1399,7 @@ class Zenphoto_Administrator extends PersistentObject {
 		$result = array();
 		foreach ($this->objects as $object) {
 			if ($object['type'] == $what) {
-				$result[] = $object['data'];
+				$result[$object['name']] = $object['data'];
 				break;
 			}
 		}
