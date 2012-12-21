@@ -327,7 +327,8 @@ if (isset($_GET['saved'])) {
 							}
 							break;
 						default:
-							if ($user['group'] != $showgroup) {
+							$hisgroups = explode(',',$user['group']);
+							if (!in_array($showgroup, $hisgroups)) {
 								unset($admins[$key]);
 							}
 							break;
@@ -463,9 +464,11 @@ function languageChange(id,lang) {
 				<select name="showgroup" id="showgroup" onchange="launchScript('<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-users.php',['showgroup='+$('#showgroup').val()]);" >
 					<option value=""<?php if (!$showgroup) echo ' selected="selected"'; ?>><?php echo gettext('all'); ?></option>
 					<option value="*"<?php if ($showgroup=='*') echo ' selected="selected"'; ?>><?php echo gettext('pending verification'); ?></option>
-					<option value="$"<?php if ($showgroup=='$') echo ' selected="selected"'; ?>><?php echo gettext('no group'); ?></option>
 					<?php
 					if (getOption('zp_plugin_user_groups')) {
+						?>
+						<option value="$"<?php if ($showgroup=='$') echo ' selected="selected"'; ?>><?php echo gettext('no group'); ?></option>
+						<?php
 						$groups = $_zp_authority->getAdministrators('groups');
 						foreach ($groups as $group) {
 							?>
