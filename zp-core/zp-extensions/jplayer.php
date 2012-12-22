@@ -589,13 +589,23 @@ class jPlayer {
 		} else {
 			$albumobj = new Album(NULL,$albumfolder);
 		}
-		$numimages = $albumobj->getNumImages();
-		if ($numimages != 0) {
-			$entries = $albumobj->getImages(0);
-			if($option == 'playlist' || $option == 'playlist-audio') {
-				?>
-				<script type="text/javascript">
-				//<![CDATA[
+		$entries = $albumobj->getImages(0);
+		if (($numimages = count($entries)) != 0) {
+			switch($option) {
+				case 'playlist':
+					$suffixes = array('m4a','m4v','mp3','mp4','flv','fla');
+					break;
+				case 'playlist-audio':
+					$suffixes = array('m4a','mp3','fla');
+					break;
+				default:
+					//	an invalid option parameter!
+					return;
+			}
+
+			?>
+			<script type="text/javascript">
+			//<![CDATA[
 				$(document).ready(function(){
 					new jPlayerPlaylist({
 						jPlayer: "#jquery_jplayer_<?php echo $albumobj->getID(); ?>",
@@ -606,24 +616,18 @@ class jPlayer {
 						$number = '';
 						foreach($entries as $entry) {
 							$count++;
-							$ext = getSuffix($entry);
-							switch($option) {
-								case 'playlist':
-									$suffixes = array('m4a','m4v','mp3','mp4','flv','fla');
-									break;
-								case 'playlist-audio':
-									$suffixes = array('m4a','mp3','fla');
-									break;
+							if (is_array($entry)) {
+								$ext = getSuffix($entry['filename']);
+							} else {
+								$ext = getSuffix($entry);
 							}
 							$numbering = '';
 							if(in_array($ext,$suffixes)) {
 								$number++;
 								if(getOption('jplayer_playlist_numbered')) {
-									//if($number < 10) {
-										$numbering = '<span>'.$number.'</span>';
-									//}
+									$numbering = '<span>'.$number.'</span>';
 								}
-								$video = new Video($albumobj,$entry);
+								$video = newImage($albumobj,$entry);
 								$videoThumb = '';
 								$this->setModeAndSuppliedFormat($ext);
 								if($option == 'playlist' && getOption('jplayer_poster')) {
@@ -642,8 +646,8 @@ class jPlayer {
 									<?php	if(getOption('jplayer_download')) { ?>
 										free:true,
 									<?php } ?>
-									<?php echo $this->supplied; ?>:"<?php echo pathurlencode($video->getFullImageURL()); ?>"
-									<?php echo $this->getCounterpartFiles($video->getFullImageURL(),$ext); ?>
+									<?php echo $this->supplied; ?>:"<?php echo pathurlencode($url = $video->getFullImage(WEBPATH)); ?>"
+									<?php echo $this->getCounterpartFiles($url,$ext); ?>
 									<?php echo $videoThumb; ?>
 								}
 								<?php
@@ -748,7 +752,6 @@ class jPlayer {
 
 			<?php
 			} // if else playlist
-		 } // if $option end
 		} // if no images at all end
 	} // function playlist
 
