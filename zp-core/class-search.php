@@ -45,6 +45,11 @@ class SearchEngine {
 	protected $imagesorttype = NULL;
 	protected $imagesortdirection = NULL;
 
+	//	mimic album object
+	var $loaded = false;
+	var $table = 'albums';
+	var $transient = true;
+
 	/**
 	 * Constuctor
 	 *
@@ -161,6 +166,14 @@ class SearchEngine {
 		$this->images = NULL;
 		$this->albums = NULL;
 		$this->searches = array('images'=>NULL, 'albums'=>NULL, 'pages'=>NULL, 'news'=>NULL);
+	}
+
+	/**
+	 * mimic an album object
+	 * @return number
+	 */
+	function getID() {
+		return 0;
 	}
 
 	/**
