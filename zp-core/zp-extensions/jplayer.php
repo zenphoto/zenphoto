@@ -584,17 +584,17 @@ class jPlayer {
 	 */
 	function printjPlayerPlaylist($option="playlist",$albumfolder="") {
 		global $_zp_gallery,$_zp_current_album, $_zp_current_image, $_zp_current_search;
-		if(!in_context(ZP_SEARCH)) {
-			if(empty($albumfolder)) {
+		if(empty($albumfolder)) {
+			if(in_context(ZP_SEARCH)) {
+				$albumobj = $_zp_current_search;
+				$playlistnum = 1; // number does not matter		
+			} else {
 				$albumobj = $_zp_current_album;
 				$playlistnum = $_zp_current_album->getID(); // number for multiple playlists per page
-			} else {
-				$albumobj = new Album(NULL,$albumfolder);
-				$playlistnum = $albumobj->getID(); // number for multiple playlists per page
 			}
 		} else {
-			$albumobj = $_zp_current_search;
-			$playlistnum = 1; // number does not matter		
+			$albumobj = new Album(NULL,$albumfolder);
+			$playlistnum = $albumobj->getID(); // number for multiple playlists per page
 		}
 		$entries = $albumobj->getImages(0);
 		if (($numimages = count($entries)) != 0) {
