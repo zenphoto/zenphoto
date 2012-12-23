@@ -587,14 +587,11 @@ class jPlayer {
 		if(empty($albumfolder)) {
 			if(in_context(ZP_SEARCH)) {
 				$albumobj = $_zp_current_search;
-				$playlistnum = 1; // number does not matter		
 			} else {
 				$albumobj = $_zp_current_album;
-				$playlistnum = $_zp_current_album->getID(); // number for multiple playlists per page
 			}
 		} else {
 			$albumobj = new Album(NULL,$albumfolder);
-			$playlistnum = $albumobj->getID(); // number for multiple playlists per page
 		}
 		$entries = $albumobj->getImages(0);
 		if (($numimages = count($entries)) != 0) {
@@ -614,8 +611,8 @@ class jPlayer {
 			//<![CDATA[
 				$(document).ready(function(){
 					new jPlayerPlaylist({
-						jPlayer: "#jquery_jplayer_<?php echo $playlistnum; ?>",
-						cssSelectorAncestor: "#jp_container_<?php echo $playlistnum; ?>"
+						jPlayer: "#jquery_jplayer_<?php echo $albumobj->getID(); ?>",
+						cssSelectorAncestor: "#jp_container_<?php echo $albumobj->getID(); ?>"
 					}, [
 					<?php
 						$count = '';
@@ -687,9 +684,9 @@ class jPlayer {
 			<?php
 			if($option == 'playlist') {
 			?>
-			<div id="jp_container_<?php echo $playlistnum; ?>" class="jp-video <?php echo $this->playersize; ?>">
+			<div id="jp_container_<?php echo $albumobj->getID(); ?>" class="jp-video <?php echo $this->playersize; ?>">
 			<div class="jp-type-playlist">
-				<div id="jquery_jplayer_<?php echo $playlistnum; ?>" class="jp-jplayer"></div>
+				<div id="jquery_jplayer_<?php echo $albumobj->getID(); ?>" class="jp-jplayer"></div>
 				<div class="jp-gui">
 					<div class="jp-video-play">
 						<a href="javascript:;" class="jp-video-play-icon" tabindex="1">play</a>
@@ -728,8 +725,8 @@ class jPlayer {
 			<?php
 			} else { // playlist-audio
 			?>
-			<div id="jquery_jplayer_<?php echo $playlistnum; ?>" class="jp-jplayer"></div>
-		<div id="jp_container_<?php echo $playlistnum; ?>" class="jp-audio">
+			<div id="jquery_jplayer_<?php echo $albumobj->getID(); ?>" class="jp-jplayer"></div>
+		<div id="jp_container_<?php echo $albumobj->getID(); ?>" class="jp-audio">
 			<div class="jp-type-playlist">
 				<div class="jp-gui jp-interface">
 					<?php echo $this->getPlayerHTMLparts('audio','controls-playlist');	?>
