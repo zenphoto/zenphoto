@@ -295,7 +295,7 @@ class SearchEngine {
 	 * @param array $extra
 	 */
 	function setSearchExtra($extra) {
-		$this->extraparams = array_merge($this->extraparams, $extra);
+		$this->extraparams = $extra;
 	}
 
 	/**
