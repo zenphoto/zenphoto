@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-12-26 17:21+0100\n"
-"PO-Revision-Date: 2012-12-26 18:20+0100\n"
+"PO-Revision-Date: 2012-12-27 17:47+0100\n"
 "Last-Translator: Malte Müller (acrylian) <wartgart@gmx.net>\n"
 "Language-Team: Malte Müller (acrylian)\n"
 "Language: de_DE\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Poedit-Basepath: /Users/maltemuller/Grafik/htdocs/\n"
 "Plural-Forms: nplurals=2; plural=n !=1;\n"
 "X-Poedit-KeywordsList: \n"
-"X-Generator: Poedit 1.5.3\n"
+"X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SearchPath-0: zenphoto-translate\n"
 
 #: zenphoto-translate/index.php:126
@@ -644,7 +644,7 @@ msgstr "Effervescence Farbschema"
 
 #: zenphoto-translate/themes/effervescence_plus/functions.php:95
 msgid "Effervescence image display handling."
-msgstr ""
+msgstr "Effervescence Bildanzeige-Steuerung."
 
 #: zenphoto-translate/themes/effervescence_plus/functions.php:96
 #: zenphoto-translate/themes/garland/functions.php:45
@@ -4239,7 +4239,7 @@ msgstr "Fehlersuche"
 
 #: zenphoto-translate/zp-core/admin-functions.php:4348
 msgid "demo"
-msgstr ""
+msgstr "Demo"
 
 #: zenphoto-translate/zp-core/admin-functions.php:4349
 msgid "development"
@@ -4255,11 +4255,11 @@ msgstr "Medium"
 
 #: zenphoto-translate/zp-core/admin-functions.php:4352
 msgid "misc"
-msgstr ""
+msgstr "Diverses"
 
 #: zenphoto-translate/zp-core/admin-functions.php:4353
 msgid "spam"
-msgstr ""
+msgstr "Spam"
 
 #: zenphoto-translate/zp-core/admin-functions.php:4354
 msgid "seo"
@@ -4267,7 +4267,7 @@ msgstr "SEO"
 
 #: zenphoto-translate/zp-core/admin-functions.php:4355
 msgid "tools"
-msgstr ""
+msgstr "Werkzeuge"
 
 #: zenphoto-translate/zp-core/admin-functions.php:4356
 msgid "uploader"
@@ -4531,7 +4531,7 @@ msgstr "%s-Protokoll konnte nicht entfernt werden."
 #: zenphoto-translate/zp-core/admin-logs.php:64
 #, php-format
 msgid "%s log maximum size changed."
-msgstr ""
+msgstr "%s Protokoll-Maximalgrösse geändert."
 
 #: zenphoto-translate/zp-core/admin-logs.php:99
 msgid "View logs:"
@@ -4560,7 +4560,7 @@ msgstr "Runterladen"
 
 #: zenphoto-translate/zp-core/admin-logs.php:136
 msgid "Log file size limit"
-msgstr ""
+msgstr "Protokolldatei-Grössenlimit"
 
 #: zenphoto-translate/zp-core/admin-logs.php:138
 #: zenphoto-translate/zp-core/setup/index.php:1005
@@ -4586,6 +4586,9 @@ msgid ""
 "The form submission is incomplete. Perhaps the form size exceeds configured "
 "server or browser limits."
 msgstr ""
+"Die Übermittlung des Formulars ist nicht vollständig. Möglicherweise "
+"übersteigt die Formulargrösse den Konfigurationswert des Servers oder "
+"Browser-Begrenzungen."
 
 #: zenphoto-translate/zp-core/admin-options.php:476
 #: zenphoto-translate/zp-core/admin-plugins.php:109
@@ -5057,6 +5060,9 @@ msgid ""
 "These options control the number of items displayed on their tabs. If you "
 "have problems using these tabs, reduce the number shown here."
 msgstr ""
+"Diese Einstellungen kontrollieren die Anzahl an Einträgen bei jedem Reiter. "
+"Wenn Sie Problem mit diesen Reiter haben, verringern Sie die Anzahl der "
+"Einträge hier."
 
 #: zenphoto-translate/zp-core/admin-options.php:886
 #: zenphoto-translate/zp-core/admin-options.php:2868
@@ -5365,6 +5371,9 @@ msgid ""
 "com/php/php_sessions.asp\">PHP sessions</a> instead of cookies to make "
 "visitor settings persistent."
 msgstr ""
+"Wenn die Einstellung ausgewählt ist, wird Zenphoto <a href=\"http://www."
+"w3schools.com/php/php_sessions.asp\">PHP sessions</a> anstatt von Cookies "
+"verwenden, um Besuchereinstellungen dauerhaft zu speichern."
 
 #: zenphoto-translate/zp-core/admin-options.php:1245
 msgid ""
@@ -5983,18 +5992,21 @@ msgstr ""
 
 #: zenphoto-translate/zp-core/admin-options.php:1978
 msgid "Caching concurrency:"
-msgstr ""
+msgstr "Cache-Gleichzeitigkeit"
 
 #: zenphoto-translate/zp-core/admin-options.php:2003
 #, php-format
 msgid "Cache processing worker limit: %s."
-msgstr ""
+msgstr "Limit der Cache-Ausführungsprozesse: %s."
 
 #: zenphoto-translate/zp-core/admin-options.php:2004
 msgid ""
 "More workers will get the job done faster so long as your server does not "
 "get swamped or run out of memory."
 msgstr ""
+"Je mehr Prozesse gleichzeitig erlaubt sind, desto schneller wird der Cache "
+"erstellt, solange Ihr Server über genug Arbeitsspeicher und nicht überladen "
+"wird."
 
 #: zenphoto-translate/zp-core/admin-options.php:2008
 msgid "Cache as:"
@@ -6009,6 +6021,8 @@ msgid ""
 "Select a type for the images stored in the image cache. Select <em>Original</"
 "em> to preserve the original image's type."
 msgstr ""
+"Wählen Sie das Dateiformat, als das die Bilder im Cache gespeichert werden "
+"sollen. <em>Original</em> behält das Format des Originalbilds bei."
 
 #: zenphoto-translate/zp-core/admin-options.php:2025
 msgid "Obscure cache filenames"
@@ -7727,7 +7741,7 @@ msgstr "Serverpfad:"
 
 #: zenphoto-translate/zp-core/admin.php:218
 msgid "WEB path:"
-msgstr ""
+msgstr "WEB-Pfad:"
 
 #: zenphoto-translate/zp-core/admin.php:227
 #, php-format
@@ -7749,6 +7763,8 @@ msgid ""
 "PHP error messages may be displayed on WEB pages. This may disclose site "
 "sensitive information."
 msgstr ""
+"PHP-Fehlermeldungen werden möglicherweise auf Ihrer Website angezeigt. Diese "
+"können ungewollt sensitive Daten beinhalten."
 
 #: zenphoto-translate/zp-core/admin.php:277
 msgid "<em>display_errors</em> is <strong>On</strong>"
@@ -7798,7 +7814,7 @@ msgstr "Tabellenvorsilbe: <strong>%1$s</strong>"
 
 #: zenphoto-translate/zp-core/admin.php:322
 msgid "No spam filter configured"
-msgstr ""
+msgstr "Kein Spamfilter konfiguriert"
 
 #: zenphoto-translate/zp-core/admin.php:324
 #, php-format
@@ -7929,12 +7945,12 @@ msgstr "Ungültig Album-Instanz: Kein Alumnate"
 #: zenphoto-translate/zp-core/class-album.php:644
 #, php-format
 msgid "Invalid album instantiation: %1$s!=%2$s"
-msgstr ""
+msgstr "Ungültige Album-Instanz: %1$s!=%2$s"
 
 #: zenphoto-translate/zp-core/class-album.php:646
 #, php-format
 msgid "Invalid album instantiation: %s does not exist."
-msgstr ""
+msgstr "Ungültige Album-Instanz:: %s existiert nicht."
 
 #: zenphoto-translate/zp-core/class-album.php:1579
 #, php-format
@@ -9406,6 +9422,8 @@ msgid ""
 "The hashing algorithm used by Zenphoto. In order of robustness the choices "
 "are %s"
 msgstr ""
+"Der von Zenphoto verwendete Zerstückelungsalgorithmus. In der Reihenfolge "
+"der Robustheit: %s"
 
 #: zenphoto-translate/zp-core/lib-auth.php:336
 #, php-format
@@ -11858,6 +11876,10 @@ msgid ""
 "by Zenphoto. Other functions in the list may be used by Zenphoto, possibly "
 "causing reduced functionality or Zenphoto failures."
 msgstr ""
+"Die folgenden PHP-Funktionen sind blockiert: %s. Die markierten Funktionen "
+"warden von Zenphoto benötigt. Andere Funktionen der Liste werden "
+"möglicherweise von Zenphoto verwendet und können daher eingeschränkte "
+"Funktionalität oder Zenphoto-Fehler verursachen."
 
 #: zenphoto-translate/zp-core/setup/index.php:553
 msgid "Magic_quotes"
@@ -11923,6 +11945,8 @@ msgid ""
 "This setting may result in PHP error messages being displayed on WEB pages. "
 "These displays may contain sentsitive information about your site."
 msgstr ""
+"PHP-Fehlermeldungen werden möglicherweise auf Ihrer Website angezeigt. Diese "
+"können ungewollt sensitive Daten beinhalten."
 
 #: zenphoto-translate/zp-core/setup/index.php:593
 msgid "PHP <code>gettext()</code> support"
@@ -11952,6 +11976,9 @@ msgid ""
 "Without <code>flock</code> active sites may experience <em>race conditions</"
 "em> which may be causing inconsistent data."
 msgstr ""
+"Zenpoto verwendet <code>flock</code>. um kritische Coderegionen zu "
+"sterilisieren. Ohne <code>flock</code> können Sites <em>kritische Wettläufe</"
+"em> erfahren, die inkonsistente Daten zur Folge haben können."
 
 #: zenphoto-translate/zp-core/setup/index.php:596
 msgid "PHP <code>setlocale()</code>"
@@ -13233,6 +13260,8 @@ msgid ""
 "Click <a href=\"%s\">here</a> to acknowledge that you wish to ignore this "
 "issue. It will then become a warning."
 msgstr ""
+"Klicken Sie <a href=\"%s\">here</a>, um zu bestätigen, dass Sie dieses "
+"Problem ignorieren möchten. Es wird dann als Warnung angezeigt."
 
 #: zenphoto-translate/zp-core/setup/setup-option-defaults.php:10
 msgid "Set Zenphoto default options"
@@ -13346,7 +13375,7 @@ msgstr "Hinweis: Ungültiger Aufruf der Dateizugriffsrechteänderung für  %s."
 #: zenphoto-translate/zp-core/setup/setup_pluginOptions.php:12
 #, php-format
 msgid "Plugin:%s setup started"
-msgstr ""
+msgstr "Plugin: %s Einrichten gestartet"
 
 #: zenphoto-translate/zp-core/setup/setup_pluginOptions.php:18
 #, php-format
@@ -13356,7 +13385,7 @@ msgstr "Plugin:%s Einstellungssteuerung erzeugt"
 #: zenphoto-translate/zp-core/setup/setup_pluginOptions.php:24
 #, php-format
 msgid "Plugin:%s setup completed"
-msgstr ""
+msgstr "Plugin:%s Einrichtung komplett"
 
 #: zenphoto-translate/zp-core/setup/setup_set-mod_rewrite.php:14
 msgid "The Zenphoto option \"mod_rewrite\" will be set to \"enabled\"."
@@ -13378,7 +13407,7 @@ msgstr "Hinweis: \"Module mod_rewrite\" arbeitet."
 #: zenphoto-translate/zp-core/setup/setup_themeOptions.php:12
 #, php-format
 msgid "Theme:%s setup started"
-msgstr ""
+msgstr "Theme:%s Einrichtung gestartet"
 
 #: zenphoto-translate/zp-core/setup/setup_themeOptions.php:19
 #, php-format
@@ -14261,17 +14290,19 @@ msgstr "3gp Videohöhe"
 
 #: zenphoto-translate/zp-core/zp-extensions/class-video.php:74
 msgid "High quality alternate"
-msgstr ""
+msgstr "Alternative für hohe Qualität"
 
 #: zenphoto-translate/zp-core/zp-extensions/class-video.php:76
 msgid ""
 "<code>getFullImageURL()</code> returns a URL to a file with one of these "
 "high quality video alternate suffixes if present."
 msgstr ""
+"<code>getFullImageURL()</code> gibt eine URL zu einer Datei zurück, wenn es "
+"eine mit einem dieser Alternativ-Suffixes gibt."
 
 #: zenphoto-translate/zp-core/zp-extensions/class-video.php:101
 msgid "Invalid video instantiation: Album does not exist"
-msgstr ""
+msgstr "Ungültige Video-Instanz: Album existiert nicht"
 
 #: zenphoto-translate/zp-core/zp-extensions/class-video.php:103
 msgid "Invalid video instantiation: file does not exist."
@@ -14375,7 +14406,7 @@ msgstr "Nur die Hauptinstallation kann weitere Klon-Installationen erzeugen."
 
 #: zenphoto-translate/zp-core/zp-extensions/cloneZenphoto.php:26
 msgid "Your server does not support symbolic linking."
-msgstr ""
+msgstr "Ihr Server erlaubt keine symbolischen Links."
 
 #: zenphoto-translate/zp-core/zp-extensions/cloneZenphoto.php:39
 msgid "Clone installation"
@@ -14545,6 +14576,8 @@ msgid ""
 "Configuration file for TinyMCE when used for comments. Set to "
 "<code>Disabled</code> to disable visual editing."
 msgstr ""
+"Konfigurationsdatei für TinyMCE, wenn bei den Kommentaren verwendet. Stellen "
+"Sie auf <code>Deaktiviert</code>, um den visuellen Editor zu deaktivieren."
 
 #: zenphoto-translate/zp-core/zp-extensions/comment_form.php:117
 msgid "Pagination"
@@ -15228,7 +15261,7 @@ msgstr ""
 
 #: zenphoto-translate/zp-core/zp-extensions/deprecated-functions.php:680
 msgid "This happens automatically."
-msgstr ""
+msgstr "Dies geschieht automatisch."
 
 #: zenphoto-translate/zp-core/zp-extensions/deprecated-functions.php:689
 msgid ""
@@ -15334,6 +15367,8 @@ msgstr "Verwenden Sie  echo $_zp_current_image->getSortOrder()."
 #: zenphoto-translate/zp-core/zp-extensions/deprecated-functions.php:1140
 msgid "If you need this function copy it to your theme's functions.php script."
 msgstr ""
+"Wenn Sie diese Funktion benötigen, kopieren Sie sie in die Datei functions."
+"php Ihres Themse."
 
 #: zenphoto-translate/zp-core/zp-extensions/downloadList.php:38
 msgid "Plugin to generate file download lists."
@@ -15605,7 +15640,7 @@ msgstr "Unterstützung für <em>Favoriten</em>."
 
 #: zenphoto-translate/zp-core/zp-extensions/favoritesHandler.php:38
 msgid "My favorites"
-msgstr ""
+msgstr "Meine Favoriten"
 
 #: zenphoto-translate/zp-core/zp-extensions/favoritesHandler.php:41
 msgid "The albums and images selected as favorites."
@@ -15651,10 +15686,11 @@ msgstr "Schaltfläche entfernen"
 #: zenphoto-translate/zp-core/zp-extensions/favoritesHandler.php:78
 msgid "Default text for the <em>remove from favorites</em> button."
 msgstr ""
+"Standardtext für die <em>Von den Favoriten entfernen</em>-Schaltfläche."
 
 #: zenphoto-translate/zp-core/zp-extensions/favoritesHandler.php:82
 msgid "The favorites page title text."
-msgstr ""
+msgstr "Der Titel der Favoritenseite."
 
 #: zenphoto-translate/zp-core/zp-extensions/favoritesHandler.php:86
 msgid "The favorites page description text."
@@ -16968,7 +17004,7 @@ msgstr "Sie können maximal %s Bilder pro Album hochladen."
 
 #: zenphoto-translate/zp-core/zp-extensions/ipBlocker.php:31
 msgid "Tools to block hacker access to your site."
-msgstr ""
+msgstr "Werkzeuge, um Hackerzugriff auf Ihre Site zu blockieren."
 
 #: zenphoto-translate/zp-core/zp-extensions/ipBlocker.php:66
 msgid "Allow"
@@ -16998,10 +17034,13 @@ msgid ""
 "this list is large it may excede the capacity of Zenphoto and %s to process "
 "and store the results."
 msgstr ""
+"Eine externe IP-Liste importieren. <p class=\"notebox\"><strong>HINWEIS:</"
+"strong> Wenn diese Liste sehr lang ist, überschreitet sie möglicherweise "
+"Zenphotos Kapazität und %s, um auszuführen und die Ergebnisse zu speichern. "
 
 #: zenphoto-translate/zp-core/zp-extensions/ipBlocker.php:88
 msgid "How the plugin will interpret the IP list."
-msgstr ""
+msgstr "Wie das Plugin die IP-Liste interpretiert."
 
 #: zenphoto-translate/zp-core/zp-extensions/ipBlocker.php:89
 msgid "Logon threshold"
@@ -17018,6 +17057,7 @@ msgstr "Die Blockierung wird nach dieser Wartezeit entfernt."
 #: zenphoto-translate/zp-core/zp-extensions/ipBlocker.php:99
 msgid "IP list ranges cannot be managed with the plugin disabled"
 msgstr ""
+"IP-Listen können nicht verwaltet werden, wenn diese Plugin deaktiviert ist."
 
 #: zenphoto-translate/zp-core/zp-extensions/ipBlocker.php:153
 msgid "clear list"
@@ -17318,6 +17358,8 @@ msgstr ""
 #: zenphoto-translate/zp-core/zp-extensions/legacySpam.php:15
 msgid "Use this plugin is to enable using older third party spam filters."
 msgstr ""
+"Verwenden Sie dieses Plugin, um ältere, nicht offizielle Spamfilter zu "
+"nutzen."
 
 #: zenphoto-translate/zp-core/zp-extensions/legacySpam.php:17
 #: zenphoto-translate/zp-core/zp-extensions/simpleSpam.php:14
@@ -17336,11 +17378,14 @@ msgid ""
 "work with the <i>plugin</i> model of SPAM filters. This plugin will be "
 "removed from future Zenphoto releases."
 msgstr ""
+"Bitte kontaktieren Sie den Autor Ihres SPAM-Filters und bitten Sie um eine  "
+"Update auf das aktuelle <i>Plugin</i>-Modell für SPAM-Filter. Diese Plugin "
+"wird in zukünftigen Zenphoto-Versionen nicht mehr enthalten sein."
 
 #: zenphoto-translate/zp-core/zp-extensions/legacySpam.php:53
 #: zenphoto-translate/zp-core/zp-extensions/legacySpam.php:74
 msgid "Associated Spam Filter"
-msgstr ""
+msgstr "Assoziierter Spamfilter"
 
 #: zenphoto-translate/zp-core/zp-extensions/legacySpam.php:56
 #: zenphoto-translate/zp-core/zp-extensions/legacySpam.php:77
@@ -17353,7 +17398,7 @@ msgstr "Installation als \"veröffentlicht\" markieren."
 
 #: zenphoto-translate/zp-core/zp-extensions/markRelease.php:42
 msgid "released"
-msgstr ""
+msgstr "veröffentlicht"
 
 #: zenphoto-translate/zp-core/zp-extensions/markRelease.php:55
 msgid "Mark release"
@@ -17363,6 +17408,7 @@ msgstr "Veröffentlichung markieren"
 #, php-format
 msgid "Edits the version.php file making a \"%s\" install."
 msgstr ""
+"Bearbeitet die version.php-Datei, um eine \"%s\"-Installation zu erstellen."
 
 #: zenphoto-translate/zp-core/zp-extensions/menu_manager.php:16
 msgid ""
@@ -18543,7 +18589,7 @@ msgstr "Administrator-Anmeldung"
 
 #: zenphoto-translate/zp-core/zp-extensions/security-logger.php:155
 msgid "Authorization cookie check"
-msgstr ""
+msgstr "Autorisierungscookie-Test"
 
 #: zenphoto-translate/zp-core/zp-extensions/security-logger.php:172
 msgid ""
@@ -18715,7 +18761,7 @@ msgstr ""
 
 #: zenphoto-translate/zp-core/zp-extensions/simpleSpam.php:12
 msgid "Simple SPAM filter."
-msgstr ""
+msgstr "Einfacher Spamfilter."
 
 #: zenphoto-translate/zp-core/zp-extensions/simpleSpam.php:57
 msgid "Words to die on"
@@ -19363,6 +19409,7 @@ msgid ""
 "Only users with <em>Themes</em> rights will see the selector if this is "
 "checked."
 msgstr ""
+"Nur Benutzer mit <em>Theme</em>-Rechten sehen diese Auswahl, wenn ausgewählt."
 
 #: zenphoto-translate/zp-core/zp-extensions/themeSwitcher.php:66
 msgid "Theme list"
@@ -19370,7 +19417,7 @@ msgstr "Theme-Liste"
 
 #: zenphoto-translate/zp-core/zp-extensions/themeSwitcher.php:68
 msgid "These are the themes that may be selected among."
-msgstr ""
+msgstr "Diese sind die Themse, die ausgewählt werden können."
 
 #: zenphoto-translate/zp-core/zp-extensions/themeSwitcher.php:132
 msgid "Theme"
@@ -19381,6 +19428,8 @@ msgid ""
 "Themes will not show in this list if selecting them would result in a 'not "
 "found' error."
 msgstr ""
+"Themse zeigen diese Liste nicht, wenn eine Auswahl einen 'Nicht gefunden'-"
+"Fehler auslösen würde."
 
 #: zenphoto-translate/zp-core/zp-extensions/tiny_mce.php:14
 msgid ""
@@ -19485,7 +19534,7 @@ msgstr "Videoplayer-Breite für MP3s, wenn mit tinyZenpage eingefügt."
 
 #: zenphoto-translate/zp-core/zp-extensions/trivialSpam.php:11
 msgid "Trivial SPAM filter."
-msgstr ""
+msgstr "Trivialer Spamfilter."
 
 #: zenphoto-translate/zp-core/zp-extensions/trivialSpam.php:61
 msgid "pass"
@@ -19714,6 +19763,8 @@ msgid ""
 "Number of days between required password changes. Set to zero for no "
 "required changes."
 msgstr ""
+"Die Anzahl an Tagen, die zwischen Passwortänderungen liegen muss. Setzen Sie "
+"sie auf Null, wenn keine Beschränkung vorhanden sein soll."
 
 #: zenphoto-translate/zp-core/zp-extensions/user-expiry.php:106
 msgid "expiry"
@@ -19732,6 +19783,7 @@ msgstr "Benutzer-ID-Ungültigkeit"
 msgid ""
 "You have used that password recently. Please choose a different password."
 msgstr ""
+"Sie haben das Passwort kürzlich erst verwendet. Bitte wählen Sie ein anderes."
 
 #: zenphoto-translate/zp-core/zp-extensions/user-expiry.php:271
 #: zenphoto-translate/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:150
@@ -19776,6 +19828,8 @@ msgid ""
 "Applying a template will merge the template with the current <em>rights</em> "
 "and <em>objects</em>."
 msgstr ""
+"Die Anwendung einer Vorlage wird die Vorlage mit den aktuellen <em>Rechten</"
+"em> und <em>Objekten</em> zusammenführen."
 
 #: zenphoto-translate/zp-core/zp-extensions/user_groups.php:195
 msgid "no group affiliation"
@@ -19788,7 +19842,7 @@ msgstr "Benutzerguppen-Zugehörigkeit: %s"
 
 #: zenphoto-translate/zp-core/zp-extensions/user_groups.php:201
 msgid "Templates are highlighed."
-msgstr ""
+msgstr "Vorlagen sind hervorgehoben."
 
 #: zenphoto-translate/zp-core/zp-extensions/user_groups.php:201
 #: zenphoto-translate/zp-core/zp-extensions/user_groups/user_groups-tab.php:440
@@ -20672,6 +20726,13 @@ msgid ""
 "the limit defined by the option below.)<p class=\"notebox\">Never leave any "
 "of these three out!</p>"
 msgstr ""
+"Benutzerdefinierter Title für die  <em>latest images by album</em>-Artikel. "
+"Die Textkette ist in <code>sprintf()</code>-Ssyntax.<br /><code>%1$u</code> "
+"= neuer Eintragzahlindikator (möglicherweise nicht vorhanden, wenn redundant)"
+"<br /><code>%2$s</code> = Titel des Albums, in dem sie enthalten sind<br /"
+"><code>%3$s</code> = Titel der neuen Einträge (bis zu dem Limit definiert in "
+"der unteren Einstellung.)<p class=\"notebox\">Lassen Sie nie eine diese drei "
+"aus!</p>"
 
 #: zenphoto-translate/zp-core/zp-extensions/zenpage.php:201
 msgid "CombiNews: Custom title - Number of image titles"
@@ -20935,7 +20996,7 @@ msgstr "Führt das Zwischenspeichern der ausgewählten Bildgrößen aus."
 
 #: zenphoto-translate/zp-core/zp-extensions/class-textobject/class-textobject_core.php:94
 msgid "Invalid Textobject instantiation: Album does not exist"
-msgstr ""
+msgstr "Ungültige Textobjekt-Instanz: Album existiert nicht"
 
 #: zenphoto-translate/zp-core/zp-extensions/class-textobject/class-textobject_core.php:96
 msgid "Invalid Textobject instantiation: file does not exist"
@@ -22345,7 +22406,7 @@ msgstr "Site ist ansehbar."
 
 #: zenphoto-translate/zp-core/zp-extensions/site_upgrade/site_upgrade.php:35
 msgid "Site is avaiable for testing only."
-msgstr ""
+msgstr "Die Site ist nur zum Testen verfügbar."
 
 #: zenphoto-translate/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:28
 msgid "Sitemap"
