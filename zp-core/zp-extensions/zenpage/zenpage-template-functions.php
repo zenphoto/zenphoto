@@ -677,12 +677,12 @@ function getContentShorten($text,$shorten,$shortenindicator=NULL,$readmore=NULL,
 	if(!$shorten && !is_NewsArticle()) {
 		$shorten  = ZP_SHORTEN_LENGTH;
 	}
-	$contentlenght = strlen($text);
+	$contentlenght = mb_strlen($text);
 	if (!empty($shorten) && ($contentlenght > $shorten)) {
 		if(stristr($text,'<!-- pagebreak -->')) {
 			$array = explode('<!-- pagebreak -->',$text);
 			$newtext = array_shift($array);
-			while (!empty($array) && (strlen($newtext)+strlen($array[0])) < $shorten) {	//	find the last break within shorten
+			while (!empty($array) && (mb_strlen($newtext)+mb_strlen($array[0])) < $shorten) {	//	find the last break within shorten
 				$newtext .= array_shift($array);
 			}
 			if ($shortenindicator && empty($array) || ($array[0] == '</p>' || trim($array[0]) =='')) {	//	page break was at end of article
