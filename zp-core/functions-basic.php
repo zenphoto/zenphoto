@@ -11,10 +11,6 @@
 require_once(dirname(__FILE__).'/global-definitions.php');
 require_once(dirname(__FILE__).'/functions-common.php');
 
-if(!function_exists("gettext")) {
-	require_once(dirname(__FILE__).'/lib-gettext/gettext.inc');
-}
-
 /**
 * OFFSET_PATH definitions:
 * 		0		root scripts (e.g. the root index.php)
