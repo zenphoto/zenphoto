@@ -102,104 +102,104 @@ class user_groups {
 		return $updated;
 	}
 
+	static function groupList($userobj, $i, $background, $current, $template) {
+		global $_zp_authority, $_zp_zenpage, $_zp_gallery;
+		$group = $userobj->getGroup();
+		$admins = $_zp_authority->getAdministrators('groups');
+		$groups = array();
+		$hisgroups = explode(',',$userobj->getGroup());
+		$admins = sortMultiArray($admins, 'user');
+		foreach ($admins as $user) {
+			if ($template || $user['name'] != 'template') {
+				$groups[] = $user;
+			}
+		}
+		if (empty($groups)) return gettext('no groups established'); // no groups setup yet
+		$grouppart =	'
+		<script type="text/javascript">
+		// <!-- <![CDATA[
+		function groupchange'.$i.'(type) {
+		switch (type) {
+		case 0:	//	none
+		$(\'.user-'.$i.'\').removeAttr(\'disabled\');
+		$(\'.templatelist'.$i.'\').removeAttr(\'checked\');
+		$(\'.grouplist'.$i.'\').removeAttr(\'checked\');
+		break;
+		case 1:	//	group
+		$(\'.user-'.$i.'\').attr(\'disabled\',\'disabled\');
+		$(\'.user-'.$i.'\').removeAttr(\'checked\');
+		$(\'#noGroup_'.$i.'\').removeAttr(\'checked\');
+		$(\'.templatelist'.$i.'\').removeAttr(\'checked\');
+		break;
+		case 2:	//	template
+		$(\'.user-'.$i.'\').attr(\'disabled\',\'disabled\');
+		$(\'#noGroup_'.$i.'\').removeAttr(\'checked\');
+		$(\'.grouplist'.$i.'\').removeAttr(\'checked\');
+		break;
+	}
+	}
+	//]]> -->
+	</script>'."\n";
+
+		$grouppart .= '<ul class="customchecklist">'."\n";
+		$grouppart .= '<label title="'.gettext('*no group affiliation').'"><input type="checkbox" id="noGroup_'.$i.'" name="'.$i.'group[]" value="" onclick="groupchange'.$i.'(0);" />'.gettext('*no group selected').'</label>'."\n";
+
+		foreach ($groups as $key=>$user) {
+			if ($user['name']=='template') {
+				$type = gettext(' (Template)');
+				$highlight = ' class="grouphighlight"';
+				$class = 'templatelist'.$i;
+				$case = 2;
+			} else {
+				$type = $highlight = '';
+				$class = 'grouplist'.$i;
+				$case = 1;
+			}
+			if (in_array($user['user'],$hisgroups)) {
+				$checked = ' checked="checked"';
+			} else {
+				$checked = '';
+			}
+			$grouppart .= '<label title="'.html_encode($user['custom_data']).$type.'"'.$highlight.'><input type="checkbox" class="'.$class.'" name="'.$i.'group[]" value="'.$user['user'].'" onclick="groupchange'.$i.'('.$case.');"'.$checked.' />'.html_encode($user['user']).'</label>'."\n";
+		}
+
+		$grouppart .= "</ul>\n";
+
+		return $grouppart;
+
+	}
+
 	/**
 	 * Returns table row(s) for edit of an admin user's custom data
 	 *
-	 * @param string $html always empty
-	 * @param $userobj Admin user object
+	 * @param string $html
+	 * @param $userobj Admin object
 	 * @param string $i prefix for the admin
 	 * @param string $background background color for the admin row
 	 * @param bool $current true if this admin row is the logged in admin
 	 * @return string
 	 */
 	static function edit_admin($html, $userobj, $i, $background, $current) {
-		global $_zp_authority, $_zp_zenpage, $_zp_gallery;
-		$group = $userobj->getGroup();
-		$admins = $_zp_authority->getAdministrators('all');
-		$ordered = array();
-		$groups = array();
-		$hisgroups = explode(',',$userobj->getGroup());
-		$adminordered = array();
-		foreach ($admins as $key=>$admin) {
-			$ordered[$key] = $admin['user'];
-			if ($group == $admin['user']) $hisgroup = $admin;
-		}
-		asort($ordered);
-		foreach ($ordered as $key=>$user) {
-			$adminordered[] = $admins[$key];
-			if (!$admins[$key]['valid']) {
-				$groups[] = $admins[$key];
-			}
-		}
-		if (empty($groups)) return ''; // no groups setup yet
 		if (zp_loggedin(ADMIN_RIGHTS)) {
-			$grouppart =	'
-				<script type="text/javascript">
-					// <!-- <![CDATA[
-					function groupchange'.$i.'(type) {
-						switch (type) {
-							case 0:	//	none
-								$(\'.user-'.$i.'\').removeAttr(\'disabled\');
-								$(\'.templatelist'.$i.'\').removeAttr(\'checked\');
-								$(\'.grouplist'.$i.'\').removeAttr(\'checked\');
-								break;
-							case 1:	//	group
-							$(\'.user-'.$i.'\').attr(\'disabled\',\'disabled\');
-								$(\'.user-'.$i.'\').removeAttr(\'checked\');
-								$(\'#noGroup_'.$i.'\').removeAttr(\'checked\');
-								$(\'.templatelist'.$i.'\').removeAttr(\'checked\');
-								break;
-							case 2:	//	template
-							$(\'.user-'.$i.'\').attr(\'disabled\',\'disabled\');
-								$(\'#noGroup_'.$i.'\').removeAttr(\'checked\');
-								$(\'.grouplist'.$i.'\').removeAttr(\'checked\');
-								break;
-						}
-					}
-					//]]> -->
-				</script>'."\n";
-
-			$grouppart .= '<ul class="customchecklist">'."\n";
-			$grouppart .= '<label title="'.gettext('*no group affiliation').'"><input type="checkbox" id="noGroup_'.$i.'" name="'.$i.'group[]" value="" onclick="groupchange'.$i.'(0);" />'.gettext('*no group selected').'</label>'."\n";
-
 			if ($userobj->getID()>=0) {
 				$notice = ' '.gettext("Applying a template will merge the template with the current <em>rights</em> and <em>objects</em>.");
 			} else {
 				$notice = '';
 			}
-			foreach ($groups as $key=>$user) {
-				if ($user['name']=='template') {
-					$type = gettext(' (Template)');
-					$bg = ' style="background-color:lightGray;"';
-					$class = 'templatelist'.$i;
-					$case = 2;
-				} else {
-					$bg = $type = '';
-					$class = 'grouplist'.$i;
-					$case = 1;
-				}
-				if (in_array($user['user'],$hisgroups)) {
-					$checked = ' checked="checked"';
-				} else {
-					$checked = '';
-				}
-				$grouppart .= '<label title="'.html_encode($user['custom_data']).$type.'"'.$bg.'><input type="checkbox" class="'.$class.'" name="'.$i.'group[]" value="'.$user['user'].'" onclick="groupchange'.$i.'('.$case.');"'.$checked.' />'.html_encode($user['user']).'</label>'."\n";
-			}
-
-			$grouppart .= "</ul>\n";
+			$grouppart =	self::groupList($userobj, $i, $background, $current, true);
 		} else {
-			if ($group) {
-				$grouppart = $group;
+			$notice = '';
+			if ($group = $userobj->getGroup()) {
+				$grouppart = '<code>'.$group.'</code>';
 			} else {
-				$grouppart = gettext('no group affiliation');
+				$grouppart = '<code>'.gettext('no group affiliation').'</code>';
 			}
 		}
 		$result =
 			"\n".'<tr'.((!$current)? ' style="display:none;"':'').' class="userextrainfo">'."\n".
-				'<td width="20%"'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top">'."\n".gettext('User group membership')."\n".
-							$grouppart."</td>\n<td".((!empty($background)) ? ' style="'.$background.'"':'').">".'<div class="notebox"><p>'.gettext('Templates are highlighed in gray.').$notice.'</p><p>'.gettext('<strong>Note:</strong> When a group is assigned <em>rights</em> and <em>managed objects</em> are determined by the group!').'</p></div></td>'."\n".
+				'<td width="20%"'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top">'."\n".sprintf(gettext('User group membership: %s'),$grouppart)."\n".
+							"</td>\n<td".((!empty($background)) ? ' style="'.$background.'"':'').">".'<div class="notebox"><p>'.gettext('Templates are highlighed.').$notice.'</p><p>'.gettext('<strong>Note:</strong> When a group is assigned <em>rights</em> and <em>managed objects</em> are determined by the group!').'</p></div></td>'."\n".
 				"</tr>\n";
-
 		return $html.$result;
 	}
 

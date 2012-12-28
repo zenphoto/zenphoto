@@ -23,7 +23,7 @@ define('TEXT_INPUT_SIZE_SHORT', 30);
 function printAdminFooter($addl='') {
 	?>
 	<div id="footer">
-		<?php printf(gettext('<a href="http://www.zenphoto.org" title="A simpler web album">Zen<strong>photo</strong></a> version %1$s [%2$s]'),ZENPHOTO_VERSION,ZENPHOTO_RELEASE);
+		<?php printf(gettext('<a href="http://www.zenphoto.org" title="The simpler media website CMS">Zen<strong>photo</strong></a> version %1$s [%2$s]'),ZENPHOTO_VERSION,ZENPHOTO_RELEASE);
 		if (!empty($addl)) {
 			echo ' | '. $addl;
 		}
@@ -31,7 +31,7 @@ function printAdminFooter($addl='') {
 		 | <a href="<?php echo FULLWEBPATH.'/'.ZENFOLDER.'/license.php'?>" title="<?php echo gettext('Zenphoto licence'); ?>"><?php echo gettext('License'); ?></a>
 		 | <a href="http://www.zenphoto.org/news/category/user-guide" title="<?php echo gettext('User guide'); ?>"><?php echo gettext('User guide'); ?></a>
 		 | <a href="http://www.zenphoto.org/support/" title="<?php echo gettext('Forum'); ?>"><?php echo gettext('Forum'); ?></a>
-		 | <a href="http://www.zenphoto.org/trac/report/10" title="<?php echo gettext('Bugtracker'); ?>"><?php echo gettext('Bugtracker'); ?></a>
+		 | <a href="https://github.com/zenphoto/zenphoto/issues" title="<?php echo gettext('Bugtracker'); ?>"><?php echo gettext('Bugtracker'); ?></a>
 		 | <a href="http://www.zenphoto.org/news/category/changelog" title="<?php echo gettext('View Change log'); ?>"><?php echo gettext('Change log'); ?></a>
 		 | <?php	printf(gettext('Server date: %s'),date('Y-m-d H:i:s')); 	?>
 	</div>
@@ -245,8 +245,9 @@ function printLogoAndLinks() {
 		} else {
 			printf(gettext('Logged in as %1$s (last login %2$s)'), $_zp_current_admin_obj->getUser(),$last);
 		}
-		if (!$_zp_current_admin_obj->no_zp_login)  {
-			echo " &nbsp; | &nbsp; <a href=\"".WEBPATH."/".ZENFOLDER."/admin.php?logout=".$sec."\">".gettext("Log Out")."</a> &nbsp; | &nbsp; ";
+		if ($_zp_current_admin_obj->logout_link)  {
+			$link = WEBPATH."/".ZENFOLDER."/admin.php?logout=".$sec;
+			echo " &nbsp; | &nbsp; <a href=\"".$link."\">".gettext("Log Out")."</a> &nbsp; | &nbsp; ";
 		}
 	}
 	echo ' <a href="'.FULLWEBPATH.'/">';
@@ -518,8 +519,9 @@ define ('CUSTOM_OPTION_PREFIX', '_ZP_CUSTOM_');
  * @param bool $theme set true if dealing with theme options
  * @param string $initial initila show/hide state
  *
- * There are four type of custom options:
+ * Custom options:
  *    OPTION_TYPE_TEXTBOX:          A textbox
+ *    OPTION_TYPE_PASSWORD:         A passowrd textbox
  *    OPTION_TYPE_CLEARTEXT:     	  A textbox, but no sanitization on save
  *    OPTION_TYPE_CHECKBOX:         A checkbox
  *    OPTION_TYPE_CUSTOM:           Handled by $optionHandler->handleOption()
@@ -546,6 +548,7 @@ define('OPTION_TYPE_CHECKBOX_UL',7);
 define('OPTION_TYPE_COLOR_PICKER',8);
 define('OPTION_TYPE_CLEARTEXT',9);
 define('OPTION_TYPE_NOTE',10);
+define('OPTION_TYPE_PASSWORD',11);
 
 function customOptions($optionHandler, $indent="", $album=NULL, $showhide=false, $supportedOptions=NULL, $theme=false, $initial='none',$extension=NULL) {
 	if (is_null($supportedOptions)) {
@@ -626,12 +629,19 @@ function customOptions($optionHandler, $indent="", $album=NULL, $showhide=false,
 					break;
 				case OPTION_TYPE_CLEARTEXT:
 					$multilingual = false;
+				case OPTION_TYPE_PASSWORD:
 				case OPTION_TYPE_TEXTBOX:
 				case OPTION_TYPE_TEXTAREA:
 					if ($type == OPTION_TYPE_CLEARTEXT) {
 						$clear = 'clear';
 					} else {
 						$clear = '';
+					}
+					if ($type == OPTION_TYPE_PASSWORD) {
+						$inputtype = 'password';
+						$multilingual = false;
+					} else {
+						$inputtype = 'text';
 					}
 					?>
 					<td width="350">
@@ -646,7 +656,7 @@ function customOptions($optionHandler, $indent="", $album=NULL, $showhide=false,
 								<?php
 							} else {
 								?>
-								<input type="text" size="40" id="<?php echo $key; ?>" name="<?php echo $key; ?>" style="width: 338px" value="<?php echo html_encode($v); ?>"<?php echo $disabled; ?> />
+								<input type="<?php echo $inputtype; ?>" size="40" id="<?php echo $key; ?>" name="<?php echo $key; ?>" style="width: 338px" value="<?php echo html_encode($v); ?>"<?php echo $disabled; ?> />
 								<?php
 							}
 						}
@@ -2781,7 +2791,7 @@ function copyThemeDirectory($source, $target, $newname) {
 	$theme_description['name'] = $newname;
 	$theme_description['author'] = $_zp_current_admin_obj->getUser();
 	$theme_description['version'] = '1.0';
-	$theme_description['date']  = zpFormattedDate('Y-m-d H:i:s', time());
+	$theme_description['date']  = date('Y-m-d H:m:s', time());
 
 	$description = sprintf('<'.'?php
 				// Zenphoto theme definition file
@@ -2991,12 +3001,14 @@ function printAdminRightsTable($id, $background, $alterrights, $rights) {
  * @param string $type the kind of list
  * @param array $objlist list of objects
  * @param string $alterrights are the items changable
- * @param int $adminid ID of the admin
+ * @param object $userobj the user
  * @param int $prefix the admin row
- * @param bit $rights the privileges  of the user
+ * @param string $kind user, group, or template
+ * @param array $flat items to be flagged with an asterix
  */
-function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix_id, $rights, $kind, $flag) {
+function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id, $kind, $flag) {
 	$rest = $extra = $extra2 = array();
+	$rights = $userobj->getRights();
 	$legend = '';
 	switch ($type) {
 		case 'albums':
@@ -3004,7 +3016,7 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix_id
 				$cv = $objlist;
 				$alterrights = ' disabled="disabled"';
 			} else {
-				$full = populateManagedObjectsList('album', $adminid, true);
+				$full = $userobj->getObjects();
 				$cv = $extra = array();
 				$icon_edit_album = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/options.png" class="icon-position-top3" alt="" title="'.gettext('edit rights').'" />';
 				$icon_view_image = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/action.png" class="icon-position-top3" alt="" title="'.gettext('view unpublished items').'" />';
@@ -3017,23 +3029,25 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix_id
 				if ($rights & UPLOAD_RIGHTS) $legend .= $icon_upload.' '.gettext('upload').' ';
 				if (!($rights & VIEW_UNPUBLISHED_RIGHTS)) $legend .= $icon_view_image.' '.gettext('view unpublished').' ';
 				foreach ($full as $item) {
-					if (in_array($item['data'],$flag)) {
-						$note = '*';
-					} else {
-						$note = '';
-					}
-					$cv[$item['name'].$note] = $item['data'];
-					$extra[$item['data']][] = array('name'=>'name','value'=>$item['name'],'display'=>'','checked'=>0);
-					$extra[$item['data']][] = array('name'=>'edit','value'=>MANAGED_OBJECT_RIGHTS_EDIT,'display'=>$icon_edit_album,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_EDIT);
-					if (($rights&UPLOAD_RIGHTS)) {
-						if (hasDynamicAlbumSuffix($item['data'])) {
-							$extra[$item['data']][] = array('name'=>'upload','value'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'display'=>$icon_upload_disabled,'checked'=>0,'disable'=>true);
-						} else{
-							$extra[$item['data']][] = array('name'=>'upload','value'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'display'=>$icon_upload,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_UPLOAD);
+					if ($item['type']=='album') {
+						if (in_array($item['data'],$flag)) {
+							$note = '*';
+						} else {
+							$note = '';
 						}
-					}
-					if (!($rights & VIEW_UNPUBLISHED_RIGHTS)) {
-						$extra[$item['data']][] = array('name'=>'view','value'=>MANAGED_OBJECT_RIGHTS_VIEW,'display'=>$icon_view_image,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_VIEW);
+						$cv[$item['name'].$note] = $item['data'];
+						$extra[$item['data']][] = array('name'=>'name','value'=>$item['name'],'display'=>'','checked'=>0);
+						$extra[$item['data']][] = array('name'=>'edit','value'=>MANAGED_OBJECT_RIGHTS_EDIT,'display'=>$icon_edit_album,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_EDIT);
+						if (($rights&UPLOAD_RIGHTS)) {
+							if (hasDynamicAlbumSuffix($item['data'])) {
+								$extra[$item['data']][] = array('name'=>'upload','value'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'display'=>$icon_upload_disabled,'checked'=>0,'disable'=>true);
+							} else{
+								$extra[$item['data']][] = array('name'=>'upload','value'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'display'=>$icon_upload,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_UPLOAD);
+							}
+						}
+						if (!($rights & VIEW_UNPUBLISHED_RIGHTS)) {
+							$extra[$item['data']][] = array('name'=>'view','value'=>MANAGED_OBJECT_RIGHTS_VIEW,'display'=>$icon_view_image,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_VIEW);
+						}
 					}
 				}
 				$rest = array_diff($objlist, $cv);
@@ -3062,7 +3076,7 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix_id
 				$rest = array();
 				$alterrights = ' disabled="disabled"';
 			} else {
-				$cv = populateManagedObjectsList('news',$adminid);
+				$cv = $userobj->getObjects('news');
 				$rest = array_diff($objlist, $cv);
 			}
 			$text = gettext("Managed news categories:");
@@ -3076,7 +3090,7 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix_id
 				$rest = array();
 				$alterrights = ' disabled="disabled"';
 			} else {
-				$cv = populateManagedObjectsList('pages',$adminid);
+				$cv = $userobj->getObjects('pages');
 				$rest = array_diff($objlist, $cv);
 			}
 			$text = gettext("Managed pages:");
@@ -4324,11 +4338,12 @@ function getPluginTabs() {
 	if (isset($_GET['tab'])) {
 		$default = sanitize($_GET['tab']);
 	} else {
-		$default = gettext('all');
+		$default = 'all';
 	}
 	$paths = getPluginFiles('*.php');
 
 	$classXlate = array(
+			'all'=>gettext('all'),
 			'admin'=>gettext('admin'),
 			'demo'=>gettext('demo'),
 			'development'=>gettext('development'),
@@ -4343,36 +4358,37 @@ function getPluginTabs() {
 			'utilities'=>gettext('utilities')
 			);
 
-	$currentlist = $classes = array();
+	$currentlist = $classes = $member = array();
 	foreach ($paths as $plugin=>$path) {
 		$p = file_get_contents($path);
 		$i = strpos($p, '* @subpackage');
-		if ($i !== false) {
-			if ($key = trim(substr($p,$i+13,strpos($p, "\n", $i)-$i-13))) {
-				$classes[$key][] = $plugin;
-			}
+		if (($key = $i) !== false) {
+			$key = trim(substr($p,$i+13,strpos($p, "\n", $i)-$i-13));
 		}
+		if (empty($key)) {
+			$key = 'misc';
+		}
+		$classes[$key]['list'][] = $plugin;
+		if (array_key_exists($key, $classXlate)) {
+			$local = $classXlate[$key];
+		} else {
+			$local = $classXlate[$key] = $key;
+		}
+		$member[$plugin] = $local;
 	}
 
 	ksort($classes);
-	$tabs['all'] = 'admin-plugins.php?page=plugins&amp;tab=all';
+	$tabs[$classXlate['all']] = 'admin-plugins.php?page=plugins&amp;tab=all';
 	$currentlist = array_keys($paths);
 
 
 	foreach ($classes as $class=>$list) {
-		if (array_key_exists($key = $class, $classXlate)) {
-			$key = $classXlate[$class];
-		} else {
-			if ($key) {
-				$classXlate[$key] = $key;
-			}
-		}
-		$tabs[$key] = 'admin-plugins.php?page=plugins&amp;tab='.$class;
+		$tabs[$classXlate[$class]] = 'admin-plugins.php?page=plugins&amp;tab='.$class;
 		if ($class == $default) {
-			$currentlist = $list;
+			$currentlist = $list['list'];
 		}
 	}
-	return array($tabs,$default,$currentlist, $paths);
+	return array($tabs,$default,$currentlist, $paths, $member);
 }
 
 /**

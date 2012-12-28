@@ -97,10 +97,14 @@ function printAdminToolbox($id='admin', $customDIV=false) {
 		?>
 
 		<ul<?php if (!$customDIV) echo ' style="list-style-type: none;"'; ?>>
-			<li>
-				<?php printLink($zf . '/admin.php', gettext("Overview"), NULL, NULL, NULL); ?>
-			</li>
 			<?php
+			if (zp_loggedin(OVERVIEW_RIGHTS)) {
+				?>
+				<li>
+					<?php printLink($zf . '/admin.php', gettext("Overview"), NULL, NULL, NULL); ?>
+				</li>
+				<?php
+			}
 			if (zp_loggedin(ALBUM_RIGHTS)) {
 				?>
 				<li>
@@ -124,7 +128,7 @@ function printAdminToolbox($id='admin', $customDIV=false) {
 				</li>
 				<?php
 			}
-			if (zp_loggedin(ADMIN_RIGHTS)) {
+			if (zp_loggedin(USER_RIGHTS)) {
 				?>
 				<li>
 					<?php printLink($zf . '/admin-users.php', gettext("Users"), NULL, NULL, NULL); ?>
@@ -167,8 +171,7 @@ function printAdminToolbox($id='admin', $customDIV=false) {
 				case 'index.php':
 				case $gal:
 				// script is either index.php or the gallery index page
-				if (zp_loggedin(ALBUM_RIGHTS)) {
-					// admin has edit rights so he can sort the gallery (at least those albums he is assigned)
+				if (zp_loggedin(ADMIN_RIGHTS)) {
 					?>
 					<li>
 						<?php printLink($zf . '/admin-edit.php?page=edit', gettext("Sort Gallery"), NULL, NULL, NULL); ?>
@@ -309,7 +312,7 @@ function printAdminToolbox($id='admin', $customDIV=false) {
 				$redirect = zp_apply_filter('admin_toolbox_'.$gal,$redirect,$zf);
 				break;
 			}
-			if (!$_zp_current_admin_obj->no_zp_login)  {
+			if ($_zp_current_admin_obj->logout_link)  {
 				// logout link
 				$sec = (int) ((SERVER_PROTOCOL=='https') & true);
 				$link = SEO_FULLWEBPATH.'/index.php?logout='.$sec.$redirect;
@@ -3872,7 +3875,7 @@ function getURL($image) {
 function getRSSLink($option,$lang=NULL,$addl=NULL) {
 	global $_zp_current_album, $_zp_current_image;
 	if(empty($lang)) {
-		$lang = getOption('locale');
+		$lang = zpFunctions::getLanguageText(getOption('locale'));
 	}
 	switch($option) {
 		case 'Gallery':
@@ -3963,7 +3966,7 @@ function printRSSLink($option, $prev, $linktext, $next, $printIcon=true, $class=
 		$class = 'class="' . $class . '"';
 	}
 	if(empty($lang)) {
-		$lang = getOption("locale");
+		$lang = zpFunctions::getLanguageText(getOption("locale"));
 	}
 	echo $prev."<a $class href=\"".html_encode(getRSSLink($option,$lang))."\" title=\"".gettext("Latest images RSS")."\" rel=\"nofollow\">".$linktext."$icon</a>".$next;
 }
@@ -4549,8 +4552,8 @@ function printPasswordForm($_password_hint, $_password_showuser=NULL, $_password
 	global $_zp_login_error, $_zp_password_form_printed, $_zp_current_search, $_zp_gallery, $_zp_gallery_page,
 					$_zp_current_album, $_zp_current_image, $theme, $_zp_current_zenpage_page, $_zp_authority;
 	if ($_zp_password_form_printed) return;
-	if (is_null($_password_redirect)) $_password_redirect = getPageRedirect();
 	$_zp_password_form_printed = true;
+	if (is_null($_password_redirect)) $_password_redirect = getPageRedirect();
 	?>
 	<div id="passwordform">
 	<?php
@@ -4562,7 +4565,14 @@ function printPasswordForm($_password_hint, $_password_showuser=NULL, $_password
 		</p>
 		<?php
 	}
-	$_zp_authority->printLoginForm($_password_redirect, false, $_password_showuser, false, $_password_hint);
+	if ($loginlink = zp_apply_filter('login_link', NULL)) {
+		$logintext = gettext('login');
+		?>
+		<a href="<?php echo $loginlink; ?>" title="<?php echo $logintext; ?>"><?php echo $logintext; ?></a>
+		<?php
+	} else {
+		$_zp_authority->printLoginForm($_password_redirect, false, $_password_showuser, false, $_password_hint);
+	}
 	?>
 	</div>
 	<?php
@@ -4634,61 +4644,6 @@ function cleanHTML($html) {
 }
 
 /**
- * Returns truncated html formatted content
- *
- * @param string $articlecontent the source string
- * @param int $shorten new size
- * @param string $shortenindicator
- * @param bool $forceindicator set to true to include the indicator no matter what
- * @return string
- */
-function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindicator=false) {
-	global $_user_tags;
-	if (!$shorten) {
-		return $articlecontent;
-	}
-	if ($forceindicator || (mb_strlen($articlecontent) > $shorten)) {
-		$allowed_tags = getAllowedTags('allowed_tags');
-		$short = mb_substr($articlecontent, 0, $shorten);
-		$short2 = kses($short.'</p>', $allowed_tags);
-		if (($l2 = mb_strlen($short2)) < $shorten)	{
-			$c = 0;
-			$l1 = $shorten;
-			$delta = $shorten-$l2;
-			while ($l2 < $shorten && $c++ < 5) {
-				$open = mb_strrpos($short, '<');
-				if ($open > mb_strrpos($short, '>')) {
-					$l1 = mb_strpos($articlecontent,'>',$l1+1)+$delta;
-				} else {
-					$l1 = $l1 + $delta;
-				}
-				$short = mb_substr($articlecontent, 0, $l1);
-				preg_match_all('/(<p>)/', $short, $open);
-				preg_match_all('/(<\/p>)/', $short, $close);
-				if (count($open) > count($close)) $short .= '</p>';
-				$short2 = kses($short, $allowed_tags);
-				$l2 = mb_strlen($short2);
-			}
-			$shorten = $l1;
-		}
-		$short = truncate_string($articlecontent, $shorten, '');
-		// drop open tag strings
-		$open = mb_strrpos($short, '<');
-		if ($open > mb_strrpos($short, '>')) {
-			$short = mb_substr($short, 0, $open);
-		}
-		if (class_exists('tidy')) {
-			$tidy = new tidy();
-			$tidy->parseString($short.$shortenindicator,array('show-body-only'=>true),'utf8');
-			$tidy->cleanRepair();
-			$short = trim($tidy);
-		} else {
-			$short = trim(cleanHTML($short.$shortenindicator));
-		}
-		return $short;
-	}
-	return $articlecontent;
-}
 
 /**
  * Expose some informations in a HTML comment

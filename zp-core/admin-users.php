@@ -26,6 +26,11 @@ admin_securityChecks(USER_RIGHTS, currentRelativeURL());
 
 $newuser = array();
 $showset = array();
+foreach ($_REQUEST as $param=>$value) {
+	if (strpos($param, 'show-') === 0) {
+		$showset[] = substr($param,5);
+	}
+}
 if (isset($_GET['subpage'])) {
 	$subpage = sanitize_numeric($_GET['subpage']);
 } else {
@@ -33,11 +38,6 @@ if (isset($_GET['subpage'])) {
 		$subpage = sanitize_numeric($_POST['subpage']);
 	} else {
 		$subpage = 0;
-	}
-	foreach ($_GET as $param=>$value) {
-		if (strpos($param, 'show-') === 0) {
-			$showset[] = substr($param,5);
-		}
 	}
 }
 
@@ -157,12 +157,14 @@ if (isset($_GET['action'])) {
 									$error = true;
 								}
 							}
-							$challenge = sanitize($_POST[$i.'-challengephrase']);
-							$response = sanitize($_POST[$i.'-challengeresponse']);
-							$info = $userobj->getChallengePhraseInfo();
-							if ($challenge != $info['challenge'] || $response != $info['response']) {
-								$userobj ->setChallengePhraseInfo($challenge, $response);
-								markUpdated();
+							if (isset($_POST[$i.'-challengephrase'])) {
+								$challenge = sanitize($_POST[$i.'-challengephrase']);
+								$response = sanitize($_POST[$i.'-challengeresponse']);
+								$info = $userobj->getChallengePhraseInfo();
+								if ($challenge != $info['challenge'] || $response != $info['response']) {
+									$userobj ->setChallengePhraseInfo($challenge, $response);
+									markUpdated();
+								}
 							}
 							$lang = sanitize($_POST[$i.'-admin_language'],3);
 							if ($lang != $userobj->getLanguage()) {
@@ -325,7 +327,8 @@ if (isset($_GET['saved'])) {
 							}
 							break;
 						default:
-							if ($user['group'] != $showgroup) {
+							$hisgroups = explode(',',$user['group']);
+							if (!in_array($showgroup, $hisgroups)) {
 								unset($admins[$key]);
 							}
 							break;
@@ -461,9 +464,11 @@ function languageChange(id,lang) {
 				<select name="showgroup" id="showgroup" onchange="launchScript('<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-users.php',['showgroup='+$('#showgroup').val()]);" >
 					<option value=""<?php if (!$showgroup) echo ' selected="selected"'; ?>><?php echo gettext('all'); ?></option>
 					<option value="*"<?php if ($showgroup=='*') echo ' selected="selected"'; ?>><?php echo gettext('pending verification'); ?></option>
-					<option value="$"<?php if ($showgroup=='$') echo ' selected="selected"'; ?>><?php echo gettext('no group'); ?></option>
 					<?php
 					if (getOption('zp_plugin_user_groups')) {
+						?>
+						<option value="$"<?php if ($showgroup=='$') echo ' selected="selected"'; ?>><?php echo gettext('no group'); ?></option>
+						<?php
 						$groups = $_zp_authority->getAdministrators('groups');
 						foreach ($groups as $group) {
 							?>
@@ -504,7 +509,11 @@ function languageChange(id,lang) {
 		$userid = $user['user'];
 		$current = in_array($userid,$showset);
 		$showlist[] = '#show-'.$userid;
-		$userobj = Zenphoto_Authority::newAdministrator($userid);
+		if ($userid == $_zp_current_admin_obj->getuser()) {
+			$userobj = $_zp_current_admin_obj;
+		} else {
+			$userobj = Zenphoto_Authority::newAdministrator($userid);
+		}
 		if (empty($userid)) {
 			$userobj->setGroup($user['group']);
 			$userobj->setRights($user['rights']);
@@ -547,7 +556,7 @@ function languageChange(id,lang) {
 			<table class="bordered" style="border: 0" id='user-<?php echo $id;?>'>
 			<tr>
 				<td style="margin-top: 0px;<?php echo $background; ?>" valign="top">
-				<input type="hidden" name="show-<?php echo $userid; ?>" id="show-<?php echo $userid; ?>" value="<?php echo ($current);?>" />
+				<input type="hidden" name="show-<?php echo $userid; ?>" id="show_<?php echo $id; ?>" value="<?php echo ($current);?>" />
 				<?php
 				if (empty($userid)) {
 					$displaytitle = gettext("Show details");
@@ -558,7 +567,7 @@ function languageChange(id,lang) {
 				}
 				?>
 					<span<?php if ($current) echo ' style="display:none;"'; ?> class="userextrashow">
-						<a href="javascript:$('#show-<?php echo $userid; ?>').val(1);toggleExtraInfo('<?php echo $id;?>','user',true);" title="<?php echo $displaytitle; ?>" >
+						<a href="javascript:$('#show_<?php echo $id; ?>').val(1);toggleExtraInfo('<?php echo $id;?>','user',true);" title="<?php echo $displaytitle; ?>" >
 							<?php
 							if (empty($userid)) {
 								?>
@@ -579,7 +588,7 @@ function languageChange(id,lang) {
 						</a>
 					</span>
 					<span<?php if ($current) echo ' style="display:inline;"'; else echo ' style="display:none;"'; ?> class="userextrahide">
-						<a href="javascript:$('#show-<?php echo $userid; ?>').val(0);toggleExtraInfo('<?php echo $id;?>','user',false);" title="<?php echo $hidetitle; ?>">
+						<a href="javascript:$('#show_<?php echo $id; ?>').val(0);toggleExtraInfo('<?php echo $id;?>','user',false);" title="<?php echo $hidetitle; ?>">
 							<?php
 							if (empty($userid)) {
 								?>
@@ -677,24 +686,29 @@ function languageChange(id,lang) {
 			?>
 				<br />
 				<?php
+				if (in_array('challenge_phrase', $no_change)) {
+					$_disable = ' disabled="disabled"';
+				} else {
+					$_disable = '';
+				}
 				$challenge = $userobj->getChallengePhraseInfo();
 				?>
 				<fieldset><legend><?php echo gettext('Challenge phrase')?></legend>
 					<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="challengephrase-<?php echo $id ?>" name="<?php echo $id ?>-challengephrase"
-									value="<?php echo html_encode($challenge['challenge']); ?>" />
+									value="<?php echo html_encode($challenge['challenge']); ?>"<?php echo $_disable; ?> />
 				</fieldset>
 				<fieldset><legend><?php echo gettext('Challenge response')?></legend>
 					<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="challengeresponse-<?php echo $id ?>" name="<?php echo $id ?>-challengeresponse"
-									value="<?php echo html_encode($challenge['response']); ?>" />
+									value="<?php echo html_encode($challenge['response']); ?>"<?php echo $_disable; ?> />
 				</fieldset>
 				<br />
 				<fieldset><legend><?php echo gettext("Full name"); ?></legend>
 					<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_name-<?php echo $id ?>" name="<?php echo $id ?>-admin_name"
-									value="<?php echo html_encode($userobj->getName()); ?>"<?php if ($userobj->getName() && in_array('name', $no_change)) echo ' disabled="disabled"'; ?> />
+									value="<?php echo html_encode($userobj->getName()); ?>"<?php if (in_array('name', $no_change)) echo ' disabled="disabled"'; ?> />
 				</fieldset>
 				<fieldset><legend><?php echo gettext("Email"); ?></legend>
 					<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_email-<?php echo $id ?>" name="<?php echo $id ?>-admin_email"
-								value="<?php echo html_encode($userobj->getEmail()); ?>"<?php if ($userobj->getEmail() && in_array('email', $no_change)) echo ' disabled="disabled"'; ?> />
+								value="<?php echo html_encode($userobj->getEmail()); ?>"<?php if (in_array('email', $no_change)) echo ' disabled="disabled"'; ?> />
 				</fieldset>
 				<br />
 				<?php
@@ -766,7 +780,7 @@ function languageChange(id,lang) {
 					} else {
 						$flag = array();
 					}
-					printManagedObjects('albums', $albumlist, $album_alter_rights, $user['id'], $id, $userobj->getRights(), gettext('user'), $flag);
+					printManagedObjects('albums', $albumlist, $album_alter_rights, $userobj, $id, gettext('user'), $flag);
 					if (getOption('zp_plugin_zenpage')) {
 						$pagelist = array();
 						$pages = $_zp_zenpage->getPages(false);
@@ -775,13 +789,13 @@ function languageChange(id,lang) {
 								$pagelist[get_language_string($page['title'])] = $page['titlelink'];
 							}
 						}
-						printManagedObjects('pages',$pagelist, $album_alter_rights, $user['id'], $id, $userobj->getRights(), gettext('user'), NULL);
+						printManagedObjects('pages',$pagelist, $album_alter_rights, $userobj, $id, gettext('user'), NULL);
 						$newslist = array();
 						$categories = $_zp_zenpage->getAllCategories(false);
 						foreach ($categories as $category) {
 							$newslist[get_language_string($category['title'])] = $category['titlelink'];
 						}
-						printManagedObjects('news',$newslist, $album_alter_rights, $user['id'], $id, $userobj->getRights(), gettext('user'), NULL);
+						printManagedObjects('news',$newslist, $album_alter_rights, $userobj, $id, gettext('user'), NULL);
 					}
 				}
 				?>
@@ -811,10 +825,16 @@ function languageChange(id,lang) {
 <input type="hidden" name="totaladmins" value="<?php echo $id; ?>" />
 <input type="hidden" name="checkForPostTruncation" value="1" />
 <br />
-<p class="buttons">
-<button type="submit" title="<?php echo gettext("Apply"); ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-<button type="reset" title="<?php echo gettext("Reset"); ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
-</p>
+<?php
+if (!$_zp_current_admin_obj->transient) {
+	?>
+	<p class="buttons">
+	<button type="submit" title="<?php echo gettext("Apply"); ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+	<button type="reset" title="<?php echo gettext("Reset"); ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+	</p>
+	<?php
+}
+?>
 </form>
 <?php
 if (zp_loggedin(ADMIN_RIGHTS)) {

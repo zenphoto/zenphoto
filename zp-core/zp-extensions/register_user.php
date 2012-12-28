@@ -219,8 +219,20 @@ function printRegistrationForm($thanks=NULL) {
 		$currentadmins = $_zp_authority->getAdministrators();
 		$params = unserialize(pack("H*", trim(sanitize($_GET['verify']),'.')));
 		// expung the verify query string as it will cause us to come back here if login fails.
-		unset($_GET['verify']); // so it will not be in the way if the logon fails
-		$_SERVER['REQUEST_URI'] = preg_replace('/\?verify=(.*)/', '', getRequestURI());
+		unset($_GET['verify']);
+		$link = explode('?',getRequestURI());
+		if (isset($link[1])) {
+			$p = explode('&', $link[1]);
+			foreach ($p as $k=>$v) {
+				if (strpos($v, 'verify=') === 0) {
+					unset($p[$k]);
+				}
+			}
+			unset($p['verify']);
+			$_SERVER['REQUEST_URI'] = $link[0].'?'.implode('&',$p);
+		} else {
+			$_SERVER['REQUEST_URI'] = $link[0];
+		}
 
 		$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $params['user'], '`valid`=' => 1));
 		if ($userobj->getEmail() == $params['email']) {
@@ -365,9 +377,14 @@ function printRegistrationForm($thanks=NULL) {
 				<?php
 			case 'already_verified':
 			case 'loginfailed':
-				$_SERVER['REQUEST_URI'] = getRequestURI().'?login';
+				$link = getRequestURI();
+				if (strpos($link,'?')===false) {
+					$_SERVER['REQUEST_URI'] = $link . '?login';
+				} else {
+					$_SERVER['REQUEST_URI'] = $link . '&login';
+				}
 				require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/user_login-out.php');
-				printPasswordForm('', false, true, WEBPATH.'/'.ZENFOLDER.'/admin-users.php?page=users');
+				printPasswordForm('', true, false, WEBPATH.'/'.ZENFOLDER.'/admin-users.php?page=users');
 				$notify = 'success';
 				break;
 			case 'honeypot': //pretend it was accepted

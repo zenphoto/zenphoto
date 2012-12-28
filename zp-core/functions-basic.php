@@ -11,10 +11,6 @@
 require_once(dirname(__FILE__).'/global-definitions.php');
 require_once(dirname(__FILE__).'/functions-common.php');
 
-if(!function_exists("gettext")) {
-	require_once(dirname(__FILE__).'/lib-gettext/gettext.inc');
-}
-
 /**
 * OFFSET_PATH definitions:
 * 		0		root scripts (e.g. the root index.php)
@@ -153,7 +149,7 @@ define('FILE_MOD', CHMOD_VALUE & 0666);
 if (!isset($_zp_conf_vars['server_protocol'])) $_zp_conf_vars['server_protocol'] = 'http';
 
 require_once(dirname(__FILE__).'/functions-db-'.(isset($_zp_conf_vars['db_software'])?$_zp_conf_vars['db_software']:'MySQL').'.php');
-if (!db_connect(false) && OFFSET_PATH != 2) {
+if (!db_connect($_zp_conf_vars,false) && OFFSET_PATH != 2) {
 	require_once(dirname(__FILE__).'/reconfigure.php');
 	reconfigureAction(true);
 }
@@ -359,15 +355,29 @@ function setOption($key, $value, $persistent=true) {
 function setOptionDefault($key, $default) {
 	$bt = debug_backtrace();
 	$b = array_shift($bt);
-	$SERVERPATH = str_replace("\\", '/', dirname(dirname(__FILE__)));
-	$creator = str_replace($SERVERPATH.'/', '', str_replace('\\', '/', $b['file']));
+
+	$serverpath = str_replace('\\','/',dirname($b['file']));
+	if (!preg_match('~(.*)/('.ZENFOLDER.')~',$serverpath, $matches)) {
+		preg_match('~(.*)/('.USER_PLUGIN_FOLDER.'|'.THEMEFOLDER.')~',$serverpath, $matches);
+	}
+	if ($matches) {
+		$creator = str_replace($matches[1].'/', '', str_replace('\\','/',$b['file']));
+	} else {
+		$creator = NULL;
+	}
+
 	$sql = 'INSERT INTO ' . prefix('options') . ' (`name`, `value`, `ownerid`, `theme`, `creator`) VALUES (' . db_quote($key) . ',';
 	if (is_null($default)) {
 		$sql .= 'NULL';
 	} else {
 		$sql .= db_quote($default);
 	}
-	$sql .= ',0,"",'.db_quote($creator).');';
+	$sql .= ',0,"",';
+	if (is_null($creator)) {
+		$sql .= 'NULL);';
+	} else {
+		$sql .= db_quote($creator).');';
+	}
 	if (query($sql, false)) {
 		$_zp_options[$key] = $default;
 	}

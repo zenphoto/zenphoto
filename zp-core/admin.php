@@ -113,7 +113,7 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 /************************************************************************************/
 }
 
-if (zp_loggedin()) {
+if (zp_loggedin() && !empty($zenphoto_tabs)) {
 	if (!$_zp_current_admin_obj->getID() || empty($msg) && !zp_loggedin(OVERVIEW_RIGHTS)) {
 		// admin access without overview rights, redirect to first tab
 		$tab = array_shift($zenphoto_tabs);
@@ -148,26 +148,24 @@ printAdminHeader('overview');
 </script>
 <?php
 echo "\n</head>";
-if (!zp_loggedin()) {
+if (!zp_loggedin(USER_RIGHTS)) {
+	// If they are not logged in, display the login form and exit
 	?>
 	<body style="background-image: none">
+	<?php $_zp_authority->printLoginForm($from); ?>
+	</body>
 	<?php
+	echo "\n</html>";
+	exitZP();
 } else {
 	?>
 	<body>
 	<?php
 }
-// If they are not logged in, display the login form and exit
 
-if (!zp_loggedin()) {
-	$_zp_authority->printLoginForm($from);
-	echo "\n</body>";
-	echo "\n</html>";
-	exitZP();
-
-} else { /* Admin-only content safe from here on. */
-	printLogoAndLinks();
-	?>
+/* Admin-only content safe from here on. */
+printLogoAndLinks();
+?>
 <div id="main">
 <?php printTabs(); ?>
 <div id="content">
@@ -586,7 +584,9 @@ zp_apply_filter('admin_note','Overview', NULL);
 <br clear="all" />
 <?php
 printAdminFooter();
-} /* No admin-only content allowed after this bracket! */ ?></div>
+/* No admin-only content allowed after point! */
+?>
+</div>
 <!-- main -->
 </body>
 <?php // to fool the validator

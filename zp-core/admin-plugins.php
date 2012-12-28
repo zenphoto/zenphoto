@@ -23,7 +23,7 @@ if (isset($_GET['subpage'])) {
 }
 
 $_GET['page'] = 'plugins';
-list($tabs,$subtab,$pluginlist, $paths) = getPluginTabs();
+list($tabs, $subtab, $pluginlist, $paths, $member) = getPluginTabs();
 
 /* handle posts */
 if (isset($_GET['action'])) {
@@ -45,7 +45,7 @@ if (isset($_GET['action'])) {
 					if (!getOption($opt)) {
 						$option_interface = NULL;
 						require_once(getPlugin($extension.'.php'));
-						if (is_string($option_interface)) {
+						if ($option_interface && is_string($option_interface)) {
 							$if = new $option_interface;	//	prime the default options
 						}
 					}
@@ -229,13 +229,17 @@ foreach ($filelist as $extension) {
 			setOption($opt, $plugin_is_filter);	//	the script has changed its setting!
 		}
 	}
-	if ($optionlink = isolate('$option_interface', $pluginStream)) {
-		if (preg_match('/\s*=\s*new\s(.*)\(/i',$optionlink)) {
+	$optionlink = NULL;
+	if ($str = isolate('$option_interface', $pluginStream)) {
+		if (preg_match('/\s*=\s*new\s(.*)\(/i',$str)) {
 			$plugin_notice .= '<br /><br />'.gettext('<strong>Note:</strong> Instantiating the option interface within the plugin may cause performance issues. You should instead set <code>$option_interface</code> to the name of the class as a string.');
+		} else {
+			$option_interface = NULL;
+			eval($str);
+			if ($option_interface) {
+				$optionlink = FULLWEBPATH.'/'.ZENFOLDER.'/admin-options.php?page=options&amp;tab=plugin&amp;single='.$extension;
+			}
 		}
-		$optionlink = FULLWEBPATH.'/'.ZENFOLDER.'/admin-options.php?page=options&amp;tab=plugin&amp;single='.$extension;
-	} else {
-		$optionlink = NULL;
 	}
 	$selected_style = '';
 	if ($currentsetting > THEME_PLUGIN) {
@@ -292,13 +296,17 @@ foreach ($filelist as $extension) {
 				if (!empty($plugin_version)) {
 					echo ' v'.$plugin_version;
 				}
+				if ($subtab=='all') {
+					$tab = $member[$extension];
+					echo '<span class="displayrightsmall"><a href="'.$tabs[$tab].'"><em>'.$tab.'</em></a></span>';
+				}
 				?>
 			</label>
 		</td>
 		<td width="60">
 			<span class="icons"><a class="plugin_doc" href="<?php echo $plugin_URL; ?>"><img class="icon-position-top3" src="images/info.png" title="<?php printf(gettext('More information on %s'),$extension); ?>" alt=""></a></span>
 			<?php
-			if ($optionlink && !$plugin_disable) {
+			if ($optionlink) {
 				?>
 				<span class="icons"><a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"),$extension); ?>"><img class="icon-position-top3" src="images/options.png" alt="" /></a></span>
 				<?php
@@ -362,7 +370,7 @@ foreach ($filelist as $extension) {
 <p class="buttons">
 <button type="submit" value="<?php echo gettext('Apply') ?>" title="<?php echo gettext("Apply"); ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 <button type="reset" value="<?php echo gettext('Reset') ?>" title="<?php echo gettext("Reset"); ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
-</p><br />
+</p><br /><br />
 <input type="hidden" name="checkForPostTruncation" value="1" />
 </form>
 </div>

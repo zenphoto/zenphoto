@@ -677,12 +677,12 @@ function getContentShorten($text,$shorten,$shortenindicator=NULL,$readmore=NULL,
 	if(!$shorten && !is_NewsArticle()) {
 		$shorten  = ZP_SHORTEN_LENGTH;
 	}
-	$contentlenght = strlen($text);
+	$contentlenght = mb_strlen($text);
 	if (!empty($shorten) && ($contentlenght > $shorten)) {
 		if(stristr($text,'<!-- pagebreak -->')) {
 			$array = explode('<!-- pagebreak -->',$text);
 			$newtext = array_shift($array);
-			while (!empty($array) && (strlen($newtext)+strlen($array[0])) < $shorten) {	//	find the last break within shorten
+			while (!empty($array) && (mb_strlen($newtext)+mb_strlen($array[0])) < $shorten) {	//	find the last break within shorten
 				$newtext .= array_shift($array);
 			}
 			if ($shortenindicator && empty($array) || ($array[0] == '</p>' || trim($array[0]) =='')) {	//	page break was at end of article
@@ -2818,14 +2818,9 @@ function printPageMenu($option='list',$css_id=NULL,$css_class_topactive=NULL,$cs
  * @return bool
  */
 function checkForPage($titlelink) {
-	global $_zp_current_zenpage_page;
 	if(!empty($titlelink)) {
-		$page = new ZenpagePage($titlelink);
-		if ($page->loaded) {
-			add_context(ZP_ZENPAGE_PAGE);
-			$_zp_current_zenpage_page = $page;
-			return true;
-		}
+		zenpage_load_page($titlelink);
+		return in_context(ZP_ZENPAGE_PAGE);
 	}
 	return false;
 }
@@ -2998,7 +2993,7 @@ function printLatestZenpageComments($number, $shorten='123', $id='showlatestcomm
 function getZenpageRSSLink($option='News', $categorylink='', $lang=NULL) {
 	global $_zp_current_category;
 	if(empty($lang)) {
-		$lang = getOption('locale');
+		$lang = zpFunctions::getLanguageText(getOption('locale'));
 	}
 	if($option == 'Category') {
 		if(!is_null($categorylink)) {

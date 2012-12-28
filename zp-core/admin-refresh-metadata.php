@@ -67,7 +67,7 @@ if (isset($_REQUEST['return'])) {
 	$backurl = 'admin.php';
 }
 
-if (db_connect()) {
+if (db_connect($_zp_conf_vars)) {
 	if (isset($_REQUEST['album'])) {
 		if (isset($_POST['album'])) {
 			$folder = sanitize_path(urldecode($_POST['album']));
@@ -137,7 +137,7 @@ printTabs();
 <div class="tabbox">
 <h1><?php echo $title; ?></h1>
 <?php
-if (isset($_GET['refresh']) && db_connect()) {
+if (isset($_GET['refresh']) && db_connect($_zp_conf_vars)) {
 	if (empty($imageid)) {
 		?>
 		<h3><?php echo $finished; ?></h3>
@@ -154,7 +154,7 @@ if (isset($_GET['refresh']) && db_connect()) {
 		<?php
 	}
 
-} else if (db_connect()) {
+} else if (db_connect($_zp_conf_vars)) {
 	if ($type !== 'prune&amp;') {
 		if (!empty($id)) {
 			$sql = "UPDATE " . prefix('albums') . " SET `mtime`=0".($_zp_gallery->getAlbumUseImagedate()?", `date`=NULL":'')." WHERE `id`=$id";

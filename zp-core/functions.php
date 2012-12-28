@@ -109,6 +109,63 @@ function truncate_string($string, $length, $elipsis='...') {
 }
 
 /**
+ * Returns truncated html formatted content
+ *
+ * @param string $articlecontent the source string
+ * @param int $shorten new size
+ * @param string $shortenindicator
+ * @param bool $forceindicator set to true to include the indicator no matter what
+ * @return string
+ */
+function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindicator=false) {
+	global $_user_tags;
+	if (!$shorten) {
+		return $articlecontent;
+	}
+	if ($forceindicator || (mb_strlen($articlecontent) > $shorten)) {
+		$allowed_tags = getAllowedTags('allowed_tags');
+		$short = mb_substr($articlecontent, 0, $shorten);
+		$short2 = kses($short.'</p>', $allowed_tags);
+		if (($l2 = mb_strlen($short2)) < $shorten)	{
+			$c = 0;
+			$l1 = $shorten;
+			$delta = $shorten-$l2;
+			while ($l2 < $shorten && $c++ < 5) {
+				$open = mb_strrpos($short, '<');
+				if ($open > mb_strrpos($short, '>')) {
+					$l1 = mb_strpos($articlecontent,'>',$l1+1)+$delta;
+				} else {
+					$l1 = $l1 + $delta;
+				}
+				$short = mb_substr($articlecontent, 0, $l1);
+				preg_match_all('/(<p>)/', $short, $open);
+				preg_match_all('/(<\/p>)/', $short, $close);
+				if (count($open) > count($close)) $short .= '</p>';
+				$short2 = kses($short, $allowed_tags);
+				$l2 = mb_strlen($short2);
+			}
+			$shorten = $l1;
+		}
+		$short = truncate_string($articlecontent, $shorten, '');
+		// drop open tag strings
+		$open = mb_strrpos($short, '<');
+		if ($open > mb_strrpos($short, '>')) {
+			$short = mb_substr($short, 0, $open);
+		}
+		if (class_exists('tidy')) {
+			$tidy = new tidy();
+			$tidy->parseString($short.$shortenindicator,array('show-body-only'=>true),'utf8');
+			$tidy->cleanRepair();
+			$short = trim($tidy);
+		} else {
+			$short = trim(cleanHTML($short.$shortenindicator));
+		}
+		return $short;
+	}
+	return $articlecontent;
+}
+
+/**
  * Returns the oldest ancestor of an alubm;
  *
  * @param string $album an album object
@@ -664,15 +721,12 @@ function getManagedAlbumList() {
 		}
 	} else {
 		if ($_zp_current_admin_obj) {
-			$sql = 'SELECT '.prefix('albums').'.`folder`,'.prefix('admin_to_object').'.`edit` FROM '.prefix('albums').', '.
-			prefix('admin_to_object').' WHERE '.prefix('admin_to_object').'.adminid='.
-			$_zp_current_admin_obj->getID().' AND '.prefix('albums').'.id='.prefix('admin_to_object').'.objectid AND `type` LIKE "album%"';
-			$albums = query($sql);
-			if ($albums) {
-				while ($album = db_fetch_assoc($albums)) {
-					$_zp_admin_album_list[$album['folder']] = $album['edit'];
+			$_zp_admin_album_list = array();
+			$objects = $_zp_current_admin_obj->getObjects();
+			foreach ($objects as $object) {
+				if ($object['type'] == 'album') {
+					$_zp_admin_album_list[$object['data']] = $object['edit'];
 				}
-				db_free_result($albums);
 			}
 		}
 	}
@@ -688,7 +742,7 @@ function getManagedAlbumList() {
  * @return array
  */
 function populateManagedObjectsList($type,$id,$rights=false) {
-	if (empty($id)) {
+	if ($id<=0) {
 		return array();
 	}
 	$cv = array();
@@ -720,7 +774,7 @@ function populateManagedObjectsList($type,$id,$rights=false) {
 				if ($type) {
 					$cv[get_language_string($item['title'])] = $item['titlelink'];
 				} else {
-					$cv[] = array('data'=>$item['titlelink'],'type'=>'pages');
+					$cv[] = array('data'=>$item['titlelink'], 'name'=>$item['title'], 'type'=>'pages');
 				}
 			}
 			db_free_result($currentvalues);
@@ -736,7 +790,7 @@ function populateManagedObjectsList($type,$id,$rights=false) {
 				if ($type) {
 					$cv[get_language_string($item['title'])] = $item['titlelink'];
 				} else {
-					$cv[] = array('data'=>$item['titlelink'],'type'=>'news');
+					$cv[] = array('data'=>$item['titlelink'], 'name'=>$item['title'],'type'=>'news');
 				}
 			}
 			db_free_result($currentvalues);
@@ -1184,6 +1238,9 @@ function sortMultiArray($array, $index, $descending=false, $natsort=true, $case_
 				if (is_array($row) && array_key_exists($index, $row)) {
 					$temp[$key] .= $row[$index];
 				}
+			}
+			if ($temp[$key]==='') {
+				$temp[$key] = 'ZZZ';
 			}
 		}
 		if($natsort) {
@@ -2097,6 +2154,27 @@ class zpFunctions {
 	}
 
 	/**
+	 * Returns a canonical language name string for the location
+	 *
+	 * @param string $loc the location. If NULL use the current cookie
+	 * @param string separator will be used between the major and qualifier parts, e.g. en_US
+	 *
+	 * @return string
+	 */
+	static function getLanguageText($loc=NULL, $separator=NULL) {
+		global $_locale_Subdomains;
+		if (is_null($loc)) {
+			$text = @$_locale_Subdomains[zp_getCookie('dynamic_locale')];
+		} else {
+			$text = @$_locale_Subdomains[$loc];
+		}
+		if (!is_null($separator)) {
+			$text = str_replace('_', $separator, $text);
+		}
+		return $text;
+	}
+
+	/**
 	 * initializes the $_zp_exifvars array display state
 	 *
 	 */
@@ -2279,7 +2357,6 @@ class zpFunctions {
 	function checkCaptcha($s1, $s2) {
 		return true;
 	}
-
 	/**
 	 * Searches out i.php image links and replaces them with cache links if image is cached
 	 * @param string $text

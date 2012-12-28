@@ -377,7 +377,7 @@ function parseCanon($block,&$result,$seek, $globalOffset) {
 			//4 byte count of number of data units
 		$count = bin2hex(substr($block,$place,4));$place+=4;
 		if($intel==1) $count = intel2Moto($count);
-		$bytesofdata = $size*hexdec($count);
+		$bytesofdata = validSize($size*hexdec($count));
 		if($bytesofdata<=0) {
 			return; //if this value is 0 or less then we have read all the tags we can
 		}

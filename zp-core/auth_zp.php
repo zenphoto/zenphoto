@@ -81,24 +81,26 @@ if (!$_zp_loggedin) {	//	Clear the ssl cookie
 }
 // Handle a logout action.
 if (isset($_REQUEST['logout'])) {
-	Zenphoto_Authority::handleLogout();
+	$location = Zenphoto_Authority::handleLogout();
 	zp_clearCookie("zenphoto_ssl");
-	$redirect = '';
-	if (isset($_GET['p'])) { $redirect .= "&p=" . sanitize($_GET['p']); }
-	if (isset($_GET['searchfields'])) { $redirect .= "&searchfields=" . sanitize($_GET['searchfields']); }
-	if (isset($_GET['words'])) { $redirect .= "&words=" . sanitize($_GET['words']); }
-	if (isset($_GET['date'])) { $redirect .= "&date=" . sanitize($_GET['date']); }
-	if (isset($_GET['album'])) { $redirect .= "&album=" . sanitize($_GET['album']); }
-	if (isset($_GET['image'])) { $redirect .= "&image=" . sanitize($_GET['image']); }
-	if (isset($_GET['title'])) { $redirect .= "&title=" . sanitize($_GET['title']); }
-	if (isset($_GET['page'])) { $redirect .= "&page=" . sanitize($_GET['page']); }
-	if (!empty($redirect)) $redirect = '?'.substr($redirect, 1);
-	if ($_GET['logout']) {
-		$rd_protocol = 'https';
-	} else {
-		$rd_protocol = 'http';
+	if (empty($location)) {
+		$redirect = '';
+		if (isset($_GET['p'])) { $redirect .= "&p=" . sanitize($_GET['p']); }
+		if (isset($_GET['searchfields'])) { $redirect .= "&searchfields=" . sanitize($_GET['searchfields']); }
+		if (isset($_GET['words'])) { $redirect .= "&words=" . sanitize($_GET['words']); }
+		if (isset($_GET['date'])) { $redirect .= "&date=" . sanitize($_GET['date']); }
+		if (isset($_GET['album'])) { $redirect .= "&album=" . sanitize($_GET['album']); }
+		if (isset($_GET['image'])) { $redirect .= "&image=" . sanitize($_GET['image']); }
+		if (isset($_GET['title'])) { $redirect .= "&title=" . sanitize($_GET['title']); }
+		if (isset($_GET['page'])) { $redirect .= "&page=" . sanitize($_GET['page']); }
+		if (!empty($redirect)) $redirect = '?'.substr($redirect, 1);
+		if ($_GET['logout']) {
+			$rd_protocol = 'https';
+		} else {
+			$rd_protocol = 'http';
+		}
+		$location = $rd_protocol."://".$_SERVER['HTTP_HOST'].WEBPATH.'/index.php'.$redirect;
 	}
-	$location = $rd_protocol."://".$_SERVER['HTTP_HOST'].WEBPATH.'/index.php'.$redirect;
 	header("Location: " . $location);
 	exitZP();
 }
