@@ -64,7 +64,6 @@ function getAlbumStatistic($number=5, $option, $albumfolder='') {
 	if(!empty($albumlist)) {
 		$albumWhere = ' WHERE (`id`='.implode(' OR `id`=', $albumlist).')';
 	}
-
 	switch($option) {
 		case "popular":
 			$sortorder = "hitcounter";
