@@ -50,7 +50,7 @@ function getImageAlbumAlbumList($obj, &$albumlist) {
  * @param string $albumfolder The name of an album to get only the statistc for its subalbums
  * @return string
  */
-function getAlbumStatistic($number=5, $option, $albumfolder='', $threshold=0) {
+function getAlbumStatistic($number=5, $option, $albumfolder='') {
 	global $_zp_gallery;
 	$albumlist = array();
 	if ($albumfolder) {
@@ -63,10 +63,6 @@ function getAlbumStatistic($number=5, $option, $albumfolder='', $threshold=0) {
 	$albumWhere = '';
 	if(!empty($albumlist)) {
 		$albumWhere = ' WHERE (`id`='.implode(' OR `id`=', $albumlist).')';
-	}
-
-	if ($threshold > 0) {
-		$albumWhere .= ' AND total_votes >= '.$threshold;
 	}
 
 	switch($option) {
@@ -129,8 +125,8 @@ function getAlbumStatistic($number=5, $option, $albumfolder='', $threshold=0) {
  * @param integer $height the height/cropheight of the thumb if crop=true else not used.  (Default 85px)
  * @param bool $crop 'true' (default) if the thumb should be cropped, 'false' if not
  */
-function printAlbumStatistic($number, $option, $showtitle=false, $showdate=false, $showdesc=false, $desclength=40, $showstatistic='', $width=NULL, $height=NULL, $crop=NULL, $albumfolder='', $firstimglink=false, $threshold=0) {
-	$albums = getAlbumStatistic($number, $option, $albumfolder, $threshold);
+function printAlbumStatistic($number, $option, $showtitle=false, $showdate=false, $showdesc=false, $desclength=40, $showstatistic='', $width=NULL, $height=NULL, $crop=NULL, $albumfolder='', $firstimglink=false) {
+	$albums = getAlbumStatistic($number, $option, $albumfolder);
 	echo "\n<div id=\"".$option."_album\">\n";
 	echo "<ul>";
 	foreach($albums as $album) {
@@ -325,8 +321,8 @@ function printMostRatedAlbums($number=5, $showtitle=false, $showdate=false, $sho
  * @param bool $crop 'true' (default) if the thumb should be cropped, 'false' if not
  * @param bool $firstimglink 'false' (default) if the album thumb link should lead to the album page, 'true' if to the first image of theh album if the album itself has images
  */
-function printTopRatedAlbums($number=5, $showtitle=false, $showdate=false, $showdesc=false, $desclength=40, $showstatistic='', $width=NULL, $height=NULL, $crop=NULL, $albumfolder='', $firstimglink=false, $threshold=0) {
-	printAlbumStatistic($number, "toprated", $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $albumfolder, $firstimglink, $threshold);
+function printTopRatedAlbums($number=5, $showtitle=false, $showdate=false, $showdesc=false, $desclength=40, $showstatistic='', $width=NULL, $height=NULL, $crop=NULL, $albumfolder='', $firstimglink=false) {
+	printAlbumStatistic($number, "toprated", $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $albumfolder, $firstimglink);
 }
 
 /**
