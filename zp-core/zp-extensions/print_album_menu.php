@@ -262,7 +262,7 @@ function printAlbumMenuListAlbum($albums, $path, $folder, $option, $showcount, $
 			} else {
 				$display = $title;
 			}
-			if($firstimagelink && $topalbum->getNumImages() != 0) {
+			if($firstimagelink && $topalbum->getNumImages() != 0 && !$topalbum->isDynamic()) {
 				$imgurl = getFirstImageOfAlbum($topalbum);
 				$link = "<li><a ".$current."href='".$imgurl."' title='".html_encode($title)."'>".html_encode($display)."</a>".$count;
 			} else {
@@ -409,8 +409,7 @@ function checkSelectedAlbum($checkalbum, $option) {
  */
 function getFirstImageOfAlbum($albumobj) {
 	$image = $albumobj->getImage(0);
-	$firstimage = newImage($albumobj,$image->filename);
-	$link = $firstimage->getImageLink();
+	$link = $image->getImageLink();
 	return html_encode($link);
 }
 ?>
