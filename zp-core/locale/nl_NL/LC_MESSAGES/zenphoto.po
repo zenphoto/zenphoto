@@ -15,7 +15,7 @@ msgstr ""
 "X-Poedit-Basepath: /Applications/MAMP/htdocs\n"
 "X-Poedit-Bookmarks: -1,-1,-1,-1,-1,3092,-1,-1,-1,-1\n"
 "X-Generator: Poedit 1.5.3\n"
-"X-Poedit-SearchPath-0: ZpTranslation-Development\n"
+"X-Poedit-SearchPath-0: ZpTranslation-Master\n"
 
 #: ZpTranslation-Development/index.php:126
 #, php-format
