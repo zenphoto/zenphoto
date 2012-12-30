@@ -18,6 +18,7 @@
  *
  * @author Stephen Billard (sbillard) and Malte Müller (acrylian)
  * @package plugins
+ * @subpackage media
  */
 $plugin_description = gettext('Overlay icons over thumbnails to indicate image status.');
 $plugin_author = "Stephen Billard (sbillard)";
@@ -106,7 +107,7 @@ class flag_thumbnail {
 																								'desc' => gettext("Text flag for <em>protected</em> images.")),
 									gettext('Use text') => array('key' => 'flag_thumbnail_use_text', 'type' => OPTION_TYPE_CHECKBOX,
 																								'order' => 8,
-																								'desc' => gettext('If checked, the defined <em>text</em> will be used in place of the icon. (Use the class<code>textasnewflag</code> for styling "text" overlays.)')),
+																								'desc' => gettext('If checked, the defined <em>text</em> will be used in place of the icon. (Use the class <code>textasnewflag</code> for styling "text" overlays.)')),
 									'» '.gettext('Text').chr(0).'5' => array('key' => 'flag_thumbnail_geodata_text', 'type' => OPTION_TYPE_TEXTBOX,
 																								'order' => 5.5,
 																								'desc' => gettext("Text flag for <em>geodata tagged</em> images."))
@@ -140,7 +141,7 @@ class flag_thumbnail {
 					$html .= '<span class="textasnewflag" style="position: absolute;top: 10px;right: 6px;">'.$text."</span>\n";
 				} else {
 					$img = getPlugin('flag_thumbnail/'.getOption('flag_thumbnail_new_icon'),false,true);
-					$html .= '<img src="'.$img.'" alt="" style="position: absolute;top: 4px;right: 4px;"/>'."\n";
+					$html .= '<img src="'.$img.'" class="imageasflag" alt="" style="position: absolute;top: 4px;right: 4px;"/>'."\n";
 				}
 			}
 		}
@@ -156,7 +157,7 @@ class flag_thumbnail {
 						$html .= '<span class="textasnewflag" style="position: absolute;bottom: 10px;right: 6px;">'.$text."</span>\n";
 					} else {
 						$img = getPlugin('flag_thumbnail/'.getOption('flag_thumbnail_geodata_icon'),false,true);
-						$html .= '<img src="'.$img.'" alt="" style="position: absolute;bottom: 4px;right: 4px;"/>'."\n";
+						$html .= '<img src="'.$img.'" class="imageasflag" alt="" style="position: absolute;bottom: 4px;right: 4px;"/>'."\n";
 					}
 				}
 			}
@@ -172,7 +173,7 @@ class flag_thumbnail {
 					$html .= '<span class="textasnewflag" style="position: absolute;bottom: 10px;left: 4px;">'.$text."</span>\n";
 				} else {
 					$img =  getPlugin('flag_thumbnail/'.getOption('flag_thumbnail_locked_icon'),false,true);
-					$html .= '<img src="'.$img.'" alt="" style="position: absolute;bottom: 4px;left: 4px;"/>'."\n";
+					$html .= '<img src="'.$img.'" class="imageasflag" alt="" style="position: absolute;bottom: 4px;left: 4px;"/>'."\n";
 				}
 
 			}
@@ -182,7 +183,7 @@ class flag_thumbnail {
 					$html .= '<span class="textasnewflag" style="position: absolute;top: 10px;left: 4px;">'.$text."</span>\n";
 				} else {
 					$img = getPlugin('flag_thumbnail/'.getOption('flag_thumbnail_unpublished_icon'),false,true);
-					$html .= '<img src="'.$img.'" alt="" style="position: absolute;top: 4px;left: 4px;"/>'."\n";
+					$html .= '<img src="'.$img.'" class="imageasflag" alt="" style="position: absolute;top: 4px;left: 4px;"/>'."\n";
 				}
 			}
 		}
