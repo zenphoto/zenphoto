@@ -79,7 +79,7 @@ class user_groups {
 		$userobj->setGroup($newgroups);
 		$userobj->setRights($rights);
 		$userobj->setObjects($objects);
-		return $newgroups != $oldgroups || $templages;
+		return $newgroups != $oldgroups || $templates;
 	}
 
 	/**
