@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-31 12:49+0100\n"
-"PO-Revision-Date: 2012-12-31 12:51+0100\n"
+"POT-Creation-Date: 2012-12-31 12:53+0100\n"
+"PO-Revision-Date: 2012-12-31 12:53+0100\n"
 "Last-Translator: Malte Müller (acrylian) <wartgart@gmx.net>\n"
 "Language-Team: Malte Müller (acrylian)\n"
 "Language: de_DE\n"
@@ -10576,7 +10576,7 @@ msgid "Within"
 msgstr "Innerhalb"
 
 #: zenphoto-translate/zp-core/template-functions.php:4276
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:89
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:90
 msgid "New"
 msgstr "Neu"
 
@@ -15814,57 +15814,57 @@ msgstr ""
 msgid "Login using %s"
 msgstr "Anmeldung unter Verwendung von %s"
 
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:22
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:23
 msgid "Overlay icons over thumbnails to indicate image status."
 msgstr "Legt ein Icon über Thumbnails, um ihren Status anzuzeigen."
 
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:63
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:64
 msgid "Criteria"
 msgstr "Kriterium"
 
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:65
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:66
 #: zenphoto-translate/zp-core/zp-extensions/sitemap-extended.php:81
 #: zenphoto-translate/zp-core/zp-extensions/sitemap-extended.php:86
 #: zenphoto-translate/zp-core/zp-extensions/zenpage.php:168
 msgid "date"
 msgstr "Datum:"
 
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:65
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:66
 #: zenphoto-translate/zp-core/zp-extensions/sitemap-extended.php:82
 #: zenphoto-translate/zp-core/zp-extensions/sitemap-extended.php:87
 #: zenphoto-translate/zp-core/zp-extensions/zenpage.php:168
 msgid "mtime"
 msgstr "Filemtime"
 
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:66
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:67
 msgid "Select the basis for considering if an image is new."
 msgstr "Wählen Sie die Basis, wann ein Bild als neu gelten soll."
 
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:67
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:71
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:75
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:79
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:68
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:72
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:76
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:80
 msgid "Icon"
 msgstr "Icon"
 
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:70
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:71
 msgid "Select the icon that will show for \"new\" images."
 msgstr "Das Icon, das für  \"neue\" Bilder angezeigt wird."
 
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:74
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:75
 msgid "Select the icon that will show for \"un-published\" images."
 msgstr "Das Icon, das für  \"unveröffentlichte\" Bilder angezeigt wird."
 
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:78
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:79
 msgid "Select the icon that will show for \"Protected\" images."
 msgstr "Das Icon, das für  \"geschützte\" Bilder angezeigt wird."
 
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:82
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:83
 msgid "Select the icon that will show for images tagged with geodata."
 msgstr ""
 "Wählen Sie das Icon,  dass für Bilder mit Geodaten angezeigt werden soll."
 
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:83
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:84
 #: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:722
 #: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1076
 #: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1579
@@ -15872,16 +15872,16 @@ msgstr ""
 msgid "Un-published"
 msgstr "Unveröffentlicht"
 
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:85
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:86
 msgid "Thumbnails for images which are not <em>published</em> will be marked."
 msgstr ""
 "Thumbnails von Bildern, die nicht <em>sichtbar</em> sind, werden markiert."
 
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:86
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:87
 msgid "Protected"
 msgstr "Geschützt"
 
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:88
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:89
 msgid ""
 "Thumbnails for images which are password protected or in password protected "
 "albums will be marked."
@@ -15889,7 +15889,7 @@ msgstr ""
 "Thumbnails von Bildern, die passwortgeschützt sind oder sich in "
 "passwortgeschützten Alben befinden, werden markiert. "
 
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:91
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:92
 msgid ""
 "Thumbnails for images which have recently been added to the gallery will be "
 "marked."
@@ -15897,55 +15897,55 @@ msgstr ""
 "Thumbnails für Bilder, die kürzlich der Galerie hinzugefügt wurden, werden "
 "markiert."
 
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:92
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:93
 msgid "Geotagged"
 msgstr "Geodaten"
 
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:94
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:95
 msgid "Thumbnails for images which are geodata tagged will be marked."
 msgstr "Thumbnails von Bildern, die Geodaten enthalten, werden markiert."
 
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:95
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:96
 msgid "Aging"
 msgstr "Altern"
 
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:97
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:98
 msgid "The range in days until images are no longer flagged as new."
 msgstr "Der Zeitraum in Tagen bis Bilder nicht mehr als neu gelten."
 
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:98
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:101
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:104
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:110
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:99
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:102
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:105
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:111
 msgid "Text"
 msgstr "Text"
 
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:100
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:101
 msgid "Text flag for <em>new</em> images."
 msgstr "Text für <em>neue</em> Bilder."
 
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:103
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:104
 msgid "Text flag for <em>un-published</em> images."
 msgstr "Textmarkierung für <em>unveröffentlichte</em> Bilder."
 
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:106
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:107
 msgid "Text flag for <em>protected</em> images."
 msgstr "Text für <em>geschützte</em> Bilder."
 
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:107
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:108
 msgid "Use text"
 msgstr "Text verwenden"
 
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:109
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:110
 msgid ""
 "If checked, the defined <em>text</em> will be used in place of the icon. "
-"(Use the class<code>textasnewflag</code> for styling \"text\" overlays.)"
+"(Use the class <code>textasnewflag</code> for styling \"text\" overlays.)"
 msgstr ""
-"Wenn ausgewählt, wird der angegeben <em>Text</em> anstatt des Icons "
-"verwendet. (Verwenden Sie  die Klasss<code>textasnewflag</code> zum "
-"Gesetalten von \"text\"-Überlagerungen.)"
+"Wenn ausgewählt, wird der angegeben <em>Text</em> anstatt des Ions "
+"verwendet. (Verwenden Sie  die Klasse<code>textasnewflag</code> zum "
+"Gestalten von \"text\"-Überlagerungen.)"
 
-#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:112
+#: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:113
 msgid "Text flag for <em>geodata tagged</em> images."
 msgstr "Textmarkierung für Bilder mit <em>Geodaten</em>."
 
