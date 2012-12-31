@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-26 17:21+0100\n"
-"PO-Revision-Date: 2012-12-27 17:47+0100\n"
+"POT-Creation-Date: 2012-12-31 12:49+0100\n"
+"PO-Revision-Date: 2012-12-31 12:51+0100\n"
 "Last-Translator: Malte Müller (acrylian) <wartgart@gmx.net>\n"
 "Language-Team: Malte Müller (acrylian)\n"
 "Language: de_DE\n"
@@ -1444,7 +1444,7 @@ msgstr "Indexbild"
 #: zenphoto-translate/zp-core/admin-options.php:1913
 #: zenphoto-translate/zp-core/admin-options.php:1933
 #: zenphoto-translate/zp-core/admin-options.php:2761
-#: zenphoto-translate/zp-core/functions-basic.php:211
+#: zenphoto-translate/zp-core/functions-basic.php:207
 #: zenphoto-translate/zp-core/zp-extensions/flowplayer3.php:123
 #: zenphoto-translate/zp-core/zp-extensions/flowplayer3.php:128
 #: zenphoto-translate/zp-core/zp-extensions/flowplayer3.php:146
@@ -4251,7 +4251,7 @@ msgstr "E-Mail"
 
 #: zenphoto-translate/zp-core/admin-functions.php:4351
 msgid "media"
-msgstr "Medium"
+msgstr "Medien"
 
 #: zenphoto-translate/zp-core/admin-functions.php:4352
 msgid "misc"
@@ -7715,7 +7715,7 @@ msgid "Official build"
 msgstr "Offizielle Version"
 
 #: zenphoto-translate/zp-core/admin.php:202
-#: zenphoto-translate/zp-core/functions-basic.php:1056
+#: zenphoto-translate/zp-core/functions-basic.php:1052
 #: zenphoto-translate/zp-core/setup/index.php:313
 #: zenphoto-translate/zp-core/zp-extensions/security-logger.php:124
 msgid "clone"
@@ -9346,7 +9346,7 @@ msgstr "Spieldauer"
 msgid "XMP Rating"
 msgstr "XMP Bewertung"
 
-#: zenphoto-translate/zp-core/global-definitions.php:35
+#: zenphoto-translate/zp-core/global-definitions.php:39
 msgid "not connected"
 msgstr "nicht verbunden"
 
