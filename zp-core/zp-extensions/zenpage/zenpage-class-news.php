@@ -28,6 +28,9 @@ class ZenpageNews extends ZenpageItems {
 	function getCategories() {
 		if (is_null($this->categories)) {
 			$this->categories = query_full_array("SELECT * FROM ".prefix('news_categories')." as cat,".prefix('news2cat')." as newscat WHERE newscat.cat_id = cat.id AND newscat.news_id = ".$this->getID()." ORDER BY cat.titlelink",false,'title');
+			if (!$this->categories) {
+				$this->categories = array();
+			}
 		}
 		return $this->categories;
 	}
