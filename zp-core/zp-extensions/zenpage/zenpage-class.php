@@ -773,10 +773,10 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 		if ($visible) {
 			foreach ($structure as $key=>$cat) {
 				$catobj = new ZenpageCategory($cat['titlelink']);
-				if (!$catobj->isMyItem(LIST_RIGHTS)) {
-					unset($structure[$key]);
-				} else {
+				if ($catobj->getShow() || $catobj->isMyItem(LIST_RIGHTS)) {
 					$structure[$key]['show'] = 1;
+				} else {
+					unset($structure[$key]);
 				}
 			}
 		}
