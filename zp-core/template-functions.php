@@ -635,7 +635,7 @@ function getPageURL($page, $total=null) {
 					$pagination1 = '/';
 					$pagination2 = 'index.php';
 					if ($page > 1) {
-						$pagination1 .= '/page/'.$page;
+						$pagination1 .= 'page/'.$page;
 						$pagination2 .= '?page='.$page;
 					}
 				} else {
