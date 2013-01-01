@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.4 github\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-29 15:06+0100\n"
-"PO-Revision-Date: 2012-12-29 18:49+0100\n"
+"POT-Creation-Date: 2012-12-30 16:32+0100\n"
+"PO-Revision-Date: 2013-01-01 17:40+0100\n"
 "Last-Translator: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language-Team: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language: danish\n"
@@ -1239,7 +1239,7 @@ msgstr "Indexbillede"
 #: /home/jes/workspace/zenphoto/themes/effervescence_plus/themeoptions.php:134
 #: /home/jes/workspace/zenphoto/themes/zenpage/themeoptions.php:67
 #: /home/jes/workspace/zenphoto/zp-core/admin-edit.php:1236
-#: /home/jes/workspace/zenphoto/zp-core/functions-basic.php:211
+#: /home/jes/workspace/zenphoto/zp-core/functions-basic.php:207
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1900
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1913
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1933
@@ -4596,7 +4596,7 @@ msgstr "Nyt album"
 msgid "There are no albums for you to edit."
 msgstr "Der er ingen albums at redigere."
 
-#: /home/jes/workspace/zenphoto/zp-core/functions-basic.php:1056
+#: /home/jes/workspace/zenphoto/zp-core/functions-basic.php:1052
 #: /home/jes/workspace/zenphoto/zp-core/admin.php:202
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:313
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:124
@@ -5272,7 +5272,7 @@ msgstr "Titellink"
 msgid "Categories"
 msgstr "Kategorier"
 
-#: /home/jes/workspace/zenphoto/zp-core/global-definitions.php:35
+#: /home/jes/workspace/zenphoto/zp-core/global-definitions.php:39
 msgid "not connected"
 msgstr "ikke fobundet"
 
@@ -9896,90 +9896,92 @@ msgid ""
 "The image edit form submission has been truncated. Try displaying fewer "
 "images on a page."
 msgstr ""
+"Billededit formularen er blevet beskåret. Prøv at vise færre billeder på en "
+"side."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4494
 msgid "Hit counters have been reset."
-msgstr ""
+msgstr "Besøgstællere er blevet nulstillet."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4497
 msgid "Cache has been purged."
-msgstr ""
+msgstr "Cache er blevet tømt."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4503
 #, php-format
 msgid "<em>%s</em> already exists."
-msgstr ""
+msgstr "<em>%s</em> eksisterer allerede"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4518
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1780
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:911
 msgid "Selected items published"
-msgstr ""
+msgstr "Valgte elementer offentliggjort"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4521
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1783
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:915
 msgid "Selected items unpublished"
-msgstr ""
+msgstr "Valgte elementer ikke offentliggjort"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4524
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1786
 msgid "Comments enabled for selected items"
-msgstr ""
+msgstr "Kommentarer aktiveret for valgte emner"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4527
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1789
 msgid "Comments disabled for selected items"
-msgstr ""
+msgstr "Kommentarer deaktiveret for valgte emner"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4530
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1792
 msgid "Hitcounter for selected items"
-msgstr ""
+msgstr "Besøgstæller for valgte elementer"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4533
 msgid "Tags added for selected items"
-msgstr ""
+msgstr "Mærker tilføjet for valgte elementer"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4536
 msgid "Tags cleared for selected items"
-msgstr ""
+msgstr "Mærker ryddet for valgte elementer"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4539
 msgid "Tags added for images of selected items"
-msgstr ""
+msgstr "Mærker tilføjet til billeder af valgte elementer"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4542
 msgid "Tags cleared for images of selected items"
-msgstr ""
+msgstr "Mærker ryddet for billeder af valgte elementer"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4552
 msgid "Image already exists."
-msgstr ""
+msgstr "Billedet eksisterer allerede."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4555
 msgid "Album already exists."
-msgstr ""
+msgstr "Album eksisterer allerede."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4558
 msgid "Cannot move, copy, or rename to a subalbum of this album."
-msgstr ""
+msgstr "Kan ikke flytte, kopiere eller omdøbe."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4561
 msgid "Cannot move, copy, or rename to a dynamic album."
-msgstr ""
+msgstr "Kan ikke flytte, kopiere eller omdøbe."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4564
 msgid "Cannot rename an image to a different suffix"
-msgstr ""
+msgstr "Kan ikke omdøbe billede til andet suffix."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4567
 msgid "Album delete failed"
-msgstr ""
+msgstr "Slet album mislykket"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4570
 msgid "There was an error with a move, copy, or rename operation."
-msgstr ""
+msgstr "Fejl ved flytning, kopiering eller omdøbning ."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-dynamic-album.php:43
 msgid "You do not have edit rights on this album."
@@ -10031,15 +10033,15 @@ msgstr "Opret albummet"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:14
 msgid "Afrikaans"
-msgstr ""
+msgstr "Afrikaansk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:15
 msgid "Albanian"
-msgstr ""
+msgstr "Albansk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:16
 msgid "Arabic (United Arab Emirates)"
-msgstr ""
+msgstr "Arabisk (Forenede Arabiske Emirater)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:17
 msgid "Arabic (Bahrain)"
@@ -10516,374 +10518,376 @@ msgid ""
 "MySql Error: Zenphoto received the error %s when connecting to the database "
 "server."
 msgstr ""
+"MySql Fejl: Zenphoto modtog fejl %s ved forsøg på at forbinde til "
+"databaseserveren."
 
 #: /home/jes/workspace/zenphoto/zp-core/no_uploader.php:11
 msgid "No uploader plugin has been enabled."
-msgstr ""
+msgstr "Ingen plugin til filoverførsel er aktiveret"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:463
 msgid "1: Normal (0 deg)"
-msgstr ""
+msgstr "1: Normal (0 grad)"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:464
 msgid "2: Mirrored"
-msgstr ""
+msgstr "2: Spejlvendt"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:465
 msgid "3: Upside-down"
-msgstr ""
+msgstr "3: På hovedet"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:466
 msgid "4: Upside-down Mirrored"
-msgstr ""
+msgstr "4: På hovedet spejlvendt"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:467
 msgid "5: 90 deg CW Mirrored"
-msgstr ""
+msgstr "5: 90 gr spejlvendt med uret"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:468
 msgid "6: 90 deg CCW"
-msgstr ""
+msgstr "6: 90 grader mod uret"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:469
 msgid "7: 90 deg CCW Mirrored"
-msgstr ""
+msgstr "7: 90 grader spejlvendt mod uret"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:470
 msgid "8: 90 deg CW"
-msgstr ""
+msgstr "8: 90 grader meduret"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:471
 #, php-format
 msgid "%d: Unknown"
-msgstr ""
+msgstr "%d: Ukendt"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:478
 msgid "No Unit"
-msgstr ""
+msgstr "Ingen enhed"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:479
 msgid "Inch"
-msgstr ""
+msgstr "Inch"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:480
 msgid "Centimeter"
-msgstr ""
+msgstr "Centimeter"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:485
 msgid "Center of Pixel Array"
-msgstr ""
+msgstr "Centrum af pixelarray"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:486
 msgid "Datum Point"
-msgstr ""
+msgstr "Referencepunkt"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:492
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/canon.php:216
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/panasonic.php:135
 msgid "Program"
-msgstr ""
+msgstr "Program"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:493
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/panasonic.php:136
 msgid "Aperture Priority"
-msgstr ""
+msgstr "Blændeprioritet (tidsautomatik)"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:494
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:138
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/panasonic.php:137
 msgid "Shutter Priority"
-msgstr ""
+msgstr "Lukkerprioritet"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:495
 msgid "Program Creative"
-msgstr ""
+msgstr "Program kreativ"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:496
 msgid "Program Action"
-msgstr ""
+msgstr "Program handling"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:497
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:132
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/canon.php:142
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/panasonic.php:131
 msgid "Portrait"
-msgstr ""
+msgstr "Portræt"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:498
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:133
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/canon.php:136
 msgid "Landscape"
-msgstr ""
+msgstr "Landskab"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:504
 msgid "Average"
-msgstr ""
+msgstr "Gennemsnit"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:505
 msgid "Center Weighted Average"
-msgstr ""
+msgstr "Centervægtet gennemsnit"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:506
 msgid "Spot"
-msgstr ""
+msgstr "Spot"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:507
 msgid "Multi-Spot"
-msgstr ""
+msgstr "Multi-Spot"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:508
 msgid "Pattern"
-msgstr ""
+msgstr "Mønster"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:509
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/canon.php:192
 msgid "Partial"
-msgstr ""
+msgstr "Partiel"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:510
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:536
 msgid "Other"
-msgstr ""
+msgstr "Anden"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:516
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/nikon.php:209
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:87
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/panasonic.php:102
 msgid "Daylight"
-msgstr ""
+msgstr "Dagslys"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:517
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/canon.php:273
 msgid "Fluorescent"
-msgstr ""
+msgstr "Fluorescerende"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:518
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/canon.php:272
 msgid "Tungsten"
-msgstr ""
+msgstr "Tungsten"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:521
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:550
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/canon.php:274
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/panasonic.php:106
 msgid "Flash"
-msgstr ""
+msgstr "Flash"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:528
 msgid "Standard Light A"
-msgstr ""
+msgstr "Standardlys A"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:529
 msgid "Standard Light B"
-msgstr ""
+msgstr "Standardlys B"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:530
 msgid "Standard Light C"
-msgstr ""
+msgstr "Standardlys C"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:531
 msgid "D55"
-msgstr ""
+msgstr "DSS"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:532
 msgid "D65"
-msgstr ""
+msgstr "D65"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:533
 msgid "D75"
-msgstr ""
+msgstr "D75"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:534
 msgid "D50"
-msgstr ""
+msgstr "D50"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:535
 msgid "ISO Studio Tungsten"
-msgstr ""
+msgstr "ISO Studio Tungsten"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:549
 msgid "No Flash"
-msgstr ""
+msgstr "Ingen Flash"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:551
 msgid "Flash, strobe return light not detected"
-msgstr ""
+msgstr "Flash, strobe returlys ikke registreret"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:552
 msgid "Flash, strobe return light detected"
-msgstr ""
+msgstr "Flash, strobe returlys registreret"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:553
 msgid "Compulsory Flash"
-msgstr ""
+msgstr "Tvunget Flash"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:554
 msgid "Compulsory Flash, Return light not detected"
-msgstr ""
+msgstr "Tvunget Flash, returlys ikke registreret"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:555
 msgid "Compulsory Flash, Return light detected"
-msgstr ""
+msgstr "Tvunget Flash, returlys registreret"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:556
 msgid "Flash, Auto-Mode"
-msgstr ""
+msgstr "Flash, automode"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:557
 msgid "Flash, Auto-Mode, Return light not detected"
-msgstr ""
+msgstr "Flash, automode, returlys ikke registreret"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:558
 msgid "Flash, Auto-Mode, Return light detected"
-msgstr ""
+msgstr "Flash, automode, returlys registreret"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:559
 msgid "Red Eye"
-msgstr ""
+msgstr "Røde øjne"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:560
 msgid "Red Eye, Return light not detected"
-msgstr ""
+msgstr "Røde øjne, returlys ikke registreret"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:561
 msgid "Red Eye, Return light detected"
-msgstr ""
+msgstr "Røde øjne, returlys registreret"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:562
 msgid "Red Eye, Compulsory Flash"
-msgstr ""
+msgstr "Røde øjne, tvunget flash"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:563
 msgid "Red Eye, Compulsory Flash, Return light not detected"
-msgstr ""
+msgstr "Røde øjne, tvunget flash, returlys ikke registreret"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:564
 msgid "Red Eye, Compulsory Flash, Return light detected"
-msgstr ""
+msgstr "Røde øjne, tvubnget flash, returlys registreret."
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:565
 msgid "Red Eye, Auto-Mode"
-msgstr ""
+msgstr "Røde øjne, automode"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:566
 msgid "Red Eye, Auto-Mode, Return light not detected"
-msgstr ""
+msgstr "Røde øjne, automode, returlys ikke registreret"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:567
 msgid "Red Eye, Auto-Mode, Return light detected"
-msgstr ""
+msgstr "Røde øjne, automode, returlys registreret"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:572
 msgid "sRGB"
-msgstr ""
+msgstr "sRGB"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:573
 msgid "Uncalibrated"
-msgstr ""
+msgstr "Ukalibreret"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:577
 msgid "pixels"
-msgstr ""
+msgstr "pixel"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:581
 msgid "No Compression"
-msgstr ""
+msgstr "Ingen kompression"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:582
 msgid "Jpeg Compression"
-msgstr ""
+msgstr "Jpeg kompression"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:588
 msgid "Not defined"
-msgstr ""
+msgstr "Ikke defineret"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:589
 msgid "One Chip Color Area Sensor"
-msgstr ""
+msgstr "1-chip farveområdesensor"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:590
 msgid "Two Chip Color Area Sensor"
-msgstr ""
+msgstr "2-chip farveområdesensor"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:591
 msgid "Three Chip Color Area Sensor"
-msgstr ""
+msgstr "3-chip farveområdesensor"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:592
 msgid "Color Sequential Area Sensor"
-msgstr ""
+msgstr "Farvesekvens område sensor"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:593
 msgid "Trilinear Sensor"
-msgstr ""
+msgstr "Trilineær sensor"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:594
 msgid "Color Sequential Linear Sensor"
-msgstr ""
+msgstr "Farvesekvens lineær sensor"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:600
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/nikon.php:176
 msgid "Monochrome"
-msgstr ""
+msgstr "Monokrom"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:601
 msgid "RGB"
-msgstr ""
+msgstr "RGB"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:602
 msgid "YCbCr"
-msgstr ""
+msgstr "YCbCr"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:638
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:122
 msgid "version"
-msgstr ""
+msgstr "version"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:643
 msgid "Digital Still Camera"
-msgstr ""
+msgstr "Digitalt Still-kamera"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:648
 msgid "Directly Photographed"
-msgstr ""
+msgstr "Direkte fotograferet"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:677
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:681
 msgid "sec"
-msgstr ""
+msgstr "sek"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:684
 msgid "Bulb"
-msgstr ""
+msgstr "Pære"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:820
 msgid "The file could not be found."
-msgstr ""
+msgstr "Filen kunne ikke findes."
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:999
 msgid "Could not Find SubIFD"
-msgstr ""
+msgstr "Kunne ikke finde SubIFD"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:1015
 msgid "Illegal size for SubIFD"
-msgstr ""
+msgstr "Ulovlig størrelse for SubIFD"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:1036
 msgid "Could not Find IFD1"
-msgstr ""
+msgstr "Kunne ikke finde IFD1"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:1052
 msgid "Illegal size for IFD1"
-msgstr ""
+msgstr "Ulovlig størrelse for IFD1"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:1076
 msgid "Could not Find InteroperabilityIFD"
-msgstr ""
+msgstr "Kunne ikke finde InteroperabilitetsIFD"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:1092
 msgid "Illegal size for InteroperabilityIFD"
-msgstr ""
+msgstr "Ulovlig størrelse for InteroperabilitetsIFD"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/sanyo.php:63
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/sanyo.php:71
@@ -10897,7 +10901,7 @@ msgstr ""
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/panasonic.php:130
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/panasonic.php:203
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/sanyo.php:67
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/canon.php:159
@@ -10907,55 +10911,55 @@ msgstr ""
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/panasonic.php:181
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/panasonic.php:187
 msgid "High"
-msgstr ""
+msgstr "Høj"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/nikon.php:45
 msgid "Converter"
-msgstr ""
+msgstr "Converter"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/nikon.php:162
 msgid "VGA Basic"
-msgstr ""
+msgstr "VGA Basic"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/nikon.php:163
 msgid "VGA Normal"
-msgstr ""
+msgstr "VGA Normal"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/nikon.php:164
 msgid "VGA Fine"
-msgstr ""
+msgstr "VGA Fin"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/nikon.php:165
 msgid "SXGA Basic"
-msgstr ""
+msgstr "SXGA Basic"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/nikon.php:166
 msgid "SXGA Normal"
-msgstr ""
+msgstr "SXGA Normal"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/nikon.php:167
 msgid "SXGA Fine"
-msgstr ""
+msgstr "SXGA Fin"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/nikon.php:175
 msgid "Color"
-msgstr ""
+msgstr "Farve"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/nikon.php:185
 msgid "Bright+"
-msgstr ""
+msgstr "Lysstyrke+"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/nikon.php:186
 msgid "Bright-"
-msgstr ""
+msgstr "Lysstyrke-"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/nikon.php:187
 msgid "Contrast+"
-msgstr ""
+msgstr "Kontrast+"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/nikon.php:188
 msgid "Contrast-"
-msgstr ""
+msgstr "Kontrast-"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/nikon.php:207
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:86
@@ -10969,91 +10973,91 @@ msgstr ""
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/panasonic.php:101
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/panasonic.php:112
 msgid "Auto"
-msgstr ""
+msgstr "Auto"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/nikon.php:208
 msgid "Preset"
-msgstr ""
+msgstr "Forudindstilling"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/nikon.php:210
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:92
 msgid "Incandescence"
-msgstr ""
+msgstr "Incandescence"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/nikon.php:211
 msgid "Fluorescence"
-msgstr ""
+msgstr "Fluorescens"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/nikon.php:212
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:88
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/canon.php:271
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/panasonic.php:103
 msgid "Cloudy"
-msgstr ""
+msgstr "Skyet"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/nikon.php:213
 msgid "SpeedLight"
-msgstr ""
+msgstr "SpeedLight"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/nikon.php:222
 msgid "Fisheye"
-msgstr ""
+msgstr "Fiskeøje"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/nikon.php:236
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/canon.php:209
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/canon.php:287
 msgid "Center"
-msgstr ""
+msgstr "Center"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/nikon.php:256
 msgid "AF non D"
-msgstr ""
+msgstr "AF non D"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/nikon.php:269
 msgid "Did Not Fire"
-msgstr ""
+msgstr "Ikke udløst"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/nikon.php:271
 msgid "External"
-msgstr ""
+msgstr "Ekstern"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/nikon.php:272
 msgid "On Camera"
-msgstr ""
+msgstr "On Camera"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:78
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:79
 msgid "Soft"
-msgstr ""
+msgstr "Soft"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:81
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:82
 msgid "Hard"
-msgstr ""
+msgstr "Hard"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:89
 msgid "DaylightColor-fluorescence"
-msgstr ""
+msgstr "DaylightColor-fluorescens"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:90
 msgid "DaywhiteColor-fluorescence"
-msgstr ""
+msgstr "DaywhiteColor-fluorescens"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:91
 msgid "White-fluorescence"
-msgstr ""
+msgstr "White-fluorescens"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:97
 msgid "Chroma Saturation Normal(STD)"
-msgstr ""
+msgstr "Farvemætning Normal (STD)"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:98
 msgid "Chroma Saturation High"
-msgstr ""
+msgstr "farvemætning høj"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:99
 msgid "Chroma Saturation Low(ORG)"
-msgstr ""
+msgstr "Farvemætning lav (ORG)"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:100
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:106
@@ -11067,19 +11071,19 @@ msgstr ""
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:155
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:160
 msgid "Unknown: "
-msgstr ""
+msgstr "Ukendt:"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:103
 msgid "Contrast Normal(STD)"
-msgstr ""
+msgstr "Kontrast normal (STD)"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:104
 msgid "Contrast High(HARD)"
-msgstr ""
+msgstr "Kontrast høj (HARD)"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:105
 msgid "Contrast Low(ORG)"
-msgstr ""
+msgstr "Kontrast lav (ORG)"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:110
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:117
