@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto 1.4.4 github\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-12-30 16:32+0100\n"
-"PO-Revision-Date: 2013-01-01 17:40+0100\n"
+"PO-Revision-Date: 2013-01-01 20:44+0100\n"
 "Last-Translator: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language-Team: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language: danish\n"
@@ -10045,472 +10045,472 @@ msgstr "Arabisk (Forenede Arabiske Emirater)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:17
 msgid "Arabic (Bahrain)"
-msgstr ""
+msgstr "Arabisk (Bahrain)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:18
 msgid "Arabic (Algeria)"
-msgstr ""
+msgstr "Arabisk (Algeriet)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:19
 msgid "Arabic (Egypt)"
-msgstr ""
+msgstr "Arabisk (Ægypten)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:20
 msgid "Arabic (Iran)"
-msgstr ""
+msgstr "Arabisk (Iran)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:21
 msgid "Arabic (Iraq)"
-msgstr ""
+msgstr "Arabisk (Irak)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:22
 msgid "Arabic (Jordan)"
-msgstr ""
+msgstr "Arabisk (Jordan)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:23
 msgid "Arabic (Kuwait)"
-msgstr ""
+msgstr "Arabisk (Kuwait)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:24
 msgid "Arabic (Lebanon)"
-msgstr ""
+msgstr "Arabisk (Libanon)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:25
 msgid "Arabic (Libya)"
-msgstr ""
+msgstr "Arabisk (Libyen)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:26
 msgid "Arabic (Morocco)"
-msgstr ""
+msgstr "Arabisk (Marokko)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:27
 msgid "Arabic (Oman)"
-msgstr ""
+msgstr "Arabisk (Oman)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:28
 msgid "Arabic (Qatar)"
-msgstr ""
+msgstr "Arabisk (Qatar)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:29
 msgid "Arabic (Saudi Arabia)"
-msgstr ""
+msgstr "Arabisk (Saudi Arabien)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:30
 msgid "Arabic (Sudan)"
-msgstr ""
+msgstr "Arabisk (Sudan)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:31
 msgid "Arabic (Syria)"
-msgstr ""
+msgstr "Arabisk (Syrien"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:32
 msgid "Arabic (Tunisia)"
-msgstr ""
+msgstr "Arabisk (Tunis)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:33
 msgid "Arabic (Yemen)"
-msgstr ""
+msgstr "Arabisk (Yemen)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:34
 msgid "Basque (Basque)"
-msgstr ""
+msgstr "Baskisk (BAskiesk)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:35
 msgid "Belarusian"
-msgstr ""
+msgstr "Hviderussisk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:36
 msgid "Bengali"
-msgstr ""
+msgstr "Bengali"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:37
 msgid "Bulgarian"
-msgstr ""
+msgstr "Bulgarsk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:38
 msgid "Catalan"
-msgstr ""
+msgstr "Katalansk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:39
 msgid "Chinese (People's Republic of China)"
-msgstr ""
+msgstr "Kinesisk (Kinesiske Folkerepublik)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:40
 msgid "Chinese (Hong Kong)"
-msgstr ""
+msgstr "Kinesisk (Hongkong)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:41
 msgid "Chinese (Taiwan)"
-msgstr ""
+msgstr "Kinesisk (Taiwan)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:42
 msgid "Croatian"
-msgstr ""
+msgstr "Kroatisk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:43
 msgid "Czech"
-msgstr ""
+msgstr "Tjekkisk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:44
 msgid "Cambodian"
-msgstr ""
+msgstr "Cambodjansk (khmer)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:45
 msgid "Danish"
-msgstr ""
+msgstr "Dansk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:46
 msgid "Dutch (Belgium)"
-msgstr ""
+msgstr "Flamsk (Belgium)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:47
 msgid "Dutch (The Netherlands)"
-msgstr ""
+msgstr "Hollandsk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:48
 msgid "English (Australia)"
-msgstr ""
+msgstr "Engelsk (Australien)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:49
 msgid "English (Canada)"
-msgstr ""
+msgstr "Engelsk (Canada)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:50
 msgid "English (United Kingdom)"
-msgstr ""
+msgstr "Engelsk (UK)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:51
 msgid "English (India)"
-msgstr ""
+msgstr "Engelsk (Indien)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:52
 msgid "English (New Zealand)"
-msgstr ""
+msgstr "Engelsk (New zealand)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:53
 msgid "English (Philippines)"
-msgstr ""
+msgstr "Engelsk (Fillippinerne)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:54
 msgid "English (United States)"
-msgstr ""
+msgstr "Engelsk (USA)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:55
 msgid "English (South Africa)"
-msgstr ""
+msgstr "Engelsk (Sydafrika)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:56
 msgid "English (Zimbabwe)"
-msgstr ""
+msgstr "Engelsk (Zimbabwe)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:57
 msgid "Esperanto"
-msgstr ""
+msgstr "Esperanto"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:58
 msgid "Estonian"
-msgstr ""
+msgstr "Estisk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:59
 msgid "Finnish"
-msgstr ""
+msgstr "Finsk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:60
 msgid "Faroese"
-msgstr ""
+msgstr "Færøsk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:61
 msgid "French (Belgium)"
-msgstr ""
+msgstr "Fransk (Belgien)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:62
 msgid "French (Canada)"
-msgstr ""
+msgstr "Fransk (Canada)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:63
 msgid "French (Switzerland)"
-msgstr ""
+msgstr "Fransk (Schweiz)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:64
 msgid "French (France)"
-msgstr ""
+msgstr "Fransk (Frankrig)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:65
 msgid "French (Luxembourg)"
-msgstr ""
+msgstr "Fransk (Luxembourg)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:66
 msgid "Galician"
-msgstr ""
+msgstr "Galisisk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:67
 msgid "Gujarati"
-msgstr ""
+msgstr "Gujarati"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:68
 msgid "Greek"
-msgstr ""
+msgstr "Græsk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:69
 msgid "German (Austria)"
-msgstr ""
+msgstr "Tysk (Østrig)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:70
 msgid "German (Belgium)"
-msgstr ""
+msgstr "Tysk (Belgien)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:71
 msgid "German (Switzerland)"
-msgstr ""
+msgstr "Tysk (Schweiz)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:72
 msgid "German (Germany)"
-msgstr ""
+msgstr "Tysk (Tyskland)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:73
 msgid "German (Luxembourg)"
-msgstr ""
+msgstr "Tysk (Luxembourg)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:74
 msgid "Hebrew"
-msgstr ""
+msgstr "Hebræisk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:75
 msgid "Hindi"
-msgstr ""
+msgstr "Hindi"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:76
 msgid "Hungarian"
-msgstr ""
+msgstr "Ungarsk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:77
 msgid "Indonesian"
-msgstr ""
+msgstr "Indonesisk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:78
 msgid "Icelandic"
-msgstr ""
+msgstr "Islandsk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:79
 msgid "Italian (Switzerland)"
-msgstr ""
+msgstr "Italiensk (Schweiz)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:80
 msgid "Italian (Italy)"
-msgstr ""
+msgstr "Italiensk (Italien)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:81
 msgid "Japanese"
-msgstr ""
+msgstr "Japansk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:83
 msgid "Lithuanian"
-msgstr ""
+msgstr "Lithauisk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:84
 msgid "Latvian"
-msgstr ""
+msgstr "Lettisk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:85
 msgid "Macedonian"
-msgstr ""
+msgstr "Makedonsk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:86
 msgid "Mongolian"
-msgstr ""
+msgstr "Mongolsk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:87
 msgid "Malay"
-msgstr ""
+msgstr "Malajisk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:88
 msgid "Malagasy"
-msgstr ""
+msgstr "Malagasy"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:89
 msgid "Norwegian (Bokmål)"
-msgstr ""
+msgstr "Norsk (Bokmål)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:90
 msgid "Norwegian"
-msgstr ""
+msgstr "Norsk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:91
 msgid "Nias"
-msgstr ""
+msgstr "Nias"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:92
 msgid "Persian"
-msgstr ""
+msgstr "Persisk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:93
 msgid "Polish"
-msgstr ""
+msgstr "Polsk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:94
 msgid "Portuguese (Brazil)"
-msgstr ""
+msgstr "Portugisisk (Brazilien)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:95
 msgid "Portuguese (Portugal)"
-msgstr ""
+msgstr "Portugisisk (Portugal)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:96
 msgid "Romanian"
-msgstr ""
+msgstr "Rumænsk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:97
 msgid "Russian (Russia)"
-msgstr ""
+msgstr "Russisk (Rusland)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:98
 msgid "Russian (Ukraine)"
-msgstr ""
+msgstr "Russisk (Ukraine)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:99
 msgid "Sinhala"
-msgstr ""
+msgstr "Sinhala"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:100
 msgid "Slovak"
-msgstr ""
+msgstr "Slovakisk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:101
 msgid "Slovenian"
-msgstr ""
+msgstr "Slovensk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:102
 msgid "Spanish (Argentina)"
-msgstr ""
+msgstr "Spansk (Argentina)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:103
 msgid "Spanish (Bolivia)"
-msgstr ""
+msgstr "Spansk (Bolivia)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:104
 msgid "Spanish (Chile)"
-msgstr ""
+msgstr "Spansk (Chile)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:105
 msgid "Spanish (Columbia)"
-msgstr ""
+msgstr "Spansk (Columbia)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:106
 msgid "Spanish (Costa Rica)"
-msgstr ""
+msgstr "Spansk (Costa Rica)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:107
 msgid "Spanish (Dominican Republic)"
-msgstr ""
+msgstr "(Dominikanske republik)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:108
 msgid "Spanish (Ecuador)"
-msgstr ""
+msgstr "Spansk (Ecuador)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:109
 msgid "Spanish (Spain)"
-msgstr ""
+msgstr "Spansk (Spanien)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:110
 msgid "Spanish (Guatemala)"
-msgstr ""
+msgstr "Spansk (Guatemala)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:111
 msgid "Spanish (Honduras)"
-msgstr ""
+msgstr "Spansk (Honduras)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:112
 msgid "Spanish (Mexico)"
-msgstr ""
+msgstr "Spansk (Mexico)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:113
 msgid "Spanish (Nicaragua)"
-msgstr ""
+msgstr "Spansk (Nicaragua)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:114
 msgid "Spanish (Panama)"
-msgstr ""
+msgstr "Spansk (Panama)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:115
 msgid "Spanish (Peru)"
-msgstr ""
+msgstr "Spansk (Peru)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:116
 msgid "Spanish (Puerto Rico)"
-msgstr ""
+msgstr "Spansk (Puerto Rico)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:117
 msgid "Spanish (Paraguay)"
-msgstr ""
+msgstr "Spansk (Paraguay)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:118
 msgid "Spanish (El Salvador)"
-msgstr ""
+msgstr "Spansk (El Slavador)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:119
 msgid "Spanish (United States)"
-msgstr ""
+msgstr "Spansk (USA)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:120
 msgid "Spanish (Uruguay)"
-msgstr ""
+msgstr "Spansk (Uruguay)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:121
 msgid "Spanish (Venezuela)"
-msgstr ""
+msgstr "Spansk (Venezuela)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:122
 msgid "Spanish (Latin America)"
-msgstr ""
+msgstr "Spansk (Latinamerika)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:123
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:124
 msgid "Serbian"
-msgstr ""
+msgstr "Serbisk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:125
 msgid "Swedish (Finland)"
-msgstr ""
+msgstr "Svensk (Finland)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:126
 msgid "Swedish (Sweden)"
-msgstr ""
+msgstr "Svensk (Sverige)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:127
 msgid "Tamil"
-msgstr ""
+msgstr "Tamil "
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:128
 msgid "Telugu"
-msgstr ""
+msgstr "Telugu"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:129
 msgid "Thai"
-msgstr ""
+msgstr "Thai"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:130
 msgid "Turkish"
-msgstr ""
+msgstr "Tyrkisk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:131
 msgid "Ukrainian"
-msgstr ""
+msgstr "Ukrainsk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:132
 msgid "Uzbek"
-msgstr ""
+msgstr "Uzbekisk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:133
 msgid "Urdu (Pakistan)"
-msgstr ""
+msgstr "Urdu (Pakistan)"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:134
 msgid "Vietnamese"
-msgstr ""
+msgstr "Vietnamesisk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-i18n.php:135
 msgid "Welsh"
-msgstr ""
+msgstr "Walisisk"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-db-PDO_MySQL.php:37
 #, php-format
@@ -11092,7 +11092,7 @@ msgstr "Kontrast lav (ORG)"
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/canon.php:97
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/panasonic.php:125
 msgid "On"
-msgstr ""
+msgstr "Til"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:111
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:116
@@ -11106,82 +11106,82 @@ msgstr ""
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/panasonic.php:173
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/panasonic.php:191
 msgid "Off"
-msgstr ""
+msgstr "Fra"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:112
 msgid "Red-Eye Reduction"
-msgstr ""
+msgstr "Rød-øje Reduktion"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:134
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/panasonic.php:133
 msgid "Sports"
-msgstr ""
+msgstr "Sport"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:135
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/canon.php:139
 msgid "Night"
-msgstr ""
+msgstr "Nat"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:136
 msgid "Program AE"
-msgstr ""
+msgstr "Program AE"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:137
 msgid "Aperture Priority AE"
-msgstr ""
+msgstr "Blændeprioritet AE"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:139
 msgid "Manual Exposure"
-msgstr ""
+msgstr "Manuel optagelse"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:148
 msgid "No Warning"
-msgstr ""
+msgstr "Uden varsel"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:149
 msgid "Warning"
-msgstr ""
+msgstr "Advarsel"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:153
 msgid "Auto Focus Good"
-msgstr ""
+msgstr "Autofocus godt"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:154
 msgid "Out of Focus"
-msgstr ""
+msgstr "Ude af focus"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:158
 msgid "AE Good"
-msgstr ""
+msgstr "AE godt"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/fujifilm.php:159
 msgid "Over Exposure"
-msgstr ""
+msgstr "Overeksponering"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/canon.php:77
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/panasonic.php:138
 msgid "Macro"
-msgstr ""
+msgstr "Makro"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/canon.php:84
 msgid "/10s"
-msgstr ""
+msgstr "/10s"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/canon.php:89
 msgid "Fine"
-msgstr ""
+msgstr "Fin"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/canon.php:90
 msgid "Superfine"
-msgstr ""
+msgstr "Superfin"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/canon.php:98
 msgid "Red Eye Reduction"
-msgstr ""
+msgstr "Rød-øje reduktion"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/canon.php:99
 msgid "Slow Synchro"
-msgstr ""
+msgstr "Langsom syncro"
 
 #: /home/jes/workspace/zenphoto/zp-core/exif/makers/canon.php:100
 msgid "Auto + Red Eye Reduction"
