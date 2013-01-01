@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-31 12:53+0100\n"
-"PO-Revision-Date: 2012-12-31 12:53+0100\n"
+"POT-Creation-Date: 2013-01-01 20:03+0100\n"
+"PO-Revision-Date: 2013-01-01 20:03+0100\n"
 "Last-Translator: Malte Müller (acrylian) <wartgart@gmx.net>\n"
 "Language-Team: Malte Müller (acrylian)\n"
 "Language: de_DE\n"
@@ -23769,6 +23769,11 @@ msgstr "Sortierung Titel absteigend"
 msgid "Order by title ascending"
 msgstr "Sortierung Titel aufsteigend"
 
+#: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:872
+#, php-format
+msgid "%u per page"
+msgstr "%u pro Seite"
+
 #: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:876
 msgid "All"
 msgstr "Alle"
@@ -24382,9 +24387,6 @@ msgstr "<code>zenpageAlbumImage()</code> konnte das Album %1$s nicht finden"
 
 #~ msgid "First Page"
 #~ msgstr "Erste Seite"
-
-#~ msgid "15 per page"
-#~ msgstr "15 pro Seite"
 
 #~ msgid "30 per page"
 #~ msgstr "30 pro Seite"
