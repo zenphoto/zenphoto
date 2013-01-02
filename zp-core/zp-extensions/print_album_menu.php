@@ -251,7 +251,9 @@ function printAlbumMenuListAlbum($albums, $path, $folder, $option, $showcount, $
 				}
 			}
 
-			if((in_context(ZP_ALBUM) && !in_context(ZP_SEARCH_LINKED) && (@$_zp_current_album->getID() == $topalbum->getID() || $topalbum->name == $currenturalbumname)) || (in_context(ZP_SEARCH_LINKED)) && $_zp_current_search->getDynamicAlbum()->name == $topalbum->name) {
+			if((in_context(ZP_ALBUM) && !in_context(ZP_SEARCH_LINKED) && ($_zp_current_album->getID() == $topalbum->getID() ||
+							$topalbum->name == $currenturalbumname)) ||
+							(in_context(ZP_SEARCH_LINKED)) && ($a = $_zp_current_search->getDynamicAlbum()) && $a->name == $topalbum->name) {
 				$current = $css_class_t.' ';
 			} else {
 				$current = "";

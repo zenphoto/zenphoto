@@ -366,7 +366,7 @@ function getLayout($path) {
 						$getlayout = getSelectedLayout($_zp_current_image,'multiple_layouts_images');
 						$album = $_zp_current_album;
 					}
-					if (!$getlayout) {
+					if ($album && !$getlayout) {
 						$getlayout = checkLayoutUseForImages($album);
 					}
 				}
