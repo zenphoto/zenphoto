@@ -263,6 +263,7 @@ themes/zpmobile/album.php
 themes/zpmobile/archive.php
 themes/zpmobile/comment_form
 themes/zpmobile/comment_form/comment_form.php
+themes/zpmobile/favorites.php
 themes/zpmobile/functions.php
 themes/zpmobile/gallery.php
 themes/zpmobile/image.php
@@ -1923,4 +1924,4 @@ zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zpCaptcha
 zp-core/zp-extensions/zpCaptcha.php
 zp-core/zp-extensions/zpCaptcha/c.php
-1925
+1926
