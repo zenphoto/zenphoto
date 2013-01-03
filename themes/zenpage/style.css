@@ -1065,6 +1065,9 @@ hr {
 	width: 6.6em;
 	padding: 2px;
 }
+#captcha {
+	vertical-align:middle;
+}
 
 
 /* Pretty Buttons

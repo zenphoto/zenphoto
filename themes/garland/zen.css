@@ -462,6 +462,9 @@ clear: both;
 	width: 250px;
 	padding: 2px;
 }
+#captcha {
+	vertical-align:middle;
+}
 textarea {
 	padding: 4px;
 	color: #5A5A4B;

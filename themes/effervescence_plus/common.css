@@ -312,3 +312,6 @@ label:hover {
 #registration_form fieldset {
 	padding:10px;
 }
+#captcha {
+	vertical-align:middle;
+}

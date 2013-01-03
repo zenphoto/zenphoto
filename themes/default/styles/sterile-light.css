@@ -396,6 +396,9 @@ form {padding-bottom:10px;}
 	width: 6.5em;
 	padding: 2px;
 }
+#captcha {
+	vertical-align:middle;
+}
 .inputbox {
 	width: 250px;
 	padding: 2px;
