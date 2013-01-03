@@ -4179,7 +4179,7 @@ function dateDiff($date1, $date2) {
 	switch ($i) {
 		case 7:
 		case 6:
-				$date = ':'.$matches2[6];
+			$date = ':'.$matches2[6];
 		case 5:
 		case 4:
 			$date = ' '.$matches2[4].':'.$matches2[5].$date;
