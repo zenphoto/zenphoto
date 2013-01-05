@@ -14,15 +14,10 @@ Zenphoto features support for images, video and audio formats, and the Zenpage C
 
 This makes Zenphoto the ideal CMS for personal websites of illustrators, artists, designers, photographers, film makers and musicians.
 
-Status
+Support
 ------
 
-We're currently in the process of migrating from SVN to Git.
+There is a support forum for Zenphoto discussions  at www.zenphoto.org/support.
 
-Our old Subversion repository is here: http://www.zenphoto.org/svn - development has ceased there as of Oct 19 2012.
+Zenphoto interim builds are available on github  via this direct link (https://github.com/zenphoto/zenphoto/zipball/master).  All problem reports should be filed as GitHub issues.
 
-Older builds may be found here: http://www.zenphoto.org/files/
-
-As of Oct 19th 2012, all Zenphoto v1.4.4 builds will be available on the Downloads page of this github repository [or via this direct link](https://github.com/zenphoto/zenphoto/zipball/master). Nightly development builds will be discontinued in favor of zip packages of the repository available from the "Code" view, or a simple `git clone` to check out the latest code. All problem reports for this release should be filed as GitHub issues!
-
-Support for Zenphoto v1.4.3 will continue with the Trunc nightly builds until replaced by the 1.4.4 release.

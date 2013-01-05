@@ -393,15 +393,23 @@ function debugLogBacktrace($message, $omit=0) {
 /**
  * Records a Var to the debug log
  *
- * @param string $message message to insert in log
+ * @param string $message message to insert in log [optional]
  * @param mixed $var the variable to record
  */
-function debugLogVar($message, $var) {
+function debugLogVar($message) {
+	$args = func_get_args();
+	if (count($args)==1) {
+		$var = $message;
+		$message = '';
+	} else {
+		$message .= ' ';
+		$var = $args[1];
+	}
 	ob_start();
 	var_dump($var);
 	$str = ob_get_contents();
 	ob_end_clean();
-	debugLog(trim($message).' '.html_decode(strip_tags($str)));
+	debugLog(trim($message).html_decode(strip_tags($str)));
 }
 
 ?>

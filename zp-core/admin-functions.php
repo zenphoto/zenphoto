@@ -4164,10 +4164,10 @@ function dateDiff($date1, $date2) {
 	preg_match('/(.*)-(.*)-(.*) (.*):(.*):(.*)/', $date1, $matches1);
 	preg_match('/(.*)-(.*)-(.*) (.*):(.*):(.*)/', $date2, $matches2);
 	if (empty($matches1)) {
-		$matches1 = array(0,0,0,0,0,0);
+		$matches1 = array(0,0,0,0,0,0,0);
 	}
 	if (empty($matches2)) {
-		$matches2 = array(0,0,0,0,0,0);
+		$matches2 = array(0,0,0,0,0,0,0);
 	}
 
 	$date = '';
@@ -4176,16 +4176,16 @@ function dateDiff($date1, $date2) {
 			break;
 		}
 	}
-		switch ($i) {
-			case 7:
-			case 6:
-				$date = ':'.$matches2[6];
-			case 5:
-			case 4:
-				$date = ' '.$matches2[4].':'.$matches2[5].$date;
-			default:
-				$date = $matches2[1].'-'.$matches2[2].'-'.$matches2[3].$date;
-		}
+	switch ($i) {
+		case 7:
+		case 6:
+			$date = ':'.$matches2[6];
+		case 5:
+		case 4:
+			$date = ' '.$matches2[4].':'.$matches2[5].$date;
+		default:
+			$date = $matches2[1].'-'.$matches2[2].'-'.$matches2[3].$date;
+	}
 	return rtrim($date, ':-');
 }
 

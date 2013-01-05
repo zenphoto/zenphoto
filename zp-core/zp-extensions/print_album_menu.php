@@ -251,7 +251,9 @@ function printAlbumMenuListAlbum($albums, $path, $folder, $option, $showcount, $
 				}
 			}
 
-			if((in_context(ZP_ALBUM) && !in_context(ZP_SEARCH_LINKED) && (@$_zp_current_album->getID() == $topalbum->getID() || $topalbum->name == $currenturalbumname)) || (in_context(ZP_SEARCH_LINKED)) && $_zp_current_search->getDynamicAlbum()->name == $topalbum->name) {
+			if((in_context(ZP_ALBUM) && !in_context(ZP_SEARCH_LINKED) && (@$_zp_current_album->getID() == $topalbum->getID() ||
+							$topalbum->name == $currenturalbumname)) ||
+							(in_context(ZP_SEARCH_LINKED)) && ($a = $_zp_current_search->getDynamicAlbum()) && $a->name == $topalbum->name) {
 				$current = $css_class_t.' ';
 			} else {
 				$current = "";
@@ -262,7 +264,7 @@ function printAlbumMenuListAlbum($albums, $path, $folder, $option, $showcount, $
 			} else {
 				$display = $title;
 			}
-			if($firstimagelink && $topalbum->getNumImages() != 0) {
+			if($firstimagelink && $topalbum->getNumImages() != 0 && !$topalbum->isDynamic()) {
 				$imgurl = getFirstImageOfAlbum($topalbum);
 				$link = "<li><a ".$current."href='".$imgurl."' title='".html_encode($title)."'>".html_encode($display)."</a>".$count;
 			} else {
@@ -308,7 +310,7 @@ function printAlbumMenuJump($option="count", $indexname="Gallery Index",$firstim
 	<script type="text/javaScript">
 		// <!-- <![CDATA[
 		function gotoLink(form) {
-		 	var OptionIndex=form.ListBoxURL.selectedIndex;
+			var OptionIndex=form.ListBoxURL.selectedIndex;
 			parent.location = form.ListBoxURL.options[OptionIndex].value;
 		}
 		// ]]> -->
@@ -409,8 +411,7 @@ function checkSelectedAlbum($checkalbum, $option) {
  */
 function getFirstImageOfAlbum($albumobj) {
 	$image = $albumobj->getImage(0);
-	$firstimage = newImage($albumobj,$image->filename);
-	$link = $firstimage->getImageLink();
+	$link = $image->getImageLink();
 	return html_encode($link);
 }
 ?>

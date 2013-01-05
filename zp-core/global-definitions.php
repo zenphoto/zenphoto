@@ -1,6 +1,10 @@
 <?php
 define('ZP_LAST_MODIFIED',gmdate('D, d M Y H:i:s').' GMT');
 require_once(dirname(__FILE__).'/version.php'); // Include the version info.
+if(!function_exists("gettext")) {
+	require_once(dirname(__FILE__).'/lib-gettext/gettext.inc');
+}
+
 define('ZENFOLDER', 'zp-core');
 define('PLUGIN_FOLDER', 'zp-extensions');
 define('USER_PLUGIN_FOLDER', 'plugins');

@@ -151,7 +151,7 @@ class zpCaptcha {
 		$code=sha1($cypher);
 		query('DELETE FROM '.prefix('captcha').' WHERE `ptime`<'.(time()-3600), false);  // expired tickets
 		query("INSERT INTO " . prefix('captcha') . " (ptime, hash) VALUES (" . db_quote(time()) . "," . db_quote($code) . ")", false);
-		$html = '<img src="'.WEBPATH .'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zpCaptcha/c.php?i='.$cypher.'" alt="Code" align="middle" />';
+		$html = '<img id="captcha" src="'.WEBPATH .'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zpCaptcha/c.php?i='.$cypher.'" alt="Code" />';
 		$input = '<input type="text" id="code" name="code" class="captchainputbox" />';
 		$hidden = '<input type="hidden" name="code_h" value="'.$code.'" />';
 		return array('input'=>$input, 'html'=>$html, 'hidden'=>$hidden);
