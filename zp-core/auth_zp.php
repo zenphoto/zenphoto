@@ -84,7 +84,7 @@ if (isset($_REQUEST['logout'])) {
 	$location = Zenphoto_Authority::handleLogout();
 	zp_clearCookie("zenphoto_ssl");
 	if (empty($location)) {
-		$redirect = '';
+		$redirect = '?fromlogout';
 		if (isset($_GET['p'])) { $redirect .= "&p=" . sanitize($_GET['p']); }
 		if (isset($_GET['searchfields'])) { $redirect .= "&searchfields=" . sanitize($_GET['searchfields']); }
 		if (isset($_GET['words'])) { $redirect .= "&words=" . sanitize($_GET['words']); }

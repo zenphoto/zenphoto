@@ -40,12 +40,6 @@ if (isset($_GET['p'])) {
 	$_index_theme = setupTheme();
 }
 //$_zp_script_timer['theme setup'] = microtime();
-$custom = SERVERPATH.'/'.THEMEFOLDER.'/'.internalToFilesystem($_index_theme).'/functions.php';
-if (file_exists($custom)) {
-	require_once($custom);
-} else {
-	$custom = false;
-}
 
 if (DEBUG_PLUGINS) {
 	debugLog('Loading the "theme" plugins.');
@@ -69,7 +63,20 @@ foreach (getEnabledPlugins() as $extension=>$plugin) {
 	$_zp_loaded_plugins[] = $extension;
 }
 
+if (!$zp_request && isset($_GET['fromlogout'])) {	//	redirect not visible to user
+	zp_load_gallery();
+	$_index_theme = prepareIndexPage();
+	$zp_request = true;
+}
+
 $_zp_script = zp_apply_filter('load_theme_script', $_zp_script, $zp_request);
+$custom = SERVERPATH.'/'.THEMEFOLDER.'/'.internalToFilesystem($_index_theme).'/functions.php';
+if (file_exists($custom)) {
+	require_once($custom);
+} else {
+	$custom = false;
+}
+
 //$_zp_script_timer['theme scripts'] = microtime();
 if ($zp_request && $_zp_script && file_exists(SERVERPATH . "/" . internalToFilesystem($_zp_script))) {
 	if (checkAccess($hint, $show)) { // ok to view

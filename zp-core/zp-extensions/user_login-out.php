@@ -70,16 +70,14 @@ if (in_context(ZP_INDEX)) {
 	if (isset($_GET['userlog'])) { // process the logout.
 		if ($_GET['userlog'] == 0) {
 			if (!$location = Zenphoto_Authority::handleLogout()) {
-				if (empty($__redirect)) {
-					$params = '';
-				} else {
-					$params = '?';
+				$params = '';
+				if (!empty($__redirect)) {
 					foreach ($__redirect as $param=>$value) {
-						$params .= $param.'='.$value.'&';
+						$params .= '&'.$param.'='.$value;
 					}
 					$params = substr($params,0,-1);
 				}
-				$location = FULLWEBPATH . '/index.php'.$params;
+				$location = FULLWEBPATH . '/index.php?fromlogout'.$params;
 			}
 			header("Location: " . $location);
 			exitZP();
