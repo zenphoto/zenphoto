@@ -15544,7 +15544,7 @@ msgstr "Voor de verwerking van <em>favorites</em>."
 
 #: ZpTranslation-Master/zp-core/zp-extensions/favoritesHandler.php:38
 msgid "My favorites"
-msgstr "Mijn favotieten"
+msgstr "Mijn favorieten"
 
 #: ZpTranslation-Master/zp-core/zp-extensions/favoritesHandler.php:41
 msgid "The albums and images selected as favorites."
@@ -15577,7 +15577,7 @@ msgstr "Themapagina waarnaar de favorieten-link verwijst."
 
 #: ZpTranslation-Master/zp-core/zp-extensions/favoritesHandler.php:71
 msgid "Add button"
-msgstr "Voeg toe knop"
+msgstr "Voeg knop toe"
 
 #: ZpTranslation-Master/zp-core/zp-extensions/favoritesHandler.php:74
 msgid "Default text for the <em>add to favorites</em> button."
@@ -15837,7 +15837,6 @@ msgid "Use text"
 msgstr "Gebruik tekst"
 
 #: ZpTranslation-Master/zp-core/zp-extensions/flag_thumbnail.php:110
-#, fuzzy
 msgid ""
 "If checked, the defined <em>text</em> will be used in place of the icon. "
 "(Use the class <code>textasnewflag</code> for styling \"text\" overlays.)"
