@@ -346,7 +346,14 @@ if (file_exists(SERVERPATH.'/'.ZENFOLDER.'/Zenphoto.package')) {
 <script type="text/javascript">
 	// <!-- <![CDATA[
 	<?php
+	$wait = 0;
 	foreach (array_keys($_zp_gallery->getThemes()) as $theme) {
+		if ($wait) {
+			?>
+			Thread.sleep(1000L);
+			<?php
+		}
+		$Wait++;
 		?>
 		$.ajax({
 			type: 'POST',
@@ -611,6 +618,12 @@ $plugins = getPluginFiles('*.php');
 	// <!-- <![CDATA[
 	<?php
 	foreach ($plugins as $extension=>$path) {
+		if ($wait) {
+			?>
+			Thread.sleep(1000L);
+			<?php
+		}
+		$Wait++;
 		?>
 		$.ajax({
 			type: 'POST',
