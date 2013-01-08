@@ -3251,7 +3251,7 @@ function getLatestComments($number,$type="all",$id=NULL) {
 			}
 			break;
 		case 'image':
-			$item = getItemByID('albums', $id);
+			$item = getItemByID('images', $id);
 			$comments = array_slice($item->getComments(),0,$number);
 			// add the other stuff people want
 			foreach ($comments as $key=>$comment) {
