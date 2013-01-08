@@ -246,7 +246,7 @@ class jPlayer {
 			$count = $count;
 		}
 		$autoplay = '';
-		if(getOption('jplayer_autoplay') && !multiplayer) {
+		if(getOption('jplayer_autoplay') && !$multiplayer) {
 			$autoplay = ',jPlayer("play");';
 		}
 		$imgextensions = array("jpg","jpeg","gif","png");
