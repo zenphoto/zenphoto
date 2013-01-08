@@ -1251,7 +1251,7 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 		$filelist .= filesystemToInternal(str_replace($base,'',$extra).'<br />');
 	}
 	if (count($installed_files) > 0) {
-		if (!defined("RELEASE")) {
+		if (defined('TEST_RELEASE') && TEST_RELEASE) {
 			$msg1 = gettext("Zenphoto core files [This is a <em>debug</em> build. Some files are missing or seem wrong]");
 		} else {
 			$msg1 = gettext("Zenphoto core files [Some files are missing or seem wrong]");
@@ -1259,7 +1259,7 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 		$msg2 = gettext('Perhaps there was a problem with the upload. You should check the following files: ').'<br /><code>'.substr($filelist,0,-6).'</code>';
 		$mark = -1;
 	} else {
-		if (!defined("RELEASE")) {
+		if (defined('TEST_RELEASE') && TEST_RELEASE) {
 			$mark = -1;
 			$msg1 = gettext("Zenphoto core files [This is a <em>debug</em> build]");
 		} else {
@@ -1276,7 +1276,7 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 		foreach ($_zp_resident_files as $extra) {
 			if (strpos($extra, 'php.ini')!==false) {
 				$phi_ini_count ++;
-			} else if (defined("RELEASE") || (strpos($extra, '/.svn')===false)) {
+			} else if (defined('TEST_RELEASE') && TEST_RELEASE || (strpos($extra, '/.svn')===false)) {
 				$systemlist[] = $extra;
 				$filelist[] = $_zp_UTF8->convert(str_replace($base,'',$extra), FILESYSTEM_CHARSET, 'UTF-8');
 			} else {
@@ -2374,7 +2374,7 @@ if (file_exists(CONFIGFILE)) {
 		}
 
 		if ($createTables) {
-			if (isset($_GET['delete_files']) || ($autorun && defined("RELEASE") && zpFunctions::hasPrimaryScripts())) {
+			if (isset($_GET['delete_files']) || ($autorun && defined('TEST_RELEASE') && TEST_RELEASE && zpFunctions::hasPrimaryScripts())) {
 				require_once(dirname(dirname(__FILE__)).'/'.PLUGIN_FOLDER.'/security-logger.php');
 				$curdir = getcwd();
 				chdir(dirname(__FILE__));
