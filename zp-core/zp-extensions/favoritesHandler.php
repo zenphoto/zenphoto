@@ -147,9 +147,14 @@ class favorites extends AlbumBase {
 			$result = query($sql = 'SELECT * FROM '.prefix('plugin_storage').' WHERE `type`="favorites" AND `aux`='.db_quote($this->name));
 			if ($result) {
 				while ($row = db_fetch_assoc($result)) {
+					$id = $row['id'];
 					$row = unserialize($row['data']);
 					if ($row['type']=='albums') {
-						$subalbums[] = $row['id'];
+						if (file_exists(getAlbumFolder().'/'.$row['id'])) {
+							$subalbums[] = $row['id'];
+						} else {
+							query("DELETE FROM ".prefix('plugin_storage')." WHERE `id`=$id");
+						}
 					}
 				}
 				if (is_null($sorttype)) {
@@ -207,9 +212,14 @@ class favorites extends AlbumBase {
 			$result = query($sql = 'SELECT * FROM '.prefix('plugin_storage').' WHERE `type`="favorites" AND `aux`='.db_quote($this->name));
 			if ($result) {
 				while ($row = db_fetch_assoc($result)) {
+					$id = $row['id'];
 					$row = unserialize($row['data']);
 					if ($row['type']=='images') {
-						$images[] = array('folder'=>dirname($row['id']),'filename'=>basename($row['id']));
+						if (file_exists(getAlbumFolder().'/'.$row['id'])) {
+							$images[] = array('folder'=>dirname($row['id']),'filename'=>basename($row['id']));
+						} else {
+							query("DELETE FROM ".prefix('plugin_storage')." WHERE `id`=$id");
+						}
 					}
 				}
 				db_free_result($result);

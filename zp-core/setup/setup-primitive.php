@@ -31,7 +31,6 @@ define('ADMIN_RIGHTS',1);
 define('PROTOCOL', 'http');
 
 error_reporting(E_ALL | E_STRICT);
-@ini_set('display_errors', 1);
 set_error_handler("zpErrorHandler");
 set_exception_handler("zpErrorHandler");
 

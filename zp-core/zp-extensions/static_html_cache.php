@@ -330,7 +330,7 @@ class static_html_cache {
 
 	function static_html_cache_options() {
 		setOptionDefault('static_cache_expire', 86400);
-		setOptionDefault('static_cache_excludedpages', 'search.php/,contact.php/,register.php/');
+		setOptionDefault('static_cache_excludedpages', 'search.php/,contact.php/,register.php/,favorites.php/');
 	}
 
 	function getOptionsSupported() {

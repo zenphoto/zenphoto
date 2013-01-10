@@ -71,12 +71,12 @@ a:hover, a:focus { text-decoration: underline; color: #94c2e5; }
 /* Text Styles
 ------------------------------ */
 body {
-	font: normal 82%/200% "Helvetica Neue", "Lucida Grande", Helvetica, Arial, sans-serif;
+	font: normal 82%/200% "Helvetica Neue", "Lucida Grande", Arial, Helvetica, sans-serif;
 	color: #888;
 	line-height: 1.4em;
 }
 h2 {
-	font: 115% "Helvetica Neue", "Lucida Grande", Helvetica, Arial, sans-serif;
+	font: 115% "Helvetica Neue", "Lucida Grande", Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	color: #AAA;
 }
@@ -92,7 +92,7 @@ h2 a:hover {
 	text-decoration: none;
 }
 h3 {
-	font: 110% "Helvetica Neue", "Lucida Grande", Helvetica, Arial, sans-serif;
+	font: 110% "Helvetica Neue", "Lucida Grande", Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	color: #748da0;
 	margin-top: 30px;
@@ -385,6 +385,9 @@ span.tags_title {
 	width: 6.5em;
 	padding: 2px;
 }
+#captcha {
+	vertical-align:middle;
+}
 .inputbox {
 	width: 250px;
 	padding: 2px;
@@ -393,7 +396,7 @@ textarea {
 	padding: 4px;
 	width: 100%;
 	color: #888;
-	font: 100%/200% "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font: 100%/200% "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 .checkbox {
 	cursor: pointer;
@@ -542,13 +545,13 @@ ul.archive .month {
 ------------------------------ */
 
 #zen-part {
- font-family: Arial, Helvetice, sans-serif;
+ font-family: Arial, Helvetica, sans-serif;
  font-size: 1.8em;
  font-weight: 100;
 }
 
 #photo-part {
- font-family: Arial, Helvetice, sans-serif;
+ font-family: Arial, Helvetica, sans-serif;
  font-size: 0.9em;
  font-weight: bold;
 }

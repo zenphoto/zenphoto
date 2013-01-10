@@ -28,6 +28,9 @@ class ZenpageNews extends ZenpageItems {
 	function getCategories() {
 		if (is_null($this->categories)) {
 			$this->categories = query_full_array("SELECT * FROM ".prefix('news_categories')." as cat,".prefix('news2cat')." as newscat WHERE newscat.cat_id = cat.id AND newscat.news_id = ".$this->getID()." ORDER BY cat.titlelink",false,'title');
+			if (!$this->categories) {
+				$this->categories = array();
+			}
 		}
 		return $this->categories;
 	}
@@ -202,7 +205,7 @@ class ZenpageNews extends ZenpageItems {
 			if (!empty($mycategories)) {
 				foreach ($this->getCategories() as $category) {
 					$cat = new ZenpageCategory($category['titlelink']);
-					if ($cat->isMyItem($action)) {
+					if ($cat->isMyItem(ZENPAGE_NEWS_RIGHTS)) {	// only override item visibility if we "own" the category
 						return true;
 					}
 				}
@@ -303,7 +306,7 @@ class ZenpageNews extends ZenpageItems {
 		$article = $_zp_zenpage->getArticle($index-1);
 		return $article;
 	}
-	
+
 	/**
 	 * Returns the next article.
 	 *

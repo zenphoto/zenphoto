@@ -25,7 +25,7 @@
  * @package plugins
  * @subpackage seo
  */
-$plugin_is_filter = 5|CLASS_PLUGIN;
+$plugin_is_filter = 10|CLASS_PLUGIN;
 $plugin_description = gettext("Allows viewers of your site to select the language translation of their choice.");
 $plugin_author = "Stephen Billard (sbillard)";
 
@@ -86,7 +86,7 @@ function printLanguageSelector($flags=NULL) {
 								break;
 							case 1:
 								?>
-								<a href="<?php echo str_replace(WEBPATH, WEBPATH.'/'.substr($lang,0,2), html_encode(getRequestURI())); ?>" >
+								<a href="<?php echo str_replace(WEBPATH, seo_locale::localePath(false, $lang), html_encode(getRequestURI())); ?>" >
 								<?php
 								break;
 							default:

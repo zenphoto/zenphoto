@@ -462,10 +462,13 @@ clear: both;
 	width: 250px;
 	padding: 2px;
 }
+#captcha {
+	vertical-align:middle;
+}
 textarea {
 	padding: 4px;
 	color: #5A5A4B;
-	font: 100%/200% "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font: 100%/200% Arial, "Helvetica Neue", Helvetica, sans-serif;
 	height:100px;
 }
 .checkbox {
@@ -611,7 +614,7 @@ top: 6px;
 	top:17px;
 }
 #admin_data h3 {
-	font: 105% "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font: 105% Arial, "Helvetica Neue", Helvetica, sans-serif;
 	font-weight: bold;
 	color: #494949;
 	border-bottom: 1px dashed #E6E6DF;
@@ -1076,13 +1079,13 @@ button.positive,.buttons a.positive {
 ------------------------------ */
 
 #zen-part {
- font-family: Arial, Helvetice, sans-serif;
+ font-family: Arial, Helvetica, sans-serif;
  font-size: 1.8em;
  font-weight: 100;
 }
 
 #photo-part {
- font-family: Arial, Helvetice, sans-serif;
+ font-family: Arial, Helvetica, sans-serif;
  font-size: 0.9em;
  font-weight: bold;
 }

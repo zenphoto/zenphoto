@@ -966,7 +966,7 @@ protected function getRSSCombinewsAlbums() {
 				} else {
 					$title = $category.": ".$title;
 				}
-				$commentpath = PROTOCOL.'://'.$this->host.$link."#".$item['id'];
+				$commentpath = PROTOCOL.'://'.$this->host.html_encode($link)."#".$item['id'];
 				break;
 			case 'albums':
 				$obj = new Album(NULL,$item['folder']);
@@ -1020,7 +1020,7 @@ protected function getRSSCombinewsAlbums() {
 			<channel>
 				<title><?php echo $this->channel_title; ?></title>
 				<link><?php echo PROTOCOL.'://'.$this->host.WEBPATH; ?></link>
-				<atom:link href="<?php echo PROTOCOL; ?>://<?php echo $this->host; ?><?php echo html_encode(getRequestURI());; ?>" rel="self"	type="application/rss+xml" />
+				<atom:link href="<?php echo PROTOCOL; ?>://<?php echo $this->host; ?><?php echo html_encode(getRequestURI()); ?>" rel="self"	type="application/rss+xml" />
 				<description><?php echo strip_tags($_zp_gallery->getDesc($this->locale)); ?></description>
 				<language><?php echo $this->locale_xml; ?></language>
 				<pubDate><?php echo date("r", time()); ?></pubDate>
@@ -1045,7 +1045,7 @@ protected function getRSSCombinewsAlbums() {
 						?>
 						<item>
 							<title><![CDATA[<?php echo $item['title']; ?>]]></title>
-							<link><?php echo $item['link']; ?></link>
+							<link><?php echo html_encode($item['link']); ?></link>
 							<description><![CDATA[<?php echo $item['desc']; ?>]]></description>
 							<?php
 						if(!empty($item['enclosure'])) {
@@ -1063,10 +1063,10 @@ protected function getRSSCombinewsAlbums() {
 								echo $item['media_thumbnail']; //prints xml as well
 							}
 							?>
-							<guid><?php echo $item['link']; ?></guid>
+							<guid><?php echo html_encode($item['link']); ?></guid>
 							<pubDate><?php echo $item['pubdate'];  ?></pubDate>
 						</item>
-				<?php 
+				<?php
 						} // foreach
 					}	?>
 				</channel>

@@ -15,7 +15,7 @@ html { /* Force vertical scrollbar to prevent page shift "jog" */
 }
 
 body {
-	font: normal 82% "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font: normal 82% Arial, "Helvetica Neue", Helvetica, sans-serif;
 	color: #4B4B4B;
 	text-align: center;
 	background-color: #f1f1f1;
@@ -293,21 +293,20 @@ ul.nav ul.subdropdown li a {
 	-webkit-border-radius: 0px;
 	border-radius: 0px;
 	margin: 0;
-	padding: 6px 12px;
+	padding: 5px;
 	top: 0;
+	width: 100%;
 	min-width: 100px;
-	height: 21px;
-	_height: 24px;
+	height: auto;
 	background: #F8F8F8;
+	font-size: 14px;
 }
 
 ul.nav ul.subdropdown li a:hover {
  border: 1px solid #CBCBCB;
  margin: 0;
- padding: 6px 12px;
+ padding: 5px;
  top: 0;
- height: 21px;
- _height: 24px;
 }
 
 ul.nav ul ul {
@@ -326,10 +325,12 @@ ul.nav li:hover > ul {
 	_padding: 0 0 0 30px;
 	margin: 0 0 0 30px;
 	height: 30px;
+
 }
 
 .subnav li {
 	display: inline;
+
 }
 
 .subnav li a {
@@ -1542,6 +1543,10 @@ width: 90% !important;
 	color: #fff;
 }
 
+.grouphighlight {
+	color: brown;
+}
+
 /* CSS for wide checklists */
 .fullchecklist {
 	border: 1px solid #ccc;
@@ -2248,6 +2253,11 @@ div.tabs>div h2 {
 	display: inline !important;
 	float:right;
 	white-space:nowrap;
+}
+.displayrightsmall {
+	float:right;
+	white-space:nowrap;
+	font-size:85%;
 }
 
 .nomargin {

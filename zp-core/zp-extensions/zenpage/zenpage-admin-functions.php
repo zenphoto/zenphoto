@@ -869,7 +869,7 @@ function printArticlesPerPageDropdown() {
 	sort($list);
 	foreach ($list as $count) {
 		?>
-		<option <?php if ($articles_page == $count) echo 'selected="selected"'; ?> value="admin-news-articles.php<?php echo getNewsAdminOptionPath(array_merge(array('articles_page'=>$count,'subpage'=>(int) ($subpage*$articles_page/$count)),$option)); ?>"><?php printf('%u per page', $count); ?></option>
+		<option <?php if ($articles_page == $count) echo 'selected="selected"'; ?> value="admin-news-articles.php<?php echo getNewsAdminOptionPath(array_merge(array('articles_page'=>$count,'subpage'=>(int) ($subpage*$articles_page/$count)),$option)); ?>"><?php printf(gettext('%u per page'), $count); ?></option>
 		<?php
 	}
 	?>

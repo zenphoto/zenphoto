@@ -721,15 +721,12 @@ function getManagedAlbumList() {
 		}
 	} else {
 		if ($_zp_current_admin_obj) {
-			$sql = 'SELECT '.prefix('albums').'.`folder`,'.prefix('admin_to_object').'.`edit` FROM '.prefix('albums').', '.
-			prefix('admin_to_object').' WHERE '.prefix('admin_to_object').'.adminid='.
-			$_zp_current_admin_obj->getID().' AND '.prefix('albums').'.id='.prefix('admin_to_object').'.objectid AND `type` LIKE "album%"';
-			$albums = query($sql);
-			if ($albums) {
-				while ($album = db_fetch_assoc($albums)) {
-					$_zp_admin_album_list[$album['folder']] = $album['edit'];
+			$_zp_admin_album_list = array();
+			$objects = $_zp_current_admin_obj->getObjects();
+			foreach ($objects as $object) {
+				if ($object['type'] == 'album') {
+					$_zp_admin_album_list[$object['data']] = $object['edit'];
 				}
-				db_free_result($albums);
 			}
 		}
 	}
@@ -745,7 +742,7 @@ function getManagedAlbumList() {
  * @return array
  */
 function populateManagedObjectsList($type,$id,$rights=false) {
-	if (empty($id)) {
+	if ($id<=0) {
 		return array();
 	}
 	$cv = array();
@@ -777,7 +774,7 @@ function populateManagedObjectsList($type,$id,$rights=false) {
 				if ($type) {
 					$cv[get_language_string($item['title'])] = $item['titlelink'];
 				} else {
-					$cv[] = array('data'=>$item['titlelink'],'type'=>'pages');
+					$cv[] = array('data'=>$item['titlelink'], 'name'=>$item['title'], 'type'=>'pages');
 				}
 			}
 			db_free_result($currentvalues);
@@ -793,7 +790,7 @@ function populateManagedObjectsList($type,$id,$rights=false) {
 				if ($type) {
 					$cv[get_language_string($item['title'])] = $item['titlelink'];
 				} else {
-					$cv[] = array('data'=>$item['titlelink'],'type'=>'news');
+					$cv[] = array('data'=>$item['titlelink'], 'name'=>$item['title'],'type'=>'news');
 				}
 			}
 			db_free_result($currentvalues);
@@ -840,16 +837,14 @@ function handleSearchParms($what, $album=NULL, $image=NULL) {
 		$context = get_context();
 		$_zp_current_search = new SearchEngine();
 		$_zp_current_search->setSearchParams($params);
-		$dynamic_album = $_zp_current_search->getDynamicAlbum();
 		// check to see if we are still "in the search context"
-		if (!is_null($image) && $dynamic_album) {
-			$images = $_zp_current_search->getImages(0, 0, NULL, NULL, false);
-			foreach($images as $try) {
-				if (($album->name == $try['folder']) && ($image->filename == $try['filename'])) {
+		if (!is_null($image)) {
+			$dynamic_album = $_zp_current_search->getDynamicAlbum();
+			if ($_zp_current_search->getImageIndex($album->name, $image->filename) !== false) {
+				if ($dynamic_album) {
 					$_zp_current_album = $dynamic_album;
-					$context = $context | ZP_SEARCH_LINKED | ZP_IMAGE_LINKED;
-					break;
 				}
+				$context = $context | ZP_SEARCH_LINKED | ZP_IMAGE_LINKED;
 			}
 		}
 		if (!is_null($album)) {
@@ -2157,6 +2152,27 @@ class zpFunctions {
 	}
 
 	/**
+	 * Returns a canonical language name string for the location
+	 *
+	 * @param string $loc the location. If NULL use the current cookie
+	 * @param string separator will be used between the major and qualifier parts, e.g. en_US
+	 *
+	 * @return string
+	 */
+	static function getLanguageText($loc=NULL, $separator=NULL) {
+		global $_locale_Subdomains;
+		if (is_null($loc)) {
+			$text = @$_locale_Subdomains[zp_getCookie('dynamic_locale')];
+		} else {
+			$text = @$_locale_Subdomains[$loc];
+		}
+		if (!is_null($separator)) {
+			$text = str_replace('_', $separator, $text);
+		}
+		return $text;
+	}
+
+	/**
 	 * initializes the $_zp_exifvars array display state
 	 *
 	 */
@@ -2339,13 +2355,6 @@ class zpFunctions {
 	function checkCaptcha($s1, $s2) {
 		return true;
 	}
-	function getOptionsSupported() {
-		$option['note'] = array('key' => 'captcha_note',
-														'type' => OPTION_TYPE_NOTE,
-														'desc' => gettext('<p class="notebox">'.gettext('No captcha handler is enabled.').'</p>'));
-		return $option;
-	}
-
 	/**
 	 * Searches out i.php image links and replaces them with cache links if image is cached
 	 * @param string $text

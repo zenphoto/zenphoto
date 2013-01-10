@@ -196,8 +196,8 @@ if ($updatezp_config) {
 		fclose($handle);
 		clearstatcache();
 	}
-	@chmod(CONFIGFILE, $chmod);
-	$xsrftoken = sha1(CONFIGFILE.@file_get_contents(CONFIGFILE).session_id());
+	$str = configMod();
+	$xsrftoken = sha1(CONFIGFILE.$str.session_id());
 }
 $result = true;
 $environ = false;
@@ -214,7 +214,7 @@ if (file_exists(CONFIGFILE)) {
 	}
 	require_once(dirname(dirname(__FILE__)).'/functions-db-'.($_zp_conf_vars['db_software']).'.php');
 	$connectDBErr = '';
-	if($connection = db_connect(false)) {	// got the database handler and the database itself connected
+	if($connection = db_connect($_zp_conf_vars,false)) {	// got the database handler and the database itself connected
 		$result = query("SELECT `id` FROM " . $_zp_conf_vars['mysql_prefix'].'options' . " LIMIT 1", false);
 		if ($result) {
 			if (db_num_rows($result) > 0) {
@@ -234,7 +234,7 @@ if (file_exists(CONFIGFILE)) {
 			if (!empty($_zp_conf_vars['mysql_database'])) {
 				if (isset($_GET['Create_Database'])) {
 					$result = db_create();
-					if ($result && ($connection = db_connect(false))) {
+					if ($result && ($connection = db_connect($_zp_conf_vars,false))) {
 						$environ = true;
 						require_once(dirname(dirname(__FILE__)).'/admin-functions.php');
 					} else {
@@ -493,7 +493,10 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 		checkmark(1,sprintf(gettext('Installing Zenphoto v%s'),ZENPHOTO_VERSION),'','');
 	}
 
-	$permission = fileperms(SETUPLOG)&0777;
+	$permission = fileperms(CONFIGFILE)&0777;
+	if (!checkPermissions($permission, 0600)) {
+		configMod();
+	}
 	if (checkPermissions($permission, 0600)) {
 		$p = true;
 	} else {
@@ -910,7 +913,7 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 			}
 		}
 	}
-	$connection = db_connect(false);
+	$connection = db_connect($_zp_conf_vars,false);
 	if ($connection) {
 		if (empty($_zp_conf_vars['mysql_database'])) {
 			$connection = false;
@@ -1248,7 +1251,7 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 		$filelist .= filesystemToInternal(str_replace($base,'',$extra).'<br />');
 	}
 	if (count($installed_files) > 0) {
-		if (!defined("RELEASE")) {
+		if (defined('TEST_RELEASE') && TEST_RELEASE) {
 			$msg1 = gettext("Zenphoto core files [This is a <em>debug</em> build. Some files are missing or seem wrong]");
 		} else {
 			$msg1 = gettext("Zenphoto core files [Some files are missing or seem wrong]");
@@ -1256,7 +1259,7 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 		$msg2 = gettext('Perhaps there was a problem with the upload. You should check the following files: ').'<br /><code>'.substr($filelist,0,-6).'</code>';
 		$mark = -1;
 	} else {
-		if (!defined("RELEASE")) {
+		if (defined('TEST_RELEASE') && TEST_RELEASE) {
 			$mark = -1;
 			$msg1 = gettext("Zenphoto core files [This is a <em>debug</em> build]");
 		} else {
@@ -1273,7 +1276,7 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 		foreach ($_zp_resident_files as $extra) {
 			if (strpos($extra, 'php.ini')!==false) {
 				$phi_ini_count ++;
-			} else if (defined("RELEASE") || (strpos($extra, '/.svn')===false)) {
+			} else if (defined('TEST_RELEASE') && TEST_RELEASE || (strpos($extra, '/.svn')===false)) {
 				$systemlist[] = $extra;
 				$filelist[] = $_zp_UTF8->convert(str_replace($base,'',$extra), FILESYSTEM_CHARSET, 'UTF-8');
 			} else {
@@ -1558,7 +1561,7 @@ if (file_exists(CONFIGFILE)) {
 		$task = 'update';
 	}
 
-	if (db_connect() && empty($task)) {
+	if (db_connect($_zp_conf_vars) && empty($task)) {
 		$result = db_show('tables');
 		$tables = array();
 		$prefix = $_zp_conf_vars['mysql_prefix'];
@@ -2281,7 +2284,7 @@ if (file_exists(CONFIGFILE)) {
 	 ***************************************************************************************/
 
 	$createTables = true;
-	if (isset($_GET['create']) || isset($_GET['update']) || isset($_GET['delete_files']) && db_connect()) {
+	if (isset($_GET['create']) || isset($_GET['update']) || isset($_GET['delete_files']) && db_connect($_zp_conf_vars)) {
 		if (!isset($_GET['delete_files'])) {
 			set_time_limit(60);
 			if ($taskDisplay[substr($task,0,8)] == 'create') {
@@ -2371,7 +2374,7 @@ if (file_exists(CONFIGFILE)) {
 		}
 
 		if ($createTables) {
-			if (isset($_GET['delete_files']) || ($autorun && defined("RELEASE") && zpFunctions::hasPrimaryScripts())) {
+			if (isset($_GET['delete_files']) || ($autorun && defined('TEST_RELEASE') && TEST_RELEASE && zpFunctions::hasPrimaryScripts())) {
 				require_once(dirname(dirname(__FILE__)).'/'.PLUGIN_FOLDER.'/security-logger.php');
 				$curdir = getcwd();
 				chdir(dirname(__FILE__));
@@ -2469,7 +2472,7 @@ if (file_exists(CONFIGFILE)) {
 				<?php
 			}
 		}
-	} else if (db_connect()) {
+	} else if (db_connect($_zp_conf_vars)) {
 		$task = '';
 		if (zp_loggedin(ADMIN_RIGHTS) || $blindInstall) {
 			if (!empty($dbmsg)) {

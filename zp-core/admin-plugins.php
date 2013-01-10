@@ -23,7 +23,7 @@ if (isset($_GET['subpage'])) {
 }
 
 $_GET['page'] = 'plugins';
-list($tabs,$subtab,$pluginlist, $paths) = getPluginTabs();
+list($tabs, $subtab, $pluginlist, $paths, $member) = getPluginTabs();
 
 /* handle posts */
 if (isset($_GET['action'])) {
@@ -296,6 +296,10 @@ foreach ($filelist as $extension) {
 				if (!empty($plugin_version)) {
 					echo ' v'.$plugin_version;
 				}
+				if ($subtab=='all') {
+					$tab = $member[$extension];
+					echo '<span class="displayrightsmall"><a href="'.$tabs[$tab].'"><em>'.$tab.'</em></a></span>';
+				}
 				?>
 			</label>
 		</td>
@@ -366,7 +370,7 @@ foreach ($filelist as $extension) {
 <p class="buttons">
 <button type="submit" value="<?php echo gettext('Apply') ?>" title="<?php echo gettext("Apply"); ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 <button type="reset" value="<?php echo gettext('Reset') ?>" title="<?php echo gettext("Reset"); ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
-</p><br />
+</p><br /><br />
 <input type="hidden" name="checkForPostTruncation" value="1" />
 </form>
 </div>

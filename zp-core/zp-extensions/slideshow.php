@@ -276,7 +276,7 @@ function printSlideShowLink($linktext=NULL, $linkstyle=Null) {
 								$imagelink = getFullImageURL($imgobj);
 								break;
 							case 'sizedimage':
-								$imagelink = $imgobj->getCustomImage(getOption("slideshow_width"));
+								$imagelink = $imgobj->getCustomImage(getOption("slideshow_width"),NULL,NULL,NULL,NULL,NULL,NULL,false,NULL);
 								break;
 						}
 						$imagetitle = '';

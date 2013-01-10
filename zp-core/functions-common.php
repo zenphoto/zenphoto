@@ -340,8 +340,8 @@ function html_encodeTagged($str, $allowScript=true) {
 
 /**
  * Makes directory recursively, returns TRUE if exists or was created sucessfuly.
- * Note: PHP5 includes a recursive parameter to mkdir, but PHP4 does not, so this
- *   is required to target PHP4.
+ * Note: PHP5 includes a recursive parameter to mkdir, but it apparently does not
+ * 				does not traverse symlinks!
  * @param string $pathname The directory path to be created.
  * @return boolean TRUE if exists or made or FALSE on failure.
  */
@@ -393,15 +393,23 @@ function debugLogBacktrace($message, $omit=0) {
 /**
  * Records a Var to the debug log
  *
- * @param string $message message to insert in log
+ * @param string $message message to insert in log [optional]
  * @param mixed $var the variable to record
  */
-function debugLogVar($message, $var) {
+function debugLogVar($message) {
+	$args = func_get_args();
+	if (count($args)==1) {
+		$var = $message;
+		$message = '';
+	} else {
+		$message .= ' ';
+		$var = $args[1];
+	}
 	ob_start();
 	var_dump($var);
 	$str = ob_get_contents();
 	ob_end_clean();
-	debugLog(trim($message).' '.html_decode(strip_tags($str)));
+	debugLog(trim($message).html_decode(strip_tags($str)));
 }
 
 ?>

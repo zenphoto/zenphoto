@@ -258,7 +258,7 @@ class Zenphoto_Authority {
 		if (DEBUG_LOGIN) { debugLogVar("checkAuthorization: admins",$admins);	}
 		$rights = 0;
 		$criteria = array('`pass`=' => $authCode, '`valid`=' => 1);
-		if (!is_null($id)) {
+		if (!empty($id)) {
 			$criteria['`id`='] = $id;
 		}
 		$user = self::getAnAdmin($criteria);
@@ -612,8 +612,7 @@ class Zenphoto_Authority {
 		$user->set('lastloggedin', $user->get('loggedin'));
 		$user->set('loggedin',date('Y-m-d H:i:s'));
 		$user->save();
-		zp_setCookie("zp_user_auth", $user->getPass(), NULL, NULL, secureServer());
-		zp_setCookie('zp_user_id', $user->getID(), NULL, NULL, secureServer());
+		zp_setCookie("zp_user_auth", $user->getPass().'.'.$user->getID(), NULL, NULL, secureServer());
 	}
 
 	/**
@@ -752,30 +751,26 @@ class Zenphoto_Authority {
 	 *
 	 */
 	static function handleLogout() {
-		global $_zp_loggedin, $_zp_pre_authorization;
+		global $_zp_loggedin, $_zp_pre_authorization, $_zp_current_admin_obj;
 		foreach (self::getAuthCookies() as $cookie=>$value) {
 			zp_clearCookie($cookie);
 		}
-		zp_clearCookie("zp_user_id");
 		$_zp_loggedin = false;
 		$_zp_pre_authorization = array();
+		return zp_apply_filter('zp_logout', NULL, $_zp_current_admin_obj);
 	}
 
 	/**
 	 * Checks saved cookies to see if a user is logged in
 	 */
 	function checkCookieCredentials() {
-		$auth = zp_getCookie('zp_user_auth');
-		$id = zp_getCookie('zp_user_id');
+		list($auth, $id) = explode('.',zp_getCookie('zp_user_auth').'.');
 		$loggedin = $this->checkAuthorization($auth, $id);
-		if ($auth) {	// call filter if there was an auth cookie
-			$loggedin = zp_apply_filter('authorization_cookie',$loggedin);
-		}
+		$loggedin = zp_apply_filter('authorization_cookie',$loggedin, $auth);
 		if ($loggedin) {
 			return $loggedin;
 		} else {
 			zp_clearCookie("zp_user_auth");
-			zp_clearCookie("zp_user_id");
 			return NULL;
 		}
 	}
@@ -944,57 +939,40 @@ class Zenphoto_Authority {
 				<?php
 				break;
 			default:
-				?>
-				<script type="text/javascript">
-					// <!-- <![CDATA[
-					function togglePassword() {
-						if($('#pass').attr('type')=='password') {
-							var oldp = $('#pass');
-							var newp = oldp.clone();
-							newp.attr('type', 'text');
-							newp.insertAfter(oldp);
-							oldp.remove();
-						} else {
-							var oldp = $('#pass');
-							var newp = oldp.clone();
-							newp.attr('type', 'password');
-							newp.insertAfter(oldp);
-							oldp.remove();
-						}
-					}
-					<?php
-						if (empty($alt_handlers)) {
-							$legend = gettext('Login');
-						} else {
-							?>
-							var handlers = [];
-							<?php
-							$list = '<select id="logon_choices" onchange="changeHandler(handlers[$(this).val()]);">'.
-												'<option value="0">'.html_encode(get_language_string($_zp_gallery->getTitle())).'</option>';
-							$c = 0;
-							foreach ($alt_handlers as $handler=>$details) {
-								$c++;
-								$details['params'][] = 'redirect='.$redirect;
-								if (!empty($requestor)) {
-									$details['params'][] = 'requestor='.$requestor;
-								}
-								echo "handlers[".$c."]=['".$details['script']."','".implode("','", $details['params'])."'];";
-
-								$list .= '<option value="'.$c.'">'.$handler.'</option>';
-							}
-							$list .= '</select>';
-							$legend = sprintf(gettext('Logon using:%s'),$list);
-							?>
-							function changeHandler(handler) {
-								handler.push('user='+$('#user').val());
-								var script = handler.shift();
-								launchScript(script,handler);
-							}
-							<?php
-						}
+				if (empty($alt_handlers)) {
+					$legend = gettext('Login');
+				} else {
 					?>
+					<script type="text/javascript">
+						// <!-- <![CDATA[
+						var handlers = [];
+						<?php
+						$list = '<select id="logon_choices" onchange="changeHandler(handlers[$(this).val()]);">'.
+											'<option value="0">'.html_encode(get_language_string($_zp_gallery->getTitle())).'</option>';
+						$c = 0;
+						foreach ($alt_handlers as $handler=>$details) {
+							$c++;
+							$details['params'][] = 'redirect='.$redirect;
+							if (!empty($requestor)) {
+								$details['params'][] = 'requestor='.$requestor;
+							}
+							echo "handlers[".$c."]=['".$details['script']."','".implode("','", $details['params'])."'];";
+
+							$list .= '<option value="'.$c.'">'.$handler.'</option>';
+						}
+						$list .= '</select>';
+						$legend = sprintf(gettext('Logon using:%s'),$list);
+						?>
+						function changeHandler(handler) {
+							handler.push('user='+$('#user').val());
+							var script = handler.shift();
+							launchScript(script,handler);
+						}
 					// ]]> -->
-				</script>
+					</script>
+					<?php
+				}
+				?>
 				<form name="login" action="<?php echo html_encode(getRequestURI()); ?>" method="post">
 					<input type="hidden" name="login" value="1" />
 					<input type="hidden" name="password" value="1" />
@@ -1177,7 +1155,7 @@ class Zenphoto_Authority {
 			}
 		}
 		function togglePassword(id) {
-			if($('#pass'+id).attr('type')=='password') {
+		if($('#pass'+id).attr('type')=='password') {
 				var oldp = $('#pass'+id);
 				var newp = oldp.clone();
 				newp.attr('type', 'text');
@@ -1273,7 +1251,7 @@ class Zenphoto_Administrator extends PersistentObject {
 	var $objects = NULL;
 	var $master = false;	//	will be set to true if this is the inherited master user
 	var $msg = NULL;	//	a means of storing error messages from filter processing
-	var $no_zp_login = false;
+	var $logout_link = true;	// for a Zenphoto logout
 	var $reset = false;	// if true the user was setup by a "reset password" event
 	var $passhash;	// the hash algorithm used in creating the password
 
@@ -1409,8 +1387,9 @@ class Zenphoto_Administrator extends PersistentObject {
 	 */
 	function getObjects($what=NULL) {
 		if (is_null($this->objects)) {
-			$this->objects = array();
-			if (!$this->transient) {
+			if ($this->transient) {
+				$this->objects = array();
+			} else {
 				$this->objects = populateManagedObjectsList(NULL,$this->getID());
 			}
 		}
@@ -1420,7 +1399,8 @@ class Zenphoto_Administrator extends PersistentObject {
 		$result = array();
 		foreach ($this->objects as $object) {
 			if ($object['type'] == $what) {
-				$result[] = $object['data'];
+				$result[$object['name']] = $object['data'];
+				break;
 			}
 		}
 		return $result;
@@ -1621,16 +1601,20 @@ class Zenphoto_Administrator extends PersistentObject {
 	/**
 	 * Creates a "prime" album for the user. Album name is based on the userid
 	 */
-	function createPrimealbum() {
+	function createPrimealbum($new=true, $name=NULL) {
 		//	create his album
 		$t = 0;
 		$ext = '';
-		$filename = internalToFilesystem(str_replace(array('<', '>', ':', '"'. '/'. '\\', '|', '?', '*'), '_', seoFriendly($this->getUser())));
-		while (file_exists(ALBUM_FOLDER_SERVERPATH.'/'.$filename.$ext)) {
+		if (is_null($name)) {
+			$filename = internalToFilesystem(str_replace(array('<', '>', ':', '"'. '/'. '\\', '|', '?', '*'), '_', seoFriendly($this->getUser())));
+		} else {
+			$filename = internalToFilesystem(str_replace(array('<', '>', ':', '"'. '/'. '\\', '|', '?', '*'), '_', $name));
+		}
+		while ($new && file_exists(ALBUM_FOLDER_SERVERPATH.$filename.$ext)) {
 			$t++;
 			$ext = '-'.$t;
 		}
-		$path = ALBUM_FOLDER_SERVERPATH.'/'.$filename.$ext;
+		$path = ALBUM_FOLDER_SERVERPATH.$filename.$ext;
 		$albumname = filesystemToInternal($filename.$ext);
 		if (@mkdir_recursive($path,FOLDER_MOD)) {
 			$album = new Album(NULL, $albumname);

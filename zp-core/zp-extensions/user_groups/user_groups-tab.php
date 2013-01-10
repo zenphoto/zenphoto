@@ -105,17 +105,9 @@ if (isset($_GET['action'])) {
 	} else if ($action == 'saveauserassignments') {
 		for ($i = 0; $i < $_POST['totalusers']; $i++) {
 			$username = trim(sanitize($_POST[$i.'-user'],3));
-			$user = Zenphoto_Authority::getAnAdmin(array('`user`=' => $username, '`valid`>=' => 1));
-			$groupname = trim(sanitize($_POST[$i.'-group'],3));
-			$group = Zenphoto_Authority::newAdministrator($groupname, 0);
-			if (empty($groupname)) {
-				$user->setGroup(NULL);
-			} else {
-				$user->setObjects(processManagedObjects($group->getID(),$rights));
-				$user->setRights($group->getRights() | NO_RIGHTS);
-				$user->setGroup($groupname);
-			}
-			$user->save();
+			$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $username, '`valid`>=' => 1));
+			user_groups::save_admin(true, $userobj, $i, true);
+			$userobj->save();
 		}
 		header("Location: ".FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER.'/user_groups/user_groups-tab.php?page=users&tab=assignments&saved&subpage='.$subpage);
 		exitZP();
@@ -224,6 +216,7 @@ echo '</head>'."\n";
 									$rights = $user['rights'];
 									$grouptype = $user['name'];
 									$desc = $user['custom_data'];
+									$groupobj = new Zenphoto_Administrator($groupname, 0);
 									if ($grouptype == 'group') {
 										$kind = gettext('group');
 									} else {
@@ -326,7 +319,7 @@ echo '</head>'."\n";
 												</div>
 											</div>
 										<?php
-											printManagedObjects('albums', $albumlist, '', $groupid, $id, $rights, $kind, array());
+											printManagedObjects('albums', $albumlist, '', $groupobj, $id, $kind, array());
 											if (getOption('zp_plugin_zenpage')) {
 												$pagelist = array();
 												$pages = $_zp_zenpage->getPages(false);
@@ -335,13 +328,13 @@ echo '</head>'."\n";
 														$pagelist[get_language_string($page['title'])] = $page['titlelink'];
 													}
 												}
-												printManagedObjects('pages',$pagelist, '', $groupid, $id, $rights, $kind, NULL);
+												printManagedObjects('pages',$pagelist, '', $groupobj, $id, $kind, NULL);
 												$newslist = array();
 												$categories = $_zp_zenpage->getAllCategories(false);
 												foreach ($categories as $category) {
 													$newslist[get_language_string($category['title'])] = $category['titlelink'];
 												}
-												printManagedObjects('news',$newslist, '', $groupid, $id, $rights, $kind, NULL);
+												printManagedObjects('news',$newslist, '', $groupobj, $id, $kind, NULL);
 											}
 											?>
 											</span>
@@ -443,13 +436,20 @@ echo '</head>'."\n";
 							<button type="reset" title="<?php echo gettext("Reset"); ?>"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 							</p>
 							<br clear="all" /><br /><br />
+							<div class="notebox">
+							<?php echo gettext('<strong>Note:</strong> When a group is assigned <em>rights</em> and <em>managed objects</em> are determined by the group!'); ?>
+							</div>
 							<input type="hidden" name="saveauserassignments" value="yes" />
 							<table class="bordered">
 								<?php
 								$id = 0;
 								foreach ($adminordered as $user) {
 									if ($user['valid']) {
+
+										$userobj = new Zenphoto_Administrator($user['user'], $user['valid']);
+
 										$group = $user['group'];
+
 										?>
 										<tr>
 											<td width="20%" style="border-top: 1px solid #D1DBDF;" valign="top">
@@ -457,25 +457,7 @@ echo '</head>'."\n";
 												<?php echo $user['user']; ?>
 											</td>
 											<td style="border-top: 1px solid #D1DBDF;" valign="top" >
-												<select name="<?php echo $id; ?>-group" onchange="javascript:$('#hint<?php echo $id; ?>').html(this.options[this.selectedIndex].title);">
-													<option title="<?php echo gettext('no group affiliation'); ?>"></option>
-													<?php
-													$selected_hint = gettext('no group affiliation');
-													foreach ($groups as $user) {
-														$hint = '<em>'.html_encode($user['custom_data']).'</em>';
-														if ($group == $user['user']) {
-															$selected = ' selected="selected"';
-															$selected_hint = $hint;
-															} else {
-															$selected = '';
-														}
-														?>
-														<option<?php echo $selected; ?> title="<?php echo $hint; ?>"><?php echo $user['user']; ?></option>
-														<?php
-													}
-													?>
-												</select>
-												<span class="hint<?php echo $id; ?>" id="hint<?php echo $id; ?>" style="width:15em;"><?php echo $selected_hint; ?></span>
+												<?php echo user_groups::groupList($userobj, $id, '', $user['group'], false); ?>
 											</td>
 										</tr>
 										<?php

@@ -267,14 +267,14 @@ if (!in_array('viewers',$groupsdefined)) {
 	$groupobj->save();
 	$groupsdefined[] = 'viewers';
 }
-if (!in_array('bozos',$groupsdefined)) {
-	$groupobj = Zenphoto_Authority::newAdministrator('bozos',0);
+if (!in_array('blocked',$groupsdefined)) {
+	$groupobj = Zenphoto_Authority::newAdministrator('blocked',0);
 	$groupobj->setName('group');
 	$groupobj->setRights(0);
 	$groupobj->setCustomData(gettext('Banned users'));
 	$groupobj->setValid(0);
 	$groupobj->save();
-	$groupsdefined[] = 'bozos';
+	$groupsdefined[] = 'blocked';
 }
 if (!in_array('album managers',$groupsdefined)) {
 	$groupobj = Zenphoto_Authority::newAdministrator('album managers',0);
@@ -346,7 +346,14 @@ if (file_exists(SERVERPATH.'/'.ZENFOLDER.'/Zenphoto.package')) {
 <script type="text/javascript">
 	// <!-- <![CDATA[
 	<?php
+	$wait = 0;
 	foreach (array_keys($_zp_gallery->getThemes()) as $theme) {
+		if ($wait) {
+			?>
+			Thread.sleep(1000L);
+			<?php
+		}
+		$Wait++;
 		?>
 		$.ajax({
 			type: 'POST',
@@ -611,6 +618,12 @@ $plugins = getPluginFiles('*.php');
 	// <!-- <![CDATA[
 	<?php
 	foreach ($plugins as $extension=>$path) {
+		if ($wait) {
+			?>
+			Thread.sleep(1000L);
+			<?php
+		}
+		$Wait++;
 		?>
 		$.ajax({
 			type: 'POST',

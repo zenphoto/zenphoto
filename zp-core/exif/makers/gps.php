@@ -179,7 +179,7 @@ function parseGPS($block,&$result,$offset,$seek, $globalOffset) {
 		//4 byte number of elements
 		$count = bin2hex(substr($block,$place,4));$place+=4;
 		if($intel==1) $count = intel2Moto($count);
-		$bytesofdata = $size*hexdec($count);
+		$bytesofdata = validSize($size*hexdec($count));
 
 		//4 byte value or pointer to value if larger than 4 bytes
 		$value = substr($block,$place,4);$place+=4;

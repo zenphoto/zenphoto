@@ -2311,27 +2311,6 @@ if ($subtab == 'comments' && zp_loggedin(OPTIONS_RIGHTS)) {
 			</td>
 			<td><?php echo gettext("Email the Admin when new comments are posted"); ?></td>
 		</tr>
-		<!-- SPAM filter options -->
-		<tr>
-			<td><?php echo gettext("Spam filter:"); ?></td>
-			<td>
-				<?php
-				if (isset($_zp_spamFilter)) {
-					echo $_zp_spamFilter->name;
-				} else {
-					echo gettext('No spam filter configured');
-				}
-				?>
-			</td>
-			<td><?php echo gettext("The SPAM filter plug-in you wish to use to check comments for SPAM"); ?></td>
-		</tr>
-		<?php
-		/* procss filter based options here */
-		if (isset($_zp_spamFilter)) {
-			customOptions($_zp_spamFilter, "&nbsp;&nbsp;&nbsp;-&nbsp;");
-		}
-		?>
-		<!-- end of SPAM filter options -->
 		<tr>
 			<td><?php echo gettext('Name field'); ?></td>
 			<td>
@@ -2892,14 +2871,14 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 						</td>
 				</tr>
 				<tr>
-				<th style="text-align:center" colspan="2">
+				<th style="text-align:left" colspan="2">
 					<span style="font-weight: normal">
 						<a href="javascript:setShow(1);toggleExtraInfo('','plugin',true);"><?php echo gettext('Expand plugin options');?></a>
 						|
 						<a href="javascript:setShow(0);toggleExtraInfo('','plugin',false);"><?php echo gettext('Collapse all plugin options');?></a>
 					</span>
 				</th>
-				<th style="text-align:left">
+				<th style="text-align:right; padding-right: 10px;">
 					<?php printPageSelector($subpage, $rangeset, 'admin-options.php', array('page'=>'options', 'tab'=>'plugin')); ?>
 				</th>
 			</tr>
@@ -2946,7 +2925,7 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 								$v= 0;
 							}
 							?>
-							<th style="text-align:left;">
+							<th style="text-align:left; width: 20%">
 								<span id="<?php echo $extension; ?>" ></span>
 								<input type="hidden" name="show-<?php echo $extension;?>" id="show-<?php echo $extension;?>" value="<?php echo $v; ?>" />
 								<span style="display:block" class="pluginextrashow">
@@ -3003,7 +2982,7 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 				<tr>
 					<th></th>
 					<th></th>
-					<th>
+					<th style="text-align:right; padding-right: 10px;">
 						<?php printPageSelector($subpage, $rangeset, 'admin-options.php', array('page'=>'options', 'tab'=>'plugin')); ?>
 					</th>
 				</tr>
@@ -3083,20 +3062,6 @@ if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 						</p>
 					</td>
 				</tr>
-				<tr>
-					<td width="175"><?php echo gettext('CAPTCHA generator:'); ?></td>
-					<td width="350">
-						<?php
-						if ($_zp_captcha) {
-							echo $_zp_captcha->name;
-						} else {
-							echo gettext('not configured');
-						}
-						?>
-					</td>
-					<td></td>
-				</tr>
-					<?php if ($_zp_captcha) customOptions($_zp_captcha, "&nbsp;&nbsp;&nbsp;-&nbsp;"); ?>
 				<tr>
 					<td><?php echo gettext('Cookie security')?></td>
 					<td>

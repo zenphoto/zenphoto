@@ -396,6 +396,9 @@ form {padding-bottom:10px;}
 	width: 6.5em;
 	padding: 2px;
 }
+#captcha {
+	vertical-align:middle;
+}
 .inputbox {
 	width: 250px;
 	padding: 2px;
@@ -449,7 +452,7 @@ label {
 	top:16px;
 }
 #admin h3 {
-	font: 100% "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font: 100% Arial, "Helvetica Neue", Helvetica, sans-serif;
 	font-weight: bold;
 	color: #666;
 	border-bottom: 1px dashed #CCC;
@@ -566,13 +569,13 @@ ul.archive .month {
 ------------------------------ */
 
 #zen-part {
- font-family: Arial, Helvetice, sans-serif;
+ font-family: Arial, Helvetica, sans-serif;
  font-size: 1.8em;
  font-weight: 100;
 }
 
 #photo-part {
- font-family: Arial, Helvetice, sans-serif;
+ font-family: Arial, Helvetica, sans-serif;
  font-size: 0.9em;
  font-weight: bold;
 }

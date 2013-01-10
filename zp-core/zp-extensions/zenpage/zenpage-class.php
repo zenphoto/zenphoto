@@ -65,14 +65,6 @@ class Zenpage {
 			$allcategories = query_full_array("SELECT * FROM ".prefix('news_categories')." ORDER by sort_order");
 			$structure = array();
 			foreach ($allcategories as $cat) {
-				$catobj = new ZenpageCategory($cat['titlelink']);
-				if ($catobj->isMyItem(ALL_NEWS_RIGHTS)) {
-					$cat['show'] = 1;
-				} else {
-					if ($cat['show'] && $cat['parentid']) {
-						$cat['show'] = $structure[$cat['parentid']]['show'];
-					}
-				}
 				$structure[$cat['id']] = $cat;
 			}
 			$structure = sortMultiArray($structure, 'sort_order', false, false, false, true);
@@ -168,7 +160,7 @@ class Zenpage {
 		global $_zp_current_category, $_zp_post_date;
 		$getUnpublished = NULL;
 		if (empty($published)) {
-			if(zp_loggedin( ALL_NEWS_RIGHTS)) {
+			if(zp_loggedin(ALL_NEWS_RIGHTS)) {
 				$published = "all";
 				$getUnpublished = true;
 			} else {
@@ -260,7 +252,7 @@ class Zenpage {
 			}
 			while ($item = db_fetch_assoc($resource)) {
 				$article = new ZenpageNews($item['titlelink']);
-				if ($getUnpublished || $article->categoryIsVisible()) {
+				if ($getUnpublished || $article->categoryIsVisible() || $article->isMyItem(ZENPAGE_NEWS_RIGHTS)) {
 					$offset--;
 					if ($offset < 0) {
 						$result[] = $item;
@@ -780,7 +772,10 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 		$structure = $this->getCategoryStructure();
 		if ($visible) {
 			foreach ($structure as $key=>$cat) {
-				if (!$cat['show']) {
+				$catobj = new ZenpageCategory($cat['titlelink']);
+				if ($catobj->getShow() || $catobj->isMyItem(LIST_RIGHTS)) {
+					$structure[$key]['show'] = 1;
+				} else {
 					unset($structure[$key]);
 				}
 			}

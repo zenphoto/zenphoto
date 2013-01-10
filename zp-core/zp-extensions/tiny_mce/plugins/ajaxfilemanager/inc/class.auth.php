@@ -50,12 +50,14 @@ if (!getOption('zp_plugin_ajaxFilemanager')) {
 		function isLoggedIn()
 		{
 			if (zp_loggedin(FILES_RIGHTS | ZENPAGE_NEWS_RIGHTS | MANAGE_ALL_NEWS_RIGHTS | ZENPAGE_PAGES_RIGHTS | MANAGE_ALL_PAGES_RIGHTS)) {
+
 				if (isset($_GET['XSRFToken'])) {
-					$_SESSION['XSRFToken'] = $_GET['XSRFToken'];
+					$token = $_SESSION['XSRFToken'] = $_GET['XSRFToken'];
 				} else {
-					$_REQUEST['XSRFToken'] = @$_SESSION['XSRFToken'];
+					$token = $_REQUEST['XSRFToken'] = @$_SESSION['XSRFToken'];
 				}
 				XSRFdefender('ajaxfilemanager');
+				$_REQUEST['XSRFToken'] = $_GET['XSRFToken'] = $_POST['XSRFToken'] = $token;
 				GLOBAL $session;
 				$session->debug = false;
 				return true;

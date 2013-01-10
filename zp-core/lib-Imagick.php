@@ -214,7 +214,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 
 		$ext = getSuffix($imgfile);
 		if (in_array($ext, $_lib_Imagick_info)) {
-			$image = new Imagick($imgfile);
+			$image = new Imagick(filesystemToInternal($imgfile));
 
 			if (IMAGE_WATERMARK | FULLIMAGE_WATERMARK | THUMB_WATERMARK) {
 				try {
@@ -314,7 +314,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 			return print $im->getImagesBlob();
 		}
 
-		return $im->writeImages($filename, true);
+		return $im->writeImages(filesystemToInternal($filename), true);
 	}
 
 	/**
@@ -494,7 +494,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	function zp_imageDims($filename) {
 		$ping = new Imagick();
 
-		if ($ping->pingImage($filename)) {
+		if ($ping->pingImage(filesystemToInternal($filename))) {
 			return array('width' => $ping->getImageWidth(), 'height' => $ping->getImageHeight());
 		}
 
@@ -511,7 +511,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	function zp_imageIPTC($filename) {
 		$ping = new Imagick();
 
-		if ($ping->pingImage($filename)) {
+		if ($ping->pingImage(filesystemToInternal($filename))) {
 			try {
 				return $ping->getImageProfile('exif');
 			} catch (ImagickException $e) {

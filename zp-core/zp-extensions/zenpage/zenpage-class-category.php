@@ -334,7 +334,7 @@ class ZenpageCategory extends ZenpageRoot {
 	function getArticles($articles_per_page=0, $published=NULL,$ignorepagination=false,$sortorder="date", $sortdirection="desc",$sticky=true) {
 		global $_zp_current_category, $_zp_post_date;
 		if (empty($published)) {
-			if(zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
+			if($this->isMyItem(ZENPAGE_NEWS_RIGHTS)) {
 				$published = "all";
 			} else {
 				$published = "published";

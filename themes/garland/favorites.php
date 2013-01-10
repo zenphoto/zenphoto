@@ -55,7 +55,7 @@ if (!defined('WEBPATH')) die();
 										</h3>
 										<br />
 										<small><?php printAlbumDate(); ?></small>
-										<?php printAddToFavorites($_zp_current_album, '',gettext('Remove')); ?>					</li>
+										<?php printAddToFavorites($_zp_current_album, '',gettext('Remove')); ?>
 									</div>
 								<p style="clear: both;"></p>
 								</div>

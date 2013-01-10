@@ -161,7 +161,7 @@ class htmlmetatags {
 		$url = $host.getRequestURI();;
 
 		// Convert locale shorttag to allowed html meta format
-		$locale = strtr(getOption("locale"),"_","-");
+		$locale = zpFunctions::getLanguageText(getOption("locale"),"-");
 		$canonicalurl = '';
 		// generate page title, get date
 		$pagetitle = ""; // for gallery index setup below switch
@@ -175,7 +175,7 @@ class htmlmetatags {
 		switch($_zp_gallery_page) {
 			case 'index.php':
 				$desc = getBareGalleryDesc();
-				$canonicalurl = $host.getGalleryIndexURL();
+				$canonicalurl = $host.getGalleryIndexURL(false);
 				$type = 'website';
 				break;
 			case 'album.php':
@@ -303,11 +303,11 @@ class htmlmetatags {
 				$langs = generateLanguageList();
 				if(count($langs) != 1) {
 					foreach ($langs as $text=>$lang) {
-						$langcheck = strtr($lang, '_','-');	// in urls we need en_US while for hreflang we need en-US.
+						$langcheck = zpFunctions::getLanguageText($lang, '-');	//	for hreflang we need en-US
 						if($langcheck != $locale) {
 							switch (METATAG_LOCALE_TYPE) {
 								case 1:
-									$altlink = FULLWEBPATH.'/'.$lang;
+									$altlink = seo_locale::localePath(true, $lang);
 									break;
 								case 2:
 									$altlink = dynamic_locale::fullHostPath($lang);

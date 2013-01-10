@@ -601,7 +601,7 @@ if(isset($_GET['download'])) {
 			header('Expires: 0');
 			header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 			header('Pragma: public');
-			//header('Content-Length: ' . filesize($file)); // This causes corrupted files on my server
+			header('Content-Length: ' . filesize($file));
 			flush();
 			readfile($file);
 			exitZP();

@@ -174,21 +174,19 @@ function zp_load_image($folder, $filename) {
 /**
  * Loads a zenpage pages page
  * Sets up $_zp_current_zenpage_page and returns it as the function result.
- * @param $titlelink the titlelink of a zenpage page to setup a page object directly. Meant to be used only for the Zenpage homepage feature.
+ * @param $titlelink the titlelink of a zenpage page to setup a page object directly. Used for custom
+ * page scripts based on a zenpage page.
+ *
  * @return object
  */
-function zenpage_load_page() {
+function zenpage_load_page($titlelink) {
 	global $_zp_current_zenpage_page;
-	if (isset($_GET['title'])) {
-		$titlelink = sanitize($_GET['title'],3);
-	} else {
-		$titlelink = '';
-	}
 	$_zp_current_zenpage_page = new ZenpagePage($titlelink);
 	if ($_zp_current_zenpage_page->loaded) {
 		add_context(ZP_ZENPAGE_PAGE | ZP_ZENPAGE_SINGLE);
 	} else {
 		$_GET['p'] = 'PAGES:'.$titlelink;
+		return NULL;
 	}
 	return $_zp_current_zenpage_page;
 }
@@ -197,16 +195,19 @@ function zenpage_load_page() {
  * Loads a zenpage news article
  * Sets up $_zp_current_zenpage_news and returns it as the function result.
  *
+ * @param array $request an array with one member: the key is "date", "category", or "title" and specifies
+ * what you want loaded. The value is the date or title of the article wanted
+ *
  * @return object
  */
-function zenpage_load_news() {
+function zenpage_load_news($request) {
 	global $_zp_current_zenpage_news, $_zp_current_category, $_zp_post_date;
-	if (isset($_GET['date'])) {
+	if (isset($request['date'])) {
 		add_context(ZP_ZENPAGE_NEWS_DATE);
-		$_zp_post_date = sanitize($_GET['date']);
+		$_zp_post_date = $request['date'];
 	}
-	if(isset($_GET['category'])) {
-		$titlelink = sanitize($_GET['category']);
+	if(isset($request['category'])) {
+		$titlelink = $request['category'];
 		$_zp_current_category = new ZenpageCategory($titlelink);
 		if ($_zp_current_category->loaded) {
 			add_context(ZP_ZENPAGE_NEWS_CATEGORY);
@@ -216,8 +217,8 @@ function zenpage_load_news() {
 			return false;
 		}
 	}
-	if (isset($_GET['title'])) {
-		$titlelink = sanitize($_GET['title'],3);
+	if (isset($request['title'])) {
+		$titlelink = $request['title'];
 		$sql = 'SELECT `id` FROM '.prefix('news').' WHERE `titlelink`='.db_quote($titlelink);
 		$result = query_single_row($sql);
 		if (is_array($result)) {
@@ -304,12 +305,12 @@ function zp_load_request() {
 					break;
 				case 'pages':
 					if (getOption('zp_plugin_zenpage')) {
-						return zenpage_load_page();
+						return zenpage_load_page(sanitize(@$_GET['title']));
 					}
 					break;
 				case 'news':
 					if (getOption('zp_plugin_zenpage')) {
-						return zenpage_load_news();
+						return zenpage_load_news(sanitize($_GET));
 					}
 					break;
 			}

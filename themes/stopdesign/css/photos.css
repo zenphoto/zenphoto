@@ -1105,6 +1105,10 @@ Comment Submission form
 #comments-form .text {
 	width:65%;
 	}
+#captcha {
+	vertical-align:middle;
+}
+
 
 /* jQuery pagination comments */
 
@@ -1291,13 +1295,13 @@ background-image:url(../images/50percent.png);
 ------------------------------ */
 
 #zen-part {
- font-family: Arial, Helvetice, sans-serif;
+ font-family: Arial, Helvetica, sans-serif;
  font-size: 1.6em;
  font-weight: 100;
 }
 
 #photo-part {
-font-family: Arial, Helvetice, sans-serif;
+font-family: Arial, Helvetica, sans-serif;
  font-size: 0.6em;
  font-weight: bold;
 }

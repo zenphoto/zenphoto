@@ -263,6 +263,7 @@ themes/zpmobile/album.php
 themes/zpmobile/archive.php
 themes/zpmobile/comment_form
 themes/zpmobile/comment_form/comment_form.php
+themes/zpmobile/favorites.php
 themes/zpmobile/functions.php
 themes/zpmobile/gallery.php
 themes/zpmobile/image.php
@@ -337,6 +338,7 @@ zp-core/exif/makers/nikon.php
 zp-core/exif/makers/olympus.php
 zp-core/exif/makers/panasonic.php
 zp-core/exif/makers/sanyo.php
+zp-core/external_auth.php
 zp-core/full-image.php
 zp-core/functions-PDO.php
 zp-core/functions-basic.php
@@ -1922,4 +1924,4 @@ zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zpCaptcha
 zp-core/zp-extensions/zpCaptcha.php
 zp-core/zp-extensions/zpCaptcha/c.php
-1924
+1926

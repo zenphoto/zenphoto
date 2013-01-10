@@ -479,6 +479,7 @@ if (isset($_GET['action'])) {
 		case 'newalbum':
 			XSRFdefender('newalbum');
 			$name = sanitize($_GET['name']);
+			$folder = sanitize($_GET['folder']);
 			$seoname = seoFriendly($name);
 			if (empty($folder) || $folder == '/' || $folder == '.') {
 				$albumdir = '';
@@ -615,7 +616,7 @@ if (isset($_GET['album']) && (empty($subtab) || $subtab=='albuminfo') || isset($
 	function newAlbum(folder,albumtab) {
 		var album = prompt('<?php echo gettext('New album name?'); ?>', '<?php echo gettext('new album'); ?>');
 		if (album) {
-			launchScript('',['action=newalbum','album='+folder,'name='+encodeURIComponent(album),'albumtab='+albumtab,'XSRFToken=<?php echo getXSRFToken('newalbum'); ?>']);
+			launchScript('',['action=newalbum','folder='+folder,'name='+encodeURIComponent(album),'albumtab='+albumtab,'XSRFToken=<?php echo getXSRFToken('newalbum'); ?>']);
 		}
 	}
 	function confirmAction() {
