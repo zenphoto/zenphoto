@@ -97,7 +97,7 @@ function upload_extra($uploadlimit, $passedalbum) {
 		<?php echo gettext("There appears to be no <em>Flash</em> plugin installed in your browser."); ?>
 	</div>
 	<p class="buttons" id="fileUploadbuttons" style="display: none;">
-		<a href="javascript:$('#fileUpload').uploadifySettings('folder','/'+$('#publishalbum').attr('checked')+':'+$('#folderdisplay').val()+':'+$('#albumtitle').val());
+		<a href="javascript:$('#fileUpload').uploadifySettings('folder','/'+$('#publishalbumslot').val()+':'+$('#folderdisplay').val()+':'+$('#albumtitle').val());
 												$('#fileUpload').uploadifyUpload()"><img src="images/pass.png" alt="" /><?php echo gettext("Upload"); ?></a>
 		<a href="javascript:$('#fileUpload').uploadifyClearQueue()"><img src="images/fail.png" alt="" /><?php echo gettext("Cancel"); ?></a>
 	<br clear="all" /><br />

@@ -37,7 +37,7 @@ if (!empty($_FILES)) {
 			if ($new) {
 				mkdir_recursive($targetPath, FOLDER_MOD);
 				$album = new Album(NULL, $folder);
-				$album->setShow($albumparmas[0]!='false');
+				$album->setShow(!empty($albumparmas[0]));
 				$album->setTitle($albumparmas[2]);
 				$album->setOwner($_zp_current_admin_obj->getUser());
 				$album->save();
