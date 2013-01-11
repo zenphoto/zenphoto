@@ -7,6 +7,7 @@
 # momo-i <webmaster at momo-i dot org>, 2010.
 # momo-i <webmaster at momo-i dot org>, 2011.
 # momo-i <webmaster at momo-i dot org>, 2012.
+# momo-i <webmaster at momo-i dot org>, 2013.
 #
 # Zenphotoの日本語訳です。
 # 翻訳の中で誤訳やTypoなどがあれば、適宜修正して以下のチケットで報告してください。
@@ -29,17 +30,17 @@ msgstr ""
 
 #: zp-core/class-album.php:641
 msgid "Invalid album instantiation: No album name"
-msgstr ""
+msgstr "無効なアルバムのインスタンス化: アルバム名がありません"
 
 #: zp-core/class-album.php:644
 #, php-format
 msgid "Invalid album instantiation: %1$s!=%2$s"
-msgstr ""
+msgstr "無効なアルバムのインスタンス化: %1$s!=%2$s"
 
 #: zp-core/class-album.php:646
 #, php-format
 msgid "Invalid album instantiation: %s does not exist."
-msgstr ""
+msgstr "無効なアルバムのインスタンス化: %sは存在しません。"
 
 #: zp-core/class-album.php:1579
 #, php-format
@@ -1635,7 +1636,7 @@ msgstr ""
 #: zp-core/admin-options.php:2003
 #, php-format
 msgid "Cache processing worker limit: %s."
-msgstr ""
+msgstr "キャッシュ処理のワーカー制限: %s です。"
 
 #: zp-core/admin-options.php:2004
 msgid ""
@@ -7618,12 +7619,11 @@ msgid "SEO <em>Null</em> filter."
 msgstr "SEO <em>Null</em> フィルタです。"
 
 #: zp-core/zp-extensions/seo_null.php:10
-#, fuzzy
 msgid ""
 "The only translation performed is one or more <em>white space</em> "
 "characters are converted to a <em>hyphen</em>."
 msgstr ""
-"実行する唯一の翻訳は、ホワイトスペース文字はアンダースコアにすることです。"
+"実行する唯一の翻訳は、1つ以上の<em>ホワイトスペース</em>文字を<em>ハイフン</em>にすることです。"
 
 #: zp-core/zp-extensions/seo_null.php:12
 #: zp-core/zp-extensions/seo_zenphoto.php:11
@@ -7657,9 +7657,8 @@ msgid "List of IP ranges to %s."
 msgstr "%sの新着画像"
 
 #: zp-core/zp-extensions/ipBlocker.php:79
-#, fuzzy
 msgid "Import list"
-msgstr "インポート"
+msgstr "一覧をインポート"
 
 #: zp-core/zp-extensions/ipBlocker.php:84
 #, php-format
@@ -7674,9 +7673,8 @@ msgid "How the plugin will interpret the IP list."
 msgstr ""
 
 #: zp-core/zp-extensions/ipBlocker.php:89
-#, fuzzy
 msgid "Logon threshold"
-msgstr "閾値"
+msgstr "ログオンの閾値"
 
 #: zp-core/zp-extensions/ipBlocker.php:91
 #: zp-core/zp-extensions/failed_access_blocker.php:47
@@ -7684,9 +7682,8 @@ msgid "Admin page requests will be ignored after this many failed tries."
 msgstr "管理者ページ要求は大量に失敗したトライ後に無視されます。"
 
 #: zp-core/zp-extensions/ipBlocker.php:92
-#, fuzzy
 msgid "Logon cool off"
-msgstr "クールオフする分"
+msgstr "ログオンのクールオフ"
 
 #: zp-core/zp-extensions/ipBlocker.php:94
 #, fuzzy
@@ -7703,9 +7700,8 @@ msgid "clear list"
 msgstr "ページ一覧"
 
 #: zp-core/zp-extensions/ipBlocker.php:176
-#, fuzzy
 msgid "IP address format error"
-msgstr "IPアドレス"
+msgstr "IPアドレスの形式エラー"
 
 #: zp-core/zp-extensions/ipBlocker.php:353
 #: zp-core/zp-extensions/ipBlocker.php:354
@@ -9281,27 +9277,24 @@ msgid "The text for the link to the favorites page."
 msgstr "完全な記事へのリンクのテキストです。"
 
 #: zp-core/zp-extensions/favoritesHandler.php:67
-#, fuzzy
 msgid "Favorites page"
-msgstr "スクリプトページ"
+msgstr "お気に入りページ"
 
 #: zp-core/zp-extensions/favoritesHandler.php:70
 msgid "Theme script for the favorites page link"
 msgstr ""
 
 #: zp-core/zp-extensions/favoritesHandler.php:71
-#, fuzzy
 msgid "Add button"
-msgstr "ラジオボタン"
+msgstr "追加ボタン"
 
 #: zp-core/zp-extensions/favoritesHandler.php:74
 msgid "Default text for the <em>add to favorites</em> button."
 msgstr ""
 
 #: zp-core/zp-extensions/favoritesHandler.php:75
-#, fuzzy
 msgid "Remove button"
-msgstr "ラジオボタン"
+msgstr "削除ボタン"
 
 #: zp-core/zp-extensions/favoritesHandler.php:78
 msgid "Default text for the <em>remove from favorites</em> button."
@@ -9309,7 +9302,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/favoritesHandler.php:82
 msgid "The favorites page title text."
-msgstr ""
+msgstr "お気に入りページのタイトル文です。"
 
 #: zp-core/zp-extensions/favoritesHandler.php:86
 #, fuzzy
@@ -9505,7 +9498,7 @@ msgstr "インストールファイル"
 
 #: zp-core/zp-extensions/markRelease.php:42
 msgid "released"
-msgstr ""
+msgstr "リリース"
 
 #: zp-core/zp-extensions/markRelease.php:42 zp-core/admin-functions.php:4311
 msgid "debug"
@@ -11356,7 +11349,7 @@ msgstr "サイトは閲覧可能です。"
 
 #: zp-core/zp-extensions/site_upgrade/site_upgrade.php:35
 msgid "Site is avaiable for testing only."
-msgstr ""
+msgstr "サイトはテストにのみ利用可能です。"
 
 #: zp-core/zp-extensions/user_groups.php:17
 msgid "Provides rudimentary user groups."
@@ -11397,7 +11390,7 @@ msgstr "ユーザグループメンバーシップ"
 
 #: zp-core/zp-extensions/user_groups.php:201
 msgid "Templates are highlighed."
-msgstr ""
+msgstr "テンプレートはハイライトされます。"
 
 #: zp-core/zp-extensions/user_groups.php:201
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:440
@@ -11546,7 +11539,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/uploader_http.php:11
 msgid "<em>http</em> image upload handler."
-msgstr ""
+msgstr "<em>http</em>画像アップロード処理です。"
 
 #: zp-core/zp-extensions/class-textobject.php:57
 msgid "Provides a means for showing text type documents (.txt, .html, .htm)."
@@ -13578,9 +13571,8 @@ msgstr ""
 "チェックします。"
 
 #: zp-core/zp-extensions/themeSwitcher.php:64
-#, fuzzy
 msgid "Private"
-msgstr "非公開"
+msgstr "プライベート"
 
 #: zp-core/zp-extensions/themeSwitcher.php:65
 msgid ""
@@ -15543,22 +15535,22 @@ msgid "Create the album"
 msgstr "アルバムを作成"
 
 #: zp-core/functions-db-MySQL.php:29
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "MySQL Error: Zenphoto received the error %s when connecting to the database "
 "server."
 msgstr ""
-"MySQLエラー: Zenphotoはデータベースサーバへ接続するときにエラー<em>%s</em>を"
+"MySQLエラー: Zenphotoはデータベースサーバへ接続するときにエラー %s を"
 "受け取りました。"
 
 #: zp-core/functions-db-MySQL.php:36
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "MySQL Error: MySQL returned the error %1$s when Zenphoto tried to select the "
 "database %2$s."
 msgstr ""
 "MySQLエラー: データベースに接続しましたが、Zenphotoはデータベース%2$sを選択し"
-"ようとした時にMySQLがエラー<em>%1$s</em>を返しました。"
+"ようとした時にMySQLがエラー %1$s を返しました。"
 
 #: zp-core/class-search.php:65
 msgid "File/Folder name"
@@ -15593,12 +15585,12 @@ msgid "TitleLink"
 msgstr "タイトルリンク"
 
 #: zp-core/functions-db-PDO_MySQL.php:37
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "MySql Error: Zenphoto received the error %s when connecting to the database "
 "server."
 msgstr ""
-"MySQLエラー: Zenphotoはデータベースサーバへ接続するときにエラー<em>%s</em>を"
+"MySQLエラー: Zenphotoはデータベースサーバへ接続するときにエラー %s を"
 "受け取りました。"
 
 #: zp-core/functions.php:38
@@ -15630,9 +15622,9 @@ msgid "Mail send failed."
 msgstr "メールの送信に失敗しました。"
 
 #: zp-core/functions.php:322
-#, fuzzy, php-format
+#, php-format
 msgid "Invalid \"reply-to\" mail address %s."
-msgstr "不正な「宛先」メールアドレス%sです。"
+msgstr "不正な「reply-to」メールアドレス%sです。"
 
 #: zp-core/functions.php:334
 #, php-format
@@ -15818,9 +15810,8 @@ msgid "Orientation"
 msgstr "オリエンテーション"
 
 #: zp-core/functions.php:2222
-#, fuzzy
 msgid "Software"
-msgstr "ソフト"
+msgstr "ソフトウェア"
 
 #: zp-core/functions.php:2223
 msgid "Contrast Setting"
@@ -16088,14 +16079,12 @@ msgid ""
 msgstr ""
 
 #: zp-core/admin.php:277
-#, fuzzy
 msgid "<em>display_errors</em> is <strong>On</strong>"
-msgstr "テーブルのプレフィックス <strong>%s</strong>"
+msgstr "<em>display_errors</em> は <strong>On</strong>"
 
 #: zp-core/admin.php:281
-#, fuzzy
 msgid "<em>display_errors</em> is <strong>Off</strong>"
-msgstr "テーブルのプレフィックス <strong>%s</strong>"
+msgstr "<em>display_errors</em> は <strong>Off</strong>"
 
 #: zp-core/admin.php:287
 #, php-format
@@ -16340,7 +16329,6 @@ msgid "third party theme"
 msgstr "サードパーティ製テーマ"
 
 #: zp-core/admin-themes.php:245
-#, fuzzy
 msgid "Version"
 msgstr "バージョン"
 
@@ -16467,9 +16455,8 @@ msgid "No backup set found."
 msgstr "バックアップセットが見つかりません。"
 
 #: zp-core/utilities/backup_restore.php:316
-#, fuzzy
 msgid "Truncate table<br />"
-msgstr "タイトルを切り取る*"
+msgstr "タイトルを切り取る<br />"
 
 #: zp-core/utilities/backup_restore.php:389
 msgid "Restore encountered exceptions"
@@ -16535,9 +16522,8 @@ msgid "Backup the Database"
 msgstr "データベースをバックアップ"
 
 #: zp-core/utilities/backup_restore.php:522
-#, fuzzy
 msgid "Compression level"
-msgstr "未圧縮"
+msgstr "圧縮レベル"
 
 #: zp-core/utilities/backup_restore.php:533
 msgid "You have not yet created a backup set."
@@ -16911,9 +16897,8 @@ msgstr ""
 "が満たされるまで繰り返しパスワードフィールドは無効になります。"
 
 #: zp-core/lib-auth.php:82
-#, fuzzy
 msgid "Password hash algorithm"
-msgstr "パスワードのヒント:"
+msgstr "パスワードのハッシュアルゴリズム"
 
 #: zp-core/lib-auth.php:84
 #, php-format
@@ -17429,9 +17414,8 @@ msgid "Return to search"
 msgstr "検索へ戻る"
 
 #: zp-core/template-functions.php:1202
-#, fuzzy
 msgid "Return to archive"
-msgstr "検索へ戻る"
+msgstr "アーカイブへ戻る"
 
 #: zp-core/template-functions.php:1438 zp-core/template-functions.php:1442
 msgid "printField() invalid function call."
@@ -17504,7 +17488,6 @@ msgid "The page you are trying to view is password protected."
 msgstr "閲覧しようとしているページはパスワードで保護されています。"
 
 #: zp-core/template-functions.php:4569
-#, fuzzy
 msgid "login"
 msgstr "ログイン"
 
@@ -17956,7 +17939,6 @@ msgid "Updated configuration file"
 msgstr "設定ファイルを更新しました"
 
 #: zp-core/setup/index.php:221
-#, fuzzy
 msgid "upgrade"
 msgstr "アップグレード"
 
@@ -18012,17 +17994,14 @@ msgid "Upgrade from Zenphoto v%s"
 msgstr "Zenphoto v%sからアップグレード"
 
 #: zp-core/setup/index.php:361 zp-core/setup/index.php:389
-#, fuzzy
 msgid "Reinstalling current Zenphoto release"
-msgstr "現在のZenphotoリリースを更新中"
+msgstr "現在のZenphotoリリースを再インストール中"
 
 #: zp-core/setup/index.php:362 zp-core/setup/index.php:390
-#, fuzzy
 msgid "reinstall"
-msgstr "インストール"
+msgstr "再インストール"
 
 #: zp-core/setup/index.php:401
-#, fuzzy
 msgid "install"
 msgstr "インストール"
 
@@ -18035,11 +18014,11 @@ msgid "Setup"
 msgstr "セットアップ"
 
 #: zp-core/setup/index.php:450
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Welcome to Zenphoto! This page will set up Zenphoto %s on your web server."
 msgstr ""
-"Zenphotoへようこそ！このページはあなたのウェブサーバにZenpothoをセットアップ"
+"Zenphotoへようこそ！このページはあなたのウェブサーバにZenpotho %sをセットアップ"
 "します。"
 
 #: zp-core/setup/index.php:452
@@ -18165,9 +18144,8 @@ msgstr ""
 "す。"
 
 #: zp-core/setup/index.php:549
-#, fuzzy
 msgid "<code>Suhosin</code> module [is enabled]"
-msgstr "PHP <code>magic_quotes_gpc</code> 【有効】"
+msgstr "<code>Suhosin</code> モジュール 【有効】"
 
 #: zp-core/setup/index.php:549
 #, php-format
@@ -18228,14 +18206,13 @@ msgid "You must disable <code>magic_quotes_sybase</code>."
 msgstr "<code>magic_quotes_sybase</code>を無効にする必要があります。"
 
 #: zp-core/setup/index.php:588
-#, fuzzy
 msgid "PHP <code>display_errors</code>"
-msgstr "PHP <code>Register Globals</code>"
+msgstr "PHP <code>display_errors</code>"
 
 #: zp-core/setup/index.php:589
-#, fuzzy, php-format
+#, php-format
 msgid "PHP <code>display_errors</code> [is enabled]"
-msgstr "PHP <code>magic_quotes_gpc</code> 【有効】"
+msgstr "PHP <code>display_errors</code> 【有効】"
 
 #: zp-core/setup/index.php:590
 msgid ""
@@ -18258,14 +18235,12 @@ msgstr ""
 "Zenphotoの国際化はネイティブなPHPの<code>gettext()</code>サポートが必要です"
 
 #: zp-core/setup/index.php:594
-#, fuzzy
 msgid "PHP <code>flock</code> support"
-msgstr "PHP <code>%s</code> サポート"
+msgstr "PHP <code>flock</code> サポート"
 
 #: zp-core/setup/index.php:594
-#, fuzzy
 msgid "PHP <code>flock</code> support [is not present]"
-msgstr "PHP <code>gettext()</code>サポート 【未提供】"
+msgstr "PHP <code>flock</code> サポート 【未提供】"
 
 #: zp-core/setup/index.php:594
 msgid ""
@@ -19161,12 +19136,11 @@ msgid "Third party plugins"
 msgstr "サードパーティ製プラグイン"
 
 #: zp-core/setup/index.php:1512
-#, fuzzy
 msgid ""
 "You need to address the problems indicated above then run <code>setup</code> "
 "again."
 msgstr ""
-"上に示された問題を解決してから、再度<code>setup.php</code>を実行する必要があ"
+"上に示された問題を解決してから、再度<code>setup</code>を実行する必要があ"
 "ります。"
 
 #: zp-core/setup/index.php:1515
@@ -19325,9 +19299,8 @@ msgid "If you haven't created the database yet, now would be a good time."
 msgstr "データベースの作成がまだなら、今すぐ実行してください。"
 
 #: zp-core/setup/index.php:2637
-#, fuzzy
 msgid "The zenphoto.cfg file does not exist."
-msgstr "<em>zenphoto.cfg</em>ファイル 【存在しません】"
+msgstr "zenphoto.cfg ファイルは存在しません。"
 
 #: zp-core/setup/setup-option-defaults.php:10
 msgid "Set Zenphoto default options"
@@ -19432,7 +19405,7 @@ msgstr "画像の処理中に重大なエラーが返されました。"
 #: zp-core/i.php:208
 #, fuzzy, php-format
 msgid "Suffix Not Allowed: %s"
-msgstr "許可: %sキロバイト"
+msgstr "許可: %s"
 
 #: zp-core/404.php:10
 msgid "Zenphoto Error:</strong> the requested object was not found."
@@ -20683,9 +20656,8 @@ msgid "%1$s: %2$s in %3$s on line %4$s"
 msgstr "%1$s: 行%4$s上の%3$sの%2$s"
 
 #: zp-core/functions-db-MySQLi.php:29
-#, fuzzy
 msgid "MySQLi Error: Zenphoto could not instantiate a connection."
-msgstr "メール関数をインスタンス化できませんでした。"
+msgstr "MySQLi エラー: Zenphotoは接続をインスタンス化できませんでした。"
 
 #: zp-core/functions-db-MySQLi.php:36
 #, php-format
