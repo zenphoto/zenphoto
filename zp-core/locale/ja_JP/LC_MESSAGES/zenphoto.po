@@ -15,7 +15,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.4.4\n"
+"Project-Id-Version: Zenphoto 1.4.5\n"
 "Report-Msgid-Bugs-To: webmaster at momo-i.org\n"
 "POT-Creation-Date: 2013-01-10 13:57+0900\n"
 "PO-Revision-Date: 2009-08-12 08:30+0900\n"
@@ -3029,9 +3029,8 @@ msgid "Album access"
 msgstr "アルバム日付"
 
 #: zp-core/zp-extensions/security-logger.php:146
-#, fuzzy
 msgid "Admin access"
-msgstr "アクセスなし"
+msgstr "管理者アクセス"
 
 #: zp-core/zp-extensions/security-logger.php:149
 msgid "Guest login"
@@ -3043,7 +3042,7 @@ msgstr "管理ログイン"
 
 #: zp-core/zp-extensions/security-logger.php:155
 msgid "Authorization cookie check"
-msgstr ""
+msgstr "認証Cookieのチェック"
 
 #: zp-core/zp-extensions/security-logger.php:172
 msgid ""
@@ -6092,7 +6091,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/cloneZenphoto.php:26
 msgid "Your server does not support symbolic linking."
-msgstr ""
+msgstr "あなたのサーバーはシンボリックリンクをサポートしていません。"
 
 #: zp-core/zp-extensions/cloneZenphoto.php:37
 #: zp-core/zp-extensions/cloneZenphoto.php:52
@@ -6290,11 +6289,11 @@ msgstr ""
 
 #: zp-core/zp-extensions/uploader_jQuery.php:14
 msgid "<em>jQuery</em> image upload handler."
-msgstr ""
+msgstr "<em>jQuery</em>画像アップロードハンドラです。"
 
 #: zp-core/zp-extensions/uploader_jQuery.php:16
 msgid "jQuery uploader requires PHP 5.3 or greater."
-msgstr ""
+msgstr "jQueryアップローダーはPHP5.3以上が必要です。"
 
 #: zp-core/zp-extensions/deprecated-functions.php:20
 msgid "Provides deprecated Zenphoto functions."
@@ -6593,7 +6592,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/deprecated-functions.php:680
 msgid "This happens automatically."
-msgstr ""
+msgstr "これは自動的に発生します。"
 
 #: zp-core/zp-extensions/deprecated-functions.php:689
 msgid ""
@@ -6681,7 +6680,6 @@ msgid "Use echo \"image_\".$_zp_current_album->getID()."
 msgstr "echo \"image_\".$_zp_current_album->getID()を使用します。"
 
 #: zp-core/zp-extensions/deprecated-functions.php:1059
-#, fuzzy
 msgid "Just what do you expect this does?"
 msgstr "ただこれが何を期待していますか？"
 
@@ -6930,7 +6928,7 @@ msgstr "TIFF画像を描画するためのWebサービスを選択します。"
 
 #: zp-core/zp-extensions/uploader_flash.php:12
 msgid "<em>flash</em> image upload handler."
-msgstr ""
+msgstr "<em>flash</em>画像アップロードハンドラです。"
 
 #: zp-core/zp-extensions/cacheManager.php:55
 msgid "Provides cache management utilities for Image, HTML, and RSS caches."
@@ -7642,19 +7640,16 @@ msgid "Tools to block hacker access to your site."
 msgstr ""
 
 #: zp-core/zp-extensions/ipBlocker.php:66
-#, fuzzy
 msgid "Allow"
-msgstr "クラウドの許可"
+msgstr "許可"
 
 #: zp-core/zp-extensions/ipBlocker.php:66
-#, fuzzy
 msgid "Block"
-msgstr "ロック"
+msgstr "ブロック"
 
 #: zp-core/zp-extensions/ipBlocker.php:76
-#, fuzzy
 msgid "IP list"
-msgstr "ページ一覧"
+msgstr "IP一覧"
 
 #: zp-core/zp-extensions/ipBlocker.php:78
 #, fuzzy, php-format
@@ -8261,7 +8256,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/zenpage.php:255
 msgid "Enable Zenpage CMS plugin"
-msgstr ""
+msgstr "Zenpage CMSプラグインを有効"
 
 #: zp-core/zp-extensions/zenpage.php:354
 msgid "Edit Page"
@@ -9085,7 +9080,7 @@ msgstr[0] "%u ダウンロード"
 
 #: zp-core/zp-extensions/simpleSpam.php:12
 msgid "Simple SPAM filter."
-msgstr ""
+msgstr "シンプルSPAMフィルターです。"
 
 #: zp-core/zp-extensions/simpleSpam.php:57
 msgid "Words to die on"
@@ -9258,7 +9253,7 @@ msgstr "Zenphoto<em>audio-video</em>ハンドラです。"
 
 #: zp-core/zp-extensions/favoritesHandler.php:38
 msgid "My favorites"
-msgstr ""
+msgstr "お気に入り"
 
 #: zp-core/zp-extensions/favoritesHandler.php:41
 #, fuzzy
@@ -13594,9 +13589,8 @@ msgid ""
 msgstr ""
 
 #: zp-core/zp-extensions/themeSwitcher.php:66
-#, fuzzy
 msgid "Theme list"
-msgstr "テーマ"
+msgstr "テーマ一覧"
 
 #: zp-core/zp-extensions/themeSwitcher.php:68
 msgid "These are the themes that may be selected among."
@@ -15219,7 +15213,7 @@ msgstr "%sのZipファイルをダウンロード"
 
 #: zp-core/admin-logs.php:136
 msgid "Log file size limit"
-msgstr ""
+msgstr "ログファイルのサイズ制限"
 
 #: zp-core/admin-logs.php:138 zp-core/setup/index.php:1005
 msgid "Update"
@@ -16065,13 +16059,12 @@ msgid "<strong>Locale setting has failed</strong>"
 msgstr "<strong>言語設定が失敗しました</strong>"
 
 #: zp-core/admin.php:215
-#, fuzzy
 msgid "Server path:"
-msgstr "サーバ日付: %s"
+msgstr "サーバのパス:"
 
 #: zp-core/admin.php:218
 msgid "WEB path:"
-msgstr ""
+msgstr "Webのパス:"
 
 #: zp-core/admin.php:227
 #, php-format
@@ -16140,7 +16133,7 @@ msgstr "テーブルのプレフィックス: <strong>%1$s</strong>"
 
 #: zp-core/admin.php:322
 msgid "No spam filter configured"
-msgstr ""
+msgstr "スパムフィルターが構成されていません"
 
 #: zp-core/admin.php:324
 #, php-format
@@ -16174,7 +16167,7 @@ msgstr[0] "%u個の有効なフィルタ:"
 
 #: zp-core/admin.php:453
 msgid "Misc"
-msgstr ""
+msgstr "その他"
 
 #: zp-core/admin.php:462
 msgid "Utility functions"
@@ -17686,7 +17679,7 @@ msgstr "データベース管理者パスワード"
 #: zp-core/setup/setup_pluginOptions.php:12
 #, php-format
 msgid "Plugin:%s setup started"
-msgstr ""
+msgstr "プラグイン: %sのセットアップを開始しました"
 
 #: zp-core/setup/setup_pluginOptions.php:18
 #, php-format
@@ -17696,7 +17689,7 @@ msgstr ""
 #: zp-core/setup/setup_pluginOptions.php:24
 #, php-format
 msgid "Plugin:%s setup completed"
-msgstr ""
+msgstr "プラグイン: %sのセットアップが完了しました"
 
 #: zp-core/setup/setup_set-mod_rewrite.php:14
 msgid "The Zenphoto option \"mod_rewrite\" will be set to \"enabled\"."
@@ -20695,13 +20688,13 @@ msgid "MySQLi Error: Zenphoto could not instantiate a connection."
 msgstr "メール関数をインスタンス化できませんでした。"
 
 #: zp-core/functions-db-MySQLi.php:36
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "MySQLi Error: MySQLi returned the error %1$s when Zenphoto tried to select "
 "the database %2$s."
 msgstr ""
-"MySQLエラー: データベースに接続しましたが、Zenphotoはデータベース%2$sを選択し"
-"ようとした時にMySQLがエラー<em>%1$s</em>を返しました。"
+"MySQLi エラー: データベースに接続しましたが、Zenphotoはデータベース%2$sを選択し"
+"ようとした時に MySQLi がエラー<em>%1$s</em>を返しました。"
 
 #: zp-core/reconfigure.php:80
 msgid "an unknown release"
@@ -20755,14 +20748,13 @@ msgstr ""
 "プ%2$sを実行する必要があります。"
 
 #: zp-core/admin-functions.php:26
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "<a href=\"http://www.zenphoto.org\" title=\"The simpler media website CMS"
 "\">Zen<strong>photo</strong></a> version %1$s [%2$s]"
 msgstr ""
-"Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
-"\"><span id=\"zen-part\">zen</span><span id=\"photo-part\"> バージョン %1$s "
-"【%2$s】</span></a>"
+"<a href=\"http://www.zenphoto.org\" title=\"シンプルなメディアウェブサイトCMS"
+"\">Zen<strong>photo</strong></a> バージョン %1$s 【%2$s】"
 
 #: zp-core/admin-functions.php:31
 msgid "Zenphoto licence"
@@ -21179,21 +21171,19 @@ msgstr "セットアップ"
 
 #: zp-core/admin-functions.php:4348
 msgid "demo"
-msgstr ""
+msgstr "デモ"
 
 #: zp-core/admin-functions.php:4349
 msgid "development"
 msgstr "開発"
 
 #: zp-core/admin-functions.php:4350
-#, fuzzy
 msgid "mail"
-msgstr "メールアドレス"
+msgstr "メール"
 
 #: zp-core/admin-functions.php:4351
-#, fuzzy
 msgid "media"
-msgstr "中"
+msgstr "メディア"
 
 #: zp-core/admin-functions.php:4352
 msgid "misc"
@@ -21201,7 +21191,7 @@ msgstr "その他"
 
 #: zp-core/admin-functions.php:4353
 msgid "spam"
-msgstr ""
+msgstr "スパム"
 
 #: zp-core/admin-functions.php:4354
 msgid "seo"
@@ -21209,15 +21199,13 @@ msgstr "SEO"
 
 #: zp-core/admin-functions.php:4355
 msgid "tools"
-msgstr ""
+msgstr "ツール"
 
 #: zp-core/admin-functions.php:4356
-#, fuzzy
 msgid "uploader"
-msgstr "アップロード済"
+msgstr "アップローダー"
 
 #: zp-core/admin-functions.php:4358
-#, fuzzy
 msgid "utilities"
 msgstr "ユーティリティ"
 
@@ -21844,14 +21832,12 @@ msgid "Image gallery"
 msgstr "画像ギャラリー"
 
 #: themes/garland/functions.php:44
-#, fuzzy
 msgid "Garland image display handling."
-msgstr "デフォルト画像表示サイズです。"
+msgstr "ガーランド(花飾り)画像の表示処理です。"
 
 #: themes/garland/functions.php:45 themes/effervescence_plus/functions.php:96
-#, fuzzy
 msgid "Personality"
-msgstr "個人テーマ"
+msgstr "パーソナリティ"
 
 #: themes/garland/functions.php:90 themes/garland/archive.php:8
 #: themes/garland/archive.php:39 themes/zenpage/archive.php:12
@@ -22087,10 +22073,9 @@ msgid "Object not found"
 msgstr "オブジェクトは見つかりませんでした"
 
 #: themes/zenpage/footer.php:5
-#, fuzzy
 msgid ""
 "Zenpage theme designed by <a href=\"http://www.maltem.de\">Malte Müller</a>"
-msgstr "Zenpage theme by <a href=\"http://www.maltem.de\">Malte Müller</a>"
+msgstr "Zenpage theme designed by <a href=\"http://www.maltem.de\">Malte Müller</a>"
 
 #: themes/zenpage/image.php:44 themes/default/image.php:35
 #: themes/zpmobile/image.php:31
@@ -22154,12 +22139,10 @@ msgid "Sorry, no image matches found. Try refining your search."
 msgstr "すみませんが画像は一致しませんでした。検索精度を上げてみてください。"
 
 #: themes/default/functions.php:62
-#, fuzzy
 msgid "Default theme color scheme."
-msgstr "テーマカラーを選択します"
+msgstr "デフォルトのテーマ配色です。"
 
 #: themes/default/functions.php:63 themes/effervescence_plus/functions.php:84
-#, fuzzy
 msgid "Theme Color"
 msgstr "テーマカラー"
 
@@ -22624,7 +22607,7 @@ msgstr "*選択されたロゴはありません"
 
 #: themes/effervescence_plus/themeoptions.php:177
 msgid "Effervescence"
-msgstr "沸騰(Effervescence)"
+msgstr "発泡(Effervescence)"
 
 #: themes/effervescence_plus/indexpage.php:16
 #: themes/effervescence_plus/password.php:11
@@ -22682,13 +22665,12 @@ msgid "Simpleviewer"
 msgstr "シンプルビューア"
 
 #: themes/effervescence_plus/functions.php:83
-#, fuzzy
 msgid "Effervescence color scheme."
-msgstr "沸騰(Effervescence) %s"
+msgstr "発泡(Effervescence)の配色です。"
 
 #: themes/effervescence_plus/functions.php:95
 msgid "Effervescence image display handling."
-msgstr ""
+msgstr "発泡(Effervescence)画像の表示処理です。"
 
 #: themes/effervescence_plus/functions.php:145
 msgid "Random picture..."
@@ -22713,22 +22695,22 @@ msgstr "アルバム %3$uの%1$u-%2$u"
 #: themes/effervescence_plus/functions.php:229
 #, php-format
 msgid "Effervescence %s"
-msgstr "沸騰(Effervescence) %s"
+msgstr "発泡(Effervescence) %s"
 
 #: themes/effervescence_plus/functions.php:226
 #, php-format
 msgid "Effervescence %s (not found)"
-msgstr "沸騰(Effervescence) %s (見つかりませんでした)"
+msgstr "発泡(Effervescence) %s (見つかりませんでした)"
 
 #: themes/effervescence_plus/functions.php:232
 #, php-format
 msgid "Effervescence %1$s %2$s"
-msgstr "沸騰(Effervescence) %1$s %2$s"
+msgstr "発泡(Effervescence) %1$s %2$s"
 
 #: themes/effervescence_plus/functions.php:234
 #, php-format
 msgid "Effervescence %1$s %2$s (not found)"
-msgstr "沸騰(Effervescence) %1$s %2$s (見つかりませんでした)"
+msgstr "発泡(Effervescence) %1$s %2$s (見つかりませんでした)"
 
 #: themes/effervescence_plus/functions.php:270
 msgid "The album is not published."
