@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.5\n"
 "Report-Msgid-Bugs-To: webmaster at momo-i.org\n"
-"POT-Creation-Date: 2013-01-10 13:57+0900\n"
+"POT-Creation-Date: 2013-01-11 15:24+0900\n"
 "PO-Revision-Date: 2009-08-12 08:30+0900\n"
 "Last-Translator: momo-i <webmaster at momo-i dot org>\n"
 "Language-Team: Japanese\n"
@@ -2914,11 +2914,10 @@ msgid "Imagick font size"
 msgstr "Imagickフォントサイズ"
 
 #: zp-core/lib-Imagick.php:94
-#, fuzzy, php-format
+#, php-format
 msgid "The Imagick font size (in pixels). Default is <strong>%s</strong>."
 msgstr ""
-"CAPTCHAのフォントサイズ(ピクセルで)です。デフォルトは<strong>%s</strong>で"
-"す。"
+"Imagickのフォントサイズ(ピクセル)です。デフォルトは<strong>%s</strong>です。"
 
 #: zp-core/lib-Imagick.php:108
 #, php-format
@@ -3020,14 +3019,12 @@ msgid "Request delete user"
 msgstr "ユーザ削除リクエスト"
 
 #: zp-core/zp-extensions/security-logger.php:140
-#, fuzzy
 msgid "Cross Site Reference"
-msgstr "経度参照"
+msgstr "クロスサイトリファレンス"
 
 #: zp-core/zp-extensions/security-logger.php:143
-#, fuzzy
 msgid "Album access"
-msgstr "アルバム日付"
+msgstr "アルバムアクセス"
 
 #: zp-core/zp-extensions/security-logger.php:146
 msgid "Admin access"
@@ -3061,9 +3058,8 @@ msgid "Success"
 msgstr "成功"
 
 #: zp-core/zp-extensions/security-logger.php:188
-#, fuzzy
 msgid "Blocked"
-msgstr "ロック"
+msgstr "ブロック"
 
 #: zp-core/zp-extensions/security-logger.php:208
 msgid "Set Security log permissions"
@@ -4234,9 +4230,8 @@ msgid "Check All"
 msgstr "全てチェック"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:222
-#, fuzzy
 msgid "No menus exist"
-msgstr "コメントは存在しません"
+msgstr "メニューは存在しません"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:237
 msgid "Menu target is password protected"
@@ -4486,14 +4481,12 @@ msgid "PHP <em>DOM Object Model</em> is required."
 msgstr "PHP <em>DOMオブジェクトモデル</em>が必須です。"
 
 #: zp-core/zp-extensions/zenphoto_news.php:26
-#, fuzzy
 msgid "Truncation"
-msgstr "関数"
+msgstr "切り捨て"
 
 #: zp-core/zp-extensions/zenphoto_news.php:27
-#, fuzzy
 msgid "The length of the article to display."
-msgstr "表示するマップの初期タイプを選択します。"
+msgstr "表示する記事の長さです。"
 
 #: zp-core/zp-extensions/zenphoto_news.php:35
 msgid "News from Zenphoto.org"
@@ -4918,7 +4911,7 @@ msgid "Order by title ascending"
 msgstr "タイトルを昇順で並び替え"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:872
-#, fuzzy, php-format
+#, php-format
 msgid "%u per page"
 msgstr "ページ毎の%u"
 
@@ -5132,10 +5125,10 @@ msgid "Use the Zenpage Page class->getPages() method."
 msgstr "Zenpage Page class->getPages() methodを使用します。"
 
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:361
-#, fuzzy, php-format
+#, php-format
 msgid " [%u item]"
 msgid_plural " [%u items]"
-msgstr[0] "【%u個の画像】"
+msgstr[0] "【%u個のアイテム】"
 
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:461
 msgid "<em>This entry belongs to a protected album.</em>"
@@ -5835,9 +5828,8 @@ msgstr ""
 "ロバイダがこれを行う場合、サブドメインの作成は必要ありません。)"
 
 #: zp-core/zp-extensions/sitemap-extended.php:75
-#, fuzzy
 msgid "Gallery index page"
-msgstr "ギャラリーインデックスページのリンク:"
+msgstr "ギャラリーインデックスページ"
 
 #: zp-core/zp-extensions/sitemap-extended.php:78
 msgid ""
@@ -6064,7 +6056,6 @@ msgstr ""
 
 #: zp-core/zp-extensions/sitemap-extended.php:198
 #: zp-core/zp-extensions/seo_cleanup.php:24
-#, fuzzy
 msgid "Seo"
 msgstr "SEO"
 
@@ -6348,7 +6339,6 @@ msgstr ""
 
 #: zp-core/zp-extensions/deprecated-functions.php:83
 #: zp-core/zp-extensions/markRelease.php:53
-#, fuzzy
 msgid "Development"
 msgstr "開発"
 
@@ -7623,7 +7613,8 @@ msgid ""
 "The only translation performed is one or more <em>white space</em> "
 "characters are converted to a <em>hyphen</em>."
 msgstr ""
-"実行する唯一の翻訳は、1つ以上の<em>ホワイトスペース</em>文字を<em>ハイフン</em>にすることです。"
+"実行する唯一の翻訳は、1つ以上の<em>ホワイトスペース</em>文字を<em>ハイフン</"
+"em>にすることです。"
 
 #: zp-core/zp-extensions/seo_null.php:12
 #: zp-core/zp-extensions/seo_zenphoto.php:11
@@ -7686,18 +7677,16 @@ msgid "Logon cool off"
 msgstr "ログオンのクールオフ"
 
 #: zp-core/zp-extensions/ipBlocker.php:94
-#, fuzzy
 msgid "The block will be removed after this many minutes."
-msgstr "ブロックはこの期間を待った後に削除されます。"
+msgstr "ブロックはこの何分後に削除されます。"
 
 #: zp-core/zp-extensions/ipBlocker.php:99
 msgid "IP list ranges cannot be managed with the plugin disabled"
 msgstr ""
 
 #: zp-core/zp-extensions/ipBlocker.php:153
-#, fuzzy
 msgid "clear list"
-msgstr "ページ一覧"
+msgstr "一覧のクリア"
 
 #: zp-core/zp-extensions/ipBlocker.php:176
 msgid "IP address format error"
@@ -7743,15 +7732,15 @@ msgid "options"
 msgstr "オプション"
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:147
-#, fuzzy, php-format
+#, php-format
 msgid "Expired:%s; "
-msgstr "期限切れ: %s"
+msgstr "期限切れ:%s "
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:150
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:152
-#, fuzzy, php-format
+#, php-format
 msgid "Expires:%s; "
-msgstr "期限: %s"
+msgstr "期限:%s "
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:150
 #: zp-core/zp-extensions/user-expiry.php:271
@@ -7776,14 +7765,13 @@ msgstr "メールリニューアル"
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:186
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:205
-#, fuzzy
 msgid "Force password renewal"
-msgstr "パスワードリセットリクエスト"
+msgstr "強制的にパスワードの更新"
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:192
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s <strong>%2$s</strong> (%3$slast logon:%4$s)"
-msgstr "%1$s <strong>%2$s</strong> (%3$s: 最終ログオン:%4$s)"
+msgstr "%1$s <strong>%2$s</strong> (%3$s最終ログオン:%4$s)"
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:199
 #: themes/garland/favorites.php:58 themes/garland/favorites.php:76
@@ -8167,9 +8155,8 @@ msgstr ""
 "れます。"
 
 #: zp-core/zp-extensions/zenpage.php:198
-#, fuzzy
 msgid "CombiNews: Custom title"
-msgstr "コンビニュース: カスタムタイトル(複数)"
+msgstr "コンビニュース: カスタムタイトル"
 
 #: zp-core/zp-extensions/zenpage.php:200
 #, php-format
@@ -8188,13 +8175,10 @@ msgid "CombiNews: Custom title - Number of image titles"
 msgstr "コンビニュース: カスタムタイトル-画像タイトル数"
 
 #: zp-core/zp-extensions/zenpage.php:203
-#, fuzzy
 msgid ""
 "How many images titles you want to show with the <em>latest images by album</"
 "em> title."
-msgstr ""
-"カスタムタイトルに表示したい画像タイトル数(<em>アルバムごとの新着画像</em>オ"
-"プションのみ)です。"
+msgstr "<em>アルバムごとの新着画像</em>タイトルに表示したい画像タイトル数"
 
 #: zp-core/zp-extensions/zenpage.php:204
 msgid "CombiNews: Number of images"
@@ -8281,7 +8265,7 @@ msgstr "記事を追加"
 #: zp-core/zp-extensions/reCaptcha.php:11
 #: zp-core/zp-extensions/zpCaptcha.php:13
 #, fuzzy
-msgid "Zenphoto captcha hanlder."
+msgid "Zenphoto captcha handler."
 msgstr "Zenphotoアップグレード"
 
 #: zp-core/zp-extensions/reCaptcha.php:13
@@ -15540,8 +15524,8 @@ msgid ""
 "MySQL Error: Zenphoto received the error %s when connecting to the database "
 "server."
 msgstr ""
-"MySQLエラー: Zenphotoはデータベースサーバへ接続するときにエラー %s を"
-"受け取りました。"
+"MySQLエラー: Zenphotoはデータベースサーバへ接続するときにエラー %s を受け取り"
+"ました。"
 
 #: zp-core/functions-db-MySQL.php:36
 #, php-format
@@ -15590,8 +15574,8 @@ msgid ""
 "MySql Error: Zenphoto received the error %s when connecting to the database "
 "server."
 msgstr ""
-"MySQLエラー: Zenphotoはデータベースサーバへ接続するときにエラー %s を"
-"受け取りました。"
+"MySQLエラー: Zenphotoはデータベースサーバへ接続するときにエラー %s を受け取り"
+"ました。"
 
 #: zp-core/functions.php:38
 msgid "most recent"
@@ -18018,8 +18002,8 @@ msgstr "セットアップ"
 msgid ""
 "Welcome to Zenphoto! This page will set up Zenphoto %s on your web server."
 msgstr ""
-"Zenphotoへようこそ！このページはあなたのウェブサーバにZenpotho %sをセットアップ"
-"します。"
+"Zenphotoへようこそ！このページはあなたのウェブサーバにZenpotho %sをセットアッ"
+"プします。"
 
 #: zp-core/setup/index.php:452
 msgid "Systems Check:"
@@ -19140,8 +19124,8 @@ msgid ""
 "You need to address the problems indicated above then run <code>setup</code> "
 "again."
 msgstr ""
-"上に示された問題を解決してから、再度<code>setup</code>を実行する必要があ"
-"ります。"
+"上に示された問題を解決してから、再度<code>setup</code>を実行する必要がありま"
+"す。"
 
 #: zp-core/setup/index.php:1515
 msgid "Setup failed."
@@ -20665,8 +20649,8 @@ msgid ""
 "MySQLi Error: MySQLi returned the error %1$s when Zenphoto tried to select "
 "the database %2$s."
 msgstr ""
-"MySQLi エラー: データベースに接続しましたが、Zenphotoはデータベース%2$sを選択し"
-"ようとした時に MySQLi がエラー<em>%1$s</em>を返しました。"
+"MySQLi エラー: データベースに接続しましたが、Zenphotoはデータベース%2$sを選択"
+"しようとした時に MySQLi がエラー<em>%1$s</em>を返しました。"
 
 #: zp-core/reconfigure.php:80
 msgid "an unknown release"
@@ -22047,7 +22031,8 @@ msgstr "オブジェクトは見つかりませんでした"
 #: themes/zenpage/footer.php:5
 msgid ""
 "Zenpage theme designed by <a href=\"http://www.maltem.de\">Malte Müller</a>"
-msgstr "Zenpage theme designed by <a href=\"http://www.maltem.de\">Malte Müller</a>"
+msgstr ""
+"Zenpage theme designed by <a href=\"http://www.maltem.de\">Malte Müller</a>"
 
 #: themes/zenpage/image.php:44 themes/default/image.php:35
 #: themes/zpmobile/image.php:31
