@@ -353,7 +353,7 @@ if (file_exists(SERVERPATH.'/'.ZENFOLDER.'/Zenphoto.package')) {
 			Thread.sleep(1000L);
 			<?php
 		}
-		$Wait++;
+		$wait++;
 		?>
 		$.ajax({
 			type: 'POST',
@@ -623,7 +623,7 @@ $plugins = getPluginFiles('*.php');
 			Thread.sleep(1000L);
 			<?php
 		}
-		$Wait++;
+		$wait++;
 		?>
 		$.ajax({
 			type: 'POST',
