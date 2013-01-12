@@ -411,8 +411,8 @@ function updateArticle(&$reports) {
 	$date = date('Y-m-d_H-i-s');
 	$title = process_language_string_save("title",2);
 	$author = sanitize($_POST['author']);
-	$content = process_language_string_save("content",0); // TinyMCE already clears unallowed code
-	$extracontent = zpFunctions::updateImageProcessorLink(process_language_string_save("extracontent",0)); // TinyMCE already clears unallowed code
+	$content = zpFunctions::updateImageProcessorLink(process_language_string_save("content",0)); // TinyMCE already clears unallowed code
+	$extracontent = process_language_string_save("extracontent",0); // TinyMCE already clears unallowed code
 	$custom = process_language_string_save("custom_data",1);
 	$show = getcheckboxState('show');
 	$date = sanitize($_POST['date']);
