@@ -70,16 +70,11 @@ setOptionDefault('time_offset', 0);
 if (isset($_GET['mod_rewrite'])) {
 	if ($_GET['mod_rewrite'] == 'ON') {
 		?>
-		<script type="text/javascript">
-			// <!-- <![CDATA[
-			$.ajax({
-				type: 'GET',
-				cache: false,
-				data: 'z=setup',
-				url: '<?php echo WEBPATH; ?>/page/setup_set-mod_rewrite'
-			});
-			// ]]> -->
-		</script>
+		<p>
+		<?php echo gettext('Mod_Rewrite check:'); ?>
+		<br />
+		<img src="<?php echo WEBPATH; ?>/page/setup_set-mod_rewrite?z=setup" title="<?php echo gettext('Mod_rewrite'); ?>" alt="<?php echo gettext('Mod_rewrite'); ?>" height="16px" width="16px" />
+		</p>
 		<?php
 	}
 }
@@ -342,30 +337,20 @@ if (file_exists(SERVERPATH.'/'.ZENFOLDER.'/Zenphoto.package')) {
 		setOption('Zenphoto_theme_list',serialize($themes));
 	}
 }
+
 ?>
-<script type="text/javascript">
-	// <!-- <![CDATA[
-	<?php
-	$wait = 0;
-	foreach (array_keys($_zp_gallery->getThemes()) as $theme) {
-		if ($wait) {
-			?>
-			Thread.sleep(1000L);
-			<?php
-		}
-		$wait++;
-		?>
-		$.ajax({
-			type: 'POST',
-			cache: false,
-			url: '<?php echo WEBPATH.'/'.ZENFOLDER; ?>/setup/setup_themeOptions.php',
-			data: 'theme=<?php echo $theme; ?>'
-		});
-		<?php
-	}
+<p>
+<?php
+natcasesort($themes);
+echo gettext('Theme setup:').'<br />';
+foreach (array_keys($_zp_gallery->getThemes()) as $theme) {
 	?>
-	// ]]> -->
-</script>
+	<img src="<?php echo WEBPATH.'/'.ZENFOLDER.'/setup/setup_themeOptions.php?theme='.$theme; ?>" title="<?php echo $theme; ?>" alt="<?php echo $theme; ?>" height="16px" width="16px" />
+	<?php
+}
+?>
+</p>
+
 <?php
 setOption('zp_plugin_deprecated-functions',9|CLASS_PLUGIN);	//	Yes, I know some people will be annoyed that this keeps coming back,
 																														//	but each release may deprecated new functions which would then just give
@@ -614,28 +599,19 @@ query('UPDATE '.prefix('administrators').' SET `passupdate`='.db_quote(date('Y-m
 $plugins = getPluginFiles('*.php');
 
 ?>
-<script type="text/javascript">
-	// <!-- <![CDATA[
-	<?php
-	foreach ($plugins as $extension=>$path) {
-		if ($wait) {
-			?>
-			Thread.sleep(1000L);
-			<?php
-		}
-		$wait++;
-		?>
-		$.ajax({
-			type: 'POST',
-			cache: false,
-			url: '<?php echo WEBPATH.'/'.ZENFOLDER; ?>/setup/setup_pluginOptions.php',
-			data: 'plugin=<?php echo $extension; ?>'
-		});
-		<?php
-	}
+<p>
+<?php
+$plugins = array_keys($plugins);
+natcasesort($plugins);
+echo gettext('Plugin setup:').'<br />';
+foreach ($plugins as $extension) {
 	?>
-	// ]]> -->
-</script>
+	<img src="<?php echo WEBPATH.'/'.ZENFOLDER.'/setup/setup_pluginOptions.php?plugin='.$extension; ?>" title="<?php echo $extension; ?>" alt="<?php echo $extension; ?>" height="16px" width="16px" />
+	<?php
+}
+?>
+</p>
+
 <?php
 if (getOption('zp_plugin_auto_backup')) {
 	//Run the backup since for sure things have changed.

@@ -2319,6 +2319,22 @@ if (file_exists(CONFIGFILE)) {
 				}
 			}
 
+			echo "<h3>";
+			if ($taskDisplay[substr($task,0,8)] == 'create') {
+				if ($createTables) {
+					echo gettext('Done with table create!');
+				} else {
+					echo gettext('Done with table create with errors!');
+				}
+			} else {
+				if ($createTables) {
+					echo gettext('Done with table update');
+				} else {
+					echo gettext('Done with table update with errors');
+				}
+			}
+			echo "</h3>";
+
 			// set defaults on any options that need it
 			setupLog(gettext("Done with database creation and update"));
 			if ($prevRel = getOption('zenphoto_release')) {
@@ -2347,22 +2363,6 @@ if (file_exists(CONFIGFILE)) {
 					}
 				}
 			}
-
-			echo "<h3>";
-			if ($taskDisplay[substr($task,0,8)] == 'create') {
-				if ($createTables) {
-					echo gettext('Done with table create!');
-				} else {
-					echo gettext('Done with table create with errors!');
-				}
-			} else {
-				if ($createTables) {
-					echo gettext('Done with table update');
-				} else {
-					echo gettext('Done with table update with errors');
-				}
-			}
-			echo "</h3>";
 
 			if ($debug=='albumids') {
 				// fixes 1.2 move/copy albums with wrong ids
@@ -2411,7 +2411,7 @@ if (file_exists(CONFIGFILE)) {
 				}
 			} else {
 				?>
-				<div class="notebox">
+				<div class="notebox delayshow" style="display:none;">
 					<p><?php echo gettext('<strong>NOTE:</strong> We strongly recommend you remove the <em>setup</em> scripts from your zp-core folder at this time. You can always re-upload them should you find you need them again in the future.')?></p>
 						<br />
 					<?php
@@ -2449,7 +2449,7 @@ if (file_exists(CONFIGFILE)) {
 						WEBPATH.'/'.ZENFOLDER.'/admin.php');
 		}
 			?>
-			<p id="golink"><?php echo $link; ?></p>
+			<p id="golink" class="delayshow" style="display:none;"><?php echo $link; ?></p>
 			<?php
 			switch ($autorun) {
 				case false:
@@ -2463,14 +2463,21 @@ if (file_exists(CONFIGFILE)) {
 				default:
 					break;
 			}
-			if ($autorun) {
-				?>
-				<script type="text/javascript">
-					$('#golink').hide();
-					window.location = '<?php echo $autorun; ?>';
-				</script>
-				<?php
-			}
+			?>
+			<script type="text/javascript">
+				window.onload = function() {
+					$('.delayshow').show();
+					<?php
+					if ($autorun) {
+						?>
+						$('#golink').hide();
+						window.location = '<?php echo $autorun; ?>';
+						<?php
+					}
+					?>
+				}
+			</script>
+			<?php
 		}
 	} else if (db_connect($_zp_conf_vars)) {
 		$task = '';

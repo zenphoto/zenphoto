@@ -20,4 +20,7 @@ if (is_null($mod_rewrite)) {
 	$msg = gettext('The Zenphoto option "mod_rewrite" is "disabled".');
 }
 setupLog(gettext('Notice: "Module mod_rewrite" is working.').' '.$msg, true);
+header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
+header('Content-Type: image/png');
+header('Location: ' . FULLWEBPATH.'/'.ZENFOLDER.'/images/pass.png', true, 301);
 ?>
