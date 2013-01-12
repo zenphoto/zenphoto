@@ -8,7 +8,6 @@ admin_securityChecks(ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS, '');
 require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER."/zenpage/zenpage-template-functions.php");
 header('Last-Modified: ' . ZP_LAST_MODIFIED);
 header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
-$_SESSION['tinyzenpage'] = @$_COOKIE['zp_user_auth'];
 ?>
 <!-- tinyZenpage - A TinyMCE plugin for Zenphoto with Zenpage
 		 Version: 1.0.6.1

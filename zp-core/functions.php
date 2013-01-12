@@ -2393,6 +2393,9 @@ class zpFunctions {
 	 * @return string
 	 */
 	static function updateImageProcessorLink($text) {
+		//TODO: needs support to re-cache the image if cache is purged. Disable until then
+		return $text;
+		//
 		preg_match_all('|\<\s*img.*?\ssrc\s*=\s*"(.*i\.php\?([^"]*)).*/\>|', $text, $matches);
 		foreach ($matches[2] as $key=>$match) {
 			$match = explode('&amp;',$match);

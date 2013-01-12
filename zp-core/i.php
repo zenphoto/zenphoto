@@ -68,7 +68,7 @@ $adminrequest = $args[12];
 if ($forbidden = (!isset($_GET['check']) || $_GET['check']!=sha1(HASH_SEED.serialize($args)))) {
 	// maybe it was from the tinyZenpage javascript which does not know better!
 	zp_session_start();
-	$forbidden = !isset($_SESSION['tinyzenpage']) || $_SESSION['tinyzenpage'] != @$_COOKIE['zp_user_auth'];
+	$forbidden = !isset($_SESSION['adminRequest']) || $_SESSION['adminRequest'] != @$_COOKIE['zp_user_auth'];
 }
 
 if ( !isset($_GET['s']) && !isset($_GET['w']) && !isset($_GET['h'])) {
