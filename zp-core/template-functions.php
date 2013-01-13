@@ -3245,7 +3245,7 @@ function getLatestComments($number,$type="all",$id=NULL) {
 			// add the other stuff people want
 			foreach ($comments as $key=>$comment) {
 				$comment['pubdate'] = $comment['date'];
-				$alb = getItemByID('albums', $cpomment['ownerid']);
+				$alb = getItemByID('albums', $comment['ownerid']);
 				$comment['folder'] = $alb->name;
 				$comments[$key] = $comment;
 			}
@@ -3256,7 +3256,7 @@ function getLatestComments($number,$type="all",$id=NULL) {
 			// add the other stuff people want
 			foreach ($comments as $key=>$comment) {
 				$comment['pubdate'] = $comment['date'];
-				$img = getItemByID('images', $cpomment['ownerid']);
+				$img = getItemByID('images', $comment['ownerid']);
 				$comment['folder'] = $img->$album->name;
 				$comment['filename'] = $img->filename;
 				$comments[$key] = $comment;
