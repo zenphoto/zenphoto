@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.4 github\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-30 16:32+0100\n"
-"PO-Revision-Date: 2013-01-01 20:44+0100\n"
+"POT-Creation-Date: 2013-01-02 00:10+0100\n"
+"PO-Revision-Date: 2013-01-02 00:10+0100\n"
 "Last-Translator: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language-Team: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language: danish\n"
@@ -3532,7 +3532,7 @@ msgid "Within"
 msgstr "Inden for"
 
 #: /home/jes/workspace/zenphoto/zp-core/template-functions.php:4276
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:89
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:90
 msgid "New"
 msgstr "Ny"
 
@@ -17954,7 +17954,7 @@ msgid "CombiNews: Sort order"
 msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage.php:168
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:65
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:66
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/sitemap-extended.php:81
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/sitemap-extended.php:86
 msgid "date"
@@ -17965,7 +17965,7 @@ msgid "id"
 msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage.php:168
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:65
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:66
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/sitemap-extended.php:82
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/sitemap-extended.php:87
 msgid "mtime"
@@ -18152,42 +18152,42 @@ msgstr ""
 msgid "Add Article"
 msgstr ""
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:22
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:23
 msgid "Overlay icons over thumbnails to indicate image status."
 msgstr ""
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:63
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:64
 msgid "Criteria"
 msgstr ""
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:66
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:67
 msgid "Select the basis for considering if an image is new."
 msgstr ""
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:67
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:71
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:75
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:79
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:68
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:72
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:76
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:80
 msgid "Icon"
 msgstr ""
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:70
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:71
 msgid "Select the icon that will show for \"new\" images."
 msgstr ""
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:74
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:75
 msgid "Select the icon that will show for \"un-published\" images."
 msgstr ""
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:78
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:79
 msgid "Select the icon that will show for \"Protected\" images."
 msgstr ""
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:82
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:83
 msgid "Select the icon that will show for images tagged with geodata."
 msgstr ""
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:83
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:84
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:722
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1076
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1579
@@ -18195,72 +18195,72 @@ msgstr ""
 msgid "Un-published"
 msgstr ""
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:85
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:86
 msgid "Thumbnails for images which are not <em>published</em> will be marked."
 msgstr ""
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:86
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:87
 msgid "Protected"
 msgstr ""
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:88
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:89
 msgid ""
 "Thumbnails for images which are password protected or in password protected "
 "albums will be marked."
 msgstr ""
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:91
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:92
 msgid ""
 "Thumbnails for images which have recently been added to the gallery will be "
 "marked."
 msgstr ""
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:92
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:93
 msgid "Geotagged"
 msgstr ""
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:94
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:95
 msgid "Thumbnails for images which are geodata tagged will be marked."
 msgstr ""
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:95
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:96
 msgid "Aging"
 msgstr ""
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:97
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:98
 msgid "The range in days until images are no longer flagged as new."
 msgstr ""
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:98
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:101
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:104
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:110
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:99
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:102
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:105
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:111
 msgid "Text"
 msgstr ""
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:100
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:101
 msgid "Text flag for <em>new</em> images."
 msgstr ""
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:103
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:104
 msgid "Text flag for <em>un-published</em> images."
 msgstr ""
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:106
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:107
 msgid "Text flag for <em>protected</em> images."
 msgstr ""
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:107
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:108
 msgid "Use text"
 msgstr ""
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:109
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:110
 msgid ""
 "If checked, the defined <em>text</em> will be used in place of the icon. "
-"(Use the class<code>textasnewflag</code> for styling \"text\" overlays.)"
+"(Use the class <code>textasnewflag</code> for styling \"text\" overlays.)"
 msgstr ""
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:112
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flag_thumbnail.php:113
 msgid "Text flag for <em>geodata tagged</em> images."
 msgstr ""
 
@@ -19968,6 +19968,11 @@ msgstr ""
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:651
 msgid "All categories"
 msgstr ""
+
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:872
+#, php-format
+msgid "%u per page"
+msgstr "%u pr side"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:876
 msgid "All"
