@@ -14,7 +14,7 @@ $plugin_author = "Malte Müller (acrylian) based on a jCarousel example";
 
 $option_interface = 'jcarouselOptions';
 
-if (!OFFSET_PATH && (getOption('jcarousel_'.$_zp_gallery->getCurrentTheme().'_'.stripSuffix($_zp_gallery_page)))) {
+if (!OFFSET_PATH && getOption('jcarousel_'.$_zp_gallery->getCurrentTheme().'_'.stripSuffix($_zp_gallery_page))) {
 	zp_register_filter('theme_head','jcaroselThemeJS');
 }
 
@@ -66,7 +66,7 @@ class jcarouselOptions {
 			foreach($filelist as $file) {
 				if (!in_array($file,$exclude)) {
 					$script = filesystemToInternal($file);
-					$list[$script] = 'colorbox_'.$theme.'_'.stripSuffix($script);
+					$list[$script] = 'jcarousel_'.$theme.'_'.stripSuffix($script);
 				}
 			}
 			chdir($curdir);
