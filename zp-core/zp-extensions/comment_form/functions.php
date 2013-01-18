@@ -31,7 +31,7 @@ function comment_form_PaginationJS() {
 								// Iterate through a selection of the content and build an HTML string
 								for(var i=page_index*items_per_page;i<max_elem;i++) {
 									//i+2 needed as somehow nth-children needs to start that way...
-									// after moving toggle place holder this changed to i+1
+									// bic-ed after moving toggle place holder this changed to i+1
 									newcontent += '<div class="comment">'+$('#comments div.comment:nth-child('+(i+1)+')').html()+'</div>';
 								}
 
@@ -61,21 +61,22 @@ function comment_form_PaginationJS() {
 										callback: pageselectCallback,
 										load_first_page:true,
 										items_per_page:<?php echo getOption('comment_form_comments_per_page'); ?>, // Show only one item per page
+										// bic-ed define start page if a comment has been posted
 										current_page:startPage
 								});
 						 }
 
 						// When document is ready, initialize pagination
 						$(document).ready(function(){
-								// comment
+								// bic-ed Get the position of comment posted
 								current_comment_N = $('.comment h4').index($(addrBar_hash))+1;
 								initPagination();
-								// comment
+								// bic-ed Scroll to the comment posted
 								if (Comm_ID_found){
 									$(addrBar_hash).scrollToMe();
 								}
 						});
-						//comment
+						//Initialize variables used to detect if a comment has been posted and its position
 						var current_comment_N, addrBar_hash = window.location.hash,Comm_ID_found = !addrBar_hash.search(/#zp_comment_id_/);
 						jQuery.fn.extend({
 							scrollToMe: function () {
@@ -753,12 +754,14 @@ function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=t
 				if ($addheader) echo '<h3>'.sprintf(ngettext('%u Comment','%u Comments',$num), $num).'</h3>';
 				if (getOption('comment_form_toggle')) {
 					?>
+					<!-- bic-ed moved place holder for toggle button -->
 					<div id="comment_toggle"><!-- place holder for toggle button --></div>
 					<script type="text/javascript">
 						// <!-- <![CDATA[
 						function toggleComments(hide) {
 							if (hide) {
 								$('div.comment').hide();
+								// bic-ed added hide and show pagination
 								$('.Pagination').hide();
 								$('#comment_toggle').html('<button type="button" onclick="javascript:toggleComments(false);"><?php echo gettext('show comments');?></button>');
 							} else {
@@ -768,7 +771,7 @@ function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=t
 							}
 						}
 						$(document).ready(function() {
-							// comment
+							// bic-ed If a comment has been posted toggleComments is set to show
 							toggleComments(window.location.hash.search(/#zp_comment_id_/));
 						});
 						// ]]> -->
@@ -1018,7 +1021,7 @@ function comment_form_handle_comment() {
 				//use $redirectTo to send users back to where they came from instead of booting them back to the gallery index. (default behaviour)
 				if (!isset($_SERVER['SERVER_SOFTWARE']) || strpos(strtolower($_SERVER['SERVER_SOFTWARE']), 'microsoft-iis') === false) {
 					// but not for Microsoft IIS because that server fails if we redirect!
-					// comment
+					// bic-ed added the anchor of comment posted
 					header('Location: ' . $redirectTo . '#zp_comment_id_' . $commentadded->getId());
 					exitZP();
 				}
