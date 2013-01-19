@@ -240,10 +240,10 @@ span.tags_title {
 	padding: 7px;
 	margin: 5px;
 	line-height: 0px;
-
 }
 .imagethumb, .thumb {
 	float: left;
+	position: relative;
 }
 .albumdesc2 {
 	line-height: 18px;
@@ -260,6 +260,7 @@ span.tags_title {
 	margin: 0 15px 15px 0;
 	float: left;
 	width: 315px;
+	position: relative;
 }
 .album .imagethumb a, .album .thumb a {
 	margin: 0;
@@ -282,6 +283,26 @@ span.tags_title {
 	width: 195px;
 	padding: 6px 0 0 0;
 }
+
+/* favorites styles */
+.album .imageFavorites {
+position: absolute;
+right: 5px;
+bottom: 5px;
+z-index: 2000;
+}
+
+.imagethumb .imageFavorites {
+position: absolute;
+right: 12px;
+bottom: 18px;
+z-index: 2000;
+}
+
+.imageFavorites input:hover {
+cursor: pointer !important;
+}
+
 
 
 /* Individual Image

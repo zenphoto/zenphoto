@@ -245,6 +245,7 @@ span.tags_title {
 }
 .imagethumb {
 	float: left;
+	position: relative;
 }
 .albumdesc2 {
 	line-height: 18px;
@@ -258,12 +259,13 @@ span.tags_title {
 }
 .album {
 	margin: 0 12px 8px 0;
-		padding: 10px 8px 2px 10px;
+	padding: 10px 8px 2px 10px;
 	float: left;
 	width: 305px;
 	border: 1px solid #E7F0F5;
 	background: #F7F9FD;
-		line-height: 100%;
+	line-height: 100%;
+	position: relative;
 }
 .album a img {  }
 .album .thumb {
@@ -283,6 +285,25 @@ span.tags_title {
 .albumdesc small {
 	color: #8DB8CF;
 }
+
+/* favorites styles */
+.album .imageFavorites {
+position: absolute;
+right: 5px;
+bottom: 5px;
+z-index: 2000;
+}
+.imagethumb .imageFavorites {
+position: absolute;
+right: 12px;
+bottom: 18px;
+z-index: 2000;
+}
+
+.imageFavorites input:hover {
+cursor: pointer !important;
+}
+
 
 
 /* Individual Image

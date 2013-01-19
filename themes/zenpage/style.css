@@ -458,6 +458,7 @@ ul.pagelist li.next {
 	background: #FBFBF8;
 	line-height: 100%;
 	height: 95px;
+	position: relative;
 }
 
 .album a img {
@@ -494,6 +495,8 @@ ul.pagelist li.next {
 .albumdesc small {
 	color: gray;
 }
+
+
 
 /* Individual Image
 ------------------------------ */
@@ -608,6 +611,29 @@ ul.pagelist li.next {
 #narrow {
 	width: 580px;
 	margin-top: 5px;
+}
+
+
+/* favorites styles */
+.album .imageFavorites {
+position: absolute;
+right: 5px;
+bottom: 5px;
+z-index: 2000;
+}
+.imagethumb {
+	position: relative;
+}
+
+.imagethumb .imageFavorites {
+position: absolute;
+right: 12px;
+bottom: 18px;
+z-index: 2000;
+}
+
+.imageFavorites input:hover {
+cursor: pointer !important;
 }
 
 /* Paged thumbs nav
@@ -1168,8 +1194,6 @@ button.positive,.buttons a.positive {
 	border: 1px solid #d12f19;
 	color: #fff;
 }
-
-
 
 /* slideshowlink */ 
 

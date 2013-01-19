@@ -292,6 +292,7 @@ ul.pagelist li.next {
 }
 .imagethumb {
 	float: left;
+	position: relative;
 }
 
 
@@ -307,6 +308,7 @@ ul.pagelist li.next {
 	border: 1px solid #E7F0F5;
 	background: #FBFCFD;
 	padding:5px;
+	position: relative;
 }
 .album .imagethumb a {
 	margin: 0;
@@ -341,6 +343,24 @@ ul.pagelist li.next {
 
 .desc {
 clear: both;
+}
+
+/* favorites styles */
+.album .imageFavorites {
+position: absolute;
+right: 5px;
+bottom: 5px;
+z-index: 2000;
+}
+.imagethumb .imageFavorites {
+position: absolute;
+right: 12px;
+bottom: 12px;
+z-index: 2000;
+}
+
+.imageFavorites input:hover {
+cursor: pointer !important;
 }
 
 /* Individual Image
