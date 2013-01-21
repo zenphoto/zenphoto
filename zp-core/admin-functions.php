@@ -1270,7 +1270,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 								<br />
 								<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
-																onclick="passwordClear'<?php echo $suffix; ?>');togglePassword('<?php echo $suffix; ?>');" /><?php echo gettext('Show password'); ?></label>
+																onclick="passwordClear('<?php echo $suffix; ?>');togglePassword('<?php echo $suffix; ?>');" /><?php echo gettext('Show password'); ?></label>
 							</td>
 							<td>
 								<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
