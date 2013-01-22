@@ -11,6 +11,7 @@
 // force UTF-8 Ø
 
 $_imagick_version = phpversion('imagick');
+// TODO: #205 - Bump required version to 3.0.0 and remove deprecated functionality
 $_imagick_required_version = '2.1.1';
 $_imagick_version_pass = version_compare($_imagick_version, $_imagick_required_version, '>=');
 
@@ -25,11 +26,8 @@ class lib_Imagick_Options {
 	function __construct() {
 		global $_zp_imagick_present;
 
-		$this->defaultFilter = 'FILTER_LANCZOS';
 		$this->defaultFontSize = 18;
 
-		// setOptionDefault('use_imagick', $_zp_imagick_present);
-		setOptionDefault('imagick_filter', $this->defaultFilter);
 		setOptionDefault('magick_font_size', $this->defaultFontSize);
 
 		if (!sanitize_numeric(getOption('magick_font_size'))) {
@@ -60,13 +58,6 @@ class lib_Imagick_Options {
 
 		if (!$disabled && !isset($_zp_graphics_optionhandlers['lib_Gmagick_Options'])) {
 			$imagickOptions += array(
-				gettext('Imagick filter') => array(
-					'key' => 'imagick_filter',
-					'type' => OPTION_TYPE_SELECTOR,
-					'selections' => $this->getMagickConstants('Imagick', 'FILTER_'),
-					'order' => 2,
-					'desc' => '<p>' . sprintf(gettext('The type of filter used when resampling an image. The default is <strong>%s</strong>.'), $this->defaultFilter) . '</p>'
-				),
 				gettext('Imagick font size') => array(
 					'key' => 'magick_font_size',
 					'type' => OPTION_TYPE_TEXTBOX,
@@ -92,44 +83,6 @@ class lib_Imagick_Options {
 
 		return '';
 	}
-
-	/**
-	 * Returns Magick (Gmagick/Imagick) constants that begin with $filter and
-	 * removes the constant of the form "$filter . 'UNDEFINED'" if it exists.
-	 *
-	 * The returned array will be an associative array in which the
-	 * keys and values are identical strings sorted in alphabetical order.
-	 *
-	 * @param string $class The class to reflect
-	 * @param string $filter The string to delimit constants
-	 * @return array
-	 */
-	function getMagickConstants($class, $filter) {
-		global $magickConstantPrefix;
-
-		if (extension_loaded('imagick')) {
-			$magickReflection = new ReflectionClass($class);
-			$magickConstants = $magickReflection->getConstants();
-
-			// lambda functions have no scope; must use $GLOBALS superglobal
-			$lambdaFilter = create_function('$value', 'return !strncasecmp($value, $GLOBALS["magickConstantPrefix"], strlen($GLOBALS["magickConstantPrefix"]));');
-
-			$magickConstantPrefix = $filter;
-			$filteredConstants = array_filter(array_keys($magickConstants), $lambdaFilter);
-
-			if (($key = array_search($filter . 'UNDEFINED', $filteredConstants)) !== false) {
-				unset($filteredConstants[$key]);
-			}
-
-			$constantsArray = array_combine(array_values($filteredConstants), $filteredConstants);
-			asort($constantsArray);
-		} else {
-			$constantsArray = array($this->defaultFilter => $this->defaultFilter);
-		}
-
-		return $constantsArray;
-	}
-
 }
 
 /**
@@ -408,7 +361,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 		$result = true;
 		
 		for ($i = 0; $result && $i <= $dst_image->getNumberImages(); $i++) {
-			$src_image->resizeImage($dst_w, $dst_h, constant('Imagick::' . getOption('imagick_filter')), 1);
+			$src_image->resizeImage($dst_w, $dst_h, Imagick::FILTER_LANCZOS, 1);
 			$result = $dst_image->compositeImage($src_image, Imagick::COMPOSITE_OVER, $dst_x, $dst_y);
 			$dst_image->previousImage();
 		}
