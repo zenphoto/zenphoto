@@ -448,7 +448,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 						$iptc_data .= iptc_make_tag($tag_parts[0], $tag_parts[1], $string);
 					}
 				} else {
-					if (GRAPHICS_LIBRARY=='Imagick' && IMAGICK_RETAIN_PROFILES) {	//	Imageick has preserved the metadata
+					if (GRAPHICS_LIBRARY == 'Imagick') {	//	Imagick has preserved the metadata
 						$iptc_data = false;
 					}
 				}

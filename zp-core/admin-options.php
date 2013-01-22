@@ -2245,7 +2245,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 			</tr>
 			<?php
 		}
-		if (GRAPHICS_LIBRARY=='Imagick' && IMAGICK_RETAIN_PROFILES) {
+		if (GRAPHICS_LIBRARY == 'Imagick') {
 			$optionText = gettext('Imbed IPTC copyright');
 			$desc = gettext('If checked and an image has no IPTC data a copyright notice will be imbedded cached copies.');
 		} else {
