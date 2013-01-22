@@ -990,7 +990,7 @@ class Zenphoto_Authority {
 						?>
 						<fieldset><legend><?php echo gettext("Password"); ?></legend>
 							<input class="textfield" name="pass" id="pass" type="password" size="35" /><br />
-							<label><input type="checkbox" name="disclose_password" onclick="togglePassword('');" ><?php echo gettext('Show password')?></label>
+							<label><input type="checkbox" name="disclose_password" onclick="togglePassword('');" /><?php echo gettext('Show password')?></label>
 						</fieldset>
 						<br />
 						<div class="buttons">
