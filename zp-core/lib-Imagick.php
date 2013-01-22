@@ -35,13 +35,6 @@ class lib_Imagick_Options {
 		if (!sanitize_numeric(getOption('magick_font_size'))) {
 			setOption('magick_font_size', $this->defaultFontSize);
 		}
-
-		// TODO: #71 - Remove option for memory limit
-		$mem_lim = getOption('magick_mem_lim');
-
-		if (!is_numeric($mem_lim) || $mem_lim < 0 ) {
-			setOption('magick_mem_lim', 0);
-		}
 	}
 
 	/**
@@ -73,12 +66,6 @@ class lib_Imagick_Options {
 					'selections' => $this->getMagickConstants('Imagick', 'FILTER_'),
 					'order' => 2,
 					'desc' => '<p>' . sprintf(gettext('The type of filter used when resampling an image. The default is <strong>%s</strong>.'), $this->defaultFilter) . '</p>'
-				),
-				gettext('Magick memory limit') => array(
-					'key' => 'magick_mem_lim',
-					'type' => OPTION_TYPE_TEXTBOX,
-					'order' => 1,
-					'desc' => '<p>' . gettext('Amount of memory allocated to Gmagick/Imagick in megabytes. Set to <strong>0</strong> for unlimited memory.') . '</p><p class="notebox">' . gettext('<strong>Note:</strong> Image processing will be faster with a higher memory limit. However, if your server experiences problems with image processing, try setting this lower.') . '</p>'
 				),
 				gettext('Imagick font size') => array(
 					'key' => 'magick_font_size',
@@ -150,17 +137,8 @@ class lib_Imagick_Options {
  */
 if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd'))) {
 	$_imagick_temp = new Imagick();
-
-	$_magick_mem_lim = getOption('magick_mem_lim');
-
-	if ($_magick_mem_lim > 0) {
-		// Imagick::setResourceLimit() causes a PHP crash if called statically (fixed in Imagick 3.0.0RC1)
-		$_imagick_temp->setResourceLimit(Imagick::RESOURCETYPE_MEMORY, $_magick_mem_lim);
-	}
-
 	// Imagick::getVersion() requires Imagick 3.0.0b1
 	$_imagemagick_version = $_imagick_temp->getVersion();
-
 	$_imagick_temp->destroy();
 
 	$_lib_Imagick_info = array();
@@ -191,7 +169,6 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 
 	define('IMAGICK_RETAIN_PROFILES', version_compare($_imagemagick_version['versionNumber'], '6.3.6', '>='));
 
-	unset($_magick_mem_lim);
 	unset($_imagick_format_blacklist);
 	unset($_imagick_formats);
 
