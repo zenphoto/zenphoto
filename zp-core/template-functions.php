@@ -4263,7 +4263,7 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 				}
 
 				?>
-				<span style="display:none;" id="searchextrashow">
+				<div style="display:none;" id="searchextrashow">
 					<?php
 					if ($searchwords) {
 						?>
@@ -4293,7 +4293,7 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 						<?php
 					}
 					?>
-				</span>
+				</div>
 				<?php
 			}
 			?>
