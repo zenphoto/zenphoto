@@ -147,18 +147,23 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 
 	$_use_imagick_deprecated = version_compare($_imagick_version, '2.3.0b1', '<') && version_compare($_imagemagick_version['versionString'], '6.3.8', '<');
 
-	// TODO: #202 - Add raw formats to blacklist
 	$_imagick_format_blacklist = array(
 		// video formats
 		'AVI', 'M2V', 'M4V', 'MOV', 'MP4', 'MPEG', 'MPG', 'WMV',
 		// text formats
-		'HTM', 'HTML', 'MAN', 'PDF', 'SHTML', 'TEXT', 'TXT', 'UBRL',
+		'HTM', 'HTML', 'SHTML', 'TEXT',
 		// font formats
 		'DFONT', 'OTF', 'PFA', 'PFB', 'TTC', 'TTF',
-		// GhostScript formats (MAN and PDF also require GS)
-		'EPI', 'EPS', 'EPS2', 'EPS3', 'EPSF', 'EPSI', 'EPT', 'EPT2', 'EPT3', 'PS', 'PS2', 'PS3',
+		// braille formats
+		'BRF', 'ISOBRL', 'UBRL',
+		// raw image formats, requires ufraw-batch as a decode delegate
+		'3FR', 'ARW', 'CR2', 'CRW', 'DCR', 'DNG', 'K25', 'KDC', 'MEF', 'MRW', 'NEF', 'NRW', 'ORF', 'PEF', 'RW2', 'RAF', 'SR2', 'SRF', 'X3F',
+		// [Ghost|Post]Script formats
+		'AI', 'EPI', 'EPS', 'EPS2', 'EPS3', 'EPSF', 'EPSI', 'EPT', 'EPT2', 'EPT3', 'MAN', 'PDF', 'PS', 'PS2', 'PS3',
 		// other formats with lib dependencies, so possibly no decode delegate
 		'CGM', 'EMF', 'FIG', 'FPX', 'GPLT', 'HPGL', 'JBIG', 'RAD', 'WMF', 'WMZ',
+		// ImageMagick special file formats ( http://www.imagemagick.org/Usage/files/#special_formats )
+		'INFO', 'INLINE', 'NULL', 'SHOW', 'WIN', 'X',
 		// just to be sure...
 		'ZIP'
 	);
