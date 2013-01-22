@@ -21,11 +21,14 @@ $_imagemagick_version_pass = false;
 $_zp_imagick_present = extension_loaded('imagick') && $_imagick_version_pass;
 
 if ($_zp_imagick_present) {
-	$_imagemagick_version = Imagick::getVersion();
-	// TODO: Check if this comparison works
-	$_imagemagick_version_pass = version_compare($_imagemagick_version['versionNumber'], IMAGEMAGICK_REQUIRED_VERSION, '>='));
+	@$_imagemagick_version = Imagick::getVersion();
+	preg_match('/\d+\.\d+\.\d+(?:-\d+)/', $_imagemagick_version['versionString'], $matches);
+
+	$_imagemagick_version['versionNumber'] = $matches[0];
+	$_imagemagick_version_pass = version_compare($_imagemagick_version['versionNumber'], IMAGEMAGICK_REQUIRED_VERSION, '>=');
 
 	$_zp_imagick_present &= $_imagick_version_pass;
+	unset($matches);
 }
 
 $_zp_graphics_optionhandlers += array('lib_Imagick_Options' => new lib_Imagick_Options());
@@ -128,7 +131,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 		'ZIP'
 	);
 
-	$_imagick_formats = array_diff(Imagick::queryFormats(), $_imagick_format_blacklist);
+	@$_imagick_formats = array_diff(Imagick::queryFormats(), $_imagick_format_blacklist);
 	$_lib_Imagick_info += array_combine(array_map('strtoupper', $_imagick_formats), array_map('strtolower', $_imagick_formats));
 
 	unset($_imagick_format_blacklist);
@@ -289,14 +292,8 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 */
 	function zp_copyCanvas($imgCanvas, $img, $dest_x, $dest_y, $src_x, $src_y, $w, $h) {
 		$img->cropImage($w, $h, $src_x, $src_y);
-		$result = true;
 
-		for ($i = 0; $result && $i <= $imgCanvas->getNumberImages(); $i++) {
-			$result = $imgCanvas->compositeImage($img, Imagick::COMPOSITE_OVER, $dest_x, $dest_y);
-			$imgCanvas->previousImage();
-		}
-
-		return $result;
+		return $imgCanvas->compositeImage($img, Imagick::COMPOSITE_OVER, $dest_x, $dest_y);
 	}
 
 	/**
@@ -319,15 +316,29 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 			$dst_image->profileImage($name, $profile);
 		}
 
-		$src_image->cropImage($src_w, $src_h, $src_x, $src_y);
 		$result = true;
-		
-		for ($i = 0; $result && $i <= $dst_image->getNumberImages(); $i++) {
-			$src_image->resizeImage($dst_w, $dst_h, Imagick::FILTER_LANCZOS, 1);
-			$result = $dst_image->compositeImage($src_image, Imagick::COMPOSITE_OVER, $dst_x, $dst_y);
-			$dst_image->previousImage();
+
+		$src_image = $src_image->coalesceImages();
+
+		foreach ($src_image as $frame) {
+			$frame->cropImage($src_w, $src_h, $src_x, $src_y);
+			$frame->setImagePage(0, 0, 0, 0);
 		}
-		
+
+		$src_image = $src_image->coalesceImages();
+
+		foreach ($src_image as $frame) {
+			$frame->resizeImage($dst_w, $dst_h, Imagick::FILTER_LANCZOS, 1);
+
+			$dst_image->setImageDelay($frame->getImageDelay());
+			$result &= $dst_image->compositeImage($frame, Imagick::COMPOSITE_OVER, $dst_x, $dst_y);
+			$result &= $dst_image->addImage(zp_createImage($dst_image->getImageWidth(), $dst_image->getImageHeight()));
+
+			if (!$result) {
+				break;
+			}
+		}
+
 		return $result;
 	}
 
@@ -458,7 +469,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 */
 	function zp_imageMerge($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, $src_w, $src_h, $pct) {
 		$src_im->cropImage($w, $h, $src_x, $src_y);
-		zp_imageGray($src_im);
+		$src_im->setImageOpacity($pct / 100);
 
 		return $dst_im->compositeImage($src_im, Imagick::COMPOSITE_OVER, $dest_x, $dest_y);
 	}
@@ -552,7 +563,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 		global $_imagick_fontlist;
 
 		if (!is_array($_imagick_fontlist)) {
-			$_imagick_fontlist = Imagick::queryFonts();
+			@$_imagick_fontlist = Imagick::queryFonts();
 			$_imagick_fontlist = array('system' => '') + array_combine($_imagick_fontlist, $_imagick_fontlist);
 
 			$basefile = SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/imagick_fonts/';
