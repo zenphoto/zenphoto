@@ -404,12 +404,16 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 			}
 		}
 
-		// TODO: #11 - Animated GIF thumbnail support
-
 		$src_image->cropImage($src_w, $src_h, $src_x, $src_y);
-		$src_image->resizeImage($dst_w, $dst_h, constant('Imagick::' . getOption('imagick_filter')), 1);
-
-		return $dst_image->compositeImage($src_image, Imagick::COMPOSITE_OVER, $dst_x, $dst_y);
+		$result = true;
+		
+		for ($i = 0; $result && $i <= $dst_image->getNumberImages(); $i++) {
+			$src_image->resizeImage($dst_w, $dst_h, constant('Imagick::' . getOption('imagick_filter')), 1);
+			$result = $dst_image->compositeImage($src_image, Imagick::COMPOSITE_OVER, $dst_x, $dst_y);
+			$dst_image->previousImage();
+		}
+		
+		return $result;
 	}
 
 	/**
