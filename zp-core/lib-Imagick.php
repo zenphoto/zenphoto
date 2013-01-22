@@ -2,22 +2,16 @@
 /**
  * Library for image handling using the Imagick library of functions
  *
- * @internal Imagick::setResourceLimit() causes a PHP crash if called statically (fixed in Imagick 3.0.0RC1).
- *		Imagick::getResourceLimit(), Imagick::getVersion(), Imagick::queryFonts(), and Imagick::queryFormats()
- *		might also cause PHP to crash as well, though they should be able to be called statically.
+ * Requires Imagick 2.1.1+
+ * Imagick 2.3.0b1+ and ImageMagick 6.3.8+ suggested to avoid deprecated functions
  *
  * @package core
  */
 
 // force UTF-8 Ø
 
-/**
- * Requires Imagick 2.1.0+ (Imagick 2.0.0+ requires PHP5)
- * Imagick 2.3.0b1+ and ImageMagick 6.3.8+ suggested to avoid deprecated functions
- */
-
-$_imagick_version = phpversion('imagick'); // Imagick::IMAGICK_EXTVER
-$_imagick_required_version = '2.1.0';
+$_imagick_version = phpversion('imagick');
+$_imagick_required_version = '2.1.1';
 $_imagick_version_pass = version_compare($_imagick_version, $_imagick_required_version, '>=');
 
 $_zp_imagick_present = extension_loaded('imagick') && $_imagick_version_pass;
@@ -28,26 +22,26 @@ $_zp_graphics_optionhandlers += array('lib_Imagick_Options' => new lib_Imagick_O
  * Option class for lib-Imagick
  */
 class lib_Imagick_Options {
-
 	function __construct() {
 		global $_zp_imagick_present;
 
-			$this->defaultFilter = 'FILTER_LANCZOS';
-			$this->defaultFontSize = 18;
+		$this->defaultFilter = 'FILTER_LANCZOS';
+		$this->defaultFontSize = 18;
 
-			// setOptionDefault('use_imagick', $_zp_imagick_present);
-			setOptionDefault('imagick_filter', $this->defaultFilter);
-			setOptionDefault('magick_font_size', $this->defaultFontSize);
+		// setOptionDefault('use_imagick', $_zp_imagick_present);
+		setOptionDefault('imagick_filter', $this->defaultFilter);
+		setOptionDefault('magick_font_size', $this->defaultFontSize);
 
-			if (!sanitize_numeric(getOption('magick_font_size'))) {
-				setOption('magick_font_size', $this->defaultFontSize);
-			}
+		if (!sanitize_numeric(getOption('magick_font_size'))) {
+			setOption('magick_font_size', $this->defaultFontSize);
+		}
 
-			$mem_lim = getOption('magick_mem_lim');
-			if (!is_numeric($mem_lim) || $mem_lim < 0 ) {
-				setOption('magick_mem_lim', 0);
-			}
+		// TODO: #71 - Remove option for memory limit
+		$mem_lim = getOption('magick_mem_lim');
 
+		if (!is_numeric($mem_lim) || $mem_lim < 0 ) {
+			setOption('magick_mem_lim', 0);
+		}
 	}
 
 	/**
@@ -62,40 +56,38 @@ class lib_Imagick_Options {
 		$disabled = $this->canLoadMsg();
 
 		$imagickOptions += array(
-				gettext('Enable Imagick') => array(
-						'key' => 'use_imagick',
-						'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 0,
-						'disabled' => $disabled,
-						'desc' => ($disabled) ? '<p class="notebox">'.$disabled.'</p>' :
-											gettext('Your PHP has support for Imagick. Check this option if you wish to use the Imagick graphics library.')
-				)
+			gettext('Enable Imagick') => array(
+				'key' => 'use_imagick',
+				'type' => OPTION_TYPE_CHECKBOX,
+				'order' => 0,
+				'disabled' => $disabled,
+				'desc' => ($disabled) ? '<p class="notebox">'.$disabled.'</p>' : gettext('Your PHP has support for Imagick. Check this option if you wish to use the Imagick graphics library.')
+			)
 		);
 
 		if (!$disabled && !isset($_zp_graphics_optionhandlers['lib_Gmagick_Options'])) {
 			$imagickOptions += array(
-					gettext('Imagick filter') => array(
-							'key' => 'imagick_filter',
-							'type' => OPTION_TYPE_SELECTOR,
-							'selections' => $this->getMagickConstants('Imagick', 'FILTER_'),
-							'order' => 2,
-							'desc' => '<p>' . sprintf(gettext('The type of filter used when resampling an image. The default is <strong>%s</strong>.'), $this->defaultFilter) . '</p>'
-					),
-					gettext('Magick memory limit') => array(
-							'key' => 'magick_mem_lim',
-							'type' => OPTION_TYPE_TEXTBOX,
-							'order' => 1,
-							'desc' => '<p>' . gettext('Amount of memory allocated to Gmagick/Imagick in megabytes. Set to <strong>0</strong> for unlimited memory.') . '</p><p class="notebox">' . gettext('<strong>Note:</strong> Image processing will be faster with a higher memory limit. However, if your server experiences problems with image processing, try setting this lower.') . '</p>'
-					),
-					gettext('Imagick font size') => array(
-							'key' => 'magick_font_size',
-							'type' => OPTION_TYPE_TEXTBOX,
-							'order' => 3,
-							'desc' => sprintf(gettext('The Imagick font size (in pixels). Default is <strong>%s</strong>.'), $this->defaultFontSize)
-					)
+				gettext('Imagick filter') => array(
+					'key' => 'imagick_filter',
+					'type' => OPTION_TYPE_SELECTOR,
+					'selections' => $this->getMagickConstants('Imagick', 'FILTER_'),
+					'order' => 2,
+					'desc' => '<p>' . sprintf(gettext('The type of filter used when resampling an image. The default is <strong>%s</strong>.'), $this->defaultFilter) . '</p>'
+				),
+				gettext('Magick memory limit') => array(
+					'key' => 'magick_mem_lim',
+					'type' => OPTION_TYPE_TEXTBOX,
+					'order' => 1,
+					'desc' => '<p>' . gettext('Amount of memory allocated to Gmagick/Imagick in megabytes. Set to <strong>0</strong> for unlimited memory.') . '</p><p class="notebox">' . gettext('<strong>Note:</strong> Image processing will be faster with a higher memory limit. However, if your server experiences problems with image processing, try setting this lower.') . '</p>'
+				),
+				gettext('Imagick font size') => array(
+					'key' => 'magick_font_size',
+					'type' => OPTION_TYPE_TEXTBOX,
+					'order' => 3,
+					'desc' => sprintf(gettext('The Imagick font size (in pixels). Default is <strong>%s</strong>.'), $this->defaultFontSize)
+				)
 			);
 		}
-
 
 		return $imagickOptions;
 	}
@@ -116,7 +108,7 @@ class lib_Imagick_Options {
 
 	/**
 	 * Returns Magick (Gmagick/Imagick) constants that begin with $filter and
-	 * removes the constant of the form $filter . 'UNDEFINED' if it exists.
+	 * removes the constant of the form "$filter . 'UNDEFINED'" if it exists.
 	 *
 	 * The returned array will be an associative array in which the
 	 * keys and values are identical strings sorted in alphabetical order.
@@ -127,25 +119,25 @@ class lib_Imagick_Options {
 	 */
 	function getMagickConstants($class, $filter) {
 		global $magickConstantPrefix;
+
 		if (extension_loaded('imagick')) {
+			$magickReflection = new ReflectionClass($class);
+			$magickConstants = $magickReflection->getConstants();
 
-		$magickReflection = new ReflectionClass($class);
-		$magickConstants = $magickReflection->getConstants();
+			// lambda functions have no scope; must use $GLOBALS superglobal
+			$lambdaFilter = create_function('$value', 'return !strncasecmp($value, $GLOBALS["magickConstantPrefix"], strlen($GLOBALS["magickConstantPrefix"]));');
 
-		// lambda functions have no scope; must use $GLOBALS superglobal
-		$lambdaFilter = create_function('$value', 'return !strncasecmp($value, $GLOBALS["magickConstantPrefix"], strlen($GLOBALS["magickConstantPrefix"]));');
+			$magickConstantPrefix = $filter;
+			$filteredConstants = array_filter(array_keys($magickConstants), $lambdaFilter);
 
-		$magickConstantPrefix = $filter;
-		$filteredConstants = array_filter(array_keys($magickConstants), $lambdaFilter);
+			if (($key = array_search($filter . 'UNDEFINED', $filteredConstants)) !== false) {
+				unset($filteredConstants[$key]);
+			}
 
-		if (($key = array_search($filter . 'UNDEFINED', $filteredConstants)) !== false) {
-			unset($filteredConstants[$key]);
-		}
-
-		$constantsArray = array_combine(array_values($filteredConstants), $filteredConstants);
-		asort($constantsArray);
+			$constantsArray = array_combine(array_values($filteredConstants), $filteredConstants);
+			asort($constantsArray);
 		} else {
-			$constantsArray = array($this->defaultFilter=>$this->defaultFilter);
+			$constantsArray = array($this->defaultFilter => $this->defaultFilter);
 		}
 
 		return $constantsArray;
@@ -160,11 +152,16 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	$_imagick_temp = new Imagick();
 
 	$_magick_mem_lim = getOption('magick_mem_lim');
+
 	if ($_magick_mem_lim > 0) {
+		// Imagick::setResourceLimit() causes a PHP crash if called statically (fixed in Imagick 3.0.0RC1)
 		$_imagick_temp->setResourceLimit(Imagick::RESOURCETYPE_MEMORY, $_magick_mem_lim);
 	}
 
+	// Imagick::getVersion() requires Imagick 3.0.0b1
 	$_imagemagick_version = $_imagick_temp->getVersion();
+
+	$_imagick_temp->destroy();
 
 	$_lib_Imagick_info = array();
 	$_lib_Imagick_info['Library'] = 'Imagick';
@@ -172,6 +169,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 
 	$_use_imagick_deprecated = version_compare($_imagick_version, '2.3.0b1', '<') && version_compare($_imagemagick_version['versionString'], '6.3.8', '<');
 
+	// TODO: #202 - Add raw formats to blacklist
 	$_imagick_format_blacklist = array(
 		// video formats
 		'AVI', 'M2V', 'M4V', 'MOV', 'MP4', 'MPEG', 'MPG', 'WMV',
@@ -179,7 +177,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 		'HTM', 'HTML', 'MAN', 'PDF', 'SHTML', 'TEXT', 'TXT', 'UBRL',
 		// font formats
 		'DFONT', 'OTF', 'PFA', 'PFB', 'TTC', 'TTF',
-		// GhostScript formats; 'MAN' and 'PDF' also require this
+		// GhostScript formats (MAN and PDF also require GS)
 		'EPI', 'EPS', 'EPS2', 'EPS3', 'EPSF', 'EPSI', 'EPT', 'EPT2', 'EPT3', 'PS', 'PS2', 'PS3',
 		// other formats with lib dependencies, so possibly no decode delegate
 		'CGM', 'EMF', 'FIG', 'FPX', 'GPLT', 'HPGL', 'JBIG', 'RAD', 'WMF', 'WMZ',
@@ -187,13 +185,12 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 		'ZIP'
 	);
 
-	$_imagick_formats = array_diff($_imagick_temp->queryFormats(), $_imagick_format_blacklist);
+	// Imagick::queryFormats() requires Imagick 2.1.1+
+	$_imagick_formats = array_diff(Imagick::queryFormats(), $_imagick_format_blacklist);
 	$_lib_Imagick_info += array_combine(array_map('strtoupper', $_imagick_formats), array_map('strtolower', $_imagick_formats));
 
-	define('IMAGICK_RETAIN_PROFILES',version_compare($_imagemagick_version['versionNumber'], '6.3.6', '>='));
+	define('IMAGICK_RETAIN_PROFILES', version_compare($_imagemagick_version['versionNumber'], '6.3.6', '>='));
 
-
-	$_imagick_temp->destroy();
 	unset($_magick_mem_lim);
 	unset($_imagick_format_blacklist);
 	unset($_imagick_formats);
@@ -221,7 +218,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 					$image = $image->coalesceImages();
 				} catch (ImagickException $e) {
 					if (DEBUG_IMAGE) {
-						debugLog('Caught ImagickException in zp_copyCanvas(): ' . $e->getMessage());
+						debugLog('Caught ImagickException in zp_imageGet(): ' . $e->getMessage());
 					}
 				}
 			}
@@ -311,6 +308,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 
 		if ($filename == NULL) {
 			header('Content-Type: image/' . $type);
+
 			return print $im->getImagesBlob();
 		}
 
@@ -419,13 +417,16 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 		global $_imagemagick_version;
 
 		if (IMAGICK_RETAIN_PROFILES) {
-			foreach($src_image->getImageProfiles() as $name => $profile) {
+			foreach ($src_image->getImageProfiles() as $name => $profile) {
 				$dst_image->profileImage($name, $profile);
 			}
 		}
 
+		// TODO: #11 - Animated GIF thumbnail support
+
 		$src_image->cropImage($src_w, $src_h, $src_x, $src_y);
 		$src_image->resizeImage($dst_w, $dst_h, constant('Imagick::' . getOption('imagick_filter')), 1);
+
 		return $dst_image->compositeImage($src_image, Imagick::COMPOSITE_OVER, $dst_x, $dst_y);
 	}
 
@@ -440,6 +441,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 */
 	function zp_imageUnsharpMask($img, $amount, $radius, $threshold) {
 		$img->unsharpMaskImage($radius, 0.1, $amount, $threshold);
+
 		return $img;
 	}
 
@@ -453,11 +455,12 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 */
 	function zp_imageResizeAlpha($src, $w, $h) {
 		$src->scaleImage($w, $h);
+
 		return $src;
 	}
 
 	/**
-	 * Returns true if Imagick library is configued with image rotation support
+	 * Returns true if Imagick library is configured with image rotation support
 	 *
 	 * @return bool
 	 */
@@ -481,6 +484,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 */
 	function zp_rotateImage($im, $rotate) {
 		$im->rotateImage('none', 360 - $rotate); // GD rotates CCW, Imagick rotates CW
+
 		return $im;
 	}
 
@@ -581,8 +585,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	/**
 	 * Creates a grayscale image
 	 *
-	 * @internal Imagick::getImageProperty() requires Imagick compiled against ImageMagick 6.3.2+
-	 * @internal Imagick::setImageProperty() requires Imagick compiled against ImageMagick 6.3.2+
+	 * @internal Imagick::[get|set]ImageProperty() requires Imagick compiled against ImageMagick 6.3.2+
 	 *
 	 * @param Imagick $image The image to grayscale
 	 * @param Imagick $correct_image The image to profile correct
@@ -645,6 +648,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 */
 	function zp_writeString($image, $font, $x, $y, $string, $color) {
 		$font->setStrokeColor($color);
+
 		return $image->annotateImage($font, $x, $y + $image->getImageHeight() / 2, 0, $string);
 	}
 
@@ -670,11 +674,14 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 */
 	function zp_graphicsLibInfo() {
 		global $_lib_Imagick_info;
+
 		return $_lib_Imagick_info;
 	}
 
 	/**
 	 * Returns a list of available fonts
+	 *
+	 * @internal Imagick::queryFonts() requires Imagick 2.1.1+
 	 *
 	 * @return array
 	 */
@@ -682,10 +689,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 		global $_imagick_fontlist;
 
 		if (!is_array($_imagick_fontlist)) {
-			$temp = new Imagick();
-			$_imagick_fontlist = $temp->queryFonts();
-			$temp->destroy();
-
+			$_imagick_fontlist = Imagick::queryFonts();
 			$_imagick_fontlist = array('system' => '') + array_combine($_imagick_fontlist, $_imagick_fontlist);
 
 			$basefile = SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/imagick_fonts/';
@@ -726,6 +730,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 		}
 
 		$draw->setFontSize(getOption('magick_font_size'));
+
 		return $draw;
 	}
 
@@ -758,16 +763,17 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	}
 
 	/**
+	 * Creates an image from an image stream
 	 *
-	 * creates an image from an image stream
 	 * @param $string
+	 * @return Imagick
 	 */
 	function zp_imageFromString($string) {
 		$im = new Imagick();
 		$im->readImageBlob($string);
+
 		return $im;
 	}
 
 }
-
 ?>
