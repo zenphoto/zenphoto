@@ -2374,7 +2374,7 @@ if (file_exists(CONFIGFILE)) {
 		}
 
 		if ($createTables) {
-			if (isset($_GET['delete_files']) || ($autorun && defined('TEST_RELEASE') && TEST_RELEASE && zpFunctions::hasPrimaryScripts())) {
+			if (isset($_GET['delete_files'])) {
 				require_once(dirname(dirname(__FILE__)).'/'.PLUGIN_FOLDER.'/security-logger.php');
 				$curdir = getcwd();
 				chdir(dirname(__FILE__));
@@ -2417,7 +2417,7 @@ if (file_exists(CONFIGFILE)) {
 					<?php
 					if (zpFunctions::hasPrimaryScripts()) {
 						?>
-						<span class="buttons"><a href="?checked&amp;delete_files&xsrfToken=<?php echo $xsrftoken; ?>"><?php echo gettext('Delete setup files'); ?></a></span>
+						<span class="buttons"><a href="?checked&amp;delete_files&amp;xsrfToken=<?php echo $xsrftoken; ?>"><?php echo gettext('Delete setup files'); ?></a></span>
 						<br clear="all" />
 						<br clear="all" />
 						<?php
@@ -2429,6 +2429,7 @@ if (file_exists(CONFIGFILE)) {
 				<br clear="all" />
 				<?php
 			}
+
 			if ($_zp_loggedin == ADMIN_RIGHTS) {
 				$filelist = safe_glob(SERVERPATH . "/" . BACKUPFOLDER . '/*.zdb');
 				if (count($filelist) > 0) {
@@ -2451,17 +2452,21 @@ if (file_exists(CONFIGFILE)) {
 			?>
 			<p id="golink" class="delayshow" style="display:none;"><?php echo $link; ?></p>
 			<?php
-			switch ($autorun) {
-				case false:
-					break;
-				case 'admin':
-					$autorun = WEBPATH.'/'.ZENFOLDER.'/admin.php';
-					break;
-				case 'gallery':
-					$autorun = WEBPATH.'/';
-					break;
-				default:
-					break;
+			if (!isset($_GET['delete_files']) && !($autorun && defined('TEST_RELEASE') && TEST_RELEASE) && zpFunctions::hasPrimaryScripts()) {
+				$autorun = WEBPATH.'/'.ZENFOLDER.'/setup/index.php?checked&autorun='.$autorun.'&delete_files&xsrfToken='.$xsrftoken;
+			} else {
+				switch ($autorun) {
+					case false:
+						break;
+					case 'admin':
+						$autorun = WEBPATH.'/'.ZENFOLDER.'/admin.php';
+						break;
+					case 'gallery':
+						$autorun = WEBPATH.'/';
+						break;
+					default:
+						break;
+				}
 			}
 			?>
 			<script type="text/javascript">
