@@ -402,31 +402,6 @@ function zp_mail($subject, $message, $email_list=NULL, $cc_addresses=NULL, $bcc_
 	}
 	if (count($email_list) + count($bcc_addresses) > 0) {
 		if (zp_has_filter('sendmail')) {
-			// Make sure no one is trying to use our forms to send Spam
-			// Stolen from Hosting Place:
-			//   http://support.hostingplace.co.uk/knowledgebase.php?action=displayarticle&cat=0000000039&id=0000000040
-			$badStrings = array("Content-Type:", "MIME-Version:",	"Content-Transfer-Encoding:",	"bcc:",	"cc:");
-			foreach($_POST as $k => $v) {
-				foreach($badStrings as $v2) {
-					if (strpos($v, $v2) !== false) {
-						header("HTTP/1.0 403 Forbidden");
-						header("Status: 403 Forbidden");
-						zp_error("Forbidden");
-						exitZP();
-					}
-				}
-			}
-
-			foreach($_GET as $k => $v){
-				foreach($badStrings as $v2){
-					if (strpos($v, $v2) !== false){
-						header("HTTP/1.0 403 Forbidden");
-						header("Status: 403 Forbidden");
-						zp_error("Forbidden");
-						exitZP();
-					}
-				}
-			}
 
 			$from_mail = getOption('site_email');
 			$from_name =  get_language_string(getOption('site_email_name'));
