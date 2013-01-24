@@ -30,8 +30,7 @@ function comment_form_PaginationJS() {
 							 // alert(members);
 								// Iterate through a selection of the content and build an HTML string
 								for(var i=page_index*items_per_page;i<max_elem;i++) {
-									//i+2 needed as somehow nth-children needs to start that way...
-									newcontent += '<div class="comment">'+$('#comments div.comment:nth-child('+(i+2)+')').html()+'</div>';
+									newcontent += '<div class="comment">'+$('#comments div.comment:nth-child('+(i+1)+')').html()+'</div>';
 								}
 
 								// Replace old content with new content
@@ -45,6 +44,12 @@ function comment_form_PaginationJS() {
 						 * Initialisation function for pagination
 						 */
 						function initPagination() {
+								var startPage;
+								if (Comm_ID_found){
+									startPage=Math.ceil(current_comment_N/<?php echo getOption('comment_form_comments_per_page'); ?>)-1;
+								} else {
+									startPage=0;
+								}
 								// count entries inside the hidden content
 								var num_entries = $('#comments div.comment').length;
 								// Create content inside pagination element
@@ -53,14 +58,26 @@ function comment_form_PaginationJS() {
 										next_text: "<?php echo gettext('next'); ?>",
 										callback: pageselectCallback,
 										load_first_page:true,
-										items_per_page:<?php echo getOption('comment_form_comments_per_page'); ?> // Show only one item per page
+										items_per_page:<?php echo getOption('comment_form_comments_per_page'); ?>, // Show only one item per page
+										current_page:startPage
 								});
 						 }
 
 						// When document is ready, initialize pagination
 						$(document).ready(function(){
+								current_comment_N = $('.comment h4').index($(addrBar_hash))+1;
 								initPagination();
+								if (Comm_ID_found){
+									$(addrBar_hash).scrollToMe();
+								}
 						});
+						//Initialize variables used to detect if a comment has been posted and its position
+						var current_comment_N, addrBar_hash = window.location.hash,Comm_ID_found = !addrBar_hash.search(/#zp_comment_id_/);
+						jQuery.fn.extend({
+							scrollToMe: function () {
+							var x = jQuery(this).offset().top -10;
+							jQuery('html,body').animate({scrollTop: x}, 400);
+						}});
 
 				</script>
 	<?php
@@ -732,19 +749,22 @@ function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=t
 				if ($addheader) echo '<h3>'.sprintf(ngettext('%u Comment','%u Comments',$num), $num).'</h3>';
 				if (getOption('comment_form_toggle')) {
 					?>
+					<div id="comment_toggle"><!-- place holder for toggle button --></div>
 					<script type="text/javascript">
 						// <!-- <![CDATA[
 						function toggleComments(hide) {
 							if (hide) {
 								$('div.comment').hide();
+								$('.Pagination').hide();
 								$('#comment_toggle').html('<button type="button" onclick="javascript:toggleComments(false);"><?php echo gettext('show comments');?></button>');
 							} else {
 								$('div.comment').show();
+								$('.Pagination').show();
 								$('#comment_toggle').html('<button type="button" onclick="javascript:toggleComments(true);"><?php echo gettext('hide comments');?></button>');
 							}
 						}
 						$(document).ready(function() {
-							toggleComments(true);
+							toggleComments(window.location.hash.search(/#zp_comment_id_/));
 						});
 						// ]]> -->
 					</script>
@@ -767,7 +787,6 @@ function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=t
 			}
 		 ?>
 		<div id="comments"<?php echo $hideoriginalcomments; ?>>
-			<div id="comment_toggle"><!-- place holder for toggle button --></div>
 			<?php
 			while (next_comment($desc_order)) {
 				if (!getOption('comment_form_showURL')) {
@@ -775,9 +794,8 @@ function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=t
 				}
 				?>
 				<div class="comment" <?php echo $display; ?>>
-					<span id="c_<?php echo $_zp_current_comment['id']; ?>"></span>
 					<div class="commentinfo">
-						<h4><?php	printCommentAuthorLink(); ?>: on <?php echo getCommentDateTime(); printEditCommentLink(gettext('Edit'), ', ', ''); ?></h4>
+						<h4 id="zp_comment_id_<?php echo $_zp_current_comment['id']; ?>"><?php	printCommentAuthorLink(); ?>: on <?php echo getCommentDateTime(); printEditCommentLink(gettext('Edit'), ', ', ''); ?></h4>
 					</div><!-- class "commentinfo" -->
 					<div class="commenttext"><?php echo html_encodeTagged(getCommentBody(),false); ?></div><!-- class "commenttext" -->
 				</div><!-- class "comment" -->
@@ -995,7 +1013,7 @@ function comment_form_handle_comment() {
 				//use $redirectTo to send users back to where they came from instead of booting them back to the gallery index. (default behaviour)
 				if (!isset($_SERVER['SERVER_SOFTWARE']) || strpos(strtolower($_SERVER['SERVER_SOFTWARE']), 'microsoft-iis') === false) {
 					// but not for Microsoft IIS because that server fails if we redirect!
-					header('Location: ' . $redirectTo);
+					header('Location: ' . $redirectTo . '#zp_comment_id_' . $commentadded->getId());
 					exitZP();
 				}
 			} else {
