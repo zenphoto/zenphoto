@@ -1,4 +1,4 @@
-					<form id="commentform" action="#" method="post">
+					<form id="commentform" action="#commentform" method="post">
 						<input type="hidden" name="comment" value="1" />
 						<input type="hidden" name="remember" value="1" />
 						<?php
