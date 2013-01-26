@@ -1012,67 +1012,69 @@ protected function getRSSCombinewsAlbums() {
 	*/
 	public function printRSSfeed() {
 		global $_zp_gallery;
-		$this->rssHitcounter();
-		$this->startRSSCache();
-		header('Content-Type: application/xml');
-		?>
-		<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
-			<channel>
-				<title><?php echo $this->channel_title; ?></title>
-				<link><?php echo PROTOCOL.'://'.$this->host.WEBPATH; ?></link>
-				<atom:link href="<?php echo PROTOCOL; ?>://<?php echo $this->host; ?><?php echo html_encode(getRequestURI()); ?>" rel="self"	type="application/rss+xml" />
-				<description><?php echo strip_tags($_zp_gallery->getDesc($this->locale)); ?></description>
-				<language><?php echo $this->locale_xml; ?></language>
-				<pubDate><?php echo date("r", time()); ?></pubDate>
-				<lastBuildDate><?php echo date("r", time()); ?></lastBuildDate>
-				<docs>http://blogs.law.harvard.edu/tech/rss</docs>
-				<generator>Zenphoto RSS Generator</generator>
-				<?php
-				$feeditems = $this->getRSSitems();
-				if(is_array($feeditems)) {
-					foreach($feeditems as $feeditem) {
-						switch($this->feedtype) {
-							case 'gallery':
-								$item = $this->getRSSitemGallery($feeditem);
-								break;
-							case 'news':
-								$item = $this->getRSSitemNews($feeditem);
-								break;
-							case 'comments':
-								$item = $this->getRSSitemComments($feeditem);
-								break;
-						}
-						?>
-						<item>
-							<title><![CDATA[<?php echo $item['title']; ?>]]></title>
-							<link><?php echo html_encode($item['link']); ?></link>
-							<description><![CDATA[<?php echo $item['desc']; ?>]]></description>
-							<?php
-						if(!empty($item['enclosure'])) {
-							echo $item['enclosure']; //prints xml as well
-							}
-							if(!empty($item['category'])) {
-								?>
-								<category><![CDATA[<?php echo $item['category']; ?>]]></category>
-								<?php
-							}
-							if(!empty($item['media_content'])) {
-								echo $item['media_content']; //prints xml as well
-							}
-							if(!empty($item['media_thumbnail'])) {
-								echo $item['media_thumbnail']; //prints xml as well
+		$feeditems = $this->getRSSitems();
+		if(is_array($feeditems)) { 
+			$this->rssHitcounter();
+			$this->startRSSCache();
+			header('Content-Type: application/xml');
+			?>
+			<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+				<channel>
+					<title><?php echo $this->channel_title; ?></title>
+					<link><?php echo PROTOCOL.'://'.$this->host.WEBPATH; ?></link>
+					<atom:link href="<?php echo PROTOCOL; ?>://<?php echo $this->host; ?><?php echo html_encode(getRequestURI()); ?>" rel="self"	type="application/rss+xml" />
+					<description><?php echo strip_tags($_zp_gallery->getDesc($this->locale)); ?></description>
+					<language><?php echo $this->locale_xml; ?></language>
+					<pubDate><?php echo date("r", time()); ?></pubDate>
+					<lastBuildDate><?php echo date("r", time()); ?></lastBuildDate>
+					<docs>http://blogs.law.harvard.edu/tech/rss</docs>
+					<generator>Zenphoto RSS Generator</generator>
+					<?php
+					if(is_array($feeditems)) {
+						foreach($feeditems as $feeditem) {
+							switch($this->feedtype) {
+								case 'gallery':
+									$item = $this->getRSSitemGallery($feeditem);
+									break;
+								case 'news':
+									$item = $this->getRSSitemNews($feeditem);
+									break;
+								case 'comments':
+									$item = $this->getRSSitemComments($feeditem);
+									break;
 							}
 							?>
-							<guid><?php echo html_encode($item['link']); ?></guid>
-							<pubDate><?php echo $item['pubdate'];  ?></pubDate>
-						</item>
-				<?php
-						} // foreach
-					}	?>
-				</channel>
-			</rss>
-		<?php
-		$this->endRSSCache();
+							<item>
+								<title><![CDATA[<?php echo $item['title']; ?>]]></title>
+								<link><?php echo html_encode($item['link']); ?></link>
+								<description><![CDATA[<?php echo $item['desc']; ?>]]></description>
+								<?php
+							if(!empty($item['enclosure'])) {
+								echo $item['enclosure']; //prints xml as well
+								}
+								if(!empty($item['category'])) {
+									?>
+									<category><![CDATA[<?php echo $item['category']; ?>]]></category>
+									<?php
+								}
+								if(!empty($item['media_content'])) {
+									echo $item['media_content']; //prints xml as well
+								}
+								if(!empty($item['media_thumbnail'])) {
+									echo $item['media_thumbnail']; //prints xml as well
+								}
+								?>
+								<guid><?php echo html_encode($item['link']); ?></guid>
+								<pubDate><?php echo $item['pubdate'];  ?></pubDate>
+							</item>
+					<?php
+							} // foreach
+						}	?>
+					</channel>
+				</rss>
+			<?php
+			$this->endRSSCache();
+		}
 	}
 }
 ?>
