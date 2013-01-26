@@ -73,6 +73,7 @@ if (!defined('OFFSET_PATH')) {
 	$links = array();
 	if ($i !== false && $j !== false) {
 		$commentBlock = substr($pluginStream, $i+2, $j-$i-2);
+		$sublink = $subpackage = false;
 		$body = processCommentBlock($commentBlock, $thirdparty);
 
 		if ($thirdparty) {
@@ -84,7 +85,9 @@ if (!defined('OFFSET_PATH')) {
 				$ico = 'images/place_holder_icon.png';
 			}
 		} else {
-			$subpackage = false;
+			if ($subpackage) {
+				$sublink = $subpackage.'/';
+			}
 			$whose = 'Zenphoto official plugin';
 			$ico = 'images/zp_gold.png';
 		}
@@ -103,7 +106,7 @@ if (!defined('OFFSET_PATH')) {
 				$doclink = sprintf('See also the <a href="%1$s">%2$s</a>',$plugin_URL, $extension);
 			}
 		} else {
-			$plugin_URL = 'http://www.zenphoto.org/documentation/plugins/'.$subpackage.'_'.PLUGIN_FOLDER.'---'.$extension.'.php.html';
+			$plugin_URL = 'http://www.zenphoto.org/documentation/plugins/'.$sublink.'_'.PLUGIN_FOLDER.'---'.$extension.'.php.html';
 			$doclink = sprintf(gettext('See also the Zenphoto online documentation: <a href="%1$s">%2$s</a>'),$plugin_URL, $extension);
 		}
 		$pluginusage = gettext('Plugin usage information');
@@ -344,7 +347,7 @@ if (!defined('OFFSET_PATH')) {
 	}
 }
 function processCommentBlock($commentBlock)	{
-	global $plugin_author;
+	global $plugin_author, $subpackage;
 	$markup = array(
 							'&lt;i&gt;'=>'<em>',
 							'&lt;/i&gt;'=>'</em>',
@@ -403,7 +406,7 @@ function processCommentBlock($commentBlock)	{
 							$plugin_author = trim(substr($line, 8));
 							break;
 						case 'subpackage':
-							$subpackage = trim(substr($line, 11)).'/';
+							$subpackage = trim(substr($line, 11));
 							break;
 						case 'link':
 							$line = trim(substr($line, 5));
