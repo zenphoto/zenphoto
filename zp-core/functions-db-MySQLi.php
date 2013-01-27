@@ -23,7 +23,11 @@ Define('DATABASE_DESIRED_VERSION','5.5.0');
 function db_connect($config, $errorstop=true) {
 	global $_zp_DB_connection, $_zp_DB_details;
 	$_zp_DB_details = unserialize(DB_NOT_CONNECTED);
-	$_zp_DB_connection = @mysqli_connect($config['mysql_host'], $config['mysql_user'], $config['mysql_pass']);
+	if (function_exists('mysqli_connect')) {
+			$_zp_DB_connection = @mysqli_connect($config['mysql_host'], $config['mysql_user'], $config['mysql_pass']);
+	} else {
+		$_zp_DB_connection = NULL;
+	}
 	if (!$_zp_DB_connection) {
 		if ($errorstop) {
 			zp_error(gettext('MySQLi Error: Zenphoto could not instantiate a connection.'));

@@ -51,9 +51,11 @@ function getResidentZPFiles($folder,  $lcFilesystem=false) {
 
 function primeMark($text) {
 	global $primeid;
-	$primeid++;
 	?>
-	<div id="prime<?php echo $primeid; ?>" class="error"><?php printf(gettext('Testing %s.'), $text); ?></div>
+	<script type="text/javascript">
+		$("#prime<?php echo $primeid; ?>").remove();
+	</script>
+	<div id="prime<?php echo ++$primeid; ?>" class="error"><?php printf(gettext('Testing %s.'), $text); ?></div>
 	<?php
 }
 

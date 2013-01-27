@@ -30,7 +30,9 @@ function db_connect($config, $errorstop=true) {
 		$hostname = $config['mysql_host'];
 		$username = $config['mysql_user'];
 		$password = $config['mysql_pass'];
-		$_zp_DB_connection = new PDO("mysql:host=$hostname;dbname=$db", $username, $password);
+		if (class_exists('PDO')) {
+			$_zp_DB_connection = new PDO("mysql:host=$hostname;dbname=$db", $username, $password);
+		}
 	} catch(PDOException $e) {
 		$_zp_DB_last_result = $e;
 		if ( $errorstop) {
@@ -79,7 +81,7 @@ function db_create() {
 /**
  * Returns user's permissions on the database
  */
-function db_permissions($config) {
+function db_permissions() {
 	global $_zp_DB_details;
 	$sql = "SHOW GRANTS FOR " . $_zp_DB_details['mysql_user'].";";
 	$result = query($sql, false);
@@ -169,5 +171,5 @@ function db_LIKE_escape($str) {
 	return strtr($str, array('_'=>'\\_','%'=>'\\%'));
 }
 
-require_once('functions-PDO.php');
+require_once('functions-db_PDO.php');
 ?>

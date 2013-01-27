@@ -1,12 +1,8 @@
 <?php
-define('OFFSET_PATH', 2);
-require_once(dirname(__FILE__).'/global-definitions.php');
-require_once(dirname(__FILE__).'/functions-basic.php');
-require_once(dirname(__FILE__).'/reconfigure.php');
-list($diff, $needs) = checkSignature();
-if (empty($needs)) {
-	header('Location: '.WEBPATH.'/'.ZENFOLDER.'/setup/index.php');
+if (is_dir(dirname(__FILE__).'/setup')) {
+	header('Location: setup/index.php');
 } else {
+	require_once(dirname(__FILE__).'/version.php');
 	header('Last-Modified: ' . ZP_LAST_MODIFIED);
 	header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 	?>
@@ -22,18 +18,7 @@ if (empty($needs)) {
 				<div id="content">
 					<div class="tabbox">
 						<p>
-						<?php printf(gettext('Please reinstall the following setup files from the %1$s [%2$s] release:'),ZENPHOTO_VERSION,ZENPHOTO_RELEASE); ?>
-							<div id="files">
-								<ul>
-									<?php
-									foreach ($needs as $script) {
-										?>
-										<li><?php echo ZENFOLDER; ?>/setup/<?php echo $script; ?></li>
-										<?php
-									}
-									?>
-								</ul>
-							</div>
+						<?php printf(gettext('Please reinstall the setup files from the %1$s [%2$s] release:'),ZENPHOTO_VERSION,ZENPHOTO_RELEASE); ?>
 						</p>
 					</div>
 				</div>

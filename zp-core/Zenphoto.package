@@ -340,13 +340,14 @@ zp-core/exif/makers/panasonic.php
 zp-core/exif/makers/sanyo.php
 zp-core/external_auth.php
 zp-core/full-image.php
-zp-core/functions-PDO.php
 zp-core/functions-basic.php
 zp-core/functions-common.php
 zp-core/functions-controller.php
 zp-core/functions-db-MySQL.php
 zp-core/functions-db-MySQLi.php
 zp-core/functions-db-PDO_MySQL.php
+zp-core/functions-db_NULL.php
+zp-core/functions-db_PDO.php
 zp-core/functions-filter.php
 zp-core/functions-i18n.php
 zp-core/functions-image.php
@@ -1924,4 +1925,4 @@ zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zpCaptcha
 zp-core/zp-extensions/zpCaptcha.php
 zp-core/zp-extensions/zpCaptcha/c.php
-1926
+1927

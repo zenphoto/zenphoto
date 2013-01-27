@@ -15,13 +15,13 @@
 		function showFields() {
 			switch ($('#dbselect').val()) {
 			<?php
-			foreach ($engines as $enabled) {
-				if ($enabled) {
-					$engine = $enabled['engine'];
+			foreach ($engines as $engine) {
+				if ($engine) {
+					$handler = $engine['engine'];
 					?>
-					case '<?php echo $engine; ?>':
+					case '<?php echo $handler; ?>':
 						<?php
-						foreach ($enabled as $field=>$show) {
+						foreach ($engine as $field=>$show) {
 							if ($show) {
 								?>
 								$('#<?php echo $field; ?>').show();
@@ -49,19 +49,19 @@
 			<td><?php echo gettext("Database engine") ?></td>
 			<td><select id="dbselect" name="db_software" onchange="showFields();">
 				<?php
-				foreach ($engines as $enabled) {
-					$engine = $enabled['engine'];
+				foreach ($engines as $engine) {
+					$handler = $engine['engine'];
 					$modifiers = '';
-					if ($enabled) {
-						if ($engine == $selected_database) {
+					if ($engine['enabled']) {
+						if ($handler == $selected_database) {
 							$modifiers = ' selected="selected"';
 						}
 					} else {
 						$modifiers = ' disabled="disabled"';
 					}
 					?>
-				<option value="<?php echo $engine; ?>" <?php echo $modifiers; ?>>
-					<?php if (isset($enabled['experimental'])) printf(gettext('%s (experimental)'),$engine); else echo $engine;?>
+				<option value="<?php echo $handler; ?>" <?php echo $modifiers; ?>>
+					<?php if (isset($engine['experimental'])) printf(gettext('%s (experimental)'),$handler); else echo $handler;?>
 				</option>
 				<?php
 				}
