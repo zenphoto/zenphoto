@@ -56,7 +56,7 @@ function db_connect($config, $errorstop=true) {
  */
 function query($sql, $errorstop=true) {
 	global $_zp_DB_connection, $_zp_DB_details;
-	if ($result = mysql_query($sql, $_zp_DB_connection)) {
+	if ($result = @mysql_query($sql, $_zp_DB_connection)) {
 		return $result;
 	}
 	if($errorstop) {
