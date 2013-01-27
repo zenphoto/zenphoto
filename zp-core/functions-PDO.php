@@ -9,7 +9,7 @@
 /**
  * The main query function. Runs the SQL on the connection and handles errors.
  * @param string $sql sql code
- * @param bool $noerrmsg set to false to supress the error message
+ * @param bool $errorstop set to false to supress the error message
  * @return results of the sql statements
  * @since 0.6
  */
@@ -33,12 +33,12 @@ function query($sql, $errorstop=true) {
  * Runs a SQL query and returns an associative array of the first row.
  * Doesn't handle multiple rows, so this should only be used for unique entries.
  * @param string $sql sql code
- * @param bool $noerrmsg set to false to supress the error message
+ * @param bool $errorstop set to false to supress the error message
  * @return results of the sql statements
  * @since 0.6
  */
-function query_single_row($sql, $noerrmsg=true) {
-	$result = query($sql, $noerrmsg);
+function query_single_row($sql, $errorstop=true) {
+	$result = query($sql, $errorstop);
 	if ($result) {
 		$row = db_fetch_assoc($result);
 		$result->closeCursor();

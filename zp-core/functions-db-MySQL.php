@@ -17,7 +17,7 @@ Define('DATABASE_DESIRED_VERSION','5.5.0');
 /**
  * Connect to the database server and select the database.
  * @param array $config the db configuration parameters
- * @param bool $noerrmsg set to false to omit error messages
+ * @param bool $errorstop set to false to omit error messages
  * @return true if successful connection
  */
 function db_connect($config, $errorstop=true) {
@@ -50,7 +50,7 @@ function db_connect($config, $errorstop=true) {
 /**
  * The main query function. Runs the SQL on the connection and handles errors.
  * @param string $sql sql code
- * @param bool $noerrmsg set to false to supress the error message
+ * @param bool $errorstop set to false to supress the error message
  * @return results of the sql statements
  * @since 0.6
  */
