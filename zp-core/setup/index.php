@@ -56,7 +56,6 @@ if (!file_exists($en_US)) {
 	@mkdir($en_US, $chmod | 0311);
 }
 
-$selected_database = 'MySQLi';
 if (file_exists(CONFIGFILE)) {
 	$newconfig = false;
 	$zptime = filemtime(CONFIGFILE);
@@ -205,12 +204,6 @@ foreach (setup_glob('functions-db-*.php') as $key=>$engineMC) {
 ksort($engines);
 chdir($curdir);
 
-foreach ($engines as $engine) {
-	if ($engine['enabled']) {
-		$preferred = $engine['engine'];
-		break;
-	}
-}
 if (file_exists(CONFIGFILE)) {
 	eval(file_get_contents(CONFIGFILE));
 	if (isset($_zp_conf_vars['db_software'])) {
@@ -226,10 +219,13 @@ if (file_exists(CONFIGFILE)) {
 			}
 		}
 	} else {
+		$_zp_conf_vars['db_software'] = $selected_database = $preferred;
+		updateConfigItem('db_software', $preferred);
+		$updatezp_config = true;
 		$confDB = NULL;
 	}
 	if ($selected_database) {
-		require_once(dirname(dirname(__FILE__)).'/functions-db-'.($_zp_conf_vars['db_software']).'.php');
+		require_once(dirname(dirname(__FILE__)).'/functions-db-'.$selected_database.'.php');
 	} else {
 		require_once(dirname(dirname(__FILE__)).'/functions-db_NULL.php');
 	}
