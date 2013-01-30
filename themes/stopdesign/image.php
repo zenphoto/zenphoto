@@ -102,6 +102,7 @@ require_once('normalizer.php');
 			<div class="main">
 				<?php If (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_image); ?>
 				<div class="rating"><?php if (function_exists('printRating')) printRating(); ?></div>
+				<?php @call_user_func('printGoogleMap'); ?>
 				<?php
 				if (function_exists('printCommentForm')) {
 					require_once('comment.php');
