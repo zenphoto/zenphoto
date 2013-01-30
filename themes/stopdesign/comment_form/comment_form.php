@@ -119,12 +119,12 @@ global $_zp_themeroot;
 						<?php
 						if ($disabled['street']) {
 							?>
-							<input name="0-comment_form_street" id="comment_form_street" class="text" type="hidden" size="22" value="<?php echo html_encode($address['street']); ?>" />
-							<?php echo html_encode($address['street']); ?>
+							<input name="0-comment_form_street" id="comment_form_street" class="text" type="hidden" size="22" value="<?php echo html_encode($stored['street']); ?>" />
+							<?php echo html_encode($stored['street']); ?>
 							<?php
 						} else {
 							?>
-							<input name="0-comment_form_street" id="comment_form_street" class="text" size="22" value="<?php echo html_encode($address['street']); ?>" />
+							<input name="0-comment_form_street" id="comment_form_street" class="text" size="22" value="<?php echo html_encode($stored['street']); ?>" />
 							<?php
 						}
 						?>
@@ -136,12 +136,12 @@ global $_zp_themeroot;
 						<?php
 						if ($disabled['city']) {
 							?>
-							<input name="0-comment_form_city" id="comment_form_city" class="text" type="hidden" size="22" value="<?php echo html_encode($address['city']); ?>" />
-							<?php echo html_encode($address['city']); ?>
+							<input name="0-comment_form_city" id="comment_form_city" class="text" type="hidden" size="22" value="<?php echo html_encode($stored['city']); ?>" />
+							<?php echo html_encode($stored['city']); ?>
 							<?php
 						} else {
 							?>
-							<input name="0-comment_form_city" id="comment_form_city" class="text" size="22" value="<?php echo html_encode($address['city']); ?>" />
+							<input name="0-comment_form_city" id="comment_form_city" class="text" size="22" value="<?php echo html_encode($stored['city']); ?>" />
 							<?php
 						}
 						?>
@@ -153,12 +153,12 @@ global $_zp_themeroot;
 						<?php
 						if ($disabled['state']) {
 							?>
-							<input name="0-comment_form_state" id="comment_form_state" class="text" type="hidden" size="22" value="<?php echo html_encode($address['state']); ?>" />
-							<?php echo html_encode($address['state']); ?>
+							<input name="0-comment_form_state" id="comment_form_state" class="text" type="hidden" size="22" value="<?php echo html_encode($stored['state']); ?>" />
+							<?php echo html_encode($stored['state']); ?>
 							<?php
 						} else {
 							?>
-							<input name="0-comment_form_state" id="comment_form_state" class="text" size="22" value="<?php echo html_encode($address['state']); ?>" />
+							<input name="0-comment_form_state" id="comment_form_state" class="text" size="22" value="<?php echo html_encode($stored['state']); ?>" />
 							<?php
 						}
 						?>
@@ -170,12 +170,12 @@ global $_zp_themeroot;
 						<?php
 						if ($disabled['country']) {
 							?>
-							<input name="comment_form_country" id="comment_form_country" class="text" type="hidden" size="22" value="<?php echo html_encode($address['country']); ?>" />
-							<?php echo html_encode($address['country']); ?>
+							<input name="comment_form_country" id="comment_form_country" class="text" type="hidden" size="22" value="<?php echo html_encode($stored['country']); ?>" />
+							<?php echo html_encode($stored['country']); ?>
 							<?php
 						} else {
 							?>
-							<input name="comment_form_country" id="comment_form_country" class="text" size="22" value="<?php echo html_encode($address['country']); ?>" />
+							<input name="comment_form_country" id="comment_form_country" class="text" size="22" value="<?php echo html_encode($stored['country']); ?>" />
 							<?php
 						}
 						?>
@@ -187,12 +187,12 @@ global $_zp_themeroot;
 						<?php
 						if ($disabled['postal']) {
 							?>
-							<input name="0-comment_form_postal" id="comment_form_postal" class="text" size="22" type="hidden" value="<?php echo html_encode($address['postal']); ?>" />
-							<?php echo html_encode($address['postal']); ?>
+							<input name="0-comment_form_postal" id="comment_form_postal" class="text" size="22" type="hidden" value="<?php echo html_encode($stored['postal']); ?>" />
+							<?php echo html_encode($stored['postal']); ?>
 							<?php
 						} else {
 							?>
-							<input name="0-comment_form_postal" id="comment_form_postal" class="text" size="22" value="<?php echo html_encode($address['postal']); ?>" />
+							<input name="0-comment_form_postal" id="comment_form_postal" class="text" size="22" value="<?php echo html_encode($stored['postal']); ?>" />
 							<?php
 						}
 						?>
