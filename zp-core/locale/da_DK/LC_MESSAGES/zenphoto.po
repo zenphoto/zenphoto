@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.4 github\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-15 22:19+0100\n"
-"PO-Revision-Date: 2013-01-23 16:45+0100\n"
+"POT-Creation-Date: 2013-01-23 16:51+0100\n"
+"PO-Revision-Date: 2013-01-30 16:29+0100\n"
 "Last-Translator: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language-Team: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language: danish\n"
@@ -2208,7 +2208,7 @@ msgid "Postal code%s:"
 msgstr "Postnummer%s:"
 
 #: /home/jes/workspace/zenphoto/themes/stopdesign/comment_form/comment_form.php:209
-#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1034
+#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1035
 msgid "Enter CAPTCHA"
 msgstr "Skriv CAPTCHA"
 
@@ -2351,7 +2351,7 @@ msgstr "Send email"
 #: /home/jes/workspace/zenphoto/zp-core/admin-edit.php:1593
 #: /home/jes/workspace/zenphoto/zp-core/admin-edit.php:1594
 #: /home/jes/workspace/zenphoto/zp-core/admin-thumbcrop.php:269
-#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:997
+#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:998
 #: /home/jes/workspace/zenphoto/zp-core/admin-plugins.php:144
 #: /home/jes/workspace/zenphoto/zp-core/admin-plugins.php:372
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:527
@@ -4787,11 +4787,11 @@ msgstr "plugins"
 msgid "Restore"
 msgstr "Genoprette"
 
-#: /home/jes/workspace/zenphoto/zp-core/lib-Imagick.php:65
+#: /home/jes/workspace/zenphoto/zp-core/lib-Imagick.php:63
 msgid "Enable Imagick"
 msgstr "Aktiver Imagick"
 
-#: /home/jes/workspace/zenphoto/zp-core/lib-Imagick.php:71
+#: /home/jes/workspace/zenphoto/zp-core/lib-Imagick.php:68
 msgid ""
 "Your PHP has support for Imagick. Check this option if you wish to use the "
 "Imagick graphics library."
@@ -4799,51 +4799,16 @@ msgstr ""
 "Din PHP har support for Imagick. Afkryds denne valgmulighed hvis du ønsker "
 "at bruge Imagicks grafiske bibliotek."
 
-#: /home/jes/workspace/zenphoto/zp-core/lib-Imagick.php:77
-msgid "Imagick filter"
-msgstr "Imagick filter"
-
-#: /home/jes/workspace/zenphoto/zp-core/lib-Imagick.php:82
-#, php-format
-msgid ""
-"The type of filter used when resampling an image. The default is <strong>%s</"
-"strong>."
-msgstr ""
-"Den type filter der bruges når et billede genindlæses i "
-"billedbehandlingsprogrammet. Standarden er <strong>%s</strong>."
-
-#: /home/jes/workspace/zenphoto/zp-core/lib-Imagick.php:84
-msgid "Magick memory limit"
-msgstr "Magicks hukommelsesgrænse"
-
-#: /home/jes/workspace/zenphoto/zp-core/lib-Imagick.php:88
-msgid ""
-"Amount of memory allocated to Gmagick/Imagick in megabytes. Set to "
-"<strong>0</strong> for unlimited memory."
-msgstr ""
-"Mængden af hukommelse, som allokeres til Gmagick/Imagick i megabytes. Sæt "
-"til <strong>0</strong> for ubegrænset hukommelse."
-
-#: /home/jes/workspace/zenphoto/zp-core/lib-Imagick.php:88
-msgid ""
-"<strong>Note:</strong> Image processing will be faster with a higher memory "
-"limit. However, if your server experiences problems with image processing, "
-"try setting this lower."
-msgstr ""
-"<strong>OBS:</strong> Billedbehandling er hurtigere med en højere "
-"hukommelsesgrænse. Men hvis din server får problemer med billedbehandling så "
-"prøv at sætte grænsen lavere."
-
-#: /home/jes/workspace/zenphoto/zp-core/lib-Imagick.php:90
+#: /home/jes/workspace/zenphoto/zp-core/lib-Imagick.php:74
 msgid "Imagick font size"
 msgstr "Imagick skriftstørrelse "
 
-#: /home/jes/workspace/zenphoto/zp-core/lib-Imagick.php:94
+#: /home/jes/workspace/zenphoto/zp-core/lib-Imagick.php:78
 #, php-format
 msgid "The Imagick font size (in pixels). Default is <strong>%s</strong>."
 msgstr "Imagick skriftstørrelse (i pixel). Standard er <strong<%s</strong>."
 
-#: /home/jes/workspace/zenphoto/zp-core/lib-Imagick.php:108
+#: /home/jes/workspace/zenphoto/zp-core/lib-Imagick.php:91
 #, php-format
 msgid ""
 "The <strong><em>Imagick</em></strong> library version must be <strong>%s</"
@@ -4852,11 +4817,20 @@ msgstr ""
 "<strong><em>Imagick></em></strong> biblioteksversion skal være <strong>%s</"
 "strong> eller senere."
 
-#: /home/jes/workspace/zenphoto/zp-core/lib-Imagick.php:111
+#: /home/jes/workspace/zenphoto/zp-core/lib-Imagick.php:95
+#, php-format
+msgid ""
+"The <strong><em>ImageMagick</em></strong> binary version must be <strong>%s</"
+"strong> or later."
+msgstr ""
+"<strong><em>ImageMagicks</em></strong> binære version skal være <strong>%s</"
+"strong> eller senere."
+
+#: /home/jes/workspace/zenphoto/zp-core/lib-Imagick.php:98
 msgid "The <strong><em>Imagick</em></strong> extension is not available."
 msgstr "<strong><em>Imagick</em></strong> udvidelsen er ikke tilgængelig."
 
-#: /home/jes/workspace/zenphoto/zp-core/lib-Imagick.php:171
+#: /home/jes/workspace/zenphoto/zp-core/lib-Imagick.php:111
 #, php-format
 msgid "PHP Imagick library <em>%s</em>"
 msgstr "PHP Imagick bibliotek <em>%s</em>"
@@ -6613,8 +6587,8 @@ msgstr "Administrer alle"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:531
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:892
-#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:984
-#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1027
+#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:985
+#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1028
 msgid "User"
 msgstr "Bruger"
 
@@ -6751,7 +6725,7 @@ msgid "Submit"
 msgstr "Send"
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:922
-#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1043
+#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1044
 msgid "Return"
 msgstr "Tilbage"
 
@@ -6759,24 +6733,24 @@ msgstr "Tilbage"
 msgid "Request reset by e-mail"
 msgstr "Anmodning om nulstilling pr email"
 
-#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:943
+#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:944
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/user_login-out.php:100
 msgid "Login"
 msgstr "Login"
 
-#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:964
+#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:965
 #, php-format
 msgid "Logon using:%s"
 msgstr "Log på ved hjælp af: %s"
 
-#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:990
-#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1104
-#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1189
+#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:991
+#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1105
+#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1190
 msgid "Password"
 msgstr "Adgangskode"
 
-#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:992
-#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1198
+#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:993
+#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1199
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:985
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1342
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2104
@@ -6786,45 +6760,45 @@ msgstr "Adgangskode"
 msgid "Show password"
 msgstr "Vis adganskode"
 
-#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:996
+#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:997
 msgid "Log in"
 msgstr "Log på"
 
-#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1010
+#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1011
 msgid "I forgot my <strong>User ID</strong>/<strong>Password</strong>"
 msgstr ""
 "Jeg har glemt mit <strong>Brugernavn</strong> / <strong>adgangskode</strong>"
 
-#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1042
+#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1043
 msgid "Request"
 msgstr "Anmodning"
 
-#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1042
+#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1043
 msgid "Request password reset"
 msgstr "Anmoder om nulstilling af adgangskode"
 
-#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1109
-#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1120
+#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1110
+#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1121
 msgid "password strength weak"
 msgstr "adgangskode svag"
 
-#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1112
+#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1113
 msgid "password strength good"
 msgstr "adgangskode god"
 
-#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1115
+#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1116
 msgid "password strength strong"
 msgstr "adgangskode stærk"
 
-#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1138
+#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1139
 msgid "passwords match"
 msgstr "adgangskoder matcher"
 
-#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1142
+#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1143
 msgid "passwords do not match"
 msgstr "adgangskoder matcher ikke"
 
-#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1201
+#: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1202
 msgid "Repeat password"
 msgstr "Gentag adgangskode"
 
@@ -7700,7 +7674,7 @@ msgstr "Galleri adgangskode:"
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:109
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:483
 msgid "clear password"
-msgstr "fjern kodeord"
+msgstr "fjern adgangskode"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:969
 msgid ""
@@ -11965,7 +11939,7 @@ msgid ""
 "with <code>iconv(()</code>"
 msgstr ""
 "Du skal installere pakken <code>mbstring</code> eller løse problemet med "
-"<code>iconv(()</code>"
+"<code>iconv()</code>"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:612
 msgid ""
@@ -12192,29 +12166,29 @@ msgstr "Billed URIer synes at kræve <em>filsystemets</em> karaktersæt."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:796
 msgid "Image URIs appear to require the UTF-8 character set."
-msgstr ""
+msgstr "Billed URIer synes at kræve UTF-8 karaktersæt."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:817
 msgid "You should enable the URL option <em>UTF8 image URIs</em>."
-msgstr ""
+msgstr "Du bør aktivere URL indstillingen <em>UTF8 billed URI</em>."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:817
 msgid "<a href=\"javascript:uri(true)\">Please do</a>"
-msgstr ""
+msgstr "<a href=\"javascript:uri(true)\">Gør venligst</a>"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:834
 msgid "You should disable the URL option <em>UTF8 image URIs</em>."
-msgstr ""
+msgstr "Du bør deaktivere URL indstillingen <em>UTF8 billed URI</em>."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:834
 msgid "<a href=\"javascript:uri(false)\">Please do</a>"
-msgstr ""
+msgstr "<a href=\"javascript:uri(false)\">Gør venligst</a>"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:856
 #: /home/jes/workspace/zenphoto/zp-core/setup/setup-functions.php:116
 #: /home/jes/workspace/zenphoto/zp-core/setup/setup-functions.php:131
 msgid "Warning!"
-msgstr ""
+msgstr "Advarsel!"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:882
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/hitcounter.php:212
@@ -12224,22 +12198,25 @@ msgstr ""
 #: /home/jes/workspace/zenphoto/zp-core/utilities/reset_albumthumbs.php:14
 #: /home/jes/workspace/zenphoto/zp-core/utilities/database_reference.php:33
 msgid "Database"
-msgstr ""
+msgstr "Database"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:887
 #, php-format
 msgid "PHP <code>%s support</code> for configured Database [is experimental]"
 msgstr ""
+"PHP <code>%s support</code> for den konfigurerede Database [eksperimental]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:889
 #, php-format
 msgid "PHP <code>%s</code> support for configured Database"
-msgstr ""
+msgstr "PHP <code>%s</code> support for den konfigurerede Database"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:889
 #, php-format
 msgid "PHP <code>%s support</code> for configured Database [is not installed]"
 msgstr ""
+"PHP <code>%s support</code> for den konfigurerede Database [er ikke "
+"installeret]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:889
 #, php-format
@@ -12247,6 +12224,8 @@ msgid ""
 "Choose a different database engine or install %s support in your PHP to "
 "clear this condition."
 msgstr ""
+"Vælg et anden databaseprogram eller installer %s support in din PHP for at "
+"fjerne denne hindring."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:895
 #, php-format
@@ -12254,25 +12233,27 @@ msgid ""
 " <code>%1$s</code> support (<a onclick=\"$('#%1$s').toggle('show')\" "
 ">experimental</a>)"
 msgstr ""
+"<code>%1$s </code>support (<a onclick=\"$('#%1$s').toggle"
+"('show')\">eksperimentel</ a>)"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:904
 #, php-format
 msgid "PHP <code>%s</code> support"
-msgstr ""
+msgstr "PHP <code>%s</code> support"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:910
 #, php-format
 msgid "PHP <code>%s</code> support [is not installed]"
-msgstr ""
+msgstr "PHP <code>%s</code> support er ikke installeret]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:920
 msgid "No database selected"
-msgstr ""
+msgstr "Ingen database valgt"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:932
 #, php-format
 msgid "%1$s version %2$s"
-msgstr ""
+msgstr "%1$s version %2$s"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:932
 #, php-format
@@ -12280,19 +12261,21 @@ msgid ""
 "%1$s Version %2$s or greater is required. Version %3$s or greater is "
 "preferred. Use a lower version at your own risk."
 msgstr ""
+"%1$s version %2$s eller nyere kræves. Version %3$s eller nyere anbefales. "
+"Brug en ældre version for egen risiko."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:934
 msgid "Database connection"
-msgstr ""
+msgstr "Database forbindelse"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:940
 msgid "Database credentials in configuration file"
-msgstr ""
+msgstr "Database legitimationsoplysninger i konfigurationsfil"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:940
 #, php-format
 msgid "<em>%1$s</em> reported: %2$s"
-msgstr ""
+msgstr "<em>%1$s</em> rapporterede: %2$s"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:947
 msgid ""
@@ -12300,29 +12283,33 @@ msgid ""
 "<code>password</code>, etc. in your configuration file and <strong>setup</"
 "strong> is not able to write to the file."
 msgstr ""
+"Du har ikke indstillet din <strong> Database </ strong> <code> bruger </ "
+"code>, <code> adgangskode </ code>, etc.  korrekt i konfigurationen og "
+"<strong> setup </ strong> er ikke i stand at skrive til filen."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:949
 msgid "Database setup in configuration file"
-msgstr ""
+msgstr "Databaseopsætning i konfigurationsfilen"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:952
 #, php-format
 msgid "Connect to %s"
-msgstr ""
+msgstr "Forbind til %s"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:952
 msgid "Connect to Database [<code>CONNECT</code> query failed]"
-msgstr ""
+msgstr "Forbind til Database [<code>CONNECT</code> forspørgsel fejlede]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:959
 #, php-format
 msgid "Database <code>%s</code> created"
-msgstr ""
+msgstr "Database <code>%s</code> oprettet"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:967
 #, php-format
 msgid "Click here to attempt to create <a href=\"?Create_Database\" >%s</a>."
 msgstr ""
+"Klik her for at forsøge at oprette <a href=\"?Create_Database\" >%s</a>."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:972
 #, php-format
@@ -12330,131 +12317,138 @@ msgid ""
 "Database <code>%s</code> not created [<code>CREATE DATABASE</code> query "
 "failed]"
 msgstr ""
+"Databasen <code>%s</code> ikke oprettet [<code>OPRET DATABASE</code> "
+"forespørgslen mislykkedes]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:978
 msgid ""
 "You may need to set <code>SQL mode</code> <em>empty</em> in your Database "
 "configuration."
 msgstr ""
+"Du skal muligvis indstille <code> SQL-tilstand </ code> <em> tom </ em> i "
+"din Database konfiguration."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:982
 #, php-format
 msgid "<code>SQL mode</code> [query failed]"
-msgstr ""
+msgstr "<code>SQL mode</code> [forespørgsel fejlede]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:985
 #, php-format
 msgid "<code>SQL mode</code> [<em>%s</em> overridden]"
-msgstr ""
+msgstr "<code>SQL mode</code> [<em>%s</em> tilsidesat]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:985
 msgid "Consider setting it <em>empty</em> in your Database configuration."
-msgstr ""
+msgstr "Overvej at sætte den <em> tom </ em> i din Database konfiguration."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:992
 msgid "<code>SQL mode</code>"
-msgstr ""
+msgstr "<code>SQL mode</code>"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:992
 #, php-format
 msgid "<code>SQL mode</code> [is set to <em>%s</em>]"
-msgstr ""
+msgstr "<code>SQL mode</code> [er sat til <em>%s</em>]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:992
 msgid "Consider setting it <em>empty</em> if you get Database errors."
-msgstr ""
+msgstr "Overvej at sætte den <em>tom</ em> hvis du får database fejl."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:996
 msgid "<code>SQL mode</code> [SET SESSION failed]"
-msgstr ""
+msgstr "<code>SQL mode</code> [SET SESSION fejlede]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1004
 msgid "Select"
-msgstr ""
+msgstr "Vælg"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1004
 msgid "Create"
-msgstr ""
+msgstr "Opret"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1004
 msgid "Drop"
-msgstr ""
+msgstr "Fjern"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1004
 msgid "Insert"
-msgstr ""
+msgstr "Indsæt"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1005
 msgid "Alter"
-msgstr ""
+msgstr "Ændre"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1015
 msgid "Grants found:"
-msgstr ""
+msgstr "Privilegier fundet:"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1043
 msgid "The <em>SHOW GRANTS</em> query failed."
-msgstr ""
+msgstr "<em>VIS PRIVILEGIER</em> forespørgsel fejlede."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1045
 msgid "Database <code>access rights</code>"
-msgstr ""
+msgstr "Database <code> adgangsrettigheder </ code>"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1045
 #, php-format
 msgid "Database <code>access rights</code> [%s]"
-msgstr ""
+msgstr "Database <code> adgangsrettigheder </ code> [%s]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1046
 #, php-format
 msgid "Your Database user must have %s rights."
-msgstr ""
+msgstr "Din databasebruger må have %s rettigheder."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1063
 msgid "<em>SHOW TABLES</em> [found no tables]"
-msgstr ""
+msgstr "<em> VIS TABELLER </ em> [fandt ingen tabeller]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1066
 #, php-format
 msgid "<em>SHOW TABLES</em> found: %s"
-msgstr ""
+msgstr "<em> VIS TABELLER </ em> fandt: %s"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1070
 msgid "<em>SHOW TABLES</em> [Failed]"
-msgstr ""
+msgstr "<em> VIS TABELLER </ em> [Mislykkedes]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1070
 #, php-format
 msgid ""
 "The database did not return a list of the database tables for <code>%s</"
 "code>."
-msgstr ""
+msgstr "Databasen har ikke returneret nogen tabeller for <code>%s</code>."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1071
 msgid ""
 "<strong>Setup</strong> will attempt to create all tables. This will not over "
 "write any existing tables."
 msgstr ""
+"<strong>Setup</strong> vil forsøge at danne alle tabellerne. Dette vil ikke "
+"overskrive en eksisterende tabel."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1097
 msgid "Database <code>field collations</code> [Image table]"
-msgstr ""
+msgstr "Database <code>Felt kollationer</code> [Billedtabel]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1100
 msgid "Database <code>field collations</code> [Album table]"
-msgstr ""
+msgstr "Database <code>Felt kollationer</code> [Albumtabel]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1103
 msgid "Database <code>field collations</code> [Image and Album tables]"
-msgstr ""
+msgstr "Database <code>Felt kollationer</code> [Billed- og Albumtabel]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1106
 msgid "Database <code>field collations</code> [SHOW COLUMNS query failed]"
 msgstr ""
+"Database <code>Felt kollationer</code> [VIS SØJLER forespørgsel mislykkedes]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1109
 msgid "Database <code>field collations</code>"
-msgstr ""
+msgstr "Database <code>Felt kollationer</code>"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1109
 #, php-format
@@ -12465,11 +12459,15 @@ msgid_plural ""
 "%s are not UTF-8. You should consider porting your data to UTF-8 and "
 "changing the collation of the database fields to <code>utf8_unicode_ci</code>"
 msgstr[0] ""
+"% s er ikke UTF-8. Du bør overveje at overføre dine data til UTF-8 og ændre "
+"kollationen af databasefelterne til <code> utf8_unicode_ci </ code>"
 msgstr[1] ""
+"% s er ikke UTF-8. Du bør overveje at overføre dine data til UTF-8 og ændre "
+"kollationen af databasefelterne til <code> utf8_unicode_ci </ code>"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1111
 msgid "Database <code>$conf[\"UTF-8\"]</code> [is not set <em>true</em>]"
-msgstr ""
+msgstr "Database <code>$conf[\"UTF-8\"]</code> [er ikke sat til <em>true</em>]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1111
 msgid ""
@@ -12477,92 +12475,100 @@ msgid ""
 "the database fields to <code>utf8_unicode_ci</code> and setting this "
 "<em>true</em>. Zenphoto works best with pure UTF-8 encodings."
 msgstr ""
+"Du bør overveje at overføre dine data til UTF-8 og ændre kollationen af "
+"databasefelterne til <code> utf8_unicode_ci </ code> og sætte denne til "
+"<em>true</em>. Zenphoto arbejder bedst med rent UTF-8 karaktersæt. "
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1116
 msgid "Zenphoto files"
-msgstr ""
+msgstr "Zenphoto filer"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1146
 msgid "Zenphoto package [missing]"
-msgstr ""
+msgstr "Zenphote pakken [mangler]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1146
 msgid ""
 "The file <code>Zenphoto.package</code> is either missing, not readable, or "
 "defective. Your installation may be corrupt!"
 msgstr ""
+"Filen <code>Zenphoto.package</code> enten mangler, kan ikke læses eller "
+"fejlbehæftet. Din installation kan være beskadiget!"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1152
 #, php-format
 msgid "Setting permissions (0%o) for Zenphoto package."
-msgstr ""
+msgstr "Sætter rettigheder (0%o) for Zenphoto pakken."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1255
 msgid ""
 "Zenphoto core files [This is a <em>debug</em> build. Some files are missing "
 "or seem wrong]"
 msgstr ""
+"Zenphoto kernefiler. [Dette er en <em>debug</em> version. Nogle filer "
+"mangler eller synes forkerte]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1257
 msgid "Zenphoto core files [Some files are missing or seem wrong]"
-msgstr ""
+msgstr "Zenphoto kernefiler [Nogle filer mangler eller synes forkerte]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1259
 msgid ""
 "Perhaps there was a problem with the upload. You should check the following "
 "files: "
 msgstr ""
+"Måske opstod der en fejl ved overførslen. Du bør checke følgende filer:"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1264
 msgid "Zenphoto core files [This is a <em>debug</em> build]"
-msgstr ""
+msgstr "Zenphoto kernefiler [Dette er en <em>debug</em> version]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1271
 msgid "Zenphoto core files"
-msgstr ""
+msgstr "Zenphoto kernefiler"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1273
 msgid "Installation files"
-msgstr ""
+msgstr "Installationsfiler"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1287
 #, php-format
 msgid ".svn [%s instance]"
 msgid_plural ".svn [%s instances]"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] ".svn [%s forekomst]"
+msgstr[1] ".svn [%s forekomster]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1290
 #, php-format
 msgid "php.ini [%s instance]"
 msgid_plural "php.ini [%s instances]"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "php.ini [%s forekomst]"
+msgstr[1] "php.ini [%s forekomster]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1313
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1316
 msgid "Zenphoto core folders [Some unknown files were found]"
-msgstr ""
+msgstr "Zenphoto kernemapper [Nogle ukendte filer blev fundet]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1313
 msgid "The following files could not be deleted."
-msgstr ""
+msgstr "Følgende filer kunne ikke slettes."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1317
 msgid "You should remove the following files: "
-msgstr ""
+msgstr "Du bør fjerne følgende filer:"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1318
 msgid "Delete extra files"
-msgstr ""
+msgstr "Slet ekstra filer"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1321
 msgid "Zenphoto core file permissions"
-msgstr ""
+msgstr "Zenphoto kernefil rettigheder"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1321
 msgid "Zenphoto core file permissions [not correct]"
-msgstr ""
+msgstr "Zenphoto kernefil rettigheder [ikke korrekte]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1321
 msgid ""
@@ -12571,32 +12577,42 @@ msgid ""
 "\"http://www.zenphoto.org/news/troubleshooting-zenphoto#29\">Troubleshooting "
 "guide</a> for details on Zenphoto permissions requirements."
 msgstr ""
+"Setup kunne ikke sætte en eller flere komponenter til det valgte "
+"rettighedsniveau. Du bliver nødt til at indstille rettighederne manuelt. Se "
+"<a href=\"http://www.zenphoto.org/news/troubleshooting-"
+"zenphoto#29\">Troubleshooting guide</a> for detaljer vedrørende Zenphotos "
+"krav til rettigheder."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1324
 msgid "<em>.htaccess</em> file"
-msgstr ""
+msgstr "<em>.htaccess</em> fil"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1335
 msgid "<em>.htaccess</em> file [is empty or does not exist]"
-msgstr ""
+msgstr "<em>.htaccess</em> file [er tom eller eksisterer ikke]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1338
 msgid ""
 "If you have the mod_rewrite module enabled an <em>.htaccess</em> file is "
 "required the root zenphoto folder to create cruft-free URLs."
 msgstr ""
+"Hvis du har mod_rewrite modulet aktiveret kræves der en <em>.htaccess</em> "
+"fil i zenphotos rodmappe for af lave søgenemme URLs."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1339
 msgid ""
 "You can ignore this warning if you do not intend to set the "
 "<code>mod_rewrite</code> option."
 msgstr ""
+"Du kan ignorere denne advarsel hvis du ikke vil bruge <code>mod-rewrite</em>."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1341
 msgid ""
 "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Make setup create the file</"
 "a></p><br style=\"clear:both\" /><br />"
 msgstr ""
+"<p class=\"buttons\"><a href=\"?copyhtaccess\" >Få setup til at lave filen</"
+"a></p><br style=\"clear:both\" /><br />"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1344
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1380
@@ -12604,6 +12620,8 @@ msgid ""
 "Server seems not to be Apache or Apache-compatible, <code>.htaccess</code> "
 "not required."
 msgstr ""
+"Serveren synes ikke at være Apache ller Apache-kompatibel, <code>.htaccess</"
+"code> kræves ikke."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1383
 #, php-format
@@ -12613,6 +12631,10 @@ msgid ""
 "to <em>.htaccess</em>, merge those changes with the <em>%s/htaccess</em> "
 "file to produce a new <em>.htaccess</em> file."
 msgstr ""
+"<em>.htaccess</em>filen i din rodmappe er ikke den samme version som den der "
+"distribueres med denne version af Zenphoto. Hvis du har lavet ændringer til "
+"<em>.htaccess</em>, flet disse ændringer med <em>%s/htacccess</em>filen for "
+"at lave en ny <em>.htaccess</em>fil."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1385
 msgid ""
@@ -12620,24 +12642,27 @@ msgid ""
 "htaccess</em> file with the current version</a></p><br style=\"clear:both\" /"
 "><br />"
 msgstr ""
+"<p class=\"buttons\"><a href=\"?copyhtaccess\" >Erstat den eksisterende <em>."
+"htaccess</em>fil med den nuværende version</a></p><br style=\"clear:both\" /"
+"><br />"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1388
 msgid "<em>.htaccess</em> file [wrong version]"
-msgstr ""
+msgstr "<em>.htaccess</em> file [forkert version]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1403
 #, php-format
 msgid "<em>.htaccess</em> file (<em>RewriteEngine</em> is <strong>%s</strong>)"
-msgstr ""
+msgstr "<em>.htaccess</em>fil (<em>RewriteEngine</em> er <strong>%s</strong>)"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1416
 msgid "<em>.htaccess</em> RewriteBase [is <em>missing</em>]"
-msgstr ""
+msgstr "<em>.htaccess</em> RewriteBase [<em>mangler</em>]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1422
 #, php-format
 msgid "<em>.htaccess</em> RewriteBase is <code>%s</code>"
-msgstr ""
+msgstr "<em>.htaccess</em> RewriteBase er <code>%s</code>"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1423
 #, php-format
@@ -12645,17 +12670,21 @@ msgid ""
 "<em>.htaccess</em> RewriteBase is <code>%s</code> [Does not match install "
 "folder]"
 msgstr ""
+"<em>.htaccess</em> RewriteBase er <code>%s</code> [Stemmer ikke overens med "
+"install-mappen]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1433
 #, php-format
 msgid "<em>.htaccess</em> RewriteBase is <code>%s</code> (fixed)"
-msgstr ""
+msgstr "<em>.htaccess</em> RewriteBase er <code>%s</code> (fixed)"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1441
 msgid ""
 "Setup was not able to write to the file change RewriteBase match the install "
 "folder."
 msgstr ""
+"Setup kunne ikke skrive filændringerne. Ret selv Rewritebase så den passer "
+"til installationsmappen."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1442
 #, php-format
@@ -12663,35 +12692,39 @@ msgid ""
 "Either make the file writeable or set <code>RewriteBase</code> in your "
 "<code>.htaccess</code> file to <code>%s</code>."
 msgstr ""
+"Enten gøre filen skrivbar eller sæt <code> RewriteBase </ code> i din "
+"<code>. htaccess </ code> fil til <code>% s </ code>."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1447
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1450
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1462
 msgid "<em>robots.txt</em> file"
-msgstr ""
+msgstr "<em>robots.txt</em> fil"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1447
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1450
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1462
 msgid "<em>robots.txt</em> file [Not created]"
-msgstr ""
+msgstr "<em>robots.txt</em> file [ikke lavet]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1447
 msgid "Setup could not find the  <em>example_robots.txt</em> file."
-msgstr ""
+msgstr "Setup kunne ikke finde <em>example_robots.txt</em>filen."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1450
 msgid ""
 "Setup did not create a <em>robots.txt</em> file because one already exists."
 msgstr ""
+"Setup lavede ikke en <em>robots.txt </em> fil fordi en anden allerede "
+"eksisterede."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1462
 msgid "Setup could not create a <em>robots.txt</em> file."
-msgstr ""
+msgstr "Setup kunne ikke lave en <em>robots.txt</em> fil."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1467
 msgid "albums [<code>$conf['external_album_folder']</code> is deprecated]"
-msgstr ""
+msgstr "albums [<code>$conf['external_album_folder']</code> er forældet]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1467
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1491
@@ -12699,135 +12732,145 @@ msgid ""
 "You should update your configuration file to conform to the current zenphoto."
 "cfg example file."
 msgstr ""
+"Du bør opdatere din konfigurationsfil så den stemmer overens med den "
+"aktuelle zenphoto.cfg eksempel fil."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1491
 msgid "<em>albums</em> folder"
-msgstr ""
+msgstr "<em>albums</em> mappe"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1491
 msgid ""
 "<em>albums</em> folder [The line <code>$conf['album_folder']</code> is "
 "missing from your configuration file]"
 msgstr ""
+"<em>albums</em> mappe [Linien <code>$conf['album_folder']</code> fra din "
+"konfigurationsfil]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1495
 msgid "<em>locale</em> folders"
-msgstr ""
+msgstr "<em>locale</em> mapper"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1495
 msgid "<em>locale</em> folders [Are not complete]"
-msgstr ""
+msgstr "<em>locale</em> folders [Er ikke komplette]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1495
 msgid ""
 "Be sure you have uploaded the complete Zenphoto package. You must have at "
 "least the <em>en_US</em> folder."
 msgstr ""
+"Du bør sikre dig at du har hentet den komplette Zenphoto pakke. Du skal "
+"mindst have <em>en_US</em> mappen."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1496
 msgid "uploaded"
-msgstr ""
+msgstr "hentet"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1499
 msgid "HTML cache"
-msgstr ""
+msgstr "HTML cache"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1500
 msgid "Third party plugins"
-msgstr ""
+msgstr "Tredie parts plugins"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1512
 msgid ""
 "You need to address the problems indicated above then run <code>setup</code> "
 "again."
 msgstr ""
+"Du er nødt til at løse de problemer, der er angivet ovenfor, derefter køre "
+"<code> setup </ code> igen."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1515
 msgid "Setup failed."
-msgstr ""
+msgstr "Installationen mislykkes."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1526
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2587
 msgid "You need <em>USER ADMIN</em> rights to run setup."
 msgstr ""
+"Du har brug for <em> BRUGER ADMIN </ em> rettigheder til at køre "
+"installationsprogrammet."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1528
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2589
 msgid "You must be logged in to run setup."
-msgstr ""
+msgstr "Du skal være logget ind for at køre setup."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1549
 msgid "database connected"
-msgstr ""
+msgstr "database forbundet"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2291
 msgid "About to create tables"
-msgstr ""
+msgstr "Igang med at oprette tabeller"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2293
 msgid "About to update tables"
-msgstr ""
+msgstr "Igang med at opdatere tabeller"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2295
 msgid "Begin table creation"
-msgstr ""
+msgstr "Begynd tabeloprettelse"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2301
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2316
 #, php-format
 msgid "Query %1$s Failed. Error: %2$s"
-msgstr ""
+msgstr "Søgning %1$s Fejlede. Fejl: %2$s"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2303
 #, php-format
 msgid "Table creation failure:<br />Query: %1$s<br />Error: %2$s"
-msgstr ""
+msgstr "Tabeloprettelse fejl:<br />Søgning: %1$s<br />Fejl: %2$s"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2306
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2318
 #, php-format
 msgid "Query ( %s ) Success."
-msgstr ""
+msgstr "Søgning (%s) lykkes."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2310
 msgid "Begin table updates"
-msgstr ""
+msgstr "Begynd tabel opdatering"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2325
 msgid "Done with table create!"
-msgstr ""
+msgstr "Tabeloprettelse afsluttet!"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2327
 msgid "Done with table create with errors!"
-msgstr ""
+msgstr "Tabeloprettelse afsluttet med fejl!"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2331
 msgid "Done with table update"
-msgstr ""
+msgstr "Tabelopdatering afsluttet"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2333
 msgid "Done with table update with errors"
-msgstr ""
+msgstr "Tabelopdatering færdig med fejl"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2339
 msgid "Done with database creation and update"
-msgstr ""
+msgstr "Database oprettler og opdatering afsluttet."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2341
 #, php-format
 msgid "Previous Release was %s"
-msgstr ""
+msgstr "Forrige version var %s"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2400
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cloneZenphoto.php:96
 msgid "Setup files deleted."
-msgstr ""
+msgstr "Installationsfiler slettede."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2407
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cloneZenphoto.php:101
 #, php-format
 msgid "Failed to delete: %s"
-msgstr ""
+msgstr "Kunne ikke slette: %s"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2415
 msgid ""
@@ -12835,17 +12878,22 @@ msgid ""
 "scripts from your zp-core folder at this time. You can always re-upload them "
 "should you find you need them again in the future."
 msgstr ""
+"<strong>BEMÆRK:</strong> Vi anbefaler kraftigt at du fjerner <em>setup</em> "
+"filer fra din zp-core mappe nu. Du kan altid genhente filerne hvis du skulle "
+"behøve dem senere."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2420
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cloneZenphoto.php:54
 msgid "Delete setup files"
-msgstr ""
+msgstr "Slet installationsfiler"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2425
 msgid ""
 "This is a clone of another installation. The setup files should be deleted "
 "from that installation"
 msgstr ""
+"Dette er en klon af en anden installation. Installationsfilerne bør slettes "
+"fra denne installation"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2435
 #, php-format
@@ -12853,11 +12901,13 @@ msgid ""
 "You may <a href=\"%1$s\">set your admin user and password</a> or <a href="
 "\"%2$s\">run backup-restore</a>"
 msgstr ""
+"Du kan enten <a href=\"%1$s\">sætte din admin bruger og adgangskode</a> "
+"eller <a href=\"%2$s\">køre sikkerhedskopiering-gendannelse</a>"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2440
 #, php-format
 msgid "You need to <a href=\"%1$s\">set your admin user and password</a>"
-msgstr ""
+msgstr "Du skal <a href=\"%1$s\">sætte din admin bruger og adgangskode</a>"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2447
 #, php-format
@@ -12865,16 +12915,18 @@ msgid ""
 "You can now <a href=\"%1$s\">View your gallery</a> or <a href=\"%2$s"
 "\">administer.</a>"
 msgstr ""
+"Du kan nu <a href=\"%1$s\"> Se dit galleri </ a> eller <a href=\"%2$s\"> "
+"administrere. </ A>"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2507
 #, php-format
 msgid "Database tables to create: %s"
-msgstr ""
+msgstr "Databasetabeller der skal oprettes:% s"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2525
 #, php-format
 msgid "Database tables to update: %s"
-msgstr ""
+msgstr "Databasetabeller der skal opdateres:% s"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2556
 msgid ""
@@ -12882,27 +12934,31 @@ msgid ""
 "database which are not easily reversed. Be sure you have a database backup "
 "before proceeding."
 msgstr ""
+"<strong>Advarsel!</strong> Denne opdatering laver strukturelle forandringer "
+"i databasen, som ikke vil være nemme at rekonstruere. Sikker dig at du har "
+"en database sikkerhedskopi, før du fortsætter."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2559
 #, php-format
 msgid "%s I acknowledge that proceeding will restructure my database."
-msgstr ""
+msgstr "% s Jeg anderkender, at proceduren vil omstrukturere min database."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2617
 msgid "run setup"
-msgstr ""
+msgstr "kør installation"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2617
 msgid "Go"
-msgstr ""
+msgstr "Go"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2633
 msgid "database did not connect"
-msgstr ""
+msgstr "databasen fik ikke forbindelse."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2635
 msgid "If you haven't created the database yet, now would be a good time."
 msgstr ""
+"Hvis du ikke har oprettet databasen endnu, vil nu være et godt tidspunkt."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:2644
 msgid "The zenphoto.cfg file does not exist."
@@ -12915,86 +12971,86 @@ msgstr "Et enklere webalbum"
 #: /home/jes/workspace/zenphoto/zp-core/setup/setup_pluginOptions.php:12
 #, php-format
 msgid "Plugin:%s setup started"
-msgstr ""
+msgstr "Plugin:%s installation startet"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/setup_pluginOptions.php:18
 #, php-format
 msgid "Plugin:%s option interface instantiated"
-msgstr ""
+msgstr "Plugin: %s indstillingsside lavet."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/setup_pluginOptions.php:24
 #, php-format
 msgid "Plugin:%s setup completed"
-msgstr ""
+msgstr "Plugin: %s installation afsluttet"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/setup_set-mod_rewrite.php:14
 msgid "The Zenphoto option \"mod_rewrite\" will be set to \"enabled\"."
-msgstr ""
+msgstr "Zenphoto indstillingen \"mod_rewrite\" sættes til \"aktiveret\"."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/setup_set-mod_rewrite.php:18
 msgid "The Zenphoto option \"mod_rewrite\" is \"enabled\"."
-msgstr ""
+msgstr "Zenphoto indstillingen \"mod_rewrite\" er \"aktiveret\"."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/setup_set-mod_rewrite.php:20
 msgid "The Zenphoto option \"mod_rewrite\" is \"disabled\"."
-msgstr ""
+msgstr "Zenphoto indstillingen \"mod_rewrite\" er \"deaktiveret\"."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/setup_set-mod_rewrite.php:22
 msgid "Notice: \"Module mod_rewrite\" is working."
-msgstr ""
+msgstr "Bemærk: \"Modul mod_rewrite\" virker."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/setup-functions.php:56
 #, php-format
 msgid "Testing %s."
-msgstr ""
+msgstr "Tester %s"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/setup-functions.php:62
 msgid "Fail: "
-msgstr ""
+msgstr "Fejl:"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/setup-functions.php:62
 msgid "Warn: "
-msgstr ""
+msgstr "Advarsel:"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/setup-functions.php:62
 msgid "Pass: "
-msgstr ""
+msgstr "Godkendt:"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/setup-functions.php:107
 msgid "Error!"
-msgstr ""
+msgstr "Fejl!"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/setup-functions.php:128
 msgid "<strong>Warning!</strong> click for details"
-msgstr ""
+msgstr "<strong>Advarsel!</strong> klik for detaljer"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/setup-functions.php:136
 msgid "<strong>Notice!</strong> click for details"
-msgstr ""
+msgstr "<strong>Bemærk!</strong> klik for detaljer"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/setup-functions.php:139
 msgid "Notice!"
-msgstr ""
+msgstr "Bemærk!"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/setup-functions.php:160
 msgid "Autorun aborted"
-msgstr ""
+msgstr "Autorun afbrudt"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/setup-functions.php:199
 #, php-format
 msgid "<em>%1$s</em> folder%2$s [subfolder creation failure]"
-msgstr ""
+msgstr "<em>%1$s</em> mappe%2$s [undermappe oprettelse fejlet]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/setup-functions.php:199
 #, php-format
 msgid "Setup could not create the following subfolders:<br />%s"
-msgstr ""
+msgstr "Setup kunne ikke oprette følgende undermapper:<br />%s"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/setup-functions.php:218
 #: /home/jes/workspace/zenphoto/zp-core/setup/setup-functions.php:223
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/deprecated-functions.php:75
 msgid "unknown"
-msgstr ""
+msgstr "ukendt"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/setup-functions.php:225
 #, php-format
@@ -22656,6 +22712,35 @@ msgstr ""
 #: /home/jes/workspace/zenphoto/zp-core/utilities/database_reference.php:109
 msgid "Table prefix: no prefix"
 msgstr ""
+
+#~ msgid "Imagick filter"
+#~ msgstr "Imagick filter"
+
+#~ msgid ""
+#~ "The type of filter used when resampling an image. The default is <strong>"
+#~ "%s</strong>."
+#~ msgstr ""
+#~ "Den type filter der bruges når et billede genindlæses i "
+#~ "billedbehandlingsprogrammet. Standarden er <strong>%s</strong>."
+
+#~ msgid "Magick memory limit"
+#~ msgstr "Magicks hukommelsesgrænse"
+
+#~ msgid ""
+#~ "Amount of memory allocated to Gmagick/Imagick in megabytes. Set to "
+#~ "<strong>0</strong> for unlimited memory."
+#~ msgstr ""
+#~ "Mængden af hukommelse, som allokeres til Gmagick/Imagick i megabytes. Sæt "
+#~ "til <strong>0</strong> for ubegrænset hukommelse."
+
+#~ msgid ""
+#~ "<strong>Note:</strong> Image processing will be faster with a higher "
+#~ "memory limit. However, if your server experiences problems with image "
+#~ "processing, try setting this lower."
+#~ msgstr ""
+#~ "<strong>OBS:</strong> Billedbehandling er hurtigere med en højere "
+#~ "hukommelsesgrænse. Men hvis din server får problemer med billedbehandling "
+#~ "så prøv at sætte grænsen lavere."
 
 #~ msgid "No unpublished pages available"
 #~ msgstr "Ingen ikke-offentliggjorte sider tilgængelige"
