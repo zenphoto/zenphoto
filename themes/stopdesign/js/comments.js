@@ -6,6 +6,7 @@ URL: http://www.bobbyvandersluis.com/articles/unobtrusiveshowhide.php
 // Hide all toggleable sections with JavaScript for the highly improbable case that CSS is disabled
 // Note that in this case the 'flash of visible content' still will occur
 function initCommentState() {
+	Thread.sleep(50);	//	Give GoogleMaps a chance to do its thing on the DOM
   var showBtn = document.getElementById('showcomments');
   var hideBtn = document.getElementById('hidecomments');
   if ((showBtn) && (hideBtn)) {

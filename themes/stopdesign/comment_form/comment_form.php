@@ -10,7 +10,7 @@ global $_zp_themeroot;
 		<script type="text/javascript">
 			// <!-- <![CDATA[
 			$(function() {
-  			window.onload = initCommentState;
+  			window.onload = initCommentState();
 			});
 			// ]]> -->
 		</script>
