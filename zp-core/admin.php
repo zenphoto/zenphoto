@@ -112,7 +112,7 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 /** End Action Handling *************************************************************/
 /************************************************************************************/
 }
-
+$from = NULL;
 if (zp_loggedin() && !empty($zenphoto_tabs)) {
 	if (!$_zp_current_admin_obj->getID() || empty($msg) && !zp_loggedin(OVERVIEW_RIGHTS)) {
 		// admin access without overview rights, redirect to first tab
