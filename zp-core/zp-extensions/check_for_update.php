@@ -22,9 +22,7 @@ if (OFFSET_PATH != 2) {
 				$v = checkForUpdate();
 				setOption('last_update_check', time());
 				if (!empty($v)) {
-					if ($v != 'X') {
-						setOption('last_update_check','<a href="http://www.zenphoto.org" alt="'.gettext('Zenphoto download page').'">'.gettext("A new version of Zenphoto version is available.").'</a>');
-					}
+					setOption('last_update_check','<a href="http://www.zenphoto.org" alt="'.gettext('Zenphoto download page').'">'.gettext("A new version of Zenphoto version is available.").'</a>');
 				}
 			}
 		} else {
@@ -57,23 +55,23 @@ function checkForUpdate() {
 				$wv = explode('.', $v);
 				$wvd = 0;
 				foreach ($wv as $i => $d) {
-					$wvd = $wvd + $d * $pot[$i];
+					$wvd = $wvd + (int) $d * $pot[$i];
 				}
 				$cv = explode('.', $c);
 				$cvd = 0;
 				foreach ($cv as $i => $d) {
-					$cvd = $cvd + $d * $pot[$i];
+					$cvd = $cvd + (int) $d * $pot[$i];
 				}
-				if ($wvd > $cvd || $wvd == $cvd) {
+				if ($cvd < $wvd) {
 					$webVersion = $v;
 				} else {
-					$webVersion = '';
+					$webVersion = false;
 				}
 			}
 			Return $webVersion;
 		}
 	}
-	return 'X';
+	return false;
 }
 
 /**

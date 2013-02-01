@@ -506,17 +506,13 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 		require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/check_for_update.php');
 		$v = checkForUpdate();
 		if (!empty($v)) {
-			if ($v != 'X') {
-				$autorun = false;
-			}
-		} else {
-			$v = 'X';
+			$autorun = false;
 		}
-		if (TEST_RELEASE || $v != 'X') {
+		if (TEST_RELEASE || !empty($v)) {
 			?>
 			<div class="notebox">
 				<?php
-				if ($v != 'X') echo '<p>'.gettext('You are not installing the latest version of Zenphoto.').'<a href="http://www.zenphoto.org">'.sprintf(gettext("Version %s is available."), $v).'</a></p>';
+				if (!empty($v)) echo '<p>'.gettext('You are not installing the latest version of Zenphoto.').'<a href="http://www.zenphoto.org">'.sprintf(gettext("Version %s is available."), $v).'</a></p>';
 				if (TEST_RELEASE) echo '<p>'.gettext('<strong>Note:</strong> The release you are installing has debugging settings enabled!').'</p>';
 				?>
 			</div>
