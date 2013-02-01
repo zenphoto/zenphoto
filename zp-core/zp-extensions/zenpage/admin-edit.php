@@ -32,6 +32,7 @@ if(is_AdminEditPage('page')) {
 					if (empty($as)) {
 						$as = sprintf(gettext('copy of %s'),$result->getTitle());
 					}
+					$as = seoFriendly($as);
 					$result->copy($as);
 					$result = new ZenpagePage($as);
 					$_GET['titlelink'] = $as;
@@ -73,6 +74,7 @@ if(is_AdminEditPage('newsarticle')) {
 					if (empty($as)) {
 						$as = sprintf(gettext('copy of %s'),$result->getTitle());
 					}
+					$as = seoFriendly($as);
 					$result->copy($as);
 					$result = new ZenpageNews($as);
 					$_GET['titlelink'] = $as;
