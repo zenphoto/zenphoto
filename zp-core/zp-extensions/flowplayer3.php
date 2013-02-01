@@ -212,13 +212,9 @@ class Flowplayer3 {
 		$imgextensions = array("jpg","jpeg","gif","png");
 		$videoThumbImg = '';
 		if(is_null($_zp_current_image)) {
-			$albumfolder = $moviepath;
-			$filename = $imagetitle;
 			$videoThumb = '';
 		} else {
 			$album = $_zp_current_image->getAlbum();
-			$albumfolder = $album->name;
-			$filename = $_zp_current_image->filename;
 			$splashimagerwidth = $playerwidth;
 			$splashimageheight = $playerheight;
 			getMaxSpaceContainer($splashimagerwidth, $splashimageheight, $_zp_current_image, true);

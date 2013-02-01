@@ -253,13 +253,8 @@ class jPlayer {
 		$videoThumb = '';
 		if(getOption('jplayer_poster') && ($this->mode == 'video' || ($this->mode == 'audio' && getOption('jplayer_audioposter')))) {
 			if(is_null($_zp_current_image)) {
-				$albumfolder = $moviepath;
-				$filename = $imagefilename;
 				$videoThumb = '';
 			} else {
-				//$album = $_zp_current_album;
-				//$albumfolder = $_zp_current_album->name;
-				$filename = $_zp_current_image->filename;
 				$splashimagerwidth = $this->width;
 				$splashimageheight = $this->height;
 				//getMaxSpaceContainer($splashimagerwidth, $splashimageheight, $_zp_current_image, true); // jplayer squishes always if not the right aspect ratio
