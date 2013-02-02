@@ -650,9 +650,7 @@ class Album extends AlbumBase {
 				$this->exists = false;
 				return;
 			}
-			if (DEBUG_ALBUM_ERR) {
-				trigger_error($msg, E_USER_ERROR);
-			}
+			trigger_error($msg, E_USER_ERROR);
 			exitZP();
 		}
 		$this->localpath = $localpath;
