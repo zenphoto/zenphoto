@@ -210,7 +210,7 @@ if (file_exists(CONFIGFILE)) {
 	eval(file_get_contents(CONFIGFILE));
 	if (isset($_zp_conf_vars['db_software'])) {
 		$confDB = $_zp_conf_vars['db_software'];
-		if (extension_loaded($confDB) && file_exists(dirname(dirname(__FILE__)).'/functions-db-'.$confDB.'.php')) {
+		if (extension_loaded(strtolower($confDB)) && file_exists(dirname(dirname(__FILE__)).'/functions-db-'.$confDB.'.php')) {
 			$selected_database = $_zp_conf_vars['db_software'];
 		} else {
 			$selected_database = $preferred;
