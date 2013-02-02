@@ -146,20 +146,26 @@ define('FOLDER_MOD',CHMOD_VALUE | 0311);
 define('FILE_MOD', CHMOD_VALUE & 0666);
 
 // If the server protocol is not set, set it to the default.
-if (!isset($_zp_conf_vars['server_protocol'])) $_zp_conf_vars['server_protocol'] = 'http';
+if (!isset($_zp_conf_vars['server_protocol'])) {
+	$_zp_conf_vars['server_protocol'] = 'http';
+}
 
-require_once(dirname(__FILE__).'/functions-db-'.(isset($_zp_conf_vars['db_software'])?$_zp_conf_vars['db_software']:'MySQL').'.php');
-if (!db_connect($_zp_conf_vars,false) && OFFSET_PATH != 2) {
+if (extension_loaded(strtolower(@$_zp_conf_vars['db_software']))) {
+	require_once(dirname(__FILE__).'/functions-db-'.$_zp_conf_vars['db_software'].'.php');
+	$data = db_connect($_zp_conf_vars,false);
+} else {
+	$data = false;
+}
+if (!$data && OFFSET_PATH != 2) {
 	require_once(dirname(__FILE__).'/reconfigure.php');
 	reconfigureAction(true);
 }
 
-$_charset = getOption('charset');
-if (!$_charset) {
-	$_charset = 'UTF-8';
+$data = getOption('charset');
+if (!$data) {
+	$data = 'UTF-8';
 }
-define('LOCAL_CHARSET',$_charset);
-unset($_charset);
+define('LOCAL_CHARSET',$data);
 
 $data = getOption('gallery_data');
 if ($data) {
