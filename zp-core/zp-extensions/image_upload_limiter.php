@@ -182,7 +182,7 @@ function uploadLimiterHeaderMessage($default) {
 function getUploadLimitedAlbums($albumlist) {
 	$limitedalbums = array();
 	foreach($albumlist as $key => $value) {
-		$obj = new Album(NULL,$key);
+		$obj = newAlbum($key);
 		$limitedalbums[] = $obj->name;
 	}
 	$numalbums = count($limitedalbums);
@@ -210,7 +210,7 @@ function getUploadLimitedAlbums($albumlist) {
 function getUploadImagesInAlbum($albumlist) {
 	$numbers = array();
 	foreach($albumlist as $key => $value) {
-		$obj = new Album(NULL,$key);
+		$obj = newAlbum($key);
 		$numbers[] = $obj->getNumImages();
 	}
 	$numimages = count($numbers);

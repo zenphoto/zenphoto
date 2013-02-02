@@ -245,7 +245,7 @@ function printSlideShowLink($linktext=NULL, $linkstyle=Null) {
 					if(in_array($suffix,$suffixes)) {
 						$count++;
 						if(is_array($image)) {
-							$albobj = new Album(NULL,$image['folder']);
+							$albobj = newAlbum($image['folder']);
 							$imgobj = newImage($albobj,$image['filename']);
 						} else {
 							$imgobj = newImage($_zp_current_album,$image);
@@ -403,7 +403,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 		$page = $search->page;
 		if (empty($_POST['imagenumber'])) {
 			$albumq = query_single_row("SELECT title, folder FROM ". prefix('albums') ." WHERE id = ".abs($albumid));
-			$album = new Album(NULL, $albumq['folder']);
+			$album = newAlbum($albumq['folder']);
 			$returnpath = getSearchURL($searchwords, $searchdate, $searchfields, $page);
 			//$returnpath = rewrite_path('/'.pathurlencode($album->name).'/page/'.$pagenumber,'/index.php?album='.urlencode($album->name).'&page='.$pagenumber);
 		} else {
@@ -412,7 +412,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 		$albumtitle = gettext('Search');
 	} else {
 		$albumq = query_single_row("SELECT title, folder FROM ". prefix('albums') ." WHERE id = ".$albumid);
-		$album = new Album(NULL, $albumq['folder']);
+		$album = newAlbum($albumq['folder']);
 		$albumtitle = $album->getTitle();
 		if(!$album->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumq['folder'])) {
 			echo gettext("This album is password protected!");
@@ -448,7 +448,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 						for ($imgnr = 0, $cntr = 0, $idx = $imagenumber; $imgnr < $numberofimages; $imgnr++, $idx++) {
 							if ($dynamic) {
 								$filename = $images[$idx]['filename'];
-								$album = new Album(NULL, $images[$idx]['folder']);
+								$album = newAlbum($images[$idx]['folder']);
 								$image = newImage($album, $filename);
 							} else {
 								$filename = $images[$idx];
@@ -598,7 +598,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 					if ($idx >= $numberofimages) { $idx = 0; }
 					if ($dynamic) {
 						$folder = $images[$idx]['folder'];
-						$dalbum = new Album(NULL, $folder);
+						$dalbum = newAlbum($folder);
 						$filename = $images[$idx]['filename'];
 						$image = newImage($dalbum, $filename);
 						$imagepath = FULLWEBPATH.ALBUM_FOLDER_EMPTY.$folder."/".$filename;
@@ -696,7 +696,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 				if ($dynamic) {
 					$folder = $animage['folder'];
 					$filename = $animage['filename'];
-					$salbum = new Album(NULL, $folder);
+					$salbum = newAlbum($folder);
 					$image = newImage($salbum, $filename);
 					$imagepath = ALBUM_FOLDER_EMPTY.$salbum->name."/".$filename;
 				} else {

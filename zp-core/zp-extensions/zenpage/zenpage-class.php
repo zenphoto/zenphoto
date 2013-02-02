@@ -584,7 +584,7 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 				$counter = "";
 				foreach($albums as $album) {
 					$counter++;
-					$tempalbum = new Album(NULL, $album['folder']);
+					$tempalbum = newAlbum($album['folder']);
 					$tempalbumthumb = $tempalbum->getAlbumThumbImage();
 					$timestamp = $tempalbum->get('mtime');
 					if($timestamp == 0) {

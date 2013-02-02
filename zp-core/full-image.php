@@ -41,7 +41,7 @@ if (getOption('hotlink_protection') && isset($_SERVER['HTTP_REFERER'])) {
 	}
 }
 
-$albumobj = new Album(NULL, $album8);
+$albumobj = newAlbum($album8);
 $imageobj = newImage($albumobj, $image8);
 
 $hash = getOption('protected_image_password');
@@ -183,6 +183,8 @@ if ($disposal == 'Download') {
 }
 
 if (is_null($cache_path) || !file_exists($cache_path)) { //process the image
+	$iMutex = new Mutex('i',getOption('imageProcessorConcurrency'));
+	$iMutex-> lock();
 	$newim = zp_imageGet($image_path);
 	if ($rotate) {
 		$newim = zp_rotateImage($newim, $rotate);
@@ -213,6 +215,7 @@ if (is_null($cache_path) || !file_exists($cache_path)) { //process the image
 		zp_copyCanvas($newim, $watermark, $dest_x, $dest_y, 0, 0, $nw, $nh);
 		zp_imageKill($watermark);
 	}
+	$iMutex->unlock();
 	if (!zp_imageOutput($newim, $suffix, $cache_path, $quality) && DEBUG_IMAGE) {
 		debugLog('full-image failed to create:'.$image);
 	}

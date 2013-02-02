@@ -215,7 +215,7 @@ function printAlbumMenuListAlbum($albums, $path, $folder, $option, $showcount, $
 											&& $level<=$pagelevel) // but not too deep
 								);
 
-		$topalbum = new Album(NULL,$album,true);
+		$topalbum = newAlbum($album,true);
 		if ($level>1
 				|| ($option != 'omit-top')
 				) { // listing current level album
@@ -252,7 +252,7 @@ function printAlbumMenuListAlbum($albums, $path, $folder, $option, $showcount, $
 			}
 
 			if((in_context(ZP_ALBUM) && !in_context(ZP_SEARCH_LINKED) && (@$_zp_current_album->getID() == $topalbum->getID() ||
-							$topalbum->name == $currenturalbumname)) ||
+								$topalbum->name == $currenturalbumname)) ||
 							(in_context(ZP_SEARCH_LINKED)) && ($a = $_zp_current_search->getDynamicAlbum()) && $a->name == $topalbum->name) {
 				$current = $css_class_t.' ';
 			} else {
@@ -264,9 +264,8 @@ function printAlbumMenuListAlbum($albums, $path, $folder, $option, $showcount, $
 			} else {
 				$display = $title;
 			}
-			if($firstimagelink && $topalbum->getNumImages() != 0 && !$topalbum->isDynamic()) {
-				$imgurl = getFirstImageOfAlbum($topalbum);
-				$link = "<li><a ".$current."href='".$imgurl."' title='".html_encode($title)."'>".html_encode($display)."</a>".$count;
+			if($firstimagelink && $topalbum->getNumImages() != 0) {
+				$link = "<li><a ".$current."href='".html_encode($topalbum->getImage(0)->getImageLink())."' title='".html_encode($title)."'>".html_encode($display)."</a>".$count;
 			} else {
 				$link = "<li><a ".$current."href='".html_encode($topalbum->getAlbumLink(0))."' title='".html_encode($title)."'>".html_encode($display)."</a>".$count;
 			}
@@ -346,7 +345,7 @@ function printAlbumMenuJump($option="count", $indexname="Gallery Index",$firstim
 function printAlbumMenuJumpAlbum($albums,$option,$albumpath,$firstimagelink,$level=1) {
 	global $_zp_gallery;
 	foreach ($albums as $album) {
-		$subalbum = new Album(NULL,$album,true);
+		$subalbum = newAlbum($album,true);
 
 
 		if($option === "count" AND $subalbum->getNumImages() > 0) {
@@ -358,8 +357,7 @@ function printAlbumMenuJumpAlbum($albums,$option,$albumpath,$firstimagelink,$lev
 
 		$selected = checkSelectedAlbum($subalbum->name, "album");
 		if($firstimagelink && $subalbum->getNumImages() != 0) {
-			$imgurl = getFirstImageOfAlbum($subalbum);
-			$link = "<option $selected value='".$imgurl."'>".$arrow.strip_tags($subalbum->getTitle()).$count."</option>";
+			$link = "<option $selected value='".html_encode($subalbum->getImage(0)->getImageLink())."'>".$arrow.strip_tags($subalbum->getTitle()).$count."</option>";
 		} else {
 			$link = "<option $selected value='".html_encode($albumpath.pathurlencode($subalbum->name))."'>".$arrow.strip_tags($subalbum->getTitle()).$count."</option>";
 		}
@@ -404,14 +402,4 @@ function checkSelectedAlbum($checkalbum, $option) {
 	return $selected;
 }
 
-/**
- * Returns the link of the first image in $albumobj
- *
- * @param object $albumobj The object of the album to use
- */
-function getFirstImageOfAlbum($albumobj) {
-	$image = $albumobj->getImage(0);
-	$link = $image->getImageLink();
-	return html_encode($link);
-}
 ?>

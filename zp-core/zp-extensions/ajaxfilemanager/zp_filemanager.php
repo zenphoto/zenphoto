@@ -6,7 +6,7 @@
  */
 define('OFFSET_PATH', 1);
 
-require_once(dirname(__FILE__).'/admin-globals.php');
+require_once(dirname(dirname(dirname(__FILE__))).'/admin-globals.php');
 
 admin_securityChecks(FILES_RIGHTS, currentRelativeURL());
 
@@ -30,7 +30,7 @@ echo "\n</head>";
 				$locale = substr(getOption("locale"),0,2);
 				if (empty($locale)) $locale = 'en';
 				?>
-				<iframe src="<?php echo PLUGIN_FOLDER.'/tiny_mce/plugins/ajaxfilemanager/ajaxfilemanager.php'; ?>?language=<?php echo $locale; ?>&tab=files&XSRFToken=<?php echo getXSRFToken('ajaxfilemanager')?>" width="100%" height="480" style="border: 0">
+				<iframe src="<?php echo FULLWEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/ajaxfilemanager/ajaxfilemanager.php'; ?>?language=<?php echo $locale; ?>&tab=files&XSRFToken=<?php echo getXSRFToken('ajaxfilemanager')?>" width="100%" height="480" style="border: 0">
 				</iframe>
 			</div>
 		</div>

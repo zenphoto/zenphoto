@@ -132,7 +132,7 @@ class WEBdocs extends TextObject {
 				$imgfile = $path . "/" . ZENFOLDER . '/'.PLUGIN_FOLDER .'/'. substr(basename(__FILE__), 0, -4). '/'.$img;
 			}
 		} else {
-			$imgfile = ALBUM_FOLDER_SERVERPATH.internalToFilesystem($this->album->name).'/'.$this->objectsThumb;
+			$imgfile = ALBUM_FOLDER_SERVERPATH.internalToFilesystem($this->imagefolder).'/'.$this->objectsThumb;
 		}
 	return $imgfile;
 	}

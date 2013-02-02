@@ -237,6 +237,11 @@ if (!defined('COOKIE_PESISTENCE')) {
 	define('COOKIE_PESISTENCE', $persistence);
 	unset($persistence);
 }
+if ($c = getOption('zenphoto_cookie_path')) {
+	define('COOKIE_PATH', $c);
+} else {
+	define('COOKIE_PATH',WEBPATH);
+}
 
 define('SAFE_MODE',preg_match('#(1|ON)#i', ini_get('safe_mode')));
 define('FULLWEBPATH', PROTOCOL."://" . $_SERVER['HTTP_HOST'] . WEBPATH);
@@ -776,7 +781,8 @@ function getImageProcessorURI($args, $album, $image) {
 	}
 	$uri .= '&check='.sha1(HASH_SEED.serialize($args));
 
-	if (class_exists('static_html_cache')) {	// don't cache pages that have image processor URIs
+	if (class_exists('static_html_cache')) {
+		// don't cache pages that have image processor URIs
 		static_html_cache::disable();
 	}
 	return $uri;

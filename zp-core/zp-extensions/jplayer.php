@@ -121,21 +121,21 @@ class jplayer_options {
 										'desc' => gettext("Disabled automatically if several players on one page")),
 								gettext('Poster (Videothumb)') => array('key' => 'jplayer_poster', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext("If the videothumb should be shown (jplayer calls it poster)")),
-						   gettext('Poster cropping (Videothumb)') => array('key' => 'jplayer_postercrop', 'type' => OPTION_TYPE_CHECKBOX,
+							 gettext('Poster cropping (Videothumb)') => array('key' => 'jplayer_postercrop', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext("If enable the videothumb to be cropped. Otherwise jPlayer will squish the image to fit if it does not have the correct aspect ratio.")),
-						   gettext('Audio poster (Videothumb)') => array('key' => 'jplayer_audioposter', 'type' => OPTION_TYPE_CHECKBOX,
+							 gettext('Audio poster (Videothumb)') => array('key' => 'jplayer_audioposter', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext("If the poster should be shown for audio files (mp3,m4a,fla) (does not apply for playlists which are all or none).")),
-						   gettext('Show title') => array('key' => 'jplayer_showtitle', 'type' => OPTION_TYPE_CHECKBOX,
+							 gettext('Show title') => array('key' => 'jplayer_showtitle', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext("If the title should be shown below the player in single player mode (not needed on normal themes) (ignored in playlists naturally).")),
-						   gettext('Playlist support') => array('key' => 'jplayer_playlist', 'type' => OPTION_TYPE_CHECKBOX,
+							 gettext('Playlist support') => array('key' => 'jplayer_playlist', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext("Enable this if you wish to use the playlist mode this loads the scripts needed. NOTE: You have to add the function printjPlayerPlaylist() to your theme yourself. See the documentation for info.")),
-						   gettext('Playlist numbered') => array('key' => 'jplayer_playlist_numbered', 'type' => OPTION_TYPE_CHECKBOX,
+							 gettext('Playlist numbered') => array('key' => 'jplayer_playlist_numbered', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext("Enable this if you wish the playlist to be numbered.")),
 							 gettext('Playlist playtime') => array('key' => 'jplayer_playlist_playtime', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext("Enable if you want to show the playtime of playlist entries.")),
-						   gettext('Enable download') => array('key' => 'jplayer_download', 'type' => OPTION_TYPE_CHECKBOX,
+							 gettext('Enable download') => array('key' => 'jplayer_download', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext("Enables direct file downloads (playlists only).")),
-						   gettext('Player size') => array('key' => 'jplayer_size', 'type' => OPTION_TYPE_SELECTOR,
+							 gettext('Player size') => array('key' => 'jplayer_size', 'type' => OPTION_TYPE_SELECTOR,
 										'selections' => array(
 										gettext('jp-video-270p (480x270px)')=>"jp-video-270p",
 										gettext('jp-video-360p (640x360px)')=>"jp-video-360p",
@@ -210,13 +210,13 @@ class jPlayer {
 				$this->height = 405;
 				break;
 			case 'jp-video-720p':
-		  	$this->width = 1280;
+				$this->width = 1280;
 				$this->height = 720;
-		  	break;
-		  case 'jp-video-1080p':
-		  	$this->width = 1920;
+				break;
+			case 'jp-video-1080p':
+				$this->width = 1920;
 				$this->height = 1080;
-		  	break;
+				break;
 		}
 	}
 
@@ -298,10 +298,10 @@ class jPlayer {
 			});
 		});
 	//]]>
-  </script>';
+	</script>';
 
-  // I am really too lazy to figure everything out to optimize this quite complex html nesting so I generalized only parts.
-  // This will also make it easier and more convenient to spot any html changes the jplayer developer might come up with later on (as he did from 2.0 to 2.1!)
+	// I am really too lazy to figure everything out to optimize this quite complex html nesting so I generalized only parts.
+	// This will also make it easier and more convenient to spot any html changes the jplayer developer might come up with later on (as he did from 2.0 to 2.1!)
 		if($this->mode == 'video' || !empty($videoThumb)) {
 			$playerconfig .= '
 			<div id="jp_container_'.$count.'" class="jp-video '.$this->playersize.'">
@@ -405,10 +405,10 @@ class jPlayer {
 	 * @param string $part part to get: 'controls', 'controls-playlist', 'toggles', 'toggles-playlist','no-solution'
 	 */
  function getPlayerHTMLparts($mode='',$part='') {
- 	$htmlpart = '';
- 	switch($part) {
- 		case 'controls':
- 		case 'controls-playlist':
+	$htmlpart = '';
+	switch($part) {
+		case 'controls':
+		case 'controls-playlist':
 			$htmlpart = '
 			<ul class="jp-controls">';
 
@@ -426,7 +426,7 @@ class jPlayer {
 				<li><a href="javascript:;" class="jp-mute" tabindex="1" title="'.gettext('mute').'">'.gettext('mute').'</a></li>
 				<li><a href="javascript:;" class="jp-unmute" tabindex="1" title="'.gettext('unmute').'">'.gettext('unmute').'</a></li>
 				<li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="'.gettext('max volume').'">'.gettext('max volume').'</a></li>
-		  </ul>';
+			</ul>';
 			break;
 		case 'toggles':
 		case 'toggles-playlist':
@@ -455,7 +455,7 @@ class jPlayer {
 				'.gettext('To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.').'
 			</div>';
 			break;
-	  }
+		}
 		return $htmlpart;
 	}
 
@@ -568,10 +568,10 @@ class jPlayer {
 	/**
 	 * Prints a playlist using jPlayer. Several playlists per page supported.
 	 *
- 	 * The playlist is meant to replace the 'next_image()' loop on a theme's album.php.
- 	 * It can be used with a special 'album theme' that can be assigned to media albums with with .flv/.mp4/.mp3s, although Flowplayer 3 also supports images
-   * Replace the entire 'next_image()' loop on album.php with this:
-   * <?php printjPlayerPlaylist("playlist"); ?> or <?php printjPlayerPlaylist("playlist-audio"); ?>
+	 * The playlist is meant to replace the 'next_image()' loop on a theme's album.php.
+	 * It can be used with a special 'album theme' that can be assigned to media albums with with .flv/.mp4/.mp3s, although Flowplayer 3 also supports images
+	 * Replace the entire 'next_image()' loop on album.php with this:
+	 * <?php printjPlayerPlaylist("playlist"); ?> or <?php printjPlayerPlaylist("playlist-audio"); ?>
 	 *
 	 * @param string $option "playlist" use for pure video and mixed video/audio playlists or if you want to show the poster/videothumb with audio only playlists,
 	 *											 "playlist-audio" use for pure audio playlists (m4a,mp3,fla supported only) if you don't need the poster/videothumb to be shown only.
@@ -586,7 +586,7 @@ class jPlayer {
 				$albumobj = $_zp_current_album;
 			}
 		} else {
-			$albumobj = new Album(NULL,$albumfolder);
+			$albumobj = newAlbum($albumfolder);
 		}
 		$entries = $albumobj->getImages(0);
 		if (($numimages = count($entries)) != 0) {
