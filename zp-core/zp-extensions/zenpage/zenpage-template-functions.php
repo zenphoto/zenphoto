@@ -2132,7 +2132,7 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 		$css_class_active != "";
 		rem_context(ZP_ZENPAGE_PAGE);
 	}
-	if (count($items)==0) return; // nothing to do
+	if ($mode != 'allcategories' && count($items)==0) return; // nothing to do
 	$startlist = $startlist && !($option == 'omit-top'	|| $option == 'list-sub');
 	if ($startlist) echo "<ul$css_id>";
 	// if index link and if if with count
