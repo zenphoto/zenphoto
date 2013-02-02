@@ -193,13 +193,15 @@ $preferred = NULL;
 foreach (setup_glob('functions-db-*.php') as $key=>$engineMC) {
 	$engineMC = substr($engineMC,13,-4);
 	$engine = strtolower($engineMC);
-	$order = $preferences[$engine];
-	$enabled = extension_loaded($engine);
-	if ($enabled && $order < $cur) {
-		$preferred = $engine;
-		$cur = $order;
+	if (array_key_exists($engine, $preferences)) {
+		$order = $preferences[$engine];
+		$enabled = extension_loaded($engine);
+		if ($enabled && $order < $cur) {
+			$preferred = $engineMC;
+			$cur = $order;
+		}
+		$engines[$order] = array('user'=>true,'pass'=>true,'host'=>true,'database'=>true,'prefix'=>true,'engine'=>$engineMC,'enabled'=>$enabled);
 	}
-	$engines[$order] = array('user'=>true,'pass'=>true,'host'=>true,'database'=>true,'prefix'=>true,'engine'=>$engineMC,'enabled'=>$enabled);
 }
 ksort($engines);
 chdir($curdir);
@@ -208,7 +210,7 @@ if (file_exists(CONFIGFILE)) {
 	eval(file_get_contents(CONFIGFILE));
 	if (isset($_zp_conf_vars['db_software'])) {
 		$confDB = $_zp_conf_vars['db_software'];
-		if (extension_loaded($_zp_conf_vars['db_software'])) {
+		if (extension_loaded($confDB) && file_exists(dirname(dirname(__FILE__)).'/functions-db-'.$confDB.'.php')) {
 			$selected_database = $_zp_conf_vars['db_software'];
 		} else {
 			$selected_database = $preferred;
