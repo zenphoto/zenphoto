@@ -930,7 +930,7 @@ protected function getRSSCombinewsAlbums() {
 		}
 		if(!empty($categories)) {
 			$feeditem['category'] = html_encode($categories);
-			$feeditem['title'] = html_encode($title).' ('.html_encode($categories).')';
+			$feeditem['title'] = $title.' ('.$categories.')';
 		}
 		$feeditem['link'] = PROTOCOL.'://'.$this->host.$link;
 		$feeditem['media_content'] = '';
@@ -1013,7 +1013,7 @@ protected function getRSSCombinewsAlbums() {
 	public function printRSSfeed() {
 		global $_zp_gallery;
 		$feeditems = $this->getRSSitems();
-		if(is_array($feeditems)) { 
+		if(is_array($feeditems)) {
 			$this->rssHitcounter();
 			$this->startRSSCache();
 			header('Content-Type: application/xml');
