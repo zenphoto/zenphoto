@@ -173,7 +173,13 @@ function printSlideShowLink($linktext=NULL, $linkstyle=Null) {
 		} else {
 			$albumnr = $_zp_current_album->getID();
 		}
-		$slideshowlink = rewrite_path(pathurlencode($_zp_current_album->getFolder())."/page/slideshow","index.php?p=slideshow&amp;album=".urlencode($_zp_current_album->getFolder()));
+		if ($albumnr) {
+			$slideshowlink = rewrite_path(pathurlencode($_zp_current_album->getFolder())."/page/slideshow","index.php?p=slideshow&amp;album=".urlencode($_zp_current_album->getFolder()));
+		} else {
+			$slideshowlink = rewrite_path("/page/slideshow","index.php?p=slideshow");
+			$slideshowhidden = '<input type="hidden" name="favorites_page" value="1" />';
+		}
+
 	}
 	$numberofimages = getNumImages();
 	$option = getOption('slideshow_mode');
@@ -336,13 +342,13 @@ function is_valid($image, $valid_types) {
  * @param bool $shuffle Set to true if you want random (shuffled) order
  * @param bool $linkslides Set to true if you want the slides to be linked to their image pages (jQuery mode only)
  * */
-function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $imageobj = "", $width = "", $height = "",$crop=false,$shuffle=false,$linkslides=false) {
+function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $imageobj = NULL, $width = NULL, $height = NULL, $crop=false, $shuffle=false, $linkslides=false) {
 	if (!isset($_POST['albumid']) AND !is_object($albumobj)) {
 		echo "<div class=\"errorbox\" id=\"message\"><h2>".gettext("Invalid linking to the slideshow page.")."</h2></div>";
 		echo "</div></body></html>";
 		exitZP();
 	}
-	global $_zp_flash_player, $_zp_current_image, $_zp_current_album, $_zp_gallery;
+	global $_zp_flash_player, $_zp_current_image, $_zp_current_album, $_zp_gallery, $_myFavorites;
 	$imagenumber = 0;
 	//getting the image to start with
 	if(!empty($_POST['imagenumber']) AND !is_object($imageobj)) {
@@ -355,7 +361,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 	if(isset($_POST['pagenr'])) {
 		$pagenumber = sanitize_numeric($_POST['pagenr']);
 	} else {
-		$pagenumber = 0;
+		$pagenumber = 1;
 	}
 	// getting the number of images
 	if(!empty($_POST['numberofimages'])) {
@@ -369,12 +375,12 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 		$imagenumber = 0;
 	}
 	//getting the album to show
-	if(!empty($_POST['albumid']) AND !is_object($albumobj)) {
+	if(!empty($_POST['albumid']) && !is_object($albumobj)) {
 		$albumid = sanitize_numeric($_POST['albumid']);
-	} elseif(is_object($albumobj)) {
+	} elseif (is_object($albumobj)) {
 		$albumid = $albumobj->getID();
 	} else {
-		$albumid = -1;
+		$albumid = 0;
 	}
 
 	// setting the image size
@@ -391,8 +397,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 	$option = getOption("slideshow_mode");
 	// jQuery Cycle slideshow config
 	// get slideshow data
-	if ($albumid <= 0) { // search page
-		$dynamic = 2;
+	if (isset($_POST['preserve_search_params'])) { // search page
 		$search = new SearchEngine();
 		$params = sanitize($_POST['preserve_search_params']);
 		$search->setSearchParams($params);
@@ -401,31 +406,28 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 		$searchdate = $search->getSearchDate();
 		$searchfields = $search->getSearchFields(true);
 		$page = $search->page;
-		if (empty($_POST['imagenumber'])) {
-			$albumq = query_single_row("SELECT title, folder FROM ". prefix('albums') ." WHERE id = ".abs($albumid));
-			$album = newAlbum($albumq['folder']);
-			$returnpath = getSearchURL($searchwords, $searchdate, $searchfields, $page);
-			//$returnpath = rewrite_path('/'.pathurlencode($album->name).'/page/'.$pagenumber,'/index.php?album='.urlencode($album->name).'&page='.$pagenumber);
-		} else {
-			$returnpath = getSearchURL($searchwords, $searchdate, $searchfields, $page);
-		}
+		$returnpath = getSearchURL($searchwords, $searchdate, $searchfields, $page);
 		$albumtitle = gettext('Search');
 	} else {
-		$albumq = query_single_row("SELECT title, folder FROM ". prefix('albums') ." WHERE id = ".$albumid);
-		$album = newAlbum($albumq['folder']);
+		if (isset($_POST['favorites_page'])) {
+			$album = $_myFavorites;
+			$returnpath = rewrite_path('/page/'.getOption('favorites_link').'/'.$pagenumber,'/index.php?p='.getOption('favorites_link').'&page='.$pagenumber);
+		} else {
+			$albumq = query_single_row("SELECT title, folder FROM ". prefix('albums') ." WHERE id = ".$albumid);
+			$album = newAlbum($albumq['folder']);
+			if (empty($_POST['imagenumber'])) {
+				$returnpath = rewrite_path('/'.pathurlencode($album->name).'/page/'.$pagenumber,'/index.php?album='.urlencode($album->name).'&page='.$pagenumber);
+			} else {
+				$returnpath = rewrite_path('/'.pathurlencode($album->name).'/'.rawurlencode(sanitize($_POST['imagefile'])).getOption('mod_rewrite_image_suffix'),'/index.php?album='.urlencode($album->name).'&image='.urlencode($_POST['imagefile']));
+			}
+		}
 		$albumtitle = $album->getTitle();
 		if(!$album->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumq['folder'])) {
 			echo gettext("This album is password protected!");
 			exitZP();
 		}
-		$dynamic = $album->isDynamic();
 		$images = $album->getImages(0);
 		// return path to get back to the page we called the slideshow from
-		if (empty($_POST['imagenumber'])) {
-			$returnpath = rewrite_path('/'.pathurlencode($album->name).'/page/'.$pagenumber,'/index.php?album='.urlencode($album->name).'&page='.$pagenumber);
-		} else {
-			$returnpath = rewrite_path('/'.pathurlencode($album->name).'/'.rawurlencode(sanitize($_POST['imagefile'])).getOption('mod_rewrite_image_suffix'),'/index.php?album='.urlencode($album->name).'&image='.urlencode($_POST['imagefile']));
-		}
 	}
 	if($shuffle) shuffle($images);
 	$showdesc = getOption("slideshow_showdesc");
@@ -446,7 +448,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 						var DynTime=(<?php echo getOption("slideshow_timeout"); ?>) * 1.0;	// force numeric
 						<?php
 						for ($imgnr = 0, $cntr = 0, $idx = $imagenumber; $imgnr < $numberofimages; $imgnr++, $idx++) {
-							if ($dynamic) {
+							if (is_array($images[$idx])) {
 								$filename = $images[$idx]['filename'];
 								$album = newAlbum($images[$idx]['folder']);
 								$image = newImage($album, $filename);
@@ -596,7 +598,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 				if ($cntr > 1) $cntr = 1;
 				for ($imgnr = 0, $idx = $imagenumber; $imgnr <= $cntr; $idx++) {
 					if ($idx >= $numberofimages) { $idx = 0; }
-					if ($dynamic) {
+					if (is_array($images[$idx])) {
 						$folder = $images[$idx]['folder'];
 						$dalbum = newAlbum($folder);
 						$filename = $images[$idx]['filename'];
@@ -693,7 +695,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 			echo "\n";
 			$count = 0;
 			foreach($images as $animage) {
-				if ($dynamic) {
+				if (is_array($images[$idx])) {
 					$folder = $animage['folder'];
 					$filename = $animage['filename'];
 					$salbum = newAlbum($folder);

@@ -167,6 +167,7 @@ $thisalbum = $_zp_current_album;
 		</p>
 
 		<div class="main">
+			<?php @call_user_func('printSlideShowLink'); ?>
 			<?php if (function_exists('printGoogleMap')) printGoogleMap(NULL, NULL, NULL, $thisalbum); ?>
 			<?php
 			if (function_exists('printCommentForm')) {
