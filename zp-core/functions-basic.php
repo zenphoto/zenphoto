@@ -1046,7 +1046,7 @@ function debugLog($message, $reset=false) {
 	$max = getOption('debug_log_size');
 	if (is_object($_zp_mutex)) $_zp_mutex->lock();
 	if ($reset || ($size = @filesize($path)) == 0 || ($max && $size > $max)) {
-		if ($size > 0 && !$reset) {
+		if (!$reset && $size > 0) {
 			switchLog('debug');
 		}
 		$f = fopen($path, 'w');
