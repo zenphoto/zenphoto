@@ -30,7 +30,7 @@ function getAllTagsFromAlbum($albumname,$subalbums=false,$mode='images') {
 	if(empty($albumname)) {
 		return FALSE;
 	}
-	$albumobj = new Album(NULL,$albumname);
+	$albumobj = newAlbum($albumname);
 	if(!$albumobj->exists) {
 		return FALSE;
 	}

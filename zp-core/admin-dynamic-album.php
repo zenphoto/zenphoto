@@ -17,7 +17,7 @@ $imagelist = array();
 function getSubalbumImages($folder) {
 	global $imagelist, $_zp_gallery;
 	if (hasDynamicAlbumSuffix($folder)) { return; }
-	$album = new Album(NULL, $folder);
+	$album = newAlbum($folder);
 	$images = $album->getImages();
 	foreach ($images as $image) {
 		$imagelist[] = '/'.$folder.'/'.$image;
@@ -33,7 +33,7 @@ if (isset($_POST['savealbum'])) {
 	XSRFdefender('savealbum');
 	$albumname = sanitize($_POST['album']);
 	if ($album = sanitize($_POST['albumselect'])) {
-		$albumobj = new Album(NULL, $album);
+		$albumobj = newAlbum($album);
 		$allow = $albumobj->isMyItem(ALBUM_RIGHTS);
 	} else {
 		$allow = zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS);
@@ -159,7 +159,7 @@ foreach ($albumlist as $fullfolder => $albumtitle) {
 			$pieces = explode('/', $imagepath);
 			$filename = array_pop($pieces);;
 			$folder = implode('/', $pieces);
-			$albumx = new Album(NULL, $folder);
+			$albumx = newAlbum($folder);
 			$image = newImage($albumx, $filename);
 			if (isImagePhoto($image) || !is_null($image->objectsThumb)) {
 				echo "\n<option class=\"thumboption\"";

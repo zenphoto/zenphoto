@@ -7,8 +7,7 @@
 <?php	// Zenphoto security stuff
 
 define('OFFSET_PATH', 3);
-$basepath = dirname(dirname(dirname(dirname(dirname(dirname(__FILE__))))));
-require_once($basepath."/admin-globals.php");
+require_once(dirname(dirname(dirname(dirname(__FILE__)))).'/admin-globals.php');
 
 if (!getOption('zp_plugin_ajaxFilemanager')) {
 	die('<p style="padding: 10px 15px 10px 15px;

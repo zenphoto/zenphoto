@@ -49,7 +49,7 @@ if (defined('OFFSET_PATH')) {
 		$files = scandir(ALBUM_FOLDER_SERVERPATH.'/'.$folder);
 		$display = true;
 		if (!empty($folder)) {
-			$album = new Album(NULL, filesystemToInternal($folder));
+			$album = newAlbum(filesystemToInternal($folder));
 		}
 		foreach ($files as $file) {
 			$file = str_replace('\\','/',$file);

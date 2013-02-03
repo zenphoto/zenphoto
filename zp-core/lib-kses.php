@@ -78,17 +78,21 @@ function kses_split($string, $allowed_html, $allowed_protocols)
 # matches stray ">" characters.
 ###############################################################################
 {
-  return preg_replace('%(<'.   # EITHER: <
+	global $_allowed_html, $_allowed_protocols;
+	//Zenphoto:preg_replace with the "e" modifier is deprecated, use callback
+	$_allowed_html = $allowed_html;
+	$_allowed_protocols = $allowed_protocols;
+
+  return preg_replace_callback('%(<'.   # EITHER: <
                       '[^>]*'. # things that aren't >
                       '(>|$)'. # > or end of string
-                      '|>)%e', # OR: just a >
-                      "kses_split2('\\1', \$allowed_html, ".
-                      '$allowed_protocols)',
+                      '|>)%', # OR: just a >
+                      "kses_split2",
                       $string);
 } # function kses_split
 
 
-function kses_split2($string, $allowed_html, $allowed_protocols)
+function kses_split2($matches)
 ###############################################################################
 # This function does a lot of work. It rejects some very malformed things
 # like <:::>. It returns an empty string, if the element isn't allowed (look
@@ -96,7 +100,11 @@ function kses_split2($string, $allowed_html, $allowed_protocols)
 # attribute list.
 ###############################################################################
 {
-  $string = kses_stripslashes($string);
+	//Zenphoto:preg_replace with the "e" modifier is deprecated, this is the callback
+	global $_allowed_html, $_allowed_protocols;
+	$allowed_html = $_allowed_html;
+	$allowed_protocols = $_allowed_protocols;
+  $string = kses_stripslashes($matches[1]);
   if (substr($string, 0, 1) != '<') {
     return '>';
     # It matched a ">" character
@@ -475,20 +483,30 @@ function kses_bad_protocol_once($string, $allowed_protocols)
 # handling whitespace and HTML entities.
 ###############################################################################
 {
-  return preg_replace('/^((&[^;]*;|[\sA-Za-z0-9])*)'.
-                      '(:|&#58;|&#[Xx]3[Aa];)\s*/e',
-                      'kses_bad_protocol_once2("\\1", $allowed_protocols)',
+
+	global $_allowed_protocols;
+	//Zenphoto:preg_replace with the "e" modifier is deprecated, use callback
+	$_allowed_protocols = $allowed_protocols;
+
+  return preg_replace_callback('/^((&[^;]*;|[\sA-Za-z0-9])*)'.
+                      '(:|&#58;|&#[Xx]3[Aa];)\s*/',
+                      'kses_bad_protocol_once2',
                       $string);
 } # function kses_bad_protocol_once
 
 
-function kses_bad_protocol_once2($string, $allowed_protocols)
+function kses_bad_protocol_once2($matches)
 ###############################################################################
 # This function processes URL protocols, checks to see if they're in the white-
 # list or not, and returns different data depending on the answer.
 ###############################################################################
 {
-  $string2 = kses_decode_entities($string);
+
+	//Zenphoto:preg_replace with the "e" modifier is deprecated, this is the callback
+	global $_allowed_protocols;
+	$allowed_protocols = $_allowed_protocols;
+
+  $string2 = kses_decode_entities($matches[1]);
   $string2 = preg_replace('/\s/', '', $string2);
   $string2 = kses_no_null($string2);
   $string2 = preg_replace('/\xad+/', '', $string2);
@@ -524,8 +542,8 @@ function kses_normalize_entities($string)
 
   $string = preg_replace('/&amp;([A-Za-z][A-Za-z0-9]{0,19});/',
                          '&\\1;', $string);
-  $string = preg_replace('/&amp;#0*([0-9]{1,5});/e',
-                         'kses_normalize_entities2("\\1")', $string);
+  $string = preg_replace_callback('/&amp;#0*([0-9]{1,5});/',
+                         'kses_normalize_entities2', $string);
   $string = preg_replace('/&amp;#([Xx])0*(([0-9A-Fa-f]{2}){1,2});/',
                          '&#\\1\\2;', $string);
 
@@ -533,13 +551,13 @@ function kses_normalize_entities($string)
 } # function kses_normalize_entities
 
 
-function kses_normalize_entities2($i)
+function kses_normalize_entities2($matches)
 ###############################################################################
 # This function helps kses_normalize_entities() to only accept 16 bit values
 # and nothing more for &#number; entities.
 ###############################################################################
 {
-  return (($i > 65535) ? "&amp;#$i;" : "&#$i;");
+  return (($matches[1] > 65535) ? "&amp;#$i;" : "&#$i;");
 } # function kses_normalize_entities2
 
 
@@ -550,8 +568,8 @@ function kses_decode_entities($string)
 # URL protocol whitelisting system anyway.
 ###############################################################################
 {
-  $string = preg_replace('/&#([0-9]+);/e', 'chr("\\1")', $string);
-  $string = preg_replace('/&#[Xx]([0-9A-Fa-f]+);/e', 'chr(hexdec("\\1"))',
+  $string = preg_replace('/&#([0-9]+);/', 'chr("\\1")', $string);
+  $string = preg_replace('/&#[Xx]([0-9A-Fa-f]+);/', 'chr(hexdec("\\1"))',
                          $string);
 
   return $string;

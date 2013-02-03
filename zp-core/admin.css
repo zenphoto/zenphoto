@@ -2259,6 +2259,9 @@ div.tabs>div h2 {
 	white-space:nowrap;
 	font-size:85%;
 }
+.displayleft {
+	float:left;
+}
 
 .nomargin {
 	margin: 0 !important;

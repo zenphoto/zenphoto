@@ -28,7 +28,7 @@ processEditSelection($subtab);
 //check for security incursions
 if (isset($_GET['album'])) {
 	$folder = sanitize_path($_GET['album']);
-	$album = new Album(NULL, $folder);
+	$album = newAlbum($folder);
 	$allow = $album->isMyItem(ALBUM_RIGHTS);
 	if (!$allow) {
 		if (isset($_GET['uploaded'])) {	// it was an upload to an album which we cannot edit->return to sender
@@ -95,7 +95,7 @@ if (isset($_GET['action'])) {
 					} else {
 						$notify = '&saved'.$notify;
 					}
-					$album = new Album(NULL, $folder);
+					$album = newAlbum($folder);
 					$album->setSubalbumSortType('manual');
 					$album->setSortDirection('album', 0);
 					$album->save();
@@ -140,7 +140,7 @@ if (isset($_GET['action'])) {
 			break;
 		case 'comments':
 			XSRFdefender('albumedit');
-			$album = new Album(NULL, $folder);
+			$album = newAlbum($folder);
 			$album->setCommentsAllowed(sanitize_numeric($_GET['commentson']));
 			$album->save();
 			$return = pathurlencode(dirname($folder));
@@ -159,7 +159,7 @@ if (isset($_GET['action'])) {
 		/******************************************************************************/
 		case "publish":
 			XSRFdefender('albumedit');
-			$album = new Album(NULL, $folder);
+			$album = newAlbum($folder);
 			$album->setShow($_GET['value']);
 			$album->save();
 			$return = pathurlencode(dirname($folder));
@@ -211,7 +211,7 @@ if (isset($_GET['action'])) {
 			XSRFdefender('delete');
 			$albumname = sanitize_path($_REQUEST['album']);
 			$imagename = sanitize_path($_REQUEST['image']);
-			$album = new Album(NULL, $albumname);
+			$album = newAlbum($albumname);
 			$image = newImage($album, $imagename);
 			if ($image->remove()) {
 				$nd = 1;
@@ -227,7 +227,7 @@ if (isset($_GET['action'])) {
 			XSRFdefender('imagemetadata');
 			$albumname = sanitize_path($_REQUEST['album']);
 			$imagename = sanitize_path($_REQUEST['image']);
-			$album = new Album(NULL, $albumname);
+			$album = newAlbum($albumname);
 			$image = newImage($album, $imagename);
 			$image->updateMetaData();
 			if (isset($_GET['album'])) {
@@ -251,7 +251,7 @@ if (isset($_GET['action'])) {
 			/** SAVE A SINGLE ALBUM *******************************************************/
 			if (isset($_POST['album'])) {
 				$folder = sanitize_path($_POST['album']);
-				$album = new Album(NULL, $folder);
+				$album = newAlbum($folder);
 				$notify = '';
 				$returnalbum = NULL;
 				if (isset($_POST['savealbuminfo'])) {
@@ -284,11 +284,11 @@ if (isset($_GET['action'])) {
 											$image->remove();
 										} else {
 											if ($thumbnail = sanitize($_POST['album_thumb-'.$i])) {	//selected as an album thumb
-												$talbum = new Album(NULL, $thumbnail);
-												if ($image->album->name == $thumbnail) {
+												$talbum = newAlbum($thumbnail);
+												if ($image->imagefolder == $thumbnail) {
 													$talbum->setAlbumThumb($image->filename);
 												} else {
-													$talbum->setAlbumThumb('/'.$image->album->name.'/'.$image->filename);
+													$talbum->setAlbumThumb('/'.$image->imagefolder.'/'.$image->filename);
 												}
 												$talbum->save();
 											}
@@ -415,7 +415,7 @@ if (isset($_GET['action'])) {
 						$prefix = '';
 					}
 					$f = sanitize_path(trim(sanitize($_POST[$prefix.'folder'])));
-					$album = new Album(NULL, $f);
+					$album = newAlbum($f);
 					$returnalbum = '';
 					$rslt = processAlbumEdit($i, $album, $returnalbum);
 					if (!empty($rslt)) {
@@ -455,7 +455,7 @@ if (isset($_GET['action'])) {
 		case "deletealbum":
 			XSRFdefender('delete');
 			if ($folder) {
-				$album = new Album(NULL, $folder);
+				$album = newAlbum($folder);
 				if ($album->remove()) {
 					$nd = 3;
 				} else {
@@ -507,7 +507,7 @@ if (isset($_GET['action'])) {
 			}
 			@chmod($uploaddir, FOLDER_MOD);
 
-			$album = new Album(NULL, $folder);
+			$album = newAlbum($folder);
 			if ($album->exists) {
 				$album->setTitle($name);
 				$album->save();
@@ -552,7 +552,7 @@ if (isset($_GET['album']) && !isset($_GET['massedit'])) {
 	} else {
 		$parent = '&amp;album='.$folder.'&amp;tab=subalbuminfo';
 	}
-	$album = new Album(NULL, $folder);
+	$album = newAlbum($folder);
 	$subtab = setAlbumSubtabs($album);
 }
 if (empty($subtab)) {
@@ -1527,7 +1527,7 @@ if($subtab != "albuminfo") {	?>
 	$albumdir = "";
 	if (isset($_GET['album'])) {
 		$folder = sanitize_path($_GET['album']);
-		$album = new Album(NULL, $folder);
+		$album = newAlbum($folder);
 		if ($album->isMyItem(ALBUM_RIGHTS)) {
 			$albums = $album->getAlbums();
 			$pieces = explode('/', $folder);
@@ -1539,7 +1539,7 @@ if($subtab != "albuminfo") {	?>
 		$albumsprime = $_zp_gallery->getAlbums();
 		$albums = array();
 		foreach ($albumsprime as $folder) { // check for rights
-			$album = new Album(NULL, $folder);
+			$album = newAlbum($folder);
 			if ($album->isMyItem(ALBUM_RIGHTS)) {
 				$albums[] = $folder;
 			}
@@ -1569,7 +1569,7 @@ if($subtab != "albuminfo") {	?>
 		<?php
 		$currentalbum = 1;
 		foreach ($albums as $folder) {
-			$album = new Album(NULL, $folder);
+			$album = newAlbum($folder);
 			echo "\n<!-- " . $album->name . " -->\n";
 			?>
 			<div class="innerbox<?php if ($currentalbum % 2) echo '_dark'; ?>" style="padding: 15px;">

@@ -4,6 +4,7 @@
  *
  * Zenpage plugin default light configuration
  */
+$filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
 ?>
 	<script type="text/javascript" src="../tiny_mce/tiny_mce.js"></script>
 	<script type="text/javascript">
@@ -12,8 +13,14 @@
 			mode : "textareas",
 			editor_selector: /(content|extracontent|desc)/,
 			language: "<?php echo $locale; ?>",
-			elements : "ajaxfilemanager",
-			file_browser_callback : "ajaxfilemanager",
+			<?php
+			if ($filehandler) {
+				?>
+				elements : "<?php echo $filehandler; ?>",
+				file_browser_callback : "<?php echo $filehandler; ?>",
+				<?php
+			}
+			?>
 			theme : "advanced",
 			plugins : "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,tinyzenpage",
 			theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect",
@@ -45,43 +52,11 @@
 			}
 		});
 
-		function ajaxfilemanager(field_name, url, type, win) {
-			<?php	echo 'var ajaxfilemanagerurl="'.FULLWEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/tiny_mce/plugins/ajaxfilemanager/ajaxfilemanager.php?editor=tinymce&XSRFToken='.getXSRFToken('ajaxfilemanager').'";'; ?>
-			switch (type) {
-				case "image":
-					ajaxfilemanagerurl += "&amp;type=img&amp;language=<?php echo $locale; ?>";
-					break;
-				case "media":
-					ajaxfilemanagerurl += "&amp;type=media&amp;language=<?php echo $locale; ?>";
-					break;
-				case "flash": //for older versions of tinymce
-					ajaxfilemanagerurl += "&amp;type=media&amp;language=<?php echo $locale; ?>";
-					break;
-				case "file":
-					ajaxfilemanagerurl += "&amp;type=files&amp;language=<?php echo $locale; ?>";
-					break;
-				default:
-					return false;
-			}
-				tinyMCE.activeEditor.windowManager.open({
-			  file : ajaxfilemanagerurl,
-			  input : field_name,
-			  width : 750,
-			  height : 500,
-			  resizable : "yes",
-			  inline : "yes",
-			  close_previous: "yes"
-			},{
-			  window: win,
-			  input: field_name
-		 	});
-		}
-
- function toggleEditor(id) {
-	if (!tinyMCE.get(id))
-		tinyMCE.execCommand('mceAddControl', false, id);
-	else
-		tinyMCE.execCommand('mceRemoveControl', false, id);
-}
+	 function toggleEditor(id) {
+		if (!tinyMCE.get(id))
+			tinyMCE.execCommand('mceAddControl', false, id);
+		else
+			tinyMCE.execCommand('mceRemoveControl', false, id);
+	}
  	// ]]> -->
 	</script>
