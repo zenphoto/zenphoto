@@ -173,7 +173,13 @@ function printSlideShowLink($linktext=NULL, $linkstyle=Null) {
 		} else {
 			$albumnr = $_zp_current_album->getID();
 		}
-		$slideshowlink = rewrite_path(pathurlencode($_zp_current_album->getFolder())."/page/slideshow","index.php?p=slideshow&amp;album=".urlencode($_zp_current_album->getFolder()));
+		if ($albumnr) {
+			$slideshowlink = rewrite_path(pathurlencode($_zp_current_album->getFolder())."/page/slideshow","index.php?p=slideshow&amp;album=".urlencode($_zp_current_album->getFolder()));
+		} else {
+			$slideshowlink = rewrite_path("/page/slideshow","index.php?p=slideshow");
+			$slideshowhidden = '<input type="hidden" name="favorites_page" value="1" />';
+		}
+
 	}
 	$numberofimages = getNumImages();
 	$option = getOption('slideshow_mode');
@@ -342,7 +348,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $i
 		echo "</div></body></html>";
 		exitZP();
 	}
-	global $_zp_flash_player, $_zp_current_image, $_zp_current_album, $_zp_gallery;
+	global $_zp_flash_player, $_zp_current_image, $_zp_current_album, $_zp_gallery, $_myFavorites;
 	$imagenumber = 0;
 	//getting the image to start with
 	if(!empty($_POST['imagenumber']) AND !is_object($imageobj)) {
@@ -371,7 +377,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $i
 	//getting the album to show
 	if(!empty($_POST['albumid']) && !is_object($albumobj)) {
 		$albumid = sanitize_numeric($_POST['albumid']);
-	} elseif(is_object($albumobj)) {
+	} elseif (is_object($albumobj)) {
 		$albumid = $albumobj->getID();
 	} else {
 		$albumid = 0;
@@ -403,21 +409,25 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $i
 		$returnpath = getSearchURL($searchwords, $searchdate, $searchfields, $page);
 		$albumtitle = gettext('Search');
 	} else {
-		$albumq = query_single_row("SELECT title, folder FROM ". prefix('albums') ." WHERE id = ".$albumid);
-		$album = newAlbum($albumq['folder']);
+		if (isset($_POST['favorites_page'])) {
+			$album = $_myFavorites;
+			$returnpath = rewrite_path('/page/'.getOption('favorites_link').'/'.$pagenumber,'/index.php?p='.getOption('favorites_link').'&page='.$pagenumber);
+		} else {
+			$albumq = query_single_row("SELECT title, folder FROM ". prefix('albums') ." WHERE id = ".$albumid);
+			$album = newAlbum($albumq['folder']);
+			if (empty($_POST['imagenumber'])) {
+				$returnpath = rewrite_path('/'.pathurlencode($album->name).'/page/'.$pagenumber,'/index.php?album='.urlencode($album->name).'&page='.$pagenumber);
+			} else {
+				$returnpath = rewrite_path('/'.pathurlencode($album->name).'/'.rawurlencode(sanitize($_POST['imagefile'])).getOption('mod_rewrite_image_suffix'),'/index.php?album='.urlencode($album->name).'&image='.urlencode($_POST['imagefile']));
+			}
+		}
 		$albumtitle = $album->getTitle();
 		if(!$album->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumq['folder'])) {
 			echo gettext("This album is password protected!");
 			exitZP();
 		}
-		$dynamic = $album->isDynamic();
 		$images = $album->getImages(0);
 		// return path to get back to the page we called the slideshow from
-		if (empty($_POST['imagenumber'])) {
-			$returnpath = rewrite_path('/'.pathurlencode($album->name).'/page/'.$pagenumber,'/index.php?album='.urlencode($album->name).'&page='.$pagenumber);
-		} else {
-			$returnpath = rewrite_path('/'.pathurlencode($album->name).'/'.rawurlencode(sanitize($_POST['imagefile'])).getOption('mod_rewrite_image_suffix'),'/index.php?album='.urlencode($album->name).'&image='.urlencode($_POST['imagefile']));
-		}
 	}
 	if($shuffle) shuffle($images);
 	$showdesc = getOption("slideshow_showdesc");

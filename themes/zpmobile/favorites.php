@@ -52,7 +52,7 @@ if (!defined('WEBPATH')) die(); ?>
 			<?php endwhile; ?>
 		</ul>
 		<br clear="all" />
-		<?php if(hasPrevPage() || hasNextPage()) printPageListWithNav(gettext("prev"), gettext("next"),false,true,'pagelist',NULL,true,7); ?>			
+		<?php if(hasPrevPage() || hasNextPage()) printPageListWithNav(gettext("prev"), gettext("next"),false,true,'pagelist',NULL,true,7); ?>
 			<?php
 		if (function_exists('printCommentForm')) {
 		  printCommentForm();
