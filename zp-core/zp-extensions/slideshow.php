@@ -336,7 +336,7 @@ function is_valid($image, $valid_types) {
  * @param bool $shuffle Set to true if you want random (shuffled) order
  * @param bool $linkslides Set to true if you want the slides to be linked to their image pages (jQuery mode only)
  * */
-function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $imageobj = "", $width = "", $height = "",$crop=false,$shuffle=false,$linkslides=false) {
+function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $imageobj = NULL, $width = NULL, $height = NULL, $crop=false, $shuffle=false, $linkslides=false) {
 	if (!isset($_POST['albumid']) AND !is_object($albumobj)) {
 		echo "<div class=\"errorbox\" id=\"message\"><h2>".gettext("Invalid linking to the slideshow page.")."</h2></div>";
 		echo "</div></body></html>";
@@ -355,7 +355,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 	if(isset($_POST['pagenr'])) {
 		$pagenumber = sanitize_numeric($_POST['pagenr']);
 	} else {
-		$pagenumber = 0;
+		$pagenumber = 1;
 	}
 	// getting the number of images
 	if(!empty($_POST['numberofimages'])) {
@@ -369,12 +369,12 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 		$imagenumber = 0;
 	}
 	//getting the album to show
-	if(!empty($_POST['albumid']) AND !is_object($albumobj)) {
+	if(!empty($_POST['albumid']) && !is_object($albumobj)) {
 		$albumid = sanitize_numeric($_POST['albumid']);
 	} elseif(is_object($albumobj)) {
 		$albumid = $albumobj->getID();
 	} else {
-		$albumid = -1;
+		$albumid = 0;
 	}
 
 	// setting the image size
@@ -391,8 +391,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 	$option = getOption("slideshow_mode");
 	// jQuery Cycle slideshow config
 	// get slideshow data
-	if ($albumid <= 0) { // search page
-		$dynamic = 2;
+	if (isset($_POST['preserve_search_params'])) { // search page
 		$search = new SearchEngine();
 		$params = sanitize($_POST['preserve_search_params']);
 		$search->setSearchParams($params);
@@ -401,14 +400,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 		$searchdate = $search->getSearchDate();
 		$searchfields = $search->getSearchFields(true);
 		$page = $search->page;
-		if (empty($_POST['imagenumber'])) {
-			$albumq = query_single_row("SELECT title, folder FROM ". prefix('albums') ." WHERE id = ".abs($albumid));
-			$album = new Album(NULL, $albumq['folder']);
 			$returnpath = getSearchURL($searchwords, $searchdate, $searchfields, $page);
-			//$returnpath = rewrite_path('/'.pathurlencode($album->name).'/page/'.$pagenumber,'/index.php?album='.urlencode($album->name).'&page='.$pagenumber);
-		} else {
-			$returnpath = getSearchURL($searchwords, $searchdate, $searchfields, $page);
-		}
 		$albumtitle = gettext('Search');
 	} else {
 		$albumq = query_single_row("SELECT title, folder FROM ". prefix('albums') ." WHERE id = ".$albumid);
@@ -446,7 +438,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 						var DynTime=(<?php echo getOption("slideshow_timeout"); ?>) * 1.0;	// force numeric
 						<?php
 						for ($imgnr = 0, $cntr = 0, $idx = $imagenumber; $imgnr < $numberofimages; $imgnr++, $idx++) {
-							if ($dynamic) {
+							if (is_array($images[$idx])) {
 								$filename = $images[$idx]['filename'];
 								$album = new Album(NULL, $images[$idx]['folder']);
 								$image = newImage($album, $filename);
@@ -596,7 +588,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 				if ($cntr > 1) $cntr = 1;
 				for ($imgnr = 0, $idx = $imagenumber; $imgnr <= $cntr; $idx++) {
 					if ($idx >= $numberofimages) { $idx = 0; }
-					if ($dynamic) {
+					if (is_array($images[$idx])) {
 						$folder = $images[$idx]['folder'];
 						$dalbum = new Album(NULL, $folder);
 						$filename = $images[$idx]['filename'];
@@ -693,7 +685,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 			echo "\n";
 			$count = 0;
 			foreach($images as $animage) {
-				if ($dynamic) {
+				if (is_array($images[$idx])) {
 					$folder = $animage['folder'];
 					$filename = $animage['filename'];
 					$salbum = new Album(NULL, $folder);
