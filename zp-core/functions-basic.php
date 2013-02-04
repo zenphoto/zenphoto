@@ -150,7 +150,7 @@ if (!isset($_zp_conf_vars['server_protocol'])) {
 	$_zp_conf_vars['server_protocol'] = 'http';
 }
 
-if (extension_loaded(strtolower(@$_zp_conf_vars['db_software']))) {
+if (!defined('DATABASE_SOFTWARE') && extension_loaded(strtolower(@$_zp_conf_vars['db_software']))) {
 	require_once(dirname(__FILE__).'/functions-db-'.$_zp_conf_vars['db_software'].'.php');
 	$data = db_connect($_zp_conf_vars,false);
 } else {
