@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-03 08:34+0100\n"
+"POT-Creation-Date: 2013-02-04 19:06+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -158,8 +158,8 @@ msgstr "Albumindex"
 #: ZpTranslation-Development/themes/default/favorites.php:36
 #: ZpTranslation-Development/themes/default/index.php:32
 #: ZpTranslation-Development/themes/default/index.php:35
-#: ZpTranslation-Development/themes/default/search.php:53
 #: ZpTranslation-Development/themes/default/search.php:56
+#: ZpTranslation-Development/themes/default/search.php:59
 #: ZpTranslation-Development/themes/stopdesign/album.php:60
 #: ZpTranslation-Development/themes/stopdesign/album.php:61
 #: ZpTranslation-Development/themes/stopdesign/favorites.php:57
@@ -182,16 +182,16 @@ msgid "View album:"
 msgstr "Bekijk album:"
 
 #: ZpTranslation-Development/themes/default/album.php:62
-#: ZpTranslation-Development/themes/default/favorites.php:61
+#: ZpTranslation-Development/themes/default/favorites.php:62
 #: ZpTranslation-Development/themes/default/image.php:35
 #: ZpTranslation-Development/themes/default/index.php:44
-#: ZpTranslation-Development/themes/default/search.php:77
+#: ZpTranslation-Development/themes/default/search.php:87
 #: ZpTranslation-Development/themes/effervescence_plus/album.php:39
 #: ZpTranslation-Development/themes/effervescence_plus/album.php:42
 #: ZpTranslation-Development/themes/effervescence_plus/album.php:179
 #: ZpTranslation-Development/themes/effervescence_plus/favorites.php:33
 #: ZpTranslation-Development/themes/effervescence_plus/favorites.php:36
-#: ZpTranslation-Development/themes/effervescence_plus/favorites.php:209
+#: ZpTranslation-Development/themes/effervescence_plus/favorites.php:210
 #: ZpTranslation-Development/themes/effervescence_plus/gallery.php:98
 #: ZpTranslation-Development/themes/effervescence_plus/image.php:63
 #: ZpTranslation-Development/themes/effervescence_plus/image.php:65
@@ -199,7 +199,7 @@ msgstr "Bekijk album:"
 #: ZpTranslation-Development/themes/zenpage/album.php:42
 #: ZpTranslation-Development/themes/zenpage/album.php:74
 #: ZpTranslation-Development/themes/zenpage/favorites.php:39
-#: ZpTranslation-Development/themes/zenpage/favorites.php:69
+#: ZpTranslation-Development/themes/zenpage/favorites.php:70
 #: ZpTranslation-Development/themes/zenpage/gallery.php:39
 #: ZpTranslation-Development/themes/zenpage/gallery.php:55
 #: ZpTranslation-Development/themes/zenpage/image.php:44
@@ -212,24 +212,24 @@ msgstr "Bekijk album:"
 #: ZpTranslation-Development/themes/zpmobile/gallery.php:42
 #: ZpTranslation-Development/themes/zpmobile/image.php:31
 #: ZpTranslation-Development/themes/zpmobile/news.php:43
-#: ZpTranslation-Development/themes/zpmobile/search.php:160
+#: ZpTranslation-Development/themes/zpmobile/search.php:159
 #: ZpTranslation-Development/zp-core/admin-functions.php:4240
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:227
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:233
 #: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:57
 msgid "prev"
 msgstr "vorige"
 
 #: ZpTranslation-Development/themes/default/album.php:62
-#: ZpTranslation-Development/themes/default/favorites.php:61
+#: ZpTranslation-Development/themes/default/favorites.php:62
 #: ZpTranslation-Development/themes/default/image.php:37
 #: ZpTranslation-Development/themes/default/index.php:44
-#: ZpTranslation-Development/themes/default/search.php:77
+#: ZpTranslation-Development/themes/default/search.php:87
 #: ZpTranslation-Development/themes/effervescence_plus/album.php:50
 #: ZpTranslation-Development/themes/effervescence_plus/album.php:53
 #: ZpTranslation-Development/themes/effervescence_plus/album.php:179
 #: ZpTranslation-Development/themes/effervescence_plus/favorites.php:44
 #: ZpTranslation-Development/themes/effervescence_plus/favorites.php:47
-#: ZpTranslation-Development/themes/effervescence_plus/favorites.php:209
+#: ZpTranslation-Development/themes/effervescence_plus/favorites.php:210
 #: ZpTranslation-Development/themes/effervescence_plus/gallery.php:98
 #: ZpTranslation-Development/themes/effervescence_plus/image.php:73
 #: ZpTranslation-Development/themes/effervescence_plus/image.php:75
@@ -237,7 +237,7 @@ msgstr "vorige"
 #: ZpTranslation-Development/themes/zenpage/album.php:42
 #: ZpTranslation-Development/themes/zenpage/album.php:74
 #: ZpTranslation-Development/themes/zenpage/favorites.php:39
-#: ZpTranslation-Development/themes/zenpage/favorites.php:69
+#: ZpTranslation-Development/themes/zenpage/favorites.php:70
 #: ZpTranslation-Development/themes/zenpage/gallery.php:39
 #: ZpTranslation-Development/themes/zenpage/gallery.php:55
 #: ZpTranslation-Development/themes/zenpage/image.php:46
@@ -250,10 +250,10 @@ msgstr "vorige"
 #: ZpTranslation-Development/themes/zpmobile/gallery.php:42
 #: ZpTranslation-Development/themes/zpmobile/image.php:34
 #: ZpTranslation-Development/themes/zpmobile/news.php:44
-#: ZpTranslation-Development/themes/zpmobile/search.php:160
+#: ZpTranslation-Development/themes/zpmobile/search.php:159
 #: ZpTranslation-Development/zp-core/admin-functions.php:4268
 #: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:422
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:228
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:234
 #: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:58
 msgid "next"
 msgstr "volgende"
@@ -261,7 +261,7 @@ msgstr "volgende"
 #: ZpTranslation-Development/themes/default/album.php:64
 #: ZpTranslation-Development/themes/default/image.php:90
 #: ZpTranslation-Development/themes/zenpage/album.php:75
-#: ZpTranslation-Development/themes/zenpage/favorites.php:70
+#: ZpTranslation-Development/themes/zenpage/favorites.php:71
 #: ZpTranslation-Development/themes/zenpage/gallery.php:80
 #: ZpTranslation-Development/themes/zenpage/image.php:95
 #: ZpTranslation-Development/themes/zenpage/news.php:60
@@ -282,7 +282,7 @@ msgstr "Album RSS"
 #: ZpTranslation-Development/themes/default/archive.php:28
 #: ZpTranslation-Development/themes/default/image.php:101
 #: ZpTranslation-Development/themes/default/index.php:50
-#: ZpTranslation-Development/themes/default/search.php:83
+#: ZpTranslation-Development/themes/default/search.php:93
 #: ZpTranslation-Development/themes/effervescence_plus/archive.php:40
 #: ZpTranslation-Development/themes/garland/archive.php:8
 #: ZpTranslation-Development/themes/garland/archive.php:39
@@ -296,7 +296,7 @@ msgstr "Bekijk het archief"
 #: ZpTranslation-Development/themes/default/image.php:27
 #: ZpTranslation-Development/themes/default/index.php:14
 #: ZpTranslation-Development/themes/default/search.php:14
-#: ZpTranslation-Development/themes/default/search.php:82
+#: ZpTranslation-Development/themes/default/search.php:92
 #: ZpTranslation-Development/themes/garland/404.php:10
 #: ZpTranslation-Development/themes/garland/archive.php:10
 #: ZpTranslation-Development/themes/garland/gallery.php:10
@@ -381,7 +381,7 @@ msgstr "Themakleur"
 #: ZpTranslation-Development/zp-core/admin-functions.php:143
 #: ZpTranslation-Development/zp-core/admin-plugins.php:84
 #: ZpTranslation-Development/zp-core/zp-extensions/GoogleMap.php:380
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:229
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:235
 #: ZpTranslation-Development/zp-core/zp-extensions/user_login-out.php:142
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:73
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:33
@@ -465,7 +465,7 @@ msgstr "Gebruikers registratie pagina"
 #: ZpTranslation-Development/zp-core/template-functions.php:1195
 #: ZpTranslation-Development/zp-core/template-functions.php:4151
 #: ZpTranslation-Development/zp-core/zp-extensions/html_meta_tags.php:231
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:412
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:410
 #: ZpTranslation-Development/zp-core/zp-extensions/deprecated_functions/check_for_deprecated.php:60
 msgid "Search"
 msgstr "Zoeken"
@@ -476,13 +476,13 @@ msgstr "Zoeken"
 msgid "Total matches for <em>%1$s</em>: %2$u"
 msgstr "Totaal aantal resultaten voor <em>%1$s</em>: %2$u"
 
-#: ZpTranslation-Development/themes/default/search.php:58
+#: ZpTranslation-Development/themes/default/search.php:61
 #: ZpTranslation-Development/zp-core/admin-edit.php:1313
 #: ZpTranslation-Development/zp-core/admin-functions.php:1326
 msgid "Date:"
 msgstr "Datum:"
 
-#: ZpTranslation-Development/themes/default/search.php:75
+#: ZpTranslation-Development/themes/default/search.php:85
 msgid "Sorry, no image matches found. Try refining your search."
 msgstr "Sorry, geen foto's gevonden. Probeer de zoekopdracht te herformuleren."
 
@@ -583,7 +583,7 @@ msgid "Home"
 msgstr "Home"
 
 #: ZpTranslation-Development/themes/effervescence_plus/album.php:160
-#: ZpTranslation-Development/themes/effervescence_plus/favorites.php:197
+#: ZpTranslation-Development/themes/effervescence_plus/favorites.php:198
 msgid "Album is empty"
 msgstr "Album is leeg"
 
@@ -864,7 +864,7 @@ msgstr "Categoriën:"
 
 #: ZpTranslation-Development/themes/effervescence_plus/functions.php:392
 #: ZpTranslation-Development/themes/garland/album.php:77
-#: ZpTranslation-Development/themes/garland/favorites.php:86
+#: ZpTranslation-Development/themes/garland/favorites.php:87
 #: ZpTranslation-Development/themes/garland/functions.php:152
 #: ZpTranslation-Development/themes/garland/gallery.php:59
 #: ZpTranslation-Development/themes/garland/search.php:222
@@ -879,7 +879,7 @@ msgstr "volgende »"
 
 #: ZpTranslation-Development/themes/effervescence_plus/functions.php:392
 #: ZpTranslation-Development/themes/garland/album.php:77
-#: ZpTranslation-Development/themes/garland/favorites.php:86
+#: ZpTranslation-Development/themes/garland/favorites.php:87
 #: ZpTranslation-Development/themes/garland/functions.php:152
 #: ZpTranslation-Development/themes/garland/gallery.php:59
 #: ZpTranslation-Development/themes/garland/search.php:222
@@ -1563,27 +1563,27 @@ msgid "View album:  %s"
 msgstr "Bekijk album: %s"
 
 #: ZpTranslation-Development/themes/garland/album.php:99
-#: ZpTranslation-Development/themes/garland/favorites.php:107
+#: ZpTranslation-Development/themes/garland/favorites.php:108
 msgid "Album Navigation"
 msgstr "Album navigatie:"
 
 #: ZpTranslation-Development/themes/garland/album.php:104
-#: ZpTranslation-Development/themes/garland/favorites.php:112
+#: ZpTranslation-Development/themes/garland/favorites.php:113
 msgid "Next album"
 msgstr "volgende album"
 
 #: ZpTranslation-Development/themes/garland/album.php:104
-#: ZpTranslation-Development/themes/garland/favorites.php:112
+#: ZpTranslation-Development/themes/garland/favorites.php:113
 msgid "Next album »"
 msgstr "volgende album »"
 
 #: ZpTranslation-Development/themes/garland/album.php:112
-#: ZpTranslation-Development/themes/garland/favorites.php:120
+#: ZpTranslation-Development/themes/garland/favorites.php:121
 msgid "Prev Album"
 msgstr "vorige album"
 
 #: ZpTranslation-Development/themes/garland/album.php:112
-#: ZpTranslation-Development/themes/garland/favorites.php:120
+#: ZpTranslation-Development/themes/garland/favorites.php:121
 msgid "« Prev Album"
 msgstr "« vorige album"
 
@@ -2064,12 +2064,12 @@ msgid "Full Size"
 msgstr "Volledige grootte"
 
 #: ZpTranslation-Development/themes/stopdesign/image.php:133
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:584
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:586
 msgid "Previous"
 msgstr "Vorige"
 
 #: ZpTranslation-Development/themes/stopdesign/image.php:153
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:590
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:592
 msgid "Next"
 msgstr "Volgende"
 
@@ -2147,7 +2147,7 @@ msgstr "%u albums"
 
 #: ZpTranslation-Development/themes/stopdesign/search.php:157
 #: ZpTranslation-Development/themes/zenpage/search.php:171
-#: ZpTranslation-Development/themes/zpmobile/search.php:157
+#: ZpTranslation-Development/themes/zpmobile/search.php:156
 msgid "Sorry, no matches found. Try refining your search."
 msgstr "Sorry, geen resultaten. Probeer de zoekopdracht te herformuleren."
 
@@ -2460,11 +2460,6 @@ msgstr "Laatste afbeeldingen"
 #: ZpTranslation-Development/themes/zpmobile/index.php:40
 msgid "Latest news"
 msgstr "Laatste nieuws"
-
-#: ZpTranslation-Development/themes/zpmobile/search.php:155
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:147
-msgid "View Slideshow"
-msgstr "slideshow"
 
 #: ZpTranslation-Development/themes/zpmobile/theme_description.php:7
 msgid "Malte Müller (acrylian)"
@@ -19195,7 +19190,11 @@ msgstr "Breedte van de Flowplayer voor de slideshow."
 msgid "Height of the Flowplayer display for the slideshow."
 msgstr "Hoogte van de Flowplayer voor de slideshow."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:206
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:147
+msgid "View Slideshow"
+msgstr "slideshow"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:212
 #, php-format
 msgid ""
 "Slideshow not available because colorbox is not enabled on %1$s <em>%2$s</"
@@ -19204,48 +19203,48 @@ msgstr ""
 "Slideshow is niet beschikbaar omdat Colorbox niet geactiveerd is in %1$s <em>"
 "%2$s</em> pagina's."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:225
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:231
 msgid "start slideshow"
 msgstr "start slideshow"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:226
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:232
 msgid "stop slideshow"
 msgstr "stop slideshow"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:230
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:236
 #, php-format
 msgid "image %1$s of %2$s"
 msgstr "Afbeelding %1$s van %2$s"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:341
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:347
 msgid "Invalid linking to the slideshow page."
 msgstr "Ongeldige verwijzing naar de slideshowpagina."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:418
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:426
 msgid "This album is password protected!"
 msgstr "Dit is album is beveiligd met een wachtwoord!"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:586
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:588
 msgid "Stop and return to album or image page"
 msgstr "Stop en keer terug naar de album of afbeeldingspagina"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:588
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:590
 msgid "Pause (to stop the slideshow without returning)"
 msgstr "Pauzeer (om de slideshow te stoppen zonder terug te keren)"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:589
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:591
 msgid "Play"
 msgstr "Speel af"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:616
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:618
 msgid ":"
 msgstr ":"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:664
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:666
 msgid "back"
 msgstr "terug"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:736
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:738
 msgid "Click on the right in the player control bar to view full size."
 msgstr "Klik rechts in de controlebalk van de player voor volledige grootte."
 
