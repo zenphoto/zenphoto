@@ -540,7 +540,7 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 		configMod();
 		$permission = fileperms(CONFIGFILE)&0777;
 	}
-	$permission = (fileperms(SETUPLOG)|fileperms(CONFIGFILE))&0777;
+	if (checkPermissions($permission, 0660)) {
 		$p = true;
 	} else {
 		$p = -1;
