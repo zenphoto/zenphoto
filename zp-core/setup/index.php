@@ -540,12 +540,7 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 		configMod();
 		$permission = fileperms(CONFIGFILE)&0777;
 	}
-<<<<<<< HEAD
 	$permission = (fileperms(SETUPLOG)|fileperms(CONFIGFILE))&0777;
-	if (checkPermissions($permission, 0600)) {
-=======
-	if (checkPermissions($permission, 0660)) {
->>>>>>> un-synced-fixes
 		$p = true;
 	} else {
 		$p = -1;
