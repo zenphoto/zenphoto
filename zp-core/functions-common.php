@@ -409,7 +409,7 @@ function debugLogVar($message) {
 	var_dump($var);
 	$str = ob_get_contents();
 	ob_end_clean();
-	debugLog(trim($message).html_decode(strip_tags($str)));
+	debugLog(trim($message)."\r".html_decode(strip_tags($str)));
 }
 
 ?>
