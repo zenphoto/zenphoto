@@ -397,6 +397,7 @@ if (isset($_GET['action'])) {
 				zp_clearCookie("zenphoto_ssl");
 			}
 			setOption('IP_tied_cookies', (int) isset($_POST['IP_tied_cookies']));
+			setOption('image_processor_flooding_protection', (int) isset($_POST['image_processor_flooding_protection']));
 			$_zp_gallery->save();
 			$returntab = "&tab=security";
 		}
@@ -3082,7 +3083,16 @@ if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 						</p>
 					</td>
 				</tr>
-					<?php
+				<tr>
+					<td><?php echo gettext('Image Processor security')?></td>
+					<td>
+						<label><input type="checkbox" name="image_processor_flooding_protection" value="1" <?php echo checked(1, getOption('image_processor_flooding_protection')); ?> /><?php echo gettext('enable'); ?></label>
+					</td>
+					<td>
+						<?php echo gettext('Add a security parameter to image processor URIs to prevent denial of service attacks requesting arbitrary sized images.'); ?>
+					</td>
+				</tr>
+				<?php
 					if (GALLERY_SECURITY =='public') {
 						$disable = $_zp_gallery->getUser() || getOption('search_user') || getOption('protected_image_user') || getOption('downloadList_user');
 						?>
