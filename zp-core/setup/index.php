@@ -908,12 +908,8 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 	primeMark(gettext('Database'));
 	foreach ($engines as $engine) {
 		$handler = $engine['engine'];
-		if ($handler == $confDB) {
-			if ($engine['enabled'] && isset($engine['experimental'])) {
-				$good = checkMark(-1, $handler, sprintf(gettext('PHP <code>%s support</code> for configured Database [is experimental]'),$handler), $enabled['experimental'],false) && $good;
-			} else {
-				$good = checkMark($engine, sprintf(gettext('PHP <code>%s</code> support for configured Database'),$handler), sprintf(gettext('PHP <code>%s support</code> for configured Database [is not installed]'),$handler), sprintf(gettext('Choose a different database engine or install %s support in your PHP to clear this condition.'),$handler)) && $good;
-			}
+		if ($handler == $confDB && $engine['enabled']) {
+			$good = checkMark(1, sprintf(gettext('PHP <code>%s</code> support for configured Database'),$handler), '','') && $good;
 		} else {
 			if ($engine['enabled']) {
 				if (isset($enabled['experimental'])){
