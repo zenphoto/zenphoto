@@ -258,7 +258,7 @@ class jPlayer {
 				$splashimagerwidth = $this->width;
 				$splashimageheight = $this->height;
 				//getMaxSpaceContainer($splashimagerwidth, $splashimageheight, $_zp_current_image, true); // jplayer squishes always if not the right aspect ratio
-				$videoThumb = ',poster:"'.html_encode($_zp_current_image->getCustomImage(null, $this->width, $this->height, $this->width, $this->height, null, null, true)).'"';
+				$videoThumb = ',poster:"'.$_zp_current_image->getCustomImage(null, $this->width, $this->height, $this->width, $this->height, null, null, true).'"';
 			}
 		}
 		$playerconfig = '
