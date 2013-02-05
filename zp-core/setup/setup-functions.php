@@ -214,13 +214,13 @@ function folderCheck($which, $path, $class, $subfolders, $recurse, $chmod, $upda
 				clearstatcache();
 				$perms = fileperms($path)&0777;
 				if (!checkPermissions($perms, $chmod)) {
-					if (array_key_exists($perms, $permission_names)) {
-						$perms_class = $permission_names[$perms];
+					if (array_key_exists($perms&0666|4, $permission_names)) {
+						$perms_class = $permission_names[$perms&0666|4];
 					} else {
 						$perms_class = gettext('unknown');
 					}
-					if (array_key_exists($chmod, $permission_names)) {
-						$chmod_class = $permission_names[$chmod];
+					if (array_key_exists($chmod&0666|4, $permission_names)) {
+						$chmod_class = $permission_names[$chmod&0666|4];
 					} else {
 						$chmod_class = gettext('unknown');
 					}
@@ -567,7 +567,7 @@ function checkPermissions($actual, $expected) {
 	if (isWin()) {
 		return ($actual & 0700) == ($expected & 0700);	//	with windows owner==group==public
 	} else {
-		return ($actual & 0777) == $expected;
+		return (($actual & 0777) | 4) == ($expected | 4);
 	}
 }
 

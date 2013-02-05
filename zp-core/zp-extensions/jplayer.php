@@ -630,7 +630,7 @@ class jPlayer {
 								$this->setModeAndSuppliedFormat($ext);
 								if($option == 'playlist' && getOption('jplayer_poster')) {
 									$albumfolder = $albumobj->name;
-									$videoThumb = ',poster:"'.html_encode($video->getCustomImage(null, $this->width, $this->height, $this->width, $this->height, null, null, true)).'"';
+									$videoThumb = ',poster:"'.$video->getCustomImage(null, $this->width, $this->height, $this->width, $this->height, null, null, true).'"';
 								}
 								$playtime = '';
 								if(getOption('jplayer_playlist_playtime')) {

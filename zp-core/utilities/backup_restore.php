@@ -166,7 +166,8 @@ if (isset($_REQUEST['backup']) && db_connect($_zp_conf_vars)) {
 		@chmod($folder, FOLDER_MOD);
 		$writeresult = $handle = @fopen($filename, 'w');
 		if ($handle === false) {
-			printf(gettext('Failed to open %s for writing.'), $filename);
+			$msg = sprintf(gettext('Failed to open %s for writing.'), $filename);
+			echo $msg;
 		} else {
 			$writeresult = writeheader('file_version', 1);
 			$writeresult = $writeresult && writeHeader('compression_handler',$compression_handler);

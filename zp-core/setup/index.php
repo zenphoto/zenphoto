@@ -536,11 +536,16 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 	}
 
 	$permission = fileperms(CONFIGFILE)&0777;
-	if (!checkPermissions($permission, 0600)) {
+	if (!checkPermissions($permission, 0660)) {
 		configMod();
+		$permission = fileperms(CONFIGFILE)&0777;
 	}
+<<<<<<< HEAD
 	$permission = (fileperms(SETUPLOG)|fileperms(CONFIGFILE))&0777;
 	if (checkPermissions($permission, 0600)) {
+=======
+	if (checkPermissions($permission, 0660)) {
+>>>>>>> un-synced-fixes
 		$p = true;
 	} else {
 		$p = -1;
@@ -1041,9 +1046,8 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 				foreach ($db_results as $row) {
 					$row_report = "<br /><br />".$row;
 					$r = str_replace(',', '', $row);
-					$i = strpos($r, "ON");
-					$j = strpos($r, "TO", $i);
-					$found = stripslashes(trim(substr($r, $i+2, $j-$i-2)));
+					preg_match('/\sON(.*)TO\s/i', $r, $matches);
+					$found = trim(@$matches[1]);
 					if ($partial = (($i = strpos($found, '%')) !== false)) {
 						$found = substr($found, 0, $i);
 					}
@@ -1198,7 +1202,7 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 					clearstatcache();
 					$perms = fileperms($component)&0777;
 					if ($permissions==1 && !checkPermissions($perms, $chmod | 0311)) {
-						if (checkPermissions($perms&0755, 0755)) { // could not set them, but they will work.
+						if (checkPermissions($perms&0755, 0755) || TEST_RELEASE) { // could not set them, but they will work.
 							$permissions = -1;
 						} else {
 							$permissions = 0;
@@ -1216,7 +1220,7 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 					clearstatcache();
 					$perms = fileperms($component)&0777;
 					if ($permissions==1 && !checkPermissions($perms,$chmod)) {
-						if (checkPermissions($perms&0644,0644)) { // could not set them, but they will work.
+						if (checkPermissions($perms&0644,0644) || TEST_RELEASE) { // could not set them, but they will work.
 							$permissions = -1;
 						} else {
 							$permissions = 0;
@@ -1240,7 +1244,7 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 				clearstatcache();
 				$perms = fileperms($folder)&0777;
 				if ($permissions==1 && !checkPermissions($perms,$chmod | 0311)) {
-					if (checkPermissions($perms&0755,0755)) { // could not set them, but they will work.
+					if (checkPermissions($perms&0755,0755) || TEST_RELEASE) { // could not set them, but they will work.
 						$permissions = 0;
 					} else {
 						$permissions = -1;
