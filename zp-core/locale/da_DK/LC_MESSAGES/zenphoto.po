@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto 1.4.4 github\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-02-04 17:49+0100\n"
-"PO-Revision-Date: 2013-02-05 17:39+0100\n"
+"PO-Revision-Date: 2013-02-06 16:13+0100\n"
 "Last-Translator: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language-Team: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language: danish\n"
@@ -13561,6 +13561,11 @@ msgid ""
 "each image has unique values. See the <em>template-functions</em>::"
 "<code>getCustomImageURL()</code> comment block for details on these fields."
 msgstr ""
+"Hvis et felt ikke er repræsenteret i det cachelagrede navn, skal du lade "
+"feltet stå tomt. Tilpassede beskæringer (dem med cx og cy) kan virkelig ikke "
+"cachelagres let, da hvert billede har unikke værdier. Se <em>template-"
+"functions</ em>::<code>getCustomImageURL()</ code> kommentarblokken for "
+"detaljer om disse felter."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:102
 msgid ""
@@ -13569,75 +13574,85 @@ msgid ""
 "parameters to the <em>MaxSpace</em> container size and check the "
 "<code>MaxSpace</code> checkbox."
 msgstr ""
+"Nogle temaer bruger <em>MaxSpace</ em> billedfunktioner. For at cache "
+"billeder henvist af disse funktioner, indstilles <em>bredde</ em> og "
+"<em>højde</ em> parametre til <em>MaxSpace</ em> containerens størrelse og "
+"afkrydses i <code>MaxSpace</ code> afkrydsningsfeltet."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:114
 msgid "Purge cache files"
-msgstr ""
+msgstr "Ryd cachefiler"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:117
 msgid ""
 "If a <em>type</em> is checked, the HTML and RSS caches for the item will be "
 "purged when the published state of an item of <em>type</em> changes."
 msgstr ""
+"Hvis en <em>type</ em> er markeret, vil HTML og RSS cacher for emnet "
+"fjernes, når den offentliggjorte status af et element af <em>typen</ em> "
+"ændres."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:118
 msgid ""
 "<strong>NOTE:</strong> The entire cache is cleared since there is no way to "
 "ascertain if a gallery page contains dependencies on the item."
 msgstr ""
+"<strong>BEMÆRK:</ strong> Hele cachen er ryddet, da der ikke er nogen måde "
+"at konstatere på, om en galleriside indeholder afhængigheder af elementet."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:166
 msgid "Size"
-msgstr ""
+msgstr "Størrelse"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:166
 msgid "Width"
-msgstr ""
+msgstr "Bredde"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:166
 msgid "Height"
-msgstr ""
+msgstr "Højde"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:167
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:49
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:49
 msgid "Crop width"
-msgstr ""
+msgstr "Beskæringsbredde"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:167
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:51
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:51
 msgid "Crop height"
-msgstr ""
+msgstr "Beskæringshøjde"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:167
 msgid "Crop X axis"
-msgstr ""
+msgstr "Beskærings-X-akse"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:168
 msgid "Crop Y axis"
-msgstr ""
+msgstr "Beskærings-Y-akse"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:184
 msgid "Watermark"
-msgstr ""
+msgstr "Vandmærke"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:186
 msgid "MaxSpace"
-msgstr ""
+msgstr "MaxSpace"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:188
 msgid "Grayscale"
-msgstr ""
+msgstr "Gråskala"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:274
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:338
 msgid "Finds images that have not been cached and creates the cached versions."
 msgstr ""
+"Finder billeder, der ikke har været cachede og laver cachelagrede versioner."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:277
 msgid "You must first set the plugin options for cached image parameters."
-msgstr ""
+msgstr "Du skal først sætte pluginindstillinger for cachede billedparametre."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:281
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:294
@@ -13646,120 +13661,122 @@ msgstr ""
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:133
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:134
 msgid "Cache"
-msgstr ""
+msgstr "Cache"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:283
 msgid "Cache images"
-msgstr ""
+msgstr "Cache billeder"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:296
 msgid "Purge RSS cache"
-msgstr ""
+msgstr "Ryd RSS cache"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:301
 msgid "Delete all files from the RSS cache"
-msgstr ""
+msgstr "Slet alle filer fra RSS cachen"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:309
 msgid "Purge Image cache"
-msgstr ""
+msgstr "Ryd billedcache"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:314
 msgid "Delete all files from the Image cache"
-msgstr ""
+msgstr "Slet alle filer fra billedcachen"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:321
 msgid "Purge HTML cache"
-msgstr ""
+msgstr "Ryd HTML cache"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:325
 msgid ""
 "Clear the static HTML cache. HTML pages will be re-cached as they are viewed."
 msgstr ""
+"Ryd cachen for statisk HTML. HTMLsider vil blive genlagrede efterhånden som "
+"de vises."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:341
 msgid "You must first set the plugin's options for cached image parameters."
-msgstr ""
+msgstr "Du skal først sætte plugins indstillinger for cachede billedparametre."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:343
 msgid "Cache album images"
-msgstr ""
+msgstr "Cache albumbilleder"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:19
 msgid "Logs selected security events."
-msgstr ""
+msgstr "Fører log over udvalgte sikkerhedshændelser."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:64
 msgid "Record logon attempts of"
-msgstr ""
+msgstr "Logger logindforsøg af"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:65
 msgid "Administrators"
-msgstr ""
+msgstr "Administratorer"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:65
 msgid "Guests"
-msgstr ""
+msgstr "Gæster"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:66
 msgid "If checked login attempts will be logged."
-msgstr ""
+msgstr "Hvis markeret vil fosøg blive logget."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:67
 msgid "Record"
-msgstr ""
+msgstr "Log"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:68
 msgid "All attempts"
-msgstr ""
+msgstr "Alle forsøg"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:68
 msgid "Successful attempts"
-msgstr ""
+msgstr "Vellykkede forsøg"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:68
 msgid "unsuccessful attempts"
-msgstr ""
+msgstr "mislykkede forsøg"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:69
 msgid "Record login failures, successes, or all attempts."
-msgstr ""
+msgstr "Log mislykket logind, vellykket logind, eller alle forsøg."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:112
 msgid "Log reset"
-msgstr ""
+msgstr "Nulstil loggen"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:115
 msgid "Log deleted"
-msgstr ""
+msgstr "Loggen slettet"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:118
 msgid "Log downloaded"
-msgstr ""
+msgstr "Loggen overført"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:121
 msgid "Install"
-msgstr ""
+msgstr "Installer"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:128
 msgid "Remove setup files"
-msgstr ""
+msgstr "Fjern setupfiler"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:131
 msgid "Request add user"
-msgstr ""
+msgstr "Kræv tilføj bruger"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:134
 msgid "Request update user"
-msgstr ""
+msgstr "Kræv opdater bruger"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:137
 msgid "Request delete user"
-msgstr ""
+msgstr "Kræv slet bruger"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:140
 msgid "Cross Site Reference"
-msgstr ""
+msgstr "Cross Site Reference"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:143
 msgid "Album access"
@@ -13767,107 +13784,114 @@ msgstr "Album tilgang"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:146
 msgid "Admin access"
-msgstr ""
+msgstr "Admin adgang"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:149
 msgid "Guest login"
-msgstr ""
+msgstr "Gæstelogind"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:152
 msgid "Admin login"
-msgstr ""
+msgstr "Admin logind"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:155
 msgid "Authorization cookie check"
-msgstr ""
+msgstr "Autorisationscookie tjek"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:172
 msgid ""
 "date\trequestor's IP\ttype\tuser ID\tuser name\toutcome\tauthority"
 "\tadditional information\n"
 msgstr ""
+"dato\trekvirents IP\ttype\tbruger ID\tbruger navn\tudfald\tautoritet"
+"\tyderligere information\n"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:181
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:208
 msgid "Failed"
-msgstr ""
+msgstr "Mislykket"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:184
 msgid "Success"
-msgstr ""
+msgstr "Succes"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:188
 msgid "Blocked"
-msgstr ""
+msgstr "Blokeret"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:208
 msgid "Set Security log permissions"
-msgstr ""
+msgstr "Sæt Sikkerhedslog rettigheder"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:208
 #, php-format
 msgid "File permissions of Security log are %04o"
-msgstr ""
+msgstr "Filrettigheder for Sikkerhedslog er %04o"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/show_not_logged-in.php:10
 #, php-format
 msgid "Treats users as not logged in for gallery pages."
-msgstr ""
+msgstr "Behandl brugere som ikke logget på for gallerisiderne."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/http_auth.php:48
 msgid "Checks for Apache HTTP authentication of authorized users."
-msgstr ""
+msgstr "Tjek for Apache HTTP-godkendelse af autoriserede brugere."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/http_auth.php:72
 msgid "User validation"
-msgstr ""
+msgstr "Brugervalidering"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/http_auth.php:73
 msgid "verify"
-msgstr ""
+msgstr "verificere"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/http_auth.php:73
 msgid "trusted"
-msgstr ""
+msgstr "betroet"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/http_auth.php:74
 msgid ""
 "Set to <em>trusted</em> to presume the HTTP user is securely authorized. "
 "(This setting does not verify passwords against the Zenphoto user.)"
 msgstr ""
+"Sæt til <em>betroet</ em> idet vi antager at HTTPbrugeren er sikkert "
+"godkendt. (Denne indstilling kontrollerer ikke adgangskoder mod Zenphoto "
+"brugeren.)"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/crop_image.php:22
 msgid "An image cropping tool."
-msgstr ""
+msgstr "Et billedbeskæringsværktøj."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/crop_image.php:37
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/crop_image.php:53
 msgid "Crop image"
-msgstr ""
+msgstr "Beskær billede"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/crop_image.php:50
 msgid "Permanently crop the actual image."
-msgstr ""
+msgstr "Beskær aktuelle billede permanent."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/crop_image.php:85
 msgid "attempt to crop an object which is not an image."
-msgstr ""
+msgstr "Forsøgt at beskære et objekt der ikke er et billede."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/crop_image.php:198
 msgid "crop image"
-msgstr ""
+msgstr "beskær billede"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/crop_image.php:296
 msgid "Image cropping"
-msgstr ""
+msgstr "Billedbeskæring"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/crop_image.php:298
 msgid "You can crop your image by dragging the crop handles on the image"
 msgstr ""
+"Du kan beskære dit billede ved at trække beskæringshåndtagene på billedet"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/crop_image.php:299
 msgid "<strong>Note:</strong> If you save these changes they are permanent!"
 msgstr ""
+"<strong>Bemærk:</ strong> Hvis du gemmer disse ændringer, er de permanente!"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/crop_image.php:309
 #, php-format
@@ -13875,37 +13899,42 @@ msgid ""
 "(<span id=\"new-width\">%1$u</span> x <span id=\"new-height\">%2$u</span> "
 "pixels)"
 msgstr ""
+"(<span id=\"new-width\">%1$u</span> x <span id=\"new-height\">%2$u</span> "
+"pixels)"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/crop_image.php:314
 #, php-format
 msgid "width:%1$s %2$s height:%3$s %4$s clear %5$s"
-msgstr ""
+msgstr "bredde:%1$s %2$s højde:%3$s %4$s fjern %5$s"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/crop_image.php:316
 msgid "swap width and height fields"
-msgstr ""
+msgstr "ombyt felterne bredde og højde"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/crop_image.php:318
 msgid "clear width and height fields"
-msgstr ""
+msgstr "ryd felterne bredde og højde"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenphotoDonate.php:10
 msgid "Adds a Zenphoto donations block to the admin overview page."
-msgstr ""
+msgstr "Tilføjer en Zenphoto donationsblok til Admin oversigtssiden"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenphotoDonate.php:20
 msgid "Like using Zenphoto? Donate!"
-msgstr ""
+msgstr "Kan du lide Zenphoto? Giv en donation!"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenphotoDonate.php:34
 msgid ""
 "Your support helps pay for the Zenphoto site server and helps development of "
 "Zenphoto. Thank you!"
 msgstr ""
+"Din støtte hjælper med at betale for Zenphotos hjemmeside og hjælper med "
+"udviklingen af Zenphoto. Tak!"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/email-newuser.php:11
 msgid "Emails a password reset request to a newly created user."
 msgstr ""
+"Mailer en anmodning om nulstilling af adgangskode til en nyoprettet bruger."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/email-newuser.php:24
 #, php-format
@@ -13913,29 +13942,33 @@ msgid ""
 "You are receiving this e-mail because a user code (%1$s) has been created "
 "for you on the Zenphoto gallery %2$s."
 msgstr ""
+"Du modtager denne email, fordi en bruger adgangskode (%1$s) er blevet "
+"oprettet for dig på Zenphoto galleri %2$s."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/email-newuser.php:25
 #, php-format
 msgid "To set your Zenphoto User password visit: %s"
-msgstr ""
+msgstr "For at sætte din Zenphoto adgangskode, besøg: %s"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/email-newuser.php:26
 msgid "This ticket will automatically expire in 3 days."
-msgstr ""
+msgstr "Denne adgang vil automatisk udløbe om 3 dage."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/email-newuser.php:27
 msgid "The Zenphoto user created"
-msgstr ""
+msgstr "Zenphotobruger oprettet"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/email-newuser.php:40
 msgid "New users will be mailed a password set link"
-msgstr ""
+msgstr "Nye brugere vil få en mail med et link til at lave en adgangskode."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/quota_manager.php:27
 msgid ""
 "Provides a quota management system to limit the sum of sizes of images a "
 "user uploads."
 msgstr ""
+"Giver et kvoteforvaltningssystem for at begrænse summen af ​​størrelsen af "
+"billederne en bruger overfører."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/quota_manager.php:28
 msgid ""
@@ -13943,18 +13976,21 @@ msgid ""
 "assignment is necessary. ZIP file upload is disabled by default as quotas "
 "are not applied to the files contained therein."
 msgstr ""
+"<strong>Bemærk:</strong> hvis FTP bruges til at overføre billeder, manuel "
+"brugertildeling er nødvendig. ZIP-fil upload er som standard deaktiveret "
+"idet kvoter ikke anvendes på de filer, der er indeholdt deri."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/quota_manager.php:70
 msgid "Default quota"
-msgstr ""
+msgstr "Standard kvota"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/quota_manager.php:71
 msgid "Default size limit in kilobytes."
-msgstr ""
+msgstr "Standard begrænsning i størrelse i kilobyte"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/quota_manager.php:72
 msgid "Allow ZIP files"
-msgstr ""
+msgstr "Tillad ZIPfiler"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/quota_manager.php:73
 msgid ""
@@ -13962,6 +13998,9 @@ msgid ""
 "<em>image</em> files it contains. Un-check this box if you wish to disable "
 "uploading of ZIP files."
 msgstr ""
+"Størrelsen af ​​en ZIP-fil kan være lidt mindre end summen af ​​de <em>billede</ "
+"em>-filer, den indeholder. Fjern tjek fra dette felt, hvis du ønsker at "
+"deaktivere overførsel af ZIP-filer."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/quota_manager.php:119
 msgid "Image storage quota:"
