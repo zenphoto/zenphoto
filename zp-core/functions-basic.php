@@ -610,13 +610,18 @@ function getWatermarkParam($image, $use) {
  */
 function getImageCachePostfix($args) {
 	list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbStandin, $passedWM, $adminrequest, $effects) = $args;
-	$postfix_string = ($size ? "_$size" : "") . ($width ? "_w$width" : "")
-	. ($height ? "_h$height" : "") . ($cw ? "_cw$cw" : "") . ($ch ? "_ch$ch" : "")
-	. (is_numeric($cx) ? "_cx$cx" : "") . (is_numeric($cy) ? "_cy$cy" : "")
-	. ($thumb || $thumbStandin ? '_thumb' : '')
-	. ($adminrequest ? '_admin' : '')
-	. (($passedWM && $passedWM != NO_WATERMARK) ? '_'.$passedWM : '')
-	. ($effects ? '_'.$effects : '');
+	$postfix_string =
+		($size ? "_$size" : "") .
+		($width ? "_w$width" : "") .
+		($height ? "_h$height" : "") .
+		($cw ? "_cw$cw" : "") .
+		($ch ? "_ch$ch" : "") .
+		(is_numeric($cx) ? "_cx$cx" : "") .
+		(is_numeric($cy) ? "_cy$cy" : "") .
+		($thumb || $thumbStandin ? '_thumb' : '') .
+		($adminrequest ? '_admin' : '') .
+		(($passedWM && $passedWM != NO_WATERMARK) ? '_'.$passedWM : '') .
+		($effects ? '_'.$effects : '');
 	return $postfix_string;
 }
 

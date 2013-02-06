@@ -148,8 +148,11 @@ if (isset($_GET['select'])) {
 	$enabled = false;
 }
 
-$zenphoto_tabs['overview']['subtabs']=array(gettext('Cache')=>'');
-printAdminHeader($tab,gettext('Cache'));
+if (!$alb) {
+	$zenphoto_tabs['overview']['subtabs']=array(gettext('Cache images')=>PLUGIN_FOLDER.'/cacheManager/cacheImages.php?page=overview&amp;tab=images',
+																				gettext('Cache database')=>PLUGIN_FOLDER.'/cacheManager/cacheDBImages.php?page=overview&amp;tab=DB');
+}
+printAdminHeader($tab,gettext('Cache images'));
 echo "\n</head>";
 echo "\n<body>";
 
@@ -220,13 +223,13 @@ $last = '';
 			$cachesizes++;
 			?>
 			<li>
-				<?php 
+				<?php
 				if (!is_array($enabled)) {
 					?>
 					<span class="icons" id="<?php echo $theme; ?>_arrow">
 						<img class="icon-position-top4" src="<?php echo WEBPATH.'/'.ZENFOLDER.'/images/place_holder_icon.png'; ?>" alt="" />
 					</span>
-					<?php 
+					<?php
 					}
 				?>
 				<label>
@@ -234,9 +237,9 @@ $last = '';
 					<?php echo gettext('Apply'); ?> <code><?php echo gettext('Full Image'); ?></code>
 				</label>
 			</li>
-			<?php 
+			<?php
 		}
-		
+
 		$seen = array();
 		foreach ($custom as $key=>$cacheimage) {
 			if (!is_array($enabled) || in_array($key, $enabled)) {
@@ -370,7 +373,7 @@ $last = '';
 	}
 	?>
 		<p class="buttons">
-			<a title="<?php echo gettext('Back to the album list'); ?>"href="<?php echo WEBPATH.'/'.ZENFOLDER.$r; ?>"> <img src="<?php echo FULLWEBPATH.'/'.ZENFOLDER; ?>/images/cache.png" alt="" />
+			<a title="<?php if ($alb) echo gettext('Back to the album list'); else echo gettext('Back to the overview') ?>"href="<?php echo WEBPATH.'/'.ZENFOLDER.$r; ?>"> <img src="<?php echo FULLWEBPATH.'/'.ZENFOLDER; ?>/images/cache.png" alt="" />
 				<strong><?php echo gettext("Back"); ?> </strong>
 			</a>
 		</p>

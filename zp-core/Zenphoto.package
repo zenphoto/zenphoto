@@ -896,6 +896,7 @@ zp-core/zp-extensions/ajaxfilemanager/zp_filemanager.php
 zp-core/zp-extensions/auto_backup.php
 zp-core/zp-extensions/cacheManager
 zp-core/zp-extensions/cacheManager.php
+zp-core/zp-extensions/cacheManager/cacheDBImages.php
 zp-core/zp-extensions/cacheManager/cacheImages.php
 zp-core/zp-extensions/check_for_update.php
 zp-core/zp-extensions/class-AnyFile
@@ -1979,4 +1980,4 @@ zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zpCaptcha
 zp-core/zp-extensions/zpCaptcha.php
 zp-core/zp-extensions/zpCaptcha/c.php
-1981
+1982
