@@ -228,12 +228,12 @@ class RSS {
 					if(isset($_GET['folder'])) {
 						$this->albumfolder = sanitize(urldecode($_GET['folder']));
 						$this->collection = TRUE;
-						$alb = new Album(NULL,$this->albumfolder);
+						$alb = newAlbum($this->albumfolder);
 						$albumtitle = $alb->getTitle();
 					} else if(isset($_GET['albumname'])){
 						$this->albumfolder = sanitize(urldecode($_GET['albumname']));
 						$this->collection = false;
-						$alb = new Album(NULL,$this->albumfolder);
+						$alb = newAlbum($this->albumfolder);
 						$albumtitle = $alb->getTitle();
 					} else {
 						$albumtitle = '';
@@ -783,7 +783,7 @@ protected function getRSSCombinewsAlbums() {
 	*/
 	protected function getRSSitemGallery($item) {
 		if($this->rssmode == "albums") {
-			$albumobj = new Album(NULL, $item['folder']);
+			$albumobj = newAlbum($item['folder']);
 			$totalimages = $albumobj->getNumImages();
 			$itemlink = $this->host.pathurlencode($albumobj->getAlbumLink());
 			$thumb = $albumobj->getAlbumThumbImage();
@@ -890,7 +890,7 @@ protected function getRSSCombinewsAlbums() {
 				$feeditem['desc'] = shortenContent($obj->getContent($this->locale),getOption('zenpage_rss_length'), '...');
 				break;
 			case 'images':
-				$albumobj = new Album(NULL,$item['albumname']);
+				$albumobj = newAlbum($item['albumname']);
 				$obj = newImage($albumobj,$item['titlelink']);
 				$categories = get_language_string($albumobj->getTitle('all'),$this->locale);
 				$feeditem['title'] = strip_tags(get_language_string($obj->getTitle('all'),$this->locale));
@@ -912,7 +912,7 @@ protected function getRSSCombinewsAlbums() {
 				}
 				break;
 			case 'albums':
-				$obj = new Album(NULL,$item['albumname']);
+				$obj = newAlbum($item['albumname']);
 				$categories = get_language_string($obj->getTitle('all'),$this->locale);
 				$feeditem['title'] = strip_tags(get_language_string($obj->getTitle('all'),$this->locale));
 				$title = get_language_string($obj->getTitle('all'),$this->locale);
@@ -969,7 +969,7 @@ protected function getRSSCombinewsAlbums() {
 				$commentpath = PROTOCOL.'://'.$this->host.html_encode($link)."#".$item['id'];
 				break;
 			case 'albums':
-				$obj = new Album(NULL,$item['folder']);
+				$obj = newAlbum($item['folder']);
 				$link = rtrim($obj->getAlbumlink(),'/');
 				$feeditem['pubdate'] = date("r",strtotime($item['date']));
 				$category = $item['albumtitle'];
@@ -1030,48 +1030,50 @@ protected function getRSSCombinewsAlbums() {
 					<docs>http://blogs.law.harvard.edu/tech/rss</docs>
 					<generator>Zenphoto RSS Generator</generator>
 					<?php
-					if(is_array($feeditems)) {
-						foreach($feeditems as $feeditem) {
-							switch($this->feedtype) {
-								case 'gallery':
-									$item = $this->getRSSitemGallery($feeditem);
-									break;
-								case 'news':
-									$item = $this->getRSSitemNews($feeditem);
-									break;
-								case 'comments':
-									$item = $this->getRSSitemComments($feeditem);
-									break;
-							}
-							?>
-							<item>
-								<title><![CDATA[<?php echo $item['title']; ?>]]></title>
-								<link><?php echo html_encode($item['link']); ?></link>
-								<description><![CDATA[<?php echo $item['desc']; ?>]]></description>
-								<?php
+					foreach($feeditems as $feeditem) {
+						switch($this->feedtype) {
+							case 'gallery':
+								$item = $this->getRSSitemGallery($feeditem);
+								break;
+							case 'news':
+								$item = $this->getRSSitemNews($feeditem);
+								break;
+							case 'comments':
+								$item = $this->getRSSitemComments($feeditem);
+								break;
+							default:
+								$item = $feeditem;
+								break;
+						}
+						?>
+						<item>
+							<title><![CDATA[<?php echo $item['title']; ?>]]></title>
+							<link><?php echo html_encode($item['link']); ?></link>
+							<description><![CDATA[<?php echo $item['desc']; ?>]]></description>
+							<?php
 							if(!empty($item['enclosure'])) {
 								echo $item['enclosure']; //prints xml as well
-								}
-								if(!empty($item['category'])) {
-									?>
-									<category><![CDATA[<?php echo $item['category']; ?>]]></category>
-									<?php
-								}
-								if(!empty($item['media_content'])) {
-									echo $item['media_content']; //prints xml as well
-								}
-								if(!empty($item['media_thumbnail'])) {
-									echo $item['media_thumbnail']; //prints xml as well
-								}
+							}
+							if(!empty($item['category'])) {
 								?>
-								<guid><?php echo html_encode($item['link']); ?></guid>
-								<pubDate><?php echo $item['pubdate'];  ?></pubDate>
-							</item>
-					<?php
-							} // foreach
-						}	?>
-					</channel>
-				</rss>
+								<category><![CDATA[<?php echo $item['category']; ?>]]></category>
+								<?php
+							}
+							if(!empty($item['media_content'])) {
+								echo $item['media_content']; //prints xml as well
+							}
+							if(!empty($item['media_thumbnail'])) {
+								echo $item['media_thumbnail']; //prints xml as well
+							}
+							?>
+							<guid><?php echo html_encode($item['link']); ?></guid>
+							<pubDate><?php echo $item['pubdate'];  ?></pubDate>
+						</item>
+						<?php
+					} // foreach
+					?>
+				</channel>
+			</rss>
 			<?php
 			$this->endRSSCache();
 		}

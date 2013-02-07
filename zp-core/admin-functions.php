@@ -482,7 +482,7 @@ function genAlbumList(&$list, $curAlbum=NULL, $rights=UPLOAD_RIGHTS) {
 		$albums = array();
 		$albumsprime = $_zp_gallery->getAlbums(0);
 		foreach ($albumsprime as $album) { // check for rights
-			$albumobj = new Album(NULL, $album);
+			$albumobj = newAlbum($album);
 			if ($albumobj->isMyItem($rights)) {
 				$albums[] = $album;
 			}
@@ -492,7 +492,7 @@ function genAlbumList(&$list, $curAlbum=NULL, $rights=UPLOAD_RIGHTS) {
 	}
 	if (is_array($albums)) {
 		foreach ($albums as $folder) {
-			$album = new Album(NULL, $folder);
+			$album = newAlbum($folder);
 			if ($album->isDynamic()) {
 				if ($rights=ALL_ALBUMS_RIGHTS) {
 					$list[$album->getFolder()] = $album->getTitle();
@@ -1571,7 +1571,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 							if ($_zp_gallery->getSecondLevelThumbs()) {
 								$subalbums = $album->getAlbums(0);
 								foreach ($subalbums as $folder) {
-									$newalbum = new Album(NULL, $folder);
+									$newalbum = newAlbum($folder);
 									$images = $newalbum->getImages(0);
 									foreach ($images as $filename) {
 										if (is_array($filename)) {
@@ -1602,7 +1602,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 										if (empty($albumname) || $albumname=='.') {
 											$thumbalbum = $album;
 										} else {
-											$thumbalbum = new Album(NULL, $albumname);
+											$thumbalbum = newAlbum($albumname);
 										}
 										$filename = basename($imagename);
 										$image = newImage($thumbalbum, $filename);
@@ -2574,7 +2574,7 @@ function unzip($file, $dir) { //check if zziplib is installed
 						clearstatcache();
 						zip_entry_close($zip_entry);
 						$albumname = substr($dir, strlen(ALBUM_FOLDER_SERVERPATH));
-						$album = new Album(NULL, $albumname);
+						$album = newAlbum($albumname);
 						$image = newImage($album, $seoname);
 						if ($fname != $seoname) {
 							$image->setTitle($name);
@@ -3351,7 +3351,7 @@ function postAlbumSort($parentid) {
 				query($sql);
 			} else {	// have to do a move
 				$albumname = $currentalbum['folder'];
-				$album = new Album(NULL, $albumname);
+				$album = newAlbum($albumname);
 				if (strpos($albumname,'/') !== false) {
 					$albumname = basename($albumname);
 				}
@@ -3401,7 +3401,7 @@ function getNestedAlbumList($subalbum, $levels, $level=array()) {
 	}
 	$list = array();
 	foreach ($albums as $analbum) {
-		$albumobj = new Album(NULL, $analbum);
+		$albumobj = newAlbum($analbum);
 		if(!is_null($subalbum) || $albumobj->isMyItem(ALBUM_RIGHTS)) {
 			$level[$cur] = sprintf('%03u',$albumobj->getSortOrder());
 			$list[] = array('name'=>$analbum, 'sort_order'=>$level);
@@ -3455,7 +3455,7 @@ function printNestedAlbumsList($albums, $show_thumb) {
 			echo str_pad("\t",$indent,"\t")."</li>\n";
 			$open[$indent]--;
 		}
-		$albumobj = new Album(NULL,$album['name']);
+		$albumobj = newAlbum($album['name']);
 		if ($albumobj->isDynamic()) {
 			$nonest = ' class="no-nest"';
 		} else {
@@ -3772,7 +3772,7 @@ function processAlbumBulkActions() {
 			$n = 0;
 			foreach ($ids as $albumname) {
 				$n++;
-				$albumobj = new Album(NULL,$albumname);
+				$albumobj = newAlbum($albumname);
 				switch($action) {
 					case 'deleteall':
 						$albumobj->remove();

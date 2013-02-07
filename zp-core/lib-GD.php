@@ -13,13 +13,22 @@ $_zp_graphics_optionhandlers[] = new lib_GD_Options(); // register option handle
  */
 class lib_GD_Options {
 
+	function __construct() {
+		setOptionDefault('GD_FreeType_Path', SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/gd_fonts');
+	}
+
 	/**
 	 * Standard option interface
 	 *
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		return array();
+		if (GD_FREETYPE) {
+			return array(gettext('GD TypeFace path') => array('key'=>'GD_FreeType_Path', 'type'=>OPTION_TYPE_TEXTBOX,
+																												'desc'=>gettext('Supply the full path to your TrueType fonts.')));
+		} else {
+			return array();
+		}
 	}
 	function canLoadMsg() {
 		if (extension_loaded('gd')) {
@@ -41,12 +50,19 @@ if (!function_exists('zp_graphicsLibInfo')) {
 		$info = gd_info();
 		$_lib_GD_info['Library'] = 'GD';
 		$_lib_GD_info['Library_desc'] = sprintf(gettext('PHP GD library <em>%s</em>'),$info['GD Version']);
+		$_lib_GD_info['FreeType'] = $info['FreeType Support'];
+		define('GD_FREETYPE', (bool) $_lib_GD_info['FreeType']);
+		define('GD_FREETYPE_SAMPLE','The quick brown fox jumps over the lazy dog');
+		define('GD_FREETYPE_SAMPLE_CHARS', strlen('GD_FREETYPE_SAMPLE'));
+		$_gd_freetype_fonts = array(0);
+
 		$imgtypes = imagetypes();
 		$_lib_GD_info['GIF'] = $imgtypes & IMG_GIF;
 		$_lib_GD_info['JPG'] = $imgtypes & IMG_JPG;
 		$_lib_GD_info['JPEG'] = $imgtypes & IMG_JPG;
 		$_lib_GD_info['PNG'] = $imgtypes & IMG_PNG;
 		$_lib_GD_info['BMP'] = $imgtypes & IMG_WBMP;
+
 		unset($imgtypes);
 		unset($info);
 
@@ -449,7 +465,19 @@ if (!function_exists('zp_graphicsLibInfo')) {
 		 * @return bool
 		 */
 		function zp_writeString($image, $font, $x, $y, $string, $color) {
-			return imagestring($image, $font, $x, $y, $string, $color);
+			global $_gd_freetype_fonts;
+			if ($font > 0) {
+				return imagestring($image, $font, $x, $y, $string, $color);
+			} else {
+				$font = abs($font);
+				$fontfile = $_gd_freetype_fonts[$font]['path'];
+				$size = $_gd_freetype_fonts[abs($font)]['size'];
+				$bbox = imagettfbbox($_gd_freetype_fonts[$font]['size'], 0, $_gd_freetype_fonts[$font]['path'], GD_FREETYPE_SAMPLE);
+				$w = (int) (($bbox[2] - $bbox[0])/GD_FREETYPE_SAMPLE_CHARS);
+				$h = $bbox[1] - $bbox[7];
+				$rslt = imagettftext($image, $size, 0, $x+$w, $y+$h, $color, $fontfile, $string);
+				return is_array($rslt);
+			}
 		}
 
 		/**
@@ -493,14 +521,25 @@ if (!function_exists('zp_graphicsLibInfo')) {
 					$filelist = safe_glob('*.gdf');
 					foreach($filelist as $file) {
 						$key = filesystemToInternal(str_replace('.gdf', '', $file));
-						$_gd_fontlist[$key] = $key;
+						$_gd_fontlist[$key] = $basefile.'/'.$file;
 					}
 				}
 				chdir($basefile = SERVERPATH.'/'.ZENFOLDER.'/gd_fonts/');
 				$filelist = safe_glob('*.gdf');
 				foreach($filelist as $file) {
-					$key = filesystemToInternal(str_replace('.gdf', '', $file));
-					$_gd_fontlist[$key] = $key;
+					$key = filesystemToInternal(preg_replace('/\.gdf/i', '', $file));
+					$_gd_fontlist[$key] = $basefile.'/'.$file;
+				}
+				if (GD_FREETYPE) {
+					$basefile = getOption('GD_FreeType_Path');
+					if (is_dir($basefile)) {
+						chdir($basefile);
+						$filelist = safe_glob('*.ttf');
+						foreach($filelist as $file) {
+							$key = filesystemToInternal($file);
+							$_gd_fontlist[$key] = $basefile.'/'.$file;
+						}
+					}
 				}
 				chdir($curdir);
 			}
@@ -513,13 +552,18 @@ if (!function_exists('zp_graphicsLibInfo')) {
 		 * @param string $font
 		 * @return int
 		 */
-		function zp_imageLoadFont($font=NULL) {
+		function zp_imageLoadFont($font=NULL, $size=18) {
+			global $_gd_freetype_fonts;
 			if (!empty($font)) {
-				if (file_exists($file = SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/gd_fonts/'.$font.'.gdf')) {
-					return imageloadfont($file);
-				}
-				if (file_exists($file = SERVERPATH.'/'.ZENFOLDER.'/gd_fonts/'.$font.'.gdf')) {
-					return imageloadfont($file);
+				if (file_exists($font)) {
+					switch (getSuffix($font)) {
+						case 'gdf':
+							return imageloadfont($font);
+						case 'ttf':
+							$index = -count($_gd_freetype_fonts);
+							array_push($_gd_freetype_fonts, array('path'=>$font,'size'=>$size));
+							return $index;
+					}
 				}
 			}
 			return 5; // default to the largest inbuilt font
@@ -532,7 +576,15 @@ if (!function_exists('zp_graphicsLibInfo')) {
 		 * @return int
 	  */
 		function zp_imageFontWidth($font) {
-			return imagefontwidth($font);
+			global $_gd_freetype_fonts;
+			if ($font > 0) {
+				return imagefontwidth($font);
+			} else {
+				$font = abs($font);
+				$bbox = imagettfbbox($_gd_freetype_fonts[$font]['size'], 0, $_gd_freetype_fonts[$font]['path'], GD_FREETYPE_SAMPLE);
+				$w = (int) (($bbox[2] - $bbox[0])/GD_FREETYPE_SAMPLE_CHARS);
+				return $w;
+			}
 		}
 
 		/**
@@ -542,7 +594,15 @@ if (!function_exists('zp_graphicsLibInfo')) {
 		 * @return int
 		 */
 		function zp_imageFontHeight($font) {
-			return imagefontheight($font);
+			global $_gd_freetype_fonts;
+			if ($font > 0) {
+			 return imagefontheight($font);
+			} else {
+				$font = abs($font);
+				$bbox = imagettfbbox($_gd_freetype_fonts[$font]['size'], 0, $_gd_freetype_fonts[$font]['path'], GD_FREETYPE_SAMPLE);
+				$h = $bbox[1] - $bbox[7];
+				return $h;
+			}
 		}
 
 		/**

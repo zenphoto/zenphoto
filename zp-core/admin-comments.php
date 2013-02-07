@@ -228,12 +228,11 @@ zp_apply_filter('admin_note','comments', $subtab);
 } else {
 	// Set up some view option variables.
 
+	define('COMMENTS_PER_PAGE',getOption('comments_per_page'));
 	if (isset($_GET['fulltext']) && $_GET['fulltext']) {
-		define('COMMENTS_PER_PAGE',10);
 		$fulltext = true;
 		$fulltexturl = '?fulltext=1';
 	} else {
-		define('COMMENTS_PER_PAGE',20);
 		$fulltext = false;
 		$fulltexturl = '';
 	}

@@ -570,6 +570,7 @@ purgeOption('zp_plugin_failed_access_blocker');
 setOptionDefault('spamFilter_none_action', getOption('Action'));
 purgeOption('Action');
 setOptionDefault('plugins_per_page', 20);
+setOptionDefault('comments_per_page', 15);
 setOptionDefault('users_per_page', 10);
 setOptionDefault('articles_per_page', 15);
 setOptionDefault('combinews-customtitle', getOption('combinews-customtitle-plural'));
@@ -613,6 +614,34 @@ foreach ($plugins as $extension) {
 </p>
 
 <?php
+require_once(SERVERPATH.'/'.ZENFOLDER.'/class-rss.php');
+class setupRSS extends RSS {
+	public function getRSSitems() {
+		$this->feedtype = 'setup';
+		$items = array();
+		$items[] = array(	'title'=>gettext('RSS suspended'),
+											'link'=>'',
+											'enclosure'=>'',
+											'category'=>'',
+											'media_content'=>'',
+											'media_thumbnail'=>'',
+											'pubdate'=>date("r",time()),
+											'desc'=>gettext('The RSS feed is currently not available.'));
+		return $items;
+	}
+	protected function startRSSCache() {
+	}
+	protected function endRSSCache() {
+	}
+}
+
+$rss = new setupRSS();
+ob_start();
+$rss->printRSSFeed();
+$xml = ob_get_contents();
+ob_end_clean();
+file_put_contents(SERVERPATH.'/'.DATA_FOLDER.'/rss-closed.xml', $xml);
+
 if (getOption('zp_plugin_auto_backup')) {
 	//Run the backup since for sure things have changed.
 	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/auto_backup.php');

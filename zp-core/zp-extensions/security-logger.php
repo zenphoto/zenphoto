@@ -125,7 +125,7 @@ class security_logger {
 				}
 				break;
 			case 'setup_delete':
-				$type = gettext('Remove setup files');
+				$type = gettext('Remove setup scripts');
 				break;
 			case 'user_new':
 				$type = gettext('Request add user');

@@ -363,7 +363,7 @@ function printParentPagesBreadcrumb($before='', $after='') {
  */
 function isMyAlbum($albumname, $action) {
 	deprecated_functions::notify(gettext('Use instead the Album class method isMyItem().'), E_USER_NOTICE);
-	$album = new Album(NULL, $albumname);
+	$album = newAlbum($albumname);
 	return $album->isMyItem($action);
 }
 

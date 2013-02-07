@@ -427,7 +427,7 @@ function flowplayerPlaylist($option="playlist",$albumfolder="") {
 				} else {
 					$albumname = $albumfolder;
 				}
-				$album = new Album(NULL, $albumname);
+				$album = newAlbum($albumname);
 				if(getOption("flow_player3_playlistautoplay") == 1) {
 					$autoplay = 'true';
 				} else {
@@ -445,13 +445,13 @@ function flowplayerPlaylist($option="playlist",$albumfolder="") {
 					switch($splashimage) {
 						case 'albumthumb':
 							$albumthumbobj = $album->getAlbumThumbImage();
-				  		getMaxSpaceContainer($splashimagerwidth, $splashimageheight, $albumthumbobj, true);
-				  		$albumthumb = $albumthumbobj->getCustomImage(null, $splashimagerwidth, $splashimageheight, null, null, null, null, true);
-				  		$videoThumbImg = '<img src="'.pathurlencode($albumthumb).'" alt="" />';
+							getMaxSpaceContainer($splashimagerwidth, $splashimageheight, $albumthumbobj, true);
+							$albumthumb = $albumthumbobj->getCustomImage(null, $splashimagerwidth, $splashimageheight, null, null, null, null, true);
+							$videoThumbImg = '<img src="'.pathurlencode($albumthumb).'" alt="" />';
 							break;
 						case 'firstentry':
 							getMaxSpaceContainer($splashimagerwidth, $splashimageheight, $videoobj, true);
-				  		$videoThumb = $videoobj->getCustomImage(null, $splashimagerwidth, $splashimageheight, null, null, null, null, true);
+							$videoThumb = $videoobj->getCustomImage(null, $splashimagerwidth, $splashimageheight, null, null, null, null, true);
 							$videoThumbImg = '<img src="'.pathurlencode($videoThumb).'" alt="" />';
 							break;
 					}

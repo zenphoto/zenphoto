@@ -509,7 +509,7 @@ function next_album($all=false, $sorttype=NULL, $sortdirection=NULL, $mine=NULL)
 		}
 		if (empty($_zp_albums)) { return false; }
 		$_zp_current_album_restore = $_zp_current_album;
-		$_zp_current_album = new Album(NULL, array_shift($_zp_albums));
+		$_zp_current_album = newAlbum(array_shift($_zp_albums), true, true);
 		save_context();
 		add_context(ZP_ALBUM);
 		return true;
@@ -519,7 +519,7 @@ function next_album($all=false, $sorttype=NULL, $sortdirection=NULL, $mine=NULL)
 		restore_context();
 		return false;
 	} else {
-		$_zp_current_album = new Album(NULL, array_shift($_zp_albums));
+		$_zp_current_album = newAlbum(array_shift($_zp_albums), true, true);
 		return true;
 	}
 }
@@ -549,7 +549,7 @@ function getAllAlbums($album = NULL) {
 	if (is_array($subalbums)) {
 		foreach ($subalbums as $subalbum) {
 			$list[] = $subalbum;
-			$sub = new Album(NULL, $subalbum);
+			$sub = newAlbum($subalbum);
 			$list = array_merge($list, getAllAlbums($sub));
 		}
 	}
@@ -1920,7 +1920,7 @@ function getTotalImagesIn($album) {
 	$subalbums = $album->getAlbums(0);
 	while (count($subalbums) > 0) {
 		$albumname = array_pop($subalbums);
-		$album = new Album(NULL, $albumname);
+		$album = newAlbum($albumname);
 		$sum = $sum + getTotalImagesIn($album);
 	}
 	return $sum;
@@ -1972,7 +1972,7 @@ function next_image($all=false, $firstPageCount=NULL, $sorttype=null, $sortdirec
 		if (empty($_zp_images)) { return false; }
 		$_zp_current_image_restore = $_zp_current_image;
 		$img = array_shift($_zp_images);
-		$_zp_current_image = newImage($_zp_current_album, $img);
+		$_zp_current_image = newImage($_zp_current_album, $img, true, true);
 		save_context();
 		add_context(ZP_IMAGE);
 		return true;
@@ -1983,7 +1983,7 @@ function next_image($all=false, $firstPageCount=NULL, $sorttype=null, $sortdirec
 		return false;
 	} else {
 		$img = array_shift($_zp_images);
-		$_zp_current_image = newImage($_zp_current_album, $img);
+		$_zp_current_image = newImage($_zp_current_album, $img, true, true);
 		return true;
 	}
 }
@@ -2061,7 +2061,7 @@ function imageNumber() {
 	global $_zp_current_image, $_zp_current_search, $_zp_current_album;
 	$name = $_zp_current_image->getFileName();
 	if (in_context(ZP_SEARCH) || (in_context(ZP_SEARCH_LINKED) && !in_context(ZP_ALBUM_LINKED))) {
-		$folder = $_zp_current_image->album->name;
+		$folder = $_zp_current_image->imagefolder;
 		$images = $_zp_current_search->getImages();
 		$c = 0;
 		foreach ($images as $image) {
@@ -2272,8 +2272,8 @@ function getNextImageURL() {
 	global $_zp_current_album, $_zp_current_image;
 	if (is_null($_zp_current_image)) return false;
 	$nextimg = $_zp_current_image->getNextImage();
-	return rewrite_path("/" . pathurlencode($nextimg->album->name) . "/" . urlencode($nextimg->filename) . IM_SUFFIX,
-		"/index.php?album=" . pathurlencode($nextimg->album->name) . "&image=" . urlencode($nextimg->filename));
+	return rewrite_path("/" . pathurlencode($nextimg->albumname) . "/" . urlencode($nextimg->filename) . IM_SUFFIX,
+		"/index.php?album=" . pathurlencode($nextimg->albumname) . "&image=" . urlencode($nextimg->filename));
 }
 
 /**
@@ -2286,8 +2286,8 @@ function getPrevImageURL() {
 	global $_zp_current_album, $_zp_current_image;
 	if (is_null($_zp_current_image)) return false;
 	$previmg = $_zp_current_image->getPrevImage();
-	return rewrite_path("/" . pathurlencode($previmg->album->name) . "/" . urlencode($previmg->filename) . IM_SUFFIX,
-		"/index.php?album=" . pathurlencode($previmg->album->name) . "&image=" . urlencode($previmg->filename));
+	return rewrite_path("/" . pathurlencode($previmg->albumname) . "/" . urlencode($previmg->filename) . IM_SUFFIX,
+		"/index.php?album=" . pathurlencode($previmg->albumname) . "&image=" . urlencode($previmg->filename));
 }
 
 /**
@@ -2743,7 +2743,7 @@ function getProtectedImageURL($image=NULL, $disposal=NULL) {
 	if ($disposal != 'Download' && OPEN_IMAGE_CACHE && file_exists($cache_path)) {
 		return WEBPATH.'/'.CACHEFOLDER.pathurlencode(imgSrcURI($cache_file));
 	} else if ($disposal == 'Unprotected') {
-		return getImageURI($args, $this->album->name, $filename, $image->filemtime);
+		return getImageURI($args, $image->imagefolder, $filename, $image->filemtime);
 	} else {
 		$params = '&q='.getOption('full_image_quality');
 		$watermark_use_image = getWatermarkParam($image, WATERMARK_FULL);
@@ -3180,7 +3180,7 @@ function getLatestComments($number,$type="all",$id=NULL) {
 			$rslt = query("SELECT * FROM " . prefix('albums'));
 			if ($rslt) {
 				while ($albumcheck = db_fetch_assoc($rslt)) {
-					$album = new Album(NULL, $albumcheck['folder']);
+					$album = newAlbum($albumcheck['folder']);
 					if($album->isMyItem(LIST_RIGHTS) || !checkAlbumPassword($albumcheck['folder'])) {
 						$albumlist[] = $albumcheck['id'];
 					}
@@ -3216,7 +3216,7 @@ function getLatestComments($number,$type="all",$id=NULL) {
 						$albumcomment = db_fetch_assoc($comments_albums);
 					} else {
 						if (!($view = $imagecomment['show'])) {
-							$album = new Album(NULL, $imagecomment['folder']);
+							$album = newAlbum($imagecomment['folder']);
 							$uralbum = getUrAlbum($album);
 							$view = (zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
 						}
@@ -3380,7 +3380,7 @@ function getRandomImages($daily = false) {
 	if ($daily) {
 		$potd = unserialize(getOption('picture_of_the_day'));
 		if (date('Y-m-d', $potd['day']) == date('Y-m-d')) {
-			$album = new Album(NULL, $potd['folder']);
+			$album = newAlbum($potd['folder']);
 			$image = newImage($album, $potd['filename']);
 			if ($image->exists)	{
 				return $image;
@@ -3424,13 +3424,13 @@ function getRandomImagesAlbum($rootAlbum=NULL,$daily=false) {
 		if (is_object($rootAlbum)) {
 			$album = $rootAlbum;
 		} else {
-			$album = new Album(NULL, $rootAlbum);
+			$album = newAlbum($rootAlbum);
 		}
 	}
 	if ($daily && ($potd = getOption('picture_of_the_day:'.$album->name))) {
 		$potd = unserialize($potd);
 		if (date('Y-m-d', $potd['day']) == date('Y-m-d')) {
-			$rndalbum = new Album(NULL, $potd['folder']);
+			$rndalbum = newAlbum($potd['folder']);
 			$image = newImage($rndalbum, $potd['filename']);
 			if ($image->exists)	return $image;
 		}
@@ -3442,7 +3442,7 @@ function getRandomImagesAlbum($rootAlbum=NULL,$daily=false) {
 		while (count($images) > 0) {
 			$result = array_pop($images);
 			if (is_valid_image($result['filename'])) {
-				$image = newImage(new Album(NULL, $result['folder']), $result['filename']);
+				$image = newImage(newAlbum($result['folder']), $result['filename']);
 			}
 		}
 	} else {
@@ -4430,7 +4430,7 @@ function checkForGuest(&$hint=NULL, &$show=NULL) {
 		if ($authType = checkAlbumPassword($album, $hint)) {
 			return $authType;
 		} else {
-			$alb = new Album(NULL, $album);
+			$alb = newAlbum($album);
 			$show = $alb->getUser() != '';
 			return false;
 		}

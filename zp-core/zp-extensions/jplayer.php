@@ -586,7 +586,7 @@ class jPlayer {
 				$albumobj = $_zp_current_album;
 			}
 		} else {
-			$albumobj = new Album(NULL,$albumfolder);
+			$albumobj = newAlbum($albumfolder);
 		}
 		$entries = $albumobj->getImages(0);
 		if (($numimages = count($entries)) != 0) {

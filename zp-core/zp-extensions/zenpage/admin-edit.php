@@ -49,7 +49,7 @@ if(is_AdminEditPage('page')) {
 	}
 	if(isset($_GET['save'])) {
 		XSRFdefender('save');
-		$result = addPage($reports);
+		$result = updatePage($reports, true);
 	}
 	if(isset($_GET['delete'])) {
 		XSRFdefender('delete');
@@ -91,7 +91,7 @@ if(is_AdminEditPage('newsarticle')) {
 	}
 	if(isset($_GET['save'])) {
 		XSRFdefender('save');
-		$result = addArticle($reports);
+		$result = updateArticle($reports, true);
 	}
 	if(isset($_GET['delete'])) {
 		XSRFdefender('delete');
@@ -106,7 +106,7 @@ if(is_AdminEditPage('newscategory')) {
 	$_GET['tab'] = 'categories';
 	if(isset($_GET['save'])) {
 		XSRFdefender('save');
-		addCategory($reports);
+		updateCategory($reports, true);
 	}
 	if(isset($_GET['titlelink'])) {
 		$result = new ZenpageCategory(urldecode(sanitize($_GET['titlelink'])));
@@ -296,26 +296,20 @@ if ($result->loaded || $result->transient) {
 	if($result->transient) {
 		?>
 		<form method="post" name="addnews" action="admin-edit.php?<?php echo $admintype; ?>&amp;save">
-			<?php XSRFToken('save');?>
-		<?php
+			<?php
+			XSRFToken('save');
 	} else {
 		?>
 		<form method="post" name="update" action="admin-edit.php?<?php echo $admintype; ?>&amp;update<?php echo $page; ?>">
-			<?php XSRFToken('update');?>
-			<input type="hidden" name="id" value="<?php echo $result->getID(); ?>" />
-			<input type="hidden" name="titlelink-old" id="titlelink-old" value="<?php echo html_encode($result->getTitlelink()); ?>" />
 			<?php
-			if(!is_AdminEditPage('newscategory')) {
-				?>
-					<input type="hidden" name="lastchange" id="lastchange" value="<?php echo date('Y-m-d H:i:s'); ?>" />
-					<input type="hidden" name="lastchangeauthor" id="lastchangeauthor" value="<?php echo $_zp_current_admin_obj->getUser(); ?>" />
-				<?php
-			}
-			?>
-			<input type="hidden" name="hitcounter" id="hitcounter" value="<?php echo $result->getHitcounter(); ?>" />
-			<?php
+			XSRFToken('update');
 	}
 	?>
+	<input type="hidden" name="id" value="<?php echo $result->getID(); ?>" />
+	<input type="hidden" name="titlelink-old" id="titlelink-old" value="<?php echo html_encode($result->getTitlelink()); ?>" />
+	<input type="hidden" name="lastchange" id="lastchange" value="<?php echo date('Y-m-d H:i:s'); ?>" />
+	<input type="hidden" name="lastchangeauthor" id="lastchangeauthor" value="<?php echo $_zp_current_admin_obj->getUser(); ?>" />
+	<input type="hidden" name="hitcounter" id="hitcounter" value="<?php echo $result->getHitcounter(); ?>" />
 
 	<?php
 	if(is_AdminEditPage("newsarticle")) {
@@ -438,6 +432,10 @@ if ($result->loaded || $result->transient) {
 					if(is_AdminEditPage('newsarticle')) {
 						$sticky = $result->get('sticky');
 						?>
+						<p class="checkbox">
+						<input name="truncation" type="checkbox" id="truncation" value="1" <?php checkIfChecked($result->getTruncation());?> />
+						<label for="truncation"><?php echo gettext("Truncate at <em>pagebreak</em>"); ?></label>
+						</p>
 						<p><?php echo gettext("Position:"); ?>
 							<select id="sticky" name="sticky">
 								<option value="0" <?php if ($sticky==0) echo 'selected="selected"';?>><?php echo gettext("normal"); ?></option>

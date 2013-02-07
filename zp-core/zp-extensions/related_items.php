@@ -96,8 +96,8 @@ function getRelatedItems($type='news',$album=NULL) {
 	return array();
 }
 /**
- * Helper function for getRelatedItems() only. 
- * Returns an array with array for each item with name, album (images only), type and weight (search weight value) 
+ * Helper function for getRelatedItems() only.
+ * Returns an array with array for each item with name, album (images only), type and weight (search weight value)
  * Excludes the current item itself.
  *
  * @param array $result array with search results
@@ -128,13 +128,13 @@ function createRelatedItemsResultArray($result,$type) {
 				}
 				break;
 			case 'images':
-				if(get_class($current) != '_Image' || ($current->filename != $item['filename'] && $current->getAlbum()->name != $item['folder'])) {
-					array_push($results, array('name' => $item['filename'], 'album' => $item['folder'], 'type' => $type, 'weight' => $item['weight'])); 
+				if(get_class($current) != 'Image' || ($current->filename != $item['filename'] && $current->getAlbum()->name != $item['folder'])) {
+					array_push($results, array('name' => $item['filename'], 'album' => $item['folder'], 'type' => $type, 'weight' => $item['weight']));
 				}
 				break;
 			case 'news':
 				if(get_class($current) != 'ZenpageNews' || $current->getTitlelink() != $item['titlelink']) {
-					array_push($results, array('name' => $item['titlelink'], 'album' => '', 'type' => $type, 'weight' => $item['weight'])); 
+					array_push($results, array('name' => $item['titlelink'], 'album' => '', 'type' => $type, 'weight' => $item['weight']));
 				}
 				break;
 			case 'pages':
@@ -143,7 +143,7 @@ function createRelatedItemsResultArray($result,$type) {
 				}
 				break;
 		}
-		
+
 	}
 	return $results;
 }
@@ -174,10 +174,10 @@ function printRelatedItems($number=5,$type='news',$specific=NULL,$excerpt=NULL,$
 		foreach($result as $item) {
 			switch($item['type']) {
 				case 'albums':
-					$obj = new Album(NULL,$item['name']);
+					$obj = newAlbum($item['name']);
 					break;
 				case 'images':
-					$alb = new Album(NULL,$item['album']);
+					$alb = newAlbum($item['album']);
 					$obj = newImage($alb,$item['name']);
 					break;
 				case 'news':
@@ -234,7 +234,7 @@ function printRelatedItems($number=5,$type='news',$specific=NULL,$excerpt=NULL,$
 				}
 			} ?>
 			<h4><a href="<?php echo pathurlencode($url); ?>" title="<?php echo html_encode($obj->getTitle()); ?>"><?php echo html_encode($obj->getTitle()); ?></a>
-			<?php if($date) {  
+			<?php if($date) {
 				switch($item['type']) {
 					case 'albums':
 					case 'images':
@@ -251,9 +251,9 @@ function printRelatedItems($number=5,$type='news',$specific=NULL,$excerpt=NULL,$
 				</span>
 				<?php
 			}
-			 ?>			
+			 ?>
 			<?php if($type == 'all') { ?> (<small><?php echo $category; ?></small>)<?php } ?>
-			
+
 			</h4>
 			<?php if($excerpt) {
 				echo truncate_string($text,$excerpt,'...');
@@ -262,7 +262,7 @@ function printRelatedItems($number=5,$type='news',$specific=NULL,$excerpt=NULL,$
 			<?php
 		if($count == $number) {
 			break;
-		} 
+		}
 	} // foreach
 	if ($count) {
 		?>

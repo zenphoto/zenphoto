@@ -79,7 +79,7 @@ class VideoObject_Options {
 
 }
 
-class Video extends _Image {
+class Video extends Image {
 
 	var $videoalt = array();
 
@@ -204,7 +204,7 @@ class Video extends _Image {
 				}
 			}
 		} else {
-			$imgfile = ALBUM_FOLDER_SERVERPATH.internalToFilesystem($this->album->name).'/'.$this->objectsThumb;
+			$imgfile = ALBUM_FOLDER_SERVERPATH.internalToFilesystem($this->imagefolder).'/'.$this->objectsThumb;
 		}
 		return $imgfile;
 	}
@@ -228,10 +228,10 @@ class Video extends _Image {
 			}
 		} else {
 			$filename = filesystemToInternal($this->objectsThumb);
-			$mtime = filemtime(ALBUM_FOLDER_SERVERPATH.'/'.internalToFilesystem($this->album->name).'/'.$this->objectsThumb);
+			$mtime = filemtime(ALBUM_FOLDER_SERVERPATH.'/'.internalToFilesystem($this->imagefolder).'/'.$this->objectsThumb);
 		}
-		$args = getImageParameters(array(getOption('thumb_size'), $sw, $sh, $cw, $ch, $cx, $cy, NULL, true, true, true, $wmt, NULL, NULL), $this->album->name);
-		return getImageURI($args, $this->album->name, $filename, $mtime);
+		$args = getImageParameters(array(getOption('thumb_size'), $sw, $sh, $cw, $ch, $cx, $cy, NULL, true, true, true, $wmt, NULL, NULL), $this->imagefolder);
+		return getImageURI($args, $this->imagefolder, $filename, $mtime);
 	}
 
 	/**
@@ -270,19 +270,19 @@ class Video extends _Image {
 				$mtime = NULL;
 			} else {
 				$filename = filesystemToInternal($this->objectsThumb);
-				$mtime = filemtime(ALBUM_FOLDER_SERVERPATH.'/'.internalToFilesystem($this->album->name).'/'.$this->objectsThumb);
+				$mtime = filemtime(ALBUM_FOLDER_SERVERPATH.'/'.internalToFilesystem($this->imagefolder).'/'.$this->objectsThumb);
 			}
-			return getImageURI($args, $this->album->name, $filename, $this->filemtime);
+			return getImageURI($args, $this->imagefolder, $filename, $this->filemtime);
 		} else {
-			$args = getImageParameters(array($size, $width, $height, $cropw, $croph, $cropx, $cropy, NULL, $thumbStandin, NULL, $thumbStandin, $wmt, NULL, $effects), $this->album->name);
+			$args = getImageParameters(array($size, $width, $height, $cropw, $croph, $cropx, $cropy, NULL, $thumbStandin, NULL, $thumbStandin, $wmt, NULL, $effects), $this->imagefolder);
 			$filename = $this->filename;
-			return getImageURI($args, $this->album->name, $filename, $this->filemtime);
+			return getImageURI($args, $this->imagefolder, $filename, $this->filemtime);
 		}
 	}
 
 	/**
 	 * (non-PHPdoc)
-	 * @see zp-core/_Image::getSizedImage()
+	 * @see zp-core/Image::getSizedImage()
 	 */
 	function getSizedImage($size) {
 		$width = $this->getWidth();
@@ -383,7 +383,7 @@ class Video extends _Image {
 	/**
 	 * Processes multi-media file metadata
 	 * (non-PHPdoc)
-	 * @see zp-core/_Image::updateMetaData()
+	 * @see zp-core/Image::updateMetaData()
 	 */
 	function updateMetaData() {
 		global $_zp_exifvars;

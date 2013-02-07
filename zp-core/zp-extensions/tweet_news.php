@@ -254,9 +254,9 @@ class tweet {
 						case 'images':
 							$dt = $obj->getPublishDate();
 							if($dt > date('Y-m-d H:i:s')) {
-								$result = query_single_row('SELECT * FROM '.prefix('plugin_storage').' WHERE `type`="tweet_news" AND `aux`="pending_images" AND `data`='.db_quote($obj->album->name.'/'.$obj->filename));
+								$result = query_single_row('SELECT * FROM '.prefix('plugin_storage').' WHERE `type`="tweet_news" AND `aux`="pending_images" AND `data`='.db_quote($obj->imagefolder.'/'.$obj->filename));
 								if (!$result) {
-									query('INSERT INTO '.prefix('plugin_storage').' (`type`,`aux`,`data`) VALUES ("tweet_news","pending_images",'.db_quote($obj->album->name.'/'.$obj->filename).')');
+									query('INSERT INTO '.prefix('plugin_storage').' (`type`,`aux`,`data`) VALUES ("tweet_news","pending_images",'.db_quote($obj->imagefolder.'/'.$obj->filename).')');
 								}
 							} else {
 								$error = self::tweetObject($obj);
@@ -320,8 +320,7 @@ class tweet {
 			case 'albums':
 			case 'images':
 				if ($type=='images') {
-					$text = sprintf(gettext('New image: [%2$s]%1$s '),$item = $obj->getTitle(),
-																															$obj->album->name);
+					$text = sprintf(gettext('New image: [%2$s]%1$s '),$item = $obj->getTitle(), $obj->imagefolder);
 				} else {
 					$text = sprintf(gettext('New album: %s '),$item = $obj->getTitle());
 				}
@@ -366,7 +365,7 @@ class tweet {
 			if ($result) {
 				foreach ($result as $album) {
 					query('DELETE FROM '.prefix('plugin_storage').' WHERE `id`='.$album['id']);
-					$album = new Album(NULL, $album['folder']);
+					$album = newAlbum($album['folder']);
 					self::tweetObject($album);
 				}
 			}
@@ -375,7 +374,7 @@ class tweet {
 				foreach ($result as $image) {
 					query('DELETE FROM '.prefix('plugin_storage').' WHERE `id`='.$image['id']);
 					$album = query_single_row('SELECT * FROM '.prefix('albums').' WHERE `id`='.$image['albumid']);
-					$album = new Album(NULL, $album['folder']);
+					$album = newAlbum($album['folder']);
 					$image = newImage($album, $image['filename']);
 					self::tweetObject($image);
 				}

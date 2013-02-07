@@ -27,7 +27,7 @@ if (isset($_REQUEST['performcrop'])) {
 class crop_image {
 
 	static function toolbox($albumname, $imagename) {
-		$album = new Album(NULL, $albumname);
+		$album = newAlbum($albumname);
 		if ($album->isMyItem(ALBUM_RIGHTS)) {
 			$image = newimage($album,$imagename);
 			if (isImagePhoto($image)) {
@@ -61,7 +61,7 @@ class crop_image {
 
 $albumname = sanitize_path($_REQUEST['a']);
 $imagename = sanitize_path($_REQUEST['i']);
-$album = new Album(NULL, $albumname);
+$album = newAlbum($albumname);
 if (!$album->isMyItem(ALBUM_RIGHTS)) { // prevent nefarious access to this page.
 	if (!zp_apply_filter('admin_managed_albums_access',false, $return)) {
 		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $return);
@@ -72,7 +72,7 @@ if (!$album->isMyItem(ALBUM_RIGHTS)) { // prevent nefarious access to this page.
 // get what image side is being used for resizing
 $use_side = getOption('image_use_side');
 // get full width and height
-$albumobj = new Album(NULL,$albumname);
+$albumobj = newAlbum($albumname);
 $imageobj = newImage($albumobj,$imagename);
 
 if (isImagePhoto($imageobj)) {
