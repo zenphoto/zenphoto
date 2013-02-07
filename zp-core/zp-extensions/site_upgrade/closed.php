@@ -1,4 +1,11 @@
 <?php
+if (isset($_GET['rss'])) {
+	if (file_exists(SERVERPATH.'/'.DATA_FOLDER.'/rss-closed.xml')) {
+		$xml = file_get_contents(SERVERPATH.'/'.DATA_FOLDER.'/rss-closed.xml');
+		$xml = preg_replace('~<pubDate>(.*)</pubDate>~', '<pubDate>'.date("r",time()).'</pubDate>', $xml);
+		echo $xml;
+	}
+}
 header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 header('Content-Type: text/html; charset=UTF-8');
 ?>
@@ -28,8 +35,8 @@ header('Content-Type: text/html; charset=UTF-8');
 	width: 700px;
 	padding-top: 20px;
 	margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
+	margin-left: auto;
+	margin-right: auto;
 }
 #mid {
 	height: 220px;

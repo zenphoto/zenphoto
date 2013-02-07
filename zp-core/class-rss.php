@@ -1030,48 +1030,50 @@ protected function getRSSCombinewsAlbums() {
 					<docs>http://blogs.law.harvard.edu/tech/rss</docs>
 					<generator>Zenphoto RSS Generator</generator>
 					<?php
-					if(is_array($feeditems)) {
-						foreach($feeditems as $feeditem) {
-							switch($this->feedtype) {
-								case 'gallery':
-									$item = $this->getRSSitemGallery($feeditem);
-									break;
-								case 'news':
-									$item = $this->getRSSitemNews($feeditem);
-									break;
-								case 'comments':
-									$item = $this->getRSSitemComments($feeditem);
-									break;
-							}
-							?>
-							<item>
-								<title><![CDATA[<?php echo $item['title']; ?>]]></title>
-								<link><?php echo html_encode($item['link']); ?></link>
-								<description><![CDATA[<?php echo $item['desc']; ?>]]></description>
-								<?php
+					foreach($feeditems as $feeditem) {
+						switch($this->feedtype) {
+							case 'gallery':
+								$item = $this->getRSSitemGallery($feeditem);
+								break;
+							case 'news':
+								$item = $this->getRSSitemNews($feeditem);
+								break;
+							case 'comments':
+								$item = $this->getRSSitemComments($feeditem);
+								break;
+							default:
+								$item = $feeditem;
+								break;
+						}
+						?>
+						<item>
+							<title><![CDATA[<?php echo $item['title']; ?>]]></title>
+							<link><?php echo html_encode($item['link']); ?></link>
+							<description><![CDATA[<?php echo $item['desc']; ?>]]></description>
+							<?php
 							if(!empty($item['enclosure'])) {
 								echo $item['enclosure']; //prints xml as well
-								}
-								if(!empty($item['category'])) {
-									?>
-									<category><![CDATA[<?php echo $item['category']; ?>]]></category>
-									<?php
-								}
-								if(!empty($item['media_content'])) {
-									echo $item['media_content']; //prints xml as well
-								}
-								if(!empty($item['media_thumbnail'])) {
-									echo $item['media_thumbnail']; //prints xml as well
-								}
+							}
+							if(!empty($item['category'])) {
 								?>
-								<guid><?php echo html_encode($item['link']); ?></guid>
-								<pubDate><?php echo $item['pubdate'];  ?></pubDate>
-							</item>
-					<?php
-							} // foreach
-						}	?>
-					</channel>
-				</rss>
+								<category><![CDATA[<?php echo $item['category']; ?>]]></category>
+								<?php
+							}
+							if(!empty($item['media_content'])) {
+								echo $item['media_content']; //prints xml as well
+							}
+							if(!empty($item['media_thumbnail'])) {
+								echo $item['media_thumbnail']; //prints xml as well
+							}
+							?>
+							<guid><?php echo html_encode($item['link']); ?></guid>
+							<pubDate><?php echo $item['pubdate'];  ?></pubDate>
+						</item>
+						<?php
+					} // foreach
+					?>
+				</channel>
+			</rss>
 			<?php
 			$this->endRSSCache();
 		}
