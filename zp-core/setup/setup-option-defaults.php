@@ -595,8 +595,6 @@ query('UPDATE '.prefix('administrators').' SET `passhash`='.((int) getOption('st
 query('UPDATE '.prefix('administrators').' SET `passupdate`='.db_quote(date('Y-m-d H:i:s')).' WHERE `valid`>=1 AND `passupdate` IS NULL');
 setOptionDefault('image_processor_flooding_protection', 1);
 
-setOptionDefault('image_processor_flooding_protection', 1);
-
 //The following should be done LAST so it catches anything done above
 //set plugin default options by instantiating the options interface
 $plugins = getPluginFiles('*.php');

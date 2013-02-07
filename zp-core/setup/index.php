@@ -251,6 +251,8 @@ if ($updatezp_config) {
 	$str = configMod();
 	$xsrftoken = sha1(CONFIGFILE.$str.session_id());
 }
+
+
 $result = true;
 $environ = false;
 $DBcreated = false;
@@ -511,7 +513,7 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 		require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/check_for_update.php');
 		$v = checkForUpdate();
 		if (!empty($v)) {
-			$autorun = false;
+				$autorun = false;
 		}
 		if (TEST_RELEASE || !empty($v)) {
 			?>
@@ -547,6 +549,7 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 	}
 	checkMark($p, sprintf(gettext('<em>%s</em> security'),DATA_FOLDER), sprintf(gettext('<em>%s</em> security [is compromised]'),DATA_FOLDER),
 							sprintf(gettext('Zenphoto attempts to make sensitive files in the %1$s folder accessable by <em>owner</em> only (permissions = 0600). This attempt has failed. The file permissions are %2$04o which may allow unauthorized access.'),DATA_FOLDER,$permission));
+
 	$err = versionCheck(PHP_MIN_VERSION, PHP_DESIRED_VERSION, PHP_VERSION);
 	$good = checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('PHP Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk.'),PHP_MIN_VERSION, PHP_DESIRED_VERSION), false) && $good;
 	checkmark($session&& session_id(),gettext('PHP <code>Sessions</code>.'),gettext('PHP <code>Sessions</code> [appear to not be working].'),gettext('PHP Sessions are required for Zenphoto administrative functions.'),true);
@@ -2420,7 +2423,7 @@ if (file_exists(CONFIGFILE)) {
 				if (empty($rslt)) {
 					zp_apply_filter('log_setup', true, 'delete', '');
 					?>
-					<p class="messagebox"><?php echo gettext('Setup files deleted.'); ?></p>
+					<p class="messagebox"><?php echo gettext('Setup scripts deleted.'); ?></p>
 					<?php
 				} else {
 					$rslt = implode(', ', $rslt);
@@ -2440,12 +2443,12 @@ if (file_exists(CONFIGFILE)) {
 					<?php
 					if (zpFunctions::hasPrimaryScripts()) {
 						?>
-						<span class="buttons"><a href="?checked&amp;delete_files&amp;xsrfToken=<?php echo $xsrftoken; ?>"><?php echo gettext('Delete setup files'); ?></a></span>
+						<span class="buttons"><a href="?checked&amp;delete_files&amp;xsrfToken=<?php echo $xsrftoken; ?>"><?php echo gettext('Delete setup scripts'); ?></a></span>
 						<br clear="all" />
 						<br clear="all" />
 						<?php
 					} else {
-						echo gettext('This is a clone of another installation. The setup files should be deleted from that installation');
+						echo gettext('This is a clone of another installation. The setup scripts should be deleted from that installation');
 					}
 					?>
 				</div>
