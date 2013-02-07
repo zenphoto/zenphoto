@@ -205,7 +205,7 @@ if (isset($_REQUEST['backup']) && db_connect($_zp_conf_vars)) {
 				if ($writeresult === false) break;
 			}
 			fclose($handle);
-			@chmod($filename, 0600);
+			@chmod($filename, 0660 & CHMOD_VALUE);
 		}
 	} else {
 		$msg = gettext('SHOW TABLES failed!');

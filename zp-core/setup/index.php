@@ -2409,16 +2409,12 @@ if (file_exists(CONFIGFILE)) {
 				chdir($curdir);
 				$rslt = array();
 				foreach ($list as $component) {
-					if ($component != '..' && $component != '.') {
+					if (getSuffix($component) == 'php') {
 						@chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component, 0666);
 						if(!setupDeleteComponent(@unlink(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component),$component)) {
 							$rslt[] = '../setup/'.$component;
 						}
 					}
-				}
-				@chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/', 0766);
-				if (!setupDeleteComponent(@rmdir(SERVERPATH.'/'.ZENFOLDER.'/setup/'),'setup/')) {
-					$rslt[] = '../setup/';
 				}
 
 				if (empty($rslt)) {
