@@ -14,12 +14,10 @@ admin_securityChecks(NULL, $return = currentRelativeURL());
 
 $tab = gettext('overview');
 
-if ($caching = isset($_GET['select'])) {
-	XSRFdefender('cacheImages');
-}
+XSRFdefender('cacheDBImages');
 
 $zenphoto_tabs['overview']['subtabs']=array(gettext('Cache images')=>PLUGIN_FOLDER.'/cacheManager/cacheImages.php?page=overview&amp;tab=images',
-																			gettext('Cache sstored images')=>PLUGIN_FOLDER.'/cacheManager/cacheDBImages.php?page=overview&amp;tab=DB');
+																			gettext('Cache stored images')=>PLUGIN_FOLDER.'/cacheManager/cacheDBImages.php?page=overview&amp;tab=DB&amp;XSRFToken='.getXSRFToken('cacheDBImages'));
 printAdminHeader($tab,gettext('Cache sstored images'));
 echo "\n</head>";
 echo "\n<body>";
@@ -38,7 +36,9 @@ zp_apply_filter('admin_note','cache', '');
 
 ?>
 <p class="notebox">
-<?php echo gettext('This utility scans the database for images references that have been sored there. If the cache file for the image no longer exists, a cacheing image reference will be made for the image.'); ?>
+<?php echo gettext('This utility scans the database for images references that have been sored there.').' ';
+			echo gettext('If an image processor URI is discovered it will be converted to a cache file URI.').' ';
+			echo gettext('If the cache file for the image does not exist, a cacheing image reference will be made for the image.'); ?>
 </p>
 <?php
 
@@ -49,12 +49,39 @@ $tables = array('albums'=>array('desc'),
 ?>
 <form name="size_selections" action="?select" method="post">
 	<?php
-	$found = $fixed = 0;
-	XSRFToken('cacheImages');
+	$refresh = $imageprocessor = $found = $fixed = 0;
+	XSRFToken('cacheDBImages');
 	$watermarks = getWatermarks();
 	foreach ($tables as $table=>$fields) {
 		foreach ($fields as $field) {
-			$sql = 'SELECT * FROM '.prefix($table).' WHERE `'.$field.'` LIKE "%<img %" AND `'.$field.'` LIKE "%/'.CACHEFOLDER.'%"';
+			$sql = 'SELECT * FROM '.prefix($table).' WHERE `'.$field.'` REGEXP "<img.*src\s*=\s*\".*i.php((\\.|[^\"])*)"';
+			$result = query($sql);
+			if ($result) {
+				while ($row = db_fetch_assoc($result)) {
+					$imageprocessor++;
+					preg_match_all('|\<\s*img.*?\ssrc\s*=\s*"(.*i\.php\?([^"]*)).*/\>|', $row[$field], $matches);
+					foreach ($matches[2] as $uri) {
+						$url = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/i.php?'.$uri.'" height="20" width="20" alt="X" />';
+						$text = zpFunctions::updateImageProcessorLink($url);
+						if ($text == $url) {
+							?>
+							<a href="<?php echo $uri; ?>&amp;debug" title="<?php echo gettext('imageprodessor reference'); ?>">
+								<?php echo $url."\n"; ?>
+							</a>
+							<?php
+						}
+						$text = zpFunctions::updateImageProcessorLink($row[$field]);
+						if ($text != $row[$field]) {
+							$sql = 'UPDATE '.prefix($table).' SET `'.$field.'`='.db_quote($text).' WHERE `id`='.$row['id'];
+							query($sql);
+						} else {
+							$refresh++;
+						}
+					}
+				}
+			}
+
+			$sql = 'SELECT * FROM '.prefix($table).' WHERE `'.$field.'` REGEXP "<img.*src\s*=\s*\".*'.CACHEFOLDER.'((\\.|[^\"])*)"';
 			$result = query($sql);
 			if ($result) {
 				while ($row = db_fetch_assoc($result)) {
@@ -141,10 +168,18 @@ $tables = array('albums'=>array('desc'),
 	?>
 	<p>
 	<?php
-	printf(ngettext('%u image references found.','%u images references found.',$found),$found);
+	printf(ngettext('%u image image processor reference found.','%u image processor references found.',$imageprocessor),$imageprocessor);
+	if ($refresh) {
+		echo ' '.gettext('You should use the refresh button to convert these to cached image references');
+	}
 	?>
-	<br /><?php
-	printf(ngettext('%s reference re-cached.','%s references need to be re-cached.',$fixed),$fixed);
+	<br />
+	<?php
+	printf(ngettext('%u cached image reference found.','%u cached image references found.',$found),$found);
+	?>
+	<br />
+	<?php
+	printf(ngettext('%s reference re-cached.','%s references needed to be re-cached.',$fixed),$fixed);
 	?>
 	</p>
 	<p class="buttons">
