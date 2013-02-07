@@ -210,9 +210,6 @@ if (file_exists(CONFIGFILE)) {
 	eval(file_get_contents(CONFIGFILE));
 	if (isset($_zp_conf_vars['db_software'])) {
 		$confDB = $_zp_conf_vars['db_software'];
-		if ($confDB == 'MySQL' || $preferred != 'MySQL') {
-			$confDB = NULL;
-		}
 		if (extension_loaded(strtolower($confDB)) && file_exists(dirname(dirname(__FILE__)).'/functions-db-'.$confDB.'.php')) {
 			$selected_database = $_zp_conf_vars['db_software'];
 		} else {
@@ -251,8 +248,6 @@ if ($updatezp_config) {
 	$str = configMod();
 	$xsrftoken = sha1(CONFIGFILE.$str.session_id());
 }
-
-
 $result = true;
 $environ = false;
 $DBcreated = false;
@@ -513,7 +508,7 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 		require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/check_for_update.php');
 		$v = checkForUpdate();
 		if (!empty($v)) {
-				$autorun = false;
+			$autorun = false;
 		}
 		if (TEST_RELEASE || !empty($v)) {
 			?>
@@ -547,9 +542,8 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 	} else {
 		$p = -1;
 	}
-	checkMark($p, sprintf(gettext('<em>%s</em> security'),DATA_FOLDER), sprintf(gettext('<em>%s</em> security [is compromised]'),DATA_FOLDER),
-							sprintf(gettext('Zenphoto attempts to make sensitive files in the %1$s folder accessable by <em>owner</em> only (permissions = 0600). This attempt has failed. The file permissions are %2$04o which may allow unauthorized access.'),DATA_FOLDER,$permission));
-
+	checkMark($p, gettext("Log security"), gettext("Log security [is compromised]"),
+							sprintf(gettext("Zenphoto attempts to make log files accessable by <em>owner</em> only (permissions = 0600). This attempt has failed. The log file permissions are %04o which may allow unauthorized access."),$permission));
 	$err = versionCheck(PHP_MIN_VERSION, PHP_DESIRED_VERSION, PHP_VERSION);
 	$good = checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('PHP Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk.'),PHP_MIN_VERSION, PHP_DESIRED_VERSION), false) && $good;
 	checkmark($session&& session_id(),gettext('PHP <code>Sessions</code>.'),gettext('PHP <code>Sessions</code> [appear to not be working].'),gettext('PHP Sessions are required for Zenphoto administrative functions.'),true);
@@ -1368,7 +1362,7 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 				$desc .= ' '.gettext('<p class="buttons"><a href="?copyhtaccess" >Make setup create the file</a></p><br style="clear:both" /><br />');
 			}
 		} else {
-			$desc = gettext("Server seems not to be Apache or Apache-compatible, <code>mod_rewrite</code> is not available.");
+			$desc = gettext("Server seems not to be Apache or Apache-compatible, <code>.htaccess</code> not required.");
 		}
 	} else {
 		$i = strpos($htu, 'VERSION');
@@ -1886,7 +1880,6 @@ if (file_exists(CONFIGFILE)) {
 		`rating_status` int(1) DEFAULT 3,
 		`sticky` int(1) DEFAULT 0,
 		`custom_data` text,
-		`truncation` int(1) unsigned default 0,
 		PRIMARY KEY (`id`),
 		UNIQUE (`titlelink`)
 		) $collation;";
@@ -1950,7 +1943,6 @@ if (file_exists(CONFIGFILE)) {
 		`password` varchar(64) DEFAULT NULL,
 		`password_hint` text,
 		`custom_data` text,
-		`truncation` int(1) unsigned default 0,
 		PRIMARY KEY (`id`),
 		UNIQUE (`titlelink`)
 		) $collation;";
@@ -2140,15 +2132,15 @@ if (file_exists(CONFIGFILE)) {
 	$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `thumbH` int(10) UNSIGNED default NULL;";
 
 	//v1.2.4
-	$sql_statements[] = 'ALTER TABLE '.$tbl_news_categories.' DROP INDEX `titlelink`;';
-	$sql_statements[] = 'ALTER TABLE '.$tbl_news_categories.' ADD UNIQUE (`titlelink`);';
+	$sql_statements[] = 'ALTER TABLE '.$tbl_news_categories.' DROP INDEX `title`;';
+	$sql_statements[] = 'ALTER TABLE '.$tbl_news_categories.' ADD UNIQUE (`title`);';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_news.' DROP INDEX `titlelink`;';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_news.' ADD UNIQUE (`titlelink`);';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_pages.' DROP INDEX `titlelink`;';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_pages.' ADD UNIQUE (`titlelink`);';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_comments.' CHANGE `comment` `comment` TEXT;';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_news.' CHANGE `title` `title` TEXT;';
-	$sql_statements[] = 'ALTER TABLE '.$tbl_news_categories.' CHANGE `titlelink` `titlelink` varchar(255);';
+	$sql_statements[] = 'ALTER TABLE '.$tbl_news_categories.' CHANGE `titlelink` `titlelink` TEXT;';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_pages.' CHANGE `title` `title` TEXT;';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_comments.' ADD COLUMN `custom_data` TEXT;';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_news.' ADD COLUMN `expiredate` datetime default NULL';
@@ -2161,6 +2153,8 @@ if (file_exists(CONFIGFILE)) {
 	$sql_statements[] = 'UPDATE '.$tbl_albums.' SET `parentid`=NULL WHERE `parentid`=0';
 	$sql_statements[] = 'UPDATE '.$tbl_images.' SET `albumid`=NULL WHERE `albumid`=0';
 	$sql_statements[] = 'DELETE FROM '.$tbl_pages.' WHERE `titlelink`=""'; // cleanup for bad records
+	$sql_statements[] = 'ALTER TABLE '.$tbl_pages.' DROP INDEX `titlelink`';
+	$sql_statements[] = 'ALTER TABLE '.$tbl_pages.' ADD UNIQUE (`titlelink`)';
 
 	$sql_statements[] = 'ALTER TABLE '.$tbl_albums.' ADD COLUMN `rating` FLOAT  NOT NULL DEFAULT 0';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_albums.' ADD COLUMN `rating_status` int(1) UNSIGNED default 3';
@@ -2288,9 +2282,6 @@ if (file_exists(CONFIGFILE)) {
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' CHANGE `pass` `pass` varchar(64)';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `passhash` int (1)';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `passupdate` datetime';
-	//v1.4.5
-	$sql_statements[] = "ALTER TABLE $tbl_news ADD COLUMN `truncation` int(1) unsigned NOT NULL default '0'";
-	$sql_statements[] = "ALTER TABLE $tbl_pages ADD COLUMN `truncation` int(1) unsigned NOT NULL default '0'";
 
 	// do this last incase there are any field changes of like names!
 	foreach ($_zp_exifvars as $key=>$exifvar) {
@@ -2423,7 +2414,7 @@ if (file_exists(CONFIGFILE)) {
 				if (empty($rslt)) {
 					zp_apply_filter('log_setup', true, 'delete', '');
 					?>
-					<p class="messagebox"><?php echo gettext('Setup scripts deleted.'); ?></p>
+					<p class="messagebox"><?php echo gettext('Setup files deleted.'); ?></p>
 					<?php
 				} else {
 					$rslt = implode(', ', $rslt);
@@ -2443,12 +2434,12 @@ if (file_exists(CONFIGFILE)) {
 					<?php
 					if (zpFunctions::hasPrimaryScripts()) {
 						?>
-						<span class="buttons"><a href="?checked&amp;delete_files&amp;xsrfToken=<?php echo $xsrftoken; ?>"><?php echo gettext('Delete setup scripts'); ?></a></span>
+						<span class="buttons"><a href="?checked&amp;delete_files&amp;xsrfToken=<?php echo $xsrftoken; ?>"><?php echo gettext('Delete setup files'); ?></a></span>
 						<br clear="all" />
 						<br clear="all" />
 						<?php
 					} else {
-						echo gettext('This is a clone of another installation. The setup scripts should be deleted from that installation');
+						echo gettext('This is a clone of another installation. The setup files should be deleted from that installation');
 					}
 					?>
 				</div>

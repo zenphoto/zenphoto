@@ -8,7 +8,7 @@ admin_securityChecks(ALBUM_RIGHTS, $return = currentRelativeURL());
 $albumname = sanitize_path($_REQUEST['a']);
 $imagename = sanitize_path($_REQUEST['i']);
 
-$albumobj = newAlbum($albumname);
+$albumobj = new Album(new Gallery,$albumname);
 if (!$albumobj->isMyItem(ALBUM_RIGHTS)) { // prevent nefarious access to this page.
 	if (!zp_apply_filter('admin_managed_albums_access',false, $return)) {
 		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $return);

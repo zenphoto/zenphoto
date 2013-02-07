@@ -81,7 +81,6 @@ if (!defined('WEBPATH')) die();
 								?>
 							</div>
 							<br clear="all">
-							<?php @call_user_func('printSlideShowLink'); ?>
 							<?php
 							if ((getNumAlbums() != 0) || !$oneImagePage){
 								printPageListWithNav(gettext("« prev"), gettext("next »"), $oneImagePage);

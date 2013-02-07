@@ -190,7 +190,7 @@ function sanitize_string($input, $sanitize_level) {
 				return ksesProcess($input, getAllowedTags('style_tags'));
 			case 3:
 				// Full sanitation.  Strips all code.
-				return strip_tags($input);
+				return ksesProcess($input, array());
 			case 4:
 			default:
 				// for internal use to eliminate security injections

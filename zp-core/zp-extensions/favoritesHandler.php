@@ -104,14 +104,14 @@ class favorites extends AlbumBase {
 	}
 
 	function addImage($img) {
-		$folder = $img->imagefolder;
+		$folder = $img->album->name;
 		$filename = $img->filename;
 		$sql = 'INSERT INTO '.prefix('plugin_storage').' (`type`, `aux`,`data`) VALUES ("favorites",'.db_quote($this->name).','.db_quote(serialize(array('type'=>'images', 'id'=>$folder.'/'.$filename))).')';
 		query($sql);
 	}
 
 	function removeImage($img) {
-		$folder = $img->imagefolder;
+		$folder = $img->album->name;
 		$filename = $img->filename;
 		$sql = 'DELETE FROM '.prefix('plugin_storage').' WHERE `type`="favorites" AND `aux`='.db_quote($this->name).' AND `data`='.db_quote(serialize(array('type'=>'images', 'id'=>$folder.'/'.$filename)));
 		query($sql);
@@ -294,7 +294,7 @@ if (!OFFSET_PATH) {
 					}
 					break;
 				case 'albums':
-					$alb = newAlbum($id);
+					$alb = new Album(NULL, $id);
 					if ($_POST['addToFavorites']) {
 						if ($alb->loaded) {
 							$_myFavorites->addAlbum($alb);
@@ -324,10 +324,10 @@ if (!OFFSET_PATH) {
 			$target = array('type'=>$table);
 			switch ($table) {
 				case 'images':
-					$id = $obj->imagefolder.'/'.$obj->filename;
+					$id = $obj->album->name.'/'.$obj->filename;
 					$images = $_myFavorites->getImages(0);
 					foreach ($images as $image) {
-						if ($image['folder']==$obj->imagefolder && $image['filename']==$obj->filename) {
+						if ($image['folder']==$obj->album->name && $image['filename']==$obj->filename) {
 							$v = 0;
 							$add = $remove;
 							break;

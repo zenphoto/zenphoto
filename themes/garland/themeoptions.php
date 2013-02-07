@@ -19,7 +19,6 @@ class ThemeOptions {
 		setThemeOptionDefault('thumb_crop_width', 85);
 		setThemeOptionDefault('thumb_crop_height', 85);
 		setThemeOptionDefault('thumb_crop', 1);
-		setThemeOptionDefault('garland_customHome', '');
 		setThemeOptionDefault('garland_personality', 'image_page');
 		setThemeOptionDefault('garland_transition', 'slide-hori');
 		setThemeOptionDefault('garland_caption_location', 'image');
@@ -74,18 +73,6 @@ class ThemeOptions {
 						  		gettext('Allow cloud') => array('key' => 'Allow_cloud', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Set to enable tag cloud for album page.')),
 									gettext('Custom menu') => array('key' => 'garland_menu', 'type' => OPTION_TYPE_CUSTOM, 'desc' => gettext('Set this to the <em>menu_manager</em> menu you wish to use.').$note)
 						  	);
-  	if (getOption('zp_plugin_zenpage')) {
-  		global $_zp_zenpage;
-  		$pages = $_zp_zenpage->getPages(false);
-  		$list = array();
-  		foreach ($pages as $page) {
-  			$list[strip_tags($page['title'])] = $page['titlelink'];
-  		}
-  		$options[gettext('Custom Homepage')] = array('key' => 'garland_customHome', 'type' => OPTION_TYPE_SELECTOR,
-															'selections' => $list,
-  														'null_selection'=>gettext('none'),
-															'desc' => gettext('Select the <em>pages</em> titlelink for the home page. Only unpublished pages are offered for selection.'));
-  	}
   	if (getOption('garland_personality')=='image_gallery') {
 			$options[gettext('Image gallery transition')] = array('key' => 'garland_transition', 'type' => OPTION_TYPE_SELECTOR,
 															'selections' => array(gettext('None') => '', gettext('Fade') => 'fade', gettext('Shrink/grow') => 'resize', gettext('Horizontal') => 'slide-hori', gettext('Vertical') => 'slide-vert'),

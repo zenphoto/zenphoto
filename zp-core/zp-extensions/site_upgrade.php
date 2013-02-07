@@ -55,9 +55,7 @@ switch (OFFSET_PATH) {
 		}
 		break;
 	default:
-		if (!$plugin_disable) {
-			zp_register_filter('admin_utilities_buttons', 'site_upgrade_button');
-		}
+		zp_register_filter('admin_utilities_buttons', 'site_upgrade_button');
 		zp_register_filter('installation_information', 'site_upgrade_status');
 
 		function site_upgrade_status() {

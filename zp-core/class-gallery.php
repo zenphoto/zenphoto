@@ -232,7 +232,7 @@ class Gallery {
 	function getAlbum($index) {
 		$this->getAlbums();
 		if ($index >= 0 && $index < $this->getNumAlbums()) {
-			return  newAlbum($this->albums[$index]);
+			return  new Album(NULL, $this->albums[$index]);
 		} else {
 			return false;
 		}
@@ -278,7 +278,7 @@ class Gallery {
 						if (file_exists($themefile)) {
 							$theme_description = array();
 							require($themefile);
-							$themes[$dir8] = $theme_description;
+							$themes[$dir8] = sanitize($theme_description, 1);
 						} else {
 							$themes[$dir8] = array('name'=>gettext('Unknown'), 'author'=>gettext('Unknown'), 'version'=>gettext('Unknown'), 'desc'=>gettext('<strong>Missing theme info file!</strong>'), 'date'=>gettext('Unknown'));
 						}
@@ -353,7 +353,7 @@ class Gallery {
 				$count = 0;
 				$albums = $this->getAlbums(0);
 				foreach ($albums as $analbum) {
-					$album = newAlbum($analbum);
+					$album = new Album(NULL, $analbum);
 					if (!$album->isDynamic()) {
 						$count = $count + self::getImageCount($album);
 					}
@@ -367,7 +367,7 @@ class Gallery {
 		$count = $album->getNumImages();
 		$albums = $album->getAlbums(0);
 		foreach ($albums as $analbum) {
-			$album = newAlbum($analbum);
+			$album = new Album(NULL, $analbum);
 			if (!$album->isDynamic()) {
 				$count = $count + self::getImageCount($album);
 			}
@@ -405,10 +405,7 @@ class Gallery {
 		if (empty($restart)) {
 			setOption('last_garbage_collect', time());
 			/* purge old search cache items */
-			$sql = 'DELETE FROM '.prefix('search_cache');
-			if (!$complete) {
-				$sql .= ' WHERE `date`<'.db_quote(date('Y-m-d H:m:s',time()-SEARCH_CACHE_DURATION*60));
-			}
+			$sql = 'DELETE FROM '.prefix('search_cache').' WHERE `date`<'.db_quote(date('Y-m-d H:m:s',time()-SEARCH_CACHE_DURATION*60));
 			$result = query($sql);
 
 			/* clean the comments table */
@@ -530,7 +527,7 @@ class Gallery {
 					while ($analbum = db_fetch_assoc($albumids)) {
 						if (($mtime=filemtime(ALBUM_FOLDER_SERVERPATH.internalToFilesystem($analbum['folder']))) > $analbum['mtime']) {
 							// refresh
-							$album =  newAlbum($analbum['folder']);
+							$album =  new Album(NULL, $analbum['folder']);
 							$album->set('mtime', $mtime);
 							if ($this->getAlbumUseImagedate()) {
 								$album->setDateTime(NULL);
@@ -602,7 +599,7 @@ class Gallery {
 
 					// Then go into existing albums recursively to clean them... very invasive.
 					foreach ($this->getAlbums(0) as $folder) {
-						$album =  newAlbum($folder);
+						$album =  new Album(NULL, $folder);
 						if (!$album->isDynamic()) {
 							if(is_null($album->getDateTime())) {  // see if we can get one from an image
 								$images = $album->getImages(0,0,'date','DESC');
@@ -640,7 +637,7 @@ class Gallery {
 					if (file_exists($imageName)) {
 						$mtime = filemtime($imageName);
 						if ($image['mtime'] != $mtime) { // file has changed since we last saw it
-							$imageobj = newImage( newAlbum($row['folder']), $image['filename']);
+							$imageobj = newImage( new Album(NULL, $row['folder']), $image['filename']);
 							$imageobj->set('mtime', $mtime);
 							$imageobj->updateMetaData(); // prime the EXIF/IPTC fields
 							$imageobj->updateDimensions(); // update the width/height & account for rotation
@@ -764,7 +761,7 @@ class Gallery {
 		}
 		db_free_result($result);
 		foreach ($albums as $folder) {	// these albums are not in the database
-			$albumobj =  newAlbum($folder);
+			$albumobj =  new Album(NULL,$folder);
 			if ($albumobj->exists) {	// fail to instantiate?
 				$results[$folder] = $albumobj->getData();
 			}
@@ -775,7 +772,7 @@ class Gallery {
 		$albums_ordered = array();
 		foreach($results as $row) { // check for visible
 			$folder = $row['folder'];
-			$album =  newAlbum($folder);
+			$album =  new Album(NULL, $folder);
 			switch (checkPublishDates($row)) {
 				case 1:
 					$album->setShow(0);

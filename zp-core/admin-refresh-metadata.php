@@ -75,7 +75,7 @@ if (db_connect($_zp_conf_vars)) {
 			$folder = sanitize_path($_GET['album']);
 		}
 		if (!empty($folder)) {
-			$album = newAlbum($folder);
+			$album = new Album(NULL, $folder);
 			if (!$album->isMyItem(ALBUM_RIGHTS)) {
 				if (!zp_apply_filter('admin_managed_albums_access',false, $return)) {
 					header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
@@ -95,7 +95,7 @@ if (db_connect($_zp_conf_vars)) {
 	} else {
 		if ($type !== 'prune&amp;') {
 			if (!empty($folder)) {
-				$album = newAlbum($folder);
+				$album = new Album(NULL, $folder);
 				if (!$album->isMyItem(ALBUM_RIGHTS)) {
 					if (!zp_apply_filter('admin_managed_albums_access',false, $return)) {
 						header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');

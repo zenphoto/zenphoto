@@ -47,16 +47,74 @@ function processTags($object) {
 /* page functions
 ***************************/
 
-
 /**
- * Updates or adds a page and returns the object of that page
- *
- * @param array $reports report display
- * @param bool $newpage true if it is a new page
+ * Updates a new page to that database and returns the object of that page
  *
  * @return object
  */
-function updatePage(&$reports, $newpage=false) {
+function addPage(&$reports) {
+	$date = date('Y-m-d_H-i-s');
+	$title = process_language_string_save("title",2);
+	$titlelink = seoFriendly(get_language_string($title));
+	if (empty($titlelink)) $titlelink = seoFriendly($date);
+
+	$author = sanitize($_POST['author']);
+	$content = zpFunctions::updateImageProcessorLink(process_language_string_save("content",0)); // TinyMCE already clears unallowed code
+	$extracontent = process_language_string_save("extracontent",0); // TinyMCE already clears unallowed code
+	$show = getcheckboxState('show');
+	$date = sanitize($_POST['date']);
+	$expiredate = getExpiryDatePost();
+	$commentson = getcheckboxState('commentson');
+	$permalink = getcheckboxState('permalink');
+	$custom = process_language_string_save("custom_data",1);
+	$codeblock = processCodeblockSave(0);
+	$locked = getcheckboxState('locked');
+
+	$sql = 'SELECT `id` FROM '.prefix('pages').' WHERE `titlelink`='.db_quote($titlelink);
+	$rslt = query_single_row($sql,false);
+	if ($rslt) {
+		$titlelink .= '_'.seoFriendly($date); // force unique so that data may be saved.
+	}
+	$page = new ZenpagePage($titlelink, true);
+	$notice = processCredentials($page);
+	$page->setTitle($title);
+	$page->setContent($content);
+	$page->setExtracontent($extracontent);
+	$page->setCustomData(zp_apply_filter('save_page_custom_data', $custom,$page));
+	$page->setShow($show);
+	$page->setDateTime($date);
+	$page->setCommentsAllowed($commentson);
+	$page->setCodeblock($codeblock);
+	$page->setAuthor($author);
+	$page->setPermalink($permalink);
+	$page->setLocked($locked);
+	$page->setExpiredate($expiredate);
+	processTags($page);
+	$msg = zp_apply_filter('new_page', '', $page);
+	$page->save();
+	if(empty($title)) {
+		$reports[] =  "<p class='errorbox fade-message'>".sprintf(gettext("Page <em>%s</em> added but you need to give it a <strong>title</strong> before publishing!"),get_language_string($titlelink)).'</p>';
+	} else if ($notice == '?mismatch=user') {
+		$reports[] =  "<p class='errorbox fade-message'>".gettext('You must supply a password for the Protected Page user').'</p>';
+	} else if ($notice) {
+		$reports[] =  "<p class='errorbox fade-message'>".gettext('Your passwords were empty or did not match').'</p>';
+	} else {
+		$reports[] =  "<p class='messagebox fade-message'>".sprintf(gettext("Page <em>%s</em> added"),$titlelink).'</p>';
+	}
+	if ($msg) {
+		$reports[] =  $msg;
+	}
+	return $page;
+}
+
+
+
+/**
+ * Updates a page and returns the object of that page
+ *
+ * @return object
+ */
+function updatePage(&$reports) {
 	$title = process_language_string_save("title",2);
 	$author = sanitize($_POST['author']);
 	$content = zpFunctions::updateImageProcessorLink(process_language_string_save("content",0)); // TinyMCE already clears unallowed code
@@ -71,17 +129,8 @@ function updatePage(&$reports, $newpage=false) {
 	$permalink = getcheckboxState('permalink');
 	$codeblock = processCodeblockSave(0);
 	$locked = getcheckboxState('locked');
-	if ($newpage) {
-		$date = date('Y-m-d_H-i-s');
-		$titlelink = seoFriendly(get_language_string($title));
-		if (empty($titlelink)) {
-			$titlelink = seoFriendly($date);
-		}
-		$oldtitlelink = $titlelink;
-	} else {
-		$titlelink = $oldtitlelink = sanitize($_POST['titlelink-old']);
-		$date = sanitize($_POST['date']);
-	}
+	$titlelink = $oldtitlelink = sanitize($_POST['titlelink-old']);
+
 	if (getcheckboxState('edittitlelink')) {
 		$titlelink = sanitize($_POST['titlelink'],3);
 		if (empty($titlelink)) {
@@ -132,32 +181,20 @@ function updatePage(&$reports, $newpage=false) {
 		$page->set('used_ips', 0);
 	}
 	processTags($page);
-	if ($newpage) {
-		$msg = zp_apply_filter('new_page', '', $page);
-		if(empty($title)) {
-			$reports[] =  "<p class='errorbox fade-message'>".sprintf(gettext("Page <em>%s</em> added but you need to give it a <strong>title</strong> before publishing!"),get_language_string($titlelink)).'</p>';
-		} else if ($notice == '?mismatch=user') {
-			$reports[] =  "<p class='errorbox fade-message'>".gettext('You must supply a password for the Protected Page user').'</p>';
-		} else if ($notice) {
-			$reports[] =  "<p class='errorbox fade-message'>".gettext('Your passwords were empty or did not match').'</p>';
-		} else {
-			$reports[] =  "<p class='messagebox fade-message'>".sprintf(gettext("Page <em>%s</em> added"),$titlelink).'</p>';
-		}
-	} else {
-		$msg = zp_apply_filter('update_page', '', $page, $oldtitlelink);
-		if (!$rslt) {
-			$reports[] = "<p class='errorbox fade-message'>".sprintf(gettext("A page with the title/titlelink <em>%s</em> already exists!"),$titlelink).'</p>';
-		} else 	if(empty($title)) {
-			$reports[] =  "<p class='errorbox fade-message'>".sprintf(gettext("Page <em>%s</em> updated but you need to give it a <strong>title</strong> before publishing!"),get_language_string($titlelink)).'</p>';
-		} else if ($notice == '?mismatch=user') {
-			$reports[] =  "<p class='errorbox fade-message'>".gettext('You must supply a password for the Protected Page user').'</p>';
-		} else if ($notice) {
-			echo "<p class='errorbox fade-message'>".gettext('Your passwords were empty or did not match').'</p>';
-		} else {
-			$reports[] =  "<p class='messagebox fade-message'>".sprintf(gettext("Page <em>%s</em> updated"),$titlelink).'</p>';
-		}
-	}
+	$msg = zp_apply_filter('update_page', '', $page, $oldtitlelink);
 	$page->save();
+
+	if (!$rslt) {
+		$reports[] = "<p class='errorbox fade-message'>".sprintf(gettext("A page with the title/titlelink <em>%s</em> already exists!"),$titlelink).'</p>';
+	} else 	if(empty($title)) {
+		$reports[] =  "<p class='errorbox fade-message'>".sprintf(gettext("Page <em>%s</em> updated but you need to give it a <strong>title</strong> before publishing!"),get_language_string($titlelink)).'</p>';
+	} else if ($notice == '?mismatch=user') {
+		$reports[] =  "<p class='errorbox fade-message'>".gettext('You must supply a password for the Protected Page user').'</p>';
+	} else if ($notice) {
+		echo "<p class='errorbox fade-message'>".gettext('Your passwords were empty or did not match').'</p>';
+	} else {
+		$reports[] =  "<p class='messagebox fade-message'>".sprintf(gettext("Page <em>%s</em> updated"),$titlelink).'</p>';
+	}
 	if ($msg) {
 		$reports[] =  $msg;
 	}
@@ -301,14 +338,76 @@ function printPagesListTable($page, $flag) {
 ***************************/
 
 /**
- * Updates or adds a news article and returns the object of that article
- *
- * @param array $reports display
- * @param bool $newarticle true if a new article
+ * Adds a new news article to the database from $_POST data and returns the object of that article
  *
  * @return object
  */
-function updateArticle(&$reports, $newarticle=false) {
+function addArticle(&$reports) {
+	$date = date('Y-m-d_H-i-s');
+	$title = process_language_string_save("title",2);
+	$titlelink = seoFriendly(get_language_string($title));
+	if (empty($titlelink)) $titlelink = seoFriendly($date);
+
+	$author = sanitize($_POST['author']);
+	$content = zpFunctions::updateImageProcessorLink(process_language_string_save("content",0)); // TinyMCE already clears unallowed code
+	$extracontent = process_language_string_save("extracontent",0); // TinyMCE already clears unallowed code
+	$custom = process_language_string_save("custom_data",1);
+	$show = getcheckboxState('show');
+	$date = sanitize($_POST['date']);
+	$expiredate = getExpiryDatePost();
+	$permalink = getcheckboxState('permalink');
+	$commentson = getcheckboxState('commentson');
+	$codeblock = processCodeblockSave(0);
+	$locked = getcheckboxState('locked');
+
+	$rslt = query_single_row('SELECT `id` FROM '.prefix('news').' WHERE `titlelink`='.db_quote($titlelink),false);
+	if ($rslt) {
+		$titlelink .= '_'.seoFriendly($date); // force unique so that data may be saved.
+	}
+	// create new article
+	$article = new ZenpageNews($titlelink, true);
+	$article->setTitle($title);
+	$article->setContent($content);
+	$article->setExtracontent($extracontent);
+	$article->setCustomData(zp_apply_filter('save_article_custom_data',$custom,$article));
+	$article->setShow($show);
+	$article->setDateTime($date);
+	$article->setCommentsAllowed($commentson);
+	$article->setCodeblock($codeblock);
+	$article->setAuthor($author);
+	$article->setPermalink($permalink);
+	$article->setLocked($locked);
+	$article->setExpiredate($expiredate);
+	$article->setSticky(sanitize_numeric($_POST['sticky']));
+	processTags($article);
+	$categories = array();
+	$result2 = query_full_array("SELECT * FROM ".prefix('news_categories')." ORDER BY titlelink");
+	foreach ($result2 as $cat) {
+		if (isset($_POST["cat".$cat['id']])) {
+			$categories[] = $cat['titlelink'];
+		}
+	}
+	$article->setCategories($categories);
+	$msg = zp_apply_filter('new_article', '', $article);
+	$article->save();
+	if(empty($title)) {
+		$reports[] =  "<p class='errorbox fade-message'>".sprintf(gettext("Article <em>%s</em> added but you need to give it a <strong>title</strong> before publishing!"),get_language_string($titlelink)).'</p>';
+	} else {
+		$reports[] =  "<p class='messagebox fade-message'>".sprintf(gettext("Article <em>%s</em> added"),$titlelink).'</p>';
+	}
+	if ($msg) {
+		$reports[] =  $msg;
+	}
+	return $article;
+}
+
+
+/**
+ * Updates a news article and returns the object of that article
+ *
+ * @return object
+ */
+function updateArticle(&$reports) {
 	$date = date('Y-m-d_H-i-s');
 	$title = process_language_string_save("title",2);
 	$author = sanitize($_POST['author']);
@@ -324,17 +423,7 @@ function updateArticle(&$reports, $newarticle=false) {
 	$commentson = getcheckboxState('commentson');
 	$codeblock = processCodeblockSave(0);
 	$locked = getcheckboxState('locked');
-	if ($newarticle) {
-		$titlelink = seoFriendly(get_language_string($title));
-		if (empty($titlelink)) {
-			$titlelink = seoFriendly($date);
-		}
-		$oldtitlelink = $titlelink;
-		$id = 0;
-	} else {
-		$titlelink = $oldtitlelink = sanitize($_POST['titlelink-old'],3);
-		$id = sanitize($_POST['id']);
-	}
+	$titlelink = $oldtitlelink = sanitize($_POST['titlelink-old'],3);
 
 	if (getcheckboxState('edittitlelink')) {
 		$titlelink = sanitize($_POST['titlelink'],3);
@@ -353,6 +442,7 @@ function updateArticle(&$reports, $newarticle=false) {
 		}
 	}
 
+	$id = sanitize($_POST['id']);
 	$rslt = true;
 	if ($titlelink != $oldtitlelink) { // title link change must be reflected in DB before any other updates
 		$rslt = query('UPDATE '.prefix('news').' SET `titlelink`='.db_quote($titlelink).' WHERE `id`='.$id,false);
@@ -385,7 +475,6 @@ function updateArticle(&$reports, $newarticle=false) {
 		$article->set('total_votes', 0);
 		$article->set('used_ips', 0);
 	}
-	$article->setTruncation(getcheckboxState('truncation'));
 	processTags($article);
 	$categories = array();
 	$result2 = query_full_array("SELECT * FROM ".prefix('news_categories')." ORDER BY titlelink");
@@ -395,25 +484,16 @@ function updateArticle(&$reports, $newarticle=false) {
 		}
 	}
 	$article->setCategories($categories);
-	if ($newarticle) {
-		$msg = zp_apply_filter('new_article', '', $article);
-		if(empty($title)) {
-			$reports[] =  "<p class='errorbox fade-message'>".sprintf(gettext("Article <em>%s</em> added but you need to give it a <strong>title</strong> before publishing!"),get_language_string($titlelink)).'</p>';
-		} else {
-			$reports[] =  "<p class='messagebox fade-message'>".sprintf(gettext("Article <em>%s</em> added"),$titlelink).'</p>';
-		}
-	} else {
-		$msg = zp_apply_filter('update_article', '', $article, $oldtitlelink);
-		if (!$rslt) {
-			$reports[] =  "<p class='errorbox fade-message'>".sprintf(gettext("An article with the title/titlelink <em>%s</em> already exists!"),$titlelink).'</p>';
-		} else if(empty($title)) {
-			$reports[] =  "<p class='errorbox fade-message'>".sprintf(gettext("Article <em>%s</em> updated but you need to give it a <strong>title</strong> before publishing!"),get_language_string($titlelink)).'</p>';
-		} else {
-			$reports[] =  "<p class='messagebox fade-message'>".sprintf(gettext("Article <em>%s</em> updated"),$titlelink).'</p>';
-		}
-	}
+	$msg = zp_apply_filter('update_article', '', $article, $oldtitlelink);
 	$article->save();
 
+	if (!$rslt) {
+		$reports[] =  "<p class='errorbox fade-message'>".sprintf(gettext("An article with the title/titlelink <em>%s</em> already exists!"),$titlelink).'</p>';
+	} else if(empty($title)) {
+		$reports[] =  "<p class='errorbox fade-message'>".sprintf(gettext("Article <em>%s</em> updated but you need to give it a <strong>title</strong> before publishing!"),get_language_string($titlelink)).'</p>';
+	} else {
+		$reports[] =  "<p class='messagebox fade-message'>".sprintf(gettext("Article <em>%s</em> updated"),$titlelink).'</p>';
+	}
 	if ($msg) {
 		$reports[] =  $msg;
 	}
@@ -814,33 +894,60 @@ function printArticlesPerPageDropdown() {
 ***************************/
 
 /**
- * Updates or adds a category
- *
- * @param array $reports the results display
- * @param bool $newcategory true if a new article
+ * Adds a category to the database
  *
  */
-function updateCategory(&$reports, $newcategory=false) {
+function addCategory(&$reports) {
+	$date = date('Y-m-d_H-i-s');
+	$title = process_language_string_save("title",2); // so that no \ are shown in the 'Category x added' message
+	$titlelink = seoFriendly(get_language_string($title));
+	$desc = process_language_string_save("desc",2);
+	$custom = process_language_string_save("custom_data",2);
+	if (empty($titlelink)) $titlelink = seoFriendly($date);
+
+	$sql = 'SELECT `id` FROM '.prefix('news_categories').' WHERE `titlelink`='.db_quote($titlelink);
+	$rslt = query_single_row($sql,false);
+	if ($rslt) {
+		$titlelink .= '_'.seoFriendly($date); // force unique so that data may be saved.
+	}
+	// create new category
+	$show = getcheckboxState('show');
+	$cat = new ZenpageCategory($titlelink, true);
+	$notice = processCredentials($cat);
+	$cat->setPermalink(getcheckboxState('permalink'));
+	$cat->set('title',$title);
+	$cat->setDesc($desc);
+	$cat->setCustomData(zp_apply_filter('save_category_custom_data', $custom,$cat));
+	$cat->setShow($show);
+	$msg = zp_apply_filter('new_category','', $cat);
+	$cat->save();
+	if(empty($title)) {
+		$reports[] =  "<p class='errorbox fade-message'>".sprintf(gettext("Category <em>%s</em> added but you need to give it a <strong>title</strong> before publishing!"),$titlelink).'</p>';
+	} else if ($notice == '?mismatch=user') {
+		$reports[] =  "<p class='errorbox fade-message'>".gettext('You must supply a password for the Protected Category user').'</p>';
+	} else if ($notice) {
+		$reports[] =  "<p class='errorbox fade-message'>".gettext('Your passwords were empty or did not match').'</p>';
+	} else {
+		$reports[] =  "<p class='messagebox fade-message'>".sprintf(gettext("Category <em>%s</em> added"),$titlelink).'</p>';
+	}
+	if ($msg) {
+		$reports[] =  $msg;
+	}
+}
+
+
+/**
+ * Updates a category
+ *
+ */
+function updateCategory(&$reports) {
 	$date = date('Y-m-d_H-i-s');
 	$id = sanitize_numeric($_POST['id']);
 	$permalink = getcheckboxState('permalink');
 	$title = process_language_string_save("title",2);
 	$desc = process_language_string_save("desc",0);
 	$custom = process_language_string_save("custom_data",1);
-
-	if($newcategory) {
-		$titlelink = seoFriendly(get_language_string($title));
-		if (empty($titlelink)) $titlelink = seoFriendly($date);
-		$sql = 'SELECT `id` FROM '.prefix('news_categories').' WHERE `titlelink`='.db_quote($titlelink);
-		$rslt = query_single_row($sql,false);
-		if ($rslt) {
-			$titlelink .= '_'.seoFriendly($date); // force unique so that data may be saved.
-		}
-		$oldtitlelink = $titlelink;
-	} else {
-		$titlelink = $oldtitlelink = sanitize($_POST['titlelink-old'],3);
-	}
-
+	$titlelink = $oldtitlelink = sanitize($_POST['titlelink-old'],3);
 	if (getcheckboxState('edittitlelink')) {
 		$titlelink = sanitize($_POST['titlelink'],3);
 		if (empty($titlelink)) {
@@ -863,6 +970,8 @@ function updateCategory(&$reports, $newcategory=false) {
 		if (!$titleok) {
 			$titlelink = $oldtitlelink; // force old link so data gets saved
 		}
+	} else {
+		$titlelink = $oldtitlelink;
 	}
 	//update category
 	$show = getcheckboxState('show');
@@ -881,35 +990,21 @@ function updateCategory(&$reports, $newcategory=false) {
 		$cat->set('total_votes', 0);
 		$cat->set('used_ips', 0);
 	}
-
-	if ($newcategory) {
-		$msg = zp_apply_filter('new_category','', $cat);
-		if(empty($title)) {
-			$reports[] =  "<p class='errorbox fade-message'>".sprintf(gettext("Category <em>%s</em> added but you need to give it a <strong>title</strong> before publishing!"),$titlelink).'</p>';
+	$msg = zp_apply_filter('update_category', '', $cat, $oldtitlelink);
+	$cat->save();
+	if($titleok) {
+		if(empty($titlelink) OR empty($title)) {
+			$reports[] =  "<p class='errorbox fade-message'>".gettext("You forgot to give your category a <strong>title or titlelink</strong>!")."</p>";
 		} else if ($notice == '?mismatch=user') {
 			$reports[] =  "<p class='errorbox fade-message'>".gettext('You must supply a password for the Protected Category user').'</p>';
 		} else if ($notice) {
 			$reports[] =  "<p class='errorbox fade-message'>".gettext('Your passwords were empty or did not match').'</p>';
 		} else {
-			$reports[] =  "<p class='messagebox fade-message'>".sprintf(gettext("Category <em>%s</em> added"),$titlelink).'</p>';
+			$reports[] =  "<p class='messagebox fade-message'>".gettext("Category updated!")."</p>";
 		}
 	} else {
-		$msg = zp_apply_filter('update_category', '', $cat, $oldtitlelink);
-		if($titleok) {
-			if(empty($titlelink) OR empty($title)) {
-				$reports[] =  "<p class='errorbox fade-message'>".gettext("You forgot to give your category a <strong>title or titlelink</strong>!")."</p>";
-			} else if ($notice == '?mismatch=user') {
-				$reports[] =  "<p class='errorbox fade-message'>".gettext('You must supply a password for the Protected Category user').'</p>';
-			} else if ($notice) {
-				$reports[] =  "<p class='errorbox fade-message'>".gettext('Your passwords were empty or did not match').'</p>';
-			} else {
-				$reports[] =  "<p class='messagebox fade-message'>".gettext("Category updated!")."</p>";
-			}
-		} else {
-			$reports[] =  "<p class='errorbox fade-message'>".sprintf(gettext("A category with the title/titlelink <em>%s</em> already exists!"),html_encode($cat->getTitle()))."</p>";
-		}
+		$reports[] =  "<p class='errorbox fade-message'>".sprintf(gettext("A category with the title/titlelink <em>%s</em> already exists!"),html_encode($cat->getTitle()))."</p>";
 	}
-	$cat->save();
 	if ($msg) {
 		$reports[] =  $msg;
 	}

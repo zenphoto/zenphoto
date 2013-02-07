@@ -25,7 +25,7 @@ function getImageAlbumAlbumList($obj, &$albumlist) {
 	$hint = $show = false;
 	$locallist = $obj->getAlbums();
 	foreach ($locallist as $folder) {
-		$album = newAlbum($folder);
+		$album = new Album(NULL, $folder);
 		If (!$album->isDynamic() && $album->checkAccess($hint, $show))  {
 			$albumlist[] = $album->getID();
 			getImageAlbumAlbumList($album, $albumlist);
@@ -54,7 +54,7 @@ function getAlbumStatistic($number=5, $option, $albumfolder='') {
 	global $_zp_gallery;
 	$albumlist = array();
 	if ($albumfolder) {
-		$obj = newAlbum($albumfolder);
+		$obj = new Album(NULL, $albumfolder);
 		$albumlist[] = $obj->getID();
 	} else {
 		$obj = $_zp_gallery;
@@ -177,7 +177,7 @@ function printAlbumStatisticItem($album, $option, $showtitle=false, $showdate=fa
 			$crop = (int) $crop && true;
 		}
 	}
-	$tempalbum = newAlbum($album['folder']);
+	$tempalbum = new Album(NULL, $album['folder']);
 	if($firstimglink && $tempalbum->getNumImages() != 0) {
 		$firstimage = $tempalbum->getImages(1); // need only the first so don't get all
 		$firstimage = $firstimage[0];
@@ -368,7 +368,7 @@ function getImageStatistic($number, $option, $albumfolder='',$collection=false, 
 	global $_zp_gallery;
 	$albumlist = array();
 	if ($albumfolder) {
-		$obj = newAlbum($albumfolder);
+		$obj = new Album(NULL, $albumfolder);
 		$albumlist[] = $obj->getID();
 	} else {
 		$obj = $_zp_gallery;

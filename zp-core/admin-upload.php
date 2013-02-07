@@ -50,7 +50,7 @@ printLogoAndLinks();
 	?>
 		<div id="content">
 			<?php
-			if (!empty($zenphoto_tabs['upload']['subtabs'])) {
+			if (zp_loggedin(FILES_RIGHTS)) {
 				printSubtabs();
 			}
 			$albumlist = array();
@@ -237,7 +237,7 @@ if ($rootrights || !empty($albumlist)) {
 			if (empty($passedalbum)) {
 				$modified_rights = MANAGED_OBJECT_RIGHTS_EDIT;
 			} else {
-				$rightsalbum = $rightsalbum = newAlbum($passedalbum);
+				$rightsalbum = $rightsalbum = new Album(NULL, $passedalbum);
 				$modified_rights = $rightsalbum->albumSubRights();
 			}
 			if ($modified_rights & MANAGED_OBJECT_RIGHTS_EDIT) {	//	he has edit rights, allow new album creation

@@ -46,7 +46,6 @@ if (isset($_GET['action'])) {
 		/*** General options ***/
 		if (isset($_POST['savegeneraloptions'])) {
 
-			$returntab = "&tab=general";
 			$tags = strtolower(sanitize($_POST['allowed_tags'],0));
 			$test = "(".$tags.")";
 			$a = parseAllowedTags($test);
@@ -90,22 +89,7 @@ if (isset($_GET['action'])) {
 			setOption('time_offset', $offset);
 			setOption('charset', sanitize($_POST['charset']),3);
 			setOption('site_email', sanitize($_POST['site_email']),3);
-			$p = sanitize($_POST['zenphoto_cookie_path']);
-			if (empty($p)) {
-				zp_clearCookie('zenphoto_cookie_path');
-			} else {
-				$p = '/'.trim($p,'/').'/';
-				if($p == '//') {
-					$p = '/';
-				}
-				//	save a cookie to see if change works
-				$returntab .= '&cookiepath';
-				zp_setCookie('zenphoto_cookie_path', $p, NULL, $p);
-			}
-			setOption('zenphoto_cookie_path', $p);
-
 			setOption('site_email_name', process_language_string_save('site_email_name',3));
-			setOption('comments_per_page', sanitize_numeric($_POST['comments_per_page']));
 			setOption('users_per_page', sanitize_numeric($_POST['users_per_page']));
 			setOption('plugins_per_page', sanitize_numeric($_POST['plugins_per_page']));
 			if (isset($_POST['articles_per_page'])) {
@@ -118,6 +102,7 @@ if (isset($_GET['action'])) {
 			setOption('UTF8_image_URI', (int) isset($_POST['UTF8_image_URI']));
 			$msg = zp_apply_filter('save_admin_general_data', '');
 
+			$returntab = "&tab=general";
 		}
 
 		/*** Gallery options ***/
@@ -310,7 +295,7 @@ if (isset($_GET['action'])) {
 				$themeswitch = urldecode(sanitize_path($_POST['old_themealbum'])) != '';
 			} else {
 				$alb = urldecode(sanitize_path($_POST['themealbum']));
-				$themealbum = $table = newAlbum($alb);
+				$themealbum = $table = new Album(NULL, $alb);
 				if ($themealbum->exists) {
 					$table = $themealbum;
 					$returntab .= '&themealbum='.pathurlencode($alb).'&tab=theme';
@@ -514,15 +499,6 @@ if (isset($_GET['mismatch'])) {
 			break;
 	}
 	echo '</div>';
-}
-
-if (isset($_GET['cookiepath']) && @$_COOKIE['zenphoto_cookie_path'] != getOption('zenphoto_cookie_path')) {
-	setOption('zenphoto_cookie_path', NULL);
-	?>
-	<div class="errorbox">
-		<h2><?php echo gettext('The path you selected resulted in cookies not being retrievable. It has been reset.'); ?></h2>
-	</div>
-	<?php
 }
 printSubtabs();
 
@@ -867,17 +843,6 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 				</tr>
 				<tr>
 					<td width="175">
-						<?php echo gettext("Cookie path:"); ?>
-					</td>
-					<td width="350">
-						<input type="text" size="48" id="zenphoto_cookie_path" name="zenphoto_cookie_path"  value="<?php echo getOption('zenphoto_cookie_path'); ?>" />
-					</td>
-					<td>
-						<?php printf(gettext('The <em>path</em> Zenphoto will use when storing cookies. (Leave empty to default to <em>%s</em>)'),WEBPATH); ?>
-					</td>
-				</tr>
-				<tr>
-					<td width="175">
 						<?php echo gettext("Name:"); ?>
 						<br />
 						<?php echo gettext("Email:"); ?>
@@ -890,8 +855,6 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 				</tr>
 				<tr>
 					<td width="175">
-						<?php echo gettext("Comments per page:"); ?>
-						<br />
 						<?php echo gettext("Users per page:"); ?>
 						<br />
 						<?php echo gettext("Plugins per page:");
@@ -903,8 +866,6 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 						?>
 					</td>
 					<td width="350">
-						<input type="text" size="5" id="comments_per_page" name="comments_per_page"  value="<?php echo getOption('comments_per_page'); ?>" />
-						<br />
 						<input type="text" size="5" id="users_per_page" name="users_per_page"  value="<?php echo getOption('users_per_page'); ?>" />
 						<br />
 						<input type="text" size="5" id="plugins_per_page" name="plugins_per_page"  value="<?php echo getOption('plugins_per_page'); ?>" />
@@ -2463,7 +2424,7 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 	}
 	$albums = $_zp_gallery->getAlbums(0);
 	foreach ($albums as $alb) {
-		$album = newAlbum($alb);
+		$album = new Album(NULL, $alb);
 		if ($album->isMyItem(THEMES_RIGHTS)) {
 			$theme = $album->getAlbumTheme();
 			if (!empty($theme)) {
@@ -2479,7 +2440,7 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 	$themename = $_zp_gallery->getCurrentTheme();
 	if (!empty($_REQUEST['themealbum'])) {
 		$alb = urldecode(sanitize_path($_REQUEST['themealbum']));
-		$album = newAlbum($alb);
+		$album = new Album(NULL, $alb);
 		$albumtitle = $album->getTitle();
 		$themename = $album->getAlbumTheme();
 	}
@@ -2492,7 +2453,7 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 			$album = NULL;
 		} else {
 			$alb = sanitize_path($alb);
-			$album = newAlbum($alb);
+			$album = new Album(NULL, $alb);
 			$albumtitle = $album->getTitle();
 			$themename = $album->getAlbumTheme();
 		}

@@ -422,7 +422,9 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 				}
 				// ]]> -->
 			</script>
-			<?php echo $text; ?>
+			<a id="<?php echo $id_toggle; ?>" href="javascript:toggleMap('<?php echo $id_data; ?>');" title="<?php  echo gettext('Display or hide the Google Map.'); ?>">
+				<?php echo $text; ?>
+			</a>
 			<div id="<?php echo $id_data; ?>">
 				<?php
 				echo $MAP_OBJECT->getMapJS();

@@ -21,48 +21,35 @@ define('WATERMARK_FULL', 4);
  * @return object
  */
 function newImage($album, $filename, $quiet=false) {
-	global $_zp_extra_filetypes, $_zp_missing_image;
+	global $_zp_extra_filetypes;
 	if (is_array($filename)) {
-		$xalbum = newAlbum($filename['folder'], true, true);
+		$xalbum = new Album(NULL,$filename['folder']);
 		$filename = $filename['filename'];
 	} else {
-		if ($album->isDynamic()) {
-			$xalbum = NULL;
-			foreach ($album->getImages() as $image) {
-				if ($filename == $image['filename']) {
-					$xalbum = newAlbum($image['folder']);
-					break;
-				}
-			}
-		} else {
-			$xalbum = $album;
-		}
+		$xalbum = $album;
 	}
 	if (!is_object($xalbum) || strtoLower(get_class($xalbum)) != 'album' || !$xalbum->exists) {
 		if (!$quiet) {
 			$msg = sprintf(gettext('Bad album object parameter to newImage(%s)'),$filename);
 			trigger_error($msg, E_USER_NOTICE);
 		}
-		return $_zp_missing_image;
+		return NULL;
 	}
 	if ($object = is_valid_other_type($filename)) {
 		$image = New $object($xalbum, $filename, $quiet);
 	} else {
 		if (is_valid_image($filename)) {
-			$image = New Image($xalbum, $filename, $quiet);
+			$image = New _Image($xalbum, $filename, $quiet);
 		} else {
 			$image = NULL;
 		}
 	}
 	if ($image) {
-		if ($album && $album->isDynamic()) {
-			$image->albumname = $album->name;
-		}
 		zp_apply_filter('image_instantiate', $image);
 		if ($image->exists) {
 			return $image;
 		} else {
-			return $_zp_missing_image;
+			return NULL;
 		}
 	}
 
@@ -70,7 +57,7 @@ function newImage($album, $filename, $quiet=false) {
 		$msg = sprintf(gettext('Bad filename suffix in newImage(%s)'),$filename);
 		trigger_error($msg, E_USER_NOTICE);
 	}
-	return $_zp_missing_image;
+	return NULL;
 }
 
 /**
@@ -92,7 +79,7 @@ function isImageClass($image=NULL) {
 /**
  * handles 'picture' images
  */
-class Image extends MediaObject {
+class _Image extends MediaObject {
 
 	var $filename;      			// true filename of the image.
 	var $exists = true; 			// Does the image exist?
@@ -100,8 +87,6 @@ class Image extends MediaObject {
 	var $localpath;     			// Latin1 full SERVER path to the original image.
 	var $displayname;   			// $filename with the extension stripped off.
 	var $album;         			// An album object for the album containing this image.
-	var $albumname;         	// The name of the album for which this image was instantiated. (MAY NOT be $this->album->name!!!!).
-	var $imagefolder;        	// The album folder containing the image (May be different from the albumname!!!!)
 	protected $index;         // The index of the current image in the album array.
 	protected $sortorder;     // The position that this image should be shown in the album
 	var $filemtime;     			// Last modified time of this image
@@ -126,7 +111,7 @@ class Image extends MediaObject {
 	 * @param sting $filename the filename of the image
 	 * @return Image
 	 */
-	function __construct(&$album, $filename, $quiet=false) {
+	function _Image(&$album, $filename, $quiet=false) {
 		global $_zp_current_admin_obj;
 		// $album is an Album object; it should already be created.
 		$msg = false;
@@ -182,20 +167,6 @@ class Image extends MediaObject {
 	 *
 	 */
 	protected function classSetup(&$album, $filename) {
-		if (TEST_RELEASE) {
-			$bt = debug_backtrace();
-			$good = false;
-			foreach($bt as $b) {
-				if ($b['function']=="newImage") {
-					$good = true;
-					break;
-				}
-			}
-			if (!$good) {
-				zp_error(gettext('An image object was instantiated without using the newImage() function.'), E_USER_WARNING);
-			}
-		}
-
 		global $_zp_current_admin_obj;
 		$fileFS = internalToFilesystem($filename);
 		if ($filename != filesystemToInternal($fileFS)) { // image name spoof attempt
@@ -211,7 +182,6 @@ class Image extends MediaObject {
 			$this->encwebpath = ALBUM_FOLDER_WEBPATH . pathurlencode($album->name) . "/" . rawurlencode($filename);
 			$this->localpath = $album->localpath . $fileFS;
 		}
-		$this->imagefolder = $this->albumname = $album->name;
 		$this->filename = $filename;
 		$this->displayname = substr($this->filename, 0, strrpos($this->filename, '.'));
 		if (empty($this->displayname)) $this->displayname = $this->filename;
@@ -320,7 +290,7 @@ class Image extends MediaObject {
 		);
 		$this->set('hasMetadata',0);
 		$result = array();
-		if (get_class($this)=='Image') {
+		if (get_class($this)=='_Image') {
 			$localpath = $this->localpath;
 		} else {
 			$localpath = $this->getThumbImageFile();
@@ -611,18 +581,14 @@ class Image extends MediaObject {
 	 *
 	 * @return object
 	 */
-	function getAlbum() {
-		return newAlbum($this->albumname);
-	}
+	function getAlbum() { return $this->album; }
 
 	/**
 	 * Retuns the folder name of the album that holds this image
 	 *
 	 * @return string
 	 */
-	function getAlbumName() {
-		return $this->albumname;
-	}
+	function getAlbumName() { return $this->album->name; }
 
 	/**
 	 * Returns the location field of the image
@@ -793,7 +759,7 @@ class Image extends MediaObject {
 	 * @return int
 	 */
 	function move($newalbum, $newfilename=null) {
-		if (is_string($newalbum)) $newalbum =  newAlbum($newalbum, false);
+		if (is_string($newalbum)) $newalbum =  new Album(NULL, $newalbum, false);
 		if ($newfilename == null) {
 			$newfilename = $this->filename;
 		} else {
@@ -849,7 +815,7 @@ class Image extends MediaObject {
 	 */
 	function copy($newalbum) {
 		if (is_string($newalbum)) {
-			$newalbum =  newAlbum($newalbum, false);
+			$newalbum =  new Album(NULL, $newalbum, false);
 		}
 		if ($newalbum->getID() == $this->album->getID()) {
 			// Nothing to do - moving the file to the same place.
@@ -888,8 +854,8 @@ class Image extends MediaObject {
 	 * @return string
 	 */
 	function getImageLink() {
-		return rewrite_path('/' . pathurlencode($this->albumname) . '/' . urlencode($this->filename) . IM_SUFFIX,
-			'/index.php?album=' . pathurlencode($this->albumname) . '&image=' . urlencode($this->filename));
+		return rewrite_path('/' . pathurlencode($this->album->name) . '/' . urlencode($this->filename) . IM_SUFFIX,
+			'/index.php?album=' . pathurlencode($this->album->name) . '&image=' . urlencode($this->filename));
 	}
 
 	/**
@@ -904,7 +870,7 @@ class Image extends MediaObject {
 		if ($path==WEBPATH && $_zp_conf_vars['album_folder_class']=='external') {
 			return false;
 		}
-		return getAlbumFolder($path) . $this->imagefolder . "/" . ($this->filename);
+		return getAlbumFolder($path) . ($this->album->name) . "/" . ($this->filename);
 	}
 
 	/**
@@ -924,7 +890,7 @@ class Image extends MediaObject {
 	function getSizedImage($size) {
 		$wmt = getWatermarkParam($this, WATERMARK_IMAGE);
 		$args = getImageParameters(array($size, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, $wmt), $this->album->name);
-		return getImageURI($args,$this->imagefolder,$this->filename, $this->filemtime);
+		return getImageURI($args,$this->album->name,$this->filename, $this->filemtime);
 	}
 
 	/**
@@ -951,8 +917,8 @@ class Image extends MediaObject {
 				$wmt = getWatermarkParam($this,  WATERMARK_IMAGE);
 			}
 		}
-		$args = getImageParameters(array($size, $width, $height, $cropw, $croph, $cropx, $cropy, NULL, $thumbStandin, NULL, $thumbStandin, $wmt, NULL, $effects), $this->imagefolder);
-		return getImageURI($args, $this->imagefolder, $this->filename, $this->filemtime);
+		$args = getImageParameters(array($size, $width, $height, $cropw, $croph, $cropx, $cropy, NULL, $thumbStandin, NULL, $thumbStandin, $wmt, NULL, $effects), $this->album->name);
+		return getImageURI($args, $this->album->name, $this->filename, $this->filemtime);
 	}
 
 	/**
@@ -1022,8 +988,8 @@ class Image extends MediaObject {
 		}
 		$filename = $this->filename;
 		$wmt = getWatermarkParam($this, WATERMARK_THUMB);
-		$args = getImageParameters(array($ts, NULL, NULL, $sw, $sh, NULL, NULL, NULL, true, NULL, true, $wmt, NULL, NULL), $this->imagefolder);
-		return getImageURI($args, $this->imagefolder, $this->filename, $this->filemtime);
+		$args = getImageParameters(array($ts, NULL, NULL, $sw, $sh, NULL, NULL, NULL, true, NULL, true, $wmt, NULL, NULL), $this->album->name);
+		return getImageURI($args, $this->album->name, $this->filename, $this->filemtime);
 	}
 
 	/**
@@ -1046,7 +1012,7 @@ class Image extends MediaObject {
 						}
 					}
 				} else {
-					$this->index = $_zp_current_search->getImageIndex($this->imagefolder, $this->filename);
+					$this->index = $_zp_current_search->getImageIndex($this->album->name, $this->filename);
 				}
 			} else {
 				$images = $this->album->getImages(0);
@@ -1073,12 +1039,7 @@ class Image extends MediaObject {
 		if (!is_null($_zp_current_search) && !in_context(ZP_ALBUM_LINKED)) {
 			$image = $_zp_current_search->getImage($index+1);
 		} else {
-			if ($this->albumname == $this->imagefolder) {
-				$album = $this->album;
-			} else {
-				$album = newAlbum($this->albumname);
-			}
-			$image = $album->getImage($index+1);
+			$image = $this->album->getImage($index+1);
 		}
 		return $image;
 	}
@@ -1094,12 +1055,7 @@ class Image extends MediaObject {
 		if (!is_null($_zp_current_search) && !in_context(ZP_ALBUM_LINKED)) {
 			$image = $_zp_current_search->getImage($index-1);
 		} else {
-			if ($this->albumname == $this->imagefolder) {
-				$album = $this->album;
-			} else {
-				$album = newAlbum($this->albumname);
-			}
-			$image = $album->getImage($index-1);
+			$image = $this->album->getImage($index-1);
 		}
 		return $image;
 	}
@@ -1203,7 +1159,7 @@ class Image extends MediaObject {
 
 }
 
-class Transientimage extends Image {
+class Transientimage extends _Image {
 	/**
 	 * creates a transient image (that is, one that is not stored in the database)
 	 *

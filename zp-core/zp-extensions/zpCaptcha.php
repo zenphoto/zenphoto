@@ -32,12 +32,9 @@ class zpCaptcha {
 	 * @return captcha
 	 */
 	function __construct() {
-		if (OFFSET_PATH == 2) {
-			setOptionDefault('zenphoto_captcha_length', 5);
-			setOptionDefault('zenphoto_captcha_font_size', 18);
-			setOptionDefault('zenphoto_captcha_key', sha1($_SERVER['HTTP_HOST'].'a9606420399a77387af2a4b541414ee5'.getUserIP()));
-			setOptionDefault('zenphoto_captcha_string', 'abcdefghijkmnpqrstuvwxyz23456789ABCDEFGHJKLMNPQRSTUVWXYZ');
-		}
+		setOptionDefault('zenphoto_captcha_length', 5);
+		setOptionDefault('zenphoto_captcha_key', sha1($_SERVER['HTTP_HOST'].'a9606420399a77387af2a4b541414ee5'.getUserIP()));
+		setOptionDefault('zenphoto_captcha_string', 'abcdefghijkmnpqrstuvwxyz23456789ABCDEFGHJKLMNPQRSTUVWXYZ');
 	}
 
 	/**
@@ -46,8 +43,7 @@ class zpCaptcha {
 	 * @return unknown
 	 */
 	function getOptionsSupported() {
-		$fontlist = zp_getFonts();
-		$options = array(
+		return array(
 								gettext('Hash key') => array('key' => 'zenphoto_captcha_key', 'type' => OPTION_TYPE_TEXTBOX,
 												'order'=> 2,
 												'desc' => gettext('The key used in hashing the CAPTCHA string. Note: this key will change with each successful CAPTCHA verification.')),
@@ -60,18 +56,13 @@ class zpCaptcha {
 												'desc' => gettext('The number of characters in the CAPTCHA.')),
 								gettext('CAPTCHA font') => array('key' => 'zenphoto_captcha_font', 'type' => OPTION_TYPE_SELECTOR,
 												'order'=> 3,
-												'selections' => array_merge(array('*'.gettext('random').'*'=>'*'),$fontlist),
+												'selections' => array_merge(array('*'.gettext('random').'*'=>'*'),zp_getFonts()),
 												'desc' => gettext('The font to use for CAPTCHA characters.')),
-								gettext('CAPTCHA font size') => array('key' => 'zenphoto_captcha_font_size', 'type' => OPTION_TYPE_CLEARTEXT,
-												'order'=> 3.5,
-												'desc' => gettext('The size to use if the font is scalable (<em>TTF</em> and <em>Imagick</em> fonts.)')),
-				'' 			=> array('key' => 'zenphoto_captcha_image', 'type' => OPTION_TYPE_CUSTOM,
+								'' 			=> array('key' => 'zenphoto_captcha_image', 'type' => OPTION_TYPE_CUSTOM,
 												'order' => 4,
 												'desc' => gettext('Sample CAPTCHA image'))
 								);
-		return $options;
 	}
-
 	function handleOption($key, $cv) {
 		$captcha = $this->getCaptcha();
 		?>

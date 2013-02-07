@@ -24,9 +24,9 @@ if (!empty($_FILES)) {
 		$new = !is_dir($targetPath);
 		if (!empty($folder)) {
 			if ($new) {
-				$rightsalbum = newAlbum(dirname($folder));
+				$rightsalbum = new Album(NULL, dirname($folder));
 			} else{
-				$rightsalbum = newAlbum($folder);
+				$rightsalbum = new Album(NULL, $folder);
 			}
 			if (!$rightsalbum->isMyItem(UPLOAD_RIGHTS)) {
 				if (!zp_apply_filter('admin_managed_albums_access',false, $return)) {
@@ -36,8 +36,8 @@ if (!empty($_FILES)) {
 			}
 			if ($new) {
 				mkdir_recursive($targetPath, FOLDER_MOD);
-				$album = newAlbum($folder);
-				$album->setShow($albumparmas[0]!='false');
+				$album = new Album(NULL, $folder);
+				$album->setShow(!empty($albumparmas[0]));
 				$album->setTitle($albumparmas[2]);
 				$album->setOwner($_zp_current_admin_obj->getUser());
 				$album->save();
@@ -56,7 +56,7 @@ if (!empty($_FILES)) {
 					}
 					if (move_uploaded_file($tempFile,$targetFile)) {
 						@chmod($targetFile, FILE_MOD);
-						$album = newAlbum($folder);
+						$album = new Album(NULL, $folder);
 						$image = newImage($album, $seoname);
 						$image->setOwner($_zp_current_admin_obj->getUser());
 						if ($name != $seoname && $image->getTitle() == substr($seoname, 0, strrpos($seoname, '.'))) {

@@ -637,15 +637,15 @@ function comment_form_addCcomment($name, $email, $website, $comment, $code, $cod
 				}
 				break;
 			default: // all image types
-				$album = $receiver->getAlbum();
-				$url = "album=" . pathurlencode($album->name) . "&image=" . urlencode($receiver->filename);
-				$ur_album = getUrAlbum($album);
-				if ($moderate) {
-					$action = sprintf(gettext('A comment has been placed in moderation on your image "%1$s" in the album "%2$s".'), $receiver->getTitle(), $album->name);
-				} else {
-					$action = sprintf(gettext('A comment has been posted on your image "%1$s" in the album "%2$s".'), $receiver->getTitle(), $album->name);
-				}
-				break;
+				$url = "album=" . pathurlencode($receiver->album->name) . "&image=" . urlencode($receiver->filename);
+			$album = $receiver->getAlbum();
+			$ur_album = getUrAlbum($album);
+			if ($moderate) {
+				$action = sprintf(gettext('A comment has been placed in moderation on your image "%1$s" in the album "%2$s".'), $receiver->getTitle(), $receiver->getAlbumName());
+			} else {
+				$action = sprintf(gettext('A comment has been posted on your image "%1$s" in the album "%2$s".'), $receiver->getTitle(), $receiver->getAlbumName());
+			}
+			break;
 		}
 		if (($whattocheck & COMMENT_SEND_EMAIL)) {
 			$message = $action . "\n\n" .

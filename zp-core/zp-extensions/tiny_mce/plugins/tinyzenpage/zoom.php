@@ -33,7 +33,7 @@ if(isset($_GET['image']) && isset($_GET['album'])) {
 	$partialpath = strpos(FULLWEBPATH, '/'.ZENFOLDER);
 	$webpath = substr(FULLWEBPATH,0,$partialpath);
 	$ext = strtolower(strrchr($imagename, "."));
-	$albumobj = newAlbum($albumname);
+	$albumobj = new Album(NULL,$albumname);
 	$imageobj = newImage($albumobj,$imagename);
 	echo $imageobj->getTitle()."<br />";
 	if(isImageVideo($imageobj)) {

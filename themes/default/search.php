@@ -47,10 +47,7 @@ if (!defined('WEBPATH')) die();
 				$c = 0;
 				?>
 				<div id="albums">
-					<?php
-					while (next_album()) {
-						$c++;
-					?>
+					<?php while (next_album()): $c++; ?>
 						<div class="album">
 							<div class="thumb">
 								<a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printAnnotatedAlbumTitle(); ?>"><?php printAlbumThumbImage(getAnnotatedAlbumTitle()); ?></a>
@@ -62,21 +59,14 @@ if (!defined('WEBPATH')) die();
 							</div>
 							<p style="clear: both; "></p>
 						</div>
-					<?php
-					}
-					?>
+					<?php endwhile; ?>
 				</div>
 				<div id="images">
-					<?php
-					while (next_image()) {
-						$c++;
-						?>
+					<?php while (next_image()): $c++; ?>
 						<div class="image">
 							<div class="imagethumb"><a href="<?php echo html_encode(getImageLinkURL()); ?>" title="<?php printBareImageTitle(); ?>"><?php printImageThumb(getAnnotatedImageTitle()); ?></a></div>
 						</div>
-						<?php
-					}
-					?>
+					<?php endwhile; ?>
 				</div>
 				<br clear="all" />
 				<?php

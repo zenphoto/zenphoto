@@ -16,7 +16,7 @@ function printFullAlbumsList() {
 	global $_zp_gallery;
 	$albumlist = $_zp_gallery->getAlbums();
 	foreach($albumlist as $album) {
-		$albumobj = newAlbum($album);
+		$albumobj = new Album(NULL, $album);
 		if ($albumobj->isMyItem(LIST_RIGHTS)) {
 			echo "<option value='".pathurlencode($albumobj->name)."'>".html_encode($albumobj->getTitle()).unpublishedZenphotoItemCheck($albumobj)." (".$albumobj->getNumImages().")</option>";
 			if (!$albumobj->isDynamic()) {
@@ -35,7 +35,7 @@ function printSubLevelAlbums(&$albumobj) {
 	global $_zp_gallery;
 	$albumlist = $albumobj->getAlbums();
 	foreach($albumlist as $album) {
-		$subalbumobj = newAlbum($album);
+		$subalbumobj = new Album(NULL,$album);
 		$subalbumname = $subalbumobj->name;
 		$level = substr_count($subalbumname,"/");
 		$arrow = "";
@@ -100,7 +100,7 @@ function printImageslist($number) {
 	if(isset($_GET['album']) AND !empty($_GET['album'])) {
 
 		$album = urldecode(sanitize($_GET['album']));
-		$albumobj = newAlbum($album);
+		$albumobj = new Album(NULL,$album);
 		echo "<h3>".gettext("Album:")." <em>".html_encode($albumobj->getTitle()).unpublishedZenphotoItemCheck($albumobj,false)."</em> / ".gettext("Album folder:")." <em>".html_encode($albumobj->name)."</em><br /><small>".gettext("(Click on image to include)")."</small></h3>";
 
 		$images_per_page = $number;
@@ -164,7 +164,7 @@ function printImageslist($number) {
 					break;
 				}
 				if($albumobj->isDynamic()) {
-					$linkalbumobj = newAlbum($images[$nr]['folder']);
+					$linkalbumobj = new Album(NULL,$images[$nr]['folder']);
 					$imageobj = newImage($linkalbumobj,$images[$nr]['filename']);
 				} else {
 					$linkalbumobj = $albumobj;
@@ -281,7 +281,7 @@ function getImageType($imageobj) {
 				$imageType = 'other';
 			}
 			break;
-		case 'image':
+		case '_image':
 			$imageType = '';
 			break;
 		default:
@@ -378,7 +378,7 @@ function checkAlbumForImages() {
 		if($album == 'gallery') {
 			return FALSE;
 		}
-		$albumobj = newAlbum($album);
+		$albumobj = new Album(NULL,$album);
 		if($albumobj->getNumImages() != 0) {
 			return TRUE;
 		} else {

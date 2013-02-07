@@ -41,8 +41,6 @@ $_zp_albumthumb_selector = array(	array('field'=>'', 'direction'=>'', 'desc'=>'r
 																	array('field'=>'hitcounter', 'direction'=>'DESC', 'desc'=>gettext('most viewed'))
 																	);
 
-$_zp_missing_album = new AlbumBase(gettext('missing'), false);
-$_zp_missing_image = new Transientimage($_zp_missing_album, SERVERPATH.'/'.ZENFOLDER.'/images/err-imagenotfound.png');
 /**
  * parses the allowed HTML tags for use by htmLawed
  *
@@ -474,7 +472,7 @@ function checkAlbumPassword($album, &$hint=NULL) {
 	if (is_object($album)) {
 		$albumname = $album->name;
 	} else {
-		$album = newAlbum($albumname=$album, true, true);
+		$album = new Album(NULL, $albumname=$album, true, true);
 	}
 	if (isset($_zp_pre_authorization[$albumname])) {
 		return $_zp_pre_authorization[$albumname];
@@ -850,10 +848,10 @@ function handleSearchParms($what, $album=NULL, $image=NULL) {
 		if (!is_null($image)) {
 			$dynamic_album = $_zp_current_search->getDynamicAlbum();
 			if ($_zp_current_search->getImageIndex($album->name, $image->filename) !== false) {
-					if ($dynamic_album) {
-						$_zp_current_album = $dynamic_album;
-					}
-					$context = $context | ZP_SEARCH_LINKED | ZP_IMAGE_LINKED;
+				if ($dynamic_album) {
+					$_zp_current_album = $dynamic_album;
+				}
+				$context = $context | ZP_SEARCH_LINKED | ZP_IMAGE_LINKED;
 			}
 		}
 		if (!is_null($album)) {
@@ -955,9 +953,7 @@ function setupTheme($album=NULL) {
 	$albumtheme = '';
 	if (is_null($album)) {
 		if (in_context(ZP_SEARCH_LINKED)) {
-			if (!$album = $_zp_current_search->getDynamicAlbum()) {
-				$album = $_zp_current_album;
-			}
+			$album = $_zp_current_search->getDynamicAlbum();
 		} else {
 			$album = $_zp_current_album;
 		}
@@ -1296,7 +1292,7 @@ function getNotViewableAlbums() {
 			$_zp_not_viewable_album_list = array();
 			while ($row = db_fetch_assoc($result)) {
 				if (checkAlbumPassword($row['folder'])) {
-					$album = newAlbum($row['folder']);
+					$album = new Album(NULL, $row['folder']);
 					if (!($row['show'] || $album->isMyItem(LIST_RIGHTS))) {
 						$_zp_not_viewable_album_list[] = $row['id'];
 					}
@@ -1391,8 +1387,9 @@ function zp_setCookie($name, $value, $time=NULL, $path=NULL, $secure=false) {
 		$time = COOKIE_PESISTENCE;
 	}
 	if (is_null($path)) {
-		$path = COOKIE_PATH;
+		$path = WEBPATH;
 	}
+	if (substr($path, -1, 1) != '/') $path .= '/';
 	if (DEBUG_LOGIN) {
 		debugLog("zp_setCookie($name, $value, $time, $path)::album_session=".GALLERY_SESSION."; SESSION=".session_id());
 	}
@@ -1415,7 +1412,7 @@ function zp_setCookie($name, $value, $time=NULL, $path=NULL, $secure=false) {
  * @param string $path
  * @param bool $secure true if secure cookie
  */
-function zp_clearCookie($name, $path=NULL, $secure=false) {
+function zp_clearCookie($name, $path=NULl, $secure=false) {
 	zp_setCookie($name, '', -368000, $path, $secure);
 }
 
@@ -1463,7 +1460,7 @@ function isImagePhoto($image=NULL) {
 		$image = $_zp_current_image;
 	}
 	$class = strtolower(get_class($image));
-	return $class == 'image' || $class == 'transientimage';
+	return $class == '_image' || $class == 'transientimage';
 }
 
 /**
@@ -2099,7 +2096,7 @@ function getItemByID($table, $id) {
 			$alb = getItemByID('albums', $result['albumid']);
 			return newImage($alb,$result['filename']);
 		case 'albums':
-			return newAlbum($result['folder']);
+			return new Album(NULL,$result['folder']);
 		case 'news':
 			return new ZenpageNews($result['titlelink']);
 		case 'pages':
@@ -2371,6 +2368,9 @@ class zpFunctions {
 	 * @return string
 	 */
 	static function updateImageProcessorLink($text) {
+		//TODO: needs support to re-cache the image if cache is purged. Disable until then
+		return $text;
+		//
 		preg_match_all('|\<\s*img.*?\ssrc\s*=\s*"(.*i\.php\?([^"]*)).*/\>|', $text, $matches);
 		foreach ($matches[2] as $key=>$match) {
 			$match = explode('&amp;',$match);

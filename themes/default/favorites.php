@@ -58,7 +58,6 @@ if (!defined('WEBPATH')) die();
 					}
 					?>
 				</div>
-				<?php @call_user_func('printSlideShowLink'); ?>
 				<?php printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); ?>
 			</div>
 		</div>

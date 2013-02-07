@@ -24,7 +24,7 @@ function loadAlbum($album) {
 	$started = false;
 	$tcount = $count = 0;
 	foreach ($subalbums as $folder) {
-		$subalbum = newAlbum($folder);
+		$subalbum = new Album($_zp_gallery, $folder);
 		if (!$subalbum->isDynamic()) {
 			$tcount = $tcount + loadAlbum($subalbum);
 		}
@@ -45,24 +45,6 @@ function loadAlbum($album) {
 		while (next_image(true)) {
 			if (isImagePhoto($_zp_current_image)) {
 				$countit = 0;
-				if (in_array('*', $enabled)) {
-					$uri = getFullImageURL(NULL, 'Protected view');
-					if (strpos($uri, 'full-image.php?') !== false) {
-						if (!($count+$countit)) {
-							echo "{ ";
-						} else {
-							echo ' | ';
-						}
-						$countit = 1;
-						?>
-						<a href="<?php echo html_encode($uri); ?>&amp;debug">
-							<?php
-							echo '<img src="' . pathurlencode($uri) . '" height="30" width="30" alt="X" />'."\n";
-							?>
-						</a>
-						<?php
-					}
-				}
 				foreach ($custom as $key=>$cacheimage) {
 					if (in_array($key, $enabled)) {
 						$size = isset($cacheimage['image_size'])?$cacheimage['image_size']:NULL;
@@ -122,7 +104,7 @@ if ($alb) {
 	$folder = sanitize_path($alb);
 	$object = $folder;
 	$tab = 'edit';
-	$album = newAlbum($folder);
+	$album = new Album(NULL, $folder);
 	if (!$album->isMyItem(ALBUM_RIGHTS)) {
 		if (!zp_apply_filter('admin_managed_albums_access',false, $return)) {
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
@@ -148,11 +130,8 @@ if (isset($_GET['select'])) {
 	$enabled = false;
 }
 
-if (!$alb) {
-	$zenphoto_tabs['overview']['subtabs']=array(gettext('Cache images')=>PLUGIN_FOLDER.'/cacheManager/cacheImages.php?page=overview&amp;tab=images',
-																			gettext('Cache stored images')=>PLUGIN_FOLDER.'/cacheManager/cacheDBImages.php?page=overview&amp;tab=DB&amp;XSRFToken='.getXSRFToken('cacheDBImages'));
-}
-printAdminHeader($tab,gettext('Cache images'));
+$zenphoto_tabs['overview']['subtabs']=array(gettext('Cache')=>'');
+printAdminHeader($tab,gettext('Cache'));
 echo "\n</head>";
 echo "\n<body>";
 
@@ -214,32 +193,6 @@ $last = '';
 	<?php XSRFToken('cacheImages')?>
 	<ol class="no_bullets">
 		<?php
-		if (getOption('cache_full_image') && (!is_array($enabled) || in_array('*', $enabled))) {
-			if (is_array($enabled)) {
-				$checked = ' checked="checked" disabled="disabled"';
-			} else {
-				$checked = '';
-			}
-			$cachesizes++;
-			?>
-			<li>
-				<?php
-				if (!is_array($enabled)) {
-					?>
-					<span class="icons" id="<?php echo $theme; ?>_arrow">
-						<img class="icon-position-top4" src="<?php echo WEBPATH.'/'.ZENFOLDER.'/images/place_holder_icon.png'; ?>" alt="" />
-					</span>
-					<?php
-					}
-				?>
-				<label>
-					<input type="checkbox" name="enable[]" value="*" <?php echo $checked; ?> />
-					<?php echo gettext('Apply'); ?> <code><?php echo gettext('Full Image'); ?></code>
-				</label>
-			</li>
-			<?php
-		}
-
 		$seen = array();
 		foreach ($custom as $key=>$cacheimage) {
 			if (!is_array($enabled) || in_array($key, $enabled)) {
@@ -343,13 +296,13 @@ $last = '';
 			printf(ngettext('%u cache size to apply.','%u cache sizes to apply.',$cachesizes),$cachesizes);
 			echo '</p>';
 			if ($alb) {
-				$album = newAlbum($folder);
+				$album = new Album(NULL, $folder);
 				$count =loadAlbum($album);
 			} else {
 				$albums = $_zp_gallery->getAlbums();
 				shuffle($albums);
 				foreach ($albums as $folder) {
-					$album = newAlbum($folder);
+					$album = new Album($_zp_gallery, $folder);
 					if (!$album->isDynamic()) {
 						$count = $count + loadAlbum($album);
 					}
@@ -373,7 +326,7 @@ $last = '';
 	}
 	?>
 		<p class="buttons">
-			<a title="<?php if ($alb) echo gettext('Back to the album list'); else echo gettext('Back to the overview') ?>"href="<?php echo WEBPATH.'/'.ZENFOLDER.$r; ?>"> <img src="<?php echo FULLWEBPATH.'/'.ZENFOLDER; ?>/images/cache.png" alt="" />
+			<a title="<?php echo gettext('Back to the album list'); ?>"href="<?php echo WEBPATH.'/'.ZENFOLDER.$r; ?>"> <img src="<?php echo FULLWEBPATH.'/'.ZENFOLDER; ?>/images/cache.png" alt="" />
 				<strong><?php echo gettext("Back"); ?> </strong>
 			</a>
 		</p>

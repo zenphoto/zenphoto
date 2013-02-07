@@ -66,7 +66,6 @@ if (!defined('WEBPATH')) die();
 
 		</div>
 				<p style="clear: both; "></p>
-				<?php @call_user_func('printSlideShowLink'); ?>
 		<?php printPageListWithNav("« ".gettext("prev"), gettext("next")." »"); ?>
 		<?php printTags('links', gettext('<strong>Tags:</strong>').' ', 'taglist', ', '); ?>
 		<br style="clear:both;" /><br />

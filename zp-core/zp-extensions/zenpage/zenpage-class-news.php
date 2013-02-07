@@ -54,12 +54,6 @@ class ZenpageNews extends ZenpageItems {
 	function setSticky($v) {
 		$this->set('sticky',$v);
 	}
-	function getTruncation() {
-		return $this->get('truncation');
-	}
-	function setTruncation($v) {
-		$this->set('truncation',$v);
-	}
 
 	/**
 	 * duplicates an article
@@ -270,11 +264,11 @@ class ZenpageNews extends ZenpageItems {
 	}
 
 	/**
-	* Returns the url to a news article
-	*
-	*
-	* @return string
-	*/
+ 	* Returns the url to a news article
+ 	*
+ 	*
+ 	* @return string
+ 	*/
 	function getNewsLink() {
 		global $_zp_zenpage;
 		return $_zp_zenpage->getNewsBaseURL().$_zp_zenpage->getNewsTitlePath().urlencode($this->getTitlelink());

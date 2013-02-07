@@ -296,7 +296,7 @@ function publishItem($id,$show,$menuset) {
  * @param string $sort xxx-xxx-xxx style sort order for album
  */
 function addSubalbumMenus($menuset, $id, $link, $sort) {
-	$album = newAlbum($link);
+	$album = new Album(NULL, $link);
 	$show = $album->getShow();
 	$title = $album->getTitle();
 	$sql = "INSERT INTO ".prefix('menu')." (`link`,`type`,`title`,`show`,`menuset`,`sort_order`, `parentid`) ".
@@ -759,7 +759,7 @@ function printAlbumsSelector($current) {
 	<select id="albumselector" name="albumselect">
 	<?php
 	foreach($albumlist as $key => $value) {
-		$albumobj = newAlbum($key);
+		$albumobj = new Album(NULL,$key);
 		$albumname = $albumobj->name;
 		if ($albumname == $current) {
 			$selected = ' selected="selected"';

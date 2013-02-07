@@ -61,7 +61,7 @@
  */
 
 
-class TextObject extends Image {
+class TextObject extends _Image {
 
 	protected $watermark = NULL;
 	protected $watermarkDefault = NULL;
@@ -140,7 +140,7 @@ class TextObject extends Image {
 				$imgfile = $path . "/" . ZENFOLDER . '/'.PLUGIN_FOLDER .'/class-textobject/'.$img;
 			}
 		} else {
-			$imgfile = ALBUM_FOLDER_SERVERPATH.internalToFilesystem($this->imagefolder).'/'.$this->objectsThumb;
+			$imgfile = ALBUM_FOLDER_SERVERPATH.internalToFilesystem($this->album->name).'/'.$this->objectsThumb;
 		}
 		return $imgfile;
 	}
@@ -165,11 +165,10 @@ class TextObject extends Image {
 			}
 		} else {
 			$filename = filesystemToInternal($this->objectsThumb);
-			$mtime = filemtime(ALBUM_FOLDER_SERVERPATH.'/'.internalToFilesystem($this->imagefolder).'/'.$this->objectsThumb);
+			$mtime = filemtime(ALBUM_FOLDER_SERVERPATH.'/'.internalToFilesystem($this->album->name).'/'.$this->objectsThumb);
 		}
-		$args = getImageParameters(array(getOption('thumb_size'), $sw, $sh, $cw, $ch, $cx, $cy, NULL, true, true, true, $wmt, NULL, NULL), $this->imagefolder);
-		$cachefilename = getImageCacheFilename($alb = $this->imagefolder, $this->filename, $args);
-		return getImageURI($args, $this->imagefolder, $filename, $mtime);
+		$args = getImageParameters(array(getOption('thumb_size'), $sw, $sh, $cw, $ch, $cx, $cy, NULL, true, true, true, $wmt, NULL, NULL), $this->album->name);		$cachefilename = getImageCacheFilename($alb = $this->album->name, $this->filename, $args);
+		return getImageURI($args, $this->album->name, $filename, $mtime);
 	}
 
 	/**
@@ -220,7 +219,7 @@ class TextObject extends Image {
 			$wmt = NULL;
 		}
 		if ($thumbStandin & 1) {
-			$args = getImageParameters(array($size, $width, $height, $cropw, $croph, $cropx, $cropy, NULL, $thumbStandin, NULL, $thumbStandin, $wmt, NULL, $effects), $this->imagefolder);
+			$args = getImageParameters(array($size, $width, $height, $cropw, $croph, $cropx, $cropy, NULL, $thumbStandin, NULL, $thumbStandin, $wmt, NULL, $effects), $this->album->name);
 			if ($this->objectsThumb == NULL) {
 				$filename = makeSpecialImageName($this->getThumbImageFile());
 				if (!$this->watermarkDefault) {
@@ -229,9 +228,9 @@ class TextObject extends Image {
 				$mtime = NULL;
 			} else {
 				$filename = filesystemToInternal($this->objectsThumb);
-				$mtime = filemtime(ALBUM_FOLDER_SERVERPATH.'/'.internalToFilesystem($this->imagefolder).'/'.$this->objectsThumb);
+				$mtime = filemtime(ALBUM_FOLDER_SERVERPATH.'/'.internalToFilesystem($this->album->name).'/'.$this->objectsThumb);
 			}
-			return getImageURI($args, $this->imagefolder, $filename, $mtime);
+			return getImageURI($args, $this->album->name, $filename, $mtime);
 		} else {
 			return $this->getBody($width, $height);
 		}
@@ -239,7 +238,7 @@ class TextObject extends Image {
 
 	/**
 	 * (non-PHPdoc)
-	 * @see zp-core/Image::getSizedImage()
+	 * @see zp-core/_Image::getSizedImage()
 	 */
 	function getSizedImage($size) {
 		switch (getOption('image_use_side')) {
@@ -260,7 +259,7 @@ class TextObject extends Image {
 
 	/**
 	 * (non-PHPdoc)
-	 * @see zp-core/Image::updateDimensions()
+	 * @see zp-core/_Image::updateDimensions()
 	 */
 	function updateDimensions() {
 		$size = getOption('image_size');

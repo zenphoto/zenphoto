@@ -142,7 +142,7 @@ function zp_load_search() {
  */
 function zp_load_album($folder, $force_nocache=false) {
 	global $_zp_current_album, $_zp_gallery;
-	$_zp_current_album = newAlbum($folder, !$force_nocache, true);
+	$_zp_current_album = new Album(NULL, $folder, !$force_nocache, true);
 	if (!is_object($_zp_current_album) || !$_zp_current_album->exists) return false;
 	add_context(ZP_ALBUM);
 	return $_zp_current_album;
@@ -396,7 +396,7 @@ function prepareCustomPage() {
 				if (!empty($searchalbums)) {	//	we are within a search of a specific album(s)
 					$albums = array();
 					foreach ($searchalbums as $analbum) {
-						$parent = getUrAlbum(newAlbum($analbum));
+						$parent = getUrAlbum(new Album(NULL, $analbum));
 						$albums[$parent->getID()] = $parent;
 					}
 					if (count($albums) == 1) {	// there is only one parent album for the search

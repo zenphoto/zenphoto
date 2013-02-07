@@ -297,7 +297,7 @@ class AlbumZip {
 		}
 		$albums = $album->getAlbums();
 		foreach ($albums as $albumname) {
-			$subalbum = newAlbum($albumname);
+			$subalbum = new Album($zip_gallery,$albumname);
 			if ($subalbum->exists && !$album->isDynamic()) {
 				self::AddAlbum($subalbum, $base, $filebase);
 			}
@@ -326,7 +326,7 @@ class AlbumZip {
 		}
 		$albums = $album->getAlbums();
 		foreach ($albums as $albumname) {
-			$subalbum = newAlbum($albumname);
+			$subalbum = new Album($zip_gallery,$albumname);
 			if ($subalbum->exists && !$album->isDynamic()) {
 				self::AddAlbumCache($subalbum, $base, $filebase);
 			}
@@ -359,7 +359,7 @@ class AlbumZip {
 	 */
 	static function create($albumname, $fromcache){
 		global $_zp_zip_list, $_zp_gallery, $defaultSize;
-		$album = newAlbum($albumname);
+		$album = new Album(NULL, $albumname);
 		if (!$album->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumname)) {
 			self::pageError(403, gettext("Forbidden"));
 		}

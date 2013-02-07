@@ -27,7 +27,7 @@ if (isset($_GET['f'])) {
 		$fontname = array_shift($fonts);
 	}
 }
-$font = zp_imageLoadFont($fontname, getOption('zenphoto_captcha_font_size'));
+$font = zp_imageLoadFont($fontname);
 
 $pallet = array(array('R'=>16, 'G'=>110, 'B'=>3),
 								array('R'=>132, 'G'=>4, 'B'=>16),

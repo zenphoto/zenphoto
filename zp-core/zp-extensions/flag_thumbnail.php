@@ -149,7 +149,7 @@ class flag_thumbnail {
 			if (get_class($obj)=='Album') {
 				$obj = $obj->getAlbumThumbImage();
 			}
-			if (is_object($obj) && get_class($obj)=='Image') {
+			if (is_object($obj) && get_class($obj)=='_Image') {
 				$exif = $obj->getMetaData();
 				if(!empty($exif['EXIFGPSLatitude']) && !empty($exif['EXIFGPSLongitude'])){
 					if(getOption('flag_thumbnail_use_text')) {
