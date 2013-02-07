@@ -14,14 +14,25 @@ require_once(dirname(__FILE__). "/".ZENFOLDER.'/functions-controller.php');
 zp_load_gallery();
 require_once(dirname(__FILE__). "/".ZENFOLDER.'/controller.php');
 
+$_index_theme = $_zp_script = '';
+$_zp_loaded_plugins = array();
+
 // RSS feed calls before anything else
 if (isset($_GET['rss'])) {
+	//	load the theme plugins just incase
+	$_zp_gallery_page = 'rss.php';
+	foreach (getEnabledPlugins() as $extension=>$plugin) {
+		$loadtype = $plugin['priority'];
+		if ($loadtype&THEME_PLUGIN) {
+			require_once($plugin['path']);
+		}
+		$_zp_loaded_plugins[] = $extension;
+	}
 	require_once(dirname(__FILE__). "/".ZENFOLDER.'/class-rss.php');
 	$rss = new RSS();
 	$rss->printRSSFeed();
 	exitZP();
 }
-$_zp_script = '';
 //$_zp_script_timer['controller'] = microtime();
 // Display an arbitrary theme-included PHP page
 if (isset($_GET['p'])) {
@@ -40,11 +51,9 @@ if (isset($_GET['p'])) {
 	$_index_theme = setupTheme();
 }
 //$_zp_script_timer['theme setup'] = microtime();
-
 if (DEBUG_PLUGINS) {
 	debugLog('Loading the "theme" plugins.');
 }
-$_zp_loaded_plugins = array();
 foreach (getEnabledPlugins() as $extension=>$plugin) {
 	$loadtype = $plugin['priority'];
 	if ($loadtype&THEME_PLUGIN) {
@@ -54,14 +63,15 @@ foreach (getEnabledPlugins() as $extension=>$plugin) {
 		}
 		require_once($plugin['path']);
 		if (DEBUG_PLUGINS) {
-				list($usec, $sec) = explode(" ", microtime());
-				$end = (float)$usec + (float)$sec;
-				debugLog(sprintf('    '.$extension.'(THEME:%u)=>%.4fs',$priority & PLUGIN_PRIORITY,$end-$start));
-			}
-//		$_zp_script_timer['load '.$extension] = microtime();
+			list($usec, $sec) = explode(" ", microtime());
+			$end = (float)$usec + (float)$sec;
+			debugLog(sprintf('    '.$extension.'(THEME:%u)=>%.4fs',$priority & PLUGIN_PRIORITY,$end-$start));
+		}
+		//		$_zp_script_timer['load '.$extension] = microtime();
 	}
 	$_zp_loaded_plugins[] = $extension;
 }
+
 
 if (!$zp_request && isset($_GET['fromlogout'])) {	//	redirect not visible to user
 	zp_load_gallery();

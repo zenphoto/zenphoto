@@ -310,7 +310,6 @@ if (function_exists('setOption')) {
 	require_once(dirname(dirname(__FILE__)).'/functions-filter.php');
 	require_once(dirname(dirname(__FILE__)).'/functions-i18n.php');
 }
-$updatechmod = ($updatechmod || !checkPermissions(fileperms(__FILE__), $chmod)) && zp_loggedin(ADMIN_RIGHTS);
 
 if ($newconfig || isset($_GET['copyhtaccess'])) {
 	if ($newconfig && !file_exists($serverpath.'/.htaccess') || zp_loggedin(ADMIN_RIGHTS)) {
@@ -1444,14 +1443,29 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 			$err = sprintf(gettext("<em>.htaccess</em> RewriteBase is <code>%s</code> [Does not match install folder]"), $bs);
 		}
 		$f = '';
+		$save = false;
 		if (!$base) {
+			$ht = substr($ht, 0, $i) . "RewriteBase $d\n" . substr($ht, $j+1);
+			$save = $base = true;
+			$b =  sprintf(gettext("<em>.htaccess</em> RewriteBase is <code>%s</code> (fixed)"), $d);
+		}
+		// upgrade the site closed rewrite rules
+		preg_match_all('|[# ][ ]*RewriteRule(.*)plugins/site_upgrade/closed\.php|',$ht,$matches);
+		$siteupdate = false;
+		foreach ($matches[0] as $match) {
+			if (strpos($match,'index\.php$')!==false) {
+				$match1 = str_replace('index\.php$','index\.php(.*)$',$match);
+				$match1 = str_replace('closed.php','closed.php%1',$match1);
+				$ht = str_replace($match, $match1, $ht);
+				$siteupdate = $save = true;
+			}
+		}
+		if ($save) {
 			// try and fix it
 			@chmod($htfile, 0666);
 			if (is_writeable($htfile)) {
 				$ht = substr($ht, 0, $i) . "RewriteBase $d\n" . substr($ht, $j+1);
 				if (@file_put_contents($htfile, $ht)) {
-					$base = true;
-					$b =  sprintf(gettext("<em>.htaccess</em> RewriteBase is <code>%s</code> (fixed)"), $d);
 					$err =  '';
 				}
 				clearstatcache();
@@ -1461,6 +1475,10 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 		$good = checkMark($base, $b, $err,
 											gettext("Setup was not able to write to the file change RewriteBase match the install folder.") .
 											"<br />".sprintf(gettext("Either make the file writeable or set <code>RewriteBase</code> in your <code>.htaccess</code> file to <code>%s</code>."),$d)) && $good;
+		if ($siteupdate) {
+			$good = checkMark($save, gettext('Rewrite rules updated'), gettext('Rewrite rules updated [not updated]'),
+												gettext("Setup was not able to write to the file change the rewrite rules for site upgrades.")) && $good;
+		}
 	}
 	//robots.txt file
 	$robots = file_get_contents(dirname(dirname(__FILE__)).'/example_robots.txt');

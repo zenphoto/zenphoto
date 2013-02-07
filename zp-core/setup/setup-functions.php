@@ -567,7 +567,7 @@ function checkPermissions($actual, $expected) {
 	if (isWin()) {
 		return ($actual & 0700) == ($expected & 0700);	//	with windows owner==group==public
 	} else {
-		return (($actual & 0777) | 4) == ($expected | 4);
+		return ($actual & 0770) == ($expected & 0770);	//	We do not care about the public permissions
 	}
 }
 

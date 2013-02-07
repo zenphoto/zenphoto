@@ -1030,7 +1030,6 @@ protected function getRSSCombinewsAlbums() {
 					<docs>http://blogs.law.harvard.edu/tech/rss</docs>
 					<generator>Zenphoto RSS Generator</generator>
 					<?php
-					if(is_array($feeditems)) {
 						foreach($feeditems as $feeditem) {
 							switch($this->feedtype) {
 								case 'gallery':
@@ -1041,6 +1040,9 @@ protected function getRSSCombinewsAlbums() {
 									break;
 								case 'comments':
 									$item = $this->getRSSitemComments($feeditem);
+								break;
+							default:
+								$item = $feeditem;
 									break;
 							}
 							?>
@@ -1069,7 +1071,7 @@ protected function getRSSCombinewsAlbums() {
 							</item>
 					<?php
 							} // foreach
-						}	?>
+					?>
 					</channel>
 				</rss>
 			<?php
