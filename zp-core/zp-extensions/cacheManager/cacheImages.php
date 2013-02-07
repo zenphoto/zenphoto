@@ -150,7 +150,7 @@ if (isset($_GET['select'])) {
 
 if (!$alb) {
 	$zenphoto_tabs['overview']['subtabs']=array(gettext('Cache images')=>PLUGIN_FOLDER.'/cacheManager/cacheImages.php?page=overview&amp;tab=images',
-																			gettext('Cache stored images')=>PLUGIN_FOLDER.'/cacheManager/cacheDBImages.php?page=overview&amp;tab=DB&amp;XSRFToken='.getXSRFToken('cacheDBImages'));
+																				gettext('Cache database')=>PLUGIN_FOLDER.'/cacheManager/cacheDBImages.php?page=overview&amp;tab=DB');
 }
 printAdminHeader($tab,gettext('Cache images'));
 echo "\n</head>";
