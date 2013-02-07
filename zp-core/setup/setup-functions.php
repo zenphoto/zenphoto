@@ -382,7 +382,7 @@ function setupLog($message, $anyway=false, $reset=false) {
 	if ($debug || $anyway) {
 		if (is_object($_zp_mutex)) $_zp_mutex->lock();
 		if (!file_exists(dirname(SETUPLOG))) {
-			mkdir_recursive(SETUPLOG, $chmod & 0311);
+			mkdir_recursive(dirname(SETUPLOG), $chmod | 0311);
 		}
 		if ($reset) { $mode = 'w'; } else { $mode = 'a'; }
 		$f = fopen(SETUPLOG, $mode);
