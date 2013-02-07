@@ -79,16 +79,12 @@ function removeSetup() {
 	chdir($curdir);
 	$rslt = array();
 	foreach ($list as $component) {
-		if ($component != '..' && $component != '.') {
+		if (getSuffix($component) == 'php') {
 			@chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component, 0666);
 			if(!@unlink(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component)) {
 				$rslt[] = '../setup/'.$component;
 			}
 		}
-	}
-	@chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/', 0766);
-	if (!@rmdir(SERVERPATH.'/'.ZENFOLDER.'/setup/')) {
-		$rslt[] = '../setup/';
 	}
 	if (empty($rslt)) {
 		zp_apply_filter('log_setup', true, 'delete', '');
