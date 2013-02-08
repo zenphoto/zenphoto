@@ -1464,7 +1464,6 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 			// try and fix it
 			@chmod($htfile, 0666);
 			if (is_writeable($htfile)) {
-				$ht = substr($ht, 0, $i) . "RewriteBase $d\n" . substr($ht, $j+1);
 				if (@file_put_contents($htfile, $ht)) {
 					$err =  '';
 				}

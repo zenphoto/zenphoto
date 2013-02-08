@@ -4,19 +4,22 @@ require_once(dirname(dirname(dirname(__FILE__))).'/admin-globals.php');
 
 admin_securityChecks(ALBUM_RIGHTS, currentRelativeURL());
 $htpath = SERVERPATH.'/.htaccess';
-$ht = file_get_contents($htpath);
+$ht = @file_get_contents($htpath);
 
 preg_match_all('|[# ][ ]*RewriteRule(.*)plugins/site_upgrade/closed\.php|',$ht,$matches);
 switch (@$_GET['siteState']) {
 	case 'closed':
-		if (strpos($matches[0][1],'#')===0) {
-			foreach ($matches[0] as $match) {
-				$ht = str_replace($match, ' '.substr($match,1), $ht);
+		if ($matches && $matches[0]) {
+			if (strpos($matches[0][1],'#')===0) {
+				foreach ($matches[0] as $match) {
+					$ht = str_replace($match, ' '.substr($match,1), $ht);
+				}
+				@chmod($htpath, 0777);
+				@file_put_contents($htpath, $ht);
+				@chmod($htpath,0444);
 			}
-			@chmod($htpath, 0777);
-			@file_put_contents($htpath, $ht);
-			@chmod($htpath,0444);
 		}
+
 		require_once(SERVERPATH.'/'.ZENFOLDER.'/class-rss.php');
 		class setupRSS extends RSS {
 			public function getRSSitems() {
@@ -37,7 +40,6 @@ switch (@$_GET['siteState']) {
 			protected function endRSSCache() {
 			}
 		}
-
 		$rss = new setupRSS();
 		ob_start();
 		$rss->printRSSFeed();
@@ -53,13 +55,15 @@ switch (@$_GET['siteState']) {
 		setOption('site_upgrade_state', 'open');
 		break;
 	case 'closed_for_test':
-		if (strpos($matches[0][1],'#')!==0) {
-			foreach ($matches[0] as $match) {
-				$ht = str_replace($match, preg_replace('/^ /','# ',$match), $ht);
+		if ($matches && $matches[0]) {
+			if (strpos($matches[0][1],'#')!==0) {
+				foreach ($matches[0] as $match) {
+					$ht = str_replace($match, preg_replace('/^ /','# ',$match), $ht);
+				}
+				@chmod($htpath, 0777);
+				file_put_contents($htpath, $ht);
+				@chmod($htpath, 0444);
 			}
-			@chmod($htpath, 0777);
-			file_put_contents($htpath, $ht);
-			@chmod($htpath, 0444);
 		}
 		$report = gettext('Site is avaiable for testing only.');
 		setOption('site_upgrade_state', 'closed_for_test');
