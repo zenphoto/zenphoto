@@ -169,7 +169,7 @@ if (!OFFSET_PATH && getOption('jcarousel_'.$_zp_gallery->getCurrentTheme().'_'.s
 		if(count($jcarousel_items) >= 2) {
 			foreach($jcarousel_items as $item) {
 				if(is_array($item)) {
-					$imgobj = newImage(new Album($_zp_gallery,$item['folder']),$item['filename']);
+				$imgobj = newImage(newAlbum($item['folder']),$item['filename']);
 				} else {
 					$imgobj = newImage($_zp_current_album,$item);
 				}

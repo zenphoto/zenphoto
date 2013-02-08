@@ -10,7 +10,7 @@ function unpublishSubalbums($album) {
 	global $_zp_gallery;
 	$albums = $album->getAlbums();
 	foreach ($albums as $albumname) {
-		$subalbum = new Album(NULL, $albumname);
+		$subalbum = newAlbum($albumname);
 		$subalbum->setShow(false);
 		$subalbum->save();
 		unpublishSubalbums($subalbum);
@@ -35,7 +35,7 @@ if (isset($_POST['set_defaults'])) {
 		case 'albums':
 			unset($_POST['checkAllAuto']);
 			foreach ($_POST as $key=>$albumid) {
-				$album = new Album(NULL, postIndexDecode($key));
+				$album = newAlbum(postIndexDecode($key));
 				$album->setShow(1);
 				$album->save();
 			}
@@ -47,7 +47,7 @@ if (isset($_POST['set_defaults'])) {
 				$imageid = sanitize_numeric(substr($action,$i+1));
 				$rowi = query_single_row('SELECT * FROM '.prefix('images').' WHERE `id`='.$imageid);
 				$rowa = query_single_row('SELECT * FROM '.prefix('albums').' WHERE `id`='.$rowi['albumid']);
-				$album = new Album(NULL, $rowa['folder']);
+				$album = newAlbum($rowa['folder']);
 				$image = newImage($album, $rowi['filename']);
 				switch(substr($action,0,$i)) {
 					case 'pub':
@@ -151,7 +151,7 @@ echo '</head>';
 	}
 	if (isset($_GET['propagate_unpublished'])) {
 		foreach ($albumlist as $albumname) {
-			$album = new Album(NULL, $albumname);
+			$album = newAlbum($albumname);
 			if (!$album->getShow()) {
 				unpublishSubalbums($album);
 			}
@@ -270,7 +270,7 @@ if (zp_loggedin(ADMIN_RIGHTS)) {	//only admin should be allowed to do this
 			<ul class="schedulealbumchecklist">
 			<?php
 			foreach ($publish_albums_list as $analbum=>$albumid) {
-				$album = new Album(NULL, $analbum);
+				$album = newAlbum($analbum);
 				$thumbimage = $album->getAlbumThumbImage();
 				$thumb = $thumbimage->getCustomImage(40,NULL,NULL,40,40,NULL,NULL,-1,NULL);
 				?>
@@ -388,7 +388,7 @@ if (zp_loggedin(ADMIN_RIGHTS)) {	//only admin should be allowed to do this
 		<ul class="scheduleimagechecklist">
 		<?php
 		foreach ($publish_images_list as $key=>$imagelist) {
-			$album = new Album(NULL,$key);
+			$album = newAlbum($key);
 			$albumid = $album->getID();
 			$imagelist = array_flip($imagelist);
 			natcasesort($imagelist);

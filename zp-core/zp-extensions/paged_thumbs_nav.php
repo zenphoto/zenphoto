@@ -195,7 +195,7 @@ class pagedThumbsNav {
 			$prevpageimagenr = ($this->currentpage * $this->imagesperpage) - ($this->imagesperpage+1);
 			if ($this->currentpage > 1) {
 				if(is_array($this->images[$prevpageimagenr])) {
-					$albumobj = new Album(NULL,$this->images[$prevpageimagenr]['folder']);
+					$albumobj = newAlbum($this->images[$prevpageimagenr]['folder']);
 					$this->prevpageimage = newImage($albumobj,$this->images[$prevpageimagenr]['filename']);
 				} else {
 					$this->prevpageimage = newImage($_zp_current_album,$this->images[$prevpageimagenr]);
@@ -231,7 +231,7 @@ class pagedThumbsNav {
 		$thumbs = array();
 		foreach($curimages as $item) {
 			if(is_array($item)) {
-				$thumbs[] = newImage(new Album($_zp_gallery,$item['folder']),$item['filename']);
+				$thumbs[] = newImage(newAlbum($item['folder']),$item['filename']);
 			} else {
 				$thumbs[] = newImage($_zp_current_album,$item);
 			}
@@ -291,7 +291,7 @@ class pagedThumbsNav {
 			if ($this->currentpage < $this->totalpages) 	{
 				$nextpageimagenr = $this->currentpage * $this->imagesperpage;
 				if(is_array($this->images[$nextpageimagenr])) {
-					$albumobj = new Album(NULL,$this->images[$nextpageimagenr]['folder']);
+					$albumobj = newAlbum($this->images[$nextpageimagenr]['folder']);
 					$this->nextpageimage = newImage($albumobj,$this->images[$nextpageimagenr]['filename']);
 				} else {
 					$this->nextpageimage = newImage($_zp_current_album,$this->images[$nextpageimagenr]);
@@ -408,7 +408,7 @@ class pagedThumbsNav {
 		$linktex = $linktext;
 		$imagenr = ($i * $this->imagesperpage) - ($this->imagesperpage);
 		if(is_array($this->images[$imagenr])) {
-			$albumobj = new Album(NULL,$this->images[$imagenr]['folder']);
+			$albumobj = newAlbum($this->images[$imagenr]['folder']);
 			$pageimage = newImage($albumobj,$this->images[$imagenr]['filename']);
 		} else {
 			$pageimage = newImage($_zp_current_album,$this->images[$imagenr]);

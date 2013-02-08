@@ -48,7 +48,7 @@ if(isset($_GET['publish'])) {
 }
 if(isset($_GET['save'])) {
 	XSRFdefender('save_categories');
-	addCategory($reports);
+	updateCategory($reports, true);
 }
 if(isset($_GET['id'])){
 	$x = 	$_zp_zenpage->getCategory(sanitize_numeric($_GET['id']));

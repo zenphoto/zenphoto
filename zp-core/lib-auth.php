@@ -1523,7 +1523,7 @@ class Zenphoto_Administrator extends PersistentObject {
 				}
 				switch ($object['type']) {
 					case 'album':
-						$album = new Album(NULL, $object['data']);
+						$album = newAlbum($object['data']);
 						$albumid = $album->getID();
 						$sql = "INSERT INTO ".prefix('admin_to_object')." (adminid, objectid, type, edit) VALUES ($id, $albumid, 'albums', $edit)";
 						$result = query($sql);
@@ -1579,7 +1579,7 @@ class Zenphoto_Administrator extends PersistentObject {
 			$sql = 'SELECT `folder` FROM '.prefix('albums').' WHERE `id`='.$id;
 			$result = query_single_row($sql);
 			if ($result) {
-				$album = new Album(NULL, $result['folder']);
+				$album = newAlbum($result['folder']);
 				return $album;
 			}
 		}
@@ -1632,7 +1632,7 @@ class Zenphoto_Administrator extends PersistentObject {
 		$path = ALBUM_FOLDER_SERVERPATH.$filename.$ext;
 		$albumname = filesystemToInternal($filename.$ext);
 		if (@mkdir_recursive($path,FOLDER_MOD)) {
-			$album = new Album(NULL, $albumname);
+			$album = newAlbum($albumname);
 			if ($title = $this->getName()) {
 				$album->setTitle($title);
 			}

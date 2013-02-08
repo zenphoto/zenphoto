@@ -13,9 +13,13 @@ function reconfigureAction($mandatory) {
 	$diff = array_keys($diff);
 	if ($mandatory || in_array('ZENPHOTO', $diff) || in_array('FOLDER', $diff)) {
 		if (isset($_GET['rss'])) {
+			if (file_exists(SERVERPATH.'/'.DATA_FOLDER.'/rss-closed.xml')) {
+				$xml = file_get_contents(SERVERPATH.'/'.DATA_FOLDER.'/rss-closed.xml');
+				$xml = preg_replace('~<pubDate>(.*)</pubDate>~', '<pubDate>'.date("r",time()).'</pubDate>', $xml);
+				echo $xml;
+			}
 			exit();	//	can't really run setup from an RSS feed.
 		}
-
 		if (empty($needs)) {
 			$dir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
 			$p = strpos($dir, ZENFOLDER);

@@ -184,6 +184,7 @@ $map = function_exists('printGoogleMap');
 							</div><!-- images -->
 						</div> <!-- main -->
 					 <div class="clearage"></div>
+					 <span style="text-align:center"><?php @call_user_func('printSlideShowLink'); ?></span>
 					 <?php if (isset($firstImage)) printNofM('Photo', $firstImage, $lastImage, getNumImages()); ?>
 					</div> <!-- content -->
 					<?php

@@ -129,7 +129,7 @@ if (isset($_GET['post_error'])) {
 echo gettext("Plugins provide optional functionality for Zenphoto.").' ';
 echo gettext("They may be provided as part of the Zenphoto distribution or as offerings from third parties.").' ';
 echo sprintf(gettext("Third party plugins are placed in the <code>%s</code> folder and are automatically discovered."),USER_PLUGIN_FOLDER).' ';
-echo gettext("If the plugin checkbox is checked, the plugin will be loaded and its functions made available to theme pages. If the checkbox is not checked the plugin is disabled and occupies no resources.");
+echo gettext("If the plugin checkbox is checked, the plugin will be loaded and its functions made available. If the checkbox is not checked the plugin is disabled and occupies no resources.");
 ?>
 <a href="http://www.zenphoto.org/news/category/extensions" alt="Zenphoto extensions section"> <?php echo gettext('Find more plugins'); ?></a>
 </p>
@@ -150,9 +150,9 @@ echo gettext("If the plugin checkbox is checked, the plugin will be loaded and i
 	</th>
 </tr>
 <tr>
-	<th colspan="2"><?php echo gettext("Available Plugins"); ?></th>
+	<th colspan="2"><span class="displayleft"><?php echo gettext("Available Plugins"); ?></span></th>
 	<th colspan="1">
-		<?php echo gettext("Description"); ?>
+		<span class="displayleft"><?php echo gettext("Description"); ?></span>
 	</th>
 
 </tr>
@@ -269,6 +269,29 @@ foreach ($filelist as $extension) {
 				?>
 				<img class="zp_logoicon" src="<?php echo $ico; ?>" alt="<?php echo gettext('logo'); ?>" title="<?php echo $whose; ?>" />
 				<?php
+				if ($plugin_is_filter & CLASS_PLUGIN) {
+					$icon = $plugin_is_filter | THEME_PLUGIN | ADMIN_PLUGIN;
+				} else {
+					$icon = $plugin_is_filter;
+				}
+				if ($icon & THEME_PLUGIN) {
+					?>
+					<a title="<?php echo gettext('theme plugin'); ?>" /><img class="zp_logoicon" src="images/pictures.png" /></a>
+					<?php
+				} else {
+					?>
+					<img src="images/place_holder_icon.png" />
+					<?php
+				}
+				if ($icon & ADMIN_PLUGIN) {
+					?>
+					<a title="<?php echo gettext('admin plugin'); ?>" /><img class="zp_logoicon" src="images/cache.png" /></a>
+					<?php
+				} else {
+					?>
+					<img src="images/place_holder_icon.png" />
+					<?php
+				}
 				$attributes = '';
 				if ($parserr) {
 					$optionlink = false;
@@ -292,16 +315,18 @@ foreach ($filelist as $extension) {
 					<input type="checkbox" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="<?php echo $plugin_is_filter; ?>"<?php echo $attributes; ?>	/>
 					<?php
 				}
-				echo $extension;
-				if (!empty($plugin_version)) {
-					echo ' v'.$plugin_version;
-				}
-				if ($subtab=='all') {
-					$tab = $member[$extension];
-					echo '<span class="displayrightsmall"><a href="'.$tabs[$tab].'"><em>'.$tab.'</em></a></span>';
-				}
 				?>
 			</label>
+			<?php
+			echo $extension;
+			if (!empty($plugin_version)) {
+				echo ' v'.$plugin_version;
+			}
+			if ($subtab=='all') {
+				$tab = $member[$extension];
+					echo '<span class="displayrightsmall"><a href="'.$tabs[$tab].'"><em>'.$tab.'</em></a></span>';
+			}
+			?>
 		</td>
 		<td width="60">
 			<span class="icons"><a class="plugin_doc" href="<?php echo $plugin_URL; ?>"><img class="icon-position-top3" src="images/info.png" title="<?php printf(gettext('More information on %s'),$extension); ?>" alt=""></a></span>

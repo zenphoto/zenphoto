@@ -431,7 +431,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 					$imgfile = str_replace(ALBUM_FOLDER_SERVERPATH, '', $imgfile);
 					$imagename = basename($imgfile);
 					$albumname = dirname($imgfile);
-					$image = newImage(new Album(NULL,$albumname), $imagename);
+					$image = newImage(newAlbum($albumname), $imagename);
 					$copyright = $image->getCopyright();
 					if (empty($copyright)) {
 						$copyright = getOption('default_copyright');
