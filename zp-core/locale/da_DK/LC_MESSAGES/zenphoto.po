@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto 1.4.4 github\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-02-04 17:49+0100\n"
-"PO-Revision-Date: 2013-02-06 16:13+0100\n"
+"PO-Revision-Date: 2013-02-08 11:23+0100\n"
 "Last-Translator: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language-Team: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language: danish\n"
@@ -5174,10 +5174,9 @@ msgid "Thai (Windows)"
 msgstr "Thai (Windows)"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup.php:21
-#, fuzzy, php-format
+#, php-format
 msgid "Please reinstall the setup files from the %1$s [%2$s] release:"
-msgstr ""
-"Geninstaller venligst følgende installationsfiler fra %1$s [%2$s] udgaven:"
+msgstr "Geninstaller venligst installationsfilerne fra %1$s [%2$s] udgaven:"
 
 #: /home/jes/workspace/zenphoto/zp-core/functions-db-MySQL.php:33
 #, php-format
@@ -6550,7 +6549,7 @@ msgstr "Se billedet i fuld størrelse"
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:535
 msgid "Users with this right may view all full sized (raw) images."
 msgstr ""
-"Brugere med denne rettighed kan se alle billeder i fuld størrelse (rå)."
+"Brugere med denne rettighed kan se alle billeder i original størrelse (rå)."
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:503
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:504
@@ -7276,7 +7275,7 @@ msgid ""
 "If you have Apache <em>mod rewrite</em>, put a checkmark on the <em>mod "
 "rewrite</em> option and you'll get nice cruft-free URLs."
 msgstr ""
-"Hvis du har Apache <em>mod rewrite</ em>, sætte et flueben ved <em>mod "
+"Hvis du har Apache <em>mod rewrite</ em>, sæt et flueben ved <em>mod "
 "rewrite</ em> valgmuligheden, og du får flotte søgenemme webadresser."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:596
@@ -8499,7 +8498,7 @@ msgstr "Vandmærker:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1909
 msgid "Full sized images"
-msgstr "Fuldstørrelse billeder"
+msgstr "Originale billeder"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1930
 #, php-format
@@ -14004,36 +14003,38 @@ msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/quota_manager.php:119
 msgid "Image storage quota:"
-msgstr ""
+msgstr "Billedlager kvote:"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/quota_manager.php:120
 #, php-format
 msgid "Allowed: %s kb"
-msgstr ""
+msgstr "Tilladt: %s kb"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/quota_manager.php:121
 #, php-format
 msgid "(%s kb used)"
-msgstr ""
+msgstr "(%s kb brugt)"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/quota_manager.php:233
 msgid "Uploading is disabled."
-msgstr ""
+msgstr "Overførsel er deaktiveret."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/quota_manager.php:238
 #, php-format
 msgid "Your available upload quota is <span %1$s>%2$s</span> kb."
-msgstr ""
+msgstr "Din tilgængelige kvote for overførsel er <span %1$s>%2$s</span> kb"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/print_album_menu.php:21
 msgid ""
 "Adds a theme function to print an album menu either as a nested list or as a "
 "dropdown menu."
 msgstr ""
+"Tilføjer et tema funktion til at printe en albummenu enten som en indlejret "
+"liste eller som en dropdown menu."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/print_album_menu.php:46
 msgid "\"List\" subalbum level"
-msgstr ""
+msgstr "\"List\" underalbum niveau"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/print_album_menu.php:48
 msgid ""
@@ -14041,104 +14042,122 @@ msgid ""
 "<code>printAlbumMenuList</code> \"List\" option. Note: themes may override "
 "this default."
 msgstr ""
+"Dybden af ​​subalbum niveauer der vises med <code>printAlbumMenu</code> og "
+"<code>printAlbumMenuList</code>  \"List \" valgmulighed. Bemærk: temaer kan "
+"tilsidesætte denne standard."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/print_album_menu.php:49
 msgid "Show counts"
-msgstr ""
+msgstr "Vis tæller"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/print_album_menu.php:51
 msgid ""
 "If checked, image and album counts will be included in the list. Note: "
 "Themes may override this option."
 msgstr ""
+"Hvis markeret vil billed og album antal blive inkluderet i listen. Bemærk:"
+"Temaer kan tilsidesætte denne indstilling."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/print_album_menu.php:52
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/menu_manager.php:56
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage.php:207
 msgid "Truncate titles*"
-msgstr ""
+msgstr "Beskær titler*"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/print_album_menu.php:55
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/menu_manager.php:58
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage.php:210
 msgid "Limit titles to this many characters. Zero means no limit."
-msgstr ""
+msgstr "Begræns titler til dette antal karakterer. 0 betyder ubegrænset."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/print_album_menu.php:56
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/menu_manager.php:52
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage.php:211
 msgid "Truncate indicator*"
-msgstr ""
+msgstr "Beskær indikator*"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/print_album_menu.php:59
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/menu_manager.php:55
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage.php:214
 msgid "Append this string to truncated titles."
-msgstr ""
+msgstr "Tilføj denne streng til beskårne titler."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/print_album_menu.php:66
 msgid ""
 "* These options may be set via the <a href=\"javascript:gotoName"
 "('print_album_menu');\"><em>print_album_menu</em></a> plugin options."
 msgstr ""
+"*Disse muligheder kan sættes via <a href=\"javascript:gotoName"
+"('print_album_menu');\"><em>print_album_menu</em></a> plugin indstillinger."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/print_album_menu.php:70
 msgid ""
 "<p class=\"notebox\">*<strong>Note:</strong> The setting of these options "
 "may be shared with other plugins.</p>"
 msgstr ""
+"<p class=\"notebox\">*<strong>Note:</strong> Indstillingen af disse "
+"muligheder kan deles med andre plugins.</p>"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:12
 msgid ""
 "jQuery jCarousel thumb nav plugin with dynamic loading of thumbs on request "
 "via JavaScript."
 msgstr ""
+"jQuery jCarousel thumb nav plugin med dynamisk indlæsning af miniaturer på "
+"anmodning via JavaScript."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:43
 msgid "Thumbs number"
-msgstr ""
+msgstr "Miniature antal"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:44
 msgid ""
 "The number of thumbs to scroll by. Note that the CSS might need to be "
 "adjusted."
 msgstr ""
+"Antallet af miniaturer at rulle med. Bemærk, at CSS måske skal justeres."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:46
 msgid "Width of the carousel. Note that the CSS might need to be adjusted."
-msgstr ""
+msgstr "Bredde af karrusellen. Bemærk at CSS måske skal justeres."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:48
 msgid "Height of the carousel. Note that the CSS might need to be adjusted."
-msgstr ""
+msgstr "Højde af karrusellen. Bemærk at CSS måske skal justeres."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:53
 msgid "Full image link"
-msgstr ""
+msgstr "link til fuldt billede"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:54
 msgid "If checked the thumbs link to the full image instead of the image page."
 msgstr ""
+"Hvis markeret vil miniaturen linkke til det fulde billede i stedet for "
+"billedsiden."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:56
 msgid ""
 "If checked the carousel will flow vertically instead of the default "
 "horizontal. Changing this may require theme changes!"
 msgstr ""
+"Hvis markeret vil karrusellen flyde lodret i stedet for stadard vanret. "
+"Denne ændring kan kræve ændring i temaet!"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:75
 msgid ""
 "The scripts for which jCarousel is enabled. {If themes require it they might "
 "set this, otherwise you need to do it manually!}"
 msgstr ""
+"Skripter for hvilke jCarousel er aktiveret. {Hvis temaer kræver det, kan de "
+"sætte dette, ellers skal du gøre det manuelt!}"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:38
 msgid "Plugin to generate file download lists."
-msgstr ""
+msgstr "Plugin til at generere filoverførselslister."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:63
 msgid "Download directory"
-msgstr ""
+msgstr "Download mappe"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:65
 msgid ""
@@ -14147,78 +14166,86 @@ msgid ""
 "override this setting by using the parameter of the printdownloadList() "
 "directly on calling."
 msgstr ""
+"Denne download-mappe kan være i forhold til din Zenphoto installation (<em> "
+"mappenavn </ em>) eller uden for den (<em>.. / mappenavn</em>)! Du kan "
+"tilsidesætte denne indstilling ved at bruge parameteren direkte i kaldet for "
+"printdownloadList ()."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:66
 msgid "Show filesize of download items"
-msgstr ""
+msgstr "Vis filstørrelse af download elementerne"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:69
 msgid "Show download counter of download items"
-msgstr ""
+msgstr "Vis download tæller  for download elementer"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:72
 msgid "Files to exclude from the download list"
-msgstr ""
+msgstr "Filer der skal ekskluderes fra download-listen"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:74
 msgid ""
 "A list of file suffixes to exclude. Separate with comma and omit the dot (e."
 "g \"jpg\")."
 msgstr ""
+"En liste af fil-suffixer der skal ekskluderes. Separer med komma og undlad "
+"punktummet. (fx. \"jpg\")."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:75
 msgid "Zip source"
-msgstr ""
+msgstr "Zip kilde"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:77
 msgid "From album"
-msgstr ""
+msgstr "Fra album"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:77
 msgid "From Cache"
-msgstr ""
+msgstr "Fra cache"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:78
 msgid ""
 "Make the album zip form the album folder or from the sized images in the "
 "cache."
 msgstr ""
+"Lav album-zip fra albummappen  eller fra cachen med de dimensionerede "
+"billeder."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:79
 msgid "User rights"
-msgstr ""
+msgstr "Bruger rettigheder."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:81
 msgid "Check if users are required to have <em>file</em> rights to download."
-msgstr ""
+msgstr "Marker hvis brugere skal have  <em>fil</em>rettighed til at downloade."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:84
 msgid "credentials"
-msgstr ""
+msgstr "legitimation"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:86
 msgid "Provide credentials to password protect downloads"
-msgstr ""
+msgstr "Giver legimitationsoplysninger til adgangskode-beskyttede downloads"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:99
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:123
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:475
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:497
 msgid "Password:"
-msgstr ""
+msgstr "Adgangskode:"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:116
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:492
 msgid "Guest user:"
-msgstr ""
+msgstr "Gæstebruger:"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:154
 msgid "You must supply a password for the DownloadList user"
-msgstr ""
+msgstr "Du skal angive en adgangskode for download-brugeren"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:156
 msgid "Your DownloadList passwords were empty or did not match"
-msgstr ""
+msgstr "Din Downloadlist adgangskode var tom eller matchede ikke"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:253
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/search_statistics.php:79
@@ -14226,239 +14253,256 @@ msgstr ""
 #: /home/jes/workspace/zenphoto/zp-core/utilities/gallery_statistics.php:20
 #: /home/jes/workspace/zenphoto/zp-core/utilities/database_reference.php:13
 msgid "Info"
-msgstr ""
+msgstr "info"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:255
 msgid "Download statistics"
-msgstr ""
+msgstr "Download statistikker"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:259
 msgid "Counts of downloads"
-msgstr ""
+msgstr "Downloads-tæller"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:349
 #, php-format
 msgid "Page error: %2$s (%1$s)"
-msgstr ""
+msgstr "Side fejl: %2$s (%1$s)"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:367
 msgid "Album not found"
-msgstr ""
+msgstr "Album ikke fundet"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:371
 #, php-format
 msgid "Created from cached images of %1$s on %2$s."
-msgstr ""
+msgstr "Dannet fra cachede billeder af %1$s på %2$s."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:376
 #, php-format
 msgid "Created from images in %1$s on %2$s."
-msgstr ""
+msgstr "Dannet fra billeder i %1$s på %2$s."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:502
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:536
 #, php-format
 msgid "%u download"
 msgid_plural "%u downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u download"
+msgstr[1] "%u downloads"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/trivialSpam.php:11
 msgid "Trivial SPAM filter."
-msgstr ""
+msgstr "Trivielt SPAM filter"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/trivialSpam.php:61
 msgid "pass"
-msgstr ""
+msgstr "passere"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/trivialSpam.php:61
 msgid "moderate"
-msgstr ""
+msgstr "moderere"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/trivialSpam.php:61
 msgid "reject"
-msgstr ""
+msgstr "Afvise"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/trivialSpam.php:62
 msgid "This action will be taken for all messages."
-msgstr ""
+msgstr "Denne handling vil anvendes på alle meddelelser."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:13
 msgid "Import Wordpress pages, posts, categories, and comments to Zenpage."
 msgstr ""
+"Importer Wordpress sider, poster, kategorier og kommentarer til Zenpage."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:23
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:389
 msgid "Wordpress Importer"
-msgstr ""
+msgstr "Wordpress Importer"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:27
 msgid "An importer for Wordpress posts and pages to Zenpage."
-msgstr ""
+msgstr "En importør for Wordpress poster og sider til Zenpage."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:56
 msgid "Query failed : "
-msgstr ""
+msgstr "Søgning mislykkes:"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:72
 msgid "Please try again"
-msgstr ""
+msgstr "Prøv venligst igen"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:86
 msgid "Missing"
-msgstr ""
+msgstr "Manglende"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:94
 msgid "Wordpress-Database info"
-msgstr ""
+msgstr "Wordpress-Database info"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:97
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:417
 msgid "Database user"
-msgstr ""
+msgstr "Database bruger"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:98
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:418
 msgid "Database password"
-msgstr ""
+msgstr "Database adgangskode"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:110
 msgid ""
 "<strong>ERROR:</strong> Could not connect to the Wordpress database - Query "
 "failed : "
 msgstr ""
+"<strong>FEJL:</strong> Kunne ikke forbinde til Wordpress databasen - "
+"søgningen mislykkes:"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:113
 msgid ""
 "<strong>ERROR:</strong> Wordpress database could not be selected - Query "
 "failed : "
 msgstr ""
+"<strong>FEJL:</strong> Kunne ikke udvælge Wordpress databasen - søgningen "
+"mislykkes:"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:135
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:931
 #, php-format
 msgid "Category <em>%s</em> added"
-msgstr ""
+msgstr "Kategori <em>%s</em> tilføjet"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:137
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1006
 #, php-format
 msgid "A category with the title/titlelink <em>%s</em> already exists!"
-msgstr ""
+msgstr "En kategori med titlen/titellinket <em>%s</em> eksisterer allerede!"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:141
 msgid "No categories to import."
-msgstr ""
+msgstr "Ingen kategorier at importere."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:156
 #, php-format
 msgid "Tag <em>%s</em> added"
-msgstr ""
+msgstr "Mærke <em>%s</em> tilføjet"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:158
 #, php-format
 msgid "A tag with the title/titlelink <em>%s</em> already exists!"
-msgstr ""
+msgstr "Et mærke med titlen/titellinket <em>%s</em> eksisterer allerede!"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:162
 msgid "No tags to import."
-msgstr ""
+msgstr "Inken mærker at importere."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:221
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:284
 #, php-format
 msgid "%1$s <em>%2$s</em> added"
-msgstr ""
+msgstr "%1$s <em>%2$s</em> tilføjet"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:223
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:286
 #, php-format
 msgid "%1$s with the title/titlelink <em>%2$s</em> already exists!"
-msgstr ""
+msgstr "%1$s med titlen/titellinket <em>%2$s</em> eksisterer allerede!"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:250
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:265
 #, php-format
 msgid "%1$s <em>%2$s</em> already assigned"
-msgstr ""
+msgstr "%1$s <em>%2$s</em> allerede tildelt"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:253
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:268
 #, php-format
 msgid "%1$s <em>%2$s</em> assigned"
-msgstr ""
+msgstr "%1$s <em>%2$s</em> tildelt"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:255
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:270
 #, php-format
 msgid "%1$s <em>%2$s</em> could not be assigned!"
-msgstr ""
+msgstr "%1$s <em>%2$s</em> kunne ikke tildeles!"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:333
 msgid "Comment could not be assigned!"
-msgstr ""
+msgstr "Kommentar kunne ikke tilskrives!"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:338
 #, php-format
 msgid "%1$u comment already exists."
 msgid_plural "%1$u comments already exist."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1$u kommentar eksisterer allerede."
+msgstr[1] "%1$u kommentarer eksisterer allerede."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:341
 #, php-format
 msgid "%1$u comment imported."
 msgid_plural "%1$u comments imported."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1$u kommentar importeret."
+msgstr[1] "%1$u kommentarer importeret."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:344
 msgid "No comments to import"
-msgstr ""
+msgstr "Ingen kommetarer at importere"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:353
 msgid "No posts or pages to import."
-msgstr ""
+msgstr "Ingen poster eller sides at importere."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:358
 msgid "Wordpress"
-msgstr ""
+msgstr "Wordpress"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:391
 msgid ""
 "An importer for <strong>Wordpress 3.x</strong> to the Zenpage CMS plugin "
 "that imports the following:"
 msgstr ""
+"En importør for <strong>Wordpress 3.x</strong> til Zenpage CMS plugin som "
+"importerer følgende:"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:393
 msgid ""
 "<strong>Posts (post_status published and draft only) => Zenpage articles</"
 "strong>"
 msgstr ""
+"<strong>Poster (post_status offentliggjort og kladde kun) => Zenpage "
+"artikler</strong>"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:394
 msgid ""
 "<strong>Pages (post_status published and draft only) => Zenpage pages</"
 "strong>"
 msgstr ""
+"<strong>Sider  (post_status offentliggjort og kladde kun) => Zenpage sider</"
+"strong>"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:395
 msgid ""
 "<strong>Post categories => Zenpage categories including assignment to their "
 "article</strong>"
 msgstr ""
+"<strong>Post kategorier => Zenpage kategorier, herunder tildeling til deres "
+"aktikel</strong>"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:396
 msgid ""
 "<strong>Post tags => Zenphoto tags including assignment to their article</"
 "strong>"
 msgstr ""
+"<strong>Post mærker => Zenphoto mærker, herunder tildeleing til deres "
+"artikel</strong>"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:397
 msgid ""
 "<strong>Post and page comments => Zenphoto comments including assignment to "
 "their article</strong>"
 msgstr ""
+"<strong>Post og side kommentarer => Zenphoto kommentarer, herunder tildeling "
+"til deres artikel</strong>"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:400
 msgid ""
@@ -14467,176 +14511,191 @@ msgid ""
 "running this importer. Make also sure that both databases use the same "
 "encoding so you do not get messed up character display."
 msgstr ""
+"<strong>VIGTIGT:</strong> Hvis du ikke bruger en ny Zenphoto installation er "
+"det <strong>kraftigt anbefaletat lave backup af din database</strong> før du "
+"kører denne importør. Vær helt sikker på at begge databaser bruger samme "
+"karakterkodning så du ikke fåer et ødelagt karakterdisplay."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:403
 msgid ""
 "<strong>Note:</strong> <em>Wordpress page and category nesting</em> is "
 "currently not preserved but can easily be recreated by drag and drop sorting."
 msgstr ""
+"<strong>Bemærk:</strong> <em>WordPress side og kategori indlejring</em> "
+"bevares i øjeblikket ikke men kan let genskabes ved træk og slip sortering."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:406
 msgid ""
 "In case anything does not work as expected the query results from the "
 "Wordpress database are logged in <code>zp-data/debug.log</code>"
 msgstr ""
+"I tilfælde af noget ikke fungerer som forventet vil "
+"forespørgselsresultaterne fra Wordpress database logføres i <code>zp-data/"
+"debug.log</code>"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:408
 msgid "<strong>ERROR: </strong>The Zenpage CMS plugin is not enabled."
-msgstr ""
+msgstr "<strong>FEJL:</strong> Zenpage CMS plugin er ikke aktiveret."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:413
 msgid "Please enter your Wordpress database details:"
-msgstr ""
+msgstr "Indtast venligst WordPress database detaljer:"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:421
 msgid "Convert linefeeds to new lines (br)"
-msgstr ""
+msgstr "Konverter linjeskift til nye linjer (br)"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:422
 msgid "Import"
-msgstr ""
+msgstr "Import"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:443
 msgid "Import finished."
-msgstr ""
+msgstr "Import slut."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:446
 msgid "Importing...patience please."
-msgstr ""
+msgstr "Importerer...vær venligst tålmodig"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:470
 msgid "Pages and Articles"
-msgstr ""
+msgstr "Sider og Artikler"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:484
 msgid "New import"
-msgstr ""
+msgstr "Ny import"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenphoto_news.php:11
 msgid ""
 "Places the latest 3 news articles from Zenphoto.org on the admin overview "
 "page."
 msgstr ""
+"Placerer de sidste 3 nyhedsartikler fra Zenphoto.org på admin oversigtsside."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenphoto_news.php:13
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/check_for_update.php:13
 msgid "PHP <em>DOM Object Model</em> is required."
-msgstr ""
+msgstr "PHP <em>DOM Object Model</em> skal være installeret."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenphoto_news.php:26
 msgid "Truncation"
-msgstr ""
+msgstr "Beskæring"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenphoto_news.php:27
 msgid "The length of the article to display."
-msgstr ""
+msgstr "Længden af artiklen der skal vises."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenphoto_news.php:35
 msgid "News from Zenphoto.org"
-msgstr ""
+msgstr "Nyheder fra Zenphoto.org"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenphoto_news.php:100
 #, php-format
 msgid "Failed to retrieve link <em>%s</em>"
-msgstr ""
+msgstr "Kunne ikke hente link <em>%s</em>"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenphoto_news.php:107
 msgid "A connection to <em>Zenphoto.org</em> could not be established."
-msgstr ""
+msgstr "Kunne ikke etablere en forbindelse til <em>Zenphoto.org</em>."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/seo_cleanup.php:16
 msgid "Provides a utility SEO file/folder name clenser."
-msgstr ""
+msgstr "Renser fil- og mappenavne så de er søgevenlige."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/seo_cleanup.php:24
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/sitemap-extended.php:198
 msgid "Seo"
-msgstr ""
+msgstr "SEO"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/seo_cleanup.php:26
 msgid "SEO Cleaner"
-msgstr ""
+msgstr "SEO Renser"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/seo_cleanup.php:30
 msgid "Make file and folder names in the Gallery SEO friendly."
-msgstr ""
+msgstr "Gør fil og mappenavne i Galleriet SEO venlige."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/seo_cleanup.php:77
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/seo_cleanup.php:104
 #, php-format
 msgid "<em>%1$s</em> renamed to <em>%2$s</em>"
-msgstr ""
+msgstr "<em>%1$s</em> omdøbt til <em>%2$s</em>"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/seo_cleanup.php:119
 msgid "SEO cleaner"
-msgstr ""
+msgstr "SEO renser"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/seo_cleanup.php:167
 msgid "Cleanup album and image names to be SEO friendly"
-msgstr ""
+msgstr "Renser album og billednavne så de bliver SEO venlige"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/seo_cleanup.php:169
 msgid "Albums to clean:"
-msgstr ""
+msgstr "Albums der skal renses:"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/seo_cleanup.php:179
 msgid ""
 "If this script does not complete, <a href=\"javascript:reStart();\" title="
 "\"restart\">click here</a>"
 msgstr ""
+"Hvis dette skript ikke kører færdigt, <a href=\"javascript:reStart();\" "
+"title=\"restart\">klik her</a>"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/seo_cleanup.php:199
 #, php-format
 msgid "%u image name cleaned."
 msgid_plural "%u images names cleaned."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u billednavn renset"
+msgstr[1] "%u billednavne renset"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/seo_cleanup.php:201
 msgid "No image names needed cleaning."
-msgstr ""
+msgstr "Ingen billednavne behøvede rensning."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/seo_cleanup.php:204
 #, php-format
 msgid "%u album folder name cleaned."
 msgid_plural "%u albums folder names cleaned."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u albummappenavn renset."
+msgstr[1] "%u albummappenavne renset."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/seo_cleanup.php:206
 msgid "No album folder names needed cleaning."
-msgstr ""
+msgstr "Ingen albummappenavne behøvede rensning."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_album_statistics.php:13
 msgid ""
 "Functions that provide various statistics about images and albums in the "
 "gallery."
 msgstr ""
+"Fuktioner som laver diverse statistikker vedrørende billeder og albums i "
+"galleriet."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_album_statistics.php:219
 #, php-format
 msgid "%1$u new %2$s"
-msgstr ""
+msgstr "%1$u ny %2$s"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_album_statistics.php:230
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_album_statistics.php:524
 #, php-format
 msgid "Rating: %1$u (Votes: %2$u)"
-msgstr ""
+msgstr "Bedømmelse: %1$u (Stemmer: %2$u)"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_album_statistics.php:235
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_album_statistics.php:529
 #, php-format
 msgid "Views: %u"
-msgstr ""
+msgstr "Vist: %u"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/viewer_size_image.php:26
 msgid "Provides a means allowing users to select the image size to view."
 msgstr ""
+"Giver brugerne mulighed for at vælge den billedstørrelse de ønsker at se. "
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/viewer_size_image.php:53
 msgid "Image sizes allowed"
-msgstr ""
+msgstr "Tilladte billedstørrelser"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/viewer_size_image.php:54
 msgid ""
@@ -14644,6 +14703,9 @@ msgid ""
 "size&gt;\" or \"$h=&lt;height&gt;,$w=&lt;width&gt;;\"....<br />See "
 "printCustomSizedImage() for details"
 msgstr ""
+"Liste over størrelser seeren kan vælge mellem.<br />Formen er  \"$s=&lt;"
+"størrelse&gt;\" eller \"$h=&lt;højde&gt;,$w=&lt;bredde&gt;;\"....<br />Se "
+"printCustomSizedImage() for detaljer."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/viewer_size_image.php:55
 msgid "Selector"
