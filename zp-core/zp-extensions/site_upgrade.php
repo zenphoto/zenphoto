@@ -7,7 +7,7 @@
  * <i>close</i> a site, move a closed site to <i>test mode</i>, and then <i>open</i> the site.
  *
  * <i>Closing</i> the site will cause links to the site <i>front end</i> to be redirected to a script in
- * the folder <var>plugins/site_upgrade</var> by Apache rewrite rules. Access to the admin pages remains available.
+ * the folder <var>plugins/site_upgrade</var>. Access to the admin pages remains available.
  * You should close the site while
  * you are uploading a new Zenphoto release so that users will not catch the site in an unstable state.
  *
@@ -17,11 +17,17 @@
  *
  * Once your testing is completed satisfactorily you <i>open</i> your site to all visitors.
  *
+ * Change the files in <var>plugins/site_upgrade</var> to meet your needs. (<b>Note</b> these files will
+ * be copied to that folder during setup the first time you do an install. Setup will not overrite any existing
+ * versions of these files, so if a change is made to the Zenphoto versions of the files you will have to update
+ * your copies either by removing them before running setup or by manually applying the Zenphoto changes to your
+ * files.)
  *
- * The plugin requires mod_rewrite to be active and that the <var>.htaccess</var> file exists
  *
- * Change the files in <var>plugins/site_upgrade</var> to meet your needs. (Note these files will
- * be copied to that folder during setup.)
+ * The plugin works best if mod_rewrite is active and the <var>.htaccess</var> file exists. If these are not the case
+ * the plugin will still work in most cases. However if you the release you are upgrading to has significant changes involving
+ * plugin loading of the front-end site there may be PHP failures due if the site is accessed while the files
+ * being uploaded are in a mixed release state.
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
