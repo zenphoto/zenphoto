@@ -370,7 +370,7 @@ if ($totalpages > 1) {
 					$albumdata = $albmdata[0];
 					$album = $albumdata['folder'];
 					$albumtitle = get_language_string($albumdata['title']);
-					$link = '<a href="'.rewrite_path("/$album","/index.php?album=".pathurlencode($album)).'#c_'.$id.'">'.$albumtitle.$title.'</a>';
+					$link = '<a href="'.rewrite_path("/$album","/index.php?album=".pathurlencode($album)).'#zp_comment_id_'.$id.'">'.$albumtitle.$title.'</a>';
 					if (empty($albumtitle)) $albumtitle = $album;
 				}
 				break;
@@ -384,7 +384,7 @@ if ($totalpages > 1) {
 						$newsdata = $newsdata[0];
 						$titlelink = $newsdata['titlelink'];
 						$title = get_language_string($newsdata['title']);
-						$link = '<a href="'.rewrite_path("/news/".$titlelink,"/index.php?p=news&amp;title=".urlencode($titlelink)).'#c_'.$id.'">'.$title."</a><br /> ".gettext("[news]");
+						$link = '<a href="'.rewrite_path("/news/".$titlelink,"/index.php?p=news&amp;title=".urlencode($titlelink)).'#zp_comment_id_'.$id.'">'.$title."</a><br /> ".gettext("[news]");
 					}
 				}
 				break;
@@ -398,7 +398,7 @@ if ($totalpages > 1) {
 						$pagesdata = $pagesdata[0];
 						$titlelink = $pagesdata['titlelink'];
 						$title = get_language_string($pagesdata['title']);
-						$link = "<a href=\"".rewrite_path("/pages/".$titlelink,"/index.php?p=pages&amp;title=".urlencode($titlelink)).'#c_'.$id.'">'.$title."</a><br /> ".gettext("[page]");
+						$link = "<a href=\"".rewrite_path("/pages/".$titlelink,"/index.php?p=pages&amp;title=".urlencode($titlelink)).'#zp_comment_id_'.$id.'">'.$title."</a><br /> ".gettext("[page]");
 					}
 				}
 				break;
@@ -416,7 +416,7 @@ if ($totalpages > 1) {
 						$albumdata = $albmdata[0];
 						$album = $albumdata['folder'];
 						$albumtitle = get_language_string($albumdata['title']);
-						$link = "<a href=\"".rewrite_path("/$album/$image","/index.php?album=".pathurlencode($album).	"&amp;image=".urlencode($image)).'#c_'.$id.'">'.$albumtitle.$title."</a>";
+						$link = "<a href=\"".rewrite_path("/$album/$image","/index.php?album=".pathurlencode($album).	"&amp;image=".urlencode($image)).'#zp_comment_id_'.$id.'">'.$albumtitle.$title."</a>";
 						if (empty($albumtitle)) $albumtitle = $album;
 					}
 				}
