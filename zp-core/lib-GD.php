@@ -57,12 +57,11 @@ if (!function_exists('zp_graphicsLibInfo')) {
 		$_gd_freetype_fonts = array(0);
 
 		$imgtypes = imagetypes();
-		$_lib_GD_info['GIF'] = $imgtypes & IMG_GIF;
-		$_lib_GD_info['JPG'] = $imgtypes & IMG_JPG;
-		$_lib_GD_info['JPEG'] = $imgtypes & IMG_JPG;
-		$_lib_GD_info['PNG'] = $imgtypes & IMG_PNG;
-		$_lib_GD_info['BMP'] = $imgtypes & IMG_WBMP;
-
+		$_lib_GD_info['GIF'] = ($imgtypes & IMG_GIF)?'gif':false;
+		$_lib_GD_info['JPG'] = ($imgtypes & IMG_JPG)?'jpg':false;
+		$_lib_GD_info['JPEG'] = ($imgtypes & IMG_JPG)?'jpg':false;
+		$_lib_GD_info['PNG'] = ($imgtypes & IMG_PNG)?'png':false;
+		$_lib_GD_info['BMP'] = ($imgtypes & IMG_WBMP)?'jpg':false;
 		unset($imgtypes);
 		unset($info);
 

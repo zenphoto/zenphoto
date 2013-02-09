@@ -2050,12 +2050,11 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 				<?php $type = getOption('image_cache_suffix'); ?>
 				<input type="radio" name="image_cache_suffix" value=""<?php if (empty($type)) echo ' checked="checked"'; ?> />&nbsp;<?php echo gettext("Original"); ?>
 				<?php
-				foreach ($_zp_supported_images as $suffix) {
-					if ($suffix != 'jpeg') {
-						?>
-						<input type="radio" name="image_cache_suffix" value="<?php echo $suffix; ?>"<?php if ($type==$suffix) echo ' checked="checked"'; ?> />&nbsp;<?php echo strtoupper($suffix); ?>
-						<?php
-					}
+				$cachesuffix = array_unique($_zp_cachefileSuffix);
+				foreach ($cachesuffix as $suffix) {
+					?>
+					<input type="radio" name="image_cache_suffix" value="<?php echo $suffix; ?>"<?php if ($type==$suffix) echo ' checked="checked"'; ?> />&nbsp;<?php echo $suffix; ?>
+					<?php
 				}
 				?>
 			</td>
