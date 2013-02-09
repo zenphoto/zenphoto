@@ -259,6 +259,7 @@ define('IMAGE_WATERMARK',getOption('fullimage_watermark'));
 define('FULLIMAGE_WATERMARK',getOption('fullsizeimage_watermark'));
 define('THUMB_WATERMARK',getOption('Image_watermark'));
 define('OPEN_IMAGE_CACHE', !getOption('protected_image_cache'));
+define('IMAGE_CACHE_SUFFIX',getOption('image_cache_suffix'));
 
 define('DATE_FORMAT',getOption('date_format'));
 
@@ -526,8 +527,9 @@ function getImageCacheFilename($album8, $image8, $args) {
 	global $_zp_supported_images, $_zp_cachefileSuffix;
 	// this function works in FILESYSTEM_CHARSET, so convert the file names
 	$album = internalToFilesystem($album8);
-	$suffix = getOption('image_cache_suffix');
-	if (empty($suffix)) {
+	if (IMAGE_CACHE_SUFFIX) {
+		$suffix = IMAGE_CACHE_SUFFIX;
+	} else {
 		$suffix = @$_zp_cachefileSuffix[strtoupper(getSuffix($image8))];
 		if (empty($suffix)) {
 			$suffix = 'jpg';
