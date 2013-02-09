@@ -3510,8 +3510,7 @@ function printRandomImages($number=5, $class=null, $option='all', $rootAlbum='',
 	if (!empty($class)) $class = ' class="'.$class.'"';
 	echo "<ul".$class.">";
 	for ($i=1; $i<=$number; $i++) {
-		echo "<li>\n";
-		switch($option) {
+   		switch($option) {
 			case "all":
 				$randomImage = getRandomImages();
 				break;
@@ -3520,6 +3519,7 @@ function printRandomImages($number=5, $class=null, $option='all', $rootAlbum='',
 				break;
 		}
 		if (is_object($randomImage) && $randomImage->exists) {
+			echo "<li>\n";
 			if($fullimagelink) {
 				$randomImageURL = html_encode($randomImage->getFullimageURL());
 			} else {
@@ -3539,8 +3539,10 @@ function printRandomImages($number=5, $class=null, $option='all', $rootAlbum='',
 			}
 			echo zp_apply_filter('custom_image_html', $html, false);
 			echo "</a>";
+			echo "</li>\n";
+		} else {
+			break;
 		}
-		echo "</li>\n";
 	}
 	echo "</ul>";
 }
@@ -3631,7 +3633,7 @@ function printTags($option='links', $preText=NULL, $class=NULL, $separator=', ')
  *
  * @param string $option "cloud" for tag cloud, "list" for simple list
  * @param string $class CSS class
- * @param string $sort "results" for relevance list, "abc" for alphabetical, blank for unsorted
+ * @param string $sort "results" for relevance list, "random" for random ordering, otherwise the list is alphabetical
  * @param bool $counter TRUE if you want the tag count within brackets behind the tag
  * @param bool $links set to TRUE to have tag search links included with the tag.
  * @param int $maxfontsize largest font size the cloud should display
@@ -3641,19 +3643,31 @@ function printTags($option='links', $preText=NULL, $class=NULL, $separator=', ')
  * @param int $minfontsize minimum font size the cloud should display
  * @since 1.1
  */
-function printAllTagsAs($option,$class='',$sort='abc',$counter=FALSE,$links=TRUE,$maxfontsize=2,$maxcount=50,$mincount=10, $limit=NULL,$minfontsize=0.8) {
+function printAllTagsAs($option,$class='',$sort=NULL,$counter=FALSE,$links=TRUE,$maxfontsize=2,$maxcount=50,$mincount=10, $limit=NULL,$minfontsize=0.8) {
 	global $_zp_current_search;
 	$option = strtolower($option);
 	if ($class != "") {
 		$class = "class=\"".$class."\"";
 	}
 	$tagcount = getAllTagsCount();
-	if (!is_array($tagcount)) { return false; }
-	if ($sort == "results") {
-			arsort($tagcount);
+	if (!is_array($tagcount)) {
+		return false;
 	}
-	if (!is_null($limit)) {
-		$tagcount = array_slice($tagcount, 0, $limit);
+	switch ($sort) {
+		case 'results':
+			arsort($tagcount);
+			if (!is_null($limit)) {
+				$tagcount = array_slice($tagcount, 0, $limit);
+			}
+			break;
+		case 'random':
+			if (!is_null($limit)) {
+				$tagcount = array_slice($tagcount, 0, $limit);
+			}
+			shuffle_assoc($tagcount);
+			break;
+		default:
+			break;
 	}
 	$list = '';
 	echo "<ul ".$class.">\n";

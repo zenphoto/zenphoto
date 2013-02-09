@@ -1188,6 +1188,23 @@ function printLink($url, $text, $title=NULL, $class=NULL, $id=NULL) {
 }
 
 /**
+ * shuffles an array maintaining the keys
+ *
+ * @param array $array
+ * @return boolean
+ */
+function shuffle_assoc(&$array) {
+	$keys = array_keys($array);
+	shuffle($keys);
+	foreach($keys as $key) {
+		$new[$key] = $array[$key];
+	}
+	$array = $new;
+	return true;
+}
+
+
+/**
  * sorts the found albums (images) by the required key(s)
  *
  * NB: this sort is sensitive to the key(s) chosen and makes
