@@ -208,18 +208,19 @@ if (!function_exists('zp_graphicsLibInfo')) {
 	require_once(dirname(__FILE__).'/lib-GD.php');
 }
 if (function_exists('zp_graphicsLibInfo')) {
-	$_zp_supported_images = zp_graphicsLibInfo();
+	$_zp_cachefileSuffix = zp_graphicsLibInfo();
 } else {
-	$_zp_supported_images = array('Library'=>gettext('none'), 'Library_desc'=>NULL);
+	$_zp_cachefileSuffix = array('Library'=>gettext('none'), 'Library_desc'=>NULL);
 }
-define('GRAPHICS_LIBRARY',$_zp_supported_images['Library']);
-unset($_zp_supported_images['Library']);
-unset($_zp_supported_images['Library_desc']);
-foreach ($_zp_supported_images as $key=>$type) {
-	unset($_zp_supported_images[$key]);
-	if ($type) $_zp_supported_images[strtolower($key)] = true;
+define('GRAPHICS_LIBRARY',$_zp_cachefileSuffix['Library']);
+unset($_zp_cachefileSuffix['Library']);
+unset($_zp_cachefileSuffix['Library_desc']);
+$_zp_supported_images = array();
+foreach ($_zp_cachefileSuffix as $key=>$type) {
+	if ($type) {
+		$_zp_supported_images[] = strtolower($key);
+	}
 }
-$_zp_supported_images = array_keys($_zp_supported_images);
 
 require_once(dirname(__FILE__).'/lib-encryption.php');
 
@@ -522,15 +523,15 @@ function rewrite_get_album_image($albumvar, $imagevar) {
  * @return string
  */
 function getImageCacheFilename($album8, $image8, $args) {
-	global $_zp_supported_images;
+	global $_zp_supported_images, $_zp_cachefileSuffix;
 	// this function works in FILESYSTEM_CHARSET, so convert the file names
 	$album = internalToFilesystem($album8);
 	$suffix = getOption('image_cache_suffix');
 	if (empty($suffix)) {
-		$suffix = getSuffix($image8);
-	}
-	if (!in_array($suffix, $_zp_supported_images) || $suffix=='jpeg') {
-		$suffix = 'jpg';
+		$suffix = @$_zp_cachefileSuffix[strtoupper(getSuffix($image8))];
+		if (empty($suffix)) {
+			$suffix = 'jpg';
+		}
 	}
 	$image = stripSuffix(internalToFilesystem($image8));
 	// Set default variable values.

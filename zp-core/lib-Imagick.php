@@ -110,32 +110,25 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	$_lib_Imagick_info['Library'] = 'Imagick';
 	$_lib_Imagick_info['Library_desc'] = sprintf(gettext('PHP Imagick library <em>%s</em>') . '<br /><em>%s</em>', $_imagick_version, $_imagemagick_version['versionString']);
 
-	$_imagick_format_blacklist = array(
-		// video formats
-		'AVI', 'M2V', 'M4V', 'MOV', 'MP4', 'MPEG', 'MPG', 'WMV',
-		// text formats
-		'HTM', 'HTML', 'SHTML', 'TEXT',
-		// font formats
-		'DFONT', 'OTF', 'PFA', 'PFB', 'TTC', 'TTF',
-		// braille formats
-		'BRF', 'ISOBRL', 'UBRL',
-		// raw image formats, requires ufraw-batch as a decode delegate
-		'3FR', 'ARW', 'CR2', 'CRW', 'DCR', 'DNG', 'K25', 'KDC', 'MEF', 'MRW', 'NEF', 'NRW', 'ORF', 'PEF', 'RW2', 'RAF', 'SR2', 'SRF', 'X3F',
-		// [Ghost|Post]Script formats
-		'AI', 'EPI', 'EPS', 'EPS2', 'EPS3', 'EPSF', 'EPSI', 'EPT', 'EPT2', 'EPT3', 'MAN', 'PDF', 'PS', 'PS2', 'PS3',
-		// other formats with lib dependencies, so possibly no decode delegate
-		'CGM', 'EMF', 'FIG', 'FPX', 'GPLT', 'HPGL', 'JBIG', 'RAD', 'WMF', 'WMZ',
-		// ImageMagick special file formats ( http://www.imagemagick.org/Usage/files/#special_formats )
-		'INFO', 'INLINE', 'NULL', 'SHOW', 'WIN', 'X',
-		// just to be sure...
-		'ZIP'
-	);
+	$_imagick_format_whitelist = array(
+			'BMP'=>'jpg','BMP2'=>'jpg','BMP3'=>'jpg',
+			'GIF'=>'gif','GIF87'=>'gif',
+			'JPG'=>'jpg','JPEG'=>'jpg',
+			'PNG'=>'png','PNG8'=>'png','PNG24'=>'png','PNG32'=>'png',
+			'TIFF'=>'jpg','TIFF64'=>'jpg'
+			);
 
-	@$_imagick_formats = array_diff(Imagick::queryFormats(), $_imagick_format_blacklist);
-	$_lib_Imagick_info += array_combine(array_map('strtoupper', $_imagick_formats), array_map('strtolower', $_imagick_formats));
-
-	unset($_imagick_format_blacklist);
+	$_imagick = new Imagick();
+	$_imagick_formats = $_imagick->queryFormats();
+	foreach ($_imagick_formats as $format) {
+		if (array_key_exists($format, $_imagick_format_whitelist)) {
+			$_lib_Imagick_info[$format] = $_imagick_format_whitelist[$format];
+		}
+	}
+	unset($_imagick_format_whitelist);
 	unset($_imagick_formats);
+	unset($_imagick);
+	unset($format);
 
 	if (DEBUG_IMAGE) {
 		debugLog('Loading ' . $_lib_Imagick_info['Library']);
