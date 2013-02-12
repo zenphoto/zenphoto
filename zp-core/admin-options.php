@@ -2008,7 +2008,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 		<tr>
 			<td><?php echo gettext("Cache as:"); ?></td>
 			<td>
-				<?php $type = getOption('image_cache_suffix'); ?>
+				<?php $type = IMAGE_CACHE_SUFFIX; ?>
 				<input type="radio" name="image_cache_suffix" value=""<?php if (empty($type)) echo ' checked="checked"'; ?> />&nbsp;<?php echo gettext("Original"); ?>
 				<?php
 				$cachesuffix = array_unique($_zp_cachefileSuffix);
