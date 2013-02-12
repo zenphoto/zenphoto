@@ -1150,4 +1150,12 @@ function getTheme(&$zenCSS, &$themeColor, $defaultColor) {
 	}
 }
 
+/**
+ * @deprecated
+ * @since 1.4.5
+ */
+function printLatestZenpageComments($number, $shorten='123', $id='showlatestcomments',$type="all",$itemID="") {
+	deprecated_functions::notify(gettext('use printLatestComments($number, $shorten, $type, $itemID, $id);'));
+	printLatestComments($number, $shorten, $type, $itemID, $id);
+}
 ?>

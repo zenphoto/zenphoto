@@ -2930,53 +2930,6 @@ function getLatestZenpageComments($number,$type="all",$itemID="") {
 	return array_slice($comments, 0, $number);
 }
 
-
-/**
- * Prints out latest comments for news articles and pages as a unordered list
- *
- * @param int $number how many comments you want.
- * @param string $shorten the number of characters to shorten the comment display
- * @param string $id The css id to style the list
- * @param string $type 	"all" for all latest comments for all news articles and all pages
- * 											"news" for the lastest comments of one specific news article
- * 											"page" for the lastest comments of one specific page
- * @param int $itemID the ID of the element to get the comments for if $type != "all"
- */
-function printLatestZenpageComments($number, $shorten='123', $id='showlatestcomments',$type="all",$itemID="") {
-	if(empty($class)) {
-		$id = "";
-	} else {
-		$id = "id='".$id." ";
-	}
-	$comments = getLatestZenpageComments($number,$type,$itemID);
-	echo "<ul $id>\n";
-	foreach ($comments as $comment) {
-		if($comment['anon']) {
-			$author = "";
-		} else {
-			$author = " ".gettext("by")." ".$comment['name'];
-		}
-		$date = $comment['date'];
-		$title = get_language_string($comment['title']);
-		$titlelink = $comment['titlelink'];
-		$website = $comment['website'];
-		$shortcomment = truncate_string($comment['comment'], $shorten);
-		$url = "";
-		switch($comment['type']){
-			case "news":
-				$url = getNewsURL($titlelink);
-				break;
-			case "pages":
-				$url = getPageLinkURL($titlelink);
-				break;
-		}
-		echo "<li><a href=\"".html_encode($url)."\" class=\"commentmeta\">".$title.$author."</a><br />\n";
-		echo "<span class=\"commentbody\">".$shortcomment."</span></li>";
-	}
-	echo "</ul>\n";
-}
-
-
 /************************************************/
 /* RSS functions
 /************************************************/

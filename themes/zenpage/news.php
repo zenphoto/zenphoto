@@ -55,7 +55,7 @@ if(is_NewsArticle()) {
   <?php if(getNextNewsURL()) { ?><div class="singlenews_next"><?php printNextNewsLink(); ?></div><?php } ?>
   <?php if(getPrevNewsURL() OR getNextNewsURL()) { ?><br style="clear:both" /><?php } ?>
   <h3><?php printNewsTitle(); ?></h3>
-  <div class="newsarticlecredit"><span class="newsarticlecredit-left"><?php printNewsDate();?> | <?php echo gettext("Comments:"); ?> <?php echo getCommentCount(); ?> | </span> <?php printNewsCategories(", ",gettext("Categories: "),"newscategories"); ?></div>
+  <div class="newsarticlecredit"><span class="newsarticlecredit-left"><?php printNewsDate();?> | <?php if function_exists('getCommentCount') { echo gettext("Comments:"); ?> <?php echo getCommentCount(); ?> |<?php } ?> </span> <?php printNewsCategories(", ",gettext("Categories: "),"newscategories"); ?></div>
   <?php printNewsContent(); ?>
   <?php printTags('links', gettext('<strong>Tags:</strong>').' ', 'taglist', ', '); ?>
   <br style="clear:both;" /><br />
@@ -71,7 +71,7 @@ echo "<hr />";
   while (next_news()): ;?>
  <div class="newsarticle">
     <h3><?php printNewsTitleLink(); ?><?php echo " <span class='newstype'>[".getNewsType()."]</span>"; ?></h3>
-        <div class="newsarticlecredit"><span class="newsarticlecredit-left"><?php printNewsDate();?> | <?php echo gettext("Comments:"); ?> <?php echo getCommentCount(); ?></span>
+        <div class="newsarticlecredit"><span class="newsarticlecredit-left"><?php printNewsDate(); if function_exists('getCommentCount') { ?> | <?php echo gettext("Comments:"); ?> <?php echo getCommentCount(); ?></span>
 <?php
 if(is_GalleryNewsType()) {
 	if(!is_NewsType("album")) {

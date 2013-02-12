@@ -7,7 +7,7 @@
 <?php $showhide = "<a href=\"#comments\" id=\"showcomments\"><img src=\"" .
 	$_zp_themeroot . "/images/btn_show.gif\" width=\"35\" height=\"11\" alt=\"".gettext("SHOW")."\" /></a> <a href=\"#content\" id=\"hidecomments\"><img src=\"" .
 	$_zp_themeroot . "/images/btn_hide.gif\" width=\"35\" height=\"11\" alt=\"".gettext("HIDE")."\" /></a>";
- $num = getCommentCount();
+ $num call_user_func('getCommentCount');
 ?>
 <h2>
 	<?php

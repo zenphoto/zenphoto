@@ -80,8 +80,12 @@ if (!defined('WEBPATH') || !class_exists('Zenpage')) die();
 		<h3><?php printNewsTitle(); ?></h3>
 
 		<div class="newsarticlecredit">
-			<span class="newsarticlecredit-left"> <?php
-			$count = getCommentCount();
+			<span class="newsarticlecredit-left">
+			<?php
+			if (function_exists(getCommentCount)) {
+				$count = call_user_func('getCommentCount');
+			} else {
+				$count = 0;
 			$cat = getNewsCategories();
 			printNewsDate();
 			if ($count > 0) {

@@ -61,7 +61,7 @@ if (!defined('WEBPATH')) die();
 	while (next_news()): ;?>
 	 <div class="newsarticle">
 			<h3><?php printNewsTitleLink(); ?><?php echo " <span class='newstype'>[".getNewsType()."]</span>"; ?></h3>
-					<div class="newsarticlecredit"><span class="newsarticlecredit-left"><?php printNewsDate();?> | <?php echo gettext("Comments:"); ?> <?php echo getCommentCount(); ?></span>
+					<div class="newsarticlecredit"><span class="newsarticlecredit-left"><?php printNewsDate(); if (function_exists('getCommentCount') { ?> | <?phpecho gettext("Comments:"); ?> <?php echo getCommentCount(); } ?></span>
 	<?php
 	if(is_GalleryNewsType()) {
 		if(!is_NewsType("album")) {
