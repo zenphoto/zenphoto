@@ -3175,7 +3175,7 @@ function getLatestComments($number,$type="all",$id=NULL) {
 	$comments = array();
 	switch($type) {
 		case 'all':
-			$sql = 'SELECT * FROM '.prefix('comments').' WHERE `private`=0 AND `type` in ("albums","images")';
+			$sql = 'SELECT * FROM '.prefix('comments').' WHERE `private`=0';
 			$commentsearch = query($sql);
 			if ($commentsearch) {
 				while ($commentcheck = db_fetch_assoc($commentsearch)) {
@@ -3192,6 +3192,10 @@ function getLatestComments($number,$type="all",$id=NULL) {
 								$commentcheck['filename'] = $item->filename;
 								$commentcheck['folder'] = $item->album->name;
 								$commentcheck['albumtitle'] = $item->album->getTitle('all');
+								break;
+							case 'news':
+							case 'pages':
+								$commentcheck['titlelink'] = $item->getTitlelink();
 								break;
 						}
 						$commentcheck['pubdate'] = $commentcheck['date'];	//	for RSS
@@ -3224,6 +3228,9 @@ function getLatestComments($number,$type="all",$id=NULL) {
 				$comments[$key] = $comment;
 			}
 			break;
+		case 'category':
+
+			break;
 	}
 	return $comments;
 }
@@ -3244,26 +3251,41 @@ function printLatestComments($number, $shorten='123',$type="all",$item=NULL) {
 		} else {
 			$author = "";
 		}
-		$album = $comment['folder'];
-		if($comment['type'] == "images") { // check if not comments on albums or Zenpage items
-			$imagetag = '&amp;image='.$comment['filename'];
-			$imagetagR = '/'.$comment['filename'].getOption('mod_rewrite_image_suffix');
-		} else {
-			$imagetag = $imagetagR = "";
-		}
-		$date = $comment['date'];
-		$albumtitle = get_language_string($comment['albumtitle']);
-		$title = '';
-		if($comment['type'] != 'albums') {
-			if ($comment['title'] == "") $title = ''; else $title = get_language_string($comment['title']);
-		}
-		$website = $comment['website'];
 		$shortcomment = truncate_string($comment['comment'], $shorten);
-		if(!empty($title)) {
-			$title = ": ".$title;
+		$website = $comment['website'];
+		$date = $comment['date'];
+		switch ($comment['type']) {
+			case 'albums':
+			case 'images':
+				$album = $comment['folder'];
+				if($comment['type'] == "images") { // check if not comments on albums or Zenpage items
+					$imagetag = '&amp;image='.$comment['filename'];
+					$imagetagR = '/'.$comment['filename'].getOption('mod_rewrite_image_suffix');
+				} else {
+					$imagetag = $imagetagR = "";
+				}
+				$albumtitle = get_language_string($comment['albumtitle']);
+				$title = '';
+				if($comment['type'] != 'albums') {
+					if ($comment['title'] == "") $title = ''; else $title = get_language_string($comment['title']);
+				}
+				if(!empty($title)) {
+					$title = ": ".$title;
+				}
+				echo '<li><a href="'.rewrite_path($album.$imagetagR,'?album='.$album.$imagetag).'" class="commentmeta">'.$albumtitle.$title.$author."</a><br />\n";
+				echo '<span class="commentbody">'.$shortcomment.'</span></li>';
+				break;
+			case 'news':
+				$title = get_language_string($comment['title']);
+				echo '<li><a href="'.rewrite_path('/news/'.$comment['titlelink'],'/index.php?p=news&amp;title='.$comment['titlelink']).'" class="commentmeta">'.gettext('News').':'.$title.$author."</a><br />\n";
+				echo '<span class="commentbody">'.$shortcomment.'</span></li>';
+				break;
+			case 'pages':
+				$title = get_language_string($comment['title']);
+				echo '<li><a href="'.rewrite_path('/pages/'.$comment['titlelink'],'/index.php?p=pages&amp;title='.$comment['titlelink']).'" class="commentmeta">'.gettext('News').':'.$title.$author."</a><br />\n";
+				echo '<span class="commentbody">'.$shortcomment.'</span></li>';
+				break;
 		}
-		echo '<li><a href="'.rewrite_path($album.$imagetagR,'?album='.$album.$imagetag).'" class="commentmeta">'.$albumtitle.$title.$author."</a><br />\n";
-		echo '<span class="commentbody">'.$shortcomment.'</span></li>';
 	}
 	echo "</ul>\n";
 }
