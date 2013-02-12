@@ -3173,71 +3173,33 @@ function getLatestComments($number,$type="all",$id=NULL) {
 	global $_zp_gallery;
 	$albumcomment = $imagecomment = NULL;
 	$comments = array();
-
 	switch($type) {
 		case 'all':
-			$albumlist = array();
-			$rslt = query("SELECT * FROM " . prefix('albums'));
-			if ($rslt) {
-				while ($albumcheck = db_fetch_assoc($rslt)) {
-					$album = newAlbum($albumcheck['folder']);
-					if($album->isMyItem(LIST_RIGHTS) || !checkAlbumPassword($albumcheck['folder'])) {
-						$albumlist[] = $albumcheck['id'];
+			$sql = 'SELECT * FROM '.prefix('comments').' WHERE `private`=0 AND `type` in ("albums","images")';
+			$commentsearch = query($sql);
+			if ($commentsearch) {
+				while ($commentcheck = db_fetch_assoc($commentsearch)) {
+					$item = getItemByID($commentcheck['type'], $commentcheck['ownerid']);
+					if ($item->checkAccess()) {
+						$commentcheck['albumtitle'] = $commentcheck['titlelink'] = $commentcheck['folder'] = $commentcheck['filename'] = '';
+						$commentcheck['title'] = $item->getTitle('all');
+						switch ($item->table) {
+							case 'album':
+								$commentcheck['folder'] = $item->getFolder();
+								$commentcheck['albumtitle'] = $commentcheck['title'];
+								break;
+							case 'images':
+								$commentcheck['filename'] = $item->filename;
+								$commentcheck['folder'] = $item->album->name;
+								$commentcheck['albumtitle'] = $item->album->getTitle('all');
+								break;
+						}
+						$commentcheck['pubdate'] = $commentcheck['date'];	//	for RSS
+						$comments[] = $commentcheck;
 					}
 				}
-				db_free_result($rslt);
+				db_free_result($commentsearch);
 			}
-
-			if (empty($albumlist)) {
-				return array();
-			}
-
-			$albumids = '('.implode(',',$albumlist).')';
-			$sql = 'SELECT c.id, a.folder, a.title AS albumtitle, c.name, c.type, c.website,'
-										.' c.date, c.anon, c.comment FROM '.prefix('comments').' AS c, '.prefix('albums').' AS a '
-										.' WHERE `type`="albums" AND a.id IN '.$albumids.' AND c.ownerid=a.id AND c.private=0 AND c.inmoderation=0'
-										.' ORDER BY c.date DESC';
-			if ($comments_albums = query($sql)) {
-				$albumcomment = db_fetch_assoc($comments_albums);
-				$sql = 'SELECT c.id, i.title, i.filename, a.folder, i.show, a.title AS albumtitle, c.name, c.type, c.website,'
-											.' c.date, c.anon, c.comment FROM '.prefix('comments').' AS c, '.prefix('images').' AS i, '.prefix('albums').' AS a '
-											.' WHERE `type`="images" AND a.id IN '.$albumids.' AND c.ownerid=i.id AND i.albumid=a.id AND c.private=0 AND c.inmoderation=0'
-											.' ORDER BY c.date DESC';
-				if ($comments_images = query($sql)) {
-					$imagecomment = db_fetch_assoc($comments_images);
-				}
-			}
-
-			while (count($comments) < $number && ($albumcomment || $imagecomment)) {
-				if ($albumcomment && $imagecomment) {
-					if ($albumcomment['date'] > $imagecomment['date']) {
-						$albumcomment['pubdate'] = $albumcomment['date'];	//because the RSS code is stupid
-						$comments[] = $albumcomment;
-						$albumcomment = db_fetch_assoc($comments_albums);
-					} else {
-						if (!($view = $imagecomment['show'])) {
-							$album = newAlbum($imagecomment['folder']);
-							$uralbum = getUrAlbum($album);
-							$view = (zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
-						}
-						if ($view) {
-							$imagecomment['pubdate'] = $imagecomment['date'];	//because the RSS code is stupid
-							$comments[] = $imagecomment;
-							$imagecomment = db_fetch_assoc($comments_images);
-						}
-					}
-				} else if ($albumcomment) {
-					$albumcomment['pubdate'] = $albumcomment['date'];	//because the RSS code is stupid
-					$comments[] = $albumcomment;
-					$albumcomment = db_fetch_assoc($comments_albums);
-				} else {
-					$imagecomment['pubdate'] = $imagecomment['date'];	//because the RSS code is stupid
-					$comments[] = $imagecomment;
-					$imagecomment = db_fetch_assoc($comments_images);
-				}
-			}
-			db_free_result($comments_albums);
-			db_free_result($comments_images);
 			break;
 		case 'album':
 			$item = getItemByID('albums', $id);
