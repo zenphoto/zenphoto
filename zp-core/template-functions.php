@@ -3175,12 +3175,13 @@ function getLatestComments($number,$type="all",$id=NULL) {
 	$comments = array();
 	switch($type) {
 		case 'all':
-			$sql = 'SELECT * FROM '.prefix('comments').' WHERE `private`=0 AND `type` in ("albums","images")';
+			$sql = 'SELECT * FROM '.prefix('comments').' WHERE `private`=0 AND `type` in ("albums","images") ORDER BY `date` DESC';
 			$commentsearch = query($sql);
 			if ($commentsearch) {
-				while ($commentcheck = db_fetch_assoc($commentsearch)) {
+				while ($number > 0 && $commentcheck = db_fetch_assoc($commentsearch)) {
 					$item = getItemByID($commentcheck['type'], $commentcheck['ownerid']);
 					if ($item->checkAccess()) {
+						$number--;
 						$commentcheck['albumtitle'] = $commentcheck['titlelink'] = $commentcheck['folder'] = $commentcheck['filename'] = '';
 						$commentcheck['title'] = $item->getTitle('all');
 						switch ($item->table) {
