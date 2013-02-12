@@ -438,9 +438,9 @@ if ($result->loaded || $result->transient) {
 						</p>
 						<p><?php echo gettext("Position:"); ?>
 							<select id="sticky" name="sticky">
-								<option value="0" <?php if ($sticky==0) echo 'selected="selected"';?>><?php echo gettext("normal"); ?></option>
-								<option value="1" <?php if ($sticky==1) echo 'selected="selected"';?>><?php echo gettext("sticky"); ?></option>
-								<option value="9" <?php if ($sticky==9) echo 'selected="selected"';?>><?php echo gettext("Stick to top"); ?></option>
+								<option value="<?php echo NEWS_POSITION_NORMAL; ?>" <?php if ($sticky==NEWS_POSITION_NORMAL) echo 'selected="selected"';?>><?php echo gettext("normal"); ?></option>
+								<option value="<?php echo NEWS_POSITION_STICKY; ?>" <?php if ($sticky==NEWS_POSITION_STICKY) echo 'selected="selected"';?>><?php echo gettext("sticky"); ?></option>
+								<option value="<?php echo NEWS_POSITION_STICK_TO_TOP; ?>" <?php if ($sticky==NEWS_POSITION_STICK_TO_TOP) echo 'selected="selected"';?>><?php echo gettext("Stick to top"); ?></option>
 							</select>
 						</p>
 						<?php

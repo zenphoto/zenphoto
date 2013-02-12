@@ -7,6 +7,10 @@
  * @subpackage zenpage
  */
 
+define('NEWS_POSITION_NORMAL',0);
+define('NEWS_POSITION_STICKY',1);
+define('NEWS_POSITION_STICK_TO_TOP',9);
+
 class ZenpageNews extends ZenpageItems {
 
 	var $manage_rights = MANAGE_ALL_NEWS_RIGHTS;
