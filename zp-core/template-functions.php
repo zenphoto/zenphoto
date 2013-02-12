@@ -3167,6 +3167,8 @@ function printEditCommentLink($text, $before='', $after='', $title=NULL, $class=
  * @param string $type	"all" for all latest comments of all images and albums
  * 											"image" for the lastest comments of one specific image
  * 											"album" for the latest comments of one specific album
+ * 											"news" for the latest comments of one specific news article
+ * 											"page" for the latest comments of one specific Page
  * @param int $id the record id of element to get the comments for if $type != "all"
  */
 function getLatestComments($number,$type="all",$id=NULL) {
@@ -3175,12 +3177,13 @@ function getLatestComments($number,$type="all",$id=NULL) {
 	$comments = array();
 	switch($type) {
 		case 'all':
-			$sql = 'SELECT * FROM '.prefix('comments').' WHERE `private`=0';
+			$sql = 'SELECT * FROM '.prefix('comments').' WHERE `private`=0 ORDER BY `date` DESC';
 			$commentsearch = query($sql);
 			if ($commentsearch) {
-				while ($commentcheck = db_fetch_assoc($commentsearch)) {
+				while ($number > 0 && $commentcheck = db_fetch_assoc($commentsearch)) {
 					$item = getItemByID($commentcheck['type'], $commentcheck['ownerid']);
 					if ($item->checkAccess()) {
+						$number--;
 						$commentcheck['albumtitle'] = $commentcheck['titlelink'] = $commentcheck['folder'] = $commentcheck['filename'] = '';
 						$commentcheck['title'] = $item->getTitle('all');
 						switch ($item->table) {
@@ -3204,7 +3207,7 @@ function getLatestComments($number,$type="all",$id=NULL) {
 				}
 				db_free_result($commentsearch);
 			}
-			break;
+			return $comments;
 		case 'album':
 			$item = getItemByID('albums', $id);
 			$comments = array_slice($item->getComments(),0,$number);
@@ -3213,9 +3216,10 @@ function getLatestComments($number,$type="all",$id=NULL) {
 				$comment['pubdate'] = $comment['date'];
 				$alb = getItemByID('albums', $comment['ownerid']);
 				$comment['folder'] = $alb->name;
+				$comment['title'] = $item->getTitle('all');
 				$comments[$key] = $comment;
 			}
-			break;
+			return $comments;
 		case 'image':
 			$item = getItemByID('images', $id);
 			$comments = array_slice($item->getComments(),0,$number);
@@ -3225,14 +3229,33 @@ function getLatestComments($number,$type="all",$id=NULL) {
 				$img = getItemByID('images', $comment['ownerid']);
 				$comment['folder'] = $img->$album->name;
 				$comment['filename'] = $img->filename;
+				$comment['title'] = $item->getTitle('all');
 				$comments[$key] = $comment;
 			}
-			break;
-		case 'category':
-
-			break;
+			return $comments;
+		case 'news':
+			$item = getItemByID('news', $id);
+			$comments = array_slice($item->getComments(),0,$number);
+			// add the other stuff people want
+			foreach ($comments as $key=>$comment) {
+				$comment['pubdate'] = $comment['date'];
+				$comment['titlelink'] = $item->getTitlelink();
+				$comment['title'] = $item->getTitle('all');
+				$comments[$key] = $comment;
+			}
+			return $comments;
+		case 'page':
+			$item = getItemByID('pages', $id);
+			$comments = array_slice($item->getComments(),0,$number);
+			// add the other stuff people want
+			foreach ($comments as $key=>$comment) {
+				$comment['pubdate'] = $comment['date'];
+				$comment['titlelink'] = $item->getTitlelink();
+				$comment['title'] = $item->getTitle('all');
+				$comments[$key] = $comment;
+			}
+			return $comments;
 	}
-	return $comments;
 }
 
 
@@ -3494,7 +3517,7 @@ function printRandomImages($number=5, $class=null, $option='all', $rootAlbum='',
 	if (!empty($class)) $class = ' class="'.$class.'"';
 	echo "<ul".$class.">";
 	for ($i=1; $i<=$number; $i++) {
-   		switch($option) {
+			switch($option) {
 			case "all":
 				$randomImage = getRandomImages();
 				break;
