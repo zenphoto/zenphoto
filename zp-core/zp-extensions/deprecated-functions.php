@@ -104,7 +104,7 @@ class deprecated_functions {
  */
 function getZenpageHitcounter($mode="",$obj=NULL) {
 	deprecated_functions::notify(gettext('Use getHitcounter().'));
-	return getHitcounter();
+	return @call_user_func('getHitcounter');
 }
 
 /**
@@ -190,7 +190,7 @@ function getCommentTime($format = '%I:%M %p') {
  */
 function hitcounter($option='image', $viewonly=false, $id=NULL) {
 	deprecated_functions::notify(gettext('Use getHitcounter().'));
-	return getHitcounter();
+	return @call_user_func('getHitcounter');
 }
 
 /**
@@ -219,7 +219,7 @@ function getImageEXIFData() {
  */
 function zenpageHitcounter($option='pages', $viewonly=false, $id=NULL) {
 	deprecated_functions::notify(gettext('Use getHitcounter().'));
-	return getHitcounter();
+	return @call_user_func('getHitcounter');
 }
 
 /**

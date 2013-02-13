@@ -2966,43 +2966,6 @@ function printSizedImageLink($size, $text, $title, $class=NULL, $id=NULL) {
 }
 
 /**
- * returns the hitcounter for the current page or for the object passed
- *
- * @param object $obj the album or page object for which the hitcount is desired
- * @return string
- */
-function getHitcounter($obj=NULL) {
-	global $_zp_current_album, $_zp_current_image, $_zp_gallery_page, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category;
-	if (is_null($obj)) {
-		switch ($_zp_gallery_page) {
-			case 'album.php':
-				$obj = $_zp_current_album;
-				break;
-			case 'image.php':
-				$obj = $_zp_current_image;
-				break;
-			case 'pages.php':
-				$obj = $_zp_current_zenpage_page;
-				break;
-			case 'news.php':
-				if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
-					$obj = $_zp_current_category;
-				} else {
-					$obj = $_zp_current_zenpage_news;
-					if (is_null($obj)) return 0;
-				}
-				break;
-			case 'search.php':
-				return NULL;
-			default:
-				$page = stripSuffix($_zp_gallery_page);
-				return getOption('Page-Hitcounter-'.$page);
-		}
-	}
-	return $obj->getHitcounter();
-}
-
-/**
  *
  * performs a query and then filters out "illegal" images returning the first "good" image
  * used by the random image functions.
@@ -4249,34 +4212,6 @@ function printPasswordForm($_password_hint, $_password_showuser=NULL, $_password
 	?>
 	</div>
 	<?php
-}
-
-/**
- * Simple captcha for comments.
- *
- * Prints a captcha entry field for a form such as the comments form.
- * @param string $preText lead-in text
- * @param string $midText text that goes between the captcha image and the input field
- * @param string $postText text that closes the captcha
- * @param int $size the text-width of the input field
- * @since 1.1.4
- **/
-function printCaptcha($preText='', $midText='', $postText='', $size=4) {
-	global $_zp_captcha;
-	if ($_zp_captcha && getOption('Use_Captcha')) {
-		if (is_object($_zp_HTML_cache)) {	//	don't cache captch
-			$_zp_HTML_cache->abortHTMLCache();
-		}
-		$captcha = $_zp_captcha->getCaptcha();
-		if (isset($captcha['hidden'])) echo $captcha['hidden'];
-		echo $preText;
-		if (isset($captcha['input'])) {
-			echo $captcha['input'];
-			echo $midText;
-		}
-		if (isset($captcha['html'])) echo $captcha['html'];
-		echo $postText;
-	}
 }
 
 /**

@@ -225,4 +225,41 @@ class hitcounter {
 
 }
 
+/**
+ * returns the hitcounter for the current page or for the object passed
+ *
+ * @param object $obj the album or page object for which the hitcount is desired
+ * @return string
+ */
+function getHitcounter($obj=NULL) {
+	global $_zp_current_album, $_zp_current_image, $_zp_gallery_page, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category;
+	if (is_null($obj)) {
+		switch ($_zp_gallery_page) {
+			case 'album.php':
+				$obj = $_zp_current_album;
+				break;
+			case 'image.php':
+				$obj = $_zp_current_image;
+				break;
+			case 'pages.php':
+				$obj = $_zp_current_zenpage_page;
+				break;
+			case 'news.php':
+				if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
+					$obj = $_zp_current_category;
+				} else {
+					$obj = $_zp_current_zenpage_news;
+					if (is_null($obj)) return 0;
+				}
+				break;
+			case 'search.php':
+				return NULL;
+			default:
+				$page = stripSuffix($_zp_gallery_page);
+				return getOption('Page-Hitcounter-'.$page);
+		}
+	}
+	return $obj->getHitcounter();
+}
+
 ?>

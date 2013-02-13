@@ -291,7 +291,7 @@ function printFooter($admin=true) {
 	<!-- Footer -->
 	<div class="footlinks">
 		<?php
-		$h = getHitcounter();
+		$h = @call_user_func('getHitcounter');
 		if (!is_null($h)) {
 			?>
 			<p>
