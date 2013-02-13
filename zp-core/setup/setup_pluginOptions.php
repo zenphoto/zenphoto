@@ -8,6 +8,10 @@
 define('OFFSET_PATH',2);
 require_once('setup-functions.php');
 require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
+
+$iMutex = new Mutex('i',getOption('imageProcessorConcurrency'));
+$iMutex->lock();
+
 $extension = sanitize(sanitize($_REQUEST['plugin']));
 setupLog(sprintf(gettext('Plugin:%s setup started'),$extension),true);
 $option_interface = NULL;
@@ -22,6 +26,9 @@ if (getOption('zp_plugin_'.$extension)) {
 	setOption('zp_plugin_'.$extension, $plugin_is_filter);
 }
 setupLog(sprintf(gettext('Plugin:%s setup completed'),$extension),true);
+
+$iMutex->unlock();
+
 header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 header('Content-Type: image/png');
 header('Location: ' . FULLWEBPATH.'/'.ZENFOLDER.'/images/pass.png', true, 301);

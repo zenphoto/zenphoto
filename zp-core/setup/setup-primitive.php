@@ -43,23 +43,6 @@ if (function_exists('date_default_timezone_set')) {
 	error_reporting($level);
 }
 
-function zp_getCookie($name) {
-	if (isset($_SESSION[$name])) { return $_SESSION[$name]; }
-	if (isset($_COOKIE[$name])) { return $_COOKIE[$name]; }
-	return false;
-}
-
-function zp_setCookie($name, $value, $time=0, $path='/') {
-	setcookie($name, $value, $time, $path);
-	if ($time < 0) {
-		unset($_SESSION[$name]);
-		unset($_COOKIE[$name]);
-	} else {
-		$_SESSION[$name] = $value;
-		$_COOKIE[$name] = $value;
-	}
-}
-
 $_options = array();
 function getOption($key) {
 	global $_options;
@@ -77,54 +60,8 @@ function setOptionDefault($key, $value) {
 	$_options[$key] = $value;
 }
 
-function printAdminFooter() {
-	echo "<div id=\"footer\">";
-	echo "\n  <a href=\"http://www.zenphoto.org\" title=\"".gettext('A simpler web album')."\">zen<strong>photo</strong></a>";
-	echo " | <a href=\"http://www.zenphoto.org/support/\" title=\"".gettext('Forum').'">'.gettext('Forum')."</a> | <a href=\"http://www.zenphoto.org/trac/\" title=\"Trac\">Trac</a> | <a href=\"changelog.html\" title=\"".gettext('View Change log')."\">".gettext('Change log')."</a>\n</div>";
-}
-
 function debugLog($message, $reset=false) {
 	setupLog($message, true);
-}
-
-/**
- * Creates the body of a select list
- *
- * @param array $currentValue list of items to be flagged as checked
- * @param array $list the elements of the select list
- * @param bool $descending set true for a reverse order sort
- */
-function generateListFromArray($currentValue, $list, $descending, $localize) {
-	if ($localize) {
-		$list = array_flip($list);
-		if ($descending) {
-			arsort($list);
-		} else {
-			natcasesort($list);
-		}
-		$list = array_flip($list);
-	} else {
-		if ($descending) {
-			rsort($list);
-		} else {
-			natcasesort($list);
-		}
-	}
-	foreach($list as $key=>$item) {
-		echo '<option value="' . $item . '"';
-		if (in_array($item, $currentValue)) {
-			echo ' selected="selected"';
-		}
-		if ($localize) $display = $key; else $display = $item;
-		echo '>' . $display . "</option>"."\n";
-	}
-}
-
-function zp_loggedin() {
-	return ADMIN_RIGHTS;
-}
-
-function zp_clearCookie($name) {
 }
 
 function getRequestURI() {

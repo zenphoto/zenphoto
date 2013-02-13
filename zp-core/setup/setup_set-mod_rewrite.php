@@ -9,6 +9,10 @@
  */
 require_once(dirname(dirname(__FILE__)).'/functions-basic.php');
 require_once(dirname(__FILE__).'/setup-functions.php');
+
+$iMutex = new Mutex('i',getOption('imageProcessorConcurrency'));
+$iMutex-> lock();
+
 $mod_rewrite = MOD_REWRITE;
 if (is_null($mod_rewrite)) {
 	$msg = gettext('The Zenphoto option "mod_rewrite" will be set to "enabled".');
@@ -20,6 +24,9 @@ if (is_null($mod_rewrite)) {
 	$msg = gettext('The Zenphoto option "mod_rewrite" is "disabled".');
 }
 setupLog(gettext('Notice: "Module mod_rewrite" is working.').' '.$msg, true);
+
+$iMutex->unlock();
+
 header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 header('Content-Type: image/png');
 header('Location: ' . FULLWEBPATH.'/'.ZENFOLDER.'/images/pass.png', true, 301);

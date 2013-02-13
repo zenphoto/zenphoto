@@ -209,7 +209,7 @@ function folderCheck($which, $path, $class, $subfolders, $recurse, $chmod, $upda
 				$perms = fileperms($path)&0777;
 				$check = $chmod;
 			}
-			if (zp_loggedin(ADMIN_RIGHTS) && $updatechmod) {
+			if (setupUserAuthorized() && $updatechmod) {
 				@chmod($path,$chmod);
 				clearstatcache();
 				$perms = fileperms($path)&0777;
@@ -612,6 +612,37 @@ function configMod() {
 		$mod = $mod | $mod>>3;
 	}
 	return $str;
+}
+
+function printSetupFooter() {
+	echo "<div id=\"footer\">";
+	echo "\n  <a href=\"http://www.zenphoto.org\" title=\"".gettext('A simpler web album')."\">zen<strong>photo</strong></a>";
+	echo " | <a href=\"http://www.zenphoto.org/support/\" title=\"".gettext('Forum').'">'.gettext('Forum')."</a> | <a href=\"http://www.zenphoto.org/trac/\" title=\"Trac\">Trac</a> | <a href=\"changelog.html\" title=\"".gettext('View Change log')."\">".gettext('Change log')."</a>\n</div>";
+}
+
+function setupUserAuthorized() {
+	if (function_exists('zp_loggedin')) {
+		return zp_loggedin(ADMIN_RIGHTS);
+	} else {
+		return true;	//	in a primitive environment
+	}
+}
+
+function updateConfigFile($zp_cfg) {
+	global $xsrftoken;
+	@chmod(CONFIGFILE, 0666);
+	if (is_writeable(CONFIGFILE)) {
+		if ($handle = fopen(CONFIGFILE, 'w')) {
+			if (fwrite($handle, $zp_cfg)) {
+				setupLog(gettext("Updated configuration file"));
+				$base = true;
+			}
+		}
+		fclose($handle);
+		clearstatcache();
+	}
+	$str = configMod();
+	$xsrftoken = sha1(CONFIGFILE.$str.session_id());
 }
 
 ?>

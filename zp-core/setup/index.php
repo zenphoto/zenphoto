@@ -182,6 +182,10 @@ if (isset($_REQUEST['FILESYSTEM_CHARSET'])) {
 	updateConfigItem('FILESYSTEM_CHARSET', $fileset);
 	$updatezp_config = true;
 }
+if ($updatezp_config) {
+	updateConfigFile($zp_cfg);
+	$updatezp_config = false;
+}
 
 $curdir = getcwd();
 chdir(dirname(dirname(__FILE__)));
@@ -234,19 +238,7 @@ if (file_exists(CONFIGFILE)) {
 }
 
 if ($updatezp_config) {
-	@chmod(CONFIGFILE, 0666);
-	if (is_writeable(CONFIGFILE)) {
-		if ($handle = fopen(CONFIGFILE, 'w')) {
-			if (fwrite($handle, $zp_cfg)) {
-				setupLog(gettext("Updated configuration file"));
-				$base = true;
-			}
-		}
-		fclose($handle);
-		clearstatcache();
-	}
-	$str = configMod();
-	$xsrftoken = sha1(CONFIGFILE.$str.session_id());
+	updateConfigFile($zp_cfg);
 }
 $result = true;
 $environ = false;
@@ -257,7 +249,8 @@ $connectDBErr = '';
 
 if ($selected_database) {
 	$connectDBErr = '';
-	if($connection = db_connect($_zp_conf_vars,false)) {	// got the database handler and the database itself connected
+	$connection = db_connect($_zp_conf_vars,false);
+	if($connection) {	// got the database handler and the database itself connected
 		$result = query("SELECT `id` FROM " . $_zp_conf_vars['mysql_prefix'].'options' . " LIMIT 1", false);
 		if ($result) {
 			if (db_num_rows($result) > 0) {
@@ -312,7 +305,7 @@ if (function_exists('setOption')) {
 }
 
 if ($newconfig || isset($_GET['copyhtaccess'])) {
-	if ($newconfig && !file_exists($serverpath.'/.htaccess') || zp_loggedin(ADMIN_RIGHTS)) {
+	if ($newconfig && !file_exists($serverpath.'/.htaccess') || setupUserAuthorized()) {
 		@chmod($serverpath.'/.htaccess',0777);
 		$ht = @file_get_contents(SERVERPATH.'/.htaccess');
 		$newht = file_get_contents(SERVERPATH.'/'.ZENFOLDER.'/htaccess');
@@ -482,8 +475,8 @@ if ($connection && !isset($_zp_options)) {
 	}
 }
 
-if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
-	if ($blindInstall = ($upgrade && $autorun) && !zp_loggedin(ADMIN_RIGHTS)) {
+if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
+	if ($blindInstall = ($upgrade && $autorun) && !setupUserAuthorized()) {
 		ob_start();	//	hide output for auto-upgrade
 	}
 
@@ -735,7 +728,7 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 		checkMark($severity, $msg, $msg,'<p>'.gettext('If file permissions are not set to <em>strict</em> or tighter there could be a security risk. However, on some servers Zenphoto does not function correctly with tight file permissions. If Zenphoto has permission errors, run setup again and select a more relaxed permission.').'</p>'.
 		$chmodselector);
 
-		if (zp_loggedin(ADMIN_RIGHTS)) {
+		if (setupUserAuthorized()) {
 			if ($environ) {
 				if (isMac()) {
 					checkMark(-1, '', gettext('Your filesystem is Macintosh'), gettext('Zenphoto is unable to deal with Macintosh file names containing diacritical marks. You should avoid these.'),false);
@@ -1289,7 +1282,7 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 		$msg2 = '';
 	}
 	checkMark($mark, gettext("Zenphoto core files"), $msg1, $msg2,false);
-	if (zp_loggedin(ADMIN_RIGHTS) && $connection) {
+	if (setupUserAuthorized() && $connection) {
 		primeMark(gettext('Installation files'));
 		$systemlist = $filelist = array();
 		$phi_ini_count = $svncount = 0;
@@ -1357,7 +1350,7 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 		if ($Apache) {
 			$desc = gettext('If you have the mod_rewrite module enabled an <em>.htaccess</em> file is required the root zenphoto folder to create cruft-free URLs.').
 						'<br /><br />'.gettext('You can ignore this warning if you do not intend to set the <code>mod_rewrite</code> option.');
-			if (zp_loggedin(ADMIN_RIGHTS)) {
+			if (setupUserAuthorized()) {
 				$desc .= ' '.gettext('<p class="buttons"><a href="?copyhtaccess" >Make setup create the file</a></p><br style="clear:both" /><br />');
 			}
 		} else {
@@ -1372,6 +1365,7 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 
 		$ch = !empty($vr) && ($vr == HTACCESS_VERSION);
 		$d = str_replace('\\','/',dirname(dirname(dirname($_SERVER['SCRIPT_NAME']))));
+		$d = str_replace(' ', '%20', $d);	//	apache appears to trip out if there is a space in the rewrite base
 		if (!$ch) {	// wrong version
 			$oht = trim(@file_get_contents(SERVERPATH.'/'.ZENFOLDER.'/oldhtaccess'));
 			//fix the rewritebase
@@ -1401,7 +1395,7 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 				$ch = -1;
 			} else {
 				$desc = sprintf(gettext("The <em>.htaccess</em> file in your root folder is not the same version as the one distributed with this version of Zenphoto. If you have made changes to <em>.htaccess</em>, merge those changes with the <em>%s/htaccess</em> file to produce a new <em>.htaccess</em> file."),ZENFOLDER);
-				if (zp_loggedin(ADMIN_RIGHTS)) {
+				if (setupUserAuthorized()) {
 					$desc .= ' '.gettext('<p class="buttons"><a href="?copyhtaccess" >Replace the existing <em>.htaccess</em> file with the current version</a></p><br style="clear:both" /><br />');
 				}
 			}
@@ -1544,7 +1538,7 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 	if ($good) {
 		$dbmsg = "";
 	} else {
-		if (zp_loggedin(ADMIN_RIGHTS)) {
+		if (setupUserAuthorized()) {
 			?>
 			<div class="error">
 				<?php echo gettext("You need to address the problems indicated above then run <code>setup</code> again."); ?>
@@ -1578,7 +1572,7 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 		<?php
 		echo "\n</div><!-- content -->";
 		echo "\n</div><!-- main -->";
-		printadminfooter();
+		printSetupFooter();
 		echo "</body>";
 		echo "</html>";
 		exit();
@@ -1588,7 +1582,7 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 } // system check
 if (file_exists(CONFIGFILE)) {
 
-	eval(file_get_contents(CONFIGFILE));;
+	eval(file_get_contents(CONFIGFILE));
 	require_once(dirname(dirname(__FILE__)).'/functions.php');
 	$task = '';
 	if (isset($_GET['create'])) {
@@ -2520,7 +2514,7 @@ if (file_exists(CONFIGFILE)) {
 		}
 	} else if (db_connect($_zp_conf_vars)) {
 		$task = '';
-		if (zp_loggedin(ADMIN_RIGHTS) || $blindInstall) {
+		if (setupUserAuthorized() || $blindInstall) {
 			if (!empty($dbmsg)) {
 				?>
 				<h2><?php echo $dbmsg; ?></h2>
@@ -2616,7 +2610,7 @@ if (file_exists(CONFIGFILE)) {
 			$blindInstall = false;
 			$stop = !$autorun;
 		} else {
-			$stop = !zp_loggedin(ADMIN_RIGHTS);
+			$stop = !setupUserAuthorized();
 		}
 		if ($stop) {
 				?>
@@ -2698,7 +2692,7 @@ if ($noxlate > 0) {
 </div><!-- content -->
 </div><!-- main -->
 <?php
-printAdminFooter();
+printSetupFooter();
 ?>
 
 </body>
