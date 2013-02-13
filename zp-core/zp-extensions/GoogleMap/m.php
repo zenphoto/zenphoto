@@ -71,6 +71,9 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 		}
 		$MAP_OBJECT->setJSAlert('<b>Javascript must be enabled in order to use Google Maps.</b>');
 		$MAP_OBJECT->setBrowserAlert('Sorry, the Google Maps API is not compatible with this browser.');
+		$MAP_OBJECT->enableClustering();
+		$MAP_OBJECT->setClusterOptions();
+		$MAP_OBJECT->setClusterLocation(WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER."/GoogleMap/markerclusterer.js");
 		$MAP_OBJECT->_minify_js = !TEST_RELEASE;
 		$MAP_OBJECT->setZoomLevel(getOption('gmap_zoom'));
 		$MAP_OBJECT->setWidth(getOption('gmap_width'));
