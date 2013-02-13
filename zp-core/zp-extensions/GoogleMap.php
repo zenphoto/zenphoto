@@ -289,11 +289,8 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 
 	$MAP_OBJECT = new GoogleMapAPI($maptype = $type.$typeid);
 
-	//Enable Marker Clustering
 	$MAP_OBJECT->enableClustering();
-	//Set options (passing nothing to set defaults, just demonstrating usage
 	$MAP_OBJECT->setClusterOptions();
-	//Set MarkerCluster library location
 	$MAP_OBJECT->setClusterLocation(WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER."/GoogleMap/markerclusterer.js");
 
 	$MAP_OBJECT->_minify_js = !TEST_RELEASE;
