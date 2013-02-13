@@ -274,7 +274,7 @@ class jPlayer {
 					})'.$autoplay.';
 				},
 				swfPath: "'.WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/jplayer/js",
-				supplied: "'.$this->supplied_counterparts.$this->supplied.'",
+				supplied: "'.$this->supplied.$this->supplied_counterparts.'",
 				cssSelectorAncestor: "#jp_container_'.$count.'"';
 
 		if($multiplayer) {
@@ -539,12 +539,12 @@ class jPlayer {
 			case 'mp3':
 			case 'm4a':
 			case 'fla':
-				$suffixes = array('webma','oga');
+				$suffixes = array('oga','webma');
 				break;
 			case 'mp4':
 			case 'm4v':
 			case 'flv':
-				$suffixes = array('webmv','ogv');
+				$suffixes = array('ogv','webmv');
 				break;
 			default:
 				$suffixes = array();
@@ -552,13 +552,13 @@ class jPlayer {
 		}
 		foreach($suffixes as $suffix) {
 			$filesuffix = $suffix;
-			if($suffix == 'oga') {
+			/* if($suffix == 'oga') {
 				$filesuffix = 'ogg';
-			}
+			} */
 			$counterpart = str_replace($ext,$filesuffix,$moviepath,$count);
 			//$suffix = str_replace('.','',$suffix);
-			if(file_exists(str_replace(WEBPATH,SERVERPATH,$counterpart))) {
-				$this->supplied_counterparts .= $suffix.',';
+			if(file_exists(str_replace(FULLWEBPATH,SERVERPATH,$counterpart))) {
+				$this->supplied_counterparts .= ','.$suffix;
 				$counterparts .= ','.$suffix.':"'.pathurlencode($counterpart).'"';
 			}
 		}
@@ -661,9 +661,9 @@ class jPlayer {
 						swfPath: "<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER; ?>/jplayer/js",
 						solution: "flash,html",
 					<?php if($option == 'playlist') { ?>
-						supplied: "<?php echo $this->supplied_counterparts; ?>m4v, mp4, m4a, mp3, fla, flv"
+						supplied: "m4v, mp4, m4a, mp3, fla, flv<?php echo $this->supplied_counterparts; ?>"
 					<?php } else { ?>
-						supplied: "<?php echo $this->supplied_counterparts; ?>m4a, mp3, fla"
+						supplied: "m4a, mp3, fla<?php echo $this->supplied_counterparts; ?>"
 					<?php }
 					if($option != 'playlist-audio') { ?>
 						,	size: {
