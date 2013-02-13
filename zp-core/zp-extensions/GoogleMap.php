@@ -107,6 +107,8 @@ class googleMap {
 		require_once(dirname(__FILE__).'/GoogleMap/JSMin.php');
 		global $MAP_OBJECT, $_zp_current_image, $_zp_current_album;
 		$MAP_OBJECT = new GoogleMapAPI();
+		$MAP_OBJECT->enableClustering();
+		$MAP_OBJECT->setClusterLocation(WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER."/GoogleMap/markerclusterer.js");
 		$MAP_OBJECT->setJSAlert('<b>Javascript must be enabled in order to use Google Maps.</b>');
 		$MAP_OBJECT->setBrowserAlert('Sorry, the Google Maps API is not compatible with this browser.');
 		$MAP_OBJECT->setLocale(substr(getOption('locale'),0,2));
@@ -286,6 +288,14 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 	}
 
 	$MAP_OBJECT = new GoogleMapAPI($maptype = $type.$typeid);
+
+	//Enable Marker Clustering
+	$MAP_OBJECT->enableClustering();
+	//Set options (passing nothing to set defaults, just demonstrating usage
+	$MAP_OBJECT->setClusterOptions();
+	//Set MarkerCluster library location
+	$MAP_OBJECT->setClusterLocation(WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER."/GoogleMap/markerclusterer.js");
+
 	$MAP_OBJECT->_minify_js = !TEST_RELEASE;
 	$MAP_OBJECT->setZoomLevel(getOption('gmap_zoom'));
 	$MAP_OBJECT->setWidth(getOption('gmap_width'));
@@ -305,6 +315,7 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 		if (getOption('gmap_terrain')) $mapsallowed[] = 'TERRAIN';
 		$MAP_OBJECT->setTypeControlTypes($mapsallowed);
 	}
+
 	$empty = get_object_vars($MAP_OBJECT);
 	switch ($type) {
 		case 'images':

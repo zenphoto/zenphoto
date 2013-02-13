@@ -30,7 +30,7 @@
  */
 /**
  * @link http://code.google.com/p/php-google-map-api/
- * @copyright 2010 Brad wedell
+ * @copyright 2010-2012 Brad wedell
  * @author Brad Wedell
  * @package GoogleMapAPI (version 3)
  * @version 3.0beta
@@ -56,6 +56,13 @@ CREATE TABLE GEOCODES (
  * @version 3.0beta
  */
 class GoogleMapAPI {
+
+		/**
+		 * contains any map styles in a json string
+		 *
+		 * @var string json $map_styles
+		 */
+		var $map_styles = true;
 
 		/**
 		 * PEAR::DB DSN for geocode caching. example:
@@ -87,11 +94,28 @@ class GoogleMapAPI {
 		var $sidebar_id = null;
 
 		/**
+		 * With this, you can append lang= and region= to the script url for localization. If Google adds more features in the future, they will be supported by default
+		 *
+		 * See http://code.google.com/apis/maps/documentation/javascript/basics.html#Localization
+		 * for more info on Localization
+		 *
+		 * @var array
+		 **/
+		var $api_options=null;
+
+		/**
 		 * Whether to use new V3 mobile functionality
 		 *
 		 * @var bool
 		 */
 		var $mobile=false;
+
+		/**
+		 * The viewport meta tag allows more values than these defaults; you can get more info here: http://www.html-5.com/metatags/index.html#viewport-meta-tag
+		 *
+		 * @var string
+		 */
+		var $meta_viewport = "initial-scale=1.0, user-scalable=no";
 
 		/**
 		 * DEPRECATED: Google now has geocoding service.
@@ -577,7 +601,6 @@ class GoogleMapAPI {
 		 */
 	 var $_minify_js = true;
 
-
 	/**
 	 * Begin Zenphoto additions
 	 */
@@ -619,7 +642,6 @@ class GoogleMapAPI {
 	/**
 	 * End Zenphoto additions
 	 */
-
 		/**
 		 * class constructor
 		 *
@@ -703,6 +725,16 @@ class GoogleMapAPI {
 		 */
 		function setZoomLevel($level) {
 				$this->zoom = (int) $level;
+		}
+
+
+		/**
+		 * sets any map styles ( style wizard: http://gmaps-samples-v3.googlecode.com/svn/trunk/styledmaps/wizard/index.html )
+		 *
+		 * @param string $styles json string of the map styles to be applied
+		 */
+		function setMapStyles($styles) {
+				$this->map_styles = (string) $styles;
 		}
 
 		/**
@@ -1638,7 +1670,7 @@ class GoogleMapAPI {
 		$_headerJS = "";
 				if( $this->mobile == true){
 					$_headerJS .= "
-						 <meta name='viewport' content='initial-scale=1.0, user-scalable=no' />
+							<meta name='viewport' content='".$this->meta_viewport."' />
 					";
 				}
 		if(!empty($this->_elevation_polylines)||(!empty($this->_directions)&&$this->elevation_directions)){
@@ -1649,11 +1681,16 @@ class GoogleMapAPI {
 				google.load('visualization', '1', {packages: ['columnchart']});
 			</script>";
 		}
-			 // $_headerJS .= "<script type='text/javascript' src='http://maps.google.com/maps/api/js?sensor=".(($this->mobile==true)?"true":"false")."'></script>";
-				$_headerJS .= "<script type='text/javascript' src='http://maps.google.com/maps/api/js?sensor=".(($this->mobile==true)?"true":"false").$this->locale."'></script>";
-		if($this->marker_clusterer){
-			$_headerJS .= "<script type='text/javascript' src='".$this->marker_clusterer_location."' ></script>";
-		}
+				$scriptUrl = "http://maps.google.com/maps/api/js?sensor=".(($this->mobile==true)?"true":"false");
+				if( is_array( $this->api_options ) ) {
+						foreach( $this->api_options as $key => $value ){
+								$scriptUrl .= '&'.$key.'='.$value;
+						}
+				}
+				$_headerJS .= "<script type='text/javascript' src='".$scriptUrl."'></script>";
+				if($this->marker_clusterer){
+					$_headerJS .= "<script type='text/javascript' src='".$this->marker_clusterer_location."' ></script>";
+				}
 				if($this->local_search){/*TODO: Load Local Search API V3 when available*/}
 				return $_headerJS;
 		}
@@ -1679,7 +1716,7 @@ class GoogleMapAPI {
 		 * return js to set onload function
 		 */
 		function getOnLoad() {
-				return '<script language="javascript" type="text/javascript" charset="utf-8">window.onload=onLoad'.$this->map_id.';</script>';
+				return '<script type="text/javascript">window.onload=onLoad'.$this->map_id.';</script>';
 		}
 
 		/**
@@ -1710,11 +1747,16 @@ class GoogleMapAPI {
 				$_output .= " * Created with GoogleMapAPI" . $this->_version . "\n";
 				$_output .= " * Author: Brad Wedell <brad AT mycnl DOT com>\n";
 				$_output .= " * Link http://code.google.com/p/php-google-map-api/\n";
-				$_output .= " * Copyright 2010 Brad Wedell\n";
+				$_output .= " * Copyright 2010-2012 Brad Wedell\n";
 				$_output .= " * Original Author: Monte Ohrt <monte AT ohrt DOT com>\n";
 				$_output .= " * Original Copyright 2005-2006 New Digital Group\n";
 				$_output .= " * Originial Link http://www.phpinsider.com/php/code/GoogleMapAPI/\n";
 				$_output .= " *************************************************/\n";
+
+				// create global info window ( so we can auto close it )
+				$_script .= "var infowindow = new google.maps.InfoWindow();";
+
+
 		if($this->street_view_dom_id!=""){
 			$_script .= "
 				var panorama".$this->street_view_dom_id."$_key = '';
@@ -1878,7 +1920,7 @@ class GoogleMapAPI {
 																	mapTypeIds: allowedtypes
 																	}
 					//end Zenphoto
-		};
+				};
 			";
 			if(isset($this->center_lat) && isset($this->center_lon)) {
 				// Special care for decimal point in lon and lat, would get lost if "wrong" locale is set; applies to (s)printf only
@@ -1897,8 +1939,23 @@ class GoogleMapAPI {
 				";
 			}
 
+
+			// Add any map styles if they are present
+			if( isset($this->map_styles) ) {
+
+				$_script .= "
+						var styles$_key = ".$this->map_styles.";
+				";
+			}
+
+
+
 			$_script .= "
 				map$_key = new google.maps.Map(mapObj$_key,mapOptions$_key);
+			";
+
+			$_script .= "
+				map$_key.setOptions({styles: styles$_key});
 			";
 
 			if($this->street_view_dom_id!=""){
@@ -1953,7 +2010,6 @@ class GoogleMapAPI {
 				$maxlon = str_replace(',','.',(string) $this->_max_lon);
 				$_script .= "var bds$_key = new google.maps.LatLngBounds(new google.maps.LatLng($minlat, $minlon), new google.maps.LatLng($maxlat, $maxlon));\n";
 				//end Zenphoto
-
 				$_script .= 'map'.$_key.'.fitBounds(bds'.$_key.');' . "\n";
 			}
 
@@ -2109,8 +2165,7 @@ class GoogleMapAPI {
 				$lon = str_replace(',', '.', (string) $_marker['lon']);
 				$_output .= "var point = new google.maps.LatLng(".$lat.",".$lon.");\n";
 				//end Zenphoto
-
-				$_output .= sprintf('%s.push(createMarker(%s%s, point,"%s","%s", %s, %s, "%s", %s ));',
+						$_output .= sprintf('%s.push(createMarker(%s%s, point,"%s","%s", %s, %s, "%s", %s ));',
 				(($pano==true)?$_prefix:"")."markers".$map_id,
 				$_prefix,
 				$map_id,
@@ -2282,18 +2337,29 @@ class GoogleMapAPI {
 							title: title};
 					if(icon!=''){marker_options.icon = icon;}
 					if(icon_shadow!=''){marker_options.shadow = icon_shadow;}
+
 					//create marker
 					var new_marker = new google.maps.Marker(marker_options);
 					if(html!=''){
 					".(($this->info_window)?"
-							var infowindow = new google.maps.InfoWindow({content: html});
+
 							google.maps.event.addListener(new_marker, '".$this->window_trigger."', function() {
-								infowindow.open(map,new_marker);
-		});
+									infowindow.close();
+									infowindow.setContent(html);
+									infowindow.open(map,new_marker);
+							});
+
 					if(openers != ''&&!isEmpty(openers)){
 								 for(var i in openers){
 									 var opener = document.getElementById(openers[i]);
-									 opener.on".$this->window_trigger." = function(){infowindow.open(map,new_marker); return false};
+									 opener.on".$this->window_trigger." = function() {
+
+										infowindow.close();
+										infowindow.setContent(html);
+										infowindow.open(map,new_marker);
+
+										return false;
+									 };
 								 }
 							}
 					":"")."
@@ -2442,6 +2508,11 @@ class GoogleMapAPI {
 		function getMap() {
 				$_output = '<script type="text/javascript" charset="utf-8">' . "\n" . '//<![CDATA[' . "\n";
 				//$_output .= 'if (GBrowserIsCompatible()) {' . "\n";
+				if(strlen($this->width) > 0 && strlen($this->height) > 0) {
+						$_output .= sprintf('document.write(\'<div id="%s" style="width: %s; height: %s; position:relative;"><\/div>\');',$this->map_id,$this->width,$this->height) . "\n";
+				} else {
+						$_output .= sprintf('document.write(\'<div id="%s" style="position:relative;"><\/div>\');',$this->map_id) . "\n";
+				}
 				//$_output .= '}';
 
 				//if(!empty($this->js_alert)) {
@@ -2456,11 +2527,6 @@ class GoogleMapAPI {
 						$_output .= '<noscript>' . $this->js_alert . '</noscript>' . "\n";
 				}
 
-						if(strlen($this->width) > 0 && strlen($this->height) > 0) {
-						$_output .= sprintf('<div id="%s" style="width: %s; height: %s; position:relative;"></div>',$this->map_id,$this->width,$this->height) . "\n";
-				} else {
-						$_output .= sprintf('<div id="%s" style="position:relative;"></div>',$this->map_id) . "\n";
-				}
 				return $_output;
 		}
 
