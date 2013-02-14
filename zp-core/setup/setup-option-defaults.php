@@ -614,6 +614,7 @@ foreach ($plugins as $extension) {
 </p>
 
 <?php
+$_zp_gallery->garbageCollect();
 if (getOption('zp_plugin_auto_backup')) {
 	//Run the backup since for sure things have changed.
 	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/auto_backup.php');
