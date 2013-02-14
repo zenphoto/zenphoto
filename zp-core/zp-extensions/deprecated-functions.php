@@ -1158,4 +1158,25 @@ function printLatestZenpageComments($number, $shorten='123', $id='showlatestcomm
 	deprecated_functions::notify(gettext('use printLatestComments($number, $shorten, $type, $itemID, $id);'));
 	printLatestComments($number, $shorten, $type, $itemID, $id);
 }
+
+/**
+ * @deprecated
+ * @since 1.4.5
+ */
+function printCaptcha($preText='', $midText='', $postText='') {
+	global $_zp_captcha;
+	deprecated_functions::notify(gettext('use $_zp_captcha->getCaptcha() and format the results as desired.'));
+	if ($_zp_captcha && getOption('Use_Captcha')) {
+		$captcha = $_zp_captcha->getCaptcha();
+		if (isset($captcha['hidden'])) echo $captcha['hidden'];
+		echo $preText;
+		if (isset($captcha['input'])) {
+			echo $captcha['input'];
+			echo $midText;
+		}
+		if (isset($captcha['html'])) echo $captcha['html'];
+		echo $postText;
+	}
+}
+
 ?>

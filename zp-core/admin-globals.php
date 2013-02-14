@@ -118,7 +118,6 @@ if ($_zp_loggedin) {
 			$subtabs[gettext("security")] = 'admin-options.php?page=options&amp;tab=security';
 		}
 		$subtabs[gettext("image")] = 'admin-options.php?page=options&amp;tab=image';
-		$subtabs[gettext("comment")] = 'admin-options.php?page=options&amp;tab=comments';
 	}
 	if ($_zp_loggedin & ADMIN_RIGHTS) {
 		if (empty($optiondefault)) $optiondefault='&amp;tab=plugin';

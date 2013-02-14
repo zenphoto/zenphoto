@@ -21,7 +21,7 @@ if ($plugin_disable) {
 }
 require_once(dirname(__FILE__).'/reCaptcha/recaptchalib.php');
 
-class reCaptcha {
+class reCaptcha extends _zp_captcha{
 
 	var $name='reCaptcha';
 
@@ -59,6 +59,7 @@ class reCaptcha {
 	 * @return bool
 	 */
 	function checkCaptcha() {
+		parent::checkCaptcha();
 		$resp = recaptcha_check_answer (getOption('reCaptcha_private_key'), @$_SERVER["REMOTE_ADDR"], @$_POST["recaptcha_challenge_field"], @$_POST["recaptcha_response_field"]);
 		return $resp->is_valid;
 	}
@@ -74,34 +75,6 @@ class reCaptcha {
 	 */
 	function getCaptcha() {
 		return array('input'=>recaptcha_get_html(getOption('reCaptcha_public_key')), NULL, secureServer());
-	}
-}
-
-/**
- * Simple captcha for comments.
- *
- * Prints a captcha entry field for a form such as the comments form.
- * @param string $preText lead-in text
- * @param string $midText text that goes between the captcha image and the input field
- * @param string $postText text that closes the captcha
- * @param int $size the text-width of the input field
- * @since 1.1.4
- **/
-function printCaptcha($preText='', $midText='', $postText='', $size=4) {
-	global $_zp_captcha;
-	if ($_zp_captcha && getOption('Use_Captcha')) {
-		if (is_object($_zp_HTML_cache)) {	//	don't cache captch
-			$_zp_HTML_cache->abortHTMLCache();
-		}
-		$captcha = $_zp_captcha->getCaptcha();
-		if (isset($captcha['hidden'])) echo $captcha['hidden'];
-		echo $preText;
-		if (isset($captcha['input'])) {
-			echo $captcha['input'];
-			echo $midText;
-		}
-		if (isset($captcha['html'])) echo $captcha['html'];
-		echo $postText;
 	}
 }
 

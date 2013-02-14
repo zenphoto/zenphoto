@@ -4,7 +4,9 @@
 
 global $_zp_themeroot;
 ?>
-<p class="mainbutton" id="addcommentbutton"><a href="#addcomment" class="btn"><img src="<?php echo $_zp_themeroot ?>/images/btn_add_a_comment.gif" alt="" width="116" height="21" /></a></p>
+<p class="mainbutton" id="addcommentbutton">
+<a href="#addcomment" class="btn"><img src="<?php echo $_zp_themeroot ?>/images/btn_add_a_comment.gif" alt="" width="116" height="21" /></a>
+</p>
 	<!-- BEGIN #addcomment -->
 	<div id="addcomment">
 		<script type="text/javascript">
@@ -205,8 +207,16 @@ global $_zp_themeroot;
 					<tr><td colspan="2"><?php echo gettext('*Required fields'); ?></td></tr>
 					<?php
 				}
-				if (getOption('Use_Captcha') && function_exists('printCaptcha')) {
-					printCaptcha("<tr valign=\"top\" align=\"left\"><th>" .gettext('Enter CAPTCHA').' ', "</th><td>", "</td></tr>\n", 16);
+				if (getOption('Use_Captcha')) {
+					$captcha = $_zp_captcha->getCaptcha();
+					if (isset($captcha['hidden'])) echo $captcha['hidden'];
+					echo "<tr valign=\"top\" align=\"left\"><th>" .gettext('Enter CAPTCHA').' ';
+					if (isset($captcha['input'])) {
+						echo $captcha['input'];
+						echo "</th><td>";
+					}
+					if (isset($captcha['html'])) echo $captcha['html'];
+					echo  "</td></tr>\n";
 				}
 				?>
 				<tr valign="top" align="left">

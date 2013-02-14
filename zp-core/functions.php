@@ -19,7 +19,7 @@ require_once(dirname(__FILE__).'/functions-basic.php');
 require_once(dirname(__FILE__).'/functions-filter.php');
 require_once(SERVERPATH.'/'.ZENFOLDER.'/lib-kses.php');
 
-$_zp_captcha = new zpFunctions();	// this will be overridden by the plugin if enabled.
+$_zp_captcha = new _zp_captcha();	// this will be overridden by the plugin if enabled.
 //setup session before checking for logon cookie
 require_once(dirname(__FILE__).'/functions-i18n.php');
 
@@ -2061,8 +2061,6 @@ function reveal($content, $visible=false) {
 
 class zpFunctions {
 
-	var $name = NULL;	// "captcha" name if no captcha plugin loaded
-
 	/**
 	 *
 	 * creates an SEO language prefix list
@@ -2286,15 +2284,6 @@ class zpFunctions {
 	}
 
 	/**
-	 * Standins for when no captcha is enabled
-	 */
-	function getCaptcha() {
-		return array('input'=>'', 'html'=>'<p class="errorbox">'.gettext('No captcha handler is enabled.').'</p>', 'hidden'=>'');
-	}
-	function checkCaptcha($s1, $s2) {
-		return true;
-	}
-	/**
 	 * Searches out i.php image links and replaces them with cache links if image is cached
 	 * @param string $text
 	 * @return string
@@ -2317,6 +2306,25 @@ class zpFunctions {
 		return $text;
 	}
 
+}
+
+/**
+ * Standins for when no captcha is enabled
+ */
+class _zp_captcha {
+
+	var $name = NULL;	// "captcha" name if no captcha plugin loaded
+
+	function getCaptcha() {
+		global $_zp_HTML_cache;
+		if (is_object($_zp_HTML_cache)) {	//	don't cache captch
+			$_zp_HTML_cache->abortHTMLCache();
+		}
+		return array('input'=>'', 'html'=>'<p class="errorbox">'.gettext('No captcha handler is enabled.').'</p>', 'hidden'=>'');
+	}
+	function checkCaptcha($s1, $s2) {
+		return true;
+	}
 }
 
 zpFunctions::setexifvars();

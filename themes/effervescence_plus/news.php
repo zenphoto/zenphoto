@@ -86,6 +86,7 @@ if (!defined('WEBPATH') || !class_exists('Zenpage')) die();
 				$count = call_user_func('getCommentCount');
 			} else {
 				$count = 0;
+			}
 			$cat = getNewsCategories();
 			printNewsDate();
 			if ($count > 0) {

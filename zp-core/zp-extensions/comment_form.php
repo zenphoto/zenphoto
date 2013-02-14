@@ -29,6 +29,22 @@ if (OFFSET_PATH) {
 	zp_register_filter('admin_overview', 'comment_form_print10Most');
 	zp_register_filter('save_admin_custom_data', 'comment_form_save_admin');
 	zp_register_filter('edit_admin_custom_data', 'comment_form_edit_admin');
+	zp_register_filter('admin_tabs','comment_tab');
+
+	function comment_tab($tabs) {
+		if (zp_loggedin(OPTIONS_RIGHTS)) {
+			$newsubtabs = array();
+			foreach ($tabs['options']['subtabs'] as $key=>$subtab) {
+				$newsubtabs[$key] = $subtab;
+				if ($key==gettext('image')) {
+					$newsubtabs[gettext("comment")] = 'admin-options.php?page=options&amp;tab=comments';
+				}
+			}
+			$tabs['options']['subtabs'] = $newsubtabs;
+		}
+		return $tabs;
+
+	}
 } else {
 	zp_register_filter('comment_post', 'comment_form_comment_post');
 	zp_register_filter('handle_comment', 'comment_form_postcomment');
