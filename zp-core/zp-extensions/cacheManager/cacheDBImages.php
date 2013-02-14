@@ -18,7 +18,7 @@ XSRFdefender('cacheDBImages');
 
 $zenphoto_tabs['overview']['subtabs']=array(gettext('Cache images')=>PLUGIN_FOLDER.'/cacheManager/cacheImages.php?page=overview&amp;tab=images',
 																			gettext('Cache stored images')=>PLUGIN_FOLDER.'/cacheManager/cacheDBImages.php?page=overview&amp;tab=DB&amp;XSRFToken='.getXSRFToken('cacheDBImages'));
-printAdminHeader($tab,gettext('Cache sstored images'));
+printAdminHeader($tab,gettext('Cache stored images'));
 echo "\n</head>";
 echo "\n<body>";
 
@@ -65,7 +65,7 @@ $tables = array('albums'=>array('desc'),
 						$text = zpFunctions::updateImageProcessorLink($url);
 						if ($text == $url) {
 							?>
-							<a href="<?php echo $uri; ?>&amp;debug" title="<?php echo gettext('imageprodessor reference'); ?>">
+							<a href="<?php echo $uri; ?>&amp;debug" title="<?php echo gettext('image prodessor reference'); ?>">
 								<?php echo $url."\n"; ?>
 							</a>
 							<?php
@@ -168,7 +168,7 @@ $tables = array('albums'=>array('desc'),
 	?>
 	<p>
 	<?php
-	printf(ngettext('%u image image processor reference found.','%u image processor references found.',$imageprocessor),$imageprocessor);
+	printf(ngettext('%u image processor reference found.','%u image processor references found.',$imageprocessor),$imageprocessor);
 	if ($refresh) {
 		echo ' '.gettext('You should use the refresh button to convert these to cached image references');
 	}
