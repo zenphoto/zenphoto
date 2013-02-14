@@ -65,7 +65,7 @@ $tables = array('albums'=>array('desc'),
 						$text = zpFunctions::updateImageProcessorLink($url);
 						if ($text == $url) {
 							?>
-							<a href="<?php echo $uri; ?>&amp;debug" title="<?php echo gettext('image prodessor reference'); ?>">
+							<a href="<?php echo $uri; ?>&amp;debug" title="<?php echo gettext('image processor reference'); ?>">
 								<?php echo $url."\n"; ?>
 							</a>
 							<?php
