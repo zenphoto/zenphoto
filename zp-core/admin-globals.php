@@ -60,11 +60,7 @@ if ($_zp_loggedin) {
 																				'link'=>WEBPATH."/".ZENFOLDER.'/admin.php',
 																				'subtabs'=>NULL);
 	}
-	if ($_zp_loggedin & UPLOAD_RIGHTS) {
-		$zenphoto_tabs['upload'] = array('text'=>gettext("upload"),
-																			'link'=>'admin-upload.php?page=upload&amp;tab=images',
-																			'subtabs'=>NULL);
-	}
+	$zenphoto_tabs['upload'] =NULL;
 
 	if ($_zp_loggedin & ALBUM_RIGHTS) {
 		$zenphoto_tabs['edit'] = array(	'text'=>gettext("albums"),
@@ -167,7 +163,11 @@ if ($_zp_loggedin) {
 	}
 
 	$zenphoto_tabs = zp_apply_filter('admin_tabs', $zenphoto_tabs);
-
+	foreach ($zenphoto_tabs as $tab=>$value) {
+		if (is_null($value)) {
+			unset($zenphoto_tabs[$tab]);
+		}
+	}
 	//	so as to make it generally available as we make much use of it
 	if (OFFSET_PATH != 2) {
 		require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/colorbox_js.php');

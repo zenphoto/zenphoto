@@ -59,10 +59,10 @@ if (getOption('elFinder_tinymce')) {
 }
 
 function elFinder_admin_tabs($tabs) {
-	if (!array_key_exists('upload',$tabs)) {
+	if (is_null($tabs['upload'])) {
 		$tabs['upload'] = array('text'=>gettext("upload"),	'subtabs'=>NULL, 'link'=>WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/elFinder/filemanager.php');
 	} else {
-		$tabs['upload']['subtabs'][gettext('images')] = $tabs['upload']['link'];
+		$tabs['upload']['subtabs'][gettext('images')] = 'admin-upload.php?page=upload&amp;tab=images';
 		$tabs['upload']['default']= 'images';
 		$tabs['upload']['subtabs'][gettext('files')] = PLUGIN_FOLDER.'/elFinder/filemanager.php?page=upload&amp;tab=files';
 	}
