@@ -58,8 +58,7 @@ class reCaptcha extends _zp_captcha{
 	 *
 	 * @return bool
 	 */
-	function checkCaptcha() {
-		parent::checkCaptcha();
+	function checkCaptcha($s1, $s2) {
 		$resp = recaptcha_check_answer (getOption('reCaptcha_private_key'), @$_SERVER["REMOTE_ADDR"], @$_POST["recaptcha_challenge_field"], @$_POST["recaptcha_response_field"]);
 		return $resp->is_valid;
 	}
@@ -74,6 +73,7 @@ class reCaptcha extends _zp_captcha{
 	 * @return string;
 	 */
 	function getCaptcha() {
+		parent::getCaptcha();
 		return array('input'=>recaptcha_get_html(getOption('reCaptcha_public_key')), NULL, secureServer());
 	}
 }
