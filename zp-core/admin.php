@@ -16,6 +16,9 @@ if (isset($_GET['_zp_login_error'])) {
 }
 
 checkInstall();
+if (time() > getOption('last_garbage_collect')+864000) {
+	$_zp_gallery->garbageCollect();
+}
 
 if (isset($_GET['report'])) {
 	$class = 'messagebox';

@@ -521,9 +521,6 @@ if (isset($_GET['action'])) {
 			break;
 	} // end of switch
 } else {
-	if (time() > getOption('last_garbage_collect')+864000) {
-		$_zp_gallery->garbageCollect();
-	}
 	if (isset($_GET['albumimagesort'])) {
 		$newsort = sanitize($_GET['albumimagesort'],3);
 		if (strpos($newsort, '_desc')) {
