@@ -37,32 +37,29 @@ if (empty($locale)) $locale = 'en';
 
 		<!-- elFinder initialization (REQUIRED) -->
 		<script type="text/javascript" charset="utf-8">
-			var FileBrowserDialogue = {
-				init: function() {
-					// Here goes your code for setting your custom things onLoad.
-				},
-				mySubmit: function (URL) {
-					var win = tinyMCEPopup.getWindowArg('window');
-
-					// pass selected file path to TinyMCE
-					win.document.getElementById(tinyMCEPopup.getWindowArg('input')).value = URL;
-
-					// are we an image browser?
-					if (typeof(win.ImageDialog) != 'undefined') {
-						// update image dimensions
-						if (win.ImageDialog.getImageData) {
-							win.ImageDialog.getImageData();
-						}
-						// update preview if necessary
-						if (win.ImageDialog.showPreviewImage) {
-							win.ImageDialog.showPreviewImage(URL);
-						}
-					}
-
-					// close popup window
-					tinyMCEPopup.close();
-				}
-			}
+	  	var FileBrowserDialogue = {
+	      init: function() {
+	        // Here goes your code for setting your custom things onLoad.
+	      },
+	      mySubmit: function (URL) {
+	        var win = tinyMCEPopup.getWindowArg('window');
+	        // pass selected file path to TinyMCE
+	        win.document.getElementById(tinyMCEPopup.getWindowArg('input')).value = URL.url;
+	        // are we an image browser?
+	        if (typeof(win.ImageDialog) != 'undefined') {
+	          // update image dimensions
+	          if (win.ImageDialog.getImageData) {
+	            win.ImageDialog.getImageData();
+	          }
+	          // update preview if necessary
+	          if (win.ImageDialog.showPreviewImage) {
+	            win.ImageDialog.showPreviewImage(URL);
+	          }
+	        }
+	        // close popup window
+	        tinyMCEPopup.close();
+	      }
+	    }
 
 		tinyMCEPopup.onInit.add(FileBrowserDialogue.init, FileBrowserDialogue);
 
@@ -70,7 +67,10 @@ if (empty($locale)) $locale = 'en';
 				var elf = $('#elfinder').elfinder({
 					lang: '<?php echo $locale; ?>',   // language (OPTIONAL)
 					customData: {'XSRFToken':'<?php echo getXSRFToken('elFinder'); ?>'},
-					url : '<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/elFinder/'; ?>php/connector_zp.php'  				// connector URL (REQUIRED)
+					url : '<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/elFinder/'; ?>php/connector_zp.php', 				// connector URL (REQUIRED)
+					getFileCallback: function(url) { // editor callback
+		        FileBrowserDialogue.mySubmit(url); // pass selected file path to TinyMCE
+		      }
 				}).elfinder('instance');
 			});
 		</script>
