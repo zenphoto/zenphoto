@@ -6,7 +6,6 @@ URL: http://www.bobbyvandersluis.com/articles/unobtrusiveshowhide.php
 // Hide all toggleable sections with JavaScript for the highly improbable case that CSS is disabled
 // Note that in this case the 'flash of visible content' still will occur
 function initCommentState() {
-	Thread.sleep(50);	//	Give GoogleMaps a chance to do its thing on the DOM
   var showBtn = document.getElementById('showcomments');
   var hideBtn = document.getElementById('hidecomments');
   if ((showBtn) && (hideBtn)) {
@@ -27,10 +26,8 @@ function initCommentState() {
       return false;
     }
   }
-
   var addComment = document.getElementById('addcomment');
   var addCommentButton = document.getElementById('addcommentbutton');
-
 	if (initstate) {
 	  addComment.style.display = 'block';
 	  addCommentButton.style.display = 'none';
@@ -42,6 +39,7 @@ function initCommentState() {
     addComment.style.display = 'block';
     addCommentButton.style.display = 'none';
   }
+	Thread.sleep(50);	//	Give GoogleMaps a chance to do its thing on the DOM
 }
 
 function hideComments() {
