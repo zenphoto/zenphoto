@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-14 18:55+0100\n"
+"POT-Creation-Date: 2013-02-15 20:19+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -122,7 +122,7 @@ msgstr "Zoek  in het album"
 
 #: ZpTranslation-Development/themes/default/album.php:22
 #: ZpTranslation-Development/themes/stopdesign/album.php:39
-#: ZpTranslation-Development/zp-core/admin-globals.php:127
+#: ZpTranslation-Development/zp-core/admin-globals.php:123
 msgid "search"
 msgstr "zoeken"
 
@@ -808,7 +808,7 @@ msgstr "album"
 #: ZpTranslation-Development/themes/effervescence_plus/functions.php:351
 #: ZpTranslation-Development/themes/garland/functions.php:110
 #: ZpTranslation-Development/zp-core/admin-edit.php:1345
-#: ZpTranslation-Development/zp-core/admin-globals.php:120
+#: ZpTranslation-Development/zp-core/admin-globals.php:116
 #: ZpTranslation-Development/zp-core/admin-options.php:2735
 #: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:39
 #: ZpTranslation-Development/zp-core/zp-extensions/image_album_statistics.php:215
@@ -823,7 +823,7 @@ msgstr "video"
 
 #: ZpTranslation-Development/themes/effervescence_plus/functions.php:351
 #: ZpTranslation-Development/themes/garland/functions.php:110
-#: ZpTranslation-Development/zp-core/admin-globals.php:81
+#: ZpTranslation-Development/zp-core/admin-globals.php:77
 #: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:398
 msgid "news"
 msgstr "nieuws"
@@ -1197,7 +1197,7 @@ msgstr "Galerij en Nieuws"
 #: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:76
 #: ZpTranslation-Development/themes/zenpage/sidebar.php:61
 #: ZpTranslation-Development/themes/zpmobile/functions.php:24
-#: ZpTranslation-Development/zp-core/admin-globals.php:132
+#: ZpTranslation-Development/zp-core/admin-globals.php:128
 msgid "RSS"
 msgstr "RSS"
 
@@ -3952,16 +3952,18 @@ msgstr "Bewerk dit album: %s"
 
 #: ZpTranslation-Development/zp-core/admin-functions.php:2022
 #: ZpTranslation-Development/zp-core/admin-functions.php:2025
-#: ZpTranslation-Development/zp-core/zp-extensions/ajaxFilemanager.php:70
 #: ZpTranslation-Development/zp-core/zp-extensions/elFinder.php:65
 #: ZpTranslation-Development/zp-core/zp-extensions/image_album_statistics.php:217
 #: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:423
+#: ZpTranslation-Development/zp-core/zp-extensions/uploader_flash.php:32
+#: ZpTranslation-Development/zp-core/zp-extensions/uploader_http.php:31
+#: ZpTranslation-Development/zp-core/zp-extensions/uploader_jQuery.php:39
 msgid "images"
 msgstr "afbeeldingen"
 
 #: ZpTranslation-Development/zp-core/admin-functions.php:2023
 #: ZpTranslation-Development/zp-core/admin-functions.php:2026
-#: ZpTranslation-Development/zp-core/admin-globals.php:70
+#: ZpTranslation-Development/zp-core/admin-globals.php:66
 #: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:414
 msgid "albums"
 msgstr "albums"
@@ -4146,9 +4148,10 @@ msgid "edit"
 msgstr "Bewerken"
 
 #: ZpTranslation-Development/zp-core/admin-functions.php:3029
-#: ZpTranslation-Development/zp-core/admin-globals.php:64
-#: ZpTranslation-Development/zp-core/zp-extensions/ajaxFilemanager.php:68
 #: ZpTranslation-Development/zp-core/zp-extensions/elFinder.php:63
+#: ZpTranslation-Development/zp-core/zp-extensions/uploader_flash.php:27
+#: ZpTranslation-Development/zp-core/zp-extensions/uploader_http.php:26
+#: ZpTranslation-Development/zp-core/zp-extensions/uploader_jQuery.php:34
 msgid "upload"
 msgstr "upload"
 
@@ -4248,7 +4251,7 @@ msgid "setup"
 msgstr "setup"
 
 #: ZpTranslation-Development/zp-core/admin-functions.php:4311
-#: ZpTranslation-Development/zp-core/admin-globals.php:118
+#: ZpTranslation-Development/zp-core/admin-globals.php:114
 msgid "security"
 msgstr "beveiliging"
 
@@ -4294,7 +4297,7 @@ msgid "uploader"
 msgstr "uploader"
 
 #: ZpTranslation-Development/zp-core/admin-functions.php:4357
-#: ZpTranslation-Development/zp-core/admin-globals.php:101
+#: ZpTranslation-Development/zp-core/admin-globals.php:97
 #: ZpTranslation-Development/zp-core/zp-extensions/user-expiry.php:95
 #: ZpTranslation-Development/zp-core/zp-extensions/user-expiry.php:105
 #: ZpTranslation-Development/zp-core/zp-extensions/user_groups.php:214
@@ -4458,67 +4461,67 @@ msgstr "laatste verandering"
 msgid "overview"
 msgstr "overzicht"
 
-#: ZpTranslation-Development/zp-core/admin-globals.php:76
+#: ZpTranslation-Development/zp-core/admin-globals.php:72
 #: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:406
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:478
 msgid "pages"
 msgstr "pagina's"
 
-#: ZpTranslation-Development/zp-core/admin-globals.php:83
+#: ZpTranslation-Development/zp-core/admin-globals.php:79
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:479
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-edit.php:187
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:959
 msgid "articles"
 msgstr "nieuwsartikelen"
 
-#: ZpTranslation-Development/zp-core/admin-globals.php:84
+#: ZpTranslation-Development/zp-core/admin-globals.php:80
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:480
 msgid "categories"
 msgstr "categorieën"
 
-#: ZpTranslation-Development/zp-core/admin-globals.php:90
+#: ZpTranslation-Development/zp-core/admin-globals.php:86
 msgid "tags"
 msgstr "tags"
 
-#: ZpTranslation-Development/zp-core/admin-globals.php:96
+#: ZpTranslation-Development/zp-core/admin-globals.php:92
 msgid "comments"
 msgstr "reacties"
 
-#: ZpTranslation-Development/zp-core/admin-globals.php:112
+#: ZpTranslation-Development/zp-core/admin-globals.php:108
 msgid "general"
 msgstr "algemeen"
 
-#: ZpTranslation-Development/zp-core/admin-globals.php:116
+#: ZpTranslation-Development/zp-core/admin-globals.php:112
 msgid "gallery"
 msgstr "galerij"
 
-#: ZpTranslation-Development/zp-core/admin-globals.php:124
+#: ZpTranslation-Development/zp-core/admin-globals.php:120
 msgid "plugin"
 msgstr "plugins"
 
-#: ZpTranslation-Development/zp-core/admin-globals.php:130
+#: ZpTranslation-Development/zp-core/admin-globals.php:126
 msgid "theme"
 msgstr "thema"
 
-#: ZpTranslation-Development/zp-core/admin-globals.php:133
+#: ZpTranslation-Development/zp-core/admin-globals.php:129
 #: ZpTranslation-Development/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:122
 msgid "options"
 msgstr "opties"
 
-#: ZpTranslation-Development/zp-core/admin-globals.php:140
+#: ZpTranslation-Development/zp-core/admin-globals.php:136
 msgid "themes"
 msgstr "thema's"
 
-#: ZpTranslation-Development/zp-core/admin-globals.php:147
+#: ZpTranslation-Development/zp-core/admin-globals.php:143
 msgid "plugins"
 msgstr "plugins"
 
-#: ZpTranslation-Development/zp-core/admin-globals.php:155
+#: ZpTranslation-Development/zp-core/admin-globals.php:151
 #: ZpTranslation-Development/zp-core/admin-logs.php:71
 msgid "logs"
 msgstr "logs"
 
-#: ZpTranslation-Development/zp-core/admin-globals.php:163
+#: ZpTranslation-Development/zp-core/admin-globals.php:159
 msgid "Restore"
 msgstr "Restore"
 
@@ -13936,42 +13939,12 @@ msgid ""
 "Allows only users with Admin or Manage All rights to change the publish "
 "state of objects."
 msgstr ""
-"Staat toe dat gebruikers met <em>Admin rechten</em>of <em>Beheer alle "
+"Staat toe dat gebruikers met <em>Admin rechten</em>of<em> Beheer alle "
 "rechten</em> de publicatie van onderdelen veranderen."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/admin-approval.php:39
 msgid "You do not have rights to change the <em>publish</em> state."
 msgstr "Je hebt geen rechten om de publicatie-status te wijzigen."
-
-#: ZpTranslation-Development/zp-core/zp-extensions/ajaxFilemanager.php:20
-msgid "Provides file handling in tinyMCE and the \"files\" upload tab."
-msgstr ""
-"Verwerkt bestanden/afbeeldingen in tinyMCE en de  \"bestanden\"  upload tab."
-
-#: ZpTranslation-Development/zp-core/zp-extensions/ajaxFilemanager.php:46
-#: ZpTranslation-Development/zp-core/zp-extensions/elFinder.php:41
-msgid "Files tab"
-msgstr "Bestanden tab"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/ajaxFilemanager.php:47
-#: ZpTranslation-Development/zp-core/zp-extensions/elFinder.php:42
-msgid "Use as the upload <em>files</em> subtab."
-msgstr "Gebruik als de <em>bestanden</em> subtab."
-
-#: ZpTranslation-Development/zp-core/zp-extensions/ajaxFilemanager.php:48
-#: ZpTranslation-Development/zp-core/zp-extensions/elFinder.php:43
-msgid "TinyMCE plugin"
-msgstr "TinyMCE plugin"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/ajaxFilemanager.php:49
-#: ZpTranslation-Development/zp-core/zp-extensions/elFinder.php:44
-msgid "Enable plugin for TinyMCE."
-msgstr "Activeer de plugin voor TinyMCE."
-
-#: ZpTranslation-Development/zp-core/zp-extensions/ajaxFilemanager.php:72
-#: ZpTranslation-Development/zp-core/zp-extensions/elFinder.php:67
-msgid "files"
-msgstr "bestanden"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/auto_backup.php:19
 msgid "Periodically backup the Zenphoto database."
@@ -15580,6 +15553,29 @@ msgstr ""
 #: ZpTranslation-Development/zp-core/zp-extensions/elFinder.php:13
 msgid "Provides file handling in the \"files\" upload tab."
 msgstr "Verwerkt bestanden onder de  \"bestanden\"  upload tab."
+
+#: ZpTranslation-Development/zp-core/zp-extensions/elFinder.php:41
+msgid "Files tab"
+msgstr "Bestanden tab"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/elFinder.php:42
+msgid "Use as the upload <em>files</em> subtab."
+msgstr "Gebruik als de <em>bestanden</em> subtab."
+
+#: ZpTranslation-Development/zp-core/zp-extensions/elFinder.php:43
+msgid "TinyMCE plugin"
+msgstr "TinyMCE plugin"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/elFinder.php:44
+msgid "Enable plugin for TinyMCE."
+msgstr "Activeer de plugin voor TinyMCE."
+
+#: ZpTranslation-Development/zp-core/zp-extensions/elFinder.php:67
+#: ZpTranslation-Development/zp-core/zp-extensions/uploader_flash.php:34
+#: ZpTranslation-Development/zp-core/zp-extensions/uploader_http.php:33
+#: ZpTranslation-Development/zp-core/zp-extensions/uploader_jQuery.php:41
+msgid "files"
+msgstr "bestanden"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/email-newuser.php:11
 msgid "Emails a password reset request to a newly created user."
@@ -18143,15 +18139,15 @@ msgid "nothing to submit"
 msgstr "er is geen keuze gemaakt"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:11
-#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha_OUD.php:13
+#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha.php:13
 msgid "Zenphoto captcha handler."
 msgstr "Zenphoto CAPTCHA"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:13
-#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha_OUD.php:15
+#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha.php:15
 #, php-format
 msgid ""
-"Only one Captcha handler plugin may be enalbed. <a href=\"#%1$s\"><code>"
+"Only one Captcha handler plugin may be enabled. <a href=\"#%1$s\"><code>"
 "%1$s</code></a> is already enabled."
 msgstr ""
 "Er mag maar één CAPTCHA plugin geactiveerd zijn. <a href=\"#%1$s\"><code>"
@@ -20824,11 +20820,11 @@ msgstr ""
 "Jouw bijdrage helpt de ontwikkeling van Zenphoto en het onderhoud van de "
 "server. Dankjewel !"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha_OUD.php:51
+#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha.php:51
 msgid "Hash key"
 msgstr "Hash sleutel"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha_OUD.php:53
+#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha.php:53
 msgid ""
 "The key used in hashing the CAPTCHA string. Note: this key will change with "
 "each successful CAPTCHA verification."
@@ -20836,55 +20832,55 @@ msgstr ""
 "De sleutel om de CAPTCHA string te hashen. <strong>Let op:</strong>  deze "
 "sleutel verandert na elke succesvolle CAPTCHA verificatie."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha_OUD.php:54
+#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha.php:54
 msgid "Allowed characters"
 msgstr "Toegestane karakters:"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha_OUD.php:56
+#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha.php:56
 msgid "The characters which may appear in the CAPTCHA string."
 msgstr "De karakters die mogen voorkomen in de CAPTCHA string."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha_OUD.php:57
+#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha.php:57
 msgid "CAPTCHA length"
 msgstr "CAPTCHA lengte"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha_OUD.php:59
+#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha.php:59
 msgid "3"
 msgstr "3"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha_OUD.php:59
+#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha.php:59
 msgid "4"
 msgstr "4"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha_OUD.php:59
+#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha.php:59
 msgid "5"
 msgstr "5"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha_OUD.php:59
+#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha.php:59
 msgid "6"
 msgstr "6"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha_OUD.php:60
+#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha.php:60
 msgid "The number of characters in the CAPTCHA."
 msgstr "Het aantal karakters in de CAPTCHA."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha_OUD.php:61
+#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha.php:61
 msgid "CAPTCHA font"
 msgstr "CAPTCHA font"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha_OUD.php:63
+#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha.php:63
 msgid "random"
 msgstr "willekeurig"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha_OUD.php:64
+#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha.php:64
 msgid "The font to use for CAPTCHA characters."
 msgstr "Het te gebruiken font voor CAPTCHA karakters."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha_OUD.php:65
+#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha.php:65
 msgid "CAPTCHA font size"
 msgstr "CAPTCHA fontgrootte"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha_OUD.php:67
+#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha.php:67
 msgid ""
 "The size to use if the font is scalable (<em>TTF</em> and <em>Imagick</em> "
 "fonts.)"
@@ -20892,35 +20888,14 @@ msgstr ""
 "De grootte van het font als dit schaalbaar is. (<em>TTF</em> en <em>Imagick</"
 "em> fonts) "
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha_OUD.php:70
+#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha.php:70
 msgid "Sample CAPTCHA image"
 msgstr "Voorbeeld van CAPTCHA"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/ajaxfilemanager/zp_filemanager.php:28
-#: ZpTranslation-Development/zp-core/zp-extensions/elFinder/filemanager.php:49
-msgid "File Manager"
-msgstr "File Manager"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/ajaxfilemanager/inc/class.auth.php:19
-msgid ""
-"The ajaxFilemanager plugin is currently disabled. To use this feature, "
-"enable the plugin from the <em>plugins</em> tab."
-msgstr ""
-"De ajaxFilemanager plugin is niet geactiveerd. Om van deze mogelijkheid "
-"gebruik te maken moet je de plugin activeren via de <em>plugins</em> tab."
-
-#: ZpTranslation-Development/zp-core/zp-extensions/ajaxfilemanager/inc/class.auth.php:70
-msgid "You do not have the <em>Rights</em> to access the filemanager."
-msgstr ""
-"Je hebt niet de juiste rechten om toegang te krijgen tot de filemanager."
-
 #: ZpTranslation-Development/zp-core/zp-extensions/cacheManager/cacheDBImages.php:20
+#: ZpTranslation-Development/zp-core/zp-extensions/cacheManager/cacheDBImages.php:21
 #: ZpTranslation-Development/zp-core/zp-extensions/cacheManager/cacheImages.php:153
 msgid "Cache stored images"
-msgstr "Cache opgeslagen afbeeldingen"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/cacheManager/cacheDBImages.php:21
-msgid "Cache sstored images"
 msgstr "Cache opgeslagen afbeeldingen"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/cacheManager/cacheDBImages.php:39
@@ -20948,8 +20923,8 @@ msgstr ""
 "gecreëerd."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/cacheManager/cacheDBImages.php:68
-msgid "imageprodessor reference"
-msgstr "afbeeldings-processor URI"
+msgid "image processor reference"
+msgstr "afbeeldings-processor referentie"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/cacheManager/cacheDBImages.php:139
 #, php-format
@@ -20976,7 +20951,7 @@ msgstr ""
 
 #: ZpTranslation-Development/zp-core/zp-extensions/cacheManager/cacheDBImages.php:171
 #, php-format
-msgid "%u image image processor reference found."
+msgid "%u image processor reference found."
 msgid_plural "%u image processor references found."
 msgstr[0] "%u afbeeldings-processor referentie gevonden."
 msgstr[1] "%u afbeeldings-processor referenties gevonden."
@@ -21499,6 +21474,10 @@ msgstr "Verwijder verouderde downloads uit de database."
 #: ZpTranslation-Development/zp-core/zp-extensions/downloadList/download_statistics.php:135
 msgid "Clear all downloads from database"
 msgstr "Verwijder alle downloads uit de database."
+
+#: ZpTranslation-Development/zp-core/zp-extensions/elFinder/filemanager.php:49
+msgid "File Manager"
+msgstr "File Manager"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/federated_logon/OpenID_common.php:60
 #, php-format
@@ -24067,6 +24046,25 @@ msgstr "<code>zenpageAlbumImage()</code> kan afbeelding %1$s:%2$s niet vinden."
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> kan album %1$s niet vinden."
+
+#~ msgid "Provides file handling in tinyMCE and the \"files\" upload tab."
+#~ msgstr ""
+#~ "Verwerkt bestanden/afbeeldingen in tinyMCE en de  \"bestanden\"  upload "
+#~ "tab."
+
+#~ msgid ""
+#~ "The ajaxFilemanager plugin is currently disabled. To use this feature, "
+#~ "enable the plugin from the <em>plugins</em> tab."
+#~ msgstr ""
+#~ "De ajaxFilemanager plugin is niet geactiveerd. Om van deze mogelijkheid "
+#~ "gebruik te maken moet je de plugin activeren via de <em>plugins</em> tab."
+
+#~ msgid "You do not have the <em>Rights</em> to access the filemanager."
+#~ msgstr ""
+#~ "Je hebt niet de juiste rechten om toegang te krijgen tot de filemanager."
+
+#~ msgid "Cache sstored images"
+#~ msgstr "Cache opgeslagen afbeeldingen"
 
 #~ msgid "Imagick filter"
 #~ msgstr "Imagick filter"
