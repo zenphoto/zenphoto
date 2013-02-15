@@ -12,7 +12,7 @@
 $plugin_is_filter = 5|CLASS_PLUGIN;
 $plugin_description = gettext("Zenphoto captcha handler.");
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_disable = ($_zp_captcha->name && $_zp_captcha->name != 'zpCaptcha')?sprintf(gettext('Only one Captcha handler plugin may be enalbed. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'),$_zp_captcha->name):'';
+$plugin_disable = ($_zp_captcha->name && $_zp_captcha->name != 'zpCaptcha')?sprintf(gettext('Only one Captcha handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'),$_zp_captcha->name):'';
 
 $option_interface = 'zpCaptcha';
 
