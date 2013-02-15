@@ -60,14 +60,17 @@ function getAlbumStatistic($number=5, $option, $albumfolder='') {
 		$obj = $_zp_gallery;
 	}
 	getImageAlbumAlbumList($obj, $albumlist);
-	$albumWhere = '';
+
 	if(!empty($albumlist)) {
-		$albumWhere = ' WHERE (`id`='.implode(' OR `id`=', $albumlist).')';
+		$albumWhere = ' WHERE `id` in ('.implode(',', $albumlist).')';
+	} else {
+		$albumWhere = '';
 	}
 	switch($option) {
 		case "popular":
 			$sortorder = "hitcounter";
 			break;
+		default:
 		case "latest":
 			$sortorder = "id";
 			break;

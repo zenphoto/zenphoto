@@ -1433,24 +1433,28 @@ class SearchEngine {
 					} else {
 						$query = "SELECT folder,`show` FROM ".prefix('albums')." WHERE id = $albumid";
 						$row2 = query_single_row($query); // id is unique
-						$albumname = $row2['folder'];
-						$allow = false;
-						$album = new Album(NULL, $albumname);
-						$uralbum = getUrAlbum($album);
-						$viewUnpublished = ($this->search_unpublished || zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
-						switch (checkPublishDates($row)) {
+						if ($row2) {
+							$albumname = $row2['folder'];
+							$allow = false;
+							$album = new Album(NULL, $albumname);
+							$uralbum = getUrAlbum($album);
+							$viewUnpublished = ($this->search_unpublished || zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
+							switch (checkPublishDates($row)) {
 							case 1:
 								$imageobj = newImage($this,$row['filename']);
 								$imageobj->setShow(0);
 								$imageobj->save();
 							case 2:
 								$row['show'] = 0;
-								break;
+									break;
+							}
+							if ($mine || is_null($mine) && ($album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($albumname) && $album->getShow())) {
+								$allow = empty($this->album_list) || in_array($albumname, $this->album_list);
+							}
+							$albums_seen[$albumid] = $albumrow = array('allow'=>$allow,'viewUnpublished'=>$viewUnpublished,'folder'=>$albumname,'localpath'=>ALBUM_FOLDER_SERVERPATH.internalToFilesystem($albumname).'/');
+						} else {
+							$albums_seen[$albumid] = $albumrow = array('allow'=>false,'viewUnpublished'=>false,'folder'=>'','localpath'=>'');
 						}
-						if ($mine || is_null($mine) && ($album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($albumname) && $album->getShow())) {
-							$allow = empty($this->album_list) || in_array($albumname, $this->album_list);
-						}
-						$albums_seen[$albumid] = $albumrow = array('allow'=>$allow,'viewUnpublished'=>$viewUnpublished,'folder'=>$albumname,'localpath'=>ALBUM_FOLDER_SERVERPATH.internalToFilesystem($albumname).'/');
 					}
 					if ($albumrow['allow'] && ($row['show'] || $albumrow['viewUnpublished'])) {
 						if (file_exists($albumrow['localpath'].internalToFilesystem($row['filename']))) {

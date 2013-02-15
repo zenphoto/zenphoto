@@ -363,6 +363,7 @@ class RSS {
 
 	protected function getRSSChannelTitleExtra() {
 		switch($this->sortorder) {
+			default:
 			case 'latest':
 			case 'latest-date':
 			case 'latest-mtime':
