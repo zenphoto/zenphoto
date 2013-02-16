@@ -45,6 +45,7 @@ if (empty($locale)) $locale = 'en';
 	        var win = tinyMCEPopup.getWindowArg('window');
 	        // pass selected file path to TinyMCE
 	        win.document.getElementById(tinyMCEPopup.getWindowArg('input')).value = URL.url;
+	        win.document.getElementById('title').value = win.document.getElementById('alt').value = URL.url.replace(/\\/g,'/').replace( /.*\//, '' ).replace(/\.[^/.]+$/, "");
 	        // are we an image browser?
 	        if (typeof(win.ImageDialog) != 'undefined') {
 	          // update image dimensions
@@ -53,7 +54,7 @@ if (empty($locale)) $locale = 'en';
 	          }
 	          // update preview if necessary
 	          if (win.ImageDialog.showPreviewImage) {
-	            win.ImageDialog.showPreviewImage(URL);
+	            win.ImageDialog.showPreviewImage(URL.url);
 	          }
 	        }
 	        // close popup window
