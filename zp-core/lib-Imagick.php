@@ -91,12 +91,12 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	$_lib_Imagick_info['Library_desc'] = sprintf(gettext('PHP Imagick library <em>%s</em>') . '<br /><em>%s</em>', $_imagick_version, $_imagemagick_version['versionString']);
 
 	$_imagick_format_whitelist = array(
-			'BMP'=>'jpg','BMP2'=>'jpg','BMP3'=>'jpg',
-			'GIF'=>'gif','GIF87'=>'gif',
-			'JPG'=>'jpg','JPEG'=>'jpg',
-			'PNG'=>'png','PNG8'=>'png','PNG24'=>'png','PNG32'=>'png',
-			'TIFF'=>'jpg','TIFF64'=>'jpg'
-			);
+		'BMP'=>'jpg','BMP2'=>'jpg','BMP3'=>'jpg',
+		'GIF'=>'gif','GIF87'=>'gif',
+		'JPG'=>'jpg','JPEG'=>'jpg',
+		'PNG'=>'png','PNG8'=>'png','PNG24'=>'png','PNG32'=>'png',
+		'TIFF'=>'jpg','TIFF64'=>'jpg'
+	);
 
 	$_imagick = new Imagick();
 	$_imagick_formats = $_imagick->queryFormats();
