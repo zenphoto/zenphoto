@@ -1012,7 +1012,6 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 
 			$dbn = "`".$_zp_conf_vars['mysql_database']. "`.*";
 			$db_results = db_permissions();
-
 			$access = -1;
 			$rightsfound = 'unknown';
 			$rightsneeded = array(gettext('Select')=>'SELECT',gettext('Create')=>'CREATE',gettext('Drop')=>'DROP',gettext('Insert')=>'INSERT',
@@ -1028,9 +1027,10 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 			if ($db_results) {
 				$report = "<br /><br /><em>".gettext("Grants found:")."</em> ";
 				foreach ($db_results as $row) {
+					$row = stripcslashes($row);
 					$row_report = "<br /><br />".$row;
 					$r = str_replace(',', '', $row);
-					preg_match('/\sON(.*)TO\s/i', $r, $matches);
+					preg_match('/\sON(.*)\sTO\s?/i', $r, $matches);
 					$found = trim(@$matches[1]);
 					if ($partial = (($i = strpos($found, '%')) !== false)) {
 						$found = substr($found, 0, $i);

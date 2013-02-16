@@ -601,7 +601,7 @@ function acknowledge($value) {
 }
 
 function configMod() {
-	$mod = 0600;
+	$mod = 0660;
 	$str = '';
 	while (empty($str)) {
 		@chmod(CONFIGFILE, $mod);
