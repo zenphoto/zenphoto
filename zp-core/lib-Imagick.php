@@ -111,12 +111,12 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	$_lib_Imagick_info['Library_desc'] = sprintf(gettext('PHP Imagick library <em>%s</em>') . '<br /><em>%s</em>', $_imagick_version, $_imagemagick_version['versionString']);
 
 	$_imagick_format_whitelist = array(
-			'BMP'=>'jpg','BMP2'=>'jpg','BMP3'=>'jpg',
-			'GIF'=>'gif','GIF87'=>'gif',
-			'JPG'=>'jpg','JPEG'=>'jpg',
-			'PNG'=>'png','PNG8'=>'png','PNG24'=>'png','PNG32'=>'png',
-			'TIFF'=>'jpg','TIFF64'=>'jpg'
-			);
+		'BMP'=>'jpg','BMP2'=>'jpg','BMP3'=>'jpg',
+		'GIF'=>'gif','GIF87'=>'gif',
+		'JPG'=>'jpg','JPEG'=>'jpg',
+		'PNG'=>'png','PNG8'=>'png','PNG24'=>'png','PNG32'=>'png',
+		'TIFF'=>'jpg','TIFF64'=>'jpg'
+	);
 
 	$_imagick = new Imagick();
 	$_imagick_formats = $_imagick->queryFormats();
@@ -138,7 +138,6 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * Takes an image filename and returns an Imagick image object
 	 *
 	 * @param string $imgfile the full path and filename of the image to load
-	 * @throws ImagickException
 	 * @return Imagick
 	 */
 	function zp_imageGet($imgfile) {
@@ -146,16 +145,6 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 
 		if (in_array(getSuffix($imgfile), $_lib_Imagick_info)) {
 			$image = new Imagick(filesystemToInternal($imgfile));
-
-			if (IMAGE_WATERMARK | FULLIMAGE_WATERMARK | THUMB_WATERMARK) {
-				try {
-					$image = $image->coalesceImages();
-				} catch (ImagickException $e) {
-					if (DEBUG_IMAGE) {
-						debugLog('Caught ImagickException in zp_imageGet(): ' . $e->getMessage());
-					}
-				}
-			}
 
 			return $image;
 		}
@@ -170,7 +159,6 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @param string $type
 	 * @param string $filename
 	 * @param int $qual
-	 * @throws ImagickException
 	 * @return bool
 	 */
 	function zp_imageOutput($im, $type, $filename = NULL, $qual = 75) {
@@ -212,13 +200,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 				break;
 		}
 
-		try {
-			$im->optimizeImageLayers();
-		} catch (ImagickException $e) {
-			if (DEBUG_IMAGE) {
-				debugLog('Caught ImagickException in zp_imageOutput(): ' . $e->getMessage());
-			}
-		}
+		$im->optimizeImageLayers();
 
 		if ($filename == NULL) {
 			header('Content-Type: image/' . $type);
@@ -286,7 +268,15 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	function zp_copyCanvas($imgCanvas, $img, $dest_x, $dest_y, $src_x, $src_y, $w, $h) {
 		$img->cropImage($w, $h, $src_x, $src_y);
 
-		return $imgCanvas->compositeImage($img, Imagick::COMPOSITE_OVER, $dest_x, $dest_y);
+		$result = true;
+
+		$imgCanvas = $imgCanvas->coalesceImages();
+
+		foreach ($imgCanvas as $frame) {
+			$result &= $imgCanvas->compositeImage($img, Imagick::COMPOSITE_OVER, $dest_x, $dest_y);
+		}
+
+		return $result;
 	}
 
 	/**
@@ -325,7 +315,10 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 
 			$dst_image->setImageDelay($frame->getImageDelay());
 			$result &= $dst_image->compositeImage($frame, Imagick::COMPOSITE_OVER, $dst_x, $dst_y);
-			$result &= $dst_image->addImage(zp_createImage($dst_image->getImageWidth(), $dst_image->getImageHeight()));
+
+			if ($dst_image->getNumberImages() < $src_image->getNumberImages()) {
+				$result &= $dst_image->addImage(zp_createImage($dst_image->getImageWidth(), $dst_image->getImageHeight()));
+			}
 
 			if (!$result) {
 				break;
@@ -407,7 +400,6 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * Returns the IPTC data of an image
 	 *
 	 * @param string $filename
-	 * @throws ImagickException
 	 * @return string
 	 */
 	function zp_imageIPTC($filename) {
@@ -417,9 +409,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 			try {
 				return $ping->getImageProfile('exif');
 			} catch (ImagickException $e) {
-				if (DEBUG_IMAGE) {
-					debugLog('Caught ImagickException in zp_imageIPTC(): ' . $e->getMessage());
-				}
+				// EXIF profile does not exist
 			}
 		}
 
@@ -587,13 +577,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 		$draw = new ImagickDraw();
 
 		if (!empty($font)) {
-			try {
-				$draw->setFont($font);
-			} catch(ImagickDrawException $e) {
-				if (DEBUG_IMAGE) {
-					debugLog('Caught ImagickDrawException in zp_imageLoadFont(): ' . $e->getMessage());
-				}
-			}
+			$draw->setFont($font);
 		}
 
 		$draw->setFontSize(getOption('magick_font_size'));
