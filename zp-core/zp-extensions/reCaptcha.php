@@ -14,11 +14,6 @@ $plugin_disable = ($_zp_captcha->name && $_zp_captcha->name != 'reCaptcha')?spri
 
 $option_interface = 'reCaptcha';
 
-if ($plugin_disable) {
-	setOption('zp_plugin_reCaptcha', 0);
-} else {
-	$_zp_captcha = new reCaptcha();
-}
 require_once(dirname(__FILE__).'/reCaptcha/recaptchalib.php');
 
 class reCaptcha extends _zp_captcha{
@@ -51,8 +46,6 @@ class reCaptcha extends _zp_captcha{
 	function handleOption($key, $cv) {
 	}
 
-
-
 	/**
 	 * Checks reCaptcha
 	 *
@@ -76,6 +69,12 @@ class reCaptcha extends _zp_captcha{
 		parent::getCaptcha();
 		return array('input'=>recaptcha_get_html(getOption('reCaptcha_public_key')), NULL, secureServer());
 	}
+}
+
+if ($plugin_disable) {
+	setOption('zp_plugin_reCaptcha', 0);
+} else {
+	$_zp_captcha = new reCaptcha();
 }
 
 ?>

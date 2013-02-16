@@ -16,12 +16,6 @@ $plugin_disable = ($_zp_captcha->name && $_zp_captcha->name != 'zpCaptcha')?spri
 
 $option_interface = 'zpCaptcha';
 
-if ($plugin_disable) {
-	setOption('zp_plugin_zpCaptcha', 0);
-} else {
-	$_zp_captcha = new zpCaptcha();
-}
-
 class zpCaptcha extends _zp_captcha {
 
 	var $name='zpCaptcha';
@@ -91,7 +85,6 @@ class zpCaptcha extends _zp_captcha {
 		</script>
 		<?php
 	}
-
 
 	/**
 	 * gets (or creates) the CAPTCHA encryption key
@@ -166,6 +159,12 @@ class zpCaptcha extends _zp_captcha {
 		$hidden = '<input type="hidden" name="code_h" value="'.$code.'" />';
 		return array('input'=>$input, 'html'=>$html, 'hidden'=>$hidden);
 	}
+}
+
+if ($plugin_disable) {
+	setOption('zp_plugin_zpCaptcha', 0);
+} else {
+	$_zp_captcha = new zpCaptcha();
 }
 
 ?>
