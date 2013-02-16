@@ -710,8 +710,8 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 		$chmodselector = '<form action="#"><input type="hidden" name="xsrfToken" value="'.$xsrftoken.'" />'.
 					'<p>'.sprintf(gettext('Set File permissions to %s.'),permissionsSelector($permission_names, $chmod)).
 					'</p></form>';
-		if (array_key_exists($chmod, $permission_names)) {
-			$value = sprintf(gettext('<em>%1$s</em> (<code>0%2$o</code>)'),$permission_names[$chmod],$chmod);
+		if (array_key_exists($chmod|4, $permission_names)) {
+			$value = sprintf(gettext('<em>%1$s</em> (<code>0%2$o</code>)'),$permission_names[$chmod|4],$chmod);
 		} else {
 			$value = sprintf(gettext('<em>unknown</em> (<code>%o</code>)'),$chmod);
 		}

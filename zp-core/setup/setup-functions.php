@@ -365,6 +365,7 @@ function charsetSelector($select) {
 }
 
 function permissionsSelector($permission_names, $select) {
+	$select = $select|4;
 	global $_zp_UTF8;
 	$selector =	'<select id="chmod_permissions" name="chmod_permissions" >';
 	$c = 0;
