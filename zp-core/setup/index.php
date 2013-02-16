@@ -1018,6 +1018,7 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 
 			$dbn = "`".$_zp_conf_vars['mysql_database']. "`.*";
 			$db_results = db_permissions();
+
 			$access = -1;
 			$rightsfound = 'unknown';
 			$rightsneeded = array(gettext('Select')=>'SELECT',gettext('Create')=>'CREATE',gettext('Drop')=>'DROP',gettext('Insert')=>'INSERT',
@@ -1061,7 +1062,7 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 			} else {
 				$report = "<br /><br />".gettext("The <em>SHOW GRANTS</em> query failed.");
 			}
-			checkMark($access, gettext("Database <code>access rights</code>"), sprintf(gettext("Database <code>access rights</code> [%s]"),$rightsfound),
+			checkMark($access, sprintf(gettext('Database <code>access rights</code> for <em>%s</em>'),$_zp_conf_vars['mysql_database']), sprintf(gettext('Database <code>access rights</code> for <em>%1$s</em> [%2$s]'),$_zp_conf_vars['mysql_database'],$rightsfound),
 													sprintf(gettext("Your Database user must have %s rights."),$neededlist) . $report);
 
 
@@ -1085,8 +1086,7 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 				$msg = sprintf(gettext("<em>SHOW TABLES</em> found: %s"),substr($tableslist, 0, -2));
 				$msg2 = '';
 			}
-			$dbn = $_zp_conf_vars['mysql_database'];
-			checkMark($check, $msg, gettext("<em>SHOW TABLES</em> [Failed]"), sprintf(gettext("The database did not return a list of the database tables for <code>%s</code>."),$dbn) .
+			checkMark($check, $msg, gettext("<em>SHOW TABLES</em> [Failed]"), sprintf(gettext("The database did not return a list of the database tables for <code>%s</code>."),$_zp_conf_vars['mysql_database']) .
 											"<br />".gettext("<strong>Setup</strong> will attempt to create all tables. This will not over write any existing tables."));
 			if (isset($_zp_conf_vars['UTF-8']) && $_zp_conf_vars['UTF-8']) {
 				$fields = 0;
