@@ -1,7 +1,7 @@
 <?php
 require_once(dirname(dirname(dirname(__FILE__))).'/admin-functions.php');
 zp_session_start();
-admin_securityChecks(FILES_RIGHTS, currentRelativeURL());
+admin_securityChecks(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_PAGES_RIGHTS, currentRelativeURL());
 XSRFdefender('elFinder');
 $locale = substr(getOption("locale"),0,2);
 if (empty($locale)) $locale = 'en';
@@ -42,7 +42,7 @@ if (empty($locale)) $locale = 'en';
 	        // Here goes your code for setting your custom things onLoad.
 	      },
 	      mySubmit: function (URL) {
-	        var win = tinyMCEPopup.getWindowArg('window');
+	      var win = tinyMCEPopup.getWindowArg('window');
 	        // pass selected file path to TinyMCE
 	        win.document.getElementById(tinyMCEPopup.getWindowArg('input')).value = URL.url;
 	        win.document.getElementById('title').value = win.document.getElementById('alt').value = URL.url.replace(/\\/g,'/').replace( /.*\//, '' ).replace(/\.[^/.]+$/, "");
@@ -66,6 +66,14 @@ if (empty($locale)) $locale = 'en';
 
 		$().ready(function() {
 				var elf = $('#elfinder').elfinder({
+					commands : [
+					          	'open', 'reload', 'home', 'up', 'back', 'forward', 'getfile', 'quicklook',
+//					          	'download', 'rm', 'duplicate', 'rename', 'mkdir', 'mkfile', 'upload', 'copy',
+//					          	'cut', 'paste', 'edit', 'extract', 'archive', 'search',
+											'info', 'view', 'help',
+//					          	'resize',
+					          	'sort'
+					          ],
 					lang: '<?php echo $locale; ?>',   // language (OPTIONAL)
 					customData: {'XSRFToken':'<?php echo getXSRFToken('elFinder'); ?>'},
 					url : '<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/elFinder/'; ?>php/connector_zp.php', 				// connector URL (REQUIRED)
