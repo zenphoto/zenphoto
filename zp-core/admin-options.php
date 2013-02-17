@@ -8,6 +8,7 @@
 
 define('OFFSET_PATH', 1);
 require_once(dirname(__FILE__).'/admin-globals.php');
+require_once(SERVERPATH.'/'.ZENFOLDER.'/functions-config.php');
 
 admin_securityChecks(OPTIONS_RIGHTS, currentRelativeURL());
 
@@ -407,6 +408,9 @@ if (isset($_GET['action'])) {
 				httpsRedirect();
 			}
 			setOption('server_protocol', $protocol);
+			$zp_cfg = @file_get_contents(CONFIGFILE);
+			updateConfigItem('server_protocol', $protocol);
+			file_put_contents(CONFIGFILE, $zp_cfg);
 			$_zp_gallery->setUserLogonField(isset($_POST['login_user_field']));
 			if ($protocol == 'http') {
 				zp_clearCookie("zenphoto_ssl");

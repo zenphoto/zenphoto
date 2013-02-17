@@ -341,6 +341,7 @@ zp-core/external_auth.php
 zp-core/full-image.php
 zp-core/functions-basic.php
 zp-core/functions-common.php
+zp-core/functions-config.php
 zp-core/functions-controller.php
 zp-core/functions-db-MySQL.php
 zp-core/functions-db-MySQLi.php
@@ -1768,4 +1769,4 @@ zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zpCaptcha
 zp-core/zp-extensions/zpCaptcha.php
 zp-core/zp-extensions/zpCaptcha/c.php
-1770
+1771

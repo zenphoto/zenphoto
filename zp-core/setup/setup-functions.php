@@ -18,8 +18,8 @@ if (empty($matches)) {
 }
 
 define('SETUPLOG',$serverpath.'/'.DATA_FOLDER . '/setup.log');
-define('CONFIGFILE',$serverpath.'/'.DATA_FOLDER.'/zenphoto.cfg');
 if (!defined('SERVERPATH')) define('SERVERPATH',$serverpath);
+require_once(dirname(dirname(__FILE__)).'/functions-config.php');
 
 /**
  *
@@ -396,25 +396,6 @@ function setupLog($message, $anyway=false, $reset=false) {
 	}
 }
 
-/*
- * updates database config parameters
- */
-function updateConfigItem($item, $value, $quote=true) {
-	global $zp_cfg;
-	if ($quote) {
-		$value = '"'.$value.'"';
-	}
-	$i = strpos($zp_cfg, $item);
-	if ($i === false) {
-		$i = strpos($zp_cfg, '/** Do not edit below this line. **/');
-		$zp_cfg = substr($zp_cfg, 0, $i)."\$conf['".$item."'] = ".$value.";\n".substr($zp_cfg,$i);
-	} else {
-		$i = strpos($zp_cfg, '=', $i);
-		$j = strpos($zp_cfg, "\n", $i);
-		$zp_cfg = substr($zp_cfg, 0, $i) . '= ' . $value . ';' . substr($zp_cfg, $j);
-	}
-}
-
 /**
  *
  * Checks for bad parentIDs from old move/copy bug
@@ -645,5 +626,4 @@ function updateConfigFile($zp_cfg) {
 	$str = configMod();
 	$xsrftoken = sha1(CONFIGFILE.$str.session_id());
 }
-
 ?>
