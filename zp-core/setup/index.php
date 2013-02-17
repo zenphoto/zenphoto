@@ -721,7 +721,7 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 		} else {
 			$value = sprintf(gettext('<em>unknown</em> (<code>%o</code>)'),$chmod);
 		}
-		if ($chmod>0644) {
+		if ($chmod>0664) {
 			if (isset($_zp_conf_vars['CHMOD'])) {
 				$severity = -3;
 			} else {
