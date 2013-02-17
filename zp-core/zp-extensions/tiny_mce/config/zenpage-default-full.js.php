@@ -22,7 +22,7 @@ $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
 			}
 			?>
 			theme : "advanced",
-			plugins : "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,tinyzenpage",
+			plugins : "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,contextmenu,paste,directionality,fullscreen,noneditable,tinyzenpage",
 			theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect|,undo,redo,|,search,replace,|,fullscreen,help",
 			theme_advanced_buttons2 : "link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor,|,hr,removeformat,|,visualaid,|,sub,sup,styleprops,|,charmap,emotions,iespell,|,ltr,rtl,|,pagebreak,tinyzenpage",
 			theme_advanced_buttons3 : "copy,paste,pastetext,pasteword,|,bullist,numlist,|,outdent,indent,blockquote,|,tablecontrols,|,media,advhr,|,moveforward,movebackward,absolute,|,insertlayer",
