@@ -68,10 +68,16 @@ if (empty($locale)) $locale = 'en';
 				var elf = $('#elfinder').elfinder({
 					commands : [
 					          	'open', 'reload', 'home', 'up', 'back', 'forward', 'getfile', 'quicklook',
-//					          	'download', 'rm', 'duplicate', 'rename', 'mkdir', 'mkfile', 'upload', 'copy',
-//					          	'cut', 'paste', 'edit', 'extract', 'archive', 'search',
+					          	<?php
+					          	if (zp_loggedin(FILES_RIGHTS)) {
+					          		?>
+						          	'download', 'rm', 'duplicate', 'rename', 'mkdir', 'mkfile', 'upload', 'copy',
+						          	'cut', 'paste', 'edit', 'extract', 'archive', 'search',
+						          	'resize',
+					          		<?php
+												}
+					          	?>
 											'info', 'view', 'help',
-//					          	'resize',
 					          	'sort'
 					          ],
 					lang: '<?php echo $locale; ?>',   // language (OPTIONAL)
