@@ -788,7 +788,7 @@ protected function getRSSCombinewsAlbums() {
 			$totalimages = $albumobj->getNumImages();
 			$itemlink = $this->host.pathurlencode($albumobj->getAlbumLink());
 			$thumb = $albumobj->getAlbumThumbImage();
-			$thumburl = '<img border="0" src="'.pathurlencode($thumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'.html_encode($albumobj->getTitle($this->locale)) .'" />';
+			$thumburl = '<img border="0" src="'.PROTOCOL.'://'.$this->host.pathurlencode($thumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'.html_encode($albumobj->getTitle($this->locale)) .'" />';
 			$title =  $albumobj->getTitle($this->locale);
 			if(true || $this->sortorder == "latestupdated") {
 				$filechangedate = filectime(ALBUM_FOLDER_SERVERPATH.internalToFilesystem($albumobj->name));
