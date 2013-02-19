@@ -51,6 +51,7 @@ class security_logger {
 		setOptionDefault('logger_log_guests', 1);
 		setOptionDefault('logger_log_admin', 1);
 		setOptionDefault('logger_log_type', 'all');
+		setOptionDefault('logge_access_log_type', 'all_user');
 		setOptionDefault('security_log_size', 5000000);
 	}
 
@@ -64,7 +65,10 @@ class security_logger {
 		return array(	gettext('Record logon attempts of') => array('key' => 'logger_log_allowed', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
 										'checkboxes' => array(gettext('Administrators') => 'logger_log_admin', gettext('Guests') => 'logger_log_guests'),
 										'desc' => gettext('If checked login attempts will be logged.')),
-									gettext('Record') =>array('key' => 'logger_log_type', 'type' => OPTION_TYPE_RADIO,
+									gettext('Record failed admin access') =>array('key' => 'logge_access_log_type', 'type' => OPTION_TYPE_RADIO,
+										'buttons' => array(gettext('All attempts') => 'all', gettext('Only user attempts') => 'all_user'),
+										'desc' => gettext('Record admin page access failures.')),
+									gettext('Record logon') =>array('key' => 'logger_log_type', 'type' => OPTION_TYPE_RADIO,
 										'buttons' => array(gettext('All attempts') => 'all', gettext('Successful attempts') => 'success', gettext('unsuccessful attempts') => 'fail'),
 										'desc' => gettext('Record login failures, successes, or all attempts.'))
 		);
@@ -297,7 +301,7 @@ class security_logger {
 				if ($success) return true;
 				break;
 		}
-	$name = '';
+		$name = '';
 		if ($success) {
 			$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
 			$pass = '';	// mask it from display
@@ -316,6 +320,13 @@ class security_logger {
 	 */
 	static function adminGate($allow, $page) {
 		list($user,$name) = security_logger::populate_user();
+		switch (getOption('logger_log_type')) {
+			case 'all':
+				break;
+			case 'all_user':
+				if (!$user) return $allow;
+				break;
+		}
 		security_logger::Logger(0, $user, $name, 'blocked_access', '', $page);
 		return $allow;
 	}
@@ -338,6 +349,13 @@ class security_logger {
 	 */
 	static function adminAlbumGate($allow, $page) {
 		list($user,$name) = security_logger::populate_user();
+		switch (getOption('logger_log_type')) {
+			case 'all':
+				break;
+			case 'all_user':
+				if (!$user) return $allow;
+				break;
+		}
 		security_logger::Logger(2, $user, $name, 'blocked_album', '', $page);
 		return $allow;
 	}
