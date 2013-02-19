@@ -465,13 +465,13 @@ class RSS {
 		if(!empty($arrayfield)) {
 			if(isset($_GET['albumname'])) {
 				$albumfolder = sanitize_path($_GET['albumname']);
-				if(!file_exists(ALBUM_FOLDER_SERVERPATH.'/'.$albumfolder)) {
+				if(!file_exists(ALBUM_FOLDER_SERVERPATH.'/'.internalToFilesystem($albumfolder))) {
 					$array['albumfolder'] = NULL;
 				}
 				$array['collection'] = FALSE;
 			} else if(isset($_GET['folder'])) {
 				$albumfolder = sanitize_path($_GET['folder']);
-				if(!file_exists(ALBUM_FOLDER_SERVERPATH.'/'.$albumfolder)) {
+				if(!file_exists(ALBUM_FOLDER_SERVERPATH.'/'.internalToFilesystem($albumfolder))) {
 					$array['albumfolder'] = NULL;
 					$array['collection'] = FALSE;
 				} else {
@@ -615,7 +615,7 @@ protected function getRSSCombinewsAlbums() {
 	protected function startRSSCache() {
 		$caching = getOption("feed_cache") && !zp_loggedin();
 		if($caching) {
-			$cachefilepath = SERVERPATH."/cache_html/rss/".$this->getRSSCacheFilename();
+			$cachefilepath = SERVERPATH."/cache_html/rss/".internalToFilesystem($this->getRSSCacheFilename());
 			if(file_exists($cachefilepath) AND time()-filemtime($cachefilepath) < getOption("feed_cache_expire")) {
 				echo file_get_contents($cachefilepath); // PHP >= 4.3
 				exitZP();
@@ -636,7 +636,7 @@ protected function getRSSCombinewsAlbums() {
 	protected function endRSSCache() {
 		$caching = getOption("feed_cache") && !zp_loggedin();
 		if($caching) {
-			$cachefilepath = SERVERPATH."/cache_html/rss/".$this->getRSSCacheFilename();
+			$cachefilepath = SERVERPATH."/cache_html/rss/".internalToFilesystem($this->getRSSCacheFilename());
 			if(!empty($cachefilepath)) {
 				mkdir_recursive(SERVERPATH."/cache_html/rss/",FOLDER_MOD);
 				$pagecontent = ob_get_contents();
@@ -788,7 +788,7 @@ protected function getRSSCombinewsAlbums() {
 			$totalimages = $albumobj->getNumImages();
 			$itemlink = $this->host.pathurlencode($albumobj->getAlbumLink());
 			$thumb = $albumobj->getAlbumThumbImage();
-			$thumburl = '<img border="0" src="'.pathurlencode($thumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'.html_encode($albumobj->getTitle($this->locale)) .'" />';
+			$thumburl = '<img border="0" src="'.PROTOCOL.'://'.$this->host.pathurlencode($thumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'.html_encode($albumobj->getTitle($this->locale)) .'" />';
 			$title =  $albumobj->getTitle($this->locale);
 			if(true || $this->sortorder == "latestupdated") {
 				$filechangedate = filectime(ALBUM_FOLDER_SERVERPATH.internalToFilesystem($albumobj->name));
@@ -817,7 +817,6 @@ protected function getRSSCombinewsAlbums() {
 			$albumobj = $item->getAlbum();
 			$itemlink = $this->host.$item->getImagelink();
 			$fullimagelink = $this->host.pathurlencode($item->getFullImageURL());
-			$imagefile = $item->getFullImage(SERVERPATH);
 			$thumburl = '<img border="0" src="'.PROTOCOL.'://'.$this->host.pathurlencode($item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'.$item->getTitle($this->locale) .'" /><br />';
 			$title = $item->getTitle($this->locale);
 			$albumtitle = $albumobj->getTitle($this->locale);
@@ -840,7 +839,7 @@ protected function getRSSCombinewsAlbums() {
 		// enclosure
 		$feeditem['enclosure'] = '';
 		if(getOption("feed_enclosure") AND $this->rssmode != "albums") {
-			$feeditem['enclosure'] = '<enclosure url="'.PROTOCOL.'://'.$fullimagelink.'" type="'.getMimeString($ext).'" length="'.filesize($imagefile).'" />';
+			$feeditem['enclosure'] = '<enclosure url="'.PROTOCOL.'://'.$fullimagelink.'" type="'.getMimeString($ext).'" length="'.filesize($obj->localpath).'" />';
 		}
 		//category
 		if($this->rssmode != "albums") {
@@ -901,7 +900,6 @@ protected function getRSSCombinewsAlbums() {
 				$ext = getSuffix($filename);
 				$album = $albumobj->getFolder();
 				$fullimagelink = $this->host.pathurlencode($obj->getFullImageURL());
-				$imagefile = $obj->getFullImage(SERVERPATH);
 				$content = shortenContent($obj->getDesc($this->locale),getOption('zenpage_rss_length'), '...');
 				if(isImagePhoto($obj)) {
 					$feeditem['desc'] = '<a title="'.html_encode($feeditem['title']).' in '.html_encode($categories).'" href="'.PROTOCOL.'://'.$this->host.$link.'"><img border="0" src="'.PROTOCOL.'://'.$this->host.pathurlencode($obj->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'. html_encode($feeditem['title']).'"></a><br />'.$content;
@@ -909,7 +907,7 @@ protected function getRSSCombinewsAlbums() {
 					$feeditem['desc'] = '<a title="'.html_encode($feeditem['title']).' in '.html_encode($categories).'" href="'.PROTOCOL.'://'.$this->host.$link.'"><img src="'.pathurlencode($obj->getThumb()).'" alt="'.html_encode($feeditem['title']).'" /></a><br />'.$content;
 				}
 				if(getOption("feed_enclosure")) {
-					$feeditem['enclosure'] = '<enclosure url="'.PROTOCOL.'://'.$fullimagelink.'" type="'.getMimeString($ext).'" length="'.filesize($imagefile).'" />';
+					$feeditem['enclosure'] = '<enclosure url="'.PROTOCOL.'://'.$fullimagelink.'" type="'.getMimeString($ext).'" length="'.filesize($obj->localpath).'" />';
 				}
 				break;
 			case 'albums':
