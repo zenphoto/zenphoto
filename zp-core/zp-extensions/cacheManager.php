@@ -132,10 +132,11 @@ class cacheManager {
 		$result = query('SELECT * FROM '.prefix('plugin_storage').' WHERE `type`="cacheManager" ORDER BY `aux`');
 		$key = 0;
 		while ($row = db_fetch_assoc($result)) {
+			$theme = $row['aux'];
 			$data = unserialize($row['data']);
-			$custom[$data['theme']][] = $data;
+			$custom[$theme][] = $data;
 		}
-		$custom = sortMultiArray($custom, array('theme','thumb','image_size','image_width','image_height'));
+		ksort($custom);
 		$custom[''] = array(array());
 		$c = 0;
 		?>
@@ -158,6 +159,7 @@ class cacheManager {
 		</script>
 		<?php
 		foreach($custom as $theme=>$themedata) {
+			$themedata = sortMultiArray($themedata, array('thumb','image_size','image_width','image_height'));
 			if ($theme) {
 				?>
 				<span class="icons" id="<?php echo $theme; ?>_arrow">
