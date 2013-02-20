@@ -136,7 +136,7 @@ class cacheManager {
 			$data = unserialize($row['data']);
 			$custom[$theme][] = $data;
 		}
-		ksort($custom);
+		ksort($custom,SORT_LOCALE_STRING);
 		$custom[''] = array(array());
 		$c = 0;
 		?>
