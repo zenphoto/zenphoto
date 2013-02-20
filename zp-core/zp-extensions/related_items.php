@@ -256,7 +256,7 @@ function printRelatedItems($number=5,$type='news',$specific=NULL,$excerpt=NULL,$
 
 			</h4>
 			<?php if($excerpt) {
-				echo truncate_string($text,$excerpt,'...');
+				echo shortenContent($text, $excerpt,'...',true);
 			} ?>
 			</li>
 			<?php
