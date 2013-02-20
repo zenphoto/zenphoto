@@ -211,6 +211,7 @@ class cacheManager {
 		query('DELETE FROM '.prefix('plugin_storage').' WHERE `type`="cacheManager"');
 		foreach($cache as $cacheimage) {
 			if (!isset($cacheimage['delete']) && count($cacheimage)>1) {
+				$cacheimage['theme'] = preg_replace("/[\s\"\']+/","-",$cacheimage['theme']);
 				$sql = 'INSERT INTO '.prefix('plugin_storage').' (`type`, `aux`,`data`) VALUES ("cacheManager",'.db_quote($cacheimage['theme']).','.db_quote(serialize($cacheimage)).')';
 				query($sql);
 			}
