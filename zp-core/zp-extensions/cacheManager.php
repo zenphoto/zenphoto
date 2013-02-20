@@ -130,65 +130,117 @@ class cacheManager {
 		$currenttheme = $_zp_gallery->getCurrentTheme();
 		$custom = array();
 		$result = query('SELECT * FROM '.prefix('plugin_storage').' WHERE `type`="cacheManager" ORDER BY `aux`');
+		$key = 0;
 		while ($row = db_fetch_assoc($result)) {
-			$custom[] = unserialize($row['data']);
+			$data = unserialize($row['data']);
+			$custom[$data['theme']][] = $data;
 		}
 		$custom = sortMultiArray($custom, array('theme','thumb','image_size','image_width','image_height'));
-		$custom[] = array();
+		$custom[''] = array(array());
 		$c = 0;
-		foreach($custom as $key=>$cache) {
-			if ($c % 2) {
-				$class = 'boxb';
-			} else {
-				$class = 'box';
+		?>
+		<script type="text/javascript">
+			//<!-- <![CDATA[
+			function showTheme(theme) {
+				html = $('#'+theme+'_arrow').html();
+				if (html.match(/down/)) {
+					html = html.replace(/_down/,'_up');
+					html = html.replace(/title="<?php echo gettext('Show'); ?>/,'title="<?php echo gettext('Hide'); ?>"');
+					$('#'+theme+'_list').show();
+				} else {
+					html = html.replace(/_up/,'_down');
+					html = html.replace(/title="<?php echo gettext('Hide'); ?>/,'title="<?php echo gettext('Show'); ?>"');
+					$('#'+theme+'_list').hide();
+				}
+				$('#'+theme+'_arrow').html(html);
 			}
-			?>
-			<div>
-			<?php
-			$c++;
-			$theme = $allow = '';
-			if (isset($cache['enable']) && $cache['enable']) {
-				$allow = ' checked="checked"';
-			}
-			$theme = @$cache['theme'];
-			?>
-			<input type="textbox" size="25" name="cacheManager_theme_<?php echo $key; ?>" value="<?php echo $theme; ?>" />
-			<?php
+			//]]> -->
+		</script>
+		<?php
+		foreach($custom as $theme=>$themedata) {
 			if ($theme) {
 				?>
-				<span class="nowrap"><?php echo gettext('Delete'); ?> <input type="checkbox" name="cacheManager_delete_<?php echo $key; ?>" value="1" /></span>
+				<span class="icons" id="<?php echo $theme; ?>_arrow">
+				<?php echo $theme.' ('.count($themedata),')'; ?>
+					<a href="javascript:showTheme('<?php echo $theme; ?>');" title="<?php echo gettext('Show'); ?>">
+						<img class="icon-position-top4" src="<?php echo WEBPATH.'/'.ZENFOLDER.'/images/arrow_down.png'; ?>" alt="" />
+					</a>
+				</span>
+				<br />
+				<div id="<?php echo $theme; ?>_list" style="display:none">
+					<br />
 				<?php
+				$inputclass = 'hidden';
+			} else {
+				$inputclass = 'textbox';
+				?>
+				<br />
+				<?php
+				echo gettext('add');
 			}
-			?>
-			<div class="<?php echo $class; ?>">
-			<?php
-			foreach (array('image_size'=>gettext('Size'),'image_width'=>gettext('Width'),'image_height'=>gettext('Height'),
-											'crop_width'=>gettext('Crop width'),'crop_height'=>gettext('Crop height'),'crop_x'=>gettext('Crop X axis'),
-											'crop_y'=>gettext('Crop Y axis')) as $what=>$display) {
-				if (isset($cache[$what])) {
-					$v = $cache[$what];
+			foreach ($themedata as $cache) {
+				$key++;
+				if ($c % 2) {
+					$class = 'boxb';
 				} else {
-					$v = '';
+					$class = 'box';
 				}
 				?>
-				<span class="nowrap"><?php echo $display; ?> <input type="textbox" size="2" name="cacheManager_<?php echo $what; ?>_<?php echo $key; ?>" value="<?php echo $v; ?>" /></span>
+				<div>
+					<?php
+					$c++;
+					if (isset($cache['enable']) && $cache['enable']) {
+						$allow = ' checked="checked"';
+					} else {
+						$allow = '';
+					}
+					?>
+					<div class="<?php echo $class; ?>">
+						<input type="<?php echo $inputclass; ?>" size="25" name="cacheManager_theme_<?php echo $key; ?>" value="<?php echo $theme; ?>" />
+						<?php
+						if ($theme) {
+							?>
+							<span class="displayinlineright"><?php echo gettext('Delete'); ?> <input type="checkbox" name="cacheManager_delete_<?php echo $key; ?>" value="1" /></span>
+								<?php
+						}
+						?>
+						<br />
+						<?php
+
+						foreach (array('image_size'=>gettext('Size'),'image_width'=>gettext('Width'),'image_height'=>gettext('Height'),
+														'crop_width'=>gettext('Crop width'),'crop_height'=>gettext('Crop height'),'crop_x'=>gettext('Crop X axis'),
+														'crop_y'=>gettext('Crop Y axis')) as $what=>$display) {
+							if (isset($cache[$what])) {
+								$v = $cache[$what];
+							} else {
+								$v = '';
+							}
+							?>
+							<span class="nowrap"><?php echo $display; ?> <input type="textbox" size="2" name="cacheManager_<?php echo $what; ?>_<?php echo $key; ?>" value="<?php echo $v; ?>" /></span>
+							<?php
+						}
+						if (isset($cache['wmk'])) {
+							$wmk = $cache['wmk'];
+						} else {
+							$wmk = '';
+						}
+						?>
+						<span class="nowrap"><?php echo gettext('Watermark'); ?> <input type="textbox" size="20" name="cacheManager_wmk_<?php echo $key; ?>" value="<?php echo $wmk; ?>" /></span>
+						<br />
+						<span class="nowrap"><?php echo gettext('MaxSpace'); ?><input type="checkbox"  name="cacheManager_maxspace_<?php echo $key; ?>" value="1"<?php if (isset($cache['maxspace'])&&$cache['maxspace']) echo ' checked="checked"'; ?> /></span>
+						<span class="nowrap"><?php echo gettext('Thumbnail'); ?><input type="checkbox"  name="cacheManager_thumb_<?php echo $key; ?>" value="1"<?php if (isset($cache['thumb'])&&$cache['thumb']) echo ' checked="checked"'; ?> /></span>
+						<span class="nowrap"><?php echo gettext('Grayscale'); ?><input type="checkbox"  name="cacheManager_gray_<?php echo $key; ?>" value="gray"<?php if (isset($cache['gray'])&&$cache['gray']) echo ' checked="checked"'; ?> /></span>
+					</div>
+					<br />
+				</div>
 				<?php
 			}
-			if (isset($cache['wmk'])) {
-				$wmk = $cache['wmk'];
-			} else {
-				$wmk = '';
+			if ($theme) {
+				?>
+				</div><!-- <?php echo $theme; ?>_list -->
+				<?php
 			}
-			?>
-			<span class="nowrap"><?php echo gettext('Watermark'); ?> <input type="textbox" size="20" name="cacheManager_wmk_<?php echo $key; ?>" value="<?php echo $wmk; ?>" /></span>
-			<br />
-			<span class="nowrap"><?php echo gettext('MaxSpace'); ?><input type="checkbox"  name="cacheManager_maxspace_<?php echo $key; ?>" value="1"<?php if (isset($cache['maxspace'])&&$cache['maxspace']) echo ' checked="checked"'; ?> /></span>
-			<span class="nowrap"><?php echo gettext('Thumbnail'); ?><input type="checkbox"  name="cacheManager_thumb_<?php echo $key; ?>" value="1"<?php if (isset($cache['thumb'])&&$cache['thumb']) echo ' checked="checked"'; ?> /></span>
-			<span class="nowrap"><?php echo gettext('Grayscale'); ?><input type="checkbox"  name="cacheManager_gray_<?php echo $key; ?>" value="gray"<?php if (isset($cache['gray'])&&$cache['gray']) echo ' checked="checked"'; ?> /></span>
-			</div>
-			</div>
-			<br />
-			<?php
+
 		}
 	}
 
@@ -210,6 +262,7 @@ class cacheManager {
 		query('DELETE FROM '.prefix('plugin_storage').' WHERE `type`="cacheManager"');
 		foreach($cache as $cacheimage) {
 			if (!isset($cacheimage['delete']) && count($cacheimage)>1) {
+				$cacheimage['theme'] = preg_replace("/[\s\"\']+/","-",$cacheimage['theme']);
 				$sql = 'INSERT INTO '.prefix('plugin_storage').' (`type`, `aux`,`data`) VALUES ("cacheManager",'.db_quote($cacheimage['theme']).','.db_quote(serialize($cacheimage)).')';
 				query($sql);
 			}
