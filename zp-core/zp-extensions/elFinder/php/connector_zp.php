@@ -32,12 +32,9 @@ $opts = array(
 	'roots' => array(
 		array(
 			'driver'     => 'LocalFileSystem',
-//			'path'       => '../files/',
-//			'startPath'  => '../files/test/',
-//			'URL'        => dirname($_SERVER['PHP_SELF']) . '/../files/',
 			'startPath'  => SERVERPATH.'/uploaded/',
-			'path'        =>	SERVERPATH.'/uploaded/',
-			'URL'         =>	WEBPATH .'/uploaded/',
+			'path'       =>	SERVERPATH.'/uploaded/',
+			'URL'        =>	WEBPATH.'/uploaded/',
 			// 'treeDeep'   => 3,
 			// 'alias'      => 'File system',
 			'mimeDetect' => 'internal',
@@ -62,19 +59,6 @@ $opts = array(
 			)
 			// 'uploadDeny' => array('application', 'text/xml')
 		)
-		/*
-		'roots' => array(
-		array(
-			'locale'				=>	getUserLocale(),
-			'debug'					=>	true,
-			'driver'        =>	'LocalFileSystem',   // driver for accessing file system (REQUIRED)
-			'path'          =>	SERVERPATH.'/uploaded/',         // path to files (REQUIRED)
-			'URL'           =>	WEBPATH .'/uploaded/', // URL to files (REQUIRED)
-//			'tmbPath'       =>	SERVERPATH.'/'.DATA_FOLDER.'/elFinder/tmb/',         // path to thumbnails
-//			'tmbURL'        =>	WEBPATH.'/'.DATA_FOLDER.'/elFinder/tmb/',         // url to thumbnails
-			'accessControl' => 'access'             // disable and hide dot starting files (OPTIONAL)
-		)
-		*/
 	)
 );
 

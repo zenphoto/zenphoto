@@ -55,7 +55,7 @@ echo "\n</head>";
 														'XSRFToken':'<?php echo getXSRFToken('elFinder'); ?>',
 														'zp_user_auth':'<?php echo zp_getCookie('zp_user_auth'); ?>'
 													},
-							url : '<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/elFinder/'; ?>php/connector_zp.php'  				// connector URL (REQUIRED)
+							url : '<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER; ?>/elFinder/php/connector_zp.php'  				// connector URL (REQUIRED)
 						}).elfinder('instance');
 					});
 				</script>

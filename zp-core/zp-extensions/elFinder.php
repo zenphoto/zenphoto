@@ -1,7 +1,17 @@
 <?php
 /**
  *
- * This plugin enables the elFinder filemanager plugin.
+ *
+ * The Admin <var>upload/files</var> tab and the <i>TinyMCE</i> file browser (if configured) use
+ * a plugin to supply file handling and uploading.
+ * This plugin supplies file handling using <i>elFinder</i> by {@link http://elfinder.org/ Studio-42 }.
+ *
+ * <hr>
+ * <img src="%WEBPATH%/%ZENFOLDER%/%PLUGIN_FOLDER%/elFInder/elfinder-logo.png" />
+ * "<i>elFinder</i> is a file manager for web similar to that you use on your computer. Written in JavaScript
+ * using jQuery UI, it just work's in any modern browser. Its creation is inspired by simplicity and
+ * convenience of Finder.app program used in Mac OS X."
+ *
  *
  *
  * @author Stephen Billard (sbillard)
@@ -10,7 +20,7 @@
  */
 
 $plugin_is_filter = 5|ADMIN_PLUGIN;
-$plugin_description = gettext('Provides file handling in the "files" upload tab.');
+$plugin_description = gettext('Provides file handling for the <code>upload/files</code> tab and the <em>TinyMCE</em> file browser.');
 $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'elFinder_options';
