@@ -53,7 +53,8 @@ echo "\n</head>";
 							lang: '<?php echo $locale; ?>',   // language (OPTIONAL)
 							customData: {
 														'XSRFToken':'<?php echo getXSRFToken('elFinder'); ?>',
-														'zp_user_auth':'<?php echo zp_getCookie('zp_user_auth'); ?>'
+														'zp_user_auth':'<?php echo zp_getCookie('zp_user_auth'); ?>',
+														'origin':'upload'
 													},
 							url : '<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER; ?>/elFinder/php/connector_zp.php'  				// connector URL (REQUIRED)
 						}).elfinder('instance');
@@ -62,6 +63,15 @@ echo "\n</head>";
 
 				<!-- Element where elFinder will be created (REQUIRED) -->
 				<div id="elfinder"></div>
+				<?php
+				if (zp_loggedin(ALBUM_RIGHTS)) {
+					?>
+					<p class="notebox">
+						<?php echo gettext('<strong>Note:</strong> Accessing the albums folder with this utility is equivalent to using FTP to access it. <em>Copy</em> and <em>rename</em> do not carry the Zenphoto data with the change.'); ?>
+					</p>
+					<?php
+				}
+				?>
 			</div>
 		</div>
 	</div>

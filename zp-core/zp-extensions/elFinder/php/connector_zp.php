@@ -27,40 +27,152 @@ function access($attr, $path, $data, $volume) {
 		:  null;                                    // else elFinder decide it itself
 }
 
-$opts = array(
-	// 'debug' => true,
-	'roots' => array(
+function accessImage($attr, $path, $data, $volume) {
+	//	allow only images
+	if (access($attr, $path, $data, $volume) || (!is_dir($path) && !is_valid_image($path))) {
+		return !($attr == 'read' || $attr == 'write');
+	}
+	return NULL;
+}
+
+function accessData($attr, $path, $data, $volume) {
+	//	restrict access
+	if (access($attr, $path, $data, $volume) || (is_dir($path) && basename($path)!=DATA_FOLDER)) {
+		return !($attr == 'read' || $attr == 'write');
+	}
+	return NULL;
+}
+
+$opts = array();
+
+if ($_GET['origin']=='upload') {
+
+	if (zp_loggedin(FILES_RIGHTS)) {
+		$opts['roots'][] =
 		array(
-			'driver'     => 'LocalFileSystem',
-			'startPath'  => SERVERPATH.'/uploaded/',
-			'path'       =>	SERVERPATH.'/uploaded/',
-			'URL'        =>	WEBPATH.'/uploaded/',
-			// 'treeDeep'   => 3,
-			// 'alias'      => 'File system',
-			'mimeDetect' => 'internal',
-			'tmbPath'    => '.tmb',
-			'utf8fix'    => true,
-			'tmbCrop'    => false,
-			'tmbBgColor' => 'transparent',
-			'accessControl' => 'access',
-			'acceptedName'    => '/^[^\.].*$/',
-			// 'tmbSize' => 128,
-			'attributes' => array(
-				array(
-					'pattern' => '/\.js$/',
-					'read' => true,
-					'write' => false
-				),
-				array(
-					'pattern' => '/^\/icons$/',
-					'read' => true,
-					'write' => false
-				)
-			)
-			// 'uploadDeny' => array('application', 'text/xml')
-		)
-	)
-);
+				'driver'     => 'LocalFileSystem',
+				'startPath'  => SERVERPATH.'/'.UPLOAD_FOLDER.'/',
+				'path'       =>	SERVERPATH.'/'.UPLOAD_FOLDER.'/',
+				'URL'        =>	WEBPATH.'/'.UPLOAD_FOLDER.'/',
+				'alias' 		 => gettext('Upload folder'),
+				'mimeDetect' => 'internal',
+				'tmbPath'    => '.tmb',
+				'utf8fix'    => true,
+				'tmbCrop'    => false,
+				'tmbBgColor' => 'transparent',
+				'accessControl' => 'access',
+				'acceptedName'    => '/^[^\.].*$/'
+		);
+	}
+
+	if (zp_loggedin(THEMES_RIGHTS)) {
+		$opts['roots'][] =
+			array(
+				'driver'     => 'LocalFileSystem',
+				'startPath'  => SERVERPATH.'/'.THEMEFOLDER.'/',
+				'path'       =>	SERVERPATH.'/'.THEMEFOLDER.'/',
+				'URL'        =>	WEBPATH.'/'.THEMEFOLDER.'/',
+				'alias' 		 => gettext('Zenphoto themes'),
+				'mimeDetect' => 'internal',
+				'tmbPath'    => '.tmb',
+				'utf8fix'    => true,
+				'tmbCrop'    => false,
+				'tmbBgColor' => 'transparent',
+				'accessControl' => 'access',
+				'acceptedName'    => '/^[^\.].*$/'
+			);
+	}
+
+	if (zp_loggedin(ALBUM_RIGHTS)) {
+		$opts['roots'][] =
+			array(
+				'driver'     => 'LocalFileSystem',
+				'startPath'  => getAlbumFolder(SERVERPATH),
+				'path'       =>	getAlbumFolder(SERVERPATH),
+				'URL'        =>	getAlbumFolder(WEBPATH),
+				'alias' 		 => gettext('Albums folder'),
+				'mimeDetect' => 'internal',
+				'tmbPath'    => '.tmb',
+				'utf8fix'    => true,
+				'tmbCrop'    => false,
+				'tmbBgColor' => 'transparent',
+				'uploadAllow' => array('image'),
+				'accessControl' => 'access',
+				'acceptedName'    => '/^[^\.].*$/'
+		);
+	}
+
+	if (zp_loggedin(ADMIN_RIGHTS)) {
+		$opts['roots'][] =
+			array(
+				'driver'     => 'LocalFileSystem',
+				'startPath'  => SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/',
+				'path'       =>	SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/',
+				'URL'        =>	WEBPATH.'/'.USER_PLUGIN_FOLDER.'/',
+				'alias' 		 => gettext('Third party plugins'),
+				'mimeDetect' => 'internal',
+				'tmbPath'    => '.tmb',
+				'utf8fix'    => true,
+				'tmbCrop'    => false,
+				'tmbBgColor' => 'transparent',
+				'accessControl' => 'access',
+				'acceptedName'    => '/^[^\.].*$/'
+		);
+		$opts['roots'][] =
+			array(
+				'driver'     => 'LocalFileSystem',
+				'startPath'  => SERVERPATH.'/'.DATA_FOLDER.'/',
+				'path'       =>	SERVERPATH.'/'.DATA_FOLDER.'/',
+				'URL'        =>	WEBPATH.'/'.DATA_FOLDER.'/',
+				'alias' 		 => gettext('Zenphoto data'),
+				'mimeDetect' => 'internal',
+				'tmbPath'    => '.tmb',
+				'utf8fix'    => true,
+				'tmbCrop'    => false,
+				'tmbBgColor' => 'transparent',
+				'accessControl' => 'accessData',
+				'acceptedName'    => '/^[^\.].*$/'
+		);
+		$opts['roots'][] =
+			array(
+				'driver'     => 'LocalFileSystem',
+				'startPath'  => SERVERPATH.'/'.BACKUPFOLDER.'/',
+				'path'       =>	SERVERPATH.'/'.BACKUPFOLDER.'/',
+				'URL'        =>	WEBPATH.'/'.BACKUPFOLDER.'/',
+				'alias' 		 => gettext('Zenphoto backup files'),
+				'mimeDetect' => 'internal',
+				'tmbPath'    => '.tmb',
+				'utf8fix'    => true,
+				'tmbCrop'    => false,
+				'tmbBgColor' => 'transparent',
+				'accessControl' => 'access',
+				'acceptedName'    => '/^[^\.].*$/'
+		);
+
+	}
+
+} else {	//	origin == 'tinyMCE
+
+	if (zp_loggedin(FILES_RIGHTS)) {
+		$opts['roots'][] =
+			array(
+				'driver'     => 'LocalFileSystem',
+				'startPath'  => SERVERPATH.'/'.UPLOAD_FOLDER.'/',
+				'path'       =>	SERVERPATH.'/'.UPLOAD_FOLDER.'/',
+				'URL'        =>	WEBPATH.'/'.UPLOAD_FOLDER.'/',
+				'alias' 		 => gettext('Upload folder'),
+				'mimeDetect' => 'internal',
+				'tmbPath'    => '.tmb',
+				'utf8fix'    => true,
+				'tmbCrop'    => false,
+				'tmbBgColor' => 'transparent',
+				'uploadAllow' => array('image'),
+				'accessControl' => 'accessImage',
+				'acceptedName'    => '/^[^\.].*$/'
+		);
+	}
+
+}
 
 // run elFinder
 $connector = new elFinderConnector(new elFinder($opts));

@@ -81,7 +81,11 @@ if (empty($locale)) $locale = 'en';
 					          	'sort'
 					          ],
 					lang: '<?php echo $locale; ?>',   // language (OPTIONAL)
-					customData: {'XSRFToken':'<?php echo getXSRFToken('elFinder'); ?>'},
+					customData: {
+						'XSRFToken':'<?php echo getXSRFToken('elFinder'); ?>',
+						'zp_user_auth':'<?php echo zp_getCookie('zp_user_auth'); ?>',
+						'origin':'tinyMCE'
+					},
 					url : '<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/elFinder/'; ?>php/connector_zp.php', 				// connector URL (REQUIRED)
 					getFileCallback: function(url) { // editor callback
 		        FileBrowserDialogue.mySubmit(url); // pass selected file path to TinyMCE
