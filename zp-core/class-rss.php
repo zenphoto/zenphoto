@@ -839,7 +839,7 @@ protected function getRSSCombinewsAlbums() {
 		// enclosure
 		$feeditem['enclosure'] = '';
 		if(getOption("feed_enclosure") AND $this->rssmode != "albums") {
-			$feeditem['enclosure'] = '<enclosure url="'.PROTOCOL.'://'.$fullimagelink.'" type="'.getMimeString($ext).'" length="'.filesize($obj->localpath).'" />';
+			$feeditem['enclosure'] = '<enclosure url="'.PROTOCOL.'://'.$fullimagelink.'" type="'.getMimeString($ext).'" length="'.filesize($item->localpath).'" />';
 		}
 		//category
 		if($this->rssmode != "albums") {
