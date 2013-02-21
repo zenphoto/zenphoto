@@ -75,7 +75,7 @@ class googleMap {
 																	'desc' => gettext('The initial zoom of the map.')),
 									gettext('Allowed maps') => array('key' => 'gmap_allowed_maps', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
 																	'order'=>1,
-																	'checkboxes' => array(gettext('Map') => 'gmap_map', gettext('Satellite') => 'gmap_satillite' ,gettext('Hybrid') => 'gmap_hybrid' ,gettext('Terrain') => 'gmap_terrain'),
+																	'checkboxes' => array(gettext('Map') => 'gmap_map', gettext('Satellite') => 'gmap_satellite' ,gettext('Hybrid') => 'gmap_hybrid' ,gettext('Terrain') => 'gmap_terrain'),
 																	'desc' => gettext('Select the map types that are allowed.')),
 									gettext('Map control size') => array('key' => 'gmap_control_size', 'type' => OPTION_TYPE_RADIO,'buttons' => array(gettext('Small') => 'small',gettext('Large') => 'large'),
 																	'order'=>4,
