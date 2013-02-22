@@ -53,7 +53,7 @@ function accessAlbums($attr, $path, $data, $volume) {
 		$path = str_replace('\\', '/', $path).'/';
 		$base = explode('/',str_replace(getAlbumFolder(SERVERPATH), '', $path));
 		$base = array_shift($base);
-		$block = $base && !in_array($base, $_managed_folders);
+		$block = !$base && $attr == 'write' || $base && !in_array($base, $_managed_folders);
 	}
 	if ($block || access($attr, $path, $data, $volume)) {
 		return !($attr == 'read' || $attr == 'write');
@@ -63,7 +63,7 @@ function accessAlbums($attr, $path, $data, $volume) {
 
 $opts = array();
 
-if ($_GET['origin']=='upload') {
+if ($_REQUEST['origin']=='upload') {
 
 	if (zp_loggedin(FILES_RIGHTS)) {
 		$opts['roots'][] =
@@ -72,7 +72,7 @@ if ($_GET['origin']=='upload') {
 				'startPath'  => SERVERPATH.'/'.UPLOAD_FOLDER.'/',
 				'path'       =>	SERVERPATH.'/'.UPLOAD_FOLDER.'/',
 				'URL'        =>	WEBPATH.'/'.UPLOAD_FOLDER.'/',
-				'alias' 		 => gettext('Upload folder'),
+				'alias' 		 => sprintf(gettext('Upload folder (%s)'),UPLOAD_FOLDER),
 				'mimeDetect' => 'internal',
 				'tmbPath'    => '.tmb',
 				'utf8fix'    => true,
@@ -90,7 +90,7 @@ if ($_GET['origin']=='upload') {
 				'startPath'  => SERVERPATH.'/'.THEMEFOLDER.'/',
 				'path'       =>	SERVERPATH.'/'.THEMEFOLDER.'/',
 				'URL'        =>	WEBPATH.'/'.THEMEFOLDER.'/',
-				'alias' 		 => gettext('Zenphoto themes'),
+				'alias' 		 => sprintf(gettext('Zenphoto themes (%s)'),THEMEFOLDER),
 				'mimeDetect' => 'internal',
 				'tmbPath'    => '.tmb',
 				'utf8fix'    => true,
@@ -104,6 +104,17 @@ if ($_GET['origin']=='upload') {
 	if (zp_loggedin(ALBUM_RIGHTS)) {
 		if (!zp_loggedin(ADMIN_RIGHTS)) {
 			$_managed_folders = getManagedAlbumList();
+			//	remove albums he may not edit
+			foreach ($_managed_folders as $key=>$folder) {
+				$rightsalbum = newAlbum($folder);
+				$modified_rights = $rightsalbum->albumSubRights();
+				if (!($modified_rights & MANAGED_OBJECT_RIGHTS_EDIT)) {
+					unset($_managed_folders[$key]);
+				}
+			}
+			$perms = array();
+		} else {
+			$perms = array('/^$/' => array("read" => true, "write" => false,"rm" => false, "locked" => true));
 		}
 		$opts['roots'][] =
 			array(
@@ -111,7 +122,7 @@ if ($_GET['origin']=='upload') {
 				'startPath'  => getAlbumFolder(SERVERPATH),
 				'path'       =>	getAlbumFolder(SERVERPATH),
 				'URL'        =>	getAlbumFolder(WEBPATH),
-				'alias' 		 => gettext('Albums folder'),
+				'alias' 		 => sprintf(gettext('Albums folder (%s)'),basename(getAlbumFolder())),
 				'mimeDetect' => 'internal',
 				'tmbPath'    => '.tmb',
 				'utf8fix'    => true,
@@ -119,7 +130,8 @@ if ($_GET['origin']=='upload') {
 				'tmbBgColor' => 'transparent',
 				'uploadAllow' => array('image'),
 				'accessControl' => 'accessAlbums',
-				'acceptedName'    => '/^[^\.].*$/'
+				'acceptedName'  => '/^[^\.].*$/',
+				'attributes' => $perms
 		);
 	}
 
@@ -130,14 +142,14 @@ if ($_GET['origin']=='upload') {
 				'startPath'  => SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/',
 				'path'       =>	SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/',
 				'URL'        =>	WEBPATH.'/'.USER_PLUGIN_FOLDER.'/',
-				'alias' 		 => gettext('Third party plugins'),
+				'alias' 		 => sprintf(gettext('Third party plugins (%s)'),USER_PLUGIN_FOLDER),
 				'mimeDetect' => 'internal',
 				'tmbPath'    => '.tmb',
 				'utf8fix'    => true,
 				'tmbCrop'    => false,
 				'tmbBgColor' => 'transparent',
 				'accessControl' => 'access',
-				'acceptedName'    => '/^[^\.].*$/'
+				'acceptedName'  => '/^[^\.].*$/'
 		);
 		$opts['roots'][] =
 			array(
@@ -145,14 +157,14 @@ if ($_GET['origin']=='upload') {
 				'startPath'  => SERVERPATH.'/'.DATA_FOLDER.'/',
 				'path'       =>	SERVERPATH.'/'.DATA_FOLDER.'/',
 				'URL'        =>	WEBPATH.'/'.DATA_FOLDER.'/',
-				'alias' 		 => gettext('Zenphoto data'),
+				'alias' 		 => sprintf(gettext('Zenphoto data (%s)'),DATA_FOLDER),
 				'mimeDetect' => 'internal',
 				'tmbPath'    => '.tmb',
 				'utf8fix'    => true,
 				'tmbCrop'    => false,
 				'tmbBgColor' => 'transparent',
 				'accessControl' => 'accessData',
-				'acceptedName'    => '/^[^\.].*$/'
+				'acceptedName'  => '/^[^\.].*$/'
 		);
 		$opts['roots'][] =
 			array(
@@ -160,14 +172,14 @@ if ($_GET['origin']=='upload') {
 				'startPath'  => SERVERPATH.'/'.BACKUPFOLDER.'/',
 				'path'       =>	SERVERPATH.'/'.BACKUPFOLDER.'/',
 				'URL'        =>	WEBPATH.'/'.BACKUPFOLDER.'/',
-				'alias' 		 => gettext('Zenphoto backup files'),
+				'alias' 		 => sprintf(gettext('Backup files (%s)'),BACKUPFOLDER),
 				'mimeDetect' => 'internal',
 				'tmbPath'    => '.tmb',
 				'utf8fix'    => true,
 				'tmbCrop'    => false,
 				'tmbBgColor' => 'transparent',
 				'accessControl' => 'access',
-				'acceptedName'    => '/^[^\.].*$/'
+				'acceptedName'  => '/^[^\.].*$/'
 		);
 
 	}
@@ -181,7 +193,7 @@ if ($_GET['origin']=='upload') {
 				'startPath'  => SERVERPATH.'/'.UPLOAD_FOLDER.'/',
 				'path'       =>	SERVERPATH.'/'.UPLOAD_FOLDER.'/',
 				'URL'        =>	WEBPATH.'/'.UPLOAD_FOLDER.'/',
-				'alias' 		 => gettext('Upload folder'),
+				'alias' 		 => sprintf(gettext('Upload folder (%s)'),UPLOAD_FOLDER),
 				'mimeDetect' => 'internal',
 				'tmbPath'    => '.tmb',
 				'utf8fix'    => true,
