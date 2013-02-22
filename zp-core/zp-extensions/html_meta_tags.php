@@ -158,7 +158,7 @@ class htmlmetatags {
 		global $_zp_gallery, $_zp_galley_page, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news,
 						$_zp_current_zenpage_page, $_zp_gallery_page, $_zp_current_category, $_zp_authority;
 		$host = sanitize("http://".$_SERVER['HTTP_HOST']);
-		$url = $host.getRequestURI();;
+		$url = $host.getRequestURI();
 
 		// Convert locale shorttag to allowed html meta format
 		$locale = zpFunctions::getLanguageText(getOption("locale"),"-");
