@@ -2898,7 +2898,7 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 	<div id="tab_plugin" class="tabbox">
 		<?php zp_apply_filter('admin_note','options', $subtab); ?>
 		<script type="text/javascript">
-			var optionholder = new array();
+			var optionholder = new Array();
 		</script>
 		<form action="?action=saveoptions<?php if (isset($_GET['single'])) echo '&amp;single='.$showExtension; ?>" method="post" autocomplete="off">
 			<?php XSRFToken('saveoptions');?>
