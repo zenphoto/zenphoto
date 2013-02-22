@@ -22,9 +22,9 @@ $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
 			}
 			?>
 			theme : "advanced",
-			plugins : "pagebreak,style,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,contextmenu,paste,directionality,fullscreen,noneditable,tinyzenpage",
-			theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect|,undo,redo,|,search,replace,|,fullscreen,help",
-			theme_advanced_buttons2 : "link,unlink,anchor,image,code,|,insertdate,inserttime,preview,|,forecolor,backcolor,|,hr,removeformat,|,visualaid,|,sub,sup,styleprops,|,charmap,emotions,iespell,|,ltr,rtl,|,pagebreak,|,copy,paste,pastetext,pasteword,|,bullist,numlist,|,outdent,indent,blockquote",
+			plugins : "pagebreak,style,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,tinyzenpage",
+			theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,|,bullist,numlist,|,outdent,indent,blockquote",
+			theme_advanced_buttons2 : "undo,redo,|,link,unlink,anchor,image,cleanup,help,code,fullscreen,|,pagebreak,tinyzenpage",
 			theme_advanced_toolbar_location : "top",
 			theme_advanced_toolbar_align : "left",
 			theme_advanced_statusbar_location : "bottom",

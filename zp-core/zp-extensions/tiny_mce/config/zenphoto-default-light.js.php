@@ -22,10 +22,10 @@ $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
 			}
 			?>
 			theme : "advanced",
-			plugins : "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,contextmenu,paste,directionality,fullscreen,noneditable,tinyzenpage",
-			theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect",
-			theme_advanced_buttons2 : "undo,redo,|,search,replace,|,fullscreen,help,|,link,unlink,anchor,image,cleanup,help,code,fullscreen,|,insertdate,inserttime,preview,|,forecolor,backcolor",
-			theme_advanced_buttons3 : "hr,removeformat,|,visualaid,|,sub,sup,styleprops,|,charmap,emotions,iespell,|,ltr,rtl,|,pagebreak,tinyzenpage",
+			plugins : "fullscreen,inlinepopups,tinyzenpage",
+			theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,bullist,numlist",
+			theme_advanced_buttons2 : "undo,redo,|,link,unlink,anchor,image,cleanup,help,code,fullscreen,tinyzenpage",
+			theme_advanced_buttons3 : "",
 			theme_advanced_toolbar_location : "top",
 			theme_advanced_toolbar_align : "left",
 			theme_advanced_statusbar_location : "bottom",
