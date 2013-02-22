@@ -21,6 +21,7 @@ include_once SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/elFinder/php/elFinderV
  * @param  string  $path  file path relative to volume root directory started with directory separator
  * @return bool|null
  **/
+
 function access($attr, $path, $data, $volume) {
 	return strpos(basename($path), '.') === 0       // if file/folder begins with '.' (dot)
 		? !($attr == 'read' || $attr == 'write')    // set read+write to false, other (locked+hidden) set to true
@@ -38,6 +39,23 @@ function accessImage($attr, $path, $data, $volume) {
 function accessData($attr, $path, $data, $volume) {
 	//	restrict access
 	if (access($attr, $path, $data, $volume) || (is_dir($path) && basename($path)!=DATA_FOLDER)) {
+		return !($attr == 'read' || $attr == 'write');
+	}
+	return NULL;
+}
+
+function accessAlbums($attr, $path, $data, $volume) {
+	global $_managed_folders;
+	//	restrict access to his albums
+	if (zp_loggedin(ADMIN_RIGHTS)) {
+		$block = false;
+	} else {
+		$path = str_replace('\\', '/', $path).'/';
+		$base = explode('/',str_replace(getAlbumFolder(SERVERPATH), '', $path));
+		$base = array_shift($base);
+		$block = $base && !in_array($base, $_managed_folders);
+	}
+	if ($block || access($attr, $path, $data, $volume)) {
 		return !($attr == 'read' || $attr == 'write');
 	}
 	return NULL;
@@ -84,6 +102,9 @@ if ($_GET['origin']=='upload') {
 	}
 
 	if (zp_loggedin(ALBUM_RIGHTS)) {
+		if (!zp_loggedin(ADMIN_RIGHTS)) {
+			$_managed_folders = getManagedAlbumList();
+		}
 		$opts['roots'][] =
 			array(
 				'driver'     => 'LocalFileSystem',
@@ -97,7 +118,7 @@ if ($_GET['origin']=='upload') {
 				'tmbCrop'    => false,
 				'tmbBgColor' => 'transparent',
 				'uploadAllow' => array('image'),
-				'accessControl' => 'access',
+				'accessControl' => 'accessAlbums',
 				'acceptedName'    => '/^[^\.].*$/'
 		);
 	}
