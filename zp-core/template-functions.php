@@ -105,6 +105,13 @@ function printAdminToolbox($id='admin', $customDIV=false) {
 				</li>
 				<?php
 			}
+			if (zp_loggedin(ALBUM_RIGHTS | FILES_RIGHTS | THEMES_RIGHTS)) {
+				?>
+				<li>
+					<?php printLink($zf . '/admin-upload.php', gettext("Upload"), NULL, NULL, NULL); ?>
+				</li>
+				<?php
+			}
 			if (zp_loggedin(ALBUM_RIGHTS)) {
 				?>
 				<li>
