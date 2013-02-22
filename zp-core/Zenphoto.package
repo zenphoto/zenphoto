@@ -1117,6 +1117,7 @@ zp-core/zp-extensions/tiny_mce/config/comment_form-default.js.php
 zp-core/zp-extensions/tiny_mce/config/content.css
 zp-core/zp-extensions/tiny_mce/config/zenpage-default-full.js.php
 zp-core/zp-extensions/tiny_mce/config/zenpage-default-light.js.php
+zp-core/zp-extensions/tiny_mce/config/zenphoto-default-light.js.php
 zp-core/zp-extensions/tiny_mce/config/zenphoto-default-with-customdatafield.js.php
 zp-core/zp-extensions/tiny_mce/config/zenphoto-default.js.php
 zp-core/zp-extensions/tiny_mce/langs
@@ -1770,4 +1771,4 @@ zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zpCaptcha
 zp-core/zp-extensions/zpCaptcha.php
 zp-core/zp-extensions/zpCaptcha/c.php
-1772
+1773
