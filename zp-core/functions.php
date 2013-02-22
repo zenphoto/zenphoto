@@ -720,7 +720,7 @@ function getManagedAlbumList() {
 	if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 		$sql = "SELECT `folder` FROM ".prefix('albums').' WHERE `parentid` IS NULL';
 		$albums = query($sql);
-		if ($album) {
+		if ($albums) {
 			while ($album = db_fetch_assoc($albums)) {
 				$_zp_admin_album_list[$album['folder']] = 32767;
 			}
