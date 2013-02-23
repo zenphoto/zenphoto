@@ -1676,15 +1676,7 @@ function processZenpageBulkActions($type) {
 		if($action != 'noaction') {
 			if ($total > 0) {
 				if ($action == 'addtags' || $action == 'alltags') {
-					foreach ($_POST as $key => $value) {
-						$key = postIndexDecode($key);
-						if (substr($key, 0, 10) == 'mass_tags_') {
-							if ($value) {
-								$tags[] = substr($key, 10);
-							}
-						}
-					}
-					$tags = sanitize($tags, 3);
+					$tags = bulkTags();
 				}
 				if ($action == 'addcats') {
 					foreach ($_POST as $key => $value) {

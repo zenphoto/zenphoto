@@ -904,7 +904,7 @@ function standardThemeOptions($theme, $album) {
  * @param string $str
  */
 function postIndexEncode($str) {
-	return strtr(urlencode($str),array('.'=>'__2E__','+'=> '_-_','%'=>'_--_'));
+	return strtr(urlencode($str),array('.'=>'__2E__','+'=> '__20__','%'=>'__25__','&'=>'__26__'));
 }
 
 /**
@@ -914,7 +914,7 @@ function postIndexEncode($str) {
  * @return string
  */
 function postIndexDecode($str) {
-	return urldecode(strtr($str,array('__2E__'=>'.','_-_'=>'+','_--_'=>'%')));
+	return urldecode(strtr($str,array('__2E__'=>'.','__20__'=>'+','__25__'=>'%','__26__'=>'&')));
 }
 
 
@@ -3745,6 +3745,22 @@ function bulkActionRedirect($action)  {
 }
 
 /**
+ * Process the bulk tags
+ *
+ * @return array
+ */
+function bulkTags() {
+	$tags = array();
+	foreach ($_POST as $key => $value) {
+		$key = postIndexDecode($key);
+		if ($value && substr($key, 0, 10) == 'mass_tags_') {
+			$tags[] = sanitize(substr($key, 10));
+		}
+	}
+	return $tags;
+}
+
+/**
  * Processes the check box bulk actions for albums
  *
  */
@@ -3756,15 +3772,7 @@ function processAlbumBulkActions() {
 		$total = count($ids);
 		if($action != 'noaction' && $total > 0) {
 			if ($action == 'addtags' || $action == 'alltags') {
-				foreach ($_POST as $key => $value) {
-					$key = postIndexDecode($key);
-					if (substr($key, 0, 10) == 'mass_tags_') {
-						if ($value) {
-							$tags[] = substr($key, 10);
-						}
-					}
-				}
-				$tags = sanitize($tags, 3);
+				$tags = bulkTags();
 			}
 			if ($action == 'changeowner') {
 				$newowner = sanitize($_POST['massownerselect']);
@@ -3844,15 +3852,7 @@ function processImageBulkActions($album) {
 	if($action != 'noaction') {
 		if ($total > 0) {
 			if ($action == 'addtags') {
-				foreach ($_POST as $key => $value) {
-					$key = postIndexDecode($key);
-					if (substr($key, 0, 10) == 'mass_tags_') {
-						if ($value) {
-							$tags[] = substr($key, 10);
-						}
-					}
-				}
-				$tags = sanitize($tags, 3);
+				$tags = bulkTags();
 			}
 			if ($action == 'moveimages' || $action == 'copyimages') {
 				$dest = sanitize($_POST['massalbumselect']);
