@@ -88,7 +88,7 @@ class SearchEngine {
 		}
 		$this->search_unpublished = false;
 		if (isset($_REQUEST['words'])) {
-			$this->words = sanitize($_REQUEST['words'],0);
+			$this->words = strtr(sanitize($_REQUEST['words'],0),array('__23__'=>'#','__25__'=>'%','__26__'=>'&'));
 		} else {
 			$this->words = NULL;
 			if (isset($_REQUEST['date'])) {  // words & dates are mutually exclusive
@@ -1785,7 +1785,7 @@ class SearchEngine {
  */
 function search_quote($word) {
 	if (is_numeric($word) || preg_match("/[ &|!'\"`,()]/",$word)) {
-		$word = '"'.addslashes($word).'"';
+		$word = '"'.str_replace("\\'","'",addslashes($word)).'"';
 	}
 	return $word;
 

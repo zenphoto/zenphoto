@@ -292,11 +292,12 @@ function addNewTag(id) {
 		var name = id+tag;
 		//htmlentities
 		name = encodeURI(name);
-		name = name.replaceAll('%20','_-_');
-		name = name.replaceAll("'",'%27');
-		name = name.replaceAll('.','__2E__');
-		name = name.replaceAll('+', '_-_');
-		name = name.replaceAll('%', '_--_');
+		name = name.replaceAll('%20',	'__20__');
+		name = name.replaceAll("'",		'__27__');
+		name = name.replaceAll('.',		'__2E__');
+		name = name.replaceAll('+',		'__20__');
+		name = name.replaceAll('%',		'__25__');
+		name = name.replaceAll('&', 	'__26__');
 		var lcname = name.toLowerCase();
 		var exists = $('#'+lcname).length;
 		if (exists) {
