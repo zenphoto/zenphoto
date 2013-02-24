@@ -75,7 +75,7 @@ class DownloadList {
 										gettext('Zip source') => array('key' => 'downloadList_zipFromCache', 'type' => OPTION_TYPE_RADIO,
 												'order' => 6,
 												'buttons' => array(gettext('From album')=>0, gettext('From Cache')=>1),
-												'desc' => gettext('Make the album zip form the album folder or from the sized images in the cache.')),
+												'desc' => gettext('Make the album zip from the album folder or from the sized images in the cache.')),
 									  gettext('User rights') => array('key' => 'downloadList_rights', 'type' => OPTION_TYPE_CHECKBOX,
 												'order' => 1,
 									  		'desc' => gettext('Check if users are required to have <em>file</em> rights to download.'))
