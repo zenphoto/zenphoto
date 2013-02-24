@@ -16,7 +16,6 @@ $iMutex-> lock();
 $mod_rewrite = MOD_REWRITE;
 if (is_null($mod_rewrite)) {
 	$msg = gettext('The Zenphoto option "mod_rewrite" will be set to "enabled".');
-	setOptionDefault('mod_rewrite', 1);
 	setOption('mod_rewrite', 1);
 } else if ($mod_rewrite) {
 	$msg = gettext('The Zenphoto option "mod_rewrite" is "enabled".');

@@ -53,12 +53,13 @@ if (isset($_GET['p'])) {
 	$_index_theme = setupTheme();
 }
 //$_zp_script_timer['theme setup'] = microtime();
-if (DEBUG_PLUGINS) {
-	debugLog('Loading the "theme" plugins.');
-}
-foreach (getEnabledPlugins() as $extension=>$plugin) {
-	$loadtype = $plugin['priority'];
-	if ($loadtype&THEME_PLUGIN) {
+if (!preg_match('~'.ZENFOLDER.'~',$_zp_script)) {
+	if (DEBUG_PLUGINS) {
+		debugLog('Loading the "theme" plugins.');
+	}
+	foreach (getEnabledPlugins() as $extension=>$plugin) {
+		$loadtype = $plugin['priority'];
+		if ($loadtype&THEME_PLUGIN) {
 		if (DEBUG_PLUGINS) {
 			list($usec, $sec) = explode(" ", microtime());
 			$start = (float)$usec + (float)$sec;
@@ -67,13 +68,13 @@ foreach (getEnabledPlugins() as $extension=>$plugin) {
 		if (DEBUG_PLUGINS) {
 			list($usec, $sec) = explode(" ", microtime());
 			$end = (float)$usec + (float)$sec;
-			debugLog(sprintf('    '.$extension.'(THEME:%u)=>%.4fs',$priority & PLUGIN_PRIORITY,$end-$start));
+				debugLog(sprintf('    '.$extension.'(THEME:%u)=>%.4fs',$priority & PLUGIN_PRIORITY,$end-$start));
+			}
+			//		$_zp_script_timer['load '.$extension] = microtime();
 		}
-		//		$_zp_script_timer['load '.$extension] = microtime();
+		$_zp_loaded_plugins[] = $extension;
 	}
-	$_zp_loaded_plugins[] = $extension;
 }
-
 
 if (!$zp_request && isset($_GET['fromlogout'])) {	//	redirect not visible to user
 	zp_load_gallery();

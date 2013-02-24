@@ -1360,7 +1360,8 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 				$desc .= ' '.gettext('<p class="buttons"><a href="?copyhtaccess" >Make setup create the file</a></p><br style="clear:both" /><br />');
 			}
 		} else {
-			$desc = gettext("Server seems not to be Apache or Apache-compatible, <code>mod_rewrite</code> is not available.");
+			$mod = "&amp;mod_rewrite";	//	enable test to see if it works.
+			$desc = gettext("Server seems not to be Apache or Apache-compatible, <code>mod_rewrite</code> may not be available.");
 		}
 	} else {
 		$i = strpos($htu, 'VERSION');
