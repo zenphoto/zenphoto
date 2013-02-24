@@ -619,7 +619,7 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 	}
 	checkmark($display, gettext('PHP <code>display_errors</code>'),
 			sprintf(gettext('PHP <code>display_errors</code> [is enabled]'),$display),
-			gettext('This setting may result in PHP error messages being displayed on WEB pages. These displays may contain sentsitive information about your site.').$aux,
+			gettext('This setting may result in PHP error messages being displayed on WEB pages. These displays may contain sensitive information about your site.').$aux,
 			$display && !TEST_RELEASE);
 
 	checkMark($noxlate, gettext('PHP <code>gettext()</code> support'), gettext('PHP <code>gettext()</code> support [is not present]'), gettext("Localization of Zenphoto requires native PHP <code>gettext()</code> support"));
@@ -640,7 +640,7 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 	} else {
 		$test = $_zp_UTF8->convert('test', 'ISO-8859-1', 'UTF-8');
 		if (empty($test)) {
-			$m2 = gettext("You need to install the <code>mbstring</code> package or correct the issue with <code>iconv(()</code>");
+			$m2 = gettext("You need to install the <code>mbstring</code> package or correct the issue with <code>iconv()</code>");
 			checkMark(0, '', gettext("PHP <code>mbstring</code> package [is not present and <code>iconv()</code> is not working]"), $m2);
 		} else {
 			$m2 = gettext("Strings generated internally by PHP may not display correctly. (e.g. dates)");
