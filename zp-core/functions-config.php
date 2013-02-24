@@ -7,8 +7,7 @@ define('CONFIGFILE',SERVERPATH.'/'.DATA_FOLDER.'/zenphoto.cfg');
  * @param unknown_type $value
  * @param unknown_type $quote
  */
-function updateConfigItem($item, $value, $quote=true) {
-	global $zp_cfg;
+function updateConfigItem($item, $value, $zp_cfg, $quote=true) {
 	if ($quote) {
 		$value = '"'.$value.'"';
 	}
@@ -21,7 +20,7 @@ function updateConfigItem($item, $value, $quote=true) {
 		$j = strpos($zp_cfg, "\n", $i);
 		$zp_cfg = substr($zp_cfg, 0, $i) . '= ' . $value . ';' . substr($zp_cfg, $j);
 	}
+	return $zp_cfg;
 }
-
 
 ?>

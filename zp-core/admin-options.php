@@ -409,7 +409,7 @@ if (isset($_GET['action'])) {
 			}
 			setOption('server_protocol', $protocol);
 			$zp_cfg = @file_get_contents(CONFIGFILE);
-			updateConfigItem('server_protocol', $protocol);
+			$zp_cfg = updateConfigItem('server_protocol', $protocol, $zp_cfg);
 			file_put_contents(CONFIGFILE, $zp_cfg);
 			$_zp_gallery->setUserLogonField(isset($_POST['login_user_field']));
 			if ($protocol == 'http') {
@@ -2898,7 +2898,7 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 	<div id="tab_plugin" class="tabbox">
 		<?php zp_apply_filter('admin_note','options', $subtab); ?>
 		<script type="text/javascript">
-			var optionholder = new Array();
+			var optionholder = new array();
 		</script>
 		<form action="?action=saveoptions<?php if (isset($_GET['single'])) echo '&amp;single='.$showExtension; ?>" method="post" autocomplete="off">
 			<?php XSRFToken('saveoptions');?>

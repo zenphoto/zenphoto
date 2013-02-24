@@ -113,22 +113,22 @@ if (isset($_POST['db'])) { //try to update the zp-config file
 	setupLog(gettext("db POST handling"));
 	$updatezp_config = true;
 	if (isset($_POST['db_software'])) {
-		updateConfigItem('db_software', setup_sanitize($_POST['db_software']));
+		$zp_cfg = updateConfigItem('db_software', setup_sanitize($_POST['db_software']), $zp_cfg);
 	}
 	if (isset($_POST['db_user'])) {
-		updateConfigItem('mysql_user', setup_sanitize($_POST['db_user']));
+		$zp_cfg = updateConfigItem('mysql_user', setup_sanitize($_POST['db_user']), $zp_cfg);
 	}
 	if (isset($_POST['db_pass'])) {
-		updateConfigItem('mysql_pass', setup_sanitize($_POST['db_pass']));
+		$zp_cfg = updateConfigItem('mysql_pass', setup_sanitize($_POST['db_pass']), $zp_cfg);
 	}
 	if (isset($_POST['db_host'])) {
-		updateConfigItem('mysql_host', setup_sanitize($_POST['db_host']));
+		$zp_cfg = updateConfigItem('mysql_host', setup_sanitize($_POST['db_host']),$zp_cfg);
 	}
 	if (isset($_POST['db_database'])) {
-		updateConfigItem('mysql_database', trim(setup_sanitize($_POST['db_database'])));
+		$zp_cfg = updateConfigItem('mysql_database', trim(setup_sanitize($_POST['db_database'])), $zp_cfg);
 	}
 	if (isset($_POST['db_prefix'])) {
-		updateConfigItem('mysql_prefix', str_replace(array('.','/','\\','`','"', "'"), '_', trim(setup_sanitize($_POST['db_prefix']))));
+		$zp_cfg = updateConfigItem('mysql_prefix', str_replace(array('.','/','\\','`','"', "'"), '_', trim(setup_sanitize($_POST['db_prefix']))), $zp_cfg);
 	}
 }
 
@@ -137,7 +137,7 @@ define ('ACK_DISPLAY_ERRORS', 2);
 
 if (isset($_GET['security_ack'])) {
 	setupXSRFDefender();
-	updateConfigItem('security_ack', @$conf['security_ack'] | (int) $_GET['security_ack'], false);
+	$zp_cfg = updateConfigItem('security_ack', @$conf['security_ack'] | (int) $_GET['security_ack'], $zp_cfg, false);
 	$updatezp_config = true;
 }
 
@@ -164,7 +164,7 @@ if ($updatechmod || $newconfig) {
 		$chmodval = sprintf('0%o',$chmod);
 	}
 	if ($updatechmod) {
-		updateConfigItem('CHMOD',sprintf('0%o',$chmod),false);
+		$zp_cfg = updateConfigItem('CHMOD',sprintf('0%o',$chmod), $zp_cfg,false);
 		if (strpos($zp_cfg,"if (!defined('CHMOD_VALUE')) {") !== false) {
 			$zp_cfg = preg_replace("|if\s\(!defined\('CHMOD_VALUE'\)\)\s{\sdefine\(\'CHMOD_VALUE\'\,(.*)\);\s}|",
 					"if (!defined('CHMOD_VALUE')) { define('CHMOD_VALUE', ".$chmodval."); }\n", $zp_cfg);
@@ -179,7 +179,7 @@ if ($updatechmod || $newconfig) {
 if (isset($_REQUEST['FILESYSTEM_CHARSET'])) {
 	setupXSRFDefender();
 	$fileset = $_REQUEST['FILESYSTEM_CHARSET'];
-	updateConfigItem('FILESYSTEM_CHARSET', $fileset);
+	$zp_cfg = updateConfigItem('FILESYSTEM_CHARSET', $fileset, $zp_cfg);
 	$updatezp_config = true;
 }
 if ($updatezp_config) {
@@ -223,13 +223,13 @@ if (file_exists(CONFIGFILE)) {
 			$selected_database = $preferred;
 			if ($preferred) {
 				$_zp_conf_vars['db_software'] = $preferred;
-				updateConfigItem('db_software', $preferred);
+				$zp_cfg = updateConfigItem('db_software', $preferred, $zp_cfg);
 				$updatezp_config = true;
 			}
 		}
 	} else {
 		$_zp_conf_vars['db_software'] = $selected_database = $preferred;
-		updateConfigItem('db_software', $preferred);
+		$zp_cfg = updateConfigItem('db_software', $zp_cfg, $preferred);
 		$updatezp_config = true;
 		$confDB = NULL;
 	}

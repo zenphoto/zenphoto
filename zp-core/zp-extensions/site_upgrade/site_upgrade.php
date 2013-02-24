@@ -1,6 +1,7 @@
 <?php
 define('OFFSET_PATH', 3);
 require_once(dirname(dirname(dirname(__FILE__))).'/admin-globals.php');
+require_once(SERVERPATH.'/'.ZENFOLDER.'/functions-config.php');
 
 admin_securityChecks(ALBUM_RIGHTS, currentRelativeURL());
 $htpath = SERVERPATH.'/.htaccess';
@@ -9,6 +10,7 @@ $ht = @file_get_contents($htpath);
 preg_match_all('|[# ][ ]*RewriteRule(.*)plugins/site_upgrade/closed\.php|',$ht,$matches);
 switch (@$_GET['siteState']) {
 	case 'closed':
+/*
 		if ($matches && $matches[0]) {
 			if (strpos($matches[0][1],'#')===0) {
 				foreach ($matches[0] as $match) {
@@ -19,7 +21,7 @@ switch (@$_GET['siteState']) {
 				@chmod($htpath,0444);
 			}
 		}
-
+*/
 		require_once(SERVERPATH.'/'.ZENFOLDER.'/class-rss.php');
 		class setupRSS extends RSS {
 			public function getRSSitems() {
@@ -48,11 +50,11 @@ switch (@$_GET['siteState']) {
 		file_put_contents(SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/site_upgrade/rss-closed.xml', $xml);
 
 		$report = gettext('Site is now marked in upgrade.');
-		setOption('site_upgrade_state', 'closed');
+		setSiteState('closed');
 		break;
 	case 'open':
 		$report = gettext('Site is viewable.');
-		setOption('site_upgrade_state', 'open');
+		setSiteState('open');
 		break;
 	case 'closed_for_test':
 		if ($matches && $matches[0]) {
@@ -66,10 +68,21 @@ switch (@$_GET['siteState']) {
 			}
 		}
 		$report = gettext('Site is avaiable for testing only.');
-		setOption('site_upgrade_state', 'closed_for_test');
+		setSiteState('closed_for_test');
 		break;
 }
 
 header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?report='.$report);
 exitZP();
+
+/**
+ * updates the site status
+ * @param string $state
+ */
+function setSiteState($state) {
+	$zp_cfg = @file_get_contents(CONFIGFILE);
+	$zp_cfg = updateConfigItem('site_upgrade_state', $state, $zp_cfg);
+	file_put_contents(CONFIGFILE, $zp_cfg);
+	setOption('site_upgrade_state', $state);
+}
 ?>
