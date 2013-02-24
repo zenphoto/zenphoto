@@ -1410,7 +1410,6 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 		}
 	}
 
-	$mod = '';
 	$rw = '';
 	if ($ch > 0) {
 		$i = strpos($htu, 'REWRITEENGINE');
