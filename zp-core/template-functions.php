@@ -3276,7 +3276,7 @@ function printAllTagsAs($option,$class='',$sort=NULL,$counter=FALSE,$links=TRUE,
 	global $_zp_current_search;
 	$option = strtolower($option);
 	if ($class != "") {
-		$class = "class=\"".$class."\"";
+		$class = ' class="'.$class.'"';
 	}
 	$tagcount = getAllTagsCount();
 	if (!is_array($tagcount)) {
@@ -3298,47 +3298,55 @@ function printAllTagsAs($option,$class='',$sort=NULL,$counter=FALSE,$links=TRUE,
 		default:
 			break;
 	}
-	$list = '';
-	echo "<ul ".$class.">\n";
-	foreach ($tagcount as $key=>$val) {
-		if(!$counter) {
-			$counter = "";
-		} else {
-			$counter = " (".$val.") ";
-		}
-		if ($option == "cloud") { // calculate font sizes, formula from wikipedia
-			if ($val <= $mincount) {
-				$size = $minfontsize;
-			} else {
-				$size = min(max(round(($maxfontsize*($val-$mincount))/($maxcount-$mincount), 2), $minfontsize), $maxfontsize);
-			}
-			$size = str_replace(',','.', $size);
-			$size = " style=\"font-size:".$size."em;\"";
-		} else {
-			$size = '';
-		}
-		if ($val >= $mincount) {
-			if($links) {
-				if (is_object($_zp_current_search)) {
-					$albumlist = $_zp_current_search->getAlbumList();
+	?>
+	<ul<?php echo $class; ?>>
+		<?php
+		if (count($tagcount)>0) {
+			foreach ($tagcount as $key=>$val) {
+				if(!$counter) {
+					$counter = "";
 				} else {
-					$albumlist = NULL;
+					$counter = " (".$val.") ";
 				}
-				$list .= "\t<li><a href=\"".
-									html_encode(getSearchURL(search_quote($key), '', 'tags', 0, array('albums'=>$albumlist)))."\"$size rel=\"nofollow\">".
-									$key.$counter."</a></li>\n";
-			} else {
-				$list .= "\t<li$size>".$key.$counter."</li>\n";
-			}
+				if ($option == "cloud") { // calculate font sizes, formula from wikipedia
+					if ($val <= $mincount) {
+						$size = $minfontsize;
+					} else {
+						$size = min(max(round(($maxfontsize*($val-$mincount))/($maxcount-$mincount), 2), $minfontsize), $maxfontsize);
+					}
+					$size = str_replace(',','.', $size);
+					$size = ' style="font-size:'.$size.'em;"';
+				} else {
+					$size = '';
+				}
+				if ($val >= $mincount) {
+					if($links) {
+						if (is_object($_zp_current_search)) {
+							$albumlist = $_zp_current_search->getAlbumList();
+						} else {
+							$albumlist = NULL;
+						}
+						$link = getSearchURL(search_quote($key), '', 'tags', 0, array('albums'=>$albumlist));
+						?>
+						<li>
+							<a href="<?php echo html_encode($link); ?>" rel="nofollow"<?php echo $size; ?>><?php echo $key.$counter; ?></a>
+						</li>
+						<?php
+					} else {
+						?>
+						<li<?php echo $size; ?>><?php echo $key.$counter; ?></li>
+						<?php
+					}
+				}
+			} // while end
+		} else {
+			?>
+			<li><?php echo gettext('No popular tags'); ?></li>
+			<?php
 		}
-
-	} // while end
-	if ($list) {
-		echo $list;
-	} else {
-		echo '<li>'.gettext('No popular tags')."</li>\n";
-	}
-	echo "</ul>\n";
+		?>
+	</ul>
+	<?php
 }
 
 /**
@@ -3752,7 +3760,6 @@ function getSearchURL($words, $dates, $fields, $page, $object_list=NULL) {
 			}
 		}
 	}
-
 	return $url;
 }
 

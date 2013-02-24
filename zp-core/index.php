@@ -4,7 +4,7 @@ $_zp_script_timer['start'] = microtime();
 define('OFFSET_PATH', 0);
 require_once(dirname(__FILE__).'/global-definitions.php');
 require_once(dirname(__FILE__).'/functions-basic.php');
-//require_once(SERVERPATH."/".ZENFOLDER.'/rewrite.php');
+require_once(SERVERPATH."/".ZENFOLDER.'/rewrite.php');
 require_once(dirname(__FILE__).'/template-functions.php');
 checkInstall();
 
