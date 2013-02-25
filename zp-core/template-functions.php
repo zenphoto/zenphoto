@@ -451,10 +451,10 @@ function getGalleryIndexURL($relative=true) {
 		}
 	}
 	if ($page > 1) {
-		return rewrite_path("/page/".$gallink1.$page, "/index.php?".$gallink2."page=".$page);
+		return rewrite_path('/'._PAGE_.'/'.$gallink1.$page, "/index.php?".$gallink2."page=".$page);
 	} else {
 		if ($specialpage) {
-			return rewrite_path('/page/'.$gallink1, '?'.substr($gallink2, 0, -1));
+			return rewrite_path('/'._PAGE_.'/'.$gallink1, '?'.substr($gallink2, 0, -1));
 		}
 		return WEBPATH . "/";
 	}
@@ -623,7 +623,7 @@ function getPageURL($page, $total=null) {
 		if (!in_array($_zp_gallery_page, array('index.php', 'album.php', 'image.php'))) {
 			// handle custom page
 			$pg = stripSuffix($_zp_gallery_page);
-			$pagination1 = '/page/'.$pg;
+			$pagination1 = '/'._PAGE_.'/'.$pg;
 			$pagination2 = 'index.php?p='.$pg;
 			if ($page > 1) {
 				$pagination1 .= '/'.$page;
@@ -634,7 +634,7 @@ function getPageURL($page, $total=null) {
 				$pagination1 = pathurlencode($_zp_current_album->name);
 				$pagination2 = 'index.php?album='.pathurlencode($_zp_current_album->name);
 				if ($page > 1) {
-					$pagination1 .= '/page/'.$page;
+					$pagination1 .= '/'._PAGE_.'/'.$page;
 					$pagination2 .= '&page='.$page;
 				}
 			} else {
@@ -642,7 +642,7 @@ function getPageURL($page, $total=null) {
 					$pagination1 = '/';
 					$pagination2 = 'index.php';
 					if ($page > 1) {
-						$pagination1 .= 'page/'.$page;
+						$pagination1 .= _PAGE_.'/'.$page;
 						$pagination2 .= '?page='.$page;
 					}
 				} else {
@@ -3470,7 +3470,7 @@ function getCustomPageURL($page, $q='', $album='') {
 		$result_r = urlencode($album);
 		$result .= "&album=$album";
 	}
-	$result_r .= "/page/$page";
+	$result_r .= '/'._PAGE_.'/'.$page;
 	if (!empty($q)) {
 		$result_r .= "?$q";
 		$result .= "&$q";
@@ -3493,6 +3493,40 @@ function printCustomPageURL($linktext, $page, $q='', $prev='', $next='', $class=
 		$class = 'class="' . $class . '"';
 	}
 	echo $prev."<a href=\"".html_encode(getCustomPageURL($page, $q))."\" $class title=\"".html_encode($linktext)."\">".html_encode($linktext)."</a>".$next;
+}
+
+/**
+ * Produces the url to a custom page (e.g. one that is not album.php, image.php, or index.php)
+ *
+ * @param string $linktext Text for the URL
+ * @param string $q query string to add to url
+ * @return string
+ */
+function getArchivePageURL($q='', $album='') {
+	global $_zp_current_album;
+	$result_r = _ARCHIVE_;
+	$result = "index.php?p=archive";
+	if (!empty($q)) {
+		$result_r .= "?$q";
+		$result .= "&$q";
+	}
+	return rewrite_path($result_r,$result);
+}
+
+/**
+ * Prints the url to a custom page (e.g. one that is not album.php, image.php, or index.php)
+ *
+ * @param string $linktext Text for the URL
+ * @param string $q query string to add to url
+ * @param string $prev text to insert before the URL
+ * @param string $next text to follow the URL
+ * @param string $class optional class
+ */
+function printArchivePageURL($linktext, $q='', $prev='', $next='', $class=NULL) {
+	if (!is_null($class)) {
+		$class = 'class="' . $class . '"';
+	}
+	echo $prev."<a href=\"".html_encode(getArchivePageURL($q))."\" $class title=\"".html_encode($linktext)."\">".html_encode($linktext)."</a>".$next;
 }
 
 /**

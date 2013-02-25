@@ -52,7 +52,7 @@ if (!defined('WEBPATH') || !class_exists('Zenpage')) die();
 								<div class="newsarticlecredit">
 									<span class="newsarticlecredit-left">
 									<?php
-									$count = call_user_func('getCommentCount');
+									$count = @call_user_func('getCommentCount');
 									printNewsDate();
 									if ($count > 0) {
 										echo ' | ';

@@ -48,7 +48,7 @@ if (getOption('zp_plugin_zenpage')) { ?>
 	  if($_zp_gallery_page == "archive.php") {
 	  	echo "<li class='menu-active'>".gettext("Gallery And News")."</li>";
  	 	} else {
-			echo "<li>"; printCustomPageURL(gettext("Gallery and News"),"archive"); echo "</li>";
+			echo "<li>"; printArchivePageURL(gettext("Gallery and News")); echo "</li>";
 		}
 		?>
 	</ul>
