@@ -67,6 +67,7 @@ setOptionDefault('user_album_edit_default', 1);
 // old configuration opitons. preserve them
 $conf = $_zp_conf_vars;
 setOptionDefault('time_offset', 0);
+setOption('mod_rewrite_detected',0);
 if (isset($_GET['mod_rewrite'])) {
 	?>
 	<p>

@@ -597,10 +597,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<p>
 							<label>
 								<?php
-								$mod_rewrite = MOD_REWRITE;
-								if (is_null($mod_rewrite)) {
-									$state = ' disabled="disabled"';
-								} else if ($mod_rewrite) {
+								if (MOD_REWRITE) {
 									$state = ' checked="checked"';
 								} else {
 									$state = '';
@@ -621,8 +618,8 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 					<td>
 						<p>
 							<?php
-							echo gettext("If you have Apache <em>mod rewrite</em>, put a checkmark on the <em>mod rewrite</em> option and you'll get nice cruft-free URLs.");
-							if (is_null($mod_rewrite)) echo ' '.gettext('If the checkbox is disabled, setup did not detect a working Apache <em>mod_rewrite</em> facility and proper <em>.htaccess</em> file.');
+							echo gettext("If you have Apache <em>mod rewrite</em> (or equivalent), put a checkmark on the <em>mod rewrite</em> option and you'll get nice cruft-free URLs.");
+							if (!getOption('mod_rewrite_detected')) echo '<p class="notebox">'.gettext('Setup did not detect a working <em>mod_rewrite</em> facility.'),'</p>';
 							?>
 						</p>
 						<p><?php echo gettext("If you are having problems with images whose names contain characters with diacritical marks try changing the <em>UTF8 image URIs</em> setting."); ?></p>

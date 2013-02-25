@@ -19,6 +19,7 @@ if (is_null($mod_rewrite)) {
 } else {
 	$msg = gettext('The Zenphoto option "mod_rewrite" is "disabled".');
 }
+setOption('mod_rewrite_detected', 1);
 setupLog(gettext('Notice: "Module mod_rewrite" is working.').' '.$msg, true);
 
 header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
