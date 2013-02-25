@@ -299,7 +299,7 @@ class htmlmetatags {
 
 		// Social network extras
 		if(getOption('htmlmeta_name-expires')) { $meta .= '<meta name="pinterest" content="nopin" />'."\n"; } // dissalow users to pin images on Pinterest
-		
+
 		// Canonical url
 		if(getOption('htmlmeta_canonical-url')) {
 			$meta .= '<link rel="canonical" href="'.$canonicalurl.'" />'."\n";
@@ -329,22 +329,22 @@ class htmlmetatags {
 								case 'news.php':
 									if(function_exists("is_NewsArticle")) {
 										if(is_NewsArticle()) {
-											$altlink .= '/news/'.html_encode($_zp_current_zenpage_news->getTitlelink());
+											$altlink .= '/'._NEWS_.'/'.html_encode($_zp_current_zenpage_news->getTitlelink());
 										} else 	if(is_NewsCategory()) {
-											$altlink .= '/news/'.html_encode($_zp_current_category->getTitlelink());
+											$altlink .= '/'._NEWS_.'/'.html_encode($_zp_current_category->getTitlelink());
 										} else {
-											$altlink .= '/news';
+											$altlink .= '/'._NEWS;
 										}
 									}
 									break;
 								case 'pages.php':
-									$altlink .= '/pages/'.html_encode($_zp_current_zenpage_page->getTitlelink());
+									$altlink .= '/'. _PAGES_.'/'.html_encode($_zp_current_zenpage_page->getTitlelink());
 									break;
 								case 'archive.php':
-									$altlink .= '/page/archive';
+									$altlink .= '/'._ARCHIVE_.'/';
 									break;
 								case 'search.php':
-									$altlink .= '/page/search';
+									$altlink .= '/'._SEARCH_.'/';
 									break;
 								case 'contact.php':
 									$altlink .= '/page/contact';

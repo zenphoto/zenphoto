@@ -89,17 +89,30 @@ if (file_exists(CONFIGFILE)) {
 if (session_id() == '') {
 	session_start();
 }
-
-$zp_cfg = @file_get_contents(CONFIGFILE);
-$xsrftoken = sha1(CONFIGFILE.$zp_cfg.session_id());
-
-$updatezp_config = false;
 if (isset($_GET['mod_rewrite'])) {
 	$mod = '&mod_rewrite='.$_GET['mod_rewrite'];
 } else {
 	$mod = '';
 }
 
+
+$zp_cfg = @file_get_contents(CONFIGFILE);
+$xsrftoken = sha1(CONFIGFILE.$zp_cfg.session_id());
+
+$updatezp_config = false;
+
+if (strpos($zp_cfg,"\$conf['rewrite_defines']")===false) {
+
+	$template = file_get_contents(dirname(dirname(__FILE__)).'/zenphoto_cfg.txt');
+	$i = strpos($template,"\$conf['rewrite_defines']");
+	$j = strpos($template,'//',$i);
+
+	$k = strpos($zp_cfg, '/** Do not edit below this line. **/');
+	$zp_cfg = substr($zp_cfg,0,$k).str_pad('', 80, '/')."\n".
+						substr($template,$i,$j-$i).str_pad('', 80, '/')."\n".
+						substr($zp_cfg,$k);
+	$updatezp_config = true;
+}
 
 $i = strpos($zp_cfg, 'define("DEBUG", false);');
 if ($i !== false) {

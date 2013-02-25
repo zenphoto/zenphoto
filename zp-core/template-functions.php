@@ -3694,7 +3694,7 @@ function getSearchURL($words, $dates, $fields, $page, $object_list=NULL) {
 	}
 
 	if ($rewrite) {
-		$url = SEO_WEBPATH . "/page/search/";
+		$url = SEO_WEBPATH.'/'._SEARCH_.'/';
 	} else {
 		$url = SEO_WEBPATH."/index.php?p=search";
 	}
@@ -3704,7 +3704,7 @@ function getSearchURL($words, $dates, $fields, $page, $object_list=NULL) {
 		}
 		$temp = $fields;
 		if ($rewrite && count($fields)==1 && array_shift($temp)=='tags') {
-			$url .= "tags/";
+			$url .= _TAGS_.'/';
 		} else {
 			$search = new SearchEngine();
 			$urls = $search->getSearchFieldsText($fields, 'searchfields=');
@@ -3831,7 +3831,7 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 		$within = getOption('search_within');
 	}
 	if (MOD_REWRITE) {
-		$searchurl =  SEO_WEBPATH.'/page/search/';
+		$searchurl =  SEO_WEBPATH.'/'._SEARCH_.'/';
 	} else {
 		$searchurl = WEBPATH."/index.php?p=search";
 	}

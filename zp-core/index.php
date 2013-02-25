@@ -60,14 +60,14 @@ if (!preg_match('~'.ZENFOLDER.'~',$_zp_script)) {
 	foreach (getEnabledPlugins() as $extension=>$plugin) {
 		$loadtype = $plugin['priority'];
 		if ($loadtype&THEME_PLUGIN) {
-		if (DEBUG_PLUGINS) {
-			list($usec, $sec) = explode(" ", microtime());
-			$start = (float)$usec + (float)$sec;
-		}
-		require_once($plugin['path']);
-		if (DEBUG_PLUGINS) {
-			list($usec, $sec) = explode(" ", microtime());
-			$end = (float)$usec + (float)$sec;
+			if (DEBUG_PLUGINS) {
+				list($usec, $sec) = explode(" ", microtime());
+				$start = (float)$usec + (float)$sec;
+			}
+			require_once($plugin['path']);
+			if (DEBUG_PLUGINS) {
+				list($usec, $sec) = explode(" ", microtime());
+				$end = (float)$usec + (float)$sec;
 				debugLog(sprintf('    '.$extension.'(THEME:%u)=>%.4fs',$priority & PLUGIN_PRIORITY,$end-$start));
 			}
 			//		$_zp_script_timer['load '.$extension] = microtime();
@@ -91,7 +91,7 @@ if (file_exists($custom)) {
 }
 
 //$_zp_script_timer['theme scripts'] = microtime();
-if ($zp_request && $_zp_script && file_exists(SERVERPATH . "/" . internalToFilesystem($_zp_script))) {
+if ($zp_request && $_zp_script && file_exists($_zp_script = SERVERPATH . "/" . internalToFilesystem($_zp_script))) {
 	if (checkAccess($hint, $show)) { // ok to view
 		setThemeColumns();
 	} else {

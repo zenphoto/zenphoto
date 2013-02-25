@@ -64,6 +64,19 @@ $conf['server_protocol'] = "http";
 // Otherwise you should leave it at "http"
 //
 ////////////////////////////////////////////////////////////////////////////////
+// Zenphoto rewrite constants
+//
+$conf['rewrite_defines'] = array(	'_SEARCH_'				=>	'page/search',
+																	'_PAGES_'					=>	'pages',
+																	'_NEWS_'					=>	'news',
+																	'_ARCHIVE_'				=>	'page/archive',
+																	'_NEWS_ARCHIVE_'	=>	'archive',
+																	'_CATEGORY_'			=>	'category',
+																	'_TAGS_'					=>	'tags',
+																	'_FIELDS_'				=>	'fields'
+																);
+//
+////////////////////////////////////////////////////////////////////////////////
 // Path Overrides
 ////////////////////////////////////////////////////////////////////////////////
 // Uncomment the following two lines ONLY IF YOU'RE HAVING PROBLEMS,

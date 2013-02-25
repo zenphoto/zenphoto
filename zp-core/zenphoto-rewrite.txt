@@ -1,18 +1,45 @@
 	#definitions
-	Define %ZENFOLDER%	=>	ZENFOLDER
-	Define %SEARCH%			=>	'search'
-	Define %PAGES%			=>	'pages'
-	Define %NEWS%				=>	'news'
+	Define %ZENFOLDER%			=>	ZENFOLDER
+	Define %SEARCH%					=>	_SEARCH_
+	Define %PAGES%					=>	_PAGES_
+	Define %NEWS%						=>	_NEWS_
+	Define %ARCHIVE%				=>	_ARCHIVE_
+	Define %NEWS_ARCHIVE%		=>	_NEWS_ARCHIVE_
+	Define %CATEGORY%				=>	_CATEGORY_
+	Define %TAGS%						=>	_TAGS_
+	Define %FIELDS%					=>	_FIELDS_
 	
 	#quick links
+	RewriteRule ^$                     								index.php [L,QSA]
 	RewriteRule ^admin/*$															%ZENFOLDER%/admin.php [L,QSA]
 	RewriteRule ^setup/*$															%ZENFOLDER%/setup.php [L,QSA]
 
   #rewrite rule for tinyURLs
   RewriteRule ^tiny/([0-9]+)/?$               			index.php?p=$1&t [L,QSA]
   
+  #### Rewrite rules for search
+  RewriteRule ^%SEARCH%/$     																	index.php?p=search [L,QSA]
+  RewriteRule ^%SEARCH%/%FIELDS%([0-9]+)/(.*)/([0-9]+)/?$      index.php?p=search&searchfields=$1&words=$2&page=$3 [L,QSA]
+  RewriteRule ^%SEARCH%/%FIELDS%([0-9]+)/(.*)/?$     					index.php?p=search&searchfields=$1&words=$2 [L,QSA]
+  RewriteRule ^%SEARCH%/%ARCHIVE%/(.*)/([0-9]+)/?$     				index.php?p=search&date=$1&page=$2 [L,QSA]
+  RewriteRule ^%SEARCH%/%ARCHIVE%/(.*)/?$     									index.php?p=search&date=$1 [L,QSA]
+  RewriteRule ^%SEARCH%/%TAGS%/(.*)/([0-9]+)/?$ 								index.php?p=search&searchfields=tags&words=$1&page=$2 [L,QSA]
+  RewriteRule ^%SEARCH%/%TAGS%/(.*)/?$ 												index.php?p=search&searchfields=tags&words=$1 [L,QSA]
+  RewriteRule ^%SEARCH%/(.*)/([0-9]+)/?$    										index.php?p=search&words=$1&page=$2 [L,QSA]
+  RewriteRule ^%SEARCH%/(.*)/?$     														index.php?p=search&words=$1 [L,QSA]
+  
+  #### Rewrite rules for zenpage	
+	RewriteRule ^%PAGES%/$      											index.php?p=pages [L,QSA]
+  RewriteRule ^%PAGES%/(.*)/?$                 			index.php?p=pages&title=$1 [L,QSA]
+  RewriteRule ^%NEWS%/$      		       							index.php?p=news [L,QSA]
+  RewriteRule ^%NEWS%/([0-9]+)/?$               		index.php?p=news&page=$1 [L,QSA]
+  RewriteRule ^%NEWS%/%CATEGORY%/(.*)/([0-9]+)/?$ 	index.php?p=news&category=$1&page=$2 [L,QSA]
+  RewriteRule ^%NEWS%/%CATEGORY%/(.*)/?$          	index.php?p=news&category=$1 [L,QSA] 
+  RewriteRule ^%NEWS%/%NEWS_ARCHIVE%/(.*)/([0-9]+)/?$  	index.php?p=news&date=$1&page=$2 [L,QSA]
+  RewriteRule ^%NEWS%/%NEWS_ARCHIVE%/(.*)/?$           	index.php?p=news&date=$1 [L,QSA]
+  RewriteRule ^%NEWS%/(.*)/?$                   		index.php?p=news&title=$1 [L,QSA] 
+  
   # image and album page references
-  RewriteRule ^$                     								index.php [L,QSA]
   RewriteRule index\.php$                     			index.php [L,QSA]
   RewriteRule ^page/([0-9]+)/?$               			index.php?page=$1 [L,QSA]
   RewriteRule ^page/([A-Za-z0-9_\-]+)/?$      			index.php?p=$1 [L,QSA]
@@ -20,27 +47,6 @@
   RewriteRule ^(.*)/page/([0-9]+)/?$          			index.php?album=$1&page=$2 [L,QSA]
   RewriteRule ^(.*)/page/([A-Za-z0-9_\-]+)/?$     	index.php?album=$1&p=$2 [L,QSA]
    
-  #### Rewrite rules for search
-  RewriteRule ^page/%SEARCH%/fields([0-9]+)/(.*)/([0-9]+)/?$      index.php?p=search&searchfields=$1&words=$2&page=$3 [L,QSA]
-  RewriteRule ^page/%SEARCH%/fields([0-9]+)/(.*)/?$     					index.php?p=search&searchfields=$1&words=$2 [L,QSA]
-  RewriteRule ^page/%SEARCH%/archive/(.*)/([0-9]+)/?$     				index.php?p=search&date=$1&page=$2 [L,QSA]
-  RewriteRule ^page/%SEARCH%/archive/(.*)/?$     									index.php?p=search&date=$1 [L,QSA]
-  RewriteRule ^page/%SEARCH%/tags/(.*)/([0-9]+)/?$ 								index.php?p=search&searchfields=tags&words=$1&page=$2 [L,QSA]
-  RewriteRule ^page/%SEARCH%/tags/(.*)/?$ 												index.php?p=search&searchfields=tags&words=$1 [L,QSA]
-  RewriteRule ^page/%SEARCH%/(.*)/([0-9]+)/?$    									index.php?p=search&words=$1&page=$2 [L,QSA]
-  RewriteRule ^page/%SEARCH%/(.*)/?$     													index.php?p=search&words=$1 [L,QSA]
-  
-  #### Rewrite rules for zenpage	
-	RewriteRule ^%PAGES%/?$      										index.php?p=pages [L,QSA]
-  RewriteRule ^%PAGES%/(.*)/?$                 		index.php?p=pages&title=$1 [L,QSA]
-  RewriteRule ^%NEWS%/?$      		       					index.php?p=news [L,QSA]
-  RewriteRule ^%NEWS%/([0-9]+)/?$               	index.php?p=news&page=$1 [L,QSA]
-  RewriteRule ^%NEWS%/category/(.*)/([0-9]+)/?$ 	index.php?p=news&category=$1&page=$2 [L,QSA]
-  RewriteRule ^%NEWS%/category/(.*)/?$          	index.php?p=news&category=$1 [L,QSA] 
-  RewriteRule ^%NEWS%/archive/(.*)/([0-9]+)/?$  	index.php?p=news&date=$1&page=$2 [L,QSA]
-  RewriteRule ^%NEWS%/archive/(.*)/?$           	index.php?p=news&date=$1 [L,QSA]
-  RewriteRule ^%NEWS%/(.*)/?$                   	index.php?p=news&title=$1 [L,QSA] 
-  
   #### image references
   RewriteRule ^(.*)/image/(thumb|[0-9]{1,4})/([^/\\]+)$   %ZENFOLDER%/i.php?a=$1&i=$3&s=$2 [L,QSA]
   RewriteRule ^(.*)/image/([^/\\]+)$         							%ZENFOLDER%/i.php?a=$1&i=$2 [L,QSA]

@@ -139,7 +139,7 @@ function comment_form_print10Most() {
 						$newsdata = $newsdata[0];
 						$titlelink = $newsdata['titlelink'];
 						$title = get_language_string($newsdata['title']);
-						$link = "<a href=\"".rewrite_path("/news/".$titlelink,"/index.php?p=news&amp;title=".urlencode($titlelink))."\">".$title."</a> ".gettext("[news]");
+						$link = "<a href=\"".rewrite_path('/'._NEWS_.'/'.$titlelink,"/index.php?p=news&amp;title=".urlencode($titlelink))."\">".$title."</a> ".gettext("[news]");
 					}
 				}
 				break;
@@ -153,7 +153,7 @@ function comment_form_print10Most() {
 						$pagesdata = $pagesdata[0];
 						$titlelink = $pagesdata['titlelink'];
 						$title = get_language_string($pagesdata['title']);
-						$link = "<a href=\"".rewrite_path("/pages/".$titlelink,"/index.php?p=pages&amp;title=".urlencode($titlelink))."\">".$title."</a> ".gettext("[page]");
+						$link = "<a href=\"".rewrite_path('/'._PAGES_.'/'.$titlelink,"/index.php?p=pages&amp;title=".urlencode($titlelink))."\">".$title."</a> ".gettext("[page]");
 					}
 				}
 				break;
@@ -1287,12 +1287,12 @@ function printLatestComments($number, $shorten='123',$type="all",$item=NULL, $ul
 				break;
 			case 'news':
 				$title = get_language_string($comment['title']);
-				echo '<li><a href="'.rewrite_path('/news/'.$comment['titlelink'],'/index.php?p=news&amp;title='.$comment['titlelink']).'" class="commentmeta">'.gettext('News').':'.$title.$author."</a><br />\n";
+				echo '<li><a href="'.rewrite_path('/'._NEWS_.'/'.$comment['titlelink'],'/index.php?p=news&amp;title='.$comment['titlelink']).'" class="commentmeta">'.gettext('News').':'.$title.$author."</a><br />\n";
 				echo '<span class="commentbody">'.$shortcomment.'</span></li>';
 				break;
 			case 'pages':
 				$title = get_language_string($comment['title']);
-				echo '<li><a href="'.rewrite_path('/pages/'.$comment['titlelink'],'/index.php?p=pages&amp;title='.$comment['titlelink']).'" class="commentmeta">'.gettext('News').':'.$title.$author."</a><br />\n";
+				echo '<li><a href="'.rewrite_path('/'._PAGES_.'/'.$comment['titlelink'],'/index.php?p=pages&amp;title='.$comment['titlelink']).'" class="commentmeta">'.gettext('News').':'.$title.$author."</a><br />\n";
 				echo '<span class="commentbody">'.$shortcomment.'</span></li>';
 				break;
 		}
