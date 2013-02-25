@@ -45,10 +45,10 @@ if (getOption('zp_plugin_zenpage')) { ?>
 <h3><?php echo gettext("Archive"); ?></h3>
 	<ul>
 	<?php
-	  if($_zp_gallery_page == "archive.php") {
-	  	echo "<li class='menu-active'>".gettext("Gallery And News")."</li>";
- 	 	} else {
-			echo "<li>"; printArchivePageURL(gettext("Gallery and News")); echo "</li>";
+		if($_zp_gallery_page == "archive.php") {
+			echo "<li class='menu-active'>".gettext("Gallery And News")."</li>";
+		} else {
+			echo "<li>"; printCustomPageURL(gettext("Gallery and News"),"archive"); echo "</li>";
 		}
 		?>
 	</ul>

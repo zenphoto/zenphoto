@@ -1,8 +1,8 @@
 <?php
 eval(@file_get_contents(dirname(__FILE__).'/zp-data/zenphoto.cfg'));
 if (@$_zp_conf_vars['site_upgrade_state']=='closed') {
-	if (isset($_zp_conf_vars['rewrite_defines']['_PAGE_'])) {
-		$page = $_zp_conf_vars['rewrite_defines']['_PAGE_'];
+	if (isset($_zp_conf_vars['special_pages']['page']['rewrite'])) {
+		$page = $_zp_conf_vars['special_pages']['page']['rewrite'];
 	} else {
 		$page = 'page';
 	}

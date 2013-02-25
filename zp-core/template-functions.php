@@ -3459,18 +3459,17 @@ function printAllDates($class='archive', $yearid='year', $monthid='month', $orde
  * @param string $linktext Text for the URL
  * @param string $page page name to include in URL
  * @param string $q query string to add to url
- * @param string $album optional album for the page
  * @return string
  */
-function getCustomPageURL($page, $q='', $album='') {
-	global $_zp_current_album;
-	$result_r = '';
-	$result = "index.php?p=$page";
-	if (!empty($album)) {
-		$result_r = urlencode($album);
-		$result .= "&album=$album";
+function getCustomPageURL($page, $q='') {
+	global $_zp_current_album, $_zp_conf_vars;
+	if (array_key_exists($page, $_zp_conf_vars['special_pages'])) {
+		$result_r = $_zp_conf_vars['special_pages'][$page]['rewrite'];
+	} else {
+		$result_r = '/'._PAGE_.'/'.$page;
 	}
-	$result_r .= '/'._PAGE_.'/'.$page;
+	$result = "index.php?p=$page";
+
 	if (!empty($q)) {
 		$result_r .= "?$q";
 		$result .= "&$q";
@@ -3495,39 +3494,6 @@ function printCustomPageURL($linktext, $page, $q='', $prev='', $next='', $class=
 	echo $prev."<a href=\"".html_encode(getCustomPageURL($page, $q))."\" $class title=\"".html_encode($linktext)."\">".html_encode($linktext)."</a>".$next;
 }
 
-/**
- * Produces the url to a custom page (e.g. one that is not album.php, image.php, or index.php)
- *
- * @param string $linktext Text for the URL
- * @param string $q query string to add to url
- * @return string
- */
-function getArchivePageURL($q='', $album='') {
-	global $_zp_current_album;
-	$result_r = _ARCHIVE_;
-	$result = "index.php?p=archive";
-	if (!empty($q)) {
-		$result_r .= "?$q";
-		$result .= "&$q";
-	}
-	return rewrite_path($result_r,$result);
-}
-
-/**
- * Prints the url to a custom page (e.g. one that is not album.php, image.php, or index.php)
- *
- * @param string $linktext Text for the URL
- * @param string $q query string to add to url
- * @param string $prev text to insert before the URL
- * @param string $next text to follow the URL
- * @param string $class optional class
- */
-function printArchivePageURL($linktext, $q='', $prev='', $next='', $class=NULL) {
-	if (!is_null($class)) {
-		$class = 'class="' . $class . '"';
-	}
-	echo $prev."<a href=\"".html_encode(getArchivePageURL($q))."\" $class title=\"".html_encode($linktext)."\">".html_encode($linktext)."</a>".$next;
-}
 
 /**
  * Returns the URL to an image (This is NOT the URL for the image.php page)

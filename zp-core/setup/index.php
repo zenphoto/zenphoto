@@ -101,15 +101,14 @@ $xsrftoken = sha1(CONFIGFILE.$zp_cfg.session_id());
 
 $updatezp_config = false;
 
-if (strpos($zp_cfg,"\$conf['rewrite_defines']")===false) {
-
+if (strpos($zp_cfg,"\$conf['special_pages']")===false) {
 	$template = file_get_contents(dirname(dirname(__FILE__)).'/zenphoto_cfg.txt');
-	$i = strpos($template,"\$conf['rewrite_defines']");
+	$i = strpos($template,"\$conf['special_pages']");
 	$j = strpos($template,'//',$i);
-
 	$k = strpos($zp_cfg, '/** Do not edit below this line. **/');
+
 	$zp_cfg = substr($zp_cfg,0,$k).str_pad('', 80, '/')."\n".
-						substr($template,$i,$j-$i).str_pad('', 80, '/')."\n".
+						substr($template,$i,$j-$i).str_pad('', 5, '/')."\n".
 						substr($zp_cfg,$k);
 	$updatezp_config = true;
 }
@@ -227,7 +226,7 @@ if (file_exists(CONFIGFILE)) {
 	eval(file_get_contents(CONFIGFILE));
 	if (isset($_zp_conf_vars['db_software'])) {
 		$confDB = $_zp_conf_vars['db_software'];
-		if ($confDB == 'MySQL' || $preferred != 'MySQL') {
+		if ($confDB === 'MySQL' || $preferred != 'MySQL') {
 			$confDB = NULL;
 		}
 		if (extension_loaded(strtolower($confDB)) && file_exists(dirname(dirname(__FILE__)).'/functions-db-'.$confDB.'.php')) {

@@ -64,18 +64,28 @@ $conf['server_protocol'] = "http";
 // Otherwise you should leave it at "http"
 //
 ////////////////////////////////////////////////////////////////////////////////
-// Zenphoto rewrite constants
+// Zenphoto special URL rule definitions
 //
-$conf['rewrite_defines'] = array(	'_SEARCH_'				=>	'page/search',
-																	'_PAGE_'					=>	'page',
-																	'_PAGES_'					=>	'pages',
-																	'_NEWS_'					=>	'news',
-																	'_ARCHIVE_'				=>	'page/archive',
-																	'_NEWS_ARCHIVE_'	=>	'archive',
-																	'_CATEGORY_'			=>	'category',
-																	'_TAGS_'					=>	'tags',
-																	'_FIELDS_'				=>	'fields'
-																);
+//	Elemments which have a define are processed by rewrite rules in the zenphoto-rewrite.txt file
+//	and the define is used internally to Zenphoto to reference the rewrite text when building links
+//	Elements without a define are processed by a rule that detects them as the sole element of the URL
+//	and redirects to the theme script page indicated by the array element key.
+//	
+//	Elements without a define are processed after Search, Pages, and News rewrite rules and before Image and album
+//	rewrite rules.
+//
+$conf['special_pages'] = array(
+														'archive'=>			array('define'=>false,						'rewrite'=>'page/archive'	),
+														'contact'=>			array('define'=>false,						'rewrite'=>'page/contact'),
+														'register'=>		array('define'=>false,						'rewrite'=>'page/register'),
+														'search'=>			array('define'=>'_SEARCH_',				'rewrite'=>'page/search'),
+														'tags'=>				array('define'=>'_TAGS_',					'rewrite'=>'tags'),
+														'page'=>				array('define'=>'_PAGE_',					'rewrite'=>'page'),
+														'pages'=>				array('define'=>'_PAGES_',				'rewrite'=>'pages'),
+														'news'=>				array('define'=>'_NEWS_',					'rewrite'=>'news'),
+														'category'=>		array('define'=>'_CATEGORY_',			'rewrite'=>'category'),
+														'news_archive'=>array('define'=>'_NEWS_ARCHIVE_',	'rewrite'=>'archive')
+												);
 //
 ////////////////////////////////////////////////////////////////////////////////
 // Path Overrides

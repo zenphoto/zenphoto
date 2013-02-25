@@ -157,7 +157,7 @@ class htmlmetatags {
 	 */
 	static function getHTMLMetaData() {
 		global $_zp_gallery, $_zp_galley_page, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news,
-						$_zp_current_zenpage_page, $_zp_gallery_page, $_zp_current_category, $_zp_authority;
+						$_zp_current_zenpage_page, $_zp_gallery_page, $_zp_current_category, $_zp_authority, $_zp_conf_vars;
 		$host = sanitize("http://".$_SERVER['HTTP_HOST']);
 		$url = $host.getRequestURI();
 
@@ -333,7 +333,7 @@ class htmlmetatags {
 										} else 	if(is_NewsCategory()) {
 											$altlink .= '/'._NEWS_.'/'.html_encode($_zp_current_category->getTitlelink());
 										} else {
-											$altlink .= '/'._NEWS;
+											$altlink .= '/'._NEWS_;
 										}
 									}
 									break;
@@ -341,16 +341,16 @@ class htmlmetatags {
 									$altlink .= '/'. _PAGES_.'/'.html_encode($_zp_current_zenpage_page->getTitlelink());
 									break;
 								case 'archive.php':
-									$altlink .= '/'._ARCHIVE_.'/';
+									$altlink .= '/'.$_zp_conf_vars['special_pages']['archive']['rewrite'].'/';
 									break;
 								case 'search.php':
-									$altlink .= '/'._SEARCH_.'/';
+									$altlink .= '/'.$_zp_conf_vars['special_pages']['search']['rewrite'].'/';
 									break;
 								case 'contact.php':
 									$altlink .= '/page/contact';
 									break;
 								default: // for all other possible none standard custom pages
-									$altlink .= '/page/'.html_encode($pagetitle);
+									$altlink .= '/'._PAGE_.'/'.html_encode($pagetitle);
 									break;
 							} // switch
 							$meta .= '<link rel="alternate" hreflang="'.$langcheck.'" href="'.$altlink.'" />'."\n";

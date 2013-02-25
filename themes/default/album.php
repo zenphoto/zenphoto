@@ -70,7 +70,7 @@ if (!defined('WEBPATH')) die();
 		</div>
 		<div id="credit">
 			<?php printRSSLink('Album', '', gettext('Album RSS'), ' | '); ?>
-			<?php printArchivePageURL(gettext("Archive View")); ?> |
+			<?php printCustomPageURL(gettext("Archive View"), "archive"); ?> |
 			<?php
 			if (function_exists('printFavoritesLink')) {
 				printFavoritesLink();

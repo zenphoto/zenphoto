@@ -112,10 +112,11 @@ if (OFFSET_PATH != 2 && !file_exists($const_serverpath.'/'.DATA_FOLDER."/zenphot
 // Including the config file more than once is OK, and avoids $conf missing.
 eval(file_get_contents($const_serverpath.'/'.DATA_FOLDER.'/zenphoto.cfg'));
 
-foreach ($_zp_conf_vars['rewrite_defines'] as $name=>$definition) {
-	define($name, $definition);
+foreach ($_zp_conf_vars['special_pages'] as $definition) {
+	if ($definition['define']) {
+		define($definition['define'], $definition['rewrite']);
+	}
 }
-unset($name);
 unset($definition);
 
 
