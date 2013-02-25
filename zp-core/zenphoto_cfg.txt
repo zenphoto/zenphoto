@@ -67,6 +67,7 @@ $conf['server_protocol'] = "http";
 // Zenphoto rewrite constants
 //
 $conf['rewrite_defines'] = array(	'_SEARCH_'				=>	'page/search',
+																	'_PAGE_'					=>	'page',
 																	'_PAGES_'					=>	'pages',
 																	'_NEWS_'					=>	'news',
 																	'_ARCHIVE_'				=>	'page/archive',
