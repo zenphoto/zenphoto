@@ -72,7 +72,6 @@ foreach (getEnabledPlugins() as $extension=>$plugin) {
 	$_zp_loaded_plugins[] = $extension;
 }
 
-
 if (!$zp_request && isset($_GET['fromlogout'])) {	//	redirect not visible to user
 	zp_load_gallery();
 	$_index_theme = prepareIndexPage();
@@ -86,9 +85,8 @@ if (file_exists($custom)) {
 } else {
 	$custom = false;
 }
-
 //$_zp_script_timer['theme scripts'] = microtime();
-if ($zp_request && $_zp_script && file_exists(SERVERPATH . "/" . internalToFilesystem($_zp_script))) {
+if ($zp_request && $_zp_script && file_exists($_zp_script = SERVERPATH . "/" . internalToFilesystem($_zp_script))) {
 	if (checkAccess($hint, $show)) { // ok to view
 		setThemeColumns();
 	} else {

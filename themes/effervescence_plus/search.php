@@ -80,7 +80,7 @@ $backgroundImagePath="";
 <!-- Logo -->
 	<div id="logo">
 	<?php
-
+		$albumlist = NULL;
 		if (getOption('Allow_search')) {
 			$categorylist = $_zp_current_search->getCategoryList();
 			if (is_array($categorylist)) {

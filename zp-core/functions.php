@@ -1518,7 +1518,7 @@ function sanitizeRedirect($redirectTo, $forceHost=false) {
 			}
 		}
 		if (isset($redir['path'])) {
-			$redirect .= pathurlencode(sanitize($redir['path']));
+			$redirect .= urldecode(sanitize($redir['path']));
 		}
 		if (isset($redir['query'])) {
 			$redirect .= '?'.sanitize($redir['query']);
@@ -1611,7 +1611,7 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
 			if (isset($_POST['redirect'])) {
 				$redirect_to = sanitizeRedirect($_POST['redirect'], true);
 				if (!empty($redirect_to)) {
-					header("Location: " . $redirect_to);
+					header("Location: " . pathurlencode($redirect_to));
 					exitZP();
 				}
 			}
