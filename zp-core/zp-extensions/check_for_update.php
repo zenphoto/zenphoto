@@ -15,20 +15,22 @@ $plugin_disable = (!class_exists('DOMDocument')) ? gettext('PHP <em>DOM Object M
 if (OFFSET_PATH != 2) {
 	$me = explode('?',getRequestURI());
 	if (basename(array_shift($me))=='admin.php') {
+		$v = getOption('last_update_version');
 		$last = getOption('last_update_check');
 		if (empty($last) || is_numeric($last)) {
 			if (time() > $last+1728000) {
 				//	check each 20 days
 				$v = checkForUpdate();
 				setOption('last_update_check', time());
-				if (!empty($v)) {
-					setOption('last_update_check','<a href="http://www.zenphoto.org" alt="'.gettext('Zenphoto download page').'">'.gettext("A new version of Zenphoto version is available.").'</a>');
+				setOption('last_update_version', $v);
+				if ($v) {
+					setOption('last_update_msg','<a href="http://www.zenphoto.org" alt="'.gettext('Zenphoto download page').'">'.gettext("A new version of Zenphoto version is available.").'</a>');
 				}
 			}
-		} else {
+		}
+		if ($v) {
 			zp_register_filter('admin_note', 'admin_showupdate');
 		}
-		unset($last);
 	}
 }
 
@@ -41,6 +43,7 @@ if (OFFSET_PATH != 2) {
  * @since 1.1.3
  */
 function checkForUpdate() {
+	$webVersion = false;
 	if (is_connected() && class_exists('DOMDocument')) {
 		require_once(dirname(__FILE__).'/zenphoto_news/rsslib.php');
 		$recents = RSS_Retrieve("http://www.zenphoto.org/index.php?rss=news&category=changelog");
@@ -50,28 +53,12 @@ function checkForUpdate() {
 			$v = trim(str_replace('zenphoto-', '', basename($article['link'])));
 			$c = explode('-',ZENPHOTO_VERSION);
 			$c = array_shift($c);
-			if (!empty($v)) {
-				$pot = array(1000000000, 10000000, 100000, 1);
-				$wv = explode('.', $v);
-				$wvd = 0;
-				foreach ($wv as $i => $d) {
-					$wvd = $wvd + (int) $d * $pot[$i];
-				}
-				$cv = explode('.', $c);
-				$cvd = 0;
-				foreach ($cv as $i => $d) {
-					$cvd = $cvd + (int) $d * $pot[$i];
-				}
-				if ($cvd < $wvd) {
-					$webVersion = $v;
-				} else {
-					$webVersion = false;
-				}
+			if ($v && version_compare($c, $v, "<")) {
+				$webVersion = $v;
 			}
-			Return $webVersion;
 		}
 	}
-	return false;
+	return $webVersion;
 }
 
 /**
@@ -81,10 +68,9 @@ function checkForUpdate() {
  * @param unknown_type $subtab
  */
 function admin_showupdate($tab, $subtab) {
-	$current = getOption('last_update_check');
 	?>
 	<div class="notebox">
-		<h2><?php echo $current; ?></h2>
+		<h2><a href="http://www.zenphoto.org" alt="<?php echo gettext('Zenphoto download page'); ?>"><?php echo gettext("A new version of Zenphoto version is available."); ?></a></h2>
 	</div>
 	<?php
 	setOption('last_update_check', time());
