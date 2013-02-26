@@ -76,8 +76,6 @@ $conf['server_protocol'] = "http";
 //
 $conf['special_pages'] = array(
 														'archive'=>			array('define'=>false,						'rewrite'=>'page/archive'	),
-														'contact'=>			array('define'=>false,						'rewrite'=>'page/contact'),
-														'register'=>		array('define'=>false,						'rewrite'=>'page/register'),
 														'search'=>			array('define'=>'_SEARCH_',				'rewrite'=>'page/search'),
 														'tags'=>				array('define'=>'_TAGS_',					'rewrite'=>'tags'),
 														'page'=>				array('define'=>'_PAGE_',					'rewrite'=>'page'),

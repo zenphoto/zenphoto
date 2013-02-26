@@ -22,12 +22,20 @@
  * @package plugins
  * @subpackage users
  */
-$plugin_is_filter = 5|ADMIN_PLUGIN|THEME_PLUGIN;
+$plugin_is_filter = 5|FEATURE_PLUGIN;
 $plugin_description = gettext("Provides a means for placing a user registration form on your theme pages.");
 $plugin_author = "Stephen Billard (sbillard)";
 
 
 $option_interface = 'register_user_options';
+
+
+if (!OFFSET_PATH) {
+	if (!$page = getOption('register_user_page_page')) {
+		$page = 'register';
+	}
+	$_zp_conf_vars['special_pages'][$page] = array('define'=>false, 'rewrite'=>getOption('register_user_rewrite'));
+}
 
 if (getOption('register_user_address_info')) {
 	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/comment_form/functions.php');
@@ -41,6 +49,13 @@ class register_user_options {
 
 	function __construct() {
 		global $_zp_authority;
+		$old = getOption('register_user_page_page');
+		if (!$old || is_numeric($old) || $old=='register') {
+			purgeOption('register_user_page_page');
+		} else {
+			setOptionDefault('register_user_rewrite', "page/$old");
+		}
+		setOptionDefault('register_user_rewrite', 'page/register');
 		gettext($str = 'You have received this email because you registered with the user id %3$s on this site.'."\n".'To complete your registration visit %1$s.');
 		setOptionDefault('register_user_text', getAllTranslations($str));
 		gettext($str = 'Click here to register for this site.');
@@ -49,7 +64,6 @@ class register_user_options {
 		setOptionDefault('register_user_page_link', getAllTranslations($str));
 		setOptionDefault('register_user_captcha', 0);
 		setOptionDefault('register_user_email_is_id', 1);
-		setOptionDefault('register_user_page_page', 'register');
 		setOptionDefault('register_user_create_album', 0);
 		$mailinglist = $_zp_authority->getAdminEmail(ADMIN_RIGHTS);
 		if (count($mailinglist) == 0) {	//	no one to send the notice to!
@@ -61,7 +75,17 @@ class register_user_options {
 
 	function getOptionsSupported() {
 		global $_zp_authority, $_common_notify_handler;
-		$options = array(	gettext('Notify*') => array('key' => 'register_user_notify', 'type' => OPTION_TYPE_CHECKBOX,
+		$options = array(
+											gettext('Registration page link') => array('key' => 'register_user_rewrite', 'type' => OPTION_TYPE_TEXTBOX,
+												'order' => 0,
+												'desc' => gettext('The link to use for the registration page.')),
+											gettext('Link text') => array('key' => 'register_user_page_link', 'type' => OPTION_TYPE_TEXTAREA,
+												'order' => 2,
+												'desc' => gettext('If this option is set, the visitor login form will include a link to this page. The link text will be labeled with the text provided.')),
+											gettext('Hint text') => array('key' => 'register_user_page_tip', 'type' => OPTION_TYPE_TEXTAREA,
+												'order' => 2.5,
+												'desc' => gettext('If this option is set, the visitor login form will include a link to this page. The link text will be labeled with the text provided.')),
+											gettext('Notify*') => array('key' => 'register_user_notify', 'type' => OPTION_TYPE_CHECKBOX,
 												'order' => 4,
 												'desc' => gettext('If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration.')),
 											gettext('Address fields') => array('key' => 'register_user_address_info', 'type' => OPTION_TYPE_RADIO,
@@ -77,13 +101,16 @@ class register_user_options {
 											gettext('Email notification text') => array('key' => 'register_user_text', 'type' => OPTION_TYPE_TEXTAREA,
 												'order' => 3,
 												'desc' => gettext('Text for the body of the email sent to the registrant for registration verification. <p class="notebox"><strong>Note:</strong> You must include <code>%1$s</code> in your message where you wish the <em>registration verification</em> link to appear. You may also insert the registrant\'s <em>name</em> (<code>%2$s</code>), <em>user id</em> (<code>%3$s</code>), and <em>password</em>* (<code>%4$s</code>).<br /><br />*For security reasons we recommend <strong>not</strong> inserting the <em>password</em>.</p>')),
-											gettext('User registration page') => array('key' => 'register_user_page', 'type' => OPTION_TYPE_CUSTOM,
-												'order' => 0,
-												'desc' => gettext('If this option is set, the visitor login form will include a link to this page. The link text will be labeled with the text provided.')),
 											gettext('CAPTCHA') => array('key' => 'register_user_captcha', 'type' => OPTION_TYPE_CHECKBOX,
 												'order' => 5,
 												'desc' => gettext('If checked, CAPTCHA validation will be required for user registration.'))
 											);
+		if (getOption('register_user_page_page')) {
+			$options[gettext('Standard script naming')] = array('key' => 'register_user_page_page', 'type' => OPTION_TYPE_CHECKBOX,
+																						'order' => 0,
+																						'desc' => '<p class="notebox">'.gettext('<strong>Note:</strong> The <em>register user</em> theme script should be named <em>register.php</em>. Check this box to use the standard script name.').'</p>');
+
+		}
 		if ($_common_notify_handler) {
 			$options['note'] = array('key' => 'menu_truncate_note', 'type' => OPTION_TYPE_NOTE,
 																'order' => 8,
@@ -138,49 +165,6 @@ class register_user_options {
 	function handleOption($option, $currentValue) {
 		global $_zp_gallery;
 		switch ($option) {
-			case 'register_user_page':
-				?>
-				<table>
-					<tr>
-						<td style="margin:0; padding:0"><?php echo gettext('script'); ?></td>
-						<td style="margin:0; padding:0">
-							<input type="hidden" name="_ZP_CUSTOM_selector-register_user_page_page" value="0" />
-							<select id="register_user_page_page" name="register_user_page_page">
-								<option value="" style="background-color:LightGray"><?php echo gettext('*no page selected'); ?></option>
-								<?php
-								$curdir = getcwd();
-								$root = SERVERPATH.'/'.THEMEFOLDER.'/'.$_zp_gallery->getCurrentTheme().'/';
-								chdir($root);
-								$filelist = safe_glob('*.php');
-								$list = array();
-								foreach($filelist as $file) {
-									$file = filesystemToInternal($file);
-									$list[$file] = str_replace('.php', '', $file);
-								}
-								$list = array_diff($list, standardScripts());
-								generateListFromArray(array(getOption('register_user_page_page')), $list, false, true);
-								chdir($curdir);
-								?>
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<td style="margin:0; padding:0"><?php echo gettext('Link text'); ?></td>
-						<td style="margin:0; padding:0">
-							<input type="hidden" name="_ZP_CUSTOM_text-register_user_page_link" value="0" />
-							<?php print_language_string_list(getOption('register_user_page_link'), 'register_user_page_link', false, NULL, '', TEXTAREA_COLUMNS_SHORT, 'language_string_list_short'); ?>
-						</td>
-					</tr>
-					<tr>
-						<td style="margin:0; padding:0"><?php echo gettext('Hint text'); ?></td>
-						<td style="margin:0; padding:0">
-							<input type="hidden" name="_ZP_CUSTOM_text-register_user_page_tip" value="0" />
-							<?php print_language_string_list(getOption('register_user_page_tip'), 'register_user_page_tip', false, NULL, '', TEXTAREA_COLUMNS_SHORT, 'language_string_list_short'); ?>
-						</td>
-					</tr>
-				</table>
-				<?php
-				break;
 			case 'register_user_user_rights':
 				printAdminRightsTable('register_user', '', '', getOption('register_user_user_rights'));
 				break;

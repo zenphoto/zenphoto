@@ -29,7 +29,7 @@
 //TODO: evenutally use of the favorites_link option shoud be reduced to the constant "favorites". Note also that the slideshow uses this option!
 
 
-$plugin_is_filter = 5|FEATURE_PLUGIN|ADMIN_PLUGIN;
+$plugin_is_filter = 5|FEATURE_PLUGIN;
 $plugin_description = gettext('Support for <em>favorites</em> handling.');
 $plugin_author = "Stephen Billard (sbillard)";
 
@@ -38,8 +38,11 @@ $option_interface = 'favoritesOptions';
 class favoritesOptions {
 
 	function __construct() {
-		if ($page = stripSuffix(getOption('favorites_link'))) {
-			setOptionDefault('favorites_rewrite', "page/$page");
+		$old = getOption('favorites_link');
+		if (!$old || is_numeric($old) || $old=='favorites') {
+			purgeOption('favorites_link');
+		} else {
+			setOptionDefault('favorites_rewrite', "page/$old");
 		}
 		setOptionDefault('favorites_rewrite', 'page/favorites');
 		gettext($str = 'My favorites');
@@ -73,7 +76,7 @@ class favoritesOptions {
 																					'desc' => gettext('The text for the link to the favorites page.')),
 											gettext('Favorites link') => array('key' => 'favorites_rewrite', 'type' => OPTION_TYPE_TEXTBOX,
 																					'order'=>1,
-																					'desc' => gettext('The link to use for the favorites.php script page')),
+																					'desc' => gettext('The link to use for the favorites script page')),
 											gettext('Add button') => array('key' => 'favorites_add_button', 'type' => OPTION_TYPE_TEXTBOX,
 																					'multilingual'=>true,
 																					'order'=>6,
@@ -91,6 +94,12 @@ class favoritesOptions {
 																					'order'=>5,
 																					'desc' => gettext('The favorites page description text.')),
 		);
+		if (getOption('favorites_link')) {
+			$options[gettext('Standard script naming')] = array('key' => 'favorites_link', 'type' => OPTION_TYPE_CHECKBOX,
+																						'order' => 0,
+																						'desc' => '<p class="notebox">'.gettext('<strong>Note:</strong> The <em>favorites</em> theme script should be named <em>favorites.php</em>. Check this box to use the standard script name.').'</p>');
+
+		}
 		return $options;
 	}
 
@@ -292,15 +301,15 @@ class favorites extends AlbumBase {
 }
 
 if (!OFFSET_PATH) {
-	if ($page = stripSuffix(getOption('favorites_link'))) {
-		$_zp_conf_vars['special_pages'][$page] = array('define'=>false, 'rewrite'=>$page);
-	} else {
-		$_zp_conf_vars['special_pages']['favorites'] = array('define'=>false, 'rewrite'=>'favorites');
+	if (!$page = stripSuffix(getOption('favorites_link'))) {
+		$page = 'favorites';
 	}
-	$_myFavorites = new favorites($_zp_current_admin_obj->getUser());
+	$_zp_conf_vars['special_pages'][$page] = array('define'=>false, 'rewrite'=>getOption('favorites_rewrite'));
+
 
 	zp_register_filter('load_theme_script', 'favorites::loadScript');
 	if (zp_loggedin()) {
+		$_myFavorites = new favorites($_zp_current_admin_obj->getUser());
 		if (isset($_POST['addToFavorites'])) {
 			$id = sanitize($_POST['id']);
 			switch ($_POST['type']) {
