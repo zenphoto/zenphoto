@@ -3,7 +3,15 @@ $_zp_script_timer['start'] = microtime();
 // force UTF-8 Ø
 define('OFFSET_PATH', 0);
 require_once(dirname(__FILE__).'/global-definitions.php');
-require_once(dirname(__FILE__).'/functions-basic.php');
+require_once(dirname(__FILE__).'/functions.php');
+foreach (getEnabledPlugins() as $extension=>$plugin) {
+	$loadtype = $plugin['priority'];
+	if ($loadtype&FEATURE_PLUGIN) {
+		require_once($plugin['path']);
+	}
+	$_zp_loaded_plugins[] = $extension;
+}
+
 require_once(SERVERPATH."/".ZENFOLDER.'/rewrite.php');
 require_once(dirname(__FILE__).'/template-functions.php');
 checkInstall();
