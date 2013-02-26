@@ -704,7 +704,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 							});
 						</script>
 						<br clear="all" />
-						<p class="notebox"><?php printf(gettext('Highlighted languages are not current with Zenphoto Version %1$s. (The version Zenphoto of the out-of-date language is shown in braces.) Please check the <a href="%2$s">translation repository</a> for new and updated language translations.'),$zpversion,'http://www.zenphoto.org/trac/browser/trunk/zp-core/locale');?></p>
+						<p class="notebox"><?php printf(gettext('Highlighted languages are not current with Zenphoto Version %1$s. (The version Zenphoto of the out-of-date language is shown in braces.) Please check the <a href="%2$s">translation repository</a> for new and updated language translations.'),$zpversion,'https://github.com/zenphoto/zenphoto/tree/master/zp-core/locale');?></p>
 						<label class="checkboxlabel">
 							<input type="checkbox" name="multi_lingual" value="1"	<?php echo checked('1', getOption('multi_lingual')); ?> /><?php echo gettext('Multi-lingual'); ?>
 						</label>
