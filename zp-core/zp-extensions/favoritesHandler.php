@@ -26,9 +26,6 @@
  * @package plugins
  */
 
-//TODO: evenutally use of the favorites_link option shoud be reduced to the constant "favorites". Note also that the slideshow uses this option!
-
-
 $plugin_is_filter = 5|FEATURE_PLUGIN;
 $plugin_description = gettext('Support for <em>favorites</em> handling.');
 $plugin_author = "Stephen Billard (sbillard)";
