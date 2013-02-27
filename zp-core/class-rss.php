@@ -123,7 +123,17 @@
  * Optional CombiNews parameter:
  * "size" the pixel size for the image (uncropped and longest side)
  *
+ * c. PAGES ARTICLE FEEDS
+ * - "pages" feed for latest news articles
+ * index.php?rss=pages&lang=<locale>
  *
+ * Optional parameters for "News" and "Category":
+ * "sortorder  with these values:
+ * - "latest" for latest articles. (If "sortorder" is not set at all "latest" order is used)
+ * - "popular" for most viewed articles
+ * - "mostrated" for most voted articles
+ * - "toprated" for top voted articles
+ * - "random" for random articles
  *
  * III. OPTIONAL PARAMETERS TO I. AND II.:
  * "itemnumber" for the number of items to get. If set overrides the admin option value.
@@ -313,21 +323,22 @@ class RSS {
 					$this->sortorder = $this->getRSSSortorder();
 					switch($this->sortorder) {
 						case 'popular':
-							$titleappendix = gettext(' (Most popular news)');
+							$titleappendix = gettext(' (Most popular pages)');
 							break;
 						case 'mostrated':
-							$titleappendix = gettext(' (Most rated news)');
+							$titleappendix = gettext(' (Most rated pages)');
 							break;
 						case 'toprated':
-							$titleappendix = gettext(' (Top rated news)');
+							$titleappendix = gettext(' (Top rated pages)');
 							break;
 						case 'random':
-							$titleappendix = gettext(' (Random news)');
+							$titleappendix = gettext(' (Random pages)');
 							break;
 						default: 
 							$titleappendix = gettext(' (Latest pages)');
 							break;
 					}
+					$this->channel_title = html_encode($this->channel_title.$titleappendix);
 					require_once(ZENFOLDER . '/'.PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
 					break;
 					
