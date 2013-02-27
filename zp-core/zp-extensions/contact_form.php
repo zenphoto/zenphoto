@@ -21,7 +21,7 @@ $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $option_interface = 'contactformOptions';
 
 if (!OFFSET_PATH) {
-	$_zp_conf_vars['special_pages']['contact'] = array('define'=>false, 'rewrite'=>getOption('contactform_rewrite'));
+	$_zp_conf_vars['special_pages']['contact'] = array('define'=>false, 'rewrite'=>getOption('contactform_rewrite'), 'rule'=>'^%REWRITE%/*$		index.php?p=contact [L,QSA]');
 }
 /**
  * Plugin option handling class

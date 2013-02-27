@@ -34,7 +34,7 @@ if (!OFFSET_PATH) {
 	if (!$page = getOption('register_user_page_page')) {
 		$page = 'register';
 	}
-	$_zp_conf_vars['special_pages'][$page] = array('define'=>false, 'rewrite'=>getOption('register_user_rewrite'));
+	$_zp_conf_vars['special_pages'][$page] = array('define'=>false, 'rewrite'=>getOption('register_user_rewrite'), 'rule'=>'^%REWRITE%/*$		index.php?p='.$page.' [L,QSA]');
 }
 
 if (getOption('register_user_address_info')) {
