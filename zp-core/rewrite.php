@@ -17,8 +17,8 @@ function rewriteHandler() {
 	$rules = trim(file_get_contents(SERVERPATH.'/'.ZENFOLDER.'/zenphoto-rewrite.txt'));
 	$specialPageRules = array();
 	foreach ($_zp_conf_vars['special_pages'] as $page=>$special) {
-		if (!(array_key_exists('byRule', $special) && $special['byRule'])) {
-			$specialPageRules[] = "\tRewriteRule ^".$special['rewrite'].'/*$	index.php?p='.$page.' [L,QSA]';
+		if (array_key_exists('rule', $special)) {
+			$specialPageRules[] = "\tRewriteRule ".str_replace('%REWRITE%', $special['rewrite'], $special['rule']);
 		}
 	}
 	$rules = str_replace('_SPECIAL_', implode("\n",$specialPageRules), $rules);

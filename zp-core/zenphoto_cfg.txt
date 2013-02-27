@@ -75,7 +75,7 @@ $conf['server_protocol'] = "http";
 //	rewrite rules.
 //
 $conf['special_pages'] = array(
-														'archive'=>			array('define'=>false,						'rewrite'=>'page/archive'	),
+														'archive'=>			array('define'=>false,						'rewrite'=>'page/archive',		'rule'=>'^%REWRITE%/*$		index.php?p=archive [L,QSA]'),
 														'search'=>			array('define'=>'_SEARCH_',				'rewrite'=>'page/search'),
 														'tags'=>				array('define'=>'_TAGS_',					'rewrite'=>'tags'),
 														'page'=>				array('define'=>'_PAGE_',					'rewrite'=>'page'),

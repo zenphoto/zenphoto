@@ -274,7 +274,7 @@ foreach ($filelist as $extension) {
 				} else {
 					$icon = $plugin_is_filter;
 				}
-				if ($icon & THEME_PLUGIN) {
+				if ($icon & THEME_PLUGIN|FEATURE_PLUGIN) {
 					?>
 					<a title="<?php echo gettext('theme plugin'); ?>" /><img class="zp_logoicon" src="images/pictures.png" /></a>
 					<?php

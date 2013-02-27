@@ -281,7 +281,7 @@ class favorites extends AlbumBase {
 	static function loadScript($script, $request) {
 		global $_zp_current_admin_obj, $_zp_gallery_page, $_myFavorites, $_zp_current_album,$_zp_conf_vars, $_myFavorites;
 		if (!$page = stripSuffix(getOption('favorites_link'))) {
-			$page = 'favoirtes';
+			$page = 'favorites';
 		}
 		if ($_zp_gallery_page == "$page.php") {
 			if (zp_loggedin()) {
@@ -301,7 +301,7 @@ if (!OFFSET_PATH) {
 	if (!$page = stripSuffix(getOption('favorites_link'))) {
 		$page = 'favorites';
 	}
-	$_zp_conf_vars['special_pages'][$page] = array('define'=>false, 'rewrite'=>getOption('favorites_rewrite'));
+	$_zp_conf_vars['special_pages'][$page] = array('define'=>false, 'rewrite'=>getOption('favorites_rewrite'), 'rule'=>'^%REWRITE%/*$		index.php?p='.$page.' [L,QSA]');
 
 
 	zp_register_filter('load_theme_script', 'favorites::loadScript');
@@ -397,7 +397,7 @@ if (!OFFSET_PATH) {
 				$text = get_language_string(getOption('favorites_linktext'));
 			}
 			?>
-			<a href="<?php echo FULLWEBPATH; ?>/<?php echo getOption('favorites_link'); ?>" id="favorite_link"><?php echo $text; ?> </a>
+			<a href="<?php echo FULLWEBPATH; ?>/<?php echo getOption('favorites_rewrite'); ?>" id="favorite_link"><?php echo $text; ?> </a>
 			<?php
 		}
 	}
