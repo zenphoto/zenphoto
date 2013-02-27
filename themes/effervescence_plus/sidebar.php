@@ -62,19 +62,19 @@ if(function_exists('printCustomMenu') && ($menu = getOption('effervescence_menu'
 	<h3><?php echo gettext("Archive"); ?></h3>
 		<ul>
 		<?php
-		  if($_zp_gallery_page == "archive.php") {
-		  	?>
-		  	<li class='menu-active'>
-		  	<?php echo gettext("Gallery and News");	?>
-		  	</li>
-		  	<?php
-		  } else {
-		  	?>
-		  	<li>
-		  	<?php echo printCustomPageURL(gettext("Gallery and News"),"archive"); ?>
-		  	</li>
-		  	<?php
-	 	 	}
+			if($_zp_gallery_page == "archive.php") {
+				?>
+				<li class='menu-active'>
+				<?php echo gettext("Gallery and News");	?>
+				</li>
+				<?php
+			} else {
+				?>
+				<li>
+				<?php echo printCustomPageURL(gettext("Gallery and News"),"archive"); ?>
+				</li>
+				<?php
+			}
 			?>
 		</ul>
 		<div class="menu_rule"></div>

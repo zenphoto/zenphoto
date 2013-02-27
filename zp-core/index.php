@@ -3,8 +3,16 @@ $_zp_script_timer['start'] = microtime();
 // force UTF-8 Ø
 define('OFFSET_PATH', 0);
 require_once(dirname(__FILE__).'/global-definitions.php');
-require_once(dirname(__FILE__).'/functions-basic.php');
-//require_once(SERVERPATH."/".ZENFOLDER.'/rewrite.php');
+require_once(dirname(__FILE__).'/functions.php');
+foreach (getEnabledPlugins() as $extension=>$plugin) {
+	$loadtype = $plugin['priority'];
+	if ($loadtype&FEATURE_PLUGIN) {
+		require_once($plugin['path']);
+	}
+	$_zp_loaded_plugins[] = $extension;
+}
+
+require_once(SERVERPATH."/".ZENFOLDER.'/rewrite.php');
 require_once(dirname(__FILE__).'/template-functions.php');
 checkInstall();
 
@@ -53,27 +61,28 @@ if (isset($_GET['p'])) {
 	$_index_theme = setupTheme();
 }
 //$_zp_script_timer['theme setup'] = microtime();
-if (DEBUG_PLUGINS) {
-	debugLog('Loading the "theme" plugins.');
-}
-foreach (getEnabledPlugins() as $extension=>$plugin) {
-	$loadtype = $plugin['priority'];
-	if ($loadtype&THEME_PLUGIN) {
-		if (DEBUG_PLUGINS) {
-			list($usec, $sec) = explode(" ", microtime());
-			$start = (float)$usec + (float)$sec;
-		}
-		require_once($plugin['path']);
-		if (DEBUG_PLUGINS) {
-			list($usec, $sec) = explode(" ", microtime());
-			$end = (float)$usec + (float)$sec;
-			debugLog(sprintf('    '.$extension.'(THEME:%u)=>%.4fs',$priority & PLUGIN_PRIORITY,$end-$start));
-		}
-		//		$_zp_script_timer['load '.$extension] = microtime();
+if (!preg_match('~'.ZENFOLDER.'~',$_zp_script)) {
+	if (DEBUG_PLUGINS) {
+		debugLog('Loading the "theme" plugins.');
 	}
-	$_zp_loaded_plugins[] = $extension;
+	foreach (getEnabledPlugins() as $extension=>$plugin) {
+		$loadtype = $plugin['priority'];
+		if ($loadtype&THEME_PLUGIN) {
+			if (DEBUG_PLUGINS) {
+				list($usec, $sec) = explode(" ", microtime());
+				$start = (float)$usec + (float)$sec;
+			}
+			require_once($plugin['path']);
+			if (DEBUG_PLUGINS) {
+				list($usec, $sec) = explode(" ", microtime());
+				$end = (float)$usec + (float)$sec;
+				debugLog(sprintf('    '.$extension.'(THEME:%u)=>%.4fs',$priority & PLUGIN_PRIORITY,$end-$start));
+			}
+			//		$_zp_script_timer['load '.$extension] = microtime();
+		}
+		$_zp_loaded_plugins[] = $extension;
+	}
 }
-
 
 if (!$zp_request && isset($_GET['fromlogout'])) {	//	redirect not visible to user
 	zp_load_gallery();
@@ -90,7 +99,7 @@ if (file_exists($custom)) {
 }
 
 //$_zp_script_timer['theme scripts'] = microtime();
-if ($zp_request && $_zp_script && file_exists(SERVERPATH . "/" . internalToFilesystem($_zp_script))) {
+if ($zp_request && $_zp_script && file_exists($_zp_script = SERVERPATH . "/" . internalToFilesystem($_zp_script))) {
 	if (checkAccess($hint, $show)) { // ok to view
 		setThemeColumns();
 	} else {

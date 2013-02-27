@@ -128,7 +128,7 @@ class Zenpage {
 	* @return string
 	*/
 	function getPagesLinkPath() {
-		return rewrite_path("pages/", "/index.php?p=pages&title=");
+		return rewrite_path(_PAGES_.'/', "/index.php?p=pages&title=");
 	}
 
 	/************************************/
@@ -674,7 +674,7 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 		if($this->news_on_index) {
 			return getGalleryIndexURL(false);
 		} else {
-			return rewrite_path('news', "/index.php?p=news");
+			return getNewsBaseURL();
 		}
 	}
 
@@ -685,7 +685,7 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	* @return string
 	*/
 	function getNewsBaseURL() {
-		return rewrite_path('news', "/index.php?p=news");
+		return rewrite_path(_NEWS_, "/index.php?p=news");
 	}
 
 
@@ -695,7 +695,7 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	* @return string
 	*/
 	function getNewsCategoryPath() {
-		return rewrite_path("/category/","&category=",false);
+		return rewrite_path('/'._CATEGORY_.'/',"&category=",false);
 	}
 
 	/**
@@ -704,7 +704,7 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	* @return string
 	*/
 	function getNewsArchivePath() {
-		return rewrite_path("/archive/","&date=",false);
+		return rewrite_path('/'._NEWS_ARCHIVE_.'/',"&date=",false);
 	}
 
 

@@ -641,6 +641,7 @@ zp-core/oldhtaccess
 zp-core/password.php
 zp-core/pluginDoc.php
 zp-core/reconfigure.php
+zp-core/rewrite.php
 zp-core/setup
 zp-core/setup.php
 zp-core/setup/index.php
@@ -668,6 +669,7 @@ zp-core/watermarks/copyright.png
 zp-core/watermarks/watermark-text.png
 zp-core/watermarks/watermark-video.png
 zp-core/watermarks/watermark.png
+zp-core/zenphoto-rewrite.txt
 zp-core/zenphoto_cfg.txt
 zp-core/zp-extensions
 zp-core/zp-extensions/GoogleMap
@@ -1080,6 +1082,7 @@ zp-core/zp-extensions/register_user
 zp-core/zp-extensions/register_user.php
 zp-core/zp-extensions/register_user/register_user_form.php
 zp-core/zp-extensions/related_items.php
+zp-core/zp-extensions/rewriteTokens.php
 zp-core/zp-extensions/search_statistics
 zp-core/zp-extensions/search_statistics.php
 zp-core/zp-extensions/search_statistics/search_analysis.php
@@ -1772,4 +1775,4 @@ zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zpCaptcha
 zp-core/zp-extensions/zpCaptcha.php
 zp-core/zp-extensions/zpCaptcha/c.php
-1774
+1777

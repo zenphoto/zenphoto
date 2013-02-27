@@ -227,7 +227,7 @@ function getItemTitleAndURL($item) {
 			$result = query_single_row($sql);
 			if (is_array($result)) {
 				$obj = new ZenpagePage($item['link']);
-				$url = rewrite_path("/pages/".$item['link'],"/index.php?p=pages&amp;title=".$item['link']);
+				$url = rewrite_path("/"._PAGES_."/".$item['link'],"/index.php?p=pages&amp;title=".$item['link']);
 				$protected = $obj->isProtected();
 				$title = $obj->getTitle();
 			} else {
@@ -238,7 +238,7 @@ function getItemTitleAndURL($item) {
 			$array = array("title"=>$title,"url"=>$url,"name"=>$item['link'],'protected'=>$protected);
 			break;
 		case "zenpagenewsindex":
-			$url = rewrite_path("/news","/news/index.php?p=news");
+			$url = rewrite_path('/'._NEWS_,"index.php?p=news");
 			$array = array("title" => get_language_string($item['title']),"url" => $url,"name" => $url,'protected'=>false);
 			break;
 		case "zenpagecategory":
@@ -248,7 +248,7 @@ function getItemTitleAndURL($item) {
 				$obj = new ZenpageCategory($item['link']);
 				$title = $obj->getTitle();
 				$protected = $obj->isProtected();
-				$url = rewrite_path("/news/category/".$item['link'],"/index.php?p=news&amp;category=".$item['link']);
+				$url = rewrite_path('/'._NEWS_.'/'._CATEGORY_.'/'.$item['link'],"/index.php?p=news&amp;category=".$item['link']);
 			} else {
 				$valid = false;
 				$url = '';
@@ -792,7 +792,7 @@ function createMenuIfNotExists($menuitems, $menuset='default') {
 					if(getOption('zp_plugin_zenpage')) {
 						$orders[$nesting]++;
 						query("INSERT INTO ".prefix('menu')." (title`,`link`,`type`,`show`,`menuset`,`sort_order`) ".
-									"VALUES ('".gettext('News index')."', '".rewrite_path('news','?p=news').	"','zenpagenewsindex','1',".db_quote($menuset).','.db_quote(sprintf('%03u',$base+1)),true);
+									"VALUES ('".gettext('News index')."', '".rewrite_path(_NEWS_,'?p=news').	"','zenpagenewsindex','1',".db_quote($menuset).','.db_quote(sprintf('%03u',$base+1)),true);
 						$orders[$nesting] = addPagesToDatabase($menuset, $orders)+1;
 						$orders[$nesting] = addCategoriesToDatabase($menuset,$orders);
 					}

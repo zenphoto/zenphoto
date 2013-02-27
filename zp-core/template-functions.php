@@ -451,10 +451,10 @@ function getGalleryIndexURL($relative=true) {
 		}
 	}
 	if ($page > 1) {
-		return rewrite_path("/page/".$gallink1.$page, "/index.php?".$gallink2."page=".$page);
+		return rewrite_path('/'._PAGE_.'/'.$gallink1.$page, "/index.php?".$gallink2."page=".$page);
 	} else {
 		if ($specialpage) {
-			return rewrite_path('/page/'.$gallink1, '?'.substr($gallink2, 0, -1));
+			return rewrite_path('/'._PAGE_.'/'.$gallink1, '?'.substr($gallink2, 0, -1));
 		}
 		return WEBPATH . "/";
 	}
@@ -623,7 +623,7 @@ function getPageURL($page, $total=null) {
 		if (!in_array($_zp_gallery_page, array('index.php', 'album.php', 'image.php'))) {
 			// handle custom page
 			$pg = stripSuffix($_zp_gallery_page);
-			$pagination1 = '/page/'.$pg;
+			$pagination1 = '/'._PAGE_.'/'.$pg;
 			$pagination2 = 'index.php?p='.$pg;
 			if ($page > 1) {
 				$pagination1 .= '/'.$page;
@@ -634,7 +634,7 @@ function getPageURL($page, $total=null) {
 				$pagination1 = pathurlencode($_zp_current_album->name);
 				$pagination2 = 'index.php?album='.pathurlencode($_zp_current_album->name);
 				if ($page > 1) {
-					$pagination1 .= '/page/'.$page;
+					$pagination1 .= '/'._PAGE_.'/'.$page;
 					$pagination2 .= '&page='.$page;
 				}
 			} else {
@@ -642,7 +642,7 @@ function getPageURL($page, $total=null) {
 					$pagination1 = '/';
 					$pagination2 = 'index.php';
 					if ($page > 1) {
-						$pagination1 .= 'page/'.$page;
+						$pagination1 .= _PAGE_.'/'.$page;
 						$pagination2 .= '?page='.$page;
 					}
 				} else {
@@ -3276,7 +3276,7 @@ function printAllTagsAs($option,$class='',$sort=NULL,$counter=FALSE,$links=TRUE,
 	global $_zp_current_search;
 	$option = strtolower($option);
 	if ($class != "") {
-		$class = "class=\"".$class."\"";
+		$class = ' class="'.$class.'"';
 	}
 	$tagcount = getAllTagsCount();
 	if (!is_array($tagcount)) {
@@ -3298,47 +3298,55 @@ function printAllTagsAs($option,$class='',$sort=NULL,$counter=FALSE,$links=TRUE,
 		default:
 			break;
 	}
-	$list = '';
-	echo "<ul ".$class.">\n";
-	foreach ($tagcount as $key=>$val) {
-		if(!$counter) {
-			$counter = "";
-		} else {
-			$counter = " (".$val.") ";
-		}
-		if ($option == "cloud") { // calculate font sizes, formula from wikipedia
-			if ($val <= $mincount) {
-				$size = $minfontsize;
-			} else {
-				$size = min(max(round(($maxfontsize*($val-$mincount))/($maxcount-$mincount), 2), $minfontsize), $maxfontsize);
-			}
-			$size = str_replace(',','.', $size);
-			$size = " style=\"font-size:".$size."em;\"";
-		} else {
-			$size = '';
-		}
-		if ($val >= $mincount) {
-			if($links) {
-				if (is_object($_zp_current_search)) {
-					$albumlist = $_zp_current_search->getAlbumList();
+	?>
+	<ul<?php echo $class; ?>>
+		<?php
+		if (count($tagcount)>0) {
+			foreach ($tagcount as $key=>$val) {
+				if(!$counter) {
+					$counter = "";
 				} else {
-					$albumlist = NULL;
+					$counter = " (".$val.") ";
 				}
-				$list .= "\t<li><a href=\"".
-									html_encode(getSearchURL(search_quote($key), '', 'tags', 0, array('albums'=>$albumlist)))."\"$size rel=\"nofollow\">".
-									$key.$counter."</a></li>\n";
-			} else {
-				$list .= "\t<li$size>".$key.$counter."</li>\n";
-			}
+				if ($option == "cloud") { // calculate font sizes, formula from wikipedia
+					if ($val <= $mincount) {
+						$size = $minfontsize;
+					} else {
+						$size = min(max(round(($maxfontsize*($val-$mincount))/($maxcount-$mincount), 2), $minfontsize), $maxfontsize);
+					}
+					$size = str_replace(',','.', $size);
+					$size = ' style="font-size:'.$size.'em;"';
+				} else {
+					$size = '';
+				}
+				if ($val >= $mincount) {
+					if($links) {
+						if (is_object($_zp_current_search)) {
+							$albumlist = $_zp_current_search->getAlbumList();
+						} else {
+							$albumlist = NULL;
+						}
+						$link = getSearchURL(search_quote($key), '', 'tags', 0, array('albums'=>$albumlist));
+						?>
+						<li>
+							<a href="<?php echo html_encode($link); ?>" rel="nofollow"<?php echo $size; ?>><?php echo $key.$counter; ?></a>
+						</li>
+						<?php
+					} else {
+						?>
+						<li<?php echo $size; ?>><?php echo $key.$counter; ?></li>
+						<?php
+					}
+				}
+			} // while end
+		} else {
+			?>
+			<li><?php echo gettext('No popular tags'); ?></li>
+			<?php
 		}
-
-	} // while end
-	if ($list) {
-		echo $list;
-	} else {
-		echo '<li>'.gettext('No popular tags')."</li>\n";
-	}
-	echo "</ul>\n";
+		?>
+	</ul>
+	<?php
 }
 
 /**
@@ -3451,18 +3459,17 @@ function printAllDates($class='archive', $yearid='year', $monthid='month', $orde
  * @param string $linktext Text for the URL
  * @param string $page page name to include in URL
  * @param string $q query string to add to url
- * @param string $album optional album for the page
  * @return string
  */
-function getCustomPageURL($page, $q='', $album='') {
-	global $_zp_current_album;
-	$result_r = '';
-	$result = "index.php?p=$page";
-	if (!empty($album)) {
-		$result_r = urlencode($album);
-		$result .= "&album=$album";
+function getCustomPageURL($page, $q='') {
+	global $_zp_current_album, $_zp_conf_vars;
+	if (array_key_exists($page, $_zp_conf_vars['special_pages'])) {
+		$result_r = $_zp_conf_vars['special_pages'][$page]['rewrite'];
+	} else {
+		$result_r = '/'._PAGE_.'/'.$page;
 	}
-	$result_r .= "/page/$page";
+	$result = "index.php?p=$page";
+
 	if (!empty($q)) {
 		$result_r .= "?$q";
 		$result .= "&$q";
@@ -3486,6 +3493,7 @@ function printCustomPageURL($linktext, $page, $q='', $prev='', $next='', $class=
 	}
 	echo $prev."<a href=\"".html_encode(getCustomPageURL($page, $q))."\" $class title=\"".html_encode($linktext)."\">".html_encode($linktext)."</a>".$next;
 }
+
 
 /**
  * Returns the URL to an image (This is NOT the URL for the image.php page)
@@ -3686,7 +3694,7 @@ function getSearchURL($words, $dates, $fields, $page, $object_list=NULL) {
 	}
 
 	if ($rewrite) {
-		$url = SEO_WEBPATH . "/page/search/";
+		$url = SEO_WEBPATH.'/'._SEARCH_.'/';
 	} else {
 		$url = SEO_WEBPATH."/index.php?p=search";
 	}
@@ -3696,7 +3704,7 @@ function getSearchURL($words, $dates, $fields, $page, $object_list=NULL) {
 		}
 		$temp = $fields;
 		if ($rewrite && count($fields)==1 && array_shift($temp)=='tags') {
-			$url .= "tags/";
+			$url .= _TAGS_.'/';
 		} else {
 			$search = new SearchEngine();
 			$urls = $search->getSearchFieldsText($fields, 'searchfields=');
@@ -3752,7 +3760,6 @@ function getSearchURL($words, $dates, $fields, $page, $object_list=NULL) {
 			}
 		}
 	}
-
 	return $url;
 }
 
@@ -3824,7 +3831,7 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 		$within = getOption('search_within');
 	}
 	if (MOD_REWRITE) {
-		$searchurl =  SEO_WEBPATH.'/page/search/';
+		$searchurl =  SEO_WEBPATH.'/'._SEARCH_.'/';
 	} else {
 		$searchurl = WEBPATH."/index.php?p=search";
 	}

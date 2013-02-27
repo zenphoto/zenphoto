@@ -14,11 +14,15 @@
  * @package plugins
  */
 
+$plugin_is_filter = 5|FEATURE_PLUGIN;
 $plugin_description = gettext("Prints an e-mail contact so that visitors may e-mail the site administrator.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 
 $option_interface = 'contactformOptions';
 
+if (!OFFSET_PATH) {
+	$_zp_conf_vars['special_pages']['contact'] = array('define'=>false, 'rewrite'=>getOption('contactform_rewrite'));
+}
 /**
  * Plugin option handling class
  *
@@ -31,6 +35,7 @@ class contactformOptions {
 		if (OFFSET_PATH==2 && !getOption('contactform_mailaddress')) {
 			purgeOption('contactform_mailaddress');
 		}
+		setOptionDefault('contactform_rewrite', 'page/contact');
 		gettext($str = '<p>Fields with <strong>*</strong> are required. HTML or any other code is not allowed.</p>');
 		setOptionDefault('contactform_introtext', getAllTranslations($str));
 		gettext($str = '<p>Please confirm that you really want to send this email. Thanks.</p>');
@@ -78,7 +83,11 @@ class contactformOptions {
 		setOption('contactform_mailaddress',implode(';',$mailinglist));
 		$list = array(gettext("required") => "required",gettext("show") => "show",gettext("omitted") => "omitted");
 		$mailfieldinstruction = gettext("Set if the <code>%s</code> field should be required, just shown or omitted");
-		$options = array(	gettext('Intro text') => array('key' => 'contactform_introtext', 'type' => OPTION_TYPE_TEXTAREA,
+		$options = array(
+									gettext('Contact page link') => array('key' => 'contactform_rewrite', 'type' => OPTION_TYPE_TEXTBOX,
+										'order' => 0,
+										'desc' => gettext('The link to use for the contact page.')),
+									gettext('Intro text') => array('key' => 'contactform_introtext', 'type' => OPTION_TYPE_TEXTAREA,
 										'order' => 13,
 										'desc' => gettext("The intro text for your contact form")),
 									gettext('Confirm text') => array('key' => 'contactform_confirmtext', 'type' => OPTION_TYPE_TEXTAREA,
@@ -91,13 +100,13 @@ class contactformOptions {
 										'order' => 16,
 										'desc' => gettext("The text for the link after the thanks text to return to the contact page to send another message.")),
 									gettext('Require confirmation') => array('key' => 'contactform_confirm', 'type' => OPTION_TYPE_CHECKBOX,
-										'order' => 0,
+										'order' => 0.1,
 										'desc' => gettext("If checked, a confirmation form will be presented before sending the contact message.")),
 									gettext('Send copy') => array('key' => 'contactform_sendcopy', 'type' => OPTION_TYPE_CHECKBOX,
-										'order' => 0,
+										'order' => 0.3,
 										'desc' => gettext("If checked, a copy of the message will be sent to the address provided. <p class='notebox'><strong>Caution: </strong> If you check this option it is strongly recommend to use Captcha and the confirmation option. Be aware that someone could misuse the e-mail address entered for spamming with this form and that in some countries' jurisdictions (e.g. most European countries) you may be made responsible for this then!</p>")),
 									gettext('Send copy note text') => array('key' => 'contactform_sendcopy_text', 'type' => OPTION_TYPE_TEXTAREA,
-										'order' => 0,
+										'order' => 0.2,
 										'desc' => gettext("The text for the note about sending a copy to the address provided in case that option is set.")),
 									gettext('Contact recipients') => array('key' => 'contactform_mailaddress', 'type' => OPTION_TYPE_TEXTBOX,
 										'order' => 17,

@@ -25,7 +25,8 @@
  * @author Stephen Billard (sbillard)
  * @package plugins
  */
-$plugin_is_filter = 5|ADMIN_PLUGIN|THEME_PLUGIN;
+
+$plugin_is_filter = 5|FEATURE_PLUGIN;
 $plugin_description = gettext('Support for <em>favorites</em> handling.');
 $plugin_author = "Stephen Billard (sbillard)";
 
@@ -34,7 +35,13 @@ $option_interface = 'favoritesOptions';
 class favoritesOptions {
 
 	function __construct() {
-		setOptionDefault('favorites_link', 'favorites');
+		$old = getOption('favorites_link');
+		if (!$old || is_numeric($old) || $old=='favorites') {
+			purgeOption('favorites_link');
+		} else {
+			setOptionDefault('favorites_rewrite', "page/$old");
+		}
+		setOptionDefault('favorites_rewrite', 'page/favorites');
 		gettext($str = 'My favorites');
 		setOptionDefault('favorites_title', getAllTranslations($str));
 		setOptionDefault('favorites_linktext', getAllTranslations($str));
@@ -64,10 +71,9 @@ class favoritesOptions {
 																					'multilingual'=>true,
 																					'order'=>2,
 																					'desc' => gettext('The text for the link to the favorites page.')),
-											gettext('Favorites page') => array('key' => 'favorites_link', 'type' => OPTION_TYPE_SELECTOR,
+											gettext('Favorites link') => array('key' => 'favorites_rewrite', 'type' => OPTION_TYPE_TEXTBOX,
 																					'order'=>1,
-																					'selections' => $list,
-																					'desc' => gettext('Theme script for the favorites page link')),
+																					'desc' => gettext('The link to use for the favorites script page')),
 											gettext('Add button') => array('key' => 'favorites_add_button', 'type' => OPTION_TYPE_TEXTBOX,
 																					'multilingual'=>true,
 																					'order'=>6,
@@ -85,6 +91,12 @@ class favoritesOptions {
 																					'order'=>5,
 																					'desc' => gettext('The favorites page description text.')),
 		);
+		if (getOption('favorites_link')) {
+			$options[gettext('Standard script naming')] = array('key' => 'favorites_link', 'type' => OPTION_TYPE_CHECKBOX,
+																						'order' => 0,
+																						'desc' => '<p class="notebox">'.gettext('<strong>Note:</strong> The <em>favorites</em> theme script should be named <em>favorites.php</em>. Check this box to use the standard script name.').'</p>');
+
+		}
 		return $options;
 	}
 
@@ -266,20 +278,35 @@ class favorites extends AlbumBase {
 		return $images;
 	}
 
-	static function notFound($script, $request) {
-		return false;
+	static function loadScript($script, $request) {
+		global $_zp_current_admin_obj, $_zp_gallery_page, $_myFavorites, $_zp_current_album,$_zp_conf_vars, $_myFavorites;
+		if (!$page = stripSuffix(getOption('favorites_link'))) {
+			$page = 'favoirtes';
+		}
+		if ($_zp_gallery_page == "$page.php") {
+			if (zp_loggedin()) {
+				$_zp_current_album = $_myFavorites;
+				add_context(ZP_ALBUM);
+				prepareAlbumPage();
+			} else {
+				$script = false;
+			}
+		}
+		return $script;
 	}
 
 }
 
 if (!OFFSET_PATH) {
+	if (!$page = stripSuffix(getOption('favorites_link'))) {
+		$page = 'favorites';
+	}
+	$_zp_conf_vars['special_pages'][$page] = array('define'=>false, 'rewrite'=>getOption('favorites_rewrite'));
+
+
+	zp_register_filter('load_theme_script', 'favorites::loadScript');
 	if (zp_loggedin()) {
 		$_myFavorites = new favorites($_zp_current_admin_obj->getUser());
-		if ($_zp_gallery_page == getOption('favorites_link').'.php') {
-			$_zp_current_album = $_myFavorites;
-			add_context(ZP_ALBUM);
-		}
-
 		if (isset($_POST['addToFavorites'])) {
 			$id = sanitize($_POST['id']);
 			switch ($_POST['type']) {
@@ -351,12 +378,15 @@ if (!OFFSET_PATH) {
 			}
 
 			?>
-			<form name="imageFavorites" class="imageFavorites" id="imageFavorites<?php echo $obj->getID(); ?>" action="<?php echo html_encode(getRequestURI()); ?>" method="post" accept-charset="UTF-8">
+			<form name="imageFavorites" class="imageFavorites"
+				id="imageFavorites<?php echo $obj->getID(); ?>"
+				action="<?php echo html_encode(getRequestURI()); ?>" method="post"
+				accept-charset="UTF-8">
 				<input type="hidden" name="addToFavorites" value="<?php echo $v; ?>" />
-				<input type="hidden" name="type" value="<?php echo html_encode($table); ?>" />
-				<input type="hidden" name="id" value="<?php echo html_encode($id); ?>" />
-				<span id="submit_button">
-					<input type="submit" value="<?php echo $add; ?>" />
+				<input type="hidden" name="type"
+					value="<?php echo html_encode($table); ?>" /> <input type="hidden"
+					name="id" value="<?php echo html_encode($id); ?>" /> <span
+					id="submit_button"> <input type="submit" value="<?php echo $add; ?>" />
 				</span>
 			</form>
 			<?php
@@ -367,14 +397,8 @@ if (!OFFSET_PATH) {
 				$text = get_language_string(getOption('favorites_linktext'));
 			}
 			?>
-			<a href="<?php echo FULLWEBPATH; ?>/page/<?php echo getOption('favorites_link'); ?>" id="favorite_link"><?php echo $text; ?></a>
+			<a href="<?php echo FULLWEBPATH; ?>/<?php echo getOption('favorites_link'); ?>" id="favorite_link"><?php echo $text; ?> </a>
 			<?php
-		}
-
-	} else {
-		if ($_zp_gallery_page == getOption('favorites_link').'.php') {
-			//mot logged in and trying to access the favorites page
-			zp_register_filter('load_theme_script', 'favorites::notFound');
 		}
 	}
 }

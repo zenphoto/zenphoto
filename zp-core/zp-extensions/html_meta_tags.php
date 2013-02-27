@@ -157,7 +157,7 @@ class htmlmetatags {
 	 */
 	static function getHTMLMetaData() {
 		global $_zp_gallery, $_zp_galley_page, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news,
-						$_zp_current_zenpage_page, $_zp_gallery_page, $_zp_current_category, $_zp_authority;
+						$_zp_current_zenpage_page, $_zp_gallery_page, $_zp_current_category, $_zp_authority, $_zp_conf_vars;
 		$host = sanitize("http://".$_SERVER['HTTP_HOST']);
 		$url = $host.getRequestURI();
 
@@ -299,7 +299,7 @@ class htmlmetatags {
 
 		// Social network extras
 		if(getOption('htmlmeta_name-expires')) { $meta .= '<meta name="pinterest" content="nopin" />'."\n"; } // dissalow users to pin images on Pinterest
-		
+
 		// Canonical url
 		if(getOption('htmlmeta_canonical-url')) {
 			$meta .= '<link rel="canonical" href="'.$canonicalurl.'" />'."\n";
@@ -329,28 +329,28 @@ class htmlmetatags {
 								case 'news.php':
 									if(function_exists("is_NewsArticle")) {
 										if(is_NewsArticle()) {
-											$altlink .= '/news/'.html_encode($_zp_current_zenpage_news->getTitlelink());
+											$altlink .= '/'._NEWS_.'/'.html_encode($_zp_current_zenpage_news->getTitlelink());
 										} else 	if(is_NewsCategory()) {
-											$altlink .= '/news/'.html_encode($_zp_current_category->getTitlelink());
+											$altlink .= '/'._NEWS_.'/'.html_encode($_zp_current_category->getTitlelink());
 										} else {
-											$altlink .= '/news';
+											$altlink .= '/'._NEWS_;
 										}
 									}
 									break;
 								case 'pages.php':
-									$altlink .= '/pages/'.html_encode($_zp_current_zenpage_page->getTitlelink());
+									$altlink .= '/'. _PAGES_.'/'.html_encode($_zp_current_zenpage_page->getTitlelink());
 									break;
 								case 'archive.php':
-									$altlink .= '/page/archive';
+									$altlink .= '/'.$_zp_conf_vars['special_pages']['archive']['rewrite'].'/';
 									break;
 								case 'search.php':
-									$altlink .= '/page/search';
+									$altlink .= '/'.$_zp_conf_vars['special_pages']['search']['rewrite'].'/';
 									break;
 								case 'contact.php':
 									$altlink .= '/page/contact';
 									break;
 								default: // for all other possible none standard custom pages
-									$altlink .= '/page/'.html_encode($pagetitle);
+									$altlink .= '/'._PAGE_.'/'.html_encode($pagetitle);
 									break;
 							} // switch
 							$meta .= '<link rel="alternate" hreflang="'.$langcheck.'" href="'.$altlink.'" />'."\n";

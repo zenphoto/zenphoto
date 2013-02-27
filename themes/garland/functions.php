@@ -120,7 +120,7 @@ function commonNewsLoop($paged) {
 			<div class="newsarticlecredit">
 				<span class="newsarticlecredit-left">
 					<?php
-					$count = call_user_func('getCommentCount');
+					$count = @call_user_func('getCommentCount');
 					$cat = getNewsCategories();
 					printNewsDate();
 					if ($count > 0) {

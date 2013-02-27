@@ -67,16 +67,15 @@ setOptionDefault('user_album_edit_default', 1);
 // old configuration opitons. preserve them
 $conf = $_zp_conf_vars;
 setOptionDefault('time_offset', 0);
+setOption('mod_rewrite_detected',0);
 if (isset($_GET['mod_rewrite'])) {
-	if ($_GET['mod_rewrite'] == 'ON') {
-		?>
-		<p>
-		<?php echo gettext('Mod_Rewrite check:'); ?>
-		<br />
-		<img src="<?php echo WEBPATH; ?>/page/setup_set-mod_rewrite?z=setup" title="<?php echo gettext('Mod_rewrite'); ?>" alt="<?php echo gettext('Mod_rewrite'); ?>" height="16px" width="16px" />
-		</p>
-		<?php
-	}
+	?>
+	<p>
+	<?php echo gettext('Mod_Rewrite check:'); ?>
+	<br />
+	<img src="<?php echo WEBPATH.'/'._PAGE_; ?>/setup_set-mod_rewrite?z=setup" title="<?php echo gettext('Mod_rewrite'); ?>" alt="<?php echo gettext('Mod_rewrite'); ?>" height="16px" width="16px" />
+	</p>
+	<?php
 }
 
 if (isset($_POST['setUTF8URI']) && $_POST['setUTF8URI'] != 'dont') {

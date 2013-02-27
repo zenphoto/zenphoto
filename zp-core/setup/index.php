@@ -17,7 +17,7 @@ if(!function_exists("gettext")) {
 } else {
 	$noxlate = 1;
 }
-define('HTACCESS_VERSION', '1.4.4');  // be sure to change this the one in .htaccess when the .htaccess file is updated.
+define('HTACCESS_VERSION', '1.4.5');  // be sure to change this the one in .htaccess when the .htaccess file is updated.
 
 define('OFFSET_PATH', 2);
 
@@ -89,17 +89,29 @@ if (file_exists(CONFIGFILE)) {
 if (session_id() == '') {
 	session_start();
 }
-
-$zp_cfg = @file_get_contents(CONFIGFILE);
-$xsrftoken = sha1(CONFIGFILE.$zp_cfg.session_id());
-
-$updatezp_config = false;
 if (isset($_GET['mod_rewrite'])) {
 	$mod = '&mod_rewrite='.$_GET['mod_rewrite'];
 } else {
 	$mod = '';
 }
 
+
+$zp_cfg = @file_get_contents(CONFIGFILE);
+$xsrftoken = sha1(CONFIGFILE.$zp_cfg.session_id());
+
+$updatezp_config = false;
+
+if (strpos($zp_cfg,"\$conf['special_pages']")===false) {
+	$template = file_get_contents(dirname(dirname(__FILE__)).'/zenphoto_cfg.txt');
+	$i = strpos($template,"\$conf['special_pages']");
+	$j = strpos($template,'//',$i);
+	$k = strpos($zp_cfg, '/** Do not edit below this line. **/');
+
+	$zp_cfg = substr($zp_cfg,0,$k).str_pad('', 80, '/')."\n".
+						substr($template,$i,$j-$i).str_pad('', 5, '/')."\n".
+						substr($zp_cfg,$k);
+	$updatezp_config = true;
+}
 
 $i = strpos($zp_cfg, 'define("DEBUG", false);');
 if ($i !== false) {
@@ -214,7 +226,7 @@ if (file_exists(CONFIGFILE)) {
 	eval(file_get_contents(CONFIGFILE));
 	if (isset($_zp_conf_vars['db_software'])) {
 		$confDB = $_zp_conf_vars['db_software'];
-		if ($confDB == 'MySQL' || $preferred != 'MySQL') {
+		if ($confDB === 'MySQL' || $preferred != 'MySQL') {
 			$confDB = NULL;
 		}
 		if (extension_loaded(strtolower($confDB)) && file_exists(dirname(dirname(__FILE__)).'/functions-db-'.$confDB.'.php')) {
@@ -625,7 +637,7 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 	}
 	checkmark($display, gettext('PHP <code>display_errors</code>'),
 			sprintf(gettext('PHP <code>display_errors</code> [is enabled]'),$display),
-			gettext('This setting may result in PHP error messages being displayed on WEB pages. These displays may contain sentsitive information about your site.').$aux,
+			gettext('This setting may result in PHP error messages being displayed on WEB pages. These displays may contain sensitive information about your site.').$aux,
 			$display && !TEST_RELEASE);
 
 	checkMark($noxlate, gettext('PHP <code>gettext()</code> support'), gettext('PHP <code>gettext()</code> support [is not present]'), gettext("Localization of Zenphoto requires native PHP <code>gettext()</code> support"));
@@ -646,7 +658,7 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 	} else {
 		$test = $_zp_UTF8->convert('test', 'ISO-8859-1', 'UTF-8');
 		if (empty($test)) {
-			$m2 = gettext("You need to install the <code>mbstring</code> package or correct the issue with <code>iconv(()</code>");
+			$m2 = gettext("You need to install the <code>mbstring</code> package or correct the issue with <code>iconv()</code>");
 			checkMark(0, '', gettext("PHP <code>mbstring</code> package [is not present and <code>iconv()</code> is not working]"), $m2);
 		} else {
 			$m2 = gettext("Strings generated internally by PHP may not display correctly. (e.g. dates)");
@@ -1360,7 +1372,8 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 				$desc .= ' '.gettext('<p class="buttons"><a href="?copyhtaccess" >Make setup create the file</a></p><br style="clear:both" /><br />');
 			}
 		} else {
-			$desc = gettext("Server seems not to be Apache or Apache-compatible, <code>mod_rewrite</code> is not available.");
+			$mod = "&amp;mod_rewrite";	//	enable test to see if it works.
+			$desc = gettext("Server seems not to be Apache or Apache-compatible, <code>mod_rewrite</code> may not be available.");
 		}
 	} else {
 		$i = strpos($htu, 'VERSION');
@@ -1409,7 +1422,6 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 		}
 	}
 
-	$mod = '';
 	$rw = '';
 	if ($ch > 0) {
 		$i = strpos($htu, 'REWRITEENGINE');

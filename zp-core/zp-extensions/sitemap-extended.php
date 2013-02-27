@@ -673,7 +673,6 @@ function getSitemapGoogleImageVideoExtras($albumobj,$imageobj,$locale) {
 	if ($imageobj->getState()) { $location .= $imageobj->getState($locale) .', ' ; }
 	if ($imageobj->getCountry()) { $location .= $imageobj->getCountry($locale); }
 	$license = get_language_string(getOption('sitemap_license'),$locale);
-	//$path = FULLWEBPATH.'/'.rewrite_path($locale.'/'.pathurlencode($albumobj->name).'/'.urlencode($imageobj->filename).IM_SUFFIX,'?album='.pathurlencode($albumobj->name).'&amp;image='.urlencode($imageobj->filename),false);
 	if(isImageVideo($imageobj) && in_array($ext,array('.mpg','.mpeg','.mp4','.m4v','.mov','.wmv','.asf','.avi','.ra','.ram','.flv','.swf'))) { // google says it can index these so we list them even if unsupported by Zenphoto
 		$data .= sitemap_echonl("\t\t<video:video>\n\t\t\t<video:thumbnail_loc>".$host.html_encode($imageobj->getThumb())."</video:thumbnail_loc>\n");
 		$data .= sitemap_echonl("\t\t\t<video:title>".html_encode($imageobj->getTitle($locale))."</video:title>");

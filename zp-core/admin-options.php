@@ -597,10 +597,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<p>
 							<label>
 								<?php
-								$mod_rewrite = MOD_REWRITE;
-								if (is_null($mod_rewrite)) {
-									$state = ' disabled="disabled"';
-								} else if ($mod_rewrite) {
+								if (MOD_REWRITE) {
 									$state = ' checked="checked"';
 								} else {
 									$state = '';
@@ -620,9 +617,9 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 					</td>
 					<td>
 						<p>
-							<?php
-							echo gettext("If you have Apache <em>mod rewrite</em>, put a checkmark on the <em>mod rewrite</em> option and you'll get nice cruft-free URLs.");
-							if (is_null($mod_rewrite)) echo ' '.gettext('If the checkbox is disabled, setup did not detect a working Apache <em>mod_rewrite</em> facility and proper <em>.htaccess</em> file.');
+							<?php echo gettext("If you have Apache <em>mod rewrite</em> (or equivalent), put a checkmark on the <em>mod rewrite</em> option and you'll get nice cruft-free URLs."); ?>
+							<?php echo sprintf(gettext('The <em>tokens</em> used in rewritten URIs may be altered to your taste. See the <a href="%s">plugin options</a> for <code>rewriteTokens</code>.'),WEBPATH.'/'.ZENFOLDER.'/admin-options.php?page=options&tab=plugin&single=rewriteTokens'); ?>
+							<?php if (!getOption('mod_rewrite_detected')) echo '<p class="notebox">'.gettext('Setup did not detect a working <em>mod_rewrite</em> facility.'),'</p>';
 							?>
 						</p>
 						<p><?php echo gettext("If you are having problems with images whose names contain characters with diacritical marks try changing the <em>UTF8 image URIs</em> setting."); ?></p>
@@ -732,7 +729,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 							});
 						</script>
 						<br clear="all" />
-						<p class="notebox"><?php printf(gettext('Highlighted languages are not current with Zenphoto Version %1$s. (The version Zenphoto of the out-of-date language is shown in braces.) Please check the <a href="%2$s">translation repository</a> for new and updated language translations.'),$zpversion,'http://www.zenphoto.org/trac/browser/trunk/zp-core/locale');?></p>
+						<p class="notebox"><?php printf(gettext('Highlighted languages are not current with Zenphoto Version %1$s. (The version Zenphoto of the out-of-date language is shown in braces.) Please check the <a href="%2$s">translation repository</a> for new and updated language translations.'),$zpversion,'https://github.com/zenphoto/zenphoto/tree/master/zp-core/locale');?></p>
 						<label class="checkboxlabel">
 							<input type="checkbox" name="multi_lingual" value="1"	<?php echo checked('1', getOption('multi_lingual')); ?> /><?php echo gettext('Multi-lingual'); ?>
 						</label>

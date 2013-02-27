@@ -343,6 +343,7 @@ function is_valid($image, $valid_types) {
  * @param bool $linkslides Set to true if you want the slides to be linked to their image pages (jQuery mode only)
  * */
 function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $imageobj = NULL, $width = NULL, $height = NULL, $crop=false, $shuffle=false, $linkslides=false) {
+	global $_zp_conf_vars;
 	if (!isset($_POST['albumid']) AND !is_object($albumobj)) {
 		echo "<div class=\"errorbox\" id=\"message\"><h2>".gettext("Invalid linking to the slideshow page.")."</h2></div>";
 		echo "</div></body></html>";
@@ -410,8 +411,12 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $i
 		$albumtitle = gettext('Search');
 	} else {
 		if (isset($_POST['favorites_page'])) {
+			if (!$page = stripSuffix(getOption('favorites_link'))) {
+				$page = 'favoirtes';
+			}
+			$link = $_zp_conf_vars['special_pages'][$page]['rewrite'];
 			$album = $_myFavorites;
-			$returnpath = rewrite_path('/page/'.getOption('favorites_link').'/'.$pagenumber,'/index.php?p='.getOption('favorites_link').'&page='.$pagenumber);
+			$returnpath = rewrite_path('/'.$link.'/'.$pagenumber,'/index.php?p='.$page.'&page='.$pagenumber);
 		} else {
 			$albumq = query_single_row("SELECT title, folder FROM ". prefix('albums') ." WHERE id = ".$albumid);
 			$album = newAlbum($albumq['folder']);
