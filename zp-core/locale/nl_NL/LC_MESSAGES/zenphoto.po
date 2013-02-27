@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-27 06:45+0100\n"
+"POT-Creation-Date: 2013-02-27 20:53+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -453,7 +453,7 @@ msgstr "Gebruikers registratie pagina"
 #: ZpTranslation-Development/themes/zpmobile/functions.php:55
 #: ZpTranslation-Development/zp-core/template-functions.php:1171
 #: ZpTranslation-Development/zp-core/template-functions.php:1202
-#: ZpTranslation-Development/zp-core/template-functions.php:3802
+#: ZpTranslation-Development/zp-core/template-functions.php:3806
 #: ZpTranslation-Development/zp-core/zp-extensions/html_meta_tags.php:231
 #: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:411
 #: ZpTranslation-Development/zp-core/zp-extensions/deprecated_functions/check_for_deprecated.php:60
@@ -1847,7 +1847,7 @@ msgstr "Stuur e-mail"
 #: ZpTranslation-Development/zp-core/admin-users.php:833
 #: ZpTranslation-Development/zp-core/lib-auth.php:998
 #: ZpTranslation-Development/zp-core/zp-extensions/crop_image.php:338
-#: ZpTranslation-Development/zp-core/zp-extensions/rewriteTokens.php:72
+#: ZpTranslation-Development/zp-core/zp-extensions/rewriteTokens.php:51
 #: ZpTranslation-Development/zp-core/zp-extensions/user_mailing_list.php:171
 #: ZpTranslation-Development/zp-core/zp-extensions/user_mailing_list.php:172
 #: ZpTranslation-Development/zp-core/zp-extensions/wordpress_import.php:423
@@ -10561,32 +10561,41 @@ msgid "Return to archive"
 msgstr "Keer terug naar <em>archief</em>"
 
 #: ZpTranslation-Development/zp-core/template-functions.php:1445
-#: ZpTranslation-Development/zp-core/template-functions.php:1449
-msgid "printField() invalid function call."
-msgstr "ongeldig gebruik van de functie printField() "
+#, php-format
+msgid "printField() invalid function call, context %X."
+msgstr "ongeldig gebruik van de functie printField(), context %X."
 
-#: ZpTranslation-Development/zp-core/template-functions.php:2043
+#: ZpTranslation-Development/zp-core/template-functions.php:1449
+#, php-format
+msgid "printField() invalid function call, field:%s."
+msgstr "ongeldig gebruik van de functie printField(), veld:%s."
+
+#: ZpTranslation-Development/zp-core/template-functions.php:1453
+msgid "printField() invalid function call, not an object."
+msgstr "ongeldig gebruik van de functie printField(), geen object."
+
+#: ZpTranslation-Development/zp-core/template-functions.php:2047
 msgid "The image is marked un-published."
 msgstr "Deze afbeelding is als niet-gepubliceerd gemarkeerd."
 
-#: ZpTranslation-Development/zp-core/template-functions.php:2392
+#: ZpTranslation-Development/zp-core/template-functions.php:2396
 msgid "Image Info"
 msgstr "Fotoinformatie"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3157
+#: ZpTranslation-Development/zp-core/template-functions.php:3161
 #, php-format
 msgid "View image: %s"
 msgstr "Bekijk afbeelding: %s"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3344
+#: ZpTranslation-Development/zp-core/template-functions.php:3348
 msgid "No popular tags"
 msgstr "Geen populaire tags"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3622
+#: ZpTranslation-Development/zp-core/template-functions.php:3626
 msgid "Latest images RSS"
 msgstr "Laatste afbeeldingen RSS"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3678
+#: ZpTranslation-Development/zp-core/template-functions.php:3682
 msgid ""
 "getSearchURL $album_list parameter is deprecated. Pass array(\"albums"
 "\"=>array(album, album, ...)) instead."
@@ -10594,7 +10603,7 @@ msgstr ""
 "getSearchURL $album_list parameter is verouderd. Gebruik in plaats daarvan "
 "array(\"albums\"=>array(album, album,...))."
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3797
+#: ZpTranslation-Development/zp-core/template-functions.php:3801
 msgid ""
 "printSearchForm $album_list parameter is deprecated. Pass array(\"albums"
 "\"=>array(album, album, ...)) instead."
@@ -10602,41 +10611,41 @@ msgstr ""
 "printSearchForm $album_list parameter is verouderd. Gebruik in plaats "
 "daarvan array(\"albums\"=>aray(album, album,...))."
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3813
+#: ZpTranslation-Development/zp-core/template-functions.php:3817
 #, php-format
 msgid "%s within previous results"
 msgstr "%s binnen vorige resultaten"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3887
+#: ZpTranslation-Development/zp-core/template-functions.php:3891
 msgid "search options"
 msgstr "zoekopties"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3887
+#: ZpTranslation-Development/zp-core/template-functions.php:3891
 msgid "fields"
 msgstr "velden"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3923
+#: ZpTranslation-Development/zp-core/template-functions.php:3927
 msgid "Within"
 msgstr "binnen"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3927
+#: ZpTranslation-Development/zp-core/template-functions.php:3931
 #: ZpTranslation-Development/zp-core/zp-extensions/flag_thumbnail.php:90
 msgid "New"
 msgstr "Nieuw"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3981
+#: ZpTranslation-Development/zp-core/template-functions.php:3985
 msgid "no date"
 msgstr "geen datum"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:4215
+#: ZpTranslation-Development/zp-core/template-functions.php:4219
 msgid "The page you are trying to view is password protected."
 msgstr "Deze pagina is beveiligd met een wachtwoord."
 
-#: ZpTranslation-Development/zp-core/template-functions.php:4220
+#: ZpTranslation-Development/zp-core/template-functions.php:4224
 msgid "login"
 msgstr "login"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:4237
+#: ZpTranslation-Development/zp-core/template-functions.php:4241
 msgid ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
 "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
@@ -13281,8 +13290,8 @@ msgstr ""
 "negeren. Het wordt dan alleen een waarschuwing."
 
 #: ZpTranslation-Development/zp-core/setup/setup-functions.php:601
-msgid "A simpler web album"
-msgstr "Een eenvoudiger web fotoalbum"
+msgid "The simpler media website CMS"
+msgstr "The simpler media website CMS"
 
 #: ZpTranslation-Development/zp-core/setup/setup-functions.php:619
 msgid "Updated configuration file"
@@ -18485,27 +18494,23 @@ msgstr ""
 "Mogelijkheid om de URI tokens te veranderen in het configuratiebestand "
 "(zenphoto.cfg)."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/rewriteTokens.php:40
-msgid "<p class=\"messagebox\"><em>zenphoto.cfg</em> restored to default.</p>"
-msgstr ""
-"<p class=\"messagebox\"><em>zenphoto.cfg</em> hersteld naar de standaard "
-"instellingen.</p>"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/rewriteTokens.php:58
+#: ZpTranslation-Development/zp-core/zp-extensions/rewriteTokens.php:42
+#: ZpTranslation-Development/zp-core/zp-extensions/rewriteTokens.php:76
 #, php-format
 msgid "Link for <em>%s</em> rule."
 msgstr "Link voor<em>%s</em> rewrite regel."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/rewriteTokens.php:61
+#: ZpTranslation-Development/zp-core/zp-extensions/rewriteTokens.php:45
+#: ZpTranslation-Development/zp-core/zp-extensions/rewriteTokens.php:79
 #, php-format
 msgid "Link for <em>%s</em> script page."
 msgstr "Link voor de <em>%s</em> scriptpagina."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/rewriteTokens.php:74
+#: ZpTranslation-Development/zp-core/zp-extensions/rewriteTokens.php:53
 msgid "Restore defaults."
 msgstr "Herstel de standaardinstellingen."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/rewriteTokens.php:81
+#: ZpTranslation-Development/zp-core/zp-extensions/rewriteTokens.php:96
 msgid "<p class=\"messagebox\"><em>zenphoto.cfg</em>  updated.</p>"
 msgstr "<p class=\"messagebox\"><em>zenphoto.cfg</em>  updated.</p>"
 
@@ -24133,6 +24138,15 @@ msgstr "<code>zenpageAlbumImage()</code> kan afbeelding %1$s:%2$s niet vinden."
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> kan album %1$s niet vinden."
+
+#~ msgid "A simpler web album"
+#~ msgstr "Een eenvoudiger web fotoalbum"
+
+#~ msgid ""
+#~ "<p class=\"messagebox\"><em>zenphoto.cfg</em> restored to default.</p>"
+#~ msgstr ""
+#~ "<p class=\"messagebox\"><em>zenphoto.cfg</em> hersteld naar de standaard "
+#~ "instellingen.</p>"
 
 #~ msgid "Database <code>access rights</code>"
 #~ msgstr "Database <code>toegangsrechten</code>"
