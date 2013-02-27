@@ -87,7 +87,7 @@ class Zenpage {
 	 * @param bool $toplevel TRUE for only the toplevel pages
 	 * @return array
 	 */
-	function getPages($published=NULL,$toplevel=false) {
+	function getPages($published=NULL,$toplevel=false,$number=NULL) {
 		global $_zp_loggedin;
 		if (is_null($published)) {
 			$published = !zp_loggedin();
@@ -113,6 +113,9 @@ class Zenpage {
 					$page = new ZenpagePage($row['titlelink']);
 					if ($page->isMyItem(LIST_RIGHTS)) {
 						$all_pages[] = $row;
+						if ($number && count($result) >= $number) {
+							break;
+						}
 					}
 				}
 			}

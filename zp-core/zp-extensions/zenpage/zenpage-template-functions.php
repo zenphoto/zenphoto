@@ -2944,6 +2944,7 @@ function getLatestZenpageComments($number,$type="all",$itemID="") {
  * 																		"Comments-news" for comments of only the news article it is called from
  * 																		"Comments-page" for comments of only the page it is called from
  * 																		"Comments-all" for comments from all albums, images, news articels and pages
+ *																		"Pages" feed for all pages
  * @param string $categorylink The specific category you want a RSS feed from (only 'Category' mode)
  * @param string $prev text to before before the link
  * @param string $linktext title of the link
@@ -2967,6 +2968,11 @@ function getZenpageRSSLink($option='News', $categorylink='', $lang=NULL) {
 		}
 	}
 	switch($option) {
+		case 'Pages':
+			if (getOption('RSS_pages')) {
+				return WEBPATH.'/index.php?rss=pages&lang='.$lang;
+			}
+			break;
 		case 'News':
 			if (getOption('RSS_articles')) {
 				return WEBPATH.'/index.php?rss=news&lang='.$lang;
@@ -3015,6 +3021,7 @@ function getZenpageRSSLink($option='News', $categorylink='', $lang=NULL) {
  * 																		"Comments-news" for comments of only the news article it is called from
  * 																		"Comments-page" for comments of only the page it is called from
  * 																		"Comments-all" for comments from all albums, images, news articels and pages
+ *																		"Pages" feed for all pages
  * @param string $categorylink The specific category you want a RSS feed from (only 'Category' mode)
  * @param string $prev text to before before the link
  * @param string $linktext title of the link
@@ -3046,6 +3053,7 @@ function printZenpageRSSLink($option='News', $categorylink='', $prev='', $linkte
  * 																		"Comments-news" for comments of only the news article it is called from
  * 																		"Comments-page" for comments of only the page it is called from
  * 																		"Comments-all" for comments from all albums, images, news articels and pages
+ *																		"Pages" feed for all pages
  * @param string $categorylink The specific category you want a RSS feed from (only 'Category' mode)
  * @param string $linktext title of the link
  * @param string $lang optional to display a feed link for a specific language (currently works for latest images only). Enter the locale like "de_DE" (the locale must be installed on your Zenphoto to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
