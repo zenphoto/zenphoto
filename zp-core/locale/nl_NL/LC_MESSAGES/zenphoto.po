@@ -14793,7 +14793,7 @@ msgstr "Vink aan als een CAPTCHA gewenst is."
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:139
 #: ZpTranslation-Development/zp-core/zp-extensions/mobileTheme.php:102
 msgid "Phone"
-msgstr "telefoon"
+msgstr "Telefoon"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:141
 msgid "Phone number"
@@ -14815,7 +14815,7 @@ msgstr "een title"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:206
 msgid "a name"
-msgstr "een name"
+msgstr "een naam"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:207
 msgid "a company"
@@ -14878,7 +14878,7 @@ msgstr "Vul a.u.b. %1$s en %2$s in."
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:255
 #, php-format
 msgid "Please enter: %sThanks."
-msgstr "Vul a.u.b. %s in."
+msgstr "De volgende velden zijn niet of onjuist ingevuld: %s"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:296
 msgid "Confirm"
@@ -17538,7 +17538,7 @@ msgstr ""
 
 #: ZpTranslation-Development/zp-core/zp-extensions/mobileTheme.php:93
 msgid "Phone theme"
-msgstr "Telefoon thema"
+msgstr "Smartphone thema"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/mobileTheme.php:95
 #: ZpTranslation-Development/zp-core/zp-extensions/mobileTheme.php:99
