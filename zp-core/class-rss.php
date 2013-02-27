@@ -302,8 +302,35 @@ class RSS {
 					require_once(ZENFOLDER . '/'.PLUGIN_FOLDER . '/image_album_statistics.php');
 					require_once(ZENFOLDER . '/'.PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
 					break;
-
-
+				case 'pages':	//Zenpage News RSS
+					if (!getOption('RSS_pages')) {
+						header("HTTP/1.0 404 Not Found");
+						header("Status: 404 Not Found");
+						include(ZENFOLDER. '/404.php');
+						exitZP();
+					}
+					$this->feedtype = 'pages';
+					$this->sortorder = $this->getRSSSortorder();
+					switch($this->sortorder) {
+						case 'popular':
+							$titleappendix = gettext(' (Most popular news)');
+							break;
+						case 'mostrated':
+							$titleappendix = gettext(' (Most rated news)');
+							break;
+						case 'toprated':
+							$titleappendix = gettext(' (Top rated news)');
+							break;
+						case 'random':
+							$titleappendix = gettext(' (Random news)');
+							break;
+						default: 
+							$titleappendix = gettext(' (Latest pages)');
+							break;
+					}
+					require_once(ZENFOLDER . '/'.PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
+					break;
+					
 				case 'comments':	//Comments RSS
 					if (!getOption('RSS_comments')) {
 						header("HTTP/1.0 404 Not Found");
@@ -687,6 +714,7 @@ protected function getRSSCombinewsAlbums() {
 	 * @return array
 	 */
 	public function getRSSitems() {
+		global $_zp_zenpage;
 		switch($this->feedtype) {
 			case 'gallery':
 				if ($this->rssmode == "albums") {
@@ -734,7 +762,13 @@ protected function getRSSCombinewsAlbums() {
 						break;
 				}
 				break;
-
+			case "pages":
+				if($this->sortorder) {
+					$items = getZenpageStatistic($this->itemnumber,'pages',$this->sortorder);
+				} else {
+					$items = $_zp_zenpage->getPages(NULL,false,$this->itemnumber);
+				}
+			  break;
 			case 'comments':
 				switch($type = $this->commentrsstype) {
 					case 'gallery':
@@ -939,6 +973,25 @@ protected function getRSSCombinewsAlbums() {
 		return $feeditem;
 	}
 
+ /**
+	* Gets the feed item data in a Zenpage news feed
+	*
+	* @param array $item Titlelink a Zenpage article or filename of an image if a combined feed
+	* @return array
+	*/
+	protected function getRSSitemPages($item) {
+		$obj = new ZenpagePage($item['titlelink']);
+		$feeditem['title'] = $feeditem['title'] = get_language_string($obj->getTitle('all'),$this->locale);
+		$feeditem['link'] = getPageLinkURL($obj->getTitlelink());
+		$feeditem['desc'] = shortenContent($obj->getContent($this->locale),getOption('zenpage_rss_length'), '...');
+		$feeditem['enclosure'] = '';
+		$feeditem['category'] = '';
+		$feeditem['media_content'] = '';
+		$feeditem['media_thumbnail'] = '';
+		$feeditem['pubdate'] = date("r",strtotime($obj->getDatetime()));
+		return $feeditem;
+	}
+	
 	/**
 	 * Gets the feed item data in a comments feed
 	 *
@@ -1036,6 +1089,9 @@ protected function getRSSCombinewsAlbums() {
 								break;
 							case 'news':
 								$item = $this->getRSSitemNews($feeditem);
+								break;
+							case 'pages':
+								$item = $this->getRSSitemPages($feeditem);
 								break;
 							case 'comments':
 								$item = $this->getRSSitemComments($feeditem);
