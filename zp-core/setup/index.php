@@ -1354,6 +1354,7 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 	}
 	$msg = gettext("<em>.htaccess</em> file");
 	$Apache = stristr($_SERVER['SERVER_SOFTWARE'], "apache");
+	$Nginx = stristr($_SERVER['SERVER_SOFTWARE'], "nginx");
 	$htfile = $serverpath.'/.htaccess';
 	$ht = trim(@file_get_contents($htfile));
 	$htu = strtoupper($ht);
@@ -1371,9 +1372,14 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 			if (setupUserAuthorized()) {
 				$desc .= ' '.gettext('<p class="buttons"><a href="?copyhtaccess" >Make setup create the file</a></p><br style="clear:both" /><br />');
 			}
+		} else if($Nginx) {
+			$err = gettext("Server seems to be <em>nginx</em>");
+			$mod = "&amp;mod_rewrite";	//	enable test to see if it works.
+			$desc = sprintf(gettext('If you wish to create cruft-free URLs, you will need to configuring <em>URL rewriting for NGINX servers</em>. Please see the <em>nginx_zenphoto_rewrite.conf</em> file in the %s folder for details.'),ZENFOLDER).
+						'<br /><br />'.gettext('You can ignore this warning if you do not intend to set the <code>mod_rewrite</code> option.');
 		} else {
 			$mod = "&amp;mod_rewrite";	//	enable test to see if it works.
-			$desc = gettext("Server seems not to be Apache or Apache-compatible, <code>mod_rewrite</code> may not be available.");
+			$desc = gettext("Server seems not to be <em>Apache</em> or <em>Apache-compatible</em>, <code>mod_rewrite</code> may not be available.");
 		}
 	} else {
 		$i = strpos($htu, 'VERSION');
@@ -1436,7 +1442,7 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 			$mod = "&amp;mod_rewrite=$rw";
 		}
 	}
-	$good = checkMark($ch, $msg, $err, $desc) && $good;
+	$good = checkMark($ch, $msg, $err, $desc, false) && $good;
 
 	$base = true;
 	$f = '';
