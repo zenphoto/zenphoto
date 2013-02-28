@@ -128,16 +128,16 @@ if ($zp_request && $_zp_script && file_exists($_zp_script = SERVERPATH . "/" . i
 	list($album, $image) = rewrite_get_album_image('album','image');
 	debug404($album, $image, $_index_theme);
 	$_zp_gallery_page = '404.php';
-	$_zp_script = THEMEFOLDER.'/'.internalToFilesystem($_index_theme).'/404.php';
+	$_zp_script = SERVERPATH . "/" . THEMEFOLDER.'/'.internalToFilesystem($_index_theme).'/404.php';
 	header ('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 	header("HTTP/1.0 404 Not Found");
 	header("Status: 404 Not Found");
 	zp_apply_filter('theme_headers');
-	if (file_exists(SERVERPATH . "/" . $_zp_script)) {
+	if (file_exists($_zp_script)) {
 		if ($custom) require_once($custom);
 		include($_zp_script);
 	} else {
-		include(ZENFOLDER. '/404.php');
+		include(SERVERPATH . "/" . ZENFOLDER. '/404.php');
 	}
 }
 //$_zp_script_timer['theme script load'] = microtime();
