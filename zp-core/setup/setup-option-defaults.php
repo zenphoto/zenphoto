@@ -191,8 +191,8 @@ setOptionDefault('locale', '');
 setOptionDefault('date_format', '%x');
 
 // plugins--default to enabled
-if (!is_null($v = getOption('zp_plugin_colorbox'))) {
-	setOption('zp_plugin_colorbox_js', $v);
+if (!is_null(getOption('zp_plugin_colorbox'))) {
+	setOption('zp_plugin_colorbox_js', 9|THEME_PLUGIN);
 	purgeOption('zp_plugin_colorbox');
 } else {
 	setOptionDefault('zp_plugin_colorbox_js', 9|THEME_PLUGIN);
@@ -355,7 +355,7 @@ setOption('zp_plugin_deprecated-functions',9|CLASS_PLUGIN);	//	Yes, I know some 
 																														//	(perhaps unseen) errors. Better the user should disable this once he knows
 																														//	his site is working.
 setOptionDefault('zp_plugin_zenphoto_news', 5|ADMIN_PLUGIN);
-setOptionDefault('zp_plugin_hitcounter',1);
+setOptionDefault('zp_plugin_hitcounter',5|ADMIN_PLUGIN|THEME_PLUGIN);
 setOptionDefault('zp_plugin_tiny_mce', 5|ADMIN_PLUGIN);
 setOptionDefault('zp_plugin_security-logger', 9|CLASS_PLUGIN);
 // migrate search space is opton
@@ -366,13 +366,6 @@ query('DELETE FROM '.prefix('options').' WHERE `name`="search_space_is_OR"',fals
 
 if (!file_exists(SERVERPATH.'/favicon.ico')) {
 	@copy(SERVERPATH.'/'.ZENFOLDER.'/images/favicon.ico',SERVERPATH.'/favicon.ico');
-}
-
-if (getOption('zp_plugin_zenphoto_sendmail')) {
-	setOption('zp_plugin_zenphoto_sendmail', 5|CLASS_PLUGIN);
-}
-if (getOption('zp_plugin_PHPMailer')) {
-	setOption('zp_plugin_PHPMailer', 8|CLASS_PLUGIN);
 }
 
 if ($v = getOption('zp_plugin_filter-zenphoto_seo')) {
