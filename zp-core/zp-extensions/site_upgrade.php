@@ -43,8 +43,8 @@ switch (OFFSET_PATH) {
 		$state = getOption('site_upgrade_state');
 		if ((!zp_loggedin(ADMIN_RIGHTS) && $state == 'closed_for_test') || $state == 'closed') {
 			if (isset($_GET['rss'])) {
-				if (file_exists(SERVERPATH.'/'.DATA_FOLDER.'/rss-closed.xml')) {
-					$xml = file_get_contents(SERVERPATH.'/'.DATA_FOLDER.'/rss-closed.xml');
+				if (file_exists(SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/site_upgrade/rss-closed.xml')) {
+					$xml = file_get_contents(SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/site_upgrade/rss-closed.xml');
 					$xml = preg_replace('~<pubDate>(.*)</pubDate>~', '<pubDate>'.date("r",time()).'</pubDate>', $xml);
 					echo $xml;
 				}
