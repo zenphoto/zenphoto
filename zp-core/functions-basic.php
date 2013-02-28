@@ -1366,8 +1366,10 @@ function safe_glob($pattern, $flags=0) {
 		$glob=array();
 		while(($file=readdir($dir))!==false) {
 			if(@preg_match($match, $file) && $file{0}!='.') {
-				if ((is_dir("$path/$file"))||(!($flags&GLOB_ONLYDIR))) {
+				if (is_dir("$path/$file")) {
 					if ($flags&GLOB_MARK) $file.='/';
+					$glob[]=$path_return.$file;
+				} else if (!is_dir("$path/$file")&&!($flags&GLOB_ONLYDIR)) {
 					$glob[]=$path_return.$file;
 				}
 			}
