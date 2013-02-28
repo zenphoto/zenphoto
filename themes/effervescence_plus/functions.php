@@ -6,7 +6,16 @@ zp_register_filter('themeSwitcher_head', 'switcher_head');
 zp_register_filter('themeSwitcher_Controllink', 'switcher_controllink');
 zp_register_filter('theme_head', 'css_head', 0);
 
-$personalities = array(gettext('Image page') => 'image_page', gettext('Simpleviewer') => 'simpleviewer', gettext('Colorbox') => 'colorbox', gettext('Image gallery') => 'image_gallery');
+$cwd = getcwd();
+chdir(dirname(__FILE__));
+$persona = safe_glob('*',GLOB_ONLYDIR);
+chdir($cwd);
+$persona = array_diff($persona, array('images','styles'));
+$personalities = array();
+foreach ($persona as $personality) {
+	$personalities[ucfirst(str_replace('_',' ',$personality))] = $personality;
+}
+
 $curdir = getcwd();
 chdir(SERVERPATH . "/themes/".basename(dirname(__FILE__))."/styles");
 $filelist = safe_glob('*.css');

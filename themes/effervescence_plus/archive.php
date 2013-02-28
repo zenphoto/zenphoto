@@ -72,7 +72,7 @@ if (!defined('WEBPATH')) die();
 			<div id="tag_cloud"><p><?php echo gettext('Popular Tags'); ?></p><?php printAllTagsAs('cloud', 'tags'); ?></div>
 			<br style="clear:both" />
 			<?php
-			if ($zenpage = getOption('zp_plugin_zenpage')) {
+			if ($zenpage) {
 				?>
 				</div><!-- content left-->
 				<div id="sidebar">

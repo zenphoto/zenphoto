@@ -75,10 +75,6 @@ themes/effervescence_plus/password.php
 themes/effervescence_plus/register.php
 themes/effervescence_plus/search.php
 themes/effervescence_plus/sidebar.php
-themes/effervescence_plus/simpleviewer
-themes/effervescence_plus/simpleviewer/functions.php
-themes/effervescence_plus/simpleviewer/simpleviewer.swf
-themes/effervescence_plus/simpleviewer/swfobject.js
 themes/effervescence_plus/slideshow-controls.png
 themes/effervescence_plus/slideshow.css
 themes/effervescence_plus/slideshow.php
@@ -1775,4 +1771,4 @@ zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zpCaptcha
 zp-core/zp-extensions/zpCaptcha.php
 zp-core/zp-extensions/zpCaptcha/c.php
-1777
+1773

@@ -5,7 +5,15 @@ require_once (SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistic
 zp_register_filter('themeSwitcher_head', 'switcher_head');
 zp_register_filter('themeSwitcher_Controllink', 'switcher_controllink');
 
-$personalities = array(gettext('Image page') => 'image_page', gettext('Colorbox') => 'colorbox', gettext('Image gallery') => 'image_gallery');
+$cwd = getcwd();
+chdir(dirname(__FILE__));
+$persona = safe_glob('*',GLOB_ONLYDIR);
+chdir($cwd);
+$persona = array_diff($persona, array('images','contact_form'));
+$personalities = array();
+foreach ($persona as $personality) {
+	$personalities[ucfirst(str_replace('_',' ',$personality))] = $personality;
+}
 
 function switcher_head($ignore) {
 	global $personalities;
