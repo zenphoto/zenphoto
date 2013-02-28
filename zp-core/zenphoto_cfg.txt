@@ -66,13 +66,15 @@ $conf['server_protocol'] = "http";
 ////////////////////////////////////////////////////////////////////////////////
 // Zenphoto special URL rule definitions
 //
-//	Elemments which have a define are processed by rewrite rules in the zenphoto-rewrite.txt file
-//	and the define is used internally to Zenphoto to reference the rewrite text when building links
-//	Elements without a define are processed by a rule that detects them as the sole element of the URL
-//	and redirects to the theme script page indicated by the array element key.
+//	Elemments which have a define and no rule are processed by rewrite rules in the 
+//	zenphoto-rewrite.txt file and the define is used internally to Zenphoto to reference 
+//	the rewrite text when building links.
 //	
-//	Elements without a define are processed after Search, Pages, and News rewrite rules and before Image and album
-//	rewrite rules.
+//	Elements with a rule defined are processed after Search, Pages, and News rewrite rules and before 
+//	Image and album rewrite rules. The tag %REWRITE% in the rule is replaced with the "rewrite" text 
+//	before processing the rule.
+//
+//	It makes no sense to have an element without either a define or a rule as nothing will happen.
 //
 $conf['special_pages'] = array(
 														'archive'=>			array('define'=>false,						'rewrite'=>'page/archive',		'rule'=>'^%REWRITE%/*$		index.php?p=archive [L,QSA]'),

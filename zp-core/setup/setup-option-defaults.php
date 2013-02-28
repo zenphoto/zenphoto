@@ -73,7 +73,7 @@ if (isset($_GET['mod_rewrite'])) {
 	<p>
 	<?php echo gettext('Mod_Rewrite check:'); ?>
 	<br />
-	<img src="<?php echo WEBPATH.'/'._PAGE_; ?>/setup_set-mod_rewrite?z=setup" title="<?php echo gettext('Mod_rewrite'); ?>" alt="<?php echo gettext('Mod_rewrite'); ?>" height="16px" width="16px" />
+	<img src="<?php echo FULLWEBPATH.'/'._PAGE_; ?>/setup_set-mod_rewrite?z=setup" title="<?php echo gettext('Mod_rewrite'); ?>" alt="<?php echo gettext('Mod_rewrite'); ?>" height="16px" width="16px" />
 	</p>
 	<?php
 }
@@ -343,7 +343,7 @@ natcasesort($themes);
 echo gettext('Theme setup:').'<br />';
 foreach (array_keys($_zp_gallery->getThemes()) as $theme) {
 	?>
-	<img src="<?php echo WEBPATH.'/'.ZENFOLDER.'/setup/setup_themeOptions.php?theme='.$theme; ?>" title="<?php echo $theme; ?>" alt="<?php echo $theme; ?>" height="16px" width="16px" />
+	<img src="<?php echo FULLWEBPATH.'/'.ZENFOLDER.'/setup/setup_themeOptions.php?theme='.$theme; ?>" title="<?php echo $theme; ?>" alt="<?php echo $theme; ?>" height="16px" width="16px" />
 	<?php
 }
 ?>
@@ -606,7 +606,7 @@ natcasesort($plugins);
 echo gettext('Plugin setup:').'<br />';
 foreach ($plugins as $extension) {
 	?>
-	<img src="<?php echo WEBPATH.'/'.ZENFOLDER.'/setup/setup_pluginOptions.php?plugin='.$extension; ?>" title="<?php echo $extension; ?>" alt="<?php echo $extension; ?>" height="16px" width="16px" />
+	<img src="<?php echo FULLWEBPATH.'/'.ZENFOLDER.'/setup/setup_pluginOptions.php?plugin='.$extension; ?>" title="<?php echo $extension; ?>" alt="<?php echo $extension; ?>" height="16px" width="16px" />
 	<?php
 }
 ?>
