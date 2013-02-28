@@ -18,7 +18,7 @@ $_SESSION['adminRequest'] = @$_COOKIE['zp_user_auth'];	//	Allow "unprotected" i.
 
 $zenphoto_tabs = array();
 
-if (!getOption('license_accepted')) {
+if (OFFSET_PATH!=2 && !getOption('license_accepted')) {
 	require_once(dirname(__FILE__).'/license.php');
 }
 
