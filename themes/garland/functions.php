@@ -15,6 +15,12 @@ foreach ($persona as $personality) {
 	$personalities[ucfirst(str_replace('_',' ',$personality))] = $personality;
 }
 
+$personality = strtolower(getOption('garland_personality'));
+if (!in_array($personality, $personalities)) {
+	$persona = $personalities;
+	$personality = array_shift($persona);
+}
+
 function switcher_head($ignore) {
 	global $personalities;
 	$personality = getOption('themeSwitcher_garland_personality');

@@ -16,7 +16,12 @@ foreach ($persona as $personality) {
 	$personalities[ucfirst(str_replace('_',' ',$personality))] = $personality;
 }
 
-$curdir = getcwd();
+$personality = strtolower(getOption('effervescence_personality'));
+if (!in_array($personality, $personalities)) {
+	$persona = $personalities;
+	$personality = array_shift($persona);
+}
+
 chdir(SERVERPATH . "/themes/".basename(dirname(__FILE__))."/styles");
 $filelist = safe_glob('*.css');
 $themecolors = array();
@@ -24,7 +29,7 @@ foreach($filelist as $file) {
 	$file = str_replace('.css', '', $file);
 	$themecolors[] = filesystemToInternal($file);
 }
-chdir($curdir);
+chdir($cwd);
 
 function css_head($ignore) {
 	global $themecolors, $zenCSS, $themeColor, $_zp_themeroot;

@@ -1,6 +1,5 @@
 <?php
 if (!defined('WEBPATH')) die();
-$personality = strtolower(getOption('garland_personality'));
 require_once(SERVERPATH.'/'.THEMEFOLDER.'/garland/'.$personality.'/functions.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
