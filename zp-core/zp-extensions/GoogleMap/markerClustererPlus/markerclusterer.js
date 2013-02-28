@@ -3,7 +3,7 @@
 
 /**
  * @name MarkerClustererPlus for Google Maps V3
- * @version 2.0.7 [December 28, 2011]
+ * @version 2.0.15 [October 18, 2012]
  * @author Gary Little
  * @fileoverview
  * The library creates and manages per-zoom-level clusters for large amounts of markers.
@@ -86,6 +86,9 @@
  * @property {string} text The text of the label to be shown on the cluster icon.
  * @property {number} index The index plus 1 of the element in the <code>styles</code>
  *  array to be used to style the cluster icon.
+ * @property {string} title The tooltip to display when the mouse moves over the cluster icon.
+ *  If this value is <code>undefined</code> or <code>""</code>, <code>title</code> is set to the
+ *  value of the <code>title</code> property passed to the MarkerClusterer.
  */
 /**
  * A cluster icon.
@@ -101,6 +104,7 @@ function ClusterIcon(cluster, styles) {
   cluster.getMarkerClusterer().extend(ClusterIcon, google.maps.OverlayView);
 
   this.cluster_ = cluster;
+  this.className_ = cluster.getMarkerClusterer().getClusterClass();
   this.styles_ = styles;
   this.center_ = null;
   this.div_ = null;
@@ -116,42 +120,64 @@ function ClusterIcon(cluster, styles) {
  */
 ClusterIcon.prototype.onAdd = function () {
   var cClusterIcon = this;
+  var cMouseDownInCluster;
+  var cDraggingMapByCluster;
 
   this.div_ = document.createElement("div");
+  this.div_.className = this.className_;
   if (this.visible_) {
     this.show();
   }
 
   this.getPanes().overlayMouseTarget.appendChild(this.div_);
 
+  // Fix for Issue 157
+  google.maps.event.addListener(this.getMap(), "bounds_changed", function () {
+    cDraggingMapByCluster = cMouseDownInCluster;
+  });
+
+  google.maps.event.addDomListener(this.div_, "mousedown", function () {
+    cMouseDownInCluster = true;
+    cDraggingMapByCluster = false;
+  });
+
   google.maps.event.addDomListener(this.div_, "click", function (e) {
-    var mz;
-    var mc = cClusterIcon.cluster_.getMarkerClusterer();
-    /**
-     * This event is fired when a cluster marker is clicked.
-     * @name MarkerClusterer#click
-     * @param {Cluster} c The cluster that was clicked.
-     * @event
-     */
-    google.maps.event.trigger(mc, "click", cClusterIcon.cluster_);
-    google.maps.event.trigger(mc, "clusterclick", cClusterIcon.cluster_); // deprecated name
+    cMouseDownInCluster = false;
+    if (!cDraggingMapByCluster) {
+      var theBounds;
+      var mz;
+      var mc = cClusterIcon.cluster_.getMarkerClusterer();
+      /**
+       * This event is fired when a cluster marker is clicked.
+       * @name MarkerClusterer#click
+       * @param {Cluster} c The cluster that was clicked.
+       * @event
+       */
+      google.maps.event.trigger(mc, "click", cClusterIcon.cluster_);
+      google.maps.event.trigger(mc, "clusterclick", cClusterIcon.cluster_); // deprecated name
 
-    // The default click handler follows. Disable it by setting
-    // the zoomOnClick property to false.
-    if (mc.getZoomOnClick()) {
-      // Zoom into the cluster.
-      mz = mc.getMaxZoom();
-      mc.getMap().fitBounds(cClusterIcon.cluster_.getBounds());
-      // Don't zoom beyond the max zoom level
-      if (mz !== null && (mc.getMap().getZoom() > mz)) {
-        mc.getMap().setZoom(mz + 1);
+      // The default click handler follows. Disable it by setting
+      // the zoomOnClick property to false.
+      if (mc.getZoomOnClick()) {
+        // Zoom into the cluster.
+        mz = mc.getMaxZoom();
+        theBounds = cClusterIcon.cluster_.getBounds();
+        mc.getMap().fitBounds(theBounds);
+        // There is a fix for Issue 170 here:
+        setTimeout(function () {
+          mc.getMap().fitBounds(theBounds);
+          // Don't zoom beyond the max zoom level
+          if (mz !== null && (mc.getMap().getZoom() > mz)) {
+            mc.getMap().setZoom(mz + 1);
+          }
+        }, 100);
       }
-    }
 
-    // Prevent event propagation to the map:
-    e.cancelBubble = true;
-    if (e.stopPropagation) {
-      e.stopPropagation();
+      // Prevent event propagation to the map:
+      e.cancelBubble = true;
+      if (e.stopPropagation) {
+        e.stopPropagation();
+      }
     }
   });
 
@@ -228,7 +254,11 @@ ClusterIcon.prototype.show = function () {
     } else {
       this.div_.innerHTML = this.sums_.text;
     }
-    this.div_.title = this.cluster_.getMarkerClusterer().getTitle();
+    if (typeof this.sums_.title === "undefined" || this.sums_.title === "") {
+      this.div_.title = this.cluster_.getMarkerClusterer().getTitle();
+    } else {
+      this.div_.title = this.sums_.title;
+    }
     this.div_.style.display = "";
   }
   this.visible_ = true;
@@ -587,7 +617,8 @@ Cluster.prototype.isMarkerAlreadyAdded_ = function (marker) {
  *  set to <code>true</code> if the <code>url</code> fields in the <code>styles</code> array
  *  refer to image sprite files.
  * @property {string} [title=""] The tooltip to display when the mouse moves over a cluster
- *  marker.
+ *  marker. (Alternatively, you can use a custom <code>calculator</code> function to specify a
+ *  different tooltip for each cluster marker.)
  * @property {function} [calculator=MarkerClusterer.CALCULATOR] The function used to determine
  *  the text to be displayed on a cluster marker and the index indicating which style to use
  *  for the cluster marker. The input parameters for the function are (1) the array of markers
@@ -600,7 +631,13 @@ Cluster.prototype.isMarkerAlreadyAdded_ = function (marker) {
  *  <code>index</code> minus 1. For example, the default <code>calculator</code> returns a
  *  <code>text</code> value of <code>"125"</code> and an <code>index</code> of <code>3</code>
  *  for a cluster icon representing 125 markers so the element used in the <code>styles</code>
- *  array is <code>2</code>.
+ *  array is <code>2</code>. A <code>calculator</code> may also return a <code>title</code>
+ *  property that contains the text of the tooltip to be used for the cluster marker. If
+ *   <code>title</code> is not defined, the tooltip is set to the value of the <code>title</code>
+ *   property for the MarkerClusterer.
+ * @property {string} [clusterClass="cluster"] The name of the CSS class defining general styles
+ *  for the cluster markers. Use this class to define CSS styles that are not set up by the code
+ *  that processes the <code>styles</code> array.
  * @property {Array} [styles] An array of {@link ClusterIconStyle} elements defining the styles
  *  of the cluster markers to be used. The element to be used to style a given cluster marker
  *  is determined by the function defined by the <code>calculator</code> property.
@@ -680,6 +717,7 @@ function MarkerClusterer(map, opt_markers, opt_options) {
   this.calculator_ = opt_options.calculator || MarkerClusterer.CALCULATOR;
   this.batchSize_ = opt_options.batchSize || MarkerClusterer.BATCH_SIZE;
   this.batchSizeIE_ = opt_options.batchSizeIE || MarkerClusterer.BATCH_SIZE_IE;
+  this.clusterClass_ = opt_options.clusterClass || "cluster";
 
   if (navigator.userAgent.toLowerCase().indexOf("msie") !== -1) {
     // Try to avoid IE timeout when processing a huge number of markers:
@@ -709,6 +747,14 @@ MarkerClusterer.prototype.onAdd = function () {
   this.listeners_ = [
     google.maps.event.addListener(this.getMap(), "zoom_changed", function () {
       cMarkerClusterer.resetViewport_(false);
+      // Workaround for this Google bug: when map is at level 0 and "-" of
+      // zoom slider is clicked, a "zoom_changed" event is fired even though
+      // the map doesn't zoom out any further. In this situation, no "idle"
+      // event is triggered so the cluster markers that have been removed
+      // do not get redrawn. Same goes for a zoom in at maxZoom.
+      if (this.getZoom() === (this.get("minZoom") || 0) || this.getZoom() === this.get("maxZoom")) {
+        google.maps.event.trigger(this, "idle");
+      }
     }),
     google.maps.event.addListener(this.getMap(), "idle", function () {
       cMarkerClusterer.redraw_();
@@ -728,7 +774,9 @@ MarkerClusterer.prototype.onRemove = function () {
 
   // Put all the managed markers back on the map:
   for (i = 0; i < this.markers_.length; i++) {
-    this.markers_[i].setMap(this.activeMap_);
+    if (this.markers_[i].getMap() !== this.activeMap_) {
+      this.markers_[i].setMap(this.activeMap_);
+    }
   }
 
   // Remove all clusters:
@@ -1067,6 +1115,26 @@ MarkerClusterer.prototype.getBatchSizeIE = function () {
  */
 MarkerClusterer.prototype.setBatchSizeIE = function (batchSizeIE) {
   this.batchSizeIE_ = batchSizeIE;
+};
+
+
+/**
+ * Returns the value of the <code>clusterClass</code> property.
+ *
+ * @return {string} the value of the clusterClass property.
+ */
+MarkerClusterer.prototype.getClusterClass = function () {
+  return this.clusterClass_;
+};
+
+
+/**
+ * Sets the value of the <code>clusterClass</code> property.
+ *
+ *  @param {string} clusterClass The value of the clusterClass property.
+ */
+MarkerClusterer.prototype.setClusterClass = function (clusterClass) {
+  this.clusterClass_ = clusterClass;
 };
 
 
@@ -1416,6 +1484,7 @@ MarkerClusterer.prototype.addToClosestCluster_ = function (marker) {
  */
 MarkerClusterer.prototype.createClusters_ = function (iFirst) {
   var i, marker;
+  var mapBounds;
   var cMarkerClusterer = this;
   if (!this.ready_) {
     return;
@@ -1440,8 +1509,14 @@ MarkerClusterer.prototype.createClusters_ = function (iFirst) {
 
   // Get our current map view bounds.
   // Create a new bounds object so we don't affect the map.
-  var mapBounds = new google.maps.LatLngBounds(this.getMap().getBounds().getSouthWest(),
+  //
+  // See Comments 9 & 11 on Issue 3651 relating to this workaround for a Google Maps bug:
+  if (this.getMap().getZoom() > 3) {
+    mapBounds = new google.maps.LatLngBounds(this.getMap().getBounds().getSouthWest(),
       this.getMap().getBounds().getNorthEast());
+  } else {
+    mapBounds = new google.maps.LatLngBounds(new google.maps.LatLng(85.02070771743472, -178.48388434375), new google.maps.LatLng(-85.08136444384544, 178.00048865625));
+  }
   var bounds = this.getExtendedBounds(mapBounds);
 
   var iLast = Math.min(iFirst + this.batchSize_, this.markers_.length);
@@ -1505,6 +1580,7 @@ MarkerClusterer.prototype.extend = function (obj1, obj2) {
  */
 MarkerClusterer.CALCULATOR = function (markers, numStyles) {
   var index = 0;
+  var title = "";
   var count = markers.length.toString();
 
   var dv = count;
@@ -1516,7 +1592,8 @@ MarkerClusterer.CALCULATOR = function (markers, numStyles) {
   index = Math.min(index, numStyles);
   return {
     text: count,
-    index: index
+    index: index,
+    title: title
   };
 };
 
