@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-08 18:43+0100\n"
-"PO-Revision-Date: 2013-02-08 18:49+0100\n"
+"POT-Creation-Date: 2013-03-01 15:48+0100\n"
+"PO-Revision-Date: 2013-03-01 15:49+0100\n"
 "Last-Translator: Malte Müller (acrylian) <wartgart@gmx.net>\n"
 "Language-Team: Malte Müller (acrylian)\n"
 "Language: de_DE\n"
@@ -17,12 +17,12 @@ msgstr ""
 "X-Generator: Poedit 1.5.5\n"
 "X-Poedit-SearchPath-0: zenphoto-translate\n"
 
-#: zenphoto-translate/index.php:143
+#: zenphoto-translate/index.php:141
 #, php-format
 msgid "Zenphoto script processing %1$s:%2$.4f seconds"
 msgstr "Zenphoto-Skript-Ausführung %1$s:%2$.4f Sekunden"
 
-#: zenphoto-translate/index.php:146
+#: zenphoto-translate/index.php:144
 #, php-format
 msgid "Zenphoto script processing total:%.4f seconds"
 msgstr "Zenphoto-Skript-Ausführung gesamt: %.4f Sekunden"
@@ -464,7 +464,7 @@ msgstr "Benutzeranmeldung"
 #: zenphoto-translate/themes/zpmobile/functions.php:55
 #: zenphoto-translate/zp-core/template-functions.php:1164
 #: zenphoto-translate/zp-core/template-functions.php:1195
-#: zenphoto-translate/zp-core/template-functions.php:4151
+#: zenphoto-translate/zp-core/template-functions.php:4116
 #: zenphoto-translate/zp-core/zp-extensions/html_meta_tags.php:230
 #: zenphoto-translate/zp-core/zp-extensions/slideshow.php:404
 #: zenphoto-translate/zp-core/zp-extensions/deprecated_functions/check_for_deprecated.php:60
@@ -620,7 +620,7 @@ msgstr "Neuigkeitenarchiv"
 #: zenphoto-translate/themes/garland/contact.php:8
 #: zenphoto-translate/themes/stopdesign/contact.php:27
 #: zenphoto-translate/themes/stopdesign/contact.php:38
-#: zenphoto-translate/zp-core/functions.php:2216
+#: zenphoto-translate/zp-core/functions.php:2128
 #: zenphoto-translate/zp-core/zp-extensions/html_meta_tags.php:235
 msgid "Contact"
 msgstr "Kontakt"
@@ -809,8 +809,8 @@ msgstr "Album"
 #: zenphoto-translate/themes/garland/functions.php:110
 #: zenphoto-translate/zp-core/admin-edit.php:1348
 #: zenphoto-translate/zp-core/admin-globals.php:131
-#: zenphoto-translate/zp-core/admin-options.php:2697
-#: zenphoto-translate/zp-core/zp-extensions/image_album_statistics.php:215
+#: zenphoto-translate/zp-core/admin-options.php:2696
+#: zenphoto-translate/zp-core/zp-extensions/image_album_statistics.php:218
 #: zenphoto-translate/zp-core/zp-extensions/zenpage.php:172
 msgid "image"
 msgstr "Bild"
@@ -1021,7 +1021,7 @@ msgstr "Seiten"
 #: zenphoto-translate/themes/zenpage/pages.php:31
 #: zenphoto-translate/themes/zenpage/register.php:29
 #: zenphoto-translate/themes/zenpage/search.php:57
-#: zenphoto-translate/zp-core/setup/index.php:1026
+#: zenphoto-translate/zp-core/setup/index.php:1018
 msgid "Index"
 msgstr "Index"
 
@@ -1152,8 +1152,8 @@ msgstr "Alle Artikel"
 #: zenphoto-translate/themes/zpmobile/image.php:27
 #: zenphoto-translate/zp-core/admin-edit.php:1550
 #: zenphoto-translate/zp-core/admin-options.php:1535
+#: zenphoto-translate/zp-core/admin-options.php:2419
 #: zenphoto-translate/zp-core/admin-options.php:2420
-#: zenphoto-translate/zp-core/admin-options.php:2421
 #: zenphoto-translate/zp-core/admin-themes.php:99
 #: zenphoto-translate/zp-core/admin-themes.php:100
 #: zenphoto-translate/zp-core/lib-auth.php:478
@@ -1425,10 +1425,10 @@ msgstr "getrennt"
 
 #: zenphoto-translate/themes/effervescence_plus/themeoptions.php:121
 #: zenphoto-translate/themes/garland/themeoptions.php:82
-#: zenphoto-translate/zp-core/admin-options.php:2320
-#: zenphoto-translate/zp-core/admin-options.php:2337
-#: zenphoto-translate/zp-core/admin-options.php:2354
-#: zenphoto-translate/zp-core/admin-options.php:2380
+#: zenphoto-translate/zp-core/admin-options.php:2319
+#: zenphoto-translate/zp-core/admin-options.php:2336
+#: zenphoto-translate/zp-core/admin-options.php:2353
+#: zenphoto-translate/zp-core/admin-options.php:2379
 #: zenphoto-translate/zp-core/zp-extensions/comment_form.php:85
 #: zenphoto-translate/zp-core/zp-extensions/register_user.php:69
 msgid "Omit"
@@ -1451,7 +1451,7 @@ msgstr "Indexbild"
 #: zenphoto-translate/zp-core/admin-options.php:1901
 #: zenphoto-translate/zp-core/admin-options.php:1914
 #: zenphoto-translate/zp-core/admin-options.php:1934
-#: zenphoto-translate/zp-core/admin-options.php:2762
+#: zenphoto-translate/zp-core/admin-options.php:2761
 #: zenphoto-translate/zp-core/functions-basic.php:213
 #: zenphoto-translate/zp-core/zp-extensions/flowplayer3.php:123
 #: zenphoto-translate/zp-core/zp-extensions/flowplayer3.php:128
@@ -1828,15 +1828,15 @@ msgstr "E-Mail schicken"
 #: zenphoto-translate/zp-core/admin-options.php:1527
 #: zenphoto-translate/zp-core/admin-options.php:1648
 #: zenphoto-translate/zp-core/admin-options.php:1676
-#: zenphoto-translate/zp-core/admin-options.php:2274
-#: zenphoto-translate/zp-core/admin-options.php:2295
-#: zenphoto-translate/zp-core/admin-options.php:2402
-#: zenphoto-translate/zp-core/admin-options.php:2531
-#: zenphoto-translate/zp-core/admin-options.php:2802
-#: zenphoto-translate/zp-core/admin-options.php:2870
-#: zenphoto-translate/zp-core/admin-options.php:2994
-#: zenphoto-translate/zp-core/admin-options.php:3042
-#: zenphoto-translate/zp-core/admin-options.php:3151
+#: zenphoto-translate/zp-core/admin-options.php:2273
+#: zenphoto-translate/zp-core/admin-options.php:2294
+#: zenphoto-translate/zp-core/admin-options.php:2401
+#: zenphoto-translate/zp-core/admin-options.php:2530
+#: zenphoto-translate/zp-core/admin-options.php:2801
+#: zenphoto-translate/zp-core/admin-options.php:2869
+#: zenphoto-translate/zp-core/admin-options.php:2993
+#: zenphoto-translate/zp-core/admin-options.php:3041
+#: zenphoto-translate/zp-core/admin-options.php:3150
 #: zenphoto-translate/zp-core/admin-plugins.php:144
 #: zenphoto-translate/zp-core/admin-plugins.php:372
 #: zenphoto-translate/zp-core/admin-themes-editor.php:145
@@ -2104,7 +2104,7 @@ msgstr "Bild ansehen:"
 
 #: zenphoto-translate/themes/stopdesign/index.php:128
 #: zenphoto-translate/themes/stopdesign/themeoptions.php:38
-#: zenphoto-translate/zp-core/class-rss.php:397
+#: zenphoto-translate/zp-core/class-rss.php:398
 msgid "Random images"
 msgstr "Zufallsbilder"
 
@@ -2403,9 +2403,9 @@ msgstr "zpMobile Theme von"
 #: zenphoto-translate/zp-core/zp-extensions/cloneZenphoto.php:37
 #: zenphoto-translate/zp-core/zp-extensions/cloneZenphoto.php:52
 #: zenphoto-translate/zp-core/zp-extensions/publishContent.php:36
-#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:100
-#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:115
-#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:130
+#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:106
+#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:121
+#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:136
 #: zenphoto-translate/zp-core/zp-extensions/user_mailing_list.php:21
 #: zenphoto-translate/zp-core/zp-extensions/wordpress_import.php:21
 msgid "Admin"
@@ -2443,7 +2443,7 @@ msgid "View meta data"
 msgstr "Metadaten ansehen"
 
 #: zenphoto-translate/themes/zpmobile/index.php:30
-#: zenphoto-translate/zp-core/class-rss.php:373
+#: zenphoto-translate/zp-core/class-rss.php:374
 msgid "Latest images"
 msgstr "Neuste Bilder"
 
@@ -2571,7 +2571,7 @@ msgstr "Bildreihenfolge gesichert"
 #: zenphoto-translate/zp-core/admin-functions.php:4509
 #: zenphoto-translate/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:12
 #: zenphoto-translate/zp-core/zp-extensions/menu_manager/menu_tab.php:36
-#: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1813
+#: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1805
 msgid "Nothing changed"
 msgstr "Nichts hat sich geändert"
 
@@ -2649,15 +2649,15 @@ msgstr "Zurück"
 #: zenphoto-translate/zp-core/admin-options.php:1526
 #: zenphoto-translate/zp-core/admin-options.php:1647
 #: zenphoto-translate/zp-core/admin-options.php:1675
-#: zenphoto-translate/zp-core/admin-options.php:2273
-#: zenphoto-translate/zp-core/admin-options.php:2294
-#: zenphoto-translate/zp-core/admin-options.php:2401
-#: zenphoto-translate/zp-core/admin-options.php:2529
-#: zenphoto-translate/zp-core/admin-options.php:2800
-#: zenphoto-translate/zp-core/admin-options.php:2869
-#: zenphoto-translate/zp-core/admin-options.php:2993
-#: zenphoto-translate/zp-core/admin-options.php:3041
-#: zenphoto-translate/zp-core/admin-options.php:3150
+#: zenphoto-translate/zp-core/admin-options.php:2272
+#: zenphoto-translate/zp-core/admin-options.php:2293
+#: zenphoto-translate/zp-core/admin-options.php:2400
+#: zenphoto-translate/zp-core/admin-options.php:2528
+#: zenphoto-translate/zp-core/admin-options.php:2799
+#: zenphoto-translate/zp-core/admin-options.php:2868
+#: zenphoto-translate/zp-core/admin-options.php:2992
+#: zenphoto-translate/zp-core/admin-options.php:3040
+#: zenphoto-translate/zp-core/admin-options.php:3149
 #: zenphoto-translate/zp-core/admin-plugins.php:143
 #: zenphoto-translate/zp-core/admin-plugins.php:371
 #: zenphoto-translate/zp-core/admin-thumbcrop.php:271
@@ -2734,8 +2734,8 @@ msgstr "Sind Sie sicher, dass Sie diesen Kommentar löschen wollen?"
 #: zenphoto-translate/zp-core/admin-functions.php:1964
 #: zenphoto-translate/zp-core/admin-logs.php:117
 #: zenphoto-translate/zp-core/admin-themes.php:297
-#: zenphoto-translate/zp-core/setup/index.php:1026
-#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:160
+#: zenphoto-translate/zp-core/setup/index.php:1018
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:205
 #: zenphoto-translate/zp-core/zp-extensions/menu_manager/menu_tab.php:178
 #: zenphoto-translate/zp-core/zp-extensions/menu_manager/menu_tab.php:240
 #: zenphoto-translate/zp-core/zp-extensions/publishContent/publishContent.php:431
@@ -2835,7 +2835,7 @@ msgstr "Kommentar exisitert nicht"
 #: zenphoto-translate/zp-core/admin-comments.php:262
 #: zenphoto-translate/zp-core/admin-functions.php:4515
 #: zenphoto-translate/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:907
-#: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1777
+#: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1769
 msgid "Selected items deleted"
 msgstr "Ausgewählte Einträge gelöscht"
 
@@ -3612,7 +3612,7 @@ msgid "User guide"
 msgstr "Benutzeranleitung"
 
 #: zenphoto-translate/zp-core/admin-functions.php:33
-#: zenphoto-translate/zp-core/setup/setup-primitive.php:83
+#: zenphoto-translate/zp-core/setup/setup-functions.php:621
 msgid "Forum"
 msgstr "Forum"
 
@@ -3621,12 +3621,12 @@ msgid "Bugtracker"
 msgstr "Bugtracker"
 
 #: zenphoto-translate/zp-core/admin-functions.php:35
-#: zenphoto-translate/zp-core/setup/setup-primitive.php:83
+#: zenphoto-translate/zp-core/setup/setup-functions.php:621
 msgid "View Change log"
 msgstr "Änderungen ansehen"
 
 #: zenphoto-translate/zp-core/admin-functions.php:35
-#: zenphoto-translate/zp-core/setup/setup-primitive.php:83
+#: zenphoto-translate/zp-core/setup/setup-functions.php:621
 msgid "Change log"
 msgstr "Änderungen"
 
@@ -3742,7 +3742,7 @@ msgstr "Albumpasswort:"
 #: zenphoto-translate/zp-core/admin-functions.php:1259
 #: zenphoto-translate/zp-core/admin-options.php:963
 #: zenphoto-translate/zp-core/admin-options.php:1322
-#: zenphoto-translate/zp-core/admin-options.php:2087
+#: zenphoto-translate/zp-core/admin-options.php:2086
 #: zenphoto-translate/zp-core/zp-extensions/downloadList.php:109
 #: zenphoto-translate/zp-core/zp-extensions/zenpage/admin-edit.php:485
 msgid "clear password"
@@ -3755,7 +3755,7 @@ msgstr "Album-Gastbenutzer:"
 #: zenphoto-translate/zp-core/admin-functions.php:1273
 #: zenphoto-translate/zp-core/admin-options.php:986
 #: zenphoto-translate/zp-core/admin-options.php:1343
-#: zenphoto-translate/zp-core/admin-options.php:2105
+#: zenphoto-translate/zp-core/admin-options.php:2104
 #: zenphoto-translate/zp-core/lib-auth.php:993
 #: zenphoto-translate/zp-core/lib-auth.php:1199
 #: zenphoto-translate/zp-core/zp-extensions/downloadList.php:130
@@ -3942,7 +3942,7 @@ msgstr "Edit this album: %s"
 #: zenphoto-translate/zp-core/admin-functions.php:2022
 #: zenphoto-translate/zp-core/admin-functions.php:2025
 #: zenphoto-translate/zp-core/admin-globals.php:70
-#: zenphoto-translate/zp-core/zp-extensions/image_album_statistics.php:217
+#: zenphoto-translate/zp-core/zp-extensions/image_album_statistics.php:220
 #: zenphoto-translate/zp-core/zp-extensions/tweet_news.php:424
 msgid "images"
 msgstr "Bilder"
@@ -4339,28 +4339,28 @@ msgstr "<em>%s</em> existiert bereits."
 
 #: zenphoto-translate/zp-core/admin-functions.php:4518
 #: zenphoto-translate/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:911
-#: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1780
+#: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1772
 msgid "Selected items published"
 msgstr "Ausgewählte Einträge veröffentlicht"
 
 #: zenphoto-translate/zp-core/admin-functions.php:4521
 #: zenphoto-translate/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:915
-#: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1783
+#: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1775
 msgid "Selected items unpublished"
 msgstr "Ausgewählte Einträge nicht veröffentlicht"
 
 #: zenphoto-translate/zp-core/admin-functions.php:4524
-#: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1786
+#: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1778
 msgid "Comments enabled for selected items"
 msgstr "Kommentare für die ausgewählten Einträge aktiviert"
 
 #: zenphoto-translate/zp-core/admin-functions.php:4527
-#: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1789
+#: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1781
 msgid "Comments disabled for selected items"
 msgstr "Kommentare sind für die ausgewählten Einträge deaktiviert"
 
 #: zenphoto-translate/zp-core/admin-functions.php:4530
-#: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1792
+#: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1784
 msgid "Hitcounter for selected items"
 msgstr "Besucherzähler für ausgewählte Einträge"
 
@@ -4560,7 +4560,7 @@ msgid "Download %s ZIP file"
 msgstr "ZIP-Datei %s herunterladen"
 
 #: zenphoto-translate/zp-core/admin-logs.php:128
-#: zenphoto-translate/zp-core/admin-options.php:2150
+#: zenphoto-translate/zp-core/admin-options.php:2149
 #: zenphoto-translate/zp-core/zp-extensions/downloadList/download_statistics.php:24
 msgid "Download"
 msgstr "Runterladen"
@@ -4570,7 +4570,7 @@ msgid "Log file size limit"
 msgstr "Protokolldatei-Grössenlimit"
 
 #: zenphoto-translate/zp-core/admin-logs.php:138
-#: zenphoto-translate/zp-core/setup/index.php:1026
+#: zenphoto-translate/zp-core/setup/index.php:1018
 msgid "Update"
 msgstr "Aktualisieren"
 
@@ -4621,14 +4621,14 @@ msgid "Your passwords did not match"
 msgstr "Ihre Passwörter stimmen nicht überein."
 
 #: zenphoto-translate/zp-core/admin-options.php:511
-#: zenphoto-translate/zp-core/setup/setup-functions.php:470
+#: zenphoto-translate/zp-core/setup/setup-functions.php:471
 #: zenphoto-translate/zp-core/zp-extensions/dynamic-locale.php:57
 #, php-format
 msgid "<em>%s</em> is not available."
 msgstr "<em>%s</em> ist nicht verfügbar."
 
 #: zenphoto-translate/zp-core/admin-options.php:512
-#: zenphoto-translate/zp-core/setup/setup-functions.php:471
+#: zenphoto-translate/zp-core/setup/setup-functions.php:472
 #: zenphoto-translate/zp-core/zp-extensions/dynamic-locale.php:58
 #, php-format
 msgid "The locale %s is not supported on your server."
@@ -4650,15 +4650,15 @@ msgstr ""
 #: zenphoto-translate/zp-core/admin-options.php:1527
 #: zenphoto-translate/zp-core/admin-options.php:1648
 #: zenphoto-translate/zp-core/admin-options.php:1676
-#: zenphoto-translate/zp-core/admin-options.php:2274
-#: zenphoto-translate/zp-core/admin-options.php:2295
-#: zenphoto-translate/zp-core/admin-options.php:2402
-#: zenphoto-translate/zp-core/admin-options.php:2531
-#: zenphoto-translate/zp-core/admin-options.php:2802
-#: zenphoto-translate/zp-core/admin-options.php:2870
-#: zenphoto-translate/zp-core/admin-options.php:2994
-#: zenphoto-translate/zp-core/admin-options.php:3042
-#: zenphoto-translate/zp-core/admin-options.php:3151
+#: zenphoto-translate/zp-core/admin-options.php:2273
+#: zenphoto-translate/zp-core/admin-options.php:2294
+#: zenphoto-translate/zp-core/admin-options.php:2401
+#: zenphoto-translate/zp-core/admin-options.php:2530
+#: zenphoto-translate/zp-core/admin-options.php:2801
+#: zenphoto-translate/zp-core/admin-options.php:2869
+#: zenphoto-translate/zp-core/admin-options.php:2993
+#: zenphoto-translate/zp-core/admin-options.php:3041
+#: zenphoto-translate/zp-core/admin-options.php:3150
 #: zenphoto-translate/zp-core/admin-users.php:446
 #: zenphoto-translate/zp-core/zp-extensions/search_statistics/search_analysis.php:268
 msgid "reset"
@@ -5072,10 +5072,10 @@ msgstr ""
 "Einträge hier."
 
 #: zenphoto-translate/zp-core/admin-options.php:887
-#: zenphoto-translate/zp-core/admin-options.php:2869
-#: zenphoto-translate/zp-core/admin-options.php:2993
-#: zenphoto-translate/zp-core/admin-options.php:3041
-#: zenphoto-translate/zp-core/admin-options.php:3150
+#: zenphoto-translate/zp-core/admin-options.php:2868
+#: zenphoto-translate/zp-core/admin-options.php:2992
+#: zenphoto-translate/zp-core/admin-options.php:3040
+#: zenphoto-translate/zp-core/admin-options.php:3149
 #: zenphoto-translate/zp-core/setup/setup-sqlform.php:102
 msgid "save"
 msgstr "Sichern"
@@ -5150,7 +5150,7 @@ msgstr "Benutzer-ID für den Galerie-Gastbenutzer"
 
 #: zenphoto-translate/zp-core/admin-options.php:999
 #: zenphoto-translate/zp-core/admin-options.php:1356
-#: zenphoto-translate/zp-core/admin-options.php:2115
+#: zenphoto-translate/zp-core/admin-options.php:2114
 #: zenphoto-translate/zp-core/zp-extensions/downloadList.php:133
 #: zenphoto-translate/zp-core/zp-extensions/zenpage/admin-edit.php:508
 msgid "(repeat)"
@@ -5707,9 +5707,9 @@ msgid "RSS cache"
 msgstr "RSS-Cachen"
 
 #: zenphoto-translate/zp-core/admin-options.php:1623
-#: zenphoto-translate/zp-core/admin-options.php:2036
-#: zenphoto-translate/zp-core/admin-options.php:2045
-#: zenphoto-translate/zp-core/admin-options.php:2170
+#: zenphoto-translate/zp-core/admin-options.php:2035
+#: zenphoto-translate/zp-core/admin-options.php:2044
+#: zenphoto-translate/zp-core/admin-options.php:2169
 msgid "Enabled"
 msgstr "Aktiviert"
 
@@ -5795,7 +5795,7 @@ msgid "<em>full</em> Image"
 msgstr "<em>Voll</em>bild"
 
 #: zenphoto-translate/zp-core/admin-options.php:1780
-#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:187
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:233
 #: zenphoto-translate/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:114
 msgid "Thumbnail"
 msgstr "Thumbnail"
@@ -6023,7 +6023,7 @@ msgstr "Zwischenspeichern als:"
 msgid "Original"
 msgstr "Original"
 
-#: zenphoto-translate/zp-core/admin-options.php:2023
+#: zenphoto-translate/zp-core/admin-options.php:2022
 msgid ""
 "Select a type for the images stored in the image cache. Select <em>Original</"
 "em> to preserve the original image's type."
@@ -6031,19 +6031,19 @@ msgstr ""
 "Wählen Sie das Dateiformat, als das die Bilder im Cache gespeichert werden "
 "sollen. <em>Original</em> behält das Format des Originalbilds bei."
 
-#: zenphoto-translate/zp-core/admin-options.php:2026
+#: zenphoto-translate/zp-core/admin-options.php:2025
 msgid "Obscure cache filenames"
 msgstr "Cache-Dateinamen verschleiern"
 
-#: zenphoto-translate/zp-core/admin-options.php:2028
-#: zenphoto-translate/zp-core/admin-options.php:3069
-#: zenphoto-translate/zp-core/admin-options.php:3089
-#: zenphoto-translate/zp-core/admin-options.php:3117
+#: zenphoto-translate/zp-core/admin-options.php:2027
+#: zenphoto-translate/zp-core/admin-options.php:3068
+#: zenphoto-translate/zp-core/admin-options.php:3088
+#: zenphoto-translate/zp-core/admin-options.php:3116
 #: zenphoto-translate/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:174
 msgid "enable"
 msgstr "aktivieren"
 
-#: zenphoto-translate/zp-core/admin-options.php:2030
+#: zenphoto-translate/zp-core/admin-options.php:2029
 msgid ""
 "Cause the filename of cached items to be obscured. This makes it difficult "
 "for someone to \"guess\" the name in a URL."
@@ -6051,11 +6051,11 @@ msgstr ""
 "Wählen Sie dies aus, um die Dateinamen der Cachedateien zu verschleiern. "
 "Dies erschwert es, den Namen in einer URL zu \"erraten\"."
 
-#: zenphoto-translate/zp-core/admin-options.php:2033
+#: zenphoto-translate/zp-core/admin-options.php:2032
 msgid "Protect image cache"
 msgstr "Bild-Cache schützen"
 
-#: zenphoto-translate/zp-core/admin-options.php:2038
+#: zenphoto-translate/zp-core/admin-options.php:2037
 msgid ""
 "If checked all image URIs will link to the image processor and the image "
 "cache will be disabled to browsers via an <em>.htaccess</em> file. Images "
@@ -6067,7 +6067,7 @@ msgstr ""
 "deaktiviert. Die Bilder werden trotzdem zwischengespeichert, jedoch über den "
 "Bildprozessor ausgeliefert und nicht direkt über den Browser aufgerufen."
 
-#: zenphoto-translate/zp-core/admin-options.php:2039
+#: zenphoto-translate/zp-core/admin-options.php:2038
 msgid ""
 "<strong>WARNING\t:</strong> This option adds significant overhead to "
 "<strong>each and every</strong> image reference! Some <em>JavaScript</em> "
@@ -6080,17 +6080,17 @@ msgstr ""
 "basierenden Skripte werden zudem nicht arbeiten und sind inkompatibel mit "
 "dieser Einstellung. "
 
-#: zenphoto-translate/zp-core/admin-options.php:2042
+#: zenphoto-translate/zp-core/admin-options.php:2041
 msgid "Secure image processor"
 msgstr "Bildprozessor sichern"
 
-#: zenphoto-translate/zp-core/admin-options.php:2047
+#: zenphoto-translate/zp-core/admin-options.php:2046
 msgid "When enabled, the image processor will check album access credentials."
 msgstr ""
 "Wenn ausgewählt, wird der Bildprozessor die Album-Zugangsberechtigungen "
 "überprüfen."
 
-#: zenphoto-translate/zp-core/admin-options.php:2048
+#: zenphoto-translate/zp-core/admin-options.php:2047
 msgid ""
 "<strong>WARNING\t:</strong> This option adds memory overhead to image "
 "caching! You may be unable to cache some images depending on your server "
@@ -6100,44 +6100,44 @@ msgstr ""
 "Möglicherweise können Sie je nach Ihrem verfügbaren Serverspeicher einige "
 "Bilder nicht zwischenspeichern."
 
-#: zenphoto-translate/zp-core/admin-options.php:2051
+#: zenphoto-translate/zp-core/admin-options.php:2050
 msgid "Full image protection:"
 msgstr "Originalbildschutz:"
 
-#: zenphoto-translate/zp-core/admin-options.php:2056
+#: zenphoto-translate/zp-core/admin-options.php:2055
 msgid "Disable hotlinking"
 msgstr "Hotlinking verhindern"
 
-#: zenphoto-translate/zp-core/admin-options.php:2061
+#: zenphoto-translate/zp-core/admin-options.php:2060
 msgid "cache the full image"
 msgstr "Originalbild zwischenspeichern"
 
-#: zenphoto-translate/zp-core/admin-options.php:2074
-#: zenphoto-translate/zp-core/admin-options.php:2111
+#: zenphoto-translate/zp-core/admin-options.php:2073
+#: zenphoto-translate/zp-core/admin-options.php:2110
 msgid "password:"
 msgstr "Passwort:"
 
-#: zenphoto-translate/zp-core/admin-options.php:2096
+#: zenphoto-translate/zp-core/admin-options.php:2095
 msgid "user:"
 msgstr "Benutzer:"
 
-#: zenphoto-translate/zp-core/admin-options.php:2136
+#: zenphoto-translate/zp-core/admin-options.php:2135
 msgid "hint:"
 msgstr "Hinweis:"
 
-#: zenphoto-translate/zp-core/admin-options.php:2150
+#: zenphoto-translate/zp-core/admin-options.php:2149
 msgid "Protected view"
 msgstr "Geschützte Anzeige"
 
-#: zenphoto-translate/zp-core/admin-options.php:2150
+#: zenphoto-translate/zp-core/admin-options.php:2149
 msgid "No access"
 msgstr "Kein Zugriff"
 
-#: zenphoto-translate/zp-core/admin-options.php:2152
+#: zenphoto-translate/zp-core/admin-options.php:2151
 msgid "Unprotected"
 msgstr "Ungesichert"
 
-#: zenphoto-translate/zp-core/admin-options.php:2160
+#: zenphoto-translate/zp-core/admin-options.php:2159
 msgid ""
 "Disabling hotlinking prevents linking to the full image from other domains. "
 "If enabled, external links are redirect to the image page. If you are having "
@@ -6152,7 +6152,7 @@ msgstr ""
 "hilft. Hotlinking wird nicht verhindert, wenn der <em>Originalbildschutz</"
 "em> auf <em>ungeschützt</em> eingestellt ist."
 
-#: zenphoto-translate/zp-core/admin-options.php:2161
+#: zenphoto-translate/zp-core/admin-options.php:2160
 msgid ""
 "If <em>Cache the full image</em> is checked the full image will be loaded to "
 "the cache and served from there after the first reference. <em>Full&nbsp;"
@@ -6167,7 +6167,7 @@ msgstr ""
 "einmal im Cache werden keine weiteren Schutzmechanismen mehr auf das Bild "
 "angewendet.."
 
-#: zenphoto-translate/zp-core/admin-options.php:2162
+#: zenphoto-translate/zp-core/admin-options.php:2161
 msgid ""
 "The <em>user</em>, <em>password</em>, and <em>hint</em> apply to the "
 "<em>Download</em> and <em>Protected view</em> level of protection. If there "
@@ -6178,7 +6178,7 @@ msgstr ""
 "ein Passwort vergeben ist, muss der Betrachter dieses eingeben, um das Bild "
 "ansehen zu können."
 
-#: zenphoto-translate/zp-core/admin-options.php:2163
+#: zenphoto-translate/zp-core/admin-options.php:2162
 msgid ""
 "Select the level of protection for full sized images. <em>Download</em> "
 "forces a download dialog rather than displaying the image. <em>No&nbsp;"
@@ -6195,11 +6195,11 @@ msgstr ""
 "oder um Passworte zu überprüfen. <em>Ungeschützt</em> erlaubt das direkte "
 "Anzeigen des Originalbildes."
 
-#: zenphoto-translate/zp-core/admin-options.php:2167
+#: zenphoto-translate/zp-core/admin-options.php:2166
 msgid "Use lock image"
 msgstr "Schlossbild verwenden"
 
-#: zenphoto-translate/zp-core/admin-options.php:2172
+#: zenphoto-translate/zp-core/admin-options.php:2171
 msgid ""
 "Substitute a <em>lock</em> image for thumbnails of password protected albums "
 "when the viewer has not supplied the password. If your theme supplies an "
@@ -6212,14 +6212,14 @@ msgstr ""
 "verfügt, wird dieses angezeigt. Anderfalls wird Zenphotos "
 "Standardschlossbild angezeigt."
 
-#: zenphoto-translate/zp-core/admin-options.php:2186
+#: zenphoto-translate/zp-core/admin-options.php:2185
 msgid "Metadata"
 msgstr "Metadaten"
 
-#: zenphoto-translate/zp-core/admin-options.php:2208
+#: zenphoto-translate/zp-core/admin-options.php:2207
+#: zenphoto-translate/zp-core/admin-options.php:2222
 #: zenphoto-translate/zp-core/admin-options.php:2223
 #: zenphoto-translate/zp-core/admin-options.php:2224
-#: zenphoto-translate/zp-core/admin-options.php:2225
 #: zenphoto-translate/zp-core/admin-users.php:463
 #: zenphoto-translate/zp-core/zp-extensions/contact_form.php:79
 #: zenphoto-translate/zp-core/zp-extensions/GoogleMap.php:90
@@ -6228,34 +6228,34 @@ msgstr "Metadaten"
 msgid "show"
 msgstr "Zeigen"
 
-#: zenphoto-translate/zp-core/admin-options.php:2209
+#: zenphoto-translate/zp-core/admin-options.php:2208
 #: zenphoto-translate/zp-core/zp-extensions/GoogleMap.php:90
 #: zenphoto-translate/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:90
 #: zenphoto-translate/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:91
 msgid "hide"
 msgstr "Verstecken"
 
-#: zenphoto-translate/zp-core/admin-options.php:2210
+#: zenphoto-translate/zp-core/admin-options.php:2209
 msgid "disabled"
 msgstr "Deaktiviert"
 
-#: zenphoto-translate/zp-core/admin-options.php:2221
+#: zenphoto-translate/zp-core/admin-options.php:2220
 msgid "Select how image metadata fields are handled."
 msgstr "Wählen Sie wie Metadaten-Felder behandelt werden."
 
-#: zenphoto-translate/zp-core/admin-options.php:2223
+#: zenphoto-translate/zp-core/admin-options.php:2222
 msgid "Show the field"
 msgstr "Feld zeigen"
 
-#: zenphoto-translate/zp-core/admin-options.php:2224
+#: zenphoto-translate/zp-core/admin-options.php:2223
 msgid "Hide the field"
 msgstr "Feld verbergen"
 
-#: zenphoto-translate/zp-core/admin-options.php:2225
+#: zenphoto-translate/zp-core/admin-options.php:2224
 msgid "Do not process the field"
 msgstr "Feld nicht ausführen"
 
-#: zenphoto-translate/zp-core/admin-options.php:2229
+#: zenphoto-translate/zp-core/admin-options.php:2228
 msgid ""
 "Hint: you can drag down the <em>drag handle</em> in the lower right corner "
 "to show more selections."
@@ -6263,19 +6263,19 @@ msgstr ""
 "Tipp: Sie können den <em>Anfasser</em> in die untere rechte Ecke bewegen, um "
 "mehr anzuzeigen. "
 
-#: zenphoto-translate/zp-core/admin-options.php:2239
+#: zenphoto-translate/zp-core/admin-options.php:2238
 msgid "IPTC encoding:"
 msgstr "IPTC-Kodierung:"
 
-#: zenphoto-translate/zp-core/admin-options.php:2245
+#: zenphoto-translate/zp-core/admin-options.php:2244
 msgid "The default character encoding of image IPTC metadata."
 msgstr "Die Standardzeichenkodierung der Bild-IPTC-Metadaten."
 
-#: zenphoto-translate/zp-core/admin-options.php:2250
+#: zenphoto-translate/zp-core/admin-options.php:2249
 msgid "Imbed IPTC copyright"
 msgstr "Eingebettetes IPTC-Copyright"
 
-#: zenphoto-translate/zp-core/admin-options.php:2251
+#: zenphoto-translate/zp-core/admin-options.php:2250
 msgid ""
 "If checked and an image has no IPTC data a copyright notice will be imbedded "
 "cached copies."
@@ -6283,11 +6283,11 @@ msgstr ""
 "Wenn dies ausgewählt ist und das Bild enthält keine IPTC-Daten, wird eine "
 "Copyrightanmerkung in die Cachekopien eingebettet."
 
-#: zenphoto-translate/zp-core/admin-options.php:2253
+#: zenphoto-translate/zp-core/admin-options.php:2252
 msgid "Replicate IPTC metadata"
 msgstr "IPTC Metadaten replizieren"
 
-#: zenphoto-translate/zp-core/admin-options.php:2254
+#: zenphoto-translate/zp-core/admin-options.php:2253
 msgid ""
 "If checked IPTC data from the original image will be imbedded in cached "
 "copies. If the image has no IPTC data a copyright notice will be imbedded. "
@@ -6298,32 +6298,35 @@ msgstr ""
 "Copyrightanmerkung eingebettet. (Der angegebene Text wird genutzt, wenn das "
 "Bild kein Copyright hat)."
 
-#: zenphoto-translate/zp-core/admin-options.php:2258
+#: zenphoto-translate/zp-core/admin-options.php:2257
 msgid "IPTC Imbedding:"
 msgstr "IPTC-Einbettung:"
 
-#: zenphoto-translate/zp-core/admin-options.php:2266
+#: zenphoto-translate/zp-core/admin-options.php:2265
 msgid ""
 "<strong>NOTE:</strong> This option  applies only to JPEG format cached "
 "images."
 msgstr "<strong>HINWEIS:</strong> Diese Einstellung gilt nur für JPEGs."
 
-#: zenphoto-translate/zp-core/admin-options.php:2300
+#: zenphoto-translate/zp-core/admin-options.php:2299
 msgid "Enable comment notification:"
 msgstr "Kommentarbenachrichtigung aktivieren:"
 
-#: zenphoto-translate/zp-core/admin-options.php:2313
+#: zenphoto-translate/zp-core/admin-options.php:2312
 msgid "Email the Admin when new comments are posted"
 msgstr "Verschicke eine E-Mail, wenn neue Kommentare vorhanden sind."
 
-#: zenphoto-translate/zp-core/admin-options.php:2316
+#: zenphoto-translate/zp-core/admin-options.php:2315
 msgid "Name field"
 msgstr "Name-Feld"
 
-#: zenphoto-translate/zp-core/admin-options.php:2324
-#: zenphoto-translate/zp-core/admin-options.php:2341
-#: zenphoto-translate/zp-core/admin-options.php:2358
+#: zenphoto-translate/zp-core/admin-options.php:2323
+#: zenphoto-translate/zp-core/admin-options.php:2340
+#: zenphoto-translate/zp-core/admin-options.php:2357
 #: zenphoto-translate/zp-core/utilities/gallery_statistics.php:736
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:150
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:154
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:175
 #: zenphoto-translate/zp-core/zp-extensions/comment_form.php:85
 #: zenphoto-translate/zp-core/zp-extensions/register_user.php:69
 #: zenphoto-translate/zp-core/zp-extensions/cacheManager/cacheImages.php:181
@@ -6333,25 +6336,25 @@ msgstr "Name-Feld"
 msgid "Show"
 msgstr "Zeige"
 
-#: zenphoto-translate/zp-core/admin-options.php:2328
-#: zenphoto-translate/zp-core/admin-options.php:2345
-#: zenphoto-translate/zp-core/admin-options.php:2362
-#: zenphoto-translate/zp-core/admin-options.php:2384
+#: zenphoto-translate/zp-core/admin-options.php:2327
+#: zenphoto-translate/zp-core/admin-options.php:2344
+#: zenphoto-translate/zp-core/admin-options.php:2361
+#: zenphoto-translate/zp-core/admin-options.php:2383
 #: zenphoto-translate/zp-core/zp-extensions/comment_form.php:85
 #: zenphoto-translate/zp-core/zp-extensions/register_user.php:69
 msgid "Require"
 msgstr "Notwendig"
 
-#: zenphoto-translate/zp-core/admin-options.php:2331
+#: zenphoto-translate/zp-core/admin-options.php:2330
 msgid "If the <em>Name</em> field is required, the poster must provide a name."
 msgstr ""
 "Wenn das <em>Name</em>-Feld Pflicht ist, muss ein Name angegeben werden."
 
-#: zenphoto-translate/zp-core/admin-options.php:2333
+#: zenphoto-translate/zp-core/admin-options.php:2332
 msgid "Email field"
 msgstr "E-Mail-Feld"
 
-#: zenphoto-translate/zp-core/admin-options.php:2348
+#: zenphoto-translate/zp-core/admin-options.php:2347
 msgid ""
 "If the <em>Email</em> field is required, the poster must provide an email "
 "address."
@@ -6359,28 +6362,28 @@ msgstr ""
 "Wenn das <em>E-Mail</em>-Feld Pflicht ist, muss eine E-Mail-Adresse "
 "angegeben werden."
 
-#: zenphoto-translate/zp-core/admin-options.php:2350
+#: zenphoto-translate/zp-core/admin-options.php:2349
 msgid "Website field"
 msgstr "Website-Feld"
 
-#: zenphoto-translate/zp-core/admin-options.php:2365
+#: zenphoto-translate/zp-core/admin-options.php:2364
 msgid ""
 "If the <em>Website</em> field is required, the poster must provide a website."
 msgstr ""
 "Wenn das <em>Website</em>-Feld Pflicht ist, muss eine Website angegeben "
 "werden."
 
-#: zenphoto-translate/zp-core/admin-options.php:2367
+#: zenphoto-translate/zp-core/admin-options.php:2366
 msgid "Captcha"
 msgstr "Captcha"
 
-#: zenphoto-translate/zp-core/admin-options.php:2390
-#: zenphoto-translate/zp-core/functions.php:2360
+#: zenphoto-translate/zp-core/admin-options.php:2389
+#: zenphoto-translate/zp-core/functions.php:2272
 #: zenphoto-translate/zp-core/zp-extensions/contact_form.php:138
 msgid "No captcha handler is enabled."
 msgstr "Keine Captcha-Version aktiviert."
 
-#: zenphoto-translate/zp-core/admin-options.php:2392
+#: zenphoto-translate/zp-core/admin-options.php:2391
 msgid ""
 "If <em>Captcha</em> is required, the form will include a Captcha "
 "verification."
@@ -6388,40 +6391,40 @@ msgstr ""
 "Wenn das <em>Captcha</em>-Feld Pflicht ist, wird das Formular eine Catcha-"
 "Verifikation enthalten."
 
-#: zenphoto-translate/zp-core/admin-options.php:2489
+#: zenphoto-translate/zp-core/admin-options.php:2488
 #: zenphoto-translate/zp-core/admin-themes.php:155
 msgid "There are no themes for which you have rights to administer."
 msgstr "Sie haben keine Rechte, Themes zu verwalten."
 
-#: zenphoto-translate/zp-core/admin-options.php:2504
+#: zenphoto-translate/zp-core/admin-options.php:2503
 #, php-format
 msgid "Options for <code><strong>%1$s</strong></code>: <em>%2$s</em>"
 msgstr "Einstellungen für <code><strong>%1$s</strong></code>: <em>%2$s</em>"
 
-#: zenphoto-translate/zp-core/admin-options.php:2506
+#: zenphoto-translate/zp-core/admin-options.php:2505
 #, php-format
 msgid "Options for <em>%s</em>"
 msgstr "Einstellungen für <em>%s</em>"
 
-#: zenphoto-translate/zp-core/admin-options.php:2514
+#: zenphoto-translate/zp-core/admin-options.php:2513
 msgid "Show theme for:"
 msgstr "Theme anzeigen für:"
 
-#: zenphoto-translate/zp-core/admin-options.php:2530
-#: zenphoto-translate/zp-core/admin-options.php:2801
+#: zenphoto-translate/zp-core/admin-options.php:2529
+#: zenphoto-translate/zp-core/admin-options.php:2800
 msgid "Revert to default"
 msgstr "Standard wiederherstellen"
 
-#: zenphoto-translate/zp-core/admin-options.php:2530
-#: zenphoto-translate/zp-core/admin-options.php:2801
+#: zenphoto-translate/zp-core/admin-options.php:2529
+#: zenphoto-translate/zp-core/admin-options.php:2800
 msgid "Revert"
 msgstr "Wiederherstellen"
 
-#: zenphoto-translate/zp-core/admin-options.php:2537
+#: zenphoto-translate/zp-core/admin-options.php:2536
 msgid "<strong>Standard options</strong>"
 msgstr "<strong>Standardeinstellungen</strong>"
 
-#: zenphoto-translate/zp-core/admin-options.php:2539
+#: zenphoto-translate/zp-core/admin-options.php:2538
 msgid ""
 "<em>These image and album presentation options provided by the Zenphoto core "
 "for all themes.</em>"
@@ -6429,7 +6432,7 @@ msgstr ""
 "<em>Diese Bild- und Albumpräsentations-Einstellung sind Standard und werden "
 "von Zenphoto für all Themes bereitgestellt.</em>"
 
-#: zenphoto-translate/zp-core/admin-options.php:2539
+#: zenphoto-translate/zp-core/admin-options.php:2538
 msgid ""
 "<strong>Note:</strong> These are <em>recommendations</em> as themes may "
 "choose to override them for design reasons"
@@ -6437,22 +6440,22 @@ msgstr ""
 "<strong>Anmerkung:</strong> Dies sind <em>Empfehlungen</em>, die einige "
 "Themes aus Designgründen übergehen können."
 
-#: zenphoto-translate/zp-core/admin-options.php:2542
+#: zenphoto-translate/zp-core/admin-options.php:2541
 #: zenphoto-translate/zp-core/zp-extensions/publishContent/publishContent.php:248
 msgid "Albums:"
 msgstr "Alben:"
 
-#: zenphoto-translate/zp-core/admin-options.php:2551
-#: zenphoto-translate/zp-core/admin-options.php:2588
+#: zenphoto-translate/zp-core/admin-options.php:2550
+#: zenphoto-translate/zp-core/admin-options.php:2587
 msgid "thumbnails per row"
 msgstr "Thumbnails pro Reihe"
 
-#: zenphoto-translate/zp-core/admin-options.php:2560
-#: zenphoto-translate/zp-core/admin-options.php:2597
+#: zenphoto-translate/zp-core/admin-options.php:2559
+#: zenphoto-translate/zp-core/admin-options.php:2596
 msgid "thumbnails per page"
 msgstr "Thumbnails pro Seite"
 
-#: zenphoto-translate/zp-core/admin-options.php:2564
+#: zenphoto-translate/zp-core/admin-options.php:2563
 msgid ""
 "These specify the Theme <a title=\"Look at your album page and count the "
 "number of album thumbnails that show up in one row. This is the value you "
@@ -6466,8 +6469,8 @@ msgstr ""
 "Albumthumbnails, die eine \"Reihe\" füllen und die Anzahl an Albumsthumbnail "
 "pro Seite."
 
-#: zenphoto-translate/zp-core/admin-options.php:2569
-#: zenphoto-translate/zp-core/admin-options.php:2606
+#: zenphoto-translate/zp-core/admin-options.php:2568
+#: zenphoto-translate/zp-core/admin-options.php:2605
 msgid ""
 "<strong>Note:</strong> If <em>thumbnails per row</em> is greater than 1, The "
 "actual number of thumbnails that are displayed on a page will be rounded up "
@@ -6477,17 +6480,17 @@ msgstr ""
 "ist, wird die Anzahl an Thumbnails, die auf der Seite angezeigt werden, auf "
 "den nächsten Vielfachen aufgerundet."
 
-#: zenphoto-translate/zp-core/admin-options.php:2570
+#: zenphoto-translate/zp-core/admin-options.php:2569
 #, php-format
 msgid "For album pages there will be %1$u rows of thumbnails."
 msgstr "Für Albumseiten gibt es %1$u Reihen an Thumbnails."
 
-#: zenphoto-translate/zp-core/admin-options.php:2579
+#: zenphoto-translate/zp-core/admin-options.php:2578
 #: zenphoto-translate/zp-core/zp-extensions/publishContent/publishContent.php:384
 msgid "Images:"
 msgstr "Bilder:"
 
-#: zenphoto-translate/zp-core/admin-options.php:2601
+#: zenphoto-translate/zp-core/admin-options.php:2600
 msgid ""
 "These specify the Theme <a title=\"Look at your album page and count the "
 "number of image thumbnails that show up in one row. This is the value you "
@@ -6501,24 +6504,24 @@ msgstr ""
 "Bildthumbnails, die eine \"Reihe\" füllen und die Anzahl an Bildthumbnail "
 "pro Seite."
 
-#: zenphoto-translate/zp-core/admin-options.php:2607
+#: zenphoto-translate/zp-core/admin-options.php:2606
 #, php-format
 msgid "For pages containing images there will be %1$u rows of thumbnails."
 msgstr "Für Bildseiten gibt es %1$u Reihen von Thumbnails."
 
-#: zenphoto-translate/zp-core/admin-options.php:2623
+#: zenphoto-translate/zp-core/admin-options.php:2622
 msgid "Transition:"
 msgstr "Übergang"
 
-#: zenphoto-translate/zp-core/admin-options.php:2639
+#: zenphoto-translate/zp-core/admin-options.php:2638
 msgid "separate"
 msgstr "getrennt"
 
-#: zenphoto-translate/zp-core/admin-options.php:2640
+#: zenphoto-translate/zp-core/admin-options.php:2639
 msgid "combined"
 msgstr "kombiniert"
 
-#: zenphoto-translate/zp-core/admin-options.php:2643
+#: zenphoto-translate/zp-core/admin-options.php:2642
 msgid ""
 "if both album and image <em>thumbnails per row</em> are greater than 1 you "
 "can choose if album thumbnails and image thumbnails are placed together on "
@@ -6529,30 +6532,30 @@ msgstr ""
 "Sie wählen, ob Sie Album- und Bildthumbnails zusammen auf einer Seite oder "
 "jeweils nur Album- und Bildthumbnail-Seiten anzeigen möchten."
 
-#: zenphoto-translate/zp-core/admin-options.php:2660
+#: zenphoto-translate/zp-core/admin-options.php:2659
 msgid "Thumb size:"
 msgstr "Thumbnailgrösse:"
 
-#: zenphoto-translate/zp-core/admin-options.php:2664
+#: zenphoto-translate/zp-core/admin-options.php:2663
 #, php-format
 msgid "Standard thumbnails will be scaled to %u pixels."
 msgstr "Standardthumbnails werden auf %u Pixel skaliert."
 
-#: zenphoto-translate/zp-core/admin-options.php:2674
+#: zenphoto-translate/zp-core/admin-options.php:2673
 msgid "Crop thumbnails:"
 msgstr "Thumbnails beschneiden:"
 
-#: zenphoto-translate/zp-core/admin-options.php:2679
+#: zenphoto-translate/zp-core/admin-options.php:2678
 #, php-format
 msgid "%s%% left &amp; right"
 msgstr "%s%% links &amp; rechts"
 
-#: zenphoto-translate/zp-core/admin-options.php:2683
+#: zenphoto-translate/zp-core/admin-options.php:2682
 #, php-format
 msgid "%s%% top &amp; bottom"
 msgstr "%s%% oben &amp; unten"
 
-#: zenphoto-translate/zp-core/admin-options.php:2688
+#: zenphoto-translate/zp-core/admin-options.php:2687
 #, php-format
 msgid ""
 "If checked the thumbnail will be cropped %1$.1f%% in from the top and the "
@@ -6561,54 +6564,54 @@ msgstr ""
 "Wenn ausgewählt wird das Thumbnail %1$.1f%% vom oberen und unteren Rand und "
 "%2$.1f%% vom linken und rechten Rand beschnitten."
 
-#: zenphoto-translate/zp-core/admin-options.php:2690
+#: zenphoto-translate/zp-core/admin-options.php:2689
 msgid ""
 "<strong>Note:</strong> changing crop will invalidate existing custom crops."
 msgstr ""
 "<strong>Anmerkung</strong>: Eine Änderung des Beschnitts verändert auch "
 "bereits bestehende Beschnitte."
 
-#: zenphoto-translate/zp-core/admin-options.php:2694
+#: zenphoto-translate/zp-core/admin-options.php:2693
 msgid "Gray scale conversion:"
 msgstr "Graustufen-Umwandlung:"
 
-#: zenphoto-translate/zp-core/admin-options.php:2701
+#: zenphoto-translate/zp-core/admin-options.php:2700
 msgid "thumbnail"
 msgstr "Thumbnail"
 
-#: zenphoto-translate/zp-core/admin-options.php:2705
+#: zenphoto-translate/zp-core/admin-options.php:2704
 msgid "If checked, images/thumbnails will be created in gray scale."
 msgstr ""
 "Wenn dies ausgewählt ist, werden alle Bilder/Thumbnails als Graustufen "
 "erstellt."
 
-#: zenphoto-translate/zp-core/admin-options.php:2715
+#: zenphoto-translate/zp-core/admin-options.php:2714
 msgid "Image size:"
 msgstr "Bildgröße:"
 
-#: zenphoto-translate/zp-core/admin-options.php:2726
+#: zenphoto-translate/zp-core/admin-options.php:2725
 #: zenphoto-translate/zp-core/zp-extensions/jcarousel_thumb_nav.php:43
 msgid "height"
 msgstr "Höhe"
 
-#: zenphoto-translate/zp-core/admin-options.php:2730
+#: zenphoto-translate/zp-core/admin-options.php:2729
 #: zenphoto-translate/zp-core/zp-extensions/jcarousel_thumb_nav.php:41
 msgid "width"
 msgstr "Breite"
 
-#: zenphoto-translate/zp-core/admin-options.php:2737
+#: zenphoto-translate/zp-core/admin-options.php:2736
 msgid "shortest side"
 msgstr "Kürzeste Seite"
 
-#: zenphoto-translate/zp-core/admin-options.php:2741
+#: zenphoto-translate/zp-core/admin-options.php:2740
 msgid "longest side"
 msgstr "Längste Seite"
 
-#: zenphoto-translate/zp-core/admin-options.php:2746
+#: zenphoto-translate/zp-core/admin-options.php:2745
 msgid "Default image display size."
 msgstr "Standardbildgröße"
 
-#: zenphoto-translate/zp-core/admin-options.php:2747
+#: zenphoto-translate/zp-core/admin-options.php:2746
 msgid ""
 "The image will be sized so that the <em>height</em>, <em>width</em>, "
 "<em>shortest side</em>, or the <em>longest side</em> will be equal to "
@@ -6618,11 +6621,11 @@ msgstr ""
 "em> oder die <em>kürzeste  Seite</em> oder der <em>längsten Seite</em> der "
 "<em>Bildgröße</em> entspricht."
 
-#: zenphoto-translate/zp-core/admin-options.php:2759
+#: zenphoto-translate/zp-core/admin-options.php:2758
 msgid "Gallery index page link:"
 msgstr "Galerie-Indexseitenlink:"
 
-#: zenphoto-translate/zp-core/admin-options.php:2779
+#: zenphoto-translate/zp-core/admin-options.php:2778
 msgid ""
 "If this option is not empty, the Gallery Index URL that would normally link "
 "to the theme <code>index.php</code> script will instead link to this script. "
@@ -6636,24 +6639,24 @@ msgstr ""
 "Sie eine benutzerdefinierte <em>Homepage</em> nutzen können. Diese Option "
 "hat nur Auswirkung auf das Haupttheme Ihrer Galerie."
 
-#: zenphoto-translate/zp-core/admin-options.php:2787
+#: zenphoto-translate/zp-core/admin-options.php:2786
 msgid "<strong>Custom theme options</strong>"
 msgstr "<strong>Spezielle Theme-Einstellungen</strong>"
 
-#: zenphoto-translate/zp-core/admin-options.php:2789
+#: zenphoto-translate/zp-core/admin-options.php:2788
 #, php-format
 msgid "The following are options specifically implemented by %s."
 msgstr "Die folgenden Einstellungen sind nur speziell für  %s."
 
-#: zenphoto-translate/zp-core/admin-options.php:2877
+#: zenphoto-translate/zp-core/admin-options.php:2876
 msgid "Expand plugin options"
 msgstr "Einstellungen aufklappen"
 
-#: zenphoto-translate/zp-core/admin-options.php:2879
+#: zenphoto-translate/zp-core/admin-options.php:2878
 msgid "Collapse all plugin options"
 msgstr "Einstellungen zusammenklappen"
 
-#: zenphoto-translate/zp-core/admin-options.php:2905
+#: zenphoto-translate/zp-core/admin-options.php:2904
 #: zenphoto-translate/zp-core/admin-plugins.php:235
 msgid ""
 "<strong>Note:</strong> Instantiating the option interface within the plugin "
@@ -6665,23 +6668,23 @@ msgstr ""
 "<code>$option_interface</code> den Namen der Klasse als Zeichenkette "
 "zuweisen."
 
-#: zenphoto-translate/zp-core/admin-options.php:2937
+#: zenphoto-translate/zp-core/admin-options.php:2936
 msgid "warning"
 msgstr "Warnung: "
 
-#: zenphoto-translate/zp-core/admin-options.php:2976
+#: zenphoto-translate/zp-core/admin-options.php:2975
 msgid "There are no plugin options to administer."
 msgstr "Es sind keine Plugin-Einstellungen vorhanden."
 
-#: zenphoto-translate/zp-core/admin-options.php:3047
+#: zenphoto-translate/zp-core/admin-options.php:3046
 msgid "Server protocol:"
 msgstr "Serverprotokoll:"
 
-#: zenphoto-translate/zp-core/admin-options.php:3053
+#: zenphoto-translate/zp-core/admin-options.php:3052
 msgid "secure admin"
 msgstr "Sichere Administration"
 
-#: zenphoto-translate/zp-core/admin-options.php:3057
+#: zenphoto-translate/zp-core/admin-options.php:3056
 msgid ""
 "Normally this option should be set to <em>http</em>. If you're running a "
 "secure server, change this to <em>https</em>. Select <em>secure admin</em> "
@@ -6692,7 +6695,7 @@ msgstr ""
 "Wählen Sie <em>Sichere Administration</em> für sicheren Zugriff auf die "
 "<code>Administrations</code>-Seiten."
 
-#: zenphoto-translate/zp-core/admin-options.php:3058
+#: zenphoto-translate/zp-core/admin-options.php:3057
 msgid ""
 "<strong>Note:</strong><br /><br />Login from the front-end user login form "
 "is secure only if <em>https</em> is selected.<br /><br />If you select "
@@ -6712,15 +6715,15 @@ msgstr ""
 "Möglichkeit wäre dann, die Option <span class=\"inlinecode"
 "\">server_protocol</span> direkt in der Datenbank zu ändern."
 
-#: zenphoto-translate/zp-core/admin-options.php:3067
+#: zenphoto-translate/zp-core/admin-options.php:3066
 msgid "Cookie security"
 msgstr "Cookie-Sicherheit"
 
-#: zenphoto-translate/zp-core/admin-options.php:3072
+#: zenphoto-translate/zp-core/admin-options.php:3071
 msgid "Tie cookies to the IP address of the browser."
 msgstr "Verknüfte Cookies mit der IP-Adresse des Browsers."
 
-#: zenphoto-translate/zp-core/admin-options.php:3076
+#: zenphoto-translate/zp-core/admin-options.php:3075
 msgid ""
 "<strong>Note</strong>: If your browser does not present a consistant IP "
 "address during a session you may not be able to log into your site when this "
@@ -6730,13 +6733,13 @@ msgstr ""
 "während der Session angibt, können Sie sich möglicherweise nicht anmelden, "
 "wenn diese Einstellung aktiviert ist."
 
-#: zenphoto-translate/zp-core/admin-options.php:3078
+#: zenphoto-translate/zp-core/admin-options.php:3077
 msgid " You <strong>WILL</strong> have to login after changing this option."
 msgstr ""
 "Sie <strong>MÜSSEN</strong> sich nach dem Ändern dieser Einstellung erneut "
 "anmelden."
 
-#: zenphoto-translate/zp-core/admin-options.php:3080
+#: zenphoto-translate/zp-core/admin-options.php:3079
 msgid ""
 "If you set the option and cannot login, you will have to restore your "
 "database to a point when the option was not set, so you might want to backup "
@@ -6747,11 +6750,11 @@ msgstr ""
 "Einstellung noch nicht aktiviert war. Sie sollten daher vorher Ihre "
 "Datenbank sichern."
 
-#: zenphoto-translate/zp-core/admin-options.php:3087
+#: zenphoto-translate/zp-core/admin-options.php:3086
 msgid "Image Processor security"
 msgstr "Bildprozessor-Sicherheit"
 
-#: zenphoto-translate/zp-core/admin-options.php:3092
+#: zenphoto-translate/zp-core/admin-options.php:3091
 msgid ""
 "Add a security parameter to image processor URIs to prevent denial of "
 "service attacks requesting arbitrary sized images."
@@ -6759,11 +6762,11 @@ msgstr ""
 "Fügt den Bildprozessor-URLs ein Sicherheitsparameter hinzu, um denial of "
 "service-Angriffe durch Anfragen an verschiedene Bildgrössen verhindert."
 
-#: zenphoto-translate/zp-core/admin-options.php:3101
+#: zenphoto-translate/zp-core/admin-options.php:3100
 msgid "User name"
 msgstr "Benutzername"
 
-#: zenphoto-translate/zp-core/admin-options.php:3123
+#: zenphoto-translate/zp-core/admin-options.php:3122
 msgid ""
 "If enabled guest logon forms will include the <em>User Name</em> field. This "
 "allows <em>Zenphoto</em> users to logon from the form."
@@ -6771,7 +6774,7 @@ msgstr ""
 "Wenn aktiviert, enthalten Gast-Anmeldeformulare das <em>Benutzername</em>-"
 "Feld. Dies erlaubt <em>Zenphoto</em>-Benutzern über das Formular einzuloggen."
 
-#: zenphoto-translate/zp-core/admin-options.php:3125
+#: zenphoto-translate/zp-core/admin-options.php:3124
 msgid ""
 "<strong>Note</strong>: This field is required because one or more of the "
 "<em>Guest</em> passwords has a user name associated."
@@ -6952,7 +6955,7 @@ msgstr "Metadaten-Aktualisierung fortsetzen."
 
 #: zenphoto-translate/zp-core/admin-refresh-metadata.php:121
 #: zenphoto-translate/zp-core/lib-auth.php:921
-#: zenphoto-translate/zp-core/setup/index.php:1555
+#: zenphoto-translate/zp-core/setup/index.php:1548
 #: zenphoto-translate/zp-core/zp-extensions/cacheManager/cacheImages.php:314
 msgid "Refresh"
 msgstr "Aktualisieren"
@@ -7464,7 +7467,7 @@ msgid "Make a new Album"
 msgstr "Neues Album erstellen"
 
 #: zenphoto-translate/zp-core/admin-upload.php:254
-#: zenphoto-translate/zp-core/setup/index.php:1034
+#: zenphoto-translate/zp-core/setup/index.php:1026
 msgid "and"
 msgstr "und"
 
@@ -7735,8 +7738,8 @@ msgid "Official build"
 msgstr "Offizielle Version"
 
 #: zenphoto-translate/zp-core/admin.php:202
-#: zenphoto-translate/zp-core/functions-basic.php:1057
-#: zenphoto-translate/zp-core/setup/index.php:355
+#: zenphoto-translate/zp-core/functions-basic.php:1060
+#: zenphoto-translate/zp-core/setup/index.php:348
 #: zenphoto-translate/zp-core/zp-extensions/security-logger.php:124
 msgid "clone"
 msgstr "Klon"
@@ -8108,59 +8111,59 @@ msgstr " (Zufallsneuigkeiten)"
 msgid " (latest comments)"
 msgstr " (Neuste Kommentare)"
 
-#: zenphoto-translate/zp-core/class-rss.php:371
+#: zenphoto-translate/zp-core/class-rss.php:372
 msgid "Latest albums"
 msgstr "Neuste Alben"
 
-#: zenphoto-translate/zp-core/class-rss.php:377
+#: zenphoto-translate/zp-core/class-rss.php:378
 msgid "latest updated albums"
 msgstr "Zuletzt geänderte Alben"
 
-#: zenphoto-translate/zp-core/class-rss.php:381
+#: zenphoto-translate/zp-core/class-rss.php:382
 msgid "Most popular albums"
 msgstr "Beliebteste Alben"
 
-#: zenphoto-translate/zp-core/class-rss.php:383
+#: zenphoto-translate/zp-core/class-rss.php:384
 msgid "Most popular images"
 msgstr "Beliebteste Bilder"
 
-#: zenphoto-translate/zp-core/class-rss.php:388
+#: zenphoto-translate/zp-core/class-rss.php:389
 msgid "Top rated albums"
 msgstr "Am besten bewertete Alben"
 
-#: zenphoto-translate/zp-core/class-rss.php:390
+#: zenphoto-translate/zp-core/class-rss.php:391
 msgid "Top rated images"
 msgstr "Am besten bewertete Bilder"
 
-#: zenphoto-translate/zp-core/class-rss.php:395
+#: zenphoto-translate/zp-core/class-rss.php:396
 msgid "Random albums"
 msgstr "Zufallsalben"
 
-#: zenphoto-translate/zp-core/class-rss.php:773
+#: zenphoto-translate/zp-core/class-rss.php:774
 msgid "Bad RSS feed:"
 msgstr "Ungültiger RSS-Feed:"
 
-#: zenphoto-translate/zp-core/class-rss.php:801
-#: zenphoto-translate/zp-core/class-rss.php:809
+#: zenphoto-translate/zp-core/class-rss.php:802
+#: zenphoto-translate/zp-core/class-rss.php:810
 #, php-format
 msgid "%s (%u image)"
 msgid_plural "%s (%u images)"
 msgstr[0] "%s (%u Bild)"
 msgstr[1] "%s (%u Bilder)"
 
-#: zenphoto-translate/zp-core/class-rss.php:806
-#: zenphoto-translate/zp-core/zp-extensions/image_album_statistics.php:213
+#: zenphoto-translate/zp-core/class-rss.php:807
+#: zenphoto-translate/zp-core/zp-extensions/image_album_statistics.php:216
 #, php-format
 msgid "Last update: %s"
 msgstr "Letzte Aktualisierung: %s"
 
-#: zenphoto-translate/zp-core/class-rss.php:811
+#: zenphoto-translate/zp-core/class-rss.php:812
 #, php-format
 msgid "Date: %s"
 msgstr "Datum: %s"
 
-#: zenphoto-translate/zp-core/class-rss.php:953
-#: zenphoto-translate/zp-core/template-functions.php:3281
+#: zenphoto-translate/zp-core/class-rss.php:952
+#: zenphoto-translate/zp-core/template-functions.php:3245
 #: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2948
 msgid "by"
 msgstr "von"
@@ -8178,7 +8181,7 @@ msgid "Location/Place"
 msgstr "Ort/Platz"
 
 #: zenphoto-translate/zp-core/class-search.php:69
-#: zenphoto-translate/zp-core/functions.php:2239
+#: zenphoto-translate/zp-core/functions.php:2151
 #: zenphoto-translate/zp-core/zp-extensions/contact_form.php:117
 #: zenphoto-translate/zp-core/zp-extensions/contact_form.php:119
 #: zenphoto-translate/zp-core/zp-extensions/comment_form/functions.php:410
@@ -9050,325 +9053,325 @@ msgstr ""
 "Zenphoto hat keine Themedateien gefunden. Bitte überprüfen Sie den <em>%s</"
 "em>Ordner Ihrer Installation."
 
-#: zenphoto-translate/zp-core/functions.php:1505
+#: zenphoto-translate/zp-core/functions.php:1417
 msgid "0 Bytes"
 msgstr "0 Bytes"
 
-#: zenphoto-translate/zp-core/functions.php:1931
+#: zenphoto-translate/zp-core/functions.php:1843
 #, php-format
 msgid "Zenphoto processed a 404 error on %s. See the debug log for details."
 msgstr "Zenphoto gibt einen 404-Fehler auf %s aus. Sehen Sie in das Debuglog. "
 
-#: zenphoto-translate/zp-core/functions.php:2118
+#: zenphoto-translate/zp-core/functions.php:2030
 msgid "Click to show content"
 msgstr "Zum Verbergen klicken"
 
-#: zenphoto-translate/zp-core/functions.php:2123
+#: zenphoto-translate/zp-core/functions.php:2035
 msgid "Click to hide content"
 msgstr "Zum Anzeigen klicken"
 
-#: zenphoto-translate/zp-core/functions.php:2197
+#: zenphoto-translate/zp-core/functions.php:2109
 msgid "Camera Maker"
 msgstr "Kamerahersteller"
 
-#: zenphoto-translate/zp-core/functions.php:2198
+#: zenphoto-translate/zp-core/functions.php:2110
 msgid "Camera Model"
 msgstr "Kameramodell"
 
-#: zenphoto-translate/zp-core/functions.php:2199
+#: zenphoto-translate/zp-core/functions.php:2111
 msgid "Image Title"
 msgstr "Bildtitel"
 
-#: zenphoto-translate/zp-core/functions.php:2200
+#: zenphoto-translate/zp-core/functions.php:2112
 msgid "Object Name"
 msgstr "Objektname"
 
-#: zenphoto-translate/zp-core/functions.php:2201
+#: zenphoto-translate/zp-core/functions.php:2113
 msgid "Image Headline"
 msgstr "Bildüberschrift"
 
-#: zenphoto-translate/zp-core/functions.php:2202
+#: zenphoto-translate/zp-core/functions.php:2114
 msgid "Image Caption"
 msgstr "Bildtitel"
 
-#: zenphoto-translate/zp-core/functions.php:2203
+#: zenphoto-translate/zp-core/functions.php:2115
 msgid "Image Caption Writer"
 msgstr "Bildtitelautor"
 
-#: zenphoto-translate/zp-core/functions.php:2204
+#: zenphoto-translate/zp-core/functions.php:2116
 msgid "Time Taken"
 msgstr "Uhrzeit"
 
-#: zenphoto-translate/zp-core/functions.php:2205
+#: zenphoto-translate/zp-core/functions.php:2117
 msgid "Original Time Taken"
 msgstr "Originaldatum des Fotos"
 
-#: zenphoto-translate/zp-core/functions.php:2206
+#: zenphoto-translate/zp-core/functions.php:2118
 msgid "Time Digitized"
 msgstr "Digitalisierungsdatum"
 
-#: zenphoto-translate/zp-core/functions.php:2207
+#: zenphoto-translate/zp-core/functions.php:2119
 msgid "Date Created"
 msgstr "Erstellungsdatum"
 
-#: zenphoto-translate/zp-core/functions.php:2208
+#: zenphoto-translate/zp-core/functions.php:2120
 msgid "Time Created"
 msgstr "Erstellungszeit"
 
-#: zenphoto-translate/zp-core/functions.php:2209
+#: zenphoto-translate/zp-core/functions.php:2121
 msgid "Digital Creation Date"
 msgstr "Digitalerstellungsdatum"
 
-#: zenphoto-translate/zp-core/functions.php:2210
+#: zenphoto-translate/zp-core/functions.php:2122
 msgid "Digital Creation Time"
 msgstr "Digitalerstellungsdatum"
 
-#: zenphoto-translate/zp-core/functions.php:2211
+#: zenphoto-translate/zp-core/functions.php:2123
 msgid "Artist"
 msgstr "Künstler"
 
-#: zenphoto-translate/zp-core/functions.php:2212
+#: zenphoto-translate/zp-core/functions.php:2124
 msgid "Image Credit"
 msgstr "Bildcredit"
 
-#: zenphoto-translate/zp-core/functions.php:2213
+#: zenphoto-translate/zp-core/functions.php:2125
 msgid "Byline"
 msgstr "ByLine"
 
-#: zenphoto-translate/zp-core/functions.php:2214
+#: zenphoto-translate/zp-core/functions.php:2126
 msgid "Byline Title"
 msgstr "ByLine Titel"
 
-#: zenphoto-translate/zp-core/functions.php:2215
+#: zenphoto-translate/zp-core/functions.php:2127
 msgid "Image Source"
 msgstr "Bildquelle"
 
-#: zenphoto-translate/zp-core/functions.php:2217
+#: zenphoto-translate/zp-core/functions.php:2129
 msgid "Copyright Holder"
 msgstr "Copyrightinhaber"
 
-#: zenphoto-translate/zp-core/functions.php:2218
+#: zenphoto-translate/zp-core/functions.php:2130
 msgid "Copyright Notice"
 msgstr "Copyrightinhaber"
 
-#: zenphoto-translate/zp-core/functions.php:2219
+#: zenphoto-translate/zp-core/functions.php:2131
 msgid "Keywords"
 msgstr "Schlüsselwörter"
 
-#: zenphoto-translate/zp-core/functions.php:2220
+#: zenphoto-translate/zp-core/functions.php:2132
 msgid "Shutter Speed"
 msgstr "Verschlussgeschwindigkeit"
 
-#: zenphoto-translate/zp-core/functions.php:2221
+#: zenphoto-translate/zp-core/functions.php:2133
 msgid "Aperture"
 msgstr "Blende"
 
-#: zenphoto-translate/zp-core/functions.php:2222
+#: zenphoto-translate/zp-core/functions.php:2134
 msgid "ISO Sensitivity"
 msgstr "ISO-Empfindlichkeit"
 
-#: zenphoto-translate/zp-core/functions.php:2223
+#: zenphoto-translate/zp-core/functions.php:2135
 msgid "Exposure Compensation"
 msgstr "Belichtungskorrektur"
 
-#: zenphoto-translate/zp-core/functions.php:2224
+#: zenphoto-translate/zp-core/functions.php:2136
 msgid "Metering Mode"
 msgstr "Messeinstellung"
 
-#: zenphoto-translate/zp-core/functions.php:2225
+#: zenphoto-translate/zp-core/functions.php:2137
 #: zenphoto-translate/zp-core/exif/makers/canon.php:236
 msgid "Flash Fired"
 msgstr "Blitz verwendet"
 
-#: zenphoto-translate/zp-core/functions.php:2226
+#: zenphoto-translate/zp-core/functions.php:2138
 msgid "Original Width"
 msgstr "Originalbreite"
 
-#: zenphoto-translate/zp-core/functions.php:2227
+#: zenphoto-translate/zp-core/functions.php:2139
 msgid "Original Height"
 msgstr "Originalhöhe"
 
-#: zenphoto-translate/zp-core/functions.php:2228
+#: zenphoto-translate/zp-core/functions.php:2140
 msgid "Orientation"
 msgstr "Ausrichtung"
 
-#: zenphoto-translate/zp-core/functions.php:2229
+#: zenphoto-translate/zp-core/functions.php:2141
 msgid "Software"
 msgstr "Software"
 
-#: zenphoto-translate/zp-core/functions.php:2230
+#: zenphoto-translate/zp-core/functions.php:2142
 msgid "Contrast Setting"
 msgstr "Kontrastseinstellung"
 
-#: zenphoto-translate/zp-core/functions.php:2231
+#: zenphoto-translate/zp-core/functions.php:2143
 msgid "Sharpness Setting"
 msgstr "Schärfeeinstellung"
 
-#: zenphoto-translate/zp-core/functions.php:2232
+#: zenphoto-translate/zp-core/functions.php:2144
 msgid "Saturation Setting"
 msgstr "Sättigungseinstellung"
 
-#: zenphoto-translate/zp-core/functions.php:2233
+#: zenphoto-translate/zp-core/functions.php:2145
 msgid "White Balance"
 msgstr "Weißbalance"
 
-#: zenphoto-translate/zp-core/functions.php:2234
+#: zenphoto-translate/zp-core/functions.php:2146
 msgid "Subject Distance"
 msgstr "Motiventfernung"
 
-#: zenphoto-translate/zp-core/functions.php:2235
+#: zenphoto-translate/zp-core/functions.php:2147
 msgid "Focal Length"
 msgstr "Brennweite"
 
-#: zenphoto-translate/zp-core/functions.php:2236
+#: zenphoto-translate/zp-core/functions.php:2148
 msgid "Lens Type"
 msgstr "Linsentyp"
 
-#: zenphoto-translate/zp-core/functions.php:2237
+#: zenphoto-translate/zp-core/functions.php:2149
 msgid "Lens Info"
 msgstr "Linseninfo"
 
-#: zenphoto-translate/zp-core/functions.php:2238
+#: zenphoto-translate/zp-core/functions.php:2150
 msgid "35mm Focal Length Equivalent"
 msgstr "Brennweiteequivalent 35mm Film"
 
-#: zenphoto-translate/zp-core/functions.php:2240
+#: zenphoto-translate/zp-core/functions.php:2152
 msgid "Sub-location"
 msgstr "Nebenort"
 
-#: zenphoto-translate/zp-core/functions.php:2241
+#: zenphoto-translate/zp-core/functions.php:2153
 msgid "Province/State"
 msgstr "Provinz/Staat"
 
-#: zenphoto-translate/zp-core/functions.php:2242
+#: zenphoto-translate/zp-core/functions.php:2154
 msgid "Country/Primary Location Code"
 msgstr "Land/Hauptortsbestimmungscode"
 
-#: zenphoto-translate/zp-core/functions.php:2243
+#: zenphoto-translate/zp-core/functions.php:2155
 msgid "Country/Primary Location Name"
 msgstr "Land/Hauptortsbestimmungsname"
 
-#: zenphoto-translate/zp-core/functions.php:2244
+#: zenphoto-translate/zp-core/functions.php:2156
 msgid "Content Location Code"
 msgstr "Land/Hauptortsbestimmungscode"
 
-#: zenphoto-translate/zp-core/functions.php:2245
+#: zenphoto-translate/zp-core/functions.php:2157
 msgid "Content Location Name"
 msgstr "Land/Hauptortsbestimmungsname"
 
-#: zenphoto-translate/zp-core/functions.php:2246
+#: zenphoto-translate/zp-core/functions.php:2158
 msgid "Latitude"
 msgstr "Breitengrad"
 
-#: zenphoto-translate/zp-core/functions.php:2247
+#: zenphoto-translate/zp-core/functions.php:2159
 msgid "Latitude Reference"
 msgstr "Breitengradreferenz"
 
-#: zenphoto-translate/zp-core/functions.php:2248
+#: zenphoto-translate/zp-core/functions.php:2160
 msgid "Longitude"
 msgstr "Längengrad"
 
-#: zenphoto-translate/zp-core/functions.php:2249
+#: zenphoto-translate/zp-core/functions.php:2161
 msgid "Longitude Reference"
 msgstr "Längengradreferenz"
 
-#: zenphoto-translate/zp-core/functions.php:2250
+#: zenphoto-translate/zp-core/functions.php:2162
 msgid "Altitude"
 msgstr "Höhenlage"
 
-#: zenphoto-translate/zp-core/functions.php:2251
+#: zenphoto-translate/zp-core/functions.php:2163
 msgid "Altitude Reference"
 msgstr "Höhenlagereferenz"
 
-#: zenphoto-translate/zp-core/functions.php:2252
+#: zenphoto-translate/zp-core/functions.php:2164
 msgid "Originating Program "
 msgstr "Originalprogramm"
 
-#: zenphoto-translate/zp-core/functions.php:2253
+#: zenphoto-translate/zp-core/functions.php:2165
 msgid "Program Version"
 msgstr "Programmversion"
 
-#: zenphoto-translate/zp-core/functions.php:2254
+#: zenphoto-translate/zp-core/functions.php:2166
 msgid "Video File Format"
 msgstr "Video-Dateiformat"
 
-#: zenphoto-translate/zp-core/functions.php:2255
+#: zenphoto-translate/zp-core/functions.php:2167
 msgid "Video File Size"
 msgstr "Video-Dateigröße"
 
-#: zenphoto-translate/zp-core/functions.php:2256
+#: zenphoto-translate/zp-core/functions.php:2168
 msgid "Video Artist"
 msgstr "Videokünstler"
 
-#: zenphoto-translate/zp-core/functions.php:2257
+#: zenphoto-translate/zp-core/functions.php:2169
 msgid "Video Title"
 msgstr "Videotitel"
 
-#: zenphoto-translate/zp-core/functions.php:2258
+#: zenphoto-translate/zp-core/functions.php:2170
 msgid "Bitrate"
 msgstr "Bitrate"
 
-#: zenphoto-translate/zp-core/functions.php:2259
+#: zenphoto-translate/zp-core/functions.php:2171
 msgid "Bitrate_Mode"
 msgstr "Bitrate_Mode"
 
-#: zenphoto-translate/zp-core/functions.php:2260
+#: zenphoto-translate/zp-core/functions.php:2172
 msgid "Bits per sample"
 msgstr "Bits per sample"
 
-#: zenphoto-translate/zp-core/functions.php:2261
+#: zenphoto-translate/zp-core/functions.php:2173
 msgid "Codec"
 msgstr "Codec"
 
-#: zenphoto-translate/zp-core/functions.php:2262
+#: zenphoto-translate/zp-core/functions.php:2174
 msgid "Compression Ratio"
 msgstr "Kompressionstärke"
 
-#: zenphoto-translate/zp-core/functions.php:2263
+#: zenphoto-translate/zp-core/functions.php:2175
 msgid "Video Dataformat"
 msgstr "Video-Datenformat"
 
-#: zenphoto-translate/zp-core/functions.php:2264
+#: zenphoto-translate/zp-core/functions.php:2176
 msgid "File Encoder"
 msgstr "Dateikodierer"
 
-#: zenphoto-translate/zp-core/functions.php:2265
+#: zenphoto-translate/zp-core/functions.php:2177
 msgid "Sample rate"
 msgstr "Samplerate"
 
-#: zenphoto-translate/zp-core/functions.php:2266
+#: zenphoto-translate/zp-core/functions.php:2178
 msgid "Channel mode"
 msgstr "Kanalmodus"
 
-#: zenphoto-translate/zp-core/functions.php:2267
+#: zenphoto-translate/zp-core/functions.php:2179
 msgid "Format"
 msgstr "Format"
 
-#: zenphoto-translate/zp-core/functions.php:2268
+#: zenphoto-translate/zp-core/functions.php:2180
 msgid "Channels"
 msgstr "Kanäle"
 
-#: zenphoto-translate/zp-core/functions.php:2269
+#: zenphoto-translate/zp-core/functions.php:2181
 msgid "Frame rate"
 msgstr "Bildrate"
 
-#: zenphoto-translate/zp-core/functions.php:2270
+#: zenphoto-translate/zp-core/functions.php:2182
 msgid "X Resolution"
 msgstr "X-Auflösung"
 
-#: zenphoto-translate/zp-core/functions.php:2271
+#: zenphoto-translate/zp-core/functions.php:2183
 msgid "Y Resolution"
 msgstr "Y-Auflösung"
 
-#: zenphoto-translate/zp-core/functions.php:2272
+#: zenphoto-translate/zp-core/functions.php:2184
 msgid "Aspect ratio"
 msgstr "Abmessung"
 
-#: zenphoto-translate/zp-core/functions.php:2273
+#: zenphoto-translate/zp-core/functions.php:2185
 msgid "Play Time"
 msgstr "Spieldauer"
 
-#: zenphoto-translate/zp-core/functions.php:2274
+#: zenphoto-translate/zp-core/functions.php:2186
 msgid "XMP Rating"
 msgstr "XMP Bewertung"
 
@@ -10534,20 +10537,20 @@ msgstr "Bildinfo"
 msgid "Anonymous"
 msgstr "Anonym"
 
-#: zenphoto-translate/zp-core/template-functions.php:3528
+#: zenphoto-translate/zp-core/template-functions.php:3492
 #, php-format
 msgid "View image: %s"
 msgstr "Bild %s ansehen"
 
-#: zenphoto-translate/zp-core/template-functions.php:3696
+#: zenphoto-translate/zp-core/template-functions.php:3660
 msgid "No popular tags"
 msgstr "Keine populären Schlagwörter"
 
-#: zenphoto-translate/zp-core/template-functions.php:3971
+#: zenphoto-translate/zp-core/template-functions.php:3935
 msgid "Latest images RSS"
 msgstr "Neuste Bilder RSS "
 
-#: zenphoto-translate/zp-core/template-functions.php:4027
+#: zenphoto-translate/zp-core/template-functions.php:3991
 msgid ""
 "getSearchURL $album_list parameter is deprecated. Pass array(\"albums"
 "\"=>array(album, album, ...)) instead."
@@ -10555,7 +10558,7 @@ msgstr ""
 "getSearchURL $album_list Parameter ist veraltet. Übergeben Sie stattdessen "
 "ein array(\"albums\"=>array(album, album,...))."
 
-#: zenphoto-translate/zp-core/template-functions.php:4146
+#: zenphoto-translate/zp-core/template-functions.php:4111
 msgid ""
 "printSearchForm $album_list parameter is deprecated. Pass array(\"albums"
 "\"=>array(album, album, ...)) instead."
@@ -10563,41 +10566,41 @@ msgstr ""
 "printSearchForm $album_list Parameter ist veraltet. Übergeben Sie "
 "stattdessen ein array(\"albums\"=>array(album, album,...))."
 
-#: zenphoto-translate/zp-core/template-functions.php:4162
+#: zenphoto-translate/zp-core/template-functions.php:4127
 #, php-format
 msgid "%s within previous results"
 msgstr "%s innerhalb bisheriger Treffer"
 
-#: zenphoto-translate/zp-core/template-functions.php:4236
+#: zenphoto-translate/zp-core/template-functions.php:4201
 msgid "search options"
 msgstr "Sucheinstellungen"
 
-#: zenphoto-translate/zp-core/template-functions.php:4236
+#: zenphoto-translate/zp-core/template-functions.php:4201
 msgid "fields"
 msgstr "Felder"
 
-#: zenphoto-translate/zp-core/template-functions.php:4272
+#: zenphoto-translate/zp-core/template-functions.php:4237
 msgid "Within"
 msgstr "Innerhalb"
 
-#: zenphoto-translate/zp-core/template-functions.php:4276
+#: zenphoto-translate/zp-core/template-functions.php:4241
 #: zenphoto-translate/zp-core/zp-extensions/flag_thumbnail.php:90
 msgid "New"
 msgstr "Neu"
 
-#: zenphoto-translate/zp-core/template-functions.php:4330
+#: zenphoto-translate/zp-core/template-functions.php:4295
 msgid "no date"
 msgstr "kein Datum"
 
-#: zenphoto-translate/zp-core/template-functions.php:4564
+#: zenphoto-translate/zp-core/template-functions.php:4529
 msgid "The page you are trying to view is password protected."
 msgstr "Die Seite, die Sie sehen möchten, ist passwortgeschützt."
 
-#: zenphoto-translate/zp-core/template-functions.php:4569
+#: zenphoto-translate/zp-core/template-functions.php:4534
 msgid "login"
 msgstr "Anmelden"
 
-#: zenphoto-translate/zp-core/template-functions.php:4614
+#: zenphoto-translate/zp-core/template-functions.php:4579
 msgid ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
 "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
@@ -11656,89 +11659,85 @@ msgstr "entspannt"
 msgid "loose"
 msgstr "locker"
 
-#: zenphoto-translate/zp-core/setup/index.php:241
-msgid "Updated configuration file"
-msgstr "Konfigurationsdatei aktualisiert"
-
-#: zenphoto-translate/zp-core/setup/index.php:264
+#: zenphoto-translate/zp-core/setup/index.php:257
 msgid "upgrade"
 msgstr "Aktualisierung"
 
-#: zenphoto-translate/zp-core/setup/index.php:329
+#: zenphoto-translate/zp-core/setup/index.php:322
 msgid "Completed system check"
 msgstr "Systemüberprüfung komplett"
 
-#: zenphoto-translate/zp-core/setup/index.php:336
+#: zenphoto-translate/zp-core/setup/index.php:329
 msgid "Setup cookie test successful"
 msgstr "Installations-Testcookie erfolgreich"
 
-#: zenphoto-translate/zp-core/setup/index.php:339
+#: zenphoto-translate/zp-core/setup/index.php:332
 msgid "Setup cookie test unsuccessful"
 msgstr "Setup Cookietest fehlgeschlagen"
 
-#: zenphoto-translate/zp-core/setup/index.php:344
+#: zenphoto-translate/zp-core/setup/index.php:337
 msgid "Post of Database credentials"
 msgstr "Datenbank-Benutzerdaten"
 
-#: zenphoto-translate/zp-core/setup/index.php:357
+#: zenphoto-translate/zp-core/setup/index.php:350
 #, php-format
 msgid "Zenphoto Setup v%1$s[%2$s]%3$s: %4$s"
 msgstr "Zenphoto Setup v%1$s[%2$s]%3$s: %4$s"
 
-#: zenphoto-translate/zp-core/setup/index.php:360
+#: zenphoto-translate/zp-core/setup/index.php:353
 msgid "Full environment"
 msgstr "Volle Umgebung"
 
-#: zenphoto-translate/zp-core/setup/index.php:362
+#: zenphoto-translate/zp-core/setup/index.php:355
 msgid "Primitive environment"
 msgstr "Einfache Umgebung"
 
-#: zenphoto-translate/zp-core/setup/index.php:364
+#: zenphoto-translate/zp-core/setup/index.php:357
 #, php-format
 msgid "Query error: %s"
 msgstr "Abfragefehler:  %s"
 
-#: zenphoto-translate/zp-core/setup/index.php:376
+#: zenphoto-translate/zp-core/setup/index.php:369
 msgid "create"
 msgstr "erstellen"
 
-#: zenphoto-translate/zp-core/setup/index.php:376
+#: zenphoto-translate/zp-core/setup/index.php:369
 msgid "update"
 msgstr "aktualisieren"
 
-#: zenphoto-translate/zp-core/setup/index.php:387
+#: zenphoto-translate/zp-core/setup/index.php:380
 msgid "Upgrade from before Zenphoto v1.2"
 msgstr "Aktualisierung von vor Zenphoto 1.2"
 
-#: zenphoto-translate/zp-core/setup/index.php:398
-#: zenphoto-translate/zp-core/setup/index.php:415
+#: zenphoto-translate/zp-core/setup/index.php:391
+#: zenphoto-translate/zp-core/setup/index.php:408
 #, php-format
 msgid "Upgrade from Zenphoto v%s"
 msgstr "Aktualisierung von Zenphoto v%s"
 
-#: zenphoto-translate/zp-core/setup/index.php:403
-#: zenphoto-translate/zp-core/setup/index.php:431
+#: zenphoto-translate/zp-core/setup/index.php:396
+#: zenphoto-translate/zp-core/setup/index.php:424
 msgid "Reinstalling current Zenphoto release"
 msgstr "Erneute Installation der aktuellen Zenphoto-Version"
 
-#: zenphoto-translate/zp-core/setup/index.php:404
-#: zenphoto-translate/zp-core/setup/index.php:432
+#: zenphoto-translate/zp-core/setup/index.php:397
+#: zenphoto-translate/zp-core/setup/index.php:425
 msgid "reinstall"
 msgstr "Erneut installieren"
 
-#: zenphoto-translate/zp-core/setup/index.php:443
+#: zenphoto-translate/zp-core/setup/index.php:436
 msgid "install"
 msgstr "Installieren"
 
-#: zenphoto-translate/zp-core/setup/index.php:465
+#: zenphoto-translate/zp-core/setup/index.php:458
 msgid "Zenphoto Setup"
 msgstr "Zenphoto-Installation"
 
-#: zenphoto-translate/zp-core/setup/index.php:466
+#: zenphoto-translate/zp-core/setup/index.php:459
 msgid "Setup"
 msgstr "Installation"
 
-#: zenphoto-translate/zp-core/setup/index.php:492
+#: zenphoto-translate/zp-core/setup/index.php:485
 #, php-format
 msgid ""
 "Welcome to Zenphoto! This page will set up Zenphoto %s on your web server."
@@ -11746,20 +11745,20 @@ msgstr ""
 "Willkommen bei Zenphoto! Diese Seite wird Zenphoto %s auf Ihrem Webserver "
 "einrichten."
 
-#: zenphoto-translate/zp-core/setup/index.php:494
+#: zenphoto-translate/zp-core/setup/index.php:487
 msgid "Systems Check:"
 msgstr "Systemcheck:"
 
-#: zenphoto-translate/zp-core/setup/index.php:516
+#: zenphoto-translate/zp-core/setup/index.php:509
 msgid "You are not installing the latest version of Zenphoto."
 msgstr "Sie installieren nicht die neuste Zenphoto-Version."
 
-#: zenphoto-translate/zp-core/setup/index.php:516
+#: zenphoto-translate/zp-core/setup/index.php:509
 #, php-format
 msgid "Version %s is available."
 msgstr "Version %s ist verfügbar."
 
-#: zenphoto-translate/zp-core/setup/index.php:517
+#: zenphoto-translate/zp-core/setup/index.php:510
 msgid ""
 "<strong>Note:</strong> The release you are installing has debugging settings "
 "enabled!"
@@ -11767,14 +11766,14 @@ msgstr ""
 "<strong>Anmerkung:</strong> Die Version, die Sie installieren, hat "
 "Fehlersucheinstellungen aktiviert!"
 
-#: zenphoto-translate/zp-core/setup/index.php:525
+#: zenphoto-translate/zp-core/setup/index.php:518
 #, php-format
 msgid "[%u release skipped]"
 msgid_plural "[%u releases skipped]"
 msgstr[0] "[%u Version übersprungen]"
 msgstr[1] "[%u Versionen übersprungen]"
 
-#: zenphoto-translate/zp-core/setup/index.php:525
+#: zenphoto-translate/zp-core/setup/index.php:518
 msgid ""
 "We do not test upgrades that skip releases. We recommend you upgrade in "
 "sequence."
@@ -11782,20 +11781,20 @@ msgstr ""
 "Wir testen keine Aktualisierungen, die Versionen auslassen und empfehlen der "
 "Reihenfolge nach zu akualisieren."
 
-#: zenphoto-translate/zp-core/setup/index.php:531
+#: zenphoto-translate/zp-core/setup/index.php:524
 #, php-format
 msgid "Installing Zenphoto v%s"
 msgstr "Zenphoto v%s wird installiert"
 
-#: zenphoto-translate/zp-core/setup/index.php:544
+#: zenphoto-translate/zp-core/setup/index.php:537
 msgid "Log security"
 msgstr "Protokollsicherheit "
 
-#: zenphoto-translate/zp-core/setup/index.php:544
+#: zenphoto-translate/zp-core/setup/index.php:537
 msgid "Log security [is compromised]"
 msgstr "Protokollsicherheit [ist gefährdet]"
 
-#: zenphoto-translate/zp-core/setup/index.php:545
+#: zenphoto-translate/zp-core/setup/index.php:538
 #, php-format
 msgid ""
 "Zenphoto attempts to make log files accessable by <em>owner</em> only "
@@ -11807,12 +11806,12 @@ msgstr ""
 "Die Protokolldatei-Zugriffsrechte sind  %04o, was unerlaubten Zugriff "
 "ermöglichen könnte."
 
-#: zenphoto-translate/zp-core/setup/index.php:547
+#: zenphoto-translate/zp-core/setup/index.php:540
 #, php-format
 msgid "PHP version %s"
 msgstr "PHP-Version %s"
 
-#: zenphoto-translate/zp-core/setup/index.php:547
+#: zenphoto-translate/zp-core/setup/index.php:540
 #, php-format
 msgid ""
 "PHP Version %1$s or greater is required. Version %2$s or greater is strongly "
@@ -11821,28 +11820,28 @@ msgstr ""
 "Version %1$s oder neuer ist notwendig. Version %2$s oder neuer ist "
 "ausdrücklich empfohlen. Verwenden Sie ältere Versionen auf eigenes Risiko. "
 
-#: zenphoto-translate/zp-core/setup/index.php:548
+#: zenphoto-translate/zp-core/setup/index.php:541
 msgid "PHP <code>Sessions</code>."
 msgstr "PHP <code>Sessions</code>."
 
-#: zenphoto-translate/zp-core/setup/index.php:548
+#: zenphoto-translate/zp-core/setup/index.php:541
 msgid "PHP <code>Sessions</code> [appear to not be working]."
 msgstr ""
 "PHP <code>Sessions</code>-Unterstützung [scheint nicht zu funktionieren]"
 
-#: zenphoto-translate/zp-core/setup/index.php:548
+#: zenphoto-translate/zp-core/setup/index.php:541
 msgid "PHP Sessions are required for Zenphoto administrative functions."
 msgstr "PHP Sessions sind für Zenphoto-Verwaltungsfunktionen erforderlich."
 
-#: zenphoto-translate/zp-core/setup/index.php:562
+#: zenphoto-translate/zp-core/setup/index.php:555
 msgid "PHP <code>Register Globals</code>"
 msgstr "PHP <code>Register Globals</code>"
 
-#: zenphoto-translate/zp-core/setup/index.php:562
+#: zenphoto-translate/zp-core/setup/index.php:555
 msgid "PHP <code>Register Globals</code> [is set]"
 msgstr "PHP <code>Register Globals</code> [ist aktiv]"
 
-#: zenphoto-translate/zp-core/setup/index.php:563
+#: zenphoto-translate/zp-core/setup/index.php:556
 msgid ""
 "PHP Register globals presents a security risk to any PHP application. See <a "
 "href=\"http://php.net/manual/en/security.globals.php\"><em>Using Register "
@@ -11854,15 +11853,15 @@ msgstr ""
 "php\"><em>Verwendung von Register Globals</em></a>. Ändern Sie Ihre PHP.ini-"
 "Einstellung auf <code>register_globals = off</code>."
 
-#: zenphoto-translate/zp-core/setup/index.php:570
+#: zenphoto-translate/zp-core/setup/index.php:563
 msgid "PHP <code>Safe Mode</code>"
 msgstr "PHP <code>Safe Mode</code>"
 
-#: zenphoto-translate/zp-core/setup/index.php:570
+#: zenphoto-translate/zp-core/setup/index.php:563
 msgid "PHP <code>Safe Mode</code> [is set]"
 msgstr "PHP <code>Safe Mode</code> [ist aktiv]"
 
-#: zenphoto-translate/zp-core/setup/index.php:570
+#: zenphoto-translate/zp-core/setup/index.php:563
 msgid ""
 "Zenphoto functionality is reduced when PHP <code>safe mode</code> "
 "restrictions are in effect."
@@ -11870,11 +11869,11 @@ msgstr ""
 "Zenphotos Funktionalität ist eingeschränkt solange PHP Safe Mode-"
 "Einschränkungen aktiv sind."
 
-#: zenphoto-translate/zp-core/setup/index.php:588
+#: zenphoto-translate/zp-core/setup/index.php:581
 msgid "<code>Suhosin</code> module [is enabled]"
 msgstr "PHP <code>Suoshin</code>-Modul [ist aktiviert]"
 
-#: zenphoto-translate/zp-core/setup/index.php:588
+#: zenphoto-translate/zp-core/setup/index.php:581
 #, php-format
 msgid ""
 "The following PHP functions are blocked: %s. Flagged functions are required "
@@ -11886,19 +11885,19 @@ msgstr ""
 "möglicherweise von Zenphoto verwendet und können daher eingeschränkte "
 "Funktionalität oder Zenphoto-Fehler verursachen."
 
-#: zenphoto-translate/zp-core/setup/index.php:592
+#: zenphoto-translate/zp-core/setup/index.php:585
 msgid "Magic_quotes"
 msgstr "Magic_quotes"
 
-#: zenphoto-translate/zp-core/setup/index.php:598
+#: zenphoto-translate/zp-core/setup/index.php:591
 msgid "PHP <code>magic_quotes_gpc</code>"
 msgstr "PHP <code>magic_quotes_gpc</code>"
 
-#: zenphoto-translate/zp-core/setup/index.php:598
+#: zenphoto-translate/zp-core/setup/index.php:591
 msgid "PHP <code>magic_quotes_gpc</code> [is enabled]"
 msgstr "PHP <code>magic_quotes_gpc</code> [sind aktiviert]"
 
-#: zenphoto-translate/zp-core/setup/index.php:598
+#: zenphoto-translate/zp-core/setup/index.php:591
 msgid ""
 "We strongly recommend disabling <code>magic_quotes_gpc</code>. For more "
 "information See <em><a href=\"http://www.zenphoto.org/news/troubleshooting-"
@@ -11912,70 +11911,70 @@ msgstr ""
 "disabled-\">What is magic_quotes_gpc and why should it be disabled?</a></em> "
 "im Zenphoto troubleshooting guide."
 
-#: zenphoto-translate/zp-core/setup/index.php:604
+#: zenphoto-translate/zp-core/setup/index.php:597
 msgid "PHP <code>magic_quotes_runtime</code>"
 msgstr "PHP <code>magic_quotes_runtime</code>"
 
-#: zenphoto-translate/zp-core/setup/index.php:604
+#: zenphoto-translate/zp-core/setup/index.php:597
 msgid "PHP <code>magic_quotes_runtime</code> [is enabled]"
 msgstr "PHP <code>magic_quotes_runtime</code> [ist aktiviert]"
 
-#: zenphoto-translate/zp-core/setup/index.php:604
+#: zenphoto-translate/zp-core/setup/index.php:597
 msgid "You must disable <code>magic_quotes_runtime</code>."
 msgstr "Sie müssen <code>magic_quotes_runtime</code> deaktivieren."
 
-#: zenphoto-translate/zp-core/setup/index.php:605
+#: zenphoto-translate/zp-core/setup/index.php:598
 msgid "PHP <code>magic_quotes_sybase</code>"
 msgstr "PHP <code>magic_quotes_sybase</code>"
 
-#: zenphoto-translate/zp-core/setup/index.php:605
+#: zenphoto-translate/zp-core/setup/index.php:598
 msgid "PHP <code>magic_quotes_sybase</code> [is enabled]"
 msgstr "PHP <code>magic_quotes_sybase</code> [ist aktiviert]"
 
-#: zenphoto-translate/zp-core/setup/index.php:605
+#: zenphoto-translate/zp-core/setup/index.php:598
 msgid "You must disable <code>magic_quotes_sybase</code>."
 msgstr "Sie müssen <code>magic_quotes_sybase</code> deaktivieren."
 
-#: zenphoto-translate/zp-core/setup/index.php:627
+#: zenphoto-translate/zp-core/setup/index.php:620
 msgid "PHP <code>display_errors</code>"
 msgstr "PHP <code>display_errors</code>"
 
-#: zenphoto-translate/zp-core/setup/index.php:628
+#: zenphoto-translate/zp-core/setup/index.php:621
 #, php-format
 msgid "PHP <code>display_errors</code> [is enabled]"
 msgstr "PHP <code>display_errors</code> [ist aktiviert]"
 
-#: zenphoto-translate/zp-core/setup/index.php:629
+#: zenphoto-translate/zp-core/setup/index.php:622
 msgid ""
 "This setting may result in PHP error messages being displayed on WEB pages. "
-"These displays may contain sentsitive information about your site."
+"These displays may contain sensitive information about your site."
 msgstr ""
 "PHP-Fehlermeldungen werden möglicherweise auf Ihrer Website angezeigt. Diese "
 "können ungewollt sensitive Daten beinhalten."
 
-#: zenphoto-translate/zp-core/setup/index.php:632
+#: zenphoto-translate/zp-core/setup/index.php:625
 msgid "PHP <code>gettext()</code> support"
 msgstr "PHP <code>gettext()</code>-Unterstützung"
 
-#: zenphoto-translate/zp-core/setup/index.php:632
+#: zenphoto-translate/zp-core/setup/index.php:625
 msgid "PHP <code>gettext()</code> support [is not present]"
 msgstr "PHP <code>gettext()</code>-Unterstützung [ist nicht vorhanden]"
 
-#: zenphoto-translate/zp-core/setup/index.php:632
+#: zenphoto-translate/zp-core/setup/index.php:625
 msgid ""
 "Localization of Zenphoto requires native PHP <code>gettext()</code> support"
 msgstr ""
 "Lokalisation von Zenphoto benötigt die PHP-<code>gettext()</code>-Erweiterung"
 
-#: zenphoto-translate/zp-core/setup/index.php:633
+#: zenphoto-translate/zp-core/setup/index.php:626
 msgid "PHP <code>flock</code> support"
 msgstr "PHP <code>flock</code>-Unterstützung"
 
-#: zenphoto-translate/zp-core/setup/index.php:633
+#: zenphoto-translate/zp-core/setup/index.php:626
 msgid "PHP <code>flock</code> support [is not present]"
 msgstr "PHP <code>flock</code>-Unterstützung [ist nicht vorhanden]"
 
-#: zenphoto-translate/zp-core/setup/index.php:633
+#: zenphoto-translate/zp-core/setup/index.php:626
 msgid ""
 "Zenpoto uses <code>flock</code> for serializing critical regions of code. "
 "Without <code>flock</code> active sites may experience <em>race conditions</"
@@ -11985,15 +11984,15 @@ msgstr ""
 "sterilisieren. Ohne <code>flock</code> können Sites <em>kritische Wettläufe</"
 "em> erfahren, die inkonsistente Daten zur Folge haben können."
 
-#: zenphoto-translate/zp-core/setup/index.php:635
+#: zenphoto-translate/zp-core/setup/index.php:628
 msgid "PHP <code>setlocale()</code>"
 msgstr "PHP <code>setlocale()</code>"
 
-#: zenphoto-translate/zp-core/setup/index.php:635
+#: zenphoto-translate/zp-core/setup/index.php:628
 msgid "PHP <code>setlocale()</code> failed"
 msgstr "PHP <code>setlocale()</code> fehlgeschlagen"
 
-#: zenphoto-translate/zp-core/setup/index.php:635
+#: zenphoto-translate/zp-core/setup/index.php:628
 msgid ""
 "Locale functionality is not implemented on your platform or the specified "
 "locale does not exist. Language translation may not work."
@@ -12001,7 +12000,7 @@ msgstr ""
 "Ihr Server verfügt nicht über Locale-Funktionalität oder die ausgewählte "
 "Locale existiert nicht. Übersetzung funktionieren daher möglicherweise nicht."
 
-#: zenphoto-translate/zp-core/setup/index.php:635
+#: zenphoto-translate/zp-core/setup/index.php:628
 msgid ""
 "See the <a  href=\"http://www.zenphoto.org/news/troubleshooting-"
 "zenphoto#24\">troubleshooting guide</a> on zenphoto.org for details."
@@ -12010,11 +12009,11 @@ msgstr ""
 "zenphoto#24\">Troubleshooting guide</a> auf zenphoto.org für mehr "
 "Information."
 
-#: zenphoto-translate/zp-core/setup/index.php:637
+#: zenphoto-translate/zp-core/setup/index.php:630
 msgid "mb_strings"
 msgstr "mb_strings"
 
-#: zenphoto-translate/zp-core/setup/index.php:645
+#: zenphoto-translate/zp-core/setup/index.php:638
 msgid ""
 "Setting <em>mbstring.internal_encoding</em> to <strong>UTF-8</strong> in "
 "your <em>php.ini</em> file is recommended to insure accented and multi-byte "
@@ -12025,11 +12024,11 @@ msgstr ""
 "zu stellen, dass akzentuierte und multi-byte Buchstaben wie erwartet "
 "funktionieren."
 
-#: zenphoto-translate/zp-core/setup/index.php:646
+#: zenphoto-translate/zp-core/setup/index.php:639
 msgid "PHP <code>mbstring</code> package"
 msgstr "PHP <code>mbstring</code>-Erweiterung"
 
-#: zenphoto-translate/zp-core/setup/index.php:646
+#: zenphoto-translate/zp-core/setup/index.php:639
 #, php-format
 msgid ""
 "PHP <code>mbstring</code> package [Your internal character set is <strong>"
@@ -12038,15 +12037,15 @@ msgstr ""
 "PHP <code>mbstring</code>-Erweiterung [Ihr interner Zeichensatz ist auf "
 "<strong>%s</strong> eingestellt]"
 
-#: zenphoto-translate/zp-core/setup/index.php:650
+#: zenphoto-translate/zp-core/setup/index.php:643
 msgid ""
 "You need to install the <code>mbstring</code> package or correct the issue "
-"with <code>iconv(()</code>"
+"with <code>iconv()</code>"
 msgstr ""
 "Sie müssen die <code>mbstring</code>-Erweiterung installieren oder "
 "Angelegenheit mit  <code>iconv(()</code> beheben"
 
-#: zenphoto-translate/zp-core/setup/index.php:651
+#: zenphoto-translate/zp-core/setup/index.php:644
 msgid ""
 "PHP <code>mbstring</code> package [is not present and <code>iconv()</code> "
 "is not working]"
@@ -12054,31 +12053,31 @@ msgstr ""
 "PHP <code>mbstring</code>-Erweiterung [ist nicht vorhanden und <code>iconv()"
 "</code> funktioniert nicht]"
 
-#: zenphoto-translate/zp-core/setup/index.php:653
+#: zenphoto-translate/zp-core/setup/index.php:646
 msgid ""
 "Strings generated internally by PHP may not display correctly. (e.g. dates)"
 msgstr ""
 "Zeichenketten, die intern von PHP generiert werden, können unter Umständen "
 "nicht korrekt dargestellt werden (z. B. Datumsangaben)."
 
-#: zenphoto-translate/zp-core/setup/index.php:654
+#: zenphoto-translate/zp-core/setup/index.php:647
 msgid "PHP <code>mbstring</code> package [is not present]"
 msgstr "PHP <code>mbstring</code>-Erweiterung [ist nicht vorhanden]"
 
-#: zenphoto-translate/zp-core/setup/index.php:660
+#: zenphoto-translate/zp-core/setup/index.php:653
 msgid "Graphics library"
 msgstr "Grafikbibliothek"
 
-#: zenphoto-translate/zp-core/setup/index.php:668
+#: zenphoto-translate/zp-core/setup/index.php:661
 #, php-format
 msgid "Graphics support: <code>%s</code>"
 msgstr "Grafikunterstützung: <code>%s</code>"
 
-#: zenphoto-translate/zp-core/setup/index.php:668
+#: zenphoto-translate/zp-core/setup/index.php:661
 msgid "Graphics support [is not installed]"
 msgstr "Grafikunterstützung [ist nicht installiert]"
 
-#: zenphoto-translate/zp-core/setup/index.php:668
+#: zenphoto-translate/zp-core/setup/index.php:661
 msgid ""
 "You need to install a graphics support library such as the <em>GD library</"
 "em> in your PHP"
@@ -12086,17 +12085,17 @@ msgstr ""
 "Sie müssen eine <em>Grafikerweitung</em> für PHP wie die GD-Bibliothek "
 "installieren"
 
-#: zenphoto-translate/zp-core/setup/index.php:677
+#: zenphoto-translate/zp-core/setup/index.php:670
 #, php-format
 msgid "Your PHP graphics library does not support %1$s or %2$s"
 msgstr "Ihre PHP-Grafiklibary unterstützt %1$s oder %2$s nicht"
 
-#: zenphoto-translate/zp-core/setup/index.php:679
+#: zenphoto-translate/zp-core/setup/index.php:672
 #, php-format
 msgid "Your PHP graphics library does not support %1$s"
 msgstr "Ihre PHP-Grafiklibary unterstützt %1$s nicht"
 
-#: zenphoto-translate/zp-core/setup/index.php:682
+#: zenphoto-translate/zp-core/setup/index.php:675
 msgid ""
 "To correct this you should install a graphics library with appropriate image "
 "support in your PHP"
@@ -12104,12 +12103,12 @@ msgstr ""
 "Um dies zu beheben, sollten Sie GD-Grafikerweiterung mit entsprechender "
 "Bildunterstützung für PHP installieren"
 
-#: zenphoto-translate/zp-core/setup/index.php:684
+#: zenphoto-translate/zp-core/setup/index.php:677
 #, php-format
 msgid "Your PHP graphics library does not support %1$s, %2$s, or %3$s"
 msgstr "Ihre PHP-Grafiklibary unterstützt  %1$s, %2$s oder %3$s nicht"
 
-#: zenphoto-translate/zp-core/setup/index.php:687
+#: zenphoto-translate/zp-core/setup/index.php:680
 msgid ""
 "To correct this you need to install GD with appropriate image support in "
 "your PHP"
@@ -12117,30 +12116,30 @@ msgstr ""
 "Um dies zu beheben, müssen Sie die GD-Erweiterung für PHP mit der "
 "entsprechenden Bildformatunterstützung installieren"
 
-#: zenphoto-translate/zp-core/setup/index.php:689
+#: zenphoto-translate/zp-core/setup/index.php:682
 msgid "PHP graphics image support"
 msgstr "PHP-GD-Bildbearbeitungs-Unterstützung"
 
-#: zenphoto-translate/zp-core/setup/index.php:690
+#: zenphoto-translate/zp-core/setup/index.php:683
 msgid "The unsupported image types will not be viewable in your albums."
 msgstr ""
 "Die nicht unterstützten Bildformate werden in Ihren Alben nicht zu sehen "
 "sein."
 
-#: zenphoto-translate/zp-core/setup/index.php:694
+#: zenphoto-translate/zp-core/setup/index.php:687
 msgid "Graphics Library rotation support [is not present]"
 msgstr "Grafikbibliothek Bildrotationunterstützung [ist nicht vorhanden]"
 
-#: zenphoto-translate/zp-core/setup/index.php:694
+#: zenphoto-translate/zp-core/setup/index.php:687
 msgid ""
 "The graphics support library does not provide support for image rotation."
 msgstr "Die Grafikunterstützung bietet keine Bildrotationsfunktionalität."
 
-#: zenphoto-translate/zp-core/setup/index.php:702
+#: zenphoto-translate/zp-core/setup/index.php:695
 msgid "Graphics support [configuration error]"
 msgstr "Grafikunterstützung [Konfigurationsfehler]"
 
-#: zenphoto-translate/zp-core/setup/index.php:702
+#: zenphoto-translate/zp-core/setup/index.php:695
 msgid ""
 "No Zenphoto image handling library was loaded. Be sure that your PHP has a "
 "graphics support."
@@ -12148,15 +12147,15 @@ msgstr ""
 "Es wurde keine Zenphoto-Grafikbibliothek geladen. Überprüfen Sie, dass Ihr "
 "PHP über Grafikunterstützung verfügt."
 
-#: zenphoto-translate/zp-core/setup/index.php:713
+#: zenphoto-translate/zp-core/setup/index.php:706
 msgid "<em>zenphoto.cfg</em> file"
 msgstr "<em>zenphoto.cfg</em>-Datei"
 
-#: zenphoto-translate/zp-core/setup/index.php:713
+#: zenphoto-translate/zp-core/setup/index.php:706
 msgid "<em>zenphoto.cfg</em> file [does not exist]"
 msgstr "<em>zenphoto.cfg</em>-Datei [existiert nicht]"
 
-#: zenphoto-translate/zp-core/setup/index.php:714
+#: zenphoto-translate/zp-core/setup/index.php:707
 #, php-format
 msgid ""
 "Setup was not able to create this file. You will need to copy the <code>%1$s/"
@@ -12167,31 +12166,31 @@ msgstr ""
 "daher die Datei <code>%1$s/zenphoto_cfg.txt</code> nach <code>%2$s/zenphoto."
 "cfg</code>kopieren und dann wie in den Dateikommentaren beschrieben ändern."
 
-#: zenphoto-translate/zp-core/setup/index.php:716
+#: zenphoto-translate/zp-core/setup/index.php:709
 msgid "File permissions"
 msgstr "Dateizugriffsrechte"
 
-#: zenphoto-translate/zp-core/setup/index.php:718
+#: zenphoto-translate/zp-core/setup/index.php:711
 #, php-format
 msgid "Set File permissions to %s."
 msgstr "Dateizugriffsrechte auf %s ändern."
 
-#: zenphoto-translate/zp-core/setup/index.php:721
+#: zenphoto-translate/zp-core/setup/index.php:714
 #, php-format
 msgid "<em>%1$s</em> (<code>0%2$o</code>)"
 msgstr "<em>%1$s</em> (<code>0%2$o</code>)"
 
-#: zenphoto-translate/zp-core/setup/index.php:723
+#: zenphoto-translate/zp-core/setup/index.php:716
 #, php-format
 msgid "<em>unknown</em> (<code>%o</code>)"
 msgstr "<em>Unbekannt</em> (<code>%o</code>)"
 
-#: zenphoto-translate/zp-core/setup/index.php:734
+#: zenphoto-translate/zp-core/setup/index.php:727
 #, php-format
 msgid "File Permissions [are %s]"
 msgstr "Dateizugriffsrechte [sind %s]"
 
-#: zenphoto-translate/zp-core/setup/index.php:735
+#: zenphoto-translate/zp-core/setup/index.php:728
 msgid ""
 "If file permissions are not set to <em>strict</em> or tighter there could be "
 "a security risk. However, on some servers Zenphoto does not function "
@@ -12205,11 +12204,11 @@ msgstr ""
 "Rechtevergabe erhalten, führen Sie das Installationsprogramm erneut aus und "
 "setzten Sie weniger strenge Rechte. "
 
-#: zenphoto-translate/zp-core/setup/index.php:741
+#: zenphoto-translate/zp-core/setup/index.php:734
 msgid "Your filesystem is Macintosh"
 msgstr "Ihr Dateisystem ist Macintosh"
 
-#: zenphoto-translate/zp-core/setup/index.php:741
+#: zenphoto-translate/zp-core/setup/index.php:734
 msgid ""
 "Zenphoto is unable to deal with Macintosh file names containing diacritical "
 "marks. You should avoid these."
@@ -12217,11 +12216,11 @@ msgstr ""
 "Zenphoto kann auf Macs nicht mit Dateinamen, die Akzente enthalten, umgehen. "
 "Sie sollten diese vermeiden."
 
-#: zenphoto-translate/zp-core/setup/index.php:748
+#: zenphoto-translate/zp-core/setup/index.php:741
 msgid "Character set"
 msgstr "Zeichensatz"
 
-#: zenphoto-translate/zp-core/setup/index.php:789
+#: zenphoto-translate/zp-core/setup/index.php:782
 #, php-format
 msgid ""
 "If your server filesystem character set is different from <code>%s</code> "
@@ -12232,37 +12231,37 @@ msgstr ""
 "können Datei -und Ordnernamen mit Zeichen, die diakritische Zeichen "
 "enthalten, Probleme verursachen."
 
-#: zenphoto-translate/zp-core/setup/index.php:791
+#: zenphoto-translate/zp-core/setup/index.php:784
 #, php-format
 msgid "Change the filesystem character set define to %1$s"
 msgstr "Die Dateisystem-Zeichensatz-Definition auf %1$s ändern"
 
-#: zenphoto-translate/zp-core/setup/index.php:805
+#: zenphoto-translate/zp-core/setup/index.php:798
 #, php-format
 msgid "The Zenphoto filesystem character define is %1$s [confirmed]"
 msgstr ""
 "Der Zenphoto-Dateisystem-Zeichensatz ist als %1$s definiert [bestätigt]"
 
-#: zenphoto-translate/zp-core/setup/index.php:810
+#: zenphoto-translate/zp-core/setup/index.php:803
 msgid "The Zenphoto filesystem character define is ISO-8859-1 [assumed]"
 msgstr ""
 "Der Zenphoto-Dateisystem-Zeichensatz ist als ISO-8859-1 [angenommen] "
 "definiert"
 
-#: zenphoto-translate/zp-core/setup/index.php:815
+#: zenphoto-translate/zp-core/setup/index.php:808
 #, php-format
 msgid "The Zenphoto filesystem character define is %1$s [which seems wrong]"
 msgstr ""
 "Der Zenphoto-Dateisystem-Zeichensatz ist als %1$s definiert  [scheint falsch]"
 
-#: zenphoto-translate/zp-core/setup/index.php:820
+#: zenphoto-translate/zp-core/setup/index.php:813
 #, php-format
 msgid "The Zenphoto filesystem character define is %1$s [no test performed]"
 msgstr ""
 "Der Zenphoto-Dateisystem-Zeichensatz ist als %1$s definiert [Es wurde kein "
 "Test ausgeführt]."
 
-#: zenphoto-translate/zp-core/setup/index.php:821
+#: zenphoto-translate/zp-core/setup/index.php:814
 #, php-format
 msgid ""
 "Setup did not perform a test of the filesystem character set. You can cause "
@@ -12275,37 +12274,37 @@ msgstr ""
 "dem Namen <strong><code>%2$s</code></strong> erstellen und das "
 "Installationsskript erneut aufrufen. "
 
-#: zenphoto-translate/zp-core/setup/index.php:834
+#: zenphoto-translate/zp-core/setup/index.php:827
 msgid "Image URIs appear require the <em>filesystem</em> character set."
 msgstr "Bild-URIs scheinen den <em>filesystem</em>-Zeichensatz zu erfordern."
 
-#: zenphoto-translate/zp-core/setup/index.php:835
+#: zenphoto-translate/zp-core/setup/index.php:828
 msgid "Image URIs appear to require the UTF-8 character set."
 msgstr "Bild-URIs scheinen den UTF-8-Zeichensatz zu erfordern."
 
-#: zenphoto-translate/zp-core/setup/index.php:856
+#: zenphoto-translate/zp-core/setup/index.php:849
 msgid "You should enable the URL option <em>UTF8 image URIs</em>."
 msgstr "Sie sollten die URL-Einstellung <em>UTF8 Bild-URIs</em> aktivieren"
 
-#: zenphoto-translate/zp-core/setup/index.php:856
+#: zenphoto-translate/zp-core/setup/index.php:849
 msgid "<a href=\"javascript:uri(true)\">Please do</a>"
 msgstr "<a href=\"javascript:uri(true)\">Bitte machen</a>"
 
-#: zenphoto-translate/zp-core/setup/index.php:873
+#: zenphoto-translate/zp-core/setup/index.php:866
 msgid "You should disable the URL option <em>UTF8 image URIs</em>."
 msgstr "Sie sollten die URL-Einstellung <em>UTF8 Bild-URIs</em> deaktivieren"
 
-#: zenphoto-translate/zp-core/setup/index.php:873
+#: zenphoto-translate/zp-core/setup/index.php:866
 msgid "<a href=\"javascript:uri(false)\">Please do</a>"
 msgstr "<a href=\"javascript:uri(false)\">Bitte machen</a>"
 
-#: zenphoto-translate/zp-core/setup/index.php:895
+#: zenphoto-translate/zp-core/setup/index.php:888
 #: zenphoto-translate/zp-core/setup/setup-functions.php:118
 #: zenphoto-translate/zp-core/setup/setup-functions.php:133
 msgid "Warning!"
 msgstr "Warnung!"
 
-#: zenphoto-translate/zp-core/setup/index.php:907
+#: zenphoto-translate/zp-core/setup/index.php:900
 #: zenphoto-translate/zp-core/utilities/database_reference.php:33
 #: zenphoto-translate/zp-core/utilities/refresh_database.php:4
 #: zenphoto-translate/zp-core/utilities/refresh_metadata.php:4
@@ -12315,12 +12314,12 @@ msgstr "Warnung!"
 msgid "Database"
 msgstr "Datenbank"
 
-#: zenphoto-translate/zp-core/setup/index.php:911
+#: zenphoto-translate/zp-core/setup/index.php:904
 #, php-format
 msgid "PHP <code>%s</code> support for configured Database"
 msgstr "PHP <code>%s</code>-Unterstützung für die konfigurierte Datenbank"
 
-#: zenphoto-translate/zp-core/setup/index.php:916
+#: zenphoto-translate/zp-core/setup/index.php:909
 #, php-format
 msgid ""
 " <code>%1$s</code> support (<a onclick=\"$('#%1$s').toggle('show')\" "
@@ -12329,26 +12328,26 @@ msgstr ""
 " <code>%1$s</code>-Support (<a onclick=\"$('#%1$s').toggle('show')\" "
 ">experimentell</a>)"
 
-#: zenphoto-translate/zp-core/setup/index.php:925
+#: zenphoto-translate/zp-core/setup/index.php:918
 #, php-format
 msgid "PHP <code>%s</code> support"
 msgstr "PHP <code>%s</code>-Unterstützung"
 
-#: zenphoto-translate/zp-core/setup/index.php:931
+#: zenphoto-translate/zp-core/setup/index.php:924
 #, php-format
 msgid "PHP <code>%s</code> support [is not installed]"
 msgstr "PHP <code>%s</code>-Unterstützung [ist nicht installiert]"
 
-#: zenphoto-translate/zp-core/setup/index.php:941
+#: zenphoto-translate/zp-core/setup/index.php:934
 msgid "No database selected"
 msgstr "Keine Datenbank ausgewählt"
 
-#: zenphoto-translate/zp-core/setup/index.php:953
+#: zenphoto-translate/zp-core/setup/index.php:946
 #, php-format
 msgid "%1$s version %2$s"
 msgstr "%1$s Version %2$s"
 
-#: zenphoto-translate/zp-core/setup/index.php:953
+#: zenphoto-translate/zp-core/setup/index.php:946
 #, php-format
 msgid ""
 "%1$s Version %2$s or greater is required. Version %3$s or greater is "
@@ -12357,20 +12356,20 @@ msgstr ""
 "%1$s Version %2$s oder neuer ist notwendig. Version %3$s oder neuer ist "
 "ausdrücklich empfohlen. Verwenden Sie ältere Versionen auf eigenes Risiko. "
 
-#: zenphoto-translate/zp-core/setup/index.php:955
+#: zenphoto-translate/zp-core/setup/index.php:948
 msgid "Database connection"
 msgstr "Datenbankverbindung"
 
-#: zenphoto-translate/zp-core/setup/index.php:961
+#: zenphoto-translate/zp-core/setup/index.php:954
 msgid "Database credentials in configuration file"
 msgstr "Datenbank-Konfiguration in der Konfigurationsdatei"
 
-#: zenphoto-translate/zp-core/setup/index.php:961
+#: zenphoto-translate/zp-core/setup/index.php:954
 #, php-format
 msgid "<em>%1$s</em> reported: %2$s"
 msgstr "<em>%1$s</em> berichtet: %2$s"
 
-#: zenphoto-translate/zp-core/setup/index.php:968
+#: zenphoto-translate/zp-core/setup/index.php:961
 msgid ""
 "You have not correctly set your <strong>Database</strong> <code>user</code>, "
 "<code>password</code>, etc. in your configuration file and <strong>setup</"
@@ -12381,32 +12380,32 @@ msgstr ""
 "eingetragen, so dass <strong>setup</strong> die Datei nicht aktualisieren "
 "kann."
 
-#: zenphoto-translate/zp-core/setup/index.php:970
+#: zenphoto-translate/zp-core/setup/index.php:963
 msgid "Database setup in configuration file"
 msgstr "Datenbank-Konfiguration in der Konfigurationsdatei"
 
-#: zenphoto-translate/zp-core/setup/index.php:973
+#: zenphoto-translate/zp-core/setup/index.php:966
 #, php-format
 msgid "Connect to %s"
 msgstr "Verbinden mit %s"
 
-#: zenphoto-translate/zp-core/setup/index.php:973
+#: zenphoto-translate/zp-core/setup/index.php:966
 msgid "Connect to Database [<code>CONNECT</code> query failed]"
 msgstr "Datenbank-Verbindung  [<code>CONNECT</code>-Abfrage fehlgeschlagen]"
 
-#: zenphoto-translate/zp-core/setup/index.php:980
+#: zenphoto-translate/zp-core/setup/index.php:973
 #, php-format
 msgid "Database <code>%s</code> created"
 msgstr "Datenbank <code>%s</code> erstellt"
 
-#: zenphoto-translate/zp-core/setup/index.php:988
+#: zenphoto-translate/zp-core/setup/index.php:981
 #, php-format
 msgid "Click here to attempt to create <a href=\"?Create_Database\" >%s</a>."
 msgstr ""
 "Klicken Sie hier, um die Datenbank zu erstellen: <a href=\"?Create_Database"
 "\" >%s</a>. "
 
-#: zenphoto-translate/zp-core/setup/index.php:993
+#: zenphoto-translate/zp-core/setup/index.php:986
 #, php-format
 msgid ""
 "Database <code>%s</code> not created [<code>CREATE DATABASE</code> query "
@@ -12415,7 +12414,7 @@ msgstr ""
 "Datenbank <code>%s</code> nicht erstellt [<code>CREATE DATABASE</code>-"
 "Abfrage fehlgeschlagen]"
 
-#: zenphoto-translate/zp-core/setup/index.php:999
+#: zenphoto-translate/zp-core/setup/index.php:992
 msgid ""
 "You may need to set <code>SQL mode</code> <em>empty</em> in your Database "
 "configuration."
@@ -12423,97 +12422,97 @@ msgstr ""
 "Sie müssen möglicherweise den  <code>SQL-Modus</code> in Ihrer Datenbank-"
 "Konfiguration auf <em>leer</em>"
 
-#: zenphoto-translate/zp-core/setup/index.php:1003
+#: zenphoto-translate/zp-core/setup/index.php:996
 #, php-format
 msgid "<code>SQL mode</code> [query failed]"
 msgstr "<code>SQL-Modus</code> [Abfrage fehlgeschlagen]"
 
-#: zenphoto-translate/zp-core/setup/index.php:1006
+#: zenphoto-translate/zp-core/setup/index.php:999
 #, php-format
 msgid "<code>SQL mode</code> [<em>%s</em> overridden]"
 msgstr "<code>SQL-Modus</code> [<em>%s</em> übergangen]"
 
-#: zenphoto-translate/zp-core/setup/index.php:1006
+#: zenphoto-translate/zp-core/setup/index.php:999
 msgid "Consider setting it <em>empty</em> in your Database configuration."
 msgstr ""
 "Ziehen Sie in Erwägung dies in Ihrer MySQL-Konfiguration auf <em>leer</em> "
 "zu stellen."
 
-#: zenphoto-translate/zp-core/setup/index.php:1013
+#: zenphoto-translate/zp-core/setup/index.php:1006
 msgid "<code>SQL mode</code>"
 msgstr "<code>SQL-Modus</code>"
 
-#: zenphoto-translate/zp-core/setup/index.php:1013
+#: zenphoto-translate/zp-core/setup/index.php:1006
 #, php-format
 msgid "<code>SQL mode</code> [is set to <em>%s</em>]"
 msgstr "<code>SQL-Modus</code> [ist auf <em>%s</em> gestellt]"
 
-#: zenphoto-translate/zp-core/setup/index.php:1013
+#: zenphoto-translate/zp-core/setup/index.php:1006
 msgid "Consider setting it <em>empty</em> if you get Database errors."
 msgstr ""
 "Ziehen Sie in Erwägung, dies auf <em>leer</em> zu stellen, wenn Sie "
 "Datenbank-Fehlermeldungen bekommen."
 
-#: zenphoto-translate/zp-core/setup/index.php:1017
+#: zenphoto-translate/zp-core/setup/index.php:1010
 msgid "<code>SQL mode</code> [SET SESSION failed]"
 msgstr "<code>SQL-Modus</code> [SET SESSION fehlgeschlagen]"
 
-#: zenphoto-translate/zp-core/setup/index.php:1025
+#: zenphoto-translate/zp-core/setup/index.php:1017
 msgid "Select"
 msgstr "Auswählen"
 
-#: zenphoto-translate/zp-core/setup/index.php:1025
+#: zenphoto-translate/zp-core/setup/index.php:1017
 msgid "Create"
 msgstr "Erzeugen"
 
-#: zenphoto-translate/zp-core/setup/index.php:1025
+#: zenphoto-translate/zp-core/setup/index.php:1017
 msgid "Drop"
 msgstr "Verwerfen"
 
-#: zenphoto-translate/zp-core/setup/index.php:1025
+#: zenphoto-translate/zp-core/setup/index.php:1017
 msgid "Insert"
 msgstr "Einfügen"
 
-#: zenphoto-translate/zp-core/setup/index.php:1026
+#: zenphoto-translate/zp-core/setup/index.php:1018
 msgid "Alter"
 msgstr "Ändern"
 
-#: zenphoto-translate/zp-core/setup/index.php:1036
+#: zenphoto-translate/zp-core/setup/index.php:1028
 msgid "Grants found:"
 msgstr "Grants gefunden:"
 
-#: zenphoto-translate/zp-core/setup/index.php:1063
+#: zenphoto-translate/zp-core/setup/index.php:1056
 msgid "The <em>SHOW GRANTS</em> query failed."
 msgstr "Die <code>SHOW GRANTS</code>-Abfrage ist fehlgeschlagen."
 
-#: zenphoto-translate/zp-core/setup/index.php:1065
+#: zenphoto-translate/zp-core/setup/index.php:1058
 msgid "Database <code>access rights</code>"
 msgstr "Datenbank-<code>Zugriffsrechte</code>"
 
-#: zenphoto-translate/zp-core/setup/index.php:1065
+#: zenphoto-translate/zp-core/setup/index.php:1058
 #, php-format
 msgid "Database <code>access rights</code> [%s]"
 msgstr "Datenbank-<code>Zugriffsrechte</code> [%s]"
 
-#: zenphoto-translate/zp-core/setup/index.php:1066
+#: zenphoto-translate/zp-core/setup/index.php:1059
 #, php-format
 msgid "Your Database user must have %s rights."
 msgstr "Ihr Datenbank-Benutzer muß über %s Rechte verfügen."
 
-#: zenphoto-translate/zp-core/setup/index.php:1083
+#: zenphoto-translate/zp-core/setup/index.php:1076
 msgid "<em>SHOW TABLES</em> [found no tables]"
 msgstr "<em>SHOW TABLES</em> [keine Tabellen gefunden]"
 
-#: zenphoto-translate/zp-core/setup/index.php:1086
+#: zenphoto-translate/zp-core/setup/index.php:1079
 #, php-format
 msgid "<em>SHOW TABLES</em> found: %s"
 msgstr "<em>SHOW TABLES</em> fand: %s"
 
-#: zenphoto-translate/zp-core/setup/index.php:1090
+#: zenphoto-translate/zp-core/setup/index.php:1083
 msgid "<em>SHOW TABLES</em> [Failed]"
 msgstr "<em>SHOW TABLES</em> [fehlgeschlagen]"
 
-#: zenphoto-translate/zp-core/setup/index.php:1090
+#: zenphoto-translate/zp-core/setup/index.php:1083
 #, php-format
 msgid ""
 "The database did not return a list of the database tables for <code>%s</"
@@ -12522,7 +12521,7 @@ msgstr ""
 "MySQL hat für <code>%s</code> keine Liste der Datenbanktabellen "
 "zurückgegeben."
 
-#: zenphoto-translate/zp-core/setup/index.php:1091
+#: zenphoto-translate/zp-core/setup/index.php:1084
 msgid ""
 "<strong>Setup</strong> will attempt to create all tables. This will not over "
 "write any existing tables."
@@ -12530,28 +12529,28 @@ msgstr ""
 "<strong>Setup</strong> wird versuchen, die Tabellen zu erstellen. Es werden "
 "keine bereits existierenden Tabellen überschrieben."
 
-#: zenphoto-translate/zp-core/setup/index.php:1117
+#: zenphoto-translate/zp-core/setup/index.php:1110
 msgid "Database <code>field collations</code> [Image table]"
 msgstr "Datenbank-<code>Feldkollationen</code> [Bildtabelle]"
 
-#: zenphoto-translate/zp-core/setup/index.php:1120
+#: zenphoto-translate/zp-core/setup/index.php:1113
 msgid "Database <code>field collations</code> [Album table]"
 msgstr "Datenbank-<code>Feldkollationen</code> [Albumtabelle]"
 
-#: zenphoto-translate/zp-core/setup/index.php:1123
+#: zenphoto-translate/zp-core/setup/index.php:1116
 msgid "Database <code>field collations</code> [Image and Album tables]"
 msgstr "Datenbank-<code>Feldkollationen</code> [Bild- und Albumtabellen]"
 
-#: zenphoto-translate/zp-core/setup/index.php:1126
+#: zenphoto-translate/zp-core/setup/index.php:1119
 msgid "Database <code>field collations</code> [SHOW COLUMNS query failed]"
 msgstr ""
 "Datenbank-<code>Feldkollationen</code> [SHOW COLUMNS-Abfrage fehlgeschlagen]"
 
-#: zenphoto-translate/zp-core/setup/index.php:1129
+#: zenphoto-translate/zp-core/setup/index.php:1122
 msgid "Database <code>field collations</code>"
 msgstr "Datenbank-<code>Feldkollationen</code> "
 
-#: zenphoto-translate/zp-core/setup/index.php:1129
+#: zenphoto-translate/zp-core/setup/index.php:1122
 #, php-format
 msgid ""
 "%s is not UTF-8. You should consider porting your data to UTF-8 and changing "
@@ -12568,13 +12567,13 @@ msgstr[1] ""
 "und die Kollation der Datenbankfelder auf  <code>utf8_unicode_ci</code> zu "
 "setzen."
 
-#: zenphoto-translate/zp-core/setup/index.php:1131
+#: zenphoto-translate/zp-core/setup/index.php:1124
 msgid "Database <code>$conf[\"UTF-8\"]</code> [is not set <em>true</em>]"
 msgstr ""
 "Datenbank <code>$conf[\"UTF-8\"]</code> [ist nicht auf <em>true</em> "
 "gestellt]"
 
-#: zenphoto-translate/zp-core/setup/index.php:1131
+#: zenphoto-translate/zp-core/setup/index.php:1124
 msgid ""
 "You should consider porting your data to UTF-8 and changing the collation of "
 "the database fields to <code>utf8_unicode_ci</code> and setting this "
@@ -12585,15 +12584,15 @@ msgstr ""
 "<em>true</em> zu stellen. Zenphoto arbeitet am besten mit reinen UTF-8-"
 "Kodierungen."
 
-#: zenphoto-translate/zp-core/setup/index.php:1136
+#: zenphoto-translate/zp-core/setup/index.php:1129
 msgid "Zenphoto files"
 msgstr "Zenphoto-Dateien"
 
-#: zenphoto-translate/zp-core/setup/index.php:1166
+#: zenphoto-translate/zp-core/setup/index.php:1159
 msgid "Zenphoto package [missing]"
 msgstr "Zenphoto package [fehlt]"
 
-#: zenphoto-translate/zp-core/setup/index.php:1166
+#: zenphoto-translate/zp-core/setup/index.php:1159
 msgid ""
 "The file <code>Zenphoto.package</code> is either missing, not readable, or "
 "defective. Your installation may be corrupt!"
@@ -12601,12 +12600,12 @@ msgstr ""
 "Die Datei <code>Zenphoto.package</code> fehlt, ist nicht lesbar oder "
 "beschädigt. Ihre Installation könnte korrupt sein!"
 
-#: zenphoto-translate/zp-core/setup/index.php:1172
+#: zenphoto-translate/zp-core/setup/index.php:1165
 #, php-format
 msgid "Setting permissions (0%o) for Zenphoto package."
 msgstr "Dateizugriffsrechte (0%o) für das Zenphoto-Paket."
 
-#: zenphoto-translate/zp-core/setup/index.php:1275
+#: zenphoto-translate/zp-core/setup/index.php:1268
 msgid ""
 "Zenphoto core files [This is a <em>debug</em> build. Some files are missing "
 "or seem wrong]"
@@ -12614,11 +12613,11 @@ msgstr ""
 "Zenphoto-Hauptdateien [Dies ist keine offizielle Version. Einige Dateien "
 "fehlen oder scheinen falsch zu sein]"
 
-#: zenphoto-translate/zp-core/setup/index.php:1277
+#: zenphoto-translate/zp-core/setup/index.php:1270
 msgid "Zenphoto core files [Some files are missing or seem wrong]"
 msgstr "Zenphoto-Hauptdateien [Einige fehlen oder scheinen falsch zu sein]"
 
-#: zenphoto-translate/zp-core/setup/index.php:1279
+#: zenphoto-translate/zp-core/setup/index.php:1272
 msgid ""
 "Perhaps there was a problem with the upload. You should check the following "
 "files: "
@@ -12626,58 +12625,58 @@ msgstr ""
 "Vielleicht ist ein Problem mit dem Upload aufgetreten. Sie sollten die "
 "folgenden Dateien überprüfen:"
 
-#: zenphoto-translate/zp-core/setup/index.php:1284
+#: zenphoto-translate/zp-core/setup/index.php:1277
 msgid "Zenphoto core files [This is a <em>debug</em> build]"
 msgstr "Zenphoto-Hauptdateien [Dies ist keine offizielle Version]"
 
-#: zenphoto-translate/zp-core/setup/index.php:1291
+#: zenphoto-translate/zp-core/setup/index.php:1284
 msgid "Zenphoto core files"
 msgstr "Zenphoto-Hauptdateien"
 
-#: zenphoto-translate/zp-core/setup/index.php:1293
+#: zenphoto-translate/zp-core/setup/index.php:1286
 msgid "Installation files"
 msgstr "Installationsdateien"
 
-#: zenphoto-translate/zp-core/setup/index.php:1307
+#: zenphoto-translate/zp-core/setup/index.php:1300
 #, php-format
 msgid ".svn [%s instance]"
 msgid_plural ".svn [%s instances]"
 msgstr[0] ".svn [%s Vorkommen]"
 msgstr[1] ".svn [%s Vorkommen]"
 
-#: zenphoto-translate/zp-core/setup/index.php:1310
+#: zenphoto-translate/zp-core/setup/index.php:1303
 #, php-format
 msgid "php.ini [%s instance]"
 msgid_plural "php.ini [%s instances]"
 msgstr[0] "php.ini [%s Vorkommen]"
 msgstr[1] "php.ini [%s Vorkommen]"
 
-#: zenphoto-translate/zp-core/setup/index.php:1333
-#: zenphoto-translate/zp-core/setup/index.php:1336
+#: zenphoto-translate/zp-core/setup/index.php:1326
+#: zenphoto-translate/zp-core/setup/index.php:1329
 msgid "Zenphoto core folders [Some unknown files were found]"
 msgstr "Zenphoto-Hauptordner [Einige unbekannte Dateien wurden gefunden]"
 
-#: zenphoto-translate/zp-core/setup/index.php:1333
+#: zenphoto-translate/zp-core/setup/index.php:1326
 msgid "The following files could not be deleted."
 msgstr "Die folgenden Dateien konnten nicht gelöscht werden."
 
-#: zenphoto-translate/zp-core/setup/index.php:1337
+#: zenphoto-translate/zp-core/setup/index.php:1330
 msgid "You should remove the following files: "
 msgstr "Sie sollten die folgenden Dateien entfernen: "
 
-#: zenphoto-translate/zp-core/setup/index.php:1338
+#: zenphoto-translate/zp-core/setup/index.php:1331
 msgid "Delete extra files"
 msgstr "Extradateien löschen"
 
-#: zenphoto-translate/zp-core/setup/index.php:1341
+#: zenphoto-translate/zp-core/setup/index.php:1334
 msgid "Zenphoto core file permissions"
 msgstr "Zenphoto-Hauptdateien-Zugriffsrechte"
 
-#: zenphoto-translate/zp-core/setup/index.php:1341
+#: zenphoto-translate/zp-core/setup/index.php:1334
 msgid "Zenphoto core file permissions [not correct]"
 msgstr "Zenphoto-Hauptdateien-Dateiberechtigungen [nicht korrekt]"
 
-#: zenphoto-translate/zp-core/setup/index.php:1341
+#: zenphoto-translate/zp-core/setup/index.php:1334
 msgid ""
 "Setup could not set the one or more components to the selected permissions "
 "level. You will have to set the permissions manually. See the <a href="
@@ -12689,15 +12688,15 @@ msgstr ""
 "zenphoto.org/news/troubleshooting-zenphoto#29\">Troubleshooting guide</a> zu "
 "Details über die erforderlichen Dateizugriffsrechte."
 
-#: zenphoto-translate/zp-core/setup/index.php:1344
+#: zenphoto-translate/zp-core/setup/index.php:1337
 msgid "<em>.htaccess</em> file"
 msgstr "<em>.htaccess</em>-Datei"
 
-#: zenphoto-translate/zp-core/setup/index.php:1355
+#: zenphoto-translate/zp-core/setup/index.php:1348
 msgid "<em>.htaccess</em> file [is empty or does not exist]"
 msgstr "<em>.htaccess</em>-Datei [ist leer oder existiert nicht]"
 
-#: zenphoto-translate/zp-core/setup/index.php:1358
+#: zenphoto-translate/zp-core/setup/index.php:1351
 msgid ""
 "If you have the mod_rewrite module enabled an <em>.htaccess</em> file is "
 "required the root zenphoto folder to create cruft-free URLs."
@@ -12706,7 +12705,7 @@ msgstr ""
 "<em>.htaccess</em>-Datei im Zenphoto-Hauptverzeichnis vorhanden sein, wenn "
 "Sie suchmaschinenfreundliche, klare URLs verwenden möchten."
 
-#: zenphoto-translate/zp-core/setup/index.php:1359
+#: zenphoto-translate/zp-core/setup/index.php:1352
 msgid ""
 "You can ignore this warning if you do not intend to set the "
 "<code>mod_rewrite</code> option."
@@ -12714,7 +12713,7 @@ msgstr ""
 "Sie können dies ignorieren, wenn Sie nicht vorhaben <code>mod_rewrite</code> "
 "zu verwenden."
 
-#: zenphoto-translate/zp-core/setup/index.php:1361
+#: zenphoto-translate/zp-core/setup/index.php:1354
 msgid ""
 "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Make setup create the file</"
 "a></p><br style=\"clear:both\" /><br />"
@@ -12722,8 +12721,8 @@ msgstr ""
 "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Das Installationsskript "
 "anweisen, die Datei zu erstellen </a></p><br style=\"clear:both\" /><br />"
 
-#: zenphoto-translate/zp-core/setup/index.php:1364
-#: zenphoto-translate/zp-core/setup/index.php:1400
+#: zenphoto-translate/zp-core/setup/index.php:1357
+#: zenphoto-translate/zp-core/setup/index.php:1394
 msgid ""
 "Server seems not to be Apache or Apache-compatible, <code>.htaccess</code> "
 "not required."
@@ -12731,7 +12730,7 @@ msgstr ""
 "Der Server scheint kein Apache-Server oder nicht Apache kompatibel zu sein, "
 "daher wird der<code>.htaccess</code> nicht benötigt."
 
-#: zenphoto-translate/zp-core/setup/index.php:1403
+#: zenphoto-translate/zp-core/setup/index.php:1397
 #, php-format
 msgid ""
 "The <em>.htaccess</em> file in your root folder is not the same version as "
@@ -12745,7 +12744,7 @@ msgstr ""
 "Änderungen in die <em>%s/htaccess</em>-Datei ein, um eine neue <em>."
 "htaccess</em>-Datei zu erstellen."
 
-#: zenphoto-translate/zp-core/setup/index.php:1405
+#: zenphoto-translate/zp-core/setup/index.php:1399
 msgid ""
 "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Replace the existing <em>."
 "htaccess</em> file with the current version</a></p><br style=\"clear:both\" /"
@@ -12755,26 +12754,26 @@ msgstr ""
 "htaccess</em>-Datei durch die aktuelle Version ersetzen. </a></p><br style="
 "\"clear:both\" /><br />"
 
-#: zenphoto-translate/zp-core/setup/index.php:1408
+#: zenphoto-translate/zp-core/setup/index.php:1402
 msgid "<em>.htaccess</em> file [wrong version]"
 msgstr "<em>.htaccess</em>-Datei [falsche Version]"
 
-#: zenphoto-translate/zp-core/setup/index.php:1423
+#: zenphoto-translate/zp-core/setup/index.php:1417
 #, php-format
 msgid "<em>.htaccess</em> file (<em>RewriteEngine</em> is <strong>%s</strong>)"
 msgstr ""
 "<em>.htaccess</em>-Datei (<em>RewriteEngine</em> ist <strong>%s</strong>)"
 
-#: zenphoto-translate/zp-core/setup/index.php:1436
+#: zenphoto-translate/zp-core/setup/index.php:1430
 msgid "<em>.htaccess</em> RewriteBase [is <em>missing</em>]"
 msgstr "<em>.htaccess</em> RewriteBase [<em>fehlt</em>]"
 
-#: zenphoto-translate/zp-core/setup/index.php:1442
+#: zenphoto-translate/zp-core/setup/index.php:1436
 #, php-format
 msgid "<em>.htaccess</em> RewriteBase is <code>%s</code>"
 msgstr "<em>.htaccess</em> RewriteBase ist <code>%s</code>"
 
-#: zenphoto-translate/zp-core/setup/index.php:1443
+#: zenphoto-translate/zp-core/setup/index.php:1437
 #, php-format
 msgid ""
 "<em>.htaccess</em> RewriteBase is <code>%s</code> [Does not match install "
@@ -12783,12 +12782,12 @@ msgstr ""
 "<em>.htaccess</em> RewriteBase ist <code>%s</code> [Stimmt nicht mit dem "
 "Installationsordner überein]"
 
-#: zenphoto-translate/zp-core/setup/index.php:1450
+#: zenphoto-translate/zp-core/setup/index.php:1444
 #, php-format
 msgid "<em>.htaccess</em> RewriteBase is <code>%s</code> (fixed)"
 msgstr "<em>.htaccess</em> RewriteBase ist <code>%s</code> (behoben)"
 
-#: zenphoto-translate/zp-core/setup/index.php:1476
+#: zenphoto-translate/zp-core/setup/index.php:1469
 msgid ""
 "Setup was not able to write to the file change RewriteBase match the install "
 "folder."
@@ -12796,7 +12795,7 @@ msgstr ""
 "Setup konnte die Dateiänderung nicht schreiben. Ändern Sie die RewriteBase "
 "passend zum Installationsordner."
 
-#: zenphoto-translate/zp-core/setup/index.php:1477
+#: zenphoto-translate/zp-core/setup/index.php:1470
 #, php-format
 msgid ""
 "Either make the file writeable or set <code>RewriteBase</code> in your "
@@ -12806,15 +12805,15 @@ msgstr ""
 "die<code>RewriteBase</code> in Ihrer <code>.htaccess</code>-Datei auf <code>"
 "%s</code>."
 
-#: zenphoto-translate/zp-core/setup/index.php:1479
+#: zenphoto-translate/zp-core/setup/index.php:1472
 msgid "Rewrite rules updated"
 msgstr "Rewrite-Rules aktualisiert."
 
-#: zenphoto-translate/zp-core/setup/index.php:1479
+#: zenphoto-translate/zp-core/setup/index.php:1472
 msgid "Rewrite rules updated [not updated]"
 msgstr "Rewrite-Regel aktualisiert  [nicht aktualisiert]"
 
-#: zenphoto-translate/zp-core/setup/index.php:1480
+#: zenphoto-translate/zp-core/setup/index.php:1473
 msgid ""
 "Setup was not able to write to the file change the rewrite rules for site "
 "upgrades."
@@ -12822,39 +12821,39 @@ msgstr ""
 "Setup konnte die Änderungen für die Rewrite-Regeln nicht schreiben, die zum "
 "Schliessen der Site bei Upgrade benötigt werden."
 
-#: zenphoto-translate/zp-core/setup/index.php:1486
-#: zenphoto-translate/zp-core/setup/index.php:1489
-#: zenphoto-translate/zp-core/setup/index.php:1501
+#: zenphoto-translate/zp-core/setup/index.php:1479
+#: zenphoto-translate/zp-core/setup/index.php:1482
+#: zenphoto-translate/zp-core/setup/index.php:1494
 msgid "<em>robots.txt</em> file"
 msgstr "<em>robots.txt</em>-Datei"
 
-#: zenphoto-translate/zp-core/setup/index.php:1486
-#: zenphoto-translate/zp-core/setup/index.php:1489
-#: zenphoto-translate/zp-core/setup/index.php:1501
+#: zenphoto-translate/zp-core/setup/index.php:1479
+#: zenphoto-translate/zp-core/setup/index.php:1482
+#: zenphoto-translate/zp-core/setup/index.php:1494
 msgid "<em>robots.txt</em> file [Not created]"
 msgstr "<em>robots.txt</em>-Dateu [nicht erstellt]"
 
-#: zenphoto-translate/zp-core/setup/index.php:1486
+#: zenphoto-translate/zp-core/setup/index.php:1479
 msgid "Setup could not find the  <em>example_robots.txt</em> file."
 msgstr "Setup konnte keine<em>example_robots.txt</em>-Datei finden."
 
-#: zenphoto-translate/zp-core/setup/index.php:1489
+#: zenphoto-translate/zp-core/setup/index.php:1482
 msgid ""
 "Setup did not create a <em>robots.txt</em> file because one already exists."
 msgstr ""
 "Setup konnte keine<em>robots.txt</em>-Datei erstellen, da die Datei bereits "
 "existiert."
 
-#: zenphoto-translate/zp-core/setup/index.php:1501
+#: zenphoto-translate/zp-core/setup/index.php:1494
 msgid "Setup could not create a <em>robots.txt</em> file."
 msgstr "Setup konnte keine<em>robots.txt</em>-Datei erstellen."
 
-#: zenphoto-translate/zp-core/setup/index.php:1506
+#: zenphoto-translate/zp-core/setup/index.php:1499
 msgid "albums [<code>$conf['external_album_folder']</code> is deprecated]"
 msgstr "Alben [<code>$conf['external_album_folder']</code> ist veraltet]"
 
-#: zenphoto-translate/zp-core/setup/index.php:1506
-#: zenphoto-translate/zp-core/setup/index.php:1530
+#: zenphoto-translate/zp-core/setup/index.php:1499
+#: zenphoto-translate/zp-core/setup/index.php:1523
 msgid ""
 "You should update your configuration file to conform to the current zenphoto."
 "cfg example file."
@@ -12862,11 +12861,11 @@ msgstr ""
 "Sie sollten Ihre Konfigurationsdatei aktualisieren, damit sie der aktuellen "
 "zenphoto.cfg-Beispieldatei entspricht."
 
-#: zenphoto-translate/zp-core/setup/index.php:1530
+#: zenphoto-translate/zp-core/setup/index.php:1523
 msgid "<em>albums</em> folder"
 msgstr "<em>albums</em>-Ordner"
 
-#: zenphoto-translate/zp-core/setup/index.php:1530
+#: zenphoto-translate/zp-core/setup/index.php:1523
 msgid ""
 "<em>albums</em> folder [The line <code>$conf['album_folder']</code> is "
 "missing from your configuration file]"
@@ -12874,15 +12873,15 @@ msgstr ""
 "<em>albums</em>-Ordner [Die Zeile <code>$conf['album_folder']</code> fehlt "
 "in Ihrer Konfigurations-Datei]"
 
-#: zenphoto-translate/zp-core/setup/index.php:1534
+#: zenphoto-translate/zp-core/setup/index.php:1527
 msgid "<em>locale</em> folders"
 msgstr "<em>locale</em>-Ordner"
 
-#: zenphoto-translate/zp-core/setup/index.php:1534
+#: zenphoto-translate/zp-core/setup/index.php:1527
 msgid "<em>locale</em> folders [Are not complete]"
 msgstr "<em>locale</em>-Ordner [sind nicht vollständig]"
 
-#: zenphoto-translate/zp-core/setup/index.php:1534
+#: zenphoto-translate/zp-core/setup/index.php:1527
 msgid ""
 "Be sure you have uploaded the complete Zenphoto package. You must have at "
 "least the <em>en_US</em> folder."
@@ -12890,19 +12889,19 @@ msgstr ""
 "Stellen Sie sicher, dass sie das komplette Zenphoto-Paket heruntergeladen "
 "haben. Sie müssen wenigstens den <em>en_US</em>-Ordner haben."
 
-#: zenphoto-translate/zp-core/setup/index.php:1535
+#: zenphoto-translate/zp-core/setup/index.php:1528
 msgid "uploaded"
 msgstr "uploaded"
 
-#: zenphoto-translate/zp-core/setup/index.php:1538
+#: zenphoto-translate/zp-core/setup/index.php:1531
 msgid "HTML cache"
 msgstr "HTML-Cache"
 
-#: zenphoto-translate/zp-core/setup/index.php:1539
+#: zenphoto-translate/zp-core/setup/index.php:1532
 msgid "Third party plugins"
 msgstr "Drittherstellerplugins"
 
-#: zenphoto-translate/zp-core/setup/index.php:1551
+#: zenphoto-translate/zp-core/setup/index.php:1544
 msgid ""
 "You need to address the problems indicated above then run <code>setup</code> "
 "again."
@@ -12910,97 +12909,97 @@ msgstr ""
 "Sie müssen die oben aufgeführten Problem beheben und dann <code>Setup</code> "
 "erneut ausführen."
 
-#: zenphoto-translate/zp-core/setup/index.php:1554
+#: zenphoto-translate/zp-core/setup/index.php:1547
 msgid "Setup failed."
 msgstr "Installation fehlgeschlagen."
 
-#: zenphoto-translate/zp-core/setup/index.php:1565
-#: zenphoto-translate/zp-core/setup/index.php:2627
+#: zenphoto-translate/zp-core/setup/index.php:1558
+#: zenphoto-translate/zp-core/setup/index.php:2620
 msgid "You need <em>USER ADMIN</em> rights to run setup."
 msgstr ""
 "Sie müssen über<em>Benutzerverwaltungsrechte</em> verfügen, um setup "
 "ausführen zu können."
 
-#: zenphoto-translate/zp-core/setup/index.php:1567
-#: zenphoto-translate/zp-core/setup/index.php:2629
+#: zenphoto-translate/zp-core/setup/index.php:1560
+#: zenphoto-translate/zp-core/setup/index.php:2622
 msgid "You must be logged in to run setup."
 msgstr "Sie müssen angemeldet sein, um die Installation durchführen zu können."
 
-#: zenphoto-translate/zp-core/setup/index.php:1588
+#: zenphoto-translate/zp-core/setup/index.php:1581
 msgid "database connected"
 msgstr "Mit Datenbank verbunden"
 
-#: zenphoto-translate/zp-core/setup/index.php:2330
+#: zenphoto-translate/zp-core/setup/index.php:2323
 msgid "About to create tables"
 msgstr "Bereit, die Tabellen zu erstellen"
 
-#: zenphoto-translate/zp-core/setup/index.php:2332
+#: zenphoto-translate/zp-core/setup/index.php:2325
 msgid "About to update tables"
 msgstr "Bereit, die Tabellen zu aktualisieren"
 
-#: zenphoto-translate/zp-core/setup/index.php:2334
+#: zenphoto-translate/zp-core/setup/index.php:2327
 msgid "Begin table creation"
 msgstr "Tabellenerstellung begonnen."
 
-#: zenphoto-translate/zp-core/setup/index.php:2340
-#: zenphoto-translate/zp-core/setup/index.php:2355
+#: zenphoto-translate/zp-core/setup/index.php:2333
+#: zenphoto-translate/zp-core/setup/index.php:2348
 #, php-format
 msgid "Query %1$s Failed. Error: %2$s"
 msgstr "Abfrage %1$s fehlgeschlagen. Fehler: %2$s"
 
-#: zenphoto-translate/zp-core/setup/index.php:2342
+#: zenphoto-translate/zp-core/setup/index.php:2335
 #, php-format
 msgid "Table creation failure:<br />Query: %1$s<br />Error: %2$s"
 msgstr ""
 "Tabellenerstellung fehlgeschlagen: <br />Abfrage: %1$s<br />Fehler: %2$s"
 
-#: zenphoto-translate/zp-core/setup/index.php:2345
-#: zenphoto-translate/zp-core/setup/index.php:2357
+#: zenphoto-translate/zp-core/setup/index.php:2338
+#: zenphoto-translate/zp-core/setup/index.php:2350
 #, php-format
 msgid "Query ( %s ) Success."
 msgstr "Abfrage ( %s ) erfolgreich."
 
-#: zenphoto-translate/zp-core/setup/index.php:2349
+#: zenphoto-translate/zp-core/setup/index.php:2342
 msgid "Begin table updates"
 msgstr "Die Tabellenaktualisierung wird gestartet."
 
-#: zenphoto-translate/zp-core/setup/index.php:2364
+#: zenphoto-translate/zp-core/setup/index.php:2357
 msgid "Done with table create!"
 msgstr "Tabellenerstellung abgeschlossen!"
 
-#: zenphoto-translate/zp-core/setup/index.php:2366
+#: zenphoto-translate/zp-core/setup/index.php:2359
 msgid "Done with table create with errors!"
 msgstr "Tabellenerstellung mit Fehlern abgeschlossen!"
 
-#: zenphoto-translate/zp-core/setup/index.php:2370
+#: zenphoto-translate/zp-core/setup/index.php:2363
 msgid "Done with table update"
 msgstr "Tabellenaktualisierung abgeschlossen!"
 
-#: zenphoto-translate/zp-core/setup/index.php:2372
+#: zenphoto-translate/zp-core/setup/index.php:2365
 msgid "Done with table update with errors"
 msgstr "Tabellenaktualisierung mit Fehlern abgeschlossen"
 
-#: zenphoto-translate/zp-core/setup/index.php:2378
+#: zenphoto-translate/zp-core/setup/index.php:2371
 msgid "Done with database creation and update"
 msgstr "Tabellenaktualisierung abgeschlossen!"
 
-#: zenphoto-translate/zp-core/setup/index.php:2380
+#: zenphoto-translate/zp-core/setup/index.php:2373
 #, php-format
 msgid "Previous Release was %s"
 msgstr "Die vorige Veröffentlichung war %s"
 
-#: zenphoto-translate/zp-core/setup/index.php:2435
+#: zenphoto-translate/zp-core/setup/index.php:2428
 #: zenphoto-translate/zp-core/zp-extensions/cloneZenphoto.php:92
 msgid "Setup files deleted."
 msgstr "Installationsdateien gelöscht."
 
-#: zenphoto-translate/zp-core/setup/index.php:2442
+#: zenphoto-translate/zp-core/setup/index.php:2435
 #: zenphoto-translate/zp-core/zp-extensions/cloneZenphoto.php:97
 #, php-format
 msgid "Failed to delete: %s"
 msgstr "%s konnte nicht gelöscht werden."
 
-#: zenphoto-translate/zp-core/setup/index.php:2450
+#: zenphoto-translate/zp-core/setup/index.php:2443
 msgid ""
 "<strong>NOTE:</strong> We strongly recommend you remove the <em>setup</em> "
 "scripts from your zp-core folder at this time. You can always re-upload them "
@@ -13010,12 +13009,12 @@ msgstr ""
 "Dateien aus Ihrem zp-core-Ordner jetzt entfernen. Sie können es jederzeit "
 "wieder erneut hochladen, sollten Sie es zukünftig wieder benötigen."
 
-#: zenphoto-translate/zp-core/setup/index.php:2455
+#: zenphoto-translate/zp-core/setup/index.php:2448
 #: zenphoto-translate/zp-core/zp-extensions/cloneZenphoto.php:54
 msgid "Delete setup files"
 msgstr "Installationsdateien löschen"
 
-#: zenphoto-translate/zp-core/setup/index.php:2460
+#: zenphoto-translate/zp-core/setup/index.php:2453
 msgid ""
 "This is a clone of another installation. The setup files should be deleted "
 "from that installation"
@@ -13023,7 +13022,7 @@ msgstr ""
 "Dies ist ein Klon einer anderen Installation. Die Installationsdateien "
 "sollten von dieser Installation gelöscht werden"
 
-#: zenphoto-translate/zp-core/setup/index.php:2471
+#: zenphoto-translate/zp-core/setup/index.php:2464
 #, php-format
 msgid ""
 "You may <a href=\"%1$s\">set your admin user and password</a> or <a href="
@@ -13033,13 +13032,13 @@ msgstr ""
 "definieren</a> oder die <a href=\"%2$s\">Backup-Wiederherstellung</a> "
 "ausführen"
 
-#: zenphoto-translate/zp-core/setup/index.php:2476
+#: zenphoto-translate/zp-core/setup/index.php:2469
 #, php-format
 msgid "You need to <a href=\"%1$s\">set your admin user and password</a>"
 msgstr ""
 "Sie müssen Ihren <a href=\"%1$s\">Benutzernamen und Ihr Passwort setzen</a>"
 
-#: zenphoto-translate/zp-core/setup/index.php:2483
+#: zenphoto-translate/zp-core/setup/index.php:2476
 #, php-format
 msgid ""
 "You can now <a href=\"%1$s\">View your gallery</a> or <a href=\"%2$s"
@@ -13048,17 +13047,17 @@ msgstr ""
 "Sie können nun <a href=\"%1$s\">Ihre Galerie ansehen</a> oder <a href=\"%2$s"
 "\">verwalten</a>."
 
-#: zenphoto-translate/zp-core/setup/index.php:2547
+#: zenphoto-translate/zp-core/setup/index.php:2540
 #, php-format
 msgid "Database tables to create: %s"
 msgstr "Datenbanktabelle zu erstellen: %s"
 
-#: zenphoto-translate/zp-core/setup/index.php:2565
+#: zenphoto-translate/zp-core/setup/index.php:2558
 #, php-format
 msgid "Database tables to update: %s"
 msgstr "Datenbanktabelle zu aktualisieren:  %s"
 
-#: zenphoto-translate/zp-core/setup/index.php:2596
+#: zenphoto-translate/zp-core/setup/index.php:2589
 msgid ""
 "<strong>Warning!</strong> This upgrade makes structural changes to the "
 "database which are not easily reversed. Be sure you have a database backup "
@@ -13068,32 +13067,32 @@ msgstr ""
 "an der Datenbank aus, die nicht leicht zurückzusetzen sind. Stellen Sie "
 "sicher, dass Sie ein Backup erstellt haben, bevor Sie fortfahren. "
 
-#: zenphoto-translate/zp-core/setup/index.php:2599
+#: zenphoto-translate/zp-core/setup/index.php:2592
 #, php-format
 msgid "%s I acknowledge that proceeding will restructure my database."
 msgstr ""
 "%s Ich nehme zur Kenntnis, dass Fortfahren meine Datenbank umstrukturieren "
 "wird."
 
-#: zenphoto-translate/zp-core/setup/index.php:2657
+#: zenphoto-translate/zp-core/setup/index.php:2650
 msgid "run setup"
 msgstr "Installation aufrufen"
 
-#: zenphoto-translate/zp-core/setup/index.php:2657
+#: zenphoto-translate/zp-core/setup/index.php:2650
 msgid "Go"
 msgstr "Los"
 
-#: zenphoto-translate/zp-core/setup/index.php:2673
+#: zenphoto-translate/zp-core/setup/index.php:2666
 msgid "database did not connect"
 msgstr "Die Datenbank konnte keine Verbindung herstellen"
 
-#: zenphoto-translate/zp-core/setup/index.php:2675
+#: zenphoto-translate/zp-core/setup/index.php:2668
 msgid "If you haven't created the database yet, now would be a good time."
 msgstr ""
 "Wenn Sie die Datenbank noch nicht erstellt haben, wäre jetzt der richtige "
 "Zeitpunkt."
 
-#: zenphoto-translate/zp-core/setup/index.php:2684
+#: zenphoto-translate/zp-core/setup/index.php:2677
 msgid "The zenphoto.cfg file does not exist."
 msgstr "Die Datei zenphoto.cfg [existiert nicht]"
 
@@ -13216,31 +13215,31 @@ msgid "<em>%1$s</em> folder%2$s"
 msgstr "<em>%1$s</em> Ordner %2$s"
 
 #: zenphoto-translate/zp-core/setup/setup-functions.php:363
-#: zenphoto-translate/zp-core/setup/setup-functions.php:376
+#: zenphoto-translate/zp-core/setup/setup-functions.php:377
 msgid "change the definition"
 msgstr "Definition ändern"
 
 #: zenphoto-translate/zp-core/setup/setup-functions.php:363
-#: zenphoto-translate/zp-core/setup/setup-functions.php:376
+#: zenphoto-translate/zp-core/setup/setup-functions.php:377
 msgid "apply"
 msgstr "Anwenden"
 
-#: zenphoto-translate/zp-core/setup/setup-functions.php:372
+#: zenphoto-translate/zp-core/setup/setup-functions.php:373
 #, php-format
 msgid "%1$s (0%2$o)"
 msgstr "%1$s (0%2$o)"
 
-#: zenphoto-translate/zp-core/setup/setup-functions.php:452
+#: zenphoto-translate/zp-core/setup/setup-functions.php:453
 #, php-format
 msgid "%s deleted."
 msgstr "%s gelöscht."
 
-#: zenphoto-translate/zp-core/setup/setup-functions.php:455
+#: zenphoto-translate/zp-core/setup/setup-functions.php:456
 #, php-format
 msgid "failed to delete %s."
 msgstr "%s konnte nicht gelöscht werden."
 
-#: zenphoto-translate/zp-core/setup/setup-functions.php:473
+#: zenphoto-translate/zp-core/setup/setup-functions.php:474
 msgid ""
 "See the <a href=\"http://www.zenphoto.org/news/troubleshooting-"
 "zenphoto#24\">troubleshooting guide</a> on zenphoto.org for details."
@@ -13248,11 +13247,11 @@ msgstr ""
 "Bitte lesen Sie den <a href=\"http://www.zenphoto.org/news/troubleshooting-"
 "zenphoto#24\">Troubleshooting guide</a> auf zenphoto.org für Details."
 
-#: zenphoto-translate/zp-core/setup/setup-functions.php:521
+#: zenphoto-translate/zp-core/setup/setup-functions.php:522
 msgid "An attempt at cross site reference forgery has been blocked."
 msgstr "Der Versuch eines  Cross-Site Request Forgery wurde blockiert."
 
-#: zenphoto-translate/zp-core/setup/setup-functions.php:600
+#: zenphoto-translate/zp-core/setup/setup-functions.php:601
 #, php-format
 msgid ""
 "Click <a href=\"%s\">here</a> to acknowledge that you wish to ignore this "
@@ -13260,6 +13259,14 @@ msgid ""
 msgstr ""
 "Klicken Sie <a href=\"%s\">here</a>, um zu bestätigen, dass Sie dieses "
 "Problem ignorieren möchten. Es wird dann als Warnung angezeigt."
+
+#: zenphoto-translate/zp-core/setup/setup-functions.php:620
+msgid "The simpler media website CMS"
+msgstr "Das einfachere Medien-Website-CMS"
+
+#: zenphoto-translate/zp-core/setup/setup-functions.php:638
+msgid "Updated configuration file"
+msgstr "Konfigurationsdatei aktualisiert"
 
 #: zenphoto-translate/zp-core/setup/setup-option-defaults.php:10
 msgid "Set Zenphoto default options"
@@ -13324,10 +13331,6 @@ msgstr "Sie können Ihre Galeriebeschreibung bei den Einstellungen eingeben."
 msgid "Plugin setup:"
 msgstr "Verfügbare Plugins:"
 
-#: zenphoto-translate/zp-core/setup/setup-primitive.php:82
-msgid "A simpler web album"
-msgstr "Die einfachere Internetbildgalerie"
-
 #: zenphoto-translate/zp-core/setup/setup-sqlform.php:3
 msgid ""
 "Fill in the information below and <strong>setup</strong> will attempt to "
@@ -13386,49 +13389,49 @@ msgstr "Hinweis: Setzen der Dateizugriffsrechte (0%o) für  %s fehlgeschlagen."
 msgid "Notice: illegal call for permissions setting for %s."
 msgstr "Hinweis: Ungültiger Aufruf der Dateizugriffsrechteänderung für  %s."
 
-#: zenphoto-translate/zp-core/setup/setup_pluginOptions.php:12
+#: zenphoto-translate/zp-core/setup/setup_pluginOptions.php:16
 #, php-format
 msgid "Plugin:%s setup started"
 msgstr "Plugin: %s Einrichten gestartet"
 
-#: zenphoto-translate/zp-core/setup/setup_pluginOptions.php:18
+#: zenphoto-translate/zp-core/setup/setup_pluginOptions.php:22
 #, php-format
 msgid "Plugin:%s option interface instantiated"
 msgstr "Plugin:%s Einstellungssteuerung erzeugt"
 
-#: zenphoto-translate/zp-core/setup/setup_pluginOptions.php:24
+#: zenphoto-translate/zp-core/setup/setup_pluginOptions.php:28
 #, php-format
 msgid "Plugin:%s setup completed"
 msgstr "Plugin:%s Einrichtung komplett"
 
-#: zenphoto-translate/zp-core/setup/setup_set-mod_rewrite.php:14
+#: zenphoto-translate/zp-core/setup/setup_set-mod_rewrite.php:18
 msgid "The Zenphoto option \"mod_rewrite\" will be set to \"enabled\"."
 msgstr ""
 "Die Zenphoto-Einstellung \"mod_rewrite\" wird auf \"aktiviert\" gestellt."
 
-#: zenphoto-translate/zp-core/setup/setup_set-mod_rewrite.php:18
+#: zenphoto-translate/zp-core/setup/setup_set-mod_rewrite.php:22
 msgid "The Zenphoto option \"mod_rewrite\" is \"enabled\"."
 msgstr "Die Zenphoto-Einstellung \"mod_rewrite\" ist \"eingeschaltet\"."
 
-#: zenphoto-translate/zp-core/setup/setup_set-mod_rewrite.php:20
+#: zenphoto-translate/zp-core/setup/setup_set-mod_rewrite.php:24
 msgid "The Zenphoto option \"mod_rewrite\" is \"disabled\"."
 msgstr "Die Zenphoto-Einstellung \"mod_rewrite\" ist \"ausgeschaltet\"."
 
-#: zenphoto-translate/zp-core/setup/setup_set-mod_rewrite.php:22
+#: zenphoto-translate/zp-core/setup/setup_set-mod_rewrite.php:26
 msgid "Notice: \"Module mod_rewrite\" is working."
 msgstr "Hinweis: \"Module mod_rewrite\" arbeitet."
 
-#: zenphoto-translate/zp-core/setup/setup_themeOptions.php:12
+#: zenphoto-translate/zp-core/setup/setup_themeOptions.php:16
 #, php-format
 msgid "Theme:%s setup started"
 msgstr "Theme:%s Einrichtung gestartet"
 
-#: zenphoto-translate/zp-core/setup/setup_themeOptions.php:19
+#: zenphoto-translate/zp-core/setup/setup_themeOptions.php:23
 #, php-format
 msgid "Theme:%s option interface instantiated"
 msgstr "Theme: %s Einstellungssteuerung erzeugt"
 
-#: zenphoto-translate/zp-core/setup/setup_themeOptions.php:24
+#: zenphoto-translate/zp-core/setup/setup_themeOptions.php:28
 #, php-format
 msgid "Theme:%s setup completed"
 msgstr "Theme: %s Installation komplett"
@@ -14101,110 +14104,124 @@ msgstr ""
 "Möglichkeit gibt, herauszufinden, ob irgendeine andere Seite Referenzen zu "
 "einem Bild enthält."
 
-#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:166
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:150
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:154
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager/cacheImages.php:181
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager/cacheImages.php:185
+#: zenphoto-translate/zp-core/zp-extensions/menu_manager/menu_tab.php:180
+msgid "Hide"
+msgstr "Verbergen"
+
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:172
+#: zenphoto-translate/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:31
+#: zenphoto-translate/zp-core/zp-extensions/zenpage/admin-edit.php:122
+msgid "add"
+msgstr "Hinzufügen"
+
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:212
 msgid "Size"
 msgstr "Größe"
 
-#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:166
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:212
 msgid "Width"
 msgstr "Breite"
 
-#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:166
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:212
 msgid "Height"
 msgstr "Höhe"
 
-#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:167
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:213
 #: zenphoto-translate/zp-core/zp-extensions/jcarousel_thumb_nav.php:45
 #: zenphoto-translate/zp-core/zp-extensions/paged_thumbs_nav.php:49
 msgid "Crop width"
 msgstr "Beschnittbreite"
 
-#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:167
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:213
 #: zenphoto-translate/zp-core/zp-extensions/jcarousel_thumb_nav.php:47
 #: zenphoto-translate/zp-core/zp-extensions/paged_thumbs_nav.php:51
 msgid "Crop height"
 msgstr "Beschnitthöhe"
 
-#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:167
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:213
 msgid "Crop X axis"
 msgstr "Beschnitt-X-Achse"
 
-#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:168
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:214
 msgid "Crop Y axis"
 msgstr "Beschnitt-Y-Achse"
 
-#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:184
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:230
 msgid "Watermark"
 msgstr "Wasserzeichen"
 
-#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:186
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:232
 msgid "MaxSpace"
 msgstr "MaxSpace"
 
-#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:188
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:234
 msgid "Grayscale"
 msgstr "Graustufen"
 
-#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:274
-#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:338
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:325
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:389
 msgid "Finds images that have not been cached and creates the cached versions."
 msgstr ""
 "Finde Bilder, die noch nicht zwischengespeichert wurden und erstellt "
 "zwischengespeicherte Versionen."
 
-#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:277
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:328
 msgid "You must first set the plugin options for cached image parameters."
 msgstr ""
 "Sie müssen erste die Plugineinstellungen für das Bildzwischenspeichern "
 "einstellen."
 
-#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:281
-#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:294
-#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:307
-#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:319
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:332
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:345
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:358
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:370
 #: zenphoto-translate/zp-core/zp-extensions/cacheManager/cacheImages.php:133
 #: zenphoto-translate/zp-core/zp-extensions/cacheManager/cacheImages.php:134
 msgid "Cache"
 msgstr "Zwischenspeicher"
 
-#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:283
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:334
 msgid "Cache images"
 msgstr "Bilder zwischenspeichern"
 
-#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:296
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:347
 msgid "Purge RSS cache"
 msgstr "RSS-Cache löschen"
 
-#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:301
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:352
 msgid "Delete all files from the RSS cache"
 msgstr "Alle Dateien des RSS-Cache löschen"
 
-#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:309
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:360
 msgid "Purge Image cache"
 msgstr "Bild-Cache löschen"
 
-#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:314
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:365
 msgid "Delete all files from the Image cache"
 msgstr "Alle Dateien des Bild-Cache löschen"
 
-#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:321
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:372
 msgid "Purge HTML cache"
 msgstr "HTML-Cache löschen"
 
-#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:325
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:376
 msgid ""
 "Clear the static HTML cache. HTML pages will be re-cached as they are viewed."
 msgstr ""
 "Leert den HTML-Cache. HTML-Seiten werden erneut zwischengespeichert, sobald "
 "sie angesehen werden."
 
-#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:341
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:392
 msgid "You must first set the plugin's options for cached image parameters."
 msgstr ""
 "Sie müssen erste die Plugineinstellungen für das Bildzwischenspeichern "
 "einstellen."
 
-#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:343
+#: zenphoto-translate/zp-core/zp-extensions/cacheManager.php:394
 msgid "Cache album images"
 msgstr "Albumbilder zwischenspeichern"
 
@@ -15438,7 +15455,7 @@ msgstr "Aus dem Cache"
 
 #: zenphoto-translate/zp-core/zp-extensions/downloadList.php:78
 msgid ""
-"Make the album zip form the album folder or from the sized images in the "
+"Make the album zip from the album folder or from the sized images in the "
 "cache."
 msgstr ""
 "Die Album-ZIP-Datei vom Albumordner oder von den Großbildern aus dem Cache "
@@ -16802,19 +16819,19 @@ msgstr ""
 "Funktionen, die verschiedene Statistiken zu Bildern und Alben der Galerie "
 "zur Verfügung stellen."
 
-#: zenphoto-translate/zp-core/zp-extensions/image_album_statistics.php:219
+#: zenphoto-translate/zp-core/zp-extensions/image_album_statistics.php:222
 #, php-format
 msgid "%1$u new %2$s"
 msgstr "%1$u neu %2$s"
 
-#: zenphoto-translate/zp-core/zp-extensions/image_album_statistics.php:230
-#: zenphoto-translate/zp-core/zp-extensions/image_album_statistics.php:524
+#: zenphoto-translate/zp-core/zp-extensions/image_album_statistics.php:233
+#: zenphoto-translate/zp-core/zp-extensions/image_album_statistics.php:527
 #, php-format
 msgid "Rating: %1$u (Votes: %2$u)"
 msgstr "Bewertung: %1$u (Stimmen: %2$u)"
 
-#: zenphoto-translate/zp-core/zp-extensions/image_album_statistics.php:235
-#: zenphoto-translate/zp-core/zp-extensions/image_album_statistics.php:529
+#: zenphoto-translate/zp-core/zp-extensions/image_album_statistics.php:238
+#: zenphoto-translate/zp-core/zp-extensions/image_album_statistics.php:532
 #, php-format
 msgid "Views: %u"
 msgstr "Besucher: %u"
@@ -18823,13 +18840,13 @@ msgstr "Verzeihend"
 msgid "Mark suspected SPAM for moderation rather than as SPAM"
 msgstr "Markiere angenommenen SPAM zur Moderation statt als SPAM."
 
-#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:31
+#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:37
 msgid ""
 "Utility to divert access to the gallery to a screen saying the site is "
 "upgrading."
 msgstr "Lenkt z.B. während Upgrades durch eine Platzhalterseite um."
 
-#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:33
+#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:39
 msgid ""
 "<em>mod_rewrite</em> is not enabled. This plugin may not work without "
 "without rewrite redirection if the upgrade is significantly different than "
@@ -18839,59 +18856,59 @@ msgstr ""
 "möglicherweise ohne Rewrite-Umleitung, wenn die Upgrade-Version signifikant "
 "anders als die aktuelle Version ist."
 
-#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:55
+#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:61
 #, php-format
 msgid "%s upgrade"
 msgstr "%s Aktualisierung"
 
-#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:57
+#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:63
 #, php-format
 msgid "<strong><em>%s</em></strong> is undergoing an upgrade"
 msgstr "<strong><em>%s</em></strong> wird gerade aktualisiert."
 
-#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:57
+#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:63
 msgid "Please return later"
 msgstr "Bitte kehren Sie später zurück"
 
-#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:71
-#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:76
-#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:81
+#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:77
+#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:82
+#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:87
 msgid "Site status:"
 msgstr "Sitestatus:"
 
-#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:71
+#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:77
 msgid "The site is closed!"
 msgstr "Die Site ist geschlossen."
 
-#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:76
+#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:82
 msgid "The site is in test mode!"
 msgstr "Die Site ist im Testmodus!"
 
-#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:81
+#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:87
 msgid "The site is opened"
 msgstr "Die Site ist geöffnet."
 
-#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:102
+#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:108
 msgid "Site » test mode"
 msgstr "Site » Test Modus"
 
-#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:106
+#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:112
 msgid "Make the site available for viewing administrators only."
 msgstr "Die Site nur für Administratoren freigeben."
 
-#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:117
+#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:123
 msgid "Site » open"
 msgstr "Site » geöffnet"
 
-#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:121
+#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:127
 msgid "Make site available for viewing."
 msgstr "Die Site zum Betrachten freigeben."
 
-#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:132
+#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:138
 msgid "Site » close"
 msgstr "Site » geschlossen"
 
-#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:136
+#: zenphoto-translate/zp-core/zp-extensions/site_upgrade.php:142
 msgid ""
 "Make site unavailable for viewing by redirecting to the \"closed.html\" page."
 msgstr "Die Website auf \"closed.html\" umleiten."
@@ -19856,7 +19873,7 @@ msgid "User group membership: %s"
 msgstr "Benutzerguppen-Zugehörigkeit: %s"
 
 #: zenphoto-translate/zp-core/zp-extensions/user_groups.php:201
-msgid "Templates are highlighed."
+msgid "Templates are highlighted."
 msgstr "Vorlagen sind hervorgehoben."
 
 #: zenphoto-translate/zp-core/zp-extensions/user_groups.php:201
@@ -20953,12 +20970,6 @@ msgstr[1] "[%u Bilder]"
 msgid "Refreshing cache for %s"
 msgstr "Aktualisieren des Caches für %s"
 
-#: zenphoto-translate/zp-core/zp-extensions/cacheManager/cacheImages.php:181
-#: zenphoto-translate/zp-core/zp-extensions/cacheManager/cacheImages.php:185
-#: zenphoto-translate/zp-core/zp-extensions/menu_manager/menu_tab.php:180
-msgid "Hide"
-msgstr "Verbergen"
-
 #: zenphoto-translate/zp-core/zp-extensions/cacheManager/cacheImages.php:226
 msgid "invalid_MaxSpace"
 msgstr "ungültiger_Maxspace"
@@ -21858,11 +21869,6 @@ msgstr "Menü-Ziel ist passwortgeschützt"
 msgid "Show/hide"
 msgstr "Zeigen/Verstecken"
 
-#: zenphoto-translate/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:31
-#: zenphoto-translate/zp-core/zp-extensions/zenpage/admin-edit.php:122
-msgid "add"
-msgstr "Hinzufügen"
-
 #: zenphoto-translate/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:57
 #: zenphoto-translate/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:143
 msgid "URL"
@@ -22411,23 +22417,23 @@ msgstr "Such-IPs"
 msgid "Change <em>Threshold</em> values"
 msgstr "<em>Schwellenwert</em> ändern"
 
-#: zenphoto-translate/zp-core/zp-extensions/site_upgrade/site_upgrade.php:25
+#: zenphoto-translate/zp-core/zp-extensions/site_upgrade/site_upgrade.php:28
 msgid "RSS suspended"
 msgstr "RSS ausgesetzt"
 
-#: zenphoto-translate/zp-core/zp-extensions/site_upgrade/site_upgrade.php:32
+#: zenphoto-translate/zp-core/zp-extensions/site_upgrade/site_upgrade.php:35
 msgid "The RSS feed is currently not available."
 msgstr "Der RSS-Feed ist derzeit nicht verfügbar."
 
-#: zenphoto-translate/zp-core/zp-extensions/site_upgrade/site_upgrade.php:48
+#: zenphoto-translate/zp-core/zp-extensions/site_upgrade/site_upgrade.php:50
 msgid "Site is now marked in upgrade."
 msgstr "Die Site ist nun auf Upgrade-Modus gestellt."
 
-#: zenphoto-translate/zp-core/zp-extensions/site_upgrade/site_upgrade.php:52
+#: zenphoto-translate/zp-core/zp-extensions/site_upgrade/site_upgrade.php:54
 msgid "Site is viewable."
 msgstr "Site ist ansehbar."
 
-#: zenphoto-translate/zp-core/zp-extensions/site_upgrade/site_upgrade.php:64
+#: zenphoto-translate/zp-core/zp-extensions/site_upgrade/site_upgrade.php:68
 msgid "Site is avaiable for testing only."
 msgstr "Die Site ist nur zum Testen verfügbar."
 
@@ -23942,27 +23948,27 @@ msgstr "Zeitgesteuerte Veröffentlichung aktivieren"
 msgid "Publish (override expiration)"
 msgstr "Veröffentlichen (Ungültigkeitsdatum übergehen)"
 
-#: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1795
+#: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1787
 msgid "Tags added to selected items"
 msgstr "Schlagwörter den ausgewählten Einträgen hinzugefügt"
 
-#: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1798
+#: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1790
 msgid "Tags cleared from selected items"
 msgstr "Schlagwörter von den ausgewählten Einträgen gelöscht"
 
-#: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1801
+#: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1793
 msgid "Tags added to articles of selected items"
 msgstr "Schlagwörter den ausgewählten Artikel hinzugefügt"
 
-#: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1804
+#: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1796
 msgid "Tags cleared from articles of selected items"
 msgstr "Schlagwörter der ausgewählten Artikel gelöscht"
 
-#: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1807
+#: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1799
 msgid "Categories added to selected items"
 msgstr "Kategorien wurden den ausgewählten Einträgen hinzugefügt"
 
-#: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1810
+#: zenphoto-translate/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1802
 msgid "Categories cleared from selected items"
 msgstr "Kategorien von den ausgewählten Einträgen gelöscht"
 
@@ -24028,6 +24034,9 @@ msgstr ""
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> konnte das Album %1$s nicht finden"
+
+#~ msgid "A simpler web album"
+#~ msgstr "Die einfachere Internetbildgalerie"
 
 #~ msgid "Imagick filter"
 #~ msgstr "Imagick-Filter"
