@@ -174,15 +174,18 @@ class ZenpagePage extends ZenpageItems {
 
 
 /**
- * Gets the sub pages by titlelink
+ * Gets the sub pages of a page
  * @param bool $published TRUE for published or FALSE for all pages including un-published
+ * @param int $number number of pages to get (NULL by default for all)
+ * @param string $sorttype NULL for the standard order as sorted on the backend, "title", "date", "popular", "mostrated", "toprated", "random"
+ * @param string $sortdirection "asc" or "desc" for ascending or descending order
  * @return array
  */
-	function getPages($published=NULL) {
+	function getPages($published=NULL, $number=NULL, $sorttype=NULL, $sortdirection=NULL) {
 		global $_zp_zenpage;
 		$subpages = array();
 		$sortorder = $this->getSortOrder();
-		$pages = $_zp_zenpage->getPages($published);
+		$pages = $_zp_zenpage->getPages($published,false,$number,$sorttype, $sortdirection);
 		foreach($pages as $page) {
 			$pageobj = new ZenpagePage($page['titlelink']);
 			if($pageobj->getParentID() == $this->getID() && $pageobj->getSortOrder()  != $sortorder) { // exclude the page itself!

@@ -79,15 +79,18 @@ class Zenpage {
 /************************************/
 
 /**
-	 * Gets the titlelink and sort order for all pages or published ones.
+	 * Gets all pages or published ones. 
 	 *
 	 * NOTE: Since this function only returns titlelinks for use with the object model it does not exclude pages that are password protected
 	 *
 	 * @param bool $published TRUE for published or FALSE for all pages including un-published
 	 * @param bool $toplevel TRUE for only the toplevel pages
+	 * @param int $number number of pages to get (NULL by default for all)
+	 * @param string $sorttype NULL for the standard order as sorted on the backend, "title", "date", "popular", "mostrated", "toprated", "random"
+	 * @param string $sortdirection "asc" or "desc" for ascending or descending order
 	 * @return array
 	 */
-	function getPages($published=NULL,$toplevel=false,$number=NULL) {
+	function getPages($published=NULL,$toplevel=false,$number=NULL,$sorttype=NULL, $sortdirection=NULL) {
 		global $_zp_loggedin;
 		if (is_null($published)) {
 			$published = !zp_loggedin();
@@ -103,8 +106,43 @@ class Zenpage {
 			if($toplevel) $gettop = " WHERE parentid IS NULL";
 			$show = $gettop;
 		}
+		switch($sortdirection) {
+			case 'asc':
+				$sortdir = ' ASC';
+				break;
+			case 'desc':
+				$sortdir = ' DESC';
+				break;
+			default:
+				$sortdir = '';
+				break;
+		}
+		switch($sorttype) {
+			case "date":
+				$sortorder = "date";
+				break;
+			case "title":
+				$sortorder = "title";
+				break;
+			case "popular":
+				$sortorder = 'hitcounter';
+				break;
+			case "mostrated":
+				$sortorder = 'total_votes';
+				break;
+			case "toprated":
+				$sortorder = '(total_value/total_votes) DESC, total_value';
+				$sortdir = '';
+				break;
+			case "random":
+				$sortorder = 'RAND()';
+				break;
+			default:
+				$sortorder = "sort_order";
+				break;
+		}
 		$all_pages = array(); // Disabled cache var for now because it does not return un-publishded and published if logged on index.php somehow if logged in.
-		$result  = query("SELECT * FROM ".prefix('pages').$show." ORDER by `sort_order`");
+		$result  = query('SELECT * FROM '.prefix('pages').$show.' ORDER by `'.$sortorder.'`'.$sortdir);
 		if ($result) {
 			while ($row = db_fetch_assoc($result)) {
 				if ($all || $row['show']) {
@@ -150,11 +188,9 @@ class Zenpage {
 	 * 													"sticky" for sticky articles (published or not!) for admin page use only,
 	 * 													"all" for all articles
 	 * @param boolean $ignorepagination Since also used for the news loop this function automatically paginates the results if the "page" GET variable is set. To avoid this behaviour if using it directly to get articles set this TRUE (default FALSE)
-	 * @param string $sortorder "date" for sorting by date (default)
-	 * 													"title" for sorting by title
+	 * @param string $sortorder "date" (default), "title", "popular", "mostrated", "toprated", "random"
 	 * 													This parameter is not used for date archives
-	 * @param string $sortdirection "desc" (default) for descending sort order
-	 * 													    "asc" for ascending sort order
+	 * @param string $sortdirection "asc" or "desc" for ascending or descending order
 	 * 											        This parameter is not used for date archives
 	 * @param bool $sticky set to true to place "sticky" articles at the front of the list.
 	 * @return array
@@ -183,16 +219,6 @@ class Zenpage {
 		if ($sticky) {
 			$sticky = 'sticky DESC,';
 		}
-		// sortorder and sortdirection (only used for all news articles and categories naturally)
-		switch($sortorder) {
-			case "date":
-			default:
-				$sort1 = "date";
-				break;
-			case "title":
-				$sort1 = "title";
-				break;
-		}
 		switch($sortdirection) {
 			case "desc":
 			default:
@@ -203,6 +229,30 @@ class Zenpage {
 				$sticky = false;	//makes no sense
 				break;
 		}
+		// sortorder and sortdirection (only used for all news articles and categories naturally)
+		switch($sortorder) {
+			case "date":
+			default:
+				$sort1 = "date";
+				break;
+			case "title":
+				$sort1 = "title";
+				break;
+			case "popular":
+				$sort1 = 'hitcounter';
+				break;
+			case "mostrated":
+				$sort1 = 'total_votes';
+				break;
+			case "toprated":
+				$sort1 = '(total_value/total_votes) DESC, total_value';
+				$dir = '';
+				break;
+			case "random":
+				$sort1 = 'RAND()';
+				break;
+		}
+		
 		/***get all articles ***/
 		switch($published) {
 			case "published":

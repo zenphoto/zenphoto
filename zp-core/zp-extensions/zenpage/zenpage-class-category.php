@@ -322,11 +322,9 @@ class ZenpageCategory extends ZenpageRoot {
 	 * 													"sticky" for sticky articles (published or not!) for Admin page use only,
 	 * 													"all" for all articles
 	 * @param boolean $ignorepagination Since also used for the news loop this function automatically paginates the results if the "page" GET variable is set. To avoid this behaviour if using it directly to get articles set this TRUE (default FALSE)
-	 * @param string $sortorder "date" for sorting by date (default)
-	 * 													"title" for sorting by title
+	 * @param string $sortorder "date" (default), "title", "popular", "mostrated", "toprated", "random"
 	 * 													This parameter is not used for date archives
-	 * @param string $sortdirection "desc" (default) for descending sort order
-	 * 													    "asc" for ascending sort order
+	 * @param string $sortdirection "asc" or "desc" for ascending or descending order
 	 * 											        This parameter is not used for date archives
 	 * @param bool $sticky set to true to place "sticky" articles at the front of the list.
 	 * @return array
@@ -371,6 +369,19 @@ class ZenpageCategory extends ZenpageRoot {
 				break;
 			case "title":
 				$sort1 = "title";
+				break;
+			case "popular":
+				$sort1 = 'hitcounter';
+				break;
+			case "mostrated":
+				$sort1 = 'total_votes';
+				break;
+			case "toprated":
+				$sort1 = '(total_value/total_votes) DESC, total_value';
+				$dir = '';
+				break;
+			case "random":
+				$sort1 = 'RAND()';
 				break;
 		}
 		switch($sortdirection) {
