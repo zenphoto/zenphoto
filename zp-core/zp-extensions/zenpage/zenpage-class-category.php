@@ -167,14 +167,16 @@ class ZenpageCategory extends ZenpageRoot {
 
 	/**
 	 * Gets the sub categories recursivly by titlelink
-	 *
+	 * @param bool $visible TRUE for published and unprotected
+	 * @param string $sorttype NULL for the standard order as sorted on the backend, "title", "date", "popular"
+	 * @param string $sortdirection "asc" or "desc" for ascending or descending order
 	 * @return array
 	 */
-	function getSubCategories() {
+	function getSubCategories($visible=true,$sorttype=NULL, $sortdirection=NULL) {
 		global $_zp_zenpage;
 		$subcategories = array();
 		$sortorder = $this->getSortOrder();
-		foreach($_zp_zenpage->getAllCategories(false) as $cat) {
+		foreach($_zp_zenpage->getAllCategories($visible,$sorttype, $sortdirection) as $cat) {
 			$catobj = new ZenpageCategory($cat['titlelink']);
 			if($catobj->getParentID() == $this->getID() && $catobj->getSortOrder() != $sortorder) { // exclude the category itself!
 				array_push($subcategories,$catobj->getTitlelink());

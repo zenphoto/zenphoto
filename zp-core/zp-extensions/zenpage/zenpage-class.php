@@ -818,11 +818,43 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 
 	/**
 	 * Gets all categories
-	 *
+	 * @param bool $visible TRUE for published and unprotected
+	 * @param string $sorttype NULL for the standard order as sorted on the backend, "title", "date", "popular"
+	 * @param string $sortdirection "asc" or "desc" for ascending or descending order
 	 * @return array
 	 */
-	function getAllCategories($visible=true) {
+	function getAllCategories($visible=true,$sorttype=NULL, $sortdirection=NULL) {
 		$structure = $this->getCategoryStructure();
+		
+		switch($sortdirection) {
+			case 'asc':
+			default:
+				$sortdir = FALSE;
+				break;
+			case 'desc':
+				$sortdir = TRUE;
+				break;
+		}
+		switch($sorttype) {
+			case "date":
+				$sortorder = "date";
+				break;
+			case "title":
+				$sortorder = "title";
+				break;
+			case "popular":
+				$sortorder = 'hitcounter';
+				break;
+		/*case "random":
+				$sortorder = 'RAND()';
+				break; */
+			default:
+				$sortorder = "sort_order";
+				break;
+		}
+		if(!is_null($sorttype) || !is_null($sortdirection)) {
+			$structure = sortMultiArray($structure, $sortorder, $sortdir, false, false, true);
+		}
 		if ($visible) {
 			foreach ($structure as $key=>$cat) {
 				$catobj = new ZenpageCategory($cat['titlelink']);
