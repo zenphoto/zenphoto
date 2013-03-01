@@ -164,7 +164,7 @@ $map = function_exists('printGoogleMap');
 									if ($map) {
 										$coord = getGeoCoord($_zp_current_image);
 										if ($coord) {
-											$coord['desc'] = '<p align=center>'.$coord['desc'].'</p>';
+											//$coord['desc'] = '<p align=center>'.$coord['desc'].'</p>';
 											$points[] = $coord;
 										}
 									}
