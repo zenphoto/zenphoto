@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-27 20:53+0100\n"
+"POT-Creation-Date: 2013-03-01 19:23+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -18498,13 +18498,13 @@ msgstr ""
 #: ZpTranslation-Development/zp-core/zp-extensions/rewriteTokens.php:76
 #, php-format
 msgid "Link for <em>%s</em> rule."
-msgstr "Link voor<em>%s</em> rewrite regel."
+msgstr "Link voor de <em>%s</em> rewrite regel."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/rewriteTokens.php:45
 #: ZpTranslation-Development/zp-core/zp-extensions/rewriteTokens.php:79
 #, php-format
 msgid "Link for <em>%s</em> script page."
-msgstr "Link voor de <em>%s</em> scriptpagina."
+msgstr "Link voor de <em>%s</em> rewrite regel."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/rewriteTokens.php:53
 msgid "Restore defaults."
