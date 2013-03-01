@@ -1,0 +1,28 @@
+/*
+CSS Rules for google map plugin
+Author: Vincent3569
+*/
+
+.hidden_map {
+	position: absolute;
+	left: -50000px;
+}
+.map_img {
+	text-align: center;
+	margin: 0 0 10px;
+	/*width: 250px;*/
+}
+.map_title {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 90%;
+	color: #444;
+	margin: 0 0 10px;
+}
+.map_desc {
+	font-family: Corbel, Verdana, Arial, sans-serif;
+	font-size: 90%;
+	color: #333;
+	text-align: justify;
+	/*width: 250px;*/
+	margin: 10px 0 0;
+}
