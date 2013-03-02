@@ -20,10 +20,7 @@ function reconfigureAction($mandatory) {
 			}
 			exit();	//	can't really run setup from an RSS feed.
 		}
-
-//DEBUG CODE
-
-		if (false && empty($needs)) {
+		if (empty($needs)) {
 			ob_start();
 			reconfigurePage($diff, $needs, $mandatory);
 			$notice = ob_get_flush();
@@ -177,39 +174,11 @@ function reconfigurePage($diff, $needs, $mandatory) {
 	<div class="reconfigbox">
 		<h1>
 			<?php echo gettext('Zenphoto has detected a change in your installation.'); ?>
-
-<?php
-zp_error("call trace($mandatory)",E_USER_NOTICE);
-?>
-
 		</h1>
 		<div id="errors">
 			<ul>
 				<?php
-				preg_match('|([^-]*)|', ZENPHOTO_VERSION, $version);
-				preg_match('|([^-]*).*\[(.*)\]|', getOption('zenphoto_version'), $matches);
-				if (!($i = getOption('zenphoto_install'))) {
-					?>
-					<li><?php echo gettext('There is no previous install signature.'); ?></li>
-					<?php
-				}
-				if (@$matches[1] != $version[1]) {
-					?>
-					<li><?php printf(gettext('Version numbers do not match. Option:%s; VERSION:%s'),@$matches[1], $version[1]); ?></li>
-					<?php
-				}
-				if (@$matches[2] != ZENPHOTO_RELEASE) {
-					?>
-					<li><?php printf(gettext('Release IDs do not match. Option:%s; RELEASE:%s'),@$matches[2], ZENPHOTO_RELEASE); ?></li>
-					<?php
-				}
-				if ($i != serialize(installSignature())) {
-					?>
-					<li><?php echo gettext('The install signature does not match.'); ?></li>
-					<?php
-				}
 				foreach ($diff as $thing=>$old) {
-
 					switch ($thing) {
 						case 'SERVER_SOFTWARE':
 							echo '<li>'.sprintf(gettext('Your server software has changed from %1$s to %2$s.'),$old,$_SERVER['SERVER_SOFTWARE']).'</li>';
