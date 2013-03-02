@@ -143,8 +143,10 @@ if (is_array($result)) {
 <script type="text/javascript">
 function toggleRow(id) {
 	if ($('#'+id).is(":visible")) {
+		$('#'+id+'_k').hide();
 		$('#'+id).hide();
 	} else {
+		$('#'+id+'_k').show();
 		$('#'+id).show();
 	}
 }
@@ -169,7 +171,6 @@ foreach($tables as $table) {
 			?>
 		</tr>
 		<?php
-		//echo "<pre>"; print_r($tablecols); echo "</pre>";
 		$rowcount = 0;
 		foreach($tablecols as $col) {
 			$rowcount++;
@@ -198,7 +199,46 @@ foreach($tables as $table) {
 		}
 	 ?>
  </table>
- <?php
+	<?php
+	$sql = 'SHOW KEYS FROM '.prefix($table);
+	$result = query_full_array($sql);
+	$nest = '';
+	?>
+	<div style="width:40%">
+	<table id = "t_<?php echo $i; ?>_k" class="bordered" <?php if ($i>1) { ?>style="display: none;" <?php } ?>>
+		<tr>
+			<th<?php echo $class; ?>>
+				<?php echo gettext('Key'); ?>
+			</th>
+			<th<?php echo $class; ?>>
+				<?php echo gettext('Column'); ?>
+			</th>
+		</tr>
+	<?php
+	foreach ($result as $key) {
+		?>
+		<tr>
+			<td<?php echo $class; ?>>
+			<?php
+			if ($nest != $key['Key_name']) {
+				echo $nest = $key['Key_name'];
+				if (!$key['Non_unique']) {
+					echo '*';
+				}
+			}
+			?>
+			</td>
+			<td<?php echo $class; ?>>
+				<?php echo $key['Column_name']; ?>
+			</td>
+		</tr>
+		<?php
+	}
+	?>
+	</table>
+	</div>
+	<?php
+
 }
 ?>
 </div>
