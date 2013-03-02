@@ -10,17 +10,22 @@
  */
 function reconfigureAction($mandatory) {
 	list($diff, $needs) = checkSignature();
-	$diff = array_keys($diff);
-	if ($mandatory || in_array('ZENPHOTO', $diff) || in_array('FOLDER', $diff)) {
+	$diffkeys = array_keys($diff);
+	if ($mandatory || in_array('ZENPHOTO', $diffkeys) || in_array('FOLDER', $diffkeys)) {
 		if (isset($_GET['rss'])) {
+			if (file_exists(SERVERPATH.'/'.DATA_FOLDER.'/rss-closed.xml')) {
+				$xml = file_get_contents(SERVERPATH.'/'.DATA_FOLDER.'/rss-closed.xml');
+				$xml = preg_replace('~<pubDate>(.*)</pubDate>~', '<pubDate>'.date("r",time()).'</pubDate>', $xml);
+				echo $xml;
+			}
 			exit();	//	can't really run setup from an RSS feed.
 		}
-		ob_start();
-		reconfigurePage();
-		$notice = ob_get_flush();
-		debugLogVar('automatic setup ', strip_tags($notice));
-		ob_end_clean();
 		if (empty($needs)) {
+			ob_start();
+			reconfigurePage($diff, $needs, $mandatory);
+			$notice = ob_get_flush();
+			debugLogVar('automatic setup ', strip_tags($notice));
+			ob_end_clean();
 			$dir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
 			$p = strpos($dir, ZENFOLDER);
 			if ($p !== false) {
@@ -50,7 +55,7 @@ function reconfigureAction($mandatory) {
 					<div id="main">
 						<div id="content">
 							<div class="tabbox">
-								<?php reconfigurePage($needs); ?>
+								<?php reconfigurePage($diff,$needs, $mandatory); ?>
 							</div>
 						</div>
 					</div>
@@ -59,7 +64,7 @@ function reconfigureAction($mandatory) {
 			<?php
 			exitZP();
 		}
-	} else {
+	} else if (!empty($diff)) {
 		if (function_exists('zp_register_filter')) {
 			zp_register_filter('admin_note', 'signatureChange');
 			zp_register_filter('admin_head', 'reconfigureCS');
@@ -110,7 +115,8 @@ function checkSignature() {
  * @return string
  */
 function signatureChange($tab=NULL, $subtab=NULL) {
-	reconfigurePage();
+	list($diff, $needs) = checkSignature();
+	reconfigurePage($diff, $needs, 0);
 	return $tab;
 }
 
@@ -163,45 +169,16 @@ function reconfigureCS() {
  *
  * HTML for the configuration change notification
  */
-function reconfigurePage() {
-	list($diff, $needs) = checkSignature();
-
+function reconfigurePage($diff, $needs, $mandatory) {
 	?>
 	<div class="reconfigbox">
 		<h1>
-			<?php
-			echo gettext('Zenphoto has detected a change in your installation.');
-			?>
+			<?php echo gettext('Zenphoto has detected a change in your installation.'); ?>
 		</h1>
 		<div id="errors">
 			<ul>
 				<?php
-				preg_match('|([^-]*)|', ZENPHOTO_VERSION, $version);
-				preg_match('|([^-]*).*\[(.*)\]|', getOption('zenphoto_version'), $matches);
-				if (!($i = getOption('zenphoto_install'))) {
-					?>
-					<li><?php echo gettext('There is no previous install signature.'); ?></li>
-					<?php
-				}
-				if (@$matches[1] != $version[1]) {
-					?>
-					<li><?php echo gettext('Version numbers do not match.'); ?></li>
-					<?php
-				}
-				if (@$matches[2] != ZENPHOTO_RELEASE) {
-					?>
-					<li><?php echo gettext('Release IDs do not match.'); ?></li>
-					<?php
-				}
-				if ($i != serialize(installSignature())) {
-					?>
-					<li><?php echo gettext('The install signature does not match.'); ?></li>
-					<?php
-				}
-
-
 				foreach ($diff as $thing=>$old) {
-
 					switch ($thing) {
 						case 'SERVER_SOFTWARE':
 							echo '<li>'.sprintf(gettext('Your server software has changed from %1$s to %2$s.'),$old,$_SERVER['SERVER_SOFTWARE']).'</li>';
