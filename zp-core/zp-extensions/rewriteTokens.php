@@ -21,7 +21,7 @@ class rewriteTokens {
 
 	function __construct() {
 		if (OFFSET_PATH !== 2) {
-			setOption('zp_plugin_rewriteTokens', 1);	//	plugin must be enabled for saving options
+			setOption('zp_plugin_rewriteTokens', 97|ADMIN_PLUGIN);	//	plugin must be enabled for saving options
 		}
 		$zp_cfg = file_get_contents(CONFIGFILE);
 		$i = strpos($zp_cfg,"\$conf['special_pages']");
@@ -95,7 +95,6 @@ class rewriteTokens {
 				'order' => 0,
 				'desc' => gettext('<p class="messagebox"><em>zenphoto.cfg</em>  updated.</p>')
 		);
-
 
 	}
 
