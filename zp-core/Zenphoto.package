@@ -607,6 +607,12 @@ zp-core/locale/pl_PL/LC_MESSAGES/zenphoto.mo
 zp-core/locale/pl_PL/LC_MESSAGES/zenphoto.po
 zp-core/locale/pl_PL/flag.png
 zp-core/locale/pl_PL/select_files_button.png
+zp-core/locale/ru_RU
+zp-core/locale/ru_RU/LC_MESSAGES
+zp-core/locale/ru_RU/LC_MESSAGES/zenphoto.mo
+zp-core/locale/ru_RU/LC_MESSAGES/zenphoto.po
+zp-core/locale/ru_RU/flag.png
+zp-core/locale/ru_RU/select_files_button.png
 zp-core/locale/sk_SK
 zp-core/locale/sk_SK/LC_MESSAGES
 zp-core/locale/sk_SK/LC_MESSAGES/zenphoto.mo
@@ -1778,4 +1784,4 @@ zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zpCaptcha
 zp-core/zp-extensions/zpCaptcha.php
 zp-core/zp-extensions/zpCaptcha/c.php
-1780
+1786
