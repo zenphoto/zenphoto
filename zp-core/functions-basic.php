@@ -107,7 +107,7 @@ set_error_handler("zpErrorHandler");
 set_exception_handler("zpErrorHandler");
 if (OFFSET_PATH != 2 && !file_exists($const_serverpath.'/'.DATA_FOLDER."/zenphoto.cfg")) {
 	require_once(dirname(__FILE__).'/reconfigure.php');
-	reconfigureAction(true);
+	reconfigureAction(1);
 }
 // Including the config file more than once is OK, and avoids $conf missing.
 eval(file_get_contents($const_serverpath.'/'.DATA_FOLDER.'/zenphoto.cfg'));
@@ -127,7 +127,7 @@ $_zp_mutex = new Mutex();
 
 if (OFFSET_PATH != 2 && empty($_zp_conf_vars['mysql_database'])) {
 	require_once(dirname(__FILE__).'/reconfigure.php');
-	reconfigureAction(true);
+	reconfigureAction(2);
 }
 
 require_once(dirname(__FILE__).'/lib-utf8.php');
@@ -158,7 +158,7 @@ if (!defined('DATABASE_SOFTWARE') && extension_loaded(strtolower(@$_zp_conf_vars
 }
 if (!$data && OFFSET_PATH != 2) {
 	require_once(dirname(__FILE__).'/reconfigure.php');
-	reconfigureAction(true);
+	reconfigureAction(3);
 }
 
 $data = getOption('charset');
@@ -1371,7 +1371,7 @@ function checkInstall() {
 	if (!($i = getOption('zenphoto_install')) || @$matches[1] != $version[1] || @$matches[2] != ZENPHOTO_RELEASE
 									|| ((time() & 7)==0) && OFFSET_PATH!=2 && $i != serialize(installSignature())) {
 		require_once(dirname(__FILE__).'/reconfigure.php');
-		reconfigureAction(false);
+		reconfigureAction(0);
 	}
 }
 
