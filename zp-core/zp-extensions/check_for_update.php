@@ -12,7 +12,7 @@ $plugin_description = gettext("Checks if there is a Zenphoto versions that is ne
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (!class_exists('DOMDocument')) ? gettext('PHP <em>DOM Object Model</em> is required.') : false;
 
-if (OFFSET_PATH != 2) {
+if (OFFSET_PATH != 2 && !$plugin_disable) {
 	$me = explode('?',getRequestURI());
 	if (basename(array_shift($me))=='admin.php') {
 		$v = getOption('last_update_version');

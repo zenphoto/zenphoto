@@ -58,18 +58,21 @@ class Zenpage {
 				}
 			}
 		}
+
+		$allcategories = query_full_array("SELECT * FROM ".prefix('news_categories')." ORDER by sort_order");
+		$this->categoryStructure = array();
+		foreach ($allcategories as $cat) {
+			$this->categoryStructure[$cat['id']] = $cat;
+		}
+
 	}
 
-	function getCategoryStructure() {
-		if (is_null($this->categoryStructure)) {
-			$allcategories = query_full_array("SELECT * FROM ".prefix('news_categories')." ORDER by sort_order");
-			$structure = array();
-			foreach ($allcategories as $cat) {
-				$structure[$cat['id']] = $cat;
-			}
-			$structure = sortMultiArray($structure, 'sort_order', false, false, false, true);
-			$this->categoryStructure = $structure;
-		}
+	/**
+	 * Provides the complete category structure regardless of permissions.
+	 * This is needed for quick checking of status of a category and is used only internally to the Zenpage core.
+	 * @return array
+	 */
+	private function getCategoryStructure() {
 		return $this->categoryStructure;
 	}
 
@@ -77,6 +80,10 @@ class Zenpage {
 /************************************/
 /* general page functions   */
 /************************************/
+
+	function visibleCategory($cat) {
+		return $this->categoryStructure[$cat['cat_id']]['show'];
+	}
 
 /**
 	 * Gets all pages or published ones. 

@@ -19,7 +19,6 @@ checkInstall();
 if (time() > getOption('last_garbage_collect')+864000) {
 	$_zp_gallery->garbageCollect();
 }
-
 if (isset($_GET['report'])) {
 	$class = 'messagebox';
 	$msg = sanitize($_GET['report']);
@@ -209,7 +208,7 @@ zp_apply_filter('admin_note','Overview', NULL);
 	<li>
 		<?php
 		printf(gettext('Zenphoto version <strong>%1$s [%2$s] (%3$s)</strong>'),ZENPHOTO_VERSION,'<a title="'.ZENPHOTO_FULL_RELEASE.'">'.ZENPHOTO_RELEASE.'</a>',$official);
-		if (TEST_RELEASE) {
+		if (getOption('zp_plugin_check_for_update') && TEST_RELEASE) {
 			if (is_connected() && class_exists('DOMDocument')) {
 				require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenphoto_news/rsslib.php');
 				$recents = RSS_Retrieve("http://www.zenphoto.org/index.php?rss=news&category=changelog");
