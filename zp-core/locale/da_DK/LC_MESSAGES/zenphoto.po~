@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto 1.4.4 github\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-02-24 15:00+0100\n"
-"PO-Revision-Date: 2013-03-02 21:45+0100\n"
+"PO-Revision-Date: 2013-02-24 17:17+0100\n"
 "Last-Translator: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language-Team: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language: danish\n"
@@ -20,12 +20,12 @@ msgstr ""
 #: /home/jes/workspace/zenphoto/index.php:143
 #, php-format
 msgid "Zenphoto script processing %1$s:%2$.4f seconds"
-msgstr "Zenphoto script behandles %1$s:%2$.4f sekunder"
+msgstr "Zenphoto skript behandles %1$s:%2$.4f sekunder"
 
 #: /home/jes/workspace/zenphoto/index.php:146
 #, php-format
 msgid "Zenphoto script processing total:%.4f seconds"
-msgstr "Zenphoto script behandler total: %.4f sekunder"
+msgstr "Zenphoto skript behandler total: %.4f sekunder"
 
 #: /home/jes/workspace/zenphoto/themes/zpmobile/search.php:43
 #: /home/jes/workspace/zenphoto/themes/zenpage/search.php:42
@@ -2804,13 +2804,13 @@ msgstr "Nulstil %s"
 #: /home/jes/workspace/zenphoto/zp-core/admin-logs.php:126
 #, php-format
 msgid "Download %s ZIP file"
-msgstr "Downoad %s Zipfil"
+msgstr "Hent %s Zipfil"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-logs.php:128
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2149
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList/download_statistics.php:24
 msgid "Download"
-msgstr "Download"
+msgstr "Hent"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-logs.php:136
 msgid "Log file size limit"
@@ -3627,7 +3627,7 @@ msgid ""
 "You can download more themes from the <a href=\"http://www.zenphoto.org/zp/"
 "theme/\">zenphoto themes page</a>."
 msgstr ""
-"Du kan downloade flere temaer fra <a href=\"http://www.zenphoto.org/zp/theme/"
+"Du kan hente flere temaer fra <a href=\"http://www.zenphoto.org/zp/theme/"
 "\">'zenphoto themes page'</a>."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-themes.php:180
@@ -8097,8 +8097,8 @@ msgid ""
 "search target."
 msgstr ""
 "At sætte <em>Behandl mellemrum som</em> til <em>OR</em> vil medføre at "
-"søgningen vil udløses af alle ordene i en streng adskilt af mellemrum. At "
-"sætte den til <em>OG</em> vil medføre at søgningen kun udløses når alle ord "
+"søgningen vil udløses af alle ordene i en streng adskildt af mellemrum. At "
+"sætte den til <em>OG</em> vil medføre at søgningen kun udløses når ale ord "
 "er der i samme rækkefølge. At efterlade den blank vil medføre at hele "
 "strengen behandles som søgemål."
 
@@ -9181,7 +9181,7 @@ msgid ""
 msgstr ""
 "Hvis denne indstilling ikke er tom, vil den Galleri-webadresse som normalt "
 "ville linke til temaets <code>index.php</code> i stedet linke til dette "
-"script. Det frigør <code>index.php</code> skriptet så du kan lave et "
+"skript. Det frigør <code>index.php</code> skriptet så du kan lave et "
 "brugerdefineret <em>hjemmesideskript</em>. Denne mulighed gælder kun for det "
 "vigtigste tema i <em>galleriet</em>."
 
@@ -13771,7 +13771,7 @@ msgstr "Loggen slettet"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:118
 msgid "Log downloaded"
-msgstr "Loggen downloaded"
+msgstr "Loggen overført"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:121
 msgid "Install"
@@ -14173,7 +14173,7 @@ msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:38
 msgid "Plugin to generate file download lists."
-msgstr "Plugin til at generere fildownload-lister."
+msgstr "Plugin til at generere filoverførselslister."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:63
 msgid "Download directory"
@@ -14197,7 +14197,7 @@ msgstr "Vis filstørrelse af download elementerne"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:69
 msgid "Show download counter of download items"
-msgstr "Vis download tæller  for downloadede elementer"
+msgstr "Vis download tæller  for download elementer"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:72
 msgid "Files to exclude from the download list"
@@ -14237,8 +14237,7 @@ msgstr "Bruger rettigheder."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:81
 msgid "Check if users are required to have <em>file</em> rights to download."
-msgstr ""
-"Marker hvis brugere skal have <em>fil</em>rettigheder til at downloade."
+msgstr "Marker hvis brugere skal have  <em>fil</em>rettighed til at downloade."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:84
 msgid "credentials"
@@ -14266,7 +14265,7 @@ msgstr "Du skal angive en adgangskode for download-brugeren"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:156
 msgid "Your DownloadList passwords were empty or did not match"
-msgstr "Din DownloadList adgangskode var tom eller matchede ikke"
+msgstr "Din Downloadlist adgangskode var tom eller matchede ikke"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:253
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/search_statistics.php:79
@@ -14659,7 +14658,7 @@ msgid ""
 "If this script does not complete, <a href=\"javascript:reStart();\" title="
 "\"restart\">click here</a>"
 msgstr ""
-"Hvis dette script ikke kører færdigt, <a href=\"javascript:reStart();\" "
+"Hvis dette skript ikke kører færdigt, <a href=\"javascript:reStart();\" "
 "title=\"restart\">klik her</a>"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/seo_cleanup.php:199
@@ -15780,7 +15779,7 @@ msgid ""
 "should be placed within that theme's \"functions.php\" script."
 msgstr ""
 "printPreloadScript er forældet. Det er et hjælpeprogram for et bestemt tema "
-"og bør placeres i dette temas \"functions.php\" script."
+"og bør placeres i dette temas \"functions.php\" skript."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/deprecated-functions.php:680
 msgid "This happens automatically."
@@ -15852,7 +15851,7 @@ msgstr "Brug downloadList plugin <code>printDownloadLinkAlbumZip()</code>."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/deprecated-functions.php:1001
 msgid "Download a zip file of this album"
-msgstr "Download en zipfil af dette album."
+msgstr "Overfør en zipfil af dette album."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/deprecated-functions.php:1009
 msgid "Use printImageThumb()."
@@ -15888,7 +15887,7 @@ msgstr "Brug echo $_zp_current_image->getSortOrder()."
 msgid "If you need this function copy it to your theme's functions.php script."
 msgstr ""
 "Hvis du har brug for denne funktion så kopier den til dit temas functions."
-"php script."
+"php skript."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/site_upgrade.php:37
 msgid ""
@@ -16035,7 +16034,7 @@ msgstr "Mistænkelige ord"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/simpleSpam.php:57
 msgid "SPAM blacklist words (separate with commas)"
-msgstr "SPAM sortlistede ord (adskilt med komma)"
+msgstr "SPAM sortlistede ord (adskildt med komma)"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/simpleSpam.php:58
 msgid "Patterns to die on"
@@ -16047,7 +16046,7 @@ msgid ""
 "\">regular expressions</a> (separate with spaces)"
 msgstr ""
 "SPAM sortliste <a href=\"http://en.wikipedia.org/wiki/Regular_expression"
-"\">regulære udtryk</a> (adskilt med mellemrum)"
+"\">regulære udtryk</a> (adskildt med mellemrum)"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/simpleSpam.php:59
 msgid "Excessive URL count"
@@ -16310,11 +16309,11 @@ msgstr ""
 "Tekst for meddelelsen i e-mailen der sendet til registranten for "
 "verifikation af registreringen. <p class=\"notebox\"><strong>Bemærk:</"
 "strong> Du skal inkludere <code>%1$s</code> i din meddelelse  der hvor du "
-"ønsker at linket til  <em>verifikation af registreringen</em> skal vises. Du "
-"kan også indsætte registrantens <em>navn</em>  (<code>%2$s</code>), "
-"<em>brugerid</em> (<code>%3$s</code>), og <em>adganskode</em>* (<code>%4$s</"
-"code>).<br /><br />*Af sikkerhedsgrunde anbefaler vi <strong>ikke</strong> "
-"at indsætte <em>adgangskoden</em>.</p>"
+"ønsker <em>verifikation af registreringen</em linket skal vises. Du kan også "
+"indsætte registrantens <em>navn</em>  (<code>%2$s</code>), <em>brugerid</em> "
+"(<code>%3$s</code>), og <em>adganskode</em>* (<code>%4$s</code>).<br /><br /"
+">*Af sikkerhedsgrunde anbefaler vi <strong>ikke</strong> at indsætte "
+"<em>adgangskoden</em>.</p>"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:80
 msgid "User registration page"
@@ -16338,8 +16337,6 @@ msgid ""
 "* The option may be set via the <a href=\"javascript:gotoName"
 "('register_user');\"><em>register_user</em></a> plugin options."
 msgstr ""
-"* Indstillingen kan sættes via  <a href=\"javascript:gotoName"
-"('register_user');\"><em>register_user</em></a> plugin indstillingerne."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:96
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/federated_logon.php:134
@@ -16350,8 +16347,6 @@ msgid ""
 "<p class=\"notebox\">*<strong>Note:</strong> The setting of this option is "
 "shared with other plugins.</p>"
 msgstr ""
-"<p class=\"notebox\">*<strong>Bemærk:</strong> Disse indstillinger deles med "
-"andre plugins.</p>"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:101
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/federated_logon.php:123
@@ -16359,46 +16354,42 @@ msgid ""
 "Of course there must be some Administrator with an e-mail address for this "
 "option to make sense!"
 msgstr ""
-"Selvfølgelig skal der være en Administrator med en mailadresse for at denne "
-"indstilling giver mening."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:121
 msgid "Default user group"
-msgstr "Standard brugergruppe"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:124
 msgid "Initial group assignment for the new user."
-msgstr "Initiale gruppetildeling for en ny bruger."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:133
 msgid ""
 "Initial rights for the new user. (If no rights are set, approval of the user "
 "will be required.)"
 msgstr ""
-"Initiale rettigheder for en ny bruger. (Hvis ingen rettigheder er valgt, "
-"skal brugeren først godkendes.) "
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:145
 msgid "script"
-msgstr "script"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:149
 msgid "*no page selected"
-msgstr "*ingen side valgt"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:168
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/favoritesHandler.php:63
 msgid "Link text"
-msgstr "Link tekst"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:175
 msgid "Hint text"
-msgstr "Tip-tekst"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:260
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/federated_logon.php:351
 msgid "Zenphoto Gallery registration"
-msgstr "Zenphoto Galleri registration"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:260
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/federated_logon.php:352
@@ -16407,33 +16398,28 @@ msgid ""
 "%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail "
 "address of %3$s."
 msgstr ""
-"%1$s (%2$s) har registreret for zenphoto galleriet, og anført en "
-"mailadresse: %3$s."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:340
 msgid "Registration confirmation"
-msgstr "Registreringsbekræftigelse"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:363
 msgid "you are already logged in."
-msgstr "Du er allerede logget på"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:371
 msgid "Thank you for registering."
-msgstr "Tak for din registrering."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:375
 msgid "You may now log onto the site and verify your personal information."
 msgstr ""
-"Du kan nu logge på webstedet og verificere dine personlige oplysninger."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:394
 msgid ""
 "Your registration information has been accepted. An email has been sent to "
 "you to verify your email address."
 msgstr ""
-"Din registeringsinformation er blevet godkendt. En mail er sendt til dig for "
-"at verificere din mailadresse."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:402
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:410
@@ -16445,52 +16431,50 @@ msgstr ""
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:466
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:482
 msgid "Registration failed."
-msgstr "Registrering mislykket."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:403
 #, php-format
 msgid "The user ID <em>%s</em> is already in use."
-msgstr "BrugerID <em>%s</em> er allerede i brug."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:411
 msgid "Passwords may not be empty."
-msgstr "Adganskode kan ikke være tom."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:427
 msgid "You have not filled in all the fields."
-msgstr "Du har ikke udfyldt alle felter."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:435
 msgid "Invalid verification link."
-msgstr "Ugyldigt verifikationslink."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:443
 msgid "Enter a valid email address."
-msgstr "Indtast gyldig mailadresse."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:451
 msgid "The CAPTCHA you entered was not correct."
-msgstr "Den CAPTCHA du skrev var ikke korrekt."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:458
 msgid "Verification failed."
-msgstr "Verifikation mislykket."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:459
 msgid "Your registration request could not be completed."
-msgstr "Din registreringsanmodningen kunne ikke gennemføres."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:472
 msgid ""
 "Your registration attempt failed a <code>register_user_registered</code> "
 "filter check."
 msgstr ""
-"Dit registreringsforsøg kunne ikke klare et <code>register_user_registered</"
-"code> filter tjek."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/static_html_cache.php:23
 msgid "Adds static HTML cache functionality to Zenphoto."
-msgstr "Tilføjer statisk HTML cache funktionalitet til Zenphoto."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/static_html_cache.php:31
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/static_html_cache.php:39
@@ -16498,8 +16482,6 @@ msgid ""
 "Static HTML Cache folder could not be created. Please try to create it "
 "manually via FTP with chmod 0777."
 msgstr ""
-"Statisk cache mappe kunne ikke oprettes. Forsøg venligst at oprette den "
-"manuelt via FTP med chmod 0777."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/static_html_cache.php:169
 #, php-format
@@ -16507,24 +16489,20 @@ msgid ""
 "Cached content of %3$s served by static_html_cache in %1$.4f seconds plus "
 "%2$.4f seconds unavoidable Zenphoto overhead."
 msgstr ""
-"Cached indhold af %3$s betjent af static_html_cache i %1$.4f sekunder plus "
-"%2$.4f sekunder uundgåelig Zenphoto overhead."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/static_html_cache.php:337
 msgid "Static HTML cache expire"
-msgstr "Statisk HTML cache udløbstid"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/static_html_cache.php:338
 msgid ""
 "When the cache should expire in seconds. Default is 86400 seconds (1 day  = "
 "24 hrs * 60 min * 60 sec)."
 msgstr ""
-"Hvornår cachen skal udløbe i sekunder. Standard er 86400 sekunder (1 dag = "
-"24 timer * 60 min * 60 sek)."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/static_html_cache.php:339
 msgid "Excluded pages"
-msgstr "Udelukkede sider"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/static_html_cache.php:340
 msgid ""
@@ -16537,23 +16515,14 @@ msgid ""
 "image filename, or album folder name enter <em>pagefilename.php/titlelink or "
 "image filename or album folder</em>. Separate several entries by comma."
 msgstr ""
-"Listen af sider der er udelukkede fra cachelagring. Sider der kan udelukkes "
-"er brugerdefinerede temasider inkluderet Zenpage sider (disse eventuelt mere "
-"specifikt ved titellink) og standard temafil image.php (eventuelt ved "
-"billedfil navn), album.php (eventuelt ved album mappenavn) eller index.php."
-"<br />Hvis du ønsker at udelukke en fil fuldstændigt skriv <em>sidens-"
-"filnavn.php/</em>. <br />Hvis du ønsker at udelukke en side ved hjælp af en "
-"specifik titel, billedfilnavn eller album mappenavn skriv <em>sidefilnavn."
-"php/titlelink eller billedfilnavn eller album mappenavn</em>. Adskil flere "
-"poster med komma."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_effects.php:59
 msgid "Attaches \"Image effects\" to images and thumbnails."
-msgstr "Tillægger  \"Billedeffekter \" til billeder og miniaturer."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_effects.php:103
 msgid "No acknowledgement"
-msgstr "Ingen kvittering"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_effects.php:109
 msgid ""
@@ -16563,114 +16532,98 @@ msgid ""
 "Astonishing Image Effects</a> by Christian Effenberger to select and "
 "download effects."
 msgstr ""
-"<strong>Bemærk:</strong> Selvom denne plugin understøtter <em>Effenberger "
-"effekter</em>, er derpå grund af licensspørgsmål ikke inkluderet nogle "
-"effekter. Se <a href=\"http://www.netzgesta.de/cvi/\">CVI Astonishing Image "
-"Effects</a> af Christian Effenberger for at vælge og downloade effekter."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_effects.php:114
 msgid "No effects"
-msgstr "Ingen effekter"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_effects.php:120
 #, php-format
 msgid "<strong>Error:</strong> <em>%s</em> effect no longer exists."
-msgstr "<strong>Fejl:</strong> <em>%s</em> effekten eksisterer ikke mere."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_effects.php:123
 msgid "Images (standard)"
-msgstr "Billeder (standard)"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_effects.php:126
 msgid ""
 "Apply <em>effect</em> to images shown via the <code>printDefaultSizedImage()"
 "</code> function."
 msgstr ""
-"Anvend <em>effekten</em> på billedet vist via <code>printDefaultSizedImage()"
-"</code> funktionen."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_effects.php:127
 msgid "Images (custom)"
-msgstr "Billeder (brugerdefineret)"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_effects.php:130
 msgid "Apply <em>effect</em> to images shown via the custom image functions."
 msgstr ""
-"Anvend <em>effekten</em> på billeder vist via brugerdefinerede "
-"billedfunktioner."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_effects.php:131
 msgid "Image thumbnails (standard)"
-msgstr "Billedminiature (standard)"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_effects.php:134
 msgid ""
 "Apply <em>effect</em> to images shown via the <code>printImageThumb()</code> "
 "function."
 msgstr ""
-"Anvend <em>effekten</em> på billeder vist via <code>printImageThumb()</code> "
-"funktionen."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_effects.php:135
 msgid "Album thumbnails (standard)"
-msgstr "Album miniature (standard)"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_effects.php:138
 msgid ""
 "Apply <em>effect</em> to images shown via the <code>printAlbumThumbImage()</"
 "code> function."
 msgstr ""
-"Anvend <em>effekten</em> på billeder vist via <code>printAlbumThumbImage()</"
-"code> funktionen."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_effects.php:139
 msgid "Image thumbnails (custom)"
-msgstr "Billedminiature (brugerdefineret)"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_effects.php:142
 msgid ""
 "Apply <em>effect</em> to images shown via the custom image functions when "
 "<em>thumbstandin</em> is set."
 msgstr ""
-"Anvend <em>effekten</em> på billeder vist via de brugerdefinerede funktioner "
-"når <em>thumbstandin</em> er sat."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_effects.php:143
 msgid "Album thumbnails  (custom)"
-msgstr "Album miniaturer (brugerdefineret)"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_effects.php:146
 msgid ""
 "Apply <em>effect</em> to images shown via the "
 "<code>printCustomAlbumThumbImage()</code> function."
 msgstr ""
-"Anvend <em>effekten</em> på billeder vist via "
-"<code>printCustomAlbumThumbImage()</code> funktionen."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_effects.php:147
 msgid "Random pool"
-msgstr "Tilfældig samling"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_effects.php:150
 msgid "Pool of effects for the <em>random</em> effect selection."
-msgstr "Samling af effekter til <em>tilfældig</em> effektvalg."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_effects.php:153
 msgid "Acknowledgments"
-msgstr "Bekræftelser"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_effects.php:169
 msgid "No image effects found."
-msgstr "Inen billedeffekter fundet."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_effects.php:172
 msgid "Effect"
-msgstr "Effekter"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_effects.php:267
 #, php-format
 msgid "<strong>Warning:</strong> <em>%1$s</em> invalid effect definition file"
-msgstr "<strong>Advarsel:</strong> <em>%1$s</em> ugyldig effekt definitionsfil"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_effects.php:278
 #, php-format
@@ -16678,26 +16631,21 @@ msgid "<strong>Warning:</strong> <em>%1$s</em> missing effect component: %2$s"
 msgid_plural ""
 "<strong>Warning:</strong><em>%1$s</em> missing effect components: %2$s"
 msgstr[0] ""
-"<strong>Advarsel:</strong> <em>%1$s</em> manglende effekt komponent: %2$s"
 msgstr[1] ""
-"<strong>Advarsel:</strong> <em>%1$s</em> manglende effekt komponenter: %2$s"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_effects.php:287
 #, php-format
 msgid "<strong>Warning:</strong> <em>%1$s</em> missing effect definition file"
 msgstr ""
-"<strong>Advarsel:</strong> <em>%1$s</em> manglende effekt-definitionsfil."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/tag_extras.php:12
 msgid ""
 "Provides functions to print a tag cloud of all tags from a Zenphoto object."
 msgstr ""
-"Stiller funktioner til rådighed til at printe en 'mærke-sky' af alle mærker "
-"i et Zenphoto objekt"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:48
 msgid "Enable <strong>jPlayer</strong> to handle multimedia files."
-msgstr "Aktiver <strong>jPlayer</strong> til at håndtere multimediafiler."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:49
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flowplayer3.php:20
@@ -16705,84 +16653,74 @@ msgid ""
 "<strong>IMPORTANT</strong>: Only one multimedia player plugin can be enabled "
 "at the time and the class-video plugin must be enabled, too."
 msgstr ""
-"<strong>VIGTIGT</strong>: den kan kun være en multimediaplayer plugin "
-"aktiveret af gangen, og class-video plugin skal være aktiveret også."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:49
 msgid ""
 "Please see <a href='http://jplayer.org'>jplayer.org</a> for more info about "
 "the player and its license."
 msgstr ""
-"Se venligst <a href='http://jplayer.org'>jplayer.org</a> for mere "
-"information om jplayer og dens licens."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:51
 msgid "This player does not support <em>External Albums</em>."
-msgstr "Flash-player understøtter ikke <em>Externe Albums</em>."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:58
 #, php-format
 msgid "jPlayer not enabled, %s is already instantiated."
-msgstr "jPlayer ikke aktiveret, %s er allerede aktiveret."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:120
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flowplayer3.php:132
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flowplayer3.php:173
 msgid "Autoplay"
-msgstr "Autoplay"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:121
 msgid "Disabled automatically if several players on one page"
-msgstr "Deaktiveret automatisk hvis der er flere players på en side"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:122
 msgid "Poster (Videothumb)"
-msgstr "Poster (Videominiature)"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:123
 msgid "If the videothumb should be shown (jplayer calls it poster)"
-msgstr "Om videominiature skal vises (jplayer kalder den poster)"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:124
 msgid "Poster cropping (Videothumb)"
-msgstr "Poster beskæring (Videominiature)"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:125
 msgid ""
 "If enable the videothumb to be cropped. Otherwise jPlayer will squish the "
 "image to fit if it does not have the correct aspect ratio."
 msgstr ""
-"Hvis aktiveret vil videominiaturen blive beskåret. Ellers vil jPlayer klemme "
-"billedet så det passer, hvis den ikke har de korrekte mål."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:126
 msgid "Audio poster (Videothumb)"
-msgstr "Audio poster (Videominiature)"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:127
 msgid ""
 "If the poster should be shown for audio files (mp3,m4a,fla) (does not apply "
 "for playlists which are all or none)."
 msgstr ""
-"Hvis posteren skal vises for audiofiler (mp3,m4a,fla) (gælder ikke for "
-"afspilningslister hvor formatet er for alle eller intet)."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:128
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:129
 msgid "Show title"
-msgstr "Vis titel"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:129
 msgid ""
 "If the title should be shown below the player in single player mode (not "
 "needed on normal themes) (ignored in playlists naturally)."
 msgstr ""
-"Om titlen skal vises under playeren i singelplayermodus (behøves ikke for "
-"normale temaer) (ignoreret i afspilningslister naturligvis)."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:130
 msgid "Playlist support"
-msgstr "Afspilningsliste support"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:131
 msgid ""
@@ -16790,61 +16728,55 @@ msgid ""
 "needed. NOTE: You have to add the function printjPlayerPlaylist() to your "
 "theme yourself. See the documentation for info."
 msgstr ""
-"Aktiver dette hvis du ønsker at bruge afspilningsliste-funktionen. Den "
-"indlæser de nødvendige funktioner. BEMÆRK: Du skal selv tilføje funktionen "
-"printjPlayerPlaylist() til dit tema. Se dokumentationen for videre "
-"oplysninger."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:132
 msgid "Playlist numbered"
-msgstr "Nummereret afspilningsliste"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:133
 msgid "Enable this if you wish the playlist to be numbered."
-msgstr "Aktiver dette hvis du ønsker afspilningslisten nummereret."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:134
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flowplayer3.php:185
 msgid "Playlist playtime"
-msgstr "Afspilningsliste afspilningstid"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:135
 msgid "Enable if you want to show the playtime of playlist entries."
 msgstr ""
-"Aktiver dette hvis du ønsker at vise spilletiden for numrene i "
-"afspilningslisten."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:136
 msgid "Enable download"
-msgstr "Aktive download"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:137
 msgid "Enables direct file downloads (playlists only)."
-msgstr "Aktiverer direkte fil-download (kun afspilningsliste)."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:138
 msgid "Player size"
-msgstr "Player-størrelse"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:140
 msgid "jp-video-270p (480x270px)"
-msgstr "jp-video-270p (480x270px)"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:141
 msgid "jp-video-360p (640x360px)"
-msgstr "jp-video-360p (640x360px)"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:142
 msgid "jp-video-480p (720x405px)*"
-msgstr "jp-video-480p (720x405px)*"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:143
 msgid "jp-video-720p (1280x720px)*"
-msgstr "jp-video-720p (1280x720px)*"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:144
 msgid "jp-video-1080p (1920x1080px)*"
-msgstr "jp-video-1080p (1920x1080px)*"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:145
 msgid ""
@@ -16854,14 +16786,10 @@ msgid ""
 "skin or make your own and also need to change values in the plugin class "
 "method getPlayerSize()."
 msgstr ""
-"jPlayer kan ikke dimensioneres frit, da den er afhængig af HTML og CSS "
-"baseret tema. Størrelser markeret med <strong>*</strong> understøttes kun af "
-"de to specielle Zenphoto temaer. Hvis du har brug for andre størrelsen skal "
-"du modificere et tema selv og også ændre værdier i pluginets klassemetode."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:146
 msgid "Player skin"
-msgstr "Player tema"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:148
 msgid ""
@@ -16870,67 +16798,63 @@ msgid ""
 "adjustments. Place custom skin within the root plugins folder. See plugin "
 "documentation for more info."
 msgstr ""
-"Vælg det tema du vil bruge.<br />BEMÆRK: Da temaet er rent HTML og CSS kan "
-"der være problemer med visningen i visse temaer, der kan kræve manuel "
-"tilretning. Placer brugerdefineret tema i rod-plugin-mappen. Se plugin "
-"dokumentation for mede information."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:237
 msgid "This multimedia format is not supported by jPlayer"
-msgstr "Dette multimedieformat er ikke understøttet af jPlayer"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:416
 msgid "previous"
-msgstr "forrige"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:419
 msgid "play"
-msgstr "spil"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:420
 msgid "pause"
-msgstr "pause"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:425
 msgid "stop"
-msgstr "stop"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:426
 msgid "mute"
-msgstr "lyd fra"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:427
 msgid "unmute"
-msgstr "lyd til"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:428
 msgid "max volume"
-msgstr "max volumen"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:436
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/flowplayer3.php:176
 msgid "full screen"
-msgstr "Fuld skærm"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:437
 msgid "restore screen"
-msgstr "Gendan skærm"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:443
 msgid "shuffle off"
-msgstr "bland fra"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:447
 msgid "repeat"
-msgstr "gentag"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:448
 msgid "repeat off"
-msgstr "gentag fra"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:454
 msgid "Update Required"
-msgstr "Opdatering Krævet"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:455
 msgid ""
@@ -16938,101 +16862,86 @@ msgid ""
 "version or update your <a href=\"http://get.adobe.com/flashplayer/\" target="
 "\"_blank\">Flash plugin</a>."
 msgstr ""
-"For at afspille mediet skal du enten opdatere din browser til en nyere "
-"version eller opdatere din <a href=\"http://get.adobe.com/flashplayer/\" "
-"target=\"_blank\">Flash plugin</a>."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/googleVerify.php:12
 msgid ""
 "Places a Google Site Verification metatag into the header of your site's "
 "pages."
 msgstr ""
-"Placerer en Google SiteVerifikation metatag i hovedet på siderne på dit "
-"websted."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/googleVerify.php:41
 msgid "Verification content"
-msgstr "Verifikation indhold"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/googleVerify.php:42
 msgid "Insert the <em>content</em> portion of the meta tag supplied by Google."
-msgstr "Indsæt <em>indholdsdelen</em> af metatag'en fra Google."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/publishContent.php:28
 msgid "A single place to quickly review your unpublished content."
 msgstr ""
-"Et enkelt sted til hurtigt at få en oversigt over dit ikke-offentliggjorte "
-"indhold."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/publishContent.php:38
 msgid "Publish content"
-msgstr "Offentliggør indhold"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/publishContent.php:42
 msgid "Manage published state of content in your gallery."
-msgstr "Håndter status for offentliggørelse for indhold i dit galleri."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:9
 msgid ""
 "Prints a paged thumbs navigation on image.php, independent of the album."
 "php's thumbs."
 msgstr ""
-"Printer en sideinddelt miniaturenavigation i image.php, uafhængigt af albums."
-"php's miniaturer."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:41
 msgid "Thumbs per page"
-msgstr "Miniaturer pr side"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:42
 msgid ""
 "Controls the number of images on a page. You might need to change this after "
 "switching themes to make it look better."
 msgstr ""
-"Kontrollerer antallet af billeder på en side. Du skal måske ændre dette "
-"efter et temaskift for at få det til at se bedre ud."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:43
 msgid "Counter"
-msgstr "Tæller"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:44
 msgid "If you want to show the counter 'x - y of z images'."
-msgstr "Om du ønsker at vise tælleren 'x - y af z billeder'."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:45
 msgid "Prevtext"
-msgstr "Forrige tekst"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:46
 msgid "The text for the previous thumbs."
-msgstr "Teksten for forrige miniaturer."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:47
 msgid "Nexttext"
-msgstr "Næste tekst"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:48
 msgid "The text for the next thumbs."
-msgstr "Teksten for de næste miniaturer."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:50
 msgid ""
 "The thumb crop width is the maximum width when height is the shortest side"
 msgstr ""
-"Miniaturens beskæringsbredde er maximum bredde når højden er den korteste "
-"side."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:52
 msgid ""
 "The thumb crop height is the maximum height when width is the shortest side"
 msgstr ""
-"Miniaturesn beskæringshøjde er maximun højde når bredden er den korteste "
-"side."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:53
 msgid "Crop"
-msgstr "Beskær"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:54
 msgid ""
@@ -17041,14 +16950,10 @@ msgid ""
 "Otherwise, it will be the full image resized to thumb size (by shortest "
 "side)."
 msgstr ""
-"Hvis markeret vil miniaturen blive en centreret del af billedet med den "
-"givne bredde og højde efter at være dimensioneret til miniaturestørrelse "
-"(efter korteste side). Ellers vil det blive originalbilledet reduceret til "
-"miniaturestørrelse (efter korteste side)."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:55
 msgid "Placeholders"
-msgstr "Pladsholdere"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:56
 msgid ""
@@ -17056,66 +16961,60 @@ msgid ""
 "the number of thumbs does not match images per page. Recommended only for "
 "cropped thumbs."
 msgstr ""
-"Hvis du ønsker at bruge pladsholdere af hensyn til layoutet, for at fylde "
-"miniaturerne op hvis antal miniaturer ikke stemmer med billeder pr side. "
-"Anbefales kun for beskårne miniaturer."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:57
 msgid "Page list"
-msgstr "Sideliste"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:58
 msgid "If you want the list of the pages to be shown."
-msgstr "Hvis du ønsker listen af sider der vises."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:59
 msgid "Pages list prev and next links"
-msgstr "Sideliste forrige og næste links"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:60
 msgid ""
 "If you want to show previous and next thumb page links with the page list."
-msgstr "Hvis du ønsker at vise forrige og næste sidelinks med sidelisten."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:61
 msgid "Pages list length"
-msgstr "Sideliste længde"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:62
 msgid "The number of links for the page list."
-msgstr "Antallet af links for sidelisten."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:219
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:367
 msgid "previous thumbs"
-msgstr "forrige miniaturer"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:315
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:390
 msgid "next thumbs"
-msgstr "Næste miniaturer"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:343
 #, php-format
 msgid "Images %1$u-%2$u of %3$u (%4$u/%5$u)"
-msgstr "Billeder %1$u-%2$u of %3$u (%4$u/%5$u)"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/admin-approval.php:13
 msgid ""
 "Allows only users with Admin or Manage All rights to change the publish "
 "state of objects."
 msgstr ""
-"Tillad kun brugere med Admin eller 'Administrer Alle' rettigheder  at ændre "
-"offentliggørelsesstatus af objekter."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/admin-approval.php:39
 msgid "You do not have rights to change the <em>publish</em> state."
 msgstr ""
-"Du har ikke rettigheder til at ændre <em>status for offentliggørelse</em>."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/seo_locale.php:35
 msgid "Allows setting language locale through the URI."
-msgstr "Tillader at sætte sprog-lokalitet via URI."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/seo_locale.php:36
 msgid ""
@@ -17123,29 +17022,24 @@ msgid ""
 "em> (administrative) URLs. However, once activated, the language is "
 "remembered, even for the <em>back&#8209;end</em>."
 msgstr ""
-"<strong>Bemærk:</strong> Denne plugin er ikke aktiveret for <em>back&#8209;"
-"end</em> (administrative) URLs. Dog, engang aktiveret, huskes sproget også "
-"for <em>back&#8209;end</em>."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/seo_locale.php:38
 msgid "<em>mod_rewrite</em> must be enabled for this plugin to function."
-msgstr "<em>mod_rewrite<em> skla være aktiveret for at denne plugin fungerer."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/seo_locale.php:38
 msgid ""
 "This plugin is not compatible with the <code>dynamic locale</code> <em>Use "
 "subdomains</em> option"
 msgstr ""
-"Dette plugin er ikke kompatibel med <code<dynamisk landestandard</code> Brug "
-"underdomæner</em> indstilling"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/markRelease.php:12
 msgid "Mark installation as \"released\"."
-msgstr "Marker installationen som \"udgivet \"."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/markRelease.php:42
 msgid "released"
-msgstr "udgivet"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/markRelease.php:55
 msgid "Mark release"
@@ -17154,27 +17048,25 @@ msgstr "Marker version"
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/markRelease.php:59
 #, php-format
 msgid "Edits the version.php file making a \"%s\" install."
-msgstr "Redigerer filen version.php og laver en \"%s\" installation."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/uploader_jQuery.php:14
 msgid "<em>jQuery</em> image upload handler."
-msgstr "<em>jQuery</em> billed upload program."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/uploader_jQuery.php:16
 msgid "jQuery uploader requires PHP 5.3 or greater."
-msgstr "jQuery uploader kræver PHP 5.3 eller nyere."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/seo_null.php:9
 msgid "SEO <em>Null</em> filter."
-msgstr "SEO <em>Null</em> filter."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/seo_null.php:10
 msgid ""
 "The only translation performed is one or more <em>white space</em> "
 "characters are converted to a <em>hyphen</em>."
 msgstr ""
-"Den eneste tekstændring der gøres er at en eller flere <em>blanktegn</em> "
-"ændres til en <em>bindestreg</em>."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/seo_null.php:12
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/seo_zenphoto.php:11
@@ -17183,21 +17075,17 @@ msgid ""
 "Only one SEO filter plugin may be enalbed. <a href=\"#%1$s\"><code>%1$s</"
 "code></a> is already enabled."
 msgstr ""
-"Kun et SEO filter kan være aktiveret. <a href=\"#%1$s\"><code>%1$s</code></"
-"a> er allerede aktiveret."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/related_items.php:9
 msgid ""
 "Provides functionality to get the related items to an item based on a tag "
 "search."
 msgstr ""
-"Leverer funktionalitet for at få fat i de relaterede elementer til et "
-"element, der er baseret på en mærkatsøgning."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/related_items.php:169
 #, php-format
 msgid "Related %s"
-msgstr "Relateret %s"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/related_items.php:214
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:218
@@ -17206,39 +17094,37 @@ msgstr "Relateret %s"
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:101
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:445
 msgid "Page"
-msgstr "Side"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/hitcounter.php:28
 msgid "All hitcounters have been set to zero."
-msgstr "Alle besøgstællere er nulstillede."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/hitcounter.php:35
 msgid ""
 "Automatically increments hitcounters on Zenphoto objects viewed by a "
 "<em>visitor</em>."
 msgstr ""
-"Øger automatisk besøgstæller med 1 for zenphoto objekter, der ses af en "
-"<em>besøgende</em>."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/hitcounter.php:65
 msgid "IP Address list"
-msgstr "IP adresseliste"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/hitcounter.php:69
 msgid "Comma-separated list of IP addresses to ignore."
-msgstr "Komma-separeret liste af IP adresser der skal ignoreres."
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/hitcounter.php:71
 msgid "Filter"
-msgstr "Filter"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/hitcounter.php:75
 msgid "IP addresses"
-msgstr "IP adresser"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/hitcounter.php:75
 msgid "Search Crawlers"
-msgstr "Søgemaskine crawlere"
+msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/hitcounter.php:76
 msgid ""
