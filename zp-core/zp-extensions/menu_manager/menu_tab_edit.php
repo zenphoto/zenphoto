@@ -109,7 +109,7 @@ function handleSelectorChange(type) {
 			$('#description').html('<?php echo js_encode(gettext("Creates a link to the Zenpage News Index.")); ?>');
 			$('#link').attr('disabled',true);
 			$('#titleinput').show();
-			$('#link').val('<?php echo rewrite_path(_NEWS_','?p=news'); ?>');
+			$('#link').val('<?php echo rewrite_path(_NEWS_,'?p=news'); ?>');
 			break;
 		case 'all_zenpagecategorys':
 			$('#albumselector,#pageselector,#categoryselector,#custompageselector,#titleinput,#titlelabel,#link_row,#visible_row,#span_row').hide();
