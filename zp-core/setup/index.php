@@ -2385,6 +2385,25 @@ if (file_exists(CONFIGFILE)) {
 				}
 			}
 			echo "</h3>";
+			$sql = 'SHOW KEYS FROM '.$tbl_options;
+			$result = query_full_array($sql);
+			$unique = array('name'=>0,'ownerid'=>0,'theme'=>0);
+			foreach ($result as $key) {
+				if (!$key['Non_unique']) {
+					unset($unique[$key['Column_name']]);
+				}
+			}
+			if (!empty($unique)) {
+				?>
+				<p class="notebox">
+				<?php
+				printf(gettext('<strong>Warning:</strong> the <code>%s</code> table appears not to have a proper <em>unique_options</em> key. There are probably duplicate options in the table. There should be a unique index key on <em>name</em>, <em>ownerid</em>, and <em>theme</em>.'),trim($tbl_options,'`'));
+				$autorun = false;
+				?>
+				</p>
+				<?php
+			}
+
 
 			// set defaults on any options that need it
 			setupLog(gettext("Done with database creation and update"));
