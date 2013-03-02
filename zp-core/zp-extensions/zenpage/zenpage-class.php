@@ -86,7 +86,7 @@ class Zenpage {
 	}
 
 /**
-	 * Gets all pages or published ones. 
+	 * Gets all pages or published ones.
 	 *
 	 * NOTE: Since this function only returns titlelinks for use with the object model it does not exclude pages that are password protected
 	 *
@@ -259,7 +259,7 @@ class Zenpage {
 				$sort1 = 'RAND()';
 				break;
 		}
-		
+
 		/***get all articles ***/
 		switch($published) {
 			case "published":
@@ -832,7 +832,7 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	 */
 	function getAllCategories($visible=true,$sorttype=NULL, $sortdirection=NULL) {
 		$structure = $this->getCategoryStructure();
-		
+
 		switch($sortdirection) {
 			case 'asc':
 			default:
@@ -859,9 +859,6 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 				$sortorder = "sort_order";
 				break;
 		}
-		if(!is_null($sorttype) || !is_null($sortdirection)) {
-			$structure = sortMultiArray($structure, $sortorder, $sortdir, false, false, true);
-		}
 		if ($visible) {
 			foreach ($structure as $key=>$cat) {
 				$catobj = new ZenpageCategory($cat['titlelink']);
@@ -871,6 +868,9 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 					unset($structure[$key]);
 				}
 			}
+		}
+		if(!is_null($sorttype) || !is_null($sortdirection)) {
+			$structure = sortMultiArray($structure, $sortorder, $sortdir, false, false, true);
 		}
 		return $structure;
 	}
