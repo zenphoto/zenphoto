@@ -517,12 +517,7 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 	}
 
 	$permission = fileperms(CONFIGFILE)&0777;
-printf('<br/>permission = %o',$permission);
-	if (!checkPermissions($permission, 0660)) {
-		configMod();
-		$permission = fileperms(CONFIGFILE)&0777;
-	}
-	if (checkPermissions($permission, 0660)) {
+	if (checkPermissions($permission, 0600)) {
 		$p = true;
 	} else {
 		$p = -1;
