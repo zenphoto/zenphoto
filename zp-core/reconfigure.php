@@ -15,7 +15,11 @@ function reconfigureAction($mandatory) {
 		if (isset($_GET['rss'])) {
 			exit();	//	can't really run setup from an RSS feed.
 		}
-
+		ob_start();
+		reconfigurePage();
+		$notice = ob_get_flush();
+		debugLogVar('automatic setup ', strip_tags($notice));
+		ob_end_clean();
 		if (empty($needs)) {
 			$dir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
 			$p = strpos($dir, ZENFOLDER);
@@ -172,6 +176,30 @@ function reconfigurePage() {
 		<div id="errors">
 			<ul>
 				<?php
+				preg_match('|([^-]*)|', ZENPHOTO_VERSION, $version);
+				preg_match('|([^-]*).*\[(.*)\]|', getOption('zenphoto_version'), $matches);
+				if (!($i = getOption('zenphoto_install'))) {
+					?>
+					<li><?php echo gettext('There is no previous install signature.'); ?></li>
+					<?php
+				}
+				if (@$matches[1] != $version[1]) {
+					?>
+					<li><?php echo gettext('Version numbers do not match.'); ?></li>
+					<?php
+				}
+				if (@$matches[2] != ZENPHOTO_RELEASE) {
+					?>
+					<li><?php echo gettext('Release IDs do not match.'); ?></li>
+					<?php
+				}
+				if ($i != serialize(installSignature())) {
+					?>
+					<li><?php echo gettext('The install signature does not match.'); ?></li>
+					<?php
+				}
+
+
 				foreach ($diff as $thing=>$old) {
 
 					switch ($thing) {
