@@ -36,7 +36,6 @@ class rewriteTokens {
 		$options = array();
 		$c = 0;
 		foreach ($this->conf_vars['special_pages'] as $page=>$element) {
-			setOption('rewriteTokens'.$page,$element['rewrite']);
 			if ($define = $element['define']) {
 				$define = "'".$define."'";
 				$desc = sprintf(gettext('Link for <em>%s</em> rule.'),$page);
@@ -44,7 +43,7 @@ class rewriteTokens {
 				$define =  'false';
 				$desc = sprintf(gettext('Link for <em>%s</em> script page.'),$page);
 			}
-			$options[$page] = array('key' => 'rewriteTokens'.$page, 'type' => OPTION_TYPE_TEXTBOX,
+			$options[$page] = array('key' => 'rewriteTokens_'.$page, 'type' => OPTION_TYPE_CUSTOM,
 															'order'=>++$c,
 															'desc' => $desc);
 		}
@@ -52,6 +51,13 @@ class rewriteTokens {
 																					'order'=>++$c,
 																					'desc' => gettext('Restore defaults.'));
 		return $options;
+	}
+
+	function handleOption($option, $currentValue) {
+		$element = $this->conf_vars['special_pages'][str_replace('rewriteTokens_', '', $option)]['rewrite'];
+		?>
+		<input type="textbox" name="<?php echo $option; ?>" value="<?php echo $element; ?>" >
+		<?php
 	}
 
 	function handleOptionSave($theme, $album) {
@@ -66,7 +72,7 @@ class rewriteTokens {
 			$this->conf_vars = $conf;
 		} else {
 			foreach ($this->conf_vars['special_pages'] as $page=>$element) {
-				$this->conf_vars[$page]['rewrite'] = getOption('rewriteTokens'.$page);
+				$this->conf_vars['special_pages'][$page]['rewrite'] = $_POST['rewriteTokens_'.$page];
 			}
 		}
 		$newtext = "\$conf['special_pages'] = array(";
