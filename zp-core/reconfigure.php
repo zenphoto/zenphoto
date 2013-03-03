@@ -21,11 +21,6 @@ function reconfigureAction($mandatory) {
 			exit();	//	can't really run setup from an RSS feed.
 		}
 		if (empty($needs)) {
-			ob_start();
-			reconfigurePage($diff, $needs, $mandatory);
-			$notice = ob_get_flush();
-			debugLogVar('automatic setup ', strip_tags($notice));
-			ob_end_clean();
 			$dir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
 			$p = strpos($dir, ZENFOLDER);
 			if ($p !== false) {
