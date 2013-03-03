@@ -614,6 +614,7 @@ function updateConfigFile($zp_cfg) {
 	global $xsrftoken;
 	@chmod(CONFIGFILE, 0666);
 	if (is_writeable(CONFIGFILE)) {
+		@rename(CONFIGFILE,CONFIGFILE.'.bak');
 		if ($handle = fopen(CONFIGFILE, 'w')) {
 			if (fwrite($handle, $zp_cfg)) {
 				setupLog(gettext("Updated configuration file"));

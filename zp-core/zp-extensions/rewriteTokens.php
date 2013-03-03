@@ -93,6 +93,7 @@ class rewriteTokens {
 		}
 		$newtext = substr($newtext,0,-1)."\n												);\n";
 		$zp_cfg = $this->zp_cfg_a.$newtext.$this->zp_cfg_b;
+		@rename(CONFIGFILE,CONFIGFILE.'.bak');
 		file_put_contents(CONFIGFILE, $zp_cfg);
 		$options['note'] = array(
 				'key' => 'rewriteTokens_note', 'type' => OPTION_TYPE_NOTE,
