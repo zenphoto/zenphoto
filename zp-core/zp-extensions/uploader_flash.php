@@ -28,11 +28,11 @@ function flashUploadHandler_admin_tabs($tabs) {
 				'link'=>WEBPATH."/".ZENFOLDER.'/admin-upload.php?page=upload&amp;tab=images',
 				'subtabs'=>NULL);
 	} else {
-		if(strpos('admin-upload.php', $tabs['upload']['link'])!==false) {
-			$tabs['upload']['subtabs'][gettext('images')] = 'admin-upload.php?page=upload&amp;tab=images';
-			$tabs['upload']['default']= 'images';
-			$tabs['upload']['subtabs'][gettext('files')] = $tabs['upload']['link'];
+		if (!isset($tabs['upload']['subtabs'][gettext('files')])) {
+			$tabs['upload']['subtabs'][gettext('files')] = str_replace(WEBPATH."/".ZENFOLDER.'/','',$tabs['upload']['link']);
 		}
+		$tabs['upload']['link'] = $tabs['upload']['subtabs'][gettext('images')] = 'admin-upload.php?page=upload&amp;tab=images';
+		$tabs['upload']['default']= 'images';
 	}
 	return $tabs;
 }

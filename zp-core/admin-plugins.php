@@ -315,10 +315,10 @@ foreach ($filelist as $extension) {
 					<input type="checkbox" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="<?php echo $plugin_is_filter; ?>"<?php echo $attributes; ?>	/>
 					<?php
 				}
-				?>
+			echo $extension;
+			?>
 			</label>
 			<?php
-			echo $extension;
 			if (!empty($plugin_version)) {
 				echo ' v'.$plugin_version;
 			}
