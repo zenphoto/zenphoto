@@ -252,7 +252,8 @@ foreach ($filelist as $extension) {
 	<tr<?php echo $selected_style;?>>
 		<td width="30%">
 			<input type="hidden" name="present_<?php echo $opt; ?>" id="present_<?php echo $opt; ?>" value="1" />
-			<label id="<?php echo $extension; ?>">
+			<a id="<?php echo $extension; ?>">
+				<label>
 				<?php
 				if ($third_party_plugin) {
 					$whose = gettext('third party plugin');
@@ -293,6 +294,10 @@ foreach ($filelist as $extension) {
 					<?php
 				}
 				echo $extension;
+				?>
+				</label>
+			</a>
+			<?php
 				if (!empty($plugin_version)) {
 					echo ' v'.$plugin_version;
 				}
