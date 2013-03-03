@@ -1388,8 +1388,13 @@ function safe_glob($pattern, $flags=0) {
  */
 function checkInstall() {
 	preg_match('|([^-]*)|', ZENPHOTO_VERSION, $version);
-	preg_match('|([^-]*).*\[(.*)\]|', getOption('zenphoto_version'), $matches);
-	if (!($i = getOption('zenphoto_install')) || @$matches[1] != $version[1] || @$matches[2] != ZENPHOTO_RELEASE
+	if ($i = getOption('zenphoto_install')) {
+		$install = unserialize($i);
+	} else {
+		$install = array('ZENPHOTO'=>'0.0.0[0000]');
+	}
+	preg_match('|([^-]*).*\[(.*)\]|', $install['ZENPHOTO'], $matches);
+	if (@$matches[1] != $version[1] || @$matches[2] != ZENPHOTO_RELEASE
 									|| ((time() & 7)==0) && OFFSET_PATH!=2 && $i != serialize(installSignature())) {
 		require_once(dirname(__FILE__).'/reconfigure.php');
 		reconfigureAction(0);
