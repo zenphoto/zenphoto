@@ -367,7 +367,13 @@ if (!isset($_zp_setupCurrentLocale_result) || empty($_zp_setupCurrentLocale_resu
 }
 
 $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"));
-$prevRel = getOption('zenphoto_version');
+if ($i = getOption('zenphoto_install')) {
+	$install = unserialize($i);
+	$prevRel = $install['ZENPHOTO'];
+} else {
+	$prevRel = '';
+}
+
 if (empty($prevRel)) {
 	// pre 1.4.2 release, compute the version
 	$prevRel = getOption('zenphoto_release');

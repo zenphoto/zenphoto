@@ -35,7 +35,6 @@ for ($i=0; $i < 30; $i++) {
 purgeOption('zenphoto_release');
 purgeOption('zenphoto_version');
 purgeOption('zenphoto_install');
-setOption('zenphoto_version', ZENPHOTO_VERSION.' ['.ZENPHOTO_RELEASE.']');
 setOption('zenphoto_install', serialize(installSignature()));
 
 if (Zenphoto_Authority::$preferred_version > ($oldv = getOption('libauth_version'))) {
