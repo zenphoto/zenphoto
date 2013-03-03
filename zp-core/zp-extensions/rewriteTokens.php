@@ -83,9 +83,7 @@ class rewriteTokens {
 			} else {
 				$rule = '';
 			}
-			$new = getOption('rewriteTokens'.$page);
-			$newtext .= "\n														'$page'=>			array('define'=>$define,						'rewrite'=>'$new'$rule),";
-			purgeOption('rewriteTokens'.$page);
+			$newtext .= $token = "\n														'$page'=>			array('define'=>$define,						'rewrite'=>'{$element['rewrite']}'$rule),";
 		}
 		$newtext = substr($newtext,0,-1)."\n												);\n";
 		$zp_cfg = $this->zp_cfg_a.$newtext.$this->zp_cfg_b;
