@@ -309,8 +309,8 @@ class RSS {
 					}
 					$this->channel_title = html_encode($this->channel_title.$cattitle.$titleappendix);
 					$this->imagesize = $this->getRSSImageSize();
-					require_once(ZENFOLDER . '/'.PLUGIN_FOLDER . '/image_album_statistics.php');
-					require_once(ZENFOLDER . '/'.PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
+					require_once(SERVERPATH.'/'.ZENFOLDER . '/'.PLUGIN_FOLDER . '/image_album_statistics.php');
+					require_once(SERVERPATH.'/'.ZENFOLDER . '/'.PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
 					break;
 				case 'pages':	//Zenpage News RSS
 					if (!getOption('RSS_pages')) {
@@ -334,14 +334,14 @@ class RSS {
 						case 'random':
 							$titleappendix = gettext(' (Random pages)');
 							break;
-						default: 
+						default:
 							$titleappendix = gettext(' (Latest pages)');
 							break;
 					}
 					$this->channel_title = html_encode($this->channel_title.$titleappendix);
 					require_once(ZENFOLDER . '/'.PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
 					break;
-					
+
 				case 'comments':	//Comments RSS
 					if (!getOption('RSS_comments')) {
 						header("HTTP/1.0 404 Not Found");
@@ -1002,7 +1002,7 @@ protected function getRSSCombinewsAlbums() {
 		$feeditem['pubdate'] = date("r",strtotime($obj->getDatetime()));
 		return $feeditem;
 	}
-	
+
 	/**
 	 * Gets the feed item data in a comments feed
 	 *
