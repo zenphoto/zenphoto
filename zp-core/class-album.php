@@ -1187,7 +1187,7 @@ class Album extends AlbumBase {
 		$rewrite = pathurlencode($path) . '/';
 		$plain = '/index.php?album=' . pathurlencode($this->name). '/';
 		if ($page > 1) {
-			$rewrite .= "page/$page";
+			$rewrite .= _PAGE_.'/'.$page;
 			$plain .= "&page=$page";
 		}
 		return rewrite_path($rewrite, $plain);

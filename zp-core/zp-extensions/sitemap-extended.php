@@ -358,7 +358,7 @@ function getSitemapIndexLinks() {
 			setOption('albums_per_page',$albums_per_page);
 		} */
 		if(getOption('sitemap_galleryindex')) {
-			$galleryindex_mod = 'page/'.getOption('sitemap_galleryindex');
+			$galleryindex_mod = _PAGE_.'/'.getOption('sitemap_galleryindex');
 			$galleryindex_nomod = 'index.php?p='.getOption('sitemap_galleryindex').'&amp;page=';
 		} else {
 			$galleryindex_mod = '';
@@ -412,7 +412,7 @@ function getSitemapIndexLinks() {
 			if(getOption('sitemap_galleryindex')) {
 				$galleryindex_mod = $galleryindex_mod.'/';
 			} else {
-				$galleryindex_mod = $galleryindex_mod.'page/';
+				$galleryindex_mod = $galleryindex_mod._PAGE_.'/';
 			}
 			for($x = 2;$x <= $toplevelpages; $x++) {
 				switch (SITEMAP_LOCALE_TYPE) {
@@ -541,20 +541,20 @@ function getSitemapAlbums() {
 				switch (SITEMAP_LOCALE_TYPE) {
 					case 1:
 						foreach($sitemap_locales as $locale) {
-							$url = seo_locale::localePath(true, $locale).'/'.pathurlencode($albumobj->name).'/page/'.$x;
+							$url = seo_locale::localePath(true, $locale).'/'.pathurlencode($albumobj->name).'/'._PAGE_.'/'.$x;
 							$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
 							$data .= sitemap_echonl("\t</url>");
 						}
 						break;
 					case 2:
 						foreach($sitemap_locales as $locale) {
-							$url = dynamic_locale::fullHostPath($locale).'/'.rewrite_path('/'.pathurlencode($albumobj->name).'/page/'.$x,'?album='.pathurlencode($albumobj->name).'&amp;page='.$x,false);
+							$url = dynamic_locale::fullHostPath($locale).'/'.rewrite_path('/'.pathurlencode($albumobj->name).'/'._PAGE_.'/'.$x,'?album='.pathurlencode($albumobj->name).'&amp;page='.$x,false);
 							$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
 							$data .= sitemap_echonl("\t</url>");
 						}
 						break;
 					default:
-						$url = FULLWEBPATH.'/'.rewrite_path(pathurlencode($albumobj->name).'/page/'.$x,'?album='.pathurlencode($albumobj->name).'&amp;page='.$x,false);
+						$url = FULLWEBPATH.'/'.rewrite_path(pathurlencode($albumobj->name).'/'._PAGE_.'/'.$x,'?album='.pathurlencode($albumobj->name).'&amp;page='.$x,false);
 						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
 						$data .= sitemap_echonl("\t</url>");
 						break;
@@ -727,18 +727,18 @@ function getSitemapZenpagePages() {
 					switch (SITEMAP_LOCALE_TYPE) {
 						case 1:
 							foreach($sitemap_locales as $locale) {
-								$url = seo_locale::localePath(true, $locale).'/pages/'.urlencode($page['titlelink']);
+								$url = seo_locale::localePath(true, $locale).'/'._PAGES_.'/'.urlencode($page['titlelink']);
 								$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 							}
 							break;
 						case 2:
 							foreach($sitemap_locales as $locale) {
-								$url = FULLWEBPATH.'/'.rewrite_path($locale.'/pages/'.urlencode($page['titlelink']),'?p=pages&amp;title='.urlencode($page['titlelink']),false);
+								$url = FULLWEBPATH.'/'.rewrite_path($locale.'/'._PAGES_.'/'.urlencode($page['titlelink']),'?p=pages&amp;title='.urlencode($page['titlelink']),false);
 								$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 							}
 							break;
 						default:
-							$url = FULLWEBPATH.'/'.rewrite_path('pages/'.urlencode($page['titlelink']),'?p=pages&amp;title='.urlencode($page['titlelink']),false);
+							$url = FULLWEBPATH.'/'.rewrite_path(_PAGES_.'/'.urlencode($page['titlelink']),'?p=pages&amp;title='.urlencode($page['titlelink']),false);
 							$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 							break;
 					}

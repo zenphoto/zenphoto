@@ -318,7 +318,7 @@ function printRegistrationForm($thanks=NULL) {
 						}
 					} else {
 						$userobj->save();
-						$link = rewrite_path(	FULLWEBPATH.'/page/'.substr($_zp_gallery_page,0, -4).'?verify='.bin2hex(serialize(array('user'=>$user,'email'=>$admin_e))),
+						$link = rewrite_path(	FULLWEBPATH.'/'._PAGE_.'/'.substr($_zp_gallery_page,0, -4).'?verify='.bin2hex(serialize(array('user'=>$user,'email'=>$admin_e))),
 																	FULLWEBPATH.'/index.php?p='.substr($_zp_gallery_page,0, -4).'&verify='.bin2hex(serialize(array('user'=>$user,'email'=>$admin_e))),false);
 						$message = sprintf(get_language_string(getOption('register_user_text')), $link, $admin_n, $user, $pass);
 						$notify = zp_mail(get_language_string(gettext('Registration confirmation')), $message, array($user=>$admin_e));

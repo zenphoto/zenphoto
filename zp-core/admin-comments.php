@@ -397,7 +397,7 @@ if ($totalpages > 1) {
 						$pagesdata = $pagesdata[0];
 						$titlelink = $pagesdata['titlelink'];
 						$title = get_language_string($pagesdata['title']);
-						$link = "<a href=\"".rewrite_path("/pages/".$titlelink,"/index.php?p=pages&amp;title=".urlencode($titlelink)).'#zp_comment_id_'.$id.'">'.$title."</a><br /> ".gettext("[page]");
+						$link = "<a href=\"".rewrite_path('/'._PAGES_.'/'.$titlelink,"/index.php?p=pages&amp;title=".urlencode($titlelink)).'#zp_comment_id_'.$id.'">'.$title."</a><br /> ".gettext("[page]");
 					}
 				}
 				break;

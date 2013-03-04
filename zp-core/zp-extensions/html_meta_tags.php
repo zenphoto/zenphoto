@@ -347,7 +347,7 @@ class htmlmetatags {
 									$altlink .= '/'.$_zp_conf_vars['special_pages']['search']['rewrite'].'/';
 									break;
 								case 'contact.php':
-									$altlink .= '/page/contact';
+									$altlink .= '/'._PAGE_.'/contact';
 									break;
 								default: // for all other possible none standard custom pages
 									$altlink .= '/'._PAGE_.'/'.html_encode($pagetitle);

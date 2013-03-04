@@ -260,7 +260,7 @@ function getItemTitleAndURL($item) {
 			$themename = $_zp_gallery->getCurrentTheme();
 			$root = SERVERPATH.'/'.THEMEFOLDER.'/'.$themename.'/';
 			if (file_exists($root.$item['link'].'.php')) {
-				$url = rewrite_path("/page/".$item['link'],"/index.php?p=".$item['link']);
+				$url = rewrite_path('/'._PAGE_.'/'.$item['link'],"/index.php?p=".$item['link']);
 			} else {
 				$valid = false;
 				$url = '';
@@ -414,7 +414,7 @@ function getCurrentMenuItem($menuset) {
 	if (isset($_GET['page'])) {	// must strip out page numbers, all "pages" are equal
 		if (MOD_REWRITE) {
 			if (isset($_GET['album'])) {
-				$target = '/page/'.sanitize($_GET['page']);
+				$target = '/'._PAGE_.'/'.sanitize($_GET['page']);
 			} else {
 				$target = '/'.sanitize($_GET['page']);
 			}

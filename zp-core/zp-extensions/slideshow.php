@@ -157,7 +157,7 @@ function printSlideShowLink($linktext=NULL, $linkstyle=Null) {
 		$imagenumber = '';
 		$imagefile = '';
 		$albumnr = 0;
-		$slideshowlink = rewrite_path("/page/slideshow","index.php?p=slideshow");
+		$slideshowlink = rewrite_path('/'._PAGE_.'/slideshow',"index.php?p=slideshow");
 		$slideshowhidden = '<input type="hidden" name="preserve_search_params" value="'.html_encode($_zp_current_search->getSearchParams()).'" />';
 	} else {
 		if(in_context(ZP_IMAGE)) {
@@ -174,9 +174,9 @@ function printSlideShowLink($linktext=NULL, $linkstyle=Null) {
 			$albumnr = $_zp_current_album->getID();
 		}
 		if ($albumnr) {
-			$slideshowlink = rewrite_path(pathurlencode($_zp_current_album->getFolder())."/page/slideshow","index.php?p=slideshow&amp;album=".urlencode($_zp_current_album->getFolder()));
+			$slideshowlink = rewrite_path(pathurlencode($_zp_current_album->getFolder()).'/'._PAGE_.'slideshow',"index.php?p=slideshow&amp;album=".urlencode($_zp_current_album->getFolder()));
 		} else {
-			$slideshowlink = rewrite_path("/page/slideshow","index.php?p=slideshow");
+			$slideshowlink = rewrite_path('/'._PAGE_.'/slideshow',"index.php?p=slideshow");
 			$slideshowhidden = '<input type="hidden" name="favorites_page" value="1" />';
 		}
 
@@ -421,7 +421,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $i
 			$albumq = query_single_row("SELECT title, folder FROM ". prefix('albums') ." WHERE id = ".$albumid);
 			$album = newAlbum($albumq['folder']);
 			if (empty($_POST['imagenumber'])) {
-				$returnpath = rewrite_path('/'.pathurlencode($album->name).'/page/'.$pagenumber,'/index.php?album='.urlencode($album->name).'&page='.$pagenumber);
+				$returnpath = rewrite_path('/'.pathurlencode($album->name).'/'._PAGE_.'/'.$pagenumber,'/index.php?album='.urlencode($album->name).'&page='.$pagenumber);
 			} else {
 				$returnpath = rewrite_path('/'.pathurlencode($album->name).'/'.rawurlencode(sanitize($_POST['imagefile'])).getOption('mod_rewrite_image_suffix'),'/index.php?album='.urlencode($album->name).'&image='.urlencode($_POST['imagefile']));
 			}

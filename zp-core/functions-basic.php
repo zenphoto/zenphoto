@@ -476,7 +476,7 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 			//	sanitize the path
 			$ralbum = $path = sanitize_path($path);
 			//strip off things discarded by the rewrite rules
-			$pagepos  = strpos($path, '/page/');
+			$pagepos  = strpos($path, '/'._PAGE_.'/');
 			$slashpos = strrpos($path, '/');
 			$imagepos = strpos($path, '/image/');
 			$albumpos = strpos($path, '/album/');

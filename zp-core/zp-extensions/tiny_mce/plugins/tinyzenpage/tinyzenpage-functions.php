@@ -509,7 +509,7 @@ function printAllNestedList() {
 				case 'pages':
 					$obj = new ZenpagePage($item['titlelink']);
 					$itemcontent = truncate_string(strip_tags($obj->getContent()),300);
-					$zenpagepage = 'pages/'.$item['titlelink'];
+					$zenpagepage = _PAGES_.'/'.$item['titlelink'];
 					$unpublished = unpublishedZenpageItemCheck($obj);
 					$counter = '';
 					break;

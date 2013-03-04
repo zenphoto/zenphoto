@@ -32,7 +32,7 @@ function zpurl($special='') {
 		} else if (in_context(ZP_ALBUM)) {
 			$url = $_zp_current_album->getAlbumLink($_zp_page);
 		} else if (in_context(ZP_INDEX)) {
-			$url = ($_zp_page > 1 ? 'page/' . $_zp_page : '');
+			$url = ($_zp_page > 1 ? _PAGE_.'/' . $_zp_page : '');
 		}
 	} else {
 		if (in_context(ZP_IMAGE)) {
