@@ -962,7 +962,7 @@ msgstr "Искать в новостях"
 
 #: gallery/themes/garland/sidebar.php:23
 msgid "Search category"
-msgstr ""
+msgstr "Поиск а разделе"
 
 #: gallery/themes/garland/sidebar.php:102
 msgid "Albums"
@@ -1077,7 +1077,7 @@ msgid "1 album,&nbsp;1 image"
 msgstr "1 альбом,&nbsp;1 изображение"
 
 #: gallery/themes/stopdesign/album.php:75
-#, fuzzy, php-format
+#, php-format
 msgid "%u album,&nbsp;1 image"
 msgstr "%u альбом,&nbsp;1 изображение"
 
@@ -2463,14 +2463,12 @@ msgid "<a href=\"http://www.zenphoto.org\" title=\"The simpler media website CMS
 msgstr ""
 
 #: gallery/zp-core/admin-functions.php:31
-#, fuzzy
 msgid "Zenphoto licence"
-msgstr "файлы Zenphoto"
+msgstr "лицензия Zenphoto"
 
 #: gallery/zp-core/admin-functions.php:31
-#, fuzzy
 msgid "License"
-msgstr "Лицензия: GPLv2"
+msgstr "Лицензия"
 
 #: gallery/zp-core/admin-functions.php:32
 msgid "User guide"
@@ -2917,9 +2915,8 @@ msgid "New custom theme created successfully!"
 msgstr "Новая пользовательская тема создана успешно!"
 
 #: gallery/zp-core/admin-functions.php:2815
-#, fuzzy
 msgid "New custom theme created, but its description could not be updated"
-msgstr "Создана новая пользовате"
+msgstr "Новая пользовательская тема создана, но её описание невозможно обновить"
 
 #: gallery/zp-core/admin-functions.php:2961
 msgid "Rights:"
@@ -3315,7 +3312,7 @@ msgstr "Невозможно удалить отчёт %s."
 #: gallery/zp-core/admin-logs.php:64
 #, php-format
 msgid "%s log maximum size changed."
-msgstr ""
+msgstr "Максимальный размер отчета %s изменен."
 
 #: gallery/zp-core/admin-logs.php:99
 msgid "View logs:"
@@ -3343,12 +3340,11 @@ msgstr "Скачать"
 
 #: gallery/zp-core/admin-logs.php:136
 msgid "Log file size limit"
-msgstr ""
+msgstr "Ограничение размера отчета"
 
 #: gallery/zp-core/admin-logs.php:138
-#, fuzzy
 msgid "Update"
-msgstr "обновить"
+msgstr "Обновить"
 
 #: gallery/zp-core/admin-logs.php:218
 msgid "There are no logs to view."
@@ -3683,7 +3679,7 @@ msgstr "Кодировка:"
 
 #: gallery/zp-core/admin-options.php:800
 msgid "The character encoding to use internally. Leave at <em>Unicode (UTF-8)</em> if you are unsure."
-msgstr "Кодировка текста вашей галереи. Если не уверены, оставьте <em>Unicode (UTF-8)</em>."
+msgstr "Кодировка текста вашей галереи. Если не уверены, оставьте <em>Юникод (UTF-8)</em>."
 
 #: gallery/zp-core/admin-options.php:802
 msgid "Character sets <span style=\"color:gray\">shown in gray</span> have no character translation support."
@@ -4054,7 +4050,7 @@ msgstr ""
 
 #: gallery/zp-core/admin-options.php:1488
 msgid "<code>Default search</code> sets how searches from search page results behave. The search will either be from <em>within</em> the results of the previous search or will be a fresh <em>new</em> search."
-msgstr ""
+msgstr "<code>Поиск по умолчанию</code> определяет повторный поик на странице результатов: <em>новый</em> поиск или <em>в результатах</em> предыдущего поиска."
 
 #: gallery/zp-core/admin-options.php:1489
 msgid "Setting <code>Do not return <em>{item}</em> matches</code> will cause search to ignore <em>{items}</em> when looking for matches."
@@ -4405,7 +4401,7 @@ msgstr "Выберите формат файлов для создания кэ�
 
 #: gallery/zp-core/admin-options.php:2025
 msgid "Obscure cache filenames"
-msgstr ""
+msgstr "Маскировать имена файлов в кэше"
 
 #: gallery/zp-core/admin-options.php:2027
 #: gallery/zp-core/admin-options.php:3068
@@ -4567,7 +4563,7 @@ msgstr "Копировать метаданные IPTC"
 #: gallery/zp-core/admin-options.php:2253
 #, fuzzy
 msgid "If checked IPTC data from the original image will be imbedded in cached copies. If the image has no IPTC data a copyright notice will be imbedded. (The text supplied will be used if the orginal image has no copyright.)"
-msgstr "Если отмечено, то IPTC метаданные исходного изображения будут скопированы в кэшированные копии. В текстовом поле ниже укажите, какая информация будет внедряться при отсутствии IPTC данных."
+msgstr "Если отмечено, то IPTC данные исходного изображения будут скопированы в кэш-копии.  Если изображение не содержит IPTC данных В текстовом поле ниже укажите, какая информация будет внедряться при отсутствии IPTC данных."
 
 #: gallery/zp-core/admin-options.php:2257
 msgid "IPTC Imbedding:"
@@ -7801,7 +7797,7 @@ msgstr ""
 
 #: gallery/zp-core/lib-utf8.php:53
 msgid "Cyrillic (DOS)"
-msgstr ""
+msgstr "Кириллица (DOS)"
 
 #: gallery/zp-core/lib-utf8.php:54
 msgid "IBM EBCDIC (Multilingual Latin-2)"
@@ -7809,7 +7805,7 @@ msgstr ""
 
 #: gallery/zp-core/lib-utf8.php:55
 msgid "Japanese (JIS-Allow 1 byte Kana)"
-msgstr ""
+msgstr "Японская (JIS-Allow 1 byte Kana)"
 
 #: gallery/zp-core/lib-utf8.php:56
 #, fuzzy
@@ -7827,7 +7823,7 @@ msgstr ""
 
 #: gallery/zp-core/lib-utf8.php:59
 msgid "Chinese Simplified (EUC)"
-msgstr ""
+msgstr "Китайская упрощённая (EUC)"
 
 #: gallery/zp-core/lib-utf8.php:60
 #, fuzzy
@@ -7841,11 +7837,11 @@ msgstr "Korean"
 
 #: gallery/zp-core/lib-utf8.php:62
 msgid "Chinese Simplified (GB2312)"
-msgstr ""
+msgstr "Китайская упрощённая (GB2312)"
 
 #: gallery/zp-core/lib-utf8.php:63
 msgid "Chinese Simplified (HZ)"
-msgstr ""
+msgstr "Китайская упрощённая (HZ)"
 
 #: gallery/zp-core/lib-utf8.php:64
 #, fuzzy
@@ -7859,15 +7855,15 @@ msgstr "Greek"
 
 #: gallery/zp-core/lib-utf8.php:66
 msgid "Baltic (DOS)"
-msgstr ""
+msgstr "Прибалтийская (DOS)"
 
 #: gallery/zp-core/lib-utf8.php:67
 msgid "Western European (DOS)"
-msgstr ""
+msgstr " Западноевропейская (DOS)"
 
 #: gallery/zp-core/lib-utf8.php:68
 msgid "Central European (DOS)"
-msgstr ""
+msgstr "Центральноевропейская (DOS)"
 
 #: gallery/zp-core/lib-utf8.php:69
 #, fuzzy
@@ -7890,7 +7886,7 @@ msgstr "Japanese"
 
 #: gallery/zp-core/lib-utf8.php:73
 msgid "Japanese (JIS-Allow 1 byte Kana - SO/SI)"
-msgstr ""
+msgstr "Японская (JIS-Allow 1 byte Kana - SO/SI)"
 
 #: gallery/zp-core/lib-utf8.php:74
 #, fuzzy
@@ -7899,7 +7895,7 @@ msgstr "Korean"
 
 #: gallery/zp-core/lib-utf8.php:75
 msgid "Western European (ISO)"
-msgstr ""
+msgstr "Западноевропейская (ISO)"
 
 #: gallery/zp-core/lib-utf8.php:76
 msgid "Latin 9 (ISO)"
@@ -7907,7 +7903,7 @@ msgstr ""
 
 #: gallery/zp-core/lib-utf8.php:77
 msgid "Central European (ISO)"
-msgstr ""
+msgstr "Центральноевропейская (ISO)"
 
 #: gallery/zp-core/lib-utf8.php:78
 msgid "Latin 3 (ISO)"
@@ -7915,11 +7911,11 @@ msgstr ""
 
 #: gallery/zp-core/lib-utf8.php:79
 msgid "Baltic (ISO)"
-msgstr ""
+msgstr "Прибалтийская (ISO)"
 
 #: gallery/zp-core/lib-utf8.php:80
 msgid "Cyrillic (ISO)"
-msgstr ""
+msgstr "Кириллица (ISO)"
 
 #: gallery/zp-core/lib-utf8.php:81
 #, fuzzy
@@ -7933,11 +7929,11 @@ msgstr "Greek"
 
 #: gallery/zp-core/lib-utf8.php:83
 msgid "Hebrew (ISO-Visual)"
-msgstr ""
+msgstr "Иврит (ISO-Visual)"
 
 #: gallery/zp-core/lib-utf8.php:84
 msgid "Hebrew (ISO-Logical)"
-msgstr ""
+msgstr "Иврит (ISO-Logical)"
 
 #: gallery/zp-core/lib-utf8.php:85
 #, fuzzy
@@ -7951,27 +7947,27 @@ msgstr "Korean"
 
 #: gallery/zp-core/lib-utf8.php:87
 msgid "Cyrillic (KOI8-R)"
-msgstr ""
+msgstr "Кириллица (KOI8-R)"
 
 #: gallery/zp-core/lib-utf8.php:88
 msgid "Cyrillic (KOI8-U)"
-msgstr ""
+msgstr "Кириллица (KOI8-U)"
 
 #: gallery/zp-core/lib-utf8.php:90
 msgid "Western European (MAC)"
-msgstr ""
+msgstr "Западноевропейская (MAC)"
 
 #: gallery/zp-core/lib-utf8.php:91
 msgid "Japanese (Shift-JIS)"
-msgstr ""
+msgstr "Японская (Shift-JIS)"
 
 #: gallery/zp-core/lib-utf8.php:92
 msgid "Unicode"
-msgstr ""
+msgstr "Юникод"
 
 #: gallery/zp-core/lib-utf8.php:93
 msgid "Unicode (Big-Endian)"
-msgstr ""
+msgstr "Юникод (Big-Endian)"
 
 #: gallery/zp-core/lib-utf8.php:94
 msgid "US-ASCII"
@@ -7979,35 +7975,35 @@ msgstr ""
 
 #: gallery/zp-core/lib-utf8.php:95
 msgid "Unicode (UTF-7)"
-msgstr ""
+msgstr "Юникод (UTF-7)"
 
 #: gallery/zp-core/lib-utf8.php:96
 msgid "Unicode (UTF-8)"
-msgstr ""
+msgstr "Юникод (UTF-8)"
 
 #: gallery/zp-core/lib-utf8.php:97
 msgid "Central European (Windows)"
-msgstr ""
+msgstr "Центральноевропейская (Windows)"
 
 #: gallery/zp-core/lib-utf8.php:98
 msgid "Cyrillic (Windows)"
-msgstr ""
+msgstr "Кириллица (Windows)"
 
 #: gallery/zp-core/lib-utf8.php:99
 msgid "Western European (Windows)"
-msgstr ""
+msgstr "Западноевропейская (Windows)"
 
 #: gallery/zp-core/lib-utf8.php:100
 msgid "Greek (Windows)"
-msgstr ""
+msgstr "Греческая (Windows)"
 
 #: gallery/zp-core/lib-utf8.php:101
 msgid "Turkish (Windows)"
-msgstr ""
+msgstr "Турецкая (Windows)"
 
 #: gallery/zp-core/lib-utf8.php:102
 msgid "Hebrew (Windows)"
-msgstr ""
+msgstr "Иврит (Windows)"
 
 #: gallery/zp-core/lib-utf8.php:103
 #, fuzzy
@@ -8016,7 +8012,7 @@ msgstr "Arabic (Iran)"
 
 #: gallery/zp-core/lib-utf8.php:104
 msgid "Baltic (Windows)"
-msgstr ""
+msgstr "Прибалтийская (Windows)"
 
 #: gallery/zp-core/lib-utf8.php:105
 #, fuzzy
@@ -8025,7 +8021,7 @@ msgstr "Vietnamese"
 
 #: gallery/zp-core/lib-utf8.php:106
 msgid "Thai (Windows)"
-msgstr ""
+msgstr "Тайская (Windows)"
 
 #: gallery/zp-core/license.php:38
 msgid "Zenphoto License agreement"
@@ -8399,7 +8395,7 @@ msgstr ""
 #: gallery/zp-core/exif/makers/canon.php:216
 #: gallery/zp-core/exif/makers/panasonic.php:135
 msgid "Program"
-msgstr ""
+msgstr "Программа"
 
 #: gallery/zp-core/exif/exif.php:493
 #: gallery/zp-core/exif/makers/panasonic.php:136
@@ -8461,7 +8457,7 @@ msgstr ""
 #: gallery/zp-core/exif/exif.php:510
 #: gallery/zp-core/exif/exif.php:536
 msgid "Other"
-msgstr ""
+msgstr "Другое"
 
 #: gallery/zp-core/exif/exif.php:516
 #: gallery/zp-core/exif/makers/fujifilm.php:87
@@ -8485,7 +8481,7 @@ msgstr ""
 #: gallery/zp-core/exif/makers/canon.php:274
 #: gallery/zp-core/exif/makers/panasonic.php:106
 msgid "Flash"
-msgstr ""
+msgstr "Вспышка"
 
 #: gallery/zp-core/exif/exif.php:528
 msgid "Standard Light A"
@@ -8862,7 +8858,7 @@ msgstr ""
 
 #: gallery/zp-core/exif/makers/canon.php:143
 msgid "Sport"
-msgstr ""
+msgstr "Спорт"
 
 #: gallery/zp-core/exif/makers/canon.php:144
 msgid "Macro/Close-Up"
@@ -9090,7 +9086,7 @@ msgstr ""
 #: gallery/zp-core/exif/makers/fujifilm.php:134
 #: gallery/zp-core/exif/makers/panasonic.php:133
 msgid "Sports"
-msgstr ""
+msgstr "Спорт"
 
 #: gallery/zp-core/exif/makers/fujifilm.php:136
 msgid "Program AE"
@@ -9118,7 +9114,7 @@ msgstr ""
 
 #: gallery/zp-core/exif/makers/fujifilm.php:154
 msgid "Out of Focus"
-msgstr ""
+msgstr "Не в фокусе"
 
 #: gallery/zp-core/exif/makers/fujifilm.php:158
 msgid "AE Good"
@@ -9631,8 +9627,9 @@ msgid "PHP <code>display_errors</code> [is enabled]"
 msgstr "PHP <code>display_errors</code> [включено]"
 
 #: gallery/zp-core/setup/index.php:622
+#, fuzzy
 msgid "This setting may result in PHP error messages being displayed on WEB pages. These displays may contain sensitive information about your site."
-msgstr ""
+msgstr "Эта функция разрешает отображение сообщений об ошибках PHP на веб-страницах."
 
 #: gallery/zp-core/setup/index.php:625
 msgid "PHP <code>gettext()</code> support"
@@ -10966,7 +10963,7 @@ msgstr "<strong>Замечание:</strong> Каждая таблица баз�
 
 #: gallery/zp-core/utilities/backup_restore.php:571
 msgid "Ideally a restore should be done only on the same version of Zenphoto on which the backup was created. If you are intending to upgrade, first do the restore on the version of Zenphoto you were running, then install the new Zenphoto. If this is not possible the restore can still be done, but if the database fields have changed between versions, data from changed fields will not be restored."
-msgstr "Желательно, чтобы восстановление БД производилось на той же версии Zenphoto, на которой создавалась резервная копия. При обновлении движка галереи, следует вначале восстановить БД и только потом устанавливать новую версию Zenphoto. Восстановление из резервной копии возможно и на любую другую версию Zenphoto, однако если между версиями вносились изменения в поля БД, то содержимое этих полей будет утерено."
+msgstr "Желательно, чтобы восстановление БД производилось на той же версии Zenphoto, на которой создавалась резервная копия. При обновлении движка галереи, следует вначале восстановить БД и только потом устанавливать новую версию Zenphoto. Восстановление из резервной копии возможно и на любую другую версию Zenphoto, однако если между версиями вносились изменения в поля БД, то содержимое этих полей будет утеряно."
 
 #: gallery/zp-core/utilities/database_reference.php:13
 #: gallery/zp-core/utilities/gallery_statistics.php:20
@@ -11211,7 +11208,7 @@ msgstr ""
 
 #: gallery/zp-core/utilities/phpInfo.php:26
 msgid "PHP Info"
-msgstr "PHP Инфо"
+msgstr "Информация"
 
 #: gallery/zp-core/utilities/phpInfo.php:38
 msgid "Your PHP configuration information."
@@ -11302,7 +11299,7 @@ msgstr "Дата, когда проводилось последнее авто�
 
 #: gallery/zp-core/zp-extensions/cacheManager.php:55
 msgid "Provides cache management utilities for Image, HTML, and RSS caches."
-msgstr ""
+msgstr "Тонкая настройка процесса создания кэша изображений, HTML и RSS потоков."
 
 #: gallery/zp-core/zp-extensions/cacheManager.php:56
 msgid "<strong>NOTE</strong>: The image caching process requires that your WEB browser <em>fetch</em> each image size. For a full gallery cache this may exceed the capacity of your server and not complete."
@@ -11554,7 +11551,7 @@ msgstr "Изображение не найдено; файл не существ
 
 #: gallery/zp-core/zp-extensions/class-video.php:343
 msgid "No flash player installed."
-msgstr ""
+msgstr " Flash Player не установлен."
 
 #: gallery/zp-core/zp-extensions/class-WEBdocs.php:16
 msgid "Provides a means for showing documents using <em>WEBdocs</em> for the document rendering."
@@ -11660,7 +11657,7 @@ msgstr ""
 
 #: gallery/zp-core/zp-extensions/colorbox_js.php:27
 msgid "Note that this plugin does not attach Colorbox to any element. You need to do this on your theme yourself."
-msgstr ""
+msgstr "Для использования Colorbox недостаточно просто активировать этот плагин. Поддержка Colorbox должна быть реализована в теме оформления!"
 
 #: gallery/zp-core/zp-extensions/colorbox_js.php:55
 msgid "Colorbox theme"
@@ -12091,7 +12088,7 @@ msgstr "Действие"
 #: gallery/zp-core/zp-extensions/deprecated-functions.php:77
 #, php-format
 msgid "%1$s (called from %2$s line %3$s) is deprecated"
-msgstr ""
+msgstr "%1$s (вызываемая из %2$s строка %3$s) устарела"
 
 #: gallery/zp-core/zp-extensions/deprecated-functions.php:77
 #, php-format
@@ -13899,14 +13896,12 @@ msgid "play"
 msgstr "Воспроизведение"
 
 #: gallery/zp-core/zp-extensions/jplayer.php:420
-#, fuzzy
 msgid "pause"
-msgstr "страница"
+msgstr "пауза"
 
 #: gallery/zp-core/zp-extensions/jplayer.php:425
-#, fuzzy
 msgid "stop"
-msgstr "Наверх"
+msgstr "стоп"
 
 #: gallery/zp-core/zp-extensions/jplayer.php:426
 #, fuzzy
@@ -13957,9 +13952,9 @@ msgid "Use this plugin is to enable using older third party spam filters."
 msgstr ""
 
 #: gallery/zp-core/zp-extensions/legacySpam.php:17
-#, fuzzy, php-format
+#, php-format
 msgid "Only one SPAM handler plugin may be enalbed. <a href=\"#%1$s\"><code>%1$s</code></a> is already enabled."
-msgstr "Можно включить только один обработчик e-mail. <a href=\"#%1$s\"><code>%1$s</code></a> уже подключен."
+msgstr "Можно включить только один СПАМ фильтр . <a href=\"#%1$s\"><code>%1$s</code></a> уже подключен."
 
 #: gallery/zp-core/zp-extensions/legacySpam.php:18
 msgid "Please contact the author of your SPAM filter and request it be updated to work with the <i>plugin</i> model of SPAM filters. This plugin will be removed from future Zenphoto releases."
@@ -14950,9 +14945,8 @@ msgid "Log downloaded"
 msgstr "Отчёт скачан"
 
 #: gallery/zp-core/zp-extensions/security-logger.php:121
-#, fuzzy
 msgid "Install"
-msgstr "Включить"
+msgstr "Установка"
 
 #: gallery/zp-core/zp-extensions/security-logger.php:128
 #, fuzzy
@@ -15683,9 +15677,8 @@ msgid "Only users with <em>Themes</em> rights will see the selector if this is c
 msgstr ""
 
 #: gallery/zp-core/zp-extensions/themeSwitcher.php:66
-#, fuzzy
 msgid "Theme list"
-msgstr "Темы"
+msgstr "Список тем"
 
 #: gallery/zp-core/zp-extensions/themeSwitcher.php:68
 msgid "These are the themes that may be selected among."
@@ -16444,7 +16437,7 @@ msgstr "Расширение сопроводительного файла"
 
 #: gallery/zp-core/zp-extensions/xmpMetadata.php:597
 msgid "The plugin will look for files with <em>image_name.extension</em> and extract XMP metadata from them into the <em>image_name</em> record."
-msgstr ""
+msgstr "Плагин будет отслеживать файлы вида <em>имя_изображения.расширение</em> и экспортировать метаданные XMP из них  в запись <em>имя_изображения</em>."
 
 #: gallery/zp-core/zp-extensions/xmpMetadata.php:598
 msgid "Process extensions"
@@ -16452,7 +16445,7 @@ msgstr "Обрабатывать расширения"
 
 #: gallery/zp-core/zp-extensions/xmpMetadata.php:600
 msgid "If no sidecar file exists and the extension is enabled, the plugin will search within that type <em>image</em> file for an <code>XMP</code> block. <strong>Warning</strong> do not set this option unless you require it. Searching image files can be computationally intensive."
-msgstr ""
+msgstr "Если для подключенного расширения сопроводительный файл отсутствует, то плагин будет проверять само изображение на наличие <code>XMP</code> блока.<br /> <strong>Внимание:</strong> данная процедура может создавать значительную нагрузку на сервер."
 
 #: gallery/zp-core/zp-extensions/xmpMetadata.php:1093
 msgid "Metadata exported"
@@ -16730,7 +16723,6 @@ msgid "CombiNews: Custom title - Number of image titles"
 msgstr "CombiNews: количество названий в заголовке"
 
 #: gallery/zp-core/zp-extensions/zenpage.php:203
-#, fuzzy
 msgid "How many images titles you want to show with the <em>latest images by album</em> title."
 msgstr "Сколько названий изображений показывать в заголовке новости (только для режима <em>обновления по альбомам</em>)."
 
@@ -16739,9 +16731,8 @@ msgid "CombiNews: Number of images"
 msgstr "CombiNews: <br />количество изображений"
 
 #: gallery/zp-core/zp-extensions/zenpage.php:206
-#, fuzzy
 msgid "How many of the new images you want to show in the <em>latest images by album</em> article. Empty for all."
-msgstr "Сколько изображений вы хотите показывать в новостях. Пустое поле означает показывать все. (только для режима <em>обновления по альбомам</em>)."
+msgstr "Сколько изображений показывать в новостях. Пустое поле означает показывать все. (только для режима <em>обновления по альбомам</em>)."
 
 #: gallery/zp-core/zp-extensions/zenpage.php:221
 msgid "* These options may be set via the <a href=\"javascript:gotoName('zenpage');\"><em>Zenpage</em></a> plugin options."
@@ -16904,9 +16895,9 @@ msgid "invalid_MaxSpace"
 msgstr ""
 
 #: gallery/zp-core/zp-extensions/cacheManager/cacheImages.php:250
-#, fuzzy, php-format
+#, php-format
 msgid "all sizes for <i>%1$s</i>"
-msgstr "Всего результатов для <em>%1$s</em>: %2$u"
+msgstr "все размеры для <i>%1$s</i>"
 
 #: gallery/zp-core/zp-extensions/cacheManager/cacheImages.php:296
 #, php-format
@@ -17267,16 +17258,15 @@ msgstr "Устаревшие функции"
 
 #: gallery/zp-core/zp-extensions/deprecated_functions/check_for_deprecated.php:38
 msgid "Locate calls on deprecated functions."
-msgstr ""
+msgstr "Найти запросы к устаревшим функциям:"
 
 #: gallery/zp-core/zp-extensions/deprecated_functions/check_for_deprecated.php:43
 msgid "In Themes"
 msgstr "в темах оформления"
 
 #: gallery/zp-core/zp-extensions/deprecated_functions/check_for_deprecated.php:46
-#, fuzzy
 msgid "In User plugins"
-msgstr "плагины"
+msgstr "в пользовательских плагинах"
 
 #: gallery/zp-core/zp-extensions/deprecated_functions/check_for_deprecated.php:52
 #, fuzzy
@@ -17833,7 +17823,7 @@ msgstr "Функция"
 
 #: gallery/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:155
 msgid "Executes the PHP function provided."
-msgstr ""
+msgstr "Выполняет указанную PHP функцию."
 
 #: gallery/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:163
 #: gallery/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:165
@@ -18418,7 +18408,7 @@ msgstr "*Выбрать альбом*"
 
 #: gallery/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:89
 msgid "(select variant below)"
-msgstr ""
+msgstr "(выберите альбом из списка)"
 
 #: gallery/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:100
 msgid "What to include"
@@ -18838,9 +18828,9 @@ msgid "Force password renewal"
 msgstr "Получить новый пароль"
 
 #: gallery/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:192
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s <strong>%2$s</strong> (%3$slast logon:%4$s)"
-msgstr "%1$s <strong>%2$s</strong> (%3$s; последнее посещение:%4$s)"
+msgstr "%1$s <strong>%2$s</strong> (%3$sпоследнее посещение:%4$s)"
 
 #: gallery/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:200
 msgid "Disable"
