@@ -35,7 +35,7 @@ class contactformOptions {
 		if (OFFSET_PATH==2 && !getOption('contactform_mailaddress')) {
 			purgeOption('contactform_mailaddress');
 		}
-		setOptionDefault('contactform_rewrite', 'page/contact');
+		setOptionDefault('contactform_rewrite', '_PAGE_/contact');
 		gettext($str = '<p>Fields with <strong>*</strong> are required. HTML or any other code is not allowed.</p>');
 		setOptionDefault('contactform_introtext', getAllTranslations($str));
 		gettext($str = '<p>Please confirm that you really want to send this email. Thanks.</p>');
@@ -86,7 +86,7 @@ class contactformOptions {
 		$options = array(
 									gettext('Contact page link') => array('key' => 'contactform_rewrite', 'type' => OPTION_TYPE_TEXTBOX,
 										'order' => 0,
-										'desc' => gettext('The link to use for the contact page.')),
+										'desc' => gettext('The link to use for the contact page. Note: the token <code>_PAGE_</code> stands in for the current <em>page</em> definition.')),
 									gettext('Intro text') => array('key' => 'contactform_introtext', 'type' => OPTION_TYPE_TEXTAREA,
 										'order' => 13,
 										'desc' => gettext("The intro text for your contact form")),

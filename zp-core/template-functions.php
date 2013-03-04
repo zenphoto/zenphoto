@@ -3468,7 +3468,7 @@ function printAllDates($class='archive', $yearid='year', $monthid='month', $orde
 function getCustomPageURL($page, $q='') {
 	global $_zp_current_album, $_zp_conf_vars;
 	if (array_key_exists($page, $_zp_conf_vars['special_pages'])) {
-		$result_r = $_zp_conf_vars['special_pages'][$page]['rewrite'];
+		$result_r = preg_replace('~^_PAGE_/~', _PAGE_.'/', $_zp_conf_vars['special_pages'][$page]['rewrite']);
 	} else {
 		$result_r = '/'._PAGE_.'/'.$page;
 	}

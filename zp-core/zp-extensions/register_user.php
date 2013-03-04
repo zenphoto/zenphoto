@@ -53,9 +53,9 @@ class register_user_options {
 		if (!$old || is_numeric($old) || $old=='register') {
 			purgeOption('register_user_page_page');
 		} else {
-			setOptionDefault('register_user_rewrite', "page/$old");
+			setOptionDefault('register_user_rewrite', "_PAGE_/$old");
 		}
-		setOptionDefault('register_user_rewrite', 'page/register');
+		setOptionDefault('register_user_rewrite', '_PAGE_/register');
 		gettext($str = 'You have received this email because you registered with the user id %3$s on this site.'."\n".'To complete your registration visit %1$s.');
 		setOptionDefault('register_user_text', getAllTranslations($str));
 		gettext($str = 'Click here to register for this site.');
@@ -78,7 +78,7 @@ class register_user_options {
 		$options = array(
 											gettext('Registration page link') => array('key' => 'register_user_rewrite', 'type' => OPTION_TYPE_TEXTBOX,
 												'order' => 0,
-												'desc' => gettext('The link to use for the registration page.')),
+												'desc' => gettext('The link to use for the registration page. Note: the token <code>_PAGE_</code> stands in for the current <em>page</em> definition.')),
 											gettext('Link text') => array('key' => 'register_user_page_link', 'type' => OPTION_TYPE_TEXTAREA,
 												'order' => 2,
 												'desc' => gettext('If this option is set, the visitor login form will include a link to this page. The link text will be labeled with the text provided.')),

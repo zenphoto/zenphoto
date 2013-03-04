@@ -24,6 +24,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage media
  */
 
 $plugin_is_filter = 5|FEATURE_PLUGIN;
@@ -39,9 +40,9 @@ class favoritesOptions {
 		if (!$old || is_numeric($old) || $old=='favorites') {
 			purgeOption('favorites_link');
 		} else {
-			setOptionDefault('favorites_rewrite', "page/$old");
+			setOptionDefault('favorites_rewrite',"_PAGE_/$old");
 		}
-		setOptionDefault('favorites_rewrite', 'page/favorites');
+		setOptionDefault('favorites_rewrite', '_PAGE_/favorites');
 		gettext($str = 'My favorites');
 		setOptionDefault('favorites_title', getAllTranslations($str));
 		setOptionDefault('favorites_linktext', getAllTranslations($str));
@@ -70,7 +71,7 @@ class favoritesOptions {
 		$options = array(	gettext('Link text') => array('key' => 'favorites_linktext', 'type' => OPTION_TYPE_TEXTBOX,
 																					'multilingual'=>true,
 																					'order'=>2,
-																					'desc' => gettext('The text for the link to the favorites page.')),
+																					'desc' => gettext('The text for the link to the favorites page. Note: the token <code>_PAGE_</code> stands in for the current <em>page</em> definition.')),
 											gettext('Favorites link') => array('key' => 'favorites_rewrite', 'type' => OPTION_TYPE_TEXTBOX,
 																					'order'=>1,
 																					'desc' => gettext('The link to use for the favorites script page')),
@@ -396,8 +397,9 @@ if (!OFFSET_PATH) {
 			if (is_null($text)) {
 				$text = get_language_string(getOption('favorites_linktext'));
 			}
+			$link = preg_replace('~^_PAGE_/~', _PAGE_.'/', getOption('favorites_rewrite'));
 			?>
-			<a href="<?php echo FULLWEBPATH; ?>/<?php echo getOption('favorites_rewrite'); ?>" id="favorite_link"><?php echo $text; ?> </a>
+			<a href="<?php echo FULLWEBPATH; ?>/<?php echo $link; ?>" id="favorite_link"><?php echo $text; ?> </a>
 			<?php
 		}
 	}
