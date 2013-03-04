@@ -76,4 +76,4 @@ local.properties
 .cache
 .project
 .settings
-
+.*~
