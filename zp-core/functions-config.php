@@ -1,5 +1,4 @@
 <?php
-define('CONFIGFILE',SERVERPATH.'/'.DATA_FOLDER.'/zenphoto.cfg');
 
 /**
  * Updates an item in the configuration file
@@ -21,6 +20,17 @@ function updateConfigItem($item, $value, $zp_cfg, $quote=true) {
 		$zp_cfg = substr($zp_cfg, 0, $i) . '= ' . $value . ';' . substr($zp_cfg, $j);
 	}
 	return $zp_cfg;
+}
+
+/**
+ * backs-up and updates the Zenphoto configuration file
+ *
+ * @param string $zp_cfg
+ */
+function storeConfig($zp_cfg) {
+	@rename(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE,SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE.'.bak');
+	@chmod(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE.'.bak', DATA_MOD);
+	file_put_contents(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE, $zp_cfg);
 }
 
 ?>

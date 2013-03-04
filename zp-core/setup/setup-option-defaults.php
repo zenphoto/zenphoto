@@ -9,7 +9,7 @@
 
 setupLog(gettext('Set Zenphoto default options'),true);
 
-eval(file_get_contents(CONFIGFILE));
+eval(file_get_contents(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE));
 require_once(dirname(dirname(__FILE__)).'/'.PLUGIN_FOLDER.'/security-logger.php');
 zp_apply_filter('log_setup', true, 'install', '');
 

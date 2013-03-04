@@ -408,10 +408,9 @@ if (isset($_GET['action'])) {
 				httpsRedirect();
 			}
 			setOption('server_protocol', $protocol);
-			$zp_cfg = @file_get_contents(CONFIGFILE);
+			$zp_cfg = @file_get_contents(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE);
 			$zp_cfg = updateConfigItem('server_protocol', $protocol, $zp_cfg);
-			@rename(CONFIGFILE,CONFIGFILE.'.bak');
-			file_put_contents(CONFIGFILE, $zp_cfg);
+			storeConfig($zp_cfg);
 			$_zp_gallery->setUserLogonField(isset($_POST['login_user_field']));
 			if ($protocol == 'http') {
 				zp_clearCookie("zenphoto_ssl");

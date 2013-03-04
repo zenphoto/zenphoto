@@ -13,6 +13,8 @@ $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'rewriteTokens';
 
+require_once(SERVERPATH.'/'.ZENFOLDER.'/functions-config.php');
+
 class rewriteTokens {
 
 	private $zp_cfg_a;
@@ -23,7 +25,7 @@ class rewriteTokens {
 		if (OFFSET_PATH !== 2) {
 			setOption('zp_plugin_rewriteTokens', 97|ADMIN_PLUGIN);	//	plugin must be enabled for saving options
 		}
-		$zp_cfg = file_get_contents(CONFIGFILE);
+		$zp_cfg = file_get_contents(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE);
 		$i = strpos($zp_cfg,"\$conf['special_pages']");
 		$j = strpos($zp_cfg,'//',$i);
 		$this->zp_cfg_a = substr($zp_cfg,0,$i);
@@ -93,12 +95,11 @@ class rewriteTokens {
 		}
 		$newtext = substr($newtext,0,-1)."\n												);\n";
 		$zp_cfg = $this->zp_cfg_a.$newtext.$this->zp_cfg_b;
-		@rename(CONFIGFILE,CONFIGFILE.'.bak');
-		file_put_contents(CONFIGFILE, $zp_cfg);
+		storeConfig($zp_cfg);
 		$options['note'] = array(
 				'key' => 'rewriteTokens_note', 'type' => OPTION_TYPE_NOTE,
 				'order' => 0,
-				'desc' => gettext('<p class="messagebox"><em>zenphoto.cfg</em>  updated.</p>')
+				'desc' => sprintf(gettext('<p class="messagebox"><em>%1$s</em>  updated.</p>'),CONFIGFILE)
 		);
 
 	}

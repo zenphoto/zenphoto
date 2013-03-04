@@ -19,6 +19,7 @@ if (empty($matches)) {
 
 define('SETUPLOG',$serverpath.'/'.DATA_FOLDER . '/setup.log');
 if (!defined('SERVERPATH')) define('SERVERPATH',$serverpath);
+
 require_once(dirname(dirname(__FILE__)).'/functions-config.php');
 
 /**
@@ -234,7 +235,7 @@ function folderCheck($which, $path, $class, $subfolders, $recurse, $chmod, $upda
 								type: 'POST',
 								cache: false,
 								url: '<?php echo WEBPATH.'/'.ZENFOLDER; ?>/setup/setup_permissions_changer.php',
-								data: 'folder=<?php echo $path; ?>&key=<?php echo sha1(filemtime(CONFIGFILE).file_get_contents(CONFIGFILE)); ?>'
+								data: 'folder=<?php echo $path; ?>&key=<?php echo sha1(filemtime(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE).file_get_contents(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE)); ?>'
 							});
 							// ]]> -->
 						</script>
@@ -583,11 +584,11 @@ function acknowledge($value) {
 }
 
 function configMod() {
-	$mod = 0660;
+	$mod = 0600;
 	$str = '';
 	while (empty($str)) {
-		@chmod(CONFIGFILE, $mod);
-		$str = @file_get_contents(CONFIGFILE);
+		@chmod(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE, $mod);
+		$str = @file_get_contents(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE);
 		if ($mod == 0666) {
 			break;
 		}
@@ -610,12 +611,12 @@ function setupUserAuthorized() {
 	}
 }
 
-function updateConfigFile($zp_cfg) {
+function updateConfigfile($zp_cfg) {
 	global $xsrftoken;
-	@chmod(CONFIGFILE, 0666);
-	if (is_writeable(CONFIGFILE)) {
-		@rename(CONFIGFILE,CONFIGFILE.'.bak');
-		if ($handle = fopen(CONFIGFILE, 'w')) {
+	@chmod(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE, 0666);
+	if (is_writeable(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE)) {
+		@rename(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE,SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE.'.bak');
+		if ($handle = fopen(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE, 'w')) {
 			if (fwrite($handle, $zp_cfg)) {
 				setupLog(gettext("Updated configuration file"));
 				$base = true;
@@ -625,6 +626,6 @@ function updateConfigFile($zp_cfg) {
 		clearstatcache();
 	}
 	$str = configMod();
-	$xsrftoken = sha1(CONFIGFILE.$str.session_id());
+	$xsrftoken = sha1(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE.$str.session_id());
 }
 ?>

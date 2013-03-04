@@ -13,7 +13,7 @@ if (!isset($_POST['folder'])) {
 }
 $folder = rtrim(sanitize($_POST['folder'],3),'/');
 
-if ($_POST['key']==sha1(filemtime(CONFIGFILE).file_get_contents(CONFIGFILE))) {
+if ($_POST['key']==sha1(filemtime(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE).file_get_contents(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE))) {
 	if (folderPermissions($folder)) {
 		setupLog(sprintf(gettext('Setting permissions (0%o) for %s.'), FILE_MOD, basename($folder)),true);
 	} else {

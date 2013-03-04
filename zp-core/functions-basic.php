@@ -105,12 +105,12 @@ if (TEST_RELEASE) {
 }
 set_error_handler("zpErrorHandler");
 set_exception_handler("zpErrorHandler");
-if (OFFSET_PATH != 2 && !file_exists($const_serverpath.'/'.DATA_FOLDER."/zenphoto.cfg")) {
+if (OFFSET_PATH != 2 && !file_exists($const_serverpath.'/'.DATA_FOLDER.'/'.CONFIGFILE)) {
 	require_once(dirname(__FILE__).'/reconfigure.php');
 	reconfigureAction(1);
 }
 // Including the config file more than once is OK, and avoids $conf missing.
-eval(file_get_contents($const_serverpath.'/'.DATA_FOLDER.'/zenphoto.cfg'));
+eval(file_get_contents($const_serverpath.'/'.DATA_FOLDER.'/'.CONFIGFILE));
 
 foreach ($_zp_conf_vars['special_pages'] as $definition) {
 	if ($definition['define']) {
@@ -130,6 +130,7 @@ unset($const_webpath);
 if (!defined('SERVERPATH')) {
 	define('SERVERPATH', $const_serverpath);
 }
+
 unset($const_serverpath);
 $_zp_mutex = new Mutex();
 
@@ -152,6 +153,7 @@ if (!defined('CHMOD_VALUE')) {
 }
 define('FOLDER_MOD',CHMOD_VALUE | 0311);
 define('FILE_MOD', CHMOD_VALUE & 0666);
+define('DATA_MOD', fileperms(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE)&0777);
 
 // If the server protocol is not set, set it to the default.
 if (!isset($_zp_conf_vars['server_protocol'])) {
@@ -1062,39 +1064,41 @@ function switchLog($log) {
  * @param bool $reset set to true to reset the log to zero before writing the message
  */
 function debugLog($message, $reset=false) {
-	global $_zp_mutex;
-	$path = SERVERPATH . '/' . DATA_FOLDER . '/debug.log';
-	$me = getmypid();
-	$max = getOption('debug_log_size');
-	if (is_object($_zp_mutex)) $_zp_mutex->lock();
-	if ($reset || ($size = @filesize($path)) == 0 || ($max && $size > $max)) {
-		if (!$reset && $size > 0) {
-			switchLog('debug');
-		}
-		$f = fopen($path, 'w');
-		if ($f) {
-			if (!class_exists('zpFunctions') || zpFunctions::hasPrimaryScripts()) {
-				$clone = '';
-			} else {
-				$clone = ' '.gettext('clone');
+	if (defined('SERVERPATH')) {
+		global $_zp_mutex;
+		$path = SERVERPATH . '/' . DATA_FOLDER . '/debug.log';
+		$me = getmypid();
+		$max = getOption('debug_log_size');
+		if (is_object($_zp_mutex)) $_zp_mutex->lock();
+		if ($reset || ($size = @filesize($path)) == 0 || ($max && $size > $max)) {
+			if (!$reset && $size > 0) {
+				switchLog('debug');
 			}
-			fwrite($f, '{'.$me.':'.gmdate('D, d M Y H:i:s')." GMT} Zenphoto v".ZENPHOTO_VERSION.'['.ZENPHOTO_FULL_RELEASE.']'.$clone."\n");
+			$f = fopen($path, 'w');
+			if ($f) {
+				if (!class_exists('zpFunctions') || zpFunctions::hasPrimaryScripts()) {
+					$clone = '';
+				} else {
+					$clone = ' '.gettext('clone');
+				}
+				fwrite($f, '{'.$me.':'.gmdate('D, d M Y H:i:s')." GMT} Zenphoto v".ZENPHOTO_VERSION.'['.ZENPHOTO_FULL_RELEASE.']'.$clone."\n");
+			}
+		} else {
+			$f = fopen($path, 'a');
+			if ($f) {
+				fwrite($f, '{'.$me.':'.gmdate('D, d M Y H:i:s')." GMT}\n");
+			}
 		}
-	} else {
-		$f = fopen($path, 'a');
 		if ($f) {
-			fwrite($f, '{'.$me.':'.gmdate('D, d M Y H:i:s')." GMT}\n");
+			fwrite($f, "  ".$message . "\n");
+			fclose($f);
+			clearstatcache();
+			if (defined('DATA_MOD')) {
+				@chmod($path, DATA_MOD);
+			}
 		}
+		if (is_object($_zp_mutex)) $_zp_mutex->unlock();
 	}
-	if ($f) {
-		fwrite($f, "  ".$message . "\n");
-		fclose($f);
-		clearstatcache();
-		if (defined('FILE_MOD')) {
-			@chmod($path, FILE_MOD);
-		}
-	}
-	if (is_object($_zp_mutex)) $_zp_mutex->unlock();
 }
 /**
  * Tool to log execution times of script bits

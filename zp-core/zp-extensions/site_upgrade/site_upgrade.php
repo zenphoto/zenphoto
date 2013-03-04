@@ -68,10 +68,9 @@ exitZP();
  * @param string $state
  */
 function setSiteState($state) {
-	$zp_cfg = @file_get_contents(CONFIGFILE);
+	$zp_cfg = @file_get_contents(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE);
 	$zp_cfg = updateConfigItem('site_upgrade_state', $state, $zp_cfg);
-	@rename(CONFIGFILE,CONFIGFILE.'.bak');
-	file_put_contents(CONFIGFILE, $zp_cfg);
+	storeConfig($zp_cfg);
 	setOption('site_upgrade_state', $state);
 }
 ?>

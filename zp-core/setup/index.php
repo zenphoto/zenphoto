@@ -56,9 +56,9 @@ if (!file_exists($en_US)) {
 	@mkdir($en_US, $chmod | 0311);
 }
 
-if (file_exists(CONFIGFILE)) {
+if (file_exists(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE)) {
 	$newconfig = false;
-	$zptime = filemtime(CONFIGFILE);
+	$zptime = filemtime(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE);
 } else {
 	$zptime = time();
 	if (!file_exists($serverpath.'/'.DATA_FOLDER)) {
@@ -66,7 +66,7 @@ if (file_exists(CONFIGFILE)) {
 	}
 	if (file_exists(dirname(dirname(dirname(__FILE__))).'/'.ZENFOLDER.'/zp-config.php')) {
 		// copy old file from zp-core
-		@copy(dirname(dirname(dirname(__FILE__))).'/'.ZENFOLDER.'/zp-config.php', CONFIGFILE);
+		@copy(dirname(dirname(dirname(__FILE__))).'/'.ZENFOLDER.'/zp-config.php', SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE);
 		@unlink(dirname(dirname(dirname(__FILE__))).'/'.ZENFOLDER.'/zp-config.php');
 	}
 	if (file_exists($serverpath.'/'.DATA_FOLDER.'/zp-config.php')) {
@@ -75,12 +75,12 @@ if (file_exists(CONFIGFILE)) {
 		$i = strpos($zpconfig, '/** Do not edit above this line. **/');
 		$j = strpos($zpconfig, '?>');
 		$zpconfig = 'global $_zp_conf_vars;'."\n".'$conf = array();'."\n".substr($zpconfig, $i, $j-$i);
-		file_put_contents(CONFIGFILE, $zpconfig);
+		file_put_contents(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE, $zpconfig);
 		$result = unlink($serverpath.'/'.DATA_FOLDER.'/zp-config.php');
 		$newconfig = false;
 	} else {
 		$newconfig = true;
-		@copy(dirname(dirname(__FILE__)).'/zenphoto_cfg.txt', CONFIGFILE);
+		@copy(dirname(dirname(__FILE__)).'/zenphoto_cfg.txt', SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE);
 	}
 }
 @copy(dirname(dirname(__FILE__)).'/dataaccess',$serverpath.'/'.DATA_FOLDER.'/.htaccess');
@@ -96,8 +96,8 @@ if (isset($_GET['mod_rewrite'])) {
 }
 
 
-$zp_cfg = @file_get_contents(CONFIGFILE);
-$xsrftoken = sha1(CONFIGFILE.$zp_cfg.session_id());
+$zp_cfg = @file_get_contents(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE);
+$xsrftoken = sha1(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE.$zp_cfg.session_id());
 
 $updatezp_config = false;
 
@@ -195,7 +195,7 @@ if (isset($_REQUEST['FILESYSTEM_CHARSET'])) {
 	$updatezp_config = true;
 }
 if ($updatezp_config) {
-	updateConfigFile($zp_cfg);
+	updateConfigfile($zp_cfg);
 	$updatezp_config = false;
 }
 
@@ -222,8 +222,8 @@ foreach (setup_glob('functions-db-*.php') as $key=>$engineMC) {
 ksort($engines);
 chdir($curdir);
 
-if (file_exists(CONFIGFILE)) {
-	eval(file_get_contents(CONFIGFILE));
+if (file_exists(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE)) {
+	eval(file_get_contents(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE));
 	if (isset($_zp_conf_vars['db_software'])) {
 		$confDB = $_zp_conf_vars['db_software'];
 		if ($confDB === 'MySQL' || $preferred != 'MySQL') {
@@ -253,7 +253,7 @@ if (file_exists(CONFIGFILE)) {
 }
 
 if ($updatezp_config) {
-	updateConfigFile($zp_cfg);
+	updateConfigfile($zp_cfg);
 }
 
 
@@ -538,15 +538,19 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 		$prevRel = false;
 		checkmark(1,sprintf(gettext('Installing Zenphoto v%s'),ZENPHOTO_VERSION),'','');
 	}
-
-	$permission = fileperms(CONFIGFILE)&0777;
-	if (checkPermissions($permission, 0600)) {
-		$p = true;
-	} else {
-		$p = -1;
+	chdir(dirname(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE));
+	$test = setup_glob('*.log');
+	$test[] = basename(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE);
+	$p = true;
+	foreach ($test as $file) {
+		$permission = fileperms(dirname(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE).'/'.$file)&0777;
+		if (!checkPermissions($permission, 0600)) {
+			$p = -1;
+			break;
+		}
 	}
 	checkMark($p, sprintf(gettext('<em>%s</em> security'),DATA_FOLDER), sprintf(gettext('<em>%s</em> security [is compromised]'),DATA_FOLDER),
-							sprintf(gettext('Zenphoto attempts to make sensitive files in the %1$s folder accessable by <em>owner</em> only (permissions = 0600). This attempt has failed. The file permissions are %2$04o which may allow unauthorized access.'),DATA_FOLDER,$permission));
+							sprintf(gettext('Zenphoto suggests you make the sensitive files in the %1$s folder accessable by <em>owner</em> only (permissions = 0600). The file permissions for <em>%2$s</em> are %3$04o which may allow unauthorized access.'),DATA_FOLDER,$file,$permission));
 
 	$err = versionCheck(PHP_MIN_VERSION, PHP_DESIRED_VERSION, PHP_VERSION);
 	$good = checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('PHP Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk.'),PHP_MIN_VERSION, PHP_DESIRED_VERSION), false) && $good;
@@ -707,16 +711,16 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 			checkmark(0, '', gettext('Graphics support [configuration error]'), gettext('No Zenphoto image handling library was loaded. Be sure that your PHP has a graphics support.').' '.trim($graphicsmsg));
 		}
 	}
-	if (file_exists(CONFIGFILE)) {
-		eval(file_get_contents(CONFIGFILE));;
+	if (file_exists(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE)) {
+		eval(file_get_contents(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE));;
 		$cfg = true;
 	} else {
 		$cfg = false;
 	}
 
 
-	$good = checkMark($cfg, gettext('<em>zenphoto.cfg</em> file'), gettext('<em>zenphoto.cfg</em> file [does not exist]'),
-							sprintf(gettext('Setup was not able to create this file. You will need to copy the <code>%1$s/zenphoto_cfg.txt</code> file to <code>%2$s/zenphoto.cfg</code> then edit it as indicated in the file\'s comments.'),ZENFOLDER,DATA_FOLDER)) && $good;
+	$good = checkMark($cfg, sprintf(gettext('<em>%1$s</em> file'),CONFIGFILE), sprintf(gettext('<em>%1$s</em> file [does not exist]'),CONFIGFILE),
+							sprintf(gettext('Setup was not able to create this file. You will need to copy the <code>%1$s/zenphoto_cfg.txt</code> file to <code>%2$s/%3$s</code> then edit it as indicated in the file\'s comments.'),ZENFOLDER,DATA_FOLDER,CONFIGFILE)) && $good;
 	if ($cfg) {
 		primeMark(gettext('File permissions'));
 		$chmodselector = '<form action="#"><input type="hidden" name="xsrfToken" value="'.$xsrftoken.'" />'.
@@ -961,7 +965,7 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 
 	if ($cfg) {
 		if ($adminstuff = !extension_loaded(strtolower($selected_database))|| !$connection) {
-			if (is_writable(CONFIGFILE)) {
+			if (is_writable(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE)) {
 				$good = false;
 				checkMark(false, '', gettext("Database credentials in configuration file"), sprintf(gettext('<em>%1$s</em> reported: %2$s'),DATABASE_SOFTWARE,$connectDBErr));
 				// input form for the information
@@ -1514,7 +1518,7 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 	}
 
 	if (isset($_zp_conf_vars['external_album_folder']) && !is_null($_zp_conf_vars['external_album_folder'])) {
-		checkmark(-1, 'albums', gettext("albums [<code>\$conf['external_album_folder']</code> is deprecated]"), gettext('You should update your configuration file to conform to the current zenphoto.cfg example file.'));
+		checkmark(-1, 'albums', gettext("albums [<code>\$conf['external_album_folder']</code> is deprecated]"), sprintf(gettext('You should update your configuration file to conform to the current %1$s example file.'),CONFIGFILE));
 		$_zp_conf_vars['album_folder_class'] = 'external';
 		$albumfolder = $_zp_conf_vars['external_album_folder'];
 	}
@@ -1538,7 +1542,7 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 		}
 		$good = folderCheck('albums', $albumfolder, $_zp_conf_vars['album_folder_class'], NULL, true, $chmod | 0311, $updatechmod) && $good;
 	} else {
-		checkmark(-1, gettext('<em>albums</em> folder'), gettext("<em>albums</em> folder [The line <code>\$conf['album_folder']</code> is missing from your configuration file]"), gettext('You should update your configuration file to conform to the current zenphoto.cfg example file.'));
+		checkmark(-1, gettext('<em>albums</em> folder'), gettext('<em>albums</em> folder [The line <code>\$conf[\'album_folder\']</code> is missing from your configuration file]'), sprintf(gettext('You should update your configuration file to conform to the current %1$s example file.'),CONFIGFILE));
 	}
 
 	$good = folderCheck('cache', $serverpath . '/'.CACHEFOLDER.'/', 'std', NULL, true, $chmod | 0311,$updatechmod) && $good;
@@ -1598,9 +1602,9 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 } else {
 	$dbmsg = gettext("database connected");
 } // system check
-if (file_exists(CONFIGFILE)) {
+if (file_exists(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE)) {
 
-	eval(file_get_contents(CONFIGFILE));
+	eval(file_get_contents(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE));
 	require_once(dirname(dirname(__FILE__)).'/functions.php');
 	$task = '';
 	if (isset($_GET['create'])) {
@@ -2714,7 +2718,7 @@ if (file_exists(CONFIGFILE)) {
 	// The config file hasn't been created yet. Show the steps.
 	?>
 	<div class="error">
-		<?php echo gettext("The zenphoto.cfg file does not exist."); ?>
+		<?php echo sprintf(gettext('The %1$s file does not exist.'),CONFIGFILE); ?>
 	</div>
 <?php
 }
