@@ -22,13 +22,9 @@ if (!isset($_GET['a']) || !isset($_GET['i'])) {
 	imageError('404 Not Found', gettext("Too few arguments! Image not found."), 'err-imagenotfound.png');
 }
 
-list($ralbum, $rimage) = rewrite_get_album_image('a', 'i');
-$ralbum = internalToFilesystem($ralbum);
-$rimage = internalToFilesystem($rimage);
-$album =sanitize_path($ralbum);
-$image = sanitize_path($rimage);
-$album8 = filesystemToInternal($album);
-$image8 = filesystemToInternal($image);
+list($album8, $image8) = rewrite_get_album_image('a', 'i');
+$album = internalToFilesystem($album8);
+$image = internalToFilesystem($image8);
 $theme = themeSetup($album); // loads the theme based image options.
 
 /* Prevent hotlinking to the full image from other domains. */
@@ -95,9 +91,8 @@ if (($hash || !$albumobj->checkAccess()) && !zp_loggedin(VIEW_FULLIMAGE_RIGHTS))
 	}
 }
 
-$image_path = ALBUM_FOLDER_SERVERPATH.$album.'/'.$image;
+$image_path = $imageobj->localpath;
 $suffix = getSuffix($image_path);
-$cache_file = $album . "/" . substr($image, 0, -strlen($suffix)-1) . '_FULL.' . $suffix;
 
 switch ($suffix) {
 	case 'bmp':
@@ -134,6 +129,7 @@ if (getOption('cache_full_image')) {
 	$cache_path = SERVERCACHE.$cache_file;
 	mkdir_recursive(dirname($cache_path), FOLDER_MOD);
 } else {
+	$cache_file = $album."/" .stripSuffix($image).'_FULL.'.$suffix;
 	$cache_path = NULL;
 }
 
