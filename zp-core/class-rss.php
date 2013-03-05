@@ -299,8 +299,8 @@ class RSS {
 					}
 					$this->channel_title = html_encode($this->channel_title.$cattitle.$titleappendix);
 					$this->imagesize = $this->getRSSImageSize();
-					require_once(ZENFOLDER . '/'.PLUGIN_FOLDER . '/image_album_statistics.php');
-					require_once(ZENFOLDER . '/'.PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
+					require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
+					require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-template-functions.php');
 					break;
 
 
