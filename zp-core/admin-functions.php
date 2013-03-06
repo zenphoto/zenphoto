@@ -3977,7 +3977,7 @@ function codeblocktabsJS() {
 			};
 
 		function cbadd(id) {
-			var num = $('#cbu-'+id+' li').size()-1;
+			var num = $('#cbu-'+id+' li').size();
 			$('li:last', $('#cbu-'+id)).remove();
 			$('#cbu-'+id).append('<li><a class="cbt-'+id+'" id="cbt'+num+'-'+id+'" href="javascript:cbclick('+num+','+id+');" title="'+'<?php echo gettext('codeblock %u'); ?>'.replace(/%u/,num)+'">&nbsp;&nbsp;'+num+'&nbsp;&nbsp;</a></li>');
 			$('#cbu-'+id).append('<li><a id="cbp-'+id+'" href="javascript:cbadd('+id+');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
@@ -4003,13 +4003,19 @@ function printCodeblockEdit($obj, $id) {
 		$codeblock = array();
 	}
 	$keys = array_keys($codeblock);
-	array_push($keys, 0);
+	array_push($keys, 1);
 	$codeblockCount =  max($keys)+1;
+
+	if (array_key_exists(0, $codeblock) &&  !empty($codeblock)) {
+		$start = 0;
+	} else {
+		$start = 1;
+	}
 	?>
 	<div id="cbd-<?php echo $id; ?>" class="tabs">
 		<ul id="<?php echo 'cbu'.'-'.$id; ?>" class="tabNavigation">
 			<?php
-			for ($i=0; $i<$codeblockCount; $i++) {
+			for ($i=$start; $i<$codeblockCount; $i++) {
 				?>
 				<li><a class="<?php if (!$i) echo 'first '; ?>cbt-<?php echo $id; ; ?>" id="<?php echo 'cbt'.$i.'-'.$id; ?>" href="javascript:cbclick(<?php echo $i.','.$id; ?>);" title="<?php printf(gettext('codeblock %u'),$i); ?>">&nbsp;&nbsp;<?php echo $i; ?>&nbsp;&nbsp;</a></li>
 				<?php
