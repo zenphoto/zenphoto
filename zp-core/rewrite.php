@@ -11,7 +11,8 @@ function rewriteHandler() {
 	$definitions = array();
 
 	//rewrite base
-	$requesturi = ltrim(substr(getRequestURI(), strlen(WEBPATH)),'/');
+	$request = explode('?',getRequestURI());
+	$requesturi = ltrim(substr($request[0], strlen(WEBPATH)),'/');
 
 	//	load rewrite rules
 	$rules = trim(file_get_contents(SERVERPATH.'/'.ZENFOLDER.'/zenphoto-rewrite.txt'));

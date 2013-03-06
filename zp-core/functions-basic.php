@@ -449,8 +449,8 @@ function hasDynamicAlbumSuffix($path) {
 function rewrite_get_album_image($albumvar, $imagevar) {
 	global $_zp_rewritten;
 
-	$ralbum = isset($_GET[$albumvar]) ? $_GET[$albumvar] : NULL;
-	$rimage = isset($_GET[$imagevar]) ? $_GET[$imagevar] : NULL;
+	$ralbum = isset($_GET[$albumvar]) ? sanitize_path($_GET[$albumvar]) : NULL;
+	$rimage = isset($_GET[$imagevar]) ? sanitize($_GET[$imagevar]) : NULL;
 	//	we assume that everything is correct if rewrite rules were not applied
 	if ($_zp_rewritten) {
 		$rimage = NULL;	//	the image parameter is never set by the rewrite rules!
@@ -466,7 +466,6 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 						//	it is an image (one assumes)
 						$rimage = basename($ralbum);
 						$ralbum = dirname($ralbum);
-						$path = dirname($path);
 					}
 				}
 			}
