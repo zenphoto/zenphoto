@@ -35,7 +35,7 @@ if (!defined('WEBPATH') || !class_exists('Zenpage')) die();
 <h2><?php printPageTitle(); ?></h2>
 <?php
 printPageContent();
-printCodeblock(0);
+printCodeblock(1);
 if(getTags()) { echo gettext('<strong>Tags:</strong>'); } printTags('links', '', 'taglist', ', ');
 ?>
 <br style="clear:both;" /><br />

@@ -60,9 +60,9 @@ if (!defined('WEBPATH') || !class_exists('Zenpage')) die();
 									}
 									?>
 									</span>
-									<?php printCodeblock(0); ?>
-									<?php printNewsContent(); ?>
 									<?php printCodeblock(1); ?>
+									<?php printNewsContent(); ?>
+									<?php printCodeblock(2); ?>
 								</div>
 								<?php
 								@call_user_func('printRating');

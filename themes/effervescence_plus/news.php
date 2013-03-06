@@ -99,9 +99,9 @@ if (!defined('WEBPATH') || !class_exists('Zenpage')) die();
 				printNewsCategories(", ",gettext("Categories: "),"newscategories");
 			}
 			?>
-		<?php printCodeblock(0); ?>
+		<?php printCodeblock(1); ?>
 		<?php printNewsContent(); ?>
-		 <?php printCodeblock(1); ?>
+		 <?php printCodeblock(2); ?>
 		</div>
 		<?php
 		@call_user_func('printRating');
