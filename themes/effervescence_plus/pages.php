@@ -57,9 +57,9 @@ if (!defined('WEBPATH') || !class_exists('Zenpage')) die();
 			<div id="content-left">
 	<h2><?php printPageTitle(); ?></h2>
 	<div id="pagetext">
-	<?php printCodeblock(0); ?>
-	<?php printPageContent(); ?>
 	<?php printCodeblock(1); ?>
+	<?php printPageContent(); ?>
+	<?php printCodeblock(2); ?>
 	</div>
 
 	<?php

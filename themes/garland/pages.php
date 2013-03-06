@@ -41,9 +41,9 @@ if (!defined('WEBPATH') || !class_exists('Zenpage')) die();
 							</h2>
 							<h3><?php printPageTitle(); ?></h3>
 							<div id="pagetext">
-							<?php printCodeblock(0); ?>
-							<?php printPageContent(); ?>
 							<?php printCodeblock(1); ?>
+							<?php printPageContent(); ?>
+							<?php printCodeblock(2); ?>
 							</div>
 							<?php
 							@call_user_func('printRating');

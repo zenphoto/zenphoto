@@ -33,7 +33,7 @@ if (!defined('WEBPATH') || !class_exists('Zenpage')) die();
 
 		<?php
 			printPageContent();
-			printCodeblock(0);
+			printCodeblock(1);
 			$subpages = $_zp_current_zenpage_page->getPages();
 			if($subpages) {
 				?>

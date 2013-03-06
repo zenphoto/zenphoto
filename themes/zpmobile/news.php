@@ -30,7 +30,7 @@ if(is_NewsArticle()) {
 	?>
   <?php
   printNewsContent();
-  printCodeblock(0);
+  printCodeblock(1);
   ?>
   <br clear="all" /><br />
   <?php printNewsCategories(', ',gettext('Categories: '),'catlist'); ?>
