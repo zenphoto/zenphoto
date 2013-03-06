@@ -149,7 +149,7 @@ define ('ACK_DISPLAY_ERRORS', 2);
 
 if (isset($_GET['security_ack'])) {
 	setupXSRFDefender();
-	$zp_cfg = updateConfigItem('security_ack', @$conf['security_ack'] | (int) $_GET['security_ack'], $zp_cfg, false);
+	$zp_cfg = updateConfigItem('security_ack', (isset($conf['security_ack'])?$cache['keyword']:NULL) | (int) $_GET['security_ack'], $zp_cfg, false);
 	$updatezp_config = true;
 }
 
@@ -557,7 +557,7 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 	checkmark($session&& session_id(),gettext('PHP <code>Sessions</code>.'),gettext('PHP <code>Sessions</code> [appear to not be working].'),gettext('PHP Sessions are required for Zenphoto administrative functions.'),true);
 
 	if (preg_match('#(1|ON)#i', @ini_get('register_globals'))) {
-		if (@$_zp_conf_vars['security_ack'] & ACK_REGISTER_GLOBALS) {
+		if ((isset($_zp_conf_vars['security_ack'])?$_zp_conf_vars['security_ack']:NULL) & ACK_REGISTER_GLOBALS) {
 			$register_globals = -1;
 			$aux = '';
 		} else {
@@ -624,7 +624,7 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 		case 'on':
 		case 'stdout':
 		default:
-			if (TEST_RELEASE || (@$_zp_conf_vars['security_ack'] & ACK_DISPLAY_ERRORS)) {
+			if (TEST_RELEASE || ((isset($_zp_conf_vars['security_ack'])?$_zp_conf_vars['security_ack']:NULL) & ACK_DISPLAY_ERRORS)) {
 				$display = -1;
 				$aux = '';
 			} else {
@@ -1048,7 +1048,7 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 					$row_report = "<br /><br />".$row;
 					$r = str_replace(',', '', $row);
 					preg_match('/\sON(.*)\sTO\s?/i', $r, $matches);
-					$found = trim(@$matches[1]);
+					$found = trim(isset($matches[1])?$matches[1]:NULL);
 					if ($partial = (($i = strpos($found, '%')) !== false)) {
 						$found = substr($found, 0, $i);
 					}

@@ -41,7 +41,7 @@ function rewriteHandler() {
 						$banner = explode(',',strtoupper($matches[3]));
 						foreach ($banner as $flag) {
 							$f = explode('=', $flag);
-							$flags[$f[0]] = @$f[1];
+							$flags[$f[0]] = isset($f[1])?$f[1]:NULL;
 						}
 						if (!array_key_exists('QSA', $flags)) {
 							$_REQUEST = array_diff($_REQUEST, $_GET);

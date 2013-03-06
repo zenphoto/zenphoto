@@ -10,7 +10,7 @@ require_once('../../functions.php');
 
 header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 header ("Content-type: image/png");
-$cypher = preg_replace('/[^0-9a-f]/', '', sanitize(@$_GET['i']));
+$cypher = preg_replace('/[^0-9a-f]/', '', sanitize(isset($_GET['i'])?$_GET['i']:NULL));
 
 $key = getOption('zenphoto_captcha_key');
 $string = rc4($key, pack("H*", $cypher));

@@ -107,16 +107,16 @@ function createRelatedItemsResultArray($result,$type) {
 	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news,$_zp_gallery_page;
 	switch($_zp_gallery_page) {
 		case 'album.php':
-			$current = @$_zp_current_album;
+			$current = $_zp_current_album;
 			break;
 		case 'image.php':
-			$current = @$_zp_current_image;
+			$current = $_zp_current_image;
 			break;
 		case 'news.php':
-			$current = @$_zp_current_zenpage_news;
+			$current = $_zp_current_zenpage_news;
 			break;
 		case 'pages.php':
-			$current = @$_zp_current_zenpage_page;
+			$current = $_zp_current_zenpage_page;
 			break;
 	}
 	$results = array();

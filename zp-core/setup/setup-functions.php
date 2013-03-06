@@ -579,7 +579,7 @@ function close_site($nht) {
 
 function acknowledge($value) {
 	global $xsrftoken, $_zp_conf_vars;
-	$link = WEBPATH.'/'.ZENFOLDER.'/setup/index.php?security_ack='.(@$_zp_conf_vars['security_ack'] | $value).'&amp;xsrfToken='.$xsrftoken;
+	$link = WEBPATH.'/'.ZENFOLDER.'/setup/index.php?security_ack='.((isset($_zp_conf_vars['security_ack'])?$_zp_conf_vars['security_ack']:NULL) | $value).'&amp;xsrfToken='.$xsrftoken;
 	return sprintf(gettext('Click <a href="%s">here</a> to acknowledge that you wish to ignore this issue. It will then become a warning.'), $link);
 }
 

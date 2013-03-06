@@ -8,7 +8,7 @@ $htpath = SERVERPATH.'/.htaccess';
 $ht = @file_get_contents($htpath);
 
 preg_match_all('|[# ][ ]*RewriteRule(.*)plugins/site_upgrade/closed\.php|',$ht,$matches);
-switch (@$_GET['siteState']) {
+switch (isset($_GET['siteState'])?$_GET['siteState']:NULL) {
 	case 'closed':
 		require_once(SERVERPATH.'/'.ZENFOLDER.'/class-rss.php');
 		class setupRSS extends RSS {

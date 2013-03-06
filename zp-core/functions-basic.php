@@ -1358,7 +1358,7 @@ function checkInstall() {
 		$install = array('ZENPHOTO'=>'0.0.0[0000]');
 	}
 	preg_match('|([^-]*).*\[(.*)\]|', $install['ZENPHOTO'], $matches);
-	if (@$matches[1] != $version[1] || @$matches[2] != ZENPHOTO_RELEASE
+	if (isset($matches[1]) && isset($matches[2]) && $matches[1] != $version[1] || $matches[2] != ZENPHOTO_RELEASE
 									|| ((time() & 7)==0) && OFFSET_PATH!=2 && $i != serialize(installSignature())) {
 		require_once(dirname(__FILE__).'/reconfigure.php');
 		reconfigureAction(0);
