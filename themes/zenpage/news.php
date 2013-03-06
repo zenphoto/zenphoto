@@ -85,7 +85,7 @@ if(is_GalleryNewsType()) {
 ?>
 </div>
     <?php printNewsContent(); ?>
-    <?php printCodeblock(1); ?>
+    <?php printCodeblock(0); ?>
     <?php if(getTags()) { echo gettext('<strong>Tags:</strong>'); } printTags('links', '', 'taglist', ', '); ?>
     <br style="clear:both;" /><br />
     </div>
