@@ -437,93 +437,57 @@ function hasDynamicAlbumSuffix($path) {
 }
 
 /**
- * rewrite_get_album_image - Fix special characters in the album and image names if mod_rewrite is on:
- * This is redundant and hacky; we need to either make the rewriting completely internal,
- * or fix the bugs in mod_rewrite. The former is probably a good idea.
+ * Handles the special cases of album/image[rewrite_suffix]
  *
- *  Old explanation:
- *    rewrite_get_album_image() parses the album and image from the requested URL
- *    if mod_rewrite is on, and replaces the query variables with corrected ones.
- *    This is because of bugs in mod_rewrite that disallow certain characters.
+ * Separates the image part from the album if it is an image reference
+ * Strips off the mod_rewrite_suffix if present
+ * Handles dynamic album names that do not have the .alb suffix appended
  *
- * @param string $albumvar "$_GET" parameter for the album
- * @param string $imagevar "$_GET" parameter for the image
+ * @param string $albumvar	$_GET index for "albums"
+ * @param string $imagevar	$_GET index for "images"
  */
 function rewrite_get_album_image($albumvar, $imagevar) {
-	//	initialize these. If not mod_rewrite, then they are fine. If so, they may be overwritten
-	$ralbum = isset($_GET[$albumvar]) ? sanitize_path($_GET[$albumvar]) : null;
-	$rimage = isset($_GET[$imagevar]) ? sanitize_path($_GET[$imagevar]) : null;
-	if (MOD_REWRITE) {
-		$uri = getRequestURI();
-		$path = substr($uri, strlen(WEBPATH)+1);
-		$scripturi = sanitize($_SERVER['PHP_SELF'],0);
-		$script = substr($scripturi,strpos($scripturi, WEBPATH.'/')+strlen(WEBPATH)+1);
-		// Only extract the path when the request doesn't include the running php file (query request).
-		if (strlen($path) > 0 && strpos($uri, $script) === false && isset($_GET[$albumvar])) {
-			// remove query string if present
-			$qspos = strpos($path, '?');
-			if ($qspos !== false) {
-				$path = substr($path, 0, $qspos);
-			}
-			// Strip off the image suffix (could interfere with the rest, needs to go anyway).
-			$im_suffix = getOption('mod_rewrite_image_suffix');
-			$suf_len = strlen($im_suffix);
-			if ($suf_len > 0 && substr($path, -($suf_len)) == $im_suffix) {
-				$path = substr($path, 0, -($suf_len));
+	global $_zp_rewritten;
+
+	$ralbum = isset($_GET[$albumvar]) ? $_GET[$albumvar] : NULL;
+	$rimage = isset($_GET[$imagevar]) ? $_GET[$imagevar] : NULL;
+	//	we assume that everything is correct if rewrite rules were not applied
+	if ($_zp_rewritten) {
+		$rimage = NULL;	//	the image parameter is never set by the rewrite rules!
+		if (!empty($ralbum)) {
+			$path = internalToFilesystem(getAlbumFolder(SERVERPATH).$ralbum);
+			if (preg_match('~'.IM_SUFFIX.'$~', $path)) {
+				// Strip off the image suffix
+				$rimage = basename(preg_replace('~'.IM_SUFFIX.'$~', '', $ralbum));
+				$ralbum = dirname($ralbum);
 			} else {
-				$im_suffix = false;
-			}
-			//	sanitize the path
-			$ralbum = $path = sanitize_path($path);
-			//strip off things discarded by the rewrite rules
-			$pagepos  = strpos($path, '/'._PAGE_.'/');
-			$slashpos = strrpos($path, '/');
-			$imagepos = strpos($path, '/image/');
-			$albumpos = strpos($path, '/album/');
-			if ($imagepos !== false) {
-				$ralbum = substr($path, 0, $imagepos);
-				$rimage = substr($path, $slashpos+1);
-			} else if ($albumpos !== false) {
-				$ralbum = substr($path, 0, $albumpos);
-				$rimage = substr($path, $slashpos+1);
-			} else if ($pagepos !== false) {
-				$ralbum = substr($path, 0, $pagepos);
-				$rimage = null;
-			} else if ($slashpos !== false) {
-				$ralbum = substr($path, 0, $slashpos);
-				$rimage = substr($path, $slashpos+1);
-				//	check if it might be an album, not an album/image form
-				if (!$im_suffix && !(is_valid_image($rimage) || is_valid_other_type($rimage))) {
-					$ralbum = $ralbum . '/' . $rimage;
-					$albumpath = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($ralbum);
-					if (!is_dir($albumpath)) {
-						if (file_exists($albumpath.'.alb')) {
-							$ralbum .= '.alb';
-						}
-					}
-					$rimage = null;
-				}
-			} else {
-				$albumpath = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($path);
-				if (!is_dir($albumpath)) {
-					if (file_exists($albumpath.'.alb')) {
-						$path .= '.alb';
+				if (file_exists($path)) {
+					if (!is_dir($path)) {
+						//	it is an image (one assumes)
+						$rimage = basename($ralbum);
+						$ralbum = dirname($ralbum);
+						$path = dirname($path);
 					}
 				}
-				$ralbum = $path;
-				$rimage = null;
-			}
-			if (empty($ralbum)) {
-				if (isset($_GET[$albumvar])) unset($_GET[$albumvar]);
-			} else {
-				$_GET[$albumvar] = $ralbum;
 			}
 			if (empty($rimage)) {
-				if (isset($_GET[$imagevar])) unset($_GET[$imagevar]);
-			} else {
-				$_GET[$imagevar] = $rimage;
+				//	Consider it an album
+				if (!is_dir($path) && file_exists($path.'.alb')) {
+					//	it is a dynamic album sans suffix
+					$ralbum .= '.alb';
+				}
 			}
-			return array($ralbum, $rimage);
+		}
+
+		if (empty($ralbum)) {
+			if (isset($_GET[$albumvar])) unset($_GET[$albumvar]);
+		} else {
+			$_GET[$albumvar] = $ralbum;
+		}
+		if (empty($rimage)) {
+			if (isset($_GET[$imagevar])) unset($_GET[$imagevar]);
+		} else {
+			$_GET[$imagevar] = $rimage;
 		}
 	}
 	return array($ralbum, $rimage);
@@ -1341,9 +1305,6 @@ function getRequestURI() {
 		}
 	} else {
 		$uri = @$_SERVER['SCRIPT_NAME'];
-		if (@$_SERVER['QUERY_STRING']) {
-			$uri .= '?'.$_SERVER['QUERY_STRING'];
-		}
 	}
 	return urldecode(sanitize(str_replace('\\','/',$uri),0));
 }
