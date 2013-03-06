@@ -6,12 +6,13 @@
  */
 
 function rewriteHandler() {
-	global $_zp_conf_vars;
+	global $_zp_conf_vars, $_zp_rewritten;
+	$_zp_rewritten = false;
 	$definitions = array();
 
-	$request = parse_url(getRequestURI());
 	//rewrite base
-	$requesturi = ltrim(substr($request['path'], strlen(WEBPATH)),'/');
+	$requesturi = ltrim(substr(getRequestURI(), strlen(WEBPATH)),'/');
+
 	//	load rewrite rules
 	$rules = trim(file_get_contents(SERVERPATH.'/'.ZENFOLDER.'/zenphoto-rewrite.txt'));
 	$specialPageRules = array();
@@ -66,6 +67,7 @@ function rewriteHandler() {
 							header('Location: '.WEBPATH.'/'.$action[1].$qs);
 							exit();
 						}
+						$_zp_rewritten = true;
 						break;
 					}
 				} else {
@@ -78,6 +80,6 @@ function rewriteHandler() {
 	}
 }
 
-rewriteHandler();
+if (MOD_REWRITE) rewriteHandler();
 
 ?>
