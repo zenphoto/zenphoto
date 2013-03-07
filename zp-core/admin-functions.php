@@ -4011,25 +4011,30 @@ function printCodeblockEdit($obj, $id) {
 	} else {
 		$start = 1;
 	}
-	$count = 1-$start;
 	?>
 	<div id="cbd-<?php echo $id; ?>" class="tabs">
 		<ul id="<?php echo 'cbu'.'-'.$id; ?>" class="tabNavigation">
 			<?php
 			for ($i=$start; $i<$codeblockCount; $i++) {
 				?>
-				<li><a class="<?php if (!$i) echo 'first '; ?>cbt-<?php echo $id; ; ?>" id="<?php echo 'cbt'.$i.'-'.$id; ?>" href="javascript:cbclick(<?php echo $i.','.$id; ?>);" title="<?php printf(gettext('codeblock %u'),$i); ?>">&nbsp;&nbsp;<?php echo $i; ?>&nbsp;&nbsp;</a></li>
+				<li><a class="<?php if ($i==1) echo 'first '; ?>cbt-<?php echo $id; ; ?>" id="<?php echo 'cbt'.$i.'-'.$id; ?>" href="javascript:cbclick(<?php echo $i.','.$id; ?>);" title="<?php printf(gettext('codeblock %u'),$i); ?>">&nbsp;&nbsp;<?php echo $i; ?>&nbsp;&nbsp;</a></li>
 				<?php
-				$start = '';
 			}
 			?>
-			<li><a id="<?php echo 'cbp'.'-'.$id; ?>" href="javascript:cbadd(<?php echo $id; ?>,<?php echo (int) $count; ?>);" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>
+			<li><a id="<?php echo 'cbp'.'-'.$id; ?>" href="javascript:cbadd(<?php echo $id; ?>,<?php echo (int) 1-$start; ?>);" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>
 		</ul>
 
 		<?php
-		for ($i=0; $i<$codeblockCount; $i++) {
+		for ($i=$start; $i<$codeblockCount; $i++) {
 			?>
-			<div class="cbx-<?php echo $id; ?>" id="cb<?php echo $i.'-'.$id; ?>"<?php if ($i) echo ' style="display:none"'; ?>">
+			<div class="cbx-<?php echo $id; ?>" id="cb<?php echo $i.'-'.$id; ?>"<?php if ($i!=1) echo ' style="display:none"'; ?>">
+				<?php
+				if (!$i) {
+					?>
+					<span class="notebox"><?php echo gettext('Codeblock 0 is deprecated.')?></span>
+					<?php
+				}
+				?>
 				<textarea name="codeblock<?php echo $i; ?>-<?php echo $id; ?>" class="codeblock" id="codeblock<?php echo $i; ?>-<?php echo $id; ?>" rows="40" cols="60"><?php echo html_encode(@$codeblock[$i]); ?></textarea>
 			</div>
 			<?php
@@ -4048,7 +4053,7 @@ function printCodeblockEdit($obj, $id) {
  */
 function processCodeblockSave($id) {
 	$codeblock = array();
-	$i = 0;
+	$i = (int) !isset($_POST['codeblock0-'.$id]);
 	while (isset($_POST['codeblock'.$i.'-'.$id])) {
 		$v = sanitize($_POST['codeblock'.$i.'-'.$id], 0);
 		if ($v) {
