@@ -4009,7 +4009,7 @@ function printCodeblockEdit($obj, $id) {
 	if (array_key_exists(0, $codeblock) &&  !empty($codeblock)) {
 		$start = 0;
 	} else {
-		$start = 1;
+		$start = (int) getOption('codeblock_first_tab');
 	}
 	?>
 	<div id="cbd-<?php echo $id; ?>" class="tabs">
