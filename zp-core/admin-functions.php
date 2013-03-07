@@ -4030,6 +4030,13 @@ function printCodeblockEdit($obj, $id) {
 		for ($i=0; $i<$codeblockCount; $i++) {
 			?>
 			<div class="cbx-<?php echo $id; ?>" id="cb<?php echo $i.'-'.$id; ?>"<?php if ($i) echo ' style="display:none"'; ?>">
+				<?php
+				if (!$i) {
+					?>
+					<p class="notebox"><?php echo gettext('Codeblock 0 is deprecated.')?></p>
+					<?php
+				}
+				?>
 				<textarea name="codeblock<?php echo $i; ?>-<?php echo $id; ?>" class="codeblock" id="codeblock<?php echo $i; ?>-<?php echo $id; ?>" rows="40" cols="60"><?php echo html_encode(@$codeblock[$i]); ?></textarea>
 			</div>
 			<?php
