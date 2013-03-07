@@ -3976,11 +3976,11 @@ function codeblocktabsJS() {
 				$('#cbt'+num+'-'+id).addClass('selected');
 			};
 
-		function cbadd(id) {
-			var num = $('#cbu-'+id+' li').size()-1;
+		function cbadd(id,offset) {
+			var num = $('#cbu-'+id+' li').size()-offset;
 			$('li:last', $('#cbu-'+id)).remove();
 			$('#cbu-'+id).append('<li><a class="cbt-'+id+'" id="cbt'+num+'-'+id+'" href="javascript:cbclick('+num+','+id+');" title="'+'<?php echo gettext('codeblock %u'); ?>'.replace(/%u/,num)+'">&nbsp;&nbsp;'+num+'&nbsp;&nbsp;</a></li>');
-			$('#cbu-'+id).append('<li><a id="cbp-'+id+'" href="javascript:cbadd('+id+');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
+			$('#cbu-'+id).append('<li><a id="cbp-'+id+'" href="javascript:cbadd('+id+','+offset+');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
 			$('#cbd-'+id).append('<div class="cbx-'+id+'" id="cb'+num+'-'+id+'" style="display:none">'+
 														'<textarea name="codeblock'+num+'-'+id+'" class="codeblock" id="codeblock'+num+'-'+id+'" rows="40" cols="60"></textarea>'+
 														'</div>');
@@ -4007,22 +4007,23 @@ function printCodeblockEdit($obj, $id) {
 	$codeblockCount =  max($keys)+1;
 
 	if (array_key_exists(0, $codeblock) &&  !empty($codeblock)) {
-		$start = '';
+		$start = 0;
 	} else {
-		$start = ' style="display:none"';
+		$start = 1;
 	}
+	$count = 1-$start;
 	?>
 	<div id="cbd-<?php echo $id; ?>" class="tabs">
 		<ul id="<?php echo 'cbu'.'-'.$id; ?>" class="tabNavigation">
 			<?php
-			for ($i=0; $i<$codeblockCount; $i++) {
+			for ($i=$start; $i<$codeblockCount; $i++) {
 				?>
-				<li<?php echo $start; ?>><a class="<?php if (!$i) echo 'first '; ?>cbt-<?php echo $id; ; ?>" id="<?php echo 'cbt'.$i.'-'.$id; ?>" href="javascript:cbclick(<?php echo $i.','.$id; ?>);" title="<?php printf(gettext('codeblock %u'),$i); ?>">&nbsp;&nbsp;<?php echo $i; ?>&nbsp;&nbsp;</a></li>
+				<li><a class="<?php if (!$i) echo 'first '; ?>cbt-<?php echo $id; ; ?>" id="<?php echo 'cbt'.$i.'-'.$id; ?>" href="javascript:cbclick(<?php echo $i.','.$id; ?>);" title="<?php printf(gettext('codeblock %u'),$i); ?>">&nbsp;&nbsp;<?php echo $i; ?>&nbsp;&nbsp;</a></li>
 				<?php
 				$start = '';
 			}
 			?>
-			<li><a id="<?php echo 'cbp'.'-'.$id; ?>" href="javascript:cbadd(<?php echo $id; ?>);" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>
+			<li><a id="<?php echo 'cbp'.'-'.$id; ?>" href="javascript:cbadd(<?php echo $id; ?>,<?php echo (int) $count; ?>);" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>
 		</ul>
 
 		<?php
