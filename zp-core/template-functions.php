@@ -4629,8 +4629,11 @@ function exposeZenPhotoInformations( $obj = '', $plugins = '', $theme = '' ) {
  *
  * @return string
  */
-function getCodeblock($number=0) {
+function getCodeblock($number=1) {
 	global $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_gallery, $_zp_gallery_page;
+	if (!$number) {
+		setOptionDefault('codeblock_first_tab', 0);
+	}
 	$getcodeblock = NULL;
 	if ($_zp_gallery_page == 'index.php') {
 		$getcodeblock = $_zp_gallery->getCodeblock();
@@ -4665,14 +4668,12 @@ function getCodeblock($number=0) {
 /**
  * Prints the content of a codeblock for an image, album or Zenpage newsarticle or page.
  *
- * NOTE: This executes PHP and JavaScript code if available
- *
  * @param int $number The codeblock you want to get
  * @param mixed $what optonal object for which you want the codeblock
  *
  * @return string
  */
-function printCodeblock($number=0,$what=NULL) {
+function printCodeblock($number=1,$what=NULL) {
 	if (is_object($what)) {
 		$codeblock = $what->getCodeblock();
 		if ($codeblock) {
