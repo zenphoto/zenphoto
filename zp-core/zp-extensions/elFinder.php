@@ -25,8 +25,6 @@ $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'elFinder_options';
 
-zp_register_filter('admin_tabs', 'elFinder_admin_tabs');
-
 /**
  * Option handler class
  *
@@ -62,19 +60,25 @@ class elFinder_options {
 }
 
 if (getOption('elFinder_files') && zp_loggedin(FILES_RIGHTS)) {
-	zp_register_filter('admin_tabs', 'elFinder_admin_tabs');
+	zp_register_filter('admin_tabs', 'elFinder_admin_tabs', 50);
 }
 if (getOption('elFinder_tinymce')) {
 	zp_register_filter('tinymce_zenpage_config', 'elFinder_tinymce');
 }
 
 function elFinder_admin_tabs($tabs) {
+	$me = sprintf(gettext('files (%s)'),'elFinder');
+	$mylink = PLUGIN_FOLDER.'/'.'elFinder/filemanager.php?page=upload&amp;tab='.$me;
 	if (is_null($tabs['upload'])) {
-		$tabs['upload'] = array('text'=>gettext("upload"),	'subtabs'=>NULL, 'link'=>WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/elFinder/filemanager.php?page=upload&amp;tab=files');
+		$tabs['upload'] =  array('text'=>gettext("upload"),
+				'link'=>WEBPATH."/".ZENFOLDER.'/'.$mylink,
+				'subtabs'=>NULL);
 	} else {
-		$tabs['upload']['subtabs'][gettext('images')] = 'admin-upload.php?page=upload&amp;tab=images';
-		$tabs['upload']['default']= 'images';
-		$tabs['upload']['subtabs'][gettext('files')] = PLUGIN_FOLDER.'/elFinder/filemanager.php?page=upload&amp;tab=files';
+		$default = str_replace(WEBPATH.'/'.ZENFOLDER.'/','',$tabs['upload']['link']);
+		preg_match('|&amp;tab=([^&]*)|', $default, $matches);
+		$tabs['upload']['subtabs'][$matches[1]] = $default;
+		$tabs['upload']['subtabs'][$me] = $tabs['upload']['link'] = $mylink;
+		$tabs['upload']['default']= $me;
 	}
 	return $tabs;
 }

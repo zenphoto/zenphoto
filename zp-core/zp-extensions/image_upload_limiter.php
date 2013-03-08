@@ -23,7 +23,7 @@ if ($plugin_disable) {
 	zp_register_filter('upload_helper_js', 'uploadLimiterJS');
 	zp_register_filter('get_upload_header_text', 'uploadLimiterHeaderMessage');
 	zp_register_filter('upload_filetypes','limitUploadFiletypes');
-	zp_register_filter('upload_hadlers','limitUploadHandlers');
+	zp_register_filter('upload_handlers','limitUploadHandlers',0);
 }
 
 /**
@@ -244,15 +244,45 @@ function limitUploadFiletypes($types) {
 
 /**
  *
- * Remove all but "flash" from the upload handlers since that is all we support
+ * Remove all but "flash" from the upload subtabs since that is all we support
  * @param array $handlers
  * @return array
  */
 function limitUploadHandlers($handlers) {
+	global $zenphoto_tabs;
 	if (!zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
-		$foreign = array_diff(array_keys($handlers), array('flash'));
-		foreach ($foreign as $handler) {
-			unset($handlers[$handler]);
+		$keys = array_keys($handlers);
+		foreach ($zenphoto_tabs['upload']['subtabs'] as $tab) {
+			if (preg_match('|&amp;tab=([^&]*)|', $tab, $handler)) {
+				if (preg_match('|.*\((.*)\)|', $handler[1], $matches)) {
+					if ($matches[1]=='flash') {
+						$flash = $handler[1];
+					} else if (in_array($handler[1], $keys)) {
+						unset ($zenphoto_tabs['upload']['subtabs'][$handler[1]]);
+						unset($handlers[$handler[1]]);
+					}
+				}
+			}
+		}
+		if (isset($flash)) {
+			$zenphoto_tabs['upload']['default'] = $flash;
+			$zenphoto_tabs['upload']['link'] = WEBPATH."/".ZENFOLDER.'/'.$zenphoto_tabs['upload']['subtabs'][$flash];
+		} else {
+			$c = 0;
+			foreach ($zenphoto_tabs['upload']['subtabs'] as $key=>$link) {
+				$zenphoto_tabs['upload']['link'] = $link;
+				$zenphoto_tabs['upload']['default'] = $key;
+				$c++;
+				break;
+			}
+			switch($c) {
+				case 0:
+					$zenphoto_tabs['upload']['link'] = WEBPATH."/".ZENFOLDER.'/admin-upload.php';
+					$zenphoto_tabs['upload']['default'] = NULL;
+				case 1:
+					$zenphoto_tabs['upload']['subtabs'] = NULL;
+					break;
+			}
 		}
 	}
 	return $handlers;

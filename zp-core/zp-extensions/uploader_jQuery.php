@@ -20,26 +20,29 @@ if ($plugin_disable) {
 } else {
 	if (zp_loggedin(UPLOAD_RIGHTS)) {
 		zp_register_filter('upload_handlers', 'jQueryUploadHandler');
-		zp_register_filter('admin_tabs', 'jQueryUploadHandler_admin_tabs');
+		zp_register_filter('admin_tabs', 'jQueryUploadHandler_admin_tabs', 5);
 	}
 }
 
 function jQueryUploadHandler($uploadHandlers) {
-	$uploadHandlers['jQuery'] = SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/uploader_jQuery';
+	$me = sprintf(gettext('images (%s)'),'jQuery');
+	$uploadHandlers[$me] = SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/uploader_jQuery';
 	return $uploadHandlers;
 }
 
 function jQueryUploadHandler_admin_tabs($tabs) {
+	$me = sprintf(gettext('images (%s)'),'jQuery');
+	$mylink = 'admin-upload.php?page=upload&amp;tab='.$me.'&amp;uploadtype=jQuery';
 	if (is_null($tabs['upload'])) {
 		$tabs['upload'] =  array('text'=>gettext("upload"),
-															'link'=>WEBPATH."/".ZENFOLDER.'/admin-upload.php?page=upload&amp;tab=images',
+															'link'=>WEBPATH."/".ZENFOLDER.'/'.$mylink,
 															'subtabs'=>NULL);
 	} else {
-		if (!isset($tabs['upload']['subtabs'][gettext('files')])) {
-			$tabs['upload']['subtabs'][gettext('files')] = str_replace(WEBPATH."/".ZENFOLDER.'/','',$tabs['upload']['link']);
-		}
-		$tabs['upload']['link'] = $tabs['upload']['subtabs'][gettext('images')] = 'admin-upload.php?page=upload&amp;tab=images';
-		$tabs['upload']['default']= 'images';
+		$default = str_replace(WEBPATH.'/'.ZENFOLDER.'/','',$tabs['upload']['link']);
+		preg_match('|&amp;tab=([^&]*)|', $default, $matches);
+		$tabs['upload']['subtabs'][$matches[1]] = $default;
+		$tabs['upload']['subtabs'][$me] = $tabs['upload']['link'] = $mylink;
+		$tabs['upload']['default']= $me;
 	}
 	return $tabs;
 }
