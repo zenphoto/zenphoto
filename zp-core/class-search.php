@@ -1499,6 +1499,9 @@ class SearchEngine {
 		if ($page == 0) {
 			return $this->images;
 		} else {
+			if (empty($this->images)) {
+				return array();
+			}
 			// Only return $firstPageCount images if we are on the first page and $firstPageCount > 0
 			if (($page==1) && ($firstPageCount>0)) {
 				$pageStart = 0;
@@ -1768,7 +1771,9 @@ class SearchEngine {
 				if ((time() - strtotime($result['date'])) > SEARCH_CACHE_DURATION*60) {
 					query('DELETE FROM '.prefix('search_cache').' WHERE `id`='.$result['id']);
 				} else {
-					return unserialize($result['data']);
+					if ($result = unserialize($result['data'])) {
+						return $result;
+					}
 				}
 			}
 		}
