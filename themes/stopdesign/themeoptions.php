@@ -23,11 +23,12 @@ class ThemeOptions {
 		setOptionDefault('colorbox_stopdesign_image', 1);
 		setOptionDefault('colorbox_stopdesign_search', 1);
 		if (class_exists('cacheManager')) {
-		cacheManager::deleteThemeCacheSizes('stopdesign');
-			cacheManager::addThemeCacheSize('stopdesign', 480, NULL, NULL, NULL, NULL, NULL, NULL, false, getOption('fullimage_watermark'), NULL, NULL);
-			cacheManager::addThemeCacheSize('stopdesign', NULL, NULL, 89, 67, 89, NULL, NULL, true, getOption('Image_watermark'), NULL, NULL);
-			cacheManager::addThemeCacheSize('stopdesign', NULL, 89, NULL, 89, 67, NULL, NULL, true, getOption('Image_watermark'), NULL, NULL);
-			cacheManager::addThemeCacheSize('stopdesign', NULL, 210, 59, 310, 59, NULL, NULL, true, getOption('Image_watermark'), NULL, NULL);
+			$me = basename(dirname(__FILE__));
+			cacheManager::deleteThemeCacheSizes($me);
+			cacheManager::addThemeCacheSize($me, 480, NULL, NULL, NULL, NULL, NULL, NULL, false, getOption('fullimage_watermark'), NULL, NULL);
+			cacheManager::addThemeCacheSize($me, NULL, NULL, 89, 67, 89, NULL, NULL, true, getOption('Image_watermark'), NULL, NULL);
+			cacheManager::addThemeCacheSize($me, NULL, 89, NULL, 89, 67, NULL, NULL, true, getOption('Image_watermark'), NULL, NULL);
+			cacheManager::addThemeCacheSize($me, NULL, 210, 59, 310, 59, NULL, NULL, true, getOption('Image_watermark'), NULL, NULL);
 		}
 	}
 

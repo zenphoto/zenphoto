@@ -38,9 +38,10 @@ class ThemeOptions {
 			setThemeOption('custom_index_page', '', NULL, 'zenpage', false);
 		}
 		if (class_exists('cacheManager')) {
-			cacheManager::deleteThemeCacheSizes('zenpage');
-			cacheManager::addThemeCacheSize('zenpage', NULL, 580, 580, NULL, NULL, NULL, NULL, NULL, false, getOption('fullimage_watermark'), true);
-			cacheManager::addThemeCacheSize('zenpage', 95, NULL, NULL, getThemeOption('thumb_crop_width'), getThemeOption('thumb_crop_height'), NULL, NULL, true, getOption('Image_watermark'), NULL, NULL);
+			$me = basename(dirname(__FILE__));
+			cacheManager::deleteThemeCacheSizes($me);
+			cacheManager::addThemeCacheSize($me, NULL, 580, 580, NULL, NULL, NULL, NULL, NULL, false, getOption('fullimage_watermark'), true);
+			cacheManager::addThemeCacheSize($me, 95, NULL, NULL, getThemeOption('thumb_crop_width'), getThemeOption('thumb_crop_height'), NULL, NULL, true, getOption('Image_watermark'), NULL, NULL);
 		}
 		if (function_exists('createMenuIfNotExists')) {
 			$menuitems = array(

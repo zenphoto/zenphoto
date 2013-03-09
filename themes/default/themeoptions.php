@@ -31,9 +31,10 @@ class ThemeOptions {
 		setOptionDefault('colorbox_default_image', 1);
 		setOptionDefault('colorbox_default_search', 1);
 		if (class_exists('cacheManager')) {
-			cacheManager::deleteThemeCacheSizes('default');
-			cacheManager::addThemeCacheSize('default', getThemeOption('image_size'), NULL, NULL, NULL, NULL, NULL, NULL, false, getOption('fullimage_watermark'), NULL, NULL);
-			cacheManager::addThemeCacheSize('default', getThemeOption('thumb_size'), NULL, NULL, getThemeOption('thumb_crop_width'), getThemeOption('thumb_crop_height'), NULL, NULL, true, getOption('Image_watermark'), NULL, NULL);
+			$me = basename(dirname(__FILE__));
+			cacheManager::deleteThemeCacheSizes($me);
+			cacheManager::addThemeCacheSize($me, getThemeOption('image_size'), NULL, NULL, NULL, NULL, NULL, NULL, false, getOption('fullimage_watermark'), NULL, NULL);
+			cacheManager::addThemeCacheSize($me, getThemeOption('thumb_size'), NULL, NULL, getThemeOption('thumb_crop_width'), getThemeOption('thumb_crop_height'), NULL, NULL, true, getOption('Image_watermark'), NULL, NULL);
 		}
 	}
 

@@ -27,8 +27,9 @@ class ThemeOptions {
 		setThemeOptionDefault('images_per_page', 24);
 		setThemeOptionDefault('images_per_row', 6);
 		if (class_exists('cacheManager')) {
-			cacheManager::deleteThemeCacheSizes('zpmobile');
-			cacheManager::addThemeCacheSize('zpmobile', NULL, 79, 79, 79, 79, NULL, NULL, true, getOption('Image_watermark'), NULL, NULL);
+			$me = basename(dirname(__FILE__));
+			cacheManager::deleteThemeCacheSizes($me);
+			cacheManager::addThemeCacheSize($me, NULL, 79, 79, 79, 79, NULL, NULL, true, getOption('Image_watermark'), NULL, NULL);
 		}
 	}
 
