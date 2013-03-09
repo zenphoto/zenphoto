@@ -70,10 +70,7 @@ local.properties
 #######################
 .htaccess
 /robots.txt
-/*.bat
-/*.sh
 /favicon.ico
-.cache
-.project
-.settings
-
+*.bat
+*.sh
+.*
