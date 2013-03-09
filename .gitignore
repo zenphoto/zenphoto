@@ -68,7 +68,6 @@ local.properties
 
 # Miscellaneous files #
 #######################
-.htaccess
 /robots.txt
 /favicon.ico
 *.bat
