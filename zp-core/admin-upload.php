@@ -280,16 +280,6 @@ if ($rootrights || !empty($albumlist)) {
 			<?php
 			//	load the uploader specific form stuff
 			upload_extra($uploadlimit, $passedalbum);
-			if (count($uploadHandlers)>1) {
-				?>
-				<p>
-					<?php echo gettext('Upload handler:')?>
-					<select name="uploadtype" id="uploadtype" onchange="switchUploader()">
-						<?php generateListFromArray(array($uploadtype), array_keys($uploadHandlers), false, false); ?>
-					</select>
-				</p>
-				<?php
-			}
 			?>
 		</div><!-- upload action -->
 
