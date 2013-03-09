@@ -392,11 +392,7 @@ function printContactForm($subject_override='') {
  * @return bool
  */
 function showOrNotShowField($option) {
-	if($option == "required" or  $option == "show") {
-		return TRUE;
-	} else {
-		return FALSE;
-	}
+	return $option == "required" || $option == "show";
 }
 
 /**
