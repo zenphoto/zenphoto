@@ -1499,6 +1499,9 @@ class SearchEngine {
 		if ($page == 0) {
 			return $this->images;
 		} else {
+			if (empty($this->images)) {
+				return array();
+			}
 			// Only return $firstPageCount images if we are on the first page and $firstPageCount > 0
 			if (($page==1) && ($firstPageCount>0)) {
 				$pageStart = 0;
