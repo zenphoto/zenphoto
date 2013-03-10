@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-09 08:45+0100\n"
+"POT-Creation-Date: 2013-03-10 10:32+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -494,30 +494,30 @@ msgstr ""
 "kleur van het thema kiezen via de admin opties tab en de  optie "
 "<em>Themakleuren</em> te wijzigen."
 
-#: ZpTranslation-Development/themes/default/themeoptions.php:41
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:100
-#: ZpTranslation-Development/themes/garland/themeoptions.php:73
-#: ZpTranslation-Development/themes/stopdesign/themeoptions.php:35
-#: ZpTranslation-Development/themes/zenpage/themeoptions.php:64
-#: ZpTranslation-Development/themes/zpmobile/themeoptions.php:37
+#: ZpTranslation-Development/themes/default/themeoptions.php:42
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:101
+#: ZpTranslation-Development/themes/garland/themeoptions.php:74
+#: ZpTranslation-Development/themes/stopdesign/themeoptions.php:36
+#: ZpTranslation-Development/themes/zenpage/themeoptions.php:65
+#: ZpTranslation-Development/themes/zpmobile/themeoptions.php:38
 msgid "Allow search"
 msgstr "Sta zoeken toe"
 
-#: ZpTranslation-Development/themes/default/themeoptions.php:41
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:100
-#: ZpTranslation-Development/themes/stopdesign/themeoptions.php:36
-#: ZpTranslation-Development/themes/zenpage/themeoptions.php:64
-#: ZpTranslation-Development/themes/zpmobile/themeoptions.php:37
+#: ZpTranslation-Development/themes/default/themeoptions.php:42
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:101
+#: ZpTranslation-Development/themes/stopdesign/themeoptions.php:37
+#: ZpTranslation-Development/themes/zenpage/themeoptions.php:65
+#: ZpTranslation-Development/themes/zpmobile/themeoptions.php:38
 msgid "Check to enable search form."
 msgstr "Vink aan om het zoekveld te tonen."
 
-#: ZpTranslation-Development/themes/default/themeoptions.php:42
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:107
+#: ZpTranslation-Development/themes/default/themeoptions.php:43
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:108
 msgid "Theme colors"
 msgstr "Themakleuren"
 
-#: ZpTranslation-Development/themes/default/themeoptions.php:42
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:107
+#: ZpTranslation-Development/themes/default/themeoptions.php:43
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:108
 msgid "Select the colors of the theme"
 msgstr "Selecteer de kleuren van het thema."
 
@@ -579,7 +579,7 @@ msgstr "Album is leeg"
 
 #: ZpTranslation-Development/themes/effervescence_plus/archive.php:9
 #: ZpTranslation-Development/themes/effervescence_plus/sidebar.php:62
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:73
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:74
 #: ZpTranslation-Development/themes/stopdesign/gallery.php:13
 #: ZpTranslation-Development/themes/stopdesign/gallery.php:29
 #: ZpTranslation-Development/themes/stopdesign/register.php:12
@@ -903,7 +903,7 @@ msgstr "Ga naar de fotogalerij"
 
 #: ZpTranslation-Development/themes/effervescence_plus/news.php:11
 #: ZpTranslation-Development/themes/effervescence_plus/sidebar.php:93
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:78
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:79
 #: ZpTranslation-Development/themes/garland/news.php:8
 #: ZpTranslation-Development/themes/zenpage/news.php:11
 #: ZpTranslation-Development/themes/zenpage/sidebar.php:68
@@ -949,11 +949,11 @@ msgstr "Zoek in nieuws"
 
 #: ZpTranslation-Development/themes/effervescence_plus/pages.php:11
 #: ZpTranslation-Development/themes/effervescence_plus/sidebar.php:52
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:70
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:71
 #: ZpTranslation-Development/themes/garland/sidebar.php:119
-#: ZpTranslation-Development/themes/garland/themeoptions.php:50
+#: ZpTranslation-Development/themes/garland/themeoptions.php:51
 #: ZpTranslation-Development/themes/zenpage/sidebar.php:37
-#: ZpTranslation-Development/themes/zenpage/themeoptions.php:52
+#: ZpTranslation-Development/themes/zenpage/themeoptions.php:53
 #: ZpTranslation-Development/themes/zpmobile/functions.php:62
 #: ZpTranslation-Development/themes/zpmobile/functions.php:153
 #: ZpTranslation-Development/themes/zpmobile/pages.php:26
@@ -1099,11 +1099,11 @@ msgid "News articles"
 msgstr "Nieuwsartikelen"
 
 #: ZpTranslation-Development/themes/effervescence_plus/sidebar.php:21
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:63
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:64
 #: ZpTranslation-Development/themes/garland/sidebar.php:74
-#: ZpTranslation-Development/themes/garland/themeoptions.php:43
+#: ZpTranslation-Development/themes/garland/themeoptions.php:44
 #: ZpTranslation-Development/themes/zenpage/sidebar.php:16
-#: ZpTranslation-Development/themes/zenpage/themeoptions.php:48
+#: ZpTranslation-Development/themes/zenpage/themeoptions.php:49
 #: ZpTranslation-Development/themes/zpmobile/functions.php:142
 #: ZpTranslation-Development/zp-core/admin-options.php:1581
 msgid "All news"
@@ -1112,12 +1112,12 @@ msgstr "nieuws"
 #: ZpTranslation-Development/themes/effervescence_plus/sidebar.php:33
 #: ZpTranslation-Development/themes/effervescence_plus/sidebar.php:38
 #: ZpTranslation-Development/themes/effervescence_plus/sidebar.php:89
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:67
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:77
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:68
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:78
 #: ZpTranslation-Development/themes/garland/sidebar.php:86
-#: ZpTranslation-Development/themes/garland/themeoptions.php:47
+#: ZpTranslation-Development/themes/garland/themeoptions.php:48
 #: ZpTranslation-Development/themes/zenpage/sidebar.php:23
-#: ZpTranslation-Development/themes/zenpage/themeoptions.php:49
+#: ZpTranslation-Development/themes/zenpage/themeoptions.php:50
 #: ZpTranslation-Development/themes/zpmobile/album.php:26
 #: ZpTranslation-Development/themes/zpmobile/favorites.php:26
 #: ZpTranslation-Development/themes/zpmobile/functions.php:34
@@ -1158,13 +1158,13 @@ msgstr "Galerij"
 
 #: ZpTranslation-Development/themes/effervescence_plus/sidebar.php:68
 #: ZpTranslation-Development/themes/effervescence_plus/sidebar.php:74
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:74
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:75
 #: ZpTranslation-Development/themes/zenpage/sidebar.php:51
 msgid "Gallery and News"
 msgstr "Galerij en Nieuws"
 
 #: ZpTranslation-Development/themes/effervescence_plus/sidebar.php:87
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:76
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:77
 #: ZpTranslation-Development/themes/zenpage/sidebar.php:61
 #: ZpTranslation-Development/themes/zpmobile/functions.php:24
 #: ZpTranslation-Development/zp-core/admin-globals.php:128
@@ -1172,7 +1172,7 @@ msgid "RSS"
 msgstr "RSS"
 
 #: ZpTranslation-Development/themes/effervescence_plus/sidebar.php:94
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:79
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:80
 #: ZpTranslation-Development/themes/zenpage/sidebar.php:69
 #: ZpTranslation-Development/themes/zpmobile/functions.php:30
 msgid "News and Gallery"
@@ -1192,49 +1192,49 @@ msgid ""
 "added."
 msgstr "Gebaseerd op Effervescence 1.1 met meerdere kleurschema's en layouts."
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:62
-#: ZpTranslation-Development/themes/garland/themeoptions.php:42
-#: ZpTranslation-Development/themes/zenpage/themeoptions.php:47
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:63
+#: ZpTranslation-Development/themes/garland/themeoptions.php:43
+#: ZpTranslation-Development/themes/zenpage/themeoptions.php:48
 #: ZpTranslation-Development/zp-core/utilities/gallery_statistics.php:83
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:129
 msgid "News Articles"
 msgstr "Nieuwsartikelen"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:66
-#: ZpTranslation-Development/themes/garland/themeoptions.php:46
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:67
+#: ZpTranslation-Development/themes/garland/themeoptions.php:47
 msgid "News Articles Rule"
 msgstr "Nieuwsartikelen scheidingslijn"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:68
-#: ZpTranslation-Development/themes/garland/themeoptions.php:48
-#: ZpTranslation-Development/themes/zenpage/themeoptions.php:51
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:69
+#: ZpTranslation-Development/themes/garland/themeoptions.php:49
+#: ZpTranslation-Development/themes/zenpage/themeoptions.php:52
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:76
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:245
 msgid "All Albums"
 msgstr "Alle albums"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:69
-#: ZpTranslation-Development/themes/garland/themeoptions.php:49
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:70
+#: ZpTranslation-Development/themes/garland/themeoptions.php:50
 msgid "Gallery Rule"
 msgstr "Galerij scheidingslijn"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:71
-#: ZpTranslation-Development/themes/garland/themeoptions.php:51
-#: ZpTranslation-Development/themes/zenpage/themeoptions.php:53
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:72
+#: ZpTranslation-Development/themes/garland/themeoptions.php:52
+#: ZpTranslation-Development/themes/zenpage/themeoptions.php:54
 #: ZpTranslation-Development/zp-core/admin-options.php:1584
 msgid "All pages"
 msgstr "Alle pagina's"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:72
-#: ZpTranslation-Development/themes/garland/themeoptions.php:52
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:73
+#: ZpTranslation-Development/themes/garland/themeoptions.php:53
 msgid "Pages Rule"
 msgstr "Pagina's scheidingslijn"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:75
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:76
 msgid "Archive Rule"
 msgstr "Archief scheidingslijn"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:92
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:93
 msgid ""
 "<strong>Note:</strong> This option is valid only if you have the <em>Gallery "
 "index page link</em> option set to \"gallery\". Of course the "
@@ -1244,8 +1244,8 @@ msgstr ""
 "<em>Gallery index page link</em> hebt ingesteld op \"galerij\". Uiteraard "
 "moet ook de <em>menu_manager</em> plugin geactiveerd zijn."
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:95
-#: ZpTranslation-Development/themes/garland/themeoptions.php:65
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:96
+#: ZpTranslation-Development/themes/garland/themeoptions.php:66
 #, php-format
 msgid ""
 "<strong>Note:</strong> The <em>%s</em> custom menu makes use of the "
@@ -1254,19 +1254,19 @@ msgstr ""
 "<strong>Opmerking:</strong> Het <em>%s</em> eigen menu maakt gebruik van de "
 "<em>print_album_menu</em> plugin."
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:97
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:98
 msgid "Theme logo"
 msgstr "Themalogo"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:97
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:98
 msgid "The text for the theme logo"
 msgstr "De tekst voor het themalogo"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:98
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:99
 msgid "Watermark head image"
 msgstr "Watermerk hoofdafbeelding"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:98
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:99
 msgid ""
 "Check to place a watermark on the heading image. (Image watermarking must be "
 "set.)"
@@ -1274,32 +1274,32 @@ msgstr ""
 "Vink aan om een watermerk op de hoofdafbeelding te plaatsen. (<em>Afbeelding "
 "watermerken</em> moet aanstaan.)"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:99
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:100
 msgid "Daily image"
 msgstr "Foto van de dag"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:99
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:100
 msgid ""
 "If checked on the heading image will change daily rather than on each page "
 "load."
 msgstr ""
 "Als dit is aangevinkt verandert  de header afbeelding één keer per dag."
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:101
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:102
 #: ZpTranslation-Development/themes/zenpage/slideshow.php:11
 msgid "Slideshow"
 msgstr "Slideshow"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:101
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:102
 msgid "Check to enable slideshow for the <em>Smoothgallery</em> personality."
 msgstr ""
 "Vink aan om de slideshow voor het <em>Smoothgallery</em> type aan te zetten."
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:102
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:103
 msgid "Graphic logo"
 msgstr "Grafisch logo"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:102
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:103
 #, php-format
 msgid ""
 "Select a logo (PNG files in the <em>%s/images</em> folder) or leave empty "
@@ -1308,29 +1308,29 @@ msgstr ""
 "Selecteer een logo (PNG bestanden in de <em>%s/images</em>map) of laat leeg "
 "voor een tekstlogo."
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:103
-#: ZpTranslation-Development/themes/garland/themeoptions.php:70
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:104
+#: ZpTranslation-Development/themes/garland/themeoptions.php:71
 msgid "Theme personality"
 msgstr "Weegave afbeeldingen"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:106
-#: ZpTranslation-Development/themes/garland/themeoptions.php:72
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:107
+#: ZpTranslation-Development/themes/garland/themeoptions.php:73
 msgid "Select the theme personality"
 msgstr "Selecteer de weergave voor afbeeldingen"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:108
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:112
-#: ZpTranslation-Development/themes/garland/themeoptions.php:75
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:109
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:113
+#: ZpTranslation-Development/themes/garland/themeoptions.php:76
 msgid "Custom menu"
 msgstr "Eigen menu"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:108
-#: ZpTranslation-Development/themes/garland/themeoptions.php:75
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:109
+#: ZpTranslation-Development/themes/garland/themeoptions.php:76
 msgid "Set this to the <em>menu_manager</em> menu you wish to use."
 msgstr ""
 "Stel dit in op het menu (van de <em>menu_manager</em>) dat je wilt gebruiken."
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:112
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:113
 msgid ""
 "This option requires the <em>menu_manager</em> plugin to be enabled and the "
 "<em>Gallery index page link</em> to be set to \"gallery\"."
@@ -1338,13 +1338,13 @@ msgstr ""
 "Voor deze optie moet de <em>menu_manager</em> plugin geactiveerd zijn en de "
 "<em>Galerij index link</em> op \"gallery\" staan."
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:116
-#: ZpTranslation-Development/themes/garland/themeoptions.php:90
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:117
+#: ZpTranslation-Development/themes/garland/themeoptions.php:91
 msgid "Image gallery transition"
 msgstr "Galerij overgang"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:117
-#: ZpTranslation-Development/themes/garland/themeoptions.php:91
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:118
+#: ZpTranslation-Development/themes/garland/themeoptions.php:92
 #: ZpTranslation-Development/zp-core/exif/makers/canon.php:151
 #: ZpTranslation-Development/zp-core/exif/makers/nikon.php:221
 #: ZpTranslation-Development/zp-core/zp-extensions/GoogleMap.php:88
@@ -1352,50 +1352,50 @@ msgstr "Galerij overgang"
 msgid "None"
 msgstr "Geen"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:117
-#: ZpTranslation-Development/themes/garland/themeoptions.php:91
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:118
+#: ZpTranslation-Development/themes/garland/themeoptions.php:92
 msgid "Fade"
 msgstr "Vervagen"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:117
-#: ZpTranslation-Development/themes/garland/themeoptions.php:91
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:118
+#: ZpTranslation-Development/themes/garland/themeoptions.php:92
 msgid "Shrink/grow"
 msgstr "Klein/groot"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:117
-#: ZpTranslation-Development/themes/garland/themeoptions.php:91
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:118
+#: ZpTranslation-Development/themes/garland/themeoptions.php:92
 #: ZpTranslation-Development/zp-core/zp-extensions/GoogleMap.php:91
 msgid "Horizontal"
 msgstr "Horizontaal"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:117
-#: ZpTranslation-Development/themes/garland/themeoptions.php:91
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:118
+#: ZpTranslation-Development/themes/garland/themeoptions.php:92
 #: ZpTranslation-Development/zp-core/zp-extensions/jcarousel_thumb_nav.php:51
 msgid "Vertical"
 msgstr "Verticaal"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:119
-#: ZpTranslation-Development/themes/garland/themeoptions.php:93
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:120
+#: ZpTranslation-Development/themes/garland/themeoptions.php:94
 msgid "Transition effect for Image gallery"
 msgstr "Effect van de overgang van de afbeeldingen"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:120
-#: ZpTranslation-Development/themes/garland/themeoptions.php:94
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:121
+#: ZpTranslation-Development/themes/garland/themeoptions.php:95
 msgid "Image gallery caption"
 msgstr "Gallery afbeeldingsbeschrijving"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:121
-#: ZpTranslation-Development/themes/garland/themeoptions.php:95
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:122
+#: ZpTranslation-Development/themes/garland/themeoptions.php:96
 msgid "On image"
 msgstr "op de afbeelding"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:121
-#: ZpTranslation-Development/themes/garland/themeoptions.php:95
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:122
+#: ZpTranslation-Development/themes/garland/themeoptions.php:96
 msgid "Separate"
 msgstr "apart"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:121
-#: ZpTranslation-Development/themes/garland/themeoptions.php:95
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:122
+#: ZpTranslation-Development/themes/garland/themeoptions.php:96
 #: ZpTranslation-Development/zp-core/admin-options.php:2359
 #: ZpTranslation-Development/zp-core/admin-options.php:2376
 #: ZpTranslation-Development/zp-core/admin-options.php:2393
@@ -1405,20 +1405,20 @@ msgstr "apart"
 msgid "Omit"
 msgstr "niet tonen"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:123
-#: ZpTranslation-Development/themes/garland/themeoptions.php:97
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:124
+#: ZpTranslation-Development/themes/garland/themeoptions.php:98
 msgid "Location for Image gallery picture caption"
 msgstr "Plaats van de afbeeldingsbeschrijving"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:133
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:138
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:134
 #: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:139
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:140
 msgid "Index Image"
 msgstr "Index afbeelding"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:134
-#: ZpTranslation-Development/themes/garland/themeoptions.php:86
-#: ZpTranslation-Development/themes/zenpage/themeoptions.php:67
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:135
+#: ZpTranslation-Development/themes/garland/themeoptions.php:87
+#: ZpTranslation-Development/themes/zenpage/themeoptions.php:68
 #: ZpTranslation-Development/zp-core/admin-edit.php:1234
 #: ZpTranslation-Development/zp-core/admin-options.php:1941
 #: ZpTranslation-Development/zp-core/admin-options.php:1954
@@ -1441,25 +1441,25 @@ msgstr "Index afbeelding"
 msgid "none"
 msgstr "geen"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:136
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:137
 msgid "Apply this effect to the index page image."
 msgstr "Pas dit effect toe op de afbeelding van de index pagina."
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:139
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:140
 msgid "This option requires the <em>image_effects</em> plugin to be enabled."
 msgstr ""
 "Deze optie vereist dat de <em>image_effects</em> plugin is geactiveerd."
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:169
-#: ZpTranslation-Development/themes/garland/themeoptions.php:116
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:170
+#: ZpTranslation-Development/themes/garland/themeoptions.php:117
 msgid "*standard menu"
 msgstr "*standaard menu"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:176
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:177
 msgid "*no logo selected"
 msgstr "*geen logo geselecteerd"
 
-#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:177
+#: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:178
 msgid "Effervescence"
 msgstr "Effervescence"
 
@@ -1644,23 +1644,23 @@ msgstr ""
 "Aangepast WordPress thema van <a href=\"http://garlandtheme.blogspot.com/"
 "\">garland</a>."
 
-#: ZpTranslation-Development/themes/garland/themeoptions.php:73
+#: ZpTranslation-Development/themes/garland/themeoptions.php:74
 msgid "Set to enable search form."
 msgstr "Vink aan om het zoekveld te tonen."
 
-#: ZpTranslation-Development/themes/garland/themeoptions.php:74
+#: ZpTranslation-Development/themes/garland/themeoptions.php:75
 msgid "Allow cloud"
 msgstr "Maak \"cloud\" mogelijk"
 
-#: ZpTranslation-Development/themes/garland/themeoptions.php:74
+#: ZpTranslation-Development/themes/garland/themeoptions.php:75
 msgid "Set to enable tag cloud for album page."
 msgstr "Vink aan om een \"tag cloud\" mogelijk te maken op de album pagina."
 
-#: ZpTranslation-Development/themes/garland/themeoptions.php:84
+#: ZpTranslation-Development/themes/garland/themeoptions.php:85
 msgid "Custom Homepage"
 msgstr "Eigen homepage"
 
-#: ZpTranslation-Development/themes/garland/themeoptions.php:87
+#: ZpTranslation-Development/themes/garland/themeoptions.php:88
 msgid ""
 "Select the <em>pages</em> titlelink for the home page. Only unpublished "
 "pages are offered for selection."
@@ -2062,7 +2062,7 @@ msgid "Description"
 msgstr "Beschrijving"
 
 #: ZpTranslation-Development/themes/stopdesign/index.php:98
-#: ZpTranslation-Development/themes/stopdesign/themeoptions.php:38
+#: ZpTranslation-Development/themes/stopdesign/themeoptions.php:39
 msgid "Recent images"
 msgstr "recente afbeeldingen"
 
@@ -2072,7 +2072,7 @@ msgid "View image:"
 msgstr "Bekijk afbeelding:"
 
 #: ZpTranslation-Development/themes/stopdesign/index.php:128
-#: ZpTranslation-Development/themes/stopdesign/themeoptions.php:38
+#: ZpTranslation-Development/themes/stopdesign/themeoptions.php:39
 #: ZpTranslation-Development/zp-core/class-rss.php:436
 msgid "Random images"
 msgstr "willekeurige afbeeldingen."
@@ -2126,11 +2126,11 @@ msgstr ""
 "<a href=\"http://creativecommons.org/licenses/by-nc-sa/2.5/\">Creative "
 "Commons Attribution-NonCommercial-ShareAlike 2.5</a> licentie."
 
-#: ZpTranslation-Development/themes/stopdesign/themeoptions.php:37
+#: ZpTranslation-Development/themes/stopdesign/themeoptions.php:38
 msgid "Mini slide selector"
 msgstr "Beelden voor de 6 kleine slides."
 
-#: ZpTranslation-Development/themes/stopdesign/themeoptions.php:39
+#: ZpTranslation-Development/themes/stopdesign/themeoptions.php:40
 msgid "Select what you want for the six special slides."
 msgstr ""
 "Selecteer welke beelden je wilt tonen in de 6 kleine slides op de "
@@ -2256,7 +2256,7 @@ msgid "next thumbs »"
 msgstr "volgende thumbnails »"
 
 #: ZpTranslation-Development/themes/zenpage/sidebar.php:26
-#: ZpTranslation-Development/themes/zenpage/themeoptions.php:50
+#: ZpTranslation-Development/themes/zenpage/themeoptions.php:51
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:68
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:244
 msgid "Gallery index"
@@ -2280,29 +2280,29 @@ msgstr ""
 "de sidebar), de dynamic_locale plugin; plugin, de nieuwe paged_thumbs_nav "
 "plugin en de jCarousel_thumb_nav plugin."
 
-#: ZpTranslation-Development/themes/zenpage/themeoptions.php:65
+#: ZpTranslation-Development/themes/zenpage/themeoptions.php:66
 msgid "Use Colorbox"
 msgstr "Gebruik Colorbox"
 
-#: ZpTranslation-Development/themes/zenpage/themeoptions.php:65
+#: ZpTranslation-Development/themes/zenpage/themeoptions.php:66
 msgid "Check to display of the full size image with Colorbox."
 msgstr "Vink aan om de de volledige afbeelding weer te geven met Colorbox"
 
-#: ZpTranslation-Development/themes/zenpage/themeoptions.php:66
+#: ZpTranslation-Development/themes/zenpage/themeoptions.php:67
 msgid "News on index page"
 msgstr "Nieuws op index  pagina"
 
-#: ZpTranslation-Development/themes/zenpage/themeoptions.php:66
+#: ZpTranslation-Development/themes/zenpage/themeoptions.php:67
 msgid ""
 "Enable this if you want to show the news section's first page on the "
 "<code>index.php</code> page."
 msgstr "Vink aan om de nieuwspagina te laten zien op <code>index.php</code>."
 
-#: ZpTranslation-Development/themes/zenpage/themeoptions.php:67
+#: ZpTranslation-Development/themes/zenpage/themeoptions.php:68
 msgid "Homepage"
 msgstr "Homepage"
 
-#: ZpTranslation-Development/themes/zenpage/themeoptions.php:67
+#: ZpTranslation-Development/themes/zenpage/themeoptions.php:68
 msgid ""
 "Choose here any <em>un-published Zenpage page</em> (listed by <em>titlelink</"
 "em>) to act as your site's homepage instead the normal gallery index."
@@ -2310,7 +2310,7 @@ msgstr ""
 "Kies hier een <em>ongepubliceerde Zenpage pagina</em> (lijst van titlelink"
 "(s)) om te fungeren als de site's homepage i.p.v. de normale galerij index. "
 
-#: ZpTranslation-Development/themes/zenpage/themeoptions.php:67
+#: ZpTranslation-Development/themes/zenpage/themeoptions.php:68
 msgid ""
 "<strong>Note:</strong> This of course overrides the <em>News on index page</"
 "em> option and your theme must be setup for this feature! Visit the theming "
@@ -2320,11 +2320,11 @@ msgstr ""
 "em> niet werkt. Bovendien moet het thema aangepast worden voor deze "
 "mogelijkheid. Zie de thema uitleg voor meer informatie."
 
-#: ZpTranslation-Development/themes/zenpage/themeoptions.php:68
+#: ZpTranslation-Development/themes/zenpage/themeoptions.php:69
 msgid "Use standard contact page"
 msgstr "Gebruik standaard contactpagina."
 
-#: ZpTranslation-Development/themes/zenpage/themeoptions.php:68
+#: ZpTranslation-Development/themes/zenpage/themeoptions.php:69
 msgid ""
 "Disable this if you do not want to use the separate contact page with the "
 "contact form. You can also use the codeblock of a page for this. See the "
@@ -2334,11 +2334,11 @@ msgstr ""
 "contactformulier. Je kunt hiervoor ook een codeblock gebruiken. Zie de "
 "documentatie van de \"contact_form\" plugin voor meer informatie."
 
-#: ZpTranslation-Development/themes/zenpage/themeoptions.php:69
+#: ZpTranslation-Development/themes/zenpage/themeoptions.php:70
 msgid "Use custom menu"
 msgstr "Gebruik eigen menu"
 
-#: ZpTranslation-Development/themes/zenpage/themeoptions.php:69
+#: ZpTranslation-Development/themes/zenpage/themeoptions.php:70
 msgid ""
 "Check this if you want to use the <em>menu_manager</em> plugin if enabled to "
 "build a custom menu instead of the separate standard ones. A standard menu "
@@ -2436,11 +2436,11 @@ msgstr ""
 "Een thema, in eerste instantie bedoeld voor smartphones en tablets. "
 "Ontwikkeld met <a href='http://jQuerymobile.com'>jQuerymobile framework</a>."
 
-#: ZpTranslation-Development/themes/zpmobile/themeoptions.php:38
+#: ZpTranslation-Development/themes/zpmobile/themeoptions.php:39
 msgid "Allow direct link from multimedia"
 msgstr "Directe link naar multimedia"
 
-#: ZpTranslation-Development/themes/zpmobile/themeoptions.php:38
+#: ZpTranslation-Development/themes/zpmobile/themeoptions.php:39
 msgid ""
 "Check to enable a direct link to multimedia items on the single image page "
 "in case the player is not supported by the device but the actual format is."
@@ -21640,8 +21640,8 @@ msgid ""
 "not carry the Zenphoto data with the change."
 msgstr ""
 "<strong>Opmerking:</strong> Toegang tot de <em>albums</em> map met dit tool "
-"is hetzelfde als met FTP. <em>Kopiëren en hernoemen</em> and <em>rename</em> "
-"zorgen ervoor dat Zenphoto data verloren gaat."
+"is hetzelfde als met FTP. <em>Kopiëren</em> en </em>hernoemen</em> zorgen "
+"ervoor dat Zenphoto data verloren gaat."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/elFinder/php/connector_zp.php:75
 #: ZpTranslation-Development/zp-core/zp-extensions/elFinder/php/connector_zp.php:196
