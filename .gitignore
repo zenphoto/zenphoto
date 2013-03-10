@@ -68,12 +68,8 @@ local.properties
 
 # Miscellaneous files #
 #######################
-.htaccess
 /robots.txt
-/*.bat
-/*.sh
 /favicon.ico
-.cache
-.project
-.settings
-.*~
+*.bat
+*.sh
+.*

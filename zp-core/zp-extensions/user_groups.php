@@ -96,7 +96,7 @@ class user_groups {
 		if ($alter) {
 			if (isset($_POST[$i.'group'])) {
 				$newgroups = sanitize($_POST[$i.'group']);
-				$updated = self::merge_rights($userobj, $newgroups);
+				$updated = $updated || self::merge_rights($userobj, $newgroups);
 			}
 		}
 		return $updated;
