@@ -2017,7 +2017,7 @@ if (file_exists(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE)) {
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`criteria` TEXT,
 		`date` datetime default NULL,
-		`data` TEXT,
+		`data` LONGTEXT,
 		KEY (`criteria`(255)),
 		PRIMARY KEY (`id`)
 		) $collation;";
@@ -2315,6 +2315,8 @@ if (file_exists(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE)) {
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' CHANGE `pass` `pass` varchar(64)';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `passhash` int (1)';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `passupdate` datetime';
+	//v1.4.4
+	$sql_statements[] = "ALTER TABLE $tbl_searches CHANGE `data` `data` LONGTEXT";
 	//v1.4.5
 	$sql_statements[] = "ALTER TABLE $tbl_news ADD COLUMN `truncation` int(1) unsigned NOT NULL default '0'";
 	$sql_statements[] = "ALTER TABLE $tbl_pages ADD COLUMN `truncation` int(1) unsigned NOT NULL default '0'";
