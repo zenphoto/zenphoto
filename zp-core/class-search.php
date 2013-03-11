@@ -1287,7 +1287,7 @@ class SearchEngine {
 					}
 					db_free_result($search_result);
 					if (is_null($sorttype)) {
-						$result = sortMultiArray($result, 'weight', true);
+						$result = sortMultiArray($result, 'weight', true, true, false, false, array('weight'));
 					}
 					foreach ($result as $album) {
 						$albums[] = $album['name'];
@@ -1469,7 +1469,7 @@ class SearchEngine {
 				}
 				db_free_result($search_result);
 				if (is_null($sorttype) && isset($weights)) {
-					$images = sortMultiArray($images, 'weight', true);
+					$images = sortMultiArray($images, 'weight', true, true, false, false, array('weight'));
 				}
 			}
 
@@ -1629,7 +1629,7 @@ class SearchEngine {
 				db_free_result($search_result);
 			}
 			if (isset($weights)) {
-				$result = sortMultiArray($result, 'weight', true);
+				$result = sortMultiArray($result, 'weight', true, true, false, false, array('weight'));
 			}
 
 
@@ -1698,7 +1698,7 @@ class SearchEngine {
 			}
 			if ($search_result) {
 				while ($row = db_fetch_assoc($search_result)) {
-					$data = array('id'=>$row['id'],'titlelink'=>$row['titlelink']);
+					$data = array('titlelink'=>$row['titlelink']);
 					if (isset($weights)) {
 						$data['weight'] = $weights[$row['id']];
 					}
@@ -1707,7 +1707,7 @@ class SearchEngine {
 				db_free_result($search_result);
 			}
 			if (isset($weights)) {
-				$result = sortMultiArray($result, 'weight', true);
+				$result = sortMultiArray($result, 'weight', true, true, false, false, array('weight'));
 			}
 			$this->cacheSearch($criteria,$result);
 		}

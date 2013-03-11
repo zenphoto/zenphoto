@@ -1251,7 +1251,7 @@ function sortByKey($results,$sortkey,$order) {
  *
  * @author redoc (http://codingforums.com/showthread.php?t=71904)
  */
-function sortMultiArray($array, $index, $descending=false, $natsort=true, $case_sensitive=false, $preservekeys=false) {
+function sortMultiArray($array, $index, $descending=false, $natsort=true, $case_sensitive=false, $preservekeys=false, $remove_criteria=array()) {
 	if(is_array($array) && count($array)>0) {
 		if (is_array($index)) {
 			$indicies = $index;
@@ -1263,6 +1263,9 @@ function sortMultiArray($array, $index, $descending=false, $natsort=true, $case_
 			foreach ($indicies as $index) {
 				if (is_array($row) && array_key_exists($index, $row)) {
 					$temp[$key] .= $row[$index];
+					if (in_array($index,$remove_criteria)) {
+						unset($array[$key][$index]);
+					}
 				}
 			}
 			if ($temp[$key]==='') {
