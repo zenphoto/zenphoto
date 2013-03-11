@@ -1988,7 +1988,7 @@ if (file_exists(CONFIGFILE)) {
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`criteria` TEXT,
 		`date` datetime default NULL,
-		`data` TEXT,
+		`data` LONGTEXT,
 		KEY (`criteria`(255)),
 		PRIMARY KEY (`id`)
 		) $collation;";
@@ -2288,6 +2288,7 @@ if (file_exists(CONFIGFILE)) {
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' CHANGE `pass` `pass` varchar(64)';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `passhash` int (1)';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `passupdate` datetime';
+	$sql_statements[] = "ALTER TABLE $tbl_searches CHANGE `data` `data` LONGTEXT";
 
 	// do this last incase there are any field changes of like names!
 	foreach ($_zp_exifvars as $key=>$exifvar) {

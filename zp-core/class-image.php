@@ -442,7 +442,7 @@ class _Image extends MediaObject {
 
 		$x = $this->getTitle();
 		if (empty($x)) {
-			$this->set('title',$this->displayname);
+			$this->setTitle($this->displayname);
 		}
 		if (empty($xdate)) {
 			$this->setDateTime(strftime('%Y-%m-%d %H:%M:%S', $this->filemtime));
