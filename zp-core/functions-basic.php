@@ -449,23 +449,23 @@ function hasDynamicAlbumSuffix($path) {
 function rewrite_get_album_image($albumvar, $imagevar) {
 	global $_zp_rewritten;
 
-	$ralbum = isset($_GET[$albumvar]) ? sanitize_path($_GET[$albumvar]) : NULL;
+	$ralbum = isset($_GET[$albumvar]) ? trim(sanitize_path($_GET[$albumvar]),'/') : NULL;
 	$rimage = isset($_GET[$imagevar]) ? sanitize($_GET[$imagevar]) : NULL;
 	//	we assume that everything is correct if rewrite rules were not applied
 	if ($_zp_rewritten) {
 		$rimage = NULL;	//	the image parameter is never set by the rewrite rules!
 		if (!empty($ralbum)) {
 			$path = internalToFilesystem(getAlbumFolder(SERVERPATH).$ralbum);
-			if (preg_match('~'.IM_SUFFIX.'$~', $path)) {
+			if (IM_SUFFIX && preg_match('~'.IM_SUFFIX.'$~', $path)) {
 				// Strip off the image suffix
 				$rimage = basename(preg_replace('~'.IM_SUFFIX.'$~', '', $ralbum));
-				$ralbum = dirname($ralbum);
+				$ralbum = trim(dirname($ralbum),'/');
 			} else {
 				if (file_exists($path)) {
 					if (!is_dir($path)) {
 						//	it is an image (one assumes)
 						$rimage = basename($ralbum);
-						$ralbum = dirname($ralbum);
+						$ralbum = trim(dirname($ralbum),'/');
 					}
 				}
 			}

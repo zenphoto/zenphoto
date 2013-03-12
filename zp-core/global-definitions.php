@@ -18,6 +18,7 @@ define('CACHEFOLDER', 'cache');
 define('UPLOAD_FOLDER','uploaded');
 define("STATIC_CACHE_FOLDER","cache_html");
 define('CONFIGFILE','zenphoto.cfg');
+define('MUTEX_FOLDER','.mutex');
 
 //bit masks for plugin priorities
 define('CLASS_PLUGIN',8192);
