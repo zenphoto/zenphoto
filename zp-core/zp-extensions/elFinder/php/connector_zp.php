@@ -44,6 +44,18 @@ function accessData($attr, $path, $data, $volume) {
 	return NULL;
 }
 
+function accessThemes($attr, $path, $data, $volume) {
+$path = ltrim(str_replace(SERVERPATH.'/'.THEMEFOLDER, '', str_replace('\\', '/', $path)),'/');
+$base = explode('/',$path);
+$theme = array_shift($base);
+$block = zenPhotoTheme($theme);
+	//	restrict access
+	if ($block || access($attr, $path, $data, $volume)) {
+		return !($attr == 'read' || $attr == 'write');
+	}
+	return NULL;
+}
+
 function accessAlbums($attr, $path, $data, $volume) {
 	global $_managed_folders;
 	//	restrict access to his albums
@@ -66,7 +78,7 @@ $opts = array();
 if ($_REQUEST['origin']=='upload') {
 
 	if (zp_loggedin(FILES_RIGHTS)) {
-		$opts['roots'][] =
+		$opts['roots'][0] =
 		array(
 				'driver'     => 'LocalFileSystem',
 				'startPath'  => SERVERPATH.'/'.UPLOAD_FOLDER.'/',
@@ -84,7 +96,7 @@ if ($_REQUEST['origin']=='upload') {
 	}
 
 	if (zp_loggedin(THEMES_RIGHTS)) {
-		$opts['roots'][] =
+		$opts['roots'][1] =
 			array(
 				'driver'     => 'LocalFileSystem',
 				'startPath'  => SERVERPATH.'/'.THEMEFOLDER.'/',
@@ -96,7 +108,7 @@ if ($_REQUEST['origin']=='upload') {
 				'utf8fix'    => true,
 				'tmbCrop'    => false,
 				'tmbBgColor' => 'transparent',
-				'accessControl' => 'access',
+				'accessControl' => 'accessThemes',
 				'acceptedName'    => '/^[^\.].*$/'
 			);
 	}
@@ -112,11 +124,8 @@ if ($_REQUEST['origin']=='upload') {
 					unset($_managed_folders[$key]);
 				}
 			}
-			$perms = array();
-		} else {
-			$perms = array('/^$/' => array("read" => true, "write" => false,"rm" => false, "locked" => true));
 		}
-		$opts['roots'][] =
+		$opts['roots'][2] =
 			array(
 				'driver'     => 'LocalFileSystem',
 				'startPath'  => getAlbumFolder(SERVERPATH),
@@ -130,13 +139,12 @@ if ($_REQUEST['origin']=='upload') {
 				'tmbBgColor' => 'transparent',
 				'uploadAllow' => array('image'),
 				'accessControl' => 'accessAlbums',
-				'acceptedName'  => '/^[^\.].*$/',
-				'attributes' => $perms
+				'acceptedName'  => '/^[^\.].*$/'
 		);
 	}
 
 	if (zp_loggedin(ADMIN_RIGHTS)) {
-		$opts['roots'][] =
+		$opts['roots'][3] =
 			array(
 				'driver'     => 'LocalFileSystem',
 				'startPath'  => SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/',
@@ -151,7 +159,7 @@ if ($_REQUEST['origin']=='upload') {
 				'accessControl' => 'access',
 				'acceptedName'  => '/^[^\.].*$/'
 		);
-		$opts['roots'][] =
+		$opts['roots'][4] =
 			array(
 				'driver'     => 'LocalFileSystem',
 				'startPath'  => SERVERPATH.'/'.DATA_FOLDER.'/',
@@ -166,7 +174,7 @@ if ($_REQUEST['origin']=='upload') {
 				'accessControl' => 'accessData',
 				'acceptedName'  => '/^[^\.].*$/'
 		);
-		$opts['roots'][] =
+		$opts['roots'][5] =
 			array(
 				'driver'     => 'LocalFileSystem',
 				'startPath'  => SERVERPATH.'/'.BACKUPFOLDER.'/',
@@ -187,7 +195,7 @@ if ($_REQUEST['origin']=='upload') {
 } else {	//	origin == 'tinyMCE
 
 	if (zp_loggedin(FILES_RIGHTS)) {
-		$opts['roots'][] =
+		$opts['roots'][0] =
 			array(
 				'driver'     => 'LocalFileSystem',
 				'startPath'  => SERVERPATH.'/'.UPLOAD_FOLDER.'/',
