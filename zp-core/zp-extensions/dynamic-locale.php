@@ -49,13 +49,13 @@ if (getOption('dynamic_locale_subdomain')) {
 function printLanguageSelector($flags=NULL) {
 	$languages = generateLanguageList();
 	if (isset($_REQUEST['locale'])) {
-		$locale = sanitize($_REQUEST['locale'], 0);
+		$locale = sanitize($_REQUEST['locale']);
 		if (getOption('locale') != $locale) {
 			?>
 			<div class="errorbox">
 				<h2>
-					<?php printf(gettext('<em>%s</em> is not available.'),$locale); ?>
-					<?php printf(gettext('The locale %s is not supported on your server.'), $locale); ?>
+					<?php printf(gettext('<em>%s</em> is not available.'),html_encode($locale)); ?>
+					<?php printf(gettext('The locale %s is not supported on your server.'), html_encode($locale)); ?>
 					<br />
 					<?php echo gettext('See the troubleshooting guide on zenphoto.org for details.'); ?>
 				</h2>
