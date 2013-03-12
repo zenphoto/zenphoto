@@ -463,13 +463,13 @@ function setupLanguageSelector() {
 	global $xsrftoken;
 	$languages = generateLanguageList();
 	if (isset($_REQUEST['locale'])) {
-		$locale = sanitize($_REQUEST['locale'], 0);
+		$locale = sanitize($_REQUEST['locale']);
 		if (getOption('locale') != $locale) {
 			?>
 			<div class="errorbox">
 				<h2>
-					<?php printf(gettext('<em>%s</em> is not available.'),$languages[$locale]); ?>
-					<?php printf(gettext('The locale %s is not supported on your server.'), $locale); ?>
+					<?php printf(gettext('<em>%s</em> is not available.'),html_encode($languages[$locale])); ?>
+					<?php printf(gettext('The locale %s is not supported on your server.'), html_encode($locale)); ?>
 					<br />
 					<?php echo gettext('See the <a href="http://www.zenphoto.org/news/troubleshooting-zenphoto#24">troubleshooting guide</a> on zenphoto.org for details.'); ?>
 				</h2>

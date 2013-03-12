@@ -508,8 +508,8 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 		$locale = sanitize($_GET['local_failed']);
 		echo '<div class="errorbox fade-message">';
 		echo  "<h2>".
-					sprintf(gettext("<em>%s</em> is not available."),$languages[$locale]).
-					' '.sprintf(gettext("The locale %s is not supported on your server."),$locale).
+					sprintf(gettext("<em>%s</em> is not available."),html_encode($languages[$locale])).
+					' '.sprintf(gettext("The locale %s is not supported on your server."),html_encode($locale)).
 					'<br />'.gettext('See the troubleshooting guide on zenphoto.org for details.').
 					"</h2>";
 		echo '</div>';
