@@ -1454,7 +1454,7 @@ class Mutex {
 	// rotates locks sequentially mod $concurrent
 	private static function which_lock($lock, $concurrent) {
 		global $_zp_mutex;
-		$counter_file = SERVERPATH.'/'.DATA_FOLDER.'/mutex/'.$lock.'_counter';
+		$counter_file = SERVERPATH.'/'.DATA_FOLDER.'/'.MUTEX_FOLDER.'/'.$lock.'_counter';
 		$_zp_mutex->lock();
 		// increment the lock id:
 		if (@file_put_contents($counter_file, $count = (((int) @file_get_contents($counter_file))+1) % $concurrent)) {
@@ -1476,7 +1476,7 @@ class Mutex {
 		//if "flock" is not supported run un-serialized
 		//Only lock an unlocked mutex, we don't support recursive mutex'es
 		if(!$this->locked && $this->lock) {
-			if ($this->mutex = @fopen(SERVERPATH.'/'.DATA_FOLDER.'/mutex/'.$this->lock, 'wb')) {
+			if ($this->mutex = @fopen(SERVERPATH.'/'.DATA_FOLDER.'/'.MUTEX_FOLDER.'/'.$this->lock, 'wb')) {
 				if (flock($this->mutex, LOCK_EX)) {
 					$this->locked = true;
 					//We are entering a critical section so we need to change the ignore_user_abort setting so that the

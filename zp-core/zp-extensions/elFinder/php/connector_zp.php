@@ -36,43 +36,16 @@ function accessImage($attr, $path, $data, $volume) {
 	return NULL;
 }
 
-function accessData($attr, $path, $data, $volume) {
-	//	restrict access
-	if (access($attr, $path, $data, $volume) || (is_dir($path) && basename($path)!=DATA_FOLDER)) {
-		return !($attr == 'read' || $attr == 'write');
-	}
-	return NULL;
-}
-
-function accessThemes($attr, $path, $data, $volume) {
-	$path = ltrim(str_replace(SERVERPATH.'/'.THEMEFOLDER, '', str_replace('\\', '/', $path)),'/');
-	$base = explode('/',$path);
-	$theme = array_shift($base);
-	$block = zenPhotoTheme($theme);
-	//	restrict access
-	if ($block || access($attr, $path, $data, $volume)) {
-		return !($attr == 'read' || $attr == 'write');
-	}
-	return NULL;
-}
-
 function accessAlbums($attr, $path, $data, $volume) {
-	global $_managed_folders;
 	//	restrict access to his albums
-	if (zp_loggedin(ADMIN_RIGHTS)) {
-		$block = false;
-	} else {
-		$path = str_replace('\\', '/', $path).'/';
-		$base = explode('/',str_replace(getAlbumFolder(SERVERPATH), '', $path));
-		$base = array_shift($base);
-		$block = !$base && $attr == 'write' || $base && !in_array($base, $_managed_folders);
-	}
+	$base = explode('/',str_replace(getAlbumFolder(SERVERPATH), '', str_replace('\\', '/', $path).'/'));
+	$base = array_shift($base);
+	$block = !$base && $attr == 'write';
 	if ($block || access($attr, $path, $data, $volume)) {
 		return !($attr == 'read' || $attr == 'write');
 	}
 	return NULL;
 }
-
 $opts = array();
 
 if ($_REQUEST['origin']=='upload') {
@@ -96,6 +69,7 @@ if ($_REQUEST['origin']=='upload') {
 	}
 
 	if (zp_loggedin(THEMES_RIGHTS)) {
+		$zplist = unserialize(getOption('Zenphoto_theme_list'));
 		$opts['roots'][1] =
 			array(
 				'driver'     => 'LocalFileSystem',
@@ -108,23 +82,26 @@ if ($_REQUEST['origin']=='upload') {
 				'utf8fix'    => true,
 				'tmbCrop'    => false,
 				'tmbBgColor' => 'transparent',
-				'accessControl' => 'accessThemes',
-				'acceptedName'    => '/^[^\.].*$/'
+				'accessControl' => 'access',
+				'acceptedName'    => '/^[^\.].*$/',
+				'attributes'	=>	$attr = array(
+																				array(
+																						'pattern' => '/.('.implode('$|',$zplist).'$)/', // Dont write or delete to this but subfolders and files
+																						'read'  => true,
+																						'write' => false,
+																						'locked' => true
+																						),
+																				array(
+																						'pattern' => '/.('.implode('\/|',$zplist).'\/)/', // Dont write or delete to this but subfolders and files
+																						'read'  => true,
+																						'write' => false,
+																						'locked' => true
+																						)
+																				)
 			);
 	}
 
 	if (zp_loggedin(ALBUM_RIGHTS)) {
-		if (!zp_loggedin(ADMIN_RIGHTS)) {
-			$_managed_folders = getManagedAlbumList();
-			//	remove albums he may not edit
-			foreach ($_managed_folders as $key=>$folder) {
-				$rightsalbum = newAlbum($folder);
-				$modified_rights = $rightsalbum->albumSubRights();
-				if (!($modified_rights & MANAGED_OBJECT_RIGHTS_EDIT)) {
-					unset($_managed_folders[$key]);
-				}
-			}
-		}
 		$opts['roots'][2] =
 			array(
 				'driver'     => 'LocalFileSystem',
@@ -138,9 +115,57 @@ if ($_REQUEST['origin']=='upload') {
 				'tmbCrop'    => false,
 				'tmbBgColor' => 'transparent',
 				'uploadAllow' => array('image'),
-				'accessControl' => 'accessAlbums',
 				'acceptedName'  => '/^[^\.].*$/'
 		);
+		if (zp_loggedin(ADMIN_RIGHTS)) {
+			$opts['roots'][2]['accessControl'] = 'access';
+		} else {
+			$opts['roots'][2]['accessControl'] = 'accessAlbums';
+			$_managed_folders = getManagedAlbumList();
+			$excluded_folders = $_zp_gallery->getAlbums(0);
+			$excluded_folders = array_diff($excluded_folders, $_managed_folders);
+			//	albums he view but may not edit
+			foreach ($_managed_folders as $key=>$folder) {
+				$rightsalbum = newAlbum($folder);
+				$modified_rights = $rightsalbum->albumSubRights();
+				if ($modified_rights & MANAGED_OBJECT_RIGHTS_EDIT) {
+					unset($_managed_folders[$key]);
+				}
+			}
+			$opts['roots'][2]['attributes'] = array(
+																						array(	//	albums he does not manage
+																								'pattern' => '/.('.implode('$|',$excluded_folders).'$)/', // Dont write or delete to this but subfolders and files
+																								'read'  => false,
+																								'write' => false,
+																								'locked' => true
+																						),
+																						array(	//	xmp for albums he does not manage
+																								'pattern' => '/.('.implode('.xmp|',$excluded_folders).'.xmp)/', // Dont write or delete to this but subfolders and files
+																								'read'  => false,
+																								'write' => false,
+																								'locked' => true
+																						),
+																						array(	//	albums he can manage but not edit
+																								'pattern' => '/.('.implode('$|',$_managed_folders).'$)/', // Dont write or delete to this but subfolders and files
+																								'read'  => true,
+																								'write' => false,
+																								'locked' => true
+																						),
+																						array(	//	albums content he can manage but not edit
+																								'pattern' => '/.('.implode('\/|',$_managed_folders).'\/)/', // Dont write or delete to this but subfolders and files
+																								'read'  => true,
+																								'write' => false,
+																								'locked' => true
+																						),
+																						array(	//	xmp for albums he can manage but not edit
+																								'pattern' => '/.('.implode('\/|',$_managed_folders).'.xmp)/', // Dont write or delete to this but subfolders and files
+																								'read'  => true,
+																								'write' => false,
+																								'locked' => true
+																						)
+			);
+		}
+
 	}
 
 	if (zp_loggedin(ADMIN_RIGHTS)) {
@@ -171,7 +196,7 @@ if ($_REQUEST['origin']=='upload') {
 				'utf8fix'    => true,
 				'tmbCrop'    => false,
 				'tmbBgColor' => 'transparent',
-				'accessControl' => 'accessData',
+				'accessControl' => 'access',
 				'acceptedName'  => '/^[^\.].*$/'
 		);
 		$opts['roots'][5] =
