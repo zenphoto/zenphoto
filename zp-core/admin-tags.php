@@ -12,7 +12,7 @@ admin_securityChecks(TAGS_RIGHTS, currentRelativeURL());
 $_GET['page'] = 'tags';
 
 if (isset($_REQUEST['tagsort'])) {
-	$tagsort = sanitize($_REQUEST['tagsort'], 0);
+	$tagsort = sanitize($_REQUEST['tagsort']);
 	setOption('tagsort', ($tagsort && true));
 } else {
 	$tagsort = getOption('tagsort');

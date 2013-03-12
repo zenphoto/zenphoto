@@ -1296,16 +1296,16 @@ function secureServer() {
  */
 function getRequestURI() {
 	if (array_key_exists('REQUEST_URI', $_SERVER)) {
-		$uri = $_SERVER['REQUEST_URI'];
+		$uri = sanitize($_SERVER['REQUEST_URI']);
 		preg_match('|^(http[s]*\://[a-zA-Z0-9\-\.]+/?)*(.*)$|xis', $uri, $matches);
 		$uri = $matches[2];
 		if (!empty($matches[1])) {
 			$uri = '/'.$uri;
 		}
 	} else {
-		$uri = @$_SERVER['SCRIPT_NAME'];
+		$uri = sanitize(@$_SERVER['SCRIPT_NAME']);
 	}
-	return urldecode(sanitize(str_replace('\\','/',$uri),0));
+	return urldecode(str_replace('\\','/',$uri));
 }
 
 /**

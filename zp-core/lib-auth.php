@@ -801,7 +801,7 @@ class Zenphoto_Authority {
 		}
 		if (empty($requestor)) {
 			if (isset($_GET['ref'])) {
-				$requestor = sanitize($_GET['ref'], 0);
+				$requestor = sanitize($_GET['ref']);
 			}
 		}
 		$alt_handlers = zp_apply_filter('alt_login_handler',array());

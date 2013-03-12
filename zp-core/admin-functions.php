@@ -2543,7 +2543,7 @@ function process_language_string_save($name, $sanitize_level=3) {
  */
 function getTagOrder() {
 	if (isset($_REQUEST['tagsort'])) {
-		$tagsort = sanitize($_REQUEST['tagsort'], 0);
+		$tagsort = sanitize($_REQUEST['tagsort']);
 		setOption('tagsort', (int) ($tagsort && true));
 	} else {
 		$tagsort = getOption('tagsort');
