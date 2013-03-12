@@ -421,14 +421,14 @@ function getUserLocale() {
 	if (DEBUG_LOCALE) debugLogBackTrace("getUserLocale()");
 	if (isset($_REQUEST['locale'])) {
 		if (isset($_POST['locale'])) {
-			$locale = validateLocale(sanitize($_POST['locale'], 0), 'POST');
+			$locale = validateLocale(sanitize($_POST['locale']), 'POST');
 		} else {
-			$locale = validateLocale(sanitize($_GET['locale'], 0), 'URI string');
+			$locale = validateLocale(sanitize($_GET['locale']), 'URI string');
 		}
 		if ($locale) {
 			zp_setCookie('dynamic_locale', $locale);
 		}
-		if (DEBUG_LOCALE) debugLog("dynamic_locale from URL: ".sanitize($_REQUEST['locale'], 0)."=>$locale");
+		if (DEBUG_LOCALE) debugLog("dynamic_locale from URL: ".sanitize($_REQUEST['locale'])."=>$locale");
 	} else {
 		$matches = explode('.',@$_SERVER['HTTP_HOST']);
 		if ($locale = validateLocale($matches[0], 'HTTP_HOST')) {

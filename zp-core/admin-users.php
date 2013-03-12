@@ -80,7 +80,7 @@ if (isset($_GET['action'])) {
 			if (isset($_POST['saveadminoptions'])) {
 				if (isset($_POST['checkForPostTruncation'])) {
 					if (isset($_POST['alter_enabled']) || sanitize_numeric($_POST['totaladmins']) > 1 ||
-							trim(sanitize($_POST['adminuser0'],0)) != $_zp_current_admin_obj->getUser() ||
+							trim(sanitize($_POST['adminuser0'])) != $_zp_current_admin_obj->getUser() ||
 							isset($_POST['0-newuser'])) {
 						if (!$_zp_current_admin_obj->reset) {
 							admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
@@ -94,7 +94,7 @@ if (isset($_GET['action'])) {
 						$error = false;
 						$userobj = NULL;
 						$pass = trim(sanitize($_POST['pass'.$i]));
-						$user = trim(sanitize($_POST['adminuser'.$i],0));
+						$user = trim(sanitize($_POST['adminuser'.$i]));
 						if (empty($user) && !empty($pass)) {
 							$notify = '?mismatch=nothing';
 						}

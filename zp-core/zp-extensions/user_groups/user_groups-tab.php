@@ -35,7 +35,7 @@ if (isset($_GET['action'])) {
 	XSRFdefender($action);
 	$themeswitch = false;
 	if ($action == 'deletegroup') {
-		$groupname = trim(sanitize($_GET['group'],0));
+		$groupname = trim(sanitize($_GET['group']));
 		$groupobj = Zenphoto_Authority::newAdministrator($groupname, 0);
 		$groupobj->remove();
 		// clear out existing user assignments
@@ -45,7 +45,7 @@ if (isset($_GET['action'])) {
 	} else if ($action == 'savegroups') {
 		if (isset($_POST['checkForPostTruncation'])) {
 			for ($i = 0; $i < $_POST['totalgroups']; $i++) {
-				$groupname = trim(sanitize($_POST[$i.'-group'],0));
+				$groupname = trim(sanitize($_POST[$i.'-group']));
 				if (!empty($groupname)) {
 					$rights = 0;
 					$group = Zenphoto_Authority::newAdministrator($groupname, 0);

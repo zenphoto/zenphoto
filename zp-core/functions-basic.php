@@ -441,7 +441,7 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 	if (MOD_REWRITE) {
 		$uri = getRequestURI();
 		$path = substr($uri, strlen(WEBPATH)+1);
-		$scripturi = sanitize($_SERVER['PHP_SELF'],0);
+		$scripturi = sanitize($_SERVER['PHP_SELF']);
 		$script = substr($scripturi,strpos($scripturi, WEBPATH.'/')+strlen(WEBPATH)+1);
 		// Only extract the path when the request doesn't include the running php file (query request).
 		if (strlen($path) > 0 && strpos($uri, $script) === false && isset($_GET[$albumvar])) {
@@ -1310,19 +1310,19 @@ function secureServer() {
  */
 function getRequestURI() {
 	if (array_key_exists('REQUEST_URI', $_SERVER)) {
-		$uri = $_SERVER['REQUEST_URI'];
+		$uri = sanitize($_SERVER['REQUEST_URI']);
 		preg_match('|^(http[s]*\://[a-zA-Z0-9\-\.]+/?)*(.*)$|xis', $uri, $matches);
 		$uri = $matches[2];
 		if (!empty($matches[1])) {
 			$uri = '/'.$uri;
 		}
 	} else {
-		$uri = @$_SERVER['SCRIPT_NAME'];
-		if (@$_SERVER['QUERY_STRING']) {
-			$uri .= '?'.$_SERVER['QUERY_STRING'];
+		$uri = sanitize(@$_SERVER['SCRIPT_NAME']);
+		if ($q = sanitize(@$_SERVER['QUERY_STRING'])) {
+			$uri .= '?'.$q;
 		}
 	}
-	return urldecode(sanitize(str_replace('\\','/',$uri),0));
+	return urldecode(str_replace('\\','/',$uri));
 }
 
 /**
