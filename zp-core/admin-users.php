@@ -148,9 +148,7 @@ if (isset($_GET['action'])) {
 										$notify = '?mismatch=format&error='.urlencode($msg);
 									} else {
 										$userobj->setPass($pass);
-										if ($pass2 !=  $userobj->getPass($pass)) {
-											markUpdated();
-										}
+										markUpdated();
 									}
 								} else {
 									$notify = '?mismatch=password';
