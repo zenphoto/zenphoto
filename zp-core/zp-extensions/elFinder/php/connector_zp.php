@@ -45,10 +45,10 @@ function accessData($attr, $path, $data, $volume) {
 }
 
 function accessThemes($attr, $path, $data, $volume) {
-$path = ltrim(str_replace(SERVERPATH.'/'.THEMEFOLDER, '', str_replace('\\', '/', $path)),'/');
-$base = explode('/',$path);
-$theme = array_shift($base);
-$block = zenPhotoTheme($theme);
+	$path = ltrim(str_replace(SERVERPATH.'/'.THEMEFOLDER, '', str_replace('\\', '/', $path)),'/');
+	$base = explode('/',$path);
+	$theme = array_shift($base);
+	$block = zenPhotoTheme($theme);
 	//	restrict access
 	if ($block || access($attr, $path, $data, $volume)) {
 		return !($attr == 'read' || $attr == 'write');
