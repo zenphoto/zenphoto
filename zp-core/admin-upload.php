@@ -10,7 +10,7 @@ define('OFFSET_PATH', 1);
 
 require_once(dirname(__FILE__).'/admin-globals.php');
 
-admin_securityChecks(UPLOAD_RIGHTS, $return = currentRelativeURL());
+admin_securityChecks(UPLOAD_RIGHTS | FILES_RIGHTS, $return = currentRelativeURL());
 
 if (isset($_GET['uploadtype'])) {
 	$uploadtype = sanitize($_GET['uploadtype'])	;
@@ -18,7 +18,17 @@ if (isset($_GET['uploadtype'])) {
 	$uploadtype = zp_getcookie('uploadtype');
 }
 
-$handlers = array_keys($uploadHandlers = zp_apply_filter('upload_handlers',array()));
+
+if (zp_loggedin(UPLOAD_RIGHTS)) {
+	$handlers = array_keys($uploadHandlers = zp_apply_filter('upload_handlers',array()));
+} else {
+	//	redirect to the files page if present
+	if (isset($zenphoto_tabs['upload'])) {
+		header('location: '.$zenphoto_tabs['upload']['link']);
+		exit();
+	}
+	$handlers = array();
+}
 
 if (count($handlers) > 0) {
 	if (!isset($uploadHandlers[$uploadtype]) || !file_exists($uploadHandlers[$uploadtype].'/upload_form.php')) {
@@ -28,6 +38,7 @@ if (count($handlers) > 0) {
 	zp_setCookie('uploadtype', $uploadtype);
 } else {
 	require_once(SERVERPATH.'/'.ZENFOLDER.'/no_uploader.php');
+	exitZP();
 }
 
 $page = "upload";

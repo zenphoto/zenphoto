@@ -1,16 +1,21 @@
 <?php
-function upload_head() {
-	return NULL;
-}
-function upload_extra($uploadlimit, $passedalbum) {
-}
-
-function upload_form($uploadlimit, $passedalbum) {
-	?>
-	<p class="errorbox">
-		<?php echo gettext("No uploader plugin has been enabled."); ?>
-	</p>
-	<?php
-}
-
+printAdminHeader('upload','albums');
+echo "\n</head>";
+echo "\n<body>";
+printLogoAndLinks();
 ?>
+<div id="main">
+	<?php
+	printTabs();
+	?>
+	<div id="content">
+		<p class="notebox">
+		<?php echo gettext('There are no upload hanlders enabled that can service your request.')?>
+		</p>
+	</div><!-- content -->
+</div><!-- main -->
+<?php
+printAdminFooter();
+?>
+</body>
+</html>
