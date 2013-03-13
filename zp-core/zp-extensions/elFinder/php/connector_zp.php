@@ -61,72 +61,69 @@ $opts = array();
 if ($_REQUEST['origin']=='upload') {
 
 	if (zp_loggedin(FILES_RIGHTS)) {
-		$opts['roots'][0] =
-		array(
-				'driver'     => 'LocalFileSystem',
-				'startPath'  => SERVERPATH.'/'.UPLOAD_FOLDER.'/',
-				'path'       =>	SERVERPATH.'/'.UPLOAD_FOLDER.'/',
-				'URL'        =>	WEBPATH.'/'.UPLOAD_FOLDER.'/',
-				'alias' 		 => sprintf(gettext('Upload folder (%s)'),UPLOAD_FOLDER),
-				'mimeDetect' => 'internal',
-				'tmbPath'    => '.tmb',
-				'utf8fix'    => true,
-				'tmbCrop'    => false,
-				'tmbBgColor' => 'transparent',
-				'accessControl' => 'access',
-				'acceptedName'    => '/^[^\.].*$/'
-		);
+		$opts['roots'][0] =	array(
+														'driver'     => 'LocalFileSystem',
+														'startPath'  => SERVERPATH.'/'.UPLOAD_FOLDER.'/',
+														'path'       =>	SERVERPATH.'/'.UPLOAD_FOLDER.'/',
+														'URL'        =>	WEBPATH.'/'.UPLOAD_FOLDER.'/',
+														'alias' 		 => sprintf(gettext('Upload folder (%s)'),UPLOAD_FOLDER),
+														'mimeDetect' => 'internal',
+														'tmbPath'    => '.tmb',
+														'utf8fix'    => true,
+														'tmbCrop'    => false,
+														'tmbBgColor' => 'transparent',
+														'accessControl' => 'access',
+														'acceptedName'    => '/^[^\.].*$/'
+												);
 	}
 
 	if (zp_loggedin(THEMES_RIGHTS)) {
 		$zplist = unserialize(getOption('Zenphoto_theme_list'));
-		$opts['roots'][1] =
-			array(
-				'driver'     => 'LocalFileSystem',
-				'startPath'  => SERVERPATH.'/'.THEMEFOLDER.'/',
-				'path'       =>	SERVERPATH.'/'.THEMEFOLDER.'/',
-				'URL'        =>	WEBPATH.'/'.THEMEFOLDER.'/',
-				'alias' 		 => sprintf(gettext('Zenphoto themes (%s)'),THEMEFOLDER),
-				'mimeDetect' => 'internal',
-				'tmbPath'    => '.tmb',
-				'utf8fix'    => true,
-				'tmbCrop'    => false,
-				'tmbBgColor' => 'transparent',
-				'accessControl' => 'access',
-				'acceptedName'    => '/^[^\.].*$/',
-				'attributes'	=>	$attr = array(
-																				array(
-																						'pattern' => '/.('.implode('$|',$zplist).'$)/', // Dont write or delete to this but subfolders and files
-																						'read'  => true,
-																						'write' => false,
-																						'locked' => true
-																						),
-																				array(
-																						'pattern' => '/.('.implode('\/|',$zplist).'\/)/', // Dont write or delete to this but subfolders and files
-																						'read'  => true,
-																						'write' => false,
-																						'locked' => true
-																						)
-																				)
-			);
+		$opts['roots'][1] = array(
+															'driver'     => 'LocalFileSystem',
+															'startPath'  => SERVERPATH.'/'.THEMEFOLDER.'/',
+															'path'       =>	SERVERPATH.'/'.THEMEFOLDER.'/',
+															'URL'        =>	WEBPATH.'/'.THEMEFOLDER.'/',
+															'alias' 		 => sprintf(gettext('Zenphoto themes (%s)'),THEMEFOLDER),
+															'mimeDetect' => 'internal',
+															'tmbPath'    => '.tmb',
+															'utf8fix'    => true,
+															'tmbCrop'    => false,
+															'tmbBgColor' => 'transparent',
+															'accessControl' => 'access',
+															'acceptedName'    => '/^[^\.].*$/',
+															'attributes'	=>	$attr = array(
+																															array(
+																																	'pattern' => '/.('.implode('$|',$zplist).'$)/', // Dont write or delete to this but subfolders and files
+																																	'read'  => true,
+																																	'write' => false,
+																																	'locked' => true
+																																	),
+																															array(
+																																	'pattern' => '/.('.implode('\/|',$zplist).'\/)/', // Dont write or delete to this but subfolders and files
+																																	'read'  => true,
+																																	'write' => false,
+																																	'locked' => true
+																																	)
+																															)
+														);
 	}
 
 	if (zp_loggedin(UPLOAD_RIGHTS)) {
-		$opts['roots'][2] =
-			array(
-				'driver'     => 'LocalFileSystem',
-				'startPath'  => getAlbumFolder(SERVERPATH),
-				'path'       =>	getAlbumFolder(SERVERPATH),
-				'URL'        =>	getAlbumFolder(WEBPATH),
-				'alias' 		 => sprintf(gettext('Albums folder (%s)'),basename(getAlbumFolder())),
-				'mimeDetect' => 'internal',
-				'tmbPath'    => '.tmb',
-				'utf8fix'    => true,
-				'tmbCrop'    => false,
-				'tmbBgColor' => 'transparent',
-				'uploadAllow' => array('image'),
-				'acceptedName'  => '/^[^\.].*$/'
-		);
+		$opts['roots'][2] = array(
+															'driver'     => 'LocalFileSystem',
+															'startPath'  => getAlbumFolder(SERVERPATH),
+															'path'       =>	getAlbumFolder(SERVERPATH),
+															'URL'        =>	getAlbumFolder(WEBPATH),
+															'alias' 		 => sprintf(gettext('Albums folder (%s)'),basename(getAlbumFolder())),
+															'mimeDetect' => 'internal',
+															'tmbPath'    => '.tmb',
+															'utf8fix'    => true,
+															'tmbCrop'    => false,
+															'tmbBgColor' => 'transparent',
+															'uploadAllow' => array('image'),
+															'acceptedName'  => '/^[^\.].*$/'
+													);
 		if (zp_loggedin(ADMIN_RIGHTS)) {
 			$opts['roots'][2]['accessControl'] = 'access';
 		} else {
@@ -179,73 +176,69 @@ if ($_REQUEST['origin']=='upload') {
 	}
 
 	if (zp_loggedin(ADMIN_RIGHTS)) {
-		$opts['roots'][3] =
-			array(
-				'driver'     => 'LocalFileSystem',
-				'startPath'  => SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/',
-				'path'       =>	SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/',
-				'URL'        =>	WEBPATH.'/'.USER_PLUGIN_FOLDER.'/',
-				'alias' 		 => sprintf(gettext('Third party plugins (%s)'),USER_PLUGIN_FOLDER),
-				'mimeDetect' => 'internal',
-				'tmbPath'    => '.tmb',
-				'utf8fix'    => true,
-				'tmbCrop'    => false,
-				'tmbBgColor' => 'transparent',
-				'accessControl' => 'access',
-				'acceptedName'  => '/^[^\.].*$/'
-		);
-		$opts['roots'][4] =
-			array(
-				'driver'     => 'LocalFileSystem',
-				'startPath'  => SERVERPATH.'/'.DATA_FOLDER.'/',
-				'path'       =>	SERVERPATH.'/'.DATA_FOLDER.'/',
-				'URL'        =>	WEBPATH.'/'.DATA_FOLDER.'/',
-				'alias' 		 => sprintf(gettext('Zenphoto data (%s)'),DATA_FOLDER),
-				'mimeDetect' => 'internal',
-				'tmbPath'    => '.tmb',
-				'utf8fix'    => true,
-				'tmbCrop'    => false,
-				'tmbBgColor' => 'transparent',
-				'accessControl' => 'access',
-				'acceptedName'  => '/^[^\.].*$/'
-		);
-		$opts['roots'][5] =
-			array(
-				'driver'     => 'LocalFileSystem',
-				'startPath'  => SERVERPATH.'/'.BACKUPFOLDER.'/',
-				'path'       =>	SERVERPATH.'/'.BACKUPFOLDER.'/',
-				'URL'        =>	WEBPATH.'/'.BACKUPFOLDER.'/',
-				'alias' 		 => sprintf(gettext('Backup files (%s)'),BACKUPFOLDER),
-				'mimeDetect' => 'internal',
-				'tmbPath'    => '.tmb',
-				'utf8fix'    => true,
-				'tmbCrop'    => false,
-				'tmbBgColor' => 'transparent',
-				'accessControl' => 'access',
-				'acceptedName'  => '/^[^\.].*$/'
-		);
+		$opts['roots'][3] = array(
+															'driver'     => 'LocalFileSystem',
+															'startPath'  => SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/',
+															'path'       =>	SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/',
+															'URL'        =>	WEBPATH.'/'.USER_PLUGIN_FOLDER.'/',
+															'alias' 		 => sprintf(gettext('Third party plugins (%s)'),USER_PLUGIN_FOLDER),
+															'mimeDetect' => 'internal',
+															'tmbPath'    => '.tmb',
+															'utf8fix'    => true,
+															'tmbCrop'    => false,
+															'tmbBgColor' => 'transparent',
+															'accessControl' => 'access',
+															'acceptedName'  => '/^[^\.].*$/'
+													);
+		$opts['roots'][4] = array(
+															'driver'     => 'LocalFileSystem',
+															'startPath'  => SERVERPATH.'/'.DATA_FOLDER.'/',
+															'path'       =>	SERVERPATH.'/'.DATA_FOLDER.'/',
+															'URL'        =>	WEBPATH.'/'.DATA_FOLDER.'/',
+															'alias' 		 => sprintf(gettext('Zenphoto data (%s)'),DATA_FOLDER),
+															'mimeDetect' => 'internal',
+															'tmbPath'    => '.tmb',
+															'utf8fix'    => true,
+															'tmbCrop'    => false,
+															'tmbBgColor' => 'transparent',
+															'accessControl' => 'access',
+															'acceptedName'  => '/^[^\.].*$/'
+													);
+		$opts['roots'][5] = array(
+															'driver'     => 'LocalFileSystem',
+															'startPath'  => SERVERPATH.'/'.BACKUPFOLDER.'/',
+															'path'       =>	SERVERPATH.'/'.BACKUPFOLDER.'/',
+															'URL'        =>	WEBPATH.'/'.BACKUPFOLDER.'/',
+															'alias' 		 => sprintf(gettext('Backup files (%s)'),BACKUPFOLDER),
+															'mimeDetect' => 'internal',
+															'tmbPath'    => '.tmb',
+															'utf8fix'    => true,
+															'tmbCrop'    => false,
+															'tmbBgColor' => 'transparent',
+															'accessControl' => 'access',
+															'acceptedName'  => '/^[^\.].*$/'
+													);
 
 	}
 
 } else {	//	origin == 'tinyMCE
 
 	if (zp_loggedin(FILES_RIGHTS)) {
-		$opts['roots'][0] =
-			array(
-				'driver'     => 'LocalFileSystem',
-				'startPath'  => SERVERPATH.'/'.UPLOAD_FOLDER.'/',
-				'path'       =>	SERVERPATH.'/'.UPLOAD_FOLDER.'/',
-				'URL'        =>	WEBPATH.'/'.UPLOAD_FOLDER.'/',
-				'alias' 		 => sprintf(gettext('Upload folder (%s)'),UPLOAD_FOLDER),
-				'mimeDetect' => 'internal',
-				'tmbPath'    => '.tmb',
-				'utf8fix'    => true,
-				'tmbCrop'    => false,
-				'tmbBgColor' => 'transparent',
-				'uploadAllow' => array('image'),
-				'accessControl' => 'accessImage',
-				'acceptedName'    => '/^[^\.].*$/'
-		);
+		$opts['roots'][0] = array(
+															'driver'     => 'LocalFileSystem',
+															'startPath'  => SERVERPATH.'/'.UPLOAD_FOLDER.'/',
+															'path'       =>	SERVERPATH.'/'.UPLOAD_FOLDER.'/',
+															'URL'        =>	WEBPATH.'/'.UPLOAD_FOLDER.'/',
+															'alias' 		 => sprintf(gettext('Upload folder (%s)'),UPLOAD_FOLDER),
+															'mimeDetect' => 'internal',
+															'tmbPath'    => '.tmb',
+															'utf8fix'    => true,
+															'tmbCrop'    => false,
+															'tmbBgColor' => 'transparent',
+															'uploadAllow' => array('image'),
+															'accessControl' => 'accessImage',
+															'acceptedName'    => '/^[^\.].*$/'
+													);
 	}
 
 }
