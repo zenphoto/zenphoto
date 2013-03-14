@@ -480,7 +480,7 @@ if (!$_zp_current_admin_obj->reset) {
 }
 ?>
 <div class="tabbox">
-<?php zp_apply_filter('admin_note','backkup', '');; ?>
+<?php zp_apply_filter('admin_note','backkup', ''); ?>
 <h1>
 	<?php
 	if ($_zp_current_admin_obj->reset) {
