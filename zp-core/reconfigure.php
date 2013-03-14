@@ -96,6 +96,17 @@ function checkSignature() {
 	}
 	if (file_exists(dirname(__FILE__).'/setup/')) {
 		chdir(dirname(__FILE__).'/setup/');
+		$found = safe_glob('*.xxx');
+		if (!empty($found)) {
+			foreach ($found as $script) {
+				chmod($script, 0666);
+				if (@rename($script, stripSuffix($script))) {
+					chmod(stripSuffix($script),FILE_MOD);
+				} else {
+					chmod($script,FILE_MOD);
+				}
+			}
+		}
 		$found = safe_glob('*.*');
 		$needs = array_diff($needs, $found);
 	}

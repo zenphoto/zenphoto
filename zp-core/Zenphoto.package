@@ -637,7 +637,6 @@ zp-core/locale/zh_TW/LC_MESSAGES/zenphoto.mo
 zp-core/locale/zh_TW/LC_MESSAGES/zenphoto.po
 zp-core/locale/zh_TW/flag.png
 zp-core/locale/zh_TW/select_files_button.png
-zp-core/nginx_zenphoto_rewrite.conf
 zp-core/no_uploader.php
 zp-core/oldhtaccess
 zp-core/password.php
@@ -1784,4 +1783,4 @@ zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zpCaptcha
 zp-core/zp-extensions/zpCaptcha.php
 zp-core/zp-extensions/zpCaptcha/c.php
-1786
+1785

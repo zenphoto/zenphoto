@@ -425,22 +425,6 @@ function checkAlbumParentid($albumname, $id) {
 	}
 }
 
-/**
- * helper delete function for setup files.
- *
- * @param string $component
- */
-function setupDeleteComponent($rslt, $component) {
-	if ($rslt) {
-		setupLog(sprintf(gettext('%s deleted.'),$component),true);
-		return true;
-	} else {
-		setupLog(sprintf(gettext('failed to delete %s.'),$component),true);
-		return false;
-	}
-}
-
-
 function setupLanguageSelector() {
 	global $xsrftoken;
 	$languages = generateLanguageList();

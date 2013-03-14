@@ -45,22 +45,24 @@ class cloneZenphoto {
 											'hidden'=>'',
 											'rights'=> ADMIN_RIGHTS
 											);
+/*
 		list($diff, $needs) = checkSignature();
 		if (empty($needs) && zpFunctions::hasPrimaryScripts()) {
 			$buttons[] = array(
 												'XSRFTag'=>'removeSetup',
 												'category'=>gettext('Admin'),
 												'enable'=>true,
-												'button_text'=>gettext('Delete setup scripts'),
+												'button_text'=>gettext('Protect setup scripts'),
 												'formname'=>'removeSetup',
-												'action'=>WEBPATH.'/'.ZENFOLDER.'/admin.php?action=removeSetup',
+												'action'=>WEBPATH.'/'.ZENFOLDER.'/admin.php?action=protectSetup',
 												'icon'=>'images/folder.png',
-												'title'=>gettext('Removes setup scripts.'),
+												'title'=>gettext('Protects setup scripts from execution.'),
 												'alt'=>'',
-												'hidden'=>'<input type="hidden" name="action" value="removeSetup" />	',
+												'hidden'=>'<input type="hidden" name="action" value="protectSetup" />	',
 												'rights'=> ADMIN_RIGHTS
 												);
 		}
+*/
 		return $buttons;
 	}
 
@@ -69,7 +71,7 @@ class cloneZenphoto {
 /**
  * process remove action
  */
-function removeSetup() {
+function protectSetup() {
 	global $msg, $class;
 	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/security-logger.php');
 
@@ -81,20 +83,23 @@ function removeSetup() {
 	foreach ($list as $component) {
 		if (getSuffix($component) == 'php') {
 			@chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component, 0666);
-			if(!@unlink(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component)) {
+			if(@rename(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component, SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component.'.xxx')) {
+				@chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component.'.xxx', FILE_MOD);
+			} else {
+				@chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component, FILE_MOD);
 				$rslt[] = '../setup/'.$component;
 			}
 		}
 	}
 	if (empty($rslt)) {
-		zp_apply_filter('log_setup', true, 'delete', '');
+		zp_apply_filter('log_setup', true, 'protect', '');
 		$class = 'messagebox';
-		$msg = gettext('Setup files deleted.');
+		$msg = gettext('Setup files protected.');
 	} else {
 		$rslt = implode(', ', $rslt);
-		zp_apply_filter('log_setup', false, 'delete', $rslt);
+		zp_apply_filter('log_setup', false, 'protect', $rslt);
 		$class = 'errorbox';
-		$msg =  sprintf(gettext('Failed to delete: %s'), $rslt);
+		$msg =  sprintf(gettext('Failed to protect: %s'), $rslt);
 	}
 }
 ?>

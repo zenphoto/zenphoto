@@ -335,7 +335,7 @@ if ($newconfig || isset($_GET['copyhtaccess'])) {
 }
 
 if ($setup_checked) {
-	if (!isset($_GET['delete_files'])) {
+	if (!isset($_GET['protect_files'])) {
 		setupLog(gettext("Completed system check"), true);
 		if (isset($_COOKIE['setup_test_cookie'])) {
 			$setup_cookie = $_COOKIE['setup_test_cookie'];
@@ -2232,9 +2232,9 @@ if (file_exists(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE)) {
 	$sql_statements[] = 'ALTER TABLE '.$tbl_news.' CHANGE `commentson` `commentson` int(1) UNSIGNED default 0';
 	//v1.2.7
 	$sql_statements[] = "ALTER TABLE $tbl_albums CHANGE `album_theme` `album_theme` varchar(127) DEFAULT NULL";
-	$sql_statements[] = "ALTER TABLE $tbl_options DROP INDEX `unique_option`";
 	$sql_statements[] = "ALTER TABLE $tbl_options ADD COLUMN `theme` varchar(127) NOT NULL";
 	$sql_statements[] = "ALTER TABLE $tbl_options CHANGE `name` `name` varchar(191) DEFAULT NULL";
+	$sql_statements[] = "ALTER TABLE $tbl_options DROP INDEX `unique_option`";
 	$sql_statements[] = "ALTER TABLE $tbl_options ADD UNIQUE `unique_option` (`name`, `ownerid`, `theme`)";
 	$sql_statements[] = 'ALTER TABLE '.$tbl_images.' DROP COLUMN `EXIFValid`';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_images.' ADD COLUMN `hasMetadata` int(1) default 0';
@@ -2345,8 +2345,8 @@ if (file_exists(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE)) {
 	 ***************************************************************************************/
 
 	$createTables = true;
-	if (isset($_GET['create']) || isset($_GET['update']) || isset($_GET['delete_files']) && db_connect($_zp_conf_vars)) {
-		if (!isset($_GET['delete_files'])) {
+	if (isset($_GET['create']) || isset($_GET['update']) || isset($_GET['protect_files']) && db_connect($_zp_conf_vars)) {
+		if (!isset($_GET['protect_files'])) {
 			set_time_limit(60);
 			if ($taskDisplay[substr($task,0,8)] == 'create') {
 				echo "<h3>".gettext("About to create tables")."...</h3>";
@@ -2454,7 +2454,7 @@ if (file_exists(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE)) {
 		}
 
 		if ($createTables) {
-			if (isset($_GET['delete_files'])) {
+			if (isset($_GET['protect_files'])) {
 				require_once(dirname(dirname(__FILE__)).'/'.PLUGIN_FOLDER.'/security-logger.php');
 				$curdir = getcwd();
 				chdir(dirname(__FILE__));
@@ -2464,46 +2464,37 @@ if (file_exists(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE)) {
 				foreach ($list as $component) {
 					if (getSuffix($component) == 'php') {
 						@chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component, 0666);
-						if(!setupDeleteComponent(@unlink(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component),$component)) {
+						if(@rename(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component, SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component.'.xxx')) {
+							@chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component.'.xxx', FILE_MOD);
+							setupLog(sprintf(gettext('%s protected.'),$component),true);
+						} else {
+							@chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component, FILE_MOD);
+							setupLog(sprintf(gettext('failed to protect %s.'),$component),true);
 							$rslt[] = '../setup/'.$component;
 						}
 					}
 				}
 
 				if (empty($rslt)) {
-					zp_apply_filter('log_setup', true, 'delete', '');
+					zp_apply_filter('log_setup', true, 'protect', '');
 					?>
-					<p class="messagebox"><?php echo gettext('Setup scripts deleted.'); ?></p>
+					<p class="messagebox"><?php echo gettext('Setup scripts protected.'); ?></p>
 					<?php
 				} else {
 					$rslt = implode(', ', $rslt);
-					zp_apply_filter('log_setup', false, 'delete', $rslt);
+					zp_apply_filter('log_setup', false, 'protect', $rslt);
 					?>
 					<p class="errorbox">
-						<?php printf(gettext('Failed to delete: %s'), $rslt); ?>
+						<?php printf(gettext('Failed to protect: %s'), $rslt); ?>
 					</p>
 					<?php
 					$autorun = false;
 				}
 			} else {
-				?>
-				<div class="notebox delayshow" style="display:none;">
-					<p><?php echo gettext('<strong>NOTE:</strong> We strongly recommend you remove the <em>setup</em> scripts from your zp-core folder at this time. You can always re-upload them should you find you need them again in the future.')?></p>
-						<br />
-					<?php
-					if (zpFunctions::hasPrimaryScripts()) {
-						?>
-						<span class="buttons"><a href="?checked&amp;delete_files&amp;xsrfToken=<?php echo $xsrftoken; ?>"><?php echo gettext('Delete setup scripts'); ?></a></span>
-						<br clear="all" />
-						<br clear="all" />
-						<?php
-					} else {
-						echo gettext('This is a clone of another installation. The setup scripts should be deleted from that installation');
-					}
-					?>
-				</div>
-				<br clear="all" />
-				<?php
+				if (!(defined('TEST_RELEASE') && TEST_RELEASE)) {
+					$origautorun = $autorun;
+					$autorun = 'setup';
+				}
 			}
 
 			if ($_zp_loggedin == ADMIN_RIGHTS) {
@@ -2528,22 +2519,22 @@ if (file_exists(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE)) {
 			?>
 			<p id="golink" class="delayshow" style="display:none;"><?php echo $link; ?></p>
 			<?php
-			if (!isset($_GET['delete_files']) && $autorun && !(defined('TEST_RELEASE') && TEST_RELEASE) && zpFunctions::hasPrimaryScripts()) {
-				$autorun = WEBPATH.'/'.ZENFOLDER.'/setup/index.php?checked&autorun='.$autorun.'&delete_files&xsrfToken='.$xsrftoken;
-			} else {
-				switch ($autorun) {
-					case false:
-						break;
-					case 'admin':
-						$autorun = WEBPATH.'/'.ZENFOLDER.'/admin.php';
-						break;
-					case 'gallery':
-						$autorun = WEBPATH.'/';
-						break;
-					default:
-						break;
-				}
+			switch ($autorun) {
+				case false:
+					break;
+				case 'admin':
+					$autorun = WEBPATH.'/'.ZENFOLDER.'/admin.php';
+					break;
+				case 'gallery':
+					$autorun = WEBPATH.'/';
+					break;
+				case 'setup':
+					$autorun = WEBPATH.'/'.ZENFOLDER.'/setup/index.php?checked&autorun='.$origautorun.'&protect_files&xsrfToken='.$xsrftoken;
+					break;
+				default:
+					break;
 			}
+
 			?>
 			<script type="text/javascript">
 				window.onload = function() {

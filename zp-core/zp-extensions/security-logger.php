@@ -128,8 +128,8 @@ class security_logger {
 					$addl .= ' '.gettext('clone');
 				}
 				break;
-			case 'setup_delete':
-				$type = gettext('Remove setup scripts');
+			case 'setup_proptect':
+				$type = gettext('Protect setup scripts');
 				break;
 			case 'user_new':
 				$type = gettext('Request add user');
