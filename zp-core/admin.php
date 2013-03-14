@@ -72,10 +72,31 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 				case 'restore_setup':
 					XSRFdefender('restore_setup');
 					checkSignature(true);
+					zp_apply_filter('log_setup', true, 'protect', gettext('enabled'));
 					$class = 'messagebox';
 					$msg = gettext('Setup files restored.');
 					break;
 
+				/** protect the setup files ***************************************************/
+				/******************************************************************************/
+				case 'protect_setup':
+					XSRFdefender('protect_setup');
+					chdir(SERVERPATH.'/'.ZENFOLDER.'/setup/');
+					$list = safe_glob('*.php');
+					$rslt = array();
+					foreach ($list as $component) {
+						@chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component, 0666);
+						if(@rename(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component, SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component.'.xxx')) {
+							@chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component.'.xxx', FILE_MOD);
+						} else {
+							@chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component, FILE_MOD);
+							$rslt[] = '../setup/'.$component;
+						}
+					}
+					zp_apply_filter('log_setup', true, 'protect', gettext('protected'));
+					$class = 'messagebox';
+					$msg = gettext('Setup files protected.');
+					break;
 
 				/** external script return ****************************************************/
 				/******************************************************************************/
@@ -506,10 +527,24 @@ zp_apply_filter('admin_note','Overview', NULL);
 				'button_text'=>gettext('Restore setup'),
 				'formname'=>'restore_setup.php',
 				'action'=>WEBPATH.'/'.ZENFOLDER.'/admin.php?action=restore_setup',
-				'icon'=>'images/refresh.png',
+				'icon'=>'images/lock_open.png',
 				'alt'=>'',
 				'title'=>gettext('Restores setup files so setup can be run.'),
 				'hidden'=>'<input type="hidden" name="action" value="restore_setup" />',
+				'rights'=> ADMIN_RIGHTS
+		);
+	} else {
+		$buttonlist[] = array(
+				'XSRFTag'=>'protect_setup',
+				'category'=>gettext('Admin'),
+				'enable'=>true,
+				'button_text'=>gettext('Protect setup'),
+				'formname'=>'restore_setup.php',
+				'action'=>WEBPATH.'/'.ZENFOLDER.'/admin.php?action=protect_setup',
+				'icon'=>'images/lock_2.png',
+				'alt'=>'',
+				'title'=>gettext('Protexts setup files so setup cannot be run.'),
+				'hidden'=>'<input type="hidden" name="action" value="protect_setup" />',
 				'rights'=> ADMIN_RIGHTS
 		);
 	}

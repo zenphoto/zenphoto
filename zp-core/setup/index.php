@@ -1373,8 +1373,9 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 		} else if($Nginx) {
 			$err = gettext("Server seems to be <em>nginx</em>");
 			$mod = "&amp;mod_rewrite";	//	enable test to see if it works.
-			$desc = sprintf(gettext('If you wish to create cruft-free URLs, you will need to configuring <em>URL rewriting for NGINX servers</em>. Please see the <em>nginx_zenphoto_rewrite.conf</em> file in the %s folder for details.'),ZENFOLDER).
-						'<br /><br />'.gettext('You can ignore this warning if you do not intend to set the <code>mod_rewrite</code> option.');
+			$desc = sprintf(gettext('If you wish to create cruft-free URLs, you will need to configuring <em>URL rewriting for NGINX servers</em>.').' '.
+//TODO							gettest('Please see the <em>nginx_zenphoto_rewrite.conf</em> file in the %s folder for details.'),ZENFOLDER).
+							'<br /><br />'.gettext('You can ignore this warning if you do not intend to set the <code>mod_rewrite</code> option.');
 		} else {
 			$mod = "&amp;mod_rewrite";	//	enable test to see if it works.
 			$desc = gettext("Server seems not to be <em>Apache</em> or <em>Apache-compatible</em>, <code>mod_rewrite</code> may not be available.");
@@ -2458,25 +2459,23 @@ if (file_exists(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE)) {
 				require_once(dirname(dirname(__FILE__)).'/'.PLUGIN_FOLDER.'/security-logger.php');
 				$curdir = getcwd();
 				chdir(dirname(__FILE__));
-				$list = setup_glob('*.*');
+				$list = setup_glob('*.php');
 				chdir($curdir);
 				$rslt = array();
 				foreach ($list as $component) {
-					if (getSuffix($component) == 'php') {
-						@chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component, 0666);
-						if(@rename(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component, SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component.'.xxx')) {
-							@chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component.'.xxx', FILE_MOD);
-							setupLog(sprintf(gettext('%s protected.'),$component),true);
-						} else {
-							@chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component, FILE_MOD);
-							setupLog(sprintf(gettext('failed to protect %s.'),$component),true);
-							$rslt[] = '../setup/'.$component;
-						}
+					@chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component, 0666);
+					if(@rename(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component, SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component.'.xxx')) {
+						@chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component.'.xxx', FILE_MOD);
+						setupLog(sprintf(gettext('%s protected.'),$component),true);
+					} else {
+						@chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component, FILE_MOD);
+						setupLog(sprintf(gettext('failed to protect %s.'),$component),true);
+						$rslt[] = '../setup/'.$component;
 					}
 				}
 
 				if (empty($rslt)) {
-					zp_apply_filter('log_setup', true, 'protect', '');
+					zp_apply_filter('log_setup', true, 'protect', gettext('protected'));
 					?>
 					<p class="messagebox"><?php echo gettext('Setup scripts protected.'); ?></p>
 					<?php
