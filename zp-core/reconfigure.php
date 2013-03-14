@@ -9,7 +9,7 @@
  * Executes the configuration change code
  */
 function reconfigureAction($mandatory) {
-	list($diff, $needs) = checkSignature();
+	list($diff, $needs) = checkSignature($mandatory);
 	$diffkeys = array_keys($diff);
 	if ($mandatory || in_array('ZENPHOTO', $diffkeys) || in_array('FOLDER', $diffkeys)) {
 		if (isset($_GET['rss'])) {
@@ -75,7 +75,7 @@ function reconfigureAction($mandatory) {
  *
  * Checks details of configuration change
  */
-function checkSignature() {
+function checkSignature($auto) {
 	global $_zp_DB_connection;
 	if (function_exists('query_full_array') && $_zp_DB_connection) {
 		$old = @unserialize(getOption('zenphoto_install'));
@@ -96,14 +96,16 @@ function checkSignature() {
 	}
 	if (file_exists(dirname(__FILE__).'/setup/')) {
 		chdir(dirname(__FILE__).'/setup/');
-		$found = safe_glob('*.xxx');
-		if (!empty($found)) {
-			foreach ($found as $script) {
-				chmod($script, 0666);
-				if (@rename($script, stripSuffix($script))) {
-					chmod(stripSuffix($script),FILE_MOD);
-				} else {
-					chmod($script,FILE_MOD);
+		if ($auto) {
+			$found = safe_glob('*.xxx');
+			if (!empty($found)) {
+				foreach ($found as $script) {
+					chmod($script, 0666);
+					if (@rename($script, stripSuffix($script))) {
+						chmod(stripSuffix($script),FILE_MOD);
+					} else {
+						chmod($script,FILE_MOD);
+					}
 				}
 			}
 		}
@@ -121,18 +123,9 @@ function checkSignature() {
  * @return string
  */
 function signatureChange($tab=NULL, $subtab=NULL) {
-	list($diff, $needs) = checkSignature();
+	list($diff, $needs) = checkSignature(false);
 	reconfigurePage($diff, $needs, 0);
 	return $tab;
-}
-
-/**
- *
- * returns true if setup files are present
- */
-function hasSetupFiles() {
-	list($diff, $needs) = checkSignature();
-	return empty($needs);
 }
 
 /**
@@ -208,40 +201,15 @@ function reconfigurePage($diff, $needs, $mandatory) {
 				?>
 			</ul>
 		</div>
-		<?php
-			if (!empty($needs)) {
-				?>
-				<p>
-				<?php printf(gettext('Please reinstall the following setup files from the %1$s [%2$s] release:'),ZENPHOTO_VERSION,ZENPHOTO_RELEASE); ?>
-					<div id="files">
-						<ul>
-							<?php
-							foreach ($needs as $script) {
-								?>
-								<li><?php echo ZENFOLDER; ?>/setup/<?php echo $script; ?></li>
-								<?php
-							}
-							?>
-						</ul>
-					</div>
-				</p>
+		<p>
 			<?php
-			$needs = true;
-			}
-			?>
-			<p>
-			<?php
-			if (!empty($needs)) {
-				$l1 = $l2 = '';
+			if (OFFSET_PATH) {
+				$where = 'admin';
 			} else {
-				if (OFFSET_PATH) {
-					$where = 'admin';
-				} else {
-					$where = 'gallery';
-				}
-				$l1 = '<a href="'.WEBPATH.'/'.ZENFOLDER.'/setup/index.php?autorun='.$where.'">';
-				$l2 = '</a>';
+				$where = 'gallery';
 			}
+			$l1 = '<a href="'.WEBPATH.'/'.ZENFOLDER.'/setup.php?autorun='.$where.'&amp;xsrfToken='.getXSRFToken('setup').'">';
+			$l2 = '</a>';
 			if (array_key_exists('ZENPHOTO', $diff) || array_key_exists('FOLDER', $diff)) {
 				printf(gettext('The change detected is critical. You <strong>must</strong> run %1$ssetup%2$s for your site to function.'), $l1, $l2);
 			} else {

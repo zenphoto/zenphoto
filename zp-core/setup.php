@@ -1,7 +1,12 @@
 <?php
 require_once(dirname(__FILE__).'/functions-basic.php');
 require_once(dirname(__FILE__).'/reconfigure.php');
-list($diff, $needs) = checkSignature();
+require_once(dirname(__FILE__).'/admin-globals.php');
+
+if ($load = isset($_GET['xsrfToken'])) {
+	$load = $_GET['xsrfToken'] == getXSRFToken('setup');
+}
+list($diff, $needs) = checkSignature($load);
 if (empty($needs)) {
 	header('Location: setup/index.php');
 } else {
@@ -20,7 +25,7 @@ if (empty($needs)) {
 				<div id="content">
 					<div class="tabbox">
 						<p>
-						<?php printf(gettext('Please reinstall the setup files from the %1$s [%2$s] release:'),ZENPHOTO_VERSION,ZENPHOTO_RELEASE); ?>
+						<?php printf(gettext('Please restore the setup files from the %1$s [%2$s] release:'),ZENPHOTO_VERSION,ZENPHOTO_RELEASE); ?>
 						</p>
 					</div>
 				</div>

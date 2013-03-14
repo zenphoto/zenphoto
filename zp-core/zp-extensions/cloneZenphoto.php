@@ -45,61 +45,8 @@ class cloneZenphoto {
 											'hidden'=>'',
 											'rights'=> ADMIN_RIGHTS
 											);
-/*
-		list($diff, $needs) = checkSignature();
-		if (empty($needs) && zpFunctions::hasPrimaryScripts()) {
-			$buttons[] = array(
-												'XSRFTag'=>'removeSetup',
-												'category'=>gettext('Admin'),
-												'enable'=>true,
-												'button_text'=>gettext('Protect setup scripts'),
-												'formname'=>'removeSetup',
-												'action'=>WEBPATH.'/'.ZENFOLDER.'/admin.php?action=protectSetup',
-												'icon'=>'images/folder.png',
-												'title'=>gettext('Protects setup scripts from execution.'),
-												'alt'=>'',
-												'hidden'=>'<input type="hidden" name="action" value="protectSetup" />	',
-												'rights'=> ADMIN_RIGHTS
-												);
-		}
-*/
 		return $buttons;
 	}
 
-}
-
-/**
- * process remove action
- */
-function protectSetup() {
-	global $msg, $class;
-	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/security-logger.php');
-
-	$curdir = getcwd();
-	chdir(SERVERPATH.'/'.ZENFOLDER.'/setup');
-	$list = safe_glob('*.*');
-	chdir($curdir);
-	$rslt = array();
-	foreach ($list as $component) {
-		if (getSuffix($component) == 'php') {
-			@chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component, 0666);
-			if(@rename(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component, SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component.'.xxx')) {
-				@chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component.'.xxx', FILE_MOD);
-			} else {
-				@chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component, FILE_MOD);
-				$rslt[] = '../setup/'.$component;
-			}
-		}
-	}
-	if (empty($rslt)) {
-		zp_apply_filter('log_setup', true, 'protect', '');
-		$class = 'messagebox';
-		$msg = gettext('Setup files protected.');
-	} else {
-		$rslt = implode(', ', $rslt);
-		zp_apply_filter('log_setup', false, 'protect', $rslt);
-		$class = 'errorbox';
-		$msg =  sprintf(gettext('Failed to protect: %s'), $rslt);
-	}
 }
 ?>

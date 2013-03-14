@@ -10,7 +10,7 @@
 define('OFFSET_PATH', 1);
 
 require_once(dirname(__FILE__).'/admin-globals.php');
-
+require_once(dirname(__FILE__).'/reconfigure.php');
 if (isset($_GET['_zp_login_error'])) {
 	$_zp_login_error = sanitize($_GET['_zp_login_error']);
 }
@@ -66,6 +66,16 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 					$class = 'messagebox';
 					$msg = gettext('HTML cache cleared.');
 					break;
+
+				/** restore the setup files ***************************************************/
+				/******************************************************************************/
+				case 'restore_setup':
+					XSRFdefender('restore_setup');
+					checkSignature(true);
+					$class = 'messagebox';
+					$msg = gettext('Setup files restored.');
+					break;
+
 
 				/** external script return ****************************************************/
 				/******************************************************************************/
@@ -459,6 +469,7 @@ zp_apply_filter('admin_note','Overview', NULL);
 	<?php
 	}
 	$buttonlist = array();
+
 	$curdir = getcwd();
 	chdir(SERVERPATH . "/" . ZENFOLDER . '/'.UTILITIES_FOLDER.'/');
 	$filelist = safe_glob('*'.'php');
@@ -484,6 +495,23 @@ zp_apply_filter('admin_note','Overview', NULL);
 		} else {
 			unset($buttonlist[$key]);
 		}
+	}
+	//	button to restore setup files if needed
+	list($diff,$needs) = checkSignature(false);
+	if (!empty($needs)) {
+		$buttonlist[] = array(
+				'XSRFTag'=>'restore_setup',
+				'category'=>gettext('Admin'),
+				'enable'=>true,
+				'button_text'=>gettext('Restore setup'),
+				'formname'=>'restore_setup.php',
+				'action'=>WEBPATH.'/'.ZENFOLDER.'/admin.php?action=restore_setup',
+				'icon'=>'images/refresh.png',
+				'alt'=>'',
+				'title'=>gettext('Restores setup files so setup can be run.'),
+				'hidden'=>'<input type="hidden" name="action" value="restore_setup" />',
+				'rights'=> ADMIN_RIGHTS
+		);
 	}
 	$buttonlist = sortMultiArray($buttonlist, array('category','button_text'), false);
 	?>
