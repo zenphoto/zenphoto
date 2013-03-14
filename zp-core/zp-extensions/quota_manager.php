@@ -210,9 +210,8 @@ class quota_manager {
 		$quota = quota_manager::getUploadQuota(0);
 		$size = round(filesize($image)/1024);
 		if ($quota > 0) {
-			if (quota_manager::getCurrentUse(NULL) + $size > $quota) {
+			if (quota_manager::getCurrentUse(NULL) + $size >= $quota) {
 				$error = UPLOAD_ERR_QUOTA;
-				break;
 			}
 		}
 		return $error;
