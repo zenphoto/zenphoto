@@ -1154,22 +1154,20 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 		$res = array_search($base.ZENFOLDER.'/Zenphoto.package',$_zp_resident_files);
 	}
 	unset($_zp_resident_files[$res]);
-	$cum_mean = filemtime(SERVERPATH.'/'.ZENFOLDER.'/version.php');
+	$cum_mean = filemtime(SERVERPATH.'/'.ZENFOLDER.'/Zenphoto.package');
 	$hours = 3600;
 	$lowset = $cum_mean - $hours;
 	$highset = $cum_mean + $hours;
 
 	$package_file_count = false;
-	if (file_exists(SERVERPATH.'/'.ZENFOLDER.'/Zenphoto.package')) {
-		$package = file_get_contents(SERVERPATH.'/'.ZENFOLDER.'/Zenphoto.package');
-		if ($lcFilesystem) {	// case insensitive file systems
-			$package = strtolower($package);
-		}
-		if (!empty($package)) {
-			$installed_files = explode("\n", trim($package));
-			$count = array_pop($installed_files);
-			$package_file_count = is_numeric($count) && ($count > 0) && ($count == count($installed_files));
-		}
+	$package = file_get_contents(SERVERPATH.'/'.ZENFOLDER.'/Zenphoto.package');
+	if ($lcFilesystem) {	// case insensitive file systems
+		$package = strtolower($package);
+	}
+	if (!empty($package)) {
+		$installed_files = explode("\n", trim($package));
+		$count = array_pop($installed_files);
+		$package_file_count = is_numeric($count) && ($count > 0) && ($count == count($installed_files));
 	}
 	if (!$package_file_count) {
 		checkMark(-1, '', gettext("Zenphoto package [missing]"), gettext('The file <code>Zenphoto.package</code> is either missing, not readable, or defective. Your installation may be corrupt!'));
@@ -1229,7 +1227,7 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 				}
 
 				$t = filemtime($component);
-				if ((!TEST_RELEASE && ($t < $lowset || $t > $highset))) {
+				if ((!(TEST_RELEASE ||$fromPackage=='*') && ($t < $lowset || $t > $highset))) {
 					$installed_files[$key] = $value;
 				} else {
 					unset($installed_files[$key]);
@@ -1373,8 +1371,8 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 		} else if($Nginx) {
 			$err = gettext("Server seems to be <em>nginx</em>");
 			$mod = "&amp;mod_rewrite";	//	enable test to see if it works.
-			$desc = sprintf(gettext('If you wish to create cruft-free URLs, you will need to configuring <em>URL rewriting for NGINX servers</em>.').' '.
-//TODO							gettest('Please see the <em>nginx_zenphoto_rewrite.conf</em> file in the %s folder for details.'),ZENFOLDER).
+			$desc = gettext('If you wish to create cruft-free URLs, you will need to configuring <em>URL rewriting for NGINX servers</em>.').' '.
+//TODO							sprintf(gettest('Please see the <em>nginx_zenphoto_rewrite.conf</em> file in the %s folder for details.'),ZENFOLDER).
 							'<br /><br />'.gettext('You can ignore this warning if you do not intend to set the <code>mod_rewrite</code> option.');
 		} else {
 			$mod = "&amp;mod_rewrite";	//	enable test to see if it works.
