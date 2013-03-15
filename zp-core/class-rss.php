@@ -779,7 +779,7 @@ protected function getRSSCombinewsAlbums() {
 				} else {
 					$items = $_zp_zenpage->getPages(NULL,false,$this->itemnumber);
 				}
-				break;
+			  break;
 			case 'comments':
 				switch($type = $this->commentrsstype) {
 					case 'gallery':

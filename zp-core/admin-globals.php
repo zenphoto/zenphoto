@@ -15,13 +15,11 @@ zp_session_start();
 require_once(dirname(__FILE__).'/admin-functions.php');
 httpsRedirect();
 $_SESSION['adminRequest'] = @$_COOKIE['zp_user_auth'];	//	Allow "unprotected" i.php if the request came from an admin session
-
 $zenphoto_tabs = array();
 
 if (OFFSET_PATH!=2 && !getOption('license_accepted')) {
 	require_once(dirname(__FILE__).'/license.php');
 }
-
 
 $sortby = array(gettext('Filename') => 'filename',
 								gettext('Date') => 'date',

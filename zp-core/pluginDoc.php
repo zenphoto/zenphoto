@@ -113,7 +113,7 @@ if (!defined('OFFSET_PATH')) {
 		$pagetitle = sprintf(gettext('%1$s %2$s: %3$s'),html_encode($_zp_gallery->getTitle()),gettext('admin'),html_encode($extension));
 		setupCurrentLocale('en_US');
 	?>
-		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+		<!DOCTYPE html>
 		<html xmlns="http://www.w3.org/1999/xhtml">
 		<head>
 			<link rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.css" type="text/css" />

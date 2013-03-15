@@ -315,7 +315,7 @@ foreach ($filelist as $extension) {
 					<input type="checkbox" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="<?php echo $plugin_is_filter; ?>"<?php echo $attributes; ?>	/>
 					<?php
 				}
-			echo $extension;
+				echo $extension;
 			?>
 			</label>
 			<?php

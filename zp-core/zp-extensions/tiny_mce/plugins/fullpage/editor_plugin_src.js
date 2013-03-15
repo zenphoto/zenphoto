@@ -369,7 +369,7 @@
 			if (editor.getParam('fullpage_default_xml_pi'))
 				header += '<?xml version="1.0" encoding="' + editor.getParam('fullpage_default_encoding', 'ISO-8859-1') + '" ?>\n';
 
-			header += editor.getParam('fullpage_default_doctype', '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">');
+			header += editor.getParam('fullpage_default_doctype', '<!DOCTYPE html>');
 			header += '\n<html>\n<head>\n';
 
 			if (value = editor.getParam('fullpage_default_title'))
