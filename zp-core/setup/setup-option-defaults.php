@@ -237,8 +237,16 @@ setOptionDefault('sharpen_threshold', 3);
 setOptionDefault('search_space_is_or', 0);
 setOptionDefault('search_no_albums', 0);
 
-// default groups
+//	 update group descriptions location
+$admins = $_zp_authority->getAdministrators('groups');
+foreach ($admins as $group) {
+	if (is_null($group['other_credentials'])) {
+		$sql = 'UPDATE '.prefix('administrators').' SET `custom_data` = NULL, `other_credentials`='.db_quote($group['custom_data']).' WHERE `id`='.$group['id'];
+		query($sql);
+	}
+}
 
+// default groups
 if (!is_array($groupsdefined)) {
 	$groupsdefined = array();
 }
@@ -246,7 +254,7 @@ if (!in_array('administrators',$groupsdefined)) {
 	$groupobj = Zenphoto_Authority::newAdministrator('administrators',0);
 	$groupobj->setName('group');
 	$groupobj->setRights(ALL_RIGHTS);
-	$groupobj->setCustomData(gettext('Users with full privileges'));
+	$groupobj->set('other_credentials',gettext('Users with full privileges'));
 	$groupobj->setValid(0);
 	$groupobj->save();
 	$groupsdefined[] = 'administrators';
@@ -255,7 +263,7 @@ if (!in_array('viewers',$groupsdefined)) {
 	$groupobj = Zenphoto_Authority::newAdministrator('viewers',0);
 	$groupobj->setName('group');
 	$groupobj->setRights(NO_RIGHTS | POST_COMMENT_RIGHTS | VIEW_ALL_RIGHTS);
-	$groupobj->setCustomData(gettext('Users allowed only to view zenphoto objects'));
+	$groupobj->set('other_credentials',gettext('Users allowed only to view zenphoto objects'));
 	$groupobj->setValid(0);
 	$groupobj->save();
 	$groupsdefined[] = 'viewers';
@@ -264,7 +272,7 @@ if (!in_array('blocked',$groupsdefined)) {
 	$groupobj = Zenphoto_Authority::newAdministrator('blocked',0);
 	$groupobj->setName('group');
 	$groupobj->setRights(0);
-	$groupobj->setCustomData(gettext('Banned users'));
+	$groupobj->set('other_credentials',gettext('Banned users'));
 	$groupobj->setValid(0);
 	$groupobj->save();
 	$groupsdefined[] = 'blocked';
@@ -273,7 +281,7 @@ if (!in_array('album managers',$groupsdefined)) {
 	$groupobj = Zenphoto_Authority::newAdministrator('album managers',0);
 	$groupobj->setName('template');
 	$groupobj->setRights(NO_RIGHTS | OVERVIEW_RIGHTS | POST_COMMENT_RIGHTS | VIEW_ALL_RIGHTS | UPLOAD_RIGHTS | COMMENT_RIGHTS | ALBUM_RIGHTS | THEMES_RIGHTS);
-	$groupobj->setCustomData(gettext('Managers of one or more albums'));
+	$groupobj->set('other_credentials',gettext('Managers of one or more albums'));
 	$groupobj->setValid(0);
 	$groupobj->save();
 	$groupsdefined[] = 'album managers';
@@ -282,7 +290,7 @@ if (!in_array('default',$groupsdefined)) {
 	$groupobj = Zenphoto_Authority::newAdministrator('default',0);
 	$groupobj->setName('template');
 	$groupobj->setRights(DEFAULT_RIGHTS);
-	$groupobj->setCustomData(gettext('Default user settings'));
+	$groupobj->set('other_credentials',gettext('Default user settings'));
 	$groupobj->setValid(0);
 	$groupobj->save();
 	$groupsdefined[] = 'default';
@@ -291,7 +299,7 @@ if (!in_array('newuser',$groupsdefined)) {
 	$groupobj = Zenphoto_Authority::newAdministrator('newuser',0);
 	$groupobj->setName('template');
 	$groupobj->setRights(NO_RIGHTS);
-	$groupobj->setCustomData(gettext('Newly registered and verified users'));
+	$groupobj->set('other_credentials',gettext('Newly registered and verified users'));
 	$groupobj->setValid(0);
 	$groupobj->save();
 	$groupsdefined[] = 'newuser';

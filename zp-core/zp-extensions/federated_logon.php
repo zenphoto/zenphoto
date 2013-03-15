@@ -290,7 +290,7 @@ class federated_logon {
 	 */
 	static function edit_admin($html, $userobj, $i, $background, $current, $local_alterrights) {
 		global $_zp_current_admin_obj;
-		if (empty($_zp_current_admin_obj)) return($html);
+		if (empty($_zp_current_admin_obj) || !$userobj->getValid()) return $html;
 		$federated = $userobj->getCredentials();	//	came from federated logon, disable the e-mail field
 		if (!in_array('federated', $federated)) {
 			$federated = false;

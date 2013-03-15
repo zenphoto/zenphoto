@@ -60,9 +60,10 @@ if (isset($_GET['action'])) {
 						$group->setObjects(processManagedObjects($i,$rights));
 						$group->setRights(NO_RIGHTS | $rights);
 					}
-					$group->setCustomData(trim(sanitize($_POST[$i.'-desc'], 3)));
+					$group->set('other_credentials',trim(sanitize($_POST[$i.'-desc'], 3)));
 					$group->setName(trim(sanitize($_POST[$i.'-type'], 3)));
 					$group->setValid(0);
+					zp_apply_filter('save_admin_custom_data', true, $group, $i, true);
 					$group->save();
 
 					if ($group->getName()=='group') {
@@ -90,6 +91,7 @@ if (isset($_GET['action'])) {
 								$user->setRights($group->getRights());
 								$user->setObjects($group->getObjects());
 								$user->setGroup($groupname);
+								$user->setCustomData($group->getCustomData());
 								$user->save();
 							}
 						}
@@ -209,13 +211,13 @@ echo '</head>'."\n";
 							<?php
 								$id = 0;
 								$groupselector = $groups;
-								$groupselector[''] = array('id' => -1,  'user' => '', 'name'=>'group', 'rights' => ALL_RIGHTS ^ MANAGE_ALL_ALBUM_RIGHTS, 'valid' => 0, 'custom_data'=>'');
+								$groupselector[''] = array('id' => -1,  'user' => '', 'name'=>'group', 'rights' => ALL_RIGHTS ^ MANAGE_ALL_ALBUM_RIGHTS, 'valid' => 0, 'other_credentials'=>'');
 								foreach($groupselector as $key=>$user) {
 									$groupname = $user['user'];
 									$groupid = $user['id'];
 									$rights = $user['rights'];
 									$grouptype = $user['name'];
-									$desc = $user['custom_data'];
+									$desc = $user['other_credentials'];
 									$groupobj = new Zenphoto_Administrator($groupname, 0);
 									if ($grouptype == 'group') {
 										$kind = gettext('group');
@@ -265,6 +267,12 @@ echo '</head>'."\n";
 											<br /><br />
 											<?php
 											printAdminRightsTable($id, '', '', $rights);
+											$custom = zp_apply_filter('edit_admin_custom_data', '', $groupobj, $id, $background, true, '');
+											if ($custom) {
+												$custom = preg_replace('~</*tr[^>]*>~i', '', $custom);
+												$custom = preg_replace('~</*td[^>]*>~i', '', $custom);
+												echo $custom;
+											}
 											?>
 											</span>
 										</td>
@@ -279,7 +287,7 @@ echo '</head>'."\n";
 													<option title=""></option>
 													<?php
 													foreach ($groups as $user) {
-														$hint = '<em>'.html_encode($user['custom_data']).'</em>';
+														$hint = '<em>'.html_encode($desc).'</em>';
 														if ($groupname == $user['user']) {
 															$selected = ' selected="selected"';
 															} else {
@@ -353,6 +361,7 @@ echo '</head>'."\n";
 										?>
 										</td>
 									</tr>
+
 									<?php
 									$id++;
 								}

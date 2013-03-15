@@ -33,13 +33,15 @@ class email_new_user {
 	}
 
 	static function edit_admin($html, $userobj, $i, $background, $current) {
-		$user = $userobj->getUser();
-		if (empty($user)) {
-			$result =
+		if ($userobj->getValid()) {
+			$user = $userobj->getUser();
+			if (empty($user)) {
+				$result =
 				'<tr'.((!$current)? ' style="display:none;"':'').' class="userextrainfo">
-					<td colspan="2" '.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top"><p class="notebox">'.gettext('New users will be mailed a password set link').'</p></td>
+				<td colspan="2" '.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top"><p class="notebox">'.gettext('New users will be mailed a password set link').'</p></td>
 				</tr>'."\n";
-			$html = $result.$html;
+				$html = $result.$html;
+			}
 		}
 		return $html;
 	}

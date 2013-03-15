@@ -304,10 +304,12 @@ function comment_form_register_save($user) {
  * @return bool
  */
 function comment_form_save_admin($updated, $userobj, $i, $alter) {
-	$olddata = $userobj->getCustomData();
-	$userobj->setCustomData(serialize(getUserInfo($i)));
-	if ($olddata != $userobj->getCustomData()) {
-		return true;
+	if ($userobj->getValid()) {
+		$olddata = $userobj->getCustomData();
+		$userobj->setCustomData(serialize(getUserInfo($i)));
+		if ($olddata != $userobj->getCustomData()) {
+			return true;
+		}
 	}
 	return $updated;
 }
@@ -386,6 +388,7 @@ function comment_form_options() {
  * @return string
  */
 function comment_form_edit_admin($html, $userobj, $i, $background, $current) {
+	if (!$userobj->getValid()) return $html;
 	$raw = $userobj->getCustomData();
 	$needs = array('street'=>'', 'city'=>'', 'state'=>'', 'country'=>'', 'postal'=>'', 'website'=>'');
 	if (!preg_match('/^a:[0-9]+:{/', $raw)) {

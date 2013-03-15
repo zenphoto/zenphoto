@@ -34,7 +34,7 @@ class user_groups {
 		global $_zp_authority;
 		$templates = false;
 		$rights = 0;
-		$objects = array();
+		$custom = $objects = array();
 		$newgroups = implode(',',$groups);
 		$oldgroups = $userobj->getGroup();
 
@@ -57,8 +57,9 @@ class user_groups {
 			}
 			$rights = $group->getRights() | $rights;
 			$objects = array_merge($group->getObjects(), $objects);
-
+			$custom[] = $group->getCustomData();
 		}
+		$userobj->setCustomData(array_shift($custom));	//	for now it is first come, first served.
 		// unique objects
 		$newobjects = array();
 		foreach ($objects as $object) {
@@ -93,7 +94,7 @@ class user_groups {
 	 * @return bool
 	 */
 	static function save_admin($updated, $userobj, $i, $alter) {
-		if ($alter) {
+		if ($alter && $userobj->getValid()) {
 			if (isset($_POST[$i.'group'])) {
 				$newgroups = sanitize($_POST[$i.'group']);
 				$updated = $updated || self::merge_rights($userobj, $newgroups);
@@ -180,6 +181,7 @@ class user_groups {
 	 * @return string
 	 */
 	static function edit_admin($html, $userobj, $i, $background, $current) {
+		if (!$userobj->getValid()) return $html;
 		if (zp_loggedin(ADMIN_RIGHTS)) {
 			if ($userobj->getID()>=0) {
 				$notice = ' '.gettext("Applying a template will merge the template with the current <em>rights</em> and <em>objects</em>.");

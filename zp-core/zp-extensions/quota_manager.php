@@ -115,13 +115,19 @@ class quota_manager {
 		if ($userobj->getRights() & (ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) return $html;
 		if (!($userobj->getRights() & UPLOAD_RIGHTS)) return $html;
 		$quota = $userobj->getQuota();
-		$used = quota_manager::getCurrentUse($userobj);
-		if ($quota == NULL) $quota = getOption('quota_default');
+		if ($quota == NULL) {
+			$quota = getOption('quota_default');
+		}
+		if ($userobj->getValid()) {
+			$used = sprintf(gettext('(%s kb used)'),number_format(quota_manager::getCurrentUse($userobj)));
+		} else {
+			$used = '';
+		}
 		$result =
 			'<tr'.((!$current)? ' style="display:none;"':'').' class="userextrainfo">
 				<td colspan="2"'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top" width="345">'.gettext("Image storage quota:").'&nbsp;'.
 					sprintf(gettext('Allowed: %s kb'),'<input type="text" size="10" name="'.$i.'quota" value="'.$quota.'" '.$local_alterrights.' />').' '.
-					sprintf(gettext('(%s kb used)'),number_format($used)).
+					$used.
 					"\n".
 				'</td>'.
 			'</tr>'."\n";
