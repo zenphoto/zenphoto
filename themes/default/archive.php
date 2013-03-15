@@ -4,7 +4,7 @@
 if (!defined('WEBPATH')) die();
 ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
 		<title><?php printBareGalleryTitle(); ?> | <?php echo gettext("Archive View"); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
