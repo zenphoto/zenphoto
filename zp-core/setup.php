@@ -1,12 +1,8 @@
 <?php
-require_once(dirname(__FILE__).'/functions-basic.php');
-require_once(dirname(__FILE__).'/reconfigure.php');
 require_once(dirname(__FILE__).'/admin-globals.php');
+require_once(dirname(__FILE__).'/reconfigure.php');
 
-if ($load = isset($_GET['xsrfToken'])) {
-	$load = $_GET['xsrfToken'] == getXSRFToken('setup');
-}
-list($diff, $needs) = checkSignature($load);
+list($diff, $needs) = checkSignature(TEST_RELEASE ||isset($_GET['xsrfToken']) && $_GET['xsrfToken'] == getXSRFToken('setup'));
 if (empty($needs)) {
 	header('Location: setup/index.php');
 } else {
