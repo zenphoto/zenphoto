@@ -1,7 +1,6 @@
 <?php
 
-require_once(dirname(dirname(dirname(dirname(__FILE__)))).'/admin-functions.php');
-zp_session_start();
+require_once(dirname(dirname(dirname(dirname(__FILE__)))).'/admin-globals.php');
 XSRFdefender('elFinder');
 
 include_once SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/elFinder/php/elFinderConnector.class.php';
@@ -46,6 +45,7 @@ function accessImage($attr, $path, $data, $volume) {
 	return NULL;
 }
 
+
 function accessAlbums($attr, $path, $data, $volume) {
 	//	restrict access to his albums
 	$base = explode('/',str_replace(getAlbumFolder(SERVERPATH), '', str_replace('\\', '/', $path).'/'));
@@ -56,6 +56,7 @@ function accessAlbums($attr, $path, $data, $volume) {
 	}
 	return NULL;
 }
+$escape = array('['=>'\\[','\\'=>'\\\\','^'=>'\\^','$'=>'\\$','.'=>'\\.','|'=>'\\|','?'=>'\\?','*'=>'\\*','+'=>'\\+','('=>'\\(',')'=>'\\)');
 $opts = array();
 
 if ($_REQUEST['origin']=='upload') {
@@ -131,48 +132,84 @@ if ($_REQUEST['origin']=='upload') {
 			$_managed_folders = getManagedAlbumList();
 			$excluded_folders = $_zp_gallery->getAlbums(0);
 			$excluded_folders = array_diff($excluded_folders, $_managed_folders);
-			//	albums he view but may not edit
+			foreach ($excluded_folders as $key=>$folder) {
+				$excluded_folders[$key] = strtr($folder, $escape);
+			}
+
+			$maxupload = ini_get('upload_max_filesize');
+			$maxuploadint = parse_size($maxupload);
+			$uploadlimit = zp_apply_filter('get_upload_limit', $maxuploadint);
+			$all_actions = $_not_upload = $_not_edit= array();
+
 			foreach ($_managed_folders as $key=>$folder) {
 				$rightsalbum = newAlbum($folder);
 				$modified_rights = $rightsalbum->albumSubRights();
-				if ($modified_rights & MANAGED_OBJECT_RIGHTS_EDIT) {
-					unset($_managed_folders[$key]);
+				if ($uploadlimit <= 0) {
+					$modified_rights = $modified_rights & ~MANAGED_OBJECT_RIGHTS_UPLOAD;
+				}
+				$_not_edit[$key] = $_not_upload[$key] = $folder = strtr($folder, $escape);
+				switch ($modified_rights & (MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_EDIT)) {
+					case MANAGED_OBJECT_RIGHTS_UPLOAD:															// upload but not edit
+						unset($_not_upload[$key]);
+						break;
+					case MANAGED_OBJECT_RIGHTS_EDIT:																// edit but not upload
+						unset($_not_edit[$key]);
+						break;
+					case MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_EDIT:	// edit and upload
+						unset($_not_edit[$key]);
+						unset($_not_upload[$key]);
+						$all_actions[$key] = $folder;
+						break;
 				}
 			}
-			$opts['roots'][2]['attributes'] = array(
-																						array(	//	albums he does not manage
-																								'pattern' => '/.('.implode('$|',$excluded_folders).'$)/', // Dont write or delete to this but subfolders and files
-																								'read'  => false,
-																								'write' => false,
-																								'locked' => true
-																						),
-																						array(	//	xmp for albums he does not manage
-																								'pattern' => '/.('.implode('.xmp|',$excluded_folders).'.xmp)/', // Dont write or delete to this but subfolders and files
-																								'read'  => false,
-																								'write' => false,
-																								'locked' => true
-																						),
-																						array(	//	albums he can manage but not edit
-																								'pattern' => '/.('.implode('$|',$_managed_folders).'$)/', // Dont write or delete to this but subfolders and files
-																								'read'  => true,
-																								'write' => false,
-																								'locked' => true
-																						),
-																						array(	//	albums content he can manage but not edit
-																								'pattern' => '/.('.implode('\/|',$_managed_folders).'\/)/', // Dont write or delete to this but subfolders and files
-																								'read'  => true,
-																								'write' => false,
-																								'locked' => true
-																						),
-																						array(	//	xmp for albums he can manage but not edit
-																								'pattern' => '/.('.implode('\/|',$_managed_folders).'.xmp)/', // Dont write or delete to this but subfolders and files
-																								'read'  => true,
-																								'write' => false,
-																								'locked' => true
-																						)
-			);
-		}
 
+			$opts['roots'][2]['attributes'] = array();
+			if (!empty($excluded_folders)) {
+				$opts['roots'][2]['attributes'][0] = array(	//	albums he does not manage
+																									'pattern' => '/.('.implode('$|',$excluded_folders).'$)/', // Dont write or delete to this but subfolders and files
+																									'read'  => false,
+																									'write' => false,
+																									'locked' => true
+																							);
+
+				$opts['roots'][2]['attributes'][1] = array(	//	xmp for albums he does not manage
+																									'pattern' => '/.('.implode('.xmp|',$excluded_folders).'.xmp)/', // Dont write or delete to this but subfolders and files
+																									'read'  => false,
+																									'write' => false,
+																									'locked' => true
+																							);
+			}
+			if (!empty($_not_upload)) {
+				$opts['roots'][2]['attributes'][2] = array(	//	albums he can not upload
+																									'pattern' => '/.('.implode('$|',$_not_upload).'$)/', // Dont write or delete to this but subfolders and files
+																									'read'  => true,
+																									'write' => false,
+																									'locked' => true
+																							);
+			}
+			if (!empty($_not_edit)) {
+				$opts['roots'][2]['attributes'][3] = array(	//	albums content he not edit
+																									'pattern' => '/.('.implode('\/|',$_not_edit).'\/)/', // Dont write or delete to this but subfolders and files
+																									'read'  => true,
+																									'write' => false,
+																									'locked' => true
+																							);
+				$opts['roots'][2]['attributes'][4] = array(	//	xmp for albums he can not edit
+																									'pattern' => '/.('.implode('\/|',$_not_edit).'.xmp)/', // Dont write or delete to this but subfolders and files
+																									'read'  => true,
+																									'write' => false,
+																									'locked' => true
+																							);
+			}
+			if (!empty($all_actions)) {
+				$opts['roots'][2]['attributes'][5] = array(	//	albums he can not upload
+																									'pattern' => '/.('.implode('$|',$all_actions).'$)/', // Dont write or delete to this but subfolders and files
+																									'read'  => true,
+																									'write' => true,
+																									'locked' => false
+																							);
+			}
+		}
 	}
 
 	if (zp_loggedin(ADMIN_RIGHTS)) {

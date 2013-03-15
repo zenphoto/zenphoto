@@ -7,7 +7,7 @@
  * are not subject to quotas and will not be assigned ownership of an image.
  *
  * Images uploaded by a user will be marked as his and will count toward his quota.
- * Images uploaded via FTP will not necessarily have an owner assigned.
+ * Images uploaded via FTP or from the <var>files</var> tab will not necessarily have an owner assigned.
  *
  * You may also assign the complete set of images in an albums to a user. (Just the images in the
  * album. If you want to assign images from subalbums, you need to do that for each
@@ -17,6 +17,9 @@
  *
  * Because of the difficulty of policing quotas when ZIP files are uploaded this plugin
  * has an option to diable ZIP file upload.
+ *
+ * Since uploads via the <var>files</var> tab are like FTP uploads and are not assigned to the user, you should not assign <var>files</var> rights
+ * to users with upload limits.
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
@@ -208,7 +211,11 @@ class quota_manager {
 			return UPLOAD_ERR_EXTENSION;
 		}
 		$quota = quota_manager::getUploadQuota(0);
-		$size = round(filesize($image)/1024);
+		if ($image) {
+			$size = round(filesize($image)/1024);
+		} else {
+			$size = 0;	//	no image passed, just want to see if we are at or above quota.
+		}
 		if ($quota > 0) {
 			if (quota_manager::getCurrentUse(NULL) + $size >= $quota) {
 				$error = UPLOAD_ERR_QUOTA;
