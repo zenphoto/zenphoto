@@ -2403,11 +2403,7 @@ function print_language_string_list($dbstring, $name, $textbox=false, $locale=NU
 		}
 		$locale = $_zp_current_locale;
 	}
-	if (preg_match('/^a:[0-9]+:{/', $dbstring)) {
-		$strings = unserialize($dbstring);
-	} else {
-		$strings = array($locale=>$dbstring);
-	}
+	$strings = getSerializedArray($dbstring);
 	if (getOption('multi_lingual')) {
 		if ($textbox) {
 			if (strpos($wide, '%') === false) {

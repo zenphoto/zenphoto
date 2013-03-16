@@ -481,13 +481,7 @@ function getUserLocale() {
  * @return string
  */
 function get_language_string($dbstring, $locale=NULL) {
-	if (!preg_match('/^a:[0-9]+:{/', $dbstring)) {
-		return $dbstring;
-	}
-	$strings = @unserialize($dbstring);
-	if (!is_array($strings)) { //??????
-		return $strings;
-	}
+	$strings = getSerializedArray($dbstring);
 	$actual_local = getOption('locale');
 	if (is_null($locale)) $locale = $actual_local;
 	if (isset($strings[$locale])) {
