@@ -6,7 +6,7 @@ if (@$_zp_conf_vars['site_upgrade_state']=='closed') {
 	} else {
 		$page = 'page';
 	}
-	if (!preg_match('~'.$page.'/setup_set-mod_rewrite\?z=setup$~', $_SERVER['REQUEST_URI'])) {
+	if (!preg_match('~'.preg_quote($page).'/setup_set-mod_rewrite\?z=setup$~', $_SERVER['REQUEST_URI'])) {
 		header('location: plugins/site_upgrade/closed.php');
 		exit();
 	}

@@ -56,7 +56,6 @@ function accessAlbums($attr, $path, $data, $volume) {
 	}
 	return NULL;
 }
-$escape = array('['=>'\\[','\\'=>'\\\\','^'=>'\\^','$'=>'\\$','.'=>'\\.','|'=>'\\|','?'=>'\\?','*'=>'\\*','+'=>'\\+','('=>'\\(',')'=>'\\)');
 $opts = array();
 
 if ($_REQUEST['origin']=='upload') {
@@ -133,7 +132,7 @@ if ($_REQUEST['origin']=='upload') {
 			$excluded_folders = $_zp_gallery->getAlbums(0);
 			$excluded_folders = array_diff($excluded_folders, $_managed_folders);
 			foreach ($excluded_folders as $key=>$folder) {
-				$excluded_folders[$key] = strtr($folder, $escape);
+				$excluded_folders[$key] = preg_quote($folder);
 			}
 
 			$maxupload = ini_get('upload_max_filesize');
@@ -147,7 +146,7 @@ if ($_REQUEST['origin']=='upload') {
 				if ($uploadlimit <= 0) {
 					$modified_rights = $modified_rights & ~MANAGED_OBJECT_RIGHTS_UPLOAD;
 				}
-				$_not_edit[$key] = $_not_upload[$key] = $folder = strtr($folder, $escape);
+				$_not_edit[$key] = $_not_upload[$key] = $folder = preg_quote($folder);
 				switch ($modified_rights & (MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_EDIT)) {
 					case MANAGED_OBJECT_RIGHTS_UPLOAD:															// upload but not edit
 						unset($_not_upload[$key]);

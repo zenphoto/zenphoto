@@ -1070,10 +1070,9 @@ class SearchEngine {
 						break;
 					default:
 						$lookfor = strtolower($singlesearchstring);
-						$matchtarget = '%'.str_replace('%', '\%', $lookfor).'%';
 						$objectid = NULL;
 						foreach ($taglist as $key => $objlist) {
-							if (($exact && $lookfor == $key) || (!$exact && preg_match($matchtarget, $key))) {
+							if (($exact && $lookfor == $key) || (!$exact && preg_match('|'.preg_quote($lookfor).'|', $key))) {
 								if (is_array($objectid)) {
 									$objectid = array_merge($objectid, $objlist);
 								} else {

@@ -126,7 +126,7 @@ class zpSimpleSpam  {
 	function hasSpamPattern($text) {
 		$patterns = $this->patternsToDieOn;
 		foreach ($patterns as $pattern) {
-			if (preg_match('/'.addcslashes(trim($pattern),'/').'/i',$text)) {
+			if (preg_match('|'.preg_quote(trim($pattern),'/').'|i',$text)) {
 				return true;
 			}
 		}
