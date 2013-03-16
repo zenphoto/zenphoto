@@ -364,12 +364,9 @@ function printContactForm($subject_override='') {
 															'country'=>'','postal'=>'','email'=>$_zp_current_admin_obj->getEmail(),'website'=>'','phone'=>'',
 															'subject'=>$subject_override,'message'=>'','honeypot'=>'');
 				if (getOption('zp_plugin_comment_form')) {
-					$raw = $_zp_current_admin_obj->getCustomData();
-					if (preg_match('/^a:[0-9]+:{/', $raw)) {
-						$address = unserialize($raw);
-						foreach ($address as $key=>$field) {
-							$mailcontent[$key] = $field;
-						}
+					$address = getSerializedArray($_zp_current_admin_obj->getCustomData());
+					foreach ($address as $key=>$field) {
+						$mailcontent[$key] = $field;
 					}
 				}
 			} else {

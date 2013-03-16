@@ -172,12 +172,12 @@ global $_zp_themeroot;
 						<?php
 						if ($disabled['country']) {
 							?>
-							<input name="comment_form_country" id="comment_form_country" class="text" type="hidden" size="22" value="<?php echo html_encode($stored['country']); ?>" />
+							<input name="0-comment_form_country" id="comment_form_country" class="text" type="hidden" size="22" value="<?php echo html_encode($stored['country']); ?>" />
 							<?php echo html_encode($stored['country']); ?>
 							<?php
 						} else {
 							?>
-							<input name="comment_form_country" id="comment_form_country" class="text" size="22" value="<?php echo html_encode($stored['country']); ?>" />
+							<input name="0-comment_form_country" id="comment_form_country" class="text" size="22" value="<?php echo html_encode($stored['country']); ?>" />
 							<?php
 						}
 						?>

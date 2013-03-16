@@ -501,5 +501,20 @@ function zp_clearCookie($name, $path=NULl, $secure=false) {
 	zp_setCookie($name, '', -368000, $path, $secure);
 }
 
-
+/**
+ * if $string is an serialzied array it is unserialized otherwise an appropriate array is returned
+ *
+ * @param string $string
+ *
+ * @return array
+ */
+function getSerializedArray($string) {
+	if (preg_match('/^a:[0-9]+:{/', $string)) {
+		return unserialize($string);
+	} else if (empty($string)) {
+		return array();
+	} else {
+		return array($string);
+	}
+}
 ?>

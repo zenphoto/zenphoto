@@ -95,7 +95,8 @@ function comment_form_visualEditor() {
  * @return string
  */
 function comment_form_save_comment($discard) {
-	return serialize(getUserInfo(0));
+	global $_comment_form_save_post;
+	return $_comment_form_save_post = serialize(getUserInfo(0));
 }
 
 /**
@@ -193,10 +194,9 @@ function comment_form_print10Most() {
  * @return string
  */
 function comment_form_edit_comment($discard, $raw) {
-	if (!preg_match('/^a:[0-9]+:{/', $raw)) {
+	$address = getSerializedArray($raw);
+	if (empty($address)) {
 		$address = array('street'=>'', 'city'=>'', 'state'=>'', 'country'=>'', 'postal'=>'', 'website'=>'');
-	} else {
-		$address = unserialize($raw);
 	}
 	$required = getOption('register_user_address_info');
 	if ($required == 'required') {
@@ -260,6 +260,7 @@ function comment_form_edit_comment($discard, $raw) {
 
 function comment_form_register_user($html) {
 	global $_comment_form_save_post;
+	$_comment_form_save_post = zp_getCookie('comment_form_register_save');
 	return comment_form_edit_comment(false, $_comment_form_save_post);
 }
 
@@ -290,6 +291,7 @@ function comment_form_register_save($user) {
 			$user->msg .= ' '.gettext('You must supply the postal code field.');
 		}
 	}
+	zp_setCookie('comment_form_register_save', $_comment_form_save_post);
 	$user->setCustomData($_comment_form_save_post);
 }
 
@@ -389,12 +391,11 @@ function comment_form_options() {
  */
 function comment_form_edit_admin($html, $userobj, $i, $background, $current) {
 	if (!$userobj->getValid()) return $html;
-	$raw = $userobj->getCustomData();
 	$needs = array('street'=>'', 'city'=>'', 'state'=>'', 'country'=>'', 'postal'=>'', 'website'=>'');
-	if (!preg_match('/^a:[0-9]+:{/', $raw)) {
+	$address = getSerializedArray($userobj->getCustomData());
+	if (empty($address)) {
 		$address = $needs;
 	} else {
-		$address = unserialize($raw);
 		foreach ($needs as $needed=>$value) {
 			if (!isset($address[$needed])) {
 				$address[$needed] = '';
@@ -525,9 +526,6 @@ function comment_form_addCcomment($name, $email, $website, $comment, $code, $cod
 	$name = trim($name);
 	$email = trim($email);
 	$website = trim($website);
-	if (!empty($website) && substr($website, 0, 7) != "http://") {
-		$website = "http://" . $website;
-	}
 	// Let the comment have trailing line breaks and space? Nah...
 	// Also (in)validate HTML here, and in $name.
 	$comment = trim($comment);
@@ -738,7 +736,6 @@ function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=t
 			return;
 		break;
 	}
-	$arraytest = '/^a:[0-9]+:{/'; // this screws up Eclipse's brace count!!!
 	?>
 <!-- printCommentForm -->
 	<div id="commentcontent">
@@ -817,13 +814,11 @@ function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=t
 		<?php
 		if ($comments_open) {
 			$stored = array_merge(getCommentStored(),array('street'=>'', 'city'=>'', 'state'=>'', 'country'=>'', 'postal'=>''));
-			$raw = $stored['custom'];
-			if (preg_match($arraytest, $raw)) {
-				$custom = unserialize($raw);
-				foreach ($custom as $key=>$value) {
-					if (!empty($value)) $stored[$key] = $value;
-				}
+			$custom = getSerializedArray($stored['custom']);
+			foreach ($custom as $key=>$value) {
+				if (!empty($value)) $stored[$key] = $value;
 			}
+
 			$disabled = array('name'=>'',	'website'=>'', 'anon'=>'', 'private'=>'', 'comment'=>'',
 												'street'=>'', 'city'=>'', 'state'=>'', 'country'=>'', 'postal'=>'');
 			foreach ($stored as $key=>$value) {
@@ -831,16 +826,14 @@ function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=t
 			}
 
 			if (zp_loggedin()) {
-				$raw = $_zp_current_admin_obj->getCustomData();
-				if (preg_match($arraytest, $raw)) {
-					$address = unserialize($raw);
-					foreach ($address as $key=>$value) {
-						if (!empty($value)) {
-							$disabled[$key] = true;
-							$stored[$key] = $value;
-						}
+				$address = getSerializedArray($_zp_current_admin_obj->getCustomData());
+				foreach ($address as $key=>$value) {
+					if (!empty($value)) {
+						$disabled[$key] = true;
+						$stored[$key] = $value;
 					}
 				}
+
 				$name = $_zp_current_admin_obj->getName();
 				if (!empty($name)) {
 					$stored['name'] = $name;
@@ -963,6 +956,9 @@ function comment_form_handle_comment() {
 			}
 			if (isset($_POST['website'])) {
 				$p_website = sanitize($_POST['website'], 3);
+				if ($p_website && strpos($p_website, 'http')!==0) {
+					$p_website = 'http://'.$p_website;
+				}
 				if (!isValidURL($p_website)) {
 					$p_website = NULL;
 				}
@@ -998,20 +994,25 @@ function comment_form_handle_comment() {
 				$commentobject = $_zp_current_zenpage_page;
 				$redirectTo = FULLWEBPATH . '/index.php?p=pages&title='.$_zp_current_zenpage_page->getTitlelink();
 			}
-			$commentadded = $commentobject->addComment($p_name, $p_email, $p_website, $p_comment,
-			$code1, $code2,	$p_server, $p_private, $p_anon);
+			$commentadded = $commentobject->addComment($p_name, $p_email, $p_website, $p_comment, $code1, $code2,	$p_server, $p_private, $p_anon);
 
 			$comment_error = $commentadded->getInModeration();
-			$_zp_comment_stored = array($commentadded->getName(), $commentadded->getEmail(), $commentadded->getWebsite(), $commentadded->getComment(), false,
-			$commentadded->getPrivate(), $commentadded->getAnon(), $commentadded->getCustomData());
-			if (isset($_POST['remember'])) $_zp_comment_stored[4] = true;
+			$_zp_comment_stored = array('name'=>$commentadded->getName(),
+																	'email'=>$commentadded->getEmail(),
+																	'website'=>$commentadded->getWebsite(),
+																	'comment'=>$commentadded->getComment(),
+																	'saved'=>isset($_POST['remember']),
+																	'private'=>$commentadded->getPrivate(),
+																	'anon'=>$commentadded->getAnon(),
+																	'custom'=>$commentadded->getCustomData()
+																	);
 			if (!$comment_error) {
 				if (isset($_POST['remember'])) {
 					// Should always re-cookie to update info in case it's changed...
-					$_zp_comment_stored[3] = ''; // clear the comment itself
-					zp_setCookie('zenphoto_comment', implode('|~*~|', $_zp_comment_stored), NULL, '/');
+					$_zp_comment_stored['comment'] = ''; // clear the comment itself
+					zp_setCookie('zenphoto_comment', serialize($_zp_comment_stored));
 				} else {
-					zp_clearCookie('zenphoto_comment', '/');
+					zp_clearCookie('zenphoto_comment');
 				}
 				//use $redirectTo to send users back to where they came from instead of booting them back to the gallery index. (default behaviour)
 				if (!isset($_SERVER['SERVER_SOFTWARE']) || strpos(strtolower($_SERVER['SERVER_SOFTWARE']), 'microsoft-iis') === false) {
@@ -1030,15 +1031,22 @@ function comment_form_handle_comment() {
 			}
 		}
 		return $commentadded->comment_error_text;
-	} else if (!empty($cookie)) {
-		// Comment form was not submitted; get the saved info from the cookie.
-		$_zp_comment_stored = explode('|~*~|', stripslashes($cookie));
-		$_zp_comment_stored[4] = true;
-		if (!isset($_zp_comment_stored[5])) $_zp_comment_stored[5] = false;
-		if (!isset($_zp_comment_stored[6])) $_zp_comment_stored[6] = false;
-		if (!isset($_zp_comment_stored[7])) $_zp_comment_stored[7] = false;
 	} else {
-		$_zp_comment_stored = array('','','', '', false, false, false, false);
+		$_zp_comment_stored = array('name'=>'',
+				'email'=>'',
+				'website'=>'',
+				'comment'=>'',
+				'saved'=>false,
+				'private'=>false,
+				'anon'=>false,
+				'custom'=>''
+		);
+		if (!empty($cookie)) {
+			$cookiedata = getSerializedArray($cookie);
+			if ($count($cookiedata)>1) {
+				$_zp_comment_stored = $cookiedata;
+			}
+		}
 	}
 	return false;
 }
@@ -1392,14 +1400,10 @@ function next_comment($desc=false) {
  */
 function getCommentStored($numeric=false) {
 	global $_zp_comment_stored;
-	$stored = array('name'=>$_zp_comment_stored[0],'email'=>$_zp_comment_stored[1],
-			'website'=>$_zp_comment_stored[2],'comment'=>$_zp_comment_stored[3],
-			'saved'=>$_zp_comment_stored[4],'private'=>$_zp_comment_stored[5],
-			'anon'=>$_zp_comment_stored[6],'custom'=>$_zp_comment_stored[7]);
 	if ($numeric) {
-		return Array_merge($stored);
+		return Array_merge($_zp_comment_stored);
 	}
-	return $stored;
+	return $_zp_comment_stored;
 }
 
 ?>
