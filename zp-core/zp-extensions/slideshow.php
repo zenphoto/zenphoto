@@ -24,7 +24,7 @@
  * @subpackage media
  */
 
-$plugin_description = gettext("Adds a theme function to call a slideshow either based on jQuery (default) or Flash using Flowplayer3.");
+$plugin_description = gettext("Adds a theme function to call a slideshow either based on jQuery (default) or Colorbox.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard), Don Peterson (dpeterson)";
 
 $option_interface = 'slideshow';
@@ -46,8 +46,6 @@ class slideshow {
 		setOptionDefault('slideshow_showdesc', '');
 		setOptionDefault('slideshow_colorbox_transition', 'fade');
 		// incase the flowplayer has not been enabled!!!
-		setOptionDefault('slideshow_flow_player_width', '640');
-		setOptionDefault('slideshow_flow_player_height', '480');
 		setOptionDefault('slideshow_colorbox_imagetype', 'sizedimage');
 		setOptionDefault('slideshow_colorbox_imagetitle', 1);
 		if (class_exists('cacheManager')) {
@@ -61,8 +59,8 @@ class slideshow {
 	function getOptionsSupported() {
 		$options = array(gettext('Mode') => array('key' => 'slideshow_mode', 'type' => OPTION_TYPE_SELECTOR,
 																							'order'=>0,
-																							'selections' => array(gettext("jQuery Cycle")=>"jQuery", gettext("jQuery Colorbox")=>"colorbox", gettext("Flowplayer3 (flash)")=>"flash"),
-																							'desc' => gettext('<em>jQuery Cycle</em> for slideshow using the jQuery Cycle plugin<br /><em>jQuery Colorbox</em> for slideshow using Colorbox (Colorbox plugin required).<br /><em>flash</em> for flash based slideshow using Flowplayer3.<br /><br />NOTE: The jQuery Colorbox mode is attached to the link the printSlideShowLink() function prints and can neither be called directly nor used on the slideshow.php theme page.')),
+																							'selections' => array(gettext("jQuery Cycle")=>"jQuery", gettext("jQuery Colorbox")=>"colorbox"),
+																							'desc' => gettext('<em>jQuery Cycle</em> for slideshow using the jQuery Cycle plugin<br /><em>jQuery Colorbox</em> for slideshow using Colorbox (Colorbox plugin required).<br />NOTE: The jQuery Colorbox mode is attached to the link the printSlideShowLink() function prints and can neither be called directly nor used on the slideshow.php theme page.')),
 											gettext('Speed') => array('key' => 'slideshow_speed', 'type' => OPTION_TYPE_TEXTBOX,
 																							'order'=>1,
 																							'desc' => gettext("Speed of the transition in milliseconds."))
@@ -110,15 +108,6 @@ class slideshow {
 																			));
 					}
 					break;
-			case 'flash':
-				$options = array_merge($options,
-															array(	gettext('flow player width') => array('key' => 'slideshow_flow_player_width', 'type' => OPTION_TYPE_TEXTBOX,
-																							'order'=>2,
-																							'desc' => gettext("Width of the Flowplayer display for the slideshow.")),
-																			gettext('flow player height') => array('key' => 'slideshow_flow_player_height', 'type' => OPTION_TYPE_TEXTBOX,
-																							'order'=>3,
-																							'desc' => gettext("Height of the Flowplayer display for the slideshow."))																	));
-				break;
 		}
 		return $options;
 	}
@@ -185,7 +174,6 @@ function printSlideShowLink($linktext=NULL, $linkstyle=Null) {
 	$option = getOption('slideshow_mode');
 	switch($option) {
 		case 'jQuery':
-		case 'flash':
 			if($numberofimages > 1) {
 				?>
 				<form name="slideshow_<?php echo $slideshow_instance; ?>" method="post"	action="<?php echo $slideshowlink; ?>">
@@ -349,7 +337,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $i
 		echo "</div></body></html>";
 		exitZP();
 	}
-	global $_zp_flash_player, $_zp_current_image, $_zp_current_album, $_zp_gallery, $_myFavorites;
+	global $_zp_current_image, $_zp_current_album, $_zp_gallery, $_myFavorites;
 	$imagenumber = 0;
 	//getting the image to start with
 	if(!empty($_POST['imagenumber']) AND !is_object($imageobj)) {
@@ -665,84 +653,6 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $i
 				}
 
 				break;
-
-		case "flash":
-			if ($heading) {
-				echo "<span class='slideimage'><h4><strong>".$albumtitle."</strong> (".$numberofimages." images) | <a style='color: white' href='".html_encode($returnpath)."' title='".gettext("back")."'>".gettext("back")."</a></h4>";
-			}
-			echo "<span id='slideshow' style='display: block; margin: 0 auto; width:".getOption('slideshow_flow_player_width')."px; height: ".getOption('slideshow_flow_player_height')."px'></span>";
-			$curdir = getcwd();
-			chdir(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/flowplayer3');
-			$filelist = safe_glob('flowplayer-*.swf');
-			$swf = array_shift($filelist);
-			$filelist = safe_glob('flowplayer.controls-*.swf');
-			$controls = array_shift($filelist);
-			chdir($curdir);
-			?>
-			<script type="text/javascript">
-			// <!-- <![CDATA[
-			flowplayer('slideshow','<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/'.PLUGIN_FOLDER;?>/flowplayer3/<?php echo $swf; ?>', {
-
-			clip: {
-					onLastSecond: function() {
-					this.getScreen().animate({opacity: 0}, <?php echo getOption('slideshow_speed')/2; ?>);
-					},
-					onFinish: function(){
-					this.getScreen().animate({opacity: 1}, 1000);
-					},
-					onStart: function() {
-					this.getScreen().animate({opacity: 1}, <?php echo getOption('slideshow_speed')/2; ?>);
-					}
-						},
-
-			playlist: [
-			<?php
-			echo "\n";
-			$count = 0;
-			foreach($images as $animage) {
-				if (is_array($images[$idx])) {
-					$folder = $animage['folder'];
-					$filename = $animage['filename'];
-					$salbum = newAlbum($folder);
-					$image = newImage($salbum, $filename);
-					$imagepath = ALBUM_FOLDER_EMPTY.$salbum->name."/".$filename;
-				} else {
-					$folder = $album->name;
-					$filename = $animage;
-					$image = newImage($album, $filename);
-					$imagepath = ALBUM_FOLDER_EMPTY.$folder."/".$filename;
-				}
-				$ext = is_valid($filename, array('jpg','jpeg','gif','png','flv','mp3','mp4','fla','m4v','m4a'));
-				if ($ext) {
-					if ($ext == "flv" || $ext == "mp3" || $ext == "mp4" || $ext == "fla" || $ext == "m4v" || $ext == "m4a") {
-						$duration = "";
-					} else {
-						$duration = ", duration: ".getOption("slideshow_timeout")/1000;
-					}
-					if($count > 0) { echo ",\n"; }
-					echo "{ url: '".FULLWEBPATH.pathurlencode(internalToFilesystem($imagepath))."'".$duration.", scaling: 'fit', autoBuffering: true }";
-					$count++;
-				}
-			}
-			echo "\n";
-			?>
-		],
-		plugins:  {
-				controls: {
-					url: '<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/'.PLUGIN_FOLDER; ?>/flowplayer3/<?php echo $controls; ?>',
-						playlist: true,
-						autoHide: 'always'
-				}
-		}
-										});
-			// ]]> -->
-		</script>
-			<?php
-			echo "</span>";
-			echo "<p>";
-			echo gettext("Click on the right in the player control bar to view full size.");
-			echo "</p>";
-			break;
 	}
 	?>
 	</div>
@@ -759,23 +669,8 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $i
  *
  */
 function printSlideShowJS() {
-	$curdir = getcwd();
-	chdir(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/flowplayer3');
-	$filelist = safe_glob('flowplayer-*.min.js');
-	$player = array_shift($filelist);
-	$filelist = safe_glob('flowplayer.playlist-*.min.js');
-	$playlist = array_shift($filelist);
-	chdir($curdir);
 	?>
 	<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER.'/'.PLUGIN_FOLDER ?>/slideshow/jquery.cycle.all.js" type="text/javascript"></script>
-	<?php
-	if(!getOption('zp_plugin_flowplayer3')) {
-		?>
-		<script type="text/javascript" src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/'.PLUGIN_FOLDER; ?>/flowplayer3/<?php echo $player; ?>"></script>
-		<?php
-	}
-	?>
-	<script type="text/javascript" src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/'.PLUGIN_FOLDER;?>/flowplayer3/<?php echo $playlist; ?>"></script>
 	<?php
 }
 
