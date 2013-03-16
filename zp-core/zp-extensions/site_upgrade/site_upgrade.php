@@ -7,7 +7,6 @@ admin_securityChecks(ALBUM_RIGHTS, currentRelativeURL());
 $htpath = SERVERPATH.'/.htaccess';
 $ht = @file_get_contents($htpath);
 
-preg_match_all('|[# ][ ]*RewriteRule(.*)plugins/site_upgrade/closed\.php|',$ht,$matches);
 switch (isset($_GET['siteState'])?$_GET['siteState']:NULL) {
 	case 'closed':
 		require_once(SERVERPATH.'/'.ZENFOLDER.'/class-rss.php');
@@ -45,6 +44,12 @@ switch (isset($_GET['siteState'])?$_GET['siteState']:NULL) {
 		setSiteState('open');
 		break;
 	case 'closed_for_test':
+		/*
+		//TODO this code can be removed at some point, when we do not have the old htaccess files to worry about.
+
+		$htpath = SERVERPATH.'/.htaccess';
+		$ht = @file_get_contents($htpath);
+		preg_match_all('|[# ][ ]*RewriteRule(.*)plugins/site_upgrade/closed\.php|',$ht,$matches);
 		if ($matches && $matches[0]) {
 			if (strpos($matches[0][1],'#')!==0) {
 				foreach ($matches[0] as $match) {
@@ -55,6 +60,7 @@ switch (isset($_GET['siteState'])?$_GET['siteState']:NULL) {
 				@chmod($htpath, 0444);
 			}
 		}
+		*/
 		$report = gettext('Site is avaiable for testing only.');
 		setSiteState('closed_for_test');
 		break;
