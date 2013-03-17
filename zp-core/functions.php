@@ -1,8 +1,8 @@
 <?php
 /**
  * basic functions used by zenphoto
- * Headers not sent yet!
- * @package functions
+ *
+ * @package core
  *
  */
 
@@ -2110,12 +2110,13 @@ function reveal($content, $visible=false) {
 function applyMacros($text) {
 	global $_zp_content_macros;
 	if (is_null($_zp_content_macros)) {
-		$_zp_content_macros = zp_apply_filter('content_macro', array(
+		$_zp_content_macros = array(
 				'CODEBLOCK' => array('class'=>'procedure', 'regex'=>'/^(\d+)$/', 'value'=>'printCodeblock'),
 				'PAGE' => array('class'=>'function', 'regex'=>NULL, 'value'=>'getCurrentPage'),
 				'ZENPHOTO_VERSION' => array('class'=>'constant','regex'=>NULL,'value'=>ZENPHOTO_VERSION),
 				'DATETIME'	=>	array('class'=>'expression', 'regex'=>'/^(.*)$/', 'value'=>'zpFormattedDate(DATE_FORMAT,$1);')
-		));
+		);
+		$_zp_content_macros = zp_apply_filter('content_macro', $_zp_content_macros);
 	}
 	$regex = '/\[('.implode('|',array_keys($_zp_content_macros)).')\s*(.*)\]/i';
 	if (preg_match_all($regex, $text, $matches)) {

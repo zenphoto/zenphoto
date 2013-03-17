@@ -1,4 +1,10 @@
 <?php
+/**
+ * root script for Zenphoto
+ * @package core
+ *
+ */
+
 $_zp_script_timer['start'] = microtime();
 // force UTF-8 Ø
 define('OFFSET_PATH', 0);
