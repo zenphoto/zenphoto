@@ -71,7 +71,7 @@ class Gallery {
 	function getDesc($locale=NULL) {
 		$text = $this->get('Gallery_description');
 		if ($locale!=='all') {
-			$text = get_language_string($text,$locale);
+			$text = applyMacros(get_language_string($text,$locale));
 		}
 		$text = zpFunctions::unTagURLs($text);
 		return $text;

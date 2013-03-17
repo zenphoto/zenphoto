@@ -25,7 +25,7 @@ class ZenpageCategory extends ZenpageRoot {
 	function getDesc($locale=NULL) {
 		$text = $this->get('desc');
 		if ($locale !=='all') {
-			$text = get_language_string($text,$locale);
+			$text = applyMacros(get_language_string($text,$locale));
 		}
 		$text = zpFunctions::unTagURLs($text);
 		return $text;
@@ -49,7 +49,7 @@ class ZenpageCategory extends ZenpageRoot {
 	function getContent($locale=NULL) {
 		$content = $this->get("content");
 		if ($locale!=='all') {
-			$content = get_language_string($text,$locale);
+			$content = applyMacros(get_language_string($text,$locale));
 		}
 		$content = zpFunctions::unTagURLs($content);
 		return $content;
@@ -73,7 +73,7 @@ class ZenpageCategory extends ZenpageRoot {
 	function getExtraContent($locale=NULL) {
 		$text =  $this->get("extracontent");
 		if ($locale!=='all') {
-			$text = get_language_string($text,$locale);
+			$text = applyMacros(get_language_string($text,$locale));
 		}
 		$text = zpFunctions::unTagURLs($text);
 		return $text;

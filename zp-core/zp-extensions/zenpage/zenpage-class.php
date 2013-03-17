@@ -976,7 +976,7 @@ class ZenpageItems extends ZenpageRoot {
 	function getContent($locale=NULL) {
 		$text = $this->get("content");
 		if ($locale!=='all') {
-			$text = get_language_string($text,$locale);
+			$text = applyMacros(get_language_string($text,$locale));
 		}
 		$text = zpFunctions::unTagURLs($text);
 		return $text;

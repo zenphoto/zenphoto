@@ -242,7 +242,7 @@ function getAlbumPlace() {
  */
 function printAlbumPlace() {
 	deprecated_functions::notify(gettext('Use printAlbumLocation().'));
-	printField('album', 'location');
+	printAlbumLocation();
 }
 
 /**
@@ -250,7 +250,7 @@ function printAlbumPlace() {
  * @since 1.2.8
  */
 function printEditable($context, $field, $editable = NULL, $editclass = 'unspecified', $messageIfEmpty = true, $convertBR = false, $override = false, $label='') {
-	deprecated_functions::notify(gettext('Use printField().'));
+	deprecated_functions::notify(gettext('No longer supported.'));
 	printField($context,$field,$convertBR,$override,$label);
 }
 
@@ -1178,5 +1178,60 @@ function printCaptcha($preText='', $midText='', $postText='') {
 		echo $postText;
 	}
 }
+
+/**
+ * @deprecated
+ * @since 1.4.5
+ */
+function printField($context, $field, $convertBR = NULL, $override = false, $label='') {
+	if (is_null($convertBR)) $convertBR = !getOption('zp_plugin_tiny_mce');
+	switch($context) {
+		case 'image':
+			global $_zp_current_image;
+			$object = $_zp_current_image;
+			break;
+		case 'album':
+			global $_zp_current_album;
+			$object = $_zp_current_album;
+			break;
+		case 'pages':
+			global $_zp_current_zenpage_page;
+			$object = $_zp_current_zenpage_page;
+			break;
+		case 'news':
+			global $_zp_current_zenpage_news;
+			$object = $_zp_current_zenpage_news;
+			break;
+		default:
+			trigger_error(sprintf(gettext('printField() invalid function call, context %X.'),$context), E_USER_NOTICE);
+			return false;
+	}
+	if (!$field) {
+		trigger_error(sprintf(gettext('printField() invalid function call, field:%s.'),$field), E_USER_NOTICE);
+		return false;
+	}
+	if (!is_object($object)) {
+		trigger_error(gettext('printField() invalid function call, not an object.'), E_USER_NOTICE);
+		return false;
+	}
+	if ($override) {
+		$text = trim($override);
+	} else {
+		$text = trim(get_language_string($object->get($field)));
+	}
+	$text = zpFunctions::unTagURLs($text);
+
+	$text = html_encodeTagged($text);
+	if ($convertBR) {
+		$text = str_replace("\r\n", "\n", $text);
+		$text = str_replace("\n", "<br />", $text);
+	}
+
+	if (!empty($text)) echo $label;
+	echo  $text;
+
+}
+
+
 
 ?>

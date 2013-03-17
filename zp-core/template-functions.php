@@ -1007,11 +1007,11 @@ function printAnnotatedAlbumTitle() {
  * @author Ozh
  */
 function printAlbumTitle() {
-	printField('album', 'title');
+	echo html_encodeTagged(getAlbumTitle());
 }
 
 function printBareAlbumTitle() {
-	echo html_encode(getBareAlbumTitle());
+	echo html_encodeTagged(getBareAlbumTitle());
 }
 
 /**
@@ -1344,6 +1344,7 @@ function getAlbumDate($format=null) {
  * @author Ozh
  */
 function printAlbumDate($before='', $nonemessage='', $format=null) {
+	global $_zp_current_album;
 	if (is_null($format)) {
 		$format = DATE_FORMAT;
 	}
@@ -1355,7 +1356,7 @@ function printAlbumDate($before='', $nonemessage='', $format=null) {
 	} else {
 		$date = '';
 	}
-	printField('album', 'date', false, $date);
+	echo html_encode($date);
 }
 
 /**
@@ -1374,7 +1375,7 @@ function getAlbumLocation() {
  * @author Ozh
  */
 function printAlbumLocation() {
-	printField('album', 'location');
+	echo html_encodeTagged(getAlbumLocation);
 }
 
 /**
@@ -1403,76 +1404,13 @@ function getBareAlbumDesc() {
  * @author Ozh
  */
 function printAlbumDesc() {
-	printField('album', 'desc');
+	global $_zp_current_album;
+	echo html_encodeTagged(getAlbumDesc());
 }
 
 function printBareAlbumDesc() {
 	echo html_encode(getBareAlbumDesc());
 }
-
-
-/**
- * Print any album or image data
- *
- * @param string $context	either 'image' or 'album'
- * @param string $field		the data field to echo & edit if applicable: 'date', 'title', 'place', 'description', ...
- * @param bool   $convertBR	when true, converts new line characters into HTML line breaks
- * @param string $override	if not empty, print this string instead of fetching field value from database
- * @param string $label "label" text to print if the field is not empty
- * @since 1.3
- * @author Ozh
- */
-function printField($context, $field, $convertBR = NULL, $override = false, $label='') {
-	if (is_null($convertBR)) $convertBR = !getOption('zp_plugin_tiny_mce');
-	switch($context) {
-		case 'image':
-			global $_zp_current_image;
-			$object = $_zp_current_image;
-			break;
-		case 'album':
-			global $_zp_current_album;
-			$object = $_zp_current_album;
-			break;
-		case 'pages':
-			global $_zp_current_zenpage_page;
-			$object = $_zp_current_zenpage_page;
-			break;
-		case 'news':
-			global $_zp_current_zenpage_news;
-			$object = $_zp_current_zenpage_news;
-			break;
-		default:
-			trigger_error(sprintf(gettext('printField() invalid function call, context %X.'),$context), E_USER_NOTICE);
-			return false;
-	}
-	if (!$field) {
-		trigger_error(sprintf(gettext('printField() invalid function call, field:%s.'),$field), E_USER_NOTICE);
-		return false;
-	}
-	if (!is_object($object)) {
-		trigger_error(gettext('printField() invalid function call, not an object.'), E_USER_NOTICE);
-		return false;
-	}
-	if ($override) {
-		$text = trim($override);
-	} else {
-		$text = trim(get_language_string($object->get($field)));
-	}
-	$text = zpFunctions::unTagURLs($text);
-
-	$text = html_encodeTagged($text);
-	if ($convertBR) {
-		$text = str_replace("\r\n", "\n", $text);
-		$text = str_replace("\n", "<br />", $text);
-	}
-
-	if (!empty($text)) echo $label;
-
-	echo zp_apply_filter('printObjectField', $text, $object, $context, $field);
-
-}
-
-
 
 /**
  * Returns the custom_data field of the current album
@@ -1491,7 +1429,7 @@ function getAlbumCustomData() {
  * @author Ozh
  */
 function printAlbumCustomData() {
-	printField('album', 'custom_data');
+	echo html_encodeTagged(getAlbumCustomData);
 }
 
 /**
@@ -1514,7 +1452,8 @@ function getAlbumData($field) {
  * @author Ozh
  */
 function printAlbumData($field, $label='') {
-	printField('album', $field, false, false, $label);
+	global $_zp_current_album;
+	echo html_encodeTagged($_zp_current_album->get($field));
 }
 
 
@@ -2057,7 +1996,7 @@ function printAnnotatedImageTitle() {
  * @author Ozh
  */
 function printImageTitle() {
-	printField('image', 'title');
+	echo html_encodeTagged(getImageTitle());
 }
 function printBareImageTitle() {
 	echo html_encode(getBareImageTitle());
@@ -2116,6 +2055,7 @@ function getImageDate($format=null) {
  * @author Ozh
  */
 function printImageDate($before='', $nonemessage='', $format=null) {
+	global $_zp_current_image;
 	if (is_null($format)) {
 		$format = DATE_FORMAT;
 	}
@@ -2125,7 +2065,7 @@ function printImageDate($before='', $nonemessage='', $format=null) {
 			$date = '<span class="beforetext">'.html_encode($before).'</span>'.$date;
 		}
 	}
-	printField('image', 'date', false, $date);
+	echo html_encodeTagged($date);
 }
 
 // IPTC fields
@@ -2200,7 +2140,7 @@ function getBareImageDesc() {
  *
  */
 function printImageDesc() {
-	printField('image', 'desc');
+	echo html_encodeTagged(getImageDesc());
 }
 function printBareImageDesc() {
 	echo html_encode(getBareImageDesc());
@@ -2249,7 +2189,8 @@ function printImageCustomData() {
  * @author Ozh
  */
 function printImageData($field, $label='') {
-	printField('image', $field, false, false, $label);
+	global $_zp_current_image;
+	echo html_encodeTagged($_zp_current_image->get($field));
 }
 
 /**
@@ -4353,115 +4294,6 @@ function printCodeblock($number=1,$what=NULL) {
 		eval('?>'.$codeblock);
 		set_context($context);
 	}
-}
-
-/**
- * Deals with the [macro parameters] substitutions
- *
- * Plugins can add to the macro list by registering the content_macro filter. They add to the
- * array an element for each macro. The array key is the macro, the element is an array with the
- * class of macro, the regular expression for parsing parameters and the "value" of the macro
- *
- * macro classes:
- * 	<ol>
- * 		<li>
- * 			<var>procedure</var> calls a script function that produces output. The output is captured and inserted in place of the macro instance
- * 		</li>
- * 		<li>
- * 			<var>function</var> calls a script function that returns a result. The result is inserted in place of the macro instance
- * 		</li>
- * 		<li>
- * 			<var>constant</var> replaces the macro instances with the constant provided
- * 		</li>
- * 		<li>
- * 			<var>expression</var> evaluates the expression provided and replaces the instance with the result of the evaluation. If a regex is supplied for an expression
- * 														the values provided will replace placeholders in the expression. The first parameter replaces $1, the second $2, etc.
- * 		</li>
- * 	</ol>
- *
- * useage examples:
- * 	<ol>
- * 		<li>
- * 			[CODEBLOCK 3]
- * 		</li>
- * 		<li>
- * 			[PAGE]
- * 		</li>
- * 		<li>
- * 			[ZENPHOTO_VERSION]
- * 		</li>
- * 		<li>
- * 			[datetime time()]
- * 		</li>
- * 	</ol>
- *
- *
- *
- * @param string $text
- * @return string
- */
-function applyMacros($text) {
-	global $_zp_content_macros;
-	if (is_null($_zp_content_macros)) {
-		$_zp_content_macros = zp_apply_filter('content_macro', array(
-				'CODEBLOCK' => array('class'=>'procedure', 'regex'=>'/^(\d+)$/', 'value'=>'printCodeblock'),
-				'PAGE' => array('class'=>'function', 'regex'=>NULL, 'value'=>'getCurrentPage'),
-				'ZENPHOTO_VERSION' => array('class'=>'constant','regex'=>NULL,'value'=>ZENPHOTO_VERSION),
-				'DATETIME'	=>	array('class'=>'expression', 'regex'=>'/^(.*)$/', 'value'=>'zpFormattedDate(DATE_FORMAT,$1);')
-		));
-	}
-	$regex = '/\[('.implode('|',array_keys($_zp_content_macros)).')\s*(.*)\]/i';
-	if (preg_match_all($regex, $text, $matches)) {
-		foreach ($matches[1] as $key=>$macroname) {
-			$macroname = strtoupper($macroname);
-			$macro = $_zp_content_macros[$macroname];
-			$macro_instance = $matches[0][$key];
-			if ($macro['regex']) {
-				if (!preg_match($macro['regex'], $matches[2][$key], $parms)) {
-					continue;	// failed parameter extract
-				}
-				array_shift($parms);
-			} else {
-				if (!empty($matches[2][$key])) {
-					continue;	// parameter when none expected
-				}
-				$parms = array();
-			}
-			switch ($macro['class']) {
-				case 'function';
-				case 'procedure':
-					if ($macro['class']=='function') {
-						$data = @call_user_func_array($macro['value'], $parms);
-					} else {
-						ob_start();
-						@call_user_func_array($macro['value'], $parms);
-						$data = ob_get_contents();
-						ob_end_clean();
-					}
-					if (is_null($data)) {
-						continue 2;
-					}
-					break;
-				case 'constant':
-					$data = $macro['value'];
-					break;
-				case 'expression':
-					$expression = '$data = '.$macro['value'];
-					$parms = array_reverse($parms, true);
-					foreach ($parms as $key=>$value) {
-						$key++;
-						$expression = preg_replace('/\$'.$key.'/', $value, $expression);
-					}
-					eval($expression);
-					if (!isset($data) || is_null($data)) {
-						continue 2;
-					}
-					break;
-			}
-			$text = str_replace($macro_instance, $data, $text);
-		}
-	}
-	return $text;
 }
 
 zp_register_filter('theme_head','printZenJavascripts',9999);

@@ -728,7 +728,7 @@ class MediaObject extends ThemeObject {
 	function getDesc($locale=NULL) {
 		$text =  $this->get('desc');
 		if ($locale!=='all') {
-			$text =  get_language_string($text,$locale);
+			$text =  applyMacros(get_language_string($text,$locale));
 		}
 		$text = zpFunctions::unTagURLs($text);
 		return $text;
