@@ -477,7 +477,7 @@ function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
 	$headline = '';
 	switch($newstype) {
 		case 'news':
-			$articlecontent = $_zp_current_zenpage_news->getContent();
+			$articlecontent = applyMacros($_zp_current_zenpage_news->getContent());
 			if(!is_NewsArticle()) {
 				if ($_zp_current_zenpage_news->getTruncation()) {
 					$shorten = true;
@@ -1306,7 +1306,7 @@ function printLatestNews($number=5,$option='with_latest_images', $category='', $
 					$categories = $categories.$catobj->getTitle();
 				}
 				$thumb = "";
-				$content = $obj->getContent();
+				$content = applyMacros($obj->getContent());
 				if ($obj->getTruncation()) {
 					$shorten = true;
 				}
@@ -1895,7 +1895,7 @@ function getZenpageStatistic($number=10, $option="all",$mode="popular") {
 					"hitcounter" => $obj->getHitcounter(),
 					"total_votes" => $obj->getTotal_votes(),
 					"rating" => $obj->getRating(),
-					"content" => $obj->getContent(),
+					"content" => applyMacros($obj->getContent()),
 					"date" => $obj->getDateTime(),
 					"type" => "News"
 			);
@@ -1936,7 +1936,7 @@ function getZenpageStatistic($number=10, $option="all",$mode="popular") {
 					"hitcounter" => $pageobj->getHitcounter(),
 					"total_votes" => $pageobj->get('total_votes'),
 					"rating" => $pageobj->get('rating'),
-					"content" => $pageobj->getContent(),
+					"content" => applyMacros($pageobj->getContent()),
 					"date" => $pageobj->getDateTime(),
 					"type" => "Page"
 			);
@@ -2587,13 +2587,13 @@ function printPageLastChangeDate() {
 function getPageContent($titlelink=NULL,$published=true) {
 	global $_zp_current_zenpage_page;
 	if (is_Pages() AND empty($titlelink)) {
-		return $_zp_current_zenpage_page->getContent();
+		return applyMacros($_zp_current_zenpage_page->getContent());
 	}
 	// print content of a page directly on a normal zenphoto theme page or any other page for example
 	if(!empty($titlelink)) {
 		$page = new ZenpagePage($titlelink);
 		if($page->getShow() OR (!$page->getShow() AND !$published)) {
-			return 	$page->getContent();
+			return 	applyMacros($page->getContent());
 		}
 	}
 	return false;
@@ -2780,7 +2780,7 @@ function printSubPagesExcerpts($excerptlength=NULL, $readmore=NULL, $shortenindi
 		if($pageobj->getParentID() == $_zp_current_zenpage_page->getID()) {
 			$subcount++;
 			$pagetitle = html_encode($pageobj->getTitle());
-			$pagecontent = $pageobj->getContent();
+			$pagecontent = applyMacros($pageobj->getContent());
 			if($pageobj->checkAccess()) {
 				$pagecontent = getContentShorten($pagecontent, $excerptlength, $shortenindicator,$readmore, getPageLinkURL($pageobj->getTitlelink()));
 			} else {

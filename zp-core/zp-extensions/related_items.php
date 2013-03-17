@@ -205,12 +205,12 @@ function printRelatedItems($number=5,$type='news',$specific=NULL,$excerpt=NULL,$
 						break;
 					case 'news':
 						$url = getNewsURL($obj->getTitlelink());
-						$text = $obj->getContent();
+						$text = applyMacros($obj->getContent());
 						$category = gettext('News');
 						break;
 					case 'pages':
 						$url = getPageLinkURL($obj->getTitlelink());
-						$text = $obj->getContent();
+						$text = applyMacros($obj->getContent());
 						$category = gettext('Page');
 						break;
 				}
