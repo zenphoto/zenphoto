@@ -8,7 +8,7 @@
 $plugin_is_filter = 5|ADMIN_PLUGIN;
 $plugin_description = gettext("SEO filter to translate extended characters into their basic alpha-numeric equivalents.");
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_disable = (zp_has_filter('seoFriendly') && !getoption('zp_plugin_seo_zenphoto'))?sprintf(gettext('Only one SEO filter plugin may be enalbed. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'),stripSuffix(get_filterScript('seoFriendly'))):'';
+$plugin_disable = (zp_has_filter('seoFriendly') && !getoption('zp_plugin_seo_zenphoto'))?sprintf(gettext('Only one SEO filter plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'),stripSuffix(get_filterScript('seoFriendly'))):'';
 
 $option_interface = 'zenphoto_seo';
 
