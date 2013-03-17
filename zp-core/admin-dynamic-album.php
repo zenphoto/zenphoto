@@ -43,18 +43,47 @@ if (isset($_POST['savealbum'])) {
 			zp_error(gettext("You do not have edit rights on this album."));
 		}
 	}
-
-	$words = sanitize($_POST['words']);
+	if($_POST['create_tagged']=='static') {
+		$unpublished = isset($_POST['return_unpublished']);
+		$_POST['return_unpublished'] = true;	//	state is frozen at this point, so unpublishing should not impact
+		$words = sanitize($_POST['album_tag']);
+		$searchfields[] = 'tags';
+		// now tag each element
+		if (isset($_POST['return_albums'])) {
+			$subalbums = $search->getAlbums(0);
+			foreach ($subalbums as $analbum) {
+				$albumobj = newAlbum($analbum);
+				if ($unpublished || $albumobj->getShow()) {
+					$tags = array_unique(array_merge($albumobj->getTags(), array($words)));
+					$albumobj->setTags($tags);
+					$albumobj->save();
+				}
+			}
+		}
+		if (isset($_POST['return_images'])) {
+			$images = $search->getImages();
+			foreach ($images as $animage) {
+				$image = newImage(newAlbum($animage['folder']), $animage['filename']);
+				if ($unpublished || $image->getShow()) {
+					$tags = array_unique(array_merge($image->getTags(), array($words)));
+					$image->setTags($tags);
+					$image->save();
+				}
+			}
+		}
+	} else {
+		$searchfields = array();
+		foreach ($_POST as $key=>$value) {
+			if (strpos($key, 'SEARCH_') !== false) {
+				$searchfields[] = sanitize(str_replace('SEARCH_', '', postIndexDecode($key)));
+			}
+		}
+		$words = sanitize($_POST['words']);
+	}
 	if (isset($_POST['thumb'])) {
 		$thumb = sanitize($_POST['thumb']);
 	} else {
 		$thumb = '';
-	}
-	$searchfields = array();
-	foreach ($_POST as $key=>$value) {
-		if (strpos($key, 'SEARCH_') !== false) {
-			$searchfields[] = sanitize(str_replace('SEARCH_', '', postIndexDecode($key)));
-		}
 	}
 	$constraints = "\nCONSTRAINTS=".'inalbums='.((int) (isset($_POST['return_albums']))).'&inimages='.((int) (isset($_POST['return_images']))).'&unpublished='.((int) (isset($_POST['return_unpublished'])));
 	$redirect = $album.'/'.$albumname.'.alb';
@@ -112,105 +141,144 @@ while ($old != $albumname) {
 ?>
 <form action="?savealbum" method="post">
 	<?php XSRFToken('savealbum');?>
-<input type="hidden" name="savealbum" value="yes" />
-<table>
-	<tr>
-		<td><?php echo gettext("Album name:"); ?></td>
-		<td><input type="text" size="40" name="album"
-			value="<?php echo html_encode($albumname) ?>" /></td>
-	</tr>
-	<tr>
-		<td><?php echo gettext("Create in:"); ?></td>
-		<td><select id="albumselectmenu" name="albumselect">
-		<?php
-		if (accessAllAlbums(UPLOAD_RIGHTS)) {
-			?>
-			<option value="" selected="selected" style="font-weight: bold;">/</option>
-			<?php
-}
-$bglevels = array('#fff','#f8f8f8','#efefef','#e8e8e8','#dfdfdf','#d8d8d8','#cfcfcf','#c8c8c8');
-foreach ($albumlist as $fullfolder => $albumtitle) {
-	$singlefolder = $fullfolder;
-	$saprefix = "";
-	$salevel = 0;
-	// Get rid of the slashes in the subalbum, while also making a subalbum prefix for the menu.
-	while (strstr($singlefolder, '/') !== false) {
-		$singlefolder = substr(strstr($singlefolder, '/'), 1);
-		$saprefix = "&nbsp; &nbsp;&raquo;&nbsp;" . $saprefix;
-		$salevel++;
-	}
-	echo '<option value="' . $fullfolder . '"' . ($salevel > 0 ? ' style="background-color: '.$bglevels[$salevel].'; border-bottom: 1px dotted #ccc;"' : '')
-	. ">" . $saprefix . $singlefolder . " (" . $albumtitle . ')' . "</option>\n";
-}
-?>
-		</select></td>
-	</tr>
-	<tr>
-		<td><?php echo gettext("Thumbnail:"); ?></td>
-		<td><select id="thumb" name="thumb">
-		<?php
-		$selections = array();
-		foreach ($_zp_albumthumb_selector as $key=>$selection) {
-			$selections[$selection['desc']] = $key;
-		}
-		generateListFromArray(array(getOption('AlbumThumbSelect')),$selections,false,true);
-		$showThumb = $_zp_gallery->getThumbSelectImages();
-		foreach ($imagelist as $imagepath) {
-			$pieces = explode('/', $imagepath);
-			$filename = array_pop($pieces);;
-			$folder = implode('/', $pieces);
-			$albumx = newAlbum($folder);
-			$image = newImage($albumx, $filename);
-			if (isImagePhoto($image) || !is_null($image->objectsThumb)) {
-				echo "\n<option class=\"thumboption\"";
-				if ($showThumb) {
-					echo " style=\"background-image: url(" . html_encode($image->getSizedImage(80)) .
-									"); background-repeat: no-repeat;\"";
+	<input type="hidden" name="savealbum" value="yes" />
+	<table>
+		<tr>
+			<td><?php echo gettext("Album name:"); ?></td>
+			<td>
+				<input type="text" size="40" name="album" value="<?php echo html_encode($albumname) ?>" />
+			</td>
+		</tr>
+		<tr>
+			<td><?php echo gettext("Create in:"); ?></td>
+			<td>
+				<select id="albumselectmenu" name="albumselect">
+				<?php
+				if (accessAllAlbums(UPLOAD_RIGHTS)) {
+					?>
+					<option value="" selected="selected" style="font-weight: bold;">/</option>
+					<?php
 				}
-				echo " value=\"".$imagepath."\"";
-				echo ">" . $image->getTitle();
-				echo  " ($imagepath)";
-				echo "</option>";
-			}
-		}
-		?>
-		</select></td>
-	</tr>
-	<tr>
-		<td><?php echo gettext("Search criteria:"); ?></td>
-		<td>
-			<input type="text" size="60" name="words" value="<?php echo html_encode($words); ?>" />
-			<label><input type="checkbox" name="return_albums" value="1"<?php if (!getOption('search_no_albums')) echo ' checked="checked"'?> /><?php echo gettext('Return albums found')?></label>
-			<label><input type="checkbox" name="return_images" value="1"<?php if (!getOption('search_no_images')) echo ' checked="checked"'?> /><?php echo gettext('Return images found')?></label>
-			<label><input type="checkbox" name="return_unpublished" value="1" /><?php echo gettext('Return unpublished items')?></label>
-		</td>
-	</tr>
-	<tr>
-		<td><?php echo gettext("Search fields:"); ?></td>
-		<td>
-		<?php
-		echo '<ul class="searchchecklist">'."\n";
-		$selected_fields = array();
-		$engine = new SearchEngine(true);
-		$available_fields = $engine->allowedSearchFields();
-		if (count($fields)==0) {
-			$selected_fields = $available_fields;
-		} else {
-			foreach ($available_fields as $display=>$key) {
-				if (in_array($key,$fields)) {
-					$selected_fields[$display] = $key;
+				$bglevels = array('#fff','#f8f8f8','#efefef','#e8e8e8','#dfdfdf','#d8d8d8','#cfcfcf','#c8c8c8');
+				foreach ($albumlist as $fullfolder => $albumtitle) {
+					$singlefolder = $fullfolder;
+					$saprefix = "";
+					$salevel = 0;
+					// Get rid of the slashes in the subalbum, while also making a subalbum prefix for the menu.
+					while (strstr($singlefolder, '/') !== false) {
+						$singlefolder = substr(strstr($singlefolder, '/'), 1);
+						$saprefix = "&nbsp; &nbsp;&raquo;&nbsp;" . $saprefix;
+						$salevel++;
+					}
+					echo '<option value="' . $fullfolder . '"' . ($salevel > 0 ? ' style="background-color: '.$bglevels[$salevel].'; border-bottom: 1px dotted #ccc;"' : '')
+					. ">" . $saprefix . $singlefolder . " (" . $albumtitle . ')' . "</option>\n";
+				}
+				?>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td><?php echo gettext("Thumbnail:"); ?></td>
+			<td>
+				<select id="thumb" name="thumb">
+					<?php
+					$selections = array();
+					foreach ($_zp_albumthumb_selector as $key=>$selection) {
+						$selections[$selection['desc']] = $key;
+					}
+					generateListFromArray(array(getOption('AlbumThumbSelect')),$selections,false,true);
+					$showThumb = $_zp_gallery->getThumbSelectImages();
+					foreach ($imagelist as $imagepath) {
+						$pieces = explode('/', $imagepath);
+						$filename = array_pop($pieces);;
+						$folder = implode('/', $pieces);
+						$albumx = newAlbum($folder);
+						$image = newImage($albumx, $filename);
+						if (isImagePhoto($image) || !is_null($image->objectsThumb)) {
+							echo "\n<option class=\"thumboption\"";
+							if ($showThumb) {
+								echo " style=\"background-image: url(" . html_encode($image->getSizedImage(80)) .
+												"); background-repeat: no-repeat;\"";
+							}
+							echo " value=\"".$imagepath."\"";
+							echo ">" . $image->getTitle();
+							echo  " ($imagepath)";
+							echo "</option>";
+						}
+					}
+					?>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td><?php echo gettext("Search criteria:"); ?></td>
+			<td>
+				<input type="text" size="60" name="words" value="<?php echo html_encode($words); ?>" />
+				<label><input type="checkbox" name="return_albums" value="1"<?php if (!getOption('search_no_albums')) echo ' checked="checked"'?> /><?php echo gettext('Return albums found')?></label>
+				<label><input type="checkbox" name="return_images" value="1"<?php if (!getOption('search_no_images')) echo ' checked="checked"'?> /><?php echo gettext('Return images found')?></label>
+				<label><input type="checkbox" name="return_unpublished" value="1" /><?php echo gettext('Return unpublished items')?></label>
+			</td>
+		</tr>
+
+		<script type="text/javascript">
+			// <!-- <![CDATA[
+			function setTagged(state) {
+				if (state) {
+					$('#album_tag').removeAttr('disabled');
+					$('.searchchecklist').attr('disabled','disabled');
+				} else {
+					$('.searchchecklist').removeAttr('disabled');
+					$('#album_tag').attr('disabled','disabled');
 				}
 			}
-		}
-		generateUnorderedListFromArray($selected_fields, $available_fields, 'SEARCH_', false, true, true);
-		echo '</ul>';
-		?>
-		</td>
-	</tr>
+			// ]]> -->
+		</script>
 
-</table>
+		<tr>
+			<td>
+				<label>
+					<input type="radio" name="create_tagged" value="dynamic" onchange="setTagged(false)" checked="checked" /><?php echo gettext('dynamic'); ?>
+				</label>
+				<label>
+					<input type="radio" name="create_tagged" value="static" onchange="setTagged(true)"/><?php echo gettext('tagged'); ?>
+				</label>
+			</td>
+			<td>
+			</td>
+		</tr>
+		<tr>
+			<td><?php echo gettext('Album <em>Tag</em>'); ?></td>
+			<td>
+				<input type="text" size="40" name="album_tag" id="album_tag" value="<?php echo html_encode($albumname); ?>" disabled="disabled" />
+				<?php echo gettext('Select <em>tagged</em> to tag the current search results with this <em>tag</em> and use as the album criteria.'); ?>
+			</td>
+		</tr>
+		<tr>
+			<td><?php echo gettext("Search fields:"); ?></td>
+			<td>
+				<?php
+				echo '<ul class="searchchecklist">'."\n";
+				$selected_fields = array();
+				$engine = new SearchEngine(true);
+				$available_fields = $engine->allowedSearchFields();
+				if (count($fields)==0) {
+					$selected_fields = $available_fields;
+				} else {
+					foreach ($available_fields as $display=>$key) {
+						if (in_array($key,$fields)) {
+							$selected_fields[$display] = $key;
+						}
+					}
+				}
+				generateUnorderedListFromArray($selected_fields, $available_fields, 'SEARCH_', false, true, true);
+				echo '</ul>';
+				?>
+			</td>
+		</tr>
 
-<input type="submit" value="<?php echo gettext('Create the album');?>" class="button" />
+	</table>
+
+	<input type="submit" value="<?php echo gettext('Create the album');?>" class="button" />
 </form>
 
 <?php
