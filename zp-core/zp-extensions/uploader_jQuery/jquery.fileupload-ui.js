@@ -1,24 +1,41 @@
 /*
- * jQuery File Upload User Interface Plugin 5.0.19
+ * jQuery File Upload User Interface Plugin 7.2
  * https://github.com/blueimp/jQuery-File-Upload
  *
  * Copyright 2010, Sebastian Tschan
  * https://blueimp.net
  *
  * Licensed under the MIT license:
- * http://creativecommons.org/licenses/MIT/
+ * http://www.opensource.org/licenses/MIT
  */
 
-/*jslint white: true, nomen: true, unparam: true, regexp: true */
-/*global window, document, URL, webkitURL, FileReader, jQuery */
+/*jslint nomen: true, unparam: true, regexp: true */
+/*global define, window, URL, webkitURL, FileReader */
 
-(function ($) {
+(function (factory) {
+    'use strict';
+    if (typeof define === 'function' && define.amd) {
+        // Register as an anonymous AMD module:
+        define([
+            'jquery',
+            'tmpl',
+            'load-image',
+            './jquery.fileupload-fp'
+        ], factory);
+    } else {
+        // Browser globals:
+        factory(
+            window.jQuery,
+            window.tmpl,
+            window.loadImage
+        );
+    }
+}(function ($, tmpl, loadImage) {
     'use strict';
 
-    // The UI version extends the basic fileupload widget and adds
-    // a complete user interface based on the given upload/download
-    // templates.
-    $.widget('blueimpUI.fileupload', $.blueimp.fileupload, {
+    // The UI version extends the file upload widget
+    // and adds complete user interface interaction:
+    $.widget('blueimp.fileupload', $.blueimp.fileupload, {
 
         options: {
             // By default, files added to the widget are uploaded as soon
@@ -31,13 +48,15 @@
             // The maximum allowed file size:
             maxFileSize: undefined,
             // The minimum allowed file size:
-            minFileSize: 1,
+            minFileSize: undefined,
             // The regular expression for allowed file types, matches
             // against either file type or file name:
             acceptFileTypes:  /.+$/i,
             // The regular expression to define for which files a preview
             // image is shown, matched against the file type:
-            previewFileTypes: /^image\/(gif|jpeg|png)$/,
+            previewSourceFileTypes: /^image\/(gif|jpeg|png)$/,
+            // The maximum file size of images that are to be displayed as preview:
+            previewSourceMaxFileSize: 5000000, // 5MB
             // The maximum width of the preview images:
             previewMaxWidth: 80,
             // The maximum height of the preview images:
@@ -46,12 +65,16 @@
             // if supported by the browser. Set the following option to false
             // to always display preview images as img elements:
             previewAsCanvas: true,
-            // The file upload template that is given as first argument to the
-            // jQuery.tmpl method to render the file uploads:
-            uploadTemplate: $('#template-upload'),
-            // The file download template, that is given as first argument to the
-            // jQuery.tmpl method to render the file downloads:
-            downloadTemplate: $('#template-download'),
+            // The ID of the upload template:
+            uploadTemplateId: 'template-upload',
+            // The ID of the download template:
+            downloadTemplateId: 'template-download',
+            // The container for the list of files. If undefined, it is set to
+            // an element with class "files" inside of the widget element:
+            filesContainer: undefined,
+            // By default, files are appended to the files container.
+            // Set the following option to true, to prepend files instead:
+            prependFiles: false,
             // The expected data type of the upload response, sets the dataType
             // option of the $.ajax upload requests:
             dataType: 'json',
@@ -60,26 +83,37 @@
             // widget (via file input selection, drag & drop or add API call).
             // See the basic file upload widget for more information:
             add: function (e, data) {
-                var that = $(this).data('fileupload');
-                that._adjustMaxNumberOfFiles(-data.files.length);
-                data.isAdjusted = true;
-                data.isValidated = that._validate(data.files);
-                data.context = that._renderUpload(data.files)
-                    .appendTo($(this).find('.files')).fadeIn(function () {
-                        // Fix for IE7 and lower:
-                        $(this).show();
-                    }).data('data', data);
-                if ((that.options.autoUpload || data.autoUpload) &&
-                        data.isValidated) {
-                    data.jqXHR = data.submit();
-                }
+                var that = $(this).data('fileupload'),
+                    options = that.options,
+                    files = data.files;
+                $(this).fileupload('process', data).done(function () {
+                    that._adjustMaxNumberOfFiles(-files.length);
+                    data.maxNumberOfFilesAdjusted = true;
+                    data.files.valid = data.isValidated = that._validate(files);
+                    data.context = that._renderUpload(files).data('data', data);
+                    options.filesContainer[
+                        options.prependFiles ? 'prepend' : 'append'
+                    ](data.context);
+                    that._renderPreviews(data);
+                    that._forceReflow(data.context);
+                    that._transition(data.context).done(
+                        function () {
+                            if ((that._trigger('added', e, data) !== false) &&
+                                    (options.autoUpload || data.autoUpload) &&
+                                    data.autoUpload !== false && data.isValidated) {
+                                data.submit();
+                            }
+                        }
+                    );
+                });
             },
             // Callback for the start of each file upload request:
             send: function (e, data) {
+                var that = $(this).data('fileupload');
                 if (!data.isValidated) {
-                    var that = $(this).data('fileupload');
-                    if (!data.isAdjusted) {
+                    if (!data.maxNumberOfFilesAdjusted) {
                         that._adjustMaxNumberOfFiles(-data.files.length);
+                        data.maxNumberOfFilesAdjusted = true;
                     }
                     if (!that._validate(data.files)) {
                         return false;
@@ -90,206 +124,235 @@
                     // Iframe Transport does not support progress events.
                     // In lack of an indeterminate progress bar, we set
                     // the progress to 100%, showing the full animated bar:
-                    data.context.find('.ui-progressbar').progressbar(
-                        'value',
-                        parseInt(100, 10)
-                    );
+                    data.context
+                        .find('.progress').addClass(
+                            !$.support.transition && 'progress-animated'
+                        )
+                        .attr('aria-valuenow', 100)
+                        .find('.bar').css(
+                            'width',
+                            '100%'
+                        );
                 }
+                return that._trigger('sent', e, data);
             },
             // Callback for successful uploads:
             done: function (e, data) {
-               var that = $(this).data('fileupload');
+                var that = $(this).data('fileupload'),
+                    files = that._getFilesFromResponse(data),
+                    template,
+                    deferred;
                 if (data.context) {
                     data.context.each(function (index) {
-                        var file = ($.isArray(data.result) &&
-                                data.result[index]) || {error: 'emptyResult'};
+                        var file = files[index] ||
+                                {error: 'Empty file upload result'},
+                            deferred = that._addFinishedDeferreds();
                         if (file.error) {
                             that._adjustMaxNumberOfFiles(1);
                         }
-                        $(this).fadeOut(function () {
-                            that._renderDownload([file])
-                                .css('display', 'none')
-                                .replaceAll(this)
-                                .fadeIn(function () {
-                                    // Fix for IE7 and lower:
-                                    $(this).show();
-                                });
-                        });
+                        that._transition($(this)).done(
+                            function () {
+                                var node = $(this);
+                                template = that._renderDownload([file])
+                                    .replaceAll(node);
+                                that._forceReflow(template);
+                                that._transition(template).done(
+                                    function () {
+                                        data.context = $(this);
+                                        that._trigger('completed', e, data);
+                                        that._trigger('finished', e, data);
+                                        deferred.resolve();
+                                    }
+                                );
+                            }
+                        );
                     });
                 } else {
-                    that._renderDownload(data.result)
-                        .css('display', 'none')
-                        .appendTo($(this).find('.files'))
-                        .fadeIn(function () {
-                            // Fix for IE7 and lower:
-                            $(this).show();
+                    if (files.length) {
+                        $.each(files, function (index, file) {
+                            if (data.maxNumberOfFilesAdjusted && file.error) {
+                                that._adjustMaxNumberOfFiles(1);
+                            } else if (!data.maxNumberOfFilesAdjusted &&
+                                    !file.error) {
+                                that._adjustMaxNumberOfFiles(-1);
+                            }
                         });
+                        data.maxNumberOfFilesAdjusted = true;
+                    }
+                    template = that._renderDownload(files)
+                        .appendTo(that.options.filesContainer);
+                    that._forceReflow(template);
+                    deferred = that._addFinishedDeferreds();
+                    that._transition(template).done(
+                        function () {
+                            data.context = $(this);
+                            that._trigger('completed', e, data);
+                            that._trigger('finished', e, data);
+                            deferred.resolve();
+                        }
+                    );
                 }
             },
             // Callback for failed (abort or error) uploads:
             fail: function (e, data) {
-                var that = $(this).data('fileupload');
-                that._adjustMaxNumberOfFiles(data.files.length);
+                var that = $(this).data('fileupload'),
+                    template,
+                    deferred;
+                if (data.maxNumberOfFilesAdjusted) {
+                    that._adjustMaxNumberOfFiles(data.files.length);
+                }
                 if (data.context) {
                     data.context.each(function (index) {
-                        $(this).fadeOut(function () {
-                            if (data.errorThrown !== 'abort') {
-                                var file = data.files[index];
-                                file.error = file.error || data.errorThrown
-                                    || true;
-                                that._renderDownload([file])
-                                    .css('display', 'none')
-                                    .replaceAll(this)
-                                    .fadeIn(function () {
-                                        // Fix for IE7 and lower:
-                                        $(this).show();
-                                    });
-                            } else {
-                                data.context.remove();
-                            }
-                        });
+                        if (data.errorThrown !== 'abort') {
+                            var file = data.files[index];
+                            file.error = file.error || data.errorThrown ||
+                                true;
+                            deferred = that._addFinishedDeferreds();
+                            that._transition($(this)).done(
+                                function () {
+                                    var node = $(this);
+                                    template = that._renderDownload([file])
+                                        .replaceAll(node);
+                                    that._forceReflow(template);
+                                    that._transition(template).done(
+                                        function () {
+                                            data.context = $(this);
+                                            that._trigger('failed', e, data);
+                                            that._trigger('finished', e, data);
+                                            deferred.resolve();
+                                        }
+                                    );
+                                }
+                            );
+                        } else {
+                            deferred = that._addFinishedDeferreds();
+                            that._transition($(this)).done(
+                                function () {
+                                    $(this).remove();
+                                    that._trigger('failed', e, data);
+                                    that._trigger('finished', e, data);
+                                    deferred.resolve();
+                                }
+                            );
+                        }
                     });
                 } else if (data.errorThrown !== 'abort') {
-                    that._adjustMaxNumberOfFiles(-data.files.length);
                     data.context = that._renderUpload(data.files)
-                        .css('display', 'none')
-                        .appendTo($(this).find('.files'))
-                        .fadeIn(function () {
-                            // Fix for IE7 and lower:
-                            $(this).show();
-                        }).data('data', data);
+                        .appendTo(that.options.filesContainer)
+                        .data('data', data);
+                    that._forceReflow(data.context);
+                    deferred = that._addFinishedDeferreds();
+                    that._transition(data.context).done(
+                        function () {
+                            data.context = $(this);
+                            that._trigger('failed', e, data);
+                            that._trigger('finished', e, data);
+                            deferred.resolve();
+                        }
+                    );
+                } else {
+                    that._trigger('failed', e, data);
+                    that._trigger('finished', e, data);
+                    that._addFinishedDeferreds().resolve();
                 }
             },
             // Callback for upload progress events:
             progress: function (e, data) {
                 if (data.context) {
-                    data.context.find('.ui-progressbar').progressbar(
-                        'value',
-                        parseInt(data.loaded / data.total * 100, 10)
-                    );
+                    var progress = parseInt(data.loaded / data.total * 100, 10);
+                    data.context.find('.progress')
+                        .attr('aria-valuenow', progress)
+                        .find('.bar').css(
+                            'width',
+                            progress + '%'
+                        );
                 }
             },
             // Callback for global upload progress events:
             progressall: function (e, data) {
-                $(this).find('.fileupload-progressbar').progressbar(
-                    'value',
-                    parseInt(data.loaded / data.total * 100, 10)
-                );
+                var $this = $(this),
+                    progress = parseInt(data.loaded / data.total * 100, 10),
+                    globalProgressNode = $this.find('.fileupload-progress'),
+                    extendedProgressNode = globalProgressNode
+                        .find('.progress-extended');
+                if (extendedProgressNode.length) {
+                    extendedProgressNode.html(
+                        $this.data('fileupload')._renderExtendedProgress(data)
+                    );
+                }
+                globalProgressNode
+                    .find('.progress')
+                    .attr('aria-valuenow', progress)
+                    .find('.bar').css(
+                        'width',
+                        progress + '%'
+                    );
             },
             // Callback for uploads start, equivalent to the global ajaxStart event:
-            start: function () {
-                $(this).find('.fileupload-progressbar')
-                    .progressbar('value', 0).fadeIn();
+            start: function (e) {
+                var that = $(this).data('fileupload');
+                that._resetFinishedDeferreds();
+                that._transition($(this).find('.fileupload-progress')).done(
+                    function () {
+                        that._trigger('started', e);
+                    }
+                );
             },
             // Callback for uploads stop, equivalent to the global ajaxStop event:
-            stop: function () {
-                $(this).find('.fileupload-progressbar').fadeOut();
+            stop: function (e) {
+                var that = $(this).data('fileupload'),
+                    deferred = that._addFinishedDeferreds();
+                $.when.apply($, that._getFinishedDeferreds())
+                    .done(function () {
+                        that._trigger('stopped', e);
+                    });
+                that._transition($(this).find('.fileupload-progress')).done(
+                    function () {
+                        $(this).find('.progress')
+                            .attr('aria-valuenow', '0')
+                            .find('.bar').css('width', '0%');
+                        $(this).find('.progress-extended').html('&nbsp;');
+                        deferred.resolve();
+                    }
+                );
             },
             // Callback for file deletion:
             destroy: function (e, data) {
                 var that = $(this).data('fileupload');
                 if (data.url) {
-                    $.ajax(data)
-                        .success(function () {
-                            that._adjustMaxNumberOfFiles(1);
-                            $(this).fadeOut(function () {
-                                $(this).remove();
-                            });
-                        });
-                } else {
+                    $.ajax(data);
                     that._adjustMaxNumberOfFiles(1);
-                    data.context.fadeOut(function () {
+                }
+                that._transition(data.context).done(
+                    function () {
                         $(this).remove();
-                    });
-                }
-            }
-        },
-
-        // Scales the given image (img HTML element)
-        // using the given options.
-        // Returns a canvas object if the canvas option is true
-        // and the browser supports canvas, else the scaled image:
-        _scaleImage: function (img, options) {
-            options = options || {};
-            var canvas = document.createElement('canvas'),
-                scale = Math.min(
-                    (options.maxWidth || img.width) / img.width,
-                    (options.maxHeight || img.height) / img.height
-                );
-            if (scale >= 1) {
-                scale = Math.max(
-                    (options.minWidth || img.width) / img.width,
-                    (options.minHeight || img.height) / img.height
+                        that._trigger('destroyed', e, data);
+                    }
                 );
             }
-            img.width = parseInt(img.width * scale, 10);
-            img.height = parseInt(img.height * scale, 10);
-            if (!options.canvas || !canvas.getContext) {
-                return img;
+        },
+
+        _resetFinishedDeferreds: function () {
+            this._finishedUploads = [];
+        },
+
+        _addFinishedDeferreds: function (deferred) {
+            if (!deferred) {
+                deferred = $.Deferred();
             }
-            canvas.width = img.width;
-            canvas.height = img.height;
-            canvas.getContext('2d')
-                .drawImage(img, 0, 0, img.width, img.height);
-            return canvas;
+            this._finishedUploads.push(deferred);
+            return deferred;
         },
 
-        _createObjectURL: function (file) {
-            var undef = 'undefined',
-                urlAPI = (typeof window.createObjectURL !== undef && window) ||
-                    (typeof URL !== undef && URL) ||
-                    (typeof webkitURL !== undef && webkitURL);
-            return urlAPI ? urlAPI.createObjectURL(file) : false;
+        _getFinishedDeferreds: function () {
+            return this._finishedUploads;
         },
 
-        _revokeObjectURL: function (url) {
-            var undef = 'undefined',
-                urlAPI = (typeof window.revokeObjectURL !== undef && window) ||
-                    (typeof URL !== undef && URL) ||
-                    (typeof webkitURL !== undef && webkitURL);
-            return urlAPI ? urlAPI.revokeObjectURL(url) : false;
-        },
-
-        // Loads a given File object via FileReader interface,
-        // invokes the callback with a data url:
-        _loadFile: function (file, callback) {
-            if (typeof FileReader !== 'undefined' &&
-                    FileReader.prototype.readAsDataURL) {
-                var fileReader = new FileReader();
-                fileReader.onload = function (e) {
-                    callback(e.target.result);
-                };
-                fileReader.readAsDataURL(file);
-                return true;
+        _getFilesFromResponse: function (data) {
+            if (data.result && $.isArray(data.result.files)) {
+                return data.result.files;
             }
-            return false;
-        },
-
-        // Loads an image for a given File object.
-        // Invokes the callback with an img or optional canvas
-        // element (if supported by the browser) as parameter:
-        _loadImage: function (file, callback, options) {
-            var that = this,
-                url,
-                img;
-            if (!options || !options.fileTypes ||
-                    options.fileTypes.test(file.type)) {
-                url = this._createObjectURL(file);
-                img = $('<img>').bind('load', function () {
-                    $(this).unbind('load');
-                    that._revokeObjectURL(url);
-                    callback(that._scaleImage(img[0], options));
-                });
-                if (url) {
-                    img.prop('src', url);
-                    return true;
-                } else {
-                    return this._loadFile(file, function (url) {
-                        img.prop('src', url);
-                    });
-                }
-            }
-            return false;
+            return [];
         },
 
         // Link handler, that allows to download files
@@ -297,8 +360,7 @@
         _enableDragToDesktop: function () {
             var link = $(this),
                 url = link.prop('href'),
-                name = decodeURIComponent(url.split('/').pop())
-                    .replace(/:/g, '-'),
+                name = link.prop('download'),
                 type = 'application/octet-stream';
             link.bind('dragstart', function (e) {
                 try {
@@ -321,17 +383,59 @@
             }
         },
 
-        _formatFileSize: function (file) {
-            if (typeof file.size !== 'number') {
+        _formatFileSize: function (bytes) {
+            if (typeof bytes !== 'number') {
                 return '';
             }
-            if (file.size >= 1000000000) {
-                return (file.size / 1000000000).toFixed(2) + ' GB';
+            if (bytes >= 1000000000) {
+                return (bytes / 1000000000).toFixed(2) + ' GB';
             }
-            if (file.size >= 1000000) {
-                return (file.size / 1000000).toFixed(2) + ' MB';
+            if (bytes >= 1000000) {
+                return (bytes / 1000000).toFixed(2) + ' MB';
             }
-            return (file.size / 1000).toFixed(2) + ' KB';
+            return (bytes / 1000).toFixed(2) + ' KB';
+        },
+
+        _formatBitrate: function (bits) {
+            if (typeof bits !== 'number') {
+                return '';
+            }
+            if (bits >= 1000000000) {
+                return (bits / 1000000000).toFixed(2) + ' Gbit/s';
+            }
+            if (bits >= 1000000) {
+                return (bits / 1000000).toFixed(2) + ' Mbit/s';
+            }
+            if (bits >= 1000) {
+                return (bits / 1000).toFixed(2) + ' kbit/s';
+            }
+            return bits.toFixed(2) + ' bit/s';
+        },
+
+        _formatTime: function (seconds) {
+            var date = new Date(seconds * 1000),
+                days = parseInt(seconds / 86400, 10);
+            days = days ? days + 'd ' : '';
+            return days +
+                ('0' + date.getUTCHours()).slice(-2) + ':' +
+                ('0' + date.getUTCMinutes()).slice(-2) + ':' +
+                ('0' + date.getUTCSeconds()).slice(-2);
+        },
+
+        _formatPercentage: function (floatValue) {
+            return (floatValue * 100).toFixed(2) + ' %';
+        },
+
+        _renderExtendedProgress: function (data) {
+            return this._formatBitrate(data.bitrate) + ' | ' +
+                this._formatTime(
+                    (data.total - data.loaded) * 8 / data.bitrate
+                ) + ' | ' +
+                this._formatPercentage(
+                    data.loaded / data.total
+                ) + ' | ' +
+                this._formatFileSize(data.loaded) + ' / ' +
+                this._formatFileSize(data.total);
         },
 
         _hasError: function (file) {
@@ -342,22 +446,22 @@
             // maxNumberOfFiles before validation, so we check if
             // maxNumberOfFiles is below 0 (instead of below 1):
             if (this.options.maxNumberOfFiles < 0) {
-                return 'maxNumberOfFiles';
+                return 'Maximum number of files exceeded';
             }
             // Files are accepted if either the file type or the file name
             // matches against the acceptFileTypes regular expression, as
             // only browsers with support for the File API report the type:
             if (!(this.options.acceptFileTypes.test(file.type) ||
                     this.options.acceptFileTypes.test(file.name))) {
-                return 'acceptFileTypes';
+                return 'Filetype not allowed';
             }
             if (this.options.maxFileSize &&
                     file.size > this.options.maxFileSize) {
-                return 'maxFileSize';
+                return 'File is too big';
             }
             if (typeof file.size === 'number' &&
                     file.size < this.options.minFileSize) {
-                return 'minFileSize';
+                return 'File is too small';
             }
             return null;
         },
@@ -374,113 +478,105 @@
             return valid;
         },
 
-        _uploadTemplateHelper: function (file) {
-            file.sizef = this._formatFileSize(file);
-            return file;
+        _renderTemplate: function (func, files) {
+            if (!func) {
+                return $();
+            }
+            var result = func({
+                files: files,
+                formatFileSize: this._formatFileSize,
+                options: this.options
+            });
+            if (result instanceof $) {
+                return result;
+            }
+            return $(this.options.templatesContainer).html(result).children();
         },
 
-        _renderUploadTemplate: function (files) {
-            var that = this;
-            return $.tmpl(
-                this.options.uploadTemplate,
-                $.map(files, function (file) {
-                    return that._uploadTemplateHelper(file);
-                })
-            );
+        _renderPreview: function (file, node) {
+            var that = this,
+                options = this.options,
+                dfd = $.Deferred();
+            return ((loadImage && loadImage(
+                file,
+                function (img) {
+                    node.append(img);
+                    that._forceReflow(node);
+                    that._transition(node).done(function () {
+                        dfd.resolveWith(node);
+                    });
+                    if (!$.contains(that.document[0].body, node[0])) {
+                        // If the element is not part of the DOM,
+                        // transition events are not triggered,
+                        // so we have to resolve manually:
+                        dfd.resolveWith(node);
+                    }
+                },
+                {
+                    maxWidth: options.previewMaxWidth,
+                    maxHeight: options.previewMaxHeight,
+                    canvas: options.previewAsCanvas
+                }
+            )) || dfd.resolveWith(node)) && dfd;
+        },
+
+        _renderPreviews: function (data) {
+            var that = this,
+                options = this.options;
+            data.context.find('.preview span').each(function (index, element) {
+                var file = data.files[index];
+                if (options.previewSourceFileTypes.test(file.type) &&
+                        ($.type(options.previewSourceMaxFileSize) !== 'number' ||
+                        file.size < options.previewSourceMaxFileSize)) {
+                    that._processingQueue = that._processingQueue.pipe(function () {
+                        var dfd = $.Deferred(),
+                            ev = $.Event('previewdone', {
+                                target: element
+                            });
+                        that._renderPreview(file, $(element)).done(
+                            function () {
+                                that._trigger(ev.type, ev, data);
+                                dfd.resolveWith(that);
+                            }
+                        );
+                        return dfd.promise();
+                    });
+                }
+            });
+            return this._processingQueue;
         },
 
         _renderUpload: function (files) {
-            var that = this,
-                options = this.options,
-                tmpl = this._renderUploadTemplate(files),
-                isValidated = this._validate(files);
-            if (!(tmpl instanceof $)) {
-                return $();
-            }
-            tmpl.css('display', 'none');
-            // .slice(1).remove().end().first() removes all but the first
-            // element and selects only the first for the jQuery collection:
-            tmpl.find('.progress div').slice(
-                isValidated ? 1 : 0
-            ).remove().end().first()
-                .progressbar();
-            tmpl.find('.start button').slice(
-                this.options.autoUpload || !isValidated ? 0 : 1
-            ).remove().end().first()
-                .button({
-                    text: false,
-                    icons: {primary: 'ui-icon-circle-arrow-e'}
-                });
-            tmpl.find('.cancel button').slice(1).remove().end().first()
-                .button({
-                    text: false,
-                    icons: {primary: 'ui-icon-cancel'}
-                });
-            tmpl.find('.preview').each(function (index, node) {
-                that._loadImage(
-                    files[index],
-                    function (img) {
-                        $(img).hide().appendTo(node).fadeIn();
-                    },
-                    {
-                        maxWidth: options.previewMaxWidth,
-                        maxHeight: options.previewMaxHeight,
-                        fileTypes: options.previewFileTypes,
-                        canvas: options.previewAsCanvas
-                    }
-                );
-            });
-            return tmpl;
-        },
-
-        _downloadTemplateHelper: function (file) {
-            file.sizef = this._formatFileSize(file);
-            return file;
-        },
-
-        _renderDownloadTemplate: function (files) {
-            var that = this;
-            return $.tmpl(
-                this.options.downloadTemplate,
-                $.map(files, function (file) {
-                    return that._downloadTemplateHelper(file);
-                })
+            return this._renderTemplate(
+                this.options.uploadTemplate,
+                files
             );
         },
 
         _renderDownload: function (files) {
-            var tmpl = this._renderDownloadTemplate(files);
-            if (!(tmpl instanceof $)) {
-                return $();
-            }
-            tmpl.css('display', 'none');
-            tmpl.find('.delete button').button({
-                text: false,
-                icons: {primary: 'ui-icon-trash'}
-            });
-            tmpl.find('a').each(this._enableDragToDesktop);
-            return tmpl;
+            return this._renderTemplate(
+                this.options.downloadTemplate,
+                files
+            ).find('a[download]').each(this._enableDragToDesktop).end();
         },
 
         _startHandler: function (e) {
             e.preventDefault();
-            var tmpl = $(this).closest('.template-upload'),
-                data = tmpl.data('data');
-            if (data && data.submit && !data.jqXHR) {
-                data.jqXHR = data.submit();
-                if (data.jqXHR) {
-                    $(this).fadeOut();
-                }
+            var button = $(e.currentTarget),
+                template = button.closest('.template-upload'),
+                data = template.data('data');
+            if (data && data.submit && !data.jqXHR && data.submit()) {
+                button.prop('disabled', true);
             }
         },
 
         _cancelHandler: function (e) {
             e.preventDefault();
-            var tmpl = $(this).closest('.template-upload'),
-                data = tmpl.data('data') || {};
+            var template = $(e.currentTarget).closest('.template-upload'),
+                data = template.data('data') || {};
             if (!data.jqXHR) {
                 data.errorThrown = 'abort';
-                e.data.fileupload._trigger('fail', e, data);
+                this._trigger('fail', e, data);
             } else {
                 data.jqXHR.abort();
             }
@@ -488,164 +584,208 @@
 
         _deleteHandler: function (e) {
             e.preventDefault();
-            var button = $(this);
-            e.data.fileupload._trigger('destroy', e, {
+            var button = $(e.currentTarget);
+            this._trigger('destroy', e, $.extend({
                 context: button.closest('.template-download'),
-                url: button.attr('data-url'),
-                type: button.attr('data-type'),
-                dataType: e.data.fileupload.options.dataType
+                type: 'DELETE',
+                dataType: this.options.dataType
+            }, button.data()));
+        },
+
+        _forceReflow: function (node) {
+            return $.support.transition && node.length &&
+                node[0].offsetWidth;
+        },
+
+        _transition: function (node) {
+            var dfd = $.Deferred();
+            if ($.support.transition && node.hasClass('fade')) {
+                node.bind(
+                    $.support.transition.end,
+                    function (e) {
+                        // Make sure we don't respond to other transitions events
+                        // in the container element, e.g. from button elements:
+                        if (e.target === node[0]) {
+                            node.unbind($.support.transition.end);
+                            dfd.resolveWith(node);
+                        }
+                    }
+                ).toggleClass('in');
+            } else {
+                node.toggleClass('in');
+                dfd.resolveWith(node);
+            }
+            return dfd;
+        },
+
+        _initButtonBarEventHandlers: function () {
+            var fileUploadButtonBar = this.element.find('.fileupload-buttonbar'),
+                filesList = this.options.filesContainer;
+            this._on(fileUploadButtonBar.find('.start'), {
+                click: function (e) {
+                    e.preventDefault();
+                    filesList.find('.start button').click();
+                }
             });
+            this._on(fileUploadButtonBar.find('.cancel'), {
+                click: function (e) {
+                    e.preventDefault();
+                    filesList.find('.cancel button').click();
+                }
+            });
+            this._on(fileUploadButtonBar.find('.delete'), {
+                click: function (e) {
+                    e.preventDefault();
+                    filesList.find('.delete input:checked')
+                        .siblings('button').click();
+                    fileUploadButtonBar.find('.toggle')
+                        .prop('checked', false);
+                }
+            });
+            this._on(fileUploadButtonBar.find('.toggle'), {
+                change: function (e) {
+                    filesList.find('.delete input').prop(
+                        'checked',
+                        $(e.currentTarget).is(':checked')
+                    );
+                }
+            });
+        },
+
+        _destroyButtonBarEventHandlers: function () {
+            this._off(
+                this.element.find('.fileupload-buttonbar button'),
+                'click'
+            );
+            this._off(
+                this.element.find('.fileupload-buttonbar .toggle'),
+                'change.'
+            );
         },
 
         _initEventHandlers: function () {
-            $.blueimp.fileupload.prototype._initEventHandlers.call(this);
-            var eventData = {fileupload: this};
-            this.element.find('.files')
-                .delegate(
-                    '.start button',
-                    'click.' + this.options.namespace,
-                    eventData,
-                    this._startHandler
-                )
-                .delegate(
-                    '.cancel button',
-                    'click.' + this.options.namespace,
-                    eventData,
-                    this._cancelHandler
-                )
-                .delegate(
-                    '.delete button',
-                    'click.' + this.options.namespace,
-                    eventData,
-                    this._deleteHandler
-                );
+            this._super();
+            this._on(this.options.filesContainer, {
+                'click .start button': this._startHandler,
+                'click .cancel button': this._cancelHandler,
+                'click .delete button': this._deleteHandler
+            });
+            this._initButtonBarEventHandlers();
         },
 
         _destroyEventHandlers: function () {
-            this.element.find('.files')
-                .undelegate('.start button', 'click.' + this.options.namespace)
-                .undelegate('.cancel button', 'click.' + this.options.namespace)
-                .undelegate('.delete button', 'click.' + this.options.namespace);
-            $.blueimp.fileupload.prototype._destroyEventHandlers.call(this);
-        },
-
-        _initFileUploadButtonBar: function () {
-            var fileUploadButtonBar = this.element.find('.fileupload-buttonbar'),
-                filesList = this.element.find('.files'),
-                ns = this.options.namespace;
-            fileUploadButtonBar
-                .addClass('ui-widget-header ui-corner-top');
-            this.element.find('.fileinput-button').each(function () {
-                var fileInput = $(this).find('input:file').detach();
-                $(this).button({icons: {primary: 'ui-icon-plusthick'}})
-                    .append(fileInput);
-            });
-            fileUploadButtonBar.find('.start')
-                .button({icons: {primary: 'ui-icon-circle-arrow-e'}})
-                .bind('click.' + ns, function (e) {
-                    e.preventDefault();
-                    filesList.find('.start button').click();
-                });
-            fileUploadButtonBar.find('.cancel')
-                .button({icons: {primary: 'ui-icon-cancel'}})
-                .bind('click.' + ns, function (e) {
-                    e.preventDefault();
-                    filesList.find('.cancel button').click();
-                });
-            fileUploadButtonBar.find('.delete')
-                .button({icons: {primary: 'ui-icon-trash'}})
-                .bind('click.' + ns, function (e) {
-                    e.preventDefault();
-                    filesList.find('.delete button').click();
-                });
-        },
-
-        _destroyFileUploadButtonBar: function () {
-            this.element.find('.fileupload-buttonbar')
-                .removeClass('ui-widget-header ui-corner-top');
-            this.element.find('.fileinput-button').each(function () {
-                var fileInput = $(this).find('input:file').detach();
-                $(this).button('destroy')
-                    .append(fileInput);
-            });
-            this.element.find('.fileupload-buttonbar button')
-                .unbind('click.' + this.options.namespace)
-                .button('destroy');
+            this._destroyButtonBarEventHandlers();
+            this._off(this.options.filesContainer, 'click');
+            this._super();
         },
 
         _enableFileInputButton: function () {
-            this.element.find('.fileinput-button input:file:disabled')
-                .each(function () {
-                    var fileInput = $(this),
-                        button = fileInput.parent();
-                    fileInput.detach().prop('disabled', false);
-                    button.button('enable').append(fileInput);
-                });
+            this.element.find('.fileinput-button input')
+                .prop('disabled', false)
+                .parent().removeClass('disabled');
         },
 
         _disableFileInputButton: function () {
-            this.element.find('.fileinput-button input:file:enabled')
-                .each(function () {
-                    var fileInput = $(this),
-                        button = fileInput.parent();
-                    fileInput.detach().prop('disabled', true);
-                    button.button('disable').append(fileInput);
-                });
+            this.element.find('.fileinput-button input')
+                .prop('disabled', true)
+                .parent().addClass('disabled');
         },
 
         _initTemplates: function () {
-            // Handle cases where the templates are defined
-            // after the widget library has been included:
-            if (this.options.uploadTemplate instanceof $ &&
-                    !this.options.uploadTemplate.length) {
-                this.options.uploadTemplate = $(
-                    this.options.uploadTemplate.selector
+            var options = this.options;
+            options.templatesContainer = this.document[0].createElement(
+                options.filesContainer.prop('nodeName')
+            );
+            if (tmpl) {
+                if (options.uploadTemplateId) {
+                    options.uploadTemplate = tmpl(options.uploadTemplateId);
+                }
+                if (options.downloadTemplateId) {
+                    options.downloadTemplate = tmpl(options.downloadTemplateId);
+                }
+            }
+        },
+
+        _initFilesContainer: function () {
+            var options = this.options;
+            if (options.filesContainer === undefined) {
+                options.filesContainer = this.element.find('.files');
+            } else if (!(options.filesContainer instanceof $)) {
+                options.filesContainer = $(options.filesContainer);
+            }
+        },
+
+        _stringToRegExp: function (str) {
+            var parts = str.split('/'),
+                modifiers = parts.pop();
+            parts.shift();
+            return new RegExp(parts.join('/'), modifiers);
+        },
+
+        _initRegExpOptions: function () {
+            var options = this.options;
+            if ($.type(options.acceptFileTypes) === 'string') {
+                options.acceptFileTypes = this._stringToRegExp(
+                    options.acceptFileTypes
                 );
             }
-            if (this.options.downloadTemplate instanceof $ &&
-                    !this.options.downloadTemplate.length) {
-                this.options.downloadTemplate = $(
-                    this.options.downloadTemplate.selector
+            if ($.type(options.previewSourceFileTypes) === 'string') {
+                options.previewSourceFileTypes = this._stringToRegExp(
+                    options.previewSourceFileTypes
                 );
+            }
+        },
+
+        _initSpecialOptions: function () {
+            this._super();
+            this._initFilesContainer();
+            this._initTemplates();
+            this._initRegExpOptions();
+        },
+
+        _setOption: function (key, value) {
+            this._super(key, value);
+            if (key === 'maxNumberOfFiles') {
+                this._adjustMaxNumberOfFiles(0);
             }
         },
 
         _create: function () {
-            $.blueimp.fileupload.prototype._create.call(this);
-            this._initTemplates();
-            this.element
-                .addClass('ui-widget');
-            this._initFileUploadButtonBar();
-            this.element.find('.fileupload-content')
-                .addClass('ui-widget-content ui-corner-bottom');
-            this.element.find('.fileupload-progressbar')
-                .hide().progressbar();
-        },
-
-        destroy: function () {
-            this.element.find('.fileupload-progressbar')
-                .progressbar('destroy');
-            this.element.find('.fileupload-content')
-                .removeClass('ui-widget-content ui-corner-bottom');
-            this._destroyFileUploadButtonBar();
-            this.element.removeClass('ui-widget');
-            $.blueimp.fileupload.prototype.destroy.call(this);
+            this._super();
+            this._refreshOptionsList.push(
+                'filesContainer',
+                'uploadTemplateId',
+                'downloadTemplateId'
+            );
+            if (!this._processingQueue) {
+                this._processingQueue = $.Deferred().resolveWith(this).promise();
+                this.process = function () {
+                    return this._processingQueue;
+                };
+            }
+            this._resetFinishedDeferreds();
         },
 
         enable: function () {
-            $.blueimp.fileupload.prototype.enable.call(this);
-            this.element.find(':ui-button').not('.fileinput-button')
-                .button('enable');
-            this._enableFileInputButton();
+            var wasDisabled = false;
+            if (this.options.disabled) {
+                wasDisabled = true;
+            }
+            this._super();
+            if (wasDisabled) {
+                this.element.find('input, button').prop('disabled', false);
+                this._enableFileInputButton();
+            }
         },
 
         disable: function () {
-            this.element.find(':ui-button').not('.fileinput-button')
-                .button('disable');
-            this._disableFileInputButton();
-            $.blueimp.fileupload.prototype.disable.call(this);
+            if (!this.options.disabled) {
+                this.element.find('input, button').prop('disabled', true);
+                this._disableFileInputButton();
+            }
+            this._super();
         }
 
     });
 
-}(jQuery));
+}));
