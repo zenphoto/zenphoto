@@ -47,7 +47,7 @@ if (isset($_POST['savealbum'])) {
 		$unpublished = isset($_POST['return_unpublished']);
 		$_POST['return_unpublished'] = true;	//	state is frozen at this point, so unpublishing should not impact
 		$words = sanitize($_POST['album_tag']);
-		$searchfields[] = 'tags';
+		$searchfields[] = 'tags_exact';
 		// now tag each element
 		if (isset($_POST['return_albums'])) {
 			$subalbums = $search->getAlbums(0);

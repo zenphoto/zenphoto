@@ -23,6 +23,7 @@ class SearchEngine {
 	var $albums = NULL;
 	var $articles = NULL;
 	var $pages = NULL;
+	private $exact;
 	protected $dynalbumname;
 	protected $album = NULL;
 	protected $words;
@@ -58,10 +59,12 @@ class SearchEngine {
 	 */
 	function __construct($dynamic_album = false) {
 		global $_zp_exifvars, $_zp_gallery;
+		$this->exact  = getOption('exact_tag_match');
 		//image/album fields
 		$this->search_structure['title']							= gettext('Title');
 		$this->search_structure['desc']								= gettext('Description');
 		$this->search_structure['tags']								= gettext('Tags');
+		$this->search_structure['tags_exact']					= '';	//	internal use only field
 		$this->search_structure['filename']						= gettext('File/Folder name');
 		$this->search_structure['date']								= gettext('Date');
 		$this->search_structure['custom_data']				= gettext('Custom data');
@@ -184,7 +187,9 @@ class SearchEngine {
 	function getSearchFieldList() {
 		$list = array();
 		foreach ($this->search_structure as $key=>$display) {
-			$list[$display] = $key;
+			if ($display) {
+				$list[$display] = $key;
+			}
 		}
 		return $list;
 	}
@@ -897,7 +902,6 @@ class SearchEngine {
 	protected function searchFieldsAndTags($searchstring, $tbl, $sorttype, $sortdirection) {
 		global $_zp_gallery;
 		$weights = $idlist = array();
-		$exact = EXACT_TAG_MATCH;
 		$sql = $allIDs = NULL;
 
 		// create an array of [tag, objectid] pairs for tags
@@ -934,6 +938,8 @@ class SearchEngine {
 						$tag_objects = $objects;
 					}
 					break;
+				case 'tags_exact':
+					$this->exact = true;
 				case 'tags':
 					unset($fields[$key]);
 					query('SET @serachfield="tags"');
@@ -948,7 +954,7 @@ class SearchEngine {
 								break;
 							default:
 								$targetfound = true;
-							if ($exact) {
+							if ($this->exact) {
 								$tagsql .= '`name` = '.db_quote($singlesearchstring).' OR ';
 							} else {
 								$tagsql .= '`name` LIKE '.db_quote('%'.db_LIKE_escape($singlesearchstring).'%').' OR ';
@@ -1072,7 +1078,7 @@ class SearchEngine {
 						$lookfor = strtolower($singlesearchstring);
 						$objectid = NULL;
 						foreach ($taglist as $key => $objlist) {
-							if (($exact && $lookfor == $key) || (!$exact && preg_match('|'.preg_quote($lookfor).'|', $key))) {
+							if (($this->exact && $lookfor == $key) || (!$this->exact && preg_match('|'.preg_quote($lookfor).'|', $key))) {
 								if (is_array($objectid)) {
 									$objectid = array_merge($objectid, $objlist);
 								} else {
