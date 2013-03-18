@@ -77,8 +77,9 @@ function elFinder_admin_tabs($tabs) {
 		$default = str_replace(WEBPATH.'/'.ZENFOLDER.'/','',$tabs['upload']['link']);
 		preg_match('|&amp;tab=([^&]*)|', $default, $matches);
 		$tabs['upload']['subtabs'][$matches[1]] = $default;
-		$tabs['upload']['subtabs'][$me] = $tabs['upload']['link'] = $mylink;
+		$tabs['upload']['subtabs'][$me] = $mylink;
 		$tabs['upload']['default']= $me;
+		$tabs['upload']['link'] = WEBPATH."/".ZENFOLDER.'/'.$mylink;
 	}
 	return $tabs;
 }
