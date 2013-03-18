@@ -1,6 +1,4 @@
-<?php
-	// hack zenphoto
-	// if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
  * CodeIgniter Google Maps API V3 Class
@@ -22,6 +20,7 @@ class Googlemaps {
 	var $adsenseFormat				= 'HALF_BANNER';			// The format of the AdUnit
 	var $adsensePosition			= 'TOP_CENTER';				// The position of the AdUnit
 	var $adsensePublisherID			= '';						// Your Google AdSense publisher ID
+	var $apiKey						= ''; 						// If you've got an API key you can use it by passing this parameter. Setup an API key here: https://code.google.com/apis/console
 	var $backgroundColor			= '';						// A hex color value shown as the map background when tiles have not yet loaded as the user pans
 	var $bicyclingOverlay			= FALSE;					// If set to TRUE will overlay bicycling information (ie. bike paths and suggested routes) onto the map by default 
 	var $center						= "37.4419, -122.1419";		// Sets the default center location (lat/long co-ordinate or address) of the map. If defaulting to the users location set to "auto"
@@ -155,8 +154,7 @@ class Googlemaps {
 			$this->initialize($config);
 		}
 
-		// hack zenphoto
-		//log_message('debug', "Google Maps Class Initialized");
+		log_message('debug', "Google Maps Class Initialized");
 	}
 
 	function initialize($config = array())
@@ -302,6 +300,7 @@ class Googlemaps {
 			// Escape any quotes in the event that HTML is being added to the infowindow
 			$marker['infowindow_content'] = str_replace('\"', '"', $marker['infowindow_content']);
 			$marker['infowindow_content'] = str_replace('"', '\"', $marker['infowindow_content']);
+			
 			$marker_output .= '
 			marker_'.$marker_id.'.set("content", "'.$marker['infowindow_content'].'");
 			
@@ -314,11 +313,6 @@ class Googlemaps {
 			$marker_output .= '
 			});
 			';
-			// hack zenphoto
-			$marker_output .= '
-			oms.addMarker(marker_'.$marker_id.');
-			';
-			// end hack zenphoto
 		}else{
 			if ($marker['onclick']!="") { 
 				$marker_output .= '
@@ -1085,8 +1079,17 @@ class Googlemaps {
 		$this->output_js_contents = '';
 		$this->output_html = '';
 		
-		if ($this->https) { $apiLocation = 'https://maps-api-ssl'; }else{ $apiLocation = 'http://maps'; }
-		$apiLocation .= '.google.com/maps/api/js?sensor='.$this->sensor;
+		if ($this->apiKey!="") 
+		{
+			if ($this->https) { $apiLocation = 'https'; }else{ $apiLocation = 'http'; }
+			$apiLocation .= '://maps.googleapis.com/maps/api/js?key='.$this->apiKey.'&';
+		}
+		else
+		{
+			if ($this->https) { $apiLocation = 'https://maps-api-ssl'; }else{ $apiLocation = 'http://maps'; }
+			$apiLocation .= '.google.com/maps/api/js?';
+		}
+		$apiLocation .= 'sensor='.$this->sensor;
 		if ($this->region!="" && strlen($this->region)==2) { $apiLocation .= '&region='.strtoupper($this->region); }
 		if ($this->language!="") { $apiLocation .= '&language='.$this->language; }
 		$libraries = array();
@@ -1112,10 +1115,7 @@ class Googlemaps {
 
 		$this->output_js_contents .= '
 			var '.$this->map_name.'; // Global declaration of the map
-
-			// hack zenphoto
-			//var iw = new google.maps.InfoWindow(); // Global declaration of the infowindow
-			var iw = new google.maps.InfoWindow({maxWidth:250}); // Global declaration of the infowindow
+			var iw = new google.maps.InfoWindow(); // Global declaration of the infowindow
 			var lat_longs = new Array();
 			var markers = new Array();
 			';
@@ -1319,21 +1319,6 @@ class Googlemaps {
 			$this->output_js_contents .= $styleOutput.'
 				';
 		}
-		
-		// hack zenphoto
-		$this->output_js_contents .= '
-				var oms = new OverlappingMarkerSpiderfier(map, {keepSpiderfied: true});
-
-				oms.addListener("click", function(marker){
-					iw.setContent(marker.get("content"));
-					iw.open(map, marker);
-				});
-				oms.addListener("spiderfy", function(markers){
-					iw.close();
-				});
-
-				';
-		// end hack zenphoto
 		
 		if ($this->trafficOverlay) {
 			$this->output_js_contents .= 'var trafficLayer = new google.maps.TrafficLayer();
@@ -2048,13 +2033,11 @@ class Googlemaps {
 		
 		// Minify the Javascript if the $minifyJS config value is true. Requires Jsmin.php and PHP 5+
 		if ($this->minifyJS) {
-			// hack zenphoto
-			//$CI =& get_instance();
-			//$CI->load->library('jsmin');
-			//$this->output_js_contents = $CI->jsmin->min($this->output_js_contents);
-			$this->output_js_contents = JSMin::minify($this->output_js_contents);
-			// end hack zenphoto
+			$CI =& get_instance();
+			$CI->load->library('jsmin');
+			$this->output_js_contents = $CI->jsmin->min($this->output_js_contents);
 		}
+		
 		if ($this->jsfile=="") { 
 			$this->output_js .= $this->output_js_contents; 
 		}else{ // if needs writing to external js file
@@ -2120,8 +2103,7 @@ class Googlemaps {
 		
 		$error = '';
 		
-		// hack zenphoto
-		/*if ($this->geocodeCaching) { // if caching of geocode requests is activated
+		if ($this->geocodeCaching) { // if caching of geocode requests is activated
 			
 			$CI =& get_instance();
 			$CI->load->database(); 
@@ -2135,8 +2117,8 @@ class Googlemaps {
 				return array($row->latitude, $row->longitude);
 			}
 			
-		}*/
-		// end hack zenphoto
+		}
+		
 		if ($this->https) { $data_location = 'https://'; }else{ $data_location = 'http://'; }
 		$data_location .= "maps.google.com/maps/api/geocode/json?address=".urlencode(utf8_encode($address))."&sensor=".$this->sensor;
 		if ($this->region!="" && strlen($this->region)==2) { $data_location .= "&region=".$this->region; }
