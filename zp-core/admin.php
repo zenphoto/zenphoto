@@ -543,7 +543,7 @@ zp_apply_filter('admin_note','Overview', NULL);
 				'action'=>WEBPATH.'/'.ZENFOLDER.'/admin.php?action=protect_setup',
 				'icon'=>'images/lock_2.png',
 				'alt'=>'',
-				'title'=>gettext('Protexts setup files so setup cannot be run.'),
+				'title'=>gettext('Protects setup files so setup cannot be run.'),
 				'hidden'=>'<input type="hidden" name="action" value="protect_setup" />',
 				'rights'=> ADMIN_RIGHTS
 		);
