@@ -480,36 +480,45 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 	if ($_zp_rewritten) {
 		$rimage = NULL;	//	the image parameter is never set by the rewrite rules!
 		if (!empty($ralbum)) {
-			$path = internalToFilesystem(getAlbumFolder(SERVERPATH).$ralbum);
-			if (IM_SUFFIX && preg_match('~'.IM_SUFFIX.'$~', $path)) {
-				// Strip off the image suffix
-				$rimage = basename(preg_replace('~'.IM_SUFFIX.'$~', '', $ralbum));
-				$ralbum = trim(dirname($ralbum),'/');
-			} else {
-				if (file_exists($path)) {
-					if (!is_dir($path)) {
-						//	it is an image (one assumes)
-						$rimage = basename($ralbum);
-						$ralbum = trim(dirname($ralbum),'/');
+			$suffix = getSuffix($ralbum);
+			switch ($suffix) {
+				case IM_SUFFIX:
+					// Strip off the image suffix
+					$rimage = basename(preg_replace('~'.IM_SUFFIX.'$~', '', $ralbum));
+					$ralbum = trim(dirname($ralbum),'/');
+					break;
+				case 'alb':
+					//	named dynamic album
+					break;
+				default:
+					//	have go figure out what we got
+					$path = internalToFilesystem(getAlbumFolder(SERVERPATH).$ralbum);
+					if (file_exists($path)) {
+						if (!is_dir($path)) {
+							//	it is not an album. Assume image
+							$rimage = basename($ralbum);
+							$ralbum = trim(dirname($ralbum),'/');
+						}
+					} else {
+						if (file_exists($path.'.alb')) {
+							//	it is a dynamic album sans suffix
+							$ralbum .= '.alb';
+						}
 					}
-				}
-			}
-			if (empty($rimage)) {
-				//	Consider it an album
-				if (!is_dir($path) && file_exists($path.'.alb')) {
-					//	it is a dynamic album sans suffix
-					$ralbum .= '.alb';
-				}
+					break;
 			}
 		}
-
 		if (empty($ralbum)) {
-			if (isset($_GET[$albumvar])) unset($_GET[$albumvar]);
+			if (isset($_GET[$albumvar])) {
+				unset($_GET[$albumvar]);
+			}
 		} else {
 			$_GET[$albumvar] = $ralbum;
 		}
 		if (empty($rimage)) {
-			if (isset($_GET[$imagevar])) unset($_GET[$imagevar]);
+			if (isset($_GET[$imagevar])) {
+				unset($_GET[$imagevar]);
+			}
 		} else {
 			$_GET[$imagevar] = $rimage;
 		}
