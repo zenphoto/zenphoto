@@ -1,4 +1,6 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php 
+	// hack zenphoto
+	//if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
  * CodeIgniter Google Maps API V3 Class
@@ -153,8 +155,8 @@ class Googlemaps {
 		{
 			$this->initialize($config);
 		}
-
-		log_message('debug', "Google Maps Class Initialized");
+		// hack zenphoto
+		//log_message('debug', "Google Maps Class Initialized");
 	}
 
 	function initialize($config = array())
@@ -313,6 +315,11 @@ class Googlemaps {
 			$marker_output .= '
 			});
 			';
+			// hack zenphoto
+			$marker_output .= '
+			oms.addMarker(marker_'.$marker_id.');
+			';
+			// end hack zenphoto
 		}else{
 			if ($marker['onclick']!="") { 
 				$marker_output .= '
@@ -1115,7 +1122,9 @@ class Googlemaps {
 
 		$this->output_js_contents .= '
 			var '.$this->map_name.'; // Global declaration of the map
-			var iw = new google.maps.InfoWindow(); // Global declaration of the infowindow
+  		// hack zenphoto
+  		//var iw = new google.maps.InfoWindow(); // Global declaration of the infowindow
+  		var iw = new google.maps.InfoWindow({maxWidth:250}); // Global declaration of the infowindow
 			var lat_longs = new Array();
 			var markers = new Array();
 			';
@@ -1319,6 +1328,21 @@ class Googlemaps {
 			$this->output_js_contents .= $styleOutput.'
 				';
 		}
+		
+		// hack zenphoto
+		$this->output_js_contents .= '
+				var oms = new OverlappingMarkerSpiderfier(map, {keepSpiderfied: true});
+
+				oms.addListener("click", function(marker){
+					iw.setContent(marker.get("content"));
+					iw.open(map, marker);
+				});
+				oms.addListener("spiderfy", function(markers){
+					iw.close();
+				});
+
+  			';
+  	// end hack zenphoto
 		
 		if ($this->trafficOverlay) {
 			$this->output_js_contents .= 'var trafficLayer = new google.maps.TrafficLayer();
@@ -2033,9 +2057,12 @@ class Googlemaps {
 		
 		// Minify the Javascript if the $minifyJS config value is true. Requires Jsmin.php and PHP 5+
 		if ($this->minifyJS) {
-			$CI =& get_instance();
-			$CI->load->library('jsmin');
-			$this->output_js_contents = $CI->jsmin->min($this->output_js_contents);
+  		// hack zenphoto
+			//$CI =& get_instance();
+			//$CI->load->library('jsmin');
+			//$this->output_js_contents = $CI->jsmin->min($this->output_js_contents);
+			$this->output_js_contents = JSMin::minify($this->output_js_contents);
+			// end hack zenphoto
 		}
 		
 		if ($this->jsfile=="") { 
@@ -2103,7 +2130,8 @@ class Googlemaps {
 		
 		$error = '';
 		
-		if ($this->geocodeCaching) { // if caching of geocode requests is activated
+		// hack zenphoto
+		/*if ($this->geocodeCaching) { // if caching of geocode requests is activated
 			
 			$CI =& get_instance();
 			$CI->load->database(); 
@@ -2117,8 +2145,9 @@ class Googlemaps {
 				return array($row->latitude, $row->longitude);
 			}
 			
-		}
-		
+		}*/
+		//end hack zenphoto
+
 		if ($this->https) { $data_location = 'https://'; }else{ $data_location = 'http://'; }
 		$data_location .= "maps.google.com/maps/api/geocode/json?address=".urlencode(utf8_encode($address))."&sensor=".$this->sensor;
 		if ($this->region!="" && strlen($this->region)==2) { $data_location .= "&region=".$this->region; }
