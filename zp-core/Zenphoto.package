@@ -270,14 +270,12 @@ themes/zpmobile/index.php
 themes/zpmobile/jquerymobile
 themes/zpmobile/jquerymobile/images
 themes/zpmobile/jquerymobile/images/ajax-loader.gif
-themes/zpmobile/jquerymobile/images/ajax-loader.png
-themes/zpmobile/jquerymobile/images/icon-search-black.png
 themes/zpmobile/jquerymobile/images/icons-18-black.png
 themes/zpmobile/jquerymobile/images/icons-18-white.png
 themes/zpmobile/jquerymobile/images/icons-36-black.png
 themes/zpmobile/jquerymobile/images/icons-36-white.png
-themes/zpmobile/jquerymobile/jquery.mobile-1.2.0.min.css
-themes/zpmobile/jquerymobile/jquery.mobile-1.2.0.min.js
+themes/zpmobile/jquerymobile/jquery.mobile-1.3.0.min.css
+themes/zpmobile/jquerymobile/jquery.mobile-1.3.0.min.js
 themes/zpmobile/news.php
 themes/zpmobile/pages.php
 themes/zpmobile/password.php
@@ -477,7 +475,6 @@ zp-core/js/flash_detect_min.js
 zp-core/js/htmlencoder.js
 zp-core/js/jquery.Jcrop.css
 zp-core/js/jquery.Jcrop.js
-zp-core/js/jquery.flashembed.pack.js
 zp-core/js/jquery.js
 zp-core/js/jquery.masonry.min.js
 zp-core/js/jquery.pagination.js
@@ -1746,4 +1743,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1748
+1745
