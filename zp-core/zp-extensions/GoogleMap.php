@@ -119,8 +119,8 @@ class GoogleMap {
 	 */
 	static function js() {
 
+		if ( ! defined('BASEPATH')) define('BASEPATH',true);	//	for no access test in GoogleMap.php
 		require_once(dirname(__FILE__).'/GoogleMap/CodeIgniter-Google-Maps-V3-API/Googlemaps.php');
-		require_once(dirname(__FILE__).'/GoogleMap/JSMin.php');
 		$loc = getOption('locale');
 		if (empty($loc)) {
 			$loc = '';
@@ -133,6 +133,39 @@ class GoogleMap {
 		<link rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER; ?>/GoogleMap/googleMap.css" type="text/css" media="screen"/>
 		<?php
 	}
+}
+
+// codeIgniter stuff
+require_once(dirname(__FILE__).'/GoogleMap/JSMin.php');
+class CI_load {
+	function library($library) {
+		//	better be jsmin, that's all we do
+	}
+}
+class CI_jsmin {
+	function min($js) {
+		return JSMin::minify($js);
+	}
+}
+class codeIgniter_kludge {	//	dummy for all the CI stuff in the CodeIngnter-Google_maps script
+	var $load;
+	var $jsmin;
+	function __construct() {
+		$this->load = new CI_load();
+		$this->jsmin = new CI_jsmin();
+	}
+}
+function log_message($class, $msg) {
+	// do nothing
+}
+function get_instance() {
+	// standin for CI library
+	return new codeIgniter_kludge();
+}
+
+function omsAdditions() {
+	// maybe we can move some of the zenphoto hacks here.
+	return '';
 }
 
 /**
@@ -300,7 +333,7 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 	$config['clusterMaxZoom'] = getOption('gmap_cluster_max_zoom');
 	$config['clusterAverageCenter'] = true;
 	$config['onclick'] = "iw.close();";
-	$config['minifyJS'] = true;
+	$config['minifyJS'] = !TEST_RELEASE;
 
 	$map = new Googlemaps($config);
 
@@ -341,7 +374,10 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 			?>
 			<script type="text/javascript">
 			//<![CDATA[
-				<?php echo $map->output_js_contents; ?>
+				<?php
+				echo $map->output_js_contents;
+				echo omsAdditions();
+				?>
 
 				function image(album, image) {
 					window.location = '<?php echo WEBPATH ?>/index.php?album=' + album + '&image=' + image;
@@ -358,7 +394,10 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 			?>
 			<script type="text/javascript">
 			//<![CDATA[
-				<?php echo $map->output_js_contents; ?>
+				<?php
+				echo $map->output_js_contents;
+				echo omsAdditions();
+				?>
 
 				function image(album, image) {
 					window.location = '<?php echo WEBPATH ?>/index.php?album=' + album + '&image=' + image;

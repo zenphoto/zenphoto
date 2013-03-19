@@ -77,7 +77,10 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 		<div class="googlemap">
 			<script type="text/javascript">
 			//<![CDATA[
-				<?php echo $map->output_js_contents; ?>
+				<?php
+				echo $map->output_js_contents;
+				echo omsAdditions();
+				?>
 
 				function image(album, image) {
 					window.parent.location = '/index.php?album=' + album + '&image=' + image;
