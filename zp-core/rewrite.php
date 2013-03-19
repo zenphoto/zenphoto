@@ -57,7 +57,7 @@ function rewriteHandler() {
 						$params = array();
 						//	setup the rule replacement values
 						foreach ($subs as $key=>$sub) {
-							$params['$'.$key] = $sub;
+							$params['$'.$key] = urlencode($sub);	// parse_str is going to decode the string!
 						}
 						//	parse rewrite rule flags
 						$flags = array();
@@ -77,7 +77,7 @@ function rewriteHandler() {
 						}
 						if (array_key_exists(2, $action)) {
 							//	process the rules replacements
-							$query = str_replace('%3D', '=', urlencode(strtr($action[2], $params)));	// parse_str is going to decode the string!
+							$query = strtr($action[2], $params);
 							parse_str($query,$gets);
 							$_GET = array_merge($_GET, $gets);
 							$_REQUEST = array_merge($_REQUEST, $gets);

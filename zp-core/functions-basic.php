@@ -480,35 +480,25 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 	if ($_zp_rewritten) {
 		$rimage = NULL;	//	the image parameter is never set by the rewrite rules!
 		if (!empty($ralbum)) {
-			$suffix = getSuffix($ralbum);
-			if (empty($suffix)) {
-				$suffix = '*';	// force to default case
-			}
-			switch ($suffix) {
-				case IM_SUFFIX:
-					// Strip off the image suffix
-					$rimage = basename(preg_replace('~'.IM_SUFFIX.'$~', '', $ralbum));
-					$ralbum = trim(dirname($ralbum),'/');
-					break;
-				case 'alb':
-					//	named dynamic album
-					break;
-				default:
-					//	have go figure out what we got
-					$path = internalToFilesystem(getAlbumFolder(SERVERPATH).$ralbum);
-					if (file_exists($path)) {
-						if (!is_dir($path)) {
-							//	it is not an album. Assume image
-							$rimage = basename($ralbum);
-							$ralbum = trim(dirname($ralbum),'/');
-						}
-					} else {
-						if (file_exists($path.'.alb')) {
-							//	it is a dynamic album sans suffix
-							$ralbum .= '.alb';
-						}
+			if (IM_SUFFIX && preg_match('|^(.*)'.preg_quote(IM_SUFFIX).'$|',$ralbum, $matches)) {
+				//has an IM_SUFFIX attached
+				$rimage = basename($matches[1]);
+				$ralbum = trim(dirname($matches[1]),'/');
+			} else if (getSuffix($ralbum)!='alb') {
+				//	have to figure it out
+				$path = internalToFilesystem(getAlbumFolder(SERVERPATH).$ralbum);
+				if (file_exists($path)) {
+					if (!is_dir($path)) {
+						//	it is not an album. Assume image
+						$rimage = basename($ralbum);
+						$ralbum = trim(dirname($ralbum),'/');
 					}
-					break;
+				} else {
+					if (file_exists($path.'.alb')) {
+						//	it is a dynamic album sans suffix
+						$ralbum .= '.alb';
+					}
+				}
 			}
 		}
 		if (empty($ralbum)) {
