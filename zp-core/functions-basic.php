@@ -481,6 +481,9 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 		$rimage = NULL;	//	the image parameter is never set by the rewrite rules!
 		if (!empty($ralbum)) {
 			$suffix = getSuffix($ralbum);
+			if (empty($suffix)) {
+				$suffix = '*';	// force to default case
+			}
 			switch ($suffix) {
 				case IM_SUFFIX:
 					// Strip off the image suffix
