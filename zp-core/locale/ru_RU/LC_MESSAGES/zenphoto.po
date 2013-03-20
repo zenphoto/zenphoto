@@ -5,7 +5,7 @@ msgstr ""
 "POT-Creation-Date: 2013-03-02 04:06+0400\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Doctor Kru <info@artpixel.ru>\n"
-"Language-Team: http://www.artpixel.ru/forum/viewtopic.php?t=146\n"
+"Language-Team: http://www.artpixel.ru/forum/viewtopic.php?t=146 <Doctor Kru>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1945,7 +1945,7 @@ msgstr "Ответить на e-mail"
 
 #: gallery/zp-core/admin-dynamic-album.php:43
 msgid "You do not have edit rights on this album."
-msgstr "Вы не имеет прав редактировать этот альбом."
+msgstr "Вы не имеете прав редактировать этот альбом."
 
 #: gallery/zp-core/admin-dynamic-album.php:75
 msgid "dynamic"
@@ -7782,14 +7782,12 @@ msgid "PHP Imagick library <em>%s</em>"
 msgstr "Библиотека PHP Imagick <em>%s</em>"
 
 #: gallery/zp-core/lib-utf8.php:50
-#, fuzzy
 msgid "Arabic"
-msgstr "Arabic (Iran)"
+msgstr "Арабская"
 
 #: gallery/zp-core/lib-utf8.php:51
-#, fuzzy
 msgid "Chinese Traditional"
-msgstr "Chinese (Taiwan)"
+msgstr "Китайская традиционная"
 
 #: gallery/zp-core/lib-utf8.php:52
 msgid "IBM EBCDIC (Turkish Latin-5)"
@@ -7808,14 +7806,12 @@ msgid "Japanese (JIS-Allow 1 byte Kana)"
 msgstr "Японская (JIS-Allow 1 byte Kana)"
 
 #: gallery/zp-core/lib-utf8.php:56
-#, fuzzy
 msgid "Arabic (DOS)"
-msgstr "Arabic (Oman)"
+msgstr "Арабская (DOS)"
 
 #: gallery/zp-core/lib-utf8.php:57
-#, fuzzy
 msgid "Hebrew (DOS)"
-msgstr "Hebrew"
+msgstr "Иврит (DOS)"
 
 #: gallery/zp-core/lib-utf8.php:58
 msgid "IBM EBCDIC (US-Canada)"
@@ -7826,14 +7822,12 @@ msgid "Chinese Simplified (EUC)"
 msgstr "Китайская упрощённая (EUC)"
 
 #: gallery/zp-core/lib-utf8.php:60
-#, fuzzy
 msgid "Japanese (EUC)"
-msgstr "Japanese"
+msgstr "Японская (EUC)"
 
 #: gallery/zp-core/lib-utf8.php:61
-#, fuzzy
 msgid "Korean (EUC)"
-msgstr "Korean"
+msgstr "Корейская (EUC)"
 
 #: gallery/zp-core/lib-utf8.php:62
 msgid "Chinese Simplified (GB2312)"
@@ -7849,9 +7843,8 @@ msgid "OEM United States"
 msgstr "English (United States)"
 
 #: gallery/zp-core/lib-utf8.php:65
-#, fuzzy
 msgid "Greek (DOS)"
-msgstr "Greek"
+msgstr "Греческая (DOS)"
 
 #: gallery/zp-core/lib-utf8.php:66
 msgid "Baltic (DOS)"
@@ -7866,32 +7859,28 @@ msgid "Central European (DOS)"
 msgstr "Центральноевропейская (DOS)"
 
 #: gallery/zp-core/lib-utf8.php:69
-#, fuzzy
 msgid "Turkish (DOS)"
-msgstr "Turkish"
+msgstr "Турецкая (DOS)"
 
 #: gallery/zp-core/lib-utf8.php:70
-#, fuzzy
 msgid "Icelandic (DOS)"
-msgstr "Icelandic"
+msgstr "Исландская (DOS)"
 
 #: gallery/zp-core/lib-utf8.php:71
 msgid "Greek, Modern (DOS)"
 msgstr ""
 
 #: gallery/zp-core/lib-utf8.php:72
-#, fuzzy
 msgid "Japanese (JIS)"
-msgstr "Japanese"
+msgstr "Японская (JIS)"
 
 #: gallery/zp-core/lib-utf8.php:73
 msgid "Japanese (JIS-Allow 1 byte Kana - SO/SI)"
 msgstr "Японская (JIS-Allow 1 byte Kana - SO/SI)"
 
 #: gallery/zp-core/lib-utf8.php:74
-#, fuzzy
 msgid "Korean (ISO)"
-msgstr "Korean"
+msgstr "Корейская (ISO)"
 
 #: gallery/zp-core/lib-utf8.php:75
 msgid "Western European (ISO)"
@@ -7918,14 +7907,12 @@ msgid "Cyrillic (ISO)"
 msgstr "Кириллица (ISO)"
 
 #: gallery/zp-core/lib-utf8.php:81
-#, fuzzy
 msgid "Arabic (ISO)"
-msgstr "Arabic (Iran)"
+msgstr "Арабская (ISO)"
 
 #: gallery/zp-core/lib-utf8.php:82
-#, fuzzy
 msgid "Greek (ISO)"
-msgstr "Greek"
+msgstr "Греческая (ISO)"
 
 #: gallery/zp-core/lib-utf8.php:83
 msgid "Hebrew (ISO-Visual)"
@@ -7936,14 +7923,12 @@ msgid "Hebrew (ISO-Logical)"
 msgstr "Иврит (ISO-Logical)"
 
 #: gallery/zp-core/lib-utf8.php:85
-#, fuzzy
 msgid "Turkish (ISO)"
-msgstr "Turkish"
+msgstr "Турецкая (ISO)"
 
 #: gallery/zp-core/lib-utf8.php:86
-#, fuzzy
 msgid "Korean (Johab)"
-msgstr "Korean"
+msgstr "Корейская (Johab)"
 
 #: gallery/zp-core/lib-utf8.php:87
 msgid "Cyrillic (KOI8-R)"
@@ -8006,18 +7991,16 @@ msgid "Hebrew (Windows)"
 msgstr "Иврит (Windows)"
 
 #: gallery/zp-core/lib-utf8.php:103
-#, fuzzy
 msgid "Arabic (Windows)"
-msgstr "Arabic (Iran)"
+msgstr "Арабская (Windows)"
 
 #: gallery/zp-core/lib-utf8.php:104
 msgid "Baltic (Windows)"
 msgstr "Прибалтийская (Windows)"
 
 #: gallery/zp-core/lib-utf8.php:105
-#, fuzzy
 msgid "Vietnamese (Windows)"
-msgstr "Vietnamese"
+msgstr "Вьетнамская (Windows)"
 
 #: gallery/zp-core/lib-utf8.php:106
 msgid "Thai (Windows)"
@@ -8102,9 +8085,9 @@ msgid "Your installation has moved from %1$s to %2$s."
 msgstr ""
 
 #: gallery/zp-core/reconfigure.php:193
-#, fuzzy, php-format
+#, php-format
 msgid "The script <code>%1$s</code> has changed."
-msgstr "База данных <code>%s</code> создана"
+msgstr "Скрипт <code>%1$s</code> был изменён."
 
 #: gallery/zp-core/reconfigure.php:204
 #, php-format
@@ -11570,9 +11553,8 @@ msgstr "Отключить"
 
 #: gallery/zp-core/zp-extensions/class-WEBdocs.php:57
 #: gallery/zp-core/zp-extensions/class-WEBdocs.php:68
-#, fuzzy
 msgid "GoogleDocs"
-msgstr "Карта Google"
+msgstr "Google Документы"
 
 #: gallery/zp-core/zp-extensions/class-WEBdocs.php:58
 #: gallery/zp-core/zp-extensions/class-WEBdocs.php:69
@@ -18068,9 +18050,8 @@ msgid "%s"
 msgstr "%s"
 
 #: gallery/zp-core/zp-extensions/publishContent/publishContent.php:461
-#, fuzzy
 msgid "all images"
-msgstr "%u изображений"
+msgstr "все изображения"
 
 #: gallery/zp-core/zp-extensions/publishContent/publishContent.php:465
 msgid "Process the above changes."
@@ -19517,12 +19498,12 @@ msgid "Use the Zenpage Page class->getPages() method."
 msgstr ""
 
 #: gallery/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:361
-#, fuzzy, php-format
+#, php-format
 msgid " [%u item]"
 msgid_plural " [%u items]"
-msgstr[0] "[%u изображение]"
-msgstr[1] "[%u изображения]"
-msgstr[2] "[%u изображений]"
+msgstr[0] "[%u объектов]"
+msgstr[1] "[%u объекта]"
+msgstr[2] "[%u объектов]"
 
 #: gallery/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:461
 msgid "<em>This entry belongs to a protected album.</em>"
