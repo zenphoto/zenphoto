@@ -7,6 +7,7 @@ $map = function_exists('printGoogleMap');
 <head>
 	<?php
 	zp_apply_filter('theme_head');
+	$personality = getOption('garland_personality');
 	require_once(SERVERPATH.'/'.THEMEFOLDER.'/garland/'.$personality.'/functions.php');
 	?>
 	<title><?php printGalleryTitle(); ?> | <?php echo html_encode(getAlbumTitle()); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>

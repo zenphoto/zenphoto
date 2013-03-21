@@ -1,9 +1,9 @@
 /**
- * Copyright (c) 2010 Anders Ekdahl (http://coffeescripter.com/)
+ * Copyright (c) 2012 Anders Ekdahl (http://coffeescripter.com/)
  * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
  * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
  *
- * Version: 1.2.4
+ * Version: 1.2.7
  *
  * Demo and documentation: http://coffeescripter.com/code/ad-gallery/
  */
@@ -11,6 +11,7 @@
   $.fn.adGallery = function(options) {
     var defaults = { loader_image: 'loader.gif',
                      start_at_index: 0,
+                     update_window_hash: true,
                      description_wrapper: false,
                      thumb_opacity: 0.7,
                      animate_first_image: false,
@@ -35,6 +36,9 @@
                      effect: 'slide-hori', // or 'slide-vert', 'fade', or 'resize', 'none'
                      enable_keyboard_move: true,
                      cycle: true,
+                     hooks: {
+                       displayDescription: false
+                     },
                      callbacks: {
                        init: false,
                        afterImageVisible: false,
@@ -140,6 +144,7 @@
     loader: false,
     preloads: false,
     thumbs_wrapper: false,
+    thumbs_wrapper_width: 0,
     scroll_back: false,
     scroll_forward: false,
     next_link: false,
@@ -148,7 +153,7 @@
     slideshow: false,
     image_wrapper_width: 0,
     image_wrapper_height: 0,
-    current_index: 0,
+    current_index: -1,
     current_image: false,
     current_description: false,
     nav_display_width: 0,
@@ -176,7 +181,7 @@
         this.image_wrapper_height = this.image_wrapper.height();
       };
       this.nav_display_width = this.nav.width();
-      this.current_index = 0;
+      this.current_index = -1;
       this.current_image = false;
       this.current_description = false;
       this.in_transition = false;
@@ -202,15 +207,11 @@
       if(this.settings.enable_keyboard_move) {
         this.initKeyEvents();
       };
+      this.initHashChange();
       var start_at = parseInt(this.settings.start_at_index, 10);
-      if(window.location.hash && window.location.hash.indexOf('#ad-image') === 0) {
-        start_at = window.location.hash.replace(/[^0-9]+/g, '');
-        // Check if it's a number
-        if((start_at * 1) != start_at) {
-          start_at = this.settings.start_at_index;
-        };
+      if(typeof this.getIndexFromHash() != "undefined") {
+        start_at = this.getIndexFromHash();
       };
-
       this.loading(true);
       this.showImage(start_at,
         function() {
@@ -262,7 +263,6 @@
     findImages: function() {
       var context = this;
       this.images = [];
-      var thumb_wrapper_width = 0;
       var thumbs_loaded = 0;
       var thumbs = this.thumbs_wrapper.find('a');
       var thumb_count = thumbs.length;
@@ -272,85 +272,98 @@
       thumbs.each(
         function(i) {
           var link = $(this);
+          link.data("ad-i", i);
           var image_src = link.attr('href');
           var thumb = link.find('img');
-          // Check if the thumb has already loaded
-          if(!context.isImageLoaded(thumb[0])) {
-            thumb.load(
-              function() {
-                thumb_wrapper_width += this.parentNode.parentNode.offsetWidth;
-                thumbs_loaded++;
-              }
-            );
-          } else{
-            thumb_wrapper_width += thumb[0].parentNode.parentNode.offsetWidth;
+          context.whenImageLoaded(thumb[0], function() {
+            var width = thumb[0].parentNode.parentNode.offsetWidth;
+            if(thumb[0].width == 0) {
+              // If the browser tells us that the image is loaded, but the width
+              // is still 0 for some reason, we default to 100px width.
+              // It's not very nice, but it's better than 0.
+              width = 100;
+            };
+            context.thumbs_wrapper_width += width;
             thumbs_loaded++;
-          };
-          link.addClass('ad-thumb'+ i);
-          link.click(
-            function() {
-              context.showImage(i);
-              context.slideshow.stop();
-              return false;
-            }
-          ).hover(
-            function() {
-              if(!$(this).is('.ad-active') && context.settings.thumb_opacity < 1) {
-                $(this).find('img').fadeTo(300, 1);
-              };
-              context.preloadImage(i);
-            },
-            function() {
-              if(!$(this).is('.ad-active') && context.settings.thumb_opacity < 1) {
-                $(this).find('img').fadeTo(300, context.settings.thumb_opacity);
-              };
-            }
-          );
-          var link = false;
-          if(thumb.data('ad-link')) {
-            link = thumb.data('ad-link');
-          } else if(thumb.attr('longdesc') && thumb.attr('longdesc').length) {
-            link = thumb.attr('longdesc');
-          };
-          var desc = false;
-          if(thumb.data('ad-desc')) {
-            desc = thumb.data('ad-desc');
-          } else if(thumb.attr('alt') && thumb.attr('alt').length) {
-            desc = thumb.attr('alt');
-          };
-          var title = false;
-          if(thumb.data('ad-title')) {
-            title = thumb.data('ad-title');
-          } else if(thumb.attr('title') && thumb.attr('title').length) {
-            title = thumb.attr('title');
-          };
-          context.images[i] = { thumb: thumb.attr('src'), image: image_src, error: false,
-                                preloaded: false, desc: desc, title: title, size: false,
-                                link: link };
+          });
+          context._initLink(link);
+          context.images[i] = context._createImageData(link, image_src);
         }
       );
       // Wait until all thumbs are loaded, and then set the width of the ul
       var inter = setInterval(
         function() {
           if(thumb_count == thumbs_loaded) {
-            thumb_wrapper_width -= 100;
-            var list = context.nav.find('.ad-thumb-list');
-            list.css('width', thumb_wrapper_width +'px');
-            var i = 1;
-            var last_height = list.height();
-            while(i < 201) {
-              list.css('width', (thumb_wrapper_width + i) +'px');
-              if(last_height != list.height()) {
-                break;
-              }
-              last_height = list.height();
-              i++;
-            }
+            context._setThumbListWidth(context.thumbs_wrapper_width);
             clearInterval(inter);
           };
         },
         100
       );
+    },
+    _setThumbListWidth: function(wrapper_width) {
+      wrapper_width -= 100;
+      var list = this.nav.find('.ad-thumb-list');
+      list.css('width', wrapper_width +'px');
+      var i = 1;
+      var last_height = list.height();
+      while(i < 201) {
+        list.css('width', (wrapper_width + i) +'px');
+        if(last_height != list.height()) {
+          break;
+        };
+        last_height = list.height();
+        i++;
+      };
+      if(list.width() < this.nav.width()) {
+        list.width(this.nav.width());
+      };
+    },
+    _initLink: function(link) {
+      var context = this;
+      link.click(
+        function() {
+          context.showImage(link.data("ad-i"));
+          context.slideshow.stop();
+          return false;
+        }
+      ).hover(
+        function() {
+          if(!$(this).is('.ad-active') && context.settings.thumb_opacity < 1) {
+            $(this).find('img').fadeTo(300, 1);
+          };
+          context.preloadImage(link.data("ad-i"));
+        },
+        function() {
+          if(!$(this).is('.ad-active') && context.settings.thumb_opacity < 1) {
+            $(this).find('img').fadeTo(300, context.settings.thumb_opacity);
+          };
+        }
+      );
+    },
+    _createImageData: function(thumb_link, image_src) {
+      var link = false;
+      var thumb_img = thumb_link.find("img");
+      if(thumb_img.data('ad-link')) {
+        link = thumb_link.data('ad-link');
+      } else if(thumb_img.attr('longdesc') && thumb_img.attr('longdesc').length) {
+        link = thumb_img.attr('longdesc');
+      };
+      var desc = false;
+      if(thumb_img.data('ad-desc')) {
+        desc = thumb_img.data('ad-desc');
+      } else if(thumb_img.attr('alt') && thumb_img.attr('alt').length) {
+        desc = thumb_img.attr('alt');
+      };
+      var title = false;
+      if(thumb_img.data('ad-title')) {
+        title = thumb_img.data('ad-title');
+      } else if(thumb_img.attr('title') && thumb_img.attr('title').length) {
+        title = thumb_img.attr('title');
+      };
+      return { thumb_link: thumb_link, image: image_src, error: false,
+               preloaded: false, desc: desc, title: title, size: false,
+               link: link };
     },
     initKeyEvents: function() {
       var context = this;
@@ -367,6 +380,98 @@
           };
         }
       );
+    },
+    getIndexFromHash: function() {
+      if(window.location.hash && window.location.hash.indexOf('#ad-image-') === 0) {
+        var id = window.location.hash.replace(/^#ad-image-/g, '');
+        var thumb = this.thumbs_wrapper.find("#"+ id);
+        if(thumb.length) {
+          return this.thumbs_wrapper.find("a").index(thumb);
+        } else if(!isNaN(parseInt(id, 10))) {
+          return parseInt(id, 10);
+        };
+      };
+      return undefined;
+    },
+    removeImage: function(index) {
+      if(index < 0 || index >= this.images.length) {
+        throw "Cannot remove image for index "+ index;
+      };
+      var image = this.images[index];
+      this.images.splice(index, 1);
+      var thumb_link = image.thumb_link;
+      var thumb_width = thumb_link[0].parentNode.offsetWidth;
+      this.thumbs_wrapper_width -= thumb_width;
+      thumb_link.remove();
+      this._setThumbListWidth(this.thumbs_wrapper_width);
+      this.gallery_info.html((this.current_index + 1) +' / '+ this.images.length);
+      this.thumbs_wrapper.find('a').each(
+        function(i) {
+          $(this).data("ad-i", i);
+        }
+      );
+      if(index == this.current_index && this.images.length != 0) {
+        this.showImage(0);
+      };
+    },
+    removeAllImages: function() {
+      for (var i = this.images.length - 1; i >= 0; i--) {
+        this.removeImage(i);
+      };
+    },
+    addImage: function(thumb_url, image_url, image_id, title, description) {
+      image_id = image_id || "";
+      title = title || "";
+      description = description || "";
+      var li = $('<li><a href="'+ image_url +'" id="'+ image_id +'">' +
+                   '<img src="'+ thumb_url +'" title="'+ title +'" alt="'+ description +'">' +
+                 '</a></li>');
+      var context = this;
+      this.thumbs_wrapper.find("ul").append(li);
+      
+      var link = li.find("a");
+      var thumb = link.find("img");
+      thumb.css('opacity', this.settings.thumb_opacity);
+      
+      this.whenImageLoaded(thumb[0], function() {
+        var thumb_width = thumb[0].parentNode.parentNode.offsetWidth;
+        if(thumb[0].width == 0) {
+          // If the browser tells us that the image is loaded, but the width
+          // is still 0 for some reason, we default to 100px width.
+          // It's not very nice, but it's better than 0.
+          thumb_width = 100;
+        };
+        
+        context.thumbs_wrapper_width += thumb_width;
+        context._setThumbListWidth(context.thumbs_wrapper_width);
+      });
+      var i = this.images.length;
+      link.data("ad-i", i);
+      this._initLink(link);
+      this.images[i] = context._createImageData(link, image_url);
+      this.gallery_info.html((this.current_index + 1) +' / '+ this.images.length);
+    },
+    initHashChange: function() {
+      var context = this;
+      if("onhashchange" in window) {
+        $(window).bind("hashchange", function() {
+          var index = context.getIndexFromHash();
+          if(typeof index != "undefined" && index != context.current_index) {
+            context.showImage(index);
+          };
+        });
+      } else {
+        var current_hash = window.location.hash;
+        setInterval(function() {
+          if(window.location.hash != current_hash) {
+            current_hash = window.location.hash;
+            var index = context.getIndexFromHash();
+            if(typeof index != "undefined" && index != context.current_index) {
+              context.showImage(index);
+            };
+          };
+        }, 200);
+      };
     },
     initNextAndPrev: function() {
       this.next_link = $('<div class="ad-next"><div class="ad-next-image"></div></div>');
@@ -466,6 +571,14 @@
           this.prev_link.hide();
         };
       };
+      if(this.settings.update_window_hash) {
+        var thumb_link = this.images[this.current_index].thumb_link;
+        if (thumb_link.attr("id")) {
+          window.location.hash = "#ad-image-"+ thumb_link.attr("id");
+        } else {
+          window.location.hash = "#ad-image-"+ this.current_index;
+        };
+      };
       this.fireCallback(this.settings.callbacks.afterImageVisible);
     },
     /**
@@ -521,7 +634,7 @@
      *                          and it's animation has finished
      */
     showImage: function(index, callback) {
-      if(this.images[index] && !this.in_transition) {
+      if(this.images[index] && !this.in_transition && index != this.current_index) {
         var context = this;
         var image = this.images[index];
         this.in_transition = true;
@@ -552,25 +665,28 @@
           img_container.append(link);
         } else {
           img_container.append(img);
-        }
+        };
         this.image_wrapper.prepend(img_container);
         var size = this._getContainedImageSize(image.size.width, image.size.height);
         img.attr('width', size.width);
         img.attr('height', size.height);
         img_container.css({width: size.width +'px', height: size.height +'px'});
         this._centerImage(img_container, size.width, size.height);
-        var desc = this._getDescription(image, img_container);
+        var desc = this._getDescription(image);
         if(desc) {
-          if(!this.settings.description_wrapper) {
+          if(!this.settings.description_wrapper && !this.settings.hooks.displayDescription) {
             img_container.append(desc);
             var width = size.width - parseInt(desc.css('padding-left'), 10) - parseInt(desc.css('padding-right'), 10);
             desc.css('width', width +'px');
+          } else if(this.settings.hooks.displayDescription) {
+            this.settings.hooks.displayDescription.call(this, image);
           } else {
-            this.settings.description_wrapper.append(desc);
-          }
+            var wrapper = this.settings.description_wrapper;
+            wrapper.append(desc);
+          };
         };
-        this.highLightThumb(this.nav.find('.ad-thumb'+ index));
-
+        this.highLightThumb(this.images[index].thumb_link);
+        
         var direction = 'right';
         if(this.current_index < index) {
           direction = 'left';
@@ -693,6 +809,13 @@
         } else {
           this.fireCallback(callback);
         };
+      };
+    },
+    whenImageLoaded: function(img, callback) {
+      if (this.isImageLoaded(img)) {
+        callback && callback();
+      } else {
+        $(img).load(callback);
       };
     },
     isImageLoaded: function(img) {

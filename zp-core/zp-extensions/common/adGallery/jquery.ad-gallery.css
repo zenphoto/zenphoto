@@ -1,3 +1,12 @@
+/**
+ * Copyright (c) 2012 Anders Ekdahl (http://coffeescripter.com/)
+ * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
+ * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
+ *
+ * Version: 1.2.7
+ *
+ * Demo and documentation: http://coffeescripter.com/code/ad-gallery/
+ */
 .ad-gallery {
   width: 600px;
 }
@@ -27,7 +36,7 @@
       height: 100%;
       cursor: pointer;
       display: block;
-      z-index: 100;
+      z-index: 200;
     }
     .ad-gallery .ad-image-wrapper .ad-prev {
       position: absolute;
@@ -37,11 +46,11 @@
       height: 100%;
       cursor: pointer;
       display: block;
-      z-index: 100;
+      z-index: 200;
     }
     .ad-gallery .ad-image-wrapper .ad-prev, .ad-gallery .ad-image-wrapper .ad-next {
       /* Or else IE will hide it */
-      background: url(non-existing.jpg)\9
+      background: url(trans.gif);
     }
       .ad-gallery .ad-image-wrapper .ad-prev .ad-prev-image, .ad-gallery .ad-image-wrapper .ad-next .ad-next-image {
         background: url(ad_prev.png);
