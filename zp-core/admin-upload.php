@@ -55,6 +55,13 @@ printLogoAndLinks();
 			}
 			$albumlist = array();
 			genAlbumList($albumlist);
+			//	remove dynamic albums--can't upload to them
+			foreach ($albumlist as $key=>$albumname) {
+				if(hasDynamicAlbumSuffix($key)) {
+					unset($albumlist[$key]);
+				}
+			}
+
 			?>
 			<script type="text/javascript">
 				// <!-- <![CDATA[
