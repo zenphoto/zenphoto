@@ -13,7 +13,7 @@ class imagegallery {
 	function theme_head($_zp_themeroot) {
 		?>
 		<link rel="stylesheet" type="text/css" href="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.COMMON_FOLDER; ?>/adGallery/jquery.ad-gallery.css">
-		<script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.COMMON_FOLDER; ?>/adGallery/jquery.ad-gallery.js"></script>
+		<script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.COMMON_FOLDER; ?>/adGallery/jquery.ad-gallery.min.js"></script>
 		<?php
 		return true;
 	}
