@@ -8,6 +8,7 @@ if(!function_exists("gettext")) {
 
 define('ZENFOLDER', 'zp-core');
 define('PLUGIN_FOLDER', 'zp-extensions');
+define('COMMON_FOLDER',PLUGIN_FOLDER.'/common');
 define('USER_PLUGIN_FOLDER', 'plugins');
 define('ALBUMFOLDER', 'albums');
 define('THEMEFOLDER', 'themes');
@@ -28,6 +29,7 @@ define('THEME_PLUGIN',1024);
 define('PLUGIN_PRIORITY',1023);
 
 define('SYMLINK',function_exists('symlink') && strpos(@ini_get("suhosin.executor.func.blacklist"),'symlink')===false);
+
 define('TEST_RELEASE',strpos(ZENPHOTO_VERSION, '-')!==false);
 
 define('DEBUG_LOGIN', false); // set to true to log admin saves and login attempts

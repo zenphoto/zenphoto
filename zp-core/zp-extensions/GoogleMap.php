@@ -136,7 +136,8 @@ class GoogleMap {
 }
 
 // codeIgniter stuff
-require_once(dirname(__FILE__).'/GoogleMap/JSMin.php');
+error_reporting(E_ALL ^ E_STRICT);	//	required for the CodeIgniter-Google-Maps-V3-API code!
+require_once(SERVERPATH.'/'.ZENFOLDER.'/'.COMMON_FOLDER.'/jsMIN/JSMin.php');
 class CI_load {
 	function library($library) {
 		//	better be jsmin, that's all we do
