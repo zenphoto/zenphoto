@@ -40,7 +40,7 @@ $option_interface = 'mediaelementjs_options';
 if (isset($_zp_flash_player) || $plugin_disable) {
 	setOption('zp_plugin_jplayer',0);
 	if (isset($_zp_flash_player)) {
-		trigger_error(sprintf(gettext('mediaelementjs not enabled, %s is already instantiated.'),get_class($_zp_flash_player)),E_USER_NOTICE);
+		trigger_error(sprintf(gettext('mediaelement.js not enabled, %s is already instantiated.'),get_class($_zp_flash_player)),E_USER_NOTICE);
 	}
 } else {
 	$_zp_flash_player = new medialementjs_player(); // claim to be the flash player.
