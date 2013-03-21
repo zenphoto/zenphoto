@@ -48,6 +48,7 @@ if (isset($_GET['action'])) {
 			if (isset($_GET['source']) && isset($_GET['target']) && isset($_GET['name'])) {
 				$message = copyThemeDirectory(sanitize($_GET['source'],3), sanitize($_GET['target'],3), sanitize($_GET['name'],3));
 			}
+			$_zp_gallery = new Gallery();	//	flush out remembered themes
 			break;
 		case 'deletetheme':
 			if (isset($_GET['theme'])) {
@@ -56,6 +57,7 @@ if (isset($_GET['action'])) {
 				} else {
 					$message = sprintf(gettext('Error removing theme <em>%s</em>'),html_encode($theme));
 				}
+				$_zp_gallery = new Gallery();	//	flush out remembered themes
 				break;
 			}
 	}
