@@ -141,6 +141,7 @@ require_once(SERVERPATH.'/'.ZENFOLDER.'/'.COMMON_FOLDER.'/jsMin/JSMin.php');
 class CI_load {
 	function library($library) {
 		//	better be jsmin, that's all we do
+		assert($libarry == 'jsmin');
 	}
 }
 class CI_jsmin {
