@@ -469,6 +469,7 @@ border: 1px solid #ccc; position:absolute; text-align:left; list-style: none;
 height: 8em; width: 20em; overflow: auto;
 color: #fff;
 background-image:url(../images/50percent.png);
+z-index: 10;
 }
 #searchfields_icon {
 position: relative;
