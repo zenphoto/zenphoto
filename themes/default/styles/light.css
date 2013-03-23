@@ -480,6 +480,7 @@ text-decoration: none;
 border: 1px solid #ccc; position:absolute; text-align:left; list-style: none;
 height: 8em; width: 20em; overflow: auto;
 background-color: white;
+z-index: 10;
 }
 
 #searchfields_icon {
