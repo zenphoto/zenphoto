@@ -45,6 +45,10 @@ if (isset($_REQUEST['backup']) || isset($_REQUEST['restore'])) {
 global $handle, $buffer, $counter, $file_version, $compression_handler; // so this script can run from a function
 $buffer = '';
 
+function extendExecution() {
+	set_time_limit(30);
+	echo ' ';
+}
 function fillbuffer($handle) {
 	global $buffer;
 	$record = fread($handle, 8192);
@@ -178,13 +182,13 @@ if (isset($_REQUEST['backup']) && db_connect($_zp_conf_vars)) {
 			$counter = 0;
 			$writeresult = true;
 			foreach ($tables as $row) {
-				set_time_limit(60);
 				$table = array_shift($row);
 				$unprefixed_table = substr($table, strlen($prefix));
 				$sql = 'SELECT * from `'.$table.'`';
 				$result = query($sql);
 				if ($result) {
 					while ($tablerow = db_fetch_assoc($result)) {
+						extendExecution();
 						$storestring = serialize($tablerow);
 						$storestring = compressRow($storestring, $compression_level);
 						$storestring = $unprefixed_table.TABLE_SEPARATOR.$storestring;
@@ -267,6 +271,7 @@ if (isset($_REQUEST['backup']) && db_connect($_zp_conf_vars)) {
 				$table_cleared = array();
 				if (is_array($result)) {
 					foreach($result as $row) {
+						extendExecution();
 						$table = array_shift($row);
 						$tables[$table] = array();
 						$table_cleared[$table] = false;
@@ -309,6 +314,7 @@ if (isset($_REQUEST['backup']) && db_connect($_zp_conf_vars)) {
 				$missing_table = array();
 				$missing_element = array();
 				while (!empty($string) && count($errors)<10) {
+					extendExecution();
 					$sep = strpos($string, TABLE_SEPARATOR);
 					$table = substr($string, 0, $sep);
 					if (array_key_exists($prefix.$table,$tables)) {
@@ -317,7 +323,6 @@ if (isset($_REQUEST['backup']) && db_connect($_zp_conf_vars)) {
 								$errors[] = gettext('Truncate table<br />').db_error();
 							}
 							$table_cleared[$prefix.$table] = true;
-							set_time_limit(60);
 						}
 						$row = substr($string, $sep+strlen(TABLE_SEPARATOR));
 						$row = decompressRow($row);
