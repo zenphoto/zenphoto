@@ -1,29 +1,5 @@
 <?php
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /**
  * basic functions used by zenphoto i.php
  * Keep this file to the minimum to allow the largest available memory for processing images!
@@ -137,13 +113,16 @@ if (OFFSET_PATH != 2 && !file_exists($const_serverpath.'/'.DATA_FOLDER.'/'.CONFI
 // Including the config file more than once is OK, and avoids $conf missing.
 eval(file_get_contents($const_serverpath.'/'.DATA_FOLDER.'/'.CONFIGFILE));
 
-foreach ($_zp_conf_vars['special_pages'] as $definition) {
-	if ($definition['define']) {
-		define($definition['define'], $definition['rewrite']);
+if (isset($_zp_conf_vars['special_pages'])) {
+	foreach ($_zp_conf_vars['special_pages'] as $definition) {
+		if ($definition['define']) {
+			define($definition['define'], $definition['rewrite']);
+		}
 	}
+	unset($definition);
+} else {
+	$_zp_conf_vars['special_pages'] = array();
 }
-unset($definition);
-
 
 define('DATABASE_PREFIX',$_zp_conf_vars['mysql_prefix']);
 
