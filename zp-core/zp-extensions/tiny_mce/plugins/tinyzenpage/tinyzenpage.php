@@ -206,7 +206,7 @@ if(showZenphotoOptions()) {
 					<li>
 						<?php echo gettext("Sized image/multimedia item: The sized image as set in gallery default theme's options."); ?>
 						<br />
-						<?php echo gettext("<strong>Multimedia item: </strong>If the FLowplayer3 plugin is enabled you can also embed video/audio files (.flv, .mp4, .mp3). These items are highlighted with an orange border to be easily spotted. <br />Default values for the player width and height can be set on the TinyMCE plugin options (except for mp3s only the controlbar is shown). All other settings are inherited from the Flowplayer3 plugin options (cover/splash images are not supported).<br />NOTE: After embedding no frame of the embedded item might be visible in the editor until saving the page/article for unknown reasons."); ?>
+						<?php echo gettext("<strong>Multimedia item: If the mediaelementjs_player plugin is enabled you can also embed video (.flv, .mp4, .m4v) and audio  (.fla, .m4a, .mp3) files. These items are highlighted with an orange border to be easily spotted. <br />Default values for the player width and height can be set on the TinyMCE plugin options (except for mp3s only the controlbar is shown). The files are embedded as HTML5 video and audio elements. Counterpart formats like ogg or webm are not supported currently."); ?>
 					</li>
 					<li><?php echo gettext("Custom size (un-cropped)."); ?></li>
 					<li><?php echo gettext("Full image: The original image directly. NOTE: Full image protection options do not apply!."); ?></li>

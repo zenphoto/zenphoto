@@ -53,19 +53,11 @@ var ZenpageDialog = {
 		var modrewritesuffix = '<?php echo getOption("mod_rewrite_image_suffix"); ?>';
 		var plainimgtitle = imgtitle.replace(/'|\\'/g, "\\'");
 		var plainalbumtitle = albumtitle.replace(/'|\\'/g, "\\'");
-
+		var player = '';
 
 		plainimgtitle = stripHTML(plainimgtitle);
 		plainalbumtitle = stripHTML(plainalbumtitle);
 
-		<?php
-		chdir(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/flowplayer3');
-		$filelist = safe_glob('flowplayer-*.swf');
-		$swf = array_shift($filelist);
-		$flowplayerpath = pathurlencode(WEBPATH . '/' . ZENFOLDER . '/'.PLUGIN_FOLDER . '/flowplayer3/'.$swf);
-		?>
-		var flowplayerpath = '<?php echo $flowplayerpath; ?>';
-		var playerheight = '';
 		var stopincluding = false;
 		// getting the image size checkbox values
 		if($('#thumbnail').attr('checked') == 'checked') {
@@ -192,56 +184,13 @@ var ZenpageDialog = {
 		// building the final item to include
 		switch (type) {
 			case 'zenphoto':
-
 				if((video == 'video' || video == 'audio') && $('#sizedimage').attr('checked')=='checked') {
 					if(video == 'video') {
-						playerheight = "<?php echo getOption('tinymce_tinyzenpage_flowplayer_height'); ?>";
+						player = '<video src="'+fullimage+'"></video>';
 					} else {
-						playerheight = "<?php echo getOption('tinymce_tinyzenpage_flowplayer_mp3_height'); ?>";
+						player = '<audio src="'+fullimage+'"></audio>';
 					}
-					imglink = infowrap1;
-					imglink += '<object '+textwrap+' width="<?php echo getOption('tinymce_tinyzenpage_flowplayer_width'); ?>" height="'+playerheight+'" data="'+flowplayerpath+'" type="application/x-shockwave-flash">';
-					imglink += '<param name="movie" value="'+flowplayerpath+'" />';
-					imglink += '<param name="allowfullscreen" value="true" />';
-					imglink += '<param name="allowscriptaccess" value="always" />';
-					imglink += '<param name="flashvars" value=\'config={';
-					imglink += '"plugins": {';
-					imglink += '"controls":{';
-					imglink += '"backgroundColor": "<?php echo getOption('flow_player3_controlsbackgroundcolor'); ?>",';
-					imglink += '"backgroundGradient": "<?php echo getOption('flow_player3_controlsbackgroundcolorgradient'); ?>",';
-					imglink += '"autoHide": "<?php echo getOption('flow_player3_controlsautohide'); ?>",';
-					imglink += '"timeColor":"<?php echo getOption('flow_player3_controlstimecolor'); ?>",';
-					imglink += '"durationColor": "<?php echo getOption('flow_player3_controlsdurationcolor'); ?>",';
-					imglink += '"progressColor": "<?php echo getOption('flow_player3_controlsprogresscolor'); ?>",';
-					imglink += '"progressGradient": "<?php echo getOption('flow_player3_controlsprogressgradient'); ?>",';
-					imglink += '"bufferColor": "<?php echo getOption('flow_player3_controlsbuffercolor'); ?>",';
-					imglink += '"bufferGradient":	 "<?php echo getOption('flow_player3_controlsbuffergradient'); ?>",';
-					imglink += '"sliderColor": "<?php echo getOption('flow_player3_controlsslidercolor'); ?>",';
-					imglink += '"sliderGradient": "<?php echo getOption('flow_player3_controlsslidergradient'); ?>",';
-					imglink += '"buttonColor": "<?php echo getOption('flow_player3_controlsbuttoncolor'); ?>",';
-					imglink += '"buttonOverColor": "<?php echo getOption('flow_player3_controlsbuttonovercolor'); ?>"';
-					imglink += '}';
-					imglink += '},';
-					imglink += '"canvas": {';
-					imglink += '"backgroundColor": "<?php echo getOption('flow_player3_backgroundcolor'); ?>",';
-					imglink += '"backgroundGradient": "<?php echo getOption('flow_player3_backgroundcolorgradient'); ?>"';
-					imglink += '},';
-					imglink += '"clip":{';
-					imglink += '"url":"'+fullimage+'",';
-					<?php
-						if(getOption("flow_player3_autoplay") == 1) {
-							$autoplay = "true";
-						} else {
-							$autoplay = "false";
-						}
-					?>
-					imglink += '"autoPlay":<?php echo $autoplay; ?>,';
-					imglink += '"autoBuffering": <?php echo $autoplay; ?>,';
-					imglink += '"scaling": "<?php echo getOption('flow_player3_scaling'); ?>"';
-					imglink += '}';
-					imglink += '}\' />';
-					imglink += '</object>';
-					imglink += infowrap2;
+					imglink = infowrap1+player+infowrap2;
 				}	else if($('#sizedimage').attr('checked')=='checked') {
 					imglink = infowrap1+sizedimage+infowrap2;
 				} else {

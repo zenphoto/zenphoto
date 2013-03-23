@@ -263,7 +263,7 @@ function getImageType($imageobj) {
 	$imageType = strtolower(get_class($imageobj));
 	switch ($imageType) {
 		case 'video':
-			if(getOption('zp_plugin_flowplayer3')) {
+			if(getOption('zp_plugin_mediaelementjs_player')) {
 				$imagesuffix = getSuffix($imageobj->filename);
 				switch($imagesuffix) {
 					case 'flv':
