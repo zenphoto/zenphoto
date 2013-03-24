@@ -103,7 +103,7 @@ if (!defined('WEBPATH')) die();
 
 		<?php
 		if (getImageMetaData()) {
-			echo printImageMetadata(NULL, 'colorbox');
+			printImageMetadata(NULL, 'colorbox');
 		}
 		?>
 
