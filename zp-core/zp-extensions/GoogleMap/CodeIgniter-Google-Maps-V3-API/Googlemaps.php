@@ -1,5 +1,4 @@
-<?php
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
  * CodeIgniter Google Maps API V3 Class
@@ -21,6 +20,7 @@ class Googlemaps {
 	var $adsenseFormat				= 'HALF_BANNER';			// The format of the AdUnit
 	var $adsensePosition			= 'TOP_CENTER';				// The position of the AdUnit
 	var $adsensePublisherID			= '';						// Your Google AdSense publisher ID
+	var $apiKey						= ''; 						// If you've got an API key you can use it by passing this parameter. Setup an API key here: https://code.google.com/apis/console
 	var $backgroundColor			= '';						// A hex color value shown as the map background when tiles have not yet loaded as the user pans
 	var $bicyclingOverlay			= FALSE;					// If set to TRUE will overlay bicycling information (ie. bike paths and suggested routes) onto the map by default
 	var $center						= "37.4419, -122.1419";		// Sets the default center location (lat/long co-ordinate or address) of the map. If defaulting to the users location set to "auto"
@@ -468,10 +468,10 @@ class Googlemaps {
 
 			$polyline_output .= '
 				var polyline_'.count($this->polylines).' = new google.maps.Polyline({
-    				path: polyline_plan_'.count($this->polylines).',
-    				strokeColor: "'.$polyline['strokeColor'].'",
-    				strokeOpacity: '.$polyline['strokeOpacity'].',
-    				strokeWeight: '.$polyline['strokeWeight'];
+						path: polyline_plan_'.count($this->polylines).',
+						strokeColor: "'.$polyline['strokeColor'].'",
+						strokeOpacity: '.$polyline['strokeOpacity'].',
+						strokeWeight: '.$polyline['strokeWeight'];
 			if (!$polyline['clickable']) {
 				$polyline_output .= ',
 					clickable: false';
@@ -480,7 +480,7 @@ class Googlemaps {
 				$polyline_output .= ',
 					zIndex: '.$polyline['zIndex'];
 			}
- 			$polyline_output .= '
+			$polyline_output .= '
 				});
 
 				polyline_'.count($this->polylines).'.setMap('.$this->map_name.');
@@ -617,15 +617,15 @@ class Googlemaps {
 
 		$polygon_output .= '
 			var polygon_'.count($this->polygons).' = new google.maps.Polygon({
-    			';
+					';
 		if (count($polygon['points'])) {
 			$polygon_output .= 'path: polygon_plan_'.count($this->polygons).',
 					';
 		}
 		$polygon_output .= '
-    			strokeColor: "'.$polygon['strokeColor'].'",
-    			strokeOpacity: '.$polygon['strokeOpacity'].',
-    			strokeWeight: '.$polygon['strokeWeight'].',
+					strokeColor: "'.$polygon['strokeColor'].'",
+					strokeOpacity: '.$polygon['strokeOpacity'].',
+					strokeWeight: '.$polygon['strokeWeight'].',
 				fillColor: "'.$polygon['fillColor'].'",
 				fillOpacity: '.$polygon['fillOpacity'];
 		if (!$polygon['clickable']) {
@@ -636,7 +636,7 @@ class Googlemaps {
 			$polygon_output .= ',
 				zIndex: '.$polygon['zIndex'];
 		}
- 		$polygon_output .= '
+		$polygon_output .= '
 			});
 
 			polygon_'.count($this->polygons).'.setMap('.$this->map_name.');
@@ -775,7 +775,7 @@ class Googlemaps {
 				$circle_output .= ',
 					zIndex: '.$circle['zIndex'];
 			}
- 			$circle_output .= '
+			$circle_output .= '
 				};
 				var circle_'.count($this->circles).' = new google.maps.Circle(circleOptions);
 			';
@@ -929,7 +929,7 @@ class Googlemaps {
 				$rectangle_output .= ',
 					zIndex: '.$rectangle['zIndex'];
 			}
- 			$rectangle_output .= '
+			$rectangle_output .= '
 				};';
 
 			$rectangle_output .= '
@@ -1083,8 +1083,17 @@ class Googlemaps {
 		$this->output_js_contents = '';
 		$this->output_html = '';
 
+		if ($this->apiKey!="")
+		{
+			if ($this->https) { $apiLocation = 'https'; }else{ $apiLocation = 'http'; }
+			$apiLocation .= '://maps.googleapis.com/maps/api/js?key='.$this->apiKey.'&';
+		}
+		else
+		{
 		if ($this->https) { $apiLocation = 'https://maps-api-ssl'; }else{ $apiLocation = 'http://maps'; }
-		$apiLocation .= '.google.com/maps/api/js?sensor='.$this->sensor;
+			$apiLocation .= '.google.com/maps/api/js?';
+		}
+		$apiLocation .= 'sensor='.$this->sensor;
 		if ($this->region!="" && strlen($this->region)==2) { $apiLocation .= '&region='.strtoupper($this->region); }
 		if ($this->language!="") { $apiLocation .= '&language='.$this->language; }
 		$libraries = array();
@@ -1186,13 +1195,13 @@ class Googlemaps {
 
 		$this->output_js_contents .= '
 				var myOptions = {
-			  		';
+						';
 		if ($this->zoom=="auto") { $this->output_js_contents .= 'zoom: 13,'; }else{ $this->output_js_contents .= 'zoom: '.$this->zoom.','; }
 		if ($this->center!="auto") { $this->output_js_contents .= '
 					center: myLatlng,'; }
 		if (strtolower($this->map_type)=="street") { $map_type = "ROADMAP"; }else{ $map_type = $this->map_type; }
 		$this->output_js_contents .= '
-			  		mapTypeId: google.maps.MapTypeId.'.$map_type;
+						mapTypeId: google.maps.MapTypeId.'.$map_type;
 		if ($this->backgroundColor) {
 			$this->output_js_contents .= ',
 					backgroundColor: \''.$this->backgroundColor.'\'';
@@ -1253,11 +1262,11 @@ class Googlemaps {
 			foreach ($this->styles as $style) {
 				array_push($map_types, '"style'.$styles.'"');
 				$styleOutput .= '
-					  '.$this->map_name.'.mapTypes.set("style'.$styles.'", styles_'.$styles.');
+						'.$this->map_name.'.mapTypes.set("style'.$styles.'", styles_'.$styles.');
 				';
 				if ($this->stylesAsMapTypesDefault==$style['name']) {
 				$styleOutput .= '
-					  '.$this->map_name.'.setMapTypeId("style'.$styles.'");
+						'.$this->map_name.'.setMapTypeId("style'.$styles.'");
 				';
 				}
 				$styles++;
@@ -1372,8 +1381,8 @@ class Googlemaps {
 
 		if (strtolower($this->map_type)=="street") { // if defaulting the map to Street View
 			$this->output_js_contents .= '
-			  	var streetViewOptions = {
-			    	position: myLatlng';
+					var streetViewOptions = {
+						position: myLatlng';
 			if (!$this->streetViewAddressControl) {
 				$this->output_js_contents .= ',
 					addressControl: false';
@@ -1428,7 +1437,7 @@ class Googlemaps {
 				};
 				var streetView = new google.maps.StreetViewPanorama(document.getElementById("'.$this->map_div_id.'"), streetViewOptions);
 				streetView.setVisible(true);
-	      		';
+						';
 		}
 
 		if ($this->center=="auto") { // if wanting to center on the users location
@@ -1472,10 +1481,10 @@ class Googlemaps {
 
 			$this->output_js_contents .= 'drawingManager = new google.maps.drawing.DrawingManager({
 				drawingMode: google.maps.drawing.OverlayType.'.strtoupper($this->drawingDefaultMode).',
-  				drawingControl: '.(!$this->drawingControl ? 'false' : 'true').',
-  				drawingControlOptions: {
-  					position: google.maps.ControlPosition.'.strtoupper($this->drawingControlPosition);
-  			$shapeOptions = '';
+					drawingControl: '.(!$this->drawingControl ? 'false' : 'true').',
+					drawingControlOptions: {
+						position: google.maps.ControlPosition.'.strtoupper($this->drawingControlPosition);
+				$shapeOptions = '';
 			if (count($this->drawingModes)) {
 				$this->output_js_contents .= ',
 					drawingModes: [';
@@ -1492,7 +1501,7 @@ class Googlemaps {
 					$i++;
 				}
 				$this->output_js_contents .= ']';
-  			}
+				}
 			$this->output_js_contents .= '
 				}'.$shapeOptions.'
 			});
@@ -1703,92 +1712,92 @@ class Googlemaps {
 
 		if ($this->onboundschanged!="") {
 			$this->output_js_contents .= 'google.maps.event.addListener(map, "bounds_changed", function(event) {
-    			'.$this->onboundschanged.'
-  			});
+					'.$this->onboundschanged.'
+				});
 			';
 		}
 		if ($this->oncenterchanged!="") {
 			$this->output_js_contents .= 'google.maps.event.addListener(map, "center_changed", function(event) {
-    			'.$this->oncenterchanged.'
-  			});
+					'.$this->oncenterchanged.'
+				});
 			';
 		}
 		if ($this->onclick!="") {
 			$this->output_js_contents .= 'google.maps.event.addListener(map, "click", function(event) {
-    			'.$this->onclick.'
-  			});
+					'.$this->onclick.'
+				});
 			';
 		}
 		if ($this->ondblclick!="") {
 			$this->output_js_contents .= 'google.maps.event.addListener(map, "dblclick", function(event) {
-    			'.$this->ondblclick.'
-  			});
+					'.$this->ondblclick.'
+				});
 			';
 		}
 		if ($this->ondrag!="") {
 			$this->output_js_contents .= 'google.maps.event.addListener(map, "drag", function(event) {
-    			'.$this->ondrag.'
-  			});
+					'.$this->ondrag.'
+				});
 			';
 		}
 		if ($this->ondragend!="") {
 			$this->output_js_contents .= 'google.maps.event.addListener(map, "dragend", function(event) {
-    			'.$this->ondragend.'
-  			});
+					'.$this->ondragend.'
+				});
 			';
 		}
 		if ($this->ondragstart!="") {
 			$this->output_js_contents .= 'google.maps.event.addListener(map, "dragstart", function(event) {
-    			'.$this->ondragstart.'
-  			});
+					'.$this->ondragstart.'
+				});
 			';
 		}
 		if ($this->onidle!="") {
 			$this->output_js_contents .= 'google.maps.event.addListener(map, "idle", function(event) {
-    			'.$this->onidle.'
-  			});
+					'.$this->onidle.'
+				});
 			';
 		}
 		if ($this->onmousemove!="") {
 			$this->output_js_contents .= 'google.maps.event.addListener(map, "mousemove", function(event) {
-    			'.$this->onmousemove.'
-  			});
+					'.$this->onmousemove.'
+				});
 			';
 		}
 		if ($this->onmouseout!="") {
 			$this->output_js_contents .= 'google.maps.event.addListener(map, "mouseout", function(event) {
-    			'.$this->onmouseout.'
-  			});
+					'.$this->onmouseout.'
+				});
 			';
 		}
 		if ($this->onmouseover!="") {
 			$this->output_js_contents .= 'google.maps.event.addListener(map, "mouseover", function(event) {
-    			'.$this->onmouseover.'
-  			});
+					'.$this->onmouseover.'
+				});
 			';
 		}
 		if ($this->onresize!="") {
 			$this->output_js_contents .= 'google.maps.event.addListener(map, "resize", function(event) {
-    			'.$this->onresize.'
-  			});
+					'.$this->onresize.'
+				});
 			';
 		}
 		if ($this->onrightclick!="") {
 			$this->output_js_contents .= 'google.maps.event.addListener(map, "rightclick", function(event) {
-    			'.$this->onrightclick.'
-  			});
+					'.$this->onrightclick.'
+				});
 			';
 		}
 		if ($this->ontilesloaded!="") {
 			$this->output_js_contents .= 'google.maps.event.addListener(map, "tilesloaded", function(event) {
-    			'.$this->ontilesloaded.'
-  			});
+					'.$this->ontilesloaded.'
+				});
 			';
 		}
 		if ($this->onzoomchanged!="") {
 			$this->output_js_contents .= 'google.maps.event.addListener(map, "zoom_changed", function(event) {
-    			'.$this->onzoomchanged.'
-  			});
+					'.$this->onzoomchanged.'
+				});
 			';
 		}
 
@@ -1869,20 +1878,20 @@ class Googlemaps {
 			$this->output_js_contents .= '
 			var adUnitDiv = document.createElement("div");
 
-		    // Note: replace the publisher ID noted here with your own
-		    // publisher ID.
-		    var adUnitOptions = {
-		    	format: google.maps.adsense.AdFormat.'.$this->adsenseFormat.',
-		    	position: google.maps.ControlPosition.'.$this->adsensePosition.',
-		    	publisherId: "'.$this->adsensePublisherID.'",
-		    	';
-		    if ($this->adsenseChannelNumber!="") { $this->output_js_contents .= 'channelNumber: "'.$this->adsenseChannelNumber.'",
-		    	'; }
-		    $this->output_js_contents .= 'map: map,
-		    	visible: true
-		    };
-		    adUnit = new google.maps.adsense.AdUnit(adUnitDiv, adUnitOptions);
-		    ';
+				// Note: replace the publisher ID noted here with your own
+				// publisher ID.
+				var adUnitOptions = {
+					format: google.maps.adsense.AdFormat.'.$this->adsenseFormat.',
+					position: google.maps.ControlPosition.'.$this->adsensePosition.',
+					publisherId: "'.$this->adsensePublisherID.'",
+					';
+				if ($this->adsenseChannelNumber!="") { $this->output_js_contents .= 'channelNumber: "'.$this->adsenseChannelNumber.'",
+					'; }
+				$this->output_js_contents .= 'map: map,
+					visible: true
+				};
+				adUnit = new google.maps.adsense.AdUnit(adUnitDiv, adUnitOptions);
+				';
 		}
 
 		if ($this->directions && $this->directionsStart!="" && $this->directionsEnd!="") {
@@ -1940,10 +1949,10 @@ class Googlemaps {
 			$this->output_js_contents .= 'function calcRoute(start, end) {
 
 			var request = {
-			    	origin:start,
-			    	destination:end,
-			    	travelMode: google.maps.TravelMode.'.$this->directionsMode.'
-			    	';
+						origin:start,
+						destination:end,
+						travelMode: google.maps.TravelMode.'.$this->directionsMode.'
+						';
 			if ($this->region!="" && strlen($this->region)==2) {
 				$this->output_js_contents .= ',region: '.strtoupper($this->region).'
 					';
@@ -1963,21 +1972,21 @@ class Googlemaps {
 
 			$this->output_js_contents .= '
 			};
-			  	directionsService.route(request, function(response, status) {
-			    	if (status == google.maps.DirectionsStatus.OK) {
-			      		directionsDisplay.setDirections(response);
-			    	}else{
-			    		switch (status) {
-			    			case "NOT_FOUND": { alert("Either the start location or destination were not recognised"); break }
-			    			case "ZERO_RESULTS": { alert("No route could be found between the start location and destination"); break }
-			    			case "MAX_WAYPOINTS_EXCEEDED": { alert("Maximum waypoints exceeded. Maximum of 8 allowed"); break }
-			    			case "INVALID_REQUEST": { alert("Invalid request made for obtaining directions"); break }
-			    			case "OVER_QUERY_LIMIT": { alert("This webpage has sent too many requests recently. Please try again later"); break }
-			    			case "REQUEST_DENIED": { alert("This webpage is not allowed to request directions"); break }
-			    			case "UNKNOWN_ERROR": { alert("Unknown error with the server. Please try again later"); break }
-			    		}
-			    	}
-			  	});
+					directionsService.route(request, function(response, status) {
+						if (status == google.maps.DirectionsStatus.OK) {
+								directionsDisplay.setDirections(response);
+						}else{
+							switch (status) {
+								case "NOT_FOUND": { alert("Either the start location or destination were not recognised"); break }
+								case "ZERO_RESULTS": { alert("No route could be found between the start location and destination"); break }
+								case "MAX_WAYPOINTS_EXCEEDED": { alert("Maximum waypoints exceeded. Maximum of 8 allowed"); break }
+								case "INVALID_REQUEST": { alert("Invalid request made for obtaining directions"); break }
+								case "OVER_QUERY_LIMIT": { alert("This webpage has sent too many requests recently. Please try again later"); break }
+								case "REQUEST_DENIED": { alert("This webpage is not allowed to request directions"); break }
+								case "UNKNOWN_ERROR": { alert("Unknown error with the server. Please try again later"); break }
+							}
+						}
+					});
 			}
 			';
 
@@ -1993,17 +2002,17 @@ class Googlemaps {
 						var placeLoc = place.geometry.location;
 						var placePosition = new google.maps.LatLng(placeLoc.lat(), placeLoc.lng());
 						var markerOptions = {
-				 			map: '.$this->map_name.',
-				        	position: placePosition
-				      	};
-				      	var marker = createMarker(markerOptions);
-				      	marker.set("content", place.name);
-				      	google.maps.event.addListener(marker, "click", function() {
-				        	iw.setContent(this.get("content"));
-				        	iw.open('.$this->map_name.', this);
-				      	});
+							map: '.$this->map_name.',
+									position: placePosition
+								};
+								var marker = createMarker(markerOptions);
+								marker.set("content", place.name);
+								google.maps.event.addListener(marker, "click", function() {
+									iw.setContent(this.get("content"));
+									iw.open('.$this->map_name.', this);
+								});
 
-				      	lat_longs.push(placePosition);
+								lat_longs.push(placePosition);
 
 					}
 					';
@@ -2032,15 +2041,15 @@ class Googlemaps {
 			$this->output_js_contents .= '
 			function loadScript() {
 				var script = document.createElement("script");
-  				script.type = "text/javascript";
-  				script.src = "'.$apiLocation.'&callback=initialize";
-  				document.body.appendChild(script);
+					script.type = "text/javascript";
+					script.src = "'.$apiLocation.'&callback=initialize";
+					document.body.appendChild(script);
 			}
 			window.onload = loadScript;
 			';
 		}else{
 			$this->output_js_contents .= '
-		  	window.onload = initialize;
+				window.onload = initialize;
 			';
 		}
 
