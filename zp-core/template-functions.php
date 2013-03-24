@@ -1339,11 +1339,9 @@ function getAlbumDate($format=null) {
  * Prints the date of the current album
  *
  * @param string $before Insert here the text to be printed before the date.
- * @param string $nonemessage Insert here the text to be printed if there is no date.
  * @param string $format Format string for the date formatting
- * @author Ozh
  */
-function printAlbumDate($before='', $nonemessage='', $format=null) {
+function printAlbumDate($before='', $format=NULL) {
 	global $_zp_current_album;
 	if (is_null($format)) {
 		$format = DATE_FORMAT;
@@ -1351,12 +1349,10 @@ function printAlbumDate($before='', $nonemessage='', $format=null) {
 	$date = getAlbumDate($format);
 	if ($date) {
 		if ($before) {
-			$date = '<span class="beforetext">'.html_encode($date).'</span>';
+			$date = '<span class="beforetext">'.$before.'</span>'.$date;
 		}
-	} else {
-		$date = '';
 	}
-	echo html_encode($date);
+	echo html_encodeTagged($date);
 }
 
 /**
@@ -2050,11 +2046,9 @@ function getImageDate($format=null) {
  * Prints the date of the current album
  *
  * @param string $before Insert here the text to be printed before the date.
- * @param string $nonemessage Insert here the text to be printed if there is no date.
  * @param string $format Format string for the date formatting
- * @author Ozh
  */
-function printImageDate($before='', $nonemessage='', $format=null) {
+function printImageDate($before='', $format=null) {
 	global $_zp_current_image;
 	if (is_null($format)) {
 		$format = DATE_FORMAT;
@@ -2062,7 +2056,7 @@ function printImageDate($before='', $nonemessage='', $format=null) {
 	$date = getImageDate($format);
 	if ($date) {
 		if ($before) {
-			$date = '<span class="beforetext">'.html_encode($before).'</span>'.$date;
+			$date = '<span class="beforetext">'.$before.'</span>'.$date;
 		}
 	}
 	echo html_encodeTagged($date);
