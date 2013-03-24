@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-21 20:29+0100\n"
+"POT-Creation-Date: 2013-03-24 14:36+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -370,7 +370,7 @@ msgstr "Themakleur"
 #: ZpTranslation-Development/themes/zenpage/image.php:28
 #: ZpTranslation-Development/zp-core/admin-functions.php:143
 #: ZpTranslation-Development/zp-core/admin-plugins.php:84
-#: ZpTranslation-Development/zp-core/zp-extensions/GoogleMap.php:453
+#: ZpTranslation-Development/zp-core/zp-extensions/GoogleMap.php:454
 #: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:223
 #: ZpTranslation-Development/zp-core/zp-extensions/user_login-out.php:142
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:73
@@ -829,7 +829,7 @@ msgstr "Album:"
 #: ZpTranslation-Development/themes/zenpage/news.php:58
 #: ZpTranslation-Development/themes/zenpage/news.php:96
 #: ZpTranslation-Development/themes/zpmobile/news.php:36
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/zoom.php:73
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/zoom.php:63
 msgid "Categories: "
 msgstr "Categoriën:"
 
@@ -1424,7 +1424,7 @@ msgstr "Index afbeelding"
 #: ZpTranslation-Development/zp-core/admin-options.php:1954
 #: ZpTranslation-Development/zp-core/admin-options.php:1974
 #: ZpTranslation-Development/zp-core/admin-options.php:2801
-#: ZpTranslation-Development/zp-core/functions-basic.php:248
+#: ZpTranslation-Development/zp-core/functions-basic.php:227
 #: ZpTranslation-Development/zp-core/zp-extensions/image_effects.php:125
 #: ZpTranslation-Development/zp-core/zp-extensions/image_effects.php:129
 #: ZpTranslation-Development/zp-core/zp-extensions/image_effects.php:133
@@ -6993,13 +6993,13 @@ msgid "Go!"
 msgstr "Gaan!"
 
 #: ZpTranslation-Development/zp-core/admin-refresh-metadata.php:185
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:558
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:563
 #: ZpTranslation-Development/zp-core/utilities/reset_albumthumbs.php:98
 msgid "database not connected"
 msgstr "database niet verbonden"
 
 #: ZpTranslation-Development/zp-core/admin-refresh-metadata.php:186
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:559
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:564
 #: ZpTranslation-Development/zp-core/utilities/reset_albumthumbs.php:99
 msgid ""
 "Check your configuration file to make sure you've got the right username, "
@@ -7703,7 +7703,7 @@ msgid "Setup files restored."
 msgstr "Setup-bestanden hersteld."
 
 #: ZpTranslation-Development/zp-core/admin.php:96
-#: ZpTranslation-Development/zp-core/setup/index.php:2476
+#: ZpTranslation-Development/zp-core/setup/index.php:2479
 msgid "protected"
 msgstr "beschermd"
 
@@ -7746,7 +7746,7 @@ msgid "Official build"
 msgstr "Officiële versie"
 
 #: ZpTranslation-Development/zp-core/admin.php:235
-#: ZpTranslation-Development/zp-core/functions-basic.php:1072
+#: ZpTranslation-Development/zp-core/functions-basic.php:1051
 #: ZpTranslation-Development/zp-core/setup/index.php:365
 #: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:128
 msgid "clone"
@@ -12957,12 +12957,12 @@ msgid "Setup failed."
 msgstr "Setup mislukt."
 
 #: ZpTranslation-Development/zp-core/setup/index.php:1581
-#: ZpTranslation-Development/zp-core/setup/index.php:2656
+#: ZpTranslation-Development/zp-core/setup/index.php:2659
 msgid "You need <em>USER ADMIN</em> rights to run setup."
 msgstr "Je hebt <em>GEBRUIKERSADMIN</em> rechten nodig om setup uit te voeren."
 
 #: ZpTranslation-Development/zp-core/setup/index.php:1583
-#: ZpTranslation-Development/zp-core/setup/index.php:2658
+#: ZpTranslation-Development/zp-core/setup/index.php:2661
 msgid "You must be logged in to run setup."
 msgstr "Je moet ingelogd zijn om setup te starten."
 
@@ -12970,57 +12970,57 @@ msgstr "Je moet ingelogd zijn om setup te starten."
 msgid "database connected"
 msgstr "Verbonden met de database."
 
-#: ZpTranslation-Development/zp-core/setup/index.php:2351
+#: ZpTranslation-Development/zp-core/setup/index.php:2354
 msgid "About to create tables"
 msgstr "Op het punt om tabellen aan te maken"
 
-#: ZpTranslation-Development/zp-core/setup/index.php:2353
+#: ZpTranslation-Development/zp-core/setup/index.php:2356
 msgid "About to update tables"
 msgstr "Bezig met het updaten van database tabellen"
 
-#: ZpTranslation-Development/zp-core/setup/index.php:2355
+#: ZpTranslation-Development/zp-core/setup/index.php:2358
 msgid "Begin table creation"
 msgstr "Beginnen met het aanmaken van tabellen"
 
-#: ZpTranslation-Development/zp-core/setup/index.php:2361
-#: ZpTranslation-Development/zp-core/setup/index.php:2376
+#: ZpTranslation-Development/zp-core/setup/index.php:2364
+#: ZpTranslation-Development/zp-core/setup/index.php:2379
 #, php-format
 msgid "Query %1$s Failed. Error: %2$s"
 msgstr "Query %1$s mislukt. Fout: %2$s"
 
-#: ZpTranslation-Development/zp-core/setup/index.php:2363
+#: ZpTranslation-Development/zp-core/setup/index.php:2366
 #, php-format
 msgid "Table creation failure:<br />Query: %1$s<br />Error: %2$s"
 msgstr ""
 "Fout tijdens het aanmaken van de tabellen: <br />Query: %1$s<br />Fout: %2$s"
 
-#: ZpTranslation-Development/zp-core/setup/index.php:2366
-#: ZpTranslation-Development/zp-core/setup/index.php:2378
+#: ZpTranslation-Development/zp-core/setup/index.php:2369
+#: ZpTranslation-Development/zp-core/setup/index.php:2381
 #, php-format
 msgid "Query ( %s ) Success."
 msgstr "Query ( %s ) Succesvol."
 
-#: ZpTranslation-Development/zp-core/setup/index.php:2370
+#: ZpTranslation-Development/zp-core/setup/index.php:2373
 msgid "Begin table updates"
 msgstr "Beginnen met het updaten van tabellen"
 
-#: ZpTranslation-Development/zp-core/setup/index.php:2385
+#: ZpTranslation-Development/zp-core/setup/index.php:2388
 msgid "Done with table create!"
 msgstr "Klaar met het aanmaken van de tabellen!"
 
-#: ZpTranslation-Development/zp-core/setup/index.php:2387
+#: ZpTranslation-Development/zp-core/setup/index.php:2390
 msgid "Done with table create with errors!"
 msgstr "Klaar met het aanmaken van de tabellen met errors!"
 
-#: ZpTranslation-Development/zp-core/setup/index.php:2391
+#: ZpTranslation-Development/zp-core/setup/index.php:2394
 msgid "Done with table update"
 msgstr "Klaar met het updaten van de tabellen!"
 
-#: ZpTranslation-Development/zp-core/setup/index.php:2393
+#: ZpTranslation-Development/zp-core/setup/index.php:2396
 msgid "Done with table update with errors"
 msgstr "Klaar met het updaten van de tabellen met errors!"
 
-#: ZpTranslation-Development/zp-core/setup/index.php:2409
+#: ZpTranslation-Development/zp-core/setup/index.php:2412
 #, php-format
 msgid ""
 "<strong>Warning:</strong> the <code>%s</code> table appears not to have a "
@@ -13033,35 +13033,35 @@ msgstr ""
 "opties in de tabel. Er zou een unieke index key moeten zijn voor <em>name</"
 "em>, <em>ownerid</em>, en <em>theme</em>."
 
-#: ZpTranslation-Development/zp-core/setup/index.php:2418
+#: ZpTranslation-Development/zp-core/setup/index.php:2421
 msgid "Done with database creation and update"
 msgstr "klaar met het creëren en updaten van de database"
 
-#: ZpTranslation-Development/zp-core/setup/index.php:2420
+#: ZpTranslation-Development/zp-core/setup/index.php:2423
 #, php-format
 msgid "Previous Release was %s"
 msgstr "Vorige versie was %s"
 
-#: ZpTranslation-Development/zp-core/setup/index.php:2467
+#: ZpTranslation-Development/zp-core/setup/index.php:2470
 #, php-format
 msgid "%s protected."
 msgstr "%s beschermd."
 
-#: ZpTranslation-Development/zp-core/setup/index.php:2470
+#: ZpTranslation-Development/zp-core/setup/index.php:2473
 #, php-format
 msgid "failed to protect %s."
 msgstr "beschermen van %s mislukt."
 
-#: ZpTranslation-Development/zp-core/setup/index.php:2478
+#: ZpTranslation-Development/zp-core/setup/index.php:2481
 msgid "Setup scripts protected."
 msgstr "Setup scripts beschermd."
 
-#: ZpTranslation-Development/zp-core/setup/index.php:2485
+#: ZpTranslation-Development/zp-core/setup/index.php:2488
 #, php-format
 msgid "Failed to protect: %s"
 msgstr "Beschermen van: %s mislukt."
 
-#: ZpTranslation-Development/zp-core/setup/index.php:2500
+#: ZpTranslation-Development/zp-core/setup/index.php:2503
 #, php-format
 msgid ""
 "You may <a href=\"%1$s\">set your admin user and password</a> or <a href="
@@ -13070,13 +13070,13 @@ msgstr ""
 "Je kunt hier <a href=\"%1$s\">je gebruikersnaam en wachtwoord instellen</a> "
 "of een<a href=\"%2$s\"> backup-restore uitvoeren</a>"
 
-#: ZpTranslation-Development/zp-core/setup/index.php:2505
+#: ZpTranslation-Development/zp-core/setup/index.php:2508
 #, php-format
 msgid "You need to <a href=\"%1$s\">set your admin user and password</a>"
 msgstr ""
 "Je moet je <a href=\"%1$s\">admin gebruikersnaam en wachtwoord invoeren</a>"
 
-#: ZpTranslation-Development/zp-core/setup/index.php:2512
+#: ZpTranslation-Development/zp-core/setup/index.php:2515
 #, php-format
 msgid ""
 "You can now <a href=\"%1$s\">View your gallery</a> or <a href=\"%2$s"
@@ -13085,17 +13085,17 @@ msgstr ""
 "Je kunt nu <a href=\"%1$s\">de gallerij bekijken</a> of <a href=\"%2$s"
 "\">beheren.</a>"
 
-#: ZpTranslation-Development/zp-core/setup/index.php:2576
+#: ZpTranslation-Development/zp-core/setup/index.php:2579
 #, php-format
 msgid "Database tables to create: %s"
 msgstr "Databasetabellen die worden aangemaakt: %s"
 
-#: ZpTranslation-Development/zp-core/setup/index.php:2594
+#: ZpTranslation-Development/zp-core/setup/index.php:2597
 #, php-format
 msgid "Database tables to update: %s"
 msgstr "Database tabellen die worden ge-update: %s"
 
-#: ZpTranslation-Development/zp-core/setup/index.php:2625
+#: ZpTranslation-Development/zp-core/setup/index.php:2628
 msgid ""
 "<strong>Warning!</strong> This upgrade makes structural changes to the "
 "database which are not easily reversed. Be sure you have a database backup "
@@ -13105,31 +13105,31 @@ msgstr ""
 "in de database. Dit kan niet eenvoudig ongedaan gemaakt worden.<br />Zorg "
 "ervoor dat je een backup van de database hebt voordat je verder gaat."
 
-#: ZpTranslation-Development/zp-core/setup/index.php:2628
+#: ZpTranslation-Development/zp-core/setup/index.php:2631
 #, php-format
 msgid "%s I acknowledge that proceeding will restructure my database."
 msgstr ""
 "%s Ik begrijp dat m'n database ingrijpend veranderd wordt als ik doorga."
 
-#: ZpTranslation-Development/zp-core/setup/index.php:2686
+#: ZpTranslation-Development/zp-core/setup/index.php:2689
 msgid "run setup"
 msgstr "Voer setup uit"
 
-#: ZpTranslation-Development/zp-core/setup/index.php:2686
+#: ZpTranslation-Development/zp-core/setup/index.php:2689
 msgid "Go"
 msgstr "Gaan!"
 
-#: ZpTranslation-Development/zp-core/setup/index.php:2702
+#: ZpTranslation-Development/zp-core/setup/index.php:2705
 msgid "database did not connect"
 msgstr "database is niet verbonden"
 
-#: ZpTranslation-Development/zp-core/setup/index.php:2704
+#: ZpTranslation-Development/zp-core/setup/index.php:2707
 msgid "If you haven't created the database yet, now would be a good time."
 msgstr ""
 "Als je de database nog niet aangemaakt hebt is het daar nu een goed moment "
 "voor."
 
-#: ZpTranslation-Development/zp-core/setup/index.php:2713
+#: ZpTranslation-Development/zp-core/setup/index.php:2716
 #, php-format
 msgid "The %1$s file does not exist."
 msgstr "Het <em>%1$s</em> bestand bestaat niet."
@@ -13471,130 +13471,130 @@ msgstr "Backup/Herstel"
 msgid "Backup and restore your gallery database."
 msgstr "Backup en herstel de database."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:130
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:134
 msgid "Backup"
 msgstr "backup"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:169
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:173
 #, php-format
 msgid "Failed to open %s for writing."
 msgstr "Kon het bestand %s niet openen om naar toe te schrijven."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:175
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:194
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:179
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:198
 msgid "failed writing to backup!"
 msgstr "schrijven naar backup mislukt !"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:211
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:215
 msgid "SHOW TABLES failed!"
 msgstr "<strong>Het tonen van tabellen in de database is mislukt !</strong>"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:223
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:227
 #, php-format
 msgid "backup completed using <em>%1$s(%2$s)</em> compression"
 msgstr "backup voltooid  met<em>%1$s(%2$s)</em> compressie"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:225
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:229
 msgid "backup completed"
 msgstr "backup gereed"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:238
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:242
 msgid "backup failed"
 msgstr "backup mislukt"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:245
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:249
 msgid "No backup set found."
 msgstr "Geen backup gevonden."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:317
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:323
 msgid "Truncate table<br />"
 msgstr "Inkorten tabel< br />"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:390
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:395
 msgid "Restore encountered exceptions"
 msgstr "Er waren problemen met de restore."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:393
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:398
 msgid ""
 "The following tables were not restored because the table no longer exists:"
 msgstr ""
 "De volgende tabellen zijn niet hersteld omdat de tabel niet meer bestaat:"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:406
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:411
 msgid ""
 "The following fields were not restored because the field no longer exists:"
 msgstr ""
 "De volgende velden zijn niet hersteld omdat het veld niet meer bestaat:"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:424
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:429
 msgid "Restore failed"
 msgstr "Herstel mislukt"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:447
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:452
 msgid "Zenphoto Rights migration failed!"
 msgstr "het overzetten van de gebruikersrechten is mislukt !"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:461
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:466
 msgid "Restore completed"
 msgstr "Herstel gereed"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:463
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:468
 #, php-format
 msgid "Restore completed using %s compression"
 msgstr "Herstel voltooid met %s compressie"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:487
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:492
 msgid "Restore your Database"
 msgstr "Herstel de database"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:489
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:494
 msgid "Backup and Restore your Database"
 msgstr "Backup of herstel de database."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:499
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:504
 #, php-format
 msgid "Database software <strong>%s</strong>"
 msgstr "Database software <strong>%s</strong>"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:500
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:505
 #, php-format
 msgid "Database name <strong>%s</strong>"
 msgstr "Database naam <strong>%s</strong>"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:501
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:506
 #, php-format
 msgid "Tables prefix <strong>%s</strong>"
 msgstr "Tabel-prefix <strong>%s</strong>"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:512
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:517
 msgid "Backup the tables in your database."
 msgstr "Backup de tabellen in de database"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:513
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:518
 msgid "Backup the Database"
 msgstr "Backup de database"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:523
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:528
 msgid "Compression level"
 msgstr "Compressie"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:534
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:539
 msgid "You have not yet created a backup set."
 msgstr "Je hebt nog geen backup gemaakt."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:539
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:544
 msgid "Select the database restore file:"
 msgstr "Selecteer het bestand om de database te herstellen:"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:546
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:551
 msgid "Restore the tables in your database from a previous backup."
 msgstr "Herstel de tabellen in de database vanuit een eerdere backup."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:547
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:552
 msgid "Restore the Database"
 msgstr "Herstel de database"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:564
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:569
 msgid ""
 "The backup facility creates database snapshots in the <code>backup</code> "
 "folder of your installation. These backups are named in according to the "
@@ -13608,7 +13608,7 @@ msgstr ""
 "compressie) tot 9 (maximale compressie). Een hogere compressie vereist meer "
 "tijd en is geen garantie voor meer ruimtewinst."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:568
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:573
 msgid ""
 "You restore your database by selecting a backup and pressing the <em>Restore "
 "the Database</em> button."
@@ -13616,7 +13616,7 @@ msgstr ""
 "De database wordt hersteld door een backup te selecteren en vervolgens op "
 "<em>Herstel de database</em> te klikken."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:569
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:574
 msgid ""
 "<strong>Note:</strong> Each database table is emptied before the restore is "
 "attempted. After a successful restore the database will be in the same state "
@@ -13626,7 +13626,7 @@ msgstr ""
 "voordat herstel wordt uitgevoerd. Na een succesvol herstel is de database "
 "hetzelfde als op het moment dat de backup gemaakt werd."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:571
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:576
 msgid ""
 "Ideally a restore should be done only on the same version of Zenphoto on "
 "which the backup was created. If you are intending to upgrade, first do the "
@@ -16168,18 +16168,18 @@ msgid ""
 "If checked GoogleMaps will use sessions to pass map data for the "
 "<em>colorbox</em> display option. We recommend this option be selected. It "
 "protects against reference forgery security attacks and mitigates problems "
-"with data exceedign the allowed by some browsers."
+"with data exceeding the allowed by some browsers."
 msgstr ""
 "Als dit is aangevinkt worden sessies gebruikt voor het weergeven van de map "
 "in <em>Colorbox</em>. Als dit niet is aangevinkt  kunnen sommige browsers "
 "problemen hebben  met het weergeven. Uit veiligheidsoverwegingen wordt "
 "aangeraden om deze optie aan te vinken."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/GoogleMap.php:291
+#: ZpTranslation-Development/zp-core/zp-extensions/GoogleMap.php:292
 msgid "Google Map"
 msgstr "Google Map"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/GoogleMap.php:416
+#: ZpTranslation-Development/zp-core/zp-extensions/GoogleMap.php:417
 msgid "Display or hide the Google Map."
 msgstr "Toon of verberg de Google Kaart."
 
@@ -17021,7 +17021,7 @@ msgstr ""
 
 #: ZpTranslation-Development/zp-core/zp-extensions/mediaelementjs_player.php:43
 #, php-format
-msgid "mediaelementjs not enabled, %s is already instantiated."
+msgid "mediaelement.js not enabled, %s is already instantiated."
 msgstr "mediaelement.js is niet geactiveerd, %s wordt al gebruikt."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/mediaelementjs_player.php:94
@@ -22522,26 +22522,23 @@ msgstr ""
 
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:209
 msgid ""
-"<strong>Multimedia item: </strong>If the FLowplayer3 plugin is enabled you "
-"can also embed video/audio files (.flv, .mp4, .mp3). These items are "
-"highlighted with an orange border to be easily spotted. <br />Default values "
-"for the player width and height can be set on the TinyMCE plugin options "
-"(except for mp3s only the controlbar is shown). All other settings are "
-"inherited from the Flowplayer3 plugin options (cover/splash images are not "
-"supported).<br />NOTE: After embedding no frame of the embedded item might "
-"be visible in the editor until saving the page/article for unknown reasons."
+"<strong>Multimedia item: If the mediaelementjs_player plugin is enabled you "
+"can also embed video (.flv, .mp4, .m4v) and audio  (.fla, .m4a, .mp3) files. "
+"These items are highlighted with an orange border to be easily spotted. <br /"
+">Default values for the player width and height can be set on the TinyMCE "
+"plugin options (except for mp3s only the controlbar is shown). The files are "
+"embedded as HTML5 video and audio elements. Counterpart formats like ogg or "
+"webm are not supported currently."
 msgstr ""
-"<strong>Multimedia bestand: </strong>Als de  FLowplayer3 plugin is "
-"geactiveerd kun je ook video- en audio-bestanden (.flv, .mp4, .mp3) invoegen."
-"<br />Multimedia-bestanden worden in het tinyZenpage venster weergegeven met "
-"een oranje kader, zodat ze makkelijk te herkennen zijn.<br />De standaard "
+"<strong>Multimedia bestand: </strong>Als de  mediaelement.js_player plugin "
+"is geactiveerd kun je ook video (.flv, .mp4, .m4v) en audio (.fla, .m4a, ."
+"mp3) bestanden invoegen.<br />Deze onderdelen worden weergegeven met een "
+"oranje kader, zodat ze makkelijk te herkennen zijn.<br />De standaard "
 "instellingen voor voor de player (breedte en hoogte) kunnen worden ingesteld "
 "in de opties van de TinyMCE plugin (Behalve voor mp3-bestanden. Hiervoor "
-"wordt alleen de bediening (controls) getoond).<br />Alle andere instellingen "
-"voor de player worden overgenomen van de Flowplayer3 plugin opties. (cover/"
-"splash afbeeldingen worden niet ondersteund)<br />Opmerking: Om onduidelijke "
-"redenen wordt het ingevoegde mediabestand  pas zichtbaar in de editor als de "
-"pagina of het artikel bewaard is.(op <em>Toepassen</em> klikken)"
+"wordt alleen de bediening (controls) getoond).<br />De bestanden woeden "
+"ingevoegd als HTML5 video en audio elementen. Bestandstypes als <em>ogg</em> "
+"en <em>webm</em> worden nog niet ondersteund."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:211
 msgid "Custom size (un-cropped)."
@@ -22686,12 +22683,12 @@ msgstr ""
 "Als je iets wil vormgeven kun je de betreffende tinyMCE knop gebruiken of "
 "rechtstreeks in de broncode veranderingen aanbrengen."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/js/dialog.php:86
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/js/dialog.php:78
 #, php-format
 msgid "It is not possible to a include a custom size %s."
 msgstr "Het is niet mogelijk om een aagepaste %s in te voegen."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/js/dialog.php:97
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/js/dialog.php:89
 #, php-format
 msgid "It is not possible to a include a full size %s."
 msgstr "Het is niet mogelijk om een volledige %s in te voegen."
