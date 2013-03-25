@@ -2098,7 +2098,7 @@ function reveal($content, $visible=false) {
  * 			[ZENPHOTO_VERSION]
  * 		</li>
  * 		<li>
- * 			[datetime time()]
+ * 			[pageLink register]
  * 		</li>
  * 	</ol>
  *
@@ -2108,21 +2108,13 @@ function reveal($content, $visible=false) {
  * @return string
  */
 function applyMacros($text) {
-	global $_zp_content_macros;
-	if (is_null($_zp_content_macros)) {
-		$_zp_content_macros = array(
-				'CODEBLOCK' => array('class'=>'procedure', 'regex'=>'/^(\d+)$/', 'value'=>'printCodeblock'),
-				'PAGE' => array('class'=>'function', 'regex'=>NULL, 'value'=>'getCurrentPage'),
-				'ZENPHOTO_VERSION' => array('class'=>'constant','regex'=>NULL,'value'=>ZENPHOTO_VERSION),
-				'DATETIME'	=>	array('class'=>'expression', 'regex'=>'/^(.*)$/', 'value'=>'zpFormattedDate(DATE_FORMAT,$1);')
-		);
-		$_zp_content_macros = zp_apply_filter('content_macro', $_zp_content_macros);
-	}
-	$regex = '/\[('.implode('|',array_keys($_zp_content_macros)).')\s*(.*)\]/i';
+	$content_macros = getMacros();
+	krsort($content_macros);	//	in case some start with the same sequence, look for the longest first
+	$regex = '/\[('.implode('|',array_keys($content_macros)).')\s*(.*)\]/i';
 	if (preg_match_all($regex, $text, $matches)) {
 		foreach ($matches[1] as $key=>$macroname) {
 			$macroname = strtoupper($macroname);
-			$macro = $_zp_content_macros[$macroname];
+			$macro = $content_macros[$macroname];
 			$macro_instance = $matches[0][$key];
 			if ($macro['regex']) {
 				if (!preg_match($macro['regex'], $matches[2][$key], $parms)) {
@@ -2158,7 +2150,7 @@ function applyMacros($text) {
 					$parms = array_reverse($parms, true);
 					foreach ($parms as $key=>$value) {
 						$key++;
-						$expression = preg_replace('/\$'.$key.'/', $value, $expression);
+						$expression = preg_replace('/\$'.$key.'/', db_quote($value), $expression);
 					}
 					eval($expression);
 					if (!isset($data) || is_null($data)) {
@@ -2170,6 +2162,20 @@ function applyMacros($text) {
 		}
 	}
 	return $text;
+}
+
+function getMacros() {
+	global $_zp_content_macros;
+	if (is_null($_zp_content_macros)) {
+		$_zp_content_macros = array(
+				'CODEBLOCK' => array('class'=>'procedure', 'regex'=>'/^(\d+)$/', 'value'=>'printCodeblock', 'desc'=>gettext('Places codeblock number <code>%1</code> in the content where the macro exists.')),
+				'PAGE' => array('class'=>'function', 'regex'=>NULL, 'value'=>'getCurrentPage', 'desc'=>gettext('Prints the current page number.')),
+				'ZENPHOTO_VERSION' => array('class'=>'constant','regex'=>NULL,'value'=>ZENPHOTO_VERSION, 'desc'=>gettext('Prints the version of the Zenphoto installation.')),
+				'PAGELINK'	=>	array('class'=>'expression', 'regex'=>'/^(.*)$/', 'value'=>'getCustomPageURL($1);', 'desc'=>gettext('Provides text for a link to a "custom" script page indicated by <code>%1</code>.'))
+		);
+		$_zp_content_macros = zp_apply_filter('content_macro', $_zp_content_macros);
+	}
+	return $_zp_content_macros;
 }
 
 class zpFunctions {
