@@ -38,9 +38,6 @@ echo "\n</head>";
 	<?php printTabs(); ?>
 	<div id="content">
 		<?php
-		if (!empty($zenphoto_tabs['upload']['subtabs]'])) {
-			printSubtabs();
-		}
 		?>
 		<div id="container">
 			<?php $subtab = printSubtabs(); ?>
