@@ -1236,19 +1236,19 @@ class SearchEngine {
 	 */
 	private function getSearchAlbums($sorttype, $sortdirection, $mine=NULL) {
 		if (getOption('search_no_albums') || $this->search_no_albums) { return array(); }
-		if (!is_null($sorttype)) {
+		if (is_null($sorttype)) {
 			$sorttype = $this->albumsorttype;
 		} else {
 			$this->albumsorttype = $sorttype;
 		}
-		if (!is_null($sortdirection)) {
+		if (is_null($sortdirection)) {
 			$sortdirection = $this->albumsortdirection;
 		} else {
 			$this->albumsortdirection = $sortdirection;
 		}
 		$albums = array();
 		$searchstring = $this->getSearchString();
-		if (empty($searchstring)) { return $albums; } // nothing to find
+		if (empty($searchstring)) { return array(); } // nothing to find
 		$criteria = $this->getCacheTag('albums',serialize($searchstring), $sorttype.' '.$sortdirection);
 		if ($this->albums && $criteria == $this->searches['albums']) {
 			return $this->albums;
