@@ -158,7 +158,7 @@ class Zenphoto_Authority {
 				break;
 		}
 		if (DEBUG_LOGIN) {
-			debugLog("passwordHash($user, $pass, $hash_type)[{HASH_SEED}]:$hash");
+			debugLog("passwordHash($user, $pass, $hash_type)[ ".HASH_SEED." ]:$hash");
 		}
 		return $hash;
 	}
@@ -282,13 +282,15 @@ class Zenphoto_Authority {
 	 * @param string $pass
 	 * @return bool
 	 */
-	protected static function checkLogon($user, $pass) {
+	static function checkLogon($user, $pass) {
 		$userobj = self::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
 		if ($userobj) {
 			$hash = self::passwordHash($user, $pass, $userobj->get('passhash'));
 			if ($hash != $userobj->getPass()) {
 				$userobj = NULL;
 			}
+		} else {
+			$hash = -1;
 		}
 
 		if (DEBUG_LOGIN) {
@@ -1337,10 +1339,11 @@ class Zenphoto_Administrator extends PersistentObject {
 	 * @param $pwd
 	 */
 	function setPass($pwd) {
-		$pwd = Zenphoto_Authority::passwordHash($this->getUser(),$pwd);
+		$hash_type = getOption('strong_hash');
+		$pwd = Zenphoto_Authority::passwordHash($this->getUser(),$pwd, $hash_type);
 		$this->set('pass', $pwd);
 		$this->set('passupdate', date('Y-m-d H:i:s'));
-		$this->set('passhash', $this->passhash);
+		$this->set('passhash', $hash_type);
 		return $this->get('pass');
 	}
 	/**
