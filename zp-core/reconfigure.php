@@ -92,7 +92,7 @@ function checkSignature() {
 	preg_match_all('|'.ZENFOLDER.'/setup/(.*)|', $package, $matches);
 	$needs = array();
 	foreach ($matches[1] as $need) {
-		$needs[] = trim($need);
+		$needs[] = trim($need,':*');
 	}
 	if (file_exists(dirname(__FILE__).'/setup/')) {
 		chdir(dirname(__FILE__).'/setup/');

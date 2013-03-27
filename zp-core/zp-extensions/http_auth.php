@@ -98,11 +98,11 @@ class http_auth {
 			if (array_key_exists('PHP_AUTH_USER', $_SERVER) && array_key_exists('PHP_AUTH_PW', $_SERVER)) {
 				$user = $_SERVER['PHP_AUTH_USER'];
 				$pass = $_SERVER['PHP_AUTH_PW'];
-				$searchfor = array('`user`=' => $user, '`pass`=' => Zenphoto_Authority::passwordHash($user, $pass), '`valid`=' => 1);
 				if (getOption('http_auth_trust')) {
-					unset($searchfor['`pass`=']);
+					$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
+				} else {
+					$userobj = Zenphoto_Authority::checkLogon($user, $pass);
 				}
-				$userobj = Zenphoto_Authority::getAnAdmin($searchfor);
 				if ($userobj) {
 					$_zp_current_admin_obj = $userobj;
 					$_zp_current_admin_obj->logout_link = false;

@@ -12,16 +12,14 @@ chdir(SERVERPATH . "/themes/".basename(dirname(__FILE__))."/styles");
 $filelist = safe_glob('*.css');
 $themecolors = array();
 foreach($filelist as $file) {
-	$file = str_replace('.css', '', $file);
-	$themecolors[] = filesystemToInternal($file);
+	$file = filesystemToInternal(str_replace('.css', '', $file));
+	$themecolors[basename($file)] = filesystemToInternal($file);
 }
 chdir($curdir);
 
 function css_head($ignore) {
 	global $themecolors, $zenCSS, $themeColor, $_zp_themeroot;
-	if (!$themeColor) {
-		$themeColor = getThemeOption('Theme_colors');
-	}
+	list($personality, $themeColor) = getPersonality();
 	$zenCSS = $_zp_themeroot . '/styles/' . $themeColor . '.css';
 	$unzenCSS = str_replace(WEBPATH, '', $zenCSS);
 	if (!file_exists(SERVERPATH . internalToFilesystem($unzenCSS))) {
@@ -41,7 +39,7 @@ function switcher_head($ignore) {
 		}
 	}
 	if (!$themeColor) {
-		$themeColor = getThemeOption('Theme_colors');
+		list($personality, $themeColor) = getPersonality();
 	}
 
 	$personality = getOption('themeSwitcher_effervescence_personality');
@@ -76,7 +74,7 @@ function switcher_controllink($ignore) {
 	global $personalities, $themecolors, $_zp_gallery_page;
 	$color = getOption('themeSwitcher_effervescence_color');
 	if (!$color) {
-		$color = getOption('Theme_colors');
+		list($personality, $color) = getPersonality();
 	}
 	?>
 	<span id="themeSwitcher_effervescence">
@@ -204,12 +202,23 @@ function printNofM($what, $first, $last, $total) {
 	}
 }
 
+function getPersonality() {
+	global $themeColor, $themecolors;
+	if (!$themeColor) {
+		$themeColor = getOption('Theme_colors');
+	}
+	if (!in_array($themeColor, $themecolors)) {
+		$themeColor = 'kish-my father';
+	}
+	$personality = getOption('effervescence_personality');
+	return array($personality, $themeColor);
+}
+
 function printThemeInfo() {
-	global $themeColor, $themeResult;
+	list($personality, $themeColor) = getPersonality();
 	if ($themeColor == 'effervescence') {
 		$themeColor = '';
 	}
-	$personality = getOption('effervescence_personality');
 	if ($personality == 'Image page') {
 		$personality = '';
 	} else if (($personality == 'Simpleviewer' && !class_exists('simpleviewer')) ||
@@ -220,19 +229,11 @@ function printThemeInfo() {
 	if (empty($themeColor) && empty($personality)) {
 		echo '<p><small>Effervescence</small></p>';
 	} else if (empty($themeColor)) {
-		if ($themeResult) {
-			echo '<p><small>'.sprintf(gettext('Effervescence %s'),$personality).'</small></p>';
-		} else {
-			echo '<p><small>'.sprintf(gettext('Effervescence %s (not found)'),$personality).'</small></p>';
-		}
+		echo '<p><small>'.sprintf(gettext('Effervescence %s'),$personality).'</small></p>';
 	} else if (empty($personality)) {
 		echo '<p><small>'.sprintf(gettext('Effervescence %s'),$themeColor).'</small></p>';
 	} else {
-		if ($themeResult) {
-			echo '<p><small>'.sprintf(gettext('Effervescence %1$s %2$s'),$themeColor, $personality).'</small></p>';
-		} else {
-			echo '<p><small>'.sprintf(gettext('Effervescence %1$s %2$s (not found)'),$themeColor, $personality).'</small></p>';
-		}
+		echo '<p><small>'.sprintf(gettext('Effervescence %1$s %2$s'),$themeColor, $personality).'</small></p>';
 	}
 }
 

@@ -1865,7 +1865,7 @@ if (file_exists(CONFIGFILE)) {
 		$db_schema[] = "CREATE TABLE IF NOT EXISTS ".prefix('news')." (
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`title` text,
-		`content` text,
+		`content` longtext,
 		`extracontent` text,
 		`show` int(1) unsigned NOT NULL default '1',
 		`date` datetime,
@@ -1925,7 +1925,7 @@ if (file_exists(CONFIGFILE)) {
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`parentid` int(11) unsigned default NULL,
 		`title` text,
-		`content` text,
+		`content` longtext,
 		`extracontent` text,
 		`sort_order`varchar(48) NOT NULL default '',
 		`show` int(1) unsigned NOT NULL default '1',
@@ -1976,7 +1976,7 @@ if (file_exists(CONFIGFILE)) {
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`type` varchar(32) NOT NULL,
 		`aux` varchar(255),
-		`data` TEXT,
+		`data` longtext,
 		PRIMARY KEY (`id`),
 		KEY `type` (`type`),
 		KEY `aux` (`aux`)
@@ -1988,7 +1988,7 @@ if (file_exists(CONFIGFILE)) {
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`criteria` TEXT,
 		`date` datetime default NULL,
-		`data` LONGTEXT,
+		`data` longtext,
 		KEY (`criteria`(255)),
 		PRIMARY KEY (`id`)
 		) $collation;";
@@ -2288,7 +2288,11 @@ if (file_exists(CONFIGFILE)) {
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' CHANGE `pass` `pass` varchar(64)';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `passhash` int (1)';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `passupdate` datetime';
+	//v1.4.4
 	$sql_statements[] = "ALTER TABLE $tbl_searches CHANGE `data` `data` LONGTEXT";
+	$sql_statements[] = "ALTER TABLE $tbl_plugin_storage CHANGE `data` `data` LONGTEXT";
+	$sql_statements[] = "ALTER TABLE $tbl_news CHANGE `content` `content` LONGTEXT";
+	$sql_statements[] = "ALTER TABLE $tbl_pages CHANGE `content` `content` LONGTEXT";
 
 	// do this last incase there are any field changes of like names!
 	foreach ($_zp_exifvars as $key=>$exifvar) {

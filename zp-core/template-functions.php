@@ -1343,7 +1343,7 @@ function printAlbumDate($before='', $nonemessage='', $format=null) {
 	$date = getAlbumDate($format);
 	if ($date) {
 		if ($before) {
-			$date = '<span class="beforetext">'.html_encode($date).'</span>';
+			$date = '<span class="beforetext">'.$before.'</span>';
 		}
 	} else {
 		$date = '';
@@ -2111,7 +2111,7 @@ function printImageDate($before='', $nonemessage='', $format=null) {
 	$date = getImageDate($format);
 	if ($date) {
 		if ($before) {
-			$date = '<span class="beforetext">'.html_encode($before).'</span>'.$date;
+			$date = '<span class="beforetext">'.$before.'</span>'.$date;
 		}
 	}
 	printField('image', 'date', false, $date);

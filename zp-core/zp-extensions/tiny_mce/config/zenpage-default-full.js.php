@@ -4,6 +4,8 @@
  *
  * Zenpage plugin default light configuration
  */
+$locale = substr(getOption("locale"),0,2);
+if (empty($locale)) $locale = 'en';
 ?>
 	<script type="text/javascript" src="../tiny_mce/tiny_mce.js"></script>
 	<script type="text/javascript">
