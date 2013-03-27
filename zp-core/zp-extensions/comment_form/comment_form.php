@@ -241,7 +241,7 @@
 								<tr><td colspan="2"><?php echo gettext('*Required fields'); ?></td></tr>
 								<?php
 							}
-							if (getOption('Use_Captcha')) {
+							if (commentFormUseCaptcha()) {
  								$captcha = $_zp_captcha->getCaptcha();
  								?>
  								<tr>

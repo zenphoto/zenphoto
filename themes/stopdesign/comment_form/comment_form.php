@@ -207,7 +207,7 @@ global $_zp_themeroot;
 					<tr><td colspan="2"><?php echo gettext('*Required fields'); ?></td></tr>
 					<?php
 				}
-				if (getOption('Use_Captcha')) {
+				if (commentFormUseCaptcha()) {
 					$captcha = $_zp_captcha->getCaptcha();
 					if (isset($captcha['hidden'])) echo $captcha['hidden'];
 					echo "<tr valign=\"top\" align=\"left\"><th>" .gettext('Enter CAPTCHA').' ';

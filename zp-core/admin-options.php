@@ -297,7 +297,7 @@ if (isset($_GET['action'])) {
 			setOption('comment_name_required', sanitize($_POST['comment_name_required']));
 			setOption('comment_email_required',sanitize($_POST['comment_email_required']));
 			setOption('comment_web_required', sanitize($_POST['comment_web_required']));
-			setOption('Use_Captcha', (int) isset($_POST['Use_Captcha'])&&$_POST['Use_Captcha']);
+			setOption('Use_Captcha', isset($_POST['Use_Captcha'])?(int) $_POST['Use_Captcha']:0);
 			$returntab = "&tab=comments";
 
 		}
@@ -2419,10 +2419,14 @@ if ($subtab == 'comments' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<?php echo gettext('Omit'); ?>
 				</label>
 				<label class="checkboxlabel">
-					<input type="radio" name="Use_Captcha" id="Use_Captcha" value="1"<?php echo $captchadisable; if ($checked) echo ' checked="checked"'; ?> />
+					<input type="radio" name="Use_Captcha" id="Use_Captcha" value="2"<?php echo $captchadisable; if ($checked==2) echo ' checked="checked"'; ?> />
+						<?php echo gettext('For guests'); ?>
+				</label>
+				<label class="checkboxlabel">
+					<input type="radio" name="Use_Captcha" id="Use_Captcha" value="1"<?php echo $captchadisable; if ($checked==1) echo ' checked="checked"'; ?> />
 						<?php echo gettext('Require'); ?>
-					</label>
-			</td>
+				</label>
+				</td>
 			<td>
 			<?php
 			if ($captchadisable) {

@@ -514,7 +514,17 @@ function comment_form_addCcomment($name, $email, $website, $comment, $code, $cod
 		if (getOption('comment_email_required')=='required') $whattocheck = $whattocheck | COMMENT_EMAIL_REQUIRED;
 		if (getOption('comment_name_required')) $whattocheck = $whattocheck | COMMENT_NAME_REQUIRED;
 		if (getOption('comment_web_required')=='required') $whattocheck = $whattocheck | COMMENT_WEB_REQUIRED;
-		if (getOption('Use_Captcha')) $whattocheck = $whattocheck | USE_CAPTCHA;
+		switch (getOption('Use_Captcha')) {
+			case 0:
+				break;
+			case 2:
+				if (zp_loggedin(POST_COMMENT_RIGHTS)) {
+					break;
+				}
+			default:
+				$whattocheck = $whattocheck | USE_CAPTCHA;
+				break;
+		}
 		if (getOption('comment_body_requiired')) $whattocheck = $whattocheck | COMMENT_BODY_REQUIRED;
 		IF (getOption('email_new_comments')) $whattocheck = $whattocheck | COMMENT_SEND_EMAIL;
 	} else {
@@ -690,6 +700,21 @@ function comment_form_addCcomment($name, $email, $website, $comment, $code, $cod
 		}
 	}
 	return $commentobj;
+}
+
+/**
+ * Use see if a captcha should be displayed
+ * @return boolean
+ */
+function commentFormUseCaptcha() {
+	switch (getOption('Use_Captcha')) {
+		case 0:
+			return false;
+		case 2:
+			return !zp_loggedin(POST_COMMENT_RIGHTS);
+		default:
+			return true;
+	}
 }
 
 
