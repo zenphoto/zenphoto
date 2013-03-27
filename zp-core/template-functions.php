@@ -2683,7 +2683,7 @@ function getProtectedImageURL($image=NULL, $disposal=NULL) {
 	if (!empty($wmt) || !($image->getWMUse() & WATERMARK_FULL)) {
 		$wmt = NULL;
 	}
-	$args = array('FULL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, $wmt, NULL);
+	$args = array('FULL', NULL, NULL, NULL, NULL, NULL, NULL, getOption('full_image_quality'), NULL, NULL, NULL, NULL, $wmt, NULL);
 	$cache_file = getImageCacheFilename($album->name, $image->filename, $args);
 	$cache_path = SERVERCACHE.$cache_file;
 	if ($disposal != 'Download' && OPEN_IMAGE_CACHE && file_exists($cache_path)) {
@@ -2699,6 +2699,8 @@ function getProtectedImageURL($image=NULL, $disposal=NULL) {
 		if ($disposal) {
 			$params .= '&dsp='.$disposal;
 		}
+		$params .= '&check='.sha1(HASH_SEED.serialize($args));
+
 		return WEBPATH.'/'.ZENFOLDER .'/full-image.php?a='.urlencode($album->name).'&i='.urlencode($image->filename).$params;
 	}
 }

@@ -8,6 +8,9 @@ if (!defined('OFFSET_PATH')) define('OFFSET_PATH', 1);
 require_once(dirname(__FILE__) . "/functions.php");
 require_once(dirname(__FILE__) . "/functions-image.php");
 
+
+var_dump($_GET);
+
 if (isset($_GET['dsp'])) {
 	$disposal = sanitize($_GET['dsp']);
 } else {
@@ -38,6 +41,16 @@ if (getOption('hotlink_protection') && isset($_SERVER['HTTP_REFERER'])) {
 
 $albumobj = newAlbum($album8);
 $imageobj = newImage($albumobj, $image8);
+$args = getImageArgs($_GET);
+$adminrequest = $args[12];
+
+if ($forbidden =  getOption('image_processor_flooding_protection') && (!isset($_GET['check']) || $_GET['check']!=sha1(HASH_SEED.serialize($args)))) {
+	// maybe it was from the tinyZenpage javascript which does not know better!
+	zp_session_start();
+	$forbidden = !isset($_SESSION['adminRequest']) || $_SESSION['adminRequest'] != @$_COOKIE['zp_user_auth'];
+}
+
+$args[0] = 'FULL';
 
 $hash = getOption('protected_image_password');
 if (($hash || !$albumobj->checkAccess()) && !zp_loggedin(VIEW_FULLIMAGE_RIGHTS)) {
@@ -72,6 +85,7 @@ if (($hash || !$albumobj->checkAccess()) && !zp_loggedin(VIEW_FULLIMAGE_RIGHTS))
 		$hint = $_zp_gallery->getPasswordHint();;
 		$show = $_zp_gallery->getUser();
 	}
+
 	if (empty($hash) || (!empty($hash) && zp_getCookie($authType) != $hash)) {
 		require_once(dirname(__FILE__) . "/template-functions.php");
 		$parms = '';
@@ -122,8 +136,7 @@ switch ($suffix) {
 		}
 		exitZP();
 }
-if (getOption('cache_full_image')) {
-	$args = array('FULL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+if ($force_cache = getOption('cache_full_image')) {
 	$cache_file = getImageCacheFilename($album, $image, $args);
 	$cache_path = SERVERCACHE.$cache_file;
 	mkdir_recursive(dirname($cache_path), FOLDER_MOD);
@@ -132,13 +145,16 @@ if (getOption('cache_full_image')) {
 	$cache_path = NULL;
 }
 
-$rotate = false;
+$process = $rotate = false;
 if (zp_imageCanRotate())  {
 	$rotate = getImageRotation($image_path);
+	$process = $rotate;
 }
 $watermark_use_image = getWatermarkParam($imageobj, WATERMARK_FULL);
 if ($watermark_use_image==NO_WATERMARK) {
 	$watermark_use_image = '';
+} else {
+	$process = 2;
 }
 
 if (isset($_GET['q'])) {
@@ -146,7 +162,8 @@ if (isset($_GET['q'])) {
 } else {
 	$quality = getOption('full_image_quality');
 }
-if (!$cache_path && empty($watermark_use_image) && !$rotate) { // no processing needed
+
+if (!($process || $force_cache)) { // no processing needed
 	if (getOption('album_folder_class') != 'external' && $disposal != 'Download') { // local album system, return the image directly
 		header('Content-Type: image/'.$suffix);
 		if (UTF8_IMAGE_URI){
@@ -178,41 +195,56 @@ if ($disposal == 'Download') {
 }
 
 if (is_null($cache_path) || !file_exists($cache_path)) { //process the image
-	$iMutex = new Mutex('i',getOption('imageProcessorConcurrency'));
-	$iMutex-> lock();
-	$newim = zp_imageGet($image_path);
-	if ($rotate) {
-		$newim = zp_rotateImage($newim, $rotate);
+	if ($forbidden) {
+		imageError('403 Forbidden', gettext("Forbidden(2)"));
 	}
-	if ($watermark_use_image) {
-		$watermark_image = getWatermarkPath($watermark_use_image);
-		if (!file_exists($watermark_image)) $watermark_image = SERVERPATH . '/' . ZENFOLDER . '/images/imageDefault.png';
-		$offset_h = getOption('watermark_h_offset') / 100;
-		$offset_w = getOption('watermark_w_offset') / 100;
-		$watermark = zp_imageGet($watermark_image);
-		$watermark_width = zp_imageWidth($watermark);
-		$watermark_height = zp_imageHeight($watermark);
-		$imw = zp_imageWidth($newim);
-		$imh = zp_imageHeight($newim);
-		$percent = getOption('watermark_scale')/100;
-		$r = sqrt(($imw * $imh * $percent) / ($watermark_width * $watermark_height));
-		if (!getOption('watermark_allow_upscale')) {
-			$r = min(1, $r);
+	if ($force_cache && !$process) {
+		// we can just use the original!
+		if (SYMLINK && @symlink($image_path, $cache_path)) {
+			if (DEBUG_IMAGE) debugLog("full-image:symlink original ".basename($image));
+			clearstatcache();
+		} else if (@copy($image_path, $cache_path)) {
+			if (DEBUG_IMAGE) debugLog("full-image:copy original ".basename($image));
+			clearstatcache();
 		}
-		$nw = round($watermark_width * $r);
-		$nh = round($watermark_height * $r);
-		if (($nw != $watermark_width) || ($nh != $watermark_height)) {
-			$watermark = zp_imageResizeAlpha($watermark, $nw, $nh);
+	} else {
+		//	have to create the image
+		$iMutex = new Mutex('i',getOption('imageProcessorConcurrency'));
+		$iMutex-> lock();
+		$newim = zp_imageGet($image_path);
+		if ($rotate) {
+			$newim = zp_rotateImage($newim, $rotate);
 		}
-		// Position Overlay in Bottom Right
-		$dest_x = max(0, floor(($imw - $nw) * $offset_w));
-		$dest_y = max(0, floor(($imh - $nh) * $offset_h));
-		zp_copyCanvas($newim, $watermark, $dest_x, $dest_y, 0, 0, $nw, $nh);
-		zp_imageKill($watermark);
-	}
-	$iMutex->unlock();
-	if (!zp_imageOutput($newim, $suffix, $cache_path, $quality) && DEBUG_IMAGE) {
-		debugLog('full-image failed to create:'.$image);
+		if ($watermark_use_image) {
+			$watermark_image = getWatermarkPath($watermark_use_image);
+			if (!file_exists($watermark_image)) $watermark_image = SERVERPATH . '/' . ZENFOLDER . '/images/imageDefault.png';
+			$offset_h = getOption('watermark_h_offset') / 100;
+			$offset_w = getOption('watermark_w_offset') / 100;
+			$watermark = zp_imageGet($watermark_image);
+			$watermark_width = zp_imageWidth($watermark);
+			$watermark_height = zp_imageHeight($watermark);
+			$imw = zp_imageWidth($newim);
+			$imh = zp_imageHeight($newim);
+			$percent = getOption('watermark_scale')/100;
+			$r = sqrt(($imw * $imh * $percent) / ($watermark_width * $watermark_height));
+			if (!getOption('watermark_allow_upscale')) {
+				$r = min(1, $r);
+			}
+			$nw = round($watermark_width * $r);
+			$nh = round($watermark_height * $r);
+			if (($nw != $watermark_width) || ($nh != $watermark_height)) {
+				$watermark = zp_imageResizeAlpha($watermark, $nw, $nh);
+			}
+			// Position Overlay in Bottom Right
+			$dest_x = max(0, floor(($imw - $nw) * $offset_w));
+			$dest_y = max(0, floor(($imh - $nh) * $offset_h));
+			zp_copyCanvas($newim, $watermark, $dest_x, $dest_y, 0, 0, $nw, $nh);
+			zp_imageKill($watermark);
+		}
+		$iMutex->unlock();
+		if (!zp_imageOutput($newim, $suffix, $cache_path, $quality) && DEBUG_IMAGE) {
+			debugLog('full-image failed to create:'.$image);
+		}
 	}
 }
 
