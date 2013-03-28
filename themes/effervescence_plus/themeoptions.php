@@ -51,6 +51,9 @@ class ThemeOptions {
 		setOptionDefault('colorbox_effervescence_plus_album', 1);
 		setOptionDefault('colorbox_effervescence_plus_image', 1);
 		setOptionDefault('colorbox_effervescence_plus_search', 1);
+		if (getOption('zp_plugin_zenpage')) {
+			setThemeOption('custom_index_page', 'gallery', NULL, 'effervescence_plus', false);
+		}
 		if (class_exists('cacheManager')) {
 			$me = basename(dirname(__FILE__));
 			cacheManager::deleteThemeCacheSizes($me);
@@ -110,7 +113,7 @@ class ThemeOptions {
 											);
 
 		if (!function_exists('printCustomMenu') || getThemeOption('custom_index_page', NULL, 'effervescence_plus') != 'gallery')	{
-			$options[gettext('Custom menu')]['desc'] .= '<p class="notebox">'.gettext('This option requires the <em>menu_manager</em> plugin to be enabled and the <em>Gallery index page link</em> to be set to "gallery".').'</p>';
+			$options[gettext('Custom menu')]['disabled'] = true;
 		}
 
 		if (getOption('effervescence_personality')=='Image_gallery') {
@@ -144,7 +147,11 @@ class ThemeOptions {
 	}
 
 	 function getOptionsDisabled() {
-  	return array('image_size');
+	 	$disabled = array('image_size');
+	 	if (getOption('zp_plugin_zenpage')) {
+	 		$disabled[] = 'custom_index_page';
+	 	}
+  	return $disabled;
   }
 
 	function handleOption($option, $currentValue) {
