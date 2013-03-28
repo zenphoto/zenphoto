@@ -51,38 +51,25 @@ function getRelatedItems($type='news',$album=NULL) {
 		switch($type) {
 			case 'albums':
 				$albumresult = $search->getAlbums(0,"date","desc");
+				$result = createRelatedItemsResultArray($albumresult,$type);
 				break;
 			case 'images':
 				$imageresult = $search->getImages(0,0,'date','desc');
+				$result = createRelatedItemsResultArray($imageresult,$type);
 				break;
 			case 'news':
 				$newsresult = $search->getArticles(0,NULL,true,"date","desc");
+				$result = createRelatedItemsResultArray($newsresult,$type);
 				break;
 			case 'pages':
 				$pageresult = $search->getPages();
+				$result = createRelatedItemsResultArray($pageresult,$type);
 				break;
 			case 'all':
 				$albumresult = $search->getAlbums(0,"date","desc");
 				$imageresult = $search->getImages(0,0,'date','desc');
 				$newsresult = $search->getArticles(0,NULL,true,"date","desc");
 				$pageresult = $search->getPages();
-				break;
-		}
-		// create result array with name, type and result weight so we can sort combined results for "all" mode
-		switch($type) {
-			case 'albums':
-				$result = createRelatedItemsResultArray($albumresult,$type);
-				break;
-			case 'images':
-				$result = createRelatedItemsResultArray($imageresult,$type);
-				break;
-			case 'news':
-				$result = createRelatedItemsResultArray($newsresult,$type);
-				break;
-			case 'pages':
-				$result = createRelatedItemsResultArray($pageresult,$type);
-				break;
-			case 'all':
 				$result1 = createRelatedItemsResultArray($albumresult,'albums');
 				$result2 = createRelatedItemsResultArray($imageresult,'images');
 				$result3 = createRelatedItemsResultArray($newsresult,'news');
@@ -172,21 +159,6 @@ function printRelatedItems($number=5,$type='news',$specific=NULL,$excerpt=NULL,$
 		<?php
 		$count = 0;
 		foreach($result as $item) {
-			switch($item['type']) {
-				case 'albums':
-					$obj = new Album(NULL,$item['name']);
-					break;
-				case 'images':
-					$alb = new Album(NULL,$item['album']);
-					$obj = newImage($alb,$item['name']);
-					break;
-				case 'news':
-					$obj = new ZenpageNews($item['name']);
-					break;
-				case 'pages':
-					$obj = new ZenpagePage($item['name']);
-					break;
-			}
 			$count++;
 			?>
 			<li class="<?php echo $item['type']; ?>">
@@ -194,21 +166,26 @@ function printRelatedItems($number=5,$type='news',$specific=NULL,$excerpt=NULL,$
 				$category = '';
 				switch($item['type']) {
 					case 'albums':
+						$obj = new Album(NULL,$item['name']);
 						$url = $obj->getAlbumLink();
 						$text = $obj->getDesc();
 						$category = gettext('Album');
 						break;
 					case 'images':
+						$alb = new Album(NULL,$item['album']);
+						$obj = newImage($alb,$item['name']);
 						$url = $obj->getImageLink();
 						$text = $obj->getDesc();
 						$category = gettext('Image');
 						break;
 					case 'news':
+						$obj = new ZenpageNews($item['name']);
 						$url = getNewsURL($obj->getTitlelink());
 						$text = $obj->getContent();
 						$category = gettext('News');
 						break;
 					case 'pages':
+						$obj = new ZenpagePage($item['name']);
 						$url = getPageLinkURL($obj->getTitlelink());
 						$text = $obj->getContent();
 						$category = gettext('Page');
