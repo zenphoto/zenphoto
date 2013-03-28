@@ -1301,7 +1301,9 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 		$systemlist = $filelist = array();
 		$phi_ini_count = $svncount = 0;
 		foreach ($_zp_resident_files as $extra) {
-			if (strpos($extra, 'php.ini')!==false) {
+			if (getSuffix($extra) == 'xxx') {
+				@unlink($extra);	//	presumed to be protected copies of the setup files
+			} else if (strpos($extra, 'php.ini')!==false) {
 				$phi_ini_count ++;
 			} else if (defined('TEST_RELEASE') && TEST_RELEASE || (strpos($extra, '/.svn')===false)) {
 				$systemlist[] = $extra;
