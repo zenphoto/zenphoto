@@ -347,7 +347,7 @@ function getOption($key) {
  * otherwise it is preserved in the database
  */
 function setOption($key, $value, $persistent=true) {
-	global $_zp_conf_vars, $_zp_options;
+	global $_zp_options;
 	if ($persistent) {
 		$sql = 'INSERT INTO '.prefix('options').' (`name`,`ownerid`,`theme`,`value`) VALUES ('.db_quote($key).',0,"",';
 		$sqlu = ' ON DUPLICATE KEY UPDATE `value`=';
@@ -407,6 +407,34 @@ function setOptionDefault($key, $default) {
 	}
 	if (query($sql, false)) {
 		$_zp_options[$key] = $default;
+	}
+}
+
+/**
+ * Loads option table with album/theme options
+ *
+ * @param int $albumid
+ * @param string $theme
+ */
+function loadLocalOptions($albumid, $theme) {
+	global $_zp_options;
+	//raw theme options
+	$sql = "SELECT `name`, `value` FROM ".prefix('options').' WHERE `theme`='.db_quote($theme).' AND `ownerid`=0';
+	$optionlist = query_full_array($sql, false);
+	if ($optionlist !== false) {
+		foreach($optionlist as $option) {
+			$_zp_options[$option['name']] = $option['value'];
+		}
+	}
+	if ($albumid) {
+		//album-theme options
+		$sql = "SELECT `name`, `value` FROM ".prefix('options').' WHERE `theme`='.db_quote($theme).' AND `ownerid`='.$albumid;
+		$optionlist = query_full_array($sql, false);
+		if ($optionlist !== false) {
+			foreach($optionlist as $option) {
+				$_zp_options[$option['name']] = $option['value'];
+			}
+		}
 	}
 }
 
@@ -1223,33 +1251,6 @@ function themeSetup($album) {
 	}
 	loadLocalOptions($id, $theme);
 	return $theme;
-}
-
-/**
- * Loads option table with album/theme options
- *
- * @param int $albumid
- * @param string $theme
- */
-function loadLocalOptions($albumid, $theme) {
-	//raw theme options
-	$sql = "SELECT `name`, `value` FROM ".prefix('options').' WHERE `theme`='.db_quote($theme).' AND `ownerid`=0';
-	$optionlist = query_full_array($sql, false);
-	if ($optionlist !== false) {
-		foreach($optionlist as $option) {
-			setOption($option['name'], $option['value'], false);
-		}
-	}
-	if ($albumid) {
-		//album-theme options
-		$sql = "SELECT `name`, `value` FROM ".prefix('options').' WHERE `theme`='.db_quote($theme).' AND `ownerid`='.$albumid;
-		$optionlist = query_full_array($sql, false);
-		if ($optionlist !== false) {
-			foreach($optionlist as $option) {
-				setOption($option['name'], $option['value'], false);
-			}
-		}
-	}
 }
 
 /**
