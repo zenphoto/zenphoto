@@ -970,13 +970,10 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 					<td><?php echo gettext('Gallery type')?></td>
 					<td>
 						<label><input type="radio" name="gallery_security" value="public" alt="<?php echo gettext('public'); ?>"<?php if (GALLERY_SECURITY == 'public') echo ' checked="checked"' ?> onclick="javascript:$('.public_gallery').show();" /><?php echo gettext('public'); ?></label>
-						<label><input type="radio" name="gallery_security" value="private" alt="<?php echo gettext('private'); ?>"<?php if (GALLERY_SECURITY == 'private') echo  'checked="checked"'?> onclick="javascript:$('.public_gallery').hide();" /><?php echo gettext('private'); ?></label>
-						<label><input type="radio" name="gallery_security" value="restricted" alt="<?php echo gettext('restricted'); ?>"<?php if (GALLERY_SECURITY == 'restricted') echo  'checked="checked"'?> onclick="javascript:$('.public_gallery').hide();" /><?php echo gettext('restricted'); ?></label>
+						<label><input type="radio" name="gallery_security" value="private" alt="<?php echo gettext('private'); ?>"<?php if (GALLERY_SECURITY != 'public') echo  'checked="checked"'?> onclick="javascript:$('.public_gallery').hide();" /><?php echo gettext('private'); ?></label>
 					</td>
 					<td>
 						<?php echo gettext('Private galleries are viewable only by registered users.'); ?>
-						<?php
-						echo gettext('Restricted galleries are private galleries but users may see only their managed albums.'); ?>
 					</td>
 				</tr>
 				<?php
