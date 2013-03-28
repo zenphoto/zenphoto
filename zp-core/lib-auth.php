@@ -282,12 +282,23 @@ class Zenphoto_Authority {
 	 * @param string $pass
 	 * @return bool
 	 */
-	static function checkLogon($user, $pass) {
+	function checkLogon($user, $pass) {
 		$userobj = self::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
 		if ($userobj) {
 			$hash = self::passwordHash($user, $pass, $userobj->get('passhash'));
 			if ($hash != $userobj->getPass()) {
-				$userobj = NULL;
+				//	maybe not yet updated passhash field
+				foreach ($this->hashlist as $hashv) {
+					$hash = self::passwordHash($user, $pass, $hashv);
+					if ($hash == $userobj->getPass()) {
+						break;
+					} else {
+						$hash = -1;
+					}
+				}
+				if ($hash === -1) {
+					$userobj = NULL;
+				}
 			}
 		} else {
 			$hash = -1;
