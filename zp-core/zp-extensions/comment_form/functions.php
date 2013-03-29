@@ -8,78 +8,47 @@ function comment_form_PaginationJS() {
 	?>
 	<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER ; ?>/js/jquery.pagination.js"></script>
 	<script type="text/javascript">
-
-						// This is a very simple demo that shows how a range of elements can
-						// be paginated.
-						// The elements that will be displayed are in a hidden DIV and are
-						// cloned for display. The elements are static, there are no Ajax
-						// calls involved.
-
-						/**
-						 * Callback function that displays the content.
-						 *
-						 * Gets called every time the user clicks on a pagination link.
-						 *
-						 * @param {int} page_index New Page index
-						 * @param {jQuery} jq the container with the pagination links as a jQuery object
-						 */
-						function pageselectCallback(page_index, jq){
-								var items_per_page = <?php echo getOption('comment_form_comments_per_page'); ?>;
-								var max_elem = Math.min((page_index+1) * items_per_page, $('#comments div.comment').length);
-								var newcontent = '';
-							 // alert(members);
-								// Iterate through a selection of the content and build an HTML string
-								for(var i=page_index*items_per_page;i<max_elem;i++) {
-									newcontent += '<div class="comment">'+$('#comments div.comment:nth-child('+(i+1)+')').html()+'</div>';
-								}
-
-								// Replace old content with new content
-								$('#Commentresult').html(newcontent);
-
-								// Prevent click eventpropagation
-								return false;
-						}
-
-						/**
-						 * Initialisation function for pagination
-						 */
-						function initPagination() {
-								var startPage;
-								if (Comm_ID_found){
-									startPage=Math.ceil(current_comment_N/<?php echo getOption('comment_form_comments_per_page'); ?>)-1;
-								} else {
-									startPage=0;
-								}
-								// count entries inside the hidden content
-								var num_entries = $('#comments div.comment').length;
-								// Create content inside pagination element
-								$(".Pagination").pagination(num_entries, {
-										prev_text: "<?php echo gettext('prev'); ?>",
-										next_text: "<?php echo gettext('next'); ?>",
-										callback: pageselectCallback,
-										load_first_page:true,
-										items_per_page:<?php echo getOption('comment_form_comments_per_page'); ?>, // Show only one item per page
-										current_page:startPage
-								});
-						 }
-
-						// When document is ready, initialize pagination
-						$(document).ready(function(){
-								current_comment_N = $('.comment h4').index($(addrBar_hash))+1;
-								initPagination();
-								if (Comm_ID_found){
-									$(addrBar_hash).scrollToMe();
-								}
-						});
-						//Initialize variables used to detect if a comment has been posted and its position
-						var current_comment_N, addrBar_hash = window.location.hash,Comm_ID_found = !addrBar_hash.search(/#zp_comment_id_/);
-						jQuery.fn.extend({
-							scrollToMe: function () {
-							var x = jQuery(this).offset().top -10;
-							jQuery('html,body').animate({scrollTop: x}, 400);
-						}});
-
-				</script>
+		function pageselectCallback(page_index, jq){
+				var items_per_page = <?php echo getOption('comment_form_comments_per_page'); ?>;
+				var max_elem = Math.min((page_index+1) * items_per_page, $('#comments div.comment').length);
+				var newcontent = '';
+				for(var i=page_index*items_per_page;i<max_elem;i++) {
+					newcontent += '<div class="comment">'+$('#comments div.comment:nth-child('+(i+1)+')').html()+'</div>';
+				}
+				$('#Commentresult').html(newcontent);
+				return false;
+		}
+		function initPagination() {
+				var startPage;
+				if (Comm_ID_found){
+					startPage=Math.ceil(current_comment_N/<?php echo getOption('comment_form_comments_per_page'); ?>)-1;
+				} else {
+					startPage=0;
+				}
+				var num_entries = $('#comments div.comment').length;
+				$(".Pagination").pagination(num_entries, {
+						prev_text: "<?php echo gettext('prev'); ?>",
+						next_text: "<?php echo gettext('next'); ?>",
+						callback: pageselectCallback,
+						load_first_page:true,
+						items_per_page:<?php echo getOption('comment_form_comments_per_page'); ?>, // Show only one item per page
+						current_page:startPage
+				});
+		 }
+		$(document).ready(function(){
+				current_comment_N = $('.comment h4').index($(addrBar_hash))+1;
+				initPagination();
+				if (Comm_ID_found){
+					$(addrBar_hash).scrollToMe();
+				}
+		});
+		var current_comment_N, addrBar_hash = window.location.hash,Comm_ID_found = !addrBar_hash.search(/#zp_comment_id_/);
+		jQuery.fn.extend({
+			scrollToMe: function () {
+			var x = jQuery(this).offset().top -10;
+			jQuery('html,body').animate({scrollTop: x}, 400);
+		}});
+	</script>
 	<?php
 }
 
