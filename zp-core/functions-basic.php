@@ -802,10 +802,8 @@ function getImageProcessorURI($args, $album, $image) {
 	}
 	$uri .= '&check='.sha1(HASH_SEED.serialize($args));
 
-	if (class_exists('static_html_cache')) {
-		// don't cache pages that have image processor URIs
-		static_html_cache::disable();
-	}
+	$uri = zp_apply_filter('image_processor_uri', $uri);
+
 	return $uri;
 }
 

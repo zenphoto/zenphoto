@@ -48,6 +48,7 @@ if (OFFSET_PATH == 2) {	//	clear the cache upon upgrade
 $_zp_HTML_cache = new static_html_cache();
 if (isset($zp_request) && $zp_request) {
 	$_zp_HTML_cache->startHTMLCache();
+	zp_register_filter('image_processor_uri','$_zp_HTML_cache->imageProcessorURI');
 }
 
 
@@ -327,6 +328,10 @@ class static_html_cache {
 		}
 	}
 
+	static function imageProcessorURI($uri) {
+		self::disable();
+		return $uri;
+	}
 
 	function static_html_cache_options() {
 		setOptionDefault('static_cache_expire', 86400);
