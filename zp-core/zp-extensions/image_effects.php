@@ -148,6 +148,9 @@ class image_effects {
 										'order' => 1,
 										'checkboxes' => $rand,
 										'desc' => gettext('Pool of effects for the <em>random</em> effect selection.')),
+									8										=> array('type'=>OPTION_TYPE_NOTE,
+																			'order'=>8.9,
+																			'desc'=>'<hr />'),
 									chr(0) => array('key' => 'image_effects_docs', 'type' => OPTION_TYPE_CUSTOM,
 										'order' => 9,
 										'desc' => '<em>'.gettext('Acknowledgments').'</em>')
