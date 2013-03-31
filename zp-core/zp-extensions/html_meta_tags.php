@@ -388,6 +388,7 @@ class htmlmetatags {
 					';
 			$meta .= '</script>'."\n";
 		}
+		zp_remove_filter('image_processor_uri', 'htmlmetatags::ipURI');
 		echo $meta;
 	}
 

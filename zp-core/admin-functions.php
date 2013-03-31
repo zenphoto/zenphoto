@@ -559,7 +559,7 @@ function customOptions($optionHandler, $indent="", $album=NULL, $showhide=false,
 		$options = $supportedOptions;
 		$option = array_shift($options);
 		if (array_key_exists('order', $option)) {
-			$options = sortMultiArray($supportedOptions, 'order');
+			$options = sortMultiArray($supportedOptions, 'order', false, true, false, true);
 			$options = array_keys($options);
 		} else {
 			$options = array_keys($supportedOptions);
@@ -578,7 +578,7 @@ function customOptions($optionHandler, $indent="", $album=NULL, $showhide=false,
 
 			$type = $row['type'];
 			$desc = $row['desc'];
-			$key = $row['key'];
+			$key = @$row['key'];
 			$optionID = $whom.'_'.$key;
 			if (isset($row['multilingual'])) {
 				$multilingual = $row['multilingual'];

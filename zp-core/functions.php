@@ -1258,19 +1258,22 @@ function sortMultiArray($array, $index, $descending=false, $natsort=true, $case_
 		} else {
 			$indicies = array($index);
 		}
+		if ($descending) {
+			$separator = '~~';
+		} else {
+			$separator = '  ';
+		}
 		foreach ($array as $key=>$row) {
 			$temp[$key] = '';
 			foreach ($indicies as $index) {
 				if (is_array($row) && array_key_exists($index, $row)) {
-					$temp[$key] .= $row[$index];
+					$temp[$key] .= $row[$index].$separator;
 					if (in_array($index,$remove_criteria)) {
 						unset($array[$key][$index]);
 					}
 				}
 			}
-			if ($temp[$key]==='') {
-				$temp[$key] = 'ZZZ';
-			}
+			$temp[$key] .= $key;
 		}
 		if($natsort) {
 			if ($case_sensitive) {
@@ -1288,6 +1291,7 @@ function sortMultiArray($array, $index, $descending=false, $natsort=true, $case_
 				asort($temp);
 			}
 		}
+
 		foreach(array_keys($temp) as $key) {
 			if(!$preservekeys && is_numeric($key)) {
 				$sorted[]=$array[$key];

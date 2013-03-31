@@ -548,7 +548,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 		<form action="?action=saveoptions" method="post" autocomplete="off">
 			<?php XSRFToken('saveoptions');?>
 			<input	type="hidden" name="savegeneraloptions" value="yes" />
-			<table class="bordered options">
+			<table class="options">
 				<tr>
 				 <td colspan="3">
 					<p class="buttons">
@@ -943,7 +943,7 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 			<?php XSRFToken('saveoptions');?>
 			<input	type="hidden" name="savegalleryoptions" value="yes" />
 			<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
-			<table class="bordered options">
+			<table class="options">
 				<tr>
 					<td colspan="3">
 					<p class="buttons">
@@ -1326,7 +1326,7 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 			<?php XSRFToken('saveoptions');?>
 			<input	type="hidden" name="savesearchoptions" value="yes" />
 			<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
-			<table class="bordered  options">
+			<table class="options">
 				<tr>
 					<td colspan="3">
 					<p class="buttons">
@@ -1556,7 +1556,7 @@ if ($subtab == 'rss' && zp_loggedin(OPTIONS_RIGHTS)) {
 		<form action="?action=saveoptions" method="post" autocomplete="off">
 		<?php XSRFToken('saveoptions');?>
 		<input	type="hidden" name="saverssoptions" value="yes" />
-	<table class="bordered options">
+	<table class="options">
 		<tr>
 			<td colspan="3">
 			<p class="buttons">
@@ -1705,7 +1705,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 	<?php echo gettext('See also the <a href="?tab=theme">Theme Options</a> tab for theme specific image options.'); ?>
 	</p>
 
-	<table class="bordered options">
+	<table class="options">
 		<tr>
 			<td colspan="3">
 				<p class="buttons">
@@ -2323,7 +2323,7 @@ if ($subtab == 'comments' && zp_loggedin(OPTIONS_RIGHTS)) {
 	<form action="?action=saveoptions" method="post" autocomplete="off">
 		<?php XSRFToken('saveoptions');?>
 	<input 	type="hidden" name="savecommentoptions" value="yes" />
-	<table class="bordered options">
+	<table class="options">
 		<tr>
 			<td colspan="3">
 				<p class="buttons">
@@ -2957,7 +2957,7 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 						<!-- <?php echo $extension; ?> -->
 				<tr>
 					<td style="padding: 0;margin:0" colspan="3">
-						<table class="bordered options" style="border: 0" id="plugin-<?php echo $extension; ?>">
+						<table class="options" style="border: 0" id="plugin-<?php echo $extension; ?>">
 							<tr>
 							<?php
 							if (isset($_GET['show-'.$extension]) || count($plugins) == 1) {
@@ -3075,7 +3075,7 @@ if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 		<form action="?action=saveoptions" method="post" autocomplete="off">
 			<?php XSRFToken('saveoptions');?>
 			<input type="hidden" name="savesecurityoptions" value="yes" />
-			<table class="bordered options">
+			<table class="options">
 				<tr>
 					<td colspan="3">
 						<p class="buttons">

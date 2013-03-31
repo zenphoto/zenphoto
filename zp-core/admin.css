@@ -568,18 +568,6 @@ table.bordered tr td {
 	border-bottom: 1px solid #E5E5E5;
 }
 
-
-/*****
-/* some additions for the plugins and options tables, easier to read if top aligned IMHO */
-table.options td {
-	padding: 16px 16px 10px 16px !important;
-	vertical-align: top;
-}
-table.options td p {
- margin-top: 0;
-}
-/*******/
-
 table.bordered tr.alt1 td {
 	background-color: #ECF1F2;
 	border-bottom: 2px solid #dddddd;
@@ -600,6 +588,47 @@ table.bordered table.compact tr {
 table.bordered table.compact td {
 	padding: 8px 16px;
 	margin: 0px;
+}
+
+table.options {
+	width: 100%;
+	padding: 0px;
+	border-spacing: 0px;
+	background: #E5E5E5;
+	border: 1px solid #E5E5E5;
+	border-bottom-width: 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+table.options th {
+	font-weight: bold;
+	padding: 8px 0px 4px 10px;
+	border-bottom: 2px solid #cccccc;
+	background: #ECF1F2;
+	background-image: url(images/admin-headlineback.jpg);
+	background-repeat: repeat-x;
+}
+
+table.options .subhead {
+	border-top: 1px solid #cccccc;
+}
+
+table.options td {
+	padding: 16px 16px 10px 16px !important;
+	vertical-align: top;
+}
+table.options td p {
+ margin-top: 0;
+}
+
+table.options tr td {
+	padding: 8px 16px;
+	margin: 0px;
+	background-color: #fff;
+	border: none;
 }
 
 table.formlayout {
