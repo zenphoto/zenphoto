@@ -4,10 +4,9 @@
  * @package core
  *
  */
-
+if (!defined('OFFSET_PATH')) die();	//	no direct linking
 $_zp_script_timer['start'] = microtime();
 // force UTF-8 Ø
-define('OFFSET_PATH', 0);
 require_once(dirname(__FILE__).'/global-definitions.php');
 require_once(dirname(__FILE__).'/functions.php');
 foreach (getEnabledPlugins() as $extension=>$plugin) {
@@ -95,7 +94,6 @@ if (!$zp_request && isset($_GET['fromlogout'])) {	//	redirect not visible to use
 	$_index_theme = prepareIndexPage();
 	$zp_request = true;
 }
-
 $_zp_script = zp_apply_filter('load_theme_script', $_zp_script, $zp_request);
 $custom = SERVERPATH.'/'.THEMEFOLDER.'/'.internalToFilesystem($_index_theme).'/functions.php';
 if (file_exists($custom)) {

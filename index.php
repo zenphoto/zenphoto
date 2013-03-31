@@ -1,4 +1,5 @@
 <?php
+define('OFFSET_PATH', 0);
 eval(@file_get_contents(dirname(__FILE__).'/zp-data/zenphoto.cfg'));
 if (@$_zp_conf_vars['site_upgrade_state']=='closed') {
 	if (isset($_zp_conf_vars['special_pages']['page']['rewrite'])) {
