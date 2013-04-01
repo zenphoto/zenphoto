@@ -12,6 +12,7 @@ msgstr ""
 "X-Poedit-Language: Russian\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 "X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Basepath: D:\\WebServers\\home\\netslov.net\\\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-Bookmarks: 910,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SearchPath-0: www\n"
@@ -113,7 +114,7 @@ msgstr "<strong>Метки:</strong>"
 
 #: www/themes/default/album.php:72
 msgid "Album RSS"
-msgstr "Альбом"
+msgstr "Альбом (RSS)"
 
 #: www/themes/default/album.php:73
 #: www/themes/default/archive.php:10
@@ -130,7 +131,7 @@ msgstr "Архив"
 #: www/themes/default/search.php:14
 #: www/themes/default/search.php:82
 msgid "Gallery RSS"
-msgstr "Галерея (RSS-лента)"
+msgstr "Галерея (RSS)"
 
 #: www/themes/default/archive.php:34
 msgid "Popular Tags"
@@ -148,7 +149,7 @@ msgstr "Напишите нам."
 #: www/themes/default/favorites.php:39
 #: www/themes/default/favorites.php:54
 msgid "Remove"
-msgstr "Удалить пользователя"
+msgstr "Удалить"
 
 #: www/themes/default/functions.php:62
 #, fuzzy
@@ -1283,11 +1284,11 @@ msgstr "Выберите, чтобы вы хотели видеть на 6 ми�
 
 #: www/themes/stopdesign/theme_description.php:7
 msgid "Ported to Zenphoto by Mark Galeassi and Stephen Billard"
-msgstr "Портировано в Zenphoto Mark Galeassi и Stephen Billard"
+msgstr "адаптация для Zenphoto: Mark Galeassi и Stephen Billard"
 
 #: www/themes/stopdesign/theme_description.php:10
 msgid "A theme based on the design from <a href=\"http://stopdesign.com/templates/photos/\">Douglas Bowman</a>. This theme is licensed under the <a href=\"http://creativecommons.org/licenses/by-nc-sa/2.5/\">Creative Commons Attribution-NonCommercial-ShareAlike 2.5</a> License."
-msgstr "Тема основана на дизайне от <a href=\"http://stopdesign.com/templates/photos/\">Douglas Bowman</a>. Эта тема лицензирована <a href=\"http://creativecommons.org/licenses/by-nc-sa/2.5/\">Creative Commons Attribution-NonCommercial-ShareAlike 2.5</a>."
+msgstr "Тема основана на дизайне <a href=\"http://stopdesign.com/templates/photos/\">Douglas Bowman</a>. Лицензия: <a href=\"http://creativecommons.org/licenses/by-nc-sa/2.5/\">Creative Commons Attribution-NonCommercial-ShareAlike 2.5</a>."
 
 #: www/themes/stopdesign/comment_form/comment_form.php:32
 #, php-format
@@ -1450,7 +1451,7 @@ msgstr ""
 
 #: www/themes/zenpage/theme_description.php:10
 msgid "The Zenpage CMS plugin default theme. It does also work without Zenpage installed as a normal theme. It contains extra support for print_album_menu plugin or the menu_manager plugin (one of these should be enabled for album links in the sidebar), the dynamic_locale plugin, the new paged_thumbs_nav plugin and the jCarousel_thumb_nav plugin."
-msgstr "Тема оформления для CMS плагина Zenpage. Должна функционировать и как обычная тема без активации Zenpage. Поддерживает плагины <em>print_album_menu</em> и <em>menu_manager</em> (один из них должен быть включен для отображения ссылок альбомов на боковой панели), а также: <em>dynamic_locale</em>, <em>paged_thumbs_nav</em> и <em>jCarousel_thumb_nav</em>."
+msgstr "Тема оформления для CMS плагина Zenpage. Должна функционировать и как обычная тема без подключения Zenpage. Поддерживает плагины <em>print_album_menu</em> и <em>menu_manager</em> (один из них должен быть включен для отображения ссылок альбомов на боковой панели), а также: <em>dynamic_locale</em>, <em>paged_thumbs_nav</em> и <em>jCarousel_thumb_nav</em>."
 
 #: www/themes/zpmobile/archive.php:9
 #: www/themes/zpmobile/archive.php:26
@@ -3019,7 +3020,7 @@ msgstr "добавить блок кода"
 #: www/zp-core/admin-functions.php:4105
 #, php-format
 msgid "\"%s\" Cross Site Request Forgery blocked."
-msgstr ""
+msgstr "\"%s\" блокирована попытка подделки межсайтовых запросов (CSRF)."
 
 #: www/zp-core/admin-functions.php:4311
 msgid "setup"
@@ -5083,7 +5084,7 @@ msgstr "имя"
 
 #: www/zp-core/admin-tags.php:113
 msgid "Tag Management"
-msgstr "Управление Метками"
+msgstr "Управление Метками (теги)"
 
 #: www/zp-core/admin-tags.php:117
 msgid "Sort the tags alphabetically"
@@ -5277,7 +5278,7 @@ msgstr "Действие"
 
 #: www/zp-core/admin-themes.php:203
 msgid "third party theme"
-msgstr ""
+msgstr "пользовательская тема"
 
 #: www/zp-core/admin-themes.php:245
 msgid "Version"
@@ -5776,7 +5777,7 @@ msgstr "СПАМ фильтр: <strong>%s</strong>"
 #: www/zp-core/admin.php:328
 #, php-format
 msgid "CAPTCHA generator: <strong>%s</strong>"
-msgstr "Генератор защитного кода (CAPTCHA): <strong>%s</strong>"
+msgstr "Генератор защитного кода: <strong>%s</strong>"
 
 #: www/zp-core/admin.php:334
 msgid "There is no mail handler configured!"
@@ -6186,7 +6187,7 @@ msgstr "БД"
 #: www/zp-core/functions-db_PDO.php:27
 #, php-format
 msgid "%1$s Error: ( %2$s ) failed. %1$s returned the error %3$s"
-msgstr "Ошибка %1$s: ( %2$s ) неудача. %1$s возвращает ошибку: %3$s"
+msgstr "Ошибка %1$s: ( %2$s ) неудача! %1$s возвращает ошибку: %3$s"
 
 #: www/zp-core/functions-db-MySQL.php:157
 #: www/zp-core/functions-db-MySQLi.php:160
@@ -7450,7 +7451,7 @@ msgstr "Разрешить изменять Тему оформления (ра�
 #: www/zp-core/lib-auth.php:523
 #: www/zp-core/lib-auth.php:556
 msgid "Users with this right may make additions and changes to the set of tags."
-msgstr ""
+msgstr "Разрешает добавлять и изменять наборы меток."
 
 #: www/zp-core/lib-auth.php:492
 #: www/zp-core/lib-auth.php:524
@@ -8090,9 +8091,9 @@ msgid "The change detected may not be critical but you should run %1$ssetup%2$s 
 msgstr "Обнаруженные изменения не критичны, однако следует провести %1$sустановку%2$s при первой возможности."
 
 #: www/zp-core/setup.php:23
-#, fuzzy, php-format
+#, php-format
 msgid "Please reinstall the setup files from the %1$s [%2$s] release:"
-msgstr "Пожалуйста, заново установите следующие файлы из версии %1$s [%2$s] :"
+msgstr "Пожалуйста, загрузите установочные файлы из версии %1$s [%2$s]:"
 
 #: www/zp-core/template-functions.php:52
 msgid "Are you sure you want to delete the image? THIS CANNOT BE UNDONE!"
@@ -9550,7 +9551,7 @@ msgstr "PHP <code>magic_quotes_gpc</code> [включены]"
 
 #: www/zp-core/setup/index.php:586
 msgid "We strongly recommend disabling <code>magic_quotes_gpc</code>. For more information See <em><a href=\"http://www.zenphoto.org/news/troubleshooting-zenphoto#what-is-magic_quotes_gpc-and-why-should-it-be-disabled-\">What is magic_quotes_gpc and why should it be disabled?</a></em> in the Zenphoto troubleshooting guide."
-msgstr ""
+msgstr "Настоятельно рекомендуется отключить <code>magic_quotes_gpc</code>. Подробнее см. <em><a href=\"http://www.zenphoto.org/news/troubleshooting-zenphoto#26\">Что такое magic_quotes_gpc и почему их надо отключить?</a></em> (англ)."
 
 #: www/zp-core/setup/index.php:592
 msgid "PHP <code>magic_quotes_runtime</code>"
@@ -9668,7 +9669,7 @@ msgstr ""
 
 #: www/zp-core/setup/index.php:648
 msgid "Graphics library"
-msgstr "Графический логотип"
+msgstr "Графическая библиотека"
 
 #: www/zp-core/setup/index.php:656
 #, fuzzy, php-format
@@ -9789,33 +9790,33 @@ msgid "Character set"
 msgstr "Кодировка:"
 
 #: www/zp-core/setup/index.php:777
-#, php-format
+#, fuzzy, php-format
 msgid "If your server filesystem character set is different from <code>%s</code> and you create album or image filenames names containing characters with diacritical marks you may have problems with these objects."
-msgstr ""
+msgstr "Если набор символов файловой системы вашего сервера не <code>%s</code>"
 
 #: www/zp-core/setup/index.php:779
 #, php-format
 msgid "Change the filesystem character set define to %1$s"
-msgstr ""
+msgstr "Изменить кодировку на %1$s"
 
 #: www/zp-core/setup/index.php:793
 #, php-format
 msgid "The Zenphoto filesystem character define is %1$s [confirmed]"
-msgstr ""
+msgstr "Кодировка файловой системы Zenphoto %1$s [подтверждено]"
 
 #: www/zp-core/setup/index.php:798
 msgid "The Zenphoto filesystem character define is ISO-8859-1 [assumed]"
-msgstr ""
+msgstr "Кодировка файловой системы Zenphoto ISO-8859-1 [предположительно]"
 
 #: www/zp-core/setup/index.php:803
 #, php-format
 msgid "The Zenphoto filesystem character define is %1$s [which seems wrong]"
-msgstr ""
+msgstr "Кодировка файловой системы Zenphoto %1$s [что похоже неверно]"
 
 #: www/zp-core/setup/index.php:808
 #, php-format
 msgid "The Zenphoto filesystem character define is %1$s [no test performed]"
-msgstr ""
+msgstr "Кодировка файловой системы Zenphoto %1$s [тест не производился]"
 
 #: www/zp-core/setup/index.php:809
 #, php-format
@@ -9832,11 +9833,11 @@ msgstr ""
 
 #: www/zp-core/setup/index.php:844
 msgid "You should enable the URL option <em>UTF8 image URIs</em>."
-msgstr ""
+msgstr "Необходимо включить URL параметр <em>UTF8 image URIs</em>."
 
 #: www/zp-core/setup/index.php:844
 msgid "<a href=\"javascript:uri(true)\">Please do</a>"
-msgstr ""
+msgstr "<a href=\"javascript:uri(true)\">Сделать!</a>"
 
 #: www/zp-core/setup/index.php:861
 msgid "You should disable the URL option <em>UTF8 image URIs</em>."
@@ -9864,7 +9865,7 @@ msgstr "PHP поддержка <code>%s</code> для сконфигуриров
 #: www/zp-core/setup/index.php:904
 #, php-format
 msgid " <code>%1$s</code> support (<a onclick=\"$('#%1$s').toggle('show')\" >experimental</a>)"
-msgstr ""
+msgstr "Поддержка <code>%1$s</code> (<a onclick=\"$('#%1$s').toggle('show')\" >экспериментально</a>)"
 
 #: www/zp-core/setup/index.php:913
 #, php-format
@@ -9902,9 +9903,9 @@ msgid "Database credentials in configuration file"
 msgstr "Параметры Базы Данных в файле конфигурации"
 
 #: www/zp-core/setup/index.php:949
-#, fuzzy, php-format
+#, php-format
 msgid "<em>%1$s</em> reported: %2$s"
-msgstr "Каталог <em>%1$s</em> %2$s"
+msgstr "<em>%1$s</em> сообщает: %2$s"
 
 #: www/zp-core/setup/index.php:956
 msgid "You have not correctly set your <strong>Database</strong> <code>user</code>, <code>password</code>, etc. in your configuration file and <strong>setup</strong> is not able to write to the file."
@@ -9917,12 +9918,11 @@ msgstr "Параметры Базы Данных в файле конфигур�
 #: www/zp-core/setup/index.php:961
 #, php-format
 msgid "Connect to %s"
-msgstr ""
+msgstr "Соединение с %s"
 
 #: www/zp-core/setup/index.php:961
-#, fuzzy
 msgid "Connect to Database [<code>CONNECT</code> query failed]"
-msgstr "Кэш: [<code>%s</code>]"
+msgstr "Соединение с базой данных [запрос <code>CONNECT</code> неудача!]"
 
 #: www/zp-core/setup/index.php:968
 #, php-format
@@ -10032,7 +10032,7 @@ msgstr "<em>SHOW TABLES</em> найдены: %s"
 
 #: www/zp-core/setup/index.php:1078
 msgid "<em>SHOW TABLES</em> [Failed]"
-msgstr "<em>SHOW TABLES</em> [Неудача]"
+msgstr "<em>SHOW TABLES</em> [Неудача!]"
 
 #: www/zp-core/setup/index.php:1078
 #, php-format
@@ -10228,7 +10228,7 @@ msgstr ""
 #: www/zp-core/setup/index.php:1439
 #, php-format
 msgid "<em>.htaccess</em> RewriteBase is <code>%s</code> (fixed)"
-msgstr ""
+msgstr "<em>.htaccess</em> RewriteBase <code>%s</code> (исправлено)"
 
 #: www/zp-core/setup/index.php:1464
 msgid "Setup was not able to write to the file change RewriteBase match the install folder."
@@ -10319,9 +10319,8 @@ msgid "Third party plugins"
 msgstr "Сторонние плагины"
 
 #: www/zp-core/setup/index.php:1539
-#, fuzzy
 msgid "You need to address the problems indicated above then run <code>setup</code> again."
-msgstr "Необходимо устранить указанные выше проблемы, после чего снова выполните <code>setup.php</code>"
+msgstr "Необходимо устранить вышеуказанные проблемы и снова запустить <code>setup.php</code>."
 
 #: www/zp-core/setup/index.php:1542
 msgid "Setup failed."
@@ -10330,7 +10329,7 @@ msgstr "Установка не удалась."
 #: www/zp-core/setup/index.php:1553
 #: www/zp-core/setup/index.php:2633
 msgid "You need <em>USER ADMIN</em> rights to run setup."
-msgstr ""
+msgstr "Для запуска установки необходимо обладать правами администратора. "
 
 #: www/zp-core/setup/index.php:1555
 #: www/zp-core/setup/index.php:2635
@@ -10355,14 +10354,14 @@ msgstr "Создаю таблицу"
 
 #: www/zp-core/setup/index.php:2328
 #: www/zp-core/setup/index.php:2343
-#, fuzzy, php-format
+#, php-format
 msgid "Query %1$s Failed. Error: %2$s"
-msgstr "восстановление — неудача"
+msgstr "Запрос %1$s неудача! Ошибка: %2$s"
 
 #: www/zp-core/setup/index.php:2330
 #, php-format
 msgid "Table creation failure:<br />Query: %1$s<br />Error: %2$s"
-msgstr ""
+msgstr "Создать таблицу не удалось:<br />Запрос: %1$s<br />Ошибка: %2$s"
 
 #: www/zp-core/setup/index.php:2333
 #: www/zp-core/setup/index.php:2345
@@ -10735,7 +10734,7 @@ msgstr ""
 #: www/zp-core/setup/setup_pluginOptions.php:16
 #, php-format
 msgid "Plugin:%s setup started"
-msgstr ""
+msgstr "Плагин:%s производится установка"
 
 #: www/zp-core/setup/setup_pluginOptions.php:22
 #, php-format
@@ -10745,7 +10744,7 @@ msgstr ""
 #: www/zp-core/setup/setup_pluginOptions.php:28
 #, php-format
 msgid "Plugin:%s setup completed"
-msgstr ""
+msgstr "Плагин:%s установка завершена"
 
 #: www/zp-core/setup/setup_set-mod_rewrite.php:18
 msgid "The Zenphoto option \"mod_rewrite\" will be set to \"enabled\"."
@@ -10766,7 +10765,7 @@ msgstr "Замечание: \"Модуль mod_rewrite\" работает."
 #: www/zp-core/setup/setup_themeOptions.php:16
 #, php-format
 msgid "Theme:%s setup started"
-msgstr ""
+msgstr "Тема:%s производится установка"
 
 #: www/zp-core/setup/setup_themeOptions.php:23
 #, php-format
@@ -10815,7 +10814,7 @@ msgstr "резервное копирование завершено"
 
 #: www/zp-core/utilities/backup_restore.php:238
 msgid "backup failed"
-msgstr "резервное копирование — неудача"
+msgstr "резервное копирование - неудача!"
 
 #: www/zp-core/utilities/backup_restore.php:245
 msgid "No backup set found."
@@ -11162,7 +11161,7 @@ msgstr "Показать конфигурацию PHP вашего сервер�
 
 #: www/zp-core/utilities/phpInfo.php:19
 msgid "PHPInfo"
-msgstr ""
+msgstr "PHPInfo"
 
 #: www/zp-core/utilities/phpInfo.php:26
 msgid "PHP Info"
@@ -11429,7 +11428,7 @@ msgstr "Доступна новая версия Zenphoto."
 
 #: www/zp-core/zp-extensions/class-AnyFile.php:18
 msgid "Provides a means for handling arbitrary file types. (No rendering provided!)"
-msgstr ""
+msgstr "Поддержка произвольных типов файлов (Без рендеринга!)"
 
 #: www/zp-core/zp-extensions/class-AnyFile.php:39
 #: www/zp-core/zp-extensions/class-textobject.php:78
@@ -11446,13 +11445,12 @@ msgid "Check to place watermark image on default thumbnail images."
 msgstr "Добавлять водяной знак на типовые миниатюры обьектов."
 
 #: www/zp-core/zp-extensions/class-AnyFile.php:41
-#, fuzzy
 msgid "Handled files"
-msgstr "Не удалось отправить почту"
+msgstr "Поддерживаемые типы"
 
 #: www/zp-core/zp-extensions/class-AnyFile.php:42
 msgid "File suffixes to be handled."
-msgstr ""
+msgstr "Расширения файлов, которые будет обрабатывать плагин."
 
 #: www/zp-core/zp-extensions/class-AnyFile.php:43
 msgid "Add file suffix"
@@ -11464,7 +11462,7 @@ msgstr ""
 
 #: www/zp-core/zp-extensions/class-textobject.php:57
 msgid "Provides a means for showing text type documents (.txt, .html, .htm)."
-msgstr ""
+msgstr "Поддержка отображения текстовых документов (.txt, .html, .htm)."
 
 #: www/zp-core/zp-extensions/class-video.php:21
 msgid "The Zenphoto <em>audio-video</em> handler."
@@ -11814,9 +11812,8 @@ msgid "The text for the note about sending a copy to the address provided in cas
 msgstr "Текст, который отображается, если отмечено <em>Посылать копию</em>"
 
 #: www/zp-core/zp-extensions/contact_form.php:102
-#, fuzzy
 msgid "Contact recipients"
-msgstr "Обратная связь"
+msgstr "Контактный e-mail"
 
 #: www/zp-core/zp-extensions/contact_form.php:104
 msgid "The e-mail address the messages should be sent to. Enter one or more address separated by semicolons."
@@ -12245,7 +12242,7 @@ msgstr ""
 #: www/zp-core/zp-extensions/deprecated-functions.php:641
 #: www/zp-core/zp-extensions/deprecated-functions.php:650
 msgid "The google-maps plugin is deprecated. Convert to GoogleMap."
-msgstr ""
+msgstr "Плагин google-maps устарел. Установите GoogleMap."
 
 #: www/zp-core/zp-extensions/deprecated-functions.php:658
 msgid "printPreloadScript is deprecated. It is a helper for a specific theme and should be placed within that theme's \"functions.php\" script."
@@ -12490,7 +12487,7 @@ msgstr "* Этот параметр можно редактировать в н�
 #: www/zp-core/zp-extensions/dynamic-locale.php:169
 #: www/zp-core/zp-extensions/federated_logon.php:134
 msgid "<p class=\"notebox\">*<strong>Note:</strong> The setting of this option is shared with other plugins.</p>"
-msgstr ""
+msgstr "<p class=\"notebox\">*<strong>Замечание:</strong> Значение этого параметра используется совместно с другими плагинами.</p>"
 
 #: www/zp-core/zp-extensions/email-newuser.php:11
 msgid "Emails a password reset request to a newly created user."
@@ -12562,9 +12559,8 @@ msgid "Remove favorite"
 msgstr "Удалить из избранного"
 
 #: www/zp-core/zp-extensions/favoritesHandler.php:63
-#, fuzzy
 msgid "Link text"
-msgstr "сюда"
+msgstr "Текст ссылки"
 
 #: www/zp-core/zp-extensions/favoritesHandler.php:66
 #, fuzzy
@@ -12638,7 +12634,7 @@ msgstr ""
 #: www/zp-core/zp-extensions/federated_logon.php:122
 #: www/zp-core/zp-extensions/federated_logon.php:123
 msgid "Notify*"
-msgstr ""
+msgstr "Уведомлять*"
 
 #: www/zp-core/zp-extensions/federated_logon.php:116
 msgid "If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration. (Verification is required only if the Federated Logon provider does not supply an e-mail address.)"
@@ -13609,32 +13605,28 @@ msgstr ""
 
 #: www/zp-core/zp-extensions/ipBlocker.php:31
 msgid "Tools to block hacker access to your site."
-msgstr ""
+msgstr " Блокировка хакерского доступа к вашему сайту."
 
 #: www/zp-core/zp-extensions/ipBlocker.php:66
-#, fuzzy
 msgid "Allow"
-msgstr "Все"
+msgstr "Разрешить"
 
 #: www/zp-core/zp-extensions/ipBlocker.php:66
-#, fuzzy
 msgid "Block"
-msgstr "Назад"
+msgstr "Блокировать"
 
 #: www/zp-core/zp-extensions/ipBlocker.php:76
-#, fuzzy
 msgid "IP list"
-msgstr "Страницы"
+msgstr "Список IP"
 
 #: www/zp-core/zp-extensions/ipBlocker.php:78
-#, fuzzy, php-format
+#, php-format
 msgid "List of IP ranges to %s."
-msgstr "Обновления в %s"
+msgstr "%s указанные диапазоны IP адресов."
 
 #: www/zp-core/zp-extensions/ipBlocker.php:79
-#, fuzzy
 msgid "Import list"
-msgstr "Импорт"
+msgstr "Импортировать список"
 
 #: www/zp-core/zp-extensions/ipBlocker.php:84
 #, php-format
@@ -13646,17 +13638,14 @@ msgid "How the plugin will interpret the IP list."
 msgstr ""
 
 #: www/zp-core/zp-extensions/ipBlocker.php:89
-#, fuzzy
 msgid "Logon threshold"
-msgstr "Порог"
+msgstr "Лимит доступа"
 
 #: www/zp-core/zp-extensions/ipBlocker.php:92
-#, fuzzy
 msgid "Logon cool off"
-msgstr "Срок действия"
+msgstr "Срок действия блокировки"
 
 #: www/zp-core/zp-extensions/ipBlocker.php:94
-#, fuzzy
 msgid "The block will be removed after this many minutes."
 msgstr "Блокировка будет снята через указанный промежуток времени (в минутах)"
 
@@ -13665,14 +13654,12 @@ msgid "IP list ranges cannot be managed with the plugin disabled"
 msgstr ""
 
 #: www/zp-core/zp-extensions/ipBlocker.php:153
-#, fuzzy
 msgid "clear list"
-msgstr "Страницы"
+msgstr "очистить список"
 
 #: www/zp-core/zp-extensions/ipBlocker.php:176
-#, fuzzy
 msgid "IP address format error"
-msgstr "IP-адреса"
+msgstr "Неправильный формат IP адреса."
 
 #: www/zp-core/zp-extensions/jcarousel_thumb_nav.php:12
 msgid "jQuery jCarousel thumb nav plugin with dynamic loading of thumbs on request via JavaScript."
@@ -13899,7 +13886,7 @@ msgstr ""
 
 #: www/zp-core/zp-extensions/legacySpam.php:15
 msgid "Use this plugin is to enable using older third party spam filters."
-msgstr ""
+msgstr "Используйте для подключения устаревших СПАМ фильтров сторонних производителей."
 
 #: www/zp-core/zp-extensions/legacySpam.php:17
 #, php-format
@@ -14579,14 +14566,13 @@ msgid "nothing to submit"
 msgstr "Рейтинг не выбран"
 
 #: www/zp-core/zp-extensions/reCaptcha.php:11
-#, fuzzy
 msgid "Zenphoto captcha handler."
-msgstr "Встроенный генератор защитного кода (CAPTCHA)."
+msgstr "Генератор защитного кода (CAPTCHA)."
 
 #: www/zp-core/zp-extensions/reCaptcha.php:13
-#, fuzzy, php-format
+#, php-format
 msgid "Only one Captcha handler plugin may be enalbed. <a href=\"#%1$s\"><code>%1$s</code></a> is already enabled."
-msgstr "Можно включить только один обработчик e-mail. <a href=\"#%1$s\"><code>%1$s</code></a> уже подключен."
+msgstr "Можно включить только один генератор защитного кода. <a href=\"#%1$s\"><code>%1$s</code></a>уже подключен."
 
 #: www/zp-core/zp-extensions/reCaptcha.php:43
 msgid "Public key"
@@ -14606,7 +14592,7 @@ msgstr "Введите ваш приватный ключ <em>reCaptcha</em>."
 
 #: www/zp-core/zp-extensions/register_user.php:26
 msgid "Provides a means for placing a user registration form on your theme pages."
-msgstr ""
+msgstr "Добавляет форму регистрации пользователей в вашу тему оформления."
 
 #: www/zp-core/zp-extensions/register_user.php:44
 #, php-format
@@ -14616,9 +14602,8 @@ msgid ""
 msgstr ""
 
 #: www/zp-core/zp-extensions/register_user.php:46
-#, fuzzy
 msgid "Click here to register for this site."
-msgstr "Нажмите для редактирования названия…"
+msgstr "Нажмите для регистрации на этом сайте."
 
 #: www/zp-core/zp-extensions/register_user.php:66
 msgid "If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration."
@@ -14626,7 +14611,7 @@ msgstr ""
 
 #: www/zp-core/zp-extensions/register_user.php:70
 msgid "If <em>Address fields</em> are shown or required, the form will include positions for address information. If required, the user must supply data in each address field."
-msgstr ""
+msgstr "Выберите, следует ли отображать поля <em>Адреса</em> (город, улица и др.) в регистрационной форме и обязательны ли они для заполнения."
 
 #: www/zp-core/zp-extensions/register_user.php:70
 #, fuzzy
@@ -14664,7 +14649,7 @@ msgstr ""
 
 #: www/zp-core/zp-extensions/register_user.php:80
 msgid "User registration page"
-msgstr ""
+msgstr "Страница регистрации пользователей"
 
 #: www/zp-core/zp-extensions/register_user.php:82
 msgid "If this option is set, the visitor login form will include a link to this page. The link text will be labeled with the text provided."
@@ -14672,7 +14657,7 @@ msgstr ""
 
 #: www/zp-core/zp-extensions/register_user.php:85
 msgid "If checked, CAPTCHA validation will be required for user registration."
-msgstr ""
+msgstr "Если отмечено, то для успешной регистрации потребуется ввести защитный код."
 
 #: www/zp-core/zp-extensions/register_user.php:92
 msgid "* The option may be set via the <a href=\"javascript:gotoName('register_user');\"><em>register_user</em></a> plugin options."
@@ -14680,29 +14665,27 @@ msgstr "* Этот параметр можно редактировать в н�
 
 #: www/zp-core/zp-extensions/register_user.php:121
 msgid "Default user group"
-msgstr ""
+msgstr "Группа по умолчанию"
 
 #: www/zp-core/zp-extensions/register_user.php:124
 msgid "Initial group assignment for the new user."
-msgstr ""
+msgstr "Исходная группа, куда будет приписан новый пользователь."
 
 #: www/zp-core/zp-extensions/register_user.php:133
 msgid "Initial rights for the new user. (If no rights are set, approval of the user will be required.)"
 msgstr ""
 
 #: www/zp-core/zp-extensions/register_user.php:145
-#, fuzzy
 msgid "script"
-msgstr "Описание"
+msgstr "скрипт"
 
 #: www/zp-core/zp-extensions/register_user.php:149
 msgid "*no page selected"
-msgstr ""
+msgstr "*страница не выбрана"
 
 #: www/zp-core/zp-extensions/register_user.php:175
-#, fuzzy
 msgid "Hint text"
-msgstr "сюда"
+msgstr "Текст подсказки"
 
 #: www/zp-core/zp-extensions/register_user.php:340
 #, fuzzy
@@ -15310,7 +15293,7 @@ msgstr "Пожалуйста, зайдите позднее"
 #: www/zp-core/zp-extensions/site_upgrade.php:82
 #: www/zp-core/zp-extensions/site_upgrade.php:87
 msgid "Site status:"
-msgstr "Статус галереи:"
+msgstr "Статус:"
 
 #: www/zp-core/zp-extensions/site_upgrade.php:77
 msgid "The site is closed!"
@@ -15346,7 +15329,7 @@ msgstr "Сайт » закрыть"
 
 #: www/zp-core/zp-extensions/site_upgrade.php:142
 msgid "Make site unavailable for viewing by redirecting to the \"closed.html\" page."
-msgstr "Нажмите, чтобы сделать сайт НЕдоступным для просмотра."
+msgstr "Нажмите, чтобы сделать сайт недоступным для просмотра."
 
 #: www/zp-core/zp-extensions/slideshow.php:27
 msgid "Adds a theme function to call a slideshow either based on jQuery (default) or Flash using Flowplayer3."
@@ -15715,7 +15698,7 @@ msgstr ""
 
 #: www/zp-core/zp-extensions/trivialSpam.php:11
 msgid "Trivial SPAM filter."
-msgstr ""
+msgstr "Базовый СПАМ фильтр."
 
 #: www/zp-core/zp-extensions/trivialSpam.php:61
 msgid "pass"
@@ -15951,7 +15934,7 @@ msgstr ""
 
 #: www/zp-core/zp-extensions/user_groups.php:17
 msgid "Provides rudimentary user groups."
-msgstr ""
+msgstr "Базовое разделение пользователей на группы."
 
 #: www/zp-core/zp-extensions/user_groups.php:117
 #, fuzzy
@@ -16088,7 +16071,7 @@ msgstr "Отправить e-mail"
 
 #: www/zp-core/zp-extensions/viewer_size_image.php:26
 msgid "Provides a means allowing users to select the image size to view."
-msgstr ""
+msgstr "Разрешает посетителям галереи выбирать размер изображения для просмотра."
 
 #: www/zp-core/zp-extensions/viewer_size_image.php:53
 msgid "Image sizes allowed"
@@ -16096,7 +16079,7 @@ msgstr "Допустимые размеры изображений"
 
 #: www/zp-core/zp-extensions/viewer_size_image.php:54
 msgid "List of sizes from which the viewer may select.<br />The form is \"$s=&lt;size&gt;\" or \"$h=&lt;height&gt;,$w=&lt;width&gt;;\"....<br />See printCustomSizedImage() for details"
-msgstr "Список размеров изображений, из которых посетитель галереи может выбирать.<br />Синтаксис: \"$s=&lt;размер&gt;\" или \"$h=&lt;высота&gt;,$w=&lt;ширина&gt;;\"....<br />Подробнее см. функцию printCustomSizedImage()"
+msgstr "Список размеров изображений, из которых посетитель галереи может выбирать.<br />Синтаксис: \"$s=&lt;размер&gt;\" или \"$h=&lt;высота&gt;,$w=&lt;ширина&gt;;\"....<br />Подробнее см. функцию <code>printCustomSizedImage()</code>"
 
 #: www/zp-core/zp-extensions/viewer_size_image.php:55
 msgid "Selector"
@@ -16112,7 +16095,7 @@ msgstr "Раскрывающийся список"
 
 #: www/zp-core/zp-extensions/viewer_size_image.php:57
 msgid "Choose the kind of selector to be presented the viewer."
-msgstr ""
+msgstr "Тип селектора изображений, который будет установлен на страницах."
 
 #: www/zp-core/zp-extensions/viewer_size_image.php:58
 msgid "Default size"
@@ -16398,7 +16381,7 @@ msgstr "Метаданные:"
 
 #: www/zp-core/zp-extensions/zenpage.php:43
 msgid "A CMS plugin that adds the capability to run an entire gallery focused website with zenphoto."
-msgstr ""
+msgstr "CMS плагин, дающий возможность создавать полноценные вебсайты на базе Zenphoto."
 
 #: www/zp-core/zp-extensions/zenpage.php:44
 msgid "<strong>Note:</strong> This feature must be integrated into your theme. It is not supported by either the <em>default</em> or the <em>stopdesign</em> theme."
@@ -16676,7 +16659,7 @@ msgstr "* Эти параметры можно редактировать в н�
 
 #: www/zp-core/zp-extensions/zenpage.php:255
 msgid "Enable Zenpage CMS plugin"
-msgstr ""
+msgstr "Включить CMS плагин Zenpage "
 
 #: www/zp-core/zp-extensions/zenpage.php:354
 msgid "Edit Page"
@@ -19102,9 +19085,8 @@ msgid "ExtraContent:"
 msgstr "Дополнительно:"
 
 #: www/zp-core/zp-extensions/zenpage/admin-edit.php:751
-#, fuzzy
 msgid "Custom:"
-msgstr "Пользовательский"
+msgstr "Пользовательские<br /> данные:"
 
 #: www/zp-core/zp-extensions/zenpage/admin-news-articles.php:20
 #: www/zp-core/zp-extensions/zenpage/admin-pages.php:20
