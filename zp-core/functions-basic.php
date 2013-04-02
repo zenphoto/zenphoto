@@ -972,6 +972,20 @@ function rewrite_path($rewrite, $plain, $webpath=true) {
 }
 
 /**
+ * parses a query string WITHOUT url decoding it!
+ * @param string $str
+ */
+function parse_query($str) {
+	$pairs = explode('&', $str);
+	$params = array();
+	foreach($pairs as $pair) {
+		list($name, $value) = explode('=', $pair, 2);
+		$params[$name] = $value;
+	}
+	return $params;
+}
+
+/**
  * rawurlencode function that is path-safe (does not encode /)
  *
  * @param string $path URL
@@ -983,9 +997,16 @@ function pathurlencode($path) {
 	$link = implode("/", array_map("rawurlencode", explode("/", $parts[0])));
 	if (count($parts)==2) {
 		//	some kind of query link
-		$link .= '?'.html_encode($parts[1]);
+		$pairs = parse_query($parts[1]);
+		$query = '?';
+		foreach($pairs as $name=>$value) {
+			$query .= $name.'='.urlencode($value).'&';
+		}
+		$query - substr($query,0,-1);
+	} else {
+		$query = '';
 	}
-	return $matches[1].$link;
+	return $matches[1].$link.$query;
 }
 
 /**
