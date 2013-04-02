@@ -26,8 +26,8 @@ function jqm_printRSSlinks() {
 	<?php // these links must change to ones with rel="external" so they are actually loaded via jquerymobile!
 		if(getOption('zp_plugin_zenpage')) {
 			?>
-			<li class="rsslink"><a href="<?php echo html_encode(getZenpageRSSLink('News')); ?>" rel="external" data-ajax="false"><?php echo gettext('News'); ?></a></li>
-			<li class="rsslink"><a href="<?php echo html_encode(getZenpageRSSLink('NewsWithImages')); ?>" rel="external" data-ajax="false"><?php echo gettext('News and Gallery'); ?></a></li>
+			<li class="rsslink"><a href="<?php echo html_encode(getRSSLink('News')); ?>" rel="external" data-ajax="false"><?php echo gettext('News'); ?></a></li>
+			<li class="rsslink"><a href="<?php echo html_encode(getRSSLink('NewsWithImages')); ?>" rel="external" data-ajax="false"><?php echo gettext('News and Gallery'); ?></a></li>
 			<?php
 		}
 		 ?>

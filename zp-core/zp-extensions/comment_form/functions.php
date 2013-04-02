@@ -891,10 +891,10 @@ if (getOption('comment_form_rss') && getOption('RSS_comments')) {
 			printRSSLink("Comments-album","",gettext("Subscribe to comments"),"");
 			break;
 		case "news.php":
-			printZenpageRSSLink("Comments-news", "", "", gettext("Subscribe to comments"), "");
+			printRSSLink("Comments-news", "", gettext("Subscribe to comments"), "");
 			break;
 		case "pages.php":
-			printZenpageRSSLink("Comments-page", "", "", gettext("Subscribe to comments"), "");
+			printRSSLink("Comments-page", "", gettext("Subscribe to comments"), "");
 			break;
 	}
 }

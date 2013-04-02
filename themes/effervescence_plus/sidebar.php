@@ -88,10 +88,10 @@ if(function_exists('printCustomMenu') && ($menu = getOption('effervescence_menu'
 			<ul>
 				<?php printRSSLink('Gallery','<li>',gettext('Gallery'), '</li>'); ?>
 				<?php
-				if(function_exists("printZenpageRSSLink")) {
+				if(getOption('zp_plugin_zenpage')) {
 					?>
-					<?php printZenpageRSSLink("News","","<li>",gettext("News"), '</li>'); ?>
-					<?php printZenpageRSSLink("NewsWithImages","","<li>",gettext("News and Gallery"),'</li>'); ?>
+					<?php printRSSLink("News","<li>",gettext("News"), '</li>'); ?>
+					<?php printRSSLink("NewsWithImages","<li>",gettext("News and Gallery"),'</li>'); ?>
 				<?php
 				}
 				?>

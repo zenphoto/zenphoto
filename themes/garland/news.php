@@ -7,7 +7,7 @@ if (!defined('WEBPATH') || !class_exists('Zenpage')) die();
 	<?php zp_apply_filter('theme_head'); ?>
 	<title><?php printGalleryTitle(); ?> | <?php echo gettext('News'); ?> <?php printNewsTitle(); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
-	<?php printZenpageRSSHeaderLink("News","", "Zenpage news", ""); ?>
+	<?php printRSSHeaderLink("News","Zenpage news", ""); ?>
 </head>
 <body class="sidebars">
 <?php zp_apply_filter('theme_body_open'); ?>

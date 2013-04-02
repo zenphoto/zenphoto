@@ -27,7 +27,6 @@ if (!isset($_GET['a']) || !isset($_GET['i'])) {
 list($album8, $image8) = rewrite_get_album_image('a', 'i');
 $album = internalToFilesystem($album8);
 $image = internalToFilesystem($image8);
-$theme = themeSetup($album); // loads the theme based image options.
 
 /* Prevent hotlinking to the full image from other domains. */
 if (getOption('hotlink_protection') && isset($_SERVER['HTTP_REFERER'])) {

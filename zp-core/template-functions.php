@@ -3459,20 +3459,27 @@ function getURL($image) {
  * 																		"AlbumsRSS" for latest albums
  * 																		"AlbumsRSScollection" only for latest subalbums with the album it is called from
  * 															or
- * 																		a getZenpageRSSLink option
+ * 																		"News" feed for all news articles
+ * 																		"Category" for only the news articles of the category that is currently selected
+ * 																		"NewsWithImages" for all news articles and latest images
+ * 																		"Comments" for all news articles and pages
+ * 																		"Comments-news" for comments of only the news article it is called from
+ * 																		"Comments-page" for comments of only the page it is called from
+ * 																		"Comments-all" for comments from all albums, images, news articels and pages
+ *																		"Pages" feed for all pages
  * @param string $lang optional to display a feed link for a specific language. Enter the locale like "de_DE" (the locale must be installed on your Zenphoto to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
- * @since 1.4.2
- * @param string $addl provided additional data for feeds (e.g. album object for album feeds, $categorylink for getZenpageRSSLink categories
+ * @param string $addl provided additional data for feeds (e.g. album object for album feeds, $categorylink for zenpage categories
  */
 function getRSSLink($option,$lang=NULL,$addl=NULL) {
-	global $_zp_current_album, $_zp_current_image;
+	global $_zp_current_album, $_zp_current_image, $_zp_current_admin_obj;
 	if(empty($lang)) {
 		$lang = zpFunctions::getLanguageText(getOption('locale'));
 	}
+	$link = NULL;
 	switch($option) {
 		case 'Gallery':
 			if (getOption('RSS_album_image')) {
-				return WEBPATH.'/index.php?rss&lang='.$lang;
+				$link =  array();
 			}
 			break;
 		case 'Album':
@@ -3482,7 +3489,7 @@ function getRSSLink($option,$lang=NULL,$addl=NULL) {
 				} else {
 					$album = $_zp_current_album;
 				}
-				return WEBPATH.'/index.php?rss&albumname='.urlencode($album->getFolder()).'&lang='.$lang;
+				$link = array('albumname'=>urlencode($album->getFolder()));
 				break;
 			}
 		case 'Collection':
@@ -3492,39 +3499,83 @@ function getRSSLink($option,$lang=NULL,$addl=NULL) {
 				} else {
 					$album = $_zp_current_album;
 				}
-				return WEBPATH.'/index.php?rss&folder='.urlencode($album->getFolder()).'&lang='.$lang;
+				$link = array('folder'=>urlencode($album->getFolder()));
 			}
 			break;
 		case 'Comments':
 			if (getOption('RSS_comments')) {
-				return WEBPATH.'/index.php?rss=comments&type=gallery&lang='.$lang;
+				$link = array('comments'=>'1','type'=>'gallery');
 			}
 			break;
 		case 'Comments-image':
 			if (getOption('RSS_comments')) {
-				return WEBPATH.'/index.php?rss=comments&id='.$_zp_current_image->getID().'&type=image&lang='.$lang;
+				$link = array('comments'=>'1', 'id'=>(string) $_zp_current_image->getID(),'type'=>'image');
 			}
 			break;
 		case 'Comments-album':
 			if (getOption('RSS_comments')) {
-				return WEBPATH.'/index.php?rss=comments&id='.$_zp_current_album->getID().'&type=album&lang='.$lang;
+				$link = array('comments'=>'1','id'=>(string) $_zp_current_album->getID(),'type'=>'album');
 			}
 			break;
 		case 'AlbumsRSS':
 			if (getOption('RSS_album_image')) {
-				return WEBPATH.'/index.php?rss&lang='.$lang.'&albumsmode';
+				$link = array('albumsmode'=>'1');
 			}
 			break;
 		case 'AlbumsRSScollection':
 			if (getOption('RSS_album_image')) {
-				return WEBPATH.'/index.php?rss&folder='.urlencode($_zp_current_album->getFolder()).'&lang='.$lang.'&albumsmode';
+				$link = array('folder'=>urlencode($_zp_current_album->getFolder()),'albumsmode'=>'1');
 			}
 			break;
-		default:
-			if (function_exists('getZenpageRSSLink')) {
-				return getZenpageRSSLink($option,$addl,$lang);
+		case 'Pages':
+			if (getOption('RSS_pages')) {
+				$link = array('page'=>'1');
 			}
 			break;
+		case 'News':
+			if (getOption('RSS_articles')) {
+				$link = array('new'=>'1');
+			}
+			break;
+		case 'Category':
+			if (getOption('RSS_articles')) {
+				$link = array('news'=>'1',$categorylink=>'1');
+			}
+			break;
+		case 'NewsWithImages':
+			if (getOption('RSS_articles')) {
+				$link = array('news'=>'1','withimages'=>'1');
+			}
+			break;
+		case 'Comments':
+			if (getOption('RSS_article_comments')) {
+				$link = array('comment'=>1,'type'=>'zenpage');
+			}
+			break;
+		case 'Comments-news':
+			if (getOption('RSS_article_comments')) {
+				$link = array('comment'=>'1','id'=>(string) getNewsID(),'type'=>news);;
+			}
+			break;
+		case 'Comments-page':
+			if (getOption('RSS_article_comments')) {
+				$link = array('comment'=>1,'id'=>(string) getPageID(),'type'=>'page');
+			}
+			break;
+		case 'Comments-all':
+			if (getOption('RSS_article_comments')) {
+				$link = array('comment'=>1,'type'=>'allcomments');;
+			}
+			break;
+	}
+	if (is_array($link)) {
+		$link['lang'] = $lang;
+		if (zp_loggedin()) {
+			$link['user'] = (string) $_zp_current_admin_obj->getID();
+			$link['token'] = Zenphoto_Authority::passwordHash(serialize($link), getUserIP());
+		}
+		$uri = WEBPATH.'/index.php?rss&'.http_build_query($link);
+		return $uri;
 	}
 	return NULL;
 }
@@ -3532,23 +3583,16 @@ function getRSSLink($option,$lang=NULL,$addl=NULL) {
 /**
  * Prints an RSS link
  *
- * @param string $option type of RSS: "Gallery" feed for latest images of the whole gallery
- * 																		"Album" for latest images only of the album it is called from
- * 																		"Collection" for latest images of the album it is called from and all of its subalbums
- * 																		"Comments" for all comments of all albums and images
- * 																		"Comments-image" for latest comments of only the image it is called from
- * 																		"Comments-album" for latest comments of only the album it is called from
- * 																		"AlbumsRSS" for latest albums
- * 																		"AlbumsRSScollection" only for latest subalbums with the album it is called from
+ * @param string $option type of RSS: See getRSSLink for details
  * @param string $prev text to before before the link
  * @param string $linktext title of the link
  * @param string $next text to appear after the link
  * @param bool $printIcon print an RSS icon beside it? if true, the icon is zp-core/images/rss.png
  * @param string $class css class
  * @param string $lang optional to display a feed link for a specific language. Enter the locale like "de_DE" (the locale must be installed on your Zenphoto to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
- * @since 1.1
+ * @param string $addl provided additional data for feeds (e.g. album object for album feeds, $categorylink for zenpage categories
  */
-function printRSSLink($option, $prev, $linktext, $next, $printIcon=true, $class=null,$lang='') {
+function printRSSLink($option, $prev, $linktext, $next, $printIcon=true, $class=null, $lang='', $addl=NULL) {
 	if ($printIcon) {
 		$icon = ' <img src="' . FULLWEBPATH . '/' . ZENFOLDER . '/images/rss.png" alt="RSS Feed" />';
 	} else {
@@ -3560,7 +3604,7 @@ function printRSSLink($option, $prev, $linktext, $next, $printIcon=true, $class=
 	if(empty($lang)) {
 		$lang = zpFunctions::getLanguageText(getOption("locale"));
 	}
-	echo $prev."<a $class href=\"".html_encode(getRSSLink($option,$lang))."\" title=\"".gettext("Latest images RSS")."\" rel=\"nofollow\">".$linktext."$icon</a>".$next;
+	echo $prev."<a $class href=\"".html_encode(getRSSLink($option,$lang,$addl))."\" title=\"".gettext("Latest images RSS")."\" rel=\"nofollow\">".$linktext."$icon</a>".$next;
 }
 
 /**
@@ -3576,16 +3620,16 @@ function printRSSLink($option, $prev, $linktext, $next, $printIcon=true, $class=
  * 																		"AlbumsRSScollection" only for latest subalbums with the album it is called from
  * @param string $linktext title of the link
  * @param string $lang optional to display a feed link for a specific language. Enter the locale like "de_DE" (the locale must be installed on your Zenphoto to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
+ * @param string $addl provided additional data for feeds (e.g. album object for album feeds, $categorylink for zenpage categories
  *
- * @since 1.1.6
  */
-function printRSSHeaderLink($option, $linktext, $lang='') {
+function printRSSHeaderLink($option, $linktext, $lang='', $addl=NULL) {
 	$host = html_encode($_SERVER["HTTP_HOST"]);
 	$protocol = SERVER_PROTOCOL.'://';
 	if ($protocol == 'https_admin') {
 		$protocol = 'https://';
 	}
-	echo "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.html_encode(getRSSLink($option,$lang))."\" />\n";
+	echo "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.html_encode(getRSSLink($option,$lang,$addl))."\" />\n";
 }
 
 

@@ -191,8 +191,22 @@ class RSS {
 	*
 	*/
 	function __construct() {
-		global $_zp_gallery;
+		global $_zp_gallery, $_zp_current_admin_obj, $_zp_loggedin;
 		if(isset($_GET['rss'])) {
+			if (isset($_GET['token'])) {
+				//	The link camed from a logged in user, see if it is valid
+				$link = $_GET;
+				unset($link['rss']);
+				unset($link['token']);
+				$token = Zenphoto_Authority::passwordHash(serialize($link), getUserIP());
+				if ($token == $_GET['token']) {
+					$adminobj = Zenphoto_Authority::getAnAdmin(array('`id`='=>(int) $link['user']));
+					if ($adminobj) {
+						$_zp_current_admin_obj = $adminobj;
+						$_zp_loggedin = $_zp_current_admin_obj->getRights();
+					}
+				}
+			}
 			// general feed setup
 			$channeltitlemode = getOption('feed_title');
 			$this->host = html_encode($_SERVER["HTTP_HOST"]);

@@ -946,7 +946,7 @@ function getRSSHeaderLink($option, $linktext='', $lang='') {
  * @since 1.4.2
  */
 function getZenpageRSSHeaderLink($option='', $categorylink='', $linktext='', $lang='') {
-	deprecated_functions::notify(gettext('Use the template function <code>getZenpageRSSLink()</code> instead. NOTE: While this function gets a full html link  <code>getZenpageRSSLink()</code> just returns the URL.'));
+	deprecated_functions::notify(gettext('Use the template function <code>getRSSLink()</code> instead. NOTE: While this function gets a full html link  <code>getRSSLink()</code> just returns the URL.'));
 	global $_zp_current_category;
 	$host = html_encode($_SERVER["HTTP_HOST"]);
 	$protocol = SERVER_PROTOCOL.'://';
@@ -1184,6 +1184,7 @@ function printCaptcha($preText='', $midText='', $postText='') {
  * @since 1.4.5
  */
 function printField($context, $field, $convertBR = NULL, $override = false, $label='') {
+	deprecated_functions::notify(gettext('Front end editing is not supported. Use the property specific methods.'));
 	if (is_null($convertBR)) $convertBR = !getOption('zp_plugin_tiny_mce');
 	switch($context) {
 		case 'image':
@@ -1232,6 +1233,30 @@ function printField($context, $field, $convertBR = NULL, $override = false, $lab
 
 }
 
+/**
+ * @deprecated
+ * @since 1.4.5
+ */
+function getZenpageRSSLink($option='News', $categorylink='', $lang=NULL) {
+	deprecated_functions::notify(gettext('use getRSSLink($option,$lang,$categorylink).'));
+	return getRSSLink($option,$lang,$categorylink);
+}
+/**
+ * @deprecated
+ * @since 1.4.5
+ */
+function printZenpageRSSLink($option='News', $categorylink='', $prev='', $linktext='', $next='', $printIcon=true, $class=null, $lang=NULL) {
+	deprecated_functions::notify(gettext('printRSSLink($option, $prev, $linktext, $next, $printIcon, $class, $lang, categoryLink).'));
+	printRSSLink($option, $prev, $linktext, $next, $printIcon, $class, $lang, categoryLink);
+}
+/**
+ * @deprecated
+ * @since 1.4.5
+ */
+function printZenpageRSSHeaderLink($option='News',$categorylink='',$linktext='',$lang=null) {
+	deprecated_functions::notify(gettext('use printRSSHeaderLink($option, $linktext, $lang, $categorylink)).'));
+	printRSSHeaderLink($option, $linktext, $lang, $categorylink);
+}
 
 
 ?>

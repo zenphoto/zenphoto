@@ -13,7 +13,7 @@ if (!defined('WEBPATH') || !class_exists('Zenpage')) die();
 	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/effervescence_plus/common.css" type="text/css" />
 	<?php effervescence_theme_head(); ?>
-	<?php printZenpageRSSHeaderLink("Pages","", "Zenpage news", ""); ?>
+	<?php printRSSHeaderLink("Pages","Zenpage news", ""); ?>
 </head>
 
 <body onload="blurAnchors()">

@@ -619,7 +619,7 @@ class Zenphoto_Authority {
 
 	/**
 	 * Set log-in cookie for a user
-	 * @param string $user
+	 * @param object $user
 	 */
 	static function logUser($user) {
 		$user->set('lastloggedin', $user->get('loggedin'));

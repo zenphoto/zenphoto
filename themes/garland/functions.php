@@ -91,9 +91,9 @@ function footer() {
 				break;
 			case 'news.php':
 				if (is_NewsCategory()) {
-					printZenpageRSSLink('Category', $_zp_current_category->getTitlelink(), '','RSS', '');
+					printRSSLink('News', '', 'RSS', '', true, null, '',$_zp_current_category->getTitlelink());
 				} else {
-					printZenpageRSSLink('News', '', '','RSS', '');
+					printRSSLink('News', '','RSS', '');
 				}
 				break;
 			case 'password.php':

@@ -64,10 +64,12 @@ if (getOption('RSS_album_image') || getOption('RSS_articles')) {
 		<?php printRSSLink('Album', '<li>', gettext('Album RSS'), '</li>'); ?>
 		<?php } ?>
 			<?php printRSSLink('Gallery','<li>','Gallery', '</li>'); ?>
-			<?php if(function_exists("printZenpageRSSLink")) { ?>
-			<?php printZenpageRSSLink("News","","<li>",gettext("News"),'</li>'); ?>
-			<?php printZenpageRSSLink("NewsWithImages","","<li>",gettext("News and Gallery"),'</li>'); ?>
-			<?php } ?>
+			<?php
+			if(getOption('zp_plugin_zenpage')) {
+				printRSSLink("News","<li>",gettext("News"),'</li>');
+				printRSSLink("NewsWithImages","<li>",gettext("News and Gallery"),'</li>');
+			}
+			?>
 		</ul>
 	</div>
 	<?php

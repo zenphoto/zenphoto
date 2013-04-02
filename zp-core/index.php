@@ -106,20 +106,22 @@ if (file_exists($custom)) {
 if ($zp_request && $_zp_script && file_exists($_zp_script = SERVERPATH . "/" . internalToFilesystem($_zp_script))) {
 	if (checkAccess($hint, $show)) { // ok to view
 		setThemeColumns();
+		$status = '200 OK';
 	} else {
+		$status = '200 OK';
 		if (is_object($_zp_HTML_cache)) {	//	don't cache the logon page or you can never see the real one
 			$_zp_HTML_cache->abortHTMLCache();
 		}
 		$_zp_gallery_page = 'password.php';
-		$_zp_script = SERVERPATH.'/'.THEMEFOLDER.'/'.$_index_theme.'/password.php';
+		$_zp_script = $_zp_themeroot.'/password.php';
 		if (!file_exists(internalToFilesystem($_zp_script))) {
 			$_zp_script = SERVERPATH.'/'.ZENFOLDER.'/password.php';
 		}
 	}
 	// Include the appropriate page for the requested object, and a 200 OK header.
 	header ('Content-Type: text/html; charset=' . LOCAL_CHARSET);
-	header("HTTP/1.0 200 OK");
-	header("Status: 200 OK");
+	header("HTTP/1.0 $status");
+	header("Status: $status");
 	header('Last-Modified: ' . ZP_LAST_MODIFIED);
 	zp_apply_filter('theme_headers');
 	include(internalToFilesystem($_zp_script));
