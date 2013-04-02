@@ -276,11 +276,11 @@ class Zenphoto_Authority {
 	/**
 	 * Checks a logon user/password against admins
 	 *
-	 * Returns true if there is a match
+	 * Returns the user object if there is a match
 	 *
 	 * @param string $user
 	 * @param string $pass
-	 * @return bool
+	 * @return object
 	 */
 	static function checkLogon($user, $pass) {
 		$userobj = self::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
@@ -1159,14 +1159,14 @@ class Zenphoto_Authority {
 		}
 		function togglePassword(id) {
 		if($('#pass'+id).attr('type')=='password') {
-				var oldp = $('#pass'+id);
+		var oldp = $('#pass'+id);
 				var newp = oldp.clone();
 				newp.attr('type', 'text');
 				newp.insertAfter(oldp);
 				oldp.remove();
 				$('.password_field_'+id).hide();
 			} else {
-				var oldp = $('#pass'+id);
+			var oldp = $('#pass'+id);
 				var newp = oldp.clone();
 				newp.attr('type', 'password');
 				newp.insertAfter(oldp);
