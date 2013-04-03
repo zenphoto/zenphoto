@@ -191,9 +191,8 @@ class ZenpagePage extends ZenpageItems {
 		$sortorder = $this->getSortOrder();
 		$pages = $_zp_zenpage->getPages($published,false,$number,$sorttype, $sortdirection);
 		foreach($pages as $page) {
-			$pageobj = new ZenpagePage($page['titlelink']);
-			if($pageobj->getParentID() == $this->getID() && $pageobj->getSortOrder()  != $sortorder) { // exclude the page itself!
-				array_push($subpages,$pageobj->data);
+			if($page['parentid'] == $this->getID() && $page['sort_order']  != $sortorder) { // exclude the page itself!
+				array_push($subpages,$page);
 			}
 		}
 		return $subpages;
