@@ -40,7 +40,7 @@ if (!defined('WEBPATH') || !class_exists('Zenpage')) die();
 				<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b">
 				<?php
 				foreach($subpages as $subpage) {
-					$obj = new ZenpagePage($subpage);
+					$obj = new ZenpagePage($subpage['titlelink']);
 					?>
 					<li><a href="<?php echo html_encode($_zp_zenpage->getPagesLinkPath().$obj->getTitlelink()); ?>" title="<?php echo html_encode($obj->getTitle()); ?>"><?php echo html_encode($obj->getTitle()); ?></a></li>
 				<?php

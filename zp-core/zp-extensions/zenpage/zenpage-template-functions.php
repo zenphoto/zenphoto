@@ -2776,7 +2776,7 @@ function printSubPagesExcerpts($excerptlength=NULL, $readmore=NULL, $shortenindi
 		$excerptlength = ZP_SHORTEN_LENGTH;
 	}
 	foreach($pages as $page) {
-		$pageobj = new ZenpagePage($page);
+		$pageobj = new ZenpagePage($page['titlelink']);
 		if($pageobj->getParentID() == $_zp_current_zenpage_page->getID()) {
 			$subcount++;
 			$pagetitle = html_encode($pageobj->getTitle());

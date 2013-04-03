@@ -14,6 +14,10 @@ class ZenpagePage extends ZenpageItems {
 	var $view_rights = ALL_PAGES_RIGHTS;
 
 	function __construct($titlelink, $allowCreate=NULL) {
+		if (is_array($titlelink)) {
+			deprecated_function::notify(gettext('The ZenpagePage::getPages() method now returns an array to be consistent with the other same named methods. You should change your code to pass the <code>titlelink>/code> element of this array.'));
+			$titlelink = $titlelink['titlelink'];
+		}
 		$new = parent::PersistentObject('pages', array('titlelink'=>$titlelink), 'titlelink', true, empty($titlelink), $allowCreate);
 	}
 
@@ -189,7 +193,7 @@ class ZenpagePage extends ZenpageItems {
 		foreach($pages as $page) {
 			$pageobj = new ZenpagePage($page['titlelink']);
 			if($pageobj->getParentID() == $this->getID() && $pageobj->getSortOrder()  != $sortorder) { // exclude the page itself!
-				array_push($subpages,$pageobj->getTitlelink());
+				array_push($subpages,$pageobj->data);
 			}
 		}
 		return $subpages;
