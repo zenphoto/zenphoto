@@ -74,13 +74,17 @@ class Zenphoto_Authority {
 	 * @return array
 	 */
 	function getOptionsSupported() {
+		$encodings = self::$hashList;
+		if (!function_exists('hash')) {
+			unset($encodings['pbkdf2']);
+		}
 		return array(	gettext('Primary album edit') => array('key' => 'user_album_edit_default', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext('Check if you want <em>edit rights</em> automatically assigned when a user <em>primary album</em> is created.')),
 									gettext('Minimum password strength') => array('key' => 'password_strength', 'type' => OPTION_TYPE_CUSTOM,
 										'desc' => sprintf(gettext('Users must provide passwords a strength of at least %s. The repeat password field will be disabled until this floor is met.'),
 										'<span id="password_strength_display">'.getOption('password_strength').'</span>')),
 									gettext('Password hash algorithm')=> array('key'=>'strong_hash', 'type'=>OPTION_TYPE_SELECTOR,
-										'selections' => self::$hashList,
+										'selections' => $encodings,
 										'desc'=> sprintf(gettext('The hashing algorithm used by Zenphoto. In order of robustness the choices are %s'), '<code>'.implode('</code> > <code>',array_flip(self::$hashList)).'</code>'))
 									);
 	}
