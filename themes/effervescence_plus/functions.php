@@ -357,9 +357,6 @@ function printFooter($admin=true) {
 	</div>
 	<!-- Administration Toolbox -->
 	<?php
-	if ($admin) {
-		printAdminToolbox();
-	}
 }
 
 function commonNewsLoop($paged) {

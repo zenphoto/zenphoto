@@ -1258,5 +1258,12 @@ function printZenpageRSSHeaderLink($option='News',$categorylink='',$linktext='',
 	printRSSHeaderLink($option, $linktext, $lang, $categorylink);
 }
 
+/**
+ * @deprecated
+ * @since 1.4.5
+ */
+function printAdminToolbox($id='admin', $customDIV=false) {
+	deprecated_functions::notify(gettext('This feature is now done by a "theme_body_close" filter. You can remove the function call.'));
+}
 
 ?>

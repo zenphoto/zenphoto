@@ -23,20 +23,23 @@ function listUses($base) {
 	$output = false;
 	foreach($_files as $file) {
 		if (basename($file) != 'deprecated-functions.php') {
-			set_time_limit (60);
+			set_time_limit (120);
 			$subject = file_get_contents($file);
 			preg_match_all('/'.$pattern.'/', $subject, $matches);
 			if ($matches && !empty($matches[0])) {
 				$script = basename($file);
 				$location = str_replace($base.'/', '', dirname($file));
-				echo '<br />'.$script;
+				if (!$output) {
+					echo '<br /><strong>'.$location.'</strong><ul>';
+				}
+				echo '<li> '.$script;
 				echo '<ul>';
 				foreach ($matches[0] as $match) {
 					$match = preg_replace('/(.*)?\s/', '', $match);
 					$match = preg_replace('/\s?\(/', '', $match);
 					echo '<li>'.$match.'</li>';
 				}
-				echo '</ul>';
+				echo '</ul></li></ul>';
 				$output = true;
 			}
 		}

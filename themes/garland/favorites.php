@@ -130,7 +130,6 @@ if (!defined('WEBPATH')) die();
 	<span class="clear"></span>
 </div><!-- wrapper -->
 <?php
-printAdminToolbox();
 zp_apply_filter('theme_body_close');
 ?>
 </body>

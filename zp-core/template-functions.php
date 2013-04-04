@@ -60,11 +60,9 @@ function printZenJavascripts() {
 
 /**
  * Prints the clickable drop down toolbox on any theme page with generic admin helpers
- * @param string $id the html/css theming id
- * @param bool $customDIV set true to omit the show/hid divisions tags
  *
  */
-function printAdminToolbox($id='admin', $customDIV=false) {
+function adminToolbox() {
 	global $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery_page, $_zp_gallery, $_zp_current_admin_obj;
 	if (zp_loggedin()) {
 		$protocol = SERVER_PROTOCOL;
@@ -72,7 +70,8 @@ function printAdminToolbox($id='admin', $customDIV=false) {
 			$protocol = 'https';
 		}
 		$zf = $protocol.'://'.$_SERVER['HTTP_HOST'].WEBPATH."/".ZENFOLDER;
-		$dataid = $id . '_data';
+		$id = 'admin';
+		$dataid = 'admin_data';
 		$page = getCurrentPage();
 		?>
 		<script type="text/javascript">
@@ -85,18 +84,12 @@ function printAdminToolbox($id='admin', $customDIV=false) {
 			}
 			// ]]> -->
 		</script>
-		<?php
-		if (!$customDIV) {
-			?>
-			<div id="<?php echo $id; ?>">
-				<h3><a href="javascript:toggle('<?php echo $dataid; ?>');"><?php echo gettext('Admin Toolbox'); ?></a></h3>
-			</div>
-			<div id="<?php echo $dataid; ?>" style="display: none;">
-			<?php
-		}
-		?>
+		<div id="<?php echo $id; ?>">
+			<h3><a href="javascript:toggle('<?php echo $dataid; ?>');"><?php echo gettext('Admin Toolbox'); ?></a></h3>
+		</div>
+		<div id="<?php echo $dataid; ?>" style="display: none;">
 
-		<ul<?php if (!$customDIV) echo ' style="list-style-type: none;"'; ?>>
+		<ul style="list-style-type: none;" >
 			<?php
 			if (zp_loggedin(OVERVIEW_RIGHTS)) {
 				?>
@@ -331,12 +324,8 @@ function printAdminToolbox($id='admin', $customDIV=false) {
 			}
 			?>
 		</ul>
+		</div>
 		<?php
-		if (!$customDIV) {
-			?>
-			</div>
-			<?php
-		}
 	}
 }
 
@@ -4337,5 +4326,6 @@ function printCodeblock($number=1,$what=NULL) {
 }
 
 zp_register_filter('theme_head','printZenJavascripts',9999);
+zp_register_filter('theme_body_close','adminToolbox');
 
 ?>

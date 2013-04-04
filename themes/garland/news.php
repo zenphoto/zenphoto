@@ -114,7 +114,6 @@ if (!defined('WEBPATH') || !class_exists('Zenpage')) die();
 	</div><!-- /container -->
 </div>
 <?php
-printAdminToolbox();
 zp_apply_filter('theme_body_close');
 ?>
 </body>

@@ -50,7 +50,6 @@ if (!defined('WEBPATH') || !function_exists('printRegistrationForm')) die();
 
 </div><!-- main -->
 <?php
-printAdminToolbox();
 zp_apply_filter('theme_body_close');
 ?>
 </body>

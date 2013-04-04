@@ -199,7 +199,6 @@ $thisalbum = $_zp_current_album;
 			</p>
 		</div>
 		<?php
-		printAdminToolbox();
 		zp_apply_filter('theme_body_close');
 		?>
 </body>

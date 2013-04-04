@@ -51,7 +51,6 @@ if (!defined('WEBPATH') || !function_exists('printContactForm')) die();
 	</div><!-- /container -->
 </div>
 <?php
-printAdminToolbox();
 zp_apply_filter('theme_body_close');
 ?>
 </body>

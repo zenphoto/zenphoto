@@ -69,7 +69,6 @@ if (!defined('WEBPATH')) die();
 		<?php @call_user_func('mobileTheme::controlLink'); ?>
 		<?php @call_user_func('printLanguageSelector'); ?>
 		<?php
-		printAdminToolbox();
 		zp_apply_filter('theme_body_close');
 		?>
 	</body>

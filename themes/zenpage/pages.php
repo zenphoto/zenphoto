@@ -58,7 +58,6 @@ if(getTags()) { echo gettext('<strong>Tags:</strong>'); } printTags('links', '',
 
 </div><!-- main -->
 <?php
-printAdminToolbox();
 zp_apply_filter('theme_body_close');
 ?>
 </body>
