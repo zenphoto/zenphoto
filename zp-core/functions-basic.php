@@ -732,7 +732,7 @@ function getImageParameters($args, $album=NULL) {
 function getImageProcessorURI($args, $album, $image) {
 	list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;
 	$args[8] = NULL;	// not used by image processo
-	$uri = WEBPATH.'/'.ZENFOLDER.'/i.php?a='.pathurlencode($album).'&i='.urlencode($image);
+	$uri = WEBPATH.'/'.ZENFOLDER.'/i.php?a='.$album.'&i='.$image;
 	if (empty($size)) {
 		$args[0] = NULL;
 	} else {
