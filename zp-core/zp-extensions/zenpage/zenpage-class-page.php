@@ -15,7 +15,6 @@ class ZenpagePage extends ZenpageItems {
 
 	function __construct($titlelink, $allowCreate=NULL) {
 		if (is_array($titlelink)) {
-			deprecated_function::notify(gettext('The ZenpagePage::getPages() method now returns an array to be consistent with the other same named methods. You should change your code to pass the <code>titlelink>/code> element of this array.'));
 			$titlelink = $titlelink['titlelink'];
 		}
 		$new = parent::PersistentObject('pages', array('titlelink'=>$titlelink), 'titlelink', true, empty($titlelink), $allowCreate);

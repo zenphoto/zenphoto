@@ -20,6 +20,9 @@ class ZenpageNews extends ZenpageItems {
 	var $index = NULL;
 
 	function __construct($titlelink, $allowCreate=NULL) {
+		if (is_array($titlelink)) {
+			$titlelink = $titlelink['titlelink'];
+		}
 		$new = parent::PersistentObject('news', array('titlelink'=>$titlelink), 'titlelink', true, empty($titlelink), $allowCreate);
 	}
 

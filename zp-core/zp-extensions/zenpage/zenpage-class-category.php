@@ -14,6 +14,9 @@ class ZenpageCategory extends ZenpageRoot {
 	var $view_rights = ALL_NEWS_RIGHTS;
 
 	function __construct($catlink, $create=NULL) {
+		if (is_array($catlink)) {
+			$catlink = $catlink['titlelink'];
+		}
 		$new = parent::PersistentObject('news_categories', array('titlelink'=>$catlink), 'titlelink', true, empty($catlink), $create);
 	}
 
