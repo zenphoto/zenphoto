@@ -1512,7 +1512,7 @@ function sanitizeRedirect($redirectTo, $forceHost=false) {
 		} else {
 			if ($forceHost) {
 				$redirect .= SERVER_PROTOCOL.'://'.$_SERVER['HTTP_HOST'];
-				if(strpos($redirectTo, WEBPATH) === false) {
+				if(WEBPATH && strpos($redirectTo, WEBPATH) === false) {
 					$redirect .= WEBPATH;
 				}
 			}
