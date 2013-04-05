@@ -254,7 +254,7 @@ class RSS {
 					$this->albumpath = $this->getRSSImageAndAlbumPaths('albumpath');
 					$this->imagepath = $this->getRSSImageAndAlbumPaths('imagepath');
 					$this->imagesize = $this->getRSSImageSize();
-					require_once(ZENFOLDER .'/'.PLUGIN_FOLDER . '/image_album_statistics.php');
+					require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER . '/image_album_statistics.php');
 					break;
 
 				case 'news':	//Zenpage News RSS
