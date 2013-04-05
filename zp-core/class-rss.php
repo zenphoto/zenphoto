@@ -196,7 +196,6 @@ class RSS {
 			if (isset($_GET['token'])) {
 				//	The link camed from a logged in user, see if it is valid
 				$link = $_GET;
-				unset($link['rss']);
 				unset($link['token']);
 				$token = Zenphoto_Authority::passwordHash(serialize($link), getUserIP());
 				if ($token == $_GET['token']) {
@@ -234,12 +233,19 @@ class RSS {
 					}
 					break;
 			}
-			$rssfeedtype = sanitize($_GET['rss']);
+			$this->feedtype = sanitize($_GET['rss']);;
+			$this->sortorder = $this->getRSSSortorder();
+			if(isset($_GET['itemnumber'])) {
+				$this->itemnumber = sanitize_numeric($_GET['itemnumber']);
+			} else {
+				$this->itemnumber = getOption('feed_items');
+			}
 			// individual feedtype setup
-			switch($rssfeedtype) {
+			switch($this->feedtype) {
 
+				default:
+					$this->feedtype = 'gallery';
 				case 'gallery':
-				default:	//gallery RSS
 					if (!getOption('RSS_album_image')) {
 						header("HTTP/1.0 404 Not Found");
 						header("Status: 404 Not Found");
@@ -264,7 +270,6 @@ class RSS {
 						$albumtitle = '';
 						$this->collection = FALSE;
 					}
-					$this->sortorder = $this->getRSSSortorder();
 					$albumname = ''; // to be sure
 					if($this->rssmode == 'albums' || isset($_GET['albumname'])) {
 						$albumname = ' - '.html_encode($albumtitle).$this->getRSSChannelTitleExtra();
@@ -289,13 +294,11 @@ class RSS {
 						include(ZENFOLDER. '/404.php');
 						exitZP();
 					}
-					$this->feedtype = 'news';
 					$this->catlink = $this->getRSSNewsCatOptions('catlink');
 					$cattitle = $this->getRSSNewsCatOptions('cattitle');
 					if(!empty($cattitle)) {
 						$cattitle = ' - '.html_encode($this->cattitle) ;
 					}
-					$this->sortorder = $this->getRSSSortorder();
 					$this->newsoption = $this->getRSSNewsCatOptions("option");
 					$titleappendix = gettext(' (Latest news)');
 					if($this->getRSSCombinewsImages() || $this->getRSSCombinewsAlbums()) {
@@ -324,8 +327,10 @@ class RSS {
 					}
 					$this->channel_title = html_encode($this->channel_title.$cattitle.$titleappendix);
 					$this->imagesize = $this->getRSSImageSize();
+					$this->itemnumber = getOption("zenpage_rss_items"); // # of Items displayed on the feed
 					require_once(SERVERPATH.'/'.ZENFOLDER . '/'.PLUGIN_FOLDER . '/image_album_statistics.php');
 					require_once(SERVERPATH.'/'.ZENFOLDER . '/'.PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
+
 					break;
 				case 'pages':	//Zenpage News RSS
 					if (!getOption('RSS_pages')) {
@@ -334,8 +339,6 @@ class RSS {
 						include(ZENFOLDER. '/404.php');
 						exitZP();
 					}
-					$this->feedtype = 'pages';
-					$this->sortorder = $this->getRSSSortorder();
 					switch($this->sortorder) {
 						case 'popular':
 							$titleappendix = gettext(' (Most popular pages)');
@@ -364,7 +367,6 @@ class RSS {
 						include(ZENFOLDER. '/404.php');
 						exitZP();
 					}
-					$this->feedtype = 'comments';
 					if(isset($_GET['type'])) {
 						$this->commentrsstype = sanitize($_GET['type']);
 					} else {
@@ -399,15 +401,6 @@ class RSS {
 						require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-template-functions.php');
 					}
 					break;
-			}
-			if(isset($_GET['itemnumber']) && $rssfeedtype != 'news') {
-				$this->itemnumber = sanitize_numeric($_GET['itemnumber']);
-			} else {
-				if($rssfeedtype == 'news') {
-					$this->itemnumber = getOption("zenpage_rss_items"); // # of Items displayed on the feed
-				} else {
-					$this->itemnumber = getOption('feed_items');
-				}
 			}
 			$this->feeditems = $this->getRSSitems();
 		}
@@ -467,6 +460,7 @@ class RSS {
 			$sortorder = NULL;
 		}
 		switch($this->feedtype) {
+			default:
 			case 'gallery':
 				if(is_null($sortorder)) {
 					if($this->rssmode == "albums") {
