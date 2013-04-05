@@ -353,7 +353,7 @@ class RSS {
 							break;
 					}
 					$this->channel_title = html_encode($this->channel_title.$titleappendix);
-					require_once(ZENFOLDER . '/'.PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
+					require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
 					break;
 
 				case 'comments':	//Comments RSS
