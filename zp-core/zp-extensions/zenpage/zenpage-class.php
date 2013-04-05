@@ -93,7 +93,7 @@ class Zenpage {
 	 * @param bool $published TRUE for published or FALSE for all pages including un-published
 	 * @param bool $toplevel TRUE for only the toplevel pages
 	 * @param int $number number of pages to get (NULL by default for all)
-	 * @param string $sorttype NULL for the standard order as sorted on the backend, "title", "date", "popular", "mostrated", "toprated", "random"
+	 * @param string $sorttype NULL for the standard order as sorted on the backend, "title", "date", "id", "popular", "mostrated", "toprated", "random"
 	 * @param string $sortdirection "asc" or "desc" for ascending or descending order
 	 * @return array
 	 */
@@ -130,6 +130,9 @@ class Zenpage {
 				break;
 			case "title":
 				$sortorder = "title";
+				break;		
+			case "id":
+				$sortorder = "id";
 				break;
 			case "popular":
 				$sortorder = 'hitcounter';
@@ -195,7 +198,7 @@ class Zenpage {
 	 * 													"sticky" for sticky articles (published or not!) for admin page use only,
 	 * 													"all" for all articles
 	 * @param boolean $ignorepagination Since also used for the news loop this function automatically paginates the results if the "page" GET variable is set. To avoid this behaviour if using it directly to get articles set this TRUE (default FALSE)
-	 * @param string $sortorder "date" (default), "title", "popular", "mostrated", "toprated", "random"
+	 * @param string $sortorder "date" (default), "title", "id, "popular", "mostrated", "toprated", "random"
 	 * 													This parameter is not used for date archives
 	 * @param string $sortdirection "asc" or "desc" for ascending or descending order
 	 * 											        This parameter is not used for date archives
@@ -242,6 +245,9 @@ class Zenpage {
 			default:
 				$sort1 = "date";
 				break;
+			case "id":
+				$sort1 = "id";
+				break;	
 			case "title":
 				$sort1 = "title";
 				break;
@@ -826,13 +832,12 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	/**
 	 * Gets all categories
 	 * @param bool $visible TRUE for published and unprotected
-	 * @param string $sorttype NULL for the standard order as sorted on the backend, "title", "date", "popular"
+	 * @param string $sorttype NULL for the standard order as sorted on the backend, "title", "id", "popular", "random"
 	 * @param string $sortdirection "asc" or "desc" for ascending or descending order
 	 * @return array
 	 */
 	function getAllCategories($visible=true,$sorttype=NULL, $sortdirection=NULL) {
 		$structure = $this->getCategoryStructure();
-
 		switch($sortdirection) {
 			case 'asc':
 			default:
@@ -843,8 +848,8 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 				break;
 		}
 		switch($sorttype) {
-			case "date":
-				$sortorder = "date";
+			case "id":
+				$sortorder = "id";
 				break;
 			case "title":
 				$sortorder = "title";
@@ -852,9 +857,9 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 			case "popular":
 				$sortorder = 'hitcounter';
 				break;
-		/*case "random":
-				$sortorder = 'RAND()';
-				break; */
+			case "random":
+				$sortorder = 'random';
+				break; 
 			default:
 				$sortorder = "sort_order";
 				break;
@@ -869,9 +874,14 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 				}
 			}
 		}
+		
 		if(!is_null($sorttype) || !is_null($sortdirection)) {
-			$structure = sortMultiArray($structure, $sortorder, $sortdir, false, false, true);
-		}
+			if($sorttype == 'random') {
+				shuffle($structure);
+			} else {
+				$structure = sortMultiArray($structure, $sortorder,$sortdir, true,false, false);
+			}
+		} 
 		return $structure;
 	}
 

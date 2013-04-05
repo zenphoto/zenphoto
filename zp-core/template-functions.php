@@ -3523,7 +3523,7 @@ function getRSSLink($option,$lang=NULL,$addl=NULL) {
 			break;
 		case 'News':
 			if (getOption('RSS_articles')) {
-				$link = array('new'=>'1');
+				$link = array('news'=>'1');
 			}
 			break;
 		case 'Category':
