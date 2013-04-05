@@ -238,6 +238,7 @@ class RSS {
 			// individual feedtype setup
 			switch($rssfeedtype) {
 
+				case 'gallery':
 				default:	//gallery RSS
 					if (!getOption('RSS_album_image')) {
 						header("HTTP/1.0 404 Not Found");

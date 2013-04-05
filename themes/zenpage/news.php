@@ -11,7 +11,7 @@ if (!defined('WEBPATH') || !class_exists('Zenpage')) die();
 	<title><?php echo gettext("News"); ?> <?php printBareNewsTitle(""); ?><?php printCurrentNewsCategory(" | "); printCurrentNewsArchive(); ?> | <?php printBareGalleryTitle(); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
-	<?php printZenpageRSSHeaderLink("News","Zenpage news", ""); ?>
+	<?php printRSSHeaderLink("News","Zenpage news", ""); ?>
 	<?php zp_apply_filter('theme_head'); ?>
 </head>
 

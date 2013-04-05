@@ -3468,7 +3468,7 @@ function getRSSLink($option,$lang=NULL,$addl=NULL) {
 	switch($option) {
 		case 'Gallery':
 			if (getOption('RSS_album_image')) {
-				$link =  array();
+				$link =  array('rss'=>'gallery');
 			}
 			break;
 		case 'Album':
@@ -3478,7 +3478,7 @@ function getRSSLink($option,$lang=NULL,$addl=NULL) {
 				} else {
 					$album = $_zp_current_album;
 				}
-				$link = array('albumname'=>urlencode($album->getFolder()));
+				$link = array('rss'=>'gallery','albumname'=>urlencode($album->getFolder()));
 				break;
 			}
 		case 'Collection':
@@ -3488,72 +3488,72 @@ function getRSSLink($option,$lang=NULL,$addl=NULL) {
 				} else {
 					$album = $_zp_current_album;
 				}
-				$link = array('folder'=>urlencode($album->getFolder()));
+				$link = array('rss'=>'gallery','folder'=>urlencode($album->getFolder()));
 			}
 			break;
 		case 'Comments':
 			if (getOption('RSS_comments')) {
-				$link = array('comments'=>'1','type'=>'gallery');
+				$link = array('rss'=>'comments','type'=>'gallery');
 			}
 			break;
 		case 'Comments-image':
 			if (getOption('RSS_comments')) {
-				$link = array('comments'=>'1', 'id'=>(string) $_zp_current_image->getID(),'type'=>'image');
+				$link = array('rss'=>'comments', 'id'=>(string) $_zp_current_image->getID(),'type'=>'image');
 			}
 			break;
 		case 'Comments-album':
 			if (getOption('RSS_comments')) {
-				$link = array('comments'=>'1','id'=>(string) $_zp_current_album->getID(),'type'=>'album');
+				$link = array('rss'=>'comments','id'=>(string) $_zp_current_album->getID(),'type'=>'album');
 			}
 			break;
 		case 'AlbumsRSS':
 			if (getOption('RSS_album_image')) {
-				$link = array('albumsmode'=>'1');
+				$link = array('rss'=>'gallery','albumsmode'=>'');
 			}
 			break;
 		case 'AlbumsRSScollection':
 			if (getOption('RSS_album_image')) {
-				$link = array('folder'=>urlencode($_zp_current_album->getFolder()),'albumsmode'=>'1');
+				$link = array('rss'=>'gallery','folder'=>urlencode($_zp_current_album->getFolder()),'albumsmode'=>'');
 			}
 			break;
 		case 'Pages':
 			if (getOption('RSS_pages')) {
-				$link = array('page'=>'1');
+				$link = array('rss'=>'page');
 			}
 			break;
 		case 'News':
 			if (getOption('RSS_articles')) {
-				$link = array('news'=>'1');
+				$link = array('rss'=>'news');
 			}
 			break;
 		case 'Category':
 			if (getOption('RSS_articles')) {
-				$link = array('news'=>'1',$categorylink=>'1');
+				$link = array('rss'=>'news',$categorylink=>'');
 			}
 			break;
 		case 'NewsWithImages':
 			if (getOption('RSS_articles')) {
-				$link = array('news'=>'1','withimages'=>'1');
+				$link = array('rss'=>'news','withimages'=>'');
 			}
 			break;
 		case 'Comments':
 			if (getOption('RSS_article_comments')) {
-				$link = array('comment'=>1,'type'=>'zenpage');
+				$link = array('comments'=>1,'type'=>'zenpage');
 			}
 			break;
 		case 'Comments-news':
 			if (getOption('RSS_article_comments')) {
-				$link = array('comment'=>'1','id'=>(string) getNewsID(),'type'=>news);;
+				$link = array('rss'=>'comments','id'=>(string) getNewsID(),'type'=>news);;
 			}
 			break;
 		case 'Comments-page':
 			if (getOption('RSS_article_comments')) {
-				$link = array('comment'=>1,'id'=>(string) getPageID(),'type'=>'page');
+				$link = array('rss'=>'comments','id'=>(string) getPageID(),'type'=>'page');
 			}
 			break;
 		case 'Comments-all':
 			if (getOption('RSS_article_comments')) {
-				$link = array('comment'=>1,'type'=>'allcomments');;
+				$link = array('rss'=>'comments','type'=>'allcomments');;
 			}
 			break;
 	}
@@ -3563,7 +3563,7 @@ function getRSSLink($option,$lang=NULL,$addl=NULL) {
 			$link['user'] = (string) $_zp_current_admin_obj->getID();
 			$link['token'] = Zenphoto_Authority::passwordHash(serialize($link), getUserIP());
 		}
-		$uri = WEBPATH.'/index.php?rss&'.http_build_query($link);
+		$uri = WEBPATH.'/index.php?'.str_replace('=&', '&', http_build_query($link));
 		return $uri;
 	}
 	return NULL;
