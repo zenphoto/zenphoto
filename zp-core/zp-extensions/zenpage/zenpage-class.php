@@ -125,30 +125,31 @@ class Zenpage {
 				break;
 		}
 		switch($sorttype) {
-			case "date":
-				$sortorder = "date";
+			case 'date':
+				$sortorder = 'date';
 				break;
-			case "title":
-				$sortorder = "title";
+			case 'title':
+				$sortorder = 'title';
 				break;		
-			case "id":
-				$sortorder = "id";
+			case 'id':
+				$sortorder = 'id';
 				break;
-			case "popular":
+			case 'popular':
 				$sortorder = 'hitcounter';
 				break;
-			case "mostrated":
+			case 'mostrated':
 				$sortorder = 'total_votes';
 				break;
-			case "toprated":
-				$sortorder = '(total_value/total_votes) DESC, total_value';
-				$sortdir = '';
+			case 'toprated':
+				if(empty($sortdir)) $sortdir = ' DESC';
+				$sortorder = '(total_value/total_votes) '.$sortdir.', total_value';
 				break;
-			case "random":
+			case 'random':
 				$sortorder = 'RAND()';
 				break;
 			default:
-				$sortorder = "sort_order";
+				$sortorder = 'sort_order';
+				$sortdir = '';
 				break;
 		}
 		$all_pages = array(); // Disabled cache var for now because it does not return un-publishded and published if logged on index.php somehow if logged in.
@@ -488,9 +489,10 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	 * 													"all" for all articles
 	 * @param string $sortorder 	id, date or mtime, only for latestimages-... modes
 	 * @param bool $sticky set to true to place "sticky" articles at the front of the list.
+	 * @param string $direction 	"desc" or "asc"
 	 * @return array
 	 */
-	function getCombiNews($articles_per_page='', $mode='',$published=NULL,$sortorder='',$sticky=true) {
+	function getCombiNews($articles_per_page='', $mode='',$published=NULL,$sortorder='',$sticky=true,$sortdirection='desc') {
 		global $_zp_gallery, $_zp_flash_player;
 		if (is_null($published)) {
 			if(zp_loggedin(ZENPAGE_NEWS_RIGHTS | ALL_NEWS_RIGHTS)) {
@@ -537,6 +539,15 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 		if($sticky) {
 			$stickyorder = 'sticky DESC,';
 		}
+		switch($sortdirection) {
+			case 'desc':
+			default:
+				$sortdir = 'DESC';
+				break;
+			case 'asc':
+				$sortdir = 'ASC';
+				break;
+		}
 		$type3 = query("SET @type3:='0'");
 		switch($mode) {
 			case "latestimages-thumbnail":
@@ -564,8 +575,7 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 				$result = $this->siftResults("(SELECT title as albumname, titlelink, date, @type1 as type, sticky FROM ".prefix('news')." ".$show.")
 																		UNION
 																		".$imagequery."
-																		ORDER BY $stickyorder date DESC
-																		", $offset, $articles_per_page);
+																		ORDER BY $stickyorder date ".$sortdir, $offset, $articles_per_page);
 				break;
 			case "latestalbums-thumbnail":
 			case "latestalbums-thumbnail-customcrop":
@@ -593,8 +603,7 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 				$result = $this->siftResults("(SELECT title as albumname, titlelink, date, @type1 as type, sticky FROM ".prefix('news')." ".$show.")
 																		UNION
 																		".$albumquery."
-																		ORDER BY $stickyorder date DESC
-																		", $offset, $articles_per_page);
+																		ORDER BY $stickyorder date ".$sortdir, $offset, $articles_per_page);
 				break;
 			case "latestimagesbyalbum-thumbnail":
 			case "latestimagesbyalbum-thumbnail-customcrop":
@@ -623,15 +632,14 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 				$result = $this->siftResults("(SELECT title as albumname, titlelink, date, @type1 as type, sticky FROM ".prefix('news')." ".$show.")
 																		UNION
 																		".$imagequery."
-																		ORDER By $stickyorder date DESC
-																		", $offset, $articles_per_page);
+																		ORDER By $stickyorder date ".$sortdir, $offset, $articles_per_page);
 				break;
 			case "latestupdatedalbums-thumbnail":
 			case "latestupdatedalbums-thumbnail-customcrop":
 			case "latestupdatedalbums-sizedimage":
 			case "latestupdatedalbums-sizedimage-maxspace":
 			case "latestupdatedalbums-fullimage":
-				$latest = $this->getArticles($articles_per_page,NULL,true);
+				$latest = $this->getArticles($articles_per_page,NULL,true,'date',$sortdirection);
 				$counter = '';
 				foreach($latest as $news) {
 					$article = new ZenpageNews($news['titlelink']);
@@ -645,7 +653,7 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 																					);
 					}
 				}
-				$albums = getAlbumStatistic($articles_per_page, "latestupdated");
+				$albums = getAlbumStatistic($articles_per_page, "latestupdated",'',$sortdirection);
 				$latestalbums = array();
 				$counter = "";
 				foreach($albums as $album) {
@@ -667,7 +675,11 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 				}
 				//$latestalbums = array_merge($latestalbums, $item);
 				$latest = array_merge($latestnews, $latestalbums);
-				$result = sortMultiArray($latest,"date",true);
+				$desc = true;
+				if($sortdirection == 'asc') {
+					$desc = false;
+				}
+				$result = sortMultiArray($latest,"date",$desc);
 				if(count($result) > $articles_per_page) {
 					$result = array_slice($result,0,$articles_per_page);
 				}

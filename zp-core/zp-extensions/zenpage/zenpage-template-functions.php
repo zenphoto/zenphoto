@@ -1192,18 +1192,19 @@ function printAllNewsCategories($newsindex='All news', $counter=TRUE, $css_id=''
  * 											 "with_latestupdated_albums" for news articles with the latest updated albums
  * @param string $category Optional news articles by category (only "none" option)
  * @param bool $sticky place sticky articles at the front of the list
+ * @param string $sortdirection 'desc' descending (default) or 'asc' ascending
  * @return array
  */
-function getLatestNews($number=2,$option='none', $category='', $sticky=true) {
+function getLatestNews($number=2,$option='none', $category='', $sticky=true,$sortdirection='desc') {
 	global $_zp_zenpage,$_zp_current_zenpage_news;
 	$latest = '';
 	switch($option) {
 		case 'none':
 			if(!empty($category)) {
 				$catobj = new ZenpageCategory($category);
-				$latest = $catobj->getArticles($number,NULL,true,'date','desc',$sticky);
+				$latest = $catobj->getArticles($number,NULL,true,'date','desc',$sticky,$sortdirection);
 			} else {
-				$latest = $_zp_zenpage->getArticles($number,NULL,true,'date','desc',$sticky);
+				$latest = $_zp_zenpage->getArticles($number,NULL,true,'date','desc',$sticky,$sortdirection);
 			}
 			$counter = '';
 			$latestnews = array();
@@ -1220,31 +1221,31 @@ function getLatestNews($number=2,$option='none', $category='', $sticky=true) {
 			}
 			break;
 		case 'with_latest_images':
-			$latest = $_zp_zenpage->getCombiNews($number,'latestimages-thumbnail',NULL,'id',$sticky);
+			$latest = $_zp_zenpage->getCombiNews($number,'latestimages-thumbnail',NULL,'id',$sticky,$sortdirection);
 			break;
 		case 'with_latest_images_date':
-			$latest = $_zp_zenpage->getCombiNews($number,'latestimages-thumbnail',NULL,'date',$sticky);
+			$latest = $_zp_zenpage->getCombiNews($number,'latestimages-thumbnail',NULL,'date',$sticky,$sortdirection);
 			break;
 		case 'with_latest_images_mtime':
-			$latest = $_zp_zenpage->getCombiNews($number,'latestimages-thumbnail',NULL,'mtime',$sticky);
+			$latest = $_zp_zenpage->getCombiNews($number,'latestimages-thumbnail',NULL,'mtime',$sticky,$sortdirection);
 			break;
 		case 'with_latest_images_publishdate':
-			$latest = $_zp_zenpage->getCombiNews($number,'latestimages-thumbnail',NULL,'publishdate',$sticky);
+			$latest = $_zp_zenpage->getCombiNews($number,'latestimages-thumbnail',NULL,'publishdate',$sticky,$sortdirection);
 			break;
 		case 'with_latest_albums':
-			$latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'id',$sticky);
+			$latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'id',$sticky,$sortdirection);
 			break;
 		case 'with_latest_albums_date':
-			$latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'date',$sticky);
+			$latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'date',$sticky,$sortdirection);
 			break;
 		case 'with_latest_albums_mtime':
-			$latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'mtime',$sticky);
+			$latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'mtime',$sticky,$sortdirection);
 			break;
 		case 'with_latest_albums_publishdate':
-			$latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'publishdate',$sticky);
+			$latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'publishdate',$sticky,$sortdirection);
 			break;
 		case 'with_latestupdated_albums':
-			$latest = $_zp_zenpage->getCombiNews($number,'latestupdatedalbums-thumbnail',NULL,'',$sticky);
+			$latest = $_zp_zenpage->getCombiNews($number,'latestupdatedalbums-thumbnail',NULL,'',$sticky,$sortdirection);
 			break;
 			/*case "latestimagesbyalbum-thumbnail":
 			 $latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'id','',false);
@@ -1867,7 +1868,6 @@ function getZenpageStatistic($number=10, $option="all",$mode="popular",$sortdir=
 	$statscats = array();
 	$statspages = array();
 	if($option == "all" || $option == "news") {
-		//$articles = query_full_array("SELECT titlelink FROM " . prefix('news')." ORDER BY $sortorder DESC LIMIT $number");
 		$articles = $_zp_zenpage->getArticles($number,NULL,true,$mode,$sortdir,false);
 		$counter = "";
 		$statsarticles = array();
@@ -1889,7 +1889,6 @@ function getZenpageStatistic($number=10, $option="all",$mode="popular",$sortdir=
 		$stats = $statsarticles;
 	}
 	if(($option == "all" || $option == "categories") && $mode != "mostrated" && $mode != "toprated") {
-		//$categories = query_full_array("SELECT id, titlelink as title, title as titlelink, hitcounter FROM " . prefix('news_categories')." ORDER BY $sortorder DESC LIMIT $number");
 		$categories = $_zp_zenpage->getAllCategories(true,$mode,$sortdir);
 		$counter = "";
 		$statscats = array();
@@ -1910,7 +1909,6 @@ function getZenpageStatistic($number=10, $option="all",$mode="popular",$sortdir=
 		$stats = $statscats;
 	}
 	if($option == "all" || $option == "pages") {
-		//$pages = query_full_array("SELECT titlelink FROM " . prefix('pages')." ORDER BY $sortorder DESC LIMIT $number");
 		$pages = $_zp_zenpage->getPages(NULL,false,$number,$mode,$sortdir);
 		$counter = "";
 		$statspages = array();

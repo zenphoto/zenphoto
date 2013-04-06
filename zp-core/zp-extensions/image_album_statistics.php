@@ -50,7 +50,7 @@ function getImageAlbumAlbumList($obj, &$albumlist) {
  * @param string $albumfolder The name of an album to get only the statistc for its subalbums
  * @return string
  */
-function getAlbumStatistic($number=5, $option, $albumfolder='') {
+function getAlbumStatistic($number=5, $option, $albumfolder='',$sortdirection='desc') {
 	global $_zp_gallery;
 	$albumlist = array();
 	if ($albumfolder) {
@@ -60,7 +60,15 @@ function getAlbumStatistic($number=5, $option, $albumfolder='') {
 		$obj = $_zp_gallery;
 	}
 	getImageAlbumAlbumList($obj, $albumlist);
-
+	switch($sortdirection) {
+		case 'desc':
+		default:
+			$sortdir = 'DESC';
+			break;
+		case 'asc':
+			$sortdir = 'ASC';
+			break;
+	}
 	if(!empty($albumlist)) {
 		$albumWhere = ' WHERE `id` in ('.implode(',', $albumlist).')';
 	} else {
@@ -96,7 +104,7 @@ function getAlbumStatistic($number=5, $option, $albumfolder='') {
 			$sortorder = "RAND()";
 			break;
 	}
-	$albums = query_full_array("SELECT id, title, folder, thumb FROM " . prefix('albums') . $albumWhere . " ORDER BY ".$sortorder." DESC LIMIT ".$number);
+	$albums = query_full_array("SELECT id, title, folder, thumb FROM " . prefix('albums') . $albumWhere . " ORDER BY ".$sortorder." ".$sortdir." LIMIT ".$number);
 	return $albums;
 }
 
@@ -367,7 +375,7 @@ function printLatestUpdatedAlbums($number=5,$showtitle=false, $showdate=false, $
  * @param integer $threshold the minimum number of ratings an image must have to be included in the list. (Default 0)
  * @return string
  */
-function getImageStatistic($number, $option, $albumfolder='',$collection=false, $threshold=0) {
+function getImageStatistic($number, $option, $albumfolder='',$collection=false, $threshold=0,$sortdirection='desc') {
 	global $_zp_gallery;
 	$albumlist = array();
 	if ($albumfolder) {
@@ -383,6 +391,15 @@ function getImageStatistic($number, $option, $albumfolder='',$collection=false, 
 	$albumWhere = ' AND (albums.`id`='.implode(' OR albums.`id`=', $albumlist).')';
 	if ($threshold > 0) {
 		$albumWhere .= ' AND images.total_votes >= '.$threshold;
+	}
+	switch($sortdirection) {
+		case 'desc':
+		default:
+			$sortdir = 'DESC';
+			break;
+		case 'asc':
+			$sortdir = 'ASC';
+			break;
 	}
 	switch ($option) {
 		case "popular":
@@ -417,7 +434,7 @@ function getImageStatistic($number, $option, $albumfolder='',$collection=false, 
 	$hint = $show = NULL;
 	if(!empty($albumfolder) && $obj->isDynamic()) {
 		$sorttype = str_replace('images.','',$sortorder);
-		$images = $obj->getImages(0,0,$sorttype,'DESC');
+		$images = $obj->getImages(0,0,$sorttype,$sortdir);
 		foreach ($images as $image) {
 			$image = newImage($obj, $image);
 			if ($image->checkAccess($hint, $show)) {
@@ -432,7 +449,7 @@ function getImageStatistic($number, $option, $albumfolder='',$collection=false, 
 															"albums.folder AS folder, images.show, albums.show, albums.password FROM " .
 															prefix('images') . " AS images, " . prefix('albums') . " AS albums " .
 															"WHERE (images.albumid = albums.id) " . $albumWhere .
-															" ORDER BY ".$sortorder." DESC");
+															" ORDER BY ".$sortorder." ".$sortdir);
 		while ($row = db_fetch_assoc($result)) {
 			$image = newImage(NULL, $row, true);
 			if ($image->exists && $image->checkAccess($hint, $show)) {
