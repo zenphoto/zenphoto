@@ -467,7 +467,7 @@ class RSS {
 	*/
 	protected function getRSSSortdirection() {
 		if(isset($_GET['sortdir'])) {
-			$sortdir = sanitize($_GET['sortorder']);
+			$sortdir = sanitize($_GET['sortdir']);
 			if($sortdir =! 'desc' || $sortdir != 'asc') {
 				$sortdir = 'desc';
 			}
