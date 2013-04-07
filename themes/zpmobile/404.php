@@ -22,7 +22,7 @@ if (!defined('WEBPATH')) die();
 
 <div data-role="content">	
 	<div class="content-primary">
-		<h2><a href="<?php echo getGalleryIndexURL(); ?>">Index</a> &raquo; <strong><?php echo gettext("Object not found"); ?></strong></h2>
+		<h2><a href="<?php echo getGalleryIndexURL(); ?>">Index</a>» <strong><?php echo gettext("Object not found"); ?></strong></h2>
 
 		<div id="content-error">
 		<div class="errorbox">
