@@ -795,7 +795,7 @@ function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=t
 				?>
 				<div class="comment" <?php echo $display; ?>>
 					<div class="commentinfo">
-						<h4 id="zp_comment_id_<?php echo $_zp_current_comment['id']; ?>"><?php	printCommentAuthorLink(); ?>: on <?php echo getCommentDateTime(); printEditCommentLink(gettext('Edit'), ', ', ''); ?></h4>
+						<h4 id="zp_comment_id_<?php echo $_zp_current_comment['id']; ?>"><?php	printCommentAuthorLink(); ?>: <?php echo gettext('on');?> <?php echo getCommentDateTime(); printEditCommentLink(gettext('Edit'), ', ', ''); ?></h4>
 					</div><!-- class "commentinfo" -->
 					<div class="commenttext"><?php echo html_encodeTagged(getCommentBody(),false); ?></div><!-- class "commenttext" -->
 				</div><!-- class "comment" -->
