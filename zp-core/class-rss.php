@@ -47,10 +47,14 @@
  * - "toprated" for the best voted
  * - "mostrated" for the most voted
  * - "random" for random order
+ * "sortdir"
+ * - "desc" (default) for descending order
+ * - "asc" for ascending order
+ *
  * Overrides the admin option value if set.
  *
  * "sortorder" for latest "AlbumsRSS" and "AlbumsRSScollection" only with the following values (the same as the image_album_statistics plugin):
- * - "latest" for the latest uploaded by id (discovery order) (optional, used if sortorder is not set)
+ * - "latest" for the latest uploaded by ID (discovery order) (optional, used if sortorder is not set)
  * - "latest-date" for the latest fetched by date
  * - "latest-mtime" for the latest fetched by mtime
  * - "latest-publishdate" for the latest fetched by publishdate
@@ -59,6 +63,10 @@
  * - "mostrated" for the most voted
  * - "latestupdated" for the latest updated
  * - "random" for random order
+ * "sortdir"
+ * - "desc" (default) for descending order
+ * - "asc" for ascending order
+ *
  * Overrides the option value if set.
  *
  * Optional gallery feed parameters for all except comments:
@@ -94,7 +102,7 @@
  * - "mostrated" for most voted articles
  * - "toprated" for top voted articles
  * - "random" for random articles
- *
+ * - "id" by internal ID order
  *
  * b. COMBINEWS MODE RSS FEEDS (ARTICLES WITH IMAGES OR ALBUMS COMBINED)
  * NOTE: These override the sortorder parameter. You can also only set one of these parameters at the time. For other custom feed needs use the mergedRSS plugin.
@@ -127,18 +135,21 @@
  * - "pages" feed for latest news articles
  * index.php?rss=pages&lang=<locale>
  *
- * Optional parameters for "News" and "Category":
+ * Optional parameters:
  * "sortorder  with these values:
  * - "latest" for latest articles. (If "sortorder" is not set at all "latest" order is used)
  * - "popular" for most viewed articles
  * - "mostrated" for most voted articles
  * - "toprated" for top voted articles
  * - "random" for random articles
+ * - "id" by internal ID
+ * "sortdir"
+ * - "desc" (default) for descending order
+ * - "asc" for ascending order
  *
  * III. OPTIONAL PARAMETERS TO I. AND II.:
  * "itemnumber" for the number of items to get. If set overrides the admin option value.
  * "lang" for the language locale. Actually optional as well and if not set the currently set locale option is used.
- *
  *
  * IV. INTENDED USAGE:
  * $rss = new RSS(); // gets parameters from the urls above
@@ -157,6 +168,7 @@ class RSS {
 	protected $locale_xml = NULL; // xml locale within feed
 	protected $host = NULL;
 	protected $sortorder = NULL;
+	protected $sortdirection = NULL;
 
 	// mode for gallery and comments rss
 	protected $rssmode = NULL; // mode for gallery and comments rss
@@ -235,6 +247,7 @@ class RSS {
 			}
 			$this->feedtype = sanitize($_GET['rss']);;
 			$this->sortorder = $this->getRSSSortorder();
+			$this->sortdirection = $this->getRSSSortdirection();
 			if(isset($_GET['itemnumber'])) {
 				$this->itemnumber = sanitize_numeric($_GET['itemnumber']);
 			} else {
@@ -446,6 +459,20 @@ class RSS {
 				break;
 		}
 		return $albumextra;
+	}
+ /**
+	* Helper function that gets the sortdirection (not used by all feeds)
+	*
+	* @return string
+	*/
+	protected function getRSSSortdirection() {
+		if(isset($_GET['sortdir'])) {
+			$sortdir = sanitize($_GET['sortdir']);
+			if($sortdir =! 'desc' || $sortdir != 'asc') {
+				$sortdir = 'desc';
+			}
+			return $sortdir;
+		} 
 	}
 
  /**
@@ -738,55 +765,67 @@ protected function getRSSCombinewsAlbums() {
 		switch($this->feedtype) {
 			case 'gallery':
 				if ($this->rssmode == "albums") {
-					$items = getAlbumStatistic($this->itemnumber,$this->sortorder,$this->albumfolder);
+					$items = getAlbumStatistic($this->itemnumber,$this->sortorder,$this->albumfolder,$this->sortdirection);
 				} else {
-					$items = getImageStatistic($this->itemnumber,$this->sortorder,$this->albumfolder,$this->collection);
+					$items = getImageStatistic($this->itemnumber,$this->sortorder,$this->albumfolder,$this->collection,0,$this->sortdirection);
 				}
 				break;
 			case 'news':
 				switch ($this->newsoption) {
 					case "category":
 						if($this->sortorder) {
-							$items = getZenpageStatistic($this->itemnumber,'categories',$this->sortorder);
+							$items = getZenpageStatistic($this->itemnumber,'categories',$this->sortorder,$this->sortdirection);
 						} else {
-							$items = getLatestNews($this->itemnumber,"none",$this->catlink,false);
+							$items = getLatestNews($this->itemnumber,"none",$this->catlink,false,$this->sortdirection);
 						}
 						break;
 					case "news":
 						if($this->sortorder) {
-							$items = getZenpageStatistic($this->itemnumber,'news',$this->sortorder);
+							$items = getZenpageStatistic($this->itemnumber,'news',$this->sortorder,$this->sortdirection);
 						} else {
-							$items = getLatestNews($this->itemnumber,"none",'',false);
+							// Needed baceause type variable "news" is used by the feed item method and not set by the class method getArticles!
+							$items = getLatestNews($this->itemnumber,'none','',false,$this->sortdirection);
 						}
 						break;
 					case "withimages":
-						$items = getLatestNews($this->itemnumber,"with_latest_images_date",'',false);
+						//$items = getLatestNews($this->itemnumber,"with_latest_images_date",'',false,$this->sortdirection);
+						$items = $_zp_zenpage->getCombiNews($this->itemnumber,'latestimages-thumbnail',NULL,'date',false,$this->sortdirection);
+						break;
+					case "withimages_id":
+						//$items = getLatestNews($this->itemnumber,"with_latest_images_date",'',false,$this->sortdirection);
+						$items = $_zp_zenpage->getCombiNews($this->itemnumber,'latestimages-thumbnail',NULL,'id',false,$this->sortdirection);
 						break;
 					case 'withimages_mtime':
-						$items = getLatestNews($this->itemnumber,"with_latest_images_mtime",'',false);
+						//$items = getLatestNews($this->itemnumber,"with_latest_images_mtime",'',false,$this->sortdirection);
+						$items = $_zp_zenpage->getCombiNews($this->itemnumber,'latestimages-thumbnail',NULL,'mtime',false,$this->sortdirection);
 						break;
 					case 'withimages_publishdate':
-						$items = getLatestNews($this->itemnumber,"with_latest_images_publishdate",'',false);
+						//$items = getLatestNews($this->itemnumber,"with_latest_images_publishdate",'',false,$this->sortdirection);
+						$items = $_zp_zenpage->getCombiNews($this->itemnumber,'latestimages-thumbnail',NULL,'publishdate',false,$this->sortdirection);
 						break;
 					case 'withalbums':
-						$items = getLatestNews($this->itemnumber,"with_latest_albums_date",'',false);
+						//$items = getLatestNews($this->itemnumber,"with_latest_albums_date",'',false,$this->sortdirection);
+						$items = $_zp_zenpage->getCombiNews($this->itemnumber,'latestalbums-thumbnail',NULL,'date',false,$this->sortdirection);
 						break;
 					case 'withalbums_mtime':
-						$items = getLatestNews($this->itemnumber,"with_latest_albums_mtime",'',false);
+						//$items = getLatestNews($this->itemnumber,"with_latest_albums_mtime",'',false,$this->sortdirection);
+						$items = $_zp_zenpage->getCombiNews($this->itemnumber,'latestalbums-thumbnail',NULL,'mtime',false,$this->sortdirection);
 						break;
 					case 'withalbums_publishdate':
-						$items = getLatestNews($this->itemnumber,"with_latest_albums_publishdate",'',false);
+						//$items = getLatestNews($this->itemnumber,"with_latest_albums_publishdate",'',false,$this->sortdirection);
+						$items = $_zp_zenpage->getCombiNews($this->itemnumber,'latestalbums-thumbnail',NULL,'publishdate',false,$this->sortdirection);
 						break;
 					case 'withalbums_latestupdated':
-						$items = getLatestNews($this->itemnumber,"with_latestupdated_albums",'',false);
+						//$items = getLatestNews($this->itemnumber,"with_latestupdated_albums",'',false,$this->sortdirection);
+						$items = $_zp_zenpage->getCombiNews($this->itemnumber,'latestupdatedalbums-thumbnail',NULL,'',false,$this->sortdirection);
 						break;
 				}
 				break;
 			case "pages":
 				if($this->sortorder) {
-					$items = getZenpageStatistic($this->itemnumber,'pages',$this->sortorder);
+					$items = getZenpageStatistic($this->itemnumber,'pages',$this->sortorder,$this->sortdirection);
 				} else {
-					$items = $_zp_zenpage->getPages(NULL,false,$this->itemnumber);
+					$items = $_zp_zenpage->getPages(NULL,false,$this->itemnumber,$this->sortorder,$this->sortdirection);
 				}
 			  break;
 			case 'comments':
