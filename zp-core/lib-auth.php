@@ -74,13 +74,17 @@ class Zenphoto_Authority {
 	 * @return array
 	 */
 	function getOptionsSupported() {
+		$encodings = self::$hashList;
+		if (!function_exists('hash')) {
+			unset($encodings['pbkdf2']);
+		}
 		return array(	gettext('Primary album edit') => array('key' => 'user_album_edit_default', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext('Check if you want <em>edit rights</em> automatically assigned when a user <em>primary album</em> is created.')),
 									gettext('Minimum password strength') => array('key' => 'password_strength', 'type' => OPTION_TYPE_CUSTOM,
 										'desc' => sprintf(gettext('Users must provide passwords a strength of at least %s. The repeat password field will be disabled until this floor is met.'),
 										'<span id="password_strength_display">'.getOption('password_strength').'</span>')),
 									gettext('Password hash algorithm')=> array('key'=>'strong_hash', 'type'=>OPTION_TYPE_SELECTOR,
-										'selections' => self::$hashList,
+										'selections' => $encodings,
 										'desc'=> sprintf(gettext('The hashing algorithm used by Zenphoto. In order of robustness the choices are %s'), '<code>'.implode('</code> > <code>',array_flip(self::$hashList)).'</code>'))
 									);
 	}
@@ -276,11 +280,11 @@ class Zenphoto_Authority {
 	/**
 	 * Checks a logon user/password against admins
 	 *
-	 * Returns true if there is a match
+	 * Returns the user object if there is a match
 	 *
 	 * @param string $user
 	 * @param string $pass
-	 * @return bool
+	 * @return object
 	 */
 	static function checkLogon($user, $pass) {
 		$userobj = self::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
@@ -1159,14 +1163,14 @@ class Zenphoto_Authority {
 		}
 		function togglePassword(id) {
 		if($('#pass'+id).attr('type')=='password') {
-				var oldp = $('#pass'+id);
+		var oldp = $('#pass'+id);
 				var newp = oldp.clone();
 				newp.attr('type', 'text');
 				newp.insertAfter(oldp);
 				oldp.remove();
 				$('.password_field_'+id).hide();
 			} else {
-				var oldp = $('#pass'+id);
+			var oldp = $('#pass'+id);
 				var newp = oldp.clone();
 				newp.attr('type', 'password');
 				newp.insertAfter(oldp);
