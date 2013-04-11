@@ -12,6 +12,9 @@
  * using jQuery UI, it just work's in any modern browser. Its creation is inspired by simplicity and
  * convenience of Finder.app program used in Mac OS X."
  *
+ * elFinder uses UNIX command line utils <var>zip</var>, <var>unzip</var>, <var>rar</var>, <var>unrar</var>, <var>tar</var>,
+ * <var>gzip</var>, <var>bzip2</var>, and <var>7za</var> for archives support,
+ * on windows you need to have full {@link http://www.cygwin.com/ cygwin} support in your webserver environment.
  *
  *
  * @author Stephen Billard (sbillard)
