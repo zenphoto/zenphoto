@@ -129,11 +129,11 @@ class Zenpage {
 				$sortorder = 'date';
 				break;
 			case 'lastchange':
-				$sortorder = 'lastchange':
+				$sortorder = 'lastchange';
 				break;
 			case 'title':
 				$sortorder = 'title';
-				break;		
+				break;
 			case 'id':
 				$sortorder = 'id';
 				break;
@@ -250,11 +250,11 @@ class Zenpage {
 				$sort1 = "date";
 				break;
 			case 'lastchange':
-				$sort1 = 'lastchange':
+				$sort1 = 'lastchange';
 				break;
 			case "id":
 				$sort1 = "id";
-				break;	
+				break;
 			case "title":
 				$sort1 = "title";
 				break;
@@ -877,7 +877,7 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 				break;
 			case "random":
 				$sortorder = 'random';
-				break; 
+				break;
 			default:
 				$sortorder = "sort_order";
 				break;
@@ -892,14 +892,14 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 				}
 			}
 		}
-		
+
 		if(!is_null($sorttype) || !is_null($sortdirection)) {
 			if($sorttype == 'random') {
 				shuffle($structure);
 			} else {
 				$structure = sortMultiArray($structure, $sortorder,$sortdir, true,false, false);
 			}
-		} 
+		}
 		return $structure;
 	}
 
