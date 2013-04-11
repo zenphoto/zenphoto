@@ -18,10 +18,8 @@ if (isset($_GET['uploadtype'])) {
 	$uploadtype = zp_getcookie('uploadtype');
 }
 
-
-if (zp_loggedin(UPLOAD_RIGHTS)) {
-	$handlers = array_keys($uploadHandlers = zp_apply_filter('upload_handlers',array()));
-} else {
+$handlers = array_keys($uploadHandlers = zp_apply_filter('upload_handlers',array()));
+if (!zp_loggedin(UPLOAD_RIGHTS) || empty($handlers)) {
 	//	redirect to the files page if present
 	if (isset($zenphoto_tabs['upload'])) {
 		header('location: '.$zenphoto_tabs['upload']['link']);
@@ -37,6 +35,7 @@ if (count($handlers) > 0) {
 	require_once($uploadHandlers[$uploadtype].'/upload_form.php');
 	zp_setCookie('uploadtype', $uploadtype);
 } else {
+
 	require_once(SERVERPATH.'/'.ZENFOLDER.'/no_uploader.php');
 	exitZP();
 }
