@@ -32,11 +32,7 @@ if (isImagePhoto($imageobj)) {
 	$height = $imageobj->getHeight();
 } else {
 	$imgpath = $imageobj->getThumbImageFile();
-	if ($imageobj->objectsThumb == NULL) {
-		$imagepart = makeSpecialImageName($imgpath);
-	} else {
-		$imagepart = basename($imgpath);
-	}
+	$imagepart = basename($imgpath);
 	$timg = zp_imageGet($imgpath);
 	$width = zp_imageWidth($timg);
 	$height = zp_imageHeight($timg);
@@ -50,11 +46,7 @@ if (getOption('thumb_crop')) {
 		$thumbcropheight = $imageobj->getHeight();
 	} else {
 		$imgpath = $imageobj->getThumbImageFile();
-		if ($this->objectsThumb == NULL) {
-			$imagepart = makeSpecialImageName($imgpath);
-		} else {
-			$imagepart = basename($imgpath);
-		}
+		$imagepart = basename($imgpath);
 		$thumbcropwidth = zp_imageWidth($timg);
 		$thumbcropheight = zp_imageHeight($timg);
 	}

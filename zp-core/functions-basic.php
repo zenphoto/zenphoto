@@ -547,11 +547,11 @@ function getImageCacheFilename($album8, $image8, $args) {
 			$suffix = 'jpg';
 		}
 	}
-	$image = internalToFilesystem($image8);
-	if ($special = isSpecialImage($image)) {
-		$image = basename(dirname($special)).'_'.basename($special);
+	if (is_array($image8)) {
+		$image = internalToFilesystem($image8['name']);
+	} else {
+		$image = stripSuffix(internalToFilesystem($image8));
 	}
-	$image = stripSuffix($image);
 
 	// Set default variable values.
 	$postfix = getImageCachePostfix($args);
@@ -595,44 +595,8 @@ function makeSpecialImageName($image) {
 		$sourceFolder = ZENFOLDER;
 		$sourceSubfolder = trim(substr($image, $i + strlen(ZENFOLDER) + 1 , - strlen($filename) - 1),'/');
 	}
-
-	return '_{'.$sourceFolder.'}_{'.str_replace('/', '_-_', $sourceSubfolder).'}_'.$filename;
+	return array('source'=>$sourceFolder.'/'.$sourceSubfolder.'/'.$filename,'name'=>$sourceFolder.'_'.basename($sourceSubfolder).'_'.$filename);
 }
-
-/**
- *
- * @param string $image the "image" to test
- *
- * @return path to image if it is a special image
- */
-function isSpecialImage($image) {
-	$i = strpos($image, '_{');
-	if ($i !== false) {
-		$j = strpos($image, '}_');
-		$source = substr($image, $i+2, $j-$i-2);
-		$image = substr($image, $j+1);
-		$i = strpos($image, '_{');
-		if ($i !== false) {
-			$j = strpos($image, '}_');
-			$source2 = '/'.str_replace('_-_', '/', substr($image, $i+2, $j-$i-2));
-			$image = substr($image, $j+2);
-		} else {
-			$source2 = '';
-		}
-		switch($source) {
-			case ZENFOLDER:
-			case USER_PLUGIN_FOLDER:
-				break;
-			default:
-				$source = THEMEFOLDER.'/'.$source;
-				break;
-		}
-		$image = $source.$source2 . "/" . $image;
-		return $image;
-	}
-	return NULL;
-}
-
 
 define('NO_WATERMARK','!');
 /**
@@ -799,10 +763,11 @@ function getImageProcessorURI($args, $album, $image) {
 	list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;
 	$args[8] = NULL;	// not used by image processor
 	$uri = WEBPATH.'/'.ZENFOLDER.'/i.php?a='.$album;
-	if ($special = isSpecialImage($image)) {
-		$uri .= '&i='.basename(dirname($special)).'_'.basename($special).'&z='.$special;
+	if (is_array($image)) {
+		$uri .= '&i='.$image['name'].'&z='.($z = $image['source']);
 	} else {
 		$uri .= '&i='.$image;
+		$z = NULL;
 	}
 	if (empty($size)) {
 		$args[0] = NULL;
@@ -871,6 +836,8 @@ function getImageProcessorURI($args, $album, $image) {
 	} else {
 		$args[13] = NULL;
 	}
+	$args[14] = $z;
+
 	$uri .= '&check='.sha1(HASH_SEED.serialize($args));
 
 	$uri = zp_apply_filter('image_processor_uri', $uri);
@@ -886,7 +853,7 @@ define('MAX_SIZE', 3000);
  * @return array
  */
 function getImageArgs($set) {
-	$args = array(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+	$args = array(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 	if (isset($set['s'])) { //0
 		if (is_numeric($s = $set['s'])) {
 			if ($s) {
@@ -935,6 +902,10 @@ function getImageArgs($set) {
 	if (isset($set['effects'])) {	//13
 		$args[13] = sanitize($set['effects']);
 	}
+	if (isset($set['z'])) {	//	14
+		$args[14] = sanitize($set['z']);
+	}
+
 	return $args;
 }
 
@@ -1077,7 +1048,7 @@ function pathurlencode($path) {
 		foreach($pairs as $name=>$value) {
 			$query .= $name;
 			if($value) {
-				$query .= '='.urlencode($value);
+				$query .= '='.implode("/", array_map("rawurlencode", explode("/", $value)));
 			}
 			$query .= '&';
 		}

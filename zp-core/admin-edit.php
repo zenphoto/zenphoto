@@ -1012,7 +1012,7 @@ $alb = removeParentAlbumNames($album);
 			<tr <?php echo ($currentimage % 2 == 0) ?  "class=\"alt\"" : ""; ?>>
 			<?php
 				if ($target_image == $filename) {
-					$placemark = 'name="IT" ';
+					$placemark = 'id="IT" ';
 					$target_image_nr = $currentimage;
 				} else {
 					$placemark = '';
@@ -1024,8 +1024,16 @@ $alb = removeParentAlbumNames($album);
 					<tr>
 						<td valign="top" rowspan="17" style="border-bottom:none;">
 						<div style="width: 135px;">
-							<a <?php echo $placemark; ?>href="admin-thumbcrop.php?a=<?php echo pathurlencode($album->name); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>"
-								title="<?php html_encode(printf(gettext('crop %s'), $image->filename)); ?>">
+							<a <?php echo $placemark; ?>
+								<?php
+								if (!is_null($image->objectsThumb)) {
+									?>
+									href="admin-thumbcrop.php?a=<?php echo pathurlencode($album->name); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>"
+									title="<?php html_encode(printf(gettext('crop %s'), $image->filename)); ?>"
+									<?php
+								}
+								?>
+								>
 								<img
 									id="thumb_img-<?php echo $currentimage; ?>"
 									src="<?php echo pathurlencode($image->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, -1)); ?>"
@@ -1256,13 +1264,17 @@ $alb = removeParentAlbumNames($album);
 							</a>
 							<br clear="all" />
 						</div>
-						<div class="button buttons tooltip" title="<?php printf(gettext('crop %s'), $image->filename); ?>">
-							<a href="admin-thumbcrop.php?a=<?php echo pathurlencode($album->name); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>" >
-								<img src="images/shape_handles.png" alt="" /><?php echo gettext("Crop thumbnail"); ?>
-							</a>
-							<br clear="all" />
-						</div>
 						<?php
+						if (!is_null($image->objectsThumb)) {
+							?>
+							<div class="button buttons tooltip" title="<?php printf(gettext('crop %s'), $image->filename); ?>">
+								<a href="admin-thumbcrop.php?a=<?php echo pathurlencode($album->name); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>" >
+									<img src="images/shape_handles.png" alt="" /><?php echo gettext("Crop thumbnail"); ?>
+								</a>
+								<br clear="all" />
+							</div>
+							<?php
+						}
 						echo zp_apply_filter('edit_image_utilities', '<!--image-->', $image, $currentimage, $pagenum, $tagsort); //pass space as HTML because there is already a button shown for cropimage
 						?>
 						<span style="line-height: 0em;"><br clear="all" /></span>

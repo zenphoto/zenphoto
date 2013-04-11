@@ -1221,11 +1221,11 @@ class Transientimage extends Image {
 		$this->filename = $filename;
 		$this->displayname = stripSuffix(basename($image));
 		if (empty($this->displayname)) {
-			$this->displayname = $this->filename;
+			$this->displayname = $this->filename['name'];
 		}
 		$this->filemtime = @filemtime($this->localpath);
 		$this->comments = null;
-		parent::PersistentObject('images', array('filename'=>$filename, 'albumid'=>$this->album->getID()), 'filename', false, true);
+		parent::PersistentObject('images', array('filename'=>$filename['name'], 'albumid'=>$this->album->getID()), 'filename', true, true);
 	}
 }
 

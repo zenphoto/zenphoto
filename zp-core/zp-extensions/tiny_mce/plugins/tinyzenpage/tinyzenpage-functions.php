@@ -186,11 +186,6 @@ function printImageslist($number) {
 						$sizedimage = '<img src="'.$sizedimage.'" alt="'.$imageobj->getTitle().'" class="zenpage_sizedimage" />';
 						break;
 					case 'textobject':
-						if (is_null($imageobj->objectsThumb)) {
-							$filename = makeSpecialImageName($imageobj->getThumbImageFile());
-						} else {
-							$filename = $imageobj->objectsThumb;
-						}
 						$sizedimage = $imageobj->getSizedImage(getOption('image_size'));
 						$sizedimage = str_replace('class="textobject"', 'class="textobject zenpage_sizedimage"', $sizedimage);
 						$imgurl = getImageProcessorURI($args, $linkalbumobj->name, $imageobj->filename);
@@ -200,11 +195,6 @@ function printImageslist($number) {
 					case 'audio':
 						$sizedimage = $imageobj->getThumb();
 						$sizedimage = str_replace('class="flowplayer"', 'class="flowplayer zenpage_sizedimage"', $sizedimage);
-						if (is_null($imageobj->objectsThumb)) {
-							$filename = makeSpecialImageName($imageobj->getThumbImageFile());
-						} else {
-							$filename = $imageobj->objectsThumb;
-						}
 						$imgurl = getImageProcessorURI($args, $linkalbumobj->name, $imageobj->filename);
 						$backgroundcss = 'thumb-multimedia';
 						break;
