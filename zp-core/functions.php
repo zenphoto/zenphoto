@@ -1449,32 +1449,6 @@ function byteConvert( $bytes ) {
 }
 
 /**
- * Returns an i.php "image name" for an image not within the albums structure
- *
- * @param string $image Path to the image
- * @return string
- */
-function makeSpecialImageName($image) {
-	$filename = basename($image);
-	$i = strpos($image, ZENFOLDER);
-	if ($i === false) {
-		$i = strpos($image, USER_PLUGIN_FOLDER);
-		if ($i === false) {
-			$sourceFolder = basename(dirname(dirname($image)));
-			$sourceSubfolder = basename(dirname($image));
-		} else {
-			$sourceFolder = USER_PLUGIN_FOLDER;
-			$sourceSubfolder = trim(substr($image, $i + strlen(USER_PLUGIN_FOLDER) + 1 , - strlen($filename) - 1),'/');
-		}
-	} else {
-		$sourceFolder = ZENFOLDER;
-		$sourceSubfolder = trim(substr($image, $i + strlen(ZENFOLDER) + 1 , - strlen($filename) - 1),'/');
-	}
-
-	return '_{'.$sourceFolder.'}_{'.str_replace('/', '_-_', $sourceSubfolder).'}_'.$filename;
-}
-
-/**
  * Converts a datetime to connoical form
  *
  * @param string $datetime input date/time string
