@@ -128,6 +128,9 @@ class Zenpage {
 			case 'date':
 				$sortorder = 'date';
 				break;
+			case 'lastchange':
+				$sortorder = 'lastchange':
+				break;
 			case 'title':
 				$sortorder = 'title';
 				break;		
@@ -245,6 +248,9 @@ class Zenpage {
 			case "date":
 			default:
 				$sort1 = "date";
+				break;
+			case 'lastchange':
+				$sort1 = 'lastchange':
 				break;
 			case "id":
 				$sort1 = "id";
