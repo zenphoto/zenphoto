@@ -4372,7 +4372,7 @@ function getPluginTabs() {
 		$p = file_get_contents($path);
 		$i = strpos($p, '* @subpackage');
 		if (($key = $i) !== false) {
-			$key = trim(substr($p,$i+13,strpos($p, "\n", $i)-$i-13));
+			$key = strtolower(trim(substr($p,$i+13,strpos($p, "\n", $i)-$i-13)));
 		}
 		if (empty($key)) {
 			$key = 'misc';
