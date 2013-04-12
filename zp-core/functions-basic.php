@@ -963,8 +963,12 @@ function parse_query($str) {
 	$pairs = explode('&', $str);
 	$params = array();
 	foreach($pairs as $pair) {
-		list($name, $value) = explode('=', $pair, 2);
-		$params[$name] = $value;
+		if (strpos($pair, '=') === false) {
+			$params[trim($pair)] = NULL;
+		} else {
+			list($name, $value) = explode('=', $pair, 2);
+			$params[trim($name)] = trim($value);
+		}
 	}
 	return $params;
 }
