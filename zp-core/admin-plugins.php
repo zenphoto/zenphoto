@@ -361,7 +361,7 @@ foreach ($filelist as $extension) {
 ?>
 <tr>
 	<td colspan="4" id="imagenavb">
-	<?php printPageSelector($subpage, $rangeset, 'admin-plugins.php', array()); ?>
+	<?php printPageSelector($subpage, $rangeset, 'admin-plugins.php', array('page'=>'plugins','tab'=>$subtab)); ?>
 	</td>
 </tr>
 </table>
