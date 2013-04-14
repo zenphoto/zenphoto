@@ -3561,7 +3561,7 @@ function getRSSLink($option,$lang=NULL,$addl=NULL) {
 		$link['lang'] = $lang;
 		if (zp_loggedin()) {
 			$link['user'] = (string) $_zp_current_admin_obj->getID();
-			$link['token'] = Zenphoto_Authority::passwordHash(serialize($link), getUserIP());
+			$link['token'] = Zenphoto_Authority::passwordHash(serialize($link), '');
 		}
 		$uri = WEBPATH.'/index.php?'.str_replace('=&', '&', http_build_query($link));
 		return $uri;

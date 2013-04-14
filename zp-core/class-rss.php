@@ -209,7 +209,7 @@ class RSS {
 				//	The link camed from a logged in user, see if it is valid
 				$link = $_GET;
 				unset($link['token']);
-				$token = Zenphoto_Authority::passwordHash(serialize($link), getUserIP());
+				$token = Zenphoto_Authority::passwordHash(serialize($link), '');
 				if ($token == $_GET['token']) {
 					$adminobj = Zenphoto_Authority::getAnAdmin(array('`id`='=>(int) $link['user']));
 					if ($adminobj) {
@@ -472,7 +472,7 @@ class RSS {
 				$sortdir = 'desc';
 			}
 			return $sortdir;
-		} 
+		}
 	}
 
  /**
