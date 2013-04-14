@@ -228,13 +228,32 @@ function setThemeDomain($themedomain) {
  * @param string $theme The name of the plugin. Only required for strings on the 'theme_description.php' file like the general theme description. If the theme is the current theme the function sets it automatically.
  * @return string
  */
-function gettext_th($string,$theme='') {
+function gettext_th($string,$theme=Null) {
 	global $_zp_gallery;
 	if(empty($theme)) {
 		$theme = $_zp_gallery->getCurrentTheme();
 	}
 	setupDomain($theme, 'theme');
 	$translation = gettext($string);
+	setupDomain();
+	return $translation;
+}
+
+/**
+ * ngettext replacement function for separate translations of third party themes.
+ * @param string $msgid1
+ * @param string $msgid2
+ * @param int $n
+ * @param string $plugin
+ * @return string
+ */
+function ngettext_th($msgid1,$msgid2,$n,$theme=NULL) {
+	global $_zp_gallery;
+	if(empty($theme)) {
+		$theme = $_zp_gallery->getCurrentTheme();
+	}
+	setupDomain($theme, 'theme');
+	$translation = ngettext($msgid1, $msgid2, $n);
 	setupDomain();
 	return $translation;
 }
@@ -266,6 +285,7 @@ function ngettext_pl($msgid1,$msgid2,$n,$plugin) {
 	setupDomain();
 	return $translation;
 }
+
 /**
  * Wrapper function for setLocale() so that all the proper permutations are used
  * Returns the result from the setLocale call
