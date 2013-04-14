@@ -204,6 +204,7 @@ if (isset($_GET['action'])) {
 			setOption('RSS_pages', (int) isset($_POST['RSS_pages']));
 			setOption('RSS_article_comments', (int) isset($_POST['RSS_article_comments']));
 			setOption('feed_hitcounter', (int) isset($_POST['feed_hitcounter']));
+			setOption('RSS_portable_link', (int) isset($_POST['RSS_portable_link']));
 			$returntab = "&tab=rss";
 		}
 
@@ -1677,6 +1678,12 @@ if ($subtab == 'rss' && zp_loggedin(OPTIONS_RIGHTS)) {
 				<label for="feed_title3"><input type="radio" name="feed_title" id="feed_title3" value="both" <?php echo checked('both', getOption('feed_title')); ?> /><?php echo gettext('Both'); ?></label>
 			</td>
 			<td><?php echo gettext("Select what you want to use as the main RSS feed (channel) title. 'Both' means Website title followed by Gallery title"); ?></td>
+		</tr>
+		<tr>
+			<td><?php echo gettext("Portable RSS link"); ?></td>
+			<td><input type="checkbox" name="RSS_portable_link"
+				value="1" <?php echo checked('1', getOption('RSS_portable_link')); ?> /></td>
+			<td><?php echo gettext("If checked links generated for logged&#8209;in users will include a token identifying the user. Use of that link when not logged&#8209;in will give the same feed as if the user were logged&#8209;in."); ?></td>
 		</tr>
 		<tr>
 			<td colspan="3">

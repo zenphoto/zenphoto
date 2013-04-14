@@ -3559,7 +3559,7 @@ function getRSSLink($option,$lang=NULL,$addl=NULL) {
 	}
 	if (is_array($link)) {
 		$link['lang'] = $lang;
-		if (zp_loggedin()) {
+		if (zp_loggedin() && getOption('RSS_portable_link')) {
 			$link['user'] = (string) $_zp_current_admin_obj->getID();
 			$link['token'] = Zenphoto_Authority::passwordHash(serialize($link), '');
 		}
