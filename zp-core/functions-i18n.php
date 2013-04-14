@@ -253,6 +253,20 @@ function gettext_pl($string,$plugin) {
 }
 
 /**
+ * ngettext replacement function for separate translations of third party plugins within the root plugins folder.
+ * @param string $msgid1
+ * @param string $msgid2
+ * @param int $n
+ * @param string $plugin
+ * @return string
+ */
+function ngettext_pl($msgid1,$msgid2,$n,$plugin) {
+	setupDomain($plugin,'plugin');
+	$translation = ngettext($msgid1, $msgid2, $n);
+	setupDomain();
+	return $translation;
+}
+/**
  * Wrapper function for setLocale() so that all the proper permutations are used
  * Returns the result from the setLocale call
  * @param $locale the local desired
