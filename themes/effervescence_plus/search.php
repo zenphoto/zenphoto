@@ -19,6 +19,7 @@ $backgroundImagePath="";
 <head>
 	<?php
 	zp_apply_filter('theme_head');
+	list($personality, $themeColor) = getPersonality();
 	require_once(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/'.$personality.'/functions.php');
 	?>
 	<title><?php printBareGalleryTitle(); ?> | <?php echo gettext("Search"); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
