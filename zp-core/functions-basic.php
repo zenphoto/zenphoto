@@ -380,33 +380,35 @@ function setOption($key, $value, $persistent=true) {
  * @param mixed $default the value to be used as the default
  */
 function setOptionDefault($key, $default) {
-	$bt = debug_backtrace();
-	$b = array_shift($bt);
+	if (!is_null($default)) {
+		$bt = debug_backtrace();
+		$b = array_shift($bt);
 
-	$serverpath = str_replace('\\','/',dirname($b['file']));
-	if (!preg_match('~(.*)/('.ZENFOLDER.')~',$serverpath, $matches)) {
-		preg_match('~(.*)/('.USER_PLUGIN_FOLDER.'|'.THEMEFOLDER.')~',$serverpath, $matches);
-	}
-	if ($matches) {
-		$creator = str_replace($matches[1].'/', '', str_replace('\\','/',$b['file']));
-	} else {
-		$creator = NULL;
-	}
+		$serverpath = str_replace('\\','/',dirname($b['file']));
+		if (!preg_match('~(.*)/('.ZENFOLDER.')~',$serverpath, $matches)) {
+			preg_match('~(.*)/('.USER_PLUGIN_FOLDER.'|'.THEMEFOLDER.')~',$serverpath, $matches);
+		}
+		if ($matches) {
+			$creator = str_replace($matches[1].'/', '', str_replace('\\','/',$b['file']));
+		} else {
+			$creator = NULL;
+		}
 
-	$sql = 'INSERT INTO ' . prefix('options') . ' (`name`, `value`, `ownerid`, `theme`, `creator`) VALUES (' . db_quote($key) . ',';
-	if (is_null($default)) {
-		$sql .= 'NULL';
-	} else {
-		$sql .= db_quote($default);
-	}
-	$sql .= ',0,"",';
-	if (is_null($creator)) {
-		$sql .= 'NULL);';
-	} else {
-		$sql .= db_quote($creator).');';
-	}
-	if (query($sql, false)) {
-		$_zp_options[$key] = $default;
+		$sql = 'INSERT INTO ' . prefix('options') . ' (`name`, `value`, `ownerid`, `theme`, `creator`) VALUES (' . db_quote($key) . ',';
+		if (is_null($default)) {
+			$sql .= 'NULL';
+		} else {
+			$sql .= db_quote($default);
+		}
+		$sql .= ',0,"",';
+		if (is_null($creator)) {
+			$sql .= 'NULL);';
+		} else {
+			$sql .= db_quote($creator).');';
+		}
+		if (query($sql, false)) {
+			$_zp_options[$key] = $default;
+		}
 	}
 }
 
