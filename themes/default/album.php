@@ -28,11 +28,11 @@ if (!defined('WEBPATH')) die();
 						<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a> |
 						<?php printParentBreadcrumb(); ?>
 					</span>
-					<?php printAlbumTitle(true); ?>
+					<?php printAlbumTitle(); ?>
 				</h2>
 			</div>
 			<div id="padbox">
-				<?php printAlbumDesc(true); ?>
+				<?php printAlbumDesc(); ?>
 				<div id="albums">
 					<?php while (next_album()): ?>
 						<div class="album">

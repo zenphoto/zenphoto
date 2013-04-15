@@ -32,11 +32,11 @@ if (!defined('WEBPATH')) die();
 <div id="content">
 
 	<div id="breadcrumb">
-<h2><a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Index'); ?>"><?php echo gettext("Index"); ?></a><?php printParentBreadcrumb(" » "," » ",""); ?> » <strong><?php printAlbumTitle(true);?></strong></h2>
+<h2><a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Index'); ?>"><?php echo gettext("Index"); ?></a><?php printParentBreadcrumb(" » "," » ",""); ?> » <strong><?php printAlbumTitle();?></strong></h2>
 </div>
 
 	<div id="content-left">
-	<div><?php printAlbumDesc(true); ?></div>
+	<div><?php printAlbumDesc(); ?></div>
 
 
 <?php printPageListWithNav("« ".gettext("prev"), gettext("next")." »"); ?>
