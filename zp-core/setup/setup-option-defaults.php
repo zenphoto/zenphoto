@@ -124,6 +124,19 @@ setOptionDefault('RSS_cache_expire', getOption('feed_cache_expire'));
 setOptionDefault('RSS_hitcounter', getOption('feed_hitcounter'));
 setOptionDefault('RSS_title',getOption('feed_title'));
 
+purgeOption('feed_items');
+purgeOption('feed_imagesize');
+purgeOption('feed_sortorder');
+purgeOption('feed_items_albums');
+purgeOption('feed_imagesize_albums');
+purgeOption('feed_sortorder_albums');
+purgeOption('feed_enclosure');
+purgeOption('feed_mediarss');
+purgeOption('feed_cache');
+purgeOption('feed_cache_expire');
+purgeOption('feed_hitcounter');
+purgeOption('feed_title');
+
 //	set defaults if no migration
 setOptionDefault('RSS_items', 10); // options for standard images rss
 setOptionDefault('RSS_imagesize', 240);
