@@ -47,7 +47,7 @@ $backgroundImagePath="";
 <body onload="blurAnchors()">
 	<?php
 	zp_apply_filter('theme_body_open');
-	$personality->theme_bodyopen($_zp_themeroot);
+	$oneImagePage = $personality->theme_head($_zp_themeroot)
 	$numimages = getNumImages();
 	$numalbums = getNumAlbums();
 	$total = $numimages + $numalbums;
