@@ -14,8 +14,9 @@
  *
  *
  */
-class feedAtom {
-	var $atom;
+class feed {
+	protected $feed;	//	feed type
+	protected $mode;	//	feed mode
 
 	/**
 	 * each feed must override this function
@@ -29,10 +30,10 @@ class feedAtom {
 	 *
 	 */
 	protected function startCache() {
-		$caching = getOption($this->atom."_cache") && !zp_loggedin();
+		$caching = getOption($this->feed."_cache") && !zp_loggedin();
 		if($caching) {
-			$cachefilepath = SERVERPATH.'/cache_html/'.$this->atom.'/'.internalToFilesystem($this->getCacheFilename());
-			if(file_exists($cachefilepath) AND time()-filemtime($cachefilepath) < getOption($this->atom."_cache_expire")) {
+			$cachefilepath = SERVERPATH.'/cache_html/'.$this->feed.'/'.internalToFilesystem($this->getCacheFilename());
+			if(file_exists($cachefilepath) AND time()-filemtime($cachefilepath) < getOption($this->feed."_cache_expire")) {
 				echo file_get_contents($cachefilepath);
 				exitZP();
 			} else {
@@ -50,12 +51,12 @@ class feedAtom {
 	 *
 	 */
 	protected function endCache() {
-		$caching = getOption($this->atom."_cache") && !zp_loggedin();
+		$caching = getOption($this->feed."_cache") && !zp_loggedin();
 		if($caching) {
 			$cachefilepath = internalToFilesystem($this->getCacheFilename());
 			if(!empty($cachefilepath)) {
-				$cachefilepath = SERVERPATH.'/cache_html/'.$this->atom.'/'.$cachefilepath;
-				mkdir_recursive(SERVERPATH.'/cache_html/'.$this->atom.'/',FOLDER_MOD);
+				$cachefilepath = SERVERPATH.'/cache_html/'.$this->feed.'/'.$cachefilepath;
+				mkdir_recursive(SERVERPATH.'/cache_html/'.$this->feed.'/',FOLDER_MOD);
 				$pagecontent = ob_get_contents();
 				ob_end_clean();
 				if ($fh = @fopen($cachefilepath,"w")) {
@@ -73,8 +74,54 @@ class feedAtom {
 	 *
 	 * @param string $cachefolder the sub-folder to clean
 	 */
-	static function clearCache($cachefolder) {
-		zpFunctions::removeDir(SERVERPATH.'/'.STATIC_CACHE_FOLDER.'/'.$this->atom.'/'.$cachefolder,true);
+	function clearCache($cachefolder=NULL) {
+		zpFunctions::removeDir(SERVERPATH.'/'.STATIC_CACHE_FOLDER.'/'.$this->feed.'/'.$cachefolder,true);
+	}
+
+ /**
+	* Helper function that gets the sortdirection (not used by all feeds)
+	*
+	* @return string
+	*/
+	protected function getSortdirection() {
+		if(isset($_GET['sortdir'])) {
+			$sortdir = sanitize($_GET['sortdir']);
+			if($sortdir =! 'desc' || $sortdir != 'asc') {
+				$sortdir = 'desc';
+			}
+			return $sortdir;
+		}
+	}
+
+ /**
+	* Helper function that gets the sortorder for gallery and plain news/category feeds
+	*
+	* @return string
+	*/
+	protected function getSortorder() {
+		if(isset($_GET['sortorder'])) {
+			$sortorder = sanitize($_GET['sortorder']);
+		} else {
+			$sortorder = NULL;
+		}
+		switch($this->feedtype) {
+			default:
+			case 'gallery':
+				if(is_null($sortorder)) {
+					if($this->mode == "albums") {
+						$sortorder = getOption($this->feed."_sortorder_albums");
+					} else {
+						$sortorder = getOption($this->feed."_sortorder");
+					}
+				}
+				break;
+			case 'news':
+				if($this->newsoption == 'withimages' || $sortorder == 'latest') {
+					$sortorder = NULL;
+				}
+				break;
+		}
+		return $sortorder;
 	}
 
 }
@@ -239,7 +286,7 @@ class feedAtom {
 
 require_once(SERVERPATH.'/'.ZENFOLDER.'/lib-MimeTypes.php');
 
-class RSS extends feedAtom {
+class RSS extends feed {
 	//general feed type gallery, news or comments
 	protected $feedtype = NULL;
 	protected $itemnumber = NULL;
@@ -248,9 +295,6 @@ class RSS extends feedAtom {
 	protected $host = NULL;
 	protected $sortorder = NULL;
 	protected $sortdirection = NULL;
-
-	// mode for gallery and comments rss
-	protected $rssmode = NULL; // mode for gallery and comments rss
 
 	//gallery feed specific vars
 	protected $albumfolder = NULL;
@@ -283,7 +327,7 @@ class RSS extends feedAtom {
 	*/
 	function __construct() {
 		global $_zp_gallery, $_zp_current_admin_obj, $_zp_loggedin;
-		$this->atom = 'RSS';
+		$this->feed = 'RSS';
 		if(isset($_GET['rss'])) {
 			if (isset($_GET['token'])) {
 				//	The link camed from a logged in user, see if it is valid
@@ -326,8 +370,8 @@ class RSS extends feedAtom {
 					break;
 			}
 			$this->feedtype = sanitize($_GET['rss']);;
-			$this->sortorder = $this->getRSSSortorder();
-			$this->sortdirection = $this->getRSSSortdirection();
+			$this->sortorder = $this->getSortorder();
+			$this->sortdirection = $this->getSortdirection();
 			if(isset($_GET['itemnumber'])) {
 				$this->itemnumber = sanitize_numeric($_GET['itemnumber']);
 			} else {
@@ -347,7 +391,7 @@ class RSS extends feedAtom {
 					}
 					$this->feedtype = 'gallery';
 					if(isset($_GET['albumsmode'])) {
-						$this->rssmode = 'albums';
+						$this->mode = 'albums';
 					}
 					if(isset($_GET['folder'])) {
 						$this->albumfolder = sanitize(urldecode($_GET['folder']));
@@ -364,11 +408,11 @@ class RSS extends feedAtom {
 						$this->collection = FALSE;
 					}
 					$albumname = ''; // to be sure
-					if($this->rssmode == 'albums' || isset($_GET['albumname'])) {
+					if($this->mode == 'albums' || isset($_GET['albumname'])) {
 						$albumname = ' - '.html_encode($albumtitle).$this->getRSSChannelTitleExtra();
-					} elseif ($this->rssmode == 'albums' && !isset($_GET['folder'])) {
+					} elseif ($this->mode == 'albums' && !isset($_GET['folder'])) {
 						$albumname = $this->getRSSChannelTitleExtra();
-					} elseif ($this->rssmode == 'albums' && isset($_GET['folder'])) {
+					} elseif ($this->mode == 'albums' && isset($_GET['folder'])) {
 						$albumname = ' - '.html_encode($albumtitle).$this->getRSSChannelTitleExtra();
 					} else {
 						$albumname = $this->getRSSChannelTitleExtra();
@@ -551,7 +595,7 @@ class RSS extends feedAtom {
 			case 'latest-date':
 			case 'latest-mtime':
 			case 'latest-publishdate':
-				if($this->rssmode == 'albums') {
+				if($this->mode == 'albums') {
 					$albumextra = ' ('.gettext('Latest albums').')'; //easier to understand for translators as if I would treat "images"/"albums" in one place separately
 				} else {
 					$albumextra = ' ('.gettext('Latest images').')';
@@ -561,21 +605,21 @@ class RSS extends feedAtom {
 				$albumextra = ' ('.gettext('latest updated albums').')';
 				break;
 			case 'popular':
-				if($this->rssmode == 'albums') {
+				if($this->mode == 'albums') {
 					$albumextra = ' ('.gettext('Most popular albums').')';
 				} else {
 					$albumextra = ' ('.gettext('Most popular images').')';
 				}
 				break;
 			case 'toprated':
-				if($this->rssmode == 'albums') {
+				if($this->mode == 'albums') {
 					$albumextra = ' ('.gettext('Top rated albums').')';
 				} else {
 					$albumextra = ' ('.gettext('Top rated images').')';
 				}
 				break;
 			case 'random':
-				if($this->rssmode == 'albums') {
+				if($this->mode == 'albums') {
 					$albumextra = ' ('.gettext('Random albums').')';
 				} else {
 					$albumextra = ' ('.gettext('Random images').')';
@@ -583,51 +627,6 @@ class RSS extends feedAtom {
 				break;
 		}
 		return $albumextra;
-	}
- /**
-	* Helper function that gets the sortdirection (not used by all feeds)
-	*
-	* @return string
-	*/
-	protected function getRSSSortdirection() {
-		if(isset($_GET['sortdir'])) {
-			$sortdir = sanitize($_GET['sortdir']);
-			if($sortdir =! 'desc' || $sortdir != 'asc') {
-				$sortdir = 'desc';
-			}
-			return $sortdir;
-		}
-	}
-
- /**
-	* Helper function that gets the sortorder for gallery and plain news/category feeds
-	*
-	* @return string
-	*/
-	protected function getRSSSortorder() {
-		if(isset($_GET['sortorder'])) {
-			$sortorder = sanitize($_GET['sortorder']);
-		} else {
-			$sortorder = NULL;
-		}
-		switch($this->feedtype) {
-			default:
-			case 'gallery':
-				if(is_null($sortorder)) {
-					if($this->rssmode == "albums") {
-						$sortorder = getOption("RSS_sortorder_albums");
-					} else {
-						$sortorder = getOption("RSS_sortorder");
-					}
-				}
-				break;
-			case 'news':
-				if($this->newsoption == 'withimages' || $sortorder == 'latest') {
-					$sortorder = NULL;
-				}
-				break;
-		}
-		return $sortorder;
 	}
 
 	/**
@@ -697,7 +696,7 @@ class RSS extends feedAtom {
 		if(is_numeric($imagesize) && !is_null($imagesize) && $imagesize < getOption('RSS_imagesize')) {
 			$imagesize = $imagesize;
 		} else {
-			if($this->rssmode == 'albums') {
+			if($this->mode == 'albums') {
 				$imagesize = getOption('RSS_imagesize_albums'); // un-cropped image size
 			} else {
 				$imagesize = getOption('RSS_imagesize'); // un-cropped image size
@@ -789,7 +788,7 @@ protected function getRSSCombinewsAlbums() {
 		global $_zp_zenpage;
 		switch($this->feedtype) {
 			case 'gallery':
-				if ($this->rssmode == "albums") {
+				if ($this->mode == "albums") {
 					$items = getAlbumStatistic($this->itemnumber,$this->sortorder,$this->albumfolder,$this->sortdirection);
 				} else {
 					$items = getImageStatistic($this->itemnumber,$this->sortorder,$this->albumfolder,$this->collection,0,$this->sortdirection);
@@ -901,7 +900,7 @@ protected function getRSSCombinewsAlbums() {
 	* @return array
 	*/
 	protected function getRSSitemGallery($item) {
-		if($this->rssmode == "albums") {
+		if($this->mode == "albums") {
 			$albumobj = newAlbum($item['folder']);
 			$totalimages = $albumobj->getNumImages();
 			$itemlink = $this->host.pathurlencode($albumobj->getAlbumLink());
@@ -939,14 +938,14 @@ protected function getRSSCombinewsAlbums() {
 			$title = $item->getTitle($this->locale);
 			$albumtitle = $albumobj->getTitle($this->locale);
 			$datecontent = '<br />Date: '.zpFormattedDate(DATE_FORMAT,$item->get('mtime'));
-			if ((($ext == "flv") || ($ext == "mp3") || ($ext == "mp4") ||  ($ext == "3gp") ||  ($ext == "mov")) AND $this->rssmode != "album") {
+			if ((($ext == "flv") || ($ext == "mp3") || ($ext == "mp4") ||  ($ext == "3gp") ||  ($ext == "mov")) AND $this->mode != "album") {
 				$feeditem['desc'] = '<a title="'.html_encode($title).' in '.html_encode($albumobj->getTitle($this->locale)).'" href="'.PROTOCOL.'://'.$itemlink.'">'.$thumburl.'</a>' . $item->getDesc($this->locale).$datecontent;
 			} else {
 				$feeditem['desc'] = '<a title="'.html_encode($title).' in '.html_encode($albumobj->getTitle($this->locale)).'" href="'.PROTOCOL.'://'.$itemlink.'"><img src="'.PROTOCOL.'://'.$this->host.pathurlencode($item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'.html_encode($title).'" /></a>' . $item->getDesc($this->locale).$datecontent;
 			}
 		}
 		// title
-		if($this->rssmode != "albums") {
+		if($this->mode != "albums") {
 			$feeditem['title'] = sprintf('%1$s (%2$s)', $item->getTitle($this->locale), $albumobj->getTitle($this->locale));
 		} else {
 			$feeditem['title'] = $imagenumber;
@@ -956,11 +955,11 @@ protected function getRSSCombinewsAlbums() {
 
 		// enclosure
 		$feeditem['enclosure'] = '';
-		if(getOption("RSS_enclosure") AND $this->rssmode != "albums") {
+		if(getOption("RSS_enclosure") AND $this->mode != "albums") {
 			$feeditem['enclosure'] = '<enclosure url="'.PROTOCOL.'://'.$fullimagelink.'" type="'.getMimeString($ext).'" length="'.filesize($item->localpath).'" />';
 		}
 		//category
-		if($this->rssmode != "albums") {
+		if($this->mode != "albums") {
 			$feeditem['category'] = html_encode($albumobj->getTitle($this->locale));
 		} else {
 			$feeditem['category'] = html_encode($albumobj->getTitle($this->locale));
@@ -968,12 +967,12 @@ protected function getRSSCombinewsAlbums() {
 		//media content
 		$feeditem['media_content'] = '';
 		$feeditem['media_thumbnail'] = '';
-		if(getOption("RSS_mediarss") AND $this->rssmode != "albums") {
+		if(getOption("RSS_mediarss") AND $this->mode != "albums") {
 			$feeditem['media_content'] = '<media:content url="'.PROTOCOL.'://'.$fullimagelink.'" type="image/jpeg" />';
 			$feeditem['media_thumbnail'] = '<media:thumbnail url="'.PROTOCOL.'://'.$fullimagelink.'" width="'.$this->imagesize.'"	height="'.$this->imagesize.'" />';
 		}
 		//date
-		if($this->rssmode != "albums") {
+		if($this->mode != "albums") {
 			$feeditem['pubdate'] = date("r",strtotime($item->getDateTime()));
 		} else {
 			$feeditem['pubdate'] = date("r",strtotime($albumobj->getDateTime()));
