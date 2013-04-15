@@ -1585,11 +1585,14 @@ class SearchEngine {
 	 *
 	 * Returns pages from a search
 	 * @param bool $published ignored, left for parameter compatibility
+	 * @param int $number ignored, left for parameter compatibility
+	 * @param string $sorttype the sort key
+	 * @param strng $sortdirection the sort order
 	 *
 	 * @return array
 	 */
-	function getPages($published=NULL) {
-		return $this->getSearchPages(NULL, NULL);
+	function getPages($published=NULL, $number=NULL, $sorttype=NULL, $sortdirection=NULL) {
+		return $this->getSearchPages($sorttype, $sortdirection);
 	}
 
 	/**

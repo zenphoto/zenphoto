@@ -2400,27 +2400,39 @@ function getNumPages($total=false) {
 }
 
 /**
- * Returns a page from the search list
- *
- * @return object
+ * Returns pages from the current page object/search/or parent pages based on context
+ * Updates $_zp_zenpage_curent_page and returns true if there is another page to be delivered
+ * @param string $sorttype
+ * @param string $sortdirection
+ * @return boolean
  */
-function next_page() {
-	global $_zp_zenpage, $_zp_zenpage_pagelist,$_zp_current_search,$_zp_current_zenpage_page;
-	if (!in_context(ZP_SEARCH)) {
-		return false;
+function next_page($sorttype=NULL, $sortdirection=NULL) {
+	global $_zp_zenpage, $_zp_next_pagelist,$_zp_current_search,$_zp_current_zenpage_page,$_zp_current_page_restore;
+	if (is_null($_zp_next_pagelist)) {
+		if (in_context(ZP_SEARCH)) {
+			$_zp_next_pagelist = $_zp_current_search->getPages(NULL, NULL, $sorttype, $sortdirection);
+		} else if (in_context(ZP_ZENPAGE_PAGE)) {
+			if (!is_null($_zp_current_zenpage_page)) {
+				$_zp_next_pagelist = $_zp_current_zenpage_page->getPages(NULL, NULL, $sorttype, $sortdirection);
+			}
+		} else {
+			$_zp_next_pagelist = $_zp_zenpage->getPages(NULL, true, NULL, $sorttype, $sortdirection);
+		}
+		save_context();
+		add_context(ZP_ZENPAGE_PAGE);
+		$_zp_current_page_restore = $_zp_current_zenpage_page;
 	}
-	add_context(ZP_ZENPAGE_PAGE);
-	if (is_null($_zp_zenpage_pagelist)) {
-		$_zp_zenpage_pagelist = $_zp_current_search->getPages();
+	while (!empty($_zp_next_pagelist)) {
+		$page = new ZenpagePage(array_shift($_zp_next_pagelist));
+		if ((zp_loggedin() && $page->isMyItem(LIST_RIGHTS)) || $page->checkForGuest()) {
+			$_zp_current_zenpage_page = $page;
+			return true;
+		}
 	}
-	if (empty($_zp_zenpage_pagelist)) {
-		$_zp_zenpage_pagelist = NULL;
-		rem_context(ZP_ZENPAGE_PAGE);
-		return false;
-	}
-	$page = array_shift($_zp_zenpage_pagelist);
-	$_zp_current_zenpage_page = new ZenpagePage($page);
-	return true;
+	$_zp_next_pagelist = NULL;
+	$_zp_current_zenpage_page = $_zp_current_page_restore;
+	restore_context();
+	return false;
 }
 
 /**
