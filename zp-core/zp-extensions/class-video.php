@@ -230,8 +230,8 @@ class Video extends Image {
 			$filename = filesystemToInternal($this->objectsThumb);
 			$mtime = filemtime(ALBUM_FOLDER_SERVERPATH.'/'.internalToFilesystem($this->imagefolder).'/'.$this->objectsThumb);
 		}
-		$args = getImageParameters(array(getOption('thumb_size'), $sw, $sh, $cw, $ch, $cx, $cy, NULL, true, true, true, $wmt, NULL, NULL), $this->imagefolder);
-		return getImageURI($args, $this->imagefolder, $filename, $mtime);
+		$args = getImageParameters(array(getOption('thumb_size'), $sw, $sh, $cw, $ch, $cx, $cy, NULL, true, true, true, $wmt, NULL, NULL), $this->album->name);
+		return getImageURI($args, $this->album->name, $filename, $mtime);
 	}
 
 	/**
@@ -272,11 +272,11 @@ class Video extends Image {
 				$filename = filesystemToInternal($this->objectsThumb);
 				$mtime = filemtime(ALBUM_FOLDER_SERVERPATH.'/'.internalToFilesystem($this->imagefolder).'/'.$this->objectsThumb);
 			}
-			return getImageURI($args, $this->imagefolder, $filename, $this->filemtime);
+			return getImageURI($args, $this->album->name, $filename, $this->filemtime);
 		} else {
-			$args = getImageParameters(array($size, $width, $height, $cropw, $croph, $cropx, $cropy, NULL, $thumbStandin, NULL, $thumbStandin, $wmt, NULL, $effects), $this->imagefolder);
+			$args = getImageParameters(array($size, $width, $height, $cropw, $croph, $cropx, $cropy, NULL, $thumbStandin, NULL, $thumbStandin, $wmt, NULL, $effects), $this->album->name);
 			$filename = $this->filename;
-			return getImageURI($args, $this->imagefolder, $filename, $this->filemtime);
+			return getImageURI($args, $this->album->name, $filename, $this->filemtime);
 		}
 	}
 
