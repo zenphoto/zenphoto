@@ -924,7 +924,7 @@ class Image extends MediaObject {
 	function getSizedImage($size) {
 		$wmt = getWatermarkParam($this, WATERMARK_IMAGE);
 		$args = getImageParameters(array($size, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, $wmt), $this->album->name);
-		return getImageURI($args,$this->imagefolder,$this->filename, $this->filemtime);
+		return getImageURI($args,$this->album->name,$this->filename, $this->filemtime);
 	}
 
 	/**
@@ -951,8 +951,8 @@ class Image extends MediaObject {
 				$wmt = getWatermarkParam($this,  WATERMARK_IMAGE);
 			}
 		}
-		$args = getImageParameters(array($size, $width, $height, $cropw, $croph, $cropx, $cropy, NULL, $thumbStandin, NULL, $thumbStandin, $wmt, NULL, $effects), $this->imagefolder);
-		return getImageURI($args, $this->imagefolder, $this->filename, $this->filemtime);
+		$args = getImageParameters(array($size, $width, $height, $cropw, $croph, $cropx, $cropy, NULL, $thumbStandin, NULL, $thumbStandin, $wmt, NULL, $effects), $this->album->name);
+		return getImageURI($args, $this->album->name, $this->filename, $this->filemtime);
 	}
 
 	/**
@@ -1022,8 +1022,8 @@ class Image extends MediaObject {
 		}
 		$filename = $this->filename;
 		$wmt = getWatermarkParam($this, WATERMARK_THUMB);
-		$args = getImageParameters(array($ts, NULL, NULL, $sw, $sh, NULL, NULL, NULL, true, NULL, true, $wmt, NULL, NULL), $this->imagefolder);
-		return getImageURI($args, $this->imagefolder, $this->filename, $this->filemtime);
+		$args = getImageParameters(array($ts, NULL, NULL, $sw, $sh, NULL, NULL, NULL, true, NULL, true, $wmt, NULL, NULL), $this->album->name);
+		return getImageURI($args, $this->album->name, $this->filename, $this->filemtime);
 	}
 
 	/**
