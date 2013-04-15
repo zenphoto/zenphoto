@@ -109,18 +109,35 @@ setOptionDefault('email_new_comments', 1);
 setOptionDefault('image_sorttype', 'Filename');
 setOptionDefault('image_sortdirection', '0');
 setOptionDefault('hotlink_protection', '1');
-setOptionDefault('feed_items', 10); // options for standard images rss
-setOptionDefault('feed_imagesize', 240);
-setOptionDefault('feed_sortorder', 'latest');
-setOptionDefault('feed_items_albums', 10); // options for albums rss
-setOptionDefault('feed_imagesize_albums', 240);
-setOptionDefault('feed_sortorder_albums', 'latest');
-setOptionDefault('feed_enclosure', '0');
-setOptionDefault('feed_mediarss', '0');
-setOptionDefault('feed_cache', '1');
-setOptionDefault('feed_cache_expire', 86400);
-setOptionDefault('feed_hitcounter', 1);
-setOptionDefault('feed_title','both');
+
+//	migrate old RSS options
+setOptionDefault('RSS_items', getOption('feed_items')); // options for standard images rss
+setOptionDefault('RSS_imagesize', getOption('feed_imagesize'));
+setOptionDefault('RSS_sortorder', getOption('feed_sortorder'));
+setOptionDefault('RSS_items_albums', getOption('feed_items_albums')); // options for albums rss
+setOptionDefault('RSS_imagesize_albums', getOption('feed_imagesize_albums'));
+setOptionDefault('RSS_sortorder_albums', getOption('feed_sortorder_albums'));
+setOptionDefault('RSS_enclosure', getOption('feed_enclosure'));
+setOptionDefault('RSS_mediarss', getOption('feed_mediarss'));
+setOptionDefault('RSS_cache', getOption('feed_cache'));
+setOptionDefault('RSS_cache_expire', getOption('feed_cache_expire'));
+setOptionDefault('RSS_hitcounter', getOption('feed_hitcounter'));
+setOptionDefault('RSS_title',getOption('feed_title'));
+
+//	set defaults if no migration
+setOptionDefault('RSS_items', 10); // options for standard images rss
+setOptionDefault('RSS_imagesize', 240);
+setOptionDefault('RSS_sortorder', 'latest');
+setOptionDefault('RSS_items_albums', 10); // options for albums rss
+setOptionDefault('RSS_imagesize_albums', 240);
+setOptionDefault('RSS_sortorder_albums', 'latest');
+setOptionDefault('RSS_enclosure', '0');
+setOptionDefault('RSS_mediarss', '0');
+setOptionDefault('RSS_cache', '1');
+setOptionDefault('RSS_cache_expire', 86400);
+setOptionDefault('RSS_hitcounter', 1);
+setOptionDefault('RSS_title','both');
+
 
 setOptionDefault('search_fields', 'title,desc,tags,file,location,city,state,country,content,author');
 

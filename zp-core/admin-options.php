@@ -187,23 +187,23 @@ if (isset($_GET['action'])) {
 
 		/*** RSS options ***/
 		if (isset($_POST['saverssoptions'])) {
-			setOption('feed_items', sanitize($_POST['feed_items'],3));
-			setOption('feed_imagesize', sanitize($_POST['feed_imagesize'],3));
-			setOption('feed_sortorder', sanitize($_POST['feed_sortorder'],3));
-			setOption('feed_items_albums', sanitize($_POST['feed_items_albums'],3));
-			setOption('feed_imagesize_albums', sanitize($_POST['feed_imagesize_albums'],3));
-			setOption('feed_sortorder_albums', sanitize($_POST['feed_sortorder_albums'],3));
-			setOption('feed_title', sanitize($_POST['feed_title'],3));
-			setOption('feed_cache_expire', sanitize($_POST['feed_cache_expire'],3));
-			setOption('feed_enclosure', (int) isset($_POST['feed_enclosure']));
-			setOption('feed_mediarss', (int) isset($_POST['feed_mediarss']));
-			setOption('feed_cache', (int) isset($_POST['feed_cache']));
+			setOption('RSS_items', sanitize($_POST['RSS_items'],3));
+			setOption('RSS_imagesize', sanitize($_POST['RSS_imagesize'],3));
+			setOption('RSS_sortorder', sanitize($_POST['RSS_sortorder'],3));
+			setOption('RSS_items_albums', sanitize($_POST['RSS_items_albums'],3));
+			setOption('RSS_imagesize_albums', sanitize($_POST['RSS_imagesize_albums'],3));
+			setOption('RSS_sortorder_albums', sanitize($_POST['RSS_sortorder_albums'],3));
+			setOption('RSS_title', sanitize($_POST['RSS_title'],3));
+			setOption('RSS_cache_expire', sanitize($_POST['RSS_cache_expire'],3));
+			setOption('RSS_enclosure', (int) isset($_POST['RSS_enclosure']));
+			setOption('RSS_mediarss', (int) isset($_POST['RSS_mediarss']));
+			setOption('RSS_cache', (int) isset($_POST['RSS_cache']));
 			setOption('RSS_album_image', (int) isset($_POST['RSS_album_image']));
 			setOption('RSS_comments', (int) isset($_POST['RSS_comments']));
 			setOption('RSS_articles', (int) isset($_POST['RSS_articles']));
 			setOption('RSS_pages', (int) isset($_POST['RSS_pages']));
 			setOption('RSS_article_comments', (int) isset($_POST['RSS_article_comments']));
-			setOption('feed_hitcounter', (int) isset($_POST['feed_hitcounter']));
+			setOption('RSS_hitcounter', (int) isset($_POST['RSS_hitcounter']));
 			setOption('RSS_portable_link', (int) isset($_POST['RSS_portable_link']));
 			$returntab = "&tab=rss";
 		}
@@ -1602,18 +1602,18 @@ if ($subtab == 'rss' && zp_loggedin(OPTIONS_RIGHTS)) {
 		<tr>
 			<td width="175"><?php echo gettext("Number of RSS feed items:"); ?></td>
 			<td width="350">
-			<input type="text" size="15" id="feed_items" name="feed_items" value="<?php echo html_encode(getOption('feed_items'));?>" /> <label for="feed_items"><?php echo gettext("Images RSS"); ?></label><br />
-			<input type="text" size="15" id="feed_items_albums" name="feed_items_albums" value="<?php echo html_encode(getOption('feed_items_albums'));?>" /> <label for="feed_items"><?php echo gettext("Albums RSS"); ?></label>
+			<input type="text" size="15" id="RSS_items" name="RSS_items" value="<?php echo html_encode(getOption('RSS_items'));?>" /> <label for="RSS_items"><?php echo gettext("Images RSS"); ?></label><br />
+			<input type="text" size="15" id="RSS_items_albums" name="RSS_items_albums" value="<?php echo html_encode(getOption('RSS_items_albums'));?>" /> <label for="RSS_items"><?php echo gettext("Albums RSS"); ?></label>
 			</td>
 			<td><?php echo gettext("The number of new items you want to appear in your site's RSS feed. The images and comments RSS share the value."); ?></td>
 		</tr>
 		<tr>
 			<td><?php echo gettext("Size of RSS feed images:"); ?></td>
 			<td>
-			<input type="text" size="15" id="feed_imagesize" name="feed_imagesize"
-				value="<?php echo html_encode(getOption('feed_imagesize'));?>" /> <label for="feed_imagesize"><?php echo gettext("Images RSS"); ?></label><br />
-				<input type="text" size="15" id="feed_imagesize_albums" name="feed_imagesize_albums"
-				value="<?php echo html_encode(getOption('feed_imagesize_albums'));?>" /> <label for="feed_imagesize_albums"><?php echo gettext("Albums RSS"); ?></label>
+			<input type="text" size="15" id="RSS_imagesize" name="RSS_imagesize"
+				value="<?php echo html_encode(getOption('RSS_imagesize'));?>" /> <label for="RSS_imagesize"><?php echo gettext("Images RSS"); ?></label><br />
+				<input type="text" size="15" id="RSS_imagesize_albums" name="RSS_imagesize_albums"
+				value="<?php echo html_encode(getOption('RSS_imagesize_albums'));?>" /> <label for="RSS_imagesize_albums"><?php echo gettext("Albums RSS"); ?></label>
 				</td>
 			<td><?php echo gettext("The size you want your images to have in your site's RSS feed."); ?></td>
 		</tr>
@@ -1635,47 +1635,47 @@ if ($subtab == 'rss' && zp_loggedin(OPTIONS_RIGHTS)) {
 						gettext('latest updated')=>'latestupdated'
 						);
 			?>
-			<select id="feed_sortorder" name="feed_sortorder">
-			<?php generateListFromArray(array(getOption("feed_sortorder")), $feedsortorder, false, true); ?>
-			</select> <label for="feed_sortorder"><?php echo gettext("Images RSS"); ?></label><br /><br />
-			<select id="feed_sortorder_albums" name="feed_sortorder_albums">
-			<?php generateListFromArray(array(getOption("feed_sortorder_albums")), $feedsortorder_albums, false, true); ?>
-			</select> <label for="feed_sortorder_albums"><?php echo gettext("Albums RSS"); ?></label>
+			<select id="RSS_sortorder" name="RSS_sortorder">
+			<?php generateListFromArray(array(getOption("RSS_sortorder")), $feedsortorder, false, true); ?>
+			</select> <label for="RSS_sortorder"><?php echo gettext("Images RSS"); ?></label><br /><br />
+			<select id="RSS_sortorder_albums" name="RSS_sortorder_albums">
+			<?php generateListFromArray(array(getOption("RSS_sortorder_albums")), $feedsortorder_albums, false, true); ?>
+			</select> <label for="RSS_sortorder_albums"><?php echo gettext("Albums RSS"); ?></label>
 			</td>
 			<td><?php echo gettext("a) Images RSS: Choose between <em>latest by id</em> for the latest uploaded, <em>latest by date</em> for the latest uploaded fetched by date, or <em>latest by mtime</em> for the latest uploaded fetched by the file's last change timestamp.<br />b) Albums RSS: Choose between <em>latest by id</em> for the latest uploaded and <em>latest updated</em>"); ?></td>
 		</tr>
 		<tr>
 			<td><?php echo gettext("RSS enclosure:"); ?></td>
-			<td><input type="checkbox" name="feed_enclosure"
-				value="1" <?php echo checked('1', getOption('feed_enclosure')); ?> /></td>
+			<td><input type="checkbox" name="RSS_enclosure"
+				value="1" <?php echo checked('1', getOption('RSS_enclosure')); ?> /></td>
 			<td><?php echo gettext("Check if you want to enable the <em>RSS enclosure</em> feature which provides a direct download for full images, movies etc. from within certain RSS reader clients <em>(only Images RSS)</em>."); ?></td>
 		</tr>
 			<tr>
 			<td><?php echo gettext("Media RSS:"); ?></td>
-			<td><input type="checkbox" name="feed_mediarss" value="1" <?php echo checked('1', getOption('feed_mediarss')); ?> /></td>
+			<td><input type="checkbox" name="RSS_mediarss" value="1" <?php echo checked('1', getOption('RSS_mediarss')); ?> /></td>
 			<td><?php echo gettext("Check if <em>media RSS</em> support is to be enabled. This support is used by some services and programs <em>(only Images RSS)</em>."); ?></td>
 		</tr>
 		<tr>
 			<td><?php echo gettext("RSS cache"); ?></td>
 			<td>
-				<label><input type="checkbox" name="feed_cache" value="1" <?php echo checked('1', getOption('feed_cache')); ?> /> <?php echo gettext("Enabled"); ?></label><br /><br />
-				<input type="text" size="15" id="feed_cache_expire" name="feed_cache_expire"
-				value="<?php echo html_encode(getOption('feed_cache_expire'));?>" /> <label for="feed_cache_expire"><?php echo gettext("RSS cache expire"); ?></label><br />
+				<label><input type="checkbox" name="RSS_cache" value="1" <?php echo checked('1', getOption('RSS_cache')); ?> /> <?php echo gettext("Enabled"); ?></label><br /><br />
+				<input type="text" size="15" id="RSS_cache_expire" name="RSS_cache_expire"
+				value="<?php echo html_encode(getOption('RSS_cache_expire'));?>" /> <label for="RSS_cache_expire"><?php echo gettext("RSS cache expire"); ?></label><br />
 				</td>
 			<td><?php echo gettext("Check if you want to enable static RSS feed caching. The cached file will be placed within the <em>cache_html</em> folder.<br /> Cache expire default is 86400 seconds (1 day  = 24 hrs * 60 min * 60 sec)."); ?></td>
 		</tr>
 		<tr>
 			<td><?php echo gettext("RSS hitcounter"); ?></td>
-			<td><input type="checkbox" name="feed_hitcounter"
-				value="1" <?php echo checked('1', getOption('feed_hitcounter')); ?> /></td>
+			<td><input type="checkbox" name="RSS_hitcounter"
+				value="1" <?php echo checked('1', getOption('RSS_hitcounter')); ?> /></td>
 			<td><?php echo gettext("Check if you want to store the hitcount on RSS feeds."); ?></td>
 		</tr>
 		<tr>
 			<td><?php echo gettext("RSS title"); ?></td>
 			<td>
-				<label for="feed_title1"><input type="radio" name="feed_title" id="feed_title1" value="gallery" <?php echo checked('gallery', getOption('feed_title')); ?> /><?php echo gettext('Gallery title'); ?></label>
-				<label for="feed_title2"><input type="radio" name="feed_title" id="feed_title2" value="website" <?php echo checked('website', getOption('feed_title')); ?> /><?php echo gettext('Website title'); ?></label>
-				<label for="feed_title3"><input type="radio" name="feed_title" id="feed_title3" value="both" <?php echo checked('both', getOption('feed_title')); ?> /><?php echo gettext('Both'); ?></label>
+				<label for="RSS_title1"><input type="radio" name="RSS_title" id="RSS_title1" value="gallery" <?php echo checked('gallery', getOption('RSS_title')); ?> /><?php echo gettext('Gallery title'); ?></label>
+				<label for="RSS_title2"><input type="radio" name="RSS_title" id="RSS_title2" value="website" <?php echo checked('website', getOption('RSS_title')); ?> /><?php echo gettext('Website title'); ?></label>
+				<label for="RSS_title3"><input type="radio" name="RSS_title" id="RSS_title3" value="both" <?php echo checked('both', getOption('RSS_title')); ?> /><?php echo gettext('Both'); ?></label>
 			</td>
 			<td><?php echo gettext("Select what you want to use as the main RSS feed (channel) title. 'Both' means Website title followed by Gallery title"); ?></td>
 		</tr>

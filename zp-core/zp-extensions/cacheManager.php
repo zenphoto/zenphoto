@@ -283,7 +283,7 @@ class cacheManager {
 	 */
 	static function published($obj) {
 		if (getOption('cacheManager_'.$obj->table)) {
-			require_once (SERVERPATH.'/'.ZENFOLDER.'/class-rss.php');
+			require_once (SERVERPATH.'/'.ZENFOLDER.'/class-feed.php');
 			//TODO: there should be a finer purging for RSS
 			if (class_exists('static_html_cache')) {
 				static_html_cache::clearHTMLCache('index');
@@ -293,25 +293,25 @@ class cacheManager {
 					if (class_exists('static_html_cache')) {
 						static_html_cache::clearHTMLCache();
 					}
-					RSS::clearRSSCache();
+					RSS::clearCache();
 					break;
 				case 'news':
 					if (class_exists('static_html_cache')) {
 						static_html_cache::clearHTMLCache();
 					}
-					RSS::clearRSSCache();
+					RSS::clearCache();
 					break;
 				case 'albums':
 					if (class_exists('static_html_cache')) {
 						static_html_cache::clearHTMLCache();
 					}
-					RSS::clearRSSCache();
+					RSS::clearCache();
 					break;
 				case 'images':
 					if (class_exists('static_html_cache')) {
 						static_html_cache::clearHTMLCache();
 					}
-					RSS::clearRSSCache();
+					RSS::clearCache();
 					break;
 			}
 		}

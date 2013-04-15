@@ -294,9 +294,9 @@ zp-core/auth_zp.php
 zp-core/cacheprotect
 zp-core/class-album.php
 zp-core/class-comment.php
+zp-core/class-feed.php
 zp-core/class-gallery.php
 zp-core/class-image.php
-zp-core/class-rss.php
 zp-core/class-search.php
 zp-core/classes.php
 zp-core/controller.php

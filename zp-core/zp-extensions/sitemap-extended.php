@@ -957,7 +957,7 @@ function clearSitemapCache() {
 			$fullname = $cachefolder . '/' . $filename;
 			if (is_dir($fullname) && !(substr($filename, 0, 1) == '.')) {
 				if (($filename != '.') && ($filename != '..')) {
-					clearRSSCache($fullname);
+					clearCache($fullname);
 					rmdir($fullname);
 				}
 			} else {

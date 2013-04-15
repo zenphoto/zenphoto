@@ -9,7 +9,7 @@ $ht = @file_get_contents($htpath);
 
 switch (isset($_GET['siteState'])?$_GET['siteState']:NULL) {
 	case 'closed':
-		require_once(SERVERPATH.'/'.ZENFOLDER.'/class-rss.php');
+		require_once(SERVERPATH.'/'.ZENFOLDER.'/class-feed.php');
 		class setupRSS extends RSS {
 			public function getRSSitems() {
 				$this->feedtype = 'setup';
@@ -24,9 +24,9 @@ switch (isset($_GET['siteState'])?$_GET['siteState']:NULL) {
 						'desc'=>gettext('The RSS feed is currently not available.'));
 				return $items;
 			}
-			protected function startRSSCache() {
+			protected function startCache() {
 			}
-			protected function endRSSCache() {
+			protected function endCache() {
 			}
 		}
 		$rss = new setupRSS();

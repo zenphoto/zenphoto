@@ -1,5 +1,85 @@
 <?php
 /**
+ * feed atom classes are defined here.
+ *
+ * @package classes
+ */
+
+
+/**
+ *
+ * Base feed class from which all others descend.
+ * Current status is that this is a place holder while we re-organize the RSS handling into
+ * RSS specific items and move the common elements to this class.
+ *
+ *
+ */
+class feedAtom {
+	var $atom;
+
+	/**
+	 * each feed must override this function
+	 */
+	protected function getCacheFilename() {
+		return NULL;
+	}
+
+	/**
+	 * Starts static caching
+	 *
+	 */
+	protected function startCache() {
+		$caching = getOption($this->atom."_cache") && !zp_loggedin();
+		if($caching) {
+			$cachefilepath = SERVERPATH.'/cache_html/'.$this->atom.'/'.internalToFilesystem($this->getCacheFilename());
+			if(file_exists($cachefilepath) AND time()-filemtime($cachefilepath) < getOption($this->atom."_cache_expire")) {
+				echo file_get_contents($cachefilepath);
+				exitZP();
+			} else {
+				if(file_exists($cachefilepath)) {
+					@chmod($cachefilepath, 0666);
+					@unlink($cachefilepath);
+				}
+				ob_start();
+			}
+		}
+	}
+
+	/**
+	 * Ends the static caching.
+	 *
+	 */
+	protected function endCache() {
+		$caching = getOption($this->atom."_cache") && !zp_loggedin();
+		if($caching) {
+			$cachefilepath = internalToFilesystem($this->getCacheFilename());
+			if(!empty($cachefilepath)) {
+				$cachefilepath = SERVERPATH.'/cache_html/'.$this->atom.'/'.$cachefilepath;
+				mkdir_recursive(SERVERPATH.'/cache_html/'.$this->atom.'/',FOLDER_MOD);
+				$pagecontent = ob_get_contents();
+				ob_end_clean();
+				if ($fh = @fopen($cachefilepath,"w")) {
+					fputs($fh, $pagecontent);
+					fclose($fh);
+					clearstatcache();
+				}
+				echo $pagecontent;
+			}
+		}
+	}
+
+	/**
+	 * Cleans out the cache folder
+	 *
+	 * @param string $cachefolder the sub-folder to clean
+	 */
+	static function clearCache($cachefolder) {
+		zpFunctions::removeDir(SERVERPATH.'/'.STATIC_CACHE_FOLDER.'/'.$this->atom.'/'.$cachefolder,true);
+	}
+
+}
+
+/**
  * * Zenphoto RSS class
  *
  * The feed is dependent on GET parameters available.
@@ -155,12 +235,11 @@
  * $rss = new RSS(); // gets parameters from the urls above
  * $rss->printRSSfeed(); // prints xml feed
  *
- * @package classes
  */
 
 require_once(SERVERPATH.'/'.ZENFOLDER.'/lib-MimeTypes.php');
 
-class RSS {
+class RSS extends feedAtom {
 	//general feed type gallery, news or comments
 	protected $feedtype = NULL;
 	protected $itemnumber = NULL;
@@ -204,6 +283,7 @@ class RSS {
 	*/
 	function __construct() {
 		global $_zp_gallery, $_zp_current_admin_obj, $_zp_loggedin;
+		$this->atom = 'RSS';
 		if(isset($_GET['rss'])) {
 			if (isset($_GET['token'])) {
 				//	The link camed from a logged in user, see if it is valid
@@ -219,7 +299,7 @@ class RSS {
 				}
 			}
 			// general feed setup
-			$channeltitlemode = getOption('feed_title');
+			$channeltitlemode = getOption('RSS_title');
 			$this->host = html_encode($_SERVER["HTTP_HOST"]);
 			// url and xml locale
 			if(isset($_GET['lang'])) {
@@ -251,7 +331,7 @@ class RSS {
 			if(isset($_GET['itemnumber'])) {
 				$this->itemnumber = sanitize_numeric($_GET['itemnumber']);
 			} else {
-				$this->itemnumber = getOption('feed_items');
+				$this->itemnumber = getOption('RSS_items');
 			}
 			// individual feedtype setup
 			switch($this->feedtype) {
@@ -420,6 +500,50 @@ class RSS {
 	}
 
 
+	/**
+	 * Gets the RSS file name from the feed url and clears out query items and special chars
+	 *
+	 * @return string
+	 */
+	protected function getCacheFilename() {
+		$uri = explode('?',getRequestURI());
+		$filename = array();
+		foreach (explode('&',$uri[1]) as $param) {
+			$p = explode('=', $param);
+			if (isset($p[1]) && !empty($p[1])) {
+				$filename[] = $p[1];
+			} else {
+				$filename[] = $p[0];
+			}
+		}
+		$filename = seoFriendly(implode('_',$filename));
+		return $filename.".xml";
+
+
+		//old way
+		$replace = array(
+		WEBPATH.'/' => '',
+											"albumname="=>"_",
+											"albumsmode="=>"_",
+											"title=" => "_",
+											"folder=" => "_",
+											"type=" => "-",
+											"albumtitle=" => "_",
+											"category=" => "_",
+											"id=" => "_",
+											"lang=" => "_",
+											"&amp;" => "_",
+											"&" => "_",
+											"index.php" => "",
+											"/"=>"-",
+											"?"=> ""
+		);
+		$filename = strtr(getRequestURI(),$replace);
+		$filename = preg_replace("/__/","_",$filename);
+		$filename = seoFriendly($filename);
+		return $filename.".xml";
+	}
+
 	protected function getRSSChannelTitleExtra() {
 		switch($this->sortorder) {
 			default:
@@ -491,9 +615,9 @@ class RSS {
 			case 'gallery':
 				if(is_null($sortorder)) {
 					if($this->rssmode == "albums") {
-						$sortorder = getOption("feed_sortorder_albums");
+						$sortorder = getOption("RSS_sortorder_albums");
 					} else {
-						$sortorder = getOption("feed_sortorder");
+						$sortorder = getOption("RSS_sortorder");
 					}
 				}
 				break;
@@ -570,13 +694,13 @@ class RSS {
 		} else {
 			$imagesize = NULL;
 		}
-		if(is_numeric($imagesize) && !is_null($imagesize) && $imagesize < getOption('feed_imagesize')) {
+		if(is_numeric($imagesize) && !is_null($imagesize) && $imagesize < getOption('RSS_imagesize')) {
 			$imagesize = $imagesize;
 		} else {
 			if($this->rssmode == 'albums') {
-				$imagesize = getOption('feed_imagesize_albums'); // un-cropped image size
+				$imagesize = getOption('RSS_imagesize_albums'); // un-cropped image size
 			} else {
-				$imagesize = getOption('feed_imagesize'); // un-cropped image size
+				$imagesize = getOption('RSS_imagesize'); // un-cropped image size
 			}
 		}
 		return $imagesize;
@@ -639,111 +763,12 @@ protected function getRSSCombinewsAlbums() {
 }
 
 	/**
-	 * Gets the RSS file name from the feed url and clears out query items and special chars
-	 *
-	 * @return string
-	 */
-	protected function getRSSCacheFilename() {
-		$uri = explode('?',getRequestURI());
-		$filename = array();
-		foreach (explode('&',$uri[1]) as $param) {
-			$p = explode('=', $param);
-			if (isset($p[1]) && !empty($p[1])) {
-				$filename[] = $p[1];
-			} else {
-				$filename[] = $p[0];
-			}
-		}
-		$filename = seoFriendly(implode('_',$filename));
-		return $filename.".xml";
-
-
-		//old way
-		$replace = array(
-		WEBPATH.'/' => '',
-											"albumname="=>"_",
-											"albumsmode="=>"_",
-											"title=" => "_",
-											"folder=" => "_",
-											"type=" => "-",
-											"albumtitle=" => "_",
-											"category=" => "_",
-											"id=" => "_",
-											"lang=" => "_",
-											"&amp;" => "_",
-											"&" => "_",
-											"index.php" => "",
-											"/"=>"-",
-											"?"=> ""
-		);
-		$filename = strtr(getRequestURI(),$replace);
-		$filename = preg_replace("/__/","_",$filename);
-		$filename = seoFriendly($filename);
-		return $filename.".xml";
-	}
-
-	/**
-	 * Starts static RSS caching
-	 *
-	 */
-	protected function startRSSCache() {
-		$caching = getOption("feed_cache") && !zp_loggedin();
-		if($caching) {
-			$cachefilepath = SERVERPATH."/cache_html/rss/".internalToFilesystem($this->getRSSCacheFilename());
-			if(file_exists($cachefilepath) AND time()-filemtime($cachefilepath) < getOption("feed_cache_expire")) {
-				echo file_get_contents($cachefilepath); // PHP >= 4.3
-				exitZP();
-			} else {
-				if(file_exists($cachefilepath)) {
-					@chmod($cachefilepath, 0666);
-					@unlink($cachefilepath);
-				}
-				ob_start();
-			}
-		}
-	}
-
-	/**
-	 * Ends the static RSS caching.
-	 *
-	 */
-	protected function endRSSCache() {
-		$caching = getOption("feed_cache") && !zp_loggedin();
-		if($caching) {
-			$cachefilepath = SERVERPATH."/cache_html/rss/".internalToFilesystem($this->getRSSCacheFilename());
-			if(!empty($cachefilepath)) {
-				mkdir_recursive(SERVERPATH."/cache_html/rss/",FOLDER_MOD);
-				$pagecontent = ob_get_contents();
-				ob_end_clean();
-				if ($fh = @fopen($cachefilepath,"w")) {
-					fputs($fh, $pagecontent);
-					fclose($fh);
-					clearstatcache();
-				}
-				echo $pagecontent;
-			}
-		}
-	}
-
-	/**
-	 * Cleans out the RSS cache folder
-	 *
-	 * @param string $cachefolder the sub-folder to clean
-	 */
-	static function clearRSSCache($cachefolder=NULL) {
-		if (is_null($cachefolder)) {
-			$cachefolder = 'rss';
-		}
-		zpFunctions::removeDir(SERVERPATH.'/'.STATIC_CACHE_FOLDER.'/'.$cachefolder,true);
-	}
-
-	/**
 	* Updates the hitcoutner for RSS in the plugin_storage db table.
 	*
 	*/
 	protected function RSShitcounter() {
-		if(!zp_loggedin() && getOption('feed_hitcounter')) {
-			$rssuri = $this->getRSSCacheFilename();
+		if(!zp_loggedin() && getOption('RSS_hitcounter')) {
+			$rssuri = $this->getCacheFilename();
 			$type = 'rsshitcounter';
 			$checkitem = query_single_row("SELECT `data` FROM ".prefix('plugin_storage')." WHERE `aux` = ".db_quote($rssuri)." AND `type` = '".$type."'",true);
 			if($checkitem) {
@@ -931,7 +956,7 @@ protected function getRSSCombinewsAlbums() {
 
 		// enclosure
 		$feeditem['enclosure'] = '';
-		if(getOption("feed_enclosure") AND $this->rssmode != "albums") {
+		if(getOption("RSS_enclosure") AND $this->rssmode != "albums") {
 			$feeditem['enclosure'] = '<enclosure url="'.PROTOCOL.'://'.$fullimagelink.'" type="'.getMimeString($ext).'" length="'.filesize($item->localpath).'" />';
 		}
 		//category
@@ -943,7 +968,7 @@ protected function getRSSCombinewsAlbums() {
 		//media content
 		$feeditem['media_content'] = '';
 		$feeditem['media_thumbnail'] = '';
-		if(getOption("feed_mediarss") AND $this->rssmode != "albums") {
+		if(getOption("RSS_mediarss") AND $this->rssmode != "albums") {
 			$feeditem['media_content'] = '<media:content url="'.PROTOCOL.'://'.$fullimagelink.'" type="image/jpeg" />';
 			$feeditem['media_thumbnail'] = '<media:thumbnail url="'.PROTOCOL.'://'.$fullimagelink.'" width="'.$this->imagesize.'"	height="'.$this->imagesize.'" />';
 		}
@@ -999,7 +1024,7 @@ protected function getRSSCombinewsAlbums() {
 				} else {
 					$feeditem['desc'] = '<a title="'.html_encode($feeditem['title']).' in '.html_encode($categories).'" href="'.PROTOCOL.'://'.$this->host.$link.'"><img src="'.pathurlencode($obj->getThumb()).'" alt="'.html_encode($feeditem['title']).'" /></a><br />'.$content;
 				}
-				if(getOption("feed_enclosure")) {
+				if(getOption("RSS_enclosure")) {
 					$feeditem['enclosure'] = '<enclosure url="'.PROTOCOL.'://'.$fullimagelink.'" type="'.getMimeString($ext).'" length="'.filesize($obj->localpath).'" />';
 				}
 				break;
@@ -1126,7 +1151,7 @@ protected function getRSSCombinewsAlbums() {
 		$feeditems = $this->getRSSitems();
 		if(is_array($feeditems)) {
 			$this->rssHitcounter();
-			$this->startRSSCache();
+			$this->startCache();
 			header('Content-Type: application/xml');
 			?>
 			<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
@@ -1189,8 +1214,9 @@ protected function getRSSCombinewsAlbums() {
 				</channel>
 			</rss>
 			<?php
-			$this->endRSSCache();
+			$this->endCache();
 		}
 	}
 }
+
 ?>

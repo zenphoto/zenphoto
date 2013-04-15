@@ -51,8 +51,8 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 				/******************************************************************************/
 				case "clear_rss_cache":
 					XSRFdefender('clear_cache');
-					require_once(SERVERPATH.'/'.ZENFOLDER.'/class-rss.php');
-					RSS::clearRSScache();
+					require_once(SERVERPATH.'/'.ZENFOLDER.'/class-feed.php');
+					RSS::clearCache();
 					$class = 'messagebox';
 					$msg = gettext('RSS cache cleared.');
 					break;

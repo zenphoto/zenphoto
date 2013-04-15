@@ -32,7 +32,7 @@ if(isset($_GET['mergedrss'])) {
 	header("Content-type: text/xml");
 
 	// set an arbitrary feed date
-	$feed_date = date("r", mktime(10,0,0,9,8,2010));
+	$RSS_date = date("r", mktime(10,0,0,9,8,2010));
 	if(isset($_GET['lang'])) {
 		$locale = sanitize($_GET['lang']);
 	} else {
@@ -40,10 +40,10 @@ if(isset($_GET['mergedrss'])) {
 	}
 	$gallery = new Gallery();
 	// Create new MergedRSS object with desired parameters
-	$MergedRSS = new MergedRSS($feeds, strip_tags(get_language_string($gallery->getTitle(), $locale)), FULLWEBPATH, strip_tags(get_language_string($gallery->getDesc(), $locale)), $feed_date);
+	$MergedRSS = new MergedRSS($feeds, strip_tags(get_language_string($gallery->getTitle(), $locale)), FULLWEBPATH, strip_tags(get_language_string($gallery->getDesc(), $locale)), $RSS_date);
 
 	//Export the first 10 items to screen
-	$MergedRSS->export(false, true, 20); //getOption('feed_items')
+	$MergedRSS->export(false, true, 20); //getOption('RSS_items')
 
 	// Retrieve the first 5 items as xml code
 	//$xml = $MergedRSS->export(true, false, 5);
@@ -99,9 +99,9 @@ class MergedRSS {
 		// initialize a combined item array for later
 		$items = array();
 		// loop through each feed
-		foreach ($this->myFeeds as $feed_url) {
+		foreach ($this->myFeeds as $RSS_url) {
 			// determine my cache file name.  for now i assume they're all kept in a file called "cache"
-			$cache_file = SERVERPATH.'/'.STATIC_CACHE_FOLDER.'/rss/' . self::create_feed_key($feed_url);
+			$cache_file = SERVERPATH.'/'.STATIC_CACHE_FOLDER.'/rss/' . self::create_RSS_key($RSS_url);
 			// determine whether or not I should use the cached version of the xml
 			$use_cache = file_exists($cache_file) && time() - filemtime($cache_file) < $this->myCacheTime;
 			if ($use_cache) {
@@ -110,7 +110,7 @@ class MergedRSS {
 				$results = $sxe->channel->item;
 			} else {
 				// retrieve updated rss feed
-				$sxe = self::fetch_from_url($feed_url);
+				$sxe = self::fetch_from_url($RSS_url);
 				$results = $sxe->channel->item;
 
 				if (!isset($results)) {
@@ -191,7 +191,7 @@ class MergedRSS {
 	}
 
 	// creates a key for a specific feed url (used for creating friendly file names)
-	private static function create_feed_key($url) {
+	private static function create_RSS_key($url) {
 		return preg_replace('/[^a-zA-Z0-9\.]/', '_', $url) . 'cache';
 	}
 }

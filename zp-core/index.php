@@ -43,7 +43,7 @@ if (isset($_GET['rss'])) {
 		}
 		$_zp_loaded_plugins[] = $extension;
 	}
-	require_once(SERVERPATH."/".ZENFOLDER.'/class-rss.php');
+	require_once(SERVERPATH."/".ZENFOLDER.'/class-feed.php');
 	$rss = new RSS();
 	$rss->printRSSFeed();
 	exitZP();
