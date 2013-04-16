@@ -1,134 +1,12 @@
 <?php
-/**
- * feed atom classes are defined here.
- *
- * @package classes
- */
 
-
-/**
+/** TODO: THis doc needs generalisation regarding "?rss"
  *
  * Base feed class from which all others descend.
  * Current status is that this is a place holder while we re-organize the RSS handling into
  * RSS specific items and move the common elements to this class.
  *
- *
- */
-class feed {
-	protected $feed = 'feed';	//	feed type
-	protected $mode;	//	feed mode
-
-	/**
-	 * each feed must override this function
-	 */
-	protected function getCacheFilename() {
-		return NULL;
-	}
-
-	/**
-	 * Starts static caching
-	 *
-	 */
-	protected function startCache() {
-		$caching = getOption($this->feed."_cache") && !zp_loggedin();
-		if($caching) {
-			$cachefilepath = SERVERPATH.'/cache_html/'.strtolower($this->feed).'/'.internalToFilesystem($this->getCacheFilename());
-			if(file_exists($cachefilepath) AND time()-filemtime($cachefilepath) < getOption($this->feed."_cache_expire")) {
-				echo file_get_contents($cachefilepath);
-				exitZP();
-			} else {
-				if(file_exists($cachefilepath)) {
-					@chmod($cachefilepath, 0666);
-					@unlink($cachefilepath);
-				}
-				ob_start();
-			}
-		}
-	}
-
-	/**
-	 * Ends the static caching.
-	 *
-	 */
-	protected function endCache() {
-		$caching = getOption($this->feed."_cache") && !zp_loggedin();
-		if($caching) {
-			$cachefilepath = internalToFilesystem($this->getCacheFilename());
-			if(!empty($cachefilepath)) {
-				$cachefilepath = SERVERPATH.'/cache_html/'.strtolower($this->feed).'/'.$cachefilepath;
-				mkdir_recursive(SERVERPATH.'/cache_html/'.strtolower($this->feed).'/',FOLDER_MOD);
-				$pagecontent = ob_get_contents();
-				ob_end_clean();
-				if ($fh = @fopen($cachefilepath,"w")) {
-					fputs($fh, $pagecontent);
-					fclose($fh);
-					clearstatcache();
-				}
-				echo $pagecontent;
-			}
-		}
-	}
-
-	/**
-	 * Cleans out the cache folder
-	 *
-	 * @param string $cachefolder the sub-folder to clean
-	 */
-	function clearCache($cachefolder=NULL) {
-		zpFunctions::removeDir(SERVERPATH.'/'.STATIC_CACHE_FOLDER.'/'.strtolower($this->feed).'/'.$cachefolder,true);
-	}
-
- /**
-	* Helper function that gets the sortdirection (not used by all feeds)
-	*
-	* @return string
-	*/
-	protected function getSortdirection() {
-		if(isset($_GET['sortdir'])) {
-			$sortdir = sanitize($_GET['sortdir']);
-			if($sortdir =! 'desc' || $sortdir != 'asc') {
-				$sortdir = 'desc';
-			}
-			return $sortdir;
-		}
-	}
-
- /**
-	* Helper function that gets the sortorder for gallery and plain news/category feeds
-	*
-	* @return string
-	*/
-	protected function getSortorder() {
-		if(isset($_GET['sortorder'])) {
-			$sortorder = sanitize($_GET['sortorder']);
-		} else {
-			$sortorder = NULL;
-		}
-		switch($this->feedtype) {
-			default:
-			case 'gallery':
-				if(is_null($sortorder)) {
-					if($this->mode == "albums") {
-						$sortorder = getOption($this->feed."_sortorder_albums");
-					} else {
-						$sortorder = getOption($this->feed."_sortorder");
-					}
-				}
-				break;
-			case 'news':
-				if($this->newsoption == 'withimages' || $sortorder == 'latest') {
-					$sortorder = NULL;
-				}
-				break;
-		}
-		return $sortorder;
-	}
-
-}
-
-/**
- * * Zenphoto RSS class
- *
+ * 
  * The feed is dependent on GET parameters available.
  *
  * The gallery and additionally Zenpage CMS plugin provide rss link functions to generate context dependent rss links.
@@ -282,13 +160,12 @@ class feed {
  * $rss = new RSS(); // gets parameters from the urls above
  * $rss->printRSSfeed(); // prints xml feed
  *
+ * @package classes
  */
-
-require_once(SERVERPATH.'/'.ZENFOLDER.'/lib-MimeTypes.php');
-
-class RSS extends feed {
-	protected $feed = 'RSS';
-
+class feed {
+	protected $feed = 'feed';	//	feed type
+	protected $mode;	//	feed mode
+	
 	//general feed type gallery, news or comments
 	protected $feedtype = NULL;
 	protected $itemnumber = NULL;
@@ -323,6 +200,498 @@ class RSS extends feed {
 	protected $channel_title = NULL;
 	protected $feeditem = array();
 
+	/**
+	 * each feed must override this function
+	 */
+	protected function getCacheFilename() {
+		return NULL;
+	}
+
+	/**
+	 * Starts static caching
+	 *
+	 */
+	protected function startCache() {
+		$caching = getOption($this->feed."_cache") && !zp_loggedin();
+		if($caching) {
+			$cachefilepath = SERVERPATH.'/cache_html/'.strtolower($this->feed).'/'.internalToFilesystem($this->getCacheFilename());
+			if(file_exists($cachefilepath) AND time()-filemtime($cachefilepath) < getOption($this->feed."_cache_expire")) {
+				echo file_get_contents($cachefilepath);
+				exitZP();
+			} else {
+				if(file_exists($cachefilepath)) {
+					@chmod($cachefilepath, 0666);
+					@unlink($cachefilepath);
+				}
+				ob_start();
+			}
+		}
+	}
+
+	/**
+	 * Ends the static caching.
+	 *
+	 */
+	protected function endCache() {
+		$caching = getOption($this->feed."_cache") && !zp_loggedin();
+		if($caching) {
+			$cachefilepath = internalToFilesystem($this->getCacheFilename());
+			if(!empty($cachefilepath)) {
+				$cachefilepath = SERVERPATH.'/cache_html/'.strtolower($this->feed).'/'.$cachefilepath;
+				mkdir_recursive(SERVERPATH.'/cache_html/'.strtolower($this->feed).'/',FOLDER_MOD);
+				$pagecontent = ob_get_contents();
+				ob_end_clean();
+				if ($fh = @fopen($cachefilepath,"w")) {
+					fputs($fh, $pagecontent);
+					fclose($fh);
+					clearstatcache();
+				}
+				echo $pagecontent;
+			}
+		}
+	}
+
+	/**
+	 * Cleans out the cache folder
+	 *
+	 * @param string $cachefolder the sub-folder to clean
+	 */
+	function clearCache($cachefolder=NULL) {
+		zpFunctions::removeDir(SERVERPATH.'/'.STATIC_CACHE_FOLDER.'/'.strtolower($this->feed).'/'.$cachefolder,true);
+	}
+
+ /**
+	* Helper function that gets the sortdirection (not used by all feeds)
+	*
+	* @return string
+	*/
+	protected function getSortdirection() {
+		if(isset($_GET['sortdir'])) {
+			$sortdir = sanitize($_GET['sortdir']);
+			if($sortdir =! 'desc' || $sortdir != 'asc') {
+				$sortdir = 'desc';
+			}
+			return $sortdir;
+		}
+	}
+
+ /**
+	* Helper function that gets the sortorder for gallery and plain news/category feeds
+	*
+	* @return string
+	*/
+	protected function getSortorder() {
+		if(isset($_GET['sortorder'])) {
+			$sortorder = sanitize($_GET['sortorder']);
+		} else {
+			$sortorder = NULL;
+		}
+		switch($this->feedtype) {
+			default:
+			case 'gallery':
+				if(is_null($sortorder)) {
+					if($this->mode == "albums") {
+						$sortorder = getOption($this->feed."_sortorder_albums");
+					} else {
+						$sortorder = getOption($this->feed."_sortorder");
+					}
+				}
+				break;
+			case 'news':
+				if($this->newsoption == 'withimages' || $sortorder == 'latest') {
+					$sortorder = NULL;
+				}
+				break;
+		}
+		return $sortorder;
+	}
+	
+	protected function getRSSChannelTitleExtra() {
+		switch($this->sortorder) {
+			default:
+			case 'latest':
+			case 'latest-date':
+			case 'latest-mtime':
+			case 'latest-publishdate':
+				if($this->mode == 'albums') {
+					$albumextra = ' ('.gettext('Latest albums').')'; //easier to understand for translators as if I would treat "images"/"albums" in one place separately
+				} else {
+					$albumextra = ' ('.gettext('Latest images').')';
+				}
+				break;
+			case 'latestupdated':
+				$albumextra = ' ('.gettext('latest updated albums').')';
+				break;
+			case 'popular':
+				if($this->mode == 'albums') {
+					$albumextra = ' ('.gettext('Most popular albums').')';
+				} else {
+					$albumextra = ' ('.gettext('Most popular images').')';
+				}
+				break;
+			case 'toprated':
+				if($this->mode == 'albums') {
+					$albumextra = ' ('.gettext('Top rated albums').')';
+				} else {
+					$albumextra = ' ('.gettext('Top rated images').')';
+				}
+				break;
+			case 'random':
+				if($this->mode == 'albums') {
+					$albumextra = ' ('.gettext('Random albums').')';
+				} else {
+					$albumextra = ' ('.gettext('Random images').')';
+				}
+				break;
+		}
+		return $albumextra;
+	}
+
+	/**
+	 * Helper function that returns the image path, album path and modrewrite suffix for Gallery feeds
+	 *
+	 * @param string $arrayfield "albumpath", "imagepath" or "modrewritesuffix"
+	 * @return string
+	 */
+	protected function getRSSImageAndAlbumPaths($arrayfield) {
+		$arrayfield = sanitize($arrayfield);
+		$array = array();
+		if(MOD_REWRITE) {
+			$array['albumpath'] = '/';
+			$array['imagepath'] = '/';
+			$array['modrewritesuffix'] = IM_SUFFIX;
+		} else  {
+			$array['albumpath'] = '/index.php?album=';
+			$array['imagepath'] = '&amp;image=';
+			$array['modrewritesuffix'] = '';
+		}
+		return $array[$arrayfield];
+	}
+
+	/**
+	 * Helper function that returns the albumname and TRUE or FALSE for the collection mode (album + subalbums)
+	 *
+	 * @param string $arrayfield "albumfolder" or "collection"
+	 * @return mixed
+	 */
+	protected function getRSSAlbumnameAndCollection($arrayfield) {
+		$arrayfield = sanitize($arrayfield);
+		$array = array();
+		if(!empty($arrayfield)) {
+			if(isset($_GET['albumname'])) {
+				$albumfolder = sanitize_path($_GET['albumname']);
+				if(!file_exists(ALBUM_FOLDER_SERVERPATH.'/'.internalToFilesystem($albumfolder))) {
+					$array['albumfolder'] = NULL;
+				}
+				$array['collection'] = FALSE;
+			} else if(isset($_GET['folder'])) {
+				$albumfolder = sanitize_path($_GET['folder']);
+				if(!file_exists(ALBUM_FOLDER_SERVERPATH.'/'.internalToFilesystem($albumfolder))) {
+					$array['albumfolder'] = NULL;
+					$array['collection'] = FALSE;
+				} else {
+					$array['collection'] = TRUE;
+				}
+			} else {
+				$array['albumfolder'] = NULL;
+				$array['collection'] = FALSE;
+			}
+			return $array[$arrayfield];
+		}
+	}
+
+	/**
+	* Helper function that gets the images size of the "size" get parameter
+	*
+	* @return string
+	*/
+	protected function getRSSImageSize() {
+		if(isset($_GET['size'])) {
+			$imagesize = sanitize_numeric($_GET['size']);
+		} else {
+			$imagesize = NULL;
+		}
+		if(is_numeric($imagesize) && !is_null($imagesize) && $imagesize < getOption('RSS_imagesize')) {
+			$imagesize = $imagesize;
+		} else {
+			if($this->mode == 'albums') {
+				$imagesize = getOption('RSS_imagesize_albums'); // un-cropped image size
+			} else {
+				$imagesize = getOption('RSS_imagesize'); // un-cropped image size
+			}
+		}
+		return $imagesize;
+	}
+
+	/**
+	 * Helper function that returns the News category title or catlink (name) or the mode (all news or category only) for the Zenpage news feed.
+	 *
+	 * @param string $arrayfield "catlink", "catttitle" or "option"
+	 * @return string
+	 */
+	protected function getRSSNewsCatOptions($arrayfield) {
+		$arrayfield = sanitize($arrayfield);
+		$array = array();
+		if(!empty($arrayfield)) {
+			if(isset($_GET['category'])) {
+				$array['catlink'] = sanitize($_GET['category']);
+				$catobj = new ZenpageCategory($array['catlink']);
+				$array['cattitle'] = html_encode($catobj->getTitle());
+				$array['option'] = 'category';
+			} else {
+				$array['catlink'] = '';
+				$array['cattitle'] = '';
+				$array['option'] = 'news';
+			}
+			return $array[$arrayfield];
+		}
+	}
+
+	/**
+	 * Helper function that returns if and what Zenpage Combinews mode with images is set
+	 *
+	 * @return string
+	 */
+		protected function getRSSCombinewsImages() {
+			if(isset($_GET['withimages'])) {
+				return 'withimages';
+			} else if(isset($_GET['withimages_mtime'])) {
+				return 'withimages_mtime';
+			}	else	if(isset($_GET['withimages_publishdate'])) {
+				return 'withimages_publishdate';
+			}
+		}
+
+		/**
+		 * Helper function that returns if and what Zenpage Combinews mode with albums is set
+		 *
+		 * @return string
+		 */
+		protected function getRSSCombinewsAlbums() {
+			if(isset($_GET['withalbums'])) {
+				return 'withalbums';
+			}	else if(isset($_GET['withalbums_mtime'])) {
+				return 'withalbums_mtime';
+			}	else if(isset($_GET['withalbums_publishdate'])) {
+				return 'withalbums_publishdate';
+			}	else if(isset($_GET['withalbums_latestupdated'])) {
+				return 'withalbums_latestupdated';
+			}
+		}
+
+
+	/**
+	 * Gets the feed items
+	 *
+	 * @return array
+	 */
+	public function getRSSitems() {
+		global $_zp_zenpage;
+		switch($this->feedtype) {
+			case 'gallery':
+				if ($this->mode == "albums") {
+					$items = getAlbumStatistic($this->itemnumber,$this->sortorder,$this->albumfolder,$this->sortdirection);
+				} else {
+					$items = getImageStatistic($this->itemnumber,$this->sortorder,$this->albumfolder,$this->collection,0,$this->sortdirection);
+				}
+				break;
+			case 'news':
+				switch ($this->newsoption) {
+					case "category":
+						if($this->sortorder) {
+							$items = getZenpageStatistic($this->itemnumber,'categories',$this->sortorder,$this->sortdirection);
+						} else {
+							$items = getLatestNews($this->itemnumber,"none",$this->catlink,false,$this->sortdirection);
+						}
+						break;
+					case "news":
+						if($this->sortorder) {
+							$items = getZenpageStatistic($this->itemnumber,'news',$this->sortorder,$this->sortdirection);
+						} else {
+							// Needed baceause type variable "news" is used by the feed item method and not set by the class method getArticles!
+							$items = getLatestNews($this->itemnumber,'none','',false,$this->sortdirection);
+						}
+						break;
+					case "withimages":
+						//$items = getLatestNews($this->itemnumber,"with_latest_images_date",'',false,$this->sortdirection);
+						$items = $_zp_zenpage->getCombiNews($this->itemnumber,'latestimages-thumbnail',NULL,'date',false,$this->sortdirection);
+						break;
+					case "withimages_id":
+						//$items = getLatestNews($this->itemnumber,"with_latest_images_date",'',false,$this->sortdirection);
+						$items = $_zp_zenpage->getCombiNews($this->itemnumber,'latestimages-thumbnail',NULL,'id',false,$this->sortdirection);
+						break;
+					case 'withimages_mtime':
+						//$items = getLatestNews($this->itemnumber,"with_latest_images_mtime",'',false,$this->sortdirection);
+						$items = $_zp_zenpage->getCombiNews($this->itemnumber,'latestimages-thumbnail',NULL,'mtime',false,$this->sortdirection);
+						break;
+					case 'withimages_publishdate':
+						//$items = getLatestNews($this->itemnumber,"with_latest_images_publishdate",'',false,$this->sortdirection);
+						$items = $_zp_zenpage->getCombiNews($this->itemnumber,'latestimages-thumbnail',NULL,'publishdate',false,$this->sortdirection);
+						break;
+					case 'withalbums':
+						//$items = getLatestNews($this->itemnumber,"with_latest_albums_date",'',false,$this->sortdirection);
+						$items = $_zp_zenpage->getCombiNews($this->itemnumber,'latestalbums-thumbnail',NULL,'date',false,$this->sortdirection);
+						break;
+					case 'withalbums_mtime':
+						//$items = getLatestNews($this->itemnumber,"with_latest_albums_mtime",'',false,$this->sortdirection);
+						$items = $_zp_zenpage->getCombiNews($this->itemnumber,'latestalbums-thumbnail',NULL,'mtime',false,$this->sortdirection);
+						break;
+					case 'withalbums_publishdate':
+						//$items = getLatestNews($this->itemnumber,"with_latest_albums_publishdate",'',false,$this->sortdirection);
+						$items = $_zp_zenpage->getCombiNews($this->itemnumber,'latestalbums-thumbnail',NULL,'publishdate',false,$this->sortdirection);
+						break;
+					case 'withalbums_latestupdated':
+						//$items = getLatestNews($this->itemnumber,"with_latestupdated_albums",'',false,$this->sortdirection);
+						$items = $_zp_zenpage->getCombiNews($this->itemnumber,'latestupdatedalbums-thumbnail',NULL,'',false,$this->sortdirection);
+						break;
+				}
+				break;
+			case "pages":
+				if($this->sortorder) {
+					$items = getZenpageStatistic($this->itemnumber,'pages',$this->sortorder,$this->sortdirection);
+				} else {
+					$items = $_zp_zenpage->getPages(NULL,false,$this->itemnumber,$this->sortorder,$this->sortdirection);
+				}
+			  break;
+			case 'comments':
+				switch($type = $this->commentrsstype) {
+					case 'gallery':
+						$items = getLatestComments($this->itemnumber,'all');
+						break;
+					case 'album':
+						$items = getLatestComments($this->itemnumber,'album',$this->id);
+						break;
+					case 'image':
+						$items = getLatestComments($this->itemnumber,'image',$this->id);
+						break;
+					case 'zenpage':
+						$type = 'all';
+					case 'news':
+					case 'page':
+						if(function_exists('getLatestZenpageComments')) {
+							$items = getLatestZenpageComments($this->itemnumber,$type,$this->id);
+						}
+						break;
+					case 'allcomments':
+						$items = getLatestComments($this->itemnumber,'all');
+						$items_zenpage = array();
+						if(function_exists('getLatestZenpageComments')) {
+							$items_zenpage = getLatestZenpageComments($this->itemnumber,$type,$this->id);
+							$items = array_merge($items,$items_zenpage);
+							$items = sortMultiArray($items,'date',true);
+							$items = array_slice($items,0,$this->itemnumber);
+						}
+						break;
+				}
+				break;
+		}
+		if (isset($items)) {
+			return $items;
+		}
+		if (TEST_RELEASE) {
+			trigger_error(gettext('Bad RSS feed:'.$this->feedtype),E_USER_WARNING);
+		}
+		return NULL;
+	}
+
+	/**
+	* Gets the feed item data in a Zenpage news feed
+	*
+	* @param array $item Titlelink a Zenpage article or filename of an image if a combined feed
+	* @return array
+	*/
+	protected function getRSSitemPages($item) {
+		$obj = new ZenpagePage($item['titlelink']);
+		$feeditem['title'] = $feeditem['title'] = get_language_string($obj->getTitle('all'),$this->locale);
+		$feeditem['link'] = getPageLinkURL($obj->getTitlelink());
+		$feeditem['desc'] = shortenContent($obj->getContent($this->locale),getOption('zenpage_rss_length'), '...');
+		$feeditem['enclosure'] = '';
+		$feeditem['category'] = '';
+		$feeditem['media_content'] = '';
+		$feeditem['media_thumbnail'] = '';
+		$feeditem['pubdate'] = date("r",strtotime($obj->getDatetime()));
+		return $feeditem;
+	}
+
+	/**
+	 * Gets the feed item data in a comments feed
+	 *
+	 * @param array $item Array of a comment
+	 * @return array
+	 */
+	protected function getRSSitemComments($item) {
+		if($item['anon']) {
+			$author = "";
+		} else {
+			$author = " ".gettext("by")." ".$item['name'];
+		}
+		$commentpath = $imagetag = $title = '';
+		switch($item['type']) {
+			case 'images':
+				$title = get_language_string($item['title']);
+				$obj = newImage(NULL, array('folder'=>$item['folder'],'filename'=>$item['filename']));
+				$link = $obj->getImagelink();
+				$feeditem['pubdate'] = date("r",strtotime($item['date']));
+				$category = $item['albumtitle'];
+				$website =$item['website'];
+				if($item['type'] == 'albums') {
+					$title = $category;
+				} else {
+					$title = $category.": ".$title;
+				}
+				$commentpath = PROTOCOL.'://'.$this->host.html_encode($link)."#".$item['id'];
+				break;
+			case 'albums':
+				$obj = newAlbum($item['folder']);
+				$link = rtrim($obj->getAlbumlink(),'/');
+				$feeditem['pubdate'] = date("r",strtotime($item['date']));
+				$category = $item['albumtitle'];
+				$website =$item['website'];
+				if($item['type'] == 'albums') {
+					$title = $category;
+				} else {
+					$title = $category.": ".$title;
+				}
+				$commentpath = PROTOCOL.'://'.$this->host.html_encode($link)."#".$item['id'];
+				break;
+			case 'news':
+			case 'pages':
+				$album = '';
+				$feeditem['pubdate'] = date("r",strtotime($item['date']));
+				$category = '';
+				$title = get_language_string($item['title']);
+				$titlelink = $item['titlelink'];
+				$website = $item['website'];
+				if(function_exists('getNewsURL')) {
+					if ($item['type']=='news') {
+						$commentpath = PROTOCOL.'://'.$this->host.html_encode(getNewsURL($titlelink))."#".$item['id'];
+					} else {
+						$commentpath = PROTOCOL.'://'.$this->host.html_encode(getPageLinkURL($titlelink))."#".$item['id'];
+					}
+				} else {
+					$commentpath = '';
+				}
+				break;
+		}
+		$feeditem['title'] = strip_tags($title.$author);
+		$feeditem['link'] = $commentpath;
+		$feeditem['desc'] = $item['comment'];
+		return $feeditem;
+	}
+
+
+}
+
+
+
+
+
+require_once(SERVERPATH.'/'.ZENFOLDER.'/lib-MimeTypes.php');
+
+class RSS extends feed {
+	protected $feed = 'RSS';
+
+	
 	/**
 	* Creates a feed object from the URL parameters fetched only
 	*
@@ -589,179 +958,7 @@ class RSS extends feed {
 		return $filename.".xml";
 	}
 
-	protected function getRSSChannelTitleExtra() {
-		switch($this->sortorder) {
-			default:
-			case 'latest':
-			case 'latest-date':
-			case 'latest-mtime':
-			case 'latest-publishdate':
-				if($this->mode == 'albums') {
-					$albumextra = ' ('.gettext('Latest albums').')'; //easier to understand for translators as if I would treat "images"/"albums" in one place separately
-				} else {
-					$albumextra = ' ('.gettext('Latest images').')';
-				}
-				break;
-			case 'latestupdated':
-				$albumextra = ' ('.gettext('latest updated albums').')';
-				break;
-			case 'popular':
-				if($this->mode == 'albums') {
-					$albumextra = ' ('.gettext('Most popular albums').')';
-				} else {
-					$albumextra = ' ('.gettext('Most popular images').')';
-				}
-				break;
-			case 'toprated':
-				if($this->mode == 'albums') {
-					$albumextra = ' ('.gettext('Top rated albums').')';
-				} else {
-					$albumextra = ' ('.gettext('Top rated images').')';
-				}
-				break;
-			case 'random':
-				if($this->mode == 'albums') {
-					$albumextra = ' ('.gettext('Random albums').')';
-				} else {
-					$albumextra = ' ('.gettext('Random images').')';
-				}
-				break;
-		}
-		return $albumextra;
-	}
-
-	/**
-	 * Helper function that returns the image path, album path and modrewrite suffix for Gallery feeds
-	 *
-	 * @param string $arrayfield "albumpath", "imagepath" or "modrewritesuffix"
-	 * @return string
-	 */
-	protected function getRSSImageAndAlbumPaths($arrayfield) {
-		$arrayfield = sanitize($arrayfield);
-		$array = array();
-		if(MOD_REWRITE) {
-			$array['albumpath'] = '/';
-			$array['imagepath'] = '/';
-			$array['modrewritesuffix'] = IM_SUFFIX;
-		} else  {
-			$array['albumpath'] = '/index.php?album=';
-			$array['imagepath'] = '&amp;image=';
-			$array['modrewritesuffix'] = '';
-		}
-		return $array[$arrayfield];
-	}
-
-	/**
-	 * Helper function that returns the albumname and TRUE or FALSE for the collection mode (album + subalbums)
-	 *
-	 * @param string $arrayfield "albumfolder" or "collection"
-	 * @return mixed
-	 */
-	protected function getRSSAlbumnameAndCollection($arrayfield) {
-		$arrayfield = sanitize($arrayfield);
-		$array = array();
-		if(!empty($arrayfield)) {
-			if(isset($_GET['albumname'])) {
-				$albumfolder = sanitize_path($_GET['albumname']);
-				if(!file_exists(ALBUM_FOLDER_SERVERPATH.'/'.internalToFilesystem($albumfolder))) {
-					$array['albumfolder'] = NULL;
-				}
-				$array['collection'] = FALSE;
-			} else if(isset($_GET['folder'])) {
-				$albumfolder = sanitize_path($_GET['folder']);
-				if(!file_exists(ALBUM_FOLDER_SERVERPATH.'/'.internalToFilesystem($albumfolder))) {
-					$array['albumfolder'] = NULL;
-					$array['collection'] = FALSE;
-				} else {
-					$array['collection'] = TRUE;
-				}
-			} else {
-				$array['albumfolder'] = NULL;
-				$array['collection'] = FALSE;
-			}
-			return $array[$arrayfield];
-		}
-	}
-
-	/**
-	* Helper function that gets the images size of the "size" get parameter
-	*
-	* @return string
-	*/
-	protected function getRSSImageSize() {
-		if(isset($_GET['size'])) {
-			$imagesize = sanitize_numeric($_GET['size']);
-		} else {
-			$imagesize = NULL;
-		}
-		if(is_numeric($imagesize) && !is_null($imagesize) && $imagesize < getOption('RSS_imagesize')) {
-			$imagesize = $imagesize;
-		} else {
-			if($this->mode == 'albums') {
-				$imagesize = getOption('RSS_imagesize_albums'); // un-cropped image size
-			} else {
-				$imagesize = getOption('RSS_imagesize'); // un-cropped image size
-			}
-		}
-		return $imagesize;
-	}
-
-	/**
-	 * Helper function that returns the News category title or catlink (name) or the mode (all news or category only) for the Zenpage news feed.
-	 *
-	 * @param string $arrayfield "catlink", "catttitle" or "option"
-	 * @return string
-	 */
-	protected function getRSSNewsCatOptions($arrayfield) {
-		$arrayfield = sanitize($arrayfield);
-		$array = array();
-		if(!empty($arrayfield)) {
-			if(isset($_GET['category'])) {
-				$array['catlink'] = sanitize($_GET['category']);
-				$catobj = new ZenpageCategory($array['catlink']);
-				$array['cattitle'] = html_encode($catobj->getTitle());
-				$array['option'] = 'category';
-			} else {
-				$array['catlink'] = '';
-				$array['cattitle'] = '';
-				$array['option'] = 'news';
-			}
-			return $array[$arrayfield];
-		}
-	}
-
-	/**
-	 * Helper function that returns if and what Zenpage Combinews mode with images is set
-	 *
-	 * @return string
-	 */
-protected function getRSSCombinewsImages() {
-	if(isset($_GET['withimages'])) {
-		return 'withimages';
-	} else if(isset($_GET['withimages_mtime'])) {
-		return 'withimages_mtime';
-	}	else	if(isset($_GET['withimages_publishdate'])) {
-		return 'withimages_publishdate';
-	}
-}
-
-/**
-	 * Helper function that returns if and what Zenpage Combinews mode with albums is set
-	 *
-	 * @return string
-	 */
-protected function getRSSCombinewsAlbums() {
-	if(isset($_GET['withalbums'])) {
-		return 'withalbums';
-	}	else if(isset($_GET['withalbums_mtime'])) {
-		return 'withalbums_mtime';
-	}	else if(isset($_GET['withalbums_publishdate'])) {
-		return 'withalbums_publishdate';
-	}	else if(isset($_GET['withalbums_latestupdated'])) {
-		return 'withalbums_latestupdated';
-	}
-}
-
+	
 	/**
 	* Updates the hitcoutner for RSS in the plugin_storage db table.
 	*
@@ -780,119 +977,7 @@ protected function getRSSCombinewsAlbums() {
 		}
 	}
 
-	/**
-	 * Gets the feed items
-	 *
-	 * @return array
-	 */
-	public function getRSSitems() {
-		global $_zp_zenpage;
-		switch($this->feedtype) {
-			case 'gallery':
-				if ($this->mode == "albums") {
-					$items = getAlbumStatistic($this->itemnumber,$this->sortorder,$this->albumfolder,$this->sortdirection);
-				} else {
-					$items = getImageStatistic($this->itemnumber,$this->sortorder,$this->albumfolder,$this->collection,0,$this->sortdirection);
-				}
-				break;
-			case 'news':
-				switch ($this->newsoption) {
-					case "category":
-						if($this->sortorder) {
-							$items = getZenpageStatistic($this->itemnumber,'categories',$this->sortorder,$this->sortdirection);
-						} else {
-							$items = getLatestNews($this->itemnumber,"none",$this->catlink,false,$this->sortdirection);
-						}
-						break;
-					case "news":
-						if($this->sortorder) {
-							$items = getZenpageStatistic($this->itemnumber,'news',$this->sortorder,$this->sortdirection);
-						} else {
-							// Needed baceause type variable "news" is used by the feed item method and not set by the class method getArticles!
-							$items = getLatestNews($this->itemnumber,'none','',false,$this->sortdirection);
-						}
-						break;
-					case "withimages":
-						//$items = getLatestNews($this->itemnumber,"with_latest_images_date",'',false,$this->sortdirection);
-						$items = $_zp_zenpage->getCombiNews($this->itemnumber,'latestimages-thumbnail',NULL,'date',false,$this->sortdirection);
-						break;
-					case "withimages_id":
-						//$items = getLatestNews($this->itemnumber,"with_latest_images_date",'',false,$this->sortdirection);
-						$items = $_zp_zenpage->getCombiNews($this->itemnumber,'latestimages-thumbnail',NULL,'id',false,$this->sortdirection);
-						break;
-					case 'withimages_mtime':
-						//$items = getLatestNews($this->itemnumber,"with_latest_images_mtime",'',false,$this->sortdirection);
-						$items = $_zp_zenpage->getCombiNews($this->itemnumber,'latestimages-thumbnail',NULL,'mtime',false,$this->sortdirection);
-						break;
-					case 'withimages_publishdate':
-						//$items = getLatestNews($this->itemnumber,"with_latest_images_publishdate",'',false,$this->sortdirection);
-						$items = $_zp_zenpage->getCombiNews($this->itemnumber,'latestimages-thumbnail',NULL,'publishdate',false,$this->sortdirection);
-						break;
-					case 'withalbums':
-						//$items = getLatestNews($this->itemnumber,"with_latest_albums_date",'',false,$this->sortdirection);
-						$items = $_zp_zenpage->getCombiNews($this->itemnumber,'latestalbums-thumbnail',NULL,'date',false,$this->sortdirection);
-						break;
-					case 'withalbums_mtime':
-						//$items = getLatestNews($this->itemnumber,"with_latest_albums_mtime",'',false,$this->sortdirection);
-						$items = $_zp_zenpage->getCombiNews($this->itemnumber,'latestalbums-thumbnail',NULL,'mtime',false,$this->sortdirection);
-						break;
-					case 'withalbums_publishdate':
-						//$items = getLatestNews($this->itemnumber,"with_latest_albums_publishdate",'',false,$this->sortdirection);
-						$items = $_zp_zenpage->getCombiNews($this->itemnumber,'latestalbums-thumbnail',NULL,'publishdate',false,$this->sortdirection);
-						break;
-					case 'withalbums_latestupdated':
-						//$items = getLatestNews($this->itemnumber,"with_latestupdated_albums",'',false,$this->sortdirection);
-						$items = $_zp_zenpage->getCombiNews($this->itemnumber,'latestupdatedalbums-thumbnail',NULL,'',false,$this->sortdirection);
-						break;
-				}
-				break;
-			case "pages":
-				if($this->sortorder) {
-					$items = getZenpageStatistic($this->itemnumber,'pages',$this->sortorder,$this->sortdirection);
-				} else {
-					$items = $_zp_zenpage->getPages(NULL,false,$this->itemnumber,$this->sortorder,$this->sortdirection);
-				}
-			  break;
-			case 'comments':
-				switch($type = $this->commentrsstype) {
-					case 'gallery':
-						$items = getLatestComments($this->itemnumber,'all');
-						break;
-					case 'album':
-						$items = getLatestComments($this->itemnumber,'album',$this->id);
-						break;
-					case 'image':
-						$items = getLatestComments($this->itemnumber,'image',$this->id);
-						break;
-					case 'zenpage':
-						$type = 'all';
-					case 'news':
-					case 'page':
-						if(function_exists('getLatestZenpageComments')) {
-							$items = getLatestZenpageComments($this->itemnumber,$type,$this->id);
-						}
-						break;
-					case 'allcomments':
-						$items = getLatestComments($this->itemnumber,'all');
-						$items_zenpage = array();
-						if(function_exists('getLatestZenpageComments')) {
-							$items_zenpage = getLatestZenpageComments($this->itemnumber,$type,$this->id);
-							$items = array_merge($items,$items_zenpage);
-							$items = sortMultiArray($items,'date',true);
-							$items = array_slice($items,0,$this->itemnumber);
-						}
-						break;
-				}
-				break;
-		}
-		if (isset($items)) {
-			return $items;
-		}
-		if (TEST_RELEASE) {
-			trigger_error(gettext('Bad RSS feed:'.$this->feedtype),E_USER_WARNING);
-		}
-		return NULL;
-	}
+	
 
 	/**
 	* Gets the feed item data in a gallery feed
@@ -1057,90 +1142,7 @@ protected function getRSSCombinewsAlbums() {
 		return $feeditem;
 	}
 
- /**
-	* Gets the feed item data in a Zenpage news feed
-	*
-	* @param array $item Titlelink a Zenpage article or filename of an image if a combined feed
-	* @return array
-	*/
-	protected function getRSSitemPages($item) {
-		$obj = new ZenpagePage($item['titlelink']);
-		$feeditem['title'] = $feeditem['title'] = get_language_string($obj->getTitle('all'),$this->locale);
-		$feeditem['link'] = getPageLinkURL($obj->getTitlelink());
-		$feeditem['desc'] = shortenContent($obj->getContent($this->locale),getOption('zenpage_rss_length'), '...');
-		$feeditem['enclosure'] = '';
-		$feeditem['category'] = '';
-		$feeditem['media_content'] = '';
-		$feeditem['media_thumbnail'] = '';
-		$feeditem['pubdate'] = date("r",strtotime($obj->getDatetime()));
-		return $feeditem;
-	}
-
-	/**
-	 * Gets the feed item data in a comments feed
-	 *
-	 * @param array $item Array of a comment
-	 * @return array
-	 */
-	protected function getRSSitemComments($item) {
-		if($item['anon']) {
-			$author = "";
-		} else {
-			$author = " ".gettext("by")." ".$item['name'];
-		}
-		$commentpath = $imagetag = $title = '';
-		switch($item['type']) {
-			case 'images':
-				$title = get_language_string($item['title']);
-				$obj = newImage(NULL, array('folder'=>$item['folder'],'filename'=>$item['filename']));
-				$link = $obj->getImagelink();
-				$feeditem['pubdate'] = date("r",strtotime($item['date']));
-				$category = $item['albumtitle'];
-				$website =$item['website'];
-				if($item['type'] == 'albums') {
-					$title = $category;
-				} else {
-					$title = $category.": ".$title;
-				}
-				$commentpath = PROTOCOL.'://'.$this->host.html_encode($link)."#".$item['id'];
-				break;
-			case 'albums':
-				$obj = newAlbum($item['folder']);
-				$link = rtrim($obj->getAlbumlink(),'/');
-				$feeditem['pubdate'] = date("r",strtotime($item['date']));
-				$category = $item['albumtitle'];
-				$website =$item['website'];
-				if($item['type'] == 'albums') {
-					$title = $category;
-				} else {
-					$title = $category.": ".$title;
-				}
-				$commentpath = PROTOCOL.'://'.$this->host.html_encode($link)."#".$item['id'];
-				break;
-			case 'news':
-			case 'pages':
-				$album = '';
-				$feeditem['pubdate'] = date("r",strtotime($item['date']));
-				$category = '';
-				$title = get_language_string($item['title']);
-				$titlelink = $item['titlelink'];
-				$website = $item['website'];
-				if(function_exists('getNewsURL')) {
-					if ($item['type']=='news') {
-						$commentpath = PROTOCOL.'://'.$this->host.html_encode(getNewsURL($titlelink))."#".$item['id'];
-					} else {
-						$commentpath = PROTOCOL.'://'.$this->host.html_encode(getPageLinkURL($titlelink))."#".$item['id'];
-					}
-				} else {
-					$commentpath = '';
-				}
-				break;
-		}
-		$feeditem['title'] = strip_tags($title.$author);
-		$feeditem['link'] = $commentpath;
-		$feeditem['desc'] = $item['comment'];
-		return $feeditem;
-	}
+ 
 
 	/**
 	* Prints the RSS feed xml
