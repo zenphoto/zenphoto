@@ -231,7 +231,7 @@ class TextObject extends Image {
 				$filename = filesystemToInternal($this->objectsThumb);
 				$mtime = filemtime(ALBUM_FOLDER_SERVERPATH.'/'.internalToFilesystem($this->imagefolder).'/'.$this->objectsThumb);
 			}
-			return getImageURI($args, $this->album-name, $filename, $mtime);
+			return getImageURI($args, $this->album->name, $filename, $mtime);
 		} else {
 			return $this->getBody($width, $height);
 		}

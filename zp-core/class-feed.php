@@ -15,7 +15,7 @@
  *
  */
 class feed {
-	protected $feed;	//	feed type
+	protected $feed = 'feed';	//	feed type
 	protected $mode;	//	feed mode
 
 	/**
@@ -32,7 +32,7 @@ class feed {
 	protected function startCache() {
 		$caching = getOption($this->feed."_cache") && !zp_loggedin();
 		if($caching) {
-			$cachefilepath = SERVERPATH.'/cache_html/'.$this->feed.'/'.internalToFilesystem($this->getCacheFilename());
+			$cachefilepath = SERVERPATH.'/cache_html/'.strtolower($this->feed).'/'.internalToFilesystem($this->getCacheFilename());
 			if(file_exists($cachefilepath) AND time()-filemtime($cachefilepath) < getOption($this->feed."_cache_expire")) {
 				echo file_get_contents($cachefilepath);
 				exitZP();
@@ -55,8 +55,8 @@ class feed {
 		if($caching) {
 			$cachefilepath = internalToFilesystem($this->getCacheFilename());
 			if(!empty($cachefilepath)) {
-				$cachefilepath = SERVERPATH.'/cache_html/'.$this->feed.'/'.$cachefilepath;
-				mkdir_recursive(SERVERPATH.'/cache_html/'.$this->feed.'/',FOLDER_MOD);
+				$cachefilepath = SERVERPATH.'/cache_html/'.strtolower($this->feed).'/'.$cachefilepath;
+				mkdir_recursive(SERVERPATH.'/cache_html/'.strtolower($this->feed).'/',FOLDER_MOD);
 				$pagecontent = ob_get_contents();
 				ob_end_clean();
 				if ($fh = @fopen($cachefilepath,"w")) {
@@ -75,7 +75,7 @@ class feed {
 	 * @param string $cachefolder the sub-folder to clean
 	 */
 	function clearCache($cachefolder=NULL) {
-		zpFunctions::removeDir(SERVERPATH.'/'.STATIC_CACHE_FOLDER.'/'.$this->feed.'/'.$cachefolder,true);
+		zpFunctions::removeDir(SERVERPATH.'/'.STATIC_CACHE_FOLDER.'/'.strtolower($this->feed).'/'.$cachefolder,true);
 	}
 
  /**
@@ -287,6 +287,8 @@ class feed {
 require_once(SERVERPATH.'/'.ZENFOLDER.'/lib-MimeTypes.php');
 
 class RSS extends feed {
+	protected $feed = 'RSS';
+
 	//general feed type gallery, news or comments
 	protected $feedtype = NULL;
 	protected $itemnumber = NULL;
@@ -327,7 +329,6 @@ class RSS extends feed {
 	*/
 	function __construct() {
 		global $_zp_gallery, $_zp_current_admin_obj, $_zp_loggedin;
-		$this->feed = 'RSS';
 		if(isset($_GET['rss'])) {
 			if (isset($_GET['token'])) {
 				//	The link camed from a logged in user, see if it is valid
@@ -1152,6 +1153,9 @@ protected function getRSSCombinewsAlbums() {
 			$this->rssHitcounter();
 			$this->startCache();
 			header('Content-Type: application/xml');
+			echo '<?xml version="1.0" ?>
+						<?xml-stylesheet type="text/css" href="'.WEBPATH.'/'.ZENFOLDER.'/rss.css" ?>
+						';
 			?>
 			<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
 				<channel>

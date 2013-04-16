@@ -621,6 +621,7 @@ zp-core/password.php
 zp-core/pluginDoc.php
 zp-core/reconfigure.php
 zp-core/rewrite.php
+zp-core/rss.css
 zp-core/setup.php
 zp-core/template-functions.php
 zp-core/utilities
@@ -1781,4 +1782,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1783
+1784
