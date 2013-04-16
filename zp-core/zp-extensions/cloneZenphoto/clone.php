@@ -113,7 +113,7 @@ if (trim($folder,'/') == SERVERPATH) {
 }
 if ($success) {
 	array_unshift($msg, '<h2>'.sprintf(gettext('Successful clone to %s'),$folder).'</h2>'."\n");
-	list($diff, $needs) = checkSignature();
+	list($diff, $needs) = checkSignature(false);
 	if (empty($needs)) {
 		if (WEBPATH) {
 			$rootpath = str_replace(WEBPATH,'/',SERVERPATH);
