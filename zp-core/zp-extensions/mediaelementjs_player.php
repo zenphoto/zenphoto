@@ -187,7 +187,7 @@ class medialementjs_player {
 	 * @param string $height Not supported as jPlayer is dependend on its CSS based skin to change sizes. Can only be set via plugin options.
 	 *
 	 */
-	function getPlayerConfig($moviepath, $imagefilename, $count='', $width='', $height='30') {
+	function getPlayerConfig($moviepath, $imagefilename, $count='', $width='', $height='') {
 		global $_zp_current_album, $_zp_current_image;
 		$ext = getSuffix($moviepath);
 		if(!in_array($ext,array('m4a','m4v','mp3','mp4','flv', 'fla'))) {
