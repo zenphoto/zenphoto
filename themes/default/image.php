@@ -53,7 +53,11 @@ if (!defined('WEBPATH')) die();
 			<div id="image">
 				<strong>
 					<?php
-					$fullimage = getFullImageURL();
+					if (isImagePhoto()) {
+						$fullimage = getFullImageURL();
+					} else {
+						$fullimage = NULL;
+					}
 					if (!empty($fullimage)) {
 						?>
 						<a href="<?php echo html_encode($fullimage); ?>" title="<?php printBareImageTitle(); ?>">

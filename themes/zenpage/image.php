@@ -75,7 +75,11 @@ if (!defined('WEBPATH')) die();
 		} else {
 			$boxclass = "";
 		}
-		$tburl = getFullImageURL();
+		if (isImagePhoto()) {
+			$tburl = getFullImageURL();
+		} else {
+			$tburl = NULL;
+		}
 		if (!empty($tburl)) {
 			?>
 			<a href="<?php echo html_encode($tburl); ?>"<?php echo $boxclass; ?> title="<?php printBareImageTitle();?>">

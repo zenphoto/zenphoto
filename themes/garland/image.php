@@ -69,7 +69,11 @@ if (!defined('WEBPATH')) die();
 							<?php printCodeblock(1); ?>
 							<div id="image_container">
 							<?php
-							$fullimage = getFullImageURL();
+							if (isImagePhoto()) {
+								$fullimage = getFullImageURL();
+							} else {
+								$fullimage = NULL;
+							}
 							if (!empty($fullimage)) {
 								?>
 								<a href="<?php echo html_encode($fullimage);?>" title="<?php printBareImageTitle();?>" class="thickbox">

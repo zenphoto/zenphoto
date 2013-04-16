@@ -88,7 +88,11 @@ require_once('normalizer.php');
 						echo printImageMetadata(NULL, 'colorbox');
 						if (isImagePhoto()) echo "&nbsp;/&nbsp;";
 					}
-					$fullimage = getFullImageURL();
+					if (isImagePhoto()) {
+						$fullimage = getFullImageURL();
+					} else {
+						$fullimage = NULL;
+					}
 					if (!empty($fullimage)) {
 						?>
 						<a href="<?php echo html_encode($fullimage);?>" title="<?php printBareImageTitle();?>"><?php echo gettext('Full Size'); ?></a>
