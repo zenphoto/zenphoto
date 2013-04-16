@@ -73,60 +73,60 @@ function mediaelementjs_js() {
 class mediaelementjs_options {
 
 	function mediaelementjs_options() {
-		setOptionDefault('medialementjs_playpause', 1);
-		setOptionDefault('medialementjs_progress', 1);
-		setOptionDefault('medialementjs_current', 1);
-		setOptionDefault('medialementjs_duration', 1);
-		setOptionDefault('medialementjs_tracks', 0);
-		setOptionDefault('medialementjs_volume', 1);
-		setOptionDefault('medialementjs_fullscreen', 1);
-		setOptionDefault('medialementjs_videowidth', 470);
-		setOptionDefault('medialementjs_videoheight', 270);
-		setOptionDefault('medialementjs_audiowidth', 400);
-		setOptionDefault('medialementjs_audioheight', 30);
-		setOptionDefault('medialementjs_preload', 0);
-		setOptionDefault('medialementjs_poster', 1);
+		setOptionDefault('mediaelementjs_playpause', 1);
+		setOptionDefault('mediaelementjs_progress', 1);
+		setOptionDefault('mediaelementjs_current', 1);
+		setOptionDefault('mediaelementjs_duration', 1);
+		setOptionDefault('mediaelementjs_tracks', 0);
+		setOptionDefault('mediaelementjs_volume', 1);
+		setOptionDefault('mediaelementjs_fullscreen', 1);
+		setOptionDefault('mediaelementjs_videowidth', 470);
+		setOptionDefault('mediaelementjs_videoheight', 270);
+		setOptionDefault('mediaelementjs_audiowidth', 400);
+		setOptionDefault('mediaelementjs_audioheight', 30);
+		setOptionDefault('mediaelementjs_preload', 0);
+		setOptionDefault('mediaelementjs_poster', 1);
 	}
 
 	function getOptionsSupported() {
 		//$skins = getMediaelementjsSkins();
  		return array(
  			gettext('Control bar') => array(
-				'key' => 'medialementjs_controlbar',
+				'key' => 'mediaelementjs_controlbar',
 				'type' => OPTION_TYPE_CHECKBOX_UL,
 				'order' => 0,
 				'checkboxes' => array( // The definition of the checkboxes
-					gettext('Play/Pause')=>'medialementjs_playpause',
-					gettext('Progress')=>'medialementjs_progress',
-					gettext('Current')=>'medialementjs_current',
-					gettext('Duration')=>'medialementjs_duration',
+					gettext('Play/Pause')=>'mediaelementjs_playpause',
+					gettext('Progress')=>'mediaelementjs_progress',
+					gettext('Current')=>'mediaelementjs_current',
+					gettext('Duration')=>'mediaelementjs_duration',
 					gettext('Tracks (Video only)')=>'medialementjs_tracks',
-					gettext('Volume')=>'medialementjs_volume',
-					gettext('Fullscreen')=>'medialementjs_fullscreen'
+					gettext('Volume')=>'mediaelementjs_volume',
+					gettext('Fullscreen')=>'mediaelementjs_fullscreen'
 				),
 				'desc' => gettext('Enable what should be shown in the player control bar.')),
 			gettext('Video width') => array(
-				'key' => 'medialementjs_videowidth', 'type' => OPTION_TYPE_TEXTBOX,
+				'key' => 'mediaelementjs_videowidth', 'type' => OPTION_TYPE_TEXTBOX,
 				'order'=>5,
 				'desc' => gettext('Pixel value or percent for responsive layouts')),
 			gettext('Video height') => array(
-				'key' => 'medialementjs_videoheight', 'type' => OPTION_TYPE_TEXTBOX,
+				'key' => 'mediaelementjs_videoheight', 'type' => OPTION_TYPE_TEXTBOX,
 				'order'=>5,
 				'desc' => gettext('Pixel value or percent for responsive layouts')),
 			gettext('Audio width') => array(
-				'key' => 'medialementjs_audiowidth', 'type' => OPTION_TYPE_TEXTBOX,
+				'key' => 'mediaelementjs_audiowidth', 'type' => OPTION_TYPE_TEXTBOX,
 				'order'=>5,
 				'desc' => gettext('Pixel value or percent for responsive layouts')),
 			gettext('Audio height') => array(
-				'key' => 'medialementjs_audioheight', 'type' => OPTION_TYPE_TEXTBOX,
+				'key' => 'mediaelementjs_audioheight', 'type' => OPTION_TYPE_TEXTBOX,
 				'order'=>5,
 				'desc' => gettext('Pixel value or percent for responsive layouts')),
 			gettext('Preload') => array(
-				'key' => 'medialementjs_preload', 'type' => OPTION_TYPE_CHECKBOX,
+				'key' => 'mediaelementjs_preload', 'type' => OPTION_TYPE_CHECKBOX,
 				'order'=>5,
 				'desc' => gettext('If the files should be preloaded.')),
 			gettext('Poster') => array(
-				'key' => 'medialementjs_poster', 'type' => OPTION_TYPE_CHECKBOX,
+				'key' => 'mediaelementjs_poster', 'type' => OPTION_TYPE_CHECKBOX,
 				'order'=>5,
 				'desc' => gettext('If a poster of the videothumb should be shown. This is cropped to fit the player size (videos only).'))
 		);
@@ -194,7 +194,6 @@ class medialementjs_player {
 			echo '<p>'.gettext('This multimedia format is not supported by mediaelement.js.').'</p>';
 			return NULL;
 		}
-		
 		switch($ext) {
 			case 'm4a':
 			case 'mp3':
@@ -225,7 +224,7 @@ class medialementjs_player {
 			$count = $count;
 		}
 		$playerconfig  = '';
-		if(getOption('medialementjs_preload')) {
+		if(getOption('mediaelementjs_preload')) {
 			$preload = ' preload="preload"';
 		} else {
 			$preload = ' preload="none"';
@@ -344,7 +343,7 @@ class medialementjs_player {
 	function getVideoWidth($image=NULL) {
 		switch($this->mode) {
 			case 'audio':
-				$width = getOption('medialementjs_audiowidth');
+				$width = getOption('mediaelementjs_audiowidth');
 				if(empty($width)) {
 					return '100%';
 				} else {
@@ -352,7 +351,7 @@ class medialementjs_player {
 				}
 				break;
 			case 'video': 
-				$width = getOption('medialementjs_videowidth');
+				$width = getOption('mediaelementjs_videowidth');
 				if(empty($width)) {
 					return '100%';
 				} else {
@@ -371,7 +370,7 @@ class medialementjs_player {
 	function getVideoHeight($image=NULL) {
 		switch($this->mode) {
 			case 'audio':
-				$height = getOption('medialementjs_audioheight');
+				$height = getOption('mediaelementjs_audioheight');
 				if(empty($height)) {
 					return '30';
 				} else {
@@ -379,7 +378,7 @@ class medialementjs_player {
 				}
 				break;
 			case 'video':
-				$height = getOption('medialementjs_videoheight');
+				$height = getOption('mediaelementjs_videoheight');
 				if(empty($height)) {
 					return 'auto';
 				} else {
