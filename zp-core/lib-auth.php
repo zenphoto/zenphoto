@@ -292,7 +292,7 @@ class Zenphoto_Authority {
 			$hash = self::passwordHash($user, $pass, $userobj->get('passhash'));
 			if ($hash != $userobj->getPass()) {
 				//	maybe not yet updated passhash field
-				foreach ($this->hashlist as $hashv) {
+				foreach (self::$hashList as $hashv) {
 					$hash = self::passwordHash($user, $pass, $hashv);
 					if ($hash == $userobj->getPass()) {
 						break;
