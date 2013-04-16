@@ -7,9 +7,11 @@
  * @subpackage zenpage
  */
 
-define('NEWS_POSITION_NORMAL',0);
-define('NEWS_POSITION_STICKY',1);
-define('NEWS_POSITION_STICK_TO_TOP',9);
+if (!defined('NEWS_POSITION_NORMAL')) {	// No idea why this is needed, but clones get already defined errors.
+	define('NEWS_POSITION_NORMAL',0);
+	define('NEWS_POSITION_STICKY',1);
+	define('NEWS_POSITION_STICK_TO_TOP',9);
+}
 
 class ZenpageNews extends ZenpageItems {
 
