@@ -479,7 +479,7 @@ class jPlayer {
 	 *
 	 * @return int
 	 */
-	function getVideoHeigth($image=NULL) {
+	function getVideoHeight($image=NULL) {
 		if (!is_null($image) && $this->mode == 'audio' && !getOption('jplayer_poster') && !getOption('jplayer_audioposter')) {
 			//return 0;
 		}

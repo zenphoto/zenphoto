@@ -148,7 +148,7 @@ class Video extends Image {
 					$w = 480;
 			}
 		} else {
-			$h = $_zp_flash_player->getVideoHeigth($this);
+			$h = $_zp_flash_player->getVideoHeight($this);
 			$w = $_zp_flash_player->getVideoWidth($this);
 		}
 		$this->set('width', $w);

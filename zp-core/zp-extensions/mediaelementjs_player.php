@@ -187,12 +187,35 @@ class medialementjs_player {
 	 * @param string $height Not supported as jPlayer is dependend on its CSS based skin to change sizes. Can only be set via plugin options.
 	 *
 	 */
-	function getPlayerConfig($moviepath, $imagefilename, $count='', $width='', $height='') {
+	function getPlayerConfig($moviepath, $imagefilename, $count='', $width='', $height='30') {
 		global $_zp_current_album, $_zp_current_image;
 		$ext = getSuffix($moviepath);
-		if(!in_array($ext,array('m4a','m4v','flv','fla','mp3','mp4'))) {
+		if(!in_array($ext,array('m4a','m4v','mp3','mp4','flv', 'fla'))) {
 			echo '<p>'.gettext('This multimedia format is not supported by mediaelement.js.').'</p>';
 			return NULL;
+		}
+		
+		switch($ext) {
+			case 'm4a':
+			case 'mp3':
+			case 'fla':
+				$this->mode = 'audio';
+			  break;
+			case 'mp4':
+			case 'm4v':
+			case 'flv':
+				$this->mode = 'video';
+			  break;
+		}
+		if(!empty($width)) {
+			$this->width = $this->getVideoWidth();
+		} else {
+			$this->width = $width;
+		}
+		if(!empty($height)) {
+			$this->height = $this->getVideoHeight();
+		} else {
+			$this->height = $height;
 		}
 		if(empty($count)) {
 			$multiplayer = false;
@@ -208,10 +231,8 @@ class medialementjs_player {
 			$preload = ' preload="none"';
 		}
 		$counterparts = $this->getCounterpartFiles($moviepath,$ext);
-		switch($ext) {
-			case 'm4a':
-			case 'mp3':
-			case 'fla':
+		switch($this->mode) {
+			case 'audio':
 				$playerconfig  = '
 					<audio id="mediaelementjsplayer'.$count.'" width="'.$this->width.'" height="'.$this->height.'" controls="controls"'.$preload.'>
     				<source type="audio/mp3" src="'.pathurlencode($moviepath).'" />';
@@ -229,9 +250,7 @@ class medialementjs_player {
 					</audio>
 				'; 
 				break;
-			case 'mp4':
-			case 'm4v':
-			case 'flv':
+			case 'video':
 				$poster = '';
 				if(getOption('mediaelementjs_poster')) {
 					if(is_null($_zp_current_image)) {
@@ -271,7 +290,7 @@ class medialementjs_player {
 	 * @param string $count unique text for when there are multiple player items on a page
 	 */
 	function printPlayerConfig($moviepath='',$imagefilename='',$count ='') {
-		echo $this->getPlayerConfig($moviepath,$imagefilename,$count,NULL,NULL);
+		echo $this->getPlayerConfig($moviepath,$imagefilename,$count);
 	}
 
 
@@ -284,17 +303,11 @@ class medialementjs_player {
 	 */
 	function getCounterpartFiles($moviepath,$ext) {
 		$counterparts = array();
-		switch($ext) {
-			case 'mp3':
-			case 'm4a':
-			case 'fla':
-				$this->mode = 'audio';
+		switch($this->mode) {
+			case 'audio':
 				$suffixes = array('oga','webma');
 				break;
-			case 'mp4':
-			case 'm4v':
-			case 'flv':
-				$this->mode = 'video';
+			case 'video':
 				$suffixes = array('ogv','webmv');
 				break;
 		}
@@ -324,38 +337,56 @@ class medialementjs_player {
 	
 	/**
 	 * Returns the height of the player
-	 * @param object $image the image for which the width is requested
+	 * @param object $image the image for which the width is requested (not used)
 	 *
-	 * @return int
+	 * @return mixed
 	 */
 	function getVideoWidth($image=NULL) {
 		switch($this->mode) {
 			case 'audio':
-				$this->width = getOption('medialementjs_audiowidth');
+				$width = getOption('medialementjs_audiowidth');
+				if(empty($width)) {
+					return '100%';
+				} else {
+					return $width;
+				}
 				break;
 			case 'video': 
-				$this->width = getOption('medialementjs_videowidth');
+				$width = getOption('medialementjs_videowidth');
+				if(empty($width)) {
+					return '100%';
+				} else {
+					return $width;
+				}
 				break;
 		}
-		return $this->width;
 	}
 
 	/**
 	 * Returns the width of the player
-	 * @param object $image the image for which the height is requested
+	 * @param object $image the image for which the height is requested (not used!)
 	 *
-	 * @return int
+	 * @return mixed
 	 */
-	function getVideoHeigth($image=NULL) {
+	function getVideoHeight($image=NULL) {
 		switch($this->mode) {
 			case 'audio':
-				$this->height = getOption('medialementjs_audioheight');
+				$height = getOption('medialementjs_audioheight');
+				if(empty($height)) {
+					return '30';
+				} else {
+					return $height;
+				}
 				break;
 			case 'video':
-				$this->height = getOption('medialementjs_videoheight');
+				$height = getOption('medialementjs_videoheight');
+				if(empty($height)) {
+					return 'auto';
+				} else {
+					return $height;
+				}
 				break;
 		}
-		return $this->height;
 	}
 	
 } // mediaelementjs class
