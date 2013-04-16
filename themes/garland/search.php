@@ -12,7 +12,7 @@ if (!defined('WEBPATH')) die();
 	<title><?php printGalleryTitle(); ?> | <?php echo gettext('Search'); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
 	<?php $oneImagePage = $personality->theme_head($_zp_themeroot); ?>
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
-	<?php printRSSHeaderLink('Gallery',gettext('Gallery RSS')); ?>
+  <?php if (class_exists('RSS')) printRSSHeaderLink('Gallery',gettext('Gallery RSS')); ?>
 	<script type="text/javascript">
 		// <!-- <![CDATA[
 		function toggleExtraElements(category, show) {
@@ -58,30 +58,30 @@ if (!$total) {
 ?>
 <div id="navigation"></div>
 <div id="wrapper">
-	<div id="container">
-		<div id="header">
-			<div id="logo-floater">
-				<div>
-					<h1 class="title"><a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a></h1>
-				</div>
-			</div>
-		</div>
-		<!-- header -->
-		<div class="sidebar">
-			<div id="leftsidebar">
-				<?php include("sidebar.php"); ?>
-			</div>
-		 </div>
-		<div id="center">
-			<div id="squeeze">
-				<div class="right-corner">
-					<div class="left-corner">
-						<!-- begin content -->
-						<div class="main section" id="main">
-							<h2 id="gallerytitle">
-								<?php printHomeLink('',' » '); ?>
-								<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a> » <?php printSearchBreadcrumb(' » '); ?>
-							</h2>
+  <div id="container">
+    <div id="header">
+      <div id="logo-floater">
+        <div>
+          <h1 class="title"><a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a></h1>
+        </div>
+      </div>
+    </div>
+    <!-- header -->
+    <div class="sidebar">
+     	<div id="leftsidebar">
+      	<?php include("sidebar.php"); ?>
+      </div>
+     </div>
+    <div id="center">
+      <div id="squeeze">
+        <div class="right-corner">
+          <div class="left-corner">
+            <!-- begin content -->
+            <div class="main section" id="main">
+              <h2 id="gallerytitle">
+              	<?php printHomeLink('',' » '); ?>
+              	<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a> » <?php printSearchBreadcrumb(' » '); ?>
+              </h2>
 
 				<?php
 				if ($total > 0 ) {
@@ -213,30 +213,30 @@ if (!$total) {
 						</div>
 					<p style="clear: both;"></p>
 					</div>
-					<?php
+				  <?php
 				}
 				?>
-				</div>
+			  </div>
 				<p style="clear: both; "></p>
 				<?php $personality->theme_content(NULL); ?>
 				<?php
 				if ((getNumAlbums() != 0) || !$oneImagePage){
-					printPageListWithNav(gettext("« prev"),gettext("next »"), $oneImagePage);
+    	    printPageListWithNav(gettext("« prev"),gettext("next »"), $oneImagePage);
 				}
-				footer();
-				?>
+        footer();
+        ?>
 				<p style="clear: both;"></p>
 			</div>
 			<!-- end content -->
 			<span class="clear"></span>
-				</div>
-			</div>
-		</div>
-		<div class="sidebar">
-			<div id="rightsidebar">
-			</div>
-		</div>
-		<span class="clear"></span>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar">
+      <div id="rightsidebar">
+      </div>
+    </div>
+    <span class="clear"></span>
 	</div>
 <?php
 zp_apply_filter('theme_body_close');

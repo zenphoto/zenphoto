@@ -885,16 +885,16 @@ if (getOption('comment_form_rss') && getOption('RSS_comments')) {
 	<?php
 	switch($_zp_gallery_page) {
 		case "image.php":
-			printRSSLink("Comments-image","",gettext("Subscribe to comments"),"");
+			if (class_exists('RSS')) printRSSLink("Comments-image","",gettext("Subscribe to comments"),"");
 			break;
 		case "album.php":
-			printRSSLink("Comments-album","",gettext("Subscribe to comments"),"");
+			if (class_exists('RSS')) printRSSLink("Comments-album","",gettext("Subscribe to comments"),"");
 			break;
 		case "news.php":
-			printRSSLink("Comments-news", "", gettext("Subscribe to comments"), "");
+			if (class_exists('RSS')) printRSSLink("Comments-news", "", gettext("Subscribe to comments"), "");
 			break;
 		case "pages.php":
-			printRSSLink("Comments-page", "", gettext("Subscribe to comments"), "");
+			if (class_exists('RSS')) printRSSLink("Comments-page", "", gettext("Subscribe to comments"), "");
 			break;
 	}
 }

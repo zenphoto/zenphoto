@@ -61,13 +61,13 @@ if (getOption('RSS_album_image') || getOption('RSS_articles')) {
 	<h3><?php echo gettext("RSS"); ?></h3>
 		<ul>
 		<?php if(!is_null($_zp_current_album)) { ?>
-		<?php printRSSLink('Album', '<li>', gettext('Album RSS'), '</li>'); ?>
+		<?php if (class_exists('RSS')) printRSSLink('Album', '<li>', gettext('Album RSS'), '</li>'); ?>
 		<?php } ?>
-			<?php printRSSLink('Gallery','<li>','Gallery', '</li>'); ?>
+			<?php if (class_exists('RSS')) printRSSLink('Gallery','<li>','Gallery', '</li>'); ?>
 			<?php
 			if(getOption('zp_plugin_zenpage')) {
-				printRSSLink("News","<li>",gettext("News"),'</li>');
-				printRSSLink("NewsWithImages","<li>",gettext("News and Gallery"),'</li>');
+				if (class_exists('RSS')) printRSSLink("News","<li>",gettext("News"),'</li>');
+				if (class_exists('RSS')) printRSSLink("NewsWithImages","<li>",gettext("News and Gallery"),'</li>');
 			}
 			?>
 		</ul>

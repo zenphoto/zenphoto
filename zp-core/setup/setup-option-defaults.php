@@ -110,48 +110,6 @@ setOptionDefault('image_sorttype', 'Filename');
 setOptionDefault('image_sortdirection', '0');
 setOptionDefault('hotlink_protection', '1');
 
-//	migrate old RSS options
-setOptionDefault('RSS_items', getOption('feed_items')); // options for standard images rss
-setOptionDefault('RSS_imagesize', getOption('feed_imagesize'));
-setOptionDefault('RSS_sortorder', getOption('feed_sortorder'));
-setOptionDefault('RSS_items_albums', getOption('feed_items_albums')); // options for albums rss
-setOptionDefault('RSS_imagesize_albums', getOption('feed_imagesize_albums'));
-setOptionDefault('RSS_sortorder_albums', getOption('feed_sortorder_albums'));
-setOptionDefault('RSS_enclosure', getOption('feed_enclosure'));
-setOptionDefault('RSS_mediarss', getOption('feed_mediarss'));
-setOptionDefault('RSS_cache', getOption('feed_cache'));
-setOptionDefault('RSS_cache_expire', getOption('feed_cache_expire'));
-setOptionDefault('RSS_hitcounter', getOption('feed_hitcounter'));
-setOptionDefault('RSS_title',getOption('feed_title'));
-
-purgeOption('feed_items');
-purgeOption('feed_imagesize');
-purgeOption('feed_sortorder');
-purgeOption('feed_items_albums');
-purgeOption('feed_imagesize_albums');
-purgeOption('feed_sortorder_albums');
-purgeOption('feed_enclosure');
-purgeOption('feed_mediarss');
-purgeOption('feed_cache');
-purgeOption('feed_cache_expire');
-purgeOption('feed_hitcounter');
-purgeOption('feed_title');
-
-//	set defaults if no migration
-setOptionDefault('RSS_items', 10); // options for standard images rss
-setOptionDefault('RSS_imagesize', 240);
-setOptionDefault('RSS_sortorder', 'latest');
-setOptionDefault('RSS_items_albums', 10); // options for albums rss
-setOptionDefault('RSS_imagesize_albums', 240);
-setOptionDefault('RSS_sortorder_albums', 'latest');
-setOptionDefault('RSS_enclosure', '0');
-setOptionDefault('RSS_mediarss', '0');
-setOptionDefault('RSS_cache', '1');
-setOptionDefault('RSS_cache_expire', 86400);
-setOptionDefault('RSS_hitcounter', 1);
-setOptionDefault('RSS_title','both');
-
-
 setOptionDefault('search_fields', 'title,desc,tags,file,location,city,state,country,content,author');
 
 $a =	"a => (href =>() title =>() target=>() class=>() id=>())\n" .
@@ -625,6 +583,8 @@ query('UPDATE '.prefix('administrators').' SET `passhash`='.((int) getOption('st
 query('UPDATE '.prefix('administrators').' SET `passupdate`='.db_quote(date('Y-m-d H:i:s')).' WHERE `valid`>=1 AND `passupdate` IS NULL');
 setOptionDefault('image_processor_flooding_protection', 1);
 setOptionDefault('codeblock_first_tab',1);
+setOptionDefault('zp_plugin_rss', 9|CLASS_PLUGIN);
+
 //The following should be done LAST so it catches anything done above
 //set plugin default options by instantiating the options interface
 $plugins = getPluginFiles('*.php');

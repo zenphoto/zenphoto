@@ -14,7 +14,7 @@ require_once('normalizer.php');
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="<?php echo $_zp_themeroot ?>/css/master.css" />
 	<?php
-	printRSSHeaderLink('Gallery',gettext('Gallery RSS'));
+	if (class_exists('RSS')) printRSSHeaderLink('Gallery',gettext('Gallery RSS'));
 	setOption('thumb_crop_width', 85, false);
 	setOption('thumb_crop_height', 85, false);
 	$archivepageURL = html_encode(getGalleryIndexURL());
@@ -164,13 +164,13 @@ require_once('normalizer.php');
 						<tr>
 							<th><?php echo gettext('Photos'); ?></th>
 							<td><?php $photosNumber = db_count('images'); echo $photosNumber ?></td>
-							<td><?php printRSSLink('Gallery','','','',true,'i'); ?></td>
+							<td><?php if (class_exists('RSS')) printRSSLink('Gallery','','','',true,'i'); ?></td>
 						</tr>
 					<?php if (function_exists('printCommentForm')) { ?>
 						<tr>
 							<th><?php echo gettext('Comments'); ?></th>
 							<td><?php $commentsNumber = db_count('comments'," WHERE inmoderation = 0"); echo $commentsNumber ?></td>
-							<td><?php printRSSLink('Comments','','','',true,'i'); ?></td>
+							<td><?php if (class_exists('RSS')) printRSSLink('Comments','','','',true,'i'); ?></td>
 							</tr>
 						<?php } ?>
 				</table>

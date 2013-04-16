@@ -347,7 +347,7 @@ function printFooter($admin=true) {
 			echo '<br />';
 		}
 		?>
-		<?php if ($_zp_gallery_page == 'gallery.php') { printRSSLink('Gallery','', 'Gallery RSS', ''); echo '<br />'; } ?>
+		<?php if ($_zp_gallery_page == 'gallery.php') { if (class_exists('RSS')) printRSSLink('Gallery','', 'Gallery RSS', ''); echo '<br />'; } ?>
 		<?php	if ($_zp_gallery_page != 'password.php') { @call_user_func('printUserLogin_out',''); echo '<br />'; } ?>
 		<?php	if ($_zp_gallery_page!='contact.php' && getOption('zp_plugin_contact_form') && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('contact'))) { printCustomPageURL(gettext('Contact us'), 'contact', '', '');	echo '<br />'; } ?>
 		<?php if ($_zp_gallery_page!='register.php' && !zp_loggedin() && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('register'))) { printCustomPageURL(gettext('Register for this site'), 'register', '', ''); echo '<br />'; }	?>

@@ -10,7 +10,7 @@ if (!defined('WEBPATH')) die();
 		<title><?php printBareGalleryTitle(); ?> | <?php printBareAlbumTitle(); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 		<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
-		<?php printRSSHeaderLink('Album', getAlbumTitle()); ?>
+		<?php if (class_exists('RSS')) if (class_exists('RSS')) printRSSHeaderLink('Album', getAlbumTitle()); ?>
 	</head>
 	<body>
 		<?php zp_apply_filter('theme_body_open'); ?>
@@ -69,7 +69,7 @@ if (!defined('WEBPATH')) die();
 			</div>
 		</div>
 		<div id="credit">
-			<?php printRSSLink('Album', '', gettext('Album RSS'), ' | '); ?>
+			<?php if (class_exists('RSS')) printRSSLink('Album', '', gettext('Album RSS'), ' | '); ?>
 			<?php printCustomPageURL(gettext("Archive View"), "archive"); ?> |
 			<?php
 			if (function_exists('printFavoritesLink')) {

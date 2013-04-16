@@ -7,7 +7,7 @@ if (!defined('WEBPATH')) die();
 <?php zp_apply_filter('theme_head'); ?>
 <title><?php printGalleryTitle(); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
 <link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
-<?php printRSSHeaderLink('Gallery',gettext('Gallery RSS')); ?>
+<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery',gettext('Gallery RSS')); ?>
 </head>
 <body class="sidebars">
 <?php zp_apply_filter('theme_body_open'); ?>

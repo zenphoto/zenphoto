@@ -15,7 +15,7 @@ $thisalbum = $_zp_current_album;
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="<?php echo $_zp_themeroot ?>/css/master.css" />
 	<?php
-	printRSSHeaderLink('Album',getAlbumTitle());
+	if (class_exists('RSS')) printRSSHeaderLink('Album',getAlbumTitle());
 	if (function_exists('getCommentErrors') && getCommentErrors()) {
 		$errors = 1;
 		?>
@@ -139,7 +139,7 @@ $thisalbum = $_zp_current_album;
 
 			<div class="galleryinfo">
 				<br />
-				<?php printRSSLink('Album', '<p>', gettext('Album RSS feed').' ', '</p>', true, 'i'); ?>
+				<?php if (class_exists('RSS')) printRSSLink('Album', '<p>', gettext('Album RSS feed').' ', '</p>', true, 'i'); ?>
 				<br />
 				<p>
 				<?php

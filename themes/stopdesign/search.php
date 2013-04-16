@@ -12,7 +12,7 @@ require_once('normalizer.php');
 	<title><?php printBareGalleryTitle(); ?> | <?php echo gettext("Search"); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="<?php echo $_zp_themeroot ?>/css/master.css" />
-	<?php printRSSHeaderLink('Gallery',gettext('Gallery RSS')); ?>
+	<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery',gettext('Gallery RSS')); ?>
 </head>
 
 <body class="gallery">

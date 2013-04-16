@@ -4356,6 +4356,7 @@ function getPluginTabs() {
 			'admin'=>gettext('admin'),
 			'demo'=>gettext('demo'),
 			'development'=>gettext('development'),
+			'feed'=>gettext('feed'),
 			'mail'=>gettext('mail'),
 			'media'=>gettext('media'),
 			'misc'=>gettext('misc'),

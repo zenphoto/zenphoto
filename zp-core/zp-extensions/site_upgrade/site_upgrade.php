@@ -9,33 +9,34 @@ $ht = @file_get_contents($htpath);
 
 switch (isset($_GET['siteState'])?$_GET['siteState']:NULL) {
 	case 'closed':
-		require_once(SERVERPATH.'/'.ZENFOLDER.'/class-feed.php');
-		class setupRSS extends RSS {
-			public function getRSSitems() {
-				$this->feedtype = 'setup';
-				$items = array();
-				$items[] = array(	'title'=>gettext('RSS suspended'),
-						'link'=>'',
-						'enclosure'=>'',
-						'category'=>'',
-						'media_content'=>'',
-						'media_thumbnail'=>'',
-						'pubdate'=>date("r",time()),
-						'desc'=>gettext('The RSS feed is currently not available.'));
-				return $items;
+		// TODO: do the same for other feeds?
+		if (class_exists('RSS')) {
+			class setupRSS extends RSS {
+				public function getRSSitems() {
+					$this->feedtype = 'setup';
+					$items = array();
+					$items[] = array(	'title'=>gettext('RSS suspended'),
+							'link'=>'',
+							'enclosure'=>'',
+							'category'=>'',
+							'media_content'=>'',
+							'media_thumbnail'=>'',
+							'pubdate'=>date("r",time()),
+							'desc'=>gettext('The RSS feed is currently not available.'));
+					return $items;
+				}
+				protected function startCache() {
+				}
+				protected function endCache() {
+				}
 			}
-			protected function startCache() {
-			}
-			protected function endCache() {
-			}
+			$rss = new setupRSS();
+			ob_start();
+			$rss->if (class_exists('RSS')) printRSSFeed();
+			$xml = ob_get_contents();
+			ob_end_clean();
+			file_put_contents(SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/site_upgrade/rss-closed.xml', $xml);
 		}
-		$rss = new setupRSS();
-		ob_start();
-		$rss->printRSSFeed();
-		$xml = ob_get_contents();
-		ob_end_clean();
-		file_put_contents(SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/site_upgrade/rss-closed.xml', $xml);
-
 		$report = gettext('Site is now marked in upgrade.');
 		setSiteState('closed');
 		break;

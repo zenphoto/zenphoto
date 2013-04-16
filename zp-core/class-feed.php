@@ -6,7 +6,7 @@
  * Current status is that this is a place holder while we re-organize the RSS handling into
  * RSS specific items and move the common elements to this class.
  *
- * 
+ *
  * The feed is dependent on GET parameters available.
  *
  * The gallery and additionally Zenpage CMS plugin provide rss link functions to generate context dependent rss links.
@@ -165,7 +165,7 @@
 class feed {
 	protected $feed = 'feed';	//	feed type
 	protected $mode;	//	feed mode
-	
+
 	//general feed type gallery, news or comments
 	protected $feedtype = NULL;
 	protected $itemnumber = NULL;
@@ -305,7 +305,7 @@ class feed {
 		}
 		return $sortorder;
 	}
-	
+
 	protected function getRSSChannelTitleExtra() {
 		switch($this->sortorder) {
 			default:
@@ -552,7 +552,7 @@ class feed {
 				} else {
 					$items = $_zp_zenpage->getPages(NULL,false,$this->itemnumber,$this->sortorder,$this->sortdirection);
 				}
-			  break;
+				break;
 			case 'comments':
 				switch($type = $this->commentrsstype) {
 					case 'gallery':
@@ -691,7 +691,7 @@ require_once(SERVERPATH.'/'.ZENFOLDER.'/lib-MimeTypes.php');
 class RSS extends feed {
 	protected $feed = 'RSS';
 
-	
+
 	/**
 	* Creates a feed object from the URL parameters fetched only
 	*
@@ -958,7 +958,7 @@ class RSS extends feed {
 		return $filename.".xml";
 	}
 
-	
+
 	/**
 	* Updates the hitcoutner for RSS in the plugin_storage db table.
 	*
@@ -977,7 +977,7 @@ class RSS extends feed {
 		}
 	}
 
-	
+
 
 	/**
 	* Gets the feed item data in a gallery feed
@@ -1142,7 +1142,7 @@ class RSS extends feed {
 		return $feeditem;
 	}
 
- 
+
 
 	/**
 	* Prints the RSS feed xml
@@ -1155,9 +1155,7 @@ class RSS extends feed {
 			$this->rssHitcounter();
 			$this->startCache();
 			header('Content-Type: application/xml');
-			echo '<?xml version="1.0" ?>
-						<?xml-stylesheet type="text/css" href="'.WEBPATH.'/'.ZENFOLDER.'/rss.css" ?>
-						';
+			echo '<?xml-stylesheet type="text/css" href="'.WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/rss/rss.css" ?>'."\n";
 			?>
 			<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
 				<channel>

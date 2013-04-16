@@ -12,7 +12,7 @@ if (!defined('WEBPATH')) die();
 	<title><?php printBareAlbumTitle(); ?> | <?php printBareGalleryTitle(); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
-	<?php printRSSHeaderLink('Album',getAlbumTitle()); ?>
+	<?php if (class_exists('RSS')) printRSSHeaderLink('Album',getAlbumTitle()); ?>
 </head>
 <body>
 <?php zp_apply_filter('theme_body_open'); ?>

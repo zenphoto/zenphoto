@@ -31,7 +31,7 @@ if (!defined('WEBPATH')) die();
 			// ]]> -->
 		</script>
 	<?php } ?>
-		<?php printRSSHeaderLink('Album',getAlbumTitle()); ?>
+		<?php if (class_exists('RSS')) printRSSHeaderLink('Album',getAlbumTitle()); ?>
 </head>
 <body>
 <?php zp_apply_filter('theme_body_open'); ?>

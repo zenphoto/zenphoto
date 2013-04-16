@@ -18,7 +18,7 @@ if (!defined('WEBPATH')) die();
 	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/effervescence_plus/common.css" type="text/css" />
 	<?php effervescence_theme_head(); ?>
-	<?php printRSSHeaderLink('Gallery','Gallery RSS'); 	?>
+	<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery','Gallery RSS'); 	?>
 </head>
 
 <body onload="blurAnchors()">

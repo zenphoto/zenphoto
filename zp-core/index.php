@@ -33,7 +33,7 @@ $_index_theme = $_zp_script = '';
 $_zp_loaded_plugins = array();
 
 // RSS feed calls before anything else
-if (isset($_GET['rss'])) {
+if (isset($_GET['rss']) && class_exists('RSS')) {
 	//	load the theme plugins just incase
 	$_zp_gallery_page = 'rss.php';
 	foreach (getEnabledPlugins() as $extension=>$plugin) {
@@ -43,7 +43,6 @@ if (isset($_GET['rss'])) {
 		}
 		$_zp_loaded_plugins[] = $extension;
 	}
-	require_once(SERVERPATH."/".ZENFOLDER.'/class-feed.php');
 	$rss = new RSS();
 	$rss->printRSSFeed();
 	exitZP();

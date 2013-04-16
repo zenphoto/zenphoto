@@ -11,7 +11,7 @@ if (!defined('WEBPATH')) die();
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 		<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 		<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/default/common.css" type="text/css" />
-		<?php printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
+		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
 	</head>
 	<body>
 		<?php
@@ -89,7 +89,7 @@ if (!defined('WEBPATH')) die();
 			</div>
 		</div>
 		<div id="credit">
-			<?php printRSSLink('Gallery', '', gettext('Gallery RSS'), ' | '); ?>
+			<?php if (class_exists('RSS')) printRSSLink('Gallery', '', gettext('Gallery RSS'), ' | '); ?>
 			<?php printCustomPageURL(gettext("Archive View"), "archive"); ?> |
 			<?php
 			if (function_exists('printFavoritesLink')) {

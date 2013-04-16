@@ -27,7 +27,7 @@ require_once('normalizer.php');
 		</script>
   <?php } ?>
 	<?php
-		printRSSHeaderLink('Gallery',gettext('Gallery RSS'));
+		if (class_exists('RSS')) printRSSHeaderLink('Gallery',gettext('Gallery RSS'));
 		setOption('thumb_crop_width', 85, false);
 		setOption('thumb_crop_height', 85, false);
 		setOption('images_per_page', getOption('images_per_page') - 1, false);

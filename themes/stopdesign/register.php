@@ -13,7 +13,7 @@ require_once('normalizer.php');
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="<?php echo $_zp_themeroot ?>/css/master.css" />
 	<?php
-	printRSSHeaderLink('Gallery',gettext('Gallery RSS'));
+	if (class_exists('RSS')) printRSSHeaderLink('Gallery',gettext('Gallery RSS'));
 	setOption('thumb_crop_width', 85, false);
 	setOption('thumb_crop_height', 85, false);
 	?>

@@ -13,7 +13,7 @@ $map = function_exists('printGoogleMap');
 	<title><?php printGalleryTitle(); ?> | <?php echo html_encode(getAlbumTitle()); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
 	<?php $oneImagePage = $personality->theme_head($_zp_themeroot); ?>
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
-	<?php printRSSHeaderLink('Album',getAlbumTitle()); ?>
+	<?php if (class_exists('RSS')) printRSSHeaderLink('Album',getAlbumTitle()); ?>
 </head>
 <body class="sidebars">
 <?php zp_apply_filter('theme_body_open'); ?>

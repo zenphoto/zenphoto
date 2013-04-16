@@ -39,7 +39,7 @@ if (!defined('WEBPATH')) die();
 			// ]]> -->
 		</script>
 	<?php } ?>
-	<?php printRSSHeaderLink('Gallery','Gallery RSS'); ?>
+	<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery','Gallery RSS'); ?>
 </head>
 
 <body onload="blurAnchors()">

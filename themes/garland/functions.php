@@ -84,16 +84,16 @@ function footer() {
 		$prev = ' | ';
 		switch ($_zp_gallery_page) {
 			default:
-				printRSSLink('Gallery', '','RSS', '');
+				if (class_exists('RSS')) printRSSLink('Gallery', '','RSS', '');
 				break;
 			case 'album.php':
-				printRSSLink('Album', '','RSS', '');
+				if (class_exists('RSS')) printRSSLink('Album', '','RSS', '');
 				break;
 			case 'news.php':
 				if (is_NewsCategory()) {
-					printRSSLink('News', '', 'RSS', '', true, null, '',$_zp_current_category->getTitlelink());
+					if (class_exists('RSS')) printRSSLink('News', '', 'RSS', '', true, null, '',$_zp_current_category->getTitlelink());
 				} else {
-					printRSSLink('News', '','RSS', '');
+					if (class_exists('RSS')) printRSSLink('News', '','RSS', '');
 				}
 				break;
 			case 'password.php':

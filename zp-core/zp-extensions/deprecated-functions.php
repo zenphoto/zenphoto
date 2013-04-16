@@ -1247,7 +1247,7 @@ function getZenpageRSSLink($option='News', $categorylink='', $lang=NULL) {
  */
 function printZenpageRSSLink($option='News', $categorylink='', $prev='', $linktext='', $next='', $printIcon=true, $class=null, $lang=NULL) {
 	deprecated_functions::notify(gettext('use printRSSLink($option, $prev, $linktext, $next, $printIcon, $class, $lang, categoryLink).'));
-	printRSSLink($option, $prev, $linktext, $next, $printIcon, $class, $lang, categoryLink);
+	if (class_exists('RSS')) printRSSLink($option, $prev, $linktext, $next, $printIcon, $class, $lang, categoryLink);
 }
 /**
  * @deprecated
@@ -1255,7 +1255,7 @@ function printZenpageRSSLink($option='News', $categorylink='', $prev='', $linkte
  */
 function printZenpageRSSHeaderLink($option='News',$categorylink='',$linktext='',$lang=null) {
 	deprecated_functions::notify(gettext('use printRSSHeaderLink($option, $linktext, $lang, $categorylink).'));
-	printRSSHeaderLink($option, $linktext, $lang, $categorylink);
+	if (class_exists('RSS')) printRSSHeaderLink($option, $linktext, $lang, $categorylink);
 }
 
 /**

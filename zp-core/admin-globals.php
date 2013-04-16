@@ -123,7 +123,6 @@ if ($_zp_loggedin) {
 			if (empty($optiondefault)) $optiondefault='&amp;tab=theme';
 			$subtabs[gettext("theme")] = 'admin-options.php?page=options&amp;tab=theme';
 		}
-		$subtabs[gettext("RSS")] = 'admin-options.php?page=options&amp;tab=rss';
 		$zenphoto_tabs['options'] = array('text'=>gettext("options"),
 																			'link'=>WEBPATH."/".ZENFOLDER.'/admin-options.php?page=options'.$optiondefault,
 																			'subtabs'=>$subtabs,

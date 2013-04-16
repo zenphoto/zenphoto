@@ -24,7 +24,7 @@ if (!defined('WEBPATH')) die();
 				// ]]> -->
 			</script>
 		<?php } ?>
-		<?php printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
+		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
 	</head>
 	<body>
 		<?php zp_apply_filter('theme_body_open'); ?>
@@ -97,7 +97,7 @@ if (!defined('WEBPATH')) die();
 			</div>
 		</div>
 		<div id="credit">
-			<?php printRSSLink('Gallery', '', 'RSS', ' | '); ?>
+			<?php if (class_exists('RSS')) printRSSLink('Gallery', '', 'RSS', ' | '); ?>
 			<?php printCustomPageURL(gettext("Archive View"), "archive"); ?> |
 			<?php
 			if (function_exists('printFavoritesLink')) {

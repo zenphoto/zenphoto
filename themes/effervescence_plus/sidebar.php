@@ -86,12 +86,12 @@ if(function_exists('printCustomMenu') && ($menu = getOption('effervescence_menu'
 		<div class="menu">
 		<h3><?php echo gettext("RSS"); ?></h3>
 			<ul>
-				<?php printRSSLink('Gallery','<li>',gettext('Gallery'), '</li>'); ?>
+				<?php if (class_exists('RSS')) printRSSLink('Gallery','<li>',gettext('Gallery'), '</li>'); ?>
 				<?php
 				if(getOption('zp_plugin_zenpage')) {
 					?>
-					<?php printRSSLink("News","<li>",gettext("News"), '</li>'); ?>
-					<?php printRSSLink("NewsWithImages","<li>",gettext("News and Gallery"),'</li>'); ?>
+					<?php if (class_exists('RSS')) printRSSLink("News","<li>",gettext("News"), '</li>'); ?>
+					<?php if (class_exists('RSS')) printRSSLink("NewsWithImages","<li>",gettext("News and Gallery"),'</li>'); ?>
 				<?php
 				}
 				?>

@@ -283,8 +283,12 @@ class cacheManager {
 	 */
 	static function published($obj) {
 		if (getOption('cacheManager_'.$obj->table)) {
-			require_once (SERVERPATH.'/'.ZENFOLDER.'/class-feed.php');
-			$RSS = new RSS();
+			//	TODO: clear other feed caches?
+			if (class_exists('RSS')) {
+				$RSS = new RSS();
+			} else {
+				$RSS = NULL;
+			}
 			if (class_exists('static_html_cache')) {
 				static_html_cache::clearHTMLCache('index');
 			}
@@ -293,25 +297,25 @@ class cacheManager {
 					if (class_exists('static_html_cache')) {
 						static_html_cache::clearHTMLCache();
 					}
-					$RSS->clearCache();
+					if ($RSS) $RSS->clearCache();
 					break;
 				case 'news':
 					if (class_exists('static_html_cache')) {
 						static_html_cache::clearHTMLCache();
 					}
-					$RSS->clearCache();
+					if ($RSS) $RSS->clearCache();
 					break;
 				case 'albums':
 					if (class_exists('static_html_cache')) {
 						static_html_cache::clearHTMLCache();
 					}
-					$RSS->clearCache();
+					if ($RSS) $RSS->clearCache();
 					break;
 				case 'images':
 					if (class_exists('static_html_cache')) {
 						static_html_cache::clearHTMLCache();
 					}
-					$RSS->clearCache();
+					if ($RSS) $RSS->clearCache();
 					break;
 			}
 		}
@@ -339,19 +343,21 @@ class cacheManager {
 									'rights'=>ADMIN_RIGHTS,
 									'title'=>$title
 									);
-		$buttons[] = array(
+		if (class_exists('RSS')) {
+			$buttons[] = array(
 									'XSRFTag'=>'clear_cache',
 									'category'=>gettext('Cache'),
 									'enable'=>true,
-									'button_text'=>gettext('Purge RSS cache'),
-									'formname'=>'purge_rss_cache.php',
-									'action'=>WEBPATH.'/'.ZENFOLDER.'/admin.php?action=clear_rss_cache',
-									'icon'=>'images/edit-delete.png',
-									'alt'=>'',
-									'title'=>gettext('Delete all files from the RSS cache'),
-									'hidden'=>'<input type="hidden" name="action" value="clear_rss_cache" />',
-									'rights'=> ADMIN_RIGHTS
-									);
+										'button_text'=>gettext('Purge RSS cache'),
+										'formname'=>'purge_rss_cache.php',
+										'action'=>WEBPATH.'/'.ZENFOLDER.'/admin.php?action=clear_rss_cache',
+										'icon'=>'images/edit-delete.png',
+										'alt'=>'',
+										'title'=>gettext('Delete all files from the RSS cache'),
+										'hidden'=>'<input type="hidden" name="action" value="clear_rss_cache" />',
+										'rights'=> ADMIN_RIGHTS
+										);
+		}
 		$buttons[] = array(
 									'XSRFTag'=>'clear_cache',
 									'category'=>gettext('Cache'),
