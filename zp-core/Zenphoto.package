@@ -1031,7 +1031,6 @@ zp-core/zp-extensions/mediaelementjs_player/controls-wmp.png
 zp-core/zp-extensions/mediaelementjs_player/controls.png
 zp-core/zp-extensions/mediaelementjs_player/controls.svg
 zp-core/zp-extensions/mediaelementjs_player/flashmediaelement.swf
-zp-core/zp-extensions/mediaelementjs_player/jquery.js
 zp-core/zp-extensions/mediaelementjs_player/loading.gif
 zp-core/zp-extensions/mediaelementjs_player/mediaelement-and-player.js
 zp-core/zp-extensions/mediaelementjs_player/mediaelement-and-player.min.js
@@ -1782,4 +1781,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1784
+1783
