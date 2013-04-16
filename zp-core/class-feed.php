@@ -158,7 +158,7 @@
  *
  * IV. INTENDED USAGE:
  * $rss = new RSS(); // gets parameters from the urls above
- * $rss->printRSSfeed(); // prints xml feed
+ * $rss->printFeed(); // prints xml feed
  *
  * @package classes
  */
@@ -306,7 +306,7 @@ class feed {
 		return $sortorder;
 	}
 
-	protected function getRSSChannelTitleExtra() {
+	protected function getChannelTitleExtra() {
 		switch($this->sortorder) {
 			default:
 			case 'latest':
@@ -353,7 +353,7 @@ class feed {
 	 * @param string $arrayfield "albumpath", "imagepath" or "modrewritesuffix"
 	 * @return string
 	 */
-	protected function getRSSImageAndAlbumPaths($arrayfield) {
+	protected function getImageAndAlbumPaths($arrayfield) {
 		$arrayfield = sanitize($arrayfield);
 		$array = array();
 		if(MOD_REWRITE) {
@@ -374,7 +374,7 @@ class feed {
 	 * @param string $arrayfield "albumfolder" or "collection"
 	 * @return mixed
 	 */
-	protected function getRSSAlbumnameAndCollection($arrayfield) {
+	protected function getAlbumnameAndCollection($arrayfield) {
 		$arrayfield = sanitize($arrayfield);
 		$array = array();
 		if(!empty($arrayfield)) {
@@ -405,7 +405,7 @@ class feed {
 	*
 	* @return string
 	*/
-	protected function getRSSImageSize() {
+	protected function getImageSize() {
 		if(isset($_GET['size'])) {
 			$imagesize = sanitize_numeric($_GET['size']);
 		} else {
@@ -429,7 +429,7 @@ class feed {
 	 * @param string $arrayfield "catlink", "catttitle" or "option"
 	 * @return string
 	 */
-	protected function getRSSNewsCatOptions($arrayfield) {
+	protected function getNewsCatOptions($arrayfield) {
 		$arrayfield = sanitize($arrayfield);
 		$array = array();
 		if(!empty($arrayfield)) {
@@ -452,7 +452,7 @@ class feed {
 	 *
 	 * @return string
 	 */
-		protected function getRSSCombinewsImages() {
+		protected function getCombinewsImages() {
 			if(isset($_GET['withimages'])) {
 				return 'withimages';
 			} else if(isset($_GET['withimages_mtime'])) {
@@ -467,7 +467,7 @@ class feed {
 		 *
 		 * @return string
 		 */
-		protected function getRSSCombinewsAlbums() {
+		protected function getCombinewsAlbums() {
 			if(isset($_GET['withalbums'])) {
 				return 'withalbums';
 			}	else if(isset($_GET['withalbums_mtime'])) {
@@ -485,7 +485,7 @@ class feed {
 	 *
 	 * @return array
 	 */
-	public function getRSSitems() {
+	public function getitems() {
 		global $_zp_zenpage;
 		switch($this->feedtype) {
 			case 'gallery':
@@ -600,7 +600,7 @@ class feed {
 	* @param array $item Titlelink a Zenpage article or filename of an image if a combined feed
 	* @return array
 	*/
-	protected function getRSSitemPages($item) {
+	protected function getitemPages($item) {
 		$obj = new ZenpagePage($item['titlelink']);
 		$feeditem['title'] = $feeditem['title'] = get_language_string($obj->getTitle('all'),$this->locale);
 		$feeditem['link'] = getPageLinkURL($obj->getTitlelink());
@@ -619,7 +619,7 @@ class feed {
 	 * @param array $item Array of a comment
 	 * @return array
 	 */
-	protected function getRSSitemComments($item) {
+	protected function getitemComments($item) {
 		if($item['anon']) {
 			$author = "";
 		} else {
@@ -779,18 +779,18 @@ class RSS extends feed {
 					}
 					$albumname = ''; // to be sure
 					if($this->mode == 'albums' || isset($_GET['albumname'])) {
-						$albumname = ' - '.html_encode($albumtitle).$this->getRSSChannelTitleExtra();
+						$albumname = ' - '.html_encode($albumtitle).$this->getChannelTitleExtra();
 					} elseif ($this->mode == 'albums' && !isset($_GET['folder'])) {
-						$albumname = $this->getRSSChannelTitleExtra();
+						$albumname = $this->getChannelTitleExtra();
 					} elseif ($this->mode == 'albums' && isset($_GET['folder'])) {
-						$albumname = ' - '.html_encode($albumtitle).$this->getRSSChannelTitleExtra();
+						$albumname = ' - '.html_encode($albumtitle).$this->getChannelTitleExtra();
 					} else {
-						$albumname = $this->getRSSChannelTitleExtra();
+						$albumname = $this->getChannelTitleExtra();
 					}
 					$this->channel_title = html_encode($this->channel_title.' '.strip_tags($albumname));
-					$this->albumpath = $this->getRSSImageAndAlbumPaths('albumpath');
-					$this->imagepath = $this->getRSSImageAndAlbumPaths('imagepath');
-					$this->imagesize = $this->getRSSImageSize();
+					$this->albumpath = $this->getImageAndAlbumPaths('albumpath');
+					$this->imagepath = $this->getImageAndAlbumPaths('imagepath');
+					$this->imagesize = $this->getImageSize();
 					require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER . '/image_album_statistics.php');
 					break;
 
@@ -801,19 +801,19 @@ class RSS extends feed {
 						include(ZENFOLDER. '/404.php');
 						exitZP();
 					}
-					$this->catlink = $this->getRSSNewsCatOptions('catlink');
-					$cattitle = $this->getRSSNewsCatOptions('cattitle');
+					$this->catlink = $this->getNewsCatOptions('catlink');
+					$cattitle = $this->getNewsCatOptions('cattitle');
 					if(!empty($cattitle)) {
 						$cattitle = ' - '.html_encode($this->cattitle) ;
 					}
-					$this->newsoption = $this->getRSSNewsCatOptions("option");
+					$this->newsoption = $this->getNewsCatOptions("option");
 					$titleappendix = gettext(' (Latest news)');
-					if($this->getRSSCombinewsImages() || $this->getRSSCombinewsAlbums()) {
-						if($this->getRSSCombinewsImages()) {
-							$this->newsoption = $this->getRSSCombinewsImages();
+					if($this->getCombinewsImages() || $this->getCombinewsAlbums()) {
+						if($this->getCombinewsImages()) {
+							$this->newsoption = $this->getCombinewsImages();
 							$titleappendix = gettext(' (Latest news and images)');
-						} else if($this->getRSSCombinewsAlbums()) {
-							$this->newsoption = $this->getRSSCombinewsAlbums();
+						} else if($this->getCombinewsAlbums()) {
+							$this->newsoption = $this->getCombinewsAlbums();
 							$titleappendix = gettext(' (Latest news and albums)');
 						}
 					} else {
@@ -833,7 +833,7 @@ class RSS extends feed {
 						}
 					}
 					$this->channel_title = html_encode($this->channel_title.$cattitle.$titleappendix);
-					$this->imagesize = $this->getRSSImageSize();
+					$this->imagesize = $this->getImageSize();
 					$this->itemnumber = getOption("zenpage_rss_items"); // # of Items displayed on the feed
 					require_once(SERVERPATH.'/'.ZENFOLDER . '/'.PLUGIN_FOLDER . '/image_album_statistics.php');
 					require_once(SERVERPATH.'/'.ZENFOLDER . '/'.PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
@@ -909,7 +909,7 @@ class RSS extends feed {
 					}
 					break;
 			}
-			$this->feeditems = $this->getRSSitems();
+			$this->feeditems = $this->getitems();
 		}
 	}
 
@@ -963,10 +963,10 @@ class RSS extends feed {
 	* Updates the hitcoutner for RSS in the plugin_storage db table.
 	*
 	*/
-	protected function RSShitcounter() {
+	protected function hitcounter() {
 		if(!zp_loggedin() && getOption('RSS_hitcounter')) {
 			$rssuri = $this->getCacheFilename();
-			$type = 'rsshitcounter';
+			$type = 'hitcounter';
 			$checkitem = query_single_row("SELECT `data` FROM ".prefix('plugin_storage')." WHERE `aux` = ".db_quote($rssuri)." AND `type` = '".$type."'",true);
 			if($checkitem) {
 				$hitcount = $checkitem['data']+1;
@@ -985,7 +985,7 @@ class RSS extends feed {
 	* @param object $item Object of an image or album
 	* @return array
 	*/
-	protected function getRSSitemGallery($item) {
+	protected function getItemGallery($item) {
 		if($this->mode == "albums") {
 			$albumobj = newAlbum($item['folder']);
 			$totalimages = $albumobj->getNumImages();
@@ -1072,7 +1072,7 @@ class RSS extends feed {
 	* @param array $item Titlelink a Zenpage article or filename of an image if a combined feed
 	* @return array
 	*/
-	protected function getRSSitemNews($item) {
+	protected function getItemNews($item) {
 		$categories = '';
 		$feeditem['enclosure'] = '';
 		$itemtype = strtolower($item['type']); // needed because getZenpageStatistic returns "News" instead of "news" for unknown reasons...
@@ -1148,11 +1148,11 @@ class RSS extends feed {
 	* Prints the RSS feed xml
 	*
 	*/
-	public function printRSSfeed() {
+	public function printFeed() {
 		global $_zp_gallery;
-		$feeditems = $this->getRSSitems();
+		$feeditems = $this->getitems();
 		if(is_array($feeditems)) {
-			$this->rssHitcounter();
+			$this->hitcounter();
 			$this->startCache();
 			header('Content-Type: application/xml');
 			echo '<?xml-stylesheet type="text/css" href="'.WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/rss/rss.css" ?>'."\n";
@@ -1172,16 +1172,16 @@ class RSS extends feed {
 					foreach($feeditems as $feeditem) {
 						switch($this->feedtype) {
 							case 'gallery':
-								$item = $this->getRSSitemGallery($feeditem);
+								$item = $this->getItemGallery($feeditem);
 								break;
 							case 'news':
-								$item = $this->getRSSitemNews($feeditem);
+								$item = $this->getItemNews($feeditem);
 								break;
 							case 'pages':
-								$item = $this->getRSSitemPages($feeditem);
+								$item = $this->getitemPages($feeditem);
 								break;
 							case 'comments':
-								$item = $this->getRSSitemComments($feeditem);
+								$item = $this->getitemComments($feeditem);
 								break;
 							default:
 								$item = $feeditem;

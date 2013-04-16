@@ -12,7 +12,7 @@ switch (isset($_GET['siteState'])?$_GET['siteState']:NULL) {
 		// TODO: do the same for other feeds?
 		if (class_exists('RSS')) {
 			class setupRSS extends RSS {
-				public function getRSSitems() {
+				public function getitems() {
 					$this->feedtype = 'setup';
 					$items = array();
 					$items[] = array(	'title'=>gettext('RSS suspended'),
@@ -32,7 +32,7 @@ switch (isset($_GET['siteState'])?$_GET['siteState']:NULL) {
 			}
 			$rss = new setupRSS();
 			ob_start();
-			$rss->if (class_exists('RSS')) printRSSFeed();
+			$rss->printFeed();
 			$xml = ob_get_contents();
 			ob_end_clean();
 			file_put_contents(SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/site_upgrade/rss-closed.xml', $xml);

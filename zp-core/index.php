@@ -44,7 +44,7 @@ if (isset($_GET['rss']) && class_exists('RSS')) {
 		$_zp_loaded_plugins[] = $extension;
 	}
 	$rss = new RSS();
-	$rss->printRSSFeed();
+	$rss->printFeed();
 	exitZP();
 }
 //$_zp_script_timer['controller'] = microtime();
