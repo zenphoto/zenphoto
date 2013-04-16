@@ -317,6 +317,533 @@ function printRSSHeaderLink($option, $linktext, $lang='', $addl=NULL) {
 
 
 require_once(SERVERPATH.'/'.ZENFOLDER.'/class-feed.php');
+require_once(SERVERPATH.'/'.ZENFOLDER.'/lib-MimeTypes.php');
 
-//TODO: the real RSS class goes here!
+class RSS extends feed {
+	protected $feed = 'RSS';
+
+	/**
+	 * Creates a feed object from the URL parameters fetched only
+	 *
+	 */
+	function __construct() {
+		global $_zp_gallery, $_zp_current_admin_obj, $_zp_loggedin;
+		if(isset($_GET['rss'])) {
+			if (isset($_GET['token'])) {
+				//	The link camed from a logged in user, see if it is valid
+				$link = $_GET;
+				unset($link['token']);
+				$token = Zenphoto_Authority::passwordHash(serialize($link), '');
+				if ($token == $_GET['token']) {
+					$adminobj = Zenphoto_Authority::getAnAdmin(array('`id`='=>(int) $link['user']));
+					if ($adminobj) {
+						$_zp_current_admin_obj = $adminobj;
+						$_zp_loggedin = $_zp_current_admin_obj->getRights();
+					}
+				}
+			}
+			// general feed setup
+			$channeltitlemode = getOption('RSS_title');
+			$this->host = html_encode($_SERVER["HTTP_HOST"]);
+			// url and xml locale
+			if(isset($_GET['lang'])) {
+				$this->locale = sanitize($_GET['lang']);
+			} else {
+				$this->locale = getOption('locale');
+			}
+			$this->locale_xml = strtr($this->locale,'_','-');
+
+			//channeltitle general
+			switch($channeltitlemode) {
+				case 'gallery':
+					$this->channel_title = $_zp_gallery->getBareTitle($this->locale);
+					break;
+				case 'website':
+					$this->channel_title = strip_tags($_zp_gallery->getWebsiteTitle($this->locale));
+					break;
+				case 'both':
+					$website_title = $_zp_gallery->getWebsiteTitle($this->locale);
+					$this->channel_title = $_zp_gallery->getBareTitle($this->locale);
+					if(!empty($website_title)) {
+						$this->channel_title = $website_title.' - '.$this->channel_title;
+					}
+					break;
+			}
+			$this->feedtype = sanitize($_GET['rss']);;
+			$this->sortorder = $this->getSortorder();
+			$this->sortdirection = $this->getSortdirection();
+			if(isset($_GET['itemnumber'])) {
+				$this->itemnumber = sanitize_numeric($_GET['itemnumber']);
+			} else {
+				$this->itemnumber = getOption('RSS_items');
+			}
+			// individual feedtype setup
+			switch($this->feedtype) {
+
+				default:
+					$this->feedtype = 'gallery';
+				case 'gallery':
+					if (!getOption('RSS_album_image')) {
+						header("HTTP/1.0 404 Not Found");
+						header("Status: 404 Not Found");
+						include(ZENFOLDER. '/404.php');
+						exitZP();
+					}
+					$this->feedtype = 'gallery';
+					if(isset($_GET['albumsmode'])) {
+						$this->mode = 'albums';
+					}
+					if(isset($_GET['folder'])) {
+						$this->albumfolder = sanitize(urldecode($_GET['folder']));
+						$this->collection = TRUE;
+						$alb = newAlbum($this->albumfolder);
+						$albumtitle = $alb->getTitle();
+					} else if(isset($_GET['albumname'])){
+						$this->albumfolder = sanitize(urldecode($_GET['albumname']));
+						$this->collection = false;
+						$alb = newAlbum($this->albumfolder);
+						$albumtitle = $alb->getTitle();
+					} else {
+						$albumtitle = '';
+						$this->collection = FALSE;
+					}
+					$albumname = ''; // to be sure
+					if($this->mode == 'albums' || isset($_GET['albumname'])) {
+						$albumname = ' - '.html_encode($albumtitle).$this->getChannelTitleExtra();
+					} elseif ($this->mode == 'albums' && !isset($_GET['folder'])) {
+						$albumname = $this->getChannelTitleExtra();
+					} elseif ($this->mode == 'albums' && isset($_GET['folder'])) {
+						$albumname = ' - '.html_encode($albumtitle).$this->getChannelTitleExtra();
+					} else {
+						$albumname = $this->getChannelTitleExtra();
+					}
+					$this->channel_title = html_encode($this->channel_title.' '.strip_tags($albumname));
+					$this->albumpath = $this->getImageAndAlbumPaths('albumpath');
+					$this->imagepath = $this->getImageAndAlbumPaths('imagepath');
+					$this->imagesize = $this->getImageSize();
+					require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER . '/image_album_statistics.php');
+					break;
+
+				case 'news':	//Zenpage News RSS
+					if (!getOption('RSS_articles')) {
+						header("HTTP/1.0 404 Not Found");
+						header("Status: 404 Not Found");
+						include(ZENFOLDER. '/404.php');
+						exitZP();
+					}
+					$this->catlink = $this->getNewsCatOptions('catlink');
+					$cattitle = $this->getNewsCatOptions('cattitle');
+					if(!empty($cattitle)) {
+						$cattitle = ' - '.html_encode($this->cattitle) ;
+					}
+					$this->newsoption = $this->getNewsCatOptions("option");
+					$titleappendix = gettext(' (Latest news)');
+					if($this->getCombinewsImages() || $this->getCombinewsAlbums()) {
+						if($this->getCombinewsImages()) {
+							$this->newsoption = $this->getCombinewsImages();
+							$titleappendix = gettext(' (Latest news and images)');
+						} else if($this->getCombinewsAlbums()) {
+							$this->newsoption = $this->getCombinewsAlbums();
+							$titleappendix = gettext(' (Latest news and albums)');
+						}
+					} else {
+						switch($this->sortorder) {
+							case 'popular':
+								$titleappendix = gettext(' (Most popular news)');
+								break;
+							case 'mostrated':
+								$titleappendix = gettext(' (Most rated news)');
+								break;
+							case 'toprated':
+								$titleappendix = gettext(' (Top rated news)');
+								break;
+							case 'random':
+								$titleappendix = gettext(' (Random news)');
+								break;
+						}
+					}
+					$this->channel_title = html_encode($this->channel_title.$cattitle.$titleappendix);
+					$this->imagesize = $this->getImageSize();
+					$this->itemnumber = getOption("zenpage_rss_items"); // # of Items displayed on the feed
+					require_once(SERVERPATH.'/'.ZENFOLDER . '/'.PLUGIN_FOLDER . '/image_album_statistics.php');
+					require_once(SERVERPATH.'/'.ZENFOLDER . '/'.PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
+
+					break;
+				case 'pages':	//Zenpage News RSS
+					if (!getOption('RSS_pages')) {
+						header("HTTP/1.0 404 Not Found");
+						header("Status: 404 Not Found");
+						include(ZENFOLDER. '/404.php');
+						exitZP();
+					}
+					switch($this->sortorder) {
+						case 'popular':
+							$titleappendix = gettext(' (Most popular pages)');
+							break;
+						case 'mostrated':
+							$titleappendix = gettext(' (Most rated pages)');
+							break;
+						case 'toprated':
+							$titleappendix = gettext(' (Top rated pages)');
+							break;
+						case 'random':
+							$titleappendix = gettext(' (Random pages)');
+							break;
+						default:
+							$titleappendix = gettext(' (Latest pages)');
+							break;
+					}
+					$this->channel_title = html_encode($this->channel_title.$titleappendix);
+					require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
+					break;
+
+				case 'comments':	//Comments RSS
+					if (!getOption('RSS_comments')) {
+						header("HTTP/1.0 404 Not Found");
+						header("Status: 404 Not Found");
+						include(ZENFOLDER. '/404.php');
+						exitZP();
+					}
+					if(isset($_GET['type'])) {
+						$this->commentrsstype = sanitize($_GET['type']);
+					} else {
+						$this->commentrsstype = 'all';
+					}
+					if(isset($_GET['id'])) {
+						$this->id = sanitize_numeric($_GET['id']);
+						$table = NULL;
+						switch($this->commentrsstype) {
+							case 'album': //sadly needed but the parameter cannot be changed for backward compatibility of feeds.
+								$table = 'albums';
+								break;
+							case 'image':
+								$table = 'images';
+								break;
+							case 'news':
+								$table = 'news';
+								break;
+							case 'page':
+								$table = 'pages';
+								break;
+						}
+						$this->itemobj = getItemByID($table,$this->id);
+						$title = ' - '.$this->itemobj->getTitle();
+					} else {
+						$this->id = NULL;
+						$this->itemobj = NULL;
+						$title = NULL;
+					}
+					$this->channel_title = html_encode($this->channel_title.$title.gettext(' (latest comments)'));
+					if(getOption('zp_plugin_zenpage')) {
+						require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-template-functions.php');
+					}
+					break;
+			}
+			$this->feeditems = $this->getitems();
+		}
+	}
+
+	/**
+	 * Gets the RSS file name from the feed url and clears out query items and special chars
+	 *
+	 * @return string
+	 */
+	protected function getCacheFilename() {
+		$uri = explode('?',getRequestURI());
+		$filename = array();
+		foreach (explode('&',$uri[1]) as $param) {
+			$p = explode('=', $param);
+			if (isset($p[1]) && !empty($p[1])) {
+				$filename[] = $p[1];
+			} else {
+				$filename[] = $p[0];
+			}
+		}
+		$filename = seoFriendly(implode('_',$filename));
+		return $filename.".xml";
+
+
+		//old way
+		$replace = array(
+				WEBPATH.'/' => '',
+				"albumname="=>"_",
+				"albumsmode="=>"_",
+				"title=" => "_",
+				"folder=" => "_",
+				"type=" => "-",
+				"albumtitle=" => "_",
+				"category=" => "_",
+				"id=" => "_",
+				"lang=" => "_",
+				"&amp;" => "_",
+				"&" => "_",
+				"index.php" => "",
+				"/"=>"-",
+				"?"=> ""
+		);
+		$filename = strtr(getRequestURI(),$replace);
+		$filename = preg_replace("/__/","_",$filename);
+		$filename = seoFriendly($filename);
+		return $filename.".xml";
+	}
+
+	/**
+	 * Updates the hitcoutner for RSS in the plugin_storage db table.
+	 *
+	 */
+	protected function hitcounter() {
+		if(!zp_loggedin() && getOption('RSS_hitcounter')) {
+			$rssuri = $this->getCacheFilename();
+			$type = 'hitcounter';
+			$checkitem = query_single_row("SELECT `data` FROM ".prefix('plugin_storage')." WHERE `aux` = ".db_quote($rssuri)." AND `type` = '".$type."'",true);
+			if($checkitem) {
+				$hitcount = $checkitem['data']+1;
+				query("UPDATE ".prefix('plugin_storage')." SET `data` = ".$hitcount." WHERE `aux` = ".db_quote($rssuri)." AND `type` = '".$type."'",true);
+			} else {
+				query("INSERT INTO ".prefix('plugin_storage')." (`type`,`aux`,`data`) VALUES ('".$type."',".db_quote($rssuri).",1)",true);
+			}
+		}
+	}
+
+	/**
+	 * Gets the feed item data in a gallery feed
+	 *
+	 * @param object $item Object of an image or album
+	 * @return array
+	 */
+	protected function getItemGallery($item) {
+		if($this->mode == "albums") {
+			$albumobj = newAlbum($item['folder']);
+			$totalimages = $albumobj->getNumImages();
+			$itemlink = $this->host.pathurlencode($albumobj->getAlbumLink());
+			$thumb = $albumobj->getAlbumThumbImage();
+			$thumburl = '<img border="0" src="'.PROTOCOL.'://'.$this->host.pathurlencode($thumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'.html_encode($albumobj->getTitle($this->locale)) .'" />';
+			$title =  $albumobj->getTitle($this->locale);
+			if(true || $this->sortorder == "latestupdated") {
+				$filechangedate = filectime(ALBUM_FOLDER_SERVERPATH.internalToFilesystem($albumobj->name));
+				$latestimage = query_single_row("SELECT mtime FROM " . prefix('images'). " WHERE albumid = ".$albumobj->getID() . " AND `show` = 1 ORDER BY id DESC");
+				if($latestimage && $this->sortorder == 'latestupdated') {
+					$count = db_count('images',"WHERE albumid = ".$albumobj->getID() . " AND mtime = ". $latestimage['mtime']);
+				} else {
+					$count = $totalimages;
+				}
+				if($count != 0) {
+					$imagenumber = sprintf(ngettext('%s (%u image)','%s (%u images)',$count),$title, $count);
+				} else {
+					$imagenumber = $title;
+				}
+				$feeditem['desc'] = '<a title="'.$title.'" href="'.PROTOCOL.'://'.$itemlink.'">'.$thumburl.'</a>'.
+						'<p>'.html_encode($imagenumber).'</p>'.$albumobj->getDesc($this->locale).'<br />'.sprintf(gettext("Last update: %s"),zpFormattedDate(DATE_FORMAT,$filechangedate));
+			} else {
+				if($totalimages != 0) {
+					$imagenumber = sprintf(ngettext('%s (%u image)','%s (%u images)',$totalimages),$title, $totalimages);
+				}
+				$feeditem['desc'] = '<a title="'.html_encode($title).'" href="'.PROTOCOL.'://'.$itemlink.'">'.$thumburl.'</a>'.$item->getDesc($this->locale).'<br />'.sprintf(gettext("Date: %s"),zpFormattedDate(DATE_FORMAT,$item->get('mtime')));
+			}
+			$ext = getSuffix($thumb->filename);
+		} else {
+			$ext = getSuffix($item->filename);
+			$albumobj = $item->getAlbum();
+			$itemlink = $this->host.$item->getImagelink();
+			$fullimagelink = $this->host.pathurlencode($item->getFullImageURL());
+			$thumburl = '<img border="0" src="'.PROTOCOL.'://'.$this->host.pathurlencode($item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'.$item->getTitle($this->locale) .'" /><br />';
+			$title = $item->getTitle($this->locale);
+			$albumtitle = $albumobj->getTitle($this->locale);
+			$datecontent = '<br />Date: '.zpFormattedDate(DATE_FORMAT,$item->get('mtime'));
+			if ((($ext == "flv") || ($ext == "mp3") || ($ext == "mp4") ||  ($ext == "3gp") ||  ($ext == "mov")) AND $this->mode != "album") {
+				$feeditem['desc'] = '<a title="'.html_encode($title).' in '.html_encode($albumobj->getTitle($this->locale)).'" href="'.PROTOCOL.'://'.$itemlink.'">'.$thumburl.'</a>' . $item->getDesc($this->locale).$datecontent;
+			} else {
+				$feeditem['desc'] = '<a title="'.html_encode($title).' in '.html_encode($albumobj->getTitle($this->locale)).'" href="'.PROTOCOL.'://'.$itemlink.'"><img src="'.PROTOCOL.'://'.$this->host.pathurlencode($item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'.html_encode($title).'" /></a>' . $item->getDesc($this->locale).$datecontent;
+			}
+		}
+		// title
+		if($this->mode != "albums") {
+			$feeditem['title'] = sprintf('%1$s (%2$s)', $item->getTitle($this->locale), $albumobj->getTitle($this->locale));
+		} else {
+			$feeditem['title'] = $imagenumber;
+		}
+		//link
+		$feeditem['link'] = PROTOCOL.'://'.$itemlink;
+
+		// enclosure
+		$feeditem['enclosure'] = '';
+		if(getOption("RSS_enclosure") AND $this->mode != "albums") {
+			$feeditem['enclosure'] = '<enclosure url="'.PROTOCOL.'://'.$fullimagelink.'" type="'.getMimeString($ext).'" length="'.filesize($item->localpath).'" />';
+		}
+		//category
+		if($this->mode != "albums") {
+			$feeditem['category'] = html_encode($albumobj->getTitle($this->locale));
+		} else {
+			$feeditem['category'] = html_encode($albumobj->getTitle($this->locale));
+		}
+		//media content
+		$feeditem['media_content'] = '';
+		$feeditem['media_thumbnail'] = '';
+		if(getOption("RSS_mediarss") AND $this->mode != "albums") {
+			$feeditem['media_content'] = '<media:content url="'.PROTOCOL.'://'.$fullimagelink.'" type="image/jpeg" />';
+			$feeditem['media_thumbnail'] = '<media:thumbnail url="'.PROTOCOL.'://'.$fullimagelink.'" width="'.$this->imagesize.'"	height="'.$this->imagesize.'" />';
+		}
+		//date
+		if($this->mode != "albums") {
+			$feeditem['pubdate'] = date("r",strtotime($item->getDateTime()));
+		} else {
+			$feeditem['pubdate'] = date("r",strtotime($albumobj->getDateTime()));
+		}
+		return $feeditem;
+	}
+
+	/**
+	 * Gets the feed item data in a Zenpage news feed
+	 *
+	 * @param array $item Titlelink a Zenpage article or filename of an image if a combined feed
+	 * @return array
+	 */
+	protected function getItemNews($item) {
+		$categories = '';
+		$feeditem['enclosure'] = '';
+		$itemtype = strtolower($item['type']); // needed because getZenpageStatistic returns "News" instead of "news" for unknown reasons...
+		//get the type of the news item
+		switch($itemtype) {
+			case 'news':
+				$obj = new ZenpageNews($item['titlelink']);
+				$title = $feeditem['title'] = get_language_string($obj->getTitle('all'),$this->locale);
+				$link = getNewsURL($obj->getTitlelink());
+				$count2 = 0;
+				$plaincategories = $obj->getCategories();
+				$categories = '';
+				foreach($plaincategories as $cat){
+					$catobj = new ZenpageCategory($cat['titlelink']);
+					$categories .= get_language_string($catobj->getTitle('all'), $this->locale).', ';
+				}
+				$categories = rtrim($categories, ', ');
+				$feeditem['desc'] = shortenContent($obj->getContent($this->locale),getOption('zenpage_rss_length'), '...');
+				break;
+			case 'images':
+				$albumobj = newAlbum($item['albumname']);
+				$obj = newImage($albumobj,$item['titlelink']);
+				$categories = get_language_string($albumobj->getTitle('all'),$this->locale);
+				$feeditem['title'] = strip_tags(get_language_string($obj->getTitle('all'),$this->locale));
+				$title = get_language_string($obj->getTitle('all'),$this->locale);
+				$link = $obj->getImageLink();
+				$filename = $obj->getFilename();
+				$ext = getSuffix($filename);
+				$album = $albumobj->getFolder();
+				$fullimagelink = $this->host.pathurlencode($obj->getFullImageURL());
+				$content = shortenContent($obj->getDesc($this->locale),getOption('zenpage_rss_length'), '...');
+				if(isImagePhoto($obj)) {
+					$feeditem['desc'] = '<a title="'.html_encode($feeditem['title']).' in '.html_encode($categories).'" href="'.PROTOCOL.'://'.$this->host.$link.'"><img border="0" src="'.PROTOCOL.'://'.$this->host.pathurlencode($obj->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'. html_encode($feeditem['title']).'"></a><br />'.$content;
+				} else {
+					$feeditem['desc'] = '<a title="'.html_encode($feeditem['title']).' in '.html_encode($categories).'" href="'.PROTOCOL.'://'.$this->host.$link.'"><img src="'.pathurlencode($obj->getThumb()).'" alt="'.html_encode($feeditem['title']).'" /></a><br />'.$content;
+				}
+				if(getOption("RSS_enclosure")) {
+					$feeditem['enclosure'] = '<enclosure url="'.PROTOCOL.'://'.$fullimagelink.'" type="'.getMimeString($ext).'" length="'.filesize($obj->localpath).'" />';
+				}
+				break;
+			case 'albums':
+				$obj = newAlbum($item['albumname']);
+				$categories = get_language_string($obj->getTitle('all'),$this->locale);
+				$feeditem['title'] = strip_tags(get_language_string($obj->getTitle('all'),$this->locale));
+				$title = get_language_string($obj->getTitle('all'),$this->locale);
+				$link = pathurlencode($obj->getAlbumLink());
+				$album = $obj->getFolder();
+				$albumthumb = $obj->getAlbumThumbImage();
+				$content = shortenContent($obj->getDesc($this->locale),getOption('zenpage_rss_length'), '...');
+
+				if(isImagePhoto($obj)) {
+					$feeditem['desc'] = '<a title="'.html_encode($feeditem['title']).'" href="'.PROTOCOL.'://'.$this->host.$link.'"><img border="0" src="'.PROTOCOL.'://'.$this->host.pathurlencode($albumthumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'. html_encode($feeditem['title']).'"></a><br />'.$content;
+				} else {
+					$feeditem['desc'] = '<a title="'.html_encode($feeditem['title']).'" href="'.PROTOCOL.'://'.$this->host.$link.'"><img src="'.pathurlencode($obj->getAlbumThumb()).'" alt="'.html_encode($feeditem['title']).'" /></a><br />'.$content;
+				}
+				break;
+		}
+		if(!empty($categories)) {
+			$feeditem['category'] = html_encode($categories);
+			$feeditem['title'] = $title.' ('.$categories.')';
+		}
+		$feeditem['link'] = PROTOCOL.'://'.$this->host.$link;
+		$feeditem['media_content'] = '';
+		$feeditem['media_thumbnail'] = '';
+		$feeditem['pubdate'] = date("r",strtotime($item['date']));
+
+		return $feeditem;
+	}
+
+	/**
+	 * Prints the RSS feed xml
+	 *
+	 */
+	public function printFeed() {
+		global $_zp_gallery;
+		$feeditems = $this->getitems();
+		if(is_array($feeditems)) {
+			$this->hitcounter();
+			$this->startCache();
+			header('Content-Type: application/xml');
+			echo '<?xml-stylesheet type="text/css" href="'.WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/rss/rss.css" ?>'."\n";
+			?>
+			<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+				<channel>
+					<title><?php echo $this->channel_title; ?></title>
+					<link><?php echo PROTOCOL.'://'.$this->host.WEBPATH; ?></link>
+					<atom:link href="<?php echo PROTOCOL; ?>://<?php echo $this->host; ?><?php echo html_encode(getRequestURI()); ?>" rel="self"	type="application/rss+xml" />
+					<description><?php echo strip_tags($_zp_gallery->getDesc($this->locale)); ?></description>
+					<language><?php echo $this->locale_xml; ?></language>
+					<pubDate><?php echo date("r", time()); ?></pubDate>
+					<lastBuildDate><?php echo date("r", time()); ?></lastBuildDate>
+					<docs>http://blogs.law.harvard.edu/tech/rss</docs>
+					<generator>Zenphoto RSS Generator</generator>
+					<?php
+					foreach($feeditems as $feeditem) {
+						switch($this->feedtype) {
+							case 'gallery':
+								$item = $this->getItemGallery($feeditem);
+								break;
+							case 'news':
+								$item = $this->getItemNews($feeditem);
+								break;
+							case 'pages':
+								$item = $this->getitemPages($feeditem);
+								break;
+							case 'comments':
+								$item = $this->getitemComments($feeditem);
+								break;
+							default:
+								$item = $feeditem;
+								break;
+						}
+						?>
+						<item>
+							<title><![CDATA[<?php echo $item['title']; ?>]]></title>
+							<link><?php echo html_encode($item['link']); ?></link>
+							<description><![CDATA[<?php echo $item['desc']; ?>]]></description>
+							<?php
+							if(!empty($item['enclosure'])) {
+								echo $item['enclosure']; //prints xml as well
+							}
+							if(!empty($item['category'])) {
+								?>
+								<category><![CDATA[<?php echo $item['category']; ?>]]></category>
+								<?php
+							}
+							if(!empty($item['media_content'])) {
+								echo $item['media_content']; //prints xml as well
+							}
+							if(!empty($item['media_thumbnail'])) {
+								echo $item['media_thumbnail']; //prints xml as well
+							}
+							?>
+							<guid><?php echo html_encode($item['link']); ?></guid>
+							<pubDate><?php echo $item['pubdate'];  ?></pubDate>
+						</item>
+						<?php
+					} // foreach
+					?>
+				</channel>
+			</rss>
+			<?php
+			$this->endCache();
+		}
+	}
+}
+
 ?>
