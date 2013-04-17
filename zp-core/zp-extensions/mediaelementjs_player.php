@@ -138,7 +138,7 @@ class mediaelementjs_options {
  */
 function getMediaelementjsSkins() {
 	$all_skins = array();
-	$default_skins_dir = SERVERPATH.'/'.PLUGIN_FOLDER.'/mediaelementjs_player/';
+	$default_skins_dir = WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/mediaelementjs_player/';
 	$user_skins_dir = SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/mediaelementjs_player/';
 	$filestoignore = array( '.', '..','.DS_Store','Thumbs.db','.htaccess','.svn');
 	$skins = array_diff(scandir($default_skins_dir),array_merge($filestoignore));
@@ -241,8 +241,8 @@ class medialementjs_player {
     				}
     			} 
     	  	$playerconfig  .= '		
-    				<object width="'.$this->width.'" height="'.$this->height.'" type="application/x-shockwave-flash" data="flashmediaelement.swf">
-        			<param name="movie" value="flashmediaelement.swf" />
+    				<object width="'.$this->width.'" height="'.$this->height.'" type="application/x-shockwave-flash" data="'.SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/mediaelementjs_player/flashmediaelement.swf">
+        			<param name="movie" value="'.SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/mediaelementjs_player/flashmediaelement.swf" />
         			<param name="flashvars" value="controls=true&file='.pathurlencode($moviepath).'" />
         			<p>'.gettext('Sorry, no playback capabilities.').'</p>
     				</object>
@@ -269,8 +269,8 @@ class medialementjs_player {
 				$playerconfig  .= '		
     				<!-- <track kind="subtitles" src="subtitles.srt" srclang="en" /> -->
     				<!-- <track kind="chapters" src="chapters.srt" srclang="en" /> -->
-    				<object width="'.$this->width.'" height="'.$this->height.'" type="application/x-shockwave-flash" data="flashmediaelement.swf">
-        			<param name="movie" value="flashmediaelement.swf" />
+    				<object width="'.$this->width.'" height="'.$this->height.'" type="application/x-shockwave-flash" data="'.SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/mediaelementjs_player/flashmediaelement.swf">
+        			<param name="movie" value="'.SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/mediaelementjs_player/flashmediaelement.swf" />
         			<param name="flashvars" value="controls=true&file='.pathurlencode($moviepath).'" />
         			<p>'.gettext('Sorry, no playback capabilities.').'</p>
     				</object>
