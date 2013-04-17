@@ -327,7 +327,7 @@ class medialementjs_player {
 						$type = 'video/webm';
 						break;
 				}
-				$source = '<source type="'.$this->mode.'/'.$suffix.'" src="'.pathurlencode($counterpart).'" />';
+				$source = '<source type="'.$type.'" src="'.pathurlencode($counterpart).'" />';
 				array_push($counterparts,$source);
 			}
 		}
