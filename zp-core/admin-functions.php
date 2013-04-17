@@ -4367,6 +4367,7 @@ function getPluginTabs() {
 			'users'=>gettext('users'),
 			'utilities'=>gettext('utilities')
 			);
+	zp_apply_filter('plugin_tabs', $classXlate);
 
 	$currentlist = $classes = $member = array();
 	foreach ($paths as $plugin=>$path) {

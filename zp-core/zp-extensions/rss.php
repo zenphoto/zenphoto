@@ -9,7 +9,7 @@
 
 // force UTF-8 Ø
 
-$plugin_is_filter = 9|CLASS_PLUGIN;
+$plugin_is_filter = 9|FEATURE_PLUGIN|ADMIN_PLUGIN;
 $plugin_description = gettext('The Zenphoto <em>RSS</em> handler.');
 $plugin_notice = gettext('This plugin must be enabled to supply <em>RSS</em> feeds.').'<br />'.gettext('<strong>Note:</strong> Theme support is required to display RSS links.');
 
@@ -844,6 +844,22 @@ class RSS extends feed {
 			$this->endCache();
 		}
 	}
+}
+
+// RSS feed calls before anything else
+if (!OFFSET_PATH && isset($_GET['rss'])) {
+	//	load the theme plugins just incase
+	$_zp_gallery_page = 'rss.php';
+	foreach (getEnabledPlugins() as $extension=>$plugin) {
+		$loadtype = $plugin['priority'];
+		if ($loadtype&THEME_PLUGIN) {
+			require_once($plugin['path']);
+		}
+		$_zp_loaded_plugins[] = $extension;
+	}
+	$rss = new RSS();
+	$rss->printFeed();
+	exitZP();
 }
 
 ?>

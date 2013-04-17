@@ -32,21 +32,6 @@ require_once(SERVERPATH."/".ZENFOLDER.'/controller.php');
 $_index_theme = $_zp_script = '';
 $_zp_loaded_plugins = array();
 
-// RSS feed calls before anything else
-if (isset($_GET['rss']) && class_exists('RSS')) {
-	//	load the theme plugins just incase
-	$_zp_gallery_page = 'rss.php';
-	foreach (getEnabledPlugins() as $extension=>$plugin) {
-		$loadtype = $plugin['priority'];
-		if ($loadtype&THEME_PLUGIN) {
-			require_once($plugin['path']);
-		}
-		$_zp_loaded_plugins[] = $extension;
-	}
-	$rss = new RSS();
-	$rss->printFeed();
-	exitZP();
-}
 //$_zp_script_timer['controller'] = microtime();
 // Display an arbitrary theme-included PHP page
 if (isset($_GET['p'])) {

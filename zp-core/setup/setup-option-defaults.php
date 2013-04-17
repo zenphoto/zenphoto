@@ -583,7 +583,7 @@ query('UPDATE '.prefix('administrators').' SET `passhash`='.((int) getOption('st
 query('UPDATE '.prefix('administrators').' SET `passupdate`='.db_quote(date('Y-m-d H:i:s')).' WHERE `valid`>=1 AND `passupdate` IS NULL');
 setOptionDefault('image_processor_flooding_protection', 1);
 setOptionDefault('codeblock_first_tab',1);
-setOptionDefault('zp_plugin_rss', 9|CLASS_PLUGIN);
+setOptionDefault('zp_plugin_rss', 9|FEATURE_PLUGIN|ADMIN_PLUGIN);
 
 //The following should be done LAST so it catches anything done above
 //set plugin default options by instantiating the options interface
