@@ -3,7 +3,7 @@
  * This plugin handles <i>RSS</i> feeds:
  *
  * @author Stephen Billard (sbillard)
- * @package classes
+ * @package plugins
  * @subpackage feed
  */
 
@@ -328,6 +328,12 @@ class RSS extends feed {
 	 */
 	function __construct() {
 		global $_zp_gallery, $_zp_current_admin_obj, $_zp_loggedin;
+		if (!$this->feedtype = sanitize($_GET['rss'])) {
+			$this->feedtype = 'gallery';
+		}
+
+		$this->setOptions(sanitize($_GET));
+
 		if(isset($_GET['rss'])) {
 			if (isset($_GET['token'])) {
 				//	The link camed from a logged in user, see if it is valid
@@ -345,13 +351,6 @@ class RSS extends feed {
 			// general feed setup
 			$channeltitlemode = getOption('RSS_title');
 			$this->host = html_encode($_SERVER["HTTP_HOST"]);
-			// url and xml locale
-			if(isset($_GET['lang'])) {
-				$this->locale = sanitize($_GET['lang']);
-			} else {
-				$this->locale = getOption('locale');
-			}
-			$this->locale_xml = strtr($this->locale,'_','-');
 
 			//channeltitle general
 			switch($channeltitlemode) {
@@ -369,19 +368,10 @@ class RSS extends feed {
 					}
 					break;
 			}
-			$this->feedtype = sanitize($_GET['rss']);;
-			$this->sortorder = $this->getSortorder();
-			$this->sortdirection = $this->getSortdirection();
-			if(isset($_GET['itemnumber'])) {
-				$this->itemnumber = sanitize_numeric($_GET['itemnumber']);
-			} else {
-				$this->itemnumber = getOption('RSS_items');
-			}
+
 			// individual feedtype setup
 			switch($this->feedtype) {
 
-				default:
-					$this->feedtype = 'gallery';
 				case 'gallery':
 					if (!getOption('RSS_album_image')) {
 						header("HTTP/1.0 404 Not Found");
@@ -418,8 +408,6 @@ class RSS extends feed {
 						$albumname = $this->getChannelTitleExtra();
 					}
 					$this->channel_title = html_encode($this->channel_title.' '.strip_tags($albumname));
-					$this->albumpath = $this->getImageAndAlbumPaths('albumpath');
-					$this->imagepath = $this->getImageAndAlbumPaths('imagepath');
 					$this->imagesize = $this->getImageSize();
 					require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER . '/image_album_statistics.php');
 					break;
@@ -431,12 +419,7 @@ class RSS extends feed {
 						include(ZENFOLDER. '/404.php');
 						exitZP();
 					}
-					$this->catlink = $this->getNewsCatOptions('catlink');
-					$cattitle = $this->getNewsCatOptions('cattitle');
-					if(!empty($cattitle)) {
-						$cattitle = ' - '.html_encode($this->cattitle) ;
-					}
-					$this->newsoption = $this->getNewsCatOptions("option");
+					setNewsCatOptions();
 					$titleappendix = gettext(' (Latest news)');
 					if($this->getCombinewsImages() || $this->getCombinewsAlbums()) {
 						if($this->getCombinewsImages()) {
@@ -462,7 +445,7 @@ class RSS extends feed {
 								break;
 						}
 					}
-					$this->channel_title = html_encode($this->channel_title.$cattitle.$titleappendix);
+					$this->channel_title = html_encode($this->channel_title.$this->cattitle.$titleappendix);
 					$this->imagesize = $this->getImageSize();
 					$this->itemnumber = getOption("zenpage_rss_items"); // # of Items displayed on the feed
 					require_once(SERVERPATH.'/'.ZENFOLDER . '/'.PLUGIN_FOLDER . '/image_album_statistics.php');

@@ -1,170 +1,79 @@
 <?php
 
 /** TODO: THis doc needs generalisation regarding "?rss"
+
+Actually, this document should not even mention the way the feed is invoked. That is entirely up to the
+feed plugin. Instead describe the types of feeds possible.
+
  *
  * Base feed class from which all others descend.
- * Current status is that this is a place holder while we re-organize the RSS handling into
- * RSS specific items and move the common elements to this class.
  *
+ * Plugins will set the <var>feedtype</var> property to the feed desired
+ * <ul>
+ * 	<li>gallery</li>
+ * 	<li>news</li>
+ * 	<li>pages</li>
+ * 	<li>comments</li>
+ * </ul>
  *
- * The feed is dependent on GET parameters available.
+ * Feed details are determined by the <var>option</var> property.
+ * Elements of this array and their meaning follow:
+ * <ul>
+ * 	<li>lang
+ * 		<ul>
+ * 			<li><i>locale</i></li>
+ * 		</ul>
+ * 	</li>
+ *	<li>sortdir
+ *		<ul>
+ * 			<li>desc (default) for descending order</li>
+ *			<li>asc for ascending order</li>
+ *		</ul>
+ *	</li>
+ *	<li>sortorder</li>
+ *		<ul>
+ * 			<li><i>latest</i> (default) for the latest uploaded by id (discovery order)</li>
+ * 			<li><i>latest-date</i> for the latest fetched by date</li>
+ * 			<li><i>latest-mtime</i> for the latest fetched by mtime</li>
+ * 			<li><i>latest-publishdate</i> for the latest fetched by publishdate</li>
+ * 			<li><i>popular</i> for the most popular albums</li>
+ * 			<li><i>topratedv for the best voted</li>
+ * 			<li><i>mostrated</i> for the most voted</li>
+ * 			<li><i>random</i> for random order</li>
+ * 			<li><i>id</i> internal <var>id</var> order</li>
+ *		</ul>
+ *	</li>
+ *	<li>albumname</li>
+ *	<li>albumsmode</li>
+ *	<li>folder</li>
+ *	<li>size</li>
+ *	<li>category</li>
+ *	<il>id</li>
+ *	<li>itemnumber</li>
+ *	<li>type (for comments feed)
+ *		<ul>
+ *			<li>albums</li>
+ *			<li>images</li>
+ *			<li>pages</li>
+ *			<li>news</li>
+ *		</ul>
+ *	</li>
+ *	<li>withimages</li>
+ *	<li>withimages_mtime</li>
+ *	<li>withimages_publishdate</li>
+ *	<li>withalbums</li>
+ *	<li>withalbums_mtim</li>
+ *	<li>withalbums_publishdate</li>
+ *	<li>withalbums_publishdate</li>
+ * </ul>
  *
- * The gallery and additionally Zenpage CMS plugin provide rss link functions to generate context dependent rss links.
- * You can however create your own links manually with even some more options than via the backend option.
- *
- *
- * I. GALLERY RSS FEEDS:
- * These accept the following parameters:
- *
- * - "Gallery" feed for latest images of the whole gallery
- * index.php?rss&lang=<locale></li>
- *
- * - "Album" for latest images only of the album it is called from
- * index.php?rss&albumname=<album name>&lang=<locale>
- *
- * - "Collection" for latest images of the album it is called from and all of its subalbums
- * index.php?rss&folder=<album name>&lang=<locale>
- *
- * - "AlbumsRSS" for latest albums
- * index.php?rss&lang=<locale>&albumsmode';
- *
- * - "AlbumsRSScollection" only for latest subalbums with the album it is called from
- * index.php?rss&folder=<album name>&lang=<locale>&albumsmode';
-
- * - "Comments" for all comments of all albums and images
- * index.php?rss=comments&type=gallery&lang=<locale>
- *
- * - "Comments-image" for latest comments of only the image it is called from
- * index.php?rss=comments&id=<id of image>&type=image&lang=<locale>
- *
- * - "Comments-album" for latest comments of only the album it is called from
- * index.php?rss=comments&id=<album id>&type=album&lang=<locale>
- *
- * It is recommended to use urlencode() around the album names.
- *
- * Optional gallery feed parameters:
- * "sortorder" for "Gallery", "Album", "Collection" only with the following values (the same as the image_album_statistics plugin):
- * - "latest" for the latest uploaded by id (discovery order) (optional, used if sortorder is not set)
- * - "latest-date" for the latest fetched by date
- * - "latest-mtime" for the latest fetched by mtime
- * - "latest-publishdate" for the latest fetched by publishdate
- * - "popular" for the most popular albums
- * - "toprated" for the best voted
- * - "mostrated" for the most voted
- * - "random" for random order
- * "sortdir"
- * - "desc" (default) for descending order
- * - "asc" for ascending order
- *
- * Overrides the admin option value if set.
- *
- * "sortorder" for latest "AlbumsRSS" and "AlbumsRSScollection" only with the following values (the same as the image_album_statistics plugin):
- * - "latest" for the latest uploaded by ID (discovery order) (optional, used if sortorder is not set)
- * - "latest-date" for the latest fetched by date
- * - "latest-mtime" for the latest fetched by mtime
- * - "latest-publishdate" for the latest fetched by publishdate
- * - "popular" for the most popular albums,
- * - "toprated" for the best voted
- * - "mostrated" for the most voted
- * - "latestupdated" for the latest updated
- * - "random" for random order
- * "sortdir"
- * - "desc" (default) for descending order
- * - "asc" for ascending order
- *
- * Overrides the option value if set.
- *
- * Optional gallery feed parameters for all except comments:
- * "size" the pixel size for the image (uncropped and longest side)
- *
- *
- * II. RSS FEEDS WITH THE ZENPAGE CMS PLUGIN
- * Requires the plugin to be enabled naturally.
- *
- * a. NEWS ARTICLE FEEDS
- * - "News" feed for latest news articles
- * index.php?rss=news&lang=<locale>
- *
- * - "Category" for only the latest news articles of the category
- * index.php?rss=news&lang=<locale>&category=<titlelink of category>
- *
- * - "Comments" for all news articles and pages
- * index.php?rss=comments&type=zenpage&lang=<locale>
- *
- * - "Comments-news" for comments of only the news article it is called from
- * index.php?rss=comments&id=<news article id>&type=news&lang=<locale>
- *
- * - "Comments-page" for comments of only the page it is called from
- * index.php?rss=comments&id=<page id>&type=page&lang=<locale>
- *
- * - "Comments-all" for comments from all albums, images, news articels and pages
- * index.php?rss=comments&type=allcomments&lang=<locale>
- *
- * Optional parameters for "News" and "Category":
- * "sortorder  with these values:
- * - "latest" for latest articles. (If "sortorder" is not set at all "latest" order is used)
- * - "popular" for most viewed articles
- * - "mostrated" for most voted articles
- * - "toprated" for top voted articles
- * - "random" for random articles
- * - "id" by internal ID order
- *
- * b. COMBINEWS MODE RSS FEEDS (ARTICLES WITH IMAGES OR ALBUMS COMBINED)
- * NOTE: These override the sortorder parameter. You can also only set one of these parameters at the time. For other custom feed needs use the mergedRSS plugin.
- *
- * - "withimages" for all latest news articles and latest images by date combined
- * index.php?rss=news&withimages&lang=<locale>
- *
- * - "withimages_mtime" for all latest news articles and latest images by mtime combined
- * index.php?rss=news&withimages_mtime&lang=<locale>
- *
- * - "withimages_publishdate" for all latest news articles and latest images by publishdate combined
- * index.php?rss=news&withimages_publishdate&lang=<locale>
- *
- * - "withalbums" for all latest news articles and latest albums by date combined
- * index.php?rss=news&withimages_withalbums&lang=<locale>
- *
- * - "withalbums_mtime" for all latest news articles and latest images by mtime combined
- * index.php?rss=news&withalbums_mtime&lang=<locale>
- *
- * - "withalbums_publishdate" for all latest news articles and latest images by publishdate combined
- * index.php?rss=news&withalbums_publishdate&lang=<locale>
- *
- * - "withalbums_latestupdated" for all latest news articles and latest updated albums combined
- * index.php?rss=news&withalbums_latestupdated&lang=<locale>
- *
- * Optional CombiNews parameter:
- * "size" the pixel size for the image (uncropped and longest side)
- *
- * c. PAGES ARTICLE FEEDS
- * - "pages" feed for latest news articles
- * index.php?rss=pages&lang=<locale>
- *
- * Optional parameters:
- * "sortorder  with these values:
- * - "latest" for latest articles. (If "sortorder" is not set at all "latest" order is used)
- * - "popular" for most viewed articles
- * - "mostrated" for most voted articles
- * - "toprated" for top voted articles
- * - "random" for random articles
- * - "id" by internal ID
- * "sortdir"
- * - "desc" (default) for descending order
- * - "asc" for ascending order
- *
- * III. OPTIONAL PARAMETERS TO I. AND II.:
- * "itemnumber" for the number of items to get. If set overrides the admin option value.
- * "lang" for the language locale. Actually optional as well and if not set the currently set locale option is used.
- *
- * IV. INTENDED USAGE:
- * $rss = new RSS(); // gets parameters from the urls above
- * $rss->printFeed(); // prints xml feed
  *
  * @package classes
  */
 class feed {
 	protected $feed = 'feed';	//	feed type
 	protected $mode;	//	feed mode
+	protected $options;	// This array will store the options for the feed.
 
 	//general feed type gallery, news or comments
 	protected $feedtype = NULL;
@@ -260,50 +169,49 @@ class feed {
 		zpFunctions::removeDir(SERVERPATH.'/'.STATIC_CACHE_FOLDER.'/'.strtolower($this->feed).'/'.$cachefolder,true);
 	}
 
- /**
-	* Helper function that gets the sortdirection (not used by all feeds)
-	*
-	* @return string
-	*/
-	protected function getSortdirection() {
-		if(isset($_GET['sortdir'])) {
-			$sortdir = sanitize($_GET['sortdir']);
-			if($sortdir =! 'desc' || $sortdir != 'asc') {
-				$sortdir = 'desc';
-			}
-			return $sortdir;
-		}
-	}
-
- /**
-	* Helper function that gets the sortorder for gallery and plain news/category feeds
-	*
-	* @return string
-	*/
-	protected function getSortorder() {
-		if(isset($_GET['sortorder'])) {
-			$sortorder = sanitize($_GET['sortorder']);
+	function setOptions($options) {
+		$this->options = $options;
+		if(isset($this->options['lang'])) {
+			$this->locale = $this->options['lang'];
 		} else {
-			$sortorder = NULL;
+			$this->locale = getOption('locale');
+		}
+		$this->locale_xml = strtr($this->locale,'_','-');
+		if(isset($this->options['sortdir'])) {
+			$this->sortdirection = $this->options['sortdir'];
+			if($this->sortdirection =! 'desc' || $sortdir != 'asc') {
+				$this->sortdirection = 'desc';
+			}
+		} else {
+			$this->sortdirection = 'desc';
+		}
+		if(isset($this->options['sortorder'])) {
+			$this->sortorder = $this->options['sortorder'];
+		} else {
+			$this->sortorder = NULL;
 		}
 		switch($this->feedtype) {
 			default:
 			case 'gallery':
-				if(is_null($sortorder)) {
+				if(is_null($this->sortorder)) {
 					if($this->mode == "albums") {
-						$sortorder = getOption($this->feed."_sortorder_albums");
+						$this->sortorder = getOption($this->feed."_sortorder_albums");
 					} else {
-						$sortorder = getOption($this->feed."_sortorder");
+						$this->sortorder = getOption($this->feed."_sortorder");
 					}
 				}
 				break;
 			case 'news':
-				if($this->newsoption == 'withimages' || $sortorder == 'latest') {
-					$sortorder = NULL;
+				if($this->newsoption == 'withimages' || $this->sortorder == 'latest') {
+					$this->sortorder = NULL;
 				}
 				break;
 		}
-		return $sortorder;
+		if(isset($this->options['itemnumber'])) {
+			$this->itemnumber = (int) $this->options['itemnumber'];
+		} else {
+			$this->itemnumber = getOption($this->feed.'_items');
+		}
 	}
 
 	protected function getChannelTitleExtra() {
@@ -348,102 +256,42 @@ class feed {
 	}
 
 	/**
-	 * Helper function that returns the image path, album path and modrewrite suffix for Gallery feeds
-	 *
-	 * @param string $arrayfield "albumpath", "imagepath" or "modrewritesuffix"
-	 * @return string
-	 */
-	protected function getImageAndAlbumPaths($arrayfield) {
-		$arrayfield = sanitize($arrayfield);
-		$array = array();
-		if(MOD_REWRITE) {
-			$array['albumpath'] = '/';
-			$array['imagepath'] = '/';
-			$array['modrewritesuffix'] = IM_SUFFIX;
-		} else  {
-			$array['albumpath'] = '/index.php?album=';
-			$array['imagepath'] = '&amp;image=';
-			$array['modrewritesuffix'] = '';
-		}
-		return $array[$arrayfield];
-	}
-
-	/**
-	 * Helper function that returns the albumname and TRUE or FALSE for the collection mode (album + subalbums)
-	 *
-	 * @param string $arrayfield "albumfolder" or "collection"
-	 * @return mixed
-	 */
-	protected function getAlbumnameAndCollection($arrayfield) {
-		$arrayfield = sanitize($arrayfield);
-		$array = array();
-		if(!empty($arrayfield)) {
-			if(isset($_GET['albumname'])) {
-				$albumfolder = sanitize_path($_GET['albumname']);
-				if(!file_exists(ALBUM_FOLDER_SERVERPATH.'/'.internalToFilesystem($albumfolder))) {
-					$array['albumfolder'] = NULL;
-				}
-				$array['collection'] = FALSE;
-			} else if(isset($_GET['folder'])) {
-				$albumfolder = sanitize_path($_GET['folder']);
-				if(!file_exists(ALBUM_FOLDER_SERVERPATH.'/'.internalToFilesystem($albumfolder))) {
-					$array['albumfolder'] = NULL;
-					$array['collection'] = FALSE;
-				} else {
-					$array['collection'] = TRUE;
-				}
-			} else {
-				$array['albumfolder'] = NULL;
-				$array['collection'] = FALSE;
-			}
-			return $array[$arrayfield];
-		}
-	}
-
-	/**
 	* Helper function that gets the images size of the "size" get parameter
 	*
 	* @return string
 	*/
 	protected function getImageSize() {
-		if(isset($_GET['size'])) {
-			$imagesize = sanitize_numeric($_GET['size']);
+		if(isset($this->options['size'])) {
+			$imagesize = (int) $this->options['size'];
 		} else {
 			$imagesize = NULL;
 		}
-		if(is_numeric($imagesize) && !is_null($imagesize) && $imagesize < getOption('RSS_imagesize')) {
+		if(is_numeric($imagesize) && !is_null($imagesize) && $imagesize < getOption($this->feed.'_imagesize')) {
 			$imagesize = $imagesize;
 		} else {
 			if($this->mode == 'albums') {
-				$imagesize = getOption('RSS_imagesize_albums'); // un-cropped image size
+				$imagesize = getOption($this->feed.'_imagesize_albums'); // un-cropped image size
 			} else {
-				$imagesize = getOption('RSS_imagesize'); // un-cropped image size
+				$imagesize = getOption($this->feed.'_imagesize'); // un-cropped image size
 			}
 		}
 		return $imagesize;
 	}
 
 	/**
-	 * Helper function that returns the News category title or catlink (name) or the mode (all news or category only) for the Zenpage news feed.
+	 * Helper function that sets the News category title or catlink (name) or the mode (all news or category only) for the Zenpage news feed.
 	 *
-	 * @param string $arrayfield "catlink", "catttitle" or "option"
-	 * @return string
 	 */
-	protected function getNewsCatOptions($arrayfield) {
-		$arrayfield = sanitize($arrayfield);
-		$array = array();
-		if(!empty($arrayfield)) {
-			if(isset($_GET['category'])) {
-				$array['catlink'] = sanitize($_GET['category']);
-				$catobj = new ZenpageCategory($array['catlink']);
-				$array['cattitle'] = html_encode($catobj->getTitle());
-				$array['option'] = 'category';
-			} else {
-				$array['catlink'] = '';
-				$array['cattitle'] = '';
-				$array['option'] = 'news';
-			}
-			return $array[$arrayfield];
+	protected function setNewsCatOptions() {
+		if(isset($this->options['category'])) {
+			$this->catlink = $this->options['category'];
+			$catobj = new ZenpageCategory($array['catlink']);
+			$this->cattitle = $catobj->getTitle();
+			$this->newsoption = 'category';
+		} else {
+			$this->catlink = '';
+			$this->cattitle = '';
+			$this->newsoption = 'news';
 		}
 	}
 
@@ -452,33 +300,32 @@ class feed {
 	 *
 	 * @return string
 	 */
-		protected function getCombinewsImages() {
-			if(isset($_GET['withimages'])) {
-				return 'withimages';
-			} else if(isset($_GET['withimages_mtime'])) {
-				return 'withimages_mtime';
-			}	else	if(isset($_GET['withimages_publishdate'])) {
-				return 'withimages_publishdate';
-			}
+	protected function getCombinewsImages() {
+		if(isset($this->options['withimages'])) {
+			return 'withimages';
+		} else if(isset($this->options['withimages_mtime'])) {
+			return 'withimages_mtime';
+		}	else	if(isset($this->options['withimages_publishdate'])) {
+			return 'withimages_publishdate';
 		}
+	}
 
-		/**
-		 * Helper function that returns if and what Zenpage Combinews mode with albums is set
-		 *
-		 * @return string
-		 */
-		protected function getCombinewsAlbums() {
-			if(isset($_GET['withalbums'])) {
-				return 'withalbums';
-			}	else if(isset($_GET['withalbums_mtime'])) {
-				return 'withalbums_mtime';
-			}	else if(isset($_GET['withalbums_publishdate'])) {
-				return 'withalbums_publishdate';
-			}	else if(isset($_GET['withalbums_latestupdated'])) {
-				return 'withalbums_latestupdated';
-			}
+	/**
+	 * Helper function that returns if and what Zenpage Combinews mode with albums is set
+	 *
+	 * @return string
+	 */
+	protected function getCombinewsAlbums() {
+		if(isset($this->options['withalbums'])) {
+			return 'withalbums';
+		}	else if(isset($this->options['withalbums_mtime'])) {
+			return 'withalbums_mtime';
+		}	else if(isset($this->options['withalbums_publishdate'])) {
+			return 'withalbums_publishdate';
+		}	else if(isset($this->options['withalbums_latestupdated'])) {
+			return 'withalbums_latestupdated';
 		}
-
+	}
 
 	/**
 	 * Gets the feed items
