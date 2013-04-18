@@ -187,7 +187,7 @@ function getRSSLink($option,$lang=NULL,$addl=NULL) {
 				} else {
 					$album = $_zp_current_album;
 				}
-				$link = array('rss'=>'gallery','albumname'=>urlencode($album->getFolder()));
+				$link = array('rss'=>'gallery','albumname'=>$album->getFolder());
 				break;
 			}
 		case 'Collection':
@@ -197,7 +197,7 @@ function getRSSLink($option,$lang=NULL,$addl=NULL) {
 				} else {
 					$album = $_zp_current_album;
 				}
-				$link = array('rss'=>'gallery','folder'=>urlencode($album->getFolder()));
+				$link = array('rss'=>'gallery','folder'=>$album->getFolder());
 			}
 			break;
 		case 'Comments':
@@ -222,7 +222,7 @@ function getRSSLink($option,$lang=NULL,$addl=NULL) {
 			break;
 		case 'AlbumsRSScollection':
 			if (getOption('RSS_album_image')) {
-				$link = array('rss'=>'gallery','folder'=>urlencode($_zp_current_album->getFolder()),'albumsmode'=>'');
+				$link = array('rss'=>'gallery','folder'=>$_zp_current_album->getFolder(),'albumsmode'=>'');
 			}
 			break;
 		case 'Pages':
@@ -413,32 +413,37 @@ class RSS extends feed {
 				if (!getOption('RSS_articles')) {
 					self::feed404();
 				}
-				$this->setNewsCatOptions();
 				$titleappendix = gettext(' (Latest news)');
 
-				if($this->sortorder == 'latest') {
-					$this->sortorder = NULL;
-				}
 
-				if($this->setCombinewsImages()) {
-					$titleappendix = gettext(' (Latest news and images)');
-				} else if($this->setCombinewsAlbums()) {
-					$titleappendix = gettext(' (Latest news and albums)');
-				} else {
-					switch($this->sortorder) {
-						case 'popular':
-							$titleappendix = gettext(' (Most popular news)');
-							break;
-						case 'mostrated':
-							$titleappendix = gettext(' (Most rated news)');
-							break;
-						case 'toprated':
-							$titleappendix = gettext(' (Top rated news)');
-							break;
-						case 'random':
-							$titleappendix = gettext(' (Random news)');
-							break;
-					}
+				switch ($this->newsoption) {
+					case 'withalbums':
+					case 'withalbums_mtime':
+					case 'withalbums_publishdate':
+					case 'withalbums_latestupdated':
+						$titleappendix = gettext(' (Latest news and albums)');
+						break;
+					case 'withimages':
+					case 'withimages_mtime':
+					case 'withimages_publishdate':
+						$titleappendix = gettext(' (Latest news and images)');
+						break;
+					default:
+						switch($this->sortorder) {
+							case 'popular':
+								$titleappendix = gettext(' (Most popular news)');
+								break;
+							case 'mostrated':
+								$titleappendix = gettext(' (Most rated news)');
+								break;
+							case 'toprated':
+								$titleappendix = gettext(' (Top rated news)');
+								break;
+							case 'random':
+								$titleappendix = gettext(' (Random news)');
+								break;
+						}
+						break;
 				}
 				$this->channel_title = html_encode($this->channel_title.$this->cattitle.$titleappendix);
 				$this->imagesize = $this->getImageSize();

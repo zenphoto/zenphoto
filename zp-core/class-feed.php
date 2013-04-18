@@ -230,6 +230,40 @@ class feed {
 				}
 				break;
 			case 'news':
+				if($this->sortorder == 'latest') {
+					$this->sortorder = NULL;
+				}
+
+				if(isset($this->options['category'])) {
+					$this->catlink = $this->options['category'];
+					$catobj = new ZenpageCategory($array['catlink']);
+					$this->cattitle = $catobj->getTitle();
+					$this->newsoption = 'category';
+				} else {
+					$this->catlink = '';
+					$this->cattitle = '';
+					$this->newsoption = 'news';
+				}
+
+				if(isset($this->options['withimages'])) {
+					$this->sortorder = NULL;
+					return $this->newsoption = 'withimages';
+				} else if(isset($this->options['withimages_mtime'])) {
+					return $this->newsoption = 'withimages_mtime';
+				}	else	if(isset($this->options['withimages_publishdate'])) {
+					return $this->newsoption = 'withimages_publishdate';
+				}
+
+				if(isset($this->options['withalbums'])) {
+					$this->sortorder = NULL;
+					return $this->newsoption = 'withalbums';
+				}	else if(isset($this->options['withalbums_mtime'])) {
+					return $this->newsoption = 'withalbums_mtime';
+				}	else if(isset($this->options['withalbums_publishdate'])) {
+					return $this->newsoption = 'withalbums_publishdate';
+				}	else if(isset($this->options['withalbums_latestupdated'])) {
+					return $this->newsoption = 'withalbums_latestupdated';
+				}
 				break;
 			case 'pages':
 				break;
@@ -239,6 +273,7 @@ class feed {
 		} else {
 			$this->itemnumber = getOption($this->feed.'_items');
 		}
+
 	}
 
 	protected function getChannelTitleExtra() {
@@ -303,61 +338,6 @@ class feed {
 			}
 		}
 		return $imagesize;
-	}
-
-	/**
-	 * Helper function that sets the News category title or catlink (name) or the mode (all news or category only) for the Zenpage news feed.
-	 *
-	 */
-	protected function setNewsCatOptions() {
-		if(isset($this->options['category'])) {
-			$this->catlink = $this->options['category'];
-			$catobj = new ZenpageCategory($array['catlink']);
-			$this->cattitle = $catobj->getTitle();
-			$this->newsoption = 'category';
-		} else {
-			$this->catlink = '';
-			$this->cattitle = '';
-			$this->newsoption = 'news';
-		}
-	}
-
-	/**
-	 * Sets the newsoption if Zenpage Combinews mode with images is set
-	 * Returns the mode set
-	 *
-	 * @return string
-	 */
-	protected function setCombinewsImages() {
-		if(isset($this->options['withimages'])) {
-			$this->sortorder = NULL;
-			return $this->newsoption = 'withimages';
-		} else if(isset($this->options['withimages_mtime'])) {
-			return $this->newsoption = 'withimages_mtime';
-		}	else	if(isset($this->options['withimages_publishdate'])) {
-			return $this->newsoption = 'withimages_publishdate';
-		}
-		return NULL;
-	}
-
-	/**
-	 * Sets the newsoption if Zenpage Combinews mode with albums is set
-	 * returns the mode set
-	 *
-	 * @return string
-	 */
-	protected function setCombinewsAlbums() {
-		if(isset($this->options['withalbums'])) {
-			$this->sortorder = NULL;
-			return $this->newsoption = 'withalbums';
-		}	else if(isset($this->options['withalbums_mtime'])) {
-			return $this->newsoption = 'withalbums_mtime';
-		}	else if(isset($this->options['withalbums_publishdate'])) {
-			return $this->newsoption = 'withalbums_publishdate';
-		}	else if(isset($this->options['withalbums_latestupdated'])) {
-			return $this->newsoption = 'withalbums_latestupdated';
-		}
-		return NULL;
 	}
 
 	/**
