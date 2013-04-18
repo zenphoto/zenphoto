@@ -1037,7 +1037,7 @@ function comment_form_handle_comment() {
 		);
 		if (!empty($cookie)) {
 			$cookiedata = getSerializedArray($cookie);
-			if ($count($cookiedata)>1) {
+			if (count($cookiedata)>1) {
 				$_zp_comment_stored = $cookiedata;
 			}
 		}
@@ -1208,7 +1208,7 @@ function getLatestComments($number,$type="all",$id=NULL) {
 				$comment['pubdate'] = $comment['date'];
 				$alb = getItemByID('albums', $comment['ownerid']);
 				$comment['folder'] = $alb->name;
-				$comment['title'] = $item->getTitle('all');
+				$comment['albumtitle'] = $item->getTitle('all');
 				$comments[$key] = $comment;
 			}
 			return $comments;
@@ -1222,6 +1222,7 @@ function getLatestComments($number,$type="all",$id=NULL) {
 				$comment['folder'] = $img->$album->name;
 				$comment['filename'] = $img->filename;
 				$comment['title'] = $item->getTitle('all');
+				$comment['albumtitle'] = $img->album->getTitle('all');
 				$comments[$key] = $comment;
 			}
 			return $comments;
