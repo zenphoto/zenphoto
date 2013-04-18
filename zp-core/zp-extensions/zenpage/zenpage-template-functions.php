@@ -2878,42 +2878,58 @@ function zenpageOpenedForComments() {
 function getLatestZenpageComments($number,$type="all",$itemID="") {
 	$itemID = sanitize_numeric($itemID);
 	$number = sanitize_numeric($number);
+	$checkauth = zp_loggedin();
+
 	if($type == 'all' || $type == 'news') {
 		$newspasswordcheck = "";
-		if (!zp_loggedin(ADMIN_RIGHTS)) {
+		if (zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
+			$newsshow = '';
+		} else {
+			$newsshow = 'news.show=1 AND';
 			$newscheck = query_full_array("SELECT * FROM " . prefix('news'). " ORDER BY date");
 			foreach ($newscheck as $articlecheck) {
 				$obj = new ZenpageNews($articlecheck['titlelink']);
 				if($obj->inProtectedCategory()) {
-					$excludenews = " AND id != ".$articlecheck['id'];
-					$newspasswordcheck = $newspasswordcheck.$excludenews;
+					if ($checkauth && $obj->isMyItem(LIST_RIGHTS)) {
+						$newsshow = '';
+					} else {
+						$excludenews = " AND id != ".$articlecheck['id'];
+						$newspasswordcheck = $newspasswordcheck.$excludenews;
+					}
 				}
 			}
 		}
 	}
 	if($type == 'all' || $type == 'page') {
 		$pagepasswordcheck = "";
-		if (!zp_loggedin(ADMIN_RIGHTS)) {
+		if (zp_loggedin(MANAGE_ALL_PAGES_RIGHTS)) {
+			$pagesshow = '';
+		} else {
+			$pagesshow = 'pages.show=1 AND';
 			$pagescheck = query_full_array("SELECT * FROM " . prefix('pages'). " ORDER BY date");
 			foreach ($pagescheck as $pagecheck) {
 				$obj = new ZenpagePage($pagecheck['titlelink']);
 				if($obj->isProtected()) {
-					$excludepages = " AND pages.id != ".$pagecheck['id'];
-					$pagepasswordcheck = $pagepasswordcheck.$excludepages;
+					if ($checkauth && $obj->isMyItem(LIST_RIGHTS)) {
+						$pagesshow = '';
+					} else {
+						$excludepages = " AND pages.id != ".$pagecheck['id'];
+						$pagepasswordcheck = $pagepasswordcheck.$excludepages;
+					}
 				}
 			}
 		}
 	}
 	switch ($type) {
 		case "news":
-			$whereNews = " WHERE news.show = 1 AND news.id = ".$itemID." AND c.ownerid = news.id AND c.type = 'news' AND c.private = 0 AND c.inmoderation = 0".$newspasswordcheck;
+			$whereNews = " WHERE $newsshow news.id = ".$itemID." AND c.ownerid = news.id AND c.type = 'news' AND c.private = 0 AND c.inmoderation = 0".$newspasswordcheck;
 			break;
 		case "page":
-			$wherePages = " WHERE pages.show = 1 AND pages.id = ".$itemID." AND c.ownerid = pages.id AND c.type = 'pages' AND c.private = 0 AND c.inmoderation = 0".$pagepasswordcheck;
+			$wherePages = " WHERE $pagesshow pages.id = ".$itemID." AND c.ownerid = pages.id AND c.type = 'pages' AND c.private = 0 AND c.inmoderation = 0".$pagepasswordcheck;
 			break;
 		case "all":
-			$whereNews = " WHERE news.show = 1 AND c.ownerid = news.id AND c.type = 'news' AND c.private = 0 AND c.inmoderation = 0".$newspasswordcheck;
-			$wherePages = " WHERE pages.show = 1 AND c.ownerid = pages.id AND c.type = 'pages' AND c.private = 0 AND c.inmoderation = 0".$pagepasswordcheck;
+			$whereNews = " WHERE $newsshow c.ownerid = news.id AND c.type = 'news' AND c.private = 0 AND c.inmoderation = 0".$newspasswordcheck;
+			$wherePages = " WHERE $pagesshow c.ownerid = pages.id AND c.type = 'pages' AND c.private = 0 AND c.inmoderation = 0".$pagepasswordcheck;
 			break;
 	}
 	$comments_news = array();
@@ -2925,7 +2941,7 @@ function getLatestZenpageComments($number,$type="all",$itemID="") {
 		. " ORDER BY c.id DESC LIMIT $number");
 	}
 	if ($type == "all" OR $type == "page") {
-		$comments_pages = query_full_array("SELECT c.id, c.name, c.type, c.website,"
+		$comments_pages = query_full_array($sql = "SELECT c.id, c.name, c.type, c.website,"
 		. " c.date, c.anon, c.comment, pages.title, pages.titlelink FROM ".prefix('comments')." AS c, ".prefix('pages')." AS pages "
 		. $wherePages
 		. " ORDER BY c.id DESC LIMIT $number");
