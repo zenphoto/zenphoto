@@ -1,10 +1,6 @@
 <?php
 
-/** TODO: THis doc needs generalisation regarding "?rss"
-
-Actually, this document should not even mention the way the feed is invoked. That is entirely up to the
-feed plugin. Instead describe the types of feeds possible.
-
+/**
  *
  * Base feed class from which all others descend.
  *
@@ -102,7 +98,7 @@ class feed {
 
 	//comment feed specific
 	protected $id = NULL;
-	protected $commentrsstype = NULL;
+	protected $commentfeedtype = NULL;
 	protected $itemobj = NULL; // if comments for an item its object
 
 	//channel vars
@@ -210,9 +206,9 @@ class feed {
 		switch ($this->feedtype) {
 			case 'comments':
 				if(isset($this->options['type'])) {
-					$this->commentrsstype = $this->options['type'];
+					$this->commentfeedtype = $this->options['type'];
 				} else {
-					$this->commentrsstype = 'all';
+					$this->commentfeedtype = 'all';
 				}
 				if(isset($this->options['id'])) {
 					$this->id = (int) $this->options['id'];
@@ -431,7 +427,7 @@ class feed {
 				}
 				break;
 			case 'comments':
-				switch($type = $this->commentrsstype) {
+				switch($type = $this->commentfeedtype) {
 					case 'gallery':
 						$items = getLatestComments($this->itemnumber,'all');
 						break;
@@ -466,7 +462,7 @@ class feed {
 			return $items;
 		}
 		if (TEST_RELEASE) {
-			trigger_error(gettext('Bad RSS feed:'.$this->feedtype),E_USER_WARNING);
+			trigger_error(gettext('Bad '.$this->feed.' feed:'.$this->feedtype),E_USER_WARNING);
 		}
 		return NULL;
 	}
@@ -477,11 +473,11 @@ class feed {
 	* @param array $item Titlelink a Zenpage article or filename of an image if a combined feed
 	* @return array
 	*/
-	protected function getitemPages($item) {
+	protected function getitemPages($item, $len) {
 		$obj = new ZenpagePage($item['titlelink']);
 		$feeditem['title'] = $feeditem['title'] = get_language_string($obj->getTitle('all'),$this->locale);
 		$feeditem['link'] = getPageLinkURL($obj->getTitlelink());
-		$feeditem['desc'] = shortenContent($obj->getContent($this->locale),getOption('zenpage_rss_length'), '...');
+		$feeditem['desc'] = shortenContent($obj->getContent($this->locale),$len, '...');
 		$feeditem['enclosure'] = '';
 		$feeditem['category'] = '';
 		$feeditem['media_content'] = '';

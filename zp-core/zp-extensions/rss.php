@@ -461,7 +461,7 @@ class RSS extends feed {
 					self::feed404();
 				}
 				if($this->id) {
-					switch($this->commentrsstype) {
+					switch($this->commentfeedtype) {
 						case 'album':
 							$table = 'albums';
 							break;
@@ -732,7 +732,7 @@ class RSS extends feed {
 								$item = $this->getItemNews($feeditem);
 								break;
 							case 'pages':
-								$item = $this->getitemPages($feeditem);
+								$item = $this->getitemPages($feeditem, getOption('zenpage_rss_length'));
 								break;
 							case 'comments':
 								$item = $this->getitemComments($feeditem);
