@@ -18,7 +18,7 @@ global $_zp_themeroot;
 /**
  * Prints the rss links for use in the sidebar/bottom nav
  */
-function jqm_if (class_exists('RSS')) printRSSlinks() {
+function jqm_printRSSlinks() {
 	global $_zp_gallery_page, $_zp_themeroot;
 	?>
 		<h3><?php echo gettext('RSS'); ?></h3>
@@ -155,7 +155,7 @@ function jqm_printMenusLinks() {
 			</div>
 		<?php } ?>
 		<div data-role="collapsible" data-content-theme="c" data-theme="b">
-			<?php jqm_if (class_exists('RSS')) printRSSlinks(); ?>
+			<?php jqm_printRSSlinks(); ?>
 		</div>
 	</div>
 <?php
