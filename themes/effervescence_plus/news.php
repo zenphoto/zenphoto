@@ -13,7 +13,7 @@ if (!defined('WEBPATH') || !class_exists('Zenpage')) die();
 	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/effervescence_plus/common.css" type="text/css" />
 	<?php effervescence_theme_head(); ?>
-	<?php if (class_exists('RSS')) printRSSHeaderLink("News",Zenpage news", ""); ?>
+	<?php if (class_exists('RSS')) printRSSHeaderLink("News","Zenpage news", ""); ?>
 </head>
 
 <body onload="blurAnchors()">
@@ -45,9 +45,9 @@ if (!defined('WEBPATH') || !class_exists('Zenpage')) die();
 				<span><?php printHomeLink('', ' | '); ?>
 				<?php
 				if (getOption('custom_index_page') === 'gallery') {
-				?>
-				<a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home');?></a> |
-				<?php
+					?>
+					<a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home');?></a> |
+					<?php
 				}
 				?>
 				<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle();?></a></span>
