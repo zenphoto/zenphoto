@@ -326,13 +326,15 @@ class RSS extends feed {
 	 * Creates a feed object from the URL parameters fetched only
 	 *
 	 */
-	function __construct() {
+	function __construct($options=NULL) {
 		global $_zp_gallery, $_zp_current_admin_obj, $_zp_loggedin;
-		if (!$this->feedtype = sanitize($_GET['rss'])) {
+		if (empty($options)) return;
+
+		if (!$this->feedtype = sanitize($options['rss'])) {
 			$this->feedtype = 'gallery';
 		}
 
-		$this->setOptions(sanitize($_GET));
+		parent::__construct($options);
 
 		if (isset($_GET['token'])) {
 			//	The link camed from a logged in user, see if it is valid
@@ -373,39 +375,20 @@ class RSS extends feed {
 
 			case 'gallery':
 				if (!getOption('RSS_album_image')) {
-					header("HTTP/1.0 404 Not Found");
-					header("Status: 404 Not Found");
-					include(ZENFOLDER. '/404.php');
-					exitZP();
+					self::feed404();
 				}
-				$this->feedtype = 'gallery';
-				if(isset($_GET['albumsmode'])) {
-					$this->mode = 'albums';
-				}
-				if(isset($_GET['folder'])) {
-					$this->albumfolder = sanitize(urldecode($_GET['folder']));
-					$this->collection = TRUE;
+				$albumname = $this->getChannelTitleExtra();
+				if ($this->albumfolder) {
 					$alb = newAlbum($this->albumfolder);
 					$albumtitle = $alb->getTitle();
-				} else if(isset($_GET['albumname'])){
-					$this->albumfolder = sanitize(urldecode($_GET['albumname']));
-					$this->collection = false;
-					$alb = newAlbum($this->albumfolder);
-					$albumtitle = $alb->getTitle();
+					if ($this->mode = 'albums' || $this->collection) {
+						$albumname = ' - '.html_encode($albumtitle).$this->getChannelTitleExtra();
+					}
 				} else {
 					$albumtitle = '';
-					$this->collection = FALSE;
 				}
-				$albumname = ''; // to be sure
-				if($this->mode == 'albums' || isset($_GET['albumname'])) {
-					$albumname = ' - '.html_encode($albumtitle).$this->getChannelTitleExtra();
-				} elseif ($this->mode == 'albums' && !isset($_GET['folder'])) {
-					$albumname = $this->getChannelTitleExtra();
-				} elseif ($this->mode == 'albums' && isset($_GET['folder'])) {
-					$albumname = ' - '.html_encode($albumtitle).$this->getChannelTitleExtra();
-				} else {
-					$albumname = $this->getChannelTitleExtra();
-				}
+				$albumname = $this->getChannelTitleExtra();
+
 				$this->channel_title = html_encode($this->channel_title.' '.strip_tags($albumname));
 				$this->imagesize = $this->getImageSize();
 				require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER . '/image_album_statistics.php');
@@ -413,12 +396,9 @@ class RSS extends feed {
 
 			case 'news':	//Zenpage News RSS
 				if (!getOption('RSS_articles')) {
-					header("HTTP/1.0 404 Not Found");
-					header("Status: 404 Not Found");
-					include(ZENFOLDER. '/404.php');
-					exitZP();
+					self::feed404();
 				}
-				setNewsCatOptions();
+				$this->setNewsCatOptions();
 				$titleappendix = gettext(' (Latest news)');
 				if($this->getCombinewsImages() || $this->getCombinewsAlbums()) {
 					if($this->getCombinewsImages()) {
@@ -453,10 +433,7 @@ class RSS extends feed {
 				break;
 			case 'pages':	//Zenpage News RSS
 				if (!getOption('RSS_pages')) {
-					header("HTTP/1.0 404 Not Found");
-					header("Status: 404 Not Found");
-					include(ZENFOLDER. '/404.php');
-					exitZP();
+					self::feed404();
 				}
 				switch($this->sortorder) {
 					case 'popular':
@@ -481,21 +458,11 @@ class RSS extends feed {
 
 			case 'comments':	//Comments RSS
 				if (!getOption('RSS_comments')) {
-					header("HTTP/1.0 404 Not Found");
-					header("Status: 404 Not Found");
-					include(ZENFOLDER. '/404.php');
-					exitZP();
+					self::feed404();
 				}
-				if(isset($_GET['type'])) {
-					$this->commentrsstype = sanitize($_GET['type']);
-				} else {
-					$this->commentrsstype = 'all';
-				}
-				if(isset($_GET['id'])) {
-					$this->id = sanitize_numeric($_GET['id']);
-					$table = NULL;
+				if($this->id) {
 					switch($this->commentrsstype) {
-						case 'album': //sadly needed but the parameter cannot be changed for backward compatibility of feeds.
+						case 'album':
 							$table = 'albums';
 							break;
 						case 'image':
@@ -507,11 +474,17 @@ class RSS extends feed {
 						case 'page':
 							$table = 'pages';
 							break;
+						default:
+							self::feed404();
+							break;
 					}
 					$this->itemobj = getItemByID($table,$this->id);
-					$title = ' - '.$this->itemobj->getTitle();
+					if ($this->itemobj) {
+						$title = ' - '.$this->itemobj->getTitle();
+					} else {
+						self::feed404();
+					}
 				} else {
-					$this->id = NULL;
 					$this->itemobj = NULL;
 					$title = NULL;
 				}
@@ -541,30 +514,6 @@ class RSS extends feed {
 			}
 		}
 		$filename = seoFriendly(implode('_',$filename));
-		return $filename.".xml";
-
-
-		//old way
-		$replace = array(
-				WEBPATH.'/' => '',
-				"albumname="=>"_",
-				"albumsmode="=>"_",
-				"title=" => "_",
-				"folder=" => "_",
-				"type=" => "-",
-				"albumtitle=" => "_",
-				"category=" => "_",
-				"id=" => "_",
-				"lang=" => "_",
-				"&amp;" => "_",
-				"&" => "_",
-				"index.php" => "",
-				"/"=>"-",
-				"?"=> ""
-		);
-		$filename = strtr(getRequestURI(),$replace);
-		$filename = preg_replace("/__/","_",$filename);
-		$filename = seoFriendly($filename);
 		return $filename.".xml";
 	}
 
@@ -831,14 +780,7 @@ class RSS extends feed {
 if (!OFFSET_PATH && isset($_GET['rss'])) {
 	//	load the theme plugins just incase
 	$_zp_gallery_page = 'rss.php';
-	foreach (getEnabledPlugins() as $extension=>$plugin) {
-		$loadtype = $plugin['priority'];
-		if ($loadtype&THEME_PLUGIN) {
-			require_once($plugin['path']);
-		}
-		$_zp_loaded_plugins[] = $extension;
-	}
-	$rss = new RSS();
+	$rss = new RSS(sanitize($_GET));
 	$rss->printFeed();
 	exitZP();
 }

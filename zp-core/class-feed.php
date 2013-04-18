@@ -169,7 +169,7 @@ class feed {
 		zpFunctions::removeDir(SERVERPATH.'/'.STATIC_CACHE_FOLDER.'/'.strtolower($this->feed).'/'.$cachefolder,true);
 	}
 
-	function setOptions($options) {
+	function __construct($options) {
 		$this->options = $options;
 		if(isset($this->options['lang'])) {
 			$this->locale = $this->options['lang'];
@@ -205,6 +205,36 @@ class feed {
 				if($this->newsoption == 'withimages' || $this->sortorder == 'latest') {
 					$this->sortorder = NULL;
 				}
+				break;
+		}
+		switch ($this->feedtype) {
+			case 'comments':
+				if(isset($this->options['type'])) {
+					$this->commentrsstype = $this->options['type'];
+				} else {
+					$this->commentrsstype = 'all';
+				}
+				if(isset($this->options['id'])) {
+					$this->id = (int) $this->options['id'];
+				}
+				break;
+			case 'gallery':
+				if(isset($this->options['albumsmode'])) {
+					$this->mode = 'albums';
+				}
+				if(isset($this->options['folder'])) {
+					$this->albumfolder = $this->options['folder'];
+					$this->collection = true;
+				} else if(isset($this->options['albumname'])){
+					$this->albumfolder = $this->options['albumname'];
+					$this->collection = false;
+				} else {
+					$this->collection = false;
+				}
+				break;
+			case 'news':
+				break;
+			case 'pages':
 				break;
 		}
 		if(isset($this->options['itemnumber'])) {
@@ -526,6 +556,11 @@ class feed {
 		return $feeditem;
 	}
 
-
+	static protected function feed404() {
+		header("HTTP/1.0 404 Not Found");
+		header("Status: 404 Not Found");
+		include(ZENFOLDER. '/404.php');
+		exitZP();
+	}
 }
 ?>
