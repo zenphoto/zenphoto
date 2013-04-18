@@ -33,6 +33,9 @@ class rss_options {
 			setOptionDefault('RSS_cache_expire', getOption('feed_cache_expire'));
 			setOptionDefault('RSS_hitcounter', getOption('feed_hitcounter'));
 			setOptionDefault('RSS_title',getOption('feed_title'));
+			setOptionDefault('RSS_truncate_length',getOption('zenpage_rss_length'));
+			setOptionDefault('RSS_zenpage_items',getOption('zenpage_rss_items'));
+
 
 			purgeOption('feed_items');
 			purgeOption('feed_imagesize');
@@ -46,7 +49,11 @@ class rss_options {
 			purgeOption('feed_cache_expire');
 			purgeOption('feed_hitcounter');
 			purgeOption('feed_title');
+			purgeOption('zenpage_rss_length');
+			purgeOption('zenpage_rss_items');
 		}
+		setOptionDefault('RSS_truncate_length', '100');
+		setOptionDefault('RSS_zenpage_items', '10');
 		setOptionDefault('RSS_items', 10); // options for standard images rss
 		setOptionDefault('RSS_imagesize', 240);
 		setOptionDefault('RSS_sortorder', 'latest');
@@ -71,58 +78,66 @@ class rss_options {
 																																								gettext('News/Page Comments')=>'RSS_article_comments'
 																																							),
 																													'desc' => gettext('Check each RSS feed you wish to activate.')),
-											gettext('Number of RSS image feed items:')=>array('key'=>'RSS_items', 'type'=>OPTION_TYPE_TEXTBOX,
-																																				'order'=>1,
-																																				'desc'=>gettext("The number of new images and comments you want to appear in your site's RSS feed")),
-											gettext('Number of RSS album feed items:')=>array('key'=>'RSS_items_albums', 'type'=>OPTION_TYPE_TEXTBOX,
+											gettext('Image feed items:')=>array('key'=>'RSS_items', 'type'=>OPTION_TYPE_TEXTBOX,
+																													'order'=>1,
+																													'desc'=>gettext("The number of new images and comments you want to appear in your site's RSS feed")),
+											gettext('Album feed items:')=>array('key'=>'RSS_items_albums', 'type'=>OPTION_TYPE_TEXTBOX,
 																																				'order'=>2,
 																																				'desc'=>gettext("The number of new images and comments you want to appear in your site's RSS feed")),
-											gettext('')=>array('key'=>'RSS_imagesize', 'type'=>OPTION_TYPE_TEXTBOX,
-																					'order'=>3,
-																					'desc'=>gettext('Size of RSS image feed images:')),
-											gettext('')=>array('key'=>'RSS_imagesize_albums', 'type'=>OPTION_TYPE_TEXTBOX,
-																					'order'=>4,
-																					'desc'=>gettext('Size of RSS album feed images :')),
-											gettext('RSS feed image sort order:')=>array('key'=>'RSS_sortorder', 'type'=>OPTION_TYPE_SELECTOR,
-																																		'order'=>5,
-																																		'selections'=>array(gettext('latest by id')=>'latest',
+											gettext('Image size')=>array('key'=>'RSS_imagesize', 'type'=>OPTION_TYPE_TEXTBOX,
+																										'order'=>3,
+																										'desc'=>gettext('Size of RSS image feed images:')),
+											gettext('Album image size')=>array('key'=>'RSS_imagesize_albums', 'type'=>OPTION_TYPE_TEXTBOX,
+																													'order'=>4,
+																													'desc'=>gettext('Size of RSS album feed images :')),
+											gettext('Image feed sort order:')=>array('key'=>'RSS_sortorder', 'type'=>OPTION_TYPE_SELECTOR,
+																																'order'=>6,
+																																'selections'=>array(gettext('latest by id')=>'latest',
 																																											gettext('latest by date')=>'latest-date',
 																																											gettext('latest by mtime')=>'latest-mtime',
 																																											gettext('latest by publishdate')=>'latest-publishdate'
 																																											),
 																																		'desc'=>gettext("Choose between latest by id for the latest uploaded, latest by date for the latest uploaded fetched by date, or latest by mtime for the latest uploaded fetched by the file's last change timestamp.")),
-											gettext('RSS feed album sort order:')=>array('key'=>'RSS_sortorder_albums', 'type'=>OPTION_TYPE_SELECTOR,
+											gettext('Album feed sort order:')=>array('key'=>'RSS_sortorder_albums', 'type'=>OPTION_TYPE_SELECTOR,
 																																		'selections'=>array(gettext('latest by id')=>'latest',
 																																											gettext('latest by date')=>'latest-date',
 																																											gettext('latest by mtime')=>'latest-mtime',
 																																											gettext('latest by publishdate')=>'latest-publishdate',
 																																											gettext('latest updated')=>'latestupdated'
 																																										),
-																																		'order'=>6,
+																																		'order'=>7,
 																																		'desc'=>gettext('Choose between latest by id for the latest uploaded and latest updated')),
 											gettext('RSS enclosure:')=>array('key'=>'RSS_enclosure', 'type'=>OPTION_TYPE_CHECKBOX,
-																												'order'=>7,
+																												'order'=>8,
 																												'desc'=>gettext('Check if you want to enable the RSS enclosure feature which provides a direct download for full images, movies etc. from within certain RSS reader clients (only Images RSS).')),
 											gettext('Media RSS:')=>array('key'=>'RSS_mediarss', 'type'=>OPTION_TYPE_CHECKBOX,
-																										'order'=>8,
+																										'order'=>9,
 																										'desc'=>gettext('Check if media RSS support is to be enabled. This support is used by some services and programs (only Images RSS).')),
-											gettext('RSS cache')=>array('key'=>'RSS_cache', 'type'=>OPTION_TYPE_CHECKBOX,
-																									'order'=>9,
+											gettext('Cache')=>array('key'=>'RSS_cache', 'type'=>OPTION_TYPE_CHECKBOX,
+																									'order'=>10,
 																									'desc'=>gettext('Check if you want to enable static RSS feed caching. The cached file will be placed within the cache_html folder.')),
-											gettext('RSS cache expiration')=>array('key'=>'RSS_cache_expire', 'type'=>OPTION_TYPE_TEXTBOX,
-																															'order'=>10,
+											gettext('Cache expiration')=>array('key'=>'RSS_cache_expire', 'type'=>OPTION_TYPE_TEXTBOX,
+																															'order'=>11,
 																															'desc'=>gettext('Cache expire default is 86400 seconds (1 day = 24 hrs * 60 min * 60 sec).')),
-											gettext('RSS hitcounter')=>array('key'=>'RSS_hitcounter', 'type'=>OPTION_TYPE_CHECKBOX,
-																												'order'=>11,
+											gettext('Hitcounter')=>array('key'=>'RSS_hitcounter', 'type'=>OPTION_TYPE_CHECKBOX,
+																												'order'=>12,
 																												'desc'=>gettext('Check if you want to store the hitcount on RSS feeds.')),
-											gettext('RSS title')=>array('key'=>'RSS_title', 'type'=>OPTION_TYPE_RADIO,
-																									'order'=>12,
+											gettext('Title')=>array('key'=>'RSS_title', 'type'=>OPTION_TYPE_RADIO,
+																									'order'=>13,
 																									'buttons' => array(gettext('Gallery title')=>'gallery', gettext('Website title')=>'website',gettext('Both')=>'both'),
 																									'desc'=>gettext("Select what you want to use as the main RSS feed (channel) title. 'Both' means Website title followed by Gallery title")),
 											gettext('Portable RSS link')=>array('key'=>'RSS_portable_link', 'type'=>OPTION_TYPE_CHECKBOX,
-																													'order'=>13,
+																													'order'=>14,
 																													'desc'=>gettext('If checked links generated for logged‑in users will include a token identifying the user. Use of that link when not logged‑in will give the same feed as if the user were logged‑in.'))
 										);
+		if (getOption('zp_plugin_zenpage')) {
+			$options[gettext('Feed text length')] = array('key' => 'RSS_truncate_length', 'type' => OPTION_TYPE_TEXTBOX,
+																												'order' => 5.5,
+																												'desc' => gettext("The text length of the Zenpage RSS feed items. No value for full length."));
+			$options[gettext('Zenpage feed items')] = array('key' => 'RSS_zenpage_items', 'type' => OPTION_TYPE_TEXTBOX,
+																												'order' => 5,
+																												'desc' => gettext("The number of news articles you want to appear in your site's News RSS feed."));
+		}
 		return $options;
 	}
 
@@ -400,14 +415,15 @@ class RSS extends feed {
 				}
 				$this->setNewsCatOptions();
 				$titleappendix = gettext(' (Latest news)');
-				if($this->getCombinewsImages() || $this->getCombinewsAlbums()) {
-					if($this->getCombinewsImages()) {
-						$this->newsoption = $this->getCombinewsImages();
-						$titleappendix = gettext(' (Latest news and images)');
-					} else if($this->getCombinewsAlbums()) {
-						$this->newsoption = $this->getCombinewsAlbums();
-						$titleappendix = gettext(' (Latest news and albums)');
-					}
+
+				if($this->sortorder == 'latest') {
+					$this->sortorder = NULL;
+				}
+
+				if($this->setCombinewsImages()) {
+					$titleappendix = gettext(' (Latest news and images)');
+				} else if($this->setCombinewsAlbums()) {
+					$titleappendix = gettext(' (Latest news and albums)');
 				} else {
 					switch($this->sortorder) {
 						case 'popular':
@@ -426,7 +442,7 @@ class RSS extends feed {
 				}
 				$this->channel_title = html_encode($this->channel_title.$this->cattitle.$titleappendix);
 				$this->imagesize = $this->getImageSize();
-				$this->itemnumber = getOption("zenpage_rss_items"); // # of Items displayed on the feed
+				$this->itemnumber = getOption("RSS_zenpage_items"); // # of Items displayed on the feed
 				require_once(SERVERPATH.'/'.ZENFOLDER . '/'.PLUGIN_FOLDER . '/image_album_statistics.php');
 				require_once(SERVERPATH.'/'.ZENFOLDER . '/'.PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
 
@@ -495,26 +511,6 @@ class RSS extends feed {
 				break;
 		}
 		$this->feeditems = $this->getitems();
-	}
-
-	/**
-	 * Gets the RSS file name from the feed url and clears out query items and special chars
-	 *
-	 * @return string
-	 */
-	protected function getCacheFilename() {
-		$uri = explode('?',getRequestURI());
-		$filename = array();
-		foreach (explode('&',$uri[1]) as $param) {
-			$p = explode('=', $param);
-			if (isset($p[1]) && !empty($p[1])) {
-				$filename[] = $p[1];
-			} else {
-				$filename[] = $p[0];
-			}
-		}
-		$filename = seoFriendly(implode('_',$filename));
-		return $filename.".xml";
 	}
 
 	/**
@@ -646,7 +642,7 @@ class RSS extends feed {
 					$categories .= get_language_string($catobj->getTitle('all'), $this->locale).', ';
 				}
 				$categories = rtrim($categories, ', ');
-				$feeditem['desc'] = shortenContent($obj->getContent($this->locale),getOption('zenpage_rss_length'), '...');
+				$feeditem['desc'] = shortenContent($obj->getContent($this->locale),getOption('RSS_truncate_length'), '...');
 				break;
 			case 'images':
 				$albumobj = newAlbum($item['albumname']);
@@ -659,7 +655,7 @@ class RSS extends feed {
 				$ext = getSuffix($filename);
 				$album = $albumobj->getFolder();
 				$fullimagelink = $this->host.pathurlencode($obj->getFullImageURL());
-				$content = shortenContent($obj->getDesc($this->locale),getOption('zenpage_rss_length'), '...');
+				$content = shortenContent($obj->getDesc($this->locale),getOption('RSS_truncate_length'), '...');
 				if(isImagePhoto($obj)) {
 					$feeditem['desc'] = '<a title="'.html_encode($feeditem['title']).' in '.html_encode($categories).'" href="'.PROTOCOL.'://'.$this->host.$link.'"><img border="0" src="'.PROTOCOL.'://'.$this->host.pathurlencode($obj->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'. html_encode($feeditem['title']).'"></a><br />'.$content;
 				} else {
@@ -677,7 +673,7 @@ class RSS extends feed {
 				$link = pathurlencode($obj->getAlbumLink());
 				$album = $obj->getFolder();
 				$albumthumb = $obj->getAlbumThumbImage();
-				$content = shortenContent($obj->getDesc($this->locale),getOption('zenpage_rss_length'), '...');
+				$content = shortenContent($obj->getDesc($this->locale),getOption('RSS_truncate_length'), '...');
 
 				if(isImagePhoto($obj)) {
 					$feeditem['desc'] = '<a title="'.html_encode($feeditem['title']).'" href="'.PROTOCOL.'://'.$this->host.$link.'"><img border="0" src="'.PROTOCOL.'://'.$this->host.pathurlencode($albumthumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)).'" alt="'. html_encode($feeditem['title']).'"></a><br />'.$content;
@@ -732,7 +728,7 @@ class RSS extends feed {
 								$item = $this->getItemNews($feeditem);
 								break;
 							case 'pages':
-								$item = $this->getitemPages($feeditem, getOption('zenpage_rss_length'));
+								$item = $this->getitemPages($feeditem, getOption('RSS_truncate_length'));
 								break;
 							case 'comments':
 								$item = $this->getitemComments($feeditem);

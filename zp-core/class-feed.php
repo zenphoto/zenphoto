@@ -106,10 +106,21 @@ class feed {
 	protected $feeditem = array();
 
 	/**
-	 * each feed must override this function
+	 * Creates a file name from the options array
+	 *
+	 * @return string
 	 */
 	protected function getCacheFilename() {
-		return NULL;
+		$filename = array();
+		foreach ($this->options as $key=>$value) {
+			if (empty($value)) {
+				$filename[] = $key;
+			} else {
+				$filename[] = $value;
+			}
+		}
+		$filename = seoFriendly(implode('_',$filename));
+		return $filename.".xml";
 	}
 
 	/**
@@ -186,23 +197,6 @@ class feed {
 		} else {
 			$this->sortorder = NULL;
 		}
-		switch($this->feedtype) {
-			default:
-			case 'gallery':
-				if(is_null($this->sortorder)) {
-					if($this->mode == "albums") {
-						$this->sortorder = getOption($this->feed."_sortorder_albums");
-					} else {
-						$this->sortorder = getOption($this->feed."_sortorder");
-					}
-				}
-				break;
-			case 'news':
-				if($this->newsoption == 'withimages' || $this->sortorder == 'latest') {
-					$this->sortorder = NULL;
-				}
-				break;
-		}
 		switch ($this->feedtype) {
 			case 'comments':
 				if(isset($this->options['type'])) {
@@ -226,6 +220,13 @@ class feed {
 					$this->collection = false;
 				} else {
 					$this->collection = false;
+				}
+				if(is_null($this->sortorder)) {
+					if($this->mode == "albums") {
+						$this->sortorder = getOption($this->feed."_sortorder_albums");
+					} else {
+						$this->sortorder = getOption($this->feed."_sortorder");
+					}
 				}
 				break;
 			case 'news':
@@ -322,35 +323,41 @@ class feed {
 	}
 
 	/**
-	 * Helper function that returns if and what Zenpage Combinews mode with images is set
+	 * Sets the newsoption if Zenpage Combinews mode with images is set
+	 * Returns the mode set
 	 *
 	 * @return string
 	 */
-	protected function getCombinewsImages() {
+	protected function setCombinewsImages() {
 		if(isset($this->options['withimages'])) {
-			return 'withimages';
+			$this->sortorder = NULL;
+			return $this->newsoption = 'withimages';
 		} else if(isset($this->options['withimages_mtime'])) {
-			return 'withimages_mtime';
+			return $this->newsoption = 'withimages_mtime';
 		}	else	if(isset($this->options['withimages_publishdate'])) {
-			return 'withimages_publishdate';
+			return $this->newsoption = 'withimages_publishdate';
 		}
+		return NULL;
 	}
 
 	/**
-	 * Helper function that returns if and what Zenpage Combinews mode with albums is set
+	 * Sets the newsoption if Zenpage Combinews mode with albums is set
+	 * returns the mode set
 	 *
 	 * @return string
 	 */
-	protected function getCombinewsAlbums() {
+	protected function setCombinewsAlbums() {
 		if(isset($this->options['withalbums'])) {
-			return 'withalbums';
+			$this->sortorder = NULL;
+			return $this->newsoption = 'withalbums';
 		}	else if(isset($this->options['withalbums_mtime'])) {
-			return 'withalbums_mtime';
+			return $this->newsoption = 'withalbums_mtime';
 		}	else if(isset($this->options['withalbums_publishdate'])) {
-			return 'withalbums_publishdate';
+			return $this->newsoption = 'withalbums_publishdate';
 		}	else if(isset($this->options['withalbums_latestupdated'])) {
-			return 'withalbums_latestupdated';
+			return $this->newsoption = 'withalbums_latestupdated';
 		}
+		return NULL;
 	}
 
 	/**

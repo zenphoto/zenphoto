@@ -69,8 +69,6 @@ class zenpagecms {
 		setOptionDefault('zenpage_textshorten_indicator', ' (...)');
 		gettext($str = 'Read more');
 		setOptionDefault('zenpage_read_more', getAllTranslations($str));
-		setOptionDefault('zenpage_rss_items', '10');
-		setOptionDefault('zenpage_rss_length', '100');
 		setOptionDefault('zenpage_indexhitcounter', false);
 		setOptionDefault('zenpage_combinews', false);
 		setOptionDefault('zenpage_combinews_readmore', gettext('Visit gallery page'));
@@ -124,12 +122,6 @@ class zenpagecms {
 		gettext('Read more') => array('key' => 'zenpage_read_more', 'type' => OPTION_TYPE_TEXTBOX, 'multilingual' => 1,
 										'order' => 3,
 										'desc' => gettext("The text for the link to the full article.")),
-		gettext('RSS feed item number') => array('key' => 'zenpage_rss_items', 'type' => OPTION_TYPE_TEXTBOX,
-										'order' => 4,
-										'desc' => gettext("The number of news articles you want to appear in your site's News RSS feed.")),
-		gettext('RSS feed text length') => array('key' => 'zenpage_rss_length', 'type' => OPTION_TYPE_TEXTBOX,
-										'order' => 5,
-										'desc' => gettext("The text length of the Zenpage RSS feed items. No value for full length.")),
 		gettext('CombiNews') => array('key' => 'zenpage_combinews', 'type' => OPTION_TYPE_CHECKBOX,
 										'order' => 6,
 										'desc' => gettext("Set to enable the CombiNews feature to show news articles and latest gallery items together on the news section's overview page(s).")."<p class='notebox'>".gettext("<strong>Note:</strong> Images/albums and news articles are still separate, your Zenphoto gallery is not touched in any way!")."</p>"),
