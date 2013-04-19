@@ -482,7 +482,6 @@ function hasDynamicAlbumSuffix($path) {
  */
 function rewrite_get_album_image($albumvar, $imagevar) {
 	global $_zp_rewritten;
-
 	$ralbum = isset($_GET[$albumvar]) ? trim(sanitize_path($_GET[$albumvar]),'/') : NULL;
 	$rimage = isset($_GET[$imagevar]) ? sanitize($_GET[$imagevar]) : NULL;
 	//	we assume that everything is correct if rewrite rules were not applied
@@ -493,6 +492,13 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 				//has an IM_SUFFIX attached
 				$rimage = basename($matches[1]);
 				$ralbum = trim(dirname($matches[1]),'/');
+				$path = internalToFilesystem(getAlbumFolder(SERVERPATH).$ralbum);
+				if (!is_dir($path)) {
+					if (file_exists($path.'.alb')) {
+						//	it is a dynamic album sans suffix
+						$ralbum .= '.alb';
+					}
+				}
 			} else if (getSuffix($ralbum)!='alb') {
 				//	have to figure it out
 				$path = internalToFilesystem(getAlbumFolder(SERVERPATH).$ralbum);

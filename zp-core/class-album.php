@@ -23,6 +23,7 @@ function newAlbum($folder8, $cache=true, $quiet=false) {
 class AlbumBase extends MediaObject {
 
 	var $name;             // Folder name of the album (full path from the albums folder)
+	var $linkname;				 // may have the .alb suffix stripped off
 	var $localpath;				 // Latin1 full server path to the album
 	var $exists = true;    // Does the folder exist?
 	var $images = null;    // Full images array storage.
@@ -44,7 +45,7 @@ class AlbumBase extends MediaObject {
 
 	function __construct($folder8, $cache=true) {
 		$this->table = 'none';
-		$this->name = $folder8;
+		$this->linkname = $this->name = $folder8;
 		parent::PersistentObject('albums', array('folder' => $this->name), 'folder', false, true);
 	}
 
@@ -653,9 +654,13 @@ class Album extends AlbumBase {
 		$this->gallery = $_zp_gallery;
 		$localpath = ALBUM_FOLDER_SERVERPATH . $folderFS . "/";
 		$msg = false;
+		$this->linkname = $this->name = $folder8;
 		if ($dynamic = hasDynamicAlbumSuffix($folder8)) {
 			$localpath = substr($localpath, 0, -1);
 			$this->dynamic = true;
+			if (!is_dir(stripSuffix($localpath))) {
+				$this->linkname = stripSuffix($folder8);
+			}
 		}
 		if (empty($folder8)) {
 			$msg = gettext('Invalid album instantiation: No album name');
@@ -674,7 +679,6 @@ class Album extends AlbumBase {
 			exitZP();
 		}
 		$this->localpath = $localpath;
-		$this->name = $folder8;
 		$new = parent::PersistentObject('albums', array('folder' => $this->name), 'folder', $cache, empty($folder8));
 
 		if ($dynamic) {
@@ -1178,13 +1182,7 @@ class Album extends AlbumBase {
 		if (is_null($page)) {
 			$page = $_zp_page;
 		}
-		$path = $this->name;
-		if ($this->isDynamic()) {
-			if (!is_dir(ALBUM_FOLDER_SERVERPATH.stripslashes($path))) {
-				$path = stripSuffix($path);
-			}
-		}
-		$rewrite = pathurlencode($path) . '/';
+		$rewrite = pathurlencode($this->linkname) . '/';
 		$plain = '/index.php?album=' . pathurlencode($this->name). '/';
 		if ($page > 1) {
 			$rewrite .= _PAGE_.'/'.$page;

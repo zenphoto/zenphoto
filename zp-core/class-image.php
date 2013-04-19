@@ -57,6 +57,7 @@ function newImage($album, $filename, $quiet=false) {
 	if ($image) {
 		if ($album && $album->isDynamic()) {
 			$image->albumname = $album->name;
+			$image->albumlink = $album->linkname;
 		}
 		zp_apply_filter('image_instantiate', $image);
 		if ($image->exists) {
@@ -101,6 +102,7 @@ class Image extends MediaObject {
 	var $displayname;   			// $filename with the extension stripped off.
 	var $album;         			// An album object for the album containing this image.
 	var $albumname;         	// The name of the album for which this image was instantiated. (MAY NOT be $this->album->name!!!!).
+	var $albumlink;						// "rewrite" verwion of the album name, eg. may not have the .alb
 	var $imagefolder;        	// The album folder containing the image (May be different from the albumname!!!!)
 	protected $index;         // The index of the current image in the album array.
 	protected $sortorder;     // The position that this image should be shown in the album
@@ -211,7 +213,7 @@ class Image extends MediaObject {
 			$this->encwebpath = ALBUM_FOLDER_WEBPATH . pathurlencode($album->name) . "/" . rawurlencode($filename);
 			$this->localpath = $album->localpath . $fileFS;
 		}
-		$this->imagefolder = $this->albumname = $album->name;
+		$this->imagefolder = $this->albumlink = $this->albumname = $album->name;
 		$this->filename = $filename;
 		$this->displayname = substr($this->filename, 0, strrpos($this->filename, '.'));
 		if (empty($this->displayname)) $this->displayname = $this->filename;
@@ -888,7 +890,7 @@ class Image extends MediaObject {
 	 * @return string
 	 */
 	function getImageLink() {
-		return rewrite_path('/' . pathurlencode($this->albumname) . '/' . urlencode($this->filename) . IM_SUFFIX,
+		return rewrite_path('/' . pathurlencode($this->albumlink) . '/' . urlencode($this->filename) . IM_SUFFIX,
 			'/index.php?album=' . pathurlencode($this->albumname) . '&image=' . urlencode($this->filename));
 	}
 
