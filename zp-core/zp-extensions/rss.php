@@ -345,10 +345,7 @@ class RSS extends feed {
 		global $_zp_gallery, $_zp_current_admin_obj, $_zp_loggedin;
 		if (empty($options)) return;
 
-		if (!$this->feedtype = sanitize($options['rss'])) {
-			$this->feedtype = 'gallery';
-		}
-
+		$this->feedtype = $options['rss'];
 		parent::__construct($options);
 
 		if (isset($_GET['token'])) {
@@ -779,6 +776,9 @@ class RSS extends feed {
 
 // RSS feed calls before anything else
 if (!OFFSET_PATH && isset($_GET['rss'])) {
+	if (!$_GET['rss']) {
+		$_GET['rss'] = 'gallery';
+	}
 	//	load the theme plugins just incase
 	$_zp_gallery_page = 'rss.php';
 	$rss = new RSS(sanitize($_GET));
