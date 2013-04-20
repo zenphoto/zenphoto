@@ -34,7 +34,8 @@ if (isset($_GET['action'])) {
 	$action = sanitize($_GET['action']);
 	XSRFdefender($action);
 	$themeswitch = false;
-	if ($action == 'deletegroup') {
+	switch ($action) {
+	case 'deletegroup':
 		$groupname = trim(sanitize($_GET['group']));
 		$groupobj = Zenphoto_Authority::newAdministrator($groupname, 0);
 		$groupobj->remove();
@@ -42,7 +43,7 @@ if (isset($_GET['action'])) {
 		Zenphoto_Authority::updateAdminField('group', NULL, array('`valid`>='=>'1', '`group`='=>$groupname));
 		header("Location: ".FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER.'/user_groups/user_groups-tab.php?page=users&tab=groups&deleted&subpage='.$subpage);
 		exitZP();
-	} else if ($action == 'savegroups') {
+	case 'savegroups':
 		if (isset($_POST['checkForPostTruncation'])) {
 			for ($i = 0; $i < $_POST['totalgroups']; $i++) {
 				$groupname = trim(sanitize($_POST[$i.'-group']));
@@ -104,14 +105,24 @@ if (isset($_GET['action'])) {
 		}
 		header("Location: ".FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER.'/user_groups/user_groups-tab.php?page=users&tab=groups&subpage='.$subpage.$notify);
 		exitZP();
-	} else if ($action == 'saveauserassignments') {
-		for ($i = 0; $i < $_POST['totalusers']; $i++) {
-			$username = trim(sanitize($_POST[$i.'-user'],3));
-			$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $username, '`valid`>=' => 1));
-			user_groups::save_admin(true, $userobj, $i, true);
-			$userobj->save();
+	case 'saveauserassignments':
+		if (isset($_POST['checkForPostTruncation'])) {
+			for ($i = 0; $i < $_POST['totalusers']; $i++) {
+				if (isset($_POST[$i.'group'])) {
+					$newgroups = sanitize($_POST[$i.'group']);
+				} else {
+					$newgroups = array();
+				}
+				$username = trim(sanitize($_POST[$i.'-user'],3));
+				$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $username, '`valid`>=' => 1));
+				user_groups::merge_rights($userobj, $newgroups);
+				$userobj->save();
+			}
+			$notify = '&saved';
+		} else {
+			$notify = '&post_error';
 		}
-		header("Location: ".FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER.'/user_groups/user_groups-tab.php?page=users&tab=assignments&saved&subpage='.$subpage);
+		header("Location: ".FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER.'/user_groups/user_groups-tab.php?page=users&tab=assignments&subpage='.$subpage.$notify);
 		exitZP();
 	}
 }
