@@ -174,13 +174,13 @@ function getRSSLink($option,$lang=NULL,$addl=NULL) {
 		$lang = zpFunctions::getLanguageText(getOption('locale'));
 	}
 	$link = NULL;
-	switch($option) {
-		case 'Gallery':
+	switch(strtolower($option)) {
+		case 'gallery':
 			if (getOption('RSS_album_image')) {
 				$link =  array('rss'=>'gallery');
 			}
 			break;
-		case 'Album':
+		case 'album':
 			if (getOption('RSS_album_image')) {
 				if (is_object($addl)) {
 					$album = $addl;
@@ -190,7 +190,7 @@ function getRSSLink($option,$lang=NULL,$addl=NULL) {
 				$link = array('rss'=>'gallery','albumname'=>$album->getFolder());
 				break;
 			}
-		case 'Collection':
+		case 'collection':
 			if (getOption('RSS_album_image')) {
 				if (is_object($addl)) {
 					$album = $addl;
@@ -200,67 +200,67 @@ function getRSSLink($option,$lang=NULL,$addl=NULL) {
 				$link = array('rss'=>'gallery','folder'=>$album->getFolder());
 			}
 			break;
-		case 'Comments':
+		case 'comments':
 			if (getOption('RSS_comments')) {
 				$link = array('rss'=>'comments','type'=>'gallery');
 			}
 			break;
-		case 'Comments-image':
+		case 'comments-image':
 			if (getOption('RSS_comments')) {
 				$link = array('rss'=>'comments', 'id'=>(string) $_zp_current_image->getID(),'type'=>'image');
 			}
 			break;
-		case 'Comments-album':
+		case 'comments-album':
 			if (getOption('RSS_comments')) {
 				$link = array('rss'=>'comments','id'=>(string) $_zp_current_album->getID(),'type'=>'album');
 			}
 			break;
-		case 'AlbumsRSS':
+		case 'albumsrss':
 			if (getOption('RSS_album_image')) {
 				$link = array('rss'=>'gallery','albumsmode'=>'');
 			}
 			break;
-		case 'AlbumsRSScollection':
+		case 'albumsrsscollection':
 			if (getOption('RSS_album_image')) {
 				$link = array('rss'=>'gallery','folder'=>$_zp_current_album->getFolder(),'albumsmode'=>'');
 			}
 			break;
-		case 'Pages':
+		case 'pages':
 			if (getOption('RSS_pages')) {
 				$link = array('rss'=>'page');
 			}
 			break;
-		case 'News':
+		case 'news':
 			if (getOption('RSS_articles')) {
 				$link = array('rss'=>'news');
 			}
 			break;
-		case 'Category':
+		case 'category':
 			if (getOption('RSS_articles')) {
 				$link = array('rss'=>'news',$categorylink=>'');
 			}
 			break;
-		case 'NewsWithImages':
+		case 'newswithimages':
 			if (getOption('RSS_articles')) {
 				$link = array('rss'=>'news','withimages'=>'');
 			}
 			break;
-		case 'Comments':
+		case 'comments':
 			if (getOption('RSS_article_comments')) {
 				$link = array('comments'=>1,'type'=>'zenpage');
 			}
 			break;
-		case 'Comments-news':
+		case 'comments-news':
 			if (getOption('RSS_article_comments')) {
 				$link = array('rss'=>'comments','id'=>(string) getNewsID(),'type'=>news);;
 			}
 			break;
-		case 'Comments-page':
+		case 'comments-page':
 			if (getOption('RSS_article_comments')) {
 				$link = array('rss'=>'comments','id'=>(string) getPageID(),'type'=>'page');
 			}
 			break;
-		case 'Comments-all':
+		case 'comments-all':
 			if (getOption('RSS_article_comments')) {
 				$link = array('rss'=>'comments','type'=>'allcomments');;
 			}
@@ -327,7 +327,8 @@ function printRSSHeaderLink($option, $linktext, $lang='', $addl=NULL) {
 	if ($protocol == 'https_admin') {
 		$protocol = 'https://';
 	}
-	echo "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.html_encode(getRSSLink($option,$lang,$addl))."\" />\n";
+	echo "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode(strip_tags($linktext))."\" href=\"".
+						$protocol.$host.html_encode(getRSSLink($option,$lang,$addl))."\" />\n";
 }
 
 
@@ -411,7 +412,6 @@ class RSS extends feed {
 					self::feed404();
 				}
 				$titleappendix = gettext(' (Latest news)');
-
 
 				switch ($this->newsoption) {
 					case 'withalbums':
