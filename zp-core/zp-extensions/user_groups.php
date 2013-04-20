@@ -81,7 +81,6 @@ class user_groups {
 		$userobj->setObjects($objects);
 		return $newgroups != $oldgroups || $templates;
 	}
-
 	/**
 	 * Saves admin custom data
 	 * Called when an admin is saved
@@ -96,8 +95,10 @@ class user_groups {
 		if ($alter) {
 			if (isset($_POST[$i.'group'])) {
 				$newgroups = sanitize($_POST[$i.'group']);
-				$updated = $updated || self::merge_rights($userobj, $newgroups);
+			} else {
+				$newgroups = array();
 			}
+			$updated = $updated || self::merge_rights($userobj, $newgroups);
 		}
 		return $updated;
 	}
