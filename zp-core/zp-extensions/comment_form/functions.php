@@ -1219,7 +1219,7 @@ function getLatestComments($number,$type="all",$id=NULL) {
 			foreach ($comments as $key=>$comment) {
 				$comment['pubdate'] = $comment['date'];
 				$img = getItemByID('images', $comment['ownerid']);
-				$comment['folder'] = $img->$album->name;
+				$comment['folder'] = $img->album->name;
 				$comment['filename'] = $img->filename;
 				$comment['title'] = $item->getTitle('all');
 				$comment['albumtitle'] = $img->album->getTitle('all');
