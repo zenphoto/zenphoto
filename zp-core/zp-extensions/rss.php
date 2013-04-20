@@ -227,7 +227,7 @@ function getRSSLink($option,$lang=NULL,$addl=NULL) {
 			break;
 		case 'pages':
 			if (getOption('RSS_pages')) {
-				$link = array('rss'=>'page');
+				$link = array('rss'=>'pages');
 			}
 			break;
 		case 'news':
@@ -252,7 +252,7 @@ function getRSSLink($option,$lang=NULL,$addl=NULL) {
 			break;
 		case 'comments-news':
 			if (getOption('RSS_article_comments')) {
-				$link = array('rss'=>'comments','id'=>(string) getNewsID(),'type'=>news);;
+				$link = array('rss'=>'comments','id'=>(string) getNewsID(),'type'=>'news');
 			}
 			break;
 		case 'comments-page':
