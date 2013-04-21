@@ -2,12 +2,12 @@
  * CirclePlayer for the jPlayer Plugin (jQuery)
  * http://www.jplayer.org
  *
- * Copyright (c) 2009 - 2011 Happyworm Ltd
+ * Copyright (c) 2009 - 2012 Happyworm Ltd
  * Dual licensed under the MIT and GPL licenses.
  *  - http://www.opensource.org/licenses/mit-license.php
  *  - http://www.gnu.org/copyleft/gpl.html
  *
- * Version: 1.0.1 (jPlayer 2.0.9)
+ * Version: 1.0.1 (jPlayer 2.1.0+)
  * Date: 30th May 2011
  *
  * Author: Mark J Panaghiston @thepag
