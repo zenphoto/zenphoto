@@ -32,20 +32,26 @@ class user_groups {
 	 */
 	static function merge_rights($userobj, $groups) {
 		global $_zp_authority;
+		$custom = $objects = array();
+		$oldgroups = $userobj->getGroup();
+		if (empty($groups)) {
+			$before = Zenphoto_Authority::newAdministrator($userobj->getUser(), 1);
+			$rights = $before->getRights();
+			$objects = $before->getObjects();
+		} else {
 		$templates = false;
 		$rights = 0;
-		$objects = array();
-		$newgroups = implode(',',$groups);
-		$oldgroups = $userobj->getGroup();
 
 		foreach ($groups as $groupname) {
 			if (empty($groupname)) {
+					//	force the first template to happen
 				$group = new Zenphoto_Administrator('', 0);
 				$group->setName('template');
 			} else {
 				$group = Zenphoto_Authority::newAdministrator($groupname, 0);
 			}
 			if ($group->getName() == 'template') {
+					unset($groups[$groupname]);
 				if ($userobj->getID() > 0 && !$templates) {
 					//	fetch the existing rights and objects
 					$templates = true;	//	but only once!
@@ -53,12 +59,13 @@ class user_groups {
 					$rights = $before->getRights();
 					$objects = $before->getObjects();
 				}
-				$newgroups = '';
 			}
 			$rights = $group->getRights() | $rights;
 			$objects = array_merge($group->getObjects(), $objects);
-
+				$custom[] = $group->getCustomData();
+			}
 		}
+		$userobj->setCustomData(array_shift($custom));	//	for now it is first come, first served.
 		// unique objects
 		$newobjects = array();
 		foreach ($objects as $object) {
@@ -76,7 +83,7 @@ class user_groups {
 		foreach ($newobjects as $object) {
 			$objects[] = $object;
 		}
-		$userobj->setGroup($newgroups);
+		$userobj->setGroup($newgroups = implode(',',$groups));
 		$userobj->setRights($rights);
 		$userobj->setObjects($objects);
 		return $newgroups != $oldgroups || $templates;
@@ -98,7 +105,7 @@ class user_groups {
 			} else {
 				$newgroups = array();
 			}
-			$updated = $updated || self::merge_rights($userobj, $newgroups);
+			$updated = self::merge_rights($userobj, $newgroups) || $updated;
 		}
 		return $updated;
 	}
