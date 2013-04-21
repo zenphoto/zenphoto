@@ -32,6 +32,7 @@ class user_groups {
 	 */
 	static function merge_rights($userobj, $groups) {
 		global $_zp_authority;
+		$templates = false;
 		$custom = $objects = array();
 		$oldgroups = $userobj->getGroup();
 		if (empty($groups)) {
@@ -39,29 +40,27 @@ class user_groups {
 			$rights = $before->getRights();
 			$objects = $before->getObjects();
 		} else {
-		$templates = false;
-		$rights = 0;
-
-		foreach ($groups as $groupname) {
-			if (empty($groupname)) {
+			$rights = 0;
+			foreach ($groups as $groupname) {
+				if (empty($groupname)) {
 					//	force the first template to happen
-				$group = new Zenphoto_Administrator('', 0);
-				$group->setName('template');
-			} else {
-				$group = Zenphoto_Authority::newAdministrator($groupname, 0);
-			}
-			if ($group->getName() == 'template') {
-					unset($groups[$groupname]);
-				if ($userobj->getID() > 0 && !$templates) {
-					//	fetch the existing rights and objects
-					$templates = true;	//	but only once!
-					$before = Zenphoto_Authority::newAdministrator($userobj->getUser(), 1);
-					$rights = $before->getRights();
-					$objects = $before->getObjects();
+					$group = new Zenphoto_Administrator('', 0);
+					$group->setName('template');
+				} else {
+					$group = Zenphoto_Authority::newAdministrator($groupname, 0);
 				}
-			}
-			$rights = $group->getRights() | $rights;
-			$objects = array_merge($group->getObjects(), $objects);
+				if ($group->getName() == 'template') {
+					unset($groups[$groupname]);
+					if ($userobj->getID() > 0 && !$templates) {
+						//	fetch the existing rights and objects
+						$templates = true;	//	but only once!
+						$before = Zenphoto_Authority::newAdministrator($userobj->getUser(), 1);
+						$rights = $before->getRights();
+						$objects = $before->getObjects();
+					}
+				}
+				$rights = $group->getRights() | $rights;
+				$objects = array_merge($group->getObjects(), $objects);
 				$custom[] = $group->getCustomData();
 			}
 		}
