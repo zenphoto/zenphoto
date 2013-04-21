@@ -237,7 +237,7 @@ function getRSSLink($option,$lang=NULL,$addl=NULL) {
 			break;
 		case 'category':
 			if (getOption('RSS_articles')) {
-				$link = array('rss'=>'news',$categorylink=>'');
+				$link = array('rss'=>'news',$addl=>'');
 			}
 			break;
 		case 'newswithimages':
