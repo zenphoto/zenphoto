@@ -32,6 +32,7 @@ class user_groups {
 	 */
 	static function merge_rights($userobj, $groups) {
 		global $_zp_authority;
+		$templates = false;
 		$custom = $objects = array();
 		$oldgroups = $userobj->getGroup();
 		if (empty($groups)) {
@@ -39,7 +40,6 @@ class user_groups {
 			$rights = $before->getRights();
 			$objects = $before->getObjects();
 		} else {
-			$templates = false;
 			$rights = 0;
 			foreach ($groups as $groupname) {
 				if (empty($groupname)) {
