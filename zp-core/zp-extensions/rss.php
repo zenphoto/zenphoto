@@ -568,9 +568,9 @@ class RSS extends feed {
 				}
 				$feeditem['desc'] = '<a title="'.html_encode($title).'" href="'.PROTOCOL.'://'.$itemlink.'">'.$thumburl.'</a>'.$item->getDesc($this->locale).'<br />'.sprintf(gettext("Date: %s"),zpFormattedDate(DATE_FORMAT,$item->get('mtime')));
 			}
-			$ext = getSuffix($thumb->filename);
+			$ext = getSuffix($thumb->localpath);
 		} else {
-			$ext = getSuffix($item->filename);
+			$ext = getSuffix($item->localpath);
 			$albumobj = $item->getAlbum();
 			$itemlink = $this->host.$item->getImagelink();
 			$fullimagelink = $this->host.pathurlencode($item->getFullImageURL());
