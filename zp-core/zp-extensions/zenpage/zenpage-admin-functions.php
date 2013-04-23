@@ -71,8 +71,8 @@ function updatePage(&$reports, $newpage=false) {
 	$permalink = getcheckboxState('permalink');
 	$codeblock = processCodeblockSave(0);
 	$locked = getcheckboxState('locked');
+	$date = sanitize($_POST['date']);
 	if ($newpage) {
-		$date = date('Y-m-d_H-i-s');
 		$titlelink = seoFriendly(get_language_string($title));
 		if (empty($titlelink)) {
 			$titlelink = seoFriendly($date);
@@ -80,7 +80,6 @@ function updatePage(&$reports, $newpage=false) {
 		$oldtitlelink = $titlelink;
 	} else {
 		$titlelink = $oldtitlelink = sanitize($_POST['titlelink-old']);
-		$date = sanitize($_POST['date']);
 	}
 	if (getcheckboxState('edittitlelink')) {
 		$titlelink = sanitize($_POST['titlelink'],3);
