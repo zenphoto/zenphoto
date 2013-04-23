@@ -236,7 +236,7 @@ class feed {
 
 				if(isset($this->options['category'])) {
 					$this->catlink = $this->options['category'];
-					$catobj = new ZenpageCategory($array['catlink']);
+					$catobj = new ZenpageCategory($this->catlink);
 					$this->cattitle = $catobj->getTitle();
 					$this->newsoption = 'category';
 				} else {

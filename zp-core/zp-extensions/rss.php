@@ -169,7 +169,7 @@ class rss_options {
  * @param string $addl provided additional data for feeds (e.g. album object for album feeds, $categorylink for zenpage categories
  */
 function getRSSLink($option,$lang=NULL,$addl=NULL) {
-	global $_zp_current_album, $_zp_current_image, $_zp_current_admin_obj;
+	global $_zp_current_album, $_zp_current_image, $_zp_current_admin_obj, $_zp_current_category;
 	if(empty($lang)) {
 		$lang = zpFunctions::getLanguageText(getOption('locale'));
 	}
@@ -237,7 +237,14 @@ function getRSSLink($option,$lang=NULL,$addl=NULL) {
 			break;
 		case 'category':
 			if (getOption('RSS_articles')) {
-				$link = array('rss'=>'news',$addl=>'');
+				if(empty($addl) && !is_null($_zp_current_category)) {
+					$addl = $_zp_current_category->getTitlelink();
+				}
+				if (empty($addl)) {
+					$link = array('rss'=>'news');
+				} else {
+					$link = array('rss'=>'news','category'=>$addl);
+				}
 			}
 			break;
 		case 'newswithimages':

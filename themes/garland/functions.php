@@ -91,7 +91,7 @@ function footer() {
 				break;
 			case 'news.php':
 				if (is_NewsCategory()) {
-					if (class_exists('RSS')) printRSSLink('News', '', 'RSS', '', true, null, '',$_zp_current_category->getTitlelink());
+					if (class_exists('RSS')) printRSSLink('Category', '', 'RSS', '', true, null, '', NULL, $_zp_current_category->getTitlelink());
 				} else {
 					if (class_exists('RSS')) printRSSLink('News', '','RSS', '');
 				}
