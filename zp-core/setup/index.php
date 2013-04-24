@@ -21,6 +21,9 @@ define('HTACCESS_VERSION', '1.4.5');  // be sure to change this the one in .htac
 
 define('OFFSET_PATH', 2);
 
+if (version_compare(PHP_VERSION, '5.0.0', '<')) {
+    die(sprintf(gettext('Zenphoto requires PHP version %s or greater'),PHP_MIN_VERSION));
+}
 require_once(dirname(dirname(__FILE__)).'/global-definitions.php');
 header('Last-Modified: ' . ZP_LAST_MODIFIED);
 header('Content-Type: text/html; charset=UTF-8');
