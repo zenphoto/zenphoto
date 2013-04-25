@@ -1109,3 +1109,6 @@ button.positive,.buttons a.positive {
  font-size: 0.9em;
  font-weight: bold;
 }
+.clearall {
+clear: both !important;
+}

@@ -88,12 +88,12 @@ if (!defined('WEBPATH')) die();
 				if (getImageMetaData()) {
 					echo printImageMetadata(NULL, 'colorbox');
 					?>
-					<br clear="all" />
+					<br class="clearall" />
 					<?php
 				}
 				printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', '');
 				?>
-				<br clear="all" />
+				<br class="clearall" />
 				<?php @call_user_func('printSlideShowLink'); ?>
 				<?php @call_user_func('printGoogleMap'); ?>
 				<?php @call_user_func('printRating'); ?>

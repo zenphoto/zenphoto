@@ -353,7 +353,7 @@ function printFooter($admin=true) {
 		<?php if ($_zp_gallery_page!='register.php' && !zp_loggedin() && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('register'))) { printCustomPageURL(gettext('Register for this site'), 'register', '', ''); echo '<br />'; }	?>
 		<?php @call_user_func('mobileTheme::controlLink'); ?>
 		<?php @call_user_func('printLanguageSelector'); ?>
-		<br clear="all" />
+		<br class="clearall" />
 	</div>
 	<!-- Administration Toolbox -->
 	<?php
@@ -396,7 +396,7 @@ function commonNewsLoop($paged) {
 			<?php printCodeblock(1); ?>
 			<?php printNewsContent(); ?>
 			<?php printCodeblock(2); ?>
-			<br clear="all" />
+			<br class="clearall" />
 			</div>
 	<?php
 	}
@@ -419,7 +419,7 @@ function commonComment() {
 				$head = '';
 			} else {
 				$style = 'style="display:none;"';
-				$head = '<br clear="all" /><p class="buttons"><a href="javascript:toggle(\'commententry\');" >'.gettext('Add a comment').'</a></p><br clear="all" />';
+				$head = '<br class="clearall" /><p class="buttons"><a href="javascript:toggle(\'commententry\');" >'.gettext('Add a comment').'</a></p><br class="clearall" />';
 			}
 			printCommentForm(true, $head, true, $style);
 			?>

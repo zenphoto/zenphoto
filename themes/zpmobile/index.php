@@ -32,7 +32,7 @@ if (!defined('WEBPATH')) die();
 			printLatestImages(8,'',false,false,false,40,'',79,79,true,false,false);
 		}
 		?>
-		<br clear="all" />
+		<br class="clearall" />
 		<br />
 		<?php
 		if(function_exists('next_news')) { ?>

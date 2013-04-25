@@ -40,7 +40,7 @@ if (!defined('WEBPATH')) die();
 						</div>
 					<?php endwhile; ?>
 				</div>
-				<br clear="all" />
+				<br class="clearall" />
 				<?php printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); ?>
 			</div>
 		</div>

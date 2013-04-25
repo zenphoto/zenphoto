@@ -154,11 +154,11 @@ function commonNewsLoop($paged) {
 				}
 				?>
 			</div> <!-- newsarticlecredit -->
-			<br clear="all" />
+			<br class="clearall" />
 			<?php printCodeblock(1); ?>
 			<?php printNewsContent(); ?>
 			<?php printCodeblock(2); ?>
-			<br clear="all" />
+			<br class="clearall" />
 			</div>
 	<?php
 	}

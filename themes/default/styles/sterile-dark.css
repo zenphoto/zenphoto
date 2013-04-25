@@ -662,3 +662,6 @@ label:hover {
 #registration_form {
 	width:370px;
 }
+.clearall {
+clear: both !important;
+}

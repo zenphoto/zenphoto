@@ -1211,3 +1211,7 @@ font-style: italic;
 #googlemap_data {
 	color:black;
 }
+
+.clearall {
+clear: both !important;
+}

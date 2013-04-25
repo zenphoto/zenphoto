@@ -149,7 +149,7 @@
 				</div>
 				<?php } ?>
 			</div>
-		<br clear="all" />
+		<br class="clearall" />
 <?php } ?>
 		<?php
 		if (function_exists('printSlideShowLink')) printSlideShowLink(gettext('View Slideshow'));

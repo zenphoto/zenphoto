@@ -653,3 +653,6 @@ label:hover {
 	width:370px;
 }
 
+.clearall {
+clear: both !important;
+}

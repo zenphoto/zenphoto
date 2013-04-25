@@ -134,7 +134,7 @@ if (!defined('WEBPATH')) die();
 					?>
 				</div>
 			</div>
-			<br clear="all" />
+			<br class="clearall" />
 		</div>
 
 		<!-- Image Description -->
@@ -149,7 +149,7 @@ if (!defined('WEBPATH')) die();
 				<div id="map_link">
 					<?php printGoogleMap(); ?>
 				</div>
-				<br clear="all" />
+				<br class="clearall" />
 				<?php
 			}
 			if (getImageMetaData()) {

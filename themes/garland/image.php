@@ -131,7 +131,7 @@ if (!defined('WEBPATH')) die();
 				if (getImageMetaData()) {
 					echo printImageMetadata(NULL, 'colorbox');
 					?>
-					<br clear="all" />
+					<br class="clearall" />
 					<?php
 				}
 				if (function_exists('hasMapData') && hasMapData()) {
@@ -140,7 +140,7 @@ if (!defined('WEBPATH')) die();
 					<span id="map_link">
 						<?php printGoogleMap(NULL,NULL,NULL,NULL,'gMapOptionsImage'); ?>
 					</span>
-					<br clear="all" />
+					<br class="clearall" />
 					<?php
 				}
 				?>

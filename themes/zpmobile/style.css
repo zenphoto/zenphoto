@@ -365,6 +365,9 @@ width: 100%;
 width: 200px;
 }
 
+.clearall {
+clear: both !important;
+}
 
 
 @media screen and (min-width: 500px) {

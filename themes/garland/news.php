@@ -96,14 +96,14 @@ if (!defined('WEBPATH') || !class_exists('Zenpage')) die();
 					}
 					if(getPrevNewsURL() || getNextNewsURL()) {
 					 ?>
-					 <br clear="all" />
+					 <br class="clearall" />
 					 <?php
 					}
 					$cat = getNewsCategories();
 					if (!empty($cat)) {
 						printNewsCategories(", ",gettext("Categories: "),"newscategories");
 						?>
-						<br clear="all" />
+						<br class="clearall" />
 						<?php
 					}
 					printTags('links', gettext('Tags: '), NULL, '');

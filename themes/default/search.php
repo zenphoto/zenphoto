@@ -78,7 +78,7 @@ if (!defined('WEBPATH')) die();
 					}
 					?>
 				</div>
-				<br clear="all" />
+				<br class="clearall" />
 				<?php
 				 @call_user_func('printSlideShowLink');
 				if ($c == 0) {

@@ -13,3 +13,7 @@ http://stopdesign.com/templates/photos/
 @import url("photos.css");
 @import url("custom.css");
 /* */
+
+.clearall {
+clear: both !important;
+}

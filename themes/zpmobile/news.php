@@ -32,14 +32,14 @@ if(is_NewsArticle()) {
   printNewsContent();
   printCodeblock(1);
   ?>
-  <br clear="all" /><br />
+  <br class="clearall" /><br />
   <?php printNewsCategories(', ',gettext('Categories: '),'catlist'); ?>
    <?php printTags('links', gettext('<strong>Tags:</strong>').' ', 'catlist', ', '); ?>
   	<?php
 	if (function_exists('printCommentForm')) {
 	  printCommentForm();
 	}	?>
-	<br clear="all" />
+	<br class="clearall" />
 	<?php if(getPrevNewsURL()) { $prevnews = getPrevNewsURL(); ?><a class="imgprevious" href="<?php echo html_encode($prevnews['link']); ?>" data-role="button" data-icon="arrow-l" data-iconpos="left" data-inline="true"><?php echo gettext("prev"); ?></a><?php } ?>
   <?php if(getNextNewsURL()) { $nextnews = getNextNewsURL();?><a class="imgnext" href="<?php echo html_encode($nextnews['link']); ?>" data-role="button" data-icon="arrow-r" data-iconpos="right" data-inline="true"><?php echo gettext("next"); ?></a><?php } ?>
 	<?php if(getPrevNewsURL() || getNextNewsURL()) { ?><?php } ?>
