@@ -114,9 +114,9 @@ function printAdminHeader($tab,$subtab=NULL) {
 	<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
-	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.css" type="text/css" />
 	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/js/toggleElements.css" type="text/css" />
 	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER;?>/js/jqueryui/jquery-ui-zenphoto.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.css" type="text/css" />
 	<?php
 	if ($_zp_RTL_css) {
 		?>
@@ -129,7 +129,6 @@ function printAdminHeader($tab,$subtab=NULL) {
 	<script src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/js/jqueryui/jquery-ui-zenphoto.js" type="text/javascript"></script>
 	<script src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/js/zenphoto.js" type="text/javascript" ></script>
 	<script src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/js/admin.js" type="text/javascript" ></script>
-	<script src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/js/jquery.tooltip.js" type="text/javascript"></script>
 	<script src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/js/jquery.scrollTo.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		// <!-- <![CDATA[
@@ -146,11 +145,22 @@ function printAdminHeader($tab,$subtab=NULL) {
 			<?php
 		}
 		?>
+    $( document ).tooltip({
+      position: {
+        my: "center bottom-20",
+        at: "center top",
+        using: function( position, feedback ) {
+          $( this ).css( position );
+          $( "<div>" )
+            .addClass( "arrow" )
+            .addClass( feedback.vertical )
+            .addClass( feedback.horizontal )
+            .appendTo( this );
+        }
+      }
+    });
 		jQuery(function( $ ){
 			$(".fade-message").fadeTo(5000, 1).fadeOut(1000);
-			$('.tooltip').tooltip({
-				left: -80
-			});
 		})
 		// ]]> -->
 	</script>
