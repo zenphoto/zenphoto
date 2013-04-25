@@ -127,7 +127,7 @@ function formatNikonData($type,$tag,$intel,$model,$data) {
 					$minSP = unRational(substr($data,16,8),$type,$intel);
 					$maxSP = unRational(substr($data,24,8),$type,$intel);
 					if ($minFL == $maxFL) {
-						$data = sprintf('%0.0f f/%0.0f',$minFL,$minSP);
+						$data = sprintf('%0.0fmm f/%0.1f',$minFL,$minSP);
 					} elseif ($minSP == $maxSP) {
 						$data = sprintf('%0.0f-%0.0fmm f/%0.1f',$minFL,$maxFL,$minSP);
 					} else {

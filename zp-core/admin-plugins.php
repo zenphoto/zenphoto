@@ -135,7 +135,7 @@ echo gettext("If the plugin checkbox is checked, the plugin will be loaded and i
 </p>
 <p class='notebox'><?php echo gettext("<strong>Note:</strong> Support for a particular plugin may be theme dependent! You may need to add the plugin theme functions if the theme does not currently provide support."); ?>
 </p>
-<form action="?action=saveplugins&page=plugins&tab=<?php echo $subtab; ?>" method="post">
+<form action="?action=saveplugins&page=plugins&tab=<?php echo html_encode($subtab); ?>" method="post">
 	<?php XSRFToken('saveplugins');?>
 	<input type="hidden" name="saveplugins" value="yes" />
 	<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
@@ -361,7 +361,7 @@ foreach ($filelist as $extension) {
 ?>
 <tr>
 	<td colspan="4" id="imagenavb">
-	<?php printPageSelector($subpage, $rangeset, 'admin-plugins.php', array()); ?>
+	<?php printPageSelector($subpage, $rangeset, 'admin-plugins.php', array('page'=>'plugins','tab'=>$subtab)); ?>
 	</td>
 </tr>
 </table>

@@ -3,7 +3,7 @@ $_zp_script_timer['start'] = microtime();
 // force UTF-8 Ø
 require_once(dirname(__FILE__).'/zp-core/global-definitions.php');
 define('OFFSET_PATH', 0);
-require_once(ZENFOLDER . "/template-functions.php");
+require_once(dirname(__FILE__)."/".ZENFOLDER . "/template-functions.php");
 checkInstall();
 
 //$_zp_script_timer['require'] = microtime();

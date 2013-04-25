@@ -297,7 +297,7 @@ class security_logger {
 				if ($success) return true;
 				break;
 		}
-	$name = '';
+		$name = '';
 		if ($success) {
 			$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
 			$pass = '';	// mask it from display

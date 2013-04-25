@@ -492,7 +492,7 @@ if (isset($_GET['mismatch'])) {
 	echo '<div class="errorbox fade-message">';
 	switch ($_GET['mismatch']) {
 		case 'user':
-			echo  "<h2>".sprintf(gettext("You must supply a password for the <em>%s</em> guest user"),ucfirst($subtab))."</h2>";
+			echo  "<h2>".sprintf(gettext("You must supply a password for the <em>%s</em> guest user"),html_encode(ucfirst($subtab)))."</h2>";
 			break;
 		default:
 			echo  "<h2>".gettext('Your passwords did not match')."</h2>";

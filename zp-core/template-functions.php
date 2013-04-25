@@ -3197,7 +3197,6 @@ function getLatestComments($number,$type="all",$id=NULL) {
 						}
 						$commentcheck['pubdate'] = $commentcheck['date'];	//	for RSS
 						$comments[] = $commentcheck;
-
 					}
 				}
 				db_free_result($commentsearch);
@@ -3211,6 +3210,7 @@ function getLatestComments($number,$type="all",$id=NULL) {
 				$comment['pubdate'] = $comment['date'];
 				$alb = getItemByID('albums', $comment['ownerid']);
 				$comment['folder'] = $alb->name;
+				$comment['albumtitle'] = $alb->getTitle('all');
 				$comments[$key] = $comment;
 			}
 			break;
@@ -3223,6 +3223,8 @@ function getLatestComments($number,$type="all",$id=NULL) {
 				$img = getItemByID('images', $comment['ownerid']);
 				$comment['folder'] = $img->album->name;
 				$comment['filename'] = $img->filename;
+				$comment['title'] = $img->getTitle('all');
+				$comment['albumtitle'] = $img->album->getTitle('all');
 				$comments[$key] = $comment;
 			}
 			break;
@@ -4501,6 +4503,7 @@ function getPageRedirect() {
 			$action = '/index.php?userlog=1&p='.substr($_zp_gallery_page, 0, -4);
 		}
 	}
+
 	return SEO_WEBPATH.$action;
 }
 /**
