@@ -527,8 +527,8 @@ if (db_connect($_zp_conf_vars)) {
 		?>
 		</select> <?php echo gettext('Compression level'); ?>
 		</div>
-		<br clear="all" />
-		<br clear="all" />
+		<br class="clearall" />
+		<br class="clearall" />
 		</form>
 		<br />
 		<br />
@@ -552,8 +552,8 @@ if (db_connect($_zp_conf_vars)) {
 			<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/redo.png" alt="" /> <?php echo gettext("Restore the Database"); ?>
 		</button>
 		</div>
-		<br clear="all" />
-		<br clear="all" />
+		<br class="clearall" />
+		<br class="clearall" />
 		</form>
 	<?php
 	}

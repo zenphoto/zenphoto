@@ -142,7 +142,7 @@ echo gettext("If the plugin checkbox is checked, the plugin will be loaded and i
 <p class="buttons">
 <button type="submit" value="<?php echo gettext('Apply') ?>" title="<?php echo gettext("Apply"); ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 <button type="reset" value="<?php echo gettext('Reset') ?>" title="<?php echo gettext("Reset"); ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
-</p><br clear="all" /><br /><br />
+</p><br class="clearall" /><br /><br />
 <table class="bordered options">
 <tr>
 	<th id="imagenav" colspan="3">

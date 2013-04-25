@@ -209,14 +209,14 @@ zp_apply_filter('admin_note','comments', $subtab);
 
 		?>
 		<p><?php echo $status_moderation; ?>. <div class="buttons"><a href="<?php echo $url_moderation; ?>&amp;XSRFToken=<?php echo getXSRFToken('comment_update')?>" title="<?php echo $title_moderation; ?>" ><img src="<?php echo $linkimage; ?>" alt="" /><?php echo $link_moderation; ?></a></div></p>
-		<br clear="all" />
+		<br class="clearall" />
 		<hr />
 		<p><?php echo $status_private; ?></p>
 		<p><?php echo $status_anon; ?></p>
 		</div><!-- div box-edit-unpadded end -->
 		</div>
 		</form>
-		<br clear="all" />
+		<br class="clearall" />
 		</div> <!-- div box end -->
 		<?php
 		// end of $page == "editcomment"
@@ -325,7 +325,7 @@ if ($totalpages > 1) {
 	}
 	?>
 </p>
-<br clear="all" /><br />
+<br class="clearall" /><br />
 <table class="bordered">
 	<tr>
 		<th colspan="11"><?php echo gettext("Edit this comment"); ?>

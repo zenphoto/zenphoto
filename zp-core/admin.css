@@ -2538,3 +2538,8 @@ tr.currentselection td {
 tr.highlightselection td {
 	background-color: #D4DBDB !important;
 }
+
+
+.clearall {
+clear: both !important;
+}

@@ -675,7 +675,7 @@ zp_apply_filter('admin_note','Overview', NULL);
 
 	</div><!-- boxouter -->
 </div><!-- content -->
-<br clear="all" />
+<br class="clearall" />
 <?php
 printAdminFooter();
 /* No admin-only content allowed after point! */

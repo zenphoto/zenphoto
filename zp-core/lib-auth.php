@@ -938,7 +938,7 @@ class Zenphoto_Authority {
 							<button type="button" value="<?php echo gettext("Refresh"); ?>" id="challenge_refresh" onclick="javascript:launchScript('<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.php',['logon_step=challenge', 'ref='+$('#user').val()]);" ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Refresh"); ?></button>
 							<button type="button" value="<?php echo gettext("Return"); ?>" onclick="javascript:launchScript('<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.php',['logon_step=', 'ref='+$('#user').val()]);" ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Return"); ?></button>
 						</div>
-						<br clear="all" />
+						<br class="clearall" />
 					</fieldset>
 					<br />
 					<?php
@@ -1014,7 +1014,7 @@ class Zenphoto_Authority {
 							<button type="submit" value="<?php echo gettext("Log in"); ?>" ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Log in"); ?></button>
 							<button type="reset" value="<?php echo gettext("Reset"); ?>" ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/reset.png" alt="" /><?php echo gettext("Reset"); ?></button>
 						</div>
-						<br clear="all" />
+						<br class="clearall" />
 					</fieldset>
 				</form>
 				<?php
@@ -1060,7 +1060,7 @@ class Zenphoto_Authority {
 							<button type="submit" value="<?php echo gettext("Request"); ?>" ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Request password reset"); ?></button>
 							<button type="button" value="<?php echo gettext("Return"); ?>" onclick="javascript:launchScript('<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.php',['logon_step=', 'ref='+$('#user').val()]);" ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Return"); ?></button>
 						</div>
-						<br clear="all" />
+						<br class="clearall" />
 					</fieldset>
 				</form>
 				<?php
@@ -1212,7 +1212,7 @@ class Zenphoto_Authority {
 							onclick="passwordClear('<?php echo $id; ?>');"
 							onkeyup="passwordStrength('<?php echo $id; ?>');"
 							<?php echo $disable; ?> />
-			<br clear="all" />
+			<br class="clearall" />
 			<label><input type="checkbox" name="disclose_password<?php echo $id; ?>" id="disclose_password<?php echo $id; ?>" onclick="passwordClear('<?php echo $id; ?>');togglePassword('<?php echo $id; ?>');"><?php echo gettext('Show password'); ?></label>
 		</fieldset>
 		<fieldset class="password_field_<?php echo $id; ?>">

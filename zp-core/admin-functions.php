@@ -322,7 +322,7 @@ function printTabs() {
 	}
 	?>
 	</ul>
-	<br clear="all" /><!-- needed so the nav sits correctly -->
+	<br class="clearall" /><!-- needed so the nav sits correctly -->
 	<?php
 }
 
@@ -1197,7 +1197,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 		<?php
 	}
 	?>
-	<br clear="all" /><br />
+	<br class="clearall" /><br />
 	<table class="formlayout">
 		<tr>
 			<td valign="top">
@@ -1773,10 +1773,10 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 						<?php echo gettext("Delete album");?>
 					</label>
 
-					<br clear="all" />
+					<br class="clearall" />
 					<div class="deletemsg" id="deletemsg<?php echo $prefix; ?>"	style="padding-top: .5em; padding-left: .5em; color: red; display: none">
 						<?php echo gettext('Album will be deleted when changes are applied.'); ?>
-						<br clear="all" />
+						<br class="clearall" />
 						<p class="buttons">
 							<a	href="javascript:toggleAlbumMCR('<?php echo $prefix; ?>', '');"><img src="images/reset.png" alt="" /><?php echo gettext("Cancel");?></a>
 						</p>
@@ -1813,7 +1813,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 							}
 							?>
 						</select>
-						<br clear="all" /><br />
+						<br class="clearall" /><br />
 						<p class="buttons">
 							<a href="javascript:toggleAlbumMCR('<?php echo $prefix; ?>', '');"><img src="images/reset.png" alt="" /><?php echo gettext("Cancel");?></a>
 						</p>
@@ -1821,17 +1821,17 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 					<div id="a-<?php echo $prefix; ?>renamediv" style="padding-top: .5em; padding-left: .5em; display: none;">
 						<?php echo gettext("to:"); ?>
 						<input name="a-<?php echo $prefix; ?>renameto" type="text" value="<?php echo basename($album->name);?>"/><br />
-						<br clear="all" />
+						<br class="clearall" />
 						<p class="buttons">
 						<a href="javascript:toggleAlbumMCR('<?php echo $prefix; ?>', '');"><img src="images/reset.png" alt="" /><?php echo gettext("Cancel");?></a>
 						</p>
 					</div>
-					<span style="line-height: 0em;"><br clear="all" /></span>
+					<span style="line-height: 0em;"><br class="clearall" /></span>
 					<?php
 					echo zp_apply_filter('edit_album_utilities', '', $album, $prefix);
 					printAlbumButtons($album);
 					?>
-					<span style="line-height: 0em;"><br clear="all" /></span>
+					<span style="line-height: 0em;"><br class="clearall" /></span>
 					</div>
 					<h2 class="h2_bordered_edit"><?php echo gettext("Tags"); ?></h2>
 					<div class="box-edit-unpadded">
@@ -1862,7 +1862,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 	}
 ?>
 
-<br clear="all" />
+<br class="clearall" />
 	<?php
 	if ($buttons) {
 		?>
@@ -1899,7 +1899,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 		<?php
 	}
 	?>
-<br clear="all" />
+<br class="clearall" />
 <?php
 }
 
@@ -1914,12 +1914,12 @@ function printAlbumButtons($album) {
 		<div class="button buttons tooltip" title="<?php echo gettext("Clears the album's cached images.");?>">
 			<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-edit.php?action=clear_cache&amp;album='.html_encode($album->name); ?>&amp;XSRFToken=<?php  echo getXSRFToken('clear_cache'); ?>">
 			<img src="images/edit-delete.png" /><?php echo gettext('Clear album image cache'); ?></a>
-			<br clear="all" />
+			<br class="clearall" />
 		</div>
 		<div class="button buttons tooltip" title="<?php echo gettext("Resets album's hit counters.");?>">
 			<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-edit.php?action=reset_hitcounters&amp;album='.html_encode($album->name).'&amp;albumid='.$album->getID(); ?>&amp;XSRFToken=<?php  echo getXSRFToken('hitcounter'); ?>">
 			<img src="images/reset.png" /><?php echo gettext('Reset album hit counters'); ?></a>
-			<br clear="all" />
+			<br class="clearall" />
 		</div>
 		<?php
 	}
@@ -1928,7 +1928,7 @@ function printAlbumButtons($album) {
 		<div class="button buttons tooltip" title="<?php echo gettext("Refreshes the metadata for the album.");?>">
 			<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-refresh-metadata.php?album='.html_encode($album->name).'&amp;return='.html_encode($album->name); ?>&amp;XSRFToken=<?php  echo getXSRFToken('refresh'); ?>">
 			<img src="images/cache.png" /><?php echo gettext('Refresh album metadata'); ?></a>
-			<br clear="all" />
+			<br class="clearall" />
 		</div>
 		<?php
 	}
@@ -3121,7 +3121,7 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 				?>
 			</ul>
 			<span class="floatright"><?php echo $legend; ?>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-			<br clear="all" />
+			<br class="clearall" />
 		</div>
 	</div>
 	<?php

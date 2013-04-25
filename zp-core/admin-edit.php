@@ -769,7 +769,7 @@ $alb = removeParentAlbumNames($album);
 				<input type="hidden"	name="savealbuminfo" value="1" />
 				<?php printAlbumEditForm(0, $album, true); ?>
 			</form>
-			<br clear="all" />
+			<br class="clearall" />
 			<hr />
 		</div>
 		<?php
@@ -841,7 +841,7 @@ $alb = removeParentAlbumNames($album);
 				}
 				?>
 			</span>
-			<br clear="all" /><br />
+			<br class="clearall" /><br />
 			<div class="bordered">
 			<div class="headline" style="text-align: left;"><?php echo gettext("Edit this album"); ?>
 			<?php
@@ -873,7 +873,7 @@ $alb = removeParentAlbumNames($album);
 			</ul>
 
 		</div>
-		 <br clear="all" /><br clear="all" />
+		 <br class="clearall" /><br class="clearall" />
 			<?php printAlbumLegend(); ?>
 					<span id="serializeOutput" /></span>
 					</div>
@@ -896,7 +896,7 @@ $alb = removeParentAlbumNames($album);
 					</div>
 					</span>
 				</form>
-				<br clear="all" />
+				<br class="clearall" />
 		</div><!-- subalbum -->
 		<?php
 		}
@@ -1218,12 +1218,12 @@ $alb = removeParentAlbumNames($album);
 						<br /><p class="buttons"><a	href="javascript:toggleMoveCopyRename('<?php echo $currentimage; ?>', '');"><img src="images/reset.png" alt="" /><?php echo gettext("Cancel");?></a>
 						</p>
 						</div>
-						<span style="line-height: 0em;"><br clear="all" /></span>
+						<span style="line-height: 0em;"><br class="clearall" /></span>
 						<div id="deletemsg<?php echo $currentimage; ?>"	style="padding-top: .5em; padding-left: .5em; color: red; display: none">
 						<?php echo gettext('Image will be deleted when changes are applied.'); ?>
 						<p class="buttons"><a	href="javascript:toggleMoveCopyRename('<?php echo $currentimage; ?>', '');"><img src="images/reset.png" alt="" /><?php echo gettext("Cancel");?></a></p>
 						</div>
-						<span style="line-height: 0em;"><br clear="all" /></span>
+						<span style="line-height: 0em;"><br class="clearall" /></span>
 
 						<?php
 						if (isImagePhoto($image)) {
@@ -1256,13 +1256,13 @@ $alb = removeParentAlbumNames($album);
 							<?php
 						}
 						?>
-						<br clear="all" />
+						<br class="clearall" />
 						<hr />
 						<div class="button buttons tooltip" title="<?php printf(gettext('Refresh %s metadata'), $image->filename); ?>">
 							<a href="admin-edit.php?action=refresh&amp;album=<?php echo pathurlencode($album->name); ?>&amp;image=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>&amp;XSRFToken=<?php echo getXSRFToken('imagemetadata'); ?>" >
 								<img src="images/cache.png" alt="" /><?php echo gettext("Refresh Metadata"); ?>
 							</a>
-							<br clear="all" />
+							<br class="clearall" />
 						</div>
 						<?php
 						if (!is_null($image->objectsThumb)) {
@@ -1271,13 +1271,13 @@ $alb = removeParentAlbumNames($album);
 								<a href="admin-thumbcrop.php?a=<?php echo pathurlencode($album->name); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>" >
 									<img src="images/shape_handles.png" alt="" /><?php echo gettext("Crop thumbnail"); ?>
 								</a>
-								<br clear="all" />
+								<br class="clearall" />
 							</div>
 							<?php
 						}
 						echo zp_apply_filter('edit_image_utilities', '<!--image-->', $image, $currentimage, $pagenum, $tagsort); //pass space as HTML because there is already a button shown for cropimage
 						?>
-						<span style="line-height: 0em;"><br clear="all" /></span>
+						<span style="line-height: 0em;"><br class="clearall" /></span>
 						</div>
 
 						<h2 class="h2_bordered_edit imageextrainfo" style="display: none"><?php echo gettext("Tags"); ?></h2>
@@ -1573,7 +1573,7 @@ if($subtab != "albuminfo") {	?>
 			<img	src="images/fail.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
 		</button>
 	</span>
-	<br clear="all" /><br />
+	<br class="clearall" /><br />
 	<div class="outerbox">
 		<?php
 		$currentalbum = 1;
@@ -1591,7 +1591,7 @@ if($subtab != "albuminfo") {	?>
 		}
 		?>
 	</div>
-	<br clear="all" /><br />
+	<br class="clearall" /><br />
 	<span class="buttons">
 		<a title="<?php echo gettext('Back to the album list'); ?>" href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-edit.php?page=edit">
 			<img	src="images/arrow_left_blue_round.png" alt="" /><strong><?php echo gettext("Back"); ?></strong>
@@ -1666,7 +1666,7 @@ if($subtab != "albuminfo") {	?>
 		}
 		?>
 	</p>
-	<br clear="all" /><br />
+	<br class="clearall" /><br />
 	<div class="bordered">
 		<div class="headline"><?php echo gettext("Edit this album"); ?>
 			<?php printBulkActions($checkarray_albums); ?>
@@ -1709,7 +1709,7 @@ if($subtab != "albuminfo") {	?>
 	</p>
 
 </form>
-<br clear="all" />
+<br class="clearall" />
 
 <?php
 	} else {

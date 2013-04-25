@@ -375,7 +375,7 @@ function permissionsSelector($permission_names, $select) {
 		$c++;
 	}
 	$selector .= '</select>';
-	$selector .= '<span class="buttons" style="float: right;"><button type="submit" alt="'.gettext('change the definition').'"><strong>'.gettext('apply').'</strong></button></span><br clear="all" />';
+	$selector .= '<span class="buttons" style="float: right;"><button type="submit" alt="'.gettext('change the definition').'"><strong>'.gettext('apply').'</strong></button></span><br class="clearall" />';
 	return $selector;
 }
 

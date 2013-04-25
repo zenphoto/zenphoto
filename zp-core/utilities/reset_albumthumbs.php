@@ -90,9 +90,9 @@ if (db_connect($_zp_conf_vars)) {
 						?>
 					</select>
 				</div>
-				<br clear="all" /> <br clear="all" />
+				<br class="clearall" /> <br />
 			</form>
-			<br clear="all" /> <br clear="all" />
+			<br class="clearall" /> <br />
 	<?php
 } else {
 	echo "<h3>".gettext("database not connected")."</h3>";

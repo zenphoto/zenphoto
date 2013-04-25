@@ -120,7 +120,7 @@ printLogoAndLinks();
 			</p>
 			<br />
 			<br />
-			<br clear="all" />
+			<br class="clearall" />
 			<?php
 		} else{
 			?>
@@ -131,7 +131,7 @@ printLogoAndLinks();
 			</p>
 			<br />
 			<br />
-			<br clear="all" />
+			<br class="clearall" />
 			<?php
 		}
 		?>
@@ -171,7 +171,7 @@ printLogoAndLinks();
 						)
 						// ]]> -->
 					</script>
-					<br clear="all" />
+					<br class="clearall" />
 					<br />
 					<br />
 
@@ -208,7 +208,7 @@ printLogoAndLinks();
 							<img src="images/pass.png" alt="" /><?php echo gettext("Rename tags"); ?>
 						</button>
 					</p>
-					<br clear="all" />
+					<br class="clearall" />
 					<br />
 					<br />
 				</form>
@@ -239,7 +239,7 @@ printLogoAndLinks();
 							<img src="images/add.png" alt="" /><?php echo gettext("Add tags"); ?>
 						</button>
 					</p>
-					<br clear="all" />
+					<br class="clearall" />
 					<br />
 					<br />
 

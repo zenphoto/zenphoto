@@ -801,7 +801,7 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 					$msg2 = '<p>'.sprintf(gettext('If your server filesystem character set is different from <code>%s</code> and you create album or image filenames names containing characters with diacritical marks you may have problems with these objects.'),$charset_defined).'</p>'.
 									'<form action="#"><input type="hidden" name="xsrfToken" value="'.$xsrftoken.'" /><input type="hidden" name="charset_attempts" value="'.$tries.'" /><p>'.
 									gettext('Change the filesystem character set define to %1$s').
-									'</p></form><br clear="all" />';
+									'</p></form><br class="clearall" />';
 
 					if (isset($_zp_conf_vars['FILESYSTEM_CHARSET'])) {
 						$selectedset = $_zp_conf_vars['FILESYSTEM_CHARSET'];
@@ -1347,7 +1347,7 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 				} else {
 					checkMark(-1, '', gettext('Zenphoto core folders [Some unknown files were found]'),
 														gettext('You should remove the following files: ').'<br /><code>'.implode('<br />',$filelist).
-															'</code><p class="buttons"><a href="?delete_extra'.($debug?'&amp;debug':'').'">'.gettext("Delete extra files").'</a></p><br clear="all" /><br clear="all" />');
+															'</code><p class="buttons"><a href="?delete_extra'.($debug?'&amp;debug':'').'">'.gettext("Delete extra files").'</a></p><br class="clearall" /><br class="clearall" />');
 				}
 			}
 			checkMark($permissions, gettext("Zenphoto core file permissions"), gettext("Zenphoto core file permissions [not correct]"), gettext('Setup could not set the one or more components to the selected permissions level. You will have to set the permissions manually. See the <a href="http://www.zenphoto.org/news/troubleshooting-zenphoto#29">Troubleshooting guide</a> for details on Zenphoto permissions requirements.'));
@@ -1576,7 +1576,7 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 					<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/fail.png" alt=""/> <?php echo gettext("Refresh"); ?>
 				</a>
 			</p>
-			<br clear="all" /><br clear="all" />
+			<br class="clearall" /><br class="clearall" />
 			<?php
 		} else {
 				?>
@@ -2692,7 +2692,7 @@ if (file_exists(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE)) {
 			}
 			?>
 			<p class="buttons"><button class="submitbutton" id="submitbutton" type="submit"	title="<?php echo gettext('run setup'); ?>" ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/<?php echo $img; ?>" alt="" /><?php echo gettext("Go"); ?></button></p>
-			<br clear="all" /><br clear="all" />
+			<br class="clearall" /><br class="clearall" />
 		</form>
 		<?php
 		}
