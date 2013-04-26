@@ -16,7 +16,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.4.4.4\n"
+"Project-Id-Version: Zenphoto 1.4.4.5\n"
 "Report-Msgid-Bugs-To: webmaster at momo-i.org\n"
 "POT-Creation-Date: 2013-04-25 13:04+0900\n"
 "PO-Revision-Date: 2009-08-12 08:30+0900\n"
@@ -12736,13 +12736,12 @@ msgstr "テンプレートはハイライトされます。"
 
 #: zp-core/zp-extensions/user_groups.php:208
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:451
-#, fuzzy
 msgid ""
 "<strong>Note:</strong> When a group is assigned <em>rights</em> and "
 "<em>managed objects</em> are determined by the group!"
 msgstr ""
 "<strong>注:</strong> グループが割り当てられたとき、<em>権限</em>および<em>管"
-"理されたアルバム</em>はグループによって決定されます！"
+"理されたオブジェクト</em>はグループによって決定されます！"
 
 #: zp-core/zp-extensions/user_groups.php:222
 msgid "assignments"
@@ -13128,7 +13127,6 @@ msgstr ""
 "かの管理者がいなければなりません！"
 
 #: zp-core/zp-extensions/federated_logon.php:130
-#, fuzzy
 msgid ""
 "* The option may be set via the <a href=\"javascript:gotoName"
 "('federated_logon');\"><em>register_user</em></a> plugin options."
@@ -13254,12 +13252,12 @@ msgstr ""
 #: zp-core/zp-extensions/trivialSpam.php:13
 #: zp-core/zp-extensions/legacySpam.php:17
 #: zp-core/zp-extensions/simpleSpam.php:14
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Only one SPAM handler plugin may be enabled. <a href=\"#%1$s\"><code>%1$s</"
 "code></a> is already enabled."
 msgstr ""
-"メールを取り扱うプラグインは1つのみ有効にできます。<a href=\"#%1$s\"><code>"
+"SPAMを取り扱うプラグインは1つのみ有効にできます。<a href=\"#%1$s\"><code>"
 "%1$s</code></a>がすでに有効化されています。"
 
 #: zp-core/zp-extensions/trivialSpam.php:61
@@ -13450,9 +13448,8 @@ msgid "RSS suspended"
 msgstr "RSSフィード"
 
 #: zp-core/zp-extensions/site_upgrade/site_upgrade.php:35
-#, fuzzy
 msgid "The RSS feed is currently not available."
-msgstr "画像は見えるようにマークされていません。"
+msgstr "RSSフィードは現在利用可能ではありません。"
 
 #: zp-core/zp-extensions/site_upgrade/site_upgrade.php:50
 msgid "Site is now marked in upgrade."
@@ -13616,7 +13613,6 @@ msgstr "名前"
 
 #: zp-core/zp-extensions/contact_form.php:111
 #: zp-core/zp-extensions/contact_form.php:113
-#, fuzzy
 msgid "Company"
 msgstr "会社"
 
@@ -13634,7 +13630,6 @@ msgstr "郵便番号"
 
 #: zp-core/zp-extensions/contact_form.php:129
 #: zp-core/zp-extensions/contact_form.php:131
-#, fuzzy
 msgid "E-mail"
 msgstr "メールアドレス"
 
@@ -13659,21 +13654,18 @@ msgid "Phone"
 msgstr "電話"
 
 #: zp-core/zp-extensions/contact_form.php:141
-#, fuzzy
 msgid "Phone number"
 msgstr "電話番号"
 
 #: zp-core/zp-extensions/contact_form.php:142
 #: zp-core/zp-extensions/contact_form.php:144
-#, fuzzy
 msgid "Subject"
-msgstr "件名:"
+msgstr "件名"
 
 #: zp-core/zp-extensions/contact_form.php:145
 #: zp-core/zp-extensions/contact_form.php:147
-#, fuzzy
 msgid "Message"
-msgstr "メッセージ:"
+msgstr "メッセージ"
 
 #: zp-core/zp-extensions/contact_form.php:205
 msgid "a title"
@@ -14503,12 +14495,10 @@ msgid "Your subscription expires on %s"
 msgstr "あなたの購読は%sで期限切れになります。"
 
 #: zp-core/zp-extensions/user-expiry.php:289
-#, fuzzy
 msgid "You must change your password."
-msgstr "パスワードが必要です。"
+msgstr "パスワードがの変更が必要です。"
 
 #: zp-core/zp-extensions/user-expiry.php:292
-#, fuzzy
 msgid "You have users whose credentials have expired."
 msgstr "資格認証の期限切れユーザを持っています。"
 
@@ -16382,9 +16372,8 @@ msgstr ""
 
 #: zp-core/zp-extensions/reCaptcha.php:11
 #: zp-core/zp-extensions/zpCaptcha.php:13
-#, fuzzy
 msgid "Zenphoto captcha handler."
-msgstr "Zenphotoアップグレード"
+msgstr "Zenphotoキャプチャハンドラーです。"
 
 #: zp-core/zp-extensions/reCaptcha.php:13
 #: zp-core/zp-extensions/zpCaptcha.php:15
@@ -18378,9 +18367,8 @@ msgid "hide comments"
 msgstr "コメントの非表示"
 
 #: zp-core/zp-extensions/comment_form/functions.php:798
-#, fuzzy
 msgid "on"
-msgstr "無し"
+msgstr "on"
 
 #: zp-core/zp-extensions/comment_form/functions.php:867
 msgid "Only registered users may post comments."
@@ -18570,9 +18558,8 @@ msgid_plural "%u stars"
 msgstr[0] "%u点"
 
 #: zp-core/zp-extensions/rating.php:343
-#, fuzzy
 msgid "Submit »"
-msgstr "送信"
+msgstr "送信 »"
 
 #: zp-core/zp-extensions/rating.php:391
 msgid "Vote Submitted"
@@ -18776,9 +18763,9 @@ msgid "invalid_MaxSpace"
 msgstr "invalid_MaxSpace"
 
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:250
-#, fuzzy, php-format
+#, php-format
 msgid "all sizes for <i>%1$s</i>"
-msgstr "<em>%1$s</em>の合計一致数: %2$u"
+msgstr "<i>%1$s</i>の合計サイズ"
 
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:296
 #, php-format
@@ -19139,18 +19126,16 @@ msgstr ""
 "リーを分けられます。"
 
 #: zp-core/zp-extensions/markRelease.php:12
-#, fuzzy
 msgid "Mark installation as \"released\"."
-msgstr "インストールファイル"
+msgstr "「リリース」としてインストールをマークします。"
 
 #: zp-core/zp-extensions/markRelease.php:42
 msgid "released"
 msgstr "リリース"
 
 #: zp-core/zp-extensions/markRelease.php:55
-#, fuzzy
 msgid "Mark release"
-msgstr "不明なリリース"
+msgstr "リリースとしてマーク"
 
 #: zp-core/zp-extensions/markRelease.php:59
 #, php-format
@@ -20092,13 +20077,12 @@ msgid "Provides file handling in tinyMCE and the \"files\" upload tab."
 msgstr "tinyMCEと「ファイル」アップロードタブでのファイル処理を提供します。"
 
 #: zp-core/zp-extensions/register_user/register_user_form.php:15
-#, fuzzy
 msgid "Username* (this will be your user username)"
-msgstr "メール*(これはあなたのユーザIDになります)"
+msgstr "ユーザ名* (これはあなたのユーザ名になります)"
 
 #: zp-core/zp-extensions/register_user/register_user_form.php:18
 msgid "Email* (this will be your user id)"
-msgstr "メール*(これはあなたのユーザIDになります)"
+msgstr "メール* (これはあなたのユーザIDになります)"
 
 #: zp-core/zp-extensions/register_user/register_user_form.php:18
 msgid "User ID"
@@ -20933,33 +20917,28 @@ msgid "Reset all hitcounters to zero"
 msgstr "全てのヒットカウンターを0にリセット"
 
 #: zp-core/zp-extensions/favoritesHandler.php:29
-#, fuzzy
 msgid "Support for <em>favorites</em> handling."
-msgstr "Zenphoto<em>audio-video</em>ハンドラです。"
+msgstr "<em>お気に入り</em>を扱うためのサポートです。"
 
 #: zp-core/zp-extensions/favoritesHandler.php:38
 msgid "My favorites"
 msgstr "お気に入り"
 
 #: zp-core/zp-extensions/favoritesHandler.php:41
-#, fuzzy
 msgid "The albums and images selected as favorites."
-msgstr "選択したアイテムの画像用のタグを追加しました"
+msgstr "お気に入りとして選択咲いたアルバムと画像です。"
 
 #: zp-core/zp-extensions/favoritesHandler.php:43
-#, fuzzy
 msgid "Add favorite"
-msgstr "カテゴリの追加"
+msgstr "お気に入りの追加"
 
 #: zp-core/zp-extensions/favoritesHandler.php:45
-#, fuzzy
 msgid "Remove favorite"
-msgstr "リストア失敗"
+msgstr "お気に入りの削除"
 
 #: zp-core/zp-extensions/favoritesHandler.php:66
-#, fuzzy
 msgid "The text for the link to the favorites page."
-msgstr "完全な記事へのリンクのテキストです。"
+msgstr "お気に入りページへのリンクのテキストです。"
 
 #: zp-core/zp-extensions/favoritesHandler.php:67
 msgid "Favorites page"
@@ -20990,9 +20969,8 @@ msgid "The favorites page title text."
 msgstr "お気に入りページのタイトル文です。"
 
 #: zp-core/zp-extensions/favoritesHandler.php:86
-#, fuzzy
 msgid "The favorites page description text."
-msgstr "タイトルと説明"
+msgstr "お気に入りページの説明文です。"
 
 #: zp-core/zp-extensions/federated_logon/Auth/OpenID_detect.php:537
 msgid "back to Zenphoto"
@@ -21117,29 +21095,24 @@ msgstr "後ほど戻ってください"
 #: zp-core/zp-extensions/site_upgrade.php:77
 #: zp-core/zp-extensions/site_upgrade.php:82
 #: zp-core/zp-extensions/site_upgrade.php:87
-#, fuzzy
 msgid "Site status:"
-msgstr "投票ステータス:"
+msgstr "サイトステータス:"
 
 #: zp-core/zp-extensions/site_upgrade.php:77
-#, fuzzy
 msgid "The site is closed!"
-msgstr "サイトは閉じています。"
+msgstr "サイトは閉じています！"
 
 #: zp-core/zp-extensions/site_upgrade.php:82
-#, fuzzy
 msgid "The site is in test mode!"
-msgstr "サイトは開いてます。"
+msgstr "サイトはテストモードです！"
 
 #: zp-core/zp-extensions/site_upgrade.php:87
-#, fuzzy
 msgid "The site is opened"
-msgstr "サイトは開いてます。"
+msgstr "サイトは開いてます！"
 
 #: zp-core/zp-extensions/site_upgrade.php:108
-#, fuzzy
 msgid "Site » test mode"
-msgstr "テストモード"
+msgstr "サイト » テストモード"
 
 #: zp-core/zp-extensions/site_upgrade.php:112
 #, fuzzy
@@ -21147,9 +21120,8 @@ msgid "Make the site available for viewing administrators only."
 msgstr "リダイレクトを削除することによって閲覧可能なサイトを作成します。"
 
 #: zp-core/zp-extensions/site_upgrade.php:123
-#, fuzzy
 msgid "Site » open"
-msgstr "サイトは開いてます。"
+msgstr "サイト » オープン"
 
 #: zp-core/zp-extensions/site_upgrade.php:127
 #, fuzzy
@@ -21157,9 +21129,8 @@ msgid "Make site available for viewing."
 msgstr "リダイレクトを削除することによって閲覧可能なサイトを作成します。"
 
 #: zp-core/zp-extensions/site_upgrade.php:138
-#, fuzzy
 msgid "Site » close"
-msgstr "サイトロゴ"
+msgstr "サイト » ロゴ"
 
 #: zp-core/zp-extensions/site_upgrade.php:142
 msgid ""
@@ -21402,9 +21373,9 @@ msgid "Last backup"
 msgstr "最後のバックアップ"
 
 #: zp-core/zp-extensions/auto_backup.php:60
-#, fuzzy, php-format
+#, php-format
 msgid "Auto Backup last ran %s."
-msgstr "最後に自動バックアップが実行された時間です。"
+msgstr "自動バックアップの最後は%sに実行されました。"
 
 #: zp-core/zp-extensions/show_not_logged-in.php:10
 #, php-format
