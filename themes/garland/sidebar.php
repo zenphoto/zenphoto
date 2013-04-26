@@ -49,7 +49,7 @@ if (getOption('Allow_search')) {
 	}
 	printSearchForm(NULL, 'search', $_zp_themeroot.'/images/search.png', $text, NULL, NULL, $list);
 	?>
-	<br clear="all">
+	<br class="clearall" />
 	<?php
 }
 

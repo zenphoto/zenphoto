@@ -223,7 +223,7 @@ if (isset($_GET['save']) && !isset($_GET['add'])) {
 	<strong><a href="menu_tab_edit.php?add&amp;menuset=<?php echo urlencode($menuset); ?>" title="<?php echo gettext("Add Menu Items"); ?>"><img src="../../images/add.png" alt="" /> <?php echo gettext("Add Menu Items"); ?></a></strong>
 	</span>
 </p>
-<br clear="all" /><br />
+<br class="clearall" /><br />
 <div class="box" style="padding:15px; margin-top: 10px">
 <?php
 $action = $type = $id = $link = '';
@@ -358,7 +358,7 @@ if (isset($_GET['add']) && !isset($_GET['save'])) {
 	<button type="submit" title="<?php echo gettext("Apply"); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 	<button type="reset" title="<?php echo gettext("Reset"); ?>"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 	</p>
-	<br clear="all" /><br />
+	<br class="clearall" /><br />
 </form>
 </div>
 </div>

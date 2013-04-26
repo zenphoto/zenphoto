@@ -69,7 +69,7 @@ function upload_form($uploadlimit, $passedalbum) {
 			<img src="images/pass.png" alt="" /><?php echo gettext('Cancel'); ?>
 		</button>
 	</p>
-	<br /><br clear="all" />
+	<br /><br class="clearall" />
 
 
 	<?php

@@ -51,7 +51,7 @@ echo "\n</head>";
 				<?php
 			}
 			?>
-			<br clear="all">
+			<br class="clearall" />
 			<div class="tabbox">
 				<iframe src="<?php echo FULLWEBPATH.'/'.ZENFOLDER; ?>/gpl-2.0-standalone.htm" width="100%" height="480" style="border: 0">
 				</iframe>

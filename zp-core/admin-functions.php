@@ -1729,7 +1729,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 								});
 							// ]]> -->
 					</script>
-					<br clear="both" />
+					<br class="clearall" />
 					<hr />
 					<p>
 						<label for="<?php echo $prefix; ?>publishdate"><?php echo gettext('Publish date'); ?> <small>(YYYY-MM-DD)</small></label>

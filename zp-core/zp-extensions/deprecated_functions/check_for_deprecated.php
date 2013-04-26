@@ -55,14 +55,14 @@ echo '</head>'."\n";
 						}
 						?>
 					</select>
-					<br clear="all" /><br />
+					<br class="clearall" /><br />
 					<span class="buttons">
 						<button type="submit" title="<?php echo gettext("Search"); ?>" onclick="$('#outerbox').html('');" ><img src="../../images/magnify.png" alt="" /><strong><?php echo gettext("Search"); ?></strong></button>
 					</span>
 					<span id="progress"></span>
 				</form>
 
-				<br clear="all" />
+				<br class="clearall" />
 				<p class="notebox"><?php echo gettext('<strong>NOTE:</strong> This search will have false positives for instance when the function name appears in a comment or quoted string.'); ?></p>
 				<?php
 				if (isset($_GET['action'])) {

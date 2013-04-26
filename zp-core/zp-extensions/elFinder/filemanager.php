@@ -72,7 +72,7 @@ echo "\n</head>";
 		</div>
 	</div>
 </div>
-<br clear="all" />
+<br class="clearall" />
 <?php printAdminFooter(); ?>
 
 </body>

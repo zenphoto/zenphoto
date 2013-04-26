@@ -1140,7 +1140,7 @@ $alb = removeParentAlbumNames($album);
 								});
 							// ]]> -->
 					</script>
-						<br clear="both" />
+						=<br class="clearall" />
 						<hr />
 						<p>
 							<label for="publishdate-<?php echo $currentimage; ?>"><?php echo gettext('Publish date'); ?> <small>(YYYY-MM-DD)</small></label>
@@ -1184,7 +1184,7 @@ $alb = removeParentAlbumNames($album);
 								<input type="radio" id="Delete-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="delete"
 									onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>','<?php echo gettext("Are you sure you want to select this image for deletion?"); ?>')" /> <?php echo gettext("Delete image") ?>
 						</label>
-						<br clear='all'>
+						<br class="clearall" />
 						<div id="movecopydiv-<?php echo $currentimage; ?>" style="padding-top: .5em; padding-left: .5em; display: none;">
 						<?php echo gettext("to"); ?>:
 						<select id="albumselectmenu-<?php echo $currentimage; ?>"

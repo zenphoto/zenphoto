@@ -881,7 +881,7 @@ function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=t
 	<?php
 if (getOption('comment_form_rss') && getOption('RSS_comments')) {
 	?>
-	<br clear="all" />
+	<br class="clearall" />
 	<?php
 	switch($_zp_gallery_page) {
 		case "image.php":

@@ -29,7 +29,7 @@ class zenphotoDonate {
 				<input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but21.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
 				<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
 			</form>
-			<br clear="all">
+			<br class="clearall" />
 			<div style="padding-left:10px;">
 			<p><?php  echo gettext('Your support helps pay for the Zenphoto site server and helps development of Zenphoto. Thank you!'); ?></p>
 			</div>

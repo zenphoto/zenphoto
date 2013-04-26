@@ -389,7 +389,7 @@ $last = '';
 			<?php
 		}
 		?>
-		<br clear="all">
+		<br class="clearall" />
 </form>
 
 <?php

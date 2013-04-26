@@ -1112,3 +1112,9 @@ button.positive,.buttons a.positive {
 .clearall {
 clear: both !important;
 }
+.clearleft {
+clear: left !important;
+}
+.clearright {
+clear: right !important;
+}

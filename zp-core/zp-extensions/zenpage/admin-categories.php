@@ -138,7 +138,7 @@ printLogoAndLinks();
 						}
 					?>
 				</p>
-				<br clear="all" /><br />
+				<br class="clearall" /><br />
 				<div class="bordered">
 					<div class="headline"><?php echo gettext('Edit this Category'); ?>
 					<?php

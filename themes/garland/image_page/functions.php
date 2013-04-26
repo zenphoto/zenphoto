@@ -40,7 +40,7 @@ class image_page {
 			}
 			?>
 		</div>
-		<br clear="all">
+		<br class="clearall" />
 		<?php
 		@call_user_func('printSlideShowLink');
 	}

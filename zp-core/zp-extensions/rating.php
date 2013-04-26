@@ -346,7 +346,7 @@ function printRating($vote=3, $object=NULL, $text=true) {
 			}
 			?>
 		</form>
-		<span style="line-height: 0em;"><br clear="all" /></span>
+		<span style="line-height: 0em;"><br class="clearall" /></span>
 		<span class="vote" id="vote<?php echo $unique; ?>" <?php if (!$text) echo 'style="display:none;"'; ?>>
 			<?php echo $msg; ?>
 		</span>

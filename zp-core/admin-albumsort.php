@@ -143,7 +143,7 @@ if (!isset($_GET['album'])) {
 					<strong><?php echo gettext('View Album'); ?></strong>
 					</a>
 				</p>
-				<br clear="all"/><br />
+				<br class="clearall" /><br />
 				<p><?php echo gettext("Set the image order by dragging them to the positions you desire."); ?></p>
 
 				<div id="images">
@@ -174,7 +174,7 @@ if (!isset($_GET['album'])) {
 					</p>
 					</div>
 			</form>
-			<br clear="all"/>
+			<br class="clearall" />
 
 		</div>
 

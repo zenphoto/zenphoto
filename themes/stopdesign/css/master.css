@@ -17,3 +17,9 @@ http://stopdesign.com/templates/photos/
 .clearall {
 clear: both !important;
 }
+.clearleft {
+clear: left !important;
+}
+.clearright {
+clear: right !important;
+}

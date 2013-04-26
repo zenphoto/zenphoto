@@ -531,7 +531,7 @@ if ($result->loaded || $result->transient) {
 										onclick="deleteConfirm('delete_object','','<?php printf(gettext('Are you sure you want to delete this %s?'), $deleteitem); ?>');$('#copyfield').hide();" />
 								<?php echo gettext('delete'); ?>
 							</label>
-							<br clear="all" />
+							<br class="clearall" />
 							<div class="copydelete" id="copyfield" style="display:none" >
 							<?php printf(gettext('copy as: %s'), '<input type="text" name="copy_object_as" value = "" />');?>
 							</div>

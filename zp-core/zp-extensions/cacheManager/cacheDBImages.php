@@ -199,7 +199,7 @@ $tables = array('albums'=>array('desc'),
 		<?php
 	}
 	?>
-	<br clear="all">
+	<br class="clearall" />
 </form>
 
 <?php

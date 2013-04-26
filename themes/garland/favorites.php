@@ -80,7 +80,7 @@ if (!defined('WEBPATH')) die();
 								}
 								?>
 							</div>
-							<br clear="all">
+							<br class="clearall" />
 							<?php @call_user_func('printSlideShowLink'); ?>
 							<?php
 							if ((getNumAlbums() != 0) || !$oneImagePage){

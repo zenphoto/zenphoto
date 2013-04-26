@@ -134,7 +134,7 @@ if (GALLERY_SECURITY == 'public') {
 	?>
 </p>
 </div>
-<br clear="all" /><br clear="all" />
+<br class="clearall" /><br class="clearall" />
 <div class="bordered">
  <div class="headline"><?php echo gettext('Edit this page'); ?>
 	<?php
@@ -163,7 +163,7 @@ if (GALLERY_SECURITY == 'public') {
 	</ul>
 
  </div>
- <br clear="all" /><br clear="all" />
+ <br class="clearall" /><br class="clearall" />
 	<?php
 	if ($toodeep) {
 			echo '<div class="errorbox">';

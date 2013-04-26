@@ -161,7 +161,7 @@ foreach ($reports as $report) {
 		</a>
 	</div>
 </span>
-<br clear="all" /><br />
+<br class="clearall" /><br />
 
 <div class="bordered">
 	<?php
@@ -198,7 +198,7 @@ foreach ($reports as $report) {
 				</select>
 			</span>
 		</div>
-		<br clear="all" />
+		<br class="clearall" />
 		<div class="subhead">
 			<label style="float: right">
 				<?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
@@ -221,7 +221,7 @@ foreach ($reports as $report) {
 		<div class="headline">
 			<strong><?php echo gettext("No menus exist"); ?></strong>
 		</div>
-		<br clear="all" />
+		<br class="clearall" />
 		<?php
 	}
 	?>

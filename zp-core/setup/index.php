@@ -1596,7 +1596,7 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 			setupLanguageSelector();
 		}
 		?>
-		<br clear="all">
+		<br class="clearall" />
 		<?php
 		echo "\n</div><!-- content -->";
 		echo "\n</div><!-- main -->";
@@ -2732,7 +2732,7 @@ if ($noxlate > 0) {
 	setupLanguageSelector();
 }
 ?>
-<br clear="all">
+<br class="clearall" />
 </div><!-- content -->
 </div><!-- main -->
 <?php

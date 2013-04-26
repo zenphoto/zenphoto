@@ -200,19 +200,19 @@ if (zp_loggedin(ADMIN_RIGHTS)) {	//only admin should be allowed to do this
 			<label><input type="checkbox" name="album_default"	value="1"<?php if ($albpublish) echo ' checked="checked"'; ?> /> <?php echo gettext("Publish albums by default"); ?></label>
 			&nbsp;&nbsp;&nbsp;
 			<label><input type="checkbox" name="image_default"	value="1"<?php if ($imgpublish) echo ' checked="checked"'; ?> /> <?php echo gettext("Publish images by default"); ?></label>
-			<br clear="all" />
-			<br clear="all" />
+			<br class="clearall" />
+			<br class="clearall" />
 			<div class="buttons pad_button" id="setdefaults">
 				<button class="tooltip" type="submit" title="<?php echo gettext("Set defaults for album publishing and image visibility."); ?>">
 					<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/burst.png" alt="" /> <?php echo gettext("Apply"); ?>
 				</button>
 			</div>
 		</form>
-		<br clear="all" />
+		<br class="clearall" />
 	</div>
 </fieldset>
-<br clear="all" />
-<br clear="all" />
+<br class="clearall" />
+<br class="clearall" />
 <?php
 }
 ?>
@@ -286,15 +286,15 @@ if (zp_loggedin(ADMIN_RIGHTS)) {	//only admin should be allowed to do this
 			}
 			?>
 			</ul>
-			<br clear="all" />
-			<br clear="all" />
+			<br class="clearall" />
+			<br class="clearall" />
 
 			<div class="buttons pad_button" id="publishalbums">
 			<button class="tooltip" type="submit" title="<?php echo gettext("Publish waiting albums."); ?>">
 				<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/cache.png" alt="" /> <?php echo gettext("Publish albums"); ?>
 			</button>
 			</div>
-			<br clear="all" />
+			<br class="clearall" />
 			</form>
 			<p class="buttons">
 				<a href="?propagate_unpublished" title="<?php echo gettext('Set all subalbums of an un-published album to un-published.'); ?>">
@@ -302,7 +302,7 @@ if (zp_loggedin(ADMIN_RIGHTS)) {	//only admin should be allowed to do this
 					<?php echo gettext('Propagate un-published state'); ?>
 				</a>
 			</p>
-			<br clear="all" />
+			<br class="clearall" />
 			<?php
 		}
 	?>
@@ -313,7 +313,7 @@ if (zp_loggedin(ADMIN_RIGHTS)) {	//only admin should be allowed to do this
 	}
 	?>
 </fieldset>
-<br clear="all" />
+<br class="clearall" />
 
 <script type="text/javascript">
 	//<!-- <![CDATA[
@@ -334,8 +334,8 @@ if (zp_loggedin(ADMIN_RIGHTS)) {	//only admin should be allowed to do this
 	<form name="review" action="" method="post">
 		<?php XSRFToken('publishContent');?>
 		<?php printf(gettext('Review images older than: %s'),'<input type="text" size="20" id="publish_date" name="publish_date" value="'.$requestdate.'" />'); ?>
-		<br clear="all" />
-		<br clear="all" />
+		<br class="clearall" />
+		<br class="clearall" />
 		<input type="hidden" name="review" value="true" />
 		<div class="buttons pad_button" id="reviewobjects">
 			<button class="tooltip" type="submit" title="<?php echo gettext("Review un-published images."); ?>">
@@ -343,8 +343,8 @@ if (zp_loggedin(ADMIN_RIGHTS)) {	//only admin should be allowed to do this
 			</button>
 		</div>
 	</form>
-	<br clear="all" />
-	<br clear="all" />
+	<br class="clearall" />
+	<br class="clearall" />
 	<?php
 	$c = count($publish_images_list);
 	?>
@@ -466,7 +466,7 @@ if (zp_loggedin(ADMIN_RIGHTS)) {	//only admin should be allowed to do this
 				<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/cache.png" alt="" /> <?php echo gettext("Process changes"); ?>
 			</button>
 		</div>
-		<br clear="all" />
+		<br class="clearall" />
 		</form>
 		<?php
 		}
@@ -494,7 +494,7 @@ if (zp_loggedin(ADMIN_RIGHTS)) {	//only admin should be allowed to do this
 			}
 		}
 		?>
-		<br clear="all" />
+		<br class="clearall" />
 		<fieldset class="smallbox">
 			<legend><?php reveal('catbox',$visible); echo gettext('Categories not published'); ?></legend>
 			<?php
@@ -536,13 +536,13 @@ if (zp_loggedin(ADMIN_RIGHTS)) {	//only admin should be allowed to do this
 				<ul class="schedulealbumchecklist">
 				<?php echo $output; ?>
 				</ul>
-				<br clear="all" />
+				<br class="clearall" />
 				<div class="buttons pad_button">
 					<button class="tooltip" type="submit" title="<?php echo gettext("Publish waiting categories."); ?>">
 						<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/cache.png" alt="" /> <?php echo gettext("Publish categories"); ?>
 					</button>
 				</div>
-				<br clear="all" />
+				<br class="clearall" />
 			</form>
 			</div>
 			<?php
@@ -550,7 +550,7 @@ if (zp_loggedin(ADMIN_RIGHTS)) {	//only admin should be allowed to do this
 		}
 		?>
 		</fieldset>
-		<br clear="all" />
+		<br class="clearall" />
 		<?php
 		$visible = $report == 'news';
 		$items = $_zp_zenpage->getArticles(0,false);
@@ -605,13 +605,13 @@ if (zp_loggedin(ADMIN_RIGHTS)) {	//only admin should be allowed to do this
 			<ul class="schedulealbumchecklist">
 			<?php echo $output; ?>
 			</ul>
-			<br clear="all" />
+			<br class="clearall" />
 			<div class="buttons pad_button">
 				<button class="tooltip" type="submit" title="<?php echo gettext("Publish waiting articles."); ?>">
 					<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/cache.png" alt="" /> <?php echo gettext("Publish articles"); ?>
 				</button>
 			</div>
-			<br clear="all" />
+			<br class="clearall" />
 		</div>
 		<?php
 		} else {
@@ -632,7 +632,7 @@ if (zp_loggedin(ADMIN_RIGHTS)) {	//only admin should be allowed to do this
 			}
 		}
 		?>
-		<br clear="all" />
+		<br class="clearall" />
 		<fieldset class="smallbox">
 			<legend><?php reveal('pagebox',$visible); echo gettext('Pages not published'); ?></legend>
 			<?php
@@ -672,7 +672,7 @@ if (zp_loggedin(ADMIN_RIGHTS)) {	//only admin should be allowed to do this
 			<ul class="schedulealbumchecklist">
 				<?php echo $output; ?>
 			</ul>
-			<br clear="all" />
+			<br class="clearall" />
 			<div class="buttons pad_button">
 				<button class="tooltip" type="submit" title="<?php echo gettext("Publish waiting pages."); ?>">
 					<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/cache.png" alt="" /> <?php echo gettext("Publish pages"); ?>
@@ -684,7 +684,7 @@ if (zp_loggedin(ADMIN_RIGHTS)) {	//only admin should be allowed to do this
 				echo gettext('No unpublished pages');
 			}
 			?>
-			<br clear="all" />
+			<br class="clearall" />
 		</fieldset>
 		<?php
 	}

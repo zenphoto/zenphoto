@@ -395,7 +395,7 @@ printLogoAndLinks();
 				<p class="buttons"><button type="submit" title="<?php echo gettext('Apply'); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong></button></p>
 				</form>
 				<?php printZenpageIconLegend(); ?>
-				<br clear="all" />
+				<br class="clearall" />
 		</div> <!-- tab_articles -->
 	</div> <!-- content -->
 </div> <!-- main -->

@@ -150,7 +150,7 @@ printAdminHeader('overview','clone');
 				</a>
 			</span>
 		</form>
-		<br clear="all" />
+		<br class="clearall" />
 		<br />
 		<br />
 		<form name="cloneZenphoto" action="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/cloneZenphoto/clone.php'; ?>">
@@ -163,7 +163,7 @@ printAdminHeader('overview','clone');
 				<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/folder.png" alt="" /> <?php echo gettext("Clone Zenphoto"); ?>
 			</button>
 			</div>
-			<br clear="all" />
+			<br class="clearall" />
 		</form>
 </div>
 </div><!-- content -->

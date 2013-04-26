@@ -51,7 +51,7 @@ class crop_image {
 						'<a href="'.WEBPATH."/".ZENFOLDER . '/'.PLUGIN_FOLDER.'/crop_image.php?a='.pathurlencode($albumname)."\n".
 								'&amp;i='.urlencode($imagename).'&amp;performcrop=backend&amp;subpage='.$subpage.'&amp;tagsort='.html_encode($tagsort).'">'."\n".
 								'<img src="images/shape_handles.png" alt="" />'.gettext("Crop image").'</a>'."\n".
-					'<br clear="all" />'.
+					'<br class="clearall" />'.
 				'</div>'."\n";
 		}
 		return $output;
@@ -310,7 +310,7 @@ printAdminHeader('edit',gettext('crop image'));
 														round($iW * ($width / $sizedwidth)), round($iH * ($height / $sizedheight))); ?>
 						</p>
 					</div>
-					<span style="line-height: 0em;"><br clear="all" /></span>
+					<span style="line-height: 0em;"><br class="clearall" /></span>
 						<?php printf(gettext('width:%1$s %2$s height:%3$s %4$s clear %5$s'),
 										'<input type="text" id="aspect-ratio-width" name="aspect-ratio-width" value="" size="5" />',
 										'&nbsp;<span id="aspect" ><a id="swap_button" href="javascript:swapAspect();" title="'.gettext('swap width and height fields').'" > <img src="crop_image/swap.png"> </a></span>&nbsp;',

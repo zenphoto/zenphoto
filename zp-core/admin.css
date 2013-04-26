@@ -2529,6 +2529,12 @@ tr.highlightselection td {
 .clearall {
 clear: both !important;
 }
+.clearleft {
+clear: left !important;
+}
+.clearright {
+clear: right !important;
+}
 
 /*
 Tooltip styling

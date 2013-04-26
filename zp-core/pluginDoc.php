@@ -313,7 +313,7 @@ if (!defined('OFFSET_PATH')) {
 								}
 								?>
 							</div>
-							<br clear="all">
+							<br class="clearall" />
 							<?php
 						}
 						if ($albumbuttons) {
@@ -323,7 +323,7 @@ if (!defined('OFFSET_PATH')) {
 							<div class="box-edit">
 								<?php echo $albumbuttons; ?>
 							</div>
-							<br clear="all">
+							<br class="clearall" />
 							<?php
 						}
 						if ($imagebuttons) {
@@ -333,7 +333,7 @@ if (!defined('OFFSET_PATH')) {
 							<div class="box-edit">
 								<?php echo $imagebuttons; ?>
 							</div>
-							<br clear="all">
+							<br class="clearall" />
 							<?php
 						}
 
