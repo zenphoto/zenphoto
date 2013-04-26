@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-06 07:55+0100\n"
+"POT-Creation-Date: 2013-04-26 20:05+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -6719,7 +6719,7 @@ msgid ""
 "Add a security parameter to image processor URIs to prevent denial of "
 "service attacks requesting arbitrary sized images."
 msgstr ""
-"Voegt een veiligheis parameter toe aan de afbeeldings-processor URI's. Dit "
+"Voegt een veiligheidsparameter toe aan de afbeeldings-processor URI's. Dit "
 "om <em>prevent denial of service attacks</em> te voorkomen."
 
 #: ZpTranslation-Development/zp-core/admin-options.php:3142
@@ -15423,14 +15423,14 @@ msgstr "gebruik getRSSLink($option,$lang,$categorylink)."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/deprecated-functions.php:1249
 msgid ""
-"printRSSLink($option, $prev, $linktext, $next, $printIcon, $class, $lang, "
-"categoryLink)."
+"use printRSSLink($option, $prev, $linktext, $next, $printIcon, $class, "
+"$lang, categoryLink)."
 msgstr ""
 "gebruik printRSSLink($option, $prev, $linktext, $next, $printIcon, $class, "
 "$lang, categoryLink)."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/deprecated-functions.php:1257
-msgid "use printRSSHeaderLink($option, $linktext, $lang, $categorylink))."
+msgid "use printRSSHeaderLink($option, $linktext, $lang, $categorylink)."
 msgstr "gebruik printRSSHeaderLink($option, $linktext, $lang, $categorylink)."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/deprecated-functions.php:1266
