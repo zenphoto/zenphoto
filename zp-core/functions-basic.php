@@ -547,6 +547,9 @@ function getImageCacheFilename($album8, $image8, $args) {
 	global $_zp_supported_images, $_zp_cachefileSuffix;
 	// this function works in FILESYSTEM_CHARSET, so convert the file names
 	$album = internalToFilesystem($album8);
+	if (is_array($image8)) {
+		$image8 = $image8['name'];
+	}
 	if (IMAGE_CACHE_SUFFIX) {
 		$suffix = IMAGE_CACHE_SUFFIX;
 	} else {
