@@ -567,7 +567,7 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 			case "latestimages-sizedimage":
 			case "latestimages-sizedimage-maxspace":
 			case "latestimages-fullimage":
-				$sortorder = $stickyorder.$combinews_sortorder;
+				$sortorder = $combinews_sortorder;
 				$type1 = query("SET @type1:='news'");
 				$type2 = query("SET @type2:='images'");
 				switch($combinews_sortorder) {
@@ -587,14 +587,14 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 				$result = $this->siftResults("(SELECT title as albumname, titlelink, date, @type1 as type, sticky FROM ".prefix('news')." ".$show.")
 																		UNION
 																		".$imagequery."
-																		ORDER BY $sortorder date ".$sortdir, $offset, $articles_per_page);
+																		ORDER BY $stickyorder date ".$sortdir, $offset, $articles_per_page);
 				break;
 			case "latestalbums-thumbnail":
 			case "latestalbums-thumbnail-customcrop":
 			case "latestalbums-sizedimage":
 			case "latestalbums-sizedimage-maxspace":
 			case "latestalbums-fullimage":
-				$sortorder = $stickyorder.$combinews_sortorder;
+				$sortorder = $combinews_sortorder;
 				$type1 = query("SET @type1:='news'");
 				$type2 = query("SET @type2:='albums'");
 				switch($combinews_sortorder) {
@@ -615,7 +615,7 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 				$result = $this->siftResults("(SELECT title as albumname, titlelink, date, @type1 as type, sticky FROM ".prefix('news')." ".$show.")
 																		UNION
 																		".$albumquery."
-																		ORDER BY $sortorder date ".$sortdir, $offset, $articles_per_page);
+																		ORDER BY $stickyorder date ".$sortdir, $offset, $articles_per_page);
 				break;
 			case "latestimagesbyalbum-thumbnail":
 			case "latestimagesbyalbum-thumbnail-customcrop":
@@ -627,7 +627,7 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 				if(empty($combinews_sortorder) || $combinews_sortorder != "date" || $combinews_sortorder != "mtime" || $combinews_sortorder != "publishdate") {
 					$combinews_sortorder = "date";
 				}
-				$sortorder = $stickyorder."images.".$combinews_sortorder;
+				$sortorder = "images.".$combinews_sortorder;
 				switch(		$combinews_sortorder) {
 					case "date":
 						$imagequery = "(SELECT DISTINCT DATE_FORMAT(".$sortorder.",'%Y-%m-%d'), albums.folder, DATE_FORMAT(images.date,'%Y-%m-%d'), @type2, @type3 as sticky FROM ".prefix('images')." AS images, ".prefix('albums')." AS albums
@@ -644,7 +644,7 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 				$result = $this->siftResults("(SELECT title as albumname, titlelink, date, @type1 as type, sticky FROM ".prefix('news')." ".$show.")
 																		UNION
 																		".$imagequery."
-																		ORDER By $sortorder date ".$sortdir, $offset, $articles_per_page);
+																		ORDER By $stickyorder date ".$sortdir, $offset, $articles_per_page);
 				break;
 			case "latestupdatedalbums-thumbnail":
 			case "latestupdatedalbums-thumbnail-customcrop":
