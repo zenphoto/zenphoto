@@ -147,36 +147,38 @@ function printAdminHeader($tab,$subtab=NULL) {
 		?>
 	  $(function() {
 	    $( ".tooltip " ).tooltip({
-	      position: {
-	        my: "center bottom-20",
-	        at: "center top",
-	        using: function( position, feedback ) {
-	          $( this ).css( position );
-	          $( "<div>" )
-	            .addClass( "arrow" )
-	            .addClass( feedback.vertical )
-	            .addClass( feedback.horizontal )
-	            .appendTo( this );
-	        }
-	      }
-	    });
+				show: 1000,
+				hide: 1000,
+				position: {
+					my: "center bottom-20",
+					at: "center top",
+					using: function( position, feedback ) {
+						$( this ).css( position );
+						$( "<div>" )
+							.addClass( "arrow" )
+							.addClass( feedback.vertical )
+							.addClass( feedback.horizontal )
+							.appendTo( this );
+					}
+				}
+			});
 	    $( ".page-list_icon" ).tooltip({
-	      position: {
-	        my: "center bottom-20",
-	        at: "center top",
-	        using: function( position, feedback ) {
-	          $( this ).css( position );
-	          $( "<div>" )
-	            .addClass( "arrow" )
-	            .addClass( feedback.vertical )
-	            .addClass( feedback.horizontal )
-	            .appendTo( this );
-	        }
-	      }
-	    });
-
-	  });
-
+				show: 1000,
+				hide: 1000,
+				position: {
+					my: "center bottom-20",
+					at: "center top",
+					using: function( position, feedback ) {
+						$( this ).css( position );
+						$( "<div>" )
+							.addClass( "arrow" )
+							.addClass( feedback.vertical )
+							.addClass( feedback.horizontal )
+							.appendTo( this );
+					}
+				}
+			});
+		});
 		jQuery(function( $ ){
 			$(".fade-message").fadeTo(5000, 1).fadeOut(1000);
 		})
