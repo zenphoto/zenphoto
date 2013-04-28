@@ -146,7 +146,7 @@ function printAdminHeader($tab,$subtab=NULL) {
 		}
 		?>
 	  $(function() {
-	    $( ".tooltip" ).tooltip({
+	    $( ".tooltip " ).tooltip({
 	      position: {
 	        my: "center bottom-20",
 	        at: "center top",
@@ -160,7 +160,23 @@ function printAdminHeader($tab,$subtab=NULL) {
 	        }
 	      }
 	    });
+	    $( ".page-list_icon" ).tooltip({
+	      position: {
+	        my: "center bottom-20",
+	        at: "center top",
+	        using: function( position, feedback ) {
+	          $( this ).css( position );
+	          $( "<div>" )
+	            .addClass( "arrow" )
+	            .addClass( feedback.vertical )
+	            .addClass( feedback.horizontal )
+	            .appendTo( this );
+	        }
+	      }
+	    });
+
 	  });
+
 		jQuery(function( $ ){
 			$(".fade-message").fadeTo(5000, 1).fadeOut(1000);
 		})
@@ -1177,15 +1193,15 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 				$parent = '&amp;album='.$parent.'&amp;tab=subalbuminfo';
 			}
 			?>
-			<a title="<?php echo gettext('Back to the album list'); ?>" href="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-edit.php?page=edit'.$parent; ?>">
+			<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-edit.php?page=edit'.$parent; ?>">
 			<img	src="images/arrow_left_blue_round.png" alt="" />
 			<strong><?php echo gettext("Back"); ?></strong>
 			</a>
-			<button type="submit" title="<?php echo gettext("Apply"); ?>">
+			<button type="submit">
 			<img	src="images/pass.png" alt="" />
 			<strong><?php echo gettext("Apply"); ?></strong>
 			</button>
-			<button type="reset" title="<?php echo gettext("Reset"); ?>" onclick="javascript:$('.deletemsg').hide();" >
+			<button type="reset" onclick="javascript:$('.deletemsg').hide();" >
 			<img	src="images/fail.png" alt="" />
 			<strong><?php echo gettext("Reset"); ?></strong>
 			</button>
@@ -1200,7 +1216,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 				<?php
 			}
 			?>
-			<a title="<?php echo gettext('View Album'); ?>" href="<?php echo WEBPATH . "/index.php?album=". pathurlencode($album->getFolder()); ?>">
+			<a href="<?php echo WEBPATH . "/index.php?album=". pathurlencode($album->getFolder()); ?>">
 			<img src="images/view.png" alt="" />
 			<strong><?php echo gettext('View Album'); ?></strong>
 			</a>
@@ -1879,15 +1895,15 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 	if ($buttons) {
 		?>
 		<span class="buttons">
-			<a title="<?php echo gettext('Back to the album list'); ?>" href="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-edit.php?page=edit'.$parent; ?>">
+			<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-edit.php?page=edit'.$parent; ?>">
 			<img	src="images/arrow_left_blue_round.png" alt="" />
 			<strong><?php echo gettext("Back"); ?></strong>
 			</a>
-			<button type="submit" title="<?php echo gettext("Apply"); ?>">
+			<button type="submit">
 			<img	src="images/pass.png" alt="" />
 			<strong><?php echo gettext("Apply"); ?></strong>
 			</button>
-			<button type="reset" title="<?php echo gettext("Reset"); ?>" onclick="javascript:$('.deletemsg').hide();">
+			<button type="reset" onclick="javascript:$('.deletemsg').hide();">
 			<img	src="images/fail.png" alt="" />
 			<strong><?php echo gettext("Reset"); ?></strong>
 			</button>
@@ -1902,7 +1918,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 				<?php
 			}
 			?>
-			<a title="<?php echo gettext('View Album'); ?>" href="<?php echo WEBPATH . "/index.php?album=". pathurlencode($album->getFolder()); ?>">
+			<a href="<?php echo WEBPATH . "/index.php?album=". pathurlencode($album->getFolder()); ?>">
 			<img src="images/view.png" alt="" />
 			<strong><?php echo gettext('View Album'); ?></strong>
 			</a>

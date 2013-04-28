@@ -116,7 +116,7 @@ if (GALLERY_SECURITY == 'public') {
 }
 ?>
 <p class="buttons">
-	<button class="serialize" type="submit" title="<?php echo gettext("Apply"); ?>">
+	<button class="serialize" type="submit">
 		<img src="../../images/pass.png" alt="" />
 		<strong><?php echo gettext("Apply"); ?></strong>
 	</button>
@@ -125,7 +125,7 @@ if (GALLERY_SECURITY == 'public') {
 		?>
 		<span class="floatright">
 			<strong>
-				<a href="admin-edit.php?page&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add')?>" title="<?php echo gettext('New Page'); ?>">
+				<a href="admin-edit.php?page&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add')?>">
 				<img src="images/add.png" alt="" /> <?php echo gettext('New Page'); ?></a>
 			</strong>
 		</span>

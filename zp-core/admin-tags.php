@@ -114,7 +114,7 @@ printLogoAndLinks();
 		if ($tagsort == 1) {
 			?>
 			<p class="buttons">
-				<a class="tagsort" href="?tagsort=0" title="<?php echo gettext('Sort the tags alphabetically'); ?>">
+				<a class="tagsort" href="?tagsort=0">
 					<img src="images/sortorder.png" alt="" /> <?php echo gettext('Order alphabetically'); ?>
 				</a>
 			</p>
@@ -125,7 +125,7 @@ printLogoAndLinks();
 		} else{
 			?>
 			<p class="buttons">
-				<a class="tagsort" href="?tagsort=1" title="<?php echo gettext('Sort the tags by most used'); ?>">
+				<a class="tagsort" href="?tagsort=1">
 					<img src="images/sortorder.png" alt="" /> <?php echo gettext('Order by most used'); ?>
 				</a>
 			</p>
@@ -148,7 +148,7 @@ printLogoAndLinks();
 					</div>
 
 					<p class="buttons">
-						<button type="submit" id='delete_tags' value="<?php echo gettext("Delete checked tags"); ?>" title="<?php echo gettext("Delete all the tags checked above."); ?>" >
+						<button type="submit" id='delete_tags' value="<?php echo gettext("Delete checked tags"); ?>">
 						<img src="images/fail.png" alt="" /><?php echo gettext("Delete checked tags"); ?>
 						</button>
 					</p>
@@ -204,7 +204,7 @@ printLogoAndLinks();
 						</ul>
 					</div>
 					<p class="buttons">
-						<button type="submit" id='rename_tags' value="<?php echo gettext("Rename tags"); ?>" title="<?php echo gettext("Apply all the changes entered above."); ?>" >
+						<button type="submit" id='rename_tags' value="<?php echo gettext("Rename tags"); ?>">
 							<img src="images/pass.png" alt="" /><?php echo gettext("Rename tags"); ?>
 						</button>
 					</p>
@@ -235,7 +235,7 @@ printLogoAndLinks();
 						</ul>
 					</div>
 					<p class="buttons">
-						<button type="submit" id='save_tags' value="<?php echo gettext("Add tags"); ?>" title="<?php echo gettext("Add all the tags entered above."); ?>" >
+						<button type="submit" id='save_tags' value="<?php echo gettext("Add tags"); ?>">
 							<img src="images/add.png" alt="" /><?php echo gettext("Add tags"); ?>
 						</button>
 					</p>

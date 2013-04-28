@@ -215,7 +215,7 @@ printLogoAndLinks();
 					printArticlesPerPageDropdown($subpage);
 					?>
 					<span class="buttons">
-					 <a href="admin-edit.php?newsarticle&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add')?>" title="<?php echo gettext('New Article'); ?>"> <img src="images/add.png" alt="" /> <strong><?php echo gettext("New Article"); ?></strong></a>
+					 <a href="admin-edit.php?newsarticle&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add')?>"> <img src="images/add.png" alt="" /> <strong><?php echo gettext("New Article"); ?></strong></a>
 					</span>
 					<br style="clear: both" />
 				</div>
@@ -300,7 +300,7 @@ printLogoAndLinks();
 							<td>
 							<?php echo html_encode($article->getAuthor()); ?>
 							</td>
-							<td class="icons">
+							<td class="page-list_icon">
 							<?php
 								if($article->inProtectedCategory()) {
 									echo '<img src="../../images/lock.png" style="border: 0px;" alt="'.gettext('Password protected').'" title="'.gettext('Password protected').'" />';
@@ -312,11 +312,11 @@ printLogoAndLinks();
 						$option = getNewsAdminOptionPath(getNewsAdminOption(array('category'=>0,'date'=>0,'published'=>0,'sortorder'=>0,'articles_page'=>1,'subpage'=>1)));
 						if(checkIfLockedNews($article)) {
 							?>
-							<td class="icons">
+							<td class="page-list_icon">
 							<?php
 								printPublishIconLink($article,'news'); ?>
 							</td>
-							<td class="icons">
+							<td class="page-list_icon">
 								<?php
 								if ($article->getCommentsAllowed()) {
 									?>
@@ -336,15 +336,15 @@ printLogoAndLinks();
 							<?php
 						} else {
 							?>
-							<td class="icons">
+							<td class="page-list_icon">
 									<img src="../../images/icon_inactive.png" alt="<?php gettext('locked'); ?>" />
 							</td>
-							<td class="icons">
+							<td class="page-list_icon">
 									<img src="../../images/icon_inactive.png" alt="<?php gettext('locked'); ?>" />
 							</td>
 							<?php } ?>
 
-							<td class="icons">
+							<td class="page-list_icon">
 								<a href="../../../index.php?p=news&amp;title=<?php echo $article->getTitlelink();echo $option; ?>" title="<?php echo gettext('View article'); ?>">
 								<img src="images/view.png" alt="" title="<?php echo gettext('View article'); ?>" />
 								</a>
@@ -354,29 +354,29 @@ printLogoAndLinks();
 						if(checkIfLockedNews($article)) {
 							if (getOption('zp_plugin_hitcounter')) {
 								?>
-								<td class="icons">
+								<td class="page-list_icon">
 									<a href="?hitcounter=1&amp;titlelink=<?php echo html_encode($article->getTitlelink()); echo $option; ?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter')?>" title="<?php echo gettext('Reset hitcounter'); ?>">
 									<img src="../../images/reset.png" alt="" title="<?php echo gettext('Reset hitcounter'); ?>" /></a>
 								</td>
 								<?php
 							}
 							?>
-							<td class="icons">
+							<td class="page-list_icon">
 								<a href="javascript:confirmDelete('admin-news-articles.php?delete=<?php echo $article->getTitlelink(); echo $option; ?>&amp;XSRFToken=<?php echo getXSRFToken('delete')?>','<?php echo js_encode(gettext('Are you sure you want to delete this article? THIS CANNOT BE UNDONE!')); ?>')" title="<?php echo gettext('Delete article'); ?>">
 								<img src="../../images/fail.png" alt="" title="<?php echo gettext('Delete article'); ?>" /></a>
 							</td>
-							<td class="icons">
+							<td class="page-list_icon">
 								<input type="checkbox" name="ids[]" value="<?php echo $article->getTitlelink(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
 							</td>
 							</tr>
 							<?php } else { ?>
-							<td class="icons">
+							<td class="page-list_icon">
 								<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
 							</td>
-							<td class="icons">
+							<td class="page-list_icon">
 								<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
 							</td>
-							<td class="icons">
+							<td class="page-list_icon">
 								<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
 							</td>
 								<?php
