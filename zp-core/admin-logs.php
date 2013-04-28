@@ -112,18 +112,18 @@ echo "\n</head>";
 				}
 				?>
 				<form method="post" action="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-logs.php'; ?>?action=change_size&amp;page=logs&amp;tab=<?php echo html_encode($subtab).'&amp;filename='.html_encode($subtab); ?>" >
-				<span class="button buttons tooltip" title="<?php printf(gettext("Delete %s"),$logfiletext);?>">
+				<span class="button buttons" title="<?php printf(gettext("Delete %s"),$logfiletext);?>">
 					<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-logs.php?action=delete_log&amp;page=logs&amp;tab='.html_encode($subtab).'&amp;filename='.html_encode($subtab); ?>&amp;XSRFToken=<?php  echo getXSRFToken('delete_log'); ?>">
 					<img src="images/edit-delete.png" /><?php echo gettext('Delete'); ?></a>
 				</span>
 				<?php
 				if (!empty($logtext)) {
 					?>
-					<span class="button buttons tooltip" title="<?php printf(gettext("Reset %s"),$logfiletext);?>">
+					<span class="button buttons" title="<?php printf(gettext("Reset %s"),$logfiletext);?>">
 						<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-logs.php?action=clear_log&amp;page=logs&amp;tab='.html_encode($subtab).'&amp;filename='.html_encode($subtab); ?>&amp;XSRFToken=<?php  echo getXSRFToken('clear_log'); ?>">
 						<img src="images/refresh.png" /><?php echo gettext('Reset'); ?></a>
 					</span>
-					<span class="button buttons tooltip" title="<?php printf(gettext("Download %s ZIP file"),$logfiletext);?>">
+					<span class="button buttons" title="<?php printf(gettext("Download %s ZIP file"),$logfiletext);?>">
 						<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-logs.php?action=download_log&amp;page=logs&amp;tab='.html_encode($subtab).'&amp;filename='.html_encode($subtab); ?>&amp;XSRFToken=<?php  echo getXSRFToken('download_log'); ?>">
 						<img src="images/arrow_down.png" /><?php echo gettext('Download'); ?></a>
 					</span>
