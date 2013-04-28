@@ -22,8 +22,8 @@
  *
  * NOTE ON PLAYER SKINS:<br>
  * The look of the player is determined by a pure HTML/CSS based skin (theme). There may occur display issues with themes.
- * Only the Zenphoto's own default skin <var>zenphotolight</var>
- * has been tested with the standard themes (and not even with all it works perfectly).
+ * Only the Zenphoto's own default skins <var>zenphotolight</var> and <var>zenphotodark</var>
+ * have been tested with the standard themes (and not even with all it works perfectly). Those two themes are also have a responsive width.
  * So you might need to adjust the skin yourself to work with your theme. It is recommended that
  * you place your custom skins within the root /plugins folder like:
  *
@@ -145,7 +145,7 @@ class jplayer_options {
 										'desc' => gettext("jPlayer cannot be sized freely as it is dependend on its HTML and CSS based skin. Sizes marked with a <strong>*</strong> are supported by the two Zenphoto custom skins only. If you need different sizes you need to modify a skin or make your own and also need to change values in the plugin class method getPlayerSize().")),
 							 gettext('Player skin') => array('key' => 'jplayer_skin', 'type' => OPTION_TYPE_SELECTOR,
 										'selections' => $skins,
-										'desc' => gettext("Select the skin (theme) to use. <br />NOTE: Since the skin is pure HTML/CSS only there may be display issues with certain themes that require manual adjustments. Place custom skin within the root plugins folder. See plugin documentation for more info."))
+										'desc' => gettext("Select the skin (theme) to use. <br />NOTE: Since the skin is pure HTML/CSS only there may be display issues with certain themes that require manual adjustments. The two Zenphoto custom skins are responsive regarding the player width. Place custom skin within the root plugins folder. See plugin documentation for more info."))
 							);
 	}
 
@@ -288,7 +288,7 @@ class jPlayer {
 		if($this->mode == 'video' || ($this->mode == 'audio' && getOption('jplayer_poster') && getOption('jplayer_audioposter'))) {
 				$playerconfig .= '
 				,	size: {
-			width: "'.$this->width.'px",
+			width: "100%",
 			height: "'.$this->height.'px",
 			cssClass: "'.$this->playersize.'"
 		}';
