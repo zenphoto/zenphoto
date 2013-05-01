@@ -183,7 +183,7 @@ class mobile extends Mobile_Detect {
 	 * (non-PHPdoc)
 	 * @see Mobile_Detect::isMobile()
 	 */
-	function isMobile() {
+	function isMobile($userAgent = NULL, $httpHeaders = NULL) {
 		if (getOption('mobileTheme_test')) {
 			return true;
 		}
@@ -194,7 +194,7 @@ class mobile extends Mobile_Detect {
 	 * (non-PHPdoc)
 	 * @see Mobile_Detect::isTablet()
 	 */
-	function isTablet() {
+	function isTablet($userAgent = NULL, $httpHeaders = NULL) {
 		if (getOption('mobileTheme_test')=='tablet') {
 			return true;
 		}
