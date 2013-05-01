@@ -47,7 +47,6 @@ div.jp-video-270p {
 }
 div.jp-video-360p {
 	max-width:640px;
-	max-height: 360px;
 }
 div.jp-video-480p {
 	max-width:720px;
@@ -718,6 +717,12 @@ a.jp-shuffle-off:hover {
 	display:block;
 	text-align:center;
 	font-weight:bold;
+}
+
+
+@media only screen and (max-width: 479px) {
+	.jp-repeat, .jp-repeat-off, .jp-shuffle,.jp-shuffle-off, .jp-full-screen { display: none !important; }
+	div.jp-controls-holder { width: 300px !important;}
 }
 
 /* @end */

@@ -142,7 +142,7 @@ class jplayer_options {
 										gettext('jp-video-480p (720x405px)*')=>"jp-video-480p",
 										gettext('jp-video-720p (1280x720px)*')=>"jp-video-720p",
 										gettext('jp-video-1080p (1920x1080px)*')=>"jp-video-1080p"),
-										'desc' => gettext("jPlayer cannot be sized freely as it is dependend on its HTML and CSS based skin. Sizes marked with a <strong>*</strong> are supported by the two Zenphoto custom skins only. If you need different sizes you need to modify a skin or make your own and also need to change values in the plugin class method getPlayerSize().")),
+										'desc' => gettext("jPlayer is dependent on their HTML and CSS based skin. Sizes marked with a <strong>*</strong> are supported by the two Zenphoto custom skins only (these two skins are also responsive in width). If you need different sizes you need to modify a skin or make your own and also need to change values in the plugin class method getPlayerSize().")),
 							 gettext('Player skin') => array('key' => 'jplayer_skin', 'type' => OPTION_TYPE_SELECTOR,
 										'selections' => $skins,
 										'desc' => gettext("Select the skin (theme) to use. <br />NOTE: Since the skin is pure HTML/CSS only there may be display issues with certain themes that require manual adjustments. The two Zenphoto custom skins are responsive regarding the player width. Place custom skin within the root plugins folder. See plugin documentation for more info."))
