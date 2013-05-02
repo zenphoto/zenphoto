@@ -662,6 +662,14 @@ label:hover {
 #registration_form {
 	width:370px;
 }
+
+#commentform label,
+#mailform label {
+width: 30% !important;
+float: left; 
+display: block;
+}
+
 .clearall {
 clear: both !important;
 }

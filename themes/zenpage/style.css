@@ -799,6 +799,7 @@ textarea {
 	background-color: #f1f1f1; 
 }
 
+
 label {
 	cursor: pointer;
 }
@@ -806,6 +807,8 @@ label {
 label:hover {
 	color: #000;
 }
+
+
 
 #map {
 	margin-left: -77px;
@@ -1392,6 +1395,13 @@ label:hover {
 
 #registration_form {
 	width:370px;
+}
+
+#commentform label,
+#mailform label {
+width: 30% !important;
+float: left; 
+display: block;
 }
 
 .clearall {

@@ -19,14 +19,8 @@
 								}
 								?>
 								<p>
+										<label for="name"><?php printf(gettext("Name%s:"),$star); ?></label>
 										<?php
-										printf(gettext("Name%s:"),$star);
-										if (getOption('comment_form_anon') && !$disabled['anon']) {
-											?>
-											<label>(<?php echo gettext("<em>anonymous</em>"); ?>)</label>
-											<input type="checkbox" name="anon" value="1"<?php if ($stored['anon']) echo ' checked="checked"'; echo $disabled['anon']; ?> /> 
-											<?php
-										}
 										if ($disabled['name']) {
 											?>
 											<span class="disabled_input" style="background-color:LightGray;color:black;">
@@ -41,7 +35,16 @@
 										}
 										?>
 									</p>
+									
 								<?php
+									if (getOption('comment_form_anon') && !$disabled['anon']) {
+										?>
+										<p>
+										<label for="anon"> (<?php echo gettext("<em>anonymous</em>"); ?>)</label>
+										<input type="checkbox" name="anon" id="anon" value="1"<?php if ($stored['anon']) echo ' checked="checked"'; echo $disabled['anon']; ?> />
+										</p>
+										<?php
+									}
 							}
 							if ($req = getOption('comment_email_required')) {
 								if ($req == 'required') {
