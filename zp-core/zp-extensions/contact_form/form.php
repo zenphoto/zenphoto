@@ -21,7 +21,7 @@
 		</p>
 		<?php } ?>
 		<p id="username" style="display:none;">
-			<label for="username">>Username:</label>
+			<label for="username">Username:</label>
 			<input type="text" id="username" name="username" size="50" value="<?php echo html_encode($mailcontent['honeypot']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
 		</p>
 		<?php if(showOrNotShowField(getOption('contactform_company'))) { ?>
