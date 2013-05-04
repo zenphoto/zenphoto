@@ -210,6 +210,8 @@ function lookup_tag($tag) {
 		case '8822': $tag = 'ExposureProgram'; break;          // integer value 1-9
 		case '8824': $tag = 'SpectralSensitivity'; break;      // ??
 		case '8827': $tag = 'ISOSpeedRatings'; break;          // integer 0-65535
+		case '8830': $tag = 'SensitivityType'; break;          // integer 0-7
+		case '8832': $tag = 'RecommendedExposureIndex'; break; // ???
 		case '9000': $tag = 'ExifVersion'; break;              // ??
 		case '9003': $tag = 'DateTimeOriginal'; break;         // YYYY:MM:DD HH:MM:SS
 		case '9004': $tag = 'DateTimeDigitized'; break;        // YYYY:MM:DD HH:MM:SS
