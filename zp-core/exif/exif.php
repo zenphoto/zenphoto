@@ -501,6 +501,18 @@ function formatData($type,$tag,$intel,$data) {
 						default:	$data = gettext('Unknown').': '.$data;	break;
 					}
 					break;
+				case '8830':	// SensitivityType
+					switch ($data) {
+						case 1:		$data = gettext('Standard Output Sensitivity');	break;
+						case 2:		$data = gettext('Recommended Exposure Index');	break;
+						case 3:		$data = gettext('ISO Speed');	break;
+						case 4:		$data = gettext('Standard Output Sensitivity and Recommended Exposure Index');	break;
+						case 5:		$data = gettext('Standard Output Sensitivity and ISO Speed');	break;
+						case 6:		$data = gettext('Recommended Exposure Index and ISO Speed');	break;
+						case 7:		$data = gettext('Standard Output Sensitivity, Recommended Exposure Index and ISO Speed');	break;
+						default:	$data = gettext('Unknown').': '.$data;	break;
+					}
+					break;
 				case '9207':	// MeteringMode
 					switch ($data) {
 						case 1:		$data = gettext('Average');	break;
