@@ -210,6 +210,8 @@ function lookup_tag($tag) {
 		case '8822': $tag = 'ExposureProgram'; break;          // integer value 1-9
 		case '8824': $tag = 'SpectralSensitivity'; break;      // ??
 		case '8827': $tag = 'ISOSpeedRatings'; break;          // integer 0-65535
+		case '8830': $tag = 'SensitivityType'; break;          // integer 0-7
+		case '8832': $tag = 'RecommendedExposureIndex'; break; // ???
 		case '9000': $tag = 'ExifVersion'; break;              // ??
 		case '9003': $tag = 'DateTimeOriginal'; break;         // YYYY:MM:DD HH:MM:SS
 		case '9004': $tag = 'DateTimeDigitized'; break;        // YYYY:MM:DD HH:MM:SS
@@ -496,6 +498,18 @@ function formatData($type,$tag,$intel,$data) {
 						case 6:		$data = gettext('Program Action');	break;
 						case 7:		$data = gettext('Portrait');	break;
 						case 8:		$data = gettext('Landscape');	break;
+						default:	$data = gettext('Unknown').': '.$data;	break;
+					}
+					break;
+				case '8830':	// SensitivityType
+					switch ($data) {
+						case 1:		$data = gettext('Standard Output Sensitivity');	break;
+						case 2:		$data = gettext('Recommended Exposure Index');	break;
+						case 3:		$data = gettext('ISO Speed');	break;
+						case 4:		$data = gettext('Standard Output Sensitivity and Recommended Exposure Index');	break;
+						case 5:		$data = gettext('Standard Output Sensitivity and ISO Speed');	break;
+						case 6:		$data = gettext('Recommended Exposure Index and ISO Speed');	break;
+						case 7:		$data = gettext('Standard Output Sensitivity, Recommended Exposure Index and ISO Speed');	break;
 						default:	$data = gettext('Unknown').': '.$data;	break;
 					}
 					break;
