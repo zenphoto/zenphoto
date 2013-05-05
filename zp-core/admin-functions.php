@@ -312,9 +312,6 @@ function printTabs() {
 						</ul>
 					<?php
 					} // if $subtabs end
-					?>
-		</li>
-		<?php
 		} // if array
 		?>
 	</li>
