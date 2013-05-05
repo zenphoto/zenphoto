@@ -84,7 +84,7 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 				?>
 
 				function image(album, image) {
-					window.parent.location = '/index.php?album=' + album + '&image=' + image;
+					window.parent.location = '<?php echo WEBPATH; ?>/index.php?album=' + album + '&image=' + image;
 				}
 			//]]>
 			</script>
