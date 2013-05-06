@@ -765,6 +765,7 @@ zp-core/zp-extensions/colorbox_js/themes/example5/images/loading_background.png
 zp-core/zp-extensions/comment_form
 zp-core/zp-extensions/comment_form.php
 zp-core/zp-extensions/comment_form/comment_form.php
+zp-core/zp-extensions/comment_form/comment_form_legacy.php
 zp-core/zp-extensions/comment_form/functions.php
 zp-core/zp-extensions/common
 zp-core/zp-extensions/common/adGallery
@@ -786,6 +787,7 @@ zp-core/zp-extensions/common/oAuth/OAuth.php
 zp-core/zp-extensions/contact_form
 zp-core/zp-extensions/contact_form.php
 zp-core/zp-extensions/contact_form/form.php
+zp-core/zp-extensions/contact_form/form_legacy.php
 zp-core/zp-extensions/crop_image
 zp-core/zp-extensions/crop_image.php
 zp-core/zp-extensions/crop_image/crop_image.css
@@ -1764,4 +1766,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1766
+1768
