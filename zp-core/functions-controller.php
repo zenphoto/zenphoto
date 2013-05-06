@@ -19,11 +19,28 @@ function is_query_request() {
 /**
  * Returns the URL of any main page (image/album/page#/etc.)
  *
- * @parem string $special query string to add to the URL
+ * @parem string query parameter array
  */
-function zpurl($special='') {
+function zpurl($query=NULL) {
 	global $_zp_current_album, $_zp_current_image, $_zp_page;
-
+	if ($query) {
+		parse_str($query, $get);
+		unset($get['album']);
+		unset($get['image']);
+		$querystring = '';
+		if (!empty($get)) {
+			foreach ($get as $param=>$value) {
+				if ($value) {
+					$querystring .= $param.'='.$value.'&';
+				} else {
+					$querystring .= $param.'&';
+				}
+			}
+			$querystring = substr($querystring, 0, -1);
+		}
+	} else {
+		$querystring = NULL;
+	}
 	$url = '';
 	if (MOD_REWRITE) {
 		if (in_context(ZP_IMAGE)) {
@@ -44,11 +61,11 @@ function zpurl($special='') {
 		}
 	}
 	if ($url == IM_SUFFIX || empty($url)) { $url = ''; }
-	if (!empty($url) && !(empty($special))) {
+	if (!empty($url) && !(empty($querystring))) {
 		if ($_zp_page > 1) {
-			$url .= "&$special";
+			$url .= "&$querystring";
 		} else {
-			$url .= "?$special";
+			$url .= "?$querystring";
 		}
 	}
 	return $url;
