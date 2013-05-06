@@ -60,6 +60,7 @@ if (isset($_GET['action'])) {
 			$oldloc = SITE_LOCALE; // get the option as stored in the database, not what might have been set by a cookie
 			$newloc = sanitize($_POST['locale'],3);
 			$languages = generateLanguageList(true);
+			$languages[''] = '';
 			foreach ($languages as $text=>$lang) {
 				if ($lang==$newloc || isset($_POST['language_allow_'.$lang])) {
 					setOption('disallow_'.$lang,0);

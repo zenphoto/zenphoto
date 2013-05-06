@@ -339,9 +339,9 @@ function printTabs() {
 						<?php
 						} // foreach end
 						?>
-						</ul>
-					<?php
-					} // if $subtabs end
+					</ul>
+				<?php
+			} // if $subtabs end
 		} // if array
 		?>
 	</li>
@@ -2538,7 +2538,7 @@ function process_language_string_save($name, $sanitize_level=3) {
 	$l = strlen($name)+1;
 	$strings = array();
 	foreach ($_POST as $key=>$value) {
-		if (!empty($value) && preg_match('/^'.$name.'_[a-z]{2}_[A-Z]{2}$/', $key)) {
+		if (preg_match('/^'.$name.'_[a-z]{2}_[A-Z]{2}$/', $key)) {
 			$key = substr($key, $l);
 			if (in_array($key, $languages)) {
 				$strings[$key] = sanitize($value, $sanitize_level);
