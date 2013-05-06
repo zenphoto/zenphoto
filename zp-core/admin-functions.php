@@ -2431,6 +2431,12 @@ function print_language_string_list($dbstring, $name, $textbox=false, $locale=NU
 		$locale = $_zp_current_locale;
 	}
 	$strings = getSerializedArray($dbstring);
+	if (count($strings) == 1) {
+		$lang = array_flip($strings);
+		if (!array_shift($lang)) {
+			$strings = array($locale=>$dbstring);
+		}
+	}
 	if (getOption('multi_lingual')) {
 		if ($textbox) {
 			if (strpos($wide, '%') === false) {
@@ -2455,6 +2461,7 @@ function print_language_string_list($dbstring, $name, $textbox=false, $locale=NU
 		}
 		echo '<ul class="'.$ulclass.$class.'"'.">\n";
 		$empty = true;
+
 		foreach ($emptylang as $key=>$lang) {
 			if (isset($strings[$key])) {
 				$string = $strings[$key];
@@ -2529,7 +2536,6 @@ function print_language_string_list($dbstring, $name, $textbox=false, $locale=NU
  *
  * @param string $name the prefix for the label, id, and name tags
  * @param $sanitize_level the type of sanitization required
- * @param bool $cleanup set to true to clean up after the TinyMCE editor
  * @return string
  */
 function process_language_string_save($name, $sanitize_level=3) {
@@ -2538,7 +2544,7 @@ function process_language_string_save($name, $sanitize_level=3) {
 	$l = strlen($name)+1;
 	$strings = array();
 	foreach ($_POST as $key=>$value) {
-		if (preg_match('/^'.$name.'_[a-z]{2}_[A-Z]{2}$/', $key)) {
+		if ($value && preg_match('/^'.$name.'_[a-z]{2}_[A-Z]{2}$/', $key)) {
 			$key = substr($key, $l);
 			if (in_array($key, $languages)) {
 				$strings[$key] = sanitize($value, $sanitize_level);
@@ -2552,8 +2558,6 @@ function process_language_string_save($name, $sanitize_level=3) {
 			} else {
 				return '';
 			}
-		case 1:
-			return array_shift($strings);
 		default:
 			return serialize($strings);
 	}
