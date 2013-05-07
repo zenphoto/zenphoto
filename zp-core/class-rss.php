@@ -758,7 +758,7 @@ protected function getRSSCombinewsAlbums() {
 						$items = getLatestComments($this->itemnumber,'all');
 						$items_zenpage = array();
 						if(function_exists('getLatestZenpageComments')) {
-							$items_zenpage = getLatestZenpageComments($this->itemnumber,$type,$this->id);
+							$items_zenpage = getLatestZenpageComments($this->itemnumber,'all',$this->id);
 							$items = array_merge($items,$items_zenpage);
 							$items = sortMultiArray($items,'date',true);
 							$items = array_slice($items,0,$this->itemnumber);

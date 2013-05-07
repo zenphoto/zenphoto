@@ -301,7 +301,7 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 		} else {
 			$page = $_zp_page;
 		}
-		if($ignorepagination) {
+		if($ignorepagination || is_null($page)) {	//	maybe from a feed since this means that $_zp_page is not set
 			$offset = 0;
 		} else {
 			$offset = ($page - 1) * $articles_per_page;
