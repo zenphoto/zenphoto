@@ -2437,7 +2437,9 @@ function print_language_string_list($dbstring, $name, $textbox=false, $locale=NU
 			$strings = array($locale=>$dbstring);
 		}
 	}
-	if (getOption('multi_lingual')) {
+	$emptylang = generateLanguageList();
+
+	if (getOption('multi_lingual') && !empty($emptylang)) {
 		if ($textbox) {
 			if (strpos($wide, '%') === false) {
 				$width = ' cols="'.$wide.'"';
@@ -2451,7 +2453,6 @@ function print_language_string_list($dbstring, $name, $textbox=false, $locale=NU
 				$width = ' style="width:'.((int)$wide-2).'%;"';
 			}
 		}
-		$emptylang = generateLanguageList();
 		$emptylang = array_flip($emptylang);
 		unset($emptylang['']);
 		if ($textbox) {
@@ -2483,8 +2484,8 @@ function print_language_string_list($dbstring, $name, $textbox=false, $locale=NU
 				}
 			}
 		}
-		if ($empty) {
-			$element = $emptylang[$locale];
+		if ($empty && isset($emptylang[$locale])) {
+			$element = @$emptylang[$locale];
 			unset($emptylang[$locale]);
 			$emptylang = array_merge(array($locale=>$element), $emptylang);
 		}
