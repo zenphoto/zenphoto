@@ -6,20 +6,19 @@
 						$required = false;
 						?>
 							<p style="display:none;">
-								<label for="username">Username:</td>
-								<input type="text" id="username" name="username" size="22" value="" /></td>
+								<label for="username">Username:</label>
+								<input type="text" id="username" name="username" size="22" value="" />
 							</p>
 							<?php
 							if ($req = getOption('comment_name_required')) {
 								if ($req == 'required') {
-									$star = "*";
+									$star = "<strong>*</strong>";
 									$required = true;
 								} else {
 									$star = '';
 								}
 								?>
 								<p>
-										<label for="name"><?php printf(gettext("Name%s:"),$star); ?></label>
 										<?php
 										if ($disabled['name']) {
 											?>
@@ -30,6 +29,7 @@
 											<?php
 										} else {
 											?>
+											<label for="name"><?php printf(gettext("Name%s:"),$star); ?></label>
 											<input type="text" id="name" name="name" size="22" value="<?php echo html_encode($stored['name']);?>" class="inputbox" />
 											<?php
 										}
@@ -48,26 +48,25 @@
 							}
 							if ($req = getOption('comment_email_required')) {
 								if ($req == 'required') {
-									$star = "*";
+									$star = "<strong>*</strong>";
 									$required = true;
 								} else {
 									$star = '';
 								}
 								?>
 								<p>
-									<label for="email"><?php printf(gettext("%sE-Mail:"),$star); ?></label>
+									
 									<?php
 									if ($disabled['email']) {
 										?>
 										<span class="disabled_input" style="background-color:LightGray;color:black;">
-											<?php
-											echo html_encode($stored['email']);
-											?>
+											<label for="email"><?php echo html_encode($stored['email']); ?></label>
 											<input type="hidden" id="email" name="email" value="<?php echo html_encode($stored['email']);?>" />
 										</span>
 										<?php
 									} else {
 										?>
+										<label for="email"><?php printf(gettext("E-Mail%s:"),$star); ?></label>
 										<input type="text" id="email" name="email" size="22" value="<?php echo html_encode($stored['email']);?>" class="inputbox" />
 										<?php
 									}
@@ -77,14 +76,14 @@
 							}
 							if ($req = getOption('comment_web_required')) {
 								if ($req == 'required') {
-									$star = "*";
+									$star = "<strong>*</strong>";
 									$required = true;
 								} else {
 									$star = '';
 								}
 								?>
 							<p>
-									<label for="website"><?php printf(gettext("%sSite:"),$star); ?></label>
+									<label for="website"><?php printf(gettext("Site%s:"),$star); ?></label>
 									<?php
 									if ($disabled['website']) {
 										?>
@@ -104,14 +103,14 @@
 							}
 							if ($req = getOption('comment_form_addresses')) {
 								if ($req == 'required') {
-									$star = '*';
+									$star = '<strong>*</strong>';
 									$required = true;
 								} else {
 									$star = '';
 								}
 								?>
 								<p>
-										<label for="comment_form_street"><?php printf(gettext('%sStreet:'),$star); ?></label>
+										<label for="comment_form_street"><?php printf(gettext('Street%s:'),$star); ?></label>
 										<?php
 											if ($disabled['street']) {
 												?>
@@ -128,7 +127,7 @@
 										?>
 								</p>
 								<p>
-									<label for="comment_form_city"><?php printf(gettext('%sCity:'),$star); ?></label>
+									<label for="comment_form_city"><?php printf(gettext('City%s:'),$star); ?></label>
 										<?php
 										if ($disabled['city']) {
 											?>
@@ -147,7 +146,7 @@
 										?>
 								</p>
 								<p>
-									<label for"comment_form_state-0">><?php printf(gettext('%sState:'),$star); ?></label>
+									<label for"comment_form_state-0"><?php printf(gettext('State%s:'),$star); ?></label>
 										<?php
 										if ($disabled['state']) {
 											?>
@@ -166,7 +165,7 @@
 										?>
 								</p>
 								<p>
-									<label for"0-comment_form_country"><?php printf(gettext('%sCountry:'),$star); ?></label>
+									<label for"0-comment_form_country"><?php printf(gettext('Country%s:'),$star); ?></label>
 									<?php
 										if ($disabled['country']) {
 											?>
@@ -185,7 +184,7 @@
 										?>
 								</p>
 								<p>
-									<label for="comment_form_postal-0"><?php printf(gettext('%sPostal code:'),$star); ?></label>
+									<label for="comment_form_postal-0"><?php printf(gettext('Postal code%s:'),$star); ?></label>
 										<?php
 										if ($disabled['postal']) {
 											?>
@@ -207,7 +206,7 @@
 							}
 							if($required) {
 								?>
-								<p><?php echo gettext('*Required fields'); ?></p>
+								<p><?php echo gettext('<strong>*</strong>Required fields'); ?></p>
 								<?php
 							}
 							if (commentFormUseCaptcha()) {
