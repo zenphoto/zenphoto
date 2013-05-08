@@ -81,7 +81,7 @@ class ipBlocker {
 																									'selections' => $files,
 																									'nullselection' => '',
 																									'disabled' => !getOption('zp_plugin_ipBlocker'),
-																									'desc' => sprintf(gettext('Import an external IP list. <p class="notebox"><strong>NOTE:</strong> If this list is large it may excede the capacity of Zenphoto and %s to process and store the results.'),DATABASE_SOFTWARE)),
+																									'desc' => sprintf(gettext('Import an external IP list. <p class="notebox"><strong>NOTE:</strong> If this list is large it may exceed the capacity of Zenphoto and %s to process and store the results.'),DATABASE_SOFTWARE)),
 											gettext('Action') =>array('key' => 'ipBlocker_type', 'type' => OPTION_TYPE_RADIO,
 																								'order'=>3,
 																								'buttons'=>$buttons,
