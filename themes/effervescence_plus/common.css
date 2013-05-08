@@ -315,3 +315,11 @@ label:hover {
 #captcha {
 	vertical-align:middle;
 }
+
+
+#commentform label,
+#mailform label {
+width: 30% !important;
+float: left; 
+display: block;
+}

@@ -198,8 +198,8 @@ echo '</head>'."\n";
 						<form action="?action=savegroups&amp;tab=groups" method="post" autocomplete="off" onsubmit="return checkSubmit()" >
 							<?php XSRFToken('savegroups');?>
 							<p class="buttons">
-							<button type="submit" title="<?php echo gettext("Apply"); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-							<button type="reset" title="<?php echo gettext("Reset"); ?>"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+							<button type="submit"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+							<button type="reset"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 							</p>
 							<br class="clearall" /><br />
 							<input type="hidden" name="savegroups" value="yes" />
@@ -392,8 +392,8 @@ echo '</head>'."\n";
 								</tr>
 							</table>
 							<p class="buttons">
-							<button type="submit" title="<?php echo gettext("Apply"); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-							<button type="reset" title="<?php echo gettext("Reset"); ?>"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+							<button type="submit"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+							<button type="reset"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 							</p>
 							<input type="hidden" name="totalgroups" value="<?php echo $id; ?>" />
 							<input type="hidden" name="checkForPostTruncation" value="1" />
@@ -452,8 +452,8 @@ echo '</head>'."\n";
 						<form action="?action=saveauserassignments" method="post" autocomplete="off" >
 							<?php XSRFToken('saveauserassignments');?>
 							<p class="buttons">
-							<button type="submit" title="<?php echo gettext("Apply"); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-							<button type="reset" title="<?php echo gettext("Reset"); ?>"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+							<button type="submit"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+							<button type="reset"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 							</p>
 							<br class="clearall" /><br /><br />
 							<div class="notebox">
@@ -488,8 +488,8 @@ echo '</head>'."\n";
 							</table>
 							<br />
 							<p class="buttons">
-							<button type="submit" title="<?php echo gettext("Apply"); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-							<button type="reset" title="<?php echo gettext("Reset"); ?>"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+							<button type="submit"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+							<button type="reset"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 							</p>
 						<input type="hidden" name="totalusers" value="<?php echo $id; ?>" />
 						<input type="hidden" name="checkForPostTruncation" value="1" />

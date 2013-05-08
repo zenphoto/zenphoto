@@ -39,23 +39,28 @@ div.jp-video a {
 }
 
 div.jp-audio {
-	width:300px;
+	max-width:300px;
 }
 div.jp-video-270p {
-	width:480px;
+	max-width:480px;
+	max-height: 270px;
 }
 div.jp-video-360p {
-	width:640px;
+	max-width:640px;
 }
 div.jp-video-480p {
-	width:720px;
+	max-width:720px;
+	max-height: 480px;
 }
 div.jp-video-720p {
-	width:1280px;
+	max-width:1280px;
+	max-height: 720px;
 }
 div.jp-video-1080p {
-	width:1920px;
+	max-width:1920px;
+	max-height: 1080px;
 }
+
 
 div.jp-video-full {
 	/* Rules for IE6 (full-screen) */
@@ -712,6 +717,12 @@ a.jp-shuffle-off:hover {
 	display:block;
 	text-align:center;
 	font-weight:bold;
+}
+
+
+@media only screen and (max-width: 479px) {
+	.jp-repeat, .jp-repeat-off, .jp-shuffle,.jp-shuffle-off, .jp-full-screen { display: none !important; }
+	div.jp-controls-holder { width: 300px !important;}
 }
 
 /* @end */

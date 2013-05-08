@@ -145,20 +145,40 @@ function printAdminHeader($tab,$subtab=NULL) {
 			<?php
 		}
 		?>
-    $( document ).tooltip({
-      position: {
-        my: "center bottom-20",
-        at: "center top",
-        using: function( position, feedback ) {
-          $( this ).css( position );
-          $( "<div>" )
-            .addClass( "arrow" )
-            .addClass( feedback.vertical )
-            .addClass( feedback.horizontal )
-            .appendTo( this );
-        }
-      }
-    });
+	  $(function() {
+	    $( ".tooltip " ).tooltip({
+				show: 1000,
+				hide: 1000,
+				position: {
+					my: "center bottom-20",
+					at: "center top",
+					using: function( position, feedback ) {
+						$( this ).css( position );
+						$( "<div>" )
+							.addClass( "arrow" )
+							.addClass( feedback.vertical )
+							.addClass( feedback.horizontal )
+							.appendTo( this );
+					}
+				}
+			});
+	    $( ".page-list_icon" ).tooltip({
+				show: 1000,
+				hide: 1000,
+				position: {
+					my: "center bottom-20",
+					at: "center top",
+					using: function( position, feedback ) {
+						$( this ).css( position );
+						$( "<div>" )
+							.addClass( "arrow" )
+							.addClass( feedback.vertical )
+							.addClass( feedback.horizontal )
+							.appendTo( this );
+					}
+				}
+			});
+		});
 		jQuery(function( $ ){
 			$(".fade-message").fadeTo(5000, 1).fadeOut(1000);
 		})
@@ -319,12 +339,9 @@ function printTabs() {
 						<?php
 						} // foreach end
 						?>
-						</ul>
-					<?php
-					} // if $subtabs end
-					?>
-		</li>
-		<?php
+					</ul>
+				<?php
+			} // if $subtabs end
 		} // if array
 		?>
 	</li>
@@ -1175,15 +1192,15 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 				$parent = '&amp;album='.$parent.'&amp;tab=subalbuminfo';
 			}
 			?>
-			<a title="<?php echo gettext('Back to the album list'); ?>" href="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-edit.php?page=edit'.$parent; ?>">
+			<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-edit.php?page=edit'.$parent; ?>">
 			<img	src="images/arrow_left_blue_round.png" alt="" />
 			<strong><?php echo gettext("Back"); ?></strong>
 			</a>
-			<button type="submit" title="<?php echo gettext("Apply"); ?>">
+			<button type="submit">
 			<img	src="images/pass.png" alt="" />
 			<strong><?php echo gettext("Apply"); ?></strong>
 			</button>
-			<button type="reset" title="<?php echo gettext("Reset"); ?>" onclick="javascript:$('.deletemsg').hide();" >
+			<button type="reset" onclick="javascript:$('.deletemsg').hide();" >
 			<img	src="images/fail.png" alt="" />
 			<strong><?php echo gettext("Reset"); ?></strong>
 			</button>
@@ -1198,7 +1215,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 				<?php
 			}
 			?>
-			<a title="<?php echo gettext('View Album'); ?>" href="<?php echo WEBPATH . "/index.php?album=". pathurlencode($album->getFolder()); ?>">
+			<a href="<?php echo WEBPATH . "/index.php?album=". pathurlencode($album->getFolder()); ?>">
 			<img src="images/view.png" alt="" />
 			<strong><?php echo gettext('View Album'); ?></strong>
 			</a>
@@ -1877,15 +1894,15 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 	if ($buttons) {
 		?>
 		<span class="buttons">
-			<a title="<?php echo gettext('Back to the album list'); ?>" href="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-edit.php?page=edit'.$parent; ?>">
+			<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-edit.php?page=edit'.$parent; ?>">
 			<img	src="images/arrow_left_blue_round.png" alt="" />
 			<strong><?php echo gettext("Back"); ?></strong>
 			</a>
-			<button type="submit" title="<?php echo gettext("Apply"); ?>">
+			<button type="submit">
 			<img	src="images/pass.png" alt="" />
 			<strong><?php echo gettext("Apply"); ?></strong>
 			</button>
-			<button type="reset" title="<?php echo gettext("Reset"); ?>" onclick="javascript:$('.deletemsg').hide();">
+			<button type="reset" onclick="javascript:$('.deletemsg').hide();">
 			<img	src="images/fail.png" alt="" />
 			<strong><?php echo gettext("Reset"); ?></strong>
 			</button>
@@ -1900,7 +1917,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 				<?php
 			}
 			?>
-			<a title="<?php echo gettext('View Album'); ?>" href="<?php echo WEBPATH . "/index.php?album=". pathurlencode($album->getFolder()); ?>">
+			<a href="<?php echo WEBPATH . "/index.php?album=". pathurlencode($album->getFolder()); ?>">
 			<img src="images/view.png" alt="" />
 			<strong><?php echo gettext('View Album'); ?></strong>
 			</a>
@@ -2414,7 +2431,15 @@ function print_language_string_list($dbstring, $name, $textbox=false, $locale=NU
 		$locale = $_zp_current_locale;
 	}
 	$strings = getSerializedArray($dbstring);
-	if (getOption('multi_lingual')) {
+	if (count($strings) == 1) {
+		$lang = array_flip($strings);
+		if (!array_shift($lang)) {
+			$strings = array($locale=>$dbstring);
+		}
+	}
+	$emptylang = generateLanguageList();
+
+	if (getOption('multi_lingual') && !empty($emptylang)) {
 		if ($textbox) {
 			if (strpos($wide, '%') === false) {
 				$width = ' cols="'.$wide.'"';
@@ -2428,7 +2453,6 @@ function print_language_string_list($dbstring, $name, $textbox=false, $locale=NU
 				$width = ' style="width:'.((int)$wide-2).'%;"';
 			}
 		}
-		$emptylang = generateLanguageList();
 		$emptylang = array_flip($emptylang);
 		unset($emptylang['']);
 		if ($textbox) {
@@ -2438,6 +2462,7 @@ function print_language_string_list($dbstring, $name, $textbox=false, $locale=NU
 		}
 		echo '<ul class="'.$ulclass.$class.'"'.">\n";
 		$empty = true;
+
 		foreach ($emptylang as $key=>$lang) {
 			if (isset($strings[$key])) {
 				$string = $strings[$key];
@@ -2459,8 +2484,8 @@ function print_language_string_list($dbstring, $name, $textbox=false, $locale=NU
 				}
 			}
 		}
-		if ($empty) {
-			$element = $emptylang[$locale];
+		if ($empty && isset($emptylang[$locale])) {
+			$element = @$emptylang[$locale];
 			unset($emptylang[$locale]);
 			$emptylang = array_merge(array($locale=>$element), $emptylang);
 		}
@@ -2512,7 +2537,6 @@ function print_language_string_list($dbstring, $name, $textbox=false, $locale=NU
  *
  * @param string $name the prefix for the label, id, and name tags
  * @param $sanitize_level the type of sanitization required
- * @param bool $cleanup set to true to clean up after the TinyMCE editor
  * @return string
  */
 function process_language_string_save($name, $sanitize_level=3) {
@@ -2521,7 +2545,7 @@ function process_language_string_save($name, $sanitize_level=3) {
 	$l = strlen($name)+1;
 	$strings = array();
 	foreach ($_POST as $key=>$value) {
-		if (!empty($value) && preg_match('/^'.$name.'_[a-z]{2}_[A-Z]{2}$/', $key)) {
+		if ($value && preg_match('/^'.$name.'_[a-z]{2}_[A-Z]{2}$/', $key)) {
 			$key = substr($key, $l);
 			if (in_array($key, $languages)) {
 				$strings[$key] = sanitize($value, $sanitize_level);
@@ -2535,8 +2559,6 @@ function process_language_string_save($name, $sanitize_level=3) {
 			} else {
 				return '';
 			}
-		case 1:
-			return array_shift($strings);
 		default:
 			return serialize($strings);
 	}

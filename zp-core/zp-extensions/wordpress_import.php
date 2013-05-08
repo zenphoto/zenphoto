@@ -420,7 +420,7 @@ $zenphoto_tabs['overview']['subtabs']=array(gettext('Wordpress')=>'');
 		<input type="text" value="wp_" name="tableprefix" id="tableprefix" /> <label for="tableprefix"><?php echo gettext("Database table prefix"); ?></label><br />
 		<input type="checkbox" value="0" name="convertlinefeeds" id="convertlinefeeds" /> <label for="convertlinefeeds"><?php echo gettext('Convert linefeeds to new lines (br)'); ?></label><br />
 		<p class="buttons"><button class="submitbutton" type="submit" title="<?php echo gettext("Import"); ?>"><img src="../images/pass.png" alt="" /><strong><?php echo gettext("Import"); ?></strong></button></p>
-		<p class="buttons"><button class="submitbutton" type="reset" title="<?php echo gettext("Reset"); ?>"><img src="../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button></p>
+		<p class="buttons"><button class="submitbutton" type="reset"><img src="../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button></p>
 		<br style="clear:both" />
 	</form>
 	<?php }

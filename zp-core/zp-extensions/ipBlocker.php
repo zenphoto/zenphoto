@@ -12,7 +12,7 @@
  * Detects repeated failed login attempts and blocks access to the IP address used
  * in these attempts.
  *
- * This does not block access to validated users, only anonomous visitors. But
+ * This does not block access to validated users, only anonymous visitors. But
  * a user will have to log on via the admin pages if out of the IP ranges as
  * he will get a Forbidden error on any front-end page including a logon form
  *

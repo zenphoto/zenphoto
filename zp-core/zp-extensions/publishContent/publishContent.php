@@ -296,7 +296,7 @@ if (zp_loggedin(ADMIN_RIGHTS)) {	//only admin should be allowed to do this
 			</div>
 			<br class="clearall" />
 			</form>
-			<p class="buttons">
+			<p class="buttons tooltip">
 				<a href="?propagate_unpublished" title="<?php echo gettext('Set all subalbums of an un-published album to un-published.'); ?>">
 				<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/redo.png" alt="" />
 					<?php echo gettext('Propagate un-published state'); ?>

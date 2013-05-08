@@ -53,7 +53,7 @@ class Zenphoto_Authority {
 	var $master_user = NULL;
 	static $preferred_version = 4;
 	static $supports_version = 4;
-	static $hashList =  array('pbkdf2'=>2, 'sha1'=>1, 'md5'=>0);
+	static $hashList =  array('pbkdf2'=>3, 'pbkdf2*'=>2, 'sha1'=>1, 'md5'=>0);
 
 	/**
 	 * class instantiation function
@@ -75,6 +75,7 @@ class Zenphoto_Authority {
 	 */
 	function getOptionsSupported() {
 		$encodings = self::$hashList;
+		unset($encodings['pbkdf2*']);	// don't use this one any more
 		if (!function_exists('hash')) {
 			unset($encodings['pbkdf2']);
 		}
@@ -85,7 +86,7 @@ class Zenphoto_Authority {
 										'<span id="password_strength_display">'.getOption('password_strength').'</span>')),
 									gettext('Password hash algorithm')=> array('key'=>'strong_hash', 'type'=>OPTION_TYPE_SELECTOR,
 										'selections' => $encodings,
-										'desc'=> sprintf(gettext('The hashing algorithm used by Zenphoto. In order of robustness the choices are %s'), '<code>'.implode('</code> > <code>',array_flip(self::$hashList)).'</code>'))
+										'desc'=> sprintf(gettext('The hashing algorithm used by Zenphoto. In order of robustness the choices are %s'), '<code>'.implode('</code> > <code>',array_flip($encodings)).'</code>'))
 									);
 	}
 
@@ -155,7 +156,11 @@ class Zenphoto_Authority {
 				$hash = sha1($user.$pass.HASH_SEED);
 				break;
 			case 2:
+				//	deprecated beause of possible "+" in the text
 				$hash = base64_encode(self::pbkdf2($pass,$user.HASH_SEED));
+				break;
+			case 3:
+				$hash = str_replace('+','-',base64_encode(self::pbkdf2($pass,$user.HASH_SEED)));
 				break;
 			default:
 				$hash = md5($user.$pass.HASH_SEED);

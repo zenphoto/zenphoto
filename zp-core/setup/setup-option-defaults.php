@@ -52,11 +52,19 @@ if (Zenphoto_Authority::$preferred_version > ($oldv = getOption('libauth_version
 	setupLog($msg, true);
 }
 $admins = $_zp_authority->getAdministrators('all');
+
 if (empty($admins)) {	//	empty administrators table
 	$groupsdefined = NULL;
-	setOption('strong_hash', 1+(int) function_exists('hash'));
+	if (function_exists('hash')) {
+		setOption('strong_hash', 3);
+	} else {
+		setOption('strong_hash', 1);
+	}
 	purgeOption('extra_auth_hash_text');
 } else {
+	if (function_exists('hash') && getOption('strong_hash') == 2) {
+		setOption('strong_hash', 3);
+	}
 	$groupsdefined = @unserialize(getOption('defined_groups'));
 }
 setOptionDefault('extra_auth_hash_text', $lib_auth_extratext);

@@ -1109,6 +1109,14 @@ button.positive,.buttons a.positive {
  font-size: 0.9em;
  font-weight: bold;
 }
+
+#commentform label,
+#mailform label {
+width: 30% !important;
+float: left; 
+display: block;
+}
+
 .clearall {
 clear: both !important;
 }

@@ -1,7 +1,7 @@
 <?php
 /**
  * JavaScript thumb nav plugin with dynamic loading of thumbs on request via JavaScript.
- * Place <var>printjCarousel()</var> on your theme's image.php where you want it to appear.
+ * Place <var>printjCarouselThumbNav()</var> on your theme's image.php where you want it to appear.
  *
  * Supports theme based custom css files (place <var>jcarousel.css</var> and needed images in your theme's folder).
  *
@@ -87,6 +87,7 @@ if (!OFFSET_PATH && getOption('jcarousel_'.$_zp_gallery->getCurrentTheme().'_'.s
 			$css = WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/jcarousel_thumb_nav/jcarousel.css';
 		}
 		?>
+		<script src="http://code.jquery.com/jquery-migrate-1.1.1.js"></script>
 		<script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER;?>/jcarousel_thumb_nav/jquery.jcarousel.pack.js"></script>
 		<link rel="stylesheet" type="text/css" href="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER;?>/jcarousel_thumb_nav/jquery.jcarousel.css" />
 		<link rel="stylesheet" type="text/css" href="<?php echo html_encode($css); ?>" />

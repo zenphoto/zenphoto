@@ -486,8 +486,7 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 	$rimage = isset($_GET[$imagevar]) ? sanitize($_GET[$imagevar]) : NULL;
 	//	we assume that everything is correct if rewrite rules were not applied
 	if ($_zp_rewritten) {
-		$rimage = NULL;	//	the image parameter is never set by the rewrite rules!
-		if (!empty($ralbum)) {
+		if (!empty($ralbum) && empty($rimage)) {	//	rewrite rules never set the image part!
 			if (IM_SUFFIX && preg_match('|^(.*)'.preg_quote(IM_SUFFIX).'$|',$ralbum, $matches)) {
 				//has an IM_SUFFIX attached
 				$rimage = basename($matches[1]);
@@ -547,6 +546,9 @@ function getImageCacheFilename($album8, $image8, $args) {
 	global $_zp_supported_images, $_zp_cachefileSuffix;
 	// this function works in FILESYSTEM_CHARSET, so convert the file names
 	$album = internalToFilesystem($album8);
+	if (is_array($image8)) {
+		$image8 = $image8['name'];
+	}
 	if (IMAGE_CACHE_SUFFIX) {
 		$suffix = IMAGE_CACHE_SUFFIX;
 	} else {

@@ -339,9 +339,9 @@ if ($result->loaded || $result->transient) {
 	}
 	?>
 	<span class="buttons">
-		<strong><a href="<?php echo $backurl; ?>" title="<?php echo gettext("Back"); ?>"><img	src="../../images/arrow_left_blue_round.png" alt="" /><?php echo gettext("Back"); ?></a></strong>
+		<strong><a href="<?php echo $backurl; ?>"><img	src="../../images/arrow_left_blue_round.png" alt="" /><?php echo gettext("Back"); ?></a></strong>
 		<button type="submit" title="<?php echo $updateitem; ?>"><img src="../../images/pass.png" alt="" /><strong><?php if($result->transient) { echo $saveitem; } else { echo $updateitem; } ?></strong></button>
-		<button type="reset" title="<?php echo gettext("Reset"); ?>" onclick="javascript:$('.copydelete').hide();" >
+		<button type="reset" onclick="javascript:$('.copydelete').hide();" >
 			<img src="../../images/reset.png" alt="" />
 			<strong><?php echo gettext("Reset"); ?></strong>
 		</button>
@@ -780,9 +780,9 @@ if ($result->loaded || $result->transient) {
 			?>
 		</table>
 		<span class="buttons">
-			<strong><a href="<?php echo $backurl; ?>" title="<?php echo gettext("Back"); ?>"><img	src="../../images/arrow_left_blue_round.png" alt="" /><?php echo gettext("Back"); ?></a></strong>
+			<strong><a href="<?php echo $backurl; ?>"><img	src="../../images/arrow_left_blue_round.png" alt="" /><?php echo gettext("Back"); ?></a></strong>
 			<button type="submit" title="<?php echo $updateitem; ?>"><img src="../../images/pass.png" alt="" /><strong><?php if($result->transient) { echo $saveitem; } else { echo $updateitem; } ?></strong></button>
-			<button type="reset" title="<?php echo gettext("Reset"); ?>" onclick="javascript:$('.copydelete').hide();">
+			<button type="reset" onclick="javascript:$('.copydelete').hide();">
 				<img src="../../images/reset.png" alt="" />
 			<strong><?php echo gettext("Reset"); ?></strong>
 			</button>

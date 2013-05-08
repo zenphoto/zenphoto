@@ -140,8 +140,8 @@ echo gettext("If the plugin checkbox is checked, the plugin will be loaded and i
 	<input type="hidden" name="saveplugins" value="yes" />
 	<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
 <p class="buttons">
-<button type="submit" value="<?php echo gettext('Apply') ?>" title="<?php echo gettext("Apply"); ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-<button type="reset" value="<?php echo gettext('Reset') ?>" title="<?php echo gettext("Reset"); ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+<button type="reset" value="<?php echo gettext('Reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 </p><br class="clearall" /><br /><br />
 <table class="bordered options">
 <tr>
@@ -393,8 +393,8 @@ foreach ($filelist as $extension) {
 <li><img src="images/warn.png" alt=""><?php echo gettext('Warning note'); ?></li>
 </ul>
 <p class="buttons">
-<button type="submit" value="<?php echo gettext('Apply') ?>" title="<?php echo gettext("Apply"); ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-<button type="reset" value="<?php echo gettext('Reset') ?>" title="<?php echo gettext("Reset"); ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+<button type="reset" value="<?php echo gettext('Reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 </p><br /><br />
 <input type="hidden" name="checkForPostTruncation" value="1" />
 </form>

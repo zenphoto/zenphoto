@@ -5,107 +5,92 @@
 						printCommentErrors();
 						$required = false;
 						?>
-						<table style="border:none">
-							<tr style="display:none;">
-								<td>Username:</td>
-								<td><input type="text" id="username" name="username" size="22" value="" /></td>
-							</tr>
+							<p style="display:none;">
+								<label for="username">Username:</label>
+								<input type="text" id="username" name="username" size="22" value="" />
+							</p>
 							<?php
 							if ($req = getOption('comment_name_required')) {
 								if ($req == 'required') {
-									$star = "*";
+									$star = "<strong>*</strong>";
 									$required = true;
 								} else {
 									$star = '';
 								}
 								?>
-								<tr>
-									<td>
-										<?php
-										printf(gettext("Name%s:"),$star);
-										if (getOption('comment_form_anon') && !$disabled['anon']) {
-											?>
-											<label>(<input type="checkbox" name="anon" value="1"<?php if ($stored['anon']) echo ' checked="checked"'; echo $disabled['anon']; ?> /> <?php echo gettext("<em>anonymous</em>"); ?>)</label>
-											<?php
-										}
-										?>
-									</td>
-									<td>
+								<p>
 										<?php
 										if ($disabled['name']) {
 											?>
-											<div class="disabled_input" style="background-color:LightGray;color:black;">
-												<?php
-												echo html_encode($stored['name']);
-												?>
+											<span class="disabled_input" style="background-color:LightGray;color:black;">
+												<label for="name"><?php echo html_encode($stored['name']); ?></label>
 												<input type="hidden" id="name" name="name" value="<?php echo html_encode($stored['name']);?>" />
-											</div>
+											</span>
 											<?php
 										} else {
 											?>
+											<label for="name"><?php printf(gettext("Name%s:"),$star); ?></label>
 											<input type="text" id="name" name="name" size="22" value="<?php echo html_encode($stored['name']);?>" class="inputbox" />
 											<?php
 										}
 										?>
-									</td>
-								</tr>
+									</p>
+									
 								<?php
+									if (getOption('comment_form_anon') && !$disabled['anon']) {
+										?>
+										<p>
+										<label for="anon"> (<?php echo gettext("<em>anonymous</em>"); ?>)</label>
+										<input type="checkbox" name="anon" id="anon" value="1"<?php if ($stored['anon']) echo ' checked="checked"'; echo $disabled['anon']; ?> />
+										</p>
+										<?php
+									}
 							}
 							if ($req = getOption('comment_email_required')) {
 								if ($req == 'required') {
-									$star = "*";
+									$star = "<strong>*</strong>";
 									$required = true;
 								} else {
 									$star = '';
 								}
 								?>
-							<tr>
-								<td>
-									<?php printf(gettext("%sE-Mail:"),$star); ?>
-								</td>
-								<td>
+								<p>
+									
 									<?php
 									if ($disabled['email']) {
 										?>
-										<div class="disabled_input" style="background-color:LightGray;color:black;">
-											<?php
-											echo html_encode($stored['email']);
-											?>
+										<span class="disabled_input" style="background-color:LightGray;color:black;">
+											<label for="email"><?php echo html_encode($stored['email']); ?></label>
 											<input type="hidden" id="email" name="email" value="<?php echo html_encode($stored['email']);?>" />
-										</div>
+										</span>
 										<?php
 									} else {
 										?>
+										<label for="email"><?php printf(gettext("E-Mail%s:"),$star); ?></label>
 										<input type="text" id="email" name="email" size="22" value="<?php echo html_encode($stored['email']);?>" class="inputbox" />
 										<?php
 									}
 									?>
-								</td>
-							</tr>
+								</p>
 							<?php
 							}
 							if ($req = getOption('comment_web_required')) {
 								if ($req == 'required') {
-									$star = "*";
+									$star = "<strong>*</strong>";
 									$required = true;
 								} else {
 									$star = '';
 								}
 								?>
-							<tr>
-								<td>
-									<?php printf(gettext("%sSite:"),$star); ?>
-								</td>
-								<td>
+							<p>
+									<label for="website"><?php printf(gettext("Site%s:"),$star); ?></label>
 									<?php
 									if ($disabled['website']) {
 										?>
-										<div class="disabled_input" style="background-color:LightGray;color:black;">
-											<?php
-											echo html_encode($stored['website']);
-											?>
+										<span class="disabled_input" style="background-color:LightGray;color:black;">
+											<?php echo html_encode($stored['website']); ?>
 											<input type="hidden" id="website" name="website" value="<?php echo html_encode($stored['website']);?>" />
-										</div>
+										</span>
 										<?php
 									} else {
 										?>
@@ -113,32 +98,26 @@
 										<?php
 									}
 									?>
-								</td>
-							</tr>
+							</p>
 							<?php
 							}
 							if ($req = getOption('comment_form_addresses')) {
 								if ($req == 'required') {
-									$star = '*';
+									$star = '<strong>*</strong>';
 									$required = true;
 								} else {
 									$star = '';
 								}
 								?>
-								<tr>
-									<td>
-										<?php printf(gettext('%sStreet:'),$star); ?>
-									</td>
-									<td>
+								<p>
+										<label for="comment_form_street"><?php printf(gettext('Street%s:'),$star); ?></label>
 										<?php
 											if ($disabled['street']) {
 												?>
-												<div class="disabled_input" style="background-color:LightGray;color:black;">
-													<?php
-													echo html_encode($stored['street']);
-													?>
+												<span class="disabled_input" style="background-color:LightGray;color:black;">
+													<?php echo html_encode($stored['street']); ?>
 														<input type="hidden" id="comment_form_street-0" name="0-comment_form_street" value="<?php echo html_encode($stored['street']);?>" />
-												</div>
+												</span>
 												<?php
 											} else {
 												?>
@@ -146,22 +125,18 @@
 												<?php
 											}
 										?>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<?php printf(gettext('%sCity:'),$star); ?>
-									</td>
-									<td>
+								</p>
+								<p>
+									<label for="comment_form_city"><?php printf(gettext('City%s:'),$star); ?></label>
 										<?php
 										if ($disabled['city']) {
 											?>
-											<div class="disabled_input"  style="background-color:LightGray;color:black;">
+											<span class="disabled_input"  style="background-color:LightGray;color:black;">
 												<?php
 												echo html_encode($stored['city']);
 												?>
 												<input type="hidden" id="comment_form_city-0" name="0-comment_form_city" value="<?php echo html_encode($stored['city']);?>" />
-											</div>
+											</span>
 											<?php
 										} else {
 											?>
@@ -169,20 +144,18 @@
 											<?php
 										}
 										?>
-									</td>
-								</tr>
-								<tr>
-									<td><?php printf(gettext('%sState:'),$star); ?></td>
-									<td>
+								</p>
+								<p>
+									<label for"comment_form_state-0"><?php printf(gettext('State%s:'),$star); ?></label>
 										<?php
 										if ($disabled['state']) {
 											?>
-											<div class="disabled_input" style="background-color:LightGray;color:black;">
+											<span class="disabled_input" style="background-color:LightGray;color:black;">
 												<?php
 												echo html_encode($stored['state']);
 												?>
 												<input type="hidden" name="0-comment_form_state" id="comment_form_state-0" value="<?php echo html_encode($stored['state']);?>" />
-											</div>
+											</span>
 											<?php
 										} else {
 											?>
@@ -190,20 +163,18 @@
 											<?php
 										}
 										?>
-									</td>
-								</tr>
-								<tr>
-									<td><?php printf(gettext('%sCountry:'),$star); ?></td>
-									<td>
-										<?php
+								</p>
+								<p>
+									<label for"0-comment_form_country"><?php printf(gettext('Country%s:'),$star); ?></label>
+									<?php
 										if ($disabled['country']) {
 											?>
-											<div class="disabled_input"  style="background-color:LightGray;color:black;">
+											<span class="disabled_input"  style="background-color:LightGray;color:black;">
 												<?php
 												echo html_encode($stored['country']);
 												?>
 												<input type="hidden" id="0-comment_form_country" name="0-comment_form_country" value="<?php echo html_encode($stored['country']);?>" />
-											</div>
+											</span>
 											<?php
 										} else {
 											?>
@@ -211,20 +182,18 @@
 											<?php
 										}
 										?>
-									</td>
-								</tr>
-								<tr>
-									<td><?php printf(gettext('%sPostal code:'),$star); ?></td>
-									<td>
+								</p>
+								<p>
+									<label for="comment_form_postal-0"><?php printf(gettext('Postal code%s:'),$star); ?></label>
 										<?php
 										if ($disabled['postal']) {
 											?>
-											<div class="disabled_input"  style="background-color:LightGray;color:black;">
+											<span class="disabled_input"  style="background-color:LightGray;color:black;">
 												<?php
 												echo html_encode($stored['postal']);
 												?>
 												<input type="hidden" name="0-comment_form_postal" value="<?php echo html_encode($stored['postal']);?>" />
-											</div>
+											</span>
 											<?php
 										} else {
 											?>
@@ -232,27 +201,20 @@
 											<?php
 										}
 										?>
-									</td>
-								</tr>
+								</p>
 							<?php
 							}
 							if($required) {
 								?>
-								<tr><td colspan="2"><?php echo gettext('*Required fields'); ?></td></tr>
+								<p><?php echo gettext('<strong>*</strong>Required fields'); ?></p>
 								<?php
 							}
 							if (commentFormUseCaptcha()) {
  								$captcha = $_zp_captcha->getCaptcha();
  								?>
- 								<tr>
-	 								<td>
-	 									<?php
-	 									echo gettext("Enter CAPTCHA:");
-	 									if (isset($captcha['html']) && isset($captcha['input'])) echo $captcha['html'];
-	 									?>
-	 								</td>
-	 								<td>
-										<?php
+ 								<p>
+	 								<label for="code"><?php echo gettext("Enter CAPTCHA:"); ?></label>
+	 								<?php if (isset($captcha['html']) && isset($captcha['input'])) echo $captcha['html']; 	
 										if (isset($captcha['input'])) {
 											echo $captcha['input'];
 										} else {
@@ -260,25 +222,18 @@
 										}
 										if (isset($captcha['hidden'])) echo $captcha['hidden'];
 										?>
-	 								</td>
- 								</tr>
+	 							</p>
 							<?php
 							}
 							if (getOption('comment_form_private') && !$disabled['private']) {
 								?>
-								<tr>
-									<td colspan="2">
-										<label>
-											<input type="checkbox" name="private" value="1"<?php if ($stored['private']) echo ' checked="checked"'; ?> />
-											<?php echo gettext("Private comment (don't publish)"); ?>
-										</label>
-									</td>
-								</tr>
+								<p>
+									<label for="private"><?php echo gettext("Private comment (don't publish)"); ?></label>
+									<input type="checkbox" name="private" value="1"<?php if ($stored['private']) echo ' checked="checked"'; ?> />
+								</p>
 								<?php
 							}
 							?>
-						</table>
 						<textarea name="comment" rows="6" cols="42" class="textarea_inputbox"><?php echo $stored['comment']; echo $disabled['comment']; ?></textarea>
-						<br />
 						<input type="submit" class="pushbutton"  value="<?php echo gettext('Add Comment'); ?>" />
 					</form>

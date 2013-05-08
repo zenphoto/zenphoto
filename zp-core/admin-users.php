@@ -440,8 +440,8 @@ function languageChange(id,lang) {
 	}
 	?>
 	<p class="buttons">
-		<button type="submit" value="<?php echo gettext('Apply') ?>" title="<?php echo gettext("Apply"); ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-		<button type="reset" value="<?php echo gettext('reset') ?>" title="<?php echo gettext("Reset"); ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+		<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+		<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 	</p>
 	<br class="clearall" /><br />
 <table class="bordered"> <!-- main table -->
@@ -827,8 +827,8 @@ function languageChange(id,lang) {
 if (!$_zp_current_admin_obj->transient) {
 	?>
 	<p class="buttons">
-	<button type="submit" title="<?php echo gettext("Apply"); ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-	<button type="reset" title="<?php echo gettext("Reset"); ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+	<button type="submit"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+	<button type="reset"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 	</p>
 	<?php
 }

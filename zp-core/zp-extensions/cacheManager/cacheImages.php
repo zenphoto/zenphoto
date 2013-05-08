@@ -373,7 +373,7 @@ $last = '';
 	}
 	?>
 		<p class="buttons">
-			<a title="<?php if ($alb) echo gettext('Back to the album list'); else echo gettext('Back to the overview') ?>"href="<?php echo WEBPATH.'/'.ZENFOLDER.$r; ?>"> <img src="<?php echo FULLWEBPATH.'/'.ZENFOLDER; ?>/images/cache.png" alt="" />
+			<a href="<?php echo WEBPATH.'/'.ZENFOLDER.$r; ?>"> <img src="<?php echo FULLWEBPATH.'/'.ZENFOLDER; ?>/images/cache.png" alt="" />
 				<strong><?php echo gettext("Back"); ?> </strong>
 			</a>
 		</p>
