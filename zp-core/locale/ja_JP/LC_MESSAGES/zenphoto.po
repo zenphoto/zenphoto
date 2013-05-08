@@ -11995,7 +11995,7 @@ msgid ""
 ">&nbsp;&nbsp;&nbsp;&nbsp;<code>%3$s</code> = titles of the new items (up to "
 "the limit defined by the option below.)<p class=\"notebox\">Never leave any "
 "of these three out!</p>"
-msgstr ""
+msgstr "<em>アルバムごとの新着画像</em>記事のカスタムタイトルです。文字列は<code>sprintf()</code>構文になります。<br />&nbsp;&nbsp;&nbsp;&nbsp;<code>%1$u</code> = 新しいアイテムのカウントインジケーター(冗長の場合は存在しなくても良い)<br />&nbsp;&nbsp;&nbsp;&nbsp;<code>%2$s</code> = それらのアルバムのタイトル<br />&nbsp;&nbsp;&nbsp;&nbsp;<code>%3$s</code> = 新しいアイテムのタイトル(以下のオプションで定義した限界まで)<p class=\"notebox\">これらの3つのうちいずれかを残すことはありません！</p>"
 
 #: zp-core/zp-extensions/zenpage.php:201
 msgid "CombiNews: Custom title - Number of image titles"
@@ -18036,7 +18036,7 @@ msgid ""
 "Import an external IP list. <p class=\"notebox\"><strong>NOTE:</strong> If "
 "this list is large it may exceed the capacity of Zenphoto and %s to process "
 "and store the results."
-msgstr ""
+msgstr "外部のIP一覧をインポートします。<p class=\"notebox\"><strong>注:</strong>この一覧が巨大な場合、その結果を処理して格納するZenphotoや%sの容量を超える可能性があります。"
 
 #: zp-core/zp-extensions/ipBlocker.php:88
 msgid "How the plugin will interpret the IP list."
