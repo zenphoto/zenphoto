@@ -73,7 +73,7 @@ class reCaptcha {
 	 * @return string;
 	 */
 	function getCaptcha() {
-		return array('input'=>recaptcha_get_html(getOption('reCaptcha_public_key')), NULL, secureServer());
+		return array('input'=>recaptcha_get_html(getOption('reCaptcha_public_key'), NULL, secureServer()));
 	}
 }
 
