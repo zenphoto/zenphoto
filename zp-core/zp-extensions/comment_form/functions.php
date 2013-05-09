@@ -807,55 +807,55 @@ function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=t
 		<!-- Comment Box -->
 		<?php
 		if ($comments_open) {
-			$stored = array_merge(getCommentStored(),array('street'=>'', 'city'=>'', 'state'=>'', 'country'=>'', 'postal'=>''));
-			$custom = getSerializedArray($stored['custom']);
-			foreach ($custom as $key=>$value) {
-				if (!empty($value)) $stored[$key] = $value;
-			}
-
-			$disabled = array('name'=>'',	'website'=>'', 'anon'=>'', 'private'=>'', 'comment'=>'',
-												'street'=>'', 'city'=>'', 'state'=>'', 'country'=>'', 'postal'=>'');
-			foreach ($stored as $key=>$value) {
-				$disabled[$key] = false;
-			}
-
-			if (zp_loggedin()) {
-				$address = getSerializedArray($_zp_current_admin_obj->getCustomData());
-				foreach ($address as $key=>$value) {
-					if (!empty($value)) {
-						$disabled[$key] = true;
-						$stored[$key] = $value;
-					}
-				}
-
-				$name = $_zp_current_admin_obj->getName();
-				if (!empty($name)) {
-					$stored['name'] = $name;
-					$disabled['name'] = ' disabled="disabled"';
-				} else {
-					$user = $_zp_current_admin_obj->getUser();
-					if (!empty($user)) {
-						$stored['name'] = $user;
-						$disabled['name'] = ' disabled="disabled"';
-					}
-				}
-				$email = $_zp_current_admin_obj->getEmail();
-				if (!empty($email)) {
-					$stored['email'] = $email;
-					$disabled['email'] = ' disabled="disabled"';
-				}
-				if (!empty($address['website'])) {
-					$stored['website'] = $address['website'];
-					$disabled['website'] = ' disabled="disabled"';
-				}
-			}
-			$data = zp_apply_filter('comment_form_data',array('data'=>$stored, 'disabled'=>$disabled));
-			$disabled = $data['disabled'];
-			$stored = $data['data'];
-
 			if (MEMBERS_ONLY_COMMENTS && !zp_loggedin(POST_COMMENT_RIGHTS)) {
 				echo gettext('Only registered users may post comments.');
 			} else {
+				$stored = array_merge(getCommentStored(),array('street'=>'', 'city'=>'', 'state'=>'', 'country'=>'', 'postal'=>''));
+				$custom = getSerializedArray($stored['custom']);
+				foreach ($custom as $key=>$value) {
+					if (!empty($value)) $stored[$key] = $value;
+				}
+
+				$disabled = array('name'=>'',	'website'=>'', 'anon'=>'', 'private'=>'', 'comment'=>'',
+													'street'=>'', 'city'=>'', 'state'=>'', 'country'=>'', 'postal'=>'');
+				foreach ($stored as $key=>$value) {
+					$disabled[$key] = false;
+				}
+
+				if (zp_loggedin()) {
+					$address = getSerializedArray($_zp_current_admin_obj->getCustomData());
+					foreach ($address as $key=>$value) {
+						if (!empty($value)) {
+							$disabled[$key] = true;
+							$stored[$key] = $value;
+						}
+					}
+
+					$name = $_zp_current_admin_obj->getName();
+					if (!empty($name)) {
+						$stored['name'] = $name;
+						$disabled['name'] = ' disabled="disabled"';
+					} else {
+						$user = $_zp_current_admin_obj->getUser();
+						if (!empty($user)) {
+							$stored['name'] = $user;
+							$disabled['name'] = ' disabled="disabled"';
+						}
+					}
+					$email = $_zp_current_admin_obj->getEmail();
+					if (!empty($email)) {
+						$stored['email'] = $email;
+						$disabled['email'] = ' disabled="disabled"';
+					}
+					if (!empty($address['website'])) {
+						$stored['website'] = $address['website'];
+						$disabled['website'] = ' disabled="disabled"';
+					}
+				}
+				$data = zp_apply_filter('comment_form_data',array('data'=>$stored, 'disabled'=>$disabled));
+				$disabled = $data['disabled'];
+				$stored = $data['data'];
+
 				if (!empty($addcommenttext)) {
 					echo $addcommenttext;
 				}
@@ -1396,7 +1396,7 @@ function next_comment($desc=false) {
 function getCommentStored($numeric=false) {
 	global $_zp_comment_stored;
 	if ($numeric) {
-		return Array_merge($_zp_comment_stored);
+		return array_merge($_zp_comment_stored);
 	}
 	return $_zp_comment_stored;
 }
