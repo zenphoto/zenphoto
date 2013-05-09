@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.4.4.5\n"
+"Project-Id-Version: Zenphoto 1.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-22 10:01+0100\n"
-"PO-Revision-Date: 2013-04-22 10:28+0100\n"
+"POT-Creation-Date: 2013-05-09 09:29+0100\n"
+"PO-Revision-Date: 2013-05-09 09:31+0100\n"
 "Last-Translator: \n"
 "Language-Team: Jakub Meisner <jakub@jlfoto.sk>\n"
 "Language: sk_SK\n"
@@ -213,7 +213,7 @@ msgstr "Prezrieť album:"
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/themes/zpmobile/image.php:31
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/themes/zpmobile/news.php:43
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/themes/zpmobile/search.php:160
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4253
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4250
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/slideshow.php:227
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:57
 msgid "prev"
@@ -251,7 +251,7 @@ msgstr "späť"
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/themes/zpmobile/image.php:34
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/themes/zpmobile/news.php:44
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/themes/zpmobile/search.php:160
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4281
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4278
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:422
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/slideshow.php:228
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:58
@@ -478,7 +478,7 @@ msgstr "Zhoda pre <em>%1$s</em>: %2$u"
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/themes/default/search.php:58
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1313
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1326
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1323
 msgid "Date:"
 msgstr "Dátum:"
 
@@ -935,8 +935,8 @@ msgstr "Prezrieť galériu"
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:61
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:141
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/themes/zpmobile/news.php:9
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2967
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3083
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2964
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3080
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/lib-auth.php:491
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/lib-auth.php:494
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/lib-auth.php:509
@@ -980,8 +980,8 @@ msgstr "Hľadať v správach"
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:153
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/themes/zpmobile/pages.php:26
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/themes/zpmobile/pages.php:32
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2967
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3097
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2964
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3094
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/lib-auth.php:490
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/lib-auth.php:493
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/lib-auth.php:510
@@ -1016,7 +1016,7 @@ msgstr "Stránky"
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/themes/zenpage/pages.php:31
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/themes/zenpage/register.php:29
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/themes/zenpage/search.php:57
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1013
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1016
 msgid "Index"
 msgstr "Index"
 
@@ -1515,8 +1515,8 @@ msgstr "Stránka nenájdená"
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/themes/zenpage/404.php:37
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/themes/zpmobile/404.php:32
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:38
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:462
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4484
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:459
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4481
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/lib-auth.php:474
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/related_items.php:172
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:81
@@ -1528,7 +1528,7 @@ msgstr "Album"
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/themes/garland/404.php:49
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/themes/zenpage/404.php:40
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/themes/zpmobile/404.php:35
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4482
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4479
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/related_items.php:179
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:101
 msgid "Image"
@@ -1641,8 +1641,8 @@ msgid "Search category"
 msgstr "Prehľadať kategóriu"
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/themes/garland/sidebar.php:102
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1940
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3070
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1937
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3067
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/lib-auth.php:489
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/lib-auth.php:495
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/lib-auth.php:508
@@ -1801,10 +1801,10 @@ msgstr "Odoslať e-mail"
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1564
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1593
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1594
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1176
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1178
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1878
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1880
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1173
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1175
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1875
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1877
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-logs.php:124
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-options.php:528
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-options.php:888
@@ -1905,8 +1905,8 @@ msgstr "1 album,&nbsp;%u obrázkov"
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/themes/stopdesign/album.php:134
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/themes/stopdesign/search.php:94
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/themes/stopdesign/search.php:123
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2376
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2378
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2373
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2375
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1623
 msgid "Next page"
 msgstr "Ďalšia strana"
@@ -2558,7 +2558,7 @@ msgid "Image order saved"
 msgstr "Poradie obrázkov uložené"
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:118
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4522
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4519
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:12
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:36
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1805
@@ -2573,8 +2573,8 @@ msgstr "Nič nebolo zmenené"
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1469
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1557
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1587
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1168
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1870
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1165
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1867
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:329
 msgid "Back to the album list"
 msgstr "Späť na zoznam albumov"
@@ -2587,8 +2587,8 @@ msgstr "Späť na zoznam albumov"
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1471
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1558
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1588
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1170
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1872
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1167
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1869
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-refresh-metadata.php:145
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-themes-editor.php:102
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-thumbcrop.php:275
@@ -2626,10 +2626,10 @@ msgstr "Späť"
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1591
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1650
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1691
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1172
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1174
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1874
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1876
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1169
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1171
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1871
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1873
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-options.php:527
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-options.php:887
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-options.php:910
@@ -2686,10 +2686,10 @@ msgstr "Použiť"
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:143
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:170
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:172
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1191
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1193
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1893
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1895
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1188
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1190
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1890
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1892
 msgid "View Album"
 msgstr "Prezrieť album"
 
@@ -2721,10 +2721,10 @@ msgstr "Ste si istý, že chcete vymazať tento komentár?"
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-comments.php:475
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-comments.php:491
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:656
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1964
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1961
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-logs.php:117
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-themes.php:297
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1013
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1016
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:205
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:178
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:240
@@ -2742,9 +2742,9 @@ msgstr "Vymazať"
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1207
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1213
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1219
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1781
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1818
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1826
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1778
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1815
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1823
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/uploader_flash/upload_form.php:102
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/uploader_http/upload_form.php:68
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/uploader_http/upload_form.php:69
@@ -2823,7 +2823,7 @@ msgid "Comment does not exist"
 msgstr "Komentár neexistuje."
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-comments.php:262
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4528
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4525
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:907
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1769
 msgid "Selected items deleted"
@@ -2846,7 +2846,7 @@ msgstr[1] "%u Komentáre úspešne vymazané"
 msgstr[2] "%u Komentárov úspešne vymazaných"
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-comments.php:290
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4519
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4516
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:214
 msgid "Changes applied"
 msgstr "Zmeny použité"
@@ -2883,7 +2883,7 @@ msgstr "Označiť ako spam"
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-comments.php:347
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:865
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1672
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3652
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3649
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:204
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:160
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:268
@@ -2981,7 +2981,7 @@ msgid "Create in:"
 msgstr "Vytvoriť v:"
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-dynamic-album.php:149
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1554
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1551
 msgid "Thumbnail:"
 msgstr "Miniatúra:"
 
@@ -3087,7 +3087,7 @@ msgid "Clear tags"
 msgstr "Vymazať tagy"
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:661
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2089
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2086
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:254
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:323
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:148
@@ -3096,7 +3096,7 @@ msgid "Disable comments"
 msgstr "Vypnúť komentáre"
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:662
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2103
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2100
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:255
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:329
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:149
@@ -3118,13 +3118,13 @@ msgstr "Vymazať tagy z obrázkov"
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:673
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1168
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1755
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1752
 msgid "Move"
 msgstr "Presunúť"
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:674
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1172
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1761
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1758
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:529
 msgid "Copy"
 msgstr "Kopírovať"
@@ -3176,10 +3176,10 @@ msgstr ""
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:840
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:895
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:897
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1184
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1186
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1886
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1888
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1181
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1183
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1883
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1885
 msgid "New subalbum"
 msgstr "Nový podalbum"
 
@@ -3215,7 +3215,7 @@ msgid "%s (descending)"
 msgstr "%s (zostupne)"
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:958
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1363
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1360
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-options.php:1102
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/exif/exif.php:491
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/exif/makers/canon.php:135
@@ -3290,7 +3290,7 @@ msgid "Owner:"
 msgstr "Majiteľ:"
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1063
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1647
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1644
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/lib-auth.php:497
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/lib-auth.php:498
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/lib-auth.php:499
@@ -3306,8 +3306,8 @@ msgid "General"
 msgstr "Hlavné"
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1067
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1651
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2060
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1648
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2057
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-globals.php:32
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:435
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:721
@@ -3316,7 +3316,7 @@ msgid "Published"
 msgstr "Zverejnené"
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1071
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1655
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1652
 msgid "Allow Comments"
 msgstr "Povoliť komentáre"
 
@@ -3338,15 +3338,15 @@ msgstr[1] "Vynulovať hodnotenie (%u hviezdy)"
 msgstr[2] "Vynulovať hodnotenie (%u hviezd)"
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1100
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1684
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1681
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:664
 msgid "Reset rating (unrated)"
 msgstr "Vynulovať hodnotenie (nehodnotené)"
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1114
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1321
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1334
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1698
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1331
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1695
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/publishContent/publishContent.php:324
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:569
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:596
@@ -3355,30 +3355,30 @@ msgstr "kalendár"
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1121
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1146
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1705
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1730
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1702
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1727
 msgid "Future publishing date."
 msgstr "Dátum budúceho uverejnenia."
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1132
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1156
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1716
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1740
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1713
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1737
 msgid "Expired!"
 msgstr "Vypršalo!"
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1141
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1725
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1722
 msgid "Publish date"
 msgstr "Dátum zverejnenia"
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1151
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1735
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1732
 msgid "Expiration date"
 msgstr "Dátum vypršania:"
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1163
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1749
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1746
 msgid "Utilities"
 msgstr "Nástroje"
 
@@ -3437,7 +3437,7 @@ msgid "Crop thumbnail"
 msgstr "Orezať miniatúru"
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1274
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1836
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1833
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/class-search.php:64
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/lib-auth.php:478
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/lib-auth.php:497
@@ -3471,14 +3471,14 @@ msgid "Image watermark:"
 msgstr "Vodoznak obrázku:"
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1339
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1513
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1528
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1510
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1525
 msgid "*no watermark"
 msgstr "*bez vodoznaku"
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1340
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1514
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1529
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1511
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1526
 msgid "*default"
 msgstr "*štandard"
 
@@ -3492,12 +3492,12 @@ msgid "full image"
 msgstr "Plný obrázok"
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1359
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1354
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1351
 msgid "Custom data:"
 msgstr "Voliteľné dáta:"
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1369
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1344
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1341
 msgid "Location:"
 msgstr "Miesto:"
 
@@ -3530,7 +3530,7 @@ msgid "None selected for display"
 msgstr "Nie je označené nič na zobrazenie"
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1438
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1637
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1634
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-options.php:1262
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:775
 msgid "Codeblocks:"
@@ -3568,7 +3568,7 @@ msgstr ""
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1655
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1696
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1710
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1711
 msgid "New album"
 msgstr "Nový album"
 
@@ -3631,7 +3631,7 @@ msgid "%1$s %2$s: %3$s%4$s"
 msgstr "%1$s %2$s: %3$s%4$s"
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:127
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4360
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4357
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/pluginDoc.php:113
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/user-expiry.php:107
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/user_groups.php:224
@@ -3670,9 +3670,9 @@ msgstr "Zobraziť <em>%s</em>"
 msgid "View gallery index"
 msgstr "Zobraziť index galérie"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:441
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1520
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1941
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:438
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1517
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1938
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-options.php:1844
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-options.php:1897
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/utilities/gallery_statistics.php:75
@@ -3685,16 +3685,16 @@ msgstr "Zobraziť index galérie"
 msgid "Images"
 msgstr "obrázky"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:448
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:445
 msgid "Image order"
 msgstr "poradie obrázkov"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:455
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:452
 msgid "Subalbums"
 msgstr "Podalbumy"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:789
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4359
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:786
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4356
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-options.php:1427
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-tags.php:157
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-users.php:465
@@ -3705,31 +3705,31 @@ msgstr "Podalbumy"
 msgid "all"
 msgstr "všetko"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1090
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1091
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1087
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1088
 msgid "add tag"
 msgstr "pridať tag"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1206
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1203
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-globals.php:31
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/class-search.php:73
 msgid "Owner"
 msgstr "Majiteľ"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1223
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1220
 msgid "Album Title"
 msgstr "Názov albumu"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1232
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1229
 msgid "Album Description:"
 msgstr "Popis albumu:"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1245
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1285
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1242
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1282
 msgid "Album password:"
 msgstr "Heslo albumu:"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1259
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1256
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-options.php:963
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-options.php:1322
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-options.php:2086
@@ -3738,11 +3738,11 @@ msgstr "Heslo albumu:"
 msgid "clear password"
 msgstr "vymazať heslo"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1268
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1265
 msgid "Album guest user:"
 msgstr "Neregistrovaný používateľ albumu:"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1273
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1270
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-options.php:986
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-options.php:1343
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-options.php:2104
@@ -3753,17 +3753,17 @@ msgstr "Neregistrovaný používateľ albumu:"
 msgid "Show password"
 msgstr "Zobraziť heslo"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1288
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1285
 msgid "repeat password:"
 msgstr "zopakovať heslo:"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1292
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1289
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/downloadList.php:142
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:517
 msgid "Password hint:"
 msgstr "Nápoveda k heslu:"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1365
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1362
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-options.php:724
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-options.php:1103
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-options.php:1691
@@ -3772,64 +3772,64 @@ msgstr "Nápoveda k heslu:"
 msgid "Custom"
 msgstr "Používatelské nastavenie"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1372
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1369
 msgid "Sort subalbums by:"
 msgstr "Zradiť albumy podľa: "
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1378
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1375
 msgid "*gallery album sort order"
 msgstr "*poradie albumov galérie"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1380
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1377
 msgid "*parent album subalbum sort order"
 msgstr "*poradie podalbumov"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1400
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1451
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1397
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1448
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-options.php:1137
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-options.php:1718
 msgid "Descending"
 msgstr "Zostupne"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1414
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1466
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1411
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1463
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-options.php:1145
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-options.php:1724
 msgid "custom fields:"
 msgstr "používatelské polia:"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1421
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1418
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-options.php:1686
 msgid "Sort images by:"
 msgstr "Zoradiť obrázky podľa: "
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1427
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1424
 msgid "*gallery image sort order"
 msgstr "*poradie obrázkov galérie"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1429
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1426
 msgid "*parent album image sort order"
 msgstr "*poradie obrázkov podľa albumu"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1476
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1473
 msgid "Album theme:"
 msgstr "Šablóna albumu:"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1488
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1485
 msgid "*gallery theme"
 msgstr "*šablóna galérie"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1509
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1506
 msgid "Album watermarks:"
 msgstr "Vodoznak albumu:"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1535
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1532
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-options.php:1848
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/utilities/reset_albumthumbs.php:35
 msgid "Thumbs"
 msgstr "Miniatúry"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1664
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1661
 #, php-format
 msgid "Reset hit counter (%u hit)"
 msgid_plural "Reset hit counter (%u hits)"
@@ -3837,235 +3837,235 @@ msgstr[0] "Vynulovať počítadlo (Návštev: %u)"
 msgstr[1] "Vynulovať počítadlo (Návštev: %u)"
 msgstr[2] "Vynulovať počítadlo (Návštev: %u)"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1677
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1674
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:657
 #, php-format
 msgid "Reset rating (%u stars)"
 msgstr "Vynulovať hodnotenie (%u hviezd)"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1767
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1764
 msgid "Rename Folder"
 msgstr "Premenovať zložku"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1773
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1770
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/template-functions.php:234
 msgid "Delete album"
 msgstr "Vymazať album"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1778
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1775
 msgid "Album will be deleted when changes are applied."
 msgstr "Album bude vymazaný keď sa aplikujú zmeny."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1785
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1822
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1782
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1819
 msgid "to:"
 msgstr "po:"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1851
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1848
 msgid "Dynamic album search:"
 msgstr "Vyhľadávať dynamické albumy:"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1914
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1911
 msgid "Clears the album's cached images."
 msgstr "Vymazať obrázky z vyrovnávacej pamäte albumu."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1916
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1913
 msgid "Clear album image cache"
 msgstr "Vymazať kešku obrázkov albumu"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1919
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1916
 msgid "Resets album's hit counters."
 msgstr "Vymazať počítadlá albumov."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1921
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1918
 msgid "Reset album hit counters"
 msgstr "Vymazať počítadlá albumu."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1928
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1925
 msgid "Refreshes the metadata for the album."
 msgstr "Obnovuje metadáta albumu."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1930
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1927
 msgid "Refresh album metadata"
 msgstr "Obnoviť metadáta albumu"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1942
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1939
 msgid "Albums (dynamic)"
 msgstr "Albumy (dynamické)"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1943
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1940
 msgid "Images (dynamic)"
 msgstr "Obrazky (dynamické)"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1949
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1946
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:186
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1468
 msgid "Has Password"
 msgstr "Má heslo"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1953
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1950
 msgid "Published/Un-published"
 msgstr "Zverejnené/nezverejnené"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1954
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1951
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1472
 msgid "Comments on/off"
 msgstr "Komentáre zapnuté/vypnuté"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1955
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1952
 msgid "View the album"
 msgstr "Zobraziť album"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1956
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1953
 msgid "Refresh metadata"
 msgstr "Obnoviť metadáta"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1960
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1957
 msgid "Reset hit counters"
 msgstr "Vynulovať počítadlá"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1992
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2009
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1989
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2006
 #, php-format
 msgid "Edit this album: %s"
 msgstr "Upraviť tento album: %s"
 
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2019
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2022
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2025
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-globals.php:70
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/image_album_statistics.php:220
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/tweet_news.php:424
 msgid "images"
 msgstr "obrázky"
 
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2020
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2023
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2026
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-globals.php:81
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/tweet_news.php:415
 msgid "albums"
 msgstr "albumy"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2031
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2036
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2028
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2033
 msgid "Subalbum List"
 msgstr "Zoznam podalbumov"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2047
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2044
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:306
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:262
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1060
 msgid "Password protected"
 msgstr "Chránené heslom"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2056
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2053
 #, php-format
 msgid "Un-publish the album %s"
 msgstr "Album %s nie je zverejnený"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2070
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2067
 #, php-format
 msgid "Publish the album %s"
 msgstr "Zverejniť album %s"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2074
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2071
 #, php-format
 msgid "Unpublished"
 msgstr "Nezverejnené"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2093
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2090
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:633
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:324
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:276
 msgid "Comments on"
 msgstr "Komentáre povolené"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2107
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2104
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:330
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:282
 msgid "Comments off"
 msgstr "Komentáre zakázané"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2118
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2115
 msgid "View album"
 msgstr "Zobraziť album"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2119
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2116
 #, php-format
 msgid "View album %s"
 msgstr "Zobraziť album %s"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2126
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2144
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2164
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2123
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2141
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2161
 msgid "unavailable"
 msgstr "nie je k dispozícii"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2130
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2127
 #, php-format
 msgid "Refresh metadata for the album %s"
 msgstr "Obnoviť metadáta albumu %s"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2131
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2128
 #, php-format
 msgid "Refresh metadata in the album %s"
 msgstr "Obnoviť metadáta v albume %s"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2148
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2145
 #, php-format
 msgid "Reset hit counters for album %s"
 msgstr "Vynulovať počítadlá albumu %s"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2149
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2146
 #, php-format
 msgid "Reset hit counters for the album %s"
 msgstr "Vynulovať počítadlá tohto albumu %s"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2168
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2169
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2165
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2166
 #, php-format
 msgid "Delete the album %s"
 msgstr "Vymazať album %s"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2358
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2365
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2355
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2362
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2367
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2370
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2373
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2376
 #, php-format
 msgid "page %u"
 msgstr "strana %u"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2358
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2360
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2355
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2357
 msgid "Previous page"
 msgstr "Predošlá strana"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2731
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2736
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2741
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2746
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2728
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2733
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2738
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2743
 msgid "Cannot create new theme."
 msgstr "Nedá sa vytvoriť nová šablóna."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2731
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2728
 #, php-format
 msgid "Directory \"%s\" already exists!"
 msgstr "Zložka \"%s\" už existuje!"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2736
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2733
 #, php-format
 msgid "Cannot find theme directory \"%s\" to copy!"
 msgstr "Zložka šablóny \"%s\" nenájdená, nedá sa skopírovať!"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2741
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2738
 msgid "The <tt>/themes</tt> directory is not writable!"
 msgstr "Zložka <tt>/themes</tt> nemá práva na zápis!"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2746
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2743
 msgid "Could not create directory for the new theme"
 msgstr "Nedá sa vytvoriť zložka pre novú šablónu"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2779
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2776
 #, php-format
 msgid ""
 "An error occurred while copying files. Please delete manually the new theme "
@@ -4074,71 +4074,71 @@ msgstr ""
 "Pri kopírovaní nastala chyba. Manuálne odstrante zložku novej šablóny  '%s' "
 "a zopakujte kopírovanie manuálne."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2787
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2784
 #, php-format
 msgid "Your theme, based on theme %s"
 msgstr "Vaša šablóna vychádzajúca zo šablóny %s"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2789
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2786
 msgid "Your theme"
 msgstr "Vaša šablóna"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2813
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2810
 msgid "New custom theme created successfully!"
 msgstr "Nová upravená šablóna úspešne vytvorená!"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2815
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2812
 msgid "New custom theme created, but its description could not be updated"
 msgstr "Nová upravená šablóna vytvorená, ale nepodarilo sa zmeniť jej popis"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2961
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2958
 msgid "Rights:"
 msgstr "Práva:"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3021
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3018
 msgid "edit rights"
 msgstr "upraviť práva"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3022
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3019
 msgid "view unpublished items"
 msgstr "Prezrieť nezverenené položky"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3023
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3020
 msgid "upload rights"
 msgstr "nahrávacie práva"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3024
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3021
 msgid "the album is dynamic"
 msgstr "album je dynamický"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3026
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3023
 msgid "Primary album"
 msgstr "Hlavný album"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3028
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3025
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:31
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:122
 msgid "edit"
 msgstr "upraviť"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3029
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3026
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-globals.php:64
 msgid "upload"
 msgstr "nahrať"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3030
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3027
 msgid "view unpublished"
 msgstr "prezrieť nezverenené"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3069
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3066
 msgid "Managed albums:"
 msgstr "Spravované albumy:"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3082
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3079
 msgid "Managed news categories:"
 msgstr "Spravované kategórie správ:"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3084
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3081
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/utilities/gallery_statistics.php:596
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/multiple_layouts.php:92
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/tweet_news.php:120
@@ -4146,23 +4146,23 @@ msgstr "Spravované kategórie správ:"
 msgid "News categories"
 msgstr "Kategórie správ"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3096
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3093
 msgid "Managed pages:"
 msgstr "Spravované stránky:"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3102
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3099
 #, php-format
 msgid "Select one or more %1$s for the %2$s to manage."
 msgstr "Označte jeden alebo viaceré %1$s pre  %2$s na správu."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3103
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3100
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-users.php:783
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-users.php:792
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-users.php:798
 msgid "user"
 msgstr "používateľ"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3104
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3101
 #, php-format
 msgid ""
 "Users with \"Admin\" or \"Manage all %1$s\" rights can manage all %2$s. All "
@@ -4172,12 +4172,12 @@ msgstr ""
 "právami môžu spravovať všetko %2$s. Všetci ostatní môžu spravovať len to, čo "
 "je označené."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3107
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3104
 #, php-format
 msgid "You may manage these %s subject to the above rights."
 msgstr "Máte právo spravovať toto %s podľa označených práv hore."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3517
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3514
 #, php-format
 msgid "Show %u album level"
 msgid_plural "Show %u album levels"
@@ -4185,7 +4185,7 @@ msgstr[0] "Zobraziť %u úroveň albumu"
 msgstr[1] "Zobraziť %u úrovne albumu"
 msgstr[2] "Zobraziť %u úrovní albumu"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3520
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3517
 #, php-format
 msgid "%u image per page"
 msgid_plural "%u images per page"
@@ -4193,88 +4193,88 @@ msgstr[0] "%u obrázok na stranu"
 msgstr[1] "%u obrázky na stranu"
 msgstr[2] "%u obrázkov na stranu"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3595
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3607
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3619
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3631
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3592
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3604
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3616
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3628
 msgid "ok"
 msgstr "ok"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3702
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3699
 msgid "Destination"
 msgstr "Destinácia"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3982
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4020
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3979
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4017
 #, php-format
 msgid "codeblock %u"
 msgstr "kódový blok %u"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3983
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4024
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3980
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4021
 msgid "add codeblock"
 msgstr "pridať kódový blok"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4034
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4031
 msgid "Codeblock 0 is deprecated."
 msgstr "Kódový blok 0 je zastaraný."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4118
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4115
 #, php-format
 msgid "\"%s\" Cross Site Request Forgery blocked."
 msgstr "\"%s\" Cross Site Request Forgery blokovaný."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4324
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4321
 msgid "setup"
 msgstr "inštalácia"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4324
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4321
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-globals.php:129
 msgid "security"
 msgstr "bezpečnosť"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4324
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4321
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/markRelease.php:42
 msgid "debug"
 msgstr "vyhľadať chyby"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4361
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4358
 msgid "demo"
 msgstr "demo"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4362
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4359
 msgid "development"
 msgstr "vývoj"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4363
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4360
 msgid "mail"
 msgstr "mail"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4364
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4361
 msgid "media"
 msgstr "médiá"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4365
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4362
 msgid "misc"
 msgstr "rôzne"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4366
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4363
 msgid "spam"
 msgstr "spam"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4367
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4364
 msgid "seo"
 msgstr "seo"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4368
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4365
 msgid "tools"
 msgstr "nástroje"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4369
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4366
 msgid "uploader"
 msgstr "nahrávač"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4370
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4367
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-globals.php:112
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/user-expiry.php:95
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/user-expiry.php:105
@@ -4282,30 +4282,30 @@ msgstr "nahrávač"
 msgid "users"
 msgstr "používatelia"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4371
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4368
 msgid "utilities"
 msgstr "nástroje"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4488
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4485
 #, php-format
 msgid "%s failed to delete."
 msgstr "%s sa nepodarilo odstrániť."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4490
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4487
 #, php-format
 msgid "%s deleted successfully."
 msgstr "%s úspešne vymazané."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4495
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4492
 msgid "You must supply a  password."
 msgstr "Musíte zadať heslo."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4497
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4494
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:419
 msgid "Your passwords did not match."
 msgstr "Heslo nie je správne."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4504
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4501
 msgid ""
 "The image edit form submission has been truncated. Try displaying fewer "
 "images on a page."
@@ -4313,95 +4313,95 @@ msgstr ""
 "Odoslanie formulára úprav obrázkov bolo zastavené. Skúste dať zobraziť menej "
 "obrázkov na stránku."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4507
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4504
 msgid "Hit counters have been reset."
 msgstr "Počítadlá albumov boli vymazané."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4510
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4507
 msgid "Cache has been purged."
 msgstr "Vyrovnávacia pamäť bola vymazaná."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4513
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4510
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-upload.php:146
 msgid "Your files have been uploaded."
 msgstr "Vaše súbory boli nahraté."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4516
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4513
 #, php-format
 msgid "<em>%s</em> already exists."
 msgstr "<em>%s</em> už existuje."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4531
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4528
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:911
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1772
 msgid "Selected items published"
 msgstr "Označená položka bola zverejnená"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4534
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4531
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:915
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1775
 msgid "Selected items unpublished"
 msgstr "Označená položka už nie je zverejnená"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4537
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4534
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1778
 msgid "Comments enabled for selected items"
 msgstr "Pre označené položky sú povolené komentáre"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4540
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4537
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1781
 msgid "Comments disabled for selected items"
 msgstr "Pre označené položky sú komentáre zakázané"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4543
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4540
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1784
 msgid "Hitcounter for selected items"
 msgstr "Počítadlo pre označené položky"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4546
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4543
 msgid "Tags added for selected items"
 msgstr "K označeným položkám boli pridané tagy"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4549
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4546
 msgid "Tags cleared for selected items"
 msgstr "Z označených položiek boli odstránené tagy"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4552
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4549
 msgid "Tags added for images of selected items"
 msgstr "K obrázkom v označených položkách boli pridané tagy"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4555
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4552
 msgid "Tags cleared for images of selected items"
 msgstr "Z obrázkov v označených položkách boli odstránené tagy"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4565
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4562
 msgid "Image already exists."
 msgstr "Obrázok už existuje."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4568
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4565
 msgid "Album already exists."
 msgstr "Album už existuje."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4571
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4568
 msgid "Cannot move, copy, or rename to a subalbum of this album."
 msgstr ""
 "Nie je možné presunúť, skopírovať alebo premenovať ako podalbum tohoto "
 "albumu."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4574
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4571
 msgid "Cannot move, copy, or rename to a dynamic album."
 msgstr ""
 "Nie je možné presunúť, skopírovať alebo premenovať ako dynamický album."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4577
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4574
 msgid "Cannot rename an image to a different suffix"
 msgstr "Prípona tohto obrázku sa nedá prepísať"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4580
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4577
 msgid "Album delete failed"
 msgstr "Vymazanie albumu sa nepodarilo"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4583
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4580
 msgid "There was an error with a move, copy, or rename operation."
 msgstr "Vyskytol sa problém s presunom, kopírovaním alebo premenovávaním."
 
@@ -4565,7 +4565,7 @@ msgid "Log file size limit"
 msgstr "Limit veľkosti log súboru"
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-logs.php:138
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1013
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1016
 msgid "Update"
 msgstr "Aktualizovať"
 
@@ -6898,7 +6898,7 @@ msgstr "Pokračovať v aktualizácii metadát"
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-refresh-metadata.php:121
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/lib-auth.php:927
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1543
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1546
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:314
 msgid "Refresh"
 msgstr "Obnoviť"
@@ -7398,7 +7398,7 @@ msgid "Make a new Album"
 msgstr "Vytvoriť nový album"
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin-upload.php:261
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1021
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1024
 msgid "and"
 msgstr "a"
 
@@ -7666,7 +7666,7 @@ msgstr "Oficiálna verzia"
 
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/admin.php:202
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/functions-basic.php:1085
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:348
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:351
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/security-logger.php:124
 msgid "clone"
 msgstr "klon"
@@ -11566,116 +11566,121 @@ msgstr "Otočiť o 270 stupňov v smere hodín"
 msgid "Natural"
 msgstr "Prirodzene"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:113
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:25
+#, php-format
+msgid "Zenphoto requires PHP version %s or greater"
+msgstr "Zenphoto vyžaduje PHP %s alebo vyššie"
+
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:116
 msgid "db POST handling"
 msgstr "db POST handling"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:145
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:148
 msgid "readonly"
 msgstr "len na čítanie"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:146
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:149
 msgid "strict"
 msgstr "prísne"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:147
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:150
 msgid "relaxed"
 msgstr "uvoľnené"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:148
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:151
 msgid "loose"
 msgstr "voľné"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:257
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:260
 msgid "upgrade"
 msgstr "aktualizácia"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:322
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:325
 msgid "Completed system check"
 msgstr "Kontrola systému ukončená"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:329
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:332
 msgid "Setup cookie test successful"
 msgstr "Test inštalačných cookie úspešný"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:332
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:335
 msgid "Setup cookie test unsuccessful"
 msgstr "Test inštalačných cookie neúspešný"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:337
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:340
 msgid "Post of Database credentials"
 msgstr "Ukážka údajov databázy"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:350
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:353
 #, php-format
 msgid "Zenphoto Setup v%1$s[%2$s]%3$s: %4$s"
 msgstr "Inaštalácia Zenphota v%1$s[%2$s]%3$s: %4$s"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:353
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:356
 msgid "Full environment"
 msgstr "Plné rozhranie"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:355
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:358
 msgid "Primitive environment"
 msgstr "Jednoduché rozhranie"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:357
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:360
 #, php-format
 msgid "Query error: %s"
 msgstr "Chyba dopytu: %s"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:369
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:372
 msgid "create"
 msgstr "vytvoriť"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:369
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:372
 msgid "update"
 msgstr "aktualizovať"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:386
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:389
 msgid "Upgrade from before Zenphoto v1.2"
 msgstr "Aktualizovať z verzie pred Zenphotom 1.2"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:397
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:414
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:400
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:417
 #, php-format
 msgid "Upgrade from Zenphoto v%s"
 msgstr "Aktualizovať z verzie Zenphota v%s"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:402
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:430
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:405
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:433
 msgid "Reinstalling current Zenphoto release"
 msgstr "Preinštalovanie súčasnej verzie Zenphota"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:403
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:431
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:406
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:434
 msgid "reinstall"
 msgstr "preinštalovať"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:442
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:445
 msgid "install"
 msgstr "inštalovať"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:464
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:467
 msgid "Zenphoto Setup"
 msgstr "Inaštalácia Zenphota"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:465
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:468
 msgid "Setup"
 msgstr "Inštalácia"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:491
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:494
 #, php-format
 msgid ""
 "Welcome to Zenphoto! This page will set up Zenphoto %s on your web server."
 msgstr ""
 "Víta vás Zenphoto! Táto stránka nainštaluje Zenphoto %s na váš webserver."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:493
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:496
 msgid "Systems Check:"
 msgstr "Kontrola systému:"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:509
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:512
 msgid ""
 "<strong>Note:</strong> The release you are installing has debugging settings "
 "enabled!"
@@ -11683,7 +11688,7 @@ msgstr ""
 "<strong>Poznámka:</strong> Vydanie, ktoré inštalujete má povolené debugging "
 "nastavenia!"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:516
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:519
 #, php-format
 msgid "[%u release skipped]"
 msgid_plural "[%u releases skipped]"
@@ -11691,7 +11696,7 @@ msgstr[0] "[%u verzia preskočená]"
 msgstr[1] "[%u verzie preskočené]"
 msgstr[2] "[%u verzií preskočených]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:516
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:519
 msgid ""
 "We do not test upgrades that skip releases. We recommend you upgrade in "
 "sequence."
@@ -11699,20 +11704,20 @@ msgstr ""
 "Netestujeme aktualizácie, ktoré preskakujú vydania. Odporúčame aktualizovať "
 "postupne."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:522
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:525
 #, php-format
 msgid "Installing Zenphoto v%s"
 msgstr "Inštalovanie Zenphota v%s"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:532
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:535
 msgid "Log security"
 msgstr "Bezpečnosť protokolov"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:532
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:535
 msgid "Log security [is compromised]"
 msgstr "Bezpečnosť protokolov [je ohrozená]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:533
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:536
 #, php-format
 msgid ""
 "Zenphoto attempts to make log files accessable by <em>owner</em> only "
@@ -11723,12 +11728,12 @@ msgstr ""
 "<em>majiteľ</em> (práva = 0600). Tento pokus zlyhal. Práva k "
 "súboromprotokolov sú nastavené na %04o čo umožňuje neautorizovaný prístup."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:535
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:538
 #, php-format
 msgid "PHP version %s"
 msgstr "PHP verzia %s"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:535
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:538
 #, php-format
 msgid ""
 "PHP Version %1$s or greater is required. Version %2$s or greater is strongly "
@@ -11737,27 +11742,27 @@ msgstr ""
 "Je potrebná verzia %1$s alebo novšia. Odporúčame verziu %2$s. Používanie "
 "starších verzií je na vlastné nebezpečenstvo."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:536
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:539
 msgid "PHP <code>Sessions</code>."
 msgstr "PHP <code>Sessions</code>."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:536
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:539
 msgid "PHP <code>Sessions</code> [appear to not be working]."
 msgstr "PHP <code>Sessions</code> [vyzerá, že nepracuje]."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:536
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:539
 msgid "PHP Sessions are required for Zenphoto administrative functions."
 msgstr "PHP Sessions sú vyžadované pre administračné funkcie Zenphota."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:550
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:553
 msgid "PHP <code>Register Globals</code>"
 msgstr "PHP <code>Register Globals</code>"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:550
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:553
 msgid "PHP <code>Register Globals</code> [is set]"
 msgstr "PHP <code>Register Globals</code> [aktívne]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:551
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:554
 msgid ""
 "PHP Register globals presents a security risk to any PHP application. See <a "
 "href=\"http://php.net/manual/en/security.globals.php\"><em>Using Register "
@@ -11769,25 +11774,25 @@ msgstr ""
 "\"><em>Použtívanie Register Globals</em></a>. Zmeňte nastavenia PHP.ini na "
 "<code>register_globals = off</code>."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:558
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:561
 msgid "PHP <code>Safe Mode</code>"
 msgstr "PHP <code>Safe Mode</code>"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:558
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:561
 msgid "PHP <code>Safe Mode</code> [is set]"
 msgstr "PHP <code>Safe Mode</code> [aktívne]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:558
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:561
 msgid ""
 "Zenphoto functionality is reduced when PHP <code>safe mode</code> "
 "restrictions are in effect."
 msgstr "Funkcie Zenphota sú obmedzené pokial je zapnutý PHP Safe Mode."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:576
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:579
 msgid "<code>Suhosin</code> module [is enabled]"
 msgstr "<code>Suhosin</code> module [aktivovaný]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:576
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:579
 #, php-format
 msgid ""
 "The following PHP functions are blocked: %s. Flagged functions are required "
@@ -11798,19 +11803,19 @@ msgstr ""
 "Zenphotom. Ostatné funkcie v zozname môžu byť používané Zenphotom a môžu "
 "znížiť funkcionalitu alebo padanie Zenphota."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:580
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:583
 msgid "Magic_quotes"
 msgstr "Magic_quotes"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:586
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:589
 msgid "PHP <code>magic_quotes_gpc</code>"
 msgstr "PHP <code>magic_quotes_gpc</code>"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:586
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:589
 msgid "PHP <code>magic_quotes_gpc</code> [is enabled]"
 msgstr "PHP <code>magic_quotes_gpc</code> [aktivované]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:586
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:589
 msgid ""
 "We strongly recommend disabling <code>magic_quotes_gpc</code>. For more "
 "information See <em><a href=\"http://www.zenphoto.org/news/troubleshooting-"
@@ -11823,40 +11828,40 @@ msgstr ""
 "magic_quotes_gpc-and-why-should-it-be-disabled-\">Čo je magic_quotes_gpc, a "
 "prečo ich vypnúť?</a></em> získate v sprievodcovi problémami na Zenphote."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:592
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:595
 msgid "PHP <code>magic_quotes_runtime</code>"
 msgstr "PHP <code>magic_quotes_runtime</code>"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:592
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:595
 msgid "PHP <code>magic_quotes_runtime</code> [is enabled]"
 msgstr "PHP <code>magic_quotes_runtime</code> [aktivované]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:592
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:595
 msgid "You must disable <code>magic_quotes_runtime</code>."
 msgstr "Mali by ste vypnúť <code>magic_quotes_runtime</code>."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:593
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:596
 msgid "PHP <code>magic_quotes_sybase</code>"
 msgstr "PHP <code>magic_quotes_sybase</code>"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:593
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:596
 msgid "PHP <code>magic_quotes_sybase</code> [is enabled]"
 msgstr "PHP <code>magic_quotes_sybase</code> [aktivované]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:593
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:596
 msgid "You must disable <code>magic_quotes_sybase</code>."
 msgstr "Mali by ste vypnúť <code>magic_quotes_sybase</code>."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:615
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:618
 msgid "PHP <code>display_errors</code>"
 msgstr "PHP <code>display_errors</code>"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:616
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:619
 #, php-format
 msgid "PHP <code>display_errors</code> [is enabled]"
 msgstr "PHP <code>display_errors</code> [aktivované]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:617
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:620
 msgid ""
 "This setting may result in PHP error messages being displayed on WEB pages. "
 "These displays may contain sensitive information about your site."
@@ -11864,43 +11869,43 @@ msgstr ""
 "Toto nastavenie može spôsobiť, že sa na stránkach objavia chybové hlášky "
 "PHP. V nich sa môžu objaviť citlivé informácie o vašej stránke."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:620
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:623
 msgid "PHP <code>gettext()</code> support"
 msgstr "Podpora PHP <code>gettext()</code>"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:620
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:623
 msgid "PHP <code>gettext()</code> support [is not present]"
 msgstr "Podpora PHP <code>gettext()</code> [chýba]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:620
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:623
 msgid ""
 "Localization of Zenphoto requires native PHP <code>gettext()</code> support"
 msgstr "Lokalizácia Zenphota potrebuje podporu PHP <code>gettext()</code>"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:621
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:624
 msgid "PHP <code>flock</code> support"
 msgstr "Podpora PHP <code>flock</code>"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:621
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:624
 msgid "PHP <code>flock</code> support [is not present]"
 msgstr "Podpora PHP <code>flock</code> [chýba]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:621
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:624
 msgid ""
 "Zenpoto uses <code>flock</code> for serializing critical regions of code. "
 "Without <code>flock</code> active sites may experience <em>race conditions</"
 "em> which may be causing inconsistent data."
 msgstr ""
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:623
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:626
 msgid "PHP <code>setlocale()</code>"
 msgstr "PHP <code>setlocale()</code>"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:623
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:626
 msgid "PHP <code>setlocale()</code> failed"
 msgstr "PHP <code>setlocale()</code> zlyhalo"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:623
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:626
 msgid ""
 "Locale functionality is not implemented on your platform or the specified "
 "locale does not exist. Language translation may not work."
@@ -11908,7 +11913,7 @@ msgstr ""
 "Váš server nepodporuje fukciu lokálneho nastavenia alebo požadované lokálne "
 "nastavenie nie je k dispozícii. Jazykový preklad nemusí fungovať."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:623
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:626
 msgid ""
 "See the <a  href=\"http://www.zenphoto.org/news/troubleshooting-"
 "zenphoto#24\">troubleshooting guide</a> on zenphoto.org for details."
@@ -11916,11 +11921,11 @@ msgstr ""
 "Viac informácií nájdete v <a  href=\"http://www.zenphoto.org/news/"
 "troubleshooting-zenphoto#24\">sprievodcovi problémami</a> na zenphoto.org."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:625
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:628
 msgid "mb_strings"
 msgstr "mb_strings"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:633
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:636
 msgid ""
 "Setting <em>mbstring.internal_encoding</em> to <strong>UTF-8</strong> in "
 "your <em>php.ini</em> file is recommended to insure accented and multi-byte "
@@ -11930,11 +11935,11 @@ msgstr ""
 "strong> v súbore <em>php.ini</em> aby akcentové a viacbytové znaky fungovali "
 "správne."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:634
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:637
 msgid "PHP <code>mbstring</code> package"
 msgstr "Rozšírenie PHP <code>mbstring</code>"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:634
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:637
 #, php-format
 msgid ""
 "PHP <code>mbstring</code> package [Your internal character set is <strong>"
@@ -11943,7 +11948,7 @@ msgstr ""
 "Rozšírenie PHP <code>mbstring</code> [interné nastavenie znakovej sady je "
 "<strong>%s</strong>]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:638
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:641
 msgid ""
 "You need to install the <code>mbstring</code> package or correct the issue "
 "with <code>iconv()</code>"
@@ -11951,7 +11956,7 @@ msgstr ""
 "Musíte nainštalovať rozšírenie <code>mbstring</code> alebo vyriešiť problém "
 "pomocou <code>iconv(()</code>"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:639
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:642
 msgid ""
 "PHP <code>mbstring</code> package [is not present and <code>iconv()</code> "
 "is not working]"
@@ -11959,30 +11964,30 @@ msgstr ""
 "Rozšírenie PHP <code>mbstring</code> [nenájdené a <code>iconv()</code> "
 "nefunguje]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:641
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:644
 msgid ""
 "Strings generated internally by PHP may not display correctly. (e.g. dates)"
 msgstr ""
 "Interne generovaný reťazec PHP sa nemusí správne zobrazovať (napr. dátum)"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:642
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:645
 msgid "PHP <code>mbstring</code> package [is not present]"
 msgstr "Rozšírenie PHP <code>mbstring</code> [nenájdené]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:648
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:651
 msgid "Graphics library"
 msgstr "Grafické knižnice"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:656
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:659
 #, php-format
 msgid "Graphics support: <code>%s</code>"
 msgstr "Podpora grafiky: <code>%s</code>"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:656
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:659
 msgid "Graphics support [is not installed]"
 msgstr "Podpora grafiky [nie je nainštalovaná]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:656
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:659
 msgid ""
 "You need to install a graphics support library such as the <em>GD library</"
 "em> in your PHP"
@@ -11990,17 +11995,17 @@ msgstr ""
 "Musíte do vášho PHP nainštalovať knižnicu na podporu grafiky. Napríklad "
 "<em>knižnicu GD</em>."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:665
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:668
 #, php-format
 msgid "Your PHP graphics library does not support %1$s or %2$s"
 msgstr "Grafická knižnica vo vašom PHP nepodporuje %1$s alebo %2$s"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:667
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:670
 #, php-format
 msgid "Your PHP graphics library does not support %1$s"
 msgstr "Grafická knižnica vo vašom PHP nepodporuje %1$s"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:670
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:673
 msgid ""
 "To correct this you should install a graphics library with appropriate image "
 "support in your PHP"
@@ -12008,12 +12013,12 @@ msgstr ""
 "Aby ste problém vyriešili, mali by ste do vášho PHP doinštalovať vhodnú "
 "grafickú knižnicu na podporu grafiky"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:672
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:675
 #, php-format
 msgid "Your PHP graphics library does not support %1$s, %2$s, or %3$s"
 msgstr "Grafická knižnica vo vašom PHP nepodporuje %1$s, %2$s alebo %3$s"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:675
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:678
 msgid ""
 "To correct this you need to install GD with appropriate image support in "
 "your PHP"
@@ -12021,28 +12026,28 @@ msgstr ""
 "Aby ste problém vyriešili, mali by ste do vášho PHP doinštalovať GD s "
 "vhodnou podporou obrázkov"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:677
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:680
 msgid "PHP graphics image support"
 msgstr "Grafická podpora obrázkov PHP"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:678
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:681
 msgid "The unsupported image types will not be viewable in your albums."
 msgstr "Nepodporované formáty obrázkov sa v albumoch nebudú dať prezerať."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:682
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:685
 msgid "Graphics Library rotation support [is not present]"
 msgstr "Grafická knižnica s podporou otáčania [nie je dostupná]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:682
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:685
 msgid ""
 "The graphics support library does not provide support for image rotation."
 msgstr "Knižnica na podporu grafiky nepodporuje otáčanie obrázkov."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:690
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:693
 msgid "Graphics support [configuration error]"
 msgstr "Grafická podpora [chyba nastavenia]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:690
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:693
 msgid ""
 "No Zenphoto image handling library was loaded. Be sure that your PHP has a "
 "graphics support."
@@ -12050,15 +12055,15 @@ msgstr ""
 "Knižnica na správu obrázkov pre Zenphoto nebol nahraná. Uistite sa, že vaše "
 "PHP má grafickú podporu."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:701
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:704
 msgid "<em>zenphoto.cfg</em> file"
 msgstr "<em>zenphoto.cfg</em> súbor"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:701
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:704
 msgid "<em>zenphoto.cfg</em> file [does not exist]"
 msgstr "<em>zenphoto.cfg</em> súbor [neexistuje]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:702
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:705
 #, php-format
 msgid ""
 "Setup was not able to create this file. You will need to copy the <code>%1$s/"
@@ -12069,31 +12074,31 @@ msgstr ""
 "<code>%1$s/zenphoto_cfg.txt</code> do <code>%2$s/zenphoto.cfg</code> a potom "
 "ho upraviť ako je popísané v kometári k súboru."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:704
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:707
 msgid "File permissions"
 msgstr "Práva súboru"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:706
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:709
 #, php-format
 msgid "Set File permissions to %s."
 msgstr "Nastaviť práva súboru na %s."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:709
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:712
 #, php-format
 msgid "<em>%1$s</em> (<code>0%2$o</code>)"
 msgstr "<em>%1$s</em> (<code>0%2$o</code>)"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:711
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:714
 #, php-format
 msgid "<em>unknown</em> (<code>%o</code>)"
 msgstr "<em>neznáme</em> (<code>%o</code>)"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:722
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:725
 #, php-format
 msgid "File Permissions [are %s]"
 msgstr "Práva súboru [sú %s]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:723
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:726
 msgid ""
 "If file permissions are not set to <em>strict</em> or tighter there could be "
 "a security risk. However, on some servers Zenphoto does not function "
@@ -12105,11 +12110,11 @@ msgstr ""
 "správne ak sú práva nastavené príliš prísne. Ak Zenphoto vykazuje chyby "
 "ohľadne práv, spuste znovu inštaláciu a nastavte menej prísne práva."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:729
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:732
 msgid "Your filesystem is Macintosh"
 msgstr "Váš operačný systém je OS X"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:729
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:732
 msgid ""
 "Zenphoto is unable to deal with Macintosh file names containing diacritical "
 "marks. You should avoid these."
@@ -12117,11 +12122,11 @@ msgstr ""
 "Zenphoto nedokáže spracovať OS X názvy súborov, ktoré obsahujú diakritiku. "
 "Predíďte tomu."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:736
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:739
 msgid "Character set"
 msgstr "Znaková sada"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:777
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:780
 #, php-format
 msgid ""
 "If your server filesystem character set is different from <code>%s</code> "
@@ -12132,31 +12137,31 @@ msgstr ""
 "vytvoríte album alebo obrázok s diakritikou, môžu vzniknúť problémy pri "
 "zobrazovaní týchto názvov."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:779
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:782
 #, php-format
 msgid "Change the filesystem character set define to %1$s"
 msgstr "Zmení znakovú sada Zenphota na %1$s"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:793
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:796
 #, php-format
 msgid "The Zenphoto filesystem character define is %1$s [confirmed]"
 msgstr "Znaková sada Zenphota je %1$s [skontrolované]."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:798
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:801
 msgid "The Zenphoto filesystem character define is ISO-8859-1 [assumed]"
 msgstr "Znaková sada Zenphota je ISO-8859-1 [predpoklad]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:803
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:806
 #, php-format
 msgid "The Zenphoto filesystem character define is %1$s [which seems wrong]"
 msgstr "Znaková sada Zenphota je %1$s [asi nesprávna]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:808
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:811
 #, php-format
 msgid "The Zenphoto filesystem character define is %1$s [no test performed]"
 msgstr "Znaková sada Zenphota je %1$s [neprebehol test]."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:809
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:812
 #, php-format
 msgid ""
 "Setup did not perform a test of the filesystem character set. You can cause "
@@ -12167,37 +12172,37 @@ msgstr ""
 "vytvorením súboru v zložke <code>%1$s</code> s menom <strong><code>%2$s</"
 "code></strong> a zopakovať inštaláciu."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:822
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:825
 msgid "Image URIs appear require the <em>filesystem</em> character set."
 msgstr "URI obrázkov asi potrebuje znakovú sadu <em>systému</em>."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:823
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:826
 msgid "Image URIs appear to require the UTF-8 character set."
 msgstr "URI obrázkov asi potrebuje znakovú sadu UTF-8."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:844
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:847
 msgid "You should enable the URL option <em>UTF8 image URIs</em>."
 msgstr "Mali by ste aktivovať možnosť URL<em>UTF8 URI obrázkov</em>."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:844
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:847
 msgid "<a href=\"javascript:uri(true)\">Please do</a>"
 msgstr "<a href=\"javascript:uri(true)\">Prosím urobte</a>"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:861
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:864
 msgid "You should disable the URL option <em>UTF8 image URIs</em>."
 msgstr "Mali by ste vypnúť možnosť URL<em>UTF8 URI obrázkov</em>."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:861
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:864
 msgid "<a href=\"javascript:uri(false)\">Please do</a>"
 msgstr "<a href=\"javascript:uri(false)\">Prosím urobte</a>"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:883
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:886
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/setup-functions.php:118
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/setup-functions.php:133
 msgid "Warning!"
 msgstr "Pozor!"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:895
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:898
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/utilities/database_reference.php:33
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/utilities/refresh_database.php:4
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/utilities/refresh_metadata.php:4
@@ -12207,12 +12212,12 @@ msgstr "Pozor!"
 msgid "Database"
 msgstr "Databáza"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:899
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:902
 #, php-format
 msgid "PHP <code>%s</code> support for configured Database"
 msgstr "PHP <code>%s</code> porpora pre konfigurovanú databázu"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:904
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:907
 #, php-format
 msgid ""
 " <code>%1$s</code> support (<a onclick=\"$('#%1$s').toggle('show')\" "
@@ -12221,26 +12226,26 @@ msgstr ""
 " <code>%1$s</code> podpora (<a onclick=\"$('#%1$s').toggle('show')\" "
 ">experimentálna</a>)"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:913
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:916
 #, php-format
 msgid "PHP <code>%s</code> support"
 msgstr "PHP <code>%s</code> podpora"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:919
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:922
 #, php-format
 msgid "PHP <code>%s</code> support [is not installed]"
 msgstr "PHP <code>%s</code> podpora [nenainštalovaná]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:929
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:932
 msgid "No database selected"
 msgstr "Nebola vybraná databáza"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:941
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:944
 #, php-format
 msgid "%1$s version %2$s"
 msgstr "%1$s verzia %2$s"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:941
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:944
 #, php-format
 msgid ""
 "%1$s Version %2$s or greater is required. Version %3$s or greater is "
@@ -12249,20 +12254,20 @@ msgstr ""
 "%1$s Je potrebná verzia %2$s alebo novšia. Preferujeme verziu %3$s. Staršie "
 "verzie používajte na vlastné riziko."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:943
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:946
 msgid "Database connection"
 msgstr "Spojenie s databázou"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:949
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:952
 msgid "Database credentials in configuration file"
 msgstr "Nastavenie databázy v konfiguračnom súbore"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:949
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:952
 #, php-format
 msgid "<em>%1$s</em> reported: %2$s"
 msgstr "<em>%1$s</em> hlásené: %2$s"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:956
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:959
 msgid ""
 "You have not correctly set your <strong>Database</strong> <code>user</code>, "
 "<code>password</code>, etc. in your configuration file and <strong>setup</"
@@ -12272,31 +12277,31 @@ msgstr ""
 "<code>heslo</code> atď vo svojom konfiguračnom súbore, takže "
 "<strong>inštalácia</strong> nemôže zapisovať do súboru."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:958
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:961
 msgid "Database setup in configuration file"
 msgstr "Nastavenie databázy v konfiguračnom súbore"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:961
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:964
 #, php-format
 msgid "Connect to %s"
 msgstr "Pripojiť sa k %s"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:961
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:964
 msgid "Connect to Database [<code>CONNECT</code> query failed]"
 msgstr "Pripojiť sa k databáze  [<code>Pripojenie</code> zlyhalo]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:968
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:971
 #, php-format
 msgid "Database <code>%s</code> created"
 msgstr "Databáza <code>%s</code> vytvorená"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:976
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:979
 #, php-format
 msgid "Click here to attempt to create <a href=\"?Create_Database\" >%s</a>."
 msgstr ""
 "Skúste vytvoriť databázu kliknutím na <a href=\"?Create_Database\" >%s</a>. "
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:981
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:984
 #, php-format
 msgid ""
 "Database <code>%s</code> not created [<code>CREATE DATABASE</code> query "
@@ -12305,7 +12310,7 @@ msgstr ""
 "Databáza <code>%s</code> nevytvorená [<code>Vytvorenie databázy</code> "
 "zlyhalo]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:987
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:990
 msgid ""
 "You may need to set <code>SQL mode</code> <em>empty</em> in your Database "
 "configuration."
@@ -12313,102 +12318,102 @@ msgstr ""
 "Možno budete musieť nastaviť <code>SQL mód</code> v nastavení databázy na "
 "<em>prázdne</em>"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:991
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:994
 #, php-format
 msgid "<code>SQL mode</code> [query failed]"
 msgstr "<code>SQL mód</code> [dopyt zlyhal]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:994
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:997
 #, php-format
 msgid "<code>SQL mode</code> [<em>%s</em> overridden]"
 msgstr "<code>SQL mód</code> [<em>%s</em> zrušené]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:994
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:997
 msgid "Consider setting it <em>empty</em> in your Database configuration."
 msgstr "Zvážte nastavenie na <em>prázdne</em> v nastavení databázy"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1001
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1004
 msgid "<code>SQL mode</code>"
 msgstr "<code>SQL mód</code>"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1001
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1004
 #, php-format
 msgid "<code>SQL mode</code> [is set to <em>%s</em>]"
 msgstr "<code>SQL mód</code> [je nastavený na <em>%s</em>]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1001
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1004
 msgid "Consider setting it <em>empty</em> if you get Database errors."
 msgstr ""
 "Zvážte nastavenie na <em>prázdne</em> v nastavení databázy ak sa objavia "
 "chyby."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1005
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1008
 msgid "<code>SQL mode</code> [SET SESSION failed]"
 msgstr "<code>SQL mód</code> [SET SESSION zlyhalo]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1012
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1015
 msgid "Select"
 msgstr "Vybrať"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1012
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1015
 msgid "Create"
 msgstr "Vytvoriť"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1012
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1015
 msgid "Drop"
 msgstr "Odhodiť"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1012
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1015
 msgid "Insert"
 msgstr "Vložiť"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1013
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1016
 msgid "Alter"
 msgstr "Zmeniť"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1023
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1026
 msgid "Grants found:"
 msgstr "Nájdené granty:"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1051
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1054
 msgid "The <em>SHOW GRANTS</em> query failed."
 msgstr "Požiadavka <code>SHOW GRANTS</code> zlyhala."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1053
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1056
 msgid "Database <code>access rights</code>"
 msgstr "<code>Prístupové práva</code> k databáze"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1053
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1056
 #, php-format
 msgid "Database <code>access rights</code> [%s]"
 msgstr "<code>Prístupové práva</code> k databáze [%s]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1054
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1057
 #, php-format
 msgid "Your Database user must have %s rights."
 msgstr "Používateľ databázy musí mať %s práva"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1071
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1074
 msgid "<em>SHOW TABLES</em> [found no tables]"
 msgstr "<em>SHOW TABLES</em> [tabuľky nenájdené]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1074
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1077
 #, php-format
 msgid "<em>SHOW TABLES</em> found: %s"
 msgstr "<em>SHOW TABLES</em> našlo: %s"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1078
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1081
 msgid "<em>SHOW TABLES</em> [Failed]"
 msgstr "<em>SHOW TABLES</em> [zlyhalo]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1078
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1081
 #, php-format
 msgid ""
 "The database did not return a list of the database tables for <code>%s</"
 "code>."
 msgstr "Databáza neposkytla zoznam databázových tabuliek pre <code>%s</code>."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1079
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1082
 msgid ""
 "<strong>Setup</strong> will attempt to create all tables. This will not over "
 "write any existing tables."
@@ -12416,27 +12421,27 @@ msgstr ""
 "<strong>Inštalácia</strong> sa pokúsi vytvoriť všetky tabuľky. Žiadne "
 "existujúce tabuľky nebudú prepísané."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1105
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1108
 msgid "Database <code>field collations</code> [Image table]"
 msgstr "<code>Kontrola polí</code> databázy [Tabuľka obrázkov]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1108
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1111
 msgid "Database <code>field collations</code> [Album table]"
 msgstr "<code>Kontrola pola</code> databázy [Tabuľka albumov]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1111
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1114
 msgid "Database <code>field collations</code> [Image and Album tables]"
 msgstr "<code>Kontrola pola</code> databázy [Tabuľka obrázkov a albumov]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1114
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1117
 msgid "Database <code>field collations</code> [SHOW COLUMNS query failed]"
 msgstr "<code>Kontrola pola</code> databázy [dopyt SHOW COLUMNS zlyhal]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1117
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1120
 msgid "Database <code>field collations</code>"
 msgstr "<code>Kontrola pola</code> databázy"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1117
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1120
 #, php-format
 msgid ""
 "%s is not UTF-8. You should consider porting your data to UTF-8 and changing "
@@ -12454,12 +12459,12 @@ msgstr[2] ""
 "%s nie je v UTF-8. Zvážte prevod vašich dát do UTF-8 a zmeniť kontorlu "
 "databázových polí na <code>utf8_unicode_ci</code>."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1119
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1122
 msgid "Database <code>$conf[\"UTF-8\"]</code> [is not set <em>true</em>]"
 msgstr ""
 "Databáza <code>$conf[\"UTF-8\"]</code> [nie je nastavená na <em>true</em>]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1119
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1122
 msgid ""
 "You should consider porting your data to UTF-8 and changing the collation of "
 "the database fields to <code>utf8_unicode_ci</code> and setting this "
@@ -12469,15 +12474,15 @@ msgstr ""
 "<code>utf8_unicode_ci</code> a nastaviť to na <em>true</em>. Zenphoto "
 "pracuje najlepšie s UTF-8 kódovaním."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1124
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1127
 msgid "Zenphoto files"
 msgstr "Súbory Zenphota"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1154
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1157
 msgid "Zenphoto package [missing]"
 msgstr "Balík Zenphota [chýba]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1154
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1157
 msgid ""
 "The file <code>Zenphoto.package</code> is either missing, not readable, or "
 "defective. Your installation may be corrupt!"
@@ -12485,12 +12490,12 @@ msgstr ""
 "Súbor <code>Zenphoto.package</code> chýba, nie je čitateľný alebo je "
 "poškodený. Vaša inštalácia može byť znehodnotená!"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1160
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1163
 #, php-format
 msgid "Setting permissions (0%o) for Zenphoto package."
 msgstr "Nastaviť práva (0%o) pre balík Zenphota."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1263
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1266
 msgid ""
 "Zenphoto core files [This is a <em>debug</em> build. Some files are missing "
 "or seem wrong]"
@@ -12498,30 +12503,30 @@ msgstr ""
 "Zdrojové súbory Zenphota [Toto je <em>debug</em> verzia. Niektoré súbory "
 "chýbajú alebo nie sú správne]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1265
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1268
 msgid "Zenphoto core files [Some files are missing or seem wrong]"
 msgstr "Zdrojové súbory Zenphota [Niektoré súbory chýbajú alebo sú poškodené]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1267
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1270
 msgid ""
 "Perhaps there was a problem with the upload. You should check the following "
 "files: "
 msgstr ""
 "Možno je to problém s nahrávaním. Mali by ste skontrolovať tieto súbory:"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1272
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1275
 msgid "Zenphoto core files [This is a <em>debug</em> build]"
 msgstr "Zdrojové súbory Zenphota [Toto je <em>debug</em> verzia.]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1279
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1282
 msgid "Zenphoto core files"
 msgstr "Zdrojové súbory Zenphota"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1281
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1284
 msgid "Installation files"
 msgstr "Inštalačné súbory"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1295
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1298
 #, php-format
 msgid ".svn [%s instance]"
 msgid_plural ".svn [%s instances]"
@@ -12529,7 +12534,7 @@ msgstr[0] ".svn [%s príklad]"
 msgstr[1] ".svn [%s príklady]"
 msgstr[2] ".svn [%s príkladov]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1298
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1301
 #, php-format
 msgid "php.ini [%s instance]"
 msgid_plural "php.ini [%s instances]"
@@ -12537,32 +12542,32 @@ msgstr[0] "php.ini [%s príklad]"
 msgstr[1] ".svn [%s príklady]"
 msgstr[2] ".svn [%s príkladov]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1321
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1324
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1327
 msgid "Zenphoto core folders [Some unknown files were found]"
 msgstr "Zdrojová zložka Zenphoto [Nájdených niekoľko neznámych súborov]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1321
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1324
 msgid "The following files could not be deleted."
 msgstr "Tieto súbory sa nedajú vymazať."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1325
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1328
 msgid "You should remove the following files: "
 msgstr "Maly by ste vymazať tieto súbory: "
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1326
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1329
 msgid "Delete extra files"
 msgstr "Vymazať súbory, ktoré sú navyše"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1329
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1332
 msgid "Zenphoto core file permissions"
 msgstr "Práva zdrojových súborov Zenphota"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1329
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1332
 msgid "Zenphoto core file permissions [not correct]"
 msgstr "Práva zdrojových súborov Zenphota [nie sú správne]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1329
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1332
 msgid ""
 "Setup could not set the one or more components to the selected permissions "
 "level. You will have to set the permissions manually. See the <a href="
@@ -12574,15 +12579,15 @@ msgstr ""
 "\"http://www.zenphoto.org/news/troubleshooting-zenphoto#29\">Sprievodca "
 "problémami</a> kde sú detaily o potrebných právach pre Zenphoto."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1332
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1335
 msgid "<em>.htaccess</em> file"
 msgstr "Súbor <em>.htaccess</em>"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1343
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1346
 msgid "<em>.htaccess</em> file [is empty or does not exist]"
 msgstr "Súbor <em>.htaccess</em> [je prázdny alebo neexistuje]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1346
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1349
 msgid ""
 "If you have the mod_rewrite module enabled an <em>.htaccess</em> file is "
 "required the root zenphoto folder to create cruft-free URLs."
@@ -12591,7 +12596,7 @@ msgstr ""
 "existovať súbor <em>.htaccess</em> potrebný na tvorbu URL bez množstva "
 "znakov."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1347
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1350
 msgid ""
 "You can ignore this warning if you do not intend to set the "
 "<code>mod_rewrite</code> option."
@@ -12599,7 +12604,7 @@ msgstr ""
 "Toto upozornenie môžete ignorovať, ak neplánujete používať "
 "<code>mod_rewrite</code>."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1349
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1352
 msgid ""
 "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Make setup create the file</"
 "a></p><br style=\"clear:both\" /><br />"
@@ -12607,8 +12612,8 @@ msgstr ""
 "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Povoliť inštalácii vytvoriť "
 "súbor </a></p><br style=\"clear:both\" /><br />"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1352
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1389
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1355
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1392
 msgid ""
 "Server seems not to be Apache or Apache-compatible, <code>.htaccess</code> "
 "not required."
@@ -12616,7 +12621,7 @@ msgstr ""
 "Server je pravdepodobne Apache alebo kopatibilný s Apache, <code>.htaccess</"
 "code> nie je potrebný."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1392
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1395
 #, php-format
 msgid ""
 "The <em>.htaccess</em> file in your root folder is not the same version as "
@@ -12629,7 +12634,7 @@ msgstr ""
 "htaccess</em> spravili nejaké zmeny, vložte ich do súboru <em>%s/htaccess</"
 "em>, aby ste vytvorili nový súbor <em>.htaccess</em>."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1394
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1397
 msgid ""
 "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Replace the existing <em>."
 "htaccess</em> file with the current version</a></p><br style=\"clear:both\" /"
@@ -12638,26 +12643,26 @@ msgstr ""
 "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Nahradiť existujúci súbor "
 "<em>.htaccess</em> aktuálnou vezriou</a></p><br style=\"clear:both\" /><br />"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1397
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1400
 msgid "<em>.htaccess</em> file [wrong version]"
 msgstr "Súbor <em>.htaccess</em> [nesprávna verzia]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1412
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1415
 #, php-format
 msgid "<em>.htaccess</em> file (<em>RewriteEngine</em> is <strong>%s</strong>)"
 msgstr ""
 "Súbor <em>.htaccess</em> (<em>RewriteEngine</em> je <strong>%s</strong>)"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1425
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1428
 msgid "<em>.htaccess</em> RewriteBase [is <em>missing</em>]"
 msgstr "<em>.htaccess</em> RewriteBase [<em>chýba</em>]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1431
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1434
 #, php-format
 msgid "<em>.htaccess</em> RewriteBase is <code>%s</code>"
 msgstr "<em>.htaccess</em> RewriteBase je <code>%s</code>"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1432
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1435
 #, php-format
 msgid ""
 "<em>.htaccess</em> RewriteBase is <code>%s</code> [Does not match install "
@@ -12666,12 +12671,12 @@ msgstr ""
 "<em>.htaccess</em> RewriteBase je <code>%s</code> [Inštalačná zložka "
 "nesúhlasí]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1439
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1442
 #, php-format
 msgid "<em>.htaccess</em> RewriteBase is <code>%s</code> (fixed)"
 msgstr "<em>.htaccess</em> RewriteBase je <code>%s</code> (opravené)"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1464
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1467
 msgid ""
 "Setup was not able to write to the file change RewriteBase match the install "
 "folder."
@@ -12679,7 +12684,7 @@ msgstr ""
 "Inštalácii sa nepodarilo prepísať súbor. Upravte RewriteBase aby sedela s "
 "vašou inštalačnou zložkou."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1465
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1468
 #, php-format
 msgid ""
 "Either make the file writeable or set <code>RewriteBase</code> in your "
@@ -12688,15 +12693,15 @@ msgstr ""
 "Buď odomknite súbor alebo nastavte <code>RewriteBase</code> v súbore <code>."
 "htaccess</code> na <code>%s</code>."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1467
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1470
 msgid "Rewrite rules updated"
 msgstr "Prepisovacie pravidlá aktualizované"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1467
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1470
 msgid "Rewrite rules updated [not updated]"
 msgstr "Prepisovacie pravidlá aktualizované [neaktulizované]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1468
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1471
 msgid ""
 "Setup was not able to write to the file change the rewrite rules for site "
 "upgrades."
@@ -12704,38 +12709,38 @@ msgstr ""
 "Inštalácii sa nepodarilo zapísať do súboru zmenu prepisovacích pravidiel pre "
 "aktualizáciu stránky."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1474
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1477
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1489
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1480
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1492
 msgid "<em>robots.txt</em> file"
 msgstr "Súbor <em>robots.txt</em>"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1474
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1477
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1489
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1480
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1492
 msgid "<em>robots.txt</em> file [Not created]"
 msgstr "Súbor <em>robots.txt</em> [nebol vytvorený]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1474
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1477
 msgid "Setup could not find the  <em>example_robots.txt</em> file."
 msgstr "Inštalácia nenašla súbor <em>example_robots.txt</em>."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1477
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1480
 msgid ""
 "Setup did not create a <em>robots.txt</em> file because one already exists."
 msgstr ""
 "Inštalácia nemohla vytvoriť súbor <em>robots.txt</em>, pretože už existuje."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1489
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1492
 msgid "Setup could not create a <em>robots.txt</em> file."
 msgstr "Inštalácia nemohla vytvoriť súbor <em>robots.txt</em>."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1494
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1497
 msgid "albums [<code>$conf['external_album_folder']</code> is deprecated]"
 msgstr "Albumy [<code>$conf['external_album_folder']</code> je zastaraný]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1494
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1518
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1497
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1521
 msgid ""
 "You should update your configuration file to conform to the current zenphoto."
 "cfg example file."
@@ -12743,11 +12748,11 @@ msgstr ""
 "Mali by ste aktualizovať konfiguračný súbor v súlade s aktuálnym ukázkovým "
 "súborom zenphoto.cfg."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1518
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1521
 msgid "<em>albums</em> folder"
 msgstr "Zložka <em>albums</em>"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1518
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1521
 msgid ""
 "<em>albums</em> folder [The line <code>$conf['album_folder']</code> is "
 "missing from your configuration file]"
@@ -12755,15 +12760,15 @@ msgstr ""
 "Zložka <em>albumov</em> [Riadok <code>$conf['album_folder']</code> vo vašom "
 "konfiguračnom súbore chýba]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1522
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1525
 msgid "<em>locale</em> folders"
 msgstr "Zložky <em>locale</em>"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1522
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1525
 msgid "<em>locale</em> folders [Are not complete]"
 msgstr "Zložky <em>locale</em> [nie su kompletné]"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1522
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1525
 msgid ""
 "Be sure you have uploaded the complete Zenphoto package. You must have at "
 "least the <em>en_US</em> folder."
@@ -12771,19 +12776,19 @@ msgstr ""
 "Uistite sa, že ste nahrali kompletný balík Zenphota. Musíte mať minimálne "
 "zložku <em>en_US</em>."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1523
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1526
 msgid "uploaded"
 msgstr "nahrané"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1526
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1529
 msgid "HTML cache"
 msgstr "Vyrovnávacia pamäť HTML"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1527
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1530
 msgid "Third party plugins"
 msgstr "Zásuvné moduly tretích strán"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1539
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1542
 msgid ""
 "You need to address the problems indicated above then run <code>setup</code> "
 "again."
@@ -12791,75 +12796,75 @@ msgstr ""
 "Musíte dať doporiadku problémy menované vyššie a potom znovu spustiť "
 "<code>inštaláciu</code>."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1542
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1545
 msgid "Setup failed."
 msgstr "Inštalácia sa nepodarila."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1553
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2638
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1556
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2641
 msgid "You need <em>USER ADMIN</em> rights to run setup."
 msgstr ""
 "Musíte mať<em>administrátorské práva</em>, aby ste mohli spustiť inštaláciu."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1555
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2640
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1558
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2643
 msgid "You must be logged in to run setup."
 msgstr "Musíte byť prihlásení, aby ste mohli spustiť inštaláciu."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1576
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:1579
 msgid "database connected"
 msgstr "databáza pripojená"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2323
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2326
 msgid "About to create tables"
 msgstr "Pripravené vytvoriť tabuľky"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2325
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2328
 msgid "About to update tables"
 msgstr "Pripravené aktualizovať tabuľky"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2327
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2330
 msgid "Begin table creation"
 msgstr "Spustiť vytváranie tabuliek"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2333
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2348
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2336
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2351
 #, php-format
 msgid "Query %1$s Failed. Error: %2$s"
 msgstr "Dopyt %1$s zlyhal. Chyba: %2$s"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2335
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2338
 #, php-format
 msgid "Table creation failure:<br />Query: %1$s<br />Error: %2$s"
 msgstr "Vytvorenie tabuľky zlyhalo: <br />Dopyt: %1$s<br />Chyba: %2$s"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2338
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2350
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2341
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2353
 #, php-format
 msgid "Query ( %s ) Success."
 msgstr "Dopyt ( %s ) úspešný."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2342
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2345
 msgid "Begin table updates"
 msgstr "Spustiť aktualizáciu tabuliek"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2357
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2360
 msgid "Done with table create!"
 msgstr "Vytváranie tabuliek hotové!"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2359
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2362
 msgid "Done with table create with errors!"
 msgstr "Vytváranie tabuliek hotové s chybami!"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2363
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2366
 msgid "Done with table update"
 msgstr "Aktualizácia tabuliek hotová"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2365
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2368
 msgid "Done with table update with errors"
 msgstr "Aktualizácia tabuliek hotová s chybami"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2381
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2384
 #, php-format
 msgid ""
 "<strong>Warning:</strong> the <code>%s</code> table appears not to have a "
@@ -12872,27 +12877,27 @@ msgstr ""
 "Na <em>name</em>, <em>ownerid</em> a <em>theme</em> by mal byť jedinečný "
 "index kľúč."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2389
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2392
 msgid "Done with database creation and update"
 msgstr "Vytváranie a aktualizácia databázy hotová"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2391
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2394
 #, php-format
 msgid "Previous Release was %s"
 msgstr "Predchádzajúca verzia bola %s"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2446
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2449
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/cloneZenphoto.php:92
 msgid "Setup files deleted."
 msgstr "Inštalačné súbory boli vymazané."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2453
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2456
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/cloneZenphoto.php:97
 #, php-format
 msgid "Failed to delete: %s"
 msgstr "Nepodarilo sa vymazať: %s"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2461
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2464
 msgid ""
 "<strong>NOTE:</strong> We strongly recommend you remove the <em>setup</em> "
 "scripts from your zp-core folder at this time. You can always re-upload them "
@@ -12902,18 +12907,18 @@ msgstr ""
 "zložky zp-core. Ak by ste ho v budúcnosti znova potrebovali, môžete ho bez "
 "problémov nahrať."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2466
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2469
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/cloneZenphoto.php:54
 msgid "Delete setup files"
 msgstr "Odstrániť inštalačné súbory"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2471
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2474
 msgid ""
 "This is a clone of another installation. The setup files should be deleted "
 "from that installation"
 msgstr "Toto je klon inej inštalácie. Inštalačné súbory by mali byť vymazané."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2482
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2485
 #, php-format
 msgid ""
 "You may <a href=\"%1$s\">set your admin user and password</a> or <a href="
@@ -12922,12 +12927,12 @@ msgstr ""
 "Môžete použiť <a href=\"%1$s\">na nastavenie administrátorského mena a "
 "hesla</a> alebo spustiť <a href=\"%2$s\">obnovenie zo zálohy</a>"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2487
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2490
 #, php-format
 msgid "You need to <a href=\"%1$s\">set your admin user and password</a>"
 msgstr "Musíte <a href=\"%1$s\">nastaviť administátorské meno a heslo</a>"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2494
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2497
 #, php-format
 msgid ""
 "You can now <a href=\"%1$s\">View your gallery</a> or <a href=\"%2$s"
@@ -12936,17 +12941,17 @@ msgstr ""
 "Teraz môžete <a href=\"%1$s\">prezerať svoju galériu</a> alebo <a href=\"%2$s"
 "\">administrovať</a>."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2558
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2561
 #, php-format
 msgid "Database tables to create: %s"
 msgstr "Databázové tabuľky, ktoré sa vytvoria: %s"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2576
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2579
 #, php-format
 msgid "Database tables to update: %s"
 msgstr "Databázové tabuľky, ktoré sa aktualizujú: %s"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2607
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2610
 msgid ""
 "<strong>Warning!</strong> This upgrade makes structural changes to the "
 "database which are not easily reversed. Be sure you have a database backup "
@@ -12956,29 +12961,29 @@ msgstr ""
 "vašej databáze, ktoré sa ťažko vracajú. Urobte zálohu databázy než budete "
 "pokračovať."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2610
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2613
 #, php-format
 msgid "%s I acknowledge that proceeding will restructure my database."
 msgstr ""
 "%s som oboznámený s tým, že ak budem pokračovať prebuduje sa moja databáza."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2668
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2671
 msgid "run setup"
 msgstr "spustiť inštaláciu"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2668
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2671
 msgid "Go"
 msgstr "Štart"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2684
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2687
 msgid "database did not connect"
 msgstr "databáza sa nepripojila"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2686
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2689
 msgid "If you haven't created the database yet, now would be a good time."
 msgstr "Ak ste zatiaľ nevytvorili databázu, teraz je príhodná chvíľa."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2695
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/setup/index.php:2698
 msgid "The zenphoto.cfg file does not exist."
 msgstr "Súbor zenphoto.cfg neexistuje."
 
@@ -15343,7 +15348,7 @@ msgid ""
 "choice."
 msgstr "Dovolí návštevníkom stránky vybrať si jazyk."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/dynamic-locale.php:148
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/dynamic-locale.php:168
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:65
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/sitemap-extended.php:70
 msgid ""
@@ -15355,7 +15360,7 @@ msgstr ""
 "<code><em>jazyk</em>.doména</code> kde <code><em>jazyk</em></code> je kód "
 "jazyka, napr. <code><em>fr</em></code> pre Francúzsko."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/dynamic-locale.php:150
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/dynamic-locale.php:170
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:67
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/sitemap-extended.php:72
 msgid ""
@@ -15371,21 +15376,21 @@ msgstr ""
 "(Niektorí poskytovatelia automaticky presmerovávajú nedefinované domény na "
 "hlavnú domenú. Ak to robí aj váš, nie je potrebné vytvárať subdoménu.)"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/dynamic-locale.php:152
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/dynamic-locale.php:172
 msgid "Use flags"
 msgstr "Zobraziť vlajky"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/dynamic-locale.php:154
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/dynamic-locale.php:174
 msgid "Checked produces an array of flags. Not checked produces a selector."
 msgstr "Aktivovaním sa zobrazia vlajky. Deaktivácia zobrazí selektor."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/dynamic-locale.php:155
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/dynamic-locale.php:175
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:134
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/sitemap-extended.php:169
 msgid "Use subdomains"
 msgstr "Použiť subdomény"
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/dynamic-locale.php:165
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/dynamic-locale.php:185
 msgid ""
 "* This option may be set via the <a href=\"javascript:gotoName('dynamic-"
 "locale');\"><em>dynamic-locale</em></a> plugin options."
@@ -15393,7 +15398,7 @@ msgstr ""
 "* Táto možnosť sa môže nastavovať použitím možností zásuvného modulu <a href="
 "\"javascript:gotoName('dynamic-locale');\"><em>dynamic-locale</em></a>."
 
-#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/dynamic-locale.php:169
+#: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/dynamic-locale.php:189
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/federated_logon.php:134
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:148
 #: C:\Users\Tangorn\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:96
@@ -16827,7 +16832,7 @@ msgstr "Načítať zoznam"
 #, php-format
 msgid ""
 "Import an external IP list. <p class=\"notebox\"><strong>NOTE:</strong> If "
-"this list is large it may excede the capacity of Zenphoto and %s to process "
+"this list is large it may exceed the capacity of Zenphoto and %s to process "
 "and store the results."
 msgstr ""
 "Importovať zoznam externých IP. <p class=\"notebox\"><strong>POZNÁMKA:</"
