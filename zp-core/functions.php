@@ -2254,7 +2254,15 @@ class zpFunctions {
 	 * @param string $text
 	 */
 	static function tagURLs($text) {
+		if (preg_match('/^a:[0-9]+:{/', $text)) {	//	seriualized array
+			$textlist = getSerializedArray($text);
+			foreach ($textlist as $key=>$text) {
+				$textlist[$key] = str_replace(WEBPATH, '{*WEBPATH*}', str_replace(FULLWEBPATH, '{*FULLWEBPATH*}', $text));
+			}
+			return serialize($textlist);
+		} else {
 		return str_replace(WEBPATH, '{*WEBPATH*}', str_replace(FULLWEBPATH, '{*FULLWEBPATH*}', $text));
+		}
 	}
 	/**
 	 * reverses tagURLs()
@@ -2262,7 +2270,14 @@ class zpFunctions {
 	 * @return string
 	 */
 	static function unTagURLs($text) {
-		return str_replace('{*WEBPATH*}', WEBPATH, str_replace('{*FULLWEBPATH*}', FULLWEBPATH, $text));
+		if (preg_match('/^a:[0-9]+:{/', $text)) {	//	seriualized array
+			$textlist = getSerializedArray($text);
+			foreach ($textlist as $key=>$text) {
+				$textlist[$key] = str_replace('{*WEBPATH*}', WEBPATH, str_replace('{*FULLWEBPATH*}', FULLWEBPATH, $text));
+			}
+			return serialize($textlist);
+		} else {
+			return str_replace('{*WEBPATH*}', WEBPATH, str_replace('{*FULLWEBPATH*}', FULLWEBPATH, $text));
 	}
 
 	/**
