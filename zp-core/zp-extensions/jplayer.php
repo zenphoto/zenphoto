@@ -60,10 +60,31 @@ if (isset($_zp_flash_player) || $plugin_disable) {
 } else {
 	$_zp_flash_player = new jPlayer(); // claim to be the flash player.
 	zp_register_filter('theme_head','jplayerJS');
+	zp_register_filter('content_macro','jPlayerMacro');
+
 	if(getOption('jplayer_playlist')) {
 		zp_register_filter('theme_head','jplayer_playlistJS');
 	}
 }
+
+function jPlayerMacro() {
+ $macro = array ('VIDEOAUDIO'	=>	
+ 	array(
+		'class'=>'expression', 
+		'regex'=>'/^(.*) (.*)$/', 
+		'value'=>'getMacrojplayer($1,$2);', 
+		'desc'=>gettext('Marco test.')
+	));
+	return $macro;
+}
+
+function getMacrojplayer($moviepath,$count) {	
+	global $_zp_flash_player;
+	if(empty($count)) $count = "1";
+	$player = $_zp_flash_player->getPlayerConfig($moviepath,'',$count);
+	return $player;
+} 
+
 
 
 function jplayerJS() {
@@ -240,7 +261,7 @@ class jPlayer {
 		$this->setModeAndSuppliedFormat($ext);
 		if(empty($count)) {
 			$multiplayer = false;
-			$count = '1';
+			$count = '1'; //we need different numbers in case we embed several via tinyZenpage or macros
 		}	else {
 			$multiplayer = true; // since we need extra JS if multiple players on one page
 			$count = $count;
