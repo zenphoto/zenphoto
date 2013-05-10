@@ -2003,20 +2003,23 @@ function getLanguageFlag($lang) {
  * @return mixed
  */
 function getItemByID($table, $id) {
-	$result = query_single_row('SELECT * FROM '.prefix($table).' WHERE id ='.$id);
-	switch($table) {
-		case 'images':
-			$alb = getItemByID('albums', $result['albumid']);
-			return newImage($alb,$result['filename']);
-		case 'albums':
-			return newAlbum($result['folder']);
-		case 'news':
-			return new ZenpageNews($result['titlelink']);
-		case 'pages':
-			return new ZenpagePage($result['titlelink']);
-		case 'news_categories':
-			return new ZenpageCategory($result['titlelink']);
+	if ($result = query_single_row('SELECT * FROM '.prefix($table).' WHERE id ='.$id)) {
+		switch($table) {
+			case 'images':
+				if ($alb = getItemByID('albums', $result['albumid'])) {
+					return newImage($alb,$result['filename']);
+				}
+			case 'albums':
+				return newAlbum($result['folder']);
+			case 'news':
+				return new ZenpageNews($result['titlelink']);
+			case 'pages':
+				return new ZenpagePage($result['titlelink']);
+			case 'news_categories':
+				return new ZenpageCategory($result['titlelink']);
+		}
 	}
+	return NULL;
 }
 
 /**

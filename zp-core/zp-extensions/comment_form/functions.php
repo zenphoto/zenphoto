@@ -1174,7 +1174,7 @@ function getLatestComments($number,$type="all",$id=NULL) {
 			if ($commentsearch) {
 				while ($number > 0 && $commentcheck = db_fetch_assoc($commentsearch)) {
 					$item = getItemByID($commentcheck['type'], $commentcheck['ownerid']);
-					if ($item->checkAccess()) {
+					if ($item && $item->checkAccess()) {
 						$number--;
 						$commentcheck['albumtitle'] = $commentcheck['titlelink'] = $commentcheck['folder'] = $commentcheck['filename'] = '';
 						$commentcheck['title'] = $item->getTitle('all');
@@ -1201,53 +1201,65 @@ function getLatestComments($number,$type="all",$id=NULL) {
 			}
 			return $comments;
 		case 'album':
-			$item = getItemByID('albums', $id);
-			$comments = array_slice($item->getComments(),0,$number);
-			// add the other stuff people want
-			foreach ($comments as $key=>$comment) {
-				$comment['pubdate'] = $comment['date'];
-				$alb = getItemByID('albums', $comment['ownerid']);
-				$comment['folder'] = $alb->name;
-				$comment['albumtitle'] = $item->getTitle('all');
-				$comments[$key] = $comment;
+			if ($item = getItemByID('albums', $id)) {
+				$comments = array_slice($item->getComments(),0,$number);
+				// add the other stuff people want
+				foreach ($comments as $key=>$comment) {
+					$comment['pubdate'] = $comment['date'];
+					$alb = getItemByID('albums', $comment['ownerid']);
+					$comment['folder'] = $alb->name;
+					$comment['albumtitle'] = $item->getTitle('all');
+					$comments[$key] = $comment;
+				}
+				return $comments;
+			} else {
+				return array();
 			}
-			return $comments;
 		case 'image':
-			$item = getItemByID('images', $id);
-			$comments = array_slice($item->getComments(),0,$number);
-			// add the other stuff people want
-			foreach ($comments as $key=>$comment) {
-				$comment['pubdate'] = $comment['date'];
-				$img = getItemByID('images', $comment['ownerid']);
-				$comment['folder'] = $img->album->name;
-				$comment['filename'] = $img->filename;
-				$comment['title'] = $item->getTitle('all');
-				$comment['albumtitle'] = $img->album->getTitle('all');
-				$comments[$key] = $comment;
+			if ($item = getItemByID('images', $id)) {
+				$comments = array_slice($item->getComments(),0,$number);
+				// add the other stuff people want
+				foreach ($comments as $key=>$comment) {
+					$comment['pubdate'] = $comment['date'];
+					$img = getItemByID('images', $comment['ownerid']);
+					$comment['folder'] = $img->album->name;
+					$comment['filename'] = $img->filename;
+					$comment['title'] = $item->getTitle('all');
+					$comment['albumtitle'] = $img->album->getTitle('all');
+					$comments[$key] = $comment;
+				}
+				return $comments;
+			} else {
+				return array();
 			}
-			return $comments;
 		case 'news':
-			$item = getItemByID('news', $id);
-			$comments = array_slice($item->getComments(),0,$number);
-			// add the other stuff people want
-			foreach ($comments as $key=>$comment) {
-				$comment['pubdate'] = $comment['date'];
-				$comment['titlelink'] = $item->getTitlelink();
-				$comment['title'] = $item->getTitle('all');
-				$comments[$key] = $comment;
+			if ($item = getItemByID('news', $id)) {
+				$comments = array_slice($item->getComments(),0,$number);
+				// add the other stuff people want
+				foreach ($comments as $key=>$comment) {
+					$comment['pubdate'] = $comment['date'];
+					$comment['titlelink'] = $item->getTitlelink();
+					$comment['title'] = $item->getTitle('all');
+					$comments[$key] = $comment;
+				}
+				return $comments;
+			} else {
+				return array();
 			}
-			return $comments;
 		case 'page':
-			$item = getItemByID('pages', $id);
-			$comments = array_slice($item->getComments(),0,$number);
-			// add the other stuff people want
-			foreach ($comments as $key=>$comment) {
-				$comment['pubdate'] = $comment['date'];
-				$comment['titlelink'] = $item->getTitlelink();
-				$comment['title'] = $item->getTitle('all');
-				$comments[$key] = $comment;
+			if ($item = getItemByID('pages', $id)) {
+				$comments = array_slice($item->getComments(),0,$number);
+				// add the other stuff people want
+				foreach ($comments as $key=>$comment) {
+					$comment['pubdate'] = $comment['date'];
+					$comment['titlelink'] = $item->getTitlelink();
+					$comment['title'] = $item->getTitle('all');
+					$comments[$key] = $comment;
+				}
+				return $comments;
+			} else {
+				return array();
 			}
-			return $comments;
 	}
 }
 
