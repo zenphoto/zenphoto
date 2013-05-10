@@ -60,7 +60,8 @@
 									if ($disabled['email']) {
 										?>
 										<span class="disabled_input" style="background-color:LightGray;color:black;">
-											<label for="email"><?php echo html_encode($stored['email']); ?></label>
+											<label for="email"><?php printf(gettext("E-Mail%s:"),$star); ?></label>
+											<?php echo html_encode($stored['email']); ?>
 											<input type="hidden" id="email" name="email" value="<?php echo html_encode($stored['email']);?>" />
 										</span>
 										<?php
