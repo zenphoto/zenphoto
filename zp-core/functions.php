@@ -2359,6 +2359,7 @@ class zpFunctions {
 			return serialize($textlist);
 		} else {
 			return str_replace('{*WEBPATH*}', WEBPATH, str_replace('{*FULLWEBPATH*}', FULLWEBPATH, $text));
+		}
 	}
 
 	/**
