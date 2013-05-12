@@ -121,7 +121,7 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 	<div id="main">
 		<?php printTabs(); ?>
 		<div id="content">
-		<?php printSubtabs('Analysis'); ?>
+		<?php printSubtabs(); ?>
 		<div class="tabbox">
 		<?php zp_apply_filter('admin_note','albums', ''); ?>
 			<h1><?php echo (gettext('Search analysis')); ?></h1>

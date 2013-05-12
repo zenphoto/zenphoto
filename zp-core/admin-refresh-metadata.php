@@ -133,7 +133,7 @@ echo "\n" . '<div id="main">';
 printTabs();
 ?>
 <div id="content">
-<?php printSubtabs('Refresh'); ?>
+<?php printSubtabs(); ?>
 <div class="tabbox">
 <h1><?php echo $title; ?></h1>
 <?php

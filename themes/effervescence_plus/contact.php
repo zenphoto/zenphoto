@@ -32,7 +32,7 @@ $backgroundImagePath="";
 <!-- Logo -->
 	<div id="logo">
 	<?php
-		echo printLogo();
+		printLogo();
 	?>
 	</div> <!-- logo -->
 </div> <!-- gallerytitle -->

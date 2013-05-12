@@ -77,7 +77,7 @@ $map = function_exists('printGoogleMap');
 				?>
 				<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle();?></a> |
 				<?php printParentBreadcrumb(); ?></span>
-				<?php printAlbumTitle(true);?>
+				<?php printAlbumTitle();?>
 			</div>
 		</div> <!-- wrapnav -->
 
@@ -90,7 +90,7 @@ $map = function_exists('printGoogleMap');
 			<!-- Album Description -->
 			<div id="description">
 				<?php
-				printAlbumDesc(true);
+				printAlbumDesc();
 				?>
 			</div>
 

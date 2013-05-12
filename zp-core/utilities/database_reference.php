@@ -65,7 +65,7 @@ h2 {
 <div id="main">
 <?php printTabs(); ?>
 <div id="content">
-<?php printSubtabs('Database') ?>
+<?php printSubtabs() ?>
 <div class="tabbox">
 <?php zp_apply_filter('admin_note','database', ''); ?>
 <h1><span id="top"><?php echo $mybutton['button_text']; ?></span></h1>

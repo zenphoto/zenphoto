@@ -322,7 +322,7 @@ class manager
 		 */
 	function printFileTypes()
 	{
-		foreach($fileTypes as $fileType)
+		foreach($this->fileTypes as $fileType)
 		{
 			if(isset($fileType[0]) && is_array($fileType[0]))
 			{

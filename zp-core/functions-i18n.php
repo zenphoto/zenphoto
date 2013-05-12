@@ -340,7 +340,7 @@ function setupDomain($domain=NULL,$type=NULL) {
  * @param string $type case for settign domain
  * @return mixed
  */
-function setupCurrentLocale($override=NULL) {
+function setupCurrentLocale($override=NULL,$domain=NULL,$type=NULL) {
 	if(empty($domain) && empty($type)) {
 		if (is_null($override)) {
 			$locale = getOption('locale');
