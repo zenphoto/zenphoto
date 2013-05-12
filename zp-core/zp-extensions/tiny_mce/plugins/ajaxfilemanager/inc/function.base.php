@@ -926,7 +926,7 @@ function getRootPath() {
 							return false;
 						}
 						
-					}elseif(!empty($excludeFile))
+					}elseif(!empty($excludeDir))
 					{
 						$invalidDir = explode(",", $excludeDir);
 						if(array_search(basename($path), $invalidDir) === false)
