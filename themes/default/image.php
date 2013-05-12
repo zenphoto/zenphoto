@@ -46,7 +46,7 @@ if (!defined('WEBPATH')) die();
 						printAlbumBreadcrumb("", " | ");
 						?>
 					</span>
-					<?php printImageTitle(true); ?>
+					<?php printImageTitle(); ?>
 				</h2>
 			</div>
 			<!-- The Image -->
@@ -77,12 +77,12 @@ if (!defined('WEBPATH')) die();
 				?>
 			</div>
 			<div id="narrow">
-				<?php printImageDesc(true); ?>
+				<?php printImageDesc(); ?>
 				<hr /><br />
 				<?php
 				If (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_image);
 				if (getImageMetaData()) {
-					echo printImageMetadata(NULL, 'colorbox');
+					printImageMetadata(NULL, 'colorbox');
 					?>
 					<br clear="all" />
 					<?php

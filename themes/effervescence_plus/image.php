@@ -99,7 +99,7 @@ if (!defined('WEBPATH')) die();
 							<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle();?></a> |
 							<?php printParentBreadcrumb(); printAlbumBreadcrumb("", " | "); ?>
 						</span>
-						<?php printImageTitle(true); ?>
+						<?php printImageTitle(); ?>
 					</div>
 				</div>
 			</div>
@@ -136,7 +136,7 @@ if (!defined('WEBPATH')) die();
 		<!-- Image Description -->
 
 		<div id="description">
-			<p><?php	printImageDesc(true); ?></p>
+			<p><?php	printImageDesc(); ?></p>
 			<?php
 			@call_user_func('printRating');
 			If (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_image);
@@ -149,7 +149,7 @@ if (!defined('WEBPATH')) die();
 				<?php
 			}
 			if (getImageMetaData()) {
-				echo printImageMetadata(NULL, 'colorbox');
+				printImageMetadata(NULL, 'colorbox');
 			}
 			?>
 		</div>
