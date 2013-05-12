@@ -141,7 +141,7 @@ class Comment extends PersistentObject {
 	 * @return string
 	 */
 	function getType() {
-		return $type;
+		return $this->get('type');
 	}
 	/**
 	 * Sets the 'type' field of the comment
