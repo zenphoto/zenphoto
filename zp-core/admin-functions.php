@@ -665,7 +665,7 @@ function customOptions($optionHandler, $indent="", $album=NULL, $showhide=false,
 					?>
 					<td width="350">
 						<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.'chkbox-'.$key; ?>" value="1" />
-						<input type="checkbox" id="<?php echo $key; ?>" name="<?php echo $key; ?>" value="1" <?php echo checked('1', $v); ?><?php echo $disabled; ?> />
+						<input type="checkbox" id="<?php echo $key; ?>" name="<?php echo $key; ?>" value="1" <?php checked('1', $v); ?><?php echo $disabled; ?> />
 					</td>
 					<?php
 					break;
@@ -726,7 +726,7 @@ function customOptions($optionHandler, $indent="", $album=NULL, $showhide=false,
 
 							<label class="checkboxlabel">
 								<?php if ($behind) echo($display); ?>
-								<input type="checkbox" id="<?php echo $checkbox; ?>" name="<?php echo $checkbox; ?>" value="1"<?php echo checked('1', $v); ?><?php echo $disabled; ?> />
+								<input type="checkbox" id="<?php echo $checkbox; ?>" name="<?php echo $checkbox; ?>" value="1"<?php checked('1', $v); ?><?php echo $disabled; ?> />
 								<?php if (!$behind) echo($display); ?>
 							</label>
 							<?php
@@ -1137,6 +1137,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 	}
 	$tagsort = getTagOrder();
 	if ($index == 0) {
+		// FIXME: I can't work out what you meant here. $_GET['saved'] ? Doesn't seem right either
 		if (isset($saved)) {
 			$album->setSubalbumSortType('manual');
 		}
@@ -3486,15 +3487,15 @@ function printEditDropdown($subtab, $nestinglevels, $nesting) {
 			$link = '?selection=';
 			break;
 		case 'subalbuminfo':
-			$link = '?page=edit&amp;album='.html_encode($_GET['album'],3).'&amp;tab=subalbuminfo&amp;selection=';
+			$link = '?page=edit&amp;album='.html_encode($_GET['album']).'&amp;tab=subalbuminfo&amp;selection=';
 			break;
 		case 'imageinfo':
 			if (isset($_GET['tagsort'])) {
-				$tagsort = '&amp;tagsort='.html_encode($_GET['tagsort'],3);
+				$tagsort = '&amp;tagsort='.html_encode($_GET['tagsort']);
 			} else {
 				$tagsort = '';
 			}
-			$link = '?page=edit&amp;album='.html_encode($_GET['album'],3).'&amp;tab=imageinfo'.$tagsort.'&amp;selection=';
+			$link = '?page=edit&amp;album='.html_encode($_GET['album']).'&amp;tab=imageinfo'.$tagsort.'&amp;selection=';
 			break;
 	}
 	?>
@@ -3670,7 +3671,7 @@ function printBulkActions($checkarray, $checkAll=false) {
 		<div id="mass_cats" style="display:none;">
 			<ul id="mass_cats_data">
 				<?php
-				 printNestedItemsList('cats-checkboxlist','','','all');
+				 printNestedItemsList('cats-checkboxlist','','all');
 				?>
 			</ul>
 		</div>
