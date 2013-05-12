@@ -98,7 +98,7 @@ echo "\n</head>";
 		?>
 		<h1><?php echo gettext("View logs:");?></h1>
 
-		<?php $subtab = printSubtabs($default); ?>
+		<?php $subtab = printSubtabs(); ?>
 			<!-- A log -->
 			<div id="theme-editor" class="tabbox">
 				<?php zp_apply_filter('admin_note','logs', $subtab); ?>

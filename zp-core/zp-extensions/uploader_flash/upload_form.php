@@ -49,7 +49,7 @@ function upload_extra($uploadlimit, $passedalbum) {
 						$uploadbutton = SERVERPATH.'/'.ZENFOLDER.'/images/select_files_button.png';
 					}
 					$discard = NULL;
-					$info = zp_imageDims($uploadbutton, $discard);
+					$info = zp_imageDims($uploadbutton);
 					if ($info['height']>60) {
 						$info['height'] = round($info['height']/3);
 						$rollover = "'rollover': true,";

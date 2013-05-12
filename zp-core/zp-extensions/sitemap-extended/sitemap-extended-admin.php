@@ -105,10 +105,10 @@ printLogoAndLinks();
 ?>
 <div id="main">
 <span id="top"></span>
-<?php printTabs('home');
+<?php printTabs();
 ?>
 <div id="content">
-<?php printSubtabs('Sitemap'); ?>
+<?php printSubtabs(); ?>
 <div class="tabbox">
 <?php zp_apply_filter('admin_note','sitemap', ''); ?>
 	<h1>Sitemap tools</h1>

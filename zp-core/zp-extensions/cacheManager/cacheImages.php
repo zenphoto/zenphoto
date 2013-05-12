@@ -140,7 +140,7 @@ echo "\n" . '<div id="main">';
 printTabs();
 echo "\n" . '<div id="content">';
 ?>
-<?php printSubtabs('Cache'); ?>
+<?php printSubtabs(); ?>
 <div class="tabbox">
 
 
