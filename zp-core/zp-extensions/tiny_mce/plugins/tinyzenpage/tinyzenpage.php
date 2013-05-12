@@ -21,11 +21,7 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<script type="text/javascript" src="<?php echo WEBPATH.'/'. ZENFOLDER; ?>/js/htmlencoder.js"></script>
 	<script type="text/javascript" src="<?php echo WEBPATH.'/'. ZENFOLDER; ?>/js/jquery.js"></script>
-
-	<script src="http://code.jquery.com/jquery-migrate-1.1.1.js"></script>
-
 	<script type="text/javascript" src="<?php echo WEBPATH.'/'. ZENFOLDER.'/'.PLUGIN_FOLDER; ?>/tiny_mce/tiny_mce_popup.js"></script>
-
 	<link rel="stylesheet" type="text/css" href="css/tinyzenpage.css" media="screen" />
 	<script language="javascript" type="text/javascript">
 	$(document).ready(function(){
