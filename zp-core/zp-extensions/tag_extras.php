@@ -253,7 +253,6 @@ function printAllTags($tags,$mode,$separator='',$class='',$showcounter=true,$tag
 	echo "<ul ".$class.">\n";
 	$loopcount = '';
 	$tagcount = count($tags);
-	$tagcount;
 	foreach ($tags as $row) {
 		if($row['count'] >= $count_min) {
 			$loopcount++;
