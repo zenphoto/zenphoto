@@ -50,7 +50,7 @@
  * Example: 
  * [MEDIAPLAYER http://yourdomain.com/albums/video/video.mp4]
  *
- * If you are using more than one player in a page you need to pass a 2nd parameter with an unique number:<br>
+ * If you are using more than one player on a page you need to pass a 2nd parameter with for example an unique number:<br>
  * [MEDIAPLAYER http://yourdomain.com/albums/video/video1.mp4 1]<br>
  * [MEDIAPLAYER http://yourdomain.com/albums/video/video2.mp4 2]
  *
@@ -76,32 +76,30 @@ if (isset($_zp_flash_player) || $plugin_disable) {
 } else {
 	$_zp_flash_player = new jPlayer(); // claim to be the flash player.
 	zp_register_filter('theme_head','jplayerJS');
-	zp_register_filter('content_macro','jPlayerMacro');
-
+	zp_register_filter('content_macro','jplayermacro');
 	if(getOption('jplayer_playlist')) {
 		zp_register_filter('theme_head','jplayer_playlistJS');
 	}
 }
 
-function jPlayerMacro() {
- $macro = array ('MEDIAPLAYER'	=>	
- 	array(
-		'class'=>'expression', 
-		'regex'=>'/^(.*) (.*)$/', 
-		'value'=>'getMacrojplayer($1,$2);', 
-		'desc'=>gettext('MEDIAPLAYER macro - enabled by jPlayer, pass path to multimedia file and a count number if using more than one on a page: [MEDIAPLAYER <path>/video.mp4 2].')
-	));
+function jplayermacro() {
+ $macro = array ('MEDIAPLAYER' =>	
+ 		array(
+			'class'=>'expression', 
+			'regex'=>'/^(.*) (.*)$/', 
+			'value'=>'getMacrojplayer($1,$2);', 
+			'desc'=>gettext('MEDIAPLAYER macro - enabled by jPlayer')
+		)
+	);
 	return $macro;
 }
 
 function getMacrojplayer($moviepath,$count) {	
 	global $_zp_flash_player;
-	if(empty($count)) $count = "1";
+	if(empty($count)) $count = '1';
 	$player = $_zp_flash_player->getPlayerConfig($moviepath,'',$count);
 	return $player;
 } 
-
-
 
 function jplayerJS() {
 	$skin = getOption('jplayer_skin');

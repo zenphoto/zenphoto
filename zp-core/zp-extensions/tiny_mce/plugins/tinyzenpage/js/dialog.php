@@ -184,18 +184,27 @@ var ZenpageDialog = {
 		// building the final item to include
 		switch (type) {
 			case 'zenphoto':
-				if((video == 'video' || video == 'audio') && $('#sizedimage').prop('checked')) {
-					if(video == 'video') {
-						player = '<video src="'+fullimage+'"></video>';
+				if($('#sizedimage').prop('checked')) {
+					if(video == 'video' || video == 'audio') {
+						player = '[MEDIAPLAYER '+fullimage+']';	
+						imglink = infowrap1+player+infowrap2;
 					} else {
-						player = '<audio src="'+fullimage+'"></audio>';
+						imglink = infowrap1+sizedimage+infowrap2;
 					}
+				} else {
+					alert('sizedimage');
+					imglink = infowrap1+linkpart1+includetype+linkpart2+infowrap2;
+				}
+			/*
+				if((video == 'video' || video == 'audio') && $('#sizedimage').prop('checked')) {
+					alert('Player');
+					player = '[MEDIAPLAYER "'+fullimage+'"]';	
 					imglink = infowrap1+player+infowrap2;
 				}	else if($('#sizedimage').prop('checked')) {
 					imglink = infowrap1+sizedimage+infowrap2;
 				} else {
 					imglink = infowrap1+linkpart1+includetype+linkpart2+infowrap2;
-				}
+				}*/
 				break;
 			case 'pages':
 				if(modrewrite) {
