@@ -368,6 +368,7 @@ function getSitemapIndexLinks() {
 		$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
 		$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 		$sitemap_locales = generateLanguageList();
+		// FIXME: This empty() check makes no sense. We don't have $changefreq yet
 		if(empty($changefreq)) {
 			$changefreq = getOption('sitemap_changefreq_index');
 		} else {
@@ -399,7 +400,7 @@ function getSitemapIndexLinks() {
 					break;
 				case 2:
 					foreach($sitemap_locales as $locale) {
-						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".rewrite_path(dynamic_locale::fullHostPath($locale).'/'.$galleryindex_mod,dynamic_locale::fullHostPath($locale,false).'/'.$galleryindex_nomod)."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".rewrite_path(dynamic_locale::fullHostPath($locale).'/'.$galleryindex_mod,dynamic_locale::fullHostPath($locale).'/'.$galleryindex_nomod)."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 					}
 					break;
 				default:
@@ -958,7 +959,7 @@ function clearSitemapCache() {
 			$fullname = $cachefolder . '/' . $filename;
 			if (is_dir($fullname) && !(substr($filename, 0, 1) == '.')) {
 				if (($filename != '.') && ($filename != '..')) {
-					clearRSSCache($fullname);
+					RSS::clearRSSCache($fullname);
 					rmdir($fullname);
 				}
 			} else {
