@@ -584,7 +584,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 						</p>
 						<p>
 							<label>
-								<input type="checkbox" name="UTF8_image_URI" value="1"<?php echo checked('1', UTF8_IMAGE_URI); ?> />
+								<input type="checkbox" name="UTF8_image_URI" value="1"<?php checked('1', UTF8_IMAGE_URI); ?> />
 								<?php echo gettext('UTF8 image URIs'); ?>
 							</label>
 						</p>
@@ -706,7 +706,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<br clear="all" />
 						<p class="notebox"><?php printf(gettext('Highlighted languages are not current with Zenphoto Version %1$s. (The version Zenphoto of the out-of-date language is shown in braces.) Please check the <a href="%2$s">translation repository</a> for new and updated language translations.'),$zpversion,'https://github.com/zenphoto/zenphoto/tree/master/zp-core/locale');?></p>
 						<label class="checkboxlabel">
-							<input type="checkbox" name="multi_lingual" value="1"	<?php echo checked('1', getOption('multi_lingual')); ?> /><?php echo gettext('Multi-lingual'); ?>
+							<input type="checkbox" name="multi_lingual" value="1"	<?php checked('1', getOption('multi_lingual')); ?> /><?php echo gettext('Multi-lingual'); ?>
 						</label>
 					</td>
 					<td>
@@ -1133,7 +1133,7 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 								<td>
 									<span id="gallery_sortdirection" style="display:<?php echo $dspd; ?>">
 										<label>
-											<input type="checkbox" name="gallery_sortdirection"	value="1" <?php echo checked('1', $_zp_gallery->getSortDirection()); ?> />
+											<input type="checkbox" name="gallery_sortdirection"	value="1" <?php checked('1', $_zp_gallery->getSortDirection()); ?> />
 											<?php echo gettext("Descending"); ?>
 										</label>
 									</span>
@@ -1173,28 +1173,28 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<p>
 							<label>
 								<input type="checkbox" name="album_use_new_image_date" id="album_use_new_image_date"
-										value="1" <?php echo checked('1', $_zp_gallery->getAlbumUseImagedate()); ?> />
+										value="1" <?php checked('1', $_zp_gallery->getAlbumUseImagedate()); ?> />
 								<?php echo gettext("use latest image date as album date"); ?>
 							</label>
 						</p>
 						<p>
 							<label>
 								<input type="checkbox" name="thumb_select_images" id="thumb_select_images"
-										value="1" <?php echo checked('1', $_zp_gallery->getThumbSelectImages()); ?> />
+										value="1" <?php checked('1', $_zp_gallery->getThumbSelectImages()); ?> />
 								<?php echo gettext("visual thumb selection"); ?>
 							</label>
 						</p>
 						<p>
 							<label>
 								<input type="checkbox" name="multilevel_thumb_select_images" id="thumb_select_images"
-										value="1" <?php echo checked('1', $_zp_gallery->getSecondLevelThumbs()); ?> />
+										value="1" <?php checked('1', $_zp_gallery->getSecondLevelThumbs()); ?> />
 								<?php echo gettext("show subalbum thumbs"); ?>
 							</label>
 						</p>
 						<p>
 							<label>
 								<input type="checkbox" name="album_session" id="album_session"
-										value="1" <?php echo checked('1', GALLERY_SESSION); ?> />
+										value="1" <?php checked('1', GALLERY_SESSION); ?> />
 								<?php echo gettext("enable gallery sessions"); ?>
 							</label>
 							<?php
@@ -1452,13 +1452,13 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 						</p>
 						<p>
 							<label>
-								<input type="checkbox" name="search_no_albums" value="1" <?php echo checked('1', getOption('search_no_albums')); ?> />
+								<input type="checkbox" name="search_no_albums" value="1" <?php checked('1', getOption('search_no_albums')); ?> />
 								<?php echo gettext('Do not return <em>album</em> matches') ?>
 							</label>
 						</p>
 						<p>
 							<label>
-								<input type="checkbox" name="search_no_images" value="1" <?php echo checked('1', getOption('search_no_images')); ?> />
+								<input type="checkbox" name="search_no_images" value="1" <?php checked('1', getOption('search_no_images')); ?> />
 								<?php echo gettext('Do not return <em>image</em> matches') ?>
 							</label>
 						</p>
@@ -1467,13 +1467,13 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 							?>
 							<p>
 								<label>
-									<input type="checkbox" name="search_no_news" value="1" <?php echo checked('1', getOption('search_no_news')); ?> />
+									<input type="checkbox" name="search_no_news" value="1" <?php checked('1', getOption('search_no_news')); ?> />
 									<?php echo gettext('Do not return <em>news</em> matches') ?>
 								</label>
 							</p>
 							<p>
 								<label>
-									<input type="checkbox" name="search_no_pages" value="1" <?php echo checked('1', getOption('search_no_pages')); ?> />
+									<input type="checkbox" name="search_no_pages" value="1" <?php checked('1', getOption('search_no_pages')); ?> />
 									<?php echo gettext('Do not return <em>page</em> matches') ?>
 								</label>
 							</p>
@@ -1609,18 +1609,18 @@ if ($subtab == 'rss' && zp_loggedin(OPTIONS_RIGHTS)) {
 		<tr>
 			<td><?php echo gettext("RSS enclosure:"); ?></td>
 			<td><input type="checkbox" name="feed_enclosure"
-				value="1" <?php echo checked('1', getOption('feed_enclosure')); ?> /></td>
+				value="1" <?php checked('1', getOption('feed_enclosure')); ?> /></td>
 			<td><?php echo gettext("Check if you want to enable the <em>RSS enclosure</em> feature which provides a direct download for full images, movies etc. from within certain RSS reader clients <em>(only Images RSS)</em>."); ?></td>
 		</tr>
 			<tr>
 			<td><?php echo gettext("Media RSS:"); ?></td>
-			<td><input type="checkbox" name="feed_mediarss" value="1" <?php echo checked('1', getOption('feed_mediarss')); ?> /></td>
+			<td><input type="checkbox" name="feed_mediarss" value="1" <?php checked('1', getOption('feed_mediarss')); ?> /></td>
 			<td><?php echo gettext("Check if <em>media RSS</em> support is to be enabled. This support is used by some services and programs <em>(only Images RSS)</em>."); ?></td>
 		</tr>
 		<tr>
 			<td><?php echo gettext("RSS cache"); ?></td>
 			<td>
-				<label><input type="checkbox" name="feed_cache" value="1" <?php echo checked('1', getOption('feed_cache')); ?> /> <?php echo gettext("Enabled"); ?></label><br /><br />
+				<label><input type="checkbox" name="feed_cache" value="1" <?php checked('1', getOption('feed_cache')); ?> /> <?php echo gettext("Enabled"); ?></label><br /><br />
 				<input type="text" size="15" id="feed_cache_expire" name="feed_cache_expire"
 				value="<?php echo html_encode(getOption('feed_cache_expire'));?>" /> <label for="feed_cache_expire"><?php echo gettext("RSS cache expire"); ?></label><br />
 				</td>
@@ -1629,15 +1629,15 @@ if ($subtab == 'rss' && zp_loggedin(OPTIONS_RIGHTS)) {
 		<tr>
 			<td><?php echo gettext("RSS hitcounter"); ?></td>
 			<td><input type="checkbox" name="feed_hitcounter"
-				value="1" <?php echo checked('1', getOption('feed_hitcounter')); ?> /></td>
+				value="1" <?php checked('1', getOption('feed_hitcounter')); ?> /></td>
 			<td><?php echo gettext("Check if you want to store the hitcount on RSS feeds."); ?></td>
 		</tr>
 		<tr>
 			<td><?php echo gettext("RSS title"); ?></td>
 			<td>
-				<label for="feed_title1"><input type="radio" name="feed_title" id="feed_title1" value="gallery" <?php echo checked('gallery', getOption('feed_title')); ?> /><?php echo gettext('Gallery title'); ?></label>
-				<label for="feed_title2"><input type="radio" name="feed_title" id="feed_title2" value="website" <?php echo checked('website', getOption('feed_title')); ?> /><?php echo gettext('Website title'); ?></label>
-				<label for="feed_title3"><input type="radio" name="feed_title" id="feed_title3" value="both" <?php echo checked('both', getOption('feed_title')); ?> /><?php echo gettext('Both'); ?></label>
+				<label for="feed_title1"><input type="radio" name="feed_title" id="feed_title1" value="gallery" <?php checked('gallery', getOption('feed_title')); ?> /><?php echo gettext('Gallery title'); ?></label>
+				<label for="feed_title2"><input type="radio" name="feed_title" id="feed_title2" value="website" <?php checked('website', getOption('feed_title')); ?> /><?php echo gettext('Website title'); ?></label>
+				<label for="feed_title3"><input type="radio" name="feed_title" id="feed_title3" value="both" <?php checked('both', getOption('feed_title')); ?> /><?php echo gettext('Both'); ?></label>
 			</td>
 			<td><?php echo gettext("Select what you want to use as the main RSS feed (channel) title. 'Both' means Website title followed by Gallery title"); ?></td>
 		</tr>
@@ -1714,7 +1714,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 						?>
 						</select>
 						<label id="image_sortdirection" style="display:<?php echo $dspd; ?>white-space:nowrap;">
-							<input type="checkbox" name="image_sortdirection"	value="1" <?php echo checked('1', getOption('image_sortdirection')); ?> />
+							<input type="checkbox" name="image_sortdirection"	value="1" <?php checked('1', getOption('image_sortdirection')); ?> />
 							<?php echo gettext("Descending"); ?>
 						</label>
 					</span>
@@ -1805,7 +1805,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 		</tr>
 		<tr>
 			<td><?php echo gettext("Interlace:"); ?></td>
-			<td><input type="checkbox" name="image_interlace" value="1" <?php echo checked('1', getOption('image_interlace')); ?> /></td>
+			<td><input type="checkbox" name="image_interlace" value="1" <?php checked('1', getOption('image_interlace')); ?> /></td>
 			<td><?php echo gettext("If checked, resized images will be created <em>interlaced</em> (if the format permits)."); ?></td>
 		</tr>
 		<tr>
@@ -1818,7 +1818,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 				setOption('use_embedded_thumb', 0);
 			}
 			?>
-			<td><input type="checkbox" name="use_embedded_thumb" value="1" <?php echo checked('1', getOption('use_embedded_thumb')); ?><?php echo $disabled; ?> /></td>
+			<td><input type="checkbox" name="use_embedded_thumb" value="1" <?php checked('1', getOption('use_embedded_thumb')); ?><?php echo $disabled; ?> /></td>
 			<td>
 				<p><?php echo gettext('If set, Zenphoto will use the thumbnail imbedded in the image when creating a cached image that is equal or smaller in size. Note: the quality of this image varies by camera and its orientation may not match the master image.'); ?></p>
 				<?php
@@ -1832,7 +1832,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 		</tr>
 		<tr>
 			<td><?php echo gettext("Allow upscale:"); ?></td>
-			<td><input type="checkbox" name="image_allow_upscale" value="1" <?php echo checked('1', getOption('image_allow_upscale')); ?> /></td>
+			<td><input type="checkbox" name="image_allow_upscale" value="1" <?php checked('1', getOption('image_allow_upscale')); ?> /></td>
 			<td><?php echo gettext("Allow images to be scaled up to the requested size. This could result in loss of quality, so it's off by default."); ?></td>
 		</tr>
 		<tr>
@@ -1840,11 +1840,11 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 			<td>
 				<p class="nowrap">
 					<label>
-						<input type="checkbox" name="image_sharpen" value="1" <?php echo checked('1', getOption('image_sharpen')); ?> />
+						<input type="checkbox" name="image_sharpen" value="1" <?php checked('1', getOption('image_sharpen')); ?> />
 						<?php echo gettext('Images'); ?>
 					</label>
 					<label>
-						<input type="checkbox" name="thumb_sharpen" value="1" <?php echo checked('1', getOption('thumb_sharpen')); ?> />
+						<input type="checkbox" name="thumb_sharpen" value="1" <?php checked('1', getOption('thumb_sharpen')); ?> />
 						<?php echo gettext('Thumbs'); ?>
 					</label>
 				</p>
@@ -1948,7 +1948,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 					<input type="text" size="2" name="watermark_scale"
 							value="<?php echo html_encode(getOption('watermark_scale'));?>" /><?php /*xgettext:no-php-format*/ echo gettext('% of image') ?>
 					<label>
-						<input type="checkbox" name="watermark_allow_upscale" value="1"	<?php echo checked('1', getOption('watermark_allow_upscale')); ?> />
+						<input type="checkbox" name="watermark_allow_upscale" value="1"	<?php checked('1', getOption('watermark_allow_upscale')); ?> />
 						<?php echo gettext("allow upscale"); ?>
 					</label>
 				</p>
@@ -2024,7 +2024,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 		<tr>
 			<td width="175"><?php echo gettext('Obscure cache filenames'); ?></td>
 			<td width="350">
-				<label><input type="checkbox" name="obfuscate_cache" id="obfuscate_cache" value="1" <?php echo checked(1, getOption('obfuscate_cache')); ?> /><?php echo gettext('enable'); ?></label>
+				<label><input type="checkbox" name="obfuscate_cache" id="obfuscate_cache" value="1" <?php checked(1, getOption('obfuscate_cache')); ?> /><?php echo gettext('enable'); ?></label>
 			</td>
 			<td><?php echo gettext('Cause the filename of cached items to be obscured. This makes it difficult for someone to "guess" the name in a URL.'); ?></td>
 		</tr>
@@ -2032,7 +2032,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 			<td><?php echo gettext("Protect image cache"); ?></td>
 			<td>
 				<input type="checkbox" name="protected_image_cache" value="1"
-				<?php echo checked('1', getOption('protected_image_cache')); ?> />&nbsp;<?php echo gettext("Enabled"); ?>
+				<?php checked('1', getOption('protected_image_cache')); ?> />&nbsp;<?php echo gettext("Enabled"); ?>
 			</td>
 			<td><?php echo gettext('If checked all image URIs will link to the image processor and the image cache will be disabled to browsers via an <em>.htaccess</em> file. Images are still cached but the image processor is used to serve the image rather than allowing the browser to fetch the file.').
 								'<p class="notebox">'.gettext('<strong>WARNING	:</strong> This option adds significant overhead to <strong>each and every</strong> image reference! Some <em>JavaScript</em> and <em>Flash</em> based image handlers will not work with an image processor URI and are incompatible with this option.').'</p>'; ?></td>
@@ -2041,7 +2041,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 			<td><?php echo gettext("Secure image processor"); ?></td>
 			<td>
 				<input type="checkbox" name="secure_image_processor" value="1"
-				<?php echo checked('1', getOption('secure_image_processor')); ?> />&nbsp;<?php echo gettext("Enabled"); ?>
+				<?php checked('1', getOption('secure_image_processor')); ?> />&nbsp;<?php echo gettext("Enabled"); ?>
 			</td>
 			<td><?php echo gettext('When enabled, the image processor will check album access credentials.').
 								'<p class="notebox">'.gettext('<strong>WARNING	:</strong> This option adds memory overhead to image caching! You may be unable to cache some images depending on your server memory availability.').'</p>'; ?></td>
@@ -2051,12 +2051,12 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 			<td style="margin:0">
 				<p>
 					<label>
-						<input type="checkbox" name="hotlink_protection" value="1" <?php echo checked('1', getOption('hotlink_protection')); ?> />
+						<input type="checkbox" name="hotlink_protection" value="1" <?php checked('1', getOption('hotlink_protection')); ?> />
 						<?php echo gettext('Disable hotlinking'); ?>
 					</label>
 					<br />
 					<label>
-						<input type="checkbox" name="cache_full_image" value="1" <?php echo checked('1', getOption('cache_full_image')); ?> />
+						<input type="checkbox" name="cache_full_image" value="1" <?php checked('1', getOption('cache_full_image')); ?> />
 						<?php echo gettext('cache the full image'); ?>
 					</label>
 				</p>
@@ -2166,7 +2166,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 			<td><?php echo gettext("Use lock image"); ?></td>
 			<td>
 				<input type="checkbox" name="use_lock_image" value="1"
-				<?php echo checked('1', getOption('use_lock_image')); ?> />&nbsp;<?php echo gettext("Enabled"); ?>
+				<?php checked('1', getOption('use_lock_image')); ?> />&nbsp;<?php echo gettext("Enabled"); ?>
 			</td>
 			<td><?php echo gettext("Substitute a <em>lock</em> image for thumbnails of password protected albums when the viewer has not supplied the password. If your theme supplies an <code>images/err-passwordprotected.png</code> image, it will be shown. Otherwise the zenphoto default lock image is displayed."); ?></td>
 		</tr>
@@ -2256,7 +2256,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 		<tr>
 			<td><?php echo gettext("IPTC Imbedding:"); ?></td>
 			<td>
-				<label><input type="checkbox" name="ImbedIPTC" value="1"	<?php echo checked('1', getOption('ImbedIPTC')); ?> /> <?php echo $optionText; ?></label>
+				<label><input type="checkbox" name="ImbedIPTC" value="1"	<?php checked('1', getOption('ImbedIPTC')); ?> /> <?php echo $optionText; ?></label>
 				<p><input type="textbox" name="default_copyright" value="<?php echo getOption('default_copyright'); ?>" size="50" /></p>
 			</td>
 			<td>
@@ -2307,7 +2307,7 @@ if ($subtab == 'comments' && zp_loggedin(OPTIONS_RIGHTS)) {
 				$disable = '';
 			}
 			?>
-			<input type="checkbox" name="email_new_comments" value="1" <?php echo checked('1', getOption('email_new_comments')); echo $disable; ?> />
+			<input type="checkbox" name="email_new_comments" value="1" <?php checked('1', getOption('email_new_comments')); echo $disable; ?> />
 			</td>
 			<td><?php echo gettext("Email the Admin when new comments are posted"); ?></td>
 		</tr>
@@ -2672,7 +2672,7 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 			<tr>
 				<td><?php echo gettext("Crop thumbnails:"); ?></td>
 				<td>
-					<input type="checkbox" name="thumb_crop" value="1" <?php echo checked('1', $tc = getThemeOption('thumb_crop',$album,$themename)); ?><?php echo $disable; ?> />
+					<input type="checkbox" name="thumb_crop" value="1" <?php checked('1', $tc = getThemeOption('thumb_crop',$album,$themename)); ?><?php echo $disable; ?> />
 					&nbsp;&nbsp;
 					<span class="nowrap">
 						<?php printf(gettext('%s%% left &amp; right'),
@@ -2694,11 +2694,11 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 				<td>
 					<label class="checkboxlabel">
 						<?php echo gettext('image') ?>
-						<input type="checkbox" name="image_gray" id="image_gray" value="1" <?php echo checked('1', getThemeOption('image_gray',$album,$themename)); ?> />
+						<input type="checkbox" name="image_gray" id="image_gray" value="1" <?php checked('1', getThemeOption('image_gray',$album,$themename)); ?> />
 					</label>
 					<label class="checkboxlabel">
 						<?php echo gettext('thumbnail') ?>
-						<input type="checkbox" name="thumb_gray" id="thumb_gray" value="1" <?php echo checked('1', getThemeOption('thumb_gray',$album,$themename)); ?> />
+						<input type="checkbox" name="thumb_gray" id="thumb_gray" value="1" <?php checked('1', getThemeOption('thumb_gray',$album,$themename)); ?> />
 					</label>
 				</td>
 				<td><?php echo gettext("If checked, images/thumbnails will be created in gray scale."); ?></td>
@@ -3065,7 +3065,7 @@ if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 				<tr>
 					<td><?php echo gettext('Cookie security')?></td>
 					<td>
-						<label><input type="checkbox" name="IP_tied_cookies" value="1" <?php echo checked(1, getOption('IP_tied_cookies')); ?> /><?php echo gettext('enable'); ?></label>
+						<label><input type="checkbox" name="IP_tied_cookies" value="1" <?php checked(1, getOption('IP_tied_cookies')); ?> /><?php echo gettext('enable'); ?></label>
 					</td>
 					<td>
 						<?php echo gettext('Tie cookies to the IP address of the browser.'); ?>
@@ -3085,7 +3085,7 @@ if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 				<tr>
 					<td><?php echo gettext('Image Processor security')?></td>
 					<td>
-						<label><input type="checkbox" name="image_processor_flooding_protection" value="1" <?php echo checked(1, getOption('image_processor_flooding_protection')); ?> /><?php echo gettext('enable'); ?></label>
+						<label><input type="checkbox" name="image_processor_flooding_protection" value="1" <?php checked(1, getOption('image_processor_flooding_protection')); ?> /><?php echo gettext('enable'); ?></label>
 					</td>
 					<td>
 						<?php echo gettext('Add a security parameter to image processor URIs to prevent denial of service attacks requesting arbitrary sized images.'); ?>
@@ -3110,7 +3110,7 @@ if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 									} else {
 										?>
 										<input type="checkbox" name="login_user_field" id="login_user_field"
-																value="1" <?php echo checked('1', $_zp_gallery->getUserLogonField()); ?> />
+																value="1" <?php checked('1', $_zp_gallery->getUserLogonField()); ?> />
 										<?php
 									}
 									echo gettext("enable");
