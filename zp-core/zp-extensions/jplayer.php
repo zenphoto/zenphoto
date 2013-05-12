@@ -38,6 +38,22 @@
  * Alternativly you can show a playlist of a specific album anywhere. In any case you need to modify your theme.
  * See the documentation for the parameter options.
  *
+ * Alternativly you can show a playlist of a specific album anywhere. In any case you need to modify your theme.
+ * See the documentation for the parameter options.
+ *
+ * CONTENT MACRO:<br>
+ * jPlayer attaches to the content_macro MEDIAPLAYER you can use within normal text of Zenpage pages or articles for example.
+ * 
+ * Usage: 
+ * [MEDIAPLAYER <fullpath to your multimedia file> <number>]
+ * 
+ * Example: 
+ * [MEDIAPLAYER http://yourdomain.com/albums/video/video.mp4]
+ *
+ * If you are using more than one player in a page you need to pass a 2nd parameter with an unique number:<br>
+ * [MEDIAPLAYER http://yourdomain.com/albums/video/video1.mp4 1]<br>
+ * [MEDIAPLAYER http://yourdomain.com/albums/video/video2.mp4 2]
+ *
  * <b>NOTE:</b> This player does not support external albums!
  *
  * @author Malte Müller (acrylian)
@@ -68,12 +84,12 @@ if (isset($_zp_flash_player) || $plugin_disable) {
 }
 
 function jPlayerMacro() {
- $macro = array ('VIDEOAUDIO'	=>	
+ $macro = array ('MEDIAPLAYER'	=>	
  	array(
 		'class'=>'expression', 
 		'regex'=>'/^(.*) (.*)$/', 
 		'value'=>'getMacrojplayer($1,$2);', 
-		'desc'=>gettext('Marco test.')
+		'desc'=>gettext('MEDIAPLAYER macro - enabled by jPlayer, pass path to multimedia file and a count number if using more than one on a page: [MEDIAPLAYER <path>/video.mp4 2].')
 	));
 	return $macro;
 }
