@@ -232,6 +232,7 @@ class federated_logon {
 					}
 				} else {
 					$groupobj = Zenphoto_Authority::getAnAdmin(array('`user`='=>'federated_verify','`valid`='=>0));
+					// FIXME - where does $verify_group come from?
 					if (empty($verify_group)) {
 						$groupobj = Zenphoto_Authority::newAdministrator('federated_verify',0);
 						$groupobj->setName('group');
