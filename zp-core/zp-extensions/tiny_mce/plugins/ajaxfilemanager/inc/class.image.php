@@ -797,7 +797,7 @@
 				}   
         if (!is_null($this->transparentColorRed) && !is_null($this->transparentColorGreen) && !is_null($this->transparentColorBlue)) {
         
-            $transparent = @imagecolorallocate($targetImageIdentifier, $this->transparentColorRed, $this->transparentColorGreen, $this->transparentColorBlue);
+            $transparent = @imagecolorallocate($this->_imgFinal, $this->transparentColorRed, $this->transparentColorGreen, $this->transparentColorBlue);
             @imagefilledrectangle($this->_imgFinal, 0, 0, $dst_w, $dst_h, $transparent);
             @imagecolortransparent($this->_imgFinal, $transparent);            
         }
