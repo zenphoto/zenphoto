@@ -138,7 +138,7 @@
 	 * @param string $time
 	 * @return boolean
 	 */
-	function setLastModified($path=null, $time) 
+	function setLastModified($path=null, $time=null) 
 	{
 		$path = is_null($path)?$this->filePath:$path;
 		$time = is_null($time)?time():$time;
@@ -278,7 +278,7 @@
     	$finalPath = $destFolder . basename($fileToMove);
     	if(file_exists($fileToMove))
     	{
-    		if(is_file())
+    		if(is_file($fileToMove))
     		{
     			$fileExt = getFileExt($fileToMove);
     			$fileBaseName = basename($fileToMove, '.' . $fileExt);
@@ -288,7 +288,7 @@
     				$count++;
     			}
     			$filePath = $destFolder . $fileBaseName . $count . "." . $fileExt;
-    		}elseif(is_dir())
+    		}elseif(is_dir($fileToMove))
     		{
     			$folderName = basename($fileToMove);
      			$count = 1;
