@@ -113,7 +113,6 @@ if (getOption('perform_video_watermark')) {
 	setoptionDefault('Video_watermark', $v);
 }
 
-setOptionDefault('email_new_comments', 1);
 setOptionDefault('image_sorttype', 'Filename');
 setOptionDefault('image_sortdirection', '0');
 setOptionDefault('hotlink_protection', '1');
@@ -160,10 +159,6 @@ setOptionDefault('style_tags',
 //	insure tags are in lower case!
 setOption('allowed_tags',strtolower(getOption('allowed_tags')));
 
-setOptionDefault('comment_name_required', 'required');
-setOptionDefault('comment_email_required', 'required');
-setOptionDefault('comment_web_required', 'show');
-setOptionDefault('Use_Captcha', false);
 setOptionDefault('full_image_quality', 75);
 
 if (getOption('protect_full_image') === '0') {

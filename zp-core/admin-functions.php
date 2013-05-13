@@ -712,7 +712,7 @@ function customOptions($optionHandler, $indent="", $album=NULL, $showhide=false,
 					?>
 					<td width="350">
 						<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.'radio-'.$key; ?>" value="1"<?php echo $disabled; ?> />
-						<?php generateRadiobuttonsFromArray($v,$row['buttons'],$key, $behind); ?>
+						<?php generateRadiobuttonsFromArray($v,$row['buttons'],$key, $behind, 'checkboxlabel', $disabled); ?>
 					</td>
 					<?php
 					break;
@@ -953,7 +953,7 @@ function postIndexDecode($str) {
  * @param string $option the name of the option for the input field name
  * @param bool $behind set true to have the "text" before the button
  */
-function generateRadiobuttonsFromArray($currentvalue,$list,$option,$behind=false, $class='checkboxlabel') {
+function generateRadiobuttonsFromArray($currentvalue,$list,$option,$behind=false, $class='checkboxlabel', $disabled=NULL) {
 	foreach($list as $text=>$value) {
 		$checked ="";
 		if($value == $currentvalue) {
@@ -962,7 +962,7 @@ function generateRadiobuttonsFromArray($currentvalue,$list,$option,$behind=false
 		?>
 		<label<?php if ($class) echo ' class="'.$class.'"'; ?>>
 			<?php if ($behind) echo $text; ?>
-			<input type="radio" name="<?php echo $option; ?>" id="<?php echo $option.'-'.$value; ?>" value="<?php echo $value; ?>"<?php echo $checked; ?> />
+			<input type="radio" name="<?php echo $option; ?>" id="<?php echo $option.'-'.$value; ?>" value="<?php echo $value; ?>"<?php echo $checked; ?><?php echo $disabled; ?> />
 			<?php if (!$behind) echo $text; ?>
 		</label>
 		<?php
