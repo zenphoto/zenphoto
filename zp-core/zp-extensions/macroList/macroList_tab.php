@@ -34,9 +34,9 @@ echo "\n</head>";
 							preg_match_all('|\(.*?\)|', $detail['regex'], $matches);
 							$params = '';
 							for ($i=1;$i<=count($matches[0]);$i++) {
-								$params = $params.', %'.$i;
+								$params = $params.' %'.$i;
 							}
-							echo substr($params, 1);
+							echo $params;
 						}
 						echo ']</code><br />&nbsp;&nbsp;'.$detail['desc'].'</p>';
 					}
