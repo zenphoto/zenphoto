@@ -2065,23 +2065,33 @@ function applyMacros($text) {
 	$content_macros = getMacros();
 	krsort($content_macros);	//	in case some start with the same sequence, look for the longest first
 	$regex = '/\[('.implode('|',array_keys($content_macros)).')\s*(.*)\]/i';
+
 	if (preg_match_all($regex, $text, $matches)) {
 		foreach ($matches[1] as $key=>$macroname) {
+			$params = '';
 			$macroname = strtoupper($macroname);
 			$macro = $content_macros[$macroname];
 			$macro_instance = $matches[0][$key];
 			if ($macro['regex']) {
 				if (!preg_match($macro['regex'], trim($matches[2][$key]), $parms)) {
-					continue;	// failed parameter extract
+					$macro['class'] = 'error';
+					preg_match_all('|\(.*?\)|', $macro['regex'], $parms);
+					$data = '<span class="error">'.sprintf(ngettext('<em>[%1$s]</em> should have %2$d parameter.','<em>[%1$s]</em> should have %2$d parameters.',count($parms[0])),trim($macro_instance,'[]'),count($parms[0])).'</span>';
+					$parms = array();	// failed parameter extract
+				} else {
+					array_shift($parms);
+					$params = ' '.implode(' ', $parms);
 				}
-				array_shift($parms);
 			} else {
 				if (!empty($matches[2][$key])) {
-					continue;	// parameter when none expected
+					$macro['class'] = 'error';
+					$data = '<span class="error">'.sprintf(gettext('<em>[%1$s]</em> macro does not take parameters'),trim($macro_instance,'[]')).'</span>';
 				}
 				$parms = array();
 			}
 			switch ($macro['class']) {
+				case 'error':
+					break;
 				case 'function';
 				case 'procedure':
 					if ($macro['class']=='function') {
@@ -2093,7 +2103,7 @@ function applyMacros($text) {
 						ob_end_clean();
 					}
 					if (is_null($data)) {
-						continue 2;
+						$data = '<span class="error">'.sprintf(gettext('<em>[%1$s]</em> retuned no data'),trim($macro_instance,'[]')).'</span>';
 					}
 					break;
 				case 'constant':
@@ -2108,7 +2118,7 @@ function applyMacros($text) {
 					}
 					eval($expression);
 					if (!isset($data) || is_null($data)) {
-						continue 2;
+						$data = '<span class="error">'.sprintf(gettext('<em>[%1$s]</em> retuned no data'),trim($macro_instance,'[]')).'</span>';
 					}
 					break;
 			}
