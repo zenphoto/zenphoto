@@ -67,7 +67,11 @@ class reCaptcha extends _zp_captcha{
 	 */
 	function getCaptcha() {
 		parent::getCaptcha();
-		return array('input'=>recaptcha_get_html(getOption('reCaptcha_public_key'), NULL, secureServer()));
+		if (!getOption('reCaptcha_public_key')) {
+			return array('input'=>'', 'html'=>'<p class="errorbox">'.gettext('reCAPTCHA is not properly configured.').'</p>', 'hidden'=>'');
+		} else {
+			return array('input'=>recaptcha_get_html(getOption('reCaptcha_public_key'), NULL, secureServer()));
+		}
 	}
 }
 
