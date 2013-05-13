@@ -85,7 +85,7 @@ if (isset($_zp_flash_player) || $plugin_disable) {
 function jplayermacro($macros) {
  $macros['MEDIAPLAYER'] = array(
 														'class'=>'expression',
-														'regex'=>'/^(.*) (.*)$/',
+														'regex'=>'/^(.*)\s(.*)$/',
 														'value'=>'getMacrojplayer($1,$2);',
 														'desc'=>gettext('MEDIAPLAYER macro - enabled by jPlayer')
 													);
@@ -160,7 +160,7 @@ class jplayer_options {
 
 if (!OFFSET_PATH) {
 
-	function getMacrojplayer($moviepath,$count) {
+	function getMacrojplayer($moviepath,$count=NULL) {
 		global $_zp_flash_player;
 		if(empty($count)) $count = '1';
 		$player = $_zp_flash_player->getPlayerConfig($moviepath,'',$count);

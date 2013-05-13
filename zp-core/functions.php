@@ -2071,7 +2071,7 @@ function applyMacros($text) {
 			$macro = $content_macros[$macroname];
 			$macro_instance = $matches[0][$key];
 			if ($macro['regex']) {
-				if (!preg_match($macro['regex'], $matches[2][$key], $parms)) {
+				if (!preg_match($macro['regex'], trim($matches[2][$key]), $parms)) {
 					continue;	// failed parameter extract
 				}
 				array_shift($parms);

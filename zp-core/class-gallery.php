@@ -70,10 +70,11 @@ class Gallery {
 	 */
 	function getDesc($locale=NULL) {
 		$text = $this->get('Gallery_description');
-		if ($locale!=='all') {
-			$text = applyMacros(get_language_string($text,$locale));
+		if ($locale =='all') {
+			return zpFunctions::unTagURLs($text);
+		} else {
+			return applyMacros(zpFunctions::unTagURLs(get_language_string($text,$locale)));
 		}
-		$text = zpFunctions::unTagURLs($text);
 		return $text;
 	}
 	/**

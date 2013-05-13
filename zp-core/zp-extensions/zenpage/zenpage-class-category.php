@@ -27,11 +27,11 @@ class ZenpageCategory extends ZenpageRoot {
 	 */
 	function getDesc($locale=NULL) {
 		$text = $this->get('desc');
-		if ($locale !=='all') {
-			$text = applyMacros(get_language_string($text,$locale));
+		if ($locale =='all') {
+			return zpFunctions::unTagURLs($text);
+		} else {
+			return applyMacros(zpFunctions::unTagURLs(get_language_string($text,$locale)));
 		}
-		$text = zpFunctions::unTagURLs($text);
-		return $text;
 	}
 
 	/**
@@ -51,11 +51,11 @@ class ZenpageCategory extends ZenpageRoot {
 	 */
 	function getContent($locale=NULL) {
 		$content = $this->get("content");
-		if ($locale!=='all') {
-			$content = applyMacros(get_language_string($content,$locale));
+		if ($locale =='all') {
+			return zpFunctions::unTagURLs($content);
+		} else {
+			return applyMacros(zpFunctions::unTagURLs(get_language_string($content,$locale)));
 		}
-		$content = zpFunctions::unTagURLs($content);
-		return $content;
 	}
 
 	/**
@@ -75,11 +75,11 @@ class ZenpageCategory extends ZenpageRoot {
 	 */
 	function getExtraContent($locale=NULL) {
 		$text =  $this->get("extracontent");
-		if ($locale!=='all') {
-			$text = applyMacros(get_language_string($text,$locale));
+		if ($locale =='all') {
+			return zpFunctions::unTagURLs($text);
+		} else {
+			return applyMacros(zpFunctions::unTagURLs(get_language_string($text,$locale)));
 		}
-		$text = zpFunctions::unTagURLs($text);
-		return $text;
 	}
 
 	/**
