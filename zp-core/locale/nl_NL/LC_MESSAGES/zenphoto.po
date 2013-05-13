@@ -15373,7 +15373,7 @@ msgstr "Voor de verwerking van <em>favorites</em>."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:46
 msgid "My favorites"
-msgstr "Mijn favotieten"
+msgstr "Mijn favorieten"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:49
 msgid "The albums and images selected as favorites."
