@@ -55,7 +55,7 @@ class lib_Imagick_Options {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		global $_zp_imagick_present, _zp_graphics_optionhandlers;
+		global $_zp_imagick_present, $_zp_graphics_optionhandlers;
 
 		$disabled = $this->canLoadMsg();
 

@@ -1687,8 +1687,6 @@ class SearchEngine {
 			$result = array();
 			if (empty($searchdate)) {
 				list ($search_query,$weights) = $this->searchFieldsAndTags($searchstring, 'news', $sorttype, $sortdirection);
-				// FIXME: What did you mean by !empty($search_results) here? We don't have a $search_results variable
-				zp_apply_filter('search_statistics',$searchstring, 'news', !empty($search_results), false, $this->iteration++);
 			} else {
 				$search_query = $this->searchDate($searchstring, $searchdate, 'news', $sorttype, $sortdirection,$this->whichdates);
 			}
@@ -1697,6 +1695,7 @@ class SearchEngine {
 			} else {
 				$search_result = query($search_query);
 			}
+			zp_apply_filter('search_statistics',$searchstring, 'news', !empty($search_results), false, $this->iteration++);
 			if ($search_result) {
 				while ($row = db_fetch_assoc($search_result)) {
 					$data = array('id'=>$row['id'],'titlelink'=>$row['titlelink']);

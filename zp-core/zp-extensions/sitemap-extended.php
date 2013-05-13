@@ -351,12 +351,6 @@ function getSitemapIndexLinks() {
 	if($sitemap_number < 2) {
 		set_context(ZP_INDEX);
 		$albums_per_page = getOption('albums_per_page');
-		/* Not used right now
-		if(!empty($albumsperpage)) {
-			setOption('albums_per_page',sanitize_numeric($albumsperpage),false);
-		} else {
-			setOption('albums_per_page',$albums_per_page);
-		} */
 		if(getOption('sitemap_galleryindex')) {
 			$galleryindex_mod = 'page/'.getOption('sitemap_galleryindex');
 			$galleryindex_nomod = 'index.php?p='.getOption('sitemap_galleryindex').'&amp;page=';
@@ -368,12 +362,7 @@ function getSitemapIndexLinks() {
 		$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
 		$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 		$sitemap_locales = generateLanguageList();
-		// FIXME: This empty() check makes no sense. We don't have $changefreq yet
-		if(empty($changefreq)) {
-			$changefreq = getOption('sitemap_changefreq_index');
-		} else {
-			$changefreq = sitemap_getChangefreq($changefreq);
-		}
+		$changefreq = sitemap_getChangefreq(getOption('sitemap_changefreq_index'));
 		// normal index/homepage we need in any case always
 		switch (SITEMAP_LOCALE_TYPE) {
 			case 1:

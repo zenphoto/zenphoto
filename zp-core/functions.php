@@ -2255,8 +2255,7 @@ class zpFunctions {
 	 */
 	static function tagURLs($text) {
 		if (preg_match('/^a:[0-9]+:{/', $text)) {	//	seriualized array
-			// FIXME: getSerializedArray() doesn't exist
-			$textlist = getSerializedArray($text);
+			$textlist = unserialize($text);
 			foreach ($textlist as $key=>$text) {
 				$textlist[$key] = str_replace(WEBPATH, '{*WEBPATH*}', str_replace(FULLWEBPATH, '{*FULLWEBPATH*}', $text));
 			}
@@ -2272,8 +2271,7 @@ class zpFunctions {
 	 */
 	static function unTagURLs($text) {
 		if (preg_match('/^a:[0-9]+:{/', $text)) {	//	seriualized array
-			// FIXME: getSerializedArray() doesn't exist
-			$textlist = getSerializedArray($text);
+			$textlist = unserialize($text);
 			foreach ($textlist as $key=>$text) {
 				$textlist[$key] = str_replace('{*WEBPATH*}', WEBPATH, str_replace('{*FULLWEBPATH*}', FULLWEBPATH, $text));
 			}

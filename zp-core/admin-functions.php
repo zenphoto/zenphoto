@@ -1137,10 +1137,6 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 	}
 	$tagsort = getTagOrder();
 	if ($index == 0) {
-		// FIXME: I can't work out what you meant here. $_GET['saved'] ? Doesn't seem right either
-		if (isset($saved)) {
-			$album->setSubalbumSortType('manual');
-		}
 		$suffix = $prefix = '';
 	} else {
 		$prefix = "$index-";
