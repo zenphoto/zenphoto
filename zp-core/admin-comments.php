@@ -56,7 +56,7 @@ if (isset($_GET['action'])) {
 		$id = sanitize_numeric($_GET['id']);
 		$comment = new Comment($id);
 		$comment->remove();
- 		header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-comments.php?ndeleted=1");
+		header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-comments.php?ndeleted=1");
 		exitZP();
 
 	case 'savecomment':
@@ -104,7 +104,7 @@ printTabs();
 echo "\n" . '<div id="content">';
 
 if ($page == "editcomment" && isset($_GET['id']) ) {
-zp_apply_filter('admin_note','comments', $subtab);
+zp_apply_filter('admin_note','comments', 'edit');
 ?>
 <h1><?php echo gettext("edit comment"); ?></h1>
 <div class="box" style="padding: 10px">
@@ -247,7 +247,7 @@ zp_apply_filter('admin_note','comments', $subtab);
 	$comments = array_slice($allcomments, ($pagenum-1)*COMMENTS_PER_PAGE, COMMENTS_PER_PAGE);
 	$allcommentscount = count($allcomments);
 	$totalpages = ceil(($allcommentscount / COMMENTS_PER_PAGE));
-	zp_apply_filter('admin_note','comments', $subtab);
+	zp_apply_filter('admin_note','comments', 'list');
 	unset($allcomments);
 	?>
 <h1><?php echo gettext("Comments"); ?></h1>
@@ -330,14 +330,14 @@ if ($totalpages > 1) {
 	<tr>
 		<th colspan="11"><?php echo gettext("Edit this comment"); ?>
 		<?php
-	  	$checkarray = array(
-									  	gettext('*Bulk actions*') => 'noaction',
-									  	gettext('Delete') => 'deleteall',
-									  	gettext('Mark as spam') => 'spam',
-									  	gettext('Approve') => 'approve',
-							  			);
-	  	printBulkActions($checkarray);
-	  	?>
+			$checkarray = array(
+											gettext('*Bulk actions*') => 'noaction',
+											gettext('Delete') => 'deleteall',
+											gettext('Mark as spam') => 'spam',
+											gettext('Approve') => 'approve',
+											);
+			printBulkActions($checkarray);
+			?>
 		</th>
 
 	</tr>
