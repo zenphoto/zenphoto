@@ -127,7 +127,7 @@ if (!$total) {
 						$c++;
 						?>
 						<li<?php if ($c>SHOW_ITEMS) echo ' class="pages_extrashow" style="display:none;"'; ?>>
-						<?php print printPageTitleLink(); ?>
+						<?php printPageTitleLink(); ?>
 						<p style="text-indent:1em;"><?php echo exerpt($_zp_current_zenpage_page->getContent(),TRUNCATE_LENGTH); ?></p>
 						</li>
 						<?php

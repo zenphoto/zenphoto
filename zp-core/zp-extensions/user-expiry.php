@@ -113,6 +113,8 @@ class user_expiry {
 	}
 
 	private static function checkexpires($loggedin, $userobj) {
+		global $_zp_gallery;
+
 		if ($userobj->logout_link!==true) {
 			return $loggedin;
 		}

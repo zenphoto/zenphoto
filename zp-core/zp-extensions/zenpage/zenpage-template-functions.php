@@ -528,7 +528,7 @@ function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
 			$articlecontent .= getContentShorten($_zp_current_zenpage_news->getDesc(),$shorten,$shortenindicator,$readmore,$_zp_current_zenpage_news->getImageLink());
 			break;
 		case 'video':
-			$articlecontent = getNewsVideoContent($_zp_current_zenpage_news,$shorten);
+			$articlecontent = getNewsVideoContent($_zp_current_zenpage_news);
 			break;
 		case 'album':
 			$albumdesc = getContentShorten($_zp_current_zenpage_news->getDesc(),$shorten,$shortenindicator,$readmore,$_zp_current_zenpage_news->getAlbumLink(1));
@@ -2136,8 +2136,8 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 	}
 	// don't highlight current pages or foldout if in search mode as next_page() sets page context
 	if(in_context(ZP_SEARCH) && $mode == 'pages') { // categories are not searched
-		$css_class_topactive != "";
-		$css_class_active != "";
+		$css_class_topactive = "";
+		$css_class_active = "";
 		rem_context(ZP_ZENPAGE_PAGE);
 	}
 	if (count($items)==0) return; // nothing to do
@@ -2581,7 +2581,7 @@ function getPageLastChangeDate() {
  * @param string $before The text you want to show before the link
  * @return string
  */
-function printPageLastChangeDate() {
+function printPageLastChangeDate($before) {
 	echo html_encode($before.getPageLastChangeDate());
 }
 
@@ -2993,7 +2993,7 @@ function zenpageAlbumImage($albumname, $imagename=NULL, $size=NULL, $linkalbum=f
 				rem_context(ZP_IMAGE | ZP_ALBUM);
 				echo '</a>';
 			} else {
-				echo '<a href="'.html_encode(getImageLinkURL($image)).'" title="'.sprintf(gettext('View %s'), $imagename).'">';
+				echo '<a href="'.html_encode(getImageLinkURL()).'" title="'.sprintf(gettext('View %s'), $imagename).'">';
 				printCustomSizedImage(sprintf(gettext('View %s'), $imagename), $size);
 				rem_context(ZP_IMAGE | ZP_ALBUM);
 				echo '</a>';

@@ -108,7 +108,7 @@ echo '</head>';
 <div id="main">
 <?php printTabs(); ?>
 <div id="content">
-<?php printSubtabs('Content'); ?>
+<?php printSubtabs(); ?>
 <div class="tabbox">
 <?php zp_apply_filter('admin_note','schedule', ''); ?>
 <h1><?php echo (gettext('Manage content publication')); ?></h1>

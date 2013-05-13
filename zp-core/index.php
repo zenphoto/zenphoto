@@ -39,7 +39,6 @@ if (isset($_GET['p'])) {
 // Display an Image page.
 } else if (in_context(ZP_IMAGE)) {
 	$_index_theme = prepareImagePage();
-
 // Display an Album page.
 } else if (in_context(ZP_ALBUM)) {
 	$_index_theme = prepareAlbumPage();

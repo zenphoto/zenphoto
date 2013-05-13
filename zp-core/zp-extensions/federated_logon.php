@@ -232,7 +232,7 @@ class federated_logon {
 					}
 				} else {
 					$groupobj = Zenphoto_Authority::getAnAdmin(array('`user`='=>'federated_verify','`valid`='=>0));
-					if (empty($verify_group)) {
+					if (empty($groupobj)) {
 						$groupobj = Zenphoto_Authority::newAdministrator('federated_verify',0);
 						$groupobj->setName('group');
 						$groupobj->setRights(NO_RIGHTS);

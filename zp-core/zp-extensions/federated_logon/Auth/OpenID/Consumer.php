@@ -672,7 +672,7 @@ class Auth_OpenID_GenericConsumer {
     /**
      * @access private
      */
-    function _completeInvalid($message, $endpoint, $unused)
+    function _completeInvalid($message, $endpoint, $unused=null)
     {
         $mode = $message->getArg(Auth_OpenID_OPENID_NS, 'mode',
                                  '<No mode set>');

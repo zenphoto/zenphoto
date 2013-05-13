@@ -846,7 +846,7 @@ class SearchEngine {
 					} else {
 						$key = $this->album->getAlbumSortKey();
 						if ($key != '`sort_order`' && $key != 'RAND()') {
-							if ($thie->album->getSortDirection('album')) {
+							if ($this->album->getSortDirection('album')) {
 								$key .= " DESC";
 							}
 						}
@@ -1695,7 +1695,6 @@ class SearchEngine {
 			$result = array();
 			if (empty($searchdate)) {
 				list ($search_query,$weights) = $this->searchFieldsAndTags($searchstring, 'news', $sorttype, $sortdirection);
-				zp_apply_filter('search_statistics',$searchstring, 'news', !empty($search_results), false, $this->iteration++);
 			} else {
 				$search_query = $this->searchDate($searchstring, $searchdate, 'news', $sorttype, $sortdirection,$this->whichdates);
 			}
@@ -1704,6 +1703,7 @@ class SearchEngine {
 			} else {
 				$search_result = query($search_query);
 			}
+			zp_apply_filter('search_statistics',$searchstring, 'news', !empty($search_result), false, $this->iteration++);
 			if ($search_result) {
 				while ($row = db_fetch_assoc($search_result)) {
 					$data = array('titlelink'=>$row['titlelink']);

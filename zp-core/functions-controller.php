@@ -175,7 +175,7 @@ function zp_load_album($folder, $force_nocache=false) {
 function zp_load_image($folder, $filename) {
 	global $_zp_current_image, $_zp_current_album, $_zp_current_search;
 	if (!is_object($_zp_current_album) || $_zp_current_album->name != $folder) {
-		$album = zp_load_album($folder, false, true);
+		$album = zp_load_album($folder, true);
 	} else {
 		$album = $_zp_current_album;
 	}
@@ -379,12 +379,12 @@ function prepareAlbumPage() {
  * @return string
  */
 function prepareImagePage() {
-	global  $_zp_current_album, $_zp_current_image, $_zp_gallery_page, $_zp_script;
+	global  $_zp_current_album, $_zp_current_image, $_zp_gallery_page, $_zp_script, $_zp_flash_player;
 	handleSearchParms('image', $_zp_current_album, $_zp_current_image);
 	$theme =  setupTheme();
 	$_zp_gallery_page =  basename($_zp_script = THEMEFOLDER."/$theme/image.php");
 	// re-initialize video dimensions if needed
-	if (isImageVideo() & isset($_zp_flash_player)) {
+	if (isImageVideo() && isset($_zp_flash_player)) {
 		$_zp_current_image->updateDimensions();
 	}
 	return $theme;

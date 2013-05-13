@@ -345,7 +345,7 @@ function is_valid_email_zp($input_email) {
  * @since  1.0.0
  */
 function zp_mail($subject, $message, $email_list=NULL, $cc_addresses=NULL, $bcc_addresses=NULL, $replyTo=NULL) {
-	global $_zp_authority, $_zp_gallery;
+	global $_zp_authority, $_zp_gallery, $_zp_UTF8;
 	$result = '';
 	if ($replyTo) {
 		$t = $replyTo;
@@ -1180,11 +1180,22 @@ function generateListFromFiles($currentValue, $root, $suffix, $descending=false)
  * @param string $id optional id
  */
 function printLink($url, $text, $title=NULL, $class=NULL, $id=NULL) {
-	echo "<a href=\"" . html_encode($url) . "\"" .
+	return "<a href=\"" . html_encode($url) . "\"" .
 				(($title) ? " title=\"" . html_encode(strip_tags($title)) . "\"" : "") .
 				(($class) ? " class=\"$class\"" : "") .
 				(($id) ? " id=\"$id\"" : "") . ">" .
 				html_encode($text) . "</a>";
+}
+/**
+ * General link printing function
+ * @param string $url The link URL
+ * @param string $text The text to go with the link
+ * @param string $title Text for the title tag
+ * @param string $class optional class
+ * @param string $id optional id
+ */
+function printLink($url, $text, $title=NULL, $class=NULL, $id=NULL) {
+	echo getlink($url, $text, $title, $class, $id);
 }
 
 /**
@@ -2336,7 +2347,7 @@ class zpFunctions {
 	 */
 	static function tagURLs($text) {
 		if (preg_match('/^a:[0-9]+:{/', $text)) {	//	seriualized array
-			$textlist = getSerializedArray($text);
+			$textlist = unserialize($text);
 			foreach ($textlist as $key=>$text) {
 				$textlist[$key] = str_replace(WEBPATH, '{*WEBPATH*}', str_replace(FULLWEBPATH, '{*FULLWEBPATH*}', $text));
 			}
@@ -2352,7 +2363,7 @@ class zpFunctions {
 	 */
 	static function unTagURLs($text) {
 		if (preg_match('/^a:[0-9]+:{/', $text)) {	//	seriualized array
-			$textlist = getSerializedArray($text);
+			$textlist = unserialize($text);
 			foreach ($textlist as $key=>$text) {
 				$textlist[$key] = str_replace('{*WEBPATH*}', WEBPATH, str_replace('{*FULLWEBPATH*}', FULLWEBPATH, $text));
 			}

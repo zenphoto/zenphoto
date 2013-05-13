@@ -1075,13 +1075,12 @@ function getCommentAuthorSite() {
 }
 /**
  * Prints a link to the author
-
  *
  * @param string $title URL title tag
  * @param string $class optional class tag
  * @param string $id optional id tag
  */
-function printCommentAuthorLink($title=NULL, $class=NULL, $id=NULL) {
+function getCommentAuthorLink($title=NULL, $class=NULL, $id=NULL) {
 	global $_zp_current_comment;
 	$site = $_zp_current_comment['website'];
 	$name = $_zp_current_comment['name'];
@@ -1095,8 +1094,18 @@ function printCommentAuthorLink($title=NULL, $class=NULL, $id=NULL) {
 		if (is_null($title)) {
 			$title = "Visit ".$name;
 		}
-		printLink($site, $namecoded, $title, $class, $id);
+		return getLink($site, $namecoded, $title, $class, $id);
 	}
+}
+/**
+ * Prints a link to the author
+ *
+ * @param string $title URL title tag
+ * @param string $class optional class tag
+ * @param string $id optional id tag
+ */
+function printCommentAuthorLink($title=NULL, $class=NULL, $id=NULL) {
+	echo getCommentAuthorLink($title, $class, $id);
 }
 
 /**

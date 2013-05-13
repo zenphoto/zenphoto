@@ -336,8 +336,6 @@ function setupDomain($domain=NULL,$type=NULL) {
  * Returns the result of the setlocale call
  *
  * @param string $override force locale to this
- * @param string $plugindomain domain
- * @param string $type case for settign domain
  * @return mixed
  */
 function setupCurrentLocale($override=NULL) {

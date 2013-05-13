@@ -31,9 +31,9 @@ echo '</head>'."\n";
 <body>
 	<?php printLogoAndLinks(); ?>
 	<div id="main">
-		<?php printTabs('home'); ?>
+		<?php printTabs(); ?>
 		<div id="content">
-			<?php printSubtabs('Deprecated'); ?>
+			<?php printSubtabs(); ?>
 			<div id="tab_deprecated" class="tabbox">
 				<h1><?php	echo gettext("Locate calls on deprecated functions."); ?></h1>
 				<form action="?action=search" method="post">
