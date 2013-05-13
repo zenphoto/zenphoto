@@ -323,3 +323,8 @@ width: 30% !important;
 float: left; 
 display: block;
 }
+.error {
+	color: #C33;
+	font-weight: bold;
+}
+

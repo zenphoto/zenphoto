@@ -399,3 +399,7 @@ clear: both !important;
   }
 
 }
+.error {
+	color: #C33;
+	font-weight: bold;
+}
