@@ -96,10 +96,10 @@ echo '</head>';
 <?php printLogoAndLinks(); ?>
 <div id="main">
 <span id="top">
-<?php printTabs('home');?>
+<?php printTabs();?>
 </span>
 <div id="content">
-<?php printSubtabs('Download'); ?>
+<?php printSubtabs(); ?>
 <div class="tabbox">
 <?php
 	if(isset($_GET['removeoutdateddownloads'])) {

@@ -100,7 +100,7 @@ echo "\n</head>";
 echo "\n<body>";
 printLogoAndLinks();
 echo "\n" . '<div id="main">';
-$subtab = printTabs();
+printTabs();
 echo "\n" . '<div id="content">';
 
 if ($page == "editcomment" && isset($_GET['id']) ) {

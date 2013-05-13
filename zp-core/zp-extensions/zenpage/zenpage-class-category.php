@@ -49,7 +49,7 @@ class ZenpageCategory extends ZenpageRoot {
 	function getContent($locale=NULL) {
 		$content = $this->get("content");
 		if ($locale!=='all') {
-			$content = get_language_string($text,$locale);
+			$content = get_language_string($content,$locale);
 		}
 		$content = zpFunctions::unTagURLs($content);
 		return $content;

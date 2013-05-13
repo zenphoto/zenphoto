@@ -374,7 +374,7 @@ class AlbumBase extends MediaObject {
 	 *
 	 */
 	function move($newfolder) {
-		return parent::move($new_unique_set);
+		return parent::move($newfolder);
 	}
 
 	/**

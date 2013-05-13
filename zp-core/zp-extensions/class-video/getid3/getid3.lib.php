@@ -623,15 +623,15 @@ class getid3_lib
 					}
 					return true;
 				} else {
-					throw new Exception('failed to seek to offset '.$offset.' in '.$this->info['filenamepath']);
+					throw new Exception('failed to seek to offset '.$offset.' in '.$filename_dest);
 				}
 				fclose($fp_dest);
 			} else {
-				throw new Exception('failed to open file for reading '.$this->info['filenamepath']);
+				throw new Exception('failed to open file for writing '.$filename_dest);
 			}
 			fclose($fp_src);
 		} else {
-			throw new Exception('failed to create file for writing '.$dest);
+			throw new Exception('failed to create file for reading '.$filename_source);
 		}
 		return false;
 	}

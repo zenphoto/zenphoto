@@ -343,7 +343,7 @@ function is_valid_email_zp($input_email) {
  * @since  1.0.0
  */
 function zp_mail($subject, $message, $email_list=NULL, $cc_addresses=NULL, $bcc_addresses=NULL, $replyTo=NULL) {
-	global $_zp_authority, $_zp_gallery;
+	global $_zp_authority, $_zp_gallery, $_zp_UTF8;
 	$result = '';
 	if ($replyTo) {
 		$t = $replyTo;
@@ -2255,6 +2255,7 @@ class zpFunctions {
 	 */
 	static function tagURLs($text) {
 		if (preg_match('/^a:[0-9]+:{/', $text)) {	//	seriualized array
+			// FIXME: getSerializedArray() doesn't exist
 			$textlist = getSerializedArray($text);
 			foreach ($textlist as $key=>$text) {
 				$textlist[$key] = str_replace(WEBPATH, '{*WEBPATH*}', str_replace(FULLWEBPATH, '{*FULLWEBPATH*}', $text));
@@ -2271,6 +2272,7 @@ class zpFunctions {
 	 */
 	static function unTagURLs($text) {
 		if (preg_match('/^a:[0-9]+:{/', $text)) {	//	seriualized array
+			// FIXME: getSerializedArray() doesn't exist
 			$textlist = getSerializedArray($text);
 			foreach ($textlist as $key=>$text) {
 				$textlist[$key] = str_replace('{*WEBPATH*}', WEBPATH, str_replace('{*FULLWEBPATH*}', FULLWEBPATH, $text));

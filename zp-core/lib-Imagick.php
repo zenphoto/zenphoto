@@ -55,7 +55,7 @@ class lib_Imagick_Options {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		global $_zp_imagick_present;
+		global $_zp_imagick_present, _zp_graphics_optionhandlers;
 
 		$disabled = $this->canLoadMsg();
 
@@ -451,10 +451,10 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @return bool
 	 */
 	function zp_imageMerge($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, $src_w, $src_h, $pct) {
-		$src_im->cropImage($w, $h, $src_x, $src_y);
+		$src_im->cropImage($src_w, $src_h, $src_x, $src_y);
 		$src_im->setImageOpacity($pct / 100);
 
-		return $dst_im->compositeImage($src_im, Imagick::COMPOSITE_OVER, $dest_x, $dest_y);
+		return $dst_im->compositeImage($src_im, Imagick::COMPOSITE_OVER, $dst_x, $dst_y);
 	}
 
 	/**

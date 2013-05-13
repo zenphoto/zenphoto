@@ -184,7 +184,6 @@
      */
     function loadImageFromString($string)
     {
-    		$this->imageFile = $filename;
         $this->_imgOrig = imagecreatefromstring($string);
         if (!$this->_imgOrig) {
             $this->_debug('The image (supplied as a string) could not be created.');
@@ -355,7 +354,7 @@
 	{
 		if(!$this->_imgOrig)
 		{
-			$this->_debug('No image fould.');
+			$this->_debug('No image found.');
 			return false;
 		}		
 		
@@ -363,7 +362,7 @@
 		$new_y = intval($new_y);
 		if($new_x <=0 || $new_y <= 0)
 		{
-			$this->_debug('either of new width or height can be zeor or less.');
+			$this->_debug('neither width nor height can be less than zero.');
 		}else 
 		{
 		
@@ -396,12 +395,6 @@
 				}
 			}
 		
-			
-			
-			if(is_null($this->_imgOrig))
-			{
-				$this->loadImage($filePath);
-			}
 			if(sizeof($this->_errors) == 0)
 			{
 				return $this->_resize($new_x, $new_y);
@@ -804,7 +797,7 @@
 				}   
         if (!is_null($this->transparentColorRed) && !is_null($this->transparentColorGreen) && !is_null($this->transparentColorBlue)) {
         
-            $transparent = @imagecolorallocate($targetImageIdentifier, $this->transparentColorRed, $this->transparentColorGreen, $this->transparentColorBlue);
+            $transparent = @imagecolorallocate($this->_imgFinal, $this->transparentColorRed, $this->transparentColorGreen, $this->transparentColorBlue);
             @imagefilledrectangle($this->_imgFinal, 0, 0, $dst_w, $dst_h, $transparent);
             @imagecolortransparent($this->_imgFinal, $transparent);            
         }

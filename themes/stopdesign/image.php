@@ -53,8 +53,8 @@ require_once('normalizer.php');
 		<div id="content" class="v">
 
 			<div id="desc">
-				<h1><?php printImageTitle(true); ?></h1>
-				<div id="descText"><?php printImageDesc(true); ?></div>
+				<h1><?php printImageTitle(); ?></h1>
+				<div id="descText"><?php printImageDesc(); ?></div>
 			</div>
 
 			<?php
@@ -85,7 +85,7 @@ require_once('normalizer.php');
 					<li class="exif">
 					<?php
 					if (getImageMetaData()) {
-						echo printImageMetadata(NULL, 'colorbox');
+						printImageMetadata(NULL, 'colorbox');
 						if (isImagePhoto()) echo "&nbsp;/&nbsp;";
 					}
 					$fullimage = getFullImageURL();

@@ -354,6 +354,7 @@ class utf8 {
 
 		$str   = UTF8::substr($str, $start);
 		$width = $width - UTF8::strwidth($trimmarker);
+		$c = 0;
 
 		for ($i = 0; $i < strlen($str); $i++)
 		{
@@ -406,7 +407,7 @@ class utf8 {
 		{
 			$pos = strpos($haystack, $needle, $offset + $comp);
 			if ($pos === false) return false;
-			$length = utf_strlen(substr($haystack, 0, $pos));
+			$length = UTF8::strlen(substr($haystack, 0, $pos));
 			if ($length < $offset) $comp = $pos - $length;
 		}
 

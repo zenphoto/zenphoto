@@ -64,7 +64,7 @@ if (!defined('WEBPATH')) die();
 								<?php printHomeLink('',' » '); ?>
 								<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php printGalleryTitle();?></a> »
 												<?php printParentBreadcrumb("", " » ", " » "); printAlbumBreadcrumb("  ", " » "); ?>
-												<?php printImageTitle(true); ?>
+												<?php printImageTitle(); ?>
 							</h2>
 							<?php printCodeblock(1); ?>
 							<div id="image_container">
@@ -121,11 +121,11 @@ if (!defined('WEBPATH')) die();
 					<?php
 				}
 				?>
-				<p><?php printImageDesc(true); ?></p>
+				<p><?php printImageDesc(); ?></p>
 				<?php printTags('links', gettext('Tags: '), NULL, ''); ?>
 				<?php
 				if (getImageMetaData()) {
-					echo printImageMetadata(NULL, 'colorbox');
+					printImageMetadata(NULL, 'colorbox');
 					?>
 					<br clear="all" />
 					<?php

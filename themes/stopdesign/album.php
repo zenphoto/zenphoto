@@ -43,8 +43,8 @@ $thisalbum = $_zp_current_album;
 		<div id="content">
 
 				<div class="galleryinfo">
-					<h1><?php printAlbumTitle(true);?></h1>
-					<div class="desc"><?php printAlbumDesc(true); ?></div>
+					<h1><?php printAlbumTitle();?></h1>
+					<div class="desc"><?php printAlbumDesc(); ?></div>
 				</div>
 
 		<?php
@@ -181,7 +181,7 @@ $thisalbum = $_zp_current_album;
 		<p id="path">
 			<?php printHomeLink('', ' > '); ?>
 			<a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home');?></a> &gt;
-			<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle();?></a> &gt; <?php printParentBreadcrumb("", " > ", " > "); ?> <?php printAlbumTitle(false);?>
+			<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle();?></a> &gt; <?php printParentBreadcrumb("", " > ", " > "); ?> <?php printAlbumTitle();?>
 		</p>
 
 		<div class="main">

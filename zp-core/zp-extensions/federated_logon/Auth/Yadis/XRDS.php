@@ -213,7 +213,7 @@ class Auth_Yadis_Service {
  */
 function Auth_Yadis_getXRDExpiration($xrd_element, $default=null)
 {
-    $expires_element = $xrd_element->$parser->evalXPath('/xrd:Expires');
+    $expires_element = $xrd_element->parser->evalXPath('/xrd:Expires');
     if ($expires_element === null) {
         return $default;
     } else {
