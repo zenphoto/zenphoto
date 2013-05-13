@@ -158,7 +158,7 @@ class jplayer_options {
 
 }
 
-if (OFFSET_PATH) {
+if (!OFFSET_PATH) {
 
 	function getMacrojplayer($moviepath,$count) {
 		global $_zp_flash_player;
