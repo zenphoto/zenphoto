@@ -1172,14 +1172,13 @@ function generateListFromFiles($currentValue, $root, $suffix, $descending=false)
 }
 
 /**
- * General link printing function
  * @param string $url The link URL
  * @param string $text The text to go with the link
  * @param string $title Text for the title tag
  * @param string $class optional class
  * @param string $id optional id
  */
-function printLink($url, $text, $title=NULL, $class=NULL, $id=NULL) {
+function getLink($url, $text, $title=NULL, $class=NULL, $id=NULL) {
 	return "<a href=\"" . html_encode($url) . "\"" .
 				(($title) ? " title=\"" . html_encode(strip_tags($title)) . "\"" : "") .
 				(($class) ? " class=\"$class\"" : "") .
