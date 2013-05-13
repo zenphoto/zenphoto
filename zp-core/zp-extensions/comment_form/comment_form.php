@@ -215,7 +215,8 @@
  								?>
  								<p>
 	 								<label for="code"><?php echo gettext("Enter CAPTCHA:"); ?></label>
-	 								<?php if (isset($captcha['html']) && isset($captcha['input'])) echo $captcha['html'];
+	 								<?php
+	 								if (isset($captcha['html']) && isset($captcha['input'])) echo $captcha['html'];
 										if (isset($captcha['input'])) {
 											echo $captcha['input'];
 										} else {
