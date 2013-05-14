@@ -75,7 +75,8 @@ $conf['special_pages'] = array(
 														'tags'=>				array('define'=>'_TAGS_',					'rewrite'=>'page/search/tags'),
 														'news'=>				array('define'=>'_NEWS_',					'rewrite'=>'news'),
 														'category'=>		array('define'=>'_CATEGORY_',			'rewrite'=>'category'),
-														'news_archive'=>array('define'=>'_NEWS_ARCHIVE_',	'rewrite'=>'archive')
+														'news_archive'=>array('define'=>'_NEWS_ARCHIVE_',	'rewrite'=>'archive'),
+														'pages'=>				array('define'=>'_PAGES_',				'rewrite'=>'pages')
 												);
 //
 ////////////////////////////////////////////////////////////////////////////////
