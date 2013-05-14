@@ -688,14 +688,11 @@ padding: 5px 8px 5px 8px!important;
 margin: 5px 0 0 0;
 }
 
+#mailform textarea, 
 #commentform textarea#comment {
 clear: both;
-width: 100% !important;
-}
-
-#mailform textarea{
-float: left !important;
-width: 65% !important;
+width: 95% !important;
+height: 150px;
 }
 
 .clearall {
