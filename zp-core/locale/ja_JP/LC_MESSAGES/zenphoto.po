@@ -1237,16 +1237,15 @@ msgid "reset to default"
 msgstr "デフォルトにリセット"
 
 #: zp-core/admin-options.php:862
-#, fuzzy
 msgid "Cookie path:"
-msgstr "クッキーの期間"
+msgstr "クッキーのパス:"
 
 #: zp-core/admin-options.php:868
 #, php-format
 msgid ""
 "The <em>path</em> Zenphoto will use when storing cookies. (Leave empty to "
 "default to <em>%s</em>)"
-msgstr ""
+msgstr "<em>パス</em>はZenphotoがクッキーを格納するときに使用します。(空白の場合はデフォルトで%sが使用されます)"
 
 #: zp-core/admin-options.php:873
 msgid "Name:"
@@ -4234,24 +4233,20 @@ msgid "HTML cache cleared."
 msgstr "HTMLキャッシュをクリアしました。"
 
 #: zp-core/admin.php:77
-#, fuzzy
 msgid "enabled"
 msgstr "有効"
 
 #: zp-core/admin.php:79
-#, fuzzy
 msgid "Setup files restored."
-msgstr "セットアップファイルを削除しました。"
+msgstr "セットアップファイルを復元しました。"
 
 #: zp-core/admin.php:98 zp-core/setup/index.php:2484
-#, fuzzy
 msgid "protected"
-msgstr "未保護"
+msgstr "保護"
 
 #: zp-core/admin.php:100
-#, fuzzy
 msgid "Setup files protected."
-msgstr "セットアップファイルを削除しました。"
+msgstr "セットアップファイルを保護しました。"
 
 #: zp-core/admin.php:129
 msgid "purge Image cache"
@@ -6507,9 +6502,8 @@ msgid "development"
 msgstr "開発"
 
 #: zp-core/admin-functions.php:4388
-#, fuzzy
 msgid "feed"
-msgstr "RSSフィード"
+msgstr "フィード"
 
 #: zp-core/admin-functions.php:4389
 msgid "mail"
@@ -7129,10 +7123,10 @@ msgid "Thai (Windows)"
 msgstr "タイ語(Windows)"
 
 #: zp-core/setup.php:24
-#, fuzzy, php-format
+#, php-format
 msgid "Please restore the setup files from the %1$s [%2$s] release:"
 msgstr ""
-"%1$s 【%2$s】のリリースから次のセットアップファイルを再インストールしてくださ"
+"%1$s 【%2$s】のリリースから次のセットアップファイルをレストアしてくださ"
 "い："
 
 #: zp-core/setup/setup_permissions_changer.php:18
@@ -7576,9 +7570,9 @@ msgid "Installing Zenphoto v%s"
 msgstr "Zenphoto v%s をインストールします"
 
 #: zp-core/setup/index.php:555
-#, fuzzy, php-format
+#, php-format
 msgid "<em>%s</em> security"
-msgstr "<em>%s</em>はすでに存在します。"
+msgstr "<em>%s</em> セキュリティ"
 
 #: zp-core/setup/index.php:555
 #, fuzzy, php-format
