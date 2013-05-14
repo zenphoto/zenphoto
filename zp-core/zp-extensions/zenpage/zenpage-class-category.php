@@ -523,7 +523,10 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
  */
 function getCategoryLink() {
 	global $_zp_zenpage;
-	return $_zp_zenpage->getNewsBaseURL().$_zp_zenpage->getNewsCategoryPath().urlencode($this->getTitlelink());
+//FIXME: verify this change
+//	return $_zp_zenpage->getNewsBaseURL().$_zp_zenpage->getNewsCategoryPath().urlencode($this->getTitlelink());
+// the following is better understood. Besides the get functions should NEVER encode things or we get multiple encoding issues
+	return rewrite_path(_NEWS_.'/'._CATEGORY_.'/'.$this->getTitlelink(), "/index.php?p=news&category="$this->getTitlelink());
 }
 
 

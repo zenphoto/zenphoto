@@ -284,8 +284,10 @@ class ZenpageNews extends ZenpageItems {
 	* @return string
 	*/
 	function getNewsLink() {
+		//FIXME: this function should directly use rewrite_path() to build a easily understandable URL and it should NOT
+		//encode the titlelink (fixed).
 		global $_zp_zenpage;
-		return $_zp_zenpage->getNewsBaseURL().$_zp_zenpage->getNewsTitlePath().urlencode($this->getTitlelink());
+		return $_zp_zenpage->getNewsBaseURL().$_zp_zenpage->getNewsTitlePath().$this->getTitlelink();
 	}
 
 

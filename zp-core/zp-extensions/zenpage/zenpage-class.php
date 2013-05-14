@@ -716,7 +716,7 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 		if($this->news_on_index) {
 			return getGalleryIndexURL(false);
 		} else {
-			return getNewsBaseURL();
+			return rewrite_path(_NEWS_, "/index.php?p=news");
 		}
 	}
 
@@ -727,6 +727,8 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	* @return string
 	*/
 	function getNewsBaseURL() {
+		//FIXME: This function should be eleminated and instead the functions that are using it should build
+		//easily understood and modified links using just one call to rewrite_path()
 		return rewrite_path(_NEWS_, "/index.php?p=news");
 	}
 
@@ -737,6 +739,8 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	* @return string
 	*/
 	function getNewsCategoryPath() {
+		//FIXME: this function should really be designed to provide a complete path for what you are actually
+		//trying to link to.
 		return rewrite_path('/'._CATEGORY_.'/',"&category=",false);
 	}
 
@@ -746,6 +750,8 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	* @return string
 	*/
 	function getNewsArchivePath() {
+		//FIXME: this function should really be designed to provide a complete path for what you are actually
+		//trying to link to.
 		return rewrite_path('/'._NEWS_ARCHIVE_.'/',"&date=",false);
 	}
 
@@ -756,6 +762,8 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	* @return string
 	*/
 	function getNewsTitlePath() {
+		//FIXME: This function should not exist. Path building functions should be complete and understandable
+		//with just one call on rewrite_path()
 		return rewrite_path("/","&title=",false);
 	}
 
@@ -766,6 +774,8 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	* @return string
 	*/
 	function getNewsPagePath() {
+		//FIXME: This function should not exist. Path building functions should be complete and understandable
+		//with just one call on rewrite_path()
 		return rewrite_path("/","&page=",false);
 	}
 

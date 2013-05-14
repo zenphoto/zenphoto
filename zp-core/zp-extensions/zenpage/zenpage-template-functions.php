@@ -1063,6 +1063,8 @@ function printNewsDate() {
  * @param string $order 'desc' (default) or 'asc' for descending or ascending
  */
 function printNewsArchive($class='archive', $yearclass='year', $monthclass='month', $activeclass="archive-active",$yearsonly=false,$order='desc') {
+	//FIXME:
+	//multiple instances where links are cobbled to gether instead of using rewrite_path()
 	global $_zp_zenpage;
 	if (!empty($class)){ $class = "class=\"$class\""; }
 	if (!empty($yearclass)){ $yearclass = "class=\"$yearclass\""; }
@@ -1371,13 +1373,15 @@ function printLatestNews($number=5,$option='with_latest_images', $category='', $
  * @return string
  */
 function getNewsCategoryURL($catlink='') {
+	//FIXME: this function should directly use rewrite_path() to build a easily understandable URL and it should NOT
+	//encode the titlelink (fixed). see function below!!!!
 	global $_zp_zenpage, $_zp_current_category;
 	if(empty($catlink)) {
 		$titlelink = $_zp_current_category->getTitlelink();
 	} else {
 		$titlelink = $catlink;
 	}
-	return $_zp_zenpage->getNewsBaseURL().$_zp_zenpage->getNewsCategoryPath().urlencode($titlelink);
+	return $_zp_zenpage->getNewsBaseURL().$_zp_zenpage->getNewsCategoryPath().$titlelink;
 }
 
 
@@ -1450,6 +1454,8 @@ function printNewsIndexURL($name=NULL, $before='', $archive=NULL) {
  * @return string
  */
 function getNewsBaseURL() {
+	//FIXME: This function should be eleminated and instead the functions that are using it should build
+	//easily understood and modified links using just one call to rewrite_path()
 	global $_zp_zenpage;
 	return $_zp_zenpage->getNewsBaseURL();
 }
@@ -1461,6 +1467,8 @@ function getNewsBaseURL() {
  * @return string
  */
 function getNewsCategoryPath() {
+	//FIXME: this function should really be designed to provide a complete path for what you are actually
+	//trying to link to.
 	global $_zp_zenpage;
 	return $_zp_zenpage->getNewsCategoryPath();
 }
@@ -1471,6 +1479,8 @@ function getNewsCategoryPath() {
  * @return string
  */
 function getNewsArchivePath() {
+	//FIXME: this function should really be designed to provide a complete path for what you are actually
+	//trying to link to.
 	global $_zp_zenpage;
 	return $_zp_zenpage->getNewsArchivePath();
 }
@@ -1482,6 +1492,8 @@ function getNewsArchivePath() {
  * @return string
  */
 function getNewsTitlePath() {
+	//FIXME: This function should not exist. Path building functions should be complete and understandable
+	//with just one call on rewrite_path()
 	global $_zp_zenpage;
 	return $_zp_zenpage->getNewsTitlePath();
 }
@@ -1493,6 +1505,8 @@ function getNewsTitlePath() {
  * @return string
  */
 function getNewsPagePath() {
+	//FIXME: This function should not exist. Path building functions should be complete and understandable
+	//with just one call on rewrite_path()
 	global $_zp_zenpage;
 	return $_zp_zenpage->getNewsPagePath();
 }
@@ -1506,11 +1520,14 @@ function getNewsPagePath() {
  * @return string
  */
 function getNewsURL($titlelink='') {
+	//FIXME: this function should directly use rewrite_path() to build a easily understandable URL and it should NOT
+	//endode the titlelink (change made)--Verify that anyone who outputs this text does properly encode it--see the
+	//next function below!!!!!!.
 	global $_zp_current_zenpage_news;
 	if(empty($titlelink)) {
 		return $_zp_current_zenpage_news->getNewsLink();
 	} else {
-		return getNewsBaseURL().getNewsTitlePath().urlencode($titlelink);
+		return getNewsBaseURL().getNewsTitlePath().$titlelink;
 	}
 }
 
@@ -1538,9 +1555,11 @@ function printNewsURL($titlelink='') {
  * @return string
  */
 function getNewsCategoryPathNav() {
+	//FIXME: this function should directly use rewrite_path() to build a easily understandable URL and it should NOT
+	//endode the titlelink (change made)--Verify that anyone who outputs this text does properly encode it
 	global $_zp_current_category;
 	if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
-		return getNewsCategoryPath().urlencode($_zp_current_category->getTitlelink());
+		return getNewsCategoryPath().$_zp_current_category->getTitlelink();
 	}
 	return false;
 }
@@ -1552,6 +1571,8 @@ function getNewsCategoryPathNav() {
  * @return string
  */
 function getNewsArchivePathNav() {
+	//FIXME: this function should directly use rewrite_path() to build a easily understandable URL
+
 	global $_zp_post_date;
 	if (in_context(ZP_ZENPAGE_NEWS_DATE)) {
 		return getNewsArchivePath().$_zp_post_date;
@@ -1566,11 +1587,20 @@ function getNewsArchivePathNav() {
  * @return string
  */
 function getPrevNewsPageURL() {
+
+	//FIXME: unless category and archive are mutually exclusive this function can return a link like
+	// news/category/<titlelink>/archive/<date>/<page>
+	//but we have no rewrite rules to handle this.
+	//If category and archive are mutually exclusive then this code is just hopelessly confusing and will
+	//present a maintenance challenge for future generations.
+	//
+	//NOTE: this is just one example of the coding. There are more of the same.
+
 	global $_zp_page;
 	if($_zp_page != 1) {
-		if(($_zp_page - 1) == 1) {
+		if($_zp_page == 2) {
 			if(is_NewsCategory()) {
-				return getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath().($_zp_page - 1);
+				return getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath()."1";
 			} else {
 				return getNewsIndexURL();
 			}
@@ -1593,8 +1623,8 @@ function getPrevNewsPageURL() {
  */
 function printPrevNewsPageLink($prev='« prev',$class='disabledlink') {
 	global $_zp_zenpage, $_zp_page;
-	if(getPrevNewsPageURL()) {
-		echo "<a href='".getPrevNewsPageURL()."' title='".gettext("Prev page")." ".($_zp_page - 1)."' >".html_encode($prev)."</a>\n";
+	if($link = getPrevNewsPageURL()) {
+		echo "<a href='".html_encode($link)."' title='".gettext("Prev page")." ".($_zp_page - 1)."' >".html_encode($prev)."</a>\n";
 	} else {
 		echo "<span class=\"$class\">".html_encode($prev)."</span>\n";
 	}
@@ -1607,6 +1637,7 @@ function printPrevNewsPageLink($prev='« prev',$class='disabledlink') {
  * @return string
  */
 function getNextNewsPageURL() {
+	//FIXME: this function should directly use rewrite_path() to build a easily understandable URL
 	global $_zp_zenpage, $_zp_page;
 	$total_pages = ceil($_zp_zenpage->getTotalArticles() / ZP_ARTICLES_PER_PAGE);
 	if ($_zp_page != $total_pages) {
@@ -1659,6 +1690,8 @@ function printNewsPageList($class='pagelist') {
  * @return string
  */
 function printNewsPageListWithNav($next,$prev,$nextprev=true, $class='pagelist',$firstlast=true, $navlen=9) {
+	//FIXME:
+	// Multiple instances of cobbled together URLs instead of directly using rewrite_path()
 	global $_zp_zenpage, $_zp_page;
 	$total = ceil($_zp_zenpage->getTotalArticles() / ZP_ARTICLES_PER_PAGE);
 	if ($total > 1) {
