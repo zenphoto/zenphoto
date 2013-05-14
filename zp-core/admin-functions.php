@@ -1506,7 +1506,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 							if (empty($oldtheme)) {
 								$selected = 'selected="selected"';
 							} else {
-								$selected = '';;
+								$selected = '';
 							}
 							?>
 							<option value="" style="background-color:LightGray" <?php echo $selected; ?> ><?php echo gettext('*gallery theme');?></option>
@@ -1515,7 +1515,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 								if ($oldtheme == $theme) {
 									$selected = 'selected="selected"';
 								} else {
-									$selected = '';;
+									$selected = '';
 								}
 								?>
 								<option value = "<?php echo $theme; ?>" <?php echo $selected; ?> ><?php echo $themeinfo['name']; ?></option>
@@ -1775,7 +1775,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 
 					<label class="checkboxlabel">
 						<input type="radio" id="a-<?php echo $prefix; ?>move" name="a-<?php echo $prefix; ?>MoveCopyRename" value="move"
-							onclick="toggleAlbumMCR('<?php echo $prefix; ?>', 'move');;"<?php echo $isPrimaryAlbum; ?> />
+							onclick="toggleAlbumMCR('<?php echo $prefix; ?>', 'move');"<?php echo $isPrimaryAlbum; ?> />
 						<?php echo gettext("Move");?>
 					</label>
 

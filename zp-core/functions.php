@@ -1614,7 +1614,7 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
 				break;
 			}
 		}
-		$success = zp_apply_filter('guest_login_attempt', $success, $post_user, $post_pass, $authType);;
+		$success = zp_apply_filter('guest_login_attempt', $success, $post_user, $post_pass, $authType);
 		if ($success) {
 			// Correct auth info. Set the cookie.
 			if (DEBUG_LOGIN) debugLog("zp_handle_password: valid credentials");

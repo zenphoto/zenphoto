@@ -188,7 +188,7 @@ foreach ($reports as $report) {
 							<strong><a href="javascript:dupMenuSet();" title="<?php printf(gettext('Duplicate %s menu'),$menuset); ?>"><img src="../../images/page_white_copy.png" alt="" /><?php echo gettext("Duplicate menu"); ?></a></strong>
 						</span>
 						<span class="buttons">
-							<strong><a href="javascript:deleteMenuSet();" title="<?php printf(gettext('Delete %s menu'),$menuset);; ?>"><img src="../../images/fail.png" alt="" /><?php echo gettext("Delete menu"); ?></a></strong>
+							<strong><a href="javascript:deleteMenuSet();" title="<?php printf(gettext('Delete %s menu'),$menuset); ?>"><img src="../../images/fail.png" alt="" /><?php echo gettext("Delete menu"); ?></a></strong>
 						</span>
 						<?php
 					}

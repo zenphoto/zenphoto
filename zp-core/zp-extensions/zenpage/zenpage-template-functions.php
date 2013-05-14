@@ -1341,7 +1341,7 @@ function printLatestNews($number=5,$option='with_latest_images', $category='', $
 		if(!empty($thumb)) {
 			echo $thumb;
 		}
-		echo "<h3><a href=\"".$link."\" title=\"".strip_tags(html_encode($title))."\">".$title."</a></h3>\n";;
+		echo "<h3><a href=\"".$link."\" title=\"".strip_tags(html_encode($title))."\">".$title."</a></h3>\n";
 		if($showdate) {
 			echo "<span class=\"latestnews-date\">". $date."</span>\n";
 		}

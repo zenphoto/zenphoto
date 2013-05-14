@@ -190,7 +190,7 @@ while ($old != $albumname) {
 					$showThumb = $_zp_gallery->getThumbSelectImages();
 					foreach ($imagelist as $imagepath) {
 						$pieces = explode('/', $imagepath);
-						$filename = array_pop($pieces);;
+						$filename = array_pop($pieces);
 						$folder = implode('/', $pieces);
 						$albumx = newAlbum($folder);
 						$image = newImage($albumx, $filename);

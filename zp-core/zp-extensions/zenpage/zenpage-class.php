@@ -103,7 +103,7 @@ class Zenpage {
 			$published = !zp_loggedin();
 			$all = zp_loggedin(MANAGE_ALL_PAGES_RIGHTS);
 		} else {
-			$all = !$published;;
+			$all = !$published;
 		}
 		$gettop = '';
 		if($published) {

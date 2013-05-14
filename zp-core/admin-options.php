@@ -679,7 +679,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 									$r_attrs = ' checked="checked"';
 									$c_attrs = ' checked="checked" disabled="disabled"';
 									?>
-									<input type="hidden" name="language_allow_<?php echo $dirname;; ?>" value="1" />
+									<input type="hidden" name="language_allow_<?php echo $dirname; ?>" value="1" />
 									<?php
 									$ci = $c;
 								}
@@ -691,7 +691,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 														onclick="javascript:radio_click('<?php echo $dirname; ?>');" <?php echo $r_attrs; ?>/>
 										</label>
 										<label class="displayinline flags">
-											<input id="language_allow_<?php echo $dirname; ?>" name="language_allow_<?php echo $dirname;; ?>" type="checkbox"
+											<input id="language_allow_<?php echo $dirname; ?>" name="language_allow_<?php echo $dirname; ?>" type="checkbox"
 													value="<?php echo $dirname; ?>"<?php echo $c_attrs; ?>
 													onclick="javascript:enable_click('<?php echo $dirname; ?>');" />
 											<img src="<?php echo $flag; ?>" alt="<?php echo $languageAlt;?>" width="24" height="16" />
