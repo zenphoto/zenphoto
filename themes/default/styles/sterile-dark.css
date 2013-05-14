@@ -674,6 +674,26 @@ float: left;
 display: block;
 }
 
+#commentform input[type=text] {
+width: 65% !important;
+}
+
+#commentform input.captchainputbox {
+width: 20% !important;
+margin-left: 10px;
+}
+
+input.pushbutton {
+padding: 5px 8px 5px 8px!important;
+margin: 5px 0 0 0;
+}
+
+#commentform textarea#comment {
+display: block;
+clear: both;
+width: 65% !important;
+}
+
 .clearall {
 clear: both !important;
 }

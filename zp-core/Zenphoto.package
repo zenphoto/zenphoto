@@ -239,8 +239,6 @@ themes/zpmobile
 themes/zpmobile/404.php
 themes/zpmobile/album.php
 themes/zpmobile/archive.php
-themes/zpmobile/comment_form
-themes/zpmobile/comment_form/comment_form.php
 themes/zpmobile/favorites.php
 themes/zpmobile/functions.php
 themes/zpmobile/gallery.php
@@ -1764,4 +1762,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1766
+1764

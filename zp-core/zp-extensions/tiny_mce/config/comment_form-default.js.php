@@ -16,7 +16,7 @@ if (empty($locale)) $locale = 'en';
 			language: "<?php echo $locale; ?>",
 			editor_selector: "textarea_inputbox", // to enable TinyMCE on album and image customdata set to /(texteditor|texteditor_albumcustomdata|texteditor_imagecustomdata)/
 			plugins : "fullscreen,inlinepopups,emotions",
-			theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,bullist,numlist,emotions,link,unlink,undo,redo,fullscreen",
+			theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,bullist,numlist,emotions,link,unlink",
 			theme_advanced_buttons2 : "",
 			theme_advanced_buttons3 : "",
 			theme_advanced_toolbar_location : "top",
