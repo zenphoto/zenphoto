@@ -52,6 +52,7 @@ if (!function_exists('zp_graphicsLibInfo')) {
 		$_lib_GD_info['Library_desc'] = sprintf(gettext('PHP GD library <em>%s</em>'),$info['GD Version']);
 		$_lib_GD_info['FreeType'] = $info['FreeType Support'];
 		define('GD_FREETYPE', (bool) $_lib_GD_info['FreeType']);
+		unset($_lib_GD_info['FreeType']);
 		define('GD_FREETYPE_SAMPLE','The quick brown fox jumps over the lazy dog');
 		define('GD_FREETYPE_SAMPLE_CHARS', strlen('GD_FREETYPE_SAMPLE'));
 		$_gd_freetype_fonts = array(0);
