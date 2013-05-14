@@ -9,7 +9,7 @@ function comment_form_PaginationJS() {
 	<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER ; ?>/js/jquery.pagination.js"></script>
 	<script type="text/javascript">
 		function pageselectCallback(page_index, jq){
-				var items_per_page = <?php echo getOption('comment_form_comments_per_page'); ?>;
+				var items_per_page = <?php echo max(1,getOption('comment_form_comments_per_page')); ?>;
 				var max_elem = Math.min((page_index+1) * items_per_page, $('#comments div.comment').length);
 				var newcontent = '';
 				for(var i=page_index*items_per_page;i<max_elem;i++) {
@@ -21,7 +21,7 @@ function comment_form_PaginationJS() {
 		function initPagination() {
 				var startPage;
 				if (Comm_ID_found){
-					startPage=Math.ceil(current_comment_N/<?php echo getOption('comment_form_comments_per_page'); ?>)-1;
+					startPage=Math.ceil(current_comment_N/<?php echo max(1,getOption('comment_form_comments_per_page')); ?>)-1;
 				} else {
 					startPage=0;
 				}
@@ -31,7 +31,7 @@ function comment_form_PaginationJS() {
 						next_text: "<?php echo gettext('next'); ?>",
 						callback: pageselectCallback,
 						load_first_page:true,
-						items_per_page:<?php echo getOption('comment_form_comments_per_page'); ?>, // Show only one item per page
+						items_per_page:<?php echo max(1,getOption('comment_form_comments_per_page')); ?>, // Show only one item per page
 						current_page:startPage
 				});
 		 }
