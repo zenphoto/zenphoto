@@ -3480,7 +3480,11 @@ function getSearchURL($words, $dates, $fields, $page, $object_list=NULL) {
 	}
 
 	if ($rewrite) {
-		$url = SEO_WEBPATH.'/'._SEARCH_.'/';
+		if (empty($dates)) {
+			$url = SEO_WEBPATH.'/'._SEARCH_.'/';
+		} else {
+			$url = SEO_WEBPATH.'/'._ARCHIVE_.'/';
+		}
 	} else {
 		$url = SEO_WEBPATH."/index.php?p=search";
 	}
@@ -3490,7 +3494,7 @@ function getSearchURL($words, $dates, $fields, $page, $object_list=NULL) {
 		}
 		$temp = $fields;
 		if ($rewrite && count($fields)==1 && array_shift($temp)=='tags') {
-			$url .= _TAGS_.'/';
+			$url = SEO_WEBPATH.'/'._TAGS_.'/';
 		} else {
 			$search = new SearchEngine();
 			$urls = $search->getSearchFieldsText($fields, 'searchfields=');
@@ -3516,7 +3520,7 @@ function getSearchURL($words, $dates, $fields, $page, $object_list=NULL) {
 			$dates = implode(',', $dates);
 		}
 		if($rewrite) {
-			$url .= "archive/$dates";
+			$url .= $dates;
 		} else {
 			$url .= "&date=$dates";
 		}

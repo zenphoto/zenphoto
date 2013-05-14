@@ -69,11 +69,10 @@ $conf['server_protocol'] = "http";
 // for further documentation see the rewrite.php doc block
 //
 $conf['special_pages'] = array(
-														'archive'=>			array('define'=>false,						'rewrite'=>'page/archive',		'rule'=>'^%REWRITE%/*$		index.php?p=archive [L,QSA]'),
-														'search'=>			array('define'=>'_SEARCH_',				'rewrite'=>'page/search'),
-														'tags'=>				array('define'=>'_TAGS_',					'rewrite'=>'tags'),
 														'page'=>				array('define'=>'_PAGE_',					'rewrite'=>'page'),
-														'pages'=>				array('define'=>'_PAGES_',				'rewrite'=>'pages'),
+														'search'=>			array('define'=>'_SEARCH_',				'rewrite'=>'page/search'),
+														'archive'=>			array('define'=>'_ARCHIVE_',			'rewrite'=>'page/search/archive'),
+														'tags'=>				array('define'=>'_TAGS_',					'rewrite'=>'page/search/tags'),
 														'news'=>				array('define'=>'_NEWS_',					'rewrite'=>'news'),
 														'category'=>		array('define'=>'_CATEGORY_',			'rewrite'=>'category'),
 														'news_archive'=>array('define'=>'_NEWS_ARCHIVE_',	'rewrite'=>'archive')
