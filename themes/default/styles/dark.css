@@ -680,7 +680,7 @@ margin: 5px 0 0 0;
 
 #commentform textarea#comment {
 clear: both;
-width: 65% !important;
+width: 100% !important;
 }
 
 #mailform textarea{
