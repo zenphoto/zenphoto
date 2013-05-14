@@ -22,9 +22,6 @@ class rewriteTokens {
 	private $conf_vars;
 
 	function __construct() {
-		if (OFFSET_PATH !== 2) {
-			setOption('zp_plugin_rewriteTokens', 97|ADMIN_PLUGIN);	//	plugin must be enabled for saving options
-		}
 		$zp_cfg = file_get_contents(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE);
 		$i = strpos($zp_cfg,"\$conf['special_pages']");
 		$j = strpos($zp_cfg,'//',$i);
@@ -32,6 +29,23 @@ class rewriteTokens {
 		$this->zp_cfg_b = substr($zp_cfg,$j);
 		eval(substr($zp_cfg, $i,$j-$i));
 		$this->conf_vars = $conf;
+		if (OFFSET_PATH == 2) {
+			$old = array_keys($conf['special_pages']);
+			$zp_cfg = file_get_contents(SERVERPATH.'/'.ZENFOLDER.'/zenphoto_cfg.txt');
+			$i = strpos($zp_cfg,"\$conf['special_pages']");
+			$j = strpos($zp_cfg,'//',$i);
+			eval(substr($zp_cfg, $i,$j-$i));
+			$new = array_keys($conf['special_pages']);
+			if ($old != $new) {
+				//Things have changed, need to reset to defaults;
+				setOption('rewriteTokens_restore', 1);
+				$this->handleOptionSave(NULL, NULL);
+				setupLog(gettext('rewriteTokens restored to default'), true);
+			}
+		} else {
+			setOption('zp_plugin_rewriteTokens', 97|ADMIN_PLUGIN);	//	plugin must be enabled for saving options
+		}
+
 	}
 
 	function getOptionsSupported() {
