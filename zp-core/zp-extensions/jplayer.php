@@ -158,6 +158,42 @@ class jplayer_options {
 
 }
 
+/**
+ * Gets the skin names and css files
+ *
+ */
+function getjPlayerSkins() {
+	$all_skins = array();
+	$default_skins_dir = SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/jplayer/skin/';
+	$user_skins_dir = SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/jplayer/skin/';
+	$filestoignore = array( '.', '..','.DS_Store','Thumbs.db','.htaccess','.svn');
+	$skins = array_diff(scandir($default_skins_dir),array_merge($filestoignore));
+	$default_skins = getjPlayerSkinCSS($skins,$default_skins_dir);
+	//echo "<pre>";print_r($default_skins);echo "</pre>";
+	$skins2 = @array_diff(scandir($user_skins_dir),array_merge($filestoignore));
+	if(is_array($skins2)) {
+		$user_skins = getjPlayerSkinCSS($skins2,$user_skins_dir);
+		//echo "<pre>";print_r($user_skins);echo "</pre>";
+		$default_skins = array_merge($default_skins,$user_skins);
+	}
+	return $default_skins;
+}
+
+/**
+ * Gets the css files for a skin. Helper function for getjPlayerSkins().
+ *
+ */
+function getjPlayerSkinCSS($skins,$dir) {
+	$skin_css = array();
+	foreach($skins as $skin) {
+		$css = safe_glob($dir.'/'.$skin.'/*.css');
+		if($css) {
+			$skin_css = array_merge($skin_css,array($skin => $css[0]));	// a skin should only have one css file so we just use the first found
+		}
+	}
+	return $skin_css;
+}
+
 if (!OFFSET_PATH) {
 
 	function getMacrojplayer($moviepath,$count=NULL) {
@@ -185,43 +221,6 @@ if (!OFFSET_PATH) {
 		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/'.PLUGIN_FOLDER; ?>/jplayer/js/jplayer.playlist.min.js"></script>
 		<?php
 	}
-
-
-	/**
-	 * Gets the skin names and css files
-	 *
-	 */
-	function getjPlayerSkins() {
-		$all_skins = array();
-		$default_skins_dir = SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/jplayer/skin/';
-		$user_skins_dir = SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/jplayer/skin/';
-		$filestoignore = array( '.', '..','.DS_Store','Thumbs.db','.htaccess','.svn');
-		$skins = array_diff(scandir($default_skins_dir),array_merge($filestoignore));
-		$default_skins = getjPlayerSkinCSS($skins,$default_skins_dir);
-		//echo "<pre>";print_r($default_skins);echo "</pre>";
-		$skins2 = @array_diff(scandir($user_skins_dir),array_merge($filestoignore));
-		if(is_array($skins2)) {
-			$user_skins = getjPlayerSkinCSS($skins2,$user_skins_dir);
-			//echo "<pre>";print_r($user_skins);echo "</pre>";
-			$default_skins = array_merge($default_skins,$user_skins);
-		}
-		return $default_skins;
-	}
-	/**
-	 * Gets the css files for a skin. Helper function for getjPlayerSkins().
-	 *
-	 */
-	function getjPlayerSkinCSS($skins,$dir) {
-		$skin_css = array();
-		foreach($skins as $skin) {
-			$css = safe_glob($dir.'/'.$skin.'/*.css');
-			if($css) {
-				$skin_css = array_merge($skin_css,array($skin => $css[0]));	// a skin should only have one css file so we just use the first found
-			}
-		}
-		return $skin_css;
-	}
-
 
 	class jPlayer {
 		public $width = '';
