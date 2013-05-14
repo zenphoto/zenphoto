@@ -499,7 +499,7 @@ if (zp_loggedin(ADMIN_RIGHTS)) {	//only admin should be allowed to do this
 			<legend><?php reveal('catbox',$visible); echo gettext('Categories not published'); ?></legend>
 			<?php
 			if ($output) {
-				echo sprintf(ngettext('%u unpublished category','%u unpublished categories',$c),$c);;
+				echo sprintf(ngettext('%u unpublished category','%u unpublished categories',$c),$c);
 				?>
 			<div id="catbox"<?php if (!$visible) echo ' style="display:none"'?>>
 				<?php
@@ -568,7 +568,7 @@ if (zp_loggedin(ADMIN_RIGHTS)) {	//only admin should be allowed to do this
 			<legend><?php reveal('newsbox',$visible); echo gettext('News articles not published'); ?></legend>
 		<?php
 		if ($output) {
-			echo sprintf(ngettext('%u unpublished article','%u unpublished articles',$c),$c);;
+			echo sprintf(ngettext('%u unpublished article','%u unpublished articles',$c),$c);
 			?>
 		<div id="newsbox"<?php if (!$visible) echo ' style="display:none"'?>>
 			<?php
@@ -644,7 +644,7 @@ if (zp_loggedin(ADMIN_RIGHTS)) {	//only admin should be allowed to do this
 				<?php
 			}
 			if ($output) {
-				echo sprintf(ngettext('%u unpublished page','%u unpublished pages',$c),$c);;
+				echo sprintf(ngettext('%u unpublished page','%u unpublished pages',$c),$c);
 				?>
 		<div id="pagebox"<?php if (!$visible) echo ' style="display:none"'?>>
 			<form name="publish_pages" action="" method="post"><?php echo gettext('Pages:'); ?>

@@ -78,7 +78,7 @@ if (($hash || !$albumobj->checkAccess()) && !zp_loggedin(VIEW_FULLIMAGE_RIGHTS))
 	if (empty($hash)) {	// check for gallery password
 		$hash = $_zp_gallery->getPassword();
 		$authType = 'zp_gallery_auth';
-		$hint = $_zp_gallery->getPasswordHint();;
+		$hint = $_zp_gallery->getPasswordHint();
 		$show = $_zp_gallery->getUser();
 	}
 

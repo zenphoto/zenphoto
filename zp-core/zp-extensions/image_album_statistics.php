@@ -95,7 +95,7 @@ function getAlbumStatistic($number=5, $option, $albumfolder='',$sortdirection='d
 			$sortorder = "total_votes";
 			break;
 		case "toprated":
-			$sortorder = "(total_value/total_votes) DESC, total_value";;
+			$sortorder = "(total_value/total_votes) DESC, total_value";
 			break;
 		case "latestupdated":
 			$sortorder = 'updateddate';

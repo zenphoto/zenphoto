@@ -88,8 +88,6 @@ themes/garland/archive.php
 themes/garland/colorbox
 themes/garland/colorbox/functions.php
 themes/garland/contact.php
-themes/garland/contact_form
-themes/garland/contact_form/form.php
 themes/garland/favorites.php
 themes/garland/functions.php
 themes/garland/gallery.php
@@ -131,8 +129,6 @@ themes/stopdesign/comment.php
 themes/stopdesign/comment_form
 themes/stopdesign/comment_form/comment_form.php
 themes/stopdesign/contact.php
-themes/stopdesign/contact_form
-themes/stopdesign/contact_form/form.php
 themes/stopdesign/css
 themes/stopdesign/css/comments-hide.css
 themes/stopdesign/css/comments-show.css
@@ -239,8 +235,6 @@ themes/zpmobile
 themes/zpmobile/404.php
 themes/zpmobile/album.php
 themes/zpmobile/archive.php
-themes/zpmobile/comment_form
-themes/zpmobile/comment_form/comment_form.php
 themes/zpmobile/favorites.php
 themes/zpmobile/functions.php
 themes/zpmobile/gallery.php
@@ -1764,4 +1758,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1766
+1760

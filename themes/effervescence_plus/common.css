@@ -316,13 +316,37 @@ label:hover {
 	vertical-align:middle;
 }
 
-
 #commentform label,
 #mailform label {
 width: 30% !important;
 float: left; 
 display: block;
 }
+#mailform input[type=text],
+#commentform input[type=text] {
+width: 65% !important;
+}
+#mailform input.captchainputbox,
+#commentform input.captchainputbox {
+width: 20% !important;
+margin-left: 10px;
+}
+
+input.pushbutton {
+padding: 5px 8px 5px 8px!important;
+margin: 5px 0 0 0;
+}
+
+#commentform textarea#comment {
+clear: both;
+width: 100% !important;
+}
+
+#mailform textarea{
+float: left !important;
+width: 65% !important;
+}
+
 .error {
 	color: #C33;
 	font-weight: bold;

@@ -33,38 +33,39 @@ if (!defined('MENU_TRUNCATE_INDICATOR')) define('MENU_TRUNCATE_INDICATOR',getOpt
 class Zenpage {
 
 	var $news_on_index = NULL;
-	protected $categoryStructure = NULL;
+	protected $categoryStructure = array();
 
 	/**
 	 * Class instantiator
 	 */
 	function __construct() {
-		/**
-		 * Un-publishes pages/news whose expiration date has been reached
-		 *
-		 */
-		$sql = ' WHERE `date`<="'.date('Y-m-d H:i:s').'" AND `show`="1"'.
-																				' AND `expiredate`<="'.date('Y-m-d H:i:s').'"'.
-																				' AND `expiredate`!="0000-00-00 00:00:00"'.
-																				' AND `expiredate` IS NOT NULL';
-		foreach (array('news','pages') as $table) {
-			$result = query_full_array('SELECT * FROM '.prefix($table).$sql);
-			if ($result) {
-				foreach ($result as $item) {
-					$class = 'Zenpage'.$table;
-					$obj = new $class($item['titlelink']);
-					$obj->setShow(0);
-					$obj->save();
+		if (OFFSET_PATH !== 2) {
+			/**
+			 * Un-publishes pages/news whose expiration date has been reached
+			 *
+			 */
+			$sql = ' WHERE `date`<="'.date('Y-m-d H:i:s').'" AND `show`="1"'.
+					' AND `expiredate`<="'.date('Y-m-d H:i:s').'"'.
+					' AND `expiredate`!="0000-00-00 00:00:00"'.
+					' AND `expiredate` IS NOT NULL';
+			foreach (array('news','pages') as $table) {
+				$result = query_full_array('SELECT * FROM '.prefix($table).$sql);
+				if ($result) {
+					foreach ($result as $item) {
+						$class = 'Zenpage'.$table;
+						$obj = new $class($item['titlelink']);
+						$obj->setShow(0);
+						$obj->save();
+					}
 				}
 			}
-		}
 
-		$allcategories = query_full_array("SELECT * FROM ".prefix('news_categories')." ORDER by sort_order");
-		$this->categoryStructure = array();
-		foreach ($allcategories as $cat) {
-			$this->categoryStructure[$cat['id']] = $cat;
+			$allcategories = query_full_array("SELECT * FROM ".prefix('news_categories')." ORDER by sort_order");
+			$this->categoryStructure = array();
+			foreach ($allcategories as $cat) {
+				$this->categoryStructure[$cat['id']] = $cat;
+			}
 		}
-
 	}
 
 	/**
@@ -103,7 +104,7 @@ class Zenpage {
 			$published = !zp_loggedin();
 			$all = zp_loggedin(MANAGE_ALL_PAGES_RIGHTS);
 		} else {
-			$all = !$published;;
+			$all = !$published;
 		}
 		$gettop = '';
 		if($published) {
@@ -716,7 +717,7 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 		if($this->news_on_index) {
 			return getGalleryIndexURL(false);
 		} else {
-			return getNewsBaseURL();
+			return rewrite_path(_NEWS_, "/index.php?p=news");
 		}
 	}
 
@@ -727,6 +728,8 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	* @return string
 	*/
 	function getNewsBaseURL() {
+		//FIXME: This function should be eleminated and instead the functions that are using it should build
+		//easily understood and modified links using just one call to rewrite_path()
 		return rewrite_path(_NEWS_, "/index.php?p=news");
 	}
 
@@ -737,6 +740,8 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	* @return string
 	*/
 	function getNewsCategoryPath() {
+		//FIXME: this function should really be designed to provide a complete path for what you are actually
+		//trying to link to.
 		return rewrite_path('/'._CATEGORY_.'/',"&category=",false);
 	}
 
@@ -746,6 +751,8 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	* @return string
 	*/
 	function getNewsArchivePath() {
+		//FIXME: this function should really be designed to provide a complete path for what you are actually
+		//trying to link to.
 		return rewrite_path('/'._NEWS_ARCHIVE_.'/',"&date=",false);
 	}
 
@@ -756,6 +763,8 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	* @return string
 	*/
 	function getNewsTitlePath() {
+		//FIXME: This function should not exist. Path building functions should be complete and understandable
+		//with just one call on rewrite_path()
 		return rewrite_path("/","&title=",false);
 	}
 
@@ -766,6 +775,8 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	* @return string
 	*/
 	function getNewsPagePath() {
+		//FIXME: This function should not exist. Path building functions should be complete and understandable
+		//with just one call on rewrite_path()
 		return rewrite_path("/","&page=",false);
 	}
 

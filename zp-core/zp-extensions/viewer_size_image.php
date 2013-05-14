@@ -51,7 +51,7 @@ class viewer_size_image_options {
 
 	function getOptionsSupported() {
 		return array(	gettext('Image sizes allowed') => array('key' => 'viewer_size_image_sizes', 'type' => OPTION_TYPE_TEXTAREA,
-										'desc' => gettext('List of sizes from which the viewer may select.<br />The form is "$s=&lt;size&gt;" or "$h=&lt;height&gt;,$w=&lt;width&gt;;"....<br />See printCustomSizedImage() for details')),
+										'desc' => gettext('List of sizes from which the viewer may select.<br />The form is "$s=&lt;size&gt;" or "$h=&lt;height&gt;,$w=&lt;width&gt;"....<br />See printCustomSizedImage() for details')),
 									gettext('Selector') => array('key' => 'viewer_size_image_radio', 'type' => OPTION_TYPE_RADIO,
 										'buttons' => array(gettext('Radio buttons')=>2, gettext('Drop-down')=>1),
 										'desc' => gettext('Choose the kind of selector to be presented the viewer.')),

@@ -870,7 +870,7 @@ if (zp_loggedin(ADMIN_RIGHTS)) {
 	var admins = ["<?php echo implode('","', $alladmins); ?>"];
 	function checkNewuser() {
 		newuserid = <?php echo ($id-1); ?>;
-		newuser = $('#adminuser'+newuserid).val().replace(/^\s+|\s+$/g,"");;
+		newuser = $('#adminuser'+newuserid).val().replace(/^\s+|\s+$/g,"");
 		if (newuser=='') return true;
 		if (newuser.indexOf('?')>=0 || newuser.indexOf('&')>=0 || newuser.indexOf('"')>=0 || newuser.indexOf('\'')>=0) {
 			alert('<?php echo js_encode(gettext('User names may not contain "?", "&", or quotation marks.')); ?>');

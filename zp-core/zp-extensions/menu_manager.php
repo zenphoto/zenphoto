@@ -850,7 +850,7 @@ function createMenuIfNotExists($menuitems, $menuset='default') {
 					break;
 				case 'custompage':
 					if(empty($result['title']) || empty($result['link'])) {
-						$success = -1;;
+						$success = -1;
 						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty title or link.'),$key));
 					}
 					break;
@@ -871,13 +871,13 @@ function createMenuIfNotExists($menuitems, $menuset='default') {
 					break;
 				case 'menufunction':
 					if(empty($result['title']) || empty($result['link'])) {
-						$success = -1;;
+						$success = -1;
 						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty title or link.'),$key));
 					}
 					break;
 				case 'html':
 					if(empty($result['title']) || empty($result['link'])) {
-						$success = -1;;
+						$success = -1;
 						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty title or link.'),$key));
 					}
 					break;

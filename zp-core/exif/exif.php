@@ -874,7 +874,7 @@ if ($result['ValidJpeg'] == 1) {
 				$result['JFIF']['Data'] = $data;
 			}
 
-			$result['JFIF']['Identifier'] = substr($data,0,5);;
+			$result['JFIF']['Identifier'] = substr($data,0,5);
 			$result['JFIF']['ExtensionCode'] =  bin2hex(substr($data,6,1));
 
 			$globalOffset+=hexdec($size)+2;

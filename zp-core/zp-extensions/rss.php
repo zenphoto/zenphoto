@@ -269,7 +269,7 @@ function getRSSLink($option,$lang=NULL,$addl=NULL) {
 			break;
 		case 'comments-all':
 			if (getOption('RSS_article_comments')) {
-				$link = array('rss'=>'comments','type'=>'allcomments');;
+				$link = array('rss'=>'comments','type'=>'allcomments');
 			}
 			break;
 	}

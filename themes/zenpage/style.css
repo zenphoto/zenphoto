@@ -710,7 +710,7 @@ cursor: pointer !important;
 ------------------------------ */
 #comments {
 	clear: both;
-	width: 560px;
+	width: 100%;
 	margin-top: 10px;
 	padding: 0;
 	border-top: 1px dashed darkgray;
@@ -1407,6 +1407,28 @@ width: 30% !important;
 float: left; 
 display: block;
 }
+#mailform input[type=text],
+#commentform input[type=text] {
+width: 65% !important;
+}
+#mailform input.captchainputbox,
+#commentform input.captchainputbox {
+width: 20% !important;
+margin-left: 10px;
+}
+
+input.pushbutton {
+padding: 5px 8px 5px 8px!important;
+margin: 5px 0 0 0;
+}
+
+#mailform textarea, 
+#commentform textarea#comment {
+clear: both;
+width: 95% !important;
+height: 150px;
+}
+
 
 .clearall {
 clear: both !important;
