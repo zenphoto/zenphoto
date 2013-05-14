@@ -715,7 +715,7 @@ if (!$setup_checked && (($upgrade && $autorun) || setupUserAuthorized())) {
 		}
 	}
 	if (file_exists(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE)) {
-		eval(file_get_contents(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE));;
+		eval(file_get_contents(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE));
 		$cfg = true;
 	} else {
 		$cfg = false;
