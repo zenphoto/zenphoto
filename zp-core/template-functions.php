@@ -1044,7 +1044,7 @@ function getParentAlbums($album=null) {
 		if (is_null($album)) {
 			if (in_context(ZP_SEARCH_LINKED) && !in_context(ZP_ALBUM_LINKED)) {
 				$album = $_zp_current_search->getDynamicAlbum();
-				if (empty($name)) return $parents;
+				if (empty($album)) return $parents;
 			} else {
 				$album = $_zp_current_album;
 			}
@@ -1136,7 +1136,7 @@ function printSearchBreadcrumb($between=NULL, $class=NULL, $search=NULL, $archiv
 		$between = ' | ';
 	}
 	if ($class) {
-		$class =' class="'.$classs.'"';
+		$class =' class="'.$class.'"';
 	}
 	if ($d = $_zp_current_search->getSearchDate()) {
 		if (is_null($archive)) {
@@ -1288,9 +1288,7 @@ function printHomeLink($before='', $after='', $title=NULL, $class=NULL, $id=NULL
 	global $_zp_gallery;
 	$site = rtrim($_zp_gallery->getWebsiteURL(),'/');
 	if (!empty($site)) {
-		if (empty($name)) {
-			$name = $_zp_gallery->getWebsiteTitle();
-		}
+		$name = $_zp_gallery->getWebsiteTitle();
 		if (empty($name)) {
 			$name = gettext('Home');
 		}
@@ -1732,7 +1730,7 @@ function getCustomAlbumThumbMaxSpace($width, $height) {
  * @param string $id Optional style id
  * @param bool $thumbStandin set to true to treat as thumbnail
  */
-function printCustomAlbumThumbMaxSpace($alt='', $width, $height, $class=NULL, $id=NULL) {
+function printCustomAlbumThumbMaxSpace($alt, $width, $height, $class=NULL, $id=NULL) {
 	global $_zp_current_album;
 	$albumthumb = $_zp_current_album->getAlbumThumbImage();
 	getMaxSpaceContainer($width, $height, $albumthumb, true);
@@ -2678,7 +2676,7 @@ function getProtectedImageURL($image=NULL, $disposal=NULL) {
 	if ($disposal != 'Download' && OPEN_IMAGE_CACHE && file_exists($cache_path)) {
 		return WEBPATH.'/'.CACHEFOLDER.pathurlencode(imgSrcURI($cache_file));
 	} else if ($disposal == 'Unprotected') {
-		return getImageURI($args, $image->imagefolder, $filename, $image->filemtime);
+		return getImageURI($args, $album->name, $image->filename, $image->filemtime);
 	} else {
 		$params = '&q='.getOption('full_image_quality');
 		$watermark_use_image = getWatermarkParam($image, WATERMARK_FULL);
@@ -2700,7 +2698,7 @@ function getProtectedImageURL($image=NULL, $disposal=NULL) {
  * @param int $size The size the image is to be
  */
 function getSizedImageURL($size) {
-	getCustomImageURL($size);
+	return getCustomImageURL($size);
 }
 
 /**
@@ -2865,7 +2863,7 @@ function getCustomSizedImageThumbMaxSpace($width, $height) {
  * @param string $class Optional style class
  * @param string $id Optional style id
 	*/
-function printCustomSizedImageThumbMaxSpace($alt='',$width,$height,$class=NULL,$id=NULL) {
+function printCustomSizedImageThumbMaxSpace($alt,$width,$height,$class=NULL,$id=NULL) {
 	global $_zp_current_image;
 	if (is_null($_zp_current_image)) return;
 	getMaxSpaceContainer($width, $height, $_zp_current_image, true);
@@ -2882,7 +2880,7 @@ function printCustomSizedImageThumbMaxSpace($alt='',$width,$height,$class=NULL,$
  * @param string $class Optional style class
  * @param string $id Optional style id
  */
-function printCustomSizedImageMaxSpace($alt='',$width,$height,$class=NULL,$id=NULL, $thumb=false) {
+function printCustomSizedImageMaxSpace($alt,$width,$height,$class=NULL,$id=NULL, $thumb=false) {
 	global $_zp_current_image;
 	if (is_null($_zp_current_image)) return;
 	getMaxSpaceContainer($width, $height, $_zp_current_image, $thumb);

@@ -29,22 +29,6 @@ if (OFFSET_PATH) {
 	zp_register_filter('admin_overview', 'comment_form_print10Most');
 	zp_register_filter('save_admin_custom_data', 'comment_form_save_admin');
 	zp_register_filter('edit_admin_custom_data', 'comment_form_edit_admin');
-	zp_register_filter('admin_tabs','comment_tab');
-
-	function comment_tab($tabs) {
-		if (zp_loggedin(OPTIONS_RIGHTS)) {
-			$newsubtabs = array();
-			foreach ($tabs['options']['subtabs'] as $key=>$subtab) {
-				$newsubtabs[$key] = $subtab;
-				if ($key==gettext('image')) {
-					$newsubtabs[gettext("comment")] = 'admin-options.php?page=options&amp;tab=comments';
-				}
-			}
-			$tabs['options']['subtabs'] = $newsubtabs;
-		}
-		return $tabs;
-
-	}
 } else {
 	zp_register_filter('comment_post', 'comment_form_comment_post');
 	zp_register_filter('handle_comment', 'comment_form_postcomment');
@@ -66,6 +50,11 @@ class comment_form {
 	 * @return admin_login
 	 */
 	function comment_form() {
+		setOptionDefault('email_new_comments', 1);
+		setOptionDefault('comment_name_required', 'required');
+		setOptionDefault('comment_email_required', 'required');
+		setOptionDefault('comment_web_required', 'show');
+		setOptionDefault('Use_Captcha', false);
 		setOptionDefault('comment_form_addresses', 0);
 		setOptionDefault('comment_form_require_addresses', 0);
 		setOptionDefault('comment_form_members_only', 0);
@@ -89,6 +78,7 @@ class comment_form {
 	 * @return array
 	 */
 	function getOptionsSupported() {
+		global $_zp_captcha;
 		require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/tiny_mce.php');
 		$checkboxes = array(gettext('Albums') => 'comment_form_albums', gettext('Images') => 'comment_form_images');
 		if (getOption('zp_plugin_zenpage')) {
@@ -96,12 +86,34 @@ class comment_form {
 		}
 		$configarray = getTinyMCEConfigFiles();
 
-		$options = array(	gettext('Address fields') => array('key' => 'comment_form_addresses', 'type' => OPTION_TYPE_RADIO,
+		$options = array(
+											gettext('Enable comment notification') => array('key' => 'email_new_comments', 'type' => OPTION_TYPE_CHECKBOX,
+													'order' => 0,
+													'desc' => gettext('Email the Admin when new comments are posted')),
+											gettext('Name field') => array('key' => 'comment_name_required', 'type' => OPTION_TYPE_RADIO,
+													'order' => 0.1,
+													'buttons' => array(gettext('Omit')=>0, gettext('Show')=>1, gettext('Require')=>'required'),
+													'desc' => gettext('If the <em>Name</em> field is required, the poster must provide a name.')),
+											gettext('Email field') => array('key' => 'comment_email_required', 'type' => OPTION_TYPE_RADIO,
+													'order' => 0.2,
+													'buttons' => array(gettext('Omit')=>0, gettext('Show')=>1, gettext('Require')=>'required'),
+													'desc' => gettext('If the <em>Email</em> field is required, the poster must provide an email address.')),
+											gettext('Website field') => array('key' => 'comment_web_required', 'type' => OPTION_TYPE_RADIO,
+													'order' => 0.3,
+													'buttons' => array(gettext('Omit')=>0, gettext('Show')=>1, gettext('Require')=>'required'),
+													'desc' => gettext('If the <em>Website</em> field is required, the poster must provide a website.')),
+											gettext('Captcha field') => array('key' => 'Use_Captcha', 'type' => OPTION_TYPE_RADIO,
+													'order' => 0.4,
+													'disabled' => !$_zp_captcha->name,
+													'buttons' => array(gettext('Omit')=>0, gettext('For guests')=>2, gettext('Require')=>1),
+													'desc' => ($_zp_captcha->name)?gettext('If <em>Captcha</em> is required, the form will include a Captcha verification.'):'<span class="notebox">'.gettext('No captcha handler is enabled.').'</span>'),
+
+											gettext('Address fields') => array('key' => 'comment_form_addresses', 'type' => OPTION_TYPE_RADIO,
 												'order' => 7,
 												'buttons' => array(gettext('Omit')=>0, gettext('Show')=>1, gettext('Require')=>'required'),
 												'desc' => gettext('If <em>Address fields</em> are shown or required, the form will include positions for address information. If required, the poster must supply data in each address field.')),
 											gettext('Allow comments on') => array('key' => 'comment_form_allowed', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
-												'order' => 0,
+												'order' => 0.9,
 												'checkboxes' => $checkboxes,
 												'desc' => gettext('Comment forms will be presented on the checked pages.')),
 											gettext('Toggled comment block') => array('key' => 'comment_form_toggle', 'type' => OPTION_TYPE_CHECKBOX,

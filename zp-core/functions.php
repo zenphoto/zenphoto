@@ -345,7 +345,7 @@ function is_valid_email_zp($input_email) {
  * @since  1.0.0
  */
 function zp_mail($subject, $message, $email_list=NULL, $cc_addresses=NULL, $bcc_addresses=NULL, $replyTo=NULL) {
-	global $_zp_authority, $_zp_gallery;
+	global $_zp_authority, $_zp_gallery, $_zp_UTF8;
 	$result = '';
 	if ($replyTo) {
 		$t = $replyTo;
@@ -1172,6 +1172,20 @@ function generateListFromFiles($currentValue, $root, $suffix, $descending=false)
 }
 
 /**
+ * @param string $url The link URL
+ * @param string $text The text to go with the link
+ * @param string $title Text for the title tag
+ * @param string $class optional class
+ * @param string $id optional id
+ */
+function getLink($url, $text, $title=NULL, $class=NULL, $id=NULL) {
+	return "<a href=\"" . html_encode($url) . "\"" .
+				(($title) ? " title=\"" . html_encode(strip_tags($title)) . "\"" : "") .
+				(($class) ? " class=\"$class\"" : "") .
+				(($id) ? " id=\"$id\"" : "") . ">" .
+				html_encode($text) . "</a>";
+}
+/**
  * General link printing function
  * @param string $url The link URL
  * @param string $text The text to go with the link
@@ -1180,11 +1194,7 @@ function generateListFromFiles($currentValue, $root, $suffix, $descending=false)
  * @param string $id optional id
  */
 function printLink($url, $text, $title=NULL, $class=NULL, $id=NULL) {
-	echo "<a href=\"" . html_encode($url) . "\"" .
-				(($title) ? " title=\"" . html_encode(strip_tags($title)) . "\"" : "") .
-				(($class) ? " class=\"$class\"" : "") .
-				(($id) ? " id=\"$id\"" : "") . ">" .
-				html_encode($text) . "</a>";
+	echo getlink($url, $text, $title, $class, $id);
 }
 
 /**
@@ -2003,20 +2013,23 @@ function getLanguageFlag($lang) {
  * @return mixed
  */
 function getItemByID($table, $id) {
-	$result = query_single_row('SELECT * FROM '.prefix($table).' WHERE id ='.$id);
-	switch($table) {
-		case 'images':
-			$alb = getItemByID('albums', $result['albumid']);
-			return newImage($alb,$result['filename']);
-		case 'albums':
-			return newAlbum($result['folder']);
-		case 'news':
-			return new ZenpageNews($result['titlelink']);
-		case 'pages':
-			return new ZenpagePage($result['titlelink']);
-		case 'news_categories':
-			return new ZenpageCategory($result['titlelink']);
+	if ($result = query_single_row('SELECT * FROM '.prefix($table).' WHERE id ='.$id)) {
+		switch($table) {
+			case 'images':
+				if ($alb = getItemByID('albums', $result['albumid'])) {
+					return newImage($alb,$result['filename']);
+				}
+			case 'albums':
+				return newAlbum($result['folder']);
+			case 'news':
+				return new ZenpageNews($result['titlelink']);
+			case 'pages':
+				return new ZenpagePage($result['titlelink']);
+			case 'news_categories':
+				return new ZenpageCategory($result['titlelink']);
+		}
 	}
+	return NULL;
 }
 
 /**
@@ -2052,23 +2065,33 @@ function applyMacros($text) {
 	$content_macros = getMacros();
 	krsort($content_macros);	//	in case some start with the same sequence, look for the longest first
 	$regex = '/\[('.implode('|',array_keys($content_macros)).')\s*(.*)\]/i';
+
 	if (preg_match_all($regex, $text, $matches)) {
 		foreach ($matches[1] as $key=>$macroname) {
+			$params = '';
 			$macroname = strtoupper($macroname);
 			$macro = $content_macros[$macroname];
 			$macro_instance = $matches[0][$key];
 			if ($macro['regex']) {
-				if (!preg_match($macro['regex'], $matches[2][$key], $parms)) {
-					continue;	// failed parameter extract
+				if (!preg_match($macro['regex'], trim($matches[2][$key]), $parms)) {
+					$macro['class'] = 'error';
+					preg_match_all('|\(.*?\)|', $macro['regex'], $parms);
+					$data = '<span class="error">'.sprintf(ngettext('<em>[%1$s]</em> should have %2$d parameter.','<em>[%1$s]</em> should have %2$d parameters.',count($parms[0])),trim($macro_instance,'[]'),count($parms[0])).'</span>';
+					$parms = array();	// failed parameter extract
+				} else {
+					array_shift($parms);
+					$params = ' '.implode(' ', $parms);
 				}
-				array_shift($parms);
 			} else {
 				if (!empty($matches[2][$key])) {
-					continue;	// parameter when none expected
+					$macro['class'] = 'error';
+					$data = '<span class="error">'.sprintf(gettext('<em>[%1$s]</em> macro does not take parameters'),trim($macro_instance,'[]')).'</span>';
 				}
 				$parms = array();
 			}
 			switch ($macro['class']) {
+				case 'error':
+					break;
 				case 'function';
 				case 'procedure':
 					if ($macro['class']=='function') {
@@ -2080,7 +2103,7 @@ function applyMacros($text) {
 						ob_end_clean();
 					}
 					if (is_null($data)) {
-						continue 2;
+						$data = '<span class="error">'.sprintf(gettext('<em>[%1$s]</em> retuned no data'),trim($macro_instance,'[]')).'</span>';
 					}
 					break;
 				case 'constant':
@@ -2095,7 +2118,7 @@ function applyMacros($text) {
 					}
 					eval($expression);
 					if (!isset($data) || is_null($data)) {
-						continue 2;
+						$data = '<span class="error">'.sprintf(gettext('<em>[%1$s]</em> retuned no data'),trim($macro_instance,'[]')).'</span>';
 					}
 					break;
 			}
@@ -2332,7 +2355,15 @@ class zpFunctions {
 	 * @param string $text
 	 */
 	static function tagURLs($text) {
+		if (preg_match('/^a:[0-9]+:{/', $text)) {	//	seriualized array
+			$textlist = unserialize($text);
+			foreach ($textlist as $key=>$text) {
+				$textlist[$key] = str_replace(WEBPATH, '{*WEBPATH*}', str_replace(FULLWEBPATH, '{*FULLWEBPATH*}', $text));
+			}
+			return serialize($textlist);
+		} else {
 		return str_replace(WEBPATH, '{*WEBPATH*}', str_replace(FULLWEBPATH, '{*FULLWEBPATH*}', $text));
+		}
 	}
 	/**
 	 * reverses tagURLs()
@@ -2340,7 +2371,15 @@ class zpFunctions {
 	 * @return string
 	 */
 	static function unTagURLs($text) {
-		return str_replace('{*WEBPATH*}', WEBPATH, str_replace('{*FULLWEBPATH*}', FULLWEBPATH, $text));
+		if (preg_match('/^a:[0-9]+:{/', $text)) {	//	seriualized array
+			$textlist = unserialize($text);
+			foreach ($textlist as $key=>$text) {
+				$textlist[$key] = str_replace('{*WEBPATH*}', WEBPATH, str_replace('{*FULLWEBPATH*}', FULLWEBPATH, $text));
+			}
+			return serialize($textlist);
+		} else {
+			return str_replace('{*WEBPATH*}', WEBPATH, str_replace('{*FULLWEBPATH*}', FULLWEBPATH, $text));
+		}
 	}
 
 	/**

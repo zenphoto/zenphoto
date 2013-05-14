@@ -62,6 +62,7 @@ if(function_exists('printCustomMenu') && ($menu = getOption('effervescence_menu'
 	<h3><?php echo gettext("Archive"); ?></h3>
 		<ul>
 		<?php
+
 			if($_zp_gallery_page == "archive.php") {
 				?>
 				<li class='menu-active'>
@@ -71,7 +72,7 @@ if(function_exists('printCustomMenu') && ($menu = getOption('effervescence_menu'
 			} else {
 				?>
 				<li>
-				<?php echo printCustomPageURL(gettext("Gallery and News"),"archive"); ?>
+			<?php printCustomPageURL(gettext("Gallery and News"),"archive"); ?>
 				</li>
 				<?php
 			}

@@ -22,7 +22,6 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 	<script type="text/javascript" src="<?php echo WEBPATH.'/'. ZENFOLDER; ?>/js/htmlencoder.js"></script>
 	<script type="text/javascript" src="<?php echo WEBPATH.'/'. ZENFOLDER; ?>/js/jquery.js"></script>
 	<script type="text/javascript" src="<?php echo WEBPATH.'/'. ZENFOLDER.'/'.PLUGIN_FOLDER; ?>/tiny_mce/tiny_mce_popup.js"></script>
-
 	<link rel="stylesheet" type="text/css" href="css/tinyzenpage.css" media="screen" />
 	<script language="javascript" type="text/javascript">
 	$(document).ready(function(){

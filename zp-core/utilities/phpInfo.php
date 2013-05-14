@@ -33,7 +33,7 @@ printAdminHeader('overview','phpInfo');
 <div id="main">
 <?php printTabs(); ?>
 <div id="content">
-	<?php printSubtabs('Clone'); ?>
+	<?php printSubtabs(); ?>
 	<div class="tabbox">
 	<h1><?php echo (gettext('Your PHP configuration information.')); ?></h1>
 	<?php zp_apply_filter('admin_note','phpinfo', ''); ?>

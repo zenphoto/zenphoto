@@ -467,7 +467,7 @@ $imagecount = $_zp_gallery->getNumImages();
 $imagecount_unpub = $imagecount-$_zp_gallery->getNumImages(true);
 ?>
 <div id="content">
-<?php printSubtabs('Statistics') ?>
+<?php printSubtabs() ?>
 <div class="tabbox">
 <?php zp_apply_filter('admin_note','statistics', ''); ?>
 <h1><?php echo gettext("Gallery Statistics"); ?></h1>

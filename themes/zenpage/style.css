@@ -985,6 +985,10 @@ ul.archive .archive-active a {
 
 /* Error Messages
 ------------------------------ */
+.error {
+	color: #C33;
+	font-weight: bold;
+}
 .errorbox {
 	padding: 20px;
 	background-color: #FDD;

@@ -807,55 +807,55 @@ function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=t
 		<!-- Comment Box -->
 		<?php
 		if ($comments_open) {
-			$stored = array_merge(getCommentStored(),array('street'=>'', 'city'=>'', 'state'=>'', 'country'=>'', 'postal'=>''));
-			$custom = getSerializedArray($stored['custom']);
-			foreach ($custom as $key=>$value) {
-				if (!empty($value)) $stored[$key] = $value;
-			}
-
-			$disabled = array('name'=>'',	'website'=>'', 'anon'=>'', 'private'=>'', 'comment'=>'',
-												'street'=>'', 'city'=>'', 'state'=>'', 'country'=>'', 'postal'=>'');
-			foreach ($stored as $key=>$value) {
-				$disabled[$key] = false;
-			}
-
-			if (zp_loggedin()) {
-				$address = getSerializedArray($_zp_current_admin_obj->getCustomData());
-				foreach ($address as $key=>$value) {
-					if (!empty($value)) {
-						$disabled[$key] = true;
-						$stored[$key] = $value;
-					}
-				}
-
-				$name = $_zp_current_admin_obj->getName();
-				if (!empty($name)) {
-					$stored['name'] = $name;
-					$disabled['name'] = ' disabled="disabled"';
-				} else {
-					$user = $_zp_current_admin_obj->getUser();
-					if (!empty($user)) {
-						$stored['name'] = $user;
-						$disabled['name'] = ' disabled="disabled"';
-					}
-				}
-				$email = $_zp_current_admin_obj->getEmail();
-				if (!empty($email)) {
-					$stored['email'] = $email;
-					$disabled['email'] = ' disabled="disabled"';
-				}
-				if (!empty($address['website'])) {
-					$stored['website'] = $address['website'];
-					$disabled['website'] = ' disabled="disabled"';
-				}
-			}
-			$data = zp_apply_filter('comment_form_data',array('data'=>$stored, 'disabled'=>$disabled));
-			$disabled = $data['disabled'];
-			$stored = $data['data'];
-
 			if (MEMBERS_ONLY_COMMENTS && !zp_loggedin(POST_COMMENT_RIGHTS)) {
 				echo gettext('Only registered users may post comments.');
 			} else {
+				$stored = array_merge(getCommentStored(),array('street'=>'', 'city'=>'', 'state'=>'', 'country'=>'', 'postal'=>''));
+				$custom = getSerializedArray($stored['custom']);
+				foreach ($custom as $key=>$value) {
+					if (!empty($value)) $stored[$key] = $value;
+				}
+
+				$disabled = array('name'=>'',	'website'=>'', 'anon'=>'', 'private'=>'', 'comment'=>'',
+													'street'=>'', 'city'=>'', 'state'=>'', 'country'=>'', 'postal'=>'');
+				foreach ($stored as $key=>$value) {
+					$disabled[$key] = false;
+				}
+
+				if (zp_loggedin()) {
+					$address = getSerializedArray($_zp_current_admin_obj->getCustomData());
+					foreach ($address as $key=>$value) {
+						if (!empty($value)) {
+							$disabled[$key] = true;
+							$stored[$key] = $value;
+						}
+					}
+
+					$name = $_zp_current_admin_obj->getName();
+					if (!empty($name)) {
+						$stored['name'] = $name;
+						$disabled['name'] = ' disabled="disabled"';
+					} else {
+						$user = $_zp_current_admin_obj->getUser();
+						if (!empty($user)) {
+							$stored['name'] = $user;
+							$disabled['name'] = ' disabled="disabled"';
+						}
+					}
+					$email = $_zp_current_admin_obj->getEmail();
+					if (!empty($email)) {
+						$stored['email'] = $email;
+						$disabled['email'] = ' disabled="disabled"';
+					}
+					if (!empty($address['website'])) {
+						$stored['website'] = $address['website'];
+						$disabled['website'] = ' disabled="disabled"';
+					}
+				}
+				$data = zp_apply_filter('comment_form_data',array('data'=>$stored, 'disabled'=>$disabled));
+				$disabled = $data['disabled'];
+				$stored = $data['data'];
+
 				if (!empty($addcommenttext)) {
 					echo $addcommenttext;
 				}
@@ -1075,13 +1075,12 @@ function getCommentAuthorSite() {
 }
 /**
  * Prints a link to the author
-
  *
  * @param string $title URL title tag
  * @param string $class optional class tag
  * @param string $id optional id tag
  */
-function printCommentAuthorLink($title=NULL, $class=NULL, $id=NULL) {
+function getCommentAuthorLink($title=NULL, $class=NULL, $id=NULL) {
 	global $_zp_current_comment;
 	$site = $_zp_current_comment['website'];
 	$name = $_zp_current_comment['name'];
@@ -1095,8 +1094,18 @@ function printCommentAuthorLink($title=NULL, $class=NULL, $id=NULL) {
 		if (is_null($title)) {
 			$title = "Visit ".$name;
 		}
-		printLink($site, $namecoded, $title, $class, $id);
+		return getLink($site, $namecoded, $title, $class, $id);
 	}
+}
+/**
+ * Prints a link to the author
+ *
+ * @param string $title URL title tag
+ * @param string $class optional class tag
+ * @param string $id optional id tag
+ */
+function printCommentAuthorLink($title=NULL, $class=NULL, $id=NULL) {
+	echo getCommentAuthorLink($title, $class, $id);
 }
 
 /**
@@ -1174,7 +1183,7 @@ function getLatestComments($number,$type="all",$id=NULL) {
 			if ($commentsearch) {
 				while ($number > 0 && $commentcheck = db_fetch_assoc($commentsearch)) {
 					$item = getItemByID($commentcheck['type'], $commentcheck['ownerid']);
-					if ($item->checkAccess()) {
+					if ($item && $item->checkAccess()) {
 						$number--;
 						$commentcheck['albumtitle'] = $commentcheck['titlelink'] = $commentcheck['folder'] = $commentcheck['filename'] = '';
 						$commentcheck['title'] = $item->getTitle('all');
@@ -1201,53 +1210,65 @@ function getLatestComments($number,$type="all",$id=NULL) {
 			}
 			return $comments;
 		case 'album':
-			$item = getItemByID('albums', $id);
-			$comments = array_slice($item->getComments(),0,$number);
-			// add the other stuff people want
-			foreach ($comments as $key=>$comment) {
-				$comment['pubdate'] = $comment['date'];
-				$alb = getItemByID('albums', $comment['ownerid']);
-				$comment['folder'] = $alb->name;
-				$comment['albumtitle'] = $item->getTitle('all');
-				$comments[$key] = $comment;
+			if ($item = getItemByID('albums', $id)) {
+				$comments = array_slice($item->getComments(),0,$number);
+				// add the other stuff people want
+				foreach ($comments as $key=>$comment) {
+					$comment['pubdate'] = $comment['date'];
+					$alb = getItemByID('albums', $comment['ownerid']);
+					$comment['folder'] = $alb->name;
+					$comment['albumtitle'] = $item->getTitle('all');
+					$comments[$key] = $comment;
+				}
+				return $comments;
+			} else {
+				return array();
 			}
-			return $comments;
 		case 'image':
-			$item = getItemByID('images', $id);
-			$comments = array_slice($item->getComments(),0,$number);
-			// add the other stuff people want
-			foreach ($comments as $key=>$comment) {
-				$comment['pubdate'] = $comment['date'];
-				$img = getItemByID('images', $comment['ownerid']);
-				$comment['folder'] = $img->album->name;
-				$comment['filename'] = $img->filename;
-				$comment['title'] = $item->getTitle('all');
-				$comment['albumtitle'] = $img->album->getTitle('all');
-				$comments[$key] = $comment;
+			if ($item = getItemByID('images', $id)) {
+				$comments = array_slice($item->getComments(),0,$number);
+				// add the other stuff people want
+				foreach ($comments as $key=>$comment) {
+					$comment['pubdate'] = $comment['date'];
+					$img = getItemByID('images', $comment['ownerid']);
+					$comment['folder'] = $img->album->name;
+					$comment['filename'] = $img->filename;
+					$comment['title'] = $item->getTitle('all');
+					$comment['albumtitle'] = $img->album->getTitle('all');
+					$comments[$key] = $comment;
+				}
+				return $comments;
+			} else {
+				return array();
 			}
-			return $comments;
 		case 'news':
-			$item = getItemByID('news', $id);
-			$comments = array_slice($item->getComments(),0,$number);
-			// add the other stuff people want
-			foreach ($comments as $key=>$comment) {
-				$comment['pubdate'] = $comment['date'];
-				$comment['titlelink'] = $item->getTitlelink();
-				$comment['title'] = $item->getTitle('all');
-				$comments[$key] = $comment;
+			if ($item = getItemByID('news', $id)) {
+				$comments = array_slice($item->getComments(),0,$number);
+				// add the other stuff people want
+				foreach ($comments as $key=>$comment) {
+					$comment['pubdate'] = $comment['date'];
+					$comment['titlelink'] = $item->getTitlelink();
+					$comment['title'] = $item->getTitle('all');
+					$comments[$key] = $comment;
+				}
+				return $comments;
+			} else {
+				return array();
 			}
-			return $comments;
 		case 'page':
-			$item = getItemByID('pages', $id);
-			$comments = array_slice($item->getComments(),0,$number);
-			// add the other stuff people want
-			foreach ($comments as $key=>$comment) {
-				$comment['pubdate'] = $comment['date'];
-				$comment['titlelink'] = $item->getTitlelink();
-				$comment['title'] = $item->getTitle('all');
-				$comments[$key] = $comment;
+			if ($item = getItemByID('pages', $id)) {
+				$comments = array_slice($item->getComments(),0,$number);
+				// add the other stuff people want
+				foreach ($comments as $key=>$comment) {
+					$comment['pubdate'] = $comment['date'];
+					$comment['titlelink'] = $item->getTitlelink();
+					$comment['title'] = $item->getTitle('all');
+					$comments[$key] = $comment;
+				}
+				return $comments;
+			} else {
+				return array();
 			}
-			return $comments;
 	}
 }
 
@@ -1396,7 +1417,7 @@ function next_comment($desc=false) {
 function getCommentStored($numeric=false) {
 	global $_zp_comment_stored;
 	if ($numeric) {
-		return Array_merge($_zp_comment_stored);
+		return array_merge($_zp_comment_stored);
 	}
 	return $_zp_comment_stored;
 }

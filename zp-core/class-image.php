@@ -557,7 +557,7 @@ class Image extends MediaObject {
 	 */
 	function updateDimensions() {
 		$discard = NULL;
-		$size = zp_imageDims($this->localpath, $discard);
+		$size = zp_imageDims($this->localpath);
 		$width = $size['width'];
 		$height = $size['height'];
 		if (zp_imageCanRotate())  {
@@ -964,12 +964,8 @@ class Image extends MediaObject {
 	 *
 	 * @return s
 	 */
-	function getThumbImageFile($path=NULL) {
-		$local = $this->localpath;
-		if (!is_null($path)) {
-			$local = $path.str_replace(SERVERPATH,$local);
-		}
-		return $local;
+	function getThumbImageFile() {
+		return $local = $this->localpath;
 	}
 
 	/**
