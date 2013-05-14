@@ -98,9 +98,9 @@
 		</p>
 		<?php } ?>
 		<?php if(showOrNotShowField(getOption('contactform_message'))) { ?>
-		<p>
+		<p class="mailmessage">
 			<label for="message"><?php printf(gettext("Message<strong>%s</strong>:"),(checkRequiredField(getOption('contactform_message')))); ?></label>
-			<textarea id="message" name="message" rows="5" cols="39" <?php if ($_processing_post) echo ' disabled="disabled"'; ?>><?php echo $mailcontent['message']; ?></textarea>
+			<textarea id="message" name="message" <?php if ($_processing_post) echo ' disabled="disabled"'; ?>><?php echo $mailcontent['message']; ?></textarea>
 		</p>
 		<?php } ?>
 		<?php if (!$_processing_post) { ?>

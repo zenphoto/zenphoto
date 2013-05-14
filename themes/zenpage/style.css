@@ -1407,11 +1407,11 @@ width: 30% !important;
 float: left; 
 display: block;
 }
-
+#mailform input[type=text],
 #commentform input[type=text] {
 width: 65% !important;
 }
-
+#mailform input.captchainputbox,
 #commentform input.captchainputbox {
 width: 20% !important;
 margin-left: 10px;
@@ -1423,10 +1423,15 @@ margin: 5px 0 0 0;
 }
 
 #commentform textarea#comment {
-display: block;
 clear: both;
 width: 65% !important;
 }
+
+#mailform textarea{
+float: left !important;
+width: 65% !important;
+}
+
 
 
 .clearall {
