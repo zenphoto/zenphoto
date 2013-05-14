@@ -226,6 +226,7 @@ if (function_exists('zp_graphicsLibInfo')) {
 } else {
 	$_zp_cachefileSuffix = array('Library'=>gettext('none'), 'Library_desc'=>NULL);
 }
+
 define('GRAPHICS_LIBRARY',$_zp_cachefileSuffix['Library']);
 unset($_zp_cachefileSuffix['Library']);
 unset($_zp_cachefileSuffix['Library_desc']);
