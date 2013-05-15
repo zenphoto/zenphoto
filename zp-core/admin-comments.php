@@ -56,7 +56,7 @@ if (isset($_GET['action'])) {
 		$id = sanitize_numeric($_GET['id']);
 		$comment = new Comment($id);
 		$comment->remove();
-		header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-comments.php?ndeleted=1");
+ 		header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-comments.php?ndeleted=1");
 		exitZP();
 
 	case 'savecomment':
@@ -228,7 +228,7 @@ zp_apply_filter('admin_note','comments', 'edit');
 } else {
 	// Set up some view option variables.
 
-	define('COMMENTS_PER_PAGE',getOption('comments_per_page'));
+	define('COMMENTS_PER_PAGE',max(1,getOption('comments_per_page')));
 	if (isset($_GET['fulltext']) && $_GET['fulltext']) {
 		$fulltext = true;
 		$fulltexturl = '?fulltext=1';
@@ -330,14 +330,14 @@ if ($totalpages > 1) {
 	<tr>
 		<th colspan="11"><?php echo gettext("Edit this comment"); ?>
 		<?php
-			$checkarray = array(
-											gettext('*Bulk actions*') => 'noaction',
-											gettext('Delete') => 'deleteall',
-											gettext('Mark as spam') => 'spam',
-											gettext('Approve') => 'approve',
-											);
-			printBulkActions($checkarray);
-			?>
+	  	$checkarray = array(
+									  	gettext('*Bulk actions*') => 'noaction',
+									  	gettext('Delete') => 'deleteall',
+									  	gettext('Mark as spam') => 'spam',
+									  	gettext('Approve') => 'approve',
+							  			);
+	  	printBulkActions($checkarray);
+	  	?>
 		</th>
 
 	</tr>
