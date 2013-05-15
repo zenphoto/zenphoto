@@ -885,8 +885,6 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 				</tr>
 				<tr>
 					<td width="175">
-						<?php echo gettext("Comments per page:"); ?>
-						<br />
 						<?php echo gettext("Users per page:"); ?>
 						<br />
 						<?php echo gettext("Plugins per page:");
@@ -898,8 +896,6 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 						?>
 					</td>
 					<td width="350">
-						<input type="text" size="5" id="comments_per_page" name="comments_per_page"  value="<?php echo getOption('comments_per_page'); ?>" />
-						<br />
 						<input type="text" size="5" id="users_per_page" name="users_per_page"  value="<?php echo getOption('users_per_page'); ?>" />
 						<br />
 						<input type="text" size="5" id="plugins_per_page" name="plugins_per_page"  value="<?php echo getOption('plugins_per_page'); ?>" />
