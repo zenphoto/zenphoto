@@ -393,7 +393,7 @@ function getSitemapIndexLinks() {
 					}
 					break;
 				default:
-					$data .= sitemap_echonl("\t<url>\n\t\t<loc>".FULLWEBPATH.'/'.rewrite_path($galleryindex_mod,$galleryindex_nomod, false)."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+					$data .= sitemap_echonl("\t<url>\n\t\t<loc>".rewrite_path($galleryindex_mod,$galleryindex_nomod, FULLWEBPATH)."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 					break;
 			}
 		}
@@ -414,12 +414,12 @@ function getSitemapIndexLinks() {
 						break;
 					case 2:
 						foreach($sitemap_locales as $locale) {
-							$url = dynamic_locale::fullHostPath($locale).'/'.rewrite_path($galleryindex_mod.$x,$galleryindex_nomod.$x,false);
+							$url = rewrite_path($galleryindex_mod.$x,$galleryindex_nomod.$x,dynamic_locale::fullHostPath($locale));
 							$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 						}
 						break;
 					default:
-						$url = FULLWEBPATH.'/'.rewrite_path($galleryindex_mod.$x,$galleryindex_nomod.$x,false);
+						$url = rewrite_path($galleryindex_mod.$x,$galleryindex_nomod.$x,FULLWEBPATH);
 						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 						break;
 				}
@@ -514,13 +514,13 @@ function getSitemapAlbums() {
 					break;
 				case 2:
 					foreach($sitemap_locales as $locale) {
-						$url = dynamic_locale::fullHostPath($locale).'/'.rewrite_path('/'.pathurlencode($albumobj->name),'?album='.pathurlencode($albumobj->name),false);
+						$url = drewrite_path('/'.pathurlencode($albumobj->name),'?album='.pathurlencode($albumobj->name),ynamic_locale::fullHostPath($locale));
 						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
 						$data .= sitemap_echonl("\t</url>");
 					}
 					break;
 				default:
-					$url = FULLWEBPATH.'/'.rewrite_path(pathurlencode($albumobj->name),'?album='.pathurlencode($albumobj->name),false);
+					$url = rewrite_path(pathurlencode($albumobj->name),'?album='.pathurlencode($albumobj->name),FULLWEBPATH);
 					$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
 					$data .= sitemap_echonl("\t</url>");
 					break;
@@ -538,13 +538,13 @@ function getSitemapAlbums() {
 						break;
 					case 2:
 						foreach($sitemap_locales as $locale) {
-							$url = dynamic_locale::fullHostPath($locale).'/'.rewrite_path('/'.pathurlencode($albumobj->name).'/'._PAGE_.'/'.$x,'?album='.pathurlencode($albumobj->name).'&amp;page='.$x,false);
+							$url = rewrite_path('/'.pathurlencode($albumobj->name).'/'._PAGE_.'/'.$x,'?album='.pathurlencode($albumobj->name).'&amp;page='.$x,dynamic_locale::fullHostPath($locale));
 							$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
 							$data .= sitemap_echonl("\t</url>");
 						}
 						break;
 					default:
-						$url = FULLWEBPATH.'/'.rewrite_path(pathurlencode($albumobj->name).'/'._PAGE_.'/'.$x,'?album='.pathurlencode($albumobj->name).'&amp;page='.$x,false);
+						$url = rewrite_path(pathurlencode($albumobj->name).'/'._PAGE_.'/'.$x,'?album='.pathurlencode($albumobj->name).'&amp;page='.$x,FULLWEBPATH);
 						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
 						$data .= sitemap_echonl("\t</url>");
 						break;
@@ -606,7 +606,7 @@ function getSitemapImages() {
 							break;
 						case 2:
 							foreach($sitemap_locales as $locale) {
-								$path = dynamic_locale::fullHostPath($locale).'/'.rewrite_path(pathurlencode($albumobj->name).'/'.urlencode($imageobj->filename).IM_SUFFIX,'?album='.pathurlencode($albumobj->name).'&amp;image='.urlencode($imageobj->filename),false);
+								$path = rewrite_path(pathurlencode($albumobj->name).'/'.urlencode($imageobj->filename).IM_SUFFIX,'?album='.pathurlencode($albumobj->name).'&amp;image='.urlencode($imageobj->filename),dynamic_locale::fullHostPath($locale));
 								$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$path."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$imagechangefreq."</changefreq>\n\t\t<priority>0.6</priority>\n");
 								if(GOOGLE_SITEMAP) {
 									$data .= getSitemapGoogleImageVideoExtras($albumobj,$imageobj,$locale);
@@ -615,7 +615,7 @@ function getSitemapImages() {
 							}
 							break;
 						default:
-							$path = FULLWEBPATH.'/'.rewrite_path(pathurlencode($albumobj->name).'/'.urlencode($imageobj->filename).IM_SUFFIX,'?album='.pathurlencode($albumobj->name).'&amp;image='.urlencode($imageobj->filename),false);
+							$path = rewrite_path(pathurlencode($albumobj->name).'/'.urlencode($imageobj->filename).IM_SUFFIX,'?album='.pathurlencode($albumobj->name).'&amp;image='.urlencode($imageobj->filename),FULLWEBPATH);
 							$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$path."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$imagechangefreq."</changefreq>\n\t\t<priority>0.6</priority>\n");
 							if(GOOGLE_SITEMAP) {
 								$data .= getSitemapGoogleImageVideoExtras($albumobj,$imageobj,NULL);
@@ -723,12 +723,12 @@ function getSitemapZenpagePages() {
 							break;
 						case 2:
 							foreach($sitemap_locales as $locale) {
-								$url = FULLWEBPATH.'/'.rewrite_path($locale.'/'._PAGES_.'/'.urlencode($page['titlelink']),'?p=pages&amp;title='.urlencode($page['titlelink']),false);
+								$url = rewrite_path($locale.'/'._PAGES_.'/'.urlencode($page['titlelink']),'?p=pages&amp;title='.urlencode($page['titlelink']),FULLWEBPATH);
 								$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 							}
 							break;
 						default:
-							$url = FULLWEBPATH.'/'.rewrite_path(_PAGES_.'/'.urlencode($page['titlelink']),'?p=pages&amp;title='.urlencode($page['titlelink']),false);
+							$url = rewrite_path(_PAGES_.'/'.urlencode($page['titlelink']),'?p=pages&amp;title='.urlencode($page['titlelink']),FULLWEBPATH);
 							$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 							break;
 					}
@@ -763,12 +763,12 @@ function getSitemapZenpageNewsIndex() {
 				Break;
 			case 2:
 				foreach($sitemap_locales as $locale) {
-					$url = dynamic_locale::fullHostPath($locale).'/'.rewrite_path('news/1','?p=news&amp;page=1',false);
+					$url = rewrite_path('news/1','?p=news&amp;page=1',dynamic_locale::fullHostPath($locale));
 					$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 				}
 				Break;
 				default:
-				$url = FULLWEBPATH.'/'.rewrite_path('news/1','?p=news&amp;page=1',false);
+				$url = rewrite_path('news/1','?p=news&amp;page=1',FULLWEBPATH);
 			$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 			Break;
 		}
@@ -792,12 +792,12 @@ function getSitemapZenpageNewsIndex() {
 						break;
 					case 2:
 						foreach($sitemap_locales as $locale) {
-							$url = dynamic_locale::fullHostPath($locale).'/'.rewrite_path('news/'.$x,'?p=news&amp;page='.$x,false);
+							$url = rewrite_path('news/'.$x,'?p=news&amp;page='.$x,dynamic_locale::fullHostPath($locale));
 							$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 						}
 						break;
 					default:
-						$url = FULLWEBPATH.'/'.rewrite_path('news/'.$x,'?p=news&amp;page='.$x,false);
+						$url =rewrite_path('news/'.$x,'?p=news&amp;page='.$x, FULLWEBPATH);
 					$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 					break;
 				}
@@ -841,12 +841,12 @@ function getSitemapZenpageNewsArticles() {
 							break;
 						case 2:
 							foreach($sitemap_locales as $locale) {
-								$url = dynamic_locale::fullHostPath($locale).'/'.rewrite_path('news/'.urlencode($articleobj->getTitlelink()),'?p=news&amp;title=' . urlencode($articleobj->getTitlelink()),false);
+								$url = rewrite_path('news/'.urlencode($articleobj->getTitlelink()),'?p=news&amp;title=' . urlencode($articleobj->getTitlelink()),dynamic_locale::fullHostPath($locale));
 								$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 							}
 							break;
 						default:
-							$url = FULLWEBPATH.'/'.rewrite_path('news/'.urlencode($articleobj->getTitlelink()),'?p=news&amp;title=' . urlencode($articleobj->getTitlelink()),false);
+							$url = rewrite_path('news/'.urlencode($articleobj->getTitlelink()),'?p=news&amp;title=' . urlencode($articleobj->getTitlelink()),FULLWEBPATH);
 						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 						break;
 					}
@@ -886,12 +886,12 @@ function getSitemapZenpageNewsCategories() {
 							break;
 						case 2:
 							foreach($sitemap_locales as $locale) {
-								$url = dynamic_locale::fullHostPath($locale).'/'.rewrite_path('news/category/'.urlencode($catobj->getTitlelink()).'/1','?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page=1',false);
+								$url = rewrite_path('news/category/'.urlencode($catobj->getTitlelink()).'/1','?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page=1',dynamic_locale::fullHostPath($locale));
 								$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 							}
 							break;
 						default:
-							$url = FULLWEBPATH.'/'.rewrite_path('news/category/'.urlencode($catobj->getTitlelink()).'/1','?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page=1',false);
+							$url = rewrite_path('news/category/'.urlencode($catobj->getTitlelink()).'/1','?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page=1',FULLWEBPATH);
 						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 						break;
 					}
@@ -916,12 +916,12 @@ function getSitemapZenpageNewsCategories() {
 									break;
 								case 2:
 									foreach($sitemap_locales as $locale) {
-										$url = dynamic_locale::fullHostPath($locale).'/'.rewrite_path('news/category/'.urlencode($catobj->getTitlelink()).'/'.$x,'?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page='.$x,false);
+										$url = rewrite_path('news/category/'.urlencode($catobj->getTitlelink()).'/'.$x,'?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page='.$x,dynamic_locale::fullHostPath($locale));
 										$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 									}
 									break;
 								default:
-									$url = FULLWEBPATH.'/'.rewrite_path('news/category/'.urlencode($catobj->getTitlelink()).'/'.$x,'?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page='.$x,false);
+									$url = rewrite_path('news/category/'.urlencode($catobj->getTitlelink()).'/'.$x,'?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page='.$x,FULLWEBPATH);
 								$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 								break;
 							}

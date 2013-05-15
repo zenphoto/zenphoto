@@ -523,7 +523,7 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
  */
 function getCategoryLink() {
 	global $_zp_zenpage;
-	return rewrite_path(_NEWS_.'/'._CATEGORY_.'/'.$this->getTitlelink(), "/index.php?p=news&category=".$this->getTitlelink());
+	return rewrite_path('/'._CATEGORY_.'/'.$this->getTitlelink(), "/index.php?p=news&category=".$this->getTitlelink());
 }
 
 

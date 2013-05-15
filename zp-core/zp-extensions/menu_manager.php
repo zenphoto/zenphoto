@@ -248,7 +248,7 @@ function getItemTitleAndURL($item) {
 				$obj = new ZenpageCategory($item['link']);
 				$title = $obj->getTitle();
 				$protected = $obj->isProtected();
-				$url = rewrite_path('/'._NEWS_.'/'._CATEGORY_.'/'.$item['link'],"/index.php?p=news&amp;category=".$item['link']);
+				$url = rewrite_path('/'._CATEGORY_.'/'.$item['link'],"/index.php?p=news&amp;category=".$item['link']);
 			} else {
 				$valid = false;
 				$url = '';

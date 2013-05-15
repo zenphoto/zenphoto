@@ -729,9 +729,9 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	*/
 	function getNewsCategoryPath($category,$page=NULL) {
 		if ($page) {
-			return rewrite_path('/'._NEWS_.'/'._CATEGORY_.'/'.$category.'/'.$page,"/index.php?p=news&category=$category&page=$page");
+			return rewrite_path('/'._CATEGORY_.'/'.$category.'/'.$page,"/index.php?p=news&category=$category&page=$page");
 		} else {
-			return rewrite_path('/'._NEWS_.'/'._CATEGORY_.'/'.$category,"/index.php?p=news&category=$category");
+			return rewrite_path('/'._CATEGORY_.'/'.$category,"/index.php?p=news&category=$category");
 		}
 	}
 
@@ -741,10 +741,10 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	* @return string
 	*/
 	function getNewsArchivePath($date, $page=NULL) {
-		if ($page) {
-			return rewrite_path('/'._NEWS_.'/'._NEWS_ARCHIVE_.'/'.$page,"/index.php?p=news&date=$date&page=$page");
+		if ($page>1) {
+			return rewrite_path('/'._NEWS_ARCHIVE_.'/'.$date.'/'.$page,"/index.php?p=news&date=$date&page=$page");
 		} else {
-			return rewrite_path('/'._NEWS_.'/'._NEWS_ARCHIVE_.'/'.$date,"/index.php?p=news&date=$date");
+			return rewrite_path('/'._NEWS_ARCHIVE_.'/'.$date,"/index.php?p=news&date=$date");
 		}
 	}
 

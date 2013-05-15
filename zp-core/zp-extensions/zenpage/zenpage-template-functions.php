@@ -1100,9 +1100,9 @@ function printNewsArchive($class='archive', $yearclass='year', $monthclass='mont
 			$active = "";
 		}
 		if($yearsonly) {
-			echo "<li $active><a href=\"".html_encode(getNewsArchivePath($key))."\" title=\"".$key." (".$val.")\" rel=\"nofollow\">$key ($val)</a></li>\n";
+			echo "<li $active><a href=\"".html_encode(getNewsArchivePath($key,1))."\" title=\"".$key." (".$val.")\" rel=\"nofollow\">$key ($val)</a></li>\n";
 		} else {
-			echo "<li $active><a href=\"".html_encode(getNewsArchivePath(substr($key,0,7)))."\" title=\"".$month." (".$val.")\" rel=\"nofollow\">$month ($val)</a></li>\n";
+			echo "<li $active><a href=\"".html_encode(getNewsArchivePath(substr($key,0,7),1))."\" title=\"".$month." (".$val.")\" rel=\"nofollow\">$month ($val)</a></li>\n";
 		}
 	}
 	if($yearsonly) {
@@ -1377,7 +1377,7 @@ function getNewsCategoryURL($catlink='') {
 	} else {
 		$titlelink = $catlink;
 	}
-	return $_zp_zenpage->getNewsCategoryPath($titlelink);
+	return $_zp_zenpage->getNewsCategoryPath($titlelink, 1);
 }
 
 
