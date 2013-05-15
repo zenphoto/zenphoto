@@ -87,7 +87,7 @@ function jplayermacro($macros) {
 														'class'=>'expression',
 														'regex'=>'/^(.*)\s(.*)$/',
 														'value'=>'getMacrojplayer($1,$2);',
-														'desc'=>gettext('MEDIAPLAYER macro - enabled by jPlayer')
+														'desc'=>gettext('%1 = path to media file, %2 = unique value if you have multiple players on one page, otherwise just any random number will do. (Setup by the jPlayer plugin)')
 													);
 	return $macros;
 }
