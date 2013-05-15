@@ -780,20 +780,10 @@ font-size: 0.8em;
 
 #pagetext {
 font-size: 12px;
-
 margin-bottom: 1em;
 min-height: 300px;
 }
-#pagetext p {
-}
-#pagetext ul {
-	margin-left: 1em;
-	margin-bottom: 0.5em;
-}
-#pagetext ul li {
-	margin-left: 1em;
-	margin-bottom: 0.5em;
-}
+
 #pagetext a:link, a:active, a:visited {
 text-decoration:underline;
 }

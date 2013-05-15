@@ -1060,14 +1060,14 @@ margin-bottom: 1em;
 #pagetext p {
 	line-height: 1em;
 }
-#pagetext ul {
+ul {
 	margin-left: 1em;
-	margin-bottom: 0.5em;
+	margin-bottom: 0.8em;
 }
-#pagetext ul li {
+ul li {
 	margin-left: 1em;
-	margin-bottom: 0.5em;
 }
+
 #pagetext a:link, a:active, a:visited {
 text-decoration:underline;
 }
