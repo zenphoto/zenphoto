@@ -290,7 +290,7 @@ class ZenpagePage extends ZenpageItems {
  	*/
 	function getPageLink() {
 		global $_zp_zenpage;
-		return $_zp_zenpage->getPagesLinkPath().urlencode($this->getTitlelink());
+		return $_zp_zenpage->getPagesLinkPath($this->getTitlelink());
 	}
 
 }

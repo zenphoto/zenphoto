@@ -183,8 +183,9 @@ class Zenpage {
 	*
 	* @return string
 	*/
-	function getPagesLinkPath() {
-		return rewrite_path(_PAGES_.'/', "/index.php?p=pages&title=");
+	function getPagesLinkPath($title) {
+		//FIXME: this function should have the title passed as a parameter not appended (or maybe really not appended)
+		return rewrite_path(_PAGES_.'/'.$title, "/index.php?p=pages&title=$title");
 	}
 
 	/************************************/
@@ -739,10 +740,10 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	*
 	* @return string
 	*/
-	function getNewsCategoryPath() {
+	function getNewsCategoryPath($category) {
 		//FIXME: this function should really be designed to provide a complete path for what you are actually
-		//trying to link to.
-		return rewrite_path('/'._CATEGORY_.'/',"&category=",false);
+		//trying to link to. E.G. Why was there not a parameter passed for the category at least?
+		return rewrite_path('/'._CATEGORY_.'/'.$category,"&category=$category",false);
 	}
 
 	/**
@@ -750,10 +751,10 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	*
 	* @return string
 	*/
-	function getNewsArchivePath() {
+	function getNewsArchivePath($date) {
 		//FIXME: this function should really be designed to provide a complete path for what you are actually
 		//trying to link to.
-		return rewrite_path('/'._NEWS_ARCHIVE_.'/',"&date=",false);
+		return rewrite_path('/'._NEWS_ARCHIVE_.'/'.$date,"&date=".$date,false);
 	}
 
 
@@ -762,10 +763,10 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	*
 	* @return string
 	*/
-	function getNewsTitlePath() {
+	function getNewsTitlePath($title) {
 		//FIXME: This function should not exist. Path building functions should be complete and understandable
 		//with just one call on rewrite_path()
-		return rewrite_path("/","&title=",false);
+		return rewrite_path("/$title","&title=$title",false);
 	}
 
 
@@ -774,10 +775,10 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	*
 	* @return string
 	*/
-	function getNewsPagePath() {
+	function getNewsPagePath($page) {
 		//FIXME: This function should not exist. Path building functions should be complete and understandable
 		//with just one call on rewrite_path()
-		return rewrite_path("/","&page=",false);
+		return rewrite_path("/$page","&page=$page",false);
 	}
 
 

@@ -1102,9 +1102,9 @@ function printNewsArchive($class='archive', $yearclass='year', $monthclass='mont
 			$active = "";
 		}
 		if($yearsonly) {
-			echo "<li $active><a href=\"".html_encode(getNewsBaseURL().getNewsArchivePath()).$key."\" title=\"".$key." (".$val.")\" rel=\"nofollow\">$key ($val)</a></li>\n";
+			echo "<li $active><a href=\"".html_encode(getNewsBaseURL().getNewsArchivePath($key))."\" title=\"".$key." (".$val.")\" rel=\"nofollow\">$key ($val)</a></li>\n";
 		} else {
-			echo "<li $active><a href=\"".html_encode(getNewsBaseURL().getNewsArchivePath()).substr($key,0,7)."\" title=\"".$month." (".$val.")\" rel=\"nofollow\">$month ($val)</a></li>\n";
+			echo "<li $active><a href=\"".html_encode(getNewsBaseURL().getNewsArchivePath(substr($key,0,7)))."\" title=\"".$month." (".$val.")\" rel=\"nofollow\">$month ($val)</a></li>\n";
 		}
 	}
 	if($yearsonly) {
@@ -1381,7 +1381,7 @@ function getNewsCategoryURL($catlink='') {
 	} else {
 		$titlelink = $catlink;
 	}
-	return $_zp_zenpage->getNewsBaseURL().$_zp_zenpage->getNewsCategoryPath().$titlelink;
+	return $_zp_zenpage->getNewsBaseURL().$_zp_zenpage->getNewsCategoryPath($titlelink);
 }
 
 
@@ -1466,11 +1466,11 @@ function getNewsBaseURL() {
  *
  * @return string
  */
-function getNewsCategoryPath() {
+function getNewsCategoryPath($category) {
 	//FIXME: this function should really be designed to provide a complete path for what you are actually
 	//trying to link to.
 	global $_zp_zenpage;
-	return $_zp_zenpage->getNewsCategoryPath();
+	return $_zp_zenpage->getNewsCategoryPath($category);
 }
 
 /**
@@ -1478,11 +1478,11 @@ function getNewsCategoryPath() {
  *
  * @return string
  */
-function getNewsArchivePath() {
+function getNewsArchivePath($date) {
 	//FIXME: this function should really be designed to provide a complete path for what you are actually
 	//trying to link to.
 	global $_zp_zenpage;
-	return $_zp_zenpage->getNewsArchivePath();
+	return $_zp_zenpage->getNewsArchivePath($date);
 }
 
 
@@ -1491,11 +1491,11 @@ function getNewsArchivePath() {
  *
  * @return string
  */
-function getNewsTitlePath() {
+function getNewsTitlePath($title) {
 	//FIXME: This function should not exist. Path building functions should be complete and understandable
 	//with just one call on rewrite_path()
 	global $_zp_zenpage;
-	return $_zp_zenpage->getNewsTitlePath();
+	return $_zp_zenpage->getNewsTitlePath($title);
 }
 
 
@@ -1504,11 +1504,11 @@ function getNewsTitlePath() {
  *
  * @return string
  */
-function getNewsPagePath() {
+function getNewsPagePath($page) {
 	//FIXME: This function should not exist. Path building functions should be complete and understandable
 	//with just one call on rewrite_path()
 	global $_zp_zenpage;
-	return $_zp_zenpage->getNewsPagePath();
+	return $_zp_zenpage->getNewsPagePath($page);
 }
 
 
@@ -1527,7 +1527,7 @@ function getNewsURL($titlelink='') {
 	if(empty($titlelink)) {
 		return $_zp_current_zenpage_news->getNewsLink();
 	} else {
-		return getNewsBaseURL().getNewsTitlePath().$titlelink;
+		return getNewsBaseURL().getNewsTitlePath($titlelink);
 	}
 }
 
@@ -1559,7 +1559,7 @@ function getNewsCategoryPathNav() {
 	//endode the titlelink (change made)--Verify that anyone who outputs this text does properly encode it
 	global $_zp_current_category;
 	if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
-		return getNewsCategoryPath().$_zp_current_category->getTitlelink();
+		return getNewsCategoryPath($_zp_current_category->getTitlelink());
 	}
 	return false;
 }
@@ -1575,7 +1575,7 @@ function getNewsArchivePathNav() {
 
 	global $_zp_post_date;
 	if (in_context(ZP_ZENPAGE_NEWS_DATE)) {
-		return getNewsArchivePath().$_zp_post_date;
+		return getNewsArchivePath($_zp_post_date);
 	}
 	return false;
 }
@@ -1600,12 +1600,12 @@ function getPrevNewsPageURL() {
 	if($_zp_page != 1) {
 		if($_zp_page == 2) {
 			if(is_NewsCategory()) {
-				return getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath()."1";
+				return getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath(1);
 			} else {
 				return getNewsIndexURL();
 			}
 		} else {
-			return getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath().($_zp_page - 1);
+			return getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath($_zp_page - 1);
 		}
 	} else {
 		return false;
@@ -1641,7 +1641,7 @@ function getNextNewsPageURL() {
 	global $_zp_zenpage, $_zp_page;
 	$total_pages = ceil($_zp_zenpage->getTotalArticles() / ZP_ARTICLES_PER_PAGE);
 	if ($_zp_page != $total_pages) {
-		return getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath().($_zp_page + 1);
+		return getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath($_zp_page + 1);
 	} else {
 		return false;
 	}
@@ -1718,14 +1718,14 @@ function printNewsPageListWithNav($next,$prev,$nextprev=true, $class='pagelist',
 				if($_zp_zenpage->news_on_index) {
 					echo "<a href='".html_encode(getNewsIndexURL())."' title='".gettext("Page")." 1'>1</a>";
 				} else {
-					echo "<a href='".getNewsBaseURL().html_encode(getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath())."1' title='".gettext("Page")." 1'>1</a>";
+					echo "<a href='".getNewsBaseURL().html_encode(getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath(1))." title='".gettext("Page")." 1'>1</a>";
 				}
 			}
 			echo "</li>\n";
 			if ($j>2) {
 				echo "<li>";
 				$linktext = ($j-1>2)?'...':$k1;
-				echo "<a href=\"".getNewsBaseURL().html_encode(getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath()).$k1."\" title=\"".sprintf(ngettext('Page %u','Page %u',$k1),$k1)."\">".$linktext."</a>";
+				echo "<a href=\"".getNewsBaseURL().html_encode(getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath($k1))."\" title=\"".sprintf(ngettext('Page %u','Page %u',$k1),$k1)."\">".$linktext."</a>";
 				echo "</li>\n";
 			}
 		}
@@ -1734,14 +1734,14 @@ function printNewsPageListWithNav($next,$prev,$nextprev=true, $class='pagelist',
 			if ($i == $_zp_page) {
 				echo $i;
 			} else {
-				echo "<a href='".getNewsBaseURL().html_encode(getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath()).$i."' title='".sprintf(ngettext('Page %1$u','Page %1$u', $i),$i)."'>".$i."</a>";
+				echo "<a href='".getNewsBaseURL().html_encode(getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath($i))."' title='".sprintf(ngettext('Page %1$u','Page %1$u', $i),$i)."'>".$i."</a>";
 			}
 			echo "</li>\n";
 		}
 		if ($i < $total) {
 			echo "<li>";
 			$linktext = ($total-$i>1)?'...':$k2;
-			echo "<a href='".getNewsBaseURL().html_encode(getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath()).$k2."' title='".sprintf(ngettext('Page %u','Page %u',$k2),$k2)."'>".$linktext."</a>";
+			echo "<a href='".getNewsBaseURL().html_encode(getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath($k2))."' title='".sprintf(ngettext('Page %u','Page %u',$k2),$k2)."'>".$linktext."</a>";
 			echo "</li>\n";
 		}
 		if ($firstlast && $i <= $total) {
@@ -1749,7 +1749,7 @@ function printNewsPageListWithNav($next,$prev,$nextprev=true, $class='pagelist',
 			if($_zp_page == $total) {
 				echo $total;
 			} else {
-				echo "<a href=\"".getNewsBaseURL().html_encode(getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath()).$total."\" title=\"".sprintf(ngettext('Page {%u}','Page {%u}',$total),$total)."\">".$total."</a>";
+				echo "<a href=\"".getNewsBaseURL().html_encode(getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath($total))."\" title=\"".sprintf(ngettext('Page {%u}','Page {%u}',$total),$total)."\">".$total."</a>";
 			}
 			echo "</li>\n";
 		}
@@ -2760,9 +2760,9 @@ function getPageSortorder() {
  *
  * @return string
  */
-function getPageLinkPath() {
+function getPageLinkPath($title) {
 	global $_zp_zenpage;
-	return $_zp_zenpage->getPagesLinkPath();
+	return $_zp_zenpage->getPagesLinkPath($title);
 }
 
 
@@ -2776,7 +2776,7 @@ function getPageLinkURL($titlelink='') {
 	if(empty($titlelink)) {
 		return $_zp_current_zenpage_page->getPageLink();
 	} else {
-		return getPageLinkPath().$titlelink;
+		return getPageLinkPath($titlelink);
 	}
 }
 

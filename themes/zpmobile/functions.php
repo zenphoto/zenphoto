@@ -59,7 +59,7 @@ function jqm_printMainHeaderNav() {
 				<li><a href="<?php echo getGalleryIndexURL(); ?>"><?php echo gettext('Gallery'); ?></a></li>
 				<?php if(getOption('zp_plugin_zenpage')) { ?>
 					<li><a href="<?php echo getNewsIndexURL(); ?>"><?php echo gettext('News'); ?></a></li>
-					<li><a href="<?php echo $_zp_zenpage->getPagesLinkPath(); ?>"><?php echo gettext('Pages'); ?></a></li>
+					<li><a href="<?php echo $_zp_zenpage->getPagesLinkPath(''); ?>"><?php echo gettext('Pages'); ?></a></li>
 				<?php } ?>
 				<li><a href="<?php echo getCustomPageURL('archive'); ?>"><?php echo gettext('Archive'); ?></a></li>
 			</ul>
