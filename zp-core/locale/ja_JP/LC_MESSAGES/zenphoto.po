@@ -1264,9 +1264,8 @@ msgstr ""
 "アドレスとして使用されます。"
 
 #: zp-core/admin-options.php:888
-#, fuzzy
 msgid "Comments per page:"
-msgstr "ページごとのコメント数"
+msgstr "ページ毎のコメント:"
 
 #: zp-core/admin-options.php:890
 msgid "Users per page:"
@@ -2893,9 +2892,8 @@ msgid "Recommended Exposure Index"
 msgstr ""
 
 #: zp-core/exif/exif.php:508
-#, fuzzy
 msgid "ISO Speed"
-msgstr "スピード"
+msgstr "ISOスピード"
 
 #: zp-core/exif/exif.php:509
 msgid "Standard Output Sensitivity and Recommended Exposure Index"
@@ -3820,7 +3818,7 @@ msgstr "不正な画像のインスタンス化: ファイルは存在しませ�
 
 #: zp-core/class-image.php:197
 msgid "An image object was instantiated without using the newImage() function."
-msgstr ""
+msgstr "画像オブジェクトは newImage() 関数を使用しないでインスタンス化されました。"
 
 #: zp-core/admin-tags.php:33
 msgid "New tags added"
@@ -4100,7 +4098,7 @@ msgstr "ユーザ「%s」はすでに存在します。"
 
 #: zp-core/class-album.php:69
 msgid "An album object was instantiated without using the newAlbum() function."
-msgstr ""
+msgstr "アルバムオブジェクトは newAlbum() 関数を使用しないでインスタンス化されました。"
 
 #: zp-core/class-album.php:666
 msgid "Invalid album instantiation: No album name"
@@ -4296,7 +4294,7 @@ msgstr "Zenphotoバージョン<strong>%1$s [%2$s] (%3$s)</strong>"
 #: zp-core/admin.php:258
 #, php-format
 msgid "Preview the release notes for Zenphoto %s"
-msgstr ""
+msgstr "Zenphoto %s のリリースノートをプレビューします"
 
 #: zp-core/admin.php:270
 #, php-format
@@ -4433,19 +4431,19 @@ msgstr "管理"
 
 #: zp-core/admin.php:529
 msgid "Setup » restore scripts"
-msgstr ""
+msgstr "セットアップ » スクリプトを復元"
 
 #: zp-core/admin.php:534
 msgid "Restores setup files so setup can be run."
-msgstr ""
+msgstr "セットアップが実行できるようにセットアップファイルを復元します。"
 
 #: zp-core/admin.php:543
 msgid "Setup » protect scripts"
-msgstr ""
+msgstr "セットアップ » スクリプトを保護"
 
 #: zp-core/admin.php:548
 msgid "Protects setup files so setup cannot be run."
-msgstr ""
+msgstr "セットアップが実行できないようにセットアップファイルを保護します。"
 
 #: zp-core/admin.php:556
 msgid "Utility functions"
@@ -4660,11 +4658,11 @@ msgstr "複製"
 
 #: zp-core/lib-GD.php:27
 msgid "GD TypeFace path"
-msgstr ""
+msgstr "GD TypeFaceのパス"
 
 #: zp-core/lib-GD.php:28
 msgid "Supply the full path to your TrueType fonts."
-msgstr ""
+msgstr "TrueTypeフォントへのフルパスを記入します。"
 
 #: zp-core/lib-GD.php:37
 msgid "The <strong><em>GD</em></strong> extension is not available."
@@ -8484,13 +8482,13 @@ msgstr ""
 
 #: zp-core/setup/index.php:1377
 msgid "Server seems to be <em>nginx</em>"
-msgstr ""
+msgstr "サーバーは<em>nginx</em>に見えます"
 
 #: zp-core/setup/index.php:1379
 msgid ""
 "If you wish to create cruft-free URLs, you will need to configuring <em>URL "
 "rewriting for NGINX servers</em>."
-msgstr ""
+msgstr "クラフトフリーなURLを作成したい場合、<em>NGINXサーバー用のURL書き換え</em>を構成する必要があります。"
 
 #: zp-core/setup/index.php:1384
 #, fuzzy
@@ -9010,7 +9008,7 @@ msgstr ""
 
 #: zp-core/functions.php:2136
 msgid "Prints the current page number."
-msgstr ""
+msgstr "現在のページ番号を表示します。"
 
 #: zp-core/functions.php:2137
 #, fuzzy
@@ -10073,11 +10071,11 @@ msgstr "テーブルプレフィックス: プレフィックス無し"
 
 #: zp-core/utilities/database_reference.php:211
 msgid "Key"
-msgstr ""
+msgstr "キー"
 
 #: zp-core/utilities/database_reference.php:214
 msgid "Column"
-msgstr ""
+msgstr "列"
 
 #: zp-core/utilities/backup_restore.php:24
 msgid "Backup/Restore"
@@ -10977,7 +10975,7 @@ msgstr "ファイルタブ"
 
 #: zp-core/zp-extensions/elFinder.php:53
 msgid "Use as the upload <em>files</em> subtab."
-msgstr ""
+msgstr "<em>ファイル</em>をアップロードするサブタブとして使用します。"
 
 #: zp-core/zp-extensions/elFinder.php:54
 msgid "TinyMCE plugin"
@@ -11244,7 +11242,7 @@ msgstr "チェックした場合、ログイン回数を記録します。"
 
 #: zp-core/zp-extensions/security-logger.php:68
 msgid "Record failed admin access"
-msgstr ""
+msgstr "管理者アクセスの失敗を記録"
 
 #: zp-core/zp-extensions/security-logger.php:69
 #: zp-core/zp-extensions/security-logger.php:72
@@ -11257,7 +11255,7 @@ msgstr "ユーザーのみ"
 
 #: zp-core/zp-extensions/security-logger.php:70
 msgid "Record admin page access failures."
-msgstr ""
+msgstr "管理ページのアクセスの失敗を記録します。"
 
 #: zp-core/zp-extensions/security-logger.php:71
 msgid "Record logon"
@@ -12572,9 +12570,8 @@ msgid ""
 msgstr ""
 
 #: zp-core/zp-extensions/rewriteTokens.php:43
-#, fuzzy
 msgid "rewriteTokens restored to default"
-msgstr "デフォルトにリセット"
+msgstr "rewriteTokensをデフォルトに復元しました"
 
 #: zp-core/zp-extensions/rewriteTokens.php:57
 #: zp-core/zp-extensions/rewriteTokens.php:98
@@ -15340,7 +15337,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/deprecated-functions.php:1158
 msgid "use printLatestComments($number, $shorten, $type, $itemID, $id);"
-msgstr ""
+msgstr "printLatestComments($number, $shorten, $type, $itemID, $id);を使用します"
 
 #: zp-core/zp-extensions/deprecated-functions.php:1168
 msgid "use $_zp_captcha->getCaptcha() and format the results as desired."
@@ -15366,17 +15363,17 @@ msgstr "printField()は不完全な関数呼び出しであり、オブジェク
 
 #: zp-core/zp-extensions/deprecated-functions.php:1241
 msgid "use getRSSLink($option,$lang,$categorylink)."
-msgstr ""
+msgstr "getRSSLink($option,$lang,$categorylink)を使用します。"
 
 #: zp-core/zp-extensions/deprecated-functions.php:1249
 msgid ""
 "use printRSSLink($option, $prev, $linktext, $next, $printIcon, $class, "
 "$lang, categoryLink)."
-msgstr ""
+msgstr "printRSSLink($option, $prev, $linktext, $next, $printIcon, $class, $lang, categoryLink)を使用します。"
 
 #: zp-core/zp-extensions/deprecated-functions.php:1257
 msgid "use printRSSHeaderLink($option, $linktext, $lang, $categorylink)."
-msgstr ""
+msgstr "printRSSHeaderLink($option, $linktext, $lang, $categorylink)を使用します。"
 
 #: zp-core/zp-extensions/deprecated-functions.php:1266
 msgid ""
@@ -18050,9 +18047,8 @@ msgstr ""
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:20
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:21
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:153
-#, fuzzy
 msgid "Cache stored images"
-msgstr "画像をキャッシュ"
+msgstr "格納した画像をキャッシュ"
 
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:39
 msgid ""
@@ -18064,7 +18060,7 @@ msgstr ""
 msgid ""
 "If an image processor URI is discovered it will be converted to a cache file "
 "URI."
-msgstr ""
+msgstr "画像プロセッサーのURIが見つかった場合、キャッシュファイルのURIへ変換をします。"
 
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:41
 msgid ""
@@ -18606,7 +18602,7 @@ msgstr "Zenphoto <em>RSS</em>ハンドラです。"
 
 #: zp-core/zp-extensions/rss.php:14
 msgid "This plugin must be enabled to supply <em>RSS</em> feeds."
-msgstr ""
+msgstr "このプラグインは<em>RSS</em>フィードを提供するために有効にする必要があります。"
 
 #: zp-core/zp-extensions/rss.php:14
 msgid "<strong>Note:</strong> Theme support is required to display RSS links."
@@ -20142,7 +20138,7 @@ msgstr "jPlayerは有効ではありません。%sがすでにインスタンス
 
 #: zp-core/zp-extensions/jplayer.php:90
 msgid "MEDIAPLAYER macro - enabled by jPlayer"
-msgstr ""
+msgstr "MEDIAPLAYERマクロ - jPlayerで有効"
 
 #: zp-core/zp-extensions/jplayer.php:127
 msgid "Autoplay"
@@ -21118,7 +21114,7 @@ msgstr "ギャラリーページにログインしていないようにユーザ
 
 #: zp-core/zp-extensions/macroList.php:50
 msgid "View available <code>content macros</code>."
-msgstr ""
+msgstr "利用可能な<code>コンテンツマクロ</code>を閲覧します。"
 
 #: zp-core/zp-extensions/macroList.php:58
 #: zp-core/zp-extensions/macroList.php:59
@@ -21197,7 +21193,7 @@ msgstr "ランダム画像"
 
 #: zp-core/class-feed.php:452
 msgid "Bad "
-msgstr ""
+msgstr "Bad"
 
 #: themes/stopdesign/favorites.php:57 themes/stopdesign/favorites.php:59
 #: themes/stopdesign/gallery.php:40 themes/stopdesign/gallery.php:42
