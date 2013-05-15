@@ -720,7 +720,7 @@ color: #60A5DA; /*disabled next/prev in single image view*/
 .checkbox {
 cursor: pointer;
 }
-.pushbutton {
+.button {
 cursor: pointer;
 padding: 5px 10px;
 }
@@ -817,7 +817,7 @@ color: #fff;
 	margin-top: 26px;
 	_margin-top: 24px; /* IE Only */
 }
-#search input.pushbutton {
+#search input.button {
 	padding: 1px;
 	font-size: 80%;
 }

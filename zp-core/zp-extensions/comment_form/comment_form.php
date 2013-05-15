@@ -122,5 +122,5 @@
 							}
 							?>
 						<textarea name="comment" rows="6" cols="42" class="textarea_inputbox"><?php echo $stored['comment']; echo $disabled['comment']; ?></textarea>
-						<input type="submit" class="pushbutton"  value="<?php echo gettext('Add Comment'); ?>" />
+						<input type="submit" class="button buttons"  value="<?php echo gettext('Add Comment'); ?>" />
 					</form>

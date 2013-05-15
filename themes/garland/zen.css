@@ -494,7 +494,7 @@ textarea {
 .checkbox {
 	cursor: pointer;
 }
-.pushbutton {
+.button {
 	cursor: pointer;
 	padding: 5px 10px;
 }
@@ -557,13 +557,13 @@ label:hover {
 	margin-top: 26px;
 	_margin-top: 24px; /* IE Only */
 }
-#search input.pushbutton {
+#search input.button {
   padding: 1px;
   font-size: 80%;
 	text-decoration:none;
 	outline: none
 }
-#search input.pushbutton {
+#search input.button {
   padding: 1px;
   font-size: 80%;
 	text-decoration:none;
@@ -606,13 +606,13 @@ position: relative;
 top: 6px;
 }
 
-.pushbutton{
+.button{
 	cursor: pointer;
 	margin:0;padding:0;
 	text-decoration:none;
 	outline: none
 }
-.pushbutton:visited {
+.button:visited {
 	text-decoration: none;
 	border:none;
 	outline: none
@@ -1116,7 +1116,7 @@ width: 20% !important;
 margin-left: 10px;
 }
 
-input.pushbutton {
+input.button {
 padding: 5px 8px 5px 8px!important;
 margin: 5px 0 0 0;
 }

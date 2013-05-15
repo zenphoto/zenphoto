@@ -422,7 +422,7 @@ textarea {
 .checkbox {
 	cursor: pointer;
 }
-.pushbutton {
+.button {
 	cursor: pointer;
 	padding: 5px 10px;
 }
@@ -470,7 +470,7 @@ label:hover {
 	padding:0;
 	background: #222;
 }
-#search input.pushbutton {
+#search input.button {
 	padding: 1px;
 	font-size: 80%;
 }
@@ -673,7 +673,7 @@ width: 20% !important;
 margin-left: 10px;
 }
 
-input.pushbutton {
+input.button {
 padding: 5px 8px 5px 8px!important;
 margin: 5px 0 0 0;
 }

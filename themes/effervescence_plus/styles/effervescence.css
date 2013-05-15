@@ -683,7 +683,7 @@ ul.pagelist li.next {
 .checkbox {
 	cursor: pointer;
 }
-.pushbutton {
+.button {
 	cursor: pointer;
 	padding: 5px 10px;
 }
@@ -788,7 +788,7 @@ text-decoration:underline;
 	margin-top: 26px;
 	_margin-top: 24px; /* IE Only */
 }
-#search input.pushbutton {
+#search input.button {
 	padding: 1px;
 	font-size: 80%;
 }

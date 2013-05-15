@@ -750,11 +750,11 @@ function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=t
 							if (hide) {
 								$('div.comment').hide();
 								$('.Pagination').hide();
-								$('#comment_toggle').html('<button type="button" onclick="javascript:toggleComments(false);"><?php echo gettext('show comments');?></button>');
+								$('#comment_toggle').html('<button class="button buttons" onclick="javascript:toggleComments(false);"><?php echo gettext('show comments');?></button>');
 							} else {
 								$('div.comment').show();
 								$('.Pagination').show();
-								$('#comment_toggle').html('<button type="button" onclick="javascript:toggleComments(true);"><?php echo gettext('hide comments');?></button>');
+								$('#comment_toggle').html('<button class="button buttons" onclick="javascript:toggleComments(true);"><?php echo gettext('hide comments');?></button>');
 							}
 						}
 						$(document).ready(function() {

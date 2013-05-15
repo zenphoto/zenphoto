@@ -67,7 +67,7 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 		}
 		?>
 		<div style="text-align:right"><?php echo gettext('*Required'); ?></div>
-		<input type="submit" value="<?php echo gettext('Submit') ?>" />
+		<input type="submit" class="button buttons" value="<?php echo gettext('Submit') ?>" />
 		<?php
 		if (class_exists('federated_logon')) {
 

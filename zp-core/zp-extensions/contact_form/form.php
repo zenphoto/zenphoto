@@ -84,8 +84,8 @@
 		?>
 		<p>
 			<label for="code"><?php echo gettext("Enter CAPTCHA<strong>*</strong>:"); ?></label>
-			<?php 
-				if (isset($captcha['html'])) echo $captcha['html']; 
+			<?php
+				if (isset($captcha['html'])) echo $captcha['html'];
 				if (isset($captcha['input'])) echo $captcha['input'];
 				if (isset($captcha['hidden'])) echo $captcha['hidden'];
 				?>
@@ -105,8 +105,8 @@
 		<?php } ?>
 		<?php if (!$_processing_post) { ?>
 		<p>
-			<input type="submit" value="<?php echo gettext("Send e-mail"); ?>" />
-			<input type="reset" value="<?php echo gettext("Reset"); ?>" />
+			<input type="submit" class="button buttons" value="<?php echo gettext("Send e-mail"); ?>" />
+			<input type="reset" class="button buttons" value="<?php echo gettext("Reset"); ?>" />
 		<p>
 		<?php } ?>
 </form>

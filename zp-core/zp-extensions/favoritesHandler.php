@@ -384,10 +384,10 @@ if (!OFFSET_PATH) {
 				action="<?php echo html_encode(getRequestURI()); ?>" method="post"
 				accept-charset="UTF-8">
 				<input type="hidden" name="addToFavorites" value="<?php echo $v; ?>" />
-				<input type="hidden" name="type"
-					value="<?php echo html_encode($table); ?>" /> <input type="hidden"
-					name="id" value="<?php echo html_encode($id); ?>" /> <span
-					id="submit_button"> <input type="submit" value="<?php echo $add; ?>" />
+				<input type="hidden" name="type" value="<?php echo html_encode($table); ?>" />
+				<input type="hidden" name="id" value="<?php echo html_encode($id); ?>" />
+				<span id="submit_button">
+					<input type="submit" class="button buttons" value="<?php echo $add; ?>" />
 				</span>
 			</form>
 			<?php
