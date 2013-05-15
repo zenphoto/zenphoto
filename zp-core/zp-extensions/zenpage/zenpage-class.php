@@ -184,7 +184,6 @@ class Zenpage {
 	* @return string
 	*/
 	function getPagesLinkPath($title) {
-		//FIXME: this function should have the title passed as a parameter not appended (or maybe really not appended)
 		return rewrite_path(_PAGES_.'/'.$title, "/index.php?p=pages&title=$title");
 	}
 
@@ -724,26 +723,16 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 
 
 	/**
-	* Returns the base /news or index.php?p=news url
-	*
-	* @return string
-	*/
-	function getNewsBaseURL() {
-		//FIXME: This function should be eleminated and instead the functions that are using it should build
-		//easily understood and modified links using just one call to rewrite_path()
-		return rewrite_path(_NEWS_, "/index.php?p=news");
-	}
-
-
-	/**
 	* Returns partial path of news category
 	*
 	* @return string
 	*/
-	function getNewsCategoryPath($category) {
-		//FIXME: this function should really be designed to provide a complete path for what you are actually
-		//trying to link to. E.G. Why was there not a parameter passed for the category at least?
-		return rewrite_path('/'._CATEGORY_.'/'.$category,"&category=$category",false);
+	function getNewsCategoryPath($category,$page=NULL) {
+		if ($page) {
+			return rewrite_path('/'._NEWS_.'/'._CATEGORY_.'/'.$category.'/'.$page,"/index.php?p=news&category=$category&page=$page");
+		} else {
+			return rewrite_path('/'._NEWS_.'/'._CATEGORY_.'/'.$category,"/index.php?p=news&category=$category");
+		}
 	}
 
 	/**
@@ -751,10 +740,12 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	*
 	* @return string
 	*/
-	function getNewsArchivePath($date) {
-		//FIXME: this function should really be designed to provide a complete path for what you are actually
-		//trying to link to.
-		return rewrite_path('/'._NEWS_ARCHIVE_.'/'.$date,"&date=".$date,false);
+	function getNewsArchivePath($date, $page=NULL) {
+		if ($page) {
+			return rewrite_path('/'._NEWS_.'/'._NEWS_ARCHIVE_.'/'.$page,"/index.php?p=news&date=$date&page=$page");
+		} else {
+			return rewrite_path('/'._NEWS_.'/'._NEWS_ARCHIVE_.'/'.$date,"/index.php?p=news&date=$date");
+		}
 	}
 
 
@@ -764,23 +755,8 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	* @return string
 	*/
 	function getNewsTitlePath($title) {
-		//FIXME: This function should not exist. Path building functions should be complete and understandable
-		//with just one call on rewrite_path()
-		return rewrite_path("/$title","&title=$title",false);
+		return rewrite_path('/'._NEWS_."/$title","/index.php?p=news&title=$title");
 	}
-
-
-	/**
-	* Returns partial path of a news page number path
-	*
-	* @return string
-	*/
-	function getNewsPagePath($page) {
-		//FIXME: This function should not exist. Path building functions should be complete and understandable
-		//with just one call on rewrite_path()
-		return rewrite_path("/$page","&page=$page",false);
-	}
-
 
 	/************************************/
 	/* general news category functions  */
