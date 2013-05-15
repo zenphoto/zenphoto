@@ -7574,9 +7574,9 @@ msgid "<em>%s</em> security"
 msgstr "<em>%s</em> セキュリティ"
 
 #: zp-core/setup/index.php:555
-#, fuzzy, php-format
+#, php-format
 msgid "<em>%s</em> security [is compromised]"
-msgstr "ログセキュリティ 【妥協(is compromised)】"
+msgstr "<em>%s</em>セキュリティ 【危険(is compromised)】"
 
 #: zp-core/setup/index.php:556
 #, fuzzy, php-format
@@ -7925,14 +7925,14 @@ msgstr ""
 "クをサポートしていることを確実にしてください。"
 
 #: zp-core/setup/index.php:725
-#, fuzzy, php-format
+#, php-format
 msgid "<em>%1$s</em> file"
-msgstr "<em>%1$s</em> フォルダ%2$s"
+msgstr "<em>%1$s</em> ファイル"
 
 #: zp-core/setup/index.php:725
-#, fuzzy, php-format
+#, php-format
 msgid "<em>%1$s</em> file [does not exist]"
-msgstr "<em>zenphoto.cfg</em>ファイル 【存在しません】"
+msgstr "<em>%1$s</em>ファイル 【存在しません】"
 
 #: zp-core/setup/index.php:726
 #, fuzzy, php-format
@@ -8255,14 +8255,14 @@ msgid "The <em>SHOW GRANTS</em> query failed."
 msgstr "<em>SHOW GRANTS</em>クエリは失敗しました。"
 
 #: zp-core/setup/index.php:1078
-#, fuzzy, php-format
+#, php-format
 msgid "Database <code>access rights</code> for <em>%s</em>"
-msgstr "データベース<code>アクセス権限</code> 【%s】"
+msgstr "<em>【%s】</em>のデータベース<code>アクセス権限</code>"
 
 #: zp-core/setup/index.php:1078
-#, fuzzy, php-format
+#, php-format
 msgid "Database <code>access rights</code> for <em>%1$s</em> [%2$s]"
-msgstr "データベース<code>アクセス権限</code> 【%s】"
+msgstr "<em>%1$s</em>のデータベース<code>アクセス権限</code> 【%2$s】"
 
 #: zp-core/setup/index.php:1079
 #, php-format
@@ -8771,24 +8771,23 @@ msgid "Previous Release was %s"
 msgstr "前のリリースは%sです"
 
 #: zp-core/setup/index.php:2475
-#, fuzzy, php-format
+#, php-format
 msgid "%s protected."
-msgstr "未保護"
+msgstr "%sを保護しました。"
 
 #: zp-core/setup/index.php:2478
-#, fuzzy, php-format
+#, php-format
 msgid "failed to protect %s."
-msgstr "%sの削除に失敗しました。"
+msgstr "%sの保護に失敗しました。"
 
 #: zp-core/setup/index.php:2486
-#, fuzzy
 msgid "Setup scripts protected."
-msgstr "セットアップファイルを削除しました。"
+msgstr "セットアップスクリプトを保護しました。"
 
 #: zp-core/setup/index.php:2493
-#, fuzzy, php-format
+#, php-format
 msgid "Failed to protect: %s"
-msgstr "削除に失敗しました: %s"
+msgstr "保護に失敗しました: %s"
 
 #: zp-core/setup/index.php:2508
 #, php-format
@@ -8856,9 +8855,9 @@ msgid "If you haven't created the database yet, now would be a good time."
 msgstr "データベースの作成がまだなら、今すぐ実行してください。"
 
 #: zp-core/setup/index.php:2721
-#, fuzzy, php-format
+#, php-format
 msgid "The %1$s file does not exist."
-msgstr "zenphoto.cfg ファイルは存在しません。"
+msgstr "%1$s ファイルは存在しません。"
 
 #: zp-core/setup/setup_set-mod_rewrite.php:15
 msgid "The Zenphoto option \"mod_rewrite\" will be set to \"enabled\"."
@@ -8914,7 +8913,6 @@ msgid "most viewed"
 msgstr "最多閲覧"
 
 #: zp-core/functions.php:44
-#, fuzzy
 msgid "missing"
 msgstr "不明"
 
@@ -10640,14 +10638,12 @@ msgid "third party plugin"
 msgstr "サードパーティ製プラグイン"
 
 #: zp-core/admin-plugins.php:279
-#, fuzzy
 msgid "theme plugin"
-msgstr "プラグイン"
+msgstr "テーマプラグイン"
 
 #: zp-core/admin-plugins.php:288
-#, fuzzy
 msgid "admin plugin"
-msgstr "管理ログイン"
+msgstr "管理者プラグイン"
 
 #: zp-core/admin-plugins.php:307
 msgid "This plugin is disabled. Click for details."
@@ -10952,9 +10948,8 @@ msgid "tagged"
 msgstr "Geotagged"
 
 #: zp-core/admin-dynamic-album.php:250
-#, fuzzy
 msgid "Album <em>Tag</em>"
-msgstr "メニュー<em>%s</em>"
+msgstr "アルバム<em>タグ</em>"
 
 #: zp-core/admin-dynamic-album.php:253
 msgid ""
@@ -10977,27 +10972,25 @@ msgid ""
 msgstr ""
 
 #: zp-core/zp-extensions/elFinder.php:52
-#, fuzzy
 msgid "Files tab"
-msgstr "ファイル"
+msgstr "ファイルタブ"
 
 #: zp-core/zp-extensions/elFinder.php:53
 msgid "Use as the upload <em>files</em> subtab."
 msgstr ""
 
 #: zp-core/zp-extensions/elFinder.php:54
-#, fuzzy
 msgid "TinyMCE plugin"
-msgstr "サードパーティ製プラグイン"
+msgstr "TinyMCEプラグイン"
 
 #: zp-core/zp-extensions/elFinder.php:55
 msgid "Enable plugin for TinyMCE."
-msgstr ""
+msgstr "TinyMCEのプラグインを有効にします。"
 
 #: zp-core/zp-extensions/elFinder.php:73
-#, fuzzy, php-format
+#, php-format
 msgid "files (%s)"
-msgstr "記事 (%s)"
+msgstr "ファイル(%s)"
 
 #: zp-core/zp-extensions/class-AnyFile.php:18
 msgid ""
@@ -11037,29 +11030,29 @@ msgstr "プラグインで扱われるファイルのサフィックスを追加
 
 #: zp-core/zp-extensions/elFinder/php/connector_zp.php:69
 #: zp-core/zp-extensions/elFinder/php/connector_zp.php:268
-#, fuzzy, php-format
+#, php-format
 msgid "Upload folder (%s)"
-msgstr "ここへアップロード"
+msgstr "アップロードフォルダ (%s)"
 
 #: zp-core/zp-extensions/elFinder/php/connector_zp.php:87
-#, fuzzy, php-format
+#, php-format
 msgid "Zenphoto themes (%s)"
-msgstr "Zenphotoのアイテム"
+msgstr "Zenphotoテーマ (%s)"
 
 #: zp-core/zp-extensions/elFinder/php/connector_zp.php:118
-#, fuzzy, php-format
+#, php-format
 msgid "Albums folder (%s)"
-msgstr "アルバムフォルダ:"
+msgstr "アルバムフォルダ (%s)"
 
 #: zp-core/zp-extensions/elFinder/php/connector_zp.php:220
-#, fuzzy, php-format
+#, php-format
 msgid "Third party plugins (%s)"
-msgstr "サードパーティ製プラグイン"
+msgstr "サードパーティ製プラグイン (%s)"
 
 #: zp-core/zp-extensions/elFinder/php/connector_zp.php:234
-#, fuzzy, php-format
+#, php-format
 msgid "Zenphoto data (%s)"
-msgstr "Zenphotoのアイテム"
+msgstr "Zenphotoデータ (%s)"
 
 #: zp-core/zp-extensions/elFinder/php/connector_zp.php:248
 #, php-format
@@ -18085,7 +18078,7 @@ msgid "image processor reference"
 msgstr "画像プロセッサーのセキュリティ"
 
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:139
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s: image %2$s"
 msgstr "%1$s: 画像 %2$s"
 
