@@ -136,7 +136,7 @@ $tables = array('albums'=>array('desc'),
 							switch ($table) {
 								case 'images':
 									$album = query_single_row('SELECT `folder` FROM '.prefix('albums').' WHERE `id`='.$row[albumid]);
-									$title = sprintf(gettext('$1$s: image %2$s'),$album['folder'],$row[$filename]);
+									$title = sprintf(gettext('%1$s: image %2$s'),$album['folder'],$row[$filename]);
 									break;
 								case 'albums':
 									$title = sprintf(gettext('album %s'),$row[$folder]);
