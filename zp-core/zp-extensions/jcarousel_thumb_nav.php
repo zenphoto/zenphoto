@@ -87,7 +87,20 @@ if (!OFFSET_PATH && getOption('jcarousel_'.$_zp_gallery->getCurrentTheme().'_'.s
 			$css = WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/jcarousel_thumb_nav/jcarousel.css';
 		}
 		?>
-		<script src="http://code.jquery.com/jquery-migrate-1.1.1.js"></script>
+		<script>
+			(function($) {
+		    var userAgent = navigator.userAgent.toLowerCase();
+
+		    $.browser = {
+		        version: (userAgent.match( /.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/ ) || [0,'0'])[1],
+		        safari: /webkit/.test( userAgent ),
+		        opera: /opera/.test( userAgent ),
+		        msie: /msie/.test( userAgent ) && !/opera/.test( userAgent ),
+		        mozilla: /mozilla/.test( userAgent ) && !/(compatible|webkit)/.test( userAgent )
+		    };
+
+			})(jQuery);
+		</script>
 		<script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER;?>/jcarousel_thumb_nav/jquery.jcarousel.pack.js"></script>
 		<link rel="stylesheet" type="text/css" href="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER;?>/jcarousel_thumb_nav/jquery.jcarousel.css" />
 		<link rel="stylesheet" type="text/css" href="<?php echo html_encode($css); ?>" />
