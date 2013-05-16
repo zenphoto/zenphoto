@@ -888,7 +888,7 @@ class Album extends AlbumBase {
 			}
 			if ($this->isDynamic()) {
 				$search = $this->getSearchEngine();
-				$subalbums = $search->getAlbums($page,NULL,NULL,false);
+				$subalbums = $search->getAlbums(0,NULL,NULL,false);
 			} else {
 				$dirs = $this->loadFileNames(true);
 				$subalbums = array();
