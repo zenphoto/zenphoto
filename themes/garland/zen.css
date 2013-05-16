@@ -1100,12 +1100,21 @@ button.positive,.buttons a.positive {
  font-weight: bold;
 }
 
+#registration_form p,
+#commentform p,
+#mailform p {
+clear: both;
+}
+
+#registration_form label,
 #commentform label,
 #mailform label {
 width: 30% !important;
 float: left; 
 display: block;
 }
+#registration_form input[type="text"],
+#registration_form input[type="password"],
 #mailform input[type=text],
 #commentform input[type=text] {
 width: 65% !important;

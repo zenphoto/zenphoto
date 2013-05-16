@@ -1208,8 +1208,8 @@ class Zenphoto_Authority {
 
 		?>
 		<input type="hidden" name="passrequired<?php echo $id; ?>" id="passrequired-<?php echo $id; ?>" value="<?php echo (int) $required; ?>" />
-		<fieldset>
-			<legend id="strength<?php echo $id; ?>"><?php echo gettext("Password").$flag; ?></legend>
+		<p>
+			<label for="pass<?php echo $id; ?>" id="strength<?php echo $id; ?>"><?php echo gettext("Password").$flag; ?></label>
 			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 							name="pass<?php echo $id ?>" value="<?php echo $x; ?>"
 							id="pass<?php echo $id; ?>"
@@ -1217,18 +1217,20 @@ class Zenphoto_Authority {
 							onclick="passwordClear('<?php echo $id; ?>');"
 							onkeyup="passwordStrength('<?php echo $id; ?>');"
 							<?php echo $disable; ?> />
-			<br class="clearall" />
-			<label><input type="checkbox" name="disclose_password<?php echo $id; ?>" id="disclose_password<?php echo $id; ?>" onclick="passwordClear('<?php echo $id; ?>');togglePassword('<?php echo $id; ?>');"><?php echo gettext('Show password'); ?></label>
-		</fieldset>
-		<fieldset class="password_field_<?php echo $id; ?>">
-			<legend id="match<?php echo $id; ?>"><?php echo gettext("Repeat password").$flag; ?></legend>
+		</p>
+		<p>
+			<label for="disclose_password<?php echo $id; ?>"><?php echo gettext('Show password'); ?></label>
+			<input type="checkbox" name="disclose_password<?php echo $id; ?>" id="disclose_password<?php echo $id; ?>" onclick="passwordClear('<?php echo $id; ?>');togglePassword('<?php echo $id; ?>');">
+		</p>
+		<p class="password_field_<?php echo $id; ?>">
+			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>"><?php echo gettext("Repeat password").$flag; ?></label>
 			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 							name="pass_r<?php echo $id ?>" value="<?php echo $x; ?>"
 							id="pass_r<?php echo $id; ?>" disabled="disabled"
 							onchange="$('#passrequired-<?php echo $id; ?>').val(1);"
 							onkeydown="passwordClear('<?php echo $id; ?>');"
 							onkeyup="passwordMatch('<?php echo $id; ?>');" />
-		</fieldset>
+		</p>
 		<?php
 	}
 

@@ -305,23 +305,22 @@ label:hover {
 	text-align:center;
 }
 
-#registration_form {
-	width:370px;
+#registration_form p,
+#commentform p,
+#mailform p {
+clear: both;
+margin-bottom: 8px;
 }
 
-#registration_form fieldset {
-	padding:10px;
-}
-#captcha {
-	vertical-align:middle;
-}
-
+#registration_form label,
 #commentform label,
 #mailform label {
 width: 30% !important;
 float: left; 
 display: block;
 }
+#registration_form input[type="text"],
+#registration_form input[type="password"],
 #mailform input[type=text],
 #commentform input[type=text] {
 width: 65% !important;
@@ -337,14 +336,11 @@ padding: 5px 8px 5px 8px!important;
 margin: 5px 0 0 0;
 }
 
+#mailform textarea, 
 #commentform textarea#comment {
 clear: both;
-width: 100% !important;
-}
-
-#mailform textarea{
-float: left !important;
-width: 65% !important;
+width: 95% !important;
+height: 150px;
 }
 
 .error {

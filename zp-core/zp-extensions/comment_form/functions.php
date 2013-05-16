@@ -174,55 +174,39 @@ function comment_form_edit_comment($discard, $raw) {
 		$required = false;
 	}
 	$html =
-			 '<tr>
-					<td>'.
+			 '<p>
+					<label for="comment_form_street">'.
 						sprintf(gettext('Street%s:'),$required).
-				 '</td>
-					<td>
-						<input type="text" name="0-comment_form_street" id="comment_form_street" class="inputbox" size="40" value="'.@$address['street'].'">
-					</td>
-				</tr>
-				<tr>
-					<td>'.
+				 '</label>
+					<input type="text" name="0-comment_form_street" id="comment_form_street" class="inputbox" size="40" value="'.@$address['street'].'">
+				</p>
+				<p>
+					<label for="comment_form_city">'.
 						sprintf(gettext('City%s:'),$required).
-					'</td>
-					<td>
-						<input type="text" name="0-comment_form_city" id="comment_form_city" class="inputbox" size="40" value="'.@$address['city'].'">
-					</td>
-				</tr>
-				<tr>
-					<td>'.
+					'</label>
+					 <input type="text" name="0-comment_form_city" id="comment_form_city" class="inputbox" size="40" value="'.@$address['city'].'">
+				</p>
+				<p>
+					<label for="comment_form_state">'.
 						sprintf(gettext('State%s:'),$required).
-				 '</td>
-					<td>
-						<input type="text" name="0-comment_form_state" id="comment_form_state" class="inputbox" size="40" value="'.@$address['state'].'">
-					</td>
-				</tr>
-				<tr>
-					<td>'.
+				 '</label>
+					<input type="text" name="0-comment_form_state" id="comment_form_state" class="inputbox" size="40" value="'.@$address['state'].'">
+				</p>
+				<p>
+					<label for="comment_form_country">'.
 						sprintf(gettext('Country%s:'),$required).
-				 '</td>
-					<td>
-						<input type="text" name="0-comment_form_country" id="comment_form_country" class="inputbox" size="40" value="'.@$address['country'].'">
-					</td>
-				</tr>
-				<tr>
-					<td>'.
+				 '</label>
+					<input type="text" name="0-comment_form_country" id="comment_form_country" class="inputbox" size="40" value="'.@$address['country'].'">
+				</p>
+				<p>
+					<label for="comment_form_postal">'.
 						sprintf(gettext('Postal code%s:'),$required).
-					'</td>
-					<td>
-						<input type="text" name="0-comment_form_postal" id="comment_form_postal" class="inputbox" size="40" value="'.@$address['postal'].'">
-					</td>
-				</tr>'."\n";
+					'</label>
+					 <input type="text" name="0-comment_form_postal" id="comment_form_postal" class="inputbox" size="40" value="'.@$address['postal'].'">
+				</p>'."\n";
 	if ($required) {
 		$html .=
-				'<tr>
-					<td>
-					</td>
-					<td>'.
-						gettext('*Required').
-					'</td>
-				</tr>'."\n";
+				'<p>'.gettext('*Required').'</p>'."\n";
 	}
 	return $html;
 }
