@@ -125,13 +125,15 @@ function printImageslist($number) {
 			// Not a pure image
 			$backgroundcss = 'albumthumb-image';
 			$imgurl = $albumthumb->getThumb();
+			$itemid = $albumthumb->getID();
 		} else {
 			$backgroundcss = 'albumthumb-other';
 			$imgurl = getImageProcessorURI($args, $albumthumbalbum->name, $albumthumb->filename);
+			$itemid = $albumthumb->getID();
 		}
 		$imgsizeurl = $albumthumb->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, TRUE);
 		echo "<div class='thumb'>";
-		echo "<a href=\"javascript: ZenpageDialog.insert('".$imgurl."','".
+		echo "<a href=\"javascript: ZenpageDialog.insert('".$itemid."','".$imgurl."','".
 																											$albumobj->getAlbumThumb()."','".
 																											"','".
 																											urlencode($albumthumb->filename)."','".
@@ -147,7 +149,7 @@ function printImageslist($number) {
 																											" title='".html_encode($albumthumb->getTitle())." (".html_encode($albumthumb->filename).")'>
 																											<img src='".$imgsizeurl."' class='".$backgroundcss."' /></a>\n";
 
-		echo "<a href='zoom.php?image=".urlencode($albumthumb->filename)."&amp;album=".pathurlencode($albumthumbalbum->name).
+		echo "<a href='../../../../../..".html_encode($albumthumb->getImageLink()).
 																											"' title='Zoom' rel='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a> ".
 																											gettext('<em>Albumthumb</em>').unpublishedZenphotoItemCheck($albumthumb,false);
 		echo "</div>";
@@ -184,12 +186,14 @@ function printImageslist($number) {
 						$imgurl = getImageProcessorURI($args, $linkalbumobj->name, $imageobj->filename);
 						$sizedimage = $imageobj->getSizedImage(getOption('image_size'));
 						$sizedimage = '<img src="'.$sizedimage.'" alt="'.$imageobj->getTitle().'" class="zenpage_sizedimage" />';
+						$itemid = '';
 						break;
 					case 'textobject':
 						$sizedimage = $imageobj->getSizedImage(getOption('image_size'));
 						$sizedimage = str_replace('class="textobject"', 'class="textobject zenpage_sizedimage"', $sizedimage);
 						$imgurl = getImageProcessorURI($args, $linkalbumobj->name, $imageobj->filename);
 						$backgroundcss = 'thumb-textobject';
+						$itemid = '';
 						break;
 					case 'video':
 					case 'audio':
@@ -197,15 +201,17 @@ function printImageslist($number) {
 						$sizedimage = str_replace('class="flowplayer"', 'class="flowplayer zenpage_sizedimage"', $sizedimage);
 						$imgurl = getImageProcessorURI($args, $linkalbumobj->name, $imageobj->filename);
 						$backgroundcss = 'thumb-multimedia';
+						$itemid = $imageobj->getID();
 						break;
 					default:
 						$sizedimage = $imageobj->getSizedImage(getOption('image_size'));
 						$backgroundcss = 'thumb-default';
+						$itemid = '';
 						break;
 				}
 				$imgsizeurl = $imageobj->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, TRUE);
 				echo "<div class='thumb'>\n";
-				echo "<a href=\"javascript:ZenpageDialog.insert('".$imgurl."','".
+				echo "<a href=\"javascript:ZenpageDialog.insert('".$itemid."','".$imgurl."','".
 																												$thumburl."','".
 																												html_encode($sizedimage)."','".
 																												urlencode($imageobj->filename)."','".
@@ -220,7 +226,7 @@ function printImageslist($number) {
 																												'".html_encode(addslashes($albumdesc))."');\"".
 																												" title='".html_encode($imageobj->getTitle())." (".html_encode($imageobj->filename).")'>
 																												<img src='".$imgsizeurl."' class='".$backgroundcss."' /></a>\n";
-				echo "<a href='zoom.php?image=".urlencode($imageobj->filename)."&amp;album=".pathurlencode($linkalbumobj->name).
+				echo "<a href='../../../../../..".html_encode($imageobj->getImageLink()).
 																												"' title='Zoom' rel='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a> ".
 																												html_encode(shortentitle($imageobj->getTitle(),8)).unpublishedZenphotoItemCheck($imageobj,false);
 				echo "</div>\n";
@@ -329,7 +335,7 @@ function printNewsArticlesList($number) {
 				$count++;
 				echo "<li>";
 				if($_GET['zenpage'] == "articles") {
-					echo "<a href=\"javascript:ZenpageDialog.insert('news/".$newsobj->getTitlelink()."','','','".$newsobj->getTitlelink()."','".html_encode($newsobj->getTitle())."','','','articles','','','','');\" title='".html_encode(truncate_string(strip_tags($newsobj->getContent()),300))."'>".html_encode($newsobj->getTitle()).unpublishedZenpageItemCheck($newsobj)."</a> <small><em>".$newsobj->getDatetime()."</em></small>";
+					echo "<a href=\"javascript:ZenpageDialog.insert('','news/".$newsobj->getTitlelink()."','','','".$newsobj->getTitlelink()."','".html_encode($newsobj->getTitle())."','','','articles','','','','');\" title='".html_encode(truncate_string(strip_tags($newsobj->getContent()),300))."'>".html_encode($newsobj->getTitle()).unpublishedZenpageItemCheck($newsobj)."</a> <small><em>".$newsobj->getDatetime()."</em></small>";
 					echo " <a href='zoom.php?news=".urlencode($newsobj->getTitlelink())."' title='Zoom' class='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a><br />";
 					echo '<small><em>'.gettext('Categories:');
 					$cats = $newsobj->getCategories();
@@ -543,7 +549,7 @@ function printAllNestedList() {
 				$open[$indent]--;
 			}
 			echo "<li id='".$itemid."' class='itemborder'>";
-			echo "<a href=\"javascript:ZenpageDialog.insert('".$zenpagepage."','','','".$itemtitlelink."','".html_encode($itemtitle)."','','','".$mode."','','','','');\" title='".html_encode($itemcontent)."'>".html_encode($itemtitle).$unpublished.$counter."</a> <small><em>".$obj->getDatetime()."</em></small>";
+			echo "<a href=\"javascript:ZenpageDialog.insert('','".$zenpagepage."','','','".$itemtitlelink."','".html_encode($itemtitle)."','','','".$mode."','','','','');\" title='".html_encode($itemcontent)."'>".html_encode($itemtitle).$unpublished.$counter."</a> <small><em>".$obj->getDatetime()."</em></small>";
 			if($mode == 'pages') {
 				echo " <a href='zoom.php?pages=".urlencode($itemtitlelink)."' title='Zoom' class='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a>";
 			}

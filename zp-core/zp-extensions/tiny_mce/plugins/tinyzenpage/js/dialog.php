@@ -32,7 +32,7 @@ var ZenpageDialog = {
 		tinyMCEPopup.resizeToInnerSize();
 	},
 
-	insert : function(imgurl,thumburl,sizedimage,imgname,imgtitle,albumtitle,fullimage,type, wm_thumb, wm_img,video,imgdesc,albumdesc) {
+	insert : function(id,imgurl,thumburl,sizedimage,imgname,imgtitle,albumtitle,fullimage,type, wm_thumb, wm_img,video,imgdesc,albumdesc) {
 		var ed = tinyMCEPopup.editor, dom = ed.dom;
 		var imglink = '';
 		var includetype = '';
@@ -54,7 +54,7 @@ var ZenpageDialog = {
 		var plainimgtitle = imgtitle.replace(/'|\\'/g, "\\'");
 		var plainalbumtitle = albumtitle.replace(/'|\\'/g, "\\'");
 		var player = '';
-		
+	
 		plainimgtitle = stripHTML(plainimgtitle);
 		plainalbumtitle = stripHTML(plainalbumtitle);
 
@@ -186,7 +186,7 @@ var ZenpageDialog = {
 			case 'zenphoto':
 				if($('#sizedimage').prop('checked')) {
 					if(video == 'video' || video == 'audio') {
-						player = '[MEDIAPLAYER '+fullimage+' '+plainimgtitle.replace(/ /g,'_')+']';	
+						player = '[MEDIAPLAYER '+fullimage+' '+id+']';	
 						imglink = infowrap1+player+infowrap2;
 					} else {
 						imglink = infowrap1+sizedimage+infowrap2;
