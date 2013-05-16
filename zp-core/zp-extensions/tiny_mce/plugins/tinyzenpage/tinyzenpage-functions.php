@@ -259,23 +259,19 @@ function getImageType($imageobj) {
 	$imageType = strtolower(get_class($imageobj));
 	switch ($imageType) {
 		case 'video':
-			if(getOption('zp_plugin_jplayer')) {
-				$imagesuffix = getSuffix($imageobj->filename);
-				switch($imagesuffix) {
-					case 'flv':
-					case 'mp4':
-					case 'm4v':
-						$imageType = 'video';
-						break;
-					case 'mp3':
-					case 'fla':
-					case 'm4a':
-						$imageType = 'audio';
-						break;
-				}
-			} else {
-				$imageType = 'other';
-			}
+			$imagesuffix = getSuffix($imageobj->filename);
+			switch($imagesuffix) {
+				case 'flv':
+				case 'mp4':
+				case 'm4v':
+					$imageType = 'video';
+					break;
+				case 'mp3':
+				case 'fla':
+				case 'm4a':
+					$imageType = 'audio';
+					break;
+			} 
 			break;
 		case 'image':
 			$imageType = '';

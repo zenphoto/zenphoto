@@ -205,7 +205,7 @@ if(showZenphotoOptions()) {
 					<li>
 						<?php echo gettext("Sized image/multimedia item: The sized image as set in gallery default theme's options."); ?>
 						<br />
-						<?php echo gettext("<strong>Multimedia item</strong>: This embeds the content macro MEDIAPLAYER into the text and generates the player as setup by that plugin. This currently only works if jPlayer plugin is enabled and naturally only with its supported main formats."); ?>
+						<?php echo gettext("<strong>Multimedia item</strong>: This embeds the content macro MEDIAPLAYER into the text. This generates a video or audio player on the front end if any suitable multimedia player plugin for the file type is enabled and also has registered to the macro."); ?>
 					</li>
 					<li><?php echo gettext("Custom size (un-cropped)."); ?></li>
 					<li><?php echo gettext("Full image: The original image directly. NOTE: Full image protection options do not apply!."); ?></li>
