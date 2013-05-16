@@ -343,6 +343,11 @@ width: 95% !important;
 height: 150px;
 }
 
+#recaptcha_widget_div {
+float: left;
+margin-bottom: 10px;
+}
+
 .error {
 	color: #C33;
 	font-weight: bold;

@@ -1412,10 +1412,11 @@ width: 30% !important;
 float: left; 
 display: block;
 }
+
 #registration_form input[type="text"],
 #registration_form input[type="password"],
 #mailform input[type=text],
-#commentform input[type=text] {
+#commentform input[type=text]{
 width: 65% !important;
 }
 #mailform input.captchainputbox,
@@ -1423,6 +1424,7 @@ width: 65% !important;
 width: 20% !important;
 margin-left: 10px;
 }
+
 
 input.button {
 padding: 5px 8px 5px 8px!important;
@@ -1434,6 +1436,12 @@ margin: 5px 0 0 0;
 clear: both;
 width: 95% !important;
 height: 150px;
+}
+
+
+#recaptcha_widget_div {
+float: left;
+margin-bottom: 10px;
 }
 
 
