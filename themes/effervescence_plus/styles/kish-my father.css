@@ -724,11 +724,6 @@ color: #8597A5; /*disabled next/prev in single image view*/
 .checkbox {
 cursor: pointer;
 }
-.button {
-cursor: pointer;
-padding: 5px 10px;
-}
-
 
 /* Footer
 ------------------------------------ */

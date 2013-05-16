@@ -1070,11 +1070,6 @@ acronym {
 	text-align:center;
 }
 
-.button {
-	cursor: pointer;
-	padding: 5px 10px;
-}
-
 label {
 	cursor: pointer;
 }
@@ -1181,6 +1176,11 @@ label:hover {
 
 /* Pretty Buttons
 ------------------------------------- */
+.button {
+	cursor: pointer;
+	padding: 5px 10px;
+}
+
 .buttons a,.buttons button {
 	display: block;
 	float: left;

@@ -687,10 +687,6 @@ text-align: left;
 .checkbox {
 	cursor: pointer;
 }
-.button {
-	cursor: pointer;
-	padding: 5px 10px;
-}
 /* Footer
 ------------------------------------ */
 .footlinks {
