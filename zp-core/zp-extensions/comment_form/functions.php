@@ -26,14 +26,16 @@ function comment_form_PaginationJS() {
 					startPage=0;
 				}
 				var num_entries = $('#comments div.comment').length;
-				$(".Pagination").pagination(num_entries, {
-						prev_text: "<?php echo gettext('prev'); ?>",
-						next_text: "<?php echo gettext('next'); ?>",
-						callback: pageselectCallback,
-						load_first_page:true,
-						items_per_page:<?php echo max(1,getOption('comment_form_comments_per_page')); ?>, // Show only one item per page
-						current_page:startPage
-				});
+				if (num_entries) {
+					$(".Pagination").pagination(num_entries, {
+							prev_text: "<?php echo gettext('prev'); ?>",
+							next_text: "<?php echo gettext('next'); ?>",
+							callback: pageselectCallback,
+							load_first_page:true,
+							items_per_page:<?php echo max(1,getOption('comment_form_comments_per_page')); ?>, // Show only one item per page
+							current_page:startPage
+					});
+				}
 		 }
 		$(document).ready(function(){
 				current_comment_N = $('.comment h4').index($(addrBar_hash))+1;
@@ -758,9 +760,7 @@ function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=t
 			}
 		 if(getOption('comment_form_pagination') && getOption('comment_form_comments_per_page') < $num) { ?>
 					<div class="Pagination"></div><!-- this is the jquery pagination nav placeholder -->
-					<div id="Commentresult">
-						This content will be replaced when pagination inits.
-					</div>
+					<div id="Commentresult"></div>
 			<?php
 			}
 		 ?>
