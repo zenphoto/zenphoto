@@ -104,7 +104,6 @@ class comment_form {
 													'desc' => gettext('If the <em>Website</em> field is required, the poster must provide a website.')),
 											gettext('Captcha field') => array('key' => 'Use_Captcha', 'type' => OPTION_TYPE_RADIO,
 													'order' => 0.4,
-													'disabled' => !$_zp_captcha->name,
 													'buttons' => array(gettext('Omit')=>0, gettext('For guests')=>2, gettext('Require')=>1),
 													'desc' => ($_zp_captcha->name)?gettext('If <em>Captcha</em> is required, the form will include a Captcha verification.'):'<span class="notebox">'.gettext('No captcha handler is enabled.').'</span>'),
 
