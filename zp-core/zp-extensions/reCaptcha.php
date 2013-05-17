@@ -26,6 +26,7 @@ class reCaptcha extends _zp_captcha{
 	 * @return captcha
 	 */
 	function __construct() {
+		setOptionDefault('reCaptcha_theme','red');
 	}
 
 	/**
@@ -40,8 +41,13 @@ class reCaptcha extends _zp_captcha{
 												'desc' => gettext('Enter your <em>reCaptcha</em> public key. You can obtain this key from the Google <a href="http://www.google.com/recaptcha">reCaptcha</a> site')),
 								gettext('Private key') => array('key' => 'reCaptcha_private_key', 'type' => OPTION_TYPE_TEXTBOX,
 												'order' => 2,
-												'desc' => gettext('Enter your <em>reCaptcha</em> private key.'))
-		);
+												'desc' => gettext('Enter your <em>reCaptcha</em> private key.')),
+								gettext('Theme') => array('key' => 'reCaptcha_theme', 'type' => OPTION_TYPE_SELECTOR,
+												'order' => 3,
+												'selections' => array(gettext('Red') => 'red', gettext('White') => 'white', gettext('Black Glass') => 'blackglass', gettext('Clean') => 'clean'),
+												'desc' => gettext('Select the <em>reCaptcha</em> theme.'))
+
+						);
 	}
 	function handleOption($key, $cv) {
 	}
@@ -70,7 +76,12 @@ class reCaptcha extends _zp_captcha{
 		if (!getOption('reCaptcha_public_key')) {
 			return array('input'=>'', 'html'=>'<p class="errorbox">'.gettext('reCAPTCHA is not properly configured.').'</p>', 'hidden'=>'');
 		} else {
-			return array('input'=>recaptcha_get_html(getOption('reCaptcha_public_key'), NULL, secureServer()));
+			$theme =	'<script type="text/javascript">'."\n".
+				 				"  var RecaptchaOptions = {\n".
+				    		"				theme : '".getOption('reCaptcha_theme')."'\n".
+				 				"				};\n".
+				 				"</script>\n";
+			return array('input'=>$theme.recaptcha_get_html(getOption('reCaptcha_public_key'), NULL, secureServer()));
 		}
 	}
 }
