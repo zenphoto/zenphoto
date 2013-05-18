@@ -86,7 +86,7 @@ function jplayermacro($macros) {
  $macros['MEDIAPLAYER'] = array(
 														'class'=>'expression',
 														'regex'=>'/^(.*)\s(.*)$/',
-														'value'=>'getMacrojplayer($1,$2);',
+														'value'=>'jplayer::getMacrojplayer($1,$2);',
 														'desc'=>gettext('%1 = path to media file, %2 = unique value if you have multiple players on one page, otherwise just any random number will do. (Setup by the jPlayer plugin)')
 													);
 	return $macros;
@@ -196,32 +196,6 @@ function getjPlayerSkinCSS($skins,$dir) {
 
 if (!OFFSET_PATH) {
 
-	function getMacrojplayer($moviepath,$count=NULL) {
-		global $_zp_flash_player;
-		if(empty($count)) $count = '1';
-		$player = $_zp_flash_player->getPlayerConfig($moviepath,'',$count);
-		return $player;
-	}
-
-	function jplayerJS() {
-		$skin = getOption('jplayer_skin');
-		if(file_exists($skin)) {
-			$skin = str_replace(SERVERPATH,WEBPATH,$skin); //replace SERVERPATH as that does not work as a CSS link
-		} else {
-			$skin = WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/jplayer/skin/zenphotolight/jplayer.zenphotolight.css';
-		}
-		?>
-		<link href="<?php echo $skin; ?>" rel="stylesheet" type="text/css" />
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/'.PLUGIN_FOLDER; ?>/jplayer/js/jquery.jplayer.min.js"></script>
-		<?php
-	}
-
-	function jplayer_playlistJS() {
-		?>
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/'.PLUGIN_FOLDER; ?>/jplayer/js/jplayer.playlist.min.js"></script>
-		<?php
-	}
-
 	class jPlayer {
 		public $width = '';
 		public $height = '';
@@ -256,6 +230,32 @@ if (!OFFSET_PATH) {
 			}
 		}
 
+		static function getMacrojplayer($moviepath,$count=NULL) {
+			global $_zp_flash_player;
+			if(empty($count)) $count = '1';
+			$player = $_zp_flash_player->getPlayerConfig($moviepath,'',$count);
+			return $player;
+		}
+
+		static function headJS() {
+			$skin = getOption('jplayer_skin');
+			if(file_exists($skin)) {
+				$skin = str_replace(SERVERPATH,WEBPATH,$skin); //replace SERVERPATH as that does not work as a CSS link
+			} else {
+				$skin = WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/jplayer/skin/zenphotolight/jplayer.zenphotolight.css';
+			}
+			?>
+				<link href="<?php echo $skin; ?>" rel="stylesheet" type="text/css" />
+				<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/'.PLUGIN_FOLDER; ?>/jplayer/js/jquery.jplayer.min.js"></script>
+				<?php
+			}
+
+			static function playlistJS() {
+				?>
+				<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/'.PLUGIN_FOLDER; ?>/jplayer/js/jplayer.playlist.min.js"></script>
+				<?php
+			}
+
 		/**
 		 * Get the JS configuration of jplayer
 		 *
@@ -270,8 +270,7 @@ if (!OFFSET_PATH) {
 			global $_zp_current_album, $_zp_current_image;
 			$ext = getSuffix($moviepath);
 			if(!in_array($ext,array('m4a','m4v','mp3','mp4','flv','fla'))) {
-				echo '<p>'.gettext('This multimedia format is not supported by jPlayer').'</p>';
-				return NULL;
+				return '<span class="error">'.gettext('This multimedia format is not supported by jPlayer').'</span>';
 			}
 			$this->setModeAndSuppliedFormat($ext);
 			if(empty($count)) {
@@ -800,9 +799,9 @@ if (!OFFSET_PATH) {
 	}
 
 	$_zp_flash_player = new jPlayer(); // claim to be the flash player.
-	zp_register_filter('theme_head','jplayerJS');
+	zp_register_filter('theme_head','jplayer::headJS');
 	if(getOption('jplayer_playlist')) {
-		zp_register_filter('theme_head','jplayer_playlistJS');
+		zp_register_filter('theme_head','jplayer::playlistJS');
 	}
 
 }
