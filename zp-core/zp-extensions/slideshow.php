@@ -15,7 +15,7 @@
  * distribution. Note that the Colorbox mode does not require these files as it is called on your theme's image.php and album.php direclty
  * via the slideshow button. The Colorbox plugin must be enabled and setup for these pages.
  *
- * <b>NOTE:</b> The jQuery Cycle and the jQuery Colorbox modes do not support movie and audio files. If you need to show them please use the Flash mode.
+ * <b>NOTE:</b> The jQuery Cycle and the jQuery Colorbox modes do not support movie and audio files. 
  * In Colorbox mode there will be no slideshow button on the image page if that current image is a movie/audio file.
  *
  *
@@ -23,11 +23,48 @@
  * @package plugins
  * @subpackage media
  */
-
+$plugin_is_filter = 9|THEME_PLUGIN|ADMIN_PLUGIN;
 $plugin_description = gettext("Adds a theme function to call a slideshow either based on jQuery (default) or Colorbox.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard), Don Peterson (dpeterson)";
 
 $option_interface = 'slideshow';
+
+global $_zp_gallery, $_zp_gallery_page;
+if (getOption('slideshow_'.$_zp_gallery->getCurrentTheme().'_'.stripSuffix($_zp_gallery_page))) {
+	zp_register_filter('theme_head','slideshow_js');
+}
+zp_register_filter('content_macro','slideshowmacro');
+
+function slideshowmacro($macros) {
+ $macros['SLIDESHOW'] = array(
+														'class'=>'expression',
+														'regex'=>'/^(.*)\s(.*)$/',
+														'value'=>'getSlideshowPlayer($1,$2);',
+														'desc'=>gettext('%1 = album name, %2 = true to show controls (might require theme css.) (Setup by the Slideshow plugin).')
+													);
+	return $macros;
+}
+
+//if (!OFFSET_PATH) {
+	function getSlideshowPlayer($album,$controls) {
+		$albumobj = '';
+		if(!empty($album)) {
+			$albumobj = newAlbum($album);
+		}
+		switch($controls){
+			case 'true':
+				$controls = true;
+				break;
+			default:
+			case 'false':
+				$controls = false;
+				break;
+		}
+		if(is_object($albumobj)) {
+			return getSlideShow(false,false, $albumobj,NULL,NULL, NULL, false, false, false, $controls);
+		}
+	}
+//}
 
 /**
  * slideshow
@@ -57,6 +94,7 @@ class slideshow {
 
 
 	function getOptionsSupported() {
+		global $_zp_gallery;
 		$options = array(gettext('Mode') => array('key' => 'slideshow_mode', 'type' => OPTION_TYPE_SELECTOR,
 																							'order'=>0,
 																							'selections' => array(gettext("jQuery Cycle")=>"jQuery", gettext("jQuery Colorbox")=>"colorbox"),
@@ -65,6 +103,27 @@ class slideshow {
 																							'order'=>1,
 																							'desc' => gettext("Speed of the transition in milliseconds."))
 		);
+		$exclude = array('404.php','themeoptions.php','theme_description.php');
+		foreach (array_keys($_zp_gallery->getThemes()) as $theme) {
+			$curdir = getcwd();
+			$root = SERVERPATH.'/'.THEMEFOLDER.'/'.$theme.'/';
+			chdir($root);
+			$filelist = safe_glob('*.php');
+			$list = array();
+			foreach($filelist as $file) {
+				if (!in_array($file,$exclude)) {
+					$script = filesystemToInternal($file);
+					$list[$script] = 'slideshow_'.$theme.'_'.stripSuffix($script);
+				}
+			}
+			chdir($curdir);
+			$opts[$theme] = array('key' => 'slidewshow_'.$theme.'_scripts', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
+																	'checkboxes' => $list,
+																	'desc' => gettext('The scripts for which the slideshow is enabled. {Should have been set by the themes!}')
+											);
+		}
+		$options = array_merge($options, $opts);
+		
 		switch (getOption('slideshow_mode')) {
 			case 'jQuery':
 				$options = array_merge($options,
@@ -287,6 +346,7 @@ function printSlideShowLink($linktext=NULL, $linkstyle=Null) {
 	}
 }
 
+
 /**
  * Returns the file extension if the item passed is displayable by the player
  *
@@ -304,18 +364,7 @@ function is_valid($image, $valid_types) {
 }
 
 /**
- * Prints the slideshow using the {@link http://http://www.malsup.com/jquery/cycle/  jQuery plugin Cycle}
- * or Flash based using {@link http://flowplayer.org  Flowplayer3}if installed
- *
- * Two ways to use:
- * a) Use on your theme's slideshow.php page and called via printSlideShowLink():
- * If called from image.php it starts with that image, called from album.php it starts with the first image (jQuery only)
- * To be used on slideshow.php only and called from album.php or image.php.
- *
- * b) Calling directly via printSlideShow() function (jQuery mode recommended)
- * Call printSlideShowJS() function in the head section of the theme page you want to use the slideshow on.
- * Then place the printSlideShow() function where you want the slideshow to appear and set $albumobj and if needed $imageobj.
- * The controls are disabled automatically.
+ * Gets the slideshow using the {@link http://http://www.malsup.com/jquery/cycle/  jQuery plugin Cycle}
  *
  * NOTE: The jQuery mode does not support movie and audio files anymore. If you need to show them please use the Flash mode.
  * Also note that this function is not used for the Colorbox mode!
@@ -329,13 +378,15 @@ function is_valid($image, $valid_types) {
  * @param bool $crop Set to true if you want images cropped width x height (jQuery mode only)
  * @param bool $shuffle Set to true if you want random (shuffled) order
  * @param bool $linkslides Set to true if you want the slides to be linked to their image pages (jQuery mode only)
- * */
-function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $imageobj = NULL, $width = NULL, $height = NULL, $crop=false, $shuffle=false, $linkslides=false) {
+ * @param bool $controls Set to true (default) if you want the slideshow controls to be shown (might require theme CSS changes if calling outside the slideshow.php page) (jQuery mode only)
+ *
+ */
+function getSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $imageobj = NULL, $width = NULL, $height = NULL, $crop=false, $shuffle=false, $linkslides=false, $controls=true) {
 	global $_zp_conf_vars;
+	$slideshow = '';
 	if (!isset($_POST['albumid']) AND !is_object($albumobj)) {
-		echo "<div class=\"errorbox\" id=\"message\"><h2>".gettext("Invalid linking to the slideshow page.")."</h2></div>";
-		echo "</div></body></html>";
-		exitZP();
+		return '<div class="errorbox" id="message"><h2>'.gettext('Invalid linking to the slideshow page.').'</h2></div></div></body></html>';
+		//exitZP();
 	}
 	global $_zp_current_image, $_zp_current_album, $_zp_gallery, $_myFavorites;
 	$imagenumber = 0;
@@ -400,7 +451,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $i
 	} else {
 		if (isset($_POST['favorites_page'])) {
 			if (!$page = stripSuffix(getOption('favorites_link'))) {
-				$page = 'favoirtes';
+				$page = 'favourites';
 			}
 			$link = $_zp_conf_vars['special_pages'][$page]['rewrite'];
 			$album = $_myFavorites;
@@ -416,8 +467,8 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $i
 		}
 		$albumtitle = $album->getTitle();
 		if(!$album->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumq['folder'])) {
-			echo gettext("This album is password protected!");
-			exitZP();
+			return gettext('This album is password protected!');
+			//exitZP();
 		}
 		$images = $album->getImages(0);
 		// return path to get back to the page we called the slideshow from
@@ -428,18 +479,18 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $i
 	switch($option) {
 		case "jQuery":
 			$validtypes = array('jpg','jpeg','gif','png','mov','3gp');
-			?>
+			$slideshow .= '
 			<script type="text/javascript">
 				// <!-- <![CDATA[
 				$(document).ready(function(){
 					$(function() {
-						var ThisGallery = '<?php echo html_encode($albumtitle); ?>';
+						var ThisGallery = "'.html_encode($albumtitle).'";
 						var ImageList = new Array();
 						var TitleList = new Array();
 						var DescList = new Array();
 						var ImageNameList = new Array();
-						var DynTime=(<?php echo getOption("slideshow_timeout"); ?>) * 1.0;	// force numeric
-						<?php
+						var DynTime=('.getOption("slideshow_timeout").') * 1.0;	// force numeric
+					  ';
 						for ($imgnr = 0, $cntr = 0, $idx = $imagenumber; $imgnr < $numberofimages; $imgnr++, $idx++) {
 							if (is_array($images[$idx])) {
 								$filename = $images[$idx]['filename'];
@@ -457,35 +508,33 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $i
 								} else {
 									$img = getCustomSizedImageMaxSpace($width,$height);
 								}
-								echo 'ImageList[' . $cntr . '] = "' . $img . '";'. "\n";
-								echo 'TitleList[' . $cntr . '] = "' . js_encode($image->getTitle()) . '";'. "\n";
+								$slideshow .= 'ImageList[' . $cntr . '] = "' . $img . '";'. "\n";
+								$slideshow .= 'TitleList[' . $cntr . '] = "' . js_encode($image->getTitle()) . '";'. "\n";
 								if($showdesc) {
 									$desc = $image->getDesc();
 									$desc = str_replace("\r\n", '<br />', $desc);
 									$desc = str_replace("\r", '<br />', $desc);
-									echo 'DescList[' . $cntr . '] = "' . js_encode($desc) . '";'. "\n";
+									$slideshow .= 'DescList[' . $cntr . '] = "' . js_encode($desc) . '";'. "\n";
 								} else {
-									echo 'DescList[' . $cntr . '] = "";'. "\n";
+									$slideshow .= 'DescList[' . $cntr . '] = "";'. "\n";
 								}
 								if ($idx == $numberofimages - 1) { $idx = -1; }
-								echo 'ImageNameList[' . $cntr . '] = "'.urlencode($filename).'";'. "\n";
+								$slideshow .= 'ImageNameList[' . $cntr . '] = "'.urlencode($filename).'";'. "\n";
 								$cntr++;
 							}
 						}
-						echo "\n";
+						$slideshow .= "\n";
 						$numberofimages = $cntr;
-						?>
-						var countOffset = <?php echo $imagenumber; ?>;
-						var totalSlideCount = <?php echo $numberofimages; ?>;
+						$slideshow .= '
+						var countOffset = '.$imagenumber.';
+						var totalSlideCount = '.$numberofimages.';
 						var currentslide = 2;
-
 						function onBefore(curr, next, opts) {
 							if (opts.timeout != DynTime) {
 								opts.timeout = DynTime;
 							}
 							if (!opts.addSlide)
 								return;
-
 							var currentImageNum = currentslide;
 							currentslide++;
 							if (currentImageNum == totalSlideCount) {
@@ -494,67 +543,67 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $i
 							}
 							var relativeSlot = (currentslide + countOffset) % totalSlideCount;
 							if (relativeSlot == 0) {relativeSlot = totalSlideCount;}
-							var htmlblock = "<span class='slideimage'><h4><strong>" + ThisGallery + ":</strong> ";
+							var htmlblock = "<span class=\"slideimage\"><h4><strong>" + ThisGallery + ":</strong> ";
 							htmlblock += TitleList[currentImageNum]  + " (" + relativeSlot + "/" + totalSlideCount + ")</h4>";
-							<?php
+							';
 							if($linkslides) {
 								if(MOD_REWRITE) {
-								?>
-							htmlblock += "<a href='<?php echo pathurlencode($album->name); ?>/"+ImageNameList[currentImageNum]+"<?php echo getOption('mod_rewrite_image_suffix'); ?>'>";
-								<?php
+									$slideshow .= 'htmlblock += "<a href=\"'.pathurlencode($album->name).'/"+ImageNameList[currentImageNum]+"'.getOption('mod_rewrite_image_suffix').'\">";';
 								} else {
-								?>
-								htmlblock += "<a href='index.php?album=<?php echo pathurlencode($album->name); ?>&image="+ImageNameList[currentImageNum]+"'>";
-								<?php
+									$slideshow .= 'htmlblock += "<a href=\"index.php?album='.pathurlencode($album->name).'&image="+ImageNameList[currentImageNum]+"\">";';
 								}
 							}
-							?>
-							htmlblock += "<img src='" + ImageList[currentImageNum] + "'/>";
-							<?php	if($linkslides) { ?>
-							htmlblock += "</a>";
-							<?php	} ?>
-							htmlblock += "<p class='imgdesc'>" + DescList[currentImageNum] + "</p></span>";
-							opts.addSlide(htmlblock);
-						}
-
-						function onAfter(curr, next, opts){
-							<?php if (!$album->isMyItem(LIST_RIGHTS)) { ?>
-							//Only register at hit count the first time the image is viewed.
-							if ($(next).attr( 'viewed') != 1) {
-								$.get("<?php echo FULLWEBPATH .'/'. ZENFOLDER . '/'.PLUGIN_FOLDER; ?>/slideshow/slideshow-counter.php?album=<?php echo pathurlencode($album->name); ?>&img="+ImageNameList[opts.currSlide]);
-								$(next).attr( 'viewed', 1 );
+							$slideshow .= ' htmlblock += "<img src=\"" + ImageList[currentImageNum] + "\"/>";';
+							if($linkslides) { 
+								$slideshow .= ' htmlblock += "</a>";';
 							}
-							<?php } ?>
-						}
-
-						$('#slides').cycle({
-								fx:     '<?php echo getOption("slideshow_effect"); ?>',
-								speed:   <?php echo getOption("slideshow_speed"); ?>,
+ 		
+							$slideshow .= 'htmlblock += "<p class=\"imgdesc\">" + DescList[currentImageNum] + "</p></span>";';
+							$slideshow .= 'opts.addSlide(htmlblock);';
+						$slideshow .= '}';
+						
+						$slideshow .= '
+						function onAfter(curr, next, opts){
+ 						';
+						if (!$album->isMyItem(LIST_RIGHTS)) { 
+							$slideshow .= '
+								//Only register at hit count the first time the image is viewed.
+								if ($(next).attr("viewed") != 1) {
+									$.get("'.FULLWEBPATH .'/'. ZENFOLDER . '/'.PLUGIN_FOLDER.'/slideshow/slideshow-counter.php?album='.pathurlencode($album->name).'&img="+ImageNameList[opts.currSlide]);
+									$(next).attr("viewed", 1 );
+								}
+							';
+						} 
+						$slideshow .='}';
+						$slideshow .='
+						$("#slides").cycle({
+								fx:     "'.getOption("slideshow_effect").'",
+								speed:   "'.getOption("slideshow_speed").'",
 								timeout: DynTime,
-								next:   '#next',
-								prev:   '#prev',
+								next:   "#next",
+								prev:   "#prev",
 								cleartype: 1,
 								before: onBefore,
 								after: onAfter
 						});
 
-						$('#speed').change(function () {
+						$("#speed").change(function () {
 							DynTime = this.value;
 							return false;
 						});
 
-						$('#pause').click(function() { $('#slides').cycle('pause'); return false; });
-						$('#play').click(function() { $('#slides').cycle('resume'); return false; });
+						$("#pause").click(function() { $("#slides").cycle("pause"); return false; });
+						$("#play").click(function() { $("#slides").cycle("resume"); return false; });
 					});
 
 				});	// Documentready()
 				// ]]> -->
 			</script>
 				<div id="slideshow" align="center">
-				<?php
+				';
 				// 7/21/08dp
 				if ($speedctl) {
-					echo '<div id="speedcontrol">'; // just to keep it away from controls for sake of this demo
+					$slideshow .= '<div id="speedcontrol">'; // just to keep it away from controls for sake of this demo
 					$minto = getOption("slideshow_speed");
 					while ($minto % 500 != 0) {
 						$minto += 100;
@@ -563,31 +612,32 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $i
 					$dflttimeout = getOption("slideshow_timeout");
 					/* don't let min timeout = speed */
 					$thistimeout = ($minto == getOption("slideshow_speed")? $minto + 250 : $minto);
-					echo 'Select Speed: <select id="speed" name="speed">';
+					$slideshow .= 'Select Speed: <select id="speed" name="speed">';
 					while ( $thistimeout <= 60000) {  // "around" 1 minute :)
-						echo "<option value=$thistimeout " . ($thistimeout == $dflttimeout?" selected='selected'>" :">") . round($thistimeout/1000,1) . " sec</option>";
+						$slideshow .= "<option value=$thistimeout " . ($thistimeout == $dflttimeout?" selected='selected'>" :">") . round($thistimeout/1000,1) . " sec</option>";
 						/* put back timeout to even increments of .5 */
 						if ($thistimeout % 500 != 0) { $thistimeout -= 250; }
 						$thistimeout += ($thistimeout < 1000? 500:($thistimeout < 10000? 1000:5000));
 					}
-					echo "</select> </div>";
+					$slideshow .= '</select> </div>';
 				}
-				if(!is_object($albumobj)) { // disable controls if calling the slideshow directly on homepage for example
-				?>
-				<div id="controls">
-				<div><span><a href="#" id="prev"
-					title="<?php echo gettext("Previous"); ?>"></a></span> <a
-					href="<?php echo html_encode($returnpath); ?>" id="stop"
-					title="<?php echo gettext("Stop and return to album or image page"); ?>"></a>
-				<a href="#" id="pause"
-					title="<?php echo gettext("Pause (to stop the slideshow without returning)"); ?>"></a>
-				<a href="#" id="play" title="<?php echo gettext("Play"); ?>"></a> <a
-					href="#" id="next" title="<?php echo gettext("Next"); ?>"></a>
-				</div>
-				</div>
-				<?php } ?>
+				if($controls) { 
+					$slideshow .= '
+					<div id="controls">
+						<div>
+							<a href="#" id="prev" title="'.gettext("Previous").'"></a>
+							<a href="'.html_encode($returnpath).'" id="stop" title="'.gettext("Stop and return to album or image page").'"></a>
+							<a href="#" id="pause" title="'.gettext("Pause (to stop the slideshow without returning)").'"></a>
+							<a href="#" id="play" title="'.gettext("Play").'"></a> 
+							<a href="#" id="next" title="'.gettext("Next").'"></a>
+						</div>
+					</div>
+					';
+				}
+				$slideshow .= '
 				<div id="slides" class="pics">
-				<?php
+				';
+
 				if ($cntr > 1) $cntr = 1;
 				for ($imgnr = 0, $idx = $imagenumber; $imgnr <= $cntr; $idx++) {
 					if ($idx >= $numberofimages) { $idx = 0; }
@@ -603,15 +653,14 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $i
 						//$filename = $animage;
 						$image = newImage($album, $filename);
 						$imagepath = FULLWEBPATH.ALBUM_FOLDER_EMPTY.$folder."/".$filename;
-
 					}
 					$ext = is_valid($filename, $validtypes);
 					if ($ext) {
 						$imgnr++;
-						echo "<span class='slideimage'><h4><strong>".$albumtitle.gettext(":")."</strong> ".$image->getTitle()." (". ($idx + 1) ."/".$numberofimages.")</h4>";
+						$slideshow .= '<span class="slideimage"><h4><strong>'.$albumtitle.gettext(":").'</strong> '.$image->getTitle().' ('. ($idx + 1) .'/'.$numberofimages.')</h4>';
 
 						if ($ext == "3gp") {
-							echo '</a>
+							$slideshow .= '</a>
 										<object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" width="352" height="304" codebase="http://www.apple.com/qtactivex/qtplugin.cab">
 										<param name="src" value="' . pathurlencode(internalToFilesystem($imagepath)). '"/>
 										<param name="autoplay" value="false" />
@@ -622,7 +671,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $i
 										</object>
 										<a>';
 						}	elseif ($ext == "mov") {
-							echo '</a>
+							$slideshow .= '</a>
 										<object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" width="640" height="496" codebase="http://www.apple.com/qtactivex/qtplugin.cab">
 										<param name="src" value="' . pathurlencode(internalToFilesystem($imagepath)). '"/>
 										<param name="autoplay" value="false" />
@@ -634,33 +683,72 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $i
 										<a>';
 						} else {
 							makeImageCurrent($image);
-							if($linkslides) echo '<a href="'.html_encode($image->getImageLink()).'">';
+							if($linkslides) $slideshow .= '<a href="'.html_encode($image->getImageLink()).'">';
 							if($crop) {
-								printCustomSizedImage('',NULL,$width, $height, $width, $height);
+								$slideshow .= '<img src="'.html_encode(getCustomImageURL(NULL,$width, $height, $width, $height)).'" alt="" />';
+								//printCustomSizedImage('',NULL,$width, $height, $width, $height);
 							} else {
-								printCustomSizedImageMaxSpace('',$width,$height);
+								$slideshow .= '<img src="'.html_encode(getCustomSizedImageMaxSpace($width, $height)).'" alt="" />';
+								//printCustomSizedImageMaxSpace('',$width,$height);
 							}
-							if($linkslides) echo '</a>';
+							if($linkslides) $slideshow .= '</a>';
 						}
 						if($showdesc) {
 							$desc = $image->getDesc();
 							$desc = str_replace("\r\n", '<br />', $desc);
 							$desc = str_replace("\r", '<br />', $desc);
-							echo "<p class='imgdesc'>".$desc."</p>";
+							$slideshow .= '<p class="imgdesc">'.$desc.'</p>';
 						}
-						echo "</span>";
+						$slideshow .= '</span>';
 					}
 				}
-
 				break;
 	}
-	?>
+	$slideshow .= '
 	</div>
 </div>
-	<?php
-	restore_context(); // needed if the slideshow is for example called directly via album object before the next_album loop on index.php
+ 	';
+ 	restore_context(); // needed if the slideshow is for example called directly via album object before the next_album loop on index.php
+	return $slideshow;
 }
 
+
+/**
+ * Prints the slideshow using the {@link http://http://www.malsup.com/jquery/cycle/  jQuery plugin Cycle}
+ *
+ * Two ways to use:
+ * a) Use on your theme's slideshow.php page and called via printSlideShowLink():
+ * If called from image.php it starts with that image, called from album.php it starts with the first image (jQuery only)
+ * To be used on slideshow.php only and called from album.php or image.php.
+ *
+ * b) Calling directly via printSlideShow() function (jQuery mode)
+ * Place the printSlideShow() function where you want the slideshow to appear and set create an album object for $albumobj and if needed an image object for $imageobj.
+ * The controls are disabled automatically.
+ *
+ * NOTE: The jQuery mode does not support movie and audio files anymore. If you need to show them please use the Flash mode.
+ * Also note that this function is not used for the Colorbox mode!
+ *
+ * @param bool $heading set to true (default) to emit the slideshow breadcrumbs in flash mode
+ * @param bool $speedctl controls whether an option box for controlling transition speed is displayed
+ * @param obj $albumobj The object of the album to show the slideshow of. If set this overrides the POST data of the printSlideShowLink()
+ * @param obj $imageobj The object of the image to start the slideshow with. If set this overrides the POST data of the printSlideShowLink(). If not set the slideshow starts with the first image of the album.
+ * @param int $width The width of the images (jQuery mode). If set this overrides the size the slideshow_width plugin option that otherwise is used.
+ * @param int $height The heigth of the images (jQuery mode). If set this overrides the size the slideshow_height plugin option that otherwise is used.
+ * @param bool $crop Set to true if you want images cropped width x height (jQuery mode only)
+ * @param bool $shuffle Set to true if you want random (shuffled) order
+ * @param bool $linkslides Set to true if you want the slides to be linked to their image pages (jQuery mode only)
+ * @param bool $controls Set to true (default) if you want the slideshow controls to be shown (might require theme CSS changes if calling outside the slideshow.php page) (jQuery mode only)
+ *
+ */
+function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $imageobj = NULL, $width = NULL, $height = NULL, $crop=false, $shuffle=false, $linkslides=false, $controls=true) {
+	echo getSlideShow($heading, $speedctl, $albumobj, $imageobj, $width, $height, $crop, $shuffle, $linkslides, $controls);
+}
+
+function slideshow_js() {
+	?>
+	<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER.'/'.PLUGIN_FOLDER ?>/slideshow/jquery.cycle.all.js" type="text/javascript"></script>
+	<?php
+}
 
 /**
  * Prints the path to the slideshow JS and CSS (printed because some values need to be changed dynamically).
@@ -670,7 +758,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $i
  */
 function printSlideShowJS() {
 	?>
-	<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER.'/'.PLUGIN_FOLDER ?>/slideshow/jquery.cycle.all.js" type="text/javascript"></script>
+	<!-- <script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER.'/'.PLUGIN_FOLDER ?>/slideshow/jquery.cycle.all.js" type="text/javascript"></script> -->
 	<?php
 }
 
