@@ -2064,20 +2064,17 @@ function reveal($content, $visible=false) {
 function applyMacros($text) {
 	$content_macros = getMacros();
 	krsort($content_macros);	//	in case some start with the same sequence, look for the longest first
-	$regex = '/\[('.implode('|',array_keys($content_macros)).')(.*)\]/i';
+	$regex = '/\[('.implode('|',array_keys($content_macros)).')(\]|\s+.*\])/i';
 
 	if (preg_match_all($regex, $text, $matches)) {
 		foreach ($matches[1] as $key=>$macroname) {
-			$p = $matches[2][$key];
-			if (!empty($p) && !preg_match('/^\s/', $p)) {
-				continue;
-			}
+			$p = rtrim(trim($matches[2][$key]),']');
 			$params = '';
 			$macroname = strtoupper($macroname);
 			$macro = $content_macros[$macroname];
 			$macro_instance = $matches[0][$key];
 			if ($macro['regex']) {
-				if (!preg_match($macro['regex'], trim($p), $parms)) {
+				if (!preg_match($macro['regex'], $p, $parms)) {
 					$macro['class'] = 'error';
 					preg_match_all('|\(.*?\)|', $macro['regex'], $parms);
 					$data = '<span class="error">'.sprintf(ngettext('<em>[%1$s]</em> should have %2$d parameter.','<em>[%1$s]</em> should have %2$d parameters.',count($parms[0])),trim($macro_instance,'[]'),count($parms[0])).'</span>';
@@ -2087,7 +2084,7 @@ function applyMacros($text) {
 					$params = ' '.implode(' ', $parms);
 				}
 			} else {
-				if (!empty($matches[2][$key])) {
+				if (!empty($p)) {
 					$macro['class'] = 'error';
 					$data = '<span class="error">'.sprintf(gettext('<em>[%1$s]</em> macro does not take parameters'),trim($macro_instance,'[]')).'</span>';
 				}
