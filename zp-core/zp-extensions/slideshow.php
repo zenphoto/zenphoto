@@ -150,7 +150,7 @@ class slideshow {
 	static function getPlayer($album,$controls) {
 		$albumobj = '';
 		if(!empty($album)) {
-			$albumobj = newAlbum($album);
+			$albumobj = newAlbum($album, NULL, true);
 		}
 		switch($controls){
 			case 'true':
@@ -161,10 +161,12 @@ class slideshow {
 				$controls = false;
 				break;
 		}
-		if(is_object($albumobj)) {
+		if(is_object($albumobj) && $albumobj->loaded) {
 			slideshow::header_js();
 			$returnpath = rewrite_path('/'.pathurlencode($albumobj->name).'/','/index.php?album='.urlencode($albumobj->name));
 			return slideshow::getShow(false,false, $albumobj,NULL,NULL, NULL, false, false, false, $controls, $returnpath, 0);
+		} else {
+			return '<div class="errorbox" id="message"><h2>'.gettext('Invalid slideshow album name!').'</h2></div></div></body></html>';
 		}
 	}
 
