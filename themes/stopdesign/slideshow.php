@@ -10,7 +10,6 @@ if (!defined('WEBPATH')) die();
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<?php zp_apply_filter('theme_head'); ?>
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/slideshow.css" type="text/css" />
-	<?php printSlideShowJS(); ?>
 </head>
 <body>
 	<?php zp_apply_filter('theme_body_open'); ?>

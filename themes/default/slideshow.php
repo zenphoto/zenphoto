@@ -9,7 +9,6 @@ if (!defined('WEBPATH')) die();
 	<title><?php printBareGalleryTitle(); ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/slideshow.css" type="text/css" />
-	<?php printSlideShowJS(); ?>
 </head>
 
 <body>

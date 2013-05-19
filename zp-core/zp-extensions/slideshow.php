@@ -46,6 +46,7 @@ zp_register_filter('content_macro','slideshow::macro');
 class slideshow {
 
 	function slideshow() {
+		global $_zp_gallery;
 		//setOptionDefault('slideshow_size', '595');
 		setOptionDefault('slideshow_width', '595');
 		setOptionDefault('slideshow_height', '595');
@@ -63,11 +64,13 @@ class slideshow {
 			cacheManager::addThemeCacheSize('slideshow', NULL, getOption('slideshow_width'), getOption('slideshow_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, true);
 			cacheManager::addThemeCacheSize('slideshow', NULL, getOption('slideshow_width'), getOption('slideshow_height'), getOption('slideshow_width'), getOption('slideshow_height'), NULL, NULL, NULL, NULL, NULL, false);
 		}
+		//	we will presume that themes slideshow script wants to use the slideshow
+		foreach (array_keys($_zp_gallery->getThemes()) as $theme) {
+			setOptionDefault('slideshow_'.$theme.'_slideshow',1);
+		}
 	}
 
-
 	function getOptionsSupported() {
-		global $_zp_gallery;
 		$options = array(gettext('Mode') => array('key' => 'slideshow_mode', 'type' => OPTION_TYPE_SELECTOR,
 																							'order'=>0,
 																							'selections' => array(gettext("jQuery Cycle")=>"jQuery", gettext("jQuery Colorbox")=>"colorbox"),
@@ -76,24 +79,15 @@ class slideshow {
 																							'order'=>1,
 																							'desc' => gettext("Speed of the transition in milliseconds."))
 		);
-		$exclude = array('404.php','themeoptions.php','theme_description.php');
-		foreach (array_keys($_zp_gallery->getThemes()) as $theme) {
-			$curdir = getcwd();
-			$root = SERVERPATH.'/'.THEMEFOLDER.'/'.$theme.'/';
-			chdir($root);
-			$filelist = safe_glob('*.php');
+		foreach (getThemeFiles(array('404.php','themeoptions.php','theme_description.php')) as $theme=>$scripts) {
 			$list = array();
-			foreach($filelist as $file) {
-				if (!in_array($file,$exclude)) {
-					$script = filesystemToInternal($file);
-					$list[$script] = 'slideshow_'.$theme.'_'.stripSuffix($script);
-				}
+			foreach ($scripts as $script) {
+				$list[$script] = 'slideshow_'.$theme.'_'.stripSuffix($script);
 			}
-			chdir($curdir);
 			$opts[$theme] = array('key' => 'slidewshow_'.$theme.'_scripts', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
-																	'checkboxes' => $list,
-																	'desc' => gettext('The scripts for which the slideshow is enabled. {Should have been set by the themes!}')
-											);
+					'checkboxes' => $list,
+					'desc' => gettext('The scripts for which the slideshow is enabled. {Should have been set by the themes!}')
+			);
 		}
 		$options = array_merge($options, $opts);
 
@@ -148,6 +142,9 @@ class slideshow {
 	}
 
 	static function getPlayer($album,$controls) {
+		global $_zp_gallery, $_zp_gallery_page;
+		//	Just incase the theme has not set the option, at least second try will work!
+		setOptionDefault('slideshow_'.$_zp_gallery->getCurrentTheme().'_'.stripSuffix($_zp_gallery_page),1);
 		$albumobj = '';
 		if(!empty($album)) {
 			$albumobj = newAlbum($album, NULL, true);
@@ -162,7 +159,6 @@ class slideshow {
 				break;
 		}
 		if(is_object($albumobj) && $albumobj->loaded) {
-			slideshow::header_js();
 			$returnpath = rewrite_path('/'.pathurlencode($albumobj->name).'/','/index.php?album='.urlencode($albumobj->name));
 			return slideshow::getShow(false,false, $albumobj,NULL,NULL, NULL, false, false, false, $controls, $returnpath, 0);
 		} else {
@@ -453,7 +449,7 @@ class slideshow {
 
 	static function header_js() {
 		?>
-			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER.'/'.PLUGIN_FOLDER ?>/slideshow/jquery.cycle.all.js" type="text/javascript"></script>
+		<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER.'/'.PLUGIN_FOLDER ?>/slideshow/jquery.cycle.all.js" type="text/javascript"></script>
 		<?php
 	}
 
@@ -692,8 +688,10 @@ function printSlideShowLink($linktext=NULL, $linkstyle=Null) {
  *
  */
 function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $imageobj = NULL, $width = NULL, $height = NULL, $crop=false, $shuffle=false, $linkslides=false, $controls=true) {
-	global $_myFavorites, $_zp_conf_vars;
-		if (!isset($_POST['albumid']) AND !is_object($albumobj)) {
+	global $_myFavorites, $_zp_conf_vars, $_zp_gallery, $_zp_gallery_page;
+	//	Just incase the theme has not set the option, at least second try will work!
+	setOptionDefault('slideshow_'.$_zp_gallery->getCurrentTheme().'_'.stripSuffix($_zp_gallery_page),1);
+	if (!isset($_POST['albumid']) AND !is_object($albumobj)) {
 			return '<div class="errorbox" id="message"><h2>'.gettext('Invalid linking to the slideshow page.').'</h2></div></div></body></html>';
 		}
 		//getting the image to start with
@@ -763,17 +761,6 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $i
 
 
 	echo slideshow::getShow($heading, $speedctl, $albumobj, $imageobj, $width, $height, $crop, $shuffle, $linkslides, $controls, $returnpath, $imagenumber);
-}
-
-
-/**
- * Prints the path to the slideshow JS and CSS (printed because some values need to be changed dynamically).
- * CSS can be adjusted
- * To be used on slideshow.php
- *
- */
-function printSlideShowJS() {
-	slideshow::header_js();
 }
 
 ?>

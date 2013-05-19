@@ -4634,4 +4634,28 @@ function consolidatedEditMessages($subtab) {
 	}
 }
 
+/**
+ * returns an array of the theme scripts not in the exclude array
+ * @param array $exclude those scripts to ignore
+ * @return array
+ */
+function getThemeFiles($exclude) {
+	global $_zp_gallery;
+	$files = array();
+	foreach (array_keys($_zp_gallery->getThemes()) as $theme) {
+		$curdir = getcwd();
+		$root = SERVERPATH.'/'.THEMEFOLDER.'/'.$theme.'/';
+		chdir($root);
+		$filelist = safe_glob('*.php');
+		$list = array();
+		foreach($filelist as $file) {
+			if (!in_array($file,$exclude)) {
+				$files[$theme][] = filesystemToInternal($file);
+			}
+		}
+		chdir($curdir);
+	}
+	return $files;
+}
+
 ?>

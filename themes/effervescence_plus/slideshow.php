@@ -14,7 +14,6 @@ if (!defined('WEBPATH')) die();
 	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/effervescence_plus/common.css" type="text/css" />
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/slideshow.css" type="text/css" />
-	<?php printSlideShowJS(); ?>
 </head>
 <body>
 <?php zp_apply_filter('theme_body_open'); ?>
