@@ -15,7 +15,7 @@
  * distribution. Note that the Colorbox mode does not require these files as it is called on your theme's image.php and album.php direclty
  * via the slideshow button. The Colorbox plugin must be enabled and setup for these pages.
  *
- * <b>NOTE:</b> The jQuery Cycle and the jQuery Colorbox modes do not support movie and audio files. 
+ * <b>NOTE:</b> The jQuery Cycle and the jQuery Colorbox modes do not support movie and audio files.
  * In Colorbox mode there will be no slideshow button on the image page if that current image is a movie/audio file.
  *
  *
@@ -31,39 +31,12 @@ $option_interface = 'slideshow';
 
 global $_zp_gallery, $_zp_gallery_page;
 if (getOption('slideshow_'.$_zp_gallery->getCurrentTheme().'_'.stripSuffix($_zp_gallery_page))) {
-	zp_register_filter('theme_head','slideshow_js');
+	zp_register_filter('theme_head','slideshow::header_js');
 }
-zp_register_filter('content_macro','slideshowmacro');
+zp_register_filter('content_macro','slideshow::macro');
 
-function slideshowmacro($macros) {
- $macros['SLIDESHOW'] = array(
-														'class'=>'expression',
-														'regex'=>'/^(.*)\s(.*)$/',
-														'value'=>'getSlideshowPlayer($1,$2);',
-														'desc'=>gettext('%1 = album name, %2 = true to show controls (might require theme css.) (Setup by the Slideshow plugin).')
-													);
-	return $macros;
-}
 
 //if (!OFFSET_PATH) {
-	function getSlideshowPlayer($album,$controls) {
-		$albumobj = '';
-		if(!empty($album)) {
-			$albumobj = newAlbum($album);
-		}
-		switch($controls){
-			case 'true':
-				$controls = true;
-				break;
-			default:
-			case 'false':
-				$controls = false;
-				break;
-		}
-		if(is_object($albumobj)) {
-			return getSlideShow(false,false, $albumobj,NULL,NULL, NULL, false, false, false, $controls);
-		}
-	}
 //}
 
 /**
@@ -123,7 +96,7 @@ class slideshow {
 											);
 		}
 		$options = array_merge($options, $opts);
-		
+
 		switch (getOption('slideshow_mode')) {
 			case 'jQuery':
 				$options = array_merge($options,
@@ -172,6 +145,329 @@ class slideshow {
 	}
 
 	function handleOption($option, $currentValue) {
+	}
+
+	static function getPlayer($album,$controls) {
+		$albumobj = '';
+		if(!empty($album)) {
+			$albumobj = newAlbum($album);
+		}
+		switch($controls){
+			case 'true':
+				$controls = true;
+				break;
+			default:
+			case 'false':
+				$controls = false;
+				break;
+		}
+		if(is_object($albumobj)) {
+			slideshow::header_js();
+			$returnpath = rewrite_path('/'.pathurlencode($albumobj->name).'/','/index.php?album='.urlencode($albumobj->name));
+			return slideshow::getShow(false,false, $albumobj,NULL,NULL, NULL, false, false, false, $controls, $returnpath, 0);
+		}
+	}
+
+	static function getShow($heading, $speedctl, $albumobj, $imageobj, $width, $height, $crop, $shuffle, $linkslides, $controls, $returnpath, $imagenumber) {
+		if(!$albumobj->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumq['folder'])) {
+			return '<div class="errorbox" id="message"><h2>'.gettext('This album is password protected!').'</h2></div></div></body></html>';
+		}
+		$slideshow = '';
+
+		$numberofimages = $albumobj->getNumImages();
+
+		// setting the image size
+		if (!empty($width) AND !empty($height)) {
+			$width = sanitize_numeric($width);
+			$height = sanitize_numeric($height);
+		} else {
+			$width = getOption("slideshow_width");
+			$height = getOption("slideshow_height");
+		}
+		if($numberofimages == 0) {
+			return NULL;
+		}
+		$option = getOption("slideshow_mode");
+		// jQuery Cycle slideshow config
+		// get slideshow data
+
+		if($shuffle) shuffle($images);
+		$showdesc = getOption("slideshow_showdesc");
+		// slideshow display section
+		switch($option) {
+			case "jQuery":
+				$validtypes = array('jpg','jpeg','gif','png','mov','3gp');
+				$slideshow .= '
+				<script type="text/javascript">
+				// <!-- <![CDATA[
+				$(document).ready(function(){
+				$(function() {
+				var ThisGallery = "'.html_encode($albumobj->getTitle()).'";
+				var ImageList = new Array();
+				var TitleList = new Array();
+				var DescList = new Array();
+				var ImageNameList = new Array();
+				var DynTime=('.getOption("slideshow_timeout").') * 1.0;	// force numeric
+				';
+				$images = $albumobj->getImages(0);
+				for ($imgnr = 0, $cntr = 0, $idx = $imagenumber; $imgnr < $numberofimages; $imgnr++, $idx++) {
+					if (is_array($images[$idx])) {
+						$filename = $images[$idx]['filename'];
+						$album = newAlbum($images[$idx]['folder']);
+						$image = newImage($album, $filename);
+					} else {
+						$filename = $images[$idx];
+						$image = newImage($albumobj, $filename);
+					}
+					$ext = slideshow::is_valid($filename, $validtypes);
+					if ($ext) {
+						if($crop) {
+							$img = $image->getCustomImage(NULL,$width,$height,$width,$height, NULL, NULL, NULL, NULL);
+						} else {
+							getMaxSpaceContainer($width, $height, $image);
+							$img = $image->getCustomImage(NULL, $width, $height, NULL, NULL, NULL, NULL, NULL, NULL);
+						}
+						$slideshow .= 'ImageList[' . $cntr . '] = "' . $img . '";'. "\n";
+						$slideshow .= 'TitleList[' . $cntr . '] = "' . js_encode($image->getTitle()) . '";'. "\n";
+						if($showdesc) {
+							$desc = $image->getDesc();
+							$desc = str_replace("\r\n", '<br />', $desc);
+							$desc = str_replace("\r", '<br />', $desc);
+							$slideshow .= 'DescList[' . $cntr . '] = "' . js_encode($desc) . '";'. "\n";
+						} else {
+							$slideshow .= 'DescList[' . $cntr . '] = "";'. "\n";
+						}
+						if ($idx == $numberofimages - 1) {
+							$idx = -1;
+						}
+						$slideshow .= 'ImageNameList[' . $cntr . '] = "'.urlencode($filename).'";'. "\n";
+						$cntr++;
+					}
+				}
+
+				$slideshow .= "\n";
+				$numberofimages = $cntr;
+				$slideshow .= '
+				var countOffset = '.$imagenumber.';
+				var totalSlideCount = '.$numberofimages.';
+				var currentslide = 2;
+				function onBefore(curr, next, opts) {
+				if (opts.timeout != DynTime) {
+				opts.timeout = DynTime;
+		}
+		if (!opts.addSlide)
+		return;
+		var currentImageNum = currentslide;
+		currentslide++;
+		if (currentImageNum == totalSlideCount) {
+		opts.addSlide = null;
+		return;
+		}
+		var relativeSlot = (currentslide + countOffset) % totalSlideCount;
+		if (relativeSlot == 0) {relativeSlot = totalSlideCount;}
+		var htmlblock = "<span class=\"slideimage\"><h4><strong>" + ThisGallery + ":</strong> ";
+		htmlblock += TitleList[currentImageNum]  + " (" + relativeSlot + "/" + totalSlideCount + ")</h4>";
+		';
+				if($linkslides) {
+					if(MOD_REWRITE) {
+						$slideshow .= 'htmlblock += "<a href=\"'.pathurlencode($album->name).'/"+ImageNameList[currentImageNum]+"'.getOption('mod_rewrite_image_suffix').'\">";';
+					} else {
+						$slideshow .= 'htmlblock += "<a href=\"index.php?album='.pathurlencode($album->name).'&image="+ImageNameList[currentImageNum]+"\">";';
+					}
+				}
+				$slideshow .= ' htmlblock += "<img src=\"" + ImageList[currentImageNum] + "\"/>";';
+				if($linkslides) {
+					$slideshow .= ' htmlblock += "</a>";';
+				}
+
+				$slideshow .= 'htmlblock += "<p class=\"imgdesc\">" + DescList[currentImageNum] + "</p></span>";';
+				$slideshow .= 'opts.addSlide(htmlblock);';
+				$slideshow .= '}';
+
+				$slideshow .= '
+				function onAfter(curr, next, opts){
+				';
+				if (!$albumobj->isMyItem(LIST_RIGHTS)) {
+					$slideshow .= '
+					//Only register at hit count the first time the image is viewed.
+					if ($(next).attr("viewed") != 1) {
+					$.get("'.FULLWEBPATH .'/'. ZENFOLDER . '/'.PLUGIN_FOLDER.'/slideshow/slideshow-counter.php?album='.pathurlencode($album->name).'&img="+ImageNameList[opts.currSlide]);
+					$(next).attr("viewed", 1 );
+				}
+				';
+				}
+				$slideshow .='}';
+				$slideshow .='
+				$("#slides").cycle({
+				fx:     "'.getOption("slideshow_effect").'",
+				speed:   "'.getOption("slideshow_speed").'",
+				timeout: DynTime,
+				next:   "#next",
+				prev:   "#prev",
+				cleartype: 1,
+				before: onBefore,
+				after: onAfter
+		});
+
+		$("#speed").change(function () {
+		DynTime = this.value;
+		return false;
+		});
+
+		$("#pause").click(function() { $("#slides").cycle("pause"); return false; });
+		$("#play").click(function() { $("#slides").cycle("resume"); return false; });
+		});
+
+		});	// Documentready()
+		// ]]> -->
+		</script>
+		<div id="slideshow" align="center">
+		';
+				// 7/21/08dp
+				if ($speedctl) {
+					$slideshow .= '<div id="speedcontrol">'; // just to keep it away from controls for sake of this demo
+					$minto = getOption("slideshow_speed");
+					while ($minto % 500 != 0) {
+						$minto += 100;
+						if ($minto > 10000) {
+							break;
+						}  // emergency bailout!
+					}
+					$dflttimeout = getOption("slideshow_timeout");
+					/* don't let min timeout = speed */
+					$thistimeout = ($minto == getOption("slideshow_speed")? $minto + 250 : $minto);
+					$slideshow .= 'Select Speed: <select id="speed" name="speed">';
+					while ( $thistimeout <= 60000) {  // "around" 1 minute :)
+						$slideshow .= "<option value=$thistimeout " . ($thistimeout == $dflttimeout?" selected='selected'>" :">") . round($thistimeout/1000,1) . " sec</option>";
+						/* put back timeout to even increments of .5 */
+						if ($thistimeout % 500 != 0) {
+							$thistimeout -= 250;
+						}
+						$thistimeout += ($thistimeout < 1000? 500:($thistimeout < 10000? 1000:5000));
+					}
+					$slideshow .= '</select> </div>';
+				}
+				if($controls) {
+					$slideshow .= '
+					<div id="controls">
+					<div>
+					<a href="#" id="prev" title="'.gettext("Previous").'"></a>
+					<a href="'.html_encode($returnpath).'" id="stop" title="'.gettext("Stop and return to album or image page").'"></a>
+					<a href="#" id="pause" title="'.gettext("Pause (to stop the slideshow without returning)").'"></a>
+					<a href="#" id="play" title="'.gettext("Play").'"></a>
+					<a href="#" id="next" title="'.gettext("Next").'"></a>
+					</div>
+					</div>
+					';
+				}
+				$slideshow .= '
+				<div id="slides" class="pics">
+				';
+
+				if ($cntr > 1) $cntr = 1;
+				for ($imgnr = 0, $idx = $imagenumber; $imgnr <= $cntr; $idx++) {
+					if ($idx >= $numberofimages) {
+						$idx = 0;
+					}
+					if (is_array($images[$idx])) {
+						$folder = $images[$idx]['folder'];
+						$dalbum = newAlbum($folder);
+						$filename = $images[$idx]['filename'];
+						$image = newImage($dalbum, $filename);
+						$imagepath = FULLWEBPATH.ALBUM_FOLDER_EMPTY.$folder."/".$filename;
+					} else {
+						$folder = $albumobj->name;
+						$filename = $images[$idx];
+						//$filename = $animage;
+						$image = newImage($albumobj, $filename);
+						$imagepath = FULLWEBPATH.ALBUM_FOLDER_EMPTY.$folder."/".$filename;
+					}
+					$ext = slideshow::is_valid($filename, $validtypes);
+					if ($ext) {
+						$imgnr++;
+						$slideshow .= '<span class="slideimage"><h4><strong>'.$albumobj->getTitle().gettext(":").'</strong> '.$image->getTitle().' ('. ($idx + 1) .'/'.$numberofimages.')</h4>';
+
+						if ($ext == "3gp") {
+							$slideshow .= '</a>
+							<object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" width="352" height="304" codebase="http://www.apple.com/qtactivex/qtplugin.cab">
+							<param name="src" value="' . pathurlencode(internalToFilesystem($imagepath)). '"/>
+							<param name="autoplay" value="false" />
+							<param name="type" value="video/quicktime" />
+							<param name="controller" value="true" />
+							<embed src="' . pathurlencode(internalToFilesystem($imagepath)). '" width="352" height="304" autoplay="false" controller"true" type="video/quicktime"
+							pluginspage="http://www.apple.com/quicktime/download/" cache="true"></embed>
+							</object>
+							<a>';
+						}	elseif ($ext == "mov") {
+							$slideshow .= '</a>
+							<object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" width="640" height="496" codebase="http://www.apple.com/qtactivex/qtplugin.cab">
+							<param name="src" value="' . pathurlencode(internalToFilesystem($imagepath)). '"/>
+							<param name="autoplay" value="false" />
+							<param name="type" value="video/quicktime" />
+							<param name="controller" value="true" />
+							<embed src="'  . pathurlencode(internalToFilesystem($imagepath)). '" width="640" height="496" autoplay="false" controller"true" type="video/quicktime"
+							pluginspage="http://www.apple.com/quicktime/download/" cache="true"></embed>
+							</object>
+							<a>';
+						} else {
+							if($linkslides) $slideshow .= '<a href="'.html_encode($image->getImageLink()).'">';
+							if($crop) {
+								$img = $image->getCustomImage(NULL,$width,$height,$width,$height, NULL, NULL, NULL, NULL);
+							} else {
+								getMaxSpaceContainer($width, $height, $image);
+								$img = $image->getCustomImage(NULL, $width, $height, NULL, NULL, NULL, NULL, NULL, NULL);
+							}
+							$slideshow .= '<img src="'.html_encode($img).'" alt="" />';
+							if($linkslides) $slideshow .= '</a>';
+						}
+						if($showdesc) {
+							$desc = $image->getDesc();
+							$desc = str_replace("\r\n", '<br />', $desc);
+							$desc = str_replace("\r", '<br />', $desc);
+							$slideshow .= '<p class="imgdesc">'.$desc.'</p>';
+						}
+						$slideshow .= '</span>';
+					}
+				}
+				break;
+		}
+		$slideshow .= '
+		</div>
+		</div>
+		';
+		return $slideshow;
+	}
+
+	static function macro($macros) {
+		$macros['SLIDESHOW'] = array(
+				'class'=>'expression',
+				'regex'=>'/^(.*)\s(.*)$/',
+				'value'=>'slideshow::getPlayer($1,$2);',
+				'desc'=>gettext('%1 = album name, %2 = true to show controls (might require theme css.) (Setup by the Slideshow plugin).')
+		);
+		return $macros;
+	}
+
+	static function header_js() {
+		?>
+			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER.'/'.PLUGIN_FOLDER ?>/slideshow/jquery.cycle.all.js" type="text/javascript"></script>
+		<?php
+	}
+
+	/**
+	 * Returns the file extension if the item passed is displayable by the player
+	 *
+	 * @param mixed $image either an image object or the filename of an image.
+	 * @param array $valid_types list of the types we will accept
+	 * @return string;
+	 */
+	static function is_valid($image, $valid_types) {
+		if (is_object($image)) $image = $image->filename;
+		$ext = getSuffix($image);
+		if (in_array($ext, $valid_types)) {
+			return $ext;
+		}
+		return false;
 	}
 
 }
@@ -346,23 +642,6 @@ function printSlideShowLink($linktext=NULL, $linkstyle=Null) {
 	}
 }
 
-
-/**
- * Returns the file extension if the item passed is displayable by the player
- *
- * @param mixed $image either an image object or the filename of an image.
- * @param array $valid_types list of the types we will accept
- * @return string;
- */
-function is_valid($image, $valid_types) {
-	if (is_object($image)) $image = $image->filename;
-	$ext = getSuffix($image);
-	if (in_array($ext, $valid_types)) {
-		return $ext;
-	}
-	return false;
-}
-
 /**
  * Gets the slideshow using the {@link http://http://www.malsup.com/jquery/cycle/  jQuery plugin Cycle}
  *
@@ -381,337 +660,6 @@ function is_valid($image, $valid_types) {
  * @param bool $controls Set to true (default) if you want the slideshow controls to be shown (might require theme CSS changes if calling outside the slideshow.php page) (jQuery mode only)
  *
  */
-function getSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $imageobj = NULL, $width = NULL, $height = NULL, $crop=false, $shuffle=false, $linkslides=false, $controls=true) {
-	global $_zp_conf_vars;
-	$slideshow = '';
-	if (!isset($_POST['albumid']) AND !is_object($albumobj)) {
-		return '<div class="errorbox" id="message"><h2>'.gettext('Invalid linking to the slideshow page.').'</h2></div></div></body></html>';
-		//exitZP();
-	}
-	global $_zp_current_image, $_zp_current_album, $_zp_gallery, $_myFavorites;
-	$imagenumber = 0;
-	//getting the image to start with
-	if(!empty($_POST['imagenumber']) AND !is_object($imageobj)) {
-		$imagenumber = sanitize_numeric($_POST['imagenumber'])-1; // slideshows starts with 0, but zp with 1.
-	} elseif (is_object($imageobj)) {
-		makeImageCurrent($imageobj);
-		$imagenumber = (imageNumber()-1);
-	}
-	// set pagenumber to 0 if not called via POST link
-	if(isset($_POST['pagenr'])) {
-		$pagenumber = sanitize_numeric($_POST['pagenr']);
-	} else {
-		$pagenumber = 1;
-	}
-	// getting the number of images
-	if(!empty($_POST['numberofimages'])) {
-		$numberofimages = sanitize_numeric($_POST['numberofimages']);
-	} elseif (is_object($albumobj)) {
-		$numberofimages = $albumobj->getNumImages();
-	} else {
-		$numberofimages = 0;
-	}
-	if($imagenumber < 2 || $imagenumber > $numberofimages) {
-		$imagenumber = 0;
-	}
-	//getting the album to show
-	if(!empty($_POST['albumid']) && !is_object($albumobj)) {
-		$albumid = sanitize_numeric($_POST['albumid']);
-	} elseif (is_object($albumobj)) {
-		$albumid = $albumobj->getID();
-	} else {
-		$albumid = 0;
-	}
-
-	// setting the image size
-	if (!empty($width) AND !empty($height)) {
-		$width = sanitize_numeric($width);
-		$height = sanitize_numeric($height);
-	} else {
-		$width = getOption("slideshow_width");
-		$height = getOption("slideshow_height");
-	}
-	if($numberofimages == 0) {
-		return NULL;
-	}
-	$option = getOption("slideshow_mode");
-	// jQuery Cycle slideshow config
-	// get slideshow data
-	if (isset($_POST['preserve_search_params'])) { // search page
-		$search = new SearchEngine();
-		$params = sanitize($_POST['preserve_search_params']);
-		$search->setSearchParams($params);
-		$images = $search->getImages(0);
-		$searchwords = $search->getSearchWords();
-		$searchdate = $search->getSearchDate();
-		$searchfields = $search->getSearchFields(true);
-		$page = $search->page;
-		$returnpath = getSearchURL($searchwords, $searchdate, $searchfields, $page);
-		$albumtitle = gettext('Search');
-	} else {
-		if (isset($_POST['favorites_page'])) {
-			if (!$page = stripSuffix(getOption('favorites_link'))) {
-				$page = 'favourites';
-			}
-			$link = $_zp_conf_vars['special_pages'][$page]['rewrite'];
-			$album = $_myFavorites;
-			$returnpath = rewrite_path('/'.$link.'/'.$pagenumber,'/index.php?p='.$page.'&page='.$pagenumber);
-		} else {
-			$albumq = query_single_row("SELECT title, folder FROM ". prefix('albums') ." WHERE id = ".$albumid);
-			$album = newAlbum($albumq['folder']);
-			if (empty($_POST['imagenumber'])) {
-				$returnpath = rewrite_path('/'.pathurlencode($album->name).'/'._PAGE_.'/'.$pagenumber,'/index.php?album='.urlencode($album->name).'&page='.$pagenumber);
-			} else {
-				$returnpath = rewrite_path('/'.pathurlencode($album->name).'/'.rawurlencode(sanitize($_POST['imagefile'])).getOption('mod_rewrite_image_suffix'),'/index.php?album='.urlencode($album->name).'&image='.urlencode($_POST['imagefile']));
-			}
-		}
-		$albumtitle = $album->getTitle();
-		if(!$album->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumq['folder'])) {
-			return gettext('This album is password protected!');
-			//exitZP();
-		}
-		$images = $album->getImages(0);
-		// return path to get back to the page we called the slideshow from
-	}
-	if($shuffle) shuffle($images);
-	$showdesc = getOption("slideshow_showdesc");
-	// slideshow display section
-	switch($option) {
-		case "jQuery":
-			$validtypes = array('jpg','jpeg','gif','png','mov','3gp');
-			$slideshow .= '
-			<script type="text/javascript">
-				// <!-- <![CDATA[
-				$(document).ready(function(){
-					$(function() {
-						var ThisGallery = "'.html_encode($albumtitle).'";
-						var ImageList = new Array();
-						var TitleList = new Array();
-						var DescList = new Array();
-						var ImageNameList = new Array();
-						var DynTime=('.getOption("slideshow_timeout").') * 1.0;	// force numeric
-					  ';
-						for ($imgnr = 0, $cntr = 0, $idx = $imagenumber; $imgnr < $numberofimages; $imgnr++, $idx++) {
-							if (is_array($images[$idx])) {
-								$filename = $images[$idx]['filename'];
-								$album = newAlbum($images[$idx]['folder']);
-								$image = newImage($album, $filename);
-							} else {
-								$filename = $images[$idx];
-								$image = newImage($album, $filename);
-							}
-							$ext = is_valid($filename, $validtypes);
-							if ($ext) {
-								makeImageCurrent($image);
-								if($crop) {
-									$img = getCustomImageURL(NULL,$width,$height,$width,$height);
-								} else {
-									$img = getCustomSizedImageMaxSpace($width,$height);
-								}
-								$slideshow .= 'ImageList[' . $cntr . '] = "' . $img . '";'. "\n";
-								$slideshow .= 'TitleList[' . $cntr . '] = "' . js_encode($image->getTitle()) . '";'. "\n";
-								if($showdesc) {
-									$desc = $image->getDesc();
-									$desc = str_replace("\r\n", '<br />', $desc);
-									$desc = str_replace("\r", '<br />', $desc);
-									$slideshow .= 'DescList[' . $cntr . '] = "' . js_encode($desc) . '";'. "\n";
-								} else {
-									$slideshow .= 'DescList[' . $cntr . '] = "";'. "\n";
-								}
-								if ($idx == $numberofimages - 1) { $idx = -1; }
-								$slideshow .= 'ImageNameList[' . $cntr . '] = "'.urlencode($filename).'";'. "\n";
-								$cntr++;
-							}
-						}
-						$slideshow .= "\n";
-						$numberofimages = $cntr;
-						$slideshow .= '
-						var countOffset = '.$imagenumber.';
-						var totalSlideCount = '.$numberofimages.';
-						var currentslide = 2;
-						function onBefore(curr, next, opts) {
-							if (opts.timeout != DynTime) {
-								opts.timeout = DynTime;
-							}
-							if (!opts.addSlide)
-								return;
-							var currentImageNum = currentslide;
-							currentslide++;
-							if (currentImageNum == totalSlideCount) {
-								opts.addSlide = null;
-								return;
-							}
-							var relativeSlot = (currentslide + countOffset) % totalSlideCount;
-							if (relativeSlot == 0) {relativeSlot = totalSlideCount;}
-							var htmlblock = "<span class=\"slideimage\"><h4><strong>" + ThisGallery + ":</strong> ";
-							htmlblock += TitleList[currentImageNum]  + " (" + relativeSlot + "/" + totalSlideCount + ")</h4>";
-							';
-							if($linkslides) {
-								if(MOD_REWRITE) {
-									$slideshow .= 'htmlblock += "<a href=\"'.pathurlencode($album->name).'/"+ImageNameList[currentImageNum]+"'.getOption('mod_rewrite_image_suffix').'\">";';
-								} else {
-									$slideshow .= 'htmlblock += "<a href=\"index.php?album='.pathurlencode($album->name).'&image="+ImageNameList[currentImageNum]+"\">";';
-								}
-							}
-							$slideshow .= ' htmlblock += "<img src=\"" + ImageList[currentImageNum] + "\"/>";';
-							if($linkslides) { 
-								$slideshow .= ' htmlblock += "</a>";';
-							}
- 		
-							$slideshow .= 'htmlblock += "<p class=\"imgdesc\">" + DescList[currentImageNum] + "</p></span>";';
-							$slideshow .= 'opts.addSlide(htmlblock);';
-						$slideshow .= '}';
-						
-						$slideshow .= '
-						function onAfter(curr, next, opts){
- 						';
-						if (!$album->isMyItem(LIST_RIGHTS)) { 
-							$slideshow .= '
-								//Only register at hit count the first time the image is viewed.
-								if ($(next).attr("viewed") != 1) {
-									$.get("'.FULLWEBPATH .'/'. ZENFOLDER . '/'.PLUGIN_FOLDER.'/slideshow/slideshow-counter.php?album='.pathurlencode($album->name).'&img="+ImageNameList[opts.currSlide]);
-									$(next).attr("viewed", 1 );
-								}
-							';
-						} 
-						$slideshow .='}';
-						$slideshow .='
-						$("#slides").cycle({
-								fx:     "'.getOption("slideshow_effect").'",
-								speed:   "'.getOption("slideshow_speed").'",
-								timeout: DynTime,
-								next:   "#next",
-								prev:   "#prev",
-								cleartype: 1,
-								before: onBefore,
-								after: onAfter
-						});
-
-						$("#speed").change(function () {
-							DynTime = this.value;
-							return false;
-						});
-
-						$("#pause").click(function() { $("#slides").cycle("pause"); return false; });
-						$("#play").click(function() { $("#slides").cycle("resume"); return false; });
-					});
-
-				});	// Documentready()
-				// ]]> -->
-			</script>
-				<div id="slideshow" align="center">
-				';
-				// 7/21/08dp
-				if ($speedctl) {
-					$slideshow .= '<div id="speedcontrol">'; // just to keep it away from controls for sake of this demo
-					$minto = getOption("slideshow_speed");
-					while ($minto % 500 != 0) {
-						$minto += 100;
-						if ($minto > 10000) { break; }  // emergency bailout!
-					}
-					$dflttimeout = getOption("slideshow_timeout");
-					/* don't let min timeout = speed */
-					$thistimeout = ($minto == getOption("slideshow_speed")? $minto + 250 : $minto);
-					$slideshow .= 'Select Speed: <select id="speed" name="speed">';
-					while ( $thistimeout <= 60000) {  // "around" 1 minute :)
-						$slideshow .= "<option value=$thistimeout " . ($thistimeout == $dflttimeout?" selected='selected'>" :">") . round($thistimeout/1000,1) . " sec</option>";
-						/* put back timeout to even increments of .5 */
-						if ($thistimeout % 500 != 0) { $thistimeout -= 250; }
-						$thistimeout += ($thistimeout < 1000? 500:($thistimeout < 10000? 1000:5000));
-					}
-					$slideshow .= '</select> </div>';
-				}
-				if($controls) { 
-					$slideshow .= '
-					<div id="controls">
-						<div>
-							<a href="#" id="prev" title="'.gettext("Previous").'"></a>
-							<a href="'.html_encode($returnpath).'" id="stop" title="'.gettext("Stop and return to album or image page").'"></a>
-							<a href="#" id="pause" title="'.gettext("Pause (to stop the slideshow without returning)").'"></a>
-							<a href="#" id="play" title="'.gettext("Play").'"></a> 
-							<a href="#" id="next" title="'.gettext("Next").'"></a>
-						</div>
-					</div>
-					';
-				}
-				$slideshow .= '
-				<div id="slides" class="pics">
-				';
-
-				if ($cntr > 1) $cntr = 1;
-				for ($imgnr = 0, $idx = $imagenumber; $imgnr <= $cntr; $idx++) {
-					if ($idx >= $numberofimages) { $idx = 0; }
-					if (is_array($images[$idx])) {
-						$folder = $images[$idx]['folder'];
-						$dalbum = newAlbum($folder);
-						$filename = $images[$idx]['filename'];
-						$image = newImage($dalbum, $filename);
-						$imagepath = FULLWEBPATH.ALBUM_FOLDER_EMPTY.$folder."/".$filename;
-					} else {
-						$folder = $album->name;
-						$filename = $images[$idx];
-						//$filename = $animage;
-						$image = newImage($album, $filename);
-						$imagepath = FULLWEBPATH.ALBUM_FOLDER_EMPTY.$folder."/".$filename;
-					}
-					$ext = is_valid($filename, $validtypes);
-					if ($ext) {
-						$imgnr++;
-						$slideshow .= '<span class="slideimage"><h4><strong>'.$albumtitle.gettext(":").'</strong> '.$image->getTitle().' ('. ($idx + 1) .'/'.$numberofimages.')</h4>';
-
-						if ($ext == "3gp") {
-							$slideshow .= '</a>
-										<object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" width="352" height="304" codebase="http://www.apple.com/qtactivex/qtplugin.cab">
-										<param name="src" value="' . pathurlencode(internalToFilesystem($imagepath)). '"/>
-										<param name="autoplay" value="false" />
-										<param name="type" value="video/quicktime" />
-										<param name="controller" value="true" />
-										<embed src="' . pathurlencode(internalToFilesystem($imagepath)). '" width="352" height="304" autoplay="false" controller"true" type="video/quicktime"
-										pluginspage="http://www.apple.com/quicktime/download/" cache="true"></embed>
-										</object>
-										<a>';
-						}	elseif ($ext == "mov") {
-							$slideshow .= '</a>
-										<object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" width="640" height="496" codebase="http://www.apple.com/qtactivex/qtplugin.cab">
-										<param name="src" value="' . pathurlencode(internalToFilesystem($imagepath)). '"/>
-										<param name="autoplay" value="false" />
-										<param name="type" value="video/quicktime" />
-										<param name="controller" value="true" />
-										<embed src="'  . pathurlencode(internalToFilesystem($imagepath)). '" width="640" height="496" autoplay="false" controller"true" type="video/quicktime"
-										pluginspage="http://www.apple.com/quicktime/download/" cache="true"></embed>
-										</object>
-										<a>';
-						} else {
-							makeImageCurrent($image);
-							if($linkslides) $slideshow .= '<a href="'.html_encode($image->getImageLink()).'">';
-							if($crop) {
-								$slideshow .= '<img src="'.html_encode(getCustomImageURL(NULL,$width, $height, $width, $height)).'" alt="" />';
-								//printCustomSizedImage('',NULL,$width, $height, $width, $height);
-							} else {
-								$slideshow .= '<img src="'.html_encode(getCustomSizedImageMaxSpace($width, $height)).'" alt="" />';
-								//printCustomSizedImageMaxSpace('',$width,$height);
-							}
-							if($linkslides) $slideshow .= '</a>';
-						}
-						if($showdesc) {
-							$desc = $image->getDesc();
-							$desc = str_replace("\r\n", '<br />', $desc);
-							$desc = str_replace("\r", '<br />', $desc);
-							$slideshow .= '<p class="imgdesc">'.$desc.'</p>';
-						}
-						$slideshow .= '</span>';
-					}
-				}
-				break;
-	}
-	$slideshow .= '
-	</div>
-</div>
- 	';
- 	restore_context(); // needed if the slideshow is for example called directly via album object before the next_album loop on index.php
-	return $slideshow;
-}
-
 
 /**
  * Prints the slideshow using the {@link http://http://www.malsup.com/jquery/cycle/  jQuery plugin Cycle}
@@ -741,14 +689,79 @@ function getSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $ima
  *
  */
 function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $imageobj = NULL, $width = NULL, $height = NULL, $crop=false, $shuffle=false, $linkslides=false, $controls=true) {
-	echo getSlideShow($heading, $speedctl, $albumobj, $imageobj, $width, $height, $crop, $shuffle, $linkslides, $controls);
+	global $_myFavorites, $_zp_conf_vars;
+		if (!isset($_POST['albumid']) AND !is_object($albumobj)) {
+			return '<div class="errorbox" id="message"><h2>'.gettext('Invalid linking to the slideshow page.').'</h2></div></div></body></html>';
+		}
+		//getting the image to start with
+		if(!empty($_POST['imagenumber']) AND !is_object($imageobj)) {
+			$imagenumber = sanitize_numeric($_POST['imagenumber'])-1; // slideshows starts with 0, but zp with 1.
+		} elseif (is_object($imageobj)) {
+			$imagenumber = $imageobj->getIndex();
+		} else {
+			$imagenumber = 0;
+		}
+		// set pagenumber to 0 if not called via POST link
+		if(isset($_POST['pagenr'])) {
+			$pagenumber = sanitize_numeric($_POST['pagenr']);
+		} else {
+			$pagenumber = 1;
+		}
+		// getting the number of images
+		if(!empty($_POST['numberofimages'])) {
+			$numberofimages = sanitize_numeric($_POST['numberofimages']);
+		} elseif (is_object($albumobj)) {
+			$numberofimages = $albumobj->getNumImages();
+		} else {
+			$numberofimages = 0;
+		}
+		if($imagenumber < 2 || $imagenumber > $numberofimages) {
+			$imagenumber = 0;
+		}
+		//getting the album to show
+		if(!empty($_POST['albumid']) && !is_object($albumobj)) {
+			$albumid = sanitize_numeric($_POST['albumid']);
+		} elseif (is_object($albumobj)) {
+			$albumid = $albumobj->getID();
+		} else {
+			$albumid = 0;
+		}
+
+	if (isset($_POST['preserve_search_params'])) { // search page
+		$search = new SearchEngine();
+		$params = sanitize($_POST['preserve_search_params']);
+		$search->setSearchParams($params);
+		$searchwords = $search->getSearchWords();
+		$searchdate = $search->getSearchDate();
+		$searchfields = $search->getSearchFields(true);
+		$page = $search->page;
+		$returnpath = getSearchURL($searchwords, $searchdate, $searchfields, $page);
+		$albumobj = new AlbumBase(NULL, false);
+		$albumobj->setTitle(gettext('Search'));
+		$albumobj->images = $search->getImage(0);
+	} else {
+		if (isset($_POST['favorites_page'])) {
+			if (!$page = stripSuffix(getOption('favorites_link'))) {
+				$page = 'favourites';
+			}
+			$link = $_zp_conf_vars['special_pages'][$page]['rewrite'];
+			$albumobj = $_myFavorites;
+			$returnpath = rewrite_path('/'.$link.'/'.$pagenumber,'/index.php?p='.$page.'&page='.$pagenumber);
+		} else {
+			$albumq = query_single_row("SELECT title, folder FROM ". prefix('albums') ." WHERE id = ".$albumid);
+			$albumobj = newAlbum($albumq['folder']);
+			if (empty($_POST['imagenumber'])) {
+				$returnpath = rewrite_path('/'.pathurlencode($albumobj->name).'/'._PAGE_.'/'.$pagenumber,'/index.php?album='.urlencode($albumobj->name).'&page='.$pagenumber);
+			} else {
+				$returnpath = rewrite_path('/'.pathurlencode($albumobj->name).'/'.rawurlencode(sanitize($_POST['imagefile'])).getOption('mod_rewrite_image_suffix'),'/index.php?album='.urlencode($albumobj->name).'&image='.urlencode($_POST['imagefile']));
+			}
+		}
+	}
+
+
+	echo slideshow::getShow($heading, $speedctl, $albumobj, $imageobj, $width, $height, $crop, $shuffle, $linkslides, $controls, $returnpath, $imagenumber);
 }
 
-function slideshow_js() {
-	?>
-	<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER.'/'.PLUGIN_FOLDER ?>/slideshow/jquery.cycle.all.js" type="text/javascript"></script>
-	<?php
-}
 
 /**
  * Prints the path to the slideshow JS and CSS (printed because some values need to be changed dynamically).
@@ -757,9 +770,7 @@ function slideshow_js() {
  *
  */
 function printSlideShowJS() {
-	?>
-	<!-- <script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER.'/'.PLUGIN_FOLDER ?>/slideshow/jquery.cycle.all.js" type="text/javascript"></script> -->
-	<?php
+	slideshow::header_js();
 }
 
 ?>
