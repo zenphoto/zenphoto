@@ -306,8 +306,8 @@ function html_encodeTagged($str, $allowScript=true) {
 	//html comments
 	preg_match_all('|<!--.*-->|ixs', $str, $matches);
 	foreach (array_unique($matches[0]) as $key=>$tag) {
-		$tags['%'.$key.'$j'] = $tag;
-		$str = str_replace($tag, '%'.$key.'$j', $str);
+		$tags['%'.$key.'$-'] = $tag;
+		$str = str_replace($tag, '%'.$key.'$-', $str);
 	}
 	//javascript
 	if ($allowScript) {
@@ -334,7 +334,10 @@ function html_encodeTagged($str, $allowScript=true) {
 		$tags['%'.$key.'$e'] = $entity;
 		$str = str_replace($entity, '%'.$key.'$e', $str);
 	}
-	$str = strtr(htmlspecialchars($str, ENT_FLAGS, LOCAL_CHARSET),$tags);
+	$str = htmlspecialchars($str, ENT_FLAGS, LOCAL_CHARSET);
+	foreach(array_reverse($tags,true) as $token=>$content) {
+		$str = str_replace($token, $content, $str);
+	}
 	return $str;
 }
 
