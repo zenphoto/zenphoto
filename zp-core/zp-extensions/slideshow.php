@@ -169,7 +169,7 @@ class slideshow {
 	}
 
 	static function getShow($heading, $speedctl, $albumobj, $imageobj, $width, $height, $crop, $shuffle, $linkslides, $controls, $returnpath, $imagenumber) {
-		if(!$albumobj->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumq['folder'])) {
+		if(!$albumobj->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumobj->getFolder())) {
 			return '<div class="errorbox" id="message"><h2>'.gettext('This album is password protected!').'</h2></div></div></body></html>';
 		}
 		$slideshow = '';
@@ -291,7 +291,7 @@ class slideshow {
 					$slideshow .= '
 					//Only register at hit count the first time the image is viewed.
 					if ($(next).attr("viewed") != 1) {
-					$.get("'.FULLWEBPATH .'/'. ZENFOLDER . '/'.PLUGIN_FOLDER.'/slideshow/slideshow-counter.php?album='.pathurlencode($album->name).'&img="+ImageNameList[opts.currSlide]);
+					$.get("'.FULLWEBPATH .'/'. ZENFOLDER . '/'.PLUGIN_FOLDER.'/slideshow/slideshow-counter.php?album='.pathurlencode($albumobj->name).'&img="+ImageNameList[opts.currSlide]);
 					$(next).attr("viewed", 1 );
 				}
 				';
