@@ -445,7 +445,8 @@ class slideshow {
 				'class'=>'expression',
 				'regex'=>'/^(.*)\s(.*)$/',
 				'value'=>'slideshow::getPlayer($1,$2);',
-				'desc'=>gettext('%1 = album name, %2 = true to show controls (might require theme css.) (Setup by the Slideshow plugin).')
+				'owner'=>'slideshow',
+				'desc'=>gettext('provide the album name as %1 and true (or false) as %2 to show (hide) controls.')
 		);
 		return $macros;
 	}
