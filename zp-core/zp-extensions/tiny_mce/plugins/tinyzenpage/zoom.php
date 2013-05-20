@@ -3,13 +3,11 @@ define('OFFSET_PATH', 3);
 require_once("../../../../functions.php");
 $host = "http://".html_encode($_SERVER["HTTP_HOST"]);
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
 <title>TinyZenpage</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<script type="text/javascript" src="../../../../js/jquery.js"></script>
-<script type="text/javascript" src="../../../mediaelementjs_player/mediaelement-and-player.min.js"></script>
 </head>
 <body>
 <div style="text-align: center; width 450px;">
@@ -29,7 +27,7 @@ if(isset($_GET['image']) && isset($_GET['album'])) {
 			case '.flv':
 			case '.mp4':
 			case '.m4v':
-				echo '<video src="'.pathurlencode($imageobj->getFullImage()).'" id="player"></video>';
+				echo '<video src="http://localhost/'.pathurlencode($imageobj->getFullImage()).'" id="player"></video>';
 				break;
 			case '.mp3':
 			case '.fla':

@@ -38,7 +38,7 @@ echo "\n</head>";
 							}
 							echo $params;
 						}
-						echo ']</code><br />&nbsp;&nbsp;'.$detail['desc'].'</p>';
+						echo ']</code> <em>('.@$detail['owner'].')</em><br />&nbsp;&nbsp;'.$detail['desc'].'</p>';
 					}
 					?>
 					<p class="notebox">

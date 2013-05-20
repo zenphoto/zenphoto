@@ -391,7 +391,7 @@ textarea {
 .checkbox {
 	cursor: pointer;
 }
-.pushbutton {
+.button {
 	cursor: pointer;
 	padding: 5px 10px;
 	color: #888;
@@ -457,7 +457,7 @@ label {
 	padding:0px;
 	margin:0px;
 }
-#search input.pushbutton {
+#search input.button {
   padding: 1px;
   font-size: 80%;
 }
@@ -663,16 +663,21 @@ label:hover {
 	margin-right: 0px;
 }
 
-#registration_form {
-	width:370px;
+#registration_form p,
+#commentform p,
+#mailform p {
+clear: both;
 }
 
+#registration_form label,
 #commentform label,
 #mailform label {
 width: 30% !important;
 float: left; 
 display: block;
 }
+#registration_form input[type="text"],
+#registration_form input[type="password"],
 #mailform input[type=text],
 #commentform input[type=text] {
 width: 65% !important;
@@ -683,7 +688,7 @@ width: 20% !important;
 margin-left: 10px;
 }
 
-input.pushbutton {
+input.button {
 padding: 5px 8px 5px 8px!important;
 margin: 5px 0 0 0;
 }

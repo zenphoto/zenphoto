@@ -12,13 +12,13 @@
 $plugin_description = gettext("jQuery jCarousel thumb nav plugin with dynamic loading of thumbs on request via JavaScript.");
 $plugin_author = "Malte Müller (acrylian) based on a jCarousel example";
 
-$option_interface = 'jcarouselOptions';
+$option_interface = 'jcarousel';
 
 /**
  * Plugin option handling class
  *
  */
-class jcarouselOptions {
+class jcarousel {
 
 	function jcarouselOptions() {
 		setOptionDefault('jcarousel_scroll', '3');
@@ -51,21 +51,11 @@ class jcarouselOptions {
 				gettext('Vertical') => array('key' => 'jcarousel_vertical', 'type' => OPTION_TYPE_CHECKBOX,
 						'desc' => gettext("If checked the carousel will flow vertically instead of the default horizontal. Changing this may require theme changes!"))
 		);
-		$opts = array();
-		$exclude = array('404.php','themeoptions.php','theme_description.php');
-		foreach (array_keys($_zp_gallery->getThemes()) as $theme) {
-			$curdir = getcwd();
-			$root = SERVERPATH.'/'.THEMEFOLDER.'/'.$theme.'/';
-			chdir($root);
-			$filelist = safe_glob('*.php');
+		foreach (getThemeFiles(array('404.php','themeoptions.php','theme_description.php')) as $theme=>$scripts) {
 			$list = array();
-			foreach($filelist as $file) {
-				if (!in_array($file,$exclude)) {
-					$script = filesystemToInternal($file);
-					$list[$script] = 'jcarousel_'.$theme.'_'.stripSuffix($script);
-				}
+			foreach ($scripts as $script) {
+				$list[$script] = 'jcarousel_'.$theme.'_'.stripSuffix($script);
 			}
-			chdir($curdir);
 			$options[$theme] = array('key' => 'jcarousel_'.$theme.'_scripts', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
 					'checkboxes' => $list,
 					'desc' => gettext('The scripts for which jCarousel is enabled. {If themes require it they might set this, otherwise you need to do it manually!}')
@@ -73,12 +63,8 @@ class jcarouselOptions {
 		}
 		return $options;
 	}
-}
 
-if (!OFFSET_PATH && getOption('jcarousel_'.$_zp_gallery->getCurrentTheme().'_'.stripSuffix($_zp_gallery_page))) {
-	zp_register_filter('theme_head','jcaroselThemeJS');
-
-	function jcaroselThemeJS() {
+	static function themeJS() {
 		$theme = getCurrentTheme();
 		$css = SERVERPATH . '/' . THEMEFOLDER . '/' . internalToFilesystem($theme) . '/jcarousel.css';
 		if (file_exists($css)) {
@@ -87,16 +73,30 @@ if (!OFFSET_PATH && getOption('jcarousel_'.$_zp_gallery->getCurrentTheme().'_'.s
 			$css = WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/jcarousel_thumb_nav/jcarousel.css';
 		}
 		?>
-		<script src="http://code.jquery.com/jquery-migrate-1.1.1.js"></script>
+		<script>
+			(function($) {
+		    var userAgent = navigator.userAgent.toLowerCase();
+
+		    $.browser = {
+		        version: (userAgent.match( /.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/ ) || [0,'0'])[1],
+		        safari: /webkit/.test( userAgent ),
+		        opera: /opera/.test( userAgent ),
+		        msie: /msie/.test( userAgent ) && !/opera/.test( userAgent ),
+		        mozilla: /mozilla/.test( userAgent ) && !/(compatible|webkit)/.test( userAgent )
+		    };
+
+			})(jQuery);
+		</script>
 		<script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER;?>/jcarousel_thumb_nav/jquery.jcarousel.pack.js"></script>
 		<link rel="stylesheet" type="text/css" href="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER;?>/jcarousel_thumb_nav/jquery.jcarousel.css" />
 		<link rel="stylesheet" type="text/css" href="<?php echo html_encode($css); ?>" />
 		<?php
-	};
+	}
 
+}
 
-
-
+if (!OFFSET_PATH && getOption('jcarousel_'.$_zp_gallery->getCurrentTheme().'_'.stripSuffix($_zp_gallery_page))) {
+	zp_register_filter('theme_head','jcarousel::themeJS');
 
 	/** Prints the jQuery jCarousel HTML setup to be replaced by JS
 	 *
@@ -110,7 +110,9 @@ if (!OFFSET_PATH && getOption('jcarousel_'.$_zp_gallery->getCurrentTheme().'_'.s
 	 * @param bool $vertical Set to TRUE if you want the thumbs vertical orientated instead of horizontal (false). Set to NULL if you want to use the backend plugin options.
 	 */
 	function printjCarouselThumbNav($thumbscroll=NULL, $width=NULL, $height=NULL,$cropw=NULL,$croph=NULL,$fullimagelink=NULL,$vertical=NULL) {
-	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_search;
+	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery_page;
+	//	Just incase the theme has not set the option, at least second try will work!
+	setOptionDefault('slideshow_'.$_zp_gallery->getCurrentTheme().'_'.stripSuffix($_zp_gallery_page),1);
 	$items = "";
 	if(is_object($_zp_current_album) && is_object($_zp_current_image) && $_zp_current_album->getNumImages() >= 2) {
 		if(is_null($thumbscroll)) {

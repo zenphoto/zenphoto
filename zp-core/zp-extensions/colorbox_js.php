@@ -53,27 +53,18 @@ class colorbox {
 			$list[ucfirst($theme)] = $theme;
 		}
 		$opts  = array(gettext('Colorbox theme') => array('key' => 'colorbox_theme', 'type' => OPTION_TYPE_SELECTOR,
-										'selections' => $list,
-										'desc' => gettext("The Colorbox script comes with 5 example themes you can select here. If you select <em>custom (within theme)</em> you need to place a folder <em>colorbox_js</em> containing a <em>colorbox.css</em> file and a folder <em>images</em> within the current theme to override to use a custom Colorbox theme."))
-									);
-		$exclude = array('404.php','themeoptions.php','theme_description.php');
-		foreach (array_keys($_zp_gallery->getThemes()) as $theme) {
-			$curdir = getcwd();
-			$root = SERVERPATH.'/'.THEMEFOLDER.'/'.$theme.'/';
-			chdir($root);
-			$filelist = safe_glob('*.php');
+				'selections' => $list,
+				'desc' => gettext("The Colorbox script comes with 5 example themes you can select here. If you select <em>custom (within theme)</em> you need to place a folder <em>colorbox_js</em> containing a <em>colorbox.css</em> file and a folder <em>images</em> within the current theme to override to use a custom Colorbox theme."))
+		);
+		foreach (getThemeFiles(array('404.php','themeoptions.php','theme_description.php')) as $theme=>$scripts) {
 			$list = array();
-			foreach($filelist as $file) {
-				if (!in_array($file,$exclude)) {
-					$script = filesystemToInternal($file);
-					$list[$script] = 'colorbox_'.$theme.'_'.stripSuffix($script);
-				}
+			foreach ($scripts as $script) {
+				$list[$script] = 'colorbox_'.$theme.'_'.stripSuffix($script);
 			}
-			chdir($curdir);
 			$opts[$theme] = array('key' => 'colorbox_'.$theme.'_scripts', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
-																	'checkboxes' => $list,
-																	'desc' => gettext('The scripts for which Colorbox is enabled. {Should have been set by the themes!}')
-											);
+					'checkboxes' => $list,
+					'desc' => gettext('The scripts for which Colorbox is enabled. {Should have been set by the themes!}')
+			);
 		}
 
 		return $opts;

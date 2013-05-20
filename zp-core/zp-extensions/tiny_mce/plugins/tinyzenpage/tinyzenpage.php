@@ -14,8 +14,8 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 		 Author: Malte Müller (acrylian), Stephen Billard (sbillard)
 		 inspired by Alessandro "Simbul" Morandi's  ZenphotoPress (http://simbul.bzaar.net/zenphotopress)
 		 License: GPL v2 http://www.gnu.org/licenses/gpl.html -->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
 	<title>tinyZenpage</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -27,14 +27,14 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 	$(document).ready(function(){
 		$("a[rel='colorbox']").colorbox({
 			iframe:true,
-			innerWidth:450,
-			innerHeight:450,
+			innerWidth:'90%',
+			innerHeight:'85%',
 			close: '<?php echo gettext("close"); ?>'
 			});
 		$("a.colorbox").colorbox({
 			iframe:true,
-			innerWidth:450,
-			innerHeight:450,
+			innerWidth:'90%',
+			innerHeight:'85%',
 			close: '<?php echo gettext("close"); ?>'
 			});
 
@@ -184,7 +184,7 @@ if(showZenphotoOptions()) {
 				<p>
 					<?php echo gettext("Select an album to include images from into your page or article. Click on the image to include it.".
 															" Un-published albums or images are marked with an '*'.".
-															" You can also click on the magnify glass icon to see a preview of the item. (Multimedia files are previewed in Flowplayer, no matter if that plugin is activated or not.)".
+															" You can also click on the magnify glass icon to see a preview of the item. The preview opens in a colorbox showing the frontend/theme view.)".
 															" The first thumbnail is always the thumbnail of the selected album.".
 															" It is titled <em>Albumthumb</em> and appears on every thumbnail page."); ?>
 				</p>
@@ -205,7 +205,7 @@ if(showZenphotoOptions()) {
 					<li>
 						<?php echo gettext("Sized image/multimedia item: The sized image as set in gallery default theme's options."); ?>
 						<br />
-						<?php echo gettext("<strong>Multimedia item: If the mediaelementjs_player plugin is enabled you can also embed video (.flv, .mp4, .m4v) and audio  (.fla, .m4a, .mp3) files. These items are highlighted with an orange border to be easily spotted. <br />Default values for the player width and height can be set on the TinyMCE plugin options (except for mp3s only the controlbar is shown). The files are embedded as HTML5 video and audio elements. Counterpart formats like ogg or webm are not supported currently."); ?>
+						<?php echo gettext("<strong>Multimedia item</strong>: This embeds the content macro MEDIAPLAYER into the text. This generates a video or audio player on the front end if any suitable multimedia player plugin for the file type is enabled and also has registered to the macro."); ?>
 					</li>
 					<li><?php echo gettext("Custom size (un-cropped)."); ?></li>
 					<li><?php echo gettext("Full image: The original image directly. NOTE: Full image protection options do not apply!."); ?></li>

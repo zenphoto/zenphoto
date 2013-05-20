@@ -1063,8 +1063,6 @@ function printNewsDate() {
  * @param string $order 'desc' (default) or 'asc' for descending or ascending
  */
 function printNewsArchive($class='archive', $yearclass='year', $monthclass='month', $activeclass="archive-active",$yearsonly=false,$order='desc') {
-	//FIXME:
-	//multiple instances where links are cobbled to gether instead of using rewrite_path()
 	global $_zp_zenpage;
 	if (!empty($class)){ $class = "class=\"$class\""; }
 	if (!empty($yearclass)){ $yearclass = "class=\"$yearclass\""; }
@@ -1102,9 +1100,9 @@ function printNewsArchive($class='archive', $yearclass='year', $monthclass='mont
 			$active = "";
 		}
 		if($yearsonly) {
-			echo "<li $active><a href=\"".html_encode(getNewsBaseURL().getNewsArchivePath()).$key."\" title=\"".$key." (".$val.")\" rel=\"nofollow\">$key ($val)</a></li>\n";
+			echo "<li $active><a href=\"".html_encode(getNewsArchivePath($key,1))."\" title=\"".$key." (".$val.")\" rel=\"nofollow\">$key ($val)</a></li>\n";
 		} else {
-			echo "<li $active><a href=\"".html_encode(getNewsBaseURL().getNewsArchivePath()).substr($key,0,7)."\" title=\"".$month." (".$val.")\" rel=\"nofollow\">$month ($val)</a></li>\n";
+			echo "<li $active><a href=\"".html_encode(getNewsArchivePath(substr($key,0,7),1))."\" title=\"".$month." (".$val.")\" rel=\"nofollow\">$month ($val)</a></li>\n";
 		}
 	}
 	if($yearsonly) {
@@ -1373,15 +1371,13 @@ function printLatestNews($number=5,$option='with_latest_images', $category='', $
  * @return string
  */
 function getNewsCategoryURL($catlink='') {
-	//FIXME: this function should directly use rewrite_path() to build a easily understandable URL and it should NOT
-	//encode the titlelink (fixed). see function below!!!!
 	global $_zp_zenpage, $_zp_current_category;
 	if(empty($catlink)) {
 		$titlelink = $_zp_current_category->getTitlelink();
 	} else {
 		$titlelink = $catlink;
 	}
-	return $_zp_zenpage->getNewsBaseURL().$_zp_zenpage->getNewsCategoryPath().$titlelink;
+	return $_zp_zenpage->getNewsCategoryPath($titlelink, 1);
 }
 
 
@@ -1447,42 +1443,22 @@ function printNewsIndexURL($name=NULL, $before='', $archive=NULL) {
 	echo "<a href=\"".html_encode(getNewsIndexURL())."\" title=\"".$name."\">".$name."</a>";
 }
 
-
 /**
- * Returns the base /news or index.php?p=news url
  *
  * @return string
  */
-function getNewsBaseURL() {
-	//FIXME: This function should be eleminated and instead the functions that are using it should build
-	//easily understood and modified links using just one call to rewrite_path()
+function getNewsCategoryPath($category,$page) {
 	global $_zp_zenpage;
-	return $_zp_zenpage->getNewsBaseURL();
+	return $_zp_zenpage->getNewsCategoryPath($category,$page);
 }
-
-
-/**
- * Returns partial path of news category
- *
- * @return string
- */
-function getNewsCategoryPath() {
-	//FIXME: this function should really be designed to provide a complete path for what you are actually
-	//trying to link to.
-	global $_zp_zenpage;
-	return $_zp_zenpage->getNewsCategoryPath();
-}
-
 /**
  * Returns partial path of news date archive
  *
  * @return string
  */
-function getNewsArchivePath() {
-	//FIXME: this function should really be designed to provide a complete path for what you are actually
-	//trying to link to.
+function getNewsArchivePath($date, $page) {
 	global $_zp_zenpage;
-	return $_zp_zenpage->getNewsArchivePath();
+	return $_zp_zenpage->getNewsArchivePath($date, $page);
 }
 
 
@@ -1491,26 +1467,10 @@ function getNewsArchivePath() {
  *
  * @return string
  */
-function getNewsTitlePath() {
-	//FIXME: This function should not exist. Path building functions should be complete and understandable
-	//with just one call on rewrite_path()
+function getNewsTitlePath($title) {
 	global $_zp_zenpage;
-	return $_zp_zenpage->getNewsTitlePath();
+	return $_zp_zenpage->getNewsTitlePath($title);
 }
-
-
-/**
- * Returns partial path of a news page number path
- *
- * @return string
- */
-function getNewsPagePath() {
-	//FIXME: This function should not exist. Path building functions should be complete and understandable
-	//with just one call on rewrite_path()
-	global $_zp_zenpage;
-	return $_zp_zenpage->getNewsPagePath();
-}
-
 
 /**
  * Returns the url to a news article
@@ -1520,14 +1480,11 @@ function getNewsPagePath() {
  * @return string
  */
 function getNewsURL($titlelink='') {
-	//FIXME: this function should directly use rewrite_path() to build a easily understandable URL and it should NOT
-	//endode the titlelink (change made)--Verify that anyone who outputs this text does properly encode it--see the
-	//next function below!!!!!!.
 	global $_zp_current_zenpage_news;
 	if(empty($titlelink)) {
 		return $_zp_current_zenpage_news->getNewsLink();
 	} else {
-		return getNewsBaseURL().getNewsTitlePath().$titlelink;
+		return getNewsTitlePath($titlelink);
 	}
 }
 
@@ -1546,40 +1503,22 @@ function printNewsURL($titlelink='') {
 
 /************************************************************/
 /* News index / category / date archive pagination functions
- /***********************************************************/
+/***********************************************************/
 
-
-/**
- * News cat path only for use in the news article pagination
- *
- * @return string
- */
-function getNewsCategoryPathNav() {
-	//FIXME: this function should directly use rewrite_path() to build a easily understandable URL and it should NOT
-	//endode the titlelink (change made)--Verify that anyone who outputs this text does properly encode it
-	global $_zp_current_category;
+function getNewsPathNav($page) {
+	global $_zp_current_category, $_zp_post_date;
 	if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
-		return getNewsCategoryPath().$_zp_current_category->getTitlelink();
+		return getNewsCategoryPath($_zp_current_category->getTitlelink(),$page);
 	}
-	return false;
-}
-
-
-/**
- * news archive path only for use in the news article pagination
- *
- * @return string
- */
-function getNewsArchivePathNav() {
-	//FIXME: this function should directly use rewrite_path() to build a easily understandable URL
-
-	global $_zp_post_date;
 	if (in_context(ZP_ZENPAGE_NEWS_DATE)) {
-		return getNewsArchivePath().$_zp_post_date;
+		return getNewsArchivePath($_zp_post_date, $page);
 	}
-	return false;
+	if ($page) {
+		return rewrite_path('/'._NEWS_.'/'.$page, '?index.php?p=news'.'&page='.$page);
+	} else {
+		return rewrite_path('/'._NEWS_, '?index.php?p=news');
+	}
 }
-
 
 /**
  * Returns the url to the previous news page
@@ -1587,25 +1526,16 @@ function getNewsArchivePathNav() {
  * @return string
  */
 function getPrevNewsPageURL() {
-
-	//FIXME: unless category and archive are mutually exclusive this function can return a link like
-	// news/category/<titlelink>/archive/<date>/<page>
-	//but we have no rewrite rules to handle this.
-	//If category and archive are mutually exclusive then this code is just hopelessly confusing and will
-	//present a maintenance challenge for future generations.
-	//
-	//NOTE: this is just one example of the coding. There are more of the same.
-
 	global $_zp_page;
 	if($_zp_page != 1) {
 		if($_zp_page == 2) {
 			if(is_NewsCategory()) {
-				return getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath()."1";
+				return getNewsPathNav(1);
 			} else {
 				return getNewsIndexURL();
 			}
 		} else {
-			return getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath().($_zp_page - 1);
+			return getNewsPathNav($_zp_page - 1);
 		}
 	} else {
 		return false;
@@ -1637,11 +1567,10 @@ function printPrevNewsPageLink($prev='« prev',$class='disabledlink') {
  * @return string
  */
 function getNextNewsPageURL() {
-	//FIXME: this function should directly use rewrite_path() to build a easily understandable URL
 	global $_zp_zenpage, $_zp_page;
 	$total_pages = ceil($_zp_zenpage->getTotalArticles() / ZP_ARTICLES_PER_PAGE);
 	if ($_zp_page != $total_pages) {
-		return getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath().($_zp_page + 1);
+		return getNewsPathNav($_zp_page + 1);
 	} else {
 		return false;
 	}
@@ -1690,8 +1619,6 @@ function printNewsPageList($class='pagelist') {
  * @return string
  */
 function printNewsPageListWithNav($next,$prev,$nextprev=true, $class='pagelist',$firstlast=true, $navlen=9) {
-	//FIXME:
-	// Multiple instances of cobbled together URLs instead of directly using rewrite_path()
 	global $_zp_zenpage, $_zp_page;
 	$total = ceil($_zp_zenpage->getTotalArticles() / ZP_ARTICLES_PER_PAGE);
 	if ($total > 1) {
@@ -1718,14 +1645,14 @@ function printNewsPageListWithNav($next,$prev,$nextprev=true, $class='pagelist',
 				if($_zp_zenpage->news_on_index) {
 					echo "<a href='".html_encode(getNewsIndexURL())."' title='".gettext("Page")." 1'>1</a>";
 				} else {
-					echo "<a href='".getNewsBaseURL().html_encode(getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath())."1' title='".gettext("Page")." 1'>1</a>";
+					echo "<a href='".html_encode(getNewsPathNav(1))." title='".gettext("Page")." 1'>1</a>";
 				}
 			}
 			echo "</li>\n";
 			if ($j>2) {
 				echo "<li>";
 				$linktext = ($j-1>2)?'...':$k1;
-				echo "<a href=\"".getNewsBaseURL().html_encode(getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath()).$k1."\" title=\"".sprintf(ngettext('Page %u','Page %u',$k1),$k1)."\">".$linktext."</a>";
+				echo "<a href=\"".html_encode(getNewsPathNav($k1))."\" title=\"".sprintf(ngettext('Page %u','Page %u',$k1),$k1)."\">".$linktext."</a>";
 				echo "</li>\n";
 			}
 		}
@@ -1734,14 +1661,14 @@ function printNewsPageListWithNav($next,$prev,$nextprev=true, $class='pagelist',
 			if ($i == $_zp_page) {
 				echo $i;
 			} else {
-				echo "<a href='".getNewsBaseURL().html_encode(getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath()).$i."' title='".sprintf(ngettext('Page %1$u','Page %1$u', $i),$i)."'>".$i."</a>";
+				echo "<a href='".html_encode(getNewsPathNav($i))."' title='".sprintf(ngettext('Page %1$u','Page %1$u', $i),$i)."'>".$i."</a>";
 			}
 			echo "</li>\n";
 		}
 		if ($i < $total) {
 			echo "<li>";
 			$linktext = ($total-$i>1)?'...':$k2;
-			echo "<a href='".getNewsBaseURL().html_encode(getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath()).$k2."' title='".sprintf(ngettext('Page %u','Page %u',$k2),$k2)."'>".$linktext."</a>";
+			echo "<a href='".html_encode(getNewsPathNav($k2))."' title='".sprintf(ngettext('Page %u','Page %u',$k2),$k2)."'>".$linktext."</a>";
 			echo "</li>\n";
 		}
 		if ($firstlast && $i <= $total) {
@@ -1749,7 +1676,7 @@ function printNewsPageListWithNav($next,$prev,$nextprev=true, $class='pagelist',
 			if($_zp_page == $total) {
 				echo $total;
 			} else {
-				echo "<a href=\"".getNewsBaseURL().html_encode(getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath()).$total."\" title=\"".sprintf(ngettext('Page {%u}','Page {%u}',$total),$total)."\">".$total."</a>";
+				echo "<a href=\"".html_encode(getNewsPathNav($total))."\" title=\"".sprintf(ngettext('Page {%u}','Page {%u}',$total),$total)."\">".$total."</a>";
 			}
 			echo "</li>\n";
 		}
@@ -2760,9 +2687,9 @@ function getPageSortorder() {
  *
  * @return string
  */
-function getPageLinkPath() {
+function getPageLinkPath($title) {
 	global $_zp_zenpage;
-	return $_zp_zenpage->getPagesLinkPath();
+	return $_zp_zenpage->getPagesLinkPath($title);
 }
 
 
@@ -2776,7 +2703,7 @@ function getPageLinkURL($titlelink='') {
 	if(empty($titlelink)) {
 		return $_zp_current_zenpage_page->getPageLink();
 	} else {
-		return getPageLinkPath().$titlelink;
+		return getPageLinkPath($titlelink);
 	}
 }
 

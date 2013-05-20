@@ -192,12 +192,10 @@ function printAlbumStatisticItem($album, $option, $showtitle=false, $showdate=fa
 	if($firstimglink && $tempalbum->getNumImages() != 0) {
 		$firstimage = $tempalbum->getImages(1); // need only the first so don't get all
 		$firstimage = $firstimage[0];
-		$modrewritesuffix = getOption('mod_rewrite_image_suffix');
-		$imagepath = html_encode(rewrite_path("/".$firstimage.$modrewritesuffix,"&amp;image=".$firstimage,false));
 	} else {
-		$imagepath = "";
+		$firstimage = "";
 	}
-	$albumpath = html_encode(rewrite_path("/".pathurlencode($tempalbum->name).$imagepath, "index.php?album=".pathurlencode($tempalbum->name).$imagepath));
+	$albumpath = html_encode(rewrite_path("/".pathurlencode($tempalbum->name."/".$firstimage.IM_SUFFIX), "index.php?album=".pathurlencode($tempalbum->name).($firstimage)?"&amp;image=".$firstimage:''));
 	echo "<li><a href=\"".$albumpath."\" title=\"" . html_encode($tempalbum->getTitle()) . "\">\n";
 	$albumthumb = $tempalbum->getAlbumThumbImage();
 	$thumb = newImage($tempalbum, $albumthumb->filename);

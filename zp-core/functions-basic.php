@@ -1002,26 +1002,26 @@ function getAllowedTags($which) {
  * This is here because it's used in both template-functions.php and in the classes.
  * @param string $rewrite is the path to return if rewrite is enabled. (eg: "/myalbum")
  * @param string $plain is the path if rewrite is disabled (eg: "/?album=myalbum")
- * @param bool $webpath true if you want the WEBPATH to be returned, false if you want to generate a partly path. A trailing "/" is always added.
+ * @param bool $webpath host path to be prefixed. If "false" is passed you will get a localized "WEBPATH"
  * @return string
  */
-function rewrite_path($rewrite, $plain, $webpath=true) {
-	$path = null;
+function rewrite_path($rewrite, $plain, $webpath=NULL) {
+	if (is_null($webpath)) {
+		if (class_exists('seo_locale')) {
+			$webpath = seo_locale::localePath();
+		} else {
+			$webpath = WEBPATH;
+		}
+	}
 	if (MOD_REWRITE) {
 		$path = $rewrite;
 	} else {
 		$path = $plain;
 	}
-	if ($webpath && $path{0} == "/") $path = substr($path, 1);
-	if($webpath) {
-		if (class_exists('seo_locale')) {
-			return seo_locale::localePath() . "/" . $path;
-		} else {
-			return WEBPATH . "/" . $path;
-		}
-	} else {
-		return $path;
+	if ($path{0} == "/") {
+		$path = substr($path, 1);
 	}
+	return $webpath . "/" . $path;
 }
 
 /**

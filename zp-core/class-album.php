@@ -888,7 +888,7 @@ class Album extends AlbumBase {
 			}
 			if ($this->isDynamic()) {
 				$search = $this->getSearchEngine();
-				$subalbums = $search->getAlbums($page,NULL,NULL,false);
+				$subalbums = $search->getAlbums(0,NULL,NULL,false);
 			} else {
 				$dirs = $this->loadFileNames(true);
 				$subalbums = array();
@@ -901,12 +901,11 @@ class Album extends AlbumBase {
 			$this->subalbums = $_zp_gallery->sortAlbumArray($this, $subalbums, $key, $sortdirection, $mine);
 			$this->lastsubalbumsort = $sorttype.$sortdirection;
 		}
-
-		if ($page == 0) {
-			return $this->subalbums;
-		} else {
+		if ($page) {
 			$albums_per_page = max(1, getOption('albums_per_page'));
 			return array_slice($this->subalbums, $albums_per_page*($page-1), $albums_per_page);
+		} else {
+			return $this->subalbums;
 		}
 	}
 

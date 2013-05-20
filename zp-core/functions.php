@@ -2064,16 +2064,17 @@ function reveal($content, $visible=false) {
 function applyMacros($text) {
 	$content_macros = getMacros();
 	krsort($content_macros);	//	in case some start with the same sequence, look for the longest first
-	$regex = '/\[('.implode('|',array_keys($content_macros)).')\s*(.*)\]/i';
+	$regex = '/\[('.implode('|',array_keys($content_macros)).')(\]|\s+.*\])/i';
 
 	if (preg_match_all($regex, $text, $matches)) {
 		foreach ($matches[1] as $key=>$macroname) {
+			$p = rtrim(trim($matches[2][$key]),']');
 			$params = '';
 			$macroname = strtoupper($macroname);
 			$macro = $content_macros[$macroname];
 			$macro_instance = $matches[0][$key];
 			if ($macro['regex']) {
-				if (!preg_match($macro['regex'], trim($matches[2][$key]), $parms)) {
+				if (!preg_match($macro['regex'], $p, $parms)) {
 					$macro['class'] = 'error';
 					preg_match_all('|\(.*?\)|', $macro['regex'], $parms);
 					$data = '<span class="error">'.sprintf(ngettext('<em>[%1$s]</em> should have %2$d parameter.','<em>[%1$s]</em> should have %2$d parameters.',count($parms[0])),trim($macro_instance,'[]'),count($parms[0])).'</span>';
@@ -2083,7 +2084,7 @@ function applyMacros($text) {
 					$params = ' '.implode(' ', $parms);
 				}
 			} else {
-				if (!empty($matches[2][$key])) {
+				if (!empty($p)) {
 					$macro['class'] = 'error';
 					$data = '<span class="error">'.sprintf(gettext('<em>[%1$s]</em> macro does not take parameters'),trim($macro_instance,'[]')).'</span>';
 				}
@@ -2132,10 +2133,26 @@ function getMacros() {
 	global $_zp_content_macros;
 	if (is_null($_zp_content_macros)) {
 		$_zp_content_macros = array(
-				'CODEBLOCK' => array('class'=>'procedure', 'regex'=>'/^(\d+)$/', 'value'=>'printCodeblock', 'desc'=>gettext('Places codeblock number <code>%1</code> in the content where the macro exists.')),
-				'PAGE' => array('class'=>'function', 'regex'=>NULL, 'value'=>'getCurrentPage', 'desc'=>gettext('Prints the current page number.')),
-				'ZENPHOTO_VERSION' => array('class'=>'constant','regex'=>NULL,'value'=>ZENPHOTO_VERSION, 'desc'=>gettext('Prints the version of the Zenphoto installation.')),
-				'PAGELINK'	=>	array('class'=>'expression', 'regex'=>'/^(.*)$/', 'value'=>'getCustomPageURL($1);', 'desc'=>gettext('Provides text for a link to a "custom" script page indicated by <code>%1</code>.'))
+				'CODEBLOCK' => array(	'class'=>'procedure',
+															'regex'=>'/^(\d+)$/',
+															'value'=>'printCodeblock',
+															'owner'=>'Zenphoto core',
+															'desc'=>gettext('Places codeblock number <code>%1</code> in the content where the macro exists.')),
+				'PAGE' => array('class'=>'function',
+												'regex'=>NULL,
+												'value'=>'getCurrentPage',
+												'owner'=>'Zenphoto core',
+												'desc'=>gettext('Prints the current page number.')),
+				'ZENPHOTO_VERSION' => array('class'=>'constant',
+																		'regex'=>NULL,
+																		'value'=>ZENPHOTO_VERSION,
+																		'owner'=>'Zenphoto core',
+																		'desc'=>gettext('Prints the version of the Zenphoto installation.')),
+				'PAGELINK'	=>	array('class'=>'expression',
+															'regex'=>'/^(.*)$/',
+															'value'=>'getCustomPageURL($1);',
+															'owner'=>'Zenphoto core',
+															'desc'=>gettext('Provides text for a link to a "custom" script page indicated by <code>%1</code>.'))
 		);
 		$_zp_content_macros = zp_apply_filter('content_macro', $_zp_content_macros);
 	}

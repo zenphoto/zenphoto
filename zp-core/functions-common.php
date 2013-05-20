@@ -306,35 +306,38 @@ function html_encodeTagged($str, $allowScript=true) {
 	//html comments
 	preg_match_all('|<!--.*-->|ixs', $str, $matches);
 	foreach (array_unique($matches[0]) as $key=>$tag) {
-		$tags['%'.$key.'$j'] = $tag;
-		$str = str_replace($tag, '%'.$key.'$j', $str);
+		$tags[0]['%'.$key.'$-'] = $tag;
+		$str = str_replace($tag, '%'.$key.'$-', $str);
 	}
 	//javascript
 	if ($allowScript) {
 		preg_match_all('!<script.*>.*</script>!ixs', $str, $matches);
 		foreach (array_unique($matches[0]) as $key=>$tag) {
-			$tags['%'.$key.'$j'] = $tag;
+			$tags[2]['%'.$key.'$j'] = $tag;
 			$str = str_replace($tag, '%'.$key.'$j', $str);
 		}
 	} else {
 		$str = preg_replace('|<a(.*)href(.*)=(.*)javascript|ixs', '%$x', $str);
-		$tags['%$x'] = '&lt;a href=<strike>javascript</strike>';
+		$tags[2]['%$x'] = '&lt;a href=<strike>javascript</strike>';
 		$str = preg_replace('|<(.*)onclick|ixs', '%$c', $str);
 		$tags['%$c'] = '&lt;<strike>onclick</strike>';
 	}
 	// markup
 	preg_match_all("/<\/?\w+((\s+(\w|\w[\w-]*\w)(\s*=\s*(?:\".*?\"|'.*?'|[^'\">\s]+))?)+\s*|\s*)\/?>/i", $str, $matches);
 	foreach (array_unique($matches[0]) as $key=>$tag) {
-		$tags['%'.$key.'$s'] = $tag;
+		$tags[2]['%'.$key.'$s'] = $tag;
 		$str = str_replace($tag, '%'.$key.'$s', $str);
 	}
 	//entities
 	preg_match_all('/(&[a-z#]+;)/', $str, $matches);
 	foreach (array_unique($matches[0]) as $key=>$entity) {
-		$tags['%'.$key.'$e'] = $entity;
+		$tags[3]['%'.$key.'$e'] = $entity;
 		$str = str_replace($entity, '%'.$key.'$e', $str);
 	}
-	$str = strtr(htmlspecialchars($str, ENT_FLAGS, LOCAL_CHARSET),$tags);
+	$str = htmlspecialchars($str, ENT_FLAGS, LOCAL_CHARSET);
+	foreach(array_reverse($tags,true) as $taglist) {
+		$str = strtr($str, $taglist);
+	}
 	return $str;
 }
 

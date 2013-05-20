@@ -6,22 +6,29 @@
 }
 /* Pretty Buttons
 ------------------------------------- */
+.button {
+	cursor: pointer;
+	padding: 5px 10px;
+}
+
 .buttons a,.buttons button {
-	margin-left: 10px;
 	display: block;
 	float: left;
+	margin: 0 7px 0 0;
+	background-color: #f5f5f5;
+	background-image: url(images/admin-buttonback.jpg);
+	background-repeat: repeat-x;
 	border: 1px solid #dedede;
 	border-top: 1px solid #eee;
 	border-left: 1px solid #eee;
+	font-family: "Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
 	font-size: 100%;
-	line-height: 100%;
+	line-height: 130%;
 	text-decoration: none;
-	font-weight: normal;
+	font-weight: bold;
+	color: #565656;
 	cursor: pointer;
-	padding-left: 3px;
-	padding-right: 3px;
-	padding-top: 2px;
-	padding-bottom: 2px;
+	padding: 5px 10px 6px 7px; /* Links */
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -32,8 +39,23 @@
 	text-decoration: none;
 	width: auto;
 	overflow: visible;
+	padding: 4px 10px 3px 7px; /* IE6 */
 }
 
+.buttons button[type] {
+	text-decoration: none;
+	padding: 5px 10px 5px 7px; /* Firefox */
+	line-height: 17px; /* Safari */
+}
+
+.buttons button img,.buttons a img {
+	text-decoration: none;
+	margin: 0 3px -3px 0 !important;
+	padding: 0;
+	border: none;
+	width: 16px;
+	height: 16px;
+}
 
 /* standard buttons */
 button:hover,.buttons a:hover {
@@ -90,17 +112,20 @@ button.positive,.buttons a.positive {
 	color: #fff;
 }
 
-.buttons .tooltip {
-	text-decoration: none;
-	width: 17em;
+.buttons .fixedwidth {
 	text-align: left;
+	width: 17em;
 }
 
-.buttons a:visited{
-	text-decoration:none;
+
+/*sidebar vertical buttons */
+.box-edit .buttons a,
+.theme_links .buttons a{
+width: 90% !important;
 }
+
 /*------------------------------------- */
-#commentform input.pushbutton  {
+#commentform input.button  {
 	margin-left: 10px;
 	display: block;
 	float: left;
@@ -122,20 +147,20 @@ button.positive,.buttons a.positive {
 	border-radius: 5px;
 }
 
-#commentform input.pushbutton {
+#commentform input.button {
 	text-decoration: none;
 	width: auto;
 	overflow: visible;
 }
 
-#commentform input.pushbutton hover {
+#commentform input.button hover {
 	text-decoration: none;
 	background-color: #dff4ff;
 	border: 1px solid #CBCBCB;
 	color: #FF8A00;
 }
 
-#commentform input.pushbutton active {
+#commentform input.button active {
 	text-decoration: none;
 	background-color: #6299c5;
 	border: 1px solid #6299c5;
@@ -143,19 +168,19 @@ button.positive,.buttons a.positive {
 }
 
 /* positive buttons */
-#commentform input.pushbutton positive {
+#commentform input.button positive {
 	text-decoration: none;
 	color: #529214;
 }
 
-#commentform input.pushbutton positive:hover {
+#commentform input.button positive:hover {
 	text-decoration: none;
 	background-color: #E6EFC2;
 	border: 1px solid #f5f5f4;
 	color: #529214;
 }
 
-#commentform input.pushbutton positive:active {
+#commentform input.button positive:active {
 	text-decoration: none;
 	background-color: #529214;
 	border: 1px solid #529214;
@@ -163,19 +188,19 @@ button.positive,.buttons a.positive {
 }
 
 /* negative buttons */
-#commentform input.pushbutton negative {
+#commentform input.button negative {
 	text-decoration: none;
 	color: #d12f19;
 }
 
-#commentform input.pushbutton negative:hover {
+#commentform input.button negative:hover {
 	text-decoration: none;
 	background: #fbe3e4;
 	border: 1px solid #fbc2c4;
 	color: #d12f19;
 }
 
-#commentform input.pushbutton negative:active {
+#commentform input.button negative:active {
 	text-decoration: none;
 	background-color: #d12f19;
 	border: 1px solid #d12f19;
@@ -305,23 +330,22 @@ label:hover {
 	text-align:center;
 }
 
-#registration_form {
-	width:370px;
+#registration_form p,
+#commentform p,
+#mailform p {
+clear: both;
+margin-bottom: 8px;
 }
 
-#registration_form fieldset {
-	padding:10px;
-}
-#captcha {
-	vertical-align:middle;
-}
-
+#registration_form label,
 #commentform label,
 #mailform label {
 width: 30% !important;
 float: left; 
 display: block;
 }
+#registration_form input[type="text"],
+#registration_form input[type="password"],
 #mailform input[type=text],
 #commentform input[type=text] {
 width: 65% !important;
@@ -332,19 +356,21 @@ width: 20% !important;
 margin-left: 10px;
 }
 
-input.pushbutton {
+input.button {
 padding: 5px 8px 5px 8px!important;
 margin: 5px 0 0 0;
 }
 
+#mailform textarea, 
 #commentform textarea#comment {
 clear: both;
-width: 100% !important;
+width: 95% !important;
+height: 150px;
 }
 
-#mailform textarea{
-float: left !important;
-width: 65% !important;
+#recaptcha_widget_div {
+float: left;
+margin-bottom: 10px;
 }
 
 .error {

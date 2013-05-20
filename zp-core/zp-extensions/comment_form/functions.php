@@ -26,14 +26,16 @@ function comment_form_PaginationJS() {
 					startPage=0;
 				}
 				var num_entries = $('#comments div.comment').length;
-				$(".Pagination").pagination(num_entries, {
-						prev_text: "<?php echo gettext('prev'); ?>",
-						next_text: "<?php echo gettext('next'); ?>",
-						callback: pageselectCallback,
-						load_first_page:true,
-						items_per_page:<?php echo max(1,getOption('comment_form_comments_per_page')); ?>, // Show only one item per page
-						current_page:startPage
-				});
+				if (num_entries) {
+					$(".Pagination").pagination(num_entries, {
+							prev_text: "<?php echo gettext('prev'); ?>",
+							next_text: "<?php echo gettext('next'); ?>",
+							callback: pageselectCallback,
+							load_first_page:true,
+							items_per_page:<?php echo max(1,getOption('comment_form_comments_per_page')); ?>, // Show only one item per page
+							current_page:startPage
+					});
+				}
 		 }
 		$(document).ready(function(){
 				current_comment_N = $('.comment h4').index($(addrBar_hash))+1;
@@ -174,55 +176,39 @@ function comment_form_edit_comment($discard, $raw) {
 		$required = false;
 	}
 	$html =
-			 '<tr>
-					<td>'.
+			 '<p>
+					<label for="comment_form_street">'.
 						sprintf(gettext('Street%s:'),$required).
-				 '</td>
-					<td>
-						<input type="text" name="0-comment_form_street" id="comment_form_street" class="inputbox" size="40" value="'.@$address['street'].'">
-					</td>
-				</tr>
-				<tr>
-					<td>'.
+				 '</label>
+					<input type="text" name="0-comment_form_street" id="comment_form_street" class="inputbox" size="40" value="'.@$address['street'].'">
+				</p>
+				<p>
+					<label for="comment_form_city">'.
 						sprintf(gettext('City%s:'),$required).
-					'</td>
-					<td>
-						<input type="text" name="0-comment_form_city" id="comment_form_city" class="inputbox" size="40" value="'.@$address['city'].'">
-					</td>
-				</tr>
-				<tr>
-					<td>'.
+					'</label>
+					 <input type="text" name="0-comment_form_city" id="comment_form_city" class="inputbox" size="40" value="'.@$address['city'].'">
+				</p>
+				<p>
+					<label for="comment_form_state">'.
 						sprintf(gettext('State%s:'),$required).
-				 '</td>
-					<td>
-						<input type="text" name="0-comment_form_state" id="comment_form_state" class="inputbox" size="40" value="'.@$address['state'].'">
-					</td>
-				</tr>
-				<tr>
-					<td>'.
+				 '</label>
+					<input type="text" name="0-comment_form_state" id="comment_form_state" class="inputbox" size="40" value="'.@$address['state'].'">
+				</p>
+				<p>
+					<label for="comment_form_country">'.
 						sprintf(gettext('Country%s:'),$required).
-				 '</td>
-					<td>
-						<input type="text" name="0-comment_form_country" id="comment_form_country" class="inputbox" size="40" value="'.@$address['country'].'">
-					</td>
-				</tr>
-				<tr>
-					<td>'.
+				 '</label>
+					<input type="text" name="0-comment_form_country" id="comment_form_country" class="inputbox" size="40" value="'.@$address['country'].'">
+				</p>
+				<p>
+					<label for="comment_form_postal">'.
 						sprintf(gettext('Postal code%s:'),$required).
-					'</td>
-					<td>
-						<input type="text" name="0-comment_form_postal" id="comment_form_postal" class="inputbox" size="40" value="'.@$address['postal'].'">
-					</td>
-				</tr>'."\n";
+					'</label>
+					 <input type="text" name="0-comment_form_postal" id="comment_form_postal" class="inputbox" size="40" value="'.@$address['postal'].'">
+				</p>'."\n";
 	if ($required) {
 		$html .=
-				'<tr>
-					<td>
-					</td>
-					<td>'.
-						gettext('*Required').
-					'</td>
-				</tr>'."\n";
+				'<p>'.gettext('*Required').'</p>'."\n";
 	}
 	return $html;
 }
@@ -750,11 +736,11 @@ function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=t
 							if (hide) {
 								$('div.comment').hide();
 								$('.Pagination').hide();
-								$('#comment_toggle').html('<button type="button" onclick="javascript:toggleComments(false);"><?php echo gettext('show comments');?></button>');
+								$('#comment_toggle').html('<button class="button buttons" onclick="javascript:toggleComments(false);"><?php echo gettext('show comments');?></button>');
 							} else {
 								$('div.comment').show();
 								$('.Pagination').show();
-								$('#comment_toggle').html('<button type="button" onclick="javascript:toggleComments(true);"><?php echo gettext('hide comments');?></button>');
+								$('#comment_toggle').html('<button class="button buttons" onclick="javascript:toggleComments(true);"><?php echo gettext('hide comments');?></button>');
 							}
 						}
 						$(document).ready(function() {
@@ -774,9 +760,7 @@ function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=t
 			}
 		 if(getOption('comment_form_pagination') && getOption('comment_form_comments_per_page') < $num) { ?>
 					<div class="Pagination"></div><!-- this is the jquery pagination nav placeholder -->
-					<div id="Commentresult">
-						This content will be replaced when pagination inits.
-					</div>
+					<div id="Commentresult"></div>
 			<?php
 			}
 		 ?>

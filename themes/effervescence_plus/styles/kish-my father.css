@@ -326,7 +326,6 @@ border-bottom: 1px solid #272E46;
 color: #333333; /*textcolor when writing a comment*/
 margin: 5px 0 5px 0;
 padding: 3px;
-width: 600px;
 }
 #commentbox textarea:focus {
 background: #FFFFFF; /*Color of textarea when focused*/
@@ -725,11 +724,6 @@ color: #8597A5; /*disabled next/prev in single image view*/
 .checkbox {
 cursor: pointer;
 }
-.pushbutton {
-cursor: pointer;
-padding: 5px 10px;
-}
-
 
 /* Footer
 ------------------------------------ */
@@ -824,7 +818,7 @@ color: #fff;
 	margin-top: 26px;
 	_margin-top: 24px; /* IE Only */
 }
-#search input.pushbutton {
+#search input.button {
 	padding: 1px;
 	font-size: 80%;
 }
@@ -1061,14 +1055,14 @@ margin-bottom: 1em;
 #pagetext p {
 	line-height: 1em;
 }
-#pagetext ul {
+ul {
 	margin-left: 1em;
-	margin-bottom: 0.5em;
+	margin-bottom: 0.8em;
 }
-#pagetext ul li {
+ul li {
 	margin-left: 1em;
-	margin-bottom: 0.5em;
 }
+
 #pagetext a:link, a:active, a:visited {
 text-decoration:underline;
 }

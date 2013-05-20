@@ -12,22 +12,33 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 <div id="registration_form">
 	<form action="<?php echo $action; ?>" method="post" autocomplete="off">
 		<input type="hidden" name="register_user" value="yes" />
-		<fieldset style="display: none"><legend><?php echo gettext("Username* (this will be your user username)"); ?></legend>
+		<p style="display:none;">
+			<label for="username"><?php echo gettext("Username* (this will be your user username)"); ?></label>
 			<input type="text" id="username" name="username" value="" size="<?php echo TEXT_INPUT_SIZE; ?>" />
-		</fieldset>
-		<fieldset><legend><?php if ($emailid = getOption('register_user_email_is_id')) echo gettext("Email* (this will be your user id)"); else echo gettext("User ID").'*'; ?></legend>
+		</p>
+		<p>
+			<label for="adminuser">
+				<?php 
+					if ($emailid = getOption('register_user_email_is_id')) { 
+						echo gettext("Email* (this will be your user id)"); 
+					} else { 
+						echo gettext("User ID").'*';
+					} ?>
+			</label>
 			<input type="text" id="adminuser" name="user" value="<?php echo html_encode($user); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" />
-		</fieldset>
+	  </p>
 		<?php $_zp_authority->printPasswordForm('', false, NULL, false, $flag='*'); ?>
-		<fieldset><legend><?php echo gettext("Name"); ?>*</legend>
+		<p>
+			<label for="admin_name"><?php echo gettext("Name"); ?>*</label>
 			<input type="text" id="admin_name" name="admin_name" value="<?php echo html_encode($admin_n); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" />
-		</fieldset>
+		</p>
 		<?php
 		if (!getOption('register_user_email_is_id')) {
 			?>
-			<fieldset><legend><?php echo gettext("Email"); ?><?php if (!$emailid) echo '*'; ?></legend>
+			<p>
+				<label for="admin_email"><?php echo gettext("Email"); ?><?php if (!$emailid) echo '*'; ?></label>
 				<input type="text" id="admin_email" name="admin_email" value="<?php echo html_encode($admin_e); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" />
-			</fieldset>
+			</p>
 			<?php
 		}
 		$html = zp_apply_filter('register_user_form', '');
@@ -37,14 +48,15 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 				if (!empty($row)) {
 					$row = str_replace('<tr>','',$row);
 					$elements = explode('</td>',$row);
-					$legend = trim(str_replace(array('<td>',':'), '', $elements[0]));
-					if (!empty($legend)) {
+					$label = trim(str_replace(array('<td>',':'), '', $elements[0]));
+					if (!empty($label)) {
 						$input = str_replace('size="40"', 'size="'.TEXT_INPUT_SIZE.'"', $elements[1]);
 						$input = str_replace('class="inputbox"', '', $input);
 						?>
-						<fieldset><legend><?php echo $legend; ?></legend>
+						<p>
+							<label><?php echo $label; ?></label>
 							<?php echo trim(str_replace('<td>', '', $input)); ?>
-						</fieldset>
+						</p>
 						<?php
 					}
 				}
@@ -53,29 +65,26 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 		if (getOption('register_user_captcha')) {
 			$captcha = $_zp_captcha->getCaptcha();
 			?>
-			<fieldset><legend><?php echo gettext("Enter"); ?></legend>
+			<p>
+				<label for=""><?php echo gettext("Enter"); ?></label>
 				<?php
-				if (isset($captcha['html'])) echo $captcha['html'];
+					if (isset($captcha['html'])) echo $captcha['html'];
+					if (isset($captcha['input'])) echo $captcha['input'];
+					if (isset($captcha['hidden'])) echo $captcha['hidden'];
 				?>
-				&nbsp;&nbsp;&nbsp;
-				<?php
-				if (isset($captcha['input'])) echo $captcha['input'];
-				if (isset($captcha['hidden'])) echo $captcha['hidden'];
-				?>
-			</fieldset>
+			</p>
 			<?php
 		}
 		?>
-		<div style="text-align:right"><?php echo gettext('*Required'); ?></div>
-		<input type="submit" value="<?php echo gettext('Submit') ?>" />
+		<p><?php echo gettext('*Required'); ?></p>
+		<input type="submit" class="button buttons" value="<?php echo gettext('Submit') ?>" />
 		<?php
 		if (class_exists('federated_logon')) {
-
 			?>
-			<fieldset id="Federated_buttons_fieldlist">
-				<legend><?php echo gettext('You may also register using federated credentials'); ?></legend>
+			<p id="Federated_buttons_fieldlist">
+				<label><?php echo gettext('You may also register using federated credentials'); ?></label>
 				<?php federated_logon::buttons(WEBPATH.'/index.php'); ?>
-			</fieldset>
+			</p>
 			<?php
 		}
 		?>

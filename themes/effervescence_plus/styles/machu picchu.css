@@ -687,10 +687,6 @@ text-align: left;
 .checkbox {
 	cursor: pointer;
 }
-.pushbutton {
-	cursor: pointer;
-	padding: 5px 10px;
-}
 /* Footer
 ------------------------------------ */
 .footlinks {
@@ -787,7 +783,7 @@ text-decoration:underline;
 	margin-top: 26px;
 	_margin-top: 24px; /* IE Only */
 }
-#search input.pushbutton {
+#search input.button {
 	padding: 1px;
 	font-size: 80%;
 }
@@ -1017,12 +1013,12 @@ font-size: 1em;
 line-height: 1em;
 margin-bottom: 1em;
 }
-#pagetext p {
-	line-height: 1em;
-}
-#pagetext ul {
+ul {
 	margin-left: 1em;
-	margin-bottom: 0.5em;
+	margin-bottom: 0.8em;
+}
+ul li {
+	margin-left: 1em;
 }
 #pagetext ul li {
 	margin-left: 1em;
