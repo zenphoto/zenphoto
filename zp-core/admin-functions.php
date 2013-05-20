@@ -3518,11 +3518,11 @@ function printEditDropdown($subtab, $nestinglevels, $nesting) {
 			break;
 		case 'imageinfo':
 			if (isset($_GET['tagsort'])) {
-				$tagsort = '&amp;tagsort='.html_encode($_GET['tagsort']);
+				$tagsort = '&tagsort='.sanitize($_GET['tagsort']);
 			} else {
 				$tagsort = '';
 			}
-			$link = '?page=edit&amp;album='.html_encode($_GET['album']).'&amp;tab=imageinfo'.$tagsort.'&amp;selection=';
+			$link = '?page=edit&amp;album='.html_encode($_GET['album']).'&amp;tab=imageinfo'.html_encode($tagsort).'&amp;selection=';
 			break;
 	}
 	?>
