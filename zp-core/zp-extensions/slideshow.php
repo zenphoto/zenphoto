@@ -1,6 +1,6 @@
 <?php
 /**
- * Supports showing slideshows of images in an album.
+ * Supports showing slideshows of images in an album. 
  *	<ul>
  * 		<li>Plugin Option 'slideshow_size' -- Size of the images</li>
  *		<li>Plugin Option 'slideshow_mode' -- The player to be used</li>
@@ -18,6 +18,15 @@
  * <b>NOTE:</b> The jQuery Cycle and the jQuery Colorbox modes do not support movie and audio files.
  * In Colorbox mode there will be no slideshow button on the image page if that current image is a movie/audio file.
  *
+ * Content macro support:
+ * Use [SLIDESHOW <albumname> <true/false for control] for showing a slideshow within image/album descriptions or Zenpage article and page contents.
+ * The slideshow size options must fit the space
+ * Notes:
+ * <ul>	
+ * 	<li>The slideshow scripts must be enabled for the pages you wish to use it on.</li> 
+ * 	<li>Use only one slideshow per page to avoid CSS conflicts.</li> 
+ *	<li>Also your theme might require extra CSS for this usage, especially the controls.</li>
+ *</ul>
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard), Don Peterson (dpeterson)
  * @package plugins
@@ -319,7 +328,7 @@ class slideshow {
 		});	// Documentready()
 		// ]]> -->
 		</script>
-		<div id="slideshow" align="center">
+		<div id="slideshow" style="height:'.($height+40).'px; width:'.$width.'px;">
 		';
 				// 7/21/08dp
 				if ($speedctl) {

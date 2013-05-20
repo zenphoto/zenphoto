@@ -21,6 +21,7 @@ h4 {
 #slideshow {
 	color: white;
 	text-align: center;
+	margin: 0 auto;
 }
 
 #slideshow a img {
