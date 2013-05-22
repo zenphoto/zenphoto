@@ -256,12 +256,12 @@ if (isset($_GET['action'])) {
 				$returnalbum = NULL;
 				if (isset($_POST['savealbuminfo'])) {
 					$notify = processAlbumEdit(0, $album, $returnalbum);
-					$returntab = '&tagsort='.html_encode($tagsort).'&tab=albuminfo';
+					$returntab = '&tagsort='.$tagsort.'&tab=albuminfo';
 				}
 
 				if (isset($_POST['totalimages'])) {
 					if (isset($_POST['checkForPostTruncation'])) {
-						$returntab = '&tagsort='.html_encode($tagsort).'&tab=imageinfo';
+						$returntab = '&tagsort='.$tagsort.'&tab=imageinfo';
 						if (isset($_POST['ids'])) {	//	process bulk actions, not individual image actions.
 							$action = processImageBulkActions($album);
 							if(!empty($action)) $notify = '&bulkmessage='.$action;

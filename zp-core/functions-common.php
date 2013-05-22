@@ -320,7 +320,7 @@ function html_encodeTagged($str, $allowScript=true) {
 		$str = preg_replace('|<a(.*)href(.*)=(.*)javascript|ixs', '%$x', $str);
 		$tags[2]['%$x'] = '&lt;a href=<strike>javascript</strike>';
 		$str = preg_replace('|<(.*)onclick|ixs', '%$c', $str);
-		$tags['%$c'] = '&lt;<strike>onclick</strike>';
+		$tags[2]['%$c'] = '&lt;<strike>onclick</strike>';
 	}
 	// markup
 	preg_match_all("/<\/?\w+((\s+(\w|\w[\w-]*\w)(\s*=\s*(?:\".*?\"|'.*?'|[^'\">\s]+))?)+\s*|\s*)\/?>/i", $str, $matches);

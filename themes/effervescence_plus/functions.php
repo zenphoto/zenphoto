@@ -418,8 +418,8 @@ function commonComment() {
 				$style = NULL;
 				$head = '';
 			} else {
-				$style = 'style="display:none;"';
-				$head = '<br class="clearall" /><p class="buttonn buttons"><a href="javascript:toggle(\'commententry\');" >'.gettext('Add a comment').'</a></p><br class="clearall" />';
+				$style = 'class="comment" style="display:none;"';
+				$head = '<div class="comment commentcontent" style="display:none;"><h3>'.gettext('Add a comment').'</h3></div>';
 			}
 			printCommentForm(true, $head, true, $style);
 			?>

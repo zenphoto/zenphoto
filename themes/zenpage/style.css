@@ -816,6 +816,7 @@ label:hover {
 
 #rating {
 	margin-top: 10px;
+	clear: left;
 }
 
 /* Admin Toolbox

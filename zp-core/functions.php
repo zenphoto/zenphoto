@@ -2105,10 +2105,12 @@ function applyMacros($text) {
 					}
 					if (is_null($data)) {
 						$data = '<span class="error">'.sprintf(gettext('<em>[%1$s]</em> retuned no data'),trim($macro_instance,'[]')).'</span>';
+					} else {
+						$data = "\n<!--Begin ".$macroname."-->\n".$data."\n<!--End ".$macroname."-->\n";
 					}
 					break;
 				case 'constant':
-					$data = $macro['value'];
+					$data = "\n<!--Begin ".$macroname."-->\n".$macro['value']."\n<!--End ".$macroname."-->\n";
 					break;
 				case 'expression':
 					$expression = '$data = '.$macro['value'];
@@ -2120,6 +2122,8 @@ function applyMacros($text) {
 					eval($expression);
 					if (!isset($data) || is_null($data)) {
 						$data = '<span class="error">'.sprintf(gettext('<em>[%1$s]</em> retuned no data'),trim($macro_instance,'[]')).'</span>';
+					} else {
+						$data = "\n<!--Begin ".$macroname."-->\n".$data."\n<!--End ".$macroname."-->\n";
 					}
 					break;
 			}
