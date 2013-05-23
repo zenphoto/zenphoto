@@ -51,17 +51,15 @@ if (isset($_REQUEST['album'])) {
 }
 $albumparm = $folder = $albumwhere = $imagewhere = $id = $r = '';
 if (isset($_REQUEST['return'])) {
-	$ret = sanitize_path($_REQUEST['return']);
-	if (substr($ret, 0, 1) == '*') {
-		if (empty($ret) || $ret == '*.' || $ret == '*/') {
-			$r = '?page=edit';
-		} else {
-			$r = '?page=edit&amp;album='.pathurlencode(substr($ret, 1)).'&amp;tab=subalbuminfo';
-		}
+	$return = $_REQUEST['return'];
+	$r = '?page=edit&amp;album='.pathurlencode($ret = sanitize_path($return));
+	if (strpos($return, '*')===0) {
+		$r .= '&amp;tab=subalbuminfo';
+		$star = '*';
 	} else {
-		$r = '?page=edit&amp;album='.pathurlencode($ret);
+		$star = '';
 	}
-	$backurl = 'admin-edit.php'.$r;
+	$backurl = 'admin-edit.php'.$r.'&amp;return='.$star.pathurlencode($ret);
 } else {
 	$ret = '';
 	$backurl = 'admin.php';
@@ -113,7 +111,7 @@ if (db_connect($_zp_conf_vars)) {
 				$albumwhere = "WHERE `parentid`=$id";
 			}
 		}
-		if (isset($_REQUEST['return'])) $ret = sanitize_path($_REQUEST['return']);
+		if (isset($_REQUEST['return'])) $ret = sanitize($_REQUEST['return']);
 		if (!empty($ret)) $ret = '&amp;return='.$ret;
 		$metaURL = $starturl = '?'.$type.'refresh=start'.$albumparm.'&amp;XSRFToken='.getXSRFToken('refresh').$ret;
 	}

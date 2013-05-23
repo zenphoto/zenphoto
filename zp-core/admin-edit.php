@@ -143,12 +143,11 @@ if (isset($_GET['action'])) {
 			$album = newAlbum($folder);
 			$album->setCommentsAllowed(sanitize_numeric($_GET['commentson']));
 			$album->save();
-			$return = pathurlencode(dirname($folder));
+			$return = sanitize_path($r = $_GET['return']);
 			if (!empty($return)) {
-				if ($return == '.' || $return == '/') {
-					$return = '';
-				} else {
-					$return = '&album='.$return.'&tab=subalbuminfo';
+				$return = '&album='.$return;
+				if (strpos($r, '*')===0) {
+					$return .= '&tab=subalbuminfo';
 				}
 			}
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit'.$return);
@@ -162,12 +161,11 @@ if (isset($_GET['action'])) {
 			$album = newAlbum($folder);
 			$album->setShow($_GET['value']);
 			$album->save();
-			$return = pathurlencode(dirname($folder));
+			$return = sanitize_path($r = $_GET['return']);
 			if (!empty($return)) {
-				if ($return == '.' || $return == '/') {
-					$return = '';
-				} else {
-					$return = '&album='.$return.'&tab=subalbuminfo';
+				$return = '&album='.$return;
+				if (strpos($r, '*')===0) {
+					$return .= '&tab=subalbuminfo';
 				}
 			}
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit'.$return);
@@ -181,27 +179,16 @@ if (isset($_GET['action'])) {
 			$id = sanitize_numeric($_REQUEST['albumid']);
 			$where = ' WHERE `id`='.$id;
 			$imgwhere = ' WHERE `albumid`='.$id;
-			$return = '?counters_reset';
-			$subalbum = '';
-			if (isset($_REQUEST['subalbum'])) {
-				$return = pathurlencode(dirname(sanitize_path($_REQUEST['subalbum'])));
-				$subalbum = '&tab=subalbuminfo';
-			} else {
-				if (isset($_GET['album'])) {
-					$return = pathurlencode(sanitize_path($_GET['album']));
-				} else {
-					$return = pathurlencode(sanitize_path(urldecode($_POST['album'])));
+			$return = sanitize_path($r = $_GET['return']);
+			if (!empty($return)) {
+				$return = '&album='.$return;
+				if (strpos($r, '*')===0) {
+					$return .= '&tab=subalbuminfo';
 				}
 			}
-			if (empty($return) || $return == '.' || $return == '/') {
-				$return = '?page=edit&counters_reset';
-			} else {
-				$return = '?page=edit&album='.$return.'&counters_reset'.$subalbum;
-			}
-
 			query("UPDATE " . prefix('albums') . " SET `hitcounter`= 0" . $where);
 			query("UPDATE " . prefix('images') . " SET `hitcounter`= 0" . $imgwhere);
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php' . $return);
+			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $return.'&counters_reset');
 			exitZP();
 			break;
 
@@ -737,11 +724,6 @@ if (isset($_GET['album']) && !isset($_GET['massedit'])) {
 	} else {
 		$parent = "&amp;album=" . pathurlencode($parent);
 	}
-	if (isset($_GET['counters_reset'])) {
-		echo '<div class="messagebox fade-message">';
-		echo  "<h2>".gettext("Hitcounters have been reset")."</h2>";
-		echo '</div>';
-	}
 	if (isset($_GET['metadata_refresh'])) {
 		echo '<div class="messagebox fade-message">';
 		echo  "<h2>".gettext("Image metadata refreshed.")."</h2>";
@@ -868,7 +850,7 @@ $alb = removeParentAlbumNames($album);
 
 			<ul class="page-list">
 			<?php
-			printNestedAlbumsList($subalbums, $showthumb);
+			printNestedAlbumsList($subalbums, $showthumb, $album);
 			?>
 			</ul>
 
@@ -1683,7 +1665,7 @@ if($subtab != "albuminfo") {	?>
 		</div>
 
 		<ul class="page-list">
-		<?php printNestedAlbumsList($albums, $showthumb); ?>
+		<?php printNestedAlbumsList($albums, $showthumb, NULL); ?>
 		</ul>
 
 	</div>
