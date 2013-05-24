@@ -9000,9 +9000,8 @@ msgid "Prints the current page number."
 msgstr "現在のページ番号を表示します。"
 
 #: zp-core/functions.php:2154
-#, fuzzy
 msgid "Prints the version of the Zenphoto installation."
-msgstr "zenphotoの最新バージョンが利用可能です。"
+msgstr "Zenphotoインストールのバージョンを印刷します。"
 
 #: zp-core/functions.php:2159
 msgid ""
@@ -10565,14 +10564,12 @@ msgstr ""
 "出されます。"
 
 #: zp-core/admin-plugins.php:132
-#, fuzzy
 msgid ""
 "If the plugin checkbox is checked, the plugin will be loaded and its "
 "functions made available. If the checkbox is not checked the plugin is "
 "disabled and occupies no resources."
 msgstr ""
-"プラグインのチェックボックスがチェックされれば、プラグインは読み込まれるで"
-"しょう。また、その機能はテーマページで利用可能になります。チェックボックスが"
+"プラグインのチェックボックスがチェックされれば、プラグインは読み込まれ、その機能は利用可能になるでしょう。チェックボックスが"
 "チェックされない場合、プラグインは無効になり、リソースを占有しません。"
 
 #: zp-core/admin-plugins.php:134
@@ -10930,9 +10927,8 @@ msgid "Return unpublished items"
 msgstr "非公開アイテムに戻る"
 
 #: zp-core/admin-dynamic-album.php:243
-#, fuzzy
 msgid "tagged"
-msgstr "Geotagged"
+msgstr "タグ済み(tagged)"
 
 #: zp-core/admin-dynamic-album.php:250
 msgid "Album <em>Tag</em>"
@@ -13208,7 +13204,6 @@ msgstr ""
 "れ以上ありません。"
 
 #: zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:185
-#, fuzzy
 msgid ""
 "Select an album to include images from into your page or article. Click on "
 "the image to include it. Un-published albums or images are marked with an "
@@ -13217,14 +13212,14 @@ msgid ""
 "first thumbnail is always the thumbnail of the selected album. It is titled "
 "<em>Albumthumb</em> and appears on every thumbnail page."
 msgstr ""
-"自分のページや記事に画像を含めるようにアルバムを選択します。それを含めるに"
+"自分のページや記事に画像を含めるためにアルバムを選択します。それを含めるに"
 "は、画像をクリックします。非公開のアルバムや画像は「*」でマークされます。ま"
 "た、アイテムのプレビューを表示する拡大ガラスのアイコンをクリックすることがで"
-"きます(マルチメディアファイルがFlowplayer、その場合にアクティブになるプラグイ"
-"ンかどうかに関係なくでプレビューされます)。第一のサムネイルは、常に現在選択さ"
-"れているアルバム自体のアルバムのサムネイルに注意してください。これは常に"
-"<em>Albumthumb</em>という名前が付いています、すべてのサムネイルをページに表示"
-"されます。あなたは何を含めて、どのようにいくつかのオプションがあります:"
+"きます。"
+"プレビューには、フロントエンド/テーマビューを示すカラーボックスで開きます。最初のサムネイルは、常に現在選択さ"
+"れているアルバム自体のアルバムのサムネイルになります。これは常に"
+"<em>Albumthumb</em>という名前が付いていて、すべてのサムネイルページに表示"
+"されます。"
 
 #: zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:191
 msgid "Options on what to include"
@@ -15251,7 +15246,6 @@ msgstr ""
 "完全なhtmlリンクを取得する間、<code>getRSSLink()</code>はURLを返すだけです。"
 
 #: zp-core/zp-extensions/deprecated-functions.php:949
-#, fuzzy
 msgid ""
 "Use the template function <code>getRSSLink()</code> instead. NOTE: While "
 "this function gets a full html link  <code>getRSSLink()</code> just returns "
@@ -15370,12 +15364,11 @@ msgid ""
 msgstr ""
 
 #: zp-core/zp-extensions/slideshow.php:36
-#, fuzzy
 msgid ""
 "Adds a theme function to call a slideshow either based on jQuery (default) "
 "or Colorbox."
 msgstr ""
-"Flowplayer3を使用したFlashまたはjQuery(デフォルト)のどちらかを基にしたスライ"
+"ColorboxまたはjQuery(デフォルト)のどちらかを基にしたスライ"
 "ドショーを呼び出すためのテーマ機能を追加します。"
 
 #: zp-core/zp-extensions/slideshow.php:83
@@ -15534,9 +15527,8 @@ msgid "If the image title should be shown at the bottom of the Colorbox."
 msgstr "画像のタイトルがColoboxの下部に表示する必要がある場合です。"
 
 #: zp-core/zp-extensions/slideshow.php:174
-#, fuzzy
 msgid "Invalid slideshow album name!"
-msgstr "無効なアルバムのインスタンス化: アルバム名がありません"
+msgstr "無効なスライドショーのアルバム名です！"
 
 #: zp-core/zp-extensions/slideshow.php:180
 msgid "This album is password protected!"
@@ -15638,27 +15630,24 @@ msgid "Enter your <em>reCaptcha</em> private key."
 msgstr "<em>reCaptcha</em>の秘密鍵を入力します。"
 
 #: zp-core/zp-extensions/reCaptcha.php:47
-#, fuzzy
 msgid "Red"
-msgstr "赤目"
+msgstr "赤"
 
 #: zp-core/zp-extensions/reCaptcha.php:47
 msgid "White"
-msgstr ""
+msgstr "白"
 
 #: zp-core/zp-extensions/reCaptcha.php:47
 msgid "Black Glass"
-msgstr ""
+msgstr "黒ガラス"
 
 #: zp-core/zp-extensions/reCaptcha.php:47
-#, fuzzy
 msgid "Clean"
-msgstr "SEOクリーナー"
+msgstr "クリーン"
 
 #: zp-core/zp-extensions/reCaptcha.php:48
-#, fuzzy
 msgid "Select the <em>reCaptcha</em> theme."
-msgstr "<em>reCaptcha</em>の秘密鍵を入力します。"
+msgstr "<em>reCaptcha</em>のテーマをします。"
 
 #: zp-core/zp-extensions/reCaptcha.php:77
 msgid "reCAPTCHA is not properly configured."
@@ -16923,9 +16912,8 @@ msgid "Enable permaTitlelink"
 msgstr "パーマタイトルリンクの有効化"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:437
-#, fuzzy
 msgid "Truncate at <em>pagebreak</em>"
-msgstr "タイトルを切り取る<br />"
+msgstr "<em>改ページ</em>で切り捨てる"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:439
 msgid "Position:"
@@ -18101,9 +18089,8 @@ msgid ""
 msgstr ""
 
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:68
-#, fuzzy
 msgid "image processor reference"
-msgstr "画像プロセッサーのセキュリティ"
+msgstr "画像プロセッサーの参照"
 
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:139
 #, php-format
@@ -18121,19 +18108,18 @@ msgid "%1$s: %2$s"
 msgstr "%1$s: %2$s"
 
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:167
-#, fuzzy
 msgid ""
 "Refresh the caching of the images stored in the database if some images did "
 "not render."
 msgstr ""
-"いくつかのイメージがレンダリングされなかった場合、選択した画像サイズのキャッ"
+"いくつかの画像がレンダリングされなかった場合、データベースに格納された画像のキャッ"
 "シュをリフレッシュします。"
 
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:171
-#, fuzzy, php-format
+#, php-format
 msgid "%u image processor reference found."
 msgid_plural "%u image processor references found."
-msgstr[0] "画像効果が見つかりません。"
+msgstr[0] "%u 画像プロセッサーの参照が見つかりました。"
 
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:173
 msgid ""
@@ -18141,10 +18127,10 @@ msgid ""
 msgstr ""
 
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:178
-#, fuzzy, php-format
+#, php-format
 msgid "%u cached image reference found."
 msgid_plural "%u cached image references found."
-msgstr[0] "画像効果が見つかりません。"
+msgstr[0] "%u キャッシュ済み画像の参照が見つかりました。"
 
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:182
 #, php-format
@@ -18668,11 +18654,10 @@ msgid "Image feed items:"
 msgstr "画像フィードアイテム:"
 
 #: zp-core/zp-extensions/rss.php:83 zp-core/zp-extensions/rss.php:86
-#, fuzzy
 msgid ""
 "The number of new images and comments you want to appear in your site's RSS "
 "feed"
-msgstr "サイトのニュースRSSフィードに表示したいニュース記事数です。"
+msgstr "サイトのRSSに表示したい新着画像及びコメント数です。"
 
 #: zp-core/zp-extensions/rss.php:84
 msgid "Album feed items:"
@@ -18736,14 +18721,13 @@ msgid "RSS enclosure:"
 msgstr "RSSエンクロージャ:"
 
 #: zp-core/zp-extensions/rss.php:112
-#, fuzzy
 msgid ""
 "Check if you want to enable the RSS enclosure feature which provides a "
 "direct download for full images, movies etc. from within certain RSS reader "
 "clients (only Images RSS)."
 msgstr ""
-"あるRSSリーダクライアント<em>(画像RSSのみ)</em>の中から完全な画像、動画等の直"
-"接ダウンロードを提供する<em>RSSエンクロージャ</em>機能を有効にしたい場合、"
+"あるRSSリーダクライアント(画像RSSのみ)の中から完全な画像、動画等の直"
+"接ダウンロードを提供するRSSエンクロージャ機能を有効にしたい場合、"
 "チェックします。"
 
 #: zp-core/zp-extensions/rss.php:113
@@ -18751,35 +18735,29 @@ msgid "Media RSS:"
 msgstr "メディアRSS:"
 
 #: zp-core/zp-extensions/rss.php:115
-#, fuzzy
 msgid ""
 "Check if media RSS support is to be enabled. This support is used by some "
 "services and programs (only Images RSS)."
 msgstr ""
-"<em>メディアRSS</em>サポートが有効であるならチェックします。このサポートは同"
-"じサービスとプログラム(<em>画像RSSのみ</em>)で使用されます。"
+"メディアRSSサポートが有効であるならチェックします。このサポートは同"
+"じサービスとプログラム(画像RSSのみ)で使用されます。"
 
 #: zp-core/zp-extensions/rss.php:118
-#, fuzzy
 msgid ""
 "Check if you want to enable static RSS feed caching. The cached file will be "
 "placed within the cache_html folder."
 msgstr ""
 "静的RSSフィードキャッシュを有効にしたいならチェックをします。キャッシュされた"
-"ファイルは<em>cache_html</em>フォルダの中に置かれます。<br />キャッシュ期限の"
-"デフォルトは86400秒(24時間×60分×60秒=1日)です。"
+"ファイルはcache_htmlフォルダの中に置かれます。"
 
 #: zp-core/zp-extensions/rss.php:119
 msgid "Cache expiration"
 msgstr "キャッシュ期限"
 
 #: zp-core/zp-extensions/rss.php:121
-#, fuzzy
 msgid ""
 "Cache expire default is 86400 seconds (1 day = 24 hrs * 60 min * 60 sec)."
-msgstr ""
-"キャッシュがいつ期限切れ(秒数)になるか。デフォルトは86400秒(1日 = 24時間 × 60"
-"分 × 60秒)です。"
+msgstr "キャッシュ期限のデフォルトは86400秒です。(1日 = 24時間 × 60分 × 60秒)"
 
 #: zp-core/zp-extensions/rss.php:122
 msgid "Hitcounter"
@@ -19597,9 +19575,8 @@ msgstr "チェックした場合、CAPTCHA検証がユーザ登録で要求さ�
 
 #: zp-core/zp-extensions/register_user.php:109
 #: zp-core/zp-extensions/favoritesHandler.php:96
-#, fuzzy
 msgid "Standard script naming"
-msgstr "スタンダードライト A"
+msgstr "標準スクリプトの命名"
 
 #: zp-core/zp-extensions/register_user.php:111
 msgid ""
