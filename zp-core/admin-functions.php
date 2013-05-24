@@ -1995,11 +1995,15 @@ function printAlbumLegend() {
  *
  * @param object $album is the album being emitted
  * @param bool $show_thumb set to false to show thumb standin image rather than album thumb
+ * @param object $owner the parent album (or NULL for gallery)
  *
  **/
-function printAlbumEditRow($album, $show_thumb) {
+function printAlbumEditRow($album, $show_thumb, $owner) {
 	global $_zp_current_admin_obj;
 	$enableEdit = $album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT;
+	if (is_object($owner)) {
+		$owner = $owner->name;
+	}
 	?>
 	<div class='page-list_row'>
 
@@ -2077,7 +2081,7 @@ function printAlbumEditRow($album, $show_thumb) {
 		if ($album->getShow()) {
 			if ($enableEdit) {
 				?>
-				<a href="?action=publish&amp;value=0&amp;album=<?php echo pathurlencode($album->name); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit')?>" title="<?php echo sprintf(gettext('Un-publish the album %s'), $album->name); ?>" >
+				<a href="?action=publish&amp;value=0&amp;album=<?php echo pathurlencode($album->name); ?>&amp;return=*<?php echo pathurlencode($owner); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit')?>" title="<?php echo sprintf(gettext('Un-publish the album %s'), $album->name); ?>" >
 				<?php
 				}
 			?>
@@ -2091,7 +2095,7 @@ function printAlbumEditRow($album, $show_thumb) {
 		} else {
 			if ($enableEdit) {
 				?>
-				<a href="?action=publish&amp;value=1&amp;album=<?php echo pathurlencode($album->name); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit')?>" title="<?php echo sprintf(gettext('Publish the album %s'), $album->name); ?>">
+				<a href="?action=publish&amp;value=1&amp;album=<?php echo pathurlencode($album->name); ?>&amp;return=*<?php echo pathurlencode($owner); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit')?>" title="<?php echo sprintf(gettext('Publish the album %s'), $album->name); ?>">
 				<?php
 			}
 			?>
@@ -2110,7 +2114,7 @@ function printAlbumEditRow($album, $show_thumb) {
 			if ($album->getCommentsAllowed()) {
 				if ($enableEdit) {
 					?>
-					<a href="?action=comments&amp;commentson=0&amp;album=<?php echo html_encode($album->getFolder()); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit')?>" title="<?php echo gettext('Disable comments'); ?>">
+					<a href="?action=comments&amp;commentson=0&amp;album=<?php echo html_encode($album->getFolder()); ?>&amp;return=*<?php echo pathurlencode($owner); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit')?>" title="<?php echo gettext('Disable comments'); ?>">
 					<?php
 				}
 				?>
@@ -2124,7 +2128,7 @@ function printAlbumEditRow($album, $show_thumb) {
 			} else {
 				if ($enableEdit) {
 					?>
-					<a href="?action=comments&amp;commentson=1&amp;album=<?php echo html_encode($album->getFolder()); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit')?>" title="<?php echo gettext('Enable comments'); ?>">
+					<a href="?action=comments&amp;commentson=1&amp;album=<?php echo html_encode($album->getFolder()); ?>&amp;return=*<?php echo pathurlencode($owner); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit')?>" title="<?php echo gettext('Enable comments'); ?>">
 					<?php
 				}
 				?>
@@ -2151,7 +2155,7 @@ function printAlbumEditRow($album, $show_thumb) {
 				<?php
 			} else {
 				?>
-				<a class="warn" href="admin-refresh-metadata.php?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;return=*<?php echo pathurlencode(dirname($album->name)); ?>&amp;XSRFToken=<?php echo getXSRFToken('refresh')?>" title="<?php echo sprintf(gettext('Refresh metadata for the album %s'), $album->name); ?>">
+				<a class="warn" href="admin-refresh-metadata.php?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;return=*<?php echo pathurlencode($owner); ?>&amp;XSRFToken=<?php echo getXSRFToken('refresh')?>" title="<?php echo sprintf(gettext('Refresh metadata for the album %s'), $album->name); ?>">
 				<img src="images/refresh.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Refresh metadata in the album %s'), $album->name); ?>" />
 				</a>
 				<?php
@@ -2169,7 +2173,7 @@ function printAlbumEditRow($album, $show_thumb) {
 						<?php
 					} else {
 						?>
-						<a class="reset" href="?action=reset_hitcounters&amp;albumid=<?php echo $album->getID(); ?>&amp;album=<?php echo pathurlencode($album->name);?>&amp;subalbum=true&amp;XSRFToken=<?php echo getXSRFToken('hitcounter')?>" title="<?php echo sprintf(gettext('Reset hit counters for album %s'), $album->name); ?>">
+						<a class="reset" href="?action=reset_hitcounters&amp;albumid=<?php echo $album->getID(); ?>&amp;album=<?php echo pathurlencode($album->name);?>&amp;subalbum=true&amp;return=*<?php echo pathurlencode($owner); ?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter')?>" title="<?php echo sprintf(gettext('Reset hit counters for album %s'), $album->name); ?>">
 						<img src="images/reset.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Reset hit counters for the album %s'), $album->name); ?>" />
 						</a>
 						<?php
@@ -2189,7 +2193,7 @@ function printAlbumEditRow($album, $show_thumb) {
 				<?php
 			} else {
 				?>
-				<a class="delete" href="javascript:confirmDeleteAlbum('?page=edit&amp;action=deletealbum&amp;album=<?php echo urlencode(pathurlencode($album->name)); ?>&amp;return=*<?php echo pathurlencode(dirname($album->name)); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete')?>');" title="<?php echo sprintf(gettext("Delete the album %s"), js_encode($album->name)); ?>">
+				<a class="delete" href="javascript:confirmDeleteAlbum('?page=edit&amp;action=deletealbum&amp;album=<?php echo urlencode(pathurlencode($album->name)); ?>&amp;return=<?php echo pathurlencode(dirname($album->name)); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete')?>');" title="<?php echo sprintf(gettext("Delete the album %s"), js_encode($album->name)); ?>">
 				<img src="images/fail.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Delete the album %s'), js_encode($album->name)); ?>" />
 				</a>
 				<?php
@@ -3444,10 +3448,11 @@ function getNestedAlbumList($subalbum, $levels, $level=array()) {
  *
  * @param array $pages The array containing all pages
  * @param bool $show_thumb set false to use thumb standin image.
+ * @param object $owner the album object of the owner or NULL for the gallery
  *
  * @return bool
  */
-function printNestedAlbumsList($albums, $show_thumb) {
+function printNestedAlbumsList($albums, $show_thumb, $owner) {
 	global $_zp_gallery;
 	$indent = 1;
 	$open = array(1=>0);
@@ -3487,7 +3492,7 @@ function printNestedAlbumsList($albums, $show_thumb) {
 			$nonest = '';
 		}
 		echo str_pad("\t",$indent-1,"\t")."<li id=\"id_".$albumobj->getID()."\"$nonest >";
-		printAlbumEditRow($albumobj, $show_thumb);
+		printAlbumEditRow($albumobj, $show_thumb, $owner);
 		$open[$indent]++;
 	}
 	while ($indent > 1) {

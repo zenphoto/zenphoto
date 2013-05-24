@@ -173,7 +173,7 @@ class htmlmetatags {
 		$url = $host.getRequestURI();
 
 		// Convert locale shorttag to allowed html meta format
-		$locale = str_replace("_","-",getOption("locale"));
+		$locale = str_replace("_","-",getUserLocale());
 		$canonicalurl = '';
 		// generate page title, get date
 		$pagetitle = ""; // for gallery index setup below switch

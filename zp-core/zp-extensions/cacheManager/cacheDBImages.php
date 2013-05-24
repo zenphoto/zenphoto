@@ -36,7 +36,7 @@ zp_apply_filter('admin_note','cache', '');
 
 ?>
 <p class="notebox">
-<?php echo gettext('This utility scans the database for images references that have been sored there.').' ';
+<?php echo gettext('This utility scans the database for images references that have been stored there.').' ';
 			echo gettext('If an image processor URI is discovered it will be converted to a cache file URI.').' ';
 			echo gettext('If the cache file for the image does not exist, a cacheing image reference will be made for the image.'); ?>
 </p>
