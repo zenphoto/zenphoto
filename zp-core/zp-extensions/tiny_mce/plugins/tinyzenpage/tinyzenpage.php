@@ -184,7 +184,7 @@ if(showZenphotoOptions()) {
 				<p>
 					<?php echo gettext("Select an album to include images from into your page or article. Click on the image to include it.".
 															" Un-published albums or images are marked with an '*'.".
-															" You can also click on the magnify glass icon to see a preview of the item. The preview opens in a colorbox showing the frontend/theme view.)".
+															" You can also click on the magnify glass icon to see a preview of the item. The preview opens in a colorbox showing the frontend/theme view.".
 															" The first thumbnail is always the thumbnail of the selected album.".
 															" It is titled <em>Albumthumb</em> and appears on every thumbnail page."); ?>
 				</p>
