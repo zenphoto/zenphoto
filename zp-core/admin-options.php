@@ -107,7 +107,6 @@ if (isset($_GET['action'])) {
 			setOption('zenphoto_cookie_path', $p);
 
 			setOption('site_email_name', process_language_string_save('site_email_name',3));
-			setOption('comments_per_page', sanitize_numeric($_POST['comments_per_page']));
 			setOption('users_per_page', sanitize_numeric($_POST['users_per_page']));
 			setOption('plugins_per_page', sanitize_numeric($_POST['plugins_per_page']));
 			if (isset($_POST['articles_per_page'])) {
@@ -118,8 +117,12 @@ if (isset($_GET['action'])) {
 			if ($f == 'custom') $f = sanitize($_POST['date_format'],3);
 			setOption('date_format', $f);
 			setOption('UTF8_image_URI', (int) isset($_POST['UTF8_image_URI']));
-			$msg = zp_apply_filter('save_admin_general_data', '');
-
+			foreach ($_POST as $key=>$value) {
+				if (preg_match('/^log_size.*_(.*)$/', $key, $matches)) {
+					setOption($matches[1].'_log_size', $value);
+					setOption($matches[1].'_log_mail', (int) isset($_POST['log_mail_'.$matches[1]]));
+				}
+			}
 		}
 
 		/*** Gallery options ***/
@@ -873,25 +876,24 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 				</tr>
 				<tr>
 					<td width="175">
-						<?php echo gettext("Name:"); ?>
-						<br />
-						<?php echo gettext("Email:"); ?>
+						<p><?php echo gettext("Name:"); ?></p>
+						<p><?php echo gettext("Email:"); ?></p>
 					</td>
 					<td width="350">
-						<?php print_language_string_list(getOption('site_email_name'), 'site_email_name'); ?>
-						<input type="text" size="48" id="site_email" name="site_email"  value="<?php echo getOption('site_email'); ?>" />
+						<p><?php print_language_string_list(getOption('site_email_name'), 'site_email_name'); ?></p>
+						<p><input type="text" size="48" id="site_email" name="site_email"  value="<?php echo getOption('site_email'); ?>" /></p>
 					</td>
 					<td><?php echo gettext("This email name and address will be used as the <em>From</em> address for all mails sent by Zenphoto."); ?></td>
 				</tr>
 				<tr>
 					<td width="175">
-						<?php echo gettext("Users per page:"); ?>
-						<br />
-						<?php echo gettext("Plugins per page:");
+						<p><?php echo gettext("Users per page:"); ?></p>
+						<p><?php echo gettext("Plugins per page:");  ?></p>
+						<?php
 						if (getOption('zp_plugin_zenpage')) {
 							?>
-							<br />
-							<?php echo gettext("Articles per page:");
+							<p><?php echo gettext("Articles per page:"); ?></p>
+							<?php
 						}
 						?>
 					</td>
@@ -909,6 +911,35 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 						?>
 					</td>
 					<td><?php echo gettext('These options control the number of items displayed on their tabs. If you have problems using these tabs, reduce the number shown here.'); ?></td>
+				</tr>
+				<?php
+				$subtabs = array('security'=>gettext('security'), 'debug'=>gettext('debug'));
+				?>
+				<tr>
+					<td width="175">
+						<?php
+						foreach ($subtabs as $subtab=>$log) {
+							if (!is_null(getOption($log.'_log_size'))) {
+								printf(gettext('<p>%s log limit</p>'), $log);
+							}
+						}
+						?>
+					</td>
+					<td width="350">
+						<?php
+						foreach ($subtabs as $subtab=>$log) {
+							if (!is_null($size = getOption($log.'_log_size'))) {
+								?>
+								<p>
+								<input type="text" size="4" id="<?php echo $log?>_log" name="log_size_<?php echo $log; ?>" value="<?php echo $size; ?>" />
+								<input type="checkbox" id="<?php echo $log?>_log" name="log_mail_<?php echo $log; ?>" value="1" <?php checked('1',getOption($log.'_log_mail')); ?> /> <?php echo gettext('e-mail when exceeded');?>
+								</p>
+								<?php
+							}
+						}
+						?>
+					</td>
+					<td><?php echo gettext('Logs will be "rolled" over when they excede the specified size. If checked, the administrator will be e-mailed when this occurs.')?></td>
 				</tr>
 				<?php zp_apply_filter('admin_general_data'); ?>
 				<tr>

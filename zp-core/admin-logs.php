@@ -56,13 +56,6 @@ if (isset($_GET['action'])) {
 				$zip->add_file_from_path(basename($file), $file);
 				$zip->finish();
 				break;
-			case 'change_size':
-				$newsize = sanitize_numeric($_POST['log_size']);
-				$log = sanitize(@$_GET['tab']);
-				setOption($log.'_log_size', $newsize);
-				$class = 'messagebox';
-				$result = sprintf(gettext('%s log maximum size changed.'),$what);
-				break;
 		}
 	}
 }
@@ -126,18 +119,6 @@ echo "\n</head>";
 					<span class="button buttons">
 						<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-logs.php?action=download_log&amp;page=logs&amp;tab='.html_encode($subtab).'&amp;filename='.html_encode($subtab); ?>&amp;XSRFToken=<?php  echo getXSRFToken('download_log'); ?>">
 						<img src="images/arrow_down.png" /><?php echo gettext('Download'); ?></a>
-					</span>
-					<?php
-				}
-				if (!is_null($size = getOption(strtolower($logfiletext).'_log_size'))) {
-					XSRFToken('change_size');
-					?>
-					<span class="buttons">
-						<button class="floatright" type="submit"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Update"); ?></strong></button>
-					</span>
-					<span class="floatright inline">
-						<?php echo gettext('Log file size limit')?>
-							<input type="text" name="log_size" value="<?php echo $size; ?>" size="8" />&nbsp;
 					</span>
 					<?php
 				}
