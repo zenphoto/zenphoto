@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-26 13:01+0100\n"
-"PO-Revision-Date: 2013-05-26 14:25+0100\n"
+"POT-Creation-Date: 2013-05-26 17:05+0100\n"
+"PO-Revision-Date: 2013-05-26 17:43+0100\n"
 "Last-Translator: Malte Müller (acrylian) <wartgart@gmx.net>\n"
 "Language-Team: Malte Müller (acrylian)\n"
 "Language: de_DE\n"
@@ -251,7 +251,7 @@ msgid "next"
 msgstr "weiter"
 
 #: zenphoto-devzp/themes/default/album.php:64
-#: zenphoto-devzp/themes/default/image.php:94
+#: zenphoto-devzp/themes/default/image.php:96
 #: zenphoto-devzp/themes/zenpage/album.php:75
 #: zenphoto-devzp/themes/zenpage/favorites.php:71
 #: zenphoto-devzp/themes/zenpage/gallery.php:80
@@ -272,7 +272,7 @@ msgstr "Album RSS"
 #: zenphoto-devzp/themes/default/album.php:73
 #: zenphoto-devzp/themes/default/archive.php:10
 #: zenphoto-devzp/themes/default/archive.php:28
-#: zenphoto-devzp/themes/default/image.php:105
+#: zenphoto-devzp/themes/default/image.php:107
 #: zenphoto-devzp/themes/default/index.php:50
 #: zenphoto-devzp/themes/default/search.php:93
 #: zenphoto-devzp/themes/effervescence_plus/archive.php:40
@@ -1642,6 +1642,8 @@ msgid ""
 "Select the <em>pages</em> titlelink for the home page. Only unpublished "
 "pages are offered for selection."
 msgstr ""
+"Wählen Sie den <em>Seiten</em>-Titlelink für die Startseite aus. Nur "
+"unveröffentlichte Seiten werden gelistet."
 
 #: zenphoto-devzp/themes/stopdesign/album.php:69
 #: zenphoto-devzp/themes/stopdesign/favorites.php:67
@@ -1942,6 +1944,8 @@ msgid ""
 "<strong>NOTE:</strong> The 1.4.5 release is the last release that Stopdesign "
 "will be included as a supported theme."
 msgstr ""
+"<strong>HINWEIS:</strong> Die Version 1.4.5 ist die letzte, bei der das "
+"Theme Stopdesign als offizielles Theme enthalten sein wird."
 
 #: zenphoto-devzp/themes/stopdesign/themeoptions.php:38
 msgid "Mini slide selector"
@@ -2711,6 +2715,8 @@ msgid ""
 "Select <em>tagged</em> to tag the current search results with this <em>tag</"
 "em> and use as the album criteria."
 msgstr ""
+"Wählen Sie <em>verschlagwortet</em>, um die aktuellen Suchergebnisse mit "
+"diesem <em>Schlagwort</em> zu versehen und als Albumkriterium zu nutzen."
 
 #: zenphoto-devzp/zp-core/admin-dynamic-album.php:257
 msgid "Search fields:"
@@ -4336,6 +4342,8 @@ msgid ""
 "The path you selected resulted in cookies not being retrievable. It has been "
 "reset."
 msgstr ""
+"Der von Ihnen ausgewählte Pfad ist für Cookies ungültig. Er wurde "
+"zurückgesetzt."
 
 #: zenphoto-devzp/zp-core/admin-options.php:533
 #: zenphoto-devzp/zp-core/setup/setup-functions.php:437
@@ -4453,6 +4461,9 @@ msgid ""
 "The <em>tokens</em> used in rewritten URIs may be altered to your taste. See "
 "the <a href=\"%s\">plugin options</a> for <code>rewriteTokens</code>."
 msgstr ""
+"Die <em>Merkmale</em>, die in umgeschriebenen URLs verwendet werden, können "
+"von Ihnen angepasst werden. Mehr Info bei den <a href=\"%s"
+"\">Plugineinstellungen</a> des Plugins <code>rewriteTokens</code>."
 
 #: zenphoto-devzp/zp-core/admin-options.php:616
 msgid "Setup did not detect a working <em>mod_rewrite</em> facility."
@@ -4763,6 +4774,8 @@ msgid ""
 "The <em>path</em> Zenphoto will use when storing cookies. (Leave empty to "
 "default to <em>%s</em>)"
 msgstr ""
+"Der <em>Pfad</em>, den Zenphoto zu speichern von Cookies verwenden wird. "
+"(Lassen Sie ihn lerr, um den Standard <em>%s</em> zu verwenden)"
 
 #: zenphoto-devzp/zp-core/admin-options.php:879
 msgid "Name:"
@@ -4804,17 +4817,19 @@ msgstr ""
 #: zenphoto-devzp/zp-core/admin-options.php:923
 #, php-format
 msgid "<p>%s log limit</p>"
-msgstr ""
+msgstr "<p>%s Protokoll-Limit</p>"
 
 #: zenphoto-devzp/zp-core/admin-options.php:935
 msgid "e-mail when exceeded"
-msgstr ""
+msgstr "E-mail sobald überschritten"
 
 #: zenphoto-devzp/zp-core/admin-options.php:942
 msgid ""
 "Logs will be \"rolled\" over when they excede the specified size. If "
 "checked, the administrator will be e-mailed when this occurs."
 msgstr ""
+"Protokolle werden \"überschrieben\", wenn sie die spezifizierte Größe "
+"überschreiten. Wenn ausgewählt, erhält der Administrator darüber eine Mail."
 
 #: zenphoto-devzp/zp-core/admin-options.php:948
 #: zenphoto-devzp/zp-core/admin-options.php:2656
@@ -7199,7 +7214,7 @@ msgstr "Zenphoto-Version <strong>%1$s [%2$s] (%3$s)</strong>"
 #: zenphoto-devzp/zp-core/admin.php:258
 #, php-format
 msgid "Preview the release notes for Zenphoto %s"
-msgstr ""
+msgstr "Vorschau der Veröffentlichungsnotizen von Zenphoto %s"
 
 #: zenphoto-devzp/zp-core/admin.php:270
 #, php-format
@@ -7329,19 +7344,22 @@ msgstr "Verschiedenes"
 
 #: zenphoto-devzp/zp-core/admin.php:529
 msgid "Setup » restore scripts"
-msgstr ""
+msgstr "Installation » Skripte wiederherstellen"
 
 #: zenphoto-devzp/zp-core/admin.php:534
 msgid "Restores setup files so setup can be run."
 msgstr ""
+"Stellt die Installationsdateien wieder her, so dass die Installation "
+"ausgeführt werden kann."
 
 #: zenphoto-devzp/zp-core/admin.php:543
 msgid "Setup » protect scripts"
-msgstr ""
+msgstr "Installation » Skripte schützen"
 
 #: zenphoto-devzp/zp-core/admin.php:548
 msgid "Protects setup files so setup cannot be run."
 msgstr ""
+"Schützt die Installationsdateien, so dass sie nicht ausgeführt werden können."
 
 #: zenphoto-devzp/zp-core/admin.php:556
 msgid "Utility functions"
@@ -7431,6 +7449,8 @@ msgstr[1] "<strong>%1$u</strong> Kategorien"
 #: zenphoto-devzp/zp-core/class-album.php:69
 msgid "An album object was instantiated without using the newAlbum() function."
 msgstr ""
+"Ein Albumobjektinstanz wurde erstellt, ohne die Funktion newAlbum() zu "
+"verwenden."
 
 #: zenphoto-devzp/zp-core/class-album.php:666
 msgid "Invalid album instantiation: No album name"
@@ -7486,7 +7506,7 @@ msgstr "Zufallsalben"
 
 #: zenphoto-devzp/zp-core/class-feed.php:452
 msgid "Bad "
-msgstr ""
+msgstr "Schlecht"
 
 #: zenphoto-devzp/zp-core/class-feed.php:486
 #: zenphoto-devzp/zp-core/zp-extensions/comment_form/functions.php:1271
@@ -7591,6 +7611,8 @@ msgstr "Ungültige Bild-Instanz: Die Datei existiert nicht"
 #: zenphoto-devzp/zp-core/class-image.php:197
 msgid "An image object was instantiated without using the newImage() function."
 msgstr ""
+"Eine Bildobjektinstanz wurde erstellt, ohne die Funktion newImage() zu "
+"verwenden."
 
 #: zenphoto-devzp/zp-core/class-search.php:68
 msgid "File/Folder name"
@@ -7682,12 +7704,14 @@ msgstr "Verboten(2)"
 #: zenphoto-devzp/zp-core/functions-basic.php:1133
 #, php-format
 msgid "%s log size limit exceeded"
-msgstr ""
+msgstr "%s Protokolldatei-Größenlimit überschritten"
 
 #: zenphoto-devzp/zp-core/functions-basic.php:1133
 #, php-format
 msgid "The %1$s log has exceeded its size limit and has been renamed to %2$s."
 msgstr ""
+"Die Protokolldatei %1$s hat das Größenlimit überschritten und wurde "
+"umbenannt in %2$s."
 
 #: zenphoto-devzp/zp-core/functions-common.php:35
 msgid "ERROR"
@@ -8532,6 +8556,8 @@ msgid ""
 "Places codeblock number <code>%1</code> in the content where the macro "
 "exists."
 msgstr ""
+"Platziert Codeblock Nummer <code>%1</code> in dem Inhalt, wo das Makro "
+"aufgerufen wird."
 
 #: zenphoto-devzp/zp-core/functions.php:2149
 msgid "Prints the current page number."
@@ -8546,6 +8572,8 @@ msgid ""
 "Provides text for a link to a \"custom\" script page indicated by <code>%1</"
 "code>."
 msgstr ""
+"Stellt Text für einen zu einer benutzerdefinierten Seite bereit wie in <code>"
+"%1</code> angezeigt."
 
 #: zenphoto-devzp/zp-core/functions.php:2231
 msgid "Camera Maker"
@@ -9454,11 +9482,11 @@ msgstr "Passwort wiederholen"
 
 #: zenphoto-devzp/zp-core/lib-GD.php:27
 msgid "GD TypeFace path"
-msgstr ""
+msgstr "GD-Schriftpfad"
 
 #: zenphoto-devzp/zp-core/lib-GD.php:28
 msgid "Supply the full path to your TrueType fonts."
-msgstr ""
+msgstr "Geben Sie den vollen Pfad zu Ihren TrueType-Schriften an."
 
 #: zenphoto-devzp/zp-core/lib-GD.php:37
 msgid "The <strong><em>GD</em></strong> extension is not available."
@@ -9757,7 +9785,7 @@ msgstr "Ich stimme den Bedingungen zu."
 
 #: zenphoto-devzp/zp-core/no_uploader.php:13
 msgid "There are no upload handlers enabled that can service your request."
-msgstr ""
+msgstr "Es sind keine Upload-Plugins aktiviert."
 
 #: zenphoto-devzp/zp-core/pluginDoc.php:100
 msgid ""
@@ -10176,7 +10204,7 @@ msgstr "Standardausgabe-Empfindlichkeit"
 
 #: zenphoto-devzp/zp-core/exif/exif.php:507
 msgid "Recommended Exposure Index"
-msgstr ""
+msgstr "Empfohlener Belichtungsindex"
 
 #: zenphoto-devzp/zp-core/exif/exif.php:508
 msgid "ISO Speed"
@@ -10184,19 +10212,21 @@ msgstr "ISO-Geschwindigkeit"
 
 #: zenphoto-devzp/zp-core/exif/exif.php:509
 msgid "Standard Output Sensitivity and Recommended Exposure Index"
-msgstr ""
+msgstr "Standard-Ausgabeempfindlichkeit und empfohlener Belichtungsindex"
 
 #: zenphoto-devzp/zp-core/exif/exif.php:510
 msgid "Standard Output Sensitivity and ISO Speed"
-msgstr ""
+msgstr "Standard Ausgabeempfindlichkeit und ISO-Geschwindigkeit"
 
 #: zenphoto-devzp/zp-core/exif/exif.php:511
 msgid "Recommended Exposure Index and ISO Speed"
-msgstr ""
+msgstr "Empfohlener Belichtungsindex und ISO-Geschwindigkeit"
 
 #: zenphoto-devzp/zp-core/exif/exif.php:512
 msgid "Standard Output Sensitivity, Recommended Exposure Index and ISO Speed"
 msgstr ""
+"Standard-Ausgabeempfindlichkeit, empfohlener Belichtungsindex und ISO-"
+"Geschwindigkeit"
 
 #: zenphoto-devzp/zp-core/exif/exif.php:518
 msgid "Average"
@@ -12223,13 +12253,15 @@ msgstr ""
 
 #: zenphoto-devzp/zp-core/setup/index.php:1377
 msgid "Server seems to be <em>nginx</em>"
-msgstr ""
+msgstr "Der Server scheint <em>nginx</em> zu sein."
 
 #: zenphoto-devzp/zp-core/setup/index.php:1379
 msgid ""
 "If you wish to create cruft-free URLs, you will need to configuring <em>URL "
 "rewriting for NGINX servers</em>."
 msgstr ""
+"Wenn Sie suchmaschinenfreundliche URLs möchten, müssen Sie dies für "
+"<em>NGINX-Server</em> konfigurieren."
 
 #: zenphoto-devzp/zp-core/setup/index.php:1384
 msgid ""
@@ -12505,6 +12537,10 @@ msgid ""
 "the table. There should be a unique index key on <em>name</em>, <em>ownerid</"
 "em>, and <em>theme</em>."
 msgstr ""
+"<strong>Warnung:</strong> Die Tabelle <code>%s</code> keinen vernünftigen "
+"<em>unique_options</em>-Schlüssel zu haben. Es gibt möglicherweise "
+"duplizierte Einstellungen in der Tabelle. Es sollte einzigartige Schlüssel "
+"für  <em>name</em>, <em>ownerid</em>, and <em>theme</em> existieren."
 
 #: zenphoto-devzp/zp-core/setup/index.php:2426
 msgid "Done with database creation and update"
@@ -13160,11 +13196,11 @@ msgstr "Tabellen-Prefix: keins"
 
 #: zenphoto-devzp/zp-core/utilities/database_reference.php:211
 msgid "Key"
-msgstr ""
+msgstr "Schlüssel"
 
 #: zenphoto-devzp/zp-core/utilities/database_reference.php:214
 msgid "Column"
-msgstr ""
+msgstr "Spalte"
 
 #: zenphoto-devzp/zp-core/utilities/gallery_statistics.php:22
 #: zenphoto-devzp/zp-core/utilities/gallery_statistics.php:473
@@ -14265,6 +14301,8 @@ msgid ""
 "The link to use for the contact page. Note: the token <code>_PAGE_</code> "
 "stands in for the current <em>page</em> definition."
 msgstr ""
+"Der Link zur Kontaktseite. Hinweis: Das Merkmap<code>_PAGE_</code> steht für "
+"die aktuelle <em>Seiten</em>-Definition."
 
 #: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:86
 msgid "Intro text"
@@ -14996,14 +15034,19 @@ msgstr ""
 #: zenphoto-devzp/zp-core/zp-extensions/deprecated-functions.php:1158
 msgid "use printLatestComments($number, $shorten, $type, $itemID, $id);"
 msgstr ""
+"Nutzen Sie printLatestComments($number, $shorten, $type, $itemID, $id);"
 
 #: zenphoto-devzp/zp-core/zp-extensions/deprecated-functions.php:1168
 msgid "use $_zp_captcha->getCaptcha() and format the results as desired."
 msgstr ""
+"Nutzen Sie $_zp_captcha->getCaptcha() und formatieren Sie das Ergebnis wie "
+"gewünscht."
 
 #: zenphoto-devzp/zp-core/zp-extensions/deprecated-functions.php:1187
 msgid "Front end editing is not supported. Use the property specific methods."
 msgstr ""
+"Frontend-Bearbeitung wird nicht unterstützt. Nutzen Sie die entsprechenden "
+"Methoden."
 
 #: zenphoto-devzp/zp-core/zp-extensions/deprecated-functions.php:1207
 #, php-format
@@ -15021,29 +15064,36 @@ msgstr "ungültiger Funktionsaufruf printEditable(), kein Objekt."
 
 #: zenphoto-devzp/zp-core/zp-extensions/deprecated-functions.php:1241
 msgid "use getRSSLink($option,$lang,$categorylink)."
-msgstr ""
+msgstr "Nutzen Sie getRSSLink($option,$lang,$categorylink)."
 
 #: zenphoto-devzp/zp-core/zp-extensions/deprecated-functions.php:1249
 msgid ""
 "use printRSSLink($option, $prev, $linktext, $next, $printIcon, $class, "
 "$lang, categoryLink)."
 msgstr ""
+"Nutzen Sie printRSSLink($option, $prev, $linktext, $next, $printIcon, "
+"$class, $lang, categoryLink)."
 
 #: zenphoto-devzp/zp-core/zp-extensions/deprecated-functions.php:1257
 msgid "use printRSSHeaderLink($option, $linktext, $lang, $categorylink)."
 msgstr ""
+"Nutzen Sie printRSSHeaderLink($option, $linktext, $lang, $categorylink)."
 
 #: zenphoto-devzp/zp-core/zp-extensions/deprecated-functions.php:1266
 msgid ""
 "This feature is now done by a \"theme_body_close\" filter. You can remove "
 "the function call."
 msgstr ""
+"Diese Funktion wird nun über den \"theme_body_close\"-Filter aufgerufen. Sie "
+"können den Funktionsaufruf entfernen."
 
 #: zenphoto-devzp/zp-core/zp-extensions/deprecated-functions.php:1275
 msgid ""
 "This feature is now done by a \"theme_head\" filter. You can remove the "
 "function call."
 msgstr ""
+"Diese Funktion wird nun über den \"theme_head\"-Filter aufgerufen. Sie "
+"können den Funktionsaufruf entfernen."
 
 #: zenphoto-devzp/zp-core/zp-extensions/downloadList.php:38
 msgid "Plugin to generate file download lists."
@@ -15254,6 +15304,8 @@ msgid ""
 "Provides file handling for the <code>upload/files</code> tab and the "
 "<em>TinyMCE</em> file browser."
 msgstr ""
+"Funktionen zum Verwalten auf dem <code>upload/files</code>-Tab un den "
+"<em>TinyMCE</em>-Dateibrowser."
 
 #: zenphoto-devzp/zp-core/zp-extensions/elFinder.php:52
 msgid "Files tab"
@@ -15261,7 +15313,7 @@ msgstr "Dateitab"
 
 #: zenphoto-devzp/zp-core/zp-extensions/elFinder.php:53
 msgid "Use as the upload <em>files</em> subtab."
-msgstr ""
+msgstr "Nutzen Sie dies zum Hochladen von Dateien."
 
 #: zenphoto-devzp/zp-core/zp-extensions/elFinder.php:54
 msgid "TinyMCE plugin"
@@ -15347,6 +15399,8 @@ msgid ""
 "The link to use for the favorites script page.  Note: the token "
 "<code>_PAGE_</code> stands in for the current <em>page</em> definition."
 msgstr ""
+"Der Link zur Favoritenseiten. Hinweis. Das Merkmal.<code>_PAGE_</code>  "
+"steht für die aktuelle Seitendefinition."
 
 #: zenphoto-devzp/zp-core/zp-extensions/favoritesHandler.php:78
 msgid "Add button"
@@ -15383,6 +15437,8 @@ msgid ""
 "<strong>Note:</strong> The <em>favorites</em> theme script should be named "
 "<em>favorites.php</em>. Check this box to use the standard script name."
 msgstr ""
+"<strong>Hinweis:</strong>DIe Favoriten-Theme-Seite sollte <em>favorites.php</"
+"em> heissen. Wählen Sie dies, um den Standardnamen zu verwenden."
 
 #: zenphoto-devzp/zp-core/zp-extensions/federated_logon.php:49
 msgid "Handles logon from <em>OpenID</em> credential providers."
@@ -15739,11 +15795,11 @@ msgstr "Einstellungen für die Zoom-Steuerung anzeigen."
 
 #: zenphoto-devzp/zp-core/zp-extensions/GoogleMap.php:99
 msgid "Max zoom level"
-msgstr ""
+msgstr "Max. Zoom-Stufe"
 
 #: zenphoto-devzp/zp-core/zp-extensions/GoogleMap.php:101
 msgid "The max zoom level for clustering pictures on map."
-msgstr ""
+msgstr "Die max. Zoomstufe für die Häufing von Bilder auf der Karte."
 
 #: zenphoto-devzp/zp-core/zp-extensions/GoogleMap.php:102
 msgid "Map dimensions—width"
@@ -16503,6 +16559,8 @@ msgid ""
 "provide the path to media file as %1 and a unique value as %2 (if there is "
 "only player on the page any random number will do.)"
 msgstr ""
+"Geben Sie den Ppaf zur Mediendatei mit  %1 und einen einzigartigen Wert bei  "
+"%2 an (Wenn Sie nur einen Player auf der Seite nutzen, irgendeine Nummer)"
 
 #: zenphoto-devzp/zp-core/zp-extensions/jplayer.php:272
 msgid "This multimedia format is not supported by jPlayer"
@@ -16614,7 +16672,7 @@ msgstr "Wählen Sie den gewünschten veralteten Spam-Filter."
 
 #: zenphoto-devzp/zp-core/zp-extensions/macroList.php:50
 msgid "View available <code>content macros</code>."
-msgstr ""
+msgstr "Verfügbar <code>Inhaltmakros</code> ansehen."
 
 #: zenphoto-devzp/zp-core/zp-extensions/macroList.php:58
 #: zenphoto-devzp/zp-core/zp-extensions/macroList.php:59
@@ -17442,11 +17500,11 @@ msgstr "Rot"
 
 #: zenphoto-devzp/zp-core/zp-extensions/reCaptcha.php:47
 msgid "White"
-msgstr ""
+msgstr "Weiss"
 
 #: zenphoto-devzp/zp-core/zp-extensions/reCaptcha.php:47
 msgid "Black Glass"
-msgstr ""
+msgstr "Schwarzes Glas"
 
 #: zenphoto-devzp/zp-core/zp-extensions/reCaptcha.php:47
 msgid "Clean"
@@ -17491,6 +17549,8 @@ msgid ""
 "The link to use for the registration page. Note: the token <code>_PAGE_</"
 "code> stands in for the current <em>page</em> definition."
 msgstr ""
+"Der Link zur Registierungsseite. DAs Merkmap<code>_PAGE_</code> steht für "
+"die aktuelle <em>Seiten</em>-Definition."
 
 #: zenphoto-devzp/zp-core/zp-extensions/register_user.php:84
 #: zenphoto-devzp/zp-core/zp-extensions/register_user.php:87
@@ -17587,6 +17647,9 @@ msgid ""
 "<strong>Note:</strong> The <em>register user</em> theme script should be "
 "named <em>register.php</em>. Check this box to use the standard script name."
 msgstr ""
+"<strong>Hinweis:</strong> Die <em>Benutzerregistrierungs-</em>-Themeseite "
+"sollte <em>register.php</em> heissen. Auswählen, um den Standardnamen zu "
+"verwenden."
 
 #: zenphoto-devzp/zp-core/zp-extensions/register_user.php:119
 msgid ""
@@ -17719,6 +17782,8 @@ msgid ""
 "Utility to alter the rewrite token substitutions array in the configuation "
 "file."
 msgstr ""
+"Werkzeug, um die Merkmale zum Umschreiben für suchmaschinenfreundliche URLs "
+"in der Konfigurationsdatei zu ändern."
 
 #: zenphoto-devzp/zp-core/zp-extensions/rewriteTokens.php:43
 msgid "rewriteTokens restored to default"
@@ -17855,6 +17920,8 @@ msgstr "Album-Feed-Sortierung:"
 #: zenphoto-devzp/zp-core/zp-extensions/rss.php:109
 msgid "Choose between latest by id for the latest uploaded and latest updated"
 msgstr ""
+"Wählen Sie zwischen neusten nach ID für die neusten hochgeladenen oder den "
+"neusten aktualisierten."
 
 #: zenphoto-devzp/zp-core/zp-extensions/rss.php:110
 msgid "RSS enclosure:"
@@ -17941,6 +18008,9 @@ msgid ""
 "identifying the user. Use of that link when not logged‑in will give the same "
 "feed as if the user were logged‑in."
 msgstr ""
+"Wenn ausgwählt, werden Links für angemeldete Benutzer eine Merkmal zum "
+"Identifizieren des Benutzers enthalten. Die Verwendung dieses Links wird den "
+"selben Feed erzeugen als wenn der Nutzer eingeloggt wäre."
 
 #: zenphoto-devzp/zp-core/zp-extensions/rss.php:134
 msgid "Feed text length"
@@ -18101,7 +18171,7 @@ msgstr "Wenn ausgewählt, werden Anmeldeversuche aufgezeichnet."
 
 #: zenphoto-devzp/zp-core/zp-extensions/security-logger.php:68
 msgid "Record failed admin access"
-msgstr ""
+msgstr "Fehlgeschlagene Anmeldeversuche protokollieren."
 
 #: zenphoto-devzp/zp-core/zp-extensions/security-logger.php:69
 #: zenphoto-devzp/zp-core/zp-extensions/security-logger.php:72
@@ -18114,7 +18184,7 @@ msgstr "Alle Versuche"
 
 #: zenphoto-devzp/zp-core/zp-extensions/security-logger.php:70
 msgid "Record admin page access failures."
-msgstr ""
+msgstr "Fehlgeschlagene Anmeldeversuche protokollieren."
 
 #: zenphoto-devzp/zp-core/zp-extensions/security-logger.php:71
 msgid "Record logon"
@@ -18896,6 +18966,8 @@ msgid ""
 "provide the album name as %1 and true (or false) as %2 to show (hide) "
 "controls."
 msgstr ""
+"Geben Sie den Albumnamel als %1 und true (oder false) für %2 an, um die "
+"Steuerleiste anzuzeugen oder zu verbergen"
 
 #: zenphoto-devzp/zp-core/zp-extensions/slideshow.php:563
 #, php-format
@@ -20529,6 +20601,8 @@ msgid ""
 "The size to use if the font is scalable (<em>TTF</em> and <em>Imagick</em> "
 "fonts.)"
 msgstr ""
+"Die zuverwendende Größe, wenn der Font skalierbar ist (<em>TTF</em>- und "
+"<em>Imagick</em>-Schriften.)"
 
 #: zenphoto-devzp/zp-core/zp-extensions/zpCaptcha.php:64
 msgid "Sample CAPTCHA image"
@@ -20545,18 +20619,21 @@ msgid ""
 "This utility scans the database for images references that have been stored "
 "there."
 msgstr ""
+"Dieses Werkzeug überprüft die Datenbank auf dort gespeicherte Bildreferenzen."
 
 #: zenphoto-devzp/zp-core/zp-extensions/cacheManager/cacheDBImages.php:40
 msgid ""
 "If an image processor URI is discovered it will be converted to a cache file "
 "URI."
 msgstr ""
+"Wenn eine Bildprozessor-URL gefunden wird, wird sie sofort in eine URL zur "
+"Cache-Datei geändert."
 
 #: zenphoto-devzp/zp-core/zp-extensions/cacheManager/cacheDBImages.php:41
 msgid ""
 "If the cache file for the image does not exist, a cacheing image reference "
 "will be made for the image."
-msgstr ""
+msgstr "Wenn die Cachedatei des Bildes nicht existiert, wird diese erstellt."
 
 #: zenphoto-devzp/zp-core/zp-extensions/cacheManager/cacheDBImages.php:68
 msgid "image processor reference"
@@ -20596,6 +20673,7 @@ msgstr[1] "%u Bildprozessor-Referenzen gefunden."
 msgid ""
 "You should use the refresh button to convert these to cached image references"
 msgstr ""
+"Sie sollten den Aktualisierenbutton verwenden, um diese zu konvertieren."
 
 #: zenphoto-devzp/zp-core/zp-extensions/cacheManager/cacheDBImages.php:178
 #, php-format
@@ -21225,6 +21303,9 @@ msgid ""
 "equivalent to using FTP to access it. <em>Copy</em> and <em>rename</em> do "
 "not carry the Zenphoto data with the change."
 msgstr ""
+"<strong>Hinweis:</strong> Zugriff auf den Albums-Ordner mit diesem Werkzeug "
+"entspricht FTP-Zugriff. Beim <em>Kopieren</em> und <em>Umbenennen</em> gehen "
+"Daten, die über Zenphoto eingegeben wurden, verloren."
 
 #: zenphoto-devzp/zp-core/zp-extensions/elFinder/php/connector_zp.php:69
 #: zenphoto-devzp/zp-core/zp-extensions/elFinder/php/connector_zp.php:268
@@ -21407,6 +21488,10 @@ msgid ""
 "content</em>. Replace any parameters (<em>%d</em>) with the appropriate "
 "value."
 msgstr ""
+"Die obigen Inhaltmakros können verwendet werden, um Zenphoto-Funktionen  wie "
+"beschrieben in <em>Beschreibungen</em>, <em>Zenpage-Inhalt</em>und "
+"<em>Zenpage-Extrainhalt</em>-Felder einzufügen. Ersetzen Sie Parameter (<em>"
+"%d</em>) mit den entsprechenden Werten."
 
 #: zenphoto-devzp/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:25
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-categories.php:23
@@ -22499,6 +22584,10 @@ msgid ""
 "any suitable multimedia player plugin for the file type is enabled and also "
 "has registered to the macro."
 msgstr ""
+"<strong>Multimedia-Eintrag</strong>: Die fügt das Inhaltmakro MEDIAPLAYER in "
+"den Text ein. Dies gibt einen VIdeo- oder Audioplayer im Theme aus, wenn ein "
+"entsprechendes Plugin für den Dateityp aktiviert und bei dem Makro "
+"registriert ist."
 
 #: zenphoto-devzp/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:210
 msgid "Custom size (un-cropped)."
