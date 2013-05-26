@@ -547,7 +547,7 @@ function printSlideShowLink($linktext=NULL, $linkstyle=Null) {
 					<input type="hidden" name="imagenumber" value="<?php echo $imagenumber;?>" />
 					<input type="hidden" name="imagefile" value="<?php echo html_encode($imagefile);?>" />
 					<?php if (!empty($linkstyle)) echo '<p style="'.$linkstyle.'">';?>
-					<a id="slideshowlink_<?php echo $slideshow_instance; ?>" 	href="javascript:document.slideshow_<?php echo $slideshow_instance; ?>.submit()"><?php echo $linktext; ?></a>
+					<a class="slideshowlink" id="slideshowlink_<?php echo $slideshow_instance; ?>" 	href="javascript:document.slideshow_<?php echo $slideshow_instance; ?>.submit()"><?php echo $linktext; ?></a>
 					<?php if (!empty($linkstyle)) echo '</p>';?>
 				</form>
 				<?php

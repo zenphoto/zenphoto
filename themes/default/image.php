@@ -85,6 +85,8 @@ if (!defined('WEBPATH')) die();
 				<hr /><br />
 				<?php
 				If (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_image);
+				@call_user_func('printSlideShowLink');
+
 				if (getImageMetaData()) {
 					printImageMetadata(NULL, 'colorbox');
 					?>
@@ -94,7 +96,7 @@ if (!defined('WEBPATH')) die();
 				printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', '');
 				?>
 				<br class="clearall" />
-				<?php @call_user_func('printSlideShowLink'); ?>
+				
 				<?php @call_user_func('printGoogleMap'); ?>
 				<?php @call_user_func('printRating'); ?>
 				<?php @call_user_func('printCommentForm'); ?>

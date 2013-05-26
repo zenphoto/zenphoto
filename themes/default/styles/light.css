@@ -197,8 +197,9 @@ ul.pagelist li.next {
 /* Tags
 ------------------------------ */
 ul.taglist {
-	display: inline;
 	list-style-type: none;
+	display: block;
+	margin-bottom:20px !important;
 }
 
 ul.taglist li {
@@ -689,6 +690,26 @@ clear: both;
 width: 95% !important;
 height: 150px;
 }
+
+
+form input[type="submit"],
+form input[type="reset"],
+form input[type="button"],
+a.slideshowlink {
+background-color: #EEF5F9;
+border: 0;
+font-size: 12px;
+}
+
+a.slideshowlink { 
+padding: 5px 6px 3px 6px;
+margin-top: 10px !important;
+text-decoration: none;
+clear: both;
+margin-top: 10px;
+display: inline-block;
+}
+
 
 .clearall {
 clear: both !important;
