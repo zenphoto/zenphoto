@@ -247,7 +247,7 @@ class jPlayer {
 		}
 		$autoplay = '';
 		if(getOption('jplayer_autoplay') && !$multiplayer) {
-			$autoplay = ',jPlayer("play");';
+			$autoplay = ',jPlayer("play")';
 		}
 		$imgextensions = array("jpg","jpeg","gif","png");
 		$videoThumb = '';
