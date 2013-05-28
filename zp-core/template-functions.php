@@ -4082,36 +4082,31 @@ function getCodeblock($number=1) {
 	if (!$number) {
 		setOptionDefault('codeblock_first_tab', 0);
 	}
-	$getcodeblock = NULL;
+	$object = NULL;
 	if ($_zp_gallery_page == 'index.php') {
-		$getcodeblock = $_zp_gallery->getCodeblock();
+		$object = $_zp_gallery;
 	}
 	if (in_context(ZP_ALBUM)) {
-		$getcodeblock = $_zp_current_album->getCodeblock();
+		$object = $_zp_current_album;
 	}
 	if (in_context(ZP_IMAGE)) {
-		$getcodeblock = $_zp_current_image->getCodeblock();
+		$object = $_zp_current_image;
 	}
 	if (in_context(ZP_ZENPAGE_PAGE)) {
 		if ($_zp_current_zenpage_page->checkAccess()) {
-			$getcodeblock = $_zp_current_zenpage_page->getCodeblock();
-		} else {
-			$getcodeblock = NULL;
+			$object = $_zp_current_zenpage_page;
 		}
 	}
 	if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
 		if ($_zp_current_zenpage_news->checkAccess()) {
-			$getcodeblock = $_zp_current_zenpage_news->getCodeblock();
-		} else {
-			$getcodeblock = NULL;
+			$object = $_zp_current_zenpage_news;
 		}
 	}
-	if (empty($getcodeblock)) {
+	if (empty($object)) {
 		return NULL;
 	}
-	$codeblock = unserialize($getcodeblock);
-	$codeblock= @$codeblock[$number];
-	zp_apply_filter('codeblock', $codeblock, $number);
+	$codeblock = unserialize($object->getcodeblock());
+	$codeblock = zp_apply_filter('codeblock', @$codeblock[$number], $object, $number);
 	if ($codeblock) {
 		$codeblock = applyMacros($codeblock);
 	}
@@ -4132,7 +4127,7 @@ function printCodeblock($number=1,$what=NULL) {
 		if ($codeblock) {
 			$codeblocks = unserialize($codeblock);
 			$codeblock = $codeblocks[$number];
-			zp_apply_filter('codeblock', $codeblock, $number);
+			zp_apply_filter('codeblock', $codeblock, $what, $number);
 			if ($codeblock) {
 				$codeblock = applyMacros($codeblock);
 			}

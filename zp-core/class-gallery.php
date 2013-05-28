@@ -10,6 +10,7 @@ $_zp_gallery = new Gallery();
 class Gallery {
 
 	var $albumdir = NULL;
+	var $table = 'gallery';
 	protected $albums = NULL;
 	protected $theme;
 	protected $themes;

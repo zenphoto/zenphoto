@@ -794,25 +794,22 @@ function customOptions($optionHandler, $indent="", $album=NULL, $showhide=false,
 						}
 						?>
 						<ul class="customchecklist">
-							<?php generateUnorderedListFromArray($cvarray, $row['checkboxes'], '', '', true, true); ?>
+							<?php generateUnorderedListFromArray($cvarray, $row['checkboxes'], '', '', true, true,'all_'.$key); ?>
 						</ul>
 						<script type="text/javascript">
 							// <!-- <![CDATA[
 							function <?php echo $key; ?>_all() {
 								var check = $('#all_<?php echo $key; ?>').attr('checked');
-								if (typeof check == 'undefined') check = false;
-								<?php
-								foreach ($row['checkboxes'] as $display=>$checkbox) {
-									?>
-									$('#<?php echo strtolower($checkbox); ?>').attr('checked',check);
-									<?php
+								if (typeof check == 'undefined') {
+									$('.all_<?php echo $key; ?>').attr('checked','checked');
+								} else {
+									$('.all_<?php echo $key; ?>').removeAttr('checked');
 								}
-								?>
 							}
 							// ]]> -->
 						</script>
 						<label>
-							<input type="checkbox" name="all_<?php echo $key; ?>" id="all_<?php echo $key; ?>" onclick="<?php echo $key; ?>_all();" <?php if ($all) echo ' checked="checked"'; ?>/>
+							<input type="checkbox" name="all_<?php echo $key; ?>" id="all_<?php echo $key; ?>" class="all_<?php echo $key; ?>" onclick="<?php echo $key; ?>_all();" <?php if ($all) echo ' checked="checked"'; ?>/>
 							<?php echo gettext('all'); ?>
 						</label>
 					</td>
