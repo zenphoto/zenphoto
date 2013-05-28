@@ -936,7 +936,7 @@ class Gallery {
 	 * @return array
 	 */
 	function getCodeblock() {
-		return $this->get("codeblock");
+		return (applyMacros(zpFunctions::unTagURLs($this->get("codeblock"))));
 	}
 
 	/**
@@ -944,9 +944,8 @@ class Gallery {
 	 *
 	 */
 	function setCodeblock($cb) {
-		$this->set("codeblock",$cb);
+		$this->set('custom_data', zpFunctions::tagURLs($cb));
 	}
-
 
 	/**
 	 * Checks if guest is loggedin for the album

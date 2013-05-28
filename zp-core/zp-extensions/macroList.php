@@ -5,7 +5,7 @@
  * array an element for each macro. The array key is the macro, the element is an array with the
  * class of macro, the regular expression for parsing parameters and the "value" of the macro.
  *
- * Note: the plugin should be active both on Themes toprovide the function and on the Admin pages to provide
+ * Note: the plugin should be active both on THEMES to provide the function and on the ADMIN pages to provide
  * the macro documentation.
  *
  * macro classes:

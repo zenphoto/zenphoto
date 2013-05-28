@@ -550,7 +550,7 @@ class ThemeObject extends PersistentObject {
 	 * @return array
 	 */
 	function getCodeblock() {
-		return $this->get("codeblock");
+		return (applyMacros(zpFunctions::unTagURLs($this->get("codeblock"))));
 	}
 
 	/**
@@ -558,7 +558,7 @@ class ThemeObject extends PersistentObject {
 	 *
 	 */
 	function setCodeblock($cb) {
-		$this->set("codeblock",$cb);
+		$this->set('custom_data', zpFunctions::tagURLs($cb));
 	}
 
 /**
