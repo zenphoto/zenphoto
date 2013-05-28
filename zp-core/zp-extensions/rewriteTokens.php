@@ -8,7 +8,7 @@
  * @subpackage admin
  */
 $plugin_is_filter = 97|ADMIN_PLUGIN;
-$plugin_description = gettext('Utility to alter the rewrite token substitutions array in the configuation file.');
+$plugin_description = gettext('Utility to alter the rewrite token substitutions array in the configuration file.');
 $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'rewriteTokens';
