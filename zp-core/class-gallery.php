@@ -936,7 +936,7 @@ class Gallery {
 	 * @return array
 	 */
 	function getCodeblock() {
-		return (applyMacros(zpFunctions::unTagURLs($this->get("codeblock"))));
+		return zpFunctions::unTagURLs($this->get("codeblock"));
 	}
 
 	/**
@@ -944,7 +944,7 @@ class Gallery {
 	 *
 	 */
 	function setCodeblock($cb) {
-		$this->set('custom_data', zpFunctions::tagURLs($cb));
+		$this->set('codeblock', zpFunctions::tagURLs($cb));
 	}
 
 	/**

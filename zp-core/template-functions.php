@@ -4110,7 +4110,12 @@ function getCodeblock($number=1) {
 		return NULL;
 	}
 	$codeblock = unserialize($getcodeblock);
-	return @$codeblock[$number];
+	$codeblock= @$codeblock[$number];
+	zp_apply_filter('codeblock', $codeblock, $number);
+	if ($codeblock) {
+		$codeblock = applyMacros($codeblock);
+	}
+	return $codeblock;
 }
 
 /**
@@ -4127,6 +4132,10 @@ function printCodeblock($number=1,$what=NULL) {
 		if ($codeblock) {
 			$codeblocks = unserialize($codeblock);
 			$codeblock = $codeblocks[$number];
+			zp_apply_filter('codeblock', $codeblock, $number);
+			if ($codeblock) {
+				$codeblock = applyMacros($codeblock);
+			}
 		} else {
 			return;
 		}
