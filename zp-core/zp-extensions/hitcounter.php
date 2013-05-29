@@ -46,15 +46,10 @@ zp_register_filter('admin_utilities_buttons', 'hitcounter::button');
  */
 class hitcounter {
 
-	var $defaultbots = 'Teoma,alexa, froogle, Gigabot,inktomi, looksmart, URL_Spider_SQL,Firefly, NationalDirectory,
-											Ask Jeeves,TECNOSEEK, InfoSeek, WebFindBot, girafabot, crawler,www.galaxy.com, Googlebot,
-											Scooter, Slurp, msnbot, appie, FAST, WebBug, Spade, ZyBorg, rabaz ,Baiduspider, Feedfetcher-Google,
-											TechnoratiSnoop, Rankivabot, Mediapartners-Google, Sogou web spider, WebAlta Crawler';
+	var $defaultbots ='Teoma, alexa, froogle, Gigabot,inktomi, looksmart, URL_Spider_SQL, Firefly, NationalDirectory, Ask Jeeves, TECNOSEEK, InfoSeek, WebFindBot, girafabot, crawler, www.galaxy.com, Googlebot, Scooter, Slurp, msnbot, appie, FAST, WebBug, Spade, ZyBorg, rabaz ,Baiduspider, Feedfetcher-Google, TechnoratiSnoop, Rankivabot, Mediapartners-Google, Sogou web spider, WebAlta Crawler';
 
 
 	function __construct() {
-		$this->defaultbots = str_replace("\n"," ",$this->defaultbots);
-		$this->defaultbots = str_replace("\t",'',$this->defaultbots);
 		setOptionDefault('hitcounter_ignoreIPList_enable',0);
 		setOptionDefault('hitcounter_ignoreSearchCrawlers_enable',0);
 		setOptionDefault('hitcounter_ignoreIPList','');
@@ -97,12 +92,17 @@ class hitcounter {
 				?>
 				<script type="text/javascript">
 				// <!-- <![CDATA[
+				var reset = "<?php echo $this->defaultbots;?>";
 				function hitcounter_defaults() {
 					$('#hitcounter_ignoreIPList').val('');
 					$('#hitcounter_ip_button').removeAttr('disabled');
-					$('#hitcounter_ignoreIPList_enable').removeAttr('checked');
-					$('#hitcounter_ignoreSearchCrawlers_enable').removeAttr('checked');
-					$('#hitcounter_searchCrawlerList').val('<?php echo $this->defaultbots; ?>');
+					$('#hitcounter_ignoreIPList_enable').prop('checked',false);
+					$('#hitcounter_ignoreSearchCrawlers_enable').prop('checked',false);
+
+					$('#hitcounter_searchCrawlerList').val(reset);
+
+
+
 				}
 				// ]]> -->
 				</script>

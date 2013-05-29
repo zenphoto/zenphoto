@@ -325,7 +325,7 @@ if ($rootrights || !empty($albumlist)) {
 				}
 				if (isset($_GET['autogen']) && !$_GET['autogen']) {
 					?>
-					$('#autogen').removeAttr('checked');
+					$('#autogen').prop('checked',false);
 					$('#folderdisplay').removeAttr('disabled');
 					if ($('#folderdisplay').val() != '') {
 						$('#foldererror').hide();

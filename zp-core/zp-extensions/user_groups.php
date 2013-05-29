@@ -124,28 +124,28 @@ class user_groups {
 		if (empty($groups)) return gettext('no groups established'); // no groups setup yet
 		$grouppart =	'
 		<script type="text/javascript">
-		// <!-- <![CDATA[
-		function groupchange'.$i.'(type) {
-		switch (type) {
-		case 0:	//	none
-		$(\'.user-'.$i.'\').removeAttr(\'disabled\');
-		$(\'.templatelist'.$i.'\').removeAttr(\'checked\');
-		$(\'.grouplist'.$i.'\').removeAttr(\'checked\');
-		break;
-		case 1:	//	group
-		$(\'.user-'.$i.'\').attr(\'disabled\',\'disabled\');
-		$(\'.user-'.$i.'\').removeAttr(\'checked\');
-		$(\'#noGroup_'.$i.'\').removeAttr(\'checked\');
-		$(\'.templatelist'.$i.'\').removeAttr(\'checked\');
-		break;
-		case 2:	//	template
-		$(\'.user-'.$i.'\').attr(\'disabled\',\'disabled\');
-		$(\'#noGroup_'.$i.'\').removeAttr(\'checked\');
-		$(\'.grouplist'.$i.'\').removeAttr(\'checked\');
-		break;
-	}
-	}
-	//]]> -->
+			// <!-- <![CDATA[
+			function groupchange'.$i.'(type) {
+				switch (type) {
+				case 0:	//	none
+					$(\'.user-'.$i.'\').prop(\'disabled\',false);
+					$(\'.templatelist'.$i.'\').prop(\'checked\',false);
+					$(\'.grouplist'.$i.'\').prop(\'checked\',false);
+					break;
+				case 1:	//	group
+					$(\'.user-'.$i.'\').prop(\'disabled\',true);
+					$(\'.user-'.$i.'\').prop(\'checked\',false);
+					$(\'#noGroup_'.$i.'\').prop(\'checked\',false);
+					$(\'.templatelist'.$i.'\').prop(\'checked\',false);
+					break;
+				case 2:	//	template
+					$(\'.user-'.$i.'\').prop(\'disabled\',true);
+					$(\'#noGroup_'.$i.'\').prop(\'checked\',false);
+					$(\'.grouplist'.$i.'\').prop(\'checked\',false);
+					break;
+			}
+		}
+		//]]> -->
 	</script>'."\n";
 
 		$grouppart .= '<ul class="customchecklist">'."\n";

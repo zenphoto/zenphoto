@@ -184,10 +184,10 @@ function toggleMoveCopyRename(id, operation) {
 	jQuery('#movecopydiv-'+id).hide();
 	jQuery('#renamediv-'+id).hide();
 	jQuery('#deletemsg'+id).hide();
-	jQuery('#move-'+id).removeAttr('checked');
-	jQuery('#copy-'+id).removeAttr('checked');
-	jQuery('#rename-'+id).removeAttr('checked');
-	jQuery('#Delete-'+id).removeAttr('checked');
+	jQuery('#move-'+id).prop('checked',false);
+	jQuery('#copy-'+id).prop('checked',false);
+	jQuery('#rename-'+id).prop('checked',false);
+	jQuery('#Delete-'+id).prop('checked',false);
 	if (operation == 'copy') {
 		jQuery('#movecopydiv-'+id).show();
 		jQuery('#copy-'+id).prop('checked',true);
@@ -201,13 +201,13 @@ function toggleMoveCopyRename(id, operation) {
 }
 
 function toggleAlbumMCR(prefix, operation) {
-	jQuery('#Delete-'+prefix).removeAttr('checked');
+	jQuery('#Delete-'+prefix).prop('checked',false);
 	jQuery('#deletemsg'+prefix).hide();
 	jQuery('#a-'+prefix+'movecopydiv').hide();
 	jQuery('#a-'+prefix+'renamediv').hide();
-	jQuery('#a-'+prefix+'move').removeAttr('checked');
-	jQuery('#a-'+prefix+'copy').removeAttr('checked');
-	jQuery('#a-'+prefix+'rename').removeAttr('checked');
+	jQuery('#a-'+prefix+'move').prop('checked',false);
+	jQuery('#a-'+prefix+'copy').prop('checked',false);
+	jQuery('#a-'+prefix+'rename').prop('checked',false);
 	if (operation == 'copy') {
 		jQuery('#a-'+prefix+'movecopydiv').show();
 		jQuery('#a-'+prefix+'copy').prop('checked',true);
