@@ -18182,7 +18182,7 @@ msgstr[0] "%u キャッシュ済み画像の参照が見つかりました。"
 #, php-format
 msgid "%s reference re-cached."
 msgid_plural "%s references needed to be re-cached."
-msgstr[0] ""
+msgstr[0] "%s 参照が再キャッシュされました。"
 
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:186
 msgid "Back to the overview"
