@@ -3951,10 +3951,10 @@ function getPageRedirect() {
 			$action = '/index.php';
 			break;
 		case 'album.php':
-			$action = '/index.php?userlog=1&album='.urlencode($_zp_current_album->name);
+			$action = '/index.php?userlog=1&album='.pathurlencode($_zp_current_album->name);
 			break;
 		case 'image.php':
-			$action = '/index.php?userlog=1&album='.urlencode($_zp_current_album->name).'&image='.urlencode($_zp_current_image->filename);
+			$action = '/index.php?userlog=1&album='.pathurlencode($_zp_current_album->name).'&image='.urlencode($_zp_current_image->filename);
 			break;
 		case 'pages.php':
 			$action = '/index.php?userlog=1&p=pages&title='.urlencode(getPageTitlelink());
