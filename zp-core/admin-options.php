@@ -105,6 +105,9 @@ if (isset($_GET['action'])) {
 				zp_setCookie('zenphoto_cookie_path', $p, NULL, $p);
 			}
 			setOption('zenphoto_cookie_path', $p);
+			if (isset($_POST['cookie_persistence'])) {
+				setOption('cookie_persistence', sanitize_numeric($_POST['cookie_persistence']));
+			}
 
 			setOption('site_email_name', process_language_string_save('site_email_name',3));
 			setOption('users_per_page', sanitize_numeric($_POST['users_per_page']));
@@ -131,9 +134,6 @@ if (isset($_GET['action'])) {
 			$_zp_gallery->setAlbumPublish((int) isset($_POST['album_default']));
 			$_zp_gallery->setImagePublish((int) isset($_POST['image_default']));
 
-			if (isset($_POST['cookie_persistence'])) {
-				setOption('cookie_persistence', sanitize_numeric($_POST['cookie_persistence']));
-			}
 			setOption('AlbumThumbSelect', sanitize_numeric($_POST['thumbselector']));
 			$_zp_gallery->setGallerySession((int) isset($_POST['album_session']));
 			$_zp_gallery->setThumbSelectImages((int) isset($_POST['thumb_select_images']));
@@ -865,13 +865,32 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 				</tr>
 				<tr>
 					<td width="175">
-						<?php echo gettext("Cookie path:"); ?>
+						<?php echo gettext("Cookies:"); ?>
 					</td>
 					<td width="350">
-						<input type="text" size="48" id="zenphoto_cookie_path" name="zenphoto_cookie_path"  value="<?php echo getOption('zenphoto_cookie_path'); ?>" />
+						<?php echo gettext('Path'); ?><input type="text" size="48" id="zenphoto_cookie_path" name="zenphoto_cookie_path"  value="<?php echo getOption('zenphoto_cookie_path'); ?>" />
+						<?php
+						if (!GALLERY_SESSION) {
+							?>
+							<p>
+								<?php
+								echo gettext('Duration');
+								?>
+								<input type="text" name="cookie_persistence" value="<?php echo COOKIE_PESISTENCE; ?>" />
+							</p>
+							<?php
+						}
+						?>
 					</td>
 					<td>
-						<?php printf(gettext('The <em>path</em> Zenphoto will use when storing cookies. (Leave empty to default to <em>%s</em>)'),WEBPATH); ?>
+						<p><?php printf(gettext('The <em>path</em> Zenphoto will use when storing cookies. (Leave empty to default to <em>%s</em>)'),WEBPATH); ?></p>
+						<?php
+						if (!GALLERY_SESSION) {
+							?>
+							<p><?php echo gettext("Set to the time in seconds that cookies should be kept by browsers."); ?></p>
+							<?php
+						}
+						?>
 					</td>
 				</tr>
 				<tr>
@@ -1255,18 +1274,6 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 										value="1" <?php checked('1', GALLERY_SESSION); ?> />
 								<?php echo gettext("enable gallery sessions"); ?>
 							</label>
-							<?php
-							if (!GALLERY_SESSION) {
-								?>
-								<p>
-									<?php
-									echo gettext('Cookie duration');
-									?>
-									<input type="text" name="cookie_persistence" value="<?php echo COOKIE_PESISTENCE; ?>" />
-								</p>
-								<?php
-							}
-							?>
 						</p>
 					</td>
 					<td>
@@ -1303,16 +1310,6 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<p><?php echo gettext('If this option is selected Zenphoto will use <a href="http://www.w3schools.com/php/php_sessions.asp">PHP sessions</a> instead of cookies to make visitor settings persistent.'); ?></p>
 						<p class="notebox"><?php echo gettext('<strong>NOTE</strong>: Sessions will normally close when the browser closes causing all password and other data to be discarded. They may close more frequently depending on the runtime configuration. Longer <em>lifetime</em> of sessions is generally more conducive to a pleasant user experience. Cookies are the prefered storage option since their duration is determined by the <em>Cookie duration</em> option. ')?>
 						</div>
-						<?php
-						if (!GALLERY_SESSION) {
-							?>
-							<p><?php  echo gettext("<a href=\"javascript:toggle('cookie_persistence');\" >Details</a> for <em>Cookie duration</em>" ); ?></p>
-							<div id="cookie_persistence" style="display: none">
-							<p><?php echo gettext("Set to the time in seconds that cookies should be kept by browsers."); ?></p>
-							</div>
-							<?php
-						}
-						?>
 					</td>
 				</tr>
 
