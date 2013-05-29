@@ -179,7 +179,7 @@ $tables = array('albums'=>array('desc'),
 	?>
 	<br />
 	<?php
-	printf(ngettext('%s reference re-cached.','%s references needed to be re-cached.',$fixed),$fixed);
+	printf(ngettext('%s reference re-cached.','%s references re-cached.',$fixed),$fixed);
 	?>
 	</p>
 	<p class="buttons">
