@@ -69,7 +69,6 @@ $conf['server_protocol'] = "http";
 // for further documentation see the rewrite.php doc block
 //
 $conf['special_pages'] = array(
-														'dummy1'=>			array('define'=>false,						'rewrite'=>'temporary during development'),
 														'page'=>				array('define'=>'_PAGE_',					'rewrite'=>'page'),
 														'search'=>			array('define'=>'_SEARCH_',				'rewrite'=>'page/search'),
 														'archive'=>			array('define'=>'_ARCHIVE_',			'rewrite'=>'page/archive'),
