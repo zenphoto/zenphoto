@@ -939,7 +939,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 						}
 						?>
 					</td>
-					<td><?php echo gettext('Logs will be "rolled" over when they excede the specified size. If checked, the administrator will be e-mailed when this occurs.')?></td>
+					<td><?php echo gettext('Logs will be "rolled" over when they exceed the specified size. If checked, the administrator will be e-mailed when this occurs.')?></td>
 				</tr>
 				<?php zp_apply_filter('admin_general_data'); ?>
 				<tr>
