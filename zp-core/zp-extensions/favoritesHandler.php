@@ -289,6 +289,7 @@ class favorites extends AlbumBase {
 				$_zp_current_album = $_myFavorites;
 				add_context(ZP_ALBUM);
 				prepareAlbumPage();
+				$_zp_gallery_page = $page.'.php';
 			} else {
 				$script = false;
 			}
