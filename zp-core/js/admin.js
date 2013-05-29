@@ -170,9 +170,9 @@ function update_direction(obj, element1, element2) {
 function deleteConfirm(obj, id, msg) {
 	if (confirm(msg)) {
 		$('#deletemsg'+id).show();
-		$('#'+obj).attr('checked','checked');
+		$('#'+obj).prop('checked',true);
 	} else {
-		$('#'+obj).removeAttr('checked');
+		$('#'+obj).prop('checked',false);
 	}
 }
 
@@ -190,13 +190,13 @@ function toggleMoveCopyRename(id, operation) {
 	jQuery('#Delete-'+id).removeAttr('checked');
 	if (operation == 'copy') {
 		jQuery('#movecopydiv-'+id).show();
-		jQuery('#copy-'+id).attr('checked','checked');
+		jQuery('#copy-'+id).prop('checked',true);
 	} else if (operation == 'move') {
 		jQuery('#movecopydiv-'+id).show();
-		jQuery('#move-'+id).attr('checked','checked');
+		jQuery('#move-'+id).prop('checked',true);
 	} else if (operation == 'rename') {
 		jQuery('#renamediv-'+id).show();
-		jQuery('#rename-'+id).attr('checked','checked');
+		jQuery('#rename-'+id).prop('checked',true);
 	}
 }
 
@@ -210,13 +210,13 @@ function toggleAlbumMCR(prefix, operation) {
 	jQuery('#a-'+prefix+'rename').removeAttr('checked');
 	if (operation == 'copy') {
 		jQuery('#a-'+prefix+'movecopydiv').show();
-		jQuery('#a-'+prefix+'copy').attr('checked','checked');
+		jQuery('#a-'+prefix+'copy').prop('checked',true);
 	} else if (operation == 'move') {
 		jQuery('#a-'+prefix+'movecopydiv').show();
-		jQuery('#a-'+prefix+'move').attr('checked','checked');
+		jQuery('#a-'+prefix+'move').prop('checked',true);
 	} else if (operation == 'rename') {
 		jQuery('#a-'+prefix+'renamediv').show();
-		jQuery('#a-'+prefix+'rename').attr('checked','checked');
+		jQuery('#a-'+prefix+'rename').prop('checked',true);
 	}
 }
 
@@ -311,7 +311,7 @@ function addNewTag(id) {
 
 function xsrfWarning(id, msg) {
 	if (!confirm(msg)) {
-		$('#'+id+'_yes').removeAttr('checked');
-		$('#'+id+'_no').attr('checked','checked');
+		$('#'+id+'_yes').prop('checked',false);
+		$('#'+id+'_no').prop('checked',true);
 	}
 }

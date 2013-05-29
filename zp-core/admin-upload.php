@@ -179,7 +179,7 @@ if ($rootrights || !empty($albumlist)) {
 		<?php 	seoFriendlyJS(); ?>
 		function buttonstate(good) {
 			$('#albumtitleslot').val($('#albumtitle').val());
-			$('#publishalbumslot').val($('#publishalbum').attr('checked'));
+			$('#publishalbumslot').val($('#publishalbum').prop('checked'));
 			if (good) {
 				$('#fileUploadbuttons').show();
 			} else {
@@ -187,7 +187,7 @@ if ($rootrights || !empty($albumlist)) {
 			}
 		}
 		function publishCheck() {
-			$('#publishalbumslot').val($('#publishalbum').attr('checked'));
+			$('#publishalbumslot').val($('#publishalbum').prop('checked'));
 		}
 		function albumSelect() {
 			var sel = document.getElementById('albumselectmenu');
@@ -333,7 +333,7 @@ if ($rootrights || !empty($albumlist)) {
 					<?php
 				} else {
 					?>
-					$('#autogen').attr('checked', 'checked');
+					$('#autogen').checked;
 					$('#folderdisplay').attr('disabled', 'disabled');
 					if ($('#albumtitle').val() != '') {
 						$('#foldererror').hide();

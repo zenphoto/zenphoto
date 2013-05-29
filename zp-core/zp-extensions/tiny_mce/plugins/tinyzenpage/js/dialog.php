@@ -54,7 +54,7 @@ var ZenpageDialog = {
 		var plainimgtitle = imgtitle.replace(/'|\\'/g, "\\'");
 		var plainalbumtitle = albumtitle.replace(/'|\\'/g, "\\'");
 		var player = '';
-	
+
 		plainimgtitle = stripHTML(plainimgtitle);
 		plainalbumtitle = stripHTML(plainalbumtitle);
 
@@ -102,7 +102,7 @@ var ZenpageDialog = {
 		}
 		if($('#rightwrap').prop('checked')) {
 			// we don't need (inline) css attached to the image/link it they are wrapped for the title, the div does the wrapping!
-			if($('#showtitle').attr('checked') == 'checked') {
+			if($('#showtitle').prop('checked')) {
 				textwrap_float = ' style=\'float: left;\'';
 			}
 			textwrap = 'class=\''+cssclass+'_left\''+textwrap_float;
@@ -186,7 +186,7 @@ var ZenpageDialog = {
 			case 'zenphoto':
 				if($('#sizedimage').prop('checked')) {
 					if(video == 'video' || video == 'audio') {
-						player = '[MEDIAPLAYER '+fullimage+' '+id+']';	
+						player = '[MEDIAPLAYER '+fullimage+' '+id+']';
 						imglink = infowrap1+player+infowrap2;
 					} else {
 						imglink = infowrap1+sizedimage+infowrap2;

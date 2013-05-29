@@ -175,13 +175,13 @@ printAdminHeader('edit','thumbcrop');
 	});
 
 	function resetCheck() {
-		if ($('#clear_crop').attr('checked')) {
+		if ($('#clear_crop').prop('checked')) {
 			jcrop_api.setSelect([ <?php echo $oX; ?>, <?php echo $oY; ?>, <?php echo $oX+$oW; ?>, <?php echo $oY+$oH; ?> ]);
 		}
 	}
 
 	function resetBoundingBox() {
-		if ($('#clear_crop').attr('checked')) {
+		if ($('#clear_crop').prop('checked')) {
 			jcrop_api.setSelect([ <?php echo $oX; ?>, <?php echo $oY; ?>, <?php echo $oX+$oW; ?>, <?php echo $oY+$oH; ?> ]);
 		} else {
 			jcrop_api.setSelect([ <?php echo $iX; ?>, <?php echo $iY; ?>, <?php echo $iX+$iW; ?>, <?php echo $iY+$iH; ?> ]);

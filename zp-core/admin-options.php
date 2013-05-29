@@ -708,14 +708,14 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<script type="text/javascript">
 							var oldselect = '<?php echo $currentValue; ?>';
 							function radio_click(id) {
-								if ($('#r_'+id).attr('checked')) {
+								if ($('#r_'+id).prop('checked')) {
 									$('#language_allow_'+oldselect).removeAttr('disabled');
 									oldselect = id;
 									$('#language_allow_'+id).attr('disabled', 'disabled');
 								}
 							}
 							function enable_click(id) {
-								if ($('#language_allow_'+id).attr('checked')) {
+								if ($('#language_allow_'+id).prop('checked')) {
 									$('#r_'+id).removeAttr('disabled');
 								} else {
 									$('#r_'+id).attr('disabled', 'disabled');
@@ -1481,25 +1481,10 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 						</ul>
 						<div class="floatright">
 							<label id="autocheck">
-								<input type="checkbox" name="checkAllAuto" id="checkAllAuto" />
+								<input type="checkbox" name="checkAllAuto" id="checkAllAuto" onclick="$('.search_fields').prop('checked',checked);" />
 								<span id="autotext"><?php echo gettext('all');?></span>
 							</label>
 						</div>
-						<script type="text/javascript">
-							// <!-- <![CDATA[
-							var checked = false;
-							$('#autocheck').click(
-								 function() {
-										if (checked) {
-											checked = false;
-										} else {
-											checked = true;
-										}
-										$('.search_fields').attr('checked', checked);
-								 }
-							)
-							// ]]> -->
-						</script>
 						</div>
 						<br />
 						<?php echo gettext('Treat spaces as'); ?>

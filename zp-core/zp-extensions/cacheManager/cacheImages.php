@@ -189,11 +189,7 @@ $last = '';
 <script type="text/javascript">
 	//<!-- <![CDATA[
 	function checkTheme(theme) {
-		if ($('#'+theme).attr('checked')) {
-			$('.'+theme).attr('checked','checked');
-		} else {
-			$('.'+theme).removeAttr('checked');
-		}
+		$('.'+theme).prop('checked',$('#'+theme).prop('checked'));
 	}
 	function showTheme(theme) {
 		html = $('#'+theme+'_arrow').html();

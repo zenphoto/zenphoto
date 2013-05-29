@@ -408,7 +408,7 @@ echo '</head>'."\n";
 									?>
 									c = 0;
 								  for (i=0;i<=newgroupid;i++) {
-									  if ($('#user_'+i+'-<?php echo postIndexEncode($name); ?>').attr('checked')) c++;
+									  if ($('#user_'+i+'-<?php echo postIndexEncode($name); ?>').prop('checked')) c++;
 									}
 									if (c>1) {
 										alert('<?php echo sprintf(gettext('User %s is assigned to more than one group.'), $name); ?>');

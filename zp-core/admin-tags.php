@@ -153,24 +153,9 @@ printLogoAndLinks();
 						</button>
 					</p>
 					<label id="autocheck">
-						<input type="checkbox" name="checkAllAuto" id="checkAllAuto" />
+						<input type="checkbox" name="checkAllAuto" id="checkAllAuto" onclick="$('.checkTagsAuto').prop('checked', $('#checkAllAuto').prop('checked'));"/>
 						<span id="autotext"><?php echo gettext('all');?></span>
 					</label>
-					<script type="text/javascript">
-						// <!-- <![CDATA[
-						var checked = false;
-						$('#autocheck').click(
-							 function() {
-									if (checked) {
-										checked = false;
-									} else {
-										checked = true;
-									}
-									$("INPUT[type='checkbox']").attr('checked', checked);
-							 }
-						)
-						// ]]> -->
-					</script>
 					<br class="clearall" />
 					<br />
 					<br />

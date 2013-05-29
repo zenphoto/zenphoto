@@ -246,25 +246,10 @@ if (zp_loggedin(ADMIN_RIGHTS)) {	//only admin should be allowed to do this
 		if ($c > 0) {
 			?>
 			<form name="publish_albums" action="" method="post"><?php echo gettext('Albums:'); ?>
-			<label id="autocheck">
-				<input type="checkbox" name="checkAllAuto" id="checkAllAuto" />
-				<span id="autotext"><?php echo gettext('all');?></span>
-			</label>
-			<script type="text/javascript">
-				// <!-- <![CDATA[
-				var checked = false;
-				$('#autocheck').click(
-				   function() {
-				      if (checked) {
-					      checked = false;
-				      } else {
-					      checked = 'checked';
-				      }
-				      $('.albumcheck').attr('checked', checked);
-				   }
-				)
-				// ]]> -->
-			</script>
+				<label id="autocheck">
+					<input type="checkbox" name="checkAllAuto" id="checkAllAuto" onclick="$('.checkAuto').prop('checked', $('#checkAllAuto').prop('checked'));"/>
+					<span id="autotext"><?php echo gettext('all');?></span>
+				</label>
 			<?php XSRFToken('publishContent');?>
 			<input type="hidden" name="publish" value="albums" />
 			<ul class="schedulealbumchecklist">
@@ -276,7 +261,7 @@ if (zp_loggedin(ADMIN_RIGHTS)) {	//only admin should be allowed to do this
 				?>
 				<li>
 					<label>
-						<input type="checkbox" name="<?php echo postIndexEncode($analbum); ?>" value="<?php echo $albumid; ?>" class="albumcheck" />
+						<input type="checkbox" class="checkAuto" name="<?php echo postIndexEncode($analbum); ?>" value="<?php echo $albumid; ?>" class="albumcheck" />
 						<img src="<?php echo pathurlencode($thumb); ?>" width="40" height="40" alt="" title="album thumb" />
 						<?php echo $album->name; ?>
 					</label>
@@ -374,9 +359,9 @@ if (zp_loggedin(ADMIN_RIGHTS)) {	//only admin should be allowed to do this
 			}
 			function publishAll(id,what) {
 				if (id) {
-					$('.album_'+id+'_'+what).attr('checked','checked');
+					$('.album_'+id+'_'+what).prop('checked',true);
 				} else {
-					$('.global_'+what).attr('checked','checked');
+					$('.global_'+what).prop('checked',true);
 				}
 			}
 			// ]]> -->
@@ -513,24 +498,9 @@ if (zp_loggedin(ADMIN_RIGHTS)) {	//only admin should be allowed to do this
 				?>
 				<form name="publish_cat" action="" method="post"><?php echo gettext('Categories:'); ?>
 				<label id="autocheck_cat">
-					<input type="checkbox" name="checkAllcat" />
+					<input type="checkbox" id="checkAllcat" name="checkAllcat" onclick="$('.catcheck').prop('checked', $('#checkAllcat').prop('checked'));" />
 					<span id="autotext_cat"><?php echo gettext('all');?></span>
 				</label>
-				<script type="text/javascript">
-					// <!-- <![CDATA[
-					var checked = false;
-					$('#autocheck_cat').click(
-					   function() {
-					      if (checked) {
-						      checked = false;
-					      } else {
-						      checked = 'checked';
-					      }
-					      $('.catcheck').attr('checked', checked);
-					   }
-					)
-					// ]]> -->
-				</script>
 				<?php XSRFToken('publishContent');?>
 				<input type="hidden" name="publish" value="categories" />
 				<ul class="schedulealbumchecklist">
@@ -582,24 +552,9 @@ if (zp_loggedin(ADMIN_RIGHTS)) {	//only admin should be allowed to do this
 			?>
 			<form name="publish_articles" action="" method="post"><?php echo gettext('Articles:'); ?>
 			<label id="autocheck_art">
-				<input type="checkbox" name="checkAllcat" />
+				<input type="checkbox" name="checkAllcat" onclick="$('.artcheck').prop('checked', checked)" />
 				<span id="autotext_art"><?php echo gettext('all');?></span>
 			</label>
-			<script type="text/javascript">
-				// <!-- <![CDATA[
-				var checked = false;
-				$('#autocheck_art').click(
-				   function() {
-				      if (checked) {
-					      checked = false;
-				      } else {
-					      checked = 'checked';
-				      }
-				      $('.artcheck').attr('checked', checked);
-				   }
-				)
-				// ]]> -->
-			</script>
 			<?php XSRFToken('publishContent');?>
 			<input type="hidden" name="publish" value="news" />
 			<ul class="schedulealbumchecklist">
@@ -649,24 +604,9 @@ if (zp_loggedin(ADMIN_RIGHTS)) {	//only admin should be allowed to do this
 		<div id="pagebox"<?php if (!$visible) echo ' style="display:none"'?>>
 			<form name="publish_pages" action="" method="post"><?php echo gettext('Pages:'); ?>
 			<label id="autocheck_page">
-				<input type="checkbox" name="checkAllpage" />
+				<input type="checkbox" name="checkAllpage" onclick="$('.pagecheck').prop('checked', checked);" />
 				<span id="autotext_page"><?php echo gettext('all');?></span>
 			</label>
-			<script type="text/javascript">
-				// <!-- <![CDATA[
-				var checked = false;
-				$('#autocheck_page').click(
-				   function() {
-				      if (checked) {
-					      checked = false;
-				      } else {
-					      checked = 'checked';
-				      }
-				      $('.pagecheck').attr('checked', checked);
-				   }
-				)
-				// ]]> -->
-			</script>
 			<?php XSRFToken('publishContent');?>
 			<input type="hidden" name="publish" value="pages" />
 			<ul class="schedulealbumchecklist">

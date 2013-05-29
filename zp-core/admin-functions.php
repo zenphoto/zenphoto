@@ -799,12 +799,8 @@ function customOptions($optionHandler, $indent="", $album=NULL, $showhide=false,
 						<script type="text/javascript">
 							// <!-- <![CDATA[
 							function <?php echo $key; ?>_all() {
-								var check = $('#all_<?php echo $key; ?>').attr('checked');
-								if (typeof check == 'undefined') {
-									$('.all_<?php echo $key; ?>').attr('checked','checked');
-								} else {
-									$('.all_<?php echo $key; ?>').removeAttr('checked');
-								}
+								var check = $('#all_<?php echo $key; ?>').prop('checked');
+								$('.all_<?php echo $key; ?>').prop('checked',check);
 							}
 							// ]]> -->
 						</script>
@@ -1132,12 +1128,12 @@ function tagSelector($that, $postit, $showCounts=false, $mostused=false, $addnew
 		$displaylist = $them;
 	}
 	if (count($tags) > 0) {
-		generateUnorderedListFromArray($tags, $tags, $postit, false, !$mostused, $showCounts);
+		generateUnorderedListFromArray($tags, $tags, $postit, false, !$mostused, $showCounts, 'checkTagsAuto');
 		?>
 		<li><hr /></li>
 		<?php
 	}
-	generateUnorderedListFromArray(array(), $displaylist, $postit, false, !$mostused, $showCounts);
+	generateUnorderedListFromArray(array(), $displaylist, $postit, false, !$mostused, $showCounts, 'checkTagsAuto');
 	?>
 		</ul>
 	</div>

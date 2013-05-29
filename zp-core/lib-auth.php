@@ -1154,7 +1154,7 @@ class Zenphoto_Authority {
 			var inputa = '#pass'+id;
 			var inputb = '#pass_r'+id;
 			var display = '#match'+id;
-			if ($('#disclose_password'+id).attr('checked') != 'checked') {
+			if ($('#disclose_password'+id).prop('checked')) {
 				if ($(inputa).val() === $(inputb).val()) {
 					if ($(inputa).val().trim() !== '') {
 						$(display).css('color','#008000');
