@@ -1,6 +1,6 @@
 <?php
 /**
- * Supports showing slideshows of images in an album. 
+ * Supports showing slideshows of images in an album.
  *	<ul>
  * 		<li>Plugin Option 'slideshow_size' -- Size of the images</li>
  *		<li>Plugin Option 'slideshow_mode' -- The player to be used</li>
@@ -22,9 +22,9 @@
  * Use [SLIDESHOW <albumname> <true/false for control] for showing a slideshow within image/album descriptions or Zenpage article and page contents.
  * The slideshow size options must fit the space
  * Notes:
- * <ul>	
- * 	<li>The slideshow scripts must be enabled for the pages you wish to use it on.</li> 
- * 	<li>Use only one slideshow per page to avoid CSS conflicts.</li> 
+ * <ul>
+ * 	<li>The slideshow scripts must be enabled for the pages you wish to use it on.</li>
+ * 	<li>Use only one slideshow per page to avoid CSS conflicts.</li>
  *	<li>Also your theme might require extra CSS for this usage, especially the controls.</li>
  *</ul>
  *
@@ -603,22 +603,14 @@ function printSlideShowLink($linktext=NULL, $linkstyle=Null) {
 						} else {
 							$imgobj = newImage($_zp_current_album,$image);
 						}
-						if($_zp_gallery_page == 'image.php' || in_context(ZP_SEARCH_LINKED)) {
-							if(in_context(ZP_SEARCH_LINKED)) {
-								if($count == 1) {
-									$style = '';
-								} else {
-									$style = ' style="display:none"';
-								}
-							} else {
-								if($_zp_current_image->filename == $image) {
-									$style = '';
-								} else {
-									$style = ' style="display:none"';
-								}
-							}
-						} elseif ($_zp_gallery_page == 'album.php' || $_zp_gallery_page == 'search.php') {
+						if(in_context(ZP_SEARCH_LINKED) || $_zp_gallery_page != 'image.php') {
 							if($count == 1) {
+								$style = '';
+							} else {
+								$style = ' style="display:none"';
+							}
+						} else {
+							if($_zp_current_image->filename == $image) {
 								$style = '';
 							} else {
 								$style = ' style="display:none"';
