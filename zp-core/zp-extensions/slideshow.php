@@ -201,8 +201,6 @@ class slideshow {
 		if($shuffle) shuffle($images);
 		$showdesc = getOption("slideshow_showdesc");
 		// slideshow display section
-		switch($option) {
-			case "jQuery":
 				$validtypes = array('jpg','jpeg','gif','png','mov','3gp');
 				$slideshow .= '
 				<script type="text/javascript">
@@ -436,8 +434,6 @@ class slideshow {
 						$slideshow .= '</span>';
 					}
 				}
-				break;
-		}
 		$slideshow .= '
 		</div>
 		</div>
