@@ -2068,7 +2068,9 @@ function applyMacros($text) {
 
 	if (preg_match_all($regex, $text, $matches)) {
 		foreach ($matches[1] as $key=>$macroname) {
-			$p = rtrim(trim($matches[2][$key]),']');
+			$p = substr($matches[2][$key],0,-1);
+			$p = str_replace("\xC2\xA0", ' ', $p);
+			$p = trim($p);
 			$params = '';
 			$macroname = strtoupper($macroname);
 			$macro = $content_macros[$macroname];
@@ -2103,7 +2105,7 @@ function applyMacros($text) {
 						$data = ob_get_contents();
 						ob_end_clean();
 					}
-					if (is_null($data)) {
+					if (empty($data)) {
 						$data = '<span class="error">'.sprintf(gettext('<em>[%1$s]</em> retuned no data'),trim($macro_instance,'[]')).'</span>';
 					} else {
 						$data = "\n<!--Begin ".$macroname."-->\n".$data."\n<!--End ".$macroname."-->\n";
@@ -2376,7 +2378,7 @@ class zpFunctions {
 	 * @param string $text
 	 */
 	static function tagURLs($text) {
-		if (preg_match('/^a:[0-9]+:{/', $text)) {	//	seriualized array
+		if (preg_match('/^a:[0-9]+:{/', $text)) {	//	serialized array
 			$textlist = unserialize($text);
 			foreach ($textlist as $key=>$text) {
 				$textlist[$key] = str_replace(WEBPATH, '{*WEBPATH*}', str_replace(FULLWEBPATH, '{*FULLWEBPATH*}', $text));
@@ -2392,7 +2394,7 @@ class zpFunctions {
 	 * @return string
 	 */
 	static function unTagURLs($text) {
-		if (preg_match('/^a:[0-9]+:{/', $text)) {	//	seriualized array
+		if (preg_match('/^a:[0-9]+:{/', $text)) {	//	serialized array
 			$textlist = unserialize($text);
 			foreach ($textlist as $key=>$text) {
 				$textlist[$key] = str_replace('{*WEBPATH*}', WEBPATH, str_replace('{*FULLWEBPATH*}', FULLWEBPATH, $text));
@@ -2409,6 +2411,22 @@ class zpFunctions {
 	 * @return string
 	 */
 	static function updateImageProcessorLink($text) {
+		if (preg_match('/^a:[0-9]+:{/', $text)) {	//	serialized array
+			$textlist = unserialize($text);
+			foreach ($textlist as $key=>$text) {
+				$textlist[$key] = self::_updateImageProcessorLink($text);
+			}
+			return serialize($textlist);
+		} else {
+			return self::_updateImageProcessorLink($text);
+		}
+
+	}
+	/**
+	 * This is the working part of the updateImageProcessorLink function
+	 *
+	 */
+	private static function _updateImageProcessorLink($text) {
 		preg_match_all('|\<\s*img.*?\ssrc\s*=\s*"(.*i\.php\?([^"]*)).*/\>|', $text, $matches);
 		foreach ($matches[2] as $key=>$match) {
 			$match = explode('&amp;',$match);
