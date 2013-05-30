@@ -2079,7 +2079,7 @@ function applyMacros($text) {
 				if (!preg_match($macro['regex'], $p, $parms)) {
 					$macro['class'] = 'error';
 					preg_match_all('|\(.*?\)|', $macro['regex'], $parms);
-					$data = '<span class="error">'.sprintf(ngettext('<em>[%1$s]</em> should have %2$d parameter.','<em>[%1$s]</em> should have %2$d parameters.',count($parms[0])),trim($macro_instance,'[]'),count($parms[0])).'</span>';
+					$data = '<span class="error">'.sprintf(gettext('<em>[%1$s]</em> parameter mis-match.'),trim($macro_instance,'[]')).'</span>';
 					$parms = array();	// failed parameter extract
 				} else {
 					array_shift($parms);

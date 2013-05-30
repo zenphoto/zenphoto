@@ -444,10 +444,10 @@ class slideshow {
 	static function macro($macros) {
 		$macros['SLIDESHOW'] = array(
 				'class'=>'expression',
-				'regex'=>'/^(.*)\s(.*)$/',
+				'regex'=>'/^(.*)\s(true|false)$/i',
 				'value'=>'slideshow::getPlayer($1,$2);',
 				'owner'=>'slideshow',
-				'desc'=>gettext('provide the album name as %1 and true (or false) as %2 to show (hide) controls.')
+				'desc'=>gettext('provide the album name as %1 and <code>true</code> (or <code>false</code>) as %2 to show (hide) controls.')
 		);
 		return $macros;
 	}
