@@ -248,6 +248,16 @@ class htmlmetatags {
 				$desc = '';
 				$canonicalurl = $host.getCustomPageURL('contact');
 				break;
+			case 'favorites.php':
+				$pagetitle = gettext('Favorites')." - ";
+				$desc = '';
+				$canonicalurl = $host.getCustomPageURL('favorites');
+				break;
+			case 'gallery.php':
+				$pagetitle = gettext('Gallery')." - ";
+				$desc = '';
+				$canonicalurl = $host.getCustomPageURL('gallery');
+				break;
 			default: // for all other possible none standard custom pages
 				$pagetitle = sanitize(@$_GET['p']);
 				$desc = '';
