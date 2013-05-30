@@ -2068,7 +2068,9 @@ function applyMacros($text) {
 
 	if (preg_match_all($regex, $text, $matches)) {
 		foreach ($matches[1] as $key=>$macroname) {
-			$p = rtrim(trim($matches[2][$key]),']');
+			$p = substr($matches[2][$key],0,-1);
+			$p = str_replace("\xC2\xA0", ' ', $p);
+			$p = trim($p);
 			$params = '';
 			$macroname = strtoupper($macroname);
 			$macro = $content_macros[$macroname];
@@ -2103,7 +2105,7 @@ function applyMacros($text) {
 						$data = ob_get_contents();
 						ob_end_clean();
 					}
-					if (is_null($data)) {
+					if (empty($data)) {
 						$data = '<span class="error">'.sprintf(gettext('<em>[%1$s]</em> retuned no data'),trim($macro_instance,'[]')).'</span>';
 					} else {
 						$data = "\n<!--Begin ".$macroname."-->\n".$data."\n<!--End ".$macroname."-->\n";

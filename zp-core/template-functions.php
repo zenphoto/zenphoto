@@ -2812,7 +2812,7 @@ function printCustomSizedImage($alt, $size, $width=NULL, $height=NULL, $cropw=NU
 	if ($id) $id = ' id="'.$id.'"';
 	if ($class) $id .= ' class="'.$class.'"';
 	if (isImagePhoto() || $thumbStandin) {
-		$html = '<img src="' . pathurlencode(getCustomImageURL($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumbStandin, $effects)) . '"' .
+		$html = '<img src="' . html_encode(pathurlencode(getCustomImageURL($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumbStandin, $effects))) . '"' .
 			' alt="' . html_encode($alt) . '"' .
 			$id .
 			$sizing .

@@ -1061,7 +1061,7 @@ function pathurlencode($path) {
 			if($value) {
 				$query .= '='.implode("/", array_map("rawurlencode", explode("/", $value)));
 			}
-			$query .= '&amp;';
+			$query .= '&';
 		}
 		$query = substr($query,0,-5);
 	} else {
