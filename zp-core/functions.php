@@ -2155,7 +2155,7 @@ function getMacros() {
 																		'owner'=>'Zenphoto core',
 																		'desc'=>gettext('Prints the version of the Zenphoto installation.')),
 				'PAGELINK'	=>	array('class'=>'expression',
-															'regex'=>'/^(.*)$/',
+															'regex'=>'/^(.+)$/',
 															'value'=>'getCustomPageURL($1);',
 															'owner'=>'Zenphoto core',
 															'desc'=>gettext('Provides text for a link to a "custom" script page indicated by <code>%1</code>.'))

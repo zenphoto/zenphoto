@@ -229,7 +229,7 @@ class jPlayer {
 	static function macro($macros) {
 		$macros['MEDIAPLAYER'] = array(
 				'class'=>'expression',
-				'regex'=>'/^(.*)\s(\d+)$/',
+				'regex'=>'/^(.+)\s(\d+)$/',
 				'value'=>'jplayer::getMacrojplayer($1,$2);',
 				'owner'=>'jplayer',
 				'desc'=>gettext('provide the path to media file as %1 and a unique number as %2. (If there is only player instance on the page any random number will do.)')
