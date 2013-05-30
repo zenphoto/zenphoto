@@ -49,8 +49,8 @@ if(isset($_GET['image']) && isset($_GET['album'])) {
 			}
 	} else {
 		?>
-		<img src="<?php echo pathurlencode($imageobj->getSizedImage(440)); ?>" />
-		<?php 
+		<img src="<?php echo html_encode(pathurlencode($imageobj->getSizedImage(440))); ?>" />
+		<?php
 	}
 } else {
 	echo "<div style='text-align: left; width 450px; font-size:0.8em'>";

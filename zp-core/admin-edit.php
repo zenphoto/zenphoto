@@ -1018,13 +1018,13 @@ $alb = removeParentAlbumNames($album);
 								>
 								<img
 									id="thumb_img-<?php echo $currentimage; ?>"
-									src="<?php echo pathurlencode($image->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, -1)); ?>"
+									src="<?php echo html_encode(pathurlencode($image->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, -1))); ?>"
 									alt="<?php echo html_encode($image->filename); ?>"
 									/>
 							</a>
 						</div>
 						<?php if(isImagePhoto($image)) { ?>
-							<p class="buttons"><a href="<?php echo pathurlencode($image->getFullImageURL()); ?>" class="colorbox"><img src="images/magnify.png" alt="" /><strong><?php echo gettext('Zoom'); ?></strong></a></p><br style="clear: both" />
+							<p class="buttons"><a href="<?php echo html_encode(pathurlencode($image->getFullImageURL())); ?>" class="colorbox"><img src="images/magnify.png" alt="" /><strong><?php echo gettext('Zoom'); ?></strong></a></p><br style="clear: both" />
 						<?php } ?>
 						<p class="buttons"><a href="<?php echo $image->getImageLink();?>"><img src="images/view.png" alt="" /><strong><?php echo gettext('View'); ?></strong></a></p><br style="clear: both" />
 						<p><?php echo gettext('<strong>Filename:</strong>'); ?><br /><?php echo $image->filename; ?></p>

@@ -909,7 +909,7 @@ class Zenphoto_Authority {
 					<fieldset id="logon_box">
 						<input type="hidden" name="login" value="1" />
 						<input type="hidden" name="password" value="challenge" />
-						<input type="hidden" name="redirect" value="<?php echo pathurlencode($redirect); ?>" />
+						<input type="hidden" name="redirect" value="<?php echo html_encode(pathurlencode($redirect)); ?>" />
 						<fieldset>
 							<legend><?php echo gettext('User')?></legend>
 							<input class="textfield" name="user" id="user" type="text" size="35" value="<?php echo html_encode($requestor); ?>" />
@@ -996,10 +996,10 @@ class Zenphoto_Authority {
 					<?php
 				}
 				?>
-				<form name="login" action="<?php echo pathurlencode(getRequestURI()); ?>" method="post">
+				<form name="login" action="<?php echo html_encode(pathurlencode(getRequestURI())); ?>" method="post">
 					<input type="hidden" name="login" value="1" />
 					<input type="hidden" name="password" value="1" />
-					<input type="hidden" name="redirect" value="<?php echo pathurlencode($redirect); ?>" />
+					<input type="hidden" name="redirect" value="<?php echo html_encode(pathurlencode($redirect)); ?>" />
 					<fieldset id="logon_box"><legend><?php echo $legend; ?></legend>
 						<?php
 						if ($showUserField) {	//	requires a "user" field
@@ -1043,7 +1043,7 @@ class Zenphoto_Authority {
 					<?php if (isset($captcha['hidden'])) echo $captcha['hidden']; ?>
 					<input type="hidden" name="login" value="1" />
 					<input type="hidden" name="password" value="captcha" />
-					<input type="hidden" name="redirect" value="<?php echo pathurlencode($redirect); ?>" />
+					<input type="hidden" name="redirect" value="<?php echo html_encode(pathurlencode($redirect)); ?>" />
 					<?php
 					?>
 					<fieldset id="logon_box">
