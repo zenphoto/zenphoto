@@ -2068,7 +2068,7 @@ function applyMacros($text) {
 
 	if (preg_match_all($regex, $text, $matches)) {
 		foreach ($matches[1] as $key=>$macroname) {
-			$p = substr($matches[2][$key],0,-1);
+			$p = substr(strip_tags($matches[2][$key]),0,-1);
 			$p = str_replace("\xC2\xA0", ' ', $p);
 			$p = trim($p);
 			$params = '';
@@ -2378,31 +2378,42 @@ class zpFunctions {
 	 * @param string $text
 	 */
 	static function tagURLs($text) {
-		if (preg_match('/^a:[0-9]+:{/', $text)) {	//	serialized array
-			$textlist = unserialize($text);
-			foreach ($textlist as $key=>$text) {
-				$textlist[$key] = str_replace(WEBPATH, '{*WEBPATH*}', str_replace(FULLWEBPATH, '{*FULLWEBPATH*}', $text));
-			}
-			return serialize($textlist);
-		} else {
-		return str_replace(WEBPATH, '{*WEBPATH*}', str_replace(FULLWEBPATH, '{*FULLWEBPATH*}', $text));
+		if ($serial = preg_match('/^a:[0-9]+:{/', $text)) {	//	serialized array
+			$text = unserialize($text);
 		}
+		if (is_array($text)) {
+			foreach ($text as $key=>$textelement) {
+				$text[$key] = self::TagURLs($textelement);
+			}
+			if ($serial) {
+				$text = serialize($text);
+			}
+		} else {
+			$text = str_replace(WEBPATH, '{*WEBPATH*}', str_replace(FULLWEBPATH, '{*FULLWEBPATH*}', $text));
+		}
+		return $text;
 	}
+
 	/**
 	 * reverses tagURLs()
 	 * @param string $text
 	 * @return string
 	 */
 	static function unTagURLs($text) {
-		if (preg_match('/^a:[0-9]+:{/', $text)) {	//	serialized array
-			$textlist = unserialize($text);
-			foreach ($textlist as $key=>$text) {
-				$textlist[$key] = str_replace('{*WEBPATH*}', WEBPATH, str_replace('{*FULLWEBPATH*}', FULLWEBPATH, $text));
-			}
-			return serialize($textlist);
-		} else {
-			return str_replace('{*WEBPATH*}', WEBPATH, str_replace('{*FULLWEBPATH*}', FULLWEBPATH, $text));
+		if ($serial = preg_match('/^a:[0-9]+:{/', $text)) {	//	serialized array
+			$text = unserialize($text);
 		}
+		if (is_array($text)) {
+			foreach ($text as $key=>$textelement) {
+				$text[$key] = self::unTagURLs($textelement);
+			}
+			if ($serial) {
+				$text = serialize($text);
+			}
+		} else {
+			$text = str_replace('{*WEBPATH*}', WEBPATH, str_replace('{*FULLWEBPATH*}', FULLWEBPATH, $text));
+		}
+		return $text;
 	}
 
 	/**
@@ -2411,39 +2422,34 @@ class zpFunctions {
 	 * @return string
 	 */
 	static function updateImageProcessorLink($text) {
-		if (preg_match('/^a:[0-9]+:{/', $text)) {	//	serialized array
-			$textlist = unserialize($text);
-			foreach ($textlist as $key=>$text) {
-				$textlist[$key] = self::_updateImageProcessorLink($text);
-			}
-			return serialize($textlist);
-		} else {
-			return self::_updateImageProcessorLink($text);
+		if ($serial = preg_match('/^a:[0-9]+:{/', $text)) {	//	serialized array
+			$text = unserialize($text);
 		}
-
-	}
-	/**
-	 * This is the working part of the updateImageProcessorLink function
-	 *
-	 */
-	private static function _updateImageProcessorLink($text) {
-		preg_match_all('|\<\s*img.*?\ssrc\s*=\s*"(.*i\.php\?([^"]*)).*/\>|', $text, $matches);
-		foreach ($matches[2] as $key=>$match) {
-			$match = explode('&amp;',$match);
-			$set = array();
-			foreach ($match as $v) {
-				$s = explode('=',$v);
-				$set[$s[0]] = $s[1];
+		if (is_array($text)) {
+			foreach ($text as $key=>$textelement) {
+				$text[$key] = self::updateImageProcessorLink($textelement);
 			}
-			$args = getImageArgs($set);
-			$imageuri = getImageURI($args, $set['a'], $set['i'], NULL);
-			if (strpos($imageuri, 'i.php')===false) {
-				$text = str_replace($matches[1], $imageuri, $text);
+			if ($serial) {
+				$text = serialize($text);
+			}
+		} else {
+			preg_match_all('|\<\s*img.*?\ssrc\s*=\s*"(.*i\.php\?([^"]*)).*/\>|', $text, $matches);
+			foreach ($matches[2] as $key=>$match) {
+				$match = explode('&amp;',$match);
+				$set = array();
+				foreach ($match as $v) {
+					$s = explode('=',$v);
+					$set[$s[0]] = $s[1];
+				}
+				$args = getImageArgs($set);
+				$imageuri = getImageURI($args, $set['a'], $set['i'], NULL);
+				if (strpos($imageuri, 'i.php')===false) {
+					$text = str_replace($matches[1], $imageuri, $text);
+				}
 			}
 		}
 		return $text;
 	}
-
 }
 
 /**
