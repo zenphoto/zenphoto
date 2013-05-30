@@ -221,6 +221,7 @@ class jPlayer {
 	static function getMacrojplayer($moviepath,$count=NULL) {
 		global $_zp_flash_player;
 		if(empty($count)) $count = '1';
+		$moviepath = trim($moviepath, '\'"');
 		$player = $_zp_flash_player->getPlayerConfig($moviepath,'',$count);
 		return $player;
 	}
