@@ -221,6 +221,7 @@ class jPlayer {
 	static function getMacrojplayer($moviepath,$count=NULL) {
 		global $_zp_flash_player;
 		if(empty($count)) $count = '1';
+		$moviepath = trim($moviepath, '\'"');
 		$player = $_zp_flash_player->getPlayerConfig($moviepath,'',$count);
 		return $player;
 	}
@@ -228,10 +229,10 @@ class jPlayer {
 	static function macro($macros) {
 		$macros['MEDIAPLAYER'] = array(
 				'class'=>'expression',
-				'regex'=>'/^(.*)\s(.*)$/',
+				'regex'=>'/^(.*)\s(\d+)$/',
 				'value'=>'jplayer::getMacrojplayer($1,$2);',
 				'owner'=>'jplayer',
-				'desc'=>gettext('provide the path to media file as %1 and a unique value as %2 (if there is only player on the page any random number will do.)')
+				'desc'=>gettext('provide the path to media file as %1 and a unique number as %2. (If there is only player instance on the page any random number will do.)')
 		);
 		return $macros;
 	}
@@ -678,7 +679,7 @@ static function playlistJS() {
 						<?php	if(getOption('jplayer_download')) { ?>
 							free:true,
 						<?php } ?>
-						<?php echo $this->supplied; ?>:"<?php echo pathurlencode($url = $video->getFullImage(FULLWEBPATH)); ?>"
+						<?php echo $this->supplied; ?>:"<?php echo html_encode(pathurlencode($url = $video->getFullImage(FULLWEBPATH))); ?>"
 						<?php echo $this->getCounterpartFiles($url,$ext); ?>
 						<?php echo $videoThumb; ?>
 					}

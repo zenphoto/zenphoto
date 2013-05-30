@@ -297,6 +297,14 @@ class favorites extends AlbumBase {
 		return $script;
 	}
 
+	static function toolbox($zf) {
+		?>
+		<li>
+			<?php printFavoritesLink(gettext('My favorites')); ?>
+		</li>
+		<?php
+	}
+
 }
 
 if (!OFFSET_PATH) {
@@ -305,8 +313,9 @@ if (!OFFSET_PATH) {
 	}
 	$_zp_conf_vars['special_pages'][$page] = array('define'=>false, 'rewrite'=>getOption('favorites_rewrite'), 'rule'=>'^%REWRITE%/*$		index.php?p='.$page.' [L,QSA]');
 
-
 	zp_register_filter('load_theme_script', 'favorites::loadScript');
+	zp_register_filter('admin_toolbox_global', 'favorites::toolbox');
+
 	if (zp_loggedin()) {
 		$_myFavorites = new favorites($_zp_current_admin_obj->getUser());
 		if (isset($_POST['addToFavorites'])) {

@@ -109,7 +109,7 @@ if (!defined('WEBPATH')) die();
 					<div id="next" class="slides">
 						<a href="<?php echo html_encode(getNextImageURL()); ?>" title="<?php echo gettext('Next image'); ?>">
 							<h2><?php echo gettext('Next »'); ?></h2>
-							<img src="<?php echo pathurlencode(getNextImageThumb()); ?>" />
+							<img src="<?php echo html_encode(pathurlencode(getNextImageThumb())); ?>" />
 						</a>
 					</div>
 					<?php
@@ -119,7 +119,7 @@ if (!defined('WEBPATH')) die();
 					<div id="prev" class="slides">
 						<a href="<?php echo html_encode(getPrevImageURL()); ?>" title="<?php echo gettext('Previous image'); ?>">
 							<h2><?php echo gettext('« Previous'); ?></h2>
-							<img src="<?php echo pathurlencode(getPrevImageThumb()); ?>" />
+							<img src="<?php echo html_encode(pathurlencode(getPrevImageThumb())); ?>" />
 						</a>
 					</div>
 					<?php
