@@ -233,33 +233,8 @@ class htmlmetatags {
 				$desc = trim(strip_tags(getPageContent()));
 				$canonicalurl = $host.getPageLinkURL($_zp_current_zenpage_page->getTitlelink());
 				break;
-			case 'archive.php':
-				$pagetitle = gettext('Archive')." - ";
-				$desc = '';
-				$canonicalurl = $host.getCustomPageURL('archive');
-				break;
-			case 'search.php':
-				$pagetitle = gettext('Search')." - ";
-				$desc = '';
-				$canonicalurl = $host.getCustomPageURL('search');
-				break;
-			case 'contact.php':
-				$pagetitle = gettext('Contact')." - ";
-				$desc = '';
-				$canonicalurl = $host.getCustomPageURL('contact');
-				break;
-			case 'favorites.php':
-				$pagetitle = gettext('Favorites')." - ";
-				$desc = '';
-				$canonicalurl = $host.getCustomPageURL('favorites');
-				break;
-			case 'gallery.php':
-				$pagetitle = gettext('Gallery')." - ";
-				$desc = '';
-				$canonicalurl = $host.getCustomPageURL('gallery');
-				break;
-			default: // for all other possible none standard custom pages
-				$pagetitle = sanitize(@$_GET['p']);
+			default: // for all other possible static custom pages
+				$pagetitle = sanitize(@$_GET['p'])." - ";
 				$desc = '';
 				$canonicalurl = $host.getCustomPageURL($pagetitle);
 				break;
