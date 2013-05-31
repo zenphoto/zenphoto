@@ -90,17 +90,12 @@
 								</p>
 							<?php
 							}
-							if($required) {
-								?>
-								<p><?php echo gettext('<strong>*</strong>Required fields'); ?></p>
-								<?php
-							}
 							if (commentFormUseCaptcha()) {
  								$captcha = $_zp_captcha->getCaptcha();
  								?>
  								<p>
-	 								<label for="code"><?php echo gettext("Enter CAPTCHA"); ?></label>
 	 								<?php
+	 								echo gettext("Enter CAPTCHA*");
 	 								if (isset($captcha['html']) && isset($captcha['input'])) echo $captcha['html'];
 										if (isset($captcha['input'])) {
 											echo $captcha['input'];
@@ -111,6 +106,11 @@
 										?>
 	 							</p>
 							<?php
+							}
+							if($required) {
+								?>
+								<p><?php echo gettext('<strong>*</strong>Required fields'); ?></p>
+								<?php
 							}
 							if (getOption('comment_form_private') && !$disabled['private']) {
 								?>

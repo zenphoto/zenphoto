@@ -34,7 +34,7 @@ if (!defined('WEBPATH')) die();
 							<div class="albumdesc">
 								<h3><a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printAnnotatedAlbumTitle(); ?>"><?php printAlbumTitle(); ?></a></h3>
 								<small><?php printAlbumDate(""); ?></small>
-								<p><?php printAlbumDesc(); ?></p>
+								<div><?php printAlbumDesc(); ?></div>
 							</div>
 							<p style="clear: both; "></p>
 						</div>

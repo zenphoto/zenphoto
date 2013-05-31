@@ -2464,7 +2464,7 @@ class _zp_captcha {
 		if (is_object($_zp_HTML_cache)) {	//	don't cache captch
 			$_zp_HTML_cache->abortHTMLCache();
 		}
-		return array('input'=>'', 'html'=>'<p class="errorbox">'.gettext('No captcha handler is enabled.').'</p>', 'hidden'=>'');
+		return array('input'=>NULL, 'html'=>'<p class="errorbox">'.gettext('No captcha handler is enabled.').'</p>', 'hidden'=>'');
 	}
 	function checkCaptcha($s1, $s2) {
 		return true;
