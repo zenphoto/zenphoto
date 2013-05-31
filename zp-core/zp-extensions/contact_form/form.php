@@ -83,7 +83,7 @@
 			$captcha = $_zp_captcha->getCaptcha();
 		?>
 		<p>
-			<label for="code"><?php echo gettext("Enter CAPTCHA<strong>*</strong>:"); ?></label>
+			<label for="code"><?php echo gettext("Enter CAPTCHA*"); ?></label>
 			<?php
 				if (isset($captcha['html'])) echo $captcha['html'];
 				if (isset($captcha['input'])) echo $captcha['input'];

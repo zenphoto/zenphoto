@@ -1570,7 +1570,7 @@ function printAlbumThumbImage($alt, $class=NULL, $id=NULL) {
 	}
 	$size = ' width="'.$w.'" height="'.$h.'"';
 	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || empty($pwd)) {
-		$html = '<img src="' . pathurlencode($thumb). '"' . $size . ' alt="' . html_encode($alt) . '"' .	$class . $id . ' />';
+		$html = '<img src="' . html_encode(pathurlencode($thumb)). '"' . $size . ' alt="' . html_encode($alt) . '"' .	$class . $id . ' />';
 		$html = zp_apply_filter('standard_album_thumb_html', $html);
 		echo $html;
 	} else {
@@ -1652,7 +1652,7 @@ function printCustomAlbumThumbImage($alt, $size, $width=NULL, $height=NULL, $cro
 		$sizing = $sizing.' height="'.$height.'"';
 	}
 	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || empty($pwd)) {
-		$html = '<img src="' . pathurlencode(getCustomAlbumThumb($size, $width, $height, $cropw, $croph, $cropx, $cropy)). '"' . $sizing . ' alt="' . html_encode($alt) . '"' .
+		$html = '<img src="' . html_encode(pathurlencode(getCustomAlbumThumb($size, $width, $height, $cropw, $croph, $cropx, $cropy))). '"' . $sizing . ' alt="' . html_encode($alt) . '"' .
 		(($class) ? ' class="'.$class.'"' : '') .	(($id) ? ' id="'.$id.'"' : '') . " />";
 		$html = zp_apply_filter('custom_album_thumb_html', $html);
 		echo $html;
@@ -2538,7 +2538,7 @@ function printDefaultSizedImage($alt, $class=NULL, $id=NULL) {
 		$class .= " password_protected";
 	}
 	if (isImagePhoto()) { //Print images
-		$html = '<img src="' . pathurlencode(getDefaultSizedImage()) . '" alt="' . html_encode($alt) . '"' .
+		$html = '<img src="' . html_encode(pathurlencode(getDefaultSizedImage())) . '" alt="' . html_encode($alt) . '"' .
 			' width="' . getDefaultWidth() . '" height="' . getDefaultHeight() . '"' .
 			(($class) ? " class=\"$class\"" : "") .
 			(($id) ? " id=\"$id\"" : "") . " />";
@@ -3610,6 +3610,7 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 		$type = 'submit';
 		if ($buttonSource) {
 			$button = 'value="'.$buttontext.'" title="'.sprintf($hint,$buttonSource).'"';
+			$buttonSource = '';
 		} else {
 			$button = 'value="'.$buttontext.'" title="'.sprintf($hint,$buttontext).'"';
 		}

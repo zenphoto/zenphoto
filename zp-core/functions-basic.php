@@ -1063,7 +1063,7 @@ function pathurlencode($path) {
 			}
 			$query .= '&';
 		}
-		$query = substr($query,0,-5);
+		$query = substr($query,0,-1);
 	} else {
 		$query = '';
 	}
