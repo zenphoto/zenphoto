@@ -18,10 +18,10 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 		</p>
 		<p>
 			<label for="adminuser">
-				<?php 
-					if ($emailid = getOption('register_user_email_is_id')) { 
-						echo gettext("Email* (this will be your user id)"); 
-					} else { 
+				<?php
+					if ($emailid = getOption('register_user_email_is_id')) {
+						echo gettext("Email* (this will be your user id)");
+					} else {
 						echo gettext("User ID").'*';
 					} ?>
 			</label>
@@ -48,14 +48,16 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 				if (!empty($row)) {
 					$row = str_replace('<tr>','',$row);
 					$elements = explode('</td>',$row);
-					$label = trim(str_replace(array('<td>',':'), '', $elements[0]));
-					if (!empty($label)) {
-						$input = str_replace('size="40"', 'size="'.TEXT_INPUT_SIZE.'"', $elements[1]);
-						$input = str_replace('class="inputbox"', '', $input);
+					$col1 = trim(str_replace(array('<td>',':'), '', $elements[0]));
+					if (count($elements)==1) {	//	new style form
+						echo $col1;
+					} else {										//	old table style form
+						$col2 = str_replace('size="40"', 'size="'.TEXT_INPUT_SIZE.'"', $elements[1]);
+						$col2 = str_replace('class="inputbox"', '', $input);
 						?>
 						<p>
-							<label><?php echo $label; ?></label>
-							<?php echo trim(str_replace('<td>', '', $input)); ?>
+							<label><?php echo $col1; ?></label>
+							<?php echo trim(str_replace('<td>', '', $col2)); ?>
 						</p>
 						<?php
 					}
@@ -66,7 +68,7 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 			$captcha = $_zp_captcha->getCaptcha();
 			?>
 			<p>
-				<label for=""><?php echo gettext("Enter"); ?></label>
+				<label for=""><?php echo gettext("Enter CAPTCHA*"); ?></label>
 				<?php
 					if (isset($captcha['html'])) echo $captcha['html'];
 					if (isset($captcha['input'])) echo $captcha['input'];

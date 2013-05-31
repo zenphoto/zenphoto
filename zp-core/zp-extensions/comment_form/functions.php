@@ -206,10 +206,6 @@ function comment_form_edit_comment($discard, $raw) {
 					'</label>
 					 <input type="text" name="0-comment_form_postal" id="comment_form_postal" class="inputbox" size="40" value="'.@$address['postal'].'">
 				</p>'."\n";
-	if ($required) {
-		$html .=
-				'<p>'.gettext('*Required').'</p>'."\n";
-	}
 	return $html;
 }
 
