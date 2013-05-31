@@ -18,11 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.6\n"
 "Report-Msgid-Bugs-To: webmaster at momo-i.org\n"
-<<<<<<< HEAD
 "POT-Creation-Date: 2013-05-31 11:48+0900\n"
-=======
-"POT-Creation-Date: 2013-05-31 11:53+0900\n"
->>>>>>> origin/1.4.5
 "PO-Revision-Date: 2009-08-12 08:30+0900\n"
 "Last-Translator: momo-i <webmaster at momo-i dot org>\n"
 "Language-Team: Japanese\n"
@@ -8992,11 +8988,7 @@ msgstr "コンテンツを非表示にするにはクリック"
 #: zp-core/functions.php:2082
 #, php-format
 msgid "<em>[%1$s]</em> parameter mis-match."
-<<<<<<< HEAD
 msgstr "<em>【%1$s】</em> パラメーターが一致しません。"
-=======
-msgstr "<em>【%1$s】</em> パラメータが一致しません。"
->>>>>>> origin/1.4.5
 
 #: zp-core/functions.php:2091
 #, php-format
@@ -15649,13 +15641,8 @@ msgid ""
 "provide the album name as %1 and <code>true</code> (or <code>false</code>) "
 "as %2 to show (hide) controls."
 msgstr ""
-<<<<<<< HEAD
 "コントロールを表示(非表示)するために%2として<code>true</code>(または"
 "<code>false</code>)にし、%1としてアルバム名を提供します。"
-=======
-"コントロールを表示(非表示)するために%2として<code>true</code>(または<code>false</code>)にし、%1としてア"
-"ルバム名を提供します。"
->>>>>>> origin/1.4.5
 
 #: zp-core/zp-extensions/slideshow.php:495 themes/zpmobile/search.php:155
 msgid "View Slideshow"
