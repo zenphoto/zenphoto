@@ -1122,7 +1122,7 @@ $alb = removeParentAlbumNames($album);
 								});
 							// ]]> -->
 					</script>
-						=<br class="clearall" />
+						<br class="clearall" />
 						<hr />
 						<p>
 							<label for="publishdate-<?php echo $currentimage; ?>"><?php echo gettext('Publish date'); ?> <small>(YYYY-MM-DD)</small></label>
