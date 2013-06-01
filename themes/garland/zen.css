@@ -1106,6 +1106,10 @@ button.positive,.buttons a.positive {
 clear: both;
 }
 
+#registration_form {
+width: 100%;
+}
+
 #registration_form label,
 #commentform label,
 #mailform label {
