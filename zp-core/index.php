@@ -96,7 +96,7 @@ if ($zp_request && $_zp_script && file_exists($_zp_script = SERVERPATH . "/" . i
 			$_zp_HTML_cache->abortHTMLCache();
 		}
 		$_zp_gallery_page = 'password.php';
-		$_zp_script = $_zp_themeroot.'/password.php';
+		$_zp_script = SERVERPATH.'/'.THEMEFOLDER.'/'.$_index_theme.'/password.php';
 		if (!file_exists(internalToFilesystem($_zp_script))) {
 			$_zp_script = SERVERPATH.'/'.ZENFOLDER.'/password.php';
 		}
