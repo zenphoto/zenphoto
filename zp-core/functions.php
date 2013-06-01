@@ -2401,7 +2401,7 @@ class zpFunctions {
 	 */
 	static function unTagURLs($text) {
 		if ($serial = preg_match('/^a:[0-9]+:{/', $text)) {	//	serialized array
-			$text = unserialize($text);
+			$text = getSerializedArray($text);
 		}
 		if (is_array($text)) {
 			foreach ($text as $key=>$textelement) {
@@ -2423,7 +2423,7 @@ class zpFunctions {
 	 */
 	static function updateImageProcessorLink($text) {
 		if ($serial = preg_match('/^a:[0-9]+:{/', $text)) {	//	serialized array
-			$text = unserialize($text);
+			$text = getSerializedArray($text);
 		}
 		if (is_array($text)) {
 			foreach ($text as $key=>$textelement) {
