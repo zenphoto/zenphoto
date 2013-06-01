@@ -33,6 +33,7 @@ themes/effervescence_plus
 themes/effervescence_plus/404.php
 themes/effervescence_plus/album.php
 themes/effervescence_plus/archive.php
+themes/effervescence_plus/base.css
 themes/effervescence_plus/colorbox
 themes/effervescence_plus/colorbox/functions.php
 themes/effervescence_plus/common.css
@@ -70,14 +71,13 @@ themes/effervescence_plus/slideshow-controls.png
 themes/effervescence_plus/slideshow.css
 themes/effervescence_plus/slideshow.php
 themes/effervescence_plus/styles
-themes/effervescence_plus/styles/blue and green play.css
-themes/effervescence_plus/styles/effervescence.css
-themes/effervescence_plus/styles/free chocolates.css
-themes/effervescence_plus/styles/kish-my father.css
-themes/effervescence_plus/styles/machu picchu.css
-themes/effervescence_plus/styles/oktoberfest.css
-themes/effervescence_plus/styles/poolside.css
-themes/effervescence_plus/styles/see you again.css
+themes/effervescence_plus/styles/blue and green play.txt
+themes/effervescence_plus/styles/free chocolates.txt
+themes/effervescence_plus/styles/kish-my father.txt
+themes/effervescence_plus/styles/machu picchu.txt
+themes/effervescence_plus/styles/oktoberfest.txt
+themes/effervescence_plus/styles/poolside.txt
+themes/effervescence_plus/styles/see you again.txt
 themes/effervescence_plus/theme.jpg
 themes/effervescence_plus/theme_description.php
 themes/effervescence_plus/themeoptions.php
