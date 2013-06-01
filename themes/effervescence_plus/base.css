@@ -2,15 +2,10 @@
 Theme Name: Effervescence
 Author: Stephane Angoulvant (modified (badly) by ulfben)
 Author URI: http://angoulvant.net/sblog
-Version: 0.9
-*/
-#simpleviewer {   /* the background color for simpleviewer. Leave this line near the front for performance reasons */
-		background: #7C9480; /* Normally the same as main2 */
-}
-/*
-This CSS was uses the Blue and Green Play color scheme. (http://www.colourlovers.com/palette/163062/free_Chocolates)
-
-A comment of "unknown" means I haven't been able to find that effect in use on the site.
+Version: 1.0
+ 
+CSS template for Effervescence +
+pallets are from http://www.colourlovers.com/
 */
 
 
@@ -39,7 +34,7 @@ hr {
 clear: both;
 height: 0;
 border: 0;
-border-top: 1px solid #E6E6DF; /*unknown*/
+border-top: 1px solid __A_0__; /*unknown*/
 margin: 0 0 12px 0;
 padding: 0;
 }
@@ -47,11 +42,11 @@ img {
 border: 0;
 }
 blockquote {
-border-left: 1px dotted #ECEBE1;
+border-left: 1px dotted __A_1__;
 margin-left: 20px;
 padding-left: 20px;
 font-style: italic;
-color: #ECEBE1; /*whenever a paragraph is held within blockquote tags.*/
+color: __C_0__; /*whenever a paragraph is held within blockquote tags.*/
 }
 
 #flash {
@@ -63,31 +58,31 @@ color: #ECEBE1; /*whenever a paragraph is held within blockquote tags.*/
 #exif_link, #exif_link a{
 	width:100px;
 	font-weight:bold;
-	color:#FFFFFF;
+	color:__C_1__;
 }
 #imagemetadata {
-	text-align: center;
-	color: #355E3B;
+  text-align: center;
+  color: __C_2__;
 }
 #imgmetadata_data a {
-	color: #355E3B;
+  color: __C_3__;
 }
 #imagemetadata_data a:hover {
 text-decoration: none;
-color: #076a54;
+color: __C_4__;
 }
 
 #imagemetadata table {
-	text-align: left;
-	line-height: 1em;
-	top: 2em;
-	right: 0px;
-	background-color: #355E3B;
+  text-align: left;
+  line-height: 1em;
+  top: 2em;
+  right: 0px;
+  background-color: __C_5__;
 }
 
 #imagemetadata table td {
-	background-color: #C0C0C0;
-	padding: 2px 5px;
+  background-color: __C_6__;
+  padding: 2px 5px;
 }
 
 /* Text Styles
@@ -98,8 +93,8 @@ h1 {
 font: normal 20px Trebuchet MS, Arial, Helvetica, Tahoma, Verdana, serif;
 letter-spacing: -2px;
 }
-#logo h1 a{
-color: #C0C0C0;
+#logo h1 a{ 
+color: __C_7__;
 font: bold 30px Monotype Corsiva, Apple Chancery, Zaph Chancery, Comic Sans, cursive, serif;
 }
 h1 a:hover {
@@ -107,33 +102,32 @@ border: none;
 }
 * html h1 a {
 height:35px;
-//he\ight:0px;
 height:0px;
 }
-h1 a{
+h1 a{ 
 height:0px;
 }
 
 /* Image Page Title  --- */
-#logo2 h1 a{
-color: #C0C0C0;
+#logo2 h1 a{ 
+color: __C_8__;
 font: bold 30px Monotype Corsiva, Apple Chancery, Zaph Chancery, Comic Sans, cursive, serif;
 }
 
 h2 {
-color: #ECEBE1; /*unknown*/
+color: __C_9__; /*unknown*/
 font: bold 23px Trebuchet MS, Arial, Helvetica, Tahoma, Verdana, serif;
 display: inline;
 letter-spacing: -1px;
 }
 h2 a          {
-color:  #ECEBE1; /*unknown*/
+color:  __C_10__; /*unknown*/
 text-decoration: none;
 font-weight: bold;
 border: none;
 }
 h2 a:hover {
-color: #a3ad93; /*unknown*/
+color: __C_11__; /*unknown*/
 font-weight: bold;
 border: none;
 }
@@ -153,12 +147,12 @@ font-size: 120%;
 text-decoration: none;
 font-weight: bold;
 line-height: 200%;
-color: #ECEBE1; /*prev / next in subalbums */
+color: __C_12__; /*prev / next in subalbums */
 }
 .albnav .albprevious a:hover, .albnav .albnext a:hover {
 text-decoration: none;
 font-weight: bold;
-color: #FFFFFF; /*prev / next hover in subalbum*/
+color: __C_13__; /*prev / next hover in subalbum*/
 }
 .albnav .albprevious a {
 float: left;
@@ -177,13 +171,13 @@ font-size: 120%;
 text-decoration: none;
 font-weight: bold;
 line-height: 200%;
-color:  #355E3B; /*disabled prev/next links i subalbums (upper part of the screen)*/
+color:  __C_14__; /*disabled prev/next links i subalbums (upper part of the screen)*/
 cursor: default;
 }
 
 /* Intro Text  --- */
 h3 {
-color: #ECEBE1; /*textcolor in comment header ("X Comments") */
+color: __C_15__; /*textcolor in comment header ("X Comments") */
 font: normal 17px Trebuchet MS, Arial, Helvetica, Tahoma, Verdana, sans-serif;
 text-align: left;
 font-weight: bold;
@@ -194,12 +188,12 @@ margin-left: 10px;
 text-align: justify;
 }
 h3 a {
-color: #ECEBE1;
+color: __C_16__;
 border: none;
 font-weight: bold;
 }
 h3 a:hover {
-color: #FFFFFF;
+color: __C_17__;
 border: none;
 font-weight: bold;
 }
@@ -208,15 +202,15 @@ font-weight: bold;
 h4 {
 text-align: center;
 font: 14px/22px Arial, Helvetica, Tahoma, Verdana, sans-serif;
-color: #fff; /*unknown*/
+color: __C_18__; /*unknown*/
 }
 h4 a {
-color: #ECEBE1; /*album titles in thumbview*/
+color: __C_19__; /*album titles in thumbview*/
 border: none;
 font-weight: bold;
 }
 h4 a:hover {
-color: #FFFFFF; /*album titles in thumbview on mouse over*/
+color: __C_20__; /*album titles in thumbview on mouse over*/
 border: none;
 font-weight: bold;
 }
@@ -224,10 +218,10 @@ font-weight: bold;
 /* comments
 ------------------------------ */
 #commentbox {
-	background: #7C9480; /*color around the main div in index.*/
+	background: __B_1__; /*color around the main div in index.*/
 	width: 650px;
 	margin: 0 auto;
-	color: #ECEBE1; /*textbox labels*/
+  color: __C_21__; /*textbox labels*/
 	font-size: 12px;
 	padding: 10px;
 }
@@ -235,7 +229,7 @@ font-weight: bold;
 	padding: 10px;
 }
 #commentcount {
-background: #67678B;/* background for commentheader (where it says "X Comments")*/
+background: __B_2__;/* background for commentheader (where it says "X Comments")*/
 height: 40px;
 padding: 10px;
 margin: 0 auto;
@@ -245,21 +239,21 @@ width: 610px;
 #comments {
 clear: both;
 display: block;
-margin: 0 auto;
-width: 610px;
+margin: 0 auto; 
+width: 610px; 
 text-align: left;
 }
 
 #commententry {
 clear: both;
 display: block;
-margin: 0 auto;
+margin: 0 auto; 
 text-align: left;
 width: 610px;
 }
 #commentcontent h3 {
 	padding: 10px;
-	background: #67678B;
+	background: __B_3__;
 }
 
 .comment {
@@ -267,9 +261,9 @@ margin-bottom: 20px;
 }
 
 .commentinfo {
-color: #ECEBE1; /*datum of a comment*/
+color: __C_22__; /*datum of a comment*/
 font-style: italic;
-border-bottom: 1px solid #0E1433 ;  /*seperator between comment info and comment text.*/
+border-bottom: 1px solid __A_2__ ;  /*seperator between comment info and comment text.*/
 padding: 5px 0 3px;
 }
 /* Comment Authors  --- */
@@ -278,29 +272,29 @@ display: inline;
 font-style: italic;
 font-weight: bold;
 font: 14px/22px Arial, Helvetica, Tahoma, Verdana, sans-serif;
-color: #ECEBE1; /*the author name*/
+color: __C_23__; /*the author name*/
 }
 .commentinfo h4 a {
-color: #ECEBE1; /*author name if they've given a link to their homepage*/
+color: __C_24__; /*author name if they've given a link to their homepage*/
 border: none;
-font-style: normal;
+font-style: normal; 
 font-weight: bold;
 }
 .commentinfo h4 a:hover {
-color: #FFFFFF; /*... master of the obvious.*/
+color: __C_25__; /*... master of the obvious.*/
 border: none;
 font-weight: bold;
 }
 .commentinfo a {
-color: #ECEBE1; /*links in commentingo (EDIT-link)*/
+color: __C_26__; /*links in commentingo (EDIT-link)*/
 border: none;
-font-style: normal;
+font-style: normal; 
 font-weight: bold;
 }
 .commenttext {
 margin-top: 5px;
 padding: 0 5px;
-color: #ECEBE1; /*comment text color*/
+color: __C_27__; /*comment text color*/
 }
 /* Comment Form
 ------------------------------ */
@@ -311,25 +305,25 @@ margin-top: 10px;
 font: 12px/22px Arial, Helvetica, Tahoma, Verdana, sans-serif;
 border: none;
 padding: 2px;
-color: #333333; /*Color of text in textbox*/
+color: __C_28__; /*Color of text in textbox*/
 }
 #commentbox input:focus {
-background: #FFFFFF;  /*Color of textbox when focused*/
+background: __B_4__;  /*Color of textbox when focused*/
 }
 #commentbox textarea {
 font: 12px/16px Arial, Helvetica, Tahoma, Verdana, sans-serif;
-background: #fafaf9; /*Color of textarea when unfocused*/
-border-top: 1px solid #0E1433 ;
-border-left: 1px solid #0E1433 ;
-border-right: 1px solid #0E1433 ;
-border-bottom: 1px solid #272E46;
-color: #333333; /*textcolor when writing a comment*/
+background: __B_5__; /*Color of textarea when unfocused*/
+border-top: 1px solid __A_3__ ;
+border-left: 1px solid __A_4__ ;
+border-right: 1px solid __A_5__ ;
+border-bottom: 1px solid __A_6__;
+color: __C_29__; /*textcolor when writing a comment*/
 margin: 5px 0 5px 0;
 padding: 3px;
 width: 600px;
 }
 #commentbox textarea:focus {
-background: #FFFFFF; /*Color of textarea when focused*/
+background: __B_6__; /*Color of textarea when focused*/
 }
 
 /* jQuery pagination comments */
@@ -356,48 +350,48 @@ background: #FFFFFF; /*Color of textarea when focused*/
 
 /* Links  --- */
 a {
-color: #ECEBE1; /*the current pagination link */
+color: __C_30__; /*the current pagination link */
 text-decoration: none;
 font-weight: bold;
 }
 a:hover {
-color: #FFFFFF;
+color: __C_31__;
 text-decoration: none;
 font-weight: bold;
 }
 .disabledlink {
-color: #67678B;  /* #7C9480; to hide disabled links in the backgroundcolor... */
+color: __C_32__;  /* __A_7__; to hide disabled links in the backgroundcolor... */
 cursor: default;
 font-weight: bold;
 }
 #navbar a {
-color: #ECEBE1;
+color: __C_33__;
 }
 #navbar a:hover {
-color: #FFFFFF;
+color: __C_34__;
 }
 #main2 #navbar a { /*Same as navbar a, but in single-image view.*/
-		color: #ECEBE1;
+    color: __C_35__;
 }
 #main2 #navbar a:hover {
-color: #ffffff;
+color: __C_36__;
 }
 #description a:hover {
-		color: #FFFFFF;
+color: __C_37__;
 text-decoration: underline;
 }
 #main2 #description a {
-color: #ECEBE1;
+color: __C_38__;
 }
 #main2 #description a:hover {
-color: #FFFFFF;
+color: __C_39__;
 }
 .commenttext a {
-color: #ECEBE1;
+color: __C_40__;
 cursor: pointer;
 }
 .commenttext a:hover {
-color: #FFFFFF;
+color: __C_41__;
 text-decoration: underline;
 }
 
@@ -405,16 +399,16 @@ text-decoration: underline;
 ------------------------------ */
 body {
 font: 14px/22px Arial, Helvetica, Tahoma, Verdana, sans-serif;
-color: #fff;
-background: #355E3B; /*body background*/
+color: __C_42__;
+background: __B_7__; /*body background*/
 text-align: left;
 margin: 0 auto 0 auto;
 }
 #content {
-background: #7C9480; /*color around the main div in index.*/
+background: __B_8__; /*color around the main div in index.*/
 }
 #main {
-background: #7C9480; /*div around thumbs in index*/
+background: __B_9__; /*div around thumbs in index*/
 text-align: left;
 width: 630px;
 margin: 0 auto 0 auto;
@@ -424,11 +418,11 @@ padding-bottom: 10px;
 text-decoration: none;
 }
 #subcontent {
-background: #7C9480; /*around the main div in sub-albums.*/
+background: __B_10__; /*around the main div in sub-albums.*/
 margin-bottom: 5px;
 }
 #submain {
-background: #7C9480; /*div around thumbs in subalbums.*/
+background: __B_11__; /*div around thumbs in subalbums.*/
 text-align: left;
 width: 630px;
 margin: 0 auto 0 auto;
@@ -438,31 +432,31 @@ padding-bottom: 10px;
 text-decoration:none;
 }
 #main2 {
-		background: #7C9480; /*div in single-image view.*/
-		text-align: left;
+    background: __B_12__; /*div in single-image view.*/
+    text-align: left;
 	padding-bottom: 30px;
 }
 #main3 {
 margin: 0 auto 0 auto;
 padding: 10px 20px 20px 20px;
-background: #355E3B; /*background around comment area */
+background: __B_13__; /*background around comment area */
 }
 #main4 {
-		margin: 0 auto 0 auto;
+    margin: 0 auto 0 auto;
 	padding-left: 20px;
-	padding-right: 20px;
-	background: #355E3B; /*page background in single-image view.*/
-	color: #FFFCDB;
+	padding-right: 20px;	
+	background: __B_14__; /*page background in single-image view.*/
+	color: __C_43__;
 }
 #header {
-background: #355E3B; /*the dark blue header area above the nav-bar*/
+background: __B_15__; /*the header area above the nav-bar*/
 text-align: left;
 border: none;
 padding: 0;
 margin: 0;
 }
 #galleryheader {
-background: #355E3B; /*the dark blue header area above the nav-bar, single image view*/
+background: __B_16__; /*the header area above the nav-bar, single image view*/
 text-align: left;
 border: none;
 padding: 0;
@@ -475,7 +469,7 @@ padding: 18px 10px 18px 10px;
 margin: 0 auto 0 auto;
 }
 #description {
-color: #ECEBE1; /*text color for descriptions*/
+color: __C_44__; /*text color for descriptions*/
 text-align: justify;
 padding: 7px 7px;
 margin: 0px auto 0px auto;
@@ -484,7 +478,7 @@ width: 620px;
 #main2 #description {
 margin: 0 auto 0 auto;
 text-align: justify;
-color: #ECEBE1; /* unknown */
+color: __C_45__; /* unknown */
 }
 #pagenumbers {
 text-align: center;
@@ -503,7 +497,7 @@ padding: 25px 0 0 10px;
 padding: 4px 7px;
 margin: 0 auto 14px auto;
 width: 620px;
-color: #fbefdb; /*text in bread-crumb navigato. (last node and the pipes)*/
+color: __C_46__; /*text in bread-crumb navigato. (last node and the pipes)*/
 }
 #randomhead {
 	padding: 0;
@@ -515,7 +509,7 @@ color: #fbefdb; /*text in bread-crumb navigato. (last node and the pipes)*/
 	text-align: center;
 }
 #randomhead img {
-	border: 6px solid #789048;
+	border: 6px solid __A_8__;
 }
 #pic_day {
 	padding: 0;
@@ -526,11 +520,11 @@ color: #fbefdb; /*text in bread-crumb navigato. (last node and the pipes)*/
 	text-align: center;
 }
 #pic_day img {
-	border: 6px solid #789048;
+	border: 6px solid __A_9__;
 }
 
 #wrapnav {
-background: #67678B;  /*nav bar in single-image.*/
+background: __B_17__;  /*nav bar in single-image.*/
 margin-bottom: 30px;
 }
 #wrapnav a {
@@ -538,7 +532,7 @@ text-decoration:none;
 }
 
 #header #wrapnav {
-background: #67678B; /*navbar in subdirs.*/
+background: __B_18__; /*navbar in subdirs.*/
 margin-bottom: 0px;
 }
 
@@ -547,10 +541,10 @@ padding: 4px 7px;
 border: none;
 margin: 0 auto 0 auto;
 width: 620px;
-color: #ECEBE1; /*text in navbar in single-image, only the last node.*/
+color: __C_49__; /*text in navbar in single-image, only the last node.*/
 }
 
-ul.pagelist {
+ul.pagelist { 
 clear: both;
 padding: 0;
 margin: 20px 0 0 0;
@@ -563,7 +557,7 @@ ul.pagelist li a, ul.pagelist span.disabledlink {
 padding: 4px;
 }
 ul.pagelist li.current a {
-color: #000080 ; /*denotes the current page were on (1..5 etc) (I'm hiding it in the background)*/
+color: __C_50__ ; /*denotes the current page were on (1..5 etc) (I'm hiding it in the background)*/
 }
 ul.pagelist li.prev {
 margin-right: 10px;
@@ -579,42 +573,42 @@ clear: both;
 /* AJAX
 ------------------------------ */
 #albumDescEditable:hover {
- background: #67678B; /*unknown*/
+ background: __B_19__; /*unknown*/
 }
 #imageDescEditable:hover {
- background: #12a081; /*unknown*/
+ background: __B_20__; /*unknown*/
 }
 
 
 /* Image Thumbnails
 ------------------------------ */
 .imagethumb a {
-border-top: 2px solid #fbefdb;
-border-left: 2px solid #fbefdb;
-border-right: 2px solid #355E3B;
-border-bottom: 2px solid #355E3B;
+border-top: 2px solid __A_10__;
+border-left: 2px solid __A_11__;
+border-right: 2px solid __A_12__;
+border-bottom: 2px solid __A_13__; 
 display: block;
 padding: 7px;
 margin: 6px;
-background: #67678B;
+background: __B_21__;
 line-height: 0px;
 }
 .imagethumb a:visited {
-border-top: 2px solid #fbefdb;
-border-left: 2px solid #fbefdb;
-border-right: 2px solid #355E3B  ;
-border-bottom: 2px solid #355E3B  ;
-background: #67678B;
+border-top: 2px solid __A_14__;
+border-left: 2px solid __A_15__;
+border-right: 2px solid __A_16__  ;
+border-bottom: 2px solid __A_17__  ; 
+background: __B_22__;
 }
 .imagethumb a:hover {
-border-top: 2px solid #355E3B;
-border-left: 2px solid #355E3B;
-border-right: 2px solid #000080;
-border-bottom: 2px solid #000080;
-background: #67678B;
+border-top: 2px solid __A_18__;
+border-left: 2px solid __A_19__;
+border-right: 2px solid __A_20__;
+border-bottom: 2px solid __A_21__;
+background: __B_23__;
 }
 #albums li:hover h4 a {
-color: #FFFFFF; //albumnamnen, n�r du hovrar.
+color: __C_51__; //albumnamnen, n�r du hovrar.
 }
 .imagethumb {
 float: left;
@@ -650,74 +644,74 @@ list-style: none;
 	padding-right: 2em
 }
 .imgwrap ul {
-	 text-align: center;
-	 margin-left: 0;
-	 margin-rignt: 0;
-	 padding: 0;
-	 list-style-type: none;
+   text-align: center;
+   margin-left: 0;
+   margin-rignt: 0;
+   padding: 0;
+   list-style-type: none;
 }
 .imgwrap li {
-	 margin: 0;
-	 padding: 0;
-	 float: left;
-	 text-align: center;
-	 width: 50%
+   margin: 0;
+   padding: 0;
+   float: left;
+   text-align: center;
+   width: 50%
 }
-
-.image {
-	margin: 0;
-	padding: 0;
-	border: 0;
+    
+.image { 
+margin: 0;
+padding: 0;
+border: 0;
 }
 #image {
 	width: 615px;
 	margin: 0 auto;
 }
 #image_container {
-	color: black;
+	color: __C_52__;
 	text-align: center;
-	border: 2px solid #ECEBE1;
+	border: 2px solid __A_22__;
 	padding: 7px;
-	background: #fff;
+	background: __B_24__;
 	margin-bottom: 10px;
 }
 #image_container a {
-	color: black;
+	color: __C_53__;	
 }
 .imgnav {
-	float: right;
-	width: 140px;
-	text-align: center;
+float: right;
+width: 140px;
+text-align: center;
 }
 .imgnav .imgprevious a, .imgnav .imgnext a {
-	display: block;
-	width: 50%;
-	height: 100%;
-	float: left;
-	font-size: 120%;
-	text-decoration: none;
-	line-height: 200%;
-	color: #fbefdb; /*header next/prev in single-image view.*/
+display: block;
+width: 50%;
+height: 100%;
+float: left;
+font-size: 120%;
+text-decoration: none;
+line-height: 200%;
+color: __C_54__; /*header next/prev in single-image view.*/
 }
 .imgnav .imgprevious a:hover, .imgnav .imgnext a:hover {
-	text-decoration: none;
-	color: #ffffff; /*header next/prev i single-image view, mouse over.*/
-}
+text-decoration: none;
+color: __C_55__; /*header next/prev i single-image view, mouse over.*/
+}  
 .imgnav .imgprevious a{
-	float: left;
+float: left;
 }
 .imgnav .imgnext a {
-	float: right;
+float: right;
 }
 .imgnav .imgdisabledlink {
-	display: block;
-	width: 50%;
-	height: 100%;
-	float: left;
-	font-size: 120%;
-	text-decoration: none;
-	line-height: 200%;
-	color: #7C9480; /*disabled next/prev in single image view*/
+display: block;
+width: 50%;
+height: 100%;
+float: left;
+font-size: 120%;
+text-decoration: none;
+line-height: 200%;
+color: __C_56__; /*disabled next/prev in single image view*/
 }
 
 /* Forms
@@ -729,36 +723,35 @@ cursor: pointer;
 /* Footer
 ------------------------------------ */
 .footlinks {
-color: #fbefdb;
+color: __C_57__;
 font-size: 11px;
 text-align: center;
 padding: 4px 0;
 clear: both;
 }
 .footlinks a {
-color: #b1aea7;
+color: __C_58__;
 text-decoration:underline;
 }
 .footlinks a:hover {
-color: #fff;
+color: __C_59__;
 }
 /* Error Messages
 ------------------------------ */
-
 .errorbox {
 	list-style-type: none;
 	padding: 20px;
-	background-color: #FDD;
-	border-top: 1px solid #FAA;
-	border-left: 1px solid #FAA;
-	border-right: 1px solid #FAA;
-	border-bottom: 5px solid #FAA;
+	background-color: __C_60__;
+	border-top: 1px solid __A_23__;
+	border-left: 1px solid __A_24__;
+	border-right: 1px solid __A_25__;
+	border-bottom: 5px solid __A_26__;
 	margin-bottom: 10px;
-	font-size: 130%;
-	color: #DD6666;
+	font-size: 100%;
+	color: __C_61__;
 }
 .errorbox h2 {
-	color: #DD6666;
+	color: __C_62__;
 	font-size: 130%;
 	font-weight: bold;
 	margin: 0px;
@@ -773,7 +766,7 @@ color: #fff;
 }
 #map_link {
 	text-align: center;
-	color: black;
+	color: __C_63__;
 }
 #map_link a {
 	text-decroation: none;
@@ -785,8 +778,8 @@ color: #fff;
 	position:fixed;
 	right:0;
 	top:0;
-	border-left: 1px solid #E6E6DF;
-	border-bottom: 1px solid #E6E6DF;
+	border-left: 1px solid __A_27__;
+	border-bottom: 1px solid __A_28__;
 	width: 10em;
 	padding: 0.5em;
 }
@@ -798,12 +791,12 @@ color: #fff;
 }
 #admin_data{
 	top: 2em;
-	background-image:url(../images/50percent.png);
+	background-image:url(../images/25percent.png);
 }
 #admin h3 {
 	font: 100% Arial, "Helvetica Neue", Helvetica, sans-serif;
 	font-weight: bold;
-	color: #ccc;
+	color: __C_64__;
 	margin:0;
 	padding:0;
 }
@@ -821,13 +814,33 @@ color: #fff;
 	_margin-top: 24px; /* IE Only */
 }
 #search input.button {
-	padding: 1px;
-	font-size: 80%;
+  padding: 1px;
+  font-size: 80%;
+}
+#search a {
+	text-decoration: none;
+	border:none;
+	outline: none
+}
+#search a:visited {
+	text-decoration: none;
+	border:none;
+	outline: none
+}
+#search a:hover {
+	text-decoration: none;
+	border:none;
+	outline: none
+}
+#search a:active {
+	text-decoration: none;
+	border:none;
+	outline: none
 }
 #search ul {
-border: 1px solid #ccc; position:absolute; text-align:left; list-style: none;
-height: 8em; width: 20em; overflow: auto;
-color: #fff;
+border: 1px solid __A_29__; position:absolute; text-align:left; list-style: none; 
+height: 8em; width: 20em; overflow: auto; 
+color: __C_65__;
 background-image:url(../images/50percent.png);
 }
 #searchfields_icon {
@@ -840,10 +853,9 @@ top: 6px;
 }
 
 .clear {
-	clear:both;
-	height:10px;
+  clear:both;
+  height:10px;
 }
-
 /* Archive View
 ---------------------------- */
 #archive{
@@ -854,21 +866,21 @@ top: 6px;
 #archive p {
 	padding:10px 0;
 	margin:20px 0;
-	background: #67678B;
+	background: __B_25__;
 	font-size: 18px;
 }
 ul.archive {
 	text-align: center;
 	padding:0;
 	list-style:none;
-	width:300px;
+	width:500px;
 }
 ul.archive .year {
 	text-align: center;
 	margin-bottom:5px;
 	font-weight:bold;
 	font-size:18px;
-	color: #67678b;
+	color: __C_66__;
 }
 ul.archive .month {
 	text-align: center;
@@ -881,6 +893,7 @@ ul.archive .month {
 	text-align: center;
 	padding-bottom: 5px;
 }
+
 #tag_cloud ul li {
 	text-align: center;
 	display: inline;
@@ -890,7 +903,7 @@ ul.archive .month {
 #tag_cloud p {
 	padding:10px 0;
 	margin:20px 0;
-	background: #67678B;
+	background: __B_26__;
 	font-size: 18px;
 	text-align: center;
 }
@@ -906,8 +919,9 @@ padding-top: 0.8em;
 padding-left: 45px;
 padding-right: 45px;
 font-size: 1.2em;
-line-height: 1.6em;
+line-height: 1.6em; 
 }
+
 #content-left h2 {
 font-size: 1.2em;
 line-height: 2em;
@@ -932,7 +946,7 @@ height: 100%;
 float: right;
 background-color: transparent;
 margin-right: 4px;
-border-top: 0px dotted red;
+border-top: 0px dotted red;  
 }
 .menu {
 font: 18px Arial, Helvetica, Tahoma, Verdana, sans-serif;
@@ -941,7 +955,7 @@ padding-top: 0em;
 padding-bottom: 0em;
 padding-left: 1em;
 padding-right: 1em;
-height: 100%;
+height: 100%; 
 }
 .menu_rule {
 padding-top: 0em;
@@ -957,8 +971,8 @@ background-position: 1px 0px;
 font-size: 1em;
 font-weight: normal;
 text-transform: uppercase;
-color: black;
-margin-bottom: 0.5em;
+color: __C_68__;
+margin-bottom: 0.5em; 
 margin-top: 0.7em;
 margin-left: 1.6em;
 border: 0px solid gray;
@@ -977,7 +991,7 @@ background-repeat: no-repeat;
 background-position: 1px 0px;
 }
 .menu ul li.menu_menulabel {
-color: black;
+color: __C_69__;
 font-size: 1em;
 font-weight: normal;
 text-transform: uppercase;
@@ -993,19 +1007,19 @@ text-transform: none;
 text-decoration:none;
 }
 .menu ul li.menu-active {
-color: #002E5B;
+color: __C_70__;
 background-image: url(../images/dark-bullet.png);
 }
 
 .menu h3 a {
-color: black;
+color: __C_71__;
 font-size: 1em;
 font-weight: normal;
 text-transform: uppercase;
 text-decoration:none
 }
 .menu h3 a:hover {
-color: #002E5B;
+color: __C_72__;
 }
 
 .submenu {
@@ -1024,14 +1038,14 @@ padding: 2px;
 #archive_news p {
 	padding:10px 0;
 	margin:20px 0;
-	background: #67678B;
+	background: __B_27__;
 	font-size: 18px;
 	text-align: center;
 }
 #pagetext {
 font-size: 1em;
 line-height: 1em;
-margin-bottom: 1em;
+margin-bottom: 1em;	
 }
 #pagetext p {
 	line-height: 1em;
@@ -1043,27 +1057,26 @@ ul {
 ul li {
 	margin-left: 1em;
 }
+
 #pagetext a:link, a:active, a:visited {
 text-decoration:underline;
 }
 #pagetext h3 a:link, a:active, a:visited {
 text-decoration:none;
 }
-
 /* News Articles
 ------------------------------ */
 
 .newsarticle {
 padding-top: 1em;
 padding-bottom: 1em;
-border-bottom: 1px dotted #666666;
+border-bottom: 1px dotted __A_30__;
 line-height: 1em;
 }
 
 .newsarticle a:link, a:active, a:visited {
 text-decoration:underline;
 }
-
 .newsarticlecredit {
 margin-top: 0px;
 margin-bottom: 10px;
@@ -1076,9 +1089,9 @@ margin-right: 0.3em;
 }
 
 .newscategories {
-	display: inline;
-	margin: 0;
-	padding: 0;
+margin: 0;
+padding: 0;
+display: inline;
 }
 
 .newscategories li {
@@ -1121,7 +1134,7 @@ padding: 0px;
 }
 #efsearchhead_pages {
 padding: 10px;
-background: #67678B;
+background: __B_28__;
 }
 #efsearchhead_pages p {
 text-align: right;
@@ -1129,7 +1142,7 @@ font-size: 80%;
 }
 #efsearchhead_news {
 padding: 10px;
-background: #67678B;
+background: __B_29__;
 }
 #efsearchhead_news p {
 text-align: right;
@@ -1137,7 +1150,7 @@ font-size: 80%;
 }
 #efsearchhead_gallery {
 padding: 10px;
-background: #67678B;
+background: __B_30__;
 }
 #efsearchhead_gallery p {
 text-align: right;
@@ -1147,14 +1160,14 @@ font-size: 80%;
 .efsearchtext {
 margin-top: 5px;
 padding: 0 5px;
-color: #ECEBE1; /*comment text color*/
+color: __C_73__; /*comment text color*/
 }
 .efsearchtext a {
-color: #ECEBE1;
+color: __C_74__;
 cursor: pointer;
 }
 .efsearchtext a:hover {
-color: #FFFFFF;
+color: __C_75__;
 text-decoration: underline;
 }
 .efsearchtext ul {
@@ -1186,14 +1199,9 @@ font-style: italic;
 }
 
 #googlemap_data {
-	color:black;
+	color:__C_76__;
 }
+
 .clearall {
 clear: both !important;
-}
-.clearleft {
-clear: left !important;
-}
-.clearright {
-clear: right !important;
 }

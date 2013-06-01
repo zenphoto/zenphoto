@@ -4,7 +4,7 @@
 
 zp_register_filter('themeSwitcher_head', 'switcher_head');
 zp_register_filter('themeSwitcher_Controllink', 'switcher_controllink');
-zp_register_filter('theme_head', 'css_head', 0);
+zp_register_filter('theme_head', 'EF_head', 0);
 
 $cwd = getcwd();
 chdir(dirname(__FILE__));
@@ -23,22 +23,42 @@ if (!in_array($personality, $personalities)) {
 }
 
 chdir(SERVERPATH . "/themes/".basename(dirname(__FILE__))."/styles");
-$filelist = safe_glob('*.css');
+$filelist = safe_glob('*.txt');
 $themecolors = array();
 foreach($filelist as $file) {
-	$file = filesystemToInternal(str_replace('.css', '', $file));
-	$themecolors[basename($file)] = filesystemToInternal($file);
+	$themecolors[basename($file)] = stripSuffix(filesystemToInternal($file));
 }
 chdir($cwd);
 
-function css_head($ignore) {
-	global $themecolors, $zenCSS, $themeColor, $_zp_themeroot;
-	list($personality, $themeColor) = getPersonality();
-	$zenCSS = $_zp_themeroot . '/styles/' . $themeColor . '.css';
-	$unzenCSS = str_replace(WEBPATH, '', $zenCSS);
-	if (!file_exists(SERVERPATH . internalToFilesystem($unzenCSS))) {
-		$zenCSS = $_zp_themeroot. "/styles/light.css";
+function EF_head($ignore) {
+	global $themeColor;
+	if (!$themeColor) {
+		$themeColor = getThemeOption('Theme_colors');
 	}
+	$personality = unserialize(file_get_contents(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/styles/'.$themeColor.'.txt'));
+	$css = file_get_contents(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/base.css');
+	$css = strtr($css, $personality);
+	$css = preg_replace('|\.\./images/|', WEBPATH.'/'.THEMEFOLDER.'/effervescence_plus/images/', $css);
+
+	?>
+	<style type="text/css">
+	<?php echo $css; ?>
+	</style>
+	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/default/common.css" type="text/css" />
+	<script type="text/javascript">
+		// <!-- <![CDATA[
+		function blurAnchors(){
+			if(document.getElementsByTagName){
+				var a = document.getElementsByTagName("a");
+				for(var i = 0; i < a.length; i++){
+					a[i].onfocus = function(){this.blur()};
+				}
+			}
+		}
+		// ]]> -->
+	</script>
+	<?php
+
 	return $ignore;
 }
 
@@ -428,23 +448,6 @@ function commonComment() {
 		</div><!-- id="commentbox" -->
 		<?php
 	}
-}
-
-function effervescence_theme_head() {
-	?>
-	<script type="text/javascript">
-		// <!-- <![CDATA[
-		function blurAnchors(){
-			if(document.getElementsByTagName){
-				var a = document.getElementsByTagName("a");
-				for(var i = 0; i < a.length; i++){
-					a[i].onfocus = function(){this.blur()};
-				}
-			}
-		}
-		// ]]> -->
-	</script>
-	<?php
 }
 
 if (($_ef_menu = getOption('effervescence_menu')) == 'effervescence' || $_ef_menu == 'zenpage') {
