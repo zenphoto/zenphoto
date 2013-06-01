@@ -35,11 +35,10 @@ function EF_head($ignore) {
 	if (!$themeColor) {
 		$themeColor = getThemeOption('Theme_colors');
 	}
-	$personality = unserialize(file_get_contents(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/styles/'.$themeColor.'.txt'));
+	eval(file_get_contents(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/styles/'.$themeColor.'.txt'));
 	$css = file_get_contents(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/base.css');
-	$css = strtr($css, $personality);
+	$css = strtr($css, $tr);
 	$css = preg_replace('|\.\./images/|', WEBPATH.'/'.THEMEFOLDER.'/effervescence_plus/images/', $css);
-
 	?>
 	<style type="text/css">
 	<?php echo $css; ?>
