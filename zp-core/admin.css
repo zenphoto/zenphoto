@@ -1493,24 +1493,21 @@ width: 90% !important;
 	/* Undo some styles from the master stylesheet */
 .albumchecklist li {
 	background: none;
-	padding-left: 0;
+	padding: 1px 5px 1px 0;
 	text-align: left;
+	border-bottom: 1px dotted #C6D880;
 }
 
 /* CSS for album checklists */
 .albumchecklist {
 	border: 1px solid #ccc;
+	margin: 0;
+	padding: 0;
 	list-style: none;
 	height: 8em;
 	overflow: auto;
-	width: 460px;
+	width: 458px;
 	background-color: white;
-}
-
-.albumchecklist,.albumchecklist li {
-	margin: 0;
-	padding: 0;
-	border-bottom: 1px dotted #C6D880;
 }
 
 .albumchecklist label {
