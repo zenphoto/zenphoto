@@ -157,7 +157,7 @@ class zpCaptcha extends _zp_captcha {
 		$html = '<img id="captcha" src="'.WEBPATH .'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zpCaptcha/c.php?i='.$cypher.'" alt="Code" />';
 		$input = '<input type="text" id="code" name="code" class="captchainputbox" />';
 		$hidden = '<input type="hidden" name="code_h" value="'.$code.'" />';
-		return array('inputcode'=>'code,', 'input'=>$input, 'html'=>$html, 'hidden'=>$hidden);
+		return array('inputcode'=>'code', 'input'=>$input, 'html'=>$html, 'hidden'=>$hidden);
 	}
 }
 
