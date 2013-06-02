@@ -208,7 +208,7 @@ global $_zp_themeroot;
 					<?php
 				}
 				if (commentFormUseCaptcha()) {
-					$captcha = $_zp_captcha->getCaptcha();
+					$captcha = $_zp_captcha->getCaptcha(NULL);
 					if (isset($captcha['hidden'])) echo $captcha['hidden'];
 					echo "<tr valign=\"top\" align=\"left\"><th>" .gettext('Enter CAPTCHA*').' ';
 					if (isset($captcha['input'])) {

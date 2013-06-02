@@ -71,8 +71,8 @@ class reCaptcha extends _zp_captcha{
 	 *
 	 * @return string;
 	 */
-	function getCaptcha() {
-		parent::getCaptcha();
+	function getCaptcha($prompt) {
+		parent::getCaptcha($prompt);
 		if (!getOption('reCaptcha_public_key')) {
 			return array('input'=>'', 'html'=>'<p class="errorbox">'.gettext('reCAPTCHA is not properly configured.').'</p>', 'hidden'=>'');
 		} else {
@@ -81,7 +81,7 @@ class reCaptcha extends _zp_captcha{
 				    		"				theme : '".getOption('reCaptcha_theme')."'\n".
 				 				"				};\n".
 				 				"</script>\n";
-			return array('input'=>$theme.recaptcha_get_html(getOption('reCaptcha_public_key'), NULL, secureServer()));
+			return array('html'=>'<label>'.$prompt.'</label>', 'input'=>$theme.recaptcha_get_html(getOption('reCaptcha_public_key'), NULL, secureServer()));
 		}
 	}
 }

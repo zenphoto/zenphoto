@@ -2459,7 +2459,7 @@ class _zp_captcha {
 
 	var $name = NULL;	// "captcha" name if no captcha plugin loaded
 
-	function getCaptcha() {
+	function getCaptcha($prompt) {
 		global $_zp_HTML_cache;
 		if (is_object($_zp_HTML_cache)) {	//	don't cache captch
 			$_zp_HTML_cache->abortHTMLCache();
@@ -2467,7 +2467,7 @@ class _zp_captcha {
 		return array('input'=>NULL, 'html'=>'<p class="errorbox">'.gettext('No captcha handler is enabled.').'</p>', 'hidden'=>'');
 	}
 	function checkCaptcha($s1, $s2) {
-		return true;
+		return false;
 	}
 }
 

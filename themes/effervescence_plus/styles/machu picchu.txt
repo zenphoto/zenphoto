@@ -3,11 +3,11 @@ define('_C01',	'#076a54');
 define('_C02',	'#607848');//base background
 define('_C03',	'#12a081');
 define('_C04',	'#604848');//home link
-define('_C05',	'#607848');
+define('_C05',	'#607848');//home link
 define('_C06',	'#333333');
 define('_C07',	'#789048');//main background
 define('_C08',	'#666666');
-define('_C09',	'#789048');
+define('_C09',	'#789048');//main background
 define('_C10',	'#DD6666');
 define('_C11',	'#E6E6DF');
 define('_C12',	'#ECEBE1');

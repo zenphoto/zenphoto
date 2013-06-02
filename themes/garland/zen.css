@@ -128,7 +128,7 @@ p {
 }
 
 #main {
-	width: 535px;
+	width: 560px;
 
 }
 
@@ -140,7 +140,7 @@ p {
 
 #wrapper #container {
 	margin: 0 auto;
-	width: 1000px;
+	width: 1020px;
 	padding: 0 0px;
 }
 
@@ -209,7 +209,7 @@ body > #wrapper #container .sidebar {
 }
 
 #footer {
-	width: 530px;
+	width: 550px;
 	text-align:center;
 	margin-top:20px;
 	border: 1px solid #E7F0F5;
@@ -558,14 +558,14 @@ label:hover {
 	_margin-top: 24px; /* IE Only */
 }
 #search input.button {
-  padding: 1px;
-  font-size: 80%;
+	padding: 1px;
+	font-size: 80%;
 	text-decoration:none;
 	outline: none
 }
 #search input.button {
-  padding: 1px;
-  font-size: 80%;
+	padding: 1px;
+	font-size: 80%;
 	text-decoration:none;
 	outline: none
 }
@@ -591,8 +591,8 @@ label:hover {
 }
 
 #search ul {
-border: 1px solid #ccc; position:absolute; text-align:left; list-style: none; 
-height: 8em; width: 20em; overflow: auto; 
+border: 1px solid #ccc; position:absolute; text-align:left; list-style: none;
+height: 8em; width: 20em; overflow: auto;
 color: black;
 background-image:url(images/search_bg.png);
 margin-left:-50px;
@@ -665,7 +665,7 @@ ul.archive li.year {
 	margin-right:0px;
 	text-align: left;
 	font-size:12px;
-	
+
 }
 
 ul.archive li.year li {
@@ -680,7 +680,7 @@ ul.archive ul.month {
 ul.archive li {
 	display: inline;
 	padding-left:4px;
-	
+
 }
 
 #imagemetadata {
@@ -863,7 +863,7 @@ font-weight: bold;
 }
 .errorlist {
 	list-style-type: none;
-}	
+}
 
 /* Tags
 ------------------------------ */
@@ -1115,7 +1115,7 @@ width: 100%;
 #commentform label,
 #mailform label {
 width: 30% !important;
-float: left; 
+float: left;
 display: block;
 }
 #registration_form input[type="text"],
@@ -1138,13 +1138,12 @@ padding: 5px 8px 5px 8px!important;
 margin: 5px 0 0 0;
 }
 
-#mailform textarea, 
+#mailform textarea,
 #commentform textarea#comment {
 clear: both;
 width: 95% !important;
 height: 150px;
 }
-
 #recaptcha_widget_div {
 float: left;
 margin-bottom: 10px;
