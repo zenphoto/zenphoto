@@ -68,20 +68,22 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 			$captcha = $_zp_captcha->getCaptcha();
 			?>
 			<div>
-				<span class="captchalabel">
 				<?php
-					echo gettext("Enter CAPTCHA*");
+				if (isset($captcha['inputcode'])) {
 				?>
-				</span>
-			<?php
-				if (isset($captcha['html']) && isset($captcha['input'])) echo $captcha['html'];
-				if (isset($captcha['input'])) {
-				echo $captcha['input'];
-					} else {
-				if (isset($captcha['html'])) echo $captcha['html'];
+				<label for="<?php echo $captcha['inputcode']; ?>"><?php echo gettext("Enter CAPTCHA*"); ?></label>
+				<?php
+				} else {
+				?>
+				<span class="captchalabel">
+				<?php echo gettext("Enter CAPTCHA*"); ?>
+           		</span>
+           		<?php
 				}
-				if (isset($captcha['hidden'])) echo $captcha['hidden'];
-			?>
+			if (isset($captcha['html'])) echo $captcha['html'];
+			if (isset($captcha['input'])) echo $captcha['input'];
+			if (isset($captcha['hidden'])) echo $captcha['hidden'];
+        	 ?> 
 			</div>
 		<?php
 		}
