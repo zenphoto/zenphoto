@@ -43,7 +43,7 @@ function EF_head($ignore) {
 	<style type="text/css">
 	<?php echo $css; ?>
 	</style>
-	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/default/common.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/effervescence_plus/common.css" type="text/css" />
 	<script type="text/javascript">
 		// <!-- <![CDATA[
 		function blurAnchors(){
