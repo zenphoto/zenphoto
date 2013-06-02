@@ -1,13 +1,13 @@
 define('_C00',	'#002E5B');
 define('_C01',	'#076a54');
-define('_C02',	'#d8d6cf');//base background
+define('_C02',	'#fcff8f');//base background
 define('_C03',	'#12a081');
-define('_C04',	'#eceae7');//home link bar
+define('_C04',	'#69ddff');//home link bar
 define('_C05',	'#d8d6cf');
 define('_C06',	'#333333');
-define('_C07',	'#0b9577');//main background
+define('_C07',	'#ff9c34');//main background
 define('_C08',	'#666666');
-define('_C09',	'#0b9577');//main background
+define('_C09',	'#ff9c34');//main background
 define('_C10',	'#DD6666');
 define('_C11',	'#E6E6DF');
 define('_C12',	'#22b393');
