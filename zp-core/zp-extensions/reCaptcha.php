@@ -81,7 +81,7 @@ class reCaptcha extends _zp_captcha{
 				    		"				theme : '".getOption('reCaptcha_theme')."'\n".
 				 				"				};\n".
 				 				"</script>\n";
-			return array('html'=>'<label>'.$prompt.'</label>', 'input'=>$theme.recaptcha_get_html(getOption('reCaptcha_public_key'), NULL, secureServer()));
+			return array('html'=>'<label class="captcha_label">'.$prompt.'</label>', 'input'=>$theme.recaptcha_get_html(getOption('reCaptcha_public_key'), NULL, secureServer()));
 		}
 	}
 }
