@@ -82,20 +82,22 @@
 		if(getOption("contactform_captcha") && !$_processing_post) {
 			$captcha = $_zp_captcha->getCaptcha();
 		?>
-		<p>
-			<?php
-			if (isset($captcha['inputcode'])) {
-				?>
-				<label for="<?php echo $captcha['inputcode']; ?>"><?php echo gettext("Enter CAPTCHA*"); ?></label>
+		<div>
+				<span class="captchalabel">
 				<?php
-			} else {
-				echo gettext("Enter CAPTCHA*");
-			}
-			if (isset($captcha['html'])) echo $captcha['html'];
-			if (isset($captcha['input'])) echo $captcha['input'];
-			if (isset($captcha['hidden'])) echo $captcha['hidden'];
+					echo gettext("Enter CAPTCHA*");
+				?>
+				</span>
+			<?php
+				if (isset($captcha['html']) && isset($captcha['input'])) echo $captcha['html'];
+				if (isset($captcha['input'])) {
+				echo $captcha['input'];
+					} else {
+				if (isset($captcha['html'])) echo $captcha['html'];
+				}
+				if (isset($captcha['hidden'])) echo $captcha['hidden'];
 			?>
-		</p>
+			</div>
 		<?php } ?>
 		<?php if(showOrNotShowField(getOption('contactform_subject'))) { ?>
 		<p>

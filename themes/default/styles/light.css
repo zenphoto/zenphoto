@@ -402,12 +402,24 @@ cursor: pointer !important;
 /* Forms
 ------------------------------ */
 .captchainputbox {
-	width: 6.5em;
-	padding: 2px;
+width: 6.5em;
+padding: 2px;
+float: right;
+margin-right: 25px;
+vertical-align: top;
 }
-#captcha {
-	vertical-align:middle;
+
+#recaptcha_widget_div {
+float: left;
+margin-bottom: 10px;
 }
+
+span.captchalabel {
+width: 30%;
+display: block;
+float: left;
+}
+
 .inputbox {
 	width: 250px;
 	padding: 2px;
@@ -669,14 +681,18 @@ display: block;
 }
 #registration_form input[type="text"],
 #registration_form input[type="password"],
-#mailform input[type=text],
-#commentform input[type=text] {
-width: 65% !important;
+#mailform input[type="text"],
+#commentform input[type="text"] {
+width: 65%;
 }
+
 #mailform input.captchainputbox,
-#commentform input.captchainputbox {
+#commentform input.captchainputbox,
+#registration_form input.captchainputbox {
 width: 20% !important;
-margin-left: 10px;
+float: right;
+margin-right: 4%;
+vertical-align: top;
 }
 
 input.button {
@@ -690,7 +706,6 @@ clear: both;
 width: 95% !important;
 height: 150px;
 }
-
 
 form input[type="submit"],
 form input[type="reset"],

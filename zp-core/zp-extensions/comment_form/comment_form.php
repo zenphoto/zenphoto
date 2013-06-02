@@ -93,9 +93,13 @@
 							if (commentFormUseCaptcha()) {
 								$captcha = $_zp_captcha->getCaptcha();
 								?>
-								<p>
+								<div>
+									<span class="captchalabel">
 									<?php
 									echo gettext("Enter CAPTCHA*");
+									?>
+									</span>
+									<?php
 									if (isset($captcha['html']) && isset($captcha['input'])) echo $captcha['html'];
 										if (isset($captcha['input'])) {
 											echo $captcha['input'];
@@ -104,7 +108,7 @@
 										}
 										if (isset($captcha['hidden'])) echo $captcha['hidden'];
 										?>
-								</p>
+								</div>
 							<?php
 							}
 							if($required) {
