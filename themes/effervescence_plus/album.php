@@ -17,9 +17,6 @@ $map = function_exists('printGoogleMap');
 	<title><?php printBareGalleryTitle(); ?> | <?php printBareAlbumTitle(); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<?php $oneImagePage = $personality->theme_head($_zp_themeroot); ?>
-	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
-	<?php effervescence_theme_head(); ?>
-	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/effervescence_plus/common.css" type="text/css" />
 </head>
 
 <body onload="blurAnchors()">

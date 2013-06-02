@@ -513,7 +513,12 @@ function zp_clearCookie($name, $path=NULl, $secure=false) {
  */
 function getSerializedArray($string) {
 	if (preg_match('/^a:[0-9]+:{/', $string)) {
-		return unserialize($string);
+		$r = @unserialize($string);
+		if ($r) {
+			return $r;
+		} else {
+			return array();
+		}
 	} else if (empty($string)) {
 		return array();
 	} else {

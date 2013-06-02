@@ -2401,7 +2401,7 @@ class zpFunctions {
 	 */
 	static function unTagURLs($text) {
 		if ($serial = preg_match('/^a:[0-9]+:{/', $text)) {	//	serialized array
-			$text = unserialize($text);
+			$text = getSerializedArray($text);
 		}
 		if (is_array($text)) {
 			foreach ($text as $key=>$textelement) {
@@ -2423,7 +2423,7 @@ class zpFunctions {
 	 */
 	static function updateImageProcessorLink($text) {
 		if ($serial = preg_match('/^a:[0-9]+:{/', $text)) {	//	serialized array
-			$text = unserialize($text);
+			$text = getSerializedArray($text);
 		}
 		if (is_array($text)) {
 			foreach ($text as $key=>$textelement) {
@@ -2459,7 +2459,7 @@ class _zp_captcha {
 
 	var $name = NULL;	// "captcha" name if no captcha plugin loaded
 
-	function getCaptcha() {
+	function getCaptcha($prompt) {
 		global $_zp_HTML_cache;
 		if (is_object($_zp_HTML_cache)) {	//	don't cache captch
 			$_zp_HTML_cache->abortHTMLCache();
@@ -2467,7 +2467,7 @@ class _zp_captcha {
 		return array('input'=>NULL, 'html'=>'<p class="errorbox">'.gettext('No captcha handler is enabled.').'</p>', 'hidden'=>'');
 	}
 	function checkCaptcha($s1, $s2) {
-		return true;
+		return false;
 	}
 }
 

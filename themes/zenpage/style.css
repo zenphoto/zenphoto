@@ -1404,6 +1404,7 @@ label:hover {
 #commentform p,
 #mailform p {
 clear: both;
+overflow: hidden;
 }
 
 #registration_form label,
@@ -1416,14 +1417,18 @@ display: block;
 
 #registration_form input[type="text"],
 #registration_form input[type="password"],
-#mailform input[type=text],
-#commentform input[type=text]{
-width: 65% !important;
+#mailform input[type="text"],
+#commentform input[type="text"]{
+width: 65%;
 }
+
 #mailform input.captchainputbox,
-#commentform input.captchainputbox {
+#commentform input.captchainputbox,
+#registration_form input.captchainputbox {
 width: 20% !important;
-margin-left: 10px;
+float: right;
+margin-right: 25px;
+vertical-align: top;
 }
 
 
@@ -1445,6 +1450,11 @@ float: left;
 margin-bottom: 10px;
 }
 
+span.captchalabel {
+width: 30%;
+display: block;
+float: left;
+}
 
 .clearall {
 clear: both !important;

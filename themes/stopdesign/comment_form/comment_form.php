@@ -61,7 +61,7 @@ global $_zp_themeroot;
 					}
 					?>
 					<tr valign="top" align="left" id="row-email">
-						<th><?php printf(gettext('Email%s:'),$star); ?></th>
+						<th><?php printf(gettext('Email%s'),$star); ?></th>
 						<td>
 							<?php
 							if ($disabled['email']) {
@@ -89,7 +89,7 @@ global $_zp_themeroot;
 					}
 					?>
 					<tr valign="top" align="left">
-						<th><?php printf(gettext('URL%s:'),$star); ?></th>
+						<th><?php printf(gettext('URL%s'),$star); ?></th>
 						<td>
 							<?php
 							if ($disabled['website']) {
@@ -116,7 +116,7 @@ global $_zp_themeroot;
 					}
 				?>
 				<tr>
-					<th><?php printf(gettext('Street%s:'),$star); ?></th>
+					<th><?php printf(gettext('Street%s'),$star); ?></th>
 					<td>
 						<?php
 						if ($disabled['street']) {
@@ -150,7 +150,7 @@ global $_zp_themeroot;
 					</td>
 				</tr>
 				<tr>
-					<th><?php printf(gettext('State%s:'),$star); ?></th>
+					<th><?php printf(gettext('State%s'),$star); ?></th>
 					<td>
 						<?php
 						if ($disabled['state']) {
@@ -184,7 +184,7 @@ global $_zp_themeroot;
 					</td>
 				</tr>
 				<tr>
-					<th><?php printf(gettext('Postal code%s:'),$star); ?></th>
+					<th><?php printf(gettext('Postal code%s'),$star); ?></th>
 					<td>
 						<?php
 						if ($disabled['postal']) {
@@ -208,7 +208,7 @@ global $_zp_themeroot;
 					<?php
 				}
 				if (commentFormUseCaptcha()) {
-					$captcha = $_zp_captcha->getCaptcha();
+					$captcha = $_zp_captcha->getCaptcha(NULL);
 					if (isset($captcha['hidden'])) echo $captcha['hidden'];
 					echo "<tr valign=\"top\" align=\"left\"><th>" .gettext('Enter CAPTCHA*').' ';
 					if (isset($captcha['input'])) {

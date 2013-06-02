@@ -8,8 +8,7 @@ chdir(SERVERPATH . "/themes/".basename(dirname(__FILE__))."/styles");
 $filelist = safe_glob('*.css');
 $themecolors = array();
 foreach($filelist as $file) {
-	$file = str_replace('.css', '', $file);
-	$themecolors[] = filesystemToInternal($file);
+	$themecolors[] = stripSuffix(filesystemToInternal($file));
 }
 chdir($curdir);
 

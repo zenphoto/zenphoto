@@ -65,14 +65,13 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 			}
 		}
 		if (getOption('register_user_captcha')) {
-			$captcha = $_zp_captcha->getCaptcha();
+			$captcha = $_zp_captcha->getCaptcha(gettext("Enter CAPTCHA*"));
 			?>
 			<p>
-				<label for=""><?php echo gettext("Enter CAPTCHA*"); ?></label>
 				<?php
-					if (isset($captcha['html'])) echo $captcha['html'];
-					if (isset($captcha['input'])) echo $captcha['input'];
-					if (isset($captcha['hidden'])) echo $captcha['hidden'];
+				if (isset($captcha['html'])) echo $captcha['html'];
+				if (isset($captcha['input'])) echo $captcha['input'];
+				if (isset($captcha['hidden'])) echo $captcha['hidden'];
 				?>
 			</p>
 			<?php
@@ -84,7 +83,7 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 		if (class_exists('federated_logon')) {
 			?>
 			<p id="Federated_buttons_fieldlist">
-				<label><?php echo gettext('You may also register using federated credentials'); ?></label>
+				<?php echo gettext('You may also register using federated credentials'); ?>
 				<?php federated_logon::buttons(WEBPATH.'/index.php'); ?>
 			</p>
 			<?php

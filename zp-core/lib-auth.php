@@ -1037,7 +1037,7 @@ class Zenphoto_Authority {
 				}
 				break;
 			case 'captcha':
-				$captcha = $_zp_captcha->getCaptcha();
+				$captcha = $_zp_captcha->getCaptcha(NULL);
 				?>
 				<form name="login" action="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.php" method="post">
 					<?php if (isset($captcha['hidden'])) echo $captcha['hidden']; ?>

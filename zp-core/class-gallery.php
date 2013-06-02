@@ -201,7 +201,6 @@ class Gallery {
 	 */
 	private function loadAlbumNames() {
 		$albumdir = $this->getAlbumDir();
-
 		$dir = opendir($albumdir);
 		if (!$dir) {
 			if (!is_dir($albumdir)) {
@@ -214,8 +213,7 @@ class Gallery {
 		$albums = array();
 
 		while ($dirname = readdir($dir)) {
-			if ((is_dir($albumdir.$dirname) && (substr($dirname, 0, 1) != '.')) ||
-								hasDynamicAlbumSuffix($dirname)) {
+			if ((is_dir($albumdir.$dirname) && (substr($dirname, 0, 1) != '.')) ||hasDynamicAlbumSuffix($dirname)) {
 				$albums[] = filesystemToInternal($dirname);
 			}
 		}

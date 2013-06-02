@@ -10,9 +10,6 @@ if (!defined('WEBPATH')) die();
 	<?php zp_apply_filter('theme_head'); ?>
 	<title><?php printBareGalleryTitle(); ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
-	<?php zp_apply_filter('theme_head'); ?>
-	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
-	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/effervescence_plus/common.css" type="text/css" />
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/slideshow.css" type="text/css" />
 </head>
 <body>

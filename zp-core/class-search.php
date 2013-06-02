@@ -361,15 +361,18 @@ class SearchEngine {
 					$this->page = $v;
 					break;
 				case 'albumname':
-					$this->dynalbumname = $v;
-					$this->album = newAlbum($v);
-					$this->albumsorttype = $this->album->getAlbumSortType();
-					if ($this->album->getSortDirection('album')) {
-						$this->albumsortdirection = 'DESC';
-					}
-					$this->imagesorttype = $this->album->getSortType();
-					if ($this->album->getSortDirection('image')) {
-						$this->imagesortdirection = 'DESC';
+					$alb = newAlbum($v, true, true);
+					if ($alb->loaded) {
+						$this->album = $alb;
+						$this->dynalbumname = $v;
+						$this->albumsorttype = $this->album->getAlbumSortType();
+						if ($this->album->getSortDirection('album')) {
+							$this->albumsortdirection = 'DESC';
+						}
+						$this->imagesorttype = $this->album->getSortType();
+						if ($this->album->getSortDirection('image')) {
+							$this->imagesortdirection = 'DESC';
+						}
 					}
 					break;
 				case 'inimages':
