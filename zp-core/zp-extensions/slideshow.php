@@ -740,12 +740,8 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $i
 		$albumobj->images = $search->getImage(0);
 	} else {
 		if (isset($_POST['favorites_page'])) {
-			if (!$page = stripSuffix(getOption('favorites_link'))) {
-				$page = 'favourites';
-			}
-			$link = $_zp_conf_vars['special_pages'][$page]['rewrite'];
 			$albumobj = $_myFavorites;
-			$returnpath = rewrite_path('/'.$link.'/'.$pagenumber,'/index.php?p='.$page.'&page='.$pagenumber);
+			$returnpath = FULLWEBPATH.'/index.php?p=favorites'.'&page='.$pagenumber;
 		} else {
 			$albumq = query_single_row("SELECT title, folder FROM ". prefix('albums') ." WHERE id = ".$albumid);
 			$albumobj = newAlbum($albumq['folder']);
