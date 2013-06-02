@@ -986,7 +986,7 @@ margin-top: 0.2em;
 .menu ul li {
 padding-left: 20px;
 padding-bottom: 3px;
-background-image: url(../images/arrow_right.png);
+background-image: url(__arrow_right__);
 background-repeat: no-repeat;
 background-position: 1px 0px;
 }

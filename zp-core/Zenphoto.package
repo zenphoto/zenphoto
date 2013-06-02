@@ -49,7 +49,6 @@ themes/effervescence_plus/image_page/functions.php
 themes/effervescence_plus/images
 themes/effervescence_plus/images/25percent.png
 themes/effervescence_plus/images/50percent.png
-themes/effervescence_plus/images/50percentwhite.png
 themes/effervescence_plus/images/admin-buttonback.jpg
 themes/effervescence_plus/images/arrow_right.png
 themes/effervescence_plus/images/dark-bullet.png
@@ -72,6 +71,7 @@ themes/effervescence_plus/slideshow.css
 themes/effervescence_plus/slideshow.php
 themes/effervescence_plus/styles
 themes/effervescence_plus/styles/blue and green play.txt
+themes/effervescence_plus/styles/effervescence.txt
 themes/effervescence_plus/styles/free chocolates.txt
 themes/effervescence_plus/styles/kish-my father.txt
 themes/effervescence_plus/styles/machu picchu.txt

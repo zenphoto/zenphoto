@@ -27,7 +27,9 @@ define('_C25',	'#fbefdb');
 define('_C26',	'#fff');
 define('_C27',	'#ffffff');
 define('_C28',	'black');
+define('_arrow', WEBPATH.'/'.THEMEFOLDER.'/effervescence_plus/images/arrow_right.png');
 $tr = array(
+	'__arrow_right__'	=>	_arrow,
 	'__A_0__'	=>	_C15,
 	'__A_10__'	=>	_C25,
 	'__A_11__'	=>	_C25,
