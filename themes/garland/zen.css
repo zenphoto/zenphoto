@@ -1098,15 +1098,12 @@ button.positive,.buttons a.positive {
  font-weight: bold;
 }
 
-#registration_form p,
-#commentform p,
-#mailform p {
-clear: both;
-overflow: hidden;
-}
-
 #registration_form {
 width: 100%;
+}
+
+#registration_form p, #commentform p, #mailform p {
+clear: both;
 }
 
 #registration_form label,

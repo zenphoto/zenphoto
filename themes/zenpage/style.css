@@ -1402,12 +1402,8 @@ label:hover {
 	color: #000;
 }
 
-
-#registration_form p,
-#commentform p,
-#mailform p {
+#registration_form p, #commentform p, #mailform p {
 clear: both;
-overflow: hidden;
 }
 
 #registration_form label,
@@ -1446,3 +1442,4 @@ clear: left !important;
 .clearright {
 clear: right !important;
 }
+

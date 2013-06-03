@@ -330,12 +330,9 @@ label:hover {
 	text-align:center;
 }
 
-#registration_form p,
-#commentform p,
-#mailform p {
+#registration_form p, #commentform p, #mailform p {
 clear: both;
 margin-bottom: 8px;
-overflow: hidden;
 }
 
 #registration_form label,
@@ -380,4 +377,3 @@ width: 10em !important;
 	color: #C33;
 	font-weight: bold;
 }
-
