@@ -24,14 +24,14 @@ global $_zp_themeroot;
 				<?php
 				if ($req = getOption('comment_name_required')) {
 					if ($req == 'required') {
-						$star = '*';
+						$star = ' *';
 						$required = true;
 					} else {
 						$star = '';
 					}
 					?>
 					<tr valign="top" align="left" id="row-name">
-						<th><?php printf(gettext('%sName:'),$star); ?></th>
+						<th><?php printf(gettext('Name%s'),$star); ?></th>
 						<td>
 							<?php
 							if ($disabled['name']) {
@@ -54,7 +54,7 @@ global $_zp_themeroot;
 				}
 				if ($req = getOption('comment_email_required')) {
 					if ($req == 'required') {
-						$star = '*';
+						$star = ' *';
 						$required = true;
 					} else {
 						$star = '';
@@ -82,7 +82,7 @@ global $_zp_themeroot;
 				}
 				if ($req = getOption('comment_web_required')) {
 					if ($req == 'required') {
-						$star = '*';
+						$star = ' *';
 						$required = true;
 					} else {
 						$star = '';
@@ -202,21 +202,21 @@ global $_zp_themeroot;
 				</tr>
 				<?php
 				}
-				if($required) {
-					?>
-					<tr><td colspan="2"><?php echo gettext('*Required fields'); ?></td></tr>
-					<?php
-				}
 				if (commentFormUseCaptcha()) {
 					$captcha = $_zp_captcha->getCaptcha(NULL);
 					if (isset($captcha['hidden'])) echo $captcha['hidden'];
-					echo "<tr valign=\"top\" align=\"left\"><th>" .gettext('Enter CAPTCHA*').' ';
+					echo "<tr valign=\"top\" align=\"left\"><th>" .gettext('Enter CAPTCHA *').' ';
 					if (isset($captcha['input'])) {
 						echo $captcha['input'];
 						echo "</th><td>";
 					}
 					if (isset($captcha['html'])) echo $captcha['html'];
 					echo  "</td></tr>\n";
+				}
+				if($required) {
+					?>
+					<tr><td colspan="2"><?php echo gettext('* Required fields'); ?></td></tr>
+					<?php
 				}
 				?>
 				<tr valign="top" align="left">

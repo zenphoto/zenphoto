@@ -24,7 +24,7 @@ define('_C22',	'#98958f');//nav text
 define('_C23',	'#fff');
 define('_C24',	'#ffffff');
 define('_C25',	'black');
-define('_C26',	'#01592A');
+define('_C26',	'#01592A');//main font color
 define('_arrow', WEBPATH.'/'.THEMEFOLDER.'/effervescence_plus/images/dark_arrow_right.png');
 $tr = array(
 	'__arrow_right__'	=>	_arrow,

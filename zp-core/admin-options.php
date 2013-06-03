@@ -92,6 +92,8 @@ if (isset($_GET['action'])) {
 			setOption('time_offset', $offset);
 			setOption('charset', sanitize($_POST['charset']),3);
 			setOption('site_email', sanitize($_POST['site_email']),3);
+			$_zp_gallery->setGallerySession((int) isset($_POST['album_session']));
+			$_zp_gallery->save();
 			$p = sanitize($_POST['zenphoto_cookie_path']);
 			if (empty($p)) {
 				zp_clearCookie('zenphoto_cookie_path');
@@ -135,7 +137,6 @@ if (isset($_GET['action'])) {
 			$_zp_gallery->setImagePublish((int) isset($_POST['image_default']));
 
 			setOption('AlbumThumbSelect', sanitize_numeric($_POST['thumbselector']));
-			$_zp_gallery->setGallerySession((int) isset($_POST['album_session']));
 			$_zp_gallery->setThumbSelectImages((int) isset($_POST['thumb_select_images']));
 			$_zp_gallery->setSecondLevelThumbs((int) isset($_POST['multilevel_thumb_select_images']));
 			$_zp_gallery->setTitle( process_language_string_save('gallery_title', 2));
@@ -868,6 +869,12 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<?php echo gettext("Cookies:"); ?>
 					</td>
 					<td width="350">
+						<p>
+							<label>
+								<input type="checkbox" name="album_session" id="album_session" value="1" <?php checked('1', GALLERY_SESSION); ?> />
+								<?php echo gettext("enable gallery sessions"); ?>
+							</label>
+						</p>
 						<?php echo gettext('Path'); ?><input type="text" size="48" id="zenphoto_cookie_path" name="zenphoto_cookie_path"  value="<?php echo getOption('zenphoto_cookie_path'); ?>" />
 						<?php
 						if (!GALLERY_SESSION) {
@@ -883,6 +890,11 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 						?>
 					</td>
 					<td>
+						<p><?php  echo gettext("<a href=\"javascript:toggle('gallerysessions');\" >Details</a> for <em>enable gallery sessions</em>" ); ?></p>
+						<div id="gallerysessions" style="display: none">
+						<p><?php echo gettext('If this option is selected Zenphoto will use <a href="http://www.w3schools.com/php/php_sessions.asp">PHP sessions</a> instead of cookies to make visitor settings persistent.'); ?></p>
+						<p class="notebox"><?php echo gettext('<strong>NOTE</strong>: Sessions will normally close when the browser closes causing all password and other data to be discarded. They may close more frequently depending on the runtime configuration. Longer <em>lifetime</em> of sessions is generally more conducive to a pleasant user experience. Cookies are the prefered storage option since their duration is determined by the <em>Cookie duration</em> option. ')?>
+						</div>
 						<p><?php printf(gettext('The <em>path</em> Zenphoto will use when storing cookies. (Leave empty to default to <em>%s</em>)'),WEBPATH); ?></p>
 						<?php
 						if (!GALLERY_SESSION) {
@@ -1268,13 +1280,6 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 								<?php echo gettext("show subalbum thumbs"); ?>
 							</label>
 						</p>
-						<p>
-							<label>
-								<input type="checkbox" name="album_session" id="album_session"
-										value="1" <?php checked('1', GALLERY_SESSION); ?> />
-								<?php echo gettext("enable gallery sessions"); ?>
-							</label>
-						</p>
 					</td>
 					<td>
 						<p><?php  echo gettext("<a href=\"javascript:toggle('albumpub');\" >Details</a> for <em>publish albums by default</em>" ); ?></p>
@@ -1305,11 +1310,6 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<p><?php echo gettext("Setting this option allows selecting images from subalbums as well as from the album. Naturally populating these images adds overhead. If your album edit tabs load too slowly, do not select this option."); ?></p>
 						</div>
 
-						<p><?php  echo gettext("<a href=\"javascript:toggle('gallerysessions');\" >Details</a> for <em>enable gallery sessions</em>" ); ?></p>
-						<div id="gallerysessions" style="display: none">
-						<p><?php echo gettext('If this option is selected Zenphoto will use <a href="http://www.w3schools.com/php/php_sessions.asp">PHP sessions</a> instead of cookies to make visitor settings persistent.'); ?></p>
-						<p class="notebox"><?php echo gettext('<strong>NOTE</strong>: Sessions will normally close when the browser closes causing all password and other data to be discarded. They may close more frequently depending on the runtime configuration. Longer <em>lifetime</em> of sessions is generally more conducive to a pleasant user experience. Cookies are the prefered storage option since their duration is determined by the <em>Cookie duration</em> option. ')?>
-						</div>
 					</td>
 				</tr>
 

@@ -12,7 +12,7 @@
 	<?php
 	if ($req = getOption('comment_name_required')) {
 		if ($req == 'required') {
-			$star = "*";
+			$star = " *";
 			$required = true;
 		} else {
 			$star = '';
@@ -91,7 +91,7 @@
 	<?php
 	}
 	if (commentFormUseCaptcha()) {
-		$captcha = $_zp_captcha->getCaptcha(gettext("Enter CAPTCHA*"));
+		$captcha = $_zp_captcha->getCaptcha(gettext("Enter CAPTCHA *"));
 		?>
 		<p>
 			<?php
@@ -104,7 +104,7 @@
 	}
 	if($required) {
 		?>
-		<p><?php echo gettext('<strong>*</strong>Required fields'); ?></p>
+		<p><?php echo gettext('* Required fields'); ?></p>
 		<?php
 	}
 	if (getOption('comment_form_private') && !$disabled['private']) {
