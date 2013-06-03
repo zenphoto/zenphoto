@@ -18,7 +18,7 @@
  * <b>NOTE:</b> The jQuery Cycle and the jQuery Colorbox modes do not support movie and audio files.
  * In Colorbox mode there will be no slideshow button on the image page if that current image is a movie/audio file.
  *
- * Content macro support:
+ * Content macro support (jQuery mode only!):
  * Use [SLIDESHOW <albumname> <true/false for control] for showing a slideshow within image/album descriptions or Zenpage article and page contents.
  * The slideshow size options must fit the space
  * Notes:
