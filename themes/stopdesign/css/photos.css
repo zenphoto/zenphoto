@@ -165,6 +165,7 @@ input.text:focus, textarea:focus {
 p {
 	margin:0 0 .75em;
 	}
+
 .buttons p {
 	margin:0;
 	}
@@ -1431,6 +1432,5 @@ width: 150px;
 .logon_link {
 	text-align:center;
 }
-
 
 

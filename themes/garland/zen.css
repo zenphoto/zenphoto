@@ -1129,6 +1129,9 @@ float: left;
 margin-left: 10px;
 width: 10em !important;
 }
+#recaptcha_widget_div {
+float: left;
+}
 
 input.button {
 padding: 5px 8px 5px 8px!important;
