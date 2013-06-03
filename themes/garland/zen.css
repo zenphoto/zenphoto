@@ -482,9 +482,7 @@ cursor: pointer !important;
 	width: 250px;
 	padding: 2px;
 }
-#captcha {
-	vertical-align:middle;
-}
+
 textarea {
 	padding: 4px;
 	color: #5A5A4B;
@@ -1124,13 +1122,15 @@ display: block;
 #commentform input[type="text"] {
 width: 65%;
 }
-#mailform input.captchainputbox,
-#commentform input.captchainputbox,
-#registration_form input.captchainputbox {
-width: 20% !important;
-float: right;
-margin-right: 25px;
-vertical-align: top;
+img#captcha {
+display: block;
+float: left;
+margin-bottom: 5px;
+}
+input#code {
+float: left;
+margin-left: 10px;
+width: 10em !important;
 }
 
 input.button {
@@ -1143,16 +1143,6 @@ margin: 5px 0 0 0;
 clear: both;
 width: 95% !important;
 height: 150px;
-}
-#recaptcha_widget_div {
-float: left;
-margin-bottom: 10px;
-}
-
-span.captchalabel {
-width: 30%;
-display: block;
-float: left;
 }
 
 .clearall {
