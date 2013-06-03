@@ -212,7 +212,7 @@ class slideshow {
 				var TitleList = new Array();
 				var DescList = new Array();
 				var ImageNameList = new Array();
-				var DynTime=('.getOption("slideshow_timeout").') * 1.0;	// force numeric
+				var DynTime=('.(int) getOption("slideshow_timeout").');
 				';
 				$images = $albumobj->getImages(0);
 				for ($imgnr = 0, $cntr = 0, $idx = $imagenumber; $imgnr < $numberofimages; $imgnr++, $idx++) {
@@ -338,7 +338,7 @@ class slideshow {
 							break;
 						}  // emergency bailout!
 					}
-					$dflttimeout = getOption("slideshow_timeout");
+					$dflttimeout = (int) getOption("slideshow_timeout");
 					/* don't let min timeout = speed */
 					$thistimeout = ($minto == getOption("slideshow_speed")? $minto + 250 : $minto);
 					$slideshow .= 'Select Speed: <select id="speed" name="speed">';
@@ -740,12 +740,8 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $i
 		$albumobj->images = $search->getImage(0);
 	} else {
 		if (isset($_POST['favorites_page'])) {
-			if (!$page = stripSuffix(getOption('favorites_link'))) {
-				$page = 'favourites';
-			}
-			$link = $_zp_conf_vars['special_pages'][$page]['rewrite'];
 			$albumobj = $_myFavorites;
-			$returnpath = rewrite_path('/'.$link.'/'.$pagenumber,'/index.php?p='.$page.'&page='.$pagenumber);
+			$returnpath = rewrite_path(favorites::getFavorites_link().'/'.$pagenumber, FULLWEBPATH.'/index.php?p=favorites'.'&page='.$pagenumber);
 		} else {
 			$albumq = query_single_row("SELECT title, folder FROM ". prefix('albums') ." WHERE id = ".$albumid);
 			$albumobj = newAlbum($albumq['folder']);

@@ -67,7 +67,7 @@ class zpCaptcha extends _zp_captcha {
 	}
 
 	function handleOption($key, $cv) {
-		$captcha = $this->getCaptcha();
+		$captcha = $this->getCaptcha(NULL);
 		?>
 		<span id="zenphoto_captcha_image_loc"><?php echo $captcha['html']; ?></span>
 		<script type="text/javascript">
@@ -154,7 +154,7 @@ class zpCaptcha extends _zp_captcha {
 		$code=sha1($cypher);
 		query('DELETE FROM '.prefix('captcha').' WHERE `ptime`<'.(time()-3600), false);  // expired tickets
 		query("INSERT INTO " . prefix('captcha') . " (ptime, hash) VALUES (" . db_quote(time()) . "," . db_quote($code) . ")", false);
-		$html = '<label for="code" class="captcha_label">'.$prompt.'<img id="captcha" src="'.WEBPATH .'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zpCaptcha/c.php?i='.$cypher.'" alt="Code" /></label><br />';
+		$html = '<label for="code" class="captcha_label">'.$prompt.'</label><img id="captcha" src="'.WEBPATH .'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zpCaptcha/c.php?i='.$cypher.'" alt="Code" />';
 		$input = '<input type="text" id="code" name="code" class="captchainputbox" />';
 		$hidden = '<input type="hidden" name="code_h" value="'.$code.'" />';
 		return array('input'=>$input, 'html'=>$html, 'hidden'=>$hidden);

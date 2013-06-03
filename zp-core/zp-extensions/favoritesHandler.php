@@ -305,6 +305,10 @@ class favorites extends AlbumBase {
 		<?php
 	}
 
+	static function getFavorites_link() {
+		return preg_replace('~^_PAGE_/~', _PAGE_.'/', getOption('favorites_rewrite'));
+	}
+
 }
 
 if (!OFFSET_PATH) {
@@ -312,7 +316,6 @@ if (!OFFSET_PATH) {
 		$page = 'favorites';
 	}
 	$_zp_conf_vars['special_pages'][$page] = array('define'=>false, 'rewrite'=>getOption('favorites_rewrite'), 'rule'=>'^%REWRITE%/*$		index.php?p='.$page.' [L,QSA]');
-
 	zp_register_filter('load_theme_script', 'favorites::loadScript');
 	zp_register_filter('admin_toolbox_global', 'favorites::toolbox');
 
@@ -407,9 +410,8 @@ if (!OFFSET_PATH) {
 			if (is_null($text)) {
 				$text = get_language_string(getOption('favorites_linktext'));
 			}
-			$link = preg_replace('~^_PAGE_/~', _PAGE_.'/', getOption('favorites_rewrite'));
 			?>
-			<a href="<?php echo FULLWEBPATH; ?>/<?php echo $link; ?>" id="favorite_link"><?php echo $text; ?> </a>
+			<a href="<?php echo FULLWEBPATH; ?>/<?php echo favorites::getFavorites_link(); ?>" id="favorite_link"><?php echo $text; ?> </a>
 			<?php
 		}
 	}

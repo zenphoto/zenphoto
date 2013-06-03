@@ -45,11 +45,18 @@ class reCaptcha extends _zp_captcha{
 								gettext('Theme') => array('key' => 'reCaptcha_theme', 'type' => OPTION_TYPE_SELECTOR,
 												'order' => 3,
 												'selections' => array(gettext('Red') => 'red', gettext('White') => 'white', gettext('Black Glass') => 'blackglass', gettext('Clean') => 'clean'),
-												'desc' => gettext('Select the <em>reCaptcha</em> theme.'))
+												'desc' => gettext('Select the <em>reCaptcha</em> theme.')),
+								'' 			=> array('key' => 'reCcaptcha_image', 'type' => OPTION_TYPE_CUSTOM,
+												'order' => 4,
+												'desc' => gettext('Sample CAPTCHA image'))
 
 						);
 	}
 	function handleOption($key, $cv) {
+		$captcha = $this->getCaptcha(NULL);
+		?>
+		<span id="zenphoto_captcha_image_loc"><?php echo $captcha['input']; ?></span>
+		<?php
 	}
 
 	/**

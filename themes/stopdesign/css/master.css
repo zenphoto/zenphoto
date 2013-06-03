@@ -43,11 +43,6 @@ display: block;
 #commentform input[type=text] {
 width: 65% !important;
 }
-#mailform input.captchainputbox,
-#commentform input.captchainputbox {
-width: 20% !important;
-margin-left: 10px;
-}
 
 input.button {
 padding: 5px 8px 5px 8px!important;
@@ -59,4 +54,16 @@ margin: 5px 0 0 0;
 clear: both;
 width: 95% !important;
 height: 150px;
+}
+
+
+img#captcha {
+display: block;
+float: left;
+margin-bottom: 5px;
+}
+input#code {
+float: left;
+margin-left: 10px;
+width: 10em !important;
 }
