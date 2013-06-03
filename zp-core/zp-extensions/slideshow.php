@@ -176,8 +176,8 @@ class slideshow {
 	}
 
 	static function getShow($heading, $speedctl, $albumobj, $imageobj, $width, $height, $crop, $shuffle, $linkslides, $controls, $returnpath, $imagenumber) {
-		if(!$albumobj->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumobj->getFolder())) {
-			return '<div class="errorbox" id="message"><h2>'.gettext('This album is password protected!').'</h2></div></div></body></html>';
+		if(!$albumobj->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumobj)) {
+			return '<div class="errorbox" id="message"><h2>'.gettext('This album is password protected!').'</h2></div></div>';
 		}
 		$slideshow = '';
 
@@ -192,7 +192,7 @@ class slideshow {
 			$height = getOption("slideshow_height");
 		}
 		if($numberofimages == 0) {
-			return NULL;
+			return '<div class="errorbox" id="message"><h2>'.gettext('No images for the slideshow!').'</h2></div></div>';
 		}
 		$option = getOption("slideshow_mode");
 		// jQuery Cycle slideshow config
