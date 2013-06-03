@@ -67,7 +67,7 @@ class zpCaptcha extends _zp_captcha {
 	}
 
 	function handleOption($key, $cv) {
-		$captcha = $this->getCaptcha();
+		$captcha = $this->getCaptcha(NULL);
 		?>
 		<span id="zenphoto_captcha_image_loc"><?php echo $captcha['html']; ?></span>
 		<script type="text/javascript">
