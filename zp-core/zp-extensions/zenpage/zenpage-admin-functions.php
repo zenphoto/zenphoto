@@ -951,7 +951,7 @@ function printCategoryListSortableTable($cat,$flag) {
 	if($cat->getTitle()) {
 		$cattitle = $cat->getTitle();
 	} else {
-		$cattitle = "<span style='color:red; font-weight: bold'>".' <strong>*</strong>''.$cat->getTitlelink()."*</span>";
+		$cattitle = "<span style='color:red; font-weight: bold'> <strong>*</strong>".$cat->getTitlelink()."*</span>";
 	}
 	?>
 	 <div class='page-list_row'>
