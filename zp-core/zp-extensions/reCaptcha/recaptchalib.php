@@ -110,17 +110,16 @@ function recaptcha_get_html ($pubkey, $error = null, $use_ssl = false)
 	}
 
 	if ($use_ssl) {
-                $server = RECAPTCHA_API_SECURE_SERVER;
-        } else {
-                $server = RECAPTCHA_API_SERVER;
-        }
+		$server = RECAPTCHA_API_SECURE_SERVER;
+	} else {
+		$server = RECAPTCHA_API_SERVER;
+	}
 
-        $errorpart = "";
-        if ($error) {
-           $errorpart = "&amp;error=" . $error;
-        }
-        return '<script type="text/javascript" src="'. $server . '/challenge?k=' . $pubkey . $errorpart . '"></script>
-
+	$errorpart = "";
+	if ($error) {
+		$errorpart = "&amp;error=" . $error;
+	}
+	return '<script type="text/javascript" src="'. $server . '/challenge?k=' . $pubkey . $errorpart . '"></script>
 	<noscript>
   		<iframe src="'. $server . '/noscript?k=' . $pubkey . $errorpart . '" seamless="seamless"></iframe><br/>
   		<textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>

@@ -36,25 +36,29 @@ class reCaptcha extends _zp_captcha{
 	 */
 	function getOptionsSupported() {
 		$themes = array(gettext('Red') => 'red', gettext('White') => 'white', gettext('Black Glass') => 'blackglass', gettext('Clean') => 'clean');
-		if (TEST_RELEASE) {
-			$themes['custom'] = gettext("custom");
+		$custom = getPluginFiles('*','reCaptcha',false);
+		foreach ($custom as $theme=>$path) {
+			if (is_dir($path)) {
+				$themes[$theme = basename($theme)] = $theme;
+			}
 		}
-		return array(
-								gettext('Public key') => array('key' => 'reCaptcha_public_key', 'type' => OPTION_TYPE_TEXTBOX,
-												'order' => 1,
-												'desc' => gettext('Enter your <em>reCaptcha</em> public key. You can obtain this key from the Google <a href="http://www.google.com/recaptcha">reCaptcha</a> site')),
-								gettext('Private key') => array('key' => 'reCaptcha_private_key', 'type' => OPTION_TYPE_TEXTBOX,
-												'order' => 2,
-												'desc' => gettext('Enter your <em>reCaptcha</em> private key.')),
-								gettext('Theme') => array('key' => 'reCaptcha_theme', 'type' => OPTION_TYPE_SELECTOR,
-												'order' => 3,
-												'selections' => $themes,
-												'desc' => gettext('Select the <em>reCaptcha</em> theme.')),
-								'' 			=> array('key' => 'reCcaptcha_image', 'type' => OPTION_TYPE_CUSTOM,
-												'order' => 4,
-												'desc' => gettext('Sample CAPTCHA image'))
 
-						);
+		return array(
+									gettext('Public key') => array('key' => 'reCaptcha_public_key', 'type' => OPTION_TYPE_TEXTBOX,
+													'order' => 1,
+													'desc' => gettext('Enter your <em>reCaptcha</em> public key. You can obtain this key from the Google <a href="http://www.google.com/recaptcha">reCaptcha</a> site')),
+									gettext('Private key') => array('key' => 'reCaptcha_private_key', 'type' => OPTION_TYPE_TEXTBOX,
+													'order' => 2,
+													'desc' => gettext('Enter your <em>reCaptcha</em> private key.')),
+									gettext('Theme') => array('key' => 'reCaptcha_theme', 'type' => OPTION_TYPE_SELECTOR,
+													'order' => 3,
+													'selections' => $themes,
+													'desc' => gettext('Select the <em>reCaptcha</em> theme.')),
+									'' 			=> array('key' => 'reCcaptcha_image', 'type' => OPTION_TYPE_CUSTOM,
+													'order' => 4,
+													'desc' => gettext('Sample CAPTCHA image'))
+
+							);
 	}
 	function handleOption($key, $cv) {
 		$captcha = $this->getCaptcha(NULL);
@@ -90,28 +94,17 @@ class reCaptcha extends _zp_captcha{
 		if (!getOption('reCaptcha_public_key')) {
 			return array('input'=>'', 'html'=>'<p class="errorbox">'.gettext('reCAPTCHA is not properly configured.').'</p>', 'hidden'=>'');
 		} else {
-			$themejs =	'<script type="text/javascript">'."\n".
-				 				"  var RecaptchaOptions = {\n".
-				    		"				theme : '$theme'\n".
-				 				"				};\n".
-				 				"</script>\n";
-			if ($theme=='custom') {
-				if (secureServer()) {
-					$server = RECAPTCHA_API_SECURE_SERVER;
-				} else {
-					$server = RECAPTCHA_API_SERVER;
-				}
-				$source = getPlugin('reCaptcha/custom.txt');
-				$webpath = dirname(getplugin('reCaptcha/custom.txt',false,true));
-				$tr = array('__SERVER__'=>$server,
-										'__GETHELP__'=>gettext("Help"),
+
+			$source = getPlugin('reCaptcha/'.$theme.'/reCaptcha.html');
+			if ($source) {
+				$webpath = dirname(getplugin('reCaptcha/'.$theme.'/reCaptcha.html',false,true));
+				$tr = array('__GETHELP__'=>gettext("Help"),
 										'__GETIMAGE__'=>gettext("Get an image CAPTCHA"),
 										'__GETAUDIO__'=>gettext("Get an audio CAPTCHA"),
 										'__RELOAD__'=>gettext("Get another CAPTCHA"),
 										'__WORDS__'=>gettext("Enter the words above"),
 										'__NUMBERS__'=>gettext("Enter the numbers you hear"),
-										'__ERROR__'=>gettext("n correct please try again"),
-										'__PUBLICKEY__'=>$publicKey,
+										'__ERROR__'=>gettext("in correct please try again"),
 										'__SOURCEWEBPATH__'=>$webpath);
 				if (OFFSET_PATH) {
 					$tr['__FLOAT__'] = '';
@@ -119,9 +112,16 @@ class reCaptcha extends _zp_captcha{
 					$tr['__FLOAT__'] = 'float:right;';
 				}
 				$html = strtr(file_get_contents($source),$tr);
+				$theme = 'custom';	//	to tell google to use the above
 			} else {
-				$html = recaptcha_get_html($publicKey, NULL, secureServer());
+				$html = '';
 			}
+			$themejs =	'<script type="text/javascript">'."\n".
+				 				"  var RecaptchaOptions = {\n".
+				    		"				theme : '$theme'\n".
+				 				"				};\n".
+				 				"</script>\n";
+			$html .= recaptcha_get_html($publicKey, NULL, secureServer());
 			return array('html'=>'<label class="captcha_label">'.$prompt.'</label>', 'input'=>$themejs.$html);
 		}
 	}

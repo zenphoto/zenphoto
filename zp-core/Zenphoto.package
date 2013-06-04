@@ -1036,12 +1036,13 @@ zp-core/zp-extensions/rating/star.gif
 zp-core/zp-extensions/rating/update.php
 zp-core/zp-extensions/reCaptcha
 zp-core/zp-extensions/reCaptcha.php
-zp-core/zp-extensions/reCaptcha/audio.png
-zp-core/zp-extensions/reCaptcha/custom.txt
-zp-core/zp-extensions/reCaptcha/help.png
-zp-core/zp-extensions/reCaptcha/logo.png
+zp-core/zp-extensions/reCaptcha/lt-blue
+zp-core/zp-extensions/reCaptcha/lt-blue/audio.png
+zp-core/zp-extensions/reCaptcha/lt-blue/help.png
+zp-core/zp-extensions/reCaptcha/lt-blue/logo.png
+zp-core/zp-extensions/reCaptcha/lt-blue/reCaptcha.html
+zp-core/zp-extensions/reCaptcha/lt-blue/refresh.png
 zp-core/zp-extensions/reCaptcha/recaptchalib.php
-zp-core/zp-extensions/reCaptcha/refresh.png
 zp-core/zp-extensions/register_user
 zp-core/zp-extensions/register_user.php
 zp-core/zp-extensions/register_user/register_user_form.php
@@ -1756,4 +1757,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1758
+1759
