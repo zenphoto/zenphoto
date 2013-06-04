@@ -8,7 +8,7 @@
 
 // force UTF-8 Ø
 $plugin_is_filter = 5|CLASS_PLUGIN;
-$plugin_description = gettext("Zenphoto captcha handler.");
+$plugin_description = gettext("Google reCaptcha handler.");
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = ($_zp_captcha->name && $_zp_captcha->name != 'reCaptcha')?sprintf(gettext('Only one Captcha handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'),$_zp_captcha->name):'';
 
@@ -35,6 +35,10 @@ class reCaptcha extends _zp_captcha{
 	 * @return unknown
 	 */
 	function getOptionsSupported() {
+		$themes = array(gettext('Red') => 'red', gettext('White') => 'white', gettext('Black Glass') => 'blackglass', gettext('Clean') => 'clean');
+		if (TEST_RELEASE) {
+			$themes['custom'] = gettext("custom");
+		}
 		return array(
 								gettext('Public key') => array('key' => 'reCaptcha_public_key', 'type' => OPTION_TYPE_TEXTBOX,
 												'order' => 1,
@@ -44,7 +48,7 @@ class reCaptcha extends _zp_captcha{
 												'desc' => gettext('Enter your <em>reCaptcha</em> private key.')),
 								gettext('Theme') => array('key' => 'reCaptcha_theme', 'type' => OPTION_TYPE_SELECTOR,
 												'order' => 3,
-												'selections' => array(gettext('Red') => 'red', gettext('White') => 'white', gettext('Black Glass') => 'blackglass', gettext('Clean') => 'clean'),
+												'selections' => $themes,
 												'desc' => gettext('Select the <em>reCaptcha</em> theme.')),
 								'' 			=> array('key' => 'reCcaptcha_image', 'type' => OPTION_TYPE_CUSTOM,
 												'order' => 4,
@@ -80,15 +84,45 @@ class reCaptcha extends _zp_captcha{
 	 */
 	function getCaptcha($prompt) {
 		parent::getCaptcha($prompt);
+		$theme = getOption('reCaptcha_theme');
+		$publicKey = getOption('reCaptcha_public_key');
+
 		if (!getOption('reCaptcha_public_key')) {
 			return array('input'=>'', 'html'=>'<p class="errorbox">'.gettext('reCAPTCHA is not properly configured.').'</p>', 'hidden'=>'');
 		} else {
-			$theme =	'<script type="text/javascript">'."\n".
+			$themejs =	'<script type="text/javascript">'."\n".
 				 				"  var RecaptchaOptions = {\n".
-				    		"				theme : '".getOption('reCaptcha_theme')."'\n".
+				    		"				theme : '$theme'\n".
 				 				"				};\n".
 				 				"</script>\n";
-			return array('html'=>'<label class="captcha_label">'.$prompt.'</label>', 'input'=>$theme.recaptcha_get_html(getOption('reCaptcha_public_key'), NULL, secureServer()));
+			if ($theme=='custom') {
+				if (secureServer()) {
+					$server = RECAPTCHA_API_SECURE_SERVER;
+				} else {
+					$server = RECAPTCHA_API_SERVER;
+				}
+				$source = getPlugin('reCaptcha/custom.txt');
+				$webpath = dirname(getplugin('reCaptcha/custom.txt',false,true));
+				$tr = array('__SERVER__'=>$server,
+										'__GETHELP__'=>gettext("Help"),
+										'__GETIMAGE__'=>gettext("Get an image CAPTCHA"),
+										'__GETAUDIO__'=>gettext("Get an audio CAPTCHA"),
+										'__RELOAD__'=>gettext("Get another CAPTCHA"),
+										'__WORDS__'=>gettext("Enter the words above"),
+										'__NUMBERS__'=>gettext("Enter the numbers you hear"),
+										'__ERROR__'=>gettext("n correct please try again"),
+										'__PUBLICKEY__'=>$publicKey,
+										'__SOURCEWEBPATH__'=>$webpath);
+				if (OFFSET_PATH) {
+					$tr['__FLOAT__'] = '';
+				} else {
+					$tr['__FLOAT__'] = 'float:right;';
+				}
+				$html = strtr(file_get_contents($source),$tr);
+			} else {
+				$html = recaptcha_get_html($publicKey, NULL, secureServer());
+			}
+			return array('html'=>'<label class="captcha_label">'.$prompt.'</label>', 'input'=>$themejs.$html);
 		}
 	}
 }
