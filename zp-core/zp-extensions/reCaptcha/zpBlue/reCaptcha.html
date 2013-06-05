@@ -5,7 +5,7 @@
 		border: 2px solid #0059FF;
 		background: #94B9FF;
 		width: 300px;
-		height: 135px;
+		height: 115px;
 		overflow: hidden;
 		border-radius: 5px 5px 5px 5px;
 	}
@@ -27,7 +27,6 @@
 		margin-left: 2px;
 		padding: 0;
 	}
-	
 	#recaptcha_response_field {
 		width: 150px !important;
 	}
@@ -43,12 +42,15 @@
 	.recaptcha_clear {
 		clear: both;
 	}
+	.recaptcha_space {
+		line-height: 10px;
+	}
 </style>
 <div id="recaptcha_widget">
 	<div id="recaptcha_widget_content">
 
 		<div id="recaptcha_image"></div>
-		<br class="recaptcha_clear"/>
+		<div class="recaptcha_space">&nbsp;</div>
 		<div id="recaptcha_logo" class="recaptcha_right"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="__SOURCEWEBPATH__/logo.png" /></div>
 
 		<ul id="recaptcha_ul" class="recaptcha_right">
@@ -64,7 +66,7 @@
 		<div class="recaptcha_only_if_incorrect_sol" style="color:red">__ERROR__</div>
 		
 		<input type="text" id="recaptcha_response_field" class="recaptcha_left" name="recaptcha_response_field"/>
-
+		
 		<span class="recaptcha_only_if_image recaptcha_left">__WORDS__</span>
 		<span class="recaptcha_only_if_audio recaptcha_left">__NUMBERS__</span>
 

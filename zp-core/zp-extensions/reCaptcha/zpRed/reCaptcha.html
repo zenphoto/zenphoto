@@ -5,7 +5,7 @@
 		border: 2px solid #CC0300;
 		background: #FF0400;
 		width: 300px;
-		height: 135px;
+		height: 115px;
 		overflow: hidden;
 		border-radius: 5px 5px 5px 5px;
 	}
@@ -42,12 +42,18 @@
 	.recaptcha_clear {
 		clear: both;
 	}
+	.recaptcha_space {
+		line-height: 10px;
+	}
+	.recaptcha_only_if_image, .recaptcha_only_if_audio {
+		color: white;
+	}
 </style>
 <div id="recaptcha_widget">
 	<div id="recaptcha_widget_content">
 
 		<div id="recaptcha_image"></div>
-		<br class="recaptcha_clear"/>
+		<div class="recaptcha_space">&nbsp;</div>
 		<div id="recaptcha_logo" class="recaptcha_right"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="__SOURCEWEBPATH__/logo.png" /></div>
 
 		<ul id="recaptcha_ul" class="recaptcha_right">
@@ -60,7 +66,7 @@
 			<li id="recaptcha_gethelp" class="recaptcha_button_help"><a href="javascript:Recaptcha.showhelp()" title="__GETHELP__" ><img src="__SOURCEWEBPATH__/help.png" /></a></li>
 		</ul>
 
-		<div class="recaptcha_only_if_incorrect_sol" style="color:red">__ERROR__</div>
+		<div class="recaptcha_only_if_incorrect_sol" style="color:green">__ERROR__</div>
 		
 		<input type="text" id="recaptcha_response_field" class="recaptcha_left" name="recaptcha_response_field"/>
 
