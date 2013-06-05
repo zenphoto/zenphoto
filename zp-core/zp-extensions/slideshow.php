@@ -26,6 +26,7 @@
  * 	<li>The slideshow scripts must be enabled for the pages you wish to use it on.</li>
  * 	<li>Use only one slideshow per page to avoid CSS conflicts.</li>
  *	<li>Also your theme might require extra CSS for this usage, especially the controls.</li>
+ *	<li>This only creates a slideshow in jQuery mode, no matter how the mode is set.</li>
  *</ul>
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard), Don Peterson (dpeterson)
@@ -185,11 +186,11 @@ class slideshow {
 
 		// setting the image size
 		if (!empty($width) AND !empty($height)) {
-			$width = sanitize_numeric($width);
-			$height = sanitize_numeric($height);
+			$width = $wrapperwidth = sanitize_numeric($width);
+			$height = $wrapperheight = sanitize_numeric($height);
 		} else {
-			$width = getOption("slideshow_width");
-			$height = getOption("slideshow_height");
+			$width = $wrapperwidth = getOption("slideshow_width");
+			$height = $wrapperheight =  getOption("slideshow_height");
 		}
 		if($numberofimages == 0) {
 			return '<div class="errorbox" id="message"><h2>'.gettext('No images for the slideshow!').'</h2></div></div>';
@@ -229,8 +230,10 @@ class slideshow {
 						if($crop) {
 							$img = $image->getCustomImage(NULL,$width,$height,$width,$height, NULL, NULL, NULL, NULL);
 						} else {
-							getMaxSpaceContainer($width, $height, $image);
-							$img = $image->getCustomImage(NULL, $width, $height, NULL, NULL, NULL, NULL, NULL, NULL);
+							$maxwidth = $width;
+							$maxheight = $height;
+							getMaxSpaceContainer($maxwidth, $maxheight, $image);
+							$img = $image->getCustomImage(NULL, $maxwidth, $maxheight, NULL, NULL, NULL, NULL, NULL, NULL);
 						}
 						$slideshow .= 'ImageList[' . $cntr . '] = "' . $img . '";'. "\n";
 						$slideshow .= 'TitleList[' . $cntr . '] = "' . js_encode($image->getTitle()) . '";'. "\n";
@@ -272,7 +275,7 @@ class slideshow {
 		if (relativeSlot == 0) {relativeSlot = totalSlideCount;}
 		var htmlblock = "<span class=\"slideimage\"><h4><strong>" + ThisGallery + ":</strong> ";
 		htmlblock += TitleList[currentImageNum]  + " (" + relativeSlot + "/" + totalSlideCount + ")</h4>";
-		';
+		'; 
 				if($linkslides) {
 					if(MOD_REWRITE) {
 						$slideshow .= 'htmlblock += "<a href=\"'.pathurlencode($album->name).'/"+ImageNameList[currentImageNum]+"'.getOption('mod_rewrite_image_suffix').'\">";';
@@ -326,7 +329,7 @@ class slideshow {
 		});	// Documentready()
 		// ]]> -->
 		</script>
-		<div id="slideshow" style="height:'.($height+40).'px; width:'.$width.'px;">
+		<div id="slideshow" style="height:'.($wrapperheight+40).'px; width:'.$wrapperwidth.'px;">
 		';
 				// 7/21/08dp
 				if ($speedctl) {
@@ -419,8 +422,10 @@ class slideshow {
 							if($crop) {
 								$img = $image->getCustomImage(NULL,$width,$height,$width,$height, NULL, NULL, NULL, NULL);
 							} else {
-								getMaxSpaceContainer($width, $height, $image);
-								$img = $image->getCustomImage(NULL, $width, $height, NULL, NULL, NULL, NULL, NULL, NULL);
+								$maxwidth = $width;
+								$maxheight = $height;
+								getMaxSpaceContainer($maxwidth, $maxheight, $image);
+								$img = $image->getCustomImage(NULL, $maxwidth, $maxheight, NULL, NULL, NULL, NULL, NULL, NULL);
 							}
 							$slideshow .= '<img src="'.html_encode($img).'" alt="" />';
 							if($linkslides) $slideshow .= '</a>';
