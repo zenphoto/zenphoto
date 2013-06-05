@@ -985,7 +985,7 @@ function getZenpageRSSHeaderLink($option='', $categorylink='', $linktext='', $la
  * @since 1.4.2
  */
 function generateCaptcha(&$img) {
-	deprecated_functions::notify(gettext('Use $_zp_captcha->getCaptcha(). Note that you will require updating your code to the new function.'));
+	deprecated_functions::notify(gettext('Use $_zp_captcha->getCaptcha($prompt). Note that you will require updating your code to the new function.'));
 	return $img = NULL;
 }
 
@@ -1167,7 +1167,7 @@ function printCaptcha($preText='', $midText='', $postText='') {
 	global $_zp_captcha;
 	deprecated_functions::notify(gettext('use $_zp_captcha->getCaptcha() and format the results as desired.'));
 	if ($_zp_captcha && getOption('Use_Captcha')) {
-		$captcha = $_zp_captcha->getCaptcha(gettext("Enter CAPTCHA*"));
+		$captcha = $_zp_captcha->getCaptcha(gettext("Enter CAPTCHA <strong>*</strong>"));
 		if (isset($captcha['hidden'])) echo $captcha['hidden'];
 		echo $preText;
 		if (isset($captcha['input'])) {

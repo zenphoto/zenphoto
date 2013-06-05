@@ -4,6 +4,8 @@ if (getOption('register_user_address_info')) {
 	zp_register_filter('register_user_registered', 'comment_form_register_save');
 }
 
+$_zp_comment_stored = array();
+
 function comment_form_PaginationJS() {
 	?>
 	<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER ; ?>/js/jquery.pagination.js"></script>
@@ -790,14 +792,14 @@ function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=t
 			if (MEMBERS_ONLY_COMMENTS && !zp_loggedin(POST_COMMENT_RIGHTS)) {
 				echo gettext('Only registered users may post comments.');
 			} else {
-				$stored = array_merge(getCommentStored(),array('street'=>'', 'city'=>'', 'state'=>'', 'country'=>'', 'postal'=>''));
+				$disabled = array('name'=>'',	'website'=>'', 'anon'=>'', 'private'=>'', 'comment'=>'',
+													'street'=>'', 'city'=>'', 'state'=>'', 'country'=>'', 'postal'=>'');
+				$stored = array_merge(array('email'=>'','custom'=>''),$disabled,getCommentStored());
 				$custom = getSerializedArray($stored['custom']);
 				foreach ($custom as $key=>$value) {
 					if (!empty($value)) $stored[$key] = $value;
 				}
 
-				$disabled = array('name'=>'',	'website'=>'', 'anon'=>'', 'private'=>'', 'comment'=>'',
-													'street'=>'', 'city'=>'', 'state'=>'', 'country'=>'', 'postal'=>'');
 				foreach ($stored as $key=>$value) {
 					$disabled[$key] = false;
 				}
@@ -1006,15 +1008,6 @@ function comment_form_handle_comment() {
 		}
 		return $commentadded->comment_error_text;
 	} else {
-		$_zp_comment_stored = array('name'=>'',
-				'email'=>'',
-				'website'=>'',
-				'comment'=>'',
-				'saved'=>false,
-				'private'=>false,
-				'anon'=>false,
-				'custom'=>''
-		);
 		if (!empty($cookie)) {
 			$cookiedata = getSerializedArray($cookie);
 			if (count($cookiedata)>1) {
