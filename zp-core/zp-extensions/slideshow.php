@@ -172,13 +172,13 @@ class slideshow {
 			$returnpath = rewrite_path('/'.pathurlencode($albumobj->name).'/','/index.php?album='.urlencode($albumobj->name));
 			return slideshow::getShow(false,false, $albumobj,NULL,NULL, NULL, false, false, false, $controls, $returnpath, 0);
 		} else {
-			return '<div class="errorbox" id="message"><h2>'.gettext('Invalid slideshow album name!').'</h2></div></div></body></html>';
+			return '<div class="errorbox" id="message"><h2>'.gettext('Invalid slideshow album name!').'</h2></div>';
 		}
 	}
 
 	static function getShow($heading, $speedctl, $albumobj, $imageobj, $width, $height, $crop, $shuffle, $linkslides, $controls, $returnpath, $imagenumber) {
 		if(!$albumobj->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumobj)) {
-			return '<div class="errorbox" id="message"><h2>'.gettext('This album is password protected!').'</h2></div></div>';
+			return '<div class="errorbox" id="message"><h2>'.gettext('This album is password protected!').'</h2></div>';
 		}
 		$slideshow = '';
 
@@ -193,7 +193,7 @@ class slideshow {
 			$height = $wrapperheight =  getOption("slideshow_height");
 		}
 		if($numberofimages == 0) {
-			return '<div class="errorbox" id="message"><h2>'.gettext('No images for the slideshow!').'</h2></div></div>';
+			return '<div class="errorbox" id="message"><h2>'.gettext('No images for the slideshow!').'</h2></div>';
 		}
 		$option = getOption("slideshow_mode");
 		// jQuery Cycle slideshow config
@@ -275,7 +275,7 @@ class slideshow {
 		if (relativeSlot == 0) {relativeSlot = totalSlideCount;}
 		var htmlblock = "<span class=\"slideimage\"><h4><strong>" + ThisGallery + ":</strong> ";
 		htmlblock += TitleList[currentImageNum]  + " (" + relativeSlot + "/" + totalSlideCount + ")</h4>";
-		'; 
+		';
 				if($linkslides) {
 					if(MOD_REWRITE) {
 						$slideshow .= 'htmlblock += "<a href=\"'.pathurlencode($album->name).'/"+ImageNameList[currentImageNum]+"'.getOption('mod_rewrite_image_suffix').'\">";';
@@ -562,7 +562,7 @@ function printSlideShowLink($linktext=NULL, $linkstyle=Null) {
 				setOptionDefault('colorbox_'.$theme.'_'.$script, 1);
 				$themes =$_zp_gallery->getThemes();
 				?>
-				<p class="errorbox"><?php printf(gettext('Slideshow not available because colorbox is not enabled on %1$s <em>%2$s</em> pages.'),$themes[$theme]['name'],$script); ?></p>
+				<div class="errorbox"><?php printf(gettext('Slideshow not available because colorbox is not enabled on %1$s <em>%2$s</em> pages.'),$themes[$theme]['name'],$script); ?></div>
 				<?php
 				break;
 			}
@@ -695,7 +695,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $i
 	//	Just incase the theme has not set the option, at least second try will work!
 	setOptionDefault('slideshow_'.$_zp_gallery->getCurrentTheme().'_'.stripSuffix($_zp_gallery_page),1);
 	if (!isset($_POST['albumid']) AND !is_object($albumobj)) {
-			return '<div class="errorbox" id="message"><h2>'.gettext('Invalid linking to the slideshow page.').'</h2></div></div></body></html>';
+			return '<div class="errorbox" id="message"><h2>'.gettext('Invalid linking to the slideshow page.').'</h2></div>';
 		}
 		//getting the image to start with
 		if(!empty($_POST['imagenumber']) AND !is_object($imageobj)) {
