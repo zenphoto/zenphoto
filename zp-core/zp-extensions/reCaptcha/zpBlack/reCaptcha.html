@@ -2,8 +2,8 @@
 	
 	#recaptcha_widget_content {
 		padding: 5px;
-		border: 2px solid #0032BA;
-		background: #0032BA;
+		border: 2px solid black;
+		background: url(__SOURCEWEBPATH__/background.png);
 		width: 300px;
 		height: 115px;
 		overflow: hidden;
@@ -57,19 +57,19 @@
 		<div id="recaptcha_logo" class="recaptcha_right"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="__SOURCEWEBPATH__/logo.png" /></div>
 
 		<ul id="recaptcha_ul" class="recaptcha_right">
-			<li id="recaptcha_refresh" class="recaptcha_button_refresh"><a href="javascript:Recaptcha.reload()" title="__RELOAD__" ><img src="__SOURCEWEBPATH__/refresh.png" ></a></li>
+			<li id="recaptcha_refresh" class="recaptcha_button_refresh"><a href="javascript:Recaptcha.reload()" title="__RELOAD__" ><img src="__SOURCEWEBPATH__/refresh.gif" ></a></li>
 
-			<li id="recaptcha_audio" class="recaptcha_only_if_image recaptcha_button_audio"><a href="javascript:Recaptcha.switch_type('audio')" title="__GETAUDIO__" ><img src="__SOURCEWEBPATH__/audio.png" /></a></li>
+			<li id="recaptcha_audio" class="recaptcha_only_if_image recaptcha_button_audio"><a href="javascript:Recaptcha.switch_type('audio')" title="__GETAUDIO__" ><img src="__SOURCEWEBPATH__/audio.gif" /></a></li>
 
-			<li id="recaptcha_image" class="recaptcha_only_if_audio recaptcha_button_text"><a href="javascript:Recaptcha.switch_type('image')"  title="__GETIMAGE__" ><img src="__SOURCEWEBPATH__/text.png" /></a></li>
+			<li id="recaptcha_image" class="recaptcha_only_if_audio recaptcha_button_text"><a href="javascript:Recaptcha.switch_type('image')"  title="__GETIMAGE__" ><img src="__SOURCEWEBPATH__/text.gif" /></a></li>
 
-			<li id="recaptcha_gethelp" class="recaptcha_button_help"><a href="javascript:Recaptcha.showhelp()" title="__GETHELP__" ><img src="__SOURCEWEBPATH__/help.png" /></a></li>
+			<li id="recaptcha_gethelp" class="recaptcha_button_help"><a href="javascript:Recaptcha.showhelp()" title="__GETHELP__" ><img src="__SOURCEWEBPATH__/help.gif" /></a></li>
 		</ul>
 
 		<div class="recaptcha_only_if_incorrect_sol" style="color:red">__ERROR__</div>
 		
 		<input type="text" id="recaptcha_response_field" class="recaptcha_left" name="recaptcha_response_field"/>
-		
+
 		<span class="recaptcha_only_if_image recaptcha_left">__WORDS__</span>
 		<span class="recaptcha_only_if_audio recaptcha_left">__NUMBERS__</span>
 

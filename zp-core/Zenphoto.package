@@ -1037,6 +1037,14 @@ zp-core/zp-extensions/rating/update.php
 zp-core/zp-extensions/reCaptcha
 zp-core/zp-extensions/reCaptcha.php
 zp-core/zp-extensions/reCaptcha/recaptchalib.php
+zp-core/zp-extensions/reCaptcha/zpBlack
+zp-core/zp-extensions/reCaptcha/zpBlack/audio.gif
+zp-core/zp-extensions/reCaptcha/zpBlack/background.png
+zp-core/zp-extensions/reCaptcha/zpBlack/help.gif
+zp-core/zp-extensions/reCaptcha/zpBlack/logo.png
+zp-core/zp-extensions/reCaptcha/zpBlack/reCaptcha.html
+zp-core/zp-extensions/reCaptcha/zpBlack/refresh.gif
+zp-core/zp-extensions/reCaptcha/zpBlack/text.gif
 zp-core/zp-extensions/reCaptcha/zpBlue
 zp-core/zp-extensions/reCaptcha/zpBlue/audio.png
 zp-core/zp-extensions/reCaptcha/zpBlue/help.png
@@ -1794,4 +1802,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1796
+1804
