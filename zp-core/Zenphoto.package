@@ -973,9 +973,9 @@ zp-core/zp-extensions/jplayer.php
 zp-core/zp-extensions/jplayer/js
 zp-core/zp-extensions/jplayer/js/Jplayer.swf
 zp-core/zp-extensions/jplayer/js/jplayer.playlist.min.js
-zp-core/zp-extensions/jplayer/js/jquery.jplayer.inspector.min.js
+zp-core/zp-extensions/jplayer/js/jquery.jplayer.inspector.js
 zp-core/zp-extensions/jplayer/js/jquery.jplayer.min.js
-zp-core/zp-extensions/jplayer/js/popcorn.jplayer.min.js
+zp-core/zp-extensions/jplayer/js/popcorn.jplayer.js
 zp-core/zp-extensions/jplayer/skin
 zp-core/zp-extensions/jplayer/skin/blue.monday
 zp-core/zp-extensions/jplayer/skin/blue.monday/jplayer.blue.monday.css
