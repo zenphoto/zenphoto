@@ -20,6 +20,10 @@
  * Otherwise it will not work. It is all or none.
  * See {@link http://jplayer.org/latest/developer-guide/#reference-html5-media the developer guide} for info on that.
  *
+ * Note on POPCORN Support (http://popcornjs.org)
+ * jPlayer has support for this interactive libary and its plugin is included but currently not loaded or implemented. You need to customize the plugin or your theme to use it.
+ * Please refer to http://jplayer.org/latest/developer-guide/ and http://popcornjs.org to learn about this extra functionality.
+ *
  * NOTE ON PLAYER SKINS:<br>
  * The look of the player is determined by a pure HTML/CSS based skin (theme). There may occur display issues with themes.
  * Only the Zenphoto's own default skins <var>zenphotolight</var> and <var>zenphotodark</var>

@@ -316,12 +316,12 @@ foreach ($filelist as $extension) {
 					<?php
 				}
 				echo $extension;
+				if (!empty($plugin_version)) {
+					echo ' v'.$plugin_version;
+				}
 			?>
 			</label>
 			<?php
-			if (!empty($plugin_version)) {
-				echo ' v'.$plugin_version;
-			}
 			if ($subtab=='all') {
 				$tab = $member[$extension];
 					echo '<span class="displayrightsmall"><a href="'.$tabs[$tab].'"><em>'.$tab.'</em></a></span>';
