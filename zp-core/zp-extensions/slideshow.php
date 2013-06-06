@@ -94,7 +94,7 @@ class slideshow {
 			foreach ($scripts as $script) {
 				$list[$script] = 'slideshow_'.$theme.'_'.stripSuffix($script);
 			}
-			$opts[$theme] = array('key' => 'slidewshow_'.$theme.'_scripts', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
+			$opts[$theme] = array('key' => 'slideshow_'.$theme.'_scripts', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
 					'checkboxes' => $list,
 					'desc' => gettext('The scripts for which the slideshow is enabled. {Should have been set by the themes!}')
 			);
