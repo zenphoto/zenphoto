@@ -1126,7 +1126,9 @@ zp-core/zp-extensions/slideshow
 zp-core/zp-extensions/slideshow.php
 zp-core/zp-extensions/slideshow/controls.png
 zp-core/zp-extensions/slideshow/jquery.cycle.all.js
+zp-core/zp-extensions/slideshow/slideshow-controls.png
 zp-core/zp-extensions/slideshow/slideshow-counter.php
+zp-core/zp-extensions/slideshow/slideshow.css
 zp-core/zp-extensions/static_html_cache.php
 zp-core/zp-extensions/tag_extras.php
 zp-core/zp-extensions/tag_suggest
@@ -1809,4 +1811,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1811
+1813
