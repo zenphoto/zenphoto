@@ -1,12 +1,7 @@
-body {
-		background-color: black;
-		text-align: center;
-		color: white;
-	}
-	
 	h4 {
 		margin-top: 25px;	
 		font-weight: normal;
+		font-size: 14px;
 	}
 	
 	#slideshowpage {
@@ -21,15 +16,15 @@ body {
 
 	#slideshow { 
 		color: white;
-		margin: 0 auto;
 		text-align: center;
+		margin: 0 auto;
+		padding-bottom: 30px;
 	}
 	
 	#slideshow a img {
 		border: 0;
 	}
-	
-		
+			
 	#controls { 
 		position: relative;
 	 	background-color: transparent; 

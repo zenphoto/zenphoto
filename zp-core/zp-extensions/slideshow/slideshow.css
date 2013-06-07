@@ -1,12 +1,6 @@
-	h4 {
-		margin-top: 25px;	
-		font-weight: normal;
-		font-size: 14px;
-	}
-	
 	#slideshowpage {
 		position: relative;
-		padding-top: 20px;
+		padding-top: 0px;
 		margin: 0 auto;
 		width: 100%;
 		text-align:center;
@@ -22,7 +16,7 @@
 	}
 	
 	#slideshow a img {
-		border: 0;
+		border: 1px solid red;
 	}
 			
 	#controls { 
@@ -33,7 +27,7 @@
     margin: 0 auto; 
     top: 0px;
     padding: 0; 
-    width: 217px !important; 
+    width: 217px; 
     height: 42px;
     font-size: 0.8em;
 	}

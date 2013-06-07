@@ -1,8 +1,3 @@
-body { /*		background-color: black; */
-	text-align: center;
-	color: white;
-}
-
 h4 {
 	margin-top: 25px;
 	font-weight: normal;
@@ -22,6 +17,7 @@ h4 {
 	color: white;
 	text-align: center;
 	margin: 0 auto;
+	padding-bottom: 70px;
 }
 
 #slideshow a img {
