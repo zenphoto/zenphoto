@@ -274,7 +274,7 @@ class htmlmetatags {
 
 		// DC meta data
 		if(getOption('htmlmeta_name-DC-title')) { $meta .= '<meta name="DC.title" content="'.$pagetitle.'" />'."\n"; }
-		if(getOption('htmlmeta_name-DC-keywords')) { $meta .= '<meta name="DC.keywords" content="'.gettMetaKeywords().'" />'."\n"; }
+		if(getOption('htmlmeta_name-DC-keywords')) { $meta .= '<meta name="DC.keywords" content="'.htmlmetatags::getMetaKeywords().'" />'."\n"; }
 		if(getOption('htmlmeta_name-DC-description')) { $meta .= '<meta name="DC.description" content="'.$desc.'" />'."\n"; }
 		if(getOption('htmlmeta_name-DC-language')) { $meta .= '<meta name="DC.language" content="'.$locale.'" />'."\n"; }
 		if(getOption('htmlmeta_name-DC-subject')) { $meta .= '<meta name="DC.subject" content="'.$desc.'" />'."\n"; }
