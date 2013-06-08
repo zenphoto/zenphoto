@@ -1417,6 +1417,10 @@ float: left;
 display: block;
 }
 
+form label strong {
+color: red;
+}
+
 #registration_form input[type="text"],
 #registration_form input[type="password"],
 #mailform input[type="text"],
