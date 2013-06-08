@@ -21,7 +21,7 @@
 		if(showOrNotShowField(getOption('contactform_name'))) {
 			?>
 			<p>
-				<label for="name"><?php printf(gettext("Name%s"),(checkRequiredField(getOption('contactform_name') ? $star : ''))); ?></label>
+				<label for="name"><?php printf(gettext("Name%s"),(checkRequiredField(getOption('contactform_name')) ? $star : '')); ?></label>
 				<input type="text" id="name" name="name" size="50" value="<?php echo html_encode($mailcontent['name']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
 			</p>
 			<?php
