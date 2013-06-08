@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-31 17:41+0100\n"
+"POT-Creation-Date: 2013-06-08 09:02+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -20,7 +20,7 @@ msgstr ""
 #: ZpTranslation-Development/themes/default/404.php:10
 #: ZpTranslation-Development/themes/default/404.php:22
 #: ZpTranslation-Development/themes/effervescence_plus/404.php:9
-#: ZpTranslation-Development/themes/effervescence_plus/404.php:40
+#: ZpTranslation-Development/themes/effervescence_plus/404.php:38
 #: ZpTranslation-Development/themes/stopdesign/404.php:9
 #: ZpTranslation-Development/themes/stopdesign/404.php:22
 #: ZpTranslation-Development/themes/stopdesign/404.php:49
@@ -67,7 +67,7 @@ msgid "Gallery Index"
 msgstr "Galerij Index"
 
 #: ZpTranslation-Development/themes/default/404.php:27
-#: ZpTranslation-Development/themes/effervescence_plus/404.php:51
+#: ZpTranslation-Development/themes/effervescence_plus/404.php:49
 #: ZpTranslation-Development/themes/garland/404.php:44
 #: ZpTranslation-Development/themes/stopdesign/404.php:28
 #: ZpTranslation-Development/themes/zenpage/404.php:35
@@ -76,7 +76,7 @@ msgid "The Zenphoto object you are requesting cannot be found."
 msgstr "Het Zenphoto object dat je zoekt kan niet gevonden worden."
 
 #: ZpTranslation-Development/themes/default/404.php:29
-#: ZpTranslation-Development/themes/effervescence_plus/404.php:53
+#: ZpTranslation-Development/themes/effervescence_plus/404.php:51
 #: ZpTranslation-Development/themes/stopdesign/404.php:30
 #: ZpTranslation-Development/zp-core/404.php:12
 #, php-format
@@ -84,7 +84,7 @@ msgid "Album: %s"
 msgstr "Album: %s"
 
 #: ZpTranslation-Development/themes/default/404.php:32
-#: ZpTranslation-Development/themes/effervescence_plus/404.php:56
+#: ZpTranslation-Development/themes/effervescence_plus/404.php:54
 #: ZpTranslation-Development/themes/stopdesign/404.php:33
 #: ZpTranslation-Development/zp-core/404.php:15
 #, php-format
@@ -92,7 +92,7 @@ msgid "Image: %s"
 msgstr "Afbeelding: %s"
 
 #: ZpTranslation-Development/themes/default/404.php:35
-#: ZpTranslation-Development/themes/effervescence_plus/404.php:59
+#: ZpTranslation-Development/themes/effervescence_plus/404.php:57
 #: ZpTranslation-Development/themes/stopdesign/404.php:36
 #: ZpTranslation-Development/zp-core/404.php:18
 #, php-format
@@ -100,9 +100,9 @@ msgid "Page: %s"
 msgstr "Pagina: %s"
 
 #: ZpTranslation-Development/themes/default/album.php:22
-#: ZpTranslation-Development/themes/effervescence_plus/album.php:60
-#: ZpTranslation-Development/themes/effervescence_plus/favorites.php:54
-#: ZpTranslation-Development/themes/effervescence_plus/search.php:93
+#: ZpTranslation-Development/themes/effervescence_plus/album.php:57
+#: ZpTranslation-Development/themes/effervescence_plus/favorites.php:51
+#: ZpTranslation-Development/themes/effervescence_plus/search.php:90
 #: ZpTranslation-Development/themes/garland/sidebar.php:10
 #: ZpTranslation-Development/themes/garland/sidebar.php:38
 #: ZpTranslation-Development/themes/stopdesign/album.php:39
@@ -119,19 +119,19 @@ msgstr "zoeken"
 #: ZpTranslation-Development/themes/default/album.php:28
 #: ZpTranslation-Development/themes/default/favorites.php:21
 #: ZpTranslation-Development/themes/default/image.php:43
-#: ZpTranslation-Development/themes/effervescence_plus/404.php:39
-#: ZpTranslation-Development/themes/effervescence_plus/album.php:84
-#: ZpTranslation-Development/themes/effervescence_plus/archive.php:40
-#: ZpTranslation-Development/themes/effervescence_plus/contact.php:52
-#: ZpTranslation-Development/themes/effervescence_plus/favorites.php:78
-#: ZpTranslation-Development/themes/effervescence_plus/image.php:99
-#: ZpTranslation-Development/themes/effervescence_plus/indexpage.php:79
-#: ZpTranslation-Development/themes/effervescence_plus/indexpage.php:92
-#: ZpTranslation-Development/themes/effervescence_plus/news.php:53
-#: ZpTranslation-Development/themes/effervescence_plus/pages.php:43
-#: ZpTranslation-Development/themes/effervescence_plus/register.php:50
-#: ZpTranslation-Development/themes/effervescence_plus/search.php:116
-#: ZpTranslation-Development/themes/effervescence_plus/slideshow.php:42
+#: ZpTranslation-Development/themes/effervescence_plus/404.php:37
+#: ZpTranslation-Development/themes/effervescence_plus/album.php:81
+#: ZpTranslation-Development/themes/effervescence_plus/archive.php:37
+#: ZpTranslation-Development/themes/effervescence_plus/contact.php:48
+#: ZpTranslation-Development/themes/effervescence_plus/favorites.php:75
+#: ZpTranslation-Development/themes/effervescence_plus/image.php:96
+#: ZpTranslation-Development/themes/effervescence_plus/indexpage.php:76
+#: ZpTranslation-Development/themes/effervescence_plus/indexpage.php:89
+#: ZpTranslation-Development/themes/effervescence_plus/news.php:50
+#: ZpTranslation-Development/themes/effervescence_plus/pages.php:40
+#: ZpTranslation-Development/themes/effervescence_plus/register.php:46
+#: ZpTranslation-Development/themes/effervescence_plus/search.php:113
+#: ZpTranslation-Development/themes/effervescence_plus/slideshow.php:38
 #: ZpTranslation-Development/themes/stopdesign/404.php:46
 #: ZpTranslation-Development/themes/stopdesign/album.php:184
 #: ZpTranslation-Development/themes/stopdesign/favorites.php:166
@@ -176,16 +176,16 @@ msgstr "Bekijk album:"
 #: ZpTranslation-Development/themes/default/image.php:35
 #: ZpTranslation-Development/themes/default/index.php:44
 #: ZpTranslation-Development/themes/default/search.php:87
+#: ZpTranslation-Development/themes/effervescence_plus/album.php:36
 #: ZpTranslation-Development/themes/effervescence_plus/album.php:39
-#: ZpTranslation-Development/themes/effervescence_plus/album.php:42
-#: ZpTranslation-Development/themes/effervescence_plus/album.php:179
+#: ZpTranslation-Development/themes/effervescence_plus/album.php:176
+#: ZpTranslation-Development/themes/effervescence_plus/favorites.php:30
 #: ZpTranslation-Development/themes/effervescence_plus/favorites.php:33
-#: ZpTranslation-Development/themes/effervescence_plus/favorites.php:36
-#: ZpTranslation-Development/themes/effervescence_plus/favorites.php:209
-#: ZpTranslation-Development/themes/effervescence_plus/gallery.php:98
-#: ZpTranslation-Development/themes/effervescence_plus/image.php:63
-#: ZpTranslation-Development/themes/effervescence_plus/image.php:65
-#: ZpTranslation-Development/themes/effervescence_plus/search.php:309
+#: ZpTranslation-Development/themes/effervescence_plus/favorites.php:206
+#: ZpTranslation-Development/themes/effervescence_plus/gallery.php:95
+#: ZpTranslation-Development/themes/effervescence_plus/image.php:60
+#: ZpTranslation-Development/themes/effervescence_plus/image.php:62
+#: ZpTranslation-Development/themes/effervescence_plus/search.php:306
 #: ZpTranslation-Development/themes/zenpage/album.php:42
 #: ZpTranslation-Development/themes/zenpage/album.php:74
 #: ZpTranslation-Development/themes/zenpage/favorites.php:39
@@ -204,8 +204,8 @@ msgstr "Bekijk album:"
 #: ZpTranslation-Development/themes/zpmobile/news.php:43
 #: ZpTranslation-Development/themes/zpmobile/search.php:160
 #: ZpTranslation-Development/zp-core/admin-functions.php:4276
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:580
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:31
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:593
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:33
 msgid "prev"
 msgstr "vorige"
 
@@ -214,16 +214,16 @@ msgstr "vorige"
 #: ZpTranslation-Development/themes/default/image.php:37
 #: ZpTranslation-Development/themes/default/index.php:44
 #: ZpTranslation-Development/themes/default/search.php:87
+#: ZpTranslation-Development/themes/effervescence_plus/album.php:47
 #: ZpTranslation-Development/themes/effervescence_plus/album.php:50
-#: ZpTranslation-Development/themes/effervescence_plus/album.php:53
-#: ZpTranslation-Development/themes/effervescence_plus/album.php:179
+#: ZpTranslation-Development/themes/effervescence_plus/album.php:176
+#: ZpTranslation-Development/themes/effervescence_plus/favorites.php:41
 #: ZpTranslation-Development/themes/effervescence_plus/favorites.php:44
-#: ZpTranslation-Development/themes/effervescence_plus/favorites.php:47
-#: ZpTranslation-Development/themes/effervescence_plus/favorites.php:209
-#: ZpTranslation-Development/themes/effervescence_plus/gallery.php:98
-#: ZpTranslation-Development/themes/effervescence_plus/image.php:73
-#: ZpTranslation-Development/themes/effervescence_plus/image.php:75
-#: ZpTranslation-Development/themes/effervescence_plus/search.php:309
+#: ZpTranslation-Development/themes/effervescence_plus/favorites.php:206
+#: ZpTranslation-Development/themes/effervescence_plus/gallery.php:95
+#: ZpTranslation-Development/themes/effervescence_plus/image.php:70
+#: ZpTranslation-Development/themes/effervescence_plus/image.php:72
+#: ZpTranslation-Development/themes/effervescence_plus/search.php:306
 #: ZpTranslation-Development/themes/zenpage/album.php:42
 #: ZpTranslation-Development/themes/zenpage/album.php:74
 #: ZpTranslation-Development/themes/zenpage/favorites.php:39
@@ -242,9 +242,9 @@ msgstr "vorige"
 #: ZpTranslation-Development/themes/zpmobile/news.php:44
 #: ZpTranslation-Development/themes/zpmobile/search.php:160
 #: ZpTranslation-Development/zp-core/admin-functions.php:4304
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:457
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:581
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:32
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:461
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:594
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:34
 msgid "next"
 msgstr "volgende"
 
@@ -273,7 +273,7 @@ msgstr "Album RSS"
 #: ZpTranslation-Development/themes/default/image.php:107
 #: ZpTranslation-Development/themes/default/index.php:50
 #: ZpTranslation-Development/themes/default/search.php:93
-#: ZpTranslation-Development/themes/effervescence_plus/archive.php:40
+#: ZpTranslation-Development/themes/effervescence_plus/archive.php:37
 #: ZpTranslation-Development/themes/garland/archive.php:8
 #: ZpTranslation-Development/themes/garland/archive.php:39
 #: ZpTranslation-Development/themes/garland/functions.php:104
@@ -309,7 +309,7 @@ msgid "Gallery RSS"
 msgstr "Galerij RSS"
 
 #: ZpTranslation-Development/themes/default/archive.php:34
-#: ZpTranslation-Development/themes/effervescence_plus/archive.php:72
+#: ZpTranslation-Development/themes/effervescence_plus/archive.php:69
 #: ZpTranslation-Development/themes/zenpage/archive.php:46
 #: ZpTranslation-Development/themes/zpmobile/archive.php:38
 msgid "Popular Tags"
@@ -317,7 +317,7 @@ msgstr "Populaire tags"
 
 #: ZpTranslation-Development/themes/default/contact.php:22
 #: ZpTranslation-Development/themes/default/index.php:53
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:352
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:371
 #: ZpTranslation-Development/themes/garland/contact.php:39
 #: ZpTranslation-Development/themes/garland/functions.php:105
 #: ZpTranslation-Development/themes/stopdesign/index.php:187
@@ -328,15 +328,15 @@ msgid "Contact us"
 msgstr "Contact"
 
 #: ZpTranslation-Development/themes/default/contact.php:25
-#: ZpTranslation-Development/themes/effervescence_plus/contact.php:65
+#: ZpTranslation-Development/themes/effervescence_plus/contact.php:61
 #: ZpTranslation-Development/themes/stopdesign/contact.php:29
 msgid "Contact us."
 msgstr "Contact"
 
 #: ZpTranslation-Development/themes/default/favorites.php:39
 #: ZpTranslation-Development/themes/default/favorites.php:54
-#: ZpTranslation-Development/themes/effervescence_plus/favorites.php:123
-#: ZpTranslation-Development/themes/effervescence_plus/favorites.php:175
+#: ZpTranslation-Development/themes/effervescence_plus/favorites.php:120
+#: ZpTranslation-Development/themes/effervescence_plus/favorites.php:172
 #: ZpTranslation-Development/themes/garland/favorites.php:58
 #: ZpTranslation-Development/themes/garland/favorites.php:76
 #: ZpTranslation-Development/themes/stopdesign/favorites.php:58
@@ -349,18 +349,18 @@ msgstr "Contact"
 msgid "Remove"
 msgstr "Verwijder"
 
-#: ZpTranslation-Development/themes/default/functions.php:62
+#: ZpTranslation-Development/themes/default/functions.php:61
 msgid "Default theme color scheme."
 msgstr "Standaardkleuren van het thema."
 
-#: ZpTranslation-Development/themes/default/functions.php:63
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:96
+#: ZpTranslation-Development/themes/default/functions.php:62
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:115
 msgid "Theme Color"
 msgstr "Themakleur"
 
 #: ZpTranslation-Development/themes/default/image.php:21
-#: ZpTranslation-Development/themes/effervescence_plus/image.php:23
-#: ZpTranslation-Development/themes/effervescence_plus/image.php:33
+#: ZpTranslation-Development/themes/effervescence_plus/image.php:20
+#: ZpTranslation-Development/themes/effervescence_plus/image.php:30
 #: ZpTranslation-Development/themes/effervescence_plus/colorbox/functions.php:27
 #: ZpTranslation-Development/themes/garland/image.php:17
 #: ZpTranslation-Development/themes/garland/image.php:27
@@ -371,7 +371,7 @@ msgstr "Themakleur"
 #: ZpTranslation-Development/zp-core/admin-functions.php:142
 #: ZpTranslation-Development/zp-core/admin-plugins.php:84
 #: ZpTranslation-Development/zp-core/zp-extensions/GoogleMap.php:454
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:582
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:595
 #: ZpTranslation-Development/zp-core/zp-extensions/user_login-out.php:154
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:73
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:32
@@ -393,7 +393,7 @@ msgstr "Volgende afbeelding"
 
 #: ZpTranslation-Development/themes/default/index.php:58
 #: ZpTranslation-Development/themes/default/password.php:35
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:353
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:372
 #: ZpTranslation-Development/themes/garland/functions.php:106
 #: ZpTranslation-Development/themes/stopdesign/index.php:190
 #: ZpTranslation-Development/themes/stopdesign/password.php:33
@@ -415,7 +415,7 @@ msgid "Password required"
 msgstr "Wachtwoord vereist"
 
 #: ZpTranslation-Development/themes/default/password.php:24
-#: ZpTranslation-Development/themes/effervescence_plus/password.php:36
+#: ZpTranslation-Development/themes/effervescence_plus/password.php:33
 #: ZpTranslation-Development/themes/zenpage/password.php:28
 #: ZpTranslation-Development/themes/zpmobile/password.php:25
 msgid "A password is required for the page you requested"
@@ -423,7 +423,7 @@ msgstr "Een wachtwoord is nodig om de opgevraagde pagina te bekijken."
 
 #: ZpTranslation-Development/themes/default/register.php:22
 #: ZpTranslation-Development/themes/effervescence_plus/register.php:17
-#: ZpTranslation-Development/themes/effervescence_plus/register.php:53
+#: ZpTranslation-Development/themes/effervescence_plus/register.php:49
 #: ZpTranslation-Development/themes/garland/404.php:8
 #: ZpTranslation-Development/themes/garland/register.php:8
 #: ZpTranslation-Development/themes/garland/register.php:39
@@ -434,7 +434,7 @@ msgid "Register"
 msgstr "Registreer"
 
 #: ZpTranslation-Development/themes/default/register.php:25
-#: ZpTranslation-Development/themes/effervescence_plus/register.php:64
+#: ZpTranslation-Development/themes/effervescence_plus/register.php:60
 #: ZpTranslation-Development/themes/garland/register.php:41
 #: ZpTranslation-Development/themes/stopdesign/register.php:28
 #: ZpTranslation-Development/themes/zenpage/register.php:34
@@ -444,7 +444,7 @@ msgstr "Gebruikers registratie pagina"
 
 #: ZpTranslation-Development/themes/default/search.php:10
 #: ZpTranslation-Development/themes/effervescence_plus/search.php:25
-#: ZpTranslation-Development/themes/effervescence_plus/slideshow.php:55
+#: ZpTranslation-Development/themes/effervescence_plus/slideshow.php:51
 #: ZpTranslation-Development/themes/garland/search.php:12
 #: ZpTranslation-Development/themes/stopdesign/search.php:12
 #: ZpTranslation-Development/themes/stopdesign/search.php:168
@@ -454,7 +454,7 @@ msgstr "Gebruikers registratie pagina"
 #: ZpTranslation-Development/zp-core/template-functions.php:1160
 #: ZpTranslation-Development/zp-core/template-functions.php:1191
 #: ZpTranslation-Development/zp-core/template-functions.php:3592
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:738
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:749
 #: ZpTranslation-Development/zp-core/zp-extensions/deprecated_functions/check_for_deprecated.php:60
 msgid "Search"
 msgstr "Zoeken"
@@ -520,18 +520,18 @@ msgstr "Themakleuren"
 msgid "Select the colors of the theme"
 msgstr "Selecteer de kleuren van het thema."
 
-#: ZpTranslation-Development/themes/effervescence_plus/404.php:35
-#: ZpTranslation-Development/themes/effervescence_plus/album.php:80
-#: ZpTranslation-Development/themes/effervescence_plus/archive.php:36
-#: ZpTranslation-Development/themes/effervescence_plus/contact.php:48
-#: ZpTranslation-Development/themes/effervescence_plus/favorites.php:74
-#: ZpTranslation-Development/themes/effervescence_plus/gallery.php:50
-#: ZpTranslation-Development/themes/effervescence_plus/image.php:95
-#: ZpTranslation-Development/themes/effervescence_plus/news.php:49
-#: ZpTranslation-Development/themes/effervescence_plus/pages.php:39
-#: ZpTranslation-Development/themes/effervescence_plus/register.php:46
-#: ZpTranslation-Development/themes/effervescence_plus/search.php:112
-#: ZpTranslation-Development/themes/effervescence_plus/slideshow.php:38
+#: ZpTranslation-Development/themes/effervescence_plus/404.php:33
+#: ZpTranslation-Development/themes/effervescence_plus/album.php:77
+#: ZpTranslation-Development/themes/effervescence_plus/archive.php:33
+#: ZpTranslation-Development/themes/effervescence_plus/contact.php:44
+#: ZpTranslation-Development/themes/effervescence_plus/favorites.php:71
+#: ZpTranslation-Development/themes/effervescence_plus/gallery.php:47
+#: ZpTranslation-Development/themes/effervescence_plus/image.php:92
+#: ZpTranslation-Development/themes/effervescence_plus/news.php:46
+#: ZpTranslation-Development/themes/effervescence_plus/pages.php:36
+#: ZpTranslation-Development/themes/effervescence_plus/register.php:42
+#: ZpTranslation-Development/themes/effervescence_plus/search.php:109
+#: ZpTranslation-Development/themes/effervescence_plus/slideshow.php:34
 #: ZpTranslation-Development/themes/stopdesign/404.php:45
 #: ZpTranslation-Development/themes/stopdesign/album.php:183
 #: ZpTranslation-Development/themes/stopdesign/contact.php:36
@@ -543,19 +543,19 @@ msgstr "Selecteer de kleuren van het thema."
 msgid "Main Index"
 msgstr "Hoofdindex"
 
-#: ZpTranslation-Development/themes/effervescence_plus/404.php:35
-#: ZpTranslation-Development/themes/effervescence_plus/album.php:80
-#: ZpTranslation-Development/themes/effervescence_plus/archive.php:36
-#: ZpTranslation-Development/themes/effervescence_plus/contact.php:48
-#: ZpTranslation-Development/themes/effervescence_plus/favorites.php:74
-#: ZpTranslation-Development/themes/effervescence_plus/gallery.php:50
-#: ZpTranslation-Development/themes/effervescence_plus/image.php:95
-#: ZpTranslation-Development/themes/effervescence_plus/indexpage.php:46
-#: ZpTranslation-Development/themes/effervescence_plus/news.php:49
-#: ZpTranslation-Development/themes/effervescence_plus/pages.php:39
-#: ZpTranslation-Development/themes/effervescence_plus/register.php:46
-#: ZpTranslation-Development/themes/effervescence_plus/search.php:112
-#: ZpTranslation-Development/themes/effervescence_plus/slideshow.php:38
+#: ZpTranslation-Development/themes/effervescence_plus/404.php:33
+#: ZpTranslation-Development/themes/effervescence_plus/album.php:77
+#: ZpTranslation-Development/themes/effervescence_plus/archive.php:33
+#: ZpTranslation-Development/themes/effervescence_plus/contact.php:44
+#: ZpTranslation-Development/themes/effervescence_plus/favorites.php:71
+#: ZpTranslation-Development/themes/effervescence_plus/gallery.php:47
+#: ZpTranslation-Development/themes/effervescence_plus/image.php:92
+#: ZpTranslation-Development/themes/effervescence_plus/indexpage.php:43
+#: ZpTranslation-Development/themes/effervescence_plus/news.php:46
+#: ZpTranslation-Development/themes/effervescence_plus/pages.php:36
+#: ZpTranslation-Development/themes/effervescence_plus/register.php:42
+#: ZpTranslation-Development/themes/effervescence_plus/search.php:109
+#: ZpTranslation-Development/themes/effervescence_plus/slideshow.php:34
 #: ZpTranslation-Development/themes/stopdesign/404.php:45
 #: ZpTranslation-Development/themes/stopdesign/album.php:183
 #: ZpTranslation-Development/themes/stopdesign/contact.php:36
@@ -571,8 +571,8 @@ msgstr "Hoofdindex"
 msgid "Home"
 msgstr "Home"
 
-#: ZpTranslation-Development/themes/effervescence_plus/album.php:160
-#: ZpTranslation-Development/themes/effervescence_plus/favorites.php:197
+#: ZpTranslation-Development/themes/effervescence_plus/album.php:157
+#: ZpTranslation-Development/themes/effervescence_plus/favorites.php:194
 msgid "Album is empty"
 msgstr "Album is leeg"
 
@@ -590,12 +590,12 @@ msgstr "Album is leeg"
 msgid "Archive"
 msgstr "Archief"
 
-#: ZpTranslation-Development/themes/effervescence_plus/archive.php:62
+#: ZpTranslation-Development/themes/effervescence_plus/archive.php:59
 #: ZpTranslation-Development/themes/garland/archive.php:43
 msgid "Images By Date"
 msgstr "Foto's op datum"
 
-#: ZpTranslation-Development/themes/effervescence_plus/archive.php:67
+#: ZpTranslation-Development/themes/effervescence_plus/archive.php:64
 #: ZpTranslation-Development/themes/garland/archive.php:48
 #: ZpTranslation-Development/themes/zenpage/archive.php:41
 #: ZpTranslation-Development/themes/zpmobile/archive.php:33
@@ -603,7 +603,7 @@ msgid "News archive"
 msgstr "Nieuwsarchief"
 
 #: ZpTranslation-Development/themes/effervescence_plus/contact.php:17
-#: ZpTranslation-Development/themes/effervescence_plus/contact.php:55
+#: ZpTranslation-Development/themes/effervescence_plus/contact.php:51
 #: ZpTranslation-Development/themes/garland/contact.php:8
 #: ZpTranslation-Development/themes/stopdesign/contact.php:27
 #: ZpTranslation-Development/themes/stopdesign/contact.php:38
@@ -611,31 +611,31 @@ msgstr "Nieuwsarchief"
 msgid "Contact"
 msgstr "Contact"
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:95
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:114
 msgid "Effervescence color scheme."
 msgstr "Effervescence kleuren."
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:107
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:126
 msgid "Effervescence image display handling."
 msgstr "Effervescence functie voor het tonen van afbeeldingen."
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:108
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:127
 #: ZpTranslation-Development/themes/garland/functions.php:59
 msgid "Personality"
 msgstr "Persoonlijkheid"
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:138
-#: ZpTranslation-Development/themes/effervescence_plus/indexpage.php:84
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:157
+#: ZpTranslation-Development/themes/effervescence_plus/indexpage.php:81
 msgid "There were no images from which to select the random heading."
 msgstr ""
 "Er zijn geen afbeeldingen waarvan een willekeurige header geselecteerd kan "
 "worden."
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:157
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:176
 msgid "Random picture..."
 msgstr "willekeurige foto..."
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:188
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:207
 #: ZpTranslation-Development/themes/stopdesign/album.php:81
 #: ZpTranslation-Development/themes/stopdesign/favorites.php:79
 #: ZpTranslation-Development/themes/stopdesign/gallery.php:66
@@ -648,7 +648,7 @@ msgid_plural "%u albums"
 msgstr[0] "%u album"
 msgstr[1] "%u albums"
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:194
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:213
 #: ZpTranslation-Development/themes/stopdesign/gallery.php:52
 #: ZpTranslation-Development/themes/stopdesign/gallery.php:64
 #: ZpTranslation-Development/themes/stopdesign/index.php:51
@@ -661,108 +661,108 @@ msgid_plural "%u images"
 msgstr[0] "%u afbeelding"
 msgstr[1] "%u afbeeldingen"
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:204
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:223
 #, php-format
 msgid "Album %1$u of %2$u"
 msgstr "Album %1$u van %2$u"
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:206
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:225
 #, php-format
 msgid "Photo %1$u of %2$u"
 msgstr "Foto %1$u van %2$u"
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:210
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:229
 #, php-format
 msgid "Albums %1$u-%2$u of %3$u"
 msgstr "Albums %1$u-%2$u van %3$u"
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:212
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:231
 #: ZpTranslation-Development/themes/stopdesign/search.php:136
 #, php-format
 msgid "Photos %1$u-%2$u of %3$u"
 msgstr "Foto's %1$u-%2$u van %3$u"
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:246
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:248
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:265
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:267
 #, php-format
 msgid "Effervescence %s"
 msgstr "Effervescence %s"
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:250
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:269
 #, php-format
 msgid "Effervescence %1$s %2$s"
 msgstr "Effervescence %1$s %2$s"
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:282
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:301
 #: ZpTranslation-Development/zp-core/template-functions.php:981
 msgid "The album is password protected."
 msgstr "Dit is album is beveiligd met een wachtwoord."
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:285
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:304
 msgid "The album is not published."
 msgstr "Dit album is niet gepubliceerd."
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:287
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:306
 #, php-format
 msgid "View the Album: %s"
 msgstr "Bekijk het album: %s"
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:294
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:313
 msgid "The image is marked not visible."
 msgstr "Deze afbeelding als onzichtbaar gemarkeerd."
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:298
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:317
 #, php-format
 msgid "View the image: %s"
 msgstr "Bekijk de afbeelding: %s"
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:313
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:332
 #, php-format
 msgid "%1$u hit on this %2$s"
 msgid_plural "%1$u hits on this %2$s"
 msgstr[0] "%1$u hit op deze %2$s"
 msgstr[1] "%1$u hits op deze %2$s"
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:313
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:332
 msgid "page"
 msgstr "pagina"
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:321
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:340
 #, php-format
 msgid "%u Album"
 msgid_plural "%u Albums"
 msgstr[0] "%u album"
 msgstr[1] "%u albums"
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:322
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:341
 #, php-format
 msgid "%u Subalbum"
 msgid_plural "%u Subalbums"
 msgstr[0] "%u subalbum"
 msgstr[1] "%u subalbums"
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:325
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:344
 #, php-format
 msgid "%u Image"
 msgid_plural "%u Images"
 msgstr[0] "%u afbeelding"
 msgstr[1] "%u afbeeldingen"
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:332
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:729
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:351
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:209
 #, php-format
 msgid "%u Comment"
 msgid_plural "%u Comments"
 msgstr[0] "%u reactie"
 msgstr[1] "%u reacties"
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:363
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:382
 #: ZpTranslation-Development/themes/garland/functions.php:124
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:159
 msgid "album"
 msgstr "album"
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:363
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:382
 #: ZpTranslation-Development/themes/garland/functions.php:124
 #: ZpTranslation-Development/zp-core/admin-edit.php:1339
 #: ZpTranslation-Development/zp-core/admin-globals.php:114
@@ -772,34 +772,34 @@ msgstr "album"
 msgid "image"
 msgstr "afbeelding"
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:363
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:382
 #: ZpTranslation-Development/themes/garland/functions.php:124
 msgid "video"
 msgstr "video"
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:363
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:382
 #: ZpTranslation-Development/themes/garland/functions.php:124
 #: ZpTranslation-Development/zp-core/admin-globals.php:75
 #: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:398
 msgid "news"
 msgstr "nieuws"
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:368
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:387
 #: ZpTranslation-Development/themes/garland/functions.php:129
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-edit.php:442
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:281
 msgid "sticky"
 msgstr "Sticky (vastprikken)"
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:381
-#: ZpTranslation-Development/themes/effervescence_plus/news.php:90
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:400
+#: ZpTranslation-Development/themes/effervescence_plus/news.php:87
 #: ZpTranslation-Development/themes/garland/functions.php:142
 #: ZpTranslation-Development/themes/garland/news.php:59
 #, php-format
 msgid "Comments: %d"
 msgstr "Reacties: %d"
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:387
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:406
 #: ZpTranslation-Development/themes/garland/functions.php:148
 #: ZpTranslation-Development/themes/zenpage/gallery.php:68
 #: ZpTranslation-Development/themes/zenpage/news.php:91
@@ -807,8 +807,8 @@ msgstr "Reacties: %d"
 msgid "Album:"
 msgstr "Album:"
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:391
-#: ZpTranslation-Development/themes/effervescence_plus/news.php:99
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:410
+#: ZpTranslation-Development/themes/effervescence_plus/news.php:96
 #: ZpTranslation-Development/themes/garland/functions.php:152
 #: ZpTranslation-Development/themes/garland/news.php:104
 #: ZpTranslation-Development/themes/zenpage/gallery.php:73
@@ -819,7 +819,7 @@ msgstr "Album:"
 msgid "Categories: "
 msgstr "Categoriën:"
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:404
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:423
 #: ZpTranslation-Development/themes/garland/album.php:77
 #: ZpTranslation-Development/themes/garland/favorites.php:87
 #: ZpTranslation-Development/themes/garland/functions.php:166
@@ -834,7 +834,7 @@ msgstr "Categoriën:"
 msgid "next »"
 msgstr "volgende »"
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:404
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:423
 #: ZpTranslation-Development/themes/garland/album.php:77
 #: ZpTranslation-Development/themes/garland/favorites.php:87
 #: ZpTranslation-Development/themes/garland/functions.php:166
@@ -849,12 +849,12 @@ msgstr "volgende »"
 msgid "« prev"
 msgstr "« vorige"
 
-#: ZpTranslation-Development/themes/effervescence_plus/functions.php:424
+#: ZpTranslation-Development/themes/effervescence_plus/functions.php:443
 #: ZpTranslation-Development/themes/stopdesign/comment_form/comment_form.php:19
 msgid "Add a comment"
 msgstr "Reageer"
 
-#: ZpTranslation-Development/themes/effervescence_plus/gallery.php:36
+#: ZpTranslation-Development/themes/effervescence_plus/gallery.php:33
 #: ZpTranslation-Development/themes/garland/sidebar.php:14
 msgid "Search albums"
 msgstr "Zoek in albums"
@@ -864,8 +864,8 @@ msgstr "Zoek in albums"
 msgid "Zenphoto gallery"
 msgstr "Zenphoto galerij"
 
-#: ZpTranslation-Development/themes/effervescence_plus/indexpage.php:34
-#: ZpTranslation-Development/themes/effervescence_plus/search.php:95
+#: ZpTranslation-Development/themes/effervescence_plus/indexpage.php:31
+#: ZpTranslation-Development/themes/effervescence_plus/search.php:92
 #: ZpTranslation-Development/themes/garland/sidebar.php:41
 #: ZpTranslation-Development/themes/garland/sidebar.php:47
 #: ZpTranslation-Development/themes/zenpage/archive.php:25
@@ -876,12 +876,12 @@ msgstr "Zenphoto galerij"
 msgid "Search gallery"
 msgstr "zoek"
 
-#: ZpTranslation-Development/themes/effervescence_plus/indexpage.php:69
+#: ZpTranslation-Development/themes/effervescence_plus/indexpage.php:66
 msgid "Picture of the day"
 msgstr "Foto van de dag"
 
-#: ZpTranslation-Development/themes/effervescence_plus/indexpage.php:80
-#: ZpTranslation-Development/themes/effervescence_plus/indexpage.php:92
+#: ZpTranslation-Development/themes/effervescence_plus/indexpage.php:77
+#: ZpTranslation-Development/themes/effervescence_plus/indexpage.php:89
 #: ZpTranslation-Development/themes/effervescence_plus/sidebar.php:33
 #: ZpTranslation-Development/themes/effervescence_plus/sidebar.php:40
 msgid "Visit the image gallery"
@@ -915,19 +915,19 @@ msgstr "Ga naar de fotogalerij"
 #: ZpTranslation-Development/zp-core/zp-extensions/related_items.php:185
 #: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:87
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:330
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:1301
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:1306
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:1075
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:1080
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1435
 msgid "News"
 msgstr "Nieuws"
 
-#: ZpTranslation-Development/themes/effervescence_plus/news.php:31
-#: ZpTranslation-Development/themes/effervescence_plus/search.php:88
+#: ZpTranslation-Development/themes/effervescence_plus/news.php:28
+#: ZpTranslation-Development/themes/effervescence_plus/search.php:85
 #: ZpTranslation-Development/themes/garland/sidebar.php:33
 msgid "Search within category"
 msgstr "Zoek in categorie"
 
-#: ZpTranslation-Development/themes/effervescence_plus/news.php:34
+#: ZpTranslation-Development/themes/effervescence_plus/news.php:31
 #: ZpTranslation-Development/themes/garland/sidebar.php:26
 #: ZpTranslation-Development/themes/zenpage/news.php:32
 msgid "Search news"
@@ -969,7 +969,7 @@ msgstr "Zoek in nieuws"
 msgid "Pages"
 msgstr "Pagina's"
 
-#: ZpTranslation-Development/themes/effervescence_plus/password.php:35
+#: ZpTranslation-Development/themes/effervescence_plus/password.php:32
 #: ZpTranslation-Development/themes/zenpage/album.php:35
 #: ZpTranslation-Development/themes/zenpage/archive.php:30
 #: ZpTranslation-Development/themes/zenpage/contact.php:29
@@ -984,21 +984,21 @@ msgstr "Pagina's"
 msgid "Index"
 msgstr "Index"
 
-#: ZpTranslation-Development/themes/effervescence_plus/search.php:120
+#: ZpTranslation-Development/themes/effervescence_plus/search.php:117
 #, php-format
 msgid "Search album: %s"
 msgid_plural "Search albums: %s"
 msgstr[0] "Zoek in album: %s"
 msgstr[1] "Zoek in albums: %s"
 
-#: ZpTranslation-Development/themes/effervescence_plus/search.php:123
+#: ZpTranslation-Development/themes/effervescence_plus/search.php:120
 #, php-format
 msgid "Search category: %s"
 msgid_plural "Search categories: %s"
 msgstr[0] "Zoek in categorie: %s"
 msgstr[1] "Zoek in categorieën: %s"
 
-#: ZpTranslation-Development/themes/effervescence_plus/search.php:143
+#: ZpTranslation-Development/themes/effervescence_plus/search.php:140
 #: ZpTranslation-Development/themes/garland/search.php:91
 #: ZpTranslation-Development/themes/zenpage/search.php:76
 #: ZpTranslation-Development/themes/zpmobile/search.php:66
@@ -1008,7 +1008,7 @@ msgid_plural "%1$u Hits for <em>%2$s</em>"
 msgstr[0] "%1$u Hit voor <em>%2$s</em>"
 msgstr[1] "%1$u Hits voor <em>%2$s</em>"
 
-#: ZpTranslation-Development/themes/effervescence_plus/search.php:155
+#: ZpTranslation-Development/themes/effervescence_plus/search.php:152
 #: ZpTranslation-Development/themes/garland/search.php:112
 #: ZpTranslation-Development/themes/zenpage/search.php:87
 #: ZpTranslation-Development/themes/zpmobile/search.php:77
@@ -1016,8 +1016,8 @@ msgstr[1] "%1$u Hits voor <em>%2$s</em>"
 msgid "Pages (%s)"
 msgstr "Pagina's (%s)"
 
-#: ZpTranslation-Development/themes/effervescence_plus/search.php:159
-#: ZpTranslation-Development/themes/effervescence_plus/search.php:191
+#: ZpTranslation-Development/themes/effervescence_plus/search.php:156
+#: ZpTranslation-Development/themes/effervescence_plus/search.php:188
 #: ZpTranslation-Development/themes/garland/search.php:116
 #: ZpTranslation-Development/themes/garland/search.php:148
 #: ZpTranslation-Development/themes/zenpage/functions.php:47
@@ -1025,8 +1025,8 @@ msgstr "Pagina's (%s)"
 msgid "Show more results"
 msgstr "Toon meer resultaten"
 
-#: ZpTranslation-Development/themes/effervescence_plus/search.php:160
-#: ZpTranslation-Development/themes/effervescence_plus/search.php:192
+#: ZpTranslation-Development/themes/effervescence_plus/search.php:157
+#: ZpTranslation-Development/themes/effervescence_plus/search.php:189
 #: ZpTranslation-Development/themes/garland/search.php:117
 #: ZpTranslation-Development/themes/garland/search.php:149
 #: ZpTranslation-Development/themes/zenpage/functions.php:48
@@ -1034,7 +1034,7 @@ msgstr "Toon meer resultaten"
 msgid "Show fewer results"
 msgstr "Toon minder resultaten"
 
-#: ZpTranslation-Development/themes/effervescence_plus/search.php:187
+#: ZpTranslation-Development/themes/effervescence_plus/search.php:184
 #: ZpTranslation-Development/themes/garland/search.php:144
 #: ZpTranslation-Development/themes/zenpage/search.php:107
 #: ZpTranslation-Development/themes/zpmobile/search.php:97
@@ -1042,7 +1042,7 @@ msgstr "Toon minder resultaten"
 msgid "Articles (%s)"
 msgstr "Artikelen (%s)"
 
-#: ZpTranslation-Development/themes/effervescence_plus/search.php:223
+#: ZpTranslation-Development/themes/effervescence_plus/search.php:220
 #: ZpTranslation-Development/themes/garland/search.php:181
 #: ZpTranslation-Development/themes/zenpage/search.php:129
 #: ZpTranslation-Development/themes/zpmobile/search.php:119
@@ -1050,7 +1050,7 @@ msgstr "Artikelen (%s)"
 msgid "Images (%s)"
 msgstr "Afbeeldingen (%s)"
 
-#: ZpTranslation-Development/themes/effervescence_plus/search.php:227
+#: ZpTranslation-Development/themes/effervescence_plus/search.php:224
 #: ZpTranslation-Development/themes/garland/search.php:185
 #: ZpTranslation-Development/themes/zenpage/search.php:134
 #: ZpTranslation-Development/themes/zpmobile/search.php:124
@@ -1058,7 +1058,7 @@ msgstr "Afbeeldingen (%s)"
 msgid "Albums (%s)"
 msgstr "Albums (%s)"
 
-#: ZpTranslation-Development/themes/effervescence_plus/search.php:229
+#: ZpTranslation-Development/themes/effervescence_plus/search.php:226
 #: ZpTranslation-Development/themes/garland/search.php:187
 #: ZpTranslation-Development/themes/zenpage/search.php:137
 #: ZpTranslation-Development/themes/zpmobile/search.php:127
@@ -1066,11 +1066,11 @@ msgstr "Albums (%s)"
 msgid "Albums (%1$s) &amp; Images (%2$s)"
 msgstr "Albums (%1$s) &amp; Afbeeldingen (%2$s)"
 
-#: ZpTranslation-Development/themes/effervescence_plus/search.php:292
+#: ZpTranslation-Development/themes/effervescence_plus/search.php:289
 msgid "Enter your search criteria."
 msgstr "Voor de zoekcriteria in."
 
-#: ZpTranslation-Development/themes/effervescence_plus/search.php:294
+#: ZpTranslation-Development/themes/effervescence_plus/search.php:291
 #, php-format
 msgid "Sorry, no matches for <em>%s</em>. Try refining your search."
 msgstr ""
@@ -1270,7 +1270,7 @@ msgstr ""
 "Als dit is aangevinkt verandert  de header afbeelding één keer per dag."
 
 #: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:105
-#: ZpTranslation-Development/themes/zenpage/slideshow.php:11
+#: ZpTranslation-Development/themes/zenpage/slideshow.php:10
 msgid "Slideshow"
 msgstr "Slideshow"
 
@@ -1407,7 +1407,7 @@ msgstr "Index afbeelding"
 #: ZpTranslation-Development/zp-core/zp-extensions/image_effects.php:137
 #: ZpTranslation-Development/zp-core/zp-extensions/image_effects.php:141
 #: ZpTranslation-Development/zp-core/zp-extensions/image_effects.php:145
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:128
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:129
 msgid "none"
 msgstr "geen"
 
@@ -1756,7 +1756,7 @@ msgstr "%s schreef:"
 #: ZpTranslation-Development/zp-core/admin-comments.php:466
 #: ZpTranslation-Development/zp-core/admin-themes.php:289
 #: ZpTranslation-Development/zp-core/utilities/gallery_statistics.php:440
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:776
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:256
 msgid "Edit"
 msgstr "Bewerken"
 
@@ -1830,12 +1830,12 @@ msgid "Full Size"
 msgstr "Volledige grootte"
 
 #: ZpTranslation-Development/themes/stopdesign/image.php:137
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:359
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:361
 msgid "Previous"
 msgstr "Vorige"
 
 #: ZpTranslation-Development/themes/stopdesign/image.php:157
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:363
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:365
 msgid "Next"
 msgstr "Volgende"
 
@@ -1864,7 +1864,7 @@ msgstr "Bekijk album: %s"
 #: ZpTranslation-Development/zp-core/admin-plugins.php:155
 #: ZpTranslation-Development/zp-core/class-search.php:65
 #: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:90
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:119
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:120
 msgid "Description"
 msgstr "Beschrijving"
 
@@ -1951,82 +1951,14 @@ msgstr ""
 "Selecteer welke beelden je wilt tonen in de 6 kleine slides op de "
 "indexpagina."
 
-#: ZpTranslation-Development/themes/stopdesign/comment_form/comment_form.php:34
-#, php-format
-msgid "%sName:"
-msgstr "%sNaam:"
-
-#: ZpTranslation-Development/themes/stopdesign/comment_form/comment_form.php:49
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/comment_form.php:29
-msgid "<em>anonymous</em>"
-msgstr "<em>anoniem</em>"
-
 #: ZpTranslation-Development/themes/stopdesign/comment_form/comment_form.php:64
 #, php-format
-msgid "Email%s:"
+msgid "Email%s"
 msgstr "E-mail %s:"
 
 #: ZpTranslation-Development/themes/stopdesign/comment_form/comment_form.php:78
 msgid "(not displayed)"
 msgstr "(wordt niet getoond)"
-
-#: ZpTranslation-Development/themes/stopdesign/comment_form/comment_form.php:92
-#, php-format
-msgid "URL%s:"
-msgstr "URL%s:"
-
-#: ZpTranslation-Development/themes/stopdesign/comment_form/comment_form.php:119
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/comment_form.php:72
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:181
-#, php-format
-msgid "Street%s:"
-msgstr "Straat%s:"
-
-#: ZpTranslation-Development/themes/stopdesign/comment_form/comment_form.php:136
-#, php-format
-msgid "City:%s"
-msgstr "Stad:%s"
-
-#: ZpTranslation-Development/themes/stopdesign/comment_form/comment_form.php:153
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/comment_form.php:80
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:193
-#, php-format
-msgid "State%s:"
-msgstr "Staat%s:"
-
-#: ZpTranslation-Development/themes/stopdesign/comment_form/comment_form.php:170
-#, php-format
-msgid "Country:%s"
-msgstr "Land:%s"
-
-#: ZpTranslation-Development/themes/stopdesign/comment_form/comment_form.php:187
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/comment_form.php:88
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:205
-#, php-format
-msgid "Postal code%s:"
-msgstr "Postcode%s:"
-
-#: ZpTranslation-Development/themes/stopdesign/comment_form/comment_form.php:207
-msgid "*Required fields"
-msgstr "* Verplichte velden:"
-
-#: ZpTranslation-Development/themes/stopdesign/comment_form/comment_form.php:213
-#: ZpTranslation-Development/zp-core/lib-auth.php:1057
-msgid "Enter CAPTCHA"
-msgstr "Voer CAPTCHA in"
-
-#: ZpTranslation-Development/themes/stopdesign/comment_form/comment_form.php:223
-msgid "Private comment:"
-msgstr "privé reactie:"
-
-#: ZpTranslation-Development/themes/stopdesign/comment_form/comment_form.php:226
-msgid "(don't publish)"
-msgstr "(niet publiceren)"
-
-#: ZpTranslation-Development/themes/stopdesign/comment_form/comment_form.php:233
-#: ZpTranslation-Development/zp-core/admin-comments.php:168
-msgid "Comment:"
-msgstr "Reactie:"
 
 #: ZpTranslation-Development/themes/stopdesign/comment_form/comment_form.php:242
 msgid "Post"
@@ -2236,7 +2168,7 @@ msgid "Latest news"
 msgstr "Laatste nieuws"
 
 #: ZpTranslation-Development/themes/zpmobile/search.php:155
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:495
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:507
 msgid "View Slideshow"
 msgstr "slideshow"
 
@@ -2337,9 +2269,9 @@ msgstr "Terug"
 #: ZpTranslation-Development/zp-core/admin-edit.php:1682
 #: ZpTranslation-Development/zp-core/admin-functions.php:1191
 #: ZpTranslation-Development/zp-core/admin-functions.php:1893
-#: ZpTranslation-Development/zp-core/admin-options.php:549
-#: ZpTranslation-Development/zp-core/admin-options.php:967
-#: ZpTranslation-Development/zp-core/admin-options.php:990
+#: ZpTranslation-Development/zp-core/admin-options.php:550
+#: ZpTranslation-Development/zp-core/admin-options.php:979
+#: ZpTranslation-Development/zp-core/admin-options.php:1002
 #: ZpTranslation-Development/zp-core/admin-options.php:1328
 #: ZpTranslation-Development/zp-core/admin-options.php:1351
 #: ZpTranslation-Development/zp-core/admin-options.php:1544
@@ -2468,6 +2400,10 @@ msgstr "Datum / Tijd:"
 msgid "IP:"
 msgstr "IP:"
 
+#: ZpTranslation-Development/zp-core/admin-comments.php:168
+msgid "Comment:"
+msgstr "Reactie:"
+
 #: ZpTranslation-Development/zp-core/admin-comments.php:180
 msgid "Comment management"
 msgstr "Beheer reacties"
@@ -2590,12 +2526,12 @@ msgid "<strong>Missing Object</strong> "
 msgstr "<strong>Ontbrekend object</strong> "
 
 #: ZpTranslation-Development/zp-core/admin-comments.php:386
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:114
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:116
 msgid "[news]"
 msgstr "[nieuws]"
 
 #: ZpTranslation-Development/zp-core/admin-comments.php:400
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:128
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:130
 msgid "[page]"
 msgstr "[pagina]"
 
@@ -2926,7 +2862,7 @@ msgstr "%s aflopend"
 
 #: ZpTranslation-Development/zp-core/admin-edit.php:937
 #: ZpTranslation-Development/zp-core/admin-functions.php:1380
-#: ZpTranslation-Development/zp-core/admin-options.php:1179
+#: ZpTranslation-Development/zp-core/admin-options.php:1191
 #: ZpTranslation-Development/zp-core/exif/exif.php:493
 #: ZpTranslation-Development/zp-core/exif/makers/canon.php:135
 #: ZpTranslation-Development/zp-core/exif/makers/canon.php:198
@@ -2951,9 +2887,9 @@ msgstr "Toon afbeeldingen op:"
 #: ZpTranslation-Development/zp-core/admin-functions.php:1195
 #: ZpTranslation-Development/zp-core/admin-functions.php:1897
 #: ZpTranslation-Development/zp-core/admin-logs.php:117
-#: ZpTranslation-Development/zp-core/admin-options.php:550
-#: ZpTranslation-Development/zp-core/admin-options.php:968
-#: ZpTranslation-Development/zp-core/admin-options.php:991
+#: ZpTranslation-Development/zp-core/admin-options.php:551
+#: ZpTranslation-Development/zp-core/admin-options.php:980
+#: ZpTranslation-Development/zp-core/admin-options.php:1003
 #: ZpTranslation-Development/zp-core/admin-options.php:1329
 #: ZpTranslation-Development/zp-core/admin-options.php:1352
 #: ZpTranslation-Development/zp-core/admin-options.php:1545
@@ -2977,7 +2913,7 @@ msgstr "Toon afbeeldingen op:"
 #: ZpTranslation-Development/zp-core/zp-extensions/user_mailing_list.php:171
 #: ZpTranslation-Development/zp-core/zp-extensions/user_mailing_list.php:172
 #: ZpTranslation-Development/zp-core/zp-extensions/wordpress_import.php:423
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:109
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:138
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:359
 #: ZpTranslation-Development/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:120
 #: ZpTranslation-Development/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:217
@@ -3239,7 +3175,7 @@ msgid "thumb"
 msgstr "thumbnail"
 
 #: ZpTranslation-Development/zp-core/admin-edit.php:1341
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:132
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:133
 msgid "full image"
 msgstr "volledige afbeelding"
 
@@ -3477,7 +3413,7 @@ msgid "Album password:"
 msgstr "Albumwachtwoord:"
 
 #: ZpTranslation-Development/zp-core/admin-functions.php:1276
-#: ZpTranslation-Development/zp-core/admin-options.php:1040
+#: ZpTranslation-Development/zp-core/admin-options.php:1052
 #: ZpTranslation-Development/zp-core/admin-options.php:1377
 #: ZpTranslation-Development/zp-core/admin-options.php:1984
 #: ZpTranslation-Development/zp-core/zp-extensions/downloadList.php:109
@@ -3490,7 +3426,7 @@ msgid "Album guest user:"
 msgstr "Album gastgebruiker:"
 
 #: ZpTranslation-Development/zp-core/admin-functions.php:1290
-#: ZpTranslation-Development/zp-core/admin-options.php:1063
+#: ZpTranslation-Development/zp-core/admin-options.php:1075
 #: ZpTranslation-Development/zp-core/admin-options.php:1398
 #: ZpTranslation-Development/zp-core/admin-options.php:2002
 #: ZpTranslation-Development/zp-core/lib-auth.php:1015
@@ -3511,8 +3447,8 @@ msgid "Password hint:"
 msgstr "Wachtwoord hint:"
 
 #: ZpTranslation-Development/zp-core/admin-functions.php:1382
-#: ZpTranslation-Development/zp-core/admin-options.php:746
-#: ZpTranslation-Development/zp-core/admin-options.php:1180
+#: ZpTranslation-Development/zp-core/admin-options.php:747
+#: ZpTranslation-Development/zp-core/admin-options.php:1192
 #: ZpTranslation-Development/zp-core/admin-options.php:1589
 #: ZpTranslation-Development/zp-core/exif/makers/canon.php:275
 #: ZpTranslation-Development/zp-core/exif/makers/fujifilm.php:93
@@ -3533,14 +3469,14 @@ msgstr "*parent album subalbum sorteervolgorde"
 
 #: ZpTranslation-Development/zp-core/admin-functions.php:1417
 #: ZpTranslation-Development/zp-core/admin-functions.php:1468
-#: ZpTranslation-Development/zp-core/admin-options.php:1214
+#: ZpTranslation-Development/zp-core/admin-options.php:1226
 #: ZpTranslation-Development/zp-core/admin-options.php:1616
 msgid "Descending"
 msgstr "Aflopend"
 
 #: ZpTranslation-Development/zp-core/admin-functions.php:1431
 #: ZpTranslation-Development/zp-core/admin-functions.php:1483
-#: ZpTranslation-Development/zp-core/admin-options.php:1222
+#: ZpTranslation-Development/zp-core/admin-options.php:1234
 #: ZpTranslation-Development/zp-core/admin-options.php:1622
 msgid "custom fields:"
 msgstr "database veld(en)"
@@ -3977,12 +3913,12 @@ msgstr "setup"
 
 #: ZpTranslation-Development/zp-core/admin-functions.php:4347
 #: ZpTranslation-Development/zp-core/admin-globals.php:112
-#: ZpTranslation-Development/zp-core/admin-options.php:935
+#: ZpTranslation-Development/zp-core/admin-options.php:947
 msgid "security"
 msgstr "beveiliging"
 
 #: ZpTranslation-Development/zp-core/admin-functions.php:4347
-#: ZpTranslation-Development/zp-core/admin-options.php:935
+#: ZpTranslation-Development/zp-core/admin-options.php:947
 #: ZpTranslation-Development/zp-core/zp-extensions/markRelease.php:42
 msgid "debug"
 msgstr "debug"
@@ -4290,14 +4226,14 @@ msgstr "Download"
 msgid "There are no logs to view."
 msgstr "Er zijn geen logs om te bekijken."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:484
+#: ZpTranslation-Development/zp-core/admin-options.php:485
 #: ZpTranslation-Development/zp-core/admin-plugins.php:122
 #: ZpTranslation-Development/zp-core/admin-users.php:271
 #: ZpTranslation-Development/zp-core/zp-extensions/user_groups/user_groups-tab.php:147
 msgid "Error"
 msgstr "Fout !"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:485
+#: ZpTranslation-Development/zp-core/admin-options.php:486
 #: ZpTranslation-Development/zp-core/admin-plugins.php:123
 #: ZpTranslation-Development/zp-core/admin-users.php:272
 #: ZpTranslation-Development/zp-core/zp-extensions/user_groups/user_groups-tab.php:148
@@ -4306,29 +4242,29 @@ msgid ""
 "server or browser limits."
 msgstr "De verzonden informatie in het formulier is niet compleet."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:490
+#: ZpTranslation-Development/zp-core/admin-options.php:491
 #: ZpTranslation-Development/zp-core/admin-plugins.php:109
 msgid "Applied"
 msgstr "Toegepast"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:500
+#: ZpTranslation-Development/zp-core/admin-options.php:501
 msgid ""
 "Your browser did not post all the fields. Some options may not have been set."
 msgstr ""
 "Niet alle velden zijn door je browser verzonden. Sommige opties zijn "
 "misschien niet ingesteld."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:508
+#: ZpTranslation-Development/zp-core/admin-options.php:509
 #, php-format
 msgid "You must supply a password for the <em>%s</em> guest user"
 msgstr "Je moet een wachtwoord invoeren voor de <em>%s</em> gastgebruiker"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:511
+#: ZpTranslation-Development/zp-core/admin-options.php:512
 #: ZpTranslation-Development/zp-core/admin-users.php:406
 msgid "Your passwords did not match"
 msgstr "Je wachtwoorden komen niet overeen."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:521
+#: ZpTranslation-Development/zp-core/admin-options.php:522
 msgid ""
 "The path you selected resulted in cookies not being retrievable. It has been "
 "reset."
@@ -4336,28 +4272,28 @@ msgstr ""
 "Het opgegeven pad zorgde ervoor dat cookies niet opgehaald konden worden. "
 "Het is ge-reset."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:533
+#: ZpTranslation-Development/zp-core/admin-options.php:534
 #: ZpTranslation-Development/zp-core/setup/setup-functions.php:437
 #: ZpTranslation-Development/zp-core/zp-extensions/dynamic-locale.php:57
 #, php-format
 msgid "<em>%s</em> is not available."
 msgstr "<em>%s</em> is niet beschikbaar."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:534
+#: ZpTranslation-Development/zp-core/admin-options.php:535
 #: ZpTranslation-Development/zp-core/setup/setup-functions.php:438
 #: ZpTranslation-Development/zp-core/zp-extensions/dynamic-locale.php:58
 #, php-format
 msgid "The locale %s is not supported on your server."
 msgstr "De localisatie %s wordt niet ondersteund door de server."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:535
+#: ZpTranslation-Development/zp-core/admin-options.php:536
 #: ZpTranslation-Development/zp-core/zp-extensions/dynamic-locale.php:60
 msgid "See the troubleshooting guide on zenphoto.org for details."
 msgstr "Raadpleeg de troubleshooting uitleg op zenphoto.org voor details."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:550
-#: ZpTranslation-Development/zp-core/admin-options.php:968
-#: ZpTranslation-Development/zp-core/admin-options.php:991
+#: ZpTranslation-Development/zp-core/admin-options.php:551
+#: ZpTranslation-Development/zp-core/admin-options.php:980
+#: ZpTranslation-Development/zp-core/admin-options.php:1003
 #: ZpTranslation-Development/zp-core/admin-options.php:1329
 #: ZpTranslation-Development/zp-core/admin-options.php:1352
 #: ZpTranslation-Development/zp-core/admin-options.php:1545
@@ -4374,20 +4310,20 @@ msgstr "Raadpleeg de troubleshooting uitleg op zenphoto.org voor details."
 msgid "reset"
 msgstr "reset"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:559
+#: ZpTranslation-Development/zp-core/admin-options.php:560
 msgid "Time zone:"
 msgstr "Tijdzone:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:565
+#: ZpTranslation-Development/zp-core/admin-options.php:566
 msgid "*not specified"
 msgstr "*niet gespecificeerd"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:570
+#: ZpTranslation-Development/zp-core/admin-options.php:571
 #, php-format
 msgid "Your server reports its time zone as: <code>%s</code>."
 msgstr "Je server geeft de tijdzone als volgt weer: <code>%s</code>."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:571
+#: ZpTranslation-Development/zp-core/admin-options.php:572
 #, php-format
 msgid ""
 "Your time zone offset is %d hour. If your time zone is different from the "
@@ -4402,11 +4338,11 @@ msgstr[1] ""
 "Het tijdverschil met de server is %d uur.  Als je je in een andere tijdzone "
 "bevindt dan de server, selecteer hier dan de juiste tijdzone."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:577
+#: ZpTranslation-Development/zp-core/admin-options.php:578
 msgid "Time offset (hours):"
 msgstr "Tijd offset (uren):"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:582
+#: ZpTranslation-Development/zp-core/admin-options.php:583
 msgid ""
 "If you're in a different time zone from your server, set the offset in hours "
 "of your time zone from that of the server. For instance if your server is on "
@@ -4419,23 +4355,23 @@ msgstr ""
 "woont zelf aan de westkust (<em>GMT</em> - 8), vul dan bij tijd-offset 3 in "
 "(-5-(-8))."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:589
+#: ZpTranslation-Development/zp-core/admin-options.php:590
 msgid "URL options:"
 msgstr "URL opties:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:601
+#: ZpTranslation-Development/zp-core/admin-options.php:602
 msgid "mod rewrite"
 msgstr "mod_rewrite"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:607
+#: ZpTranslation-Development/zp-core/admin-options.php:608
 msgid "UTF8 image URIs"
 msgstr "UTF8 afbeelding URI's"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:610
+#: ZpTranslation-Development/zp-core/admin-options.php:611
 msgid "mod_rewrite suffix:"
 msgstr "mod_rewrite toevoeging:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:614
+#: ZpTranslation-Development/zp-core/admin-options.php:615
 msgid ""
 "If you have Apache <em>mod rewrite</em> (or equivalent), put a checkmark on "
 "the <em>mod rewrite</em> option and you'll get nice cruft-free URLs."
@@ -4443,7 +4379,7 @@ msgstr ""
 "Als de Apache <em>mod_rewrite</em> (of vergelijkbaar) module aanwezig is, "
 "vink de optie <em>mod_rewrite</em> dan aan voor nette URL's.<br />"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:615
+#: ZpTranslation-Development/zp-core/admin-options.php:616
 #, php-format
 msgid ""
 "The <em>tokens</em> used in rewritten URIs may be altered to your taste. See "
@@ -4453,12 +4389,12 @@ msgstr ""
 "je wilt. Zie de <a href=\"%s\">plugin opties</a> voor <code>rewriteTokens</"
 "code>."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:616
+#: ZpTranslation-Development/zp-core/admin-options.php:617
 msgid "Setup did not detect a working <em>mod_rewrite</em> facility."
 msgstr ""
 "Setup heeft geen werkende <em>mod_rewrite</em> (of vergelijkbaar) gevonden."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:619
+#: ZpTranslation-Development/zp-core/admin-options.php:620
 msgid ""
 "If you are having problems with images whose names contain characters with "
 "diacritical marks try changing the <em>UTF8 image URIs</em> setting."
@@ -4466,7 +4402,7 @@ msgstr ""
 "Als je problemen hebt met betandsnamen met speciale karakters probeer dan de "
 "<em>UTF8 afbeelding URI</em> optie."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:620
+#: ZpTranslation-Development/zp-core/admin-options.php:621
 msgid ""
 "If <em>mod_rewrite</em> is checked above, zenphoto will append the "
 "<em>mod_rewrite suffix</em> to the end of image URLs. (This helps search "
@@ -4476,16 +4412,16 @@ msgstr ""
 "<em>mod_rewrite toevoeging</em> toevoegen aan het eind van de afbeeldings "
 "URL  (hulpvol voor zoekmachines). Voorbeelden: <em>.html, .php</em>, etc."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:624
+#: ZpTranslation-Development/zp-core/admin-options.php:625
 #: ZpTranslation-Development/zp-core/admin-users.php:743
 msgid "Language:"
 msgstr "Taal:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:633
+#: ZpTranslation-Development/zp-core/admin-options.php:634
 msgid "HTTP_Accept_Language"
 msgstr "HTTP Accept Language"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:729
+#: ZpTranslation-Development/zp-core/admin-options.php:730
 #, php-format
 msgid ""
 "Highlighted languages are not current with Zenphoto Version %1$s. (The "
@@ -4498,11 +4434,11 @@ msgstr ""
 "zijn staat tussen accolades.<br />Controleer de <a href=\"%2$s"
 "\"><em>translation tickets</em></a> voor de laatste vertalingen."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:731
+#: ZpTranslation-Development/zp-core/admin-options.php:732
 msgid "Multi-lingual"
 msgstr "Meertalig"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:735
+#: ZpTranslation-Development/zp-core/admin-options.php:736
 msgid ""
 "You can disable languages by unchecking their checkboxes. Only checked "
 "languages will be available to the installation."
@@ -4510,7 +4446,7 @@ msgstr ""
 "Je kunt talen deactiveren door de checkbox uit te vinken. Alleen aangevinkte "
 "talen worden beschikbaar in de installatie."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:736
+#: ZpTranslation-Development/zp-core/admin-options.php:737
 msgid ""
 "Select the preferred language to display text in. (Set to "
 "<em>HTTP_Accept_Language</em> to use the language preference specified by "
@@ -4519,13 +4455,13 @@ msgstr ""
 "Selecteer de voorkeurtaal om tekst weer te geven. (Zet op <em>HTTP Accept "
 "Language</em> om de taalvoorkeur van de bezoeker's browser te gebruiken.)"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:737
+#: ZpTranslation-Development/zp-core/admin-options.php:738
 msgid ""
 "Set <em>Multi-lingual</em> to enable multiple language input for options "
 "that provide theme text."
 msgstr "Zet op <em>Meertalig</em> aan om meerdere talen mogelijk te maken."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:738
+#: ZpTranslation-Development/zp-core/admin-options.php:739
 msgid ""
 "<strong>Note:</strong> if you have created multi-language strings, uncheck "
 "this option, then save anything, you will lose your strings."
@@ -4533,167 +4469,167 @@ msgstr ""
 "<strong>Let op:</strong> als je meertalige strings hebt aangemaakt en daarna "
 "deze optie weer uitzet zul je bij het opslaan deze strings verliezen."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:742
+#: ZpTranslation-Development/zp-core/admin-options.php:743
 msgid "Date format:"
 msgstr "Datumweergave:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:747
+#: ZpTranslation-Development/zp-core/admin-options.php:748
 msgid "Preferred date representation"
 msgstr "Voorkeur datumweergave"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:748
+#: ZpTranslation-Development/zp-core/admin-options.php:749
 msgid "02/25/08 15:30"
 msgstr "02/25/08 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:749
+#: ZpTranslation-Development/zp-core/admin-options.php:750
 msgid "02/25/08"
 msgstr "02/25/08"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:750
+#: ZpTranslation-Development/zp-core/admin-options.php:751
 msgid "02/25/2008 15:30"
 msgstr "02/25/2008 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:751
+#: ZpTranslation-Development/zp-core/admin-options.php:752
 msgid "02/25/2008"
 msgstr "02/25/2008"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:752
+#: ZpTranslation-Development/zp-core/admin-options.php:753
 msgid "02-25-08 15:30"
 msgstr "02-25-08 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:753
+#: ZpTranslation-Development/zp-core/admin-options.php:754
 msgid "02-25-08"
 msgstr "02-25-08"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:754
+#: ZpTranslation-Development/zp-core/admin-options.php:755
 msgid "02-25-2008 15:30"
 msgstr "02-25-2008 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:755
+#: ZpTranslation-Development/zp-core/admin-options.php:756
 msgid "02-25-2008"
 msgstr "02-25-2008"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:756
+#: ZpTranslation-Development/zp-core/admin-options.php:757
 msgid "2008. February 25. 15:30"
 msgstr "2008. Februari 25. 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:757
+#: ZpTranslation-Development/zp-core/admin-options.php:758
 msgid "2008. February 25."
 msgstr "2008. Februari 25."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:758
+#: ZpTranslation-Development/zp-core/admin-options.php:759
 msgid "2008-02-25 15:30"
 msgstr "2008-02-25 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:759
+#: ZpTranslation-Development/zp-core/admin-options.php:760
 msgid "2008-02-25"
 msgstr "2008-02-25"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:760
+#: ZpTranslation-Development/zp-core/admin-options.php:761
 msgid "25 Feb 2008 15:30"
 msgstr "25 Feb 2008 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:761
+#: ZpTranslation-Development/zp-core/admin-options.php:762
 msgid "25 Feb 2008"
 msgstr "25 Feb 2008"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:762
+#: ZpTranslation-Development/zp-core/admin-options.php:763
 msgid "25 February 2008 15:30"
 msgstr "25 Februari 2008 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:763
+#: ZpTranslation-Development/zp-core/admin-options.php:764
 msgid "25 February 2008"
 msgstr "25 Februari 2008"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:764
+#: ZpTranslation-Development/zp-core/admin-options.php:765
 msgid "25. Feb 2008 15:30"
 msgstr "25. Feb 2008 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:765
+#: ZpTranslation-Development/zp-core/admin-options.php:766
 msgid "25. Feb 2008"
 msgstr "25. Feb 2008"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:766
+#: ZpTranslation-Development/zp-core/admin-options.php:767
 msgid "25. Feb. 08 15:30"
 msgstr "25. Feb. 08 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:767
+#: ZpTranslation-Development/zp-core/admin-options.php:768
 msgid "25. Feb. 08"
 msgstr "25. Feb. 08"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:768
+#: ZpTranslation-Development/zp-core/admin-options.php:769
 msgid "25. February 2008 15:30"
 msgstr "25. Februari 2008 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:769
+#: ZpTranslation-Development/zp-core/admin-options.php:770
 msgid "25. February 2008"
 msgstr "25. Februari 2008"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:770
+#: ZpTranslation-Development/zp-core/admin-options.php:771
 msgid "25.02.08 15:30"
 msgstr "25.02.08 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:771
+#: ZpTranslation-Development/zp-core/admin-options.php:772
 msgid "25.02.08"
 msgstr "25.02.08"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:772
+#: ZpTranslation-Development/zp-core/admin-options.php:773
 msgid "25.02.2008 15:30"
 msgstr "25.02.2008 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:773
+#: ZpTranslation-Development/zp-core/admin-options.php:774
 msgid "25.02.2008"
 msgstr "25.02.2008"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:774
+#: ZpTranslation-Development/zp-core/admin-options.php:775
 msgid "25-02-08 15:30"
 msgstr "25-02-08 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:775
+#: ZpTranslation-Development/zp-core/admin-options.php:776
 msgid "25-02-08"
 msgstr "25-02-08"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:776
+#: ZpTranslation-Development/zp-core/admin-options.php:777
 msgid "25-02-2008 15:30"
 msgstr "25-02-2008 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:777
+#: ZpTranslation-Development/zp-core/admin-options.php:778
 msgid "25-02-2008"
 msgstr "25-02-2008"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:778
+#: ZpTranslation-Development/zp-core/admin-options.php:779
 msgid "25-Feb-08 15:30"
 msgstr "25-Feb-08 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:779
+#: ZpTranslation-Development/zp-core/admin-options.php:780
 msgid "25-Feb-08"
 msgstr "25-Feb-08"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:780
+#: ZpTranslation-Development/zp-core/admin-options.php:781
 msgid "25-Feb-2008 15:30"
 msgstr "25-Feb-2008 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:781
+#: ZpTranslation-Development/zp-core/admin-options.php:782
 msgid "25-Feb-2008"
 msgstr "25-Feb-2008"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:782
+#: ZpTranslation-Development/zp-core/admin-options.php:783
 msgid "Feb 25, 2008 15:30"
 msgstr "Feb 25, 2008 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:783
+#: ZpTranslation-Development/zp-core/admin-options.php:784
 msgid "Feb 25, 2008"
 msgstr "Feb 25, 2008"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:784
+#: ZpTranslation-Development/zp-core/admin-options.php:785
 msgid "February 25, 2008 15:30"
 msgstr "Februari 25, 2008 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:785
+#: ZpTranslation-Development/zp-core/admin-options.php:786
 msgid "February 25, 2008"
 msgstr "Februari 25, 2008"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:802
+#: ZpTranslation-Development/zp-core/admin-options.php:803
 msgid ""
 "Format for dates. Select from the list or set to <code>custom</code> and "
 "provide a <a href=\"http://us2.php.net/manual/en/function.strftime.php"
@@ -4705,11 +4641,11 @@ msgstr ""
 "php\"><span class=\"nowrap\"><code>strftime()</code></span></a> formaat in,  "
 "in het tekstveld."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:805
+#: ZpTranslation-Development/zp-core/admin-options.php:806
 msgid "Charset:"
 msgstr "Karakterset:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:822
+#: ZpTranslation-Development/zp-core/admin-options.php:823
 msgid ""
 "The character encoding to use internally. Leave at <em>Unicode (UTF-8)</em> "
 "if you are unsure."
@@ -4717,7 +4653,7 @@ msgstr ""
 "De karaktercodering die intern gebruikt wordt. Laat deze op <em>Unicode "
 "(UTF-8)</em> staan als je niet zeker bent."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:824
+#: ZpTranslation-Development/zp-core/admin-options.php:825
 msgid ""
 "Character sets <span style=\"color:gray\">shown in gray</span> have no "
 "character translation support."
@@ -4725,18 +4661,18 @@ msgstr ""
 "Karaktersets <span style=\"color:gray\">aangegeven in grijs</span> kunnen "
 "niet vertaald worden."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:830
+#: ZpTranslation-Development/zp-core/admin-options.php:831
 msgid "Allowed tags:"
 msgstr "Toegestane HTML tags:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:859
+#: ZpTranslation-Development/zp-core/admin-options.php:860
 msgid ""
 "Tags and attributes allowed in comments, descriptions, and other fields."
 msgstr ""
 "HTML tags en attributen toegestaan in reacties, beschrijvingen en andere "
 "velden."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:860
+#: ZpTranslation-Development/zp-core/admin-options.php:861
 msgid ""
 "Follow the form <em>tag</em> =&gt; (<em>attribute</em> =&gt; (<em>attribute</"
 "em>=&gt; (), <em>attribute</em> =&gt; ()...)))"
@@ -4744,23 +4680,59 @@ msgstr ""
 "Gebruik de volgende syntax: <em>tag</em> =&gt; (<em>attribuut</em> =&gt; () "
 "<em>attribuut</em>=&gt; () <em>attribuut</em> =&gt; ()...))"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:862
+#: ZpTranslation-Development/zp-core/admin-options.php:863
 msgid "reset to default"
 msgstr "Herstel de standaard waarden"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:868
+#: ZpTranslation-Development/zp-core/admin-options.php:869
 msgid "Cookies:"
 msgstr "Cookies:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:871
+#: ZpTranslation-Development/zp-core/admin-options.php:875
+msgid "enable gallery sessions"
+msgstr "Galerij sessies"
+
+#: ZpTranslation-Development/zp-core/admin-options.php:878
 msgid "Path"
 msgstr "Pad"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:877
+#: ZpTranslation-Development/zp-core/admin-options.php:884
 msgid "Duration"
 msgstr "Duration"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:886
+#: ZpTranslation-Development/zp-core/admin-options.php:893
+msgid ""
+"<a href=\"javascript:toggle('gallerysessions');\" >Details</a> for "
+"<em>enable gallery sessions</em>"
+msgstr ""
+"<a href=\"javascript: toggle('gallerysessions');\" >Info</a> voor "
+"<em>Galerij sessies</em>"
+
+#: ZpTranslation-Development/zp-core/admin-options.php:895
+msgid ""
+"If this option is selected Zenphoto will use <a href=\"http://www.w3schools."
+"com/php/php_sessions.asp\">PHP sessions</a> instead of cookies to make "
+"visitor settings persistent."
+msgstr ""
+"Als deze optie is geactiveerd zal Zenphoto <a href=\"http://www.w3schools."
+"com/php/php_sessions.asp\">PHP sessies</a> gebruiken in plaats van cookies "
+"om gebruikers-instellingen te behouden."
+
+#: ZpTranslation-Development/zp-core/admin-options.php:896
+msgid ""
+"<strong>NOTE</strong>: Sessions will normally close when the browser closes "
+"causing all password and other data to be discarded. They may close more "
+"frequently depending on the runtime configuration. Longer <em>lifetime</em> "
+"of sessions is generally more conducive to a pleasant user experience. "
+"Cookies are the prefered storage option since their duration is determined "
+"by the <em>Cookie duration</em> option. "
+msgstr ""
+"<strong>Opmerking</strong>: Sessies worden afgesloten als de browser "
+"gesloten wordt. Hierbij worden wachtwoorden en andere informatie weggegooid. "
+"De (ingestelde) langere <em>levensduur</em> van een cookie zorgt doorgaans "
+"voor een prettigere browserervaring."
+
+#: ZpTranslation-Development/zp-core/admin-options.php:898
 #, php-format
 msgid ""
 "The <em>path</em> Zenphoto will use when storing cookies. (Leave empty to "
@@ -4769,20 +4741,20 @@ msgstr ""
 "Het <em>pad</em> dat Zenphoto gebruikt voor het opslaan van cookies. (Laat "
 "leeg om %s te gebruiken)"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:890
+#: ZpTranslation-Development/zp-core/admin-options.php:902
 msgid "Set to the time in seconds that cookies should be kept by browsers."
 msgstr ""
 "Stel de tijd in (in seconden) voor het bewaren van cookies door de browser."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:898
+#: ZpTranslation-Development/zp-core/admin-options.php:910
 msgid "Name:"
 msgstr "Naam:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:899
+#: ZpTranslation-Development/zp-core/admin-options.php:911
 msgid "Email:"
 msgstr "E-mail:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:905
+#: ZpTranslation-Development/zp-core/admin-options.php:917
 msgid ""
 "This email name and address will be used as the <em>From</em> address for "
 "all mails sent by Zenphoto."
@@ -4790,19 +4762,19 @@ msgstr ""
 "Dit e-mailadres wordt gebruikt als het <em>afzender</em>-adres voor alle e-"
 "mails die door Zenphoto worden verzonden."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:909
+#: ZpTranslation-Development/zp-core/admin-options.php:921
 msgid "Users per page:"
 msgstr "Gebruikers per pagina:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:910
+#: ZpTranslation-Development/zp-core/admin-options.php:922
 msgid "Plugins per page:"
 msgstr "Plugins per pagina:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:914
+#: ZpTranslation-Development/zp-core/admin-options.php:926
 msgid "Articles per page:"
 msgstr "Artikelen per pagina:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:932
+#: ZpTranslation-Development/zp-core/admin-options.php:944
 msgid ""
 "These options control the number of items displayed on their tabs. If you "
 "have problems using these tabs, reduce the number shown here."
@@ -4810,16 +4782,16 @@ msgstr ""
 "Deze opties bepalen het aantal onderdelen die worden getoond. Als je "
 "problemen hebt met de weergave verlaag dan het aantal."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:942
+#: ZpTranslation-Development/zp-core/admin-options.php:954
 #, php-format
 msgid "<p>%s log limit</p>"
 msgstr "<p>%s log limiet</p>"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:954
+#: ZpTranslation-Development/zp-core/admin-options.php:966
 msgid "e-mail when exceeded"
 msgstr "e-mail bij overschrijding"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:961
+#: ZpTranslation-Development/zp-core/admin-options.php:973
 msgid ""
 "Logs will be \"rolled\" over when they exceed the specified size. If "
 "checked, the administrator will be e-mailed when this occurs."
@@ -4827,7 +4799,7 @@ msgstr ""
 "Logs worden bewaard (met een nieuwe naam) wanneer de limiet is bereikt. Vink "
 "aan om de administrator te e-mailen als dit gebeurt."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:967
+#: ZpTranslation-Development/zp-core/admin-options.php:979
 #: ZpTranslation-Development/zp-core/admin-options.php:2638
 #: ZpTranslation-Development/zp-core/admin-options.php:2763
 #: ZpTranslation-Development/zp-core/admin-options.php:2811
@@ -4836,45 +4808,45 @@ msgstr ""
 msgid "save"
 msgstr "opslaan"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:996
+#: ZpTranslation-Development/zp-core/admin-options.php:1008
 msgid "Gallery title:"
 msgstr "Galerijtitel:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1000
+#: ZpTranslation-Development/zp-core/admin-options.php:1012
 msgid "What you want to call your Zenphoto site."
 msgstr "Hoe wil je je Zenphoto site noemen noemen?"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1003
+#: ZpTranslation-Development/zp-core/admin-options.php:1015
 msgid "Gallery description:"
 msgstr "Galerijbeschrijving:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1007
+#: ZpTranslation-Development/zp-core/admin-options.php:1019
 msgid "A brief description of your gallery. Some themes may display this text."
 msgstr ""
 "Een korte beschrijving van de galerij. Sommige thema's tonen deze tekst."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1010
+#: ZpTranslation-Development/zp-core/admin-options.php:1022
 msgid "Gallery type"
 msgstr "Soort galerij"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1012
+#: ZpTranslation-Development/zp-core/admin-options.php:1024
 msgid "public"
 msgstr "publiek"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1013
+#: ZpTranslation-Development/zp-core/admin-options.php:1025
 msgid "private"
 msgstr "privé"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1016
+#: ZpTranslation-Development/zp-core/admin-options.php:1028
 msgid "Private galleries are viewable only by registered users."
 msgstr "Privé galerieën zijn alleen zichtbaar voor geregistreerde gebruikers."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1026
-#: ZpTranslation-Development/zp-core/admin-options.php:1072
+#: ZpTranslation-Development/zp-core/admin-options.php:1038
+#: ZpTranslation-Development/zp-core/admin-options.php:1084
 msgid "Gallery password:"
 msgstr "Galerijwachtwoord:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1047
+#: ZpTranslation-Development/zp-core/admin-options.php:1059
 msgid ""
 "Master password for the gallery. Click on <em>Gallery password</em> to "
 "change."
@@ -4882,15 +4854,15 @@ msgstr ""
 "Hoofdwachtwoord voor de galerij. Klik op <em>Galerijwachtwoord</em> om te "
 "wijzigen."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1054
+#: ZpTranslation-Development/zp-core/admin-options.php:1066
 msgid "Gallery guest user:"
 msgstr "Galerij gastgebruiker:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1066
+#: ZpTranslation-Development/zp-core/admin-options.php:1078
 msgid "User ID for the gallery guest user"
 msgstr "Gebruikers ID voor de gastgebruiker."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1076
+#: ZpTranslation-Development/zp-core/admin-options.php:1088
 #: ZpTranslation-Development/zp-core/admin-options.php:1411
 #: ZpTranslation-Development/zp-core/admin-options.php:2012
 #: ZpTranslation-Development/zp-core/zp-extensions/downloadList.php:133
@@ -4898,7 +4870,7 @@ msgstr "Gebruikers ID voor de gastgebruiker."
 msgid "(repeat)"
 msgstr "(herhaal)"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1095
+#: ZpTranslation-Development/zp-core/admin-options.php:1107
 msgid ""
 "Master password for the gallery. If this is set, visitors must know this "
 "password to view the gallery."
@@ -4906,20 +4878,20 @@ msgstr ""
 "Hoofdwachtwoord voor de galerij. Als deze ingevuld is moeten bezoekers dit "
 "wachtwoord weten om de galerij te bekijken."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1100
+#: ZpTranslation-Development/zp-core/admin-options.php:1112
 msgid "Gallery password hint:"
 msgstr "Galerijwachtwoord hint:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1106
+#: ZpTranslation-Development/zp-core/admin-options.php:1118
 #: ZpTranslation-Development/zp-core/admin-options.php:1441
 msgid "A reminder hint for the password."
 msgstr "Een herinnering voor het wachtwoord."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1113
+#: ZpTranslation-Development/zp-core/admin-options.php:1125
 msgid "Unprotected pages:"
 msgstr "Onbeschermde pagina's:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1142
+#: ZpTranslation-Development/zp-core/admin-options.php:1154
 msgid ""
 "Place a checkmark on any page scripts which should not be protected by the "
 "gallery password."
@@ -4927,38 +4899,38 @@ msgstr ""
 "Vink aan welke pagina's NIET beschermd moeten worden met het "
 "galerijwachtwoord."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1145
+#: ZpTranslation-Development/zp-core/admin-options.php:1157
 msgid "Website title:"
 msgstr "Website titel:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1149
+#: ZpTranslation-Development/zp-core/admin-options.php:1161
 msgid "Your web site title."
 msgstr "De titel van de website."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1152
+#: ZpTranslation-Development/zp-core/admin-options.php:1164
 msgid "Website url:"
 msgstr "Website URL:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1155
+#: ZpTranslation-Development/zp-core/admin-options.php:1167
 msgid ""
 "This is used to link back to your main site, but your theme must support it."
 msgstr ""
 "Deze URL wordt gebruikt om naar je hoofdsite te linken maar het thema moet "
 "dit ondersteunen."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1159
+#: ZpTranslation-Development/zp-core/admin-options.php:1171
 msgid "Album thumbnails:"
 msgstr "Album thumbnails:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1173
+#: ZpTranslation-Development/zp-core/admin-options.php:1185
 msgid "Default thumbnail selection for albums."
 msgstr "Standaard thumbnail selectie voor albums."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1175
+#: ZpTranslation-Development/zp-core/admin-options.php:1187
 msgid "Sort gallery by:"
 msgstr "Sorteer galerij op:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1231
+#: ZpTranslation-Development/zp-core/admin-options.php:1243
 msgid ""
 "Sort order for the albums on the index of the gallery. Custom sort values "
 "must be database field names. You can have multiple fields separated by "
@@ -4969,37 +4941,33 @@ msgstr ""
 "gescheiden door komma's. Deze optie bepaalt ook de standaard volgorde voor "
 "albums en subalbums."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1236
+#: ZpTranslation-Development/zp-core/admin-options.php:1248
 msgid "Gallery behavior:"
 msgstr "Algemene galerij-instellingen:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1241
+#: ZpTranslation-Development/zp-core/admin-options.php:1253
 #: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:200
 msgid "Publish albums by default"
 msgstr "Albums meteen publiceren"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1247
+#: ZpTranslation-Development/zp-core/admin-options.php:1259
 #: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:202
 msgid "Publish images by default"
 msgstr "Afbeeldingen meteen publiceren"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1254
+#: ZpTranslation-Development/zp-core/admin-options.php:1266
 msgid "use latest image date as album date"
 msgstr "Gebruik datum laatste afbeelding als datum voor album"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1261
+#: ZpTranslation-Development/zp-core/admin-options.php:1273
 msgid "visual thumb selection"
 msgstr "Visuele selectie van thumbnails"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1268
+#: ZpTranslation-Development/zp-core/admin-options.php:1280
 msgid "show subalbum thumbs"
 msgstr "Toon subalbum thumbnails"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1275
-msgid "enable gallery sessions"
-msgstr "Galerij sessies"
-
-#: ZpTranslation-Development/zp-core/admin-options.php:1280
+#: ZpTranslation-Development/zp-core/admin-options.php:1285
 msgid ""
 "<a href=\"javascript:toggle('albumpub');\" >Details</a> for <em>publish "
 "albums by default</em>"
@@ -5007,7 +4975,7 @@ msgstr ""
 "<a href=\"javascript:toggle('albumpub');\" >Info</a> voor <em>Albums meteen "
 "publiceren</em>"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1282
+#: ZpTranslation-Development/zp-core/admin-options.php:1287
 msgid ""
 "This sets the default behavior for when Zenphoto discovers an album. If "
 "checked, the album will be published, if unchecked it will be unpublished."
@@ -5015,7 +4983,7 @@ msgstr ""
 "Bepaalt wat Zenphoto moet doen wanneer er een nieuw album wordt ontdekt. Als "
 "dit is aangevinkt wordt het album meteen gepubliceerd, anders niet."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1284
+#: ZpTranslation-Development/zp-core/admin-options.php:1289
 msgid ""
 "<a href=\"javascript:toggle('imagepub');\" >Details</a> for <em>publish "
 "images by default</em>"
@@ -5023,7 +4991,7 @@ msgstr ""
 "<a href=\"javascript:toggle('imagepub');\" >Info</a> voor <em>Afbeeldingen "
 "meteen publiceren</em>"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1286
+#: ZpTranslation-Development/zp-core/admin-options.php:1291
 msgid ""
 "This sets the default behavior for when Zenphoto discovers an image. If "
 "checked, the image will be published, if unchecked it will be unpublished."
@@ -5032,7 +5000,7 @@ msgstr ""
 "ontdekt. Als dit is aangevinkt wordt de afbeelding meteen gepubliceerd, "
 "anders niet."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1288
+#: ZpTranslation-Development/zp-core/admin-options.php:1293
 msgid ""
 "<a href=\"javascript:toggle('albumdate');\" >Details</a> for <em>use latest "
 "image date as album date</em>"
@@ -5040,7 +5008,7 @@ msgstr ""
 "<a href=\"javascript: toggle('albumdate');\" >Info</a> voor <em>Gebruik "
 "datum laatste afbeelding als datum voor album</em>"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1291
+#: ZpTranslation-Development/zp-core/admin-options.php:1296
 msgid ""
 "If you wish your album date to reflect the date of the latest image uploaded "
 "set this option. Otherwise the date will be set initially to the date the "
@@ -5050,7 +5018,7 @@ msgstr ""
 "van de laatst geuploade afbeelding. Anders zal de datum gebruikt worden "
 "waarop het album aangemaakt is."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1294
+#: ZpTranslation-Development/zp-core/admin-options.php:1299
 msgid ""
 "<strong>NOTE</strong>: Zenphoto will update the album date only if an image "
 "is discovered which is newer than the current date of the album."
@@ -5059,7 +5027,7 @@ msgstr ""
 "veranderen als er een afbeelding gevonden wordt met een recentere datum dan "
 "die van het album."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1298
+#: ZpTranslation-Development/zp-core/admin-options.php:1303
 msgid ""
 "<a href=\"javascript:toggle('visualthumb');\" >Details</a> for <em>visual "
 "thumb selection</em>"
@@ -5067,7 +5035,7 @@ msgstr ""
 "<a href=\"javascript: toggle('visualthumb');\" >Info</a> voor <em>Visuele "
 "selectie van thumbnails</em>"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1300
+#: ZpTranslation-Development/zp-core/admin-options.php:1305
 msgid ""
 "Setting this option places thumbnails in the album thumbnail selection list "
 "(the dropdown list on each album's edit page). In Firefox the dropdown shows "
@@ -5084,7 +5052,7 @@ msgstr ""
 "onnodig is als ze toch niet getoond worden door de browser. Zet deze optie "
 "uit en de afbeeldingen zullen niet geladen worden."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1303
+#: ZpTranslation-Development/zp-core/admin-options.php:1308
 msgid ""
 "<a href=\"javascript:toggle('multithumb');\" >Details</a> for <em>subalbum "
 "thumb selection</em>"
@@ -5092,7 +5060,7 @@ msgstr ""
 "<a href=\"javascript: toggle('multithumb');\" >Info</a> voor <em>Toon "
 "subalbum thumbnails</em>"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1305
+#: ZpTranslation-Development/zp-core/admin-options.php:1310
 msgid ""
 "Setting this option allows selecting images from subalbums as well as from "
 "the album. Naturally populating these images adds overhead. If your album "
@@ -5101,38 +5069,6 @@ msgstr ""
 "Deze optie maakt het mogelijk om óók thumbnails te selecteren uit subalbums. "
 "Dit kan veel tijd kosten.  Als je merkt dat albumopties traag laden kan het "
 "verstandig zijn om deze optie niet te gebruiken."
-
-#: ZpTranslation-Development/zp-core/admin-options.php:1308
-msgid ""
-"<a href=\"javascript:toggle('gallerysessions');\" >Details</a> for "
-"<em>enable gallery sessions</em>"
-msgstr ""
-"<a href=\"javascript: toggle('gallerysessions');\" >Info</a> voor "
-"<em>Galerij sessies</em>"
-
-#: ZpTranslation-Development/zp-core/admin-options.php:1310
-msgid ""
-"If this option is selected Zenphoto will use <a href=\"http://www.w3schools."
-"com/php/php_sessions.asp\">PHP sessions</a> instead of cookies to make "
-"visitor settings persistent."
-msgstr ""
-"Als deze optie is geactiveerd zal Zenphoto <a href=\"http://www.w3schools."
-"com/php/php_sessions.asp\">PHP sessies</a> gebruiken in plaats van cookies "
-"om gebruikers-instellingen te behouden."
-
-#: ZpTranslation-Development/zp-core/admin-options.php:1311
-msgid ""
-"<strong>NOTE</strong>: Sessions will normally close when the browser closes "
-"causing all password and other data to be discarded. They may close more "
-"frequently depending on the runtime configuration. Longer <em>lifetime</em> "
-"of sessions is generally more conducive to a pleasant user experience. "
-"Cookies are the prefered storage option since their duration is determined "
-"by the <em>Cookie duration</em> option. "
-msgstr ""
-"<strong>Opmerking</strong>: Sessies worden afgesloten als de browser "
-"gesloten wordt. Hierbij worden wachtwoorden en andere informatie weggegooid. "
-"De (ingestelde) langere <em>levensduur</em> van een cookie zorgt doorgaans "
-"voor een prettigere browserervaring."
 
 #: ZpTranslation-Development/zp-core/admin-options.php:1363
 #: ZpTranslation-Development/zp-core/admin-options.php:1407
@@ -7471,21 +7407,21 @@ msgid "Bad "
 msgstr "Slechte"
 
 #: ZpTranslation-Development/zp-core/class-feed.php:486
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:1271
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:1045
 msgid "by"
 msgstr "door"
 
-#: ZpTranslation-Development/zp-core/class-gallery.php:208
+#: ZpTranslation-Development/zp-core/class-gallery.php:207
 #, php-format
 msgid "Error: The 'albums' directory (%s) cannot be found."
 msgstr "Error: De 'albums' directory (%s) kon niet gevonden worden."
 
-#: ZpTranslation-Development/zp-core/class-gallery.php:210
+#: ZpTranslation-Development/zp-core/class-gallery.php:209
 #, php-format
 msgid "Error: The 'albums' directory (%s) is not readable."
 msgstr "Error: De 'albums' directory (%s) is niet leesbaar."
 
-#: ZpTranslation-Development/zp-core/class-gallery.php:285
+#: ZpTranslation-Development/zp-core/class-gallery.php:283
 #: ZpTranslation-Development/zp-core/exif/exif.php:501
 #: ZpTranslation-Development/zp-core/exif/exif.php:513
 #: ZpTranslation-Development/zp-core/exif/exif.php:525
@@ -7548,7 +7484,7 @@ msgstr "Error: De 'albums' directory (%s) is niet leesbaar."
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: ZpTranslation-Development/zp-core/class-gallery.php:285
+#: ZpTranslation-Development/zp-core/class-gallery.php:283
 msgid "<strong>Missing theme info file!</strong>"
 msgstr "<strong>Er ontbreekt een thema!</strong>"
 
@@ -7592,21 +7528,21 @@ msgstr "Locatie/Plaats"
 #: ZpTranslation-Development/zp-core/functions.php:2275
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:122
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:124
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:369
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:367
 msgid "City"
 msgstr "Plaats"
 
 #: ZpTranslation-Development/zp-core/class-search.php:73
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:125
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:127
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:373
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:371
 msgid "State"
 msgstr "Provincie"
 
 #: ZpTranslation-Development/zp-core/class-search.php:74
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:131
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:133
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:383
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:381
 msgid "Country"
 msgstr "Land"
 
@@ -9366,7 +9302,7 @@ msgstr ""
 "controlevraag."
 
 #: ZpTranslation-Development/zp-core/lib-auth.php:942
-#: ZpTranslation-Development/zp-core/zp-extensions/register_user/register_user_form.php:80
+#: ZpTranslation-Development/zp-core/zp-extensions/register_user/register_user_form.php:81
 msgid "Submit"
 msgstr "Verzenden"
 
@@ -9404,6 +9340,10 @@ msgid "I forgot my <strong>User ID</strong>/<strong>Password</strong>"
 msgstr ""
 "Ik ben mijn <strong>gebruikersnaam</strong>/<strong>wachtwoord</strong> "
 "vergeten"
+
+#: ZpTranslation-Development/zp-core/lib-auth.php:1057
+msgid "Enter CAPTCHA"
+msgstr "Voer CAPTCHA in"
 
 #: ZpTranslation-Development/zp-core/lib-auth.php:1065
 msgid "Request"
@@ -10020,36 +9960,36 @@ msgstr ""
 msgid "%s within previous results"
 msgstr "%s binnen vorige resultaten"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3677
+#: ZpTranslation-Development/zp-core/template-functions.php:3678
 msgid "search options"
 msgstr "zoekopties"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3677
+#: ZpTranslation-Development/zp-core/template-functions.php:3678
 msgid "fields"
 msgstr "velden"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3713
+#: ZpTranslation-Development/zp-core/template-functions.php:3714
 msgid "Within"
 msgstr "binnen"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3717
+#: ZpTranslation-Development/zp-core/template-functions.php:3718
 #: ZpTranslation-Development/zp-core/zp-extensions/flag_thumbnail.php:90
 msgid "New"
 msgstr "Nieuw"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3771
+#: ZpTranslation-Development/zp-core/template-functions.php:3772
 msgid "no date"
 msgstr "geen datum"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:4005
+#: ZpTranslation-Development/zp-core/template-functions.php:4006
 msgid "The page you are trying to view is password protected."
 msgstr "Deze pagina is beveiligd met een wachtwoord."
 
-#: ZpTranslation-Development/zp-core/template-functions.php:4010
+#: ZpTranslation-Development/zp-core/template-functions.php:4011
 msgid "login"
 msgstr "login"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:4027
+#: ZpTranslation-Development/zp-core/template-functions.php:4028
 msgid ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
 "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
@@ -14137,6 +14077,41 @@ msgid ""
 "Uncheck to disable the jQuery pagination of comments. Enabled by default."
 msgstr "Vink uit om de jQuery paginering uit te zetten. Normaal staat dit aan."
 
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:173
+msgid "Add a comment:"
+msgstr "Reageer"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:206
+msgid "No Comments"
+msgstr "Geen reacties"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:219
+msgid "show comments"
+msgstr "toon reacties"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:223
+msgid "hide comments"
+msgstr "verberg reacties"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:256
+msgid "on"
+msgstr "op"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:275
+msgid "Only registered users may post comments."
+msgstr "Alleen geregistreerde gebruikers kunnen reacties plaatsen."
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:339
+msgid "Closed for comments."
+msgstr "Gesloten voor reacties."
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:352
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:355
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:358
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:361
+msgid "Subscribe to comments"
+msgstr "RSS reacties."
+
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:18
 msgid ""
 "Prints an e-mail contact so that visitors may e-mail the site administrator."
@@ -14310,13 +14285,13 @@ msgstr "Bedrijf"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:119
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:121
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:365
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:363
 msgid "Street"
 msgstr "Straat"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:128
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:130
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:387
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:385
 msgid "Postal code"
 msgstr "Postcode"
 
@@ -14327,7 +14302,7 @@ msgstr "E-mail"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:137
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:139
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:379
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:377
 msgid "Website"
 msgstr "Website"
 
@@ -14866,11 +14841,11 @@ msgstr ""
 
 #: ZpTranslation-Development/zp-core/zp-extensions/deprecated-functions.php:988
 msgid ""
-"Use $_zp_captcha->getCaptcha(). Note that you will require updating your "
-"code to the new function."
+"Use $_zp_captcha->getCaptcha($prompt). Note that you will require updating "
+"your code to the new function."
 msgstr ""
-"Gebruik $_zp_captcha->getCaptcha().  Vergeet niet je code aan te passen voor "
-"het gebruik van de nieuwe functie!"
+"Gebruik $_zp_captcha->getCaptcha($prompt).  Vergeet niet je code aan te "
+"passen voor het gebruik van de nieuwe functie!"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/deprecated-functions.php:997
 msgid "Use downloadList plugin <code>printDownloadLinkAlbumZip()</code>."
@@ -14924,6 +14899,13 @@ msgstr "gebruik printLatestComments($number, $shorten, $type, $itemID, $id);"
 #: ZpTranslation-Development/zp-core/zp-extensions/deprecated-functions.php:1168
 msgid "use $_zp_captcha->getCaptcha() and format the results as desired."
 msgstr "gebruik $_zp_captcha->getCaptcha()."
+
+#: ZpTranslation-Development/zp-core/zp-extensions/deprecated-functions.php:1170
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/comment_form.php:94
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:107
+#: ZpTranslation-Development/zp-core/zp-extensions/register_user/register_user_form.php:68
+msgid "Enter CAPTCHA <strong>*</strong>"
+msgstr "Voer CAPTCHA in <strong>*</strong>"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/deprecated-functions.php:1187
 msgid "Front end editing is not supported. Use the property specific methods."
@@ -16241,13 +16223,13 @@ msgstr ""
 "De scripts waarvoor jCarousel is geactiveerd. {Als thema's dit nodig hebben "
 "is het al ingesteld. Zo niet, dan moet je het zelf instellen.}"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:65
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:69
 msgid "Enable <strong>jPlayer</strong> to handle multimedia files."
 msgstr ""
 "Activeer <strong>jPlayer</strong> om multimedia bestanden te kunnen "
 "gebruiken."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:66
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:70
 msgid ""
 "<strong>IMPORTANT</strong>: Only one multimedia player plugin can be enabled "
 "at the time and the class-video plugin must be enabled, too."
@@ -16256,7 +16238,7 @@ msgstr ""
 "tegelijkertijd ingeschakeld zijn en de <code>class-video</code> extensie "
 "moet geactiveerd zijn. "
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:66
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:70
 msgid ""
 "Please see <a href='http://jplayer.org'>jplayer.org</a> for more info about "
 "the player and its license."
@@ -16264,39 +16246,39 @@ msgstr ""
 "Zie <a href='http://jplayer.org'>jplayer.org</a> voor meer info over de "
 "player en de licentie. "
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:68
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:72
 msgid "This player does not support <em>External Albums</em>."
 msgstr "Flash players ondersteunen geen <em>externe albums</em>."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:79
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:83
 #, php-format
 msgid "jPlayer not enabled, %s is already instantiated."
 msgstr "jPlayer is niet geactiveerd, %s wordt al gebruikt."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:117
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:121
 msgid "Autoplay"
 msgstr "Automatisch starten"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:118
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:122
 msgid "Disabled automatically if several players on one page"
 msgstr ""
 "Wordt automatisch uitgezet als er meerdere players op één pagina aanwezig "
 "zijn."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:119
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:123
 msgid "Poster (Videothumb)"
 msgstr "Poster (video-thumbnail)"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:120
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:124
 msgid "If the videothumb should be shown (jplayer calls it poster)"
 msgstr ""
 "Of de video-thumbnail getoond moet worden (jPlayer noemt dit \"poster\")"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:121
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:125
 msgid "Poster cropping (Videothumb)"
 msgstr "Poster uitsnede (video-thumbnail)"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:122
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:126
 msgid ""
 "If enable the videothumb to be cropped. Otherwise jPlayer will squish the "
 "image to fit if it does not have the correct aspect ratio."
@@ -16304,11 +16286,11 @@ msgstr ""
 "Of de video-thumbnail uitsgesneden moet worden. Zo niet dan vervormt jPlayer "
 "de afbeelding als deze niet de juiste verhouding heeft."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:123
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:127
 msgid "Audio poster (Videothumb)"
 msgstr "Audio poster (video-thumbnail)"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:124
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:128
 msgid ""
 "If the poster should be shown for audio files (mp3,m4a,fla) (does not apply "
 "for playlists which are all or none)."
@@ -16316,23 +16298,23 @@ msgstr ""
 "Of de poster getoond moet worden voor audio bestanden(mp3,m4a,fla) (is niet "
 "van toepassing op playlists)"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:125
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:129
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:128
 msgid "Show title"
 msgstr "Toon titel"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:126
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:130
 msgid ""
 "If the title should be shown below the player in single player mode (not "
 "needed on normal themes) (ignored in playlists naturally)."
 msgstr ""
 "Of de titel onder de player getoond moet worden in single-player modus."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:127
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:131
 msgid "Playlist support"
 msgstr "Playlist ondersteuning"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:128
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:132
 msgid ""
 "Enable this if you wish to use the playlist mode this loads the scripts "
 "needed. NOTE: You have to add the function printjPlayerPlaylist() to your "
@@ -16342,55 +16324,55 @@ msgstr ""
 "functie <code> printjPlayerPlaylist() </code> aan je thema toevoegen. Zie de "
 "documentatie voor informatie."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:129
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:133
 msgid "Playlist numbered"
 msgstr "Playlist (genummerd)"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:130
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:134
 msgid "Enable this if you wish the playlist to be numbered."
 msgstr "Vink aan als je een genummerde playlist wilt."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:131
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:135
 msgid "Playlist playtime"
 msgstr "Playlist speeltijd"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:132
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:136
 msgid "Enable if you want to show the playtime of playlist entries."
 msgstr "Vink aan om de speeltijd van playlist onderdelen te tonen."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:133
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:137
 msgid "Enable download"
 msgstr "Maak downloaden mogelijk"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:134
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:138
 msgid "Enables direct file downloads (playlists only)."
 msgstr "Maakt direct downloaden mogelijk (alleen playlists)"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:135
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:139
 msgid "Player size"
 msgstr "Player grootte"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:137
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:141
 msgid "jp-video-270p (480x270px)"
 msgstr "jp-video-270p (480x270px)"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:138
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:142
 msgid "jp-video-360p (640x360px)"
 msgstr "jp-video-360p (640x360px)"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:139
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:143
 msgid "jp-video-480p (720x405px)*"
 msgstr "jp-video-480p (720x405px)*"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:140
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:144
 msgid "jp-video-720p (1280x720px)*"
 msgstr "jp-video-720p (1280x720px)*"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:141
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:145
 msgid "jp-video-1080p (1920x1080px)*"
 msgstr "jp-video-1080p (1920x1080px)*"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:142
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:146
 msgid ""
 "jPlayer is dependent on their HTML and CSS based skin. Sizes marked with a "
 "<strong>*</strong> are supported by the two Zenphoto custom skins only "
@@ -16404,11 +16386,11 @@ msgstr ""
 "formaat wilt, moet je de skin aanpassen of er zelf een maken. Je moet ook "
 "waardes veranderen in de plugin class methode <code>getPlayerSize()</code>."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:143
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:147
 msgid "Player skin"
 msgstr "Player skin"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:145
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:149
 msgid ""
 "Select the skin (theme) to use. <br />NOTE: Since the skin is pure HTML/CSS "
 "only there may be display issues with certain themes that require manual "
@@ -16421,7 +16403,7 @@ msgstr ""
 "zelfgemaakte skin in de <em>plugins</em> map (in de root van de "
 "installatie). Zie de plugin documentatie voor meer informatie."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:235
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:239
 msgid ""
 "provide the path to media file as %1 and a unique number as %2. (If there is "
 "only player instance on the page any random number will do.)"
@@ -16430,68 +16412,68 @@ msgstr ""
 "(als er slechts één speler op de pagina is, kan elk willekeurig nummer "
 "gebruikt worden)"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:273
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:277
 msgid "This multimedia format is not supported by jPlayer"
 msgstr "Dit multimedia format wordt niet ondersteund door jPlayer."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:451
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:455
 msgid "previous"
 msgstr "vorige"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:454
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:458
 msgid "play"
 msgstr "play"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:455
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:459
 msgid "pause"
 msgstr "pause"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:460
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:464
 msgid "stop"
 msgstr "stop"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:461
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:465
 msgid "mute"
 msgstr "mute"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:462
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:466
 msgid "unmute"
 msgstr "unmute"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:463
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:467
 msgid "max volume"
 msgstr "max volume"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:471
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:475
 msgid "full screen"
 msgstr "volledig scherm"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:472
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:476
 msgid "restore screen"
 msgstr "restore screen"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:477
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:114
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:481
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:115
 msgid "shuffle"
 msgstr "shuffle"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:478
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:482
 msgid "shuffle off"
 msgstr "shuffle off"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:482
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:486
 msgid "repeat"
 msgstr "repeat"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:483
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:487
 msgid "repeat off"
 msgstr "repeat off"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:489
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:493
 msgid "Update Required"
 msgstr "Update vereist"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:490
+#: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:494
 msgid ""
 "To play the media you will need to either update your browser to a recent "
 "version or update your <a href=\"http://get.adobe.com/flashplayer/\" target="
@@ -17319,12 +17301,11 @@ msgstr "waardering opgeslagen"
 msgid "nothing to submit"
 msgstr "er is geen keuze gemaakt"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:11
-#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha.php:13
-msgid "Zenphoto captcha handler."
-msgstr "Zenphoto CAPTCHA"
+#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:30
+msgid "Google reCaptcha handler."
+msgstr "Gebruik Google reCaptcha."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:13
+#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:32
 #: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha.php:15
 #, php-format
 msgid ""
@@ -17334,11 +17315,27 @@ msgstr ""
 "Er mag maar één CAPTCHA plugin geactiveerd zijn. <a href=\"#%1$s\"><code>"
 "%1$s</code></a> is al geactiveerd."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:39
+#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:57
+msgid "Red"
+msgstr "Red"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:57
+msgid "White"
+msgstr "White"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:57
+msgid "Black Glass"
+msgstr "Black Glass"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:57
+msgid "Clean"
+msgstr "Clean"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:66
 msgid "Public key"
 msgstr "Public key"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:41
+#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:68
 msgid ""
 "Enter your <em>reCaptcha</em> public key. You can obtain this key from the "
 "Google <a href=\"http://www.google.com/recaptcha\">reCaptcha</a> site"
@@ -17346,42 +17343,60 @@ msgstr ""
 "Vul je <em>reCaptcha public key</em> in. Je kunt deze krijgen via de Google "
 "<a href=\"http://www.google.com/recaptcha\">reCaptcha</a> site"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:42
+#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:69
 msgid "Private key"
 msgstr "Private key"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:44
+#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:71
 msgid "Enter your <em>reCaptcha</em> private key."
 msgstr "Vul je <em>reCaptcha private key</em> in."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:45
+#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:72
 #: ZpTranslation-Development/zp-core/zp-extensions/themeSwitcher.php:132
 msgid "Theme"
 msgstr "Thema"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:47
-msgid "Red"
-msgstr "Red"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:47
-msgid "White"
-msgstr "White"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:47
-msgid "Black Glass"
-msgstr "Black Glass"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:47
-msgid "Clean"
-msgstr "Clean"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:48
+#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:75
 msgid "Select the <em>reCaptcha</em> theme."
 msgstr "Selecteer het <em>reCaptcha</em> thema."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:77
+#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:78
+#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha.php:64
+msgid "Sample CAPTCHA image"
+msgstr "Voorbeeld van CAPTCHA"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:115
 msgid "reCAPTCHA is not properly configured."
 msgstr "reCAPTCHA is niet juist geconfigureerd."
+
+#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:121
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:59
+msgid "Help"
+msgstr "Help"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:122
+msgid "Get a visual challenge"
+msgstr "Toon een visuele uitdaging"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:123
+msgid "Get an audio challenge"
+msgstr "Probeer een audio-uitdaging"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:124
+msgid "Get another challenge"
+msgstr "Een nieuwe uitdaging proberen"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:125
+msgid "Type the two words"
+msgstr "Typ de twee woorden"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:126
+msgid "Type what you hear"
+msgstr "Typ wat je hoort"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/reCaptcha.php:127
+msgid "Incorrect please try again"
+msgstr "Onjuist. Probeer het nog een keer."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/register_user.php:26
 msgid ""
@@ -18625,7 +18640,7 @@ msgstr "Sitemap"
 msgid "Generate or purge sitemap cache files."
 msgstr "Maak of verwijder sitemap-cache bestanden."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:36
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:37
 msgid ""
 "Adds a theme function to call a slideshow either based on jQuery (default) "
 "or Colorbox."
@@ -18633,19 +18648,19 @@ msgstr ""
 "Voegt een themafunctie toe om een slideshow aan te roepen gebaseerd op "
 "jQuery (standaard) of Colorbox. "
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:83
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:84
 msgid "Mode"
 msgstr "Methode"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:85
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:86
 msgid "jQuery Cycle"
 msgstr "jQuery Cycle"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:85
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:86
 msgid "jQuery Colorbox"
 msgstr "jQuery Colorbox"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:86
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:87
 msgid ""
 "<em>jQuery Cycle</em> for slideshow using the jQuery Cycle plugin<br /"
 "><em>jQuery Colorbox</em> for slideshow using Colorbox (Colorbox plugin "
@@ -18660,15 +18675,15 @@ msgstr ""
 "wordt door de printSlideShowLink() functie ! <br />Hij kan niet rechtstreeks "
 "of op slideshow.php aangeroepen worden."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:87
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:88
 msgid "Speed"
 msgstr "Snelheid"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:89
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:90
 msgid "Speed of the transition in milliseconds."
 msgstr "Snelheid van de overgang in milliseconde."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:98
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:99
 msgid ""
 "The scripts for which the slideshow is enabled. {Should have been set by the "
 "themes!}"
@@ -18676,102 +18691,102 @@ msgstr ""
 "De scripts waarvoor de slideshow is geactiveerd. {Zou ingesteld moeten zijn "
 "door de thema's!}"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:106
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:140
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:107
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:141
 msgid "Slide width"
 msgstr "Breedte"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:108
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:142
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:109
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:143
 msgid "Width of the images in the slideshow."
 msgstr "Breedte van de afbeeldingen in de slideshow."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:109
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:110
 msgid "Slide height"
 msgstr "Hoogte"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:111
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:112
 msgid "Height of the images in the slideshow."
 msgstr "Hoogte van de afbeeldingen in de slideshow."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:112
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:113
 msgid "Cycle Effect"
 msgstr "Cycle effect"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:114
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:128
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:115
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:129
 msgid "fade"
 msgstr "vervagen"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:114
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:115
 msgid "zoom"
 msgstr "zoom"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:114
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:115
 msgid "slide X"
 msgstr "slide X"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:114
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:115
 msgid "slide Y"
 msgstr "slide Y"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:114
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:115
 msgid "scroll up"
 msgstr "scroll naar boven"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:114
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:115
 msgid "scroll down"
 msgstr "scroll naar beneden"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:114
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:115
 msgid "scroll left"
 msgstr "scroll links"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:114
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:115
 msgid "scroll right"
 msgstr "scroll rechts"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:115
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:116
 msgid "The cycle slide effect to be used."
 msgstr "Het overgangseffect dat wordt gebruikt."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:116
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:117
 msgid "Timeout"
 msgstr "Timeout"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:118
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:119
 msgid "Milliseconds between slide transitions (0 to disable auto advance.)"
 msgstr ""
 "Milliseconden tussen slide-overgangen (zet op 0 (nul) om autoplay uit te "
 "zetten)."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:121
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:122
 msgid "Check if you want to show the image's description below the slideshow."
 msgstr ""
 "Vink aan als je de beschrijving van de afbeelding wilt tonen onder de "
 "slideshow."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:126
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:127
 msgid "Colorbox transition"
 msgstr "Colorbox overgang"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:128
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:129
 msgid "elastic"
 msgstr "elastisch"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:129
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:130
 msgid "The Colorbox transition slide effect to be used."
 msgstr "Het Colorbox overgangseffect dat wordt gebruikt."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:130
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:131
 msgid "Colorbox image type"
 msgstr "Colorbox afbeeldingstype"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:132
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:133
 msgid "sized image"
 msgstr "ingesteld formaat"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:133
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:134
 msgid ""
 "The image type you wish to use for the Colorbox. If you choose 'sized image' "
 "the slideshow width value will be used for the longest side of the image."
@@ -18780,15 +18795,15 @@ msgstr ""
 "afbeeldingen op een \"ingesteld formaat\" wordt de slideshow <em>Breedte</"
 "em> gebruikt als langste zijde van de afbeelding."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:134
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:135
 msgid "Colorbox image title"
 msgstr "Colorbox afbeeldingstitel"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:136
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:137
 msgid "If the image title should be shown at the bottom of the Colorbox."
 msgstr "Of de afbeeldingstitel getoond moet worden onderaan de Colorbox."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:174
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:172
 msgid "Invalid slideshow album name!"
 msgstr "Ongeldige albumnaam voor de slideshow!"
 
@@ -18796,23 +18811,27 @@ msgstr "Ongeldige albumnaam voor de slideshow!"
 msgid "This album is password protected!"
 msgstr "Dit is album is beveiligd met een wachtwoord!"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:360
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:195
+msgid "No images for the slideshow!"
+msgstr "Er zijn geen afbeeldingen voor de slideshow!"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:362
 msgid "Stop and return to album or image page"
 msgstr "Stop en keer terug naar de album of afbeeldingspagina"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:361
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:363
 msgid "Pause (to stop the slideshow without returning)"
 msgstr "Pauzeer (om de slideshow te stoppen zonder terug te keren)"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:362
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:364
 msgid "Play"
 msgstr "Speel af"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:393
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:395
 msgid ":"
 msgstr ":"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:450
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:454
 msgid ""
 "provide the album name as %1 and <code>true</code> (or <code>false</code>) "
 "as %2 to show (hide) controls."
@@ -18820,7 +18839,7 @@ msgstr ""
 "Geef de albumnaam op als %1 en <code>true</code> (of <code>false</code>) als "
 "%2 om controls te tonen (of te verbergen)."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:559
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:572
 #, php-format
 msgid ""
 "Slideshow not available because colorbox is not enabled on %1$s <em>%2$s</"
@@ -18829,20 +18848,20 @@ msgstr ""
 "Slideshow is niet beschikbaar omdat Colorbox niet geactiveerd is in %1$s <em>"
 "%2$s</em> pagina's."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:578
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:591
 msgid "start slideshow"
 msgstr "start slideshow"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:579
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:592
 msgid "stop slideshow"
 msgstr "stop slideshow"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:583
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:596
 #, php-format
 msgid "image %1$s of %2$s"
 msgstr "Afbeelding %1$s van %2$s"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:692
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:703
 msgid "Invalid linking to the slideshow page."
 msgstr "Ongeldige verwijzing naar de slideshowpagina."
 
@@ -20378,6 +20397,10 @@ msgstr ""
 "Jouw bijdrage helpt de ontwikkeling van Zenphoto en het onderhoud van de "
 "server. Dankjewel !"
 
+#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha.php:13
+msgid "Zenphoto captcha handler."
+msgstr "Zenphoto CAPTCHA"
+
 #: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha.php:45
 msgid "Hash key"
 msgstr "Hash sleutel"
@@ -20445,10 +20468,6 @@ msgid ""
 msgstr ""
 "De grootte van het font als dit schaalbaar is. (<em>TTF</em> en <em>Imagick</"
 "em> fonts) "
-
-#: ZpTranslation-Development/zp-core/zp-extensions/zpCaptcha.php:64
-msgid "Sample CAPTCHA image"
-msgstr "Voorbeeld van CAPTCHA"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/cacheManager/cacheDBImages.php:20
 #: ZpTranslation-Development/zp-core/zp-extensions/cacheManager/cacheDBImages.php:21
@@ -20734,163 +20753,176 @@ msgstr "Kloon Zenphoto"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/comment_form/comment_form.php:22
 #, php-format
-msgid "Name%s:"
-msgstr "Naam%s:"
+msgid "Name%s"
+msgstr "Naam%s"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/comment_form.php:29
+msgid "<em>anonymous</em>"
+msgstr "<em>anoniem</em>"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/comment_form/comment_form.php:44
 #, php-format
-msgid "E-Mail%s:"
-msgstr "E-mail %s:"
+msgid "E-Mail%s"
+msgstr "E-mail%s"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/comment_form/comment_form.php:58
 #, php-format
-msgid "Site%s:"
-msgstr "Site %s:"
+msgid "Site%s"
+msgstr "Site%s"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/comment_form.php:72
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:183
+#, php-format
+msgid "Street%s"
+msgstr "Straat%s"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/comment_form/comment_form.php:76
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:187
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:189
 #, php-format
-msgid "City%s:"
-msgstr "Stad%s:"
+msgid "City%s"
+msgstr "Stad%s"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/comment_form.php:80
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:195
+#, php-format
+msgid "State%s"
+msgstr "Staat%s"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/comment_form/comment_form.php:84
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:199
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:201
 #, php-format
-msgid "Country%s:"
-msgstr "Land%s:"
+msgid "Country%s"
+msgstr "Land%s"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/comment_form.php:95
-msgid "<strong>*</strong>Required fields"
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/comment_form.php:88
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:207
+#, php-format
+msgid "Postal code%s"
+msgstr "Postcode%s"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/comment_form.php:107
+msgid "<strong>*</strong> Required fields"
 msgstr "<strong>*</strong> Verplichte velden"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/comment_form.php:102
-msgid "Enter CAPTCHA:"
-msgstr "Voer CAPTCHA in:"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/comment_form.php:118
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/comment_form.php:113
 msgid "Private comment (don't publish)"
 msgstr "Privé bericht (niet publiceren)"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/comment_form.php:125
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/comment_form.php:122
 msgid "Add Comment"
 msgstr "Verzenden"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:79
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:81
 msgid "10 Most Recent Comments"
 msgstr "10 meest recente reacties"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:87
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:89
 msgid "<strong>database error</strong> "
 msgstr "<strong>database fout</strong> "
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:153
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:155
 #, php-format
 msgid "<em>%1$s</em> commented on %2$s:"
 msgstr "<em>%1$s</em> gaf reactie op %2$s:"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:211
-#: ZpTranslation-Development/zp-core/zp-extensions/register_user/register_user_form.php:79
-msgid "*Required"
-msgstr "*Verplicht"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:230
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:305
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:228
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:303
 msgid "You must supply the street field."
 msgstr "Je moet een straatnaam invoeren"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:234
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:309
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:232
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:307
 msgid "You must supply the city field."
 msgstr "Je moet een stad invoeren."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:238
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:313
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:236
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:311
 msgid "You must supply the state field."
 msgstr "Je moet de staat invoeren."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:242
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:317
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:240
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:315
 msgid "You must supply the country field."
 msgstr "Je moet het land invoeren"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:246
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:320
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:244
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:318
 msgid "You must supply the postal code field."
 msgstr "Je moet de postcode invoeren."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:420
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:418
 msgid "Mail send failed"
 msgstr "E-mail verzenden mislukt."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:426
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:424
 msgid "Error posting comment:"
 msgid_plural "Errors posting comment:"
 msgstr[0] "Fout bij plaatsen van reactie"
 msgstr[1] "Fouten  bij plaatsen van reactie"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:515
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:513
 msgid "You must supply an e-mail address."
 msgstr "Je moet een e-mailadres invoeren."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:520
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:518
 msgid "You must enter your name."
 msgstr "Je moet je naam invoeren."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:525
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:523
 msgid "You must supply a WEB page URL."
 msgstr "Je moet een webpagina URL invoeren."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:531
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:529
 msgid "CAPTCHA verification failed."
 msgstr "CAPTCHA verificatie mislukt."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:537
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:535
 msgid "You must enter something in the comment text."
 msgstr "Je bent vergeten een bericht te schrijven."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:546
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:544
 #, php-format
 msgid "Your comment was rejected by the <em>%s</em> SPAM filter."
 msgstr "Je reactie is geweigerd door het <em>%s</em> SPAM filter."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:550
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:548
 #, php-format
 msgid ""
 "Your comment has been marked for moderation by the <em>%s</em> SPAM filter."
 msgstr ""
 "Je reactie is door het <em>%s</em> SPAM filter aangemerkt voor aanpassingen."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:584
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:582
 #, php-format
 msgid "A comment has been placed in moderation on your album \"%1$s\"."
 msgstr "Er is een reactie ter goedkeuring op het album \"%1$s\"."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:586
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:584
 #, php-format
 msgid "A comment has been posted on your album \"%1$s\"."
 msgstr "Er is een reactie op het album \"%1$s\"."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:592
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:590
 #, php-format
 msgid "A comment has been placed in moderation on your article \"%1$s\"."
 msgstr "Er is een reactie ter goedkeuring op het artikel \"%1$s\"."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:594
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:592
 #, php-format
 msgid "A comment has been posted on your article \"%1$s\"."
 msgstr "Er is een reactie op het artikel \"%1$s\"."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:600
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:598
 #, php-format
 msgid "A comment has been placed in moderation on your page \"%1$s\"."
 msgstr "Er is een reactie ter goedkeuring op de pagina \"%1$s\"."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:602
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:600
 #, php-format
 msgid "A comment has been posted on your page \"%1$s\"."
 msgstr "Er is een reactie op de pagina \"%1$s\"."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:610
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:608
 #, php-format
 msgid ""
 "A comment has been placed in moderation on your image \"%1$s\" in the album "
@@ -20899,12 +20931,12 @@ msgstr ""
 "Er is een reactie ter goedkeuring op de afbeelding  \"%1$s\" in het album "
 "\"%2$s\"."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:612
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:610
 #, php-format
 msgid "A comment has been posted on your image \"%1$s\" in the album \"%2$s\"."
 msgstr "Er is een reactie op de afbeelding  \"%1$s\" in het album \"%2$s\"."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:618
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:616
 #, php-format
 msgid ""
 "Author: %1$s\n"
@@ -20921,7 +20953,7 @@ msgstr ""
 "\n"
 "%4$s"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:619
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:617
 #, php-format
 msgid ""
 "You can view all comments about this item here:\n"
@@ -20930,7 +20962,7 @@ msgstr ""
 "Je kunt hier alle reacties over dit thema hier zien:\n"
 "%1$s"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:620
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:618
 #, php-format
 msgid ""
 "You can edit the comment here:\n"
@@ -20939,119 +20971,80 @@ msgstr ""
 "Je kunt hier de reactie aanpassen:\n"
 "%1$s"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:649
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:647
 msgid "Comment posted"
 msgstr "Reactie geplaatst"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:693
-msgid "Add a comment:"
-msgstr "Reageer"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:726
-msgid "No Comments"
-msgstr "Geen reacties"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:739
-msgid "show comments"
-msgstr "toon reacties"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:743
-msgid "hide comments"
-msgstr "verberg reacties"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:776
-msgid "on"
-msgstr "op"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:795
-msgid "Only registered users may post comments."
-msgstr "Alleen geregistreerde gebruikers kunnen reacties plaatsen."
-
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:859
-msgid "Closed for comments."
-msgstr "Gesloten voor reacties."
-
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:872
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:875
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:878
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:881
-msgid "Subscribe to comments"
-msgstr "RSS reacties."
-
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:1389
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:1163
 msgid "Anonymous"
 msgstr "Anoniem"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:13
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:15
 #, php-format
-msgid "Title<strong>%s</strong>:"
-msgstr "Titel<strong>%s</strong>:"
+msgid "Title *"
+msgstr "Titel *"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:19
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:23
 #, php-format
-msgid "Name<strong>%s</strong>:"
-msgstr "Naam<strong>%s</strong>:"
+msgid "Name *"
+msgstr "Naam *"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:29
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:37
 #, php-format
-msgid "Company<strong>%s</strong>:"
-msgstr "Bedrijf<strong>%s</strong>:"
+msgid "Company *"
+msgstr "Bedrijf *"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:35
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:45
 #, php-format
-msgid "Street<strong>%s</strong>:"
-msgstr "Straat<strong>%s</strong>:"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:41
-#, php-format
-msgid "City<strong>%s</strong>:"
-msgstr "Plaats<strong>%s</strong>:"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:47
-#, php-format
-msgid "State<strong>%s</strong>:"
-msgstr "Staat<strong>%s</strong>:"
+msgid "Street *"
+msgstr "Straat *"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:53
 #, php-format
-msgid "Country<strong>%s</strong>:"
-msgstr "Land<strong>%s</strong>:"
+msgid "City *"
+msgstr "Plaats *"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:59
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:61
 #, php-format
-msgid "Postal code<strong>%s</strong>:"
-msgstr "Postcode<strong>%s</strong>:"
+msgid "State *"
+msgstr "Provincie *"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:65
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:69
 #, php-format
-msgid "E-Mail<strong>%s</strong>:"
-msgstr "E-mail<strong>%s</strong>:"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:71
-#, php-format
-msgid "Website<strong>%s</strong>:"
-msgstr "Website<strong>%s</strong>:"
+msgid "Country *"
+msgstr "Land *"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:77
 #, php-format
-msgid "Phone<strong>%s</strong>:"
-msgstr "Telefoon<strong>%s</strong>:"
+msgid "Postal code *"
+msgstr "Postcode *"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:86
-msgid "Enter CAPTCHA<strong>*</strong>:"
-msgstr "Voer CAPTCHA in<strong>*</strong>:"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:96
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:85
 #, php-format
-msgid "Subject<strong>%s</strong>:"
-msgstr "Onderwerp<strong>%s</strong>:"
+msgid "E-Mail *"
+msgstr "E-mail *"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:102
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:93
 #, php-format
-msgid "Message<strong>%s</strong>:"
-msgstr "Bericht<strong>%s</strong>:"
+msgid "Website *"
+msgstr "Website *"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:108
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:101
+#, php-format
+msgid "Phone *"
+msgstr "Telefoon *"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:121
+#, php-format
+msgid "Subject *"
+msgstr "Onderwerp *"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:129
+#, php-format
+msgid "Message *"
+msgstr "Bericht *"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:137
 msgid "Send e-mail"
 msgstr "Stuur e-mail"
 
@@ -22037,11 +22030,11 @@ msgstr "E-mail* (dit is meteen ook je gebruikers ID)"
 msgid "User ID"
 msgstr "Gebruikers ID"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/register_user/register_user_form.php:69
-msgid "Enter"
-msgstr "Voer code in"
+#: ZpTranslation-Development/zp-core/zp-extensions/register_user/register_user_form.php:80
+msgid "*Required"
+msgstr "*Verplicht"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/register_user/register_user_form.php:85
+#: ZpTranslation-Development/zp-core/zp-extensions/register_user/register_user_form.php:86
 msgid "You may also register using federated credentials"
 msgstr "Je kunt ook registreren met \"federated\" gegevens"
 
@@ -22218,10 +22211,6 @@ msgstr "(Klik op artikel om in te voegen)"
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:738
 msgid "All categories"
 msgstr "Alle categorieën"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:59
-msgid "Help"
-msgstr "Help"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:70
 msgid "*Select*"
@@ -23642,6 +23631,72 @@ msgstr "<code>zenpageAlbumImage()</code> kan afbeelding %1$s:%2$s niet vinden."
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> kan album %1$s niet vinden."
+
+#~ msgid "%sName:"
+#~ msgstr "%sNaam:"
+
+#~ msgid "URL%s:"
+#~ msgstr "URL%s:"
+
+#~ msgid "City:%s"
+#~ msgstr "Stad:%s"
+
+#~ msgid "Country:%s"
+#~ msgstr "Land:%s"
+
+#~ msgid "*Required fields"
+#~ msgstr "* Verplichte velden:"
+
+#~ msgid "Private comment:"
+#~ msgstr "privé reactie:"
+
+#~ msgid "(don't publish)"
+#~ msgstr "(niet publiceren)"
+
+#~ msgid "Enter CAPTCHA:"
+#~ msgstr "Voer CAPTCHA in:"
+
+#~ msgid "Title<strong>%s</strong>:"
+#~ msgstr "Titel<strong>%s</strong>:"
+
+#~ msgid "Name<strong>%s</strong>:"
+#~ msgstr "Naam<strong>%s</strong>:"
+
+#~ msgid "Company<strong>%s</strong>:"
+#~ msgstr "Bedrijf<strong>%s</strong>:"
+
+#~ msgid "Street<strong>%s</strong>:"
+#~ msgstr "Straat<strong>%s</strong>:"
+
+#~ msgid "City<strong>%s</strong>:"
+#~ msgstr "Plaats<strong>%s</strong>:"
+
+#~ msgid "State<strong>%s</strong>:"
+#~ msgstr "Staat<strong>%s</strong>:"
+
+#~ msgid "Country<strong>%s</strong>:"
+#~ msgstr "Land<strong>%s</strong>:"
+
+#~ msgid "Postal code<strong>%s</strong>:"
+#~ msgstr "Postcode<strong>%s</strong>:"
+
+#~ msgid "E-Mail<strong>%s</strong>:"
+#~ msgstr "E-mail<strong>%s</strong>:"
+
+#~ msgid "Website<strong>%s</strong>:"
+#~ msgstr "Website<strong>%s</strong>:"
+
+#~ msgid "Phone<strong>%s</strong>:"
+#~ msgstr "Telefoon<strong>%s</strong>:"
+
+#~ msgid "Subject<strong>%s</strong>:"
+#~ msgstr "Onderwerp<strong>%s</strong>:"
+
+#~ msgid "Message<strong>%s</strong>:"
+#~ msgstr "Bericht<strong>%s</strong>:"
+
+#~ msgid "Enter"
+#~ msgstr "Voer code in"
 
 #~ msgid "%s log maximum size changed."
 #~ msgstr "Maximale grootte van het %s log is veranderd."
