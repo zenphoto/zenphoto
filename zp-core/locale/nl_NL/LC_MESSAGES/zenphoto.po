@@ -15232,7 +15232,7 @@ msgstr "Mijn favorieten"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:49
 msgid "The albums and images selected as favorites."
-msgstr "De albums en afbeeldingen die zijn geselcteerd als favorieten."
+msgstr "De albums en afbeeldingen die zijn geselecteerd als favorieten."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:51
 msgid "Add favorite"
