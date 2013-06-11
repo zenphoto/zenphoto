@@ -397,7 +397,7 @@ function showOrNotShowField($option) {
 function checkRequiredField($option) {
 	global $_processing_post;
 	if($option == "required" && !$_processing_post) {
-		return "*";
+		return "<strong>*</strong>";
 	} else {
 		return "";
 	}
