@@ -199,7 +199,7 @@ $required = false;
 				}
 				?>
 				<tr valign="top" align="left">
-					<th><?php echo gettext('Private comment:'); ?></th>
+					<th><?php echo gettext('Private comment'); ?></th>
 					<td>
 						<label>
 						<input type="checkbox" name="private" value="1"<?php if ($stored['private']) echo ' checked="checked"'; ; ?> /> <?php echo gettext("(don't publish)"); ?>
@@ -209,7 +209,7 @@ $required = false;
 				<?php
 				?>
 				<tr valign="top" align="left">
-					<th><?php echo gettext('Comment:'); ?></th>
+					<th><?php echo gettext('Comment'); ?></th>
 					<td></td>
 				</tr>
 				<tr>
