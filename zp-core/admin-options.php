@@ -950,7 +950,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 					<td width="175">
 						<?php
 						foreach ($subtabs as $subtab=>$log) {
-							if (!is_null(getOption($log.'_log_size'))) {
+							if (!is_null(getOption($subtab.'_log_size'))) {
 								printf(gettext('<p>%s log limit</p>'), $log);
 							}
 						}
@@ -959,11 +959,11 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 					<td width="350">
 						<?php
 						foreach ($subtabs as $subtab=>$log) {
-							if (!is_null($size = getOption($log.'_log_size'))) {
+							if (!is_null($size = getOption($subtab.'_log_size'))) {
 								?>
 								<p>
-								<input type="text" size="4" id="<?php echo $log?>_log" name="log_size_<?php echo $log; ?>" value="<?php echo $size; ?>" />
-								<input type="checkbox" id="<?php echo $log?>_log" name="log_mail_<?php echo $log; ?>" value="1" <?php checked('1',getOption($log.'_log_mail')); ?> /> <?php echo gettext('e-mail when exceeded');?>
+								<input type="text" size="4" id="<?php echo $log?>_log" name="log_size_<?php echo $subtab; ?>" value="<?php echo $size; ?>" />
+								<input type="checkbox" id="<?php echo $log?>_log" name="log_mail_<?php echo $subtab; ?>" value="1" <?php checked('1',getOption($subtab.'_log_mail')); ?> /> <?php echo gettext('e-mail when exceeded');?>
 								</p>
 								<?php
 							}
