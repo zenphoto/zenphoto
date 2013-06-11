@@ -457,8 +457,16 @@ class slideshow {
 	}
 
 	static function header_js() {
+		$theme = getCurrentTheme();
+		$css = SERVERPATH . '/' . THEMEFOLDER . '/' . internalToFilesystem($theme) . '/slideshow.css';
+		if (file_exists($css)) {
+			$css = WEBPATH . '/' . THEMEFOLDER . '/' . $theme . '/slideshow.css';
+		} else {
+			$css = WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/slideshow/slideshow.css';
+		}
 		?>
 		<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER.'/'.PLUGIN_FOLDER ?>/slideshow/jquery.cycle.all.js" type="text/javascript"></script>
+		<link rel="stylesheet" type="text/css" href="<?php echo $css; ?>" />
 		<?php
 	}
 

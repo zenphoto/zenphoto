@@ -20,23 +20,23 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 			<label for="adminuser">
 				<?php
 					if ($emailid = getOption('register_user_email_is_id')) {
-						echo gettext("Email* (this will be your user id)");
+						echo gettext("Email<strong>*</strong> (this will be your user id)");
 					} else {
-						echo gettext("User ID").'*';
+						echo gettext("User ID").'<strong>*</strong>';
 					} ?>
 			</label>
 			<input type="text" id="adminuser" name="user" value="<?php echo html_encode($user); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" />
 	  </p>
-		<?php $_zp_authority->printPasswordForm('', false, NULL, false, $flag='*'); ?>
+		<?php $_zp_authority->printPasswordForm('', false, NULL, false, $flag='<strong>*</strong>'); ?>
 		<p>
-			<label for="admin_name"><?php echo gettext("Name"); ?>*</label>
+			<label for="admin_name"><?php echo gettext("Name"); ?><strong>*</strong></label>
 			<input type="text" id="admin_name" name="admin_name" value="<?php echo html_encode($admin_n); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" />
 		</p>
 		<?php
 		if (!getOption('register_user_email_is_id')) {
 			?>
 			<p>
-				<label for="admin_email"><?php echo gettext("Email"); ?><?php if (!$emailid) echo '*'; ?></label>
+				<label for="admin_email"><?php echo gettext("Email"); ?><?php if (!$emailid) echo '<strong>*</strong>'; ?></label>
 				<input type="text" id="admin_email" name="admin_email" value="<?php echo html_encode($admin_e); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" />
 			</p>
 			<?php
@@ -77,7 +77,7 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 			<?php
 		}
 		?>
-		<p><?php echo gettext('*Required'); ?></p>
+		<p><?php echo gettext('<strong>*</strong>Required'); ?></p>
 		<input type="submit" class="button buttons" value="<?php echo gettext('Submit') ?>" />
 		<?php
 		if (class_exists('federated_logon')) {
