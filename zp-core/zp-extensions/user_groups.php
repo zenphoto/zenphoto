@@ -41,7 +41,7 @@ class user_groups {
 			$objects = $before->getObjects();
 		} else {
 			$rights = 0;
-			foreach ($groups as $groupname) {
+			foreach ($groups as $key=>$groupname) {
 				if (empty($groupname)) {
 					//	force the first template to happen
 					$group = new Zenphoto_Administrator('', 0);
@@ -50,13 +50,12 @@ class user_groups {
 					$group = Zenphoto_Authority::newAdministrator($groupname, 0);
 				}
 				if ($group->getName() == 'template') {
-					unset($groups[$groupname]);
+					unset($groups[$key]);
 					if ($userobj->getID() > 0 && !$templates) {
 						//	fetch the existing rights and objects
 						$templates = true;	//	but only once!
-						$before = Zenphoto_Authority::newAdministrator($userobj->getUser(), 1);
-						$rights = $before->getRights();
-						$objects = $before->getObjects();
+						$rights = $userobj->getRights();
+						$objects = $userobj->getObjects();
 					}
 				}
 				$rights = $group->getRights() | $rights;

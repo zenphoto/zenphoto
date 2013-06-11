@@ -170,7 +170,7 @@ if (isset($_GET['action'])) {
 								markUpdated();
 							}
 							$rights = 0;
-							if ($alter && !$userobj->getGroup()) {
+							if ($alter) {
 								$oldrights = $userobj->getRights() & ~(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS);
 								$rights = processRights($i);
 								if (($rights & ~(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS)) != $oldrights) {
@@ -469,9 +469,11 @@ function languageChange(id,lang) {
 						<?php
 						$groups = $_zp_authority->getAdministrators('groups');
 						foreach ($groups as $group) {
-							?>
-							<option value="<?php echo $group['user']; ?>"<?php if ($showgroup==$group['user']) echo ' selected="selected"'; ?>><?php printf('%s group', $group['user']); ?></option>
-							<?php
+							if ($group['name'] != 'template') {
+								?>
+								<option value="<?php echo $group['user']; ?>"<?php if ($showgroup==$group['user']) echo ' selected="selected"'; ?>><?php printf('%s group', $group['user']); ?></option>
+								<?php
+							}
 						}
 					}
 					?>
