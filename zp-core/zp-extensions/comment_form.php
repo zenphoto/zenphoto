@@ -106,7 +106,6 @@ class comment_form {
 													'order' => 0.4,
 													'buttons' => array(gettext('Omit')=>0, gettext('For guests')=>2, gettext('Require')=>1),
 													'desc' => ($_zp_captcha->name)?gettext('If <em>Captcha</em> is required, the form will include a Captcha verification.'):'<span class="notebox">'.gettext('No captcha handler is enabled.').'</span>'),
-
 											gettext('Address fields') => array('key' => 'comment_form_addresses', 'type' => OPTION_TYPE_RADIO,
 												'order' => 7,
 												'buttons' => array(gettext('Omit')=>0, gettext('Show')=>1, gettext('Require')=>'required'),
