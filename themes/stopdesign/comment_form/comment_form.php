@@ -25,7 +25,7 @@ $required = false;
 			<table>
 				<?php
 				if ($req = getOption('comment_name_required')) {
-					$required = true;
+					$required =$required || $req=='required';
 					?>
 					<tr valign="top" align="left" id="row-name">
 						<th><?php printf(gettext('Name%s'),($req == 'required' ? $star : '')); ?></th>
@@ -50,7 +50,7 @@ $required = false;
 					<?php
 				}
 				if ($req = getOption('comment_email_required')) {
-					$required = true;
+					$required =$required || $req=='required';
 					?>
 					<tr valign="top" align="left" id="row-email">
 						<th><?php printf(gettext('Email%s'),($req == 'required' ? $star : '')); ?></th>
@@ -73,7 +73,7 @@ $required = false;
 					<?php
 				}
 				if ($req = getOption('comment_web_required')) {
-					$required = true;
+					$required =$required || $req=='required';
 					?>
 					<tr valign="top" align="left">
 						<th><?php printf(gettext('URL%s'),($req == 'required' ? $star : '')); ?></th>
@@ -95,7 +95,7 @@ $required = false;
 					<?php
 				}
 				if ($req = getOption('comment_form_addresses')) {
-					$required = true;
+					$required =$required || $req=='required';
 					?>
 					<tr>
 						<th><?php printf(gettext('Street%s'),($req == 'required' ? $star : '')); ?></th>
@@ -115,7 +115,7 @@ $required = false;
 						</td>
 					</tr>
 					<tr>
-						<th><?php printf(gettext('City:%s'),($req == 'required' ? $star : '')); ?></th>
+						<th><?php printf(gettext('City%s'),($req == 'required' ? $star : '')); ?></th>
 						<td>
 							<?php
 							if ($disabled['city']) {
@@ -149,7 +149,7 @@ $required = false;
 						</td>
 					</tr>
 					<tr>
-						<th><?php printf(gettext('Country:%s'),($req == 'required' ? $star : '')); ?></th>
+						<th><?php printf(gettext('Country%s'),($req == 'required' ? $star : '')); ?></th>
 						<td>
 							<?php
 							if ($disabled['country']) {

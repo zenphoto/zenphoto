@@ -12,7 +12,7 @@
 	</p>
 	<?php
 	if ($req = getOption('comment_name_required')) {
-		$required = true;
+		$required =$required || $req=='required';
 		?>
 		<p>
 			<label for="name"><?php printf(gettext("Name%s"),($req == 'required' ? $star : '')); ?></label>
@@ -29,7 +29,7 @@
 			}
 	}
 	if ($req = getOption('comment_email_required')) {
-		$required = true;
+		$required =$required || $req=='required';
 		?>
 		<p>
 		<label for="email"><?php printf(gettext("E-Mail%s"),($req == 'required' ? $star : '')); ?></label>
@@ -46,7 +46,7 @@
 	<?php
 	}
 	if ($req = getOption('comment_form_addresses')) {
-		$required = true;
+		$required =$required || $req=='required';
 		?>
 		<p>
 			<label for="0-comment_form_street"><?php printf(gettext('Street%s'),($req == 'required' ? $star : '')); ?></label>
