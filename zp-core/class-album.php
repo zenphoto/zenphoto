@@ -772,7 +772,7 @@ class Album extends AlbumBase {
 			$slashpos = strrpos($this->name, "/");
 			if ($slashpos) {
 				$parent = substr($this->name, 0, $slashpos);
-				$parentalbum =  newAlbum($parent);
+				$parentalbum =  newAlbum($parent, true, true);
 				if ($parentalbum->exists) {
 					return $parentalbum;
 				}
