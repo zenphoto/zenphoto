@@ -234,9 +234,18 @@ class htmlmetatags {
 				$canonicalurl = $host.getPageLinkURL($_zp_current_zenpage_page->getTitlelink());
 				break;
 			default: // for all other possible static custom pages
-				$pagetitle = sanitize(@$_GET['p'])." - ";
+				$custompage = sanitize(@$_GET['p']);
+				$standard = array('contact'=>gettext('Contact'),'register'=>gettext('Register'),'search'=>gettext('Search'),'archive'=>gettext('Archive view'),'password'=>gettext('Password required'));
+				if (class_exists('favorites')) {
+					$standard[str_replace(_PAGE_.'/','',favorites::getFavorites_link())] = gettext('My favorites');
+				}
+				If (array_key_exists($custompage, $standard)) {
+					$pagetitle = $standard[$custompage]." - ";
+				} else {
+					$pagetitle = $custompage." - ";
+				}
 				$desc = '';
-				$canonicalurl = $host.getCustomPageURL($pagetitle);
+				$canonicalurl = $host.getCustomPageURL($custompage);
 				break;
 		}
 		// shorten desc to the allowed 200 characters if necesssary.
