@@ -106,7 +106,7 @@ if (!defined('WEBPATH')) die();
 				<?php
 				if (hasNextImage()) {
 					?>
-					<div id="next" class="slides">
+					<div id="nextalbum" class="slides">
 						<a href="<?php echo html_encode(getNextImageURL()); ?>" title="<?php echo gettext('Next image'); ?>">
 							<h2><?php echo gettext('Next »'); ?></h2>
 							<img src="<?php echo html_encode(pathurlencode(getNextImageThumb())); ?>" />
@@ -116,7 +116,7 @@ if (!defined('WEBPATH')) die();
 				}
 				if (hasPrevImage()) {
 					?>
-					<div id="prev" class="slides">
+					<div id="prevalbum" class="slides">
 						<a href="<?php echo html_encode(getPrevImageURL()); ?>" title="<?php echo gettext('Previous image'); ?>">
 							<h2><?php echo gettext('« Previous'); ?></h2>
 							<img src="<?php echo html_encode(pathurlencode(getPrevImageThumb())); ?>" />

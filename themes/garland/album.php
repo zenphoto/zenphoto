@@ -100,7 +100,7 @@ $map = function_exists('printGoogleMap');
 					<?php
 					if ($nextalbum) {
 						?>
-						<div id="next" class="slides">
+						<div id="nextalbum" class="slides">
 						<a href="<?php echo html_encode(getNextAlbumURL()); ?>" title="<?php echo gettext('Next album'); ?>"><?php echo gettext('Next album »'); ?><br /><img src="<?php echo pathurlencode($nextalbum->getAlbumThumb()); ?>" /></a>
 						</div>
 						<br />
@@ -108,7 +108,7 @@ $map = function_exists('printGoogleMap');
 					}
 					if ($prevalbum) {
 						?>
-						<div id="prev" class="slides">
+						<div id="prevalbum" class="slides">
 						<a href="<?php echo html_encode(getPrevAlbumURL());?>" title="<?php echo gettext('Prev Album'); ?>"><?php echo gettext('« Prev Album'); ?><br /><img src="<?php echo pathurlencode($prevalbum->getAlbumThumb()); ?>" /></a>
 						</div>
 						<?php
