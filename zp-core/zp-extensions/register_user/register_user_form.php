@@ -65,7 +65,7 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 			}
 		}
 		if (getOption('register_user_captcha')) {
-			$captcha = $_zp_captcha->getCaptcha(gettext("Enter CAPTCHA <strong>*</strong>"));
+			$captcha = $_zp_captcha->getCaptcha(gettext("Enter CAPTCHA<strong>*</strong>"));
 			?>
 			<p>
 				<?php

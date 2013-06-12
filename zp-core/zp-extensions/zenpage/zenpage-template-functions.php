@@ -2094,13 +2094,14 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 			}
 			break;
 	}
+
 	// don't highlight current pages or foldout if in search mode as next_page() sets page context
 	if(in_context(ZP_SEARCH) && $mode == 'pages') { // categories are not searched
 		$css_class_topactive = "";
 		$css_class_active = "";
 		rem_context(ZP_ZENPAGE_PAGE);
 	}
-	if (count($items)==0) return; // nothing to do
+	if (0 == count($items) + (int) ($mode=='allcategories')) return; // nothing to do
 	$startlist = $startlist && !($option == 'omit-top'	|| $option == 'list-sub');
 	if ($startlist) echo "<ul$css_id>";
 	// if index link and if if with count

@@ -13,7 +13,7 @@
 		if(showOrNotShowField(getOption('contactform_title'))) {
 			?>
 			<p>
-				<label for="title"><?php printf(gettext("Title%s"),(checkRequiredField(getOption('contactform_title')) ? $star : '')); ?></label>
+				<label for="title"><?php printf(gettext("Title%s"),checkRequiredField(getOption('contactform_title'))); ?></label>
 				<input type="text" id="title" name="title" size="50" value="<?php echo html_encode($mailcontent['title']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"';?> />
 			</p>
 			<?php
@@ -21,7 +21,7 @@
 		if(showOrNotShowField(getOption('contactform_name'))) {
 			?>
 			<p>
-				<label for="name"><?php printf(gettext("Name%s"),(checkRequiredField(getOption('contactform_name')) ? $star : '')); ?></label>
+				<label for="name"><?php printf(gettext("Name%s"),checkRequiredField(getOption('contactform_name'))); ?></label>
 				<input type="text" id="name" name="name" size="50" value="<?php echo html_encode($mailcontent['name']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
 			</p>
 			<?php
@@ -35,7 +35,7 @@
 		if(showOrNotShowField(getOption('contactform_company'))) {
 			?>
 			<p>
-				<label for="company"><?php printf(gettext("Company%s"),(checkRequiredField(getOption('contactform_company')) ? $star : '')); ?></label>
+				<label for="company"><?php printf(gettext("Company%s"),checkRequiredField(getOption('contactform_company'))); ?></label>
 				<input type="text" id="company" name="company" size="50" value="<?php echo html_encode($mailcontent['company']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
 			</p>
 			<?php
@@ -43,7 +43,7 @@
 		if(showOrNotShowField(getOption('contactform_street'))) {
 			?>
 			<p>
-				<label for="street"><?php printf(gettext("Street%s"),(checkRequiredField(getOption('contactform_street')) ? $star : '')); ?></label>
+				<label for="street"><?php printf(gettext("Street%s"),checkRequiredField(getOption('contactform_street'))); ?></label>
 				<input type="text" id="street" name="street" size="50" value="<?php echo html_encode($mailcontent['street']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
 			</p>
 			<?php
@@ -51,7 +51,7 @@
 		if(showOrNotShowField(getOption('contactform_city'))) {
 			?>
 			<p>
-				<label for="city"><?php printf(gettext("City%s"),(checkRequiredField(getOption('contactform_city')) ? $star : '')); ?></label>
+				<label for="city"><?php printf(gettext("City%s"),checkRequiredField(getOption('contactform_city'))); ?></label>
 				<input type="text" id="city" name="city" size="50" value="<?php echo html_encode($mailcontent['city']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
 			</p>
 			<?php
@@ -59,7 +59,7 @@
 		if(showOrNotShowField(getOption('contactform_state'))) {
 			?>
 			<p>
-				<label for="state"><?php printf(gettext("State%s"),(checkRequiredField(getOption('contactform_state')) ? $star : '')); ?></label>
+				<label for="state"><?php printf(gettext("State%s"),checkRequiredField(getOption('contactform_state'))); ?></label>
 				<input type="text" id="state" name="state" size="50" value="<?php echo html_encode($mailcontent['city']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
 			</p>
 			<?php
@@ -67,7 +67,7 @@
 		if(showOrNotShowField(getOption('contactform_country'))) {
 			?>
 			<p>
-				<label for="country"><?php printf(gettext("Country%s"),(checkRequiredField(getOption('contactform_country')) ? $star : '')); ?></label>
+				<label for="country"><?php printf(gettext("Country%s"),checkRequiredField(getOption('contactform_country'))); ?></label>
 				<input type="text" id="country" name="country" size="50" value="<?php echo html_encode($mailcontent['country']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
 			</p>
 		<?php
@@ -75,7 +75,7 @@
 		if(showOrNotShowField(getOption('contactform_postal'))) {
 			?>
 			<p>
-				<label for="postal"><?php printf(gettext("Postal code%s"),(checkRequiredField(getOption('contactform_postal')) ? $star : '')); ?></label>
+				<label for="postal"><?php printf(gettext("Postal code%s"),checkRequiredField(getOption('contactform_postal'))); ?></label>
 				<input type="text" id="postal" name="postal" size="50" value="<?php echo html_encode($mailcontent['postal']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
 			</p>
 			<?php
@@ -83,7 +83,7 @@
 		if(showOrNotShowField(getOption('contactform_email'))) {
 			?>
 			<p>
-				<label for="email"><?php printf(gettext("E-Mail%s"),(checkRequiredField(getOption('contactform_email')) ? $star : '')); ?></label>
+				<label for="email"><?php printf(gettext("E-Mail%s"),checkRequiredField(getOption('contactform_email'))); ?></label>
 				<input type="text" id="email" name="email" size="50" value="<?php echo html_encode($mailcontent['email']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
 			</p>
 			<?php
@@ -91,7 +91,7 @@
 		if(showOrNotShowField(getOption('contactform_website'))) {
 		?>
 		<p>
-			<label for="website"><?php printf(gettext("Website%s"),(checkRequiredField(getOption('contactform_website')) ? $star : '')); ?></label>
+			<label for="website"><?php printf(gettext("Website%s"),checkRequiredField(getOption('contactform_website'))); ?></label>
 			<input type="text" id="website" name="website" size="50" value="<?php echo html_encode($mailcontent['website']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
 		</p>
 		<?php
@@ -99,7 +99,7 @@
 		if(showOrNotShowField(getOption('contactform_phone'))) {
 			?>
 			<p>
-				<label for="phone"><?php printf(gettext("Phone%s"),(checkRequiredField(getOption('contactform_phone')) ? $star : '')); ?></label>
+				<label for="phone"><?php printf(gettext("Phone%s"),checkRequiredField(getOption('contactform_phone'))); ?></label>
 				<input type="text" id="phone" name="phone" size="50" value="<?php echo html_encode($mailcontent['phone']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
 			</p>
 			<?php
@@ -119,7 +119,7 @@
 		if(showOrNotShowField(getOption('contactform_subject'))) {
 			?>
 			<p>
-				<label for="subject"><?php printf(gettext("Subject%s"),(checkRequiredField(getOption('contactform_subject')) ? $star : '')); ?></label>
+				<label for="subject"><?php printf(gettext("Subject%s"),checkRequiredField(getOption('contactform_subject'))); ?></label>
 				<input type="text" id="subject" name="subject" size="50" value="<?php echo html_encode($mailcontent['subject']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
 			</p>
 			<?php
@@ -127,7 +127,7 @@
 		if(showOrNotShowField(getOption('contactform_message'))) {
 			?>
 			<p class="mailmessage">
-				<label for="message"><?php printf(gettext("Message%s"),(checkRequiredField(getOption('contactform_message')) ? $star : '')); ?></label>
+				<label for="message"><?php printf(gettext("Message%s"),checkRequiredField(getOption('contactform_message'))); ?></label>
 				<textarea id="message" name="message" <?php if ($_processing_post) echo ' disabled="disabled"'; ?>><?php echo $mailcontent['message']; ?></textarea>
 			</p>
 			<?php

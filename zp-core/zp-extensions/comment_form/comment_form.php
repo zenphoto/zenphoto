@@ -3,8 +3,8 @@
 	<input type="hidden" name="remember" value="1" />
 	<?php
 	$star = '<strong>*</strong>';
-	printCommentErrors();
 	$required = false;
+	printCommentErrors();
 	?>
 	<p style="display:none;">
 		<label for="username">Username:</label>
@@ -12,6 +12,7 @@
 	</p>
 	<?php
 	if ($req = getOption('comment_name_required')) {
+		$required =$required || $req=='required';
 		?>
 		<p>
 			<label for="name"><?php printf(gettext("Name%s"),($req == 'required' ? $star : '')); ?></label>
@@ -28,6 +29,7 @@
 			}
 	}
 	if ($req = getOption('comment_email_required')) {
+		$required =$required || $req=='required';
 		?>
 		<p>
 		<label for="email"><?php printf(gettext("E-Mail%s"),($req == 'required' ? $star : '')); ?></label>
@@ -44,6 +46,7 @@
 	<?php
 	}
 	if ($req = getOption('comment_form_addresses')) {
+		$required =$required || $req=='required';
 		?>
 		<p>
 			<label for="0-comment_form_street"><?php printf(gettext('Street%s'),($req == 'required' ? $star : '')); ?></label>
@@ -79,9 +82,9 @@
 		</p>
 	<?php
 	}
-	if($required) {
+	if ($required) {
 		?>
-		<p><?php echo gettext('<strong>*</strong> Required fields'); ?></p>
+		<p><?php echo gettext('<strong>*</strong>Required fields'); ?></p>
 		<?php
 	}
 	if (getOption('comment_form_private') && !$disabled['private']) {

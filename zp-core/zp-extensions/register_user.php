@@ -74,7 +74,7 @@ class register_user_options {
 	}
 
 	function getOptionsSupported() {
-		global $_zp_authority, $_common_notify_handler;
+		global $_zp_authority, $_common_notify_handler, $_zp_captcha;
 		$options = array(
 											gettext('Registration page link') => array('key' => 'register_user_rewrite', 'type' => OPTION_TYPE_TEXTBOX,
 												'order' => 0,
@@ -103,7 +103,7 @@ class register_user_options {
 												'desc' => gettext('Text for the body of the email sent to the registrant for registration verification. <p class="notebox"><strong>Note:</strong> You must include <code>%1$s</code> in your message where you wish the <em>registration verification</em> link to appear. You may also insert the registrant\'s <em>name</em> (<code>%2$s</code>), <em>user id</em> (<code>%3$s</code>), and <em>password</em>* (<code>%4$s</code>).<br /><br />*For security reasons we recommend <strong>not</strong> inserting the <em>password</em>.</p>')),
 											gettext('CAPTCHA') => array('key' => 'register_user_captcha', 'type' => OPTION_TYPE_CHECKBOX,
 												'order' => 5,
-												'desc' => gettext('If checked, CAPTCHA validation will be required for user registration.'))
+												'desc' => ($_zp_captcha->name)?gettext('If checked, the form will include a Captcha verification.'):'<span class="notebox">'.gettext('No captcha handler is enabled.').'</span>'),
 											);
 		if (getOption('register_user_page_page')) {
 			$options[gettext('Standard script naming')] = array('key' => 'register_user_page_page', 'type' => OPTION_TYPE_CHECKBOX,

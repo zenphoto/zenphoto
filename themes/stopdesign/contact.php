@@ -32,7 +32,7 @@ require_once('normalizer.php');
 </div>
 
 <p id="path">
-	<?php printHomeLink('', ' &gt; '); ?>
+	<?php printHomeLink('', ' > '); ?>
 	<a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home');?></a> &gt;
 	<?php printGalleryTitle();?>
 	&gt; <em><?php echo gettext('Contact'); ?></em>
