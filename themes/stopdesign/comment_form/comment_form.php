@@ -186,6 +186,7 @@ $required = false;
 				}
 				if (commentFormUseCaptcha()) {
 					$captcha = $_zp_captcha->getCaptcha(NULL);
+					$required = true;
 					if (isset($captcha['hidden'])) echo $captcha['hidden'];
 					echo "<tr valign=\"top\" align=\"left\"><th>" .gettext('Enter CAPTCHA<strong>*</strong>').'</th><td>';
 					if (isset($captcha['html'])) echo $captcha['html'];
@@ -197,16 +198,18 @@ $required = false;
 					<tr><td colspan="2"><?php echo gettext('<strong>*</strong>Required fields'); ?></td></tr>
 					<?php
 				}
-				?>
-				<tr valign="top" align="left">
-					<th><?php echo gettext('Private comment'); ?></th>
-					<td>
-						<label>
-						<input type="checkbox" name="private" value="1"<?php if ($stored['private']) echo ' checked="checked"'; ; ?> /> <?php echo gettext("(don't publish)"); ?>
-						</label>
-					</td>
-				</tr>
-				<?php
+				if (getOption('comment_form_private') && !$disabled['private']) {
+					?>
+					<tr valign="top" align="left">
+						<th><?php echo gettext('Private comment'); ?></th>
+						<td>
+							<label>
+							<input type="checkbox" name="private" value="1"<?php if ($stored['private']) echo ' checked="checked"'; ; ?> /> <?php echo gettext("(don't publish)"); ?>
+							</label>
+						</td>
+					</tr>
+					<?php
+				}
 				?>
 				<tr valign="top" align="left">
 					<th><?php echo gettext('Comment'); ?></th>

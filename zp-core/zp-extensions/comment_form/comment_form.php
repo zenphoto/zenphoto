@@ -72,6 +72,7 @@
 	}
 	if (commentFormUseCaptcha()) {
 		$captcha = $_zp_captcha->getCaptcha(gettext("Enter CAPTCHA<strong>*</strong>"));
+		$required = true;
 		?>
 		<p>
 			<?php
