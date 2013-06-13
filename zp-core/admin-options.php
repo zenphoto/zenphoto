@@ -869,16 +869,11 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<?php echo gettext("Cookies:"); ?>
 					</td>
 					<td width="350">
-						<p>
-							<label>
-								<input type="checkbox" name="album_session" id="album_session" value="1" <?php checked('1', GALLERY_SESSION); ?> />
-								<?php echo gettext("enable gallery sessions"); ?>
-							</label>
-						</p>
-						<?php echo gettext('Path'); ?><input type="text" size="48" id="zenphoto_cookie_path" name="zenphoto_cookie_path"  value="<?php echo getOption('zenphoto_cookie_path'); ?>" />
 						<?php
 						if (!GALLERY_SESSION) {
+							echo gettext('Path');
 							?>
+							<input type="text" size="48" id="zenphoto_cookie_path" name="zenphoto_cookie_path"  value="<?php echo getOption('zenphoto_cookie_path'); ?>" />
 							<p>
 								<?php
 								echo gettext('Duration');
@@ -888,22 +883,25 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 							<?php
 						}
 						?>
+						<p>
+							<label>
+								<input type="checkbox" name="album_session" id="album_session" value="1" <?php checked('1', GALLERY_SESSION); ?> />
+								<?php echo gettext("enable gallery sessions"); ?>
+							</label>
+						</p>
 					</td>
 					<td>
-						<p><?php  echo gettext("<a href=\"javascript:toggle('gallerysessions');\" >Details</a> for <em>enable gallery sessions</em>" ); ?></p>
-						<div id="gallerysessions" style="display: none">
-						<p><?php echo gettext('If this option is selected Zenphoto will use <a href="http://www.w3schools.com/php/php_sessions.asp">PHP sessions</a> instead of cookies to make visitor settings persistent.'); ?></p>
-						<p class="notebox"><?php echo gettext('<strong>NOTE</strong>: Sessions will normally close when the browser closes causing all password and other data to be discarded. They may close more frequently depending on the runtime configuration. Longer <em>lifetime</em> of sessions is generally more conducive to a pleasant user experience. Cookies are the prefered storage option since their duration is determined by the <em>Cookie duration</em> option. ')?>
-						</div>
-						<p><?php printf(gettext('The <em>path</em> Zenphoto will use when storing cookies. (Leave empty to default to <em>%s</em>)'),WEBPATH); ?></p>
 						<?php
 						if (!GALLERY_SESSION) {
 							?>
+							<p><?php printf(gettext('The <em>path</em> Zenphoto will use when storing cookies. (Leave empty to default to <em>%s</em>)'),WEBPATH); ?></p>
 							<p><?php echo gettext("Set to the time in seconds that cookies should be kept by browsers."); ?></p>
 							<?php
 						}
 						?>
-					</td>
+						<p><?php echo gettext('If this option is selected Zenphoto will use <a href="http://www.w3schools.com/php/php_sessions.asp">PHP sessions</a> instead of cookies to make visitor settings persistent.'); ?></p>
+						<p class="notebox"><?php echo gettext('<strong>NOTE</strong>: Sessions will normally close when the browser closes causing all password and other data to be discarded. They may close more frequently depending on the runtime configuration. Longer <em>lifetime</em> of sessions is generally more conducive to a pleasant user experience. Cookies are the prefered storage option since their duration is determined by the <em>Cookie duration</em> option. ')?>
+						</td>
 				</tr>
 				<tr>
 					<td width="175">
