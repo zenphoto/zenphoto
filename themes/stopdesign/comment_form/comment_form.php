@@ -41,10 +41,13 @@ $required = false;
 								<input tabindex="1" id="name" name="name" class="text" value="<?php echo html_encode($stored['name']);?>" />
 								<?php
 							}
+							if (getOption('comment_form_anon') && !$disabled['anon']) {
+								?>
+								<label for="anon"> (<?php echo gettext("<em>anonymous</em>"); ?>)</label>
+								<input type="checkbox" name="anon" id="anon" value="1"<?php if ($stored['anon']) echo ' checked="checked"'; echo $disabled['anon']; ?> />
+								<?php
+							}
 							?>
-							<label>
-							(<input type="checkbox" name="anon" value="1"<?php if ($stored['anon']) echo ' checked="checked"'; ; ?> /> <?php echo gettext('<em>anonymous</em>'); ?>)
-							</label>
 						</td>
 					</tr>
 					<?php
