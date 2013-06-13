@@ -171,6 +171,7 @@ if (isset($_GET['action'])) {
 								$userobj->setLanguage($lang);
 								markUpdated();
 							}
+
 							$rights = 0;
 							if ($alter && !$userobj->getGroup()) {
 								$oldrights = $userobj->getRights() & ~(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS);
@@ -471,9 +472,11 @@ function languageChange(id,lang) {
 						<?php
 						$groups = $_zp_authority->getAdministrators('groups');
 						foreach ($groups as $group) {
+							if ($group['name'] != 'template') {
 							?>
 							<option value="<?php echo $group['user']; ?>"<?php if ($showgroup==$group['user']) echo ' selected="selected"'; ?>><?php printf('%s group', $group['user']); ?></option>
 							<?php
+							}
 						}
 					}
 					?>
