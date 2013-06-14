@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-08 12:09+0100\n"
-"PO-Revision-Date: 2013-06-08 12:12+0100\n"
+"POT-Creation-Date: 2013-06-14 17:36+0100\n"
+"PO-Revision-Date: 2013-06-14 17:38+0100\n"
 "Last-Translator: Malte Müller (acrylian) <wartgart@gmx.net>\n"
 "Language-Team: Malte Müller (acrylian)\n"
 "Language: de_DE\n"
@@ -413,6 +413,7 @@ msgstr "Auf dieser Site registrieren"
 #: zenphoto-devzp/themes/stopdesign/password.php:46
 #: zenphoto-devzp/themes/zenpage/password.php:12
 #: zenphoto-devzp/zp-core/password.php:6
+#: zenphoto-devzp/zp-core/zp-extensions/html_meta_tags.php:238
 msgid "Password required"
 msgstr "Passwortgeschützt"
 
@@ -431,6 +432,7 @@ msgstr "Sie benötigen ein Passwort, um auf diese Seite zugreifen zu können."
 #: zenphoto-devzp/themes/garland/register.php:39
 #: zenphoto-devzp/themes/stopdesign/register.php:26
 #: zenphoto-devzp/themes/stopdesign/register.php:37
+#: zenphoto-devzp/zp-core/zp-extensions/html_meta_tags.php:238
 #: zenphoto-devzp/zp-core/zp-extensions/register_user.php:63
 msgid "Register"
 msgstr "Registrieren"
@@ -456,6 +458,7 @@ msgstr "Benutzeranmeldung"
 #: zenphoto-devzp/zp-core/template-functions.php:1160
 #: zenphoto-devzp/zp-core/template-functions.php:1191
 #: zenphoto-devzp/zp-core/template-functions.php:3592
+#: zenphoto-devzp/zp-core/zp-extensions/html_meta_tags.php:238
 #: zenphoto-devzp/zp-core/zp-extensions/slideshow.php:749
 #: zenphoto-devzp/zp-core/zp-extensions/deprecated_functions/check_for_deprecated.php:60
 msgid "Search"
@@ -610,6 +613,7 @@ msgstr "Neuigkeitenarchiv"
 #: zenphoto-devzp/themes/stopdesign/contact.php:27
 #: zenphoto-devzp/themes/stopdesign/contact.php:38
 #: zenphoto-devzp/zp-core/functions.php:2252
+#: zenphoto-devzp/zp-core/zp-extensions/html_meta_tags.php:238
 msgid "Contact"
 msgstr "Kontakt"
 
@@ -750,7 +754,7 @@ msgstr[0] "%u Bild"
 msgstr[1] "%u Bilder"
 
 #: zenphoto-devzp/themes/effervescence_plus/functions.php:351
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:209
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:208
 #, php-format
 msgid "%u Comment"
 msgid_plural "%u Comments"
@@ -767,7 +771,7 @@ msgstr "Album"
 #: zenphoto-devzp/themes/garland/functions.php:124
 #: zenphoto-devzp/zp-core/admin-edit.php:1339
 #: zenphoto-devzp/zp-core/admin-globals.php:114
-#: zenphoto-devzp/zp-core/admin-options.php:2466
+#: zenphoto-devzp/zp-core/admin-options.php:2464
 #: zenphoto-devzp/zp-core/zp-extensions/image_album_statistics.php:224
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage.php:159
 msgid "image"
@@ -851,7 +855,7 @@ msgid "« prev"
 msgstr "« zurück"
 
 #: zenphoto-devzp/themes/effervescence_plus/functions.php:443
-#: zenphoto-devzp/themes/stopdesign/comment_form/comment_form.php:19
+#: zenphoto-devzp/themes/stopdesign/comment_form/comment_form.php:21
 msgid "Add a comment"
 msgstr "Kommentar hinzufügen"
 
@@ -1111,8 +1115,8 @@ msgstr "Alle Artikel"
 #: zenphoto-devzp/themes/zpmobile/functions.php:147
 #: zenphoto-devzp/themes/zpmobile/image.php:27
 #: zenphoto-devzp/zp-core/admin-edit.php:1541
-#: zenphoto-devzp/zp-core/admin-options.php:2189
-#: zenphoto-devzp/zp-core/admin-options.php:2190
+#: zenphoto-devzp/zp-core/admin-options.php:2187
+#: zenphoto-devzp/zp-core/admin-options.php:2188
 #: zenphoto-devzp/zp-core/admin-themes.php:101
 #: zenphoto-devzp/zp-core/admin-themes.php:102
 #: zenphoto-devzp/zp-core/lib-auth.php:500
@@ -1379,7 +1383,7 @@ msgstr "getrennt"
 #: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:99
 #: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:103
 #: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:107
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:112
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:111
 #: zenphoto-devzp/zp-core/zp-extensions/register_user.php:93
 msgid "Omit"
 msgstr "Weglassen"
@@ -1399,10 +1403,10 @@ msgstr "Indexbild"
 #: zenphoto-devzp/themes/garland/themeoptions.php:87
 #: zenphoto-devzp/themes/zenpage/themeoptions.php:68
 #: zenphoto-devzp/zp-core/admin-edit.php:1224
-#: zenphoto-devzp/zp-core/admin-options.php:1799
-#: zenphoto-devzp/zp-core/admin-options.php:1812
-#: zenphoto-devzp/zp-core/admin-options.php:1832
-#: zenphoto-devzp/zp-core/admin-options.php:2531
+#: zenphoto-devzp/zp-core/admin-options.php:1797
+#: zenphoto-devzp/zp-core/admin-options.php:1810
+#: zenphoto-devzp/zp-core/admin-options.php:1830
+#: zenphoto-devzp/zp-core/admin-options.php:2529
 #: zenphoto-devzp/zp-core/functions-basic.php:227
 #: zenphoto-devzp/zp-core/zp-extensions/image_effects.php:125
 #: zenphoto-devzp/zp-core/zp-extensions/image_effects.php:129
@@ -1760,7 +1764,7 @@ msgstr "%s schrieb:"
 #: zenphoto-devzp/zp-core/admin-comments.php:466
 #: zenphoto-devzp/zp-core/admin-themes.php:289
 #: zenphoto-devzp/zp-core/utilities/gallery_statistics.php:440
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:256
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:255
 msgid "Edit"
 msgstr "Bearbeiten"
 
@@ -1952,20 +1956,101 @@ msgstr "Minischiebebalken"
 msgid "Select what you want for the six special slides."
 msgstr "Für die sechs speziellen Schieber auswählen."
 
-#: zenphoto-devzp/themes/stopdesign/comment_form/comment_form.php:64
+#: zenphoto-devzp/themes/stopdesign/comment_form/comment_form.php:31
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form/comment_form.php:18
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form/form.php:24
+#, php-format
+msgid "Name%s"
+msgstr "Name%s"
+
+#: zenphoto-devzp/themes/stopdesign/comment_form/comment_form.php:46
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form/comment_form.php:25
+msgid "<em>anonymous</em>"
+msgstr "<em>Anonym</em>"
+
+#: zenphoto-devzp/themes/stopdesign/comment_form/comment_form.php:59
 #, php-format
 msgid "Email%s"
 msgstr "E-Mail%s"
 
-#: zenphoto-devzp/themes/stopdesign/comment_form/comment_form.php:78
+#: zenphoto-devzp/themes/stopdesign/comment_form/comment_form.php:73
 msgid "(not displayed)"
 msgstr "(nicht angezeigt)"
 
-#: zenphoto-devzp/themes/stopdesign/comment_form/comment_form.php:242
+#: zenphoto-devzp/themes/stopdesign/comment_form/comment_form.php:82
+#, php-format
+msgid "URL%s"
+msgstr "URL%s"
+
+#: zenphoto-devzp/themes/stopdesign/comment_form/comment_form.php:104
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form/comment_form.php:52
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form/functions.php:183
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form/form.php:46
+#, php-format
+msgid "Street%s"
+msgstr "Straße%s"
+
+#: zenphoto-devzp/themes/stopdesign/comment_form/comment_form.php:121
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form/comment_form.php:56
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form/functions.php:189
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form/form.php:54
+#, php-format
+msgid "City%s"
+msgstr "Stadt%s"
+
+#: zenphoto-devzp/themes/stopdesign/comment_form/comment_form.php:138
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form/comment_form.php:60
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form/functions.php:195
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form/form.php:62
+#, php-format
+msgid "State%s"
+msgstr "Land%s"
+
+#: zenphoto-devzp/themes/stopdesign/comment_form/comment_form.php:155
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form/comment_form.php:64
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form/functions.php:201
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form/form.php:70
+#, php-format
+msgid "Country%s"
+msgstr "Staat%s"
+
+#: zenphoto-devzp/themes/stopdesign/comment_form/comment_form.php:172
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form/comment_form.php:68
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form/functions.php:207
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form/form.php:78
+#, php-format
+msgid "Postal code%s"
+msgstr "Postleitzahl%s"
+
+#: zenphoto-devzp/themes/stopdesign/comment_form/comment_form.php:194
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form/comment_form.php:74
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form/form.php:108
+#: zenphoto-devzp/zp-core/zp-extensions/register_user/register_user_form.php:68
+msgid "Enter CAPTCHA<strong>*</strong>"
+msgstr "CAPTCHA eingeben<strong>*</strong>"
+
+#: zenphoto-devzp/themes/stopdesign/comment_form/comment_form.php:201
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form/comment_form.php:88
+msgid "<strong>*</strong>Required fields"
+msgstr "<strong>*</strong>Pflichtfelder"
+
+#: zenphoto-devzp/themes/stopdesign/comment_form/comment_form.php:207
+msgid "Private comment"
+msgstr "Privater Kommentar"
+
+#: zenphoto-devzp/themes/stopdesign/comment_form/comment_form.php:210
+msgid "(don't publish)"
+msgstr "(nicht veröffentlichen)"
+
+#: zenphoto-devzp/themes/stopdesign/comment_form/comment_form.php:218
+msgid "Comment"
+msgstr "Kommentar"
+
+#: zenphoto-devzp/themes/stopdesign/comment_form/comment_form.php:227
 msgid "Post"
 msgstr "senden"
 
-#: zenphoto-devzp/themes/stopdesign/comment_form/comment_form.php:243
+#: zenphoto-devzp/themes/stopdesign/comment_form/comment_form.php:228
 msgid "Avoid clicking &ldquo;Post&rdquo; more than once."
 msgstr "Vermeiden Sie &ldquo;Post&rdquo; mehr als einmal zu klicken."
 
@@ -2102,6 +2187,7 @@ msgstr ""
 
 #: zenphoto-devzp/themes/zpmobile/archive.php:9
 #: zenphoto-devzp/themes/zpmobile/archive.php:26
+#: zenphoto-devzp/zp-core/zp-extensions/html_meta_tags.php:238
 msgid "Archive view"
 msgstr "Archiv-Ansicht"
 
@@ -2273,24 +2359,24 @@ msgstr "Zurück"
 #: zenphoto-devzp/zp-core/admin-functions.php:1191
 #: zenphoto-devzp/zp-core/admin-functions.php:1893
 #: zenphoto-devzp/zp-core/admin-options.php:550
-#: zenphoto-devzp/zp-core/admin-options.php:979
-#: zenphoto-devzp/zp-core/admin-options.php:1002
-#: zenphoto-devzp/zp-core/admin-options.php:1328
-#: zenphoto-devzp/zp-core/admin-options.php:1351
-#: zenphoto-devzp/zp-core/admin-options.php:1544
-#: zenphoto-devzp/zp-core/admin-options.php:1573
-#: zenphoto-devzp/zp-core/admin-options.php:2170
-#: zenphoto-devzp/zp-core/admin-options.php:2298
-#: zenphoto-devzp/zp-core/admin-options.php:2569
-#: zenphoto-devzp/zp-core/admin-options.php:2638
-#: zenphoto-devzp/zp-core/admin-options.php:2763
-#: zenphoto-devzp/zp-core/admin-options.php:2811
-#: zenphoto-devzp/zp-core/admin-options.php:2920
+#: zenphoto-devzp/zp-core/admin-options.php:977
+#: zenphoto-devzp/zp-core/admin-options.php:1000
+#: zenphoto-devzp/zp-core/admin-options.php:1326
+#: zenphoto-devzp/zp-core/admin-options.php:1349
+#: zenphoto-devzp/zp-core/admin-options.php:1542
+#: zenphoto-devzp/zp-core/admin-options.php:1571
+#: zenphoto-devzp/zp-core/admin-options.php:2168
+#: zenphoto-devzp/zp-core/admin-options.php:2296
+#: zenphoto-devzp/zp-core/admin-options.php:2567
+#: zenphoto-devzp/zp-core/admin-options.php:2636
+#: zenphoto-devzp/zp-core/admin-options.php:2761
+#: zenphoto-devzp/zp-core/admin-options.php:2809
+#: zenphoto-devzp/zp-core/admin-options.php:2918
 #: zenphoto-devzp/zp-core/admin-plugins.php:143
 #: zenphoto-devzp/zp-core/admin-plugins.php:396
 #: zenphoto-devzp/zp-core/admin-thumbcrop.php:265
 #: zenphoto-devzp/zp-core/admin-users.php:443
-#: zenphoto-devzp/zp-core/admin-users.php:830
+#: zenphoto-devzp/zp-core/admin-users.php:832
 #: zenphoto-devzp/zp-core/zp-extensions/crop_image.php:341
 #: zenphoto-devzp/zp-core/zp-extensions/cacheManager/cacheImages.php:233
 #: zenphoto-devzp/zp-core/zp-extensions/cacheManager/cacheImages.php:319
@@ -2865,7 +2951,7 @@ msgstr "%s (absteigend)"
 
 #: zenphoto-devzp/zp-core/admin-edit.php:937
 #: zenphoto-devzp/zp-core/admin-functions.php:1380
-#: zenphoto-devzp/zp-core/admin-options.php:1191
+#: zenphoto-devzp/zp-core/admin-options.php:1189
 #: zenphoto-devzp/zp-core/exif/exif.php:493
 #: zenphoto-devzp/zp-core/exif/makers/canon.php:135
 #: zenphoto-devzp/zp-core/exif/makers/canon.php:198
@@ -2891,32 +2977,32 @@ msgstr "Bilder anzeigen sortiert nach: "
 #: zenphoto-devzp/zp-core/admin-functions.php:1897
 #: zenphoto-devzp/zp-core/admin-logs.php:117
 #: zenphoto-devzp/zp-core/admin-options.php:551
-#: zenphoto-devzp/zp-core/admin-options.php:980
-#: zenphoto-devzp/zp-core/admin-options.php:1003
-#: zenphoto-devzp/zp-core/admin-options.php:1329
-#: zenphoto-devzp/zp-core/admin-options.php:1352
-#: zenphoto-devzp/zp-core/admin-options.php:1545
-#: zenphoto-devzp/zp-core/admin-options.php:1574
-#: zenphoto-devzp/zp-core/admin-options.php:2171
-#: zenphoto-devzp/zp-core/admin-options.php:2300
-#: zenphoto-devzp/zp-core/admin-options.php:2571
-#: zenphoto-devzp/zp-core/admin-options.php:2639
-#: zenphoto-devzp/zp-core/admin-options.php:2764
-#: zenphoto-devzp/zp-core/admin-options.php:2812
-#: zenphoto-devzp/zp-core/admin-options.php:2921
+#: zenphoto-devzp/zp-core/admin-options.php:978
+#: zenphoto-devzp/zp-core/admin-options.php:1001
+#: zenphoto-devzp/zp-core/admin-options.php:1327
+#: zenphoto-devzp/zp-core/admin-options.php:1350
+#: zenphoto-devzp/zp-core/admin-options.php:1543
+#: zenphoto-devzp/zp-core/admin-options.php:1572
+#: zenphoto-devzp/zp-core/admin-options.php:2169
+#: zenphoto-devzp/zp-core/admin-options.php:2298
+#: zenphoto-devzp/zp-core/admin-options.php:2569
+#: zenphoto-devzp/zp-core/admin-options.php:2637
+#: zenphoto-devzp/zp-core/admin-options.php:2762
+#: zenphoto-devzp/zp-core/admin-options.php:2810
+#: zenphoto-devzp/zp-core/admin-options.php:2919
 #: zenphoto-devzp/zp-core/admin-plugins.php:144
 #: zenphoto-devzp/zp-core/admin-plugins.php:397
 #: zenphoto-devzp/zp-core/admin-themes-editor.php:145
 #: zenphoto-devzp/zp-core/admin-thumbcrop.php:261
 #: zenphoto-devzp/zp-core/admin-users.php:444
-#: zenphoto-devzp/zp-core/admin-users.php:831
+#: zenphoto-devzp/zp-core/admin-users.php:833
 #: zenphoto-devzp/zp-core/lib-auth.php:1020
 #: zenphoto-devzp/zp-core/zp-extensions/crop_image.php:338
 #: zenphoto-devzp/zp-core/zp-extensions/rewriteTokens.php:66
 #: zenphoto-devzp/zp-core/zp-extensions/user_mailing_list.php:171
 #: zenphoto-devzp/zp-core/zp-extensions/user_mailing_list.php:172
 #: zenphoto-devzp/zp-core/zp-extensions/wordpress_import.php:423
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form/form.php:139
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form/form.php:135
 #: zenphoto-devzp/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:359
 #: zenphoto-devzp/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:120
 #: zenphoto-devzp/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:217
@@ -3220,7 +3306,7 @@ msgstr "Nichts zum Anzeigen ausgewählt"
 
 #: zenphoto-devzp/zp-core/admin-edit.php:1429
 #: zenphoto-devzp/zp-core/admin-functions.php:1654
-#: zenphoto-devzp/zp-core/admin-options.php:1317
+#: zenphoto-devzp/zp-core/admin-options.php:1315
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-edit.php:773
 msgid "Codeblocks:"
 msgstr "Codeblöcke:"
@@ -3319,7 +3405,7 @@ msgstr "%1$s %2$s: %3$s%4$s"
 #: zenphoto-devzp/zp-core/admin-functions.php:4383
 #: zenphoto-devzp/zp-core/pluginDoc.php:113
 #: zenphoto-devzp/zp-core/zp-extensions/user-expiry.php:107
-#: zenphoto-devzp/zp-core/zp-extensions/user_groups.php:225
+#: zenphoto-devzp/zp-core/zp-extensions/user_groups.php:224
 msgid "admin"
 msgstr "Benutzer"
 
@@ -3358,8 +3444,8 @@ msgstr "Galerie-Index ansehen"
 #: zenphoto-devzp/zp-core/admin-functions.php:468
 #: zenphoto-devzp/zp-core/admin-functions.php:1537
 #: zenphoto-devzp/zp-core/admin-functions.php:1958
-#: zenphoto-devzp/zp-core/admin-options.php:1742
-#: zenphoto-devzp/zp-core/admin-options.php:1795
+#: zenphoto-devzp/zp-core/admin-options.php:1740
+#: zenphoto-devzp/zp-core/admin-options.php:1793
 #: zenphoto-devzp/zp-core/utilities/gallery_statistics.php:75
 #: zenphoto-devzp/zp-core/utilities/gallery_statistics.php:554
 #: zenphoto-devzp/zp-core/zp-extensions/cacheManager.php:105
@@ -3380,7 +3466,7 @@ msgstr "Unteralben"
 
 #: zenphoto-devzp/zp-core/admin-functions.php:809
 #: zenphoto-devzp/zp-core/admin-functions.php:4382
-#: zenphoto-devzp/zp-core/admin-options.php:1482
+#: zenphoto-devzp/zp-core/admin-options.php:1480
 #: zenphoto-devzp/zp-core/admin-tags.php:157
 #: zenphoto-devzp/zp-core/admin-users.php:463
 #: zenphoto-devzp/zp-core/zp-extensions/publishContent/publishContent.php:251
@@ -3415,9 +3501,9 @@ msgid "Album password:"
 msgstr "Albumpasswort:"
 
 #: zenphoto-devzp/zp-core/admin-functions.php:1276
-#: zenphoto-devzp/zp-core/admin-options.php:1052
-#: zenphoto-devzp/zp-core/admin-options.php:1377
-#: zenphoto-devzp/zp-core/admin-options.php:1984
+#: zenphoto-devzp/zp-core/admin-options.php:1050
+#: zenphoto-devzp/zp-core/admin-options.php:1375
+#: zenphoto-devzp/zp-core/admin-options.php:1982
 #: zenphoto-devzp/zp-core/zp-extensions/downloadList.php:109
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-edit.php:483
 msgid "clear password"
@@ -3428,9 +3514,9 @@ msgid "Album guest user:"
 msgstr "Album-Gastbenutzer:"
 
 #: zenphoto-devzp/zp-core/admin-functions.php:1290
-#: zenphoto-devzp/zp-core/admin-options.php:1075
-#: zenphoto-devzp/zp-core/admin-options.php:1398
-#: zenphoto-devzp/zp-core/admin-options.php:2002
+#: zenphoto-devzp/zp-core/admin-options.php:1073
+#: zenphoto-devzp/zp-core/admin-options.php:1396
+#: zenphoto-devzp/zp-core/admin-options.php:2000
 #: zenphoto-devzp/zp-core/lib-auth.php:1015
 #: zenphoto-devzp/zp-core/lib-auth.php:1222
 #: zenphoto-devzp/zp-core/zp-extensions/downloadList.php:130
@@ -3450,8 +3536,8 @@ msgstr "Passwort-Hinweis:"
 
 #: zenphoto-devzp/zp-core/admin-functions.php:1382
 #: zenphoto-devzp/zp-core/admin-options.php:747
-#: zenphoto-devzp/zp-core/admin-options.php:1192
-#: zenphoto-devzp/zp-core/admin-options.php:1589
+#: zenphoto-devzp/zp-core/admin-options.php:1190
+#: zenphoto-devzp/zp-core/admin-options.php:1587
 #: zenphoto-devzp/zp-core/exif/makers/canon.php:275
 #: zenphoto-devzp/zp-core/exif/makers/fujifilm.php:93
 msgid "Custom"
@@ -3471,20 +3557,20 @@ msgstr "*Unteralbum-Sortierung des übergeordneten Albums"
 
 #: zenphoto-devzp/zp-core/admin-functions.php:1417
 #: zenphoto-devzp/zp-core/admin-functions.php:1468
-#: zenphoto-devzp/zp-core/admin-options.php:1226
-#: zenphoto-devzp/zp-core/admin-options.php:1616
+#: zenphoto-devzp/zp-core/admin-options.php:1224
+#: zenphoto-devzp/zp-core/admin-options.php:1614
 msgid "Descending"
 msgstr "Absteigend"
 
 #: zenphoto-devzp/zp-core/admin-functions.php:1431
 #: zenphoto-devzp/zp-core/admin-functions.php:1483
-#: zenphoto-devzp/zp-core/admin-options.php:1234
-#: zenphoto-devzp/zp-core/admin-options.php:1622
+#: zenphoto-devzp/zp-core/admin-options.php:1232
+#: zenphoto-devzp/zp-core/admin-options.php:1620
 msgid "custom fields:"
 msgstr "Benutzerdefinierte Felder:"
 
 #: zenphoto-devzp/zp-core/admin-functions.php:1438
-#: zenphoto-devzp/zp-core/admin-options.php:1584
+#: zenphoto-devzp/zp-core/admin-options.php:1582
 msgid "Sort images by:"
 msgstr "Bildersortierung: "
 
@@ -3509,7 +3595,7 @@ msgid "Album watermarks:"
 msgstr "Album-Wasserzeichen:"
 
 #: zenphoto-devzp/zp-core/admin-functions.php:1552
-#: zenphoto-devzp/zp-core/admin-options.php:1746
+#: zenphoto-devzp/zp-core/admin-options.php:1744
 #: zenphoto-devzp/zp-core/utilities/reset_albumthumbs.php:35
 msgid "Thumbs"
 msgstr "Thumbnails"
@@ -3844,9 +3930,9 @@ msgid "Select one or more %1$s for the %2$s to manage."
 msgstr "Ein oder mehrere %1$s für  %2$s zum Verwalten auswählen."
 
 #: zenphoto-devzp/zp-core/admin-functions.php:3125
-#: zenphoto-devzp/zp-core/admin-users.php:781
-#: zenphoto-devzp/zp-core/admin-users.php:790
-#: zenphoto-devzp/zp-core/admin-users.php:796
+#: zenphoto-devzp/zp-core/admin-users.php:783
+#: zenphoto-devzp/zp-core/admin-users.php:792
+#: zenphoto-devzp/zp-core/admin-users.php:798
 msgid "user"
 msgstr "Benutzer"
 
@@ -3916,12 +4002,12 @@ msgstr "Installation"
 
 #: zenphoto-devzp/zp-core/admin-functions.php:4347
 #: zenphoto-devzp/zp-core/admin-globals.php:112
-#: zenphoto-devzp/zp-core/admin-options.php:947
+#: zenphoto-devzp/zp-core/admin-options.php:945
 msgid "security"
 msgstr "Sicherheit"
 
 #: zenphoto-devzp/zp-core/admin-functions.php:4347
-#: zenphoto-devzp/zp-core/admin-options.php:947
+#: zenphoto-devzp/zp-core/admin-options.php:945
 #: zenphoto-devzp/zp-core/zp-extensions/markRelease.php:42
 msgid "debug"
 msgstr "Fehlersuche"
@@ -3970,7 +4056,7 @@ msgstr "Hochlader"
 #: zenphoto-devzp/zp-core/admin-globals.php:95
 #: zenphoto-devzp/zp-core/zp-extensions/user-expiry.php:95
 #: zenphoto-devzp/zp-core/zp-extensions/user-expiry.php:105
-#: zenphoto-devzp/zp-core/zp-extensions/user_groups.php:222
+#: zenphoto-devzp/zp-core/zp-extensions/user_groups.php:221
 msgid "users"
 msgstr "Benutzer"
 
@@ -4108,8 +4194,8 @@ msgstr "Datum"
 
 #: zenphoto-devzp/zp-core/admin-globals.php:26
 #: zenphoto-devzp/zp-core/class-search.php:64
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:110
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:112
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:109
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:111
 #: zenphoto-devzp/zp-core/zp-extensions/favoritesHandler.php:86
 #: zenphoto-devzp/zp-core/zp-extensions/rss.php:125
 #: zenphoto-devzp/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:58
@@ -4219,7 +4305,7 @@ msgid "View logs:"
 msgstr "Protokolle ansehen:"
 
 #: zenphoto-devzp/zp-core/admin-logs.php:121
-#: zenphoto-devzp/zp-core/admin-options.php:2047
+#: zenphoto-devzp/zp-core/admin-options.php:2045
 #: zenphoto-devzp/zp-core/zp-extensions/downloadList/download_statistics.php:24
 msgid "Download"
 msgstr "Runterladen"
@@ -4300,19 +4386,19 @@ msgstr ""
 "Information."
 
 #: zenphoto-devzp/zp-core/admin-options.php:551
-#: zenphoto-devzp/zp-core/admin-options.php:980
-#: zenphoto-devzp/zp-core/admin-options.php:1003
-#: zenphoto-devzp/zp-core/admin-options.php:1329
-#: zenphoto-devzp/zp-core/admin-options.php:1352
-#: zenphoto-devzp/zp-core/admin-options.php:1545
-#: zenphoto-devzp/zp-core/admin-options.php:1574
-#: zenphoto-devzp/zp-core/admin-options.php:2171
-#: zenphoto-devzp/zp-core/admin-options.php:2300
-#: zenphoto-devzp/zp-core/admin-options.php:2571
-#: zenphoto-devzp/zp-core/admin-options.php:2639
-#: zenphoto-devzp/zp-core/admin-options.php:2764
-#: zenphoto-devzp/zp-core/admin-options.php:2812
-#: zenphoto-devzp/zp-core/admin-options.php:2921
+#: zenphoto-devzp/zp-core/admin-options.php:978
+#: zenphoto-devzp/zp-core/admin-options.php:1001
+#: zenphoto-devzp/zp-core/admin-options.php:1327
+#: zenphoto-devzp/zp-core/admin-options.php:1350
+#: zenphoto-devzp/zp-core/admin-options.php:1543
+#: zenphoto-devzp/zp-core/admin-options.php:1572
+#: zenphoto-devzp/zp-core/admin-options.php:2169
+#: zenphoto-devzp/zp-core/admin-options.php:2298
+#: zenphoto-devzp/zp-core/admin-options.php:2569
+#: zenphoto-devzp/zp-core/admin-options.php:2637
+#: zenphoto-devzp/zp-core/admin-options.php:2762
+#: zenphoto-devzp/zp-core/admin-options.php:2810
+#: zenphoto-devzp/zp-core/admin-options.php:2919
 #: zenphoto-devzp/zp-core/admin-users.php:444
 #: zenphoto-devzp/zp-core/zp-extensions/search_statistics/search_analysis.php:268
 msgid "reset"
@@ -4423,7 +4509,7 @@ msgstr ""
 "Suchmaschinen). Beispiele: <em>.html, .php, view</em> etc."
 
 #: zenphoto-devzp/zp-core/admin-options.php:625
-#: zenphoto-devzp/zp-core/admin-users.php:743
+#: zenphoto-devzp/zp-core/admin-users.php:745
 msgid "Language:"
 msgstr "Sprache:"
 
@@ -4701,27 +4787,33 @@ msgstr "Standardwerte wiederherstellen"
 msgid "Cookies:"
 msgstr "Cookies:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:875
-msgid "enable gallery sessions"
-msgstr "Galeriesessions aktivieren"
-
-#: zenphoto-devzp/zp-core/admin-options.php:878
+#: zenphoto-devzp/zp-core/admin-options.php:874
 msgid "Path"
 msgstr "Pfad"
 
-#: zenphoto-devzp/zp-core/admin-options.php:884
+#: zenphoto-devzp/zp-core/admin-options.php:879
 msgid "Duration"
 msgstr "Dauer"
 
-#: zenphoto-devzp/zp-core/admin-options.php:893
-msgid ""
-"<a href=\"javascript:toggle('gallerysessions');\" >Details</a> for "
-"<em>enable gallery sessions</em>"
-msgstr ""
-"<a href=\"javascript:toggle('gallerysessions');\" >Details</a> zur "
-"<em>Aktivierung von Galeriesessions</em>"
+#: zenphoto-devzp/zp-core/admin-options.php:889
+msgid "enable gallery sessions"
+msgstr "Galeriesessions aktivieren"
 
-#: zenphoto-devzp/zp-core/admin-options.php:895
+#: zenphoto-devzp/zp-core/admin-options.php:897
+#, php-format
+msgid ""
+"The <em>path</em> Zenphoto will use when storing cookies. (Leave empty to "
+"default to <em>%s</em>)"
+msgstr ""
+"Der <em>Pfad</em>, den Zenphoto zu speichern von Cookies verwenden wird. "
+"(Lassen Sie ihn lerr, um den Standard <em>%s</em> zu verwenden)"
+
+#: zenphoto-devzp/zp-core/admin-options.php:898
+msgid "Set to the time in seconds that cookies should be kept by browsers."
+msgstr ""
+"Geben Sie die Zeit in Sekunden für die Lebensdauer von Cookies im Browser an."
+
+#: zenphoto-devzp/zp-core/admin-options.php:902
 msgid ""
 "If this option is selected Zenphoto will use <a href=\"http://www.w3schools."
 "com/php/php_sessions.asp\">PHP sessions</a> instead of cookies to make "
@@ -4731,7 +4823,7 @@ msgstr ""
 "w3schools.com/php/php_sessions.asp\">PHP sessions</a> anstatt von Cookies "
 "verwenden, um Besuchereinstellungen dauerhaft zu speichern."
 
-#: zenphoto-devzp/zp-core/admin-options.php:896
+#: zenphoto-devzp/zp-core/admin-options.php:903
 msgid ""
 "<strong>NOTE</strong>: Sessions will normally close when the browser closes "
 "causing all password and other data to be discarded. They may close more "
@@ -4748,29 +4840,15 @@ msgstr ""
 "bevorzugte Einstellung, da ihre Laufzeit durch die <em>Cookie-Laufzeit</em> "
 "bestimmt wird."
 
-#: zenphoto-devzp/zp-core/admin-options.php:898
-#, php-format
-msgid ""
-"The <em>path</em> Zenphoto will use when storing cookies. (Leave empty to "
-"default to <em>%s</em>)"
-msgstr ""
-"Der <em>Pfad</em>, den Zenphoto zu speichern von Cookies verwenden wird. "
-"(Lassen Sie ihn lerr, um den Standard <em>%s</em> zu verwenden)"
-
-#: zenphoto-devzp/zp-core/admin-options.php:902
-msgid "Set to the time in seconds that cookies should be kept by browsers."
-msgstr ""
-"Geben Sie die Zeit in Sekunden für die Lebensdauer von Cookies im Browser an."
-
-#: zenphoto-devzp/zp-core/admin-options.php:910
+#: zenphoto-devzp/zp-core/admin-options.php:908
 msgid "Name:"
 msgstr "Name:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:911
+#: zenphoto-devzp/zp-core/admin-options.php:909
 msgid "Email:"
 msgstr "E-Mail:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:917
+#: zenphoto-devzp/zp-core/admin-options.php:915
 msgid ""
 "This email name and address will be used as the <em>From</em> address for "
 "all mails sent by Zenphoto."
@@ -4778,19 +4856,19 @@ msgstr ""
 "Diese E-Mail-Adresse wird als die Absenderadresse <em>From</em> für alle von "
 "Zenphoto versendeten E-Mails verwendet."
 
-#: zenphoto-devzp/zp-core/admin-options.php:921
+#: zenphoto-devzp/zp-core/admin-options.php:919
 msgid "Users per page:"
 msgstr "Benutzer pro Seite:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:922
+#: zenphoto-devzp/zp-core/admin-options.php:920
 msgid "Plugins per page:"
 msgstr "Plugins pro Seite:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:926
+#: zenphoto-devzp/zp-core/admin-options.php:924
 msgid "Articles per page:"
 msgstr "Artikel pro Seite:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:944
+#: zenphoto-devzp/zp-core/admin-options.php:942
 msgid ""
 "These options control the number of items displayed on their tabs. If you "
 "have problems using these tabs, reduce the number shown here."
@@ -4799,16 +4877,16 @@ msgstr ""
 "Wenn Sie Problem mit diesen Reiter haben, verringern Sie die Anzahl der "
 "Einträge hier."
 
-#: zenphoto-devzp/zp-core/admin-options.php:954
+#: zenphoto-devzp/zp-core/admin-options.php:952
 #, php-format
 msgid "<p>%s log limit</p>"
 msgstr "<p>%s Protokoll-Limit</p>"
 
-#: zenphoto-devzp/zp-core/admin-options.php:966
+#: zenphoto-devzp/zp-core/admin-options.php:964
 msgid "e-mail when exceeded"
 msgstr "E-mail sobald überschritten"
 
-#: zenphoto-devzp/zp-core/admin-options.php:973
+#: zenphoto-devzp/zp-core/admin-options.php:971
 msgid ""
 "Logs will be \"rolled\" over when they exceed the specified size. If "
 "checked, the administrator will be e-mailed when this occurs."
@@ -4817,56 +4895,56 @@ msgstr ""
 "Größe überschreitet. Wenn aktiviert, erhält der Administrator darüber eine "
 "Mail."
 
-#: zenphoto-devzp/zp-core/admin-options.php:979
-#: zenphoto-devzp/zp-core/admin-options.php:2638
-#: zenphoto-devzp/zp-core/admin-options.php:2763
-#: zenphoto-devzp/zp-core/admin-options.php:2811
-#: zenphoto-devzp/zp-core/admin-options.php:2920
+#: zenphoto-devzp/zp-core/admin-options.php:977
+#: zenphoto-devzp/zp-core/admin-options.php:2636
+#: zenphoto-devzp/zp-core/admin-options.php:2761
+#: zenphoto-devzp/zp-core/admin-options.php:2809
+#: zenphoto-devzp/zp-core/admin-options.php:2918
 #: zenphoto-devzp/zp-core/setup/setup-sqlform.php:102
 msgid "save"
 msgstr "Sichern"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1008
+#: zenphoto-devzp/zp-core/admin-options.php:1006
 msgid "Gallery title:"
 msgstr "Galeriename:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1012
+#: zenphoto-devzp/zp-core/admin-options.php:1010
 msgid "What you want to call your Zenphoto site."
 msgstr "Der gewünschte Name Ihrer Zenphoto-Site."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1015
+#: zenphoto-devzp/zp-core/admin-options.php:1013
 msgid "Gallery description:"
 msgstr "Galerie-Beschreibung:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1019
+#: zenphoto-devzp/zp-core/admin-options.php:1017
 msgid "A brief description of your gallery. Some themes may display this text."
 msgstr ""
 "Platz für eine kurze Beschreibung Ihrer Galerie. Einige Themes werden diesen "
 "Text möglicherweise anzeigen."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1022
+#: zenphoto-devzp/zp-core/admin-options.php:1020
 msgid "Gallery type"
 msgstr "Galerietyp"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1024
+#: zenphoto-devzp/zp-core/admin-options.php:1022
 msgid "public"
 msgstr "öffentlich"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1025
+#: zenphoto-devzp/zp-core/admin-options.php:1023
 msgid "private"
 msgstr "privat"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1028
+#: zenphoto-devzp/zp-core/admin-options.php:1026
 msgid "Private galleries are viewable only by registered users."
 msgstr ""
 "Private Galerien können nur von registrierten Benutzern angesehen werden."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1038
-#: zenphoto-devzp/zp-core/admin-options.php:1084
+#: zenphoto-devzp/zp-core/admin-options.php:1036
+#: zenphoto-devzp/zp-core/admin-options.php:1082
 msgid "Gallery password:"
 msgstr "Galeriepasswort:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1059
+#: zenphoto-devzp/zp-core/admin-options.php:1057
 msgid ""
 "Master password for the gallery. Click on <em>Gallery password</em> to "
 "change."
@@ -4874,23 +4952,23 @@ msgstr ""
 "Hauptpasswort für die Galerie. Klicken Sie zum Ändern auf <em>Galerie-"
 "Passwort</em>."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1066
+#: zenphoto-devzp/zp-core/admin-options.php:1064
 msgid "Gallery guest user:"
 msgstr "Galerie-Gastbenutzer:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1078
+#: zenphoto-devzp/zp-core/admin-options.php:1076
 msgid "User ID for the gallery guest user"
 msgstr "Benutzer-ID für den Galerie-Gastbenutzer"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1088
-#: zenphoto-devzp/zp-core/admin-options.php:1411
-#: zenphoto-devzp/zp-core/admin-options.php:2012
+#: zenphoto-devzp/zp-core/admin-options.php:1086
+#: zenphoto-devzp/zp-core/admin-options.php:1409
+#: zenphoto-devzp/zp-core/admin-options.php:2010
 #: zenphoto-devzp/zp-core/zp-extensions/downloadList.php:133
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-edit.php:506
 msgid "(repeat)"
 msgstr "(wiederholen)"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1107
+#: zenphoto-devzp/zp-core/admin-options.php:1105
 msgid ""
 "Master password for the gallery. If this is set, visitors must know this "
 "password to view the gallery."
@@ -4898,58 +4976,58 @@ msgstr ""
 "Hauptpasswort für die Galerie. Wenn es vergeben ist, müssen Besucher das "
 "Passwort kennen, um die Galerie ansehen zu können."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1112
+#: zenphoto-devzp/zp-core/admin-options.php:1110
 msgid "Gallery password hint:"
 msgstr "Galeriepasswort-Hinweis:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1118
-#: zenphoto-devzp/zp-core/admin-options.php:1441
+#: zenphoto-devzp/zp-core/admin-options.php:1116
+#: zenphoto-devzp/zp-core/admin-options.php:1439
 msgid "A reminder hint for the password."
 msgstr "Eine Erinnungsstütze für das Passwort."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1125
+#: zenphoto-devzp/zp-core/admin-options.php:1123
 msgid "Unprotected pages:"
 msgstr "Ungesicherte Seiten:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1154
+#: zenphoto-devzp/zp-core/admin-options.php:1152
 msgid ""
 "Place a checkmark on any page scripts which should not be protected by the "
 "gallery password."
 msgstr ""
 "Wählen Sie die Seiten, die nicht vom Galeriepasswort geschützt sein sollen."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1157
+#: zenphoto-devzp/zp-core/admin-options.php:1155
 msgid "Website title:"
 msgstr "Website-Name:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1161
+#: zenphoto-devzp/zp-core/admin-options.php:1159
 msgid "Your web site title."
 msgstr "Der Name Ihrer Website."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1164
+#: zenphoto-devzp/zp-core/admin-options.php:1162
 msgid "Website url:"
 msgstr "Website-Adresse:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1167
+#: zenphoto-devzp/zp-core/admin-options.php:1165
 msgid ""
 "This is used to link back to your main site, but your theme must support it."
 msgstr ""
 "Dies wird verwendet, um zu Ihrer Hauptseite zurückzuverweisen, aber Ihr "
 "Theme muss dies unterstützen."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1171
+#: zenphoto-devzp/zp-core/admin-options.php:1169
 msgid "Album thumbnails:"
 msgstr "Albumthumbnails:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1185
+#: zenphoto-devzp/zp-core/admin-options.php:1183
 msgid "Default thumbnail selection for albums."
 msgstr "Standard-Thumbnail-Auswahl für Alben."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1187
+#: zenphoto-devzp/zp-core/admin-options.php:1185
 msgid "Sort gallery by:"
 msgstr "Galeriesortierung: "
 
-#: zenphoto-devzp/zp-core/admin-options.php:1243
+#: zenphoto-devzp/zp-core/admin-options.php:1241
 msgid ""
 "Sort order for the albums on the index of the gallery. Custom sort values "
 "must be database field names. You can have multiple fields separated by "
@@ -4960,33 +5038,33 @@ msgstr ""
 "mehrere Felder durch Kommata trennen. Diese Option ist ebenfalls die "
 "voreingestellte Sortierung für Alben und Unteralben."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1248
+#: zenphoto-devzp/zp-core/admin-options.php:1246
 msgid "Gallery behavior:"
 msgstr "Galerie-Verhalten:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1253
+#: zenphoto-devzp/zp-core/admin-options.php:1251
 #: zenphoto-devzp/zp-core/zp-extensions/publishContent/publishContent.php:200
 msgid "Publish albums by default"
 msgstr "Alben standardmäßig veröffentlichen"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1259
+#: zenphoto-devzp/zp-core/admin-options.php:1257
 #: zenphoto-devzp/zp-core/zp-extensions/publishContent/publishContent.php:202
 msgid "Publish images by default"
 msgstr "Bilder standardmäßig veröffentlichen"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1266
+#: zenphoto-devzp/zp-core/admin-options.php:1264
 msgid "use latest image date as album date"
 msgstr "Datum des neustes Bildes als Albumdatum verwenden"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1273
+#: zenphoto-devzp/zp-core/admin-options.php:1271
 msgid "visual thumb selection"
 msgstr "Grafische Thumbnailauswahl"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1280
+#: zenphoto-devzp/zp-core/admin-options.php:1278
 msgid "show subalbum thumbs"
 msgstr "Unteralbum-Thumbs anzeigen"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1285
+#: zenphoto-devzp/zp-core/admin-options.php:1283
 msgid ""
 "<a href=\"javascript:toggle('albumpub');\" >Details</a> for <em>publish "
 "albums by default</em>"
@@ -4994,7 +5072,7 @@ msgstr ""
 "<a href=\"javascript:toggle('albumpub');\" >Details</a> zur<em>zum "
 "standardmäßigen Veröffentlichen von Album</em>"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1287
+#: zenphoto-devzp/zp-core/admin-options.php:1285
 msgid ""
 "This sets the default behavior for when Zenphoto discovers an album. If "
 "checked, the album will be published, if unchecked it will be unpublished."
@@ -5002,7 +5080,7 @@ msgstr ""
 "Dies stellt das Standardverhalten beim Entdecken eines neuen Albums ein. Nur "
 "wenn aktiviert, wird das Album automatisch veröffentlich."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1289
+#: zenphoto-devzp/zp-core/admin-options.php:1287
 msgid ""
 "<a href=\"javascript:toggle('imagepub');\" >Details</a> for <em>publish "
 "images by default</em>"
@@ -5010,7 +5088,7 @@ msgstr ""
 "<a href=\"javascript:toggle('albumdate');\" >Details</a> zur<em>Verwendung "
 "des Datums des neusten Bilds als Albumdatum</em>"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1291
+#: zenphoto-devzp/zp-core/admin-options.php:1289
 msgid ""
 "This sets the default behavior for when Zenphoto discovers an image. If "
 "checked, the image will be published, if unchecked it will be unpublished."
@@ -5018,7 +5096,7 @@ msgstr ""
 "Dies stellt das Standardverhalten beim Entdecken eines neuen Bildes ein. Nur "
 "wenn aktiviert, wird das Bild automatisch veröffentlich."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1293
+#: zenphoto-devzp/zp-core/admin-options.php:1291
 msgid ""
 "<a href=\"javascript:toggle('albumdate');\" >Details</a> for <em>use latest "
 "image date as album date</em>"
@@ -5026,7 +5104,7 @@ msgstr ""
 "<a href=\"javascript:toggle('albumdate');\" >Details</a> uzr<em>Verwendung "
 "des Datums des neusten Bilds als Albumdatum</em>"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1296
+#: zenphoto-devzp/zp-core/admin-options.php:1294
 msgid ""
 "If you wish your album date to reflect the date of the latest image uploaded "
 "set this option. Otherwise the date will be set initially to the date the "
@@ -5036,7 +5114,7 @@ msgstr ""
 "Datum des letzten in dieses hochgeladenen Bildes entspricht. Andernfalls "
 "zeigt es das Erstellungsdatum des Albums."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1299
+#: zenphoto-devzp/zp-core/admin-options.php:1297
 msgid ""
 "<strong>NOTE</strong>: Zenphoto will update the album date only if an image "
 "is discovered which is newer than the current date of the album."
@@ -5045,7 +5123,7 @@ msgstr ""
 "wenn ein Bild entdeckt wird, dass neuer als das derzeitige Datum des Albums "
 "ist. "
 
-#: zenphoto-devzp/zp-core/admin-options.php:1303
+#: zenphoto-devzp/zp-core/admin-options.php:1301
 msgid ""
 "<a href=\"javascript:toggle('visualthumb');\" >Details</a> for <em>visual "
 "thumb selection</em>"
@@ -5053,7 +5131,7 @@ msgstr ""
 "<a href=\"javascript:toggle('visualthumb');\" >Details</a> zur <em>visuellen "
 "Thumbnailauswahl</em>"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1305
+#: zenphoto-devzp/zp-core/admin-options.php:1303
 msgid ""
 "Setting this option places thumbnails in the album thumbnail selection list "
 "(the dropdown list on each album's edit page). In Firefox the dropdown shows "
@@ -5070,7 +5148,7 @@ msgstr ""
 "überflüssig, wenn der Browser sie ohnehin nicht darstellt. Deaktivieren Sie "
 "diese Eistellungen und die Bilder werden nicht geladen."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1308
+#: zenphoto-devzp/zp-core/admin-options.php:1306
 msgid ""
 "<a href=\"javascript:toggle('multithumb');\" >Details</a> for <em>subalbum "
 "thumb selection</em>"
@@ -5078,7 +5156,7 @@ msgstr ""
 "<a href=\"javascript:toggle('multithumb');\" >Details</a> zur <em>Unteralbum-"
 "Thumb-Auswahl</em>"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1310
+#: zenphoto-devzp/zp-core/admin-options.php:1308
 msgid ""
 "Setting this option allows selecting images from subalbums as well as from "
 "the album. Naturally populating these images adds overhead. If your album "
@@ -5089,12 +5167,12 @@ msgstr ""
 "Bilder Mehraufwand. Wenn Ihr Albumtab zu langsam lädt, deaktivieren Sie "
 "diese Einstellung."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1363
-#: zenphoto-devzp/zp-core/admin-options.php:1407
+#: zenphoto-devzp/zp-core/admin-options.php:1361
+#: zenphoto-devzp/zp-core/admin-options.php:1405
 msgid "Search password:"
 msgstr "Suchpasswort:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1383
+#: zenphoto-devzp/zp-core/admin-options.php:1381
 msgid ""
 "Password for the search guest user. click on <em>Search password</em> to "
 "change."
@@ -5102,15 +5180,15 @@ msgstr ""
 "Passwort für den Such-Gastbenutzer. Klicken Sie zum Ändern auf "
 "<em>Suchpasswort</em>."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1389
+#: zenphoto-devzp/zp-core/admin-options.php:1387
 msgid "Search guest user:"
 msgstr "Such-Gastbenutzer:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1401
+#: zenphoto-devzp/zp-core/admin-options.php:1399
 msgid "User ID for the search guest user"
 msgstr "Benutzer-ID für den Such-Gastbenutzer"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1430
+#: zenphoto-devzp/zp-core/admin-options.php:1428
 msgid ""
 "Password for the search guest user. If this is set, visitors must know this "
 "password to view search results."
@@ -5118,77 +5196,77 @@ msgstr ""
 "Passwort für den Such-Gastbenutzer. Wenn es gesetzt ist, müssen Besucher das "
 "Passwort kennen, um die Suche verwenden zu können."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1435
+#: zenphoto-devzp/zp-core/admin-options.php:1433
 msgid "Search password hint:"
 msgstr "Suchpasswort-Hinweis:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1448
+#: zenphoto-devzp/zp-core/admin-options.php:1446
 msgid "Search behavior settings:"
 msgstr "Suchverhalteneinstellungen:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1452
+#: zenphoto-devzp/zp-core/admin-options.php:1450
 msgid "partial"
 msgstr "teilweise"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1453
+#: zenphoto-devzp/zp-core/admin-options.php:1451
 msgid "exact"
 msgstr "exakt"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1471
+#: zenphoto-devzp/zp-core/admin-options.php:1469
 msgid "Fields list:"
 msgstr "Feldliste:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1487
+#: zenphoto-devzp/zp-core/admin-options.php:1485
 msgid "Treat spaces as"
 msgstr "Leerzeichen behandeln als"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1488
+#: zenphoto-devzp/zp-core/admin-options.php:1486
 msgid "<em>space</em>"
 msgstr "<em>Leerzeichen</em>"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1488
+#: zenphoto-devzp/zp-core/admin-options.php:1486
 msgid "<em>OR</em>"
 msgstr "<em>OR</em>"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1488
+#: zenphoto-devzp/zp-core/admin-options.php:1486
 msgid "<em>AND</em>"
 msgstr "<em>AND</em>"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1490
+#: zenphoto-devzp/zp-core/admin-options.php:1488
 msgid "Default search"
 msgstr "Standardsuche"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1491
+#: zenphoto-devzp/zp-core/admin-options.php:1489
 msgid "<em>New</em>"
 msgstr "<em>Neu</em>"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1491
+#: zenphoto-devzp/zp-core/admin-options.php:1489
 msgid "<em>Within</em>"
 msgstr "<em>Innerhalb</em>"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1496
+#: zenphoto-devzp/zp-core/admin-options.php:1494
 msgid "Do not return <em>album</em> matches"
 msgstr "Keine <em>Album</em>-Treffer ausgeben"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1502
+#: zenphoto-devzp/zp-core/admin-options.php:1500
 msgid "Do not return <em>image</em> matches"
 msgstr "Keine <em>Bild</em>-Treffer ausgeben"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1511
+#: zenphoto-devzp/zp-core/admin-options.php:1509
 msgid "Do not return <em>news</em> matches"
 msgstr "Keine <em>Alben</em>-Treffer ausgeben"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1517
+#: zenphoto-devzp/zp-core/admin-options.php:1515
 msgid "Do not return <em>page</em> matches"
 msgstr "Keine <em>Seiten</em>-Treffer ausgeben"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1525
+#: zenphoto-devzp/zp-core/admin-options.php:1523
 msgid ""
 "<em>Field list</em> is the set of fields on which searches may be performed."
 msgstr ""
 "<em>Feldliste</em> ist die Liste der Felder, in denen gesucht werden soll."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1526
+#: zenphoto-devzp/zp-core/admin-options.php:1524
 msgid ""
 "Search does partial matches on all fields selected with the possible "
 "exception of <em>Tags</em>. This means that if the field contains the search "
@@ -5202,7 +5280,7 @@ msgstr ""
 "<em>Schlagwörter</em> ausgewählt ist, muss das Suchkriterium exakt mit dem "
 "Schlagwort übereinstimmen, um als Treffer gewertet zu werden. "
 
-#: zenphoto-devzp/zp-core/admin-options.php:1527
+#: zenphoto-devzp/zp-core/admin-options.php:1525
 msgid ""
 "Setting <code>Treat spaces as</code> to <em>OR</em> will cause search to "
 "trigger on any of the words in a string separated by spaces. Setting it to "
@@ -5215,7 +5293,7 @@ msgstr ""
 "sind, als eigene Suchbegriffe verstehen. Anderfalls werden wird die gesamte "
 "Sucheingabe als ein  Suchbegriff gewertet. "
 
-#: zenphoto-devzp/zp-core/admin-options.php:1528
+#: zenphoto-devzp/zp-core/admin-options.php:1526
 msgid ""
 "<code>Default search</code> sets how searches from search page results "
 "behave. The search will either be from <em>within</em> the results of the "
@@ -5226,7 +5304,7 @@ msgstr ""
 "einer vorherigen Such oder mit einer frischen <em>neuen </em> Abfrage "
 "ausgeführt."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1529
+#: zenphoto-devzp/zp-core/admin-options.php:1527
 msgid ""
 "Setting <code>Do not return <em>{item}</em> matches</code> will cause search "
 "to ignore <em>{items}</em> when looking for matches."
@@ -5234,16 +5312,16 @@ msgstr ""
 "Wenn Sie <code>Keine <em>{Eintrag}</em>-Treffer ausgeben</code> auswählen, "
 "wird die Suche diese ignorieren, wenn nach Ergebnissen gesucht wird."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1532
+#: zenphoto-devzp/zp-core/admin-options.php:1530
 msgid "Cache expiry"
 msgstr "Cache-Ablaufdatum"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1534
+#: zenphoto-devzp/zp-core/admin-options.php:1532
 #, php-format
 msgid "Redo search after %s minutes."
 msgstr "Suche nach %s Minuten erneut ausführen."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1537
+#: zenphoto-devzp/zp-core/admin-options.php:1535
 msgid ""
 "Search will remember the results of particular searches so that it can "
 "quickly serve multiple pages, etc. Over time this remembered result can "
@@ -5258,7 +5336,7 @@ msgstr ""
 "und wann erneuert werden soll. Das Einstellen von <em>zero</em> deaktiviert "
 "die Speicherung."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1566
+#: zenphoto-devzp/zp-core/admin-options.php:1564
 msgid ""
 "See also the <a href=\"?tab=theme\">Theme Options</a> tab for theme specific "
 "image options."
@@ -5266,11 +5344,11 @@ msgstr ""
 "Bitten beachten Sie auch auf <a href=\"?tab=theme\">Theme Options</a> die "
 "spezifischen Theme-Bildeinstellungen."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1628
+#: zenphoto-devzp/zp-core/admin-options.php:1626
 msgid "Default sort order for images."
 msgstr "Standardbildsortierung."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1629
+#: zenphoto-devzp/zp-core/admin-options.php:1627
 msgid ""
 "Custom sort values must be database field names. You can have multiple "
 "fields separated by commas."
@@ -5278,31 +5356,31 @@ msgstr ""
 "Benutzerdefinierte Sortierungen müssen Datenbankfeldnamen sein. Sie können "
 "mehrere Felder durch Kommata trennen. "
 
-#: zenphoto-devzp/zp-core/admin-options.php:1633
+#: zenphoto-devzp/zp-core/admin-options.php:1631
 msgid "Image quality:"
 msgstr "Bildqualität:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1636
+#: zenphoto-devzp/zp-core/admin-options.php:1634
 msgid "Normal Image"
 msgstr "Normales Bild"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1657
+#: zenphoto-devzp/zp-core/admin-options.php:1655
 msgid "<em>full</em> Image"
 msgstr "<em>Voll</em>bild"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1678
+#: zenphoto-devzp/zp-core/admin-options.php:1676
 #: zenphoto-devzp/zp-core/zp-extensions/cacheManager.php:232
 #: zenphoto-devzp/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:113
 msgid "Thumbnail"
 msgstr "Thumbnail"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1700
+#: zenphoto-devzp/zp-core/admin-options.php:1698
 msgid "Compression quality for images and thumbnails generated by Zenphoto."
 msgstr ""
 "JPEG-Komprimierungsqualität für alle Bilder und Thumbnails, die Zenphoto "
 "erstellt."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1701
+#: zenphoto-devzp/zp-core/admin-options.php:1699
 msgid ""
 "Quality ranges from 0 (worst quality, smallest file) to 100 (best quality, "
 "biggest file). "
@@ -5310,11 +5388,11 @@ msgstr ""
 "Die Qualität reicht von 0 (schlechteste Qualität, kleinste Datei) bis 100 "
 "(beste Qualität, größte Datei)."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1705
+#: zenphoto-devzp/zp-core/admin-options.php:1703
 msgid "Interlace:"
 msgstr "Interlace:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1707
+#: zenphoto-devzp/zp-core/admin-options.php:1705
 msgid ""
 "If checked, resized images will be created <em>interlaced</em> (if the "
 "format permits)."
@@ -5322,11 +5400,11 @@ msgstr ""
 "Wenn ausgewählt, werden die bearbeiteten Bilder <em>interlaced</em> erstellt "
 "(wenn das Format es erlaubt)."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1710
+#: zenphoto-devzp/zp-core/admin-options.php:1708
 msgid "Use embedded thumbnail"
 msgstr "Eingebettetes Thumbnail verwenden"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1721
+#: zenphoto-devzp/zp-core/admin-options.php:1719
 msgid ""
 "If set, Zenphoto will use the thumbnail imbedded in the image when creating "
 "a cached image that is equal or smaller in size. Note: the quality of this "
@@ -5338,15 +5416,15 @@ msgstr ""
 "Kamera und seine Ausrichtung muß nicht der Orientierung des eigentlichen "
 "Bildes entsprechen."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1725
+#: zenphoto-devzp/zp-core/admin-options.php:1723
 msgid "The PHP EXIF extension is required for this option."
 msgstr "Die PHP-EXIF-Erweiterung ist für diese Einstellung erforderlich."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1732
+#: zenphoto-devzp/zp-core/admin-options.php:1730
 msgid "Allow upscale:"
 msgstr "Hochrechnen erlauben:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1734
+#: zenphoto-devzp/zp-core/admin-options.php:1732
 msgid ""
 "Allow images to be scaled up to the requested size. This could result in "
 "loss of quality, so it's off by default."
@@ -5355,31 +5433,31 @@ msgstr ""
 "werden. Dies kann zu einem Qualitätsverlust führen und ist daher "
 "standardmäßig deaktiviert."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1737
+#: zenphoto-devzp/zp-core/admin-options.php:1735
 msgid "Sharpen:"
 msgstr "Scharfzeichnen:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1750
+#: zenphoto-devzp/zp-core/admin-options.php:1748
 msgid "Amount"
 msgstr "Schärfegrad"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1774
+#: zenphoto-devzp/zp-core/admin-options.php:1772
 msgid "Radius"
 msgstr "Radius"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1778
+#: zenphoto-devzp/zp-core/admin-options.php:1776
 msgid "Threshold"
 msgstr "Schwelle"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1784
+#: zenphoto-devzp/zp-core/admin-options.php:1782
 msgid "Add an unsharp mask to images and/or thumbnails."
 msgstr "Zeichnet Bilder und/oder Thumbnails scharf. "
 
-#: zenphoto-devzp/zp-core/admin-options.php:1784
+#: zenphoto-devzp/zp-core/admin-options.php:1782
 msgid "<strong>WARNING</strong>: can overload slow servers."
 msgstr "<strong>Warnung</strong>: Kann langsame Server überlasten."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1785
+#: zenphoto-devzp/zp-core/admin-options.php:1783
 msgid ""
 "<em>Amount</em>: the strength of the sharpening effect. Values are between 0 "
 "(least sharpening) and 100 (most sharpening)."
@@ -5387,7 +5465,7 @@ msgstr ""
 "<em>Stärkegrad</em>: Der Stärkegrad des Scharfzeichnens. Ganze Zahlenwerte "
 "zwischen 0 (wenig schärfen) und 100 (maximal schärfen)."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1786
+#: zenphoto-devzp/zp-core/admin-options.php:1784
 msgid ""
 "<em>Radius</em>: the pixel radius of the sharpening mask. A smaller radius "
 "sharpens smaller details, and a larger radius sharpens larger details."
@@ -5395,7 +5473,7 @@ msgstr ""
 "<em>Radius</em>: Der Pixelradius für das Scharfzeichnen. Ein kleinerer "
 "Radius schärft kleinere Details, ein größerer mehr Details."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1787
+#: zenphoto-devzp/zp-core/admin-options.php:1785
 msgid ""
 "<em>Threshold</em>: the color difference threshold required for sharpening. "
 "A low threshold sharpens all edges including faint ones, while a higher "
@@ -5405,51 +5483,51 @@ msgstr ""
 "Scharfzeichen. Ein niedriger Wert schärft alle Ränder inkl. matter Ränder, "
 "während ein hoher Wert deutlichere Ränder schärft."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1791
+#: zenphoto-devzp/zp-core/admin-options.php:1789
 msgid "Watermarks:"
 msgstr "Wasserzeichen:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1808
+#: zenphoto-devzp/zp-core/admin-options.php:1806
 msgid "Full sized images"
 msgstr "Originalbilder"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1829
+#: zenphoto-devzp/zp-core/admin-options.php:1827
 #, php-format
 msgid "%s thumbnails"
 msgstr "%s Thumbnails"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1832
+#: zenphoto-devzp/zp-core/admin-options.php:1830
 msgid "image thumb"
 msgstr "Thumbnail"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1845
+#: zenphoto-devzp/zp-core/admin-options.php:1843
 msgid "cover"
 msgstr "Ausbreitung"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1847
+#: zenphoto-devzp/zp-core/admin-options.php:1845
 #, no-php-format
 msgid "% of image"
 msgstr "% des Bildes"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1850
+#: zenphoto-devzp/zp-core/admin-options.php:1848
 msgid "allow upscale"
 msgstr "Hochrechnen erlauben"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1854
+#: zenphoto-devzp/zp-core/admin-options.php:1852
 msgid "offset h"
 msgstr "Position h"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1856
+#: zenphoto-devzp/zp-core/admin-options.php:1854
 #, no-php-format
 msgid "% w, "
 msgstr "% w "
 
-#: zenphoto-devzp/zp-core/admin-options.php:1858
+#: zenphoto-devzp/zp-core/admin-options.php:1856
 #, no-php-format
 msgid "%"
 msgstr "%"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1862
+#: zenphoto-devzp/zp-core/admin-options.php:1860
 msgid ""
 "The watermark image is scaled by to cover <em>cover percentage</em> of the "
 "image and placed relative to the upper left corner of the image."
@@ -5458,7 +5536,7 @@ msgstr ""
 "angegebenen Prozentwert bedeckt und dabei relativ zur oberen linken Ecke des "
 "Bildes positioniert wird."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1863
+#: zenphoto-devzp/zp-core/admin-options.php:1861
 msgid ""
 "It is offset from there (moved toward the lower right corner) by the "
 "<em>offset</em> percentages of the height and width difference between the "
@@ -5468,7 +5546,7 @@ msgstr ""
 "<em>Positions</em>-Prozentangaben durch den Höhe- und Breiteunterschied "
 "zwischen Bild und Wasserzeichen positioniert."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1864
+#: zenphoto-devzp/zp-core/admin-options.php:1862
 msgid ""
 "If <em>allow upscale</em> is not checked the watermark will not be made "
 "larger than the original watermark image."
@@ -5476,7 +5554,7 @@ msgstr ""
 "Wenn <em>Hochrechnen erlaubt</em> nicht aktiviert ist, wird das "
 "Wasserzeichen nicht über seine reale Größe hinaus vergrößert."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1865
+#: zenphoto-devzp/zp-core/admin-options.php:1863
 #, php-format
 msgid ""
 "Custom watermarks should be placed in the <code>/%s/watermarks/</code> "
@@ -5485,7 +5563,7 @@ msgstr ""
 "Benutzerdefinierte Wasserzeichen sollten im Ordner <code>/%s/watermarks/</"
 "code> platziert werden. Die Bilder müssen im png24-Format sein."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1869
+#: zenphoto-devzp/zp-core/admin-options.php:1867
 msgid ""
 "If a watermark image is selected for these <em>images classes</em> it will "
 "be used in place of the image thumbnail watermark."
@@ -5493,16 +5571,16 @@ msgstr ""
 "Wenn ein Wasserzeichenbild für diese <em>Bildklassen</em> ausgewählt ist, "
 "wird es anstatt des Thumbnailbildwasserzeichens verwendet."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1877
+#: zenphoto-devzp/zp-core/admin-options.php:1875
 msgid "Caching concurrency:"
 msgstr "Cache-Gleichzeitigkeit"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1902
+#: zenphoto-devzp/zp-core/admin-options.php:1900
 #, php-format
 msgid "Cache processing worker limit: %s."
 msgstr "Limit der Cache-Ausführungsprozesse: %s."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1903
+#: zenphoto-devzp/zp-core/admin-options.php:1901
 msgid ""
 "More workers will get the job done faster so long as your server does not "
 "get swamped or run out of memory."
@@ -5511,15 +5589,15 @@ msgstr ""
 "erstellt, solange Ihr Server über genug Arbeitsspeicher und nicht überladen "
 "wird."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1907
+#: zenphoto-devzp/zp-core/admin-options.php:1905
 msgid "Cache as:"
 msgstr "Zwischenspeichern als:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1910
+#: zenphoto-devzp/zp-core/admin-options.php:1908
 msgid "Original"
 msgstr "Original"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1920
+#: zenphoto-devzp/zp-core/admin-options.php:1918
 msgid ""
 "Select a type for the images stored in the image cache. Select <em>Original</"
 "em> to preserve the original image's type."
@@ -5527,19 +5605,19 @@ msgstr ""
 "Wählen Sie das Dateiformat, als das die Bilder im Cache gespeichert werden "
 "sollen. <em>Original</em> behält das Format des Originalbilds bei."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1923
+#: zenphoto-devzp/zp-core/admin-options.php:1921
 msgid "Obscure cache filenames"
 msgstr "Cache-Dateinamen verschleiern"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1925
-#: zenphoto-devzp/zp-core/admin-options.php:2839
-#: zenphoto-devzp/zp-core/admin-options.php:2859
-#: zenphoto-devzp/zp-core/admin-options.php:2887
+#: zenphoto-devzp/zp-core/admin-options.php:1923
+#: zenphoto-devzp/zp-core/admin-options.php:2837
+#: zenphoto-devzp/zp-core/admin-options.php:2857
+#: zenphoto-devzp/zp-core/admin-options.php:2885
 #: zenphoto-devzp/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:174
 msgid "enable"
 msgstr "aktivieren"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1927
+#: zenphoto-devzp/zp-core/admin-options.php:1925
 msgid ""
 "Cause the filename of cached items to be obscured. This makes it difficult "
 "for someone to \"guess\" the name in a URL."
@@ -5547,17 +5625,17 @@ msgstr ""
 "Wählen Sie dies aus, um die Dateinamen der Cachedateien zu verschleiern. "
 "Dies erschwert es, den Namen in einer URL zu \"erraten\"."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1930
+#: zenphoto-devzp/zp-core/admin-options.php:1928
 msgid "Protect image cache"
 msgstr "Bild-Cache schützen"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1933
-#: zenphoto-devzp/zp-core/admin-options.php:1942
-#: zenphoto-devzp/zp-core/admin-options.php:2067
+#: zenphoto-devzp/zp-core/admin-options.php:1931
+#: zenphoto-devzp/zp-core/admin-options.php:1940
+#: zenphoto-devzp/zp-core/admin-options.php:2065
 msgid "Enabled"
 msgstr "Aktiviert"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1935
+#: zenphoto-devzp/zp-core/admin-options.php:1933
 msgid ""
 "If checked all image URIs will link to the image processor and the image "
 "cache will be disabled to browsers via an <em>.htaccess</em> file. Images "
@@ -5569,7 +5647,7 @@ msgstr ""
 "deaktiviert. Die Bilder werden trotzdem zwischengespeichert, jedoch über den "
 "Bildprozessor ausgeliefert und nicht direkt über den Browser aufgerufen."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1936
+#: zenphoto-devzp/zp-core/admin-options.php:1934
 msgid ""
 "<strong>WARNING\t:</strong> This option adds significant overhead to "
 "<strong>each and every</strong> image reference! Some <em>JavaScript</em> "
@@ -5582,17 +5660,17 @@ msgstr ""
 "basierenden Skripte werden zudem nicht arbeiten und sind inkompatibel mit "
 "dieser Einstellung. "
 
-#: zenphoto-devzp/zp-core/admin-options.php:1939
+#: zenphoto-devzp/zp-core/admin-options.php:1937
 msgid "Secure image processor"
 msgstr "Bildprozessor sichern"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1944
+#: zenphoto-devzp/zp-core/admin-options.php:1942
 msgid "When enabled, the image processor will check album access credentials."
 msgstr ""
 "Wenn ausgewählt, wird der Bildprozessor die Album-Zugangsberechtigungen "
 "überprüfen."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1945
+#: zenphoto-devzp/zp-core/admin-options.php:1943
 msgid ""
 "<strong>WARNING\t:</strong> This option adds memory overhead to image "
 "caching! You may be unable to cache some images depending on your server "
@@ -5602,44 +5680,44 @@ msgstr ""
 "Möglicherweise können Sie je nach Ihrem verfügbaren Serverspeicher einige "
 "Bilder nicht zwischenspeichern."
 
-#: zenphoto-devzp/zp-core/admin-options.php:1948
+#: zenphoto-devzp/zp-core/admin-options.php:1946
 msgid "Full image protection:"
 msgstr "Originalbildschutz:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1953
+#: zenphoto-devzp/zp-core/admin-options.php:1951
 msgid "Disable hotlinking"
 msgstr "Hotlinking verhindern"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1958
+#: zenphoto-devzp/zp-core/admin-options.php:1956
 msgid "cache the full image"
 msgstr "Originalbild zwischenspeichern"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1971
-#: zenphoto-devzp/zp-core/admin-options.php:2008
+#: zenphoto-devzp/zp-core/admin-options.php:1969
+#: zenphoto-devzp/zp-core/admin-options.php:2006
 msgid "password:"
 msgstr "Passwort:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:1993
+#: zenphoto-devzp/zp-core/admin-options.php:1991
 msgid "user:"
 msgstr "Benutzer:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2033
+#: zenphoto-devzp/zp-core/admin-options.php:2031
 msgid "hint:"
 msgstr "Hinweis:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2047
+#: zenphoto-devzp/zp-core/admin-options.php:2045
 msgid "Protected view"
 msgstr "Geschützte Anzeige"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2047
+#: zenphoto-devzp/zp-core/admin-options.php:2045
 msgid "No access"
 msgstr "Kein Zugriff"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2049
+#: zenphoto-devzp/zp-core/admin-options.php:2047
 msgid "Unprotected"
 msgstr "Ungesichert"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2057
+#: zenphoto-devzp/zp-core/admin-options.php:2055
 msgid ""
 "Disabling hotlinking prevents linking to the full image from other domains. "
 "If enabled, external links are redirect to the image page. If you are having "
@@ -5654,7 +5732,7 @@ msgstr ""
 "hilft. Hotlinking wird nicht verhindert, wenn der <em>Originalbildschutz</"
 "em> auf <em>ungeschützt</em> eingestellt ist."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2058
+#: zenphoto-devzp/zp-core/admin-options.php:2056
 msgid ""
 "If <em>Cache the full image</em> is checked the full image will be loaded to "
 "the cache and served from there after the first reference. <em>Full&nbsp;"
@@ -5669,7 +5747,7 @@ msgstr ""
 "einmal im Cache werden keine weiteren Schutzmechanismen mehr auf das Bild "
 "angewendet.."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2059
+#: zenphoto-devzp/zp-core/admin-options.php:2057
 msgid ""
 "The <em>user</em>, <em>password</em>, and <em>hint</em> apply to the "
 "<em>Download</em> and <em>Protected view</em> level of protection. If there "
@@ -5680,7 +5758,7 @@ msgstr ""
 "ein Passwort vergeben ist, muss der Betrachter dieses eingeben, um das Bild "
 "ansehen zu können."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2060
+#: zenphoto-devzp/zp-core/admin-options.php:2058
 msgid ""
 "Select the level of protection for full sized images. <em>Download</em> "
 "forces a download dialog rather than displaying the image. <em>No&nbsp;"
@@ -5697,11 +5775,11 @@ msgstr ""
 "oder um Passworte zu überprüfen. <em>Ungeschützt</em> erlaubt das direkte "
 "Anzeigen des Originalbildes."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2064
+#: zenphoto-devzp/zp-core/admin-options.php:2062
 msgid "Use lock image"
 msgstr "Schlossbild verwenden"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2069
+#: zenphoto-devzp/zp-core/admin-options.php:2067
 msgid ""
 "Substitute a <em>lock</em> image for thumbnails of password protected albums "
 "when the viewer has not supplied the password. If your theme supplies an "
@@ -5714,50 +5792,50 @@ msgstr ""
 "verfügt, wird dieses angezeigt. Anderfalls wird Zenphotos "
 "Standardschlossbild angezeigt."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2083
+#: zenphoto-devzp/zp-core/admin-options.php:2081
 msgid "Metadata"
 msgstr "Metadaten"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2105
+#: zenphoto-devzp/zp-core/admin-options.php:2103
+#: zenphoto-devzp/zp-core/admin-options.php:2118
+#: zenphoto-devzp/zp-core/admin-options.php:2119
 #: zenphoto-devzp/zp-core/admin-options.php:2120
-#: zenphoto-devzp/zp-core/admin-options.php:2121
-#: zenphoto-devzp/zp-core/admin-options.php:2122
 #: zenphoto-devzp/zp-core/admin-users.php:461
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:80
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:79
 #: zenphoto-devzp/zp-core/zp-extensions/GoogleMap.php:82
 #: zenphoto-devzp/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:96
 #: zenphoto-devzp/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:97
 msgid "show"
 msgstr "Zeigen"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2106
+#: zenphoto-devzp/zp-core/admin-options.php:2104
 #: zenphoto-devzp/zp-core/zp-extensions/GoogleMap.php:83
 #: zenphoto-devzp/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:90
 #: zenphoto-devzp/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:91
 msgid "hide"
 msgstr "Verstecken"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2107
+#: zenphoto-devzp/zp-core/admin-options.php:2105
 msgid "disabled"
 msgstr "Deaktiviert"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2118
+#: zenphoto-devzp/zp-core/admin-options.php:2116
 msgid "Select how image metadata fields are handled."
 msgstr "Wählen Sie wie Metadaten-Felder behandelt werden."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2120
+#: zenphoto-devzp/zp-core/admin-options.php:2118
 msgid "Show the field"
 msgstr "Feld zeigen"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2121
+#: zenphoto-devzp/zp-core/admin-options.php:2119
 msgid "Hide the field"
 msgstr "Feld verbergen"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2122
+#: zenphoto-devzp/zp-core/admin-options.php:2120
 msgid "Do not process the field"
 msgstr "Feld nicht ausführen"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2126
+#: zenphoto-devzp/zp-core/admin-options.php:2124
 msgid ""
 "Hint: you can drag down the <em>drag handle</em> in the lower right corner "
 "to show more selections."
@@ -5765,19 +5843,19 @@ msgstr ""
 "Tipp: Sie können den <em>Anfasser</em> in die untere rechte Ecke bewegen, um "
 "mehr anzuzeigen. "
 
-#: zenphoto-devzp/zp-core/admin-options.php:2136
+#: zenphoto-devzp/zp-core/admin-options.php:2134
 msgid "IPTC encoding:"
 msgstr "IPTC-Kodierung:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2142
+#: zenphoto-devzp/zp-core/admin-options.php:2140
 msgid "The default character encoding of image IPTC metadata."
 msgstr "Die Standardzeichenkodierung der Bild-IPTC-Metadaten."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2147
+#: zenphoto-devzp/zp-core/admin-options.php:2145
 msgid "Imbed IPTC copyright"
 msgstr "Eingebettetes IPTC-Copyright"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2148
+#: zenphoto-devzp/zp-core/admin-options.php:2146
 msgid ""
 "If checked and an image has no IPTC data a copyright notice will be imbedded "
 "cached copies."
@@ -5785,11 +5863,11 @@ msgstr ""
 "Wenn dies ausgewählt ist und das Bild enthält keine IPTC-Daten, wird eine "
 "Copyrightanmerkung in die Cachekopien eingebettet."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2150
+#: zenphoto-devzp/zp-core/admin-options.php:2148
 msgid "Replicate IPTC metadata"
 msgstr "IPTC Metadaten replizieren"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2151
+#: zenphoto-devzp/zp-core/admin-options.php:2149
 msgid ""
 "If checked IPTC data from the original image will be imbedded in cached "
 "copies. If the image has no IPTC data a copyright notice will be imbedded. "
@@ -5800,45 +5878,45 @@ msgstr ""
 "Copyrightanmerkung eingebettet. (Der angegebene Text wird genutzt, wenn das "
 "Bild kein Copyright hat)."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2155
+#: zenphoto-devzp/zp-core/admin-options.php:2153
 msgid "IPTC Imbedding:"
 msgstr "IPTC-Einbettung:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2163
+#: zenphoto-devzp/zp-core/admin-options.php:2161
 msgid ""
 "<strong>NOTE:</strong> This option  applies only to JPEG format cached "
 "images."
 msgstr "<strong>HINWEIS:</strong> Diese Einstellung gilt nur für JPEGs."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2258
+#: zenphoto-devzp/zp-core/admin-options.php:2256
 #: zenphoto-devzp/zp-core/admin-themes.php:157
 msgid "There are no themes for which you have rights to administer."
 msgstr "Sie haben keine Rechte, Themes zu verwalten."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2273
+#: zenphoto-devzp/zp-core/admin-options.php:2271
 #, php-format
 msgid "Options for <code><strong>%1$s</strong></code>: <em>%2$s</em>"
 msgstr "Einstellungen für <code><strong>%1$s</strong></code>: <em>%2$s</em>"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2275
+#: zenphoto-devzp/zp-core/admin-options.php:2273
 #, php-format
 msgid "Options for <em>%s</em>"
 msgstr "Einstellungen für <em>%s</em>"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2283
+#: zenphoto-devzp/zp-core/admin-options.php:2281
 msgid "Show theme for:"
 msgstr "Theme anzeigen für:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2299
-#: zenphoto-devzp/zp-core/admin-options.php:2570
+#: zenphoto-devzp/zp-core/admin-options.php:2297
+#: zenphoto-devzp/zp-core/admin-options.php:2568
 msgid "Revert to default"
 msgstr "Standard wiederherstellen"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2306
+#: zenphoto-devzp/zp-core/admin-options.php:2304
 msgid "<strong>Standard options</strong>"
 msgstr "<strong>Standardeinstellungen</strong>"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2308
+#: zenphoto-devzp/zp-core/admin-options.php:2306
 msgid ""
 "<em>These image and album presentation options provided by the Zenphoto core "
 "for all themes.</em>"
@@ -5846,7 +5924,7 @@ msgstr ""
 "<em>Diese Bild- und Albumpräsentations-Einstellung sind Standard und werden "
 "von Zenphoto für all Themes bereitgestellt.</em>"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2308
+#: zenphoto-devzp/zp-core/admin-options.php:2306
 msgid ""
 "<strong>Note:</strong> These are <em>recommendations</em> as themes may "
 "choose to override them for design reasons"
@@ -5854,22 +5932,22 @@ msgstr ""
 "<strong>Anmerkung:</strong> Dies sind <em>Empfehlungen</em>, die einige "
 "Themes aus Designgründen übergehen können."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2311
+#: zenphoto-devzp/zp-core/admin-options.php:2309
 #: zenphoto-devzp/zp-core/zp-extensions/publishContent/publishContent.php:248
 msgid "Albums:"
 msgstr "Alben:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2320
-#: zenphoto-devzp/zp-core/admin-options.php:2357
+#: zenphoto-devzp/zp-core/admin-options.php:2318
+#: zenphoto-devzp/zp-core/admin-options.php:2355
 msgid "thumbnails per row"
 msgstr "Thumbnails pro Reihe"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2329
-#: zenphoto-devzp/zp-core/admin-options.php:2366
+#: zenphoto-devzp/zp-core/admin-options.php:2327
+#: zenphoto-devzp/zp-core/admin-options.php:2364
 msgid "thumbnails per page"
 msgstr "Thumbnails pro Seite"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2333
+#: zenphoto-devzp/zp-core/admin-options.php:2331
 msgid ""
 "These specify the Theme <a title=\"Look at your album page and count the "
 "number of album thumbnails that show up in one row. This is the value you "
@@ -5883,8 +5961,8 @@ msgstr ""
 "Albumthumbnails, die eine \"Reihe\" füllen und die Anzahl an Albumsthumbnail "
 "pro Seite."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2338
-#: zenphoto-devzp/zp-core/admin-options.php:2375
+#: zenphoto-devzp/zp-core/admin-options.php:2336
+#: zenphoto-devzp/zp-core/admin-options.php:2373
 msgid ""
 "<strong>Note:</strong> If <em>thumbnails per row</em> is greater than 1, The "
 "actual number of thumbnails that are displayed on a page will be rounded up "
@@ -5894,17 +5972,17 @@ msgstr ""
 "ist, wird die Anzahl an Thumbnails, die auf der Seite angezeigt werden, auf "
 "den nächsten Vielfachen aufgerundet."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2339
+#: zenphoto-devzp/zp-core/admin-options.php:2337
 #, php-format
 msgid "For album pages there will be %1$u rows of thumbnails."
 msgstr "Für Albumseiten gibt es %1$u Reihen an Thumbnails."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2348
+#: zenphoto-devzp/zp-core/admin-options.php:2346
 #: zenphoto-devzp/zp-core/zp-extensions/publishContent/publishContent.php:369
 msgid "Images:"
 msgstr "Bilder:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2370
+#: zenphoto-devzp/zp-core/admin-options.php:2368
 msgid ""
 "These specify the Theme <a title=\"Look at your album page and count the "
 "number of image thumbnails that show up in one row. This is the value you "
@@ -5918,24 +5996,24 @@ msgstr ""
 "Bildthumbnails, die eine \"Reihe\" füllen und die Anzahl an Bildthumbnail "
 "pro Seite."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2376
+#: zenphoto-devzp/zp-core/admin-options.php:2374
 #, php-format
 msgid "For pages containing images there will be %1$u rows of thumbnails."
 msgstr "Für Bildseiten gibt es %1$u Reihen von Thumbnails."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2392
+#: zenphoto-devzp/zp-core/admin-options.php:2390
 msgid "Transition:"
 msgstr "Übergang"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2408
+#: zenphoto-devzp/zp-core/admin-options.php:2406
 msgid "separate"
 msgstr "getrennt"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2409
+#: zenphoto-devzp/zp-core/admin-options.php:2407
 msgid "combined"
 msgstr "kombiniert"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2412
+#: zenphoto-devzp/zp-core/admin-options.php:2410
 msgid ""
 "if both album and image <em>thumbnails per row</em> are greater than 1 you "
 "can choose if album thumbnails and image thumbnails are placed together on "
@@ -5946,30 +6024,30 @@ msgstr ""
 "Sie wählen, ob Sie Album- und Bildthumbnails zusammen auf einer Seite oder "
 "jeweils nur Album- und Bildthumbnail-Seiten anzeigen möchten."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2429
+#: zenphoto-devzp/zp-core/admin-options.php:2427
 msgid "Thumb size:"
 msgstr "Thumbnailgrösse:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2433
+#: zenphoto-devzp/zp-core/admin-options.php:2431
 #, php-format
 msgid "Standard thumbnails will be scaled to %u pixels."
 msgstr "Standardthumbnails werden auf %u Pixel skaliert."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2443
+#: zenphoto-devzp/zp-core/admin-options.php:2441
 msgid "Crop thumbnails:"
 msgstr "Thumbnails beschneiden:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2448
+#: zenphoto-devzp/zp-core/admin-options.php:2446
 #, php-format
 msgid "%s%% left &amp; right"
 msgstr "%s%% links &amp; rechts"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2452
+#: zenphoto-devzp/zp-core/admin-options.php:2450
 #, php-format
 msgid "%s%% top &amp; bottom"
 msgstr "%s%% oben &amp; unten"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2457
+#: zenphoto-devzp/zp-core/admin-options.php:2455
 #, php-format
 msgid ""
 "If checked the thumbnail will be cropped %1$.1f%% in from the top and the "
@@ -5978,54 +6056,54 @@ msgstr ""
 "Wenn ausgewählt wird das Thumbnail %1$.1f%% vom oberen und unteren Rand und "
 "%2$.1f%% vom linken und rechten Rand beschnitten."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2459
+#: zenphoto-devzp/zp-core/admin-options.php:2457
 msgid ""
 "<strong>Note:</strong> changing crop will invalidate existing custom crops."
 msgstr ""
 "<strong>Anmerkung</strong>: Eine Änderung des Beschnitts verändert auch "
 "bereits bestehende Beschnitte."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2463
+#: zenphoto-devzp/zp-core/admin-options.php:2461
 msgid "Gray scale conversion:"
 msgstr "Graustufen-Umwandlung:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2470
+#: zenphoto-devzp/zp-core/admin-options.php:2468
 msgid "thumbnail"
 msgstr "Thumbnail"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2474
+#: zenphoto-devzp/zp-core/admin-options.php:2472
 msgid "If checked, images/thumbnails will be created in gray scale."
 msgstr ""
 "Wenn dies ausgewählt ist, werden alle Bilder/Thumbnails als Graustufen "
 "erstellt."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2484
+#: zenphoto-devzp/zp-core/admin-options.php:2482
 msgid "Image size:"
 msgstr "Bildgröße:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2495
+#: zenphoto-devzp/zp-core/admin-options.php:2493
 #: zenphoto-devzp/zp-core/zp-extensions/jcarousel_thumb_nav.php:43
 msgid "height"
 msgstr "Höhe"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2499
+#: zenphoto-devzp/zp-core/admin-options.php:2497
 #: zenphoto-devzp/zp-core/zp-extensions/jcarousel_thumb_nav.php:41
 msgid "width"
 msgstr "Breite"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2506
+#: zenphoto-devzp/zp-core/admin-options.php:2504
 msgid "shortest side"
 msgstr "Kürzeste Seite"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2510
+#: zenphoto-devzp/zp-core/admin-options.php:2508
 msgid "longest side"
 msgstr "Längste Seite"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2515
+#: zenphoto-devzp/zp-core/admin-options.php:2513
 msgid "Default image display size."
 msgstr "Standardbildgröße"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2516
+#: zenphoto-devzp/zp-core/admin-options.php:2514
 msgid ""
 "The image will be sized so that the <em>height</em>, <em>width</em>, "
 "<em>shortest side</em>, or the <em>longest side</em> will be equal to "
@@ -6035,11 +6113,11 @@ msgstr ""
 "em> oder die <em>kürzeste  Seite</em> oder der <em>längsten Seite</em> der "
 "<em>Bildgröße</em> entspricht."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2528
+#: zenphoto-devzp/zp-core/admin-options.php:2526
 msgid "Gallery index page link:"
 msgstr "Galerie-Indexseitenlink:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2548
+#: zenphoto-devzp/zp-core/admin-options.php:2546
 msgid ""
 "If this option is not empty, the Gallery Index URL that would normally link "
 "to the theme <code>index.php</code> script will instead link to this script. "
@@ -6053,24 +6131,24 @@ msgstr ""
 "Sie eine benutzerdefinierte <em>Homepage</em> nutzen können. Diese Option "
 "hat nur Auswirkung auf das Haupttheme Ihrer Galerie."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2556
+#: zenphoto-devzp/zp-core/admin-options.php:2554
 msgid "<strong>Custom theme options</strong>"
 msgstr "<strong>Spezielle Theme-Einstellungen</strong>"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2558
+#: zenphoto-devzp/zp-core/admin-options.php:2556
 #, php-format
 msgid "The following are options specifically implemented by %s."
 msgstr "Die folgenden Einstellungen sind nur speziell für  %s."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2646
+#: zenphoto-devzp/zp-core/admin-options.php:2644
 msgid "Expand plugin options"
 msgstr "Einstellungen aufklappen"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2648
+#: zenphoto-devzp/zp-core/admin-options.php:2646
 msgid "Collapse all plugin options"
 msgstr "Einstellungen zusammenklappen"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2675
+#: zenphoto-devzp/zp-core/admin-options.php:2673
 #: zenphoto-devzp/zp-core/admin-plugins.php:235
 msgid ""
 "<strong>Note:</strong> Instantiating the option interface within the plugin "
@@ -6082,23 +6160,23 @@ msgstr ""
 "<code>$option_interface</code> den Namen der Klasse als Zeichenkette "
 "zuweisen."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2707
+#: zenphoto-devzp/zp-core/admin-options.php:2705
 msgid "warning"
 msgstr "Warnung: "
 
-#: zenphoto-devzp/zp-core/admin-options.php:2746
+#: zenphoto-devzp/zp-core/admin-options.php:2744
 msgid "There are no plugin options to administer."
 msgstr "Es sind keine Plugin-Einstellungen vorhanden."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2817
+#: zenphoto-devzp/zp-core/admin-options.php:2815
 msgid "Server protocol:"
 msgstr "Serverprotokoll:"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2823
+#: zenphoto-devzp/zp-core/admin-options.php:2821
 msgid "secure admin"
 msgstr "Sichere Administration"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2827
+#: zenphoto-devzp/zp-core/admin-options.php:2825
 msgid ""
 "Normally this option should be set to <em>http</em>. If you're running a "
 "secure server, change this to <em>https</em>. Select <em>secure admin</em> "
@@ -6109,7 +6187,7 @@ msgstr ""
 "Wählen Sie <em>Sichere Administration</em> für sicheren Zugriff auf die "
 "<code>Administrations</code>-Seiten."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2828
+#: zenphoto-devzp/zp-core/admin-options.php:2826
 msgid ""
 "<strong>Note:</strong><br /><br />Login from the front-end user login form "
 "is secure only if <em>https</em> is selected.<br /><br />If you select "
@@ -6129,15 +6207,15 @@ msgstr ""
 "Möglichkeit wäre dann, die Option <span class=\"inlinecode"
 "\">server_protocol</span> direkt in der Datenbank zu ändern."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2837
+#: zenphoto-devzp/zp-core/admin-options.php:2835
 msgid "Cookie security"
 msgstr "Cookie-Sicherheit"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2842
+#: zenphoto-devzp/zp-core/admin-options.php:2840
 msgid "Tie cookies to the IP address of the browser."
 msgstr "Verknüfte Cookies mit der IP-Adresse des Browsers."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2846
+#: zenphoto-devzp/zp-core/admin-options.php:2844
 msgid ""
 "<strong>Note</strong>: If your browser does not present a consistant IP "
 "address during a session you may not be able to log into your site when this "
@@ -6147,13 +6225,13 @@ msgstr ""
 "während der Session angibt, können Sie sich möglicherweise nicht anmelden, "
 "wenn diese Einstellung aktiviert ist."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2848
+#: zenphoto-devzp/zp-core/admin-options.php:2846
 msgid " You <strong>WILL</strong> have to login after changing this option."
 msgstr ""
 "Sie <strong>MÜSSEN</strong> sich nach dem Ändern dieser Einstellung erneut "
 "anmelden."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2850
+#: zenphoto-devzp/zp-core/admin-options.php:2848
 msgid ""
 "If you set the option and cannot login, you will have to restore your "
 "database to a point when the option was not set, so you might want to backup "
@@ -6164,11 +6242,11 @@ msgstr ""
 "Einstellung noch nicht aktiviert war. Sie sollten daher vorher Ihre "
 "Datenbank sichern."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2857
+#: zenphoto-devzp/zp-core/admin-options.php:2855
 msgid "Image Processor security"
 msgstr "Bildprozessor-Sicherheit"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2862
+#: zenphoto-devzp/zp-core/admin-options.php:2860
 msgid ""
 "Add a security parameter to image processor URIs to prevent denial of "
 "service attacks requesting arbitrary sized images."
@@ -6176,11 +6254,11 @@ msgstr ""
 "Fügt den Bildprozessor-URLs ein Sicherheitsparameter hinzu, um denial of "
 "service-Angriffe durch Anfragen an verschiedene Bildgrössen verhindert."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2871
+#: zenphoto-devzp/zp-core/admin-options.php:2869
 msgid "User name"
 msgstr "Benutzername"
 
-#: zenphoto-devzp/zp-core/admin-options.php:2893
+#: zenphoto-devzp/zp-core/admin-options.php:2891
 msgid ""
 "If enabled guest logon forms will include the <em>User Name</em> field. This "
 "allows <em>Zenphoto</em> users to logon from the form."
@@ -6188,7 +6266,7 @@ msgstr ""
 "Wenn aktiviert, enthalten Gast-Anmeldeformulare das <em>Benutzername</em>-"
 "Feld. Dies erlaubt <em>Zenphoto</em>-Benutzern über das Formular einzuloggen."
 
-#: zenphoto-devzp/zp-core/admin-options.php:2895
+#: zenphoto-devzp/zp-core/admin-options.php:2893
 msgid ""
 "<strong>Note</strong>: This field is required because one or more of the "
 "<em>Guest</em> passwords has a user name associated."
@@ -6923,7 +7001,7 @@ msgid "Collapse all"
 msgstr "Alle zusammenklappen"
 
 #: zenphoto-devzp/zp-core/admin-users.php:464
-#: zenphoto-devzp/zp-core/admin-users.php:522
+#: zenphoto-devzp/zp-core/admin-users.php:524
 msgid "pending verification"
 msgstr "Auf Verifizierung wartend"
 
@@ -6931,42 +7009,42 @@ msgstr "Auf Verifizierung wartend"
 msgid "no group"
 msgstr "keine Gruppe"
 
-#: zenphoto-devzp/zp-core/admin-users.php:528
+#: zenphoto-devzp/zp-core/admin-users.php:530
 msgid "Master"
 msgstr "Master"
 
-#: zenphoto-devzp/zp-core/admin-users.php:560
+#: zenphoto-devzp/zp-core/admin-users.php:562
 msgid "Show details"
 msgstr "Details zeigen"
 
-#: zenphoto-devzp/zp-core/admin-users.php:561
+#: zenphoto-devzp/zp-core/admin-users.php:563
 msgid "Hide details"
 msgstr "Details verstecken"
 
-#: zenphoto-devzp/zp-core/admin-users.php:563
+#: zenphoto-devzp/zp-core/admin-users.php:565
 #, php-format
 msgid "Show details for user %s"
 msgstr "Details für Benutzer %s anzeigen"
 
-#: zenphoto-devzp/zp-core/admin-users.php:564
+#: zenphoto-devzp/zp-core/admin-users.php:566
 #, php-format
 msgid "Hide details for user %s"
 msgstr "Details für Benutzer %s verstecken"
 
-#: zenphoto-devzp/zp-core/admin-users.php:574
-#: zenphoto-devzp/zp-core/admin-users.php:594
+#: zenphoto-devzp/zp-core/admin-users.php:576
+#: zenphoto-devzp/zp-core/admin-users.php:596
 msgid "New User"
 msgstr "Neuer Benutzer"
 
-#: zenphoto-devzp/zp-core/admin-users.php:613
+#: zenphoto-devzp/zp-core/admin-users.php:615
 msgid "Authenticate user"
 msgstr "Benutzer authentifizieren"
 
-#: zenphoto-devzp/zp-core/admin-users.php:624
+#: zenphoto-devzp/zp-core/admin-users.php:626
 msgid "Are you sure you want to delete this user?"
 msgstr "Sind Sie sicher, dass Sie diesen Benutzer löschen wollen?"
 
-#: zenphoto-devzp/zp-core/admin-users.php:626
+#: zenphoto-devzp/zp-core/admin-users.php:628
 msgid ""
 "This is the master user account. If you delete it another user will be "
 "promoted to master user."
@@ -6974,11 +7052,11 @@ msgstr ""
 "Dies ist das Masterbenutzerkonto. Wenn Sie dieses löschen, wird eine anderer "
 "Benutzer zum Masterbenutzer."
 
-#: zenphoto-devzp/zp-core/admin-users.php:632
+#: zenphoto-devzp/zp-core/admin-users.php:634
 msgid "Delete this user."
 msgstr "Diesen Benutzer löschen."
 
-#: zenphoto-devzp/zp-core/admin-users.php:661
+#: zenphoto-devzp/zp-core/admin-users.php:663
 msgid ""
 "<strong>Note:</strong> You must have ADMIN rights to alter anything but your "
 "personal information."
@@ -6986,33 +7064,33 @@ msgstr ""
 "<strong>Anmerkung:</strong> Sie müssen über ADMIN-Rechte verfügen, um mehr "
 "als nur Ihre persönlichen Informationen verändern zu können."
 
-#: zenphoto-devzp/zp-core/admin-users.php:694
+#: zenphoto-devzp/zp-core/admin-users.php:696
 msgid "Challenge phrase"
 msgstr "Geheimfrage"
 
-#: zenphoto-devzp/zp-core/admin-users.php:698
+#: zenphoto-devzp/zp-core/admin-users.php:700
 msgid "Challenge response"
 msgstr "Geheimfrage-Antwort"
 
-#: zenphoto-devzp/zp-core/admin-users.php:703
+#: zenphoto-devzp/zp-core/admin-users.php:705
 msgid "Full name"
 msgstr "Voller Name"
 
-#: zenphoto-devzp/zp-core/admin-users.php:707
+#: zenphoto-devzp/zp-core/admin-users.php:709
 #: zenphoto-devzp/zp-core/zp-extensions/register_user/register_user_form.php:39
 msgid "Email"
 msgstr "E-Mail"
 
-#: zenphoto-devzp/zp-core/admin-users.php:721
+#: zenphoto-devzp/zp-core/admin-users.php:723
 msgid "create primary album"
 msgstr "Primäres Album erstellen"
 
-#: zenphoto-devzp/zp-core/admin-users.php:731
+#: zenphoto-devzp/zp-core/admin-users.php:733
 #, php-format
 msgid "delink primary album <strong>%1$s</strong>(<em>%2$s</em>)"
 msgstr "Primäres Album trennen <strong>%1$s</strong>(<em>%2$s</em>)"
 
-#: zenphoto-devzp/zp-core/admin-users.php:735
+#: zenphoto-devzp/zp-core/admin-users.php:737
 msgid ""
 "The primary album was created in association with the user. It will be "
 "removed if the user is deleted. Delinking the album removes this association."
@@ -7021,11 +7099,11 @@ msgstr ""
 "entfernt, wenn der Benutzer gelöscht wird. Das Trennen des Albums entfernt "
 "diese Abhängigkeit."
 
-#: zenphoto-devzp/zp-core/admin-users.php:774
+#: zenphoto-devzp/zp-core/admin-users.php:776
 msgid "The <em>master</em> account has full rights to all albums."
 msgstr "Das <em>Master</em>-Konto hatte volle Rechte für alle Alben. "
 
-#: zenphoto-devzp/zp-core/admin-users.php:843
+#: zenphoto-devzp/zp-core/admin-users.php:845
 #, php-format
 msgid ""
 "The <em>Zenphoto_Authority</em> object supports a higher version of user "
@@ -7037,11 +7115,11 @@ msgstr ""
 "Benutzerrechte übertragen, um die neue Funktionalität dieser Version zu "
 "nutzen."
 
-#: zenphoto-devzp/zp-core/admin-users.php:846
+#: zenphoto-devzp/zp-core/admin-users.php:848
 msgid "Migrate rights"
 msgstr "Rechte übertragen"
 
-#: zenphoto-devzp/zp-core/admin-users.php:856
+#: zenphoto-devzp/zp-core/admin-users.php:858
 #, php-format
 msgid ""
 "You may wish to revert the <em>Zenphoto_Authority</em> user rights to "
@@ -7051,16 +7129,16 @@ msgstr ""
 "Version %s für eine Rückwärtskompatibilät mit alten Zenphoto-Versionen "
 "zurücksetzen."
 
-#: zenphoto-devzp/zp-core/admin-users.php:859
+#: zenphoto-devzp/zp-core/admin-users.php:861
 msgid "Revert rights"
 msgstr "Rechte wiederherstellen"
 
-#: zenphoto-devzp/zp-core/admin-users.php:876
+#: zenphoto-devzp/zp-core/admin-users.php:878
 msgid "User names may not contain \"?\", \"&\", or quotation marks."
 msgstr ""
 "Benutzernamen dürfen \"?\", \"&\" oder Anführungszeichen nicht enthalten."
 
-#: zenphoto-devzp/zp-core/admin-users.php:881
+#: zenphoto-devzp/zp-core/admin-users.php:883
 #, php-format
 msgid "The user \"%s\" already exists."
 msgstr "Der Benutzer \"%s\" existiert bereits."
@@ -7557,22 +7635,22 @@ msgstr "Ort/Platz"
 
 #: zenphoto-devzp/zp-core/class-search.php:72
 #: zenphoto-devzp/zp-core/functions.php:2275
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:122
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:124
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:121
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:123
 #: zenphoto-devzp/zp-core/zp-extensions/comment_form/functions.php:367
 msgid "City"
 msgstr "Stadt"
 
 #: zenphoto-devzp/zp-core/class-search.php:73
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:125
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:127
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:124
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:126
 #: zenphoto-devzp/zp-core/zp-extensions/comment_form/functions.php:371
 msgid "State"
 msgstr "Land"
 
 #: zenphoto-devzp/zp-core/class-search.php:74
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:131
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:133
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:130
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:132
 #: zenphoto-devzp/zp-core/zp-extensions/comment_form/functions.php:381
 msgid "Country"
 msgstr "Staat"
@@ -8809,7 +8887,8 @@ msgstr "XMP Bewertung"
 
 #: zenphoto-devzp/zp-core/functions.php:2467
 #: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:108
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:142
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:141
+#: zenphoto-devzp/zp-core/zp-extensions/register_user.php:106
 msgid "No captcha handler is enabled."
 msgstr "Keine Captcha-Version aktiviert."
 
@@ -13370,7 +13449,7 @@ msgstr "bis"
 #: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:95
 #: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:99
 #: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:103
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:112
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:111
 #: zenphoto-devzp/zp-core/zp-extensions/register_user.php:93
 #: zenphoto-devzp/zp-core/zp-extensions/cacheManager/cacheImages.php:198
 #: zenphoto-devzp/zp-core/zp-extensions/cacheManager/cacheImages.php:202
@@ -13847,7 +13926,7 @@ msgstr "PDF"
 #: zenphoto-devzp/zp-core/zp-extensions/class-WEBdocs.php:56
 #: zenphoto-devzp/zp-core/zp-extensions/class-WEBdocs.php:67
 #: zenphoto-devzp/zp-core/zp-extensions/class-WEBdocs.php:74
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:142
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:141
 #: zenphoto-devzp/zp-core/zp-extensions/tiny_mce.php:50
 #: zenphoto-devzp/zp-core/zp-extensions/tiny_mce.php:55
 msgid "Disabled"
@@ -14000,7 +14079,7 @@ msgstr "Name-Feld"
 #: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:99
 #: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:103
 #: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:107
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:112
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:111
 #: zenphoto-devzp/zp-core/zp-extensions/register_user.php:93
 msgid "Require"
 msgstr "Notwendig"
@@ -14049,12 +14128,12 @@ msgstr ""
 "Wenn das <em>Captcha</em>-Feld Pflicht ist, wird das Formular eine Catcha-"
 "Verifikation enthalten."
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:110
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:109
 #: zenphoto-devzp/zp-core/zp-extensions/register_user.php:91
 msgid "Address fields"
 msgstr "Adressen-Feld."
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:113
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:112
 msgid ""
 "If <em>Address fields</em> are shown or required, the form will include "
 "positions for address information. If required, the poster must supply data "
@@ -14064,19 +14143,19 @@ msgstr ""
 "wird das Formular Adressfelder dafür anzeigen. Wenn sie erforderlich sind, "
 "muß ein Kommentator jedes dieser Adressfelder ausfüllen."
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:114
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:113
 msgid "Allow comments on"
 msgstr "Kommentare erlaubt auf"
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:117
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:116
 msgid "Comment forms will be presented on the checked pages."
 msgstr "Kommentarformulare werden auf den ausgewählten Seiten angezeigt."
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:118
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:117
 msgid "Toggled comment block"
 msgstr "Kommentarblock ausblenden"
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:120
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:119
 msgid ""
 "If checked, existing comments will be initially hidden. Clicking on the "
 "provided button will show them."
@@ -14084,41 +14163,41 @@ msgstr ""
 "Wenn ausgewählt, werden existierende Kommentar verborgen. Ein Klick auf den "
 "entsprechenden Button zeigt sie an."
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:121
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:120
 msgid "Show author URL"
 msgstr "Autor-Url anzeigen"
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:123
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:122
 msgid ""
 "To discourage SPAM, uncheck this box and the author URL will not be revealed."
 msgstr ""
 "Um SPAM nicht zu ermutigen, deaktivieren Sie diese Checkbox und die Autor-"
 "URL wird nicht angezeigt."
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:124
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:123
 msgid "Only members can comment"
 msgstr "Nur Mitglieder können kommentieren"
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:126
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:125
 msgid "If checked, only logged in users will be allowed to post comments."
 msgstr "Wenn ausgewählt, können nur angemeldete Benutzer Kommentare verfassen."
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:127
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:126
 msgid "Allow private postings"
 msgstr "Private Kommentare erlauben"
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:129
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:128
 msgid ""
 "If checked, posters may mark their comments as private (not for publishing)."
 msgstr ""
 "Wenn ausgewählt, können Kommentatoren ihren Kommentar als privat "
 "deklatieren, der nicht veröffentlicht wird."
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:130
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:129
 msgid "Allow anonymous posting"
 msgstr "Anonymes Kommentieren erlauben"
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:132
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:131
 msgid ""
 "If checked, posters may exclude their personal information from the "
 "published post."
@@ -14126,11 +14205,11 @@ msgstr ""
 "Wenn ausgewählt, können Kommentatoren ihre persönlichen Information vom "
 "veröffentlichten Kommentar ausschließen."
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:133
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:132
 msgid "Include RSS link"
 msgstr "RSS-Link anzeigen"
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:135
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:134
 msgid ""
 "If checked, an RSS link will be included at the bottom of the comment "
 "section."
@@ -14138,20 +14217,20 @@ msgstr ""
 "Wenn ausgewählt wird ein RSS-Link für Kommentar unterhalb des "
 "Kommentarbereichs angezeigt."
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:136
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:135
 msgid "Comments per page"
 msgstr "Kommentare pro Seite"
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:138
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:137
 msgid "The comments that should show per page using the jQuery pagination"
 msgstr ""
 "Anzahl Kommentar pro Seite, wenn die jQuery-Seitenaufteilung verwendet wird."
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:139
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:138
 msgid "Comment editor configuration"
 msgstr "Kommentareditor-Konfiguration"
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:143
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:142
 msgid ""
 "Configuration file for TinyMCE when used for comments. Set to "
 "<code>Disabled</code> to disable visual editing."
@@ -14159,49 +14238,49 @@ msgstr ""
 "Konfigurationsdatei für TinyMCE, wenn bei den Kommentaren verwendet. Stellen "
 "Sie auf <code>Deaktiviert</code>, um den visuellen Editor zu deaktivieren."
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:144
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:143
 msgid "Pagination"
 msgstr "Paginierung"
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:146
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:145
 msgid ""
 "Uncheck to disable the jQuery pagination of comments. Enabled by default."
 msgstr ""
 "Abschalten, um die jQuery-Seitenunterteilung für Kommentare zu deaktivieren, "
 "die standardmäßig aktiviert ist. "
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:173
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:172
 msgid "Add a comment:"
 msgstr "Kommentar hinzufügen:"
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:206
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:205
 msgid "No Comments"
 msgstr "Keine Kommentare"
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:219
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:218
 msgid "show comments"
 msgstr "Kommentare zeigen"
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:223
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:222
 msgid "hide comments"
 msgstr "Kommentare verbergen"
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:256
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:255
 msgid "on"
 msgstr "zu"
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:275
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:274
 msgid "Only registered users may post comments."
 msgstr "Nur regisitrierte Benutzer können kommentieren."
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:339
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:338
 msgid "Closed for comments."
 msgstr "Für Kommentare geschlossen."
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:352
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:355
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:358
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:361
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:351
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:354
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:357
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form.php:360
 msgid "Subscribe to comments"
 msgstr "Kommentare abonnieren"
 
@@ -14234,7 +14313,7 @@ msgstr "<p>Vielen Dank für Ihre Nachricht.</p>"
 msgid "Send another message."
 msgstr "Weitere Mail schicken."
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:63
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:61
 msgid ""
 "<p>A copy of your e-mail will automatically be sent to the address you "
 "provided for your own records.</p>"
@@ -14242,15 +14321,15 @@ msgstr ""
 "<p>Eine Kopie Ihrer E-Mail wird automatisch für Ihre eigenen Unterlagen an "
 "die von Ihnen angegebene Adresse gesendet.</p>"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:80
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:79
 msgid "required"
 msgstr "erforderlich"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:80
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:79
 msgid "omitted"
 msgstr "auslassen"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:81
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:80
 #, php-format
 msgid ""
 "Set if the <code>%s</code> field should be required, just shown or omitted"
@@ -14258,11 +14337,11 @@ msgstr ""
 "Stellen Sie ein, ob das <code>%s</code>-Feld Pflicht, nur angezeigt oder "
 "weggelassen werden soll."
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:83
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:82
 msgid "Contact page link"
 msgstr "Kontaktseiten-Link"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:85
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:84
 msgid ""
 "The link to use for the contact page. Note: the token <code>_PAGE_</code> "
 "stands in for the current <em>page</em> definition."
@@ -14270,19 +14349,19 @@ msgstr ""
 "Der Link zur Kontaktseite. Hinweis: Das Merkmap<code>_PAGE_</code> steht für "
 "die aktuelle <em>Seiten</em>-Definition."
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:86
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:85
 msgid "Intro text"
 msgstr "Einleitungstext"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:88
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:87
 msgid "The intro text for your contact form"
 msgstr "Der Einleitungtext für das Kontaktformular"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:89
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:88
 msgid "Confirm text"
 msgstr "Bestätigungstext"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:91
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:90
 msgid ""
 "The text that asks the visitor to confirm that he really wants to send the "
 "message."
@@ -14290,21 +14369,21 @@ msgstr ""
 "Der Text, der auffordert zu bestätigen, dass die Mail wirklich gesendet "
 "werden soll."
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:92
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:91
 msgid "Thanks text"
 msgstr "Danketext"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:94
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:93
 msgid "The text that is shown after a message has been confirmed and sent."
 msgstr ""
 "Der Text, der anzeigt wird, nachdem die Nachricht bestätigt und gesendet "
 "wurde."
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:95
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:94
 msgid "New message link text"
 msgstr "Neue Nachricht Text"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:97
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:96
 msgid ""
 "The text for the link after the thanks text to return to the contact page to "
 "send another message."
@@ -14312,11 +14391,11 @@ msgstr ""
 "Der Text, um zur Kontaktseite zurückzukehren, um ggf. eine weitere Nachricht "
 "zu schicken."
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:98
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:97
 msgid "Require confirmation"
 msgstr "Bestätigung erforderlich"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:100
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:99
 msgid ""
 "If checked, a confirmation form will be presented before sending the contact "
 "message."
@@ -14324,11 +14403,11 @@ msgstr ""
 "Wenn ausgewählt, wird zunächst ein Bestätigungsformular angezeigt, bevor die "
 "Nachricht verschickt wird."
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:101
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:100
 msgid "Send copy"
 msgstr "Kopie schicken"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:103
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:102
 msgid ""
 "If checked, a copy of the message will be sent to the address provided. <p "
 "class='notebox'><strong>Caution: </strong> If you check this option it is "
@@ -14345,11 +14424,11 @@ msgstr ""
 "einigen Ländern (z.B. den meisten europäischen) für dies verantwortlich "
 "gemacht werden könnten!</p>"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:104
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:103
 msgid "Send copy note text"
 msgstr "Kopie schicken Anmerkungstext"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:106
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:105
 msgid ""
 "The text for the note about sending a copy to the address provided in case "
 "that option is set."
@@ -14357,11 +14436,11 @@ msgstr ""
 "Der Text für die Anmerkung, wenn eine Kopie der E-Mail an den Versender "
 "geschickt wird, sofern diese Option ausgewählt ist."
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:107
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:106
 msgid "Contact recipients"
 msgstr "Kontakte"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:109
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:108
 msgid ""
 "The e-mail address the messages should be sent to. Enter one or more address "
 "separated by semicolons."
@@ -14369,148 +14448,140 @@ msgstr ""
 "Die E-Mail-Adresse, an die die Nachrichten geschickt werden sollen. Trennen "
 "Sie mehrere E-Mail-Adress mit Semikolon."
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:113
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:115
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:112
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:114
 #: zenphoto-devzp/zp-core/zp-extensions/register_user/register_user_form.php:32
 msgid "Name"
 msgstr "Name"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:116
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:118
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:115
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:117
 msgid "Company"
 msgstr "Firma"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:119
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:121
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:118
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:120
 #: zenphoto-devzp/zp-core/zp-extensions/comment_form/functions.php:363
 msgid "Street"
 msgstr "Straße"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:128
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:130
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:127
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:129
 #: zenphoto-devzp/zp-core/zp-extensions/comment_form/functions.php:385
 msgid "Postal code"
 msgstr "Postleitzahl"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:134
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:136
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:133
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:135
 msgid "E-mail"
 msgstr "E-Mail"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:137
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:139
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:136
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:138
 #: zenphoto-devzp/zp-core/zp-extensions/comment_form/functions.php:377
 msgid "Website"
 msgstr "Website"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:140
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:139
 #: zenphoto-devzp/zp-core/zp-extensions/register_user.php:104
 msgid "CAPTCHA"
 msgstr "CAPTCHA"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:142
-msgid "Check if CAPTCHA should be required."
-msgstr "Ob CAPTCHA erforderlich sein soll."
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:141
+#: zenphoto-devzp/zp-core/zp-extensions/register_user.php:106
+msgid "If checked, the form will include a Captcha verification."
+msgstr ""
+"Wenn ausgewählt, wird das Formular eine Captcha-Verifikation enthalten."
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:143
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:142
 #: zenphoto-devzp/zp-core/zp-extensions/mobileTheme.php:102
 msgid "Phone"
 msgstr "Handy"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:145
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:144
 msgid "Phone number"
 msgstr "Telefonnummer"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:146
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:148
-msgid "Subject"
-msgstr "Betreff"
-
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:149
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:151
-msgid "Message"
-msgstr "Nachricht"
-
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:209
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:202
 msgid "a title"
 msgstr "einen Titel"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:210
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:203
 msgid "a name"
 msgstr "einen Namen"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:211
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:204
 msgid "a company"
 msgstr "eine Firma"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:212
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:205
 msgid "a street"
 msgstr "eine Straße"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:213
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:206
 msgid "a city"
 msgstr "eine Stadt"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:214
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:207
 msgid "a state"
 msgstr "ein Land"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:215
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:208
 msgid "a postal code"
 msgstr "eine Postleitzahl"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:216
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:209
 msgid "a country"
 msgstr "einen Staat"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:217
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:210
 msgid "a valid email address"
 msgstr "eine gültige E-Mail-Adresse"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:219
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:212
 msgid "a website"
 msgstr "eine Website"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:227
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:220
 msgid "a phone number"
 msgstr "eine Telefonnummer"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:228
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:221
 msgid "a subject"
 msgstr "einen Betreff"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:229
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:222
 msgid "a message"
 msgstr "eine Nachricht"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:235
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:228
 msgid "the correct CAPTCHA verification code"
 msgstr "den korrekten CAPTCHA-Bestätigungs-Code"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:248
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:241
 #, php-format
 msgid "Please enter %s. Thanks."
 msgstr "Bitte geben Sie %s ein. Danke."
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:251
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:244
 #, php-format
 msgid "Please enter %1$s and %2$s. Thanks."
 msgstr "Bitte geben Sie %1$s und %2$s ein. Danke."
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:259
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:252
 #, php-format
 msgid "Please enter: %sThanks."
 msgstr "Bitte eingeben: %sDanke."
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:300
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:293
 msgid "Confirm"
 msgstr "Bestätigen"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:304
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:297
 msgid "Discard"
 msgstr "Verwerfen"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:341
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:334
 msgid "Error sending mail:"
 msgid_plural "Errors sending mail:"
 msgstr[0] "Fehler beim Mailsenden:"
@@ -15009,7 +15080,6 @@ msgstr ""
 "gewünscht."
 
 #: zenphoto-devzp/zp-core/zp-extensions/deprecated-functions.php:1170
-#: zenphoto-devzp/zp-core/zp-extensions/register_user/register_user_form.php:68
 msgid "Enter CAPTCHA <strong>*</strong>"
 msgstr "CAPTCHA eingeben <strong>*</strong>:"
 
@@ -15338,6 +15408,7 @@ msgstr "Unterstützung für <em>Favoriten</em>."
 
 #: zenphoto-devzp/zp-core/zp-extensions/favoritesHandler.php:46
 #: zenphoto-devzp/zp-core/zp-extensions/favoritesHandler.php:303
+#: zenphoto-devzp/zp-core/zp-extensions/html_meta_tags.php:240
 msgid "My favorites"
 msgstr "Meine Favoriten"
 
@@ -17642,12 +17713,6 @@ msgstr ""
 "><br />*Aus Sicherheitsgründen empfehlen wir, dass <em>Passwort</em> "
 "<strong>nicht</strong> einzufügen.</p>"
 
-#: zenphoto-devzp/zp-core/zp-extensions/register_user.php:106
-msgid "If checked, CAPTCHA validation will be required for user registration."
-msgstr ""
-"Wenn ausgewählt, ist eine CAPTCHA-Überprüfung bei jeder neuen "
-"Benutzerregistrierung notwendig."
-
 #: zenphoto-devzp/zp-core/zp-extensions/register_user.php:111
 msgid ""
 "<strong>Note:</strong> The <em>register user</em> theme script should be "
@@ -18491,8 +18556,8 @@ msgstr "Lenkt z.B. während Upgrades durch eine Platzhalterseite um."
 #: zenphoto-devzp/zp-core/zp-extensions/site_upgrade.php:39
 msgid ""
 "<em>mod_rewrite</em> is not enabled. This plugin may not work without "
-"without rewrite redirection if the upgrade is significantly different than "
-"the running release."
+"rewrite redirection if the upgrade is significantly different than the "
+"running release."
 msgstr ""
 "<em>mod_rewrite</em> ist nicht aktiviert. Dieses Plugin funktioniert "
 "möglicherweise ohne Rewrite-Umleitung, wenn die Upgrade-Version signifikant "
@@ -19506,23 +19571,23 @@ msgstr "Sie haben Benutzer mit ungültigen Zugangsdaten."
 msgid "Provides rudimentary user groups."
 msgstr "Stellt elementare Benutzergruppen zur Verfügung."
 
-#: zenphoto-devzp/zp-core/zp-extensions/user_groups.php:124
+#: zenphoto-devzp/zp-core/zp-extensions/user_groups.php:123
 msgid "no groups established"
 msgstr "keine Gruppen ausgewählt"
 
-#: zenphoto-devzp/zp-core/zp-extensions/user_groups.php:152
+#: zenphoto-devzp/zp-core/zp-extensions/user_groups.php:151
 msgid "*no group affiliation"
 msgstr "*keine Gruppenzugehörigkeit"
 
-#: zenphoto-devzp/zp-core/zp-extensions/user_groups.php:152
+#: zenphoto-devzp/zp-core/zp-extensions/user_groups.php:151
 msgid "*no group selected"
 msgstr "*keine Gruppen ausgewählt"
 
-#: zenphoto-devzp/zp-core/zp-extensions/user_groups.php:156
+#: zenphoto-devzp/zp-core/zp-extensions/user_groups.php:155
 msgid " (Template)"
 msgstr " (Vorlage)"
 
-#: zenphoto-devzp/zp-core/zp-extensions/user_groups.php:193
+#: zenphoto-devzp/zp-core/zp-extensions/user_groups.php:192
 msgid ""
 "Applying a template will merge the template with the current <em>rights</em> "
 "and <em>objects</em>."
@@ -19530,20 +19595,20 @@ msgstr ""
 "Die Anwendung einer Vorlage wird die Vorlage mit den aktuellen <em>Rechten</"
 "em> und <em>Objekten</em> zusammenführen."
 
-#: zenphoto-devzp/zp-core/zp-extensions/user_groups.php:203
+#: zenphoto-devzp/zp-core/zp-extensions/user_groups.php:202
 msgid "no group affiliation"
 msgstr "Keine Gruppenzugehörigkeit"
 
-#: zenphoto-devzp/zp-core/zp-extensions/user_groups.php:208
+#: zenphoto-devzp/zp-core/zp-extensions/user_groups.php:207
 #, php-format
 msgid "User group membership: %s"
 msgstr "Benutzerguppen-Zugehörigkeit: %s"
 
-#: zenphoto-devzp/zp-core/zp-extensions/user_groups.php:209
+#: zenphoto-devzp/zp-core/zp-extensions/user_groups.php:208
 msgid "Templates are highlighted."
 msgstr "Vorlagen sind hervorgehoben."
 
-#: zenphoto-devzp/zp-core/zp-extensions/user_groups.php:209
+#: zenphoto-devzp/zp-core/zp-extensions/user_groups.php:208
 #: zenphoto-devzp/zp-core/zp-extensions/user_groups/user_groups-tab.php:460
 msgid ""
 "<strong>Note:</strong> When a group is assigned <em>rights</em> and "
@@ -19552,11 +19617,11 @@ msgstr ""
 "<strong>Anmerkung:</strong> Wenn eine Gruppe zugewiesen ist, werden "
 "<em>Rechte</em> und <em>verwalteten Objekte</em> durch die Gruppe definiert!"
 
-#: zenphoto-devzp/zp-core/zp-extensions/user_groups.php:223
+#: zenphoto-devzp/zp-core/zp-extensions/user_groups.php:222
 msgid "assignments"
 msgstr "Zugehörigkeiten"
 
-#: zenphoto-devzp/zp-core/zp-extensions/user_groups.php:224
+#: zenphoto-devzp/zp-core/zp-extensions/user_groups.php:223
 msgid "groups"
 msgstr "Gruppen"
 
@@ -20902,76 +20967,22 @@ msgstr "Wählen Sie das Zielverzeichnis:"
 msgid "Clone Zenphoto"
 msgstr "Zenphoto klonen"
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form/comment_form.php:17
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form/form.php:24
-#, php-format
-msgid "Name%s"
-msgstr "Name%s"
-
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form/comment_form.php:24
-msgid "<em>anonymous</em>"
-msgstr "<em>Anonym</em>"
-
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form/comment_form.php:33
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form/comment_form.php:35
 #: zenphoto-devzp/zp-core/zp-extensions/contact_form/form.php:86
 #, php-format
 msgid "E-Mail%s"
 msgstr "E-Mail%s"
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form/comment_form.php:41
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form/comment_form.php:43
 #, php-format
 msgid "Site%s"
 msgstr "Site%s"
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form/comment_form.php:49
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form/functions.php:183
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form/form.php:46
-#, php-format
-msgid "Street%s"
-msgstr "Straße%s"
-
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form/comment_form.php:53
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form/functions.php:189
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form/form.php:54
-#, php-format
-msgid "City%s"
-msgstr "Stadt%s"
-
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form/comment_form.php:57
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form/functions.php:195
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form/form.php:62
-#, php-format
-msgid "State%s"
-msgstr "Land%s"
-
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form/comment_form.php:61
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form/functions.php:201
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form/form.php:70
-#, php-format
-msgid "Country%s"
-msgstr "Staat%s"
-
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form/comment_form.php:65
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form/functions.php:207
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form/form.php:78
-#, php-format
-msgid "Postal code%s"
-msgstr "Postleitzahl%s"
-
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form/comment_form.php:71
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form/form.php:108
-msgid "Enter CAPTCHA<strong>*</strong>"
-msgstr "CAPTCHA eingeben<strong>*</strong>"
-
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form/comment_form.php:84
-msgid "<strong>*</strong> Required fields"
-msgstr "<strong>*</strong> Pflichtfelder"
-
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form/comment_form.php:90
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form/comment_form.php:94
 msgid "Private comment (don't publish)"
 msgstr "Privater Kommentar (wird nicht veröffentlicht)"
 
-#: zenphoto-devzp/zp-core/zp-extensions/comment_form/comment_form.php:99
+#: zenphoto-devzp/zp-core/zp-extensions/comment_form/comment_form.php:103
 msgid "Add Comment"
 msgstr "Kommentar hinzufügen"
 
@@ -21164,17 +21175,15 @@ msgstr "Website%s"
 msgid "Phone%s"
 msgstr "Handy%s"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form/form.php:122
-#, php-format
-msgid "Subject%s"
-msgstr "Betreff%s"
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form/form.php:121
+msgid "Subject<strong>*</strong>"
+msgstr "Betreff<strong>*</strong>"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form/form.php:130
-#, php-format
-msgid "Message%s"
-msgstr "Nachricht%s"
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form/form.php:127
+msgid "Message<strong>*</strong>"
+msgstr "Nachricht<strong>*</strong>"
 
-#: zenphoto-devzp/zp-core/zp-extensions/contact_form/form.php:138
+#: zenphoto-devzp/zp-core/zp-extensions/contact_form/form.php:134
 msgid "Send e-mail"
 msgstr "E-Mail schicken"
 
@@ -23750,50 +23759,75 @@ msgstr "<em>Dieser Eintrag gehört zu einem geschützten Album.</em>"
 msgid "Prev page"
 msgstr "Vorherige Seite"
 
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2138
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2178
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2139
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2179
 #, php-format
 msgid "%u article"
 msgid_plural "%u articles"
 msgstr[0] "%u Artikel"
 msgstr[1] "%u Artikel"
 
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2758
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2759
 msgid "This page is password protected"
 msgstr "Diese Seite ist passwortgeschützt"
 
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2950
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2951
 #, php-format
 msgid "View the %s album"
 msgstr "Album %s ansehen"
 
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2952
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2953
 #, php-format
 msgid "View the album %s"
 msgstr "Album %s ansehen"
 
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2956
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2957
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2958
 #, php-format
 msgid "View %s"
 msgstr "%s ansehen"
 
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2965
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2966
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the image %1$s:%2$s"
 msgstr ""
 "<code>zenpageAlbumImage()</code> konnte das Bild %1$s:%2$s nicht finden"
 
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2974
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2975
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> konnte das Album %1$s nicht finden"
 
+#~ msgid ""
+#~ "<a href=\"javascript:toggle('gallerysessions');\" >Details</a> for "
+#~ "<em>enable gallery sessions</em>"
+#~ msgstr ""
+#~ "<a href=\"javascript:toggle('gallerysessions');\" >Details</a> zur "
+#~ "<em>Aktivierung von Galeriesessions</em>"
+
+#~ msgid "Check if CAPTCHA should be required."
+#~ msgstr "Ob CAPTCHA erforderlich sein soll."
+
+#~ msgid "Subject"
+#~ msgstr "Betreff"
+
+#~ msgid "Message"
+#~ msgstr "Nachricht"
+
+#~ msgid ""
+#~ "If checked, CAPTCHA validation will be required for user registration."
+#~ msgstr ""
+#~ "Wenn ausgewählt, ist eine CAPTCHA-Überprüfung bei jeder neuen "
+#~ "Benutzerregistrierung notwendig."
+
+#~ msgid "Subject%s"
+#~ msgstr "Betreff%s"
+
+#~ msgid "Message%s"
+#~ msgstr "Nachricht%s"
+
 #~ msgid "%sName:"
 #~ msgstr "%sName:"
-
-#~ msgid "URL%s:"
-#~ msgstr "URL%s:"
 
 #~ msgid "City:%s"
 #~ msgstr "Stadt%s:"
@@ -23803,12 +23837,6 @@ msgstr "<code>zenpageAlbumImage()</code> konnte das Album %1$s nicht finden"
 
 #~ msgid "*Required fields"
 #~ msgstr "*Pflichtfelder:"
-
-#~ msgid "Private comment:"
-#~ msgstr "Privater Kommentar:"
-
-#~ msgid "(don't publish)"
-#~ msgstr "(nicht veröffentlichen)"
 
 #~ msgid "Enter CAPTCHA:"
 #~ msgstr "CAPTCHA eingeben:"
@@ -23848,12 +23876,6 @@ msgstr "<code>zenpageAlbumImage()</code> konnte das Album %1$s nicht finden"
 
 #~ msgid "Phone<strong>%s</strong>:"
 #~ msgstr "Telefon<strong>%s</strong>:"
-
-#~ msgid "Subject<strong>%s</strong>:"
-#~ msgstr "Betreff<strong>%s</strong>:"
-
-#~ msgid "Message<strong>%s</strong>:"
-#~ msgstr "Nachricht<strong>%s</strong>:"
 
 #~ msgid "Enter"
 #~ msgstr "Eingeben"
@@ -26303,9 +26325,6 @@ msgstr "<code>zenpageAlbumImage()</code> konnte das Album %1$s nicht finden"
 
 #~ msgid "photos %1$u-%2$u of %3$u"
 #~ msgstr "Bilder %1$u-%2$u von %3$u"
-
-#~ msgid "Comment"
-#~ msgstr "Kommentar"
 
 #~ msgid "%u photo"
 #~ msgid_plural "%u photos"

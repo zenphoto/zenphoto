@@ -56,8 +56,6 @@ class contactformOptions {
 		setOptionDefault('contactform_website', "show");
 		setOptionDefault('contactform_phone', "show");
 		setOptionDefault('contactform_captcha', 0);
-		setOptionDefault('contactform_subject', "required");
-		setOptionDefault('contactform_message', "required");
 		setOptionDefault('contactform_confirm', 1);
 		setOptionDefault('contactform_sendcopy',0);
 		gettext($str = '<p>A copy of your e-mail will automatically be sent to the address you provided for your own records.</p>');
@@ -143,13 +141,7 @@ class contactformOptions {
 										'desc' => ($_zp_captcha->name)?gettext('If checked, the form will include a Captcha verification.'):'<span class="notebox">'.gettext('No captcha handler is enabled.').'</span>'),
 									gettext('Phone') => array('key' => 'contactform_phone', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
 										'order' => 10,
-										'desc' => sprintf($mailfieldinstruction,gettext("Phone number"))),
-									gettext('Subject') => array('key' => 'contactform_subject', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
-										'order' => 11,
-										'desc' => sprintf($mailfieldinstruction,gettext("Subject"))),
-									gettext('Message') => array('key' => 'contactform_message', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
-										'order' => 12,
-										'desc' => sprintf($mailfieldinstruction,gettext("Message")))
+										'desc' => sprintf($mailfieldinstruction,gettext("Phone number")))
 		);
 		return $options;
 	}
@@ -226,8 +218,8 @@ function printContactForm($subject_override='') {
 			}
 		}
 		if (getOption("contactform_phone") == "required" && empty($mailcontent['phone'])) { $error[9] = gettext("a phone number"); }
-		if (getOption("contactform_subject") == "required" && empty($mailcontent['subject'])) { $error[10] = gettext("a subject"); }
-		if (getOption("contactform_message") == "required" && empty($mailcontent['message'])) { $error[11] = gettext("a message"); }
+		if (empty($mailcontent['subject'])) { $error[10] = gettext("a subject"); }
+		if (tOption("contactform_message") == "required" && gempty($mailcontent['message'])) { $error[11] = gettext("a message"); }
 
 		// CAPTCHA start
 		if(getOption("contactform_captcha")) {
