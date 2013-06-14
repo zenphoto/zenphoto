@@ -159,7 +159,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 			$maxWidth = getOption('magick_max_width');
 
 			if ($maxHeight > lib_Imagick_Options::$ignore_size && $maxWidth > lib_Imagick_Options::$ignore_size) {
-				$image->setSize($maxWidth, $maxHeight);
+				$image->setOption('jpeg:size', $maxWidth . 'x' . $maxHeight);
 			}
 
 			$image->readImage(filesystemToInternal($imgfile));
@@ -644,7 +644,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 		$maxWidth = getOption('magick_max_width');
 
 		if ($maxHeight > lib_Imagick_Options::$ignore_size && $maxWidth > lib_Imagick_Options::$ignore_size) {
-			$image->setSize($maxWidth, $maxHeight);
+			$im->setOption('jpeg:size', $maxWidth . 'x' . $maxHeight);
 		}
 
 		$im->readImageBlob($string);
