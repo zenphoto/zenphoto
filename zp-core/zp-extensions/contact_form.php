@@ -234,7 +234,6 @@ function printContactForm($subject_override = '') {
 				}
 			}
 		}
-<<<<<<< HEAD
 		if (getOption("contactform_phone") == "required" && empty($mailcontent['phone'])) {
 			$error[9] = gettext("a phone number");
 		}
@@ -244,11 +243,6 @@ function printContactForm($subject_override = '') {
 		if (empty($mailcontent['message'])) {
 			$error[11] = gettext("a message");
 		}
-=======
-		if (getOption("contactform_phone") == "required" && empty($mailcontent['phone'])) { $error[9] = gettext("a phone number"); }
-		if (empty($mailcontent['subject'])) { $error[10] = gettext("a subject"); }
-		if (getOption("contactform_message") == "required" && empty($mailcontent['message'])) { $error[11] = gettext("a message"); }
->>>>>>> d2be969c15e0d57a1ce1797bb6be2179d940e09c
 
 		// CAPTCHA start
 		if (getOption("contactform_captcha")) {
