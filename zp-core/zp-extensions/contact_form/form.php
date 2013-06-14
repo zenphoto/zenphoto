@@ -116,22 +116,18 @@
 			</p>
 		<?php
 		}
-		if(showOrNotShowField(getOption('contactform_subject'))) {
-			?>
-			<p>
-				<label for="subject"><?php printf(gettext("Subject%s"),checkRequiredField(getOption('contactform_subject'))); ?></label>
-				<input type="text" id="subject" name="subject" size="50" value="<?php echo html_encode($mailcontent['subject']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
-			</p>
-			<?php
-		}
-		if(showOrNotShowField(getOption('contactform_message'))) {
-			?>
-			<p class="mailmessage">
-				<label for="message"><?php printf(gettext("Message%s"),checkRequiredField(getOption('contactform_message'))); ?></label>
-				<textarea id="message" name="message" <?php if ($_processing_post) echo ' disabled="disabled"'; ?>><?php echo $mailcontent['message']; ?></textarea>
-			</p>
-			<?php
-		}
+		?>
+		<p>
+			<label for="subject"><?php echo gettext("Subject<strong>*</strong>"); ?></label>
+			<input type="text" id="subject" name="subject" size="50" value="<?php echo html_encode($mailcontent['subject']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
+		</p>
+		<?php
+		?>
+		<p class="mailmessage">
+			<label for="message"><?php echo gettext("Message<strong>*</strong>"); ?></label>
+			<textarea id="message" name="message" <?php if ($_processing_post) echo ' disabled="disabled"'; ?>><?php echo $mailcontent['message']; ?></textarea>
+		</p>
+		<?php
 		if (!$_processing_post) {
 		?>
 		<p>
