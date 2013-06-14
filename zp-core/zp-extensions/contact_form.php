@@ -219,7 +219,7 @@ function printContactForm($subject_override='') {
 		}
 		if (getOption("contactform_phone") == "required" && empty($mailcontent['phone'])) { $error[9] = gettext("a phone number"); }
 		if (empty($mailcontent['subject'])) { $error[10] = gettext("a subject"); }
-		if (tOption("contactform_message") == "required" && gempty($mailcontent['message'])) { $error[11] = gettext("a message"); }
+		if (getOption("contactform_message") == "required" && empty($mailcontent['message'])) { $error[11] = gettext("a message"); }
 
 		// CAPTCHA start
 		if(getOption("contactform_captcha")) {
