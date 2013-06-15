@@ -2128,8 +2128,8 @@ function applyMacros($text) {
 			if ($macro['regex']) {
 				if (preg_match_all($macro['regex'], $p, $params)) {
 					array_shift($params);
-					foreach ($params as $p) {
-						foreach ($p as $v) {
+					foreach ($params as $m) {
+						foreach ($m as $v) {
 							$parms[] = $v;
 						}
 					}
@@ -2151,9 +2151,6 @@ function applyMacros($text) {
 				case 'function';
 				case 'procedure':
 					if ($macro['class'] == 'function') {
-
-						var_dump($parms);
-
 						$data = @call_user_func_array($macro['value'], $parms);
 					} else {
 						ob_start();
