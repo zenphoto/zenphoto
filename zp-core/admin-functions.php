@@ -145,8 +145,8 @@ function printAdminHeader($tab,$subtab=NULL) {
 			<?php
 		}
 		?>
-	  $(function() {
-	    $( ".tooltip " ).tooltip({
+		$(function() {
+			$( ".tooltip " ).tooltip({
 				show: 1000,
 				hide: 1000,
 				position: {
@@ -162,7 +162,7 @@ function printAdminHeader($tab,$subtab=NULL) {
 					}
 				}
 			});
-	    $( ".page-list_icon" ).tooltip({
+			$( ".page-list_icon" ).tooltip({
 				show: 1000,
 				hide: 1000,
 				position: {
@@ -4040,7 +4040,7 @@ function printCodeblockEdit($obj, $id) {
 			<?php
 			for ($i=$start; $i<$codeblockCount; $i++) {
 				?>
-				<li><a class="<?php if ($i==1) echo 'first '; ?>cbt-<?php echo $id; ; ?>" id="<?php echo 'cbt'.$i.'-'.$id; ?>" href="javascript:cbclick(<?php echo $i.','.$id; ?>);" title="<?php printf(gettext('codeblock %u'),$i); ?>">&nbsp;&nbsp;<?php echo $i; ?>&nbsp;&nbsp;</a></li>
+				<li><a class="<?php if ($i==1) echo 'first '; ?>cbt-<?php echo $id; ?>" id="<?php echo 'cbt'.$i.'-'.$id; ?>" href="javascript:cbclick(<?php echo $i.','.$id; ?>);" title="<?php printf(gettext('codeblock %u'),$i); ?>">&nbsp;&nbsp;<?php echo $i; ?>&nbsp;&nbsp;</a></li>
 				<?php
 			}
 			?>
