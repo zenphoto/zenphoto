@@ -149,19 +149,10 @@ class slideshow {
 
 	}
 
-	static function getPlayer($album, $controls = 'false') {
+	static function getPlayer($album, $controls = false) {
 		$albumobj = NULL;
 		if (!empty($album)) {
 			$albumobj = newAlbum($album, NULL, true);
-		}
-		switch (strtolower($controls)) {
-			case 'true':
-				$controls = true;
-				break;
-			default:
-			case 'false':
-				$controls = false;
-				break;
 		}
 		if (is_object($albumobj) && $albumobj->loaded) {
 			$returnpath = rewrite_path('/' . pathurlencode($albumobj->name) . '/', '/index.php?album=' . urlencode($albumobj->name));
