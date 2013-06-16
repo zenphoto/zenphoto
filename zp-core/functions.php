@@ -2118,27 +2118,10 @@ function applyMacros($text) {
 	if (preg_match_all($regex, $text, $matches)) {
 		foreach ($matches[1] as $key => $macroname) {
 			$p = trim(str_replace("\xC2\xA0", ' ', substr(strip_tags($matches[2][$key]), 0, -1)));
+			preg_match_all("~'[^'\"]++'|\"[^\"]++\"|[^\s]++~", $p, $l);
 			$parms = array();
-			$l = explode(' ', $p);
-			while (!empty($l)) {
-				if (preg_match('/(^["\'])/', $l[0], $quotes)) {
-					$quote = $quotes[1];
-					$token = ltrim(array_shift($l), $quote);
-					while (!empty($l)) {
-						if (preg_match('/' . $quote . '$/', $token)) {
-							$token = rtrim($token, $quote);
-							break;
-						} else {
-							$token .= ' ' . array_shift($l);
-						}
-					}
-					array_push($parms, $token);
-				} else {
-					$token = array_shift($l);
-					if ($token) {
-						array_push($parms, $token);
-					}
-				}
+			foreach ($l[0] as $key => $s) {
+				$parms[$key] = trim($s, '\'"');
 			}
 			$macroname = strtoupper($macroname);
 			$macro = $content_macros[$macroname];
