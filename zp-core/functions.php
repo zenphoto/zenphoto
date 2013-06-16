@@ -2165,7 +2165,7 @@ function applyMacros($text) {
 							case 'bool':
 								if (is_bool($parms[$key]))
 									continue 2;
-								$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d shold be <code>true</code> or <code>false</code>.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
+								$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d should be <code>true</code> or <code>false</code>.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
 								$macro['class'] = 'error';
 								$parms = array(); // failed parameter extract
 								break;
