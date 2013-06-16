@@ -2115,29 +2115,75 @@ function applyMacros($text) {
 	$content_macros = getMacros();
 	krsort($content_macros); //	in case some start with the same sequence, look for the longest first
 	$regex = '/\[(' . implode('|', array_keys($content_macros)) . ')(\]|\s+.*\])/i';
-
 	if (preg_match_all($regex, $text, $matches)) {
 		foreach ($matches[1] as $key => $macroname) {
-			$p = substr(strip_tags($matches[2][$key]), 0, -1);
-			$p = str_replace("\xC2\xA0", ' ', $p);
-			$p = trim($p);
+			$p = trim(str_replace("\xC2\xA0", ' ', substr(strip_tags($matches[2][$key]), 0, -1)));
 			$parms = array();
+			$l = explode(' ', $p);
+			while (!empty($l)) {
+				if (preg_match('/(^["\'])/', $l[0], $quotes)) {
+					$quote = $quotes[1];
+					$token = ltrim(array_shift($l), $quote);
+					while (!empty($l)) {
+						if (preg_match('/' . $quote . '$/', $token)) {
+							$token = rtrim($token, $quote);
+							break;
+						} else {
+							$token .= ' ' . array_shift($l);
+						}
+					}
+					array_push($parms, $token);
+				} else {
+					$token = array_shift($l);
+					if ($token) {
+						array_push($parms, $token);
+					}
+				}
+			}
 			$macroname = strtoupper($macroname);
 			$macro = $content_macros[$macroname];
 			$macro_instance = $matches[0][$key];
-			if ($macro['regex']) {
-				if (preg_match_all($macro['regex'], $p, $params)) {
-					array_shift($params);
-					foreach ($params as $m) {
-						foreach ($m as $v) {
-							$parms[] = $v;
+			if (!empty($macro['params'])) {
+				$err = false;
+				foreach ($macro['params'] as $key => $type) {
+					if (array_key_exists($key, $parms)) {
+						switch (trim($type, '*')) {
+							case 'int':
+								if (is_numeric($parms[$key]))
+									continue 2;
+								$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d should be a number.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
+								$macro['class'] = 'error';
+								$parms = array(); // failed parameter extract
+								break;
+							case 'string':
+								if (is_string($parms[$key]))
+									continue 2;
+								$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d should be a string.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
+								$macro['class'] = 'error';
+								$parms = array(); // failed parameter extract
+								break;
+							case 'bool':
+								if (is_bool($parms[$key]))
+									continue 2;
+								$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d shold be <code>true</code> or <code>false</code>.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
+								$macro['class'] = 'error';
+								$parms = array(); // failed parameter extract
+								break;
+							default:
+								$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d is incorrectly defined.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
+								$macro['class'] = 'error';
+								$parms = array(); // failed parameter extract
+								break;
 						}
+						break;
+					} else {
+						if (strpos($type, '*') === false) {
+							$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d is missing.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
+							$macro['class'] = 'error';
+							$parms = array(); // failed parameter extract
+						}
+						break;
 					}
-				} else {
-					$macro['class'] = 'error';
-					preg_match_all('|\(.*?\)|', $macro['regex'], $params);
-					$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter mis-match.'), trim($macro_instance, '[]')) . '</span>';
-					$parms = array(); // failed parameter extract
 				}
 			} else {
 				if (!empty($p)) {
@@ -2193,22 +2239,22 @@ function getMacros() {
 	if (is_null($_zp_content_macros)) {
 		$_zp_content_macros = array(
 						'CODEBLOCK'				 => array('class'	 => 'procedure',
-										'regex'	 => '/^(\d+)$/',
+										'params' => array('int'),
 										'value'	 => 'printCodeblock',
 										'owner'	 => 'Zenphoto core',
 										'desc'	 => gettext('Places codeblock number <code>%1</code> in the content where the macro exists.')),
 						'PAGE'						 => array('class'	 => 'function',
-										'regex'	 => NULL,
+										'params' => array(),
 										'value'	 => 'getCurrentPage',
 										'owner'	 => 'Zenphoto core',
 										'desc'	 => gettext('Prints the current page number.')),
 						'ZENPHOTO_VERSION' => array('class'	 => 'constant',
-										'regex'	 => NULL,
+										'params' => array(),
 										'value'	 => ZENPHOTO_VERSION,
 										'owner'	 => 'Zenphoto core',
 										'desc'	 => gettext('Prints the version of the Zenphoto installation.')),
 						'PAGELINK'				 => array('class'	 => 'expression',
-										'regex'	 => '/^(.+)$/',
+										'params' => array('string'),
 										'value'	 => 'getCustomPageURL($1);',
 										'owner'	 => 'Zenphoto core',
 										'desc'	 => gettext('Provides text for a link to a "custom" script page indicated by <code>%1</code>.'))

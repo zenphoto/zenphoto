@@ -450,7 +450,7 @@ class slideshow {
 	static function macro($macros) {
 		$macros['SLIDESHOW'] = array(
 						'class'	 => 'function',
-						'regex'	 => '/(\w+)/',
+						'params' => array('string', 'bool*'),
 						'value'	 => 'slideshow::getPlayer',
 						'owner'	 => 'slideshow',
 						'desc'	 => gettext('provide the album name as %1 and (optionally) <code>true</code> (or <code>false</code>) as %2 to show (hide) controls. Hiding the controls is the default.')
