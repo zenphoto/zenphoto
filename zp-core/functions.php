@@ -2162,7 +2162,7 @@ function applyMacros($text) {
 								$macro['class'] = 'error';
 								break;
 							case 'array':
-								$l = $parms;
+								$l = array_slice($parms, $key);
 								$parms = array();
 								foreach ($l as $key => $p) {
 									$x = explode('=', $p);
@@ -2258,6 +2258,11 @@ function getMacros() {
 										'value'	 => ZENPHOTO_VERSION,
 										'owner'	 => 'Zenphoto core',
 										'desc'	 => gettext('Prints the version of the Zenphoto installation.')),
+						'VAR_DUMP'				 => array('class'	 => 'procedure',
+										'params' => array('array'),
+										'value'	 => 'var_dump',
+										'owner'	 => 'Zenphoto core',
+										'desc'	 => gettext('Dump the contents of the parameter list.')),
 						'PAGELINK'				 => array('class'	 => 'expression',
 										'params' => array('string'),
 										'value'	 => 'getCustomPageURL($1);',
