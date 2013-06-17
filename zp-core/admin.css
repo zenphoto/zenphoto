@@ -427,6 +427,11 @@ ul.nav li:hover > ul {
 
 /* Error Messages
 ------------------------------ */
+.error {
+	color: #DD6666;
+	font-weight: bold;
+}
+
 .errorbox {
 	padding: 10px 15px 10px 15px;
 	background-color: #FDD;

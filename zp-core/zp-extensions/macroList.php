@@ -7,14 +7,21 @@
  *
  * Note: the plugin should be active both on THEMES to provide the function and on the ADMIN pages to provide
  * the macro documentation.
- * 
+ *
  * The content of the array is as follows:
  * <ol>
- * 	<li>'class'	 => <var>macro class</var>, see below.</li>
- * 	<li>'params' => An array of parameter types. The types allowed are "string", "int", and "bool". Append <var>*</var> if the parameter may be omitted. String parameters may be enclosed in quotation marks when the macro is invoked. The quotes are stripped before the macro is processed.</li>
- * 	<li>'value'	 => This is a function, procedure, expression or content as defined by the macro class.</li>
- * 	<li>'owner'	 => This should be your plugin name.</li>
- * 	<li>'desc'	 => Text that describes the macro usage.</li>
+ * 	<li>"class	 => <var>macro class</var>, see below.</li>
+ * 	<li>"params" => An array of parameter types. Append an <b>*</b> if the parameter may be omitted. The types allowed are:
+ * 		<ul>
+ * 			<li>"string": may be enclosed in quotation marks when the macro is invoked. The quotes are stripped before the macro is processed. </li>
+ * 			<li>"int": a number</li>
+ * 			<li>"bool": <var>true</var> or <var>false</var></li>
+ * 			<li>"array": will process assignment type parameter (<var>x = y</var>) lists. Since it will consume all remaining parameters it must be the last item in the parameter list.</li>
+ * 		</ul>
+ * 	</li>
+ * 	<li>"value"	 => This is a function, procedure, expression or content as defined by the macro class.</li>
+ * 	<li>"owner"	 => This should be your plugin name.</li>
+ * 	<li>"desc"	 => Text that describes the macro usage.</li>
  * </ol>
  *
  * macro classes:
