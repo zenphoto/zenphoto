@@ -2117,51 +2117,68 @@ function applyMacros($text) {
 	$regex = '/\[(' . implode('|', array_keys($content_macros)) . ')(\]|\s+.*\])/i';
 	if (preg_match_all($regex, $text, $matches)) {
 		foreach ($matches[1] as $key => $macroname) {
-			$p = trim(str_replace("\xC2\xA0", ' ', substr(strip_tags($matches[2][$key]), 0, -1)));
-			preg_match_all("~'[^'\"]++'|\"[^\"]++\"|[^\s]++~", $p, $l);
+			$p = trim(str_replace("\xC2\xA0", ' ', substr(strip_tags($matches[2][$key]), 0, -1))); //	remove hard spaces
+			$p = preg_replace("~\s+=\s+(?=(?:[^\"]*+\"[^\"]*+\")*+[^\"]*+$)~", "=", $p); //	deblank assignment operator
+			preg_match_all("~'[^'\"]++'|\"[^\"]++\"|[^\s]++~", $p, $l); //	parse the parameter list
 			$parms = array();
 			foreach ($l[0] as $k => $s) {
-				$parms[$k] = trim($s, '\'"');
+				$parms[$k] = trim($s, '\'"'); //	remove any quote marks
 			}
 			$macroname = strtoupper($macroname);
 			$macro = $content_macros[$macroname];
 			$macro_instance = $matches[0][$key];
+			$parameters = array();
 			if (!empty($macro['params'])) {
 				$err = false;
 				foreach ($macro['params'] as $key => $type) {
 					if (array_key_exists($key, $parms)) {
 						switch (trim($type, '*')) {
 							case 'int':
-								if (is_numeric($parms[$key]))
+								if (is_numeric($parms[$key])) {
+									$parameters[] = (int) $parms[$key];
 									continue 2;
+								}
 								$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d should be a number.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
 								$macro['class'] = 'error';
-								$parms = array(); // failed parameter extract
 								break;
 							case 'string':
-								if (is_string($parms[$key]))
+								if (is_string($parms[$key])) {
+									$parameters[] = $parms[$key];
 									continue 2;
+								}
 								$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d should be a string.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
 								$macro['class'] = 'error';
-								$parms = array(); // failed parameter extract
 								break;
 							case 'bool':
 								switch (strtolower($parms[$key])) {
 									case ("true"):
-										$parms[$key] = true;
+										$parameters[] = true;
 										continue 2;
 									case ("false"):
-										$parms[$key] = false;
+										$parameters[] = false;
 										continue 2;
 								}
 								$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d should be <code>true</code> or <code>false</code>.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
 								$macro['class'] = 'error';
-								$parms = array(); // failed parameter extract
+								break;
+							case 'array':
+								$l = $parms;
+								$parms = array();
+								foreach ($l as $key => $p) {
+									$x = explode('=', $p);
+									if (count($x) == 2) {
+										$parms[$x[0]] = $x[1];
+									} else {
+										$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d should be an assignement.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
+										$macro['class'] = 'error';
+										break;
+									}
+								}
+								$parameters[] = $parms;
 								break;
 							default:
 								$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d is incorrectly defined.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
 								$macro['class'] = 'error';
-								$parms = array(); // failed parameter extract
 								break;
 						}
 						break;
@@ -2169,7 +2186,6 @@ function applyMacros($text) {
 						if (strpos($type, '*') === false) {
 							$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d is missing.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
 							$macro['class'] = 'error';
-							$parms = array(); // failed parameter extract
 						}
 						break;
 					}
@@ -2186,10 +2202,10 @@ function applyMacros($text) {
 				case 'function';
 				case 'procedure':
 					if ($macro['class'] == 'function') {
-						$data = @call_user_func_array($macro['value'], $parms);
+						$data = @call_user_func_array($macro['value'], $parameters);
 					} else {
 						ob_start();
-						call_user_func_array($macro['value'], $parms);
+						call_user_func_array($macro['value'], $parameters);
 						$data = ob_get_contents();
 						ob_end_clean();
 					}

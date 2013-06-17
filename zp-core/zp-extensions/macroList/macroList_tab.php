@@ -28,14 +28,28 @@ echo "\n</head>";
 					} else {
 						foreach ($macros as $macro => $detail) {
 							echo "<p><code>[$macro";
+							$warn = $required = false;
 							if (!empty($detail['params'])) {
 								$params = '';
 								for ($i = 1; $i <= count($detail['params']); $i++) {
-									$params = $params . ' %' . $i;
+									if (strpos($detail['params'][$i - 1], '*') === false) {
+										if ($required) {
+											$params .= ' <span class="error">' . '%' . $i . '</span> ';
+											$warn = true;
+										} else {
+											$params = $params . ' %' . $i;
+										}
+									} else {
+										$params = $params . ' %' . $i;
+										$required = true;
+									}
 								}
 								echo $params;
 							}
 							echo ']</code> <em>(' . @$detail['owner'] . ')</em><br />&nbsp;&nbsp;' . $detail['desc'] . '</p>';
+							if ($warn) {
+								echo '<p class="notebox">', gettext('<strong>Warning:</strong> required parameters should not follow optional ones.') . '</p>';
+							}
 						}
 						?>
 						<p class="notebox">
