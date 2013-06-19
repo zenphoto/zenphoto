@@ -66,6 +66,15 @@ if (!defined('OFFSET_PATH')) {
 	$imagebuttons = zp_apply_filter('edit_image_utilities', '', $image, 0, '', ''); //pass space as HTML because there is already a button shown for cropimage
 	$albumbuttons = zp_apply_filter('edit_album_utilities', '', $album, '');
 
+	$content_macros = getMacros();
+	krsort($content_macros);
+	foreach ($content_macros as $macro => $detail) {
+		if (@$detail['owner'] != $extension) {
+			unset($content_macros[$macro]);
+		}
+	}
+	var_dump($content_macros);
+
 	$pluginStream = @file_get_contents($pluginToBeDocPath);
 	$i = strpos($pluginStream, '/*');
 	$j = strpos($pluginStream, '*/');
@@ -341,6 +350,16 @@ if (!defined('OFFSET_PATH')) {
 										<div class="box-edit">
 											<?php echo $imagebuttons; ?>
 										</div>
+										<br class="clearall" />
+										<?php
+									}
+									if (!empty($content_macros)) {
+										require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/macrolist.php');
+										echo ngettext('Macro defined:', 'Macros defined:', count($content_macros));
+										foreach ($content_macros as $macro => $detail) {
+											macroList_show($macro, $detail);
+										}
+										?>
 										<br class="clearall" />
 										<?php
 									}
