@@ -134,8 +134,8 @@ printLogoAndLinks();
 	</ul>
 	<p><?php echo gettext('Additionally a sitemapindex file is created that points to the separate ones above. You can reference this sitemapindex file in your robots.txt file or submit its url to services like Google via <code>www.yourdomain.com/zenphoto/index.php?sitemap</code>'); ?></p>
 	<p><?php echo gettext('The sitemap cache is cleared if you create new ones. All files are stored in the <code>/cache_html/sitemap/</code> folder.'); ?></p>
-	<p class="buttons"><a href="sitemap-extended-admin.php?generatesitemaps&amp;number=1"><?php echo "Generate sitemaps"; ?></a></p>
-	<p class="buttons"><a href="sitemap-extended-admin.php?clearsitemapcache"><?php echo "Clear sitemap cache"; ?></a></p>
+	<p class="buttons"><a href="sitemap-extended-admin.php?generatesitemaps&amp;number=1"><?php echo gettext("Generate sitemaps"); ?></a></p>
+	<p class="buttons"><a href="sitemap-extended-admin.php?clearsitemapcache"><?php echo gettext("Clear sitemap cache"); ?></a></p>
 	<br style="clear: both" /><br />
 	<?php sitemap_printAvailableSitemaps();
 	} // isset generate sitemaps / clearsitemap cache
