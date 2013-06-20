@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This is a "simple" SPAM filter.
  * It uses a word black list and checks for excessive URLs
@@ -7,17 +8,17 @@
  * @package plugins
  * @subpackage spam
  */
-
-$plugin_is_filter = 5|CLASS_PLUGIN;
+$plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext("Simple SPAM filter.");
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_disable = (isset($_zp_spamFilter) && !getoption('zp_plugin_simpleSpam'))?sprintf(gettext('Only one SPAM handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'),$_zp_spamFilter->name):'';
+$plugin_disable = (isset($_zp_spamFilter) && !getoption('zp_plugin_simpleSpam')) ? sprintf(gettext('Only one SPAM handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), $_zp_spamFilter->name) : '';
 
 $option_interface = 'zpSimpleSpam';
 
 if ($plugin_disable) {
 	setOption('zp_plugin_simpleSpam', 0);
 } else {
+	setOptionDefault('zp_plugin_simpleSpam', $plugin_is_filter);
 	$_zp_spamFilter = new zpSimpleSpam();
 }
 
@@ -25,10 +26,10 @@ if ($plugin_disable) {
  * This implements the standard SpamFilter class for the Simple spam filter.
  *
  */
-class zpSimpleSpam  {
+class zpSimpleSpam {
 
 	var $name = 'simpleSpam';
-	var $wordsToDieOn = array('cialis','ebony','nude','porn','porno','pussy','upskirt','ringtones','phentermine','viagra', 'levitra'); /* the word black list */
+	var $wordsToDieOn = array('cialis', 'ebony', 'nude', 'porn', 'porno', 'pussy', 'upskirt', 'ringtones', 'phentermine', 'viagra', 'levitra'); /* the word black list */
 	var $patternsToDieOn = array('\[url=.*\]');
 	var $excessiveURLCount = 5;
 
@@ -54,11 +55,11 @@ class zpSimpleSpam  {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		return array(	gettext('Words to die on') => array('key' => 'Words_to_die_on', 'type' => OPTION_TYPE_TEXTAREA, 'desc' => gettext('SPAM blacklist words (separate with commas)')),
-		gettext('Patterns to die on') => array('key' => 'Patterns_to_die_on', 'type' => OPTION_TYPE_TEXTAREA, 'desc' => gettext('SPAM blacklist <a href="http://en.wikipedia.org/wiki/Regular_expression">regular expressions</a> (separate with spaces)')),
-		gettext('Excessive URL count') => array('key' => 'Excessive_URL_count', 'type' => OPTION_TYPE_TEXTBOX, 'desc' => gettext('Message is considered SPAM if there are more than this many URLs in it')),
-		gettext('Banned IPs') => array('key' => 'Banned_IP_list', 'type' => OPTION_TYPE_TEXTAREA, 'desc' => gettext('Prevent posts from this list of IP addresses')),
-		gettext('Forgiving') => array('key' => 'Forgiving', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Mark suspected SPAM for moderation rather than as SPAM')));
+		return array(gettext('Words to die on')		 => array('key'	 => 'Words_to_die_on', 'type' => OPTION_TYPE_TEXTAREA, 'desc' => gettext('SPAM blacklist words (separate with commas)')),
+						gettext('Patterns to die on')	 => array('key'	 => 'Patterns_to_die_on', 'type' => OPTION_TYPE_TEXTAREA, 'desc' => gettext('SPAM blacklist <a href="http://en.wikipedia.org/wiki/Regular_expression">regular expressions</a> (separate with spaces)')),
+						gettext('Excessive URL count') => array('key'	 => 'Excessive_URL_count', 'type' => OPTION_TYPE_TEXTBOX, 'desc' => gettext('Message is considered SPAM if there are more than this many URLs in it')),
+						gettext('Banned IPs')					 => array('key'	 => 'Banned_IP_list', 'type' => OPTION_TYPE_TEXTAREA, 'desc' => gettext('Prevent posts from this list of IP addresses')),
+						gettext('Forgiving')					 => array('key'	 => 'Forgiving', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Mark suspected SPAM for moderation rather than as SPAM')));
 	}
 
 	/**
@@ -68,6 +69,7 @@ class zpSimpleSpam  {
 	 * @param mixed $currentValue the current value of the option (the "before" value)
 	 */
 	function handleOption($option, $currentValue) {
+
 	}
 
 	/**
@@ -87,7 +89,7 @@ class zpSimpleSpam  {
 	 * @return int
 	 */
 	function filterMessage($author, $email, $website, $body, $receiver, $ip) {
-		if (strpos(getOption('Banned_IP_list'),$ip) !== false) {
+		if (strpos(getOption('Banned_IP_list'), $ip) !== false) {
 			return 0;
 		}
 		$forgive = getOption('Forgiving');
@@ -98,7 +100,7 @@ class zpSimpleSpam  {
 		$list = strtolower($list);
 		$this->patternsToDieOn = explode(' ', $list);
 		$this->excessiveURLCount = getOption('Excessive_URL_count');
-		$die = 2;  // good comment until proven bad
+		$die = 2;	// good comment until proven bad
 		foreach (array($author, $email, $website, $body) as $check) {
 			if ($check) {
 				if (($num = substr_count($check, 'http://')) >= $this->excessiveURLCount) { // too many links
@@ -126,7 +128,7 @@ class zpSimpleSpam  {
 	function hasSpamPattern($text) {
 		$patterns = $this->patternsToDieOn;
 		foreach ($patterns as $pattern) {
-			if (preg_match('|'.preg_quote(trim($pattern),'/').'|i',$text)) {
+			if (preg_match('|' . preg_quote(trim($pattern), '/') . '|i', $text)) {
 				return true;
 			}
 		}
@@ -142,11 +144,11 @@ class zpSimpleSpam  {
 	function hasSpamWords($text) {
 		$words = $this->getWords($text);
 		$blacklist = $this->wordsToDieOn;
-		$intersect = array_intersect($blacklist , $words);
-		return $intersect ;
+		$intersect = array_intersect($blacklist, $words);
+		return $intersect;
 	}
 
-	function getWords($text, $notUnique=false) {
+	function getWords($text, $notUnique = false) {
 		if ($notUnique) {
 			return preg_split("/[\W]+/", strtolower(strip_tags($text)));
 		} else {

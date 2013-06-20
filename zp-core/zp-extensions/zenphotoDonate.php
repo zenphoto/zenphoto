@@ -5,12 +5,13 @@
  * @package plugins
  * @subpackage admin
  */
-
-$plugin_is_filter = 9|ADMIN_PLUGIN;
+$plugin_is_filter = 9 | ADMIN_PLUGIN;
 $plugin_description = gettext('Adds a Zenphoto donations block to the admin overview page.');
 $plugin_author = "Stephen Billard (sbillard)";
 
 zp_register_filter('admin_overview', 'zenphotoDonate::donate');
+
+setOptionDefault('zp_plugin_zenphotoDonate', $plugin_is_filter);
 
 class zenphotoDonate {
 
@@ -31,11 +32,11 @@ class zenphotoDonate {
 			</form>
 			<br class="clearall" />
 			<div style="padding-left:10px;">
-			<p><?php  echo gettext('Your support helps pay for the Zenphoto site server and helps development of Zenphoto. Thank you!'); ?></p>
+				<p><?php echo gettext('Your support helps pay for the Zenphoto site server and helps development of Zenphoto. Thank you!'); ?></p>
 			</div>
 		</div>
 		<?php
 	}
-}
 
+}
 ?>

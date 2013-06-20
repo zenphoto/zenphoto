@@ -1,4 +1,5 @@
 <?php
+
 /**
  * These functions have been removed from mainstream Zenphoto as they have been
  * supplanted.
@@ -20,31 +21,36 @@
 $plugin_description = gettext("Provides deprecated Zenphoto functions.");
 $plugin_notice = gettext("This plugin is <strong>NOT</strong> required for the Zenphoto distributed functions.");
 $option_interface = 'deprecated_functions';
-$plugin_is_filter = 9|CLASS_PLUGIN;
+$plugin_is_filter = 9 | CLASS_PLUGIN;
+
+setOption('zp_plugin_deprecated-functions', $plugin_is_filter); //	Yes, I know some people will be annoyed that this keeps coming back,
+//	but each release may deprecated new functions which would then just give
+//	(perhaps unseen) errors. Better the user should disable this once he knows
+//	his site is working.
 
 zp_register_filter('admin_utilities_buttons', 'deprecated_functions::button');
 
 class deprecated_functions {
 
-	var $internalFunctions = array (
-																	'getSearchURL',
-																	'printPasswordForm'
-																	);
+	var $internalFunctions = array(
+					'getSearchURL',
+					'printPasswordForm'
+	);
 	var $listed_functions = array();
 
 	function deprecated_functions() {
 		global $_internalFunctions;
 		$deprecated = file_get_contents(__FILE__);
-		$i = strpos($deprecated, '//'.' IMPORTANT:: place all deprecated functions below this line!!!');
+		$i = strpos($deprecated, '//' . ' IMPORTANT:: place all deprecated functions below this line!!!');
 		$deprecated = substr($deprecated, $i);
-		preg_match_all('/function\040+(.*)\040?\(.*\)\040?\{/',$deprecated,$functions);
-		$this->listed_functions = array_merge($functions[1],$this->internalFunctions);
+		preg_match_all('/function\040+(.*)\040?\(.*\)\040?\{/', $deprecated, $functions);
+		$this->listed_functions = array_merge($functions[1], $this->internalFunctions);
 		// remove the items from this class and notify function, leaving only the deprecated functions
-		foreach ($this->listed_functions as $key=>$funct) {
-			if ($funct == '_emitPluginScripts') {	// special case!!!!
+		foreach ($this->listed_functions as $key => $funct) {
+			if ($funct == '_emitPluginScripts') { // special case!!!!
 				unset($this->listed_functions[$key]);
 			} else {
-				setOptionDefault('deprecated_'.$funct,1);
+				setOptionDefault('deprecated_' . $funct, 1);
 			}
 		}
 	}
@@ -52,44 +58,47 @@ class deprecated_functions {
 	function getOptionsSupported() {
 		$list = array();
 		foreach ($this->listed_functions as $funct) {
-			$list[$funct] = 'deprecated_'.$funct;
+			$list[$funct] = 'deprecated_' . $funct;
 		}
-		return array(gettext('Functions')=>array('key' => 'deprecated_Function_list', 'type' => OPTION_TYPE_CHECKBOX_UL,
-												'checkboxes' => $list,
-												'desc' => gettext('Send the <em>deprecated</em> notification message if the function name is checked. Un-checking these boxes will allow you to continue using your theme without warnings while you upgrade its implementation.')));
+		return array(gettext('Functions') => array('key'				 => 'deprecated_Function_list', 'type'			 => OPTION_TYPE_CHECKBOX_UL,
+										'checkboxes' => $list,
+										'desc'			 => gettext('Send the <em>deprecated</em> notification message if the function name is checked. Un-checking these boxes will allow you to continue using your theme without warnings while you upgrade its implementation.')));
 	}
 
 	/*
 	 * used to provided deprecated function notification.
 	 */
+
 	static function notify($use) {
 		$traces = @debug_backtrace();
 		$fcn = $traces[1]['function'];
-		if (empty($fcn) || getOption('deprecated_'.$fcn)) {
-			if (empty($fcn)) $fcn = gettext('function');
-			if (!empty($use)) $use = ' '.$use;
+		if (empty($fcn) || getOption('deprecated_' . $fcn)) {
+			if (empty($fcn))
+				$fcn = gettext('function');
+			if (!empty($use))
+				$use = ' ' . $use;
 			if (isset($traces[1]['file']) && isset($traces[1]['line'])) {
 				$script = basename($traces[1]['file']);
 				$line = $traces[1]['line'];
 			} else {
 				$script = $line = gettext('unknown');
 			}
-			trigger_error(sprintf(gettext('%1$s (called from %2$s line %3$s) is deprecated'),$fcn,$script,$line).$use.'<br />'.sprintf(gettext('You can disable this error message by going to the <em>deprecated-functions</em> plugin options and un-checking <strong>%s</strong> in the list of functions.'.'<br />'),$fcn), E_USER_WARNING);
+			trigger_error(sprintf(gettext('%1$s (called from %2$s line %3$s) is deprecated'), $fcn, $script, $line) . $use . '<br />' . sprintf(gettext('You can disable this error message by going to the <em>deprecated-functions</em> plugin options and un-checking <strong>%s</strong> in the list of functions.' . '<br />'), $fcn), E_USER_WARNING);
 		}
 	}
 
 	static function button($buttons) {
 		$buttons[] = array(
-												'category'=>gettext('Development'),
-												'enable'=>true,
-												'button_text'=>gettext('Check deprecated use'),
-												'formname'=>'deprecated_functions.php',
-												'action'=>WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/deprecated_functions/check_for_deprecated.php',
-												'icon'=>'images/magnify.png',
-												'title'=>gettext("Searches PHP scripts for use of deprecated functions."),
-												'alt'=>gettext('Check for update'),
-												'hidden'=>'',
-												'rights'=> ADMIN_RIGHTS
+						'category'		 => gettext('Development'),
+						'enable'			 => true,
+						'button_text'	 => gettext('Check deprecated use'),
+						'formname'		 => 'deprecated_functions.php',
+						'action'			 => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated_functions/check_for_deprecated.php',
+						'icon'				 => 'images/magnify.png',
+						'title'				 => gettext("Searches PHP scripts for use of deprecated functions."),
+						'alt'					 => gettext('Check for update'),
+						'hidden'			 => '',
+						'rights'			 => ADMIN_RIGHTS
 		);
 		return $buttons;
 	}
@@ -102,7 +111,7 @@ class deprecated_functions {
  * @deprecated
  * @since 1.2.7
  */
-function getZenpageHitcounter($mode="",$obj=NULL) {
+function getZenpageHitcounter($mode = "", $obj = NULL) {
 	deprecated_functions::notify(gettext('Use getHitcounter().'));
 	return @call_user_func('getHitcounter');
 }
@@ -111,10 +120,11 @@ function getZenpageHitcounter($mode="",$obj=NULL) {
  * @deprecated
  * @since 1.2.7
  */
-function printImageRating($object=NULL) {
+function printImageRating($object = NULL) {
 	deprecated_functions::notify(gettext('Use printRating().'));
 	global $_zp_current_image;
-	if (is_null($object)) $object = $_zp_current_image;
+	if (is_null($object))
+		$object = $_zp_current_image;
 	printRating(3, $object);
 }
 
@@ -122,10 +132,11 @@ function printImageRating($object=NULL) {
  * @deprecated
  * @since 1.2.7
  */
-function printAlbumRating($object=NULL) {
+function printAlbumRating($object = NULL) {
 	deprecated_functions::notify(gettext('Use printRating().'));
 	global $_zp_current_album;
-	if (is_null($object)) $object = $_zp_current_album;
+	if (is_null($object))
+		$object = $_zp_current_album;
 	printRating(3, $object);
 }
 
@@ -136,6 +147,7 @@ function printAlbumRating($object=NULL) {
 function printImageEXIFData() {
 	deprecated_functions::notify(gettext('Use printImageMetadata().'));
 	if (isImageVideo()) {
+
 	} else {
 		printImageMetadata();
 	}
@@ -188,7 +200,7 @@ function getCommentTime($format = '%I:%M %p') {
  * @deprecated
  * @since 1.2.7
  */
-function hitcounter($option='image', $viewonly=false, $id=NULL) {
+function hitcounter($option = 'image', $viewonly = false, $id = NULL) {
 	deprecated_functions::notify(gettext('Use getHitcounter().'));
 	return @call_user_func('getHitcounter');
 }
@@ -209,7 +221,8 @@ function my_truncate_string($string, $length) {
 function getImageEXIFData() {
 	deprecated_functions::notify(gettext('Use getImageMetaData().'));
 	global $_zp_current_image;
-	if (is_null($_zp_current_image)) return false;
+	if (is_null($_zp_current_image))
+		return false;
 	return $_zp_current_image->getMetaData();
 }
 
@@ -217,7 +230,7 @@ function getImageEXIFData() {
  * @deprecated
  * @since 1.2.7
  */
-function zenpageHitcounter($option='pages', $viewonly=false, $id=NULL) {
+function zenpageHitcounter($option = 'pages', $viewonly = false, $id = NULL) {
 	deprecated_functions::notify(gettext('Use getHitcounter().'));
 	return @call_user_func('getHitcounter');
 }
@@ -249,16 +262,16 @@ function printAlbumPlace() {
  * @deprecated
  * @since 1.2.8
  */
-function printEditable($context, $field, $editable = NULL, $editclass = 'unspecified', $messageIfEmpty = true, $convertBR = false, $override = false, $label='') {
+function printEditable($context, $field, $editable = NULL, $editclass = 'unspecified', $messageIfEmpty = true, $convertBR = false, $override = false, $label = '') {
 	deprecated_functions::notify(gettext('No longer supported.'));
-	printField($context,$field,$convertBR,$override,$label);
+	printField($context, $field, $convertBR, $override, $label);
 }
 
 /**
  * @deprecated
  * @since 1.2.9
  */
-function rewrite_path_zenpage($rewrite='',$plain='') {
+function rewrite_path_zenpage($rewrite = '', $plain = '') {
 	deprecated_functions::notify(gettext('Use rewrite_path().'));
 	return rewrite_path($rewrite, $plain);
 }
@@ -270,7 +283,7 @@ function rewrite_path_zenpage($rewrite='',$plain='') {
 function getNewsImageTags() {
 	deprecated_functions::notify(gettext('Use object->getTags() method.'));
 	global $_zp_current_zenpage_news;
-	if(is_GalleryNewsType() && is_object($_zp_current_zenpage_news)) {
+	if (is_GalleryNewsType() && is_object($_zp_current_zenpage_news)) {
 		return $_zp_current_zenpage_news->getTags();
 	} else {
 		return false;
@@ -281,7 +294,7 @@ function getNewsImageTags() {
  * @deprecated
  * @since 1.2.9
  */
-function printNewsImageTags($option='links',$preText=NULL,$class='taglist',$separator=', ',$editable=TRUE) {
+function printNewsImageTags($option = 'links', $preText = NULL, $class = 'taglist', $separator = ', ', $editable = TRUE) {
 	deprecated_functions::notify(gettext('Use printTags().'));
 	printTags($option, $preText, $class, $separator);
 }
@@ -299,7 +312,7 @@ function getNumSubalbums() {
  * @deprecated
  * @since 1.2.9
  */
-function getAllSubalbums($param=NULL) {
+function getAllSubalbums($param = NULL) {
 	deprecated_functions::notify(gettext('Use getAllAlbums().'));
 	return getAllAlbums($param);
 }
@@ -314,15 +327,17 @@ function addPluginScript($script) {
 	$_zp_plugin_scripts[] = $script;
 
 	if (!function_exists('_emitPluginScripts')) {
+
 		function _emitPluginScripts() {
 			global $_zp_plugin_scripts;
 			if (is_array($_zp_plugin_scripts)) {
 				foreach ($_zp_plugin_scripts as $script) {
-					echo $script."\n";
+					echo $script . "\n";
 				}
 			}
 		}
-		zp_register_filter('theme_head','_emitPluginScripts');
+
+		zp_register_filter('theme_head', '_emitPluginScripts');
 	}
 }
 
@@ -339,11 +354,11 @@ function zenJavascript() {
  * @deprecated
  * @since 1.4.0
  */
-function normalizeColumns($albumColumns=NULL, $imageColumns=NULL) {
+function normalizeColumns($albumColumns = NULL, $imageColumns = NULL) {
 	deprecated_functions::notify(gettext('Use instead the theme options for images and albums per row.'), E_USER_NOTICE);
 	global $_firstPageImages;
-	setOption('albums_per_row',$albumColumns);
-	setOption('images_per_row',$imageColumns);
+	setOption('albums_per_row', $albumColumns);
+	setOption('images_per_row', $imageColumns);
 	setThemeColumns();
 	return $_firstPageImages;
 }
@@ -352,7 +367,7 @@ function normalizeColumns($albumColumns=NULL, $imageColumns=NULL) {
  * @deprecated
  * @since 1.4.0
  */
-function printParentPagesBreadcrumb($before='', $after='') {
+function printParentPagesBreadcrumb($before = '', $after = '') {
 	deprecated_functions::notify(gettext('Use printZenpageItemsBreadcrumb().'));
 	printZenpageItemsBreadcrumb($before, $after);
 }
@@ -382,13 +397,14 @@ function getSubCategories($catlink) {
  * @deprecated
  * @since 1.4.0
  */
-function inProtectedNewsCategory($articleobj=NULL,$checkProtection=true) {
+function inProtectedNewsCategory($articleobj = NULL, $checkProtection = true) {
 	deprecated_functions::notify(gettext('Use instead the Zenpage news class method inProtectedCategory().'), E_USER_NOTICE);
 	global $_zp_current_zenpage_news;
-	if(empty($articleobj) && !is_null($_zp_current_zenpage_news) && get_class($_zp_current_zenpage_news) == 'zenpagenews') {
+	if (empty($articleobj) && !is_null($_zp_current_zenpage_news) && get_class($_zp_current_zenpage_news) == 'zenpagenews') {
 		$articleobj = $_zp_current_zenpage_news;
 	}
-	if (!is_object($articleobj)) return false;
+	if (!is_object($articleobj))
+		return false;
 	return $articleobj->inProtectedCategory();
 	$categories = $articleobj->getCategories();
 }
@@ -397,10 +413,10 @@ function inProtectedNewsCategory($articleobj=NULL,$checkProtection=true) {
  * @deprecated
  * @since 1.4.0
  */
-function isProtectedNewsCategory($catlink='') {
+function isProtectedNewsCategory($catlink = '') {
 	deprecated_functions::notify(gettext('Use instead the Zenpage category class method isProtected().'), E_USER_NOTICE);
 	global $_zp_current_category;
-	if(empty($catlink) && !is_null($_zp_current_category)) {
+	if (empty($catlink) && !is_null($_zp_current_category)) {
 		$cat = $_zp_current_category;
 	} else {
 		$cat = new ZenpageCategory($catlink);
@@ -412,9 +428,9 @@ function isProtectedNewsCategory($catlink='') {
  * @deprecated
  * @since 1.4.0
  */
-function getParentNewsCategories($parentid,$initparents=true) {
+function getParentNewsCategories($parentid, $initparents = true) {
 	deprecated_functions::notify(gettext('Use instead the Zenpage category class method getParents().'), E_USER_NOTICE);
-	return getParentItems('categories',$parentid,$initparents);
+	return getParentItems('categories', $parentid, $initparents);
 }
 
 /**
@@ -462,19 +478,20 @@ function getCategorySortOrder($catlink) {
  * @deprecated
  * @since 1.4.0
  */
-function getParentPages(&$parentid,$initparents=true) {
+function getParentPages(&$parentid, $initparents = true) {
 	deprecated_functions::notify(gettext('Use instead the Zenpage page class method getParents().'), E_USER_NOTICE);
-	return getParentItems('pages',$parentid,$initparents);
+	return getParentItems('pages', $parentid, $initparents);
 }
 
 /**
  * @deprecated
  * @since 1.4.0
  */
-function isProtectedPage($pageobj=NULL) {
+function isProtectedPage($pageobj = NULL) {
 	deprecated_functions::notify(gettext('Use instead the Zenpage page class method isProtected().'), E_USER_NOTICE);
 	global $_zp_current_zenpage_page;
-	if (is_null($pageobj)) $pageobj = $_zp_current_zenpage_page;
+	if (is_null($pageobj))
+		$pageobj = $_zp_current_zenpage_page;
 	return $pageobj->checkforGuest() != 'zp_public_access';
 }
 
@@ -482,10 +499,11 @@ function isProtectedPage($pageobj=NULL) {
  * @deprecated
  * @since 1.4.0
  */
-function isMyPage($pageobj=NULL, $action) {
+function isMyPage($pageobj = NULL, $action) {
 	deprecated_functions::notify(gettext('Use instead the Zenpage category class method isMyItem().'), E_USER_NOTICE);
 	global $_zp_current_zenpage_page;
-	if (is_null($pageobj)) $pageobj = $_zp_current_zenpage_page;
+	if (is_null($pageobj))
+		$pageobj = $_zp_current_zenpage_page;
 	return $pageobj->isMyItem($action);
 }
 
@@ -593,16 +611,16 @@ function isSubNewsCategoryOf($catlink) {
  * @deprecated
  * @since 1.4.0
  */
-function printNewsReadMoreLink($readmore='') {
+function printNewsReadMoreLink($readmore = '') {
 	deprecated_functions::notify(gettext('Functionality is now included in getNewsContent(), printNewsContent() and getContentShorten() to properly cover custom shortening via TinyMCE <pagebreak>.'), E_USER_NOTICE);
 	$readmore = getNewsReadMore($readmore);
-	if(!empty($readmore)) {
-		if(is_NewsType("news")) {
+	if (!empty($readmore)) {
+		if (is_NewsType("news")) {
 			$newsurl = getNewsURL(getNewsTitleLink());
 		} else {
 			$newsurl = html_encode(getNewsTitleLink());
 		}
-		echo "<a href='".$newsurl."' title=\"".getBareNewsTitle()."\">".html_encode($readmore)."</a>";
+		echo "<a href='" . $newsurl . "' title=\"" . getBareNewsTitle() . "\">" . html_encode($readmore) . "</a>";
 	}
 }
 
@@ -610,9 +628,9 @@ function printNewsReadMoreLink($readmore='') {
  * @deprecated
  * @since 1.4.0
  */
-function getNewsContentShorten($articlecontent,$shorten,$shortenindicator='',$readmore='') {
+function getNewsContentShorten($articlecontent, $shorten, $shortenindicator = '', $readmore = '') {
 	deprecated_functions::notify(gettext('Use getContentShorten() instead. Note the read more url must be passed directly.'), E_USER_NOTICE);
-	return getContentShorten($articlecontent,$shorten,$shortenindicator,'');
+	return getContentShorten($articlecontent, $shorten, $shortenindicator, '');
 }
 
 /**
@@ -628,18 +646,20 @@ function checkForPassword($hint, $show) {
  * @deprecated
  * @since 1.4.0
  */
-function printAlbumMap($zoomlevel=NULL, $defaultmaptype=NULL, $width=NULL, $height=NULL, $text=NULL, $toggle=true, $id='googlemap', $firstPageImages=NULL, $mapselections=NULL, $addwiki=NULL, $background=NULL, $mapcontrol=NULL, $maptypecontrol=NULL, $customJS=NULL){
+function printAlbumMap($zoomlevel = NULL, $defaultmaptype = NULL, $width = NULL, $height = NULL, $text = NULL, $toggle = true, $id = 'googlemap', $firstPageImages = NULL, $mapselections = NULL, $addwiki = NULL, $background = NULL, $mapcontrol = NULL, $maptypecontrol = NULL, $customJS = NULL) {
 	deprecated_functions::notify(gettext('The google-maps plugin is deprecated. Convert to GoogleMap.'));
-	if (function_exists('printGoogleMap')) printGoogleMap($text, $id, $toggle, NULL, NULL);
+	if (function_exists('printGoogleMap'))
+		printGoogleMap($text, $id, $toggle, NULL, NULL);
 }
 
 /**
  * @deprecated
  * @since 1.4.0
  */
-function printImageMap($zoomlevel=NULL, $defaultmaptype=NULL, $width=NULL, $height=NULL, $text=NULL, $toggle=true, $id='googlemap', $mapselections=NULL, $addwiki=NULL, $background=NULL, $mapcontrol=NULL, $maptypecontrol=NULL, $customJS=NULL) {
+function printImageMap($zoomlevel = NULL, $defaultmaptype = NULL, $width = NULL, $height = NULL, $text = NULL, $toggle = true, $id = 'googlemap', $mapselections = NULL, $addwiki = NULL, $background = NULL, $mapcontrol = NULL, $maptypecontrol = NULL, $customJS = NULL) {
 	deprecated_functions::notify(gettext('The google-maps plugin is deprecated. Convert to GoogleMap.'));
-	if (function_exists('printGoogleMap')) printGoogleMap($text, $id, $toggle, NULL, NULL);
+	if (function_exists('printGoogleMap'))
+		printGoogleMap($text, $id, $toggle, NULL, NULL);
 }
 
 /**
@@ -685,15 +705,17 @@ function processExpired($table) {
  * @deprecated
  * @since 1.4.1
  */
-function getParentItems($mode='pages',&$parentid,$initparents=true) {
+function getParentItems($mode = 'pages', &$parentid, $initparents = true) {
 	deprecated_functions::notify(gettext('Use the method from either the ZenpagePage or the ZenpageCategory class instead.'));
 	global $_zp_current_zenpage_page, $_zp_current_category;
-	switch($mode) {
+	switch ($mode) {
 		case 'pages':
-			if(!is_null($_zp_current_zenpage_page))	return $_zp_current_zenpage_page->getParents();
+			if (!is_null($_zp_current_zenpage_page))
+				return $_zp_current_zenpage_page->getParents();
 			break;
 		case 'categories':
-			if(!is_null($_zp_current_category)) return $_zp_current_category->getParents();
+			if (!is_null($_zp_current_category))
+				return $_zp_current_category->getParents();
 			break;
 	}
 }
@@ -702,7 +724,7 @@ function getParentItems($mode='pages',&$parentid,$initparents=true) {
  * @deprecated
  * @since 1.4.1
  */
-function getPages($published=NULL) {
+function getPages($published = NULL) {
 	deprecated_functions::notify(gettext('Use the Zenpage class method instead.'));
 	global $_zp_zenpage;
 	return $_zp_zenpage->getPages($published);
@@ -712,84 +734,84 @@ function getPages($published=NULL) {
  * @deprecated
  * @since 1.4.1
  */
-function getArticles($articles_per_page='', $category='', $published=NULL,$ignorepagination=false,$sortorder="date", $sortdirection="desc",$sticky=true) {
+function getArticles($articles_per_page = '', $category = '', $published = NULL, $ignorepagination = false, $sortorder = "date", $sortdirection = "desc", $sticky = true) {
 	deprecated_functions::notify(gettext('Use the Zenpage class method instead.'));
 	global $_zp_zenpage, $_zp_current_category;
 	if (!empty($category)) {
 		$catobj = new ZenpageCategory($category);
-		return $catobj->getArticles($articles_per_page, $category, $published,$ignorepagination,$sortorder, $sortdirection,$sticky);
-	} elseif(in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
-		return $_zp_current_category->getArticles($articles_per_page, $category, $published,$ignorepagination,$sortorder, $sortdirection,$sticky);
+		return $catobj->getArticles($articles_per_page, $category, $published, $ignorepagination, $sortorder, $sortdirection, $sticky);
+	} elseif (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
+		return $_zp_current_category->getArticles($articles_per_page, $category, $published, $ignorepagination, $sortorder, $sortdirection, $sticky);
 	} else {
-		return $_zp_zenpage->getArticles($articles_per_page, $category, $published,$ignorepagination,$sortorder, $sortdirection,$sticky);
+		return $_zp_zenpage->getArticles($articles_per_page, $category, $published, $ignorepagination, $sortorder, $sortdirection, $sticky);
 	}
 }
-
 
 /**
  * @deprecated
  * @since 1.4.1
  */
-function countArticles($category='', $published='published',$count_subcat_articles=true) {
+function countArticles($category = '', $published = 'published', $count_subcat_articles = true) {
 	deprecated_functions::notify(gettext('Count the articles instead.'));
 	global $_zp_post_date;
-	if(zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
+	if (zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
 		$published = "all";
 	} else {
 		$published = "published";
 	}
-	$show="";
+	$show = "";
 	if (empty($category)) {
-		switch($published) {
+		switch ($published) {
 			case "published":
-				$show = " WHERE `show` = 1 AND date <= '".date('Y-m-d H:i:s')."'";
+				$show = " WHERE `show` = 1 AND date <= '" . date('Y-m-d H:i:s') . "'";
 				break;
 			case "unpublished":
-				$show = " WHERE `show` = 0 AND date <= '".date('Y-m-d H:i:s')."'";
+				$show = " WHERE `show` = 0 AND date <= '" . date('Y-m-d H:i:s') . "'";
 				break;
 			case "all":
 				$show = "";
 				break;
 		}
 		// date archive query addition
-		if(in_context(ZP_ZENPAGE_NEWS_DATE)) {
+		if (in_context(ZP_ZENPAGE_NEWS_DATE)) {
 			$postdate = $_zp_post_date;
-			if(empty($show)) {
+			if (empty($show)) {
 				$and = " WHERE ";
 			} else {
 				$and = " AND ";
 			}
-			$datesearch = $and."date LIKE '$postdate%'";
+			$datesearch = $and . "date LIKE '$postdate%'";
 		} else {
 			$datesearch = "";
 		}
-		$count = db_count('news',$show.$datesearch);
-			return $count;
+		$count = db_count('news', $show . $datesearch);
+		return $count;
 	} else {
 		$catobj = new ZenpageCategory($category);
-		switch($published) {
+		switch ($published) {
 			case "published":
-				$show = " AND news.show = 1 AND news.date <= '".date('Y-m-d H:i:s')."'";
+				$show = " AND news.show = 1 AND news.date <= '" . date('Y-m-d H:i:s') . "'";
 				break;
 			case "unpublished":
-				$show = " AND news.show = 0 AND news.date <= '".date('Y-m-d H:i:s')."'";
+				$show = " AND news.show = 0 AND news.date <= '" . date('Y-m-d H:i:s') . "'";
 				break;
 			case "all":
 				$show = "";
 				break;
 		}
-		if($count_subcat_articles) $subcats = $catobj->getSubCategories();
-		if($subcats && $count_subcat_articles) {
-			$cat = " (cat.cat_id = '".$catobj->getID()."'";
-			foreach($subcats as $subcat) {
+		if ($count_subcat_articles)
+			$subcats = $catobj->getSubCategories();
+		if ($subcats && $count_subcat_articles) {
+			$cat = " (cat.cat_id = '" . $catobj->getID() . "'";
+			foreach ($subcats as $subcat) {
 				$subcatobj = new ZenpageCategory($subcat);
-				$cat .= "OR cat.cat_id = '".$subcatobj->getID()."' ";
+				$cat .= "OR cat.cat_id = '" . $subcatobj->getID() . "' ";
 			}
 			$cat .= ") AND cat.news_id = news.id ";
 		} else {
-			$cat = " cat.cat_id = '".$catobj->getID()."' AND cat.news_id = news.id ";
+			$cat = " cat.cat_id = '" . $catobj->getID() . "' AND cat.news_id = news.id ";
 		}
-		$result = query_full_array("SELECT DISTINCT news.titlelink FROM ".prefix('news2cat')." as cat, ".prefix('news')." as news WHERE ".$cat.$show);
+		$result = query_full_array("SELECT DISTINCT news.titlelink FROM " . prefix('news2cat') . " as cat, " . prefix('news') . " as news WHERE " . $cat . $show);
 		$count = count($result);
 		return $count;
 	}
@@ -811,12 +833,11 @@ function getTotalArticles() {
  * @deprecated
  * @since 1.4.1
  */
-function getAllArticleDates($yearsonly=false) {
+function getAllArticleDates($yearsonly = false) {
 	deprecated_functions::notify(gettext('Use the Zenpage class method instead.'));
 	global $_zp_zenpage;
 	return $_zp_zenpage->getAllArticleDates($yearsonly);
 }
-
 
 /**
  * @deprecated
@@ -832,18 +853,17 @@ function getCurrentNewsPage() {
  * @deprecated
  * @since 1.4.1
  */
-function getCombiNews($articles_per_page='', $mode='',$published=NULL,$sortorder='',$sticky=true) {
+function getCombiNews($articles_per_page = '', $mode = '', $published = NULL, $sortorder = '', $sticky = true) {
 	deprecated_functions::notify(gettext('Use the Zenpage class method instead.'));
 	global $_zp_zenpage;
-	return $_zp_zenpage->getCombiNews($articles_per_page, $mode,$published,$sortorder,$sticky);
+	return $_zp_zenpage->getCombiNews($articles_per_page, $mode, $published, $sortorder, $sticky);
 }
-
 
 /**
  * @deprecated
  * @since 1.4.1
  */
-function countCombiNews($published=NULL) {
+function countCombiNews($published = NULL) {
 	deprecated_functions::notify(gettext('Use the Zenpage class method instead.'));
 	global $_zp_zenpage;
 	return $_zp_zenpage->countCombiNews($published);
@@ -859,7 +879,6 @@ function getCategoryLink($catname) {
 	return $_zp_zenpage->getCategoryLink($catname);
 }
 
-
 /**
  * @deprecated
  * @since 1.4.1
@@ -869,7 +888,6 @@ function getCategory($id) {
 	global $_zp_zenpage;
 	return $_zp_zenpage->getCategory($id);
 }
-
 
 /**
  * @deprecated
@@ -881,15 +899,15 @@ function getAllCategories() {
 	return $_zp_zenpage->getAllCategories();
 }
 
-
 /**
  * @deprecated
  * @since 1.4.1
  */
-function isProtectedAlbum($album=NULL) {
+function isProtectedAlbum($album = NULL) {
 	deprecated_functions::notify(gettext('Use the album class method <code>isProtected()</code> instead.'));
 	global $_zp_current_album;
-	if (is_null($album)) $album = $_zp_current_album;
+	if (is_null($album))
+		$album = $_zp_current_album;
 	return $album->isProtected();
 }
 
@@ -897,47 +915,46 @@ function isProtectedAlbum($album=NULL) {
  * @deprecated
  * @since 1.4.2
  */
-function getRSSHeaderLink($option, $linktext='', $lang='') {
+function getRSSHeaderLink($option, $linktext = '', $lang = '') {
 	deprecated_functions::notify(gettext('Use the template function <code>getRSSLink()</code> instead. NOTE: While this function gets a full html link <code>getRSSLink()</code> just returns the URL.'));
 	global $_zp_current_album;
 	$host = html_encode($_SERVER["HTTP_HOST"]);
-	$protocol = SERVER_PROTOCOL.'://';
+	$protocol = SERVER_PROTOCOL . '://';
 	if ($protocol == 'https_admin') {
 		$protocol = 'https://';
 	}
-	if(empty($lang)) {
+	if (empty($lang)) {
 		$lang = getOption("locale");
 	}
-	switch($option) {
+	switch ($option) {
 		case "Gallery":
 			if (getOption('RSS_album_image')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss&amp;lang=".$lang."\" />\n";
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"" . html_encode($linktext) . "\" href=\"" . $protocol . $host . WEBPATH . "/index.php?rss&amp;lang=" . $lang . "\" />\n";
 			}
 		case "Album":
 			if (getOption('RSS_album_image')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss&amp;albumtitle=".urlencode(getAlbumTitle())."&amp;albumname=".urlencode($_zp_current_album->getFolder())."&amp;lang=".$lang."\" />\n";
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"" . html_encode($linktext) . "\" href=\"" . $protocol . $host . WEBPATH . "/index.php?rss&amp;albumtitle=" . urlencode(getAlbumTitle()) . "&amp;albumname=" . urlencode($_zp_current_album->getFolder()) . "&amp;lang=" . $lang . "\" />\n";
 			}
 		case "Collection":
 			if (getOption('RSS_album_image')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss&amp;albumtitle=".urlencode(getAlbumTitle())."&amp;folder=".urlencode($_zp_current_album->getFolder())."&amp;lang=".$lang."\" />\n";
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"" . html_encode($linktext) . "\" href=\"" . $protocol . $host . WEBPATH . "/index.php?rss&amp;albumtitle=" . urlencode(getAlbumTitle()) . "&amp;folder=" . urlencode($_zp_current_album->getFolder()) . "&amp;lang=" . $lang . "\" />\n";
 			}
 		case "Comments":
 			if (getOption('RSS_comments')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss=comments&amp;lang=".$lang."\" />\n";
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"" . html_encode($linktext) . "\" href=\"" . $protocol . $host . WEBPATH . "/index.php?rss=comments&amp;lang=" . $lang . "\" />\n";
 			}
 		case "Comments-image":
 			if (getOption('RSS_comments')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss=comments&amp;id=".getImageID()."&amp;title=".urlencode(getImageTitle())."&amp;type=image&amp;lang=".$lang."\" />\n";
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"" . html_encode($linktext) . "\" href=\"" . $protocol . $host . WEBPATH . "/index.php?rss=comments&amp;id=" . getImageID() . "&amp;title=" . urlencode(getImageTitle()) . "&amp;type=image&amp;lang=" . $lang . "\" />\n";
 			}
 		case "Comments-album":
 			if (getOption('RSS_comments')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss=comments&amp;id=".getAlbumID()."&amp;title=".urlencode(getAlbumTitle())."&amp;type=album&amp;lang=".$lang."\" />\n";
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"" . html_encode($linktext) . "\" href=\"" . $protocol . $host . WEBPATH . "/index.php?rss=comments&amp;id=" . getAlbumID() . "&amp;title=" . urlencode(getAlbumTitle()) . "&amp;type=album&amp;lang=" . $lang . "\" />\n";
 			}
 		case "AlbumsRSS":
 			if (getOption('RSS_album_image')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss=comments&amp;lang=".$lang."&amp;albumsmode\" />\n";
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"" . html_encode($linktext) . "\" href=\"" . $protocol . $host . WEBPATH . "/index.php?rss=comments&amp;lang=" . $lang . "&amp;albumsmode\" />\n";
 			}
-
 	}
 }
 
@@ -945,41 +962,42 @@ function getRSSHeaderLink($option, $linktext='', $lang='') {
  * @deprecated
  * @since 1.4.2
  */
-function getZenpageRSSHeaderLink($option='', $categorylink='', $linktext='', $lang='') {
+function getZenpageRSSHeaderLink($option = '', $categorylink = '', $linktext = '', $lang = '') {
 	deprecated_functions::notify(gettext('Use the template function <code>getRSSLink()</code> instead. NOTE: While this function gets a full html link  <code>getRSSLink()</code> just returns the URL.'));
 	global $_zp_current_category;
 	$host = html_encode($_SERVER["HTTP_HOST"]);
-	$protocol = SERVER_PROTOCOL.'://';
+	$protocol = SERVER_PROTOCOL . '://';
 	if ($protocol == 'https_admin') {
 		$protocol = 'https://';
 	}
-	if(empty($lang)) {
+	if (empty($lang)) {
 		$lang = getOption("locale");
 	}
-	if($option == 'Category') {
-		if(!is_null($categorylink)) {
-			$categorylink = '&amp;category='.html_encode($categorylink);
-		} elseif(empty($categorylink) AND !is_null($_zp_current_category)) {
-			$categorylink = '&amp;category='.$_zp_current_category->getTitlelink();
+	if ($option == 'Category') {
+		if (!is_null($categorylink)) {
+			$categorylink = '&amp;category=' . html_encode($categorylink);
+		} elseif (empty($categorylink) AND !is_null($_zp_current_category)) {
+			$categorylink = '&amp;category=' . $_zp_current_category->getTitlelink();
 		} else {
 			$categorylink = '';
 		}
 	}
-	switch($option) {
+	switch ($option) {
 		case "News":
 			if (getOption('RSS_articles')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode(strip_tags($linktext))."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss=news&amp;lang=".$lang."\" />\n";
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"" . html_encode(strip_tags($linktext)) . "\" href=\"" . $protocol . $host . WEBPATH . "/index.php?rss=news&amp;lang=" . $lang . "\" />\n";
 			}
 		case "Category":
 			if (getOption('RSS_articles')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode(strip_tags($linktext))."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss=news&amp;lang=".$lang.$categorylink."\" />\n";
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"" . html_encode(strip_tags($linktext)) . "\" href=\"" . $protocol . $host . WEBPATH . "/index.php?rss=news&amp;lang=" . $lang . $categorylink . "\" />\n";
 			}
 		case "NewsWithImages":
 			if (getOption('RSS_articles')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode(strip_tags($linktext))."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss=news&amp;withimages&amp;lang=".$lang."\" />\n";
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"" . html_encode(strip_tags($linktext)) . "\" href=\"" . $protocol . $host . WEBPATH . "/index.php?rss=news&amp;withimages&amp;lang=" . $lang . "\" />\n";
 			}
 	}
 }
+
 /**
  * @deprecated
  * @since 1.4.2
@@ -993,12 +1011,12 @@ function generateCaptcha(&$img) {
  * @deprecated
  * @since 1.4.3
  */
-function printAlbumZip(){
+function printAlbumZip() {
 	deprecated_functions::notify(gettext('Use downloadList plugin <code>printDownloadLinkAlbumZip()</code>.'));
 	global $_zp_current_album;
-	setOption('zp_plugin_downloadList',20|ADMIN_PLUGIN|THEME_PLUGIN);
-	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/downloadList.php');
-	printDownloadLinkAlbumZip(gettext('Download a zip file of this album'),$_zp_current_album);
+	setOption('zp_plugin_downloadList', 20 | ADMIN_PLUGIN | THEME_PLUGIN);
+	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/downloadList.php');
+	printDownloadLinkAlbumZip(gettext('Download a zip file of this album'), $_zp_current_album);
 }
 
 /**
@@ -1008,7 +1026,7 @@ function printAlbumZip(){
 function printImageDiv() {
 	deprecated_functions::notify(gettext('Use printImageThumb().'));
 	if (!isset($_GET['sortable'])) {
-		echo '<a href="'.html_encode(getImageLinkURL()).'" title="'.html_encode(getImageTitle()).'">';
+		echo '<a href="' . html_encode(getImageLinkURL()) . '" title="' . html_encode(getImageTitle()) . '">';
 	}
 	printImageThumb(getImageTitle());
 	if (!isset($_GET['sortable'])) {
@@ -1022,7 +1040,8 @@ function printImageDiv() {
  */
 function getImageID() {
 	deprecated_functions::notify(gettext('Use $_zp_current_image->getID().'));
-	if (!in_context(ZP_IMAGE)) return false;
+	if (!in_context(ZP_IMAGE))
+		return false;
 	global $_zp_current_image;
 	return $_zp_current_image->getID();
 }
@@ -1033,9 +1052,10 @@ function getImageID() {
  */
 function printImageID() {
 	deprecated_functions::notify(gettext('Use echo "image_".$_zp_current_image->getID().'));
-	if (!in_context(ZP_IMAGE)) return false;
+	if (!in_context(ZP_IMAGE))
+		return false;
 	global $_zp_current_image;
-	echo "image_".getImageID();
+	echo "image_" . getImageID();
 }
 
 /**
@@ -1091,7 +1111,8 @@ function setImageCustomData($val) {
  */
 function getImageSortOrder() {
 	deprecated_functions::notify(gettext('Use object methods.'));
-	if (!in_context(ZP_IMAGE)) return false;
+	if (!in_context(ZP_IMAGE))
+		return false;
 	global $_zp_current_image;
 	return $_zp_current_image->getSortOrder();
 }
@@ -1102,7 +1123,8 @@ function getImageSortOrder() {
  */
 function printImageSortOrder() {
 	deprecated_functions::notify(gettext('Use echo $_zp_current_image->getSortOrder().'));
-	if (!in_context(ZP_IMAGE)) return false;
+	if (!in_context(ZP_IMAGE))
+		return false;
 	echo getImageSortOrder();
 }
 
@@ -1113,10 +1135,10 @@ function printImageSortOrder() {
 function getFirstImageURL() {
 	deprecated_functions::notify('');
 	global $_zp_current_album;
-	if (is_null($_zp_current_album)) return false;
+	if (is_null($_zp_current_album))
+		return false;
 	$firstimg = $_zp_current_album->getImage(0);
-	return rewrite_path("/" . pathurlencode($_zp_current_album->name) . "/" . urlencode($firstimg->filename) . IM_SUFFIX,
-											"/index.php?album=" . pathurlencode($_zp_current_album->name) . "&image=" . urlencode($firstimg->filename));
+	return rewrite_path("/" . pathurlencode($_zp_current_album->name) . "/" . urlencode($firstimg->filename) . IM_SUFFIX, "/index.php?album=" . pathurlencode($_zp_current_album->name) . "&image=" . urlencode($firstimg->filename));
 }
 
 /**
@@ -1126,10 +1148,10 @@ function getFirstImageURL() {
 function getLastImageURL() {
 	deprecated_functions::notify('');
 	global $_zp_current_album;
-	if (is_null($_zp_current_album)) return false;
+	if (is_null($_zp_current_album))
+		return false;
 	$lastimg = $_zp_current_album->getImage($_zp_current_album->getNumImages() - 1);
-	return rewrite_path("/" . pathurlencode($_zp_current_album->name) . "/" . urlencode($lastimg->filename) . IM_SUFFIX,
-											"/index.php?album=" . pathurlencode($_zp_current_album->name) . "&image=" . urlencode($lastimg->filename));
+	return rewrite_path("/" . pathurlencode($_zp_current_album->name) . "/" . urlencode($lastimg->filename) . IM_SUFFIX, "/index.php?album=" . pathurlencode($_zp_current_album->name) . "&image=" . urlencode($lastimg->filename));
 }
 
 /**
@@ -1143,7 +1165,7 @@ function getTheme(&$zenCSS, &$themeColor, $defaultColor) {
 	$zenCSS = $_zp_themeroot . '/styles/' . $themeColor . '.css';
 	$unzenCSS = str_replace(WEBPATH, '', $zenCSS);
 	if (!file_exists(SERVERPATH . internalToFilesystem($unzenCSS))) {
-		$zenCSS = $_zp_themeroot. "/styles/" . $defaultColor . ".css";
+		$zenCSS = $_zp_themeroot . "/styles/" . $defaultColor . ".css";
 		return ($themeColor == '');
 	} else {
 		return true;
@@ -1154,7 +1176,7 @@ function getTheme(&$zenCSS, &$themeColor, $defaultColor) {
  * @deprecated
  * @since 1.4.5
  */
-function printLatestZenpageComments($number, $shorten='123', $id='showlatestcomments',$type="all",$itemID="") {
+function printLatestZenpageComments($number, $shorten = '123', $id = 'showlatestcomments', $type = "all", $itemID = "") {
 	deprecated_functions::notify(gettext('use printLatestComments($number, $shorten, $type, $itemID, $id);'));
 	printLatestComments($number, $shorten, $type, $itemID, $id);
 }
@@ -1163,18 +1185,20 @@ function printLatestZenpageComments($number, $shorten='123', $id='showlatestcomm
  * @deprecated
  * @since 1.4.5
  */
-function printCaptcha($preText='', $midText='', $postText='') {
+function printCaptcha($preText = '', $midText = '', $postText = '') {
 	global $_zp_captcha;
 	deprecated_functions::notify(gettext('use $_zp_captcha->getCaptcha() and format the results as desired.'));
 	if ($_zp_captcha && getOption('Use_Captcha')) {
 		$captcha = $_zp_captcha->getCaptcha(gettext("Enter CAPTCHA <strong>*</strong>"));
-		if (isset($captcha['hidden'])) echo $captcha['hidden'];
+		if (isset($captcha['hidden']))
+			echo $captcha['hidden'];
 		echo $preText;
 		if (isset($captcha['input'])) {
 			echo $captcha['input'];
 			echo $midText;
 		}
-		if (isset($captcha['html'])) echo $captcha['html'];
+		if (isset($captcha['html']))
+			echo $captcha['html'];
 		echo $postText;
 	}
 }
@@ -1183,10 +1207,11 @@ function printCaptcha($preText='', $midText='', $postText='') {
  * @deprecated
  * @since 1.4.5
  */
-function printField($context, $field, $convertBR = NULL, $override = false, $label='') {
+function printField($context, $field, $convertBR = NULL, $override = false, $label = '') {
 	deprecated_functions::notify(gettext('Front end editing is not supported. Use the property specific methods.'));
-	if (is_null($convertBR)) $convertBR = !getOption('zp_plugin_tiny_mce');
-	switch($context) {
+	if (is_null($convertBR))
+		$convertBR = !getOption('zp_plugin_tiny_mce');
+	switch ($context) {
 		case 'image':
 			global $_zp_current_image;
 			$object = $_zp_current_image;
@@ -1204,11 +1229,11 @@ function printField($context, $field, $convertBR = NULL, $override = false, $lab
 			$object = $_zp_current_zenpage_news;
 			break;
 		default:
-			trigger_error(sprintf(gettext('printField() invalid function call, context %X.'),$context), E_USER_NOTICE);
+			trigger_error(sprintf(gettext('printField() invalid function call, context %X.'), $context), E_USER_NOTICE);
 			return false;
 	}
 	if (!$field) {
-		trigger_error(sprintf(gettext('printField() invalid function call, field:%s.'),$field), E_USER_NOTICE);
+		trigger_error(sprintf(gettext('printField() invalid function call, field:%s.'), $field), E_USER_NOTICE);
 		return false;
 	}
 	if (!is_object($object)) {
@@ -1228,44 +1253,47 @@ function printField($context, $field, $convertBR = NULL, $override = false, $lab
 		$text = str_replace("\n", "<br />", $text);
 	}
 
-	if (!empty($text)) echo $label;
-	echo  $text;
-
+	if (!empty($text))
+		echo $label;
+	echo $text;
 }
 
 /**
  * @deprecated
  * @since 1.4.5
  */
-function getZenpageRSSLink($option='News', $categorylink='', $lang=NULL) {
+function getZenpageRSSLink($option = 'News', $categorylink = '', $lang = NULL) {
 	deprecated_functions::notify(gettext('use getRSSLink($option,$lang,$categorylink).'));
-	return getRSSLink($option,$lang,$categorylink);
-}
-/**
- * @deprecated
- * @since 1.4.5
- */
-function printZenpageRSSLink($option='News', $categorylink='', $prev='', $linktext='', $next='', $printIcon=true, $class=null, $lang=NULL) {
-	deprecated_functions::notify(gettext('use printRSSLink($option, $prev, $linktext, $next, $printIcon, $class, $lang, categoryLink).'));
-	if (class_exists('RSS')) printRSSLink($option, $prev, $linktext, $next, $printIcon, $class, $lang, categoryLink);
-}
-/**
- * @deprecated
- * @since 1.4.5
- */
-function printZenpageRSSHeaderLink($option='News',$categorylink='',$linktext='',$lang=null) {
-	deprecated_functions::notify(gettext('use printRSSHeaderLink($option, $linktext, $lang, $categorylink).'));
-	if (class_exists('RSS')) printRSSHeaderLink($option, $linktext, $lang, $categorylink);
+	return getRSSLink($option, $lang, $categorylink);
 }
 
 /**
  * @deprecated
  * @since 1.4.5
  */
-function printAdminToolbox($id='admin', $customDIV=false) {
+function printZenpageRSSLink($option = 'News', $categorylink = '', $prev = '', $linktext = '', $next = '', $printIcon = true, $class = null, $lang = NULL) {
+	deprecated_functions::notify(gettext('use printRSSLink($option, $prev, $linktext, $next, $printIcon, $class, $lang, categoryLink).'));
+	if (class_exists('RSS'))
+		printRSSLink($option, $prev, $linktext, $next, $printIcon, $class, $lang, categoryLink);
+}
+
+/**
+ * @deprecated
+ * @since 1.4.5
+ */
+function printZenpageRSSHeaderLink($option = 'News', $categorylink = '', $linktext = '', $lang = null) {
+	deprecated_functions::notify(gettext('use printRSSHeaderLink($option, $linktext, $lang, $categorylink).'));
+	if (class_exists('RSS'))
+		printRSSHeaderLink($option, $linktext, $lang, $categorylink);
+}
+
+/**
+ * @deprecated
+ * @since 1.4.5
+ */
+function printAdminToolbox($id = 'admin', $customDIV = false) {
 	deprecated_functions::notify(gettext('This feature is now done by a "theme_body_close" filter. You can remove the function call.'));
 }
-
 
 /**
  * @deprecated
@@ -1274,6 +1302,5 @@ function printAdminToolbox($id='admin', $customDIV=false) {
 function printSlideShowJS() {
 	deprecated_functions::notify(gettext('This feature is now done by a "theme_head" filter. You can remove the function call.'));
 }
-
 
 ?>
