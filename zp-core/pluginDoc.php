@@ -73,7 +73,6 @@ if (!defined('OFFSET_PATH')) {
 			unset($content_macros[$macro]);
 		}
 	}
-	var_dump($content_macros);
 
 	$pluginStream = @file_get_contents($pluginToBeDocPath);
 	$i = strpos($pluginStream, '/*');
