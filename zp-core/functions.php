@@ -2545,7 +2545,7 @@ class _zp_captcha {
 	function getCaptcha($prompt) {
 		global $_zp_HTML_cache;
 		if (is_object($_zp_HTML_cache)) { //	don't cache captch
-			$_zp_HTML_cache->abortHTMLCache();
+			$_zp_HTML_cache->disable();
 		}
 		return array('input'	 => NULL, 'html'	 => '<p class="errorbox">' . gettext('No captcha handler is enabled.') . '</p>', 'hidden' => '');
 	}
