@@ -1,9 +1,10 @@
 <?php
+
 /**
  * i.php: Zenphoto image processor
  * All *uncached* image requests go through this file
  * (As of 1.0.8 images are requested directly from the cache if they exist)
- *******************************************************************************
+ * ******************************************************************************
  * URI Parameters:
  *   s  - size (logical): Based on config, makes an image of "size s."
  *   h  - height (explicit): Image will be resized to h pixels high, w is calculated.
@@ -23,24 +24,24 @@
  * - One of s, h, or w _must_ be specified; the others are optional.
  * - If more than one of s, h, or w are specified, s takes priority, then w+h:
  * - If none of s, h, or w are specified, the original image is returned.
- *******************************************************************************
+ * ******************************************************************************
  * @package core
  */
-
 // force UTF-8 Ø
 
 
-if (!defined('OFFSET_PATH')) define('OFFSET_PATH', 2);
-require_once(dirname(__FILE__).'/functions-basic.php');
-require_once(dirname(__FILE__).'/functions-image.php');
+if (!defined('OFFSET_PATH'))
+	define('OFFSET_PATH', 2);
+require_once(dirname(__FILE__) . '/functions-basic.php');
+require_once(dirname(__FILE__) . '/functions-image.php');
 
 $debug = isset($_GET['debug']);
 
 // Check for minimum parameters.
 if (!isset($_GET['a']) || !isset($_GET['i'])) {
 	if (TEST_RELEASE) {
-		debugLogVar('i.php too few arguments _GET',$_GET);
-		debugLogVar('i.php too few arguments _SERVER',$_SERVER);
+		debugLogVar('i.php too few arguments _GET', $_GET);
+		debugLogVar('i.php too few arguments _SERVER', $_SERVER);
 	}
 	imageError('404 Not Found', gettext("Too few arguments! Image not found."), 'err-imagenotfound.png');
 }
@@ -55,7 +56,7 @@ $album = sanitize_path($ralbum);
 $image = sanitize_path($rimage);
 $theme = themeSetup(filesystemToInternal($album)); // loads the theme based image options.
 if (getOption('secure_image_processor')) {
-	require_once(dirname(__FILE__).'/functions.php');
+	require_once(dirname(__FILE__) . '/functions.php');
 	$albumobj = newAlbum(filesystemToInternal($album));
 	if (!$albumobj->checkAccess()) {
 		imageError('403 Forbidden', gettext("Forbidden(1)"));
@@ -65,13 +66,13 @@ if (getOption('secure_image_processor')) {
 $args = getImageArgs($_GET);
 $adminrequest = $args[12];
 
-if ($forbidden =  getOption('image_processor_flooding_protection') && (!isset($_GET['check']) || $_GET['check']!=sha1(HASH_SEED.serialize($args)))) {
+if ($forbidden = getOption('image_processor_flooding_protection') && (!isset($_GET['check']) || $_GET['check'] != sha1(HASH_SEED . serialize($args)))) {
 	// maybe it was from the tinyZenpage javascript which does not know better!
 	zp_session_start();
 	$forbidden = !isset($_SESSION['adminRequest']) || $_SESSION['adminRequest'] != @$_COOKIE['zp_user_auth'];
 }
 
-if ( !isset($_GET['s']) && !isset($_GET['w']) && !isset($_GET['h'])) {
+if (!isset($_GET['s']) && !isset($_GET['w']) && !isset($_GET['h'])) {
 	// No image parameters specified
 	if (getOption('album_folder_class') !== 'external') {
 		header("Location: " . getAlbumFolder(FULLWEBPATH) . pathurlencode(filesystemToInternal($album)) . "/" . rawurlencode(filesystemToInternal($image)));
@@ -79,25 +80,27 @@ if ( !isset($_GET['s']) && !isset($_GET['w']) && !isset($_GET['h'])) {
 	}
 }
 
-$args = getImageParameters($args,filesystemToInternal($album));
+$args = getImageParameters($args, filesystemToInternal($album));
 list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;
-if (DEBUG_IMAGE) debugLog("i.php($ralbum, $rimage): \$size=$size, \$width=$width, \$height=$height, \$cw=$cw, \$ch=$ch, \$cx=$cx, \$cy=$cy, \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$thumbstandin=$thumbstandin, \$passedWM=$passedWM, \$adminrequest=$adminrequest, \$effects=$effects");
+if (DEBUG_IMAGE)
+	debugLog("i.php($ralbum, $rimage): \$size=$size, \$width=$width, \$height=$height, \$cw=$cw, \$ch=$ch, \$cx=$cx, \$cy=$cy, \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$thumbstandin=$thumbstandin, \$passedWM=$passedWM, \$adminrequest=$adminrequest, \$effects=$effects");
 $allowWatermark = !$thumb && !$adminrequest;
 
 // Construct the filename to save the cached image.
 $newfilename = getImageCacheFilename(filesystemToInternal($album), filesystemToInternal($image), $args);
 $newfile = SERVERCACHE . $newfilename;
-if (trim($album)=='') {
+if (trim($album) == '') {
 	$imgfile = ALBUM_FOLDER_SERVERPATH . $image;
 } else {
-	$imgfile = ALBUM_FOLDER_SERVERPATH . $album.'/'.$image;
+	$imgfile = ALBUM_FOLDER_SERVERPATH . $album . '/' . $image;
 }
 
-if ($debug) imageDebug($album, $image, $args, $imgfile);
+if ($debug)
+	imageDebug($album, $image, $args, $imgfile);
 
 
 /** Check for possible problems ***********
- ******************************************/
+ * **************************************** */
 // Make sure the cache directory is writable, attempt to fix. Issue a warning if not fixable.
 if (!is_dir(SERVERCACHE)) {
 	@mkdir(SERVERCACHE, FOLDER_MOD);
@@ -111,17 +114,18 @@ if (!is_writable(SERVERCACHE)) {
 		imageError('404 Not Found', gettext("The cache directory is not writable! Attempts to chmod didn't work."), 'err-cachewrite.png');
 }
 if (!file_exists($imgfile)) {
-	if (isset($_GET['z'])) {	//	flagged as a special image
+	if (isset($_GET['z'])) { //	flagged as a special image
 		$args[3] = $args[4] = 0;
-		$args[5] = 1;    // full crops for these default images
+		$args[5] = 1; // full crops for these default images
 		$args[9] = NULL;
-		if (DEBUG_IMAGE) debugLog("Transient image:$rimage=>$newfile");
-		$imgfile = SERVERPATH .'/'.sanitize_path($_GET['z']);
+		if (DEBUG_IMAGE)
+			debugLog("Transient image:$rimage=>$newfile");
+		$imgfile = SERVERPATH . '/' . sanitize_path($_GET['z']);
 	}
 	if (!file_exists($imgfile)) {
-		header("HTTP/1.0 404 Not Found");
-		header("Status: 404 Not Found");
-		imageError('404 Not Found', sprintf(gettext("Image not found; file %s does not exist."),filesystemToInternal($image)), 'err-imagenotfound.png');
+		if (DEBUG_IMAGE)
+			debugLogVar('image not found', $args);
+		imageError('404 Not Found', sprintf(gettext("Image not found; file %s does not exist."), filesystemToInternal($image)), 'err-imagenotfound.png');
 	}
 }
 
@@ -129,7 +133,7 @@ if (!file_exists($imgfile)) {
 // Skip this for safe_mode, where we can't write to directories we create!
 if (!SAFE_MODE) {
 	$albumdirs = getAlbumArray($album, true);
-	foreach($albumdirs as $dir) {
+	foreach ($albumdirs as $dir) {
 		$dir = internalToFilesystem($dir);
 		$dir = SERVERCACHE . '/' . $dir;
 		if (!is_dir($dir)) {
@@ -146,7 +150,8 @@ $fmt = filemtime($imgfile);
 if (file_exists($newfile) & !$adminrequest) {
 	if (filemtime($newfile) >= filemtime($imgfile)) {
 		$process = false;
-		if (DEBUG_IMAGE) debugLog("Cache file valid");
+		if (DEBUG_IMAGE)
+			debugLog("Cache file valid");
 	}
 }
 
@@ -155,18 +160,18 @@ if ($process) { // If the file hasn't been cached yet, create it.
 		imageError('403 Forbidden', gettext("Forbidden(2)"));
 	}
 
-	$iMutex = new Mutex('i',getOption('imageProcessorConcurrency'));
-	$iMutex-> lock();
+	$iMutex = new Mutex('i', getOption('imageProcessorConcurrency'));
+	$iMutex->lock();
 	$result = cacheImage($newfilename, $imgfile, $args, $allowWatermark, $theme, $album);
 	$iMutex->unlock();
 
 	if (!$result) {
-		imageError('404 Not Found', sprintf(gettext('Image processing of %s resulted in a fatal error.'),filesystemToInternal($image)));
+		imageError('404 Not Found', sprintf(gettext('Image processing of %s resulted in a fatal error.'), filesystemToInternal($image)));
 	}
 	$fmt = filemtime($newfile);
 }
 $protocol = FULLWEBPATH;
-$path = $protocol . '/'.CACHEFOLDER . pathurlencode(imgSrcURI($newfilename));
+$path = $protocol . '/' . CACHEFOLDER . pathurlencode(imgSrcURI($newfilename));
 
 if (!$debug) {
 	// ... and redirect the browser to it.
@@ -183,16 +188,16 @@ if (!$debug) {
 		case 'jpeg':
 			break;
 		default:
-			imageError(405, 'Method Not Allowed', sprintf(gettext("Suffix Not Allowed: %s"),filesystemToInternal(basename($newfilename))));
+			imageError(405, 'Method Not Allowed', sprintf(gettext("Suffix Not Allowed: %s"), filesystemToInternal(basename($newfilename))));
 	}
 	if (OPEN_IMAGE_CACHE) {
-		header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $fmt).' GMT');
-		header('Content-Type: image/'.$suffix);
+		header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $fmt) . ' GMT');
+		header('Content-Type: image/' . $suffix);
 		header('Location: ' . $path, true, 301);
 	} else {
 		$fp = fopen($newfile, 'rb');
 		// send the right headers
-		header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
+		header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 		header("Content-Type: image/$suffix");
 		header("Content-Length: " . filesize($newfile));
 		// dump the picture and stop the script
@@ -200,7 +205,6 @@ if (!$debug) {
 		fclose($fp);
 	}
 } else {
-	echo "\n<p>Image: <img src=\"" . $path ."\" /></p>";
+	echo "\n<p>Image: <img src=\"" . $path . "\" /></p>";
 }
-
 ?>
