@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This is a shell plugin for SPAM filtering. It does almost nothing, but serves as the template
  * for more robust SPAM filters.
@@ -6,17 +7,17 @@
  * @package plugins
  * @subpackage spam
  */
-
-$plugin_is_filter = 5|CLASS_PLUGIN;
+$plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext("Trivial SPAM filter.");
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_disable = (isset($_zp_spamFilter) && !getoption('zp_plugin_trivialSpam'))?sprintf(gettext('Only one SPAM handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'),$_zp_spamFilter->name):'';
+$plugin_disable = (isset($_zp_spamFilter) && !getoption('zp_plugin_trivialSpam')) ? sprintf(gettext('Only one SPAM handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), $_zp_spamFilter->name) : '';
 
 $option_interface = 'zpTrivialSpam';
 
 if ($plugin_disable) {
 	setOption('zp_plugin_trivialSpam', 0);
 } else {
+	setOptionDefault('zp_plugin_trivialSpam', $plugin_is_filter);
 	$_zp_spamFilter = new zpTrivialSpam();
 }
 
@@ -27,7 +28,7 @@ if ($plugin_disable) {
  * on the commented object.
  *
  */
-class zpTrivialSpam  {
+class zpTrivialSpam {
 
 	var $name = 'trivialSpam';
 
@@ -57,26 +58,27 @@ class zpTrivialSpam  {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		return array(gettext('Action') => array('key' => 'spamFilter_none_action', 'type' => OPTION_TYPE_SELECTOR,
-										'selections' => array(gettext('pass') => 'pass', gettext('moderate') => 'moderate', gettext('reject') => 'reject'),
-										'desc' => gettext('This action will be taken for all messages.')));
+		return array(gettext('Action') => array('key'				 => 'spamFilter_none_action', 'type'			 => OPTION_TYPE_SELECTOR,
+										'selections' => array(gettext('pass')			 => 'pass', gettext('moderate')	 => 'moderate', gettext('reject')		 => 'reject'),
+										'desc'			 => gettext('This action will be taken for all messages.')));
 	}
 
- 	/**
- 	 * Handles custom formatting of options for Admin
- 	 *
- 	 * @param string $option the option name of the option to be processed
- 	 * @param mixed $currentValue the current value of the option (the "before" value)
- 	 */
+	/**
+	 * Handles custom formatting of options for Admin
+	 *
+	 * @param string $option the option name of the option to be processed
+	 * @param mixed $currentValue the current value of the option (the "before" value)
+	 */
 	function handleOption($option, $currentValue) {
+
 	}
 
 	/**
 	 * The function for processing a message to see if it might be SPAM
-   *       returns:
-   *         0 if the message is SPAM
-   *         1 if the message might be SPAM (it will be marked for moderation)
-   *         2 if the message is not SPAM
+	 *       returns:
+	 *         0 if the message is SPAM
+	 *         1 if the message might be SPAM (it will be marked for moderation)
+	 *         2 if the message is not SPAM
 	 *
 	 * @param string $author Author field from the posting
 	 * @param string $email Email field from the posting
@@ -88,7 +90,7 @@ class zpTrivialSpam  {
 	 * @return int
 	 */
 	function filterMessage($author, $email, $website, $body, $receiver, $ip) {
-		if (zp_loggedin($receiver->manage_rights) || $receiver->isMyItem($receiver->manage_some_rights)) {	//	trust "managers"
+		if (zp_loggedin($receiver->manage_rights) || $receiver->isMyItem($receiver->manage_some_rights)) { //	trust "managers"
 			return 2;
 		}
 		$strategy = getOption('spamFilter_none_action');
@@ -98,6 +100,7 @@ class zpTrivialSpam  {
 		}
 		return 2;
 	}
+
 }
 
 ?>

@@ -2117,7 +2117,7 @@ function applyMacros($text) {
 	$regex = '/\[(' . implode('|', array_keys($content_macros)) . ')(\]|\s+.*\])/i';
 	if (preg_match_all($regex, $text, $matches)) {
 		foreach ($matches[1] as $key => $macroname) {
-			$p = trim(str_replace("\xC2\xA0", ' ', substr(strip_tags($matches[2][$key]), 0, -1))); //	remove hard spaces
+			$p = trim(utf8::sanitize(str_replace("\xC2\xA0", ' ', substr(strip_tags($matches[2][$key]), 0, -1)))); //	remove hard spaces, invalid characters, and trailing bracket
 			$p = preg_replace("~\s+=\s+(?=(?:[^\"]*+\"[^\"]*+\")*+[^\"]*+$)~", "=", $p); //	deblank assignment operator
 			preg_match_all("~'[^'\"]++'|\"[^\"]++\"|[^\s]++~", $p, $l); //	parse the parameter list
 			$parms = array();
@@ -2242,34 +2242,7 @@ function applyMacros($text) {
 function getMacros() {
 	global $_zp_content_macros;
 	if (is_null($_zp_content_macros)) {
-		$_zp_content_macros = array(
-						'CODEBLOCK'				 => array('class'	 => 'procedure',
-										'params' => array('int'),
-										'value'	 => 'printCodeblock',
-										'owner'	 => 'Zenphoto core',
-										'desc'	 => gettext('Places codeblock number <code>%1</code> in the content where the macro exists.')),
-						'PAGE'						 => array('class'	 => 'function',
-										'params' => array(),
-										'value'	 => 'getCurrentPage',
-										'owner'	 => 'Zenphoto core',
-										'desc'	 => gettext('Prints the current page number.')),
-						'ZENPHOTO_VERSION' => array('class'	 => 'constant',
-										'params' => array(),
-										'value'	 => ZENPHOTO_VERSION,
-										'owner'	 => 'Zenphoto core',
-										'desc'	 => gettext('Prints the version of the Zenphoto installation.')),
-						'VAR_DUMP'				 => array('class'	 => 'procedure',
-										'params' => array('array'),
-										'value'	 => 'var_dump',
-										'owner'	 => 'Zenphoto core',
-										'desc'	 => gettext('Dump the contents of the parameter list.')),
-						'PAGELINK'				 => array('class'	 => 'expression',
-										'params' => array('string'),
-										'value'	 => 'getCustomPageURL($1);',
-										'owner'	 => 'Zenphoto core',
-										'desc'	 => gettext('Provides text for a link to a "custom" script page indicated by <code>%1</code>.'))
-		);
-		$_zp_content_macros = zp_apply_filter('content_macro', $_zp_content_macros);
+		$_zp_content_macros = zp_apply_filter('content_macro', array());
 	}
 	return $_zp_content_macros;
 }
