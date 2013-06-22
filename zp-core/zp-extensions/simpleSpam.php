@@ -18,7 +18,6 @@ $option_interface = 'zpSimpleSpam';
 if ($plugin_disable) {
 	setOption('zp_plugin_simpleSpam', 0);
 } else {
-	setOptionDefault('zp_plugin_simpleSpam', $plugin_is_filter);
 	$_zp_spamFilter = new zpSimpleSpam();
 }
 
@@ -100,7 +99,7 @@ class zpSimpleSpam {
 		$list = strtolower($list);
 		$this->patternsToDieOn = explode(' ', $list);
 		$this->excessiveURLCount = getOption('Excessive_URL_count');
-		$die = 2;	// good comment until proven bad
+		$die = 2; // good comment until proven bad
 		foreach (array($author, $email, $website, $body) as $check) {
 			if ($check) {
 				if (($num = substr_count($check, 'http://')) >= $this->excessiveURLCount) { // too many links

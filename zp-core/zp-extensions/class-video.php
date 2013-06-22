@@ -1,15 +1,11 @@
 <?php
 
 /**
- * This plugin handles <i>video</i> class images:
- * <ul>
- * 	<li>Audio (MP3,M4A,FLA)</li>
- * 	<li>video (MP4/M4V,FLV, plus Quicktime</li>
- * 	<li>3GP <i>if Quicktime is installed on the visitor system</i></li>
- * </ul>
  *
- * This plugin must always be enabled to use multimedia content.
-
+ * This plugin directly handles the <code>3gp</code> and <code>mov</code> <i>video</i>
+ * class images if if <i>Apple Quicktime</i> is installed on the visitor system.
+ * Other formats require a multimedia player to be enabled. The actual supported multimedia types may vary
+ * according to the player enabled.
  *
  * @author Stephen Billard (sbillard)
  * @package classes
@@ -19,19 +15,12 @@
 
 $plugin_is_filter = 9 | CLASS_PLUGIN;
 $plugin_description = gettext('The Zenphoto <em>audio-video</em> handler.');
-$plugin_notice = gettext('This plugin must always be enabled to use multimedia content. Note that you also need to enable a multimedia player. See the info of the player you use to see how it is configured.');
+$plugin_notice = gettext('This plugin must always be enabled to use multimedia content. Note that you should also enable a multimedia player. See the info of the player you use to see how it is configured.');
 $plugin_author = "Stephen Billard (sbillard)";
 setOptionDefault('zp_plugin_class-video', $plugin_is_filter);
 
-
-addPluginType('flv', 'Video');
-addPluginType('fla', 'Video');
 addPluginType('3gp', 'Video');
 addPluginType('mov', 'Video');
-addPluginType('mp3', 'Video');
-addPluginType('mp4', 'Video');
-addPluginType('m4v', 'Video');
-addPluginType('m4a', 'Video');
 $option_interface = 'VideoObject_Options';
 
 define('GETID3_INCLUDEPATH', SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/class-video/getid3/');
@@ -199,7 +188,7 @@ class Video extends Image {
 					break;
 			}
 			$imgfile = $path . '/' . THEMEFOLDER . '/' . internalToFilesystem($_zp_gallery->getCurrentTheme()) . '/images' . $img;
-			if (!file_exists($imgfile)) {	// first check if the theme has adefault image
+			if (!file_exists($imgfile)) { // first check if the theme has adefault image
 				$imgfile = $path . '/' . THEMEFOLDER . '/' . internalToFilesystem($_zp_gallery->getCurrentTheme()) . '/images/multimediaDefault.png';
 				if (!file_exists($imgfile)) { // if theme has a generic default image use it otherwise use the Zenphoto image
 					$imgfile = $path . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . substr(basename(__FILE__), 0, -4) . $img;
