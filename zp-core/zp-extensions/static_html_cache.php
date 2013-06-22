@@ -210,9 +210,8 @@ class static_html_cache {
 	function abortHTMLCache() {
 		if (!empty($this->pageCachePath)) {
 			$this->pageCachePath = NULL;
+			ob_end_flush();
 		}
-		ob_flush();
-		ob_end_clean();
 	}
 
 	/**
