@@ -23,15 +23,8 @@ $plugin_notice = gettext('This plugin must always be enabled to use multimedia c
 $plugin_author = "Stephen Billard (sbillard)";
 setOptionDefault('zp_plugin_class-video', $plugin_is_filter);
 
-
-addPluginType('flv', 'Video');
-addPluginType('fla', 'Video');
 addPluginType('3gp', 'Video');
 addPluginType('mov', 'Video');
-addPluginType('mp3', 'Video');
-addPluginType('mp4', 'Video');
-addPluginType('m4v', 'Video');
-addPluginType('m4a', 'Video');
 $option_interface = 'VideoObject_Options';
 
 define('GETID3_INCLUDEPATH', SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/class-video/getid3/');
@@ -199,7 +192,7 @@ class Video extends Image {
 					break;
 			}
 			$imgfile = $path . '/' . THEMEFOLDER . '/' . internalToFilesystem($_zp_gallery->getCurrentTheme()) . '/images' . $img;
-			if (!file_exists($imgfile)) {	// first check if the theme has adefault image
+			if (!file_exists($imgfile)) { // first check if the theme has adefault image
 				$imgfile = $path . '/' . THEMEFOLDER . '/' . internalToFilesystem($_zp_gallery->getCurrentTheme()) . '/images/multimediaDefault.png';
 				if (!file_exists($imgfile)) { // if theme has a generic default image use it otherwise use the Zenphoto image
 					$imgfile = $path . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . substr(basename(__FILE__), 0, -4) . $img;
