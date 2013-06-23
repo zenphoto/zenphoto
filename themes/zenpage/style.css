@@ -101,7 +101,7 @@ body {
 	width: 890px;
 	padding: 45px 25px 45px 25px;
 	background-color: white;
-	font-size: 14px;
+	font-size: 13px;
 	margin-left: 5px;
 }
 
@@ -114,21 +114,26 @@ body {
 	padding-top: 0.8em;
 	padding-left: 3.6em;
 	padding-right: 0em;
-	font-size: 1.2em;
+	font-size: 13px;
 	line-height: 1.6em;
 }
-
 #content-left h3, #content-left h2 {
-	font-size: 1.5em;
-	line-height: 1.1em;
+	font-size: 18px;
+	line-height: 18px;
 	margin-bottom: 0.3em;
 	font-weight: normal;
 	color: black;
 }
 
+#content-left h2 {
+	font-size: 20px;
+	line-height: 24px;
+	color: black;
+}
+
 /* "Show more results" link for search */
 #content-left h3 small {
-	font-size: 1em;
+	font-size: 13px;
 	font-weight: normal;
 	}
 
@@ -136,13 +141,13 @@ body {
 #content-left h4 {
 	margin-bottom: 10px;
 	font-weight: normal;
-	font-size: 1.2em;
+	font-size: 13px;
 }
 	
 
 
 #content-left p {
-	font-size: 1.1em;
+	font-size: 13px;
 	line-height: 1.5em;
 	margin-bottom: 1em;
 	clear: both;
@@ -170,7 +175,7 @@ body {
 
 .menu {
 	margin-top: 0em;
-	font-size: 1.3em;
+	font-size: 13px;
 	padding: 1em 0 0.8em 1em;
 	border-bottom: 1px dashed darkgray;
 	height: 100%;
@@ -316,7 +321,7 @@ blockquote {
 /* Page Navigation
 ------------------------------ */
 ul.pagelist {
-	font-size: 1em;
+	font-size: 13px;
 	clear: both;
 	padding: 0;
 	margin: 10px 0 10px 0;
@@ -473,7 +478,7 @@ ul.pagelist li.next {
 }
 
 #albums h3 {
-	font-size: 1.6em;
+	font-size: 15px;
 	letter-spacing: 0.1em;
 	padding: 0;
 	margin: 0px 0px 5px 0px;
@@ -487,7 +492,7 @@ ul.pagelist li.next {
 
 .album p {
 	line-height: 12px;
-	font-size: 11px;
+	font-size: 12px;
 	padding: 0px 0px 0px;
 	margin: 0px;
 }
@@ -517,9 +522,9 @@ ul.pagelist li.next {
 
 #image div {
 	display: block;
-	line-height: 1.6em;
+	line-height: 17px;
 	text-align: left;
-	font-size: 1.6em;
+	font-size: 13px;
 	}
 
 /* centering flowplayer 3 and jPlayer on image.php (and jplayer playlists elsewhere) */
@@ -538,7 +543,7 @@ ul.pagelist li.next {
 	border: 0px solid #D5E6EE;
 	background: transparent;
 	margin-right: 1em;
-	font-size: 1.4em; 
+	font-size: 13px; 
 }
 
 .imgnav .imgprevious a {
@@ -551,7 +556,7 @@ ul.pagelist li.next {
 	top: -40px;
 	left: 100px;
 	padding: 0;
-	font-size: 120%;
+	font-size: 13px;
 	text-decoration: none;
 	line-height: 180%;
 	color: #82996F;
@@ -580,7 +585,7 @@ ul.pagelist li.next {
 	top: -40px;
 	right: 100px;
 	padding: 0px 0;
-	font-size: 120%;
+	font-size: 13px;
 	text-decoration: none;
 	line-height: 180%;
 	color: #82996F;
@@ -674,7 +679,7 @@ cursor: pointer !important;
 	width: 155px;
 	height: 20px;
 	padding-top: 10px;
-	font-size: 1em;
+	font-size: 13px;
 	float: left;
 }
 
@@ -682,7 +687,7 @@ cursor: pointer !important;
 	width: 100px;
 	height: 20px;
 	padding-top: 10px;
-	font-size: 1em;
+	font-size: 13px;
 	float: right;
 	text-align: center;
 }
@@ -701,7 +706,7 @@ cursor: pointer !important;
 	width: 100px;
 	height: 20px;
 	padding-top: 10px;
-	font-size: 1em;
+	font-size: 13px;
 	float: right;
 	text-align: center;
 }
@@ -718,8 +723,8 @@ cursor: pointer !important;
 }
 
 #comments h3 {
-	font-size: 1.4em;
-	line-height: 1.6em;
+	font-size: 15px;
+	line-height: 17px;
 	margin-top: 0.5em;
 	margin-bottom: 0.5em;
 	letter-spacing: 0;
@@ -831,14 +836,14 @@ label:hover {
 	background: #fff;
 	z-index: 1001;
 	text-align: left;
-	font-size: 1.3em;
+	font-size: 13px;
 }
 
 #admin_data {
 	top: 0px;
 	padding-top: 20px;
 	z-index: 1000;
-	line-height: 1.6em;
+	line-height: 16px;
 }
 
 #admin h3 {
@@ -847,7 +852,7 @@ label:hover {
 	margin: 0;
 	padding: 0;
 	text-align: center;
-	font-size: 1.1em;
+	font-size: 11px;
 }
 
 #admin h3:hover {
@@ -870,7 +875,7 @@ label:hover {
 
 #search input.button {
 	padding: 4px;
-	font-size: 80%;
+	font-size: 13px;
 	border: 1px solid darkgray;
 	background-color: #f1f1f1; 
 }
@@ -934,13 +939,13 @@ ul.archive .year {
 	margin-top: 0px;
 	text-align: left;
 	font-weight: bold;
-	font-size: 1.2em;
+	font-size: 13px;
   margin-left: -30px;
   margin-right: 0px;
 }
 
 ul.archive .month {
-	font-size: 1em;
+	font-size: 13px;
 	list-style: none;
 	border-top: 0px solid #E6E6DF;
 	padding-top: 5px;
@@ -957,7 +962,7 @@ ul.archive .archive-active a {
 
 #archive h3 {
 	background-color: transparent;
-	font-size: 1.5em;
+	font-size: 15px;
 	letter-spacing: 0.1em;
 }
 
@@ -979,7 +984,7 @@ ul.archive .archive-active a {
 	background: #fff;
 	border-top: 3px solid #E6E6DF;
 	border-bottom: 3px solid #E6E6DF;
-	font-size: 18px;
+	font-size: 13px;
 	font-weight: bold;
 	text-align: left;
 }
@@ -998,7 +1003,7 @@ ul.archive .archive-active a {
 	border-right: 1px solid #FAA;
 	border-bottom: 5px solid #FAA;
 	margin-bottom: 10px;
-	font-size: 100%;
+	font-size: 13px;
 	color: #DD6666;
 }
 
@@ -1063,12 +1068,12 @@ hr {
 }
 
 .newstype {
-	font-size: 0.8em;
+	font-size: 11px;
 }
 
 .langselector {
 	margin-top: 0em;
-	font-size: 1.3em;
+	font-size: 13px;
 	padding: 2em 0em 0.8em 3em;
 	border-bottom: 0px dashed darkgray;
 	height: 100%;
@@ -1080,18 +1085,18 @@ hr {
 /* zenphoto/zenpage link
 ---------------------------*/
 #zen-part {
-	font-size: 1.7em;
+	font-size: 17px;
 	font-family: Arial, Helvetica, sans-serif;
 }
 
 #photo-part {
-	font-size: 0.9em;
+	font-size: 9px;
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: bold;
 }
 
 #IE-clear-part {
-	font-size: 12px;
+	font-size: 13px;
 	font-weight: normal;
 }
 
@@ -1123,7 +1128,7 @@ float: left;
 	border-top: 1px solid #eee;
 	border-left: 1px solid #eee;
 	font-family: "Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
-	font-size: 100%;
+	font-size: 13px;
 	line-height: 130%;
 	text-decoration: none;
 	font-weight: bold;
@@ -1294,7 +1299,7 @@ width: 24px;
 height: 16px;
 }
 .textobject {
-	font-size: 12px;
+	font-size: 13px;
 	line-height: 16px;
 	text-align: left !important;
 	text-decoration: none !important;
@@ -1309,7 +1314,7 @@ height: 16px;
 	border-color: #FFDEB5;
 	border-style: solid;
 	margin-bottom: 10px;
-	font-size: 100%;
+	font-size: 13px;
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -1322,7 +1327,7 @@ height: 16px;
 
 .notebox h2,.notebox strong {
 	color: #663300;
-	font-size: 100%;
+	font-size: 13px;
 	font-weight: bold;
 	margin-bottom: 1em;
 }
@@ -1339,7 +1344,7 @@ height: 16px;
 
 .messagebox h2 {
 	color: #006633;
-	font-size: 100%;
+	font-size: 15px;
 	font-weight: bold;
 	margin-bottom: 1em;
 }
@@ -1352,7 +1357,7 @@ height: 16px;
 	margin: 25px auto;
 	margin-top: 15%;
 	margin-left: 0 auto;
-	font-size: 100%;
+	font-size: 13px;
 	background: #F7F8F9;
 	border-top: 1px solid #BAC9CF;
 	border-left: 1px solid #BAC9CF;
@@ -1377,7 +1382,7 @@ height: 16px;
 #loginform input.textfield {
 	margin: 0px;
 	width:270px;
-	font-size: 100%;
+	font-size: 13px;
 	padding: 4px;
 }
 
@@ -1449,4 +1454,3 @@ clear: left !important;
 .clearright {
 clear: right !important;
 }
-
