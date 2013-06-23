@@ -1,15 +1,11 @@
 <?php
 
 /**
- * This plugin handles <i>video</i> class images:
- * <ul>
- * 	<li>Audio (MP3,M4A,FLA)</li>
- * 	<li>video (MP4/M4V,FLV, plus Quicktime</li>
- * 	<li>3GP <i>if Quicktime is installed on the visitor system</i></li>
- * </ul>
  *
- * This plugin must always be enabled to use multimedia content.
-
+ * This plugin directly handles the <code>3gp</code> and <code>mov</code> <i>video</i>
+ * class images if if <i>Apple Quicktime</i> is installed on the visitor system.
+ * Other formats require a multimedia player to be enabled. The actual supported multimedia types may vary
+ * according to the player enabled.
  *
  * @author Stephen Billard (sbillard)
  * @package classes
@@ -19,7 +15,7 @@
 
 $plugin_is_filter = 9 | CLASS_PLUGIN;
 $plugin_description = gettext('The Zenphoto <em>audio-video</em> handler.');
-$plugin_notice = gettext('This plugin must always be enabled to use multimedia content. Note that you also need to enable a multimedia player. See the info of the player you use to see how it is configured.');
+$plugin_notice = gettext('This plugin must always be enabled to use multimedia content. Note that you should also enable a multimedia player. See the info of the player you use to see how it is configured.');
 $plugin_author = "Stephen Billard (sbillard)";
 setOptionDefault('zp_plugin_class-video', $plugin_is_filter);
 
@@ -86,10 +82,6 @@ class Video extends Image {
 	 */
 	function __construct(&$album, $filename, $quiet = false) {
 		global $_zp_supported_images;
-		$alts = explode(',', getOption('zp_plugin_class-video_videoalt'));
-		foreach ($alts as $alt) {
-			$this->videoalt[] = trim(strtolower($alt));
-		}
 		$msg = false;
 		if (!is_object($album) || !$album->exists) {
 			$msg = gettext('Invalid video instantiation: Album does not exist');
@@ -103,6 +95,10 @@ class Video extends Image {
 			}
 			trigger_error($msg, E_USER_ERROR);
 			exitZP();
+		}
+		$alts = explode(',', getOption('zp_plugin_class-video_videoalt'));
+		foreach ($alts as $alt) {
+			$this->videoalt[] = trim(strtolower($alt));
 		}
 		$this->sidecars = $_zp_supported_images;
 		$this->video = true;
@@ -125,25 +121,20 @@ class Video extends Image {
 	 *
 	 */
 	function updateDimensions() {
-		global $_zp_flash_player;
+		global $_zp_multimedia_extension;
 		$ext = getSuffix($this->filename);
-		if (is_null($_zp_flash_player) || $ext == '3gp' || $ext == 'mov') {
-			switch ($ext) {
-				case '3gp':
-					$h = getOption('zp_plugin_class-video_3gp_h');
-					$w = getOption('zp_plugin_class-video_3gp_w');
-					break;
-				case 'mov':
-					$h = getOption('zp_plugin_class-video_mov_h');
-					$w = getOption('zp_plugin_class-video_mov_w');
-					break;
-				default:
-					$h = 320;
-					$w = 480;
-			}
-		} else {
-			$h = $_zp_flash_player->getVideoHeight($this);
-			$w = $_zp_flash_player->getVideoWidth($this);
+		switch ($ext) {
+			case '3gp':
+				$h = getOption('zp_plugin_class-video_3gp_h');
+				$w = getOption('zp_plugin_class-video_3gp_w');
+				break;
+			case 'mov':
+				$h = getOption('zp_plugin_class-video_mov_h');
+				$w = getOption('zp_plugin_class-video_mov_w');
+				break;
+			default:
+				$h = $_zp_multimedia_extension->getHeight($this);
+				$w = $_zp_multimedia_extension->getWidth($this);
 		}
 		$this->set('width', $w);
 		$this->set('height', $h);
@@ -323,24 +314,15 @@ class Video extends Image {
 	 * @return string
 	 */
 	function getBody($w = NULL, $h = NULL) {
-		global $_zp_flash_player;
+		global $_zp_multimedia_extension;
 		if (is_null($w))
 			$w = $this->getWidth();
 		if (is_null($h))
 			$h = $this->getHeight();
 		$ext = getSuffix($this->getFullImage());
 		switch ($ext) {
-			case 'flv':
-			case 'fla':
-			case 'mp3':
-			case 'mp4':
-			case 'm4v':
-			case 'm4a':
-				if (is_null($_zp_flash_player)) {
-					return '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/err-noflashplayer.png" alt="' . gettext('No flash player installed.') . '" />';
-				} else {
-					return $_zp_flash_player->getPlayerConfig($this->getFullImage(FULLWEBPATH), $this->getTitle(), '', $w, $h);
-				}
+			default:
+				return $_zp_multimedia_extension->getPlayerConfig($this->getFullImage(FULLWEBPATH), $this->getTitle(), '', $w, $h);
 				break;
 			case '3gp':
 			case 'mov':
@@ -428,4 +410,25 @@ class Video extends Image {
 
 }
 
+class pseudoPlayer {
+
+	public $name = '';
+	private $width = 480;
+	private $height = 360;
+
+	function getWidth($dummy) {
+		return $this->width;
+	}
+
+	function getHeight($dummy) {
+		return $this->height;
+	}
+
+	function getPlayerConfig($moviepath, $imagefilename, $count = '', $width = '', $height = '') {
+		return '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/err-noflashplayer.png" alt="' . gettext('No multimeida extension installed.') . '" />';
+	}
+
+}
+
+$_zp_multimedia_extension = new pseudoPlayer();
 ?>

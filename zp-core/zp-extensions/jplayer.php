@@ -37,7 +37,7 @@
  * You can select the skin then via the plugin options. <b>NOTE:</b> A skin may have only one CSS file.
  *
  * USING PLAYLISTS:<br>
- * You can use <var>$_zp_flash_player->printjPlayerPlaylist()</var> on your theme's album.php directly to display a
+ * You can use <var>printjPlayerPlaylist()</var> on your theme's album.php directly to display a
  * video/audio playlist (default) or an audio only playlist.
  * Alternativly you can show a playlist of a specific album anywhere. In any case you need to modify your theme.
  * See the documentation for the parameter options.
@@ -66,20 +66,20 @@
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext("Enable <strong>jPlayer</strong> to handle multimedia files.");
-$plugin_notice = gettext("<strong>IMPORTANT</strong>: Only one multimedia player plugin can be enabled at the time and the class-video plugin must be enabled, too.") . '<br /><br />' . gettext("Please see <a href='http://jplayer.org'>jplayer.org</a> for more info about the player and its license.");
+$plugin_notice = gettext("<strong>IMPORTANT</strong>: Only one multimedia extension plugin can be enabled at the time and the class-video plugin must be enabled, too.") . '<br /><br />' . gettext("Please see <a href='http://jplayer.org'>jplayer.org</a> for more info about the player and its license.");
 $plugin_author = "Malte Müller (acrylian)";
 $plugin_disable = (getOption('album_folder_class') === 'external') ? gettext('This player does not support <em>External Albums</em>.') : getOption('zp_plugin_class-video') ? false : gettext('The class-video plugin must be enabled for video support.');
 
 $option_interface = 'jplayer_options';
 
-if (isset($_zp_flash_player) || $plugin_disable) {
+if (!empty($_zp_multimedia_extension->name) || $plugin_disable) {
 	setOption('zp_plugin_jplayer', 0);
 
 //NOTE: the following text really should be included in the $plugin_disable statement above so that it is visible
 //on the plugin tab
 
-	if (isset($_zp_flash_player)) {
-		trigger_error(sprintf(gettext('jPlayer not enabled, %s is already instantiated.'), get_class($_zp_flash_player)), E_USER_NOTICE);
+	if (isset($_zp_multimedia_extension)) {
+		trigger_error(sprintf(gettext('jPlayer not enabled, %s is already instantiated.'), get_class($_zp_multimedia_extension)), E_USER_NOTICE);
 	}
 } else {
 
@@ -95,6 +95,8 @@ if (isset($_zp_flash_player) || $plugin_disable) {
 
 class jplayer_options {
 
+	public $name = 'jPlayer';
+
 	function jplayer_options() {
 		setOptionDefault('jplayer_autoplay', '');
 		setOptionDefault('jplayer_poster', 1);
@@ -108,20 +110,20 @@ class jplayer_options {
 		setOptionDefault('jplayer_skin', 'zenphotolight');
 		setOptionDefault('jplayer_counterparts', 0);
 		/* TODO: what are these sizes?
-		  if (class_exists('cacheManager')) {
-		  $player = new jPlayer();
-		  cacheManager::deleteThemeCacheSizes('jplayer');
-		  cacheManager::addThemeCacheSize('jplayer', NULL, $player->width, $player->height, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-		  }
+			if (class_exists('cacheManager')) {
+			$player = new jPlayer();
+			cacheManager::deleteThemeCacheSizes('jplayer');
+			cacheManager::addThemeCacheSize('jplayer', NULL, $player->width, $player->height, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+			}
 		 */
 	}
 
 	function getOptionsSupported() {
 		$skins = getjPlayerSkins();
 		/*
-		  The player size is entirely styled via the CSS skin so there is no free size option. For audio (without thumb/poster) that is always 480px width.
-		  The original jPlayer skin comes with 270p (480x270px) and 360p (640x360px) sizes for videos but the Zenphoto custom skin comes with some more like 480p and 1080p.
-		  If you need different sizes than you need to make your own skin (see the skin option for info about that)
+			The player size is entirely styled via the CSS skin so there is no free size option. For audio (without thumb/poster) that is always 480px width.
+			The original jPlayer skin comes with 270p (480x270px) and 360p (640x360px) sizes for videos but the Zenphoto custom skin comes with some more like 480p and 1080p.
+			If you need different sizes than you need to make your own skin (see the skin option for info about that)
 		 */
 
 		return array(gettext('Autoplay')											 => array('key'	 => 'jplayer_autoplay', 'type' => OPTION_TYPE_CHECKBOX,
@@ -230,9 +232,9 @@ class jPlayer {
 	}
 
 	static function getMacrojplayer($moviepath, $count = 1) {
-		global $_zp_flash_player;
+		global $_zp_multimedia_extension;
 		$moviepath = trim($moviepath, '\'"');
-		$player = $_zp_flash_player->getPlayerConfig($moviepath, '', (int) $count);
+		$player = $_zp_multimedia_extension->getPlayerConfig($moviepath, '', (int) $count);
 		return $player;
 	}
 
@@ -507,7 +509,7 @@ class jPlayer {
 	 *
 	 * @return int
 	 */
-	function getVideoWidth($image = NULL) {
+	function getWidth($image = NULL) {
 		if (!is_null($image) && $this->mode == 'audio' && !getOption('jplayer_poster') && !getOption('jplayer_audioposter')) {
 			return 420; //audio default
 		}
@@ -520,7 +522,7 @@ class jPlayer {
 	 *
 	 * @return int
 	 */
-	function getVideoHeight($image = NULL) {
+	function getHeight($image = NULL) {
 		if (!is_null($image) && $this->mode == 'audio' && !getOption('jplayer_poster') && !getOption('jplayer_audioposter')) {
 			//return 0;
 		}
@@ -593,8 +595,8 @@ class jPlayer {
 		foreach ($suffixes as $suffix) {
 			$filesuffix = $suffix;
 			/* if($suffix == 'oga') {
-			  $filesuffix = 'ogg';
-			  } */
+				$filesuffix = 'ogg';
+				} */
 			$counterpart = str_replace($ext, $filesuffix, $moviepath, $count);
 			//$suffix = str_replace('.','',$suffix);
 			if (file_exists(str_replace(FULLWEBPATH, SERVERPATH, $counterpart))) {
@@ -801,11 +803,11 @@ class jPlayer {
 // jplayer class
 // theme function wrapper for user convenience
 function printjPlayerPlaylist($option = "playlist", $albumfolder = "") {
-	global $_zp_flash_player;
-	$_zp_flash_player->printjPlayerPlaylist($option, $albumfolder);
+	global $_zp_multimedia_extension;
+	$_zp_multimedia_extension->printjPlayerPlaylist($option, $albumfolder);
 }
 
-$_zp_flash_player = new jPlayer(); // claim to be the flash player.
+$_zp_multimedia_extension = new jPlayer(); // claim to be the flash player.
 zp_register_filter('theme_head', 'jplayer::headJS');
 if (getOption('jplayer_playlist')) {
 	zp_register_filter('theme_head', 'jplayer::playlistJS');
