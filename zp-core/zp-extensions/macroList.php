@@ -83,7 +83,9 @@ function MacroList_show($macro, $detail) {
 	if (!empty($detail['params'])) {
 		$params = '';
 		for ($i = 1; $i <= count($detail['params']); $i++) {
-			if (strpos($detail['params'][$i - 1], '*') === false) {
+			$type = $detail['params'][$i - 1];
+			if (strpos($type, '*') === false) {
+				$params .= " <em>$type</em>";
 				if ($required) {
 					$params .= ' <span class="error">' . '%' . $i . '</span> ';
 					$warn = true;
@@ -91,10 +93,12 @@ function MacroList_show($macro, $detail) {
 					$params = $params . ' %' . $i;
 				}
 			} else {
-				$params = $params . ' %' . $i;
+				$params = $params . " <em>{" . trim($type, "*") . "</em> %$i";
 				$required = true;
 			}
 		}
+		if ($required)
+			$params .= "<em>}</em>";
 		echo $params;
 	}
 	echo ']</code> <em>(' . @$detail['owner'] . ')</em><br />&nbsp;&nbsp;' . $detail['desc'] . '</p>';
