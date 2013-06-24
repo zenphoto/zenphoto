@@ -16,7 +16,7 @@
  * 			<li>"string": may be enclosed in quotation marks when the macro is invoked. The quotes are stripped before the macro is processed. </li>
  * 			<li>"int": a number</li>
  * 			<li>"bool": <var>true</var> or <var>false</var></li>
- * 			<li>"array": will process assignment type parameter (<var>x = y</var>) lists. Since it will consume all remaining parameters it must be the last item in the parameter list.</li>
+ * 			<li>"array": will process assignment type parameter (<var>x = y</var>) lists. If the assignment is left out, the value will be inserted with its position in the list as the array index. Since an array parameter will consume all remaining elements it must be the last item in the parameter list.</li>
  * 		</ul>
  * 	</li>
  * 	<li>"value"	 => This is a function, procedure, expression or content as defined by the macro class.</li>
@@ -79,23 +79,26 @@ function macro_admin_tabs($tabs) {
 
 function MacroList_show($macro, $detail) {
 	echo "<p><code>[$macro";
-	$warn = $required = false;
+	$warn = $required = $array = false;
 	if (!empty($detail['params'])) {
 		$params = '';
 		for ($i = 1; $i <= count($detail['params']); $i++) {
-			$type = $detail['params'][$i - 1];
-			if (strpos($type, '*') === false) {
-				$params .= " <em>$type</em>";
+			$type = rtrim($rawtype = $detail['params'][$i - 1], '*');
+			if ($array) {
+				$params .= ' <em><span class="error">' . $type . ' %' . $i . '</span></em> ';
+				$warn .= gettext('<strong>Warning:</strong> an array parameter must be the last parameter.');
+			} else if ($type == $rawtype) {
 				if ($required) {
-					$params .= ' <span class="error">' . '%' . $i . '</span> ';
-					$warn = true;
+					$params .= ' <em><span class="error">' . $type . ' %' . $i . '</span></em> ';
+					$warn .= gettext('<strong>Warning:</strong> required parameters should not follow optional ones.');
 				} else {
-					$params = $params . ' %' . $i;
+					$params = $params . ' <em>' . $type . '</em> %' . $i;
 				}
 			} else {
-				$params = $params . " <em>{" . trim($type, "*") . "</em> %$i";
+				$params = $params . " <em>{" . $type . "</em> %$i";
 				$required = true;
 			}
+			$array = $array || $type == 'array';
 		}
 		if ($required)
 			$params .= "<em>}</em>";
@@ -103,7 +106,7 @@ function MacroList_show($macro, $detail) {
 	}
 	echo ']</code> <em>(' . @$detail['owner'] . ')</em><br />&nbsp;&nbsp;' . $detail['desc'] . '</p>';
 	if ($warn) {
-		echo '<p class="notebox">', gettext('<strong>Warning:</strong> required parameters should not follow optional ones.') . '</p>';
+		echo '<p class="notebox">' . $warn . '</p>';
 	}
 }
 

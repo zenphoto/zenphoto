@@ -2169,9 +2169,7 @@ function applyMacros($text) {
 									if (count($x) == 2) {
 										$parms[$x[0]] = $x[1];
 									} else {
-										$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d should be an assignement.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
-										$macro['class'] = 'error';
-										break;
+										$parms[$key] = $x[0];
 									}
 								}
 								$parameters[] = $parms;
