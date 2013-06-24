@@ -32,7 +32,7 @@ class exampleMacros {
 										'params' => array('array'),
 										'value'	 => 'exampleMacros::arrayTest',
 										'owner'	 => 'exampleMacros',
-										'desc'	 => gettext('Dump the contents of the parameter list.')),
+										'desc'	 => gettext('Dump the contents of the array parameter list. The array is in the form <em>variable_1</em>=<code>value</code> <em>variable_2</em>=<code>value</code> <em>etc.</em>.')),
 						'PAGELINK'				 => array('class'	 => 'expression',
 										'params' => array('string'),
 										'value'	 => 'getCustomPageURL($1);',
