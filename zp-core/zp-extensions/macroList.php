@@ -16,7 +16,7 @@
  * 			<li>"string": may be enclosed in quotation marks when the macro is invoked. The quotes are stripped before the macro is processed. </li>
  * 			<li>"int": a number</li>
  * 			<li>"bool": <var>true</var> or <var>false</var></li>
- * 			<li>"array": will process assignment type parameter (<var>x = y</var>) lists. Since it will consume all remaining parameters it must be the last item in the parameter list.</li>
+ * 			<li>"array": will process assignment type parameter (<var>x = y</var>) lists. If the assignment is left out, the value will be inserted with its position in the list as the array index. Since an array parameter will consume all remaining elements it must be the last item in the parameter list.</li>
  * 		</ul>
  * 	</li>
  * 	<li>"value"	 => This is a function, procedure, expression or content as defined by the macro class.</li>
