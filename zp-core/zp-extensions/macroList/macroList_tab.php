@@ -31,7 +31,7 @@ echo "\n</head>";
 						}
 						?>
 						<p class="notebox">
-							<?php echo gettext('The above Content macros can be used to insert Zenphoto items as described into <em>descriptions</em>, <em>zenpage content</em>, and <em>zenpage extra content</em>. Replace any parameters (<em>%d</em>) with the appropriate value.'); ?>
+							<?php echo gettext('The above Content macros can be used to insert Zenphoto items as described into <em>descriptions</em>, <em>zenpage content</em>, and <em>zenpage extra content</em>. Replace any parameters (<em>%d</em>) with the appropriate value. Parameters within braces are optional.'); ?>
 						</p>
 						<?php
 					}
