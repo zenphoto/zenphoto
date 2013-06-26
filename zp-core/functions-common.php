@@ -1,4 +1,5 @@
 <?php
+
 /**
  * functions common to both the Zenphoto core and setup's basic environment
  *
@@ -14,13 +15,13 @@
  * @param string $errline
  * @return void|boolean
  */
-function zpErrorHandler($errno, $errstr='', $errfile='', $errline='') {
+function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 	// if error has been supressed with an @
 	if (error_reporting() == 0) {
 		return;
 	}
 	// check if function has been called by an exception
-	if(func_num_args() == 5) {
+	if (func_num_args() == 5) {
 		// called by trigger_error()
 		list($errno, $errstr, $errfile, $errline) = func_get_args();
 	} else {
@@ -32,13 +33,13 @@ function zpErrorHandler($errno, $errstr='', $errfile='', $errline='') {
 		$errline = $exc->getLine();
 	}
 
-	$errorType = array (E_ERROR           	=> gettext('ERROR'),
-			E_WARNING      			=> gettext('WARNING'),
-			E_NOTICE        		=> gettext('NOTICE'),
-			E_USER_ERROR  			=> gettext('USER ERROR'),
-			E_USER_WARNING			=> gettext('USER WARNING'),
-			E_USER_NOTICE 			=> gettext('USER NOTICE'),
-			E_STRICT     				=> gettext('STRICT NOTICE')
+	$errorType = array(E_ERROR				 => gettext('ERROR'),
+					E_WARNING			 => gettext('WARNING'),
+					E_NOTICE			 => gettext('NOTICE'),
+					E_USER_ERROR	 => gettext('USER ERROR'),
+					E_USER_WARNING => gettext('USER WARNING'),
+					E_USER_NOTICE	 => gettext('USER NOTICE'),
+					E_STRICT			 => gettext('STRICT NOTICE')
 	);
 
 	// create error message
@@ -49,7 +50,7 @@ function zpErrorHandler($errno, $errstr='', $errfile='', $errline='') {
 		$err = gettext("EXCEPTION ($errno)");
 		$errno = E_ERROR;
 	}
-	$msg = sprintf(gettext('%1$s: %2$s in %3$s on line %4$s'),$err,$errstr,$errfile,$errline);
+	$msg = sprintf(gettext('%1$s: %2$s in %3$s on line %4$s'), $err, $errstr, $errfile, $errline);
 	debugLogBacktrace($msg, 1);
 	// what to do
 	switch ($errno) {
@@ -99,9 +100,10 @@ function internalToFilesystem($filename) {
  * @return string
  */
 function sanitize_path($filename) {
-	if (get_magic_quotes_gpc()) $filename = stripslashes(trim($filename));
+	if (get_magic_quotes_gpc())
+		$filename = stripslashes(trim($filename));
 	$filename = strip_tags(str_replace('\\', '/', $filename));
-	$filename = preg_replace(array('/x00/','/\/\/+/','/\/\.\./','/\/\./','/:/','/</','/>/','/\?/','/\*/','/\"/','/\|/','/\/+$/','/^\/+/'), '', $filename);
+	$filename = preg_replace(array('/x00/', '/\/\/+/', '/\/\.\./', '/\/\./', '/:/', '/</', '/>/', '/\?/', '/\*/', '/\"/', '/\|/', '/\/+$/', '/^\/+/'), '', $filename);
 	return $filename;
 }
 
@@ -141,7 +143,7 @@ function sanitize_script($text) {
  *   3 - Full sanitation. (Default. No code allowed. Used for text only fields)
  * @return string the sanitized string.
  */
-function sanitize($input_string, $sanitize_level=3) {
+function sanitize($input_string, $sanitize_level = 3) {
 	if (is_array($input_string)) {
 		$output_string = array();
 		foreach ($input_string as $output_key => $output_value) {
@@ -179,7 +181,7 @@ function sanitize_string($input, $sanitize_level) {
 		if (get_magic_quotes_gpc()) {
 			$input = stripslashes($input);
 		}
-		switch($sanitize_level) {
+		switch ($sanitize_level) {
 			case 0:
 				return str_replace(chr(0), " ", $input);
 			case 1:
@@ -205,11 +207,11 @@ function sanitize_string($input, $sanitize_level) {
 /**
  * Prefix a table name with a user-defined string to avoid conflicts.
  * This MUST be used in all database queries.
- *@param string $tablename name of the table
- *@return prefixed table name
- *@since 0.6
+ * @param string $tablename name of the table
+ * @return prefixed table name
+ * @since 0.6
  */
-function prefix($tablename=NULL) {
+function prefix($tablename = NULL) {
 	return '`' . DATABASE_PREFIX . $tablename . '`';
 }
 
@@ -217,51 +219,53 @@ function prefix($tablename=NULL) {
  * Constructs a WHERE clause ("WHERE uniqueid1='uniquevalue1' AND uniqueid2='uniquevalue2' ...")
  *  from an array (map) of variables and their values which identifies a unique record
  *  in the database table.
- *@param string $unique_set what to add to the WHERE clause
- *@return contructed WHERE cleause
- *@since 0.6
+ * @param string $unique_set what to add to the WHERE clause
+ * @return contructed WHERE cleause
+ * @since 0.6
  */
 function getWhereClause($unique_set) {
-	if (empty($unique_set)) return ' ';
+	if (empty($unique_set))
+		return ' ';
 	$where = ' WHERE';
-	foreach($unique_set as $var => $value) {
-		$where .= ' `' . $var . '` = ' . db_quote($value). ' AND';
+	foreach ($unique_set as $var => $value) {
+		$where .= ' `' . $var . '` = ' . db_quote($value) . ' AND';
 	}
-	return substr($where,0,-4);
+	return substr($where, 0, -4);
 }
 
 /**
  * Constructs a SET clause ("SET uniqueid1='uniquevalue1', uniqueid2='uniquevalue2' ...")
  *  from an array (map) of variables and their values which identifies a unique record
  *  in the database table. Used to 'move' records. Note: does not check anything.
- *@param string $new_unique_set what to add to the SET clause
- *@return contructed SET cleause
- *@since 0.6
+ * @param string $new_unique_set what to add to the SET clause
+ * @return contructed SET cleause
+ * @since 0.6
  */
 function getSetClause($new_unique_set) {
 	$i = 0;
 	$set = ' SET';
-	foreach($new_unique_set as $var => $value) {
+	foreach ($new_unique_set as $var => $value) {
 		$set .= ' `' . $var . '`=';
 		if (is_null($value)) {
 			$set .= 'NULL';
 		} else {
-			$set .= db_quote($value).',';
+			$set .= db_quote($value) . ',';
 		}
 	}
-	return substr($set,0,-1);
+	return substr($set, 0, -1);
 }
 
 /*
  * returns the connected database name
-*/
+ */
+
 function db_name() {
 	global $_zp_conf_vars;
 	return $_zp_conf_vars['mysql_database'];
 }
 
-function db_count($table, $clause=NULL, $field="*") {
-	$sql = 'SELECT COUNT('.$field.') FROM '.prefix($table).' '.$clause;
+function db_count($table, $clause = NULL, $field = "*") {
+	$sql = 'SELECT COUNT(' . $field . ') FROM ' . prefix($table) . ' ' . $clause;
 	$result = query_single_row($sql);
 	if ($result) {
 		return array_shift($result);
@@ -276,7 +280,7 @@ function db_count($table, $clause=NULL, $field="*") {
  * @param string $message
  * @param bool $fatal set true to fail the script
  */
-function zp_error($message, $fatal=E_USER_ERROR) {
+function zp_error($message, $fatal = E_USER_ERROR) {
 	trigger_error($message, $fatal);
 }
 
@@ -301,20 +305,20 @@ function html_encode($this_string) {
  * @param bool $allowScript set to false to prevent pass-through of script tags.
  * @return string
  */
-function html_encodeTagged($str, $allowScript=true) {
+function html_encodeTagged($str, $allowScript = true) {
 	$tags = array();
 	//html comments
 	preg_match_all('|<!--.*-->|ixs', $str, $matches);
-	foreach (array_unique($matches[0]) as $key=>$tag) {
-		$tags[0]['%'.$key.'$-'] = $tag;
-		$str = str_replace($tag, '%'.$key.'$-', $str);
+	foreach (array_unique($matches[0]) as $key => $tag) {
+		$tags[0]['%' . $key . '$-'] = $tag;
+		$str = str_replace($tag, '%' . $key . '$-', $str);
 	}
 	//javascript
 	if ($allowScript) {
 		preg_match_all('!<script.*>.*</script>!ixs', $str, $matches);
-		foreach (array_unique($matches[0]) as $key=>$tag) {
-			$tags[2]['%'.$key.'$j'] = $tag;
-			$str = str_replace($tag, '%'.$key.'$j', $str);
+		foreach (array_unique($matches[0]) as $key => $tag) {
+			$tags[2]['%' . $key . '$j'] = $tag;
+			$str = str_replace($tag, '%' . $key . '$j', $str);
 		}
 	} else {
 		$str = preg_replace('|<a(.*)href(.*)=(.*)javascript|ixs', '%$x', $str);
@@ -324,18 +328,18 @@ function html_encodeTagged($str, $allowScript=true) {
 	}
 	// markup
 	preg_match_all("/<\/?\w+((\s+(\w|\w[\w-]*\w)(\s*=\s*(?:\".*?\"|'.*?'|[^'\">\s]+))?)+\s*|\s*)\/?>/i", $str, $matches);
-	foreach (array_unique($matches[0]) as $key=>$tag) {
-		$tags[2]['%'.$key.'$s'] = $tag;
-		$str = str_replace($tag, '%'.$key.'$s', $str);
+	foreach (array_unique($matches[0]) as $key => $tag) {
+		$tags[2]['%' . $key . '$s'] = $tag;
+		$str = str_replace($tag, '%' . $key . '$s', $str);
 	}
 	//entities
 	preg_match_all('/(&[a-z#]+;)/', $str, $matches);
-	foreach (array_unique($matches[0]) as $key=>$entity) {
-		$tags[3]['%'.$key.'$e'] = $entity;
-		$str = str_replace($entity, '%'.$key.'$e', $str);
+	foreach (array_unique($matches[0]) as $key => $entity) {
+		$tags[3]['%' . $key . '$e'] = $entity;
+		$str = str_replace($entity, '%' . $key . '$e', $str);
 	}
 	$str = htmlspecialchars($str, ENT_FLAGS, LOCAL_CHARSET);
-	foreach(array_reverse($tags,true) as $taglist) {
+	foreach (array_reverse($tags, true) as $taglist) {
 		$str = strtr($str, $taglist);
 	}
 	return $str;
@@ -348,7 +352,6 @@ function html_encodeTagged($str, $allowScript=true) {
  * @param string $pathname The directory path to be created.
  * @return boolean TRUE if exists or made or FALSE on failure.
  */
-
 function mkdir_recursive($pathname, $mode) {
 	if (!is_dir(dirname($pathname))) {
 		mkdir_recursive(dirname($pathname), $mode);
@@ -361,34 +364,34 @@ function mkdir_recursive($pathname, $mode) {
  *
  * @param string $message Message to prefix the backtrace
  */
-function debugLogBacktrace($message, $omit=0) {
-	$output = trim($message)."\n";
+function debugLogBacktrace($message, $omit = 0) {
+	$output = trim($message) . "\n";
 	// Get a backtrace.
 	$bt = debug_backtrace();
-	while ($omit>=0) {
+	while ($omit >= 0) {
 		array_shift($bt); // Get rid of debug_backtrace, callers in the backtrace.
 		$omit--;
 	}
 	$prefix = '  ';
 	$line = '';
 	$caller = '';
-	foreach($bt as $b) {
-		$caller = (isset($b['class']) ? $b['class'] : '')	. (isset($b['type']) ? $b['type'] : '')	. $b['function'];
+	foreach ($bt as $b) {
+		$caller = (isset($b['class']) ? $b['class'] : '') . (isset($b['type']) ? $b['type'] : '') . $b['function'];
 		if (!empty($line)) { // skip first output to match up functions with line where they are used.
 			$prefix .= '  ';
-			$output .= 'from '.$caller.' ('.$line.")\n".$prefix;
+			$output .= 'from ' . $caller . ' (' . $line . ")\n" . $prefix;
 		} else {
-			$output .= '  '.$caller." called ";
+			$output .= '  ' . $caller . " called ";
 		}
 		$date = false;
 		if (isset($b['file']) && isset($b['line'])) {
-			$line = basename($b['file'])	. ' [' . $b['line'] . "]";
+			$line = basename($b['file']) . ' [' . $b['line'] . "]";
 		} else {
 			$line = 'unknown';
 		}
 	}
 	if (!empty($line)) {
-		$output .= 'from '.$line;
+		$output .= 'from ' . $line;
 	}
 	debugLog($output);
 }
@@ -401,7 +404,7 @@ function debugLogBacktrace($message, $omit=0) {
  */
 function debugLogVar($message) {
 	$args = func_get_args();
-	if (count($args)==1) {
+	if (count($args) == 1) {
 		$var = $message;
 		$message = '';
 	} else {
@@ -412,7 +415,7 @@ function debugLogVar($message) {
 	var_dump($var);
 	$str = ob_get_contents();
 	ob_end_clean();
-	debugLog(trim($message)."\r".html_decode(strip_tags($str)));
+	debugLog(trim($message) . "\r" . html_decode(strip_tags($str)));
 }
 
 /**
@@ -432,7 +435,7 @@ function zp_getCookie($name) {
 		} else {
 			$sessionv = '';
 		}
-		debugLog("zp_getCookie($name)::".'album_session='.GALLERY_SESSION."; SESSION[".session_id()."]=".$sessionv.", COOKIE=".$cookiev);
+		debugLog("zp_getCookie($name)::" . 'album_session=' . GALLERY_SESSION . "; SESSION[" . session_id() . "]=" . $sessionv . ", COOKIE=" . $cookiev);
 	}
 	if (!empty($cookiev) && !GALLERY_SESSION) {
 		return zp_cookieEncode($cookiev);
@@ -449,8 +452,8 @@ function zp_getCookie($name) {
  * @param $value
  */
 function zp_cookieEncode($value) {
-	if (IP_TIED_COOKIES){
-		return rc4(getUserIP().HASH_SEED,$value);
+	if (IP_TIED_COOKIES) {
+		return rc4(getUserIP() . HASH_SEED, $value);
 	} else {
 		return $value;
 	}
@@ -465,7 +468,7 @@ function zp_cookieEncode($value) {
  * @param string $path The path on the server in which the cookie will be available on
  * @param bool $secure true if secure cookie
  */
-function zp_setCookie($name, $value, $time=NULL, $path=NULL, $secure=false) {
+function zp_setCookie($name, $value, $time = NULL, $path = NULL, $secure = false) {
 	if (empty($value)) {
 		$cookiev = '';
 	} else {
@@ -477,16 +480,19 @@ function zp_setCookie($name, $value, $time=NULL, $path=NULL, $secure=false) {
 	if (is_null($path)) {
 		$path = WEBPATH;
 	}
-	if (substr($path, -1, 1) != '/') $path .= '/';
+	if (substr($path, -1, 1) != '/')
+		$path .= '/';
 	if (DEBUG_LOGIN) {
-		debugLog("zp_setCookie($name, $value, $time, $path)::album_session=".GALLERY_SESSION."; SESSION=".session_id());
+		debugLog("zp_setCookie($name, $value, $time, $path)::album_session=" . GALLERY_SESSION . "; SESSION=" . session_id());
 	}
 	if (($time < 0) || !GALLERY_SESSION) {
-		setcookie($name, $cookiev, time()+$time, $path, "", $secure);
+		setcookie($name, $cookiev, time() + $time, $path, "", $secure);
 	}
 	if ($time < 0) {
-		if (isset($_SESSION))	unset($_SESSION[$name]);
-		if (isset($_COOKIE)) unset($_COOKIE[$name]);
+		if (isset($_SESSION))
+			unset($_SESSION[$name]);
+		if (isset($_COOKIE))
+			unset($_COOKIE[$name]);
 	} else {
 		$_SESSION[$name] = $value;
 		$_COOKIE[$name] = $cookiev;
@@ -500,7 +506,7 @@ function zp_setCookie($name, $value, $time=NULL, $path=NULL, $secure=false) {
  * @param string $path
  * @param bool $secure true if secure cookie
  */
-function zp_clearCookie($name, $path=NULl, $secure=false) {
+function zp_clearCookie($name, $path = NULl, $secure = false) {
 	zp_setCookie($name, '', -368000, $path, $secure);
 }
 
@@ -525,4 +531,5 @@ function getSerializedArray($string) {
 		return array($string);
 	}
 }
+
 ?>

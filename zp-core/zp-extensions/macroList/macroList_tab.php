@@ -30,9 +30,17 @@ echo "\n</head>";
 							macroList_show($macro, $detail);
 						}
 						?>
-						<p class="notebox">
-							<?php echo gettext('The above Content macros can be used to insert Zenphoto items as described into <em>descriptions</em>, <em>zenpage content</em>, and <em>zenpage extra content</em>. Replace any parameters (<em>%d</em>) with the appropriate value. Parameters within braces are optional.'); ?>
-						</p>
+						<div class="notebox">
+							<p><?php echo gettext('The above Content macros can be used to insert Zenphoto items as described into <em>descriptions</em>, <em>zenpage content</em>, and <em>zenpage extra content</em>.</p> <p>Replace any parameters (<em>%d</em>) with the appropriate value.'); ?></p>
+							<p><?php echo gettext('Parameter types:'); ?></p>
+							<ol>
+								<li><?php echo gettext('<em><strong>string</strong></em> may be enclosed in quotation marks when the macro is invoked. The quotes are stripped before the macro is processed.'); ?></li>
+								<li><?php echo gettext('<em><strong>int</strong></em> a number'); ?></li>
+								<li><?php echo gettext('<em><strong>bool</strong></em> <code>true</var> or <var>false</code>'); ?></li>
+								<li><?php echo gettext('<em><strong>array</strong></em> will process assignment type parameter (<code>x = y</code>) lists. If the assignment is left out, the value will be inserted with its position in the list as the array index. Since an array parameter will consume all remaining elements it must be the last item in the parameter list.'); ?></li>
+							</ol>
+							<p><?php echo gettext('Parameters within braces are optional.'); ?></p>
+						</div>
 						<?php
 					}
 					?>
