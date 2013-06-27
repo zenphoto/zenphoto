@@ -83,6 +83,7 @@ function MacroList_show($macro, $detail) {
 	$warn = $required = $array = false;
 	if (!empty($detail['params'])) {
 		$params = '';
+		$brace = '{';
 		for ($i = 1; $i <= count($detail['params']); $i++) {
 			$type = rtrim($rawtype = $detail['params'][$i - 1], '*');
 			if ($array) {
@@ -96,7 +97,8 @@ function MacroList_show($macro, $detail) {
 					$params = $params . ' <em>' . $type . '</em> %' . $i;
 				}
 			} else {
-				$params = $params . " <em>{" . $type . "</em> %$i";
+				$params = $params . " <em>$brace" . $type . "</em> %$i";
+				$brace = '';
 				$required = true;
 			}
 			$array = $array || $type == 'array';
