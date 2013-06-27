@@ -78,7 +78,8 @@ function macro_admin_tabs($tabs) {
 }
 
 function MacroList_show($macro, $detail) {
-	echo "<p><code>[$macro";
+	echo '<dl>';
+	echo "<dt><code>[$macro";
 	$warn = $required = $array = false;
 	if (!empty($detail['params'])) {
 		$params = '';
@@ -104,10 +105,11 @@ function MacroList_show($macro, $detail) {
 			$params .= "<em>}</em>";
 		echo $params;
 	}
-	echo ']</code> <em>(' . @$detail['owner'] . ')</em><br />&nbsp;&nbsp;' . $detail['desc'] . '</p>';
+	echo ']</code> <em>(' . @$detail['owner'] . ')</em></dt><dd>' . $detail['desc'] . '</dd>';
 	if ($warn) {
 		echo '<p class="notebox">' . $warn . '</p>';
 	}
+	echo '</dl>';
 }
 
 ?>
