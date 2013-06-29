@@ -78,10 +78,12 @@ function macro_admin_tabs($tabs) {
 }
 
 function MacroList_show($macro, $detail) {
-	echo "<p><code>[$macro";
+	echo '<dl>';
+	echo "<dt><code>[$macro";
 	$warn = $required = $array = false;
 	if (!empty($detail['params'])) {
 		$params = '';
+		$brace = '{';
 		for ($i = 1; $i <= count($detail['params']); $i++) {
 			$type = rtrim($rawtype = $detail['params'][$i - 1], '*');
 			if ($array) {
@@ -95,7 +97,8 @@ function MacroList_show($macro, $detail) {
 					$params = $params . ' <em>' . $type . '</em> %' . $i;
 				}
 			} else {
-				$params = $params . " <em>{" . $type . "</em> %$i";
+				$params = $params . " <em>$brace" . $type . "</em> %$i";
+				$brace = '';
 				$required = true;
 			}
 			$array = $array || $type == 'array';
@@ -104,10 +107,11 @@ function MacroList_show($macro, $detail) {
 			$params .= "<em>}</em>";
 		echo $params;
 	}
-	echo ']</code> <em>(' . @$detail['owner'] . ')</em><br />&nbsp;&nbsp;' . $detail['desc'] . '</p>';
+	echo ']</code> <em>(' . @$detail['owner'] . ')</em></dt><dd>' . $detail['desc'] . '</dd>';
 	if ($warn) {
 		echo '<p class="notebox">' . $warn . '</p>';
 	}
+	echo '</dl>';
 }
 
 ?>
