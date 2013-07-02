@@ -925,7 +925,7 @@ input.tags {
 }
 
 .overview-install-info {
-	z-index: 590;
+	z-index: 50;
 }
 
 .overiew-gallery-stats ul,
