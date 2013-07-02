@@ -1605,16 +1605,16 @@ function printNewsPageListWithNav($next, $prev, $nextprev = true, $class = 'page
 				echo "1";
 			} else {
 				if ($_zp_zenpage->news_on_index) {
-					echo "<a href='" . html_encode(getNewsIndexURL()) . "' title='" . gettext("Page") . " 1'>1</a>";
+					echo '<a href="' . html_encode(getNewsIndexURL()) . '" title="' . gettext("Page") . ' 1">1</a>';
 				} else {
-					echo "<a href='" . html_encode(getNewsPathNav(1)) . " title='" . gettext("Page") . " 1'>1</a>";
+					echo '<a href="' . html_encode(getNewsPathNav(1)) . '" title="' . gettext("Page") . ' 1">1</a>';
 				}
 			}
 			echo "</li>\n";
 			if ($j > 2) {
 				echo "<li>";
 				$linktext = ($j - 1 > 2) ? '...' : $k1;
-				echo "<a href=\"" . html_encode(getNewsPathNav($k1)) . "\" title=\"" . sprintf(ngettext('Page %u', 'Page %u', $k1), $k1) . "\">" . $linktext . "</a>";
+				echo '<a href="' . html_encode(getNewsPathNav($k1)) . '" title="' . sprintf(ngettext('Page %u', 'Page %u', $k1), $k1) . '">' . $linktext . '</a>';
 				echo "</li>\n";
 			}
 		}
@@ -1623,14 +1623,14 @@ function printNewsPageListWithNav($next, $prev, $nextprev = true, $class = 'page
 			if ($i == $_zp_page) {
 				echo $i;
 			} else {
-				echo "<a href='" . html_encode(getNewsPathNav($i)) . "' title='" . sprintf(ngettext('Page %1$u', 'Page %1$u', $i), $i) . "'>" . $i . "</a>";
+				echo '<a href="' . html_encode(getNewsPathNav($i)) . '" title="' . sprintf(ngettext('Page %1$u', 'Page %1$u', $i), $i) . '">' . $i . '</a>';
 			}
 			echo "</li>\n";
 		}
 		if ($i < $total) {
 			echo "<li>";
 			$linktext = ($total - $i > 1) ? '...' : $k2;
-			echo "<a href='" . html_encode(getNewsPathNav($k2)) . "' title='" . sprintf(ngettext('Page %u', 'Page %u', $k2), $k2) . "'>" . $linktext . "</a>";
+			echo '<a href="' . html_encode(getNewsPathNav($k2)) . '" title="' . sprintf(ngettext('Page %u', 'Page %u', $k2), $k2) . '">' . $linktext . '</a>';
 			echo "</li>\n";
 		}
 		if ($firstlast && $i <= $total) {
@@ -1638,12 +1638,12 @@ function printNewsPageListWithNav($next, $prev, $nextprev = true, $class = 'page
 			if ($_zp_page == $total) {
 				echo $total;
 			} else {
-				echo "<a href=\"" . html_encode(getNewsPathNav($total)) . "\" title=\"" . sprintf(ngettext('Page {%u}', 'Page {%u}', $total), $total) . "\">" . $total . "</a>";
+				echo '<a href="' . html_encode(getNewsPathNav($total)) . '" title="' . sprintf(ngettext('Page {%u}', 'Page {%u}', $total), $total) . '">' . $total . '</a>';
 			}
 			echo "</li>\n";
 		}
 		if ($nextprev) {
-			echo "<li class=\"next\">";
+			echo '<li class="next">';
 			printNextNewsPageLink($next);
 			echo "</li>\n";
 		}
