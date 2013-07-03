@@ -508,10 +508,22 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 						$rimage = basename($ralbum);
 						$ralbum = trim(dirname($ralbum),'/');
 					}
+				} else if (file_exists($path.'.alb')) {
+					//	it is a dynamic album sans suffix
+					$ralbum .= '.alb';
 				} else {
-					if (file_exists($path.'.alb')) {
-						//	it is a dynamic album sans suffix
-						$ralbum .= '.alb';
+					//	Perhaps a dynamicalbum/image 
+					$rimage = basename($ralbum);
+					$ralbum = trim(dirname($ralbum),'/');
+					$path = internalToFilesystem(getAlbumFolder(SERVERPATH).$ralbum);
+
+					if (!is_dir($path)) {
+
+						if (file_exists($path.'.alb')) {
+
+							//	it is a dynamic album sans suffix
+							$ralbum .= '.alb';
+						}
 					}
 				}
 			}
