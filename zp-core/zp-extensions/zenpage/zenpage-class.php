@@ -1,34 +1,35 @@
 <?php
+
 /**
  * Zenpage root classes
  * @author Stephen Billard (sbillard), Malte Müller (acrylian)
  * @package plugins
  * @subpackage zenpage
  */
-
 /**
  * Some global variable setup
  *
  */
-
-define('ZP_SHORTENINDICATOR',$shortenindicator = getOption('zenpage_textshorten_indicator'));
-define('ZP_COMBINEWS_CUSTOMTITLE',get_language_string(getOption('combinews-customtitle')));
-define('ZP_COMBINEWS_IMAGETITLES',getOption('combinews-customtitle-imagetitles'));
-define('ZP_SHORTEN_LENGTH',getOption('zenpage_text_length'));
-define('ZP_COMBINEWS_SORTORDER',getOption("zenpage_combinews_sortorder"));
-define('ZP_READ_MORE',getOption("zenpage_read_more"));
-define('ZP_COMBINEWS',getOption('zenpage_combinews'));
-define('ZP_ARTICLES_PER_PAGE',getOption("zenpage_articles_per_page"));
-define('ZP_CN_IMAGESIZE',getOption('zenpage_combinews_imagesize'));
-define('ZP_CN_THUMBWIDTH',getOption('combinews-thumbnail-width'));
-define('ZP_CN_THUMBHEIGHT',getOption('combinews-thumbnail-height'));
-define('ZP_CN_CROPWIDTH',getOption('combinews-thumbnail-cropwidth'));
-define('ZP_CN_CROPHEIGHT',getOption('combinews-thumbnail-cropheight'));
-define('ZP_CN_CROPX',getOption('combinews-thumbnail-cropx'));
-define('ZP_CN_CROPY',getOption('combinews-thumbnail-cropy'));
-define('ZP_CN_MODE',getOption('zenpage_combinews_mode'));
-if (!defined('MENU_TRUNCATE_STRING')) define('MENU_TRUNCATE_STRING',getOption('menu_truncate_string'));
-if (!defined('MENU_TRUNCATE_INDICATOR')) define('MENU_TRUNCATE_INDICATOR',getOption('menu_truncate_indicator'));
+define('ZP_SHORTENINDICATOR', $shortenindicator = getOption('zenpage_textshorten_indicator'));
+define('ZP_COMBINEWS_CUSTOMTITLE', get_language_string(getOption('combinews-customtitle')));
+define('ZP_COMBINEWS_IMAGETITLES', getOption('combinews-customtitle-imagetitles'));
+define('ZP_SHORTEN_LENGTH', getOption('zenpage_text_length'));
+define('ZP_COMBINEWS_SORTORDER', getOption("zenpage_combinews_sortorder"));
+define('ZP_READ_MORE', getOption("zenpage_read_more"));
+define('ZP_COMBINEWS', getOption('zenpage_combinews'));
+define('ZP_ARTICLES_PER_PAGE', getOption("zenpage_articles_per_page"));
+define('ZP_CN_IMAGESIZE', getOption('zenpage_combinews_imagesize'));
+define('ZP_CN_THUMBWIDTH', getOption('combinews-thumbnail-width'));
+define('ZP_CN_THUMBHEIGHT', getOption('combinews-thumbnail-height'));
+define('ZP_CN_CROPWIDTH', getOption('combinews-thumbnail-cropwidth'));
+define('ZP_CN_CROPHEIGHT', getOption('combinews-thumbnail-cropheight'));
+define('ZP_CN_CROPX', getOption('combinews-thumbnail-cropx'));
+define('ZP_CN_CROPY', getOption('combinews-thumbnail-cropy'));
+define('ZP_CN_MODE', getOption('zenpage_combinews_mode'));
+if (!defined('MENU_TRUNCATE_STRING'))
+	define('MENU_TRUNCATE_STRING', getOption('menu_truncate_string'));
+if (!defined('MENU_TRUNCATE_INDICATOR'))
+	define('MENU_TRUNCATE_INDICATOR', getOption('menu_truncate_indicator'));
 
 class Zenpage {
 
@@ -44,15 +45,15 @@ class Zenpage {
 			 * Un-publishes pages/news whose expiration date has been reached
 			 *
 			 */
-			$sql = ' WHERE `date`<="'.date('Y-m-d H:i:s').'" AND `show`="1"'.
-					' AND `expiredate`<="'.date('Y-m-d H:i:s').'"'.
-					' AND `expiredate`!="0000-00-00 00:00:00"'.
-					' AND `expiredate` IS NOT NULL';
-			foreach (array('news','pages') as $table) {
-				$result = query_full_array('SELECT * FROM '.prefix($table).$sql);
+			$sql = ' WHERE `date`<="' . date('Y-m-d H:i:s') . '" AND `show`="1"' .
+							' AND `expiredate`<="' . date('Y-m-d H:i:s') . '"' .
+							' AND `expiredate`!="0000-00-00 00:00:00"' .
+							' AND `expiredate` IS NOT NULL';
+			foreach (array('news', 'pages') as $table) {
+				$result = query_full_array('SELECT * FROM ' . prefix($table) . $sql);
 				if ($result) {
 					foreach ($result as $item) {
-						$class = 'Zenpage'.$table;
+						$class = 'Zenpage' . $table;
 						$obj = new $class($item['titlelink']);
 						$obj->setShow(0);
 						$obj->save();
@@ -60,7 +61,7 @@ class Zenpage {
 				}
 			}
 
-			$allcategories = query_full_array("SELECT * FROM ".prefix('news_categories')." ORDER by sort_order");
+			$allcategories = query_full_array("SELECT * FROM " . prefix('news_categories') . " ORDER by sort_order");
 			$this->categoryStructure = array();
 			foreach ($allcategories as $cat) {
 				$this->categoryStructure[$cat['id']] = $cat;
@@ -77,16 +78,15 @@ class Zenpage {
 		return $this->categoryStructure;
 	}
 
-
-/************************************/
-/* general page functions   */
-/************************************/
+	/*	 * ********************************* */
+	/* general page functions   */
+	/*	 * ********************************* */
 
 	function visibleCategory($cat) {
 		return $this->categoryStructure[$cat['cat_id']]['show'];
 	}
 
-/**
+	/**
 	 * Gets all pages or published ones.
 	 *
 	 * NOTE: Since this function only returns titlelinks for use with the object model it does not exclude pages that are password protected
@@ -98,7 +98,7 @@ class Zenpage {
 	 * @param string $sortdirection "asc" or "desc" for ascending or descending order
 	 * @return array
 	 */
-	function getPages($published=NULL,$toplevel=false,$number=NULL,$sorttype=NULL, $sortdirection=NULL) {
+	function getPages($published = NULL, $toplevel = false, $number = NULL, $sorttype = NULL, $sortdirection = NULL) {
 		global $_zp_loggedin;
 		if (is_null($published)) {
 			$published = !zp_loggedin();
@@ -107,14 +107,16 @@ class Zenpage {
 			$all = !$published;
 		}
 		$gettop = '';
-		if($published) {
-			if($toplevel) $gettop = " AND parentid IS NULL";
-			$show = " WHERE `show` = 1 AND date <= '".date('Y-m-d H:i:s')."'".$gettop;
+		if ($published) {
+			if ($toplevel)
+				$gettop = " AND parentid IS NULL";
+			$show = " WHERE `show` = 1 AND date <= '" . date('Y-m-d H:i:s') . "'" . $gettop;
 		} else {
-			if($toplevel) $gettop = " WHERE parentid IS NULL";
+			if ($toplevel)
+				$gettop = " WHERE parentid IS NULL";
 			$show = $gettop;
 		}
-		switch($sortdirection) {
+		switch ($sortdirection) {
 			case 'asc':
 				$sortdir = ' ASC';
 				break;
@@ -125,7 +127,7 @@ class Zenpage {
 				$sortdir = '';
 				break;
 		}
-		switch($sorttype) {
+		switch ($sorttype) {
 			case 'date':
 				$sortorder = 'date';
 				break;
@@ -145,8 +147,9 @@ class Zenpage {
 				$sortorder = 'total_votes';
 				break;
 			case 'toprated':
-				if(empty($sortdir)) $sortdir = ' DESC';
-				$sortorder = '(total_value/total_votes) '.$sortdir.', total_value';
+				if (empty($sortdir))
+					$sortdir = ' DESC';
+				$sortorder = '(total_value/total_votes) ' . $sortdir . ', total_value';
 				break;
 			case 'random':
 				$sortorder = 'RAND()';
@@ -157,7 +160,7 @@ class Zenpage {
 				break;
 		}
 		$all_pages = array(); // Disabled cache var for now because it does not return un-publishded and published if logged on index.php somehow if logged in.
-		$result  = query('SELECT * FROM '.prefix('pages').$show.' ORDER by `'.$sortorder.'`'.$sortdir);
+		$result = query('SELECT * FROM ' . prefix('pages') . $show . ' ORDER by `' . $sortorder . '`' . $sortdir);
 		if ($result) {
 			while ($row = db_fetch_assoc($result)) {
 				if ($all || $row['show']) {
@@ -177,19 +180,18 @@ class Zenpage {
 		return $all_pages;
 	}
 
-
 	/**
-	* Returns path to the pages.php page without the title(link)
-	*
-	* @return string
-	*/
+	 * Returns path to the pages.php page without the title(link)
+	 *
+	 * @return string
+	 */
 	function getPagesLinkPath($title) {
-		return rewrite_path(_PAGES_.'/'.$title, "/index.php?p=pages&title=$title");
+		return rewrite_path(_PAGES_ . '/' . $title, "/index.php?p=pages&title=$title");
 	}
 
-	/************************************/
+	/*	 * ********************************* */
 	/* general news article functions   */
-	/************************************/
+	/*	 * ********************************* */
 
 	/**
 	 * Gets all news articles titlelink.
@@ -210,11 +212,11 @@ class Zenpage {
 	 * @param bool $sticky set to true to place "sticky" articles at the front of the list.
 	 * @return array
 	 */
-	function getArticles($articles_per_page=0, $published=NULL,$ignorepagination=false,$sortorder='date', $sortdirection='desc',$sticky=true) {
+	function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sortorder = 'date', $sortdirection = 'desc', $sticky = true) {
 		global $_zp_current_category, $_zp_post_date;
 		$getUnpublished = NULL;
 		if (empty($published)) {
-			if(zp_loggedin(ALL_NEWS_RIGHTS)) {
+			if (zp_loggedin(ALL_NEWS_RIGHTS)) {
 				$published = "all";
 				$getUnpublished = true;
 			} else {
@@ -226,7 +228,7 @@ class Zenpage {
 			}
 		}
 		$show = '';
-		if(in_context(ZP_ZENPAGE_NEWS_DATE)) {
+		if (in_context(ZP_ZENPAGE_NEWS_DATE)) {
 			$postdate = $_zp_post_date;
 		} else {
 			$postdate = NULL;
@@ -234,18 +236,18 @@ class Zenpage {
 		if ($sticky) {
 			$sticky = 'sticky DESC,';
 		}
-		switch($sortdirection) {
+		switch ($sortdirection) {
 			case "desc":
 			default:
 				$dir = "DESC";
 				break;
 			case "asc":
 				$dir = "ASC";
-				$sticky = false;	//makes no sense
+				$sticky = false; //makes no sense
 				break;
 		}
 		// sortorder and sortdirection (only used for all news articles and categories naturally)
-		switch($sortorder) {
+		switch ($sortorder) {
 			case "date":
 			default:
 				$sort1 = "date";
@@ -274,13 +276,13 @@ class Zenpage {
 				break;
 		}
 
-		/***get all articles ***/
-		switch($published) {
+		/*		 * *get all articles ** */
+		switch ($published) {
 			case "published":
-				$show = " WHERE `show` = 1 AND date <= '".date('Y-m-d H:i:s')."'";
+				$show = " WHERE `show` = 1 AND date <= '" . date('Y-m-d H:i:s') . "'";
 				break;
 			case "unpublished":
-				$show = " WHERE `show` = 0 AND date <= '".date('Y-m-d H:i:s')."'";
+				$show = " WHERE `show` = 0 AND date <= '" . date('Y-m-d H:i:s') . "'";
 				$getUnpublished = true;
 				break;
 			case 'sticky':
@@ -290,9 +292,9 @@ class Zenpage {
 				$show = "";
 				break;
 		}
-		if(in_context(ZP_ZENPAGE_NEWS_DATE)) {
+		if (in_context(ZP_ZENPAGE_NEWS_DATE)) {
 			$datesearch = '';
-			switch($published) {
+			switch ($published) {
 				case "published":
 					$datesearch = "date LIKE '$postdate%' ";
 					break;
@@ -305,17 +307,17 @@ class Zenpage {
 			}
 			if ($datesearch) {
 				if ($show) {
-					$datesearch = ' AND '.$datesearch;
+					$datesearch = ' AND ' . $datesearch;
 				} else {
-					$datesearch = ' WHERE '.$datesearch;
+					$datesearch = ' WHERE ' . $datesearch;
 				}
 			}
 			$order = " ORDER BY $sticky date DESC";
 		} else {
 			$datesearch = "";
-			$order = " ORDER BY ".$sticky.$sort1." ".$dir;
+			$order = " ORDER BY " . $sticky . $sort1 . " " . $dir;
 		}
-		$sql = "SELECT date, title, titlelink FROM ".prefix('news').$show.$datesearch." ".$order;
+		$sql = "SELECT date, title, titlelink FROM " . prefix('news') . $show . $datesearch . " " . $order;
 		$resource = query($sql);
 		$result = array();
 		if ($resource) {
@@ -327,36 +329,38 @@ class Zenpage {
 			while ($item = db_fetch_assoc($resource)) {
 				$article = new ZenpageNews($item['titlelink']);
 				if ($getUnpublished || $article->categoryIsVisible() || $article->isMyItem(ZENPAGE_NEWS_RIGHTS)) {
-					$offset--;
-					if ($offset < 0) {
-						$result[] = $item;
-						if ($articles_per_page && count($result) >= $articles_per_page) {
-							break;
-						}
-					}
+					$result[] = $item;
 				}
 			}
 			db_free_result($resource);
+			if ($sort1 == 'title') { // multi-lingual field!
+				$result = sortByMultilingual($result, 'title', $dir == 'DESC');
+				if ($sticky) {
+					$result = sortMultiArray($result, array('sticky'), true);
+				}
+			}
+		}
+		if ($articles_per_page) {
+			$result = array_slice($result, $offset, $articles_per_page);
 		}
 		return $result;
 	}
-/**
+
+	/**
 	 * Returns an article from the album based on the index passed.
 	 *
 	 * @param int $index
 	 * @return int
 	 */
-function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='desc',$sticky=true) {
-	$articles = $this->getArticles(0,NULL,true,$sortorder,$sortdirection,$sticky);
-	if ($index >= 0 && $index < count($articles)) {
-		$article = $articles[$index];
-		$obj = new ZenpageNews($articles[$index]['titlelink']);
-		return $obj;
+	function getArticle($index, $published = NULL, $sortorder = 'date', $sortdirection = 'desc', $sticky = true) {
+		$articles = $this->getArticles(0, NULL, true, $sortorder, $sortdirection, $sticky);
+		if ($index >= 0 && $index < count($articles)) {
+			$article = $articles[$index];
+			$obj = new ZenpageNews($articles[$index]['titlelink']);
+			return $obj;
+		}
+		return false;
 	}
-	return false;
-}
-
-
 
 	/**
 	 * Gets the LIMIT and OFFSET for the query that gets the news articles
@@ -365,14 +369,14 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	 * @param bool $ignorepagination If pagination should be ingored so always with the first is started (false is default)
 	 * @return string
 	 */
-	static function getOffset($articles_per_page,$ignorepagination=false) {
+	static function getOffset($articles_per_page, $ignorepagination = false) {
 		global $_zp_page, $subpage;
-		if(OFFSET_PATH) {
-			$page = $subpage+1;
+		if (OFFSET_PATH) {
+			$page = $subpage + 1;
 		} else {
 			$page = $_zp_page;
 		}
-		if($ignorepagination || is_null($page)) {	//	maybe from a feed since this means that $_zp_page is not set
+		if ($ignorepagination || is_null($page)) { //	maybe from a feed since this means that $_zp_page is not set
 			$offset = 0;
 		} else {
 			$offset = ($page - 1) * $articles_per_page;
@@ -386,10 +390,10 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	 */
 	function getTotalArticles() {
 		global $_zp_current_category;
-		if(ZP_COMBINEWS AND !isset($_GET['title']) AND !isset($_GET['category']) AND !isset($_GET['date']) AND OFFSET_PATH != 4) {
+		if (ZP_COMBINEWS AND !isset($_GET['title']) AND !isset($_GET['category']) AND !isset($_GET['date']) AND OFFSET_PATH != 4) {
 			return $this->countCombiNews();
 		} else {
-			if(empty($_zp_current_category)) {
+			if (empty($_zp_current_category)) {
 				if (isset($_GET['category'])) {
 					$cat = sanitize($_GET['category']);
 					$catobj = new ZenpageCategory($cat);
@@ -409,18 +413,20 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	 * @param string $order 'desc' (default) or 'asc' for descending or ascending
 	 * @return array
 	 */
-	function getAllArticleDates($yearsonly=false,$order='desc') {
+	function getAllArticleDates($yearsonly = false, $order = 'desc') {
 		$alldates = array();
 		$cleandates = array();
-		$sql = "SELECT date FROM ". prefix('news');
-		if (!zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) { $sql .= " WHERE `show` = 1"; }
+		$sql = "SELECT date FROM " . prefix('news');
+		if (!zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
+			$sql .= " WHERE `show` = 1";
+		}
 		$result = query_full_array($sql);
-		foreach($result as $row){
+		foreach ($result as $row) {
 			$alldates[] = $row['date'];
 		}
 		foreach ($alldates as $adate) {
 			if (!empty($adate)) {
-				if($yearsonly) {
+				if ($yearsonly) {
 					$cleandates[] = substr($adate, 0, 4);
 				} else {
 					$cleandates[] = substr($adate, 0, 7) . "-01";
@@ -428,14 +434,14 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 			}
 		}
 		$datecount = array_count_values($cleandates);
-		switch($order) {
+		switch ($order) {
 			case 'desc':
 			default:
 				krsort($datecount);
 				break;
 			case 'asc':
 				ksort($datecount);
-			break;
+				break;
 		}
 		return $datecount;
 	}
@@ -478,18 +484,18 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	 *
 	 * @param int $articles_per_page The number of articles to get
 	 * @param string $mode 	"latestimages-thumbnail"
-	 *											"latestimages-thumbnail-customcrop"
-	 *											"latestimages-sizedimage"
-	 *											"latestalbums-thumbnail"
-	 *		 									"latestalbums-thumbnail-customcrop"
-	 *		 									"latestalbums-sizedimage"
-	 *		 									"latestimagesbyalbum-thumbnail"
-	 *		 									"latestimagesbyalbum-thumbnail-customcrop"
-	 *		 									"latestimagesbyalbum-sizedimage"
-	 *		 									"latestupdatedalbums-thumbnail" (for RSS and getLatestNews() used only)
-	 *		 									"latestupdatedalbums-thumbnail-customcrop" (for RSS and getLatestNews() used only)
-	 *		 									"latestupdatedalbums-sizedimage" (for RSS and getLatestNews() used only)
-	 *	NOTE: The "latestupdatedalbums" variants do NOT support pagination as required on the news loop!
+	 * 											"latestimages-thumbnail-customcrop"
+	 * 											"latestimages-sizedimage"
+	 * 											"latestalbums-thumbnail"
+	 * 		 									"latestalbums-thumbnail-customcrop"
+	 * 		 									"latestalbums-sizedimage"
+	 * 		 									"latestimagesbyalbum-thumbnail"
+	 * 		 									"latestimagesbyalbum-thumbnail-customcrop"
+	 * 		 									"latestimagesbyalbum-sizedimage"
+	 * 		 									"latestupdatedalbums-thumbnail" (for RSS and getLatestNews() used only)
+	 * 		 									"latestupdatedalbums-thumbnail-customcrop" (for RSS and getLatestNews() used only)
+	 * 		 									"latestupdatedalbums-sizedimage" (for RSS and getLatestNews() used only)
+	 * 	NOTE: The "latestupdatedalbums" variants do NOT support pagination as required on the news loop!
 	 *
 	 * @param string $published "published" for published articles,
 	 * 													"unpublished" for un-published articles,
@@ -499,26 +505,26 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	 * @param string $direction 	"desc" or "asc"
 	 * @return array
 	 */
-	function getCombiNews($articles_per_page='', $mode='',$published=NULL,$sortorder=NULL,$sticky=true,$sortdirection='desc') {
+	function getCombiNews($articles_per_page = '', $mode = '', $published = NULL, $sortorder = NULL, $sticky = true, $sortdirection = 'desc') {
 		global $_zp_combiNews_cache;
 		if (is_null($published)) {
-			if(zp_loggedin(ZENPAGE_NEWS_RIGHTS | ALL_NEWS_RIGHTS)) {
+			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS | ALL_NEWS_RIGHTS)) {
 				$published = "all";
 			} else {
 				$published = "published";
 			}
 		}
 
-		if(empty($mode)) {
+		if (empty($mode)) {
 			$mode = ZP_CN_MODE;
 		}
 
-		if (isset($_zp_combiNews_cache[$published.$mode.$sticky.$sortorder.$sortdirection])) {
-			return $_zp_combiNews_cache[$published.$mode.$sticky.$sortorder.$sortdirection];
+		if (isset($_zp_combiNews_cache[$published . $mode . $sticky . $sortorder . $sortdirection])) {
+			return $_zp_combiNews_cache[$published . $mode . $sticky . $sortorder . $sortdirection];
 		}
 
-		if($published == "published") {
-			$show = " WHERE `show` = 1 AND date <= '".date('Y-m-d H:i:s')."'";
+		if ($published == "published") {
+			$show = " WHERE `show` = 1 AND date <= '" . date('Y-m-d H:i:s') . "'";
 			$imagesshow = " AND images.show = 1 ";
 		} else {
 			$show = "";
@@ -529,30 +535,30 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 			$albumWhere = "";
 			$passwordcheck = "";
 		} else {
-			$albumscheck = query_full_array("SELECT * FROM " . prefix('albums'). " ORDER BY title");
-			foreach($albumscheck as $albumcheck) {
-				if(!checkAlbumPassword($albumcheck['folder'])) {
-					$albumpasswordcheck= " AND albums.id != ".$albumcheck['id'];
-					$passwordcheck = $passwordcheck.$albumpasswordcheck;
+			$albumscheck = query_full_array("SELECT * FROM " . prefix('albums') . " ORDER BY title");
+			foreach ($albumscheck as $albumcheck) {
+				if (!checkAlbumPassword($albumcheck['folder'])) {
+					$albumpasswordcheck = " AND albums.id != " . $albumcheck['id'];
+					$passwordcheck = $passwordcheck . $albumpasswordcheck;
 				}
 			}
-			$albumWhere = "AND albums.show=1".$passwordcheck;
+			$albumWhere = "AND albums.show=1" . $passwordcheck;
 		}
 		if ($articles_per_page) {
 			$offset = self::getOffset($articles_per_page);
 		} else {
 			$offset = 0;
 		}
-		if(empty($sortorder)) {
+		if (empty($sortorder)) {
 			$combinews_sortorder = getOption("zenpage_combinews_sortorder");
 		} else {
 			$combinews_sortorder = $sortorder;
 		}
 		$stickyorder = '';
-		if($sticky) {
+		if ($sticky) {
 			$stickyorder = 'sticky DESC,';
 		}
-		switch($sortdirection) {
+		switch ($sortdirection) {
 			case 'desc':
 			default:
 				$sortdir = 'DESC';
@@ -562,7 +568,7 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 				break;
 		}
 		$type3 = query("SET @type3:='0'");
-		switch($mode) {
+		switch ($mode) {
 			case "latestimages-thumbnail":
 			case "latestimages-thumbnail-customcrop":
 			case "latestimages-sizedimage":
@@ -571,24 +577,24 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 				$sortorder = $combinews_sortorder;
 				$type1 = query("SET @type1:='news'");
 				$type2 = query("SET @type2:='images'");
-				switch($combinews_sortorder) {
+				switch ($combinews_sortorder) {
 					case 'id':
 					case 'date':
-						$imagequery = "(SELECT albums.folder, images.filename, images.date, @type2, @type3 as sticky FROM ".prefix('images')." AS images, ".prefix('albums')." AS albums
-							WHERE albums.id = images.albumid ".$imagesshow.$albumWhere.")";
+						$imagequery = "(SELECT albums.folder, images.filename, images.date, @type2, @type3 as sticky FROM " . prefix('images') . " AS images, " . prefix('albums') . " AS albums
+							WHERE albums.id = images.albumid " . $imagesshow . $albumWhere . ")";
 						break;
 					case 'publishdate':
-						$imagequery = "(SELECT albums.folder, images.filename, IFNULL(images.publishdate,images.date), @type2, @type3 as sticky FROM ".prefix('images')." AS images, ".prefix('albums')." AS albums
-													WHERE albums.id = images.albumid ".$imagesshow.$albumWhere.")";
+						$imagequery = "(SELECT albums.folder, images.filename, IFNULL(images.publishdate,images.date), @type2, @type3 as sticky FROM " . prefix('images') . " AS images, " . prefix('albums') . " AS albums
+													WHERE albums.id = images.albumid " . $imagesshow . $albumWhere . ")";
 					case 'mtime':
-						$imagequery = "(SELECT albums.folder, images.filename, FROM_UNIXTIME(images.mtime), @type2, @type3 as sticky FROM ".prefix('images')." AS images, ".prefix('albums')." AS albums
-							WHERE albums.id = images.albumid ".$imagesshow.$albumWhere.")";
+						$imagequery = "(SELECT albums.folder, images.filename, FROM_UNIXTIME(images.mtime), @type2, @type3 as sticky FROM " . prefix('images') . " AS images, " . prefix('albums') . " AS albums
+							WHERE albums.id = images.albumid " . $imagesshow . $albumWhere . ")";
 						break;
 				}
-				$result = $this->siftResults("(SELECT title as albumname, titlelink, date, @type1 as type, sticky FROM ".prefix('news')." ".$show.")
+				$result = $this->siftResults("(SELECT title as albumname, titlelink, date, @type1 as type, sticky FROM " . prefix('news') . " " . $show . ")
 																		UNION
-																		".$imagequery."
-																		ORDER BY $stickyorder date ".$sortdir, $offset, $articles_per_page);
+																		" . $imagequery . "
+																		ORDER BY $stickyorder date " . $sortdir, $offset, $articles_per_page);
 				break;
 			case "latestalbums-thumbnail":
 			case "latestalbums-thumbnail-customcrop":
@@ -598,25 +604,25 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 				$sortorder = $combinews_sortorder;
 				$type1 = query("SET @type1:='news'");
 				$type2 = query("SET @type2:='albums'");
-				switch($combinews_sortorder) {
+				switch ($combinews_sortorder) {
 					case 'id':
 					case 'date':
-						$albumquery = "(SELECT albums.folder, albums.title, albums.date, @type2, @type3 as sticky FROM ".prefix('albums')." AS albums
-							".$show.$albumWhere.")";
+						$albumquery = "(SELECT albums.folder, albums.title, albums.date, @type2, @type3 as sticky FROM " . prefix('albums') . " AS albums
+							" . $show . $albumWhere . ")";
 						break;
 					case 'publishdate':
-							$albumquery = "(SELECT albums.folder, albums.title, IFNULL(albums.publishdate,albums.date), @type2, @type3 as sticky FROM ".prefix('albums')." AS albums
-													".$show.$albumWhere.")";
-							break;
+						$albumquery = "(SELECT albums.folder, albums.title, IFNULL(albums.publishdate,albums.date), @type2, @type3 as sticky FROM " . prefix('albums') . " AS albums
+													" . $show . $albumWhere . ")";
+						break;
 					case 'mtime':
-						$albumquery = "(SELECT albums.folder, albums.title, FROM_UNIXTIME(albums.mtime), @type2, @type3 as sticky FROM ".prefix('albums')." AS albums
-							".$show.$albumWhere.")";
+						$albumquery = "(SELECT albums.folder, albums.title, FROM_UNIXTIME(albums.mtime), @type2, @type3 as sticky FROM " . prefix('albums') . " AS albums
+							" . $show . $albumWhere . ")";
 						break;
 				}
-				$result = $this->siftResults("(SELECT title as albumname, titlelink, date, @type1 as type, sticky FROM ".prefix('news')." ".$show.")
+				$result = $this->siftResults("(SELECT title as albumname, titlelink, date, @type1 as type, sticky FROM " . prefix('news') . " " . $show . ")
 																		UNION
-																		".$albumquery."
-																		ORDER BY $stickyorder date ".$sortdir, $offset, $articles_per_page);
+																		" . $albumquery . "
+																		ORDER BY $stickyorder date " . $sortdir, $offset, $articles_per_page);
 				break;
 			case "latestimagesbyalbum-thumbnail":
 			case "latestimagesbyalbum-thumbnail-customcrop":
@@ -625,142 +631,139 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 			case "latestimagesbyalbum-fullimage":
 				$type1 = query("SET @type1:='news'");
 				$type2 = query("SET @type2:='albums'");
-				if(empty($combinews_sortorder) || $combinews_sortorder != "date" || $combinews_sortorder != "mtime" || $combinews_sortorder != "publishdate") {
+				if (empty($combinews_sortorder) || $combinews_sortorder != "date" || $combinews_sortorder != "mtime" || $combinews_sortorder != "publishdate") {
 					$combinews_sortorder = "date";
 				}
-				$sortorder = "images.".$combinews_sortorder;
-				switch(		$combinews_sortorder) {
+				$sortorder = "images." . $combinews_sortorder;
+				switch ($combinews_sortorder) {
 					case "date":
-						$imagequery = "(SELECT DISTINCT DATE_FORMAT(".$sortorder.",'%Y-%m-%d'), albums.folder, DATE_FORMAT(images.date,'%Y-%m-%d'), @type2, @type3 as sticky FROM ".prefix('images')." AS images, ".prefix('albums')." AS albums
-														WHERE albums.id = images.albumid ".$imagesshow.$albumWhere.")";
+						$imagequery = "(SELECT DISTINCT DATE_FORMAT(" . $sortorder . ",'%Y-%m-%d'), albums.folder, DATE_FORMAT(images.date,'%Y-%m-%d'), @type2, @type3 as sticky FROM " . prefix('images') . " AS images, " . prefix('albums') . " AS albums
+														WHERE albums.id = images.albumid " . $imagesshow . $albumWhere . ")";
 						break;
 					case "mtime":
-						$imagequery = "(SELECT DISTINCT FROM_UNIXTIME(".$sortorder.",'%Y-%m-%d'), albums.folder, DATE_FORMAT(images.mtime,'%Y-%m-%d'), @type2, @type3 as sticky FROM ".prefix('images')." AS images, ".prefix('albums')." AS albums
-														WHERE albums.id = images.albumid ".$imagesshow.$albumWhere.")";
+						$imagequery = "(SELECT DISTINCT FROM_UNIXTIME(" . $sortorder . ",'%Y-%m-%d'), albums.folder, DATE_FORMAT(images.mtime,'%Y-%m-%d'), @type2, @type3 as sticky FROM " . prefix('images') . " AS images, " . prefix('albums') . " AS albums
+														WHERE albums.id = images.albumid " . $imagesshow . $albumWhere . ")";
 					case "publishdate":
-							$imagequery = "(SELECT DISTINCT FROM_UNIXTIME(".$sortorder.",'%Y-%m-%d'), albums.folder, DATE_FORMAT(images.publishdate,'%Y-%m-%d'), @type2, @type3 as sticky FROM ".prefix('images')." AS images, ".prefix('albums')." AS albums
-																				WHERE albums.id = images.albumid ".$imagesshow.$albumWhere.")";
+						$imagequery = "(SELECT DISTINCT FROM_UNIXTIME(" . $sortorder . ",'%Y-%m-%d'), albums.folder, DATE_FORMAT(images.publishdate,'%Y-%m-%d'), @type2, @type3 as sticky FROM " . prefix('images') . " AS images, " . prefix('albums') . " AS albums
+																				WHERE albums.id = images.albumid " . $imagesshow . $albumWhere . ")";
 						break;
 				}
-				$result = $this->siftResults("(SELECT title as albumname, titlelink, date, @type1 as type, sticky FROM ".prefix('news')." ".$show.")
+				$result = $this->siftResults("(SELECT title as albumname, titlelink, date, @type1 as type, sticky FROM " . prefix('news') . " " . $show . ")
 																		UNION
-																		".$imagequery."
-																		ORDER By $stickyorder date ".$sortdir, $offset, $articles_per_page);
+																		" . $imagequery . "
+																		ORDER By $stickyorder date " . $sortdir, $offset, $articles_per_page);
 				break;
 			case "latestupdatedalbums-thumbnail":
 			case "latestupdatedalbums-thumbnail-customcrop":
 			case "latestupdatedalbums-sizedimage":
 			case "latestupdatedalbums-sizedimage-maxspace":
 			case "latestupdatedalbums-fullimage":
-				$latest = $this->getArticles($articles_per_page,NULL,true,'date',$sortdirection);
+				$latest = $this->getArticles($articles_per_page, NULL, true, 'date', $sortdirection);
 				$counter = '';
-				foreach($latest as $news) {
+				foreach ($latest as $news) {
 					$article = new ZenpageNews($news['titlelink']);
 					if ($article->checkAccess($hint, $show)) {
 						$counter++;
 						$latestnews[$counter] = array(
-																					"albumname" => $article->getTitle(),
-																					"titlelink" => $article->getTitlelink(),
-																					"date" => $article->getDateTime(),
-																					"type" => "news",
-																					);
+										"albumname"	 => $article->getTitle(),
+										"titlelink"	 => $article->getTitlelink(),
+										"date"			 => $article->getDateTime(),
+										"type"			 => "news",
+						);
 					}
 				}
-				$albums = getAlbumStatistic($articles_per_page, "latestupdated",'',$sortdirection);
+				$albums = getAlbumStatistic($articles_per_page, "latestupdated", '', $sortdirection);
 				$latestalbums = array();
 				$counter = "";
-				foreach($albums as $album) {
+				foreach ($albums as $album) {
 					$counter++;
 					$tempalbum = newAlbum($album['folder']);
 					$tempalbumthumb = $tempalbum->getAlbumThumbImage();
 					$timestamp = $tempalbum->get('mtime');
-					if($timestamp == 0) {
+					if ($timestamp == 0) {
 						$albumdate = $tempalbum->getDateTime();
 					} else {
-						$albumdate = strftime('%Y-%m-%d %H:%M:%S',$timestamp);
+						$albumdate = strftime('%Y-%m-%d %H:%M:%S', $timestamp);
 					}
 					$latestalbums[$counter] = array(
-																					"albumname" => $tempalbum->getFolder(),
-																					"titlelink" => $tempalbum->getTitle(),
-																					"date" => $albumdate,
-																					"type" => 'albums',
-																					);
+									"albumname"	 => $tempalbum->getFolder(),
+									"titlelink"	 => $tempalbum->getTitle(),
+									"date"			 => $albumdate,
+									"type"			 => 'albums',
+					);
 				}
 				//$latestalbums = array_merge($latestalbums, $item);
 				$latest = array_merge($latestnews, $latestalbums);
-				$result = sortMultiArray($latest,"date",$sortdirection != 'asc');
-				if(count($result) > $articles_per_page) {
-					$result = array_slice($result,0,$articles_per_page);
+				$result = sortMultiArray($latest, "date", $sortdirection != 'asc');
+				if (count($result) > $articles_per_page) {
+					$result = array_slice($result, 0, $articles_per_page);
 				}
 				break;
 		}
-		$_zp_combiNews_cache[$published.$mode.$sticky.$sortorder.$sortdirection] = $result;
+		$_zp_combiNews_cache[$published . $mode . $sticky . $sortorder . $sortdirection] = $result;
 		return $result;
 	}
-
 
 	/**
 	 * CombiNews Feature: Counts all news articles and all images
 	 *
 	 * @return int
 	 */
-	function countCombiNews($published=NULL) {
-		return count($this->getCombiNews(NULL,NULL,$published));
+	function countCombiNews($published = NULL) {
+		return count($this->getCombiNews(NULL, NULL, $published));
 	}
 
 	/**
-	* Returns the full path of the news index page (news page 1) or if the "news on zp index" option is set a link to the gallery index.
-	*
-	* @return string
-	*/
+	 * Returns the full path of the news index page (news page 1) or if the "news on zp index" option is set a link to the gallery index.
+	 *
+	 * @return string
+	 */
 	function getNewsIndexURL() {
-		if($this->news_on_index) {
+		if ($this->news_on_index) {
 			return getGalleryIndexURL(false);
 		} else {
 			return rewrite_path(_NEWS_, "/index.php?p=news");
 		}
 	}
 
-
 	/**
-	* Returns partial path of news category
-	*
-	* @return string
-	*/
-	function getNewsCategoryPath($category,$page=NULL) {
+	 * Returns partial path of news category
+	 *
+	 * @return string
+	 */
+	function getNewsCategoryPath($category, $page = NULL) {
 		if ($page) {
-			return rewrite_path('/'._CATEGORY_.'/'.$category.'/'.$page,"/index.php?p=news&category=$category&page=$page");
+			return rewrite_path('/' . _CATEGORY_ . '/' . $category . '/' . $page, "/index.php?p=news&category=$category&page=$page");
 		} else {
-			return rewrite_path('/'._CATEGORY_.'/'.$category,"/index.php?p=news&category=$category");
+			return rewrite_path('/' . _CATEGORY_ . '/' . $category, "/index.php?p=news&category=$category");
 		}
 	}
 
 	/**
-	* Returns partial path of news date archive
-	*
-	* @return string
-	*/
-	function getNewsArchivePath($date, $page=NULL) {
-		if ($page>1) {
-			return rewrite_path('/'._NEWS_ARCHIVE_.'/'.$date.'/'.$page,"/index.php?p=news&date=$date&page=$page");
+	 * Returns partial path of news date archive
+	 *
+	 * @return string
+	 */
+	function getNewsArchivePath($date, $page = NULL) {
+		if ($page > 1) {
+			return rewrite_path('/' . _NEWS_ARCHIVE_ . '/' . $date . '/' . $page, "/index.php?p=news&date=$date&page=$page");
 		} else {
-			return rewrite_path('/'._NEWS_ARCHIVE_.'/'.$date,"/index.php?p=news&date=$date");
+			return rewrite_path('/' . _NEWS_ARCHIVE_ . '/' . $date, "/index.php?p=news&date=$date");
 		}
 	}
 
-
 	/**
-	* Returns partial path of news article title
-	*
-	* @return string
-	*/
+	 * Returns partial path of news article title
+	 *
+	 * @return string
+	 */
 	function getNewsTitlePath($title) {
-		return rewrite_path('/'._NEWS_."/$title","/index.php?p=news&title=$title");
+		return rewrite_path('/' . _NEWS_ . "/$title", "/index.php?p=news&title=$title");
 	}
 
-	/************************************/
+	/*	 * ********************************* */
 	/* general news category functions  */
-	/************************************/
+	/*	 * ********************************* */
 
 	/**
 	 * Gets the category link of a category
@@ -769,13 +772,12 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	 * @return string
 	 */
 	function getCategoryLink($catname) {
-		foreach($this->getAllCategories(false) as $cat) {
-			if($cat['titlelink'] == $catname) {
+		foreach ($this->getAllCategories(false) as $cat) {
+			if ($cat['titlelink'] == $catname) {
 				return $cat['title'];
 			}
 		}
 	}
-
 
 	/**
 	 * Gets a category titlelink by id
@@ -784,14 +786,13 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	 * @return array
 	 */
 	function getCategory($id) {
-		foreach($this->getAllCategories(false) as $cat) {
-			if($cat['id'] == $id) {
+		foreach ($this->getAllCategories(false) as $cat) {
+			if ($cat['id'] == $id) {
 				return $cat;
 			}
 		}
 		return '';
 	}
-
 
 	/**
 	 * Gets all categories
@@ -800,9 +801,9 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 	 * @param string $sortdirection "asc" or "desc" for ascending or descending order
 	 * @return array
 	 */
-	function getAllCategories($visible=true,$sorttype=NULL, $sortdirection=NULL) {
+	function getAllCategories($visible = true, $sorttype = NULL, $sortdirection = NULL) {
 		$structure = $this->getCategoryStructure();
-		switch($sortdirection) {
+		switch ($sortdirection) {
 			case 'asc':
 			default:
 				$sortdir = FALSE;
@@ -811,7 +812,7 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 				$sortdir = TRUE;
 				break;
 		}
-		switch($sorttype) {
+		switch ($sorttype) {
 			case "id":
 				$sortorder = "id";
 				break;
@@ -829,7 +830,7 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 				break;
 		}
 		if ($visible) {
-			foreach ($structure as $key=>$cat) {
+			foreach ($structure as $key => $cat) {
 				$catobj = new ZenpageCategory($cat['titlelink']);
 				if ($catobj->getShow() || $catobj->isMyItem(LIST_RIGHTS)) {
 					$structure[$key]['show'] = 1;
@@ -839,26 +840,28 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 			}
 		}
 
-		if(!is_null($sorttype) || !is_null($sortdirection)) {
-			if($sorttype == 'random') {
+		if (!is_null($sorttype) || !is_null($sortdirection)) {
+			if ($sorttype == 'random') {
 				shuffle($structure);
 			} else {
-				$structure = sortMultiArray($structure, $sortorder,$sortdir, true,false, false);
+				$structure = sortMultiArray($structure, $sortorder, $sortdir, true, false, false);
 			}
 		}
 		return $structure;
 	}
 
 	/**
-	*
-	* "Magic" function to return a string identifying the object when it is treated as a string
-	* @return string
-	*/
+	 *
+	 * "Magic" function to return a string identifying the object when it is treated as a string
+	 * @return string
+	 */
 	public function __toString() {
-	return 'Zenpage';
+		return 'Zenpage';
 	}
 
-}	// ZenpageCMS
+}
+
+// ZenpageCMS
 
 /**
  *
@@ -883,9 +886,10 @@ class ZenpageRoot extends ThemeObject {
 		return $this->get("permalink");
 	}
 
-	/**'
+	/*	 * '
 	 * sets the permalink
 	 */
+
 	function setPermalink($v) {
 		$this->set('permalink', $v);
 	}
@@ -904,10 +908,12 @@ class ZenpageRoot extends ThemeObject {
 	 * @param $v
 	 */
 	function setTitlelink($v) {
-		$this->set("titlelink",$v);
+		$this->set("titlelink", $v);
 	}
 
-} // Zenpage main class end
+}
+
+// Zenpage main class end
 
 /**
  *
@@ -922,7 +928,6 @@ class ZenpageItems extends ZenpageRoot {
 	function __construct() {
 		// no action required
 	}
-
 
 	/**
 	 * Returns the author
@@ -939,7 +944,7 @@ class ZenpageItems extends ZenpageRoot {
 
 	 */
 	function setAuthor($a) {
-		$this->set("author",$a);
+		$this->set("author", $a);
 	}
 
 	/**
@@ -947,12 +952,12 @@ class ZenpageItems extends ZenpageRoot {
 	 *
 	 * @return string
 	 */
-	function getContent($locale=NULL) {
+	function getContent($locale = NULL) {
 		$text = $this->get("content");
-		if ($locale =='all') {
+		if ($locale == 'all') {
 			return zpFunctions::unTagURLs($text);
 		} else {
-			return applyMacros(zpFunctions::unTagURLs(get_language_string($text,$locale)));
+			return applyMacros(zpFunctions::unTagURLs(get_language_string($text, $locale)));
 		}
 	}
 
@@ -963,7 +968,7 @@ class ZenpageItems extends ZenpageRoot {
 	 */
 	function setContent($c) {
 		$c = zpFunctions::tagURLs($c);
-		$this->set("content",$c);
+		$this->set("content", $c);
 	}
 
 	/**
@@ -982,7 +987,8 @@ class ZenpageItems extends ZenpageRoot {
 	function setLastchange($d) {
 		if ($d) {
 			$newtime = dateTimeConvert($d);
-			if ($newtime === false) return;
+			if ($newtime === false)
+				return;
 			$this->set('lastchange', $newtime);
 		} else {
 			$this->set('lastchange', NULL);
@@ -1003,7 +1009,7 @@ class ZenpageItems extends ZenpageRoot {
 	 * stores the last change author
 	 */
 	function setLastchangeAuthor($a) {
-		$this->set("lastchangeauthor",$a);
+		$this->set("lastchangeauthor", $a);
 	}
 
 	/**
@@ -1020,7 +1026,7 @@ class ZenpageItems extends ZenpageRoot {
 	 *
 	 */
 	function setLocked($l) {
-		$this->set("locked",$l);
+		$this->set("locked", $l);
 	}
 
 	/**
@@ -1028,10 +1034,10 @@ class ZenpageItems extends ZenpageRoot {
 	 *
 	 * @return string
 	 */
-	function getExtraContent($locale=NULL) {
-		$text =  $this->get("extracontent");
-		if ($locale!=='all') {
-			$text = get_language_string($text,$locale);
+	function getExtraContent($locale = NULL) {
+		$text = $this->get("extracontent");
+		if ($locale !== 'all') {
+			$text = get_language_string($text, $locale);
 		}
 		$text = zpFunctions::unTagURLs($text);
 		return $text;
@@ -1042,7 +1048,7 @@ class ZenpageItems extends ZenpageRoot {
 	 *
 	 */
 	function setExtraContent($ec) {
-		$this->set("extracontent",zpFunctions::tagURLs($ec));
+		$this->set("extracontent", zpFunctions::tagURLs($ec));
 	}
 
 	/**
@@ -1066,7 +1072,8 @@ class ZenpageItems extends ZenpageRoot {
 	function setExpireDate($ed) {
 		if ($ed) {
 			$newtime = dateTimeConvert($ed);
-			if ($newtime === false) return;
+			if ($newtime === false)
+				return;
 			$this->set('expiredate', $newtime);
 		} else {
 			$this->set('expiredate', NULL);
@@ -1074,4 +1081,5 @@ class ZenpageItems extends ZenpageRoot {
 	}
 
 }
+
 ?>
