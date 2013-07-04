@@ -2338,10 +2338,10 @@ function next_page($sorttype = NULL, $sortdirection = NULL) {
 	global $_zp_zenpage, $_zp_next_pagelist, $_zp_current_search, $_zp_current_zenpage_page, $_zp_current_page_restore;
 	if (is_null($_zp_next_pagelist)) {
 		if (in_context(ZP_SEARCH)) {
-			$_zp_next_pagelist = $_zp_current_search->getPages(NULL, NULL, $sorttype, $sortdirection);
+			$_zp_next_pagelist = $_zp_current_search->getPages(NULL, false, NULL, $sorttype, $sortdirection);
 		} else if (in_context(ZP_ZENPAGE_PAGE)) {
 			if (!is_null($_zp_current_zenpage_page)) {
-				$_zp_next_pagelist = $_zp_current_zenpage_page->getPages(NULL, NULL, $sorttype, $sortdirection);
+				$_zp_next_pagelist = $_zp_current_zenpage_page->getPages(NULL, false, NULL, $sorttype, $sortdirection);
 			}
 		} else {
 			$_zp_next_pagelist = $_zp_zenpage->getPages(NULL, true, NULL, $sorttype, $sortdirection);
