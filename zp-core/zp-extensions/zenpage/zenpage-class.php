@@ -98,7 +98,7 @@ class Zenpage {
 	 * @param string $sortdirection "asc" or "desc" for ascending or descending order
 	 * @return array
 	 */
-	function getPages($published = NULL, $toplevel = false, $number = NULL, $sorttype = NULL, $sortdirection = NULL) {
+	static function getPages($published = NULL, $toplevel = false, $number = NULL, $sorttype = NULL, $sortdirection = NULL) {
 		global $_zp_loggedin;
 		if (is_null($published)) {
 			$published = !zp_loggedin();
@@ -213,7 +213,7 @@ class Zenpage {
 	 * @param bool $sticky set to true to place "sticky" articles at the front of the list.
 	 * @return array
 	 */
-	function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sortorder = "date", $sortdirection = "desc", $sticky = true, $category = NULL) {
+	static function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sortorder = "date", $sortdirection = "desc", $sticky = true, $category = NULL) {
 		global $_zp_current_category, $_zp_post_date, $_zp_newsCache;
 
 		if (empty($published)) {
