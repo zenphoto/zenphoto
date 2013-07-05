@@ -37,10 +37,10 @@ class defaultCodeblocks {
 		$options = array(	gettext('Objects') => array('key'=>'defaultCodeblocks_objects', 'type'=>OPTION_TYPE_CHECKBOX_UL,
 																									'order'=>0,
 																									'checkboxes' => $list,
-																									'desc'=>gettext('Default codeblocks will be applied for the checked objects,')),
+																									'desc'=>gettext('Default codeblocks will be applied for the checked objects.')),
 											gettext('Codeblocks') => array('key'=>'defaultCodeblocks_blocks', 'type'=>OPTION_TYPE_CUSTOM,
 																										'order'=>2,
-																										'desc'=>gettext('Codeblocks to be inserted in when the one for the object is empty.'))
+																										'desc'=>gettext('Codeblocks to be inserted when the one for the object is empty.'))
 										);
 		return $options;
 	}
