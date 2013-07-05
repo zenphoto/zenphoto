@@ -131,8 +131,8 @@
 		if (!$_processing_post) {
 		?>
 		<p>
-			<input type="submit" class="button" value="<?php echo gettext("Send e-mail"); ?>" />
-			<input type="reset" class="button" value="<?php echo gettext("Reset"); ?>" />
+			<input type="submit" class="button buttons" value="<?php echo gettext("Send e-mail"); ?>" />
+			<input type="reset" class="button buttons" value="<?php echo gettext("Reset"); ?>" />
 		</p>
 		<?php } ?>
 </form>
