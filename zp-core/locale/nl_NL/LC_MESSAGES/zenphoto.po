@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.4.5\n"
+"Project-Id-Version: Zenphoto 1.4.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-29 08:27+0100\n"
+"POT-Creation-Date: 2013-07-05 22:17+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -913,10 +913,11 @@ msgstr "Ga naar de fotogalerij"
 #: ZpTranslation-Development/zp-core/lib-auth.php:572
 #: ZpTranslation-Development/zp-core/zp-extensions/cacheManager.php:107
 #: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:97
+#: ZpTranslation-Development/zp-core/zp-extensions/defaultCodeblocks.php:35
 #: ZpTranslation-Development/zp-core/zp-extensions/html_meta_tags.php:224
 #: ZpTranslation-Development/zp-core/zp-extensions/multiple_layouts.php:92
-#: ZpTranslation-Development/zp-core/zp-extensions/related_items.php:150
-#: ZpTranslation-Development/zp-core/zp-extensions/related_items.php:185
+#: ZpTranslation-Development/zp-core/zp-extensions/related_items.php:152
+#: ZpTranslation-Development/zp-core/zp-extensions/related_items.php:187
 #: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:87
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:330
 #: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:1075
@@ -963,7 +964,7 @@ msgstr "Zoek in nieuws"
 #: ZpTranslation-Development/zp-core/zp-extensions/cacheManager.php:108
 #: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:97
 #: ZpTranslation-Development/zp-core/zp-extensions/multiple_layouts.php:92
-#: ZpTranslation-Development/zp-core/zp-extensions/related_items.php:150
+#: ZpTranslation-Development/zp-core/zp-extensions/related_items.php:152
 #: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:88
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:333
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:131
@@ -1141,6 +1142,7 @@ msgstr "nieuws"
 #: ZpTranslation-Development/zp-core/lib-auth.php:576
 #: ZpTranslation-Development/zp-core/lib-auth.php:578
 #: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:365
+#: ZpTranslation-Development/zp-core/zp-extensions/defaultCodeblocks.php:33
 #: ZpTranslation-Development/zp-core/zp-extensions/rss.php:74
 #: ZpTranslation-Development/zp-core/zp-extensions/cacheManager/cacheImages.php:133
 msgid "Gallery"
@@ -1404,7 +1406,7 @@ msgstr "Index afbeelding"
 #: ZpTranslation-Development/zp-core/admin-options.php:1820
 #: ZpTranslation-Development/zp-core/admin-options.php:1841
 #: ZpTranslation-Development/zp-core/admin-options.php:2543
-#: ZpTranslation-Development/zp-core/functions-basic.php:227
+#: ZpTranslation-Development/zp-core/functions-basic.php:225
 #: ZpTranslation-Development/zp-core/zp-extensions/image_effects.php:125
 #: ZpTranslation-Development/zp-core/zp-extensions/image_effects.php:129
 #: ZpTranslation-Development/zp-core/zp-extensions/image_effects.php:133
@@ -1460,7 +1462,8 @@ msgstr "Pagina niet gevonden"
 #: ZpTranslation-Development/zp-core/admin-functions.php:489
 #: ZpTranslation-Development/zp-core/admin-functions.php:4509
 #: ZpTranslation-Development/zp-core/lib-auth.php:490
-#: ZpTranslation-Development/zp-core/zp-extensions/related_items.php:172
+#: ZpTranslation-Development/zp-core/zp-extensions/defaultCodeblocks.php:33
+#: ZpTranslation-Development/zp-core/zp-extensions/related_items.php:174
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:81
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:85
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:246
@@ -1471,7 +1474,8 @@ msgstr "Album"
 #: ZpTranslation-Development/themes/zenpage/404.php:40
 #: ZpTranslation-Development/themes/zpmobile/404.php:35
 #: ZpTranslation-Development/zp-core/admin-functions.php:4507
-#: ZpTranslation-Development/zp-core/zp-extensions/related_items.php:179
+#: ZpTranslation-Development/zp-core/zp-extensions/defaultCodeblocks.php:33
+#: ZpTranslation-Development/zp-core/zp-extensions/related_items.php:181
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:100
 msgid "Image"
 msgstr "Afbeelding"
@@ -1605,7 +1609,7 @@ msgstr "Zoek in categorie"
 #: ZpTranslation-Development/zp-core/zp-extensions/cacheManager.php:105
 #: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:95
 #: ZpTranslation-Development/zp-core/zp-extensions/multiple_layouts.php:90
-#: ZpTranslation-Development/zp-core/zp-extensions/related_items.php:150
+#: ZpTranslation-Development/zp-core/zp-extensions/related_items.php:152
 #: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:85
 msgid "Albums"
 msgstr "Albums"
@@ -3449,7 +3453,7 @@ msgstr "Bekijk galerij index"
 #: ZpTranslation-Development/zp-core/zp-extensions/cacheManager.php:105
 #: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:95
 #: ZpTranslation-Development/zp-core/zp-extensions/multiple_layouts.php:90
-#: ZpTranslation-Development/zp-core/zp-extensions/related_items.php:150
+#: ZpTranslation-Development/zp-core/zp-extensions/related_items.php:152
 #: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:85
 msgid "Images"
 msgstr "Afbeeldingen"
@@ -7180,7 +7184,7 @@ msgid "Official build"
 msgstr "Officiële versie"
 
 #: ZpTranslation-Development/zp-core/admin.php:237
-#: ZpTranslation-Development/zp-core/functions-basic.php:1162
+#: ZpTranslation-Development/zp-core/functions-basic.php:1173
 #: ZpTranslation-Development/zp-core/setup/index.php:368
 #: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:132
 msgid "clone"
@@ -7679,12 +7683,12 @@ msgstr "Te weinig argumenten! Afbeelding niet gevonden."
 msgid "Forbidden(2)"
 msgstr "Verboden (2)"
 
-#: ZpTranslation-Development/zp-core/functions-basic.php:1133
+#: ZpTranslation-Development/zp-core/functions-basic.php:1143
 #, php-format
 msgid "%s log size limit exceeded"
 msgstr "%s log limiet overschreden"
 
-#: ZpTranslation-Development/zp-core/functions-basic.php:1133
+#: ZpTranslation-Development/zp-core/functions-basic.php:1143
 #, php-format
 msgid "The %1$s log has exceeded its size limit and has been renamed to %2$s."
 msgstr "Het %1$s log heeft z'n limiet bereikt en is hernoemd %2$s."
@@ -9473,11 +9477,11 @@ msgstr "De <strong><em>GD</em></strong> extensie is niet beschikbaar."
 msgid "PHP GD library <em>%s</em>"
 msgstr "PHP GD bibliotheek <em>%s</em>"
 
-#: ZpTranslation-Development/zp-core/lib-Imagick.php:54
+#: ZpTranslation-Development/zp-core/lib-Imagick.php:66
 msgid "Enable Imagick"
 msgstr "Activeer Imagick"
 
-#: ZpTranslation-Development/zp-core/lib-Imagick.php:59
+#: ZpTranslation-Development/zp-core/lib-Imagick.php:71
 msgid ""
 "Your PHP has support for Imagick. Check this option if you wish to use the "
 "Imagick graphics library."
@@ -9485,7 +9489,33 @@ msgstr ""
 "Je PHP biedt ondersteuning voor Imagick. Vink aan als je de Imagick "
 "grafische bibliotheek wilt gebruiken."
 
-#: ZpTranslation-Development/zp-core/lib-Imagick.php:71
+#: ZpTranslation-Development/zp-core/lib-Imagick.php:77
+msgid "Max height"
+msgstr "Maximale hoogte"
+
+#: ZpTranslation-Development/zp-core/lib-Imagick.php:81
+#, php-format
+msgid ""
+"The maximum height used by the site for processed images. Set to %d for "
+"unconstrained. Default is <strong>%d</strong>"
+msgstr ""
+"De maximale hoogte voor de afbeeldingen. Zet op %d om de beeldverhouding "
+"niet te behouden. De standaard is <strong>%d</strong>"
+
+#: ZpTranslation-Development/zp-core/lib-Imagick.php:83
+msgid "Max width"
+msgstr "Maximale breedte"
+
+#: ZpTranslation-Development/zp-core/lib-Imagick.php:87
+#, php-format
+msgid ""
+"The maximum width used by the site for processed images. Set to %d for "
+"unconstrained. Default is <strong>%d</strong>."
+msgstr ""
+"De maximale breedte voor de afbeeldingen. Zet op %d om de beeldverhouding "
+"niet te behouden. De standaard is <strong>%d</strong>"
+
+#: ZpTranslation-Development/zp-core/lib-Imagick.php:100
 #, php-format
 msgid ""
 "The <strong><em>Imagick</em></strong> library version must be <strong>%s</"
@@ -9494,7 +9524,7 @@ msgstr ""
 "De <strong><em>Imagick</em></strong> versie moet <strong>%s</strong> of "
 "later zijn."
 
-#: ZpTranslation-Development/zp-core/lib-Imagick.php:75
+#: ZpTranslation-Development/zp-core/lib-Imagick.php:104
 #, php-format
 msgid ""
 "The <strong><em>ImageMagick</em></strong> binary version must be <strong>%s</"
@@ -9503,11 +9533,11 @@ msgstr ""
 "De <strong><em>ImageMagick</em></strong> versie moet <strong>%s</strong> of "
 "later zijn."
 
-#: ZpTranslation-Development/zp-core/lib-Imagick.php:78
+#: ZpTranslation-Development/zp-core/lib-Imagick.php:107
 msgid "The <strong><em>Imagick</em></strong> extension is not available."
 msgstr "De <strong><em>Imagick</em></strong> extensie is niet beschikbaar."
 
-#: ZpTranslation-Development/zp-core/lib-Imagick.php:91
+#: ZpTranslation-Development/zp-core/lib-Imagick.php:120
 #, php-format
 msgid "PHP Imagick library <em>%s</em>"
 msgstr "PHP Imagick bibliotheek <em>%s</em>"
@@ -14548,6 +14578,40 @@ msgstr "verwissel breedte en hoogte"
 msgid "clear width and height fields"
 msgstr "maak breedte en hoogte leeg"
 
+#: ZpTranslation-Development/zp-core/zp-extensions/defaultCodeblocks.php:11
+msgid "Create default codeblocks."
+msgstr "Maak standaard codeblocks."
+
+#: ZpTranslation-Development/zp-core/zp-extensions/defaultCodeblocks.php:35
+msgid "News category"
+msgstr "Nieuws categorie"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/defaultCodeblocks.php:35
+#: ZpTranslation-Development/zp-core/zp-extensions/related_items.php:193
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:101
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:437
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-edit.php:218
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1608
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1610
+msgid "Page"
+msgstr "Pagina"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/defaultCodeblocks.php:37
+msgid "Objects"
+msgstr "Objecten"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/defaultCodeblocks.php:40
+msgid "Default codeblocks will be applied for the checked objects."
+msgstr "De standaard codeblocks worden toegepast op de aangevinkte objecten."
+
+#: ZpTranslation-Development/zp-core/zp-extensions/defaultCodeblocks.php:41
+msgid "Codeblocks"
+msgstr "Codeblocks"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/defaultCodeblocks.php:43
+msgid "Codeblocks to be inserted when the one for the object is empty."
+msgstr "Codeblocks om in te voegen als die van het object leeg zijn."
+
 #: ZpTranslation-Development/zp-core/zp-extensions/deprecated-functions.php:21
 msgid "Provides deprecated Zenphoto functions."
 msgstr "Toont verouderde Zenphoto functies."
@@ -17753,25 +17817,16 @@ msgid ""
 "filter check."
 msgstr "Je registratie is niet gelukt."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/related_items.php:9
+#: ZpTranslation-Development/zp-core/zp-extensions/related_items.php:8
 msgid ""
 "Provides functionality to get the related items to an item based on a tag "
 "search."
 msgstr "Gerelateerde items op basis van een tag zoekopdracht."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/related_items.php:156
+#: ZpTranslation-Development/zp-core/zp-extensions/related_items.php:158
 #, php-format
 msgid "Related %s"
 msgstr "Gerelateerd %s"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/related_items.php:191
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:101
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:437
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-edit.php:218
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1608
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1610
-msgid "Page"
-msgstr "Pagina"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/rewriteTokens.php:11
 msgid ""
@@ -21090,11 +21145,11 @@ msgstr "Telefoon%s"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:121
 msgid "Subject<strong>*</strong>"
-msgstr "Onderwerp<strong>*</strong>:"
+msgstr "Onderwerp<strong>*</strong>"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:127
 msgid "Message<strong>*</strong>"
-msgstr "Bericht<strong>*</strong>:"
+msgstr "Bericht<strong>*</strong>"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:134
 msgid "Send e-mail"
@@ -23742,9 +23797,6 @@ msgstr "<code>zenpageAlbumImage()</code> kan album %1$s niet vinden."
 
 #~ msgid "Check if CAPTCHA should be required."
 #~ msgstr "Vink aan als een CAPTCHA gewenst is."
-
-#~ msgid "Subject"
-#~ msgstr "Onderwerp"
 
 #~ msgid "Message"
 #~ msgstr "Bericht"
