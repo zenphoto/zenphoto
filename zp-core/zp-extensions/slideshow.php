@@ -740,7 +740,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $i
 		$returnpath = getSearchURL($searchwords, $searchdate, $searchfields, $page);
 		$albumobj = new AlbumBase(NULL, false);
 		$albumobj->setTitle(gettext('Search'));
-		$albumobj->images = $search->getImage(0);
+		$albumobj->images = $search->getImages(0);
 	} else {
 		if (isset($_POST['favorites_page'])) {
 			$albumobj = $_myFavorites;
