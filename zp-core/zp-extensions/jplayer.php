@@ -240,9 +240,9 @@ class jPlayer {
 
 	static function macro($macros) {
 		$macros['MEDIAPLAYER'] = array(
-						'class'	 => 'function',
+						'class'	 => 'expression',
 						'params' => array('string', 'int*'),
-						'value'	 => 'jplayer::getMacrojplayer',
+						'value'	 => 'jplayer::getMacrojplayer($1,$2);',
 						'owner'	 => 'jplayer',
 						'desc'	 => gettext('provide the path to media file as %1 and a unique number as %2. (If there is only player instance on the page the parameter may be omitted.)')
 		);
