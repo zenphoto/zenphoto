@@ -98,7 +98,7 @@ class Zenpage {
 	 * @param string $sortdirection "asc" or "desc" for ascending or descending order
 	 * @return array
 	 */
-	function getPages($published = NULL, $toplevel = false, $number = NULL, $sorttype = NULL, $sortdirection = NULL) {
+	static function getPages($published = NULL, $toplevel = false, $number = NULL, $sorttype = NULL, $sortdirection = NULL) {
 		global $_zp_loggedin;
 		if (is_null($published)) {
 			$published = !zp_loggedin();
@@ -202,6 +202,7 @@ class Zenpage {
 	 * @param int $articles_per_page The number of articles to get
 	 * @param string $published "published" for an published articles,
 	 * 													"unpublished" for an unpublised articles,
+	 * 													"published-unpublished" for published articles only from an unpublished category,
 	 * 													"sticky" for sticky articles (published or not!) for admin page use only,
 	 * 													"all" for all articles
 	 * @param boolean $ignorepagination Since also used for the news loop this function automatically paginates the results if the "page" GET variable is set. To avoid this behaviour if using it directly to get articles set this TRUE (default FALSE)
@@ -212,135 +213,178 @@ class Zenpage {
 	 * @param bool $sticky set to true to place "sticky" articles at the front of the list.
 	 * @return array
 	 */
-	function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sortorder = 'date', $sortdirection = 'desc', $sticky = true) {
-		global $_zp_current_category, $_zp_post_date;
-		$getUnpublished = NULL;
+	static function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sortorder = "date", $sortdirection = "desc", $sticky = true, $category = NULL) {
+		global $_zp_current_category, $_zp_post_date, $_zp_newsCache;
+
 		if (empty($published)) {
-			if (zp_loggedin(ALL_NEWS_RIGHTS)) {
+			if (zp_loggedin() || $category && $category->isMyItem(ZENPAGE_NEWS_RIGHTS)) {
 				$published = "all";
-				$getUnpublished = true;
 			} else {
-				if (zp_loggedin()) {
-					$published = 'all';
-				} else {
-					$published = "published";
-				}
+				$published = "published";
 			}
-		}
-		$show = '';
-		if (in_context(ZP_ZENPAGE_NEWS_DATE)) {
-			$postdate = $_zp_post_date;
-		} else {
-			$postdate = NULL;
-		}
-		if ($sticky) {
-			$sticky = 'sticky DESC,';
-		}
-		switch ($sortdirection) {
-			case "desc":
-			default:
-				$dir = "DESC";
-				break;
-			case "asc":
-				$dir = "ASC";
-				$sticky = false; //makes no sense
-				break;
-		}
-		// sortorder and sortdirection (only used for all news articles and categories naturally)
-		switch ($sortorder) {
-			case "date":
-			default:
-				$sort1 = "date";
-				break;
-			case 'lastchange':
-				$sort1 = 'lastchange';
-				break;
-			case "id":
-				$sort1 = "id";
-				break;
-			case "title":
-				$sort1 = "title";
-				break;
-			case "popular":
-				$sort1 = 'hitcounter';
-				break;
-			case "mostrated":
-				$sort1 = 'total_votes';
-				break;
-			case "toprated":
-				$sort1 = '(total_value/total_votes) DESC, total_value';
-				$dir = '';
-				break;
-			case "random":
-				$sort1 = 'RAND()';
-				break;
 		}
 
-		/*		 * *get all articles ** */
-		switch ($published) {
-			case "published":
-				$show = " WHERE `show` = 1 AND date <= '" . date('Y-m-d H:i:s') . "'";
-				break;
-			case "unpublished":
-				$show = " WHERE `show` = 0 AND date <= '" . date('Y-m-d H:i:s') . "'";
-				$getUnpublished = true;
-				break;
-			case 'sticky':
-				$show = ' WHERE `sticky` <> 0';
-				break;
-			case "all":
-				$show = "";
-				break;
-		}
-		if (in_context(ZP_ZENPAGE_NEWS_DATE)) {
-			$datesearch = '';
+		$newsCacheIndex = "$sortorder-$sortdirection-$published-" . (bool) $sticky;
+		if ($category)
+			$newsCacheIndex .= '-' . $category->getTitlelink();
+
+		if (!isset($_zp_newsCache[$newsCacheIndex])) {
+			$show = $currentcategory = false;
+			if ($category) {
+				if (is_object($_zp_current_category)) {
+					$currentcategory = $_zp_current_category->getTitlelink();
+				}
+				$showConjunction = ' AND ';
+				// new code to get nested cats
+				$catid = $category->getID();
+				$subcats = $category->getSubCategories();
+				if ($subcats) {
+					$cat = " (cat.cat_id = '" . $catid . "'";
+					foreach ($subcats as $subcat) {
+						$subcatobj = new ZenpageCategory($subcat);
+						$cat .= "OR cat.cat_id = '" . $subcatobj->getID() . "' ";
+					}
+					$cat .= ") AND cat.news_id = news.id ";
+				} else {
+					$cat = " cat.cat_id = '" . $catid . "' AND cat.news_id = news.id ";
+				}
+				if (in_context(ZP_ZENPAGE_NEWS_DATE)) {
+					$postdate = $_zp_post_date;
+				} else {
+					$postdate = NULL;
+				}
+			} else {
+				$showConjunction = ' WHERE ';
+			}
+
+			if ($sticky) {
+				$sticky = 'sticky DESC,';
+			}
+			switch ($sortdirection) {
+				case "desc":
+				default:
+					$dir = "DESC";
+					break;
+				case "asc":
+					$dir = "ASC";
+					$sticky = false; //makes no sense
+					break;
+			}
+			// sortorder and sortdirection (only used for all news articles and categories naturally)
+			switch ($sortorder) {
+				case "date":
+				default:
+					$sort1 = "date";
+					break;
+				case 'lastchange':
+					$sort1 = 'lastchange';
+					break;
+				case "id":
+					$sort1 = "id";
+					break;
+				case "title":
+					$sort1 = "title";
+					break;
+				case "popular":
+					$sort1 = 'hitcounter';
+					break;
+				case "mostrated":
+					$sort1 = 'total_votes';
+					break;
+				case "toprated":
+					$sort1 = '(total_value/total_votes) DESC, total_value';
+					$dir = '';
+					break;
+				case "random":
+					$sort1 = 'RAND()';
+					break;
+			}
+
+			/** get all articles * */
 			switch ($published) {
 				case "published":
-					$datesearch = "date LIKE '$postdate%' ";
+					$show = "$showConjunction `show` = 1 AND date <= '" . date('Y-m-d H:i:s') . "'";
+					$getUnpublished = false;
+					break;
+				case "published-unpublished":
+					$show = "$showConjunction `show` = 1 AND date <= '" . date('Y-m-d H:i:s') . "'";
+					$getUnpublished = true;
 					break;
 				case "unpublished":
-					$datesearch = "date LIKE '$postdate%' ";
+					$show = "$showConjunction `show` = 0 AND date <= '" . date('Y-m-d H:i:s') . "'";
+					$getUnpublished = true;
+					break;
+				case 'sticky':
+					$show = ' `sticky` <> 0';
+					$getUnpublished = true;
 					break;
 				case "all":
-					$datesearch = "date LIKE '$postdate%' ";
+					$getUnpublished = true;
+					$show = "";
 					break;
 			}
-			if ($datesearch) {
-				if ($show) {
-					$datesearch = ' AND ' . $datesearch;
-				} else {
-					$datesearch = ' WHERE ' . $datesearch;
+			$order = " ORDER BY $sticky";
+
+			if (in_context(ZP_ZENPAGE_NEWS_DATE)) {
+				$datesearch = '';
+				switch ($published) {
+					case "published":
+						$datesearch = "date LIKE '$postdate%' ";
+						break;
+					case "unpublished":
+						$datesearch = "date LIKE '$postdate%' ";
+						break;
+					case "all":
+						$datesearch = "date LIKE '$postdate%' ";
+						break;
+				}
+				if ($datesearch) {
+					if ($show) {
+						$datesearch = ' AND ' . $datesearch;
+					} else {
+						$datesearch = ' WHERE ' . $datesearch;
+					}
+				}
+				$order .= " date DESC";
+			} else {
+				$datesearch = "";
+				if ($category)
+					$order .= ' news.';
+				$order .= " $sort1 $dir";
+			}
+			if ($category) {
+				$sql = "SELECT DISTINCT news.date, news.title, news.titlelink FROM " . prefix('news') . " as news, " . prefix('news2cat') . " as cat WHERE" . $cat . $show . $order;
+			} else {
+				$sql = "SELECT date, title, titlelink FROM " . prefix('news') . $show . $datesearch . " " . $order;
+			}
+			$resource = query($sql);
+			$result = array();
+			if ($resource) {
+				while ($item = db_fetch_assoc($resource)) {
+					$article = new ZenpageNews($item['titlelink']);
+					if ($getUnpublished || $article->isMyItem(ZENPAGE_NEWS_RIGHTS) || $currentcategory && ($article->inNewsCategory($currentcategory)) || $article->categoryIsVisible()) {
+						$result[] = $item;
+					}
+				}
+				db_free_result($resource);
+				if ($sort1 == 'title') { // multi-lingual field!
+					$result = sortByMultilingual($result, 'title', $dir == 'DESC');
+					if ($sticky) {
+						$result = sortMultiArray($result, array('sticky'), true);
+					}
 				}
 			}
-			$order = " ORDER BY $sticky date DESC";
+			$_zp_newsCache[$newsCacheIndex] = $result;
 		} else {
-			$datesearch = "";
-			$order = " ORDER BY " . $sticky . $sort1 . " " . $dir;
+			$result = $_zp_newsCache[$newsCacheIndex];
 		}
-		$sql = "SELECT date, title, titlelink FROM " . prefix('news') . $show . $datesearch . " " . $order;
-		$resource = query($sql);
-		$result = array();
-		if ($resource) {
+
+		if ($articles_per_page) {
 			if ($ignorepagination) {
 				$offset = 0;
 			} else {
 				$offset = self::getOffset($articles_per_page);
 			}
-			while ($item = db_fetch_assoc($resource)) {
-				$article = new ZenpageNews($item['titlelink']);
-				if ($getUnpublished || $article->categoryIsVisible() || $article->isMyItem(ZENPAGE_NEWS_RIGHTS)) {
-					$result[] = $item;
-				}
-			}
-			db_free_result($resource);
-			if ($sort1 == 'title') { // multi-lingual field!
-				$result = sortByMultilingual($result, 'title', $dir == 'DESC');
-				if ($sticky) {
-					$result = sortMultiArray($result, array('sticky'), true);
-				}
-			}
-		}
-		if ($articles_per_page) {
 			$result = array_slice($result, $offset, $articles_per_page);
 		}
 		return $result;

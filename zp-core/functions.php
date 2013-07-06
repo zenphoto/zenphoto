@@ -2219,15 +2219,21 @@ function applyMacros($text) {
 				case 'expression':
 					$expression = '$data = ' . $macro['value'];
 					$parms = array_reverse($parms, true);
-					foreach ($parms as $key => $value) {
-						$key++;
-						$expression = preg_replace('/\$' . $key . '/', db_quote($value), $expression);
-					}
-					eval($expression);
-					if (!isset($data) || is_null($data)) {
-						$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> retuned no data'), trim($macro_instance, '[]')) . '</span>';
+					preg_match_all('/\$\d+/', $macro['value'], $replacements);
+					if (count($parms) == count($replacements)) {
+
+						foreach ($parms as $key => $value) {
+							$key++;
+							$expression = preg_replace('/\$' . $key . '/', db_quote($value), $expression);
+						}
+						eval($expression);
+						if (!isset($data) || is_null($data)) {
+							$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> retuned no data'), trim($macro_instance, '[]')) . '</span>';
+						} else {
+							$data = "\n<!--Begin " . $macroname . "-->\n" . $data . "\n<!--End " . $macroname . "-->\n";
+						}
 					} else {
-						$data = "\n<!--Begin " . $macroname . "-->\n" . $data . "\n<!--End " . $macroname . "-->\n";
+						$data = '<span class="error">' . sprintf(ngettext('<em>[%1$s]</em> takes %2$d parameter', '<em>[%1$s]</em> takes %2$d parameters', count($replacements)), trim($macro_instance, '[]'), count($replacements)) . '</span>';
 					}
 					break;
 			}
