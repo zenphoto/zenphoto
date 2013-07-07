@@ -2220,6 +2220,10 @@ function applyMacros($text) {
 					$expression = '$data = ' . $macro['value'];
 					$parms = array_reverse($parms, true);
 					preg_match_all('/\$\d+/', $macro['value'], $replacements);
+					foreach ($replacements as $rkey => $v) {
+						if (empty($v))
+							unset($replacements[$rkey]);
+					}
 					if (count($parms) == count($replacements)) {
 
 						foreach ($parms as $key => $value) {
