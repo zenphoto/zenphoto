@@ -27,7 +27,7 @@ echo "\n</head>";
 						echo gettext('No macros have been defined.');
 					} else {
 						?>
-						<div class="notebox">
+						<div>
 							<p><?php echo gettext('These Content macros can be used to insert Zenphoto items as described into <em>descriptions</em>, <em>zenpage content</em>, and <em>zenpage extra content</em>.</p> <p>Replace any parameters (<em>%d</em>) with the appropriate value.'); ?></p>
 							<p><?php echo gettext('Parameter types:'); ?></p>
 							<ol>

@@ -81,6 +81,12 @@ function MacroList_show($macro, $detail) {
 	echo '<dl>';
 	echo "<dt><code>[$macro";
 	$warn = $required = $array = false;
+	if ($detail['class'] == 'expression') {
+		preg_match_all('/\$\d+/', $detail['value'], $replacements);
+		if (count($detail['params']) != count($replacements)) {
+			$warn = gettext('<p>The number of macro parameters must match the number of replacement tokens in the expression.</p>');
+		}
+	}
 	if (!empty($detail['params'])) {
 		$params = '';
 		$brace = '{';
@@ -92,14 +98,19 @@ function MacroList_show($macro, $detail) {
 			} else if ($type == $rawtype) {
 				if ($required) {
 					$params .= ' <em><span class="error">' . $type . ' %' . $i . '</span></em> ';
-					$warn .= gettext('<strong>Warning:</strong> required parameters should not follow optional ones.');
+					$warn .= gettext('<p> required parameters should not follow optional ones.</p>');
 				} else {
 					$params = $params . ' <em>' . $type . '</em> %' . $i;
 				}
 			} else {
-				$params = $params . " <em>$brace" . $type . "</em> %$i";
-				$brace = '';
+				if ($detail['class'] == 'expression') {
+					$params = $params . " <em>$brace" . '<span class="error">' . $type . "</span></em> %$i";
+					$warn .= gettext('<p> Expressions may not have optional parameters.</p>');
+				} else {
+					$params = $params . " <em>$brace" . $type . "</em> %$i";
+				}
 				$required = true;
+				$brace = '';
 			}
 			$array = $array || $type == 'array';
 		}
@@ -109,7 +120,7 @@ function MacroList_show($macro, $detail) {
 	}
 	echo ']</code> <em>(' . @$detail['owner'] . ')</em></dt><dd>' . $detail['desc'] . '</dd>';
 	if ($warn) {
-		echo '<p class="notebox">' . $warn . '</p>';
+		echo '<div class="notebox"><strong>Warning:</strong>' . $warn . '</div>';
 	}
 	echo '</dl>';
 }
