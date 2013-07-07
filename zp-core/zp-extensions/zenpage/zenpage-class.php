@@ -228,7 +228,9 @@ class Zenpage {
 		if ($category)
 			$newsCacheIndex .= '-' . $category->getTitlelink();
 
-		if (!isset($_zp_newsCache[$newsCacheIndex])) {
+		if (isset($_zp_newsCache[$newsCacheIndex])) {
+			$result = $_zp_newsCache[$newsCacheIndex];
+		} else {
 			$show = $currentcategory = false;
 			if ($category) {
 				if (is_object($_zp_current_category)) {
@@ -375,8 +377,6 @@ class Zenpage {
 				}
 			}
 			$_zp_newsCache[$newsCacheIndex] = $result;
-		} else {
-			$result = $_zp_newsCache[$newsCacheIndex];
 		}
 
 		if ($articles_per_page) {
