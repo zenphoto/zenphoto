@@ -267,9 +267,9 @@ class slideshow {
 		';
 		if ($linkslides) {
 			if (MOD_REWRITE) {
-				$slideshow .= 'htmlblock += "<a href=\"' . pathurlencode($album->name) . '/"+ImageNameList[currentImageNum]+"' . getOption('mod_rewrite_image_suffix') . '\">";';
+				$slideshow .= 'htmlblock += "<a href=\"' . pathurlencode($albumobj->name) . '/"+ImageNameList[currentImageNum]+"' . getOption('mod_rewrite_image_suffix') . '\">";';
 			} else {
-				$slideshow .= 'htmlblock += "<a href=\"index.php?album=' . pathurlencode($album->name) . '&image="+ImageNameList[currentImageNum]+"\">";';
+				$slideshow .= 'htmlblock += "<a href=\"index.php?album=' . pathurlencode($albumobj->name) . '&image="+ImageNameList[currentImageNum]+"\">";';
 			}
 		}
 		$slideshow .= ' htmlblock += "<img src=\"" + ImageList[currentImageNum] + "\"/>";';
