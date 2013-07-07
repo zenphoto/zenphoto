@@ -187,8 +187,6 @@ class slideshow {
 		// jQuery Cycle slideshow config
 		// get slideshow data
 
-		if ($shuffle)
-			shuffle($images);
 		$showdesc = getOption("slideshow_showdesc");
 		// slideshow display section
 		$validtypes = array('jpg', 'jpeg', 'gif', 'png', 'mov', '3gp');
@@ -205,6 +203,9 @@ class slideshow {
 				var DynTime=(' . (int) getOption("slideshow_timeout") . ');
 				';
 		$images = $albumobj->getImages(0);
+		if ($shuffle) {
+			shuffle($images);
+		}
 		for ($imgnr = 0, $cntr = 0, $idx = $imagenumber; $imgnr < $numberofimages; $imgnr++, $idx++) {
 			if (is_array($images[$idx])) {
 				$filename = $images[$idx]['filename'];
