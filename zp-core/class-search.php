@@ -27,17 +27,17 @@ class SearchEngine {
 	protected $words;
 	protected $dates;
 	protected $whichdates = 'date'; // for zenpage date searches, which date field to search
-	protected $search_no_albums;	// omit albums
-	protected $search_no_images;	// omit images
-	protected $search_no_pages;	// omit pages
-	protected $search_no_news;	// omit news
+	protected $search_no_albums; // omit albums
+	protected $search_no_images; // omit images
+	protected $search_no_pages; // omit pages
+	protected $search_no_news; // omit news
 	protected $search_unpublished; // will override the loggedin checks with respect to unpublished items
-	protected $search_structure;	// relates translatable names to search fields
-	protected $iteration = 0;	 // used by apply_filter('search_statistics') to indicate sequential searches of different objects
+	protected $search_structure; // relates translatable names to search fields
+	protected $iteration = 0; // used by apply_filter('search_statistics') to indicate sequential searches of different objects
 	protected $processed_search = NULL;
-	protected $album_list = NULL;	// list of albums to search
-	protected $category_list;	 // list of categories for a news search
-	protected $searches = NULL;	// remember the criteria for past searches
+	protected $album_list = NULL; // list of albums to search
+	protected $category_list; // list of categories for a news search
+	protected $searches = NULL; // remember the criteria for past searches
 	protected $extraparams = array(); // allow plugins to add to search parameters
 	protected $albumsorttype = NULL;
 	protected $albumsortdirection = NULL;
@@ -307,6 +307,17 @@ class SearchEngine {
 	 */
 	function setSearchExtra($extra) {
 		$this->extraparams = $extra;
+	}
+
+	/**
+	 * global setting of sort ordering
+	 *
+	 * @param type $sorttype the field to sort on
+	 * @param type $sortdirection DESC (default) or ASC
+	 */
+	function setSearchSort($sorttype, $sortdirection = NULL) {
+		$this->extraparams['sorttype'] = $sorttype;
+		$this->extraparams['sortdirection'] = $sortdirection;
 	}
 
 	/**
@@ -789,6 +800,25 @@ class SearchEngine {
 	}
 
 	/**
+	 * get connical sort key and direction parameters.
+	 * @param type $sorttype sort field desired
+	 * @param type $sortdirection DESC or ASC
+	 * @param type $defaulttype if no sort type otherwise selected use this one
+	 * @param type $table the database table being searched
+	 * @return array
+	 */
+	protected function sortKey($sorttype, $sortdirection, $defaulttype, $table) {
+		if (is_null($sorttype) && array_key_exists('sorttype', $this->extraparams)) {
+			$sorttype = $this->extraparams['sorttype'];
+		}
+		$sorttype = lookupSortKey($sorttype, $defaulttype, $table);
+		if (is_null($sortdirection) && array_key_exists('sortdirection', $this->extraparams)) {
+			$sortdirection = strtoupper($this->extraparams['sortdirection']) == 'DESC';
+		}
+		return array($sorttype, $sortdirection);
+	}
+
+	/**
 	 * returns the results of a date search
 	 * @param string $searchstring the search target
 	 * @param string $searchdate the date target
@@ -857,7 +887,7 @@ class SearchEngine {
 			case 'albums':
 				if (is_null($sorttype)) {
 					if (empty($this->album)) {
-						$key = lookupSortKey($_zp_gallery->getSortType(), 'sort_order', 'albums');
+						list($key, $sortdirection) = $this->sortKey($_zp_gallery->getSortType(), $sortdirection, 'sort_order', 'albums');
 						if ($key != '`sort_order`') {
 							if ($_zp_gallery->getSortDirection()) {
 								$key .= " DESC";
@@ -872,8 +902,8 @@ class SearchEngine {
 						}
 					}
 				} else {
-					$sorttype = lookupSortKey($sorttype, 'sort_order', 'albums');
-					$key = trim($sorttype . ' ' . $sortdirection);
+					list($key, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'sort_order', 'albums');
+					$key = trim($key . ' ' . $sortdirection);
 				}
 				break;
 			default:
@@ -885,7 +915,7 @@ class SearchEngine {
 				}
 				if (is_null($sorttype)) {
 					if (empty($this->album)) {
-						$key = lookupSortKey(IMAGE_SORT_TYPE, 'filename', 'images');
+						list($key, $sortdirection) = $this->sortKey(IMAGE_SORT_TYPE, $sortdirection, 'filename', 'images');
 						if ($key != '`sort_order`') {
 							if (IMAGE_SORT_DIRECTION) {
 								$key .= " DESC";
@@ -900,8 +930,8 @@ class SearchEngine {
 						}
 					}
 				} else {
-					$sorttype = lookupSortKey($sorttype, 'filename', 'images');
-					$key = trim($sorttype . ' ' . $sortdirection);
+					list($key, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'filename', 'images');
+					$key = trim($key . ' ' . $sortdirection);
 				}
 				break;
 		}
@@ -1197,7 +1227,7 @@ class SearchEngine {
 					$sql .= "`folder` ";
 					if (is_null($sorttype)) {
 						if (empty($this->album)) {
-							$key = lookupSortKey($_zp_gallery->getSortType(), 'sort_order', 'albums');
+							list($key, $sortdirection) = $this->sortKey($_zp_gallery->getSortType(), $sortdirection, 'sort_order', 'albums');
 							if ($_zp_gallery->getSortDirection()) {
 								$key .= " DESC";
 							}
@@ -1210,8 +1240,8 @@ class SearchEngine {
 							}
 						}
 					} else {
-						$sorttype = lookupSortKey($sorttype, 'sort_order', 'albums');
-						$key = trim($sorttype . ' ' . $sortdirection);
+						list($key, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'sort_order', 'albums');
+						$key = trim($key . ' ' . $sortdirection);
 					}
 					break;
 				default: // images
@@ -1223,8 +1253,8 @@ class SearchEngine {
 					$sql .= "`albumid`,`filename` ";
 					if (is_null($sorttype)) {
 						if (empty($this->album)) {
-							$key = lookupSortKey(IMAGE_SORT_TYPE, 'filename', 'images');
-							if (IMAGE_SORT_DIRECTION) {
+							list($key, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'filename', 'images');
+							if ($sortdirection) {
 								$key .= " DESC";
 							}
 						} else {
@@ -1236,8 +1266,8 @@ class SearchEngine {
 							}
 						}
 					} else {
-						$sorttype = lookupSortKey($sorttype, 'filename', 'images');
-						$key = trim($sorttype . ' ' . $sortdirection);
+						list($key, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'filename', 'images');
+						$key = trim($key . ' ' . $sortdirection);
 					}
 					break;
 			}
