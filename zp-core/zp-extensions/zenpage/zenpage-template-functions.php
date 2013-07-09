@@ -1171,11 +1171,11 @@ function getLatestNews($number = 2, $option = 'none', $category = '', $sticky = 
 	$latest = '';
 	switch ($option) {
 		case 'none':
-			if (!empty($category)) {
-				$catobj = new ZenpageCategory($category);
-				$latest = $catobj->getArticles($number, NULL, true, 'date', 'desc', $sticky, $sortdirection);
+			if (empty($category)) {
+				$latest = $_zp_zenpage->getArticles($number, NULL, true, 'date', 'desc', $sortdirection, $sticky);
 			} else {
-				$latest = $_zp_zenpage->getArticles($number, NULL, true, 'date', 'desc', $sticky, $sortdirection);
+				$catobj = new ZenpageCategory($category);
+				$latest = $catobj->getArticles($number, NULL, true, 'date', 'desc', $sortdirection, $sticky);
 			}
 			$counter = '';
 			$latestnews = array();

@@ -351,7 +351,7 @@ class ZenpageCategory extends ZenpageRoot {
 	 * @return int
 	 */
 	function getArticle($index, $published = NULL, $sortorder = 'date', $sortdirection = 'desc', $sticky = true) {
-		$articles = $this->getArticles(0, $published, true, $sortorder, $sortdirection, sticky); // pagination not needed
+		$articles = $this->getArticles(0, $published, true, $sortorder, $sortdirection, $sticky); // pagination not needed
 		if ($index >= 0 && $index < count($articles)) {
 			return $articles[$index];
 		}
@@ -366,7 +366,7 @@ class ZenpageCategory extends ZenpageRoot {
 	function getIndex($sortorder, $sortdirection, $sticky) {
 		global $_zp_zenpage, $_zp_current_zenpage_news;
 		if ($this->index == NULL) {
-			$articles = $_zp_zenpage->getArticles(0, NULL, true, $sortorder, $sortdirection, sticky);
+			$articles = $_zp_zenpage->getArticles(0, NULL, true, $sortorder, $sortdirection, $sticky);
 			for ($i = 0; $i < count($articles); $i++) {
 				$article = $articles[$i];
 				if ($this->getTitlelink() == $article['titlelink']) {

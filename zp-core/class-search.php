@@ -315,7 +315,7 @@ class SearchEngine {
 	 * @param type $sorttype the field to sort on
 	 * @param type $sortdirection DESC (default) or ASC
 	 */
-	function setSearchSort($sorttype, $sortdirection = NULL) {
+	function setSort($sorttype, $sortdirection = NULL) {
 		$this->extraparams['sorttype'] = $sorttype;
 		$this->extraparams['sortdirection'] = $sortdirection;
 	}
