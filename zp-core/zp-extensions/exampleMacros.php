@@ -1,6 +1,10 @@
 <?php
 /*
  * Declares example macros
+ *
+ * @package plugins
+ * @subpackage development
+
  */
 $plugin_is_filter = 5 | THEME_PLUGIN | ADMIN_PLUGIN;
 $plugin_description = gettext("Adds example macros.");

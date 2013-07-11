@@ -83,6 +83,10 @@ function MacroList_show($macro, $detail) {
 	$warn = $required = $array = false;
 	if ($detail['class'] == 'expression') {
 		preg_match_all('/\$\d+/', $detail['value'], $replacements);
+		foreach ($replacements as $rkey => $v) {
+			if (empty($v))
+				unset($replacements[$rkey]);
+		}
 		if (count($detail['params']) != count($replacements)) {
 			$warn = gettext('<p>The number of macro parameters must match the number of replacement tokens in the expression.</p>');
 		}
