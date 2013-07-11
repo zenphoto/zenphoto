@@ -101,7 +101,7 @@ function MacroList_show($macro, $detail) {
 			if ($array) {
 				$params .= ' <em><span class="error">' . $type . ' %' . $i . '</span></em>';
 				if (!isset($warned['array'])) {
-					$warn .= gettext(' an array parameter must be the last parameter.');
+					$warn .= gettext('<p>An array parameter must be the last parameter.</p>');
 					$warned['array'] = true;
 				}
 			} else if ($type == $rawtype) {
@@ -118,7 +118,7 @@ function MacroList_show($macro, $detail) {
 				if ($detail['class'] == 'expression') {
 					$params = $params . " <em>$brace" . '<span class="error">' . $type . " %$i</span></em>";
 					if (!isset($warned['expression'])) {
-						$warn .= gettext('<p> Expressions may not have optional parameters.</p>');
+						$warn .= gettext('<p>Expressions may not have optional parameters.</p>');
 						$warned['expression'] = true;
 					}
 				} else {
