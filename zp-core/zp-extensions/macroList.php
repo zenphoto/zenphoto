@@ -78,6 +78,7 @@ function macro_admin_tabs($tabs) {
 }
 
 function MacroList_show($macro, $detail) {
+	$warned = array();
 	echo '<dl>';
 	echo "<dt><code>[$macro";
 	$warn = $required = $array = false;
@@ -87,8 +88,9 @@ function MacroList_show($macro, $detail) {
 			if (empty($v))
 				unset($replacements[$rkey]);
 		}
-		if (count($detail['params']) != count($replacements)) {
+		if (count($detail['params']) != count($replacements) && !isset($warned['parameters'])) {
 			$warn = gettext('<p>The number of macro parameters must match the number of replacement tokens in the expression.</p>');
+			$warened['paremeters'] = true;
 		}
 	}
 	if (!empty($detail['params'])) {
@@ -97,21 +99,30 @@ function MacroList_show($macro, $detail) {
 		for ($i = 1; $i <= count($detail['params']); $i++) {
 			$type = rtrim($rawtype = $detail['params'][$i - 1], '*');
 			if ($array) {
-				$params .= ' <em><span class="error">' . $type . ' %' . $i . '</span></em> ';
-				$warn .= gettext('<strong>Warning:</strong> an array parameter must be the last parameter.');
+				$params .= ' <em><span class="error">' . $type . ' %' . $i . '</span></em>';
+				if (!isset($warned['array'])) {
+					$warn .= gettext(' an array parameter must be the last parameter.');
+					$warned['array'] = true;
+				}
 			} else if ($type == $rawtype) {
 				if ($required) {
-					$params .= ' <em><span class="error">' . $type . ' %' . $i . '</span></em> ';
-					$warn .= gettext('<p> required parameters should not follow optional ones.</p>');
+					$params .= ' <em><span class="error">' . $type . ' %' . $i . '</span></em>';
+					if (!isset($warned['required'])) {
+						$warn .= gettext('<p>required parameters should not follow optional ones.</p>');
+						$warned['required'] = true;
+					}
 				} else {
-					$params = $params . ' <em>' . $type . '</em> %' . $i;
+					$params = $params . ' <em>' . $type . " %$i</em>";
 				}
 			} else {
 				if ($detail['class'] == 'expression') {
-					$params = $params . " <em>$brace" . '<span class="error">' . $type . "</span></em> %$i";
-					$warn .= gettext('<p> Expressions may not have optional parameters.</p>');
+					$params = $params . " <em>$brace" . '<span class="error">' . $type . " %$i</span></em>";
+					if (!isset($warned['expression'])) {
+						$warn .= gettext('<p> Expressions may not have optional parameters.</p>');
+						$warned['expression'] = true;
+					}
 				} else {
-					$params = $params . " <em>$brace" . $type . "</em> %$i";
+					$params = $params . " <em>$brace" . $type . " %$i</em>";
 				}
 				$required = true;
 				$brace = '';
