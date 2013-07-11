@@ -22,22 +22,22 @@ function newAlbum($folder8, $cache = true, $quiet = false) {
 
 class AlbumBase extends MediaObject {
 
-	var $name;						 // Folder name of the album (full path from the albums folder)
-	var $linkname;		 // may have the .alb suffix stripped off
-	var $localpath;		 // Latin1 full server path to the album
-	var $exists = true;		// Does the folder exist?
-	var $images = null;		// Full images array storage.
-	var $parent = null;		// The parent album name
+	var $name; // Folder name of the album (full path from the albums folder)
+	var $linkname; // may have the .alb suffix stripped off
+	var $localpath; // Latin1 full server path to the album
+	var $exists = true; // Does the folder exist?
+	var $images = null; // Full images array storage.
+	var $parent = null; // The parent album name
 	var $parentalbum = null; // The parent album's album object (lazy)
 	var $gallery;
-	var $searchengine;					 // cache the search engine for dynamic albums
+	var $searchengine; // cache the search engine for dynamic albums
 	var $sidecars = array(); // keeps the list of suffixes associated with this album
 	var $manage_rights = MANAGE_ALL_ALBUM_RIGHTS;
 	var $manage_some_rights = ALBUM_RIGHTS;
 	var $view_rights = ALL_ALBUMS_RIGHTS;
 	protected $subalbums = null; // Full album array storage.
 	protected $index;
-	protected $lastimagesort = NULL;	// remember the order for the last album/image sorts
+	protected $lastimagesort = NULL; // remember the order for the last album/image sorts
 	protected $lastsubalbumsort = NULL;
 	protected $albumthumbnail = NULL; // remember the album thumb for the duration of the script
 	protected $subrights = NULL; //	cache for album subrights
@@ -127,29 +127,29 @@ class AlbumBase extends MediaObject {
 	 *
 	 * @return string
 	 */
-	function getSortDirection($what) {
+	function getSortDirection($what = 'image') {
 		global $_zp_gallery;
 		if ($what == 'image') {
 			$direction = $this->get('image_sortdirection');
+			$type = $this->get('sort_type');
 		} else {
 			$direction = $this->get('album_sortdirection');
+			$type = $this->get('subalbum_sort_type');
+		}
+		if (empty($type)) {
+			// using inherited type, so use inherited direction
+			$parentalbum = $this->getParent();
+			if (is_null($parentalbum)) {
+				if ($what == 'image') {
+					$direction = IMAGE_SORT_DIRECTION;
+				} else {
+					$direction = $_zp_gallery->getSortDirection();
+				}
+			} else {
+				$direction = $parentalbum->getSortDirection($what);
+			}
 		}
 		return $direction;
-	}
-
-	/**
-	 * sets sort directions for the album
-	 *
-	 * @param string $what 'image_sortdirection' if you want the image direction,
-	 *        'album_sortdirection' if you want it for the album
-	 * @param string $val the direction
-	 */
-	function setSortDirection($what, $val) {
-		if ($what == 'image') {
-			$this->set('image_sortdirection', (int) ($val && true));
-		} else {
-			$this->set('album_sortdirection', (int) ($val && true));
-		}
 	}
 
 	/**
@@ -158,18 +158,52 @@ class AlbumBase extends MediaObject {
 	 *
 	 * @return string
 	 */
-	function getSortType() {
+	function getSortType($what = 'image') {
 		$type = $this->get('sort_type');
+		if (empty($type)) {
+			$parentalbum = $this->getParent();
+			if (is_null($parentalbum)) {
+				$type = IMAGE_SORT_TYPE;
+			} else {
+				$type = $parentalbum->getSortType();
+			}
+		}
 		return $type;
+	}
+
+	/**
+	 * sets sort directions for the album
+	 *
+	 * @param string $val the direction
+	 * @param string $what 'image_sortdirection' if you want the image direction,
+	 *        'album_sortdirection' if you want it for the album
+	 */
+	function setSortDirection($val, $what = 'image') {
+		if (!is_bool($val)) {
+			//TODO: old (deprecated) parameter order
+			$t = $val;
+			$val = $what;
+			$what = $t;
+		}
+		if ($what == 'image') {
+			$this->set('image_sortdirection', (int) ($val && true));
+		} else {
+			$this->set('album_sortdirection', (int) ($val && true));
+		}
 	}
 
 	/**
 	 * Stores the sort type for the album
 	 *
 	 * @param string $sorttype the album sort type
+	 * @param string $what 'Description'image' or 'album'
 	 */
-	function setSortType($sorttype) {
-		$this->set('sort_type', $sorttype);
+	function setSortType($sorttype, $what = 'image') {
+		if ($what == 'image') {
+			$this->set('sort_type', $sorttype);
+		} else {
+			$type = $this->get('subalbum_sort_type');
+		}
 	}
 
 	/**
@@ -178,10 +212,19 @@ class AlbumBase extends MediaObject {
 	 * Will return a parent sort type if the sort type for this album is empty.
 	 *
 	 * @return string
+	 * @deprecated since version 1.4.5
 	 */
 	function getAlbumSortType() {
 		global $_zp_gallery;
 		$type = $this->get('subalbum_sort_type');
+		if (empty($type)) {
+			$parentalbum = $this->getParent();
+			if (is_null($parentalbum)) {
+				$type = $_zp_gallery->getSortType();
+			} else {
+				$type = $parentalbum->getAlbumSortType();
+			}
+		}
 		return $type;
 	}
 
@@ -189,6 +232,7 @@ class AlbumBase extends MediaObject {
 	 * Stores the subalbum sort type for this abum
 	 *
 	 * @param string $sorttype the subalbum sort type
+	 * @deprecated since version 1.4.5
 	 */
 	function setSubalbumSortType($sorttype) {
 		$this->set('subalbum_sort_type', $sorttype);
@@ -791,79 +835,6 @@ class Album extends AlbumBase {
 	}
 
 	/**
-	 * Returns either the subalbum sort direction or the image sort direction of the album
-	 *
-	 * @param string $what 'image_sortdirection' if you want the image direction,
-	 *        'album_sortdirection' if you want it for the album
-	 *
-	 * @return string
-	 */
-	function getSortDirection($what) {
-		global $_zp_gallery;
-		if ($what == 'image') {
-			$direction = $this->get('image_sortdirection');
-			$type = $this->get('sort_type');
-		} else {
-			$direction = $this->get('album_sortdirection');
-			$type = $this->get('subalbum_sort_type');
-		}
-		if (empty($type)) {
-			// using inherited type, so use inherited direction
-			$parentalbum = $this->getParent();
-			if (is_null($parentalbum)) {
-				if ($what == 'image') {
-					$direction = IMAGE_SORT_DIRECTION;
-				} else {
-					$direction = $_zp_gallery->getSortDirection();
-				}
-			} else {
-				$direction = $parentalbum->getSortDirection($what);
-			}
-		}
-		return $direction;
-	}
-
-	/**
-	 * Returns the sort type of the album images
-	 * Will return a parent sort type if the sort type for this album is empty
-	 *
-	 * @return string
-	 */
-	function getSortType() {
-		$type = $this->get('sort_type');
-		if (empty($type)) {
-			$parentalbum = $this->getParent();
-			if (is_null($parentalbum)) {
-				$type = IMAGE_SORT_TYPE;
-			} else {
-				$type = $parentalbum->getSortType();
-			}
-		}
-		return $type;
-	}
-
-	/**
-	 * Returns the sort type for subalbums in this album.
-	 *
-	 * Will return a parent sort type if the sort type for this album is empty.
-	 *
-	 * @return string
-	 */
-	function getAlbumSortType() {
-		global $_zp_gallery;
-		$type = $this->get('subalbum_sort_type');
-		if (empty($type)) {
-			$parentalbum = $this->getParent();
-			if (is_null($parentalbum)) {
-				$type = $_zp_gallery->getSortType();
-			} else {
-				$type = $parentalbum->getAlbumSortType();
-			}
-		}
-		return $type;
-	}
-
-	/**
 	 * Returns all folder names for all the subdirectories.
 	 *
 	 * @param string $page  Which page of subalbums to display.
@@ -1006,7 +977,7 @@ class Album extends AlbumBase {
 				// the image exists in the filesystem
 				$results[] = $row;
 				unset($images[$key]);
-			} else {												 // the image no longer exists
+			} else { // the image no longer exists
 				$id = $row['id'];
 				query("DELETE FROM " . prefix('images') . " WHERE `id`=$id"); // delete the record
 				query("DELETE FROM " . prefix('comments') . " WHERE `type` ='images' AND `ownerid`= '$id'"); // remove image comments
