@@ -108,7 +108,7 @@ function MacroList_show($macro, $detail) {
 				if ($required) {
 					$params .= ' <em><span class="error">' . $type . ' %' . $i . '</span></em>';
 					if (!isset($warned['required'])) {
-						$warn .= gettext('<p>required parameters should not follow optional ones.</p>');
+						$warn .= gettext('<p>Required parameters should not follow optional ones.</p>');
 						$warned['required'] = true;
 					}
 				} else {
