@@ -227,7 +227,7 @@ if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 	eval(file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE));
 	if (isset($_zp_conf_vars['db_software'])) {
 		$confDB = $_zp_conf_vars['db_software'];
-		if ($confDB === 'MySQL' || $preferred != 'MySQL') {
+		if (!isset($_POST['db']) && ($confDB === 'MySQL' || $preferred != 'MySQL')) {
 			$confDB = NULL;
 		}
 		if (extension_loaded(strtolower($confDB)) && file_exists(dirname(dirname(__FILE__)) . '/functions-db-' . $confDB . '.php')) {
