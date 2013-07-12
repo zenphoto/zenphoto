@@ -309,16 +309,6 @@ class SearchEngine {
 		$this->extraparams = $extra;
 	}
 
-	/**
-	 * global setting of sort ordering
-	 *
-	 * @param type $sorttype the field to sort on
-	 * @param type $sortdirection DESC (default) or ASC
-	 */
-	function setSort($sorttype, $sortdirection = NULL) {
-		$this->extraparams['sorttype'] = $sorttype;
-		$this->extraparams['sortdirection'] = $sortdirection;
-	}
 
 	/**
 	 * Returns the "searchstring" element of a query parameter set
