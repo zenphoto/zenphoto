@@ -81,16 +81,16 @@ function MacroList_show($macro, $detail) {
 	$warned = array();
 	echo '<dl>';
 	echo "<dt><code>[$macro";
-	$warn = $required = $array = false;
+	$required = $array = false;
+	$warn = array();
 	if ($detail['class'] == 'expression') {
 		preg_match_all('/\$\d+/', $detail['value'], $replacements);
 		foreach ($replacements as $rkey => $v) {
 			if (empty($v))
 				unset($replacements[$rkey]);
 		}
-		if (count($detail['params']) != count($replacements) && !isset($warned['parameters'])) {
-			$warn = gettext('<p>The number of macro parameters must match the number of replacement tokens in the expression.</p>');
-			$warened['paremeters'] = true;
+		if (count($detail['params']) != count($replacements)) {
+			$warn['paremeters'] = gettext('The number of macro parameters must match the number of replacement tokens in the expression.');
 		}
 	}
 	if (!empty($detail['params'])) {
@@ -100,27 +100,18 @@ function MacroList_show($macro, $detail) {
 			$type = rtrim($rawtype = $detail['params'][$i - 1], '*');
 			if ($array) {
 				$params .= ' <em><span class="error">' . $type . ' %' . $i . '</span></em>';
-				if (!isset($warned['array'])) {
-					$warn .= gettext('<p>An array parameter must be the last parameter.</p>');
-					$warned['array'] = true;
-				}
+				$warn['array'] = gettext('An array parameter must be the last parameter.');
 			} else if ($type == $rawtype) {
 				if ($required) {
 					$params .= ' <em><span class="error">' . $type . ' %' . $i . '</span></em>';
-					if (!isset($warned['required'])) {
-						$warn .= gettext('<p>Required parameters should not follow optional ones.</p>');
-						$warned['required'] = true;
-					}
+					$warn['required'] = gettext('Required parameters should not follow optional ones.');
 				} else {
 					$params = $params . ' <em>' . $type . " %$i</em>";
 				}
 			} else {
 				if ($detail['class'] == 'expression') {
 					$params = $params . " <em>$brace" . '<span class="error">' . $type . " %$i</span></em>";
-					if (!isset($warned['expression'])) {
-						$warn .= gettext('<p>Expressions may not have optional parameters.</p>');
-						$warned['expression'] = true;
-					}
+					$warn['expression'] = gettext('Expressions may not have optional parameters.');
 				} else {
 					$params = $params . " <em>$brace" . $type . " %$i</em>";
 				}
@@ -134,8 +125,12 @@ function MacroList_show($macro, $detail) {
 		echo $params;
 	}
 	echo ']</code> <em>(' . @$detail['owner'] . ')</em></dt><dd>' . $detail['desc'] . '</dd>';
-	if ($warn) {
-		echo '<div class="notebox"><strong>Warning:</strong>' . $warn . '</div>';
+	if (count($warn)) {
+		echo '<div class="notebox"><strong>Warning:</strong>';
+		foreach ($warn as $warning) {
+			echo '<p>' . $warning . '</p>';
+		}
+		echo'</div>';
 	}
 	echo '</dl>';
 }
