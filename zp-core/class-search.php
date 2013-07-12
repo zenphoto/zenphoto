@@ -311,6 +311,27 @@ class SearchEngine {
 
 
 	/**
+	 * sets sort directions for the album
+	 *
+	 * @param string $val the direction
+	 * @param string $what 'image_sortdirection' if you want the image direction,
+	 *        'album_sortdirection' if you want it for the album
+	 */
+	function setSortDirection($val, $what = NULL) {
+		$this->extraparams[$what . 'sortdirection'] = $sorttype;
+	}
+
+	/**
+	 * Stores the sort type for the album
+	 *
+	 * @param string $sorttype the album sort type
+	 * @param string $what 'Description'image' or 'album'
+	 */
+	function setSortType($sorttype, $what = NULL) {
+		$this->extraparams[$what . 'sorttype'] = $sorttype;
+	}
+
+	/**
 	 * Returns the "searchstring" element of a query parameter set
 	 *
 	 * @param array $fields the fields required
@@ -798,12 +819,20 @@ class SearchEngine {
 	 * @return array
 	 */
 	protected function sortKey($sorttype, $sortdirection, $defaulttype, $table) {
-		if (is_null($sorttype) && array_key_exists('sorttype', $this->extraparams)) {
-			$sorttype = $this->extraparams['sorttype'];
+		if (is_null($sorttype)) {
+			if (array_key_exists($table . 'sorttype', $this->extraparams)) {
+				$sorttype = $this->extraparams[$table . 'sorttype'];
+			} else if (array_key_exists('sorttype', $this->extraparams)) {
+				$sorttype = $this->extraparams['sorttype'];
+			}
 		}
 		$sorttype = lookupSortKey($sorttype, $defaulttype, $table);
-		if (is_null($sortdirection) && array_key_exists('sortdirection', $this->extraparams)) {
-			$sortdirection = strtoupper($this->extraparams['sortdirection']) == 'DESC';
+		if (is_null($sortdirection)) {
+			if (array_key_exists($table . 'sortdirection', $this->extraparams)) {
+				$sortdirection = $this->extraparams[$table . 'sortdirection'];
+			} else if (array_key_exists('sortdirection', $this->extraparams)) {
+				$sortdirection = $this->extraparams['sortdirection'];
+			}
 		}
 		return array($sorttype, $sortdirection);
 	}
