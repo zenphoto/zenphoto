@@ -2055,7 +2055,7 @@ class Googlemaps {
 
 		// Minify the Javascript if the $minifyJS config value is true. Requires Jsmin.php and PHP 5+
 		if ($this->minifyJS) {
-			$CI =& get_instance();
+			$CI = get_instance();
 			$CI->load->library('jsmin');
 			$this->output_js_contents = $CI->jsmin->min($this->output_js_contents);
 		}
@@ -2126,7 +2126,7 @@ class Googlemaps {
 
 		if ($this->geocodeCaching) { // if caching of geocode requests is activated
 
-			$CI =& get_instance();
+			$CI = get_instance();
 			$CI->load->database();
 			$CI->db->select("latitude,longitude");
 			$CI->db->from("geocoding");

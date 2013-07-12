@@ -12,6 +12,9 @@ class ZenpageCategory extends ZenpageRoot {
 	var $manage_rights = MANAGE_ALL_NEWS_RIGHTS;
 	var $manage_some_rights = ZENPAGE_NEWS_RIGHTS;
 	var $view_rights = ALL_NEWS_RIGHTS;
+	var $sortorder;
+	var $sortdirection;
+	var $sortSticky = true;
 
 	function __construct($catlink, $create = NULL) {
 		if (is_array($catlink)) {
@@ -340,8 +343,9 @@ class ZenpageCategory extends ZenpageRoot {
 	 * @param bool $sticky set to true to place "sticky" articles at the front of the list.
 	 * @return array
 	 */
-	function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sortorder = "date", $sortdirection = "desc", $sticky = true) {
-		return zenpage::getArticles($articles_per_page, $published, $ignorepagination, $sortorder, $sortdirection, $sticky, $this);
+	function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sortorder = NULL, $sortdirection = NULL, $sticky = NULL) {
+		global $_zp_zenpage;
+		return $_zp_zenpage->getArticles($articles_per_page, $published, $ignorepagination, $sortorder, $sortdirection, $sticky, $this);
 	}
 
 	/**
