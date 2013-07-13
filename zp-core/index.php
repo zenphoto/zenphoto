@@ -28,7 +28,6 @@ checkInstall();
  * Invoke the controller to handle requests
  */
 require_once(SERVERPATH . "/" . ZENFOLDER . '/functions-controller.php');
-zp_load_gallery();
 require_once(SERVERPATH . "/" . ZENFOLDER . '/controller.php');
 
 $_index_theme = $_zp_script = '';
