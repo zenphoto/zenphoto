@@ -309,9 +309,8 @@ class SearchEngine {
 		$this->extraparams = $extra;
 	}
 
-
 	/**
-	 * sets sort directions for the album
+	 * sets sort directions
 	 *
 	 * @param string $val the direction
 	 * @param string $what 'image_sortdirection' if you want the image direction,
@@ -322,7 +321,7 @@ class SearchEngine {
 	}
 
 	/**
-	 * Stores the sort type for the album
+	 * Stores the sort type
 	 *
 	 * @param string $sorttype the album sort type
 	 * @param string $what 'Description'image' or 'album'
