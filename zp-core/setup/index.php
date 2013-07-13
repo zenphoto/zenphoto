@@ -46,6 +46,8 @@ if (isset($_REQUEST['autorun'])) {
 	} else {
 		$autorun = 'admin';
 	}
+	unset($_GET['autorun']);
+	unset($_POST['autorun']);
 } else {
 	$autorun = false;
 }
