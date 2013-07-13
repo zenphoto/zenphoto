@@ -14,7 +14,7 @@
 $plugin_is_filter = 5|CLASS_PLUGIN;
 $plugin_description = gettext("Use this plugin is to enable using older third party spam filters.");
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_disable = (isset($_zp_spamFilter) && !getoption('zp_plugin_legacySpam'))?sprintf(gettext('Only one SPAM handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'),$_zp_spamFilter->name):'';
+$plugin_disable = (isset($_zp_spamFilter) && !extensionEnabled('legacySpam'))?sprintf(gettext('Only one SPAM handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'),$_zp_spamFilter->name):'';
 $plugin_notice = gettext('Please contact the author of your SPAM filter and request it be updated to work with the <i>plugin</i> model of SPAM filters. This plugin will be removed from future Zenphoto releases.');
 
 $option_interface = 'zpLegacySpam';

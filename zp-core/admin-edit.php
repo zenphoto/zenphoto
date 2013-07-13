@@ -651,7 +651,7 @@ echo "\n</head>";
 							gettext('Enable comments')		 => 'commentson',
 							gettext('Change owner')				 => 'changeowner'
 			);
-			if (getOption('zp_plugin_hitcounter')) {
+			if (extensionEnabled('hitcounter')) {
 				$checkarray['Reset hitcounter'] = 'resethitcounter';
 			}
 			$checkarray_albums = array_merge($checkarray_images, array(gettext('Add tags to images')		 => 'alltags',
@@ -1067,7 +1067,7 @@ echo "\n</head>";
 																			 <?php echo gettext("Allow Comments"); ?>
 															</label>
 															<?php
-															if (getOption('zp_plugin_hitcounter')) {
+															if (extensionEnabled('hitcounter')) {
 																$hc = $image->get('hitcounter');
 																if (empty($hc)) {
 																	$hc = '0';
@@ -1079,7 +1079,7 @@ echo "\n</head>";
 																</label>
 																<?php
 															}
-															if (getOption('zp_plugin_rating')) {
+															if (extensionEnabled('rating')) {
 																$tv = $image->get('total_value');
 																$tc = $image->get('total_votes');
 

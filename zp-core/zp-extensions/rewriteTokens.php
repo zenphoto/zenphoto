@@ -43,7 +43,7 @@ class rewriteTokens {
 				setupLog(gettext('rewriteTokens restored to default'), true);
 			}
 		} else {
-			setOption('zp_plugin_rewriteTokens', 97|ADMIN_PLUGIN);	//	plugin must be enabled for saving options
+			enableExtension(')rewriteTokens', 97|ADMIN_PLUGIN);	//	plugin must be enabled for saving options
 		}
 
 	}

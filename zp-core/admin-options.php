@@ -927,7 +927,7 @@ if ($_zp_admin_subtab == 'gallery' || $_zp_admin_subtab == 'image') {
 										<p><?php echo gettext("Users per page:"); ?></p>
 										<p><?php echo gettext("Plugins per page:"); ?></p>
 	<?php
-	if (getOption('zp_plugin_zenpage')) {
+	if (extensionEnabled('zenpage')) {
 		?>
 											<p><?php echo gettext("Articles per page:"); ?></p>
 											<?php
@@ -939,7 +939,7 @@ if ($_zp_admin_subtab == 'gallery' || $_zp_admin_subtab == 'image') {
 										<br />
 										<input type="text" size="5" id="plugins_per_page" name="plugins_per_page"  value="<?php echo getOption('plugins_per_page'); ?>" />
 	<?php
-	if (getOption('zp_plugin_zenpage')) {
+	if (extensionEnabled('zenpage')) {
 		?>
 											<br />
 											<input type="text" size="5" id="articles_per_page" name="articles_per_page"  value="<?php echo getOption('articles_per_page'); ?>" />
@@ -1510,7 +1510,7 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 										</label>
 									</p>
 											<?php
-											if (getOption('zp_plugin_zenpage')) {
+											if (extensionEnabled('zenpage')) {
 												?>
 										<p>
 											<label>

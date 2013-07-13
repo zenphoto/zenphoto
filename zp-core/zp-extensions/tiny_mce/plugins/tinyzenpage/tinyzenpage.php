@@ -60,7 +60,7 @@ require_once("tinyzenpage-functions.php");
 <div id="main" style="margin-top: -10px;">
 <div class="optionsdiv">
 <?php
-if(getOption('zp_plugin_zenpage')) {
+if(extensionEnabled('zenpage')) {
 	?>
  <form name="zenpagelist" action="tinyzenpage.php?" method="get" class="optionform">
 		<div class="panel current">

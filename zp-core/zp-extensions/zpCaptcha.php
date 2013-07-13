@@ -162,7 +162,7 @@ class zpCaptcha extends _zp_captcha {
 }
 
 if ($plugin_disable) {
-	setOption('zp_plugin_zpCaptcha', 0);
+	enableExtension(')zpCaptcha', 0);
 } else {
 	$_zp_captcha = new zpCaptcha();
 }

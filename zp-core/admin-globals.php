@@ -65,7 +65,7 @@ if ($_zp_loggedin) {
 						'link'		 => WEBPATH . "/" . ZENFOLDER . '/admin-edit.php',
 						'subtabs'	 => NULL);
 	}
-	if (getOption('zp_plugin_zenpage')) {
+	if (extensionEnabled('zenpage')) {
 		if ($_zp_loggedin & ZENPAGE_PAGES_RIGHTS) {
 			$zenphoto_tabs['pages'] = array('text'		 => gettext("pages"),
 							'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-pages.php',

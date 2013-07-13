@@ -96,7 +96,7 @@ class Video extends Image {
 			trigger_error($msg, E_USER_ERROR);
 			exitZP();
 		}
-		$alts = explode(',', getOption('zp_plugin_class-video_videoalt'));
+		$alts = explode(',', extensionEnabled('class-video_videoalt'));
 		foreach ($alts as $alt) {
 			$this->videoalt[] = trim(strtolower($alt));
 		}
@@ -125,12 +125,12 @@ class Video extends Image {
 		$ext = getSuffix($this->filename);
 		switch ($ext) {
 			case '3gp':
-				$h = getOption('zp_plugin_class-video_3gp_h');
-				$w = getOption('zp_plugin_class-video_3gp_w');
+				$h = extensionEnabled('class-video_3gp_h');
+				$w = extensionEnabled('class-video_3gp_w');
 				break;
 			case 'mov':
-				$h = getOption('zp_plugin_class-video_mov_h');
-				$w = getOption('zp_plugin_class-video_mov_w');
+				$h = extensionEnabled('class-video_mov_h');
+				$w = extensionEnabled('class-video_mov_w');
 				break;
 			default:
 				$h = $_zp_multimedia_extension->getHeight($this);

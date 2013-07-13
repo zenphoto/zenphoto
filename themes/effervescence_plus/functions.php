@@ -112,21 +112,21 @@ function switcher_controllink($ignore) {
 	?>
 	<span id="themeSwitcher_effervescence">
 		<span title="<?php echo gettext("Effervescence color scheme."); ?>">
-	<?php echo gettext('Theme Color'); ?>
+			<?php echo gettext('Theme Color'); ?>
 			<select name="themeColor" id="themeColor" onchange="switchColors();">
-			<?php generateListFromArray(array($color), $themecolors, false, false); ?>
+				<?php generateListFromArray(array($color), $themecolors, false, false); ?>
 			</select>
 		</span>
-	<?php
-	$personality = getOption('themeSwitcher_effervescence_personality');
-	if (!$personality) {
-		$personality = getOption('effervescence_personality');
-	}
-	?>
+		<?php
+		$personality = getOption('themeSwitcher_effervescence_personality');
+		if (!$personality) {
+			$personality = getOption('effervescence_personality');
+		}
+		?>
 		<span title="<?php echo gettext("Effervescence image display handling."); ?>">
-		<?php echo gettext('Personality'); ?>
+			<?php echo gettext('Personality'); ?>
 			<select name="themePersonality" id="themePersonality" onchange="switchPersonality();">
-			<?php generateListFromArray(array($personality), $personalities, false, true); ?>
+				<?php generateListFromArray(array($personality), $personalities, false, true); ?>
 			</select>
 		</span>
 	</span>
@@ -333,7 +333,7 @@ function printFooter($admin = true) {
 		if (!is_null($h)) {
 			?>
 			<p>
-			<?php printf(ngettext('%1$u hit on this %2$s', '%1$u hits on this %2$s', $h), $h, gettext('page')); ?>
+				<?php printf(ngettext('%1$u hit on this %2$s', '%1$u hits on this %2$s', $h), $h, gettext('page')); ?>
 			</p>
 			<?php
 		}
@@ -342,9 +342,11 @@ function printFooter($admin = true) {
 			<p>
 				<small>
 					<?php $albumNumber = getNumAlbums();
-					echo sprintf(ngettext("%u Album", "%u Albums", $albumNumber), $albumNumber); ?> &middot;
+					echo sprintf(ngettext("%u Album", "%u Albums", $albumNumber), $albumNumber);
+					?> &middot;
 					<?php $c = get_subalbum_count();
-					echo sprintf(ngettext("%u Subalbum", "%u Subalbums", $c), $c); ?> &middot;
+					echo sprintf(ngettext("%u Subalbum", "%u Subalbums", $c), $c);
+					?> &middot;
 					<?php
 					$photosNumber = db_count('images');
 					echo sprintf(ngettext("%u Image", "%u Images", $photosNumber), $photosNumber);
@@ -371,21 +373,30 @@ function printFooter($admin = true) {
 			echo '<br />';
 		}
 		?>
-		<?php if ($_zp_gallery_page == 'gallery.php') {
-			if (class_exists('RSS')) printRSSLink('Gallery', '', 'Gallery RSS', ''); echo '<br />';
-		} ?>
-	<?php if ($_zp_gallery_page != 'password.php') {
-		@call_user_func('printUserLogin_out', '');
-		echo '<br />';
-	} ?>
-	<?php if ($_zp_gallery_page != 'contact.php' && getOption('zp_plugin_contact_form') && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('contact'))) {
-		printCustomPageURL(gettext('Contact us'), 'contact', '', '');
-		echo '<br />';
-	} ?>
-	<?php if ($_zp_gallery_page != 'register.php' && function_exists('printRegistrationForm') && !zp_loggedin() && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('register'))) {
+		<?php
+		if ($_zp_gallery_page == 'gallery.php') {
+			if (class_exists('RSS'))
+				printRSSLink('Gallery', '', 'Gallery RSS', ''); echo '<br />';
+		}
+		?>
+		<?php
+		if ($_zp_gallery_page != 'password.php') {
+			@call_user_func('printUserLogin_out', '');
+			echo '<br />';
+		}
+		?>
+		<?php
+		if ($_zp_gallery_page != 'contact.php' && extensionEnabled('contact_form') && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('contact'))) {
+			printCustomPageURL(gettext('Contact us'), 'contact', '', '');
+			echo '<br />';
+		}
+		?>
+	<?php
+	if ($_zp_gallery_page != 'register.php' && function_exists('printRegistrationForm') && !zp_loggedin() && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('register'))) {
 		printCustomPageURL(gettext('Register for this site'), 'register', '', '');
 		echo '<br />';
-	} ?>
+	}
+	?>
 	<?php @call_user_func('mobileTheme::controlLink'); ?>
 	<?php @call_user_func('printLanguageSelector'); ?>
 		<br class="clearall" />
@@ -417,55 +428,55 @@ function commonNewsLoop($paged) {
 				}
 				?>
 				</span>
-		<?php
-		if (is_GalleryNewsType()) {
-			echo ' | ' . gettext("Album:") . " <a href='" . getNewsAlbumURL() . "' title='" . getBareNewsAlbumTitle() . "'>" . getNewsAlbumTitle() . "</a>";
-		} else {
-			if (!empty($cat)) {
-				echo ' | ';
-				printNewsCategories(", ", gettext("Categories: "), "newscategories");
+			<?php
+			if (is_GalleryNewsType()) {
+				echo ' | ' . gettext("Album:") . " <a href='" . getNewsAlbumURL() . "' title='" . getBareNewsAlbumTitle() . "'>" . getNewsAlbumTitle() . "</a>";
+			} else {
+				if (!empty($cat)) {
+					echo ' | ';
+					printNewsCategories(", ", gettext("Categories: "), "newscategories");
+				}
 			}
-		}
-		?>
+			?>
 			</div> <!-- newsarticlecredit -->
 		<?php printCodeblock(1); ?>
 		<?php printNewsContent(); ?>
 		<?php printCodeblock(2); ?>
 			<br class="clearall" />
 		</div>
-			<?php
-		}
-		if ($paged) {
-			printNewsPageListWithNav(gettext('next »'), gettext('« prev'), true, 'pagelist', true);
-		}
-	}
-
-	function exerpt($content, $length) {
-		return shortenContent(strip_tags($content), $length, getOption("zenpage_textshorten_indicator"));
-	}
-
-	function commonComment() {
-		if (function_exists('printCommentForm')) {
-			?>
-		<div id="commentbox">
 		<?php
-		if (getCommentErrors() || getCommentCount() == 0) {
-			$style = NULL;
-			$head = '';
-		} else {
+	}
+	if ($paged) {
+		printNewsPageListWithNav(gettext('next »'), gettext('« prev'), true, 'pagelist', true);
+	}
+}
+
+function exerpt($content, $length) {
+	return shortenContent(strip_tags($content), $length, getOption("zenpage_textshorten_indicator"));
+}
+
+function commonComment() {
+	if (function_exists('printCommentForm')) {
+		?>
+		<div id="commentbox">
+			<?php
+			if (getCommentErrors() || getCommentCount() == 0) {
+				$style = NULL;
+				$head = '';
+			} else {
 //TODO: if the following line is used as intended the comment textarea is hidden to start with and when shown is not full width.
 //				$style = ' class="comment" style="display:none;"';
-			$style = ' class="commentx" style="display:block;"';
-			$head = "<div$style><h3>" . gettext('Add a comment') . '</h3></div>';
-		}
-		printCommentForm(true, $head, true, $style);
-		?>
+				$style = ' class="commentx" style="display:block;"';
+				$head = "<div$style><h3>" . gettext('Add a comment') . '</h3></div>';
+			}
+			printCommentForm(true, $head, true, $style);
+			?>
 		</div><!-- id="commentbox" -->
 		<?php
 	}
 }
 
 if (($_ef_menu = getOption('effervescence_menu')) == 'effervescence' || $_ef_menu == 'zenpage') {
-	setOption('zp_plugin_print_album_menu', 1 | THEME_PLUGIN, false);
+	enableExtension(')print_album_menu', 1 | THEME_PLUGIN, false);
 }
 ?>

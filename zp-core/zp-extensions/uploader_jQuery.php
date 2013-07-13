@@ -17,7 +17,7 @@ $plugin_author = 'Stephen Billard (sbillard)';
 $plugin_disable = (version_compare(PHP_VERSION, '5.3') >= 0) ? false : gettext('jQuery uploader requires PHP 5.3 or greater.');
 
 if ($plugin_disable) {
-	setOption('zp_plugin_uploader_jQuery', 0);
+	enableExtension(')uploader_jQuery', 0);
 } else {
 	setOptionDefault('zp_plugin_uploader_jQuery', $plugin_is_filter);
 	if (zp_loggedin(UPLOAD_RIGHTS)) {

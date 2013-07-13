@@ -52,7 +52,7 @@ $plugin_author = "Stephen Billard (sbillard)";
 
 $plugin_disable = (getOption('federated_logon_detect')) ? false : sprintf(gettext('Run the <a href="%s">OpenID detect</a> script to check compatibility of your server configuration.'),FULLWEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/federated_logon/Auth/OpenID_detect.php');
 if ($plugin_disable) {
-	setOption('zp_plugin_federated_logon',0);
+	enableExtension(')federated_logon',0);
 } else {
 	$option_interface = 'federated_logon';
 	zp_register_filter('theme_head', 'federated_logon::css');

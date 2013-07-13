@@ -150,7 +150,7 @@ printLogoAndLinks();
 													gettext('Add tags to articles') => 'alltags',
 													gettext('Clear tags of articles') => 'clearalltags'
 													);
-					if (getOption('zp_plugin_hitcounter')) {
+					if (extensionEnabled('hitcounter')) {
 						$checkarray['Reset hitcounter'] = 'resethitcounter';
 					}
 					printBulkActions($checkarray);
@@ -189,7 +189,7 @@ printLogoAndLinks();
 					?>
 					<li><img src="images/view.png" alt="" /><?php echo gettext('View'); ?></li>
 					<?php
-					if (getOption('zp_plugin_hitcounter')) {
+					if (extensionEnabled('hitcounter')) {
 						?>
 						<li><img src="../../images/reset.png" alt="" /><?php echo gettext('Reset hitcounter'); ?></li>
 						<?php

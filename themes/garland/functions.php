@@ -113,7 +113,7 @@ function footer() {
 		}
 		?>
 		<?php
-		if ($_zp_gallery_page != 'contact.php' && getOption('zp_plugin_contact_form') && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('contact'))) {
+		if ($_zp_gallery_page != 'contact.php' && extensionEnabled('contact_form') && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('contact'))) {
 			printCustomPageURL(gettext('Contact us'), 'contact', '', $prev, '');
 			$prev = ' | ';
 		}

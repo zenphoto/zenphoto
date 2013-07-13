@@ -560,7 +560,7 @@ function printDownloadLinkAlbumZip($linktext = NULL, $albumobj = NULL, $fromcach
  */
 if (isset($_GET['download'])) {
 	$item = sanitize($_GET['download']);
-	if (empty($item) OR !getOption('zp_plugin_downloadList')) {
+	if (empty($item) OR !extensionEnabled('downloadList')) {
 		zp_error(gettext('Forbidden'));
 	}
 	$hash = getOption('downloadList_password');

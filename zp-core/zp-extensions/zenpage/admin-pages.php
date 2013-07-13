@@ -148,7 +148,7 @@ if (GALLERY_SECURITY == 'public') {
 									gettext('Disable comments') => 'commentsoff',
 									gettext('Enable comments') => 'commentson'
 									);
-	if (getOption('zp_plugin_hitcounter')) {
+	if (extensionEnabled('hitcounter')) {
 		$checkarray['Reset hitcounter'] = 'resethitcounter';
 	}
 	printBulkActions($checkarray);

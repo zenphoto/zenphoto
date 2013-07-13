@@ -1697,7 +1697,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						<?php echo gettext("Allow Comments"); ?>
 						</label>
 						<?php
-						if (getOption('zp_plugin_hitcounter')) {
+						if (extensionEnabled('hitcounter')) {
 							$hc = $album->get('hitcounter');
 							if (empty($hc)) {
 								$hc = '0';
@@ -1709,7 +1709,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							</label>
 							<?php
 						}
-						if (getOption('zp_plugin_rating')) {
+						if (extensionEnabled('rating')) {
 							$tv = $album->get('total_value');
 							$tc = $album->get('total_votes');
 
@@ -1999,7 +1999,7 @@ function printAlbumButtons($album) {
 			<li><img src="images/view.png" alt="" /><?php echo gettext("View the album"); ?></li>
 			<li><img src="images/refresh.png" alt="" /><?php echo gettext("Refresh metadata"); ?></li>
 		<?php
-		if (getOption('zp_plugin_hitcounter')) {
+		if (extensionEnabled('hitcounter')) {
 			?>
 				<li><img src="images/reset.png" alt="" /><?php echo gettext("Reset hit counters"); ?></li>
 			<?php
@@ -2183,7 +2183,7 @@ function printAlbumButtons($album) {
 					?>
 				</div>
 	<?php
-	if (getOption('zp_plugin_hitcounter')) {
+	if (extensionEnabled('hitcounter')) {
 		?>
 					<div class="page-list_icon">
 						<?php
@@ -3022,7 +3022,7 @@ function printAlbumButtons($album) {
 		$activeset = false;
 		foreach ($rightslist as $rightselement => $right) {
 			if ($right['display']) {
-				if (($right['set'] != gettext('Pages') && $right['set'] != gettext('News')) || getOption('zp_plugin_zenpage')) {
+				if (($right['set'] != gettext('Pages') && $right['set'] != gettext('News')) || extensionEnabled('zenpage')) {
 					if ($activeset != $right['set']) {
 						if ($activeset) {
 							?>
@@ -3324,7 +3324,7 @@ function getCheckboxState($id) {
  */
 function standardScripts() {
 	$standardlist = array('themeoptions', 'password', 'theme_description', '404', 'slideshow', 'search', 'image', 'index', 'album', 'customfunctions', 'functions');
-	if (getOption('zp_plugin_zenpage'))
+	if (extensionEnabled('zenpage'))
 		$standardlist = array_merge($standardlist, array('news', 'pages'));
 	return $standardlist;
 }

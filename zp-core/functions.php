@@ -648,6 +648,19 @@ function getEnabledPlugins() {
 }
 
 /**
+ * Returns if a plugin is enabled
+ * @param string $extension
+ * @return bool
+ */
+function extensionEnabled($extension) {
+	return getOption('zp_plugin_' . $extension);
+}
+
+function enableExtension($extension) {
+	setOption('zp_plugin_' . $extension, 1);
+}
+
+/**
  * Gets an array of comments for the current admin
  *
  * @param int $number how many comments desired

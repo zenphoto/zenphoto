@@ -21,7 +21,7 @@ if (!defined('WEBPATH')) die();
 		<div id="header">
 		<h1><?php printGalleryTitle(); ?></h1>
 		<?php
-		$zenpage = getOption('zp_plugin_zenpage');
+		$zenpage = extensionEnabled('zenpage');
 		$numimages = getNumImages();
 		$numalbums = getNumAlbums();
 		$total = $numimages + $numalbums;

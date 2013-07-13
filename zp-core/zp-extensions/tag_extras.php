@@ -114,7 +114,7 @@ function getAllTagsFromAlbum($albumname,$subalbums=false,$mode='images') {
  */
 function getAllTagsFromZenpage($mode='news') {
 	global $_zp_gallery,$_zp_zenpage;
-	if(!getOption('zp_plugin_zenpage')) {
+	if(!extensionEnabled('zenpage')) {
 		return FALSE;
 	}
 	$passwordcheck = '';

@@ -339,7 +339,7 @@ echo '</head>'."\n";
 											</div>
 										<?php
 											printManagedObjects('albums', $albumlist, '', $groupobj, $id, $kind, array());
-											if (getOption('zp_plugin_zenpage')) {
+											if (extensionEnabled('zenpage')) {
 												$pagelist = array();
 												$pages = $_zp_zenpage->getPages(false);
 												foreach ($pages as $page) {

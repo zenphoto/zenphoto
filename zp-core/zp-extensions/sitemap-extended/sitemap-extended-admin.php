@@ -33,7 +33,7 @@ if(isset($_GET['generatesitemaps'])) {
 	$sitemap_index = getSitemapIndexLinks();
 	$sitemap_albums = getSitemapAlbums();
 	$sitemap_images = getSitemapImages();
-	if(getOption('zp_plugin_zenpage')) {
+	if(extensionEnabled('zenpage')) {
 		$sitemap_newsindex = getSitemapZenpageNewsIndex();
 		$sitemap_articles = getSitemapZenpageNewsArticles();
 		$sitemap_categories = getSitemapZenpageNewsCategories();
@@ -149,7 +149,7 @@ printLogoAndLinks();
 		generateSitemapCacheFile('sitemap-zenphoto-index',$sitemap_index);
 		generateSitemapCacheFile('sitemap-zenphoto-albums'.$numberAppend,$sitemap_albums);
 		generateSitemapCacheFile('sitemap-zenphoto-images'.$numberAppend,$sitemap_images);
-		if(getOption('zp_plugin_zenpage')) {
+		if(extensionEnabled('zenpage')) {
 			generateSitemapCacheFile('sitemap-zenpage-newsindex',$sitemap_newsindex);
 			generateSitemapCacheFile('sitemap-zenpage-news',$sitemap_articles);
 			generateSitemapCacheFile('sitemap-zenpage-categories',$sitemap_categories);

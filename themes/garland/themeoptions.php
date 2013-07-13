@@ -27,7 +27,7 @@ class ThemeOptions {
 		setOptionDefault('colorbox_garland_album', 1);
 		setOptionDefault('colorbox_garland_search', 1);
 		setThemeOptionDefault('garland_menu', '');
-		if (getOption('zp_plugin_zenpage')) {
+		if (extensionEnabled('zenpage')) {
 			setThemeOption('custom_index_page', 'gallery', NULL, 'garland', false);
 		} else {
 			setThemeOption('custom_index_page', '', NULL, 'garland', false);
@@ -62,7 +62,7 @@ class ThemeOptions {
 
   function getOptionsSupported() {
 		global $personalities;
-  	if (!getOption('zp_plugin_print_album_menu') && (($m = getOption('garland_menu'))=='garland' || $m=='zenpage' || $m == 'garland')) {
+  	if (!extensionEnabled('print_album_menu') && (($m = getOption('garland_menu'))=='garland' || $m=='zenpage' || $m == 'garland')) {
 			$note = '<p class="notebox">'.sprintf(gettext('<strong>Note:</strong> The <em>%s</em> custom menu makes use of the <em>print_album_menu</em> plugin.'),$m).'</p>';
 		} else {
 			$note = '';
@@ -75,7 +75,7 @@ class ThemeOptions {
 						  		gettext('Allow cloud') => array('key' => 'Allow_cloud', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Set to enable tag cloud for album page.')),
 									gettext('Custom menu') => array('key' => 'garland_menu', 'type' => OPTION_TYPE_CUSTOM, 'desc' => gettext('Set this to the <em>menu_manager</em> menu you wish to use.').$note)
 						  	);
-  	if (getOption('zp_plugin_zenpage')) {
+  	if (extensionEnabled('zenpage')) {
   		global $_zp_zenpage;
   		$pages = $_zp_zenpage->getPages(false);
   		$list = array();

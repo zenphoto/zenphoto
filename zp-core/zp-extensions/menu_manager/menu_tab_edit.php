@@ -1,7 +1,7 @@
 <?php
 define ('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))).'/admin-globals.php');
-if (getOption('zp_plugin_zenpage')) {
+if (extensionEnabled('zenpage')) {
 	require_once(dirname(dirname(dirname(__FILE__))).'/'.PLUGIN_FOLDER.'/zenpage/zenpage-admin-functions.php');
 }
 require_once(dirname(__FILE__).'/menu_manager-admin-functions.php');
@@ -245,7 +245,7 @@ if (isset($_GET['add']) && !isset($_GET['save'])) {
 		<option value="all_albums"><?php echo gettext("All Albums"); ?></option>
 		<option value="album"><?php echo gettext("Album"); ?></option>
 		<?php
-		if(getOption('zp_plugin_zenpage')) {
+		if(extensionEnabled('zenpage')) {
 			?>
 			<option value="all_zenpagepages"><?php echo gettext("All Zenpage pages"); ?></option>
 			<option value="zenpagepage"><?php echo gettext("Zenpage page"); ?></option>

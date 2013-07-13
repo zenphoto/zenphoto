@@ -9,7 +9,7 @@ if(function_exists('printCustomMenu') && getOption('zenpage_custommenu')) {
 </div>
 <?php
 } else {
-if (getOption('zp_plugin_zenpage')) { ?>
+if (extensionEnabled('zenpage')) { ?>
 <div class="menu">
 	<h3><?php echo gettext("News articles"); ?></h3>
 	<?php
@@ -22,7 +22,7 @@ if (getOption('zp_plugin_zenpage')) { ?>
 <div class="menu">
 	<h3><?php echo gettext("Gallery"); ?></h3>
 	<?php
-	if(getOption('zp_plugin_zenpage') && !($_zp_zenpage->news_on_index = getOption("zenpage_zp_index_news")) || !getOption("zenpage_homepage")) {
+	if(extensionEnabled('zenpage') && !($_zp_zenpage->news_on_index = getOption("zenpage_zp_index_news")) || !getOption("zenpage_homepage")) {
 		$allalbums = gettext("Gallery index");
 	} else {
 		$allalbums = "";
@@ -32,7 +32,7 @@ if (getOption('zp_plugin_zenpage')) { ?>
 </div>
 <?php } ?>
 
-<?php if (getOption('zp_plugin_zenpage')) { ?>
+<?php if (extensionEnabled('zenpage')) { ?>
 <div class="menu">
 	<h3><?php echo gettext("Pages"); ?></h3>
 	<?php
@@ -65,7 +65,7 @@ if (getOption('RSS_album_image') || getOption('RSS_articles')) {
 		<?php } ?>
 			<?php if (class_exists('RSS')) printRSSLink('Gallery','<li>',gettext('Gallery'), '</li>'); ?>
 			<?php
-			if(getOption('zp_plugin_zenpage')) {
+			if(extensionEnabled('zenpage')) {
 				if (class_exists('RSS')) printRSSLink("News","<li>",gettext("News"),'</li>');
 				if (class_exists('RSS')) printRSSLink("NewsWithImages","<li>",gettext("News and Gallery"),'</li>');
 			}
@@ -77,7 +77,7 @@ if (getOption('RSS_album_image') || getOption('RSS_articles')) {
 ?>
 
 	<?php
-	if (getOption("zenpage_contactpage") && getOption('zp_plugin_contact_form')) {
+	if (getOption("zenpage_contactpage") && extensionEnabled('contact_form')) {
 		?>
 		<div class="menu">
 			<ul>

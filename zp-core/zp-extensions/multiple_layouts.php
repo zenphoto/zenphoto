@@ -53,7 +53,7 @@ if(getOption('multiple_layouts_images')) {
 	zp_register_filter('edit_image_utilities','layoutSelector');
 	zp_register_filter('save_image_utilities_data','saveZenphotoLayoutSelection');
 }
-if(getOption('zp_plugin_zenpage')) {
+if(extensionEnabled('zenpage')) {
 	if(getOption('multiple_layouts_pages')) {
 		zp_register_filter('publish_page_utilities','layoutSelector');
 		zp_register_filter('new_page','saveLayoutSelection');
@@ -88,7 +88,7 @@ class multipleLayoutOptions {
 
 	function getOptionsSupported() {
 		$checkboxes = array(gettext('Albums') => 'multiple_layouts_albums', gettext('Images') => 'multiple_layouts_images');
-		if (getOption('zp_plugin_zenpage')) {
+		if (extensionEnabled('zenpage')) {
 			$checkboxes = array_merge($checkboxes, array(gettext('Pages') => 'multiple_layouts_pages', gettext('News') => 'multiple_layouts_news', gettext('News categories') => 'multiple_layouts_news_categories'));
 		}
 		$options = array(gettext('Enable multiple layouts for') => array('key' => 'multiple_layouts_allowed', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,

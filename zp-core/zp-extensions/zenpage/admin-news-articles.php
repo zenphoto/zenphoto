@@ -256,7 +256,7 @@ printLogoAndLinks();
 														gettext('Add categories') => 'addcats',
 														gettext('Clear categories') => 'clearcats'
 														);
-						if (getOption('zp_plugin_hitcounter')) {
+						if (extensionEnabled('hitcounter')) {
 							$checkarray['hitcounter'] = 'resethitcounter';
 						}
 						printBulkActions($checkarray);
@@ -352,7 +352,7 @@ printLogoAndLinks();
 
 							<?php
 						if(checkIfLockedNews($article)) {
-							if (getOption('zp_plugin_hitcounter')) {
+							if (extensionEnabled('hitcounter')) {
 								?>
 								<td class="page-list_icon">
 									<a href="?hitcounter=1&amp;titlelink=<?php echo html_encode($article->getTitlelink()); echo $option; ?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter')?>" title="<?php echo gettext('Reset hitcounter'); ?>">

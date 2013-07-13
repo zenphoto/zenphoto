@@ -14,7 +14,7 @@ $plugin_disable = (function_exists('curl_init')) ? false : gettext('The <em>php_
 $option_interface = 'tweet';
 
 if ($plugin_disable) {
-	setOption('zp_plugin_tweet_news',0);
+	enableExtension(')tweet_news',0);
 } else {
 	zp_register_filter('show_change', 'tweet::published');
 	if (getOption('tweet_news_albums'))	zp_register_filter('new_album', 'tweet::published');
@@ -83,7 +83,7 @@ class tweet {
 										);
 		$note = '';
 		$list = array('<em>'.gettext('Albums').'</em>'=>'tweet_news_albums', '<em>'.gettext('Images').'</em>'=>'tweet_news_images');
-		if (getOption('zp_plugin_zenpage')) {
+		if (extensionEnabled('zenpage')) {
 			$list['<em>'.gettext('News').'</em>'] = 'tweet_news_news';
 			$list['<em>'.gettext('Pages').'</em>'] = 'tweet_news_pages';
 			$options[gettext('Scan pending')] = array('key'=>'tweet_news_rescan', 'type'=>OPTION_TYPE_CHECKBOX,
