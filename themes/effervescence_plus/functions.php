@@ -1,5 +1,4 @@
 <?php
-
 // force UTF-8 Ø
 
 zp_register_filter('themeSwitcher_head', 'switcher_head');
@@ -8,12 +7,12 @@ zp_register_filter('theme_head', 'EF_head', 0);
 
 $cwd = getcwd();
 chdir(dirname(__FILE__));
-$persona = safe_glob('*',GLOB_ONLYDIR);
+$persona = safe_glob('*', GLOB_ONLYDIR);
 chdir($cwd);
-$persona = array_diff($persona, array('images','styles'));
+$persona = array_diff($persona, array('images', 'styles'));
 $personalities = array();
 foreach ($persona as $personality) {
-	$personalities[ucfirst(str_replace('_',' ',$personality))] = $personality;
+	$personalities[ucfirst(str_replace('_', ' ', $personality))] = $personality;
 }
 
 $personality = strtolower(getOption('effervescence_personality'));
@@ -22,10 +21,10 @@ if (!in_array($personality, $personalities)) {
 	$personality = array_shift($persona);
 }
 
-chdir(SERVERPATH . "/themes/".basename(dirname(__FILE__))."/styles");
+chdir(SERVERPATH . "/themes/" . basename(dirname(__FILE__)) . "/styles");
 $filelist = safe_glob('*.txt');
 $themecolors = array();
-foreach($filelist as $file) {
+foreach ($filelist as $file) {
 	$themecolors[basename($file)] = stripSuffix(filesystemToInternal($file));
 }
 chdir($cwd);
@@ -35,29 +34,30 @@ function EF_head($ignore) {
 	if (!$themeColor) {
 		$themeColor = getThemeOption('Theme_colors');
 	}
-	eval(file_get_contents(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/styles/'.$themeColor.'.txt'));
-	$css = file_get_contents(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/base.css');
+	eval(file_get_contents(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus/styles/' . $themeColor . '.txt'));
+	$css = file_get_contents(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus/base.css');
 	$css = strtr($css, $tr);
-	$css = preg_replace('|\.\./images/|', WEBPATH.'/'.THEMEFOLDER.'/effervescence_plus/images/', $css);
+	$css = preg_replace('|\.\./images/|', WEBPATH . '/' . THEMEFOLDER . '/effervescence_plus/images/', $css);
 	?>
 	<style type="text/css">
 	<?php echo $css; ?>
 	</style>
-	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/effervescence_plus/common.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo WEBPATH . '/' . THEMEFOLDER; ?>/effervescence_plus/common.css" type="text/css" />
 	<script type="text/javascript">
 		// <!-- <![CDATA[
-		function blurAnchors(){
-			if(document.getElementsByTagName){
+		function blurAnchors() {
+			if (document.getElementsByTagName) {
 				var a = document.getElementsByTagName("a");
-				for(var i = 0; i < a.length; i++){
-					a[i].onfocus = function(){this.blur()};
+				for (var i = 0; i < a.length; i++) {
+					a[i].onfocus = function() {
+						this.blur()
+					};
 				}
 			}
 		}
 		// ]]> -->
 	</script>
 	<?php
-
 	return $ignore;
 }
 
@@ -91,11 +91,11 @@ function switcher_head($ignore) {
 		// <!-- <![CDATA[
 		function switchColors() {
 			personality = $('#themeColor').val();
-			window.location = '?themeColor='+personality;
+			window.location = '?themeColor=' + personality;
 		}
 		function switchPersonality() {
 			personality = $('#themePersonality').val();
-			window.location = '?themePersonality='+personality;
+			window.location = '?themePersonality=' + personality;
 		}
 		// ]]> -->
 	</script>
@@ -114,11 +114,11 @@ function switcher_controllink($ignore) {
 		<span title="<?php echo gettext("Effervescence color scheme."); ?>">
 			<?php echo gettext('Theme Color'); ?>
 			<select name="themeColor" id="themeColor" onchange="switchColors();">
-				<?php  generateListFromArray(array($color), $themecolors, false, false); ?>
+				<?php generateListFromArray(array($color), $themecolors, false, false); ?>
 			</select>
 		</span>
 		<?php
-		$personality =getOption('themeSwitcher_effervescence_personality');
+		$personality = getOption('themeSwitcher_effervescence_personality');
 		if (!$personality) {
 			$personality = getOption('effervescence_personality');
 		}
@@ -135,10 +135,13 @@ function switcher_controllink($ignore) {
 }
 
 /* SQL Counting Functions */
+
 function get_subalbum_count() {
 	$where = "WHERE parentid IS NOT NULL";
-	if (!zp_loggedin()) {$where .= " AND `show` = 1"; }  /* exclude the un-published albums */
-	return db_count('albums',$where);
+	if (!zp_loggedin()) {
+		$where .= " AND `show` = 1";
+	} /* exclude the un-published albums */
+	return db_count('albums', $where);
 }
 
 function show_sub_count_index() {
@@ -154,14 +157,14 @@ function printHeadingImage($randomImage) {
 	}
 	echo '<div id="randomhead">';
 	if (is_null($randomImage)) {
-		echo '<img src="'.$_zp_themeroot.'/images/zen-logo.jpg" alt="'.gettext('There were no images from which to select the random heading.').'" />';
+		echo '<img src="' . $_zp_themeroot . '/images/zen-logo.jpg" alt="' . gettext('There were no images from which to select the random heading.') . '" />';
 	} else {
 		$randomAlbum = $randomImage->getAlbum();
 		$randomAlt1 = $randomAlbum->getTitle();
 		if ($randomAlbum->getID() <> $id) {
 			$randomAlbum = $randomAlbum->getParent();
 			while (!is_null($randomAlbum) && ($randomAlbum->getID() <> $id)) {
-				$randomAlt1 = $randomAlbum->getTitle().":\n".$randomAlt1;
+				$randomAlt1 = $randomAlbum->getTitle() . ":\n" . $randomAlt1;
 				$randomAlbum = $randomAlbum->getParent();
 			}
 		}
@@ -173,13 +176,12 @@ function printHeadingImage($randomImage) {
 			$wide = min(620, $randomImage->getWidth());
 			$high = min(180, $randomImage->getHeight());
 		}
-		echo "<a href='".$randomImageURL."' title='".gettext('Random picture...')."'>";
-		$html = "<img src='".
-					html_encode($randomImage->getCustomImage(NULL, $wide, $high, $wide, $high, NULL, NULL, !getOption('Watermark_head_image'))).
-					"' width='$wide' height='$high' alt=".'"'.
-					html_encode($randomAlt1).
-					":\n".html_encode($randomImage->getTitle()).
-					'" />';
+		echo "<a href='" . $randomImageURL . "' title='" . gettext('Random picture...') . "'>";
+		$html = "<img src='" . html_encode(pathurlencode($randomImage->getCustomImage(NULL, $wide, $high, $wide, $high, NULL, NULL, !getOption('Watermark_head_image')))) .
+						"' width='$wide' height='$high' alt=" . '"' .
+						html_encode($randomAlt1) .
+						":\n" . html_encode($randomImage->getTitle()) .
+						'" />';
 		$html = zp_apply_filter('custom_image_html', $html, false);
 		echo $html;
 		echo '</a>';
@@ -187,16 +189,17 @@ function printHeadingImage($randomImage) {
 	echo '</div>';
 }
 
-
 /* Custom caption functions */
+
 function getCustomAlbumDesc() {
-	if(!in_context(ZP_ALBUM)) return false;
+	if (!in_context(ZP_ALBUM))
+		return false;
 	global $_zp_current_album;
 	$desc = $_zp_current_album->getDesc();
 	if (strlen($desc) == 0) {
 		$desc = $_zp_current_album->getTitle();
 	} else {
-		$desc = $_zp_current_album->getTitle()."\n".$desc;
+		$desc = $_zp_current_album->getTitle() . "\n" . $desc;
 	}
 	return $desc;
 }
@@ -204,13 +207,13 @@ function getCustomAlbumDesc() {
 function getImage_AlbumCount() {
 	$c = getNumAlbums();
 	if ($c > 0) {
-		$result = "\n ".sprintf(ngettext("%u album","%u albums",$c),$c);
+		$result = "\n " . sprintf(ngettext("%u album", "%u albums", $c), $c);
 	} else {
 		$result = '';
 	}
 	$c = getNumImages();
 	if ($c > 0) {
-		$result .=  "\n ".sprintf(ngettext("%u image","%u images",$c),$c);
+		$result .= "\n " . sprintf(ngettext("%u image", "%u images", $c), $c);
 	}
 	return $result;
 }
@@ -255,34 +258,34 @@ function printThemeInfo() {
 	if ($personality == 'Image page') {
 		$personality = '';
 	} else if (($personality == 'Simpleviewer' && !class_exists('simpleviewer')) ||
-							($personality == 'Colorbox' && !zp_has_filter('admin_head','colorbox::css'))) {
+					($personality == 'Colorbox' && !zp_has_filter('admin_head', 'colorbox::css'))) {
 		$personality = "<strike>$personality</strike>";
 	}
 	$personality = str_replace('_', ' ', $personality);
 	if (empty($themeColor) && empty($personality)) {
 		echo '<p><small>Effervescence</small></p>';
 	} else if (empty($themeColor)) {
-		echo '<p><small>'.sprintf(gettext('Effervescence %s'),$personality).'</small></p>';
+		echo '<p><small>' . sprintf(gettext('Effervescence %s'), $personality) . '</small></p>';
 	} else if (empty($personality)) {
-		echo '<p><small>'.sprintf(gettext('Effervescence %s'),$themeColor).'</small></p>';
+		echo '<p><small>' . sprintf(gettext('Effervescence %s'), $themeColor) . '</small></p>';
 	} else {
-		echo '<p><small>'.sprintf(gettext('Effervescence %1$s %2$s'),$themeColor, $personality).'</small></p>';
+		echo '<p><small>' . sprintf(gettext('Effervescence %1$s %2$s'), $themeColor, $personality) . '</small></p>';
 	}
 }
 
 function printLinkWithQuery($url, $query, $text) {
-	$url = rtrim($url,'/') . (MOD_REWRITE ? "?" : "&amp;");
+	$url = rtrim($url, '/') . (MOD_REWRITE ? "?" : "&amp;");
 	echo "<a href=\"$url$query\">$text</a>";
 }
 
 function printLogo() {
 	global $_zp_themeroot;
 	if ($img = getOption('Graphic_logo')) {
-		$fullimg = '/'.UPLOAD_FOLDER.'/images/'.$img.'.png';
-		if (file_exists(SERVERPATH.$fullimg)) {
-			echo '<img src="'.pathurlencode(WEBPATH.$fullimg).'" alt="Logo"/>';
+		$fullimg = '/' . UPLOAD_FOLDER . '/images/' . $img . '.png';
+		if (file_exists(SERVERPATH . $fullimg)) {
+			echo '<img src="' . html_encode(pathurlencode(WEBPATH . $fullimg)) . '" alt="Logo"/>';
 		} else {
-			echo '<img src="'.$_zp_themeroot.'/images/effervescence.png" alt="Logo"/>';
+			echo '<img src="' . $_zp_themeroot . '/images/effervescence.png" alt="Logo"/>';
 		}
 	} else {
 		$name = get_language_string(getOption('Theme_logo'));
@@ -298,27 +301,27 @@ function annotateAlbum() {
 	$tagit = '';
 	$pwd = $_zp_current_album->getPassword();
 	if (zp_loggedin() && !empty($pwd)) {
-		$tagit = "\n".gettext('The album is password protected.');
+		$tagit = "\n" . gettext('The album is password protected.');
 	}
 	if (!$_zp_current_album->getShow()) {
-		$tagit .= "\n".gettext('The album is not published.');
+		$tagit .= "\n" . gettext('The album is not published.');
 	}
-	return  sprintf(gettext('View the Album: %s'),getBareAlbumTitle()).getImage_AlbumCount().$tagit;
+	return sprintf(gettext('View the Album: %s'), getBareAlbumTitle()) . getImage_AlbumCount() . $tagit;
 }
 
 function annotateImage() {
 	global $_zp_current_image;
 	if (is_object($_zp_current_image)) {
 		if (!$_zp_current_image->getShow()) {
-			$tagit = "\n".gettext('The image is marked not visible.');
+			$tagit = "\n" . gettext('The image is marked not visible.');
 		} else {
 			$tagit = '';
 		}
-		return  sprintf(gettext('View the image: %s'),GetBareImageTitle()).$tagit;
+		return sprintf(gettext('View the image: %s'), GetBareImageTitle()) . $tagit;
 	}
 }
 
-function printFooter($admin=true) {
+function printFooter($admin = true) {
 	global $_zp_themeroot, $_zp_gallery, $_zp_gallery_page, $_zp_current_zenpage_news, $_zp_current_zenpage_page;
 	$h = NULL;
 	?>
@@ -329,7 +332,7 @@ function printFooter($admin=true) {
 		if (!is_null($h)) {
 			?>
 			<p>
-			<?php printf(ngettext('%1$u hit on this %2$s','%1$u hits on this %2$s',$h),$h, gettext('page')); ?>
+				<?php printf(ngettext('%1$u hit on this %2$s', '%1$u hits on this %2$s', $h), $h, gettext('page')); ?>
 			</p>
 			<?php
 		}
@@ -337,20 +340,25 @@ function printFooter($admin=true) {
 			?>
 			<p>
 				<small>
-					<?php $albumNumber = getNumAlbums(); echo sprintf(ngettext("%u Album","%u Albums",$albumNumber),$albumNumber); ?> &middot;
-						<?php $c=get_subalbum_count(); echo sprintf(ngettext("%u Subalbum", "%u Subalbums",$c),$c); ?> &middot;
+					<?php
+					$albumNumber = getNumAlbums();
+					echo sprintf(ngettext("%u Album", "%u Albums", $albumNumber), $albumNumber);
+					?> &middot;
+					<?php
+					$c = get_subalbum_count();
+					echo sprintf(ngettext("%u Subalbum", "%u Subalbums", $c), $c);
+					?> &middot;
+					<?php
+					$photosNumber = db_count('images');
+					echo sprintf(ngettext("%u Image", "%u Images", $photosNumber), $photosNumber);
+					?>
+					<?php if (function_exists('printCommentForm')) { ?>
+						&middot;
 						<?php
-						$photosNumber = db_count('images');
-						echo sprintf(ngettext("%u Image","%u Images",$photosNumber),$photosNumber);
-						?>
-						<?php
-						if (function_exists('printCommentForm')) { ?>
-							&middot;
-							<?php
-							$commentsNumber = db_count('comments'," WHERE inmoderation = 0");
-							echo sprintf(ngettext("%u Comment","%u Comments",$commentsNumber),$commentsNumber);
-						}
-						?>
+						$commentsNumber = db_count('comments', " WHERE inmoderation = 0");
+						echo sprintf(ngettext("%u Comment", "%u Comments", $commentsNumber), $commentsNumber);
+					}
+					?>
 				</small>
 			</p>
 			<?php
@@ -366,10 +374,30 @@ function printFooter($admin=true) {
 			echo '<br />';
 		}
 		?>
-		<?php if ($_zp_gallery_page == 'gallery.php') { if (class_exists('RSS')) printRSSLink('Gallery','', 'Gallery RSS', ''); echo '<br />'; } ?>
-		<?php	if ($_zp_gallery_page != 'password.php') { @call_user_func('printUserLogin_out',''); echo '<br />'; } ?>
-		<?php	if ($_zp_gallery_page!='contact.php' && getOption('zp_plugin_contact_form') && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('contact'))) { printCustomPageURL(gettext('Contact us'), 'contact', '', '');	echo '<br />'; } ?>
-		<?php if ($_zp_gallery_page!='register.php' && !zp_loggedin() && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('register'))) { printCustomPageURL(gettext('Register for this site'), 'register', '', ''); echo '<br />'; }	?>
+		<?php
+		if ($_zp_gallery_page == 'gallery.php') {
+			if (class_exists('RSS'))
+				printRSSLink('Gallery', '', 'Gallery RSS', ''); echo '<br />';
+		}
+		?>
+		<?php
+		if ($_zp_gallery_page != 'password.php') {
+			@call_user_func('printUserLogin_out', '');
+			echo '<br />';
+		}
+		?>
+		<?php
+		if ($_zp_gallery_page != 'contact.php' && extensionEnabled('contact_form') && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('contact'))) {
+			printCustomPageURL(gettext('Contact us'), 'contact', '', '');
+			echo '<br />';
+		}
+		?>
+		<?php
+		if ($_zp_gallery_page != 'register.php' && function_exists('printRegistrationForm') && !zp_loggedin() && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('register'))) {
+			printCustomPageURL(gettext('Register for this site'), 'register', '', '');
+			echo '<br />';
+		}
+		?>
 		<?php @call_user_func('mobileTheme::controlLink'); ?>
 		<?php @call_user_func('printLanguageSelector'); ?>
 		<br class="clearall" />
@@ -379,16 +407,16 @@ function printFooter($admin=true) {
 }
 
 function commonNewsLoop($paged) {
-	$newstypes = array('album'=>gettext('album'),'image'=>gettext('image'),'video'=>gettext('video'),'news'=>gettext('news'));
+	$newstypes = array('album'	 => gettext('album'), 'image'	 => gettext('image'), 'video'	 => gettext('video'), 'news'	 => gettext('news'));
 	while (next_news()) {
 		$newstype = getNewsType();
 		$newstypedisplay = $newstypes[$newstype];
 		if (stickyNews()) {
-			$newstypedisplay .= ' <small><em>'.gettext('sticky').'</em></small>';
+			$newstypedisplay .= ' <small><em>' . gettext('sticky') . '</em></small>';
 		}
-	?>
+		?>
 		<div class="newsarticle<?php if (stickyNews()) echo ' sticky'; ?>">
-			<h3><?php printNewsTitleLink(); ?><?php echo " <span class='newstype'>[".$newstypedisplay."]</span>"; ?></h3>
+			<h3><?php printNewsTitleLink(); ?><?php echo " <span class='newstype'>[" . $newstypedisplay . "]</span>"; ?></h3>
 			<div class="newsarticlecredit">
 				<span class="newsarticlecredit-left">
 					<?php
@@ -397,17 +425,17 @@ function commonNewsLoop($paged) {
 					printNewsDate();
 					if ($count > 0) {
 						echo ' | ';
-						printf(gettext("Comments: %d"),  $count);
+						printf(gettext("Comments: %d"), $count);
 					}
 					?>
 				</span>
 				<?php
-				if(is_GalleryNewsType()) {
-					echo ' | '.gettext("Album:")." <a href='".getNewsAlbumURL()."' title='".getBareNewsAlbumTitle()."'>".getNewsAlbumTitle()."</a>";
+				if (is_GalleryNewsType()) {
+					echo ' | ' . gettext("Album:") . " <a href='" . getNewsAlbumURL() . "' title='" . getBareNewsAlbumTitle() . "'>" . getNewsAlbumTitle() . "</a>";
 				} else {
 					if (!empty($cat)) {
 						echo ' | ';
-						printNewsCategories(", ",gettext("Categories: "),"newscategories");
+						printNewsCategories(", ", gettext("Categories: "), "newscategories");
 					}
 				}
 				?>
@@ -416,16 +444,16 @@ function commonNewsLoop($paged) {
 			<?php printNewsContent(); ?>
 			<?php printCodeblock(2); ?>
 			<br class="clearall" />
-			</div>
-	<?php
+		</div>
+		<?php
 	}
 	if ($paged) {
-		printNewsPageListWithNav(gettext('next »'), gettext('« prev'),true,'pagelist',true);
+		printNewsPageListWithNav(gettext('next »'), gettext('« prev'), true, 'pagelist', true);
 	}
 }
 
-function exerpt($content,$length) {
-	return shortenContent(strip_tags($content),$length,getOption("zenpage_textshorten_indicator"));
+function exerpt($content, $length) {
+	return shortenContent(strip_tags($content), $length, getOption("zenpage_textshorten_indicator"));
 }
 
 function commonComment() {
@@ -433,14 +461,14 @@ function commonComment() {
 		?>
 		<div id="commentbox">
 			<?php
-			if (getCommentErrors() || getCommentCount()==0) {
+			if (getCommentErrors() || getCommentCount() == 0) {
 				$style = NULL;
 				$head = '';
 			} else {
 //TODO: if the following line is used as intended the comment textarea is hidden to start with and when shown is not full width.
 //				$style = ' class="comment" style="display:none;"';
 				$style = ' class="commentx" style="display:block;"';
-				$head = "<div$style><h3>".gettext('Add a comment').'</h3></div>';
+				$head = "<div$style><h3>" . gettext('Add a comment') . '</h3></div>';
 			}
 			printCommentForm(true, $head, true, $style);
 			?>
@@ -450,7 +478,6 @@ function commonComment() {
 }
 
 if (($_ef_menu = getOption('effervescence_menu')) == 'effervescence' || $_ef_menu == 'zenpage') {
-	setOption('zp_plugin_print_album_menu',1|THEME_PLUGIN,false);
+	enableExtension(')print_album_menu', 1 | THEME_PLUGIN, false);
 }
-
 ?>

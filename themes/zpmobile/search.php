@@ -22,7 +22,7 @@
 
 	<h2><?php printSearchBreadcrumb(); ?></h2>
 	<?php
-		$zenpage = getOption('zp_plugin_zenpage');
+		$zenpage = extensionEnabled('zenpage');
 		$numimages = getNumImages();
 		$numalbums = getNumAlbums();
 		$total = $numimages + $numalbums;

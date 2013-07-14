@@ -274,10 +274,10 @@ function adminToolbox() {
 								// set return to this image page
 								zp_apply_filter('admin_toolbox_image', $albumname, $imagename, $zf);
 							}
-							$redirect = "&amp;album=" . pathurlencode($albumname) . "&amp;image=" . urlencode($imagename);
+							$redirect = "&amp;album=" . html_encode(pathurlencode($albumname)) . "&amp;image=" . urlencode($imagename);
 						} else {
 							// set the return to this album/page
-							$redirect = "&amp;album=" . pathurlencode($albumname);
+							$redirect = "&amp;album=" . html_encode(pathurlencode($albumname));
 							if ($page > 1) {
 								$redirect .= "&amp;page=$page";
 							}
@@ -833,7 +833,12 @@ function printPageListWithNav($prevtext, $nexttext, $oneImagePage = false, $next
 			$last = NULL;
 			if ($firstlast) {
 				?>
-				<li class="<?php if($current==1) echo 'current'; else echo 'first'; ?>">
+				<li class="<?php
+				if ($current == 1)
+					echo 'current';
+				else
+					echo 'first';
+				?>">
 							<?php
 							if ($current == 1) {
 								echo '1';
@@ -856,18 +861,18 @@ function printPageListWithNav($prevtext, $nexttext, $oneImagePage = false, $next
 						printLink(getPageURL($k1, $total), '...', sprintf(ngettext('Page %u', 'Page %u', $k1), $k1));
 						?>
 					</li>
-						<?php
-					} else if ($d == 2) {
-						?>
+					<?php
+				} else if ($d == 2) {
+					?>
 					<li>
 						<?php
 						$k1 = $last + 1;
 						printLink(getPageURL($k1, $total), $k1, sprintf(ngettext('Page %u', 'Page %u', $k1), $k1));
 						?>
 					</li>
-						<?php
-					}
-					?>
+					<?php
+				}
+				?>
 				<li<?php if ($current == $i) echo ' class="current"'; ?>>
 					<?php
 					if ($i == $current) {
@@ -892,18 +897,18 @@ function printPageListWithNav($prevtext, $nexttext, $oneImagePage = false, $next
 						$k1 = $i - (int) ($i - $last) / 2;
 						?>
 						<li>
-						<?php printLink(getPageURL($k1, $total), '...', sprintf(ngettext('Page %u', 'Page %u', $k1), $k1)); ?>
+							<?php printLink(getPageURL($k1, $total), '...', sprintf(ngettext('Page %u', 'Page %u', $k1), $k1)); ?>
 						</li>
 						<?php
 					} else if ($d == 2) {
 						$k1 = $last + 1;
 						?>
 						<li>
-						<?php printLink(getPageURL($k1, $total), $k1, sprintf(ngettext('Page %u', 'Page %u', $k1), $k1)); ?>
+							<?php printLink(getPageURL($k1, $total), $k1, sprintf(ngettext('Page %u', 'Page %u', $k1), $k1)); ?>
 						</li>
-							<?php
-						}
-						?>
+						<?php
+					}
+					?>
 					<li class="last<?php if ($current == $i) echo ' current'; ?>">
 						<?php
 						if ($current == $i) {
@@ -925,13 +930,13 @@ function printPageListWithNav($prevtext, $nexttext, $oneImagePage = false, $next
 					} else {
 						?>
 						<span class="disabledlink"><?php echo html_encode($nexttext); ?></span>
-					<?php
-				}
-				?>
+						<?php
+					}
+					?>
 				</li>
-		<?php
-	}
-	?>
+				<?php
+			}
+			?>
 		</ul>
 	</div>
 	<?php
@@ -2379,7 +2384,7 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
 	}
 	?>
 	<span id="<?php echo $span; ?>" class="metadata_title">
-	<?php echo $refh; ?><?php echo $title; ?><?php echo $refa; ?>
+		<?php echo $refh; ?><?php echo $title; ?><?php echo $refa; ?>
 	</span>
 	<div id="<?php echo $dataid; ?>"<?php echo $style; ?>>
 		<div<?php echo $id . $class; ?>>
@@ -2657,7 +2662,7 @@ function printImageThumb($alt, $class = NULL, $id = NULL) {
 	if ($id) {
 		$id = ' id="' . $id . '"';
 	}
-	$html = '<img src="' . pathurlencode($url) . '"' . $size . ' alt="' . html_encode($alt) . '"' . $class . $id . " />";
+	$html = '<img src="' . html_encode(pathurlencode($url)) . '"' . $size . ' alt="' . html_encode($alt) . '"' . $class . $id . " />";
 	$html = zp_apply_filter('standard_image_thumb_html', $html);
 	echo $html;
 }
@@ -2748,8 +2753,14 @@ function getProtectedImageURL($image = NULL, $disposal = NULL) {
 			$params .= '&dsp=' . $disposal;
 		}
 		$params .= '&check=' . sha1(HASH_SEED . serialize($args));
-
-		return WEBPATH . '/' . ZENFOLDER . '/full-image.php?a=' . urlencode($album->name) . '&i=' . urlencode($image->filename) . $params;
+		if (is_array($image->filename)) {
+			$album = dirname($image->filename['source']);
+			$image = basename($image->filename['source']);
+		} else {
+			$album = $image->albumlink;
+			$image = $image->filename;
+		}
+		return WEBPATH . '/' . ZENFOLDER . '/full-image.php?a=' . urlencode($album) . '&i=' . urlencode($image) . $params;
 	}
 }
 
@@ -3153,23 +3164,23 @@ function printRandomImages($number = 5, $class = null, $option = 'all', $rootAlb
 		if (is_object($randomImage) && $randomImage->exists) {
 			echo "<li>\n";
 			if ($fullimagelink) {
-				$randomImageURL = html_encode($randomImage->getFullimageURL());
+				$randomImageURL = $randomImage->getFullimageURL();
 			} else {
-				$randomImageURL = html_encode(getURL($randomImage));
+				$randomImageURL = getURL($randomImage);
 			}
-			echo '<a href="' . $randomImageURL . '" title="' . sprintf(gettext('View image: %s'), html_encode($randomImage->getTitle())) . '">';
+			echo '<a href="' . html_encode($randomImageURL) . '" title="' . sprintf(gettext('View image: %s'), html_encode($randomImage->getTitle())) . '">';
 			switch ($crop) {
 				case 0:
-					$html = "<img src=\"" . pathurlencode($randomImage->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)) . "\" alt=\"" . html_encode($randomImage->getTitle()) . "\" />\n";
+					$html = "<img src=\"" . $randomImage->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE) . "\" alt=\"" . html_encode($randomImage->getTitle()) . "\" />\n";
 					break;
 				case 1:
-					$html = "<img src=\"" . pathurlencode($randomImage->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE)) . "\" alt=\"" . html_encode($randomImage->getTitle()) . "\" />\n";
+					$html = "<img src=\"" . $randomImage->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE) . "\" alt=\"" . $randomImage->getTitle() . "\" />\n";
 					break;
 				case 2:
-					$html = "<img src=\"" . pathurlencode($randomImage->getThumb()) . "\" alt=\"" . html_encode($randomImage->getTitle()) . "\" />\n";
+					$html = "<img src=\"" . $randomImage->getThumb() . "\" alt=\"" . html_encode($randomImage->getTitle()) . "\" />\n";
 					break;
 			}
-			echo zp_apply_filter('custom_image_html', $html, false);
+			echo html_encode(pathurlencode(zp_apply_filter('custom_image_html', $html, false)));
 			echo "</a>";
 			echo "</li>\n";
 		} else {
@@ -3346,9 +3357,9 @@ function printAllTagsAs($option, $class = '', $sort = NULL, $counter = FALSE, $l
 		} else {
 			?>
 			<li><?php echo gettext('No popular tags'); ?></li>
-		<?php
-	}
-	?>
+			<?php
+		}
+		?>
 	</ul>
 	<?php
 }
@@ -3751,7 +3762,7 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 				});
 				// ]]> -->
 			</script>
-				<?php echo $prevtext; ?>
+			<?php echo $prevtext; ?>
 			<div>
 				<input type="text" name="words" value="" id="search_input" size="10" />
 				<?php if (count($fields) > 1 || $searchwords) { ?>
@@ -3762,11 +3773,16 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 				if (is_array($object_list)) {
 					foreach ($object_list as $key => $list) {
 						?>
-					<input type="hidden" name="in<?php echo $key?>" value="<?php if (is_array($list)) echo html_encode(implode(',', $list)); else echo html_encode($list); ?>" />
-						<?php
-					}
-				}
-				?>
+						<input type="hidden" name="in<?php echo $key ?>" value="<?php
+						if (is_array($list))
+							echo html_encode(implode(',', $list));
+						else
+							echo html_encode($list);
+						?>" />
+									 <?php
+								 }
+							 }
+							 ?>
 				<br />
 				<?php
 				if (count($fields) > 1 || $searchwords) {
@@ -3785,21 +3801,21 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 					}
 					?>
 					<div style="display:none;" id="searchextrashow">
-		<?php
-		if ($searchwords) {
-			?>
+						<?php
+						if ($searchwords) {
+							?>
 							<label>
 								<input type="radio" name="search_within" id="search_within-1" value="1"<?php if ($within) echo ' checked="checked"'; ?> onclick="search_(1)"; />
-							<?php echo gettext('Within'); ?>
+								<?php echo gettext('Within'); ?>
 							</label>
 							<label>
 								<input type="radio" name="search_within" id="search_within-0" value="1"<?php if (!$within) echo ' checked="checked"'; ?> onclick="search_(0)"; />
 								<?php echo gettext('New'); ?>
 							</label>
-								<?php
-							}
-							if (count($fields) > 1) {
-								?>
+							<?php
+						}
+						if (count($fields) > 1) {
+							?>
 							<ul>
 								<?php
 								foreach ($fields as $display => $key) {
@@ -3811,13 +3827,13 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 								}
 								?>
 							</ul>
-						<?php
-					}
-					?>
+							<?php
+						}
+						?>
 					</div>
-		<?php
-	}
-	?>
+					<?php
+				}
+				?>
 			</div>
 		</form>
 	</div><!-- end of search form -->
@@ -3917,7 +3933,7 @@ function setThemeColumns() {
 		if ($count == 0) {
 			$_firstPageImages = 0;
 		}
-		$rowssused = ceil(($count % $albcount) / $albumColumns);	 /* number of album rows unused */
+		$rowssused = ceil(($count % $albcount) / $albumColumns); /* number of album rows unused */
 		$leftover = floor(max(1, getOption('images_per_page')) / $imageColumns) - $rowssused;
 		$_firstPageImages = max(0, $leftover * $imageColumns); /* number of images that fill the leftover rows */
 		if ($_firstPageImages == $imgcount) {
@@ -4100,7 +4116,7 @@ function printPasswordForm($_password_hint, $_password_showuser = NULL, $_passwo
 		if ($_password_showProtected && !$_zp_login_error) {
 			?>
 			<p>
-			<?php echo gettext("The page you are trying to view is password protected."); ?>
+				<?php echo gettext("The page you are trying to view is password protected."); ?>
 			</p>
 			<?php
 		}
@@ -4108,11 +4124,11 @@ function printPasswordForm($_password_hint, $_password_showuser = NULL, $_passwo
 			$logintext = gettext('login');
 			?>
 			<a href="<?php echo $loginlink; ?>" title="<?php echo $logintext; ?>"><?php echo $logintext; ?></a>
-		<?php
-	} else {
-		$_zp_authority->printLoginForm($_password_redirect, false, $_password_showuser, false, $_password_hint);
-	}
-	?>
+			<?php
+		} else {
+			$_zp_authority->printLoginForm($_password_redirect, false, $_password_showuser, false, $_password_hint);
+		}
+		?>
 	</div>
 	<?php
 }

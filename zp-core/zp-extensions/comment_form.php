@@ -93,7 +93,7 @@ class comment_form {
 		global $_zp_captcha;
 		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tiny_mce.php');
 		$checkboxes = array(gettext('Albums')	 => 'comment_form_albums', gettext('Images')	 => 'comment_form_images');
-		if (getOption('zp_plugin_zenpage')) {
+		if (extensionEnabled('zenpage')) {
 			$checkboxes = array_merge($checkboxes, array(gettext('Pages') => 'comment_form_pages', gettext('News')	 => 'comment_form_articles'));
 		}
 		$configarray = getTinyMCEConfigFiles();

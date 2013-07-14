@@ -263,7 +263,7 @@ function printPagesListTable($page, $flag) {
 		</div>
 
 	<?php if(checkIfLockedPage($page)) {
-	if (getOption('zp_plugin_hitcounter')) {
+	if (extensionEnabled('hitcounter')) {
 		?>
 		<div class="page-list_icon">
 			<a href="?hitcounter=1&amp;titlelink=<?php echo html_encode($page->getTitlelink()); ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('hitcounter')?>" title="<?php echo gettext("Reset hitcounter"); ?>">
@@ -997,7 +997,7 @@ function printCategoryListSortableTable($cat,$flag) {
 			<?php } ?>
 			</div>
 			<?php
-			if (getOption('zp_plugin_hitcounter')) {
+			if (extensionEnabled('hitcounter')) {
 				?>
 				<div class="page-list_icon"><a
 						href="?hitcounter=1&amp;id=<?php echo $cat->getID();?>&amp;tab=categories&amp;XSRFToken=<?php echo getXSRFToken('hitcounter')?>"
@@ -1379,7 +1379,7 @@ function printZenpageIconLegend() { ?>
 	<li><img src="../../images/comments-on.png" alt="" /><img src="../../images/comments-off.png" alt="" /><?php echo gettext("Comments on/off"); ?></li>
 	<li><img src="../../images/view.png" alt="" /><?php echo gettext("View"); ?></li>
 	<?php
-	if (getOption('zp_plugin_hitcounter')) {
+	if (extensionEnabled('hitcounter')) {
 		?>
 		<li><img src="../../images/reset.png" alt="" /><?php echo gettext("Reset hitcounter"); ?></li>
 		<?php

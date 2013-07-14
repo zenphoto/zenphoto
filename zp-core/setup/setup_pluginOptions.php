@@ -22,8 +22,8 @@ if ($option_interface) {
 	setupLog(sprintf(gettext('Plugin:%s option interface instantiated'),$extension),true);
 	$option_interface = new $option_interface;
 }
-if (getOption('zp_plugin_'.$extension)) {
-	setOption('zp_plugin_'.$extension, $plugin_is_filter);
+if (extensionEnabled(''.$extension)) {
+	enableExtension(')'.$extension, $plugin_is_filter);
 }
 setupLog(sprintf(gettext('Plugin:%s setup completed'),$extension),true);
 

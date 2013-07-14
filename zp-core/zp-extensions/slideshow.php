@@ -419,7 +419,7 @@ class slideshow {
 						getMaxSpaceContainer($maxwidth, $maxheight, $image);
 						$img = $image->getCustomImage(NULL, $maxwidth, $maxheight, NULL, NULL, NULL, NULL, NULL, NULL);
 					}
-					$slideshow .= '<img src="' . html_encode($img) . '" alt="" />';
+					$slideshow .= '<img src="' . html_encode(pathurlencode($img)) . '" alt="" />';
 					if ($linkslides)
 						$slideshow .= '</a>';
 				}

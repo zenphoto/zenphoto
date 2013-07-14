@@ -35,7 +35,7 @@ zp_register_filter('theme_head', 'dynamic_locale::dynamic_localeJS');
 
 if (getOption('dynamic_locale_subdomain')) {
 	define('LOCALE_TYPE',2);
-} else if (getOption('zp_plugin_seo_locale') && MOD_REWRITE) {
+} else if (extensionEnabled('seo_locale') && MOD_REWRITE) {
 	define('LOCALE_TYPE',1);
 } else {
 	define('LOCALE_TYPE',0);

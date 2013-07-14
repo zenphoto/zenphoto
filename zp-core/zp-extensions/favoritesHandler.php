@@ -26,8 +26,7 @@
  * @package plugins
  * @subpackage media
  */
-
-$plugin_is_filter = 5|FEATURE_PLUGIN;
+$plugin_is_filter = 5 | FEATURE_PLUGIN;
 $plugin_description = gettext('Support for <em>favorites</em> handling.');
 $plugin_author = "Stephen Billard (sbillard)";
 
@@ -37,10 +36,10 @@ class favoritesOptions {
 
 	function __construct() {
 		$old = getOption('favorites_link');
-		if (!$old || is_numeric($old) || $old=='favorites') {
+		if (!$old || is_numeric($old) || $old == 'favorites') {
 			purgeOption('favorites_link');
 		} else {
-			setOptionDefault('favorites_rewrite',"_PAGE_/$old");
+			setOptionDefault('favorites_rewrite', "_PAGE_/$old");
 		}
 		setOptionDefault('favorites_rewrite', '_PAGE_/favorites');
 		gettext($str = 'My favorites');
@@ -58,54 +57,53 @@ class favoritesOptions {
 		global $_zp_gallery;
 		$themename = $_zp_gallery->getCurrentTheme();
 		$curdir = getcwd();
-		$root = SERVERPATH.'/'.THEMEFOLDER.'/'.$themename.'/';
+		$root = SERVERPATH . '/' . THEMEFOLDER . '/' . $themename . '/';
 		chdir($root);
 		$filelist = safe_glob('*.php');
 		$list = array();
-		foreach($filelist as $file) {
+		foreach ($filelist as $file) {
 			$file = filesystemToInternal($file);
 			$list[$file] = str_replace('.php', '', $file);
 		}
 		$list = array_diff($list, standardScripts());
 
-		$options = array(	gettext('Link text') => array('key' => 'favorites_linktext', 'type' => OPTION_TYPE_TEXTBOX,
-																					'multilingual'=>true,
-																					'order'=>2,
-																					'desc' => gettext('The text for the link to the favorites page.')),
-											gettext('Favorites link') => array('key' => 'favorites_rewrite', 'type' => OPTION_TYPE_TEXTBOX,
-																					'order'=>1,
-																					'desc' => gettext('The link to use for the favorites script page.  Note: the token <code>_PAGE_</code> stands in for the current <em>page</em> definition.')),
-											gettext('Add button') => array('key' => 'favorites_add_button', 'type' => OPTION_TYPE_TEXTBOX,
-																					'multilingual'=>true,
-																					'order'=>6,
-																					'desc' => gettext('Default text for the <em>add to favorites</em> button.')),
-											gettext('Remove button') => array('key' => 'favorites_remove_button', 'type' => OPTION_TYPE_TEXTBOX,
-																					'multilingual'=>true,
-																					'order'=>7,
-																					'desc' => gettext('Default text for the <em>remove from favorites</em> button.')),
-											gettext('Title') => array('key' => 'favorites_title', 'type' => OPTION_TYPE_TEXTBOX,
-																					'multilingual'=>true,
-																					'order'=>3,
-																					'desc' => gettext('The favorites page title text.')),
-											gettext('Description') => array('key' => 'favorites_desc', 'type' => OPTION_TYPE_TEXTAREA,
-																					'multilingual'=>true,
-																					'order'=>5,
-																					'desc' => gettext('The favorites page description text.')),
+		$options = array(gettext('Link text')			 => array('key'					 => 'favorites_linktext', 'type'				 => OPTION_TYPE_TEXTBOX,
+										'multilingual' => true,
+										'order'				 => 2,
+										'desc'				 => gettext('The text for the link to the favorites page.')),
+						gettext('Favorites link')	 => array('key'		 => 'favorites_rewrite', 'type'	 => OPTION_TYPE_TEXTBOX,
+										'order'	 => 1,
+										'desc'	 => gettext('The link to use for the favorites script page.  Note: the token <code>_PAGE_</code> stands in for the current <em>page</em> definition.')),
+						gettext('Add button')			 => array('key'					 => 'favorites_add_button', 'type'				 => OPTION_TYPE_TEXTBOX,
+										'multilingual' => true,
+										'order'				 => 6,
+										'desc'				 => gettext('Default text for the <em>add to favorites</em> button.')),
+						gettext('Remove button')	 => array('key'					 => 'favorites_remove_button', 'type'				 => OPTION_TYPE_TEXTBOX,
+										'multilingual' => true,
+										'order'				 => 7,
+										'desc'				 => gettext('Default text for the <em>remove from favorites</em> button.')),
+						gettext('Title')					 => array('key'					 => 'favorites_title', 'type'				 => OPTION_TYPE_TEXTBOX,
+										'multilingual' => true,
+										'order'				 => 3,
+										'desc'				 => gettext('The favorites page title text.')),
+						gettext('Description')		 => array('key'					 => 'favorites_desc', 'type'				 => OPTION_TYPE_TEXTAREA,
+										'multilingual' => true,
+										'order'				 => 5,
+										'desc'				 => gettext('The favorites page description text.')),
 		);
 		if (getOption('favorites_link')) {
-			$options[gettext('Standard script naming')] = array('key' => 'favorites_link', 'type' => OPTION_TYPE_CHECKBOX,
-																						'order' => 0,
-																						'desc' => '<p class="notebox">'.gettext('<strong>Note:</strong> The <em>favorites</em> theme script should be named <em>favorites.php</em>. Check this box to use the standard script name.').'</p>');
-
+			$options[gettext('Standard script naming')] = array('key'		 => 'favorites_link', 'type'	 => OPTION_TYPE_CHECKBOX,
+							'order'	 => 0,
+							'desc'	 => '<p class="notebox">' . gettext('<strong>Note:</strong> The <em>favorites</em> theme script should be named <em>favorites.php</em>. Check this box to use the standard script name.') . '</p>');
 		}
 		return $options;
 	}
 
 	function handleOption($option, $currentValue) {
+
 	}
 
 }
-
 
 class favorites extends AlbumBase {
 
@@ -119,26 +117,26 @@ class favorites extends AlbumBase {
 	function addImage($img) {
 		$folder = $img->imagefolder;
 		$filename = $img->filename;
-		$sql = 'INSERT INTO '.prefix('plugin_storage').' (`type`, `aux`,`data`) VALUES ("favorites",'.db_quote($this->name).','.db_quote(serialize(array('type'=>'images', 'id'=>$folder.'/'.$filename))).')';
+		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("favorites",' . db_quote($this->name) . ',' . db_quote(serialize(array('type' => 'images', 'id'	 => $folder . '/' . $filename))) . ')';
 		query($sql);
 	}
 
 	function removeImage($img) {
 		$folder = $img->imagefolder;
 		$filename = $img->filename;
-		$sql = 'DELETE FROM '.prefix('plugin_storage').' WHERE `type`="favorites" AND `aux`='.db_quote($this->name).' AND `data`='.db_quote(serialize(array('type'=>'images', 'id'=>$folder.'/'.$filename)));
+		$sql = 'DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . db_quote($this->name) . ' AND `data`=' . db_quote(serialize(array('type' => 'images', 'id'	 => $folder . '/' . $filename)));
 		query($sql);
 	}
 
 	function addAlbum($alb) {
 		$folder = $alb->name;
-		$sql = 'INSERT INTO '.prefix('plugin_storage').' (`type`, `aux`,`data`) VALUES ("favorites",'.db_quote($this->name).','.db_quote(serialize(array('type'=>'albums', 'id'=>$folder))).')';
+		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("favorites",' . db_quote($this->name) . ',' . db_quote(serialize(array('type' => 'albums', 'id'	 => $folder))) . ')';
 		query($sql);
 	}
 
 	function removeAlbum($alb) {
 		$folder = $alb->name;
-		$sql = 'DELETE FROM '.prefix('plugin_storage').' WHERE `type`="favorites" AND `aux`='.db_quote($this->name).' AND `data`='.db_quote(serialize(array('type'=>'albums', 'id'=>$folder)));
+		$sql = 'DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . db_quote($this->name) . ' AND `data`=' . db_quote(serialize(array('type' => 'albums', 'id'	 => $folder)));
 		query($sql);
 	}
 
@@ -152,21 +150,20 @@ class favorites extends AlbumBase {
 	 * @param bool $mine set true/false to override ownership
 	 * @return array
 	 */
-
-	function getAlbums($page=0, $sorttype=null, $sortdirection=null, $care=true, $mine=NULL) {
+	function getAlbums($page = 0, $sorttype = null, $sortdirection = null, $care = true, $mine = NULL) {
 		global $_zp_gallery;
-		if (is_null($this->subalbums) || $care && $sorttype.$sortdirection !== $this->lastsubalbumsort ) {
+		if (is_null($this->subalbums) || $care && $sorttype . $sortdirection !== $this->lastsubalbumsort) {
 			$subalbums = array();
-			$result = query($sql = 'SELECT * FROM '.prefix('plugin_storage').' WHERE `type`="favorites" AND `aux`='.db_quote($this->name));
+			$result = query($sql = 'SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . db_quote($this->name));
 			if ($result) {
 				while ($row = db_fetch_assoc($result)) {
 					$id = $row['id'];
 					$row = unserialize($row['data']);
-					if ($row['type']=='albums') {
-						if (file_exists(getAlbumFolder().'/'.$row['id'])) {
+					if ($row['type'] == 'albums') {
+						if (file_exists(getAlbumFolder() . '/' . $row['id'])) {
 							$subalbums[] = $row['id'];
 						} else {
-							query("DELETE FROM ".prefix('plugin_storage')." WHERE `id`=$id");
+							query("DELETE FROM " . prefix('plugin_storage') . " WHERE `id`=$id");
 						}
 					}
 				}
@@ -180,7 +177,7 @@ class favorites extends AlbumBase {
 						$sortdirection = '';
 					}
 				}
-				$sortkey = str_replace('`','',$this->getAlbumSortKey($sorttype));
+				$sortkey = str_replace('`', '', $this->getAlbumSortKey($sorttype));
 				if (($sortkey == 'sort_order') || ($sortkey == 'RAND()')) {
 					// manual sort is always ascending
 					$order = false;
@@ -191,8 +188,8 @@ class favorites extends AlbumBase {
 						$order = $this->getSortDirection('image');
 					}
 				}
-				$this->subalbums = sortByKey($subalbums,$sortkey,$order);
-				$this->lastsubalbumsort = $sorttype.$sortdirection;
+				$this->subalbums = sortByKey($subalbums, $sortkey, $order);
+				$this->lastsubalbumsort = $sorttype . $sortdirection;
 			}
 			db_free_result($result);
 		}
@@ -200,10 +197,9 @@ class favorites extends AlbumBase {
 			return $this->subalbums;
 		} else {
 			$albums_per_page = max(1, getOption('albums_per_page'));
-			return array_slice($this->subalbums, $albums_per_page*($page-1), $albums_per_page);
+			return array_slice($this->subalbums, $albums_per_page * ($page - 1), $albums_per_page);
 		}
 	}
-
 
 	/**
 	 * Returns a of a slice of the images for this album. They will
@@ -219,19 +215,19 @@ class favorites extends AlbumBase {
 	 *
 	 * @return array
 	 */
-	function getImages($page=0, $firstPageCount=0, $sorttype=null, $sortdirection=null, $care=true, $mine=NULL) {
-		if (true || is_null($this->images) || $care && $sorttype.$sortdirection !== $this->lastimagesort) {
+	function getImages($page = 0, $firstPageCount = 0, $sorttype = null, $sortdirection = null, $care = true, $mine = NULL) {
+		if (true || is_null($this->images) || $care && $sorttype . $sortdirection !== $this->lastimagesort) {
 			$images = array();
-			$result = query($sql = 'SELECT * FROM '.prefix('plugin_storage').' WHERE `type`="favorites" AND `aux`='.db_quote($this->name));
+			$result = query($sql = 'SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . db_quote($this->name));
 			if ($result) {
 				while ($row = db_fetch_assoc($result)) {
 					$id = $row['id'];
 					$row = unserialize($row['data']);
-					if ($row['type']=='images') {
-						if (file_exists(getAlbumFolder().'/'.$row['id'])) {
-							$images[] = array('folder'=>dirname($row['id']),'filename'=>basename($row['id']));
+					if ($row['type'] == 'images') {
+						if (file_exists(getAlbumFolder() . '/' . $row['id'])) {
+							$images[] = array('folder'	 => dirname($row['id']), 'filename' => basename($row['id']));
 						} else {
-							query("DELETE FROM ".prefix('plugin_storage')." WHERE `id`=$id");
+							query("DELETE FROM " . prefix('plugin_storage') . " WHERE `id`=$id");
 						}
 					}
 				}
@@ -239,7 +235,7 @@ class favorites extends AlbumBase {
 				if (is_null($sorttype)) {
 					$sorttype = $this->getSortType();
 				}
-				$sortkey = str_replace('`','',$this->getImageSortKey($sorttype));
+				$sortkey = str_replace('`', '', $this->getImageSortKey($sorttype));
 				if (($sortkey == 'sort_order') || ($sortkey == 'RAND()')) {
 					// manual sort is always ascending
 					$order = false;
@@ -250,37 +246,34 @@ class favorites extends AlbumBase {
 						$order = $this->getSortDirection('image');
 					}
 				}
-				$this->images = sortByKey($images,$sortkey,$order);
-				$this->lastimagesort = $sorttype.$sortdirection;
+				$this->images = sortByKey($images, $sortkey, $order);
+				$this->lastimagesort = $sorttype . $sortdirection;
 			}
 			// Return the cut of images based on $page. Page 0 means show all.
 			if ($page == 0) {
 				return $this->images;
 			} else {
 				// Only return $firstPageCount images if we are on the first page and $firstPageCount > 0
-				if (($page==1) && ($firstPageCount>0)) {
+				if (($page == 1) && ($firstPageCount > 0)) {
 					$pageStart = 0;
 					$images_per_page = $firstPageCount;
-
 				} else {
-					if ($firstPageCount>0) {
+					if ($firstPageCount > 0) {
 						$fetchPage = $page - 2;
 					} else {
 						$fetchPage = $page - 1;
 					}
 					$images_per_page = max(1, getOption('images_per_page'));
 					$pageStart = $firstPageCount + $images_per_page * $fetchPage;
-
 				}
-				return array_slice($this->images, $pageStart , $images_per_page);
+				return array_slice($this->images, $pageStart, $images_per_page);
 			}
-
 		}
 		return $images;
 	}
 
 	static function loadScript($script, $request) {
-		global $_zp_current_admin_obj, $_zp_gallery_page, $_myFavorites, $_zp_current_album,$_zp_conf_vars, $_myFavorites;
+		global $_zp_current_admin_obj, $_zp_gallery_page, $_myFavorites, $_zp_current_album, $_zp_conf_vars, $_myFavorites;
 		if (!$page = stripSuffix(getOption('favorites_link'))) {
 			$page = 'favorites';
 		}
@@ -289,7 +282,7 @@ class favorites extends AlbumBase {
 				$_zp_current_album = $_myFavorites;
 				add_context(ZP_ALBUM);
 				prepareAlbumPage();
-				$_zp_gallery_page = $page.'.php';
+				$_zp_gallery_page = $page . '.php';
 			} else {
 				$script = false;
 			}
@@ -306,7 +299,7 @@ class favorites extends AlbumBase {
 	}
 
 	static function getFavorites_link() {
-		return preg_replace('~^_PAGE_/~', _PAGE_.'/', getOption('favorites_rewrite'));
+		return preg_replace('~^_PAGE_/~', _PAGE_ . '/', getOption('favorites_rewrite'));
 	}
 
 }
@@ -315,7 +308,7 @@ if (!OFFSET_PATH) {
 	if (!$page = stripSuffix(getOption('favorites_link'))) {
 		$page = 'favorites';
 	}
-	$_zp_conf_vars['special_pages'][$page] = array('define'=>false, 'rewrite'=>getOption('favorites_rewrite'), 'rule'=>'^%REWRITE%/*$		index.php?p='.$page.' [L,QSA]');
+	$_zp_conf_vars['special_pages'][$page] = array('define'	 => false, 'rewrite'	 => getOption('favorites_rewrite'), 'rule'		 => '^%REWRITE%/*$		index.php?p=' . $page . ' [L,QSA]');
 	zp_register_filter('load_theme_script', 'favorites::loadScript');
 	zp_register_filter('admin_toolbox_global', 'favorites::toolbox');
 
@@ -325,7 +318,7 @@ if (!OFFSET_PATH) {
 			$id = sanitize($_POST['id']);
 			switch ($_POST['type']) {
 				case 'images':
-					$img = newImage(NULL, array('folder'=>dirname($id), 'filename'=>basename($id)));
+					$img = newImage(NULL, array('folder'	 => dirname($id), 'filename' => basename($id)));
 					if ($_POST['addToFavorites']) {
 						if ($img->loaded) {
 							$_myFavorites->addImage($img);
@@ -347,9 +340,9 @@ if (!OFFSET_PATH) {
 			}
 		}
 
-		function printAddToFavorites($obj, $add=NULL, $remove=NULL) {
+		function printAddToFavorites($obj, $add = NULL, $remove = NULL) {
 			global $_myFavorites;
-			if (!is_object($obj)) {
+			if (!is_object($obj) || !$obj->exists) {
 				return;
 			}
 			$v = 1;
@@ -362,13 +355,13 @@ if (!OFFSET_PATH) {
 				$add = $remove;
 			}
 			$table = $obj->table;
-			$target = array('type'=>$table);
+			$target = array('type' => $table);
 			switch ($table) {
 				case 'images':
-					$id = $obj->imagefolder.'/'.$obj->filename;
+					$id = $obj->imagefolder . '/' . $obj->filename;
 					$images = $_myFavorites->getImages(0);
 					foreach ($images as $image) {
-						if ($image['folder']==$obj->imagefolder && $image['filename']==$obj->filename) {
+						if ($image['folder'] == $obj->imagefolder && $image['filename'] == $obj->filename) {
 							$v = 0;
 							$add = $remove;
 							break;
@@ -379,7 +372,7 @@ if (!OFFSET_PATH) {
 					$id = $obj->name;
 					$albums = $_myFavorites->getAlbums(0);
 					foreach ($albums as $album) {
-						if ($album==$id) {
+						if ($album == $id) {
 							$v = 0;
 							$add = $remove;
 							break;
@@ -390,12 +383,11 @@ if (!OFFSET_PATH) {
 					//We do not handle these.
 					return;
 			}
-
 			?>
 			<form name="imageFavorites" class="imageFavorites"
-				id="imageFavorites<?php echo $obj->getID(); ?>"
-				action="<?php echo html_encode(getRequestURI()); ?>" method="post"
-				accept-charset="UTF-8">
+						id="imageFavorites<?php echo $obj->getID(); ?>"
+						action="<?php echo html_encode(getRequestURI()); ?>" method="post"
+						accept-charset="UTF-8">
 				<input type="hidden" name="addToFavorites" value="<?php echo $v; ?>" />
 				<input type="hidden" name="type" value="<?php echo html_encode($table); ?>" />
 				<input type="hidden" name="id" value="<?php echo html_encode($id); ?>" />
@@ -406,7 +398,7 @@ if (!OFFSET_PATH) {
 			<?php
 		}
 
-		function printFavoritesLink($text=NULL) {
+		function printFavoritesLink($text = NULL) {
 			if (is_null($text)) {
 				$text = get_language_string(getOption('favorites_linktext'));
 			}
@@ -414,6 +406,7 @@ if (!OFFSET_PATH) {
 			<a href="<?php echo FULLWEBPATH; ?>/<?php echo favorites::getFavorites_link(); ?>" id="favorite_link"><?php echo $text; ?> </a>
 			<?php
 		}
+
 	}
 }
 ?>

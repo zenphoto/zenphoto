@@ -23,7 +23,7 @@ $plugin_notice = gettext("This plugin is <strong>NOT</strong> required for the Z
 $option_interface = 'deprecated_functions';
 $plugin_is_filter = 9 | CLASS_PLUGIN;
 
-setOption('zp_plugin_deprecated-functions', $plugin_is_filter); //	Yes, I know some people will be annoyed that this keeps coming back,
+enableExtension(')deprecated-functions', $plugin_is_filter); //	Yes, I know some people will be annoyed that this keeps coming back,
 //	but each release may deprecated new functions which would then just give
 //	(perhaps unseen) errors. Better the user should disable this once he knows
 //	his site is working.
@@ -1014,7 +1014,7 @@ function generateCaptcha(&$img) {
 function printAlbumZip() {
 	deprecated_functions::notify(gettext('Use downloadList plugin <code>printDownloadLinkAlbumZip()</code>.'));
 	global $_zp_current_album;
-	setOption('zp_plugin_downloadList', 20 | ADMIN_PLUGIN | THEME_PLUGIN);
+	enableExtension(')downloadList', 20 | ADMIN_PLUGIN | THEME_PLUGIN);
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/downloadList.php');
 	printDownloadLinkAlbumZip(gettext('Download a zip file of this album'), $_zp_current_album);
 }
@@ -1210,7 +1210,7 @@ function printCaptcha($preText = '', $midText = '', $postText = '') {
 function printField($context, $field, $convertBR = NULL, $override = false, $label = '') {
 	deprecated_functions::notify(gettext('Front end editing is not supported. Use the property specific methods.'));
 	if (is_null($convertBR))
-		$convertBR = !getOption('zp_plugin_tiny_mce');
+		$convertBR = !extensionEnabled('tiny_mce');
 	switch ($context) {
 		case 'image':
 			global $_zp_current_image;

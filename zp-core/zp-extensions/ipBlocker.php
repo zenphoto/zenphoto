@@ -80,7 +80,7 @@ class ipBlocker {
 																									'order' => 5,
 																									'selections' => $files,
 																									'nullselection' => '',
-																									'disabled' => !getOption('zp_plugin_ipBlocker'),
+																									'disabled' => !extensionEnabled('ipBlocker'),
 																									'desc' => sprintf(gettext('Import an external IP list. <p class="notebox"><strong>NOTE:</strong> If this list is large it may exceed the capacity of Zenphoto and %s to process and store the results.'),DATABASE_SOFTWARE)),
 											gettext('Action') =>array('key' => 'ipBlocker_type', 'type' => OPTION_TYPE_RADIO,
 																								'order'=>3,
@@ -93,7 +93,7 @@ class ipBlocker {
 																												'order'=>2,
 																												'desc' => gettext('The block will be removed after this many minutes.'))
 		);
-		if (!getOption('zp_plugin_ipBlocker')) {
+		if (!extensionEnabled('ipBlocker')) {
 			$options['note'] = array('key'=>'ipBlocker_note', 'type'=>OPTION_TYPE_NOTE,
 																'order'=>0,
 																'desc'=>'<p class="notebox">'.gettext('IP list ranges cannot be managed with the plugin disabled').'</p>');
@@ -103,7 +103,7 @@ class ipBlocker {
 
 	function handleOption($option, $currentValue) {
 		$list = unserialize(getOption('ipBlocker_list'));
-		if (getOption('zp_plugin_ipBlocker')) {
+		if (extensionEnabled('ipBlocker')) {
 			$disabled = '';
 		} else {
 			$disabled = ' disabled="disabled"';

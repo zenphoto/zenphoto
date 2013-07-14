@@ -789,7 +789,7 @@ function createMenuIfNotExists($menuitems, $menuset='default') {
 					query("INSERT INTO ".prefix('menu')." (`title`,`link`,`type`,`show`,`menuset`,`sort_order`) ".
 								"VALUES ('".gettext('Home')."', '".WEBPATH.'/'.	"','galleryindex','1',".db_quote($menuset).','.db_quote($orders),true);
 					$orders[$nesting] = addAlbumsToDatabase($menuset,$orders);
-					if(getOption('zp_plugin_zenpage')) {
+					if(extensionEnabled('zenpage')) {
 						$orders[$nesting]++;
 						query("INSERT INTO ".prefix('menu')." (title`,`link`,`type`,`show`,`menuset`,`sort_order`) ".
 									"VALUES ('".gettext('News index')."', '".rewrite_path(_NEWS_,'?p=news').	"','zenpagenewsindex','1',".db_quote($menuset).','.db_quote(sprintf('%03u',$base+1)),true);

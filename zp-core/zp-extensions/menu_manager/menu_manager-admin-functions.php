@@ -448,7 +448,7 @@ function addItem(&$reports) {
 			query("INSERT INTO ".prefix('menu')." (`title`,`link`,`type`,`show`,`menuset`,`sort_order`) ".
 						"VALUES ('".gettext('Home')."', '".WEBPATH.'/'.	"','galleryindex','1',".db_quote($menuset).",'000')",true);
 			addAlbumsToDatabase($menuset);
-			if(getOption('zp_plugin_zenpage')) {
+			if(extensionEnabled('zenpage')) {
 				query("INSERT INTO ".prefix('menu')." (`title`,`link`,`type`,`show`,`menuset`,`sort_order`) ".
 							"VALUES ('".gettext('News index')."', '".rewrite_path(_NEWS_,'?p=news').	"','zenpagenewsindex','1',".db_quote($menuset).",'001')",true);
 				addPagesToDatabase($menuset);

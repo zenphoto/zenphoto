@@ -32,7 +32,7 @@ class ThemeOptions {
 		setOptionDefault('colorbox_zenpage_album', 1);
 		setOptionDefault('colorbox_zenpage_image', 1);
 		setOptionDefault('colorbox_zenpage_search', 1);
-		if (getOption('zp_plugin_zenpage')) {
+		if (extensionEnabled('zenpage')) {
 			setThemeOption('custom_index_page', 'gallery', NULL, 'zenpage', false);
 		} else {
 			setThemeOption('custom_index_page', '', NULL, 'zenpage', false);

@@ -318,12 +318,12 @@ function zp_load_request() {
 					return zp_load_search();
 					break;
 				case 'pages':
-					if (getOption('zp_plugin_zenpage')) {
+					if (extensionEnabled('zenpage')) {
 						return zenpage_load_page(sanitize(rtrim(@$_GET['title'], '/')));
 					}
 					break;
 				case 'news':
-					if (getOption('zp_plugin_zenpage')) {
+					if (extensionEnabled('zenpage')) {
 						return zenpage_load_news(sanitize($_GET));
 					}
 					break;

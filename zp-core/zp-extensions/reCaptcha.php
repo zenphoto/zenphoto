@@ -157,7 +157,7 @@ class reCaptcha extends _zp_captcha{
 }
 
 if ($plugin_disable) {
-	setOption('zp_plugin_reCaptcha', 0);
+	enableExtension(')reCaptcha', 0);
 } else {
 	$_zp_captcha = new reCaptcha();
 }

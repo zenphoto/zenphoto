@@ -10,12 +10,12 @@
 $plugin_is_filter = 8|CLASS_PLUGIN;
 $plugin_description = gettext("Zenphoto outgoing mail handler based on the <em>PHPMailer</em> class mailing facility.");
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_disable = (zp_has_filter('sendmail') && !getoption('zp_plugin_PHPMailer'))?sprintf(gettext('Only one Email handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'),stripSuffix(get_filterScript('sendmail'))):'';
+$plugin_disable = (zp_has_filter('sendmail') && !extensionEnabled('PHPMailer'))?sprintf(gettext('Only one Email handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'),stripSuffix(get_filterScript('sendmail'))):'';
 
 $option_interface = 'zp_PHPMailer';
 
 if ($plugin_disable) {
-	setOption('zp_plugin_PHPMailer', 0);
+	enableExtension(')PHPMailer', 0);
 } else {
 	zp_register_filter('sendmail', 'zenphoto_PHPMailer');
 }

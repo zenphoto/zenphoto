@@ -42,10 +42,14 @@ class crop_image {
 	}
 
 	static function edit($output, $image, $prefix, $subpage, $tagsort) {
-		$album = $image->getAlbum();
-		$albumname = $album->name;
-		$imagename = $image->filename;
 		if (isImagePhoto($image)) {
+			if (is_array($image->filename)) {
+				$albumname = dirname($image->filename['source']);
+				$imagename = basename($image->filename['source']);
+			} else {
+				$albumname = $image->albunlink;
+				$imagename = $image->filename;
+			}
 			$output .=
 							'<div class="button buttons tooltip" title="' . gettext('Permanently crop the actual image.') . '">' . "\n" .
 							'<a href="' . WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/crop_image.php?a=' . pathurlencode($albumname) . "\n" .
@@ -292,12 +296,12 @@ printAdminHeader('edit', gettext('crop image'));
 </script>
 </head>
 <body>
-<?php printLogoAndLinks(); ?>
+	<?php printLogoAndLinks(); ?>
 
 	<div id="main">
-<?php printTabs(); ?>
+		<?php printTabs(); ?>
 		<div id="content">
-<?php zp_apply_filter('admin_note', 'crop_image', ''); ?>
+			<?php zp_apply_filter('admin_note', 'crop_image', ''); ?>
 			<h1><?php echo gettext("Image cropping") . ": <em>" . $albumobj->name . " (" . $albumobj->getTitle() . ") /" . $imageobj->filename . " (" . $imageobj->getTitle() . ")</em>"; ?></h1>
 			<div id="notice_div">
 				<p><?php echo gettext('You can crop your image by dragging the crop handles on the image'); ?></p>
@@ -311,18 +315,18 @@ printAdminHeader('edit', gettext('crop image'));
 						<!-- This is the image we're attaching Jcrop to -->
 						<img src="<?php echo html_encode(pathurlencode($imageurl)); ?>" id="cropbox" />
 						<p class="floatright">
-					<?php echo sprintf(gettext('(<span id="new-width">%1$u</span> x <span id="new-height">%2$u</span> pixels)'), round($iW * ($width / $sizedwidth)), round($iH * ($height / $sizedheight)));
-					?>
+							<?php echo sprintf(gettext('(<span id="new-width">%1$u</span> x <span id="new-height">%2$u</span> pixels)'), round($iW * ($width / $sizedwidth)), round($iH * ($height / $sizedheight)));
+							?>
 						</p>
 					</div>
 					<span class="clearall" ></span>
-						<?php
-						printf(gettext('width:%1$s %2$s height:%3$s %4$s clear %5$s'), '<input type="text" id="aspect-ratio-width" name="aspect-ratio-width" value="" size="5" />', '&nbsp;<span id="aspect" ><a id="swap_button" href="javascript:swapAspect();" title="' . gettext('swap width and height fields') . '" > <img src="crop_image/swap.png"> </a></span>&nbsp;', '<input type="text" id="aspect-ratio-height" name="aspect-ratio-height" value="" size="5" />', '<a href="javascript:clearAspect();" title="' . gettext('clear width and height fields') . '" >', '</a>')
-						?>
+					<?php
+					printf(gettext('width:%1$s %2$s height:%3$s %4$s clear %5$s'), '<input type="text" id="aspect-ratio-width" name="aspect-ratio-width" value="" size="5" />', '&nbsp;<span id="aspect" ><a id="swap_button" href="javascript:swapAspect();" title="' . gettext('swap width and height fields') . '" > <img src="crop_image/swap.png"> </a></span>&nbsp;', '<input type="text" id="aspect-ratio-height" name="aspect-ratio-height" value="" size="5" />', '<a href="javascript:clearAspect();" title="' . gettext('clear width and height fields') . '" >', '</a>')
+					?>
 
 					<!-- This is the form that our event handler fills -->
 					<form name="crop" id="crop" action="?crop" onsubmit="return checkCoords();">
-<?php XSRFToken('crop'); ?>
+						<?php XSRFToken('crop'); ?>
 						<input type="hidden" size="4" id="x" name="x" value="<?php echo $iX ?>" />
 						<input type="hidden" size="4" id="y" name="y" value="<?php echo $iY ?>" />
 						<input type="hidden" size="4" id="x2" name="x2" value="<?php echo $iX + $iW ?>" />
@@ -354,9 +358,9 @@ printAdminHeader('edit', gettext('crop image'));
 								<button type="reset" value="<?php echo gettext('Back') ?>" onclick="window.location = '../../index.php?album=<?php echo pathurlencode($albumname); ?>&image=<?php echo urlencode($imagename); ?>'">
 									<img src="../images/arrow_left_blue_round.png" alt="" /><strong><?php echo gettext("Back"); ?></strong>
 								</button>
-	<?php
-}
-?>
+								<?php
+							}
+							?>
 						</p>
 						<br />
 					</form>
@@ -368,7 +372,7 @@ printAdminHeader('edit', gettext('crop image'));
 
 		</div><!-- content -->
 
-<?php printAdminFooter(); ?>
+		<?php printAdminFooter(); ?>
 	</div><!-- main -->
 </body>
 

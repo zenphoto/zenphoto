@@ -1,5 +1,5 @@
 <?php
-if (getOption('zp_plugin_zenpage')) {
+if (extensionEnabled('zenpage')) {
 	if (checkForPage(getOption('garland_customHome'))) {
 		require_once('pages.php');
 	} else {

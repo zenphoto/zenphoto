@@ -104,7 +104,7 @@ function comment_form_print10Most() {
 				}
 				break;
 			case "news": // ZENPAGE: if plugin is installed
-				if(getOption("zp_plugin_zenpage")) {
+				if(extensionEnabled('zenpage')) {
 					$titlelink = '';
 					$title = '';
 					$newsdata = query_full_array("SELECT `title`, `titlelink` FROM ". prefix('news') .
@@ -118,7 +118,7 @@ function comment_form_print10Most() {
 				}
 				break;
 			case "pages": // ZENPAGE: if plugin is installed
-				if(getOption("zp_plugin_zenpage")) {
+				if(extensionEnabled('zenpage')) {
 					$image = '';
 					$title = '';
 					$pagesdata = query_full_array("SELECT `title`, `titlelink` FROM ". prefix('pages') .

@@ -11,7 +11,7 @@ define('OFFSET_PATH', 3);
 require_once(dirname(dirname(__FILE__)) . '/admin-globals.php');
 require_once(dirname(dirname(__FILE__)) . '/' . PLUGIN_FOLDER . '/image_album_statistics.php');
 
-if (getOption('zp_plugin_zenpage')) {
+if (extensionEnabled('zenpage')) {
 	require_once(dirname(dirname(__FILE__)) . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-admin-functions.php');
 }
 
@@ -233,13 +233,13 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 	if ($maxvalue == 0 || empty($itemssorted)) {
 		$maxvalue = 1;
 		$no_hitcount_enabled_msg = '';
-		if ($sortorder == 'popular' && $type != 'rss' && !getOption('zp_plugin_hitcounter')) {
+		if ($sortorder == 'popular' && $type != 'rss' && !extensionEnabled('hitcounter')) {
 			$no_hitcount_enabled_msg = gettext("(The hitcounter plugin is not enabled.)");
 		}
 		$no_statistic_message = "<tr><td><em>" . gettext("No statistic available.") . $no_hitcount_enabled_msg . "</em></td><td></td><td></td><td></td></tr>";
 	} else {
 		$no_statistic_message = "";
-		if ($sortorder == 'popular' && $type != 'rss' && !getOption('zp_plugin_hitcounter')) {
+		if ($sortorder == 'popular' && $type != 'rss' && !extensionEnabled('hitcounter')) {
 			$no_statistic_message = "<tr><td colspan='4'><em>" . gettext("Note: The hitcounter plugin is not enabled, therefore any existing values will not get updated.") . "</em></td><td></td><td></td><td></td></tr>";
 		}
 	}
@@ -519,7 +519,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 						}
 						?>
 					</li>
-					<?php if (getOption('zp_plugin_zenpage')) { ?>
+					<?php if (extensionEnabled('zenpage')) { ?>
 						<li>
 							<?php
 							list($total, $type, $unpub) = getNewsPagesStatistic("pages");
@@ -585,7 +585,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 								<li><a href="#tags-mostused"><?php echo gettext("most used"); ?></a></li>
 							</ul>
 						</li>
-						<?php if (getOption('zp_plugin_zenpage')) { ?>
+						<?php if (extensionEnabled('zenpage')) { ?>
 							<li><strong><?php echo gettext("Pages"); ?></strong>
 								<ul>
 									<li><a href="#pages-popular"><?php echo gettext("most viewed"); ?></a> | </li>
@@ -662,7 +662,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 						<span id="tags-mostused"></span>
 						<?php printBarGraph("mostused", "tags"); ?>
 
-						<?php if (getOption('zp_plugin_zenpage')) { ?>
+						<?php if (extensionEnabled('zenpage')) { ?>
 							<hr />
 							<!-- Zenpage pages -->
 							<span id="pages-popular"></span>
@@ -798,7 +798,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 									printBarGraph("popular", "rss", $from_number, $to_number);
 									break;
 								case "pages":
-									if (getOption('zp_plugin_zenpage')) {
+									if (extensionEnabled('zenpage')) {
 										switch ($_GET['stats']) {
 											case "popular":
 												printBarGraph("popular", "pages", $from_number, $to_number);
@@ -816,7 +816,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 									}
 									break;
 								case "news":
-									if (getOption('zp_plugin_zenpage')) {
+									if (extensionEnabled('zenpage')) {
 										switch ($_GET['stats']) {
 											case "popular":
 												printBarGraph("popular", "news", $from_number, $to_number);
@@ -834,7 +834,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 									}
 									break;
 								case "newscategories":
-									if (getOption('zp_plugin_zenpage')) {
+									if (extensionEnabled('zenpage')) {
 										switch ($_GET['stats']) {
 											case "popular":
 												printBarGraph("popular", "newscategories", $from_number, $to_number);

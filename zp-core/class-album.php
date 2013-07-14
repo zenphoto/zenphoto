@@ -47,6 +47,7 @@ class AlbumBase extends MediaObject {
 		$this->table = 'none';
 		$this->linkname = $this->name = $folder8;
 		parent::PersistentObject('albums', array('folder' => $this->name), 'folder', false, true);
+		$this->exists = false;
 	}
 
 	/**

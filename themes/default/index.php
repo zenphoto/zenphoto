@@ -1,32 +1,37 @@
 <?php
 // force UTF-8 Ø
 
-if (!defined('WEBPATH')) die();
+if (!defined('WEBPATH'))
+	die();
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
-		<?php zp_apply_filter('theme_head'); ?>
-		<title><?php printBareGalleryTitle(); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
+<?php zp_apply_filter('theme_head'); ?>
+		<title><?php printBareGalleryTitle();
+if ($_zp_page > 1) echo "[$_zp_page]"; ?></title>
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 		<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
-		<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/default/common.css" type="text/css" />
+		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . THEMEFOLDER; ?>/default/common.css" type="text/css" />
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
 	</head>
 	<body>
-		<?php zp_apply_filter('theme_body_open'); ?>
+				<?php zp_apply_filter('theme_body_open'); ?>
 		<div id="main">
 			<div id="gallerytitle">
-				<?php if (getOption('Allow_search')) {
+				<?php
+				if (getOption('Allow_search')) {
 					printSearchForm('');
-				} ?>
+				}
+				?>
 				<h2><?php printHomeLink('', ' | ');
-				printGalleryTitle(); ?></h2>
+				printGalleryTitle();
+				?></h2>
 			</div>
 			<div id="padbox">
-			<?php printGalleryDesc(); ?>
+<?php printGalleryDesc(); ?>
 				<div id="albums">
-					<?php while (next_album()): ?>
+<?php while (next_album()): ?>
 						<div class="album">
 							<div class="thumb">
 								<a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printAnnotatedAlbumTitle(); ?>"><?php printAlbumThumbImage(getAnnotatedAlbumTitle()); ?></a>
@@ -38,18 +43,18 @@ if (!defined('WEBPATH')) die();
 							</div>
 							<p style="clear: both; "></p>
 						</div>
-					<?php endwhile; ?>
+<?php endwhile; ?>
 				</div>
 				<br class="clearall" />
-				<?php printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); ?>
+			<?php printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); ?>
 			</div>
 		</div>
 		<div id="credit">
-			<?php @call_user_func('printUserLogin_out','', ' | ');?>
+			<?php @call_user_func('printUserLogin_out', '', ' | '); ?>
 			<?php if (class_exists('RSS')) printRSSLink('Gallery', '', 'RSS', ' | '); ?>
 			<?php printCustomPageURL(gettext("Archive View"), "archive"); ?> |
 			<?php
-			if (getOption('zp_plugin_contact_form')) {
+			if (extensionEnabled('contact_form')) {
 				printCustomPageURL(gettext('Contact us'), 'contact', '', '', ' | ');
 			}
 			?>
@@ -62,14 +67,14 @@ if (!defined('WEBPATH')) die();
 			if (function_exists('printFavoritesLink')) {
 				printFavoritesLink();
 				?> | <?php
-			}
-			?>
-			<?php printZenphotoLink(); ?>
-		</div>
-		<?php @call_user_func('mobileTheme::controlLink'); ?>
-		<?php @call_user_func('printLanguageSelector'); ?>
-		<?php
-		zp_apply_filter('theme_body_close');
+		}
 		?>
+		<?php printZenphotoLink(); ?>
+		</div>
+<?php @call_user_func('mobileTheme::controlLink'); ?>
+<?php @call_user_func('printLanguageSelector'); ?>
+<?php
+zp_apply_filter('theme_body_close');
+?>
 	</body>
 </html>

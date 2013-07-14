@@ -463,7 +463,7 @@ function languageChange(id,lang) {
 					<option value=""<?php if (!$showgroup) echo ' selected="selected"'; ?>><?php echo gettext('all'); ?></option>
 					<option value="*"<?php if ($showgroup=='*') echo ' selected="selected"'; ?>><?php echo gettext('pending verification'); ?></option>
 					<?php
-					if (getOption('zp_plugin_user_groups')) {
+					if (extensionEnabled('user_groups')) {
 						?>
 						<option value="$"<?php if ($showgroup=='$') echo ' selected="selected"'; ?>><?php echo gettext('no group'); ?></option>
 						<?php
@@ -781,7 +781,7 @@ function languageChange(id,lang) {
 						$flag = array();
 					}
 					printManagedObjects('albums', $albumlist, $album_alter_rights, $userobj, $id, gettext('user'), $flag);
-					if (getOption('zp_plugin_zenpage')) {
+					if (extensionEnabled('zenpage')) {
 						$pagelist = array();
 						$pages = $_zp_zenpage->getPages(false);
 						foreach ($pages as $page) {

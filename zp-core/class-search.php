@@ -71,7 +71,7 @@ class SearchEngine {
 		$this->search_structure['country'] = gettext('Country');
 		$this->search_structure['copyright'] = gettext('Copyright');
 		$this->search_structure['owner'] = gettext('Owner');
-		if (getOption('zp_plugin_zenpage') && !$dynamic_album) {
+		if (extensionEnabled('zenpage') && !$dynamic_album) {
 			//zenpage fields
 			$this->search_structure['content'] = gettext('Content');
 			$this->search_structure['extracontent'] = gettext('ExtraContent');
@@ -1679,7 +1679,7 @@ class SearchEngine {
 	 * @return array
 	 */
 	private function getSearchPages($sorttype, $sortdirection) {
-		if (!getOption('zp_plugin_zenpage') || getOption('search_no_pages') || $this->search_no_pages)
+		if (!extensionEnabled('zenpage') || getOption('search_no_pages') || $this->search_no_pages)
 			return array();
 		$searchstring = $this->getSearchString();
 		$searchdate = $this->dates;
@@ -1760,7 +1760,7 @@ class SearchEngine {
 	 * @return array
 	 */
 	private function getSearchArticles($sorttype, $sortdirection) {
-		if (!getOption('zp_plugin_zenpage') || getOption('search_no_news') || $this->search_no_news) {
+		if (!extensionEnabled('zenpage') || getOption('search_no_news') || $this->search_no_news) {
 			return array();
 		}
 		$searchstring = $this->getSearchString();

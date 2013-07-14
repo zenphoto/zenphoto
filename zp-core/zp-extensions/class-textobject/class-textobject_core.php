@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Core class for handling "non-image" files
  *
@@ -59,8 +60,6 @@
  * @package plugins
  *
  */
-
-
 class TextObject extends Image {
 
 	protected $watermark = NULL;
@@ -73,13 +72,12 @@ class TextObject extends Image {
 	 * @param string $filename the filename of the text file
 	 * @return TextObject
 	 */
-	function __construct($album, $filename, $quiet=false) {
+	function __construct($album, $filename, $quiet = false) {
 
 		$this->watermark = getOption('TextObject_watermark');
 		$this->watermarkDefault = getOption('textobject_watermark_default_images');
 
-		$this->common_instantiate($album,$filename, $quiet);
-
+		$this->common_instantiate($album, $filename, $quiet);
 	}
 
 	/**
@@ -87,10 +85,10 @@ class TextObject extends Image {
 	 * @param $album
 	 * @param $filename
 	 */
-	function common_instantiate($album,$filename, $quiet=false) {
+	function common_instantiate($album, $filename, $quiet = false) {
 		global $_zp_supported_images;
 		$msg = false;
-		if (!is_object($album) || !$album->exists){
+		if (!is_object($album) || !$album->exists) {
 			$msg = gettext('Invalid Textobject instantiation: Album does not exist');
 		} else if (!$this->classSetup($album, $filename) || !file_exists($this->localpath) || is_dir($this->localpath)) {
 			$msg = gettext('Invalid Textobject instantiation: file does not exist');
@@ -106,7 +104,7 @@ class TextObject extends Image {
 		$this->sidecars = $_zp_supported_images;
 		$this->objectsThumb = checkObjectsThumb($this->localpath);
 		$this->updateDimensions();
-		if (parent::PersistentObject('images', array('filename'=>$filename, 'albumid'=>$this->album->getID()), 'filename')) {
+		if (parent::PersistentObject('images', array('filename' => $filename, 'albumid'	 => $this->album->getID()), 'filename')) {
 			$title = $this->displayname;
 			$this->set('title', $title);
 			$this->updateMetaData();
@@ -124,23 +122,23 @@ class TextObject extends Image {
 	 *
 	 * @return s
 	 */
-	function getThumbImageFile($path=NULL) {
+	function getThumbImageFile($path = NULL) {
 		global $_zp_gallery;
 		if (is_null($path)) {
 			$path = SERVERPATH;
 		}
 		if (is_null($this->objectsThumb)) {
-			switch(getSuffix($this->filename)) {
+			switch (getSuffix($this->filename)) {
 				default: // just in case we extend and are lazy...
 					$img = '/textDefault.png';
 					break;
 			}
-			$imgfile = $path . '/' . THEMEFOLDER . '/' . internalToFilesystem($_zp_gallery->getCurrentTheme()) . '/images/'.$img;
+			$imgfile = $path . '/' . THEMEFOLDER . '/' . internalToFilesystem($_zp_gallery->getCurrentTheme()) . '/images/' . $img;
 			if (!file_exists($imgfile)) {
-				$imgfile = $path . "/" . ZENFOLDER . '/'.PLUGIN_FOLDER .'/class-textobject/'.$img;
+				$imgfile = $path . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/class-textobject/' . $img;
 			}
 		} else {
-			$imgfile = ALBUM_FOLDER_SERVERPATH.internalToFilesystem($this->imagefolder).'/'.$this->objectsThumb;
+			$imgfile = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($this->imagefolder) . '/' . $this->objectsThumb;
 		}
 		return $imgfile;
 	}
@@ -151,7 +149,7 @@ class TextObject extends Image {
 	 * @param string $type 'image' or 'album'
 	 * @return string
 	 */
-	function getThumb($type='image') {
+	function getThumb($type = 'image') {
 		list($custom, $sw, $sh, $cw, $ch, $cx, $cy) = $this->getThumbCropping($type);
 		$wmt = $this->watermark;
 		if (empty($wmt)) {
@@ -165,7 +163,7 @@ class TextObject extends Image {
 			}
 		} else {
 			$filename = filesystemToInternal($this->objectsThumb);
-			$mtime = filemtime(ALBUM_FOLDER_SERVERPATH.'/'.internalToFilesystem($this->imagefolder).'/'.$this->objectsThumb);
+			$mtime = filemtime(ALBUM_FOLDER_SERVERPATH . '/' . internalToFilesystem($this->imagefolder) . '/' . $this->objectsThumb);
 		}
 		$args = getImageParameters(array(getOption('thumb_size'), $sw, $sh, $cw, $ch, $cx, $cy, NULL, true, true, true, $wmt, NULL, NULL), $this->album->name);
 		$cachefilename = getImageCacheFilename($alb = $this->album->name, $this->filename, $args);
@@ -179,17 +177,19 @@ class TextObject extends Image {
 	 * @param int $h optional height
 	 * @return string
 	 */
-	function getBody($w=NULL, $h=NULL) {
+	function getBody($w = NULL, $h = NULL) {
 		$this->updateDimensions();
-		if (is_null($w)) $w = $this->getWidth();
-		if (is_null($h)) $h = $this->getHeight();
-		switch(getSuffix($this->filename)) {
+		if (is_null($w))
+			$w = $this->getWidth();
+		if (is_null($h))
+			$h = $this->getHeight();
+		switch (getSuffix($this->filename)) {
 			case 'txt':
 			case 'htm':
 			case 'html':
-				return '<span style="display:block;width:'.$w.'px;height:'.$h.'px;" class="textobject">'.@file_get_contents($this->localpath).'</span>';
+				return '<span style="display:block;width:' . $w . 'px;height:' . $h . 'px;" class="textobject">' . @file_get_contents($this->localpath) . '</span>';
 			default: // just in case we extend and are lazy...
-				return '<img src="'.pathurlencode($this->getThumb()).'">';
+				return '<img src="' . html_encode(pathurlencode($this->getThumb())) . '">';
 		}
 	}
 
@@ -210,7 +210,7 @@ class TextObject extends Image {
 	 * @param bool $effects ignored
 	 * @return string
 	 */
-	function getCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumbStandin=false, $effects=NULL) {
+	function getCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumbStandin = false, $effects = NULL) {
 		if ($thumbStandin) {
 			$wmt = $this->watermark;
 			if (empty($wmt)) {
@@ -229,7 +229,7 @@ class TextObject extends Image {
 				$mtime = NULL;
 			} else {
 				$filename = filesystemToInternal($this->objectsThumb);
-				$mtime = filemtime(ALBUM_FOLDER_SERVERPATH.'/'.internalToFilesystem($this->imagefolder).'/'.$this->objectsThumb);
+				$mtime = filemtime(ALBUM_FOLDER_SERVERPATH . '/' . internalToFilesystem($this->imagefolder) . '/' . $this->objectsThumb);
 			}
 			return getImageURI($args, $this->album->name, $filename, $mtime);
 		} else {

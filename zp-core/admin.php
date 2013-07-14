@@ -25,7 +25,7 @@ if (isset($_GET['report'])) {
 } else {
 	$msg = '';
 }
-if(getOption('zp_plugin_zenpage')) {
+if(extensionEnabled('zenpage')) {
 	require_once(dirname(__FILE__).'/'.PLUGIN_FOLDER.'/zenpage/zenpage-admin-functions.php');
 }
 if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
@@ -241,7 +241,7 @@ zp_apply_filter('admin_note','Overview', NULL);
 	<li>
 		<?php
 		printf(gettext('Zenphoto version <strong>%1$s [%2$s] (%3$s)</strong>'),ZENPHOTO_VERSION,'<a title="'.ZENPHOTO_FULL_RELEASE.'">'.ZENPHOTO_RELEASE.'</a>',$official);
-		if (getOption('zp_plugin_check_for_update') && TEST_RELEASE) {
+		if (extensionEnabled('check_for_update') && TEST_RELEASE) {
 			if (is_connected() && class_exists('DOMDocument')) {
 				require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenphoto_news/rsslib.php');
 				$recents = RSS_Retrieve("http://www.zenphoto.org/index.php?rss=news&category=changelog");
@@ -634,7 +634,7 @@ zp_apply_filter('admin_note','Overview', NULL);
 			?>
 			</li>
 			<?php
-			if(getOption('zp_plugin_zenpage')) { ?>
+			if(extensionEnabled('zenpage')) { ?>
 				<li>
 					<?php
 					list($total,$type,$unpub) = getNewsPagesStatistic("pages");

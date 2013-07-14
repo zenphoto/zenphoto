@@ -127,7 +127,7 @@ echo '</head>';
 <p><?php echo gettext("Entries marked red do not exist in the download folder anymore but are kept for the statistics until you remove them manually via the button."); ?></p>
 
 <?php
-if(!getOption('zp_plugin_downloadList')) {
+if(!extensionEnabled('downloadList')) {
 	echo '<strong>'.gettext('The downloadList plugin is not active').'</strong>';
 } else {
 	?>

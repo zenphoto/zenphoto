@@ -1,18 +1,17 @@
 <?php
-
 // force UTF-8 Ø
-require_once (SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
+require_once (SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/image_album_statistics.php');
 zp_register_filter('themeSwitcher_head', 'switcher_head');
 zp_register_filter('themeSwitcher_Controllink', 'switcher_controllink');
 
 $cwd = getcwd();
 chdir(dirname(__FILE__));
-$persona = safe_glob('*',GLOB_ONLYDIR);
+$persona = safe_glob('*', GLOB_ONLYDIR);
 chdir($cwd);
-$persona = array_diff($persona, array('images','contact_form'));
+$persona = array_diff($persona, array('images', 'contact_form'));
 $personalities = array();
 foreach ($persona as $personality) {
-	$personalities[ucfirst(str_replace('_',' ',$personality))] = $personality;
+	$personalities[ucfirst(str_replace('_', ' ', $personality))] = $personality;
 }
 
 $personality = strtolower(getOption('garland_personality'));
@@ -39,7 +38,7 @@ function switcher_head($ignore) {
 		// <!-- <![CDATA[
 		function switchPersonality() {
 			personality = $('#themePersonality').val();
-			window.location = '?themePersonality='+personality;
+			window.location = '?themePersonality=' + personality;
 		}
 		// ]]> -->
 	</script>
@@ -49,7 +48,7 @@ function switcher_head($ignore) {
 
 function switcher_controllink($html) {
 	global $personalities, $_zp_gallery_page;
-	$personality =getOption('themeSwitcher_garland_personality');
+	$personality = getOption('themeSwitcher_garland_personality');
 	if (!$personality) {
 		$personality = getOption('garland_personality');
 	}
@@ -67,7 +66,9 @@ function switcher_controllink($html) {
 }
 
 function gMapOptionsImage($map) {
+
 }
+
 function gMapOptionsAlbum($map) {
 	global $points;
 	foreach ($points as $coord) {
@@ -77,23 +78,27 @@ function gMapOptionsAlbum($map) {
 
 function footer() {
 	global $_zp_gallery_page, $_zp_current_category, $_zp_gallery;
-	$exclude_login = array('password.php','register.php','contact.php');
+	$exclude_login = array('password.php', 'register.php', 'contact.php');
 	?>
 	<div id="footer">
 		<?php
 		$prev = ' | ';
 		switch ($_zp_gallery_page) {
 			default:
-				if (class_exists('RSS')) printRSSLink('Gallery', '','RSS', '');
+				if (class_exists('RSS'))
+					printRSSLink('Gallery', '', 'RSS', '');
 				break;
 			case 'album.php':
-				if (class_exists('RSS')) printRSSLink('Album', '','RSS', '');
+				if (class_exists('RSS'))
+					printRSSLink('Album', '', 'RSS', '');
 				break;
 			case 'news.php':
 				if (is_NewsCategory()) {
-					if (class_exists('RSS')) printRSSLink('Category', '', 'RSS', '', true, null, '', NULL, $_zp_current_category->getTitlelink());
+					if (class_exists('RSS'))
+						printRSSLink('Category', '', 'RSS', '', true, null, '', NULL, $_zp_current_category->getTitlelink());
 				} else {
-					if (class_exists('RSS')) printRSSLink('News', '','RSS', '');
+					if (class_exists('RSS'))
+						printRSSLink('News', '', 'RSS', '');
 				}
 				break;
 			case 'password.php':
@@ -101,16 +106,31 @@ function footer() {
 				break;
 		}
 		?>
-		<?php if ($_zp_gallery_page != 'password.php' && $_zp_gallery_page != 'archive.php') { printCustomPageURL(gettext('Archive View'), 'archive', '', $prev, ''); $prev = ' | '; }?>
-		<?php	if ($_zp_gallery_page!='contact.php' && getOption('zp_plugin_contact_form') && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('contact'))) { printCustomPageURL(gettext('Contact us'), 'contact', '', $prev, '');$prev = ' | '; }	?>
-		<?php if ($_zp_gallery_page!='register.php' && !zp_loggedin() && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('register'))) { @call_user_func('printCustomPageURL',gettext('Register for this site'), 'register', '', $prev, '');	$prev = ' | '; }?>
+		<?php
+		if ($_zp_gallery_page != 'password.php' && $_zp_gallery_page != 'archive.php') {
+			printCustomPageURL(gettext('Archive View'), 'archive', '', $prev, '');
+			$prev = ' | ';
+		}
+		?>
+		<?php
+		if ($_zp_gallery_page != 'contact.php' && extensionEnabled('contact_form') && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('contact'))) {
+			printCustomPageURL(gettext('Contact us'), 'contact', '', $prev, '');
+			$prev = ' | ';
+		}
+		?>
+		<?php
+		if ($_zp_gallery_page != 'register.php' && function_exists('printRegistrationForm') && !zp_loggedin() && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('register'))) {
+			printCustomPageURL(gettext('Register for this site'), 'register', '', $prev, '');
+			$prev = ' | ';
+		}
+		?>
 		<?php
 		if (function_exists('printFavoritesLink') && $_zp_gallery_page != 'password.php' && $_zp_gallery_page != 'favorites.php') {
 			?> | <?php
 			printFavoritesLink();
 		}
 		?>
-		<?php	if (!in_array($_zp_gallery_page, $exclude_login)) @call_user_func('printUserLogin_out', $prev); ?>
+		<?php if (!in_array($_zp_gallery_page, $exclude_login)) @call_user_func('printUserLogin_out', $prev); ?>
 		<br />
 		<?php @call_user_func('mobileTheme::controlLink'); ?>
 		<br />
@@ -121,16 +141,16 @@ function footer() {
 }
 
 function commonNewsLoop($paged) {
-	$newstypes = array('album'=>gettext('album'),'image'=>gettext('image'),'video'=>gettext('video'),'news'=>gettext('news'));
+	$newstypes = array('album'	 => gettext('album'), 'image'	 => gettext('image'), 'video'	 => gettext('video'), 'news'	 => gettext('news'));
 	while (next_news()) {
 		$newstype = getNewsType();
 		$newstypedisplay = $newstypes[$newstype];
 		if (stickyNews()) {
-			$newstypedisplay .= ' <small><em>'.gettext('sticky').'</em></small>';
+			$newstypedisplay .= ' <small><em>' . gettext('sticky') . '</em></small>';
 		}
-	?>
+		?>
 		<div class="newsarticle<?php if (stickyNews()) echo ' sticky'; ?>">
-			<h3><?php printNewsTitleLink(); ?><?php echo " <span class='newstype'>[".$newstypedisplay."]</span>"; ?></h3>
+			<h3><?php printNewsTitleLink(); ?><?php echo " <span class='newstype'>[" . $newstypedisplay . "]</span>"; ?></h3>
 			<div class="newsarticlecredit">
 				<span class="newsarticlecredit-left">
 					<?php
@@ -139,17 +159,17 @@ function commonNewsLoop($paged) {
 					printNewsDate();
 					if ($count > 0) {
 						echo ' | ';
-						printf(gettext("Comments: %d"),  $count);
+						printf(gettext("Comments: %d"), $count);
 					}
 					?>
 				</span>
 				<?php
-				if(is_GalleryNewsType()) {
-					echo ' | '.gettext("Album:")." <a href='".getNewsAlbumURL()."' title='".getBareNewsAlbumTitle()."'>".getNewsAlbumTitle()."</a>";
+				if (is_GalleryNewsType()) {
+					echo ' | ' . gettext("Album:") . " <a href='" . getNewsAlbumURL() . "' title='" . getBareNewsAlbumTitle() . "'>" . getNewsAlbumTitle() . "</a>";
 				} else {
 					if (!empty($cat) && !in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
 						echo ' | ';
-						printNewsCategories(", ",gettext("Categories: "),"newscategories");
+						printNewsCategories(", ", gettext("Categories: "), "newscategories");
 					}
 				}
 				?>
@@ -159,15 +179,15 @@ function commonNewsLoop($paged) {
 			<?php printNewsContent(); ?>
 			<?php printCodeblock(2); ?>
 			<br class="clearall" />
-			</div>
-	<?php
+		</div>
+		<?php
 	}
 	if ($paged) {
-		printNewsPageListWithNav(gettext('next »'), gettext('« prev'),true,'pagelist',true);
+		printNewsPageListWithNav(gettext('next »'), gettext('« prev'), true, 'pagelist', true);
 	}
 }
-function exerpt($content,$length) {
-	return shortenContent(strip_tags($content),$length,getOption("zenpage_textshorten_indicator"));
-}
 
+function exerpt($content, $length) {
+	return shortenContent(strip_tags($content), $length, getOption("zenpage_textshorten_indicator"));
+}
 ?>

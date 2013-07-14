@@ -631,7 +631,7 @@ if ($result->loaded || $result->transient) {
 						<label for="commentson"> <?php echo gettext("Comments on"); ?></label>
 						</p>
 						<?php
-						if(!$result->transient && getOption('zp_plugin_hitcounter')) {
+						if(!$result->transient && extensionEnabled('hitcounter')) {
 							$hc = $result->getHitcounter();
 							?>
 							<p class="checkbox">
@@ -640,7 +640,7 @@ if ($result->loaded || $result->transient) {
 							</p>
 							<?php
 						}
-						if (getOption('zp_plugin_rating')) {
+						if (extensionEnabled('rating')) {
 							?>
 							<p class="checkbox">
 							<?php

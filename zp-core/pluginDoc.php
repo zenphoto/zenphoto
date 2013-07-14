@@ -61,10 +61,11 @@ if (!defined('OFFSET_PATH')) {
 	@require_once($pluginToBeDocPath);
 
 	$buttonlist = zp_apply_filter('admin_utilities_buttons', array());
-	$album = new ALbumbase(NULL, false);
-	$image = new Transientimage($album, '');
-	$imagebuttons = zp_apply_filter('edit_image_utilities', '', $image, 0, '', ''); //pass space as HTML because there is already a button shown for cropimage
-	$albumbuttons = zp_apply_filter('edit_album_utilities', '', $album, '');
+	foreach ($buttonlist as $key => $button) {
+		$buttonlist[$key]['enable'] = false;
+	}
+	$imagebuttons = preg_replace('/<a href=[^>]*/i', '<a', zp_apply_filter('edit_image_utilities', '', $_zp_missing_image, 0, '', ''));
+	$albumbuttons = preg_replace('/<a href=[^>]*/i', '<a', zp_apply_filter('edit_album_utilities', '', $_zp_missing_album, ''));
 
 	$content_macros = getMacros();
 	krsort($content_macros);

@@ -10,12 +10,12 @@
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext("Trivial SPAM filter.");
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_disable = (isset($_zp_spamFilter) && !getoption('zp_plugin_trivialSpam')) ? sprintf(gettext('Only one SPAM handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), $_zp_spamFilter->name) : '';
+$plugin_disable = (isset($_zp_spamFilter) && !extensionEnabled('trivialSpam')) ? sprintf(gettext('Only one SPAM handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), $_zp_spamFilter->name) : '';
 
 $option_interface = 'zpTrivialSpam';
 
 if ($plugin_disable) {
-	setOption('zp_plugin_trivialSpam', 0);
+	enableExtension(')trivialSpam', 0);
 } else {
 	setOptionDefault('zp_plugin_trivialSpam', $plugin_is_filter);
 	$_zp_spamFilter = new zpTrivialSpam();
