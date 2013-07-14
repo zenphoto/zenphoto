@@ -743,6 +743,11 @@ echo "\n</head>";
 				?>
 				<h1><?php printf(gettext('Edit Album: <em>%1$s%2$s</em>'), $link, $alb); ?></h1>
 				<?php
+				if (strpos($album->getfolder(), '&') !== false) {
+					?>
+					<p class="error"><?php echo gettext('&amp; is not allowed in filenames'); ?></p>
+					<?php
+				}
 				$subtab = printSubtabs();
 				if ($subtab == 'albuminfo') {
 					?>
@@ -838,7 +843,7 @@ echo "\n</head>";
 									</div>
 									<div class="subhead">
 										<label class="buttons" style="float: left">
-											<a href="admin-edit.php?page=edit&album=<?php echo pathurlencode($album->name); ?>&tab=subalbuminfo&showthumbs=<?php echo $thumbshow ?>" title="<?php echo gettext('Thumbnail generation may be time consuming on slow servers on when there are a lot of images.'); ?>">
+											<a href="admin-edit.php?page=edit&album=<?php echo html_encode(pathurlencode($album->name)); ?>&tab=subalbuminfo&showthumbs=<?php echo $thumbshow ?>" title="<?php echo gettext('Thumbnail generation may be time consuming on slow servers on when there are a lot of images.'); ?>">
 												<?php echo $thumbmsg; ?>
 											</a>
 										</label>
@@ -916,7 +921,7 @@ echo "\n</head>";
 					}
 					if ($allimagecount) {
 						?>
-						<form name="albumedit2"	action="?page=edit&amp;action=save<?php echo "&amp;album=" . pathurlencode($album->name); ?>"	method="post" autocomplete="off">
+						<form name="albumedit2"	action="?page=edit&amp;action=save<?php echo "&amp;album=" . html_encode(pathurlencode($album->name)); ?>"	method="post" autocomplete="off">
 							<?php XSRFToken('albumedit'); ?>
 							<input type="hidden" name="album"	value="<?php echo $album->name; ?>" />
 							<input type="hidden" name="totalimages" value="<?php echo $totalimages; ?>" />
@@ -953,7 +958,7 @@ echo "\n</head>";
 								if ($allimagecount != $totalimages) { // need pagination links
 									?>
 									<tr>
-										<td colspan="4" class="bordered" id="imagenav"><?php adminPageNav($pagenum, $totalpages, 'admin-edit.php', '?page=edit&amp;tagsort=' . html_encode($tagsort) . '&amp;album=' . pathurlencode($album->name), '&amp;tab=imageinfo'); ?>
+										<td colspan="4" class="bordered" id="imagenav"><?php adminPageNav($pagenum, $totalpages, 'admin-edit.php', '?page=edit&amp;tagsort=' . html_encode($tagsort) . '&amp;album=' . html_encode(pathurlencode($album->name)), '&amp;tab=imageinfo'); ?>
 										</td>
 									</tr>
 									<?php
@@ -1015,7 +1020,7 @@ echo "\n</head>";
 															<?php
 															if (!is_null($image->objectsThumb)) {
 																?>
-																	href="admin-thumbcrop.php?a=<?php echo pathurlencode($album->name); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>"
+																	href="admin-thumbcrop.php?a=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>"
 																	title="<?php html_encode(printf(gettext('crop %s'), $image->filename)); ?>"
 																	<?php
 																}
@@ -1032,7 +1037,18 @@ echo "\n</head>";
 															<p class="buttons"><a href="<?php echo html_encode(pathurlencode($image->getFullImageURL())); ?>" class="colorbox"><img src="images/magnify.png" alt="" /><strong><?php echo gettext('Zoom'); ?></strong></a></p><br style="clear: both" />
 														<?php } ?>
 														<p class="buttons"><a href="<?php echo $image->getImageLink(); ?>"><img src="images/view.png" alt="" /><strong><?php echo gettext('View'); ?></strong></a></p><br style="clear: both" />
-														<p><?php echo gettext('<strong>Filename:</strong>'); ?><br /><?php echo $image->filename; ?></p>
+														<p>
+															<?php echo gettext('<strong>Filename:</strong>'); ?>
+															<br />
+															<?php
+															echo $image->filename;
+															if (strpos($image->filename, '&') !== false) {
+																?>
+																<span class="error"><?php echo '<br />' . gettext('&amp; is not allowed in filenames'); ?></span>
+																<?php
+															}
+															?>
+														</p>
 														<p><?php echo gettext('<strong>Image id:</strong>'); ?> <?php echo $image->getID(); ?></p>
 														<p><?php echo gettext("<strong>Dimensions:</strong>"); ?><br /><?php echo $image->getWidth(); ?> x  <?php echo $image->getHeight() . ' ' . gettext('px'); ?></p>
 														<p><?php echo gettext("<strong>Size:</strong>"); ?><br /><?php echo byteConvert($image->getImageFootprint()); ?></p>
@@ -1237,59 +1253,59 @@ echo "\n</head>";
 																	checked(0, $rotation);
 																	echo $disablerotate
 																	?> />
-					<?php echo gettext('none'); ?>
+																				 <?php echo gettext('none'); ?>
 																</label>
 																<label class="checkboxlabel">
 																	<input type="radio" id="rotation_90-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="8" <?php
-																				 checked(8, $rotation);
-																				 echo $disablerotate
-																				 ?> />
-					<?php echo gettext('90 degrees'); ?>
+																	checked(8, $rotation);
+																	echo $disablerotate
+																	?> />
+																				 <?php echo gettext('90 degrees'); ?>
 																</label>
 																<label class="checkboxlabel">
 																	<input type="radio" id="rotation_180-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="3" <?php
-																				 checked(3, $rotation);
-																				 echo $disablerotate
-																				 ?> />
-																	<?php echo gettext('180 degrees'); ?>
+																	checked(3, $rotation);
+																	echo $disablerotate
+																	?> />
+																				 <?php echo gettext('180 degrees'); ?>
 																</label>
 																<label class="checkboxlabel">
 																	<input type="radio" id="rotation_270-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="6" <?php
-															 checked(6, $rotation);
-															 echo $disablerotate
+																	checked(6, $rotation);
+																	echo $disablerotate
 																	?> />
-																<?php echo gettext('270 degrees'); ?>
+																				 <?php echo gettext('270 degrees'); ?>
 																</label>
-					<?php
-				}
-				?>
+																<?php
+															}
+															?>
 															<br class="clearall" />
 															<hr />
 															<div class="button buttons tooltip" title="<?php printf(gettext('Refresh %s metadata'), $image->filename); ?>">
-																<a href="admin-edit.php?action=refresh&amp;album=<?php echo pathurlencode($album->name); ?>&amp;image=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>&amp;XSRFToken=<?php echo getXSRFToken('imagemetadata'); ?>" >
+																<a href="admin-edit.php?action=refresh&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;image=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>&amp;XSRFToken=<?php echo getXSRFToken('imagemetadata'); ?>" >
 																	<img src="images/cache.png" alt="" /><?php echo gettext("Refresh Metadata"); ?>
 																</a>
 																<br class="clearall" />
 															</div>
-				<?php
-				if (!is_null($image->objectsThumb)) {
-					?>
+															<?php
+															if (!is_null($image->objectsThumb)) {
+																?>
 																<div class="button buttons tooltip" title="<?php printf(gettext('crop %s'), $image->filename); ?>">
-																	<a href="admin-thumbcrop.php?a=<?php echo pathurlencode($album->name); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>" >
+																	<a href="admin-thumbcrop.php?a=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>" >
 																		<img src="images/shape_handles.png" alt="" /><?php echo gettext("Crop thumbnail"); ?>
 																	</a>
 																	<br class="clearall" />
 																</div>
-					<?php
-				}
-				echo zp_apply_filter('edit_image_utilities', '<!--image-->', $image, $currentimage, $pagenum, $tagsort); //pass space as HTML because there is already a button shown for cropimage
-				?>
+																<?php
+															}
+															echo zp_apply_filter('edit_image_utilities', '<!--image-->', $image, $currentimage, $pagenum, $tagsort); //pass space as HTML because there is already a button shown for cropimage
+															?>
 															<span class="clearall" ></span>
 														</div>
 
 														<h2 class="h2_bordered_edit imageextrainfo" style="display: none"><?php echo gettext("Tags"); ?></h2>
 														<div class="box-edit-unpadded imageextrainfo" style="display: none;width: 19.6em;">
-				<?php tagSelector($image, 'tags_' . $currentimage . '-', false, $tagsort); ?>
+															<?php tagSelector($image, 'tags_' . $currentimage . '-', false, $tagsort); ?>
 														</div>
 
 													</td>
@@ -1309,21 +1325,21 @@ echo "\n</head>";
 													<td><?php print_language_string_list($image->getDesc('all'), $currentimage . '-desc', true, NULL, 'texteditor', '100%'); ?></td>
 												</tr>
 
-				<?php
-				if ($album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT) {
-					?>
+												<?php
+												if ($album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT) {
+													?>
 													<tr>
 														<td align="left" valign="top"><span class="nowrap"><?php echo gettext("Set as thumbnail for:"); ?></span></td>
 														<td>
 															<select name="album_thumb-<?php echo $currentimage; ?>" >
 																<option value=""></option>
-													<?php generateListFromArray(array(), $albumHeritage, false, true); ?>
+																<?php generateListFromArray(array(), $albumHeritage, false, true); ?>
 															</select>
 														</td>
 													</tr>
-					<?php
-				}
-				?>
+													<?php
+												}
+												?>
 
 												<tr align="left" valign="top">
 													<td valign="top"><?php echo gettext("Date:"); ?></td>
@@ -1350,46 +1366,46 @@ echo "\n</head>";
 													</td>
 												</tr>
 
-				<?php
-				$current = $image->getWatermark();
-				?>
+												<?php
+												$current = $image->getWatermark();
+												?>
 												<tr>
 													<td align="left" valign="top" width="150"><?php echo gettext("Image watermark:"); ?> </td>
 													<td>
 														<select id="image_watermark-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-image_watermark" onclick="javascript:toggleWMUse(<?php echo $currentimage; ?>);">
 															<option value="<?php echo NO_WATERMARK; ?>" <?php if ($current == NO_WATERMARK) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*no watermark'); ?></option>
 															<option value="" <?php if (empty($current)) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*default'); ?></option>
-				<?php
-				$watermarks = getWatermarks();
-				generateListFromArray(array($current), $watermarks, false, false);
-				?>
+															<?php
+															$watermarks = getWatermarks();
+															generateListFromArray(array($current), $watermarks, false, false);
+															?>
 														</select>
 														<span id="WMUSE_<?php echo $currentimage; ?>" style="display:<?php
-																		if ($current == '')
-																			echo 'none';
-																		else
-																			echo 'inline';
-																		?>">
-				<?php $wmuse = $image->getWMUse(); ?>
+														if ($current == '')
+															echo 'none';
+														else
+															echo 'inline';
+														?>">
+																		<?php $wmuse = $image->getWMUse(); ?>
 															<label><input type="checkbox" value="1" id="wm_image-<?php echo $currentimage; ?>" name="wm_image-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_IMAGE) echo 'checked="checeked"'; ?> /><?php echo gettext('image'); ?></label>
 															<label><input type="checkbox" value="1" id="wm_thumb-<?php echo $currentimage; ?>" name="wm_thumb-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_THUMB) echo 'checked="checeked"'; ?> /><?php echo gettext('thumb'); ?></label>
 															<label><input type="checkbox" value="1" id="wm_full-<?php echo $currentimage; ?>"name="wm_full-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_FULL) echo 'checked="checeked"'; ?> /><?php echo gettext('full image'); ?></label>
 														</span>
 													</td>
 												</tr>
-				<?php
-				$custom = zp_apply_filter('edit_image_custom_data', '', $image, $currentimage);
-				if (empty($custom)) {
-					?>
+												<?php
+												$custom = zp_apply_filter('edit_image_custom_data', '', $image, $currentimage);
+												if (empty($custom)) {
+													?>
 													<tr>
 														<td valign="top"><?php echo gettext("Custom data:"); ?></td>
 														<td><?php print_language_string_list($image->getCustomData('all'), $currentimage . '-custom_data', true, NULL, 'texteditor_imagecustomdata', '100%'); ?></td>
 													</tr>
-					<?php
-				} else {
-					echo $custom;
-				}
-				?>
+													<?php
+												} else {
+													echo $custom;
+												}
+												?>
 
 												<tr class="imageextrainfo" style="display: none">
 													<td valign="top"><?php echo gettext("Location:"); ?></td>
@@ -1426,9 +1442,9 @@ echo "\n</head>";
 													<td><?php print_language_string_list($image->getCopyright('all'), $currentimage . '-copyright', false, NULL, '', '100%'); ?>
 													</td>
 												</tr>
-														<?php
-														if ($image->get('hasMetadata')) {
-															?>
+												<?php
+												if ($image->get('hasMetadata')) {
+													?>
 													<tr class="imageextrainfo" style="display: none">
 														<td valign="top"><?php echo gettext("Metadata:"); ?></td>
 														<td>
@@ -1452,24 +1468,24 @@ echo "\n</head>";
 																?>
 																<div class="metadata_container">
 																	<table class="metadata_table" >
-																<?php echo $data; ?>
+																		<?php echo $data; ?>
 																	</table>
 																</div>
-						<?php
-					}
-					?>
+																<?php
+															}
+															?>
 														</td>
 													</tr>
 													<tr valign="top" class="imageextrainfo" style="display: none">
 														<td class="topalign-nopadding"><br /><?php echo gettext("Codeblocks:"); ?></td>
 														<td>
 															<br />
-													<?php printCodeblockEdit($image, $currentimage); ?>
+															<?php printCodeblockEdit($image, $currentimage); ?>
 														</td>
 													</tr>
-					<?php
-				}
-				?>
+													<?php
+												}
+												?>
 												<tr>
 													<td colspan="2" style="border-bottom:none;">
 														<span style="display: block" class="imageextrashow">
@@ -1484,10 +1500,10 @@ echo "\n</head>";
 										</td>
 									</tr>
 
-				<?php
-				$currentimage++;
-			}
-			?>
+									<?php
+									$currentimage++;
+								}
+								?>
 								<tr <?php echo ($currentimage % 2 == 0) ? "class=\"alt\"" : ""; ?>>
 									<td colspan="4">
 
@@ -1508,39 +1524,39 @@ echo "\n</head>";
 
 									</td>
 								</tr>
-			<?php
-			if ($allimagecount != $totalimages) { // need pagination links
-				?>
+								<?php
+								if ($allimagecount != $totalimages) { // need pagination links
+									?>
 									<tr>
-										<td colspan="4" class="bordered" id="imagenavb"><?php adminPageNav($pagenum, $totalpages, 'admin-edit.php', '?page=edit&amp;album=' . pathurlencode($album->name), '&amp;tab=imageinfo'); ?>
+										<td colspan="4" class="bordered" id="imagenavb"><?php adminPageNav($pagenum, $totalpages, 'admin-edit.php', '?page=edit&amp;album=' . html_encode(pathurlencode($album->name)), '&amp;tab=imageinfo'); ?>
 										</td>
 									</tr>
-				<?php
-			}
-			if (!empty($target_image)) {
-				?>
+									<?php
+								}
+								if (!empty($target_image)) {
+									?>
 									<script type="text/javascript" >
 					// <!-- <![CDATA[
 					toggleExtraInfo('<?php echo $target_image_nr; ?>', 'image', true);
 					// ]]> -->
 									</script>
-				<?php
-			}
-			?>
+									<?php
+								}
+								?>
 
 							</table>
 							<input type="hidden" name="checkForPostTruncation" value="1" />
 						</form>
 
-					<?php
-				}
-				?>
+						<?php
+					}
+					?>
 				</div><!-- images -->
-		<?php
-	}
+				<?php
+			}
 
-	if ($subtab != "albuminfo") {
-		?>
+			if ($subtab != "albuminfo") {
+				?>
 				<!-- page trailer -->
 
 				<?php
@@ -1581,9 +1597,9 @@ echo "\n</head>";
 				}
 				?>
 			</h1>
-	<?php consolidatedEditMessages('massedit'); ?>
+			<?php consolidatedEditMessages('massedit'); ?>
 			<form name="albumedit" autocomplete="off"	action="?page=edit&amp;action=save<?php echo $albumdir ?>" method="POST">
-	<?php XSRFToken('albumedit'); ?>
+				<?php XSRFToken('albumedit'); ?>
 				<input type="hidden" name="totalalbums" value="<?php echo sizeof($albums); ?>" />
 				<span class="buttons">
 					<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-edit.php?page=edit">
@@ -1605,14 +1621,14 @@ echo "\n</head>";
 						echo "\n<!-- " . $album->name . " -->\n";
 						?>
 						<div class="innerbox<?php if ($currentalbum % 2) echo '_dark'; ?>" style="padding: 15px;">
-						<?php
-						printAlbumEditForm($currentalbum, $album, true, false);
-						$currentalbum++;
-						?>
+							<?php
+							printAlbumEditForm($currentalbum, $album, true, false);
+							$currentalbum++;
+							?>
 						</div>
-		<?php
-	}
-	?>
+						<?php
+					}
+					?>
 				</div>
 				<br class="clearall" /><br />
 				<span class="buttons">
@@ -1653,26 +1669,26 @@ echo "\n</head>";
 						<?php printf(gettext('Current sort: <em>%1$s%2$s</em>.'), $sorttype, $dir); ?>
 					</p>
 					<p>
-					<?php echo gettext('Drag the albums into the order you wish them displayed.'); ?>
+						<?php echo gettext('Drag the albums into the order you wish them displayed.'); ?>
 					</p>
 					<p class="notebox">
 						<?php echo gettext('<strong>Note:</strong> Dragging an album under a different parent will move the album. You cannot move albums under a <em>dynamic</em> album.'); ?>
 					</p>
-						<?php
-					}
-					?>
-				<p>
-				<?php
-				echo gettext('Select an album to edit its description and data, or <a href="?page=edit&amp;massedit">mass-edit</a> all gallery level albums.');
+					<?php
+				}
 				?>
+				<p>
+					<?php
+					echo gettext('Select an album to edit its description and data, or <a href="?page=edit&amp;massedit">mass-edit</a> all gallery level albums.');
+					?>
 				</p>
 
-					<?php
-					consolidatedEditMessages('');
-					printEditDropdown('', array('1', '2', '3', '4', '5'), $album_nesting);
-					?>
+				<?php
+				consolidatedEditMessages('');
+				printEditDropdown('', array('1', '2', '3', '4', '5'), $album_nesting);
+				?>
 				<form action="?page=edit&amp;action=savealbumorder" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();">
-						<?php XSRFToken('savealbumorder'); ?>
+					<?php XSRFToken('savealbumorder'); ?>
 					<p class="buttons">
 						<?php
 						if ($album_nesting > 1 || zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
@@ -1683,28 +1699,28 @@ echo "\n</head>";
 						if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 							?>
 							<button type="button" onclick="javascript:newAlbum('', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
-			<?php
-		}
-		?>
+							<?php
+						}
+						?>
 					</p>
 					<br class="clearall" /><br />
 					<div class="bordered">
 						<div class="headline"><?php echo gettext("Edit this album"); ?>
-									<?php printBulkActions($checkarray_albums); ?>
+							<?php printBulkActions($checkarray_albums); ?>
 						</div>
 						<div class="subhead">
 							<label class="buttons" style="float: left">
 								<a href="admin-edit.php?showthumbs=<?php echo $thumbshow ?>" title="<?php echo gettext('Thumbnail generation may be time consuming on slow servers on when there are a lot of images.'); ?>">
-		<?php echo $thumbmsg; ?>
+									<?php echo $thumbmsg; ?>
 								</a>
 							</label>
 							<label style="float: right">
-							<?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
+								<?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
 							</label>
 						</div>
 
 						<ul class="page-list">
-						<?php printNestedAlbumsList($albums, $showthumb, NULL); ?>
+							<?php printNestedAlbumsList($albums, $showthumb, NULL); ?>
 						</ul>
 
 					</div>
@@ -1724,27 +1740,27 @@ echo "\n</head>";
 						if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 							?>
 							<button type="button" onclick="javascript:newAlbum('', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
-			<?php
-		}
-		?>
+							<?php
+						}
+						?>
 					</p>
 
 				</form>
 				<br class="clearall" />
 
-		<?php
-	} else {
-		echo gettext("There are no albums for you to edit.");
-		if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
-			?>
+				<?php
+			} else {
+				echo gettext("There are no albums for you to edit.");
+				if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
+					?>
 					<p class="buttons">
 						<button type="button" onclick="javascript:newAlbum('', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
 					</p>
-			<?php
+					<?php
+				}
+			}
 		}
-	}
-}
-?>
+		?>
 	</div><!-- content -->
 </div><!-- main -->
 <?php printAdminFooter(); ?>

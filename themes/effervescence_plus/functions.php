@@ -177,8 +177,7 @@ function printHeadingImage($randomImage) {
 			$high = min(180, $randomImage->getHeight());
 		}
 		echo "<a href='" . $randomImageURL . "' title='" . gettext('Random picture...') . "'>";
-		$html = "<img src='" .
-						html_encode($randomImage->getCustomImage(NULL, $wide, $high, $wide, $high, NULL, NULL, !getOption('Watermark_head_image'))) .
+		$html = "<img src='" . html_encode(pathurlencode($randomImage->getCustomImage(NULL, $wide, $high, $wide, $high, NULL, NULL, !getOption('Watermark_head_image')))) .
 						"' width='$wide' height='$high' alt=" . '"' .
 						html_encode($randomAlt1) .
 						":\n" . html_encode($randomImage->getTitle()) .
@@ -284,7 +283,7 @@ function printLogo() {
 	if ($img = getOption('Graphic_logo')) {
 		$fullimg = '/' . UPLOAD_FOLDER . '/images/' . $img . '.png';
 		if (file_exists(SERVERPATH . $fullimg)) {
-			echo '<img src="' . pathurlencode(WEBPATH . $fullimg) . '" alt="Logo"/>';
+			echo '<img src="' . html_encode(pathurlencode(WEBPATH . $fullimg)) . '" alt="Logo"/>';
 		} else {
 			echo '<img src="' . $_zp_themeroot . '/images/effervescence.png" alt="Logo"/>';
 		}
@@ -341,10 +340,12 @@ function printFooter($admin = true) {
 			?>
 			<p>
 				<small>
-					<?php $albumNumber = getNumAlbums();
+					<?php
+					$albumNumber = getNumAlbums();
 					echo sprintf(ngettext("%u Album", "%u Albums", $albumNumber), $albumNumber);
 					?> &middot;
-					<?php $c = get_subalbum_count();
+					<?php
+					$c = get_subalbum_count();
 					echo sprintf(ngettext("%u Subalbum", "%u Subalbums", $c), $c);
 					?> &middot;
 					<?php
@@ -391,14 +392,14 @@ function printFooter($admin = true) {
 			echo '<br />';
 		}
 		?>
-	<?php
-	if ($_zp_gallery_page != 'register.php' && function_exists('printRegistrationForm') && !zp_loggedin() && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('register'))) {
-		printCustomPageURL(gettext('Register for this site'), 'register', '', '');
-		echo '<br />';
-	}
-	?>
-	<?php @call_user_func('mobileTheme::controlLink'); ?>
-	<?php @call_user_func('printLanguageSelector'); ?>
+		<?php
+		if ($_zp_gallery_page != 'register.php' && function_exists('printRegistrationForm') && !zp_loggedin() && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('register'))) {
+			printCustomPageURL(gettext('Register for this site'), 'register', '', '');
+			echo '<br />';
+		}
+		?>
+		<?php @call_user_func('mobileTheme::controlLink'); ?>
+		<?php @call_user_func('printLanguageSelector'); ?>
 		<br class="clearall" />
 	</div>
 	<!-- Administration Toolbox -->
@@ -418,30 +419,30 @@ function commonNewsLoop($paged) {
 			<h3><?php printNewsTitleLink(); ?><?php echo " <span class='newstype'>[" . $newstypedisplay . "]</span>"; ?></h3>
 			<div class="newsarticlecredit">
 				<span class="newsarticlecredit-left">
+					<?php
+					$count = @call_user_func('getCommentCount');
+					$cat = getNewsCategories();
+					printNewsDate();
+					if ($count > 0) {
+						echo ' | ';
+						printf(gettext("Comments: %d"), $count);
+					}
+					?>
+				</span>
 				<?php
-				$count = @call_user_func('getCommentCount');
-				$cat = getNewsCategories();
-				printNewsDate();
-				if ($count > 0) {
-					echo ' | ';
-					printf(gettext("Comments: %d"), $count);
+				if (is_GalleryNewsType()) {
+					echo ' | ' . gettext("Album:") . " <a href='" . getNewsAlbumURL() . "' title='" . getBareNewsAlbumTitle() . "'>" . getNewsAlbumTitle() . "</a>";
+				} else {
+					if (!empty($cat)) {
+						echo ' | ';
+						printNewsCategories(", ", gettext("Categories: "), "newscategories");
+					}
 				}
 				?>
-				</span>
-			<?php
-			if (is_GalleryNewsType()) {
-				echo ' | ' . gettext("Album:") . " <a href='" . getNewsAlbumURL() . "' title='" . getBareNewsAlbumTitle() . "'>" . getNewsAlbumTitle() . "</a>";
-			} else {
-				if (!empty($cat)) {
-					echo ' | ';
-					printNewsCategories(", ", gettext("Categories: "), "newscategories");
-				}
-			}
-			?>
 			</div> <!-- newsarticlecredit -->
-		<?php printCodeblock(1); ?>
-		<?php printNewsContent(); ?>
-		<?php printCodeblock(2); ?>
+			<?php printCodeblock(1); ?>
+			<?php printNewsContent(); ?>
+			<?php printCodeblock(2); ?>
 			<br class="clearall" />
 		</div>
 		<?php

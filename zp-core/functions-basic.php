@@ -887,7 +887,7 @@ function getImageArgs($set) {
 			$args[0] = MAX_SIZE;
 		}
 	}
-	if (isset($set['w'])) {	//1
+	if (isset($set['w'])) { //1
 		$args[1] = (int) min(abs(sanitize_numeric($set['w'])), MAX_SIZE);
 	}
 	if (isset($set['h'])) { //2
@@ -967,7 +967,7 @@ function getAllowedTags($which) {
 			if (is_null($_user_tags)) {
 				$user_tags = "(" . getOption('allowed_tags') . ")";
 				$allowed_tags = parseAllowedTags($user_tags);
-				if ($allowed_tags === false) {	// someone has screwed with the 'allowed_tags' option row in the database, but better safe than sorry
+				if ($allowed_tags === false) { // someone has screwed with the 'allowed_tags' option row in the database, but better safe than sorry
 					$allowed_tags = array();
 				}
 				$_user_tags = $allowed_tags;
@@ -978,7 +978,7 @@ function getAllowedTags($which) {
 			if (is_null($_style_tags)) {
 				$style_tags = "(" . getOption('style_tags') . ")";
 				$allowed_tags = parseAllowedTags($style_tags);
-				if ($allowed_tags === false) {	// someone has screwed with the 'style_tags' option row in the database, but better safe than sorry
+				if ($allowed_tags === false) { // someone has screwed with the 'style_tags' option row in the database, but better safe than sorry
 					$allowed_tags = array();
 				}
 				$_style_tags = $allowed_tags;
@@ -989,7 +989,7 @@ function getAllowedTags($which) {
 			if (is_null($_default_tags)) {
 				$default_tags = "(" . getOption('allowed_tags_default') . ")";
 				$allowed_tags = parseAllowedTags($default_tags);
-				if ($allowed_tags === false) {	// someone has screwed with the 'allowed_tags' option row in the database, but better safe than sorry
+				if ($allowed_tags === false) { // someone has screwed with the 'allowed_tags' option row in the database, but better safe than sorry
 					$allowed_tags = array();
 				}
 				$_default_tags = $allowed_tags;
@@ -1108,7 +1108,7 @@ function getAlbumFolder($root = SERVERPATH) {
 		case 'std':
 			return $root . $_zp_album_folder;
 		case 'in_webpath':
-			if (WEBPATH) {		// strip off the WEBPATH
+			if (WEBPATH) { // strip off the WEBPATH
 				$root = str_replace(WEBPATH, '', $root);
 				if ($root == '/') {
 					$root = '';
