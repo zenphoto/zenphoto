@@ -2446,7 +2446,7 @@ if ($c <= 0) {
 									// fixes 1.2 move/copy albums with wrong ids
 									$albums = $_zp_gallery->getAlbums();
 									foreach ($albums as $album) {
-										checkAlbumParentid($album, NULL);
+										checkAlbumParentid($album, NULL, 'setuplog');
 									}
 								}
 							}

@@ -406,6 +406,7 @@ class Gallery {
 	 * @return bool
 	 */
 	function garbageCollect($cascade = true, $complete = false, $restart = '') {
+		global $_zp_gallery;
 		if (empty($restart)) {
 			setOption('last_garbage_collect', time());
 			/* purge old search cache items */
@@ -493,7 +494,7 @@ class Gallery {
 				$valid = file_exists($albumpath = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($row['folder'])) && (hasDynamicAlbumSuffix($albumpath) || (is_dir($albumpath) && strpos($albumpath, '/./') === false && strpos($albumpath, '/../') === false));
 				if (!$valid || in_array($row['folder'], $live)) {
 					$dead[] = $row['id'];
-					if ($row['album_theme'] !== '') {	// orphaned album theme options table
+					if ($row['album_theme'] !== '') { // orphaned album theme options table
 						$deadalbumthemes[$row['id']] = $row['folder'];
 					}
 				} else {
@@ -527,6 +528,12 @@ class Gallery {
 
 		if ($complete) {
 			if (empty($restart)) {
+				/* check album parent linkage */
+				$albums = $_zp_gallery->getAlbums();
+				foreach ($albums as $album) {
+					checkAlbumParentid($album, NULL, 'debuglog');
+				}
+
 				/* refresh 'metadata' albums */
 				$albumids = query("SELECT `id`, `mtime`, `folder`, `dynamic` FROM " . prefix('albums'));
 				if ($albumids) {
@@ -577,7 +584,7 @@ class Gallery {
 
 				/* Delete all image entries that don't belong to an album at all. */
 
-				$albumids = query("SELECT `id` FROM " . prefix('albums'));									/* all the album IDs */
+				$albumids = query("SELECT `id` FROM " . prefix('albums'));		 /* all the album IDs */
 				$idsofalbums = array();
 				if ($albumids) {
 					while ($row = db_fetch_assoc($albumids)) {
@@ -593,7 +600,7 @@ class Gallery {
 					}
 					db_free_result($imageAlbums);
 				}
-				$orphans = array_diff($albumidsofimages, $idsofalbums);																/* albumids of images with no album */
+				$orphans = array_diff($albumidsofimages, $idsofalbums);				/* albumids of images with no album */
 
 				if (count($orphans) > 0) { /* delete dead images from the DB */
 					$firstrow = array_pop($orphans);
@@ -607,7 +614,7 @@ class Gallery {
 					foreach ($this->getAlbums(0) as $folder) {
 						$album = newAlbum($folder);
 						if (!$album->isDynamic()) {
-							if (is_null($album->getDateTime())) {	// see if we can get one from an image
+							if (is_null($album->getDateTime())) { // see if we can get one from an image
 								$images = $album->getImages(0, 0, 'date', 'DESC');
 								if (count($images) > 0) {
 									$image = newImage($album, array_shift($images));
@@ -625,7 +632,7 @@ class Gallery {
 
 			/* Look for image records where the file no longer exists. While at it, check for images with IPTC data to update the DB */
 
-			$start = array_sum(explode(" ", microtime()));	// protect against too much processing.
+			$start = array_sum(explode(" ", microtime())); // protect against too much processing.
 			if (!empty($restart)) {
 				$restartwhere = ' WHERE `id`>' . $restart . ' AND `mtime`=0';
 			} else {
@@ -667,7 +674,7 @@ class Gallery {
 	}
 
 	function commentClean($table) {
-		$ids = query('SELECT `id` FROM ' . prefix($table));			 /* all the IDs */
+		$ids = query('SELECT `id` FROM ' . prefix($table));	/* all the IDs */
 		$idsofitems = array();
 		if ($ids) {
 			while ($row = db_fetch_assoc($ids)) {
@@ -684,7 +691,7 @@ class Gallery {
 			}
 			db_free_result($commentOwners);
 		}
-		$orphans = array_diff($idsofcomments, $idsofitems);								 /* owner ids of comments with no owner */
+		$orphans = array_diff($idsofcomments, $idsofitems);		 /* owner ids of comments with no owner */
 
 		if (count($orphans) > 0) { /* delete dead comments from the DB */
 			$sql = "DELETE FROM " . prefix('comments') . " WHERE `type`=" . db_quote($table) . " AND (`ownerid`=" . implode(' OR `ownerid`=', $orphans) . ')';
@@ -754,7 +761,7 @@ class Gallery {
 			if (($key = array_search($folder, $albums)) !== false) { // album exists in filesystem
 				$results[$row['folder']] = $row;
 				unset($albums[$key]);
-			} else {												// album no longer exists
+			} else {			// album no longer exists
 				$id = $row['id'];
 				query("DELETE FROM " . prefix('albums') . " WHERE `id`=$id"); // delete the record
 				query("DELETE FROM " . prefix('comments') . " WHERE `type` ='images' AND `ownerid`= '$id'"); // remove image comments
