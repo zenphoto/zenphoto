@@ -174,7 +174,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 			$rotate = getImageRotation($imgfile);
 		}
 		$s = getSuffix($imgfile);
-		if (function_exists('exif_thumbnail') && getOption('use_embedded_thumb') && ($s == 'jpg') || $s == 'jpeg') {
+		if (function_exists('exif_thumbnail') && getOption('use_embedded_thumb') && ($s == 'jpg' || $s == 'jpeg')) {
 			$im = exif_thumbnail($imgfile, $tw, $th, $tt);
 			if ($im) {
 				if ($size) {
