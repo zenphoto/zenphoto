@@ -47,7 +47,7 @@ class crop_image {
 				$albumname = dirname($image->filename['source']);
 				$imagename = basename($image->filename['source']);
 			} else {
-				$albumname = $image->albunlink;
+				$albumname = $image->albumlink;
 				$imagename = $image->filename;
 			}
 			$output .=
