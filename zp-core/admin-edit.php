@@ -1018,7 +1018,7 @@ echo "\n</head>";
 														<div style="width: 135px;">
 															<a <?php echo $placemark; ?>
 															<?php
-															if (!is_null($image->objectsThumb)) {
+															if (isImagePhoto($image) || !is_null($image->objectsThumb)) {
 																?>
 																	href="admin-thumbcrop.php?a=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>"
 																	title="<?php html_encode(printf(gettext('crop %s'), $image->filename)); ?>"
@@ -1026,11 +1026,7 @@ echo "\n</head>";
 																}
 																?>
 																>
-																<img
-																	id="thumb_img-<?php echo $currentimage; ?>"
-																	src="<?php echo html_encode(pathurlencode($image->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, -1))); ?>"
-																	alt="<?php echo html_encode($image->filename); ?>"
-																	/>
+																<img id="thumb_img-<?php echo $currentimage; ?>" src="<?php echo html_encode(pathurlencode($image->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, -1))); ?>" alt="<?php echo html_encode($image->filename); ?>"																	/>
 															</a>
 														</div>
 														<?php if (isImagePhoto($image)) { ?>
@@ -1288,7 +1284,7 @@ echo "\n</head>";
 																<br class="clearall" />
 															</div>
 															<?php
-															if (!is_null($image->objectsThumb)) {
+															if (isImagePhoto($image) || !is_null($image->objectsThumb)) {
 																?>
 																<div class="button buttons tooltip" title="<?php printf(gettext('crop %s'), $image->filename); ?>">
 																	<a href="admin-thumbcrop.php?a=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>" >
