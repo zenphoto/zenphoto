@@ -262,7 +262,7 @@ if (zp_loggedin(ADMIN_RIGHTS)) {	//only admin should be allowed to do this
 				<li>
 					<label>
 						<input type="checkbox" class="checkAuto" name="<?php echo postIndexEncode($analbum); ?>" value="<?php echo $albumid; ?>" class="albumcheck" />
-						<img src="<?php html_encode(echo html_encode(pathurlencode($thumb))); ?>" width="40" height="40" alt="" title="album thumb" />
+						<img src="<?php echo html_encode(html_encode(pathurlencode($thumb))); ?>" width="40" height="40" alt="" title="album thumb" />
 						<?php echo $album->name; ?>
 					</label>
 					<a href="<?php echo $album->getAlbumLink(); ?>" title="<?php echo gettext('view'); ?>"> (<?php echo gettext('view'); ?>)</a>
