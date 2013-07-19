@@ -354,7 +354,7 @@ if (!defined('OFFSET_PATH')) {
 										<?php
 									}
 									if (!empty($content_macros)) {
-										require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/macrolist.php');
+										require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/macroList.php');
 										echo ngettext('Macro defined:', 'Macros defined:', count($content_macros));
 										foreach ($content_macros as $macro => $detail) {
 											macroList_show($macro, $detail);
