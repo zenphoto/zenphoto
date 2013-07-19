@@ -3171,16 +3171,16 @@ function printRandomImages($number = 5, $class = null, $option = 'all', $rootAlb
 			echo '<a href="' . html_encode($randomImageURL) . '" title="' . sprintf(gettext('View image: %s'), html_encode($randomImage->getTitle())) . '">';
 			switch ($crop) {
 				case 0:
-					$html = "<img src=\"" . $randomImage->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE) . "\" alt=\"" . html_encode($randomImage->getTitle()) . "\" />\n";
+					$html = "<img src=\"" . html_encode(pathurlencode($randomImage->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . "\" alt=\"" . html_encode($randomImage->getTitle()) . "\" />\n";
 					break;
 				case 1:
-					$html = "<img src=\"" . $randomImage->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE) . "\" alt=\"" . $randomImage->getTitle() . "\" />\n";
+					$html = "<img src=\"" . html_encode(pathurlencode($randomImage->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE))) . "\" alt=\"" . $randomImage->getTitle() . "\" />\n";
 					break;
 				case 2:
-					$html = "<img src=\"" . $randomImage->getThumb() . "\" alt=\"" . html_encode($randomImage->getTitle()) . "\" />\n";
+					$html = "<img src=\"" . html_encode(pathurlencode($randomImage->getThumb())) . "\" alt=\"" . html_encode($randomImage->getTitle()) . "\" />\n";
 					break;
 			}
-			echo html_encode(pathurlencode(zp_apply_filter('custom_image_html', $html, false)));
+			echo zp_apply_filter('custom_image_html', $html, false);
 			echo "</a>";
 			echo "</li>\n";
 		} else {
