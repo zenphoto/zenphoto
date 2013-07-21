@@ -567,7 +567,7 @@ echo $refresh;
 									<td colspan="3" style="margin: 0pt; padding: 0pt;border-top: 4px solid #D1DBDF;<?php echo $background; ?>">
 										<table class="bordered" style="border: 0" id='user-<?php echo $id; ?>'>
 											<tr>
-												<td style="margin-top: 0px; width:50em;<?php echo $background; ?>" valign="top">
+												<td style="margin-top: 0px; width:20em;<?php echo $background; ?>" valign="top">
 													<input type="hidden" name="show-<?php echo $userid; ?>" id="show_<?php echo $id; ?>" value="<?php echo ($current); ?>" />
 													<?php
 													if (empty($userid)) {
@@ -585,8 +585,8 @@ echo $refresh;
 																 ?>
 															<input type="hidden" name="<?php echo $id ?>-newuser" value="1" />
 
-															<em><?php echo gettext("New User"); ?></em><br />
-															<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="dummy" name="dummy" value=""
+															<em><?php echo gettext("New User"); ?></em>
+															<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="adminuser<?php echo $id; ?>" name="adminuser<?php echo $id; ?>" value=""
 																		 onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', visible);
 									$('#adminuser<?php echo $id; ?>').focus();" />
 
