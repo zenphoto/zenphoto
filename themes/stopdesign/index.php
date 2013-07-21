@@ -160,8 +160,11 @@ require_once('normalizer.php');
 					<h2><?php echo gettext("Gallery data"); ?></h2>
 					<table cellspacing="0" class="gallerydata">
 						<tr>
-							<th><a href="<?php echo $archivepageURL; ?>"><?php echo gettext('Galleries'); ?></a></th>
-							<td><?php echo $_zp_gallery->getNumAlbums(); ?></td>
+							<th><a href="<?php echo $archivepageURL; ?>"><?php echo gettext('Albums'); ?></a></th>
+							<td><?php
+									$t = $_zp_gallery->getNumAlbums(true);
+									$c = $t-$_zp_gallery->getNumAlbums(true,true);
+									printf(ngettext('%u', '%u',$t),$t);			?>
 							<td></td>
 						</tr>
 						<tr>
