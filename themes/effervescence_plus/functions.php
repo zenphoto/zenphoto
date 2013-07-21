@@ -5,6 +5,9 @@ zp_register_filter('themeSwitcher_head', 'switcher_head');
 zp_register_filter('themeSwitcher_Controllink', 'switcher_controllink');
 zp_register_filter('theme_head', 'EF_head', 0);
 
+define('ALBUM_THMB_WIDTH', 170);
+define('ALBUM_THUMB_HEIGHT', 80);
+
 $cwd = getcwd();
 chdir(dirname(__FILE__));
 $persona = safe_glob('*', GLOB_ONLYDIR);
@@ -112,9 +115,9 @@ function switcher_controllink($ignore) {
 	?>
 	<span id="themeSwitcher_effervescence">
 		<span title="<?php echo gettext("Effervescence color scheme."); ?>">
-			<?php echo gettext('Theme Color'); ?>
+				<?php echo gettext('Theme Color'); ?>
 			<select name="themeColor" id="themeColor" onchange="switchColors();">
-				<?php generateListFromArray(array($color), $themecolors, false, false); ?>
+	<?php generateListFromArray(array($color), $themecolors, false, false); ?>
 			</select>
 		</span>
 		<?php
@@ -124,9 +127,9 @@ function switcher_controllink($ignore) {
 		}
 		?>
 		<span title="<?php echo gettext("Effervescence image display handling."); ?>">
-			<?php echo gettext('Personality'); ?>
+				<?php echo gettext('Personality'); ?>
 			<select name="themePersonality" id="themePersonality" onchange="switchPersonality();">
-				<?php generateListFromArray(array($personality), $personalities, false, true); ?>
+	<?php generateListFromArray(array($personality), $personalities, false, true); ?>
 			</select>
 		</span>
 	</span>
@@ -332,7 +335,7 @@ function printFooter($admin = true) {
 		if (!is_null($h)) {
 			?>
 			<p>
-				<?php printf(ngettext('%1$u hit on this %2$s', '%1$u hits on this %2$s', $h), $h, gettext('page')); ?>
+			<?php printf(ngettext('%1$u hit on this %2$s', '%1$u hits on this %2$s', $h), $h, gettext('page')); ?>
 			</p>
 			<?php
 		}
@@ -399,7 +402,7 @@ function printFooter($admin = true) {
 		}
 		?>
 		<?php @call_user_func('mobileTheme::controlLink'); ?>
-		<?php @call_user_func('printLanguageSelector'); ?>
+	<?php @call_user_func('printLanguageSelector'); ?>
 		<br class="clearall" />
 	</div>
 	<!-- Administration Toolbox -->
@@ -442,7 +445,7 @@ function commonNewsLoop($paged) {
 			</div> <!-- newsarticlecredit -->
 			<?php printCodeblock(1); ?>
 			<?php printNewsContent(); ?>
-			<?php printCodeblock(2); ?>
+		<?php printCodeblock(2); ?>
 			<br class="clearall" />
 		</div>
 		<?php
