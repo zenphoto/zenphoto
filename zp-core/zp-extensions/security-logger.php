@@ -366,7 +366,8 @@ class security_logger {
 					return $allow;
 				break;
 		}
-		security_logger::Logger(2, $user, $name, 'blocked_album', '', $page);
+		if (!$allow)
+			security_logger::Logger(2, $user, $name, 'blocked_album', '', $page);
 		return $allow;
 	}
 

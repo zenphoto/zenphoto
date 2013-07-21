@@ -7,16 +7,19 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
-<?php zp_apply_filter('theme_head'); ?>
-		<title><?php printBareGalleryTitle();
-if ($_zp_page > 1) echo "[$_zp_page]"; ?></title>
+		<?php zp_apply_filter('theme_head'); ?>
+		<title><?php
+			printBareGalleryTitle();
+			if ($_zp_page > 1)
+				echo "[$_zp_page]";
+			?></title>
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 		<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . THEMEFOLDER; ?>/default/common.css" type="text/css" />
-		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
+<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
 	</head>
 	<body>
-				<?php zp_apply_filter('theme_body_open'); ?>
+<?php zp_apply_filter('theme_body_open'); ?>
 		<div id="main">
 			<div id="gallerytitle">
 				<?php
@@ -24,12 +27,13 @@ if ($_zp_page > 1) echo "[$_zp_page]"; ?></title>
 					printSearchForm('');
 				}
 				?>
-				<h2><?php printHomeLink('', ' | ');
-				printGalleryTitle();
-				?></h2>
+				<h2><?php
+					printHomeLink('', ' | ');
+					printGalleryTitle();
+					?></h2>
 			</div>
 			<div id="padbox">
-<?php printGalleryDesc(); ?>
+					<?php printGalleryDesc(); ?>
 				<div id="albums">
 <?php while (next_album()): ?>
 						<div class="album">
@@ -46,7 +50,7 @@ if ($_zp_page > 1) echo "[$_zp_page]"; ?></title>
 <?php endwhile; ?>
 				</div>
 				<br class="clearall" />
-			<?php printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); ?>
+<?php printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); ?>
 			</div>
 		</div>
 		<div id="credit">
@@ -67,14 +71,14 @@ if ($_zp_page > 1) echo "[$_zp_page]"; ?></title>
 			if (function_exists('printFavoritesLink')) {
 				printFavoritesLink();
 				?> | <?php
-		}
-		?>
+			}
+			?>
 		<?php printZenphotoLink(); ?>
 		</div>
-<?php @call_user_func('mobileTheme::controlLink'); ?>
-<?php @call_user_func('printLanguageSelector'); ?>
-<?php
-zp_apply_filter('theme_body_close');
-?>
+		<?php @call_user_func('mobileTheme::controlLink'); ?>
+		<?php @call_user_func('printLanguageSelector'); ?>
+		<?php
+		zp_apply_filter('theme_body_close');
+		?>
 	</body>
 </html>
