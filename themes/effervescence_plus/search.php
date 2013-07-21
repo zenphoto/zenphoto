@@ -21,10 +21,13 @@ $backgroundImagePath = "";
 		list($personality, $themeColor) = getPersonality();
 		require_once(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus/' . $personality . '/functions.php');
 		?>
-		<title><?php printBareGalleryTitle(); ?> | <?php echo gettext("Search");
-		if ($_zp_page > 1) echo "[$_zp_page]"; ?></title>
+		<title><?php printBareGalleryTitle(); ?> | <?php
+			echo gettext("Search");
+			if ($_zp_page > 1)
+				echo "[$_zp_page]";
+			?></title>
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
-		<?php $oneImagePage = $personality->theme_head($_zp_themeroot); ?>
+<?php $oneImagePage = $personality->theme_head($_zp_themeroot); ?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
 			function toggleExtraElements(category, show) {
@@ -111,7 +114,7 @@ $backgroundImagePath = "";
 						}
 						?>
 						<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>">
-							<?php printGalleryTitle(); ?></a></span> |
+					<?php printGalleryTitle(); ?></a></span> |
 					<?php
 					if (is_array($albumlist)) {
 						echo "<em>" . sprintf(ngettext('Search album: %s', 'Search albums: %s', count($albumlist)), implode(',', $albumlist)) . "</em>";
@@ -166,7 +169,7 @@ $backgroundImagePath = "";
 											$c++;
 											?>
 											<li<?php if ($c > SHOW_ITEMS) echo ' class="pages_extrashow" style="display:none;"'; ?>>
-												<?php print printPageTitleLink(); ?>
+			<?php print printPageTitleLink(); ?>
 												<p style="text-indent:1em;"><?php echo exerpt($_zp_current_zenpage_page->getContent(), TRUNCATE_LENGTH); ?></p>
 											</li>
 											<?php
@@ -199,7 +202,7 @@ $backgroundImagePath = "";
 											$c++;
 											?>
 											<li<?php if ($c > SHOW_ITEMS) echo ' class="news_extrashow" style="display:none;"'; ?>>
-												<?php printNewsTitleLink(); ?>
+			<?php printNewsTitleLink(); ?>
 												<p style="text-indent:1em;"><?php echo exerpt($_zp_current_zenpage_news->getContent(), TRUNCATE_LENGTH); ?></p>
 											</li>
 											<?php
@@ -254,10 +257,10 @@ $backgroundImagePath = "";
 						}
 						?>
 						<li>
-							<?php $annotate = annotateAlbum(); ?>
+	<?php $annotate = annotateAlbum(); ?>
 							<div class="imagethumb">
 								<a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php echo $annotate; ?>">
-									<?php printCustomAlbumThumbImage($annotate, null, 180, null, 180, 80); ?></a>
+	<?php printCustomAlbumThumbImage($annotate, null, ALBUM_THMB_WIDTH, null, ALBUM_THMB_WIDTH, ALBUM_THUMB_HEIGHT); ?></a>
 							</div>
 							<h4><a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php echo $annotate; ?>"><?php printAlbumTitle(); ?></a></h4></li>
 						<?php
@@ -269,7 +272,7 @@ $backgroundImagePath = "";
 				}
 				?>
 				<div class="clearage"></div>
-				<?php printNofM('Album', $firstAlbum, $lastAlbum, getNumAlbums()); ?>
+<?php printNofM('Album', $firstAlbum, $lastAlbum, getNumAlbums()); ?>
 			</div>
 
 			<!-- Wrap Main Body -->
