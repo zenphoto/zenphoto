@@ -129,9 +129,7 @@ class jplayer_options {
 		return array(gettext('Autoplay')											 => array('key'	 => 'jplayer_autoplay', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext("Disabled automatically if several players on one page")),
 						gettext('Poster (Videothumb)')					 => array('key'	 => 'jplayer_poster', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext("If the videothumb should be shown (jplayer calls it poster)")),
-						gettext('Poster cropping (Videothumb)')	 => array('key'	 => 'jplayer_postercrop', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext("If enable the videothumb to be cropped. Otherwise jPlayer will squish the image to fit if it does not have the correct aspect ratio.")),
+										'desc' => gettext("If the videothumb should be shown (jplayer calls it poster).")),
 						gettext('Audio poster (Videothumb)')		 => array('key'	 => 'jplayer_audioposter', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext("If the poster should be shown for audio files (mp3,m4a,fla) (does not apply for playlists which are all or none).")),
 						gettext('Show title')										 => array('key'	 => 'jplayer_showtitle', 'type' => OPTION_TYPE_CHECKBOX,
@@ -300,7 +298,12 @@ class jPlayer {
 		$videoThumb = '';
 		if (getOption('jplayer_poster') && ($this->mode == 'video' || ($this->mode == 'audio' && getOption('jplayer_audioposter')))) {
 			if (is_null($_zp_current_image)) {
-				$videoThumb = '';
+				$imagename = substr(strrchr($moviepath,ALBUM_FOLDER_WEBPATH),1);
+				$albumname = str_replace(FULLWEBPATH.ALBUM_FOLDER_EMPTY,'',$moviepath);
+				$albumname = str_replace('/'.$imagename,'',$albumname); 
+				$albobj = newAlbum($albumname);
+				$imgobj = newImage($albobj,$imagename);
+				$videoThumb = ',poster:"' . $imgobj->getCustomImage(null, $this->width, $this->height, $this->width, $this->height, null, null, true) . '"';
 			} else {
 				$splashimagerwidth = $this->width;
 				$splashimageheight = $this->height;
