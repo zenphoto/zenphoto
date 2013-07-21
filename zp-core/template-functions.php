@@ -2643,10 +2643,12 @@ function printImageThumb($alt, $class = NULL, $id = NULL) {
 		$w = getOption('thumb_crop_width');
 		$h = getOption('thumb_crop_height');
 		if ($w > $h) {
+			//landscape
 			$h = round($h * $s / $w);
 			$w = $s;
 		} else {
-			$w = round($w * $s / $w);
+			//portrait
+			$w = round($w * $s / $h);
 			$h = $s;
 		}
 	} else {
@@ -2654,7 +2656,6 @@ function printImageThumb($alt, $class = NULL, $id = NULL) {
 		getMaxSpaceContainer($w, $h, $_zp_current_image, true);
 	}
 	$size = ' width="' . $w . '" height="' . $h . '"';
-
 	$class = trim($class);
 	if ($class) {
 		$class = ' class="' . $class . '"';

@@ -708,7 +708,7 @@ Zenphoto_Authority::printPasswordFormJS();
 																	 value="<?php echo $dirname; ?>"<?php echo $c_attrs; ?>
 																	 onclick="javascript:enable_click('<?php echo $dirname; ?>');" />
 														<img src="<?php echo $flag; ?>" alt="<?php echo $languageAlt; ?>" width="24" height="16" />
-		<?php echo $language; ?>
+														<?php echo $language; ?>
 													</label>
 												</li>
 												<?php
@@ -846,16 +846,16 @@ Zenphoto_Authority::printPasswordFormJS();
 										// <!-- <![CDATA[
 														function resetallowedtags() {
 														$('#allowed_tags').val(<?php
-										$t = getOption('allowed_tags_default');
-										$tags = explode("\n", $t);
-										$c = 0;
-										foreach ($tags as $t) {
-											$t = trim($t);
-											if (!empty($t)) {
-												if ($c > 0) {
-													echo '+';
-													echo "\n";
-													?>
+									$t = getOption('allowed_tags_default');
+									$tags = explode("\n", $t);
+									$c = 0;
+									foreach ($tags as $t) {
+										$t = trim($t);
+										if (!empty($t)) {
+											if ($c > 0) {
+												echo '+';
+												echo "\n";
+												?>
 				<?php
 			}
 			$c++;
@@ -875,7 +875,7 @@ Zenphoto_Authority::printPasswordFormJS();
 								</tr>
 								<tr>
 									<td width="175">
-	<?php echo gettext("Cookies:"); ?>
+										<?php echo gettext("Cookies:"); ?>
 									</td>
 									<td width="350">
 										<?php
@@ -895,7 +895,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										<p>
 											<label>
 												<input type="checkbox" name="album_session" id="album_session" value="1" <?php checked('1', GALLERY_SESSION); ?> />
-	<?php echo gettext("enable gallery sessions"); ?>
+												<?php echo gettext("enable gallery sessions"); ?>
 											</label>
 										</p>
 									</td>
@@ -979,7 +979,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									</td>
 									<td><?php echo gettext('Logs will be "rolled" over when they exceed the specified size. If checked, the administrator will be e-mailed when this occurs.') ?></td>
 								</tr>
-	<?php zp_apply_filter('admin_general_data'); ?>
+								<?php zp_apply_filter('admin_general_data'); ?>
 								<tr>
 									<td colspan="3">
 										<p class="buttons">
@@ -998,9 +998,9 @@ Zenphoto_Authority::printPasswordFormJS();
 					codeblocktabsJS();
 					?>
 					<div id="tab_gallery" class="tabbox">
-							<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
+						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
 						<form action="?action=saveoptions" method="post" autocomplete="off">
-	<?php XSRFToken('saveoptions'); ?>
+							<?php XSRFToken('saveoptions'); ?>
 							<input	type="hidden" name="savegalleryoptions" value="yes" />
 							<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
 							<table class="options">
@@ -1015,14 +1015,14 @@ Zenphoto_Authority::printPasswordFormJS();
 								<tr>
 									<td width="175"><?php echo gettext("Gallery title:"); ?></td>
 									<td width="350">
-	<?php print_language_string_list($_zp_gallery->getTitle('all'), 'gallery_title') ?>
+										<?php print_language_string_list($_zp_gallery->getTitle('all'), 'gallery_title') ?>
 									</td>
 									<td><?php echo gettext("What you want to call your Zenphoto site."); ?></td>
 								</tr>
 								<tr>
 									<td width="175"><?php echo gettext("Gallery description:"); ?></td>
 									<td width="350">
-	<?php print_language_string_list($_zp_gallery->getDesc('all'), 'Gallery_description', true, NULL, 'texteditor') ?>
+										<?php print_language_string_list($_zp_gallery->getDesc('all'), 'Gallery_description', true, NULL, 'texteditor') ?>
 									</td>
 									<td><?php echo gettext("A brief description of your gallery. Some themes may display this text."); ?></td>
 								</tr>
@@ -1033,7 +1033,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										<label><input type="radio" name="gallery_security" value="private" alt="<?php echo gettext('private'); ?>"<?php if (GALLERY_SECURITY != 'public') echo 'checked="checked"' ?> onclick="javascript:$('.public_gallery').hide();" /><?php echo gettext('private'); ?></label>
 									</td>
 									<td>
-	<?php echo gettext('Private galleries are viewable only by registered users.'); ?>
+										<?php echo gettext('Private galleries are viewable only by registered users.'); ?>
 									</td>
 								</tr>
 								<?php
@@ -1043,7 +1043,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										<td style="background-color: #ECF1F2;">
 											<p>
 												<a href="javascript:toggle_passwords('',true);">
-		<?php echo gettext("Gallery password:"); ?>
+													<?php echo gettext("Gallery password:"); ?>
 												</a>
 											</p>
 										</td>
@@ -1064,14 +1064,14 @@ Zenphoto_Authority::printPasswordFormJS();
 										</td>
 										<td style="background-color: #ECF1F2;">
 											<p>
-		<?php echo gettext("Master password for the gallery. Click on <em>Gallery password</em> to change."); ?>
+												<?php echo gettext("Master password for the gallery. Click on <em>Gallery password</em> to change."); ?>
 											</p>
 										</td>
 									</tr>
 									<tr class="passwordextrahide" style="display:none">
 										<td>
 											<a href="javascript:toggle_passwords('',false);">
-		<?php echo gettext("Gallery guest user:"); ?>
+												<?php echo gettext("Gallery guest user:"); ?>
 											</a>
 										</td>
 										<td>
@@ -1083,13 +1083,13 @@ Zenphoto_Authority::printPasswordFormJS();
 											<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear(''); togglePassword('');"><?php echo gettext('Show password'); ?></label>
 										</td>
 										<td>
-		<?php echo gettext("User ID for the gallery guest user") ?>
+											<?php echo gettext("User ID for the gallery guest user") ?>
 										</td>
 									</tr>
 									<tr class="passwordextrahide" style="display:none" >
 										<td>
 											<span id="strength">
-		<?php echo gettext("Gallery password:"); ?>
+												<?php echo gettext("Gallery password:"); ?>
 											</span>
 											<br />
 											<span id="match" class="password_field_">
@@ -1112,18 +1112,18 @@ Zenphoto_Authority::printPasswordFormJS();
 											</span>
 										</td>
 										<td>
-		<?php echo gettext("Master password for the gallery. If this is set, visitors must know this password to view the gallery."); ?>
+											<?php echo gettext("Master password for the gallery. If this is set, visitors must know this password to view the gallery."); ?>
 										</td>
 									</tr>
 									<tr class="passwordextrahide" style="display:none" >
 										<td>
-		<?php echo gettext("Gallery password hint:"); ?>
+											<?php echo gettext("Gallery password hint:"); ?>
 										</td>
 										<td>
-		<?php print_language_string_list($_zp_gallery->getPasswordHint('all'), 'hint', false, NULL, 'hint') ?>
+											<?php print_language_string_list($_zp_gallery->getPasswordHint('all'), 'hint', false, NULL, 'hint') ?>
 										</td>
 										<td>
-		<?php echo gettext("A reminder hint for the password."); ?>
+											<?php echo gettext("A reminder hint for the password."); ?>
 										</td>
 									</tr>
 									<?php
@@ -1156,7 +1156,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										}
 										?>
 										<ul class="customchecklist">
-	<?php generateUnorderedListFromArray($current, $list, 'gallery_page_unprotected_', false, true, true); ?>
+											<?php generateUnorderedListFromArray($current, $list, 'gallery_page_unprotected_', false, true, true); ?>
 										</ul>
 									</td>
 									<td><?php echo gettext('Place a checkmark on any page scripts which should not be protected by the gallery password.'); ?></td>
@@ -1164,7 +1164,7 @@ Zenphoto_Authority::printPasswordFormJS();
 								<tr>
 									<td><?php echo gettext("Website title:"); ?></td>
 									<td>
-	<?php print_language_string_list($_zp_gallery->getWebsiteTitle('all'), 'website_title') ?>
+										<?php print_language_string_list($_zp_gallery->getWebsiteTitle('all'), 'website_title') ?>
 									</td>
 									<td><?php echo gettext("Your web site title."); ?></td>
 								</tr>
@@ -1201,7 +1201,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										/*
 										 * not recommended--screws with peoples minds during pagination!
 
-										  $sort[gettext('Random')] = 'random';
+											$sort[gettext('Random')] = 'random';
 										 */
 										$cvt = $cv = strtolower($_zp_gallery->getSortType());
 										ksort($sort, SORT_LOCALE_STRING);
@@ -1232,7 +1232,7 @@ Zenphoto_Authority::printPasswordFormJS();
 													<span id="gallery_sortdirection" style="display:<?php echo $dspd; ?>">
 														<label>
 															<input type="checkbox" name="gallery_sortdirection"	value="1" <?php checked('1', $_zp_gallery->getSortDirection()); ?> />
-	<?php echo gettext("Descending"); ?>
+															<?php echo gettext("Descending"); ?>
 														</label>
 													</span>
 												</td>
@@ -1240,7 +1240,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											<tr>
 												<td colspan="2">
 													<span id="customTextBox2" class="customText" style="display:<?php echo $dspc; ?>">
-	<?php echo gettext('custom fields:') ?>
+														<?php echo gettext('custom fields:') ?>
 														<input id="customalbumsort" name="customalbumsort" type="text" value="<?php echo html_encode($cvt); ?>"></input>
 													</span>
 												</td>
@@ -1259,34 +1259,34 @@ Zenphoto_Authority::printPasswordFormJS();
 										<p>
 											<label>
 												<input type="checkbox" name="album_default"	value="1"<?php if ($_zp_gallery->getAlbumPublish()) echo ' checked="checked"'; ?> />
-	<?php echo gettext("Publish albums by default"); ?>
+												<?php echo gettext("Publish albums by default"); ?>
 											</label>
 										</p>
 										<p>
 											<label>
 												<input type="checkbox" name="image_default"	value="1"<?php if ($_zp_gallery->getImagePublish()) echo ' checked="checked"'; ?> />
-	<?php echo gettext("Publish images by default"); ?>
+												<?php echo gettext("Publish images by default"); ?>
 											</label>
 										</p>
 										<p>
 											<label>
 												<input type="checkbox" name="album_use_new_image_date" id="album_use_new_image_date"
 															 value="1" <?php checked('1', $_zp_gallery->getAlbumUseImagedate()); ?> />
-	<?php echo gettext("use latest image date as album date"); ?>
+															 <?php echo gettext("use latest image date as album date"); ?>
 											</label>
 										</p>
 										<p>
 											<label>
 												<input type="checkbox" name="thumb_select_images" id="thumb_select_images"
 															 value="1" <?php checked('1', $_zp_gallery->getThumbSelectImages()); ?> />
-	<?php echo gettext("visual thumb selection"); ?>
+															 <?php echo gettext("visual thumb selection"); ?>
 											</label>
 										</p>
 										<p>
 											<label>
 												<input type="checkbox" name="multilevel_thumb_select_images" id="thumb_select_images"
 															 value="1" <?php checked('1', $_zp_gallery->getSecondLevelThumbs()); ?> />
-	<?php echo gettext("show subalbum thumbs"); ?>
+															 <?php echo gettext("show subalbum thumbs"); ?>
 											</label>
 										</p>
 									</td>
@@ -1302,10 +1302,10 @@ Zenphoto_Authority::printPasswordFormJS();
 										<p><?php echo gettext("<a href=\"javascript:toggle('albumdate');\" >Details</a> for <em>use latest image date as album date</em>"); ?></p>
 										<div id="albumdate" style="display: none">
 											<p>
-	<?php echo gettext("If you wish your album date to reflect the date of the latest image uploaded set this option. Otherwise the date will be set initially to the date the album was created.") ?>
+												<?php echo gettext("If you wish your album date to reflect the date of the latest image uploaded set this option. Otherwise the date will be set initially to the date the album was created.") ?>
 											</p>
 											<p class="notebox">
-	<?php echo gettext('<strong>NOTE</strong>: Zenphoto will update the album date only if an image is discovered which is newer than the current date of the album.'); ?>
+												<?php echo gettext('<strong>NOTE</strong>: Zenphoto will update the album date only if an image is discovered which is newer than the current date of the album.'); ?>
 											</p>
 										</div>
 
@@ -1325,7 +1325,7 @@ Zenphoto_Authority::printPasswordFormJS();
 								<tr valign="top">
 									<td class="topalign-nopadding"><br /><?php echo gettext("Codeblocks:"); ?></td>
 									<td>
-	<?php printCodeblockEdit($_zp_gallery, 0); ?>
+										<?php printCodeblockEdit($_zp_gallery, 0); ?>
 									</td>
 									<td>
 									</td>
@@ -1348,9 +1348,9 @@ Zenphoto_Authority::printPasswordFormJS();
 				if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 					?>
 					<div id="tab_search" class="tabbox">
-							<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
+						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
 						<form action="?action=saveoptions" method="post" autocomplete="off">
-	<?php XSRFToken('saveoptions'); ?>
+							<?php XSRFToken('saveoptions'); ?>
 							<input	type="hidden" name="savesearchoptions" value="yes" />
 							<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
 							<table class="options">
@@ -1369,7 +1369,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										<td width="175">
 											<p>
 												<a href="javascript:toggle_passwords('',true);">
-		<?php echo gettext("Search password:"); ?>
+													<?php echo gettext("Search password:"); ?>
 												</a>
 											</p>
 										</td>
@@ -1395,7 +1395,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									<tr class="passwordextrahide" style="display:none">
 										<td width="175">
 											<a href="javascript:toggle_passwords('',false);">
-		<?php echo gettext("Search guest user:"); ?>
+												<?php echo gettext("Search guest user:"); ?>
 											</a>
 										</td>
 										<td>
@@ -1407,13 +1407,13 @@ Zenphoto_Authority::printPasswordFormJS();
 											<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear(''); togglePassword('');"><?php echo gettext('Show password'); ?></label>
 										</td>
 										<td>
-		<?php echo gettext("User ID for the search guest user") ?>
+											<?php echo gettext("User ID for the search guest user") ?>
 										</td>
 									</tr>
 									<tr class="passwordextrahide" style="display:none" >
 										<td>
 											<span id="strength">
-		<?php echo gettext("Search password:"); ?>
+												<?php echo gettext("Search password:"); ?>
 											</span>
 											<br />
 											<span id="match" class="password_field_">
@@ -1436,18 +1436,18 @@ Zenphoto_Authority::printPasswordFormJS();
 											</span>
 										</td>
 										<td>
-		<?php echo gettext("Password for the search guest user. If this is set, visitors must know this password to view search results."); ?>
+											<?php echo gettext("Password for the search guest user. If this is set, visitors must know this password to view search results."); ?>
 										</td>
 									</tr>
 									<tr class="passwordextrahide" style="display:none" >
 										<td>
-		<?php echo gettext("Search password hint:"); ?>
+											<?php echo gettext("Search password hint:"); ?>
 										</td>
 										<td>
-		<?php print_language_string_list(getOption('search_hint'), 'hint', false, NULL, 'hint') ?>
+											<?php print_language_string_list(getOption('search_hint'), 'hint', false, NULL, 'hint') ?>
 										</td>
 										<td>
-		<?php echo gettext("A reminder hint for the password."); ?>
+											<?php echo gettext("A reminder hint for the password."); ?>
 										</td>
 									</tr>
 									<?php
@@ -1476,7 +1476,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										});
 										});</script>
 								<td>
-	<?php echo gettext('Fields list:'); ?>
+									<?php echo gettext('Fields list:'); ?>
 									<div id="resizable">
 										<ul class="searchchecklist" id="searchchecklist">
 											<?php
@@ -1493,21 +1493,21 @@ Zenphoto_Authority::printPasswordFormJS();
 									</div>
 									<br />
 									<?php echo gettext('Treat spaces as'); ?>
-										<?php generateRadiobuttonsFromArray(getOption('search_space_is'), array(gettext('<em>space</em>')	 => '', gettext('<em>OR</em>')		 => 'OR', gettext('<em>AND</em>')		 => 'AND'), 'search_space_is', false, false); ?>
+									<?php generateRadiobuttonsFromArray(getOption('search_space_is'), array(gettext('<em>space</em>')	 => '', gettext('<em>OR</em>')		 => 'OR', gettext('<em>AND</em>')		 => 'AND'), 'search_space_is', false, false); ?>
 									<p>
 										<?php echo gettext('Default search'); ?>
-	<?php generateRadiobuttonsFromArray(getOption('search_within'), array(gettext('<em>New</em>')		 => '0', gettext('<em>Within</em>') => '1'), 'search_within', false, false); ?>
+										<?php generateRadiobuttonsFromArray(getOption('search_within'), array(gettext('<em>New</em>')		 => '0', gettext('<em>Within</em>') => '1'), 'search_within', false, false); ?>
 									</p>
 									<p>
 										<label>
 											<input type="checkbox" name="search_no_albums" value="1" <?php checked('1', getOption('search_no_albums')); ?> />
-	<?php echo gettext('Do not return <em>album</em> matches') ?>
+											<?php echo gettext('Do not return <em>album</em> matches') ?>
 										</label>
 									</p>
 									<p>
 										<label>
 											<input type="checkbox" name="search_no_images" value="1" <?php checked('1', getOption('search_no_images')); ?> />
-	<?php echo gettext('Do not return <em>image</em> matches') ?>
+											<?php echo gettext('Do not return <em>image</em> matches') ?>
 										</label>
 									</p>
 									<?php
@@ -1516,13 +1516,13 @@ Zenphoto_Authority::printPasswordFormJS();
 										<p>
 											<label>
 												<input type="checkbox" name="search_no_news" value="1" <?php checked('1', getOption('search_no_news')); ?> />
-		<?php echo gettext('Do not return <em>news</em> matches') ?>
+												<?php echo gettext('Do not return <em>news</em> matches') ?>
 											</label>
 										</p>
 										<p>
 											<label>
 												<input type="checkbox" name="search_no_pages" value="1" <?php checked('1', getOption('search_no_pages')); ?> />
-		<?php echo gettext('Do not return <em>page</em> matches') ?>
+												<?php echo gettext('Do not return <em>page</em> matches') ?>
 											</label>
 										</p>
 										<?php
@@ -1539,10 +1539,10 @@ Zenphoto_Authority::printPasswordFormJS();
 								<tr>
 									<td><?php echo gettext('Cache expiry'); ?></td>
 									<td>
-	<?php printf(gettext('Redo search after %s minutes.'), '<input type="textbox" size="4" name="search_cache_duration" value="' . getOption('search_cache_duration') . '" />'); ?>
+										<?php printf(gettext('Redo search after %s minutes.'), '<input type="textbox" size="4" name="search_cache_duration" value="' . getOption('search_cache_duration') . '" />'); ?>
 									</td>
 									<td>
-	<?php echo gettext('Search will remember the results of particular searches so that it can quickly serve multiple pages, etc. Over time this remembered result can become obsolete, so it should be refreshed. This option lets you decide how long before a search will be considered obsolete and thus re-executed. Setting the option to <em>zero</em> disables caching of searches.'); ?>
+										<?php echo gettext('Search will remember the results of particular searches so that it can quickly serve multiple pages, etc. Over time this remembered result can become obsolete, so it should be refreshed. This option lets you decide how long before a search will be considered obsolete and thus re-executed. Setting the option to <em>zero</em> disables caching of searches.'); ?>
 									</td>
 								</tr>
 								</tr>
@@ -1566,12 +1566,12 @@ Zenphoto_Authority::printPasswordFormJS();
 					require_once(dirname(__FILE__) . '/lib-GD.php');
 					?>
 					<div id="tab_image" class="tabbox">
-							<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
+						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
 						<form action="?action=saveoptions" method="post" autocomplete="off">
-	<?php XSRFToken('saveoptions'); ?>
+							<?php XSRFToken('saveoptions'); ?>
 							<input type="hidden" name="saveimageoptions" value="yes" />
 							<p align="center">
-	<?php echo gettext('See also the <a href="?tab=theme">Theme Options</a> tab for theme specific image options.'); ?>
+								<?php echo gettext('See also the <a href="?tab=theme">Theme Options</a> tab for theme specific image options.'); ?>
 							</p>
 
 							<table class="options">
@@ -1598,7 +1598,7 @@ Zenphoto_Authority::printPasswordFormJS();
 
 										/*
 										 * not recommended--screws with peoples minds during pagination!
-										  $sort[gettext('Random')] = 'random';
+											$sort[gettext('Random')] = 'random';
 										 */
 										$flip = array_flip($sort);
 										if (isset($flip[$cv])) {
@@ -1622,13 +1622,13 @@ Zenphoto_Authority::printPasswordFormJS();
 											</select>
 											<label id="image_sortdirection" style="display:<?php echo $dspd; ?>white-space:nowrap;">
 												<input type="checkbox" name="image_sortdirection"	value="1" <?php checked('1', getOption('image_sortdirection')); ?> />
-	<?php echo gettext("Descending"); ?>
+												<?php echo gettext("Descending"); ?>
 											</label>
 										</span>
 
 										<span id="customTextBox3" class="customText" style="display:<?php echo $dspc; ?>">
 											<br />
-	<?php echo gettext('custom fields:') ?>
+											<?php echo gettext('custom fields:') ?>
 											<input id="customimagesort" name="customimagesort" type="text" value="<?php echo html_encode($cvt); ?>"></input>
 										</span>
 
@@ -1642,7 +1642,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td width="175"><?php echo gettext("Image quality:"); ?></td>
 									<td width="350">
 										<p class="nowrap">
-	<?php echo gettext('Normal Image'); ?>&nbsp;<input type="text" size="3" id="imagequality" name="image_quality" value="<?php echo getOption('image_quality'); ?>" />
+											<?php echo gettext('Normal Image'); ?>&nbsp;<input type="text" size="3" id="imagequality" name="image_quality" value="<?php echo getOption('image_quality'); ?>" />
 											<script type="text/javascript">
 														// <!-- <![CDATA[
 														$(function() {
@@ -1663,7 +1663,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										<div id="slider-imagequality"></div>
 										</p>
 										<p class="nowrap">
-	<?php echo gettext('<em>full</em> Image'); ?>&nbsp;<input type="text" size="3" id="fullimagequality" name="full_image_quality" value="<?php echo getOption('full_image_quality'); ?>" />
+											<?php echo gettext('<em>full</em> Image'); ?>&nbsp;<input type="text" size="3" id="fullimagequality" name="full_image_quality" value="<?php echo getOption('full_image_quality'); ?>" />
 											<script type="text/javascript">
 																								// <!-- <![CDATA[
 																								$(function() {
@@ -1684,7 +1684,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										<div id="slider-fullimagequality"></div>
 										</p>
 										<p class="nowrap">
-	<?php echo gettext('Thumbnail'); ?>&nbsp;<input type="text" size="3" id="thumbquality" name="thumb_quality" value="<?php echo getOption('thumb_quality'); ?>" />
+											<?php echo gettext('Thumbnail'); ?>&nbsp;<input type="text" size="3" id="thumbquality" name="thumb_quality" value="<?php echo getOption('thumb_quality'); ?>" />
 											<script type="text/javascript">
 																								// <!-- <![CDATA[
 																								$(function() {
@@ -1748,15 +1748,15 @@ Zenphoto_Authority::printPasswordFormJS();
 										<p class="nowrap">
 											<label>
 												<input type="checkbox" name="image_sharpen" value="1" <?php checked('1', getOption('image_sharpen')); ?> />
-	<?php echo gettext('Images'); ?>
+												<?php echo gettext('Images'); ?>
 											</label>
 											<label>
 												<input type="checkbox" name="thumb_sharpen" value="1" <?php checked('1', getOption('thumb_sharpen')); ?> />
-	<?php echo gettext('Thumbs'); ?>
+												<?php echo gettext('Thumbs'); ?>
 											</label>
 										</p>
 										<p class="nowrap">
-	<?php echo gettext('Amount'); ?>&nbsp;<input type="text" id="sharpenamount" name="sharpen_amount" size="3" value="<?php echo getOption('sharpen_amount'); ?>" />
+											<?php echo gettext('Amount'); ?>&nbsp;<input type="text" id="sharpenamount" name="sharpen_amount" size="3" value="<?php echo getOption('sharpen_amount'); ?>" />
 											<script type="text/javascript">
 																								// <!-- <![CDATA[
 																								$(function() {
@@ -1835,39 +1835,44 @@ Zenphoto_Authority::printPasswordFormJS();
 												$current = getOption($opt);
 												?>
 												<tr>
-													<td class="image_option_tablerow"><?php printf(gettext('%s thumbnails'), gettext($plugin));
-												if ($plugin != 'Image')
-													echo ' <strong>*</strong>';
-												?> </td>
+													<td class="image_option_tablerow">
+														<?php
+														printf(gettext('%s thumbnails'), gettext($plugin));
+														if ($plugin != 'Image')
+															echo ' <strong>*</strong>';
+														?> </td>
 													<td class="image_option_tablerow">
 														<select id="<?php echo $opt; ?>" name="<?php echo $opt; ?>">
-															<option value="" <?php if (empty($current)) echo ' selected="selected"' ?> style="background-color:LightGray"><?php if ($plugin == 'Image')
-													echo gettext('none');
-												else
-													echo gettext('image thumb')
-													?></option>
-												<?php
-												$watermarks = getWatermarks();
-												generateListFromArray(array($current), $watermarks, false, false);
-												?>
+															<option value="" <?php if (empty($current)) echo ' selected="selected"' ?> style="background-color:LightGray">
+																<?php
+																if ($plugin == 'Image')
+																	echo gettext('none');
+																else
+																	echo gettext('image thumb')
+																	?>
+															</option>
+															<?php
+															$watermarks = getWatermarks();
+															generateListFromArray(array($current), $watermarks, false, false);
+															?>
 														</select>
 													</td>
 												</tr>
-		<?php
-	}
-	?>
+												<?php
+											}
+											?>
 										</table>
 										<p class="nowrap">
-	<?php echo gettext('cover') . ' '; ?>
+											<?php echo gettext('cover') . ' '; ?>
 											<input type="text" size="2" name="watermark_scale"
 														 value="<?php echo html_encode(getOption('watermark_scale')); ?>" /><?php /* xgettext:no-php-format */ echo gettext('% of image') ?>
 											<label>
 												<input type="checkbox" name="watermark_allow_upscale" value="1"	<?php checked('1', getOption('watermark_allow_upscale')); ?> />
-	<?php echo gettext("allow upscale"); ?>
+												<?php echo gettext("allow upscale"); ?>
 											</label>
 										</p>
 										<p class="nowrap">
-	<?php echo gettext("offset h"); ?>
+											<?php echo gettext("offset h"); ?>
 											<input type="text" size="2" name="watermark_h_offset"
 														 value="<?php echo html_encode(getOption('watermark_h_offset')); ?>" /><?php echo /* xgettext:no-php-format */ gettext("% w, "); ?>
 											<input type="text" size="2" name="watermark_w_offset"
@@ -1883,9 +1888,9 @@ Zenphoto_Authority::printPasswordFormJS();
 										if (!empty($imageplugins)) {
 											?>
 											<p class="notebox"><?php echo '* ' . gettext('If a watermark image is selected for these <em>images classes</em> it will be used in place of the image thumbnail watermark.'); ?></p>
-		<?php
-	}
-	?>
+											<?php
+										}
+										?>
 									</td>
 
 								</tr>
@@ -1915,10 +1920,10 @@ Zenphoto_Authority::printPasswordFormJS();
 										<input type="hidden" id="cache-workers" name="imageProcessorConcurrency" value="<?php echo getOption('imageProcessorConcurrency'); ?>" />
 									</td>
 									<td>
-	<?php
-	printf(gettext('Cache processing worker limit: %s.'), '<span id="cache_processes">' . getOption('imageProcessorConcurrency') . '</span>') .
-					'<p class="notebox">' . gettext('More workers will get the job done faster so long as your server does not get swamped or run out of memory.') . '</p>';
-	?>
+										<?php
+										printf(gettext('Cache processing worker limit: %s.'), '<span id="cache_processes">' . getOption('imageProcessorConcurrency') . '</span>') .
+														'<p class="notebox">' . gettext('More workers will get the job done faster so long as your server does not get swamped or run out of memory.') . '</p>';
+										?>
 									</td>
 								</tr>
 								<tr>
@@ -1931,9 +1936,9 @@ Zenphoto_Authority::printPasswordFormJS();
 										foreach ($cachesuffix as $suffix) {
 											?>
 											<input type="radio" name="image_cache_suffix" value="<?php echo $suffix; ?>"<?php if ($type == $suffix) echo ' checked="checked"'; ?> />&nbsp;<?php echo $suffix; ?>
-		<?php
-	}
-	?>
+											<?php
+										}
+										?>
 									</td>
 									<td><?php echo gettext("Select a type for the images stored in the image cache. Select <em>Original</em> to preserve the original image's type."); ?></td>
 								</tr>
@@ -1948,23 +1953,23 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td><?php echo gettext("Protect image cache"); ?></td>
 									<td>
 										<input type="checkbox" name="protected_image_cache" value="1"
-	<?php checked('1', getOption('protected_image_cache')); ?> />&nbsp;<?php echo gettext("Enabled"); ?>
+													 <?php checked('1', getOption('protected_image_cache')); ?> />&nbsp;<?php echo gettext("Enabled"); ?>
 									</td>
 									<td><?php
-													 echo gettext('If checked all image URIs will link to the image processor and the image cache will be disabled to browsers via an <em>.htaccess</em> file. Images are still cached but the image processor is used to serve the image rather than allowing the browser to fetch the file.') .
-													 '<p class="notebox">' . gettext('<strong>WARNING	:</strong> This option adds significant overhead to <strong>each and every</strong> image reference! Some <em>JavaScript</em> and <em>Flash</em> based image handlers will not work with an image processor URI and are incompatible with this option.') . '</p>';
-													 ?></td>
+										echo gettext('If checked all image URIs will link to the image processor and the image cache will be disabled to browsers via an <em>.htaccess</em> file. Images are still cached but the image processor is used to serve the image rather than allowing the browser to fetch the file.') .
+										'<p class="notebox">' . gettext('<strong>WARNING	:</strong> This option adds significant overhead to <strong>each and every</strong> image reference! Some <em>JavaScript</em> and <em>Flash</em> based image handlers will not work with an image processor URI and are incompatible with this option.') . '</p>';
+										?></td>
 								</tr>
 								<tr>
 									<td><?php echo gettext("Secure image processor"); ?></td>
 									<td>
 										<input type="checkbox" name="secure_image_processor" value="1"
-	<?php checked('1', getOption('secure_image_processor')); ?> />&nbsp;<?php echo gettext("Enabled"); ?>
+													 <?php checked('1', getOption('secure_image_processor')); ?> />&nbsp;<?php echo gettext("Enabled"); ?>
 									</td>
 									<td><?php
-	echo gettext('When enabled, the image processor will check album access credentials.') .
-	'<p class="notebox">' . gettext('<strong>WARNING	:</strong> This option adds memory overhead to image caching! You may be unable to cache some images depending on your server memory availability.') . '</p>';
-	?></td>
+										echo gettext('When enabled, the image processor will check album access credentials.') .
+										'<p class="notebox">' . gettext('<strong>WARNING	:</strong> This option adds memory overhead to image caching! You may be unable to cache some images depending on your server memory availability.') . '</p>';
+										?></td>
 								</tr>
 								<tr>
 									<td><?php echo gettext("Full image protection:"); ?></td>
@@ -1972,25 +1977,25 @@ Zenphoto_Authority::printPasswordFormJS();
 										<p>
 											<label>
 												<input type="checkbox" name="hotlink_protection" value="1" <?php checked('1', getOption('hotlink_protection')); ?> />
-										<?php echo gettext('Disable hotlinking'); ?>
+												<?php echo gettext('Disable hotlinking'); ?>
 											</label>
 											<br />
 											<label>
 												<input type="checkbox" name="cache_full_image" value="1" <?php checked('1', getOption('cache_full_image')); ?> />
-	<?php echo gettext('cache the full image'); ?>
+												<?php echo gettext('cache the full image'); ?>
 											</label>
 										</p>
 
 										<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
-	<?php
-	if (GALLERY_SECURITY == 'public') {
-		?>
+										<?php
+										if (GALLERY_SECURITY == 'public') {
+											?>
 											<br class="clearall" />
 											<table class="compact">
 												<tr class="passwordextrashow">
 													<td style="margin:0; padding:0">
 														<a href="javascript:toggle_passwords('',true);">
-														<?php echo gettext("password:"); ?>
+															<?php echo gettext("password:"); ?>
 														</a>
 													</td>
 													<td style="margin:0; padding:0">
@@ -1999,20 +2004,20 @@ Zenphoto_Authority::printPasswordFormJS();
 														if (empty($x)) {
 															?>
 															<img src="images/lock_open.png" />
-			<?php
-		} else {
-			$x = '          ';
-			?>
+															<?php
+														} else {
+															$x = '          ';
+															?>
 															<a onclick="resetPass('');" title="<?php echo gettext('clear password'); ?>"><img src="images/lock.png" /></a>
-			<?php
-		}
-		?>
+															<?php
+														}
+														?>
 													</td>
 												</tr>
 												<tr class="passwordextrahide" style="display:none">
 													<td style="margin:0; padding:0">
 														<a href="javascript:toggle_passwords('',false);">
-		<?php echo gettext("user:"); ?>
+															<?php echo gettext("user:"); ?>
 														</a>
 													</td>
 													<td style="margin:0; padding:0">
@@ -2027,11 +2032,11 @@ Zenphoto_Authority::printPasswordFormJS();
 												<tr class="passwordextrahide" style="display:none" >
 													<td style="margin:0; padding:0">
 														<span id="strength">
-		<?php echo gettext("password:"); ?>
+															<?php echo gettext("password:"); ?>
 														</span>
 														<br />
 														<span id="match" class="password_field_">
-		<?php echo gettext("(repeat)"); ?>
+															<?php echo gettext("(repeat)"); ?>
 														</span>
 													</td>
 													<td style="margin:0; padding:0">
@@ -2052,16 +2057,16 @@ Zenphoto_Authority::printPasswordFormJS();
 												</tr>
 												<tr class="passwordextrahide" style="display:none" >
 													<td style="margin:0; padding:0">
-											<?php echo gettext("hint:"); ?>
+														<?php echo gettext("hint:"); ?>
 													</td>
 													<td style="margin:0; padding:0">
-												<?php print_language_string_list(getOption('protected_image_hint'), 'hint', false, NULL, 'hint') ?>
+														<?php print_language_string_list(getOption('protected_image_hint'), 'hint', false, NULL, 'hint') ?>
 													</td>
 												</tr>
 											</table>
-												<?php
-											}
-											?>
+											<?php
+										}
+										?>
 										<p>
 											<?php
 											echo "<select id=\"protect_full_image\" name=\"protect_full_image\">\n";
@@ -2086,7 +2091,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td><?php echo gettext("Use lock image"); ?></td>
 									<td>
 										<input type="checkbox" name="use_lock_image" value="1"
-	<?php checked('1', getOption('use_lock_image')); ?> />&nbsp;<?php echo gettext("Enabled"); ?>
+													 <?php checked('1', getOption('use_lock_image')); ?> />&nbsp;<?php echo gettext("Enabled"); ?>
 									</td>
 									<td><?php echo gettext("Substitute a <em>lock</em> image for thumbnails of password protected albums when the viewer has not supplied the password. If your theme supplies an <code>images/err-passwordprotected.png</code> image, it will be shown. Otherwise the zenphoto default lock image is displayed."); ?></td>
 								</tr>
@@ -2126,17 +2131,17 @@ Zenphoto_Authority::printPasswordFormJS();
 														<label><input id="<?php echo $key; ?>_show" name="<?php echo $key; ?>" type="radio"<?php echo $checked_show ?> value="1" /><img src ="images/pass.png" alt="<?php echo gettext('show'); ?>" /></label>
 														<label><input id="<?php echo $key; ?>_hide" name="<?php echo $key; ?>" type="radio"<?php echo $checked_hide ?> value="0" /><img src ="images/reset.png" alt="<?php echo gettext('hide'); ?>" /></label>
 														<label><input id="<?php echo $key; ?>_disable" name="<?php echo $key; ?>" type="radio"<?php echo $checked_disabled ?> value="2" /><img src ="images/fail.png" alt="<?php echo gettext('disabled'); ?>" /></label>
-												<?php echo $item[2]; ?>&nbsp;&nbsp;&nbsp;
+														<?php echo $item[2]; ?>&nbsp;&nbsp;&nbsp;
 													</li>
-		<?php
-	}
-	?>
+													<?php
+												}
+												?>
 											</ul>
 										</div>
 									</td>
 									<td>
 										<p>
-	<?php echo gettext("Select how image metadata fields are handled."); ?>
+											<?php echo gettext("Select how image metadata fields are handled."); ?>
 										<ul style="list-style: none;">
 											<li><img src ="images/pass.png" alt="<?php echo gettext('show'); ?>" /><?php echo gettext('Show the field'); ?></li>
 											<li><img src ="images/reset.png" alt="<?php echo gettext('show'); ?>" /><?php echo gettext('Hide the field'); ?></li>
@@ -2144,20 +2149,20 @@ Zenphoto_Authority::printPasswordFormJS();
 										</ul>
 										</p>
 										<p>
-	<?php echo gettext('Hint: you can drag down the <em>drag handle</em> in the lower right corner to show more selections.') ?>
+											<?php echo gettext('Hint: you can drag down the <em>drag handle</em> in the lower right corner to show more selections.') ?>
 										</p>
 									</td>
 								</tr>
-											<?php
-											$sets = array_merge($_zp_UTF8->iconv_sets, $_zp_UTF8->mb_sets);
-											ksort($sets, SORT_LOCALE_STRING);
-											if (!empty($sets)) {
-												?>
+								<?php
+								$sets = array_merge($_zp_UTF8->iconv_sets, $_zp_UTF8->mb_sets);
+								ksort($sets, SORT_LOCALE_STRING);
+								if (!empty($sets)) {
+									?>
 									<tr>
 										<td><?php echo gettext("IPTC encoding:"); ?></td>
 										<td>
 											<select id="IPTC_encoding" name="IPTC_encoding">
-									<?php generateListFromArray(array(getOption('IPTC_encoding')), array_flip($sets), false, true) ?>
+												<?php generateListFromArray(array(getOption('IPTC_encoding')), array_flip($sets), false, true) ?>
 											</select>
 										</td>
 										<td><?php echo gettext("The default character encoding of image IPTC metadata."); ?></td>
@@ -2179,9 +2184,9 @@ Zenphoto_Authority::printPasswordFormJS();
 										<p><input type="textbox" name="default_copyright" value="<?php echo getOption('default_copyright'); ?>" size="50" /></p>
 									</td>
 									<td>
-	<?php echo $desc; ?>
+										<?php echo $desc; ?>
 										<p class="notebox">
-	<?php echo gettext('<strong>NOTE:</strong> This option  applies only to JPEG format cached images.'); ?>
+											<?php echo gettext('<strong>NOTE:</strong> This option  applies only to JPEG format cached images.'); ?>
 										</p>
 									</td>
 								</tr>
@@ -2196,11 +2201,11 @@ Zenphoto_Authority::printPasswordFormJS();
 							</table>
 						</form>
 					</div><!-- end of tab_image div -->
-						<?php
-					}
+					<?php
+				}
 
-					if ($subtab == 'theme' && zp_loggedin(THEMES_RIGHTS)) {
-						?>
+				if ($subtab == 'theme' && zp_loggedin(THEMES_RIGHTS)) {
+					?>
 					<div id="tab_theme" class="tabbox">
 						<?php
 						zp_apply_filter('admin_note', 'options', $subtab);
@@ -2265,7 +2270,7 @@ Zenphoto_Authority::printPasswordFormJS();
 						standardThemeOptions($themename, $album);
 						?>
 						<form action="?action=saveoptions" method="post" id="themeoptionsform" autocomplete="off">
-	<?php XSRFToken('saveoptions'); ?>
+							<?php XSRFToken('saveoptions'); ?>
 							<input type="hidden" id="savethemeoptions" name="savethemeoptions" value="yes" />
 							<input type="hidden" name="optiontheme" value="<?php echo html_encode($themename); ?>" />
 							<input type="hidden" name="old_themealbum" value="<?php echo pathurlencode($alb); ?>" />
@@ -2281,12 +2286,12 @@ Zenphoto_Authority::printPasswordFormJS();
 									</div>
 									</th>
 
-										<?php
-									} else {
-										/* handle theme options */
-										$themes = $_zp_gallery->getThemes();
-										$theme = $themes[$themename];
-										?>
+									<?php
+								} else {
+									/* handle theme options */
+									$themes = $_zp_gallery->getThemes();
+									$theme = $themes[$themename];
+									?>
 									<tr>
 										<th colspan='2'>
 									<h2 style='float: left'>
@@ -2309,11 +2314,11 @@ Zenphoto_Authority::printPasswordFormJS();
 										} else {
 											?>
 											<input type="hidden" name="themealbum" value="<?php echo pathurlencode($alb); ?>" />
-			<?php
-			echo '&nbsp;';
-		}
-		echo "</th></tr>\n";
-		?>
+											<?php
+											echo '&nbsp;';
+										}
+										echo "</th></tr>\n";
+										?>
 									<tr>
 										<td colspan="3">
 											<p class="buttons">
@@ -2356,10 +2361,10 @@ Zenphoto_Authority::printPasswordFormJS();
 											if (getThemeOption('albums_per_row', $album, $themename) > 1) {
 												?>
 												<p class="notebox">
-			<?php
-			echo gettext('<strong>Note:</strong> If <em>thumbnails per row</em> is greater than 1, The actual number of thumbnails that are displayed on a page will be rounded up to  the next multiple of it.') . ' ';
-			printf(gettext('For album pages there will be %1$u rows of thumbnails.'), ceil(getThemeOption('albums_per_page', $album, $themename) / getThemeOption('albums_per_row', $album, $themename)));
-			?>
+													<?php
+													echo gettext('<strong>Note:</strong> If <em>thumbnails per row</em> is greater than 1, The actual number of thumbnails that are displayed on a page will be rounded up to  the next multiple of it.') . ' ';
+													printf(gettext('For album pages there will be %1$u rows of thumbnails.'), ceil(getThemeOption('albums_per_page', $album, $themename) / getThemeOption('albums_per_row', $album, $themename)));
+													?>
 												</p>
 												<?php
 											}
@@ -2393,23 +2398,23 @@ Zenphoto_Authority::printPasswordFormJS();
 											if (getThemeOption('images_per_row', $album, $themename) > 1) {
 												?>
 												<p class="notebox">
-										<?php
-										echo gettext('<strong>Note:</strong> If <em>thumbnails per row</em> is greater than 1, The actual number of thumbnails that are displayed on a page will be rounded up to  the next multiple of it.') . ' ';
-										printf(gettext('For pages containing images there will be %1$u rows of thumbnails.'), ceil(getThemeOption('images_per_page', $album, $themename) / getThemeOption('images_per_row', $album, $themename)));
-										?>
+													<?php
+													echo gettext('<strong>Note:</strong> If <em>thumbnails per row</em> is greater than 1, The actual number of thumbnails that are displayed on a page will be rounded up to  the next multiple of it.') . ' ';
+													printf(gettext('For pages containing images there will be %1$u rows of thumbnails.'), ceil(getThemeOption('images_per_page', $album, $themename) / getThemeOption('images_per_row', $album, $themename)));
+													?>
 												</p>
-										<?php
-									}
-									?>
+												<?php
+											}
+											?>
 										</td>
 									</tr>
-		<?php
-		if (in_array('thumb_transition', $unsupportedOptions)) {
-			$disable = ' disabled="disabled"';
-		} else {
-			$disable = '';
-		}
-		?>
+									<?php
+									if (in_array('thumb_transition', $unsupportedOptions)) {
+										$disable = ' disabled="disabled"';
+									} else {
+										$disable = '';
+									}
+									?>
 									<tr>
 										<td><?php echo gettext('Transition:'); ?></td>
 										<td>
@@ -2439,7 +2444,6 @@ Zenphoto_Authority::printPasswordFormJS();
 									} else {
 										$disable = '';
 									}
-
 									$ts = max(1, getThemeOption('thumb_size', $album, $themename));
 									$iw = getThemeOption('thumb_crop_width', $album, $themename);
 									$ih = getThemeOption('thumb_crop_height', $album, $themename);
@@ -2453,29 +2457,29 @@ Zenphoto_Authority::printPasswordFormJS();
 										</td>
 										<td><?php printf(gettext("Standard thumbnails will be scaled to %u pixels."), $ts); ?></td>
 									</tr>
-		<?php
-		if (in_array('thumb_crop', $unsupportedOptions)) {
-			$disable = ' disabled="disabled"';
-		} else {
-			$disable = '';
-		}
-		?>
+									<?php
+									if (in_array('thumb_crop', $unsupportedOptions)) {
+										$disable = ' disabled="disabled"';
+									} else {
+										$disable = '';
+									}
+									?>
 									<tr>
 										<td><?php echo gettext("Crop thumbnails:"); ?></td>
 										<td>
 											<input type="checkbox" name="thumb_crop" value="1" <?php checked('1', $tc = getThemeOption('thumb_crop', $album, $themename)); ?><?php echo $disable; ?> />
 											&nbsp;&nbsp;
 											<span class="nowrap">
-											<?php printf(gettext('%s%% left &amp; right'), '<input type="text" size="3" name="thumb_crop_width" id="thumb_crop_width" value="' . $cl . '"' . $disable . ' />')
-											?>
+												<?php printf(gettext('%s%% left &amp; right'), '<input type="text" size="3" name="thumb_crop_width" id="thumb_crop_width" value="' . $cl . '"' . $disable . ' />')
+												?>
 											</span>&nbsp;
 											<span class="nowrap">
-		<?php printf(gettext('%s%% top &amp; bottom'), '<input type="text" size="3" name="thumb_crop_height" id="thumb_crop_height"	value="' . $ct . '"' . $disable . '" />');
-		?>
+												<?php printf(gettext('%s%% top &amp; bottom'), '<input type="text" size="3" name="thumb_crop_height" id="thumb_crop_height"	value="' . $ct . '"' . $disable . '" />');
+												?>
 											</span>
 										</td>
 										<td>
-												<?php printf(gettext('If checked the thumbnail will be cropped %1$.1f%% in from the top and the bottom margins and %2$.1f%% in from the left and the right margins.'), $ct, $cl); ?>
+											<?php printf(gettext('If checked the thumbnail will be cropped %1$.1f%% in from the top and the bottom margins and %2$.1f%% in from the left and the right margins.'), $ct, $cl); ?>
 											<br />
 											<p class='notebox'><?php echo gettext('<strong>Note:</strong> changing crop will invalidate existing custom crops.'); ?></p>
 										</td>
@@ -2484,23 +2488,23 @@ Zenphoto_Authority::printPasswordFormJS();
 										<td><?php echo gettext("Gray scale conversion:"); ?></td>
 										<td>
 											<label class="checkboxlabel">
-									<?php echo gettext('image') ?>
+												<?php echo gettext('image') ?>
 												<input type="checkbox" name="image_gray" id="image_gray" value="1" <?php checked('1', getThemeOption('image_gray', $album, $themename)); ?> />
 											</label>
 											<label class="checkboxlabel">
-									<?php echo gettext('thumbnail') ?>
+												<?php echo gettext('thumbnail') ?>
 												<input type="checkbox" name="thumb_gray" id="thumb_gray" value="1" <?php checked('1', getThemeOption('thumb_gray', $album, $themename)); ?> />
 											</label>
 										</td>
 										<td><?php echo gettext("If checked, images/thumbnails will be created in gray scale."); ?></td>
 									</tr>
-		<?php
-		if (in_array('image_size', $unsupportedOptions)) {
-			$disable = ' disabled="disabled"';
-		} else {
-			$disable = '';
-		}
-		?>
+									<?php
+									if (in_array('image_size', $unsupportedOptions)) {
+										$disable = ' disabled="disabled"';
+									} else {
+										$disable = '';
+									}
+									?>
 									<tr>
 										<td><?php echo gettext("Image size:"); ?></td>
 										<td><?php $side = getThemeOption('image_use_side', $album, $themename); ?>
@@ -2509,42 +2513,42 @@ Zenphoto_Authority::printPasswordFormJS();
 													<td rowspan="2" style="margin: 0; padding: 0"><input type="text"
 																																							 size="3" name="image_size"
 																																							 value="<?php echo getThemeOption('image_size', $album, $themename); ?>"
-		<?php echo $disable; ?> /></td>
+																																							 <?php echo $disable; ?> /></td>
 													<td style="margin: 0; padding: 0"><label> <input type="radio"
 																																					 id="image_use_side1" name="image_use_side" value="height"
-		<?php if ($side == 'height') echo ' checked="checked"'; ?>
+																																					 <?php if ($side == 'height') echo ' checked="checked"'; ?>
 																																					 <?php echo $disable; ?> /> <?php echo gettext('height') ?> </label>
 														<label> <input type="radio" id="image_use_side2"
 																					 name="image_use_side" value="width"
-		<?php if ($side == 'width') echo ' checked="checked"'; ?>
-																										<?php echo $disable; ?> /> <?php echo gettext('width') ?> </label>
+																					 <?php if ($side == 'width') echo ' checked="checked"'; ?>
+																					 <?php echo $disable; ?> /> <?php echo gettext('width') ?> </label>
 													</td>
 												</tr>
 												<tr>
 													<td style="margin: 0; padding: 0"><label> <input type="radio"
 																																					 id="image_use_side3" name="image_use_side" value="shortest"
-		<?php if ($side == 'shortest') echo ' checked="checked"'; ?>
-											<?php echo $disable; ?> /> <?php echo gettext('shortest side') ?>
+																																					 <?php if ($side == 'shortest') echo ' checked="checked"'; ?>
+																																					 <?php echo $disable; ?> /> <?php echo gettext('shortest side') ?>
 														</label> <label> <input type="radio" id="image_use_side4"
 																										name="image_use_side" value="longest"
-									<?php if ($side == 'longest') echo ' checked="checked"'; ?>
-									<?php echo $disable; ?> /> <?php echo gettext('longest side') ?> </label>
+																										<?php if ($side == 'longest') echo ' checked="checked"'; ?>
+																										<?php echo $disable; ?> /> <?php echo gettext('longest side') ?> </label>
 													</td>
 												</tr>
 											</table>
 										</td>
 										<td><?php echo gettext("Default image display size."); ?> <br />
-									<?php echo gettext("The image will be sized so that the <em>height</em>, <em>width</em>, <em>shortest side</em>, or the <em>longest side</em> will be equal to <em>image size</em>."); ?>
+											<?php echo gettext("The image will be sized so that the <em>height</em>, <em>width</em>, <em>shortest side</em>, or the <em>longest side</em> will be equal to <em>image size</em>."); ?>
 										</td>
 									</tr>
-		<?php
-		if (is_null($album)) {
-			if (in_array('custom_index_page', $unsupportedOptions)) {
-				$disable = ' disabled="disabled"';
-			} else {
-				$disable = '';
-			}
-			?>
+									<?php
+									if (is_null($album)) {
+										if (in_array('custom_index_page', $unsupportedOptions)) {
+											$disable = ' disabled="disabled"';
+										} else {
+											$disable = '';
+										}
+										?>
 										<tr>
 											<td><?php echo gettext("Gallery index page link:"); ?></td>
 											<td>
@@ -2574,14 +2578,14 @@ Zenphoto_Authority::printPasswordFormJS();
 										?>
 										<tr class="alt1" >
 											<td align="left">
-			<?php echo gettext('<strong>Custom theme options</strong>') ?>
+												<?php echo gettext('<strong>Custom theme options</strong>') ?>
 											</td>
 											<td colspan="2"><em><?php printf(gettext('The following are options specifically implemented by %s.'), $theme['name']); ?></em></td>
 										</tr>
-			<?php
-			customOptions($optionHandler, '', $album, false, $supportedOptions, $themename);
-		}
-		?>
+										<?php
+										customOptions($optionHandler, '', $album, false, $supportedOptions, $themename);
+									}
+									?>
 									<tr>
 										<td colspan="3">
 											<p class="buttons">
@@ -2591,9 +2595,9 @@ Zenphoto_Authority::printPasswordFormJS();
 											</p>
 										</td>
 									</tr>
-						<?php
-					}
-					?>
+									<?php
+								}
+								?>
 							</table>
 						</form>
 					</div>
@@ -2642,11 +2646,11 @@ Zenphoto_Authority::printPasswordFormJS();
 					$plugins = array_slice($plugins, $subpage * PLUGINS_PER_PAGE, PLUGINS_PER_PAGE);
 					?>
 					<div id="tab_plugin" class="tabbox">
-	<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
+						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
 						<script type="text/javascript">
 																											var optionholder = new array();</script>
 						<form action="?action=saveoptions<?php if (isset($_GET['single'])) echo '&amp;single=' . $showExtension; ?>" method="post" autocomplete="off">
-	<?php XSRFToken('saveoptions'); ?>
+							<?php XSRFToken('saveoptions'); ?>
 							<input type="hidden" name="savepluginoptions" value="yes" />
 							<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
 							<table class="bordered">
@@ -2667,7 +2671,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										</span>
 									</th>
 									<th style="text-align:right; padding-right: 10px;">
-								<?php printPageSelector($subpage, $rangeset, 'admin-options.php', array('page' => 'options', 'tab'	 => 'plugin')); ?>
+										<?php printPageSelector($subpage, $rangeset, 'admin-options.php', array('page' => 'options', 'tab'	 => 'plugin')); ?>
 									</th>
 									<th></th>
 								</tr>
@@ -2706,33 +2710,33 @@ Zenphoto_Authority::printPasswordFormJS();
 											<td style="padding: 0;margin:0" colspan="3">
 												<table class="options" style="border: 0" id="plugin-<?php echo $extension; ?>">
 													<tr>
-			<?php
-			if (isset($_GET['show-' . $extension]) || count($plugins) == 1) {
-				$reveal[] = $extension;
-				$v = 1;
-			} else {
-				$v = 0;
-			}
-			?>
+														<?php
+														if (isset($_GET['show-' . $extension]) || count($plugins) == 1) {
+															$reveal[] = $extension;
+															$v = 1;
+														} else {
+															$v = 0;
+														}
+														?>
 														<th style="text-align:left; width: 20%">
 															<span id="<?php echo $extension; ?>" ></span>
 															<input type="hidden" name="show-<?php echo $extension; ?>" id="show-<?php echo $extension; ?>" value="<?php echo $v; ?>" />
 															<span style="display:block" class="pluginextrashow">
 																<a href="javascript:$('#show-<?php echo $extension; ?>').val(1);toggleExtraInfo('<?php echo $extension; ?>','plugin',true);"><?php echo $extension; ?></a>
-			<?php
-			if ($warn) {
-				?>
-																	<img src="images/action.png" alt="<?php echo gettext('warning'); ?>" />
 																<?php
-															}
-															?>
+																if ($warn) {
+																	?>
+																	<img src="images/action.png" alt="<?php echo gettext('warning'); ?>" />
+																	<?php
+																}
+																?>
 															</span>
 															<span style="display:none" class="pluginextrahide">
 																<a href="javascript:$('#show-<?php echo $extension; ?>').val(0);toggleExtraInfo('<?php echo $extension; ?>','plugin',false);"><?php echo $extension; ?></a>
 															</span>
 														</th>
 														<th style="text-align:left; font-weight: normal;" colspan="2">
-			<?php echo $plugin_description; ?>
+															<?php echo $plugin_description; ?>
 														</th>
 													</tr>
 													<?php
@@ -2743,35 +2747,35 @@ Zenphoto_Authority::printPasswordFormJS();
 																<p class="notebox" ><?php echo $warn; ?></p>
 															</td>
 														</tr>
-										<?php
-									}
-									$supportedOptions = $option_interface->getOptionsSupported();
-									if (count($supportedOptions) > 0) {
-										customOptions($option_interface, '', NULL, 'plugin', $supportedOptions, NULL, 'none', $extension);
-									}
-									?>
+														<?php
+													}
+													$supportedOptions = $option_interface->getOptionsSupported();
+													if (count($supportedOptions) > 0) {
+														customOptions($option_interface, '', NULL, 'plugin', $supportedOptions, NULL, 'none', $extension);
+													}
+													?>
 											</td>
 									</table>
 									</tr>
-											<?php
-										}
-									}
-									if ($_zp_plugin_count == 0) {
-										?>
+									<?php
+								}
+							}
+							if ($_zp_plugin_count == 0) {
+								?>
 								<tr>
 									<td style="padding: 0;margin:0" colspan="3">
-		<?php
-		echo gettext("There are no plugin options to administer.");
-		?>
+										<?php
+										echo gettext("There are no plugin options to administer.");
+										?>
 									</td>
 								</tr>
-		<?php
-	} else {
-		?>
+								<?php
+							} else {
+								?>
 								<tr>
 									<th></th>
 									<th style="text-align:right; padding-right: 10px;">
-		<?php printPageSelector($subpage, $rangeset, 'admin-options.php', array('page' => 'options', 'tab'	 => 'plugin')); ?>
+										<?php printPageSelector($subpage, $rangeset, 'admin-options.php', array('page' => 'options', 'tab'	 => 'plugin')); ?>
 									</th>
 									<th></th>
 								</tr>
@@ -2785,9 +2789,9 @@ Zenphoto_Authority::printPasswordFormJS();
 								</tr>
 								</table> <!-- single plugin page table -->
 								<input type="hidden" name="checkForPostTruncation" value="1" />
-		<?php
-	}
-	?>
+								<?php
+							}
+							?>
 						</form>
 						<script type="text/javascript">
 																							// <!-- <![CDATA[
@@ -2805,22 +2809,22 @@ Zenphoto_Authority::printPasswordFormJS();
 	foreach ($reveal as $extension) {
 		?>
 																								toggleExtraInfo('<?php echo $extension; ?>', 'plugin', true);
-						<?php
-					}
-					?>
+		<?php
+	}
+	?>
 																							}
 																							// ]]> -->
 						</script>
 					</div>
 					<!-- end of tab_plugin div -->
-	<?php
-}
-if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
-	?>
+					<?php
+				}
+				if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
+					?>
 					<div id="tab_security" class="tabbox">
-	<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
+						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
 						<form action="?action=saveoptions" method="post" autocomplete="off">
-	<?php XSRFToken('saveoptions'); ?>
+							<?php XSRFToken('saveoptions'); ?>
 							<input type="hidden" name="savesecurityoptions" value="yes" />
 							<table class="options">
 								<tr>
@@ -2844,12 +2848,12 @@ if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 									<td>
 										<p><?php echo gettext("Normally this option should be set to <em>http</em>. If you're running a secure server, change this to <em>https</em>. Select <em>secure admin</em> if you need only to insure secure access to <code>admin</code> pages."); ?></p>
 										<p class="notebox"><?php
-										echo gettext("<strong>Note:</strong>" .
-														"<br /><br />Login from the front-end user login form is secure only if <em>https</em> is selected." .
-														"<br /><br />If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  " .
-														"If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! " .
-														'Your only possibility then is to change the option named <span class="inlinecode">server_protocol</span> in the <em>options</em> table of your database.');
-										?>
+											echo gettext("<strong>Note:</strong>" .
+															"<br /><br />Login from the front-end user login form is secure only if <em>https</em> is selected." .
+															"<br /><br />If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  " .
+															"If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! " .
+															'Your only possibility then is to change the option named <span class="inlinecode">server_protocol</span> in the <em>options</em> table of your database.');
+											?>
 										</p>
 									</td>
 								</tr>
@@ -2859,17 +2863,17 @@ if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 										<label><input type="checkbox" name="IP_tied_cookies" value="1" <?php checked(1, getOption('IP_tied_cookies')); ?> /><?php echo gettext('enable'); ?></label>
 									</td>
 									<td>
-											<?php echo gettext('Tie cookies to the IP address of the browser.'); ?>
+										<?php echo gettext('Tie cookies to the IP address of the browser.'); ?>
 										<p class="notebox">
-	<?php
-	if (!getOption('IP_tied_cookies')) {
-		echo ' ' . gettext('<strong>Note</strong>: If your browser does not present a consistant IP address during a session you may not be able to log into your site when this option is enabled.') . ' ';
-	}
-	echo gettext(' You <strong>WILL</strong> have to login after changing this option.');
-	if (!getOption('IP_tied_cookies')) {
-		echo ' ' . gettext('If you set the option and cannot login, you will have to restore your database to a point when the option was not set, so you might want to backup your database first.');
-	}
-	?>
+											<?php
+											if (!getOption('IP_tied_cookies')) {
+												echo ' ' . gettext('<strong>Note</strong>: If your browser does not present a consistant IP address during a session you may not be able to log into your site when this option is enabled.') . ' ';
+											}
+											echo gettext(' You <strong>WILL</strong> have to login after changing this option.');
+											if (!getOption('IP_tied_cookies')) {
+												echo ' ' . gettext('If you set the option and cannot login, you will have to restore your database to a point when the option was not set, so you might want to backup your database first.');
+											}
+											?>
 										</p>
 									</td>
 								</tr>
@@ -2879,60 +2883,60 @@ if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 										<label><input type="checkbox" name="image_processor_flooding_protection" value="1" <?php checked(1, getOption('image_processor_flooding_protection')); ?> /><?php echo gettext('enable'); ?></label>
 									</td>
 									<td>
-	<?php echo gettext('Add a security parameter to image processor URIs to prevent denial of service attacks requesting arbitrary sized images.'); ?>
+										<?php echo gettext('Add a security parameter to image processor URIs to prevent denial of service attacks requesting arbitrary sized images.'); ?>
 									</td>
 								</tr>
-												<?php
-												if (GALLERY_SECURITY == 'public') {
-													$disable = $_zp_gallery->getUser() || getOption('search_user') || getOption('protected_image_user') || getOption('downloadList_user');
-													?>
+								<?php
+								if (GALLERY_SECURITY == 'public') {
+									$disable = $_zp_gallery->getUser() || getOption('search_user') || getOption('protected_image_user') || getOption('downloadList_user');
+									?>
 									<div class="public_gallery">
 										<tr>
 											<td><?php echo gettext('User name'); ?></td>
 											<td>
 												<label>
-		<?php
-		if ($disable) {
-			?>
+													<?php
+													if ($disable) {
+														?>
 														<input type="hidden" name="login_user_field" value="1" />
 														<input type="checkbox" name="login_user_field_disabled" id="login_user_field"
 																	 value="1" checked="checked" disabled="disabled" />
-			<?php
-		} else {
-			?>
+																	 <?php
+																 } else {
+																	 ?>
 														<input type="checkbox" name="login_user_field" id="login_user_field"
 																	 value="1" <?php checked('1', $_zp_gallery->getUserLogonField()); ?> />
-													<?php
-												}
-												echo gettext("enable");
-												?>
+																	 <?php
+																 }
+																 echo gettext("enable");
+																 ?>
 												</label>
 											</td>
 											<td>
-									<?php
-									echo gettext('If enabled guest logon forms will include the <em>User Name</em> field. This allows <em>Zenphoto</em> users to logon from the form.');
-									if ($disable) {
-										echo '<p class="notebox">' . gettext('<strong>Note</strong>: This field is required because one or more of the <em>Guest</em> passwords has a user name associated.') . '</p>';
-									}
-									?>
+												<?php
+												echo gettext('If enabled guest logon forms will include the <em>User Name</em> field. This allows <em>Zenphoto</em> users to logon from the form.');
+												if ($disable) {
+													echo '<p class="notebox">' . gettext('<strong>Note</strong>: This field is required because one or more of the <em>Guest</em> passwords has a user name associated.') . '</p>';
+												}
+												?>
 											</td>
 										</tr>
 									</div>
-										<?php
-									} else {
-										?>
-									<input type="hidden" name="login_user_field" id="login_user_field"	value="<?php echo $_zp_gallery->getUserLogonField(); ?>" />
-										<?php
-									}
+									<?php
+								} else {
 									?>
+									<input type="hidden" name="login_user_field" id="login_user_field"	value="<?php echo $_zp_gallery->getUserLogonField(); ?>" />
+									<?php
+								}
+								?>
 								</tr>
 								<tr>
-	<?php
-	$supportedOptions = $_zp_authority->getOptionsSupported();
-	if (count($supportedOptions) > 0) {
-		customOptions($_zp_authority, '');
-	}
-	?>
+									<?php
+									$supportedOptions = $_zp_authority->getOptionsSupported();
+									if (count($supportedOptions) > 0) {
+										customOptions($_zp_authority, '');
+									}
+									?>
 								</tr>
 								<tr>
 									<td colspan="3">
@@ -2946,14 +2950,14 @@ if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 						</form>
 					</div>
 					<!-- end of tab_security div -->
-	<?php
-}
-?>
+					<?php
+				}
+				?>
 			</div><!-- end of container -->
 
 		</div><!-- end of content -->
 	</div><!-- end of main -->
-<?php printAdminFooter(); ?>
+	<?php printAdminFooter(); ?>
 
 
 </body>
