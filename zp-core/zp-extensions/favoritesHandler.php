@@ -29,6 +29,7 @@
 $plugin_is_filter = 5 | FEATURE_PLUGIN;
 $plugin_description = gettext('Support for <em>favorites</em> handling.');
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_disable = (MOD_REWRITE) ? '' : gettext('Mod Rewrite is required for this plugin');
 
 $option_interface = 'favoritesOptions';
 
@@ -304,7 +305,7 @@ class favorites extends AlbumBase {
 
 }
 
-if (!OFFSET_PATH) {
+if (!OFFSET_PATH && !$plugin_disable) {
 	if (!$page = stripSuffix(getOption('favorites_link'))) {
 		$page = 'favorites';
 	}
