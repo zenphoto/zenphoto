@@ -322,7 +322,7 @@ class Video extends Image {
 		$ext = getSuffix($this->getFullImage());
 		switch ($ext) {
 			default:
-				return $_zp_multimedia_extension->getPlayerConfig($this->getFullImage(FULLWEBPATH), $this->getTitle(), NULL, $w, $h);
+				return $_zp_multimedia_extension->getPlayerConfig($this, NULL, NULL, $w, $h);
 				break;
 			case '3gp':
 			case 'mov':
