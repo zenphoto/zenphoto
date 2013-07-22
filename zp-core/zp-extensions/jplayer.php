@@ -266,21 +266,15 @@ class jPlayer {
 	/**
 	 * Get the JS configuration of jplayer
 	 *
-	 * @param mixed $movie the image object or a direct path to it
-	 * @param string $movietitle the filename of the movie
+	 * @param mixed $movie the image object
+	 * @param string $movietitle the title of the movie
 	 * @param string $count number (preferredly the id) of the item to append to the css for multiple players on one page
 	 * @param string $width Not supported as jPlayer is dependend on its CSS based skin to change sizes. Can only be set via plugin options.
 	 * @param string $height Not supported as jPlayer is dependend on its CSS based skin to change sizes. Can only be set via plugin options.
 	 *
 	 */
 	function getPlayerConfig($movie, $movietitle = NULL, $count = NULL) {
-		if (is_object($movie)) {
-			$moviepath = $movie->getFullImage(FULLWEBPATH);
-		} else {
-			$moviepath = $movie;
-			$parsed = parse_url($movie);
-			$movie = newImage(NULL, array('folder'	 => str_replace(WEBPATH . ALBUM_FOLDER_EMPTY, '', dirname($parsed['path'])), 'filename' => basename($parsed['path'])), true);
-		}
+		$moviepath = $movie->getFullImage(FULLWEBPATH);
 		if (empty($movietitle)) {
 			$movietitle = $movie->getTitle();
 		}
@@ -433,8 +427,8 @@ class jPlayer {
 	/**
 	 * outputs the player configuration HTML
 	 *
-	 * @param mixed $movie the image object or a direct path of a movie (within the slideshow), if empty (within albums) the current image is used
-	 * @param string $movietitle the filename of the movie. if empty (within albums) the function getImageTitle() is used
+	 * @param mixed $movie the image object if empty (within albums) the current image is used
+	 * @param string $movietitle the title of the movie. if empty the Image Title is used
 	 * @param string $count unique text for when there are multiple player items on a page
 	 */
 	function printPlayerConfig($movie = NULL, $movietitle = NULL, $count = NULL) {
