@@ -14,13 +14,20 @@ if (!defined('WEBPATH')) die();
 	</head>
 	<body>
 		<?php zp_apply_filter('theme_body_open'); ?>
+		
+			<p id="path">
+		<?php printHomeLink('', ' > '); ?>
+		<?php printGalleryTitle(); ?>
+		| <?php echo gettext("Object not found"); ?>
+		</p>    
 		<div id="main">
 			<div id="gallerytitle">
-				<h2>
-					<span>
-						<?php printHomeLink('', ' | '); ?><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php printGalleryTitle(); ?></a>
-					</span> | <?php echo gettext("Object not found"); ?>
-				</h2>
+
+				<?php
+				if (getOption('Allow_search')) {
+					printSearchForm('');
+				}
+				?>
 			</div>
 			<div id="padbox">
 				<?php
