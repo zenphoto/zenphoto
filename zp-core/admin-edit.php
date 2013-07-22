@@ -758,7 +758,7 @@ echo "\n</head>";
 							<?php XSRFToken('albumedit'); ?>
 							<input type="hidden" name="album"	value="<?php echo $album->name; ?>" />
 							<input type="hidden"	name="savealbuminfo" value="1" />
-							<?php printAlbumEditForm(0, $album, true); ?>
+							<?php printAlbumEditForm(0, $album); ?>
 						</form>
 						<br class="clearall" />
 						<hr />
@@ -1116,34 +1116,34 @@ echo "\n</head>";
 															$expirationdate = $image->getExpireDate();
 															?>
 															<script type="text/javascript">
-					// <!-- <![CDATA[
-					$(function() {
-						$("#publishdate-<?php echo $currentimage; ?>,#expirationdate-<?php echo $currentimage; ?>").datepicker({
-							showOn: 'button',
-							buttonImage: '../zp-core/images/calendar.png',
-							buttonText: '<?php echo gettext("calendar"); ?>',
-							buttonImageOnly: true
-						});
-						$('#publishdate-<?php echo $currentimage; ?>').change(function() {
-							var today = new Date();
-							var pub = $('#publishdate-<?php echo $currentimage; ?>').datepicker('getDate');
-							if (pub.getTime() > today.getTime()) {
-								$(".scheduledpublishing-<?php echo $currentimage; ?>").html('<br /><?php echo addslashes(gettext('Future publishing date.')); ?>');
-							} else {
-								$(".scheduledpublishing-<?php echo $currentimage; ?>").html('');
-							}
-						});
-						$('#expirationdate-<?php echo $currentimage; ?>').change(function() {
-							var today = new Date();
-							var expiry = $('#expirationdate-<?php echo $currentimage; ?>').datepicker('getDate');
-							if (expiry.getTime() > today.getTime()) {
-								$(".expire<-<?php echo $currentimage; ?>").html('');
-							} else {
-								$(".expire-<?php echo $currentimage; ?>").html('<br /><?php echo addslashes(gettext('Expired!')); ?>');
-							}
-						});
-					});
-					// ]]> -->
+				// <!-- <![CDATA[
+				$(function() {
+				$("#publishdate-<?php echo $currentimage; ?>,#expirationdate-<?php echo $currentimage; ?>").datepicker({
+				showOn: 'button',
+				buttonImage: '../zp-core/images/calendar.png',
+				buttonText: '<?php echo gettext("calendar"); ?>',
+				buttonImageOnly: true
+				});
+				$('#publishdate-<?php echo $currentimage; ?>').change(function() {
+				var today = new Date();
+				var pub = $('#publishdate-<?php echo $currentimage; ?>').datepicker('getDate');
+				if (pub.getTime() > today.getTime()) {
+				$(".scheduledpublishing-<?php echo $currentimage; ?>").html('<br /><?php echo addslashes(gettext('Future publishing date.')); ?>');
+				} else {
+				$(".scheduledpublishing-<?php echo $currentimage; ?>").html('');
+				}
+				});
+				$('#expirationdate-<?php echo $currentimage; ?>').change(function() {
+				var today = new Date();
+				var expiry = $('#expirationdate-<?php echo $currentimage; ?>').datepicker('getDate');
+				if (expiry.getTime() > today.getTime()) {
+				$(".expire<-<?php echo $currentimage; ?>").html('');
+				} else {
+				$(".expire-<?php echo $currentimage; ?>").html('<br /><?php echo addslashes(gettext('Expired!')); ?>');
+				}
+				});
+				});
+				// ]]> -->
 															</script>
 															<br class="clearall" />
 															<hr />
@@ -1341,16 +1341,16 @@ echo "\n</head>";
 													<td valign="top"><?php echo gettext("Date:"); ?></td>
 													<td>
 														<script type="text/javascript">
-					// <!-- <![CDATA[
-					$(function() {
-						$("#datepicker_<?php echo $currentimage; ?>").datepicker({
-							showOn: 'button',
-							buttonImage: 'images/calendar.png',
-							buttonText: '<?php echo gettext('calendar'); ?>',
-							buttonImageOnly: true
-						});
-					});
-					// ]]> -->
+				// <!-- <![CDATA[
+				$(function() {
+				$("#datepicker_<?php echo $currentimage; ?>").datepicker({
+				showOn: 'button',
+				buttonImage: 'images/calendar.png',
+				buttonText: '<?php echo gettext('calendar'); ?>',
+				buttonImageOnly: true
+				});
+				});
+				// ]]> -->
 														</script>
 														<input type="text" id="datepicker_<?php echo $currentimage; ?>" size="20" name="<?php echo $currentimage; ?>-date"
 																	 value="<?php
@@ -1532,9 +1532,9 @@ echo "\n</head>";
 								if (!empty($target_image)) {
 									?>
 									<script type="text/javascript" >
-					// <!-- <![CDATA[
-					toggleExtraInfo('<?php echo $target_image_nr; ?>', 'image', true);
-					// ]]> -->
+				// <!-- <![CDATA[
+				toggleExtraInfo('<?php echo $target_image_nr; ?>', 'image', true);
+				// ]]> -->
 									</script>
 									<?php
 								}
@@ -1618,7 +1618,7 @@ echo "\n</head>";
 						?>
 						<div class="innerbox<?php if ($currentalbum % 2) echo '_dark'; ?>" style="padding: 15px;">
 							<?php
-							printAlbumEditForm($currentalbum, $album, true, false);
+							printAlbumEditForm($currentalbum, $album, false);
 							$currentalbum++;
 							?>
 						</div>

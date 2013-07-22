@@ -1201,7 +1201,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										/*
 										 * not recommended--screws with peoples minds during pagination!
 
-											$sort[gettext('Random')] = 'random';
+										  $sort[gettext('Random')] = 'random';
 										 */
 										$cvt = $cv = strtolower($_zp_gallery->getSortType());
 										ksort($sort, SORT_LOCALE_STRING);
@@ -1598,7 +1598,7 @@ Zenphoto_Authority::printPasswordFormJS();
 
 										/*
 										 * not recommended--screws with peoples minds during pagination!
-											$sort[gettext('Random')] = 'random';
+										  $sort[gettext('Random')] = 'random';
 										 */
 										$flip = array_flip($sort);
 										if (isset($flip[$cv])) {
@@ -1761,7 +1761,6 @@ Zenphoto_Authority::printPasswordFormJS();
 																								// <!-- <![CDATA[
 																								$(function() {
 																				$("#slider-sharpenamount").slider({
-	<?php $v = getOption('sharpen_amount'); ?>
 	<?php $v = getOption('sharpen_amount'); ?>
 																				startValue: <?php echo $v; ?>,
 																								value: <?php echo $v; ?>,
@@ -2641,14 +2640,13 @@ Zenphoto_Authority::printPasswordFormJS();
 						}
 						natcasesort($plugins);
 					}
-					$pages = round(ceil(count($plugins) / PLUGINS_PER_PAGE));
 					$rangeset = getPageSelector($plugins, PLUGINS_PER_PAGE);
 					$plugins = array_slice($plugins, $subpage * PLUGINS_PER_PAGE, PLUGINS_PER_PAGE);
 					?>
 					<div id="tab_plugin" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
 						<script type="text/javascript">
-																											var optionholder = new array();</script>
+																												var optionholder = new array();</script>
 						<form action="?action=saveoptions<?php if (isset($_GET['single'])) echo '&amp;single=' . $showExtension; ?>" method="post" autocomplete="off">
 							<?php XSRFToken('saveoptions'); ?>
 							<input type="hidden" name="savepluginoptions" value="yes" />
