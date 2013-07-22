@@ -1,6 +1,6 @@
 /*
 
-	Zen Photo Default 1.0
+	ZenPapers CSS (First Release, Inspired by ZemPhoto Default Theming Guidelines)
 
 */
 
@@ -19,6 +19,22 @@ body {
 	padding: 0px 0px 50px;
 	text-align: center;
 }
+
+#path {
+	background:#000;
+	position:absolute;
+	top:0px;
+	left:0;
+	width:100%;
+	margin:0;
+	padding:4px 0 6px;
+	border-bottom:3px solid #555;
+	font-size:85%;
+	line-height:1.6em;
+	color:lightgray;
+	text-align:center;
+}
+		
 #main {
 	text-align: left;
 	margin: 20px auto;
@@ -30,12 +46,12 @@ body {
 	border-bottom: 2px solid #000;
 	border-left: 1px solid #000;
 	-moz-border-radius: 5px;
-    border-radius: 5px;
-		font-size: 70%;
-line-height: 1.4em;
-font-family: "Gill Sans","Trebuchet MS",Verdana,Sans-serif;
-font-weight: normal;
-text-transform: uppercase;
+        border-radius: 5px;
+	font-size: 70%;
+	line-height: 1.4em;
+	font-family: "Gill Sans","Trebuchet MS",Verdana,Sans-serif;
+	font-weight: normal;
+	text-transform: uppercase;
 }
 #credit, #sort {
 	margin: 0 auto;
@@ -69,6 +85,90 @@ text-transform: uppercase;
 	margin-top: 18px;
 	width:510px;
 }
+
+/* Index Modules
+------------------------------ */
+
+#secondary {
+	float:left;
+	width:60%;
+	padding-left: 25%;
+	margin:0;
+	font-size: 80%;
+	line-height: 1.4em;
+	font-family: "Gill Sans","Trebuchet MS",Verdana,Sans-serif;
+	font-weight: normal;
+	text-transform: uppercase;
+	letter-spacing: .2em;
+}
+.module {
+	float:left;
+	width:210px;
+	margin:0 17px 0 0;
+	padding:0 4px;
+	text-align:center;
+	background: #fff;
+	padding-bottom:100px;
+	height: 100px;
+	border-top: 1px solid #000;
+	border-right: 1px solid #000;
+	border-bottom: 2px solid #000;
+	border-left: 1px solid #000;
+	-moz-border-radius: 5px;
+    	border-radius: 5px;
+	}
+.moduledata {
+	width:100%;
+	border-top:1px solid #ccc;
+	font-size:100%;
+	}
+.moduledata th, .moduledata td {
+	padding:5px;
+	border-bottom:1px solid #ccc;
+	font-weight:normal;
+	vertical-align:middle;
+	}
+.moduledata td {
+	text-align:right;
+	white-space:nowrap;
+	}
+
+/* Index Module - Image Unit
+----------------------------- */
+	
+#randomlist {
+	float:left;
+	width:204px;
+	margin:0 -3px 0 0;
+	padding:0 0 0 6px;
+	list-style:none;
+	}
+#randomlist li {
+	background:url("../images/bg_slide_sm.gif") 0 0 no-repeat;
+	float:left;
+	width:62px;
+	margin:0 6px 6px 0;
+	padding:0;
+	}
+html>body #randomlist li {
+	background-image:url("../images/bg_slide_sm.png");
+	}
+#randomlist table {
+	width:62px;
+	height:62px;
+	margin:0;
+	border-collapse:collapse;
+	font-size:1px;
+	}
+#randomlist td {
+	padding:0 2px 2px 0;
+	text-align:center;
+	vertical-align:middle;
+	}
+#randomlist li a {
+	border-width:0;
+	}
+	
 
 /* Link Styles
 ------------------------------ */
@@ -363,6 +463,68 @@ cursor: pointer !important;
 	width: 440px;
 }
 
+/* =PrevNext Nav (Individual Photo template)
+Thumbnails used for prev/next photo navigation
+----------------------------------------------- */
+#prevnext {
+	position:absolute;
+	top:30px;
+	left:50%;
+	}
+#prev, #next {
+	position:absolute;
+	top:100px;
+	width:235px;
+	margin:0;
+	font-weight:bold;
+	}
+#prev {
+	right:362px;
+	}
+#next {
+	left:495px;
+	}
+#prev a, #next a {
+	width:230px;
+	height:138px;
+	}
+
+/* =PrevNextHovers (Individual Photo template)
+The two hoverable regions overlaying the main photo
+----------------------------------------------- */
+/* Note:
+	 Width and height for the following
+	 strong element is set inline using the style
+	 attribute. Both values are automatically
+	 determined by taking the width/height of the
+	 main photo.
+	 Width is ((width of main photo + 20) / 2).
+	 Height is (height of main photo + 20). */
+#prevnext a strong {
+	position:absolute;
+	top:0;
+	}
+#prev a strong {
+	background:url("../images/photonav_prev.gif") no-repeat 50% -100px;
+	right:-303px;
+	top: -64px;
+	}
+#next a strong {
+	background:url("../images/photonav_next.gif") no-repeat 50% -100px;
+	left:-432px;
+	top: -64px;
+	}
+html>body #prev a strong {
+	background-image:url("../images/photonav_prev.png");
+	}
+html>body #next a strong {
+	background-image:url("../images/photonav_next.png");
+	}
+#prev a:hover strong, #next a:hover strong, #prev a:active strong, #next a:active strong {
+	background-position:50% 10px;
+	cursor:pointer;
+	}
+	
 
 /* Comments
 ------------------------------ */
@@ -735,165 +897,10 @@ clear: left !important;
 clear: right !important;
 }
 
-#secondary {
-	float:left;
-	width:60%;
-	padding-left: 25%;
-	margin:0;
-	font-size: 80%;
-line-height: 1.4em;
-font-family: "Gill Sans","Trebuchet MS",Verdana,Sans-serif;
-font-weight: normal;
-text-transform: uppercase;
-letter-spacing: .2em;
-	}
-.module {
-	float:left;
-	width:210px;
-	margin:0 17px 0 0;
-	padding:0 4px;
-	text-align:center;
-	background: #fff;
-	padding-bottom:100px;
-	height: 100px;
-	border-top: 1px solid #000;
-	border-right: 1px solid #000;
-	border-bottom: 2px solid #000;
-	border-left: 1px solid #000;
-	-moz-border-radius: 5px;
-    border-radius: 5px;
-	}
-.moduledata {
-	width:100%;
-	border-top:1px solid #ccc;
-	font-size:100%;
-	}
-.moduledata th, .moduledata td {
-	padding:5px;
-	border-bottom:1px solid #ccc;
-	font-weight:normal;
-	vertical-align:middle;
-	}
-.moduledata td {
-	text-align:right;
-	white-space:nowrap;
-	}
-	
-#randomlist {
-	float:left;
-	width:204px;
-	margin:0 -3px 0 0;
-	padding:0 0 0 6px;
-	list-style:none;
-	}
-#randomlist li {
-	background:url("../images/bg_slide_sm.gif") 0 0 no-repeat;
-	float:left;
-	width:62px;
-	margin:0 6px 6px 0;
-	padding:0;
-	}
-html>body #randomlist li {
-	background-image:url("../images/bg_slide_sm.png");
-	}
-#randomlist table {
-	width:62px;
-	height:62px;
-	margin:0;
-	border-collapse:collapse;
-	font-size:1px;
-	}
-#randomlist td {
-	padding:0 2px 2px 0;
-	text-align:center;
-	vertical-align:middle;
-	}
-#randomlist li a {
-	border-width:0;
-	}
-	
-#path {
-	background:#000;
-	position:absolute;
-	top:0px;
-	left:0;
-	width:100%;
-	margin:0;
-	padding:4px 0 6px;
-	border-bottom:3px solid #555;
-	font-size:85%;
-	line-height:1.6em;
-	color:lightgray;
-	text-align:center;
-	}
-	
-	
-/* =PrevNext Nav (Individual Photo template)
-Thumbnails used for prev/next photo navigation
------------------------------------------------ */
-#prevnext {
-	position:absolute;
-	top:30px;
-	left:50%;
-	}
-#prev, #next {
-	position:absolute;
-	top:100px;
-	width:235px;
-	margin:0;
-	font-weight:bold;
-	}
-#prev {
-	right:362px;
-	}
-#next {
-	left:495px;
-	}
-#prev a, #next a {
-	width:230px;
-	height:138px;
-	}
-
-/* =PrevNextHovers (Individual Photo template)
-The two hoverable regions overlaying the main photo
------------------------------------------------ */
-/* Note:
-	 Width and height for the following
-	 strong element is set inline using the style
-	 attribute. Both values are automatically
-	 determined by taking the width/height of the
-	 main photo.
-	 Width is ((width of main photo + 20) / 2).
-	 Height is (height of main photo + 20). */
-#prevnext a strong {
-	position:absolute;
-	top:0;
-	}
-#prev a strong {
-	background:url("../images/photonav_prev.gif") no-repeat 50% -100px;
-	right:-303px;
-	top: -64px;
-	}
-#next a strong {
-	background:url("../images/photonav_next.gif") no-repeat 50% -100px;
-	left:-432px;
-	top: -64px;
-	}
-html>body #prev a strong {
-	background-image:url("../images/photonav_prev.png");
-	}
-html>body #next a strong {
-	background-image:url("../images/photonav_next.png");
-	}
-#prev a:hover strong, #next a:hover strong, #prev a:active strong, #next a:active strong {
-	background-position:50% 10px;
-	cursor:pointer;
-	}
-	
 	
 #imagethumb {
 	float: left;
 	position: relative;
-		border: 1px solid #e6e6e6;
-		background-color: #cccccc;
+	border: 1px solid #e6e6e6;
+	background-color: #cccccc;
 }
