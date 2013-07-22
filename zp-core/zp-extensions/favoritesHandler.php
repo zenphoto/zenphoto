@@ -305,7 +305,7 @@ class favorites extends AlbumBase {
 
 }
 
-if (!OFFSET_PATH && !$disable) {
+if (!OFFSET_PATH && !$plugin_disable) {
 	if (!$page = stripSuffix(getOption('favorites_link'))) {
 		$page = 'favorites';
 	}
