@@ -378,8 +378,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			if (isset($zenphoto_tabs[$_zp_admin_tab]['default'])) {
 				$current = $zenphoto_tabs[$_zp_admin_tab]['default'];
 			} else if (empty($_zp_admin_subtab)) {
-				$current = $tabs;
-				$current = array_shift($current);
+				$current = array_shift($tabs);
 				$i = strrpos($current, 'tab=');
 				$amp = strrpos($current, '&');
 				if ($i === false) {
@@ -517,7 +516,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			foreach ($albums as $folder) {
 				$album = newAlbum($folder);
 				if ($album->isDynamic()) {
-					if ($rights = ALL_ALBUMS_RIGHTS) {
+					if ($rights == ALL_ALBUMS_RIGHTS) {
 						$list[$album->getFolder()] = $album->getTitle();
 					}
 				} else {
@@ -1053,7 +1052,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @param bool $showCounts set to true to get tag count displayed
 	 */
 	function tagSelector($that, $postit, $showCounts = false, $mostused = false, $addnew = true, $resizeable = false) {
-		global $_zp_admin_ordered_taglist, $_zp_admin_LC_taglist, $jaTagList;
+		global $_zp_admin_ordered_taglist, $_zp_admin_LC_taglist;
 		if (is_null($_zp_admin_ordered_taglist)) {
 			if ($mostused || $showCounts) {
 				$counts = getAllTagsCount();
@@ -1153,12 +1152,11 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * called in edit album and mass edit
 	 * @param string $index the index of the entry in mass edit or '0' if single album
 	 * @param object $album the album object
-	 * @param bool $collapse_tags set true to initially hide tab list
 	 * @param bool $buttons set true for "apply" buttons
 	 * @since 1.1.3
 	 */
-	function printAlbumEditForm($index, $album, $collapse_tags, $buttons = true) {
-		global $sortby, $_zp_gallery, $mcr_albumlist, $albumdbfields, $imagedbfields, $_zp_albumthumb_selector, $_zp_current_admin_obj;
+	function printAlbumEditForm($index, $album, $buttons = true) {
+		global $sortby, $_zp_gallery, $mcr_albumlist, $_zp_albumthumb_selector, $_zp_current_admin_obj;
 		$isPrimaryAlbum = '';
 		if (!zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 			$myalbum = $_zp_current_admin_obj->getAlbum();
@@ -1300,7 +1298,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 								</td>
 								<td>
 									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
-												 onkeydown="passwordClear'<?php echo $suffix; ?>');"
+												 onkeydown="passwordClear
+					'<?php echo $suffix; ?>'
+					);"
 												 id="user_name<?php echo $suffix; ?>" name="user<?php echo $suffix; ?>"
 												 value="<?php echo $album->getUser(); ?>" />
 								</td>
@@ -1402,7 +1402,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<td class="leftcolumn"><?php echo gettext("Sort subalbums by:"); ?> </td>
 							<td>
 								<span class="nowrap">
-									<select id="albumsortselect<?php echo $prefix; ?>" name="<?php echo $prefix; ?>subalbumsortby" onchange="update_direction(this, 'album_direction_div<?php echo $suffix; ?>', 'album_custom_div<?php echo $suffix; ?>')">
+									<select id="albumsortselect<?php echo $prefix; ?>" name="<?php echo $prefix; ?>subalbumsortby" onchange="update_direction(this, 'album_direction_div<?php echo $suffix; ?>', 'album_custom_div<?php echo $suffix; ?>');">
 										<?php
 										if (is_null($album->getParent())) {
 											$globalsort = gettext("*gallery album sort order");
@@ -1602,7 +1602,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										<?php
 									}
 									?>
-									<select style="width:320px" <?php if ($showThumb) { ?>class="thumbselect" onchange="updateThumbPreview(this)" <?php } ?> name="<?php echo $prefix; ?>thumb">
+									<select style="width:320px" <?php if ($showThumb) { ?>class="thumbselect" onchange="updateThumbPreview(this);" <?php } ?> name="<?php echo $prefix; ?>thumb">
 										<?php
 										generateListFromArray($selected, $selections, false, true);
 										$imagelist = $album->getImages(0);
@@ -1813,7 +1813,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						<label class="checkboxlabel">
 							<input type="radio" id="Delete-<?php echo $prefix; ?>" name="a-<?php echo $prefix; ?>MoveCopyRename" value="delete"
 										 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-				deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1)" <?php echo $isPrimaryAlbum; ?> />
+				deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);" <?php echo $isPrimaryAlbum; ?> />
 										 <?php echo gettext("Delete album"); ?>
 						</label>
 
@@ -2243,7 +2243,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @since 1.1.3
 	 */
 	function processAlbumEdit($index, $album, &$redirectto) {
-		global $_zp_gallery;
 		$redirectto = NULL; // no redirection required
 		if ($index == 0) {
 			$prefix = $suffix = '';
@@ -2572,7 +2571,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @return string
 	 */
 	function process_language_string_save($name, $sanitize_level = 3) {
-		global $_zp_active_languages;
 		$languages = generateLanguageList();
 		$l = strlen($name) + 1;
 		$strings = array();
@@ -2637,7 +2635,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							$album = newAlbum($albumname);
 							$image = newImage($album, $seoname);
 							if ($fname != $seoname) {
-								$image->setTitle($name);
+								$image->setTitle($fname);
 								$image->save();
 							}
 						}
@@ -2676,10 +2674,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @return string
 	 */
 	function commentReply($str, $name, $albumtitle, $imagetitle) {
-		$str = wordwrap(strip_tags($str), 75, '\n');
-		$lines = explode('\n', $str);
-		$str = implode('%0D%0A', $lines);
-		$str = "$name commented on $imagetitle in the album $albumtitle: %0D%0A%0D%0A" . $str;
+		$str = "$name commented on $imagetitle in the album $albumtitle: %0D%0A%0D%0A" . implode('%0D%0A', explode('\n', wordwrap(strip_tags($str), 75, '\n')));
 		return $str;
 	}
 
@@ -2813,8 +2808,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		// and collect every unique directory
 		$dirs_to_create = array();
 		foreach ($source_files as $path) {
-			$path = dirname(str_replace($source . '/', '', $path));
-			$path = explode('/', $path);
+			$path = explode('/', dirname(str_replace($source . '/', '', $path)));
 			$dirs = '';
 			foreach ($path as $subdir) {
 				if ($subdir == '.svn' or $subdir == '.') {
@@ -2938,8 +2932,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @param string $source the script file
 	 */
 	function currentRelativeURL() {
-		$source = str_replace('\\', '/', $_SERVER['SCRIPT_FILENAME']);
-		$source = str_replace(SERVERPATH, WEBPATH, $source);
+		$source = str_replace(SERVERPATH, WEBPATH, str_replace('\\', '/', $_SERVER['SCRIPT_FILENAME']));
 		$q = '';
 		if (!empty($_GET)) {
 			foreach ($_GET as $parm => $value) {
@@ -2995,8 +2988,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	function removeParentAlbumNames($album) {
 		$slash = stristr($album->name, "/");
 		if ($slash) {
-			$array = explode("/", $album->name);
-			$array = array_reverse($array);
+			$array = array_reverse(explode("/", $album->name));
 			$albumname = $array[0];
 		} else {
 			$albumname = $album->name;
@@ -3363,7 +3355,7 @@ function getWatermarks() {
  * @return array
  */
 function processOrder($orderstr) {
-	$result = array();
+	$order = $result = array();
 	parse_str($orderstr, $order);
 	$order = array_shift($order);
 
@@ -3393,7 +3385,6 @@ function processOrder($orderstr) {
  *
  */
 function postAlbumSort($parentid) {
-	global $_zp_gallery;
 	if (isset($_POST['order']) && !empty($_POST['order'])) {
 		$order = processOrder(sanitize($_POST['order']));
 		$sortToID = array();
@@ -3488,7 +3479,6 @@ function getNestedAlbumList($subalbum, $levels, $level = array()) {
  * @return bool
  */
 function printNestedAlbumsList($albums, $show_thumb, $owner) {
-	global $_zp_gallery;
 	$indent = 1;
 	$open = array(1 => 0);
 	$rslt = false;
@@ -3567,7 +3557,7 @@ function printEditDropdown($subtab, $nestinglevels, $nesting) {
 	}
 	?>
 	<form name="AutoListBox2" style="float: right;" action="#" >
-		<select name="ListBoxURL" size="1" onchange="gotoLink(this.form)">
+		<select name="ListBoxURL" size="1" onchange="gotoLink(this.form);">
 			<?php
 			foreach ($nestinglevels as $nestinglevel) {
 				if ($nesting == $nestinglevel) {
@@ -3832,7 +3822,6 @@ function bulkTags() {
  *
  */
 function processAlbumBulkActions() {
-	global $_zp_gallery;
 	if (isset($_POST['ids'])) {
 		$ids = sanitize($_POST['ids']);
 		$action = sanitize($_POST['checkallaction']);
@@ -3914,7 +3903,6 @@ function processImageBulkActions($album) {
 	$action = sanitize($_POST['checkallaction']);
 	$ids = sanitize($_POST['ids']);
 	$total = count($ids);
-	$message = NULL;
 	if ($action != 'noaction') {
 		if ($total > 0) {
 			if ($action == 'addtags') {
@@ -3989,7 +3977,6 @@ function processImageBulkActions($album) {
  *
  */
 function processCommentBulkActions() {
-	global $_zp_gallery;
 	if (isset($_POST['ids'])) { // these is actually the folder name here!
 		$action = sanitize($_POST['checkallaction']);
 		if ($action != 'noaction') {
@@ -4194,6 +4181,7 @@ function XSRFdefender($action) {
 }
 
 /**
+ * getPageSelector "diff" function
  *
  * returns the shortest string difference
  * @param string $string1
@@ -4224,6 +4212,8 @@ function minDiff($string1, $string2) {
 }
 
 /**
+ * getPageSelector "diff" function
+ *
  * Used when you want getPgeSelector to show the full text of the items
  * @param string $string1
  * @param string $string2
@@ -4234,6 +4224,7 @@ function fullText($string1, $string2) {
 }
 
 /**
+ * getPageSelector "diff" function
  *
  * returns the shortest "date" difference
  * @param string $date1
@@ -4604,7 +4595,7 @@ function consolidatedEditMessages($subtab) {
 				$messagebox[] = gettext('Selected items published');
 				break;
 			case 'hideall':
-				$message = gettext('Selected items unpublished');
+				$messagebox[] = gettext('Selected items unpublished');
 				break;
 			case 'commentson':
 				$messagebox[] = gettext('Comments enabled for selected items');
@@ -4660,21 +4651,21 @@ function consolidatedEditMessages($subtab) {
 	if (!empty($errorbox)) {
 		?>
 		<div class="errorbox fade-message">
-			<?php echo implode('<br />', $errorbox); ?>
+		<?php echo implode('<br />', $errorbox); ?>
 		</div>
 		<?php
 	}
 	if (!empty($notebox)) {
 		?>
 		<div class="notebox fade-message">
-			<?php echo implode('<br />', $notebox); ?>
+		<?php echo implode('<br />', $notebox); ?>
 		</div>
 		<?php
 	}
 	if (!empty($messagebox)) {
 		?>
 		<div class="messagebox fade-message">
-			<?php echo implode('<br />', $messagebox); ?>
+		<?php echo implode('<br />', $messagebox); ?>
 		</div>
 		<?php
 	}
@@ -4711,7 +4702,6 @@ function getThemeFiles($exclude) {
  * @param unknown_type $id
  */
 function checkAlbumParentid($albumname, $id, $recorder) {
-	Global $_zp_gallery;
 	$album = newAlbum($albumname);
 	$oldid = $album->getParentID();
 	if ($oldid != $id) {

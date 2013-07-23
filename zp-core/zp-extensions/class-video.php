@@ -322,7 +322,7 @@ class Video extends Image {
 		$ext = getSuffix($this->getFullImage());
 		switch ($ext) {
 			default:
-				return $_zp_multimedia_extension->getPlayerConfig($this->getFullImage(FULLWEBPATH), $this->getTitle(), '', $w, $h);
+				return $_zp_multimedia_extension->getPlayerConfig($this, NULL, NULL, $w, $h);
 				break;
 			case '3gp':
 			case 'mov':
@@ -424,7 +424,7 @@ class pseudoPlayer {
 		return $this->height;
 	}
 
-	function getPlayerConfig($moviepath, $imagefilename, $count = '', $width = '', $height = '') {
+	function getPlayerConfig($moviepath, $imagefilename) {
 		return '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/err-noflashplayer.png" alt="' . gettext('No multimeida extension installed.') . '" />';
 	}
 
