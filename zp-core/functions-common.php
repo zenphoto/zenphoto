@@ -16,10 +16,6 @@
  * @return void|boolean
  */
 function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
-	// if error has been supressed with an @
-	if (error_reporting() == 0) {
-		return;
-	}
 	// check if function has been called by an exception
 	if (func_num_args() == 5) {
 		// called by trigger_error()
@@ -32,6 +28,13 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 		$errfile = $exc->getFile();
 		$errline = $exc->getLine();
 	}
+	// if error has been supressed with an @
+	if (error_reporting() == 0 && !in_array($errno, array(E_USER_ERROR, E_USER_WARNING, E_USER_NOTICE))) {
+		return;
+	}
+
+
+	var_dump($errstr);
 
 	$errorType = array(E_ERROR				 => gettext('ERROR'),
 					E_WARNING			 => gettext('WARNING'),
