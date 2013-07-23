@@ -230,7 +230,12 @@ class jPlayer {
 
 	static function getMacrojplayer($albumname, $imagename, $count = 1) {
 		global $_zp_multimedia_extension;
-		return $_zp_multimedia_extension->getPlayerConfig(newImage(NULL, array('folder'	 => $albumname, 'filename' => $imagename)), NULL, (int) $count);
+		$movie = newImage(NULL, array('folder'	 => $albumname, 'filename' => $imagename), true);
+		if ($movie->exists) {
+			return $_zp_multimedia_extension->getPlayerConfig($movie, NULL, (int) $count);
+		} else {
+			return '<span class = "error">' . sprintf(gettext('%1$s::%2$s not found.'), albumname, $imagename) . '</span>';
+		}
 	}
 
 	static function macro($macros) {
@@ -275,7 +280,7 @@ class jPlayer {
 	 */
 	function getPlayerConfig($movie, $movietitle = NULL, $count = NULL) {
 		$moviepath = $movie->getFullImage(FULLWEBPATH);
-		if (empty($movietitle)) {
+		if (is_null($movietitle)) {
 			$movietitle = $movie->getTitle();
 		}
 		$ext = getSuffix($moviepath);
