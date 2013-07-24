@@ -219,11 +219,11 @@ if (getOption('use_imagick')) {
 if (!function_exists('zp_graphicsLibInfo')) {
 	require_once(dirname(__FILE__) . '/lib-GD.php');
 }
-if (function_exists('zp_graphicsLibInfo')) {
-	$_zp_cachefileSuffix = zp_graphicsLibInfo();
-} else {
-	$_zp_cachefileSuffix = array('Library'			 => gettext('none'), 'Library_desc' => NULL);
+if (!function_exists('zp_graphicsLibInfo')) {
+	require_once(dirname(__FILE__) . '/lib-NoGraphics.php');
 }
+$_zp_cachefileSuffix = zp_graphicsLibInfo();
+
 
 define('GRAPHICS_LIBRARY', $_zp_cachefileSuffix['Library']);
 unset($_zp_cachefileSuffix['Library']);
