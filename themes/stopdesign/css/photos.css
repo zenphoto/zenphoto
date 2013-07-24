@@ -425,11 +425,8 @@ Module showing all galleries in system
 	margin:0 4px;
 	}
 .gal {
-	background:url("../images/bg_gal.gif") 11px 0px no-repeat;
+	background:url("../images/bg_gal.png") 11px 0px no-repeat;
 	margin:0;
-	}
-html>body .gal {
-	background-image:url("../images/bg_gal.png");
 	}
 
 
@@ -518,14 +515,11 @@ of most recent favorite photos
 	list-style:none;
 	}
 #randomlist li {
-	background:url("../images/bg_slide_sm.gif") 0 0 no-repeat;
+	background:url("../images/bg_slide_sm.png") 0 0 no-repeat;
 	float:left;
 	width:62px;
 	margin:0 6px 6px 0;
 	padding:0;
-	}
-html>body #randomlist li {
-	background-image:url("../images/bg_slide_sm.png");
 	}
 #randomlist table {
 	width:62px;
@@ -626,14 +620,11 @@ Title, description, & prefs on Photo Gallery page
 Reusable style for thumbnail photos as slides
 ----------------------------------------------- */
 .thumb {
-	background:url("../images/bg_slide.gif") 0 0 no-repeat;
+	background:url("../images/bg_slide.png") 0 0 no-repeat;
 	display:block;
 	float:left;
 	margin:0;
 	padding:0 3px 3px 0;
-	}
-html>body .thumb {
-	background-image:url("../images/bg_slide.png");
 	}
 .thumb span {
 	background-repeat:no-repeat;
@@ -759,18 +750,12 @@ The two hoverable regions overlaying the main photo
 	top:0;
 	}
 #prev a strong {
-	background:url("../images/photonav_prev.gif") no-repeat 50% -100px;
+	background:url("../images/photonav_prev.png") no-repeat 50% -100px;
 	right:-262px;
 	}
 #next a strong {
-	background:url("../images/photonav_next.gif") no-repeat 50% -100px;
+	background:url("../images/photonav_next.png") no-repeat 50% -100px;
 	left:-265px;
-	}
-html>body #prev a strong {
-	background-image:url("../images/photonav_prev.png");
-	}
-html>body #next a strong {
-	background-image:url("../images/photonav_next.png");
 	}
 #prev a:hover strong, #next a:hover strong, #prev a:active strong, #next a:active strong {
 	background-position:50% 10px;
@@ -789,7 +774,7 @@ Title and description of photo
 	text-align:left;
 	}
 #desc h1 {
-	background:url("../images/divider_r.gif") no-repeat 265px 0;
+	background:url("../images/divider_r.png") no-repeat 265px 0;
 	max-width:30em;
 	margin:0;
 	padding:10px 15px 5px 265px;
@@ -799,9 +784,6 @@ Title and description of photo
 	letter-spacing:0;
 	text-transform:none;
 	text-align:left;
-	}
-html>body #desc h1 {
-	background-image:url("../images/divider_r.png");
 	}
 #desc p {
 	max-width:30em;
@@ -841,12 +823,9 @@ Photo x of y, date, and keywords
 	text-align:right;
 	}
 #meta li.count {
-	background:url("../images/divider_l.gif") no-repeat 100% 0;
+	background:url("../images/divider_l.png") no-repeat 100% 0;
 	padding-top:10px;
 	padding-bottom:5px;
-	}
-html>body #meta li.count {
-	background-image:url("../images/divider_l.png");
 	}
 
 
