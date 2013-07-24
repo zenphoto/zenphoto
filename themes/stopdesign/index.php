@@ -107,11 +107,11 @@ require_once('normalizer.php');
 											if ($c++ < 6) {
 												echo "<li><table><tr><td>\n";
 												$imageURL = html_encode(getURL($image));
-												if ($image->getWidth() >= $image->getHeight()) {
-													$iw = 44;
-													$ih = NULL;
-													$cw = 44;
-													$ch = 33;
+												if ($image->getWidth() >= $image->getHeight()) { //Beware if adjusting these without expected results that you must also adjust the CSS container.
+													$iw = 44; //image width
+													$ih = NULL; //image height
+													$cw = 44; //cropped width
+													$ch = 33; //cropped height
 												} else {
 													$iw = NULL;
 													$ih = 44;

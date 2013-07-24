@@ -1,6 +1,6 @@
 <?php
 /**
- * This is plugin for display pictures on a Google Map
+ * This is plugin for displaying pictures on a Google Map
  * Uses :
  * 		CodeIgniter Google Maps API V3 Class (hacked for zenphoto needs) (https://github.com/BIOSTALL/CodeIgniter-Google-Maps-V3-API-Library)
  * 		markerClustererPlus library 2.0.15 (http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/)
@@ -12,7 +12,7 @@
  */
 $plugin_is_filter = 5|THEME_PLUGIN;
 $plugin_description = gettext('Display Google Maps based on <em>latitude</em> and <em>longitude</em> metadata in the images.');
-$plugin_notice = sprintf(gettext('<strong>Note</strong>: Google does place limits on the use of its <a href="%s"><em>Maps API</em></a>. Please review these to be sure your site is in compliance.'),'http://googlegeodevelopers.blogspot.com/2011/10/introduction-of-usage-limits-to-maps.html');
+$plugin_notice = sprintf(gettext('<strong>Note</strong>: Google does place limits on the use of its <a href="%s"><em>Maps API</em></a> (currently 25,000 map loads a day, unless paying for excess loads). Please review these to be sure your site is in compliance.'),'https://developers.google.com/maps/faq#usagelimits');
 $plugin_author = 'Stephen Billard (sbillard) & Vincent Bourganel (vincent3569)';
 
 
@@ -107,7 +107,7 @@ class GoogleMap {
 													'desc' => gettext('The default height of the map.')),
 			gettext('Map sessions') => array('key' => 'gmap_sessions', 'type' => OPTION_TYPE_CHECKBOX,
 													'order'=>9,
-													'desc' => gettext('If checked GoogleMaps will use sessions to pass map data for the <em>colorbox</em> display option. We recommend this option be selected. It protects against reference forgery security attacks and mitigates problems with data exceeding the allowed by some browsers.'))
+													'desc' => gettext('If checked GoogleMaps will use sessions to pass map data for the <em>colorbox</em> display option. We recommend this option be selected. It protects against reference forgery security attacks and mitigates problems with data exceeding the limit allowed by some browsers.'))
 		);
 	}
 
@@ -115,7 +115,7 @@ class GoogleMap {
 	}
 
 	/**
-	 * Add required informations in the header
+	 * Add required information in the header
 	 */
 	static function js() {
 
@@ -149,7 +149,7 @@ class CI_jsmin {
 		return JSMin::minify($js);
 	}
 }
-class codeIgniter_kludge {	//	dummy for all the CI stuff in the CodeIngnter-Google_maps script
+class codeIgniter_kludge {	//	dummy for all the CI stuff in the CodeIngniter-Google_maps script
 	var $load;
 	var $jsmin;
 	function __construct() {
@@ -264,7 +264,7 @@ function getAlbumGeodata($album, $map) {
  * @param string $text text for the "toggle" link that shows/hides the map. Set empty to omit (then Map is always displayed)
  * @param string $id used to set the IDs for the toggle href element ($id_toggle) and the map element ($id_data)
  * @param string $hide initial map state: "hide", "show", or "colorbox"
- * @param object $obj optional image/album object. Pass string for generic map and use callback to set points
+ * @param object $obj optional image/album object. Pass string for generic map and use a callback to set points
  * @param function $callback optional callback function to set map options.
  */
 function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=NULL) {

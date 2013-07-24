@@ -94,7 +94,9 @@ $thisalbum = $_zp_current_album;
 			}
 			if (!$first) { echo "\n</ul>\n</div>\n"; }
 		?>
-
+		<!--getOption('images_per_row')*133 should have the *133 changed if you are looking to fit more on a
+			line or less, as this will decide much of your spacing. This is due to StopDesign not 
+			respecting the options->theme choices in the admin section.-->
 		<ul class="slideset" style="width:<?php echo getOption('images_per_row')*133; ?>px;">
 		<?php
 
@@ -107,11 +109,11 @@ $thisalbum = $_zp_current_album;
 				} else {
 					$lastImage++;
 				}
-			if (isLandscape()) {
-				$iw = 89;
-				$ih = NULL;
-				$cw = 89;
-				$ch = 67;
+			if (isLandscape()) { //Beware if adjusting these without expected results that you must also adjust the CSS container.
+				$iw = 89;  //image width
+				$ih = NULL; //image height
+				$cw = 89; //cropped width
+				$ch = 67; //cropped height
 			} else {
 				$iw = NULL;
 				$ih = 89;
