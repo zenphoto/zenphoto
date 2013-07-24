@@ -94,12 +94,11 @@ class TextObject extends Image {
 			$msg = gettext('Invalid Textobject instantiation: file does not exist');
 		}
 		if ($msg) {
-			if ($quiet) {
-				$this->exists = false;
-				return;
+			$this->exists = false;
+			if (!$quiet) {
+				trigger_error($msg, E_USER_ERROR);
 			}
-			trigger_error($msg, E_USER_ERROR);
-			exitZP();
+			return;
 		}
 		$this->sidecars = $_zp_supported_images;
 		$this->objectsThumb = checkObjectsThumb($this->localpath);
