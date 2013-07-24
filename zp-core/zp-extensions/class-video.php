@@ -89,12 +89,11 @@ class Video extends Image {
 			$msg = gettext('Invalid video instantiation: file does not exist.');
 		}
 		if ($msg) {
-			if ($quiet) {
-				$this->exists = false;
-				return;
+			$this->exists = false;
+			if (!$quiet) {
+				trigger_error($msg, E_USER_ERROR);
 			}
-			trigger_error($msg, E_USER_ERROR);
-			exitZP();
+			return;
 		}
 		$alts = explode(',', extensionEnabled('class-video_videoalt'));
 		foreach ($alts as $alt) {

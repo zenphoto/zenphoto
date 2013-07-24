@@ -24,7 +24,7 @@ class lib_GD_Options {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		if (GD_FREETYPE) {
+		if (defined('GD_FREETYPE') && GD_FREETYPE) {
 			return array(gettext('GD TypeFace path') => array('key'	 => 'GD_FreeType_Path', 'type' => OPTION_TYPE_TEXTBOX,
 											'desc' => gettext('Supply the full path to your TrueType fonts.')));
 		} else {
@@ -251,7 +251,7 @@ if (!function_exists('zp_graphicsLibInfo')) {
 			if ($threshold > 255)
 				$threshold = 255;
 
-			$radius = abs(round($radius));		 // Only integers make sense.
+			$radius = abs(round($radius));	// Only integers make sense.
 			if ($radius == 0)
 				return $img;
 			$w = imagesx($img);
@@ -633,16 +633,15 @@ if (!function_exists('zp_graphicsLibInfo')) {
 			}
 		}
 
-	}
+		/**
+		 *
+		 * creates an image from an image stream
+		 * @param $string
+		 */
+		function zp_imageFromString($string) {
+			return imagecreatefromstring($string);
+		}
 
-	/**
-	 *
-	 * creates an image from an image stream
-	 * @param $string
-	 */
-	function zp_imageFromString($string) {
-		return imagecreatefromstring($string);
 	}
-
 }
 ?>

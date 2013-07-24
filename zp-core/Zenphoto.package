@@ -502,6 +502,7 @@ zp-core/js/zenphoto.js
 zp-core/lib-GD.php
 zp-core/lib-Imagick.php
 zp-core/lib-MimeTypes.php
+zp-core/lib-NoGraphics.php
 zp-core/lib-auth.php
 zp-core/lib-encryption.php
 zp-core/lib-gettext
