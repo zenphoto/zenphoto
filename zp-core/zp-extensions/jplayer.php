@@ -244,7 +244,7 @@ class jPlayer {
 						'params' => array('string', 'string', 'int*'),
 						'value'	 => 'jplayer::getMacrojplayer',
 						'owner'	 => 'jplayer',
-						'desc'	 => gettext('provide the album name (%1), media file name (%2) and a unique number (%2). (If there is only player instance on the page the parameter may be omitted.)')
+						'desc'	 => gettext('provide the album name (%1), media file name (%2) and a unique number (%3). (If there is only player instance on the page the parameter may be omitted.)')
 		);
 		return $macros;
 	}
