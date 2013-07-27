@@ -92,6 +92,10 @@ function MacroList_show($macro, $detail) {
 		if (count($detail['params']) != count($replacements)) {
 			$warn['paremeters'] = gettext('The number of macro parameters must match the number of replacement tokens in the expression.');
 		}
+	} else if ($detail['class'] == 'function' || $detail['class'] == 'procedure') {
+		if (!is_callable($detail['value'])) {
+			$warn['method'] = sprintf(gettext('<code>%s</code> is not callable'), $detail['value']);
+		}
 	}
 	if (!empty($detail['params'])) {
 		$params = '';

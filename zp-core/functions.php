@@ -2216,18 +2216,22 @@ function applyMacros($text) {
 					break;
 				case 'function';
 				case 'procedure':
-					if ($macro['class'] == 'function') {
-						$data = @call_user_func_array($macro['value'], $parameters);
+					if (is_callable($macro['value'])) {
+						if ($macro['class'] == 'function') {
+							$data = @call_user_func_array($macro['value'], $parameters);
+						} else {
+							ob_start();
+							call_user_func_array($macro['value'], $parameters);
+							$data = ob_get_contents();
+							ob_end_clean();
+						}
+						if (empty($data)) {
+							$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> retuned no data'), trim($macro_instance, '[]')) . '</span>';
+						} else {
+							$data = "\n<!--Begin " . $macroname . "-->\n" . $data . "\n<!--End " . $macroname . "-->\n";
+						}
 					} else {
-						ob_start();
-						call_user_func_array($macro['value'], $parameters);
-						$data = ob_get_contents();
-						ob_end_clean();
-					}
-					if (empty($data)) {
-						$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> retuned no data'), trim($macro_instance, '[]')) . '</span>';
-					} else {
-						$data = "\n<!--Begin " . $macroname . "-->\n" . $data . "\n<!--End " . $macroname . "-->\n";
+						$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> <code>%2$s</code> is not callable'), trim($macro_instance, '[]'), $macro['value']) . '</span>';
 					}
 					break;
 				case 'constant':
