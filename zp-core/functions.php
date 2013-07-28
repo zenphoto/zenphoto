@@ -2218,7 +2218,12 @@ function applyMacros($text) {
 				case 'procedure':
 					if (is_callable($macro['value'])) {
 						if ($macro['class'] == 'function') {
-							$data = @call_user_func_array($macro['value'], $parameters);
+							ob_start();
+							$data = call_user_func_array($macro['value'], $parameters);
+							if (empty($data)) {
+								$data = ob_get_contents();
+							}
+							ob_end_clean();
 						} else {
 							ob_start();
 							call_user_func_array($macro['value'], $parameters);

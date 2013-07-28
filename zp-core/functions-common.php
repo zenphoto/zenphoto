@@ -32,10 +32,6 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 	if (error_reporting() == 0 && !in_array($errno, array(E_USER_ERROR, E_USER_WARNING, E_USER_NOTICE))) {
 		return;
 	}
-
-
-	var_dump($errstr);
-
 	$errorType = array(E_ERROR				 => gettext('ERROR'),
 					E_WARNING			 => gettext('WARNING'),
 					E_NOTICE			 => gettext('NOTICE'),
