@@ -936,7 +936,7 @@ function getLatestComments($number,$type="all",$id=NULL) {
 		case is_array($type):
 			$whereclause = ' AND `type` IN ("'.implode('","',$type).'")';
 		case 'all':
-			$sql = 'SELECT * FROM '.prefix('comments').' WHERE `private`=0'.$whereclause.' ORDER BY `date` DESC';
+			$sql = 'SELECT * FROM '.prefix('comments').' WHERE `private`=0 AND `inmoderation`=0'.$whereclause.' ORDER BY `date` DESC';
 			$commentsearch = query($sql);
 			if ($commentsearch) {
 				while ($number > 0 && $commentcheck = db_fetch_assoc($commentsearch)) {
