@@ -230,7 +230,7 @@ class jPlayer {
 
 	static function getMacrojplayer($albumname, $imagename, $count = 1) {
 		global $_zp_multimedia_extension;
-		$movie = newImage(NULL, array('folder' => $albumname, 'filename' => $imagename), true);
+		$movie = newImage(NULL, array('folder'	 => $albumname, 'filename' => $imagename), true);
 		if ($movie->exists) {
 			return $_zp_multimedia_extension->getPlayerConfig($movie, NULL, (int) $count);
 		} else {
@@ -506,7 +506,7 @@ class jPlayer {
 	}
 
 	/**
-	 * Returns the height of the player
+	 * Returns the width of the player
 	 * @param object $image the image for which the width is requested
 	 *
 	 * @return int
@@ -519,14 +519,14 @@ class jPlayer {
 	}
 
 	/**
-	 * Returns the width of the player
+	 * Returns the height of the player
 	 * @param object $image the image for which the height is requested
 	 *
 	 * @return int
 	 */
 	function getHeight($image = NULL) {
 		if (!is_null($image) && $this->mode == 'audio' && !getOption('jplayer_poster') && !getOption('jplayer_audioposter')) {
-			//return 0;
+			return 0;
 		}
 		return $this->height;
 	}
