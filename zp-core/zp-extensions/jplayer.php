@@ -185,9 +185,9 @@ function getjPlayerSkins() {
 function getjPlayerSkinCSS($skins, $dir) {
 	$skin_css = array();
 	foreach ($skins as $skin) {
-		$css = safe_glob($dir . '/' . $skin . '/*.css');
+		$css = safe_glob($dir . $skin . '/*.css');
 		if ($css) {
-			$skin_css = array_merge($skin_css, array($skin => $css[0])); // a skin should only have one css file so we just use the first found
+			$skin_css = array_merge($skin_css, array($skin => $skin)); // a skin should only have one css file so we just use the first found
 		}
 	}
 	return $skin_css;
@@ -250,7 +250,7 @@ class jPlayer {
 	}
 
 	static function headJS() {
-		$skin = getOption('jplayer_skin');
+		$skin = @array_shift(getPluginFiles('*.css', '/jplayer/sckin/' . getOption('jplayer_skin')));
 		if (file_exists($skin)) {
 			$skin = str_replace(SERVERPATH, WEBPATH, $skin); //replace SERVERPATH as that does not work as a CSS link
 		} else {
