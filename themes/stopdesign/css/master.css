@@ -70,3 +70,6 @@ width: 10em !important;
 #recaptcha_widget_div {
 float: left;
 }
+.jp-video {
+min-height: 410px;
+}

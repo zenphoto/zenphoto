@@ -419,12 +419,17 @@ cursor: pointer !important;
 #images {
 	margin: 0 auto;
 }
+
 #image_container img {
 	padding: 5px;
 	border: 1px solid #92BED3;
 	background: #DDEAF0;
-}
+	margin-bottom: 30px;
 
+}
+.jp-video {
+min-height: 410px;
+}
 
 /* Comments
 ------------------------------ */
