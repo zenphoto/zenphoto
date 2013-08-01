@@ -2733,11 +2733,13 @@ function getProtectedImageURL($image = NULL, $disposal = NULL) {
 		$image = $_zp_current_image;
 	}
 	$album = $image->getAlbum();
-	$wmt = $image->getWatermark();
-	if (!empty($wmt) || !($image->getWMUse() & WATERMARK_FULL)) {
-		$wmt = NULL;
+	$watermark_use_image = getWatermarkParam($image, WATERMARK_FULL);
+	if (!empty($watermark_use_image)) {
+		$wmt = $watermark_use_image;
+	} else {
+		$wmt = false;
 	}
-	$args = array('FULL', NULL, NULL, NULL, NULL, NULL, NULL, getOption('full_image_quality'), NULL, NULL, NULL, NULL, $wmt, NULL);
+	$args = array('FULL', NULL, NULL, NULL, NULL, NULL, NULL, (int) getOption('full_image_quality'), NULL, NULL, NULL, $wmt, false, NULL, NULL);
 	$cache_file = getImageCacheFilename($album->name, $image->filename, $args);
 	$cache_path = SERVERCACHE . $cache_file;
 	if ($disposal != 'Download' && OPEN_IMAGE_CACHE && file_exists($cache_path)) {
@@ -2746,7 +2748,6 @@ function getProtectedImageURL($image = NULL, $disposal = NULL) {
 		return getImageURI($args, $album->name, $image->filename, $image->filemtime);
 	} else {
 		$params = '&q=' . getOption('full_image_quality');
-		$watermark_use_image = getWatermarkParam($image, WATERMARK_FULL);
 		if (!empty($watermark_use_image)) {
 			$params .= '&wmk=' . $watermark_use_image;
 		}
