@@ -443,8 +443,8 @@ background: __B_13__; /*background around comment area */
 }
 #main4 {
     margin: 0 auto 0 auto;
-	padding-left: 20px;
-	padding-right: 20px;	
+	padding-left: 0px;
+	padding-right: 0px;	
 	background: __B_14__; /*page background in single-image view.*/
 	color: __C_43__;
 }
@@ -667,7 +667,7 @@ border: 0;
 	width: 615px;
 	margin: 0 auto;
 }
-#image_container {
+#image_container.photo {
 	color: __C_52__;
 	text-align: center;
 	border: 2px solid __A_22__;
@@ -675,6 +675,14 @@ border: 0;
 	background: __B_24__;
 	margin-bottom: 10px;
 }
+#image_container.video {
+	text-align: center;
+	border: 0;
+	padding: 0px;
+	background: none;
+	margin-bottom: 10px;
+}
+
 #image_container a {
 	color: __C_53__;	
 }
@@ -1205,3 +1213,4 @@ font-style: italic;
 .clearall {
 clear: both !important;
 }
+

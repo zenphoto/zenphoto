@@ -109,8 +109,16 @@ if (!defined('WEBPATH')) die();
 				$high = " height:".$s."px;\"";
 			?>
 			<div id="image" <?php echo $wide.$high; ?>>
-
-				<div id="image_container">
+				<?php
+					if (isImagePhoto()) {
+						$fullimage = getFullImageURL();
+						$imgclass = 'photo';
+					} else {
+						$fullimage = NULL;
+						$imgclass = 'video';
+					}
+				?>
+				<div id="image_container" class="<?php echo $imgclass; ?>">
 					<?php
 					if (isImagePhoto()) {
 						$fullimage = getFullImageURL();

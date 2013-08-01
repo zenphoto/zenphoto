@@ -148,7 +148,7 @@ function jqm_printMenusLinks() {
 			<?php if (function_exists('printAlbumMenu')) { ?>
 			<div data-role="collapsible" data-content-theme="c" data-theme="b"<?php if ($_zp_gallery_page == 'gallery.php' || $_zp_gallery_page == 'album.php' || $_zp_gallery_page == 'image.php') echo ' data-collapsed="false"'; ?>>
 				<h3><?php echo gettext('Gallery'); ?></h3>
-			<?php printAlbumMenu('list', true, '', '', '', '', "Gallery Index", true, false, false); ?>
+			<?php printAlbumMenu('list', true,'', '', '', '', 'Gallery Index', false, false, false); ?>
 			</div>
 			<?php } ?>
 			<?php if (extensionEnabled('zenpage')) { ?>

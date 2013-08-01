@@ -40,6 +40,7 @@ if (getOption('hotlink_protection') && isset($_SERVER['HTTP_REFERER'])) {
 $albumobj = newAlbum($album8);
 $imageobj = newImage($albumobj, $image8);
 $args = getImageArgs($_GET);
+$args[0] = 'FULL';
 $adminrequest = $args[12];
 
 if ($forbidden = getOption('image_processor_flooding_protection') && (!isset($_GET['check']) || $_GET['check'] != sha1(HASH_SEED . serialize($args)))) {
@@ -126,7 +127,7 @@ switch ($suffix) {
 		if ($disposal == 'Download') {
 			require_once(dirname(__FILE__) . '/lib-MimeTypes.php');
 			$mimetype = getMimeString($suffix);
-			header('Content-Disposition: attachment; filename="' . $image . '"');	// enable this to make the image a download
+			header('Content-Disposition: attachment; filename="' . $image . '"'); // enable this to make the image a download
 			$fp = fopen($image_path, 'rb');
 			// send the right headers
 			header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
@@ -176,13 +177,13 @@ if (!($process || $force_cache)) { // no processing needed
 			header("Location: " . getAlbumFolder(FULLWEBPATH) . pathurlencode($album) . "/" . rawurlencode($image));
 		}
 		exitZP();
-	} else {	// the web server does not have access to the image, have to supply it
+	} else { // the web server does not have access to the image, have to supply it
 		$fp = fopen($image_path, 'rb');
 		// send the right headers
 		header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 		header("Content-Type: image/$suffix");
 		if ($disposal == 'Download') {
-			header('Content-Disposition: attachment; filename="' . $image . '"');	// enable this to make the image a download
+			header('Content-Disposition: attachment; filename="' . $image . '"'); // enable this to make the image a download
 		}
 		header("Content-Length: " . filesize($image_path));
 		// dump the picture and stop the script
@@ -195,7 +196,7 @@ if (!($process || $force_cache)) { // no processing needed
 header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 header("Content-Type: image/$suffix");
 if ($disposal == 'Download') {
-	header('Content-Disposition: attachment; filename="' . $image . '"');	// enable this to make the image a download
+	header('Content-Disposition: attachment; filename="' . $image . '"'); // enable this to make the image a download
 }
 
 if (is_null($cache_path) || !file_exists($cache_path)) { //process the image

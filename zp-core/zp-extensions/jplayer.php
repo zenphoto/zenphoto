@@ -185,9 +185,9 @@ function getjPlayerSkins() {
 function getjPlayerSkinCSS($skins, $dir) {
 	$skin_css = array();
 	foreach ($skins as $skin) {
-		$css = safe_glob($dir . '/' . $skin . '/*.css');
+		$css = safe_glob($dir . $skin . '/*.css');
 		if ($css) {
-			$skin_css = array_merge($skin_css, array($skin => $css[0])); // a skin should only have one css file so we just use the first found
+			$skin_css = array_merge($skin_css, array($skin => $skin)); // a skin should only have one css file so we just use the first found
 		}
 	}
 	return $skin_css;
@@ -250,7 +250,7 @@ class jPlayer {
 	}
 
 	static function headJS() {
-		$skin = getOption('jplayer_skin');
+		$skin = @array_shift(getPluginFiles('*.css', '/jplayer/sckin/' . getOption('jplayer_skin')));
 		if (file_exists($skin)) {
 			$skin = str_replace(SERVERPATH, WEBPATH, $skin); //replace SERVERPATH as that does not work as a CSS link
 		} else {
@@ -506,7 +506,7 @@ class jPlayer {
 	}
 
 	/**
-	 * Returns the height of the player
+	 * Returns the width of the player
 	 * @param object $image the image for which the width is requested
 	 *
 	 * @return int
@@ -519,14 +519,14 @@ class jPlayer {
 	}
 
 	/**
-	 * Returns the width of the player
+	 * Returns the height of the player
 	 * @param object $image the image for which the height is requested
 	 *
 	 * @return int
 	 */
 	function getHeight($image = NULL) {
 		if (!is_null($image) && $this->mode == 'audio' && !getOption('jplayer_poster') && !getOption('jplayer_audioposter')) {
-			//return 0;
+			return 0;
 		}
 		return $this->height;
 	}

@@ -1752,62 +1752,6 @@ class Album extends AlbumBase {
 	}
 
 	/**
-	 * checks access to the album
-	 * @param bit $action What the requestor wants to do
-	 *
-	 * returns true of access is allowed
-	 */
-	function isMyItem($action) {
-		global $_zp_loggedin;
-		if ($parent = parent::isMyItem($action)) {
-			return $parent;
-		}
-		if (zp_loggedin($action)) {
-			$subRights = $this->albumSubRights();
-			if (is_null($subRights)) {
-				// no direct rights, but if this is a private gallery and the album is published he should be allowed to see it
-				if (GALLERY_SECURITY != 'public' && $this->getShow() && $action == LIST_RIGHTS) {
-					return LIST_RIGHTS;
-				}
-			} else {
-				$albumrights = LIST_RIGHTS;
-				if ($subRights & (MANAGED_OBJECT_RIGHTS_EDIT)) {
-					$albumrights = $albumrights | ALBUM_RIGHTS;
-				}
-				if ($subRights & MANAGED_OBJECT_RIGHTS_UPLOAD) {
-					$albumrights = $albumrights | UPLOAD_RIGHTS;
-				}
-				if ($action & $albumrights) {
-					return ($_zp_loggedin ^ (ALBUM_RIGHTS | UPLOAD_RIGHTS)) | $albumrights;
-				} else {
-					return false;
-				}
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * Checks if guest is loggedin for the album
-	 * @param unknown_type $hint
-	 * @param unknown_type $show
-	 */
-	function checkforGuest(&$hint = NULL, &$show = NULL) {
-		if (!parent::checkForGuest()) {
-			return false;
-		}
-		return checkAlbumPassword($this, $hint);
-	}
-
-	/**
-	 *
-	 * returns true if there is any protection on the album
-	 */
-	function isProtected() {
-		return $this->checkforGuest() != 'zp_public_access';
-	}
-
-	/**
 	 * Owner functions
 	 */
 	function getOwner() {
