@@ -29,6 +29,8 @@ if (!defined('MENU_TRUNCATE_INDICATOR'))
 define('ALBUM_MENU_COUNT', getOption('print_album_menu_count'));
 define('ALBUM_MENU_SHOWSUBS', getOption('print_album_menu_showsubs'));
 
+$_recursion_limiter = array();
+
 /**
  * Plugin option handling class
  *
@@ -207,7 +209,7 @@ function printAlbumMenuList($option, $showcount = NULL, $css_id = '', $css_class
  * @param int $limit truncation of display text
  */
 function printAlbumMenuListAlbum($albums, $path, $folder, $option, $showcount, $showsubs, $css_class, $css_class_topactive, $css_class_active, $firstimagelink, $keeptopactive, $limit = NULL) {
-	global $_zp_gallery, $_zp_current_album, $_zp_current_search;
+	global $_zp_gallery, $_zp_current_album, $_zp_current_search, $_recursion_limiter;
 	if (is_null($limit)) {
 		$limit = MENU_TRUNCATE_STRING;
 	}
@@ -219,14 +221,20 @@ function printAlbumMenuListAlbum($albums, $path, $folder, $option, $showcount, $
 		$showsubs = 9999999999;
 	$pagelevel = count(explode('/', $folder));
 	$currenturalbumname = "";
+
 	foreach ($albums as $album) {
+
 		$level = count(explode('/', $album));
-		$process = checkDynamicLooping($album) && (($level < $showsubs && $option == "list") // user wants all the pages whose level is <= to the parameter
+		$process = (($level < $showsubs && $option == "list") // user wants all the pages whose level is <= to the parameter
 						|| ($option != 'list-top' // not top only
 						&& strpos($folder, $album) === 0 // within the family
 						&& $level <= $pagelevel) // but not too deep\
 						);
 
+		if ($process && hasDynamicAlbumSuffix($album)) {
+			if (in_array($album, $_recursion_limiter))
+				$process = false; // skip already seen dynamic albums
+		}
 		$topalbum = newAlbum($album, true);
 		if ($level > 1 || ($option != 'omit-top')) { // listing current level album
 			if ($level == 1) {
@@ -284,7 +292,9 @@ function printAlbumMenuListAlbum($albums, $path, $folder, $option, $showcount, $
 			$subalbums = $topalbum->getAlbums();
 			if (!empty($subalbums)) {
 				echo "\n<ul" . $css_class . ">\n";
+				array_push($_recursion_limiter, $album);
 				printAlbumMenuListAlbum($subalbums, $path, $folder, $option, $showcount, $showsubs, $css_class, $css_class_topactive, $css_class_active, $firstimagelink, false, $limit);
+				array_pop($_recursion_limiter);
 				echo "\n</ul>\n";
 			}
 		}

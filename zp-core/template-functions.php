@@ -946,21 +946,6 @@ function printPageListWithNav($prevtext, $nexttext, $oneImagePage = false, $next
 //******************************************
 
 /**
- * Checks if we are in a dynamic album recursion loop
- * @param string $albumpath
- * @return bool
- */
-function checkDynamicLooping($albumpath) {
-	global $_recursion_limiter;
-	if (hasDynamicAlbumSuffix($albumpath)) {
-		$limiter = $_recursion_limiter[basename($albumpath)] = @$_recursion_limiter[basename($albumpath)] + 1; //	prevent recursive dynamic album loops
-	} else {
-		$limiter = 0;
-	}
-	return $limiter < 5;
-}
-
-/**
  * Sets the album passed as the current album
  *
  * @param object $album the album to be made current
