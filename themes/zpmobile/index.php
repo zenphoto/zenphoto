@@ -28,10 +28,36 @@ if (!defined('WEBPATH')) die();
 		if(function_exists('printLatestImages')) {
 			?>
 			<h2><?php echo gettext('Latest images'); ?></h2>
-			<?php
-			printLatestImages(8,'',false,false,false,40,'',79,79,true,false,false);
-		}
+			<?php $latestimages = getImageStatistic(8,'latest','',false, 0,'desc'); ?>
+			<div class="ui-grid-c">
+				<?php 
+				$count = '';
+				foreach($latestimages as $image) { 
+					$count++;
+					switch($count) {
+						case 1:
+							$imgclass = ' ui-block-a';
+							break;
+						case 2:
+							$imgclass = ' ui-block-b';
+							break;
+						case 3:
+							$imgclass = ' ui-block-c';
+							break;
+						case 4:
+							$imgclass = ' ui-block-d';
+							$count = ''; // reset to start with a again;
+							break;
+					}
+					?>			
+					<a class="image<?php echo $imgclass; ?>" href="<?php echo html_encode($image->getImageLink());?>" title="<?php echo html_encode($image->getTitle());?>">
+					<img src="<?php echo $image->getCustomImage(null, 230, 230, 230, 230, null, null,true,NULL); ?>" alt="<?php echo $image->getTitle();?>">
+			</a>
+			<?php 
+				}
+			}
 		?>
+		</div>
 		<br class="clearall" />
 		<br />
 		<?php
