@@ -221,15 +221,14 @@ function printAlbumMenuListAlbum($albums, $path, $folder, $option, $showcount, $
 	$currenturalbumname = "";
 	foreach ($albums as $album) {
 		$level = count(explode('/', $album));
-		$process = (($level < $showsubs && $option == "list") // user wants all the pages whose level is <= to the parameter
+		$process = checkDynamicLooping($album) && (($level < $showsubs && $option == "list") // user wants all the pages whose level is <= to the parameter
 						|| ($option != 'list-top' // not top only
 						&& strpos($folder, $album) === 0 // within the family
-						&& $level <= $pagelevel) // but not too deep
+						&& $level <= $pagelevel) // but not too deep\
 						);
 
 		$topalbum = newAlbum($album, true);
-		if ($level > 1 || ($option != 'omit-top')
-		) { // listing current level album
+		if ($level > 1 || ($option != 'omit-top')) { // listing current level album
 			if ($level == 1) {
 				$css_class_t = $css_class_topactive;
 			} else {
@@ -330,11 +329,11 @@ function printAlbumMenuJump($option = "count", $indexname = "Gallery Index", $fi
 					$selected = checkSelectedAlbum("", "index");
 					?>
 					<option <?php echo $selected; ?> value="<?php echo html_encode(getGalleryIndexURL()); ?>"><?php echo $indexname; ?></option>
-		<?php
-	}
-	$albums = $_zp_gallery->getAlbums();
-	printAlbumMenuJumpAlbum($albums, $option, $albumpath, $firstimagelink);
-	?>
+					<?php
+				}
+				$albums = $_zp_gallery->getAlbums();
+				printAlbumMenuJumpAlbum($albums, $option, $albumpath, $firstimagelink);
+				?>
 			</select>
 		</p>
 	</form>
