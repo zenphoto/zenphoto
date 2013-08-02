@@ -34,19 +34,36 @@ if (!defined('WEBPATH')) die(); ?>
 			<?php printAlbumTitle(); ?><small> (<?php printAlbumDate(''); ?>)</small>
 			<div class="albumdesc"><?php echo shortenContent(getAlbumDesc(), 100,'(...)',false); ?></div>
 			<small class="ui-li-count"><?php jqm_printImageAlbumCount()?></small>
-
 			</a>
 			</li>
 			<?php endwhile; ?>
 		</ul>
-
-			<?php while (next_image()): ?>
-			<div class="image"><a href="<?php echo html_encode(getImageLinkURL());?>" title="<?php printBareImageTitle();?>">
-			<?php printCustomSizedImage(getAnnotatedImageTitle(), NULL,79, 79, 79, 79, NULL, NULL, NULL, NULL, true, NULL); ?>
-			</a>
-			</div>
+		<div class="ui-grid-c">
+			<?php 
+			$count = '';
+			while (next_image()): 
+				$count++;
+				switch($count) {
+					case 1:
+						$imgclass = ' ui-block-a';
+						break;
+					case 2:
+						$imgclass = ' ui-block-b';
+						break;
+					case 3:
+						$imgclass = ' ui-block-c';
+						break;
+					case 4:
+						$imgclass = ' ui-block-d';
+						$count = ''; // reset to start with a again;
+						break;
+				}
+			?>
+				<a class="image<?php echo $imgclass; ?>" href="<?php echo html_encode(getImageLinkURL());?>" title="<?php printBareImageTitle();?>">
+					<?php printCustomSizedImage(getAnnotatedImageTitle(), NULL,230, 230, 230, 230, NULL, NULL, NULL, NULL, true, NULL); ?>
+				</a>
 			<?php endwhile; ?>
-
+		</div>
 		<br class="clearall" />
 		<?php if(hasPrevPage() || hasNextPage()) printPageListWithNav(gettext("prev"), gettext("next"),false,true,'pagelist',NULL,true,7); ?>
 		<?php

@@ -17,16 +17,19 @@
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
  * @package plugins
  */
-
 $plugin_description = gettext("Adds a theme function to print an album menu either as a nested list or as a dropdown menu.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 
 $option_interface = 'print_album_menu';
 
-if (!defined('MENU_TRUNCATE_STRING')) define('MENU_TRUNCATE_STRING',getOption('menu_truncate_string'));
-if (!defined('MENU_TRUNCATE_INDICATOR')) define('MENU_TRUNCATE_INDICATOR',getOption('menu_truncate_indicator'));
-define('ALBUM_MENU_COUNT',getOption('print_album_menu_count'));
-define('ALBUM_MENU_SHOWSUBS',getOption('print_album_menu_showsubs'));
+if (!defined('MENU_TRUNCATE_STRING'))
+	define('MENU_TRUNCATE_STRING', getOption('menu_truncate_string'));
+if (!defined('MENU_TRUNCATE_INDICATOR'))
+	define('MENU_TRUNCATE_INDICATOR', getOption('menu_truncate_indicator'));
+define('ALBUM_MENU_COUNT', getOption('print_album_menu_count'));
+define('ALBUM_MENU_SHOWSUBS', getOption('print_album_menu_showsubs'));
+
+$_recursion_limiter = array();
 
 /**
  * Plugin option handling class
@@ -43,36 +46,39 @@ class print_album_menu {
 
 	function getOptionsSupported() {
 		global $_common_truncate_handler;
-		$options = array(	gettext('"List" subalbum level') => array('key' => 'print_album_menu_showsubs', 'type' => OPTION_TYPE_TEXTBOX,
-										'order' => 0,
-										'desc' => gettext('The depth of subalbum levels shown with the <code>printAlbumMenu</code> and <code>printAlbumMenuList</code> "List" option. Note: themes may override this default.')),
-									gettext('Show counts') => array('key' => 'print_album_menu_count', 'type' => OPTION_TYPE_CHECKBOX,
-										'order' => 1,
-										'desc' => gettext('If checked, image and album counts will be included in the list. Note: Themes may override this option.')),
-									gettext('Truncate titles*') => array('key' => 'menu_truncate_string', 'type' => OPTION_TYPE_TEXTBOX,
+		$options = array(gettext('"List" subalbum level') => array('key'		 => 'print_album_menu_showsubs', 'type'	 => OPTION_TYPE_TEXTBOX,
+										'order'	 => 0,
+										'desc'	 => gettext('The depth of subalbum levels shown with the <code>printAlbumMenu</code> and <code>printAlbumMenuList</code> "List" option. Note: themes may override this default.')),
+						gettext('Show counts')					 => array('key'		 => 'print_album_menu_count', 'type'	 => OPTION_TYPE_CHECKBOX,
+										'order'	 => 1,
+										'desc'	 => gettext('If checked, image and album counts will be included in the list. Note: Themes may override this option.')),
+						gettext('Truncate titles*')			 => array('key'			 => 'menu_truncate_string', 'type'		 => OPTION_TYPE_TEXTBOX,
 										'disabled' => $_common_truncate_handler,
-										'order' => 6,
-										'desc' => gettext('Limit titles to this many characters. Zero means no limit.')),
-									gettext('Truncate indicator*') => array('key' => 'menu_truncate_indicator', 'type' => OPTION_TYPE_TEXTBOX,
+										'order'		 => 6,
+										'desc'		 => gettext('Limit titles to this many characters. Zero means no limit.')),
+						gettext('Truncate indicator*')	 => array('key'			 => 'menu_truncate_indicator', 'type'		 => OPTION_TYPE_TEXTBOX,
 										'disabled' => $_common_truncate_handler,
-										'order' => 7,
-										'desc' => gettext('Append this string to truncated titles.'))
-									);
+										'order'		 => 7,
+										'desc'		 => gettext('Append this string to truncated titles.'))
+		);
 		if ($_common_truncate_handler) {
-			$options['note'] = array('key' => 'menu_truncate_note', 'type' => OPTION_TYPE_NOTE,
-																'order' => 8,
-																'desc' => '<p class="notebox">'.$_common_truncate_handler.'</p>');
+			$options['note'] = array('key'		 => 'menu_truncate_note', 'type'	 => OPTION_TYPE_NOTE,
+							'order'	 => 8,
+							'desc'	 => '<p class="notebox">' . $_common_truncate_handler . '</p>');
 		} else {
 			$_common_truncate_handler = gettext('* These options may be set via the <a href="javascript:gotoName(\'print_album_menu\');"><em>print_album_menu</em></a> plugin options.');
-			$options['note'] =array('key' => 'menu_truncate_note',
-															'type' => OPTION_TYPE_NOTE,
-															'order' => 8,
-															'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of these options may be shared with other plugins.</p>'));
+			$options['note'] = array('key'		 => 'menu_truncate_note',
+							'type'	 => OPTION_TYPE_NOTE,
+							'order'	 => 8,
+							'desc'	 => gettext('<p class="notebox">*<strong>Note:</strong> The setting of these options may be shared with other plugins.</p>'));
 		}
 		return $options;
 	}
+
 	function handleOption($option, $currentValue) {
+
 	}
+
 }
 
 /**
@@ -104,12 +110,11 @@ class print_album_menu {
  * @param int $limit truncation of display text
  * @since 1.2
  */
-
-function printAlbumMenu($option,$showcount=NULL,$css_id='',$css_class_topactive='',$css_class='',$css_class_active='', $indexname="Gallery Index", $showsubs=NULL,$firstimagelink=false,$keeptopactive=false) {
+function printAlbumMenu($option, $showcount = NULL, $css_id = '', $css_class_topactive = '', $css_class = '', $css_class_active = '', $indexname = "Gallery Index", $showsubs = NULL, $firstimagelink = false, $keeptopactive = false) {
 	if ($option == "jump") {
-		printAlbumMenuJump($showcount,$indexname,$firstimagelink);
+		printAlbumMenuJump($showcount, $indexname, $firstimagelink);
 	} else {
-		printAlbumMenuList($option,$showcount,$css_id,$css_class_topactive,$css_class,$css_class_active, $indexname, $showsubs,$firstimagelink,$keeptopactive);
+		printAlbumMenuList($option, $showcount, $css_id, $css_class_topactive, $css_class, $css_class_active, $indexname, $showsubs, $firstimagelink, $keeptopactive);
 	}
 }
 
@@ -138,32 +143,40 @@ function printAlbumMenu($option,$showcount=NULL,$css_id='',$css_class_topactive=
  * @param int $limit truncation of display text
  * @return html list of the albums
  */
-
-function printAlbumMenuList($option,$showcount=NULL,$css_id='',$css_class_topactive='',$css_class='',$css_class_active='', $indexname="Gallery Index", $showsubs=NULL,$firstimagelink=false,$keeptopactive=false,$startlist=true,$limit=NULL) {
+function printAlbumMenuList($option, $showcount = NULL, $css_id = '', $css_class_topactive = '', $css_class = '', $css_class_active = '', $indexname = "Gallery Index", $showsubs = NULL, $firstimagelink = false, $keeptopactive = false, $startlist = true, $limit = NULL) {
 	global $_zp_gallery, $_zp_current_album, $_zp_gallery_page;
 	// if in search mode don't use the foldout contextsensitiveness and show only toplevel albums
-	if(in_context(ZP_SEARCH_LINKED)) {
+	if (in_context(ZP_SEARCH_LINKED)) {
 		$option = "list-top";
 	}
 
 	$albumpath = rewrite_path("/", "/index.php?album=");
-	if(empty($_zp_current_album) || ($_zp_gallery_page != 'album.php' && $_zp_gallery_page != 'image.php')) {
+	if (empty($_zp_current_album) || ($_zp_gallery_page != 'album.php' && $_zp_gallery_page != 'image.php')) {
 		$currentfolder = "";
 	} else {
 		$currentfolder = $_zp_current_album->name;
 	}
 
 	// check if css parameters are used
-	if ($css_id != "") { $css_id = " id='".$css_id."'"; }
-	if ($css_class_topactive != "") { $css_class_topactive = " class='".$css_class_topactive."'"; }
-	if ($css_class != "") { $css_class = " class='".$css_class."'"; }
-	if ($css_class_active != "") { $css_class_active = " class='".$css_class_active."'"; }
-	$startlist = $startlist && !($option == 'omit-top'	|| $option == 'list-sub');
-	if ($startlist) echo "<ul".$css_id.">\n"; // top level list
-	/**** Top level start with Index link  ****/
-	if($option === "list" OR $option === "list-top") {
-		if(!empty($indexname)) {
-			echo "<li><a href='".html_encode(getGalleryIndexURL())."' title='".html_encode($indexname)."'>".$indexname."</a></li>";
+	if ($css_id != "") {
+		$css_id = " id='" . $css_id . "'";
+	}
+	if ($css_class_topactive != "") {
+		$css_class_topactive = " class='" . $css_class_topactive . "'";
+	}
+	if ($css_class != "") {
+		$css_class = " class='" . $css_class . "'";
+	}
+	if ($css_class_active != "") {
+		$css_class_active = " class='" . $css_class_active . "'";
+	}
+	$startlist = $startlist && !($option == 'omit-top' || $option == 'list-sub');
+	if ($startlist)
+		echo "<ul" . $css_id . ">\n"; // top level list
+	/*	 * ** Top level start with Index link  *** */
+	if ($option === "list" OR $option === "list-top") {
+		if (!empty($indexname)) {
+			echo "<li><a href='" . html_encode(getGalleryIndexURL()) . "' title='" . html_encode($indexname) . "'>" . $indexname . "</a></li>";
 		}
 	}
 
@@ -173,12 +186,11 @@ function printAlbumMenuList($option,$showcount=NULL,$css_id='',$css_class_topact
 		$albums = $_zp_gallery->getAlbums();
 	}
 
-	printAlbumMenuListAlbum($albums, $albumpath, $currentfolder, $option, $showcount, $showsubs, $css_class, $css_class_topactive, $css_class_active,$firstimagelink,$keeptopactive,$limit);
+	printAlbumMenuListAlbum($albums, $albumpath, $currentfolder, $option, $showcount, $showsubs, $css_class, $css_class_topactive, $css_class_active, $firstimagelink, $keeptopactive, $limit);
 
-	if ($startlist) echo "</ul>\n";
-
+	if ($startlist)
+		echo "</ul>\n";
 }
-
 
 /**
  * Handles an album for printAlbumMenuList
@@ -196,65 +208,70 @@ function printAlbumMenuList($option,$showcount=NULL,$css_id='',$css_class_topact
  * @param bool $keeptopactive If set to TRUE the toplevel album entry will stay marked as active if within its subalbums ("list" only)
  * @param int $limit truncation of display text
  */
-function printAlbumMenuListAlbum($albums, $path, $folder, $option, $showcount, $showsubs, $css_class, $css_class_topactive, $css_class_active,$firstimagelink,$keeptopactive,$limit=NULL) {
-	global $_zp_gallery,$_zp_current_album,$_zp_current_search;
+function printAlbumMenuListAlbum($albums, $path, $folder, $option, $showcount, $showsubs, $css_class, $css_class_topactive, $css_class_active, $firstimagelink, $keeptopactive, $limit = NULL) {
+	global $_zp_gallery, $_zp_current_album, $_zp_current_search, $_recursion_limiter;
 	if (is_null($limit)) {
 		$limit = MENU_TRUNCATE_STRING;
 	}
-	if (is_null($showcount)) $showcount = ALBUM_MENU_COUNT;
-	if (is_null($showsubs)) $showsubs = ALBUM_MENU_SHOWSUBS;
-	if ($showsubs && !is_numeric($showsubs)) $showsubs = 9999999999;
-	if(empty($keeptopactive)) $keeptopactive = false;
+	if (is_null($showcount))
+		$showcount = ALBUM_MENU_COUNT;
+	if (is_null($showsubs))
+		$showsubs = ALBUM_MENU_SHOWSUBS;
+	if ($showsubs && !is_numeric($showsubs))
+		$showsubs = 9999999999;
 	$pagelevel = count(explode('/', $folder));
 	$currenturalbumname = "";
+
 	foreach ($albums as $album) {
+
 		$level = count(explode('/', $album));
-		$process =  (($level < $showsubs && $option == "list") // user wants all the pages whose level is <= to the parameter
-									|| ($option != 'list-top' // not top only
-											&& strpos($folder, $album) === 0 // within the family
-											&& $level<=$pagelevel) // but not too deep
-								);
+		$process = (($level < $showsubs && $option == "list") // user wants all the pages whose level is <= to the parameter
+						|| ($option != 'list-top' // not top only
+						&& strpos($folder, $album) === 0 // within the family
+						&& $level <= $pagelevel) // but not too deep\
+						);
 
-		$topalbum = newAlbum($album,true);
-		if ($level>1
-				|| ($option != 'omit-top')
-				) { // listing current level album
-			if ($level==1) {
+		if ($process && hasDynamicAlbumSuffix($album)) {
+			if (in_array($album, $_recursion_limiter))
+				$process = false; // skip already seen dynamic albums
+		}
+		$topalbum = newAlbum($album, true);
+		if ($level > 1 || ($option != 'omit-top')) { // listing current level album
+			if ($level == 1) {
 				$css_class_t = $css_class_topactive;
-
 			} else {
 				$css_class_t = $css_class_active;
 			}
-			if($keeptopactive) {
-				if(isset($_zp_current_album) && is_object($_zp_current_album)) {
+			if ($keeptopactive) {
+				if (isset($_zp_current_album) && is_object($_zp_current_album)) {
 					$currenturalbum = getUrAlbum($_zp_current_album);
 					$currenturalbumname = $currenturalbum->name;
 				}
 			}
 			$count = "";
-			if($showcount) {
+			if ($showcount) {
 				$toplevelsubalbums = $topalbum->getAlbums();
 				$toplevelsubalbums = count($toplevelsubalbums);
 				$topalbumnumimages = $topalbum->getNumImages();
-				if ($topalbumnumimages+$toplevelsubalbums>0) {
+				if ($topalbumnumimages + $toplevelsubalbums > 0) {
 					$count = ' <span style="white-space:nowrap;"><small>(';
-					if($toplevelsubalbums > 0) {
-						$count .= sprintf(ngettext('%u album', '%u albums',$toplevelsubalbums),$toplevelsubalbums);
+					if ($toplevelsubalbums > 0) {
+						$count .= sprintf(ngettext('%u album', '%u albums', $toplevelsubalbums), $toplevelsubalbums);
 					}
-					if($topalbumnumimages > 0) {
+					if ($topalbumnumimages > 0) {
 						if ($toplevelsubalbums) {
 							$count .= ' ';
 						}
-						$count .= sprintf(ngettext('%u image', '%u images',$topalbumnumimages),$topalbumnumimages);
+						$count .= sprintf(ngettext('%u image', '%u images', $topalbumnumimages), $topalbumnumimages);
 					}
 					$count .= ')</small></span>';
 				}
 			}
 
-			if((in_context(ZP_ALBUM) && !in_context(ZP_SEARCH_LINKED) && (@$_zp_current_album->getID() == $topalbum->getID() ||
-								$topalbum->name == $currenturalbumname)) ||
+			if ((in_context(ZP_ALBUM) && !in_context(ZP_SEARCH_LINKED) && (@$_zp_current_album->getID() == $topalbum->getID() ||
+							$topalbum->name == $currenturalbumname)) ||
 							(in_context(ZP_SEARCH_LINKED)) && ($a = $_zp_current_search->getDynamicAlbum()) && $a->name == $topalbum->name) {
-				$current = $css_class_t.' ';
+				$current = $css_class_t . ' ';
 			} else {
 				$current = "";
 			}
@@ -264,26 +281,26 @@ function printAlbumMenuListAlbum($albums, $path, $folder, $option, $showcount, $
 			} else {
 				$display = $title;
 			}
-			if($firstimagelink && $topalbum->getNumImages() != 0) {
-				$link = "<li><a ".$current."href='".html_encode($topalbum->getImage(0)->getImageLink())."' title='".html_encode($title)."'>".html_encode($display)."</a>".$count;
+			if ($firstimagelink && $topalbum->getNumImages() != 0) {
+				$link = "<li><a " . $current . "href='" . html_encode($topalbum->getImage(0)->getImageLink()) . "' title='" . html_encode($title) . "'>" . html_encode($display) . "</a>" . $count;
 			} else {
-				$link = "<li><a ".$current."href='".html_encode($topalbum->getAlbumLink(0))."' title='".html_encode($title)."'>".html_encode($display)."</a>".$count;
+				$link = "<li><a " . $current . "href='" . html_encode($topalbum->getAlbumLink(0)) . "' title='" . html_encode($title) . "'>" . html_encode($display) . "</a>" . $count;
 			}
 			echo $link;
 		}
 		if ($process) { // listing subalbums
 			$subalbums = $topalbum->getAlbums();
 			if (!empty($subalbums)) {
-				echo "\n<ul".$css_class.">\n";
-				printAlbumMenuListAlbum($subalbums, $path, $folder, $option, $showcount, $showsubs, $css_class, $css_class_topactive, $css_class_active,$firstimagelink,false,$limit);
+				echo "\n<ul" . $css_class . ">\n";
+				array_push($_recursion_limiter, $album);
+				printAlbumMenuListAlbum($subalbums, $path, $folder, $option, $showcount, $showsubs, $css_class, $css_class_topactive, $css_class_active, $firstimagelink, false, $limit);
+				array_pop($_recursion_limiter);
 				echo "\n</ul>\n";
-
 			}
 		}
-		if($option == 'list' || $option == 'list-top' || $level>1) { // close the LI
+		if ($option == 'list' || $option == 'list-top' || $level > 1) { // close the LI
 			echo "\n</li>\n";
 		}
-
 	}
 }
 
@@ -299,34 +316,34 @@ function printAlbumMenuListAlbum($albums, $path, $folder, $option, $showcount, $
  * @param string $indexname insert the name (default "Gallery Index") how you want to call the link to the gallery index, insert "" if you don't use it, it is not printed then.
  * @param bool $firstimagelink If set to TRUE and if the album has images the link will point to page of the first image instead the album thumbnail page
  */
-function printAlbumMenuJump($option="count", $indexname="Gallery Index",$firstimagelink=false) {
+function printAlbumMenuJump($option = "count", $indexname = "Gallery Index", $firstimagelink = false) {
 	global $_zp_gallery, $_zp_current_album, $_zp_gallery_page;
 	$albumpath = rewrite_path("/", "/index.php?album=");
-	if(!is_null($_zp_current_album) || $_zp_gallery_page == 'album.php') {
+	if (!is_null($_zp_current_album) || $_zp_gallery_page == 'album.php') {
 		$currentfolder = $_zp_current_album->name;
 	}
 	?>
 	<script type="text/javaScript">
 		// <!-- <![CDATA[
 		function gotoLink(form) {
-			var OptionIndex=form.ListBoxURL.selectedIndex;
-			parent.location = form.ListBoxURL.options[OptionIndex].value;
+		var OptionIndex=form.ListBoxURL.selectedIndex;
+		parent.location = form.ListBoxURL.options[OptionIndex].value;
 		}
 		// ]]> -->
 	</script>
 	<form name="AutoListBox" action="#">
 		<p>
 			<select name="ListBoxURL" size="1" onchange="gotoLink(this.form);">
-			<?php
-			if(!empty($indexname)) {
-				$selected = checkSelectedAlbum("", "index");
-				 ?>
-			<option <?php echo $selected; ?> value="<?php echo html_encode(getGalleryIndexURL()); ?>"><?php echo $indexname; ?></option>
-			<?php
-			}
-			$albums = $_zp_gallery->getAlbums();
-			printAlbumMenuJumpAlbum($albums,$option,$albumpath,$firstimagelink);
-			?>
+				<?php
+				if (!empty($indexname)) {
+					$selected = checkSelectedAlbum("", "index");
+					?>
+					<option <?php echo $selected; ?> value="<?php echo html_encode(getGalleryIndexURL()); ?>"><?php echo $indexname; ?></option>
+					<?php
+				}
+				$albums = $_zp_gallery->getAlbums();
+				printAlbumMenuJumpAlbum($albums, $option, $albumpath, $firstimagelink);
+				?>
 			</select>
 		</p>
 	</form>
@@ -342,32 +359,31 @@ function printAlbumMenuJump($option="count", $indexname="Gallery Index",$firstim
  * @param bool $firstimagelink If set to TRUE and if the album has images the link will point to page of the first image instead the album thumbnail page
  * @param int $level current level
  */
-function printAlbumMenuJumpAlbum($albums,$option,$albumpath,$firstimagelink,$level=1) {
+function printAlbumMenuJumpAlbum($albums, $option, $albumpath, $firstimagelink, $level = 1) {
 	global $_zp_gallery;
 	foreach ($albums as $album) {
-		$subalbum = newAlbum($album,true);
+		$subalbum = newAlbum($album, true);
 
 
-		if($option === "count" AND $subalbum->getNumImages() > 0) {
-			$count = " (".$subalbum->getNumImages().")";
+		if ($option === "count" AND $subalbum->getNumImages() > 0) {
+			$count = " (" . $subalbum->getNumImages() . ")";
 		} else {
 			$count = "";
 		}
-		$arrow = str_replace(':', '» ', str_pad("", $level-1, ":"));
+		$arrow = str_replace(':', '» ', str_pad("", $level - 1, ":"));
 
 		$selected = checkSelectedAlbum($subalbum->name, "album");
-		if($firstimagelink && $subalbum->getNumImages() != 0) {
-			$link = "<option $selected value='".html_encode($subalbum->getImage(0)->getImageLink())."'>".$arrow.strip_tags($subalbum->getTitle()).$count."</option>";
+		if ($firstimagelink && $subalbum->getNumImages() != 0) {
+			$link = "<option $selected value='" . html_encode($subalbum->getImage(0)->getImageLink()) . "'>" . $arrow . strip_tags($subalbum->getTitle()) . $count . "</option>";
 		} else {
-			$link = "<option $selected value='".html_encode($albumpath.pathurlencode($subalbum->name))."'>".$arrow.strip_tags($subalbum->getTitle()).$count."</option>";
+			$link = "<option $selected value='" . html_encode($albumpath . pathurlencode($subalbum->name)) . "'>" . $arrow . strip_tags($subalbum->getTitle()) . $count . "</option>";
 		}
 		echo $link;
 		$subalbums = $subalbum->getAlbums();
 		if (!empty($subalbums)) {
-			printAlbumMenuJumpAlbum($subalbums,$option,$albumpath,$firstimagelink,$level+1);
+			printAlbumMenuJumpAlbum($subalbums, $option, $albumpath, $firstimagelink, $level + 1);
 		}
 	}
-
 }
 
 /**
@@ -381,7 +397,7 @@ function printAlbumMenuJumpAlbum($albums,$option,$albumpath,$firstimagelink,$lev
  */
 function checkSelectedAlbum($checkalbum, $option) {
 	global $_zp_current_album, $_zp_gallery_page;
-	if(is_object($_zp_current_album)) {
+	if (is_object($_zp_current_album)) {
 		$currentalbumname = $_zp_current_album->name;
 	} else {
 		$currentalbumname = "";
@@ -389,17 +405,16 @@ function checkSelectedAlbum($checkalbum, $option) {
 	$selected = "";
 	switch ($option) {
 		case "index":
-			if($_zp_gallery_page === "index.php") {
+			if ($_zp_gallery_page === "index.php") {
 				$selected = "selected";
 			}
 			break;
 		case "album":
-			if($currentalbumname === $checkalbum) {
+			if ($currentalbumname === $checkalbum) {
 				$selected = "selected";
 			}
 			break;
 	}
 	return $selected;
 }
-
 ?>

@@ -15,13 +15,19 @@ margin: 0;
 padding: 0;
 }
 
-#latest img,
-.image {
-width: 79px;
-height: 79px;
+#latest img {
+padding: 0;
 border: 1px solid gray;
-margin: 5px 5px 0px 0px;
 float: left;
+}
+
+
+.image img {
+padding: 0;
+height: auto;
+width: 98%;
+border: 1px solid gray;
+
 }
 
 ul.pagelist {
