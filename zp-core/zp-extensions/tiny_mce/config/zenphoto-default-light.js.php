@@ -5,6 +5,8 @@
  * Zenphoto plugin default light configuration
  */
 $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
+$locale = substr(getOption("locale"),0,2);
+if (empty($locale)) $locale = 'en';
 ?>
 	<script type="text/javascript" src="<?php echo WEBPATH ."/" . ZENFOLDER .'/'. PLUGIN_FOLDER; ?>/tiny_mce/tiny_mce.js"></script>
 	<script type="text/javascript">
