@@ -27,8 +27,7 @@ if ($plugin_disable) {
 }
 
 function jQueryUploadHandler($uploadHandlers) {
-	$me = sprintf(gettext('images (%s)'), 'jQuery');
-	$uploadHandlers[$me] = SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/uploader_jQuery';
+	$uploadHandlers['jQuery'] = SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/uploader_jQuery';
 	return $uploadHandlers;
 }
 

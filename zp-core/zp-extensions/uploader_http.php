@@ -20,8 +20,7 @@ if (zp_loggedin(UPLOAD_RIGHTS)) {
 }
 
 function httpUploadHandler($uploadHandlers) {
-	$me = sprintf(gettext('images (%s)'), 'http');
-	$uploadHandlers[$me] = SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/uploader_http';
+	$uploadHandlers['http'] = SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/uploader_http';
 	return $uploadHandlers;
 }
 
