@@ -49,7 +49,7 @@ echo "\n" . '<div id="content">';
 	?>
 	<form name="size_selections" action="?select" method="post">
 		<?php
-		$refresh = $imageprocessor = $found = $fixed = 0;
+		$refresh = $imageprocessor = $found = $fixed = $fixedFolder = 0;
 		XSRFToken('cacheDBImages');
 		$watermarks = getWatermarks();
 		foreach ($tables as $table => $fields) {
@@ -61,7 +61,7 @@ echo "\n" . '<div id="content">';
 						$imageprocessor++;
 						preg_match_all('|\<\s*img.*?\ssrc\s*=\s*"(.*i\.php\?([^"]*)).*/\>|', $row[$field], $matches);
 						foreach ($matches[2] as $uri) {
-							$url = '<img src="'.html_encode(pathurlencode(WEBPATH.'/'.ZENFOLDER.'/i.php?'.$uri).'" height="20" width="20" alt="X" />';
+							$url = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/i.php?' . $uri . '" height="20" width="20" alt="X" />';
 							$text = zpFunctions::updateImageProcessorLink($url);
 							if ($text == $url) {
 								?>
@@ -86,12 +86,13 @@ echo "\n" . '<div id="content">';
 				if ($result) {
 					while ($row = db_fetch_assoc($result)) {
 						preg_match_all('~\<img.*src\s*=\s*"((\\.|[^"])*)~', $row[$field], $matches);
-						foreach ($matches[0] as $key => $match) {
+						foreach ($matches[1] as $key => $match) {
 							$found++;
+
 							$args = array(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 							$set = array();
 							$done = false;
-							$params = explode('_', stripSuffix($matches[1][$key]));
+							$params = explode('_', stripSuffix($match));
 							while (!$done && count($params) > 1) {
 								$check = array_pop($params);
 								if (is_numeric($check)) {
@@ -129,7 +130,7 @@ echo "\n" . '<div id="content">';
 								}
 							}
 							$args = getImageArgs($set);
-							$image = preg_replace('~.*/' . CACHEFOLDER . '/~', '', implode('_', $params)) . '.' . getSuffix($matches[1][$key]);
+							$image = preg_replace('~.*/' . CACHEFOLDER . '/~', '', implode('_', $params)) . '.' . getSuffix($match);
 							$uri = getImageURI($args, dirname($image), basename($image), NULL);
 							if (strpos($uri, 'i.php?') !== false) {
 								$fixed++;
@@ -152,11 +153,22 @@ echo "\n" . '<div id="content">';
 									if (isset($set['t'])) {
 										echo '<img src="' . html_encode(pathurlencode($uri)) . '" height="8" width="8" alt="x" />' . "\n";
 									} else {
-										echo '<img src="' . html_encode(pathurlencode($uri) . '" height="20" width="20" alt="X" />' . "\n";
+										echo '<img src="' . html_encode(pathurlencode($uri)) . '" height="20" width="20" alt="X" />' . "\n";
 									}
 									?>
 								</a>
 								<?php
+							}
+
+							//Check for cache folder having moved (Site relocated?)
+							preg_match('~(.*/)' . CACHEFOLDER . '~', $match, $foldermatches);
+							if ($foldermatches[1] != WEBPATH . '/') {
+								$fixedFolder++;
+								$target = $foldermatches[1] . CACHEFOLDER . '/' . stripSuffix($image);
+								$update = WEBPATH . '/' . CACHEFOLDER . '/' . stripSuffix($image);
+								$row[$field] = updateCacheFolder($row[$field], $target, $update);
+								$sql = 'UPDATE ' . prefix($table) . ' SET `' . $field . '`=' . db_quote($row[$field]) . ' WHERE `id`=' . $row['id'];
+								query($sql);
 							}
 						}
 					}
@@ -179,6 +191,12 @@ echo "\n" . '<div id="content">';
 			<br />
 			<?php
 			printf(ngettext('%s reference re-cached.', '%s references re-cached.', $fixed), $fixed);
+			?>
+			<br />
+			<?php
+			if ($fixedFolder) {
+				printf(ngettext('%s cache folder reference fixed.', '%s cache folder references fixed.', $fixedFolder), $fixedFolder);
+			}
 			?>
 		</p>
 		<p class="buttons">
@@ -210,4 +228,28 @@ echo "\n" . '<div id="content">';
 
 	echo "\n</body>";
 	echo "\n</head>";
+
+	/**
+	 * Updates the path to the cache folder
+	 * @param mixed $text
+	 * @param string $target
+	 * @param string $update
+	 * @return mixed
+	 */
+	function updateCacheFolder($text, $target, $update) {
+		if ($serial = preg_match('/^a:[0-9]+:{/', $text)) { //	serialized array
+			$text = getSerializedArray($text);
+		}
+		if (is_array($text)) {
+			foreach ($text as $key => $textelement) {
+				$text[$key] = updateCacheFolder($textelement, $target, $update);
+			}
+			if ($serial) {
+				$text = serialize($text);
+			}
+		} else {
+			$text = str_replace($target, $update, $text);
+		}
+		return $text;
+	}
 	?>

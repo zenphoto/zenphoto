@@ -1168,27 +1168,29 @@ function printAllNewsCategories($newsindex = 'All news', $counter = TRUE, $css_i
  */
 function getLatestNews($number = 2, $option = 'none', $category = '', $sticky = true, $sortdirection = 'desc') {
 	global $_zp_zenpage, $_zp_current_zenpage_news;
-	$latest = '';
+	$latest = array();
 	switch ($option) {
 		case 'none':
 			if (empty($category)) {
-				$latest = $_zp_zenpage->getArticles($number, NULL, true, 'date', 'desc', $sortdirection, $sticky);
+				$latest = $_zp_zenpage->getArticles($number,NULL,true, NULL, $sortdirection, $sticky,NULL);
 			} else {
 				$catobj = new ZenpageCategory($category);
-				$latest = $catobj->getArticles($number, NULL, true, 'date', 'desc', $sortdirection, $sticky);
+				$latest = $catobj->getArticles($number,NULL, true, NULL, $sortdirection, $sticky);
 			}
 			$counter = '';
 			$latestnews = array();
-			foreach ($latest as $item) {
-				$article = new ZenpageNews($item['titlelink']);
-				$counter++;
-				$latestnews[$counter] = array(
-								"albumname"	 => $article->getTitle(),
-								"titlelink"	 => $article->getTitlelink(),
-								"date"			 => $article->getDateTime(),
-								"type"			 => "news"
-				);
-				$latest = $latestnews;
+			if(is_array($latest)) {
+				foreach ($latest as $item) {
+					$article = new ZenpageNews($item['titlelink']);
+					$counter++;
+					$latestnews[$counter] = array(
+									"albumname"	 => $article->getTitle(),
+									"titlelink"	 => $article->getTitlelink(),
+									"date"			 => $article->getDateTime(),
+									"type"			 => "news"
+					);
+					$latest = $latestnews;
+				}
 			}
 			break;
 		case 'with_latest_images':
