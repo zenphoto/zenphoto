@@ -584,7 +584,7 @@ class Gallery {
 
 				/* Delete all image entries that don't belong to an album at all. */
 
-				$albumids = query("SELECT `id` FROM " . prefix('albums'));		 /* all the album IDs */
+				$albumids = query("SELECT `id` FROM " . prefix('albums')); /* all the album IDs */
 				$idsofalbums = array();
 				if ($albumids) {
 					while ($row = db_fetch_assoc($albumids)) {
@@ -600,7 +600,7 @@ class Gallery {
 					}
 					db_free_result($imageAlbums);
 				}
-				$orphans = array_diff($albumidsofimages, $idsofalbums);				/* albumids of images with no album */
+				$orphans = array_diff($albumidsofimages, $idsofalbums); /* albumids of images with no album */
 
 				if (count($orphans) > 0) { /* delete dead images from the DB */
 					$firstrow = array_pop($orphans);
@@ -669,12 +669,20 @@ class Gallery {
 				}
 				db_free_result($images);
 			}
+			// cleanup the tables
+			$resource = db_show('tables');
+			if ($resource) {
+				while ($row = db_fetch_assoc($resource)) {
+					query('OPTIMIZE TABLE ' . array_shift($row));
+				}
+				db_free_result($resource);
+			}
 		}
 		return false;
 	}
 
 	function commentClean($table) {
-		$ids = query('SELECT `id` FROM ' . prefix($table));	/* all the IDs */
+		$ids = query('SELECT `id` FROM ' . prefix($table)); /* all the IDs */
 		$idsofitems = array();
 		if ($ids) {
 			while ($row = db_fetch_assoc($ids)) {
@@ -691,7 +699,7 @@ class Gallery {
 			}
 			db_free_result($commentOwners);
 		}
-		$orphans = array_diff($idsofcomments, $idsofitems);		 /* owner ids of comments with no owner */
+		$orphans = array_diff($idsofcomments, $idsofitems); /* owner ids of comments with no owner */
 
 		if (count($orphans) > 0) { /* delete dead comments from the DB */
 			$sql = "DELETE FROM " . prefix('comments') . " WHERE `type`=" . db_quote($table) . " AND (`ownerid`=" . implode(' OR `ownerid`=', $orphans) . ')';
@@ -761,7 +769,7 @@ class Gallery {
 			if (($key = array_search($folder, $albums)) !== false) { // album exists in filesystem
 				$results[$row['folder']] = $row;
 				unset($albums[$key]);
-			} else {			// album no longer exists
+			} else { // album no longer exists
 				$id = $row['id'];
 				query("DELETE FROM " . prefix('albums') . " WHERE `id`=$id"); // delete the record
 				query("DELETE FROM " . prefix('comments') . " WHERE `type` ='images' AND `ownerid`= '$id'"); // remove image comments
