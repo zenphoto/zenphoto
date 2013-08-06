@@ -1047,31 +1047,70 @@ function parse_query($str) {
 }
 
 /**
+ * createsa query string from the array passed
+ * @param array $parts
+ * @return string
+ */
+function build_query($parts) {
+	$q = '';
+	foreach ($parts as $name => $value) {
+		$q .= $name . '=' . $value . '&';
+	}
+	return substr($q, 0, -1);
+}
+
+/**
+ * Builds a url from parts
+ * @param array $parts
+ * @return string
+ */
+function build_url($parts) {
+	$u = '';
+	if (isset($parts['scheme'])) {
+		$u .= $parts['scheme'] . '://';
+	}
+	if (isset($parts['host'])) {
+		$u .= $parts['host'];
+	}
+	if (isset($parts['port'])) {
+		$u .= ':' . $parts['port'];
+	}
+	if (isset($parts['path'])) {
+		if (empty($u)) {
+			$u = $parts['path'];
+		} else {
+			$u .= '/' . ltrim($parts['path'], '/');
+		}
+	}
+	if (isset($parts['query'])) {
+		$u .= '?' . $parts['query'];
+	}
+	if (isset($parts['fragment '])) {
+		$u .= '#' . $parts['fragment '];
+	}
+	return $u;
+}
+
+/**
  * rawurlencode function that is path-safe (does not encode /)
  *
  * @param string $path URL
  * @return string
  */
 function pathurlencode($path) {
-	preg_match('|^(http[s]*\://[a-zA-Z0-9\-\.]+/?)*(.*)$|xis', $path, $matches);
-	$parts = explode('?', $matches[2]);
-	$link = implode("/", array_map("rawurlencode", explode("/", $parts[0])));
-	if (count($parts) == 2) {
+	$parts = parse_url($path);
+	if (isset($parts['query'])) {
 		//	some kind of query link
-		$pairs = parse_query($parts[1]);
-		$query = '?';
+		$pairs = parse_query($parts['query']);
 		foreach ($pairs as $name => $value) {
-			$query .= $name;
 			if ($value) {
-				$query .= '=' . implode("/", array_map("rawurlencode", explode("/", $value)));
+				$pairs[$name] = implode("/", array_map("rawurlencode", explode("/", $value)));
 			}
-			$query .= '&';
 		}
-		$query = substr($query, 0, -1);
-	} else {
-		$query = '';
+		$parts['query'] = build_query($pairs);
 	}
-	return $matches[1] . $link . $query;
+	$parts['path'] = implode("/", array_map("rawurlencode", explode("/", $parts['path'])));
+	return build_url($parts);
 }
 
 /**
