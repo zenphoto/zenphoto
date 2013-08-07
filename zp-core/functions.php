@@ -659,9 +659,11 @@ function extensionEnabled($extension) {
 /**
  * Enables a plugin
  * @param string $extension
+ * @param int $priority
+ * @param bool $persistent
  */
-function enableExtension($extension) {
-	setOption('zp_plugin_' . $extension, 1);
+function enableExtension($extension, $priority, $persistent = true) {
+	setOption('zp_plugin_' . $extension, $priority, $persistent);
 }
 
 /**

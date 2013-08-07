@@ -73,7 +73,7 @@ $plugin_disable = (getOption('album_folder_class') === 'external') ? gettext('Th
 $option_interface = 'jplayer_options';
 
 if (!empty($_zp_multimedia_extension->name) || $plugin_disable) {
-	enableExtension(')jplayer', 0);
+	enableExtension('jplayer', 0);
 
 //NOTE: the following text really should be included in the $plugin_disable statement above so that it is visible
 //on the plugin tab

@@ -45,18 +45,18 @@
  * @package plugins
  * @subpackage users
  */
-$plugin_is_filter = 9|CLASS_PLUGIN;
+$plugin_is_filter = 9 | CLASS_PLUGIN;
 $plugin_description = gettext('Handles logon from <em>OpenID</em> credential providers.');
-$plugin_notice = sprintf(gettext('Run the <a href="%s">OpenID detect</a> script to check compatibility of your server configuration.'),FULLWEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/federated_logon/Auth/OpenID_detect.php');
+$plugin_notice = sprintf(gettext('Run the <a href="%s">OpenID detect</a> script to check compatibility of your server configuration.'), FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/federated_logon/Auth/OpenID_detect.php');
 $plugin_author = "Stephen Billard (sbillard)";
 
-$plugin_disable = (getOption('federated_logon_detect')) ? false : sprintf(gettext('Run the <a href="%s">OpenID detect</a> script to check compatibility of your server configuration.'),FULLWEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/federated_logon/Auth/OpenID_detect.php');
+$plugin_disable = (getOption('federated_logon_detect')) ? false : sprintf(gettext('Run the <a href="%s">OpenID detect</a> script to check compatibility of your server configuration.'), FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/federated_logon/Auth/OpenID_detect.php');
 if ($plugin_disable) {
-	enableExtension(')federated_logon',0);
+	enableExtension('federated_logon', 0);
 } else {
 	$option_interface = 'federated_logon';
 	zp_register_filter('theme_head', 'federated_logon::css');
-	zp_register_filter('alt_login_handler','federated_logon::alt_login_handler');
+	zp_register_filter('alt_login_handler', 'federated_logon::alt_login_handler');
 	zp_register_filter('save_admin_custom_data', 'federated_logon::save_custom');
 	zp_register_filter('edit_admin_custom_data', 'federated_logon::edit_admin');
 	zp_register_filter('load_theme_script', 'federated_logon::verify');
@@ -75,14 +75,14 @@ class federated_logon {
 		global $_zp_authority;
 		setOptionDefault('federated_login_group', 'viewers');
 		$mailinglist = $_zp_authority->getAdminEmail(ADMIN_RIGHTS);
-		if (count($mailinglist) == 0) {	//	no one to send the notice to!
-			setOption('register_user_notify',0);
+		if (count($mailinglist) == 0) { //	no one to send the notice to!
+			setOption('register_user_notify', 0);
 		} else {
 			setOptionDefault('register_user_notify', 1);
 		}
-		$files = getPluginFiles('*_logon.php','federated_logon');
-		foreach ($files as $key=>$link) {
-			setOptionDefault('federated_logon_handler'.$key,1);
+		$files = getPluginFiles('*_logon.php', 'federated_logon');
+		foreach ($files as $key => $link) {
+			setOptionDefault('federated_logon_handler' . $key, 1);
 		}
 	}
 
@@ -93,45 +93,45 @@ class federated_logon {
 		global $_zp_authority, $_common_notify_handler;
 		$admins = $_zp_authority->getAdministrators('groups');
 		$ordered = array();
-		foreach ($admins as $key=>$admin) {
-			if ($admin['rights'] && !($admin['rights']&ADMIN_RIGHTS)) {
+		foreach ($admins as $key => $admin) {
+			if ($admin['rights'] && !($admin['rights'] & ADMIN_RIGHTS)) {
 				$ordered[$admin['user']] = $admin['user'];
 			}
 		}
-		$files = getPluginFiles('*_logon.php','federated_logon');
-		foreach ($files as $key=>$link) {
-			$list[str_replace('_logon', '', $key)] = 'federated_logon_handler'.$key;
+		$files = getPluginFiles('*_logon.php', 'federated_logon');
+		foreach ($files as $key => $link) {
+			$list[str_replace('_logon', '', $key)] = 'federated_logon_handler' . $key;
 		}
-		$options = array(	gettext('Assign user to') => array('key' => 'federated_login_group', 'type' => OPTION_TYPE_SELECTOR,
-												'order' => 0,
-												'selections' => $ordered,
-												'desc' => gettext('The user group to which to map the federated login.')),
-											gettext('Handlers') => array('key'=>'federated_logon_handler', 'type'=> OPTION_TYPE_CHECKBOX_ARRAY,
-												'checkboxes'=>$list,
-												'order' => 1,
-												'desc'=> gettext('Un-check any handler you do not want to support.')),
-											gettext('Notify*') => array('key' => 'register_user_notify', 'type' => OPTION_TYPE_CHECKBOX,
-												'disabled' => $_common_notify_handler,
-												'order' => 7,
-												'desc' => gettext('If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration. (Verification is required only if the Federated Logon provider does not supply an e-mail address.)'))
+		$options = array(gettext('Assign user to')	 => array('key'				 => 'federated_login_group', 'type'			 => OPTION_TYPE_SELECTOR,
+										'order'			 => 0,
+										'selections' => $ordered,
+										'desc'			 => gettext('The user group to which to map the federated login.')),
+						gettext('Handlers')				 => array('key'				 => 'federated_logon_handler', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
+										'checkboxes' => $list,
+										'order'			 => 1,
+										'desc'			 => gettext('Un-check any handler you do not want to support.')),
+						gettext('Notify*')				 => array('key'			 => 'register_user_notify', 'type'		 => OPTION_TYPE_CHECKBOX,
+										'disabled' => $_common_notify_handler,
+										'order'		 => 7,
+										'desc'		 => gettext('If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration. (Verification is required only if the Federated Logon provider does not supply an e-mail address.)'))
 		);
-		$files = getPluginFiles('*_logon.php','federated_logon');
+		$files = getPluginFiles('*_logon.php', 'federated_logon');
 
 		$mailinglist = $_zp_authority->getAdminEmail(ADMIN_RIGHTS);
-		if (count($mailinglist) == 0) {	//	no one to send the notice to!
+		if (count($mailinglist) == 0) { //	no one to send the notice to!
 			$options[gettext('Notify*')]['disabled'] = true;
-			$options[gettext('Notify*')]['desc'] .= ' '.gettext('Of course there must be some Administrator with an e-mail address for this option to make sense!');
+			$options[gettext('Notify*')]['desc'] .= ' ' . gettext('Of course there must be some Administrator with an e-mail address for this option to make sense!');
 		}
 		if ($_common_notify_handler) {
-			$options['note'] = array('key' => 'menu_truncate_note', 'type' => OPTION_TYPE_NOTE,
-																'order' => 8,
-																'desc' => '<p class="notebox">'.$_common_notify_handler.'</p>');
+			$options['note'] = array('key'		 => 'menu_truncate_note', 'type'	 => OPTION_TYPE_NOTE,
+							'order'	 => 8,
+							'desc'	 => '<p class="notebox">' . $_common_notify_handler . '</p>');
 		} else {
 			$_common_notify_handler = gettext('* The option may be set via the <a href="javascript:gotoName(\'federated_logon\');"><em>register_user</em></a> plugin options.');
-			$options['note'] = array('key' => 'menu_truncate_note',
-															'type' => OPTION_TYPE_NOTE,
-															'order' => 8,
-															'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of this option is shared with other plugins.</p>'));
+			$options['note'] = array('key'		 => 'menu_truncate_note',
+							'type'	 => OPTION_TYPE_NOTE,
+							'order'	 => 8,
+							'desc'	 => gettext('<p class="notebox">*<strong>Note:</strong> The setting of this option is shared with other plugins.</p>'));
 		}
 		return $options;
 	}
@@ -142,6 +142,7 @@ class federated_logon {
 	 * @param $currentValue
 	 */
 	function handleOption($option, $currentValue) {
+
 	}
 
 	/**
@@ -154,7 +155,7 @@ class federated_logon {
 		} else {
 			$inTheme = $_zp_gallery->getCurrentTheme();
 		}
-		$css = getPlugin('federated_logon/federated_logon_buttons.css',$inTheme,true);
+		$css = getPlugin('federated_logon/federated_logon_buttons.css', $inTheme, true);
 		?>
 		<link rel="stylesheet" href="<?php echo $css; ?>" type="text/css" />
 		<?php
@@ -165,13 +166,13 @@ class federated_logon {
 	 * @param $handler_list
 	 */
 	static function alt_login_handler($handler_list) {
-		$files = getPluginFiles('*_logon.php','federated_logon');
-		foreach ($files as $key=>$link) {
-			$option = getOption('federated_logon_handler'.$key);
+		$files = getPluginFiles('*_logon.php', 'federated_logon');
+		foreach ($files as $key => $link) {
+			$option = getOption('federated_logon_handler' . $key);
 			if ($option || is_null($option)) {
 				$link = str_replace(SERVERPATH, WEBPATH, str_replace('\\', '/', $link));
 				$name = str_replace('_', ' ', substr(basename($link), 0, -10));
-				$handler_list[$name] = array('script'=>$link, 'params'=>array());
+				$handler_list[$name] = array('script' => $link, 'params' => array());
 			}
 		}
 		return $handler_list;
@@ -190,9 +191,9 @@ class federated_logon {
 	 * @param $redirect
 	 */
 	static function credentials($user, $email, $name, $redirect) {
-		$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
+		$userobj = Zenphoto_Authority::getAnAdmin(array('`user`='	 => $user, '`valid`=' => 1));
 		$more = false;
-		if ($userobj) {	//	update if changed
+		if ($userobj) { //	update if changed
 			$save = false;
 			if (!empty($email) && $email != $userobj->getEmail()) {
 				$save = true;
@@ -205,9 +206,9 @@ class federated_logon {
 			if ($save) {
 				$userobj->save();
 			}
-		} else {	//	User does not exist, create him
+		} else { //	User does not exist, create him
 			$groupname = getOption('federated_login_group');
-			$groupobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $groupname, '`valid`=' => 0));
+			$groupobj = Zenphoto_Authority::getAnAdmin(array('`user`='	 => $groupname, '`valid`=' => 0));
 			if ($groupobj) {
 				$group = NULL;
 				if ($groupobj->getName() != 'template') {
@@ -216,11 +217,12 @@ class federated_logon {
 				$userobj = Zenphoto_Authority::newAdministrator('');
 				$userobj->transient = false;
 				$userobj->setUser($user);
-				$credentials = array('federated','user','email');
-				if ($name) $credentials[] = 'name';
+				$credentials = array('federated', 'user', 'email');
+				if ($name)
+					$credentials[] = 'name';
 				$userobj->setCredentials($credentials);
 				$userobj->setName($name);
-				$userobj->setPass($user.HASH_SEED.gmdate('d M Y H:i:s'));
+				$userobj->setPass($user . HASH_SEED . gmdate('d M Y H:i:s'));
 				$userobj->setObjects(NULL);
 				$userobj->setCustomData('');
 				$userobj->setLanguage(getUserLocale());
@@ -231,28 +233,28 @@ class federated_logon {
 						$userobj->createPrimealbum();
 					}
 				} else {
-					$groupobj = Zenphoto_Authority::getAnAdmin(array('`user`='=>'federated_verify','`valid`='=>0));
+					$groupobj = Zenphoto_Authority::getAnAdmin(array('`user`='	 => 'federated_verify', '`valid`=' => 0));
 					if (empty($groupobj)) {
-						$groupobj = Zenphoto_Authority::newAdministrator('federated_verify',0);
+						$groupobj = Zenphoto_Authority::newAdministrator('federated_verify', 0);
 						$groupobj->setName('group');
 						$groupobj->setRights(NO_RIGHTS);
 						$groupobj->save();
 					}
 					$group = 'federated_verify';
-					$redirect = WEBPATH.'/'.ZENFOLDER.'/admin.php';
+					$redirect = WEBPATH . '/' . ZENFOLDER . '/admin.php';
 				}
 				$userobj->setRights($groupobj->getRights());
 				$userobj->setGroup($group);
 				$userobj->save();
 			} else {
-				$more = sprintf(gettext('Group %s does not exist.'),$groupname);
+				$more = sprintf(gettext('Group %s does not exist.'), $groupname);
 			}
 		}
 		if (!$more) {
 			zp_apply_filter('federated_login_attempt', true, $user);
 			Zenphoto_Authority::logUser($userobj);
 			if ($redirect) {
-				header("Location: ".$redirect);
+				header("Location: " . $redirect);
 			}
 		}
 		return $more;
@@ -267,14 +269,14 @@ class federated_logon {
 	 */
 	static function save_custom($updated, $userobj, $i, $alter) {
 		global $_notification_sent;
-		if (($userobj->getGroup() == 'federated_verify') && is_valid_email_zp($userobj->getEmail()))  {
+		if (($userobj->getGroup() == 'federated_verify') && is_valid_email_zp($userobj->getEmail())) {
 			$userobj->save();
 			$admin_e = $userobj->getEmail();
 			$user = $userobj->getUser();
-			$key = bin2hex(serialize(array('user'=>$user,'email'=>$admin_e,'date'=>time())));
-			$link = FULLWEBPATH.'/index.php?verify_federated_user='.$key;
+			$key = bin2hex(serialize(array('user'	 => $user, 'email'	 => $admin_e, 'date'	 => time())));
+			$link = FULLWEBPATH . '/index.php?verify_federated_user=' . $key;
 			$message = sprintf(gettext('Visit %s to validate your federated logon credentials.'), $link);
-			zp_mail(get_language_string(gettext('Federated user confirmation')), $message, array($user=>$admin_e));
+			zp_mail(get_language_string(gettext('Federated user confirmation')), $message, array($user => $admin_e));
 		}
 		return $updated;
 	}
@@ -290,35 +292,36 @@ class federated_logon {
 	 */
 	static function edit_admin($html, $userobj, $i, $background, $current, $local_alterrights) {
 		global $_zp_current_admin_obj;
-		if (empty($_zp_current_admin_obj) || !$userobj->getValid()) return $html;
-		$federated = $userobj->getCredentials();	//	came from federated logon, disable the e-mail field
+		if (empty($_zp_current_admin_obj) || !$userobj->getValid())
+			return $html;
+		$federated = $userobj->getCredentials(); //	came from federated logon, disable the e-mail field
 		if (!in_array('federated', $federated)) {
 			$federated = false;
 		}
 
-		if ($userobj->getID() == $_zp_current_admin_obj->getID()) {	//	The current logged on user
-			if (($userobj->getGroup() == 'federated_verify'))  {	//	pending email address verification
+		if ($userobj->getID() == $_zp_current_admin_obj->getID()) { //	The current logged on user
+			if (($userobj->getGroup() == 'federated_verify')) { //	pending email address verification
 				$email = $userobj->getEmail();
 				if (empty($email)) {
 					$msg = gettext('<strong>NOTE:</strong> Update your profile with a valid <em>e-mail</em> address and you will be sent a link to validate your access to the site.');
 					$myhtml =
-						'<tr'.((!$current)? ' style="display:none;"':'').' class="userextrainfo">
-							<td'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top" colspan="2">'."\n".
-								'<p class="notebox">'.$msg.'</p>'."\n".
-							'</td>
-						</tr>'."\n";
-					$html = $myhtml.$html;
+									'<tr' . ((!$current) ? ' style="display:none;"' : '') . ' class="userextrainfo">
+							<td' . ((!empty($background)) ? ' style="' . $background . '"' : '') . ' valign="top" colspan="2">' . "\n" .
+									'<p class="notebox">' . $msg . '</p>' . "\n" .
+									'</td>
+						</tr>' . "\n";
+					$html = $myhtml . $html;
 				}
 			}
 		} else if ($federated) {
 			$msg = gettext("<strong>NOTE:</strong> User's credentials came from a Federated logon.");
 			$myhtml =
-				'<tr'.((!$current)? ' style="display:none;"':'').' class="userextrainfo">
-					<td'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top" colspan="2">'."\n".
-						'<p class="notebox">'.$msg.'</p>'."\n".
-					'</td>
-				</tr>'."\n";
-			$html = $myhtml.$html;
+							'<tr' . ((!$current) ? ' style="display:none;"' : '') . ' class="userextrainfo">
+					<td' . ((!empty($background)) ? ' style="' . $background . '"' : '') . ' valign="top" colspan="2">' . "\n" .
+							'<p class="notebox">' . $msg . '</p>' . "\n" .
+							'</td>
+				</tr>' . "\n";
+			$html = $myhtml . $html;
 		}
 		return $html;
 	}
@@ -331,12 +334,12 @@ class federated_logon {
 	static function verify($script) {
 		//process any verifications posted
 		if (isset($_GET['verify_federated_user'])) {
-			$params = unserialize(pack("H*", trim(sanitize($_GET['verify_federated_user']),'.')));
+			$params = unserialize(pack("H*", trim(sanitize($_GET['verify_federated_user']), '.')));
 			if ((time() - $params['date']) < 2592000) {
-				$userobj = Zenphoto_Authority::getAnAdmin(array('`user`='=>$params['user'], '`email`='=>$params['email'], '`valid`>'=>0));
+				$userobj = Zenphoto_Authority::getAnAdmin(array('`user`='	 => $params['user'], '`email`=' => $params['email'], '`valid`>' => 0));
 				if ($userobj) {
 					$groupname = getOption('federated_login_group');
-					$groupobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $groupname, '`valid`=' => 0));
+					$groupobj = Zenphoto_Authority::getAnAdmin(array('`user`='	 => $groupname, '`valid`=' => 0));
 					if ($groupobj) {
 						$userobj->setRights($groupobj->getRights());
 						$userobj->setGroup($groupname);
@@ -348,11 +351,10 @@ class federated_logon {
 					}
 					zp_apply_filter('register_user_verified', $userobj);
 					if (getOption('register_logon_user_notify')) {
-						zp_mail(gettext('Zenphoto Gallery registration'),
-						sprintf(gettext('%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail address of %3$s.'),$userobj->getName(), $userobj->getUser(), $userobj->getEmail()));
+						zp_mail(gettext('Zenphoto Gallery registration'), sprintf(gettext('%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail address of %3$s.'), $userobj->getName(), $userobj->getUser(), $userobj->getEmail()));
 					}
 					Zenphoto_Authority::logUser($userobj);
-					header("Location: ".FULLWEBPATH.'/' . ZENFOLDER . '/admin.php');
+					header("Location: " . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
 					exitZP();
 				}
 			}
@@ -374,42 +376,42 @@ class federated_logon {
 		$alt_handlers = federated_logon::alt_login_handler('');
 		?>
 		<ul class="logon_buttons">
-		<?php
-		foreach ($alt_handlers as $handler=>$details) {
-			$script = $details['script'];
-			$authority = str_replace('_logon', '', stripSuffix(basename($script)));
-			if (is_null($redirect)) {
-				$details['params'][] = 'redirect=/' . ZENFOLDER . '/admin.php';
-			} else {
-				if (!empty($redirect)) {
-					$details['params'][] = 'redirect=' . $redirect;
+			<?php
+			foreach ($alt_handlers as $handler => $details) {
+				$script = $details['script'];
+				$authority = str_replace('_logon', '', stripSuffix(basename($script)));
+				if (is_null($redirect)) {
+					$details['params'][] = 'redirect=/' . ZENFOLDER . '/admin.php';
+				} else {
+					if (!empty($redirect)) {
+						$details['params'][] = 'redirect=' . $redirect;
+					}
 				}
-			}
-			If (count($details['params'])) {
-				$params = "'".implode("','", $details['params'])."'";
-			} else {
-				$params = '';
+				If (count($details['params'])) {
+					$params = "'" . implode("','", $details['params']) . "'";
+				} else {
+					$params = '';
+				}
+				?>
+				<li>
+					<span class="fed_buttons">
+						<a href="javascript:launchScript('<?php echo $script; ?>',[<?php echo $params; ?>]);" title="<?php echo $authority; ?>" >
+							<?php
+							$logo = ltrim(str_replace(WEBPATH, '', dirname($script)) . '/' . $authority . '.png', '/');
+							if (file_exists(SERVERPATH . '/' . $logo)) {
+								?>
+								<img src="<?php echo WEBPATH . '/' . $logo; ?>" alt="<?php echo $authority; ?>" title="<?php printf(gettext('Login using %s'), $authority); ?>" />
+								<?php
+							} else {
+								echo $authority;
+							}
+							?>
+						</a>
+					</span>
+				</li>
+				<?php
 			}
 			?>
-			<li>
-				<span class="fed_buttons">
-					<a href="javascript:launchScript('<?php echo $script; ?>',[<?php echo $params; ?>]);" title="<?php echo $authority; ?>" >
-						<?php
-						$logo = ltrim(str_replace(WEBPATH, '', dirname($script)).'/'.$authority.'.png','/');
-						if (file_exists(SERVERPATH.'/'.$logo)) {
-							?>
-							<img src="<?php echo WEBPATH.'/'.$logo; ?>" alt="<?php echo $authority; ?>" title="<?php printf(gettext('Login using %s'),$authority); ?>" />
-							<?php
-						} else {
-							echo $authority;
-						}
-						?>
-					</a>
-				</span>
-			</li>
-			<?php
-		}
-		?>
 		</ul>
 		<?php
 	}

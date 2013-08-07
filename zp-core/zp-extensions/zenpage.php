@@ -256,7 +256,7 @@ class zenpagecms {
 			if (isset($_GET['cmsSwitch'])) {
 				setOption('themeSwitcher_zenpage_switch', $cmsSwitch = (int) ($_GET['cmsSwitch'] == 'true'));
 				if (!$cmsSwitch) {
-					enableExtension(')zenpage', 0, false);
+					enableExtension('zenpage', 0, false);
 				}
 			}
 		}

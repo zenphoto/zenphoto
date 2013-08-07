@@ -15,7 +15,7 @@ $plugin_disable = (isset($_zp_spamFilter) && !extensionEnabled('trivialSpam')) ?
 $option_interface = 'zpTrivialSpam';
 
 if ($plugin_disable) {
-	enableExtension(')trivialSpam', 0);
+	enableExtension('trivialSpam', 0);
 } else {
 	setOptionDefault('zp_plugin_trivialSpam', $plugin_is_filter);
 	$_zp_spamFilter = new zpTrivialSpam();

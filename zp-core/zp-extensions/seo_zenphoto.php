@@ -12,10 +12,12 @@ $plugin_disable = (zp_has_filter('seoFriendly') && !extensionEnabled('seo_zenpho
 
 $option_interface = 'zenphoto_seo';
 
-enableExtension(')seo_zenphoto', $plugin_is_filter);
-
-zp_register_filter('seoFriendly', 'zenphoto_seo::filter');
-zp_register_filter('seoFriendly_js', 'zenphoto_seo::js');
+if ($plugin_disable) {
+	enableExtension('zenphoto_seo', 0);
+} else {
+	zp_register_filter('seoFriendly', 'zenphoto_seo::filter');
+	zp_register_filter('seoFriendly_js', 'zenphoto_seo::js');
+}
 
 /**
  * Option handler class
