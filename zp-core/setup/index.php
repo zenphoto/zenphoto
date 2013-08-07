@@ -1880,6 +1880,7 @@ if ($c <= 0) {
 		`password` varchar(64) DEFAULT NULL,
 		`password_hint` text,
 		PRIMARY KEY (`id`),
+		KEY (`albumid`),
 		KEY `filename` (`filename`,`albumid`)
 		)	$collation;";
 						}
@@ -2319,6 +2320,7 @@ if ($c <= 0) {
 						//v1.4.5
 						$sql_statements[] = "ALTER TABLE $tbl_news ADD COLUMN `truncation` int(1) unsigned NOT NULL default '0'";
 						$sql_statements[] = "ALTER TABLE $tbl_pages ADD COLUMN `truncation` int(1) unsigned NOT NULL default '0'";
+						$sql_statements[] = "CREATE INDEX `albumid` ON $tbl_images (`albumid`)";
 
 						// do this last incase there are any field changes of like names!
 						foreach ($_zp_exifvars as $key => $exifvar) {

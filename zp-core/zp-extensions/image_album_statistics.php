@@ -449,11 +449,7 @@ function getImageStatistic($number, $option, $albumfolder = '', $collection = fa
 			}
 		}
 	} else {
-		$result = query("SELECT images.albumid, images.filename AS filename, images.mtime as mtime, images.title AS title, " .
-						"albums.folder AS folder, images.show, albums.show, albums.password FROM " .
-						prefix('images') . " AS images, " . prefix('albums') . " AS albums " .
-						"WHERE (images.albumid = albums.id) " . $albumWhere .
-						" ORDER BY " . $sortorder . " " . $sortdir);
+		$result = query("SELECT images.filename AS filename, albums.folder AS folder FROM " . prefix('images') . " AS images, " . prefix('albums') . " AS albums " . "WHERE (images.albumid = albums.id) " . $albumWhere . " ORDER BY " . $sortorder . " " . $sortdir);
 		while ($row = db_fetch_assoc($result)) {
 			$image = newImage(NULL, $row, true);
 			if ($image->exists && $image->checkAccess($hint, $show)) {
