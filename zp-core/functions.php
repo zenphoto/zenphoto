@@ -163,10 +163,7 @@ function cleanHTML($html) {
  */
 function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindicator = false) {
 	global $_user_tags;
-	if (!$shorten) {
-		return $articlecontent;
-	}
-	if ($forceindicator || (mb_strlen($articlecontent) > $shorten)) {
+	if ($shorten && ($forceindicator || (mb_strlen($articlecontent) > $shorten))) {
 		$allowed_tags = getAllowedTags('allowed_tags');
 		$short = mb_substr($articlecontent, 0, $shorten);
 		$short2 = kses($short . '</p>', $allowed_tags);
@@ -192,18 +189,20 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 			$shorten = $l1;
 		}
 		$short = truncate_string($articlecontent, $shorten, '');
-		// drop open tag strings
-		$open = mb_strrpos($short, '<');
-		if ($open > mb_strrpos($short, '>')) {
-			$short = mb_substr($short, 0, $open);
-		}
-		if (class_exists('tidy')) {
-			$tidy = new tidy();
-			$tidy->parseString($short . $shortenindicator, array('show-body-only' => true), 'utf8');
-			$tidy->cleanRepair();
-			$short = trim($tidy);
-		} else {
-			$short = trim(cleanHTML($short . $shortenindicator));
+		if ($short != $articlecontent) { //	we actually did remove some stuff
+			// drop open tag strings
+			$open = mb_strrpos($short, '<');
+			if ($open > mb_strrpos($short, '>')) {
+				$short = mb_substr($short, 0, $open);
+			}
+			if (class_exists('tidy')) {
+				$tidy = new tidy();
+				$tidy->parseString($short . $shortenindicator, array('show-body-only' => true), 'utf8');
+				$tidy->cleanRepair();
+				$short = trim($tidy);
+			} else {
+				$short = trim(cleanHTML($short . $shortenindicator));
+			}
 		}
 		return $short;
 	}
