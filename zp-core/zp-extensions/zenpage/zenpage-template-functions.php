@@ -685,7 +685,10 @@ function getContentShorten($text, $shorten, $shortenindicator = NULL, $readmore 
 			}
 		} else {
 			if (!is_bool($shorten)) {
-				$text = shortenContent($text, $shorten, $shortenindicator) . $readmorelink;
+				$newtext = shortenContent($text, $shorten, $shortenindicator);
+				if ($newtext != $text) {
+					$text = $newtext . $readmorelink;
+				}
 			}
 		}
 	}
@@ -1172,14 +1175,14 @@ function getLatestNews($number = 2, $option = 'none', $category = '', $sticky = 
 	switch ($option) {
 		case 'none':
 			if (empty($category)) {
-				$latest = $_zp_zenpage->getArticles($number,NULL,true, NULL, $sortdirection, $sticky,NULL);
+				$latest = $_zp_zenpage->getArticles($number, NULL, true, NULL, $sortdirection, $sticky, NULL);
 			} else {
 				$catobj = new ZenpageCategory($category);
-				$latest = $catobj->getArticles($number,NULL, true, NULL, $sortdirection, $sticky);
+				$latest = $catobj->getArticles($number, NULL, true, NULL, $sortdirection, $sticky);
 			}
 			$counter = '';
 			$latestnews = array();
-			if(is_array($latest)) {
+			if (is_array($latest)) {
 				foreach ($latest as $item) {
 					$article = new ZenpageNews($item['titlelink']);
 					$counter++;

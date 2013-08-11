@@ -60,7 +60,7 @@ class exampleMacros {
 			<ul>
 				<?php
 				foreach ($params as $key => $value) {
-					echo '<li>' . $key . ' == ' . $value . '</li>';
+					echo '<li>' . $key . ' => ' . $value . '</li>';
 				}
 				?>
 			</ul>
