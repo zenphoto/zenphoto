@@ -265,6 +265,8 @@ define('SAFE_MODE_ALBUM_SEP', '__');
 define('SERVERCACHE', SERVERPATH . '/' . CACHEFOLDER);
 define('MOD_REWRITE', getOption('mod_rewrite'));
 
+define('DEBUG_LOG_SIZE', getOption('debug_log_size'));
+
 define('ALBUM_FOLDER_WEBPATH', getAlbumFolder(WEBPATH));
 define('ALBUM_FOLDER_SERVERPATH', getAlbumFolder(SERVERPATH));
 define('ALBUM_FOLDER_EMPTY', getAlbumFolder(''));
@@ -1192,10 +1194,9 @@ function debugLog($message, $reset = false) {
 		global $_zp_mutex;
 		$path = SERVERPATH . '/' . DATA_FOLDER . '/debug.log';
 		$me = getmypid();
-		$max = getOption('debug_log_size');
 		if (is_object($_zp_mutex))
 			$_zp_mutex->lock();
-		if ($reset || ($size = @filesize($path)) == 0 || ($max && $size > $max)) {
+		if ($reset || ($size = @filesize($path)) == 0 || (defined('DEBUG_LOG_SIZE') && DEBUG_LOG_SIZE && $size > DEBUG_LOG_SIZE)) {
 			if (!$reset && $size > 0) {
 				switchLog('debug');
 			}

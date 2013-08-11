@@ -42,6 +42,7 @@ define('DEBUG_404', TEST_RELEASE); // set to true to log 404 error processing de
 define('DEBUG_EXIF', false); // set to true to log start/finish of exif processing. Useful to find problematic images.
 define('DEBUG_PLUGINS', false); // set to true to log plugin load sequence.
 define('DEBUG_FILTERS', false); // set to true to log filter application sequence.
+define('EXPLAIN_SELECTS', false); //	set to true to log the "EXPLAIN" of SELECT queries in the debug log
 
 define('DB_NOT_CONNECTED', serialize(array('mysql_host'		 => gettext('not connected'), 'mysql_database' => gettext('not connected'), 'mysql_prefix'	 => gettext('not connected'), 'mysql_user'		 => '', 'mysql_pass'		 => '')));
 $_zp_DB_details = unserialize(DB_NOT_CONNECTED);
