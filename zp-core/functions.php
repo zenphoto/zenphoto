@@ -2131,144 +2131,155 @@ function reveal($content, $visible = false) {
  */
 function applyMacros($text) {
 	$content_macros = getMacros();
-	krsort($content_macros); //	in case some start with the same sequence, look for the longest first
-	$regex = '/\[(' . implode('|', array_keys($content_macros)) . ')(\]|\s+.*\])/i';
-	if (preg_match_all($regex, $text, $matches)) {
-		foreach ($matches[1] as $key => $macroname) {
-			$p = trim(utf8::sanitize(str_replace("\xC2\xA0", ' ', substr(strip_tags($matches[2][$key]), 0, -1)))); //	remove hard spaces, invalid characters, and trailing bracket
-			$p = preg_replace("~\s+=\s+(?=(?:[^\"]*+\"[^\"]*+\")*+[^\"]*+$)~", "=", $p); //	deblank assignment operator
-			preg_match_all("~'[^'\"]++'|\"[^\"]++\"|[^\s]++~", $p, $l); //	parse the parameter list
-			$parms = array();
-			foreach ($l[0] as $k => $s) {
-				$parms[$k] = trim($s, '\'"'); //	remove any quote marks
-			}
-			$macroname = strtoupper($macroname);
-			$macro = $content_macros[$macroname];
-			$macro_instance = $matches[0][$key];
-			$parameters = array();
-			if (!empty($macro['params'])) {
-				$err = false;
-				foreach ($macro['params'] as $key => $type) {
-					if (array_key_exists($key, $parms)) {
-						switch (trim($type, '*')) {
-							case 'int':
-								if (is_numeric($parms[$key])) {
-									$parameters[] = (int) $parms[$key];
-									continue 2;
-								}
-								$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d should be a number.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
-								$macro['class'] = 'error';
-								break;
-							case 'string':
-								if (is_string($parms[$key])) {
-									$parameters[] = $parms[$key];
-									continue 2;
-								}
-								$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d should be a string.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
-								$macro['class'] = 'error';
-								break;
-							case 'bool':
-								switch (strtolower($parms[$key])) {
-									case ("true"):
-										$parameters[] = true;
-										continue 2;
-									case ("false"):
-										$parameters[] = false;
-										continue 2;
-								}
-								$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d should be <code>true</code> or <code>false</code>.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
-								$macro['class'] = 'error';
-								break;
-							case 'array':
-								$l = array_slice($parms, $key);
-								$parms = array();
-								foreach ($l as $key => $p) {
-									$x = explode('=', $p);
-									if (count($x) == 2) {
-										$parms[$x[0]] = $x[1];
-									} else {
-										$parms[$key] = $x[0];
-									}
-								}
-								$parameters[] = $parms;
-								break;
-							default:
-								$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d is incorrectly defined.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
-								$macro['class'] = 'error';
-								break;
-						}
-						break;
-					} else {
-						if (strpos($type, '*') === false) {
-							$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d is missing.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
-							$macro['class'] = 'error';
-						}
-						break;
-					}
-				}
-			} else {
-				if (!empty($p)) {
-					$macro['class'] = 'error';
-					$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> macro does not take parameters'), trim($macro_instance, '[]')) . '</span>';
-				}
-			}
-			switch ($macro['class']) {
-				case 'error':
-					break;
-				case 'function';
-				case 'procedure':
-					if (is_callable($macro['value'])) {
-						if ($macro['class'] == 'function') {
-							ob_start();
-							$data = call_user_func_array($macro['value'], $parameters);
-							if (empty($data)) {
-								$data = ob_get_contents();
-							}
-							ob_end_clean();
-						} else {
-							ob_start();
-							call_user_func_array($macro['value'], $parameters);
-							$data = ob_get_contents();
-							ob_end_clean();
-						}
-						if (empty($data)) {
-							$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> retuned no data'), trim($macro_instance, '[]')) . '</span>';
-						} else {
-							$data = "\n<!--Begin " . $macroname . "-->\n" . $data . "\n<!--End " . $macroname . "-->\n";
-						}
-					} else {
-						$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> <code>%2$s</code> is not callable'), trim($macro_instance, '[]'), $macro['value']) . '</span>';
-					}
-					break;
-				case 'constant':
-					$data = "\n<!--Begin " . $macroname . "-->\n" . $macro['value'] . "\n<!--End " . $macroname . "-->\n";
-					break;
-				case 'expression':
-					$expression = '$data = ' . $macro['value'];
-					$parms = array_reverse($parms, true);
-					preg_match_all('/\$\d+/', $macro['value'], $replacements);
-					foreach ($replacements as $rkey => $v) {
-						if (empty($v))
-							unset($replacements[$rkey]);
-					}
-					if (count($parms) == count($replacements)) {
+	krsort($content_macros);
 
-						foreach ($parms as $key => $value) {
-							$key++;
-							$expression = preg_replace('/\$' . $key . '/', db_quote($value), $expression);
+	foreach ($content_macros as $macroname => $macro) {
+		$regex = '/\[' . $macroname . '\s+([^\]]*)|\[' . $macroname . '\]/i';
+		if (preg_match_all($regex, $text, $matches)) {
+			foreach ($matches[0] as $instance => $macro_instance) {
+				$data = NULL;
+				$class = $macro['class'];
+				$macro_instance = rtrim($macro_instance, ']') . ']';
+				if (array_key_exists(1, $matches)) {
+					$p = trim(utf8::sanitize(str_replace("\xC2\xA0", ' ', strip_tags($matches[1][$instance])))); //	remove hard spaces, invalid characters, and trailing bracket
+					$p = preg_replace("~\s+=\s+(?=(?:[^\"]*+\"[^\"]*+\")*+[^\"]*+$)~", "=", $p); //	deblank assignment operator
+					preg_match_all("~'[^'\"]++'|\"[^\"]++\"|[^\s]++~", $p, $l); //	parse the parameter list
+					$parms = array();
+					$k = 0;
+					foreach ($l[0] as $s) {
+						if ($s != ',') {
+							$parms[$k++] = trim($s, '\'"'); //	remove any quote marks
 						}
-						eval($expression);
-						if (!isset($data) || is_null($data)) {
-							$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> retuned no data'), trim($macro_instance, '[]')) . '</span>';
-						} else {
-							$data = "\n<!--Begin " . $macroname . "-->\n" . $data . "\n<!--End " . $macroname . "-->\n";
-						}
-					} else {
-						$data = '<span class="error">' . sprintf(ngettext('<em>[%1$s]</em> takes %2$d parameter', '<em>[%1$s]</em> takes %2$d parameters', count($replacements)), trim($macro_instance, '[]'), count($replacements)) . '</span>';
 					}
-					break;
+				} else {
+					$p = '';
+					$parms = array();
+				}
+				$parameters = array();
+				if (!empty($macro['params'])) {
+					$err = false;
+					foreach ($macro['params'] as $key => $type) {
+						if (array_key_exists($key, $parms)) {
+							switch (trim($type, '*')) {
+								case 'int':
+									if (is_numeric($parms[$key])) {
+										$parameters[] = (int) $parms[$key];
+										continue 2;
+									}
+									$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d should be a number.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
+									$class = 'error';
+									break;
+								case 'string':
+									if (is_string($parms[$key])) {
+										$parameters[] = $parms[$key];
+										continue 2;
+									}
+									$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d should be a string.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
+									$class = 'error';
+									break;
+								case 'bool':
+									switch (strtolower($parms[$key])) {
+										case ("true"):
+											$parameters[] = true;
+											continue 2;
+										case ("false"):
+											$parameters[] = false;
+											continue 2;
+									}
+									$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d should be <code>true</code> or <code>false</code>.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
+									$class = 'error';
+									break;
+								case 'array':
+									$l = array_slice($parms, $key);
+									$parms = array();
+									foreach ($l as $key => $p) {
+										$x = explode('=', $p);
+										if (count($x) == 2) {
+											$parms[$x[0]] = $x[1];
+										} else {
+											$parms[$key] = $x[0];
+										}
+									}
+									$parameters[] = $parms;
+									break;
+								default:
+									$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d is incorrectly defined.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
+									$class = 'error';
+									break;
+							}
+							break;
+						} else {
+							if (strpos($type, '*') === false) {
+								$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d is missing.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
+								$class = 'error';
+							}
+							break;
+						}
+					}
+				} else {
+					if (!empty($p)) {
+						$class = 'error';
+						$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> macro does not take parameters'), trim($macro_instance, '[]')) . '</span>';
+					}
+				}
+				switch ($class) {
+					case 'error':
+						break;
+					case 'function';
+					case 'procedure':
+						if (is_callable($macro['value'])) {
+							if ($class == 'function') {
+								ob_start();
+								$data = call_user_func_array($macro['value'], $parameters);
+								if (empty($data)) {
+									$data = ob_get_contents();
+								}
+								ob_end_clean();
+							} else {
+								ob_start();
+								call_user_func_array($macro['value'], $parameters);
+								$data = ob_get_contents();
+								ob_end_clean();
+							}
+							if (empty($data)) {
+								$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> retuned no data'), trim($macro_instance, '[]')) . '</span>';
+							} else {
+								$data = "\n<!--Begin " . $macroname . "-->\n" . $data . "\n<!--End " . $macroname . "-->\n";
+							}
+						} else {
+							$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> <code>%2$s</code> is not callable'), trim($macro_instance, '[]'), $macro['value']) . '</span>';
+						}
+						break;
+					case 'constant':
+						$data = "\n<!--Begin " . $macroname . "-->\n" . $macro['value'] . "\n<!--End " . $macroname . "-->\n";
+						break;
+					case 'expression':
+						$expression = '$data = ' . $macro['value'];
+						$parms = array_reverse($parms, true);
+						preg_match_all('/\$\d+/', $macro['value'], $replacements);
+						foreach ($replacements as $rkey => $v) {
+							if (empty($v))
+								unset($replacements[$rkey]);
+						}
+						if (count($parms) == count($replacements)) {
+
+							foreach ($parms as $key => $value) {
+								$key++;
+								$expression = preg_replace('/\$' . $key . '/', db_quote($value), $expression);
+							}
+							eval($expression);
+							if (!isset($data) || is_null($data)) {
+								$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> retuned no data'), trim($macro_instance, '[]')) . '</span>';
+							} else {
+								$data = "\n<!--Begin " . $macroname . "-->\n" . $data . "\n<!--End " . $macroname . "-->\n";
+							}
+						} else {
+							$data = '<span class="error">' . sprintf(ngettext('<em>[%1$s]</em> takes %2$d parameter', '<em>[%1$s]</em> takes %2$d parameters', count($replacements)), trim($macro_instance, '[]'), count($replacements)) . '</span>';
+						}
+						break;
+				}
+				$text = str_replace($macro_instance, $data, $text);
 			}
-			$text = str_replace($macro_instance, $data, $text);
 		}
 	}
 	return $text;

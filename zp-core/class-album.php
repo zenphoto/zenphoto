@@ -1577,14 +1577,16 @@ class Album extends AlbumBase {
 
 		while (false !== ($file = readdir($dir))) {
 			$file8 = filesystemToInternal($file);
-			if ($dirs && ((substr($file, 0, 1) != '.' && is_dir($albumdir . $file)) || hasDynamicAlbumSuffix($file))) {
-				$files[] = $file8;
-			} else if (!$dirs && is_file($albumdir . $file)) {
-				if (is_valid_other_type($file)) {
+			if (@$file8{0} != '.') {
+				if ($dirs && (is_dir($albumdir . $file) || hasDynamicAlbumSuffix($file))) {
 					$files[] = $file8;
-					$others[] = $file8;
-				} else if (is_valid_image($file)) {
-					$files[] = $file8;
+				} else if (!$dirs && is_file($albumdir . $file)) {
+					if (is_valid_other_type($file)) {
+						$files[] = $file8;
+						$others[] = $file8;
+					} else if (is_valid_image($file)) {
+						$files[] = $file8;
+					}
 				}
 			}
 		}
