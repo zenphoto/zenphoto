@@ -2131,18 +2131,17 @@ function reveal($content, $visible = false) {
  */
 function applyMacros($text) {
 	$content_macros = getMacros();
+	krsort($content_macros);
+
 	foreach ($content_macros as $macroname => $macro) {
-		if (!empty($macro['params'])) {
-			$regex = '/\[' . $macroname . '\s+([^\]]*)/i';
-		} else {
-			$regex = '/\[' . $macroname . '\]/i';
-		}
+		$regex = '/\[' . $macroname . '\s+([^\]]*)|\[' . $macroname . '\]/i';
+
 		if (preg_match_all($regex, $text, $matches)) {
 			foreach ($matches[0] as $instance => $macro_instance) {
 				$data = NULL;
 				$class = $macro['class'];
+				$macro_instance = rtrim($macro_instance, ']') . ']';
 				if (array_key_exists(1, $matches)) {
-					$macro_instance .= ']';
 					$p = trim(utf8::sanitize(str_replace("\xC2\xA0", ' ', strip_tags($matches[1][$instance])))); //	remove hard spaces, invalid characters, and trailing bracket
 					$p = preg_replace("~\s+=\s+(?=(?:[^\"]*+\"[^\"]*+\")*+[^\"]*+$)~", "=", $p); //	deblank assignment operator
 					preg_match_all("~'[^'\"]++'|\"[^\"]++\"|[^\s]++~", $p, $l); //	parse the parameter list
