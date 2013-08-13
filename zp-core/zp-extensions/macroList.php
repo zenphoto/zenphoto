@@ -80,9 +80,14 @@ function macro_admin_tabs($tabs) {
 function MacroList_show($macro, $detail) {
 	$warned = array();
 	echo '<dl>';
-	echo "<dt><code>[$macro";
-	$required = $array = false;
 	$warn = array();
+	if (preg_match('/[^\w]/', $macro)) {
+		$warn['identifier'] = gettext('Macro identifiers may not contain special characters.');
+		echo "<dt><code>[<span class=\"error\">$macro</span>";
+	} else {
+		echo "<dt><code>[$macro";
+	}
+	$required = $array = false;
 	if ($detail['class'] == 'expression') {
 		preg_match_all('/\$\d+/', $detail['value'], $replacements);
 		foreach ($replacements as $rkey => $v) {
