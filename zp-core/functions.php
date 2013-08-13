@@ -2135,7 +2135,6 @@ function applyMacros($text) {
 
 	foreach ($content_macros as $macroname => $macro) {
 		$regex = '/\[' . $macroname . '\s+([^\]]*)|\[' . $macroname . '\]/i';
-
 		if (preg_match_all($regex, $text, $matches)) {
 			foreach ($matches[0] as $instance => $macro_instance) {
 				$data = NULL;
@@ -2146,8 +2145,11 @@ function applyMacros($text) {
 					$p = preg_replace("~\s+=\s+(?=(?:[^\"]*+\"[^\"]*+\")*+[^\"]*+$)~", "=", $p); //	deblank assignment operator
 					preg_match_all("~'[^'\"]++'|\"[^\"]++\"|[^\s]++~", $p, $l); //	parse the parameter list
 					$parms = array();
-					foreach ($l[0] as $k => $s) {
-						$parms[$k] = trim($s, '\'"'); //	remove any quote marks
+					$k = 0;
+					foreach ($l[0] as $s) {
+						if ($s != ',') {
+							$parms[$k++] = trim($s, '\'"'); //	remove any quote marks
+						}
 					}
 				} else {
 					$p = '';
