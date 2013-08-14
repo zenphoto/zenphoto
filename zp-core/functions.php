@@ -2134,14 +2134,14 @@ function applyMacros($text) {
 	krsort($content_macros);
 
 	foreach ($content_macros as $macroname => $macro) {
-		$regex = '/\[' . $macroname . '\s+([^\]]*)|\[' . $macroname . '\]/i';
+		$regex = '/\[' . $macroname . '[^\w]+([^\]]*)|\[' . $macroname . '\]/i';
 		if (preg_match_all($regex, $text, $matches)) {
 			foreach ($matches[0] as $instance => $macro_instance) {
 				$data = NULL;
 				$class = $macro['class'];
 				$macro_instance = rtrim($macro_instance, ']') . ']';
 				if (array_key_exists(1, $matches)) {
-					$p = trim(utf8::sanitize(str_replace("\xC2\xA0", ' ', strip_tags($matches[1][$instance])))); //	remove hard spaces, invalid characters, and trailing bracket
+					$p = trim(utf8::sanitize(str_replace("\xC2\xA0", ' ', strip_tags($matches[1][$instance])))); //	remove hard spaces and invalid characters
 					$p = preg_replace("~\s+=\s+(?=(?:[^\"]*+\"[^\"]*+\")*+[^\"]*+$)~", "=", $p); //	deblank assignment operator
 					preg_match_all("~'[^'\"]++'|\"[^\"]++\"|[^\s]++~", $p, $l); //	parse the parameter list
 					$parms = array();

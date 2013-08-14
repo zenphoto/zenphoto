@@ -3,7 +3,7 @@
 /**
  *
  * Macros are "delcared" by filters registered to the <var>content_macro</var> filter. The filter should add its macros to the
- * array passed and return the result. A macro is defined by an array element. The index of the array element is the macro name.
+ * array passed and return the result. A macro is defined by an array element. The index of the array element is the macro identifier.
  *
  * Note: the plugin should be active both on THEMES to provide the function and on the ADMIN pages to provide
  * the macro documentation.
@@ -80,9 +80,14 @@ function macro_admin_tabs($tabs) {
 function MacroList_show($macro, $detail) {
 	$warned = array();
 	echo '<dl>';
-	echo "<dt><code>[$macro";
-	$required = $array = false;
 	$warn = array();
+	if (preg_match('/[^\w]/', $macro)) {
+		$warn['identifier'] = gettext('Macro identifiers may not contain special characters.');
+		echo "<dt><code>[<span class=\"error\">$macro</span>";
+	} else {
+		echo "<dt><code>[$macro";
+	}
+	$required = $array = false;
 	if ($detail['class'] == 'expression') {
 		preg_match_all('/\$\d+/', $detail['value'], $replacements);
 		foreach ($replacements as $rkey => $v) {
