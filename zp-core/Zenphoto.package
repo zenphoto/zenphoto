@@ -123,7 +123,6 @@ themes/garland/theme.png
 themes/garland/theme_description.php
 themes/garland/themeoptions.php
 themes/garland/zen.css
-themes/stopdesign
 themes/zenpage
 themes/zenpage/404.php
 themes/zenpage/album.php
@@ -1744,4 +1743,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1746
+1745
