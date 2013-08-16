@@ -126,9 +126,11 @@ class Zenpage {
 				$gettop = " WHERE parentid IS NULL";
 			$show = $gettop;
 		}
+		if (is_null($sortdirection)) {
+			$sortdirection = $sortObj->sortdirection;
+		}
 		switch ($sortdirection) {
-			case NULL:
-				$sortdirection = $sortObj->sortdirection;
+			default:
 			case 'asc':
 				$sortdir = ' ASC';
 				break;
@@ -137,9 +139,11 @@ class Zenpage {
 				$sortdir = ' DESC';
 				break;
 		}
+		if (is_null($sorttype)) {
+			$sorttype = $sortObj->sortorder;
+		}
 		switch ($sorttype) {
-			case NULL:
-				$sorttype = $sortObj->sortorder;
+			default:
 			case 'date':
 				$sortorder = 'date';
 				break;
