@@ -42,6 +42,7 @@ if (OFFSET_PATH) {
 	zp_register_filter('admin_overview', 'comment_form_print10Most');
 	zp_register_filter('save_admin_custom_data', 'comment_form_save_admin');
 	zp_register_filter('edit_admin_custom_data', 'comment_form_edit_admin');
+	zp_register_filter('admin_tabs', 'comment_form::admin_tabs');
 } else {
 	zp_register_filter('comment_post', 'comment_form_comment_post');
 	zp_register_filter('handle_comment', 'comment_form_postcomment');
@@ -161,6 +162,24 @@ class comment_form {
 
 	function handleOption($option, $currentValue) {
 
+	}
+
+	static function admin_tabs($tabs) {
+		if (zp_loggedin(COMMENT_RIGHTS)) {
+			$add = true;
+			$newtabs = array();
+			foreach ($tabs as $key => $tab) {
+				if ($add && !in_array($key, array('overview', 'edit', 'upload', 'pages', 'news', 'tags', 'menu'))) {
+					$newtabs['comments'] = array('text'		 => gettext("comments"),
+									'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . 'comment_form/admin_comments.php?page=comments&amp;tab=' . gettext('comments'),
+									'subtabs'	 => NULL);
+					$add = false;
+				}
+				$newtabs[$key] = $tab;
+			}
+			return $newtabs;
+		}
+		return $tabs;
 	}
 
 }

@@ -6,7 +6,7 @@
 // force UTF-8 Ø
 
 define('OFFSET_PATH', 1);
-require_once(dirname(__FILE__) . '/admin-globals.php');
+require_once('../../admin-globals.php');
 
 admin_securityChecks(COMMENT_RIGHTS, currentRelativeURL());
 
@@ -35,7 +35,7 @@ if (isset($_GET['action'])) {
 			$comment->setInModeration(1);
 			zp_apply_filter('comment_disapprove', $comment);
 			$comment->save();
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-comments.php');
+			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form/admin-comments.php');
 			exitZP();
 
 		case "notspam":
@@ -44,16 +44,16 @@ if (isset($_GET['action'])) {
 			$comment->setInModeration(0);
 			zp_apply_filter('comment_approve', $comment);
 			$comment->save();
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-comments.php');
+			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form/admin-comments.php');
 			exitZP();
 
 		case 'applycomments':
 			XSRFdefender('applycomments');
 			if (isset($_POST['ids'])) {
 				$action = processCommentBulkActions();
-				header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-comments.php?bulk=" . $action);
+				header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form/admin-comments.php?bulk=' . $action);
 			} else {
-				header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-comments.php");
+				header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form/admin-comments.php?saved');
 			}
 			exitZP();
 		case 'deletecomment':
@@ -61,12 +61,12 @@ if (isset($_GET['action'])) {
 			$id = sanitize_numeric($_GET['id']);
 			$comment = new Comment($id);
 			$comment->remove();
-			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-comments.php?ndeleted=1");
+			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form/admin-comments.php?ndeleted=1');
 			exitZP();
 
 		case 'savecomment':
 			if (!isset($_POST['id'])) {
-				header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-comments.php");
+				header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form/admin-comments.php');
 				exitZP();
 			}
 			XSRFdefender('savecomment');
@@ -79,7 +79,7 @@ if (isset($_GET['action'])) {
 			$comment->setComment(sanitize($_POST['comment'], 1));
 			$comment->setCustomData(zp_apply_filter('save_comment_custom_data', ''));
 			$comment->save();
-			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-comments.php?sedit");
+			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form/admin-comments.php?saved');
 			exitZP();
 	}
 }
@@ -124,18 +124,18 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 				<span class="buttons">
 					<p class="buttons">
 						<a href="javascript:if(confirm('<?php echo gettext('Are you sure you want to delete this comment?'); ?>')) { window.location='?action=deletecomment&id=<?php echo $id; ?>&amp;XSRFToken=<?php echo getXSRFToken('deletecomment') ?>'; }"
-							 title="<?php echo gettext('Delete'); ?>" ><img src="images/fail.png" alt="" />
+							 title="<?php echo gettext('Delete'); ?>" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="" />
 							<?php echo gettext('Delete'); ?></a>
 					</p>
 					<p class="buttons" style="margin-top: 10px">
 						<button type="submit">
-							<img src="images/pass.png" alt="" />
+							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" />
 							<strong><?php echo gettext("Apply"); ?></strong>
 						</button>
 					</p>
 					<p class="buttons" style="margin-top: 10px">
 						<button type="button" title="<?php echo gettext("Cancel"); ?>" onclick="window.location = 'admin-comments.php';">
-							<img src="images/reset.png" alt="" />
+							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" />
 							<strong><?php echo gettext("Cancel"); ?></strong>
 						</button>
 					</p>
@@ -189,13 +189,13 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 							$link_moderation = gettext('Approve');
 							$title_moderation = gettext('Approve this comment');
 							$url_moderation = '?action=notspam&amp;id=' . $id;
-							$linkimage = "images/pass.png";
+							$linkimage = WEBPATH . '/' . ZENFOLDER . '/images/pass.png';
 						} else {
 							$status_moderation = '<span style="color: green">' . gettext('Comment is approved') . '</span>';
 							$link_moderation = gettext('Un-approve');
 							$title_moderation = gettext('Un-approve this comment');
 							$url_moderation = '?action=spam&amp;id=' . $id;
-							$linkimage = "images/warn.png";
+							$linkimage = WEBPATH . '/' . ZENFOLDER . '/images/warn.png';
 						}
 
 						if ($private) {
@@ -229,11 +229,9 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 	}
 } else {
 	// Set up some view option variables.
-
-	define('COMMENTS_PER_PAGE', max(1, getOption('comment_form_comments_per_page')));
 	if (isset($_GET['fulltext']) && $_GET['fulltext']) {
 		$fulltext = true;
-		$fulltexturl = '?fulltext=1';
+		$fulltexturl = '?fulltext = 1';
 	} else {
 		$fulltext = false;
 		$fulltexturl = '';
@@ -241,7 +239,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 	$allcomments = fetchComments(NULL);
 
 	if (isset($_GET['subpage'])) {
-		$pagenum = max(intval($_GET['subpage']), 1);
+		$pagenum = max(intval($_GET['subpage ']), 1);
 	} else {
 		$pagenum = 1;
 	}
@@ -249,7 +247,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 	$comments = array_slice($allcomments, ($pagenum - 1) * COMMENTS_PER_PAGE, COMMENTS_PER_PAGE);
 	$allcommentscount = count($allcomments);
 	$totalpages = ceil(($allcommentscount / COMMENTS_PER_PAGE));
-	zp_apply_filter('admin_note', 'comments', 'list');
+	zp_apply_filter('admin_note', '  comments', '  list');
 	unset($allcomments);
 	?>
 	<h1><?php echo gettext("Comments"); ?></h1>
@@ -274,7 +272,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 		<div class="messagebox fade-message"><?php echo $message; ?></div>
 		<?php
 	}
-	if ((isset($_GET['ndeleted']) && $_GET['ndeleted'] > 0) || isset($_GET['sedit'])) {
+	if ((isset($_GET['ndeleted']) && $_GET['ndeleted'] > 0) || isset($_GET['saved'])) {
 		?>
 		<div class="messagebox fade-message">
 			<?php
@@ -286,7 +284,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 					?></h2>
 				<?php
 			}
-			if (isset($_GET['sedit'])) {
+			if (isset($_GET['saved'])) {
 				?>
 				<h2>
 					<?php echo gettext("Changes applied"); ?>
@@ -305,7 +303,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 	if ($totalpages > 1) {
 		?>
 		<div align="center">
-			<?php adminPageNav($pagenum, $totalpages, 'admin-comments.php', $fulltexturl); ?>
+			<?php adminPageNav($pagenum, $totalpages, '  admin-comments.php ', $fulltexturl); ?>
 		</div>
 		<?php
 	}
@@ -314,16 +312,16 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 	<form name="comments" action="?action=applycomments" method="post"	onsubmit="return confirmAction();">
 		<?php XSRFToken('applycomments'); ?>
 		<input type="hidden" name="subpage" value="<?php echo html_encode($pagenum) ?>" />
-		<p class="buttons"><button type="submit"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button></p>
+		<p class="buttons"><button type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button></p>
 		<p class="buttons">
 			<?php
 			if (!$fulltext) {
 				?>
-				<a href="?fulltext=1<?php echo $viewall ? "&amp;viewall" : ""; ?>"><img src="images/arrow_out.png" alt="" /> <?php echo gettext("View full text"); ?></a>
+				<a href="?fulltext=1<?php echo $viewall ? '&amp;viewall' : ''; ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_out.png" alt="" /> <?php echo gettext("View full text"); ?></a>
 				<?php
 			} else {
 				?>
-				<a	href="admin-comments.php?fulltext=0"<?php echo $viewall ? "?viewall" : ""; ?>"><img src="images/arrow_in.png" alt="" /> <?php echo gettext("View truncated"); ?></a>
+				<a	href="admin-comments.php?fulltext=0<?php echo $viewall ? '&amp;viewall' : ''; ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_in.png" alt="" /> <?php echo gettext("View truncated"); ?></a>
 				<?php
 			}
 			?>
@@ -372,13 +370,14 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 							$albumdata = $albmdata[0];
 							$album = $albumdata['folder'];
 							$albumtitle = get_language_string($albumdata['title']);
-							$link = '<a href="' . rewrite_path("/$album", "/index.php?album=" . html_encode(pathurlencode($album))) . '#zp_comment_id_' . $id . '">' . $albumtitle . $title . '</a>';
+							$link = '<a href = "' . rewrite_path("/$album", "/index.php ? album = " . html_encode(pathurlencode($album))) . '#zp_comment_id_' . $id . '">' . $albumtitle . $title . '</a>';
 							if (empty($albumtitle))
 								$albumtitle = $album;
 						}
 						break;
 					case "news": // ZENPAGE: if plugin is installed
-						if (extensionEnabled('zenpage')) {
+						if (extensionEnabled('zenpage
+											')) {
 							$titlelink = '';
 							$title = '';
 							$newsdata = query_full_array("SELECT `title`, `titlelink` FROM " . prefix('news') .
@@ -387,7 +386,8 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 								$newsdata = $newsdata[0];
 								$titlelink = $newsdata['titlelink'];
 								$title = get_language_string($newsdata['title']);
-								$link = '<a href="' . rewrite_path("/news/" . $titlelink, "/index.php?p=news&amp;title=" . urlencode($titlelink)) . '#zp_comment_id_' . $id . '">' . $title . "</a><br /> " . gettext("[news]");
+								$link = '<a href = "' . rewrite_path("/news/" . $titlelink, "/index.php? p = news&amp;
+							title = " . urlencode($titlelink)) . '#zp_comment_id_' . $id . '">' . $title . "</a><br /> " . gettext("[news]");
 							}
 						}
 						break;
@@ -405,7 +405,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 							}
 						}
 						break;
-					default: // all the image types
+					default : // all the image types
 						$imagedata = query_full_array("SELECT `title`, `filename`, `albumid` FROM " . prefix('images') .
 										" WHERE `id`=" . $comment['ownerid']);
 						if ($imagedata) {
@@ -444,7 +444,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 						<?php
 						echo $website ? "<a href=\"$website\">$author</a>" : $author;
 						if ($anon) {
-							echo ' <a title="' . gettext('Anonymous posting') . '"><img src="images/action.png" style="border: 0px;" alt="' . gettext("Anonymous posting") . '" /></a>';
+							echo ' <a title="' . gettext('Anonymous posting') . '"><img src="<?php echo WEBPATH . ' / ' . ZENFOLDER; ?>/images/action.png" style="border: 0px;" alt="' . gettext("Anonymous posting") . '" /></a>';
 						}
 						?>
 					</td>
@@ -453,33 +453,33 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 					<td class="page-list_icon">
 						<?php
 						if ($private) {
-							echo '<a title="' . gettext("Private message") . '"><img src="images/reset.png" style="border: 0px;" alt="' . gettext("Private message") . '" /></a>';
+							echo '<a title="' . gettext("Private message") . '"><img src="<?php echo WEBPATH . ' / ' . ZENFOLDER; ?>/images/reset.png" style="border: 0px;" alt="' . gettext("Private message") . '" /></a>';
 						}
 						?>
 					</td>
 					<td class="page-list_icon"><?php
 						if ($inmoderation) {
 							?>
-							<a href="?action=notspam&amp;id=<?php echo $id; ?>&amp;XSRFToken=<?php echo getXSRFToken('comment_update') ?>" title="<?php echo gettext('Approve this message (not SPAM)'); ?>">
-								<img src="images/warn.png" style="border: 0px;" alt="<?php echo gettext("Approve this message (not SPAM"); ?>" /></a>
+							<a href="?action=notspam&amp;id= <?php echo $id; ?>&amp;XSRFToken=<?php echo getXSRFToken('comment_update') ?>" title="<?php echo gettext('Approve this message (not SPAM)'); ?>">
+								<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/warn.png" style="border: 0px;" alt="<?php echo gettext("Approve this message (not SPAM"); ?>" /></a>
 							<?php
 						} else {
 							?>
 							<a href="?action=spam&amp;id=<?php echo $id; ?>&amp;XSRFToken=<?php echo getXSRFToken('comment_update') ?>" title="<?php echo gettext('Mark this message as SPAM'); ?>">
-								<img src="images/pass.png" style="border: 0px;" alt="<?php echo gettext("Mark this message as SPAM"); ?>" /></a>
+								<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" style="border: 0px;" alt="<?php echo gettext("Mark this message as SPAM"); ?>" /></a>
 							<?php
 						}
 						?></td>
 					<td class="page-list_icon"><a href="?page=editcomment&amp;id=<?php echo $id; ?>" title="<?php echo gettext('Edit this comment.'); ?>">
-							<img src="images/pencil.png" style="border: 0px;" alt="<?php echo gettext('Edit'); ?>" /></a></td>
+							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pencil.png" style="border: 0px;" alt="<?php echo gettext('Edit'); ?>" /></a></td>
 					<td class="page-list_icon">
 						<a href="mailto:<?php echo $email; ?>?body=<?php echo commentReply($fullcomment, $author, $image, $albumtitle); ?>" title="<?php echo gettext('Reply:') . ' ' . $email; ?>">
-							<img src="images/icon_mail.png" style="border: 0px;" alt="<?php echo gettext('Reply'); ?>" /></a>
+							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_mail.png" style="border: 0px;" alt="<?php echo gettext('Reply'); ?>" /></a>
 					</td>
 					<td class="page-list_icon">
 						<a href="javascript:if(confirm('<?php echo gettext('Are you sure you want to delete this comment?'); ?>')) { window.location='?action=deletecomment&id=<?php echo $id; ?>&amp;XSRFToken=<?php echo getXSRFToken('deletecomment') ?>'; }"
 							 title="<?php echo gettext('Delete this comment.'); ?>" > <img
-								src="images/fail.png" style="border: 0px;" alt="<?php echo gettext('Delete'); ?>" /></a></td>
+								src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" style="border: 0px;" alt="<?php echo gettext('Delete'); ?>" /></a></td>
 					<td class="page-list_icon"><input type="checkbox" name="ids[]" value="<?php echo $id; ?>"
 																						onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" /></td>
 				</tr>
@@ -488,14 +488,14 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 
 
 		</table>
-		<p class="buttons"><button type="submit"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button></p>
+		<p class="buttons"><button type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button></p>
 		<ul class="iconlegend">
-			<li><img src="images/reset.png" alt="" /><?php echo gettext("Private message"); ?></li>
-			<li><img src="images/warn.png" alt="Marked as spam" /><img src="images/pass.png" alt="Approved" /><?php echo gettext("Marked as spam/approved"); ?></li>
-			<li><img src="images/action.png" alt="Anonymous posting" /><?php echo gettext("Anonymous posting"); ?></li>
-			<li><img src="images/pencil.png" alt="Edit comment" /><?php echo gettext("Edit comment"); ?></li>
-			<li><img src="images/icon_mail.png" alt="E-mail comment author" /><?php echo gettext("E-mail comment author"); ?></li>
-			<li><img src="images/fail.png" alt="Delete" /><?php echo gettext("Delete"); ?></li>
+			<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><?php echo gettext("Private message"); ?></li>
+			<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/warn.png" alt="Marked as spam" /><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="Approved" /><?php echo gettext("Marked as spam/approved"); ?></li>
+			<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/action.png" alt="Anonymous posting" /><?php echo gettext("Anonymous posting"); ?></li>
+			<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pencil.png" alt="Edit comment" /><?php echo gettext("Edit comment"); ?></li>
+			<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_mail.png" alt="E-mail comment author" /><?php echo gettext("E-mail comment author"); ?></li>
+			<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="Delete" /><?php echo gettext("Delete"); ?></li>
 		</ul>
 
 	</form>

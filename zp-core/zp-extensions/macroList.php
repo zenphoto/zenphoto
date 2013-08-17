@@ -72,7 +72,7 @@ if (!empty($macros)) {
 
 function macro_admin_tabs($tabs) {
 	$tabs['macros'] = array('text'		 => gettext("macros"),
-					'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . $mylink = PLUGIN_FOLDER . '/' . 'macroList/macroList_tab.php?page=macros&amp;tab=' . gettext('macros'),
+					'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/macroList/macroList_tab.php?page=macros&amp;tab=' . gettext('macros'),
 					'subtabs'	 => NULL);
 	return $tabs;
 }
