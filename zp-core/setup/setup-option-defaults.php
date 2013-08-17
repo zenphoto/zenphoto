@@ -516,7 +516,6 @@ if (!is_null($autoRotate)) {
 
 purgeOption('zp_plugin_failed_access_blocker');
 setOptionDefault('plugins_per_page', 20);
-setOptionDefault('comments_per_page', 15);
 setOptionDefault('users_per_page', 10);
 setOptionDefault('articles_per_page', 15);
 setOptionDefault('combinews-customtitle', getOption('combinews-customtitle-plural'));

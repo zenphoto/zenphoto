@@ -743,11 +743,6 @@ echo "\n</head>";
 				?>
 				<h1><?php printf(gettext('Edit Album: <em>%1$s%2$s</em>'), $link, $alb); ?></h1>
 				<?php
-				if (strpos($album->getfolder(), '&') !== false) {
-					?>
-					<p class="error"><?php echo gettext('&amp; is not allowed in filenames'); ?></p>
-					<?php
-				}
 				$subtab = printSubtabs();
 				if ($subtab == 'albuminfo') {
 					?>
@@ -1038,11 +1033,6 @@ echo "\n</head>";
 															<br />
 															<?php
 															echo $image->filename;
-															if (strpos($image->filename, '&') !== false) {
-																?>
-																<span class="error"><?php echo '<br />' . gettext('&amp; is not allowed in filenames'); ?></span>
-																<?php
-															}
 															?>
 														</p>
 														<p><?php echo gettext('<strong>Image id:</strong>'); ?> <?php echo $image->getID(); ?></p>

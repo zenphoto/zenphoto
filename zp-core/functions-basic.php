@@ -843,7 +843,7 @@ function getImageProcessorURI($args, $album, $image) {
 	}
 	if ($adminrequest) {
 		$args[12] = true;
-		$uri .= '&admin';
+		$uri .= '&admin=1';
 	} else {
 		$args[12] = false;
 	}
@@ -1039,10 +1039,10 @@ function parse_query($str) {
 	$params = array();
 	foreach ($pairs as $pair) {
 		if (strpos($pair, '=') === false) {
-			$params[trim($pair)] = NULL;
+			$params[$pair] = NULL;
 		} else {
 			list($name, $value) = explode('=', $pair, 2);
-			$params[trim($name)] = trim($value);
+			$params[$name] = $value;
 		}
 	}
 	return $params;
@@ -1104,6 +1104,26 @@ function pathurlencode($path) {
 	if (isset($parts['query'])) {
 		//	some kind of query link
 		$pairs = parse_query($parts['query']);
+		if (strpos($parts['path'], 'i.php') !== false) {
+			//image processor URI, handle & in file/folder names
+			$index = 'a';
+			foreach ($pairs as $p => $q) {
+				switch ($p) {
+					case 'i':
+						$index = 'i';
+					case 'a':
+						break;
+					default:
+						if (is_null($q)) {
+							$pairs[$index] .= '&' . $p;
+							unset($pairs[$p]);
+							break;
+						} else {
+							break 2;
+						}
+				}
+			}
+		}
 		foreach ($pairs as $name => $value) {
 			if ($value) {
 				$pairs[$name] = implode("/", array_map("rawurlencode", explode("/", $value)));
@@ -1648,5 +1668,4 @@ class Mutex {
 	}
 
 }
-
 ?>

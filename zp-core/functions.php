@@ -2570,7 +2570,7 @@ class zpFunctions {
 					$set[$s[0]] = $s[1];
 				}
 				$args = getImageArgs($set);
-				$imageuri = getImageURI($args, $set['a'], $set['i'], NULL);
+				$imageuri = getImageURI($args, urldecode($set['a']), urldecode($set['i']), NULL);
 				if (strpos($imageuri, 'i.php') === false) {
 					$text = str_replace($matches[1], $imageuri, $text);
 				}

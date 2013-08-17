@@ -3020,10 +3020,12 @@ function getRandomImages($daily = false) {
 	if ($daily) {
 		$potd = unserialize(getOption('picture_of_the_day'));
 		if (date('Y-m-d', $potd['day']) == date('Y-m-d')) {
-			$album = newAlbum($potd['folder']);
-			$image = newImage($album, $potd['filename']);
-			if ($image->exists) {
-				return $image;
+			$album = newAlbum($potd['folder'], true, true);
+			if ($album->exists) {
+				$image = newImage($album, $potd['filename'], true);
+				if ($image->exists) {
+					return $image;
+				}
 			}
 		}
 	}
