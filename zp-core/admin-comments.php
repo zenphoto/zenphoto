@@ -230,7 +230,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 } else {
 	// Set up some view option variables.
 
-	define('COMMENTS_PER_PAGE', max(1, getOption('comments_per_page')));
+	define('COMMENTS_PER_PAGE', max(1, getOption('comment_form_comments_per_page')));
 	if (isset($_GET['fulltext']) && $_GET['fulltext']) {
 		$fulltext = true;
 		$fulltexturl = '?fulltext=1';

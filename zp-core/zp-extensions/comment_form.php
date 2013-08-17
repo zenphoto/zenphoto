@@ -146,7 +146,7 @@ class comment_form {
 										'desc'	 => gettext('If checked, an RSS link will be included at the bottom of the comment section.')),
 						gettext('Comments per page')						 => array('key'		 => 'comment_form_comments_per_page', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 9,
-										'desc'	 => gettext('The comments that should show per page using the jQuery pagination')),
+										'desc'	 => gettext('The comments that should show per page on the admin tab and when using the jQuery pagination')),
 						gettext('Comment editor configuration')	 => array('key'						 => 'tinymce_comments', 'type'					 => OPTION_TYPE_SELECTOR,
 										'order'					 => 1,
 										'selections'		 => $configarray,
@@ -273,9 +273,10 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 					?>
 					<div class="comment" <?php echo $display; ?>>
 						<div class="commentinfo">
-							<h4 id="zp_comment_id_<?php echo $_zp_current_comment['id']; ?>"><?php printCommentAuthorLink(); ?>: <?php echo gettext('on'); ?> <?php echo getCommentDateTime();
-			printEditCommentLink(gettext('Edit'), ', ', '');
-					?></h4>
+							<h4 id="zp_comment_id_<?php echo $_zp_current_comment['id']; ?>"><?php printCommentAuthorLink(); ?>: <?php echo gettext('on'); ?> <?php
+								echo getCommentDateTime();
+								printEditCommentLink(gettext('Edit'), ', ', '');
+								?></h4>
 						</div><!-- class "commentinfo" -->
 						<div class="commenttext"><?php echo html_encodeTagged(getCommentBody(), false); ?></div><!-- class "commenttext" -->
 					</div><!-- class "comment" -->
