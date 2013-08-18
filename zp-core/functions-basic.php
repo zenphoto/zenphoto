@@ -1104,8 +1104,7 @@ function pathurlencode($path) {
 	if (isset($parts['query'])) {
 		//	some kind of query link
 		$pairs = parse_query($parts['query']);
-		if (strpos($parts['path'], 'i.php') !== false) {
-			//image processor URI, handle & in file/folder names
+		if (preg_match('/^a=.*\&i=?/i', $parts['query'])) { //image URI, handle & in file/folder names
 			$index = 'a';
 			foreach ($pairs as $p => $q) {
 				switch ($p) {
@@ -1116,11 +1115,13 @@ function pathurlencode($path) {
 					default:
 						if (is_null($q)) {
 							$pairs[$index] .= '&' . $p;
-							unset($pairs[$p]);
-							break;
-						} else {
+						} else if (in_array($p, array('s', 'w', 'h', 'cw', 'ch', 'cx', 'cy', 'q', 'c', 't', 'wmk', 'admin', 'effects', 'z'))) { // image processor parameters
 							break 2;
+						} else {
+							$pairs[$index] .= '&' . $p . '=' . $q;
 						}
+						unset($pairs[$p]);
+						break;
 				}
 			}
 		}
@@ -1668,4 +1669,5 @@ class Mutex {
 	}
 
 }
+
 ?>
