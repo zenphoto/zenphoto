@@ -1107,32 +1107,32 @@ echo "\n</head>";
 															?>
 															<script type="text/javascript">
 				// <!-- <![CDATA[
-				$(function() {
-				$("#publishdate-<?php echo $currentimage; ?>,#expirationdate-<?php echo $currentimage; ?>").datepicker({
-				showOn: 'button',
-				buttonImage: '../zp-core/images/calendar.png',
-				buttonText: '<?php echo gettext("calendar"); ?>',
-				buttonImageOnly: true
-				});
-				$('#publishdate-<?php echo $currentimage; ?>').change(function() {
-				var today = new Date();
-				var pub = $('#publishdate-<?php echo $currentimage; ?>').datepicker('getDate');
-				if (pub.getTime() > today.getTime()) {
-				$(".scheduledpublishing-<?php echo $currentimage; ?>").html('<br /><?php echo addslashes(gettext('Future publishing date.')); ?>');
-				} else {
-				$(".scheduledpublishing-<?php echo $currentimage; ?>").html('');
-				}
-				});
-				$('#expirationdate-<?php echo $currentimage; ?>').change(function() {
-				var today = new Date();
-				var expiry = $('#expirationdate-<?php echo $currentimage; ?>').datepicker('getDate');
-				if (expiry.getTime() > today.getTime()) {
-				$(".expire<-<?php echo $currentimage; ?>").html('');
-				} else {
-				$(".expire-<?php echo $currentimage; ?>").html('<br /><?php echo addslashes(gettext('Expired!')); ?>');
-				}
-				});
-				});
+					$(function() {
+						$("#publishdate-<?php echo $currentimage; ?>,#expirationdate-<?php echo $currentimage; ?>").datepicker({
+							showOn: 'button',
+							buttonImage: '../zp-core/images/calendar.png',
+							buttonText: '<?php echo gettext("calendar"); ?>',
+							buttonImageOnly: true
+						});
+						$('#publishdate-<?php echo $currentimage; ?>').change(function() {
+							var today = new Date();
+							var pub = $('#publishdate-<?php echo $currentimage; ?>').datepicker('getDate');
+							if (pub.getTime() > today.getTime()) {
+								$(".scheduledpublishing-<?php echo $currentimage; ?>").html('<br /><?php echo addslashes(gettext('Future publishing date.')); ?>');
+							} else {
+								$(".scheduledpublishing-<?php echo $currentimage; ?>").html('');
+							}
+						});
+						$('#expirationdate-<?php echo $currentimage; ?>').change(function() {
+							var today = new Date();
+							var expiry = $('#expirationdate-<?php echo $currentimage; ?>').datepicker('getDate');
+							if (expiry.getTime() > today.getTime()) {
+								$(".expire<-<?php echo $currentimage; ?>").html('');
+							} else {
+								$(".expire-<?php echo $currentimage; ?>").html('<br /><?php echo addslashes(gettext('Expired!')); ?>');
+							}
+						});
+					});
 				// ]]> -->
 															</script>
 															<br class="clearall" />
@@ -1332,14 +1332,14 @@ echo "\n</head>";
 													<td>
 														<script type="text/javascript">
 				// <!-- <![CDATA[
-				$(function() {
-				$("#datepicker_<?php echo $currentimage; ?>").datepicker({
-				showOn: 'button',
-				buttonImage: 'images/calendar.png',
-				buttonText: '<?php echo gettext('calendar'); ?>',
-				buttonImageOnly: true
-				});
-				});
+					$(function() {
+						$("#datepicker_<?php echo $currentimage; ?>").datepicker({
+							showOn: 'button',
+							buttonImage: 'images/calendar.png',
+							buttonText: '<?php echo gettext('calendar'); ?>',
+							buttonImageOnly: true
+						});
+					});
 				// ]]> -->
 														</script>
 														<input type="text" id="datepicker_<?php echo $currentimage; ?>" size="20" name="<?php echo $currentimage; ?>-date"
@@ -1373,9 +1373,9 @@ echo "\n</head>";
 															echo 'inline';
 														?>">
 																		<?php $wmuse = $image->getWMUse(); ?>
-															<label><input type="checkbox" value="1" id="wm_image-<?php echo $currentimage; ?>" name="wm_image-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_IMAGE) echo 'checked="checeked"'; ?> /><?php echo gettext('image'); ?></label>
-															<label><input type="checkbox" value="1" id="wm_thumb-<?php echo $currentimage; ?>" name="wm_thumb-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_THUMB) echo 'checked="checeked"'; ?> /><?php echo gettext('thumb'); ?></label>
-															<label><input type="checkbox" value="1" id="wm_full-<?php echo $currentimage; ?>"name="wm_full-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_FULL) echo 'checked="checeked"'; ?> /><?php echo gettext('full image'); ?></label>
+															<label><input type="checkbox" value="1" id="wm_image-<?php echo $currentimage; ?>" name="wm_image-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_IMAGE) echo 'checked="checked"'; ?> /><?php echo gettext('image'); ?></label>
+															<label><input type="checkbox" value="1" id="wm_thumb-<?php echo $currentimage; ?>" name="wm_thumb-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_THUMB) echo 'checked="checked"'; ?> /><?php echo gettext('thumb'); ?></label>
+															<label><input type="checkbox" value="1" id="wm_full-<?php echo $currentimage; ?>"name="wm_full-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_FULL) echo 'checked="checked"'; ?> /><?php echo gettext('full image'); ?></label>
 														</span>
 													</td>
 												</tr>
@@ -1523,7 +1523,7 @@ echo "\n</head>";
 									?>
 									<script type="text/javascript" >
 				// <!-- <![CDATA[
-				toggleExtraInfo('<?php echo $target_image_nr; ?>', 'image', true);
+					toggleExtraInfo('<?php echo $target_image_nr; ?>', 'image', true);
 				// ]]> -->
 									</script>
 									<?php
