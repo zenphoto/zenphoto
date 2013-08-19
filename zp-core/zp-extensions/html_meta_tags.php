@@ -303,7 +303,7 @@ class htmlmetatags {
 		if(getOption('htmlmeta_og-type')) { $meta .= '<meta property="og:type" content="'.$type.'" />'."\n"; }
 
 		// Social network extras
-		if(getOption('htmlmeta_name-expires')) { $meta .= '<meta name="pinterest" content="nopin" />'."\n"; } // dissalow users to pin images on Pinterest
+		if(getOption('htmlmeta_name-pinterest')) { $meta .= '<meta name="pinterest" content="nopin" />'."\n"; } // dissalow users to pin images on Pinterest
 
 		// Canonical url
 		if(getOption('htmlmeta_canonical-url')) {
