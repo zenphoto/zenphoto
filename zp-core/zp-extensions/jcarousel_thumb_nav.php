@@ -75,15 +75,15 @@ class jcarousel {
 		?>
 		<script>
 			(function($) {
-		    var userAgent = navigator.userAgent.toLowerCase();
+				var userAgent = navigator.userAgent.toLowerCase();
 
-		    $.browser = {
-		        version: (userAgent.match( /.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/ ) || [0,'0'])[1],
-		        safari: /webkit/.test( userAgent ),
-		        opera: /opera/.test( userAgent ),
-		        msie: /msie/.test( userAgent ) && !/opera/.test( userAgent ),
-		        mozilla: /mozilla/.test( userAgent ) && !/(compatible|webkit)/.test( userAgent )
-		    };
+				$.browser = {
+						version: (userAgent.match( /.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/ ) || [0,'0'])[1],
+						safari: /webkit/.test( userAgent ),
+						opera: /opera/.test( userAgent ),
+						msie: /msie/.test( userAgent ) && !/opera/.test( userAgent ),
+						mozilla: /mozilla/.test( userAgent ) && !/(compatible|webkit)/.test( userAgent )
+				};
 
 			})(jQuery);
 		</script>
@@ -227,7 +227,7 @@ if (!OFFSET_PATH && getOption('jcarousel_'.$_zp_gallery->getCurrentTheme().'_'.s
 							}
 							carousel.add(i, mycarousel_getItemHTML(mycarousel_itemList[i-1]));
 					}
-			};
+				}
 
 			function mycarousel_getItemHTML(item) {
 				if(item.active === "") {
@@ -236,7 +236,7 @@ if (!OFFSET_PATH && getOption('jcarousel_'.$_zp_gallery->getCurrentTheme().'_'.s
 					html = '<a href="' + item.link + '" title="' + item.title + '"><img class="activecarouselimage" src="' + item.url + '" width="<?php  echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
 				}
 				return html;
-			};
+				}
 
 			jQuery(document).ready(function() {
 					jQuery("#mycarousel").jcarousel({

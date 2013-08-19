@@ -1,33 +1,34 @@
 <?php
 // force UTF-8 Ø
 
-if (!defined('WEBPATH')) die();
+if (!defined('WEBPATH'))
+	die();
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
-		<?php zp_apply_filter('theme_head'); ?>
+<?php zp_apply_filter('theme_head'); ?>
 		<title><?php printBareGalleryTitle(); ?> | <?php printBareAlbumTitle(); ?> | <?php printBareImageTitle(); ?></title>
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 		<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
-		<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/default/common.css" type="text/css" />
-		<?php if (zp_has_filter('theme_head', 'colorbox::css')) { ?>
+		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . THEMEFOLDER; ?>/default/common.css" type="text/css" />
+<?php if (zp_has_filter('theme_head', 'colorbox::css')) { ?>
 			<script type="text/javascript">
 				// <!-- <![CDATA[
-				$(document).ready(function(){
+				$(document).ready(function() {
 					$(".colorbox").colorbox({
-						inline:true,
-						href:"#imagemetadata",
+						inline: true,
+						href: "#imagemetadata",
 						close: '<?php echo gettext("close"); ?>'
 					});
 				});
 				// ]]> -->
 			</script>
 		<?php } ?>
-		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
+<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
 	</head>
 	<body>
-		<?php zp_apply_filter('theme_body_open'); ?>
+<?php zp_apply_filter('theme_body_open'); ?>
 		<div id="main">
 			<div id="gallerytitle">
 				<div class="imgnav">
@@ -35,7 +36,7 @@ if (!defined('WEBPATH')) die();
 						<div class="imgprevious"><a href="<?php echo html_encode(getPrevImageURL()); ?>" title="<?php echo gettext("Previous Image"); ?>">« <?php echo gettext("prev"); ?></a></div>
 					<?php } if (hasNextImage()) { ?>
 						<div class="imgnext"><a href="<?php echo html_encode(getNextImageURL()); ?>" title="<?php echo gettext("Next Image"); ?>"><?php echo gettext("next"); ?> »</a></div>
-					<?php } ?>
+<?php } ?>
 				</div>
 				<h2>
 					<span>
@@ -46,7 +47,7 @@ if (!defined('WEBPATH')) die();
 						printAlbumBreadcrumb("", " | ");
 						?>
 					</span>
-					<?php printImageTitle(); ?>
+<?php printImageTitle(); ?>
 				</h2>
 			</div>
 			<!-- The Image -->
@@ -60,7 +61,7 @@ if (!defined('WEBPATH')) die();
 					}
 					if (!empty($fullimage)) {
 						?>
-						<a href="<?php echo html_encode($fullimage); ?>" title="<?php printBareImageTitle(); ?>">
+						<a href="<?php echo html_encode(pathurlencode($fullimage)); ?>" title="<?php printBareImageTitle(); ?>">
 							<?php
 						}
 						if (function_exists('printUserSizeImage') && isImagePhoto()) {
@@ -84,7 +85,8 @@ if (!defined('WEBPATH')) die();
 				<?php printImageDesc(); ?>
 				<hr /><br />
 				<?php
-				If (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_image);
+				If (function_exists('printAddToFavorites'))
+					printAddToFavorites($_zp_current_image);
 				@call_user_func('printSlideShowLink');
 
 				if (getImageMetaData()) {
@@ -96,10 +98,10 @@ if (!defined('WEBPATH')) die();
 				printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', '');
 				?>
 				<br class="clearall" />
-				
+
 				<?php @call_user_func('printGoogleMap'); ?>
-				<?php @call_user_func('printRating'); ?>
-				<?php @call_user_func('printCommentForm'); ?>
+<?php @call_user_func('printRating'); ?>
+<?php @call_user_func('printCommentForm'); ?>
 			</div>
 		</div>
 		<div id="credit">
@@ -111,8 +113,8 @@ if (!defined('WEBPATH')) die();
 				?> | <?php
 			}
 			?>
-			<?php printZenphotoLink(); ?>
-			<?php @call_user_func('printUserLogin_out'," | "); ?>
+		<?php printZenphotoLink(); ?>
+		<?php @call_user_func('printUserLogin_out', " | "); ?>
 		</div>
 		<?php
 		zp_apply_filter('theme_body_close');
