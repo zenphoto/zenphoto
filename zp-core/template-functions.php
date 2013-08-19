@@ -2762,7 +2762,7 @@ function getProtectedImageURL($image = NULL, $disposal = NULL) {
 			$album = $image->albumlink;
 			$image = $image->filename;
 		}
-		return WEBPATH . '/' . ZENFOLDER . '/full-image.php?a=' . urlencode($album) . '&i=' . urlencode($image) . $params;
+		return WEBPATH . '/' . ZENFOLDER . '/full-image.php?a=' . $album . '&i=' . $image . $params;
 	}
 }
 
