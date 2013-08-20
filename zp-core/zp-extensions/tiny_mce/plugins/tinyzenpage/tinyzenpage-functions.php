@@ -331,7 +331,7 @@ function printNewsArticlesList($number) {
 				$count++;
 				echo "<li>";
 				if($_GET['zenpage'] == "articles") {
-					echo "<a href=\"javascript:ZenpageDialog.insert('','news/".$newsobj->getTitlelink()."','','','".$newsobj->getTitlelink()."','".html_encode($newsobj->getTitle())."','','','articles','','','','');\" title='".html_encode(truncate_string(strip_tags($newsobj->getContent()),300))."'>".html_encode($newsobj->getTitle()).unpublishedZenpageItemCheck($newsobj)."</a> <small><em>".$newsobj->getDatetime()."</em></small>";
+					echo "<a href=\"javascript:ZenpageDialog.insert('','news/".$newsobj->getTitlelink()."','','','".$newsobj->getTitlelink()."','".js_encode($newsobj->getTitle())."','','','articles','','','','');\" title='".html_encode(truncate_string(strip_tags($newsobj->getContent()),300))."'>".js_encode($newsobj->getTitle()).unpublishedZenpageItemCheck($newsobj)."</a> <small><em>".$newsobj->getDatetime()."</em></small>";
 					echo " <a href='zoom.php?news=".urlencode($newsobj->getTitlelink())."' title='Zoom' class='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a><br />";
 					echo '<small><em>'.gettext('Categories:');
 					$cats = $newsobj->getCategories();
@@ -545,7 +545,7 @@ function printAllNestedList() {
 				$open[$indent]--;
 			}
 			echo "<li id='".$itemid."' class='itemborder'>";
-			echo "<a href=\"javascript:ZenpageDialog.insert('','".$zenpagepage."','','','".$itemtitlelink."','".html_encode($itemtitle)."','','','".$mode."','','','','');\" title='".html_encode($itemcontent)."'>".html_encode($itemtitle).$unpublished.$counter."</a> <small><em>".$obj->getDatetime()."</em></small>";
+			echo "<a href=\"javascript:ZenpageDialog.insert('','".$zenpagepage."','','','".$itemtitlelink."','".js_encode($itemtitle)."','','','".$mode."','','','','');\" title='".html_encode($itemcontent)."'>".html_encode($itemtitle).$unpublished.$counter."</a> <small><em>".$obj->getDatetime()."</em></small>";
 			if($mode == 'pages') {
 				echo " <a href='zoom.php?pages=".urlencode($itemtitlelink)."' title='Zoom' class='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a>";
 			}
