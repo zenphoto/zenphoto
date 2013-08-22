@@ -61,7 +61,6 @@ class comment_form {
 	/**
 	 * class instantiation function
 	 *
-	 * @return admin_login
 	 */
 	function comment_form() {
 		setOptionDefault('email_new_comments', 1);
