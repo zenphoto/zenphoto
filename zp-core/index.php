@@ -78,7 +78,14 @@ if (!$zp_request && isset($_GET['fromlogout'])) { //	redirect not visible to use
 	$_index_theme = prepareIndexPage();
 	$zp_request = true;
 }
+
 $_zp_script = zp_apply_filter('load_theme_script', $_zp_script, $zp_request);
+
+//	HTML caching?
+if ($zp_request && is_object($_zp_HTML_cache)) {
+	$_zp_HTML_cache->startHTMLCache();
+}
+
 $custom = SERVERPATH . '/' . THEMEFOLDER . '/' . internalToFilesystem($_index_theme) . '/functions.php';
 if (file_exists($custom)) {
 	require_once($custom);
