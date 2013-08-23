@@ -14,6 +14,12 @@ $dbtable = prefix($table);
 $ip = jquery_rating::id();
 $unique = '_'.$table.'_'.$id;
 $rating = ceil(sanitize_numeric($_POST['star_rating-value'.$unique])/max(1,getOption('rating_split_stars')));
+
+// Make sure the incoming rating isn't higher than what is allowed
+if ($rating > getOption('rating_stars_count')) {
+	$rating = getOption('rating_stars_count');
+}
+
 $IPlist = query_single_row("SELECT * FROM $dbtable WHERE id= $id");
 if (is_array($IPlist)) {
 	$oldrating = jquery_rating::getRatingByIP($ip, $IPlist['used_ips'], $IPlist['rating']);
