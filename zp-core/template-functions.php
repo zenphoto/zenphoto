@@ -2393,7 +2393,14 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
 				foreach ($exif as $field => $value) {
 					$label = $_zp_exifvars[$field][2];
 					echo "<tr><td class=\"label\">$label:</td><td class=\"value\">";
-					echo html_encode($value);
+					switch ($_zp_exifvars[$field][6]) {
+						case 'time':
+							echo zpFormattedDate(DATE_FORMAT, strtotime($value));
+							break;
+						default:
+							echo html_encode($value);
+							break;
+					}
 					echo "</td></tr>\n";
 				}
 				?>

@@ -365,8 +365,8 @@ class Image extends MediaObject {
 					}
 					// Extract IPTC fields of interest
 					foreach ($_zp_exifvars as $field => $exifvar) {
-						if ($exifvar[5]) { // enabled field
-							if ($exifvar[0] == 'IPTC') {
+						if ($exifvar[0] == 'IPTC') {
+							if ($exifvar[5]) { // enabled field
 								$datum = $this->getIPTCTag($IPTCtags[$exifvar[1]], $iptc);
 								$this->set($field, $this->prepIPTCString($datum, $characterset));
 							} else {
