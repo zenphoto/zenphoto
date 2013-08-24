@@ -718,11 +718,15 @@ function comment_form_postcomment($error) {
  * @return NULL|boolean
  */
 function comment_form_handle_comment() {
-	global $_zp_current_image, $_zp_current_album, $_zp_comment_stored, $_zp_current_zenpage_news, $_zp_current_zenpage_page;
+	global $_zp_current_image, $_zp_current_album, $_zp_comment_stored, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_HTML_cache;
 	$activeImage = false;
 	$comment_error = 0;
 	$cookie = zp_getCookie('zenphoto_comment');
 	if (isset($_POST['comment'])) {
+		if (is_object($_zp_HTML_cache)) {
+			$_zp_HTML_cache->clearHtmlCache();
+			$_zp_HTML_cache->disable();
+		}
 		if (isset($_POST['username']) && !empty($_POST['username'])) {
 			return false;
 		}
