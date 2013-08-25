@@ -2569,7 +2569,7 @@ class zpFunctions {
 				$args = getImageArgs($set);
 				$imageuri = getImageURI($args, urldecode($set['a']), urldecode($set['i']), NULL);
 				if (strpos($imageuri, 'i.php') === false) {
-					$text = str_replace($matches[1], $imageuri, $text);
+					$text = str_replace($matches[1][$key], $imageuri, $text);
 				}
 			}
 		}
