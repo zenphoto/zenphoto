@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-14 19:32+0100\n"
+"POT-Creation-Date: 2013-08-25 15:15+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -103,7 +103,7 @@ msgid "Search within album"
 msgstr "Zoek  in het album"
 
 #: ZpTranslation-Development/themes/default/album.php:22
-#: ZpTranslation-Development/zp-core/admin-globals.php:122
+#: ZpTranslation-Development/zp-core/admin-globals.php:117
 msgid "search"
 msgstr "zoeken"
 
@@ -184,7 +184,7 @@ msgstr "Bekijk album:"
 #: ZpTranslation-Development/themes/zpmobile/search.php:160
 #: ZpTranslation-Development/zp-core/admin-functions.php:4312
 #: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:587
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:33
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:35
 msgid "prev"
 msgstr "vorige"
 
@@ -223,7 +223,7 @@ msgstr "vorige"
 #: ZpTranslation-Development/zp-core/admin-functions.php:4340
 #: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:468
 #: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:588
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:34
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:36
 msgid "next"
 msgstr "volgende"
 
@@ -414,7 +414,7 @@ msgstr "Gebruikers registratiepagina"
 #: ZpTranslation-Development/themes/zpmobile/functions.php:57
 #: ZpTranslation-Development/zp-core/template-functions.php:1171
 #: ZpTranslation-Development/zp-core/template-functions.php:1202
-#: ZpTranslation-Development/zp-core/template-functions.php:3685
+#: ZpTranslation-Development/zp-core/template-functions.php:3687
 #: ZpTranslation-Development/zp-core/zp-extensions/html_meta_tags.php:238
 #: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:743
 #: ZpTranslation-Development/zp-core/zp-extensions/deprecated_functions/check_for_deprecated.php:60
@@ -427,7 +427,7 @@ msgid "Total matches for <em>%1$s</em>: %2$u"
 msgstr "Totaal aantal resultaten voor <em>%1$s</em>: %2$u"
 
 #: ZpTranslation-Development/themes/default/search.php:65
-#: ZpTranslation-Development/zp-core/admin-edit.php:1341
+#: ZpTranslation-Development/zp-core/admin-edit.php:1331
 #: ZpTranslation-Development/zp-core/admin-functions.php:1356
 msgid "Date:"
 msgstr "Datum:"
@@ -545,7 +545,7 @@ msgstr "Nieuwsarchief"
 #: ZpTranslation-Development/themes/effervescence_plus/contact.php:16
 #: ZpTranslation-Development/themes/effervescence_plus/contact.php:50
 #: ZpTranslation-Development/themes/garland/contact.php:10
-#: ZpTranslation-Development/zp-core/functions.php:2380
+#: ZpTranslation-Development/zp-core/functions.php:2377
 #: ZpTranslation-Development/zp-core/zp-extensions/html_meta_tags.php:238
 msgid "Contact"
 msgstr "Contact"
@@ -679,7 +679,7 @@ msgstr[0] "%u afbeelding"
 msgstr[1] "%u afbeeldingen"
 
 #: ZpTranslation-Development/themes/effervescence_plus/functions.php:362
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:228
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:247
 #, php-format
 msgid "%u Comment"
 msgid_plural "%u Comments"
@@ -694,8 +694,8 @@ msgstr "album"
 
 #: ZpTranslation-Development/themes/effervescence_plus/functions.php:413
 #: ZpTranslation-Development/themes/garland/functions.php:144
-#: ZpTranslation-Development/zp-core/admin-edit.php:1386
-#: ZpTranslation-Development/zp-core/admin-globals.php:114
+#: ZpTranslation-Development/zp-core/admin-edit.php:1376
+#: ZpTranslation-Development/zp-core/admin-globals.php:109
 #: ZpTranslation-Development/zp-core/admin-options.php:2490
 #: ZpTranslation-Development/zp-core/zp-extensions/image_album_statistics.php:228
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:158
@@ -837,7 +837,7 @@ msgstr "Ga naar de fotogalerij"
 #: ZpTranslation-Development/zp-core/lib-auth.php:567
 #: ZpTranslation-Development/zp-core/lib-auth.php:572
 #: ZpTranslation-Development/zp-core/zp-extensions/cacheManager.php:107
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:97
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:98
 #: ZpTranslation-Development/zp-core/zp-extensions/defaultCodeblocks.php:35
 #: ZpTranslation-Development/zp-core/zp-extensions/html_meta_tags.php:224
 #: ZpTranslation-Development/zp-core/zp-extensions/multiple_layouts.php:92
@@ -845,8 +845,8 @@ msgstr "Ga naar de fotogalerij"
 #: ZpTranslation-Development/zp-core/zp-extensions/related_items.php:187
 #: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:91
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:330
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:1075
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:1080
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:1105
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:1110
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1407
 msgid "News"
 msgstr "Nieuws"
@@ -887,7 +887,7 @@ msgstr "Zoek in nieuws"
 #: ZpTranslation-Development/zp-core/utilities/gallery_statistics.php:80
 #: ZpTranslation-Development/zp-core/utilities/gallery_statistics.php:589
 #: ZpTranslation-Development/zp-core/zp-extensions/cacheManager.php:108
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:97
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:98
 #: ZpTranslation-Development/zp-core/zp-extensions/multiple_layouts.php:92
 #: ZpTranslation-Development/zp-core/zp-extensions/related_items.php:152
 #: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:92
@@ -1040,7 +1040,7 @@ msgstr "nieuws"
 #: ZpTranslation-Development/themes/zpmobile/functions.php:61
 #: ZpTranslation-Development/themes/zpmobile/functions.php:150
 #: ZpTranslation-Development/themes/zpmobile/image.php:27
-#: ZpTranslation-Development/zp-core/admin-edit.php:1590
+#: ZpTranslation-Development/zp-core/admin-edit.php:1580
 #: ZpTranslation-Development/zp-core/admin-options.php:2214
 #: ZpTranslation-Development/zp-core/admin-options.php:2215
 #: ZpTranslation-Development/zp-core/admin-themes.php:101
@@ -1303,11 +1303,11 @@ msgstr "apart"
 
 #: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:125
 #: ZpTranslation-Development/themes/garland/themeoptions.php:96
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:107
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:111
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:115
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:119
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:123
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:108
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:112
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:116
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:120
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:124
 #: ZpTranslation-Development/zp-core/zp-extensions/register_user.php:93
 msgid "Omit"
 msgstr "niet tonen"
@@ -1326,7 +1326,7 @@ msgstr "Index afbeelding"
 #: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:138
 #: ZpTranslation-Development/themes/garland/themeoptions.php:87
 #: ZpTranslation-Development/themes/zenpage/themeoptions.php:68
-#: ZpTranslation-Development/zp-core/admin-edit.php:1252
+#: ZpTranslation-Development/zp-core/admin-edit.php:1242
 #: ZpTranslation-Development/zp-core/admin-options.php:1807
 #: ZpTranslation-Development/zp-core/admin-options.php:1820
 #: ZpTranslation-Development/zp-core/admin-options.php:1848
@@ -1531,7 +1531,7 @@ msgstr "Zoek in categorie"
 #: ZpTranslation-Development/zp-core/utilities/gallery_statistics.php:72
 #: ZpTranslation-Development/zp-core/utilities/gallery_statistics.php:572
 #: ZpTranslation-Development/zp-core/zp-extensions/cacheManager.php:105
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:95
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:96
 #: ZpTranslation-Development/zp-core/zp-extensions/multiple_layouts.php:90
 #: ZpTranslation-Development/zp-core/zp-extensions/related_items.php:152
 #: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:89
@@ -1838,12 +1838,12 @@ msgstr "Er is niets veranderd"
 
 #: ZpTranslation-Development/zp-core/admin-albumsort.php:133
 #: ZpTranslation-Development/zp-core/admin-albumsort.php:161
-#: ZpTranslation-Development/zp-core/admin-edit.php:816
-#: ZpTranslation-Development/zp-core/admin-edit.php:876
-#: ZpTranslation-Development/zp-core/admin-edit.php:972
-#: ZpTranslation-Development/zp-core/admin-edit.php:1509
-#: ZpTranslation-Development/zp-core/admin-edit.php:1602
-#: ZpTranslation-Development/zp-core/admin-edit.php:1632
+#: ZpTranslation-Development/zp-core/admin-edit.php:811
+#: ZpTranslation-Development/zp-core/admin-edit.php:871
+#: ZpTranslation-Development/zp-core/admin-edit.php:967
+#: ZpTranslation-Development/zp-core/admin-edit.php:1499
+#: ZpTranslation-Development/zp-core/admin-edit.php:1592
+#: ZpTranslation-Development/zp-core/admin-edit.php:1622
 #: ZpTranslation-Development/zp-core/admin-functions.php:1193
 #: ZpTranslation-Development/zp-core/admin-functions.php:1916
 #: ZpTranslation-Development/zp-core/admin-refresh-metadata.php:145
@@ -1864,17 +1864,14 @@ msgstr "Terug"
 
 #: ZpTranslation-Development/zp-core/admin-albumsort.php:136
 #: ZpTranslation-Development/zp-core/admin-albumsort.php:165
-#: ZpTranslation-Development/zp-core/admin-comments.php:133
-#: ZpTranslation-Development/zp-core/admin-comments.php:317
-#: ZpTranslation-Development/zp-core/admin-comments.php:491
-#: ZpTranslation-Development/zp-core/admin-edit.php:823
-#: ZpTranslation-Development/zp-core/admin-edit.php:880
-#: ZpTranslation-Development/zp-core/admin-edit.php:976
-#: ZpTranslation-Development/zp-core/admin-edit.php:1513
-#: ZpTranslation-Development/zp-core/admin-edit.php:1605
-#: ZpTranslation-Development/zp-core/admin-edit.php:1635
-#: ZpTranslation-Development/zp-core/admin-edit.php:1692
-#: ZpTranslation-Development/zp-core/admin-edit.php:1733
+#: ZpTranslation-Development/zp-core/admin-edit.php:818
+#: ZpTranslation-Development/zp-core/admin-edit.php:875
+#: ZpTranslation-Development/zp-core/admin-edit.php:971
+#: ZpTranslation-Development/zp-core/admin-edit.php:1503
+#: ZpTranslation-Development/zp-core/admin-edit.php:1595
+#: ZpTranslation-Development/zp-core/admin-edit.php:1625
+#: ZpTranslation-Development/zp-core/admin-edit.php:1682
+#: ZpTranslation-Development/zp-core/admin-edit.php:1723
 #: ZpTranslation-Development/zp-core/admin-functions.php:1197
 #: ZpTranslation-Development/zp-core/admin-functions.php:1920
 #: ZpTranslation-Development/zp-core/admin-options.php:557
@@ -1899,6 +1896,9 @@ msgstr "Terug"
 #: ZpTranslation-Development/zp-core/zp-extensions/crop_image.php:347
 #: ZpTranslation-Development/zp-core/zp-extensions/cacheManager/cacheImages.php:235
 #: ZpTranslation-Development/zp-core/zp-extensions/cacheManager/cacheImages.php:321
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:133
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:315
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:491
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:152
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:235
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:373
@@ -1932,284 +1932,6 @@ msgstr "Bekijk album"
 #: ZpTranslation-Development/zp-core/admin-albumsort.php:144
 msgid "Set the image order by dragging them to the positions you desire."
 msgstr "Sorteer de afbeeldingen door ze te slepen..."
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:94
-#: ZpTranslation-Development/zp-core/admin-edit.php:613
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:126
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-categories.php:73
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:70
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-pages.php:77
-msgid "Are you sure you want to delete the checked items?"
-msgstr "Weet je zeker dat je de geselecteerde onderdelen wilt verwijderen?"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:113
-msgid "edit comment"
-msgstr "Bewerk reactie"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:126
-#: ZpTranslation-Development/zp-core/admin-comments.php:480
-msgid "Are you sure you want to delete this comment?"
-msgstr "Weet je zeker dat je deze reactie wilt verwijderen?"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:127
-#: ZpTranslation-Development/zp-core/admin-comments.php:128
-#: ZpTranslation-Development/zp-core/admin-comments.php:338
-#: ZpTranslation-Development/zp-core/admin-comments.php:482
-#: ZpTranslation-Development/zp-core/admin-comments.php:498
-#: ZpTranslation-Development/zp-core/admin-edit.php:645
-#: ZpTranslation-Development/zp-core/admin-functions.php:2008
-#: ZpTranslation-Development/zp-core/admin-logs.php:110
-#: ZpTranslation-Development/zp-core/admin-themes.php:299
-#: ZpTranslation-Development/zp-core/setup/index.php:1036
-#: ZpTranslation-Development/zp-core/zp-extensions/cacheManager.php:204
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:180
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:242
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:416
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-categories.php:150
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:249
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-pages.php:143
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1014
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1388
-msgid "Delete"
-msgstr "Verwijder"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:137
-#: ZpTranslation-Development/zp-core/admin-comments.php:139
-#: ZpTranslation-Development/zp-core/admin-edit.php:1218
-#: ZpTranslation-Development/zp-core/admin-edit.php:1224
-#: ZpTranslation-Development/zp-core/admin-edit.php:1230
-#: ZpTranslation-Development/zp-core/admin-functions.php:1825
-#: ZpTranslation-Development/zp-core/admin-functions.php:1862
-#: ZpTranslation-Development/zp-core/admin-functions.php:1870
-#: ZpTranslation-Development/zp-core/zp-extensions/uploader_http/upload_form.php:68
-#: ZpTranslation-Development/zp-core/zp-extensions/uploader_http/upload_form.php:69
-#: ZpTranslation-Development/zp-core/zp-extensions/uploader_jQuery/upload_form.php:124
-msgid "Cancel"
-msgstr "Annuleer"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:149
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-edit.php:411
-msgid "Author:"
-msgstr "Auteur:"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:153
-msgid "Web Site:"
-msgstr "Website:"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:157
-msgid "E-Mail:"
-msgstr "E-mail:"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:161
-msgid "Date/Time:"
-msgstr "Datum / Tijd:"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:165
-msgid "IP:"
-msgstr "IP:"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:172
-msgid "Comment:"
-msgstr "Reactie:"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:184
-msgid "Comment management"
-msgstr "Beheer reacties"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:188
-msgid "Comment is un-approved"
-msgstr "Reactie is niet goedgekeurd"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:189
-#: ZpTranslation-Development/zp-core/admin-comments.php:340
-msgid "Approve"
-msgstr "Goedkeuren"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:190
-msgid "Approve this comment"
-msgstr "Keur deze reactie goed"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:194
-msgid "Comment is approved"
-msgstr "Reactie is goedgekeurd"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:195
-msgid "Un-approve"
-msgstr "Maak goedkeuring ongedaan"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:196
-msgid "Un-approve this comment"
-msgstr "Maak de goedkeuring van deze reactie ongedaan"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:202
-msgid "Comment is private"
-msgstr "Reactie is privé"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:204
-msgid "Comment is public"
-msgstr "Reactie is openbaar"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:208
-msgid "Comment is anonymous"
-msgstr "Reactie is anoniem"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:210
-msgid "Comment is not anonymous"
-msgstr "Reactie is niet anoniem"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:227
-msgid "Comment does not exist"
-msgstr "Reactie bestaat niet."
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:255
-#: ZpTranslation-Development/zp-core/lib-auth.php:489
-#: ZpTranslation-Development/zp-core/lib-auth.php:504
-#: ZpTranslation-Development/zp-core/lib-auth.php:531
-#: ZpTranslation-Development/zp-core/lib-auth.php:564
-#: ZpTranslation-Development/zp-core/template-functions.php:125
-#: ZpTranslation-Development/zp-core/zp-extensions/rss.php:75
-msgid "Comments"
-msgstr "Reacties"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:264
-#: ZpTranslation-Development/zp-core/admin-functions.php:4592
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:902
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1676
-msgid "Selected items deleted"
-msgstr "Geselecteerde onderdelen verwijderd"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:267
-msgid "Selected items marked as spam"
-msgstr "De geselecteerde onderdelen zijn gemarkeerd als spam"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:270
-msgid "Selected items approved"
-msgstr "Geselecteerde onderdelen goedgekeurd"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:285
-#, php-format
-msgid "%u Comment deleted successfully."
-msgid_plural "%u Comment deleted successfully."
-msgstr[0] "%u reactie succesvol verwijderd."
-msgstr[1] "%u reacties succesvol verwijderd."
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:292
-#: ZpTranslation-Development/zp-core/admin-functions.php:4583
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:214
-msgid "Changes applied"
-msgstr "Wijzigingen opgeslagen"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:302
-msgid "You can edit or delete comments on your images."
-msgstr "Hier kun je reacties bewerken en eventueel verwijderen."
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:322
-msgid "View full text"
-msgstr "volledige tekst"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:326
-msgid "View truncated"
-msgstr "ingekortte tekst"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:334
-msgid "Edit this comment"
-msgstr "Bewerk deze reactie."
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:337
-#: ZpTranslation-Development/zp-core/admin-edit.php:644
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:179
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-categories.php:149
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:248
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-pages.php:142
-msgid "*Bulk actions*"
-msgstr "*Bulk acties*"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:339
-msgid "Mark as spam"
-msgstr "Markeer als spam"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:349
-#: ZpTranslation-Development/zp-core/admin-edit.php:853
-#: ZpTranslation-Development/zp-core/admin-edit.php:1714
-#: ZpTranslation-Development/zp-core/admin-functions.php:3709
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:206
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-categories.php:161
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:268
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-pages.php:158
-msgid "Check All"
-msgstr "Selecteer alle"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:360
-msgid "<strong>Missing Object</strong> "
-msgstr "<strong>Ontbrekend object</strong> "
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:390
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:116
-msgid "[news]"
-msgstr "[nieuws]"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:404
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:130
-msgid "[page]"
-msgstr "[pagina]"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:447
-#: ZpTranslation-Development/zp-core/admin-comments.php:495
-msgid "Anonymous posting"
-msgstr "Anoniem versturen"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:456
-#: ZpTranslation-Development/zp-core/admin-comments.php:493
-msgid "Private message"
-msgstr "privé reactie"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:463
-msgid "Approve this message (not SPAM)"
-msgstr "Keur dit bericht goed (geen SPAM)"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:464
-msgid "Approve this message (not SPAM"
-msgstr "Keur dit bericht goed (geen SPAM)"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:468
-#: ZpTranslation-Development/zp-core/admin-comments.php:469
-msgid "Mark this message as SPAM"
-msgstr "Markeer dit bericht als SPAM"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:473
-msgid "Edit this comment."
-msgstr "Bewerk deze reactie."
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:474
-#: ZpTranslation-Development/zp-core/admin-themes.php:289
-#: ZpTranslation-Development/zp-core/utilities/gallery_statistics.php:446
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:277
-msgid "Edit"
-msgstr "Bewerken"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:476
-msgid "Reply:"
-msgstr "Reageer:"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:477
-msgid "Reply"
-msgstr "Reageer"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:481
-msgid "Delete this comment."
-msgstr "Verwijder deze reactie."
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:494
-msgid "Marked as spam/approved"
-msgstr "Gemarkeerd als spam/goedgekeurd"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:496
-msgid "Edit comment"
-msgstr "Bewerk reactie"
-
-#: ZpTranslation-Development/zp-core/admin-comments.php:497
-msgid "E-mail comment author"
-msgstr "E-mail de auteur van de reactie"
 
 #: ZpTranslation-Development/zp-core/admin-dynamic-album.php:43
 msgid "You do not have edit rights on this album."
@@ -2324,6 +2046,15 @@ msgstr "Naam voor het nieuwe album?"
 msgid "new album"
 msgstr "nieuw album"
 
+#: ZpTranslation-Development/zp-core/admin-edit.php:613
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:94
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:126
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-categories.php:73
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:70
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-pages.php:77
+msgid "Are you sure you want to delete the checked items?"
+msgstr "Weet je zeker dat je de geselecteerde onderdelen wilt verwijderen?"
+
 #: ZpTranslation-Development/zp-core/admin-edit.php:638
 msgid "Show thumbnail stand-in"
 msgstr "Toon thumbnail stand-in"
@@ -2331,6 +2062,37 @@ msgstr "Toon thumbnail stand-in"
 #: ZpTranslation-Development/zp-core/admin-edit.php:641
 msgid "Show album thumb"
 msgstr "Toon album thumbnail"
+
+#: ZpTranslation-Development/zp-core/admin-edit.php:644
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:335
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:179
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-categories.php:149
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:248
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-pages.php:142
+msgid "*Bulk actions*"
+msgstr "*Bulk acties*"
+
+#: ZpTranslation-Development/zp-core/admin-edit.php:645
+#: ZpTranslation-Development/zp-core/admin-functions.php:2008
+#: ZpTranslation-Development/zp-core/admin-logs.php:110
+#: ZpTranslation-Development/zp-core/admin-themes.php:299
+#: ZpTranslation-Development/zp-core/setup/index.php:1036
+#: ZpTranslation-Development/zp-core/zp-extensions/cacheManager.php:204
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:127
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:128
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:336
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:482
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:498
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:180
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:242
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:416
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-categories.php:150
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:249
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-pages.php:143
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1014
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1388
+msgid "Delete"
+msgstr "Verwijder"
 
 #: ZpTranslation-Development/zp-core/admin-edit.php:646
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-categories.php:147
@@ -2391,13 +2153,13 @@ msgid "Clear tags of images"
 msgstr "Verwijder tags van afbeeldingen"
 
 #: ZpTranslation-Development/zp-core/admin-edit.php:660
-#: ZpTranslation-Development/zp-core/admin-edit.php:1178
+#: ZpTranslation-Development/zp-core/admin-edit.php:1168
 #: ZpTranslation-Development/zp-core/admin-functions.php:1798
 msgid "Move"
 msgstr "Verplaats"
 
 #: ZpTranslation-Development/zp-core/admin-edit.php:661
-#: ZpTranslation-Development/zp-core/admin-edit.php:1182
+#: ZpTranslation-Development/zp-core/admin-edit.php:1172
 #: ZpTranslation-Development/zp-core/admin-functions.php:1804
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-edit.php:527
 msgid "Copy"
@@ -2407,28 +2169,23 @@ msgstr "Kopiëer"
 msgid "Image metadata refreshed."
 msgstr "Afbeeldings metadata ververst."
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:748
-#: ZpTranslation-Development/zp-core/admin-edit.php:1043
-msgid "&amp; is not allowed in filenames"
-msgstr "&amp; is niet toegestaan in bestandsnamen."
-
-#: ZpTranslation-Development/zp-core/admin-edit.php:785
-#: ZpTranslation-Development/zp-core/admin-edit.php:1654
+#: ZpTranslation-Development/zp-core/admin-edit.php:780
+#: ZpTranslation-Development/zp-core/admin-edit.php:1644
 msgid " descending"
 msgstr "aflopend"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:794
+#: ZpTranslation-Development/zp-core/admin-edit.php:789
 #, php-format
 msgid "Current sort: <em>%1$s%2$s</em>. "
 msgstr "Huidige sortering: %1$s%2$s. "
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:798
-#: ZpTranslation-Development/zp-core/admin-edit.php:1668
+#: ZpTranslation-Development/zp-core/admin-edit.php:793
+#: ZpTranslation-Development/zp-core/admin-edit.php:1658
 msgid "Drag the albums into the order you wish them displayed."
 msgstr "Sleep de albums in de volgorde waarin je ze wilt tonen."
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:801
-#: ZpTranslation-Development/zp-core/admin-edit.php:1671
+#: ZpTranslation-Development/zp-core/admin-edit.php:796
+#: ZpTranslation-Development/zp-core/admin-edit.php:1661
 msgid ""
 "<strong>Note:</strong> Dragging an album under a different parent will move "
 "the album. You cannot move albums under a <em>dynamic</em> album."
@@ -2437,7 +2194,7 @@ msgstr ""
 "hem in een ander album te slepen. Dit werkt niet bij een <em>dynamisch</em> "
 "album ."
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:807
+#: ZpTranslation-Development/zp-core/admin-edit.php:802
 #, php-format
 msgid ""
 "Select an album to edit its description and data, or <a href=\"?"
@@ -2448,10 +2205,10 @@ msgstr ""
 "page=edit&amp;album=%s&amp;massedit\">mass-edit</a> alle albums op het "
 "eerste niveau."
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:826
-#: ZpTranslation-Development/zp-core/admin-edit.php:828
-#: ZpTranslation-Development/zp-core/admin-edit.php:883
-#: ZpTranslation-Development/zp-core/admin-edit.php:885
+#: ZpTranslation-Development/zp-core/admin-edit.php:821
+#: ZpTranslation-Development/zp-core/admin-edit.php:823
+#: ZpTranslation-Development/zp-core/admin-edit.php:878
+#: ZpTranslation-Development/zp-core/admin-edit.php:880
 #: ZpTranslation-Development/zp-core/admin-functions.php:1207
 #: ZpTranslation-Development/zp-core/admin-functions.php:1209
 #: ZpTranslation-Development/zp-core/admin-functions.php:1930
@@ -2459,13 +2216,13 @@ msgstr ""
 msgid "New subalbum"
 msgstr "Nieuw subalbum"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:837
-#: ZpTranslation-Development/zp-core/admin-edit.php:1704
+#: ZpTranslation-Development/zp-core/admin-edit.php:832
+#: ZpTranslation-Development/zp-core/admin-edit.php:1694
 msgid "Edit this album"
 msgstr "Bewerk dit album"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:846
-#: ZpTranslation-Development/zp-core/admin-edit.php:1709
+#: ZpTranslation-Development/zp-core/admin-edit.php:841
+#: ZpTranslation-Development/zp-core/admin-edit.php:1699
 msgid ""
 "Thumbnail generation may be time consuming on slow servers on when there are "
 "a lot of images."
@@ -2473,24 +2230,35 @@ msgstr ""
 "Het creëren van thumbnails kan veel tijd kosten op trage servers of als er "
 "zeer veel afbeeldingen zijn."
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:935
+#: ZpTranslation-Development/zp-core/admin-edit.php:848
+#: ZpTranslation-Development/zp-core/admin-edit.php:1704
+#: ZpTranslation-Development/zp-core/admin-functions.php:3709
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:347
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:206
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-categories.php:161
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:268
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-pages.php:158
+msgid "Check All"
+msgstr "Selecteer alle"
+
+#: ZpTranslation-Development/zp-core/admin-edit.php:930
 msgid "Click on the image to change the thumbnail cropping."
 msgstr "Klik op de afbeelding om de uitsnede van de thumbnail te wijzigen."
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:937
+#: ZpTranslation-Development/zp-core/admin-edit.php:932
 msgid "expand all fields"
 msgstr "klap alle velden uit"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:938
+#: ZpTranslation-Development/zp-core/admin-edit.php:933
 msgid "collapse all fields"
 msgstr "klap alle velden in"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:944
+#: ZpTranslation-Development/zp-core/admin-edit.php:939
 #, php-format
 msgid "%s (descending)"
 msgstr "%s aflopend"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:946
+#: ZpTranslation-Development/zp-core/admin-edit.php:941
 #: ZpTranslation-Development/zp-core/admin-functions.php:1393
 #: ZpTranslation-Development/zp-core/admin-options.php:1199
 #: ZpTranslation-Development/zp-core/exif/exif.php:493
@@ -2506,14 +2274,14 @@ msgstr "%s aflopend"
 msgid "Manual"
 msgstr "handmatig"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:950
+#: ZpTranslation-Development/zp-core/admin-edit.php:945
 msgid "Display images by:"
 msgstr "Toon afbeeldingen op:"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:980
-#: ZpTranslation-Development/zp-core/admin-edit.php:1517
-#: ZpTranslation-Development/zp-core/admin-edit.php:1608
-#: ZpTranslation-Development/zp-core/admin-edit.php:1638
+#: ZpTranslation-Development/zp-core/admin-edit.php:975
+#: ZpTranslation-Development/zp-core/admin-edit.php:1507
+#: ZpTranslation-Development/zp-core/admin-edit.php:1598
+#: ZpTranslation-Development/zp-core/admin-edit.php:1628
 #: ZpTranslation-Development/zp-core/admin-functions.php:1201
 #: ZpTranslation-Development/zp-core/admin-functions.php:1924
 #: ZpTranslation-Development/zp-core/admin-logs.php:117
@@ -2556,17 +2324,17 @@ msgstr "Toon afbeeldingen op:"
 msgid "Reset"
 msgstr "Reset"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1024
-#: ZpTranslation-Development/zp-core/admin-edit.php:1289
+#: ZpTranslation-Development/zp-core/admin-edit.php:1019
+#: ZpTranslation-Development/zp-core/admin-edit.php:1279
 #, php-format
 msgid "crop %s"
 msgstr "uitsnede %s"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1033
+#: ZpTranslation-Development/zp-core/admin-edit.php:1028
 msgid "Zoom"
 msgstr "Zoom"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1035
+#: ZpTranslation-Development/zp-core/admin-edit.php:1030
 #: ZpTranslation-Development/zp-core/utilities/gallery_statistics.php:443
 #: ZpTranslation-Development/zp-core/utilities/gallery_statistics.php:446
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:241
@@ -2583,31 +2351,31 @@ msgstr "Zoom"
 msgid "View"
 msgstr "Bekijk"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1037
+#: ZpTranslation-Development/zp-core/admin-edit.php:1032
 msgid "<strong>Filename:</strong>"
 msgstr "<strong>Bestandsnaam:</strong>"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1048
+#: ZpTranslation-Development/zp-core/admin-edit.php:1038
 msgid "<strong>Image id:</strong>"
 msgstr "<strong>Afbeeldings ID:</strong>"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1049
+#: ZpTranslation-Development/zp-core/admin-edit.php:1039
 msgid "<strong>Dimensions:</strong>"
 msgstr "<strong>Afmetingen:</strong>"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1049
+#: ZpTranslation-Development/zp-core/admin-edit.php:1039
 msgid "px"
 msgstr "px"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1050
+#: ZpTranslation-Development/zp-core/admin-edit.php:1040
 msgid "<strong>Size:</strong>"
 msgstr "<strong>Bestandsgrootte:</strong>"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1052
+#: ZpTranslation-Development/zp-core/admin-edit.php:1042
 msgid "Owner:"
 msgstr "Eigenaar:"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1067
+#: ZpTranslation-Development/zp-core/admin-edit.php:1057
 #: ZpTranslation-Development/zp-core/admin-functions.php:1685
 #: ZpTranslation-Development/zp-core/lib-auth.php:513
 #: ZpTranslation-Development/zp-core/lib-auth.php:514
@@ -2623,7 +2391,7 @@ msgstr "Eigenaar:"
 msgid "General"
 msgstr "Algemeen"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1071
+#: ZpTranslation-Development/zp-core/admin-edit.php:1061
 #: ZpTranslation-Development/zp-core/admin-functions.php:1689
 #: ZpTranslation-Development/zp-core/admin-functions.php:2108
 #: ZpTranslation-Development/zp-core/admin-globals.php:30
@@ -2633,12 +2401,12 @@ msgstr "Algemeen"
 msgid "Published"
 msgstr "Gepubliceerd"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1079
+#: ZpTranslation-Development/zp-core/admin-edit.php:1069
 #: ZpTranslation-Development/zp-core/admin-functions.php:1697
 msgid "Allow Comments"
 msgstr "Reacties toestaan"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1090
+#: ZpTranslation-Development/zp-core/admin-edit.php:1080
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-edit.php:639
 #, php-format
 msgid "Reset hitcounter (%u hit)"
@@ -2646,21 +2414,21 @@ msgid_plural "Reset hitcounter (%u hits)"
 msgstr[0] "Reset hittellers (%u hit)"
 msgstr[1] "Reset hittellers (%u hits)"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1103
+#: ZpTranslation-Development/zp-core/admin-edit.php:1093
 #, php-format
 msgid "Reset rating (%u star)"
 msgid_plural "Reset rating (%u stars)"
 msgstr[0] "Reset alle waarderingen (%u ster)"
 msgstr[1] "Reset alle waarderingen (%u sterren)"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1110
+#: ZpTranslation-Development/zp-core/admin-edit.php:1100
 #: ZpTranslation-Development/zp-core/admin-functions.php:1728
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-edit.php:662
 msgid "Reset rating (unrated)"
 msgstr "Reset waardering (niet gewaardeerd)"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1124
-#: ZpTranslation-Development/zp-core/admin-edit.php:1349
+#: ZpTranslation-Development/zp-core/admin-edit.php:1114
+#: ZpTranslation-Development/zp-core/admin-edit.php:1339
 #: ZpTranslation-Development/zp-core/admin-functions.php:1364
 #: ZpTranslation-Development/zp-core/admin-functions.php:1742
 #: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:309
@@ -2669,92 +2437,106 @@ msgstr "Reset waardering (niet gewaardeerd)"
 msgid "calendar"
 msgstr "kalender"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1131
-#: ZpTranslation-Development/zp-core/admin-edit.php:1156
+#: ZpTranslation-Development/zp-core/admin-edit.php:1121
+#: ZpTranslation-Development/zp-core/admin-edit.php:1146
 #: ZpTranslation-Development/zp-core/admin-functions.php:1749
 #: ZpTranslation-Development/zp-core/admin-functions.php:1774
 msgid "Future publishing date."
 msgstr "Toekomstige publicatiedatum"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1142
-#: ZpTranslation-Development/zp-core/admin-edit.php:1166
+#: ZpTranslation-Development/zp-core/admin-edit.php:1132
+#: ZpTranslation-Development/zp-core/admin-edit.php:1156
 #: ZpTranslation-Development/zp-core/admin-functions.php:1760
 #: ZpTranslation-Development/zp-core/admin-functions.php:1784
 msgid "Expired!"
 msgstr "Verlopen!"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1151
+#: ZpTranslation-Development/zp-core/admin-edit.php:1141
 #: ZpTranslation-Development/zp-core/admin-functions.php:1769
 msgid "Publish date"
 msgstr "Publicatiedatum"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1161
+#: ZpTranslation-Development/zp-core/admin-edit.php:1151
 #: ZpTranslation-Development/zp-core/admin-functions.php:1779
 msgid "Expiration date"
 msgstr "Vervaldatum"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1173
+#: ZpTranslation-Development/zp-core/admin-edit.php:1163
 #: ZpTranslation-Development/zp-core/admin-functions.php:1792
 msgid "Utilities"
 msgstr "Extra functies"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1186
+#: ZpTranslation-Development/zp-core/admin-edit.php:1176
 msgid "Rename File"
 msgstr "Hernoem"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1191
+#: ZpTranslation-Development/zp-core/admin-edit.php:1181
 #: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:351
 msgid "Are you sure you want to select this image for deletion?"
 msgstr ""
 "Weet je zeker dat je deze afbeelding wilt selecteren voor verwijdering?"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1191
+#: ZpTranslation-Development/zp-core/admin-edit.php:1181
 #: ZpTranslation-Development/zp-core/template-functions.php:263
 msgid "Delete image"
 msgstr "Verwijder"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1195
-#: ZpTranslation-Development/zp-core/admin-edit.php:1222
+#: ZpTranslation-Development/zp-core/admin-edit.php:1185
+#: ZpTranslation-Development/zp-core/admin-edit.php:1212
 msgid "to"
 msgstr "naar"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1229
+#: ZpTranslation-Development/zp-core/admin-edit.php:1208
+#: ZpTranslation-Development/zp-core/admin-edit.php:1214
+#: ZpTranslation-Development/zp-core/admin-edit.php:1220
+#: ZpTranslation-Development/zp-core/admin-functions.php:1825
+#: ZpTranslation-Development/zp-core/admin-functions.php:1862
+#: ZpTranslation-Development/zp-core/admin-functions.php:1870
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:137
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:139
+#: ZpTranslation-Development/zp-core/zp-extensions/uploader_http/upload_form.php:68
+#: ZpTranslation-Development/zp-core/zp-extensions/uploader_http/upload_form.php:69
+#: ZpTranslation-Development/zp-core/zp-extensions/uploader_jQuery/upload_form.php:124
+msgid "Cancel"
+msgstr "Annuleer"
+
+#: ZpTranslation-Development/zp-core/admin-edit.php:1219
 msgid "Image will be deleted when changes are applied."
 msgstr ""
 "Afbeelding zal verwijderd worden wanneer de wijzigingen worden opgeslagen"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1238
+#: ZpTranslation-Development/zp-core/admin-edit.php:1228
 msgid "Rotation:"
 msgstr "Rotatie:"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1259
+#: ZpTranslation-Development/zp-core/admin-edit.php:1249
 msgid "90 degrees"
 msgstr "90 graden"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1266
+#: ZpTranslation-Development/zp-core/admin-edit.php:1256
 msgid "180 degrees"
 msgstr "180 graden"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1273
+#: ZpTranslation-Development/zp-core/admin-edit.php:1263
 msgid "270 degrees"
 msgstr "270 graden"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1280
+#: ZpTranslation-Development/zp-core/admin-edit.php:1270
 #, php-format
 msgid "Refresh %s metadata"
 msgstr "Ververs metadata %s"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1282
+#: ZpTranslation-Development/zp-core/admin-edit.php:1272
 #: ZpTranslation-Development/zp-core/admin-refresh-metadata.php:39
 #: ZpTranslation-Development/zp-core/utilities/refresh_metadata.php:6
 msgid "Refresh Metadata"
 msgstr "Ververs metadata"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1291
+#: ZpTranslation-Development/zp-core/admin-edit.php:1281
 msgid "Crop thumbnail"
 msgstr "Crop thumbnail"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1302
+#: ZpTranslation-Development/zp-core/admin-edit.php:1292
 #: ZpTranslation-Development/zp-core/admin-functions.php:1880
 #: ZpTranslation-Development/zp-core/class-search.php:63
 #: ZpTranslation-Development/zp-core/lib-auth.php:494
@@ -2769,113 +2551,113 @@ msgstr "Crop thumbnail"
 msgid "Tags"
 msgstr "Tags"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1315
+#: ZpTranslation-Development/zp-core/admin-edit.php:1305
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:299
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-edit.php:401
 msgid "Title:"
 msgstr "Titel:"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1320
+#: ZpTranslation-Development/zp-core/admin-edit.php:1310
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:295
 msgid "Description:"
 msgstr "Beschrijving:"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1328
+#: ZpTranslation-Development/zp-core/admin-edit.php:1318
 msgid "Set as thumbnail for:"
 msgstr "Stel in als thumbnail voor:"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1369
+#: ZpTranslation-Development/zp-core/admin-edit.php:1359
 msgid "Image watermark:"
 msgstr "Watermerk:"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1372
+#: ZpTranslation-Development/zp-core/admin-edit.php:1362
 #: ZpTranslation-Development/zp-core/admin-functions.php:1551
 #: ZpTranslation-Development/zp-core/admin-functions.php:1566
 msgid "*no watermark"
 msgstr "*geen watermerk"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1373
+#: ZpTranslation-Development/zp-core/admin-edit.php:1363
 #: ZpTranslation-Development/zp-core/admin-functions.php:1552
 #: ZpTranslation-Development/zp-core/admin-functions.php:1567
 msgid "*default"
 msgstr "*standaard"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1387
+#: ZpTranslation-Development/zp-core/admin-edit.php:1377
 msgid "thumb"
 msgstr "thumbnail"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1388
+#: ZpTranslation-Development/zp-core/admin-edit.php:1378
 #: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:131
 msgid "full image"
 msgstr "volledige afbeelding"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1397
+#: ZpTranslation-Development/zp-core/admin-edit.php:1387
 #: ZpTranslation-Development/zp-core/admin-functions.php:1384
 msgid "Custom data:"
 msgstr "Custom data:"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1407
+#: ZpTranslation-Development/zp-core/admin-edit.php:1397
 #: ZpTranslation-Development/zp-core/admin-functions.php:1374
 msgid "Location:"
 msgstr "Locatie"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1413
+#: ZpTranslation-Development/zp-core/admin-edit.php:1403
 msgid "City:"
 msgstr "Plaats:"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1419
+#: ZpTranslation-Development/zp-core/admin-edit.php:1409
 msgid "State:"
 msgstr "Provincie:"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1425
+#: ZpTranslation-Development/zp-core/admin-edit.php:1415
 msgid "Country:"
 msgstr "Land:"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1431
+#: ZpTranslation-Development/zp-core/admin-edit.php:1421
 msgid "Credit:"
 msgstr "Credit:"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1437
+#: ZpTranslation-Development/zp-core/admin-edit.php:1427
 msgid "Copyright:"
 msgstr "Copyright:"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1445
+#: ZpTranslation-Development/zp-core/admin-edit.php:1435
 msgid "Metadata:"
 msgstr "Metadata:"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1462
+#: ZpTranslation-Development/zp-core/admin-edit.php:1452
 msgid "None selected for display"
 msgstr "Niets geselecteerd"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1476
+#: ZpTranslation-Development/zp-core/admin-edit.php:1466
 #: ZpTranslation-Development/zp-core/admin-functions.php:1675
 #: ZpTranslation-Development/zp-core/admin-options.php:1326
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-edit.php:773
 msgid "Codeblocks:"
 msgstr "Codeblocks:"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1488
+#: ZpTranslation-Development/zp-core/admin-edit.php:1478
 msgid "show more fields"
 msgstr "toon meer velden"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1490
+#: ZpTranslation-Development/zp-core/admin-edit.php:1480
 msgid "show fewer fields"
 msgstr "toon minder velden"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1588
+#: ZpTranslation-Development/zp-core/admin-edit.php:1578
 msgid "Edit All Albums in"
 msgstr "Bewerk alle albums in"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1646
+#: ZpTranslation-Development/zp-core/admin-edit.php:1636
 msgid "Edit Gallery"
 msgstr "Bewerk galerij"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1665
+#: ZpTranslation-Development/zp-core/admin-edit.php:1655
 #, php-format
 msgid "Current sort: <em>%1$s%2$s</em>."
 msgstr "Huidige sortering: <em>%1$s%2$s</em>. "
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1678
+#: ZpTranslation-Development/zp-core/admin-edit.php:1668
 msgid ""
 "Select an album to edit its description and data, or <a href=\"?"
 "page=edit&amp;massedit\">mass-edit</a> all gallery level albums."
@@ -2883,13 +2665,13 @@ msgstr ""
 "Selecteer een album om de beschrijving en data te bewerken of <a href=\"?"
 "page=edit&amp;massedit\">mass-edit</a> alle albums gelijktijdig."
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1697
-#: ZpTranslation-Development/zp-core/admin-edit.php:1738
-#: ZpTranslation-Development/zp-core/admin-edit.php:1753
+#: ZpTranslation-Development/zp-core/admin-edit.php:1687
+#: ZpTranslation-Development/zp-core/admin-edit.php:1728
+#: ZpTranslation-Development/zp-core/admin-edit.php:1743
 msgid "New album"
 msgstr "Nieuw album"
 
-#: ZpTranslation-Development/zp-core/admin-edit.php:1749
+#: ZpTranslation-Development/zp-core/admin-edit.php:1739
 msgid "There are no albums for you to edit."
 msgstr "Er zijn geen albums om te bewerken"
 
@@ -2991,7 +2773,7 @@ msgstr "Bekijk galerij index"
 #: ZpTranslation-Development/zp-core/utilities/gallery_statistics.php:76
 #: ZpTranslation-Development/zp-core/utilities/gallery_statistics.php:563
 #: ZpTranslation-Development/zp-core/zp-extensions/cacheManager.php:105
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:95
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:96
 #: ZpTranslation-Development/zp-core/zp-extensions/multiple_layouts.php:90
 #: ZpTranslation-Development/zp-core/zp-extensions/related_items.php:152
 #: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:89
@@ -3548,7 +3330,7 @@ msgid "setup"
 msgstr "setup"
 
 #: ZpTranslation-Development/zp-core/admin-functions.php:4386
-#: ZpTranslation-Development/zp-core/admin-globals.php:112
+#: ZpTranslation-Development/zp-core/admin-globals.php:107
 #: ZpTranslation-Development/zp-core/admin-options.php:954
 msgid "security"
 msgstr "beveiliging"
@@ -3600,7 +3382,7 @@ msgid "uploader"
 msgstr "uploader"
 
 #: ZpTranslation-Development/zp-core/admin-functions.php:4433
-#: ZpTranslation-Development/zp-core/admin-globals.php:95
+#: ZpTranslation-Development/zp-core/admin-globals.php:90
 #: ZpTranslation-Development/zp-core/zp-extensions/user-expiry.php:95
 #: ZpTranslation-Development/zp-core/zp-extensions/user-expiry.php:105
 #: ZpTranslation-Development/zp-core/zp-extensions/user_groups.php:221
@@ -3655,6 +3437,19 @@ msgstr "Je bestanden zijn geupload."
 #, php-format
 msgid "<em>%s</em> already exists."
 msgstr "<em>%s</em> bestaat al."
+
+#: ZpTranslation-Development/zp-core/admin-functions.php:4583
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:290
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:214
+msgid "Changes applied"
+msgstr "Wijzigingen opgeslagen"
+
+#: ZpTranslation-Development/zp-core/admin-functions.php:4592
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:262
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:902
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1676
+msgid "Selected items deleted"
+msgstr "Geselecteerde onderdelen verwijderd"
 
 #: ZpTranslation-Development/zp-core/admin-functions.php:4595
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:906
@@ -3787,44 +3582,40 @@ msgstr "categorieën"
 msgid "tags"
 msgstr "tags"
 
-#: ZpTranslation-Development/zp-core/admin-globals.php:90
-msgid "comments"
-msgstr "reacties"
-
-#: ZpTranslation-Development/zp-core/admin-globals.php:106
+#: ZpTranslation-Development/zp-core/admin-globals.php:101
 msgid "general"
 msgstr "algemeen"
 
-#: ZpTranslation-Development/zp-core/admin-globals.php:110
+#: ZpTranslation-Development/zp-core/admin-globals.php:105
 msgid "gallery"
 msgstr "galerij"
 
-#: ZpTranslation-Development/zp-core/admin-globals.php:119
+#: ZpTranslation-Development/zp-core/admin-globals.php:114
 msgid "plugin"
 msgstr "plugins"
 
-#: ZpTranslation-Development/zp-core/admin-globals.php:126
+#: ZpTranslation-Development/zp-core/admin-globals.php:121
 msgid "theme"
 msgstr "thema"
 
-#: ZpTranslation-Development/zp-core/admin-globals.php:128
+#: ZpTranslation-Development/zp-core/admin-globals.php:123
 msgid "options"
 msgstr "opties"
 
-#: ZpTranslation-Development/zp-core/admin-globals.php:135
+#: ZpTranslation-Development/zp-core/admin-globals.php:130
 msgid "themes"
 msgstr "thema's"
 
-#: ZpTranslation-Development/zp-core/admin-globals.php:142
+#: ZpTranslation-Development/zp-core/admin-globals.php:137
 msgid "plugins"
 msgstr "plugins"
 
-#: ZpTranslation-Development/zp-core/admin-globals.php:150
+#: ZpTranslation-Development/zp-core/admin-globals.php:145
 #: ZpTranslation-Development/zp-core/admin-logs.php:64
 msgid "logs"
 msgstr "logs"
 
-#: ZpTranslation-Development/zp-core/admin-globals.php:158
+#: ZpTranslation-Development/zp-core/admin-globals.php:153
 msgid "Restore"
 msgstr "Restore"
 
@@ -6303,6 +6094,13 @@ msgstr "Gebruik dit als je thema"
 msgid "Current Theme"
 msgstr "Huidig thema"
 
+#: ZpTranslation-Development/zp-core/admin-themes.php:289
+#: ZpTranslation-Development/zp-core/utilities/gallery_statistics.php:446
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:297
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:474
+msgid "Edit"
+msgstr "Bewerken"
+
 #: ZpTranslation-Development/zp-core/admin-themes.php:310
 msgid "Duplicate"
 msgstr "Dupliceer"
@@ -6736,7 +6534,7 @@ msgid "Official build"
 msgstr "Officiële versie"
 
 #: ZpTranslation-Development/zp-core/admin.php:237
-#: ZpTranslation-Development/zp-core/functions-basic.php:1208
+#: ZpTranslation-Development/zp-core/functions-basic.php:1229
 #: ZpTranslation-Development/zp-core/setup/index.php:367
 #: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:132
 msgid "clone"
@@ -7045,7 +6843,7 @@ msgid "Bad "
 msgstr "Slechte"
 
 #: ZpTranslation-Development/zp-core/class-feed.php:486
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:1045
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:1072
 msgid "by"
 msgstr "door"
 
@@ -7163,24 +6961,24 @@ msgid "Location/Place"
 msgstr "Locatie/Plaats"
 
 #: ZpTranslation-Development/zp-core/class-search.php:69
-#: ZpTranslation-Development/zp-core/functions.php:2403
+#: ZpTranslation-Development/zp-core/functions.php:2400
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:120
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:122
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:367
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:380
 msgid "City"
 msgstr "Plaats"
 
 #: ZpTranslation-Development/zp-core/class-search.php:70
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:123
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:125
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:371
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:384
 msgid "State"
 msgstr "Provincie"
 
 #: ZpTranslation-Development/zp-core/class-search.php:71
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:129
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:131
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:381
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:394
 msgid "Country"
 msgstr "Land"
 
@@ -7243,12 +7041,12 @@ msgstr "Te weinig argumenten! Afbeelding niet gevonden."
 msgid "Forbidden(2)"
 msgstr "Verboden (2)"
 
-#: ZpTranslation-Development/zp-core/functions-basic.php:1179
+#: ZpTranslation-Development/zp-core/functions-basic.php:1200
 #, php-format
 msgid "%s log size limit exceeded"
 msgstr "%s log limiet overschreden"
 
-#: ZpTranslation-Development/zp-core/functions-basic.php:1179
+#: ZpTranslation-Development/zp-core/functions-basic.php:1200
 #, php-format
 msgid "The %1$s log has exceeded its size limit and has been renamed to %2$s."
 msgstr "Het %1$s log heeft z'n limiet bereikt en is hernoemd %2$s."
@@ -8074,17 +7872,17 @@ msgstr "Klik om inhoud te tonen"
 msgid "Click to hide content"
 msgstr "Klik om inhoud te verbergen"
 
-#: ZpTranslation-Development/zp-core/functions.php:2169
+#: ZpTranslation-Development/zp-core/functions.php:2167
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d should be a number."
 msgstr "<em>[%1$s]</em> parameter %2$d moet een getal zijn."
 
-#: ZpTranslation-Development/zp-core/functions.php:2177
+#: ZpTranslation-Development/zp-core/functions.php:2175
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d should be a string."
 msgstr "<em>[%1$s]</em> parameter %2$d moet een string zijn."
 
-#: ZpTranslation-Development/zp-core/functions.php:2189
+#: ZpTranslation-Development/zp-core/functions.php:2187
 #, php-format
 msgid ""
 "<em>[%1$s]</em> parameter %2$d should be <code>true</code> or <code>false</"
@@ -8093,346 +7891,346 @@ msgstr ""
 "<em>[%1$s]</em> parameter %2$d moet <code>true</code> of <code>false</code> "
 "zijn."
 
-#: ZpTranslation-Development/zp-core/functions.php:2206
+#: ZpTranslation-Development/zp-core/functions.php:2204
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d is incorrectly defined."
 msgstr "<em>[%1$s]</em> parameter %2$d is niet goed gedefinieërd."
 
-#: ZpTranslation-Development/zp-core/functions.php:2213
+#: ZpTranslation-Development/zp-core/functions.php:2211
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d is missing."
 msgstr "<em>[%1$s]</em> parameter %2$d ontbreekt."
 
-#: ZpTranslation-Development/zp-core/functions.php:2222
+#: ZpTranslation-Development/zp-core/functions.php:2220
 #, php-format
 msgid "<em>[%1$s]</em> macro does not take parameters"
 msgstr "<em>[%1$s]</em> macro mag geen parameters hebben."
 
-#: ZpTranslation-Development/zp-core/functions.php:2245
-#: ZpTranslation-Development/zp-core/functions.php:2272
+#: ZpTranslation-Development/zp-core/functions.php:2243
+#: ZpTranslation-Development/zp-core/functions.php:2270
 #, php-format
 msgid "<em>[%1$s]</em> retuned no data"
 msgstr "<em>[%1$s]</em> kan niks weergeven."
 
-#: ZpTranslation-Development/zp-core/functions.php:2250
+#: ZpTranslation-Development/zp-core/functions.php:2248
 #, php-format
 msgid "<em>[%1$s]</em> <code>%2$s</code> is not callable"
 msgstr "<em>[%1$s]</em> <code>%2$s</code> kan niet aangeroepen worden."
 
-#: ZpTranslation-Development/zp-core/functions.php:2277
+#: ZpTranslation-Development/zp-core/functions.php:2275
 #, php-format
 msgid "<em>[%1$s]</em> takes %2$d parameter"
 msgid_plural "<em>[%1$s]</em> takes %2$d parameters"
 msgstr[0] "<em>[%1$s]</em> moet %2$d parameter hebben."
 msgstr[1] "<em>[%1$s]</em> moet %2$d parameters hebben."
 
-#: ZpTranslation-Development/zp-core/functions.php:2361
+#: ZpTranslation-Development/zp-core/functions.php:2358
 msgid "Camera Maker"
 msgstr "Cameraproducent"
 
-#: ZpTranslation-Development/zp-core/functions.php:2362
+#: ZpTranslation-Development/zp-core/functions.php:2359
 msgid "Camera Model"
 msgstr "Cameramodel"
 
-#: ZpTranslation-Development/zp-core/functions.php:2363
+#: ZpTranslation-Development/zp-core/functions.php:2360
 msgid "Image Title"
 msgstr "Titel van de foto"
 
-#: ZpTranslation-Development/zp-core/functions.php:2364
+#: ZpTranslation-Development/zp-core/functions.php:2361
 msgid "Object Name"
 msgstr "Objectnaam"
 
-#: ZpTranslation-Development/zp-core/functions.php:2365
+#: ZpTranslation-Development/zp-core/functions.php:2362
 msgid "Image Headline"
 msgstr "Kopregel"
 
-#: ZpTranslation-Development/zp-core/functions.php:2366
+#: ZpTranslation-Development/zp-core/functions.php:2363
 msgid "Image Caption"
 msgstr "Beschrijving"
 
-#: ZpTranslation-Development/zp-core/functions.php:2367
+#: ZpTranslation-Development/zp-core/functions.php:2364
 msgid "Image Caption Writer"
 msgstr "Auteur van beschrijving"
 
-#: ZpTranslation-Development/zp-core/functions.php:2368
+#: ZpTranslation-Development/zp-core/functions.php:2365
 msgid "Time Taken"
 msgstr "Datum/tijd"
 
-#: ZpTranslation-Development/zp-core/functions.php:2369
+#: ZpTranslation-Development/zp-core/functions.php:2366
 msgid "Original Time Taken"
 msgstr "Oorspronkelijke datum/tijd"
 
-#: ZpTranslation-Development/zp-core/functions.php:2370
+#: ZpTranslation-Development/zp-core/functions.php:2367
 msgid "Time Digitized"
 msgstr "Gedigitaliseerde datum/tijd"
 
-#: ZpTranslation-Development/zp-core/functions.php:2371
+#: ZpTranslation-Development/zp-core/functions.php:2368
 msgid "Date Created"
 msgstr "Datum van de foto"
 
-#: ZpTranslation-Development/zp-core/functions.php:2372
+#: ZpTranslation-Development/zp-core/functions.php:2369
 msgid "Time Created"
 msgstr "Tijd van de foto"
 
-#: ZpTranslation-Development/zp-core/functions.php:2373
+#: ZpTranslation-Development/zp-core/functions.php:2370
 msgid "Digital Creation Date"
 msgstr "Digitale datum van de foto"
 
-#: ZpTranslation-Development/zp-core/functions.php:2374
+#: ZpTranslation-Development/zp-core/functions.php:2371
 msgid "Digital Creation Time"
 msgstr "Digitale tijd van de foto"
 
-#: ZpTranslation-Development/zp-core/functions.php:2375
+#: ZpTranslation-Development/zp-core/functions.php:2372
 msgid "Artist"
 msgstr "Auteur"
 
-#: ZpTranslation-Development/zp-core/functions.php:2376
+#: ZpTranslation-Development/zp-core/functions.php:2373
 msgid "Image Credit"
 msgstr "Auteur afbeelding"
 
-#: ZpTranslation-Development/zp-core/functions.php:2377
+#: ZpTranslation-Development/zp-core/functions.php:2374
 msgid "Byline"
 msgstr "Bijschrift"
 
-#: ZpTranslation-Development/zp-core/functions.php:2378
+#: ZpTranslation-Development/zp-core/functions.php:2375
 msgid "Byline Title"
 msgstr "Titel bijschrift"
 
-#: ZpTranslation-Development/zp-core/functions.php:2379
+#: ZpTranslation-Development/zp-core/functions.php:2376
 msgid "Image Source"
 msgstr "Bron"
 
-#: ZpTranslation-Development/zp-core/functions.php:2381
+#: ZpTranslation-Development/zp-core/functions.php:2378
 msgid "Copyright Holder"
 msgstr "Copyright houder"
 
-#: ZpTranslation-Development/zp-core/functions.php:2382
+#: ZpTranslation-Development/zp-core/functions.php:2379
 msgid "Copyright Notice"
 msgstr "Copyright vermelding"
 
-#: ZpTranslation-Development/zp-core/functions.php:2383
+#: ZpTranslation-Development/zp-core/functions.php:2380
 msgid "Keywords"
 msgstr "Trefwoorden"
 
-#: ZpTranslation-Development/zp-core/functions.php:2384
+#: ZpTranslation-Development/zp-core/functions.php:2381
 msgid "Shutter Speed"
 msgstr "Sluitertijd"
 
-#: ZpTranslation-Development/zp-core/functions.php:2385
+#: ZpTranslation-Development/zp-core/functions.php:2382
 msgid "Aperture"
 msgstr "Diafragma"
 
-#: ZpTranslation-Development/zp-core/functions.php:2386
+#: ZpTranslation-Development/zp-core/functions.php:2383
 msgid "ISO Sensitivity"
 msgstr "ISO gevoeligheid"
 
-#: ZpTranslation-Development/zp-core/functions.php:2387
+#: ZpTranslation-Development/zp-core/functions.php:2384
 msgid "Exposure Compensation"
 msgstr "Belichtingscompensatie"
 
-#: ZpTranslation-Development/zp-core/functions.php:2388
+#: ZpTranslation-Development/zp-core/functions.php:2385
 msgid "Metering Mode"
 msgstr "Methode lichtmeting"
 
-#: ZpTranslation-Development/zp-core/functions.php:2389
+#: ZpTranslation-Development/zp-core/functions.php:2386
 #: ZpTranslation-Development/zp-core/exif/makers/canon.php:236
 msgid "Flash Fired"
 msgstr "Flits"
 
-#: ZpTranslation-Development/zp-core/functions.php:2390
+#: ZpTranslation-Development/zp-core/functions.php:2387
 msgid "Original Width"
 msgstr "Originele breedte"
 
-#: ZpTranslation-Development/zp-core/functions.php:2391
+#: ZpTranslation-Development/zp-core/functions.php:2388
 msgid "Original Height"
 msgstr "Originele hoogte"
 
-#: ZpTranslation-Development/zp-core/functions.php:2392
+#: ZpTranslation-Development/zp-core/functions.php:2389
 msgid "Orientation"
 msgstr "Oriëntatie"
 
-#: ZpTranslation-Development/zp-core/functions.php:2393
+#: ZpTranslation-Development/zp-core/functions.php:2390
 msgid "Software"
 msgstr "Software"
 
-#: ZpTranslation-Development/zp-core/functions.php:2394
+#: ZpTranslation-Development/zp-core/functions.php:2391
 msgid "Contrast Setting"
 msgstr "Contrast"
 
-#: ZpTranslation-Development/zp-core/functions.php:2395
+#: ZpTranslation-Development/zp-core/functions.php:2392
 msgid "Sharpness Setting"
 msgstr "Scherpte"
 
-#: ZpTranslation-Development/zp-core/functions.php:2396
+#: ZpTranslation-Development/zp-core/functions.php:2393
 msgid "Saturation Setting"
 msgstr "Verzadiging"
 
-#: ZpTranslation-Development/zp-core/functions.php:2397
+#: ZpTranslation-Development/zp-core/functions.php:2394
 msgid "White Balance"
 msgstr "Witbalans"
 
-#: ZpTranslation-Development/zp-core/functions.php:2398
+#: ZpTranslation-Development/zp-core/functions.php:2395
 msgid "Subject Distance"
 msgstr "Onderwerpsafstand"
 
-#: ZpTranslation-Development/zp-core/functions.php:2399
+#: ZpTranslation-Development/zp-core/functions.php:2396
 msgid "Focal Length"
 msgstr "Brandpuntsafstand"
 
-#: ZpTranslation-Development/zp-core/functions.php:2400
+#: ZpTranslation-Development/zp-core/functions.php:2397
 msgid "Lens Type"
 msgstr "Lenstype"
 
-#: ZpTranslation-Development/zp-core/functions.php:2401
+#: ZpTranslation-Development/zp-core/functions.php:2398
 msgid "Lens Info"
 msgstr "Lensinformatie"
 
-#: ZpTranslation-Development/zp-core/functions.php:2402
+#: ZpTranslation-Development/zp-core/functions.php:2399
 msgid "35mm Focal Length Equivalent"
 msgstr "Brandpuntsafstand equivalent voor 35mm film"
 
-#: ZpTranslation-Development/zp-core/functions.php:2404
+#: ZpTranslation-Development/zp-core/functions.php:2401
 msgid "Sub-location"
 msgstr "Sublocatie"
 
-#: ZpTranslation-Development/zp-core/functions.php:2405
+#: ZpTranslation-Development/zp-core/functions.php:2402
 msgid "Province/State"
 msgstr "Provincie/Staat"
 
-#: ZpTranslation-Development/zp-core/functions.php:2406
+#: ZpTranslation-Development/zp-core/functions.php:2403
 msgid "Country/Primary Location Code"
 msgstr "Land/locatiecode"
 
-#: ZpTranslation-Development/zp-core/functions.php:2407
+#: ZpTranslation-Development/zp-core/functions.php:2404
 msgid "Country/Primary Location Name"
 msgstr "Land/ locatienaam"
 
-#: ZpTranslation-Development/zp-core/functions.php:2408
+#: ZpTranslation-Development/zp-core/functions.php:2405
 msgid "Content Location Code"
 msgstr "Content locatiecode"
 
-#: ZpTranslation-Development/zp-core/functions.php:2409
+#: ZpTranslation-Development/zp-core/functions.php:2406
 msgid "Content Location Name"
 msgstr "Content locatienaam"
 
-#: ZpTranslation-Development/zp-core/functions.php:2410
+#: ZpTranslation-Development/zp-core/functions.php:2407
 msgid "Latitude"
 msgstr "Breedtegraad"
 
-#: ZpTranslation-Development/zp-core/functions.php:2411
+#: ZpTranslation-Development/zp-core/functions.php:2408
 msgid "Latitude Reference"
 msgstr "Breedtegraad verwijzing"
 
-#: ZpTranslation-Development/zp-core/functions.php:2412
+#: ZpTranslation-Development/zp-core/functions.php:2409
 msgid "Longitude"
 msgstr "Lengtegraad"
 
-#: ZpTranslation-Development/zp-core/functions.php:2413
+#: ZpTranslation-Development/zp-core/functions.php:2410
 msgid "Longitude Reference"
 msgstr "Lengtegraad verwijzing"
 
-#: ZpTranslation-Development/zp-core/functions.php:2414
+#: ZpTranslation-Development/zp-core/functions.php:2411
 msgid "Altitude"
 msgstr "Hoogtegraad"
 
-#: ZpTranslation-Development/zp-core/functions.php:2415
+#: ZpTranslation-Development/zp-core/functions.php:2412
 msgid "Altitude Reference"
 msgstr "Hoogtegraad verwijzing"
 
-#: ZpTranslation-Development/zp-core/functions.php:2416
+#: ZpTranslation-Development/zp-core/functions.php:2413
 msgid "Originating Program "
 msgstr "Gebruikt programma"
 
-#: ZpTranslation-Development/zp-core/functions.php:2417
+#: ZpTranslation-Development/zp-core/functions.php:2414
 msgid "Program Version"
 msgstr "Programmaversie"
 
-#: ZpTranslation-Development/zp-core/functions.php:2418
+#: ZpTranslation-Development/zp-core/functions.php:2415
 msgid "Video File Format"
 msgstr "Video format"
 
-#: ZpTranslation-Development/zp-core/functions.php:2419
+#: ZpTranslation-Development/zp-core/functions.php:2416
 msgid "Video File Size"
 msgstr "Video bestandsgrootte"
 
-#: ZpTranslation-Development/zp-core/functions.php:2420
+#: ZpTranslation-Development/zp-core/functions.php:2417
 msgid "Video Artist"
 msgstr "Video artiest"
 
-#: ZpTranslation-Development/zp-core/functions.php:2421
+#: ZpTranslation-Development/zp-core/functions.php:2418
 msgid "Video Title"
 msgstr "Video titel"
 
-#: ZpTranslation-Development/zp-core/functions.php:2422
+#: ZpTranslation-Development/zp-core/functions.php:2419
 msgid "Bitrate"
 msgstr "Bitrate"
 
-#: ZpTranslation-Development/zp-core/functions.php:2423
+#: ZpTranslation-Development/zp-core/functions.php:2420
 msgid "Bitrate_Mode"
 msgstr "Bitrate type"
 
-#: ZpTranslation-Development/zp-core/functions.php:2424
+#: ZpTranslation-Development/zp-core/functions.php:2421
 msgid "Bits per sample"
 msgstr "Bits per sample"
 
-#: ZpTranslation-Development/zp-core/functions.php:2425
+#: ZpTranslation-Development/zp-core/functions.php:2422
 msgid "Codec"
 msgstr "Codec"
 
-#: ZpTranslation-Development/zp-core/functions.php:2426
+#: ZpTranslation-Development/zp-core/functions.php:2423
 msgid "Compression Ratio"
 msgstr "Compressieverhouding"
 
-#: ZpTranslation-Development/zp-core/functions.php:2427
+#: ZpTranslation-Development/zp-core/functions.php:2424
 msgid "Video Dataformat"
 msgstr "Video type"
 
-#: ZpTranslation-Development/zp-core/functions.php:2428
+#: ZpTranslation-Development/zp-core/functions.php:2425
 msgid "File Encoder"
 msgstr "Encoder"
 
-#: ZpTranslation-Development/zp-core/functions.php:2429
+#: ZpTranslation-Development/zp-core/functions.php:2426
 msgid "Sample rate"
 msgstr "Sample rate"
 
-#: ZpTranslation-Development/zp-core/functions.php:2430
+#: ZpTranslation-Development/zp-core/functions.php:2427
 msgid "Channel mode"
 msgstr "Channel mode"
 
-#: ZpTranslation-Development/zp-core/functions.php:2431
+#: ZpTranslation-Development/zp-core/functions.php:2428
 msgid "Format"
 msgstr "Type"
 
-#: ZpTranslation-Development/zp-core/functions.php:2432
+#: ZpTranslation-Development/zp-core/functions.php:2429
 msgid "Channels"
 msgstr "Channels"
 
-#: ZpTranslation-Development/zp-core/functions.php:2433
+#: ZpTranslation-Development/zp-core/functions.php:2430
 msgid "Frame rate"
 msgstr "Frame rate"
 
-#: ZpTranslation-Development/zp-core/functions.php:2434
+#: ZpTranslation-Development/zp-core/functions.php:2431
 msgid "X Resolution"
 msgstr "X resolutie"
 
-#: ZpTranslation-Development/zp-core/functions.php:2435
+#: ZpTranslation-Development/zp-core/functions.php:2432
 msgid "Y Resolution"
 msgstr "Y resolutie"
 
-#: ZpTranslation-Development/zp-core/functions.php:2436
+#: ZpTranslation-Development/zp-core/functions.php:2433
 msgid "Aspect ratio"
 msgstr "Verhouding lengte/breedte"
 
-#: ZpTranslation-Development/zp-core/functions.php:2437
+#: ZpTranslation-Development/zp-core/functions.php:2434
 msgid "Play Time"
 msgstr "Speeltijd"
 
-#: ZpTranslation-Development/zp-core/functions.php:2438
+#: ZpTranslation-Development/zp-core/functions.php:2435
 msgid "XMP Rating"
 msgstr "XMP waardering"
 
-#: ZpTranslation-Development/zp-core/functions.php:2596
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:120
+#: ZpTranslation-Development/zp-core/functions.php:2593
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:121
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:140
 #: ZpTranslation-Development/zp-core/zp-extensions/register_user.php:106
 msgid "No captcha handler is enabled."
@@ -8566,6 +8364,16 @@ msgstr "Uploaden"
 #: ZpTranslation-Development/zp-core/lib-auth.php:563
 msgid "Post comments"
 msgstr "Berichten plaatsen"
+
+#: ZpTranslation-Development/zp-core/lib-auth.php:489
+#: ZpTranslation-Development/zp-core/lib-auth.php:504
+#: ZpTranslation-Development/zp-core/lib-auth.php:531
+#: ZpTranslation-Development/zp-core/lib-auth.php:564
+#: ZpTranslation-Development/zp-core/template-functions.php:125
+#: ZpTranslation-Development/zp-core/zp-extensions/rss.php:75
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:253
+msgid "Comments"
+msgstr "Reacties"
 
 #: ZpTranslation-Development/zp-core/lib-auth.php:491
 #: ZpTranslation-Development/zp-core/lib-auth.php:511
@@ -9620,16 +9428,16 @@ msgstr "Deze afbeelding is als niet-gepubliceerd gemarkeerd."
 msgid "Image Info"
 msgstr "Fotoinformatie"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3173
+#: ZpTranslation-Development/zp-core/template-functions.php:3175
 #, php-format
 msgid "View image: %s"
 msgstr "Bekijk afbeelding: %s"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3361
+#: ZpTranslation-Development/zp-core/template-functions.php:3363
 msgid "No popular tags"
 msgstr "Geen populaire tags"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3558
+#: ZpTranslation-Development/zp-core/template-functions.php:3560
 msgid ""
 "getSearchURL $album_list parameter is deprecated. Pass array(\"albums"
 "\"=>array(album, album, ...)) instead."
@@ -9637,7 +9445,7 @@ msgstr ""
 "getSearchURL $album_list parameter is verouderd. Gebruik in plaats daarvan "
 "array(\"albums\"=>array(album, album,...))."
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3680
+#: ZpTranslation-Development/zp-core/template-functions.php:3682
 msgid ""
 "printSearchForm $album_list parameter is deprecated. Pass array(\"albums"
 "\"=>array(album, album, ...)) instead."
@@ -9645,41 +9453,41 @@ msgstr ""
 "printSearchForm $album_list parameter is verouderd. Gebruik in plaats "
 "daarvan array(\"albums\"=>aray(album, album,...))."
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3696
+#: ZpTranslation-Development/zp-core/template-functions.php:3698
 #, php-format
 msgid "%s within previous results"
 msgstr "%s binnen vorige resultaten"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3771
+#: ZpTranslation-Development/zp-core/template-functions.php:3773
 msgid "search options"
 msgstr "zoekopties"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3771
+#: ZpTranslation-Development/zp-core/template-functions.php:3773
 msgid "fields"
 msgstr "velden"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3811
+#: ZpTranslation-Development/zp-core/template-functions.php:3813
 msgid "Within"
 msgstr "binnen"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3815
+#: ZpTranslation-Development/zp-core/template-functions.php:3817
 #: ZpTranslation-Development/zp-core/zp-extensions/flag_thumbnail.php:90
 msgid "New"
 msgstr "Nieuw"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3873
+#: ZpTranslation-Development/zp-core/template-functions.php:3875
 msgid "no date"
 msgstr "geen datum"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:4121
+#: ZpTranslation-Development/zp-core/template-functions.php:4123
 msgid "The page you are trying to view is password protected."
 msgstr "Deze pagina is beveiligd met een wachtwoord."
 
-#: ZpTranslation-Development/zp-core/template-functions.php:4126
+#: ZpTranslation-Development/zp-core/template-functions.php:4128
 msgid "login"
 msgstr "login"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:4143
+#: ZpTranslation-Development/zp-core/template-functions.php:4145
 msgid ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
 "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
@@ -12423,7 +12231,7 @@ msgid ""
 "You can insert your Gallery description on the Admin Options Gallery tab."
 msgstr "Hier kun je een beschrijving van de galerij invoeren."
 
-#: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:554
+#: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:553
 msgid "Plugin setup:"
 msgstr "Plugin setup:"
 
@@ -12989,10 +12797,10 @@ msgstr "tot"
 #: ZpTranslation-Development/zp-core/zp-extensions/cacheManager.php:149
 #: ZpTranslation-Development/zp-core/zp-extensions/cacheManager.php:153
 #: ZpTranslation-Development/zp-core/zp-extensions/cacheManager.php:174
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:107
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:111
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:115
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:123
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:108
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:112
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:116
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:124
 #: ZpTranslation-Development/zp-core/zp-extensions/register_user.php:93
 #: ZpTranslation-Development/zp-core/zp-extensions/cacheManager/cacheImages.php:200
 #: ZpTranslation-Development/zp-core/zp-extensions/cacheManager/cacheImages.php:204
@@ -13453,7 +13261,7 @@ msgstr "PDF"
 #: ZpTranslation-Development/zp-core/zp-extensions/class-WEBdocs.php:55
 #: ZpTranslation-Development/zp-core/zp-extensions/class-WEBdocs.php:66
 #: ZpTranslation-Development/zp-core/zp-extensions/class-WEBdocs.php:73
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:153
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:154
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce.php:53
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce.php:58
 msgid "Disabled"
@@ -13587,38 +13395,38 @@ msgstr ""
 msgid "Provides a unified comment handling facility."
 msgstr "Zorgt voor de verwerking van reacties."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:102
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:103
 msgid "Enable comment notification"
 msgstr "Bericht van reactie"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:104
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:105
 msgid "Email the Admin when new comments are posted"
 msgstr "E-mail de admin bij een nieuwe reactie."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:105
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:106
 msgid "Name field"
 msgstr "Naam"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:107
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:111
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:115
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:119
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:123
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:108
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:112
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:116
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:120
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:124
 #: ZpTranslation-Development/zp-core/zp-extensions/register_user.php:93
 msgid "Require"
 msgstr "verplicht"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:108
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:109
 msgid "If the <em>Name</em> field is required, the poster must provide a name."
 msgstr ""
 "Als de <em>Naam</em> verplicht is, moet de degene die reageert een naam "
 "invullen."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:109
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:110
 msgid "Email field"
 msgstr "E-mailadres"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:112
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:113
 msgid ""
 "If the <em>Email</em> field is required, the poster must provide an email "
 "address."
@@ -13626,26 +13434,26 @@ msgstr ""
 "Als het <em>E-mailadres</em> verplicht is, moet de degene die reageert een e-"
 "mailadres invullen."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:113
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:114
 msgid "Website field"
 msgstr "Website"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:116
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:117
 msgid ""
 "If the <em>Website</em> field is required, the poster must provide a website."
 msgstr ""
 "Als de <em>Website</em> verplicht is, moet de degene die reageert een "
 "website invullen."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:117
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:118
 msgid "Captcha field"
 msgstr "Captcha"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:119
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:120
 msgid "For guests"
 msgstr "Voor gasten"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:120
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:121
 msgid ""
 "If <em>Captcha</em> is required, the form will include a Captcha "
 "verification."
@@ -13653,12 +13461,12 @@ msgstr ""
 "Als de <em>Captcha</em> verplicht is, zal het formulier een Captcha "
 "verificatie tonen."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:121
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:122
 #: ZpTranslation-Development/zp-core/zp-extensions/register_user.php:91
 msgid "Address fields"
 msgstr "Adresvelden."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:124
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:125
 msgid ""
 "If <em>Address fields</em> are shown or required, the form will include "
 "positions for address information. If required, the poster must supply data "
@@ -13667,19 +13475,19 @@ msgstr ""
 "Als <em>Adresvelden</em> worden getoond of verplicht zijn, zal het formulier "
 "posities creëren voor deze informatie. "
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:125
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:126
 msgid "Allow comments on"
 msgstr "Sta reacties toe."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:128
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:129
 msgid "Comment forms will be presented on the checked pages."
 msgstr "Reactieformulieren worden getoond op de aangevinkte pagina's."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:129
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:130
 msgid "Toggled comment block"
 msgstr "Toggle reacties"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:131
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:132
 msgid ""
 "If checked, existing comments will be initially hidden. Clicking on the "
 "provided button will show them."
@@ -13687,40 +13495,40 @@ msgstr ""
 "Indien aangevinkt, worden reacties in eerste instantie verborgen. Ze worden "
 "zichtbaar als op de getoonde knop geklikt wordt."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:132
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:133
 msgid "Show author URL"
 msgstr "Toon URL auteur"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:134
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:135
 msgid ""
 "To discourage SPAM, uncheck this box and the author URL will not be revealed."
 msgstr ""
 "Vink uit om SPAM te ontmoedigen. De URL van de auteur wordt dan verborgen."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:135
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:136
 msgid "Only members can comment"
 msgstr "Alleen leden kunnen reageren"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:137
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:138
 msgid "If checked, only logged in users will be allowed to post comments."
 msgstr "Indien aangevinkt, kunnen alleen ingelogde gebruikers reageren."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:138
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:139
 msgid "Allow private postings"
 msgstr "Sta privé berichten toe"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:140
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:141
 msgid ""
 "If checked, posters may mark their comments as private (not for publishing)."
 msgstr ""
 "Indien aangevinkt kunnen mensen die een reactie schrijven aangeven of dit "
 "privé is. Wordt dus niet gepubliceerd."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:141
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:142
 msgid "Allow anonymous posting"
 msgstr "Sta anonieme reacties toe"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:143
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:144
 msgid ""
 "If checked, posters may exclude their personal information from the "
 "published post."
@@ -13728,11 +13536,11 @@ msgstr ""
 "Indien aangevinkt kunnen mensen die een reactie schrijven hun persoonlijke "
 "informatie onzichtbaar maken."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:144
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:145
 msgid "Include RSS link"
 msgstr "Voeg RSS-link toe"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:146
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:147
 msgid ""
 "If checked, an RSS link will be included at the bottom of the comment "
 "section."
@@ -13740,21 +13548,23 @@ msgstr ""
 "Indien aangevinkt, zal onderaan het reactie-gedeelte een RSS-link getoond "
 "worden."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:147
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:148
 msgid "Comments per page"
 msgstr "Reacties per pagina"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:149
-msgid "The comments that should show per page using the jQuery pagination"
-msgstr ""
-"Het aantal commentaren per pagina dat getoond wordt. Maakt gebruik van de "
-"jQuery paginering."
-
 #: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:150
+msgid ""
+"The comments that should show per page on the admin tab and when using the "
+"jQuery pagination"
+msgstr ""
+"Het aantal commentaren per pagina dat getoond wordt in de backend. Maakt "
+"gebruik van de jQuery paginering."
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:151
 msgid "Comment editor configuration"
 msgstr "Reacties editor configuratie"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:154
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:155
 msgid ""
 "Configuration file for TinyMCE when used for comments. Set to "
 "<code>Disabled</code> to disable visual editing."
@@ -13762,47 +13572,52 @@ msgstr ""
 "Configuratie van TinyMCE , als dat gebruikt wordt voor reacties. Kies "
 "<code>Uiitgeschakeld</code> om dit uit te schakelen voor reacties."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:155
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:156
 msgid "Pagination"
 msgstr "Paginering"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:157
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:158
 msgid ""
 "Uncheck to disable the jQuery pagination of comments. Enabled by default."
 msgstr "Vink uit om de jQuery paginering uit te zetten. Normaal staat dit aan."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:186
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:173
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:174
+msgid "comments"
+msgstr "reacties"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:205
 msgid "Add a comment:"
 msgstr "Reageer"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:224
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:243
 msgid "No Comments"
 msgstr "Geen reacties"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:238
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:257
 msgid "show comments"
 msgstr "toon reacties"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:242
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:261
 msgid "hide comments"
 msgstr "verberg reacties"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:276
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:295
 msgid "on"
 msgstr "op"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:298
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:318
 msgid "Only registered users may post comments."
 msgstr "Alleen geregistreerde gebruikers kunnen reacties plaatsen."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:363
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:383
 msgid "Closed for comments."
 msgstr "Gesloten voor reacties."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:377
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:381
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:385
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:389
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:397
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:401
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:405
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:409
 msgid "Subscribe to comments"
 msgstr "RSS reacties."
 
@@ -13979,13 +13794,13 @@ msgstr "Bedrijf"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:117
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:119
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:363
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:376
 msgid "Street"
 msgstr "Straat"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:126
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:128
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:385
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:398
 msgid "Postal code"
 msgstr "Postcode"
 
@@ -13996,7 +13811,7 @@ msgstr "E-mail"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:135
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:137
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:377
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:390
 msgid "Website"
 msgstr "Website"
 
@@ -16294,7 +16109,11 @@ msgstr "Bekijk beschikbare <code>content macros</code>."
 msgid "macros"
 msgstr "macro's"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/macroList.php:93
+#: ZpTranslation-Development/zp-core/zp-extensions/macroList.php:85
+msgid "Macro identifiers may not contain special characters."
+msgstr "Macro's mogen geen diakritische tekens bevaten."
+
+#: ZpTranslation-Development/zp-core/zp-extensions/macroList.php:98
 msgid ""
 "The number of macro parameters must match the number of replacement tokens "
 "in the expression."
@@ -16302,20 +16121,20 @@ msgstr ""
 "Het aantal macro-parameters moet hetzelfde zijn als het aantal elementen in "
 "de expressie. (%1, %2, %3, etc.)"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/macroList.php:97
+#: ZpTranslation-Development/zp-core/zp-extensions/macroList.php:102
 #, php-format
 msgid "<code>%s</code> is not callable"
 msgstr "<code>%s</code> kan niet aangeroepen worden."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/macroList.php:107
+#: ZpTranslation-Development/zp-core/zp-extensions/macroList.php:112
 msgid "An array parameter must be the last parameter."
 msgstr "Een array-parameter moet de laatste parameter zijn."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/macroList.php:111
+#: ZpTranslation-Development/zp-core/zp-extensions/macroList.php:116
 msgid "Required parameters should not follow optional ones."
 msgstr "Verplichte parameters mogen niet na optionele parameters komen."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/macroList.php:118
+#: ZpTranslation-Development/zp-core/zp-extensions/macroList.php:123
 msgid "Expressions may not have optional parameters."
 msgstr "Expressies mogen geen extra parameters bevatten."
 
@@ -20545,6 +20364,189 @@ msgstr "Selecteer de bestemming:"
 msgid "Clone Zenphoto"
 msgstr "Kloon Zenphoto"
 
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:113
+msgid "edit comment"
+msgstr "Bewerk reactie"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:126
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:480
+msgid "Are you sure you want to delete this comment?"
+msgstr "Weet je zeker dat je deze reactie wilt verwijderen?"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:149
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-edit.php:411
+msgid "Author:"
+msgstr "Auteur:"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:153
+msgid "Web Site:"
+msgstr "Website:"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:157
+msgid "E-Mail:"
+msgstr "E-mail:"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:161
+msgid "Date/Time:"
+msgstr "Datum / Tijd:"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:165
+msgid "IP:"
+msgstr "IP:"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:172
+msgid "Comment:"
+msgstr "Reactie:"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:184
+msgid "Comment management"
+msgstr "Beheer reacties"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:188
+msgid "Comment is un-approved"
+msgstr "Reactie is niet goedgekeurd"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:189
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:338
+msgid "Approve"
+msgstr "Goedkeuren"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:190
+msgid "Approve this comment"
+msgstr "Keur deze reactie goed"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:194
+msgid "Comment is approved"
+msgstr "Reactie is goedgekeurd"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:195
+msgid "Un-approve"
+msgstr "Maak goedkeuring ongedaan"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:196
+msgid "Un-approve this comment"
+msgstr "Maak de goedkeuring van deze reactie ongedaan"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:202
+msgid "Comment is private"
+msgstr "Reactie is privé"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:204
+msgid "Comment is public"
+msgstr "Reactie is openbaar"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:208
+msgid "Comment is anonymous"
+msgstr "Reactie is anoniem"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:210
+msgid "Comment is not anonymous"
+msgstr "Reactie is niet anoniem"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:227
+msgid "Comment does not exist"
+msgstr "Reactie bestaat niet."
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:265
+msgid "Selected items marked as spam"
+msgstr "De geselecteerde onderdelen zijn gemarkeerd als spam"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:268
+msgid "Selected items approved"
+msgstr "Geselecteerde onderdelen goedgekeurd"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:283
+#, php-format
+msgid "%u Comment deleted successfully."
+msgid_plural "%u Comment deleted successfully."
+msgstr[0] "%u reactie succesvol verwijderd."
+msgstr[1] "%u reacties succesvol verwijderd."
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:300
+msgid "You can edit or delete comments on your images."
+msgstr "Hier kun je reacties bewerken en eventueel verwijderen."
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:320
+msgid "View full text"
+msgstr "volledige tekst"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:324
+msgid "View truncated"
+msgstr "ingekortte tekst"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:332
+msgid "Edit this comment"
+msgstr "Bewerk deze reactie."
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:337
+msgid "Mark as spam"
+msgstr "Markeer als spam"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:358
+msgid "<strong>Missing Object</strong> "
+msgstr "<strong>Ontbrekend object</strong> "
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:390
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:118
+msgid "[news]"
+msgstr "[nieuws]"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:404
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:132
+msgid "[page]"
+msgstr "[pagina]"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:447
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:495
+msgid "Anonymous posting"
+msgstr "Anoniem versturen"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:456
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:493
+msgid "Private message"
+msgstr "privé reactie"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:463
+msgid "Approve this message (not SPAM)"
+msgstr "Keur dit bericht goed (geen SPAM)"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:464
+msgid "Approve this message (not SPAM"
+msgstr "Keur dit bericht goed (geen SPAM)"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:468
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:469
+msgid "Mark this message as SPAM"
+msgstr "Markeer dit bericht als SPAM"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:473
+msgid "Edit this comment."
+msgstr "Bewerk deze reactie."
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:476
+msgid "Reply:"
+msgstr "Reageer:"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:477
+msgid "Reply"
+msgstr "Reageer"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:481
+msgid "Delete this comment."
+msgstr "Verwijder deze reactie."
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:494
+msgid "Marked as spam/approved"
+msgstr "Gemarkeerd als spam/goedgekeurd"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:496
+msgid "Edit comment"
+msgstr "Bewerk reactie"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:497
+msgid "E-mail comment author"
+msgstr "E-mail de auteur van de reactie"
+
 #: ZpTranslation-Development/zp-core/zp-extensions/comment_form/comment_form.php:18
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:24
 #, php-format
@@ -20567,35 +20569,35 @@ msgid "Site%s"
 msgstr "Site%s"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/comment_form/comment_form.php:52
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:183
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:189
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:46
 #, php-format
 msgid "Street%s"
 msgstr "Straat%s"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/comment_form/comment_form.php:56
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:189
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:195
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:54
 #, php-format
 msgid "City%s"
 msgstr "Stad%s"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/comment_form/comment_form.php:60
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:195
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:201
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:62
 #, php-format
 msgid "State%s"
 msgstr "Staat%s"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/comment_form/comment_form.php:64
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:201
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:207
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:70
 #, php-format
 msgid "Country%s"
 msgstr "Land%s"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/comment_form/comment_form.php:68
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:207
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:213
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form/form.php:78
 #, php-format
 msgid "Postal code%s"
@@ -20619,117 +20621,117 @@ msgstr "Privé bericht (niet publiceren)"
 msgid "Add Comment"
 msgstr "Verzenden"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:81
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:83
 msgid "10 Most Recent Comments"
 msgstr "10 meest recente reacties"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:89
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:91
 msgid "<strong>database error</strong> "
 msgstr "<strong>database fout</strong> "
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:155
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:161
 #, php-format
 msgid "<em>%1$s</em> commented on %2$s:"
 msgstr "<em>%1$s</em> gaf reactie op %2$s:"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:228
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:303
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:234
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:315
 msgid "You must supply the street field."
 msgstr "Je moet een straatnaam invoeren"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:232
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:307
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:238
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:319
 msgid "You must supply the city field."
 msgstr "Je moet een stad invoeren."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:236
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:311
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:242
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:323
 msgid "You must supply the state field."
 msgstr "Je moet de staat invoeren."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:240
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:315
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:246
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:327
 msgid "You must supply the country field."
 msgstr "Je moet het land invoeren"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:244
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:318
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:250
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:330
 msgid "You must supply the postal code field."
 msgstr "Je moet de postcode invoeren."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:418
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:431
 msgid "Mail send failed"
 msgstr "E-mail verzenden mislukt."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:424
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:437
 msgid "Error posting comment:"
 msgid_plural "Errors posting comment:"
 msgstr[0] "Fout bij plaatsen van reactie"
 msgstr[1] "Fouten  bij plaatsen van reactie"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:513
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:538
 msgid "You must supply an e-mail address."
 msgstr "Je moet een e-mailadres invoeren."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:518
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:543
 msgid "You must enter your name."
 msgstr "Je moet je naam invoeren."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:523
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:548
 msgid "You must supply a WEB page URL."
 msgstr "Je moet een webpagina URL invoeren."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:529
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:554
 msgid "CAPTCHA verification failed."
 msgstr "CAPTCHA verificatie mislukt."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:535
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:560
 msgid "You must enter something in the comment text."
 msgstr "Je bent vergeten een bericht te schrijven."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:544
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:569
 #, php-format
 msgid "Your comment was rejected by the <em>%s</em> SPAM filter."
 msgstr "Je reactie is geweigerd door het <em>%s</em> SPAM filter."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:548
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:573
 #, php-format
 msgid ""
 "Your comment has been marked for moderation by the <em>%s</em> SPAM filter."
 msgstr ""
 "Je reactie is door het <em>%s</em> SPAM filter aangemerkt voor aanpassingen."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:582
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:607
 #, php-format
 msgid "A comment has been placed in moderation on your album \"%1$s\"."
 msgstr "Er is een reactie ter goedkeuring op het album \"%1$s\"."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:584
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:609
 #, php-format
 msgid "A comment has been posted on your album \"%1$s\"."
 msgstr "Er is een reactie op het album \"%1$s\"."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:590
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:615
 #, php-format
 msgid "A comment has been placed in moderation on your article \"%1$s\"."
 msgstr "Er is een reactie ter goedkeuring op het artikel \"%1$s\"."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:592
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:617
 #, php-format
 msgid "A comment has been posted on your article \"%1$s\"."
 msgstr "Er is een reactie op het artikel \"%1$s\"."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:598
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:623
 #, php-format
 msgid "A comment has been placed in moderation on your page \"%1$s\"."
 msgstr "Er is een reactie ter goedkeuring op de pagina \"%1$s\"."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:600
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:625
 #, php-format
 msgid "A comment has been posted on your page \"%1$s\"."
 msgstr "Er is een reactie op de pagina \"%1$s\"."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:608
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:633
 #, php-format
 msgid ""
 "A comment has been placed in moderation on your image \"%1$s\" in the album "
@@ -20738,12 +20740,12 @@ msgstr ""
 "Er is een reactie ter goedkeuring op de afbeelding  \"%1$s\" in het album "
 "\"%2$s\"."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:610
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:635
 #, php-format
 msgid "A comment has been posted on your image \"%1$s\" in the album \"%2$s\"."
 msgstr "Er is een reactie op de afbeelding  \"%1$s\" in het album \"%2$s\"."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:616
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:641
 #, php-format
 msgid ""
 "Author: %1$s\n"
@@ -20760,7 +20762,7 @@ msgstr ""
 "\n"
 "%4$s"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:617
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:642
 #, php-format
 msgid ""
 "You can view all comments about this item here:\n"
@@ -20769,7 +20771,7 @@ msgstr ""
 "Je kunt hier alle reacties over dit thema hier zien:\n"
 "%1$s"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:618
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:643
 #, php-format
 msgid ""
 "You can edit the comment here:\n"
@@ -20778,11 +20780,11 @@ msgstr ""
 "Je kunt hier de reactie aanpassen:\n"
 "%1$s"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:647
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:672
 msgid "Comment posted"
 msgstr "Reactie geplaatst"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:1163
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:1197
 msgid "Anonymous"
 msgstr "Anoniem"
 
@@ -23442,6 +23444,9 @@ msgstr "<code>zenpageAlbumImage()</code> kan afbeelding %1$s:%2$s niet vinden."
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> kan album %1$s niet vinden."
+
+#~ msgid "&amp; is not allowed in filenames"
+#~ msgstr "&amp; is niet toegestaan in bestandsnamen."
 
 #~ msgid "Target no longer exists"
 #~ msgstr "Het doel voor dit menu-item bestaat niet meer"
