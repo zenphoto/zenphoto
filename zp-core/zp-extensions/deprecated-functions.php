@@ -1272,9 +1272,9 @@ function getZenpageRSSLink($option = 'News', $categorylink = '', $lang = NULL) {
  * @since 1.4.5
  */
 function printZenpageRSSLink($option = 'News', $categorylink = '', $prev = '', $linktext = '', $next = '', $printIcon = true, $class = null, $lang = NULL) {
-	deprecated_functions::notify(gettext('use printRSSLink($option, $prev, $linktext, $next, $printIcon, $class, $lang, categoryLink).'));
+	deprecated_functions::notify(gettext('use printRSSLink($option, $prev, $linktext, $next, $printIcon, $class, $lang, $categoryLink).'));
 	if (class_exists('RSS'))
-		printRSSLink($option, $prev, $linktext, $next, $printIcon, $class, $lang, categoryLink);
+		printRSSLink($option, $prev, $linktext, $next, $printIcon, $class, $lang, $categoryLink);
 }
 
 /**
