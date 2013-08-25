@@ -1425,7 +1425,7 @@ function getAlbumCustomData() {
  * @author Ozh
  */
 function printAlbumCustomData() {
-	echo html_encodeTagged(getAlbumCustomData);
+	echo html_encodeTagged(getAlbumCustomData());
 }
 
 /**
