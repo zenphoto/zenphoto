@@ -218,7 +218,7 @@ class static_html_cache {
 	 */
 	function createCacheFilepath($accessType) {
 		global $_zp_current_image, $_zp_current_album, $_zp_gallery_page, $_zp_authority,
-		$_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_gallery;
+		$_zp_current_zenpage_news, $_zp_current_category, $_zp_current_zenpage_page, $_zp_gallery;
 		// just make sure these are really empty
 		$cachefilepath = $_zp_gallery->getCurrentTheme() . '_' . str_replace('zp_', '', $accessType) . '_';
 		$album = "";
@@ -318,9 +318,7 @@ class static_html_cache {
 	 */
 	static function disable() {
 		global $_zp_HTML_cache;
-		if (is_object($_zp_HTML_cache)) {
-			$_zp_HTML_cache->enabled = false;
-		}
+		$_zp_HTML_cache->enabled = false;
 	}
 
 	function static_html_cache_options() {

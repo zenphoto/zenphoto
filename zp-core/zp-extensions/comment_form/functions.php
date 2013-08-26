@@ -723,11 +723,14 @@ function comment_form_handle_comment() {
 	$comment_error = 0;
 	$cookie = zp_getCookie('zenphoto_comment');
 	if (isset($_POST['comment'])) {
-		if (is_object($_zp_HTML_cache)) {
-			$_zp_HTML_cache->clearHtmlCache();
-			$_zp_HTML_cache->disable();
-		}
+		/*
+		 * do not save the post page in the cache
+		 * Also the cache should be cleared so that a new page is saved at the first non-comment posting viewing.
+		 * But this has to wait until processing is finished to avoid race conditions.
+		 */
+		$_zp_HTML_cache->disable();
 		if (isset($_POST['username']) && !empty($_POST['username'])) {
+			$_zp_HTML_cache->clearHtmlCache();
 			return false;
 		}
 		if ((in_context(ZP_ALBUM) || in_context(ZP_ZENPAGE_NEWS_ARTICLE) || in_context(ZP_ZENPAGE_PAGE))) {
@@ -820,6 +823,7 @@ function comment_form_handle_comment() {
 				}
 			}
 		}
+		$_zp_HTML_cache->clearHtmlCache();
 		return $commentadded->comment_error_text;
 	} else {
 		if (!empty($cookie)) {
