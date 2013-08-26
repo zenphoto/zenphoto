@@ -261,10 +261,10 @@ class static_html_cache {
 				break;
 			case 'news.php':
 				$cachesubfolder = "pages";
-				if (isset($_zp_current_zenpage_news)) {
+				if (is_object($_zp_current_zenpage_news)) {
 					$title = "-" . $_zp_current_zenpage_news->getTitlelink();
 				}
-				if (isset($_zp_current_category)) {
+				if (is_object($_zp_current_category)) {
 					$category = "-" . $_zp_current_category->getTitlelink();
 				}
 				$cachefilepath .= 'news' . $category . $title . $page;
