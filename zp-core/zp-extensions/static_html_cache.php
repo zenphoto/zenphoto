@@ -138,7 +138,7 @@ class static_html_cache {
 	 */
 	function startHTMLCache() {
 		global $_zp_gallery_page, $_zp_script_timer;
-		if ($accessType = $this->checkIfAllowedPage()) {
+		if ($this->enabled && $accessType = $this->checkIfAllowedPage()) {
 			$_zp_script_timer['static cache start'] = microtime();
 			$cachefilepath = $this->createCacheFilepath($accessType);
 			if (!empty($cachefilepath)) {
