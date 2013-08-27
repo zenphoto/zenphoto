@@ -802,6 +802,7 @@ function comment_form_handle_comment() {
 				$error = $commentadded->comment_error_text;
 				$comment_error++;
 			} else {
+				$_zp_HTML_cache->clearHtmlCache();
 				$error = NULL;
 				if (isset($_POST['remember'])) {
 					// Should always re-cookie to update info in case it's changed...
@@ -818,7 +819,6 @@ function comment_form_handle_comment() {
 				}
 			}
 		}
-		$_zp_HTML_cache->clearHtmlCache();
 		return $error;
 	} else {
 		if (!empty($cookie)) {
