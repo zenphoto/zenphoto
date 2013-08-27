@@ -19,7 +19,7 @@
  * @package plugins
  * @subpackage admin
  */
-$plugin_is_filter = 90 | THEME_PLUGIN;
+$plugin_is_filter = 90 | CLASS_PLUGIN;
 $plugin_description = gettext("Adds static HTML cache functionality to Zenphoto.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 
@@ -46,10 +46,7 @@ if (OFFSET_PATH == 2) { //	clear the cache upon upgrade
 }
 
 $_zp_HTML_cache = new static_html_cache();
-if (isset($zp_request) && $zp_request) {
-	$_zp_HTML_cache->startHTMLCache();
-	zp_register_filter('image_processor_uri', 'static_html_cache_disable');
-}
+zp_register_filter('image_processor_uri', 'static_html_cache::_disable');
 
 class static_html_cache {
 
@@ -141,7 +138,7 @@ class static_html_cache {
 	 */
 	function startHTMLCache() {
 		global $_zp_gallery_page, $_zp_script_timer;
-		if ($accessType = $this->checkIfAllowedPage()) {
+		if ($this->enabled && $accessType = $this->checkIfAllowedPage()) {
 			$_zp_script_timer['static cache start'] = microtime();
 			$cachefilepath = $this->createCacheFilepath($accessType);
 			if (!empty($cachefilepath)) {
@@ -149,7 +146,7 @@ class static_html_cache {
 				if (file_exists($cachefilepath)) {
 					$lastmodified = filemtime($cachefilepath);
 					// don't use cache if comment is posted or cache has expired
-					if (!isset($_POST['comment']) && time() - $lastmodified < getOption("static_cache_expire")) {
+					if (time() - $lastmodified < getOption("static_cache_expire")) {
 
 						//send the headers!
 						header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
@@ -221,7 +218,7 @@ class static_html_cache {
 	 */
 	function createCacheFilepath($accessType) {
 		global $_zp_current_image, $_zp_current_album, $_zp_gallery_page, $_zp_authority,
-		$_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_gallery;
+		$_zp_current_zenpage_news, $_zp_current_category, $_zp_current_zenpage_page, $_zp_gallery;
 		// just make sure these are really empty
 		$cachefilepath = $_zp_gallery->getCurrentTheme() . '_' . str_replace('zp_', '', $accessType) . '_';
 		$album = "";
@@ -264,10 +261,10 @@ class static_html_cache {
 				break;
 			case 'news.php':
 				$cachesubfolder = "pages";
-				if (isset($_zp_current_zenpage_news)) {
+				if (is_object($_zp_current_zenpage_news)) {
 					$title = "-" . $_zp_current_zenpage_news->getTitlelink();
 				}
-				if (isset($_zp_current_category)) {
+				if (is_object($_zp_current_category)) {
 					$category = "-" . $_zp_current_category->getTitlelink();
 				}
 				$cachefilepath .= 'news' . $category . $title . $page;
@@ -321,9 +318,7 @@ class static_html_cache {
 	 */
 	static function disable() {
 		global $_zp_HTML_cache;
-		if (is_object($_zp_HTML_cache)) {
-			$_zp_HTML_cache->enabled = false;
-		}
+		$_zp_HTML_cache->enabled = false;
 	}
 
 	function static_html_cache_options() {
@@ -343,12 +338,17 @@ class static_html_cache {
 
 	}
 
-}
+	/**
+	 * used to disable cashing when the uri is an image processor uri
+	 * @param string $uri
+	 * @return string
+	 */
+	static function _disable($uri) {
+		global $_zp_HTML_cache;
+		$_zp_HTML_cache->disable();
+		return $uri;
+	}
 
-function static_html_cache_disable($uri) {
-	global $_zp_HTML_cache;
-	$_zp_HTML_cache->disable();
-	return $uri;
 }
 
 ?>
