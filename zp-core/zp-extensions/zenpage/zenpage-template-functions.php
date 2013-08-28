@@ -224,6 +224,9 @@ function next_news($sortorder = "date", $sortdirection = "desc") {
 			} else {
 				$_zp_zenpage_articles = $_zp_zenpage->getArticles(ZP_ARTICLES_PER_PAGE, NULL, false, $sortorder, $sortdirection);
 			}
+			if (empty($_zp_zenpage_articles)) {
+				return NULL;
+			}
 		}
 		while (!empty($_zp_zenpage_articles)) {
 			$news = array_shift($_zp_zenpage_articles);
@@ -1658,11 +1661,7 @@ function printNewsPageListWithNav($next, $prev, $nextprev = true, $class = 'page
 
 function getTotalNewsPages() {
 	global $_zp_zenpage;
-	if (ZP_COMBINEWS AND !is_NewsCategory() AND !is_NewsArchive()) {
-		$articlecount = $_zp_zenpage->countCombiNews();
-	} else {
-		$articlecount = count($_zp_zenpage->getArticles(0, 'all'));
-	}
+	return ceil($_zp_zenpage->getTotalArticles() / ZP_ARTICLES_PER_PAGE);
 }
 
 /* * ********************************************************************* */

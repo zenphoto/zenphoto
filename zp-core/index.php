@@ -92,7 +92,8 @@ if (file_exists($custom)) {
 } else {
 	$custom = false;
 }
-
+if ($_zp_page && ($_zp_page < 0 || $_zp_page > getTotalPages() ))
+	$zp_request = false; //	page is out of range
 //$_zp_script_timer['theme scripts'] = microtime();
 if ($zp_request && $_zp_script && file_exists($_zp_script = SERVERPATH . "/" . internalToFilesystem($_zp_script))) {
 	if (checkAccess($hint, $show)) { // ok to view
