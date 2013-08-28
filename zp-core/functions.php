@@ -19,6 +19,7 @@ require_once(dirname(__FILE__) . '/functions-filter.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-kses.php');
 
 $_zp_captcha = new _zp_captcha(); // this will be overridden by the plugin if enabled.
+$_zp_HTML_cache = new _zp_HTML_cache(); // this will be overridden by the plugin if enabled.
 //setup session before checking for logon cookie
 require_once(dirname(__FILE__) . '/functions-i18n.php');
 
@@ -2587,14 +2588,39 @@ class _zp_captcha {
 
 	function getCaptcha($prompt) {
 		global $_zp_HTML_cache;
-		if (is_object($_zp_HTML_cache)) { //	don't cache captch
-			$_zp_HTML_cache->disable();
-		}
+		$_zp_HTML_cache->disable();
 		return array('input'	 => NULL, 'html'	 => '<p class="errorbox">' . gettext('No captcha handler is enabled.') . '</p>', 'hidden' => '');
 	}
 
 	function checkCaptcha($s1, $s2) {
 		return false;
+	}
+
+}
+
+/**
+ * stand-in for when there is no HTML cache plugin enabled
+ */
+class _zp_HTML_cache {
+
+	function disable() {
+
+	}
+
+	function startHTMLCache() {
+
+	}
+
+	function abortHTMLCache() {
+
+	}
+
+	function endHTMLCache() {
+
+	}
+
+	function clearHtmlCache() {
+		
 	}
 
 }

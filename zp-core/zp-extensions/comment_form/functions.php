@@ -719,18 +719,32 @@ function comment_form_postcomment($error) {
  */
 function comment_form_handle_comment() {
 	global $_zp_current_image, $_zp_current_album, $_zp_comment_stored, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_HTML_cache;
-	$activeImage = false;
 	$comment_error = 0;
 	$cookie = zp_getCookie('zenphoto_comment');
-	if (isset($_POST['comment'])) {
-		if (is_object($_zp_HTML_cache)) {
-			$_zp_HTML_cache->clearHtmlCache();
-			$_zp_HTML_cache->disable();
+	if (isset($_POST['comment']) && (!isset($_POST['username']) || empty($_POST['username']))) { // 'username' is a honey-pot trap
+		/*
+		 * do not save the post page in the cache
+		 * Also the cache should be cleared so that a new page is saved at the first non-comment posting viewing.
+		 * But this has to wait until processing is finished to avoid race conditions.
+		 */
+		$_zp_HTML_cache->disable();
+		if (in_context(ZP_IMAGE)) {
+			$commentobject = $_zp_current_image;
+			$redirectTo = $_zp_current_image->getImageLink();
+		} else if (in_context(ZP_ALBUM)) {
+			$commentobject = $_zp_current_album;
+			$redirectTo = $_zp_current_album->getAlbumLink();
+		} else if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
+			$commentobject = $_zp_current_zenpage_news;
+			$redirectTo = FULLWEBPATH . '/index.php?p=news&title=' . $_zp_current_zenpage_news->getTitlelink();
+		} else if (in_context(ZP_ZENPAGE_PAGE)) {
+			$commentobject = $_zp_current_zenpage_page;
+			$redirectTo = FULLWEBPATH . '/index.php?p=pages&title=' . $_zp_current_zenpage_page->getTitlelink();
+		} else {
+			$commentobject = NULL;
+			$error = gettext('Comment posted on unknown page!');
 		}
-		if (isset($_POST['username']) && !empty($_POST['username'])) {
-			return false;
-		}
-		if ((in_context(ZP_ALBUM) || in_context(ZP_ZENPAGE_NEWS_ARTICLE) || in_context(ZP_ZENPAGE_PAGE))) {
+		if (is_object($commentobject)) {
 			if (isset($_POST['name'])) {
 				$p_name = sanitize($_POST['name'], 3);
 			} else {
@@ -771,19 +785,6 @@ function comment_form_handle_comment() {
 			$p_private = isset($_POST['private']);
 			$p_anon = isset($_POST['anon']);
 
-			if (in_context(ZP_IMAGE) AND in_context(ZP_ALBUM)) {
-				$commentobject = $_zp_current_image;
-				$redirectTo = $_zp_current_image->getImageLink();
-			} else if (!in_context(ZP_IMAGE) AND in_context(ZP_ALBUM)) {
-				$commentobject = $_zp_current_album;
-				$redirectTo = $_zp_current_album->getAlbumLink();
-			} else if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
-				$commentobject = $_zp_current_zenpage_news;
-				$redirectTo = FULLWEBPATH . '/index.php?p=news&title=' . $_zp_current_zenpage_news->getTitlelink();
-			} else if (in_context(ZP_ZENPAGE_PAGE)) {
-				$commentobject = $_zp_current_zenpage_page;
-				$redirectTo = FULLWEBPATH . '/index.php?p=pages&title=' . $_zp_current_zenpage_page->getTitlelink();
-			}
 			$commentadded = $commentobject->addComment($p_name, $p_email, $p_website, $p_comment, $code1, $code2, $p_server, $p_private, $p_anon);
 
 			$comment_error = $commentadded->getInModeration();
@@ -796,7 +797,13 @@ function comment_form_handle_comment() {
 							'anon'		 => $commentadded->getAnon(),
 							'custom'	 => $commentadded->getCustomData()
 			);
-			if (!$comment_error) {
+
+			if ($comment_error) {
+				$error = $commentadded->comment_error_text;
+				$comment_error++;
+			} else {
+				$_zp_HTML_cache->clearHtmlCache();
+				$error = NULL;
 				if (isset($_POST['remember'])) {
 					// Should always re-cookie to update info in case it's changed...
 					$_zp_comment_stored['comment'] = ''; // clear the comment itself
@@ -810,17 +817,9 @@ function comment_form_handle_comment() {
 					header('Location: ' . $redirectTo . '#zp_comment_id_' . $commentadded->getId());
 					exitZP();
 				}
-			} else {
-				$comment_error++;
-				if ($activeImage !== false AND !in_context(ZP_ZENPAGE_NEWS_ARTICLE) AND !in_context(ZP_ZENPAGE_PAGE)) {
-					// tricasa hack? Set the context to the image on which the comment was posted
-					$_zp_current_image = $activeImage;
-					$_zp_current_album = $activeImage->getAlbum();
-					add_context(ZP_ALBUM | ZP_INDEX);
-				}
 			}
 		}
-		return $commentadded->comment_error_text;
+		return $error;
 	} else {
 		if (!empty($cookie)) {
 			$cookiedata = getSerializedArray($cookie);

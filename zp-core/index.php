@@ -82,7 +82,7 @@ if (!$zp_request && isset($_GET['fromlogout'])) { //	redirect not visible to use
 $_zp_script = zp_apply_filter('load_theme_script', $_zp_script, $zp_request);
 
 //	HTML caching?
-if ($zp_request && is_object($_zp_HTML_cache)) {
+if ($zp_request) {
 	$_zp_HTML_cache->startHTMLCache();
 }
 
@@ -92,7 +92,8 @@ if (file_exists($custom)) {
 } else {
 	$custom = false;
 }
-
+if ($_zp_page && ($_zp_page < 0 || $_zp_page > getTotalPages() ))
+	$zp_request = false; //	page is out of range
 //$_zp_script_timer['theme scripts'] = microtime();
 if ($zp_request && $_zp_script && file_exists($_zp_script = SERVERPATH . "/" . internalToFilesystem($_zp_script))) {
 	if (checkAccess($hint, $show)) { // ok to view
@@ -100,9 +101,8 @@ if ($zp_request && $_zp_script && file_exists($_zp_script = SERVERPATH . "/" . i
 		$status = '200 OK';
 	} else {
 		$status = '200 OK';
-		if (is_object($_zp_HTML_cache)) { //	don't cache the logon page or you can never see the real one
-			$_zp_HTML_cache->abortHTMLCache();
-		}
+		//	don't cache the logon page or you can never see the real one
+		$_zp_HTML_cache->abortHTMLCache();
 		$_zp_gallery_page = 'password.php';
 		$_zp_script = SERVERPATH . '/' . THEMEFOLDER . '/' . $_index_theme . '/password.php';
 		if (!file_exists(internalToFilesystem($_zp_script))) {
@@ -119,9 +119,7 @@ if ($zp_request && $_zp_script && file_exists($_zp_script = SERVERPATH . "/" . i
 } else {
 	// If the requested object does not exist, issue a 404 and redirect to the theme's
 	// 404.php page, or a 404.php in the zp-core folder.
-	if (is_object($_zp_HTML_cache)) {
-		$_zp_HTML_cache->abortHTMLCache();
-	}
+	$_zp_HTML_cache->abortHTMLCache();
 	list($album, $image) = rewrite_get_album_image('album', 'image');
 	debug404($album, $image, $_index_theme);
 	$_zp_gallery_page = '404.php';
@@ -154,7 +152,5 @@ foreach ($_zp_script_timer as $step => $time) {
 }
 if (count($_zp_script_timer) > 1)
 	printf("<!-- " . gettext('Zenphoto script processing total:%.4f seconds') . " -->\n", $last - $first);
-if (is_object($_zp_HTML_cache)) {
-	$_zp_HTML_cache->endHTMLCache();
-}
+$_zp_HTML_cache->endHTMLCache()
 ?>

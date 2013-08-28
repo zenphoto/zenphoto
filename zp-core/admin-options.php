@@ -225,7 +225,6 @@ if (isset($_GET['action'])) {
 			setOption('ImbedIPTC', (int) isset($_POST['ImbedIPTC']));
 			setOption('default_copyright', sanitize($_POST['default_copyright']));
 			setOption('sharpen_amount', sanitize_numeric($_POST['sharpen_amount']));
-			setOption('obfuscate_cache', (int) isset($_POST['obfuscate_cache']));
 			$num = str_replace(',', '.', sanitize($_POST['sharpen_radius']));
 			if (is_numeric($num))
 				setOption('sharpen_radius', $num);
@@ -420,6 +419,7 @@ if (isset($_GET['action'])) {
 				zp_clearCookie("zenphoto_ssl");
 			}
 			setOption('IP_tied_cookies', (int) isset($_POST['IP_tied_cookies']));
+			setOption('obfuscate_cache', (int) isset($_POST['obfuscate_cache']));
 			setOption('image_processor_flooding_protection', (int) isset($_POST['image_processor_flooding_protection']));
 			$_zp_gallery->save();
 			$returntab = "&tab=security";
@@ -1942,13 +1942,6 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td><?php echo gettext("Select a type for the images stored in the image cache. Select <em>Original</em> to preserve the original image's type."); ?></td>
 								</tr>
 								<tr>
-									<td width="175"><?php echo gettext('Obscure cache filenames'); ?></td>
-									<td width="350">
-										<label><input type="checkbox" name="obfuscate_cache" id="obfuscate_cache" value="1" <?php checked(1, getOption('obfuscate_cache')); ?> /><?php echo gettext('enable'); ?></label>
-									</td>
-									<td><?php echo gettext('Cause the filename of cached items to be obscured. This makes it difficult for someone to "guess" the name in a URL.'); ?></td>
-								</tr>
-								<tr>
 									<td><?php echo gettext("Protect image cache"); ?></td>
 									<td>
 										<input type="checkbox" name="protected_image_cache" value="1"
@@ -2874,6 +2867,13 @@ Zenphoto_Authority::printPasswordFormJS();
 											?>
 										</p>
 									</td>
+								</tr>
+								<tr>
+									<td width="175"><?php echo gettext('Obscure cache filenames'); ?></td>
+									<td width="350">
+										<label><input type="checkbox" name="obfuscate_cache" id="obfuscate_cache" value="1" <?php checked(1, getOption('obfuscate_cache')); ?> /><?php echo gettext('enable'); ?></label>
+									</td>
+									<td><?php echo gettext('Cause the filename of cached items to be obscured. This makes it difficult for someone to "guess" the name in a URL.'); ?></td>
 								</tr>
 								<tr>
 									<td><?php echo gettext('Image Processor security') ?></td>

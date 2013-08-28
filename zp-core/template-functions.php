@@ -502,7 +502,7 @@ function next_album($all = false, $sorttype = NULL, $sortdirection = NULL, $mine
 			$_zp_albums = $_zp_gallery->getAlbums($all ? 0 : $_zp_page, $sorttype, $sortdirection, true, $mine);
 		}
 		if (empty($_zp_albums)) {
-			return false;
+			return NULL;
 		}
 		$_zp_current_album_restore = $_zp_current_album;
 		$_zp_current_album = newAlbum(array_shift($_zp_albums), true, true);
@@ -585,7 +585,11 @@ function getTotalPages($oneImagePage = false) {
 			return NULL;
 		}
 	} else {
-		return NULL;
+		if (isset($_zp_zenpage)) {
+			return getTotalNewsPages();
+		} else {
+			return NULL;
+		}
 	}
 }
 
@@ -1921,7 +1925,7 @@ function next_image($all = false, $firstPageCount = NULL, $sorttype = null, $sor
 			$_zp_images = $_zp_current_album->getImages($all ? 0 : ($imagePage), $firstPageCount, $sorttype, $sortdirection, true, $mine);
 		}
 		if (empty($_zp_images)) {
-			return false;
+			return NULL;
 		}
 		$_zp_current_image_restore = $_zp_current_image;
 		$img = array_shift($_zp_images);

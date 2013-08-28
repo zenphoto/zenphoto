@@ -138,7 +138,7 @@ class static_html_cache {
 	 */
 	function startHTMLCache() {
 		global $_zp_gallery_page, $_zp_script_timer;
-		if ($accessType = $this->checkIfAllowedPage()) {
+		if ($this->enabled && $accessType = $this->checkIfAllowedPage()) {
 			$_zp_script_timer['static cache start'] = microtime();
 			$cachefilepath = $this->createCacheFilepath($accessType);
 			if (!empty($cachefilepath)) {
@@ -218,7 +218,7 @@ class static_html_cache {
 	 */
 	function createCacheFilepath($accessType) {
 		global $_zp_current_image, $_zp_current_album, $_zp_gallery_page, $_zp_authority,
-		$_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_gallery;
+		$_zp_current_zenpage_news, $_zp_current_category, $_zp_current_zenpage_page, $_zp_gallery;
 		// just make sure these are really empty
 		$cachefilepath = $_zp_gallery->getCurrentTheme() . '_' . str_replace('zp_', '', $accessType) . '_';
 		$album = "";
@@ -261,10 +261,10 @@ class static_html_cache {
 				break;
 			case 'news.php':
 				$cachesubfolder = "pages";
-				if (isset($_zp_current_zenpage_news)) {
+				if (is_object($_zp_current_zenpage_news)) {
 					$title = "-" . $_zp_current_zenpage_news->getTitlelink();
 				}
-				if (isset($_zp_current_category)) {
+				if (is_object($_zp_current_category)) {
 					$category = "-" . $_zp_current_category->getTitlelink();
 				}
 				$cachefilepath .= 'news' . $category . $title . $page;
@@ -318,9 +318,7 @@ class static_html_cache {
 	 */
 	static function disable() {
 		global $_zp_HTML_cache;
-		if (is_object($_zp_HTML_cache)) {
-			$_zp_HTML_cache->enabled = false;
-		}
+		$_zp_HTML_cache->enabled = false;
 	}
 
 	function static_html_cache_options() {

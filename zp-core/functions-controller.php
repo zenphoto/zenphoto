@@ -111,7 +111,6 @@ function zp_load_gallery() {
 	$_zp_current_image, $_zp_current_image_restore, $_zp_images, $_zp_current_comment,
 	$_zp_comments, $_zp_current_context, $_zp_current_search, $_zp_current_zenpage_new,
 	$_zp_current_zenpage_page, $_zp_current_category, $_zp_post_date, $_zp_pre_authorization;
-
 	$_zp_current_album = NULL;
 	$_zp_current_album_restore = NULL;
 	$_zp_albums = NULL;
