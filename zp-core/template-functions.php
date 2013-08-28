@@ -563,10 +563,10 @@ function getAllAlbums($album = NULL) {
  * @return int
  */
 function getTotalPages($oneImagePage = false) {
-	global $_zp_gallery, $_zp_current_album, $_firstPageImages;
+	global $_zp_gallery, $_zp_current_album, $_firstPageImages, $_zp_zenpage;
 	if (in_context(ZP_ALBUM | ZP_SEARCH)) {
 		$albums_per_page = max(1, getOption('albums_per_page'));
-		$pageCount = ceil(getNumAlbums() / $albums_per_page);
+		$pageCount = (int) ceil(getNumAlbums() / $albums_per_page);
 		$imageCount = getNumImages();
 		if ($oneImagePage) {
 			if ($oneImagePage === true) {
@@ -578,18 +578,15 @@ function getTotalPages($oneImagePage = false) {
 		$images_per_page = max(1, getOption('images_per_page'));
 		$pageCount = ($pageCount + ceil(($imageCount - $_firstPageImages) / $images_per_page));
 		return $pageCount;
+	} else if (isset($_zp_zenpage)) {
+		return (int) ceil($_zp_zenpage->getTotalArticles() / ZP_ARTICLES_PER_PAGE);
 	} else if (in_context(ZP_INDEX)) {
 		if (galleryAlbumsPerPage() != 0) {
-			return ceil($_zp_gallery->getNumAlbums() / galleryAlbumsPerPage());
+			return (int) ceil($_zp_gallery->getNumAlbums() / galleryAlbumsPerPage());
 		} else {
 			return NULL;
 		}
-	} else {
-		if (isset($_zp_zenpage)) {
-			return getTotalNewsPages();
-		} else {
-			return NULL;
-		}
+		return NULL;
 	}
 }
 
@@ -616,7 +613,7 @@ function getPageURL($page, $total = null) {
 		return $searchpagepath;
 	} else {
 		if (!in_array($_zp_gallery_page, array('index.php', 'album.php', 'image.php'))) {
-			// handle custom page
+// handle custom page
 			$pg = stripSuffix($_zp_gallery_page);
 			$pagination1 = '/' . _PAGE_ . '/' . $pg;
 			$pagination2 = 'index.php?p=' . $pg;
@@ -1219,7 +1216,7 @@ function getParentBreadcrumb() {
 				array_push($parents, $album);
 			}
 		}
-		// remove parent links that are not in the search path
+// remove parent links that are not in the search path
 		foreach ($parents as $key => $analbum) {
 			$target = $analbum->name;
 			if ($target !== $dynamic_album && !in_array($target, $search_album_list)) {
@@ -1233,7 +1230,7 @@ function getParentBreadcrumb() {
 	if ($n > 0) {
 		foreach ($parents as $parent) {
 			$url = rewrite_path("/" . pathurlencode($parent->name) . "/", "/index.php?album=" . pathurlencode($parent->name));
-			//cleanup things in description for use as attribute tag
+//cleanup things in description for use as attribute tag
 			$desc = strip_tags(preg_replace('|</p\s*>|i', '</p> ', preg_replace('|<br\s*/>|i', ' ', $parent->getDesc())));
 			$output[] = array('link'	 => html_encode($url), 'title'	 => $desc, 'text'	 => $parent->getTitle());
 		}
@@ -1275,7 +1272,7 @@ function printParentBreadcrumb($before = NULL, $between = NULL, $after = NULL, $
 			if ($i > 0) {
 				$output .= $between;
 			}
-			//cleanup things in description for use as attribute tag
+//cleanup things in description for use as attribute tag
 			$desc = $crumb['title'];
 			if (!empty($desc) && $truncate) {
 				$desc = truncate_string($desc, $truncate, $elipsis);
@@ -2469,11 +2466,11 @@ function getSizeCustomImage($size, $width = NULL, $height = NULL, $cw = NULL, $c
 	}
 
 	if (($size && ($side == 'longest' && $h > $w) || ($side == 'height') || ($side == 'shortest' && $h < $w)) || $height) {
-		// Scale the height
+// Scale the height
 		$newh = $dim;
 		$neww = $wprop;
 	} else {
-		// Scale the width
+// Scale the width
 		$neww = $dim;
 		$newh = $hprop;
 	}
@@ -2654,11 +2651,11 @@ function printImageThumb($alt, $class = NULL, $id = NULL) {
 		$w = getOption('thumb_crop_width');
 		$h = getOption('thumb_crop_height');
 		if ($w > $h) {
-			//landscape
+//landscape
 			$h = round($h * $s / $w);
 			$w = $s;
 		} else {
-			//portrait
+//portrait
 			$w = round($w * $s / $h);
 			$h = $s;
 		}
