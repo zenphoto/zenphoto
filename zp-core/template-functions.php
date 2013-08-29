@@ -563,7 +563,7 @@ function getAllAlbums($album = NULL) {
  * @return int
  */
 function getTotalPages($oneImagePage = false) {
-	global $_zp_gallery, $_zp_current_album, $_firstPageImages, $_zp_zenpage;
+	global $_zp_gallery, $_zp_current_album, $_firstPageImages, $_zp_zenpage, $_zp_current_category;
 	if (in_context(ZP_ALBUM | ZP_SEARCH)) {
 		$albums_per_page = max(1, getOption('albums_per_page'));
 		$pageCount = (int) ceil(getNumAlbums() / $albums_per_page);
@@ -578,15 +578,20 @@ function getTotalPages($oneImagePage = false) {
 		$images_per_page = max(1, getOption('images_per_page'));
 		$pageCount = ($pageCount + ceil(($imageCount - $_firstPageImages) / $images_per_page));
 		return $pageCount;
-	} else if (isset($_zp_zenpage)) {
-		return (int) ceil($_zp_zenpage->getTotalArticles() / ZP_ARTICLES_PER_PAGE);
-	} else if (in_context(ZP_INDEX)) {
+	} else if (get_context() == ZP_INDEX) {
 		if (galleryAlbumsPerPage() != 0) {
 			return (int) ceil($_zp_gallery->getNumAlbums() / galleryAlbumsPerPage());
 		} else {
 			return NULL;
 		}
 		return NULL;
+	} else if (isset($_zp_zenpage)) {
+		if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
+			$cat = $_zp_current_category;
+		} else {
+			$cat = NULL;
+		}
+		return (int) ceil(count($_zp_zenpage->getArticles(0, NULL, true, NULL, NULL, NULL, $cat)) / ZP_ARTICLES_PER_PAGE);
 	}
 }
 
@@ -4270,6 +4275,45 @@ function printCodeblock($number = 1, $what = NULL) {
 	}
 }
 
+function CheckPageValitidy($request, $gallery_page, $page) {
+	global $_zp_gallery, $_zp_zenpage, $_zp_current_category;
+	if ($request && $page > 1) {
+		if (in_context(ZP_ALBUM | ZP_SEARCH)) {
+			$albums_per_page = max(1, getOption('albums_per_page'));
+			$pageCount = (int) ceil(getNumAlbums() / $albums_per_page);
+			$imageCount = getNumImages();
+			if ($oneImagePage) {
+				if ($oneImagePage === true) {
+					$imageCount = min(1, $imageCount);
+				} else {
+					$imageCount = 0;
+				}
+			}
+			$images_per_page = max(1, getOption('images_per_page'));
+			$pageCount = ($pageCount + ceil(($imageCount - $_firstPageImages) / $images_per_page));
+			$count = $pageCount;
+		} else if (get_context() == ZP_INDEX) {
+			if (galleryAlbumsPerPage() != 0) {
+				$count = (int) ceil($_zp_gallery->getNumAlbums() / galleryAlbumsPerPage());
+			} else {
+				$count = NULL;
+			}
+		} else if (extensionEnabled('zenpage')) {
+			if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
+				$cat = $_zp_current_category;
+			} else {
+				$cat = NULL;
+			}
+			$count = (int) ceil(count($_zp_zenpage->getArticles(0, NULL, true, NULL, NULL, NULL, $cat)) / ZP_ARTICLES_PER_PAGE);
+		}
+		if ($page > $count) {
+			$request = false; //	page is out of range
+		}
+	}
+	return $request;
+}
+
 zp_register_filter('theme_head', 'printZenJavascripts', 9999);
 zp_register_filter('theme_body_close', 'adminToolbox');
+$_zp_page_check = 'CheckPageValitidy';
 ?>

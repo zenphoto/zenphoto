@@ -3,6 +3,7 @@
 require_once (SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/image_album_statistics.php');
 zp_register_filter('themeSwitcher_head', 'switcher_head');
 zp_register_filter('themeSwitcher_Controllink', 'switcher_controllink');
+zp_register_filter('load_theme_script', 'fourOhFour');
 
 $cwd = getcwd();
 chdir(dirname(__FILE__));
@@ -189,5 +190,20 @@ function commonNewsLoop($paged) {
 
 function exerpt($content, $length) {
 	return shortenContent(strip_tags($content), $length, getOption("zenpage_textshorten_indicator"));
+}
+
+function my_CheckPageValitidy($request, $gallery_page, $page) {
+	if ($page != 1 && get_context() == ZP_INDEX && $gallery_page != 'gallery.php') {
+		return false;
+	} else {
+		return CheckPageValitidy($request, $gallery_page, $page);
+	}
+}
+
+if (extensionEnabled('zenpage') || getOption('custom_index_page') == 'gallery') {
+	if ($_zp_gallery_page == 'news.php') {
+		add_context(ZP_ZENPAGE_NEWS_PAGE);
+	}
+	$_zp_page_check = 'my_CheckPageValitidy';
 }
 ?>

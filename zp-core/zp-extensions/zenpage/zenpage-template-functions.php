@@ -1500,7 +1500,7 @@ function getNewsPathNav($page) {
  */
 function getPrevNewsPageURL() {
 	global $_zp_page;
-	if ($_zp_page != 1) {
+	if ($_zp_page > 1) {
 		if ($_zp_page == 2) {
 			if (is_NewsCategory()) {
 				return getNewsPathNav(1);
@@ -1540,7 +1540,7 @@ function printPrevNewsPageLink($prev = '« prev', $class = 'disabledlink') {
 function getNextNewsPageURL() {
 	global $_zp_zenpage, $_zp_page;
 	$total_pages = ceil($_zp_zenpage->getTotalArticles() / ZP_ARTICLES_PER_PAGE);
-	if ($_zp_page != $total_pages) {
+	if ($_zp_page < $total_pages) {
 		return getNewsPathNav($_zp_page + 1);
 	} else {
 		return false;
