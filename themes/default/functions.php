@@ -2,12 +2,13 @@
 zp_register_filter('themeSwitcher_head', 'switcher_head');
 zp_register_filter('themeSwitcher_Controllink', 'switcher_controllink');
 zp_register_filter('theme_head', 'css_head', 0);
+enableExtension('zenpage', 0, false); //	we do not support it
 
 $curdir = getcwd();
-chdir(SERVERPATH . "/themes/".basename(dirname(__FILE__))."/styles");
+chdir(SERVERPATH . "/themes/" . basename(dirname(__FILE__)) . "/styles");
 $filelist = safe_glob('*.css');
 $themecolors = array();
-foreach($filelist as $file) {
+foreach ($filelist as $file) {
 	$themecolors[] = stripSuffix(filesystemToInternal($file));
 }
 chdir($curdir);
@@ -20,7 +21,7 @@ function css_head($ignore) {
 	$zenCSS = $_zp_themeroot . '/styles/' . $themeColor . '.css';
 	$unzenCSS = str_replace(WEBPATH, '', $zenCSS);
 	if (!file_exists(SERVERPATH . internalToFilesystem($unzenCSS))) {
-		$zenCSS = $_zp_themeroot. "/styles/light.css";
+		$zenCSS = $_zp_themeroot . "/styles/light.css";
 	}
 	return $ignore;
 }
@@ -43,7 +44,7 @@ function switcher_head($ignore) {
 		}
 		function switchColors() {
 			personality = $('#themeColor').val();
-			window.location = '?themeColor='+personality;
+			window.location = '?themeColor=' + personality;
 		}
 		// ]]> -->
 	</script>
@@ -67,4 +68,6 @@ function switcher_controllink($ignore) {
 	<?php
 	return $ignore;
 }
+
+$_zp_page_check = 'CheckPageValitidy'; //	opt-in, standard behavior
 ?>

@@ -4,6 +4,7 @@
 zp_register_filter('themeSwitcher_head', 'switcher_head');
 zp_register_filter('themeSwitcher_Controllink', 'switcher_controllink');
 zp_register_filter('theme_head', 'EF_head', 0);
+zp_register_filter('load_theme_script', 'fourOhFour');
 
 define('ALBUM_THMB_WIDTH', 170);
 define('ALBUM_THUMB_HEIGHT', 80);
@@ -480,7 +481,22 @@ function commonComment() {
 	}
 }
 
+function my_CheckPageValitidy($request, $gallery_page, $page) {
+	if ($page != 1 && get_context() == ZP_INDEX && $gallery_page != 'gallery.php') {
+		return false;
+	} else {
+		return CheckPageValitidy($request, $gallery_page, $page);
+	}
+}
+
 if (($_ef_menu = getOption('effervescence_menu')) == 'effervescence' || $_ef_menu == 'zenpage') {
 	enableExtension('print_album_menu', 1 | THEME_PLUGIN, false);
+}
+
+if (extensionEnabled('zenpage') || getOption('custom_index_page') == 'gallery') {
+	if ($_zp_gallery_page == 'news.php') {
+		add_context(ZP_ZENPAGE_NEWS_PAGE);
+	}
+	$_zp_page_check = 'my_CheckPageValitidy';
 }
 ?>

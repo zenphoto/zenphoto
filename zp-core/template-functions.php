@@ -563,10 +563,10 @@ function getAllAlbums($album = NULL) {
  * @return int
  */
 function getTotalPages($oneImagePage = false) {
-	global $_zp_gallery, $_zp_current_album, $_firstPageImages;
+	global $_zp_gallery, $_zp_current_album, $_firstPageImages, $_zp_zenpage, $_zp_current_category;
 	if (in_context(ZP_ALBUM | ZP_SEARCH)) {
 		$albums_per_page = max(1, getOption('albums_per_page'));
-		$pageCount = ceil(getNumAlbums() / $albums_per_page);
+		$pageCount = (int) ceil(getNumAlbums() / $albums_per_page);
 		$imageCount = getNumImages();
 		if ($oneImagePage) {
 			if ($oneImagePage === true) {
@@ -578,18 +578,20 @@ function getTotalPages($oneImagePage = false) {
 		$images_per_page = max(1, getOption('images_per_page'));
 		$pageCount = ($pageCount + ceil(($imageCount - $_firstPageImages) / $images_per_page));
 		return $pageCount;
-	} else if (in_context(ZP_INDEX)) {
+	} else if (get_context() == ZP_INDEX) {
 		if (galleryAlbumsPerPage() != 0) {
-			return ceil($_zp_gallery->getNumAlbums() / galleryAlbumsPerPage());
+			return (int) ceil($_zp_gallery->getNumAlbums() / galleryAlbumsPerPage());
 		} else {
 			return NULL;
 		}
-	} else {
-		if (isset($_zp_zenpage)) {
-			return getTotalNewsPages();
+		return NULL;
+	} else if (isset($_zp_zenpage)) {
+		if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
+			$cat = $_zp_current_category;
 		} else {
-			return NULL;
+			$cat = NULL;
 		}
+		return (int) ceil(count($_zp_zenpage->getArticles(0, NULL, true, NULL, NULL, NULL, $cat)) / ZP_ARTICLES_PER_PAGE);
 	}
 }
 
@@ -616,7 +618,7 @@ function getPageURL($page, $total = null) {
 		return $searchpagepath;
 	} else {
 		if (!in_array($_zp_gallery_page, array('index.php', 'album.php', 'image.php'))) {
-			// handle custom page
+// handle custom page
 			$pg = stripSuffix($_zp_gallery_page);
 			$pagination1 = '/' . _PAGE_ . '/' . $pg;
 			$pagination2 = 'index.php?p=' . $pg;
@@ -1219,7 +1221,7 @@ function getParentBreadcrumb() {
 				array_push($parents, $album);
 			}
 		}
-		// remove parent links that are not in the search path
+// remove parent links that are not in the search path
 		foreach ($parents as $key => $analbum) {
 			$target = $analbum->name;
 			if ($target !== $dynamic_album && !in_array($target, $search_album_list)) {
@@ -1233,7 +1235,7 @@ function getParentBreadcrumb() {
 	if ($n > 0) {
 		foreach ($parents as $parent) {
 			$url = rewrite_path("/" . pathurlencode($parent->name) . "/", "/index.php?album=" . pathurlencode($parent->name));
-			//cleanup things in description for use as attribute tag
+//cleanup things in description for use as attribute tag
 			$desc = strip_tags(preg_replace('|</p\s*>|i', '</p> ', preg_replace('|<br\s*/>|i', ' ', $parent->getDesc())));
 			$output[] = array('link'	 => html_encode($url), 'title'	 => $desc, 'text'	 => $parent->getTitle());
 		}
@@ -1275,7 +1277,7 @@ function printParentBreadcrumb($before = NULL, $between = NULL, $after = NULL, $
 			if ($i > 0) {
 				$output .= $between;
 			}
-			//cleanup things in description for use as attribute tag
+//cleanup things in description for use as attribute tag
 			$desc = $crumb['title'];
 			if (!empty($desc) && $truncate) {
 				$desc = truncate_string($desc, $truncate, $elipsis);
@@ -2469,11 +2471,11 @@ function getSizeCustomImage($size, $width = NULL, $height = NULL, $cw = NULL, $c
 	}
 
 	if (($size && ($side == 'longest' && $h > $w) || ($side == 'height') || ($side == 'shortest' && $h < $w)) || $height) {
-		// Scale the height
+// Scale the height
 		$newh = $dim;
 		$neww = $wprop;
 	} else {
-		// Scale the width
+// Scale the width
 		$neww = $dim;
 		$newh = $hprop;
 	}
@@ -2654,11 +2656,11 @@ function printImageThumb($alt, $class = NULL, $id = NULL) {
 		$w = getOption('thumb_crop_width');
 		$h = getOption('thumb_crop_height');
 		if ($w > $h) {
-			//landscape
+//landscape
 			$h = round($h * $s / $w);
 			$w = $s;
 		} else {
-			//portrait
+//portrait
 			$w = round($w * $s / $h);
 			$h = $s;
 		}
@@ -4271,6 +4273,68 @@ function printCodeblock($number = 1, $what = NULL) {
 		eval('?>' . $codeblock);
 		set_context($context);
 	}
+}
+
+/**
+ * Checks for URL page out-of-bounds for "standard" themes
+ * Note: This function assumes that an "index" page [context == ZP_INDEX] will display albums
+ * and the pagination be determined by them. Any other "index" page strategy needs to be
+ * handled by the theme itself.
+ *
+ * @global type $_zp_gallery
+ * @global type $_zp_zenpage
+ * @global type $_zp_current_category
+ * @param boolean $request
+ * @param string $gallery_page
+ * @param int $page
+ * @return boolean will be true if all is well, false if a 404 error should occur
+ */
+function CheckPageValitidy($request, $gallery_page, $page) {
+	global $_zp_gallery, $_zp_zenpage, $_zp_current_category;
+	if ($request && $page > 1) {
+		if (in_context(ZP_ALBUM | ZP_SEARCH)) {
+			$albums_per_page = max(1, getOption('albums_per_page'));
+			$pageCount = (int) ceil(getNumAlbums() / $albums_per_page);
+			$imageCount = getNumImages();
+			if ($oneImagePage) {
+				if ($oneImagePage === true) {
+					$imageCount = min(1, $imageCount);
+				} else {
+					$imageCount = 0;
+				}
+			}
+			$images_per_page = max(1, getOption('images_per_page'));
+			$pageCount = ($pageCount + ceil(($imageCount - $_firstPageImages) / $images_per_page));
+			$count = $pageCount;
+		} else if (get_context() == ZP_INDEX) {
+			if (galleryAlbumsPerPage() != 0) {
+				$count = (int) ceil($_zp_gallery->getNumAlbums() / galleryAlbumsPerPage());
+			} else {
+				$count = NULL;
+			}
+		} else if (extensionEnabled('zenpage')) {
+			if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
+				$cat = $_zp_current_category;
+			} else {
+				$cat = NULL;
+			}
+			$count = (int) ceil(count($_zp_zenpage->getArticles(0, NULL, true, NULL, NULL, NULL, $cat)) / ZP_ARTICLES_PER_PAGE);
+		}
+		if ($page > $count) {
+			$request = false; //	page is out of range
+		}
+	}
+	return $request;
+}
+
+/**
+ * Used as the default page url checker. Page url checking is an Opt-in for now at least.
+ * It simply returns the parameter
+ * @param bool $request
+ * @return bool
+ */
+function CheckPageValitidyDummy($request) {
+	return $request;
 }
 
 zp_register_filter('theme_head', 'printZenJavascripts', 9999);
