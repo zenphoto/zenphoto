@@ -4275,6 +4275,20 @@ function printCodeblock($number = 1, $what = NULL) {
 	}
 }
 
+/**
+ * Checks for URL page out-of-bounds for "standard" themes
+ * Note: This function assumes that an "index" page [context == ZP_INDEX] will display albums
+ * and the pagination be determined by them. Any other "index" page strategy needs to be
+ * handled by the theme itself.
+ *
+ * @global type $_zp_gallery
+ * @global type $_zp_zenpage
+ * @global type $_zp_current_category
+ * @param boolean $request
+ * @param string $gallery_page
+ * @param int $page
+ * @return boolean will be true if all is well, false if a 404 error should occur
+ */
 function CheckPageValitidy($request, $gallery_page, $page) {
 	global $_zp_gallery, $_zp_zenpage, $_zp_current_category;
 	if ($request && $page > 1) {
@@ -4313,7 +4327,16 @@ function CheckPageValitidy($request, $gallery_page, $page) {
 	return $request;
 }
 
+/**
+ * Used as the default page url checker. Page url checking is an Opt-in for now at least.
+ * It simply returns the parameter
+ * @param bool $request
+ * @return bool
+ */
+function CheckPageValitidyDummy($request) {
+	return $request;
+}
+
 zp_register_filter('theme_head', 'printZenJavascripts', 9999);
 zp_register_filter('theme_body_close', 'adminToolbox');
-$_zp_page_check = 'CheckPageValitidy';
 ?>

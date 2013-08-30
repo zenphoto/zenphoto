@@ -68,4 +68,6 @@ function switcher_controllink($ignore) {
 	<?php
 	return $ignore;
 }
+
+$_zp_page_check = 'CheckPageValitidy'; //	opt-in, standard behavior
 ?>
