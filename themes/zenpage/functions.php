@@ -65,20 +65,22 @@ function printZDToggleClass($option, $c, $number_to_show) {
 	}
 }
 
-function my_CheckPageValitidy($request, $gallery_page, $page) {
+function my_checkPageValidity($request, $gallery_page, $page) {
 	if ($page != 1 && get_context() == ZP_INDEX && $gallery_page != 'gallery.php') {
 		return false;
 	} else {
-		return CheckPageValitidy($request, $gallery_page, $page);
+		return checkPageValidity($request, $gallery_page, $page);
 	}
 }
 
-enableExtension('print_album_menu', 1 | THEME_PLUGIN, false);
-setOption('user_logout_login_form', 2, false);
-if (extensionEnabled('zenpage')) {
-	if ($_zp_gallery_page == 'news.php') {
-		add_context(ZP_ZENPAGE_NEWS_PAGE);
+if (!OFFSET_PATH) {
+	enableExtension('print_album_menu', 1 | THEME_PLUGIN, false);
+	setOption('user_logout_login_form', 2, false);
+	if (extensionEnabled('zenpage')) {
+		if ($_zp_gallery_page == 'news.php') {
+			add_context(ZP_ZENPAGE_NEWS_PAGE);
+		}
+		$_zp_page_check = 'my_checkPageValidity';
 	}
-	$_zp_page_check = 'my_CheckPageValitidy';
 }
 ?>

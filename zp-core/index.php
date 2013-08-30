@@ -32,7 +32,7 @@ require_once(SERVERPATH . "/" . ZENFOLDER . '/controller.php');
 
 $_index_theme = $_zp_script = '';
 $_zp_loaded_plugins = array();
-$_zp_page_check = 'CheckPageValitidyDummy'; //	Themes must "opt-in" to have URL page numbers validated
+$_zp_page_check = 'checkPageValidityDummy'; //	Themes must "opt-in" to have URL page numbers validated
 //$_zp_script_timer['controller'] = microtime();
 // Display an arbitrary theme-included PHP page
 if (isset($_GET['p'])) {
@@ -85,6 +85,7 @@ if ($zp_request) {
 	$_zp_HTML_cache->startHTMLCache();
 }
 
+setThemeColumns();
 $custom = SERVERPATH . '/' . THEMEFOLDER . '/' . internalToFilesystem($_index_theme) . '/functions.php';
 if (file_exists($custom)) {
 	require_once($custom);
@@ -93,12 +94,12 @@ if (file_exists($custom)) {
 }
 
 //check for valid page number (may be theme dependent!)
-$zp_request = $_zp_page_check($zp_request, $_zp_gallery_page, $_zp_page);
+if (TEST_RELEASE)
+	$zp_request = $_zp_page_check($zp_request, $_zp_gallery_page, $_zp_page, isset($_oneImagePage) ? $_oneImagePage : NULL);
 
 //$_zp_script_timer['theme scripts'] = microtime();
 if ($zp_request && $_zp_script && file_exists($_zp_script = SERVERPATH . "/" . internalToFilesystem($_zp_script))) {
 	if (checkAccess($hint, $show)) { // ok to view
-		setThemeColumns();
 		$status = '200 OK';
 	} else {
 		$status = '200 OK';

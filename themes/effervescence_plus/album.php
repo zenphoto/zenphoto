@@ -11,20 +11,19 @@ $map = function_exists('printGoogleMap');
 	<head>
 		<?php
 		zp_apply_filter('theme_head');
-		list($personality, $themeColor) = getPersonality();
-		require_once(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus/' . $personality . '/functions.php');
 		?>
-		<title><?php printBareGalleryTitle(); ?> | <?php printBareAlbumTitle();
-		if ($_zp_page > 1)
-			echo "[$_zp_page]";
-		?></title>
+		<title><?php printBareGalleryTitle(); ?> | <?php
+			printBareAlbumTitle();
+			if ($_zp_page > 1)
+				echo "[$_zp_page]";
+			?></title>
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
-<?php $oneImagePage = $personality->theme_head($_zp_themeroot); ?>
+		<?php $personality->theme_head($_zp_themeroot); ?>
 	</head>
 
 	<body onload="blurAnchors()">
-<?php zp_apply_filter('theme_body_open'); ?>
-<?php $personality->theme_bodyopen($_zp_themeroot); ?>
+		<?php zp_apply_filter('theme_body_open'); ?>
+		<?php $personality->theme_bodyopen($_zp_themeroot); ?>
 
 		<!-- Wrap Header -->
 		<div id="header">
@@ -82,8 +81,8 @@ $map = function_exists('printGoogleMap');
 						}
 						?>
 						<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a> |
-<?php printParentBreadcrumb(); ?></span>
-<?php printAlbumTitle(); ?>
+						<?php printParentBreadcrumb(); ?></span>
+					<?php printAlbumTitle(); ?>
 				</div>
 			</div> <!-- wrapnav -->
 
@@ -123,14 +122,14 @@ $map = function_exists('printGoogleMap');
 						}
 						?>
 						<li>
-									<?php $annotate = annotateAlbum(); ?>
+							<?php $annotate = annotateAlbum(); ?>
 							<div class="imagethumb">
 								<a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php echo html_encode($annotate) ?>">
-	<?php printCustomAlbumThumbImage($annotate, null, ALBUM_THMB_WIDTH, null, ALBUM_THMB_WIDTH, ALBUM_THUMB_HEIGHT); ?></a>
+									<?php printCustomAlbumThumbImage($annotate, null, ALBUM_THMB_WIDTH, null, ALBUM_THMB_WIDTH, ALBUM_THUMB_HEIGHT); ?></a>
 							</div>
 							<h4>
 								<a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php echo html_encode($annotate) ?>">
-	<?php printAlbumTitle(); ?>
+									<?php printAlbumTitle(); ?>
 								</a>
 							</h4>
 						</li>
@@ -144,7 +143,7 @@ $map = function_exists('printGoogleMap');
 				?>
 
 				<div class="clearage"></div>
-<?php printNofM('Album', $firstAlbum, $lastAlbum, getNumAlbums()); ?>
+				<?php printNofM('Album', $firstAlbum, $lastAlbum, getNumAlbums()); ?>
 			</div> <!-- submain -->
 
 			<!-- Wrap Main Body -->
@@ -164,8 +163,8 @@ $map = function_exists('printGoogleMap');
 				} else {
 					?>
 					<div id="main">
-					<?php if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album); ?>
-					<?php @call_user_func('printRating'); ?>
+						<?php if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album); ?>
+						<?php @call_user_func('printRating'); ?>
 					</div>
 					<?php
 				}
@@ -175,12 +174,12 @@ $map = function_exists('printGoogleMap');
 			<!-- Page Numbers -->
 			<div id="pagenumbers">
 				<?php
-				if ((getNumAlbums() != 0) || !$oneImagePage) {
-					printPageListWithNav("« " . gettext('prev'), gettext('next') . " »", $oneImagePage);
+				if ((getNumAlbums() != 0) || !$_oneImagePage) {
+					printPageListWithNav("« " . gettext('prev'), gettext('next') . " »", $_oneImagePage);
 				}
 				?>
 			</div> <!-- pagenumbers -->
-<?php commonComment(); ?>
+			<?php commonComment(); ?>
 		</div> <!-- subcontent -->
 
 		<!-- Footer -->

@@ -16,10 +16,10 @@ if (!defined('WEBPATH'))
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 		<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . THEMEFOLDER; ?>/default/common.css" type="text/css" />
-<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
+		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
 	</head>
 	<body>
-<?php zp_apply_filter('theme_body_open'); ?>
+		<?php zp_apply_filter('theme_body_open'); ?>
 		<div id="main">
 			<div id="gallerytitle">
 				<?php
@@ -33,9 +33,9 @@ if (!defined('WEBPATH'))
 					?></h2>
 			</div>
 			<div id="padbox">
-					<?php printGalleryDesc(); ?>
+				<?php printGalleryDesc(); ?>
 				<div id="albums">
-<?php while (next_album()): ?>
+					<?php while (next_album()): ?>
 						<div class="album">
 							<div class="thumb">
 								<a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printAnnotatedAlbumTitle(); ?>"><?php printAlbumThumbImage(getAnnotatedAlbumTitle()); ?></a>
@@ -47,10 +47,10 @@ if (!defined('WEBPATH'))
 							</div>
 							<p style="clear: both; "></p>
 						</div>
-<?php endwhile; ?>
+					<?php endwhile; ?>
 				</div>
 				<br class="clearall" />
-<?php printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); ?>
+				<?php printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); ?>
 			</div>
 		</div>
 		<div id="credit">
@@ -73,7 +73,7 @@ if (!defined('WEBPATH'))
 				?> | <?php
 			}
 			?>
-		<?php printZenphotoLink(); ?>
+			<?php printZenphotoLink(); ?>
 		</div>
 		<?php @call_user_func('mobileTheme::controlLink'); ?>
 		<?php @call_user_func('printLanguageSelector'); ?>

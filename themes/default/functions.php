@@ -69,5 +69,5 @@ function switcher_controllink($ignore) {
 	return $ignore;
 }
 
-$_zp_page_check = 'CheckPageValitidy'; //	opt-in, standard behavior
+$_zp_page_check = 'checkPageValidity'; //	opt-in, standard behavior
 ?>

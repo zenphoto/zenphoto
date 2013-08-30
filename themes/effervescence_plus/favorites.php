@@ -204,8 +204,8 @@ $map = function_exists('printGoogleMap');
 			<!-- Page Numbers -->
 			<div id="pagenumbers">
 				<?php
-				if ((getNumAlbums() != 0) || !$oneImagePage) {
-					printPageListWithNav("« " . gettext('prev'), gettext('next') . " »", $oneImagePage);
+				if ((getNumAlbums() != 0) || !$_oneImagePage) {
+					printPageListWithNav("« " . gettext('prev'), gettext('next') . " »", $_oneImagePage);
 				}
 				?>
 			</div> <!-- pagenumbers -->

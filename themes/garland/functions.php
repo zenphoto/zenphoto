@@ -192,18 +192,23 @@ function exerpt($content, $length) {
 	return shortenContent(strip_tags($content), $length, getOption("zenpage_textshorten_indicator"));
 }
 
-function my_CheckPageValitidy($request, $gallery_page, $page) {
+function my_checkPageValidity($request, $gallery_page, $page) {
 	if ($page != 1 && get_context() == ZP_INDEX && $gallery_page != 'gallery.php') {
 		return false;
 	} else {
-		return CheckPageValitidy($request, $gallery_page, $page);
+		return checkPageValidity($request, $gallery_page, $page);
 	}
 }
 
-if (extensionEnabled('zenpage') || getOption('custom_index_page') == 'gallery') {
-	if ($_zp_gallery_page == 'news.php') {
-		add_context(ZP_ZENPAGE_NEWS_PAGE);
+if (!OFFSET_PATH) {
+	$personality = getOption('garland_personality');
+	require_once(SERVERPATH . '/' . THEMEFOLDER . '/garland/' . $personality . '/functions.php');
+	$_oneImagePage = $personality->onePage();
+	if (extensionEnabled('zenpage') || getOption('custom_index_page') == 'gallery') {
+		if ($_zp_gallery_page == 'news.php') {
+			add_context(ZP_ZENPAGE_NEWS_PAGE);
+		}
+		$_zp_page_check = 'my_checkPageValidity';
 	}
-	$_zp_page_check = 'my_CheckPageValitidy';
 }
 ?>

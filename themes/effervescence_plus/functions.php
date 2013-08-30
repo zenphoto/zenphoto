@@ -481,22 +481,26 @@ function commonComment() {
 	}
 }
 
-function my_CheckPageValitidy($request, $gallery_page, $page) {
+function my_checkPageValidity($request, $gallery_page, $page) {
 	if ($page != 1 && get_context() == ZP_INDEX && $gallery_page != 'gallery.php') {
 		return false;
 	} else {
-		return CheckPageValitidy($request, $gallery_page, $page);
+		return checkPageValidity($request, $gallery_page, $page);
 	}
 }
 
-if (($_ef_menu = getOption('effervescence_menu')) == 'effervescence' || $_ef_menu == 'zenpage') {
-	enableExtension('print_album_menu', 1 | THEME_PLUGIN, false);
-}
-
-if (extensionEnabled('zenpage') || getOption('custom_index_page') == 'gallery') {
-	if ($_zp_gallery_page == 'news.php') {
-		add_context(ZP_ZENPAGE_NEWS_PAGE);
+if (!OFFSET_PATH) {
+	if (($_ef_menu = getOption('effervescence_menu')) == 'effervescence' || $_ef_menu == 'zenpage') {
+		enableExtension('print_album_menu', 1 | THEME_PLUGIN, false);
 	}
-	$_zp_page_check = 'my_CheckPageValitidy';
+	list($personality, $themeColor) = getPersonality();
+	require_once(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus/' . $personality . '/functions.php');
+	$_oneImagePage = $personality->onePage();
+	if (extensionEnabled('zenpage') || getOption('custom_index_page') == 'gallery') {
+		if ($_zp_gallery_page == 'news.php') {
+			add_context(ZP_ZENPAGE_NEWS_PAGE);
+		}
+		$_zp_page_check = 'my_checkPageValidity';
+	}
 }
 ?>
