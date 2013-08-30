@@ -32,14 +32,4 @@ function stopdesign_switch($css) {
 					" background-color: #f5f5f5;\n" .
 					"}\n";
 }
-
-function my_CheckPageValitidy($request, $gallery_page, $page) {
-	if ($page != 1 && get_context() == ZP_INDEX && $gallery_page != 'gallery.php') {
-		return false;
-	} else {
-		return CheckPageValitidy($request, $gallery_page, $page);
-	}
-}
-
-$_zp_page_check = 'my_CheckPageValitidy';
 ?>

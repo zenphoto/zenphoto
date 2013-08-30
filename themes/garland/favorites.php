@@ -85,8 +85,8 @@ if ($_zp_page > 1) echo "[$_zp_page]"; ?></title>
 									<br class="clearall" />
 									<?php @call_user_func('printSlideShowLink'); ?>
 									<?php
-									if ((getNumAlbums() != 0) || !$oneImagePage) {
-										printPageListWithNav(gettext("« prev"), gettext("next »"), $oneImagePage);
+									if ((getNumAlbums() != 0) || !$_oneImagePage) {
+										printPageListWithNav(gettext("« prev"), gettext("next »"), $_oneImagePage);
 									}
 									?>
 									<?php

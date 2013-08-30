@@ -8,17 +8,18 @@ $map = function_exists('printGoogleMap');
 	<head>
 		<?php
 		zp_apply_filter('theme_head');
-		$personality = getOption('garland_personality');
-		require_once(SERVERPATH . '/' . THEMEFOLDER . '/garland/' . $personality . '/functions.php');
 		?>
-		<title><?php printGalleryTitle(); ?> | <?php echo html_encode(getAlbumTitle());
-		if ($_zp_page > 1) echo "[$_zp_page]"; ?></title>
-		<?php $oneImagePage = $personality->theme_head($_zp_themeroot); ?>
+		<title><?php printGalleryTitle(); ?> | <?php
+			echo html_encode(getAlbumTitle());
+			if ($_zp_page > 1)
+				echo "[$_zp_page]";
+			?></title>
+		<?php $personality->theme_head($_zp_themeroot); ?>
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
-		<?php if (class_exists('RSS')) printRSSHeaderLink('Album', getAlbumTitle()); ?>
+<?php if (class_exists('RSS')) printRSSHeaderLink('Album', getAlbumTitle()); ?>
 	</head>
 	<body class="sidebars">
-<?php zp_apply_filter('theme_body_open'); ?>
+		<?php zp_apply_filter('theme_body_open'); ?>
 <?php $personality->theme_bodyopen($_zp_themeroot); ?>
 		<div id="navigation"></div>
 		<div id="wrapper">
@@ -43,10 +44,10 @@ $map = function_exists('printGoogleMap');
 							<div class="left-corner"><!-- begin content -->
 								<div class="main section" id="main">
 									<h2 id="gallerytitle">
-									<?php printHomeLink('', ' » '); ?>
+<?php printHomeLink('', ' » '); ?>
 										<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php printGalleryTitle(); ?></a> » <?php printParentBreadcrumb("", " » ", " » "); ?><?php echo html_encode(getAlbumTitle()); ?>
 									</h2>
-										<?php printAlbumDesc(); ?>
+									<?php printAlbumDesc(); ?>
 										<?php printCodeblock(1); ?>
 									<div id="albums">
 										<?php
@@ -75,8 +76,8 @@ $map = function_exists('printGoogleMap');
 									<p style="clear: both; "></p>
 									<?php $personality->theme_content($map); ?>
 									<?php
-									if ((getNumAlbums() != 0) || !$oneImagePage) {
-										printPageListWithNav(gettext("« prev"), gettext("next »"), $oneImagePage);
+									if ((getNumAlbums() != 0) || !$_oneImagePage) {
+										printPageListWithNav(gettext("« prev"), gettext("next »"), $_oneImagePage);
 									}
 									if (function_exists('printAddToFavorites'))
 										printAddToFavorites($_zp_current_album);
@@ -100,9 +101,9 @@ $map = function_exists('printGoogleMap');
 						if ($nextalbum || $prevalbum) {
 							?>
 							<h2><?php echo gettext('Album Navigation'); ?></h2>
-	<?php
-	if ($nextalbum) {
-		?>
+							<?php
+							if ($nextalbum) {
+								?>
 								<div id="nextalbum" class="slides">
 									<a href="<?php echo html_encode(getNextAlbumURL()); ?>" title="<?php echo gettext('Next album'); ?>"><?php echo gettext('Next album »'); ?><br /><img src="<?php echo html_encode(pathurlencode($nextalbum->getAlbumThumb())); ?>" /></a>
 								</div>
@@ -124,9 +125,9 @@ $map = function_exists('printGoogleMap');
 							setOption('gmap_display', 'colorbox', false);
 							?>
 							<div id="map_link">
-	<?php
-	printGoogleMap(NULL, NULL, NULL, 'album_page', 'gMapOptionsAlbum');
-	?>
+								<?php
+								printGoogleMap(NULL, NULL, NULL, 'album_page', 'gMapOptionsAlbum');
+								?>
 							</div>
 							<br class="clearall" />
 							<?php
@@ -145,8 +146,8 @@ $map = function_exists('printGoogleMap');
 			</div><!-- container -->
 			<span class="clear"></span>
 		</div><!-- wrapper -->
-<?php
-zp_apply_filter('theme_body_close');
-?>
+		<?php
+		zp_apply_filter('theme_body_close');
+		?>
 	</body>
 </html>

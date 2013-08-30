@@ -6,12 +6,17 @@
 $personality = new image_page();
 
 class image_page {
+
 	function __construct() {
 
 	}
 
-	function theme_head($_zp_themeroot) {
+	function onePage() {
 		return false;
+	}
+
+	function theme_head($_zp_themeroot) {
+
 	}
 
 	function theme_bodyopen($_zp_themeroot) {
@@ -25,7 +30,7 @@ class image_page {
 		<div id="images">
 			<?php
 			$points = array();
-			while (next_image()){
+			while (next_image()) {
 				if ($map) {
 					$coord = getGeoCoord($_zp_current_image);
 					if ($coord) {
@@ -34,16 +39,16 @@ class image_page {
 				}
 				?>
 				<div class="image">
-					<div class="imagethumb"><a href="<?php echo html_encode(getImageLinkURL());?>" title="<?php echo sanitize(getImageTitle()); ?>"><?php printImageThumb(getImageTitle()); ?></a></div>
+					<div class="imagethumb"><a href="<?php echo html_encode(getImageLinkURL()); ?>" title="<?php echo sanitize(getImageTitle()); ?>"><?php printImageThumb(getImageTitle()); ?></a></div>
 				</div>
-				<?php
-			}
-			?>
+			<?php
+		}
+		?>
 		</div>
 		<br class="clearall" />
 		<?php
 		@call_user_func('printSlideShowLink');
 	}
-}
 
+}
 ?>

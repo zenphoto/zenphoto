@@ -293,5 +293,5 @@ function printZDToggleClass($option, $c, $number_to_show) {
 	}
 }
 
-$_zp_page_check = 'CheckPageValitidy'; //	opt-in, standard behavior
+$_zp_page_check = 'checkPageValidity'; //	opt-in, standard behavior
 ?>
