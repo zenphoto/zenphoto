@@ -15,25 +15,33 @@ foreach ($persona as $personality) {
 	$personalities[ucfirst(str_replace('_', ' ', $personality))] = $personality;
 }
 
-$personality = strtolower(getOption('garland_personality'));
-if (!in_array($personality, $personalities)) {
-	$persona = $personalities;
-	$personality = array_shift($persona);
+if (!OFFSET_PATH) {
+	if (extensionEnabled('themeSwitcher')) {
+		$personality = getOption('themeSwitcher_garland_personality');
+		if (isset($_GET['themePersonality'])) {
+			$new = $_GET['themePersonality'];
+			if (in_array($new, $personalities)) {
+				setOption('themeSwitcher_garland_personality', $new);
+				$personality = $new;
+			}
+		}
+		if ($personality) {
+			setOption('garland_personality', $personality, false);
+		}
+	} else {
+		$personality = strtolower(getOption('garland_personality'));
+	}
+	if (!in_array($personality, $personalities)) {
+		$persona = $personalities;
+		$personality = array_shift($persona);
+	}
+
+	require_once(SERVERPATH . '/' . THEMEFOLDER . '/garland/' . $personality . '/functions.php');
+	$_oneImagePage = $handler->onePage();
+	$_zp_page_check = 'my_checkPageValidity';
 }
 
 function switcher_head($ignore) {
-	global $personalities;
-	$personality = getOption('themeSwitcher_garland_personality');
-	if (isset($_GET['themePersonality'])) {
-		$new = $_GET['themePersonality'];
-		if (in_array($new, $personalities)) {
-			setOption('themeSwitcher_garland_personality', $new);
-			$personality = $new;
-		}
-	}
-	if ($personality) {
-		setOption('garland_personality', $personality, false);
-	}
 	?>
 	<script type="text/javascript">
 		// <!-- <![CDATA[
@@ -193,22 +201,22 @@ function exerpt($content, $length) {
 }
 
 function my_checkPageValidity($request, $gallery_page, $page) {
-	if ($page != 1 && get_context() == ZP_INDEX && $gallery_page != 'gallery.php') {
-		return false;
-	} else {
-		return checkPageValidity($request, $gallery_page, $page);
+	switch ($gallery_page) {
+		case 'gallery.php';
+			$gallery_page = 'index.php'; //	same as an album gallery index
+			break;
+		case 'news.php':
+			break;
+		case 'index.php':
+			if (!extensionEnabled('zenpage')) { // only one index page if zenpage plugin is enabled or there is a custom index page
+				break;
+			}
+		default:
+			if ($page != 1) {
+				return false;
+			}
+			break;
 	}
-}
-
-if (!OFFSET_PATH) {
-	$personality = getOption('garland_personality');
-	require_once(SERVERPATH . '/' . THEMEFOLDER . '/garland/' . $personality . '/functions.php');
-	$_oneImagePage = $personality->onePage();
-	if (extensionEnabled('zenpage') || getOption('custom_index_page') == 'gallery') {
-		if ($_zp_gallery_page == 'news.php') {
-			add_context(ZP_ZENPAGE_NEWS_PAGE);
-		}
-		$_zp_page_check = 'my_checkPageValidity';
-	}
+	return checkPageValidity($request, $gallery_page, $page);
 }
 ?>

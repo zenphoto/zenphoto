@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  Tries to authorize user based on Apache HTTP authenitcation credentials
+ *  Tries to authorize user based on Apache HTTP authentication credentials
  *
  * The <var>PHP_AUTH_USER</var> is mapped to a Zenphoto user
  * the <var>PHP_AUTH_PW</var> must be in cleartext and match the Zenphoto user's password

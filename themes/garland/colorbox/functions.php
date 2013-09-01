@@ -5,7 +5,7 @@
 // initialization stuff
 
 if (zp_has_filter('theme_head', 'colorbox::css')) {
-	$personality = new ga_colorbox();
+	$handler = new ga_colorbox();
 } else {
 	require_once(SERVERPATH . '/' . THEMEFOLDER . '/garland/image_page/functions.php');
 }

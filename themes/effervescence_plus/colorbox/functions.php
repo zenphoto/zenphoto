@@ -5,7 +5,7 @@
 // initialization stuff
 
 if (zp_has_filter('theme_head', 'colorbox::css')) {
-	$personality = new ef_colorbox();
+	$handler = new ef_colorbox();
 } else {
 	require_once(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus/image_page/functions.php');
 }

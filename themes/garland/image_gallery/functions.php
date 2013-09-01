@@ -3,7 +3,7 @@
  * Gallery personality
  */
 // initialization stuff
-$personality = new imagegallery();
+$handler = new imagegallery();
 
 class imagegallery {
 
