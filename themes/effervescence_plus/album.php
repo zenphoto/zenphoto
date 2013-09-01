@@ -18,12 +18,12 @@ $map = function_exists('printGoogleMap');
 				echo "[$_zp_page]";
 			?></title>
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
-		<?php $personality->theme_head($_zp_themeroot); ?>
+		<?php $handler->theme_head($_zp_themeroot); ?>
 	</head>
 
 	<body onload="blurAnchors()">
 		<?php zp_apply_filter('theme_body_open'); ?>
-		<?php $personality->theme_bodyopen($_zp_themeroot); ?>
+		<?php $handler->theme_bodyopen($_zp_themeroot); ?>
 
 		<!-- Wrap Header -->
 		<div id="header">
@@ -149,7 +149,7 @@ $map = function_exists('printGoogleMap');
 			<!-- Wrap Main Body -->
 			<?php
 			if (getNumImages() > 0) { /* Only print if we have images. */
-				$personality->theme_content($map);
+				$handler->theme_content($map);
 			} else { /* no images to display */
 				if (getNumAlbums() == 0) {
 					?>

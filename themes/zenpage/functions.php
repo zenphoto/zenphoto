@@ -66,21 +66,28 @@ function printZDToggleClass($option, $c, $number_to_show) {
 }
 
 function my_checkPageValidity($request, $gallery_page, $page) {
-	if ($page != 1 && get_context() == ZP_INDEX && $gallery_page != 'gallery.php') {
-		return false;
-	} else {
-		return checkPageValidity($request, $gallery_page, $page);
+	switch ($gallery_page) {
+		case 'gallery.php';
+			$gallery_page = 'index.php'; //	same as an album gallery index
+			break;
+		case 'news.php':
+			break;
+		case 'index.php':
+			if (!extensionEnabled('zenpage')) { // only one index page if zenpage plugin is enabled
+				break;
+			}
+		default:
+			if ($page != 1) {
+				return false;
+			}
+			break;
 	}
+	return checkPageValidity($request, $gallery_page, $page);
 }
 
 if (!OFFSET_PATH) {
 	enableExtension('print_album_menu', 1 | THEME_PLUGIN, false);
 	setOption('user_logout_login_form', 2, false);
-	if (extensionEnabled('zenpage')) {
-		if ($_zp_gallery_page == 'news.php') {
-			add_context(ZP_ZENPAGE_NEWS_PAGE);
-		}
-		$_zp_page_check = 'my_checkPageValidity';
-	}
+	$_zp_page_check = 'my_checkPageValidity';
 }
 ?>

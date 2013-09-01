@@ -25,7 +25,7 @@ $backgroundImagePath = "";
 				echo "[$_zp_page]";
 			?></title>
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
-		<?php $personality->theme_head($_zp_themeroot); ?>
+		<?php $handler->theme_head($_zp_themeroot); ?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
 			function toggleExtraElements(category, show) {
@@ -275,7 +275,7 @@ $backgroundImagePath = "";
 			<!-- Wrap Main Body -->
 			<?php
 			if ($numimages > 0) { /* Only print if we have images. */
-				$personality->theme_content(NULL);
+				$handler->theme_content(NULL);
 			}
 
 			if ($total == 0) {

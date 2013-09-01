@@ -3,7 +3,7 @@
  * Image page personality
  */
 // initialization stuff
-$personality = new image_page();
+$handler = new image_page();
 
 class image_page {
 

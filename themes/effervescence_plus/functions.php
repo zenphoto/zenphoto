@@ -33,6 +33,41 @@ foreach ($filelist as $file) {
 }
 chdir($cwd);
 
+if (!OFFSET_PATH) {
+	if (extensionEnabled('themeSwitcher')) {
+		$themeColor = getOption('themeSwitcher_effervescence_color');
+		if (isset($_GET['themeColor'])) {
+			$new = $_GET['themeColor'];
+			if (in_array($new, $themecolors)) {
+				setOption('themeSwitcher_effervescence_color', $new);
+				$themeColor = $new;
+			}
+		}
+		if (!$themeColor) {
+			list($personality, $themeColor) = getPersonality();
+		}
+
+		$personality = getOption('themeSwitcher_effervescence_personality');
+		if (isset($_GET['themePersonality'])) {
+			$new = $_GET['themePersonality'];
+			if (in_array($new, $personalities)) {
+				setOption('themeSwitcher_effervescence_personality', $new);
+				$personality = $new;
+			}
+		}
+		if ($personality) {
+			setOption('effervescence_personality', $personality, false);
+		}
+	}
+
+	if (($_ef_menu = getOption('effervescence_menu')) == 'effervescence' || $_ef_menu == 'zenpage') {
+		enableExtension('print_album_menu', 1 | THEME_PLUGIN, false);
+	}
+	require_once(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus/' . $personality . '/functions.php');
+	$_oneImagePage = $handler->onePage();
+	$_zp_page_check = 'my_checkPageValidity';
+}
+
 function EF_head($ignore) {
 	global $themeColor;
 	if (!$themeColor) {
@@ -66,30 +101,6 @@ function EF_head($ignore) {
 }
 
 function switcher_head($ignore) {
-	global $personalities, $personality, $themecolors, $themeColor;
-	$themeColor = getOption('themeSwitcher_effervescence_color');
-	if (isset($_GET['themeColor'])) {
-		$new = $_GET['themeColor'];
-		if (in_array($new, $themecolors)) {
-			setOption('themeSwitcher_effervescence_color', $new);
-			$themeColor = $new;
-		}
-	}
-	if (!$themeColor) {
-		list($personality, $themeColor) = getPersonality();
-	}
-
-	$personality = getOption('themeSwitcher_effervescence_personality');
-	if (isset($_GET['themePersonality'])) {
-		$new = $_GET['themePersonality'];
-		if (in_array($new, $personalities)) {
-			setOption('themeSwitcher_effervescence_personality', $new);
-			$personality = $new;
-		}
-	}
-	if ($personality) {
-		setOption('effervescence_personality', $personality, false);
-	}
 	?>
 	<script type="text/javascript">
 		// <!-- <![CDATA[
@@ -482,25 +493,22 @@ function commonComment() {
 }
 
 function my_checkPageValidity($request, $gallery_page, $page) {
-	if ($page != 1 && get_context() == ZP_INDEX && $gallery_page != 'gallery.php') {
-		return false;
-	} else {
-		return checkPageValidity($request, $gallery_page, $page);
+	switch ($gallery_page) {
+		case 'gallery.php';
+			$gallery_page = 'index.php'; //	same as an album gallery index
+			break;
+		case 'news.php':
+			break;
+		case 'index.php':
+			if (!extensionEnabled('zenpage') || getOption('custom_index_page') == 'gallery') { // only one index page if zenpage plugin is enabled or custom index page is set
+				break;
+			}
+		default:
+			if ($page != 1) {
+				return false;
+			}
+			break;
 	}
-}
-
-if (!OFFSET_PATH) {
-	if (($_ef_menu = getOption('effervescence_menu')) == 'effervescence' || $_ef_menu == 'zenpage') {
-		enableExtension('print_album_menu', 1 | THEME_PLUGIN, false);
-	}
-	list($personality, $themeColor) = getPersonality();
-	require_once(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus/' . $personality . '/functions.php');
-	$_oneImagePage = $personality->onePage();
-	if (extensionEnabled('zenpage') || getOption('custom_index_page') == 'gallery') {
-		if ($_zp_gallery_page == 'news.php') {
-			add_context(ZP_ZENPAGE_NEWS_PAGE);
-		}
-		$_zp_page_check = 'my_checkPageValidity';
-	}
+	return checkPageValidity($request, $gallery_page, $page);
 }
 ?>

@@ -14,13 +14,13 @@ $map = function_exists('printGoogleMap');
 			if ($_zp_page > 1)
 				echo "[$_zp_page]";
 			?></title>
-		<?php $personality->theme_head($_zp_themeroot); ?>
+		<?php $handler->theme_head($_zp_themeroot); ?>
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 <?php if (class_exists('RSS')) printRSSHeaderLink('Album', getAlbumTitle()); ?>
 	</head>
 	<body class="sidebars">
 		<?php zp_apply_filter('theme_body_open'); ?>
-<?php $personality->theme_bodyopen($_zp_themeroot); ?>
+<?php $handler->theme_bodyopen($_zp_themeroot); ?>
 		<div id="navigation"></div>
 		<div id="wrapper">
 			<div id="container">
@@ -74,7 +74,7 @@ $map = function_exists('printGoogleMap');
 										?>
 									</div>
 									<p style="clear: both; "></p>
-									<?php $personality->theme_content($map); ?>
+									<?php $handler->theme_content($map); ?>
 									<?php
 									if ((getNumAlbums() != 0) || !$_oneImagePage) {
 										printPageListWithNav(gettext("« prev"), gettext("next »"), $_oneImagePage);
