@@ -35,7 +35,7 @@ if (!defined('WEBPATH'))
 				</div>
 				<div id="content-left">
 					<?php
-					if (!extensionEnabled('zenpage') || !($_zp_zenpage->news_on_index = getOption("zenpage_zp_index_news"))) {
+					if (!extensionEnabled('zenpage') || ($_zp_gallery_page == 'gallery.php' || ($_zp_gallery_page == 'index.php' && !getOption("zenpage_zp_index_news")))) {
 						?>
 							<?php printGalleryDesc(); ?>
 							<?php printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); ?>
