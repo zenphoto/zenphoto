@@ -271,7 +271,7 @@ class static_html_cache {
 		$cachefilepath .= "_" . (int) $_zp_page;
 
 		if (getOption('obfuscate_cache')) {
-			$cachefilepath = sha1($locale . HASH_SEED . $cachefilepath) . '.html';
+			$cachefilepath = sha1($locale . HASH_SEED . $cachefilepath);
 		} else {
 			// strip characters that cannot be in file names
 			$cachefilepath = str_replace(array('<', '>', ':', '"', '/', '\\', '|', '?', '*'), '_', $cachefilepath) . $locale;
