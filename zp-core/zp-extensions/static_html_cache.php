@@ -218,7 +218,7 @@ class static_html_cache {
 	 */
 	function createCacheFilepath($accessType) {
 		global $_zp_current_image, $_zp_current_album, $_zp_gallery_page, $_zp_authority,
-		$_zp_current_zenpage_news, $_zp_current_category, $_zp_current_zenpage_page, $_zp_gallery;
+		$_zp_current_zenpage_news, $_zp_current_category, $_zp_current_zenpage_page, $_zp_gallery, $_zp_page;
 		// just make sure these are really empty
 		$cachefilepath = $_zp_gallery->getCurrentTheme() . '_' . str_replace('zp_', '', $accessType) . '_';
 		$album = "";
@@ -228,12 +228,6 @@ class static_html_cache {
 		$date = "";
 		$title = ""; // zenpage support
 		$category = ""; // zenpage support
-		// get page number
-		if (isset($_GET['page'])) {
-			$page = "_" . sanitize($_GET['page']);
-		} else {
-			$page = "_1";
-		}
 		if (isset($_REQUEST['locale'])) {
 			$locale = "_" . sanitize($_REQUEST['locale']);
 		} else {
@@ -242,7 +236,7 @@ class static_html_cache {
 		switch ($_zp_gallery_page) {
 			case 'index.php':
 				$cachesubfolder = "pages";
-				$cachefilepath .= "index" . $page;
+				$cachefilepath .= "index";
 				break;
 			case 'album.php':
 			case 'image.php':
@@ -251,9 +245,8 @@ class static_html_cache {
 				if (isset($_zp_current_image)) {
 					$cachesubfolder = "images";
 					$image = "-" . $_zp_current_image->filename;
-					$page = "";
 				}
-				$cachefilepath .= $album . $image . $page;
+				$cachefilepath .= $album . $image;
 				break;
 			case 'pages.php':
 				$cachesubfolder = "pages";
@@ -267,17 +260,18 @@ class static_html_cache {
 				if (is_object($_zp_current_category)) {
 					$category = "-" . $_zp_current_category->getTitlelink();
 				}
-				$cachefilepath .= 'news' . $category . $title . $page;
+				$cachefilepath .= 'news' . $category . $title;
 				break;
 			default:
 				// custom pages
 				$cachesubfolder = "pages";
-				$custompage = $_zp_gallery_page;
-				$cachefilepath .= $custompage;
+				$cachefilepath .= 'custom-' . stripSuffix($_zp_gallery_page);
 				break;
 		}
+		$cachefilepath .= "_" . (int) $_zp_page;
+
 		if (getOption('obfuscate_cache')) {
-			$cachefilepath = sha1($locale . HASH_SEED . $cachefilepath) . '.html';
+			$cachefilepath = sha1($locale . HASH_SEED . $cachefilepath);
 		} else {
 			// strip characters that cannot be in file names
 			$cachefilepath = str_replace(array('<', '>', ':', '"', '/', '\\', '|', '?', '*'), '_', $cachefilepath) . $locale;

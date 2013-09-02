@@ -20,6 +20,8 @@ $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'comment_form';
 
+zp_register_filter('admin_toolbox_global', 'comment_form::toolbox');
+
 if (getOption('Allow_comments') || getOption('zenpage_comments_allowed')) {
 	setOptionDefault('zp_plugin_comment_form', $plugin_is_filter);
 	if (!is_null($default = getOption('Allow_comments'))) {
@@ -178,6 +180,16 @@ class comment_form {
 			return $newtabs;
 		}
 		return $tabs;
+	}
+
+	static function toolbox() {
+		if (zp_loggedin(COMMENT_RIGHTS)) {
+			?>
+			<li>
+				<?php printLink(WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . 'comment_form/admin-comments.php?page=comments&amp;tab=' . gettext('comments'), gettext("Comments"), NULL, NULL, NULL); ?>
+			</li>
+			<?php
+		}
 	}
 
 }
