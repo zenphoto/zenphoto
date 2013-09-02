@@ -4081,7 +4081,7 @@ function printCodeblockEdit($obj, $id) {
 		<?php
 		for ($i = $start; $i < $codeblockCount; $i++) {
 			?>
-			<div class="cbx-<?php echo $id; ?>" id="cb<?php echo $i . '-' . $id; ?>"<?php if ($i != 1) echo ' style="display:none"'; ?>">
+			<div class="cbx-<?php echo $id; ?>" id="cb<?php echo $i . '-' . $id; ?>"<?php if ($i != 1) echo ' style="display:none"'; ?>>
 				<?php
 				if (!$i) {
 					?>
@@ -4651,21 +4651,21 @@ function consolidatedEditMessages($subtab) {
 	if (!empty($errorbox)) {
 		?>
 		<div class="errorbox fade-message">
-		<?php echo implode('<br />', $errorbox); ?>
+			<?php echo implode('<br />', $errorbox); ?>
 		</div>
 		<?php
 	}
 	if (!empty($notebox)) {
 		?>
 		<div class="notebox fade-message">
-		<?php echo implode('<br />', $notebox); ?>
+			<?php echo implode('<br />', $notebox); ?>
 		</div>
 		<?php
 	}
 	if (!empty($messagebox)) {
 		?>
 		<div class="messagebox fade-message">
-		<?php echo implode('<br />', $messagebox); ?>
+			<?php echo implode('<br />', $messagebox); ?>
 		</div>
 		<?php
 	}
