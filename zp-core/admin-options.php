@@ -1175,22 +1175,22 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td><?php echo gettext("This is used to link back to your main site, but your theme must support it."); ?></td>
 								</tr>
 								<tr>
-								</tr>
-								<td><?php echo gettext("Album thumbnails:"); ?></td>
-								<td>
-									<?php
-									$selections = array();
-									foreach ($_zp_albumthumb_selector as $key => $selection) {
-										$selections[$selection['desc']] = $key;
-									}
-									?>
-									<select id="thumbselector" name="thumbselector">
+									<td><?php echo gettext("Album thumbnails:"); ?></td>
+									<td>
 										<?php
-										generateListFromArray(array(getOption('AlbumThumbSelect')), $selections, false, true);
+										$selections = array();
+										foreach ($_zp_albumthumb_selector as $key => $selection) {
+											$selections[$selection['desc']] = $key;
+										}
 										?>
-									</select>
-								</td>
-								<td><?php echo gettext("Default thumbnail selection for albums."); ?></td>
+										<select id="thumbselector" name="thumbselector">
+											<?php
+											generateListFromArray(array(getOption('AlbumThumbSelect')), $selections, false, true);
+											?>
+										</select>
+									</td>
+									<td><?php echo gettext("Default thumbnail selection for albums."); ?></td>
+								</tr>
 								<tr>
 									<td><?php echo gettext("Sort gallery by:"); ?></td>
 									<td>
@@ -2639,7 +2639,7 @@ Zenphoto_Authority::printPasswordFormJS();
 					<div id="tab_plugin" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
 						<script type="text/javascript">
-																												var optionholder = new array();</script>
+																											var optionholder = new array();</script>
 						<form action="?action=saveoptions<?php if (isset($_GET['single'])) echo '&amp;single=' . $showExtension; ?>" method="post" autocomplete="off">
 							<?php XSRFToken('saveoptions'); ?>
 							<input type="hidden" name="savepluginoptions" value="yes" />
@@ -2927,7 +2927,6 @@ Zenphoto_Authority::printPasswordFormJS();
 									<?php
 								}
 								?>
-								</tr>
 								<tr>
 									<?php
 									$supportedOptions = $_zp_authority->getOptionsSupported();

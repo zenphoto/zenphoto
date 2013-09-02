@@ -98,7 +98,7 @@ class colorbox {
 		<link rel="stylesheet" href="<?php echo $css; ?>" type="text/css" />
 		<?php
 		$navigator_user_agent = ( isset($_SERVER['HTTP_USER_AGENT']) ) ? strtolower($_SERVER['HTTP_USER_AGENT']) : '';
-		if (stristr($navigator_user_agent, "msie") && !stristr($navigator_user_agent, '9')) {
+		if (preg_match('/msie\s[1-8]\./i', $navigator_user_agent)) {
 			include(dirname(__FILE__) . '/colorbox_js/colorbox_ie.css.php');
 		}
 		?>
