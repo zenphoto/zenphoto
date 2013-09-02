@@ -238,11 +238,8 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 	}
 	$allcomments = fetchComments(NULL);
 
-	if (isset($_GET['subpage'])) {
-		$pagenum = max(intval($_GET['subpage ']), 1);
-	} else {
-		$pagenum = 1;
-	}
+	$pagenum = max((int) @$_GET['subpage'], 1);
+
 
 	$comments = array_slice($allcomments, ($pagenum - 1) * COMMENTS_PER_PAGE, COMMENTS_PER_PAGE);
 	$allcommentscount = count($allcomments);
@@ -376,8 +373,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 						}
 						break;
 					case "news": // ZENPAGE: if plugin is installed
-						if (extensionEnabled('zenpage
-											')) {
+						if (extensionEnabled('zenpage')) {
 							$titlelink = '';
 							$title = '';
 							$newsdata = query_full_array("SELECT `title`, `titlelink` FROM " . prefix('news') .
