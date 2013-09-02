@@ -697,7 +697,8 @@ class Album extends AlbumBase {
 	 */
 	function __construct($deprecated, $folder8, $cache = true, $quiet = false) {
 		global $_zp_gallery;
-		$folder8 = trim(sanitize_path($folder8));
+
+		$folder8 = trim($folder8);
 		$folderFS = internalToFilesystem($folder8);
 		$this->gallery = $_zp_gallery;
 		$localpath = ALBUM_FOLDER_SERVERPATH . $folderFS . "/";
@@ -715,9 +716,10 @@ class Album extends AlbumBase {
 		} else if (filesystemToInternal($folderFS) != $folder8) {
 // an attempt to spoof the album name.
 			$msg = sprintf(gettext('Invalid album instantiation: %1$s!=%2$s'), html_encode(filesystemToInternal($folderFS)), html_encode($folder8));
-		} else if (!file_exists($localpath) || !($dynamic || is_dir($localpath))) {
+		} else if (!file_exists($localpath) || !($dynamic || is_dir($localpath)) || $folder8{0} == '.') {
 			$msg = sprintf(gettext('Invalid album instantiation: %s does not exist.'), html_encode($folder8));
 		}
+
 		if ($msg) {
 			$this->exists = false;
 			if (!$quiet) {
@@ -725,9 +727,9 @@ class Album extends AlbumBase {
 			}
 			return;
 		}
+
 		$this->localpath = $localpath;
 		$new = parent::PersistentObject('albums', array('folder' => $this->name), 'folder', $cache, empty($folder8));
-
 		if ($dynamic) {
 			$new = !$this->get('search_params');
 			if ($new || (filemtime($this->localpath) > $this->get('mtime'))) {
