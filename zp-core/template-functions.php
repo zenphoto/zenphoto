@@ -119,13 +119,6 @@ function adminToolbox() {
 					</li>
 					<?php
 				}
-				if (zp_loggedin(COMMENT_RIGHTS)) {
-					?>
-					<li>
-						<?php printLink($zf . '/admin-comments.php', gettext("Comments"), NULL, NULL, NULL); ?>
-					</li>
-					<?php
-				}
 				if (zp_loggedin(USER_RIGHTS)) {
 					?>
 					<li>
@@ -4277,13 +4270,10 @@ function printCodeblock($number = 1, $what = NULL) {
 
 /**
  * Checks for URL page out-of-bounds for "standard" themes
- * Note: This function assumes that an "index" page [context == ZP_INDEX] will display albums
+ * Note: This function assumes that an "index" page will display albums
  * and the pagination be determined by them. Any other "index" page strategy needs to be
  * handled by the theme itself.
  *
- * @global type $_zp_gallery
- * @global type $_zp_zenpage
- * @global type $_zp_current_category
  * @param boolean $request
  * @param string $gallery_page
  * @param int $page
@@ -4291,8 +4281,10 @@ function printCodeblock($number = 1, $what = NULL) {
  */
 function checkPageValidity($request, $gallery_page, $page) {
 	global $_zp_gallery, $_firstPageImages, $_oneImagePage, $_zp_zenpage, $_zp_current_category;
-	if ($request && $page > 1) {
-		if (in_context(ZP_ALBUM | ZP_SEARCH)) {
+	$count = NULL;
+	switch ($gallery_page) {
+		case 'album.php':
+		case 'search.php':
 			$albums_per_page = max(1, getOption('albums_per_page'));
 			$pageCount = (int) ceil(getNumAlbums() / $albums_per_page);
 			$imageCount = getNumImages();
@@ -4305,24 +4297,25 @@ function checkPageValidity($request, $gallery_page, $page) {
 			}
 			$images_per_page = max(1, getOption('images_per_page'));
 			$count = ($pageCount + (int) ceil(($imageCount - $_firstPageImages) / $images_per_page));
-		} else if (get_context() == ZP_INDEX) {
+			break;
+		case 'index.php':
 			if (galleryAlbumsPerPage() != 0) {
 				$count = (int) ceil($_zp_gallery->getNumAlbums() / galleryAlbumsPerPage());
-			} else {
-				$count = NULL;
 			}
-		} else if (extensionEnabled('zenpage')) {
+			break;
+		case 'news.php':
 			if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
 				$cat = $_zp_current_category;
 			} else {
 				$cat = NULL;
 			}
 			$count = (int) ceil(count($_zp_zenpage->getArticles(0, NULL, true, NULL, NULL, NULL, $cat)) / ZP_ARTICLES_PER_PAGE);
-		}
-		if ($page > $count) {
-			$request = false; //	page is out of range
-		}
+			break;
 	}
+	if ($page > $count) {
+		$request = false; //	page is out of range
+	}
+
 	return $request;
 }
 
