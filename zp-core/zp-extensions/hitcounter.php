@@ -165,8 +165,7 @@ class hitcounter {
 
 			if (!$skip) {
 				global $_zp_gallery_page, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category;
-				$hint = $show = false;
-				if (checkAccess($hint, $show)) {
+				if (checkAccess()) {
 					// count only if permitted to access
 					switch ($_zp_gallery_page) {
 						case 'album.php':
