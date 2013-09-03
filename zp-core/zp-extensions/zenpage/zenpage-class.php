@@ -578,7 +578,7 @@ class Zenpage {
 	 * @return array
 	 */
 	function getCombiNews($articles_per_page = '', $mode = '', $published = NULL, $sortorder = NULL, $sticky = true, $sortdirection = 'desc') {
-		global $_zp_combiNews_cache,$_zp_gallery;
+		global $_zp_combiNews_cache;
 		if (is_null($published)) {
 			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS | ALL_NEWS_RIGHTS)) {
 				$published = "all";
@@ -602,8 +602,20 @@ class Zenpage {
 			$show = "";
 			$imagesshow = "";
 		}
-		getAllAccessibleAlbums($_zp_gallery, $albumlist, false);
-		$albumWhere = ' AND albums.id in (' . implode(',', $albumlist) . ')';
+		$passwordcheck = "";
+		if (zp_loggedin(ZENPAGE_NEWS_RIGHTS | ALL_NEWS_RIGHTS)) {
+			$albumWhere = "";
+			$passwordcheck = "";
+		} else {
+			$albumscheck = query_full_array("SELECT * FROM " . prefix('albums') . " ORDER BY title");
+			foreach ($albumscheck as $albumcheck) {
+				if (!checkAlbumPassword($albumcheck['folder'])) {
+					$albumpasswordcheck = " AND albums.id != " . $albumcheck['id'];
+					$passwordcheck = $passwordcheck . $albumpasswordcheck;
+				}
+			}
+			$albumWhere = "AND albums.show=1" . $passwordcheck;
+		}
 		if ($articles_per_page) {
 			$offset = self::getOffset($articles_per_page);
 		} else {
@@ -763,7 +775,7 @@ class Zenpage {
 		$_zp_combiNews_cache[$published . $mode . $sticky . $sortorder . $sortdirection] = $result;
 		return $result;
 	}
-	
+
 	/**
 	 * CombiNews Feature: Counts all news articles and all images
 	 *
