@@ -439,47 +439,50 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 		// Create the cached file (with lots of compatibility)...
 		@chmod($newfile, 0666);
 		if (zp_imageOutput($newim, getSuffix($newfile), $newfile, $quality)) { //	successful save of cached image
-			if (getOption('ImbedIPTC') && getSuffix($newfilename) == 'jpg') { // the imbed function works only with JPEG images
+			if (getOption('ImbedIPTC') && getSuffix($newfilename) == 'jpg' && GRAPHICS_LIBRARY != 'Imagick') { // the imbed function works only with JPEG images
+				global $_zp_extra_filetypes; //	because we are doing the require in a function!
+				if (!$_zp_extra_filetypes)
+					$_zp_extra_filetypes = array();
+				require_once(dirname(__FILE__) . '/functions.php'); //	it is ok to increase memory footprint now since the image processing is complete
+				$iptc = array(
+								'1#090'	 => chr(0x1b) . chr(0x25) . chr(0x47), //	character set is UTF-8
+								'2#115'	 => $_zp_gallery->getTitle() //	source
+				);
 				$iptc_data = zp_imageIPTC($imgfile);
-				if (empty($iptc_data)) {
-					global $_zp_extra_filetypes; //	because we are doing the require in a function!
-					if (!$_zp_extra_filetypes)
-						$_zp_extra_filetypes = array();
-					require_once(dirname(__FILE__) . '/functions.php'); //	it is ok to increase memory footprint now since the image processing is complete
-					$iptc = array('1#090'	 => chr(0x1b) . chr(0x25) . chr(0x47), //	character set is UTF-8
-									'2#115'	 => $_zp_gallery->getTitle() //	source
-					);
-					$imgfile = str_replace(ALBUM_FOLDER_SERVERPATH, '', $imgfile);
-					$imagename = basename($imgfile);
-					$albumname = dirname($imgfile);
-					$image = newImage(newAlbum($albumname), $imagename);
-					$copyright = $image->getCopyright();
-					if (empty($copyright)) {
-						$copyright = getOption('default_copyright');
-					}
-					if (!empty($copyright)) {
-						$iptc['2#116'] = $copyright;
-					}
-					$credit = $image->getCredit();
-					if (!empty($credit)) {
-						$iptc['2#110'] = $credit;
-					}
-					foreach ($iptc as $tag => $string) {
-						$tag_parts = explode('#', $tag);
-						$iptc_data .= iptc_make_tag($tag_parts[0], $tag_parts[1], $string);
-					}
-				} else {
-					if (GRAPHICS_LIBRARY == 'Imagick') { //	Imagick has preserved the metadata
-						$iptc_data = false;
-					}
-				}
 				if ($iptc_data) {
-					$content = iptcembed($iptc_data, $newfile);
-					$fw = fopen($newfile, 'w');
-					fwrite($fw, $content);
-					fclose($fw);
-					clearstatcache();
+					$iptc = array_merge(iptcparse($iptc_data), $iptc);
 				}
+				$imgfile = str_replace(ALBUM_FOLDER_SERVERPATH, '', $imgfile);
+				$imagename = basename($imgfile);
+				$albumname = dirname($imgfile);
+				$image = newImage(newAlbum($albumname), $imagename);
+				$copyright = $image->getCopyright();
+				if (empty($copyright)) {
+					$copyright = getOption('default_copyright');
+				}
+				if (!empty($copyright)) {
+					$iptc['2#116'] = $copyright;
+				}
+				$credit = $image->getCredit();
+				if (!empty($credit)) {
+					$iptc['2#110'] = $credit;
+				}
+				$iptc_result = '';
+				foreach ($iptc as $tag => $string) {
+					$tag_parts = explode('#', $tag);
+					if (is_array($string)) {
+						foreach ($string as $element) {
+							$iptc_result .= iptc_make_tag($tag_parts[0], $tag_parts[1], $element);
+						}
+					} else {
+						$iptc_result .= iptc_make_tag($tag_parts[0], $tag_parts[1], $string);
+					}
+				}
+				$content = iptcembed($iptc_result, $newfile);
+				$fw = fopen($newfile, 'w');
+				fwrite($fw, $content);
+				fclose($fw);
+				clearstatcache();
 			}
 			@chmod($newfile, FILE_MOD);
 			if (DEBUG_IMAGE)

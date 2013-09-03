@@ -22,11 +22,10 @@ $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
  */
 function getImageAlbumAlbumList($obj, &$albumlist, $scan) {
 	global $_zp_gallery;
-	$hint = $show = false;
 	$locallist = $obj->getAlbums();
 	foreach ($locallist as $folder) {
 		$album = newAlbum($folder);
-		If (!$album->isDynamic() && $album->checkAccess($hint, $show)) {
+		If (!$album->isDynamic() && $album->checkAccess()) {
 			if ($scan)
 				$album->getImages();
 			$albumlist[] = $album->getID();
@@ -435,13 +434,12 @@ function getImageStatistic($number, $option, $albumfolder = '', $collection = fa
 			break;
 	}
 	$imageArray = array();
-	$hint = $show = NULL;
 	if (!empty($albumfolder) && $obj->isDynamic()) {
 		$sorttype = str_replace('images.', '', $sortorder);
 		$images = $obj->getImages(0, 0, $sorttype, $sortdir);
 		foreach ($images as $image) {
 			$image = newImage($obj, $image);
-			if ($image->checkAccess($hint, $show)) {
+			if ($image->checkAccess()) {
 				$imageArray[] = $image;
 				if (count($imageArray) >= $number) { // got enough
 					break;
@@ -452,7 +450,7 @@ function getImageStatistic($number, $option, $albumfolder = '', $collection = fa
 		$result = query("SELECT images.filename AS filename, albums.folder AS folder FROM " . prefix('images') . " AS images, " . prefix('albums') . " AS albums " . "WHERE (images.albumid = albums.id) " . $albumWhere . " ORDER BY " . $sortorder . " " . $sortdir);
 		while ($row = db_fetch_assoc($result)) {
 			$image = newImage(NULL, $row, true);
-			if ($image->exists && $image->checkAccess($hint, $show)) {
+			if ($image->exists && $image->checkAccess()) {
 				$imageArray[] = $image;
 				if (count($imageArray) >= $number) { // got enough
 					break;
