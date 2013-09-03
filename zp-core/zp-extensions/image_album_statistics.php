@@ -14,6 +14,28 @@ $plugin_description = gettext("Functions that provide various statistics about i
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 
 /**
+ *
+ * used to get a list of albums to be further processed
+ * @param object $obj from whence to get the albums
+ * @param array $albumlist collects the list
+ * @param bool $scan force scan for new images in the album folder
+ */
+function getImageAlbumAlbumList($obj, &$albumlist, $scan) {
+	global $_zp_gallery;
+	$hint = $show = false;
+	$locallist = $obj->getAlbums();
+	foreach ($locallist as $folder) {
+		$album = newAlbum($folder);
+		If (!$album->isDynamic() && $album->checkAccess($hint, $show)) {
+			if ($scan)
+				$album->getImages();
+			$albumlist[] = $album->getID();
+			getImageAlbumAlbumList($album, $albumlist, $scan);
+		}
+	}
+}
+
+/**
  * Returns a list of album statistic accordingly to $option
  *
  * @param int $number the number of albums to get
@@ -39,7 +61,7 @@ function getAlbumStatistic($number = 5, $option, $albumfolder = '', $sortdirecti
 	} else {
 		$obj = $_zp_gallery;
 	}
-	getAllAccessibleAlbums($obj, $albumlist, false);
+	getImageAlbumAlbumList($obj, $albumlist, false);
 	switch ($sortdirection) {
 		case 'desc':
 		default:
@@ -366,7 +388,7 @@ function getImageStatistic($number, $option, $albumfolder = '', $collection = fa
 	} else {
 		$obj = $_zp_gallery;
 	}
-	getAllAccessibleAlbums($obj, $albumlist, true);
+	getImageAlbumAlbumList($obj, $albumlist, true);
 	if (empty($albumlist)) {
 		return array();
 	}
