@@ -734,7 +734,7 @@ class Zenpage {
 				$counter = '';
 				foreach ($latest as $news) {
 					$article = new ZenpageNews($news['titlelink']);
-					if ($article->checkAccess($hint, $show)) {
+					if ($article->checkAccess()) {
 						$counter++;
 						$latestnews[$counter] = array(
 										"albumname"	 => $article->getTitle(),

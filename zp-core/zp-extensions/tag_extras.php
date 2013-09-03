@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Provides functions to print a tag cloud/list of all image tags from an album optionally including the subalbums or the album tags including sub album tags.
  * Or alternatively a tag cloud/list of all tags used by either Zenpage news articles or pages.
@@ -8,10 +9,8 @@
  * @author Malte Müller (acrylian)
  * @package plugins
  */
-
 $plugin_description = gettext("Provides functions to print a tag cloud of all tags from a Zenphoto object.");
 $plugin_author = "Malte Müller (acrylian)";
-
 
 /**
  * Prints a tag cloud list of the tags in one album and optionally its subalbums. Returns FALSE if no value.
@@ -21,118 +20,120 @@ $plugin_author = "Malte Müller (acrylian)";
  * @param string $mode "images" for image tags, "albums" for album tags."images" is default.
  * @return array
  */
-function getAllTagsFromAlbum($albumname,$subalbums=false,$mode='images') {
+function getAllTagsFromAlbum($albumname, $subalbums = false, $mode = 'images') {
 	global $_zp_gallery;
 	$passwordcheck = '';
 	$imageWhere = '';
 	$tagWhere = "";
 	$albumname = sanitize($albumname);
-	if(empty($albumname)) {
+	if (empty($albumname)) {
 		return FALSE;
 	}
 	$albumobj = newAlbum($albumname);
-	if(!$albumobj->exists) {
+	if (!$albumobj->exists) {
 		return FALSE;
 	}
 	if (zp_loggedin()) {
 		$albumWhere = "WHERE `dynamic`=0";
 	} else {
-		$albumscheck = query_full_array("SELECT * FROM " . prefix('albums'). " ORDER BY title");
-		foreach($albumscheck as $albumcheck) {
-			if(!checkAlbumPassword($albumcheck['folder'])) {
-				$albumpasswordcheck= " AND id != ".$albumcheck['id'];
-				$passwordcheck = $passwordcheck.$albumpasswordcheck;
+		$albumscheck = query_full_array("SELECT * FROM " . prefix('albums') . " ORDER BY title");
+		foreach ($albumscheck as $albumcheck) {
+			if (!checkAlbumPassword($albumcheck['folder'])) {
+				$albumpasswordcheck = " AND id != " . $albumcheck['id'];
+				$passwordcheck = $passwordcheck . $albumpasswordcheck;
 			}
 		}
-		$albumWhere = "WHERE `dynamic`=0 AND `show`=1".$passwordcheck;
+		$albumWhere = "WHERE `dynamic`=0 AND `show`=1" . $passwordcheck;
 	}
-	if($subalbums) {
-		$albumWhere .= " AND `folder` LIKE ".db_quote(db_LIKE_escape($albumname)."%");
+	if ($subalbums) {
+		$albumWhere .= " AND `folder` LIKE " . db_quote(db_LIKE_escape($albumname) . "%");
 	} else {
-		$albumWhere .= " AND `folder` = ".db_quote($albumname);
+		$albumWhere .= " AND `folder` = " . db_quote($albumname);
 	}
-	$albumids = query_full_array("SELECT id, folder FROM " . prefix('albums'). $albumWhere);
-	switch($mode) {
+	$albumids = query_full_array("SELECT id, folder FROM " . prefix('albums') . $albumWhere);
+	switch ($mode) {
 		case "images":
-			if(count($albumids) == 0) {
+			if (count($albumids) == 0) {
 				return FALSE;
 			} else {
 				$imageWhere = " WHERE ";
 				$count = "";
-				foreach($albumids as $albumid) {
+				foreach ($albumids as $albumid) {
 					$count++;
-					$imageWhere .= 'albumid='. $albumid['id'];
-					if($count != count($albumids)) $imageWhere .= " OR ";
+					$imageWhere .= 'albumid=' . $albumid['id'];
+					if ($count != count($albumids))
+						$imageWhere .= " OR ";
 				}
 			}
-			$imageids = query_full_array("SELECT id, albumid FROM " . prefix('images').$imageWhere);
+			$imageids = query_full_array("SELECT id, albumid FROM " . prefix('images') . $imageWhere);
 			// if the album has no direct images and $subalbums is set to false
-			if(count($imageids) == 0) {
+			if (count($imageids) == 0) {
 				return FALSE;
 			} else {
 				$count = "";
 				$tagWhere = " WHERE ";
-				foreach($imageids as $imageid) {
+				foreach ($imageids as $imageid) {
 					$count++;
-					$tagWhere .= '(o.objectid ='. $imageid['id']." AND o.tagid = t.id AND o.type = 'images')";
-					if($count != count($imageids)) $tagWhere .= " OR ";
+					$tagWhere .= '(o.objectid =' . $imageid['id'] . " AND o.tagid = t.id AND o.type = 'images')";
+					if ($count != count($imageids))
+						$tagWhere .= " OR ";
 				}
 			}
-			if(empty($tagWhere)) {
+			if (empty($tagWhere)) {
 				return FALSE;
 			} else {
-				$tags = query_full_array("SELECT DISTINCT t.name, t.id, (SELECT DISTINCT COUNT(*) FROM ". prefix('obj_to_tag'). " WHERE tagid = t.id AND type = 'images') AS count FROM  ". prefix('obj_to_tag'). " AS o,". prefix('tags'). " AS t".$tagWhere." ORDER BY t.name");
+				$tags = query_full_array("SELECT DISTINCT t.name, t.id, (SELECT DISTINCT COUNT(*) FROM " . prefix('obj_to_tag') . " WHERE tagid = t.id AND type = 'images') AS count FROM  " . prefix('obj_to_tag') . " AS o," . prefix('tags') . " AS t" . $tagWhere . " ORDER BY t.name");
 			}
 			break;
 		case "albums":
 			$count = "";
-			if(count($albumids) == 0) {
+			if (count($albumids) == 0) {
 				return FALSE;
 			} else {
 				$tagWhere = " WHERE ";
-				foreach($albumids as $albumid) {
+				foreach ($albumids as $albumid) {
 					$count++;
-					$tagWhere .= '(o.objectid ='. $albumid['id']." AND o.tagid = t.id AND o.type = 'albums')";
-					if($count != count($albumids)) $tagWhere .= " OR ";
+					$tagWhere .= '(o.objectid =' . $albumid['id'] . " AND o.tagid = t.id AND o.type = 'albums')";
+					if ($count != count($albumids))
+						$tagWhere .= " OR ";
 				}
 			}
-			if(empty($tagWhere)) {
+			if (empty($tagWhere)) {
 				return FALSE;
 			} else {
-				$tags = query_full_array("SELECT DISTINCT t.name, t.id, (SELECT DISTINCT COUNT(*) FROM ". prefix('obj_to_tag'). " WHERE tagid = t.id AND o.type = 'albums') AS count FROM ". prefix('obj_to_tag'). " AS o,". prefix('tags'). " AS t".$tagWhere." ORDER BY t.name");
+				$tags = query_full_array("SELECT DISTINCT t.name, t.id, (SELECT DISTINCT COUNT(*) FROM " . prefix('obj_to_tag') . " WHERE tagid = t.id AND o.type = 'albums') AS count FROM " . prefix('obj_to_tag') . " AS o," . prefix('tags') . " AS t" . $tagWhere . " ORDER BY t.name");
 			}
 			break;
 	}
 	return $tags;
 }
 
-
 /**
  * Gets all tags used by either all Zenpage news articles or pages.
  * @param string $mode "news" for Zenpage news article tags, "pages" for Zenpage pages tags
  *
  */
-function getAllTagsFromZenpage($mode='news') {
-	global $_zp_gallery,$_zp_zenpage;
-	if(!extensionEnabled('zenpage')) {
+function getAllTagsFromZenpage($mode = 'news') {
+	global $_zp_gallery, $_zp_zenpage;
+	if (!extensionEnabled('zenpage')) {
 		return FALSE;
 	}
 	$passwordcheck = '';
 	$ids = array();
 	$where = '';
 	$tagWhere = "";
-	switch($mode) {
+	switch ($mode) {
 		case 'news':
-			if(zp_loggedin(ZENPAGE_NEWS_RIGHTS | ALL_NEWS_RIGHTS)) {
+			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS | ALL_NEWS_RIGHTS)) {
 				$published = 'all';
 			} else {
 				$published = 'published';
 			}
 			$type = 'news';
-			$items = $_zp_zenpage->getArticles(false,$published);
-			foreach($items as $item) {
+			$items = $_zp_zenpage->getArticles(false, $published);
+			foreach ($items as $item) {
 				$obj = new ZenpageNews($item['titlelink']);
-				if($obj->checkAccess($hint, $show)) {
+				if ($obj->checkAccess()) {
 					$ids[] = $obj->getID();
 				}
 			}
@@ -141,29 +142,30 @@ function getAllTagsFromZenpage($mode='news') {
 			$published = !zp_loggedin(ZENPAGE_NEWS_RIGHTS | ALL_NEWS_RIGHTS);
 			$type = 'pages';
 			$items = $_zp_zenpage->getPages($published);
-			foreach($items as $item) {
+			foreach ($items as $item) {
 				$obj = new ZenpagePage($item['titlelink']);
-				if($obj->checkAccess($hint, $show)) {
+				if ($obj->checkAccess()) {
 					$ids[] = $obj->getID();
 				}
 			}
 			break;
 	}
 	$count = '';
-	if(count($ids) == 0) {
+	if (count($ids) == 0) {
 		return FALSE;
 	} else {
 		$tagWhere = " WHERE ";
-		foreach($ids as $id) {
+		foreach ($ids as $id) {
 			$count++;
-			$tagWhere .= '(o.objectid ='. $id." AND o.tagid = t.id AND o.type = '".$type."')";
-			if($count != count($ids)) $tagWhere .= " OR ";
+			$tagWhere .= '(o.objectid =' . $id . " AND o.tagid = t.id AND o.type = '" . $type . "')";
+			if ($count != count($ids))
+				$tagWhere .= " OR ";
 		}
 	}
-	if(empty($tagWhere)) {
+	if (empty($tagWhere)) {
 		return FALSE;
 	} else {
-		$tags = query_full_array("SELECT DISTINCT t.name, t.id, (SELECT DISTINCT COUNT(*) FROM ". prefix('obj_to_tag'). " WHERE tagid = t.id AND o.type = '".$type."') AS count FROM ". prefix('obj_to_tag'). " AS o,". prefix('tags'). " AS t".$tagWhere." ORDER BY t.name");
+		$tags = query_full_array("SELECT DISTINCT t.name, t.id, (SELECT DISTINCT COUNT(*) FROM " . prefix('obj_to_tag') . " WHERE tagid = t.id AND o.type = '" . $type . "') AS count FROM " . prefix('obj_to_tag') . " AS o," . prefix('tags') . " AS t" . $tagWhere . " ORDER BY t.name");
 	}
 	return $tags;
 }
@@ -181,9 +183,9 @@ function getAllTagsFromZenpage($mode='news') {
  * @param integer $count_min the minimum count for a tag to appear in the output
  * @param integer $count_max the floor count for setting the cloud font size to $size_max
  */
-function printAllTagsFromZenpage($mode='news',$separator='',$class='',$showcounter=true,$tagcloud=true,$size_min=1,$size_max=5,$count_min=1,$count_max=50) {
+function printAllTagsFromZenpage($mode = 'news', $separator = '', $class = '', $showcounter = true, $tagcloud = true, $size_min = 1, $size_max = 5, $count_min = 1, $count_max = 50) {
 	$tags = getAllTagsFromZenpage($mode);
-	printAllTags($tags,$mode,$separator,$class,$showcounter,$tagcloud,$size_min,$size_max,$count_min,$count_max);
+	printAllTags($tags, $mode, $separator, $class, $showcounter, $tagcloud, $size_min, $size_max, $count_min, $count_max);
 }
 
 /**
@@ -202,25 +204,25 @@ function printAllTagsFromZenpage($mode='news',$separator='',$class='',$showcount
  * @param integer $count_min the minimum count for a tag to appear in the output
  * @param integer $count_max the floor count for setting the cloud font size to $size_max
  */
-function printAllTagsFromAlbum($albumname="",$subalbums=false,$mode='images',$separator='',$class='',$showcounter=true,$tagcloud=true,$size_min=1,$size_max=5,$count_min=1,$count_max=50) {
-	if($mode == 'all') {
-		if(getAllTagsFromAlbum($albumname,$subalbums,'albums') OR getAllTagsFromAlbum($albumname,$subalbums,'images')) {
+function printAllTagsFromAlbum($albumname = "", $subalbums = false, $mode = 'images', $separator = '', $class = '', $showcounter = true, $tagcloud = true, $size_min = 1, $size_max = 5, $count_min = 1, $count_max = 50) {
+	if ($mode == 'all') {
+		if (getAllTagsFromAlbum($albumname, $subalbums, 'albums') OR getAllTagsFromAlbum($albumname, $subalbums, 'images')) {
 			$showcounter = false;
-			$tags1 = getAllTagsFromAlbum($albumname,$subalbums,'albums');
-			$tags2 = getAllTagsFromAlbum($albumname,$subalbums,'images');
-			$tags = array_merge($tags1,$tags2);
+			$tags1 = getAllTagsFromAlbum($albumname, $subalbums, 'albums');
+			$tags2 = getAllTagsFromAlbum($albumname, $subalbums, 'images');
+			$tags = array_merge($tags1, $tags2);
 			$tags = getAllTagsFromAlbum_multi_unique($tags);
 		} else {
 			return FALSE;
 		}
 	} else {
-		if(getAllTagsFromAlbum($albumname,$subalbums,$mode)) {
-			$tags = getAllTagsFromAlbum($albumname,$subalbums,$mode);
+		if (getAllTagsFromAlbum($albumname, $subalbums, $mode)) {
+			$tags = getAllTagsFromAlbum($albumname, $subalbums, $mode);
 		} else {
 			return FALSE;
 		}
 	}
-	printAllTags($tags,$mode,$separator,$class,$showcounter,$tagcloud,$size_min,$size_max,$count_min,$count_max);
+	printAllTags($tags, $mode, $separator, $class, $showcounter, $tagcloud, $size_min, $size_max, $count_min, $count_max);
 }
 
 /**
@@ -239,8 +241,8 @@ function printAllTagsFromAlbum($albumname="",$subalbums=false,$mode='images',$se
  * @param integer $count_min the minimum count for a tag to appear in the output
  * @param integer $count_max the floor count for setting the cloud font size to $size_max
  */
-function printAllTags($tags,$mode,$separator='',$class='',$showcounter=true,$tagcloud=true,$size_min=1,$size_max=5,$count_min=1,$count_max=50) {
-	if(!is_array($tags)) {
+function printAllTags($tags, $mode, $separator = '', $class = '', $showcounter = true, $tagcloud = true, $size_min = 1, $size_max = 5, $count_min = 1, $count_max = 50) {
+	if (!is_array($tags)) {
 		return FALSE;
 	}
 	$size_min = sanitize_numeric($size_min);
@@ -248,30 +250,31 @@ function printAllTags($tags,$mode,$separator='',$class='',$showcounter=true,$tag
 	$count_min = sanitize_numeric($count_min);
 	$count_max = sanitize_numeric($count_max);
 	$separator = sanitize($separator);
-	if(!empty($class)) $class = 'class="'.sanitize($class).'"';
+	if (!empty($class))
+		$class = 'class="' . sanitize($class) . '"';
 	$counter = '';
-	echo "<ul ".$class.">\n";
+	echo "<ul " . $class . ">\n";
 	$loopcount = '';
 	$tagcount = count($tags);
 	foreach ($tags as $row) {
-		if($row['count'] >= $count_min) {
+		if ($row['count'] >= $count_min) {
 			$loopcount++;
 			$count = $row['count'];
-			$tid   = $row['id'];
+			$tid = $row['id'];
 			$tname = $row['name'];
 			$style = "";
-			if($tagcloud OR $mode == 'all') {
-				$size = min(max(round(($size_max*($count-$count_min))/($count_max-$count_min),
-				2), $size_min)
-				,$size_max);
-				$size = str_replace(',','.', $size);
-				$style = " style=\"font-size:".$size."em;\"";
+			if ($tagcloud OR $mode == 'all') {
+				$size = min(max(round(($size_max * ($count - $count_min)) / ($count_max - $count_min), 2), $size_min)
+								, $size_max);
+				$size = str_replace(',', '.', $size);
+				$style = " style=\"font-size:" . $size . "em;\"";
 			}
-			if($showcounter) {
-				$counter = ' ('.$count.')';
+			if ($showcounter) {
+				$counter = ' (' . $count . ')';
 			}
-			if($loopcount == $tagcount) $separator = '';
-			echo "<li><a class=\"tagLink\" href=\"".html_encode(getSearchURL($tname, '', 'tags', 0))."\"".$style." rel=\"nofollow\">".$tname.$counter."</a>".$separator."</li>\n";
+			if ($loopcount == $tagcount)
+				$separator = '';
+			echo "<li><a class=\"tagLink\" href=\"" . html_encode(getSearchURL($tname, '', 'tags', 0)) . "\"" . $style . " rel=\"nofollow\">" . $tname . $counter . "</a>" . $separator . "</li>\n";
 		}
 	}
 	echo "</ul>\n";
@@ -284,11 +287,12 @@ function printAllTags($tags,$mode,$separator='',$class='',$showcounter=true,$tag
  * @return array
  */
 function getAllTagsFromAlbum_multi_unique($array) {
-	foreach ($array as $k=>$na)
-	$new[$k] = serialize($na);
+	foreach ($array as $k => $na)
+		$new[$k] = serialize($na);
 	$uniq = array_unique($new);
-	foreach($uniq as $k=>$ser)
-	$new1[$k] = unserialize($ser);
+	foreach ($uniq as $k => $ser)
+		$new1[$k] = unserialize($ser);
 	return ($new1);
 }
+
 ?>
