@@ -548,6 +548,29 @@ function getAllAlbums($album = NULL) {
 }
 
 /**
+ * Gets all accessible albums (public/user dependent) as an album id array for further processing
+ * 
+ * @param object $obj from whence to get the albums
+ * @param array $albumlist collects the list
+ * @param bool $scan force scan for new images in the album folder
+ * @return array
+ */
+function getAllAccessibleAlbums($obj, &$albumlist, $scan) {
+  global $_zp_gallery;
+  $hint = $show = false;
+  $locallist = $obj->getAlbums();
+  foreach ($locallist as $folder) {
+    $album = newAlbum($folder);
+    If (!$album->isDynamic() && $album->checkAccess($hint, $show)) {
+      if ($scan)
+        $album->getImages();
+      $albumlist[] = $album->getID();
+      getAllAccessibleAlbums($album, $albumlist, $scan);
+    }
+  }
+}
+
+/**
  * Returns the number of pages for the current object
  *
  * @param bool $_oneImagePage set to true if your theme collapses all image thumbs
