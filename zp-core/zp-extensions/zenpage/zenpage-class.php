@@ -271,11 +271,6 @@ class Zenpage {
 				} else {
 					$cat = " cat.cat_id = '" . $catid . "' AND cat.news_id = news.id ";
 				}
-				if (in_context(ZP_ZENPAGE_NEWS_DATE)) {
-					$postdate = $_zp_post_date;
-				} else {
-					$postdate = NULL;
-				}
 			} else {
 				$showConjunction = ' WHERE ';
 			}
@@ -359,13 +354,13 @@ class Zenpage {
 				$datesearch = '';
 				switch ($published) {
 					case "published":
-						$datesearch = "date LIKE '$postdate%' ";
+						$datesearch = "date LIKE '$_zp_post_date%' ";
 						break;
 					case "unpublished":
-						$datesearch = "date LIKE '$postdate%' ";
+						$datesearch = "date LIKE '$_zp_post_date%' ";
 						break;
 					case "all":
-						$datesearch = "date LIKE '$postdate%' ";
+						$datesearch = "date LIKE '$_zp_post_date%' ";
 						break;
 				}
 				if ($datesearch) {
