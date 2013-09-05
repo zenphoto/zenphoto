@@ -599,9 +599,9 @@ class Zenpage {
 		}
 		getAllAccessibleAlbums($_zp_gallery, $albumlist, false);
 		if (empty($albumlist)) {
-			$albumWhere = '';
+			$albumWhere = 'albums.`id`= NULL';
 		} else {
-			$albumWhere = ' AND (albums.`id`=' . implode(' OR albums.`id`=', $albumlist) . ')';
+			$albumWhere = '(albums.`id`=' . implode(' OR albums.`id`=', $albumlist) . ')';
 		}
 		if ($articles_per_page) {
 			$offset = self::getOffset($articles_per_page);
@@ -633,6 +633,7 @@ class Zenpage {
 			case "latestimages-sizedimage":
 			case "latestimages-sizedimage-maxspace":
 			case "latestimages-fullimage":
+				$albumWhere = ' AND '.$albumWhere;
 				$sortorder = $combinews_sortorder;
 				$type1 = query("SET @type1:='news'");
 				$type2 = query("SET @type2:='images'");
@@ -660,6 +661,11 @@ class Zenpage {
 			case "latestalbums-sizedimage":
 			case "latestalbums-sizedimage-maxspace":
 			case "latestalbums-fullimage":
+				if (empty($show)) {
+					$albumWhere = ' WHERE '.$albumWhere;
+				} else {
+					$albumWhere = ' AND '.$albumWhere;
+				}
 				$sortorder = $combinews_sortorder;
 				$type1 = query("SET @type1:='news'");
 				$type2 = query("SET @type2:='albums'");
@@ -688,6 +694,7 @@ class Zenpage {
 			case "latestimagesbyalbum-sizedimage":
 			case "latestimagesbyalbum-sizedimage-maxspace":
 			case "latestimagesbyalbum-fullimage":
+				$albumWhere = ' AND '.$albumWhere;
 				$type1 = query("SET @type1:='news'");
 				$type2 = query("SET @type2:='albums'");
 				if (empty($combinews_sortorder) || $combinews_sortorder != "date" || $combinews_sortorder != "mtime" || $combinews_sortorder != "publishdate") {
