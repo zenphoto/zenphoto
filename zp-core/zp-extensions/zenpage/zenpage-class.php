@@ -601,7 +601,7 @@ class Zenpage {
 		if (empty($albumlist)) {
 			$albumWhere = 'albums.`id`=NULL';
 		} else {
-			$albumWhere = 'albums.`id` albums.in (' . implode(',', $albumlist) . ')';
+			$albumWhere = 'albums.`id` in (' . implode(',', $albumlist) . ')';
 		}
 		if ($articles_per_page) {
 			$offset = self::getOffset($articles_per_page);

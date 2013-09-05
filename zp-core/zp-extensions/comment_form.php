@@ -204,7 +204,7 @@ class comment_form {
  * @param bool $desc_order default false, set to true to change the comment order to descending ( = newest to oldest)
  */
 function printCommentForm($showcomments = true, $addcommenttext = NULL, $addheader = true, $comment_commententry_mod = '', $desc_order = false) {
-	global $_zp_gallery_page, $_zp_current_admin_obj, $_zp_current_comment, $_zp_captcha, $_zp_authority;
+	global $_zp_gallery_page, $_zp_current_admin_obj, $_zp_current_comment, $_zp_captcha, $_zp_authority, $_zp_HTML_cache;
 	if (getOption('email_new_comments')) {
 		$email_list = $_zp_authority->getAdminEmail();
 		if (empty($email_list)) {
@@ -373,6 +373,15 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 				$data = zp_apply_filter('comment_form_data', array('data'		 => $stored, 'disabled' => $disabled));
 				$disabled = $data['disabled'];
 				$stored = $data['data'];
+
+				foreach ($data as $check) {
+					foreach ($check as $v) {
+						if ($v) {
+							$_zp_HTML_cache->disable(); //	shouldn't cache partially filled in pages
+							break 2;
+						}
+					}
+				}
 
 				if (!empty($addcommenttext)) {
 					echo $addcommenttext;
