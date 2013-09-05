@@ -49,14 +49,14 @@
  * jPlayer attaches to the content_macro MEDIAPLAYER you can use within normal text of Zenpage pages or articles for example.
  *
  * Usage:
- * [MEDIAPLAYER <fullpath to your multimedia file> <number>]
+ * [MEDIAPLAYER <albumname> <imagefilename> <number>]
  *
  * Example:
- * [MEDIAPLAYER http://yourdomain.com/albums/video/video.mp4]
+ * [MEDIAPLAYER album1 video.mp4]
  *
  * If you are using more than one player on a page you need to pass a 2nd parameter with for example an unique number:<br>
- * [MEDIAPLAYER http://yourdomain.com/albums/video/video1.mp4 1]<br>
- * [MEDIAPLAYER http://yourdomain.com/albums/video/video2.mp4 2]
+ * [MEDIAPLAYER album1 video1.mp4 1]<br>
+ * [MEDIAPLAYER album2 video2.mp4 2]
  *
  * <b>NOTE:</b> This player does not support external albums!
  *
@@ -234,7 +234,7 @@ class jPlayer {
 		if ($movie->exists) {
 			return $_zp_multimedia_extension->getPlayerConfig($movie, NULL, (int) $count);
 		} else {
-			return '<span class = "error">' . sprintf(gettext('%1$s::%2$s not found.'), albumname, $imagename) . '</span>';
+			return '<span class = "error">' . sprintf(gettext('%1$s::%2$s not found.'), $albumname, $imagename) . '</span>';
 		}
 	}
 

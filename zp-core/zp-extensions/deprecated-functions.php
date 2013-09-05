@@ -774,13 +774,12 @@ function countArticles($category = '', $published = 'published', $count_subcat_a
 		}
 		// date archive query addition
 		if (in_context(ZP_ZENPAGE_NEWS_DATE)) {
-			$postdate = $_zp_post_date;
 			if (empty($show)) {
 				$and = " WHERE ";
 			} else {
 				$and = " AND ";
 			}
-			$datesearch = $and . "date LIKE '$postdate%'";
+			$datesearch = $and . "date LIKE '$_zp_post_date%'";
 		} else {
 			$datesearch = "";
 		}

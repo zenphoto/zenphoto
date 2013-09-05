@@ -271,11 +271,6 @@ class Zenpage {
 				} else {
 					$cat = " cat.cat_id = '" . $catid . "' AND cat.news_id = news.id ";
 				}
-				if (in_context(ZP_ZENPAGE_NEWS_DATE)) {
-					$postdate = $_zp_post_date;
-				} else {
-					$postdate = NULL;
-				}
 			} else {
 				$showConjunction = ' WHERE ';
 			}
@@ -359,13 +354,13 @@ class Zenpage {
 				$datesearch = '';
 				switch ($published) {
 					case "published":
-						$datesearch = "date LIKE '$postdate%' ";
+						$datesearch = "date LIKE '$_zp_post_date%' ";
 						break;
 					case "unpublished":
-						$datesearch = "date LIKE '$postdate%' ";
+						$datesearch = "date LIKE '$_zp_post_date%' ";
 						break;
 					case "all":
-						$datesearch = "date LIKE '$postdate%' ";
+						$datesearch = "date LIKE '$_zp_post_date%' ";
 						break;
 				}
 				if ($datesearch) {
@@ -578,7 +573,7 @@ class Zenpage {
 	 * @return array
 	 */
 	function getCombiNews($articles_per_page = '', $mode = '', $published = NULL, $sortorder = NULL, $sticky = true, $sortdirection = 'desc') {
-		global $_zp_combiNews_cache;
+		global $_zp_combiNews_cache, $_zp_gallery;
 		if (is_null($published)) {
 			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS | ALL_NEWS_RIGHTS)) {
 				$published = "all";
@@ -602,19 +597,11 @@ class Zenpage {
 			$show = "";
 			$imagesshow = "";
 		}
-		$passwordcheck = "";
-		if (zp_loggedin(ZENPAGE_NEWS_RIGHTS | ALL_NEWS_RIGHTS)) {
-			$albumWhere = "";
-			$passwordcheck = "";
+		getAllAccessibleAlbums($_zp_gallery, $albumlist, false);
+		if (empty($albumlist)) {
+			$albumWhere = 'albums.`id`=NULL';
 		} else {
-			$albumscheck = query_full_array("SELECT * FROM " . prefix('albums') . " ORDER BY title");
-			foreach ($albumscheck as $albumcheck) {
-				if (!checkAlbumPassword($albumcheck['folder'])) {
-					$albumpasswordcheck = " AND albums.id != " . $albumcheck['id'];
-					$passwordcheck = $passwordcheck . $albumpasswordcheck;
-				}
-			}
-			$albumWhere = "AND albums.show=1" . $passwordcheck;
+			$albumWhere = 'albums.`id` albums.in (' . implode(',', $albumlist) . ')';
 		}
 		if ($articles_per_page) {
 			$offset = self::getOffset($articles_per_page);
@@ -646,6 +633,7 @@ class Zenpage {
 			case "latestimages-sizedimage":
 			case "latestimages-sizedimage-maxspace":
 			case "latestimages-fullimage":
+				$albumWhere = ' AND ' . $albumWhere;
 				$sortorder = $combinews_sortorder;
 				$type1 = query("SET @type1:='news'");
 				$type2 = query("SET @type2:='images'");
@@ -673,6 +661,11 @@ class Zenpage {
 			case "latestalbums-sizedimage":
 			case "latestalbums-sizedimage-maxspace":
 			case "latestalbums-fullimage":
+				if (empty($show)) {
+					$albumWhere = ' WHERE ' . $albumWhere;
+				} else {
+					$albumWhere = ' AND ' . $albumWhere;
+				}
 				$sortorder = $combinews_sortorder;
 				$type1 = query("SET @type1:='news'");
 				$type2 = query("SET @type2:='albums'");
@@ -701,6 +694,7 @@ class Zenpage {
 			case "latestimagesbyalbum-sizedimage":
 			case "latestimagesbyalbum-sizedimage-maxspace":
 			case "latestimagesbyalbum-fullimage":
+				$albumWhere = ' AND ' . $albumWhere;
 				$type1 = query("SET @type1:='news'");
 				$type2 = query("SET @type2:='albums'");
 				if (empty($combinews_sortorder) || $combinews_sortorder != "date" || $combinews_sortorder != "mtime" || $combinews_sortorder != "publishdate") {

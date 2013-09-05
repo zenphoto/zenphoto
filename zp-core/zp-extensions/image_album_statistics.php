@@ -14,27 +14,6 @@ $plugin_description = gettext("Functions that provide various statistics about i
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 
 /**
- *
- * used to get a list of albums to be further processed
- * @param object $obj from whence to get the albums
- * @param array $albumlist collects the list
- * @param bool $scan force scan for new images in the album folder
- */
-function getImageAlbumAlbumList($obj, &$albumlist, $scan) {
-	global $_zp_gallery;
-	$locallist = $obj->getAlbums();
-	foreach ($locallist as $folder) {
-		$album = newAlbum($folder);
-		If (!$album->isDynamic() && $album->checkAccess()) {
-			if ($scan)
-				$album->getImages();
-			$albumlist[] = $album->getID();
-			getImageAlbumAlbumList($album, $albumlist, $scan);
-		}
-	}
-}
-
-/**
  * Returns a list of album statistic accordingly to $option
  *
  * @param int $number the number of albums to get
@@ -60,7 +39,7 @@ function getAlbumStatistic($number = 5, $option, $albumfolder = '', $sortdirecti
 	} else {
 		$obj = $_zp_gallery;
 	}
-	getImageAlbumAlbumList($obj, $albumlist, false);
+	getAllAccessibleAlbums($obj, $albumlist, false);
 	switch ($sortdirection) {
 		case 'desc':
 		default:
@@ -70,10 +49,10 @@ function getAlbumStatistic($number = 5, $option, $albumfolder = '', $sortdirecti
 			$sortdir = 'ASC';
 			break;
 	}
-	if (!empty($albumlist)) {
-		$albumWhere = ' WHERE `id` in (' . implode(',', $albumlist) . ')';
+	if (empty($albumlist)) {
+		return array();
 	} else {
-		$albumWhere = '';
+		$albumWhere = ' WHERE `id` in (' . implode(',', $albumlist) . ')';
 	}
 	switch ($option) {
 		case "popular":
@@ -387,11 +366,11 @@ function getImageStatistic($number, $option, $albumfolder = '', $collection = fa
 	} else {
 		$obj = $_zp_gallery;
 	}
-	getImageAlbumAlbumList($obj, $albumlist, true);
+	getAllAccessibleAlbums($obj, $albumlist, true);
 	if (empty($albumlist)) {
 		return array();
 	}
-	$albumWhere = ' AND (albums.`id`=' . implode(' OR albums.`id`=', $albumlist) . ')';
+	$albumWhere = ' AND albums.`id` in (' . implode(',', $albumlist) . ')';
 	if ($threshold > 0) {
 		$albumWhere .= ' AND images.total_votes >= ' . $threshold;
 	}
@@ -516,7 +495,7 @@ function printImageStatistic($number, $option, $albumfolder = '', $showtitle = f
 		} else {
 			$imagelink = $image->getImageLink();
 		}
-		echo '<li><a href="' . html_encode($imagelink) . '" title="' . html_encode($image->getTitle()) . "\">\n";
+		echo '<li><a href="' . html_encode(pathurlencode($imagelink)) . '" title="' . html_encode($image->getTitle()) . "\">\n";
 		switch ($crop) {
 			case 0:
 				echo '<img src="' . html_encode(pathurlencode($image->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . html_encode($image->getTitle()) . "\" /></a>\n";

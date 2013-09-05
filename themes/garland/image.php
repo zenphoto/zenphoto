@@ -68,9 +68,9 @@ if (!defined('WEBPATH'))
 										printParentBreadcrumb("", " » ", " » ");
 										printAlbumBreadcrumb("  ", " » ");
 										?>
-									<?php printImageTitle(); ?>
+										<?php printImageTitle(); ?>
 									</h2>
-										<?php printCodeblock(1); ?>
+									<?php printCodeblock(1); ?>
 									<div id="image_container">
 										<?php
 										if (isImagePhoto()) {
@@ -80,7 +80,7 @@ if (!defined('WEBPATH'))
 										}
 										if (!empty($fullimage)) {
 											?>
-											<a href="<?php echo html_encode($fullimage); ?>" title="<?php printBareImageTitle(); ?>" class="thickbox">
+											<a href="<?php echo html_encode(pathurlencode($fullimage)); ?>" title="<?php printBareImageTitle(); ?>" class="thickbox">
 												<?php
 											}
 											printCustomSizedImage(getImageTitle(), null, 520);
@@ -143,7 +143,7 @@ if (!defined('WEBPATH'))
 							setOption('gmap_display', 'colorbox', false);
 							?>
 							<span id="map_link">
-	<?php printGoogleMap(NULL, NULL, NULL, NULL, 'gMapOptionsImage'); ?>
+								<?php printGoogleMap(NULL, NULL, NULL, NULL, 'gMapOptionsImage'); ?>
 							</span>
 							<br class="clearall" />
 							<?php

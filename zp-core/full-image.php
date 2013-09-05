@@ -32,7 +32,7 @@ if (getOption('hotlink_protection') && isset($_SERVER['HTTP_REFERER'])) {
 	preg_match('|(.*)//([^/]*)|', $_SERVER['HTTP_REFERER'], $matches);
 	if (preg_replace('/^www\./', '', strtolower($_SERVER['SERVER_NAME'])) != preg_replace('/^www\./', '', strtolower($matches[2]))) {
 		/* It seems they are directly requesting the full image. */
-		header('Location: ' . FULLWEBPATH . '\index.php?album=' . $album8 . '&image=' . $image8);
+		header('Location: ' . FULLWEBPATH . '/index.php?album=' . $album8 . '&image=' . $image8);
 		exitZP();
 	}
 }
