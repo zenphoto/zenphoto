@@ -49,10 +49,10 @@ function getAlbumStatistic($number = 5, $option, $albumfolder = '', $sortdirecti
 			$sortdir = 'ASC';
 			break;
 	}
-	if (!empty($albumlist)) {
-		$albumWhere = ' WHERE `id` in (' . implode(',', $albumlist) . ')';
+	if (empty($albumlist)) {
+		return array();
 	} else {
-		$albumWhere = '';
+		$albumWhere = ' WHERE `id` in (' . implode(',', $albumlist) . ')';
 	}
 	switch ($option) {
 		case "popular":
@@ -370,7 +370,7 @@ function getImageStatistic($number, $option, $albumfolder = '', $collection = fa
 	if (empty($albumlist)) {
 		return array();
 	}
-	$albumWhere = ' AND (albums.`id`=' . implode(' OR albums.`id`=', $albumlist) . ')';
+	$albumWhere = ' AND albums.`id` in (' . implode(',', $albumlist) . ')';
 	if ($threshold > 0) {
 		$albumWhere .= ' AND images.total_votes >= ' . $threshold;
 	}

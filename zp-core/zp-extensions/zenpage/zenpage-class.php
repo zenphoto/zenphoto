@@ -573,7 +573,7 @@ class Zenpage {
 	 * @return array
 	 */
 	function getCombiNews($articles_per_page = '', $mode = '', $published = NULL, $sortorder = NULL, $sticky = true, $sortdirection = 'desc') {
-		global $_zp_combiNews_cache,$_zp_gallery;
+		global $_zp_combiNews_cache, $_zp_gallery;
 		if (is_null($published)) {
 			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS | ALL_NEWS_RIGHTS)) {
 				$published = "all";
@@ -599,9 +599,9 @@ class Zenpage {
 		}
 		getAllAccessibleAlbums($_zp_gallery, $albumlist, false);
 		if (empty($albumlist)) {
-			$albumWhere = 'albums.`id`= NULL';
+			$albumWhere = 'albums.`id`=NULL';
 		} else {
-			$albumWhere = '(albums.`id`=' . implode(' OR albums.`id`=', $albumlist) . ')';
+			$albumWhere = 'albums.`id` albums.in (' . implode(',', $albumlist) . ')';
 		}
 		if ($articles_per_page) {
 			$offset = self::getOffset($articles_per_page);
@@ -633,7 +633,7 @@ class Zenpage {
 			case "latestimages-sizedimage":
 			case "latestimages-sizedimage-maxspace":
 			case "latestimages-fullimage":
-				$albumWhere = ' AND '.$albumWhere;
+				$albumWhere = ' AND ' . $albumWhere;
 				$sortorder = $combinews_sortorder;
 				$type1 = query("SET @type1:='news'");
 				$type2 = query("SET @type2:='images'");
@@ -662,9 +662,9 @@ class Zenpage {
 			case "latestalbums-sizedimage-maxspace":
 			case "latestalbums-fullimage":
 				if (empty($show)) {
-					$albumWhere = ' WHERE '.$albumWhere;
+					$albumWhere = ' WHERE ' . $albumWhere;
 				} else {
-					$albumWhere = ' AND '.$albumWhere;
+					$albumWhere = ' AND ' . $albumWhere;
 				}
 				$sortorder = $combinews_sortorder;
 				$type1 = query("SET @type1:='news'");
@@ -694,7 +694,7 @@ class Zenpage {
 			case "latestimagesbyalbum-sizedimage":
 			case "latestimagesbyalbum-sizedimage-maxspace":
 			case "latestimagesbyalbum-fullimage":
-				$albumWhere = ' AND '.$albumWhere;
+				$albumWhere = ' AND ' . $albumWhere;
 				$type1 = query("SET @type1:='news'");
 				$type2 = query("SET @type2:='albums'");
 				if (empty($combinews_sortorder) || $combinews_sortorder != "date" || $combinews_sortorder != "mtime" || $combinews_sortorder != "publishdate") {
