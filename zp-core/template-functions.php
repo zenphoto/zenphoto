@@ -3836,11 +3836,11 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 						if ($searchwords) {
 							?>
 							<label>
-								<input type="radio" name="search_within" id="search_within-1" value="1"<?php if ($within) echo ' checked="checked"'; ?> onclick="search_(1)"; />
+								<input type="radio" name="search_within" id="search_within-1" value="1"<?php if ($within) echo ' checked="checked"'; ?> onclick="search_(1);" />
 								<?php echo gettext('Within'); ?>
 							</label>
 							<label>
-								<input type="radio" name="search_within" id="search_within-0" value="1"<?php if (!$within) echo ' checked="checked"'; ?> onclick="search_(0)"; />
+								<input type="radio" name="search_within" id="search_within-0" value="1"<?php if (!$within) echo ' checked="checked"'; ?> onclick="search_(0);" />
 								<?php echo gettext('New'); ?>
 							</label>
 							<?php
