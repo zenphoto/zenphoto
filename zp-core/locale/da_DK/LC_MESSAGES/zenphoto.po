@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.5 github\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-22 18:04+0100\n"
-"PO-Revision-Date: 2013-07-24 21:34+0100\n"
+"POT-Creation-Date: 2013-07-24 23:47+0100\n"
+"PO-Revision-Date: 2013-07-24 23:55+0100\n"
 "Last-Translator: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language-Team: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language: danish\n"
@@ -164,7 +164,7 @@ msgstr "Desværre gav søgningen intet resultat. Prøv at omdefiner din søgning
 #: /home/jes/workspace/zenphoto/themes/default/album.php:62
 #: /home/jes/workspace/zenphoto/themes/default/image.php:35
 #: /home/jes/workspace/zenphoto/themes/default/favorites.php:62
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4321
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4312
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/slideshow.php:587
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/comment_form/functions.php:33
 msgid "prev"
@@ -202,9 +202,9 @@ msgstr "forrige"
 #: /home/jes/workspace/zenphoto/themes/default/album.php:62
 #: /home/jes/workspace/zenphoto/themes/default/image.php:37
 #: /home/jes/workspace/zenphoto/themes/default/favorites.php:62
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4349
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4340
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/slideshow.php:588
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:469
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:468
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/comment_form/functions.php:34
 msgid "next"
 msgstr "næste"
@@ -258,8 +258,8 @@ msgstr "Seneste nyt"
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:569
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:576
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:578
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2214
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2215
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2216
 #: /home/jes/workspace/zenphoto/zp-core/setup/setup-option-defaults.php:365
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/rss.php:74
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:135
@@ -296,8 +296,8 @@ msgstr "Det Zenphoto objektet du har søgt kan ikke findes."
 #: /home/jes/workspace/zenphoto/themes/zenpage/404.php:37
 #: /home/jes/workspace/zenphoto/themes/garland/404.php:46
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:490
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:486
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4557
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:485
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4548
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/related_items.php:174
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:81
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:85
@@ -308,7 +308,7 @@ msgstr "Album"
 #: /home/jes/workspace/zenphoto/themes/zpmobile/404.php:35
 #: /home/jes/workspace/zenphoto/themes/zenpage/404.php:40
 #: /home/jes/workspace/zenphoto/themes/garland/404.php:49
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4555
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4546
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/related_items.php:181
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:100
 msgid "Image"
@@ -374,8 +374,8 @@ msgstr "Se metadata"
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:558
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:567
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:572
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3025
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3143
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3017
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3135
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:107
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/related_items.php:152
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/related_items.php:187
@@ -531,7 +531,7 @@ msgstr "Nyheder og Galleri"
 #: /home/jes/workspace/zenphoto/themes/stopdesign/contact.php:37
 #: /home/jes/workspace/zenphoto/themes/stopdesign/register.php:37
 #: /home/jes/workspace/zenphoto/themes/stopdesign/gallery.php:109
-#: /home/jes/workspace/zenphoto/themes/stopdesign/favorites.php:165
+#: /home/jes/workspace/zenphoto/themes/stopdesign/favorites.php:167
 #: /home/jes/workspace/zenphoto/zp-core/template-functions.php:1305
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/menu_manager.php:790
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:449
@@ -575,8 +575,8 @@ msgstr "Søg"
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:559
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:568
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:573
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3025
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3157
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3017
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3149
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:108
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/related_items.php:152
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/comment_form.php:97
@@ -722,7 +722,7 @@ msgstr "Bruger registrering"
 #: /home/jes/workspace/zenphoto/themes/default/favorites.php:39
 #: /home/jes/workspace/zenphoto/themes/default/favorites.php:54
 #: /home/jes/workspace/zenphoto/themes/stopdesign/favorites.php:58
-#: /home/jes/workspace/zenphoto/themes/stopdesign/favorites.php:126
+#: /home/jes/workspace/zenphoto/themes/stopdesign/favorites.php:128
 #: /home/jes/workspace/zenphoto/themes/garland/favorites.php:60
 #: /home/jes/workspace/zenphoto/themes/garland/favorites.php:78
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:199
@@ -765,7 +765,7 @@ msgstr "Søg indenfor album"
 #: /home/jes/workspace/zenphoto/themes/stopdesign/contact.php:37
 #: /home/jes/workspace/zenphoto/themes/stopdesign/register.php:37
 #: /home/jes/workspace/zenphoto/themes/stopdesign/gallery.php:109
-#: /home/jes/workspace/zenphoto/themes/stopdesign/favorites.php:165
+#: /home/jes/workspace/zenphoto/themes/stopdesign/favorites.php:167
 msgid "Main Index"
 msgstr "Hovedindex"
 
@@ -790,7 +790,7 @@ msgstr "Hovedindex"
 #: /home/jes/workspace/zenphoto/themes/stopdesign/404.php:46
 #: /home/jes/workspace/zenphoto/themes/stopdesign/image.php:167
 #: /home/jes/workspace/zenphoto/themes/stopdesign/password.php:43
-#: /home/jes/workspace/zenphoto/themes/stopdesign/favorites.php:166
+#: /home/jes/workspace/zenphoto/themes/stopdesign/favorites.php:168
 #: /home/jes/workspace/zenphoto/zp-core/404.php:23
 msgid "Albums Index"
 msgstr "Album index"
@@ -1171,11 +1171,10 @@ msgstr "Indexbillede"
 #: /home/jes/workspace/zenphoto/themes/zenpage/themeoptions.php:68
 #: /home/jes/workspace/zenphoto/themes/garland/themeoptions.php:87
 #: /home/jes/workspace/zenphoto/zp-core/admin-edit.php:1252
-#: /home/jes/workspace/zenphoto/zp-core/functions-basic.php:225
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1808
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1821
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1849
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2556
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1807
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1820
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1848
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2555
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/slideshow.php:127
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_effects.php:125
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_effects.php:129
@@ -1380,7 +1379,7 @@ msgstr "album"
 #: /home/jes/workspace/zenphoto/themes/garland/functions.php:144
 #: /home/jes/workspace/zenphoto/zp-core/admin-edit.php:1386
 #: /home/jes/workspace/zenphoto/zp-core/admin-globals.php:114
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2491
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2490
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/image_album_statistics.php:228
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage.php:158
 msgid "image"
@@ -1823,8 +1822,8 @@ msgstr "1 album,&nbsp;%u billeder"
 #: /home/jes/workspace/zenphoto/themes/stopdesign/search.php:123
 #: /home/jes/workspace/zenphoto/themes/stopdesign/album.php:111
 #: /home/jes/workspace/zenphoto/themes/stopdesign/album.php:138
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2432
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2434
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2431
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2433
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1553
 msgid "Next page"
 msgstr "Næste side"
@@ -1832,14 +1831,14 @@ msgstr "Næste side"
 #: /home/jes/workspace/zenphoto/themes/stopdesign/search.php:143
 #: /home/jes/workspace/zenphoto/themes/stopdesign/album.php:161
 #: /home/jes/workspace/zenphoto/themes/stopdesign/gallery.php:88
-#: /home/jes/workspace/zenphoto/themes/stopdesign/favorites.php:146
+#: /home/jes/workspace/zenphoto/themes/stopdesign/favorites.php:148
 msgid "prev page"
 msgstr "forrige side"
 
 #: /home/jes/workspace/zenphoto/themes/stopdesign/search.php:151
 #: /home/jes/workspace/zenphoto/themes/stopdesign/album.php:169
 #: /home/jes/workspace/zenphoto/themes/stopdesign/gallery.php:91
-#: /home/jes/workspace/zenphoto/themes/stopdesign/favorites.php:154
+#: /home/jes/workspace/zenphoto/themes/stopdesign/favorites.php:156
 msgid "next page"
 msgstr "næste side"
 
@@ -1924,7 +1923,7 @@ msgstr "Galleri data"
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:570
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:574
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1984
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3130
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3122
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:105
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/related_items.php:152
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/comment_form.php:95
@@ -1979,7 +1978,7 @@ msgid "Album RSS feed"
 msgstr "Album RSS-feed"
 
 #: /home/jes/workspace/zenphoto/themes/stopdesign/album.php:152
-#: /home/jes/workspace/zenphoto/themes/stopdesign/favorites.php:138
+#: /home/jes/workspace/zenphoto/themes/stopdesign/favorites.php:140
 #, php-format
 msgid "images %1$u-%2$u of %3$u"
 msgstr "billede %1$u-%2$u af %3$u"
@@ -2323,7 +2322,7 @@ msgstr "Tilbage til temalisten"
 #: /home/jes/workspace/zenphoto/zp-core/admin-thumbcrop.php:271
 #: /home/jes/workspace/zenphoto/zp-core/admin-thumbcrop.php:273
 #: /home/jes/workspace/zenphoto/zp-core/admin-refresh-metadata.php:145
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1195
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1193
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1916
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/crop_image.php:352
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/crop_image.php:353
@@ -2385,14 +2384,14 @@ msgstr "Opdater Fil"
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1361
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1553
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1582
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2197
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2327
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2594
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2661
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2786
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2834
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2945
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1203
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2196
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2326
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2593
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2659
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2784
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2832
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2943
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1201
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1924
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/rewriteTokens.php:66
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/crop_image.php:344
@@ -2458,8 +2457,8 @@ msgstr "Slet valgte tags"
 #: /home/jes/workspace/zenphoto/zp-core/admin-tags.php:157
 #: /home/jes/workspace/zenphoto/zp-core/admin-users.php:475
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1490
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:805
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4430
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:804
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4421
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/publishContent/publishContent.php:251
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/publishContent/publishContent.php:502
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/publishContent/publishContent.php:556
@@ -2551,7 +2550,7 @@ msgstr "Se logfiler"
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1036
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:204
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:143
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:149
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:150
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:249
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1014
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1388
@@ -2562,7 +2561,7 @@ msgid "Delete"
 msgstr "Slet"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-logs.php:121
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2074
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2073
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList/download_statistics.php:24
 msgid "Download"
 msgstr "Download"
@@ -2711,14 +2710,14 @@ msgstr "Dit websted URL-adresse er ikke gyldig"
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1360
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1552
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1581
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2196
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2325
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2592
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2660
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2785
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2833
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2944
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1199
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2195
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2324
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2591
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2658
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2783
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2831
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2942
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1197
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1920
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/crop_image.php:347
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:235
@@ -2727,10 +2726,10 @@ msgstr "Dit websted URL-adresse er ikke gyldig"
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:177
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:179
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:184
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:128
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:129
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:178
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:130
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:179
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:180
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:228
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:395
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/publishContent/publishContent.php:207
@@ -2754,13 +2753,13 @@ msgstr "Anvend"
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1361
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1553
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1582
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2197
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2327
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2594
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2661
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2786
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2834
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2945
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2196
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2326
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2593
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2659
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2784
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2832
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2943
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/search_statistics/search_analysis.php:268
 msgid "reset"
 msgstr "nulstil"
@@ -2778,10 +2777,10 @@ msgid "Collapse all"
 msgstr "Skjul alle"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-users.php:473
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2131
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2130
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2145
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2146
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2147
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2148
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/contact_form.php:78
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/GoogleMap.php:82
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:96
@@ -2899,7 +2898,7 @@ msgstr "<em>Master</em> kontoen har fulde rettigheder over alle albums."
 #: /home/jes/workspace/zenphoto/zp-core/admin-users.php:780
 #: /home/jes/workspace/zenphoto/zp-core/admin-users.php:789
 #: /home/jes/workspace/zenphoto/zp-core/admin-users.php:795
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3163
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3155
 msgid "user"
 msgstr "bruger"
 
@@ -3310,7 +3309,7 @@ msgid "Show theme for: "
 msgstr "Vis tema for:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-themes.php:157
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2285
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2284
 msgid "There are no themes for which you have rights to administer."
 msgstr "Der er ingen temaer du har rettigheder til at administrere."
 
@@ -3432,7 +3431,7 @@ msgid "Image order saved"
 msgstr "Billedorden gemt"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-albumsort.php:115
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4595
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4586
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1712
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:36
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:12
@@ -3441,7 +3440,7 @@ msgstr "Intet ændret"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-albumsort.php:140
 #: /home/jes/workspace/zenphoto/zp-core/admin-albumsort.php:169
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1218
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1216
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1939
 msgid "View Album"
 msgstr "Se Album"
@@ -3634,7 +3633,7 @@ msgid "Comment does not exist"
 msgstr "Kommentaren eksisterer ikke"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-comments.php:264
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4601
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4592
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1676
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:907
 msgid "Selected items deleted"
@@ -3656,7 +3655,7 @@ msgstr[0] "%u Kommentaren slettet"
 msgstr[1] "%u Kommentarer slettede"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-comments.php:292
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4592
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4583
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:214
 msgid "Changes applied"
 msgstr "Ændringer anvendt"
@@ -3680,7 +3679,7 @@ msgstr "Ret denne kommentar"
 #: /home/jes/workspace/zenphoto/zp-core/admin-comments.php:337
 #: /home/jes/workspace/zenphoto/zp-core/admin-edit.php:644
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:142
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:148
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:149
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:248
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:177
 msgid "*Bulk actions*"
@@ -3693,9 +3692,9 @@ msgstr "Marker som spam"
 #: /home/jes/workspace/zenphoto/zp-core/admin-comments.php:349
 #: /home/jes/workspace/zenphoto/zp-core/admin-edit.php:853
 #: /home/jes/workspace/zenphoto/zp-core/admin-edit.php:1714
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3719
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3709
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:158
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:160
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:161
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:268
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:204
 msgid "Check All"
@@ -3794,14 +3793,14 @@ msgstr "Vis album miniature"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-edit.php:646
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:144
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:146
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:147
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:250
 msgid "Set to published"
 msgstr "Indstillet til offentliggjort"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-edit.php:647
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:145
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:147
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:148
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:251
 msgid "Set to unpublished"
 msgstr "Indstillet til ikke offentliggjort"
@@ -3904,8 +3903,8 @@ msgstr ""
 #: /home/jes/workspace/zenphoto/zp-core/admin-edit.php:828
 #: /home/jes/workspace/zenphoto/zp-core/admin-edit.php:883
 #: /home/jes/workspace/zenphoto/zp-core/admin-edit.php:885
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1207
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1209
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1211
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1930
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1932
 msgid "New subalbum"
@@ -3977,7 +3976,7 @@ msgstr "Zoom"
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:363
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:795
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:799
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:190
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:191
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1380
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/publishContent/publishContent.php:424
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/publishContent/publishContent.php:478
@@ -4277,17 +4276,17 @@ msgstr "Nyt album"
 msgid "There are no albums for you to edit."
 msgstr "Der er ingen albums at redigere."
 
-#: /home/jes/workspace/zenphoto/zp-core/functions-basic.php:1143
+#: /home/jes/workspace/zenphoto/zp-core/functions-basic.php:1138
 #, php-format
 msgid "%s log size limit exceeded"
 msgstr "%s logstørrelse overskredet"
 
-#: /home/jes/workspace/zenphoto/zp-core/functions-basic.php:1143
+#: /home/jes/workspace/zenphoto/zp-core/functions-basic.php:1138
 #, php-format
 msgid "The %1$s log has exceeded its size limit and has been renamed to %2$s."
 msgstr "%1$s loggen har overskredet sin størrelse og er omdøbt til %2$s."
 
-#: /home/jes/workspace/zenphoto/zp-core/functions-basic.php:1173
+#: /home/jes/workspace/zenphoto/zp-core/functions-basic.php:1168
 #: /home/jes/workspace/zenphoto/zp-core/admin.php:237
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:367
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/security-logger.php:132
@@ -4362,7 +4361,7 @@ msgstr "Fil_sidst_ændret"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-globals.php:29
 #: /home/jes/workspace/zenphoto/zp-core/class-search.php:73
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1231
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1229
 msgid "Owner"
 msgstr "Ejer"
 
@@ -4406,7 +4405,7 @@ msgid "comments"
 msgstr "kommentarer"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-globals.php:95
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4442
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4433
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/user-expiry.php:95
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/user-expiry.php:105
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/user_groups.php:221
@@ -4423,7 +4422,7 @@ msgstr "galleri"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-globals.php:112
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:954
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4395
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4386
 msgid "security"
 msgstr "sikkerhed"
 
@@ -4913,7 +4912,7 @@ msgstr "Titellink"
 #: /home/jes/workspace/zenphoto/zp-core/class-search.php:82
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/wordpress_import.php:452
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:674
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:123
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:124
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1295
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:491
 msgid "Categories"
@@ -5151,12 +5150,12 @@ msgstr "Ugyldig album instantiering: %1$s!=%2$s"
 msgid "Invalid album instantiation: %s does not exist."
 msgstr "Ugyldig album instantiering: %s does not exist."
 
-#: /home/jes/workspace/zenphoto/zp-core/class-album.php:1568
+#: /home/jes/workspace/zenphoto/zp-core/class-album.php:1567
 #, php-format
 msgid "Error: The album named %s cannot be found."
 msgstr "Fejl: Albummet med navnet %s kan ikke findes."
 
-#: /home/jes/workspace/zenphoto/zp-core/class-album.php:1570
+#: /home/jes/workspace/zenphoto/zp-core/class-album.php:1569
 #, php-format
 msgid "Error: The album %s is not readable."
 msgstr "Fejl: Albummet %s kan ikke læses."
@@ -5950,7 +5949,7 @@ msgstr "%1$s %2$s: %3$s"
 
 #: /home/jes/workspace/zenphoto/zp-core/pluginDoc.php:121
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:127
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4431
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4422
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/user-expiry.php:107
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/user_groups.php:224
 msgid "admin"
@@ -5986,7 +5985,7 @@ msgstr "Ugyldig billeddannelse: Album eksisterer ikke"
 msgid "Invalid image instantiation: file does not exist"
 msgstr "Ugyldig billeddannelse: Filen eksisterer ikke"
 
-#: /home/jes/workspace/zenphoto/zp-core/class-image.php:196
+#: /home/jes/workspace/zenphoto/zp-core/class-image.php:195
 msgid "An image object was instantiated without using the newImage() function."
 msgstr "Et billedobjekt blev oprettet uden at bruge funktionen  newimage()."
 
@@ -6474,8 +6473,8 @@ msgstr "Adgangskode"
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:1222
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1083
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1407
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2029
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1299
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2028
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1297
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:131
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:503
 msgid "Show password"
@@ -6527,35 +6526,35 @@ msgstr "adgangskoder matcher ikke"
 msgid "Repeat password"
 msgstr "Gentag adgangskode"
 
-#: /home/jes/workspace/zenphoto/zp-core/functions-common.php:36
+#: /home/jes/workspace/zenphoto/zp-core/functions-common.php:39
 msgid "ERROR"
 msgstr "ERROR"
 
-#: /home/jes/workspace/zenphoto/zp-core/functions-common.php:37
+#: /home/jes/workspace/zenphoto/zp-core/functions-common.php:40
 msgid "WARNING"
 msgstr "WARNING"
 
-#: /home/jes/workspace/zenphoto/zp-core/functions-common.php:38
+#: /home/jes/workspace/zenphoto/zp-core/functions-common.php:41
 msgid "NOTICE"
 msgstr "NOTICE"
 
-#: /home/jes/workspace/zenphoto/zp-core/functions-common.php:39
+#: /home/jes/workspace/zenphoto/zp-core/functions-common.php:42
 msgid "USER ERROR"
 msgstr "USER ERROR"
 
-#: /home/jes/workspace/zenphoto/zp-core/functions-common.php:40
+#: /home/jes/workspace/zenphoto/zp-core/functions-common.php:43
 msgid "USER WARNING"
 msgstr "USER WARNING"
 
-#: /home/jes/workspace/zenphoto/zp-core/functions-common.php:41
+#: /home/jes/workspace/zenphoto/zp-core/functions-common.php:44
 msgid "USER NOTICE"
 msgstr "USER NOTICE"
 
-#: /home/jes/workspace/zenphoto/zp-core/functions-common.php:42
+#: /home/jes/workspace/zenphoto/zp-core/functions-common.php:45
 msgid "STRICT NOTICE"
 msgstr "STRICT NOTICE"
 
-#: /home/jes/workspace/zenphoto/zp-core/functions-common.php:53
+#: /home/jes/workspace/zenphoto/zp-core/functions-common.php:56
 #, php-format
 msgid "%1$s: %2$s in %3$s on line %4$s"
 msgstr "%1$s: %2$s i %3$s på linie %4$s"
@@ -6712,7 +6711,7 @@ msgid "<strong>Error parsing <em>plugin_disable</em> string!</strong>."
 msgstr "Fejl ved indlæsning af <em>plugin_disable</em> streng!</strong>."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-plugins.php:235
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2697
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2695
 msgid ""
 "<strong>Note:</strong> Instantiating the option interface within the plugin "
 "may cause performance issues. You should instead set <code>"
@@ -6830,7 +6829,7 @@ msgid "Upload complete"
 msgstr "Upload komplet"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-upload.php:156
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4586
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4577
 msgid "Your files have been uploaded."
 msgstr "Dine filer er blevet uploadet."
 
@@ -7410,7 +7409,7 @@ msgstr ""
 "Hvis du har problemer med at bruge disse faner, reducer antallet vist her."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:954
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4395
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4386
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/markRelease.php:42
 msgid "debug"
 msgstr "Fejlfinding"
@@ -7433,10 +7432,10 @@ msgstr ""
 "Hvis afkrydset, vil administrator få en mail når dette sker."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:986
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2660
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2785
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2833
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2944
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2658
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2783
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2831
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2942
 #: /home/jes/workspace/zenphoto/zp-core/setup/setup-sqlform.php:102
 msgid "save"
 msgstr "gem"
@@ -7480,8 +7479,8 @@ msgstr "Galleri adgangskode:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1060
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1386
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2011
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1284
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2010
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1282
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:109
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:483
 msgid "clear password"
@@ -7505,7 +7504,7 @@ msgstr "Bruger ID for galleriets gæstebruger"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1096
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1420
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2039
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2038
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/downloadList.php:134
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:506
 msgid "(repeat)"
@@ -7995,8 +7994,8 @@ msgid "Sharpen:"
 msgstr "Gør skarpere:"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1751
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1804
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:468
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1803
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:467
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1558
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1985
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cacheManager.php:105
@@ -8019,23 +8018,23 @@ msgstr "Miniaturer"
 msgid "Amount"
 msgstr "Skarphedsgrad"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1783
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1782
 msgid "Radius"
 msgstr "Radius"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1787
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1786
 msgid "Threshold"
 msgstr "Tærskel"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1793
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1792
 msgid "Add an unsharp mask to images and/or thumbnails."
 msgstr "Tilføj en uskarphedsmaske til billeder og / eller miniaturer."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1793
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1792
 msgid "<strong>WARNING</strong>: can overload slow servers."
 msgstr "<strong>ADVARSEL</strong>: Kan overbelaste langsomme servere."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1794
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1793
 msgid ""
 "<em>Amount</em>: the strength of the sharpening effect. Values are between 0 "
 "(least sharpening) and 100 (most sharpening)."
@@ -8043,7 +8042,7 @@ msgstr ""
 "<em>Skarphedsgrad</em>: styrken af ​​skarphes effekt. Værdier er mellem 0 "
 "(mindst skærpning) og 100 (mest skærpning)."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1795
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1794
 msgid ""
 "<em>Radius</em>: the pixel radius of the sharpening mask. A smaller radius "
 "sharpens smaller details, and a larger radius sharpens larger details."
@@ -8051,7 +8050,7 @@ msgstr ""
 "<em>Radius</em>: Radius, i pixel, af skarphedsmasken. En mindre radius "
 "skærper mindre detaljer og en større radius skærper større detaljer."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1796
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1795
 msgid ""
 "<em>Threshold</em>: the color difference threshold required for sharpening. "
 "A low threshold sharpens all edges including faint ones, while a higher "
@@ -8061,51 +8060,51 @@ msgstr ""
 "tærskel skærper alle kanter, herunder svage, mens en højere tærskel kun "
 "skærper mere tydelige kanter."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1800
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1799
 msgid "Watermarks:"
 msgstr "Vandmærker:"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1817
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1816
 msgid "Full sized images"
 msgstr "Originale billeder"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1840
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1839
 #, php-format
 msgid "%s thumbnails"
 msgstr "%s miniaturer"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1851
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1850
 msgid "image thumb"
 msgstr "Billedminiature"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1866
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1865
 msgid "cover"
 msgstr "dække"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1868
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1867
 #, no-php-format
 msgid "% of image"
 msgstr "% af billede"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1871
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1870
 msgid "allow upscale"
 msgstr "tillad opskalering"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1875
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1874
 msgid "offset h"
 msgstr "offset h"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1877
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1876
 #, no-php-format
 msgid "% w, "
 msgstr "% w, "
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1879
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1878
 #, no-php-format
 msgid "%"
 msgstr "%"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1883
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1882
 msgid ""
 "The watermark image is scaled by to cover <em>cover percentage</em> of the "
 "image and placed relative to the upper left corner of the image."
@@ -8113,7 +8112,7 @@ msgstr ""
 "Vandmærket skaleres ved at dække <em>dækningsprocent</em> af billedet og "
 "placeres relativt til det øverste venstre hjørne af billedet."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1884
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1883
 msgid ""
 "It is offset from there (moved toward the lower right corner) by the "
 "<em>offset</em> percentages of the height and width difference between the "
@@ -8123,7 +8122,7 @@ msgstr ""
 "<em>offset</em> procentdelen af højde- og breddeforskellen mellem billede og "
 "vandmærke."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1885
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1884
 msgid ""
 "If <em>allow upscale</em> is not checked the watermark will not be made "
 "larger than the original watermark image."
@@ -8131,7 +8130,7 @@ msgstr ""
 "hvis <em>tillad opskalering</em> ikke er markeret, vil vandmærket ikke blive "
 "lavet støtte end det originale vandmærkebillede."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1886
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1885
 #, php-format
 msgid ""
 "Custom watermarks should be placed in the <code>/%s/watermarks/</code> "
@@ -8140,7 +8139,7 @@ msgstr ""
 "Brugerdefineret vandmærke skal placeres i <code>/%s/watermarks/</code> "
 "mappen. Billedet skal være i png-24 format."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1890
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1889
 msgid ""
 "If a watermark image is selected for these <em>images classes</em> it will "
 "be used in place of the image thumbnail watermark."
@@ -8148,16 +8147,16 @@ msgstr ""
 "Hvis et vandmærkebillede er valgt til disse <em>billed-klasser</em> vil det "
 "blive brugt i stedet for miniaturebilledvandmærket."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1898
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1897
 msgid "Caching concurrency:"
 msgstr "Caching concurrency:"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1924
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1923
 #, php-format
 msgid "Cache processing worker limit: %s."
 msgstr "Cache processing arbejdsgrænse: %s."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1925
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1924
 msgid ""
 "More workers will get the job done faster so long as your server does not "
 "get swamped or run out of memory."
@@ -8165,15 +8164,15 @@ msgstr ""
 "Større grænse vil gøre arbejdet hurtigere, så længe serveren ikke "
 "overbelastes eller løber tør for hukommelse."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1930
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1929
 msgid "Cache as:"
 msgstr "Billedcache:"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1933
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1932
 msgid "Original"
 msgstr "Original"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1943
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1942
 msgid ""
 "Select a type for the images stored in the image cache. Select <em>Original</"
 "em> to preserve the original image's type."
@@ -8181,19 +8180,19 @@ msgstr ""
 "Vælg en type for billederne gemt i billedcache. Vælg <em>Original</em> for "
 "at bevare det oprindelige billedes type."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1946
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1945
 msgid "Obscure cache filenames"
 msgstr "Slør cache filnavne"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1948
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2863
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2883
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2911
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1947
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2861
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2881
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2909
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:174
 msgid "enable"
 msgstr "Aktiver"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1950
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1949
 msgid ""
 "Cause the filename of cached items to be obscured. This makes it difficult "
 "for someone to \"guess\" the name in a URL."
@@ -8201,17 +8200,17 @@ msgstr ""
 "Gør at filnavnet på de cachede filer \"sløres\" så det bliver vanskeligt at "
 "\"gætte\" filnavnet."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1953
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1952
 msgid "Protect image cache"
 msgstr "Beskyt billedcache"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1956
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1967
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2094
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1955
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1966
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2093
 msgid "Enabled"
 msgstr "aktiveret"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1959
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1958
 msgid ""
 "If checked all image URIs will link to the image processor and the image "
 "cache will be disabled to browsers via an <em>.htaccess</em> file. Images "
@@ -8223,7 +8222,7 @@ msgstr ""
 "fil. Billederne er stadig cached men billedprocessoren bruges til at servere "
 "billedet stedet for at lade browseren hente filen."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1960
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1959
 msgid ""
 "<strong>WARNING\t:</strong> This option adds significant overhead to "
 "<strong>each and every</strong> image reference! Some <em>JavaScript</em> "
@@ -8235,17 +8234,17 @@ msgstr ""
 "og <em>Flash</em> baserede billedbehandlere vil ikke arbejde med et billede "
 "processor URI og er uforenelige med denne mulighed."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1964
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1963
 msgid "Secure image processor"
 msgstr "Sikre Billedbehandler"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1970
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1969
 msgid "When enabled, the image processor will check album access credentials."
 msgstr ""
 "Når den er aktiveret, vil billedprocessoren kontrollere albummets "
 "adgangsrettigheder."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1971
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1970
 msgid ""
 "<strong>WARNING\t:</strong> This option adds memory overhead to image "
 "caching! You may be unable to cache some images depending on your server "
@@ -8255,44 +8254,44 @@ msgstr ""
 "hukommelsesoverhead til billedcaching! Du kan muligvis ikke cache visse "
 "billeder, afhængigt af din servers tilgængelige hukommelse."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1975
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1974
 msgid "Full image protection:"
 msgstr "Originalbilled-beskyttelse:"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1980
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1979
 msgid "Disable hotlinking"
 msgstr "Deaktiver hotlinking"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1985
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1984
 msgid "cache the full image"
 msgstr "Cache priginalbilledet"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1998
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2035
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1997
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2034
 msgid "password:"
 msgstr "adgangskode:"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2020
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2019
 msgid "user:"
 msgstr "bruger:"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2060
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2059
 msgid "hint:"
 msgstr "Tip:"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2074
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2073
 msgid "Protected view"
 msgstr "Beskyttet visning"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2074
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2073
 msgid "No access"
 msgstr "Ingen adgang"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2076
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2075
 msgid "Unprotected"
 msgstr "Ubeskyttet"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2084
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2083
 msgid ""
 "Disabling hotlinking prevents linking to the full image from other domains. "
 "If enabled, external links are redirect to the image page. If you are having "
@@ -8307,7 +8306,7 @@ msgstr ""
 "billedbeskyttelse</em> er <em> \"Ubeskyttet\"</em> eller hvis billedet er "
 "cached."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2085
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2084
 msgid ""
 "If <em>Cache the full image</em> is checked the full image will be loaded to "
 "the cache and served from there after the first reference. <em>Full&nbsp;"
@@ -8321,7 +8320,7 @@ msgstr ""
 "<em>Beskyttet&nbsp;visning</em> for at billedes caches. Men en gang cached, "
 "er der ingen beskyttelse af billedet mere."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2086
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2085
 msgid ""
 "The <em>user</em>, <em>password</em>, and <em>hint</em> apply to the "
 "<em>Download</em> and <em>Protected view</em> level of protection. If there "
@@ -8331,7 +8330,7 @@ msgstr ""
 "<em>Download</em> og <em>Beskyttet visning</em> beskyttelsesniveau. Hvis der "
 "er en adgangskode, skal seeren levere denne for at se billedet."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2087
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2086
 msgid ""
 "Select the level of protection for full sized images. <em>Download</em> "
 "forces a download dialog rather than displaying the image. <em>No&nbsp;"
@@ -8347,11 +8346,11 @@ msgstr ""
 "kontrollere adgangskode. <em>Ubeskyttet</em> tillader direkte visning af "
 "billedet."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2091
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2090
 msgid "Use lock image"
 msgstr "Brug lås-billede"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2096
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2095
 msgid ""
 "Substitute a <em>lock</em> image for thumbnails of password protected albums "
 "when the viewer has not supplied the password. If your theme supplies an "
@@ -8364,38 +8363,38 @@ msgstr ""
 "billede, vil det blive benyttet. Ellers benyttes zenphotos standard "
 "låsebillede."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2109
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2108
 msgid "Metadata"
 msgstr "Metadata"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2132
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2131
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/GoogleMap.php:83
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:90
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:91
 msgid "hide"
 msgstr "skjul"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2133
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2132
 msgid "disabled"
 msgstr "deaktiveret"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2144
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2143
 msgid "Select how image metadata fields are handled."
 msgstr "Vælg hvorledes metadata felter håndteres."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2146
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2145
 msgid "Show the field"
 msgstr "Vis feltet"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2147
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2146
 msgid "Hide the field"
 msgstr "Skjul feltet"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2148
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2147
 msgid "Do not process the field"
 msgstr "Behandl ikke feltet"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2152
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2151
 msgid ""
 "Hint: you can drag down the <em>drag handle</em> in the lower right corner "
 "to show more selections."
@@ -8403,19 +8402,19 @@ msgstr ""
 "Tip: Du kan trække ned i <em>håndtaget</em> i nederste højre hjørne for at "
 "vise flere valg."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2162
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2161
 msgid "IPTC encoding:"
 msgstr "ITPC kodning:"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2168
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2167
 msgid "The default character encoding of image IPTC metadata."
 msgstr "Standard karakterkodning af billedets IPTC  metadata."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2173
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2172
 msgid "Imbed IPTC copyright"
 msgstr "Indlæg IPTC copyright"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2174
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2173
 msgid ""
 "If checked and an image has no IPTC data a copyright notice will be imbedded "
 "cached copies."
@@ -8423,11 +8422,11 @@ msgstr ""
 "Hvis markeret vil en copyrigth meddelelse blive indkorporeret i cachekopier, "
 "hvis der ikke er IPTC-data i forvejen."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2176
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2175
 msgid "Replicate IPTC metadata"
 msgstr "Replikere IPTC-metadata"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2177
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2176
 msgid ""
 "If checked IPTC data from the original image will be imbedded in cached "
 "copies. If the image has no IPTC data a copyright notice will be imbedded. "
@@ -8438,11 +8437,11 @@ msgstr ""
 "medfølgende tekst vil blive brugt hvis originalbilledet ikke har en "
 "copyright.)"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2181
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2180
 msgid "IPTC Imbedding:"
 msgstr "IPTC Indkorporering:"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2189
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2188
 msgid ""
 "<strong>NOTE:</strong> This option  applies only to JPEG format cached "
 "images."
@@ -8450,30 +8449,30 @@ msgstr ""
 "<strong>BEMÆRK:</strong> Denne mulighed eksisterer kun for JPEG format "
 "billeder."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2300
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2299
 #, php-format
 msgid "Options for <code><strong>%1$s</strong></code>: <em>%2$s</em>"
 msgstr "Indstillinger for <code><strong>%1$s</strong></code>: <em>%2$s</em>"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2302
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2301
 #, php-format
 msgid "Options for <em>%s</em>"
 msgstr "Indstillinger for <em>%s</em>"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2310
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2309
 msgid "Show theme for:"
 msgstr "Vis tema for:"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2326
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2593
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2325
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2592
 msgid "Revert to default"
 msgstr "Vend tilbage til standard"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2333
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2332
 msgid "<strong>Standard options</strong>"
 msgstr "<strong>Standard indstillinger</strong>"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2335
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2334
 msgid ""
 "<em>These image and album presentation options provided by the Zenphoto core "
 "for all themes.</em>"
@@ -8481,7 +8480,7 @@ msgstr ""
 "<em>Disse indstillinger for billed og album præsentation leveres for alle "
 "temaer af Zenphoto kernen.</em>"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2335
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2334
 msgid ""
 "<strong>Note:</strong> These are <em>recommendations</em> as themes may "
 "choose to override them for design reasons"
@@ -8489,22 +8488,22 @@ msgstr ""
 "<strong>Bemærk:</strong> Disse er <em>anbefalinger</em> idet temaer kan "
 "vælge at tilsidesætte dem af design hensyn."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2338
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2337
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/publishContent/publishContent.php:248
 msgid "Albums:"
 msgstr "Albums:"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2347
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2384
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2346
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2383
 msgid "thumbnails per row"
 msgstr "miniaturer pr række"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2356
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2393
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2355
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2392
 msgid "thumbnails per page"
 msgstr "miniaturer pr  side"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2360
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2359
 msgid ""
 "These specify the Theme <a title=\"Look at your album page and count the "
 "number of album thumbnails that show up in one row. This is the value you "
@@ -8517,8 +8516,8 @@ msgstr ""
 "\">CSS bestemt antal</a> for album miniaturer der passer i en \"række\", og "
 "antallet af albumminiaturer der passer på en side."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2365
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2402
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2364
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2401
 msgid ""
 "<strong>Note:</strong> If <em>thumbnails per row</em> is greater than 1, The "
 "actual number of thumbnails that are displayed on a page will be rounded up "
@@ -8528,17 +8527,17 @@ msgstr ""
 "1, vil det aktuelle antal miniaturer vist på en side blive rundet op til et "
 "mutiplum af dette tal."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2366
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2365
 #, php-format
 msgid "For album pages there will be %1$u rows of thumbnails."
 msgstr "For albumsider vil der være %1$u rækker af miniaturer."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2375
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2374
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/publishContent/publishContent.php:369
 msgid "Images:"
 msgstr "Billeder:"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2397
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2396
 msgid ""
 "These specify the Theme <a title=\"Look at your album page and count the "
 "number of image thumbnails that show up in one row. This is the value you "
@@ -8551,25 +8550,25 @@ msgstr ""
 "indstillingen.\">CSS bestemt antal</a> for billedminiaturer der passer i en "
 "\"række\", og antallet af billedminiaturer der passer på en side."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2403
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2402
 #, php-format
 msgid "For pages containing images there will be %1$u rows of thumbnails."
 msgstr ""
 "For sider der indeholder billeder vil der blive %1$u rækker af miniaturer."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2419
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2418
 msgid "Transition:"
 msgstr "Overgang:"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2435
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2434
 msgid "separate"
 msgstr "separat"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2436
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2435
 msgid "combined"
 msgstr "kombineret"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2439
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2438
 msgid ""
 "if both album and image <em>thumbnails per row</em> are greater than 1 you "
 "can choose if album thumbnails and image thumbnails are placed together on "
@@ -8580,30 +8579,30 @@ msgstr ""
 "du vælge om album og billedminiaturer skal placeres sammen på siden der "
 "overgår fra kun albumminiaturer til kun billedminiaturer."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2454
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2453
 msgid "Thumb size:"
 msgstr "Miniaturestørrelse:"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2458
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2457
 #, php-format
 msgid "Standard thumbnails will be scaled to %u pixels."
 msgstr "Standard miniaturer vil blive skaleret til %u pixel."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2468
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2467
 msgid "Crop thumbnails:"
 msgstr "Beskær miniaturer:"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2473
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2472
 #, php-format
 msgid "%s%% left &amp; right"
 msgstr "%s%% venstre &amp; højre"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2477
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2476
 #, php-format
 msgid "%s%% top &amp; bottom"
 msgstr "%s%% top &amp; bund"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2482
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2481
 #, php-format
 msgid ""
 "If checked the thumbnail will be cropped %1$.1f%% in from the top and the "
@@ -8612,52 +8611,52 @@ msgstr ""
 "Hvis markeret vil miniaturer blive beskåret %1$.1f%% ind fra top og bund "
 "marginer og %2$.1f%% ind fra venstre og højre margin."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2484
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2483
 msgid ""
 "<strong>Note:</strong> changing crop will invalidate existing custom crops."
 msgstr ""
 "<strong>Bemærk:</strong> At ændre beskæring vil ødelægge eksisterende "
 "brugerbeskæring."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2488
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2487
 msgid "Gray scale conversion:"
 msgstr "Gråskala konversion:"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2495
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2494
 msgid "thumbnail"
 msgstr "miniature"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2499
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2498
 msgid "If checked, images/thumbnails will be created in gray scale."
 msgstr "hvis markeret vil billeder/miniaturer blive dannet i gråtoner."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2509
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2508
 msgid "Image size:"
 msgstr "Billedstørrelse:"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2520
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2519
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:43
 msgid "height"
 msgstr "højde"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2524
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2523
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:41
 msgid "width"
 msgstr "bredde"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2531
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2530
 msgid "shortest side"
 msgstr "korteste side"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2535
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2534
 msgid "longest side"
 msgstr "længste side"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2540
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2539
 msgid "Default image display size."
 msgstr "Standard billed visningsstørrelse."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2541
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2540
 msgid ""
 "The image will be sized so that the <em>height</em>, <em>width</em>, "
 "<em>shortest side</em>, or the <em>longest side</em> will be equal to "
@@ -8667,11 +8666,11 @@ msgstr ""
 "em>, <em>korteste side</em>, eller den <em>længste side</em>, vil være lig "
 "med <em>billedstørrelse</em>."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2553
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2552
 msgid "Gallery index page link:"
 msgstr "Galleri indeksside link:"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2573
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2572
 msgid ""
 "If this option is not empty, the Gallery Index URL that would normally link "
 "to the theme <code>index.php</code> script will instead link to this script. "
@@ -8685,40 +8684,40 @@ msgstr ""
 "brugerdefineret <em>hjemmesideskript</em>. Denne mulighed gælder kun for det "
 "vigtigste tema i <em>galleriet</em>."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2581
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2580
 msgid "<strong>Custom theme options</strong>"
 msgstr "<strong>Brugerdefinerede temamuligheder</strong>"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2583
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2582
 #, php-format
 msgid "The following are options specifically implemented by %s."
 msgstr "Det følgende er indstillinger specifikt gennemført af %s."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2668
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2666
 msgid "Expand plugin options"
 msgstr "Udvid plugin indstillinger"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2670
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2668
 msgid "Collapse all plugin options"
 msgstr "Skjul alle plugin muligheder"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2729
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2727
 msgid "warning"
 msgstr "advarsel"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2768
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2766
 msgid "There are no plugin options to administer."
 msgstr "Der er ingen pluginindstillinger at administrere."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2839
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2837
 msgid "Server protocol:"
 msgstr "Server protokol:"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2845
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2843
 msgid "secure admin"
 msgstr "sikker admin"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2849
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2847
 msgid ""
 "Normally this option should be set to <em>http</em>. If you're running a "
 "secure server, change this to <em>https</em>. Select <em>secure admin</em> "
@@ -8728,7 +8727,7 @@ msgstr ""
 "sikker server, kan du ændre dette til <em>https</em>. Vælg <em>sikker admin</"
 "em> hvis du bare ønsker at sikre tilgangen til <code>admin</code> sider."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2851
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2849
 msgid ""
 "<strong>Note:</strong><br /><br />Login from the front-end user login form "
 "is secure only if <em>https</em> is selected.<br /><br />If you select "
@@ -8748,15 +8747,15 @@ msgstr ""
 "mulighed  så at ændre indstillingen <span class=\"inlinecode"
 "\">server_protocol</span> i <em>options</em> tabellen i din database."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2861
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2859
 msgid "Cookie security"
 msgstr "Cookie sikkerhed"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2866
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2864
 msgid "Tie cookies to the IP address of the browser."
 msgstr "Bind cookies til browserens IP-adresse."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2870
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2868
 msgid ""
 "<strong>Note</strong>: If your browser does not present a consistant IP "
 "address during a session you may not be able to log into your site when this "
@@ -8766,12 +8765,12 @@ msgstr ""
 "adresse gennem en session, risikerer du ikke at kunne logge på dit site når "
 "denne option er valgt."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2872
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2870
 msgid " You <strong>WILL</strong> have to login after changing this option."
 msgstr ""
 "Du <strong>SKAL</strong> logge ind igen efter at have ændret denne option."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2874
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2872
 msgid ""
 "If you set the option and cannot login, you will have to restore your "
 "database to a point when the option was not set, so you might want to backup "
@@ -8781,11 +8780,11 @@ msgstr ""
 "til gendanne din database til et punkt hvor denne option ikke var sat, så "
 "det kan være en god iden at lave en backup af databasen først."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2881
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2879
 msgid "Image Processor security"
 msgstr "Billedbehandling sikkerhed"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2886
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2884
 msgid ""
 "Add a security parameter to image processor URIs to prevent denial of "
 "service attacks requesting arbitrary sized images."
@@ -8793,11 +8792,11 @@ msgstr ""
 "Tilføj en sikkerhedsparameter til billedbehandling URI for at forhindre et "
 "denial of service-angreb der forlanger tilfældige billedstørrelser."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2895
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2893
 msgid "User name"
 msgstr "Bruger navn"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2917
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2915
 msgid ""
 "If enabled guest logon forms will include the <em>User Name</em> field. This "
 "allows <em>Zenphoto</em> users to logon from the form."
@@ -8805,13 +8804,17 @@ msgstr ""
 "Hvis aktiveret vil gæste-login formularen indeholde feltet <em>Bruger navn</"
 "em>. Dette tillader <em>Zenphoto</em> brugere at logge ind fra formularen."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2919
+#: /home/jes/workspace/zenphoto/zp-core/admin-options.php:2917
 msgid ""
 "<strong>Note</strong>: This field is required because one or more of the "
 "<em>Guest</em> passwords has a user name associated."
 msgstr ""
 "<strong>Bemærk</strong>: Dette felt er krævet, fordi en eller flere af "
 "<em>Gæsteadgangskoderne</em> har en tilknyttet brugernavn."
+
+#: /home/jes/workspace/zenphoto/zp-core/lib-NoGraphics.php:40
+msgid "There is no PHP Graphics support."
+msgstr "Der er ingen PHP grafisk support."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:26
 #, php-format
@@ -8895,33 +8898,33 @@ msgstr "Vis <em>%s</em>"
 msgid "View gallery index"
 msgstr "Vis galleri indeks"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:474
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:473
 msgid "Image order"
 msgstr "Billed-orden"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:480
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:479
 msgid "Subalbums"
 msgstr "Underalbums"
 
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1117
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1118
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1119
 msgid "add tag"
 msgstr "Tilføj tag"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1248
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1246
 msgid "Album Title"
 msgstr "Album titel"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1257
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1255
 msgid "Album Description:"
 msgstr "Album Beskrivelse:"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1270
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1268
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1311
 msgid "Album password:"
 msgstr "Album adgangskode:"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1293
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1291
 msgid "Album guest user:"
 msgstr "Album gæstebruger:"
 
@@ -9035,7 +9038,7 @@ msgid "Images (dynamic)"
 msgstr "Billeder (dynamisk)"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:1993
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:186
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:187
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1375
 msgid "Has Password"
 msgstr "Har adgangskode"
@@ -9155,46 +9158,46 @@ msgstr "Nulstil besøgstæller for albummet %s"
 msgid "Delete the album %s"
 msgstr "Slet album %s"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2410
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2418
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2424
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2428
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2432
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2409
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2417
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2423
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2427
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2431
 #, php-format
 msgid "page %u"
 msgstr "side %u"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2410
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2412
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2409
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2411
 msgid "Previous page"
 msgstr "Forrige side"
 
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2785
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2790
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2795
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2800
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2805
 msgid "Cannot create new theme."
 msgstr "Kan ikke danne et nyt tema."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2790
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2785
 #, php-format
 msgid "Directory \"%s\" already exists!"
 msgstr "Mappe \"%s\" eksisterer allerede!"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2795
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2790
 #, php-format
 msgid "Cannot find theme directory \"%s\" to copy!"
 msgstr "Kan ikke finde tema mappen \"%s\" til kopiering!"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2800
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2795
 msgid "The <tt>/themes</tt> directory is not writable!"
 msgstr "<tt>/themes</tt> mappen er ikke skrivbar!"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2805
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2800
 msgid "Could not create directory for the new theme"
 msgstr "Kunne ikkke danne mappen for det nye tema"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2838
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2832
 #, php-format
 msgid ""
 "An error occurred while copying files. Please delete manually the new theme "
@@ -9203,74 +9206,74 @@ msgstr ""
 "der opstod en fejl under filkopiering. Slet den nye temamappe '%s' manuelt "
 "og prøv igen, eller kopier filerne manuelt."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2846
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2840
 #, php-format
 msgid "Your theme, based on theme %s"
 msgstr "Dit tema, baseret på temaet %s"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2848
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2842
 msgid "Your theme"
 msgstr "Dit tema"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2868
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2862
 msgid "New custom theme created successfully!"
 msgstr "Nyt brugerdefineret tema oprettet!"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2870
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2864
 msgid "New custom theme created, but its description could not be updated"
 msgstr ""
 "Nyt brugerdefineret tema oprettet, men dets beskrivelse kunne ikke opdateres"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3019
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3011
 msgid "Rights:"
 msgstr "Rettigheder:"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3079
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3071
 msgid "edit rights"
 msgstr "rediger rettigheder"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3080
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3072
 msgid "view unpublished items"
 msgstr "Vis ikke-udgivne elementer"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3081
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3073
 msgid "upload rights"
 msgstr "overførselsrettigheder"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3082
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3074
 msgid "the album is dynamic"
 msgstr "Albummet er dynamisk"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3084
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3076
 msgid "Primary album"
 msgstr "Primære album"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3086
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3078
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:122
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:31
 msgid "edit"
 msgstr "rediger"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3088
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3080
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/uploader_http.php:32
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/uploader_jQuery.php:39
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/elFinder.php:76
 msgid "upload"
 msgstr "overfør"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3090
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3082
 msgid "view unpublished"
 msgstr "Se ikke-udgivne"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3129
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3121
 msgid "Managed albums:"
 msgstr "Håndterede albums:"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3142
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3134
 msgid "Managed news categories:"
 msgstr "Håndterede nyhedskategorier:"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3144
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3136
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/tweet_news.php:120
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/multiple_layouts.php:92
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:130
@@ -9278,16 +9281,16 @@ msgstr "Håndterede nyhedskategorier:"
 msgid "News categories"
 msgstr "Nyhedskategorier"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3156
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3148
 msgid "Managed pages:"
 msgstr "Håndterede sider:"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3162
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3154
 #, php-format
 msgid "Select one or more %1$s for the %2$s to manage."
 msgstr "Vælg en eller flere %1$s til håndtering af %2$s."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3164
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3156
 #, php-format
 msgid ""
 "Users with \"Admin\" or \"Manage all %1$s\" rights can manage all %2$s. All "
@@ -9297,124 +9300,124 @@ msgstr ""
 "alle %2$s. All others may manage only those that are selected. Alle andre "
 "kan kun administrere dem, der er valgt."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3167
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3159
 #, php-format
 msgid "You may manage these %s subject to the above rights."
 msgstr "Du kan håndtere disse %s under forbehold af ovenstående rettigheder."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3582
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3572
 #, php-format
 msgid "Show %u album level"
 msgid_plural "Show %u album levels"
 msgstr[0] "Vis %u albumniveau"
 msgstr[1] "Vis %u albumniveauer"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3585
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3575
 #, php-format
 msgid "%u image per page"
 msgid_plural "%u images per page"
 msgstr[0] "%u billede pr side"
 msgstr[1] "%u billeder pr side"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3662
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3674
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3686
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3698
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3652
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3664
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3676
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3688
 msgid "ok"
 msgstr "ok"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3769
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3759
 msgid "Destination"
 msgstr "Destination"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4049
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4087
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4036
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4074
 #, php-format
 msgid "codeblock %u"
 msgstr "codeblock %u"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4050
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4091
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4037
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4078
 msgid "add codeblock"
 msgstr "tilføj codeblock"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4101
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4088
 msgid "Codeblock 0 is deprecated."
 msgstr "Codeblock 0 er forældet."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4184
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4171
 #, php-format
 msgid "\"%s\" Cross Site Request Forgery blocked."
 msgstr "\"%s\" Cross Site Request Forgery blokeret."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4395
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4386
 msgid "setup"
 msgstr "installation"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4432
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4423
 msgid "demo"
 msgstr "demo"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4433
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4424
 msgid "development"
 msgstr "udvikling"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4434
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4425
 msgid "feed"
 msgstr "RSS feeds"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4435
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4426
 msgid "mail"
 msgstr "email"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4436
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4427
 msgid "media"
 msgstr "media"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4437
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4428
 msgid "misc"
 msgstr "forskelligt"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4438
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4429
 msgid "spam"
 msgstr "spam"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4439
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4430
 msgid "seo"
 msgstr "seo"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4440
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4431
 msgid "tools"
 msgstr "værktøjer"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4441
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4432
 msgid "uploader"
 msgstr "filhenter"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4443
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4434
 msgid "utilities"
 msgstr "hjælpeprogrammer"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4561
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4552
 #, php-format
 msgid "%s failed to delete."
 msgstr "%s kunne ikke slettes."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4563
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4554
 #, php-format
 msgid "%s deleted successfully."
 msgstr "%s slettet."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4568
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4559
 msgid "You must supply a  password."
 msgstr "Du skal anføre en adgangskode."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4570
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4561
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:402
 msgid "Your passwords did not match."
 msgstr "Din adgangskoder matcher ikke."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4577
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4568
 msgid ""
 "The image edit form submission has been truncated. Try displaying fewer "
 "images on a page."
@@ -9422,87 +9425,87 @@ msgstr ""
 "Billededit formularen er blevet beskåret. Prøv at vise færre billeder på en "
 "side."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4580
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4571
 msgid "Hit counters have been reset."
 msgstr "Besøgstællere er blevet nulstillet."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4583
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4574
 msgid "Cache has been purged."
 msgstr "Cache er blevet tømt."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4589
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4580
 #, php-format
 msgid "<em>%s</em> already exists."
 msgstr "<em>%s</em> eksisterer allerede"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4604
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4595
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1679
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:911
 msgid "Selected items published"
 msgstr "Valgte elementer offentliggjort"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4607
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4598
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1682
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:915
 msgid "Selected items unpublished"
 msgstr "Valgte elementer ikke offentliggjort"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4610
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4601
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1685
 msgid "Comments enabled for selected items"
 msgstr "Kommentarer aktiveret for valgte emner"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4613
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4604
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1688
 msgid "Comments disabled for selected items"
 msgstr "Kommentarer deaktiveret for valgte emner"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4616
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4607
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1691
 msgid "Hitcounter for selected items"
 msgstr "Besøgstæller for valgte elementer"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4619
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4610
 msgid "Tags added for selected items"
 msgstr "Tags tilføjet for valgte elementer"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4622
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4613
 msgid "Tags cleared for selected items"
 msgstr "Tags ryddet for valgte elementer"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4625
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4616
 msgid "Tags added for images of selected items"
 msgstr "Tags tilføjet til billeder af valgte elementer"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4628
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4619
 msgid "Tags cleared for images of selected items"
 msgstr "Mærker tags for billeder af valgte elementer"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4638
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4629
 msgid "Image already exists."
 msgstr "Billedet eksisterer allerede."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4641
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4632
 msgid "Album already exists."
 msgstr "Album eksisterer allerede."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4644
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4635
 msgid "Cannot move, copy, or rename to a subalbum of this album."
 msgstr "Kan ikke flytte, kopiere eller omdøbe."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4647
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4638
 msgid "Cannot move, copy, or rename to a dynamic album."
 msgstr "Kan ikke flytte, kopiere eller omdøbe."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4650
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4641
 msgid "Cannot rename an image to a different suffix"
 msgstr "Kan ikke omdøbe billede til andet suffix."
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4653
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4644
 msgid "Album delete failed"
 msgstr "Slet album mislykket"
 
-#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4656
+#: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:4647
 msgid "There was an error with a move, copy, or rename operation."
 msgstr "Fejl ved flytning, kopiering eller omdøbning ."
 
@@ -14935,7 +14938,7 @@ msgid "fade"
 msgstr "udtoning"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/slideshow.php:114
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:489
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:488
 msgid "shuffle"
 msgstr "bland"
 
@@ -16803,71 +16806,76 @@ msgstr ""
 "vedrørende playerens bredde. Placer brugerdefineret tema i rod-plugin-"
 "mappen. Se plugin dokumentation for mere information."
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:245
-msgid ""
-"provide the path to media file as %1 and a unique number as %2. (If there is "
-"only player instance on the page the parameter may be omitted.)"
-msgstr ""
-"leverer en sti til mediafilen som %1 og en unik værdi som %2. (Hvis der kun "
-"er en player på siden kan parametren undlades.)"
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:237
+#, php-format
+msgid "%1$s::%2$s not found."
+msgstr "%1$s::%2$s ikke fundet."
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:283
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:247
+msgid ""
+"provide the album name (%1), media file name (%2) and a unique number (%2). "
+"(If there is only player instance on the page the parameter may be omitted.)"
+msgstr ""
+"leverer album navnet (%1), mediafil navnet (%2) og en unik værdi som (%2). "
+"(Hvis der kun er en player på siden kan parametren undlades.)"
+
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:288
 msgid "This multimedia format is not supported by jPlayer"
 msgstr "Dette multimedieformat er ikke understøttet af jPlayer"
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:463
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:462
 msgid "previous"
 msgstr "forrige"
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:466
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:465
 msgid "play"
 msgstr "spil"
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:467
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:466
 msgid "pause"
 msgstr "pause"
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:472
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:471
 msgid "stop"
 msgstr "stop"
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:473
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:472
 msgid "mute"
 msgstr "lyd fra"
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:474
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:473
 msgid "unmute"
 msgstr "lyd til"
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:475
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:474
 msgid "max volume"
 msgstr "max volumen"
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:483
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:482
 msgid "full screen"
 msgstr "Fuld skærm"
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:484
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:483
 msgid "restore screen"
 msgstr "Gendan skærm"
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:490
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:489
 msgid "shuffle off"
 msgstr "bland fra"
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:494
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:493
 msgid "repeat"
 msgstr "gentag"
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:495
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:494
 msgid "repeat off"
 msgstr "gentag fra"
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:501
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:500
 msgid "Update Required"
 msgstr "Opdatering Krævet"
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:502
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:501
 msgid ""
 "To play the media you will need to either update your browser to a recent "
 "version or update your <a href=\"http://get.adobe.com/flashplayer/\" target="
@@ -20012,7 +20020,7 @@ msgstr "Ugyldig instantiering af video: Album eksisterer ikke"
 msgid "Invalid video instantiation: file does not exist."
 msgstr "Ugyldig instantiering af video: Fil eksisterer ikke."
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/class-video.php:428
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/class-video.php:427
 msgid "No multimeida extension installed."
 msgstr "Ingen multimedieudvidelse installeret."
 
@@ -20568,29 +20576,29 @@ msgstr "Brugerdefineret:"
 msgid "Use the Zenpage Page class->getPages() method."
 msgstr "Brug Zenpage Pageklasse->getPages() metoden."
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:89
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:90
 msgid ""
 "Are you sure you want to delete all selected items? THIS CANNOT BE UNDONE!"
 msgstr ""
 "Er du sikker på at du vil slette alle valgte emner? DETTE KAN IKKE FORTRYDES!"
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:135
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:136
 msgid "New category"
 msgstr "Ny kategori"
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:143
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:144
 msgid "Edit this Category"
 msgstr "Rediger denne Kategori"
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:150
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:151
 msgid "Add tags to articles"
 msgstr "Tilføj tags til artikler"
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:151
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:152
 msgid "Clear tags of articles"
 msgstr "Fjern tags fra artikler"
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:171
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:172
 msgid ""
 "The sort position of the indicated items cannot be recorded because the "
 "nesting is too deep. Please move them to a higher level and save your order."
@@ -20599,7 +20607,7 @@ msgstr ""
 "indlejringen er for dyb. Flyt dem venligst til et højere niveau og gem "
 "ordenen."
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:194
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:195
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:358
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:359
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:269
@@ -20610,7 +20618,7 @@ msgstr ""
 msgid "Reset hitcounter"
 msgstr "Nulstil besøgstæller"
 
-#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:198
+#: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:199
 msgid "Delete category"
 msgstr "Slet kategori"
 
@@ -21291,17 +21299,11 @@ msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/macroList/macroList_tab.php:37
 msgid ""
-"<em><strong>array</strong></em> will process assignment type parameter "
-"(<code>x = y</code>) lists. If the assignment is left out, the value will be "
-"inserted with its position in the list as the array index. Since an array "
-"parameter will consume all remaining elements it must be the last item in "
-"the parameter list."
+"<em><strong>array</strong></em> an assignment list (<code>u = w</code>, "
+"<code>x = y</code>....)."
 msgstr ""
-"<em><strong>array</strong></em> vil behandle tildelingstypeparameter "
-"(<code>x = y</code>) lister. Hvis tildelingen er udeladt, indsættes værdien "
-"med sin position på listen som array-indekset. Da en array parameter vil "
-"forbruge alle resterende elementer skal det være det sidste element i "
-"parameterlisten."
+"<em><strong>array</strong></em> en liste af tildelte værdier  (<code>u = w</"
+"code>, <code>x = y</code>....)."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/macroList/macroList_tab.php:39
 msgid "Parameters within braces are optional."
@@ -23626,6 +23628,19 @@ msgstr "Key"
 msgid "Column"
 msgstr "Søjle"
 
+#~ msgid ""
+#~ "<em><strong>array</strong></em> will process assignment type parameter "
+#~ "(<code>x = y</code>) lists. If the assignment is left out, the value will "
+#~ "be inserted with its position in the list as the array index. Since an "
+#~ "array parameter will consume all remaining elements it must be the last "
+#~ "item in the parameter list."
+#~ msgstr ""
+#~ "<em><strong>array</strong></em> vil behandle tildelingstypeparameter "
+#~ "(<code>x = y</code>) lister. Hvis tildelingen er udeladt, indsættes "
+#~ "værdien med sin position på listen som array-indekset. Da en array "
+#~ "parameter vil forbruge alle resterende elementer skal det være det sidste "
+#~ "element i parameterlisten."
+
 #~ msgid "Galleries"
 #~ msgstr "Gallerier"
 
@@ -24511,9 +24526,6 @@ msgstr "Søjle"
 
 #~ msgid "Effervescence %s (not found)"
 #~ msgstr "Effervescence %s (ikke fundet)"
-
-#~ msgid "Effervescence %1$s %2$s (not found)"
-#~ msgstr "Effervescence %1$s %2$s (ikke fundet)"
 
 #~ msgid "You are not installing the latest version of Zenphoto."
 #~ msgstr "Du installerer ikke den seneste version af Zenphoto."
