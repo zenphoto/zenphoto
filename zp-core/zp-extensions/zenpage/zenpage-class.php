@@ -599,7 +599,7 @@ class Zenpage {
 		}
 		getAllAccessibleAlbums($_zp_gallery, $albumlist, false);
 		if (empty($albumlist)) {
-			$albumWhere = 'albums.`id`=NULL';
+			$albumWhere = 'albums.`id` is NULL';
 		} else {
 			$albumWhere = 'albums.`id` in (' . implode(',', $albumlist) . ')';
 		}
