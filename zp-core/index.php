@@ -97,9 +97,7 @@ if (file_exists($custom)) {
 if ($_zp_page < 0) {
 	$zp_request = false;
 } else if ($zp_request && $_zp_page > 1) {
-	if (TEST_RELEASE) {
-		$zp_request = $_zp_page_check($zp_request, $_zp_gallery_page, $_zp_page);
-	}
+	$zp_request = $_zp_page_check($zp_request, $_zp_gallery_page, $_zp_page);
 }
 //$_zp_script_timer['theme scripts'] = microtime();
 if ($zp_request && $_zp_script && file_exists($_zp_script = SERVERPATH . "/" . internalToFilesystem($_zp_script))) {
