@@ -38,9 +38,6 @@ setOptionDefault('comment_body_requiired', 1);
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form/functions.php');
 
 if (OFFSET_PATH) {
-	zp_register_filter('options_comments', 'comment_form_options');
-	zp_register_filter('save_comment_custom_data', 'comment_form_save_comment');
-	zp_register_filter('edit_comment_custom_data', 'comment_form_edit_comment');
 	zp_register_filter('admin_overview', 'comment_form_print10Most');
 	zp_register_filter('save_admin_custom_data', 'comment_form_save_admin');
 	zp_register_filter('edit_admin_custom_data', 'comment_form_edit_admin');
