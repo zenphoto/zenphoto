@@ -344,11 +344,13 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 								?>
 								<span class="buttons">
 									<strong><a href="<?php echo $backurl; ?>"><img	src="../../images/arrow_left_blue_round.png" alt="" /><?php echo gettext("Back"); ?></a></strong>
-									<button type="submit" title="<?php echo $updateitem; ?>"><img src="../../images/pass.png" alt="" /><strong><?php if ($result->transient) {
-									echo $saveitem;
-								} else {
-									echo $updateitem;
-								} ?></strong></button>
+									<button type="submit" title="<?php echo $updateitem; ?>"><img src="../../images/pass.png" alt="" /><strong><?php
+											if ($result->transient) {
+												echo $saveitem;
+											} else {
+												echo $updateitem;
+											}
+											?></strong></button>
 									<button type="reset" onclick="javascript:$('.copydelete').hide();" >
 										<img src="../../images/reset.png" alt="" />
 										<strong><?php echo gettext("Reset"); ?></strong>
@@ -363,17 +365,17 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 										}
 										?>
 										<span id="tip"><a href="#"><img src="images/info.png" alt="" /><?php echo gettext("Usage tips"); ?></a></span>
-	<?php
-	if (!$result->transient) {
-		if (is_AdminEditPage("newscategory")) {
-			?>
+										<?php
+										if (!$result->transient) {
+											if (is_AdminEditPage("newscategory")) {
+												?>
 												<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;category=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="images/view.png" alt="" /><?php echo gettext("View"); ?></a>
-		<?php } else { ?>
+											<?php } else { ?>
 												<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;title=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="images/view.png" alt="" /><?php echo gettext("View"); ?></a>
-		<?php
-		}
-	}
-	?>
+												<?php
+											}
+										}
+										?>
 									</div>
 								</span>
 								<br style="clear: both" /><br style="clear: both" />
@@ -385,22 +387,22 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 									<p class="notebox"><?php echo gettext("<strong>Note:</strong> Edit titlelink overrides the permalink setting."); ?></p>
 									<p class="notebox"><?php echo gettext("<strong>Important:</strong> If you are using Zenphoto's multi-lingual mode the Titlelink is generated from the Title of the currently selected language."); ?></p>
 									<p><?php echo gettext("If you lock an article only the current active author/user or any user with full admin rights will be able to edit it later again!"); ?></p>
-										<?php
-										if (is_AdminEditPage("newsarticle")) {
-											?>
-										<p><?php echo gettext("<em>Custom article shortening:</em> You can set a custom article shorten length for the news loop excerpts by using the standard TinyMCE <em>page break</em> plugin button. This will override the general shorten length set on the plugin option then."); ?></p>
-											<?php
-										}
+									<?php
+									if (is_AdminEditPage("newsarticle")) {
 										?>
+										<p><?php echo gettext("<em>Custom article shortening:</em> You can set a custom article shorten length for the news loop excerpts by using the standard TinyMCE <em>page break</em> plugin button. This will override the general shorten length set on the plugin option then."); ?></p>
+										<?php
+									}
+									?>
 									<p><?php echo gettext("<em>Scheduled publishing:</em> To automatically publish a page/news article in the future set it to 'published' and enter a future date in the date field manually. Note this works on server time!"); ?></p>
 									<p><?php echo gettext("<em>Expiration date:</em> Enter a future date in the date field manually to set a date the page or article will be set un-published automatically. After the page/article has been expired it can only be published again if the expiration date is deleted. Note this works on server time!"); ?></p>
 									<p><?php echo gettext("<em>ExtraContent:</em> Here you can enter extra content for example to be printed on the sidebar"); ?></p>
 									<p>
-	<?php
-	echo gettext("<em>Codeblocks:</em> Use these fields if you need to enter php code (for example Zenphoto functions) or JavaScript code.");
-	echo gettext("You also can use the codeblock fields as custom fields.");
-	echo gettext("Note that your theme must be setup to use the codeblock functions. Note also that codeblock fields are not multi-lingual.");
-	?>
+										<?php
+										echo gettext("<em>Codeblocks:</em> Use these fields if you need to enter php code (for example Zenphoto functions) or JavaScript code.");
+										echo gettext("You also can use the codeblock fields as custom fields.");
+										echo gettext("Note that your theme must be setup to use the codeblock functions. Note also that codeblock fields are not multi-lingual.");
+										?>
 									</p>
 									<p class="notebox"><?php echo gettext("<strong>Important:</strong> If setting a password for a page its subpages inherit the protection."); ?></p>
 									<p><?php echo gettext("Hint: If you need more space for your text use TinyMCE's full screen mode (Click the blue square on the top right of editor's control bar)."); ?></p>
@@ -410,7 +412,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 										<tr>
 											<td class="topalign-padding"><?php echo gettext("Title:"); ?></td>
 											<td class="middlecolumn">
-													<?php print_language_string_list($result->getTitle('all'), 'title', false, NULL, 'title', '100%', 'zenpage_language_string_list', 10); ?>
+	<?php print_language_string_list($result->getTitle('all'), 'title', false, NULL, 'title', '100%', 'zenpage_language_string_list', 10); ?>
 											</td>
 											<td class="rightcolumn" rowspan="6">
 												<h2 class="h2_bordered_edit"><?php echo gettext("Publish"); ?></h2>
@@ -419,10 +421,10 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 													if (!is_AdminEditPage("newscategory")) {
 														?>
 														<p><?php echo gettext("Author:"); ?> <?php authorSelector($result->getAuthor()); ?></p>
-		<?php
-	}
-	if (!$result->transient) {
-		?>
+														<?php
+													}
+													if (!$result->transient) {
+														?>
 														<p class="checkbox">
 															<input name="edittitlelink" type="checkbox" id="edittitlelink" value="1" onclick="toggleTitlelink();" />
 															<label for="edittitlelink"><?php echo gettext("Edit TitleLink"); ?></label>
@@ -438,10 +440,10 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 														<input name="show" type="checkbox" id="show" value="1" <?php checkIfChecked($result->getShow()); ?> />
 														<label for="show"><?php echo gettext("Published"); ?></label>
 													</p>
-	<?php
-	if (is_AdminEditPage('newsarticle')) {
-		$sticky = $result->get('sticky');
-		?>
+													<?php
+													if (is_AdminEditPage('newsarticle')) {
+														$sticky = $result->get('sticky');
+														?>
 														<p class="checkbox">
 															<input name="truncation" type="checkbox" id="truncation" value="1" <?php checkIfChecked($result->getTruncation()); ?> />
 															<label for="truncation"><?php echo gettext("Truncate at <em>pagebreak</em>"); ?></label>
@@ -463,17 +465,17 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 															<input name="locked" type="checkbox" id="locked" value="1" <?php checkIfChecked($result->getLocked()); ?> />
 															<label for="locked"><?php echo gettext("Locked for changes"); ?></label>
 														</p>
-		<?php
-	}
-	if (get_class($result) == 'ZenpagePage' || get_class($result) == 'ZenpageCategory') {
-		$hint = $result->getPasswordHint('all');
-		$user = $result->getUser();
-		$x = $result->getPassword();
-	} else {
-		$hint = $user = $x = '';
-	}
-	if (is_AdminEditPage('page') || is_AdminEditPage('newscategory')) {
-		?>
+														<?php
+													}
+													if (get_class($result) == 'ZenpagePage' || get_class($result) == 'ZenpageCategory') {
+														$hint = $result->getPasswordHint('all');
+														$user = $result->getUser();
+														$x = $result->getPassword();
+													} else {
+														$hint = $user = $x = '';
+													}
+													if (is_AdminEditPage('page') || is_AdminEditPage('newscategory')) {
+														?>
 														<p class="passwordextrashow" <?php if (GALLERY_SECURITY != 'public') echo 'style="display:none"'; ?>>
 															<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
 															<?php
@@ -486,14 +488,14 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 																if (empty($x)) {
 																	?>
 																	<img src="../../images/lock_open.png" alt="" class="icon-postiion-top8" />
-																		<?php
-																	} else {
-																		$x = '          ';
-																		?>
+																	<?php
+																} else {
+																	$x = '          ';
+																	?>
 																	<a onclick="resetPass('');" title="<?php echo gettext('clear password'); ?>"><img src="../../images/lock.png"  alt="" class="icon-postiion-top8" /></a>
-				<?php
-			}
-			?>
+																	<?php
+																}
+																?>
 															</p>
 															<div class="passwordextrahide" style="display:none">
 																<a href="javascript:toggle_passwords('',false);">
@@ -523,112 +525,112 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 																				 value="<?php echo $x; ?>" />
 																	<br />
 																</span>
-																			 <?php echo gettext("Password hint:"); ?>
+																<?php echo gettext("Password hint:"); ?>
 																<br />
-			<?php print_language_string_list($hint, 'hint', false, NULL, 'hint', 27); ?>
+															<?php print_language_string_list($hint, 'hint', false, NULL, 'hint', 27); ?>
 															</div>
-																			 <?php
-																		 }
-																	 }
-																	 if (!$result->transient && !is_AdminEditPage('newscategory')) {
-																		 ?>
+															<?php
+														}
+													}
+													if (!$result->transient && !is_AdminEditPage('newscategory')) {
+														?>
 														<label class="checkboxlabel">
 															<input type="radio" id="copy_object" name="copy_delete_object" value="copy"
 																		 onclick="javascript:$('#copyfield').show();
 				$('#deletemsg').hide();" />
-														<?php echo gettext("Copy"); ?>
+		<?php echo gettext("Copy"); ?>
 														</label>
 														<label class="checkboxlabel">
 															<input type="radio" id="delete_object" name="copy_delete_object" value="delete"
 																		 onclick="deleteConfirm('delete_object', '', '<?php printf(gettext('Are you sure you want to delete this %s?'), $deleteitem); ?>');
 				$('#copyfield').hide();" />
-														<?php echo gettext('delete'); ?>
+		<?php echo gettext('delete'); ?>
 														</label>
 														<br class="clearall" />
 														<div class="copydelete" id="copyfield" style="display:none" >
-														<?php printf(gettext('copy as: %s'), '<input type="text" name="copy_object_as" value = "" />'); ?>
+															<?php printf(gettext('copy as: %s'), '<input type="text" name="copy_object_as" value = "" />'); ?>
 														</div>
 														<div class="copydelete" id="deletemsg"	style="padding-top: .5em; padding-left: .5em; color: red; display: none">
-													<?php printf(gettext('%s will be deleted when changes are applied.'), $deleteitem); ?>
+														<?php printf(gettext('%s will be deleted when changes are applied.'), $deleteitem); ?>
 														</div>
-													<?php
-												}
-												if (is_AdminEditPage("newsarticle")) {
-													echo zp_apply_filter('publish_article_utilities', '', $result);
-												}
-												if (is_AdminEditPage("newscategory")) {
-													echo zp_apply_filter('publish_category_utilities', '', $result);
-												}
-												if (is_AdminEditPage("page")) {
-													echo zp_apply_filter('publish_page_utilities', '', $result);
-												}
-												?>
+														<?php
+													}
+													if (is_AdminEditPage("newsarticle")) {
+														echo zp_apply_filter('publish_article_utilities', '', $result);
+													}
+													if (is_AdminEditPage("newscategory")) {
+														echo zp_apply_filter('publish_category_utilities', '', $result);
+													}
+													if (is_AdminEditPage("page")) {
+														echo zp_apply_filter('publish_page_utilities', '', $result);
+													}
+													?>
 												</div>
-	<?php
-	if (!is_AdminEditPage("newscategory")) {
-		?>
+												<?php
+												if (!is_AdminEditPage("newscategory")) {
+													?>
 													<h2 class="h2_bordered_edit"><?php echo gettext("Date"); ?></h2>
 													<div class="box-edit">
 														<p>
 
 															<script type="text/javascript">
-			// <!-- <![CDATA[
-			$(function() {
-				$("#date").datepicker({
-					showOn: 'button',
-					buttonImage: '../../images/calendar.png',
-					buttonText: '<?php echo gettext('calendar'); ?>',
-					buttonImageOnly: true
-				});
-			});
-			// ]]> -->
+		// <!-- <![CDATA[
+		$(function() {
+		$("#date").datepicker({
+			showOn: 'button',
+			buttonImage: '../../images/calendar.png',
+			buttonText: '<?php echo gettext('calendar'); ?>',
+			buttonImageOnly: true
+		});
+		});
+		// ]]> -->
 															</script>
-		<?php
-		$date = $result->getDatetime();
-		?>
+															<?php
+															$date = $result->getDatetime();
+															?>
 															<input name="date" type="text" id="date" value="<?php echo $date; ?>" onchange="checkFuturePub();" />
 															<br />
 															<strong class='scheduledpublishing'>
-		<?php
-		if ($date > date('Y-m-d H:i:s')) {
-			echo addslashes(gettext('Future publishing date:'));
-		}
-		?>
+																<?php
+																if ($date > date('Y-m-d H:i:s')) {
+																	echo addslashes(gettext('Future publishing date:'));
+																}
+																?>
 															</strong>
 														</p>
 														<hr />
 														<p>
 															<script type="text/javascript">
-			// <!-- <![CDATA[
-			$(function() {
-				$("#expiredate").datepicker({
-					showOn: 'button',
-					buttonImage: '../../images/calendar.png',
-					buttonText: '<?php echo gettext('calendar'); ?>',
-					buttonImageOnly: true
-				});
-			});
-			// ]]> -->
+		// <!-- <![CDATA[
+		$(function() {
+		$("#expiredate").datepicker({
+			showOn: 'button',
+			buttonImage: '../../images/calendar.png',
+			buttonText: '<?php echo gettext('calendar'); ?>',
+			buttonImageOnly: true
+		});
+		});
+		// ]]> -->
 															</script>
 
-														<?php
-														echo gettext("Expiration date:");
-														$date = $result->getExpireDate();
-														?>
+															<?php
+															echo gettext("Expiration date:");
+															$date = $result->getExpireDate();
+															?>
 															<br />
 															<input name="expiredate" type="text" id="expiredate" value="<?php echo $date; ?>" onchange="checkFutureExpiry();" />
 															<br />
 															<strong class='expire'>
-														<?php
-														if (!empty($date) && ($date <= date('Y-m-d H:i:s'))) {
-															echo '<br />' . gettext('This is not a future date!');
-														}
-														?>
+																<?php
+																if (!empty($date) && ($date <= date('Y-m-d H:i:s'))) {
+																	echo '<br />' . gettext('This is not a future date!');
+																}
+																?>
 															</strong>
 														</p>
-		<?php
-		if ($result->getLastchangeAuthor() != "") {
-			?>
+														<?php
+														if ($result->getLastchangeAuthor() != "") {
+															?>
 															<hr /><p><?php printf(gettext('Last change:<br />%1$s<br />by %2$s'), $result->getLastchange(), $result->getLastchangeauthor()); ?>
 															</p>
 															<?php
@@ -643,72 +645,72 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 															<input name="commentson" type="checkbox" id="commentson" value="1" <?php checkIfChecked($result->getCommentsAllowed()); ?> />
 															<label for="commentson"> <?php echo gettext("Comments on"); ?></label>
 														</p>
-															<?php
-															if (!$result->transient && extensionEnabled('hitcounter')) {
-																$hc = $result->getHitcounter();
-																?>
+														<?php
+														if (!$result->transient && extensionEnabled('hitcounter')) {
+															$hc = $result->getHitcounter();
+															?>
 															<p class="checkbox">
 																<input name="resethitcounter" type="checkbox" id="resethitcounter" value="1"<?php if (!$hc) echo ' disabled="disabled"'; ?> />
 																<label for="resethitcounter"> <?php printf(ngettext("Reset hitcounter (%u hit)", "Reset hitcounter (%u hits)", $hc), $hc); ?></label>
 															</p>
-																	<?php
-																}
-																if (extensionEnabled('rating')) {
-																	?>
+															<?php
+														}
+														if (extensionEnabled('rating')) {
+															?>
 															<p class="checkbox">
-			<?php
-			$tv = $result->get('total_value');
-			$tc = $result->get('total_votes');
+																<?php
+																$tv = $result->get('total_value');
+																$tc = $result->get('total_votes');
 
-			if ($tc > 0) {
-				$hc = $tv / $tc;
-				?>
+																if ($tc > 0) {
+																	$hc = $tv / $tc;
+																	?>
 																	<label>
 																		<input type="checkbox" id="reset_rating" name="reset_rating" value="1" />
-																<?php printf(gettext('Reset rating (%u stars)'), $hc); ?>
+																	<?php printf(gettext('Reset rating (%u stars)'), $hc); ?>
 																	</label>
-																<?php
-															} else {
-																?>
+																	<?php
+																} else {
+																	?>
 																	<label>
 																		<input type="checkbox" name="reset_rating" value="1" disabled="disabled"/>
-																<?php echo gettext('Reset rating (unrated)'); ?>
+																	<?php echo gettext('Reset rating (unrated)'); ?>
 																	</label>
-																<?php
-															}
-															?>
+																	<?php
+																}
+																?>
 															</p>
 															<?php
 														}
 														?>
-														<?php echo zp_apply_filter('general_zenpage_utilities', '', $result); ?>
+													<?php echo zp_apply_filter('general_zenpage_utilities', '', $result); ?>
 													</div>
-															<?php if (is_AdminEditPage("newsarticle")) { ?>
+														<?php if (is_AdminEditPage("newsarticle")) { ?>
 														<h2 class="h2_bordered_edit"><?php echo gettext("Categories"); ?></h2>
 														<div class="zenpagechecklist">
 															<?php
 															if (is_object($result)) {
 																?>
 																<ul>
-															<?php printNestedItemsList('cats-checkboxlist', $result->getID()); ?>
+																<?php printNestedItemsList('cats-checkboxlist', $result->getID()); ?>
 																</ul>
-															<?php
-														} else {
-															?>
+																<?php
+															} else {
+																?>
 																<ul>
 																<?php printNestedItemsList('cats-checkboxlist', '', 'all'); ?>
 																</ul>
-															<?php
-														}
-														?>
+																<?php
+															}
+															?>
 														</div>
 														<br />
 
-		<?php
-		} // if article for categories
-	} // if !category end
-	if (!is_AdminEditPage("newscategory")) {
-		?>
+														<?php
+													} // if article for categories
+												} // if !category end
+												if (!is_AdminEditPage("newscategory")) {
+													?>
 													<h2 class="h2_bordered_edit"><?php echo gettext("Tags"); ?></h2>
 													<div class="box-edit-unpadded">
 													<?php tagSelector($result, 'tags_', false, getTagOrder()); ?>
@@ -750,9 +752,9 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 											<tr>
 												<td class="topalign-padding"><?php echo gettext("ExtraContent:"); ?></td>
 												<td class="middlecolumn">
-											<?php
-											print_language_string_list($result->getExtraContent('all'), 'extracontent', true, NULL, 'extracontent', '100%', 'zenpage_language_string_list', 10);
-											?>
+													<?php
+													print_language_string_list($result->getExtraContent('all'), 'extracontent', true, NULL, 'extracontent', '100%', 'zenpage_language_string_list', 10);
+													?>
 												</td>
 											</tr>
 											<?php
@@ -773,6 +775,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 											<tr>
 												<td class="topalign-nopadding"><br /><?php echo gettext("Custom:"); ?></td>
 												<td class="middlecolumn">
+													<?php
 													print_language_string_list($result->getCustomData('all'), 'custom_data', true, NULL, 'custom_data', '100%', 'zenpage_language_string_list', 10);
 													?>
 												</td>
@@ -786,52 +789,54 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 											<tr>
 												<td class="topalign-nopadding"><br /><?php echo gettext("Codeblocks:"); ?></td>
 												<td class="topalign-nopadding middlecolumn">
-		<?php printCodeblockEdit($result, 0); ?>
+											<?php printCodeblockEdit($result, 0); ?>
 												</td>
 											</tr>
-												<?php
-											}
-											?>
+											<?php
+										}
+										?>
 									</table>
 									<span class="buttons">
 										<strong><a href="<?php echo $backurl; ?>"><img	src="../../images/arrow_left_blue_round.png" alt="" /><?php echo gettext("Back"); ?></a></strong>
-										<button type="submit" title="<?php echo $updateitem; ?>"><img src="../../images/pass.png" alt="" /><strong><?php if ($result->transient) {
-											echo $saveitem;
-										} else {
-											echo $updateitem;
-										} ?></strong></button>
+										<button type="submit" title="<?php echo $updateitem; ?>"><img src="../../images/pass.png" alt="" /><strong><?php
+												if ($result->transient) {
+													echo $saveitem;
+												} else {
+													echo $updateitem;
+												}
+												?></strong></button>
 										<button type="reset" onclick="javascript:$('.copydelete').hide();">
 											<img src="../../images/reset.png" alt="" />
 											<strong><?php echo gettext("Reset"); ?></strong>
 										</button>
 										<div class="floatright">
 											<strong><a href="admin-edit.php?<?php echo $admintype; ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>" title="<?php echo $additem; ?>"><img src="images/add.png" alt="" /> <?php echo $additem; ?></a></strong>
-							<?php
-							if (!$result->transient) {
-								if (is_AdminEditPage("newscategory")) {
-									?>
+											<?php
+											if (!$result->transient) {
+												if (is_AdminEditPage("newscategory")) {
+													?>
 													<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;category=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="images/view.png" alt="" /><?php echo gettext("View"); ?></a>
-							<?php
-						} else {
-							?>
+													<?php
+												} else {
+													?>
 													<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;title=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="images/view.png" alt="" /><?php echo gettext("View"); ?></a>
-					<?php
-				}
-			}
-			?>
+			<?php
+		}
+	}
+	?>
 										</div>
 									</span>
 									<br style="clear: both" />
 								</div>
 							</form>
-	<?php
-}
-if (is_AdminEditPage("newsarticle") || is_AdminEditPage("newscategory")) {
-	?>
+					<?php
+				}
+				if (is_AdminEditPage("newsarticle") || is_AdminEditPage("newscategory")) {
+					?>
 					</div>
-	<?php
-}
-?>
+			<?php
+		}
+		?>
 			</div>
 		</div>
 <?php printAdminFooter(); ?>
