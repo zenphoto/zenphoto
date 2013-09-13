@@ -251,12 +251,14 @@ class Image extends MediaObject {
 	 * @return array
 	 */
 	function getMetaData() {
-		require_once(dirname(__FILE__) . '/exif/exif.php');
 		global $_zp_exifvars;
 		$exif = array();
 		// Put together an array of EXIF data to return
 		foreach ($_zp_exifvars as $field => $exifvar) {
-			$exif[$field] = $this->get($field);
+			//	only enabled image metadata
+			if ($_zp_exifvars[$field][5]) {
+				$exif[$field] = $this->get($field);
+			}
 		}
 		return $exif;
 	}

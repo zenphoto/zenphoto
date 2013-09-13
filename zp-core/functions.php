@@ -2355,7 +2355,7 @@ class zpFunctions {
 		 * is displayed
 		 */
 		$_zp_exifvars = array(
-						// Database Field       		 => array('IFDX', 'Metadata Key', 'ZP Display Text', Display?	size,	enabled, type)
+						// Database Field       		 => array('source', 'Metadata Key', 'ZP Display Text', Display?	size,	enabled, type)
 						'EXIFMake'									 => array('IFD0', 'Make', gettext('Camera Maker'), true, 52, true, 'string'),
 						'EXIFModel'									 => array('IFD0', 'Model', gettext('Camera Model'), true, 52, true, 'string'),
 						'EXIFDescription'						 => array('IFD0', 'ImageDescription', gettext('Image Title'), false, 52, true, 'string'),
@@ -2620,7 +2620,7 @@ class _zp_HTML_cache {
 	}
 
 	function clearHtmlCache() {
-		
+
 	}
 
 }

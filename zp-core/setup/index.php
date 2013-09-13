@@ -226,32 +226,45 @@ ksort($engines);
 chdir($curdir);
 
 if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
+	unset($_zp_conf_vars);
 	eval(file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE));
-	if (isset($_zp_conf_vars['db_software'])) {
-		$confDB = $_zp_conf_vars['db_software'];
-		if (empty($_POST) && empty($_GET) && ($confDB === 'MySQL' || $preferred != 'MySQL')) {
+	if (isset($_zp_conf_vars) && !isset($conf)) {
+		if (isset($_zp_conf_vars['db_software'])) {
+			$confDB = $_zp_conf_vars['db_software'];
+			if (empty($_POST) && empty($_GET) && ($confDB === 'MySQL' || $preferred != 'MySQL')) {
+				$confDB = NULL;
+			}
+			if (extension_loaded(strtolower($confDB)) && file_exists(dirname(dirname(__FILE__)) . '/functions-db-' . $confDB . '.php')) {
+				$selected_database = $_zp_conf_vars['db_software'];
+			} else {
+				$selected_database = $preferred;
+				if ($preferred) {
+					$_zp_conf_vars['db_software'] = $preferred;
+					$zp_cfg = updateConfigItem('db_software', $preferred, $zp_cfg);
+					$updatezp_config = true;
+				}
+			}
+		} else {
+			$_zp_conf_vars['db_software'] = $selected_database = $preferred;
+			$zp_cfg = updateConfigItem('db_software', $zp_cfg, $preferred);
+			$updatezp_config = true;
 			$confDB = NULL;
 		}
-		if (extension_loaded(strtolower($confDB)) && file_exists(dirname(dirname(__FILE__)) . '/functions-db-' . $confDB . '.php')) {
-			$selected_database = $_zp_conf_vars['db_software'];
+		if ($selected_database) {
+			require_once(dirname(dirname(__FILE__)) . '/functions-db-' . $selected_database . '.php');
 		} else {
-			$selected_database = $preferred;
-			if ($preferred) {
-				$_zp_conf_vars['db_software'] = $preferred;
-				$zp_cfg = updateConfigItem('db_software', $preferred, $zp_cfg);
-				$updatezp_config = true;
-			}
+			require_once(dirname(dirname(__FILE__)) . '/functions-db_NULL.php');
 		}
 	} else {
-		$_zp_conf_vars['db_software'] = $selected_database = $preferred;
-		$zp_cfg = updateConfigItem('db_software', $zp_cfg, $preferred);
-		$updatezp_config = true;
-		$confDB = NULL;
-	}
-	if ($selected_database) {
-		require_once(dirname(dirname(__FILE__)) . '/functions-db-' . $selected_database . '.php');
-	} else {
-		require_once(dirname(dirname(__FILE__)) . '/functions-db_NULL.php');
+		// There is a problem with the configuration file
+		?>
+		<div style="background-color: red;font-size: xx-large;">
+			<p>
+				<?php echo gettext('A corrupt configuration file was detected. You should remove or repair the file and re-run setup.'); ?>
+			</p>
+		</div>
+		<?php
+		exit();
 	}
 }
 

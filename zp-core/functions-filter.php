@@ -17,7 +17,6 @@
  * @author Ozh
  * @since 1.3
  */
-
 // force UTF-8 Ø
 
 global $_zp_filters;
@@ -32,7 +31,7 @@ $_zp_filters = array();
  *
  * Typical use:
  *
- *		zp_register_filter('some_hook', 'function_handler_for_hook');
+ * 		zp_register_filter('some_hook', 'function_handler_for_hook');
  *
  * global array $_zp_filters Storage for all of the filters
  * @param string $hook the name of the zenphoto element to be filtered
@@ -62,12 +61,12 @@ function zp_register_filter($hook, $function_name, $priority = NULL) {
 	$id = zp_filter_unique_id($hook, $function_name, $priority);
 
 	$_zp_filters[$hook][$priority][$id] = array(
-																								'function' => $function_name,
-																								'script' => $base
-																							);
-	if (DEBUG_FILTERS) debugLog($base.'=>'.$function_name.' registered to '.$hook.' at priority '.$priority);
+					'function' => $function_name,
+					'script'	 => $base
+	);
+	if (DEBUG_FILTERS)
+		debugLog($base . '=>' . $function_name . ' registered to ' . $hook . ' at priority ' . $priority);
 }
-
 
 /**
  * Build Unique ID for storage and retrieval.
@@ -85,26 +84,26 @@ function zp_filter_unique_id($hook, $function, $priority) {
 	global $_zp_filters;
 
 	// If function then just skip all of the tests and not overwrite the following.
-	if ( is_string($function) )
+	if (is_string($function))
 		return $function;
 	// Object Class Calling
-	else if (is_object($function[0]) ) {
-		$obj_idx = get_class($function[0]).$function[1];
-		if ( !isset($function[0]->_zp_filters_id) ) {
-			if ( false === $priority )
+	else if (is_object($function[0])) {
+		$obj_idx = get_class($function[0]) . $function[1];
+		if (!isset($function[0]->_zp_filters_id)) {
+			if (false === $priority)
 				return false;
-			$count = isset($_zp_filters[$hook][$priority]) ? count((array)$_zp_filters[$hook][$priority]) : 0;
+			$count = isset($_zp_filters[$hook][$priority]) ? count((array) $_zp_filters[$hook][$priority]) : 0;
 			$function[0]->_zp_filters_id = $count;
 			$obj_idx .= $count;
 			unset($count);
-		} else
+		}
+		else
 			$obj_idx .= $function[0]->_zp_filters_id;
 		return $obj_idx;
 	}
 	// Static Calling
-	else if ( is_string($function[0]) )
-		return $function[0].$function[1];
-
+	else if (is_string($function[0]))
+		return $function[0] . $function[1];
 }
 
 /**
@@ -116,11 +115,11 @@ function zp_filter_unique_id($hook, $function, $priority) {
  * Typical use:
  *
  * 		1) Modify a variable if a function is attached to hook 'zp_hook'
- *		$zp_var = "default value";
- *		$zp_var = zp_apply_filter( 'zp_hook', $zp_var );
+ * 		$zp_var = "default value";
+ * 		$zp_var = zp_apply_filter( 'zp_hook', $zp_var );
  *
- *		2) Trigger functions is attached to event 'zp_event'
- *		zp_apply_filter( 'zp_event' );
+ * 		2) Trigger functions is attached to event 'zp_event'
+ * 		zp_apply_filter( 'zp_event' );
  *
  * Returns an element which may have been filtered by a filter.
  *
@@ -131,19 +130,21 @@ function zp_filter_unique_id($hook, $function, $priority) {
  */
 function zp_apply_filter($hook, $value = '') {
 	global $_zp_filters;
-	if ( !isset($_zp_filters[$hook]) ) {
+	if (!isset($_zp_filters[$hook])) {
 		return $value;
 	}
 	$args = func_get_args();
 	// Sort filters by priority
 	krsort($_zp_filters[$hook]);
 	// Loops through each filter
-	reset( $_zp_filters[$hook] );
-	if (DEBUG_FILTERS) $debug = 'Apply filters for '.$hook;
+	reset($_zp_filters[$hook]);
+	if (DEBUG_FILTERS)
+		$debug = 'Apply filters for ' . $hook;
 	do {
-		foreach( (array) current($_zp_filters[$hook]) as $the_ ) {
+		foreach ((array) current($_zp_filters[$hook]) as $the_) {
 			if (!is_null($the_['function'])) {
-				if (DEBUG_FILTERS) $debug .= "\n    ".$the_['function'];
+				if (DEBUG_FILTERS)
+					$debug .= "\n    " . $the_['function'];
 				$args[1] = $value;
 				$new_value = call_user_func_array($the_['function'], array_slice($args, 1));
 				if (!is_null($new_value)) {
@@ -151,12 +152,12 @@ function zp_apply_filter($hook, $value = '') {
 				}
 			}
 		}
-	} while ( next($_zp_filters[$hook]) !== false );
-	if (DEBUG_FILTERS) debugLog($debug);
+	} while (next($_zp_filters[$hook]) !== false);
+	if (DEBUG_FILTERS)
+		debugLog($debug);
 
 	return $value;
 }
-
 
 /**
  * Removes a function from a specified filter hook.
@@ -180,17 +181,17 @@ function zp_remove_filter($hook, $function_to_remove, $priority = 10, $accepted_
 
 	$function_to_remove = zp_filter_unique_id($hook, $function_to_remove, $priority);
 
-	$remove = isset ($_zp_filters[$hook][$priority][$function_to_remove]);
+	$remove = isset($_zp_filters[$hook][$priority][$function_to_remove]);
 
-	if ( $remove === true ) {
-		unset ($_zp_filters[$hook][$priority][$function_to_remove]);
-		if ( empty($_zp_filters[$hook][$priority]) )
-			unset ($_zp_filters[$hook]);
-		if (DEBUG_FILTERS) debugLog($function_to_remove.' removed from '.$hook);
+	if ($remove === true) {
+		unset($_zp_filters[$hook][$priority][$function_to_remove]);
+		if (empty($_zp_filters[$hook][$priority]))
+			unset($_zp_filters[$hook]);
+		if (DEBUG_FILTERS)
+			debugLog($function_to_remove . ' removed from ' . $hook);
 	}
 	return $remove;
 }
-
 
 /**
  * Check if any filter has been registered for a hook.
@@ -203,14 +204,14 @@ function zp_remove_filter($hook, $function_to_remove, $priority = 10, $accepted_
 function zp_has_filter($hook, $function_to_check = false) {
 	global $_zp_filters;
 	$has = !empty($_zp_filters[$hook]);
-	if ( false === $function_to_check || false == $has ) {
+	if (false === $function_to_check || false == $has) {
 		return $has;
 	}
-	if ( !$idx = zp_filter_unique_id($hook, $function_to_check, false) ) {
+	if (!$idx = zp_filter_unique_id($hook, $function_to_check, false)) {
 		return false;
 	}
-	foreach ( (array) array_keys($_zp_filters[$hook]) as $key=>$priority ) {
-		if ( isset($_zp_filters[$hook][$priority][$idx]) )
+	foreach ((array) array_keys($_zp_filters[$hook]) as $key => $priority) {
+		if (isset($_zp_filters[$hook][$priority][$idx]))
 			return $priority;
 	}
 	return false;
@@ -230,7 +231,7 @@ function get_filterScript($hook) {
 			$scripts[] = $actor['script'];
 		}
 	}
-	return implode(', ',$scripts);
+	return implode(', ', $scripts);
 }
 
 /**
@@ -239,7 +240,7 @@ function get_filterScript($hook) {
  * @param $hook
  * @param $function
  */
-function zp_filter_slot($hook,$function) {
+function zp_filter_slot($hook, $function) {
 	global $_zp_filters;
 	if (empty($_zp_filters[$hook])) {
 		return false;
@@ -251,9 +252,9 @@ function zp_filter_slot($hook,$function) {
 	$filters = $_zp_filters[$hook];
 	krsort($filters);
 	$c = 0;
-	foreach ( (array) array_keys($filters) as $priority ) {
-		foreach ($filters[$priority] as $filter=>$data) {
-			if ( $filter == $idx ) {
+	foreach ((array) array_keys($filters) as $priority) {
+		foreach ($filters[$priority] as $filter => $data) {
+			if ($filter == $idx) {
 				return $c;
 			}
 			$c++;

@@ -15,28 +15,28 @@ define('SEARCH_CACHE_DURATION', getOption('search_cache_duration'));
 
 class SearchEngine {
 
-	var $fieldList;
-	var $page;
+	var $fieldList = NULL;
+	var $page = 1;
 	var $images = NULL;
 	var $albums = NULL;
 	var $articles = NULL;
 	var $pages = NULL;
-	private $exact;
-	protected $dynalbumname;
+	private $exact = false;
+	protected $dynalbumname = NULL;
 	protected $album = NULL;
 	protected $words;
 	protected $dates;
 	protected $whichdates = 'date'; // for zenpage date searches, which date field to search
-	protected $search_no_albums; // omit albums
-	protected $search_no_images; // omit images
-	protected $search_no_pages; // omit pages
-	protected $search_no_news; // omit news
-	protected $search_unpublished; // will override the loggedin checks with respect to unpublished items
+	protected $search_no_albums = false; // omit albums
+	protected $search_no_images = false; // omit images
+	protected $search_no_pages = false; // omit pages
+	protected $search_no_news = false; // omit news
+	protected $search_unpublished = false; // will override the loggedin checks with respect to unpublished items
 	protected $search_structure; // relates translatable names to search fields
 	protected $iteration = 0; // used by apply_filter('search_statistics') to indicate sequential searches of different objects
 	protected $processed_search = NULL;
 	protected $album_list = NULL; // list of albums to search
-	protected $category_list; // list of categories for a news search
+	protected $category_list = NULL; // list of categories for a news search
 	protected $searches = NULL; // remember the criteria for past searches
 	protected $extraparams = array(); // allow plugins to add to search parameters
 	protected $albumsorttype = NULL;
@@ -87,7 +87,7 @@ class SearchEngine {
 				$this->search_structure[strtolower($field)] = $row[2];
 			}
 		}
-		$this->search_unpublished = false;
+		$this->search_structure = zp_apply_filter('searchable_fields', $this->search_structure);
 		if (isset($_REQUEST['words'])) {
 			$this->words = strtr(sanitize($_REQUEST['words'], 0), array('__23__' => '#', '__25__' => '%', '__26__' => '&'));
 		} else {
@@ -102,7 +102,6 @@ class SearchEngine {
 			}
 		}
 		$this->fieldList = $this->parseQueryFields();
-		$this->album_list = NULL;
 		if (isset($_REQUEST['inalbums'])) {
 			$list = trim(sanitize($_REQUEST['inalbums'], 3));
 			if (strlen($list) > 0) {
@@ -147,7 +146,6 @@ class SearchEngine {
 				}
 			}
 		}
-		$this->category_list = NULL;
 		if (isset($_REQUEST['innews'])) {
 			$list = trim(sanitize($_REQUEST['innews'], 3));
 			if (strlen($list) > 0) {
