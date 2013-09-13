@@ -2786,7 +2786,7 @@ function getProtectedImageURL($image = NULL, $disposal = NULL) {
 			$album = dirname($image->filename['source']);
 			$image = basename($image->filename['source']);
 		} else {
-			$album = $image->albumlink;
+			$album = $album->name;
 			$image = $image->filename;
 		}
 		return WEBPATH . '/' . ZENFOLDER . '/full-image.php?a=' . $album . '&i=' . $image . $params;
