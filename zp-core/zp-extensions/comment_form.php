@@ -39,8 +39,6 @@ require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form
 
 if (OFFSET_PATH) {
 	zp_register_filter('admin_overview', 'comment_form_print10Most');
-	zp_register_filter('save_admin_custom_data', 'comment_form_save_admin');
-	zp_register_filter('edit_admin_custom_data', 'comment_form_edit_admin');
 	zp_register_filter('admin_tabs', 'comment_form::admin_tabs');
 } else {
 	zp_register_filter('handle_comment', 'comment_form_postcomment');
@@ -338,14 +336,15 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 				}
 
 				if (zp_loggedin()) {
-					$address = getSerializedArray($_zp_current_admin_obj->getCustomData());
-					foreach ($address as $key => $value) {
-						if (!empty($value)) {
-							$disabled[$key] = true;
-							$stored[$key] = $value;
+					if (extensionEnabled('userAddressFields')) {
+						$address = userAddressFields::getCustomData($_zp_current_admin_obj);
+						foreach ($address as $key => $value) {
+							if (!empty($value)) {
+								$disabled[$key] = true;
+								$stored[$key] = $value;
+							}
 						}
 					}
-
 					$name = $_zp_current_admin_obj->getName();
 					if (!empty($name)) {
 						$stored['name'] = $name;

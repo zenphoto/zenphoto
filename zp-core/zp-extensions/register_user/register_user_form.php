@@ -5,7 +5,6 @@
  * @package plugins
  * @subpackage users
  */
-
 Zenphoto_Authority::printPasswordFormJS();
 $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 ?>
@@ -19,15 +18,16 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 		<p>
 			<label for="adminuser">
 				<?php
-					if ($emailid = getOption('register_user_email_is_id')) {
-						echo gettext("Email<strong>*</strong> (this will be your user id)");
-					} else {
-						echo gettext("User ID").'<strong>*</strong>';
-					} ?>
+				if ($emailid = getOption('register_user_email_is_id')) {
+					echo gettext("Email<strong>*</strong> (this will be your user id)");
+				} else {
+					echo gettext("User ID") . '<strong>*</strong>';
+				}
+				?>
 			</label>
 			<input type="text" id="adminuser" name="user" value="<?php echo html_encode($user); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" />
-	  </p>
-		<?php $_zp_authority->printPasswordForm('', false, NULL, false, $flag='<strong>*</strong>'); ?>
+		</p>
+		<?php $_zp_authority->printPasswordForm('', false, NULL, false, $flag = '<strong>*</strong>'); ?>
 		<p>
 			<label for="admin_name"><?php echo gettext("Name"); ?><strong>*</strong></label>
 			<input type="text" id="admin_name" name="admin_name" value="<?php echo html_encode($admin_n); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" />
@@ -41,18 +41,63 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 			</p>
 			<?php
 		}
+		if (extensionEnabled('userAddressFields')) {
+			$address = getSerializedArray(zp_getCookie('reister_user_form_addresses'));
+			if (empty($address)) {
+				$address = array('street'	 => '', 'city'		 => '', 'state'		 => '', 'country'	 => '', 'postal'	 => '', 'website'	 => '');
+			}
+			$required = getOption('register_user_address_info');
+			if ($required == 'required') {
+				$required = '*';
+			} else {
+				$required = false;
+			}
+			?>
+			<p>
+				<label for="comment_form_street">
+					<?php printf(gettext('Street%s'), $required); ?>
+				</label>
+				<input type="text" name="0-comment_form_street" id="comment_form_street" class="inputbox" size="40" value="<?php echo $address['street']; ?>">
+			</p>
+			<p>
+				<label for="comment_form_city">
+					<?php printf(gettext('City%s'), $required); ?>
+				</label>
+				<input type="text" name="0-comment_form_city" id="comment_form_city" class="inputbox" size="40" value="<?php echo $address['city']; ?>">
+			</p>
+			<p>
+				<label for="comment_form_state">
+					<?php printf(gettext('State%s'), $required); ?>
+				</label>
+				<input type="text" name="0-comment_form_state" id="comment_form_state" class="inputbox" size="40" value="<?php echo $address['state']; ?>">
+			</p>
+			<p>
+				<label for="comment_form_country">
+					<?php printf(gettext('Country%s'), $required); ?>
+				</label>
+				<input type="text" name="0-comment_form_country" id="comment_form_country" class="inputbox" size="40" value="<?php echo $address['country']; ?>">
+			</p>
+			<p>
+				<label for="comment_form_postal">
+					<?php printf(gettext('Postal code%s'), $required); ?>
+				</label>
+				<input type="text" name="0-comment_form_postal" id="comment_form_postal" class="inputbox" size="40" value="<?php echo $address['postal']; ?>">
+			</p>
+			<?php
+		}
+
 		$html = zp_apply_filter('register_user_form', '');
 		if (!empty($html)) {
 			$rows = explode('</tr>', $html);
 			foreach ($rows as $row) {
 				if (!empty($row)) {
-					$row = str_replace('<tr>','',$row);
-					$elements = explode('</td>',$row);
-					$col1 = trim(str_replace(array('<td>',':'), '', $elements[0]));
-					if (count($elements)==1) {	//	new style form
+					$row = str_replace('<tr>', '', $row);
+					$elements = explode('</td>', $row);
+					$col1 = trim(str_replace(array('<td>', ':'), '', $elements[0]));
+					if (count($elements) == 1) { //	new style form
 						echo $col1;
-					} else {										//	old table style form
-						$col2 = str_replace('size="40"', 'size="'.TEXT_INPUT_SIZE.'"', $elements[1]);
+					} else { //	old table style form
+						$col2 = str_replace('size="40"', 'size="' . TEXT_INPUT_SIZE . '"', $elements[1]);
 						$col2 = str_replace('class="inputbox"', '', $input);
 						?>
 						<p>
@@ -69,9 +114,12 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 			?>
 			<p>
 				<?php
-				if (isset($captcha['html'])) echo $captcha['html'];
-				if (isset($captcha['input'])) echo $captcha['input'];
-				if (isset($captcha['hidden'])) echo $captcha['hidden'];
+				if (isset($captcha['html']))
+					echo $captcha['html'];
+				if (isset($captcha['input']))
+					echo $captcha['input'];
+				if (isset($captcha['hidden']))
+					echo $captcha['hidden'];
 				?>
 			</p>
 			<?php
@@ -84,7 +132,7 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 			?>
 			<p id="Federated_buttons_fieldlist">
 				<?php echo gettext('You may also register using federated credentials'); ?>
-				<?php federated_logon::buttons(WEBPATH.'/index.php'); ?>
+				<?php federated_logon::buttons(WEBPATH . '/index.php'); ?>
 			</p>
 			<?php
 		}

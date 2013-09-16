@@ -1,9 +1,4 @@
 <?php
-if (getOption('register_user_address_info')) {
-	zp_register_filter('register_user_form', 'comment_form_register_user');
-	zp_register_filter('register_user_registered', 'comment_form_register_save');
-}
-
 define('COMMENTS_PER_PAGE', max(1, getOption('comment_form_comments_per_page')));
 
 $_zp_comment_stored = array();
@@ -60,18 +55,6 @@ function comment_form_PaginationJS() {
 
 function comment_form_visualEditor() {
 	zp_apply_filter('texteditor_config', '', 'comments');
-}
-
-/**
- * Returns a processed comment custom data item
- * Called when a comment edit is saved
- *
- * @param string $discard always empty
- * @return string
- */
-function comment_form_save_comment($discard) {
-	global $_comment_form_save_post;
-	return $_comment_form_save_post = serialize(getUserInfo(0));
 }
 
 /**
@@ -172,7 +155,7 @@ function comment_form_print10Most() {
  * @param string $discard always empty
  * @return string
  */
-function comment_form_edit_comment($discard, $raw) {
+function comment_form_edit_comment($raw) {
 	$address = getSerializedArray($raw);
 	if (empty($address)) {
 		$address = array('street'	 => '', 'city'		 => '', 'state'		 => '', 'country'	 => '', 'postal'	 => '', 'website'	 => '');
@@ -217,71 +200,13 @@ function comment_form_edit_comment($discard, $raw) {
 	return $html;
 }
 
-function comment_form_register_user($html) {
-	global $_comment_form_save_post;
-	$_comment_form_save_post = zp_getCookie('comment_form_register_save');
-	return comment_form_edit_comment(false, $_comment_form_save_post);
-}
-
-function comment_form_register_save($user) {
-	global $_comment_form_save_post;
-	$addresses = getOption('register_user_address_info');
-	$userinfo = getUserInfo(0);
-	$_comment_form_save_post = serialize($userinfo);
-	if ($addresses == 'required') {
-		if (!isset($userinfo['street']) || empty($userinfo['street'])) {
-			$user->transient = true;
-			$user->msg .= ' ' . gettext('You must supply the street field.');
-		}
-		if (!isset($userinfo['city']) || empty($userinfo['city'])) {
-			$user->transient = true;
-			$user->msg .= ' ' . gettext('You must supply the city field.');
-		}
-		if (!isset($userinfo['state']) || empty($userinfo['state'])) {
-			$user->transient = true;
-			$user->msg .= ' ' . gettext('You must supply the state field.');
-		}
-		if (!isset($userinfo['country']) || empty($userinfo['country'])) {
-			$user->transient = true;
-			$user->msg .= ' ' . gettext('You must supply the country field.');
-		}
-		if (!isset($userinfo['postal']) || empty($userinfo['postal'])) {
-			$user->transient = true;
-			$user->msg .= ' ' . gettext('You must supply the postal code field.');
-		}
-	}
-	zp_setCookie('comment_form_register_save', $_comment_form_save_post);
-	$user->setCustomData($_comment_form_save_post);
-}
-
-/**
- * Saves admin custom data
- * Called when an admin is saved
- *
- * @param string $updated true if data has changed
- * @param object $userobj admin user object
- * @param string $i prefix for the admin
- * @param bool $alter will be true if critical admin data may be altered
- * @return bool
- */
-function comment_form_save_admin($updated, $userobj, $i, $alter) {
-	if ($userobj->getValid()) {
-		$olddata = $userobj->getCustomData();
-		$userobj->setCustomData(serialize(getUserInfo($i)));
-		if ($olddata != $userobj->getCustomData()) {
-			return true;
-		}
-	}
-	return $updated;
-}
-
 /**
  * Processes the post of an address
  *
  * @param int $i sequence number of the comment
  * @return array
  */
-function getUserInfo($i) {
+function getCommentAddress($i) {
 	$result = array();
 	if (isset($_POST[$i . '-comment_form_website']))
 		$result['website'] = sanitize($_POST[$i . '-comment_form_website'], 1);
@@ -296,110 +221,6 @@ function getUserInfo($i) {
 	if (isset($_POST[$i . '-comment_form_postal']))
 		$result['postal'] = sanitize($_POST[$i . '-comment_form_postal'], 1);
 	return $result;
-}
-
-/**
- * Processes the address parts of a comment post
- *
- * @param object $commentobj the comment object
- * @param object $receiver the object receiving the comment
- * @return object
- */
-function comment_form_comment_post($commentobj, $receiver) {
-	if ($addresses = getOption('comment_form_addresses')) {
-		$userinfo = getUserInfo(0);
-		if ($addresses == 'required') {
-			// Note: this error will be incremented by functions-controller
-			if (!isset($userinfo['street']) || empty($userinfo['street'])) {
-				$commentobj->setInModeration(-11);
-				$commentobj->comment_error_text .= ' ' . gettext('You must supply the street field.');
-			}
-			if (!isset($userinfo['city']) || empty($userinfo['city'])) {
-				$commentobj->setInModeration(-12);
-				$commentobj->comment_error_text .= ' ' . gettext('You must supply the city field.');
-			}
-			if (!isset($userinfo['state']) || empty($userinfo['state'])) {
-				$commentobj->setInModeration(-13);
-				$commentobj->comment_error_text .= ' ' . gettext('You must supply the state field.');
-			}
-			if (!isset($userinfo['country']) || empty($userinfo['country'])) {
-				$commentobj->setInModeration(-14);
-				$commentobj->comment_error_text .= ' ' . gettext('You must supply the country field.');
-			}
-			if (!isset($userinfo['postal']) || empty($userinfo['postal'])) {
-				$commentobj->comment_error_text .= ' ' . gettext('You must supply the postal code field.');
-				$commentobj->setInModeration(-15);
-			}
-		}
-		$commentobj->setCustomData(serialize($userinfo));
-	}
-	return $commentobj;
-}
-
-/**
- * Supplies comment form options on the options/comments tab
- */
-function comment_form_options() {
-	$optionHandler = new comment_form();
-	customOptions($optionHandler, "");
-}
-
-/**
- * Returns table row(s) for edit of an admin user's custom data
- *
- * @param string $html always empty
- * @param $userobj Admin user object
- * @param string $i prefix for the admin
- * @param string $background background color for the admin row
- * @param bool $current true if this admin row is the logged in admin
- * @return string
- */
-function comment_form_edit_admin($html, $userobj, $i, $background, $current) {
-	if (!$userobj->getValid())
-		return $html;
-	$needs = array('street'	 => '', 'city'		 => '', 'state'		 => '', 'country'	 => '', 'postal'	 => '', 'website'	 => '');
-	$address = getSerializedArray($userobj->getCustomData());
-	if (empty($address)) {
-		$address = $needs;
-	} else {
-		foreach ($needs as $needed => $value) {
-			if (!isset($address[$needed])) {
-				$address[$needed] = '';
-			}
-		}
-	}
-
-	return $html .
-					'<tr' . ((!$current) ? ' style="display:none;"' : '') . ' class="userextrainfo">' .
-					'<td width="20%"' . ((!empty($background)) ? ' style="' . $background . '"' : '') . ' valign="top">' .
-					'<fieldset>
-					<legend>' . gettext("Street") . '</legend>
-					<input type="text" name="' . $i . '-comment_form_street" value="' . $address['street'] . '" size="' . TEXT_INPUT_SIZE . '" />
-				</fieldset>' .
-					'<fieldset>
-					<legend>' . gettext("City") . '</legend>
-					<input type="text" name="' . $i . '-comment_form_city" value="' . $address['city'] . '" size="' . TEXT_INPUT_SIZE . '" />
-				</fieldset>' .
-					'<fieldset>
-					<legend>' . gettext("State") . '</legend>
-					<input type="text" name="' . $i . '-comment_form_state" value="' . $address['state'] . '" size="' . TEXT_INPUT_SIZE . '" />
-				</fieldset>' .
-					'</td>' .
-					'<td' . ((!empty($background)) ? ' style="' . $background . '"' : '') . ' valign="top">' .
-					'<fieldset>
-					<legend>' . gettext("Website") . '</legend>
-					<input type="text" name="' . $i . '-comment_form_website" value="' . $address['website'] . '" size="' . TEXT_INPUT_SIZE . '" />
-				</fieldset>' .
-					'<fieldset>
-					<legend>' . gettext("Country") . '</legend>
-					<input type="text" name="' . $i . '-comment_form_country" value="' . $address['country'] . '" size="' . TEXT_INPUT_SIZE . '" />
-				</fieldset>' .
-					'<fieldset>
-					<legend>' . gettext("Postal code") . '</legend>
-					<input type="text" name="' . $i . '-comment_form_postal" value="' . $address['postal'] . '" size="' . TEXT_INPUT_SIZE . '" />
-				</fieldset>' .
-					'</td>' .
-					'</tr>';
 }
 
 /**

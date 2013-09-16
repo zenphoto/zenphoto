@@ -77,7 +77,7 @@ if (isset($_GET['action'])) {
 			$comment->setWebsite(sanitize($_POST['website'], 3));
 			$comment->setDateTime(sanitize($_POST['date'], 3));
 			$comment->setComment(sanitize($_POST['comment'], 1));
-			$comment->setCustomData($_comment_form_save_post = serialize(getUserInfo(0)));
+			$comment->setCustomData($_comment_form_save_post = serialize(getCommentAddress(0)));
 			$comment->save();
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form/admin-comments.php?saved');
 			exitZP();
@@ -167,7 +167,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 					</tr>
 					<?php
 					$_comment_form_save_post = zp_getCookie('comment_form_register_save');
-					echo comment_form_edit_comment(false, $_comment_form_save_post);
+					echo comment_form_edit_comment($_comment_form_save_post);
 					?>
 					<tr>
 						<td valign="top"><?php echo gettext("Comment:"); ?></td>
@@ -238,7 +238,10 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 		$fulltexturl = '';
 	}
 	$allcomments = fetchComments(NULL);
+
 	$pagenum = max((int) @$_GET['subpage'], 1);
+
+
 	$comments = array_slice($allcomments, ($pagenum - 1) * COMMENTS_PER_PAGE, COMMENTS_PER_PAGE);
 	$allcommentscount = count($allcomments);
 	$totalpages = ceil(($allcommentscount / COMMENTS_PER_PAGE));

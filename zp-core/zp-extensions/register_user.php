@@ -27,7 +27,7 @@ $plugin_description = gettext("Provides a means for placing a user registration 
 $plugin_author = "Stephen Billard (sbillard)";
 
 
-$option_interface = 'register_user_options';
+$option_interface = 'register_user';
 
 
 if (!OFFSET_PATH) {
@@ -42,10 +42,10 @@ if (getOption('register_user_address_info')) {
 }
 
 /**
- * Plugin option handling class
+ * Plugin class
  *
  */
-class register_user_options {
+class register_user {
 
 	function __construct() {
 		global $_zp_authority;
@@ -184,6 +184,29 @@ class register_user_options {
 		return false;
 	}
 
+	/**
+	 * Processes the post of an address
+	 *
+	 * @param int $i sequence number of the comment
+	 * @return array
+	 */
+	static function getUserInfo($i) {
+		$result = array();
+		if (isset($_POST[$i . '-comment_form_website']))
+			$result['website'] = sanitize($_POST[$i . '-comment_form_website'], 1);
+		if (isset($_POST[$i . '-comment_form_street']))
+			$result['street'] = sanitize($_POST[$i . '-comment_form_street'], 1);
+		if (isset($_POST[$i . '-comment_form_city']))
+			$result['city'] = sanitize($_POST[$i . '-comment_form_city'], 1);
+		if (isset($_POST[$i . '-comment_form_state']))
+			$result['state'] = sanitize($_POST[$i . '-comment_form_state'], 1);
+		if (isset($_POST[$i . '-comment_form_country']))
+			$result['country'] = sanitize($_POST[$i . '-comment_form_country'], 1);
+		if (isset($_POST[$i . '-comment_form_postal']))
+			$result['postal'] = sanitize($_POST[$i . '-comment_form_postal'], 1);
+		return $result;
+	}
+
 }
 
 /**
@@ -309,6 +332,36 @@ function printRegistrationForm($thanks = NULL) {
 					$userobj->setGroup('');
 					$userobj->setCustomData('');
 					$userobj->setLanguage(getUserLocale());
+					if (extensionEnabled('userAddressFields')) {
+						$addresses = getOption('register_user_address_info');
+						$userinfo = register_user::getUserInfo(0);
+						$_comment_form_save_post = serialize($userinfo);
+						if ($addresses == 'required') {
+							if (!isset($userinfo['street']) || empty($userinfo['street'])) {
+								$userobj->transient = true;
+								$userobj->msg .= ' ' . gettext('You must supply the street field.');
+							}
+							if (!isset($userinfo['city']) || empty($userinfo['city'])) {
+								$userobj->transient = true;
+								$userobj->msg .= ' ' . gettext('You must supply the city field.');
+							}
+							if (!isset($userinfo['state']) || empty($userinfo['state'])) {
+								$userobj->transient = true;
+								$userobj->msg .= ' ' . gettext('You must supply the state field.');
+							}
+							if (!isset($userinfo['country']) || empty($userinfo['country'])) {
+								$userobj->transient = true;
+								$userobj->msg .= ' ' . gettext('You must supply the country field.');
+							}
+							if (!isset($userinfo['postal']) || empty($userinfo['postal'])) {
+								$userobj->transient = true;
+								$userobj->msg .= ' ' . gettext('You must supply the postal code field.');
+							}
+						}
+						zp_setCookie('reister_user_form_addresses', $_comment_form_save_post);
+						userAddressFields::setCustomData($userobj, $userinfo);
+					}
+
 					zp_apply_filter('register_user_registered', $userobj);
 					if ($userobj->transient) {
 						if (empty($notify)) {

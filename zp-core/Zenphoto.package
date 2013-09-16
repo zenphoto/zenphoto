@@ -704,6 +704,7 @@ zp-core/zp-extensions/common/adGallery/jquery.ad-gallery.min.js
 zp-core/zp-extensions/common/adGallery/loader.gif
 zp-core/zp-extensions/common/adGallery/opa75.png
 zp-core/zp-extensions/common/adGallery/trans.gif
+zp-core/zp-extensions/common/fieldExtender.php
 zp-core/zp-extensions/common/jsMin
 zp-core/zp-extensions/common/jsMin/JSMin.php
 zp-core/zp-extensions/common/oAuth
@@ -1690,6 +1691,7 @@ zp-core/zp-extensions/uploader_jQuery/uploader.php
 zp-core/zp-extensions/user-expiry
 zp-core/zp-extensions/user-expiry.php
 zp-core/zp-extensions/user-expiry/user-expiry-tab.php
+zp-core/zp-extensions/userAddressFields.php
 zp-core/zp-extensions/user_groups
 zp-core/zp-extensions/user_groups.php
 zp-core/zp-extensions/user_groups/user_groups-tab.php
@@ -1743,4 +1745,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1745
+1747
