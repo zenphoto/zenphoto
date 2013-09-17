@@ -409,16 +409,12 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 								$title = $image;
 							else
 								$title = get_language_string($imgdata['title']);
-							$title = '/ ' . $title;
-							$albmdata = query_full_array("SELECT `folder`, `title` FROM " . prefix('albums') .
-											" WHERE `id`=" . $imgdata['albumid']);
-							if ($albmdata) {
-								$albumdata = $albmdata[0];
-								$album = $albumdata['folder'];
-								$albumtitle = get_language_string($albumdata['title']);
-								$link = "<a href=\"" . rewrite_path("/$album/$image", "/index.php?album=" . html_encode(pathurlencode($album)) . "&amp;image=" . urlencode($image)) . '#zp_comment_id_' . $id . '">' . $albumtitle . $title . "</a>";
-								if (empty($albumtitle))
-									$albumtitle = $album;
+							$title = '::' . $title;
+							$album = getItemByID('albums', $imgdata['albumid']);
+							if ($album->exists) {
+								$albumtitle = $album->getTitle();
+								$albumname = $album->name;
+								$link = "<a href=\"" . rewrite_path('/' . pathurlencode($albumname . '/' . $image), '/index.php?album=' . html_encode(pathurlencode($album)) . "&amp;image=" . urlencode($image)) . '#zp_comment_id_' . $id . '">' . $albumtitle . $title . "</a>";
 							}
 						}
 						break;
