@@ -381,7 +381,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 								$titlelink = $newsdata['titlelink'];
 								$title = get_language_string($newsdata['title']);
 								$link = '<a href = "' . rewrite_path("/news/" . $titlelink, "/index.php? p = news&amp;
-							title = " . urlencode($titlelink)) . '#zp_comment_id_' . $id . '">' . $title . "</a><br /> " . gettext("[news]");
+							title = " . urlencode($titlelink)) . '#zp_comment_id_' . $id . '">' . gettext("[news]") . ' ' . $title . "</a> ";
 							}
 						}
 						break;
@@ -395,7 +395,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 								$pagesdata = $pagesdata[0];
 								$titlelink = $pagesdata['titlelink'];
 								$title = get_language_string($pagesdata['title']);
-								$link = "<a href=\"" . rewrite_path('/' . _PAGES_ . '/' . $titlelink, "/index.php?p=pages&amp;title=" . urlencode($titlelink)) . '#zp_comment_id_' . $id . '">' . $title . "</a><br /> " . gettext("[page]");
+								$link = "<a href=\"" . rewrite_path('/' . _PAGES_ . '/' . $titlelink, "/index.php?p=pages&amp;title=" . urlencode($titlelink)) . '#zp_comment_id_' . $id . '">' . gettext("[page]") . ' ' . $title . "</a>";
 							}
 						}
 						break;
