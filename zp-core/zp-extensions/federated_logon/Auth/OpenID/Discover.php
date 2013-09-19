@@ -567,7 +567,8 @@ function Auth_OpenID_discoverXRI($iname, $fetcher)
         $openid_services[$i]->display_identifier = $iname;
     }
 
-     return array($iname, $openid_services);
+    // FIXME: returned xri should probably be in some normal form
+    return array($iname, $openid_services);
 }
 
 function Auth_OpenID_discover($uri, $fetcher)

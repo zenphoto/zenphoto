@@ -120,7 +120,7 @@ class Auth_OpenID {
      */
     static function isFailure($thing)
     {
-        return ($thing instanceof  Auth_OpenID_FailureResponse);
+        return is_a($thing, 'Auth_OpenID_FailureResponse');
     }
 
     /**
@@ -151,7 +151,7 @@ class Auth_OpenID {
         } else if (!array_key_exists('REQUEST_METHOD', $_SERVER)) {
             // Do nothing.
         } else {
-          // HACK
+          // XXX HACK FIXME HORRIBLE.
           //
           // POSTing to a URL with query parameters is acceptable, but
           // we don't have a clean way to distinguish those parameters

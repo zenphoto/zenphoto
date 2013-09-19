@@ -215,11 +215,15 @@ class Auth_OpenID_Parse {
             return $str;
         }
     }
-
+    
     function match($regexp, $text, &$match)
     {
         if (!is_callable('mb_ereg_search_init')) {
-            return preg_match($regexp, $text, $match);
+            if (!preg_match($regexp, $text, $match)) {
+                return false;
+            }
+            $match = $match[0];
+            return true;
         }
 
         $regexp = substr($regexp, 1, strlen($regexp) - 2 - strlen($this->_re_flags));
@@ -235,7 +239,7 @@ class Auth_OpenID_Parse {
      * Find all link tags in a string representing a HTML document and
      * return a list of their attributes.
      *
-     * This is quite ineffective and may fail with the default
+     * @todo This is quite ineffective and may fail with the default
      *       pcre.backtrack_limit of 100000 in PHP 5.2, if $html is big.
      *       It should rather use stripos (in PHP5) or strpos()+strtoupper()
      *       in PHP4 to manage this.
@@ -305,6 +309,7 @@ class Auth_OpenID_Parse {
     function relMatches($rel_attr, $target_rel)
     {
         // Does this target_rel appear in the rel_str?
+        // XXX: TESTME
         $rels = preg_split("/\s+/", trim($rel_attr));
         foreach ($rels as $rel) {
             $rel = strtolower($rel);
@@ -319,6 +324,7 @@ class Auth_OpenID_Parse {
     function linkHasRel($link_attrs, $target_rel)
     {
         // Does this link have target_rel as a relationship?
+        // XXX: TESTME
         $rel_attr = Auth_OpeniD::arrayGet($link_attrs, 'rel', null);
         return ($rel_attr && $this->relMatches($rel_attr,
                                                $target_rel));
@@ -328,6 +334,7 @@ class Auth_OpenID_Parse {
     {
         // Filter the list of link attributes on whether it has
         // target_rel as a relationship.
+        // XXX: TESTME
         $result = array();
         foreach ($link_attrs_list as $attr) {
             if ($this->linkHasRel($attr, $target_rel)) {
@@ -342,6 +349,7 @@ class Auth_OpenID_Parse {
     {
         // Return the value of the href attribute for the first link
         // tag in the list that has target_rel as a relationship.
+        // XXX: TESTME
         $matches = $this->findLinksRel($link_attrs_list,
                                        $target_rel);
         if (!$matches) {
