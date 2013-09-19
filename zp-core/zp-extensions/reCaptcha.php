@@ -105,7 +105,6 @@ class reCaptcha extends _zp_captcha {
 	 * @return string;
 	 */
 	function getCaptcha($prompt) {
-		parent::getCaptcha($prompt);
 		$theme = getOption('reCaptcha_theme');
 		$publicKey = getOption('reCaptcha_public_key');
 		$lang = strtolower(substr(ZENPHOTO_LOCALE, 0, 2));

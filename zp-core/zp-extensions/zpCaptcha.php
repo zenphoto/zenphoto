@@ -142,7 +142,8 @@ class zpCaptcha extends _zp_captcha {
 	 * @return array;
 	 */
 	function getCaptcha($prompt) {
-		parent::getCaptcha($prompt);
+		global $_zp_HTML_cache;
+		$_zp_HTML_cache->disable();
 		$captcha_len = getOption('zenphoto_captcha_length');
 		$key = $this->getCaptchaKey();
 		$lettre = getOption('zenphoto_captcha_string');
