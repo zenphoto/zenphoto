@@ -669,10 +669,11 @@ class RSS extends feed {
 				$fullimagelink = $this->host . html_encode(pathurlencode($obj->getFullImageURL()));
 				$content = shortenContent($obj->getDesc($this->locale), getOption('RSS_truncate_length'), '...');
 				if (isImagePhoto($obj)) {
-					$feeditem['desc'] = '<a title="' . html_encode($feeditem['title']) . ' in ' . html_encode($categories) . '" href="' . PROTOCOL . '://' . $this->host . $link . '"><img border="0" src="' . PROTOCOL . '://' . $this->host . pathurlencode($obj->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)) . '" alt="' . html_encode($feeditem['title']) . '"></a><br />' . $content;
+					$thumburl = '<img border="0" src="' . PROTOCOL . '://' . $this->host . html_encode(pathurlencode($obj->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . $obj->getTitle($this->locale) . '" /><br />';
 				} else {
-					$feeditem['desc'] = '<a title="' . html_encode($feeditem['title']) . ' in ' . html_encode($categories) . '" href="' . PROTOCOL . '://' . $this->host . $link . '"><img src="' . html_encode(pathurlencode($obj->getThumb())) . '" alt="' . html_encode($feeditem['title']) . '" /></a><br />' . $content;
+					$thumburl = '<img border="0" src="' . PROTOCOL . '://' . $this->host . html_encode(pathurlencode($obj->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . $obj->getTitle($this->locale) . '" /><br />';
 				}
+				$feeditem['desc'] = '<a title="' . html_encode($feeditem['title']) . ' in ' . html_encode($categories) . '" href="' . PROTOCOL . '://' . $this->host . $link . '">'.$thumburl.'</a><br />' . $content;
 				if (getOption("RSS_enclosure")) {
 					$feeditem['enclosure'] = '<enclosure url="' . PROTOCOL . '://' . $fullimagelink . '" type="' . getMimeString($ext) . '" length="' . filesize($obj->localpath) . '" />';
 				}
@@ -682,16 +683,16 @@ class RSS extends feed {
 				$categories = get_language_string($obj->getTitle('all'), $this->locale);
 				$feeditem['title'] = strip_tags(get_language_string($obj->getTitle('all'), $this->locale));
 				$title = get_language_string($obj->getTitle('all'), $this->locale);
-				$link = pathurlencode($obj->getAlbumLink());
+				$link = $obj->getAlbumLink();
 				$album = $obj->getFolder();
 				$albumthumb = $obj->getAlbumThumbImage();
 				$content = shortenContent($obj->getDesc($this->locale), getOption('RSS_truncate_length'), '...');
-
 				if (isImagePhoto($obj)) {
-					$feeditem['desc'] = '<a title="' . html_encode($feeditem['title']) . '" href="' . PROTOCOL . '://' . $this->host . $link . '"><img border="0" src="' . PROTOCOL . '://' . $this->host . html_encode(pathurlencode($albumthumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . html_encode($feeditem['title']) . '"></a><br />' . $content;
+					$thumburl = '<img border="0" src="' . PROTOCOL . '://' . $this->host . html_encode(pathurlencode($albumthumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . $obj->getTitle($this->locale) . '" /><br />';
 				} else {
-					$feeditem['desc'] = '<a title="' . html_encode($feeditem['title']) . '" href="' . PROTOCOL . '://' . $this->host . $link . '"><img src="' . html_encode(pathurlencode($obj->getAlbumThumb())) . '" alt="' . html_encode($feeditem['title']) . '" /></a><br />' . $content;
-				}
+					$thumburl = '<img border="0" src="' . PROTOCOL . '://' . $this->host . html_encode(pathurlencode($albumthumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . $obj->getTitle($this->locale) . '" /><br />';
+				}	
+				$feeditem['desc'] = '<a title="' . html_encode($feeditem['title']) . '" href="' . PROTOCOL . '://' . $this->host . $link . '">'.$thumburl.'</a><br />' . $content;
 				break;
 		}
 		if (!empty($categories)) {
