@@ -354,6 +354,119 @@ function printBareGalleryTitle() {
 }
 
 /**
+ * Function to create the page title to be used within the html <head> <title></title> element.
+ * Usefull if you use one header.php for the header of all theme pages instead of individual ones on the theme pages
+ * It returns the title and site name in reversed breadcrumb order:
+ * <title of current page> | <parent item if present> | <gallery title>
+ * It supports standard gallery pages as well a custom and Zenpage news articles, categories and pages.
+ *
+ * @param string $separator How you wish the parts to be separated
+ * @param bool $listparentalbums If the parent albums should be printed in reversed order before the current
+ * @param bool $listparentpage If the parent Zenpage pages should be printed in reversed order before the current page
+ */
+function getHeadTitle($separator = ' | ',$listparentalbums=true,$listparentpages=true) {
+	global $_zp_gallery, $_zp_galley_page, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news,
+					$_zp_current_zenpage_page, $_zp_gallery_page, $_zp_current_category,$_zp_page;
+	$mainsitetitle = html_encode(strip_tags(getMainSiteName());
+	$separator = html_encode($separator);
+	if($mainsitetitle) {
+		$mainsitetitle = $separator.$mainsitetitle;
+	}
+	$gallerytitle = html_encode(getBareGalleryTitle());
+	if ($_zp_page>1) { 
+		$pagenumber = ' ('.$_zp_page.')';
+	} else {
+		$pagenumber = '';
+	}
+	switch($_zp_gallery_page) {
+		case 'index.php':
+			return $gallerytitle.$mainsitetitle;
+			break;
+		case 'album.php':
+		case 'image.php':
+			if($listparentalbums) {
+				$parents = getParentAlbums();
+				$parentalbums = '';
+				if(count($parents) != 0) {
+					$parents = array_reverse($parents);
+					foreach($parents as $parent) {
+						$parentalbums .= html_encode(strip_tags($parent->getTitle())).$separator;	
+					}
+				}
+			} else {
+				$parentalbums = '';
+			}
+			$albumtitle = html_encode(getBareAlbumTitle()).$pagenumber.$separator.$parentalbums.$gallerytitle.$mainsitetitle;
+			switch($_zp_gallery_page) {
+				case 'album.php':
+					return $albumtitle;
+					break;
+				case 'image.php':
+					return html_encode(getBareImageTitle()).$separator.$albumtitle;
+					break;
+			}
+			break;
+		case 'news.php':
+			if(function_exists("is_NewsArticle")) {
+				if(is_NewsArticle()) {
+					return html_encode(getBareNewsTitle()).$pagenumber.$separator.gettext('News').$separator.$gallerytitle.$mainsitetitle;
+				} else if(is_NewsCategory()) {
+					return html_encode(strip_tags($_zp_current_category->getTitle())).$pagenumber.$separator.gettext('News').$separator.$gallerytitle.$mainsitetitle;
+				} else {
+					return gettext('News').$pagenumber.$separator.$gallerytitle.$mainsitetitle;
+				}
+			}
+			break;
+		case 'pages.php':		
+			if($listparentpages) {
+				$parents = $_zp_current_zenpage_page->getParents();
+				$parentpages = '';
+				if(count($parents) != 0) {
+					$parents = array_reverse($parents);
+					foreach($parents as $parent) {
+						$obj = new ZenpagePage($parent);
+						$parentpages .= html_encode(strip_tags($obj->getTitle())).$separator;	
+					}
+				}
+			} else {
+				$parentpages = '';
+			}
+			return html_encode(getBarePageTitle()).$pagenumber.$separator.$parentpages.$gallerytitle.$mainsitetitle;
+			break;
+		case '404.php':
+			return gettext('Object not found').$separator.$gallerytitle.$mainsitetitle;
+		  break;
+		default: // for all other possible static custom pages
+			$custompage = stripSuffix($_zp_gallery_page);
+			$standard = array('contact'	 => gettext('Contact'), 'register' => gettext('Register'), 'search'	 => gettext('Search'), 'archive'	 => gettext('Archive view'), 'password' => gettext('Password required'));
+			if (class_exists('favorites')) {
+				$standard[str_replace(_PAGE_ . '/', '', favorites::getFavorites_link())] = gettext('My favorites');
+			}
+			if (array_key_exists($custompage, $standard)) {
+				return $standard[$custompage].$pagenumber.$separator.$gallerytitle.$mainsitetitle;
+			} else {
+				return $custompage.$pagenumber.$separator.$gallerytitle.$mainsitetitle;
+			}
+			break;
+	} 
+}
+
+/**
+ * Function to print the html <title>title</title> within the <head> of a html page based on the current theme page
+ * Usefull if you use one header.php for the header of all theme pages instead of individual ones on the theme pages
+ * It prints the title and site name including the <title> tag in reversed breadcrumb order:
+ * <title><title of current page> | <parent item if present> | <gallery title></title>
+ * It supports standard gallery pages as well a custom and Zenpage news articles, categories and pages.
+ *
+ * @param string $separator How you wish the parts to be separated
+ * @param bool $listparentalbums If the parent albums should be printed in reversed order before the current
+ * @param bool $listparentpage If the parent Zenpage pages should be printed in reversed order before the current page
+ */
+function printHeadTitle($separator = ' | ',$listparentalbums=true,$listparentpages=true) {
+	echo '<title>'.getHeadTitle($separator,$listparentalbums,$listparentpages).'</title>';
+}
+
+/**
  * Returns the raw description of the gallery.
  *
  * @return string
