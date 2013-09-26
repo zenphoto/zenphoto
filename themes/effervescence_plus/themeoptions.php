@@ -77,12 +77,17 @@ class ThemeOptions {
 							array('type'			 => 'html', 'title'			 => gettext('Pages Rule'), 'link'			 => '<li class="menu_rule menu_menulabel"></li>', 'show'			 => 1, 'include_li' => 0, 'nesting'		 => 0),
 							array('type'		 => 'menulabel', 'title'		 => gettext('Archive'), 'link'		 => '', 'show'		 => 1, 'nesting'	 => 0),
 							array('type'		 => 'custompage', 'title'		 => gettext('Gallery and News'), 'link'		 => 'archive', 'show'		 => 1, 'nesting'	 => 1),
-							array('type'			 => 'html', 'title'			 => gettext('Archive Rule'), 'link'			 => '<li class="menu_rule menu_menulabel"></li>', 'show'			 => 1, 'include_li' => 0, 'nesting'		 => 0),
-							array('type'		 => 'menulabel', 'title'		 => gettext('RSS'), 'link'		 => '', 'show'		 => 1, 'nesting'	 => 0),
-							array('type'		 => 'customlink', 'title'		 => gettext('Gallery'), 'link'		 => WEBPATH . '/index.php?rss', 'show'		 => 1, 'nesting'	 => 1),
-							array('type'		 => 'customlink', 'title'		 => gettext('News'), 'link'		 => getRSSLink('news'), 'show'		 => 1, 'nesting'	 => 1),
-							array('type'		 => 'customlink', 'title'		 => gettext('News and Gallery'), 'link'		 => getRSSLink('news') . '&amp;withimages', 'show'		 => 1, 'nesting'	 => 1),
+							array('type'			 => 'html', 'title'			 => gettext('Archive Rule'), 'link'			 => '<li class="menu_rule menu_menulabel"></li>', 'show'			 => 1, 'include_li' => 0, 'nesting'		 => 0)
 			);
+			if (extensionEnabled('rss')) {
+				$rssItems = array(
+								array('type'		 => 'menulabel', 'title'		 => gettext('RSS'), 'link'		 => '', 'show'		 => 1, 'nesting'	 => 0),
+								array('type'		 => 'customlink', 'title'		 => gettext('Gallery'), 'link'		 => WEBPATH . '/index.php?rss', 'show'		 => 1, 'nesting'	 => 1),
+								array('type'		 => 'customlink', 'title'		 => gettext('News'), 'link'		 => getRSSLink('news'), 'show'		 => 1, 'nesting'	 => 1),
+								array('type'		 => 'customlink', 'title'		 => gettext('News and Gallery'), 'link'		 => getRSSLink('news') . '&amp;withimages', 'show'		 => 1, 'nesting'	 => 1),
+				);
+				$menuitems = array_merge($menuitems, $rssItems);
+			}
 			createMenuIfNotExists($menuitems, 'effervescence');
 		}
 	}
