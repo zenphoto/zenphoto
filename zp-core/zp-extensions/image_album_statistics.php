@@ -13,6 +13,8 @@
 $plugin_description = gettext("Functions that provide various statistics about images and albums in the gallery.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 
+require_once(dirname(dirname(__FILE__)) . '/template-functions.php');
+
 /**
  * Returns a list of album statistic accordingly to $option
  *

@@ -1,6 +1,7 @@
 <?php
+
 define('OFFSET_PATH', 3);
-require_once(dirname(dirname(dirname(__FILE__))).'/admin-globals.php');
+require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 
 $_zp_loggedin = NULL;
 if (isset($_POST['auth'])) {
@@ -14,12 +15,12 @@ admin_securityChecks(UPLOAD_RIGHTS, $return = currentRelativeURL());
 /* handle posts */
 $error = false;
 if (isset($_POST['processed'])) {
-	// sometimes things just go terribly wrong!
-	// Check for files.
+// sometimes things just go terribly wrong!
+// Check for files.
 	if (isset($_FILES['files'])) {
-		foreach($_FILES['files']['name'] as $key=>$name) {
+		foreach ($_FILES['files']['name'] as $key => $name) {
 			if (empty($name)) {
-				// purge empty slots
+// purge empty slots
 				unset($_FILES['files']['name'][$key]);
 				unset($_FILES['files']['type'][$key]);
 				unset($_FILES['files']['tmp_name'][$key]);
@@ -31,21 +32,28 @@ if (isset($_POST['processed'])) {
 	$filecount = 0;
 
 	$newAlbum = ((isset($_POST['existingfolder']) && $_POST['existingfolder'] == 'false') || isset($_POST['newalbum']));
-	// Make sure the folder exists. If not, create it.
+// Make sure the folder exists. If not, create it.
 	if (isset($_POST['processed']) && !empty($_POST['folder'])) {
-		$folder = zp_apply_filter('admin_upload_process',sanitize_path($_POST['folder']));
-		$targetPath = ALBUM_FOLDER_SERVERPATH.internalToFilesystem($folder);
+		$folder = zp_apply_filter('admin_upload_process', sanitize_path($_POST['folder']));
+		$targetPath = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($folder);
 		$new = !is_dir($targetPath);
 		if ($new) {
-			$rightsalbum = newAlbum(dirname($folder));
-		} else{
-			$rightsalbum = newAlbum($folder);
+			$rightsalbum = newAlbum(dirname($folder), true, true);
+		} else {
+			$rightsalbum = newAlbum($folder, true, true);
 		}
-		if (!$rightsalbum->isMyItem(UPLOAD_RIGHTS)) {
-			if (!zp_apply_filter('admin_managed_albums_access',false, $return)) {
-				$error = UPLOAD_ERR_BLOCKED;
+		if ($rightsalbum->exists) {
+			if (!$rightsalbum->isMyItem(UPLOAD_RIGHTS)) {
+				if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
+					$error = UPLOAD_ERR_BLOCKED;
+				}
 			}
+		} else {
+			// upload to the root
+			if (!zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS))
+				$error = UPLOAD_ERR_BLOCKED;
 		}
+
 		if (!$error) {
 			if (!is_dir($targetPath)) {
 				mkdir_recursive($targetPath, FOLDER_MOD);
@@ -64,8 +72,8 @@ if (isset($_POST['processed'])) {
 				$album->save();
 			} else {
 				$AlbumDirName = str_replace(SERVERPATH, '', $_zp_gallery->albumdir);
-				zp_error(gettext("The album couldn't be created in the 'albums' folder. This is usually a permissions problem. Try setting the permissions on the albums and cache folders to be world-writable using a shell:")." <code>chmod 777 " . $AlbumDirName . '/'.CACHEFOLDER.'/' ."</code>, "
-				. gettext("or use your FTP program to give everyone write permissions to those folders."));
+				zp_error(gettext("The album couldn't be created in the 'albums' folder. This is usually a permissions problem. Try setting the permissions on the albums and cache folders to be world-writable using a shell:") . " <code>chmod 777 " . $AlbumDirName . '/' . CACHEFOLDER . '/' . "</code>, "
+								. gettext("or use your FTP program to give everyone write permissions to those folders."));
 			}
 
 			foreach ($_FILES['files']['error'] as $key => $error) {
@@ -77,12 +85,13 @@ if (isset($_POST['processed'])) {
 					$error = zp_apply_filter('check_upload_quota', UPLOAD_ERR_OK, $tmp_name);
 					if (!$error) {
 						if (is_valid_image($name) || is_valid_other_type($name)) {
-							if (strrpos($soename,'.')===0) $soename = md5($name).$soename; // soe stripped out all the name.
+							if (strrpos($soename, '.') === 0)
+								$soename = md5($name) . $soename; // soe stripped out all the name.
 							if (!$error) {
 								$uploadfile = $targetPath . '/' . internalToFilesystem($soename);
 								if (file_exists($uploadfile)) {
-									$append = '_'.time();
-									$soename = stripSuffix($soename).$append.'.'.getSuffix($soename);
+									$append = '_' . time();
+									$soename = stripSuffix($soename) . $append . '.' . getSuffix($soename);
 									$uploadfile = $targetPath . '/' . internalToFilesystem($soename);
 								}
 								move_uploaded_file($tmp_name, $uploadfile);
@@ -97,7 +106,7 @@ if (isset($_POST['processed'])) {
 						} else if (is_zip($name)) {
 							unzip($tmp_name, $targetPath);
 						} else {
-							$error = UPLOAD_ERR_EXTENSION;	// invalid file uploaded
+							$error = UPLOAD_ERR_EXTENSION; // invalid file uploaded
 							break;
 						}
 					}
@@ -107,10 +116,10 @@ if (isset($_POST['processed'])) {
 			}
 			if ($error == UPLOAD_ERR_OK && ($filecount || isset($_POST['newalbum']))) {
 				if ($album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT) {
-					//	he has edit rights, allow new album creation
-					header('Location: '.FULLWEBPATH.'/'.ZENFOLDER.'/admin-edit.php?page=edit&album='.pathurlencode($folder).'&uploaded&subpage=1&tab=imageinfo&albumimagesort=id_desc');
+//	he has edit rights, allow new album creation
+					header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&album=' . pathurlencode($folder) . '&uploaded&subpage=1&tab=imageinfo&albumimagesort=id_desc');
 				} else {
-					header('Location: '.FULLWEBPATH.'/'.ZENFOLDER.'/admin-upload.php?uploaded=1');
+					header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-upload.php?uploaded=1');
 				}
 				exitZP();
 			}
@@ -143,11 +152,10 @@ if (!isset($_POST['processed'])) {
 			$errormsg = gettext('You have exceeded your upload quota');
 			break;
 		default:
-			$errormsg = sprintf(gettext("The error %s was reported when submitting the form. Please try again. If this keeps happening, check your server and PHP configuration (make sure file uploads are enabled, and upload_max_filesize is set high enough.) If you think this is a bug, file a bug report. Thanks!"),$error);
-		break;
+			$errormsg = sprintf(gettext("The error %s was reported when submitting the form. Please try again. If this keeps happening, check your server and PHP configuration (make sure file uploads are enabled, and upload_max_filesize is set high enough.) If you think this is a bug, file a bug report. Thanks!"), $error);
+			break;
 	}
 }
-header('Location: '.FULLWEBPATH.'/'.ZENFOLDER.'/admin-upload.php?error='.$errormsg);
+header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-upload.php?error=' . $errormsg);
 exitZP();
-
 ?>
