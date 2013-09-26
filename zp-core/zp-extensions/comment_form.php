@@ -280,10 +280,10 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 				}
 			}
 			$hideoriginalcomments = '';
-			if (getOption('comment_form_pagination') && getOption('comment_form_comments_per_page') < $num) {
+			if (getOption('comment_form_pagination') && COMMENTS_PER_PAGE < $num) {
 				$hideoriginalcomments = ' style="display:none"'; // hide original comment display to be replaced by jQuery pagination
 			}
-			if (getOption('comment_form_pagination') && getOption('comment_form_comments_per_page') < $num) {
+			if (getOption('comment_form_pagination') && COMMENTS_PER_PAGE < $num) {
 				?>
 				<div class="Pagination"></div><!-- this is the jquery pagination nav placeholder -->
 				<div id="Commentresult"></div>
@@ -312,7 +312,7 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 			</div><!-- id "comments" -->
 			<?php
 		}
-		if (getOption('comment_form_pagination') && getOption('comment_form_comments_per_page') < $num) {
+		if (getOption('comment_form_pagination') && COMMENTS_PER_PAGE < $num) {
 			?>
 			<div class="Pagination"></div><!-- this is the jquery pagination nav placeholder -->
 			<?php
