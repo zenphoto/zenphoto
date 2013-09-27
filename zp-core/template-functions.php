@@ -367,7 +367,7 @@ function printBareGalleryTitle() {
 function getHeadTitle($separator = ' | ',$listparentalbums=true,$listparentpages=true) {
 	global $_zp_gallery, $_zp_galley_page, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news,
 					$_zp_current_zenpage_page, $_zp_gallery_page, $_zp_current_category,$_zp_page;
-	$mainsitetitle = html_encode(strip_tags(getMainSiteName());
+	$mainsitetitle = html_encode(strip_tags(getMainSiteName()));
 	$separator = html_encode($separator);
 	if($mainsitetitle) {
 		$mainsitetitle = $separator.$mainsitetitle;
