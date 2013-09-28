@@ -497,8 +497,6 @@ function my_checkPageValidity($request, $gallery_page, $page) {
 		case 'gallery.php';
 			$gallery_page = 'index.php'; //	same as an album gallery index
 			break;
-		case 'news.php':
-			break;
 		case 'index.php':
 			if (!extensionEnabled('zenpage') || getOption('custom_index_page') == 'gallery') { // only one index page if zenpage plugin is enabled or custom index page is set
 				break;
@@ -507,6 +505,9 @@ function my_checkPageValidity($request, $gallery_page, $page) {
 			if ($page != 1) {
 				return false;
 			}
+		case 'news.php':
+		case 'album.php':
+		case 'search.php':
 			break;
 	}
 	return checkPageValidity($request, $gallery_page, $page);
