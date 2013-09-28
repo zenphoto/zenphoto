@@ -76,6 +76,14 @@ setOptionDefault('time_offset', 0);
 setOption('mod_rewrite_detected', 0);
 if (isset($_GET['mod_rewrite'])) {
 	?>
+	<script type="text/javascript">
+		$(function() {
+			$('img').error(function() {
+				$(this).attr('src', '../images/fail.png');
+				imageErr = true;
+			});
+		});
+	</script>
 	<p>
 		<?php echo gettext('Mod_Rewrite check:'); ?>
 		<br />

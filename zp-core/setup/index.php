@@ -479,6 +479,7 @@ if ($c <= 0) {
 		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.js" type="text/javascript"></script>
 		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zenphoto.js" type="text/javascript" ></script>
 		<script type="text/javascript">
+			var imageErr = false;
 			function toggle_visibility(id) {
 				var e = document.getElementById(id);
 				if (e.style.display == 'block')
@@ -2547,8 +2548,10 @@ if ($c <= 0) {
 			<?php
 			if ($autorun) {
 				?>
-											$('#golink').hide();
-											window.location = '<?php echo $autorun; ?>';
+											if (!imageErr) {
+												$('#golink').hide();
+												window.location = '<?php echo $autorun; ?>';
+											}
 				<?php
 			}
 			?>
