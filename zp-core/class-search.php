@@ -312,8 +312,8 @@ class SearchEngine {
 	 * sets sort directions
 	 *
 	 * @param string $val the direction
-	 * @param string $what 'image_sortdirection' if you want the image direction,
-	 *        'album_sortdirection' if you want it for the album
+	 * @param string $what 'image' if you want the image direction,
+	 *        'album' if you want it for the album
 	 */
 	function setSortDirection($val, $what = NULL) {
 		$this->extraparams[$what . 'sortdirection'] = $sorttype;
@@ -322,8 +322,8 @@ class SearchEngine {
 	/**
 	 * Stores the sort type
 	 *
-	 * @param string $sorttype the album sort type
-	 * @param string $what 'Description'image' or 'album'
+	 * @param string $sorttype the sort type
+	 * @param string $what 'image' or 'album'
 	 */
 	function setSortType($sorttype, $what = NULL) {
 		$this->extraparams[$what . 'sorttype'] = $sorttype;
