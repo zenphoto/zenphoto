@@ -364,78 +364,78 @@ function printBareGalleryTitle() {
  * @param bool $listparentalbums If the parent albums should be printed in reversed order before the current
  * @param bool $listparentpage If the parent Zenpage pages should be printed in reversed order before the current page
  */
-function getHeadTitle($separator = ' | ',$listparentalbums=true,$listparentpages=true) {
+function getHeadTitle($separator = ' | ', $listparentalbums = true, $listparentpages = true) {
 	global $_zp_gallery, $_zp_galley_page, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news,
-					$_zp_current_zenpage_page, $_zp_gallery_page, $_zp_current_category,$_zp_page;
+	$_zp_current_zenpage_page, $_zp_gallery_page, $_zp_current_category, $_zp_page;
 	$mainsitetitle = html_encode(strip_tags(getMainSiteName()));
 	$separator = html_encode($separator);
-	if($mainsitetitle) {
-		$mainsitetitle = $separator.$mainsitetitle;
+	if ($mainsitetitle) {
+		$mainsitetitle = $separator . $mainsitetitle;
 	}
 	$gallerytitle = html_encode(getBareGalleryTitle());
-	if ($_zp_page>1) { 
-		$pagenumber = ' ('.$_zp_page.')';
+	if ($_zp_page > 1) {
+		$pagenumber = ' (' . $_zp_page . ')';
 	} else {
 		$pagenumber = '';
 	}
-	switch($_zp_gallery_page) {
+	switch ($_zp_gallery_page) {
 		case 'index.php':
-			return $gallerytitle.$mainsitetitle;
+			return $gallerytitle . $mainsitetitle;
 			break;
 		case 'album.php':
 		case 'image.php':
-			if($listparentalbums) {
+			if ($listparentalbums) {
 				$parents = getParentAlbums();
 				$parentalbums = '';
-				if(count($parents) != 0) {
+				if (count($parents) != 0) {
 					$parents = array_reverse($parents);
-					foreach($parents as $parent) {
-						$parentalbums .= html_encode(strip_tags($parent->getTitle())).$separator;	
+					foreach ($parents as $parent) {
+						$parentalbums .= html_encode(strip_tags($parent->getTitle())) . $separator;
 					}
 				}
 			} else {
 				$parentalbums = '';
 			}
-			$albumtitle = html_encode(getBareAlbumTitle()).$pagenumber.$separator.$parentalbums.$gallerytitle.$mainsitetitle;
-			switch($_zp_gallery_page) {
+			$albumtitle = html_encode(getBareAlbumTitle()) . $pagenumber . $separator . $parentalbums . $gallerytitle . $mainsitetitle;
+			switch ($_zp_gallery_page) {
 				case 'album.php':
 					return $albumtitle;
 					break;
 				case 'image.php':
-					return html_encode(getBareImageTitle()).$separator.$albumtitle;
+					return html_encode(getBareImageTitle()) . $separator . $albumtitle;
 					break;
 			}
 			break;
 		case 'news.php':
-			if(function_exists("is_NewsArticle")) {
-				if(is_NewsArticle()) {
-					return html_encode(getBareNewsTitle()).$pagenumber.$separator.gettext('News').$separator.$gallerytitle.$mainsitetitle;
-				} else if(is_NewsCategory()) {
-					return html_encode(strip_tags($_zp_current_category->getTitle())).$pagenumber.$separator.gettext('News').$separator.$gallerytitle.$mainsitetitle;
+			if (function_exists("is_NewsArticle")) {
+				if (is_NewsArticle()) {
+					return html_encode(getBareNewsTitle()) . $pagenumber . $separator . gettext('News') . $separator . $gallerytitle . $mainsitetitle;
+				} else if (is_NewsCategory()) {
+					return html_encode(strip_tags($_zp_current_category->getTitle())) . $pagenumber . $separator . gettext('News') . $separator . $gallerytitle . $mainsitetitle;
 				} else {
-					return gettext('News').$pagenumber.$separator.$gallerytitle.$mainsitetitle;
+					return gettext('News') . $pagenumber . $separator . $gallerytitle . $mainsitetitle;
 				}
 			}
 			break;
-		case 'pages.php':		
-			if($listparentpages) {
+		case 'pages.php':
+			if ($listparentpages) {
 				$parents = $_zp_current_zenpage_page->getParents();
 				$parentpages = '';
-				if(count($parents) != 0) {
+				if (count($parents) != 0) {
 					$parents = array_reverse($parents);
-					foreach($parents as $parent) {
+					foreach ($parents as $parent) {
 						$obj = new ZenpagePage($parent);
-						$parentpages .= html_encode(strip_tags($obj->getTitle())).$separator;	
+						$parentpages .= html_encode(strip_tags($obj->getTitle())) . $separator;
 					}
 				}
 			} else {
 				$parentpages = '';
 			}
-			return html_encode(getBarePageTitle()).$pagenumber.$separator.$parentpages.$gallerytitle.$mainsitetitle;
+			return html_encode(getBarePageTitle()) . $pagenumber . $separator . $parentpages . $gallerytitle . $mainsitetitle;
 			break;
 		case '404.php':
-			return gettext('Object not found').$separator.$gallerytitle.$mainsitetitle;
-		  break;
+			return gettext('Object not found') . $separator . $gallerytitle . $mainsitetitle;
+			break;
 		default: // for all other possible static custom pages
 			$custompage = stripSuffix($_zp_gallery_page);
 			$standard = array('contact'	 => gettext('Contact'), 'register' => gettext('Register'), 'search'	 => gettext('Search'), 'archive'	 => gettext('Archive view'), 'password' => gettext('Password required'));
@@ -443,12 +443,12 @@ function getHeadTitle($separator = ' | ',$listparentalbums=true,$listparentpages
 				$standard[str_replace(_PAGE_ . '/', '', favorites::getFavorites_link())] = gettext('My favorites');
 			}
 			if (array_key_exists($custompage, $standard)) {
-				return $standard[$custompage].$pagenumber.$separator.$gallerytitle.$mainsitetitle;
+				return $standard[$custompage] . $pagenumber . $separator . $gallerytitle . $mainsitetitle;
 			} else {
-				return $custompage.$pagenumber.$separator.$gallerytitle.$mainsitetitle;
+				return $custompage . $pagenumber . $separator . $gallerytitle . $mainsitetitle;
 			}
 			break;
-	} 
+	}
 }
 
 /**
@@ -462,8 +462,8 @@ function getHeadTitle($separator = ' | ',$listparentalbums=true,$listparentpages
  * @param bool $listparentalbums If the parent albums should be printed in reversed order before the current
  * @param bool $listparentpage If the parent Zenpage pages should be printed in reversed order before the current page
  */
-function printHeadTitle($separator = ' | ',$listparentalbums=true,$listparentpages=true) {
-	echo '<title>'.getHeadTitle($separator,$listparentalbums,$listparentpages).'</title>';
+function printHeadTitle($separator = ' | ', $listparentalbums = true, $listparentpages = true) {
+	echo '<title>' . getHeadTitle($separator, $listparentalbums, $listparentpages) . '</title>';
 }
 
 /**
@@ -3697,7 +3697,7 @@ function getSearchURL($words, $dates, $fields, $page, $object_list = NULL) {
 	if (!is_null($object_list)) {
 		if (array_key_exists(0, $object_list)) { // handle old form albums list
 			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
-			deprecated_function::notify(gettext('getSearchURL $album_list parameter is deprecated. Pass array("albums"=>array(album, album, ...)) instead.'));
+			deprecated_functions::notify(gettext('getSearchURL $album_list parameter is deprecated. Pass array("albums"=>array(album, album, ...)) instead.'));
 			$object_list = array('albums' => $object_list);
 		}
 	}
