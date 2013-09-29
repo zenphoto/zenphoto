@@ -365,8 +365,7 @@ function printBareGalleryTitle() {
  * @param bool $listparentpage If the parent Zenpage pages should be printed in reversed order before the current page
  */
 function getHeadTitle($separator = ' | ', $listparentalbums = true, $listparentpages = true) {
-	global $_zp_gallery, $_zp_galley_page, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news,
-	$_zp_current_zenpage_page, $_zp_gallery_page, $_zp_current_category, $_zp_page;
+	global $_zp_gallery, $_zp_galley_page, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_gallery_page, $_zp_current_category, $_zp_page;
 	$mainsitetitle = html_encode(strip_tags(getMainSiteName()));
 	$separator = html_encode($separator);
 	if ($mainsitetitle) {
@@ -599,6 +598,15 @@ function getCurrentTheme() {
  */
 function next_album($all = false, $sorttype = NULL, $sortdirection = NULL, $mine = NULL) {
 	global $_zp_albums, $_zp_gallery, $_zp_current_album, $_zp_page, $_zp_current_album_restore, $_zp_current_search;
+	if (!is_null($sorttype) || !is_null($sortdirection)) {
+		if (gettype($sorttype) == 'boolean' && func_num_args() == 2) {
+			$mine = $sorttype;
+		} else {
+			//	These parameters are deprecated
+			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
+			deprecated_functions::notify(gettext('Sort parameter oprions should be set instead with the setSortType() and setSortDirection() object methods at the head of your scrip.'));
+		}
+	}
 	if (is_null($_zp_albums)) {
 		if (in_context(ZP_SEARCH)) {
 			$_zp_albums = $_zp_current_search->getAlbums($all ? 0 : $_zp_page, $sorttype, $sortdirection, true, $mine);
@@ -2028,8 +2036,16 @@ function getTotalImagesIn($album) {
  * @return bool
  */
 function next_image($all = false, $firstPageCount = NULL, $sorttype = null, $sortdirection = NULL, $mine = NULL) {
-	global $_zp_images, $_zp_current_image, $_zp_current_album, $_zp_page, $_zp_current_image_restore,
-	$_zp_current_search, $_zp_gallery, $_firstPageImages;
+	global $_zp_images, $_zp_current_image, $_zp_current_album, $_zp_page, $_zp_current_image_restore, $_zp_current_search, $_zp_gallery, $_firstPageImages;
+	if (!is_null($sorttype) || !is_null($sortdirection)) {
+		if (gettype($sorttype) == 'boolean' && func_num_args() == 3) {
+			$mine = $sorttype;
+		} else {
+			//	These parameters are deprecated
+			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
+			deprecated_functions::notify(gettext('Sort parameter oprions should be set instead with the setSortType() and setSortDirection() object methods at the head of your scrip.'));
+		}
+	}
 	if (is_null($firstPageCount)) {
 		$firstPageCount = $_firstPageImages;
 	}
@@ -3697,7 +3713,7 @@ function getSearchURL($words, $dates, $fields, $page, $object_list = NULL) {
 	if (!is_null($object_list)) {
 		if (array_key_exists(0, $object_list)) { // handle old form albums list
 			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
-			deprecated_functions::notify(gettext('getSearchURL $album_list parameter is deprecated. Pass array("albums"=>array(album, album, ...)) instead.'));
+			deprecated_functions::notify(gettext('Pass array("albums" => array(album, album, ...)) for the object list.'));
 			$object_list = array('albums' => $object_list);
 		}
 	}

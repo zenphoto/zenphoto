@@ -209,8 +209,18 @@ function getNumNews($total = false) {
  *
  * @return bool
  */
-function next_news($sortorder = "date", $sortdirection = "desc") {
+function next_news($sortorder = NULL, $sortdirection = NULL) {
 	global $_zp_zenpage, $_zp_current_zenpage_news, $_zp_current_zenpage_news_restore, $_zp_zenpage_articles, $_zp_current_category, $_zp_gallery, $_zp_current_search;
+	if (!is_null($sortorder) || !is_null($sortdirection)) {
+		//	These parameters are deprecated
+		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
+		deprecated_functions::notify(gettext('Sort parameter oprions should be set instead with the setSortType() and setSortDirection() object methods at the head of your scrip.'));
+	}
+	if (is_null($sortorder))
+		$sortorder = "date";
+	if (is_null($sortdirection))
+		$sortdirection = "desc";
+
 	$_zp_current_zenpage_news_restore = $_zp_current_zenpage_news;
 	if (is_null($_zp_zenpage_articles)) {
 		if (in_context(ZP_SEARCH)) {
@@ -2340,6 +2350,12 @@ function getNumPages($total = false) {
  */
 function next_page($sorttype = NULL, $sortdirection = NULL) {
 	global $_zp_zenpage, $_zp_next_pagelist, $_zp_current_search, $_zp_current_zenpage_page, $_zp_current_page_restore;
+	if (!is_null($sorttype) || !is_null($sortdirection)) {
+		//	These parameters are deprecated
+		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
+		deprecated_functions::notify(gettext('Sort parameter oprions should be set instead with the setSortType() and setSortDirection() object methods at the head of your scrip.'));
+	}
+
 	if (is_null($_zp_next_pagelist)) {
 		if (in_context(ZP_SEARCH)) {
 			$_zp_next_pagelist = $_zp_current_search->getPages(NULL, false, NULL, $sorttype, $sortdirection);
