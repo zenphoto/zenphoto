@@ -6,14 +6,14 @@
  * @param unknown_type $value
  * @param unknown_type $quote
  */
-function updateConfigItem($item, $value, $zp_cfg, $quote=true) {
+function updateConfigItem($item, $value, $zp_cfg, $quote = true) {
 	if ($quote) {
-		$value = '"'.$value.'"';
+		$value = '"' . $value . '"';
 	}
 	$i = strpos($zp_cfg, $item);
 	if ($i === false) {
 		$i = strpos($zp_cfg, '/** Do not edit below this line. **/');
-		$zp_cfg = substr($zp_cfg, 0, $i)."\$conf['".$item."'] = ".$value.";\n".substr($zp_cfg,$i);
+		$zp_cfg = substr($zp_cfg, 0, $i) . "\$conf['" . $item . "'] = " . $value . ";\n" . substr($zp_cfg, $i);
 	} else {
 		$i = strpos($zp_cfg, '=', $i);
 		$j = strpos($zp_cfg, "\n", $i);
@@ -28,9 +28,9 @@ function updateConfigItem($item, $value, $zp_cfg, $quote=true) {
  * @param string $zp_cfg
  */
 function storeConfig($zp_cfg) {
-	@rename(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE,SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE.'.bak');
-	@chmod(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE.'.bak', DATA_MOD);
-	file_put_contents(SERVERPATH.'/'.DATA_FOLDER.'/'.CONFIGFILE, $zp_cfg);
+	@rename(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, $backkup = SERVERPATH . '/' . DATA_FOLDER . '/' . stripSuffix(CONFIGFILE) . '.bak.php');
+	@chmod($backup, DATA_MOD);
+	file_put_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, $zp_cfg);
 }
 
 ?>
