@@ -20,7 +20,7 @@ define('DATA_FOLDER', 'zp-data');
 define('CACHEFOLDER', 'cache');
 define('UPLOAD_FOLDER', 'uploaded');
 define("STATIC_CACHE_FOLDER", "cache_html");
-define('CONFIGFILE', 'zenphoto.cfg');
+define('CONFIGFILE', 'zenphoto.cfg.php');
 define('MUTEX_FOLDER', '.mutex');
 
 //bit masks for plugin priorities

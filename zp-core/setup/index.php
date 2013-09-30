@@ -60,33 +60,32 @@ if (!file_exists($en_US)) {
 	@mkdir($en_US, $chmod | 0311);
 }
 
+$zptime = time();
+if (!file_exists($serverpath . '/' . DATA_FOLDER)) {
+	@mkdir($serverpath . '/' . DATA_FOLDER, $chmod | 0311);
+}
+@unlink(SERVERPATH . '/' . DATA_FOLDER . '/zenphoto.cfg.bak'); //	remove any old backup file
+
 if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 	$newconfig = false;
 	$zptime = filemtime(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
+} else if (file_exists($oldconfig = dirname(dirname(dirname(__FILE__))) . '/' . ZENFOLDER . '/zp-config.php')) {
+	//migrate old root configuration file.
+	$zpconfig = file_get_contents($oldconfig);
+	$i = strpos($zpconfig, '/** Do not edit above this line. **/');
+	$j = strpos($zpconfig, '?>');
+	$zpconfig = 'global $_zp_conf_vars;' . "\n" . '$conf = array();' . "\n" . substr($zpconfig, $i, $j - $i);
+	file_put_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, $zpconfig);
+	$result = @unlink(dirname(dirname(dirname(__FILE__))) . '/' . ZENFOLDER . '/zp-config.php');
+	$newconfig = false;
+} else if (file_exists($oldconfig = SERVERPATH . '/' . DATA_FOLDER . '/zenphoto.cfg')) {
+	@rename(SERVERPATH . '/' . DATA_FOLDER . '/zenphoto.cfg', SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
+	$newconfig = false;
 } else {
-	$zptime = time();
-	if (!file_exists($serverpath . '/' . DATA_FOLDER)) {
-		@mkdir($serverpath . '/' . DATA_FOLDER, $chmod | 0311);
-	}
-	if (file_exists(dirname(dirname(dirname(__FILE__))) . '/' . ZENFOLDER . '/zp-config.php')) {
-		// copy old file from zp-core
-		@copy(dirname(dirname(dirname(__FILE__))) . '/' . ZENFOLDER . '/zp-config.php', SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
-		@unlink(dirname(dirname(dirname(__FILE__))) . '/' . ZENFOLDER . '/zp-config.php');
-	}
-	if (file_exists($serverpath . '/' . DATA_FOLDER . '/zp-config.php')) {
-		//migrate old file.
-		$zpconfig = file_get_contents($serverpath . '/' . DATA_FOLDER . '/zp-config.php');
-		$i = strpos($zpconfig, '/** Do not edit above this line. **/');
-		$j = strpos($zpconfig, '?>');
-		$zpconfig = 'global $_zp_conf_vars;' . "\n" . '$conf = array();' . "\n" . substr($zpconfig, $i, $j - $i);
-		file_put_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, $zpconfig);
-		$result = unlink($serverpath . '/' . DATA_FOLDER . '/zp-config.php');
-		$newconfig = false;
-	} else {
-		$newconfig = true;
-		@copy(dirname(dirname(__FILE__)) . '/zenphoto_cfg.txt', SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
-	}
+	$newconfig = true;
+	@copy(dirname(dirname(__FILE__)) . '/zenphoto_cfg.txt', SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 }
+
 @copy(dirname(dirname(__FILE__)) . '/dataaccess', $serverpath . '/' . DATA_FOLDER . '/.htaccess');
 @chmod($serverpath . '/' . DATA_FOLDER . '/.htaccess', 0444);
 
