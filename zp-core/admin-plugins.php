@@ -132,7 +132,7 @@ $subtab = printSubtabs();
 	</p>
 	<p class='notebox'><?php echo gettext("<strong>Note:</strong> Support for a particular plugin may be theme dependent! You may need to add the plugin theme functions if the theme does not currently provide support."); ?>
 	</p>
-	<form action="?action=saveplugins&page=plugins&tab=<?php echo html_encode($subtab); ?>" method="post">
+	<form action="?action=saveplugins&amp;page=plugins&amp;tab=<?php echo html_encode($subtab); ?>" method="post">
 		<?php XSRFToken('saveplugins'); ?>
 		<input type="hidden" name="saveplugins" value="yes" />
 		<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
@@ -273,7 +273,7 @@ $subtab = printSubtabs();
 							}
 							if ($icon & THEME_PLUGIN | FEATURE_PLUGIN) {
 								?>
-								<a title="<?php echo gettext('theme plugin'); ?>" /><img class="zp_logoicon" src="images/pictures.png" /></a>
+								<a title="<?php echo gettext('theme plugin'); ?>"><img class="zp_logoicon" src="images/pictures.png" /></a>
 								<?php
 							} else {
 								?>
@@ -282,7 +282,7 @@ $subtab = printSubtabs();
 							}
 							if ($icon & ADMIN_PLUGIN) {
 								?>
-								<a title="<?php echo gettext('admin plugin'); ?>" /><img class="zp_logoicon" src="images/cache.png" /></a>
+								<a title="<?php echo gettext('admin plugin'); ?>"><img class="zp_logoicon" src="images/cache.png" /></a>
 								<?php
 							} else {
 								?>
@@ -304,12 +304,12 @@ $subtab = printSubtabs();
 									<a href="javascript:toggle('showdisable_<?php echo $extension; ?>');" title="<?php echo gettext('This plugin is disabled. Click for details.'); ?>">
 										<img src="images/action.png" alt="" class="zp_logoicon" />
 									</a>
-									<input type="hidden" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="0"	/>
+									<input type="hidden" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="0" />
 								</span>
 								<?php
 							} else {
 								?>
-								<input type="checkbox" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="<?php echo $plugin_is_filter; ?>"<?php echo $attributes; ?>	/>
+								<input type="checkbox" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="<?php echo $plugin_is_filter; ?>"<?php echo $attributes; ?> />
 								<?php
 							}
 							echo $extension;
