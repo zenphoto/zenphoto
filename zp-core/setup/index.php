@@ -66,26 +66,35 @@ if (!file_exists($serverpath . '/' . DATA_FOLDER)) {
 }
 @unlink(SERVERPATH . '/' . DATA_FOLDER . '/zenphoto.cfg.bak'); //	remove any old backup file
 
-if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
+if (file_exists($oldconfig = SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
+	$zpconfig = file_get_contents($oldconfig);
+	if (strpos($zpconfig, '<?php') === false) {
+		$zpconfig = "<?php\n" . $zpconfig . "\n?>";
+		file_put_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, $zpconfig);
+		configMod();
+	}
 	$newconfig = false;
-	$zptime = filemtime(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 } else if (file_exists($oldconfig = dirname(dirname(dirname(__FILE__))) . '/' . ZENFOLDER . '/zp-config.php')) {
 	//migrate old root configuration file.
 	$zpconfig = file_get_contents($oldconfig);
 	$i = strpos($zpconfig, '/** Do not edit above this line. **/');
-	$j = strpos($zpconfig, '?>');
-	$zpconfig = 'global $_zp_conf_vars;' . "\n" . '$conf = array();' . "\n" . substr($zpconfig, $i, $j - $i);
+	$zpconfig = "<?php\nglobal \$_zp_conf_vars;\n\$conf = array()\n" . substr($zpconfig, $i);
 	file_put_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, $zpconfig);
 	$result = @unlink(dirname(dirname(dirname(__FILE__))) . '/' . ZENFOLDER . '/zp-config.php');
 	$newconfig = false;
+	configMod();
 } else if (file_exists($oldconfig = SERVERPATH . '/' . DATA_FOLDER . '/zenphoto.cfg')) {
-	@rename(SERVERPATH . '/' . DATA_FOLDER . '/zenphoto.cfg', SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
+	$zpconfig = "<?php\n" . file_get_contents($oldconfig) . "\n?>";
+	file_put_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, $zpconfig);
+	@unlink(SERVERPATH . '/' . DATA_FOLDER . '/zenphoto.cfg');
 	$newconfig = false;
+	configMod();
 } else {
 	$newconfig = true;
 	@copy(dirname(dirname(__FILE__)) . '/zenphoto_cfg.txt', SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 }
 
+$zptime = filemtime($oldconfig = SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 @copy(dirname(dirname(__FILE__)) . '/dataaccess', $serverpath . '/' . DATA_FOLDER . '/.htaccess');
 @chmod($serverpath . '/' . DATA_FOLDER . '/.htaccess', 0444);
 
@@ -226,7 +235,7 @@ chdir($curdir);
 
 if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 	unset($_zp_conf_vars);
-	eval(file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE));
+	require(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 	if (isset($_zp_conf_vars) && !isset($conf)) {
 		if (isset($_zp_conf_vars['db_software'])) {
 			$confDB = $_zp_conf_vars['db_software'];
@@ -728,7 +737,7 @@ if ($c <= 0) {
 								}
 							}
 							if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
-								eval(file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE));
+								require( SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 								$cfg = true;
 							} else {
 								$cfg = false;
@@ -1615,7 +1624,7 @@ if ($c <= 0) {
 					} // system check
 					if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 
-						eval(file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE));
+						require(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 						require_once(dirname(dirname(__FILE__)) . '/functions.php');
 						$task = '';
 						if (isset($_GET['create'])) {
