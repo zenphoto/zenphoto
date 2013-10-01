@@ -5,7 +5,7 @@
  * @package classes
  */
 // force UTF-8 Ø
-// classes.php 
+// classes.php
 
 /* * *****************************************************************************
  * ******************************************************************************
@@ -175,6 +175,7 @@ class PersistentObject {
 			// Note: It's important for $new_unique_set to come last, as its values should override.
 			$insert_data = array_merge($this->data, $this->updates, $this->tempdata, $new_unique_set);
 			unset($insert_data['id']);
+			unset($insert_data['hitcounter']); //	start fresh on new copy
 			if (empty($insert_data)) {
 				return true;
 			}

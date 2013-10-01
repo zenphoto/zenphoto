@@ -1,3 +1,4 @@
+<?php
 global $_zp_conf_vars;
 $conf = array();
 
@@ -96,3 +97,4 @@ $conf['special_pages'] = array(
 /**********************************/
 $_zp_conf_vars = $conf;
 unset($conf);
+?>
