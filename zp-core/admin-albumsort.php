@@ -131,7 +131,7 @@ if (!isset($_GET['album'])) {
 
 						<p class="buttons">
 							<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>"><img	src="images/arrow_left_blue_round.png" alt="" /><strong><?php echo gettext("Back"); ?></strong></a>
-							<button type="button"" onclick="postSort(this.form);" >
+							<button type="button" onclick="postSort(this.form);" >
 								<img	src="images/pass.png" alt="" />
 								<strong><?php echo gettext("Apply"); ?></strong>
 							</button>
