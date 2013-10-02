@@ -171,7 +171,7 @@ if (GALLERY_SECURITY == 'public') {
 			echo '</div>';
 	}
 	?>
-	<span id="serializeOutput" /></span>
+	<span id="serializeOutput"></span>
 	<input name="update" type="hidden" value="Save Order" />
 	<p class="buttons">
 		<button class="serialize" type="submit" title="<?php echo gettext('Apply'); ?>">
