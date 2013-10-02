@@ -368,7 +368,6 @@ printLogoAndLinks();
 							<td class="page-list_icon">
 								<input type="checkbox" name="ids[]" value="<?php echo $article->getTitlelink(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
 							</td>
-							</tr>
 							<?php } else { ?>
 							<td class="page-list_icon">
 								<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
