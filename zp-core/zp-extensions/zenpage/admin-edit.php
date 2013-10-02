@@ -355,7 +355,6 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 										<img src="../../images/reset.png" alt="" />
 										<strong><?php echo gettext("Reset"); ?></strong>
 									</button>
-									</p>
 									<div class="floatright">
 										<?php
 										if ($additem) {
