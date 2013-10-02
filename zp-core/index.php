@@ -156,5 +156,5 @@ foreach ($_zp_script_timer as $step => $time) {
 }
 if (count($_zp_script_timer) > 1)
 	printf("<!-- " . gettext('Zenphoto script processing total:%.4f seconds') . " -->\n", $last - $first);
-$_zp_HTML_cache->endHTMLCache()
+$_zp_HTML_cache->endHTMLCache();
 ?>
