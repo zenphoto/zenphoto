@@ -2426,6 +2426,7 @@ if ($c <= 0) {
 									}
 								}
 								if (!empty($unique)) {
+									$autorun = false;
 									?>
 									<p class="notebox">
 										<?php
