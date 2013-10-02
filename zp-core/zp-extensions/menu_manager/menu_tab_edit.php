@@ -346,7 +346,6 @@ if ($result['include_li'] == 1) {
 								}
 								?> style="display: inline" />
 <?php echo gettext("Add <em>span</em> tags"); ?>
-								</label>
 							</td>
 							<td>
 						<?php echo gettext('ID'); ?>
@@ -372,7 +371,7 @@ if (is_array($result) && !empty($result['type'])) {
 					</table>
 					<p class="buttons">
 						<button type="submit"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-						<button type="reset""><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+						<button type="reset"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 					</p>
 					<br class="clearall" /><br />
 				</form>
