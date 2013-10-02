@@ -532,7 +532,7 @@ function printArticleDatesDropdown() {
 	<select name="ListBoxURL" size="1" onchange="gotoLink(this.form)">
 	<?php
 
-	echo "<option $selected value='admin-news-articles.php'".getNewsAdminOptionPath(array_merge(array('date'=>'all'),$option))."'>".gettext("View all months")."</option>";
+	echo "<option $selected value='admin-news-articles.php".getNewsAdminOptionPath(array_merge(array('date'=>'all'),$option))."'>".gettext("View all months")."</option>";
 	while (list($key, $val) = each($datecount)) {
 		$nr++;
 		if ($key == '0000-00-01') {
