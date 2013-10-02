@@ -339,6 +339,7 @@ if ($result['include_li'] == 1) {
 						</tr>
 						<tr id="span_row">
 							<td>
+							<label>
 								<input name="span" type="checkbox" id="span" value="1" <?php
 								if ($result['span_id'] || $result['span_class']) {
 									echo "checked='checked'";
