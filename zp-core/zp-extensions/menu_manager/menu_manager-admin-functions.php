@@ -78,7 +78,7 @@ function printItemsListTable($item, $flag) {
 					<?php
 				} else {
 					?>
-					<img src="../../images/place_holder_icon.png" alt="<?php echo gettext("under password protection"); ?>"style="border: 0px;" />
+					<img src="../../images/place_holder_icon.png" alt="<?php echo gettext("under password protection"); ?>" style="border: 0px;" />
 					<?php
 				}
 				?>
