@@ -251,7 +251,7 @@ echo '</head>';
 									<input type="checkbox" name="checkAllAuto" id="checkAllAuto" onclick="$('.checkAuto').prop('checked', $('#checkAllAuto').prop('checked'));"/>
 									<span id="autotext"><?php echo gettext('all'); ?></span>
 								</label>
-	<?php XSRFToken('publishContent'); ?>
+								<?php XSRFToken('publishContent'); ?>
 								<input type="hidden" name="publish" value="albums" />
 								<ul class="schedulealbumchecklist">
 									<?php
@@ -263,8 +263,8 @@ echo '</head>';
 										<li>
 											<label>
 												<input type="checkbox" class="checkAuto" name="<?php echo postIndexEncode($analbum); ?>" value="<?php echo $albumid; ?>" class="albumcheck" />
-												<img src="<?php echo html_encode(html_encode(pathurlencode($thumb))); ?>" width="60" height="60" alt="" title="album thumb" />
-		<?php echo $album->name; ?>
+												<img src="<?php echo html_encode(pathurlencode($thumb)); ?>" width="60" height="60" alt="" title="album thumb" />
+												<?php echo $album->name; ?>
 											</label>
 											<a href="<?php echo $album->getAlbumLink(); ?>" title="<?php echo gettext('view'); ?>"> (<?php echo gettext('view'); ?>)</a>
 										</li>
@@ -285,7 +285,7 @@ echo '</head>';
 							<p class="buttons tooltip">
 								<a href="?propagate_unpublished" title="<?php echo gettext('Set all subalbums of an un-published album to un-published.'); ?>">
 									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/redo.png" alt="" />
-	<?php echo gettext('Propagate un-published state'); ?>
+									<?php echo gettext('Propagate un-published state'); ?>
 								</a>
 							</p>
 							<br class="clearall" />
@@ -313,7 +313,7 @@ echo '</head>';
 										});
 										// ]]> -->
 				</script>
-<?php $visible = $report == 'images'; ?>
+				<?php $visible = $report == 'images'; ?>
 				<fieldset class="smallbox">
 					<legend><?php
 						reveal('imagebox', $visible);
@@ -321,8 +321,8 @@ echo '</head>';
 						?></legend>
 					<div id="imagebox"<?php if (!$visible) echo ' style="display:none"' ?>>
 						<form name="review" action="" method="post">
-<?php XSRFToken('publishContent'); ?>
-<?php printf(gettext('Review images older than: %s'), '<input type="text" size="20" id="publish_date" name="publish_date" value="' . $requestdate . '" />'); ?>
+							<?php XSRFToken('publishContent'); ?>
+							<?php printf(gettext('Review images older than: %s'), '<input type="text" size="20" id="publish_date" name="publish_date" value="' . $requestdate . '" />'); ?>
 							<br class="clearall" />
 							<br class="clearall" />
 							<input type="hidden" name="review" value="true" />
@@ -372,7 +372,7 @@ echo '</head>';
 							</script>
 							<form name="publish_images" action="" method="post"><?php echo gettext('Images:'); ?>
 
-									<?php XSRFToken('publishContent'); ?>
+								<?php XSRFToken('publishContent'); ?>
 								<input type="hidden" name="publish" value="images" />
 								<ul class="scheduleimagechecklist">
 									<?php
@@ -407,25 +407,25 @@ echo '</head>';
 																	<label style="white-space:nowrap">
 																		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" style="border: 0px;" alt="publish" />
 																		<input id="pub_<?php echo $item; ?>" class="album_<?php echo $albumid; ?>_p global_p" name="r_<?php echo $item; ?>" type="radio" value="pub_<?php echo $item; ?>" onclick="confirmdel(this, 'label_del_<?php echo $item; ?>', false)" />
-			<?php echo gettext('Publish'); ?>
+																		<?php echo gettext('Publish'); ?>
 																	</label>
 																	<label style="white-space:nowrap">
 																		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" style="border: 0px;" alt="unpublish" />
 																		<input id="notpub_<?php echo $item; ?>" class="album_<?php echo $albumid; ?>_u global_u" name="r_<?php echo $item; ?>" type="radio"	value="notpub_<?php echo $item; ?>"	checked="checked" onclick="confirmdel(this, 'label_del_<?php echo $item; ?>', false)" />
-			<?php echo gettext('Do not publish'); ?>
+																		<?php echo gettext('Do not publish'); ?>
 																	</label>
 																	<label id="label_del_<?php echo $item; ?>" style="white-space:nowrap">
 																		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" style="border: 0px;" alt="delete" />
 																		<input id="del_<?php echo $item; ?>" class="album_<?php echo $albumid; ?>_d" name="r_<?php echo $item; ?>" type="radio"	value="del_<?php echo $item; ?>" onclick="confirmdel(this, 'label_del_<?php echo $item; ?>', true)" />
-			<?php echo gettext('Delete'); ?>
+																		<?php echo gettext('Delete'); ?>
 																	</label>
 																</td>
 																<td>
-			<?php $image = newImage($album, $display); ?>
+																	<?php $image = newImage($album, $display); ?>
 																	<img src="<?php echo html_encode(pathurlencode($image->getCustomImage(60, NULL, NULL, 60, 60, NULL, NULL, -1, NULL))); ?>" alt="<?php echo $image->filename; ?>"/>
 																</td>
 																<td>
-			<?php printf(gettext('%s'), $display); ?><a href="<?php echo html_encode($image->getImageLink()); ?>" title="<?php echo html_encode($image->getTitle()); ?>"> (<?php echo gettext('View'); ?>)</a>
+																	<?php printf(gettext('%s'), $display); ?><a href="<?php echo html_encode($image->getImageLink()); ?>" title="<?php echo html_encode($image->getTitle()); ?>"> (<?php echo gettext('View'); ?>)</a>
 																</td>
 
 															</tr>
@@ -486,32 +486,32 @@ echo '</head>';
 					<br class="clearall" />
 					<fieldset class="smallbox">
 						<legend><?php
-						reveal('catbox', $visible);
-						echo gettext('Categories not published');
-						?></legend>
+							reveal('catbox', $visible);
+							echo gettext('Categories not published');
+							?></legend>
 						<?php
 						if ($output) {
 							echo sprintf(ngettext('%u unpublished category', '%u unpublished categories', $c), $c);
 							?>
 							<div id="catbox"<?php if (!$visible) echo ' style="display:none"' ?>>
-		<?php
-		if ($report == 'categories') {
-			?>
+								<?php
+								if ($report == 'categories') {
+									?>
 									<div class="messagebox fade-message">
 										<h2><?php echo gettext('Category changes applied'); ?></h2>
 									</div>
-			<?php
-		}
-		?>
+									<?php
+								}
+								?>
 								<form name="publish_cat" action="" method="post"><?php echo gettext('Categories:'); ?>
 									<label id="autocheck_cat">
 										<input type="checkbox" id="checkAllcat" name="checkAllcat" onclick="$('.catcheck').prop('checked', $('#checkAllcat').prop('checked'));" />
 										<span id="autotext_cat"><?php echo gettext('all'); ?></span>
 									</label>
-										<?php XSRFToken('publishContent'); ?>
+									<?php XSRFToken('publishContent'); ?>
 									<input type="hidden" name="publish" value="categories" />
 									<ul class="schedulealbumchecklist">
-		<?php echo $output; ?>
+										<?php echo $output; ?>
 									</ul>
 									<br class="clearall" />
 									<div class="buttons pad_button">
@@ -544,32 +544,32 @@ echo '</head>';
 					?>
 					<fieldset class="smallbox">
 						<legend><?php
-						reveal('newsbox', $visible);
-						echo gettext('News articles not published');
-						?></legend>
-							<?php
-							if ($output) {
-								echo sprintf(ngettext('%u unpublished article', '%u unpublished articles', $c), $c);
-								?>
+							reveal('newsbox', $visible);
+							echo gettext('News articles not published');
+							?></legend>
+						<?php
+						if ($output) {
+							echo sprintf(ngettext('%u unpublished article', '%u unpublished articles', $c), $c);
+							?>
 							<div id="newsbox"<?php if (!$visible) echo ' style="display:none"' ?>>
-		<?php
-		if ($report == 'news') {
-			?>
+								<?php
+								if ($report == 'news') {
+									?>
 									<div class="messagebox fade-message">
 										<h2><?php echo gettext('News article changes applied'); ?></h2>
 									</div>
-			<?php
-		}
-		?>
+									<?php
+								}
+								?>
 								<form name="publish_articles" action="" method="post"><?php echo gettext('Articles:'); ?>
 									<label id="autocheck_art">
 										<input type="checkbox" name="checkAllcat" onclick="$('.artcheck').prop('checked', checked)" />
 										<span id="autotext_art"><?php echo gettext('all'); ?></span>
 									</label>
-		<?php XSRFToken('publishContent'); ?>
+									<?php XSRFToken('publishContent'); ?>
 									<input type="hidden" name="publish" value="news" />
 									<ul class="schedulealbumchecklist">
-		<?php echo $output; ?>
+										<?php echo $output; ?>
 									</ul>
 									<br class="clearall" />
 									<div class="buttons pad_button">
@@ -601,30 +601,30 @@ echo '</head>';
 					<br class="clearall" />
 					<fieldset class="smallbox">
 						<legend><?php
-						reveal('pagebox', $visible);
-						echo gettext('Pages not published');
-						?></legend>
+							reveal('pagebox', $visible);
+							echo gettext('Pages not published');
+							?></legend>
 						<?php
 						if ($report == 'pages') {
 							?>
 							<div class="messagebox fade-message">
 								<h2><?php echo gettext('Pages changes applied'); ?></h2>
 							</div>
-		<?php
-	}
-	if ($output) {
-		echo sprintf(ngettext('%u unpublished page', '%u unpublished pages', $c), $c);
-		?>
+							<?php
+						}
+						if ($output) {
+							echo sprintf(ngettext('%u unpublished page', '%u unpublished pages', $c), $c);
+							?>
 							<div id="pagebox"<?php if (!$visible) echo ' style="display:none"' ?>>
 								<form name="publish_pages" action="" method="post"><?php echo gettext('Pages:'); ?>
 									<label id="autocheck_page">
 										<input type="checkbox" name="checkAllpage" onclick="$('.pagecheck').prop('checked', checked);" />
 										<span id="autotext_page"><?php echo gettext('all'); ?></span>
 									</label>
-		<?php XSRFToken('publishContent'); ?>
+									<?php XSRFToken('publishContent'); ?>
 									<input type="hidden" name="publish" value="pages" />
 									<ul class="schedulealbumchecklist">
-		<?php echo $output; ?>
+										<?php echo $output; ?>
 									</ul>
 									<br class="clearall" />
 									<div class="buttons pad_button">
@@ -633,19 +633,19 @@ echo '</head>';
 										</button>
 									</div>
 							</div>
-		<?php
-	} else {
-		echo gettext('No unpublished pages');
-	}
-	?>
+							<?php
+						} else {
+							echo gettext('No unpublished pages');
+						}
+						?>
 						<br class="clearall" />
 					</fieldset>
-			<?php
-		}
-		?>
+					<?php
+				}
+				?>
 			</div><!-- content -->
 		</div><!-- main -->
-<?php printAdminFooter(); ?>
+		<?php printAdminFooter(); ?>
 </body>
 <?php
 echo "</html>";
