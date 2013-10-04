@@ -1294,13 +1294,13 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
 																onclick="passwordClear('<?php echo $suffix; ?>');
-					togglePassword('<?php echo $suffix; ?>');" /><?php echo gettext('Show password'); ?></label>
+								togglePassword('<?php echo $suffix; ?>');" /><?php echo gettext('Show password'); ?></label>
 								</td>
 								<td>
 									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
 												 onkeydown="passwordClear
-					'<?php echo $suffix; ?>'
-					);"
+								'<?php echo $suffix; ?>'
+								);"
 												 id="user_name<?php echo $suffix; ?>" name="user<?php echo $suffix; ?>"
 												 value="<?php echo $album->getUser(); ?>" />
 								</td>
@@ -1323,8 +1323,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 										<input type="password"
 													 id="pass<?php echo $suffix; ?>" name="pass<?php echo $suffix; ?>"
 													 onkeydown="passwordClear
-					'<?php echo $suffix; ?>'
-					);"
+								'<?php echo $suffix; ?>'
+								);"
 													 onkeyup="passwordStrength('<?php echo $suffix; ?>');"
 													 value="<?php echo $x; ?>" />
 										<br />
@@ -1332,8 +1332,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 											<input type="password"
 														 id="pass_r<?php echo $suffix; ?>" name="pass_r<?php echo $suffix; ?>" disabled="disabled"
 														 onkeydown="passwordClear
-					'<?php echo $suffix; ?>'
-					);"
+								'<?php echo $suffix; ?>'
+								);"
 														 onkeyup="passwordMatch('<?php echo $suffix; ?>');"
 														 value="<?php echo $x; ?>" />
 										</span>
@@ -1356,16 +1356,16 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<td class="leftcolumn"><?php echo gettext("Date:"); ?> </td>
 							<td>
 								<script type="text/javascript">
-			// <!-- <![CDATA[
-			$(function() {
-				$("#datepicker<?php echo $suffix; ?>").datepicker({
-					showOn: 'button',
-					buttonImage: 'images/calendar.png',
-					buttonText: '<?php echo gettext('calendar'); ?>',
-					buttonImageOnly: true
-				});
-			});
-			// ]]> -->
+					// <!-- <![CDATA[
+					$(function() {
+						$("#datepicker<?php echo $suffix; ?>").datepicker({
+							showOn: 'button',
+							buttonImage: 'images/calendar.png',
+							buttonText: '<?php echo gettext('calendar'); ?>',
+							buttonImageOnly: true
+						});
+					});
+					// ]]> -->
 								</script>
 								<input type="text" id="datepicker<?php echo $suffix; ?>" size="20" name="<?php echo $prefix; ?>albumdate" value="<?php echo $d; ?>" />
 							</td>
@@ -1734,34 +1734,34 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$expirationdate = $album->getExpireDate();
 						?>
 						<script type="text/javascript">
-			// <!-- <![CDATA[
-			$(function() {
-				$("#<?php echo $prefix; ?>publishdate,#<?php echo $prefix; ?>expirationdate").datepicker({
-					showOn: 'button',
-					buttonImage: '../zp-core/images/calendar.png',
-					buttonText: '<?php echo gettext("calendar"); ?>',
-					buttonImageOnly: true
-				});
-				$('#<?php echo $prefix; ?>publishdate').change(function() {
-					var today = new Date();
-					var pub = $('#<?php echo $prefix; ?>publishdate').datepicker('getDate');
-					if (pub.getTime() > today.getTime()) {
-						$(".<?php echo $prefix; ?>scheduledpublishing").html('<br /><?php echo addslashes(gettext('Future publishing date.')); ?>');
-					} else {
-						$(".<?php echo $prefix; ?>scheduledpublishing").html('');
-					}
-				});
-				$('#<?php echo $prefix; ?>expirationdate').change(function() {
-					var today = new Date();
-					var expiry = $('#<?php echo $prefix; ?>expirationdate').datepicker('getDate');
-					if (expiry.getTime() > today.getTime()) {
-						$(".<?php echo $prefix; ?>expire").html('');
-					} else {
-						$(".<?php echo $prefix; ?>expire").html('<br /><?php echo addslashes(gettext('Expired!')); ?>');
-					}
-				});
-			});
-			// ]]> -->
+					// <!-- <![CDATA[
+					$(function() {
+						$("#<?php echo $prefix; ?>publishdate,#<?php echo $prefix; ?>expirationdate").datepicker({
+							showOn: 'button',
+							buttonImage: '../zp-core/images/calendar.png',
+							buttonText: '<?php echo gettext("calendar"); ?>',
+							buttonImageOnly: true
+						});
+						$('#<?php echo $prefix; ?>publishdate').change(function() {
+							var today = new Date();
+							var pub = $('#<?php echo $prefix; ?>publishdate').datepicker('getDate');
+							if (pub.getTime() > today.getTime()) {
+								$(".<?php echo $prefix; ?>scheduledpublishing").html('<br /><?php echo addslashes(gettext('Future publishing date.')); ?>');
+							} else {
+								$(".<?php echo $prefix; ?>scheduledpublishing").html('');
+							}
+						});
+						$('#<?php echo $prefix; ?>expirationdate').change(function() {
+							var today = new Date();
+							var expiry = $('#<?php echo $prefix; ?>expirationdate').datepicker('getDate');
+							if (expiry.getTime() > today.getTime()) {
+								$(".<?php echo $prefix; ?>expire").html('');
+							} else {
+								$(".<?php echo $prefix; ?>expire").html('<br /><?php echo addslashes(gettext('Expired!')); ?>');
+							}
+						});
+					});
+					// ]]> -->
 						</script>
 						<br class="clearall" />
 						<hr />
@@ -1813,7 +1813,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						<label class="checkboxlabel">
 							<input type="radio" id="Delete-<?php echo $prefix; ?>" name="a-<?php echo $prefix; ?>MoveCopyRename" value="delete"
 										 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-				deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);" <?php echo $isPrimaryAlbum; ?> />
+							deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);" <?php echo $isPrimaryAlbum; ?> />
 										 <?php echo gettext("Delete album"); ?>
 						</label>
 
@@ -3580,12 +3580,12 @@ function printEditDropdown($subtab, $nestinglevels, $nesting) {
 			?>
 		</select>
 		<script type="text/javascript" >
-			// <!-- <![CDATA[
-			function gotoLink(form) {
-				var OptionIndex = form.ListBoxURL.selectedIndex;
-				parent.location = form.ListBoxURL.options[OptionIndex].value;
-			}
-			// ]]> -->
+					// <!-- <![CDATA[
+					function gotoLink(form) {
+						var OptionIndex = form.ListBoxURL.selectedIndex;
+						parent.location = form.ListBoxURL.options[OptionIndex].value;
+					}
+					// ]]> -->
 		</script>
 	</form>
 	<?php
@@ -4016,31 +4016,31 @@ function processCommentBulkActions() {
 function codeblocktabsJS() {
 	?>
 	<script type="text/javascript" charset="utf-8">
-		// <!-- <![CDATA[
-		$(function() {
-			var tabContainers = $('div.tabs > div');
-			$('.first').addClass('selected');
-		});
+			// <!-- <![CDATA[
+			$(function() {
+				var tabContainers = $('div.tabs > div');
+				$('.first').addClass('selected');
+			});
 
-		function cbclick(num, id) {
-			$('.cbx-' + id).hide();
-			$('#cb' + num + '-' + id).show();
-			$('.cbt-' + id).removeClass('selected');
-			$('#cbt' + num + '-' + id).addClass('selected');
-		}
-		;
+			function cbclick(num, id) {
+				$('.cbx-' + id).hide();
+				$('#cb' + num + '-' + id).show();
+				$('.cbt-' + id).removeClass('selected');
+				$('#cbt' + num + '-' + id).addClass('selected');
+			}
+			;
 
-		function cbadd(id, offset) {
-			var num = $('#cbu-' + id + ' li').size() - offset;
-			$('li:last', $('#cbu-' + id)).remove();
-			$('#cbu-' + id).append('<li><a class="cbt-' + id + '" id="cbt' + num + '-' + id + '" href="javascript:cbclick(' + num + ',' + id + ');" title="' + '<?php echo gettext('codeblock %u'); ?>'.replace(/%u/, num) + '">&nbsp;&nbsp;' + num + '&nbsp;&nbsp;</a></li>');
-			$('#cbu-' + id).append('<li><a id="cbp-' + id + '" href="javascript:cbadd(' + id + ',' + offset + ');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
-			$('#cbd-' + id).append('<div class="cbx-' + id + '" id="cb' + num + '-' + id + '" style="display:none">' +
-							'<textarea name="codeblock' + num + '-' + id + '" class="codeblock" id="codeblock' + num + '-' + id + '" rows="40" cols="60"></textarea>' +
-							'</div>');
-			cbclick(num, id);
-		}
-		// ]]> -->
+			function cbadd(id, offset) {
+				var num = $('#cbu-' + id + ' li').size() - offset;
+				$('li:last', $('#cbu-' + id)).remove();
+				$('#cbu-' + id).append('<li><a class="cbt-' + id + '" id="cbt' + num + '-' + id + '" href="javascript:cbclick(' + num + ',' + id + ');" title="' + '<?php echo gettext('codeblock %u'); ?>'.replace(/%u/, num) + '">&nbsp;&nbsp;' + num + '&nbsp;&nbsp;</a></li>');
+				$('#cbu-' + id).append('<li><a id="cbp-' + id + '" href="javascript:cbadd(' + id + ',' + offset + ');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
+				$('#cbd-' + id).append('<div class="cbx-' + id + '" id="cb' + num + '-' + id + '" style="display:none">' +
+								'<textarea name="codeblock' + num + '-' + id + '" class="codeblock" id="codeblock' + num + '-' + id + '" rows="40" cols="60"></textarea>' +
+								'</div>');
+				cbclick(num, id);
+			}
+			// ]]> -->
 	</script>
 	<?php
 }
@@ -4320,7 +4320,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 		}
 		?>
 		<select name="subpage" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
-								[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
+										[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
 							<?php
 							foreach ($rangeset as $page => $range) {
 								?>
@@ -4644,7 +4644,7 @@ function consolidatedEditMessages($subtab) {
 				$errorbox[] = gettext('Album delete failed');
 				break;
 			default:
-				$errorbox[] = gettext("There was an error with a move, copy, or rename operation.");
+				$errorbox[] = sprintf(gettext("There was an error #%d with a move, copy, or rename operation."), sanitize_numeric($_GET['mcrerr']));
 				break;
 		}
 	}
