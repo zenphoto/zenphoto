@@ -604,7 +604,7 @@ function next_album($all = false, $sorttype = NULL, $sortdirection = NULL, $mine
 		} else {
 			//	These parameters are deprecated
 			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
-			deprecated_functions::notify(gettext('Sort parameter oprions should be set instead with the setSortType() and setSortDirection() object methods at the head of your scrip.'));
+			deprecated_functions::notify(gettext('Sort parameter oprions should be set instead with the setSortType() and setSortDirection() object methods at the head of your script.'));
 		}
 	}
 	if (is_null($_zp_albums)) {
@@ -2043,7 +2043,7 @@ function next_image($all = false, $firstPageCount = NULL, $sorttype = null, $sor
 		} else {
 			//	These parameters are deprecated
 			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
-			deprecated_functions::notify(gettext('Sort parameter oprions should be set instead with the setSortType() and setSortDirection() object methods at the head of your scrip.'));
+			deprecated_functions::notify(gettext('Sort parameter oprions should be set instead with the setSortType() and setSortDirection() object methods at the head of your script.'));
 		}
 	}
 	if (is_null($firstPageCount)) {
