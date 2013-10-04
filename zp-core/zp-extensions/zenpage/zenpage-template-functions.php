@@ -1745,7 +1745,7 @@ function getPrevNewsURL($sortorder = 'date', $sortdirection = 'desc') {
  */
 function printNextNewsLink($next = " »", $sortorder = 'date', $sortdirection = 'desc') {
 	$article_url = getNextPrevNews("next", $sortorder, $sortdirection);
-	if (array_key_exists('link', $article_url) && $article_url['link'] != "") {
+	if ($article_url && array_key_exists('link', $article_url) && $article_url['link'] != "") {
 		echo "<a href=\"" . html_encode($article_url['link']) . "\" title=\"" . html_encode(strip_tags($article_url['title'])) . "\">" . $article_url['title'] . "</a> " . html_encode($next);
 	}
 }
@@ -1762,7 +1762,7 @@ function printNextNewsLink($next = " »", $sortorder = 'date', $sortdirection = 
  */
 function printPrevNewsLink($prev = "« ", $sortorder = 'date', $sortdirection = 'desc') {
 	$article_url = getNextPrevNews("prev", $sortorder, $sortdirection);
-	if (array_key_exists('link', $article_url) && $article_url['link'] != "") {
+	if ($article_url && array_key_exists('link', $article_url) && $article_url['link'] != "") {
 		echo html_encode($prev) . " <a href=\"" . html_encode($article_url['link']) . "\" title=\"" . html_encode(strip_tags($article_url['title'])) . "\">" . $article_url['title'] . "</a>";
 	}
 }
