@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto 1.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-04 07:20-0500\n"
-"PO-Revision-Date: 2013-10-04 08:13-0500\n"
+"PO-Revision-Date: 2013-10-04 20:04-0500\n"
 "Last-Translator: \n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "<michel@mgagnon.net>\n"
@@ -10138,39 +10138,33 @@ msgid "Landscape"
 msgstr "Paysage"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/exif/exif.php:506
-#, fuzzy
 msgid "Standard Output Sensitivity"
-msgstr "Standard Output Sensitivity"
+msgstr "Sensibilité normale de sortie"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/exif/exif.php:507
-#, fuzzy
 msgid "Recommended Exposure Index"
 msgstr "Indice d’exposition recommandé"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/exif/exif.php:508
 msgid "ISO Speed"
-msgstr "Vitesse ISO"
+msgstr "Sensibilité ISO"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/exif/exif.php:509
-#, fuzzy
 msgid "Standard Output Sensitivity and Recommended Exposure Index"
-msgstr "Standard Output Sensitivity and indice d’exposition recommandé"
+msgstr "Sensibilité normale de sortie et indice d’exposition recommandé"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/exif/exif.php:510
-#, fuzzy
 msgid "Standard Output Sensitivity and ISO Speed"
-msgstr "Standard Output Sensitivity et sensibilité ISO"
+msgstr "Sensibilité normale de sortie et sensibilité ISO"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/exif/exif.php:511
-#, fuzzy
 msgid "Recommended Exposure Index and ISO Speed"
 msgstr "Indice d’exposition recommandé et sensibilité ISO"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/exif/exif.php:512
-#, fuzzy
 msgid "Standard Output Sensitivity, Recommended Exposure Index and ISO Speed"
 msgstr ""
-"Standard Output Sensitivity, indice d’exposition recommandé et sensibilité "
+"Sensibilité normale de sortie, indice d’exposition recommandé et sensibilité "
 "ISO"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/exif/exif.php:518
