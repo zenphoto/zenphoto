@@ -1,0 +1,162 @@
+html {
+ background-color: white;
+}
+body {
+	background-color: white;
+	font-family: Arial, Helvetica, sans-serif;
+	color: black;
+}
+
+.optionform {
+margin: 8px 0px 8px 0px;
+}
+
+#main {
+margin-top: -10px;
+}
+
+h3 {
+margin: 5px 0px 10px 0px;
+}
+
+h4 {
+font-style: italic;
+}
+.wrapicon { 
+	position: relative; 
+	top: 4px
+}
+
+.customtext {
+	margin-left: 18px
+}
+
+.optionsdiv {
+	float: left; 
+	width: 25%; 
+	margin: 0;
+}
+
+
+.albumdiv {
+	width: 73%; 
+	background-color: white; 
+	border: 0px solid gray; 
+	overflow: none;
+	float: left; 
+	margin-left: 15px;
+	font-size: 12px;
+}
+
+
+.albumdiv p {
+margin-left: 0px;
+}
+
+
+p.noimages {
+clear: left; 
+padding-top: 20px; 
+margin-left: 13px;
+}
+#help {
+padding: 4px;
+width: 3em;
+height: 1.2em;
+color: black;
+background-color: white;
+border: 1px solid gray;
+position: fixed;
+top: 0px;
+z-index: 1000;
+left: 700px;
+text-align: center;
+}
+
+#help a {
+color: black;
+font-weight: bold;
+}
+
+
+.unpublisheditem {
+color: red; 
+font-weight: bold;
+}
+
+
+.albumthumb-image,
+.thumb-multimedia {
+border: 1px solid orange; 
+padding: 1px;
+background-color: orange;
+}
+
+.albumthumb-other,
+.thumb-image {
+border: 1px solid gray; 
+padding: 1px;
+}
+
+.thumb-textobj {
+border: 1px solid yellow; 
+padding: 1px;
+background-color: yellow;
+}
+.thumb-default {
+border: 1px solid red; 
+padding: 1px;
+background-color: red;
+}
+
+.thumb {
+width: 85px; 
+height: 100px; 
+float: left; 
+margin: 10px 25px 10px 0px;
+}
+
+#categorydropdown {
+
+}
+
+ul.zenpagearticles li {
+list-style: none;
+}
+
+ul.zenpagearticles li {
+border-top: 0px dotted gray; 
+border-bottom: 1px dotted gray; 
+padding: 5px 0px 5px 0px;
+margin-left: -40px;
+}
+
+ul.tinypagenav {
+clear: both; 
+margin-top: -18px; 
+margin-left: -40px;
+}
+
+ul.tinypagenav li {
+display: inline; 
+margin-left: 5px;
+}
+
+ul.tinypagenav li.inactive {
+color: gray !important;
+}
+
+ul.tinynesteditems {
+list-style: none; 
+margin: 0px 0px 0px -40px;
+}
+ul.tinynesteditems li.itemborder {
+list-style: none; 
+padding: 4px 0px 4px 0px;
+
+border-top: 1px dotted gray;
+}
+
+ul.tinynesteditems li ul li {
+margin-left: -25px;
+}
