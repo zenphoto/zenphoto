@@ -42,105 +42,90 @@ if (defined('OFFSET_PATH')) {
 
 	admin_securityChecks(ALBUM_RIGHTS, currentRelativeURL());
 
-	//XSRFdefender('seo_cleanup');
+	XSRFdefender('seo_cleanup');
 
-	function checkFolder($folder) {
-		global $albums, $count, $albumcount;
-		$files = scandir(ALBUM_FOLDER_SERVERPATH . '/' . $folder);
-		$display = true;
-		if (!empty($folder)) {
-			$album = newAlbum(filesystemToInternal($folder));
+	function getE($e) {
+		switch ($e) {
+			case 2:
+				return gettext("Image already exists.");
+			case 3:
+				return gettext("Album already exists.");
+			case 4:
+				return gettext("Cannot move, copy, or rename to a subalbum of this album.");
+			case 5:
+				return gettext("Cannot move, copy, or rename to a dynamic album.");
+			case 6:
+				return gettext('Cannot rename an image to a different suffix');
+			case 7:
+				return gettext('Album delete failed');
+			default:
+				return sprintf(gettext("There was an error #%d with the rename operation."), $e);
 		}
-		foreach ($files as $file) {
-			$file = str_replace('\\', '/', $file);
-			$key = str_replace(SERVERPATH . '/', '', $folder . '/' . $file);
-			if (is_dir(ALBUM_FOLDER_SERVERPATH . $folder . '/' . $file) && $file != '..' && $file != '.') {
-				if (empty($folder)) {
-					$albumname = $file;
-				} else {
-					$albumname = $folder . '/' . $file;
+	}
+
+	function cleanAlbum($obj) {
+		global $albumcount;
+		$display = true;
+		$subalbum = $obj->name;
+		$file = basename($subalbum);
+		$seoname = seoFriendly($file);
+		if ($seoname != $file) {
+			if ($display) {
+				$name = dirname($subalbum);
+				if ($name == '.') {
+					$name = '';
 				}
-				checkFolder($albumname);
+				echo '<p class="notebox">' . $name . "</p>\n";
+				$display = false;
+			}
+			$newname = dirname($subalbum);
+			if (empty($newname) || $newname == '.') {
+				$newname = $seoname;
 			} else {
-				if (is_valid_image($file) || is_valid_other_type($file)) {
-					$filename = internalToFilesystem($file);
-					$seoname = seoFriendly($filename);
-					if (stripSuffix($seoname) != stripSuffix($filename)) {
-						$old = filesystemToInternal($file);
-						$image = newImage($album, $old);
-						if ($e = $image->rename($seoname)) {
-							switch ($e) {
-								case 2:
-									$error = gettext("Image already exists.");
-									break;
-								case 3:
-									$error = gettext("Album already exists.");
-									break;
-								case 4:
-									$error = gettext("Cannot move, copy, or rename to a subalbum of this album.");
-									break;
-								case 5:
-									$error = gettext("Cannot move, copy, or rename to a dynamic album.");
-									break;
-								case 6:
-									$error = gettext('Cannot rename an image to a different suffix');
-									break;
-								case 7:
-									$error = gettext('Album delete failed');
-									break;
-								default:
-									$error = sprintf(gettext("There was an error #%d with the rename operation."), $e);
-									break;
-							}
-							if ($display) {
-								echo '<p class="notebox">' . filesystemToInternal($folder) . "</p>\n";
-								$display = false;
-							}
-							printf(gettext('<em>%1$s</em> rename to <em>%2$s</em> failed: %3$s'), $old, $seoname, $error);
-							echo "<br />\n";
-						} else {
-							if ($display) {
-								echo '<p class="notebox">' . filesystemToInternal($folder) . "</p>\n";
-								$display = false;
-							}
-							echo '&nbsp;&nbsp;';
-							printf(gettext('<em>%1$s</em> renamed to <em>%2$s</em>'), $old, $seoname);
-							echo "<br />\n";
-							$count++;
-							?>
-							<script type="text/javascript">
-								<!--
-								imagecount = <?php echo $count; ?>;
-								//-->
-							</script>
-							<?php
-						}
-					}
-				}
+				$newname .= '/' . $seoname;
+			}
+			if ($e = $obj->rename($newname)) {
+				$error = getE($e, $subalbum, $newname);
+				printf(gettext('<em>%1$s</em> rename to <em>%2$s</em> failed: %3$s'), $subalbum, $newname, $error);
+				echo "<br />\n";
+			} else {
+				printf(gettext('<em>%1$s</em> renamed to <em>%2$s</em>'), $subalbum, $newname);
+				echo "<br />\n";
+				$albumcount++;
 			}
 		}
-		if (!empty($folder)) {
-			$albumname = internalToFilesystem($folder);
-			$file = basename($albumname);
-			$seoname = seoFriendly($file);
-			if ($seoname != $file) {
-				$newname = dirname($albumname);
-				if (empty($newname) || $newname == '.') {
-					$newname = $seoname;
-				} else {
-					$newname .= '/' . $seoname;
+		if (!$obj->isDynamic())
+			checkFolder($obj);
+	}
+
+	function checkFolder($album) {
+		$display = true;
+
+		global $albums, $count, $albumcount;
+		$albums = $album->getAlbums(0);
+		foreach ($albums as $subalbum) {
+			$obj = newAlbum($subalbum);
+			cleanAlbum($obj);
+		}
+		$display = true;
+		$files = $album->getImages(0);
+		foreach ($files as $filename) {
+			$seoname = seoFriendly($filename);
+			if (stripSuffix($seoname) != stripSuffix($filename)) {
+				if ($display) {
+					echo '<p class="notebox">' . $album->name . "</p>\n";
+					$display = false;
 				}
-				if (!$album->rename($newname)) {
-					printf(gettext('<em>%1$s</em> renamed to <em>%2$s</em>'), $albumname, $newname);
+				$image = newImage($album, $filename);
+				if ($e = $image->rename($seoname)) {
+					$error = getE($e, $filename, $seoname);
+					printf(gettext('<em>%1$s</em> rename to <em>%2$s</em> failed: %3$s'), $filename, $seoname, $error);
 					echo "<br />\n";
-					$albumcount++;
-					?>
-					<script type="text/javascript">
-						<!--
-						albumcount = <?php echo $albumcount; ?>;
-						//-->
-					</script>
-					<?php
+				} else {
+					echo '&nbsp;&nbsp;';
+					printf(gettext('<em>%1$s</em> renamed to <em>%2$s</em>'), $filename, $seoname);
+					echo "<br />\n";
+					$count++;
 				}
 			}
 		}
@@ -162,29 +147,6 @@ if (defined('OFFSET_PATH')) {
 		$albums = $_zp_gallery->getAlbums();
 	}
 	?>
-	<script type="text/javascript">
-		<!--
-		var albumcount = 0;
-		var imagecount = 0;
-		var albumspending = [<?php
-	$c = 0;
-	foreach ($albums as $key => $album) {
-		if (hasDynamicAlbumSuffix($album)) {
-			unset($albums[$key]);
-		} else {
-			if ($c)
-				echo ',';
-			echo "'" . $album . "'";
-			$c++;
-		}
-	}
-	?>];
-		function reStart() {
-			var datum = '?imagecount=' + imagecount + '&albumcount=' + albumcount + '&todo=' + albumspending.join(',') + '&XSRFToken=<?php echo getXSRFToken('seo_cleanup') ?>';
-			window.location = 'seo_cleanup.php' + datum;
-		}
-		//-->
-	</script>
 	<?php echo '</head>'; ?>
 	<body>
 		<?php printLogoAndLinks(); ?>
@@ -195,49 +157,14 @@ if (defined('OFFSET_PATH')) {
 				<div class="tabbox">
 					<?php zp_apply_filter('admin_note', 'seo_cleanup', ''); ?>
 					<h1><?php echo gettext('Cleanup album and image names to be SEO friendly'); ?></h1>
-					<div id="to_clean">
-						<?php echo gettext('Albums to clean:'); ?>
-						<ul>
-							<?php
-							foreach ($albums as $key => $album) {
-								?>
-								<li id="li_<?php echo $album; ?>"><?php echo $album; ?></li>
-									<?php
-								}
-								?>
-						</ul>
-						<?php echo gettext('If this script does not complete, <a href="javascript:reStart();" title="restart">click here</a>'); ?>
-					</div>
 					<?php
 					foreach ($albums as $album) {
-						checkFolder(internalToFilesystem($album));
+						$obj = newAlbum($album);
+						cleanAlbum($obj);
 						?>
-						<script type="text/javascript">
-							<!--
-							albumspending = jQuery.grep(albumspending, function(value) {
-								return value != '<?php echo $album; ?>';
-							});
-							$('#li_<?php echo $album; ?>').remove();
-							//-->
-						</script>
 						<?php
 					}
 					?>
-					<script type="text/javascript">
-	<?php
-	if ($count) {
-		$imagecleaned = sprintf(ngettext('%u image name cleaned.', '%u images names cleaned.', $count), $count);
-	} else {
-		$imagecleaned = gettext('No image names needed cleaning.');
-	}
-	if ($albumcount) {
-		$albumcleaned = sprintf(ngettext('%u album folder name cleaned.', '%u albums folder names cleaned.', $albumcount), $albumcount);
-	} else {
-		$albumcleaned = gettext('No album folder names needed cleaning.');
-	}
-	?>
-						$('#to_clean').html('<?php echo $imagecleaned; ?><br /><?php echo $albumcleaned; ?>');
-					</script>
 				</div>
 			</div><!-- content -->
 		</div><!-- main -->
