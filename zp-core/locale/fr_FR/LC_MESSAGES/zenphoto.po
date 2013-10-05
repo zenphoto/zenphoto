@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-04 07:56-0500\n"
-"PO-Revision-Date: 2013-10-04 08:10-0500\n"
+"POT-Creation-Date: 2013-10-04 20:08-0500\n"
+"PO-Revision-Date: 2013-10-04 20:11-0500\n"
 "Last-Translator: \n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "<michel@mgagnon.net>\n"
@@ -3520,37 +3520,44 @@ msgid "Tags cleared for images of selected items"
 msgstr "Les tags ont été effacés des images des éléments sélectionnés"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:4629
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:74
 msgid "Image already exists."
 msgstr "L’image existe déjà."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:4632
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:77
 msgid "Album already exists."
 msgstr "L’album existe déjà."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:4635
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:80
 msgid "Cannot move, copy, or rename to a subalbum of this album."
 msgstr ""
 "Impossible de déplacer, de copier ou de renommer vers un sous-album de cet "
 "album."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:4638
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:83
 msgid "Cannot move, copy, or rename to a dynamic album."
 msgstr ""
 "Impossible de déplacer, de copier ou de renommer vers un album dynamique."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:4641
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:86
 msgid "Cannot rename an image to a different suffix"
 msgstr "Impossible de changer le suffixe de l’image"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:4644
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:89
 msgid "Album delete failed"
 msgstr "L’album n’a pu être effacé"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:4647
-msgid "There was an error with a move, copy, or rename operation."
+#, php-format
+msgid "There was an error #%d with a move, copy, or rename operation."
 msgstr ""
-"Une erreur s’est produite lors d’une opération de déplacement, de copie ou "
-"de renommage."
+"Une erreur #%d s’est produite lors d’une opération de déplacement, de copie "
+"ou de renommage."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-globals.php:24
 msgid "Filename"
@@ -8104,7 +8111,7 @@ msgstr "Ouverture"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/functions.php:2384
 msgid "ISO Sensitivity"
-msgstr "Sensibilité en ISO"
+msgstr "Sensibilité ISO"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/functions.php:2385
 msgid "Exposure Compensation"
@@ -9490,8 +9497,10 @@ msgstr "Mes favoris"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2356
 msgid ""
 "Sort parameter oprions should be set instead with the setSortType() and "
-"setSortDirection() object methods at the head of your scrip."
+"setSortDirection() object methods at the head of your script."
 msgstr ""
+"Les paramètres de tri devraient plutôt être configurés dans l’en-tête de "
+"votre script avec les méthodes-objet setSortType() et setSortDirection()."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:868
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:964
@@ -9720,39 +9729,33 @@ msgid "Landscape"
 msgstr "Paysage"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/exif/exif.php:506
-#, fuzzy
 msgid "Standard Output Sensitivity"
-msgstr "Standard Output Sensitivity"
+msgstr "Sensibilité normale de sortie"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/exif/exif.php:507
-#, fuzzy
 msgid "Recommended Exposure Index"
 msgstr "Indice d’exposition recommandé"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/exif/exif.php:508
 msgid "ISO Speed"
-msgstr "Vitesse ISO"
+msgstr "Sensibilité ISO"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/exif/exif.php:509
-#, fuzzy
 msgid "Standard Output Sensitivity and Recommended Exposure Index"
-msgstr "Standard Output Sensitivity et indice d’exposition recommandé"
+msgstr "Sensibilité normale de sortie et indice d’exposition recommandé"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/exif/exif.php:510
-#, fuzzy
 msgid "Standard Output Sensitivity and ISO Speed"
-msgstr "Standard Output Sensitivity et sensibilité ISO"
+msgstr "Sensibilité normale de sortie et sensibilité ISO"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/exif/exif.php:511
-#, fuzzy
 msgid "Recommended Exposure Index and ISO Speed"
 msgstr "Indice d’exposition recommandé et sensibilité ISO"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/exif/exif.php:512
-#, fuzzy
 msgid "Standard Output Sensitivity, Recommended Exposure Index and ISO Speed"
 msgstr ""
-"Standard Output Sensitivity, indice d’exposition recommandé et sensibilité "
+"Sensibilité normale de sortie, indice d’exposition recommandé et sensibilité "
 "ISO"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/exif/exif.php:518
@@ -18099,26 +18102,36 @@ msgstr ""
 "Rend les noms de dossiers et de fichiers de la galerie plus accessibles aux "
 "moteurs de recherche."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:77
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:104
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:92
+#, php-format
+msgid "There was an error #%d with the rename operation."
+msgstr "Une erreur #%d s’est produite lors d’une opération de renommage."
+
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:99
+#, php-format
+msgid "<em>%1$s</em> rename to <em>%2$s</em> failed: %3$s"
+msgstr "Impossible de renommer <em>%1$s</em> en <em>%2$s</em> : %3$s"
+
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:107
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:134
 #, php-format
 msgid "<em>%1$s</em> renamed to <em>%2$s</em>"
 msgstr "<em>%1$s</em> renommé <em>%2$s</em>"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:119
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:149
 msgid "SEO cleaner"
 msgstr "Nettoyeur-optimiseur pour moteur de recherche"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:167
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:197
 msgid "Cleanup album and image names to be SEO friendly"
 msgstr ""
 "Rend les noms d’albums et d’images plus accessibles aux moteurs de recherche."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:169
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:199
 msgid "Albums to clean:"
 msgstr "Albums à nettoyer :"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:179
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:209
 msgid ""
 "If this script does not complete, <a href=\"javascript:reStart();\" title="
 "\"restart\">click here</a>"
@@ -18126,25 +18139,25 @@ msgstr ""
 "Si ce script ne se termine pas, veuillez <a href=\"javascript:reStart();\" "
 "title=\"relancer\">cliquer ici</a>."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:199
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:229
 #, php-format
 msgid "%u image name cleaned."
 msgid_plural "%u images names cleaned."
 msgstr[0] "%u nom d’image nettoyé."
 msgstr[1] "%u noms d’images nettoyés."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:201
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:231
 msgid "No image names needed cleaning."
 msgstr "Aucun nom d’image n’a eu à être nettoyé"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:204
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:234
 #, php-format
 msgid "%u album folder name cleaned."
 msgid_plural "%u albums folder names cleaned."
 msgstr[0] "%u nom de dossier d’album nettoyé."
 msgstr[1] "%u noms de dossiers d’albums nettoyés."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:206
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:236
 msgid "No album folder names needed cleaning."
 msgstr "Aucun nom de dossier d’album n’avait besoin d’être nettoyé."
 
