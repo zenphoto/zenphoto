@@ -90,9 +90,17 @@ class tinymceOptions {
 
 function tinymceConfigJS($editorconfig, $mode) {
 	if (empty($editorconfig)) { // only if we get here first!
-		$locale = substr(getOption("locale"), 0, 2);
-		if (empty($locale) || !file_exists(SERVERPATH . '/' . PLUGIN_FOLDER . '/tiny_mce/langs/' . $locale . '.js')) {
-			$locale = 'en';
+		$locale = 'en';
+		$loc = str_replace('_', '-', strtolower(getOption("locale")));
+		if ($loc) {
+			if (file_exists(SERVERPATH . '/' . PLUGIN_FOLDER . '/tiny_mce/langs/' . $loc . '.js')) {
+				$locale = $loc;
+			} else {
+				$loc = substr($loc, 0, 2);
+				if (file_exists(SERVERPATH . '/' . PLUGIN_FOLDER . '/tiny_mce/langs/' . $loc . '.js')) {
+					$locale = $loc;
+				}
+			}
 		}
 		$editorconfig = getOption('tinymce_' . $mode);
 		if (!empty($editorconfig)) {
