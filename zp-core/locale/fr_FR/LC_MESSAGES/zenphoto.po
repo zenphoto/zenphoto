@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-04 20:08-0500\n"
-"PO-Revision-Date: 2013-10-04 20:11-0500\n"
+"POT-Creation-Date: 2013-10-05 20:29-0500\n"
+"PO-Revision-Date: 2013-10-05 20:30-0500\n"
 "Last-Translator: \n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "<michel@mgagnon.net>\n"
@@ -345,6 +345,8 @@ msgstr "Couleur du thème"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:589
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_login-out.php:154
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:73
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:32
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:38
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:32
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:38
 msgid "close"
@@ -741,6 +743,7 @@ msgstr "Commentaires : %d"
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/functions.php:177
 #: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:73
 #: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/news.php:91
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:104
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:104
 msgid "Album:"
 msgstr "Album :"
@@ -753,6 +756,7 @@ msgstr "Album :"
 #: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/news.php:58
 #: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/news.php:96
 #: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/news.php:36
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/zoom.php:61
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/zoom.php:61
 msgid "Categories: "
 msgstr "Catégories : "
@@ -904,6 +908,7 @@ msgstr "Recherche dans les actualités"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tweet_news.php:92
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage.php:333
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:131
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:484
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:484
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:105
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1292
@@ -1415,6 +1420,7 @@ msgstr "Album"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:4546
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/defaultCodeblocks.php:33
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/related_items.php:181
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:100
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:100
 msgid "Image"
 msgstr "Image"
@@ -3520,35 +3526,35 @@ msgid "Tags cleared for images of selected items"
 msgstr "Les tags ont été effacés des images des éléments sélectionnés"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:4629
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:74
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:50
 msgid "Image already exists."
 msgstr "L’image existe déjà."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:4632
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:77
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:52
 msgid "Album already exists."
 msgstr "L’album existe déjà."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:4635
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:80
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:54
 msgid "Cannot move, copy, or rename to a subalbum of this album."
 msgstr ""
 "Impossible de déplacer, de copier ou de renommer vers un sous-album de cet "
 "album."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:4638
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:83
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:56
 msgid "Cannot move, copy, or rename to a dynamic album."
 msgstr ""
 "Impossible de déplacer, de copier ou de renommer vers un album dynamique."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:4641
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:86
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:58
 msgid "Cannot rename an image to a different suffix"
 msgstr "Impossible de changer le suffixe de l’image"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:4644
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:89
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:60
 msgid "Album delete failed"
 msgstr "L’album n’a pu être effacé"
 
@@ -3596,11 +3602,13 @@ msgstr "aperçu"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-globals.php:70
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tweet_news.php:409
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:467
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:467
 msgid "pages"
 msgstr "pages"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-globals.php:77
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:468
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:468
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:186
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:961
@@ -3608,6 +3616,7 @@ msgid "articles"
 msgstr "articles"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-globals.php:78
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:469
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:469
 msgid "categories"
 msgstr "catégories"
@@ -4744,6 +4753,7 @@ msgstr "Images <em>pleine grandeur</em> (originales)"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-options.php:1687
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:232
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:113
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:113
 msgid "Thumbnail"
 msgstr "Vignettes"
@@ -7097,6 +7107,7 @@ msgstr "Titre-lien"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/class-search.php:82
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/wordpress_import.php:455
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:488
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:488
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:124
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:688
@@ -10268,6 +10279,7 @@ msgstr "Auto-sélectionné"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/exif/makers/canon.php:208
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/exif/makers/canon.php:286
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:156
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:156
 msgid "Right"
 msgstr "Droite"
@@ -10280,6 +10292,7 @@ msgstr "Centré"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/exif/makers/canon.php:210
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/exif/makers/canon.php:288
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:157
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:157
 msgid "Left"
 msgstr "Gauche"
@@ -13495,6 +13508,8 @@ msgstr "PDF"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/class-WEBdocs.php:66
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/class-WEBdocs.php:73
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/comment_form.php:149
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4.php:40
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4.php:45
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce.php:53
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce.php:58
 msgid "Disabled"
@@ -14238,6 +14253,7 @@ msgstr "Catégorie de nouvelles"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/defaultCodeblocks.php:35
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/related_items.php:193
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:101
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:434
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:434
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:217
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1626
@@ -14949,7 +14965,7 @@ msgstr ""
 "<p class=\"notebox\">*<strong>Note. </strong> Ce paramétrage est aussi "
 "utilisé par d’autres extensions.</p>"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/elFinder.php:26
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/elFinder.php:25
 msgid ""
 "Provides file handling for the <code>upload/files</code> tab and the "
 "<em>TinyMCE</em> file browser."
@@ -14957,19 +14973,19 @@ msgstr ""
 "Fournit la gestion de fichier pour l’onglet <code>chargement/fichiers</code> "
 "et l’explorateur de fichiers <em>TinyMCE</em>."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/elFinder.php:52
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/elFinder.php:51
 msgid "Files tab"
 msgstr "Onglet Fichiers"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/elFinder.php:53
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/elFinder.php:52
 msgid "Use as the upload <em>files</em> subtab."
 msgstr "Utiliser comme sous-onglet de chargement des <em>fichiers</em>."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/elFinder.php:54
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/elFinder.php:53
 msgid "TinyMCE plugin"
 msgstr "Extension TinyMCE"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/elFinder.php:55
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/elFinder.php:54
 msgid "Enable plugin for TinyMCE."
 msgstr "Activer l’extension pour TinyMCE."
 
@@ -16151,6 +16167,7 @@ msgstr ""
 "(ne s’applique pas aux listes de lecture qui sont tout ou rien)."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:135
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:128
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:128
 msgid "Show title"
 msgstr "Afficher le titre"
@@ -17274,6 +17291,7 @@ msgid "reCAPTCHA is not properly configured."
 msgstr "reCAPTCHA n’est pas correctement configuré."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/reCaptcha.php:119
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:59
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:59
 msgid "Help"
 msgstr "Aide"
@@ -17647,6 +17665,8 @@ msgid "Album feed items:"
 msgstr "Nombre d’albums dans le flux RSS"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/rss.php:87
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:112
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:201
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:112
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:201
 msgid "Image size"
@@ -18102,64 +18122,31 @@ msgstr ""
 "Rend les noms de dossiers et de fichiers de la galerie plus accessibles aux "
 "moteurs de recherche."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:92
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:62
 #, php-format
 msgid "There was an error #%d with the rename operation."
 msgstr "Une erreur #%d s’est produite lors d’une opération de renommage."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:99
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:89
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:122
 #, php-format
 msgid "<em>%1$s</em> rename to <em>%2$s</em> failed: %3$s"
 msgstr "Impossible de renommer <em>%1$s</em> en <em>%2$s</em> : %3$s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:107
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:134
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:92
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:126
 #, php-format
 msgid "<em>%1$s</em> renamed to <em>%2$s</em>"
 msgstr "<em>%1$s</em> renommé <em>%2$s</em>"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:149
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:134
 msgid "SEO cleaner"
 msgstr "Nettoyeur-optimiseur pour moteur de recherche"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:197
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:159
 msgid "Cleanup album and image names to be SEO friendly"
 msgstr ""
 "Rend les noms d’albums et d’images plus accessibles aux moteurs de recherche."
-
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:199
-msgid "Albums to clean:"
-msgstr "Albums à nettoyer :"
-
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:209
-msgid ""
-"If this script does not complete, <a href=\"javascript:reStart();\" title="
-"\"restart\">click here</a>"
-msgstr ""
-"Si ce script ne se termine pas, veuillez <a href=\"javascript:reStart();\" "
-"title=\"relancer\">cliquer ici</a>."
-
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:229
-#, php-format
-msgid "%u image name cleaned."
-msgid_plural "%u images names cleaned."
-msgstr[0] "%u nom d’image nettoyé."
-msgstr[1] "%u noms d’images nettoyés."
-
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:231
-msgid "No image names needed cleaning."
-msgstr "Aucun nom d’image n’a eu à être nettoyé"
-
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:234
-#, php-format
-msgid "%u album folder name cleaned."
-msgid_plural "%u albums folder names cleaned."
-msgstr[0] "%u nom de dossier d’album nettoyé."
-msgstr[1] "%u noms de dossiers d’albums nettoyés."
-
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:236
-msgid "No album folder names needed cleaning."
-msgstr "Aucun nom de dossier d’album n’avait besoin d’être nettoyé."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_locale.php:35
 msgid "Allows setting language locale through the URI."
@@ -18952,18 +18939,16 @@ msgid ""
 "found' error."
 msgstr "Les thèmes qui génèrent une erreur « non trouvé » ne sont pas listés."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce.php:15
-msgid ""
-"Tiny MCE<span id='tinymceversion'></span> text editor for backend "
-"<em>textareas</em>"
-msgstr ""
-"Éditeur Tiny MCE<span id='tinymceversion'></span> pour les champs de texte "
-"des pages administratives."
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4.php:17
+msgid "Text editor TinyMCE 4.x"
+msgstr "Éditeur de textes TinyMCE 4.x"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4.php:37
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce.php:50
 msgid "Text editor configuration - Zenphoto"
 msgstr "Configuration de l’éditeur de texte – Zenphoto"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4.php:41
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce.php:54
 msgid ""
 "Applies to <em>admin</em> editable text other than for Zenpage pages and "
@@ -18972,10 +18957,12 @@ msgstr ""
 "S’applique au texte éditable par les <em>administrateurs</em> (sauf pour les "
 "pages et actualités Zenpage)."
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4.php:42
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce.php:55
 msgid "Text editor configuration - Zenpage"
 msgstr "Configuration de l’éditeur de texte – Zenpage"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4.php:46
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce.php:59
 msgid ""
 "Applies to editing on the Zenpage <em>pages</em> and <em>news</em> tabs."
@@ -18983,20 +18970,26 @@ msgstr ""
 "S’applique au texte éditable par les administrateurs pour les <em>pages</em> "
 "et les <em>actualités</em>."
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4.php:47
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4.php:50
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce.php:60
 msgid "Custom image size"
 msgstr "Taille d’image personnalisée"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4.php:49
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4.php:52
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce.php:62
 msgid "Predefined size (px) for custom size images included using tinyZenpage."
 msgstr ""
 "Taille prédéfinie (px) pour les images de taille personnalisée insérées avec "
 "tinyZenpage."
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4.php:53
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce.php:63
 msgid "Custom thumb crop - size"
 msgstr "Rognage personnalisé des vignettes – taille"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4.php:55
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce.php:65
 msgid ""
 "Predefined size (px) for custom cropped thumb images included using "
@@ -19004,10 +18997,12 @@ msgid ""
 msgstr ""
 "Taille prédéfinie (px) pour les images rognées insérées avec tinyZenpage."
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4.php:56
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce.php:66
 msgid "Custom thumb crop - width"
 msgstr "Rognage personnalisé des vignettes – largeur"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4.php:58
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce.php:68
 msgid ""
 "Predefined crop width (%) for custom cropped thumb  images included using "
@@ -19016,10 +19011,12 @@ msgstr ""
 "Largeur de rognage prédéfinie (%) pour les images rognées insérées avec "
 "tinyZenpage."
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4.php:59
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce.php:69
 msgid "Custom thumb crop - height"
 msgstr "Rognage personnalisé des vignettes – hauteur"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4.php:61
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce.php:71
 msgid ""
 "Predefined crop height (%) for custom cropped thumb images included using "
@@ -19028,30 +19025,44 @@ msgstr ""
 "Hauteur de rognage prédéfinie (%) pour les vignettes d’images avec rognage "
 "personnalisé qui sont insérées avec tinyZenpage."
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4.php:62
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce.php:72
 msgid "Flowplayer width"
 msgstr "Flowplayer : largeur"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4.php:64
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce.php:74
 msgid "Video player width if included using tinyZenpage"
 msgstr ""
 "Largeur de la fenêtre du lecteur vidéo s’il est inséré avec tinyZenpage."
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4.php:65
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce.php:75
 msgid "Flowplayer height"
 msgstr "Flowplayer : hauteur"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4.php:67
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce.php:77
 msgid "Video player height for videos included using tinyZenpage"
 msgstr "Hauteur du lecteur vidéo pour les vidéos insérés avec tinyZenpage"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4.php:68
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce.php:78
 msgid "Mp3 control bar height"
 msgstr "Taille de la barre de contrôles mp3"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4.php:70
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce.php:80
 msgid "Video player height for mp3s included using tinyZenpage"
 msgstr "Hauteur du lecteur vidéo pour les mp3 insérés avec tinyZenpage"
+
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce.php:15
+msgid ""
+"Tiny MCE<span id='tinymceversion'></span> text editor for backend "
+"<em>textareas</em>"
+msgstr ""
+"Éditeur Tiny MCE<span id='tinymceversion'></span> pour les champs de texte "
+"des pages administratives."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/trivialSpam.php:11
 msgid "Trivial SPAM filter."
@@ -21877,6 +21888,7 @@ msgstr "Page de script"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:140
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:259
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:146
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:146
 msgid "Custom link"
 msgstr "Lien personnalisé"
@@ -22110,6 +22122,7 @@ msgid "Category changes applied"
 msgstr "Modifications appliquées aux catégories"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/publishContent/publishContent.php:506
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:334
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:334
 msgid "Categories:"
 msgstr "Catégories : "
@@ -22363,132 +22376,166 @@ msgstr "Le site peut être visité."
 msgid "Site is avaiable for testing only."
 msgstr "Le site est uniquement disponible pour effectuer des tests."
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:104
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:104
 msgid "Album folder:"
 msgstr "Dossier de l’album :"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:104
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:104
 msgid "(Click on image to include)"
 msgstr "(Cliquer sur une image pour l’insérer)"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:154
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:154
 msgid "<em>Albumthumb</em>"
 msgstr "<em>VignetteDeLalbum</em>"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:238
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:238
 msgid "<strong>Note:</strong> This album does not contain any images."
 msgstr "<strong>Note:</strong> Cet album ne contient aucune image."
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:296
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:296
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:102
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1288
 msgid "Articles"
 msgstr "Articles"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:296
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:491
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:296
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:491
 msgid "(Click on article title to include a link)"
 msgstr "Cliquer sur le titre de l’article pour insérer un lien"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:640
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:640
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:738
 msgid "All categories"
 msgstr "Toutes les catégories"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:70
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:70
 msgid "*Select*"
 msgstr "*Sélectionner*"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:73
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:73
 msgid "(only direct links!)"
 msgstr "(seulement des liens directs !)"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:85
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:85
 msgid "*Select an album*"
 msgstr "*Sélectionner un album*"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:88
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:88
 msgid "(select variant below)"
 msgstr "(choisir la variante ci-dessous)"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:99
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:99
 msgid "What to include"
 msgstr "Quoi insérer"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:101
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:101
 msgid "Image title"
 msgstr "Titre de l’image"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:102
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:102
 msgid "Album title"
 msgstr "Titre de l’album"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:104
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:104
 msgid "Custom text"
 msgstr "Texte personnalisé"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:115
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:115
 msgid "Custom thumbnail"
 msgstr "Vignette personnalisée"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:116
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:116
 msgid "Sized image/multimedia item"
 msgstr "Image ou multimédia redimensionné"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:118
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:118
 msgid "Custom size (un-cropped)"
 msgstr "Taille personnalisée (non rognée)"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:119
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:119
 msgid "Full image"
 msgstr "image pleine grandeur"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:127
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:127
 msgid "Title and description"
 msgstr "Titre et description"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:129
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:129
 msgid "No description"
 msgstr "Aucune description"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:130
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:130
 msgid "Show image description"
 msgstr "Afficher la description de l’image"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:131
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:131
 msgid "Show album description"
 msgstr "Afficher la description de l’album"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:139
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:216
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:139
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:216
 msgid "Link type"
 msgstr "Type de lien"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:141
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:141
 msgid "Link to image"
 msgstr "Lien vers image"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:142
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:142
 msgid "Link to full image"
 msgstr "Lien vers l’image pleine grandeur (originale)"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:143
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:143
 msgid "Link to album"
 msgstr "Lien vers album"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:144
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:144
 msgid "No link"
 msgstr "Aucun lien"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:154
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:221
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:154
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:221
 msgid "Text wrap"
 msgstr "Habillage du texte"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:155
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:155
 msgid "No wrap"
 msgstr "Aucun habillage"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:174
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:174
 msgid ""
 "This provides access to your images and albums (select from the "
@@ -22501,6 +22548,7 @@ msgstr ""
 "d’actualités (choisissez-les dans le menu déroulant Zenpage) pour les "
 "inclure facilement dans vos pages et vos articles."
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:180
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:180
 msgid ""
 "Select <em>pages</em>, <em>articles</em> or <em>categories</em> to show a "
@@ -22514,6 +22562,7 @@ msgstr ""
 "pages et les articles non publiés sont marqués d’une « * » tandis que ceux "
 "qui sont protégés sont marqués d’un « + ». Aucune autre option configurable."
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:185
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:185
 msgid ""
 "Select an album to include images from into your page or article. Click on "
@@ -22531,10 +22580,12 @@ msgstr ""
 "est toujours celle de l’album sélectionné ; elle s’intitule <em>Albumthumb</"
 "em> (VignetteDeLalbum) et apparaît sur toutes les pages de vignettes."
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:191
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:191
 msgid "Options on what to include"
 msgstr "Options pour déterminer ce qu’il faut insérer"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:194
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:194
 msgid ""
 "Include the image itself, only its title, the title of its album, or some "
@@ -22543,6 +22594,7 @@ msgstr ""
 "Insérez l’image elle-même, seulement son titre ou celui de son album, ou un "
 "texte personnalisé."
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:197
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:197
 msgid ""
 "NOTE: These selections are not sticky. If you change albums or change pages "
@@ -22552,6 +22604,7 @@ msgstr ""
 "vous sélectionnez un autre album ou naviguez entre les pages d’un album, "
 "vous devrez les régler de nouveau."
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:198
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:198
 msgid ""
 "The window does not close automatically so you can include several images "
@@ -22560,10 +22613,12 @@ msgstr ""
 "La fenêtre ne se ferme pas automatiquement ; vous pouvez donc insérer "
 "plusieurs images l’une après l’autre."
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:203
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:203
 msgid "Thumbnail: Size as set in Zenphoto's options"
 msgstr "Vignette : taille telle que définie dans les options Zenphoto"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:204
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:204
 msgid ""
 "Custom thumbnail: size for the longest side / (cropwidth x cropheight). You "
@@ -22573,6 +22628,7 @@ msgstr ""
 "hauteur de rognage). Vous pouvez configurer les tailles par défaut dans les "
 "options de l’extension TinyMCE."
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:206
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:206
 msgid ""
 "Sized image/multimedia item: The sized image as set in gallery default "
@@ -22581,6 +22637,7 @@ msgstr ""
 "Image ou élément multimédia redimensionné : la taille de l’image est celle "
 "définie dans les options par défaut du thème"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:208
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:208
 msgid ""
 "<strong>Multimedia item</strong>: This embeds the content macro MEDIAPLAYER "
@@ -22593,10 +22650,12 @@ msgstr ""
 "galerie si un plugin multimédia existe pour le type de fichier et a "
 "également été inscrit sur la macro."
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:210
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:210
 msgid "Custom size (un-cropped)."
 msgstr "Taille personnalisée (non rognée)"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:211
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:211
 msgid ""
 "Full image: The original image directly. NOTE: Full image protection options "
@@ -22605,6 +22664,7 @@ msgstr ""
 "Image pleine grandeur : l’image originale elle-même. NOTE. Les paramètres de "
 "protection de l’image pleine grandeur ne s’appliquent pas !"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:214
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:214
 msgid ""
 "If you additionally check <em>Show title</em> or <em>Show description</em> "
@@ -22617,6 +22677,7 @@ msgstr ""
 "vous avez coché <em>lien vers l’album</em>) sera affiché sous l’image "
 "(seulement si <em>Image</em> est choisi comme type)."
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:218
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:218
 msgid ""
 "Select to link to the image page of the image, to the album the image is in, "
@@ -22625,6 +22686,7 @@ msgstr ""
 "Sélectionner pour créer un lien vers la page de l’image, l’album associé, "
 "une URL personnalisée… ou pour ne pas en créer du tout."
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:223
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:223
 msgid ""
 "Wrap the text right or left of the image or not at all. Note that "
@@ -22636,14 +22698,17 @@ msgstr ""
 "vous permettre de voir la mise en page, des éléments CSS intégrés sont "
 "ajoutés :"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:225
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:225
 msgid "left wrap: <em>style=\"float:right\"</em>"
 msgstr "habillement à gauche : <em>style=\"float: right\"</em>"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:226
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:226
 msgid "right wrap: <em>style=\"float: left\"</em>"
 msgstr "habillement à droite : <em>style=\"float: left\"</em>"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:230
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:230
 msgid ""
 "Also tinyZenpage attaches a default CSS class to the image (if image is "
@@ -22654,6 +22719,7 @@ msgstr ""
 "ce qui est choisi) pour qu’elle soit habillée avec la CSS de votre thème. Si "
 "vous choisissez gauche ou droite, « _left » ou « _right » sera ajouté :"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:233
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:233
 msgid ""
 "Default thumbnail: <em>zenpage_thumb</em> /<em>zenpage_thumb_left</em> /"
@@ -22662,6 +22728,7 @@ msgstr ""
 "Vignette par défaut : <em>zenpage_thumb</em> / <em>zenpage_thumb_left</em> / "
 "<em>zenpage_thumb_right</em>"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:234
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:234
 msgid ""
 "Custom thumbnail: <em>zenpage_customthumb</em> or "
@@ -22670,6 +22737,7 @@ msgstr ""
 "Vignette personnalisée : <em>zenpage_customthumb</em> ou "
 "<em>zenpage_customthumb_left</em> / <em>zenpage_customthumb_right</em>"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:235
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:235
 msgid ""
 "Sized image: <em>zenpage_sizedimage</em>/<em>zenpage_sizedimage_left</em>/"
@@ -22678,6 +22746,7 @@ msgstr ""
 "Image redimensionnée : <em>zenpage_sizedimage</em> / "
 "<em>zenpage_sizedimage_left</em> / <em>zenpage_sizedimage_right</em>"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:236
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:236
 msgid ""
 "Custom image: <em>zenpage_customimage</em>/<em>zenpage_customimage_left</em>/"
@@ -22686,6 +22755,7 @@ msgstr ""
 "Image personnalisée : <em>zenpage_customimage</em> / "
 "<em>zenpage_customimage_left</em> / <em>zenpage_customimage_right</em>"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:237
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:237
 msgid ""
 "If you additionally have checked <em>Show title</em> or <em>Show "
@@ -22702,6 +22772,7 @@ msgstr ""
 "<em>zenpage_title</em> et la description dans une div de classe "
 "<em>zenpage_desc</em>."
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:240
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:240
 msgid ""
 "Additionally a default CSS class is attached to the link itself depending on "
@@ -22710,10 +22781,12 @@ msgstr ""
 "De plus, selon l’option choisie, une classe CSS par défaut est associée au "
 "lien lui-même :"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:243
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:243
 msgid "Image link: <em>zenpage_imagelink</em>"
 msgstr "Lien de l’image : <em>zenpage_imagelink</em>"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:244
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:244
 msgid ""
 "Full image link: <em>zenpage_fullimagelink</em>. Additionally "
@@ -22724,14 +22797,17 @@ msgstr ""
 "le lien <em>rel='colorbox'</em> vous permet de naviguer parmi les images "
 "d’une page avec Colorbox ou d’autres scripts du même genre."
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:245
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:245
 msgid "Album link: <em>zenpage_albumlink</em>"
 msgstr "Lien de l’album : <em>zenpage_albumlink</em>"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:246
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:246
 msgid "Custom link: <em>zenpage_customlink</em>"
 msgstr "Lien personnalisé : <em>zenpage_customlink</em>"
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:249
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:249
 msgid ""
 "If you would like to do some direct styling you can also use TinyMCE's image "
@@ -22740,11 +22816,13 @@ msgstr ""
 "Vous pouvez aussi définir le style directement en utilisant le bouton "
 "d’image de TinyMCE ou l’éditeur de code source."
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/js/dialog.php:80
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/js/dialog.php:78
 #, php-format
 msgid "It is not possible to a include a custom size %s."
 msgstr "Il n’est pas possible d’inclure un(e) %s de taille personnalisée."
 
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/js/dialog.php:91
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/js/dialog.php:89
 #, php-format
 msgid "It is not possible to a include a full size %s."
@@ -23831,6 +23909,32 @@ msgstr "<code>zenpageAlbumImage()</code> n’a pas trouvé l’image %1$s:%2$s"
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> n’a pas trouvé l’album %1$s"
+
+#~ msgid "Albums to clean:"
+#~ msgstr "Albums à nettoyer :"
+
+#~ msgid ""
+#~ "If this script does not complete, <a href=\"javascript:reStart();\" title="
+#~ "\"restart\">click here</a>"
+#~ msgstr ""
+#~ "Si ce script ne se termine pas, veuillez <a href=\"javascript:reStart();"
+#~ "\" title=\"relancer\">cliquer ici</a>."
+
+#~ msgid "%u image name cleaned."
+#~ msgid_plural "%u images names cleaned."
+#~ msgstr[0] "%u nom d’image nettoyé."
+#~ msgstr[1] "%u noms d’images nettoyés."
+
+#~ msgid "No image names needed cleaning."
+#~ msgstr "Aucun nom d’image n’a eu à être nettoyé"
+
+#~ msgid "%u album folder name cleaned."
+#~ msgid_plural "%u albums folder names cleaned."
+#~ msgstr[0] "%u nom de dossier d’album nettoyé."
+#~ msgstr[1] "%u noms de dossiers d’albums nettoyés."
+
+#~ msgid "No album folder names needed cleaning."
+#~ msgstr "Aucun nom de dossier d’album n’avait besoin d’être nettoyé."
 
 #~ msgid ""
 #~ "getSearchURL $album_list parameter is deprecated. Pass array(\"albums"
