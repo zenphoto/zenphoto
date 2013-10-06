@@ -58,16 +58,7 @@ class tinymce4Options {
 										'desc'	 => gettext("Predefined crop width (%) for custom cropped thumb  images included using tinyZenpage.")),
 						gettext('Custom thumb crop - height')						 => array('key'		 => 'tinymce_tinyzenpage_customthumb_cropheight', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 2,
-										'desc'	 => gettext("Predefined crop height (%) for custom cropped thumb images included using tinyZenpage.")),
-						gettext('Flowplayer width')											 => array('key'		 => 'tinymce_tinyzenpage_flowplayer_width', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 3,
-										'desc'	 => gettext("Video player width if included using tinyZenpage")),
-						gettext('Flowplayer height')										 => array('key'		 => 'tinymce_tinyzenpage_flowplayer_height', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 4,
-										'desc'	 => gettext("Video player height for videos included using tinyZenpage")),
-						gettext('Mp3 control bar height')								 => array('key'		 => 'tinymce_tinyzenpage_flowplayer_mp3_height', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 5,
-										'desc'	 => gettext("Video player height for mp3s included using tinyZenpage"))
+										'desc'	 => gettext("Predefined crop height (%) for custom cropped thumb images included using tinyZenpage."))
 		);
 		return $options;
 	}

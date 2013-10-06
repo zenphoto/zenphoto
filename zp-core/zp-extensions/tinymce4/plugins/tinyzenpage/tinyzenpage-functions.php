@@ -198,7 +198,7 @@ function printImageslist($number) {
 					case 'video':
 					case 'audio':
 						$sizedimage = $imageobj->getThumb();
-						$sizedimage = str_replace('class="flowplayer"', 'class="flowplayer zenpage_sizedimage"', $sizedimage);
+						$sizedimage = str_replace('class="flowplayer"', 'class="mediaplayer zenpage_sizedimage"', $sizedimage);
 						$imgurl = getImageProcessorURI($args, $linkalbumobj->name, $imageobj->filename);
 						$backgroundcss = 'thumb-multimedia';
 						$itemid = $imageobj->getID();
@@ -245,9 +245,9 @@ function printImageslist($number) {
  *
  * Note:
  * 	If the root object is a video object then
- * 	If flowplayer3 is enabled a sub-type of video or audio will
+ * 	If a mediaplayer is enabled a sub-type of video or audio will
  * 	be determined from the suffix. If it is not one of the
- * 	known suffixes or if flowplayer3 is not enabled then 'other' is
+ * 	known suffixes or if the mediaplayer is not enabled then 'other' is
  * 	returned as the object type.
  *
  * 	Pure images return empty for an object type.
