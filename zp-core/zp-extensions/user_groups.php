@@ -1,4 +1,5 @@
 <?php
+
 /**
  * User group management. You can create groups with common <i>rights</i> and assign users
  * to the groups. Then you can alter these user's rights simply by changing the <i>group</i> rights.
@@ -10,10 +11,9 @@
  * @package plugins
  * @subpackage users
  */
-
 // force UTF-8 Ø
 
-$plugin_is_filter = 5|ADMIN_PLUGIN;
+$plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext("Provides rudimentary user groups.");
 $plugin_author = "Stephen Billard (sbillard)";
 
@@ -35,39 +35,34 @@ class user_groups {
 		$templates = false;
 		$custom = $objects = array();
 		$oldgroups = $userobj->getGroup();
-		if (empty($groups)) {
-			$before = Zenphoto_Authority::newAdministrator($userobj->getUser(), 1);
-			$rights = $before->getRights();
-			$objects = $before->getObjects();
-		} else {
-			$rights = 0;
-			foreach ($groups as $key=>$groupname) {
-				if (empty($groupname)) {
-					//	force the first template to happen
-					$group = new Zenphoto_Administrator('', 0);
-					$group->setName('template');
-				} else {
-					$group = Zenphoto_Authority::newAdministrator($groupname, 0);
-				}
-				if ($group->getName() == 'template') {
-					unset($groups[$key]);
-					if ($userobj->getID() > 0 && !$templates) {
-						//	fetch the existing rights and objects
-						$templates = true;	//	but only once!
-						$rights = $userobj->getRights();
-						$objects = $userobj->getObjects();
-					}
-				}
-				$rights = $group->getRights() | $rights;
-				$objects = array_merge($group->getObjects(), $objects);
-				$custom[] = $group->getCustomData();
+		$rights = 0;
+		foreach ($groups as $key => $groupname) {
+			if (empty($groupname)) {
+				//	force the first template to happen
+				$group = new Zenphoto_Administrator('', 0);
+				$group->setName('template');
+			} else {
+				$group = Zenphoto_Authority::newAdministrator($groupname, 0);
 			}
+			if ($group->getName() == 'template') {
+				unset($groups[$key]);
+				if ($userobj->getID() > 0 && !$templates) {
+					//	fetch the existing rights and objects
+					$templates = true; //	but only once!
+					$rights = $userobj->getRights();
+					$objects = $userobj->getObjects();
+				}
+			}
+			$rights = $group->getRights() | $rights;
+			$objects = array_merge($group->getObjects(), $objects);
+			$custom[] = $group->getCustomData();
 		}
-		$userobj->setCustomData(array_shift($custom));	//	for now it is first come, first served.
+
+		$userobj->setCustomData(array_shift($custom)); //	for now it is first come, first served.
 		// unique objects
 		$newobjects = array();
 		foreach ($objects as $object) {
-			$key = serialize(array('type'=>$object['type'],'data'=>$object['data']));
+			$key = serialize(array('type' => $object['type'], 'data' => $object['data']));
 			if (array_key_exists($key, $newobjects)) {
 				if (array_key_exists('edit', $object)) {
 					$newobjects[$key]['edit'] = @$newobjects[$key]['edit'] | $object['edit'];
@@ -75,17 +70,17 @@ class user_groups {
 			} else {
 				$newobjects[$key] = $object;
 			}
-
 		}
 		$objects = array();
 		foreach ($newobjects as $object) {
 			$objects[] = $object;
 		}
-		$userobj->setGroup($newgroups = implode(',',$groups));
+		$userobj->setGroup($newgroups = implode(',', $groups));
 		$userobj->setRights($rights);
 		$userobj->setObjects($objects);
 		return $newgroups != $oldgroups || $templates;
 	}
+
 	/**
 	 * Saves admin custom data
 	 * Called when an admin is saved
@@ -98,12 +93,10 @@ class user_groups {
 	 */
 	static function save_admin($updated, $userobj, $i, $alter) {
 		if ($alter && $userobj->getValid()) {
-			if (isset($_POST[$i.'group'])) {
-				$newgroups = sanitize($_POST[$i.'group']);
-			} else {
-				$newgroups = array();
+			if (isset($_POST[$i . 'group'])) {
+				$newgroups = sanitize($_POST[$i . 'group']);
+				$updated = self::merge_rights($userobj, $newgroups) || $updated;
 			}
-			$updated = self::merge_rights($userobj, $newgroups) || $updated;
 		}
 		return $updated;
 	}
@@ -113,66 +106,66 @@ class user_groups {
 		$group = $userobj->getGroup();
 		$admins = $_zp_authority->getAdministrators('groups');
 		$groups = array();
-		$hisgroups = explode(',',$userobj->getGroup());
+		$hisgroups = explode(',', $userobj->getGroup());
 		$admins = sortMultiArray($admins, 'user');
 		foreach ($admins as $user) {
 			if ($template || $user['name'] != 'template') {
 				$groups[] = $user;
 			}
 		}
-		if (empty($groups)) return gettext('no groups established'); // no groups setup yet
-		$grouppart =	'
+		if (empty($groups))
+			return gettext('no groups established'); // no groups setup yet
+		$grouppart = '
 		<script type="text/javascript">
 			// <!-- <![CDATA[
-			function groupchange'.$i.'(type) {
+			function groupchange' . $i . '(type) {
 				switch (type) {
 				case 0:	//	none
-					$(\'.user-'.$i.'\').prop(\'disabled\',false);
-					$(\'.templatelist'.$i.'\').prop(\'checked\',false);
-					$(\'.grouplist'.$i.'\').prop(\'checked\',false);
+					$(\'.user-' . $i . '\').prop(\'disabled\',false);
+					$(\'.templatelist' . $i . '\').prop(\'checked\',false);
+					$(\'.grouplist' . $i . '\').prop(\'checked\',false);
 					break;
 				case 1:	//	group
-					$(\'.user-'.$i.'\').prop(\'disabled\',true);
-					$(\'.user-'.$i.'\').prop(\'checked\',false);
-					$(\'#noGroup_'.$i.'\').prop(\'checked\',false);
-					$(\'.templatelist'.$i.'\').prop(\'checked\',false);
+					$(\'.user-' . $i . '\').prop(\'disabled\',true);
+					$(\'.user-' . $i . '\').prop(\'checked\',false);
+					$(\'#noGroup_' . $i . '\').prop(\'checked\',false);
+					$(\'.templatelist' . $i . '\').prop(\'checked\',false);
 					break;
 				case 2:	//	template
-					$(\'.user-'.$i.'\').prop(\'disabled\',true);
-					$(\'#noGroup_'.$i.'\').prop(\'checked\',false);
-					$(\'.grouplist'.$i.'\').prop(\'checked\',false);
+					$(\'.user-' . $i . '\').prop(\'disabled\',false);
+					$(\'#noGroup_' . $i . '\').prop(\'checked\',false);
+					$(\'.grouplist' . $i . '\').prop(\'checked\',false);
 					break;
 			}
 		}
 		//]]> -->
-	</script>'."\n";
+	</script>' . "\n";
 
-		$grouppart .= '<ul class="customchecklist">'."\n";
-		$grouppart .= '<label title="'.gettext('*no group affiliation').'"><input type="checkbox" id="noGroup_'.$i.'" name="'.$i.'group[]" value="" onclick="groupchange'.$i.'(0);" />'.gettext('*no group selected').'</label>'."\n";
+		$grouppart .= '<ul class="customchecklist">' . "\n";
+		$grouppart .= '<label title="' . gettext('*no group affiliation') . '"><input type="checkbox" id="noGroup_' . $i . '" name="' . $i . 'group[]" value="" onclick="groupchange' . $i . '(0);" />' . gettext('*no group selected') . '</label>' . "\n";
 
-		foreach ($groups as $key=>$user) {
-			if ($user['name']=='template') {
+		foreach ($groups as $key => $user) {
+			if ($user['name'] == 'template') {
 				$type = gettext(' (Template)');
 				$highlight = ' class="grouphighlight"';
-				$class = 'templatelist'.$i;
+				$class = 'templatelist' . $i;
 				$case = 2;
 			} else {
 				$type = $highlight = '';
-				$class = 'grouplist'.$i;
+				$class = 'grouplist' . $i;
 				$case = 1;
 			}
-			if (in_array($user['user'],$hisgroups)) {
+			if (in_array($user['user'], $hisgroups)) {
 				$checked = ' checked="checked"';
 			} else {
 				$checked = '';
 			}
-			$grouppart .= '<label title="'.html_encode($user['custom_data']).$type.'"'.$highlight.'><input type="checkbox" class="'.$class.'" name="'.$i.'group[]" value="'.$user['user'].'" onclick="groupchange'.$i.'('.$case.');"'.$checked.' />'.html_encode($user['user']).'</label>'."\n";
+			$grouppart .= '<label title="' . html_encode($user['custom_data']) . $type . '"' . $highlight . '><input type="checkbox" class="' . $class . '" name="' . $i . 'group[]" value="' . $user['user'] . '" onclick="groupchange' . $i . '(' . $case . ');"' . $checked . ' />' . html_encode($user['user']) . '</label>' . "\n";
 		}
 
 		$grouppart .= "</ul>\n";
 
 		return $grouppart;
-
 	}
 
 	/**
@@ -186,28 +179,29 @@ class user_groups {
 	 * @return string
 	 */
 	static function edit_admin($html, $userobj, $i, $background, $current) {
-		if (!$userobj->getValid()) return $html;
+		if (!$userobj->getValid())
+			return $html;
 		if (zp_loggedin(ADMIN_RIGHTS)) {
-			if ($userobj->getID()>=0) {
-				$notice = ' '.gettext("Applying a template will merge the template with the current <em>rights</em> and <em>objects</em>.");
+			if ($userobj->getID() >= 0) {
+				$notice = ' ' . gettext("Applying a template will merge the template with the current <em>rights</em> and <em>objects</em>.");
 			} else {
 				$notice = '';
 			}
-			$grouppart =	self::groupList($userobj, $i, $background, $current, true);
+			$grouppart = self::groupList($userobj, $i, $background, $current, true);
 		} else {
 			$notice = '';
 			if ($group = $userobj->getGroup()) {
-				$grouppart = '<code>'.$group.'</code>';
+				$grouppart = '<code>' . $group . '</code>';
 			} else {
-				$grouppart = '<code>'.gettext('no group affiliation').'</code>';
+				$grouppart = '<code>' . gettext('no group affiliation') . '</code>';
 			}
 		}
 		$result =
-			"\n".'<tr'.((!$current)? ' style="display:none;"':'').' class="userextrainfo">'."\n".
-				'<td width="20%"'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top">'."\n".sprintf(gettext('User group membership: %s'),$grouppart)."\n".
-							"</td>\n<td".((!empty($background)) ? ' style="'.$background.'"':'').">".'<div class="notebox"><p>'.gettext('Templates are highlighted.').$notice.'</p><p>'.gettext('<strong>Note:</strong> When a group is assigned <em>rights</em> and <em>managed objects</em> are determined by the group!').'</p></div></td>'."\n".
-				"</tr>\n";
-		return $html.$result;
+						"\n" . '<tr' . ((!$current) ? ' style="display:none;"' : '') . ' class="userextrainfo">' . "\n" .
+						'<td width="20%"' . ((!empty($background)) ? ' style="' . $background . '"' : '') . ' valign="top">' . "\n" . sprintf(gettext('User group membership: %s'), $grouppart) . "\n" .
+						"</td>\n<td" . ((!empty($background)) ? ' style="' . $background . '"' : '') . ">" . '<div class="notebox"><p>' . gettext('Templates are highlighted.') . $notice . '</p><p>' . gettext('<strong>Note:</strong> When a group is assigned <em>rights</em> and <em>managed objects</em> are determined by the group!') . '</p></div></td>' . "\n" .
+						"</tr>\n";
+		return $html . $result;
 	}
 
 	static function admin_tabs($tabs) {
@@ -219,12 +213,12 @@ class user_groups {
 				$subtabs = array();
 			}
 			$subtabs[gettext('users')] = 'admin-users.php?page=users&amp;tab=users';
-			$subtabs[gettext('assignments')] = PLUGIN_FOLDER.'/user_groups/user_groups-tab.php?page=users&amp;tab=assignments';
-			$subtabs[gettext('groups')] = PLUGIN_FOLDER.'/user_groups/user_groups-tab.php?page=users&amp;tab=groups';
-			$tabs['users'] = array(	'text'=>gettext("admin"),
-															'link'=>WEBPATH."/".ZENFOLDER.'/admin-users.php?page=users&amp;tab=users',
-															'subtabs'=>$subtabs,
-															'default'=>'users');
+			$subtabs[gettext('assignments')] = PLUGIN_FOLDER . '/user_groups/user_groups-tab.php?page=users&amp;tab=assignments';
+			$subtabs[gettext('groups')] = PLUGIN_FOLDER . '/user_groups/user_groups-tab.php?page=users&amp;tab=groups';
+			$tabs['users'] = array('text'		 => gettext("admin"),
+							'link'		 => WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=users&amp;tab=users',
+							'subtabs'	 => $subtabs,
+							'default'	 => 'users');
 		}
 		return $tabs;
 	}
@@ -242,4 +236,5 @@ class user_groups {
 	}
 
 }
+
 ?>
