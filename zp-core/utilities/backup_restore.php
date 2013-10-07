@@ -317,7 +317,7 @@ if (isset($_REQUEST['backup']) && db_connect($_zp_conf_vars)) {
 				$counter = 0;
 				$missing_table = array();
 				$missing_element = array();
-				while (!empty($string) && count($errors) < 10) {
+				while (!empty($string) && count($errors) < 100) {
 					extendExecution();
 					$sep = strpos($string, TABLE_SEPARATOR);
 					$table = substr($string, 0, $sep);
@@ -429,7 +429,14 @@ if (isset($_REQUEST['backup']) && db_connect($_zp_conf_vars)) {
 	} else if (count($errors) > 0) {
 		$messages = '
 		<div class="errorbox">
-			<h2>' . gettext("Restore failed") . '</h2>
+			<h2>';
+		if (count($errors) >= 100) {
+			$messages .= gettext('The maximum error count was exceeded and the restore aborted.');
+			unset($_GET['compression']);
+		} else {
+			$messages .= gettext("Restore encountered the following errors:");
+		}
+		$messages .= '</h2>
 			';
 		foreach ($errors as $msg) {
 			$messages .= '<p>' . html_encode($msg) . '</p>';
@@ -478,9 +485,9 @@ if (isset($_GET['compression'])) {
 ?>
 
 <body>
-			<?php printLogoAndLinks(); ?>
+	<?php printLogoAndLinks(); ?>
 	<div id="main">
-			<?php printTabs(); ?>
+		<?php printTabs(); ?>
 		<div id="content">
 			<?php
 			if (!$_zp_current_admin_obj->reset) {
@@ -488,7 +495,7 @@ if (isset($_GET['compression'])) {
 			}
 			?>
 			<div class="tabbox">
-					<?php zp_apply_filter('admin_note', 'backkup', ''); ?>
+				<?php zp_apply_filter('admin_note', 'backkup', ''); ?>
 				<h1>
 					<?php
 					if ($_zp_current_admin_obj->reset) {
@@ -504,17 +511,17 @@ if (isset($_GET['compression'])) {
 					$compression_level = getOption('backup_compression');
 					?>
 					<p>
-	<?php printf(gettext("Database software <strong>%s</strong>"), DATABASE_SOFTWARE); ?><br />
-	<?php printf(gettext("Database name <strong>%s</strong>"), db_name()); ?><br />
-					<?php printf(gettext("Tables prefix <strong>%s</strong>"), trim(prefix(), '`')); ?>
+						<?php printf(gettext("Database software <strong>%s</strong>"), DATABASE_SOFTWARE); ?><br />
+						<?php printf(gettext("Database name <strong>%s</strong>"), db_name()); ?><br />
+						<?php printf(gettext("Tables prefix <strong>%s</strong>"), trim(prefix(), '`')); ?>
 					</p>
 					<br />
 					<br />
-						<?php
-						if (!$_zp_current_admin_obj->reset) {
-							?>
+					<?php
+					if (!$_zp_current_admin_obj->reset) {
+						?>
 						<form name="backup_gallery" action="">
-		<?php XSRFToken('backup'); ?>
+							<?php XSRFToken('backup'); ?>
 							<input type="hidden" name="backup" value="true" />
 							<div class="buttons pad_button" id="dbbackup">
 								<button class="fixedwidth tooltip" type="submit" title="<?php echo gettext("Backup the tables in your database."); ?>">
@@ -525,9 +532,9 @@ if (isset($_GET['compression'])) {
 									for ($v = 0; $v <= 9; $v++) {
 										?>
 										<option value="<?php echo $v; ?>"<?php if ($compression_level == $v) echo ' selected="selected"'; ?>><?php echo $v; ?></option>
-			<?php
-		}
-		?>
+										<?php
+									}
+									?>
 								</select> <?php echo gettext('Compression level'); ?>
 							</div>
 							<br class="clearall" />
@@ -543,11 +550,11 @@ if (isset($_GET['compression'])) {
 					} else {
 						?>
 						<form name="restore_gallery" action="">
-								<?php XSRFToken('backup'); ?>
-								<?php echo gettext('Select the database restore file:'); ?>
+							<?php XSRFToken('backup'); ?>
+							<?php echo gettext('Select the database restore file:'); ?>
 							<br />
 							<select id="backupfile" name="backupfile">
-		<?php generateListFromFiles('', SERVERPATH . "/" . BACKUPFOLDER, '.zdb', true); ?>
+								<?php generateListFromFiles('', SERVERPATH . "/" . BACKUPFOLDER, '.zdb', true); ?>
 							</select>
 							<input type="hidden" name="restore" value="true" />
 							<div class="buttons pad_button" id="dbrestore">
@@ -582,6 +589,6 @@ if (isset($_GET['compression'])) {
 			</div>
 		</div><!-- content -->
 	</div><!-- main -->
-<?php printAdminFooter(); ?>
+	<?php printAdminFooter(); ?>
 </body>
 <?php echo "</html>"; ?>
