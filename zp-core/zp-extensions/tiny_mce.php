@@ -93,11 +93,11 @@ function tinymceConfigJS($editorconfig, $mode) {
 		$locale = 'en';
 		$loc = str_replace('_', '-', strtolower(getOption("locale")));
 		if ($loc) {
-			if (file_exists(SERVERPATH . '/' . PLUGIN_FOLDER . '/tiny_mce/langs/' . $loc . '.js')) {
+			if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tiny_mce/langs/' . $loc . '.js')) {
 				$locale = $loc;
 			} else {
 				$loc = substr($loc, 0, 2);
-				if (file_exists(SERVERPATH . '/' . PLUGIN_FOLDER . '/tiny_mce/langs/' . $loc . '.js')) {
+				if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tiny_mce/langs/' . $loc . '.js')) {
 					$locale = $loc;
 				}
 			}
