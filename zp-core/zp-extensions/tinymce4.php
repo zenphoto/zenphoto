@@ -74,15 +74,16 @@ function tinymce4ConfigJS($editorconfig, $mode) {
 		$locale = 'en';
 		$loc = str_replace('_', '-', getOption("locale"));
 		if ($loc) {
-			if (file_exists(SERVERPATH . '/' . PLUGIN_FOLDER . '/tiny_mce/langs/' . $loc . '.js')) {
+			if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tinymce4/langs/' . $loc . '.js')) {
 				$locale = $loc;
 			} else {
 				$loc = substr($loc, 0, 2);
-				if (file_exists(SERVERPATH . '/' . PLUGIN_FOLDER . '/tiny_mce/langs/' . $loc . '.js')) {
+				if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tinymce4/langs/' . $loc . '.js')) {
 					$locale = $loc;
 				}
 			}
 		}
+
 		$editorconfig = getOption('tinymce4_' . $mode);
 		if (!empty($editorconfig)) {
 			$editorconfig = getPlugin('/tinymce4/config/' . $editorconfig);

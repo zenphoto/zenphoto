@@ -11,6 +11,7 @@ $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
 // <!-- <![CDATA[
 	tinymce.init({
 		selector: "textarea.content,textarea.desc,textarea.extracontent",
+		language: "<?php echo $locale; ?>",
 		inline: true,
 		menubar: false,
 		plugins: [
