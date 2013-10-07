@@ -372,7 +372,7 @@ if (is_array($result) && !empty($result['type'])) {
 					</table>
 					<p class="buttons">
 						<button type="submit"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-						<button type="reset""><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+						<button type="reset"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 					</p>
 					<br class="clearall" /><br />
 				</form>
