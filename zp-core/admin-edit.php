@@ -861,8 +861,7 @@ echo "\n</head>";
 								</div>
 								<br class="clearall" /><br class="clearall" />
 								<?php printAlbumLegend(); ?>
-								<span id="serializeOutput" /></span>
-						</div>
+								<span id="serializeOutput"></span>
 						<input name="update" type="hidden" value="Save Order" />
 						<br />
 						<span class="buttons">
