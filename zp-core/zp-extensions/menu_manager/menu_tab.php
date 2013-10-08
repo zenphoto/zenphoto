@@ -229,7 +229,7 @@ printSortableHead();
 					?>
 				</div>
 				<br />
-				<span id="serializeOutput" /></span>
+				<span id="serializeOutput"></span>
 				<input name="update" type="hidden" value="Save Order" />
 				<p class="buttons">
 					<button class="serialize" type="submit"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
