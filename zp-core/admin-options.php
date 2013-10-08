@@ -2466,7 +2466,7 @@ Zenphoto_Authority::printPasswordFormJS();
 												?>
 											</span>&nbsp;
 											<span class="nowrap">
-												<?php printf(gettext('%s%% top &amp; bottom'), '<input type="text" size="3" name="thumb_crop_height" id="thumb_crop_height"	value="' . $ct . '"' . $disable . '" />');
+												<?php printf(gettext('%s%% top &amp; bottom'), '<input type="text" size="3" name="thumb_crop_height" id="thumb_crop_height"	value="' . $ct . '"' . $disable . ' />');
 												?>
 											</span>
 										</td>
@@ -2745,9 +2745,9 @@ Zenphoto_Authority::printPasswordFormJS();
 														customOptions($option_interface, '', NULL, 'plugin', $supportedOptions, NULL, 'none', $extension);
 													}
 													?>
+												</table>
 											</td>
-									</table>
-									</tr>
+										</tr>
 									<?php
 								}
 							}

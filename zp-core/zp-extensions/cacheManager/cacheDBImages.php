@@ -9,6 +9,7 @@
 define('OFFSET_PATH', 3);
 require_once("../../admin-globals.php");
 require_once(SERVERPATH . '/' . ZENFOLDER . '/template-functions.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager/functions.php');
 
 admin_securityChecks(NULL, $return = currentRelativeURL());
 
@@ -93,49 +94,7 @@ echo "\n" . '<div id="content">';
 						preg_match_all('~\<img.*src\s*=\s*"((\\.|[^"])*)~', $row[$field], $matches);
 						foreach ($matches[1] as $key => $match) {
 							$found++;
-
-							$args = array(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-							$set = array();
-							$done = false;
-							$params = explode('_', stripSuffix($match));
-							while (!$done && count($params) > 1) {
-								$check = array_pop($params);
-								if (is_numeric($check)) {
-									$set['s'] = $check;
-									break;
-								} else {
-									$c = substr($check, 0, 1);
-									if ($c == 'w' || $c == 'h') {
-										$v = (int) substr($check, 1);
-										if ($v) {
-											$set[$c] = $v;
-											continue;
-										}
-									}
-									if ($c == 'c') {
-										$c = substr($check, 0, 2);
-										$v = (int) substr($check, 2);
-										if ($v) {
-											$set[$c] = $v;
-											continue;
-										}
-									}
-									if (!isset($set['w']) && !isset($set['h']) && !isset($set['s'])) {
-										if (!isset($set['wm']) && in_array($check, $watermarks)) {
-											$set['wm'] = $check;
-										} else if ($check == 'thumb') {
-											$set['t'] = true;
-										} else {
-											$set['effects'] = $check;
-										}
-									} else {
-										array_push($params, $check);
-										break;
-									}
-								}
-							}
-							$args = getImageArgs($set);
-							$image = preg_replace('~.*/' . CACHEFOLDER . '/~', '', implode('_', $params)) . '.' . getSuffix($match);
+							list($image, $args) = getImageProcessorURIFromCacheName($match, $watermarks);
 							if (!file_exists(getAlbumFolder() . $image)) {
 								recordMissing($table, $row);
 							} else {

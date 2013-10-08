@@ -637,8 +637,8 @@ echo $refresh;
 															<?php
 														}
 														?>
+														&nbsp;
 													</td>
-													&nbsp;
 													<?php
 												} else {
 													?>
