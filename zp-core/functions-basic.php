@@ -588,7 +588,7 @@ function getImageCacheFilename($album8, $image8, $args) {
 		}
 	}
 	if (getOption('obfuscate_cache')) {
-		$result = '/' . $album . $albumsep . sha1($image . HASH_SEED . $postfix) . '.' . $suffix;
+		$result = '/' . $album . $albumsep . sha1($image . HASH_SEED . $postfix) . '.' . $image . $postfix . '.' . $suffix;
 	} else {
 		$result = '/' . $album . $albumsep . $image . $postfix . '.' . $suffix;
 	}
