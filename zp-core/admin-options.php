@@ -2745,9 +2745,9 @@ Zenphoto_Authority::printPasswordFormJS();
 														customOptions($option_interface, '', NULL, 'plugin', $supportedOptions, NULL, 'none', $extension);
 													}
 													?>
+												</table>
 											</td>
-									</table>
-									</tr>
+										</tr>
 									<?php
 								}
 							}
