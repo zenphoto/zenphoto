@@ -133,7 +133,8 @@ if ($alb) {
 	}
 } else {
 	$object = '<em>' . gettext('Gallery') . '</em>';
-	$tab = gettext('overview');
+	$zenphoto_tabs['overview']['subtabs'] = array(gettext('Cache images')				 => PLUGIN_FOLDER . '/cacheManager/cacheImages.php?page=overview&amp;tab=images',
+					gettext('Cache stored images') => PLUGIN_FOLDER . '/cacheManager/cacheDBImages.php?page=overview&amp;tab=DB&amp;XSRFToken=' . getXSRFToken('cacheDBImages'));
 }
 $custom = array();
 $result = query('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="cacheManager" ORDER BY `aux`');
@@ -150,11 +151,7 @@ if (isset($_GET['select'])) {
 	$enabled = false;
 }
 
-if (!$alb) {
-	$zenphoto_tabs['overview']['subtabs'] = array(gettext('Cache images')				 => PLUGIN_FOLDER . '/cacheManager/cacheImages.php?page=overview&amp;tab=images',
-					gettext('Cache stored images') => PLUGIN_FOLDER . '/cacheManager/cacheDBImages.php?page=overview&amp;tab=DB&amp;XSRFToken=' . getXSRFToken('cacheDBImages'));
-}
-printAdminHeader($tab, gettext('Cache images'));
+printAdminHeader('overview', 'images');
 echo "\n</head>";
 echo "\n<body>";
 
@@ -209,7 +206,7 @@ echo "\n" . '<div id="content">';
 		//]]> -->
 	</script>
 	<form name="size_selections" action="?select&album=<?php echo $alb; ?>" method="post">
-			<?php XSRFToken('cacheImages') ?>
+		<?php XSRFToken('cacheImages') ?>
 		<ol class="no_bullets">
 			<?php
 			if (getOption('cache_full_image') && (!is_array($enabled) || in_array('*', $enabled))) {
@@ -232,7 +229,7 @@ echo "\n" . '<div id="content">';
 					?>
 					<label>
 						<input type="checkbox" name="enable[]" value="*" <?php echo $checked; ?> />
-				<?php echo gettext('Apply'); ?> <code><?php echo gettext('Full Image'); ?></code>
+						<?php echo gettext('Apply'); ?> <code><?php echo gettext('Full Image'); ?></code>
 					</label>
 				</li>
 				<?php
@@ -318,7 +315,7 @@ echo "\n" . '<div id="content">';
 									?>
 									<label>
 										<input type="checkbox" name="enable[]" class="<?php echo $theme; ?>" value="<?php echo $key; ?>" <?php echo $checked; ?> />
-								<?php echo gettext('Apply'); ?> <code><?php echo ltrim($postfix, '_'); ?></code>
+										<?php echo gettext('Apply'); ?> <code><?php echo ltrim($postfix, '_'); ?></code>
 									</label>
 								</li>
 								<?php
@@ -381,7 +378,7 @@ echo "\n" . '<div id="content">';
 			<p class="buttons">
 				<button class="tooltip" type="submit" title="<?php echo $button['title']; ?>" >
 					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/redo.png" alt="" />
-			<?php echo $button['text']; ?>
+					<?php echo $button['text']; ?>
 				</button>
 			</p>
 			<?php
