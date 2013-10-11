@@ -63,15 +63,19 @@ function loadAlbum($album) {
 						<?php
 					}
 				}
+
 				foreach ($custom as $key => $cacheimage) {
 					if (in_array($key, $enabled)) {
 						$size = isset($cacheimage['image_size']) ? $cacheimage['image_size'] : NULL;
 						$width = isset($cacheimage['image_width']) ? $cacheimage['image_width'] : NULL;
 						$height = isset($cacheimage['image_height']) ? $cacheimage['image_height'] : NULL;
-						$cw = isset($cacheimage['crop_width']) ? $cacheimage['crop_width'] : NULL;
-						$ch = isset($cacheimage['crop_height']) ? $cacheimage['crop_height'] : NULL;
-						$cx = isset($cacheimage['crop_x']) ? $cacheimage['crop_x'] : NULL;
-						$cy = isset($cacheimage['crop_y']) ? $cacheimage['crop_y'] : NULL;
+						list($special, $cw, $ch, $cx, $cy) = $_zp_current_image->getThumbCropping($size, $width, $height);
+						if (!$special) {
+							$cw = isset($cacheimage['crop_width']) ? $cacheimage['crop_width'] : NULL;
+							$ch = isset($cacheimage['crop_height']) ? $cacheimage['crop_height'] : NULL;
+							$cx = isset($cacheimage['crop_x']) ? $cacheimage['crop_x'] : NULL;
+							$cy = isset($cacheimage['crop_y']) ? $cacheimage['crop_y'] : NULL;
+						}
 						$thumbstandin = isset($cacheimage['thumb']) ? $cacheimage['thumb'] : NULL;
 						$effects = isset($cacheimage['gray']) ? $cacheimage['gray'] : NULL;
 						$passedWM = isset($cacheimage['wmk']) ? $cacheimage['wmk'] : NULL;
@@ -137,6 +141,7 @@ if ($alb) {
 					gettext('Cache stored images') => PLUGIN_FOLDER . '/cacheManager/cacheDBImages.php?page=overview&amp;tab=DB&amp;XSRFToken=' . getXSRFToken('cacheDBImages'));
 }
 $custom = array();
+
 $result = query('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="cacheManager" ORDER BY `aux`');
 while ($row = db_fetch_assoc($result)) {
 	$row = unserialize($row['data']);

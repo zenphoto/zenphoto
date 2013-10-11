@@ -182,11 +182,12 @@ function zp_remove_filter($hook, $function_to_remove, $priority = 10, $accepted_
 	$function_to_remove = zp_filter_unique_id($hook, $function_to_remove, $priority);
 
 	$remove = isset($_zp_filters[$hook][$priority][$function_to_remove]);
-
 	if ($remove) {
 		unset($_zp_filters[$hook][$priority][$function_to_remove]);
 		if (empty($_zp_filters[$hook][$priority]))
 			unset($_zp_filters[$hook][$priority]);
+		if (empty($_zp_filters[$hook]))
+			unset($_zp_filters[$hook]);
 		if (DEBUG_FILTERS)
 			debugLog($function_to_remove . ' removed from ' . $hook);
 	}
