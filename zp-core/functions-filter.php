@@ -166,7 +166,7 @@ function zp_apply_filter($hook, $value = '') {
  * method can be used to remove default functions attached to a specific filter
  * hook and possibly replace them with a substitute.
  *
- * To remove a hook, the $function_to_remove and $priority arguments must match
+ * To be removed the $function_to_remove and $priority arguments must match
  * when the hook was added.
  *
  * global array $_zp_filters storage for all of the filters
@@ -182,10 +182,11 @@ function zp_remove_filter($hook, $function_to_remove, $priority = 10, $accepted_
 	$function_to_remove = zp_filter_unique_id($hook, $function_to_remove, $priority);
 
 	$remove = isset($_zp_filters[$hook][$priority][$function_to_remove]);
-
-	if ($remove === true) {
+	if ($remove) {
 		unset($_zp_filters[$hook][$priority][$function_to_remove]);
 		if (empty($_zp_filters[$hook][$priority]))
+			unset($_zp_filters[$hook][$priority]);
+		if (empty($_zp_filters[$hook]))
 			unset($_zp_filters[$hook]);
 		if (DEBUG_FILTERS)
 			debugLog($function_to_remove . ' removed from ' . $hook);

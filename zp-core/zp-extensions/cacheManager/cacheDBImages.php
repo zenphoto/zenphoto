@@ -13,13 +13,11 @@ require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager
 
 admin_securityChecks(NULL, $return = currentRelativeURL());
 
-$tab = gettext('overview');
-
 XSRFdefender('cacheDBImages');
 
 $zenphoto_tabs['overview']['subtabs'] = array(gettext('Cache images')				 => PLUGIN_FOLDER . '/cacheManager/cacheImages.php?page=overview&amp;tab=images',
 				gettext('Cache stored images') => PLUGIN_FOLDER . '/cacheManager/cacheDBImages.php?page=overview&amp;tab=DB&amp;XSRFToken=' . getXSRFToken('cacheDBImages'));
-printAdminHeader($tab, gettext('Cache stored images'));
+printAdminHeader('overview', 'DB');
 echo "\n</head>";
 echo "\n<body>";
 

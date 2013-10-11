@@ -204,7 +204,10 @@ class Video extends Image {
 	 * @return string
 	 */
 	function getThumb($type = 'image') {
-		list($custom, $sw, $sh, $cw, $ch, $cx, $cy) = $this->getThumbCropping($type);
+		$ts = getOption('thumb_size');
+		$sw = getOption('thumb_crop_width');
+		$sh = getOption('thumb_crop_height');
+		list($custom, $cw, $ch, $cx, $cy) = $this->getThumbCropping($ts, $sw, $sh);
 		$wmt = getOption('Video_watermark');
 		if (empty($wmt)) {
 			$wmt = getWatermarkParam($this, WATERMARK_THUMB);
@@ -219,7 +222,7 @@ class Video extends Image {
 			$filename = filesystemToInternal($this->objectsThumb);
 			$mtime = filemtime(ALBUM_FOLDER_SERVERPATH . '/' . internalToFilesystem($this->imagefolder) . '/' . $this->objectsThumb);
 		}
-		$args = getImageParameters(array(getOption('thumb_size'), $sw, $sh, $cw, $ch, $cx, $cy, NULL, true, true, true, $wmt, NULL, NULL), $this->album->name);
+		$args = getImageParameters(array($ts, $sw, $sh, $cw, $ch, $cx, $cy, NULL, true, true, true, $wmt, NULL, NULL), $this->album->name);
 		return getImageURI($args, $this->album->name, $filename, $mtime);
 	}
 
