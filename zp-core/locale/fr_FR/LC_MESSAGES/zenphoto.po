@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-04 07:20-0500\n"
-"PO-Revision-Date: 2013-10-04 20:04-0500\n"
+"POT-Creation-Date: 2013-10-11 12:05-0500\n"
+"PO-Revision-Date: 2013-10-11 12:05-0500\n"
 "Last-Translator: \n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "<michel@mgagnon.net>\n"
@@ -81,7 +81,7 @@ msgstr "L’objet Zenphoto demandé n’a pu être trouvé."
 #: F:\SITES\SitesGitHub\zenphoto/themes/default/404.php:29
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/404.php:51
 #: F:\SITES\SitesGitHub\zenphoto/themes/stopdesign/404.php:30
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/404.php:12
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/404.php:42
 #, php-format
 msgid "Album: %s"
 msgstr "Album : %s"
@@ -89,7 +89,7 @@ msgstr "Album : %s"
 #: F:\SITES\SitesGitHub\zenphoto/themes/default/404.php:32
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/404.php:54
 #: F:\SITES\SitesGitHub\zenphoto/themes/stopdesign/404.php:33
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/404.php:15
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/404.php:45
 #, php-format
 msgid "Image: %s"
 msgstr "Image : %s"
@@ -97,7 +97,7 @@ msgstr "Image : %s"
 #: F:\SITES\SitesGitHub\zenphoto/themes/default/404.php:35
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/404.php:57
 #: F:\SITES\SitesGitHub\zenphoto/themes/stopdesign/404.php:36
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/404.php:18
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/404.php:48
 #, php-format
 msgid "Page: %s"
 msgstr "Page : %s"
@@ -141,7 +141,7 @@ msgstr "recherche"
 #: F:\SITES\SitesGitHub\zenphoto/themes/stopdesign/image.php:175
 #: F:\SITES\SitesGitHub\zenphoto/themes/stopdesign/password.php:43
 #: F:\SITES\SitesGitHub\zenphoto/themes/stopdesign/search.php:165
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/404.php:23
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/404.php:53
 msgid "Albums Index"
 msgstr "Racine des albums"
 
@@ -475,7 +475,7 @@ msgid "Total matches for <em>%1$s</em>: %2$u"
 msgstr "Nombre de résultats pour <em>%1$s</em> : %2$u"
 
 #: F:\SITES\SitesGitHub\zenphoto/themes/default/search.php:65
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1331
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1330
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1356
 msgid "Date:"
 msgstr "Date : "
@@ -776,7 +776,7 @@ msgstr "album"
 
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/functions.php:425
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/functions.php:153
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1376
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1375
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-globals.php:109
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-options.php:2483
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/image_album_statistics.php:208
@@ -911,14 +911,14 @@ msgstr "Visiter la galerie de photos"
 #: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/news.php:9
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:3017
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:3135
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:507
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:510
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:525
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:534
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:539
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:558
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:567
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:572
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:520
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:523
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:536
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:543
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:547
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:562
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:569
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:573
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:412
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:414
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:416
@@ -961,14 +961,14 @@ msgstr "Recherche dans les actualités"
 #: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/pages.php:32
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:3017
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:3149
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:506
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:509
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:526
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:535
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:540
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:559
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:568
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:573
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:519
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:522
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:537
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:544
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:548
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:563
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:570
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:574
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/utilities/gallery_statistics.php:80
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/utilities/gallery_statistics.php:589
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:108
@@ -1124,35 +1124,35 @@ msgstr "Toutes les actualités"
 #: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/functions.php:61
 #: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/functions.php:150
 #: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/image.php:27
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1580
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1579
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-options.php:2207
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-options.php:2208
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-themes.php:101
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-themes.php:102
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:500
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:501
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:502
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:503
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:504
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:508
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:512
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:522
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:523
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:530
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:531
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:536
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:543
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:513
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:514
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:515
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:516
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:517
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:521
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:525
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:533
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:534
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:540
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:541
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:545
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:555
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:556
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:563
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:564
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:569
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:550
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:551
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:559
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:560
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:566
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:567
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:571
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:576
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:578
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:577
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/setup/setup-option-defaults.php:373
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/rss.php:74
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:135
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:141
 msgid "Gallery"
 msgstr "Galerie"
 
@@ -1397,7 +1397,7 @@ msgstr "Image de la page d’accueil"
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/themeoptions.php:143
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/themeoptions.php:87
 #: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/themeoptions.php:68
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1242
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1241
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-options.php:1807
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-options.php:1820
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-options.php:1848
@@ -1473,7 +1473,7 @@ msgstr "Page non trouvée"
 #: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/functions.php:39
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:485
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:4548
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:490
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:503
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/related_items.php:174
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:81
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:85
@@ -1600,20 +1600,20 @@ msgstr "Recherche dans la catégorie"
 #: F:\SITES\SitesGitHub\zenphoto/themes/stopdesign/index.php:163
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1984
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:3122
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:505
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:511
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:518
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:524
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:527
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:528
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:532
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:537
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:541
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:557
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:560
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:535
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:538
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:539
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:542
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:546
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:549
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:561
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:564
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:565
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:570
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:574
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:568
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:572
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:575
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:109
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/utilities/gallery_statistics.php:72
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/utilities/gallery_statistics.php:572
@@ -1824,10 +1824,10 @@ msgstr "Photos"
 
 #: F:\SITES\SitesGitHub\zenphoto/themes/stopdesign/gallery.php:101
 #: F:\SITES\SitesGitHub\zenphoto/themes/stopdesign/index.php:180
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:489
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:504
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:531
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:564
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:502
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:517
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:541
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:567
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/comment_form.php:186
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/rss.php:75
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:248
@@ -2218,12 +2218,12 @@ msgid "zpMobile theme by"
 msgstr "Thème zpMobile par"
 
 #: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/functions.php:93
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:527
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:541
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:496
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:515
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:547
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:580
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:526
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:540
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:509
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:528
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:553
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:579
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/utilities/backup_restore.php:22
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cloneZenphoto.php:37
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/publishContent.php:36
@@ -2305,11 +2305,11 @@ msgstr ""
 "Un thème principalement conçu pour être les  téléphones mobiles, en "
 "utilisant <a href='http://jQuerymobile.com'>l’architecture jQuerymobile</a>"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/404.php:10
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/404.php:40
 msgid "Zenphoto Error:</strong> the requested object was not found."
 msgstr "Erreur Zenphoto :</strong> l’objet demandé n’a pas été trouvé."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/404.php:23
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/404.php:53
 #, php-format
 msgid "Return to %s"
 msgstr "Retour à %s"
@@ -2339,11 +2339,11 @@ msgstr "Aucun changement"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-albumsort.php:133
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-albumsort.php:161
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:811
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:871
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:967
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1499
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1592
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1622
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:870
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:966
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1498
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1591
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1621
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1193
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1916
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-refresh-metadata.php:145
@@ -2354,8 +2354,8 @@ msgstr "Aucun changement"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/crop_image.php:353
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/crop_image.php:358
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/crop_image.php:359
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:232
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:375
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:189
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:379
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:221
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:346
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:799
@@ -2365,13 +2365,13 @@ msgstr "Retour"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-albumsort.php:136
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-albumsort.php:165
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:818
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:875
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:971
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1503
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1595
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1625
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1682
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1723
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:874
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:970
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1502
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1594
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1624
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1681
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1722
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1197
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1920
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-options.php:557
@@ -2394,8 +2394,8 @@ msgstr "Retour"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-users.php:455
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-users.php:829
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/crop_image.php:347
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:235
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:321
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:239
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:325
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:133
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:310
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:481
@@ -2405,9 +2405,9 @@ msgstr "Retour"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/publishContent/publishContent.php:205
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:119
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:216
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:201
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:395
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:455
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:198
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:394
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:456
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:491
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:129
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:130
@@ -2654,13 +2654,13 @@ msgid "Clear tags of images"
 msgstr "Effacer les tags des images"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:660
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1168
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1167
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1798
 msgid "Move"
 msgstr "Déplacer"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:661
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1172
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1171
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1804
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:540
 msgid "Copy"
@@ -2671,7 +2671,7 @@ msgid "Image metadata refreshed."
 msgstr "Les métadonnées des images ont été actualisées."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:780
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1644
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1643
 msgid " descending"
 msgstr " décroissant"
 
@@ -2681,12 +2681,12 @@ msgid "Current sort: <em>%1$s%2$s</em>. "
 msgstr "Clé de tri utilisée : <em>%1$s%2$s</em>."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:793
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1658
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1657
 msgid "Drag the albums into the order you wish them displayed."
 msgstr "Déplacez les albums dans l’ordre où vous souhaitez les afficher."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:796
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1661
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1660
 msgid ""
 "<strong>Note:</strong> Dragging an album under a different parent will move "
 "the album. You cannot move albums under a <em>dynamic</em> album."
@@ -2708,8 +2708,8 @@ msgstr ""
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:821
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:823
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:878
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:880
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:877
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:879
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1207
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1209
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1930
@@ -2718,12 +2718,12 @@ msgid "New subalbum"
 msgstr "Nouveau sous-album"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:832
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1694
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1693
 msgid "Edit this album"
 msgstr "Modifier cet album"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:841
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1699
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1698
 msgid ""
 "Thumbnail generation may be time consuming on slow servers on when there are "
 "a lot of images."
@@ -2732,7 +2732,7 @@ msgstr ""
 "de temps sur un serveur lent."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:848
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1704
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1703
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:3709
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:342
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:206
@@ -2742,24 +2742,24 @@ msgstr ""
 msgid "Check All"
 msgstr "Tout cocher"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:930
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:929
 msgid "Click on the image to change the thumbnail cropping."
 msgstr "Cliquer sur l’image pour changer le rognage de la vignette."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:932
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:931
 msgid "expand all fields"
 msgstr "afficher tous les champs"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:933
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:932
 msgid "collapse all fields"
 msgstr "masquer tous les champs"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:939
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:938
 #, php-format
 msgid "%s (descending)"
 msgstr "%s (décroissant)"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:941
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:940
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1393
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-options.php:1199
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/exif/exif.php:493
@@ -2775,14 +2775,14 @@ msgstr "%s (décroissant)"
 msgid "Manual"
 msgstr "Manuel"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:945
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:944
 msgid "Display images by:"
 msgstr "Afficher les images par :"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:975
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1507
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1598
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1628
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:974
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1506
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1597
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1627
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1201
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1924
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-logs.php:117
@@ -2806,7 +2806,7 @@ msgstr "Afficher les images par :"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-thumbcrop.php:265
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-users.php:456
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-users.php:830
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1020
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1019
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/crop_image.php:344
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/rewriteTokens.php:65
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_mailing_list.php:171
@@ -2816,26 +2816,26 @@ msgstr "Afficher les images par :"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:375
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:120
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:217
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:202
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:396
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:456
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:199
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:395
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:457
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:492
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:356
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:809
 msgid "Reset"
 msgstr "Réinitialiser"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1019
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1279
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1018
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1278
 #, php-format
 msgid "crop %s"
 msgstr "rognage %s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1028
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1027
 msgid "Zoom"
 msgstr "Zoom"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1030
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1029
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/utilities/gallery_statistics.php:443
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/utilities/gallery_statistics.php:446
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:241
@@ -2852,47 +2852,47 @@ msgstr "Zoom"
 msgid "View"
 msgstr "Voir"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1032
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1031
 msgid "<strong>Filename:</strong>"
 msgstr "<strong>Nom de fichier :</strong>"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1038
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1037
 msgid "<strong>Image id:</strong>"
 msgstr "<strong>Identifiant de l’image : </strong> "
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1039
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1038
 msgid "<strong>Dimensions:</strong>"
 msgstr "<strong>Dimensions :</strong>"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1039
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1038
 msgid "px"
 msgstr "px"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1040
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1039
 msgid "<strong>Size:</strong>"
 msgstr "<strong>Taille :</strong>"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1042
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1041
 msgid "Owner:"
 msgstr "Propriétaire : "
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1057
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1056
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1685
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:513
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:514
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:515
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:520
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:546
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:547
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:526
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:527
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:528
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:532
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:552
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:553
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:557
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:558
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:578
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:579
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:580
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:640
 msgid "General"
 msgstr "Général"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1061
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1060
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1689
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:2108
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-globals.php:30
@@ -2902,12 +2902,12 @@ msgstr "Général"
 msgid "Published"
 msgstr "Publié"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1069
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1068
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1697
 msgid "Allow Comments"
 msgstr "Autoriser les commentaires"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1080
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1079
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:653
 #, php-format
 msgid "Reset hitcounter (%u hit)"
@@ -2915,21 +2915,21 @@ msgid_plural "Reset hitcounter (%u hits)"
 msgstr[0] "Remettre le compteur à zéro (total : %u vue)"
 msgstr[1] "Remettre le compteur à zéro (total : %u vues)"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1093
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1092
 #, php-format
 msgid "Reset rating (%u star)"
 msgid_plural "Reset rating (%u stars)"
 msgstr[0] "Effacer les votes (%u étoile)"
 msgstr[1] "Effacer les votes (%u étoiles)"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1100
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1099
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1728
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:676
 msgid "Reset rating (unrated)"
 msgstr "Effacer les votes (pas encore évalué)"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1114
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1339
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1113
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1338
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1364
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1742
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/publishContent/publishContent.php:310
@@ -2938,57 +2938,57 @@ msgstr "Effacer les votes (pas encore évalué)"
 msgid "calendar"
 msgstr "calendrier"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1121
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1146
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1120
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1145
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1749
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1774
 msgid "Future publishing date."
 msgstr "Date de publication ultérieure."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1132
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1156
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1131
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1155
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1760
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1784
 msgid "Expired!"
 msgstr "Expiré !"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1141
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1140
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1769
 msgid "Publish date"
 msgstr "Date de publication"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1151
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1150
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1779
 msgid "Expiration date"
 msgstr "Date d’expiration"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1163
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1162
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1792
 msgid "Utilities"
 msgstr "Utilitaires"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1176
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1175
 msgid "Rename File"
 msgstr "Renommer le fichier"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1181
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1180
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/publishContent/publishContent.php:355
 msgid "Are you sure you want to select this image for deletion?"
 msgstr "Êtes-vous certain(e) de vous vouloir supprimer cette image ?"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1181
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1180
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:256
 msgid "Delete image"
 msgstr "Supprimer l’image"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1185
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1212
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1184
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1211
 msgid "to"
 msgstr "vers"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1208
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1214
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1220
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1207
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1213
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1219
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1825
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1862
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1870
@@ -3000,48 +3000,48 @@ msgstr "vers"
 msgid "Cancel"
 msgstr "Annuler"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1219
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1218
 msgid "Image will be deleted when changes are applied."
 msgstr "La photo sera effacée quand les modifications seront appliquées."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1228
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1227
 msgid "Rotation:"
 msgstr "Rotation :"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1249
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1248
 msgid "90 degrees"
 msgstr "90 degrés"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1256
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1255
 msgid "180 degrees"
 msgstr "180 degrés"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1263
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1262
 msgid "270 degrees"
 msgstr "270 degrés"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1270
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1269
 #, php-format
 msgid "Refresh %s metadata"
 msgstr "Actualiser les métadonnées de %s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1272
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1271
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-refresh-metadata.php:39
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/utilities/refresh_metadata.php:6
 msgid "Refresh Metadata"
 msgstr "Actualiser les métadonnées"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1281
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1280
 msgid "Crop thumbnail"
 msgstr "Rogner la vignette"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1292
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1291
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1880
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/class-search.php:63
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:494
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:513
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:545
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:578
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:507
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:526
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:551
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:577
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:118
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/utilities/gallery_statistics.php:92
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/utilities/gallery_statistics.php:583
@@ -3050,113 +3050,113 @@ msgstr "Rogner la vignette"
 msgid "Tags"
 msgstr "Tags"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1305
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1304
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:299
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:412
 msgid "Title:"
 msgstr "Titre : "
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1310
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1309
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:295
 msgid "Description:"
 msgstr "Description : "
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1318
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1317
 msgid "Set as thumbnail for:"
 msgstr "Utiliser comme vignette pour :"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1359
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1358
 msgid "Image watermark:"
 msgstr "Filigrane de l’image : "
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1362
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1361
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1551
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1566
 msgid "*no watermark"
 msgstr "*aucun filigrane"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1363
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1362
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1552
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1567
 msgid "*default"
 msgstr "*réglages par défaut"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1377
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1376
 msgid "thumb"
 msgstr "vignette"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1378
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1377
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:131
 msgid "full image"
 msgstr "image pleine grandeur"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1387
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1386
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1384
 msgid "Custom data:"
 msgstr "Données personnalisées : "
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1397
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1396
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1374
 msgid "Location:"
 msgstr "Lieu : "
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1403
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1402
 msgid "City:"
 msgstr "Ville : "
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1409
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1408
 msgid "State:"
 msgstr "État, province : "
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1415
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1414
 msgid "Country:"
 msgstr "Pays : "
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1421
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1420
 msgid "Credit:"
 msgstr "Crédits : "
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1427
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1426
 msgid "Copyright:"
 msgstr "Copyright : "
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1435
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1434
 msgid "Metadata:"
 msgstr "Métadonnées :"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1452
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1451
 msgid "None selected for display"
 msgstr "Aucune n’est sélectionnée pour être affichée"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1466
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1465
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1675
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-options.php:1326
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:789
 msgid "Codeblocks:"
 msgstr "Blocs de code :"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1478
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1477
 msgid "show more fields"
 msgstr "afficher plus de champs"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1480
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1479
 msgid "show fewer fields"
 msgstr "afficher moins de champs"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1578
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1577
 msgid "Edit All Albums in"
 msgstr "Modifier tous les albums de"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1636
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1635
 msgid "Edit Gallery"
 msgstr "Modifier la galerie"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1655
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1654
 #, php-format
 msgid "Current sort: <em>%1$s%2$s</em>."
 msgstr "Clé de tri utilisée : <em>%1$s%2$s</em>."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1668
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1667
 msgid ""
 "Select an album to edit its description and data, or <a href=\"?"
 "page=edit&amp;massedit\">mass-edit</a> all gallery level albums."
@@ -3165,13 +3165,13 @@ msgstr ""
 "href=\"?page=edit&amp;massedit\">modifiez en lot</a> tous les albums de la "
 "galerie."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1687
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1728
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1743
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1686
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1727
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1742
 msgid "New album"
 msgstr "Nouvel album"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1739
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1738
 msgid "There are no albums for you to edit."
 msgstr "Vous n’avez aucun album à éditer."
 
@@ -3229,7 +3229,7 @@ msgstr "%1$s %2$s : %3$s%4$s"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:4422
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/pluginDoc.php:121
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user-expiry.php:107
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups.php:224
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups.php:218
 msgid "admin"
 msgstr "gestion"
 
@@ -3341,8 +3341,8 @@ msgstr "Invité de l’album : "
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-options.php:1083
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-options.php:1407
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-options.php:2021
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1015
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1222
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1014
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1218
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/downloadList.php:131
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:515
 msgid "Show password"
@@ -3882,7 +3882,7 @@ msgstr "chargement"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-globals.php:90
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user-expiry.php:95
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user-expiry.php:105
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups.php:221
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups.php:215
 msgid "users"
 msgstr "utilisateurs"
 
@@ -3992,35 +3992,35 @@ msgid "Tags cleared for images of selected items"
 msgstr "Les tags ont été effacés des images des éléments sélectionnés"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:4629
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:74
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:50
 msgid "Image already exists."
 msgstr "L’image existe déjà."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:4632
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:77
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:52
 msgid "Album already exists."
 msgstr "L’album existe déjà."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:4635
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:80
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:54
 msgid "Cannot move, copy, or rename to a subalbum of this album."
 msgstr ""
 "Impossible de déplacer, de copier ou de renommer vers un sous-album de cet "
 "album."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:4638
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:83
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:56
 msgid "Cannot move, copy, or rename to a dynamic album."
 msgstr ""
 "Impossible de déplacer, de copier ou de renommer vers un album dynamique."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:4641
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:86
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:58
 msgid "Cannot rename an image to a different suffix"
 msgstr "Impossible de changer le suffixe de l’image"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:4644
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:89
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:60
 msgid "Album delete failed"
 msgstr "L’album n’a pu être effacé"
 
@@ -4061,8 +4061,6 @@ msgid "Filemtime"
 msgstr "Date de modification"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-globals.php:57
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:15
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:136
 msgid "overview"
 msgstr "aperçu"
 
@@ -4162,14 +4160,14 @@ msgstr "Aucun journal à visualiser."
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-options.php:492
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-plugins.php:119
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-users.php:285
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:147
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:145
 msgid "Error"
 msgstr "Erreur !"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-options.php:493
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-plugins.php:120
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-users.php:286
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:148
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:146
 msgid ""
 "The form submission is incomplete. Perhaps the form size exceeds configured "
 "server or browser limits."
@@ -6079,9 +6077,9 @@ msgid ""
 "your database first."
 msgstr ""
 "Si vous activez cette option et que vous ne réussissez pas à vous connecter, "
-"vous devrez restorer la base de données à un moment antérieur à l’activation "
-"de cette option. Vous devriez donc faire d’abord une copie de sauvegarde de "
-"la base de données."
+"vous devrez restaurer la base de données à un moment antérieur à "
+"l’activation de cette option. Vous devriez donc faire d’abord une copie de "
+"sauvegarde de la base de données."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-options.php:2872
 msgid "Obscure cache filenames"
@@ -6257,10 +6255,10 @@ msgid "Usage info"
 msgstr "Information sur l’utilisation"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-plugins.php:389
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:495
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:514
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:546
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:579
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:508
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:527
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:552
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:578
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:132
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:162
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:123
@@ -6308,10 +6306,10 @@ msgid "Continue refreshing the metadata."
 msgstr "Poursuivre l’actualisation des métadonnées."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-refresh-metadata.php:121
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:943
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:942
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/setup/index.php:1590
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:206
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:359
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:163
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:363
 msgid "Refresh"
 msgstr "Actualiser"
 
@@ -6823,7 +6821,7 @@ msgstr ""
 "définir les identifiant et mot de passe de l’administrateur."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-users.php:291
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:158
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:156
 msgid "Saved"
 msgstr "Enregistré"
 
@@ -6852,14 +6850,14 @@ msgid "Your Website URL is not valid"
 msgstr "L’URL de votre site internet n’est pas valide"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-users.php:467
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:211
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:383
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:208
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:382
 msgid "Expand all"
 msgstr "Tout afficher"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-users.php:469
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:213
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:385
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:210
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:384
 msgid "Collapse all"
 msgstr "Tout masquer"
 
@@ -7006,119 +7004,119 @@ msgstr ""
 msgid "The user \"%s\" already exists."
 msgstr "L’utilisateur « %s » existe déjà."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:47
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:46
 msgid "Image cache cleared."
 msgstr "Cache d’images vidé."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:58
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:57
 msgid "RSS cache cleared."
 msgstr "Cache RSS vidé."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:69
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:68
 msgid "HTML cache cleared."
 msgstr "Cache HTML vidé."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:77
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:76
 msgid "enabled"
 msgstr "activé"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:79
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:78
 msgid "Setup files restored."
 msgstr "Fichiers d’installation restaurés."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:98
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:97
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/setup/index.php:2500
 msgid "protected"
 msgstr "protégé"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:100
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:99
 msgid "Setup files protected."
 msgstr "Fichiers d’installation protégés."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:129
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:128
 msgid "purge Image cache"
 msgstr "purger le cache d’images"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:130
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:129
 msgid "purge RSS cache"
 msgstr "purger le cache RSS"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:131
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:130
 msgid "reset all hitcounters"
 msgstr "remettre les compteurs à zéro"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:137
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:136
 #, php-format
 msgid "You do not have proper rights to %s."
 msgstr "Vous n’avez pas les droits suffisants pour %s."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:142
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:141
 #, php-format
 msgid "You do not have proper rights to access %s."
 msgstr "Vous n’avez pas les droits suffisants pour accéder à %s."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:227
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:225
 msgid "Installation information"
 msgstr "Information sur l’installation"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:232
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:229
 msgid "<em>Debug build</em>"
 msgstr "<em>Version de développement</em>"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:234
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:231
 msgid "Official build"
 msgstr "Version officielle"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:237
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:234
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/functions-basic.php:1235
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/setup/index.php:388
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/security-logger.php:132
 msgid "clone"
 msgstr "clone"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:243
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:240
 #, php-format
 msgid "Zenphoto version <strong>%1$s [%2$s] (%3$s)</strong>"
 msgstr "Version de Zenphoto <strong>%1$s [%2$s] (%3$s)</strong>"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:258
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:255
 #, php-format
 msgid "Preview the release notes for Zenphoto %s"
 msgstr "Visualiser les notes de la version Zenphoto %s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:270
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:268
 #, php-format
 msgid "Current locale setting: <strong>%1$s</strong>"
 msgstr "Paramètre régional présentement utilisé : <strong>%1$s</strong>"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:272
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:270
 msgid "<strong>Locale setting has failed</strong>"
 msgstr "<strong>Le paramètre régional a échoué !</strong>"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:277
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:275
 msgid "Server path:"
 msgstr "Chemin d’accès du serveur :"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:280
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:278
 msgid "WEB path:"
 msgstr "Chemin d’accès internet :"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:289
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:287
 #, php-format
 msgid "Current gallery theme: <strong>%1$s</strong>"
 msgstr "Thème actuellement utilisé : <strong>%1$s</strong>"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:292
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:290
 #, php-format
 msgid "PHP version: <strong>%1$s</strong>"
 msgstr "Version de PHP : <strong>%1$s</strong>"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:333
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:331
 #, php-format
 msgid "PHP Error reporting: <strong>%s</strong>"
 msgstr "Type de rapport d’erreurs PHP : <strong>%s</strong>"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:339
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:337
 msgid ""
 "PHP error messages may be displayed on WEB pages. This may disclose site "
 "sensitive information."
@@ -7126,29 +7124,29 @@ msgstr ""
 "Les messages d’erreurs PHP peuvent être affichés sur des pages internet et "
 "ainsi divulguer des renseignements sensibles."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:339
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:337
 msgid "<em>display_errors</em> is <strong>On</strong>"
 msgstr ""
 "L’affichage des erreurs ( paramètre <em>display_errors</em>) est "
 "<strong>activé</strong>"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:343
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:341
 msgid "<em>display_errors</em> is <strong>Off</strong>"
 msgstr ""
 "L’affichage des erreurs ( paramètre <em>display_errors</em>) est "
 "<strong>déactivé</strong>"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:349
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:347
 #, php-format
 msgid "Graphics support: <strong>%s</strong>"
 msgstr "Bibliothèque graphique : <strong>%s</strong>"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:359
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:357
 #, php-format
 msgid "supporting: %s"
 msgstr "%s supporté"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:362
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:360
 #, php-format
 msgid ""
 "PHP memory limit: <strong>%1$s</strong> (Note: Your server might allocate "
@@ -7157,29 +7155,29 @@ msgstr ""
 "Limite de mémoire de PHP : <strong>%1$s</strong> (Note : votre serveur peut "
 "en fournir moins !)"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:366
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:364
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/utilities/database_reference.php:102
 #, php-format
 msgid "%1$s version: <strong>%2$s</strong>"
 msgstr "Version de %1$s : <strong>%2$s</strong>"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:370
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:368
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/utilities/database_reference.php:105
 #, php-format
 msgid "Database name: <strong>%1$s</strong>"
 msgstr "Nom de la base de données : <strong>%s</strong>"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:375
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:373
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/utilities/database_reference.php:111
 #, php-format
 msgid "Table prefix: <strong>%1$s</strong>"
 msgstr "Préfixe des tables : <strong>%1$s</strong>"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:384
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:382
 msgid "No spam filter configured"
 msgstr "Aucun filtre de contenu indésirable n’a été configuré"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:386
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:384
 #, php-format
 msgid "Spam filter: <strong>%s</strong>"
 msgstr "Filtre anti-spam : <strong>%s</strong>"
@@ -7212,74 +7210,74 @@ msgid_plural "%u active filters:"
 msgstr[0] "%u filtre activé :"
 msgstr[1] "%u filtres activés :"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:516
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:515
 msgid "Misc"
 msgstr "Varia"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:529
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:528
 msgid "Setup » restore scripts"
 msgstr "Installation » restaurer les scripts"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:534
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:533
 msgid "Restores setup files so setup can be run."
 msgstr ""
 "Restaure les fichiers d’installation pour permettre de lancer le script "
 "d’installation."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:543
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:542
 msgid "Setup » protect scripts"
 msgstr "Installation » protéger les scripts"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:548
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:547
 msgid "Protects setup files so setup cannot be run."
 msgstr ""
 "Protège les fichiers d’installation pour empêcher le script d’installation "
 "d'être exécuté."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:556
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:555
 msgid "Utility functions"
 msgstr "Utilitaires"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:601
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:600
 msgid "Gallery Stats"
 msgstr "Statistiques de la galerie"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:608
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:607
 #, php-format
 msgid "<strong>%1$u</strong> Image (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Images (%2$u un-published)"
 msgstr[0] "<strong>%1$u</strong> image (%2$u non publiée)"
 msgstr[1] "<strong>%1$u</strong> images (%2$u non publiée(s))"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:610
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:609
 #, php-format
 msgid "<strong>%u</strong> Image"
 msgid_plural "<strong>%u</strong> Images"
 msgstr[0] "<strong>%u</strong> image"
 msgstr[1] "<strong>%u</strong> images"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:619
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:618
 #, php-format
 msgid "<strong>%1$u</strong> Album (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Albums (%2$u un-published)"
 msgstr[0] "<strong>%1$u</strong> album (%2$u non publié)"
 msgstr[1] "(<strong>%1$u</strong> albums (%2$u non publié(s))"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:621
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:620
 #, php-format
 msgid "<strong>%u</strong> Album"
 msgid_plural "<strong>%u</strong> Albums"
 msgstr[0] "<strong>%u</strong> album"
 msgstr[1] "<strong>%u</strong> albums"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:630
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:629
 #, php-format
 msgid "<strong>%1$u</strong> Comment (%2$u in moderation)"
 msgid_plural "<strong>%1$u</strong> Comments (%2$u in moderation)"
 msgstr[0] "<strong>%1$u</strong> commentaires (%2$u en modération)"
 msgstr[1] "<strong>%1$u</strong> commentaires (%2$u en modération)"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:632
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:631
 #, php-format
 msgid "<strong>%u</strong> Comment"
 msgid_plural "<strong>%u</strong> Comments"
@@ -8816,12 +8814,12 @@ msgstr "Le traitement d’image de %s s’est soldé par une erreur fatale."
 msgid "Suffix Not Allowed: %s"
 msgstr "Suffixe non autorisé : %s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/index.php:154
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/index.php:140
 #, php-format
 msgid "Zenphoto script processing %1$s:%2$.4f seconds"
 msgstr "Temps de traitement du script Zenphoto %1$s :%2$.4f secondes"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/index.php:158
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/index.php:144
 #, php-format
 msgid "Zenphoto script processing total:%.4f seconds"
 msgstr "Temps de traitement total du script Zenphoto : %.4f secondes"
@@ -8852,11 +8850,11 @@ msgstr ""
 "moins %s. Tant que ce niveau n’est pas atteint, le champ où il faut de "
 "nouveau saisir le mot de passe est désactivé."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:87
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:86
 msgid "Password hash algorithm"
 msgstr "Algorithme de hachage du mot de passe"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:89
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:88
 #, php-format
 msgid ""
 "The hashing algorithm used by Zenphoto. In order of robustness the choices "
@@ -8865,7 +8863,7 @@ msgstr ""
 "L’algorithme de hachage utilisé par Zenphoto. En ordre de robustesse, les "
 "options sont %s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:358
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:370
 #, php-format
 msgid ""
 "Cannot migrate rights to version %1$s (Zenphoto_Authority supports only %2$s "
@@ -8874,68 +8872,68 @@ msgstr ""
 "Impossible de migrer les droits vers la version %1$s (Zenphoto_Authority ne "
 "gère que les versions %2$s et %3$s)."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:484
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:499
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:518
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:550
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:497
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:512
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:531
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:556
 msgid "No rights"
 msgstr "Aucun droit"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:485
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:500
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:520
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:552
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:498
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:513
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:532
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:557
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:95
 msgid "Overview"
 msgstr "Aperçu"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:486
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:501
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:499
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:514
 msgid "View all"
 msgstr "Tout voir"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:487
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:502
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:532
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:565
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:500
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:515
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:542
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:568
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:102
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_http/upload_form.php:65
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_http/upload_form.php:66
 msgid "Upload"
 msgstr "Charger"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:488
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:503
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:530
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:563
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:501
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:516
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:540
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:566
 msgid "Post comments"
 msgstr "Poster des commentaires"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:491
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:511
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:504
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:524
 msgid "Manage all albums"
 msgstr "Gérer tous les albums"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:492
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:512
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:543
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:505
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:525
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:550
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:576
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:139
 msgid "Themes"
 msgstr "Thèmes"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:493
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:506
 msgid "Zenpage"
 msgstr "Zenpage"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:500
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:520
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:552
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:513
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:532
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:557
 msgid "Users with this right may view the admin overview page."
 msgstr ""
 "Ce niveau d’autorisation permet de voir la page d’aperçu de l’administration."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:501
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:514
 msgid ""
 "Users with this right may view all of the gallery regardless of protection "
 "of the page. Without this right, the user can view only public ones and "
@@ -8946,9 +8944,9 @@ msgstr ""
 "leur protection). Sans ce droit, l’utilisateur ne pourra voir que les "
 "galeries publiques et celles pour lesquelles il est spécifiquement autorisé."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:502
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:532
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:565
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:515
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:542
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:568
 msgid ""
 "Users with this right may upload to the albums for which they have "
 "management rights."
@@ -8956,9 +8954,9 @@ msgstr ""
 "Ce niveau d’autorisation permet à un utilisateur de charger des contenus "
 "dans les albums dont il a les droits de gestion."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:503
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:530
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:563
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:516
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:540
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:566
 msgid ""
 "When the comment_form plugin is used for comments and its \"Only members can "
 "comment\" option is set, only users with this right may post comments."
@@ -8967,47 +8965,47 @@ msgstr ""
 "l’option « Seuls les membres peuvent commenter », seuls les utilisateurs "
 "ayant ce droit peuvent envoyer des commentaires."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:504
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:531
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:564
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:517
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:541
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:567
 msgid "Users with this right may make comments tab changes."
 msgstr ""
 "Ce niveau d’autorisation permet de voir l’onglet « Commentaires » et d’y "
 "effectuer des modifications."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:505
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:537
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:570
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:518
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:546
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:572
 msgid "Users with this right may access the \"albums\" tab to make changes."
 msgstr ""
 "Ce niveau d’autorisation permet d’accéder à l’onglet « Albums » pour faire "
 "des modifications."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:506
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:535
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:568
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:519
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:544
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:570
 msgid "Users with this right may edit and manage Zenpage pages."
 msgstr ""
 "Ce niveau d’autorisation permet de modifier et de gérer les pages Zenpage."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:507
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:534
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:567
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:520
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:543
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:569
 msgid ""
 "Users with this right may edit and manage Zenpage articles and categories."
 msgstr ""
 "Ce niveau d’autorisation permet de modifier et de gérer les articles et les "
 "catégories Zenpage."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:508
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:536
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:569
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:521
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:545
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:571
 msgid "Files"
 msgstr "Fichiers"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:508
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:536
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:569
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:521
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:545
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:571
 msgid ""
 "Allows the user access to the \"filemanager\" located on the upload: files "
 "sub-tab."
@@ -9015,13 +9013,13 @@ msgstr ""
 "Permet à l’utilisateur d’accéder au gestionnaire de fichiers situé dans le "
 "sous-onglet « Télécharger des fichiers »."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:509
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:522
 msgid "Manage all pages"
 msgstr "Gérer toutes les pages"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:509
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:540
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:573
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:522
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:548
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:574
 msgid ""
 "Users who do not have \"Admin\" rights normally are restricted to manage "
 "only objects to which they have been assigned. This right allows them to "
@@ -9031,13 +9029,13 @@ msgstr ""
 "que les objets qui leur sont attribués. Ce droit leur permet de gérer toutes "
 "les pages Zenpage."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:510
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:523
 msgid "Manage all news"
 msgstr "Gérer toutes les actualités"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:510
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:539
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:572
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:523
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:547
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:573
 msgid ""
 "Users who do not have \"Admin\" rights normally are restricted to manage "
 "only objects to which they have been assigned. This right allows them to "
@@ -9047,9 +9045,9 @@ msgstr ""
 "que les objets qui leur sont attribués. Ce droit leur permet de gérer tous "
 "les articles et toutes les catégories Zenpage."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:511
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:541
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:574
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:524
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:549
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:575
 msgid ""
 "Users who do not have \"Admin\" rights normally are restricted to manage "
 "only objects to which they have been assigned. This right allows them to "
@@ -9059,8 +9057,8 @@ msgstr ""
 "que les objets qui leur sont attribués. Ce droit leur permet de gérer "
 "n’importe quel album de la galerie."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:512
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:543
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:525
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:550
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:576
 msgid ""
 "Users with this right may make themes related changes. These are limited to "
@@ -9070,25 +9068,25 @@ msgstr ""
 "(dans la limite de ceux correspondant aux albums sur lesquels l’utilisateur "
 "a des droits)."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:513
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:545
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:578
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:526
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:551
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:577
 msgid ""
 "Users with this right may make additions and changes to the set of tags."
 msgstr ""
 "Ce niveau d’autorisation permet d’ajouter ou de modifier les jeux de tags."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:514
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:546
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:579
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:527
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:552
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:578
 msgid "Users with this right may make changes on the options tabs."
 msgstr ""
 "Ce niveau d’autorisation permet d’effectuer des changements dans l’onglet « "
 "Options »."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:515
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:547
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:580
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:528
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:553
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:579
 msgid ""
 "The master privilege. A user with \"Admin\" can do anything. (No matter what "
 "his other rights might indicate!)"
@@ -9096,121 +9094,121 @@ msgstr ""
 "Le niveau d’autorisation maximal. Un tel niveau permet de tout faire sur la "
 "galerie (quels que soient les droits sélectionnés en plus de celui-ci !)."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:522
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:555
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:533
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:559
 msgid "View gallery"
 msgstr "Voir la galerie"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:522
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:555
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:533
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:559
 msgid ""
 "Users with this right may view otherwise protected generic gallery pages."
 msgstr ""
 "Ce niveau d’autorisation permet de voir les pages ordinaires qui seraient "
 "normalement protégées."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:523
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:556
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:534
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:560
 msgid "View search"
 msgstr "Voir la recherche"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:523
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:556
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:534
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:560
 msgid "Users with this right may view search pages even if password protected."
 msgstr ""
 "Ce niveau d’autorisation permet de voir les pages de recherche même si elles "
 "sont protégées par mot de passe."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:524
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:557
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:535
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:561
 msgid "View fullimage"
 msgstr "Voir les images pleine grandeur"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:524
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:557
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:535
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:561
 msgid "Users with this right may view all full sized (raw) images."
 msgstr ""
 "Ce niveau d’autorisation permet de voir toutes les images pleine grandeur "
 "(images brutes)."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:525
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:526
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:527
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:558
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:559
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:560
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:536
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:537
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:538
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:562
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:563
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:564
 msgid "Access all"
 msgstr "Accès intégral"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:525
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:558
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:536
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:562
 msgid "Users with this right have access to all zenpage news articles."
 msgstr ""
 "Les usagers ayant ce niveau d’ autorisation peuvent accéder à tous les "
 "articles Zenpage."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:526
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:559
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:537
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:563
 msgid "Users with this right have access to all zenpage pages."
 msgstr ""
 "Les usagers ayant ce niveau d’ autorisation peuvent accéder à toutes les "
 "pages Zenpage."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:527
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:560
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:538
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:564
 msgid "Users with this right have access to all albums."
 msgstr ""
 "Les usagers ayant ce niveau d’ autorisation peuvent accéder à tous les "
 "albums."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:528
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:561
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:539
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:565
 msgid "View unpublished"
 msgstr "Afficher les éléments non publiés"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:528
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:561
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:539
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:565
 msgid "Users with this right will see all unpublished items."
 msgstr ""
 "Les usagers ayant ce niveau d’autorisation permet de voir tous les éléments "
 "non publiés."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:539
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:540
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:541
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:572
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:547
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:548
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:549
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:573
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:574
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:575
 msgid "Manage all"
 msgstr "Tout gérer"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:553
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:914
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1007
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1050
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:558
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:913
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1006
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1047
 msgid "User"
 msgstr "Utilisateur"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:553
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:558
 msgid "Users must have this right to change their credentials."
 msgstr ""
 "Ce niveau d’autorisation est nécessaire pour que les usagers puissent "
 "modifier leurs permissions."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:587
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:586
 msgid "All rights"
 msgstr "Tous les droits"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:588
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:587
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/register_user.php:157
 msgid "Default rights"
 msgstr "Droits par défaut"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:675
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:674
 msgid "Sorry, that is not the answer."
 msgstr "Désolé, ce n’est pas la réponse"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:682
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:681
 msgid ""
 "You are receiving this e-mail because of a password reset request on your "
 "Zenphoto gallery."
@@ -9218,7 +9216,7 @@ msgstr ""
 "Vous recevez ce message suite à une demande de réinitialisation de mot de "
 "passe d’un utilisateur de votre galerie Zenphoto."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:684
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:683
 #, php-format
 msgid ""
 "You are receiving this e-mail because of a password reset request on your "
@@ -9228,19 +9226,19 @@ msgstr ""
 "passe d’un utilisateur de votre galerie Zenphoto qui a essayé de se "
 "connecter avec l’identifiant %s."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:723
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:722
 msgid "There was no one to which to send the reset request."
 msgstr ""
 "Il n’y a aucun destinataire à qui envoyer la demande de réinitialisation."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:727
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:726
 #, php-format
 msgid "To reset your Zenphoto Admin passwords visit: %s"
 msgstr ""
 "Pour réinitialiser votre mot de passe administrateur Zenphoto, rendez-vous "
 "à : %s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:728
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:727
 msgid ""
 "If you do not wish to reset your passwords just ignore this message. This "
 "ticket will automatically expire in 3 days."
@@ -9248,55 +9246,55 @@ msgstr ""
 "Si vous ne souhaitez pas réinitialiser vos mots de passe, vous n’avez qu’à "
 "ignorer ce message. Cette demande expirera automatiquement dans 3 jours."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:729
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:728
 msgid "The Zenphoto information you requested"
 msgstr "Les informations que vous avez demandé sur Zenphoto"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:737
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:736
 msgid "Your input did not match the captcha"
 msgstr "Ce que vous avez saisi ne correspond pas au Captcha"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:842
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:841
 msgid "What is your father's middle name?"
 msgstr "Quel est le 2e prénom de votre père ?"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:843
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:842
 msgid "What street did your Grandmother live on?"
 msgstr "Sur quelle rue vit votre grand-mère ?"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:844
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:843
 msgid "Who was your favorite singer?"
 msgstr "Quel est votre chanteur favori ?"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:845
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:844
 msgid "When did you first get a computer?"
 msgstr "Quand avez-vous eu votre premier ordinateur ?"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:846
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:845
 msgid "How much wood could a woodchuck chuck if a woodchuck could chuck wood?"
 msgstr "Les saucisses de l’archiduchesse sont-elles sèches ou archisèches ?"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:847
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:846
 msgid "What is the date of the Ides of March?"
 msgstr "À quelle date tombent les ides de mars ?"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:877
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:876
 msgid "There was an error logging in."
 msgstr "Impossible de se connecter."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:880
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:879
 msgid "Check your username and password and try again."
 msgstr "Vérifiez vos identifiant et mot de passe et réessayez."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:882
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:881
 msgid "Check password and try again."
 msgstr "Vérifiez votre mot de passe et essayez de nouveau."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:891
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:890
 msgid "A reset request has been sent."
 msgstr "Une demande de réinitialisation a été envoyée."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:920
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:919
 msgid ""
 "Supply the correct response to the question below and you will be directed "
 "to a page where you can change your password."
@@ -9304,15 +9302,15 @@ msgstr ""
 "Répondez correctement à la question qui suit et vous serez redirigé vers une "
 "page où vous pourrez modifier votre mot de passe."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:921
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:920
 msgid "Challenge question:"
 msgstr "Question défi : "
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:926
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:925
 msgid "Your response"
 msgstr "Votre réponse"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:935
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:934
 msgid ""
 "Enter your User ID and press <code>Refresh</code> to get your challenge "
 "question."
@@ -9320,80 +9318,80 @@ msgstr ""
 "Saisissez votre nom d’utilisateur et cliquez sur <code>Rafraîchir</code> "
 "afin d’obtenir votre question secrète."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:942
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:941
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/register_user/register_user_form.php:81
 msgid "Submit"
 msgstr "Soumettre"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:944
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1066
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:943
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1063
 msgid "Return"
 msgstr "Retour"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:954
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:953
 msgid "Request reset by e-mail"
 msgstr "Demande de réinitialisation par email"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:966
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:965
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_login-out.php:112
 msgid "Login"
 msgstr "Connexion"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:987
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:986
 #, php-format
 msgid "Logon using:%s"
 msgstr "Se connecter en utilisant :%s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1013
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1127
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1212
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1012
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1124
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1208
 msgid "Password"
 msgstr "Mot de passe"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1019
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1018
 msgid "Log in"
 msgstr "Se connecter"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1033
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1032
 msgid "I forgot my <strong>User ID</strong>/<strong>Password</strong>"
 msgstr ""
 "J’ai oublié mon <strong>identifiant d’utilisateur</strong> et/ou mon "
 "<strong>mot de passe</strong>"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1057
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1054
 msgid "Enter CAPTCHA"
 msgstr "Saisir le Captcha"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1065
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1062
 msgid "Request"
 msgstr "Demande"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1065
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1062
 msgid "Request password reset"
 msgstr "Demande de réinitialisation du mot de passe"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1132
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1143
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1129
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1140
 msgid "password strength weak"
 msgstr "mot de passe faible"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1135
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1132
 msgid "password strength good"
 msgstr "mot de passe valide"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1138
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1135
 msgid "password strength strong"
 msgstr "Mot de passe fort"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1161
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1158
 msgid "passwords match"
 msgstr "Vos mots de passe correspondent"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1165
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1162
 msgid "passwords do not match"
 msgstr "Vos mots de passe ne correspondent pas"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1226
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1223
 msgid "Repeat password"
 msgstr "Inscrivez de nouveau le mot de passe"
 
@@ -13434,9 +13432,9 @@ msgstr "à "
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/comment_form.php:113
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/comment_form.php:121
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/register_user.php:93
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:200
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:204
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:290
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:208
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:294
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:181
 msgid "Show"
 msgstr "Affiché"
@@ -13652,8 +13650,8 @@ msgstr ""
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:149
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:153
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:200
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:204
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:208
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:182
 msgid "Hide"
 msgstr "Masquer"
@@ -13708,68 +13706,67 @@ msgstr "MaxSpace"
 msgid "Grayscale"
 msgstr "Tons de gris"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:328
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:394
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:331
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:397
 msgid "Finds images that have not been cached and creates the cached versions."
 msgstr ""
 "Recherche les images qui n’ont pas été mises en cache et en crée des "
 "versions dans le cache."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:331
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:334
 msgid "You must first set the plugin options for cached image parameters."
 msgstr ""
 "Vous devez d’abord paramétrer l’extension pour définir les paramètres de "
 "cache des images."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:335
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:349
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:363
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:375
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:338
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:352
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:366
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:378
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/rss.php:116
 msgid "Cache"
 msgstr "Cache"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:337
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:19
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:154
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:157
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:340
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:18
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:142
 msgid "Cache images"
 msgstr "Mettre les images en cache"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:351
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:354
 msgid "Purge RSS cache"
 msgstr "Vider le cache RSS"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:356
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:359
 msgid "Delete all files from the RSS cache"
 msgstr "Effacer tous les fichiers du cache de flux RSS"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:365
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:368
 msgid "Purge Image cache"
 msgstr "Vider le cache d’images"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:370
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:373
 msgid "Delete all files from the Image cache"
 msgstr "Effacer tous les fichiers du cache des images"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:377
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:380
 msgid "Purge HTML cache"
 msgstr "Vider le cache HTML"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:381
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:384
 msgid ""
 "Clear the static HTML cache. HTML pages will be re-cached as they are viewed."
 msgstr ""
 "Vide le cache HTML statique. Les pages HTML seront remises en cache dès leur "
 "affichage."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:397
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:400
 msgid "You must first set the plugin's options for cached image parameters."
 msgstr ""
 "Vous devez d’abord paramétrer l’extension pour définir les paramètres de "
 "cache des images."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:399
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:402
 msgid "Cache album images"
 msgstr "Mettre en cache les images de l’album"
 
@@ -13886,7 +13883,7 @@ msgstr "Instanciation invalide de la vidéo : l’album n’existe pas"
 msgid "Invalid video instantiation: file does not exist."
 msgstr "Instanciation invalide de la vidéo : le fichier n’existe pas"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/class-video.php:431
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/class-video.php:434
 msgid "No multimeida extension installed."
 msgstr "Aucun lecteur multimedia installé."
 
@@ -18466,64 +18463,31 @@ msgstr ""
 "Rend les noms de dossiers et de fichiers de la galerie plus accessibles aux "
 "moteurs de recherche."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:92
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:62
 #, php-format
 msgid "There was an error #%d with the rename operation."
 msgstr "Une erreur #%d s’est produite lors d’une opération de renommage."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:99
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:89
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:122
 #, php-format
 msgid "<em>%1$s</em> rename to <em>%2$s</em> failed: %3$s"
 msgstr "Échec du renommage de <em>%1$s</em> en <em>%2$s</em> : %3$s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:107
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:134
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:92
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:126
 #, php-format
 msgid "<em>%1$s</em> renamed to <em>%2$s</em>"
 msgstr "<em>%1$s</em> renommé <em>%2$s</em>"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:149
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:134
 msgid "SEO cleaner"
 msgstr "Nettoyeur-optimiseur pour moteur de recherche"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:197
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:159
 msgid "Cleanup album and image names to be SEO friendly"
 msgstr ""
 "Rend les noms d’albums et d’images plus accessibles aux moteurs de recherche."
-
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:199
-msgid "Albums to clean:"
-msgstr "Albums à nettoyer :"
-
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:209
-msgid ""
-"If this script does not complete, <a href=\"javascript:reStart();\" title="
-"\"restart\">click here</a>"
-msgstr ""
-"Si ce script ne se termine pas, veuillez <a href=\"javascript:reStart();\" "
-"title=\"relancer\">cliquer ici</a>."
-
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:229
-#, php-format
-msgid "%u image name cleaned."
-msgid_plural "%u images names cleaned."
-msgstr[0] "%u nom d’image nettoyé."
-msgstr[1] "%u noms d’images nettoyés."
-
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:231
-msgid "No image names needed cleaning."
-msgstr "Aucun nom d’image n’a eu à être nettoyé"
-
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:234
-#, php-format
-msgid "%u album folder name cleaned."
-msgid_plural "%u albums folder names cleaned."
-msgstr[0] "%u nom de dossier d’album nettoyé."
-msgstr[1] "%u noms de dossiers d’albums nettoyés."
-
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:236
-msgid "No album folder names needed cleaning."
-msgstr "Aucun nom de dossier d’album n’avait besoin d’être nettoyé."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/seo_locale.php:35
 msgid "Allows setting language locale through the URI."
@@ -19690,23 +19654,23 @@ msgstr "Vous avez des utilisateurs dont les autorisations sont échues."
 msgid "Provides rudimentary user groups."
 msgstr "Offre une gestion rudimentaire des groupes d’utilisateurs."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups.php:123
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups.php:117
 msgid "no groups established"
 msgstr "aucun groupe n’a été établi"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups.php:151
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups.php:145
 msgid "*no group affiliation"
 msgstr "*aucune affiliation à un groupe"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups.php:151
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups.php:145
 msgid "*no group selected"
 msgstr "*aucun groupe sélectionné"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups.php:155
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups.php:149
 msgid " (Template)"
 msgstr " (Modèle)"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups.php:192
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups.php:186
 msgid ""
 "Applying a template will merge the template with the current <em>rights</em> "
 "and <em>objects</em>."
@@ -19714,21 +19678,21 @@ msgstr ""
 "Si vous attribuez un modèle, la gestion des droits et des éléments du modèle "
 "sera fusionnée aux <em>droits</em> et aux <em>éléments gérés</em> courants."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups.php:202
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups.php:196
 msgid "no group affiliation"
 msgstr "aucune affiliation à un groupe"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups.php:207
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups.php:201
 #, php-format
 msgid "User group membership: %s"
 msgstr "Appartenance à un groupe d’utilisateurs : %s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups.php:208
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups.php:202
 msgid "Templates are highlighted."
 msgstr "Les modèles sont surlignés."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups.php:208
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:460
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups.php:202
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:461
 msgid ""
 "<strong>Note:</strong> When a group is assigned <em>rights</em> and "
 "<em>managed objects</em> are determined by the group!"
@@ -19736,11 +19700,11 @@ msgstr ""
 "<strong>NOTE:</strong> Lorsqu’un groupe est attribué, les <em>droits</em> et "
 "les <em>éléments gérés</em> sont déterminés par le groupe !"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups.php:222
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups.php:216
 msgid "assignments"
 msgstr "attributions"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups.php:223
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups.php:217
 msgid "groups"
 msgstr "groupes"
 
@@ -20812,13 +20776,12 @@ msgstr ""
 "Taille à utiliser si la police utilisée le permet (Polices <em>TTF</em> et "
 "<em>Imagick</em>)."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:20
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:21
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:155
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:19
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:143
 msgid "Cache stored images"
 msgstr "Mettre en cache les images"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:37
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:36
 msgid ""
 "This utility scans the database for images references that have been stored "
 "there."
@@ -20826,7 +20789,7 @@ msgstr ""
 "Cet utilitaire scanne la base de données pour les trouver les références "
 "d’images qui y ont été enregistrées."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:38
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:37
 msgid ""
 "If an image processor URI is discovered it will be converted to a cache file "
 "URI."
@@ -20834,32 +20797,32 @@ msgstr ""
 "Si un URI d’image utilisant un processeur d’image est découvert, il sera "
 "converti en URI pointant vers l’image en cache."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:39
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:38
 msgid ""
 "If the cache file for the image does not exist, a caching image reference "
 "will be made for the image."
 msgstr "Si le fichier de cache pour l’image n’existe pas, il sera créé."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:72
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:71
 msgid "image processor reference"
 msgstr "Référence du processeur d’images"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:148
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:105
 #, php-format
 msgid "%1$s: image %2$s"
 msgstr "%1$s : image %2$s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:151
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:108
 #, php-format
 msgid "album %s"
 msgstr "album %s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:155
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:112
 #, php-format
 msgid "%1$s: %2$s"
 msgstr "%1$s : %2$s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:192
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:149
 msgid ""
 "<strong>Note:</strong> the following objects have images that appear to no "
 "longer exist."
@@ -20867,99 +20830,99 @@ msgstr ""
 "<strong>Note  :</strong> les objets suivants ont des images qui semblent ne "
 "plus exister."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:206
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:163
 msgid ""
 "Refresh the caching of the images stored in the database if some images did "
 "not render."
 msgstr ""
 "Actualise la mise en cache des images si le rendu n’était pas complété."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:210
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:167
 #, php-format
 msgid "%u image processor reference found."
 msgid_plural "%u image processor references found."
 msgstr[0] "%u référence au processeur d’images trouvée."
 msgstr[1] "%u références au processeur d’images trouvées."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:212
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:169
 msgid ""
 "You should use the refresh button to convert these to cached image references"
 msgstr ""
 "Vous devez utiliser le bouton Actualiser pour les convertir en références "
 "vers les images mises en cache"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:217
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:174
 #, php-format
 msgid "%u cached image reference found."
 msgid_plural "%u cached image references found."
 msgstr[0] "%u référence aux images en cache trouvée."
 msgstr[1] "%u références aux images en cache trouvées."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:221
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:178
 #, php-format
 msgid "%s reference re-cached."
 msgid_plural "%s references re-cached."
 msgstr[0] "Référence %s mise de nouveau en cache"
 msgstr[1] "Références %s mises de nouveau en cache"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:226
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:183
 #, php-format
 msgid "%s cache folder reference fixed."
 msgid_plural "%s cache folder references fixed."
 msgstr[0] "%s référence au dossier des images en cache réparée."
 msgstr[1] "%s références au dossier des images en cache réparées."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:231
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:188
 msgid "Back to the overview"
 msgstr "Retour à l’aperçu"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:110
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:116
 #, php-format
 msgid "[%u image]"
 msgid_plural "[%u images]"
 msgstr[0] "[%u image]"
 msgstr[1] "[%u images]"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:172
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:176
 #, php-format
 msgid "Refreshing cache for %s"
 msgstr "Actualisation du cache pour %s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:235
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:239
 msgid "Full Image"
 msgstr "image pleine grandeur"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:271
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:275
 msgid "invalid_MaxSpace"
 msgstr "MaxSpace_invalide"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:295
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:299
 #, php-format
 msgid "all sizes for <i>%1$s</i>"
 msgstr "toutes les tailles pour <i>%1$s</i>"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:341
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:345
 #, php-format
 msgid "%u cache size to apply."
 msgid_plural "%u cache sizes to apply."
 msgstr[0] "%u taille du cache à appliquer."
 msgstr[1] "%u tailles de cache à appliquer."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:356
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:360
 #, php-format
 msgid "%u cache size requested"
 msgid_plural "%u cache sizes requested"
 msgstr[0] "%u taille demandée du cache."
 msgstr[1] "%u tailles demandées du cache."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:357
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:361
 #, php-format
 msgid "Finished processing %1$u image (%2$s)."
 msgid_plural "Finished processing %1$u images (%2$s)."
 msgstr[0] "Traitement de %1$u image complété (%2$s)."
 msgstr[1] "Traitement de %1$u images complété (%2$s)."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:359
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:363
 msgid ""
 "Refresh the caching of the selected image sizes if some images did not "
 "render."
@@ -20967,15 +20930,15 @@ msgstr ""
 "Actualise la mise en cache des tailles sélectionnées des images si le rendu "
 "des images n’était pas complet."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:366
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:370
 msgid "No cache sizes enabled."
 msgstr "Aucune taille définie pour la mise en cache."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:370
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:374
 msgid "Cache the images"
 msgstr "Mettre en cache les images"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:370
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:374
 msgid "Executes the caching of the selected image sizes."
 msgstr "Effectue la mise en cache des tailles sélectionnées des images."
 
@@ -23325,11 +23288,11 @@ msgstr "Renouveler"
 msgid "Email renewal link"
 msgstr "Envoyer par courriel un lien de renouvellement"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:153
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:151
 msgid "Deleted"
 msgstr "Supprimé"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:195
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:192
 msgid ""
 "Set group rights and select one or more albums for the users in the group to "
 "manage. Users with <em>User admin</em> or <em>Manage all albums</em> rights "
@@ -23341,33 +23304,33 @@ msgstr ""
 "les albums. Les autres utilisateurs ne peuvent gérer que ceux sur lesquels "
 "ils ont des droits."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:234
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:250
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:231
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:248
 msgid "group"
 msgstr "groupe"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:236
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:251
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:233
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:250
 msgid "template"
 msgstr "modèle"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:295
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:294
 msgid "clone:"
 msgstr "clone :"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:317
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:316
 msgid "description:"
 msgstr "description :"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:323
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:322
 msgid "Assign users"
 msgstr "Assigner des utilisateurs"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:364
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:363
 msgid "Are you sure you want to delete this group?"
 msgstr "Êtes-vous certain(e) de vous vouloir supprimer ce groupe ?"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:367
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:366
 msgid "Delete this group."
 msgstr "Supprimer ce groupe."
 
@@ -23376,18 +23339,18 @@ msgstr "Supprimer ce groupe."
 msgid "User %s is assigned to more than one group."
 msgstr "L’utilisateur %s est assigné à plus d’un groupe."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:423
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:424
 msgid "Group names may not contain \"?\", \"&\", or quotation marks."
 msgstr ""
 "Les noms de groupes ne peuvent contenir « ? », « & », ni des guillemets "
 "droits."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:428
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:429
 #, php-format
 msgid "The group \"%s\" already exists."
 msgstr "Le groupe « %s » existe déjà."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:449
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:450
 msgid "Assign users to groups."
 msgstr "Assigner des utilisateurs aux groupes."
 
@@ -24182,6 +24145,32 @@ msgstr "<code>zenpageAlbumImage()</code> n’a pas trouvé l’image %1$s:%2$s"
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> n’a pas trouvé l’album %1$s"
+
+#~ msgid "Albums to clean:"
+#~ msgstr "Albums à nettoyer :"
+
+#~ msgid ""
+#~ "If this script does not complete, <a href=\"javascript:reStart();\" title="
+#~ "\"restart\">click here</a>"
+#~ msgstr ""
+#~ "Si ce script ne se termine pas, veuillez <a href=\"javascript:reStart();"
+#~ "\" title=\"relancer\">cliquer ici</a>."
+
+#~ msgid "%u image name cleaned."
+#~ msgid_plural "%u images names cleaned."
+#~ msgstr[0] "%u nom d’image nettoyé."
+#~ msgstr[1] "%u noms d’images nettoyés."
+
+#~ msgid "No image names needed cleaning."
+#~ msgstr "Aucun nom d’image n’a eu à être nettoyé"
+
+#~ msgid "%u album folder name cleaned."
+#~ msgid_plural "%u albums folder names cleaned."
+#~ msgstr[0] "%u nom de dossier d’album nettoyé."
+#~ msgstr[1] "%u noms de dossiers d’albums nettoyés."
+
+#~ msgid "No album folder names needed cleaning."
+#~ msgstr "Aucun nom de dossier d’album n’avait besoin d’être nettoyé."
 
 #~ msgid "Galleries"
 #~ msgstr "Galeries"
