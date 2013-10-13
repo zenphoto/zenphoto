@@ -992,7 +992,8 @@ class Image extends MediaObject {
 	 * @param string $type the type of thumb (in case it ever matters in the cropping, now it does not.)
 	 */
 	function getThumbCropping($ts, $sw, $sh) {
-		if (is_null($cy = $this->get('thumbY'))) {
+		$cy = $this->get('thumbY');
+		if (is_null($cy)) {
 			$custom = $cx = $cw = $ch = NULL;
 		} else {
 			$custom = true;
@@ -1014,7 +1015,7 @@ class Image extends MediaObject {
 				}
 			}
 		}
-		return array($custom, $sw, $sh, $cw, $ch, $cx, $cy);
+		return array($custom, $cw, $ch, $cx, $cy);
 	}
 
 	/**

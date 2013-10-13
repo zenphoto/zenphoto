@@ -806,15 +806,15 @@ function getImageProcessorURI($args, $album, $image) {
 	} else {
 		$args[2] = NULL;
 	}
-	if ($cw) {
-		$uri .= '&cw=' . ($args[3] = (int) $cw);
-	} else {
+	if (is_null($cw)) {
 		$args[3] = NULL;
-	}
-	if ($ch) {
-		$uri .= '&ch=' . ($args[4] = (int) $ch);
 	} else {
+		$uri .= '&cw=' . ($args[3] = (int) $cw);
+	}
+	if (is_null($ch)) {
 		$args[4] = NULL;
+	} else {
+		$uri .= '&ch=' . ($args[4] = (int) $ch);
 	}
 	if (is_null($cx)) {
 		$args[5] = NULL;
