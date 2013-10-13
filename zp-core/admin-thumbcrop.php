@@ -105,7 +105,7 @@ $oW = round($si * $cr);
 $oH = round($si * $cr);
 $oX = round(($sizedwidth - $oW) / 2);
 $oY = round(($sizedheight - $oH) / 2);
-if ($iY) {
+if (!is_null($iY)) {
 	$iX = round($imageobj->get('thumbX') * $sr);
 	$iW = round($imageobj->get('thumbW') * $sr);
 	$iH = round($imageobj->get('thumbH') * $sr);
@@ -219,17 +219,17 @@ printAdminHeader('edit', 'thumbcrop');
 </script>
 </head>
 <body>
-<?php printLogoAndLinks(); ?>
+	<?php printLogoAndLinks(); ?>
 
 	<div id="main">
-<?php printTabs(); ?>
+		<?php printTabs(); ?>
 		<div id="content">
 			<h1><?php echo gettext("Custom thumbnail cropping") . ": <em>" . $albumobj->name . " (" . $albumobj->getTitle() . ") /" . $imageobj->filename . " (" . $imageobj->getTitle() . ")</em>"; ?></h1>
 			<p><?php echo gettext("You can change the portion of your image which is shown in thumbnails by cropping it here."); ?></p>
 			<div style="display:block">
 				<div style="float: left; width:<?php echo $thumbcropwidth; ?>px; text-align: center;margin-right: 18px;  margin-bottom: 10px;">
 					<img src="<?php echo html_encode(pathurlencode($currentthumbimage)); ?>" style="width:<?php echo $thumbcropwidth; ?>px;height:<?php echo $thumbcropheight; ?>px; border: 4px solid gray; float: left"/>
-<?php echo gettext("current thumbnail"); ?>
+					<?php echo gettext("current thumbnail"); ?>
 				</div>
 
 				<div style="text-align:left; float: left;">
@@ -241,7 +241,7 @@ printAdminHeader('edit', 'thumbcrop');
 
 					<!-- This is the form that our event handler fills -->
 					<form name="crop" id="crop" action="?crop" onsubmit="return checkCoords();">
-<?php XSRFToken('thumb_crop'); ?>
+						<?php XSRFToken('thumb_crop'); ?>
 						<input type="hidden" size="4" id="x" name="x" value="<?php echo $iX ?>" />
 						<input type="hidden" size="4" id="y" name="y" value="<?php echo $iY ?>" />
 						<input type="hidden" size="4" id="x2" name="x2" value="<?php echo $iX + $iW ?>" />
@@ -255,9 +255,9 @@ printAdminHeader('edit', 'thumbcrop');
 						<input type="hidden" id="tagsort" name="tagsort" value="<?php echo html_encode($tagsort); ?>" />
 						<input type="hidden" id="subpage" name="subpage" value="<?php echo html_encode($subpage); ?>" />
 						<input type="hidden" id="crop" name="crop" value="crop" />
-<?php
-if (getOption('thumb_crop')) {
-	?>
+						<?php
+						if (getOption('thumb_crop')) {
+							?>
 							<input name="clear_crop" id="clear_crop" type="checkbox" value="1"  onclick="resetCheck();" /> <?php echo gettext("Reset to the default cropping"); ?><br />
 							<br />
 							<p class="buttons">
@@ -287,7 +287,7 @@ if (getOption('thumb_crop')) {
 					<div style="width:<?php echo $cropwidth; ?>px;height:<?php echo $cropheight; ?>px; overflow:hidden; border: 4px solid green; float: left">
 						<img src="<?php echo html_encode(pathurlencode($imageurl)); ?>" id="preview" />
 					</div>
-<?php echo gettext("thumbnail preview"); ?>
+					<?php echo gettext("thumbnail preview"); ?>
 				</div>
 
 				<!-- set the initial view for the preview -->
@@ -306,7 +306,7 @@ if (getOption('thumb_crop')) {
 
 		</div><!-- content -->
 
-<?php printAdminFooter(); ?>
+		<?php printAdminFooter(); ?>
 	</div><!-- main -->
 </body>
 
