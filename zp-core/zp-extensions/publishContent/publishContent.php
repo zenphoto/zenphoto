@@ -258,7 +258,7 @@ echo '</head>';
 									foreach ($publish_albums_list as $analbum => $albumid) {
 										$album = newAlbum($analbum);
 										$thumbimage = $album->getAlbumThumbImage();
-										$thumb = $thumbimage->getCustomImage(60, NULL, NULL, 60, 60, NULL, NULL, -1, NULL);
+										$thumb = $thumbimage->getCustomImage(80, NULL, NULL, 80, 80, NULL, NULL, -1);
 										?>
 										<li>
 											<label>
@@ -302,16 +302,16 @@ echo '</head>';
 				<br class="clearall" />
 
 				<script type="text/javascript">
-										//<!-- <![CDATA[
-										$(function() {
-											$("#publish_date").datepicker({
-												showOn: 'button',
-												buttonImage: '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/calendar.png',
-												buttonText: '<?php echo gettext('calendar'); ?>',
-												buttonImageOnly: true
-											});
-										});
-										// ]]> -->
+					//<!-- <![CDATA[
+					$(function() {
+						$("#publish_date").datepicker({
+							showOn: 'button',
+							buttonImage: '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/calendar.png',
+							buttonText: '<?php echo gettext('calendar'); ?>',
+							buttonImageOnly: true
+						});
+					});
+					// ]]> -->
 				</script>
 				<?php $visible = $report == 'images'; ?>
 				<fieldset class="smallbox">
@@ -422,7 +422,7 @@ echo '</head>';
 																</td>
 																<td>
 																	<?php $image = newImage($album, $display); ?>
-																	<img src="<?php echo html_encode(pathurlencode($image->getCustomImage(60, NULL, NULL, 60, 60, NULL, NULL, -1, NULL))); ?>" alt="<?php echo $image->filename; ?>"/>
+																	<img src="<?php echo html_encode(pathurlencode($image->getCustomImage(80, NULL, NULL, 80, 80, NULL, NULL, -1))); ?>" alt="<?php echo $image->filename; ?>"/>
 																</td>
 																<td>
 																	<?php printf(gettext('%s'), $display); ?><a href="<?php echo html_encode($image->getImageLink()); ?>" title="<?php echo html_encode($image->getTitle()); ?>"> (<?php echo gettext('View'); ?>)</a>

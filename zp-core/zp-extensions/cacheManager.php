@@ -72,7 +72,11 @@ class cacheManager {
 
 	function __construct() {
 		self::deleteThemeCacheSizes('admin');
-		self::addThemeCacheSize('admin', 40, NULL, NULL, 40, 40, NULL, NULL, true, NULL, NULL, NULL);
+		self::addThemeCacheSize('admin', 40, NULL, NULL, 40, 40, NULL, NULL, -1);
+		if (extensionEnabled('publishContent')) {
+			self::deleteThemeCacheSizes('publishContent');
+			self::addThemeCacheSize('publishContent', 80, NULL, NULL, 80, 80, NULL, NULL, -1);
+		}
 	}
 
 	/**
@@ -268,7 +272,7 @@ class cacheManager {
 		return false;
 	}
 
-	static function addThemeCacheSize($theme, $size, $width, $height, $cw, $ch, $cx, $cy, $thumb, $watermark, $effects, $maxspace) {
+	static function addThemeCacheSize($theme, $size, $width, $height, $cw, $ch, $cx, $cy, $thumb, $watermark = NULL, $effects = NULL, $maxspace = NULL) {
 		$cacheSize = serialize(array('theme'				 => $theme, 'apply'				 => false, 'image_size'	 => $size, 'image_width'	 => $width, 'image_height' => $height,
 						'crop_width'	 => $cw, 'crop_height'	 => $ch, 'crop_x'			 => $cx, 'crop_y'			 => $cy, 'thumb'				 => $thumb, 'wmk'					 => $watermark, 'gray'				 => $effects, 'maxspace'		 => $maxspace, 'valid'				 => 1));
 		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("cacheManager",' . db_quote($theme) . ',' . db_quote($cacheSize) . ')';

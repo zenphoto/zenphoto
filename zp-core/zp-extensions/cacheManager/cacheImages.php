@@ -70,7 +70,7 @@ function loadAlbum($album) {
 						$width = isset($cacheimage['image_width']) ? $cacheimage['image_width'] : NULL;
 						$height = isset($cacheimage['image_height']) ? $cacheimage['image_height'] : NULL;
 						$thumbstandin = isset($cacheimage['thumb']) ? $cacheimage['thumb'] : NULL;
-						if ($special = $thumbstandin) {
+						if ($special = ($thumbstandin === true)) {
 							list($special, $cw, $ch, $cx, $cy) = $_zp_current_image->getThumbCropping($size, $width, $height);
 						}
 						if (!$special) {
@@ -360,7 +360,7 @@ echo "\n" . '<div id="content">';
 				$partb = sprintf(ngettext('%u cache size requested', '%u cache sizes requested', $count * $cachesizes), $count * $cachesizes);
 				echo "\n" . "<br />" . sprintf(ngettext('Finished processing %1$u image (%2$s).', 'Finished processing %1$u images (%2$s).', $count), $count, $partb);
 				if ($count) {
-					$button = array('text'	 => gettext("Refresh"), 'title'	 => gettext('Refresh the caching of the selected image sizes if some images did not render.'));
+					$button = array('text' => gettext("Refresh"), 'title' => gettext('Refresh the caching of the selected image sizes if some images did not render.'));
 				} else {
 					$button = false;
 				}
@@ -371,7 +371,7 @@ echo "\n" . '<div id="content">';
 				<?php
 			}
 		} else {
-			$button = array('text'	 => gettext("Cache the images"), 'title'	 => gettext('Executes the caching of the selected image sizes.'));
+			$button = array('text' => gettext("Cache the images"), 'title' => gettext('Executes the caching of the selected image sizes.'));
 		}
 		?>
 		<p class="buttons">
