@@ -237,7 +237,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		function adminPrintImageThumb($image) {
 			?>
 		<img class="imagethumb" id="id_<?php echo $image->getID(); ?>"
-				 src="<?php echo $image->getCustomImage(80, NULL, NULL, 80, 80, NULL, NULL, -1); ?>"
+				 src="<?php echo getAdminThumb($image, 'large'); ?>"
 				 alt="<?php echo html_encode($image->getTitle()); ?>"
 				 title="<?php echo html_encode($image->getTitle()) . ' (' . html_encode($image->getFileName()) . ')'; ?>"
 				 width="80" height="80"  />
@@ -1649,7 +1649,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 													echo "\n<option";
 													if ($_zp_gallery->getThumbSelectImages()) {
 														echo " class=\"thumboption\"";
-														echo " style=\"background-image: url(" . html_encode($image->getCustomImage(80, NULL, NULL, 80, 80, NULL, NULL, -1)) . "); background-repeat: no-repeat;\"";
+														echo " style=\"background-image: url(" . html_encode(pathurlencode(getAdminThumb($image, 'large'))) . "); background-repeat: no-repeat;\"";
 													}
 													echo " value=\"" . $imagename . "\"";
 													if ($selected) {
@@ -2030,7 +2030,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				<?php
 				if ($show_thumb) {
 					$thumbimage = $album->getAlbumThumbImage();
-					$thumb = $thumbimage->getCustomImage(40, NULL, NULL, 40, 40, NULL, NULL, -1, NULL);
+					$thumb = getAdminThumb($thumbimage, 'small');
 				} else {
 					$thumb = 'images/thumb_standin.png';
 				}
@@ -4465,6 +4465,15 @@ function getPluginTabs() {
 		}
 	}
 	return array($tabs, $default, $currentlist, $paths, $member);
+}
+
+function getAdminThumb($image, $size) {
+	switch ($size) {
+		case 'large':
+			return $image->getCustomImage(80, NULL, NULL, 80, 80, NULL, NULL, -1);
+		default:
+			return $image->getCustomImage(40, NULL, NULL, 40, 40, NULL, NULL, -1);
+	}
 }
 
 /**
