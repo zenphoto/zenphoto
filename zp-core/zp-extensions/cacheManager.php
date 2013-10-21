@@ -73,10 +73,7 @@ class cacheManager {
 	function __construct() {
 		self::deleteThemeCacheSizes('admin');
 		self::addThemeCacheSize('admin', 40, NULL, NULL, 40, 40, NULL, NULL, -1);
-		if (extensionEnabled('publishContent')) {
-			self::deleteThemeCacheSizes('publishContent');
-			self::addThemeCacheSize('publishContent', 80, NULL, NULL, 80, 80, NULL, NULL, -1);
-		}
+		self::addThemeCacheSize('admin', 80, NULL, NULL, 80, 80, NULL, NULL, -1);
 	}
 
 	/**
