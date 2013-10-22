@@ -258,7 +258,7 @@ echo '</head>';
 									foreach ($publish_albums_list as $analbum => $albumid) {
 										$album = newAlbum($analbum);
 										$thumbimage = $album->getAlbumThumbImage();
-										$thumb = $thumbimage->getCustomImage(80, NULL, NULL, 80, 80, NULL, NULL, -1);
+										$thumb = getAdminThumb($thumbimage, 'large');
 										?>
 										<li>
 											<label>
@@ -422,7 +422,7 @@ echo '</head>';
 																</td>
 																<td>
 																	<?php $image = newImage($album, $display); ?>
-																	<img src="<?php echo html_encode(pathurlencode($image->getCustomImage(80, NULL, NULL, 80, 80, NULL, NULL, -1))); ?>" alt="<?php echo $image->filename; ?>"/>
+																	<img src="<?php echo html_encode(pathurlencode(getAdminThumb($image, 'large'))); ?>" alt="<?php echo $image->filename; ?>"/>
 																</td>
 																<td>
 																	<?php printf(gettext('%s'), $display); ?><a href="<?php echo html_encode($image->getImageLink()); ?>" title="<?php echo html_encode($image->getTitle()); ?>"> (<?php echo gettext('View'); ?>)</a>

@@ -1020,7 +1020,7 @@ echo "\n</head>";
 																	}
 																	?>
 																	>
-																	<img id="thumb_img-<?php echo $currentimage; ?>" src="<?php echo html_encode(pathurlencode($image->getCustomImage(80, NULL, NULL, 80, 80, NULL, NULL, -1))); ?>" alt="<?php echo html_encode($image->filename); ?>"																	/>
+																	<img id="thumb_img-<?php echo $currentimage; ?>" src="<?php echo html_encode(pathurlencode(getAdminThumb($image, 'large'))); ?>" alt="<?php echo html_encode($image->filename); ?>"																	/>
 																</a>
 															</div>
 															<?php if (isImagePhoto($image)) { ?>

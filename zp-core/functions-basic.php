@@ -165,7 +165,7 @@ if (!isset($_zp_conf_vars['server_protocol'])) {
 
 if (!defined('DATABASE_SOFTWARE') && extension_loaded(strtolower(@$_zp_conf_vars['db_software']))) {
 	require_once(dirname(__FILE__) . '/functions-db-' . $_zp_conf_vars['db_software'] . '.php');
-	$data = db_connect($_zp_conf_vars, false);
+	$data = db_connect(array_intersect_key($_zp_conf_vars, array('db_software' => '', 'mysql_user' => '', 'mysql_pass' => '', 'mysql_host' => '', 'mysql_database' => '', 'mysql_prefix' => '')), false);
 } else {
 	$data = false;
 }
@@ -617,7 +617,7 @@ function makeSpecialImageName($image) {
 		$sourceFolder = ZENFOLDER;
 		$sourceSubfolder = trim(substr($image, $i + strlen(ZENFOLDER) + 1, - strlen($filename) - 1), '/');
 	}
-	return array('source' => $sourceFolder . '/' . $sourceSubfolder . '/' . $filename, 'name'	 => $sourceFolder . '_' . basename($sourceSubfolder) . '_' . $filename);
+	return array('source' => $sourceFolder . '/' . $sourceSubfolder . '/' . $filename, 'name' => $sourceFolder . '_' . basename($sourceSubfolder) . '_' . $filename);
 }
 
 define('NO_WATERMARK', '!');
@@ -673,8 +673,7 @@ function getWatermarkParam($image, $use) {
  */
 function getImageCachePostfix($args) {
 	list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbStandin, $passedWM, $adminrequest, $effects) = $args;
-	$postfix_string =
-					($size ? "_$size" : "") .
+	$postfix_string = ($size ? "_$size" : "") .
 					($width ? "_w$width" : "") .
 					($height ? "_h$height" : "") .
 					($cw ? "_cw$cw" : "") .
@@ -1486,7 +1485,7 @@ function getRequestURI() {
  */
 function safe_glob($pattern, $flags = 0) {
 	$split = explode('/', $pattern);
-	$match = '/^' . strtr(addcslashes(array_pop($split), '\\.+^$(){}=!<>|'), array('*'	 => '.*', '?'	 => '.?')) . '$/i';
+	$match = '/^' . strtr(addcslashes(array_pop($split), '\\.+^$(){}=!<>|'), array('*' => '.*', '?' => '.?')) . '$/i';
 	$path_return = $path = implode('/', $split);
 	if (empty($path)) {
 		$path = '.';

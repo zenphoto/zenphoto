@@ -157,7 +157,7 @@ function getAuthor($fullname = false) {
 	}
 	if (is_Pages() || is_News()) {
 		if ($fullname) {
-			$admin = Zenphoto_Authority::getAnAdmin(array('`user`='	 => $obj->getAuthor(), '`valid`=' => 1));
+			$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $obj->getAuthor(), '`valid`=' => 1));
 			if (is_object($admin)) {
 				return $admin->getName();
 			}
@@ -1692,27 +1692,23 @@ function getTotalNewsPages() {
  */
 function getNextPrevNews($option = '', $sortorder = 'date', $sortdirection = 'desc') {
 	global $_zp_zenpage, $_zp_current_zenpage_news;
-	if (ZP_COMBINEWS) {
-		return false;
-	} else {
+	if (!ZP_COMBINEWS) {
 		if (!empty($option)) {
 			switch ($option) {
 				case "prev":
 					$article = $_zp_current_zenpage_news->getPrevArticle($sortorder, $sortdirection);
 					if (!$article)
 						return false;
-					return array("link"	 => getNewsURL($article->getTitlelink()), "title"	 => $article->getTitle());
-					break;
+					return array("link" => getNewsURL($article->getTitlelink()), "title" => $article->getTitle());
 				case "next":
 					$article = $_zp_current_zenpage_news->getNextArticle($sortorder, $sortdirection);
 					if (!$article)
 						return false;
-					return array("link"	 => getNewsURL($article->getTitlelink()), "title"	 => $article->getTitle());
-					break;
+					return array("link" => getNewsURL($article->getTitlelink()), "title" => $article->getTitle());
 			}
-			return false;
 		}
 	}
+	return false;
 }
 
 /**
@@ -2189,7 +2185,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 					$parents[$indent] = NULL;
 					while ($indent > $level) {
 						if ($open[$indent]) {
-							$open[$indent]--;
+							$open[$indent] --;
 							echo "</li>\n";
 						}
 						$indent--;
@@ -2198,17 +2194,17 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 				} else { // level == indent, have not changed
 					if ($open[$indent]) { // level = indent
 						echo str_pad("\t", $indent, "\t") . "</li>\n";
-						$open[$indent]--;
+						$open[$indent] --;
 					} else {
 						echo "\n";
 					}
 				}
 				if ($open[$indent]) { // close an open LI if it exists
 					echo "</li>\n";
-					$open[$indent]--;
+					$open[$indent] --;
 				}
 				echo str_pad("\t", $indent - 1, "\t");
-				$open[$indent]++;
+				$open[$indent] ++;
 				$parents[$indent] = $itemid;
 				if ($level == 1) { // top level
 					$class = $css_class_topactive;
@@ -2252,14 +2248,14 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 	while ($indent > 1) {
 		if ($open[$indent]) {
 			echo "</li>\n";
-			$open[$indent]--;
+			$open[$indent] --;
 		}
 		$indent--;
 		echo str_pad("\t", $indent, "\t") . "</ul>";
 	}
 	if ($open[$indent]) {
 		echo "</li>\n";
-		$open[$indent]--;
+		$open[$indent] --;
 	} else {
 		echo "\n";
 	}

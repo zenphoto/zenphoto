@@ -107,7 +107,7 @@ class Video extends Image {
 		$album_name = $album->name;
 		$this->updateDimensions();
 
-		$new = parent::PersistentObject('images', array('filename' => $filename, 'albumid'	 => $this->album->getID()), 'filename', true, empty($album_name));
+		$new = parent::PersistentObject('images', array('filename' => $filename, 'albumid' => $this->album->getID()), 'filename', true, empty($album_name));
 		if ($new || $this->filemtime != $this->get('mtime')) {
 			if ($new)
 				$this->setTitle($this->displayname);
@@ -387,6 +387,13 @@ class Video extends Image {
 								foreach ($info as $key1 => $data) {
 									$ThisFileInfo[$key1] = $data;
 								}
+								break;
+							case 'error':
+								$msg = sprintf(gettext('getid3 exceptions for %1$s::%2$s'), $this->album->name, $this->filename);
+								foreach ($info as $data) {
+									$msg .= "\n" . $data;
+								}
+								debugLog($msg);
 								break;
 							default:
 								//discard, not used
