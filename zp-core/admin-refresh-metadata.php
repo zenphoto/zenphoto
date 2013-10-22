@@ -64,13 +64,33 @@ if (isset($_REQUEST['return'])) {
 	$backurl = 'admin.php';
 }
 
-if (db_connect($_zp_conf_vars)) {
-	if (isset($_REQUEST['album'])) {
-		if (isset($_POST['album'])) {
-			$folder = sanitize_path(urldecode($_POST['album']));
-		} else {
-			$folder = sanitize_path($_GET['album']);
+if (isset($_REQUEST['album'])) {
+	if (isset($_POST['album'])) {
+		$folder = sanitize_path(urldecode($_POST['album']));
+	} else {
+		$folder = sanitize_path($_GET['album']);
+	}
+	if (!empty($folder)) {
+		$album = newAlbum($folder);
+		if (!$album->isMyItem(ALBUM_RIGHTS)) {
+			if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
+				header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
+				exitZP();
+			}
 		}
+	}
+	$albumparm = '&amp;album=' . pathurlencode($folder);
+}
+if (isset($_GET['refresh'])) {
+	if (empty($imageid)) {
+		$metaURL = $backurl;
+	} else {
+		if (!empty($ret))
+			$ret = '&amp;return=' . $ret;
+		$metaURL = $redirecturl = '?' . $type . 'refresh=continue&amp;id=' . $imageid . $albumparm . $ret . '&XSRFToken=' . getXSRFToken('refresh');
+	}
+} else {
+	if ($type !== 'prune&amp;') {
 		if (!empty($folder)) {
 			$album = newAlbum($folder);
 			if (!$album->isMyItem(ALBUM_RIGHTS)) {
@@ -79,45 +99,24 @@ if (db_connect($_zp_conf_vars)) {
 					exitZP();
 				}
 			}
+			$sql = "SELECT `id` FROM " . prefix('albums') . " WHERE `folder`=" . db_quote($folder);
+			$row = query_single_row($sql);
+			$id = $row['id'];
 		}
-		$albumparm = '&amp;album=' . pathurlencode($folder);
-	}
-	if (isset($_GET['refresh'])) {
-		if (empty($imageid)) {
-			$metaURL = $backurl;
-		} else {
-			if (!empty($ret))
-				$ret = '&amp;return=' . $ret;
-			$metaURL = $redirecturl = '?' . $type . 'refresh=continue&amp;id=' . $imageid . $albumparm . $ret . '&XSRFToken=' . getXSRFToken('refresh');
-		}
-	} else {
-		if ($type !== 'prune&amp;') {
-			if (!empty($folder)) {
-				$album = newAlbum($folder);
-				if (!$album->isMyItem(ALBUM_RIGHTS)) {
-					if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
-						header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
-						exitZP();
-					}
-				}
-				$sql = "SELECT `id` FROM " . prefix('albums') . " WHERE `folder`=" . db_quote($folder);
-				$row = query_single_row($sql);
-				$id = $row['id'];
-			}
 
-			if (!empty($id)) {
-				$imagewhere = "WHERE `albumid`=$id";
-				$r = " $folder";
-				$albumwhere = "WHERE `parentid`=$id";
-			}
+		if (!empty($id)) {
+			$imagewhere = "WHERE `albumid`=$id";
+			$r = " $folder";
+			$albumwhere = "WHERE `parentid`=$id";
 		}
-		if (isset($_REQUEST['return']))
-			$ret = sanitize($_REQUEST['return']);
-		if (!empty($ret))
-			$ret = '&amp;return=' . $ret;
-		$metaURL = $starturl = '?' . $type . 'refresh=start' . $albumparm . '&amp;XSRFToken=' . getXSRFToken('refresh') . $ret;
 	}
+	if (isset($_REQUEST['return']))
+		$ret = sanitize($_REQUEST['return']);
+	if (!empty($ret))
+		$ret = '&amp;return=' . $ret;
+	$metaURL = $starturl = '?' . $type . 'refresh=start' . $albumparm . '&amp;XSRFToken=' . getXSRFToken('refresh') . $ret;
 }
+
 $zenphoto_tabs['overview']['subtabs'] = array(gettext('Refresh') => '');
 
 printAdminHeader($tab, 'Refresh');
@@ -133,7 +132,7 @@ echo "\n" . '<div id="main">';
 printTabs();
 ?>
 <div id="content">
-		<?php printSubtabs(); ?>
+	<?php printSubtabs(); ?>
 	<div class="tabbox">
 		<h1><?php echo $title; ?></h1>
 		<?php
@@ -149,7 +148,7 @@ printTabs();
 				<h3><?php echo $incomplete; ?></h3>
 				<p><?php echo gettext('This process should continue automatically. If not press: '); ?></p>
 				<p><a href="<?php echo $redirecturl; ?>" title="<?php echo $continue; ?>" style="font-size: 15pt; font-weight: bold;">
-				<?php echo gettext("Continue!"); ?></a>
+						<?php echo gettext("Continue!"); ?></a>
 				</p>
 				<?php
 			}
@@ -176,7 +175,7 @@ printTabs();
 				?>
 				<p><a href="<?php echo $starturl . '&amp;XSRFToken=' . getXSRFToken('refresh'); ?>"
 							title="<?php echo gettext("Refresh image metadata."); ?>" style="font-size: 15pt; font-weight: bold;">
-				<?php echo gettext("Go!"); ?></a>
+						<?php echo gettext("Go!"); ?></a>
 				</p>
 				<?php
 			}
