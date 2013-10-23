@@ -679,6 +679,7 @@ zp-core/zp-extensions/class-video/getid3/module.audio-video.quicktime.php
 zp-core/zp-extensions/class-video/getid3/module.audio-video.swf.php
 zp-core/zp-extensions/class-video/getid3/module.audio.aac.php
 zp-core/zp-extensions/class-video/getid3/module.audio.mp3.php
+zp-core/zp-extensions/class-video/getid3/module.tag.apetag.php
 zp-core/zp-extensions/class-video/getid3/module.tag.id3v1.php
 zp-core/zp-extensions/class-video/getid3/module.tag.id3v2.php
 zp-core/zp-extensions/class-video/getid3/module.tag.lyrics3.php
@@ -1807,4 +1808,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1809
+1810
