@@ -371,6 +371,7 @@ class Video extends Image {
 	 */
 	function updateMetaData() {
 		global $_zp_exifvars;
+		parent::updateMetaData();
 		if (!SAFE_MODE) {
 			$ThisFileInfo = $this->getMetaDataID3();
 			if (is_array($ThisFileInfo)) {
@@ -408,6 +409,7 @@ class Video extends Image {
 							$data = $ThisFileInfo[$exifvar[1]];
 							if (!empty($data)) {
 								$this->set($field, $data);
+								$this->set('hasMetadata', 1);
 							}
 						}
 					}
@@ -418,7 +420,6 @@ class Video extends Image {
 				}
 			}
 		}
-		parent::updateMetaData();
 	}
 
 }
