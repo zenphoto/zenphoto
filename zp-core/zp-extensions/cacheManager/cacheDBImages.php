@@ -60,25 +60,27 @@ echo "\n" . '<div id="content">';
 						preg_match_all('|\<\s*img.*?\ssrc\s*=\s*"(.*i\.php\?([^"]*)).*/\>|', $row[$field], $matches);
 						foreach ($matches[2] as $uri) {
 							$params = parse_url($uri);
-							parse_str($params['query'], $query);
-							if (!file_exists(getAlbumFolder() . $query['a'] . '/' . $query['i'])) {
-								recordMissing($table, $row);
-							} else {
-								$url = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/i.php?' . $uri . '" height="20" width="20" alt="X" />';
-								$text = zpFunctions::updateImageProcessorLink($url);
-								if ($text == $url) {
-									?>
-									<a href="<?php echo $uri; ?>&amp;debug" title="<?php echo gettext('image processor reference'); ?>">
-										<?php echo $url . "\n"; ?>
-									</a>
-									<?php
-								}
-								$text = zpFunctions::updateImageProcessorLink($row[$field]);
-								if ($text != $row[$field]) {
-									$sql = 'UPDATE ' . prefix($table) . ' SET `' . $field . '`=' . db_quote($text) . ' WHERE `id`=' . $row['id'];
-									query($sql);
+							if (array_key_exists('query', $params)) {
+								parse_str($params['query'], $query);
+								if (!file_exists(getAlbumFolder() . $query['a'] . '/' . $query['i'])) {
+									recordMissing($table, $row);
 								} else {
-									$refresh++;
+									$url = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/i.php?' . $uri . '" height="20" width="20" alt="X" />';
+									$text = zpFunctions::updateImageProcessorLink($url);
+									if ($text == $url) {
+										?>
+										<a href="<?php echo $uri; ?>&amp;debug" title="<?php echo gettext('image processor reference'); ?>">
+											<?php echo $url . "\n"; ?>
+										</a>
+										<?php
+									}
+									$text = zpFunctions::updateImageProcessorLink($row[$field]);
+									if ($text != $row[$field]) {
+										$sql = 'UPDATE ' . prefix($table) . ' SET `' . $field . '`=' . db_quote($text) . ' WHERE `id`=' . $row['id'];
+										query($sql);
+									} else {
+										$refresh++;
+									}
 								}
 							}
 						}
@@ -160,7 +162,7 @@ echo "\n" . '<div id="content">';
 			<?php
 		}
 
-		$button = array('text'	 => gettext("Refresh"), 'title'	 => gettext('Refresh the caching of the images stored in the database if some images did not render.'));
+		$button = array('text' => gettext("Refresh"), 'title' => gettext('Refresh the caching of the images stored in the database if some images did not render.'));
 		?>
 		<p>
 			<?php
