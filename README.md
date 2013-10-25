@@ -17,7 +17,7 @@ This makes Zenphoto the ideal CMS for personal websites of illustrators, artists
 Support
 ------
 
-There is a support forum for Zenphoto discussions  at www.zenphoto.org/support.
+There is a support forum for Zenphoto discussions at www.zenphoto.org/support.
 
-Zenphoto interim builds are available on github  via this direct link (https://github.com/zenphoto/zenphoto/zipball/master).  All problem reports should be filed as GitHub issues.
-
+If you think you have run into a Zenphoto bug please follow the following guidelines:
+http://www.zenphoto.org/news/general-contributor-guidelines#reporting-bugs
