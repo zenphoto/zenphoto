@@ -312,12 +312,12 @@ if (isset($_GET['action'])) {
 												$key = postIndexDecode($key);
 												if (substr($key, 0, $l) == $tagsprefix) {
 													if ($value) {
-														$tags[] = substr($key, $l);
+														$tags[] = sanitize(substr($key, $l));
 													}
 												}
 											}
 											$tags = array_unique($tags);
-											$image->setTags(sanitize($tags, 3));
+											$image->setTags($tags);
 
 											$image->setDateTime(sanitize($_POST["$i-date"]));
 											$image->setShow(isset($_POST["$i-Visible"]));
@@ -774,7 +774,7 @@ echo "\n</head>";
 								<?php XSRFToken('savealbumorder'); ?>
 								<p>
 									<?php
-									$sorttype = strtolower($album->getAlbumSortType());
+									$sorttype = strtolower($album->getSortType('album'));
 									if ($sorttype != 'manual') {
 										if ($album->getSortDirection('album')) {
 											$dir = gettext(' descending');
@@ -1177,7 +1177,7 @@ echo "\n</head>";
 																<label class="checkboxlabel">
 																	<input type="radio" id="Delete-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="delete"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');
-																										 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo gettext("Are you sure you want to select this image for deletion?"); ?>')" /> <?php echo gettext("Delete image") ?>
+																						 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo gettext("Are you sure you want to select this image for deletion?"); ?>')" /> <?php echo gettext("Delete image") ?>
 																</label>
 																<br class="clearall" />
 																<div id="movecopydiv-<?php echo $currentimage; ?>" style="padding-top: .5em; padding-left: .5em; display: none;">

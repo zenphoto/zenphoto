@@ -34,11 +34,11 @@ require_once(dirname(__FILE__) . '/load_objectClasses.php');
 
 $_zp_current_context_stack = array();
 
-$_zp_albumthumb_selector = array(array('field'			 => '', 'direction'	 => '', 'desc'			 => 'random'),
-				array('field'			 => 'id', 'direction'	 => 'DESC', 'desc'			 => gettext('most recent')),
-				array('field'			 => 'mtime', 'direction'	 => '', 'desc'			 => gettext('oldest')),
-				array('field'			 => 'title', 'direction'	 => '', 'desc'			 => gettext('first alphabetically')),
-				array('field'			 => 'hitcounter', 'direction'	 => 'DESC', 'desc'			 => gettext('most viewed'))
+$_zp_albumthumb_selector = array(array('field' => '', 'direction' => '', 'desc' => 'random'),
+				array('field' => 'id', 'direction' => 'DESC', 'desc' => gettext('most recent')),
+				array('field' => 'mtime', 'direction' => '', 'desc' => gettext('oldest')),
+				array('field' => 'title', 'direction' => '', 'desc' => gettext('first alphabetically')),
+				array('field' => 'hitcounter', 'direction' => 'DESC', 'desc' => gettext('most viewed'))
 );
 
 $_zp_missing_album = new AlbumBase(gettext('missing'), false);
@@ -111,7 +111,7 @@ function checkObjectsThumb($localpath) {
 function truncate_string($string, $length, $elipsis = '...') {
 	if (mb_strlen($string) > $length) {
 		$string = mb_substr($string, 0, $length);
-		$pos = mb_strrpos(strtr($string, array('~'	 => ' ', '!'	 => ' ', '@'	 => ' ', '#'	 => ' ', '$'	 => ' ', '%'	 => ' ', '^'	 => ' ', '&'	 => ' ', '*'	 => ' ', '('	 => ' ', ')'	 => ' ', '+'	 => ' ', '='	 => ' ', '-'	 => ' ', '{'	 => ' ', '}'	 => ' ', '['	 => ' ', ']'	 => ' ', '|'	 => ' ', ':'	 => ' ', ';'	 => ' ', '<'	 => ' ', '>'	 => ' ', '.'	 => ' ', '?'	 => ' ', '/'	 => ' ', '\\', '\\' => ' ', "'"	 => ' ', "`"	 => ' ', '"'	 => ' ')), ' ');
+		$pos = mb_strrpos(strtr($string, array('~' => ' ', '!' => ' ', '@' => ' ', '#' => ' ', '$' => ' ', '%' => ' ', '^' => ' ', '&' => ' ', '*' => ' ', '(' => ' ', ')' => ' ', '+' => ' ', '=' => ' ', '-' => ' ', '{' => ' ', '}' => ' ', '[' => ' ', ']' => ' ', '|' => ' ', ':' => ' ', ';' => ' ', '<' => ' ', '>' => ' ', '.' => ' ', '?' => ' ', '/' => ' ', '\\', '\\' => ' ', "'" => ' ', "`" => ' ', '"' => ' ')), ' ');
 		if ($pos === FALSE) {
 			$string .= $elipsis;
 		} else {
@@ -640,7 +640,7 @@ function getEnabledPlugins() {
 	foreach ($sortlist as $extension => $path) {
 		$opt = 'zp_plugin_' . $extension;
 		if ($option = getOption($opt)) {
-			$_EnabledPlugins[$extension] = array('priority' => $option, 'path'		 => $path);
+			$_EnabledPlugins[$extension] = array('priority' => $option, 'path' => $path);
 		}
 	}
 	$_EnabledPlugins = sortMultiArray($_EnabledPlugins, 'priority', true);
@@ -1095,39 +1095,41 @@ function getAllTagsCount() {
  * @param string $tbl database table of the object
  */
 function storeTags($tags, $id, $tbl) {
-	$tagsLC = array();
-	foreach ($tags as $key => $tag) {
-		$tag = trim($tag);
-		if (!empty($tag)) {
-			$lc_tag = mb_strtolower($tag);
-			if (!in_array($lc_tag, $tagsLC)) {
-				$tagsLC[$tag] = $lc_tag;
+	if ($id) {
+		$tagsLC = array();
+		foreach ($tags as $key => $tag) {
+			$tag = trim($tag);
+			if (!empty($tag)) {
+				$lc_tag = mb_strtolower($tag);
+				if (!in_array($lc_tag, $tagsLC)) {
+					$tagsLC[$tag] = $lc_tag;
+				}
 			}
 		}
-	}
-	$sql = "SELECT `id`, `tagid` from " . prefix('obj_to_tag') . " WHERE `objectid`='" . $id . "' AND `type`='" . $tbl . "'";
-	$result = query($sql);
-	$existing = array();
-	if ($result) {
-		while ($row = db_fetch_assoc($result)) {
-			$dbtag = query_single_row("SELECT `name` FROM " . prefix('tags') . " WHERE `id`='" . $row['tagid'] . "'");
-			$existingLC = mb_strtolower($dbtag['name']);
-			if (in_array($existingLC, $tagsLC)) { // tag already set no action needed
-				$existing[] = $existingLC;
-			} else { // tag no longer set, remove it
-				query("DELETE FROM " . prefix('obj_to_tag') . " WHERE `id`='" . $row['id'] . "'");
+		$sql = "SELECT `id`, `tagid` from " . prefix('obj_to_tag') . " WHERE `objectid`='" . $id . "' AND `type`='" . $tbl . "'";
+		$result = query($sql);
+		$existing = array();
+		if ($result) {
+			while ($row = db_fetch_assoc($result)) {
+				$dbtag = query_single_row("SELECT `name` FROM " . prefix('tags') . " WHERE `id`='" . $row['tagid'] . "'");
+				$existingLC = mb_strtolower($dbtag['name']);
+				if (in_array($existingLC, $tagsLC)) { // tag already set no action needed
+					$existing[] = $existingLC;
+				} else { // tag no longer set, remove it
+					query("DELETE FROM " . prefix('obj_to_tag') . " WHERE `id`='" . $row['id'] . "'");
+				}
 			}
+			db_free_result($result);
 		}
-		db_free_result($result);
-	}
-	$tags = array_diff($tagsLC, $existing); // new tags for the object
-	foreach ($tags as $key => $tag) {
-		$dbtag = query_single_row("SELECT `id` FROM " . prefix('tags') . " WHERE `name`=" . db_quote($key));
-		if (!is_array($dbtag)) { // tag does not exist
-			query("INSERT INTO " . prefix('tags') . " (name) VALUES (" . db_quote($key) . ")", false);
-			$dbtag = array('id' => db_insert_id());
+		$tags = array_diff($tagsLC, $existing); // new tags for the object
+		foreach ($tags as $key => $tag) {
+			$dbtag = query_single_row("SELECT `id` FROM " . prefix('tags') . " WHERE `name`=" . db_quote($key));
+			if (!is_array($dbtag)) { // tag does not exist
+				query("INSERT INTO " . prefix('tags') . " (name) VALUES (" . db_quote($key) . ")", false);
+				$dbtag = array('id' => db_insert_id());
+			}
+			query("INSERT INTO " . prefix('obj_to_tag') . "(`objectid`, `tagid`, `type`) VALUES (" . $id . "," . $dbtag['id'] . ",'" . $tbl . "')");
 		}
-		query("INSERT INTO " . prefix('obj_to_tag') . "(`objectid`, `tagid`, `type`) VALUES (" . $id . "," . $dbtag['id'] . ",'" . $tbl . "')");
 	}
 }
 
@@ -1406,7 +1408,7 @@ function isValidURL($url) {
  * @return bool
  */
 function safe_fnmatch($pattern, $string) {
-	return @preg_match('/^' . strtr(addcslashes($pattern, '\\.+^$(){}=!<>|'), array('*'	 => '.*', '?'	 => '.?')) . '$/i', $string);
+	return @preg_match('/^' . strtr(addcslashes($pattern, '\\.+^$(){}=!<>|'), array('*' => '.*', '?' => '.?')) . '$/i', $string);
 }
 
 /**
@@ -1956,7 +1958,7 @@ function XSRFToken($action) {
  */
 function cron_starter($script, $params, $offsetPath, $inline = false) {
 	global $_zp_authority, $_zp_loggedin, $_zp_current_admin_obj;
-	$admin = Zenphoto_Authority::getAnAdmin(array('`user`='	 => $_zp_authority->master_user, '`valid`=' => 1));
+	$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $_zp_authority->master_user, '`valid`=' => 1));
 
 	if ($inline) {
 		$_zp_current_admin_obj = $admin;
@@ -2010,7 +2012,7 @@ function zp_loggedin($rights = ALL_RIGHTS) {
  * Produces the # to table association array
  */
 function getTableAsoc() {
-	return array('1'	 => 'albums', '2'	 => 'images', '3'	 => 'news', '4'	 => 'pages', '5'	 => 'comments');
+	return array('1' => 'albums', '2' => 'images', '3' => 'news', '4' => 'pages', '5' => 'comments');
 }
 
 /**
@@ -2587,7 +2589,7 @@ class _zp_captcha {
 	var $name = NULL; // "captcha" name if no captcha plugin loaded
 
 	function getCaptcha($prompt) {
-		return array('input'	 => NULL, 'html'	 => '<p class="errorbox">' . gettext('No captcha handler is enabled.') . '</p>', 'hidden' => '');
+		return array('input' => NULL, 'html' => '<p class="errorbox">' . gettext('No captcha handler is enabled.') . '</p>', 'hidden' => '');
 	}
 
 	function checkCaptcha($s1, $s2) {

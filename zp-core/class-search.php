@@ -164,7 +164,7 @@ class SearchEngine {
 		}
 		$this->images = NULL;
 		$this->albums = NULL;
-		$this->searches = array('images' => NULL, 'albums' => NULL, 'pages'	 => NULL, 'news'	 => NULL);
+		$this->searches = array('images' => NULL, 'albums' => NULL, 'pages' => NULL, 'news' => NULL);
 	}
 
 	/**
@@ -391,7 +391,7 @@ class SearchEngine {
 					if ($alb->loaded) {
 						$this->album = $alb;
 						$this->dynalbumname = $v;
-						$this->albumsorttype = $this->album->getAlbumSortType();
+						$this->albumsorttype = $this->album->getSortType('album');
 						if ($this->album->getSortDirection('album')) {
 							$this->albumsortdirection = 'DESC';
 						}
@@ -497,7 +497,7 @@ class SearchEngine {
 		}
 		$searchstring = trim($this->words);
 		$space_is = getOption('search_space_is');
-		$opChars = array('&'	 => 1, '|'	 => 1, '!'	 => 1, ','	 => 1, '('	 => 2);
+		$opChars = array('&' => 1, '|' => 1, '!' => 1, ',' => 1, '(' => 2);
 		if ($space_is) {
 			$opChars[' '] = 1;
 		}
@@ -1354,7 +1354,7 @@ class SearchEngine {
 								}
 								if ($mine || (is_null($mine) && $album->isMyItem(LIST_RIGHTS) && $viewUnpublished) || (checkAlbumPassword($albumname) && $row['show'])) {
 									if (empty($this->album_list) || in_array($albumname, $this->album_list)) {
-										$result[] = array('name'	 => $albumname, 'weight' => $weights[$row['id']]);
+										$result[] = array('name' => $albumname, 'weight' => $weights[$row['id']]);
 									}
 								}
 							}
@@ -1528,15 +1528,15 @@ class SearchEngine {
 							if ($mine || is_null($mine) && ($album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($albumname) && $album->getShow())) {
 								$allow = empty($this->album_list) || in_array($albumname, $this->album_list);
 							}
-							$albums_seen[$albumid] = $albumrow = array('allow'						 => $allow, 'viewUnpublished'	 => $viewUnpublished, 'folder'					 => $albumname, 'localpath'				 => ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumname) . '/');
+							$albums_seen[$albumid] = $albumrow = array('allow' => $allow, 'viewUnpublished' => $viewUnpublished, 'folder' => $albumname, 'localpath' => ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumname) . '/');
 						} else {
-							$albums_seen[$albumid] = $albumrow = array('allow'						 => false, 'viewUnpublished'	 => false, 'folder'					 => '', 'localpath'				 => '');
+							$albums_seen[$albumid] = $albumrow = array('allow' => false, 'viewUnpublished' => false, 'folder' => '', 'localpath' => '');
 						}
 					}
 					if ($albumrow['allow'] && ($row['show'] || $albumrow['viewUnpublished'])) {
 						if (file_exists($albumrow['localpath'] . internalToFilesystem($row['filename']))) {
 							//	still exists
-							$data = array('filename' => $row['filename'], 'folder'	 => $albumrow['folder']);
+							$data = array('filename' => $row['filename'], 'folder' => $albumrow['folder']);
 							if (isset($weights)) {
 								$data['weight'] = $weights[$row['id']];
 							}
@@ -1823,7 +1823,7 @@ class SearchEngine {
 		if (!empty($authCookies)) { // some sort of password exists, play it safe and make the tag unique
 			$user = getUserIP();
 		}
-		return array('item'	 => $table, 'fields' => implode(',', $this->fieldList), 'search' => $search, 'sort'	 => $sort, 'user'	 => $user);
+		return array('item' => $table, 'fields' => implode(',', $this->fieldList), 'search' => $search, 'sort' => $sort, 'user' => $user);
 	}
 
 	/**

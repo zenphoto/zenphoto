@@ -13,12 +13,12 @@ function reconfigureAction($mandatory) {
 	$diffkeys = array_keys($diff);
 	if ($mandatory || in_array('ZENPHOTO', $diffkeys) || in_array('FOLDER', $diffkeys)) {
 		if (isset($_GET['rss'])) {
-			if (file_exists(SERVERPATH.'/'.DATA_FOLDER.'/rss-closed.xml')) {
-				$xml = file_get_contents(SERVERPATH.'/'.DATA_FOLDER.'/rss-closed.xml');
-				$xml = preg_replace('~<pubDate>(.*)</pubDate>~', '<pubDate>'.date("r",time()).'</pubDate>', $xml);
+			if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/rss-closed.xml')) {
+				$xml = file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/rss-closed.xml');
+				$xml = preg_replace('~<pubDate>(.*)</pubDate>~', '<pubDate>' . date("r", time()) . '</pubDate>', $xml);
 				echo $xml;
 			}
-			exit();	//	can't really run setup from an RSS feed.
+			exit(); //	can't really run setup from an RSS feed.
 		}
 		if (empty($needs)) {
 			$dir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
@@ -31,9 +31,9 @@ function reconfigureAction($mandatory) {
 			} else {
 				$where = 'gallery';
 			}
-			$dir = rtrim($dir,'/');
-			$location = "http://". $_SERVER['HTTP_HOST']. $dir . "/" . ZENFOLDER . "/setup/index.php?autorun=$where";
-			header("Location: $location" );
+			$dir = rtrim($dir, '/');
+			$location = "http://" . $_SERVER['HTTP_HOST'] . $dir . "/" . ZENFOLDER . "/setup/index.php?autorun=$where";
+			header("Location: $location");
 			exitZP();
 		} else {
 			header('Last-Modified: ' . ZP_LAST_MODIFIED);
@@ -42,15 +42,15 @@ function reconfigureAction($mandatory) {
 			<!DOCTYPE html>
 			<html xmlns="http://www.w3.org/1999/xhtml">
 				<head>
-				<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-				<link rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.css" type="text/css" />
-				<?php reconfigureCS(); ?>
+					<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+					<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css" type="text/css" />
+					<?php reconfigureCS(); ?>
 				</head>
 				<body>
 					<div id="main">
 						<div id="content">
 							<div class="tabbox">
-								<?php reconfigurePage($diff,$needs, $mandatory); ?>
+								<?php reconfigurePage($diff, $needs, $mandatory); ?>
 							</div>
 						</div>
 					</div>
@@ -85,26 +85,33 @@ function checkSignature($auto) {
 		$new = array();
 	}
 	if (!is_array($old)) {
-		$old = array('ZENPHOTO'=>gettext('an unknown release'));
+		$old = array('ZENPHOTO' => gettext('an unknown release'));
 	}
-	$diff = array_diff_assoc($new,$old);
-	$package = file_get_contents(dirname(__FILE__).'/Zenphoto.package');
-	preg_match_all('|'.ZENFOLDER.'/setup/(.*)|', $package, $matches);
+	$diff = array();
+	$keys = array_unique(array_merge(array_keys($new), array_keys($old)));
+	foreach ($keys as $key) {
+		if (!array_key_exists($key, $new) || !array_key_exists($key, $old) || $old[$key] != $new[$key]) {
+			$diff[$key] = array('old' => $old[$key], 'new' => $new[$key]);
+		}
+	}
+
+	$package = file_get_contents(dirname(__FILE__) . '/Zenphoto.package');
+	preg_match_all('|' . ZENFOLDER . '/setup/(.*)|', $package, $matches);
 	$needs = array();
 	foreach ($matches[1] as $need) {
-		$needs[] = rtrim(trim($need),":*");
+		$needs[] = rtrim(trim($need), ":*");
 	}
-	if (file_exists(dirname(__FILE__).'/setup/')) {
-		chdir(dirname(__FILE__).'/setup/');
+	if (file_exists(dirname(__FILE__) . '/setup/')) {
+		chdir(dirname(__FILE__) . '/setup/');
 		if ($auto) {
 			$found = safe_glob('*.xxx');
 			if (!empty($found)) {
 				foreach ($found as $script) {
 					chmod($script, 0666);
 					if (@rename($script, stripSuffix($script))) {
-						chmod(stripSuffix($script),FILE_MOD);
+						chmod(stripSuffix($script), FILE_MOD);
 					} else {
-						chmod($script,FILE_MOD);
+						chmod($script, FILE_MOD);
 					}
 				}
 			}
@@ -122,7 +129,7 @@ function checkSignature($auto) {
  * @param string $subtab
  * @return string
  */
-function signatureChange($tab=NULL, $subtab=NULL) {
+function signatureChange($tab = NULL, $subtab = NULL) {
 	list($diff, $needs) = checkSignature(false);
 	reconfigurePage($diff, $needs, 0);
 	return $tab;
@@ -135,31 +142,31 @@ function signatureChange($tab=NULL, $subtab=NULL) {
 function reconfigureCS() {
 	?>
 	<style type="text/css">
-	.reconfigbox {
-		padding: 5px 10px 5px 10px;
-		background-color: #FFEFB7;
-		border-width: 1px 1px 2px 1px;
-		border-color: #FFDEB5;
-		border-style: solid;
-		margin-bottom: 10px;
-		font-size: 100%;
-		-moz-border-radius: 5px;
-		-khtml-border-radius: 5px;
-		-webkit-border-radius: 5px;
-		border-radius: 5px;
-	}
-	.reconfigbox h2,.notebox strong {
-		color: #663300;
-		font-size: 100%;
-		font-weight: bold;
-		margin-bottom: 1em;
-	}
-	#errors ul {
-		list-style-type: square;
-	}
-	#files ul {
-		list-style-type: circle;
-	}
+		.reconfigbox {
+			padding: 5px 10px 5px 10px;
+			background-color: #FFEFB7;
+			border-width: 1px 1px 2px 1px;
+			border-color: #FFDEB5;
+			border-style: solid;
+			margin-bottom: 10px;
+			font-size: 100%;
+			-moz-border-radius: 5px;
+			-khtml-border-radius: 5px;
+			-webkit-border-radius: 5px;
+			border-radius: 5px;
+		}
+		.reconfigbox h2,.notebox strong {
+			color: #663300;
+			font-size: 100%;
+			font-weight: bold;
+			margin-bottom: 1em;
+		}
+		#errors ul {
+			list-style-type: square;
+		}
+		#files ul {
+			list-style-type: circle;
+		}
 	</style>
 	<?php
 }
@@ -177,24 +184,24 @@ function reconfigurePage($diff, $needs, $mandatory) {
 		<div id="errors">
 			<ul>
 				<?php
-				foreach ($diff as $thing=>$old) {
+				foreach ($diff as $thing => $rslt) {
 					switch ($thing) {
 						case 'SERVER_SOFTWARE':
-							echo '<li>'.sprintf(gettext('Your server software has changed from %1$s to %2$s.'),$old,$_SERVER['SERVER_SOFTWARE']).'</li>';
+							echo '<li>' . sprintf(gettext('Your server software has changed from %1$s to %2$s.'), $rslt['old'], $rslt['new']) . '</li>';
 							break;
 						case 'DATABASE':
 							$dbs = db_software();
-							echo '<li>'.sprintf(gettext('Your database software has changed from %1$s to %2$s.'),$old,$dbs['application'].' '.$dbs['version']).'</li>';
+							echo '<li>' . sprintf(gettext('Your database software has changed from %1$s to %2$s.'), $rslt['old'], $rslt['new']) . '</li>';
 							break;
 						case 'ZENPHOTO':
-							echo '<li>'.sprintf(gettext('Zenphoto %1$s has been copied over %2$s.'),ZENPHOTO_VERSION.'['.ZENPHOTO_RELEASE.']',$old).'</li>';
+							echo '<li>' . sprintf(gettext('Zenphoto %1$s has been copied over %2$s.'), ZENPHOTO_VERSION . '[' . ZENPHOTO_RELEASE . ']', $rslt['old']) . '</li>';
 							break;
 						case 'FOLDER':
-							echo '<li>'.sprintf(gettext('Your installation has moved from %1$s to %2$s.'),$old,dirname(SERVERPATH.'/'.ZENFOLDER)).'</li>';
+							echo '<li>' . sprintf(gettext('Your installation has moved from %1$s to %2$s.'), $rslt['old'], $rslt['new']) . '</li>';
 							break;
 						default:
-							$sz = @filesize(SERVERPATH.'/'.ZENFOLDER.'/'.$thing);
-							echo '<li>'.sprintf(gettext('The script <code>%1$s</code> has changed.'),$thing).'</li>';
+							$sz = @filesize(SERVERPATH . '/' . ZENFOLDER . '/' . $thing);
+							echo '<li>' . sprintf(gettext('The script <code>%1$s</code> has changed.'), $thing) . '</li>';
 							break;
 					}
 				}
@@ -208,16 +215,16 @@ function reconfigurePage($diff, $needs, $mandatory) {
 			} else {
 				$where = 'gallery';
 			}
-			$l1 = '<a href="'.WEBPATH.'/'.ZENFOLDER.'/setup.php?autorun='.$where.'&amp;xsrfToken='.getXSRFToken('setup').'">';
+			$l1 = '<a href="' . WEBPATH . '/' . ZENFOLDER . '/setup.php?autorun=' . $where . '&amp;xsrfToken=' . getXSRFToken('setup') . '">';
 			$l2 = '</a>';
 			if (array_key_exists('ZENPHOTO', $diff) || array_key_exists('FOLDER', $diff)) {
 				printf(gettext('The change detected is critical. You <strong>must</strong> run %1$ssetup%2$s for your site to function.'), $l1, $l2);
 			} else {
 				printf(gettext('The change detected may not be critical but you should run %1$ssetup%2$s at your earliest convenience.'), $l1, $l2);
 			}
-		?>
+			?>
 		</p>
 	</div>
-<?php
+	<?php
 }
 ?>
