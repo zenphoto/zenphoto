@@ -16,6 +16,12 @@ if (!isset($_GET['theme'])) {
 	exitZP();
 }
 
+function isTextFile($file, $ok_extensions = array('css', 'php', 'js', 'txt', 'inc')) {
+	$path_info = pathinfo($file);
+	$ext = (isset($path_info['extension']) ? strtolower($path_info['extension']) : '');
+	return (!empty($ok_extensions) && (in_array($ext, $ok_extensions) ) );
+}
+
 $message = $file_to_edit = $file_content = null;
 $themes = $_zp_gallery->getThemes();
 $theme = sanitize($_GET['theme']);
@@ -104,30 +110,30 @@ if ($message) {
 <div id="theme-editor">
 
 	<div id="files">
-<?php
-foreach ($themefiles_to_ext as $ext => $files) {
-	echo '<h2 class="h2_bordered">';
-	switch ($ext) {
-		case 'php':
-			echo gettext('Theme template files (.php)');
-			break;
-		case 'js':
-			echo gettext('JavaScript files (.js)');
-			break;
-		case 'css':
-			echo gettext('Style sheets (.css)');
-			break;
-		default:
-			echo gettext('Other text files');
-	}
-	echo '</h2><ul>';
-	foreach ($files as $file) {
-		$file = str_replace($themedir . '/', '', $file);
-		echo "<li><a title='" . gettext('Edit this file') . "' href='?theme=$theme&file=$file'>$file</a></li>";
-	}
-	echo '</ul>';
-}
-?>
+		<?php
+		foreach ($themefiles_to_ext as $ext => $files) {
+			echo '<h2 class="h2_bordered">';
+			switch ($ext) {
+				case 'php':
+					echo gettext('Theme template files (.php)');
+					break;
+				case 'js':
+					echo gettext('JavaScript files (.js)');
+					break;
+				case 'css':
+					echo gettext('Style sheets (.css)');
+					break;
+				default:
+					echo gettext('Other text files');
+			}
+			echo '</h2><ul>';
+			foreach ($files as $file) {
+				$file = str_replace($themedir . '/', '', $file);
+				echo "<li><a title='" . gettext('Edit this file') . "' href='?theme=$theme&file=$file'>$file</a></li>";
+			}
+			echo '</ul>';
+		}
+		?>
 	</div>
 
 
@@ -155,8 +161,8 @@ foreach ($themefiles_to_ext as $ext => $files) {
 </div> <!-- theme-editor -->
 
 <?php
-echo "\n" . '</div>';	//content
-echo "\n" . '</div>';	//main
+echo "\n" . '</div>'; //content
+echo "\n" . '</div>'; //main
 
 printAdminFooter();
 echo "\n</body>";
