@@ -224,7 +224,7 @@ class Gallery {
 		$albums = array();
 
 		while ($dirname = readdir($dir)) {
-			if ((is_dir($albumdir . $dirname) && (substr($dirname, 0, 1) != '.')) || hasDynamicAlbumSuffix($dirname)) {
+			if ($dirname{0} != '.' && (is_dir($albumdir . $dirname) || hasDynamicAlbumSuffix($dirname))) {
 				$albums[] = filesystemToInternal($dirname);
 			}
 		}
@@ -288,7 +288,7 @@ class Gallery {
 							require($themefile);
 							$themes[$dir8] = $theme_description;
 						} else {
-							$themes[$dir8] = array('name'		 => gettext('Unknown'), 'author'	 => gettext('Unknown'), 'version'	 => gettext('Unknown'), 'desc'		 => gettext('<strong>Missing theme info file!</strong>'), 'date'		 => gettext('Unknown'));
+							$themes[$dir8] = array('name' => gettext('Unknown'), 'author' => gettext('Unknown'), 'version' => gettext('Unknown'), 'desc' => gettext('<strong>Missing theme info file!</strong>'), 'date' => gettext('Unknown'));
 						}
 					}
 				}

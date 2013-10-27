@@ -160,13 +160,18 @@ class AlbumBase extends MediaObject {
 	 * @return string
 	 */
 	function getSortType($what = 'image') {
-		$type = $this->get('sort_type');
+		global $_zp_gallery;
+		if ($what == 'image') {
+			$type = $this->get('sort_type');
+		} else {
+			$type = $this->get('subalbum_sort_type');
+		}
 		if (empty($type)) {
 			$parentalbum = $this->getParent();
 			if (is_null($parentalbum)) {
-				$type = IMAGE_SORT_TYPE;
+				$type = $_zp_gallery->getSortType();
 			} else {
-				$type = $parentalbum->getSortType();
+				$type = $parentalbum->getSortType($what);
 			}
 		}
 		return $type;
@@ -203,7 +208,7 @@ class AlbumBase extends MediaObject {
 		if ($what == 'image') {
 			$this->set('sort_type', $sorttype);
 		} else {
-			$type = $this->get('subalbum_sort_type');
+			$type = $this->set('subalbum_sort_type');
 		}
 	}
 
@@ -216,17 +221,7 @@ class AlbumBase extends MediaObject {
 	 * @deprecated since version 1.4.5
 	 */
 	function getAlbumSortType() {
-		global $_zp_gallery;
-		$type = $this->get('subalbum_sort_type');
-		if (empty($type)) {
-			$parentalbum = $this->getParent();
-			if (is_null($parentalbum)) {
-				$type = $_zp_gallery->getSortType();
-			} else {
-				$type = $parentalbum->getAlbumSortType();
-			}
-		}
-		return $type;
+		return $this->getSortType('album');
 	}
 
 	/**
@@ -236,7 +231,7 @@ class AlbumBase extends MediaObject {
 	 * @deprecated since version 1.4.5
 	 */
 	function setSubalbumSortType($sorttype) {
-		$this->set('subalbum_sort_type', $sorttype);
+		$this->setSortType($sorttype, 'album');
 	}
 
 	/**
@@ -260,7 +255,7 @@ class AlbumBase extends MediaObject {
 	 */
 	function getAlbumSortKey($sorttype = null) {
 		if (empty($sorttype)) {
-			$sorttype = $this->getAlbumSortType();
+			$sorttype = $this->getSortType('album');
 		}
 		return lookupSortKey($sorttype, 'sort_order', 'albums');
 	}
@@ -852,7 +847,7 @@ class Album extends AlbumBase {
 		global $_zp_gallery;
 		if (is_null($this->subalbums) || $care && $sorttype . $sortdirection !== $this->lastsubalbumsort) {
 			if (is_null($sorttype)) {
-				$sorttype = $this->getAlbumSortType();
+				$sorttype = $this->getSortType('album');
 			}
 			if (is_null($sortdirection)) {
 				if ($this->getSortDirection('album')) {
