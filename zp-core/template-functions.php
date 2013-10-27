@@ -438,7 +438,7 @@ function getHeadTitle($separator = ' | ', $listparentalbums = true, $listparentp
 			break;
 		default: // for all other possible static custom pages
 			$custompage = stripSuffix($_zp_gallery_page);
-			$standard = array('contact'	 => gettext('Contact'), 'register' => gettext('Register'), 'search'	 => gettext('Search'), 'archive'	 => gettext('Archive view'), 'password' => gettext('Password required'));
+			$standard = array('contact' => gettext('Contact'), 'register' => gettext('Register'), 'search' => gettext('Search'), 'archive' => gettext('Archive view'), 'password' => gettext('Password required'));
 			if (class_exists('favorites')) {
 				$standard[str_replace(_PAGE_ . '/', '', favorites::getFavorites_link())] = gettext('My favorites');
 			}
@@ -1235,7 +1235,7 @@ function getAlbumBreadcrumb($title = NULL) {
 				$title = gettext('Album Thumbnails');
 			}
 		}
-		return array('link'	 => getAlbumLinkURL($album), 'title'	 => $title, 'text'	 => $album->getDesc());
+		return array('link' => getAlbumLinkURL($album), 'title' => $title, 'text' => $album->getDesc());
 	}
 	return false;
 }
@@ -1332,14 +1332,14 @@ function getParentBreadcrumb() {
 		$dynamic_album = $_zp_current_search->getDynamicAlbum();
 		if (empty($dynamic_album)) {
 			if (empty($searchdate)) {
-				$output[] = array('link'	 => $searchpagepath, 'title'	 => gettext("Return to search"), 'text'	 => gettext("Search"));
+				$output[] = array('link' => $searchpagepath, 'title' => gettext("Return to search"), 'text' => gettext("Search"));
 				if (is_null($_zp_current_album)) {
 					return $output;
 				} else {
 					$parents = getParentAlbums();
 				}
 			} else {
-				return array(array('link'	 => $searchpagepath, 'title'	 => gettext("Return to archive"), 'text'	 => gettext("Archive")));
+				return array(array('link' => $searchpagepath, 'title' => gettext("Return to archive"), 'text' => gettext("Archive")));
 			}
 		} else {
 			$album = $dynamic_album;
@@ -1364,7 +1364,7 @@ function getParentBreadcrumb() {
 			$url = rewrite_path("/" . pathurlencode($parent->name) . "/", "/index.php?album=" . pathurlencode($parent->name));
 //cleanup things in description for use as attribute tag
 			$desc = strip_tags(preg_replace('|</p\s*>|i', '</p> ', preg_replace('|<br\s*/>|i', ' ', $parent->getDesc())));
-			$output[] = array('link'	 => html_encode($url), 'title'	 => $desc, 'text'	 => $parent->getTitle());
+			$output[] = array('link' => html_encode($url), 'title' => $desc, 'text' => $parent->getTitle());
 		}
 	}
 	return $output;
@@ -3182,7 +3182,7 @@ function getRandomImages($daily = false) {
 	$image = filterImageQuery($result, NULL);
 	if ($image) {
 		if ($daily) {
-			$potd = array('day'			 => time(), 'folder'	 => $image->getAlbumName(), 'filename' => $image->getFileName());
+			$potd = array('day' => time(), 'folder' => $image->getAlbumName(), 'filename' => $image->getFileName());
 			setThemeOption('picture_of_the_day', serialize($potd), NULL, $_zp_gallery->getCurrentTheme());
 		}
 		return $image;
@@ -3260,7 +3260,7 @@ function getRandomImagesAlbum($rootAlbum = NULL, $daily = false) {
 	}
 	if ($image) {
 		if ($daily) {
-			$potd = array('day'			 => time(), 'folder'	 => $image->getAlbumName(), 'filename' => $image->getFileName());
+			$potd = array('day' => time(), 'folder' => $image->getAlbumName(), 'filename' => $image->getFileName());
 			setThemeOption('picture_of_the_day:' . $album->name, serialize($potd), NULL, $_zp_gallery->getCurrentTheme());
 		}
 	}
@@ -3744,7 +3744,7 @@ function getSearchURL($words, $dates, $fields, $page, $object_list = NULL) {
 			}
 			$words = implode(',', $words);
 		}
-		$words = strtr($words, array('%'	 => '__25__', '&'	 => '__26__', '#'	 => '__23__'));
+		$words = strtr($words, array('%' => '__25__', '&' => '__26__', '#' => '__23__'));
 		if ($rewrite) {
 			$url .= urlencode($words);
 		} else {
@@ -3877,34 +3877,34 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 		<!-- search form -->
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<script type="text/javascript">
-				// <!-- <![CDATA[
-				var within = <?php echo (int) $within; ?>;
-				function search_(way) {
-					within = way;
-					if (way) {
-						$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+		// <!-- <![CDATA[
+		var within = <?php echo (int) $within; ?>;
+		function search_(way) {
+			within = way;
+			if (way) {
+				$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
 
-					} else {
-						lastsearch = '';
-						$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-					}
-					$('#search_input').val('');
+			} else {
+				lastsearch = '';
+				$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
+			}
+			$('#search_input').val('');
+		}
+		$('#search_form').submit(function() {
+			if (within) {
+				var newsearch = $.trim($('#search_input').val());
+				if (newsearch.substring(newsearch.length - 1) == ',') {
+					newsearch = newsearch.substr(0, newsearch.length - 1);
 				}
-				$('#search_form').submit(function() {
-					if (within) {
-						var newsearch = $.trim($('#search_input').val());
-						if (newsearch.substring(newsearch.length - 1) == ',') {
-							newsearch = newsearch.substr(0, newsearch.length - 1);
-						}
-						if (newsearch.length > 0) {
-							$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
-						} else {
-							$('#search_input').val('<?php echo $searchwords; ?>');
-						}
-					}
-					return true;
-				});
-				// ]]> -->
+				if (newsearch.length > 0) {
+					$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+				} else {
+					$('#search_input').val('<?php echo $searchwords; ?>');
+				}
+			}
+			return true;
+		});
+		// ]]> -->
 			</script>
 			<?php echo $prevtext; ?>
 			<div>
@@ -4444,6 +4444,9 @@ function checkPageValidity($request, $gallery_page, $page) {
 				$cat = NULL;
 			}
 			$count = (int) ceil(count($_zp_zenpage->getArticles(0, NULL, true, NULL, NULL, NULL, $cat)) / ZP_ARTICLES_PER_PAGE);
+			break;
+		default:
+			$count = zp_apply_filter('checkPageValidity', NULL, $gallery_page);
 			break;
 	}
 	if ($page > $count) {

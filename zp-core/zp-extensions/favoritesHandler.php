@@ -118,26 +118,26 @@ class favorites extends AlbumBase {
 	function addImage($img) {
 		$folder = $img->imagefolder;
 		$filename = $img->filename;
-		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("favorites",' . db_quote($this->name) . ',' . db_quote(serialize(array('type' => 'images', 'id'	 => $folder . '/' . $filename))) . ')';
+		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("favorites",' . db_quote($this->name) . ',' . db_quote(serialize(array('type' => 'images', 'id' => $folder . '/' . $filename))) . ')';
 		query($sql);
 	}
 
 	function removeImage($img) {
 		$folder = $img->imagefolder;
 		$filename = $img->filename;
-		$sql = 'DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . db_quote($this->name) . ' AND `data`=' . db_quote(serialize(array('type' => 'images', 'id'	 => $folder . '/' . $filename)));
+		$sql = 'DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . db_quote($this->name) . ' AND `data`=' . db_quote(serialize(array('type' => 'images', 'id' => $folder . '/' . $filename)));
 		query($sql);
 	}
 
 	function addAlbum($alb) {
 		$folder = $alb->name;
-		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("favorites",' . db_quote($this->name) . ',' . db_quote(serialize(array('type' => 'albums', 'id'	 => $folder))) . ')';
+		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("favorites",' . db_quote($this->name) . ',' . db_quote(serialize(array('type' => 'albums', 'id' => $folder))) . ')';
 		query($sql);
 	}
 
 	function removeAlbum($alb) {
 		$folder = $alb->name;
-		$sql = 'DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . db_quote($this->name) . ' AND `data`=' . db_quote(serialize(array('type' => 'albums', 'id'	 => $folder)));
+		$sql = 'DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . db_quote($this->name) . ' AND `data`=' . db_quote(serialize(array('type' => 'albums', 'id' => $folder)));
 		query($sql);
 	}
 
@@ -155,21 +155,20 @@ class favorites extends AlbumBase {
 		global $_zp_gallery;
 		if (is_null($this->subalbums) || $care && $sorttype . $sortdirection !== $this->lastsubalbumsort) {
 			$subalbums = array();
-			$result = query($sql = 'SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . db_quote($this->name));
+			$result = query($sql = 'SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . db_quote($this->name) . ' AND `data` LIKE "%s:4:\"type\";s:6:\"albums\";%"');
 			if ($result) {
 				while ($row = db_fetch_assoc($result)) {
-					$id = $row['id'];
-					$row = unserialize($row['data']);
-					if ($row['type'] == 'albums') {
-						if (file_exists(getAlbumFolder() . '/' . $row['id'])) {
-							$subalbums[] = $row['id'];
-						} else {
-							query("DELETE FROM " . prefix('plugin_storage') . " WHERE `id`=$id");
-						}
+					$data = unserialize($row['data']);
+					$albumobj = newAlbum($data['id'], true, true);
+					if ($albumobj->exists) { // fail to instantiate?
+						$subalbums[$data['id']] = $albumobj->getData();
+					} else {
+						query("DELETE FROM " . prefix('plugin_storage') . ' WHERE `id`=' . $row['id']);
 					}
 				}
+				db_free_result($result);
 				if (is_null($sorttype)) {
-					$sorttype = $this->getAlbumSortType();
+					$sorttype = $this->getSortType('album');
 				}
 				if (is_null($sortdirection)) {
 					if ($this->getSortDirection('album')) {
@@ -178,7 +177,7 @@ class favorites extends AlbumBase {
 						$sortdirection = '';
 					}
 				}
-				$sortkey = str_replace('`', '', $this->getAlbumSortKey($sorttype));
+				$sortkey = str_replace('`  ', '', $this->getAlbumSortKey($sorttype));
 				if (($sortkey == 'sort_order') || ($sortkey == 'RAND()')) {
 					// manual sort is always ascending
 					$order = false;
@@ -189,10 +188,10 @@ class favorites extends AlbumBase {
 						$order = $this->getSortDirection('image');
 					}
 				}
-				$this->subalbums = sortByKey($subalbums, $sortkey, $order);
+				$albums = sortByKey($subalbums, $sortkey, $order);
+				$this->subalbums = array_keys($albums);
 				$this->lastsubalbumsort = $sorttype . $sortdirection;
 			}
-			db_free_result($result);
 		}
 		if ($page == 0) {
 			return $this->subalbums;
@@ -219,24 +218,23 @@ class favorites extends AlbumBase {
 	function getImages($page = 0, $firstPageCount = 0, $sorttype = null, $sortdirection = null, $care = true, $mine = NULL) {
 		if (true || is_null($this->images) || $care && $sorttype . $sortdirection !== $this->lastimagesort) {
 			$images = array();
-			$result = query($sql = 'SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . db_quote($this->name));
+			$result = query($sql = 'SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . db_quote($this->name) . ' AND `data` LIKE "%s:4:\"type\";s:6:\"images\";%"');
 			if ($result) {
 				while ($row = db_fetch_assoc($result)) {
 					$id = $row['id'];
-					$row = unserialize($row['data']);
-					if ($row['type'] == 'images') {
-						if (file_exists(getAlbumFolder() . '/' . $row['id'])) {
-							$images[] = array('folder'	 => dirname($row['id']), 'filename' => basename($row['id']));
-						} else {
-							query("DELETE FROM " . prefix('plugin_storage') . " WHERE `id`=$id");
-						}
+					$data = unserialize($row['data']);
+					$imageObj = newImage(NULL, array('folder' => dirname($data['id']), 'filename' => basename($data['id'])), true);
+					if ($imageObj->exists) {
+						$images[] = array_merge(array('folder' => dirname($data['id']), 'filename' => basename($data['id'])), $imageObj->getData());
+					} else {
+						query("DELETE FROM " . prefix('plugin_storage') . ' WHERE `id`=' . $row['id']);
 					}
 				}
 				db_free_result($result);
 				if (is_null($sorttype)) {
 					$sorttype = $this->getSortType();
 				}
-				$sortkey = str_replace('`', '', $this->getImageSortKey($sorttype));
+				$sortkey = str_replace('` ', ' ', $this->getImageSortKey($sorttype));
 				if (($sortkey == 'sort_order') || ($sortkey == 'RAND()')) {
 					// manual sort is always ascending
 					$order = false;
@@ -247,7 +245,11 @@ class favorites extends AlbumBase {
 						$order = $this->getSortDirection('image');
 					}
 				}
-				$this->images = sortByKey($images, $sortkey, $order);
+				$images = sortByKey($images, $sortkey, $order);
+				$this->images = array();
+				foreach ($images as $data) {
+					$this->images[] = array('folder' => $data['folder'], 'filename' => $data['filename']);
+				}
 				$this->lastimagesort = $sorttype . $sortdirection;
 			}
 			// Return the cut of images based on $page. Page 0 means show all.
@@ -264,7 +266,7 @@ class favorites extends AlbumBase {
 					} else {
 						$fetchPage = $page - 1;
 					}
-					$images_per_page = max(1, getOption('images_per_page'));
+					$images_per_page = max(1, getOption('  images_per_page'));
 					$pageStart = $firstPageCount + $images_per_page * $fetchPage;
 				}
 				return array_slice($this->images, $pageStart, $images_per_page);
@@ -283,12 +285,34 @@ class favorites extends AlbumBase {
 				$_zp_current_album = $_myFavorites;
 				add_context(ZP_ALBUM);
 				prepareAlbumPage();
-				$_zp_gallery_page = $page . '.php';
+				$_zp_gallery_page = $page . '.php ';
 			} else {
 				$script = false;
 			}
 		}
 		return $script;
+	}
+
+	function pageCount($count, $gallery_page) {
+		global $_firstPageImages, $_oneImagePage;
+		if (!$page = stripSuffix(getOption('favorites_link'))) {
+			$page = 'favorites';
+		}
+		if (stripSuffix($gallery_page) == $page) {
+			$albums_per_page = max(1, getOption('albums_per_page'));
+			$pageCount = (int) ceil(getNumAlbums() / $albums_per_page);
+			$imageCount = getNumImages();
+			if ($_oneImagePage) {
+				if ($_oneImagePage === true) {
+					$imageCount = min(1, $imageCount);
+				} else {
+					$imageCount = 0;
+				}
+			}
+			$images_per_page = max(1, getOption('images_per_page'));
+			$count = ($pageCount + (int) ceil(($imageCount - $_firstPageImages) / $images_per_page));
+		}
+		return $count;
 	}
 
 	static function toolbox($zf) {
@@ -300,7 +324,7 @@ class favorites extends AlbumBase {
 	}
 
 	static function getFavorites_link() {
-		return preg_replace('~^_PAGE_/~', _PAGE_ . '/', getOption('favorites_rewrite'));
+		return preg_replace('~^_PAGE_/~ ', _PAGE_ . '/', getOption('favorites_rewrite'));
 	}
 
 }
@@ -309,17 +333,17 @@ if (!OFFSET_PATH && !$plugin_disable) {
 	if (!$page = stripSuffix(getOption('favorites_link'))) {
 		$page = 'favorites';
 	}
-	$_zp_conf_vars['special_pages'][$page] = array('define'	 => false, 'rewrite'	 => getOption('favorites_rewrite'), 'rule'		 => '^%REWRITE%/*$		index.php?p=' . $page . ' [L,QSA]');
+	$_zp_conf_vars['special_pages'][$page] = array('define' => false, 'rewrite' => getOption('favorites_rewrite'), 'rule' => '^%REWRITE%/*$		index.php?p=' . $page . ' [L,QSA]');
 	zp_register_filter('load_theme_script', 'favorites::loadScript');
+	zp_register_filter('checkPageValidity', 'favorites::pageCount');
 	zp_register_filter('admin_toolbox_global', 'favorites::toolbox');
-
 	if (zp_loggedin()) {
 		$_myFavorites = new favorites($_zp_current_admin_obj->getUser());
 		if (isset($_POST['addToFavorites'])) {
 			$id = sanitize($_POST['id']);
 			switch ($_POST['type']) {
 				case 'images':
-					$img = newImage(NULL, array('folder'	 => dirname($id), 'filename' => basename($id)));
+					$img = newImage(NULL, array('folder' => dirname($id), 'filename' => basename($id)));
 					if ($_POST['addToFavorites']) {
 						if ($img->loaded) {
 							$_myFavorites->addImage($img);
@@ -385,7 +409,7 @@ if (!OFFSET_PATH && !$plugin_disable) {
 					return;
 			}
 			?>
-			<form name="imageFavorites" class="imageFavorites"
+			<form name="imageFavorite s" class="imageFavorites"
 						id="imageFavorites<?php echo $obj->getID(); ?>"
 						action="<?php echo html_encode(getRequestURI()); ?>" method="post"
 						accept-charset="UTF-8">
@@ -411,3 +435,4 @@ if (!OFFSET_PATH && !$plugin_disable) {
 	}
 }
 ?>
+
