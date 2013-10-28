@@ -435,4 +435,3 @@ if (!OFFSET_PATH && !$plugin_disable) {
 	}
 }
 ?>
-
