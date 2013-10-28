@@ -8,7 +8,7 @@ if (function_exists('printRegistrationForm')) {
 	<html>
 		<head>
 			<?php zp_apply_filter('theme_head'); ?>
-			<title><?php printBareGalleryTitle(); ?> | <?php echo gettext("Object not found"); ?></title>
+			<?php printHeadTitle(); ?>
 			<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" />

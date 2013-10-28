@@ -5,7 +5,7 @@ if (!defined('WEBPATH') || !class_exists('Zenpage')) die();
 <html>
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
-	<title><?php printGalleryTitle(); ?> | <?php echo gettext('News'); ?> <?php printNewsTitle(); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
+	<?php printHeadTitle(); ?>
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 	<?php if (class_exists('RSS')) printRSSHeaderLink("News","Zenpage news", ""); ?>
 </head>

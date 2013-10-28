@@ -9,7 +9,7 @@ if (function_exists('printRegistrationForm')) {
 	<html>
 		<head>
 			<?php zp_apply_filter('theme_head'); ?>
-			<title><?php printBareGalleryTitle(); ?></title>
+			<?php printHeadTitle(); ?>
 			<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 			<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . THEMEFOLDER; ?>/default/common.css" type="text/css" />

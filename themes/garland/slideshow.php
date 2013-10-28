@@ -5,7 +5,7 @@ if (!defined('WEBPATH')) die();
 <!DOCTYPE html>
 <html>
 <head>
-	<title><?php printBareGalleryTitle(); ?></title>
+	<?php printHeadTitle(); ?>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 	<?php zp_apply_filter('theme_head'); ?>

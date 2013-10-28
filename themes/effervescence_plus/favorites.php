@@ -10,10 +10,7 @@ $map = function_exists('printGoogleMap');
 <html>
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
-		<title><?php printBareGalleryTitle(); ?> | <?php printBareAlbumTitle();
-		if ($_zp_page > 1)
-			echo "[$_zp_page]";
-		?></title>
+		<?php printHeadTitle(); ?>
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	</head>
 

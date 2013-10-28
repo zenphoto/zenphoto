@@ -12,10 +12,7 @@ if (!defined('WEBPATH'))
 			setOption('image_custom_images', getOption('effervescence_daily_album_image_effect'), false);
 		}
 		?>
-		<title><?php printBareGalleryTitle();
-		if ($_zp_page > 1)
-			echo "[$_zp_page]";
-		?></title>
+		<?php printHeadTitle(); ?>
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 <?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', 'Gallery RSS'); ?>
 	</head>

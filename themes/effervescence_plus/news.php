@@ -8,7 +8,7 @@ if (!defined('WEBPATH') || !class_exists('Zenpage')) die();
 <html>
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
-	<title><?php printBareGalleryTitle(); ?> | <?php echo gettext('News'); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
+	<?php printHeadTitle(); ?>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<?php if (class_exists('RSS')) printRSSHeaderLink("News","Zenpage news", ""); ?>
 </head>

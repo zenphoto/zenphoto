@@ -8,7 +8,7 @@ if (!defined('WEBPATH')) die();
 <html>
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
-	<title><?php $mainsite = getMainSiteName(); echo (empty($mainsite))?gettext("Zenphoto gallery"):$mainsite; ?></title>
+	<?php printHeadTitle(); ?>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 </head>
 

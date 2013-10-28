@@ -6,7 +6,7 @@ if (!defined('WEBPATH')) die();
 <html>
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
-	<title><?php printBareGalleryTitle(); ?> &gt; <?php echo gettext("Object not found"); ?></title>
+	<?php printHeadTitle(); ?>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="<?php echo $_zp_themeroot ?>/css/master.css" />
 </head>
