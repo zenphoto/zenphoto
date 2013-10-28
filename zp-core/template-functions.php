@@ -744,21 +744,12 @@ function getPageURL($page, $total = null) {
 		$searchpagepath = getSearchURL($searchwords, $searchdate, $searchfields, $page, array('albums' => $_zp_current_search->getAlbumList()));
 		return $searchpagepath;
 	} else {
-		if (!in_array($_zp_gallery_page, array('index.php', 'album.php', 'image.php'))) {
-// handle custom page
-			$pg = stripSuffix($_zp_gallery_page);
-			$pagination1 = '/' . _PAGE_ . '/' . $pg;
-			$pagination2 = 'index.php?p=' . $pg;
-			if ($page > 1) {
-				$pagination1 .= '/' . $page;
-				$pagination2 .= '&page=' . $page;
-			}
-		} else {
+		if (in_array($_zp_gallery_page, array('index.php', 'album.php', 'image.php'))) {
 			if (in_context(ZP_ALBUM)) {
-				$pagination1 = pathurlencode($_zp_current_album->name);
+				$pagination1 = pathurlencode($_zp_current_album->name) . '/';
 				$pagination2 = 'index.php?album=' . pathurlencode($_zp_current_album->name);
 				if ($page > 1) {
-					$pagination1 .= '/' . _PAGE_ . '/' . $page;
+					$pagination1 .=_PAGE_ . '/' . $page;
 					$pagination2 .= '&page=' . $page;
 				}
 			} else {
@@ -772,6 +763,15 @@ function getPageURL($page, $total = null) {
 				} else {
 					return NULL;
 				}
+			}
+		} else {
+// handle custom page
+			$pg = stripSuffix($_zp_gallery_page);
+			$pagination1 = '/' . _PAGE_ . '/' . $pg . '/';
+			$pagination2 = 'index.php?p=' . $pg;
+			if ($page > 1) {
+				$pagination1 .= $page;
+				$pagination2 .= '&page=' . $page;
 			}
 		}
 		return rewrite_path($pagination1, $pagination2);
