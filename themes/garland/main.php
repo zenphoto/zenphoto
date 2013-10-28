@@ -5,7 +5,7 @@ if (!defined('WEBPATH')) die();
 <html>
 <head>
 <?php zp_apply_filter('theme_head'); ?>
-<title><?php printGalleryTitle(); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
+<?php printHeadTitle(); ?>
 <link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 <?php if (class_exists('RSS')) printRSSHeaderLink('Gallery',gettext('Gallery RSS')); ?>
 </head>

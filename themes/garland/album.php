@@ -9,11 +9,7 @@ $map = function_exists('printGoogleMap');
 		<?php
 		zp_apply_filter('theme_head');
 		?>
-		<title><?php printGalleryTitle(); ?> | <?php
-			echo html_encode(getAlbumTitle());
-			if ($_zp_page > 1)
-				echo "[$_zp_page]";
-			?></title>
+		<?php printHeadTitle(); ?>
 		<?php $handler->theme_head($_zp_themeroot); ?>
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 <?php if (class_exists('RSS')) printRSSHeaderLink('Album', getAlbumTitle()); ?>

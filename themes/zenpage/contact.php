@@ -9,7 +9,7 @@ if (function_exists('printContactForm')) {
 	<html>
 		<head>
 			<?php zp_apply_filter('theme_head'); ?>
-			<title><?php printBareGalleryTitle(); ?></title>
+			<?php printHeadTitle(); ?>
 			<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 		</head>

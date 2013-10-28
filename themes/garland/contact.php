@@ -7,7 +7,7 @@ if (function_exists('printContactForm')) {
 	<html>
 		<head>
 	<?php zp_apply_filter('theme_head'); ?>
-			<title><?php printGalleryTitle(); ?> | <?php echo gettext('Contact'); ?></title>
+			<?php printHeadTitle(); ?>
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 		</head>
 		<body class="sidebars">

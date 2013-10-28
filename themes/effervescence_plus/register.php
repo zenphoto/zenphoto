@@ -14,7 +14,7 @@ if (function_exists('printRegistrationForm')) {
 	<html>
 		<head>
 			<?php zp_apply_filter('theme_head'); ?>
-			<title><?php printBareGalleryTitle(); ?> | <?php echo gettext("Register"); ?></title>
+			<?php printHeadTitle(); ?>
 			<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 		</head>
 

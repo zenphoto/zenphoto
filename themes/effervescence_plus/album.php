@@ -9,14 +9,8 @@ $map = function_exists('printGoogleMap');
 <!DOCTYPE html>
 <html>
 	<head>
-		<?php
-		zp_apply_filter('theme_head');
-		?>
-		<title><?php printBareGalleryTitle(); ?> | <?php
-			printBareAlbumTitle();
-			if ($_zp_page > 1)
-				echo "[$_zp_page]";
-			?></title>
+		<?php zp_apply_filter('theme_head'); ?>
+		<?php printHeadTitle(); ?>
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 		<?php $handler->theme_head($_zp_themeroot); ?>
 	</head>

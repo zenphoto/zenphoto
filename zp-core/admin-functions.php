@@ -2724,21 +2724,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 	}
 
 	/**
-	 * Check if a file is a text file
-	 *
-	 * @param string $file
-	 * @param array $ok_extensions array of file extensions that are OK to edit (ie text files)
-	 * @return bool
-	 * @author Ozh
-	 * @since 1.3
-	 */
-	function isTextFile($file, $ok_extensions = array('css', 'php', 'js', 'txt', 'inc')) {
-		$path_info = pathinfo($file);
-		$ext = (isset($path_info['extension']) ? $path_info['extension'] : '');
-		return (!empty($ok_extensions) && (in_array($ext, $ok_extensions) ) );
-	}
-
-	/**
 	 * Check if a theme is editable (ie not a bundled theme)
 	 *
 	 * @param $theme theme to check
