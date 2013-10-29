@@ -838,7 +838,7 @@ echo "\n</head>";
 									</div>
 									<div class="subhead">
 										<label class="buttons" style="float: left">
-											<a href="admin-edit.php?page=edit&album=<?php echo html_encode(pathurlencode($album->name)); ?>&tab=subalbuminfo&showthumbs=<?php echo $thumbshow ?>" title="<?php echo gettext('Thumbnail generation may be time consuming on slow servers on when there are a lot of images.'); ?>">
+											<a href="admin-edit.php?page=edit&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;tab=subalbuminfo&amp;showthumbs=<?php echo $thumbshow ?>" title="<?php echo gettext('Thumbnail generation may be time consuming on slow servers on when there are a lot of images.'); ?>">
 												<?php echo $thumbmsg; ?>
 											</a>
 										</label>
