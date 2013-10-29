@@ -1118,7 +1118,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					</a>
 					<input type="text" value="" name="newtag_<?php echo $postit; ?>" id="newtag_<?php echo $postit; ?>" />
 				</span>
-
+			</div>
 				<?php
 			}
 			?>
@@ -1142,7 +1142,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 				generateUnorderedListFromArray(array(), $displaylist, $postit, false, !$mostused, $showCounts, 'checkTagsAuto');
 				?>
 			</ul>
-		</div>
 		<?php
 	}
 
