@@ -1385,11 +1385,7 @@ button.positive,.buttons a.positive {
 	float: left;
 }
 .new_tag {
-	padding: 0 0.2em 0 25px;
-	border-top:none;
-	border-left:none;
-	border-right:none;
-	border-bottom: 1px dotted #BAC9CF;
+	border:none;
 	text-decoration: none;
 	outline: none;
 	margin: 0;

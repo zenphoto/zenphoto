@@ -1087,7 +1087,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 				}
 			}
 		}
-		$hr = '';
 		if ($resizeable) {
 			$tagclass = 'resizeable_tagchecklist';
 			?>
@@ -1108,9 +1107,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 			$tagclass = 'tagchecklist';
 		}
 		if ($addnew) {
-			if (count($tags) == 0) {
-				$hr = '<li><hr /></li>';
-			}
 			?>
 			<span class="new_tag displayinline" >
 				<a href="javascript:addNewTag('<?php echo $postit; ?>');" title="<?php echo gettext('add tag'); ?>">
@@ -1125,7 +1121,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 		<div id="resizable_<?php echo $postit; ?>">
 			<ul id="list_<?php echo $postit; ?>" class="<?php echo $tagclass; ?>">
 				<?php
-				echo $hr;
 				if ($showCounts) {
 					$displaylist = array();
 					foreach ($them as $tag) {
