@@ -1088,40 +1088,41 @@ function printAdminHeader($tab, $subtab = NULL) {
 			}
 		}
 		$hr = '';
-		$tagclass = 'tagchecklist';
+		if ($resizeable) {
+			$tagclass = 'resizeable_tagchecklist';
+			?>
+			<script>
+				$(function() {
+					$("#resizable_<?php echo $postit; ?>").resizable({
+						maxWidth: 250,
+						minWidth: 250,
+						minHeight: 120,
+						resize: function(event, ui) {
+							$('#list_<?php echo $postit; ?>').height($('#resizable_<?php echo $postit; ?>').height());
+						}
+					});
+				});
+			</script>
+			<?php
+		} else {
+			$tagclass = 'tagchecklist';
+		}
 		if ($addnew) {
 			if (count($tags) == 0) {
 				$hr = '<li><hr /></li>';
 			}
-			if ($resizeable) {
-				$tagclass = 'resizeable_tagchecklist';
-				?>
-				<script>
-					$(function() {
-						$("#resizable_<?php echo $postit; ?>").resizable({
-							maxWidth: 250,
-							minWidth: 250,
-							minHeight: 120,
-							resize: function(event, ui) {
-								$('#list_<?php echo $postit; ?>').height($('#resizable_<?php echo $postit; ?>').height() - 20);
-							}
-						});
-					});
-				</script>
-				<?php
-			}
 			?>
-			<div id="resizable_<?php echo $postit; ?>">
-				<span class="new_tag displayinline" >
-					<a href="javascript:addNewTag('<?php echo $postit; ?>');" title="<?php echo gettext('add tag'); ?>">
-						<img src="images/add.png" title="<?php echo gettext('add tag'); ?>"/>
-					</a>
-					<input type="text" value="" name="newtag_<?php echo $postit; ?>" id="newtag_<?php echo $postit; ?>" />
-				</span>
+			<span class="new_tag displayinline" >
+				<a href="javascript:addNewTag('<?php echo $postit; ?>');" title="<?php echo gettext('add tag'); ?>">
+					<img src="images/add.png" title="<?php echo gettext('add tag'); ?>"/>
+				</a>
+				<input type="text" value="" name="newtag_<?php echo $postit; ?>" id="newtag_<?php echo $postit; ?>" />
+			</span>
 
-				<?php
-			}
-			?>
+			<?php
+		}
+		?>
+		<div id="resizable_<?php echo $postit; ?>">
 			<ul id="list_<?php echo $postit; ?>" class="<?php echo $tagclass; ?>">
 				<?php
 				echo $hr;
@@ -1293,13 +1294,13 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
 																onclick="passwordClear('<?php echo $suffix; ?>');
-																		togglePassword('<?php echo $suffix; ?>');" /><?php echo gettext('Show password'); ?></label>
+																				togglePassword('<?php echo $suffix; ?>');" /><?php echo gettext('Show password'); ?></label>
 								</td>
 								<td>
 									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
 												 onkeydown="passwordClear
-														 '<?php echo $suffix; ?>'
-																		 );"
+																 '<?php echo $suffix; ?>'
+																				 );"
 												 id="user_name<?php echo $suffix; ?>" name="user<?php echo $suffix; ?>"
 												 value="<?php echo $album->getUser(); ?>" />
 								</td>
@@ -1322,8 +1323,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 										<input type="password"
 													 id="pass<?php echo $suffix; ?>" name="pass<?php echo $suffix; ?>"
 													 onkeydown="passwordClear
-															 '<?php echo $suffix; ?>'
-																			 );"
+																	 '<?php echo $suffix; ?>'
+																					 );"
 													 onkeyup="passwordStrength('<?php echo $suffix; ?>');"
 													 value="<?php echo $x; ?>" />
 										<br />
@@ -1331,8 +1332,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 											<input type="password"
 														 id="pass_r<?php echo $suffix; ?>" name="pass_r<?php echo $suffix; ?>" disabled="disabled"
 														 onkeydown="passwordClear
-																 '<?php echo $suffix; ?>'
-																				 );"
+																		 '<?php echo $suffix; ?>'
+																						 );"
 														 onkeyup="passwordMatch('<?php echo $suffix; ?>');"
 														 value="<?php echo $x; ?>" />
 										</span>
@@ -1812,7 +1813,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						<label class="checkboxlabel">
 							<input type="radio" id="Delete-<?php echo $prefix; ?>" name="a-<?php echo $prefix; ?>MoveCopyRename" value="delete"
 										 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-												 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);" <?php echo $isPrimaryAlbum; ?> />
+													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);" <?php echo $isPrimaryAlbum; ?> />
 										 <?php echo gettext("Delete album"); ?>
 						</label>
 
@@ -4304,7 +4305,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 		}
 		?>
 		<select name="subpage" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
-								[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
+										[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
 							<?php
 							foreach ($rangeset as $page => $range) {
 								?>
