@@ -20,7 +20,7 @@ class getid3_lib
 			if ($hex) {
 				$returnstring .= str_pad(dechex(ord($string{$i})), 2, '0', STR_PAD_LEFT);
 			} else {
-				$returnstring .= ' '.(preg_match("#[\x20-\x7E]#", $string{$i}) ? $string{$i} : '¤');
+				$returnstring .= ' '.(preg_match("#[\x20-\x7E]#", $string{$i}) ? $string{$i} : 'Â¤');
 			}
 			if ($spaces) {
 				$returnstring .= ' ';
@@ -282,7 +282,6 @@ class getid3_lib
 				}
 			} else {
 				throw new Exception('ERROR: Cannot have signed integers larger than '.(8 * PHP_INT_SIZE).'-bits ('.strlen($byteword).') in self::BigEndian2Int()');
-				break;
 			}
 		}
 		return self::CastAsInt($intvalue);
@@ -382,7 +381,7 @@ class getid3_lib
 
 
 	public static function array_merge_clobber($array1, $array2) {
-		// written by kcØhireability*com
+		// written by kcÃ˜hireability*com
 		// taken from http://www.php.net/manual/en/function.array-merge-recursive.php
 		if (!is_array($array1) || !is_array($array2)) {
 			return false;
@@ -540,7 +539,7 @@ class getid3_lib
 	}
 
 
-	// Allan Hansen <ahØartemis*dk>
+	// Allan Hansen <ahÃ˜artemis*dk>
 	// self::md5_data() - returns md5sum for a file from startuing position to absolute end position
 	public static function hash_data($file, $offset, $end, $algorithm) {
 		static $tempdir = '';
@@ -634,7 +633,7 @@ class getid3_lib
 		}
 		if (is_readable($filename_source) && is_file($filename_source) && ($fp_src = fopen($filename_source, 'rb'))) {
 			if (($fp_dest = fopen($filename_dest, 'wb'))) {
-				if (fseek($fp_src, $offset, SEEK_SET) == 0) {
+				if (fseek($fp_src, $offset) == 0) {
 					$byteslefttowrite = $length;
 					while (($byteslefttowrite > 0) && ($buffer = fread($fp_src, min($byteslefttowrite, getID3::FREAD_BUFFER_SIZE)))) {
 						$byteswritten = fwrite($fp_dest, $buffer, $byteslefttowrite);
@@ -1209,16 +1208,21 @@ class getid3_lib
 								$newvaluelength = strlen(trim($value));
 								foreach ($ThisFileInfo['comments'][$tagname] as $existingkey => $existingvalue) {
 									$oldvaluelength = strlen(trim($existingvalue));
-									if (($newvaluelength > $oldvaluelength) && (substr(trim($value), 0, strlen($existingvalue)) == $existingvalue)) {
+									if ((strlen($existingvalue) > 10) && ($newvaluelength > $oldvaluelength) && (substr(trim($value), 0, strlen($existingvalue)) == $existingvalue)) {
 										$ThisFileInfo['comments'][$tagname][$existingkey] = trim($value);
-										break 2;
+										//break 2;
+										break;
 									}
 								}
 
 							}
 							if (is_array($value) || empty($ThisFileInfo['comments'][$tagname]) || !in_array(trim($value), $ThisFileInfo['comments'][$tagname])) {
 								$value = (is_string($value) ? trim($value) : $value);
-								$ThisFileInfo['comments'][$tagname][] = $value;
+								if (!is_numeric($key)) {
+									$ThisFileInfo['comments'][$tagname][$key] = $value;
+								} else {
+									$ThisFileInfo['comments'][$tagname][]     = $value;
+								}
 							}
 						}
 					}
