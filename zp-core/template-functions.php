@@ -4174,6 +4174,9 @@ function checkForGuest(&$hint = NULL, &$show = NULL) {
 function checkAccess(&$hint = NULL, &$show = NULL) {
 	global $_zp_current_album, $_zp_current_search, $_zp_gallery, $_zp_gallery_page,
 	$_zp_current_zenpage_page, $_zp_current_zenpage_news;
+	if (GALLERY_SECURITY != 'public') // only registered users allowed
+		$show = true; //	therefore they will need to supply their user id is something fails below
+
 	if ($_zp_gallery->isUnprotectedPage(stripSuffix($_zp_gallery_page)))
 		return true;
 	if (zp_loggedin()) {
@@ -4200,10 +4203,7 @@ function checkAccess(&$hint = NULL, &$show = NULL) {
 				break;
 		}
 	}
-	if (GALLERY_SECURITY != 'public') { // only registered users allowed
-		return false;
-	}
-	if ($access = checkForGuest($hint, $show)) {
+	if (GALLERY_SECURITY == 'public' && ($access = checkForGuest($hint, $show))) {
 		return $access; // public page or a guest is logged in
 	}
 	return false;
@@ -4268,6 +4268,7 @@ function printPasswordForm($_password_hint, $_password_showuser = NULL, $_passwo
 	if ($_zp_password_form_printed)
 		return;
 	$_zp_password_form_printed = true;
+
 	if (is_null($_password_redirect))
 		$_password_redirect = getPageRedirect();
 	?>

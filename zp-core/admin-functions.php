@@ -556,7 +556,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 *    OPTION_TYPE_COLOR_PICKER:     Color picker
 	 *    OPTION_TYPE_NOTE:             Places a note in the options area. The note will span all three columns
 	 *
-	 *    Types 0 and 3 support multi-lingual strings.
+	 *    Types 0 and 5 support multi-lingual strings.
 	 */
 	define('OPTION_TYPE_TEXTBOX', 0);
 	define('OPTION_TYPE_CHECKBOX', 1);
@@ -672,6 +672,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									print_language_string_list($v, $key, $type, NULL, $editor);
 								} else {
 									if ($type == OPTION_TYPE_TEXTAREA) {
+										$v = get_language_string($v); // just in case....
 										?>
 										<textarea id="<?php echo $key; ?>" name="<?php echo $key; ?>" cols="<?php echo TEXTAREA_COLUMNS; ?>"	style="width: 320px" rows="6"<?php echo $disabled; ?>><?php echo html_encode($v); ?></textarea>
 										<?php
@@ -1087,44 +1088,40 @@ function printAdminHeader($tab, $subtab = NULL) {
 				}
 			}
 		}
-		$hr = '';
-		$tagclass = 'tagchecklist';
-		if ($addnew) {
-			if (count($tags) == 0) {
-				$hr = '<li><hr /></li>';
-			}
-			if ($resizeable) {
-				$tagclass = 'resizeable_tagchecklist';
-				?>
-				<script>
-					$(function() {
-						$("#resizable_<?php echo $postit; ?>").resizable({
-							maxWidth: 250,
-							minWidth: 250,
-							minHeight: 120,
-							resize: function(event, ui) {
-								$('#list_<?php echo $postit; ?>').height($('#resizable_<?php echo $postit; ?>').height() - 20);
-							}
-						});
+		if ($resizeable) {
+			$tagclass = 'resizeable_tagchecklist';
+			?>
+			<script>
+				$(function() {
+					$("#resizable_<?php echo $postit; ?>").resizable({
+						maxWidth: 250,
+						minWidth: 250,
+						minHeight: 120,
+						resize: function(event, ui) {
+							$('#list_<?php echo $postit; ?>').height($('#resizable_<?php echo $postit; ?>').height());
+						}
 					});
-				</script>
-				<?php
-			}
+				});
+			</script>
+			<?php
+		} else {
+			$tagclass = 'tagchecklist';
+		}
+		if ($addnew) {
 			?>
-			<div id="resizable_<?php echo $postit; ?>">
-				<span class="new_tag displayinline" >
-					<a href="javascript:addNewTag('<?php echo $postit; ?>');" title="<?php echo gettext('add tag'); ?>">
-						<img src="images/add.png" title="<?php echo gettext('add tag'); ?>"/>
-					</a>
-					<input type="text" value="" name="newtag_<?php echo $postit; ?>" id="newtag_<?php echo $postit; ?>" />
-				</span>
+			<span class="new_tag displayinline" >
+				<a href="javascript:addNewTag('<?php echo $postit; ?>');" title="<?php echo gettext('add tag'); ?>">
+					<img src="images/add.png" title="<?php echo gettext('add tag'); ?>"/>
+				</a>
+				<input type="text" value="" name="newtag_<?php echo $postit; ?>" id="newtag_<?php echo $postit; ?>" />
+			</span>
 
-				<?php
-			}
-			?>
+			<?php
+		}
+		?>
+		<div id="resizable_<?php echo $postit; ?>">
 			<ul id="list_<?php echo $postit; ?>" class="<?php echo $tagclass; ?>">
 				<?php
-				echo $hr;
 				if ($showCounts) {
 					$displaylist = array();
 					foreach ($them as $tag) {
