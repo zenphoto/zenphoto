@@ -62,30 +62,30 @@ echo "\n</head>";
 
 <body>
 
-<?php
+	<?php
 // Create our album
-if (!isset($_GET['album'])) {
-	zp_error(gettext("No album provided to sort."));
-} else {
+	if (!isset($_GET['album'])) {
+		zp_error(gettext("No album provided to sort."));
+	} else {
 
-	// Layout the page
-	printLogoAndLinks();
-	?>
+		// Layout the page
+		printLogoAndLinks();
+		?>
 
 		<div id="main">
-		<?php printTabs(); ?>
+			<?php printTabs(); ?>
 
 
 			<div id="content">
-	<?php
-	zp_apply_filter('admin_note', 'albums', 'sort');
-	if ($album->getParent()) {
-		$link = getAlbumBreadcrumbAdmin($album);
-	} else {
-		$link = '';
-	}
-	$alb = removeParentAlbumNames($album);
-	?>
+				<?php
+				zp_apply_filter('admin_note', 'albums', 'sort');
+				if ($album->getParent()) {
+					$link = getAlbumBreadcrumbAdmin($album);
+				} else {
+					$link = '';
+				}
+				$alb = removeParentAlbumNames($album);
+				?>
 				<h1><?php printf(gettext('Edit Album: <em>%1$s%2$s</em>'), $link, $alb); ?></h1>
 				<?php
 				$images = $album->getImages();
@@ -100,26 +100,26 @@ if (!isset($_GET['album'])) {
 				?>
 
 				<div class="tabbox">
-				<?php
-				zp_apply_filter('admin_note', 'albums', 'imageinfo');
-				if (isset($_GET['saved'])) {
-					if (sanitize_numeric($_GET['saved'])) {
-						?>
+					<?php
+					zp_apply_filter('admin_note', 'albums', 'imageinfo');
+					if (isset($_GET['saved'])) {
+						if (sanitize_numeric($_GET['saved'])) {
+							?>
 							<div class="messagebox fade-message">
 								<h2><?php echo gettext("Image order saved"); ?></h2>
 							</div>
-			<?php
-		} else {
-			?>
+							<?php
+						} else {
+							?>
 							<div class="notebox fade-message">
 								<h2><?php echo gettext("Nothing changed"); ?></h2>
 							</div>
-			<?php
-		}
-	}
-	?>
+							<?php
+						}
+					}
+					?>
 					<form action="?page=edit&amp;album=<?php echo $album->getFolder(); ?>&amp;saved&amp;tab=sort" method="post" name="sortableListForm" id="sortableListForm">
-					<?php XSRFToken('save_sort'); ?>
+						<?php XSRFToken('save_sort'); ?>
 						<script type="text/javascript">
 							// <!-- <![CDATA[
 							function postSort(form) {
@@ -144,12 +144,20 @@ if (!isset($_GET['album'])) {
 						<p><?php echo gettext("Set the image order by dragging them to the positions you desire."); ?></p>
 
 						<div id="images">
-	<?php
-	$images = $album->getImages();
-	foreach ($images as $image) {
-		adminPrintImageThumb(newImage($album, $image));
-	}
-	?>
+							<?php
+							$images = $album->getImages();
+							foreach ($images as $imagename) {
+								$image = newImage($album, $imagename);
+								?>
+								<img class="imagethumb"
+										 id="id_<?php echo $image->getID(); ?>"
+										 src="<?php echo getAdminThumb($image, 'large'); ?>"
+										 alt="<?php echo html_encode($image->getTitle()); ?>"
+										 title="<?php echo html_encode($image->getTitle()) . ' (' . html_encode($image->getFileName()) . ')'; ?>"
+										 width="80" height="80"  />
+										 <?php
+									 }
+									 ?>
 						</div>
 						<br />
 
@@ -179,10 +187,10 @@ if (!isset($_GET['album'])) {
 
 		</div>
 
-	<?php
-	printAdminFooter();
-}
-?>
+		<?php
+		printAdminFooter();
+	}
+	?>
 
 </body>
 
