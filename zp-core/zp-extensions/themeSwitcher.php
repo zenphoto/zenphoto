@@ -18,33 +18,32 @@
  * @package plugins
  * @subpackage development
  */
-
-$plugin_is_filter = 98|CLASS_PLUGIN;
+$plugin_is_filter = 98 | CLASS_PLUGIN;
 $plugin_description = gettext('Allow a visitor to select the theme of the gallery.');
 $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'themeSwitcher';
 
 class themeSwitcher {
+
 	function __construct() {
 		global $_zp_gallery;
 		$themes = $_zp_gallery->getThemes();
-		foreach ($themes as $key=>$theme) {
-			setOptionDefault('themeSwitcher_theme_'.$key, 1);
-			$themelist[$key] = getOption('themeSwitcher_theme_'.$key);
+		foreach ($themes as $key => $theme) {
+			setOptionDefault('themeSwitcher_theme_' . $key, 1);
+			$themelist[$key] = getOption('themeSwitcher_theme_' . $key);
 		}
-		setOptionDefault('themeSwitcher_timeout', 60*2);
-		setOptionDefault('themeSwitcher_css',
-						".themeSwitcherControlLink {\n".
-						" position: fixed;\n".
-						" z-index: 10000;\n".
-						" left: 0px;\n".
-						" top: 0px;\n".
-						" border-bottom: 1px solid #444;\n".
-						" border-left: 1px solid #444;\n".
-						" color: black;\n".
-						" padding: 2px;\n".
-						" background-color: #f5f5f5;\n".
+		setOptionDefault('themeSwitcher_timeout', 60 * 2);
+		setOptionDefault('themeSwitcher_css', ".themeSwitcherControlLink {\n" .
+						" position: fixed;\n" .
+						" z-index: 10000;\n" .
+						" left: 0px;\n" .
+						" top: 0px;\n" .
+						" border-bottom: 1px solid #444;\n" .
+						" border-left: 1px solid #444;\n" .
+						" color: black;\n" .
+						" padding: 2px;\n" .
+						" background-color: #f5f5f5;\n" .
 						"}\n"
 		);
 		setOptionDefault('themeSwitcher_adminOnly', 1);
@@ -54,23 +53,25 @@ class themeSwitcher {
 		global $_zp_gallery;
 		$themes = $_zp_gallery->getThemes();
 		$list = array();
-		foreach ($themes as $key=>$theme) {
-			$list[$theme['name']] = 'themeSwitcher_theme_'.$key;
+		foreach ($themes as $key => $theme) {
+			$list[$theme['name']] = 'themeSwitcher_theme_' . $key;
 		}
-		$options = array(	gettext('Cookie duration') => array('key' => 'themeSwitcher_timeout', 'type' => OPTION_TYPE_TEXTBOX,
-																				'desc' => gettext('The time in minutes that the theme switcher cookie lasts.')),
-											gettext('Selector CSS') => array('key' => 'themeSwitcher_css', 'type' => OPTION_TYPE_TEXTAREA,
-																				'desc' => gettext('Change this box if you wish to style the theme switcher selector for your themes.')),
-											gettext('Private') => array('key' => 'themeSwitcher_adminOnly', 'type' => OPTION_TYPE_CHECKBOX,
-																				'desc' => gettext('Only users with <em>Themes</em> rights will see the selector if this is checked.')),
-											gettext('Theme list') => array('key' => 'themeSwitcher_list', 'type' => OPTION_TYPE_CHECKBOX_UL,
-																				'checkboxes' => $list,
-																				'desc' => gettext('These are the themes that may be selected among.'))
+		$options = array(gettext('Cookie duration') => array('key'	 => 'themeSwitcher_timeout', 'type' => OPTION_TYPE_TEXTBOX,
+										'desc' => gettext('The time in minutes that the theme switcher cookie lasts.')),
+						gettext('Selector CSS')		 => array('key'					 => 'themeSwitcher_css', 'type'				 => OPTION_TYPE_TEXTAREA,
+										'multilingual' => false,
+										'desc'				 => gettext('Change this box if you wish to style the theme switcher selector for your themes.')),
+						gettext('Private')				 => array('key'	 => 'themeSwitcher_adminOnly', 'type' => OPTION_TYPE_CHECKBOX,
+										'desc' => gettext('Only users with <em>Themes</em> rights will see the selector if this is checked.')),
+						gettext('Theme list')			 => array('key'				 => 'themeSwitcher_list', 'type'			 => OPTION_TYPE_CHECKBOX_UL,
+										'checkboxes' => $list,
+										'desc'			 => gettext('These are the themes that may be selected among.'))
 		);
 		return $options;
 	}
 
 	function handleOption($option, $currentValue) {
+
 	}
 
 	/**
@@ -94,7 +95,7 @@ class themeSwitcher {
 		if (getOption('themeSwitcher_css')) {
 			?>
 			<style type="text/css">
-				<?php echo zp_apply_filter('themeSwitcher_css',getOption('themeSwitcher_css')); ?>
+			<?php echo zp_apply_filter('themeSwitcher_css', getOption('themeSwitcher_css')); ?>
 			</style>
 			<?php
 		}
@@ -102,12 +103,12 @@ class themeSwitcher {
 		<script type="text/javascript">
 			// <!-- <![CDATA[
 			function switchTheme(reloc) {
-				window.location = reloc.replace(/%t/,$('#themeSwitcher').val());
+				window.location = reloc.replace(/%t/, $('#themeSwitcher').val());
 			}
 			// ]]> -->
 		</script>
 		<?php
-		$_themeSwitcherThemelist = zp_apply_filter('themeSwitcher_head',$_themeSwitcherThemelist);
+		$_themeSwitcherThemelist = zp_apply_filter('themeSwitcher_head', $_themeSwitcherThemelist);
 		return $css;
 	}
 
@@ -116,11 +117,11 @@ class themeSwitcher {
 	 * places a selector so a user may change thems
 	 * @param string $text link text
 	 */
-	static function controlLink($textIn=NULL) {
+	static function controlLink($textIn = NULL) {
 		global $_zp_gallery, $_themeSwitcherThemelist, $_zp_gallery_page;
 		if (self::active()) {
 			$themes = array();
-			foreach ($_zp_gallery->getThemes() as $theme=>$details) {
+			foreach ($_zp_gallery->getThemes() as $theme => $details) {
 				if ($_themeSwitcherThemelist[$theme]) {
 					if (getPlugin($_zp_gallery_page, $theme)) {
 						$themes[$details['name']] = $theme;
@@ -131,7 +132,7 @@ class themeSwitcher {
 			if (empty($text)) {
 				$text = gettext('Theme');
 			}
-			$reloc = pathurlencode(trim(preg_replace('~themeSwitcher=.*?&~','',getRequestURI().'&'),'?&'));
+			$reloc = pathurlencode(trim(preg_replace('~themeSwitcher=.*?&~', '', getRequestURI() . '&'), '?&'));
 			if (strpos($reloc, '?')) {
 				$reloc .= '&themeSwitcher=%t';
 			} else {
@@ -140,15 +141,15 @@ class themeSwitcher {
 			$theme = $_zp_gallery->getCurrentTheme();
 			?>
 			<span class="themeSwitcherControlLink">
-				 <span title="<?php echo gettext("Themes will not show in this list if selecting them would result in a 'not found' error."); ?>">
+				<span title="<?php echo gettext("Themes will not show in this list if selecting them would result in a 'not found' error."); ?>">
 					<?php echo $text; ?>
 					<select name="themeSwitcher" id="themeSwitcher" onchange="switchTheme('<?php echo html_encode($reloc); ?>')">
 						<?php generateListFromArray(array($theme), $themes, false, true); ?>
 					</select>
 				</span>
-				<?php zp_apply_filter('themeSwitcher_Controllink',$theme); ?>
+				<?php zp_apply_filter('themeSwitcher_Controllink', $theme); ?>
 			</span>
-		<?php
+			<?php
 		}
 		return $textIn;
 	}
@@ -166,13 +167,13 @@ class themeSwitcher {
 }
 
 $_themeSwitcherThemelist = array();
-foreach ($_zp_gallery->getThemes() as $__key=>$__theme) {
-	$_themeSwitcherThemelist[$__key] = getOption('themeSwitcher_theme_'.$__key);
+foreach ($_zp_gallery->getThemes() as $__key => $__theme) {
+	$_themeSwitcherThemelist[$__key] = getOption('themeSwitcher_theme_' . $__key);
 }
 unset($__key);
 unset($__theme);
 if (isset($_GET['themeSwitcher'])) {
-	zp_setCookie('themeSwitcher_theme', sanitize($_GET['themeSwitcher']),getOption('themeSwitcher_timeout')*60);
+	zp_setCookie('themeSwitcher_theme', sanitize($_GET['themeSwitcher']), getOption('themeSwitcher_timeout') * 60);
 }
 
 if (zp_getCookie('themeSwitcher_theme')) {
@@ -180,5 +181,4 @@ if (zp_getCookie('themeSwitcher_theme')) {
 }
 zp_register_filter('theme_head', 'themeSwitcher::head');
 zp_register_filter('theme_body_open', 'themeSwitcher::controlLink');
-
 ?>
