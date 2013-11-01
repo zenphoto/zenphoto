@@ -1497,9 +1497,9 @@ function getNewsPathNav($page) {
 		return getNewsArchivePath($_zp_post_date, $page);
 	}
 	if ($page) {
-		return rewrite_path('/' . _NEWS_ . '/' . $page, '?index.php?p=news' . '&page=' . $page);
+		return rewrite_path('/' . _NEWS_ . '/' . $page, '?index.php&p=news' . '&page=' . $page);
 	} else {
-		return rewrite_path('/' . _NEWS_, '?index.php?p=news');
+		return rewrite_path('/' . _NEWS_, '?index.php&p=news');
 	}
 }
 
