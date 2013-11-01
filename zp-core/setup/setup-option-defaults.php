@@ -194,7 +194,7 @@ setOptionDefault('albumimagesort', 'ID');
 setOptionDefault('albumimagedirection', 'DESC');
 setOptionDefault('cache_full_image', 0);
 setOptionDefault('custom_index_page', '');
-setOptionDefault('picture_of_the_day', serialize(array('day'			 => NULL, 'folder'	 => NULL, 'filename' => NULL)));
+setOptionDefault('picture_of_the_day', serialize(array('day' => NULL, 'folder' => NULL, 'filename' => NULL)));
 setOptionDefault('exact_tag_match', 0);
 
 setOptionDefault('EXIFMake', 1);
@@ -371,14 +371,13 @@ if (!isset($data['gallery_title'])) {
 	$data['gallery_title'] = getOption('gallery_title');
 	if (is_null($data['gallery_title'])) {
 		gettext($str = "Gallery");
-		$data['gallery_title'] = getAllTranslations($str);
+		$data['gallery_title'] = gettext("Gallery");
 	}
 }
 if (!isset($data['Gallery_description'])) {
 	$data['Gallery_description'] = getOption('Gallery_description');
 	if (is_null($data['Gallery_description'])) {
-		gettext($str = 'You can insert your Gallery description on the Admin Options Gallery tab.');
-		$data['Gallery_description'] = getAllTranslations($str);
+		$data['Gallery_description'] = gettext('You can insert your Gallery description on the Admin Options Gallery tab.');
 	}
 }
 if (!isset($data['gallery_password']))
@@ -441,6 +440,7 @@ if (!isset($data['image_publish'])) {
 }
 $data['unprotected_pages'] = serialize($unprotected);
 setOption('gallery_data', serialize($data));
+
 $_zp_gallery = new Gallery(); // insure we have the proper options instantiated
 
 /* TODO:enable on the 1.5 release

@@ -185,7 +185,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		// ]]> -->
 			</script>
 			<?php
-			zp_apply_filter('admin_head', NULL);
+			zp_apply_filter('admin_head');
 		}
 
 		function printSortableHead() {
@@ -224,40 +224,19 @@ function printAdminHeader($tab, $subtab = NULL) {
 		}
 
 		/**
-		 * Print the thumbnail for a particular Image.
-		 *
-		 * @param $image object The Image object whose thumbnail we want to display.
-		 * @param $class string Optional class attribute for the hyperlink.  Default is NULL.
-		 * @param $id	 string Optional id attribute for the hyperlink.  Default is NULL.
-		 * @param $bg
+		 * Print the html required to display the ZP logo and links in the top section of the admin page.
 		 *
 		 * @author Todd Papaioannou (lucky@luckyspin.org)
 		 * @since  1.0.0
 		 */
-		function adminPrintImageThumb($image) {
+		function printLogoAndLinks() {
+			global $_zp_current_admin_obj, $_zp_admin_tab, $_zp_admin_subtab, $_zp_gallery;
+			if ($_zp_admin_subtab) {
+				$subtab = '-' . $_zp_admin_subtab;
+			} else {
+				$subtab = '';
+			}
 			?>
-		<img class="imagethumb" id="id_<?php echo $image->getID(); ?>"
-				 src="<?php echo getAdminThumb($image, 'large'); ?>"
-				 alt="<?php echo html_encode($image->getTitle()); ?>"
-				 title="<?php echo html_encode($image->getTitle()) . ' (' . html_encode($image->getFileName()) . ')'; ?>"
-				 width="80" height="80"  />
-				 <?php
-			 }
-
-			 /**
-				* Print the html required to display the ZP logo and links in the top section of the admin page.
-				*
-				* @author Todd Papaioannou (lucky@luckyspin.org)
-				* @since  1.0.0
-				*/
-			 function printLogoAndLinks() {
-				 global $_zp_current_admin_obj, $_zp_admin_tab, $_zp_admin_subtab, $_zp_gallery;
-				 if ($_zp_admin_subtab) {
-					 $subtab = '-' . $_zp_admin_subtab;
-				 } else {
-					 $subtab = '';
-				 }
-				 ?>
 		<span id="administration">
 			<img id="logo" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/zen-logo.png"
 					 title="<?php echo sprintf(gettext('%1$s administration:%2$s%3$s'), html_encode($_zp_gallery->getTitle()), html_encode($_zp_admin_tab), html_encode($subtab)); ?>"
@@ -1290,13 +1269,13 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
 																onclick="passwordClear('<?php echo $suffix; ?>');
-																		togglePassword('<?php echo $suffix; ?>');" /><?php echo gettext('Show password'); ?></label>
+																				togglePassword('<?php echo $suffix; ?>');" /><?php echo gettext('Show password'); ?></label>
 								</td>
 								<td>
 									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
 												 onkeydown="passwordClear
-														 '<?php echo $suffix; ?>'
-																		 );"
+																 '<?php echo $suffix; ?>'
+																				 );"
 												 id="user_name<?php echo $suffix; ?>" name="user<?php echo $suffix; ?>"
 												 value="<?php echo $album->getUser(); ?>" />
 								</td>
@@ -1319,8 +1298,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 										<input type="password"
 													 id="pass<?php echo $suffix; ?>" name="pass<?php echo $suffix; ?>"
 													 onkeydown="passwordClear
-															 '<?php echo $suffix; ?>'
-																			 );"
+																	 '<?php echo $suffix; ?>'
+																					 );"
 													 onkeyup="passwordStrength('<?php echo $suffix; ?>');"
 													 value="<?php echo $x; ?>" />
 										<br />
@@ -1328,8 +1307,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 											<input type="password"
 														 id="pass_r<?php echo $suffix; ?>" name="pass_r<?php echo $suffix; ?>" disabled="disabled"
 														 onkeydown="passwordClear
-																 '<?php echo $suffix; ?>'
-																				 );"
+																		 '<?php echo $suffix; ?>'
+																						 );"
 														 onkeyup="passwordMatch('<?php echo $suffix; ?>');"
 														 value="<?php echo $x; ?>" />
 										</span>
@@ -1809,7 +1788,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						<label class="checkboxlabel">
 							<input type="radio" id="Delete-<?php echo $prefix; ?>" name="a-<?php echo $prefix; ?>MoveCopyRename" value="delete"
 										 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-												 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);" <?php echo $isPrimaryAlbum; ?> />
+													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);" <?php echo $isPrimaryAlbum; ?> />
 										 <?php echo gettext("Delete album"); ?>
 						</label>
 
@@ -4301,7 +4280,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 		}
 		?>
 		<select name="subpage" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
-								[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
+										[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
 							<?php
 							foreach ($rangeset as $page => $range) {
 								?>
