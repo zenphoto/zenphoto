@@ -144,7 +144,7 @@ $messages = '';
 
 $prefix = trim(prefix(), '`');
 
-if (isset($_REQUEST['backup']) && db_connect($_zp_conf_vars)) {
+if (isset($_REQUEST['backup'])) {
 	$compression_level = sanitize($_REQUEST['compress'], 3);
 	setOption('backup_compression', $compression_level);
 	if ($compression_level > 0) {
@@ -248,7 +248,7 @@ if (isset($_REQUEST['backup']) && db_connect($_zp_conf_vars)) {
 		</div>
 		';
 	}
-} else if (isset($_REQUEST['restore']) && db_connect($_zp_conf_vars)) {
+} else if (isset($_REQUEST['restore'])) {
 	$oldlibauth = Zenphoto_Authority::getVersion();
 	$errors = array(gettext('No backup set found.'));
 	if (isset($_REQUEST['backupfile'])) {
@@ -340,7 +340,7 @@ if (isset($_REQUEST['backup']) && db_connect($_zp_conf_vars)) {
 								}
 							}
 							if (array_search($key, $tables[$prefix . $table]) === false) {
-								//	Flag it if data will be lost
+//	Flag it if data will be lost
 								$missing_element[] = $table . '->' . $key;
 								unset($row[$key]);
 							} else {
@@ -478,9 +478,9 @@ if (isset($_GET['compression'])) {
 ?>
 
 <body>
-			<?php printLogoAndLinks(); ?>
+	<?php printLogoAndLinks(); ?>
 	<div id="main">
-			<?php printTabs(); ?>
+		<?php printTabs(); ?>
 		<div id="content">
 			<?php
 			if (!$_zp_current_admin_obj->reset) {
@@ -488,7 +488,7 @@ if (isset($_GET['compression'])) {
 			}
 			?>
 			<div class="tabbox">
-					<?php zp_apply_filter('admin_note', 'backkup', ''); ?>
+				<?php zp_apply_filter('admin_note', 'backkup', ''); ?>
 				<h1>
 					<?php
 					if ($_zp_current_admin_obj->reset) {
@@ -500,88 +500,81 @@ if (isset($_GET['compression'])) {
 				</h1>
 				<?php
 				echo $messages;
-				if (db_connect($_zp_conf_vars)) {
-					$compression_level = getOption('backup_compression');
-					?>
-					<p>
-	<?php printf(gettext("Database software <strong>%s</strong>"), DATABASE_SOFTWARE); ?><br />
-	<?php printf(gettext("Database name <strong>%s</strong>"), db_name()); ?><br />
-					<?php printf(gettext("Tables prefix <strong>%s</strong>"), trim(prefix(), '`')); ?>
-					</p>
-					<br />
-					<br />
-						<?php
-						if (!$_zp_current_admin_obj->reset) {
-							?>
-						<form name="backup_gallery" action="">
-		<?php XSRFToken('backup'); ?>
-							<input type="hidden" name="backup" value="true" />
-							<div class="buttons pad_button" id="dbbackup">
-								<button class="fixedwidth tooltip" type="submit" title="<?php echo gettext("Backup the tables in your database."); ?>">
-									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/burst.png" alt="" /> <?php echo gettext("Backup the Database"); ?>
-								</button>
-								<select name="compress">
-									<?php
-									for ($v = 0; $v <= 9; $v++) {
-										?>
-										<option value="<?php echo $v; ?>"<?php if ($compression_level == $v) echo ' selected="selected"'; ?>><?php echo $v; ?></option>
-			<?php
-		}
-		?>
-								</select> <?php echo gettext('Compression level'); ?>
-							</div>
-							<br class="clearall" />
-							<br class="clearall" />
-						</form>
-						<br />
-						<br />
-						<?php
-					}
-					$filelist = safe_glob(SERVERPATH . "/" . BACKUPFOLDER . '/*.zdb');
-					if (count($filelist) <= 0) {
-						echo gettext('You have not yet created a backup set.');
-					} else {
-						?>
-						<form name="restore_gallery" action="">
-								<?php XSRFToken('backup'); ?>
-								<?php echo gettext('Select the database restore file:'); ?>
-							<br />
-							<select id="backupfile" name="backupfile">
-		<?php generateListFromFiles('', SERVERPATH . "/" . BACKUPFOLDER, '.zdb', true); ?>
-							</select>
-							<input type="hidden" name="restore" value="true" />
-							<div class="buttons pad_button" id="dbrestore">
-								<button class="fixedwidth tooltip" type="submit" title="<?php echo gettext("Restore the tables in your database from a previous backup."); ?>">
-									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/redo.png" alt="" /> <?php echo gettext("Restore the Database"); ?>
-								</button>
-							</div>
-							<br class="clearall" />
-							<br class="clearall" />
-						</form>
-						<?php
-					}
-					?>
-					<?php
-				} else {
-					echo "<h3>" . gettext("database not connected") . "</h3>";
-					echo "<p>" . gettext("Check your configuration file to make sure you've got the right username, password, host, and database. If you haven't created the database yet, now would be a good time.");
-				}
-
-				echo '<p>';
-				if (!$_zp_current_admin_obj->reset) {
-					echo gettext('The backup facility creates database snapshots in the <code>backup</code> folder of your installation. These backups are named in according to the date and time the backup was taken. ' .
-									'The compression level goes from 0 (no compression) to 9 (maximum compression). Higher compression requires more processing and may not result in much space savings.');
-					echo '</p><p>';
-				}
-				echo gettext('You restore your database by selecting a backup and pressing the <em>Restore the Database</em> button.');
-				echo '</p><p class="notebox">' . gettext('<strong>Note:</strong> Each database table is emptied before the restore is attempted. After a successful restore the database will be in the same state as when the backup was created.');
-				echo '</p><p>';
-				echo gettext('Ideally a restore should be done only on the same version of Zenphoto on which the backup was created. If you are intending to upgrade, first do the restore on the version of Zenphoto you were running, then install the new Zenphoto. If this is not possible the restore can still be done, but if the database fields have changed between versions, data from changed fields will not be restored.');
-				echo '</p>'
+				$compression_level = getOption('backup_compression');
 				?>
+				<p>
+					<?php printf(gettext("Database software <strong>%s</strong>"), DATABASE_SOFTWARE); ?><br />
+					<?php printf(gettext("Database name <strong>%s</strong>"), db_name()); ?><br />
+					<?php printf(gettext("Tables prefix <strong>%s</strong>"), trim(prefix(), '`')); ?>
+				</p>
+				<br />
+				<br />
+				<?php
+				if (!$_zp_current_admin_obj->reset) {
+					?>
+					<form name="backup_gallery" action="">
+						<?php XSRFToken('backup'); ?>
+						<input type="hidden" name="backup" value="true" />
+						<div class="buttons pad_button" id="dbbackup">
+							<button class="fixedwidth tooltip" type="submit" title="<?php echo gettext("Backup the tables in your database."); ?>">
+								<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/burst.png" alt="" /> <?php echo gettext("Backup the Database"); ?>
+							</button>
+							<select name="compress">
+								<?php
+								for ($v = 0; $v <= 9; $v++) {
+									?>
+									<option value="<?php echo $v; ?>"<?php if ($compression_level == $v) echo ' selected="selected"'; ?>><?php echo $v; ?></option>
+									<?php
+								}
+								?>
+							</select> <?php echo gettext('Compression level'); ?>
+						</div>
+						<br class="clearall" />
+						<br class="clearall" />
+					</form>
+					<br />
+					<br />
+	<?php
+}
+$filelist = safe_glob(SERVERPATH . "/" . BACKUPFOLDER . '/*.zdb');
+if (count($filelist) <= 0) {
+	echo gettext('You have not yet created a backup set.');
+} else {
+	?>
+					<form name="restore_gallery" action="">
+					<?php XSRFToken('backup'); ?>
+						<?php echo gettext('Select the database restore file:'); ?>
+						<br />
+						<select id="backupfile" name="backupfile">
+	<?php generateListFromFiles('', SERVERPATH . "/" . BACKUPFOLDER, '.zdb', true); ?>
+						</select>
+						<input type="hidden" name="restore" value="true" />
+						<div class="buttons pad_button" id="dbrestore">
+							<button class="fixedwidth tooltip" type="submit" title="<?php echo gettext("Restore the tables in your database from a previous backup."); ?>">
+								<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/redo.png" alt="" /> <?php echo gettext("Restore the Database"); ?>
+							</button>
+						</div>
+						<br class="clearall" />
+						<br class="clearall" />
+					</form>
+	<?php
+}
+
+echo '<p>';
+if (!$_zp_current_admin_obj->reset) {
+	echo gettext('The backup facility creates database snapshots in the <code>backup</code> folder of your installation. These backups are named in according to the date and time the backup was taken. ' .
+					'The compression level goes from 0 (no compression) to 9 (maximum compression). Higher compression requires more processing and may not result in much space savings.');
+	echo '</p><p>';
+}
+echo gettext('You restore your database by selecting a backup and pressing the <em>Restore the Database</em> button.');
+echo '</p><p class="notebox">' . gettext('<strong>Note:</strong> Each database table is emptied before the restore is attempted. After a successful restore the database will be in the same state as when the backup was created.');
+echo '</p><p>';
+echo gettext('Ideally a restore should be done only on the same version of Zenphoto on which the backup was created. If you are intending to upgrade, first do the restore on the version of Zenphoto you were running, then install the new Zenphoto. If this is not possible the restore can still be done, but if the database fields have changed between versions, data from changed fields will not be restored.');
+echo '</p>'
+?>
 			</div>
 		</div><!-- content -->
 	</div><!-- main -->
 <?php printAdminFooter(); ?>
 </body>
-<?php echo "</html>"; ?>
+	<?php echo "</html>"; ?>
