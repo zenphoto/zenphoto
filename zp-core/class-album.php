@@ -208,7 +208,7 @@ class AlbumBase extends MediaObject {
 		if ($what == 'image') {
 			$this->set('sort_type', $sorttype);
 		} else {
-			$type = $this->set('subalbum_sort_type');
+			$this->set('subalbum_sort_type', $sorttype);
 		}
 	}
 
