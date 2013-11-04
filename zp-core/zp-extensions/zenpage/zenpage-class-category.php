@@ -284,7 +284,8 @@ class ZenpageCategory extends ZenpageRoot {
 				return $authType;
 			} else {
 				$user = $this->getUser();
-				$show = (!empty($user));
+				if (!empty($user))
+					$show = true;
 				$hint = $this->getPasswordHint();
 				return false;
 			}

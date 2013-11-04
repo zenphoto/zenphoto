@@ -3877,34 +3877,34 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 		<!-- search form -->
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<script type="text/javascript">
-		// <!-- <![CDATA[
-		var within = <?php echo (int) $within; ?>;
-		function search_(way) {
-			within = way;
-			if (way) {
-				$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+			// <!-- <![CDATA[
+			var within = <?php echo (int) $within; ?>;
+			function search_(way) {
+				within = way;
+				if (way) {
+					$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
 
-			} else {
-				lastsearch = '';
-				$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-			}
-			$('#search_input').val('');
-		}
-		$('#search_form').submit(function() {
-			if (within) {
-				var newsearch = $.trim($('#search_input').val());
-				if (newsearch.substring(newsearch.length - 1) == ',') {
-					newsearch = newsearch.substr(0, newsearch.length - 1);
-				}
-				if (newsearch.length > 0) {
-					$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
 				} else {
-					$('#search_input').val('<?php echo $searchwords; ?>');
+					lastsearch = '';
+					$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
 				}
+				$('#search_input').val('');
 			}
-			return true;
-		});
-		// ]]> -->
+			$('#search_form').submit(function() {
+				if (within) {
+					var newsearch = $.trim($('#search_input').val());
+					if (newsearch.substring(newsearch.length - 1) == ',') {
+						newsearch = newsearch.substr(0, newsearch.length - 1);
+					}
+					if (newsearch.length > 0) {
+						$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+					} else {
+						$('#search_input').val('<?php echo $searchwords; ?>');
+					}
+				}
+				return true;
+			});
+			// ]]> -->
 			</script>
 			<?php echo $prevtext; ?>
 			<div>
@@ -4104,12 +4104,14 @@ function checkForGuest(&$hint = NULL, &$show = NULL) {
 		return $authType;
 	if (in_context(ZP_SEARCH)) { // search page
 		$hash = getOption('search_password');
-		$show = (getOption('search_user') != '');
+		if (getOption('search_user') != '')
+			$show = true;
 		$hint = get_language_string(getOption('search_hint'));
 		$authType = 'zp_search_auth';
 		if (empty($hash)) {
 			$hash = $_zp_gallery->getPassword();
-			$show = $_zp_gallery->getUser() != '';
+			if ($_zp_gallery->getUser() != '')
+				$show = true;
 			$hint = $_zp_gallery->getPasswordHint();
 			$authType = 'zp_gallery_auth';
 		}
@@ -4125,12 +4127,14 @@ function checkForGuest(&$hint = NULL, &$show = NULL) {
 			return $authType;
 		} else {
 			$alb = newAlbum($album);
-			$show = $alb->getUser() != '';
+			if ($alb->getUser() != '')
+				$show = true;
 			return false;
 		}
 	} else { // other page
 		$hash = $_zp_gallery->getPassword();
-		$show = $_zp_gallery->getUser() != '';
+		if ($_zp_gallery->getUser() != '')
+			$show = true;
 		$hint = $_zp_gallery->getPasswordHint();
 		if (!empty($hash) && zp_getCookie('zp_gallery_auth') == $hash) {
 			return 'zp_gallery_auth';
@@ -4261,7 +4265,7 @@ function printPasswordForm($_password_hint, $_password_showuser = NULL, $_passwo
 		if ($_password_showProtected && !$_zp_login_error) {
 			?>
 			<p>
-				<?php echo gettext("The page you are trying to view is password protected."); ?>
+			<?php echo gettext("The page you are trying to view is password protected."); ?>
 			</p>
 			<?php
 		}
