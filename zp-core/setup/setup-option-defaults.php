@@ -354,10 +354,20 @@ setOptionDefault('fullsizeimage_watermark', getOption('fullimage_watermark'));
 
 $data = getOption('gallery_data');
 if ($data) {
-	$data = unserialize($data);
+	$data = getSerializedArray($data);
+	if (isset($data['Gallery_description'])) {
+		$data['Gallery_description'] = getSerializedArray($data['Gallery_description']);
+	}
+	if (isset($data['gallery_title'])) {
+		$data['gallery_title'] = getSerializedArray($data['gallery_title']);
+	}
+	if (isset($data['unprotected_pages'])) {
+		$data['unprotected_pages'] = getSerializedArray($data['unprotected_pages']);
+	}
 } else {
 	$data = array();
 }
+
 if (!isset($data['gallery_sortdirection'])) {
 	$data['gallery_sortdirection'] = (int) getOption('gallery_sortdirection');
 }
@@ -413,7 +423,7 @@ if (!isset($data['thumb_select_images']))
 if (!isset($data['unprotected_pages']))
 	$data['unprotected_pages'] = getOption('unprotected_pages');
 if ($data['unprotected_pages']) {
-	$unprotected = unserialize($data['unprotected_pages']);
+	$unprotected = $data['unprotected_pages'];
 } else {
 	setOptionDefault('gallery_page_unprotected_register', 1);
 	setOptionDefault('gallery_page_unprotected_contact', 1);
@@ -438,7 +448,7 @@ if (!isset($data['image_publish'])) {
 		$set = 1;
 	$data['image_publish'] = $set;
 }
-$data['unprotected_pages'] = serialize($unprotected);
+$data['unprotected_pages'] = $unprotected;
 setOption('gallery_data', serialize($data));
 
 $_zp_gallery = new Gallery(); // insure we have the proper options instantiated

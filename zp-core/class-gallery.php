@@ -28,10 +28,10 @@ class Gallery {
 		$this->albumdir = ALBUM_FOLDER_SERVERPATH;
 		$data = getOption('gallery_data');
 		if ($data) {
-			$this->data = unserialize($data);
+			$this->data = getSerializedArray($data);
 		}
 		if (isset($this->data['unprotected_pages'])) {
-			$pages = @unserialize($this->data['unprotected_pages']);
+			$pages = getSerializedArray($this->data['unprotected_pages']);
 			if (is_array($pages))
 				$this->unprotected_pages = $pages; //	protect against a failure
 		}

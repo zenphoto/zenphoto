@@ -2506,8 +2506,11 @@ class zpFunctions {
 	 * @param string $text
 	 */
 	static function tagURLs($text) {
-		if ($serial = preg_match('/^a:[0-9]+:{/', $text)) { //	serialized array
-			$text = unserialize($text);
+		if (is_string($text) && preg_match('/^a:[0-9]+:{/', $text)) { //	serialized array
+			$text = getSerializedArray($text);
+			$serial = true;
+		} else {
+			$serial = false;
 		}
 		if (is_array($text)) {
 			foreach ($text as $key => $textelement) {
@@ -2528,8 +2531,11 @@ class zpFunctions {
 	 * @return string
 	 */
 	static function unTagURLs($text) {
-		if ($serial = preg_match('/^a:[0-9]+:{/', $text)) { //	serialized array
+		if (is_string($text) && preg_match('/^a:[0-9]+:{/', $text)) { //	serialized array
 			$text = getSerializedArray($text);
+			$serial = true;
+		} else {
+			$serial = false;
 		}
 		if (is_array($text)) {
 			foreach ($text as $key => $textelement) {
@@ -2550,8 +2556,11 @@ class zpFunctions {
 	 * @return string
 	 */
 	static function updateImageProcessorLink($text) {
-		if ($serial = preg_match('/^a:[0-9]+:{/', $text)) { //	serialized array
+		if (is_string($text) && preg_match('/^a:[0-9]+:{/', $text)) { //	serialized array
 			$text = getSerializedArray($text);
+			$serial = true;
+		} else {
+			$serial = false;
 		}
 		if (is_array($text)) {
 			foreach ($text as $key => $textelement) {

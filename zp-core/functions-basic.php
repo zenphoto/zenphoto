@@ -182,7 +182,7 @@ define('LOCAL_CHARSET', $data);
 
 $data = getOption('gallery_data');
 if ($data) {
-	$data = unserialize($data);
+	$data = getSerializedArray($data);
 } else {
 	$data = array();
 }

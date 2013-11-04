@@ -224,8 +224,11 @@ echo "\n" . '<div id="content">';
 	 * @return mixed
 	 */
 	function updateCacheFolder($text, $target, $update) {
-		if ($serial = preg_match('/^a:[0-9]+:{/', $text)) { //	serialized array
+		if (is_string($text) && preg_match('/^a:[0-9]+:{/', $text)) { //	serialized array
 			$text = getSerializedArray($text);
+			$serial = true;
+		} else {
+			$serial = false;
 		}
 		if (is_array($text)) {
 			foreach ($text as $key => $textelement) {

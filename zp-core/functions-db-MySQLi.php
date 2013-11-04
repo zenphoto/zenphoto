@@ -43,7 +43,7 @@ function db_connect($config, $errorstop = true) {
 	}
 	$_zp_DB_details = $config;
 	if (array_key_exists('UTF-8', $config) && $config['UTF-8']) {
-		@$_zp_DB_connection->query("SET NAMES 'utf8'");
+		$_zp_DB_connection->set_charset("utf8");
 	}
 	// set the sql_mode to relaxed (if possible)
 	@$_zp_DB_connection->query('SET SESSION sql_mode="";');
@@ -222,7 +222,7 @@ function db_software() {
 	global $_zp_DB_connection;
 	$dbversion = trim(@$_zp_DB_connection->get_server_info());
 	preg_match('/[0-9,\.]*/', $dbversion, $matches);
-	return array('application'	 => DATABASE_SOFTWARE, 'required'		 => DATABASE_MIN_VERSION, 'desired'			 => DATABASE_DESIRED_VERSION, 'version'			 => $matches[0]);
+	return array('application' => DATABASE_SOFTWARE, 'required' => DATABASE_MIN_VERSION, 'desired' => DATABASE_DESIRED_VERSION, 'version' => $matches[0]);
 }
 
 /**
@@ -325,7 +325,7 @@ function db_truncate_table($table) {
 }
 
 function db_LIKE_escape($str) {
-	return strtr($str, array('_'	 => '\\_', '%'	 => '\\%'));
+	return strtr($str, array('_' => '\\_', '%' => '\\%'));
 }
 
 function db_free_result($result) {

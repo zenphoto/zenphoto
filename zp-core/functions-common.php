@@ -517,6 +517,9 @@ function zp_clearCookie($name, $path = NULl, $secure = false) {
  * @return array
  */
 function getSerializedArray($string) {
+	if (is_array($string)) {
+		return $string;
+	}
 	if (preg_match('/^a:[0-9]+:{/', $string)) {
 		$r = @unserialize($string);
 		if ($r) {
