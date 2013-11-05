@@ -137,52 +137,50 @@ printTabs();
 		<h1><?php echo $title; ?></h1>
 		<?php
 		if (isset($_GET['refresh'])) {
-		if (empty($imageid)) {
-		?>
-		<h3><?php echo $finished; ?></h3>
-		<p><?php echo gettext('you should return automatically. If not press: '); ?></p>
-		<p><a href="<?php echo $backurl; ?>">&laquo; <?php echo gettext('Back'); ?></a></p>
-		<?php
+			if (empty($imageid)) {
+				?>
+				<h3><?php echo $finished; ?></h3>
+				<p><?php echo gettext('you should return automatically. If not press: '); ?></p>
+				<p><a href="<?php echo $backurl; ?>">&laquo; <?php echo gettext('Back'); ?></a></p>
+				<?php
+			} else {
+				?>
+				<h3><?php echo $incomplete; ?></h3>
+				<p><?php echo gettext('This process should continue automatically. If not press: '); ?></p>
+				<p><a href="<?php echo $redirecturl; ?>" title="<?php echo $continue; ?>" style="font-size: 15pt; font-weight: bold;">
+						<?php echo gettext("Continue!"); ?></a>
+				</p>
+				<?php
+			}
 		} else {
-		?>
-		<h3><?php echo $incomplete; ?></h3>
-		<p><?php echo gettext('This process should continue automatically. If not press: '); ?></p>
-		<p><a href="<?php echo $redirecturl; ?>" title="<?php echo $continue; ?>" style="font-size: 15pt; font-weight: bold;">
-				<?php echo gettext("Continue!"); ?></a>
-		</p>
-		<?php
+			if ($type !== 'prune&amp;') {
+				if (!empty($id)) {
+					$sql = "UPDATE " . prefix('albums') . " SET `mtime`=0" . ($_zp_gallery->getAlbumUseImagedate() ? ", `date`=NULL" : '') . " WHERE `id`=$id";
+					query($sql);
+				}
+				$sql = "UPDATE " . prefix('albums') . " SET `mtime`=0 $albumwhere";
+				query($sql);
+				$sql = "UPDATE " . prefix('images') . " SET `mtime`=0 $imagewhere;";
+				query($sql);
+			}
+			if (!empty($folder) && empty($id)) {
+				echo "<p> " . sprintf(gettext("<em>%s</em> not found"), $folder) . "</p>";
+			} else {
+				if (empty($r)) {
+					echo "<p>" . $allset . "</p>";
+				} else {
+					echo "<p>" . sprintf(gettext("We're all set to refresh the metadata for <em>%s</em>"), $r) . "</p>";
+				}
+				echo '<p>' . gettext('This process should start automatically. If not press: ') . '</p>';
+				?>
+				<p><a href="<?php echo $starturl . '&amp;XSRFToken=' . getXSRFToken('refresh'); ?>"
+							title="<?php echo gettext("Refresh image metadata."); ?>" style="font-size: 15pt; font-weight: bold;">
+						<?php echo gettext("Go!"); ?></a>
+				</p>
+				<?php
+			}
 		}
-		} else {
-		if ($type !== 'prune&amp;') {
-		if (!empty($id)) {
-		$sql = "UPDATE " . prefix('albums') . " SET `mtime`=0" . ($_zp_gallery->getAlbumUseImagedate() ? ", `date`=NULL" : '') . " WHERE `id`=$id";
-		query($sql);
-		}
-		$sql = "UPDATE " . prefix('albums') . " SET `mtime`=0 $albumwhere";
-		query($sql);
-		$sql = "UPDATE " . prefix('images') . " SET `mtime`=0 $imagewhere;";
-		query($sql);
-		}
-		if (!empty($folder) && empty($id)) {
-		echo "<p> " . sprintf(gettext("<em>%s</em> not found"), $folder) . "</p>";
-		} else {
-		if (empty($r)) {
-		echo "<p>" . $allset . "</p>";
-		} else {
-		echo "<p>" . sprintf(gettext("We're all set to refresh the metadata for <em>%s</em>"), $r) . "</p>";
-		}
-		echo '<p>' . gettext('This process should start automatically. If not press: ') . '</p>';
-		?>
-		<p><a href="<?php echo $starturl . '&amp;XSRFToken=' . getXSRFToken('refresh'); ?>"
-					title="<?php echo gettext("Refresh image metadata."); ?>" style="font-size: 15pt; font-weight: bold;">
-				<?php echo gettext("Go!"); ?></a>
-		</p>
-		<?php
-		}
-		} else {
-			echo "<h3>" . gettext("database not connected") . "</h3>";
-			echo "<p>" . gettext("Check your configuration file to make sure you've got the right username, password, host, and database. If you haven't created the database yet, now would be a good time.");
-		}
+
 		echo "\n" . '</div>';
 		echo "\n" . '</div>';
 		echo "\n" . '</div>';

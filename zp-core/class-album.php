@@ -1149,7 +1149,7 @@ class Album extends AlbumBase {
 			$page = $_zp_page;
 		}
 		$rewrite = pathurlencode($this->linkname) . '/';
-		$plain = '/index.php?album=' . pathurlencode($this->name) . '/';
+		$plain = '/index.php?album=' . pathurlencode($this->name);
 		if ($page > 1) {
 			$rewrite .= _PAGE_ . '/' . $page;
 			$plain .= "&page=$page";
