@@ -1080,7 +1080,7 @@ Zenphoto_Authority::printPasswordFormJS();
 														 id="user_name"  name="user"
 														 value="<?php echo html_encode($_zp_gallery->getUser()); ?>" />
 											<br />
-											<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear(''); togglePassword('');"><?php echo gettext('Show password'); ?></label>
+											<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear(''); togglePassword('');" /><?php echo gettext('Show password'); ?></label>
 										</td>
 										<td>
 											<?php echo gettext("User ID for the gallery guest user") ?>
@@ -1241,7 +1241,7 @@ Zenphoto_Authority::printPasswordFormJS();
 												<td colspan="2">
 													<span id="customTextBox2" class="customText" style="display:<?php echo $dspc; ?>">
 														<?php echo gettext('custom fields:') ?>
-														<input id="customalbumsort" name="customalbumsort" type="text" value="<?php echo html_encode($cvt); ?>"></input>
+														<input id="customalbumsort" name="customalbumsort" type="text" value="<?php echo html_encode($cvt); ?>" />
 													</span>
 												</td>
 											</tr>
@@ -1404,7 +1404,7 @@ Zenphoto_Authority::printPasswordFormJS();
 														 id="user_name"  name="user"
 														 value="<?php echo html_encode(getOption('search_user')); ?>" />
 											<br />
-											<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear(''); togglePassword('');"><?php echo gettext('Show password'); ?></label>
+											<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear(''); togglePassword('');" /><?php echo gettext('Show password'); ?></label>
 										</td>
 										<td>
 											<?php echo gettext("User ID for the search guest user") ?>
@@ -1629,7 +1629,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										<span id="customTextBox3" class="customText" style="display:<?php echo $dspc; ?>">
 											<br />
 											<?php echo gettext('custom fields:') ?>
-											<input id="customimagesort" name="customimagesort" type="text" value="<?php echo html_encode($cvt); ?>"></input>
+											<input id="customimagesort" name="customimagesort" type="text" value="<?php echo html_encode($cvt); ?>" />
 										</span>
 
 									</td>
@@ -2018,7 +2018,7 @@ Zenphoto_Authority::printPasswordFormJS();
 																	 id="user_name"  name="user"
 																	 value="<?php echo html_encode(getOption('protected_image_user')); ?>" />
 														<br />
-														<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear(''); togglePassword('');"><?php echo gettext('Show password'); ?></label>
+														<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear(''); togglePassword('');" /><?php echo gettext('Show password'); ?></label>
 													</td>
 												</tr>
 												<tr class="passwordextrahide" style="display:none" >
@@ -2424,8 +2424,8 @@ Zenphoto_Authority::printPasswordFormJS();
 													$combined = $separate = ' disabled="disabled"';
 												}
 												?>
-												<label><input type="radio" name="thumb_transition" value="1"<?php echo $separate; ?>><?php echo gettext('separate'); ?></input></label>
-												<label><input type="radio" name="thumb_transition" value="2"<?php echo $combined; ?>><?php echo gettext('combined'); ?></input></label>
+												<label><input type="radio" name="thumb_transition" value="1"<?php echo $separate; ?> /><?php echo gettext('separate'); ?></label>
+												<label><input type="radio" name="thumb_transition" value="2"<?php echo $combined; ?> /><?php echo gettext('combined'); ?></label>
 											</span>
 										</td>
 										<td><?php echo gettext('if both album and image <em>thumbnails per row</em> are greater than 1 you can choose if album thumbnails and image thumbnails are placed together on the page that transitions from only album thumbnails to only image thumbnails.'); ?></td>
