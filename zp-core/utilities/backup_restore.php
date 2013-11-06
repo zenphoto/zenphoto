@@ -143,6 +143,7 @@ echo '</head>';
 $messages = '';
 
 $prefix = trim(prefix(), '`');
+$prefixLen = strlen($prefix);
 
 if (isset($_REQUEST['backup'])) {
 	$compression_level = sanitize($_REQUEST['compress'], 3);
@@ -259,7 +260,6 @@ if (isset($_REQUEST['backup'])) {
 		if (file_exists($filename)) {
 			$handle = fopen($filename, 'r');
 			if ($handle !== false) {
-				$prefix = trim(prefix(), '`');
 				$resource = db_show('tables');
 				if ($resource) {
 					$result = array();
@@ -279,7 +279,7 @@ if (isset($_REQUEST['backup'])) {
 						$table = array_shift($row);
 						$tables[$table] = array();
 						$table_cleared[$table] = false;
-						$result2 = db_list_fields(str_replace($prefix, '', $table));
+						$result2 = db_list_fields(substr($table, $prefixLen));
 						if (is_array($result2)) {
 							foreach ($result2 as $row) {
 								$tables[$table][] = $row['Field'];
@@ -553,7 +553,7 @@ if (isset($_GET['compression'])) {
 	<?php echo gettext('Select the database restore file:'); ?>
 						<br />
 						<select id="backupfile" name="backupfile">
-	<?php generateListFromFiles('', SERVERPATH . "/" . BACKUPFOLDER, '.zdb', true); ?>
+							<?php generateListFromFiles('', SERVERPATH . "/" . BACKUPFOLDER, '.zdb', true); ?>
 						</select>
 						<input type="hidden" name="restore" value="true" />
 						<div class="buttons pad_button" id="dbrestore">
@@ -582,6 +582,6 @@ if (isset($_GET['compression'])) {
 			</div>
 		</div><!-- content -->
 	</div><!-- main -->
-<?php printAdminFooter(); ?>
+	<?php printAdminFooter(); ?>
 </body>
 <?php echo "</html>"; ?>
