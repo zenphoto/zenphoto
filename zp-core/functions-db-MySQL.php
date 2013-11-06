@@ -63,7 +63,7 @@ function query($sql, $errorstop = true) {
 		return $result;
 	}
 	if ($errorstop) {
-		$sql = str_replace($_zp_DB_details['mysql_prefix'], '[' . gettext('prefix') . ']', $sql);
+		$sql = str_replace('`' . $_zp_DB_details['mysql_prefix'], '`[' . gettext('prefix') . ']', $sql);
 		$sql = str_replace($_zp_DB_details['mysql_database'], '[' . gettext('DB') . ']', $sql);
 		trigger_error(sprintf(gettext('%1$s Error: ( %2$s ) failed. %1$s returned the error %3$s'), DATABASE_SOFTWARE, $sql, db_error()), E_USER_ERROR);
 	}

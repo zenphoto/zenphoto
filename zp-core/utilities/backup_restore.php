@@ -143,6 +143,7 @@ echo '</head>';
 $messages = '';
 
 $prefix = trim(prefix(), '`');
+$prefixLen = strlen($prefix);
 
 if (isset($_REQUEST['backup'])) {
 	$compression_level = sanitize($_REQUEST['compress'], 3);
@@ -259,8 +260,6 @@ if (isset($_REQUEST['backup'])) {
 		if (file_exists($filename)) {
 			$handle = fopen($filename, 'r');
 			if ($handle !== false) {
-				$prefix = trim($prefix);
-				$prefixLen = strlen($prefix);
 				$resource = db_show('tables');
 				if ($resource) {
 					$result = array();

@@ -1,9 +1,9 @@
 <?php
+
 /**
  * database core functions for PDO implementations
  * @package core
  */
-
 // force UTF-8 Ø
 
 /**
@@ -13,18 +13,18 @@
  * @return results of the sql statements
  * @since 0.6
  */
-function query($sql, $errorstop=true) {
+function query($sql, $errorstop = true) {
 	global $_zp_DB_connection, $_zp_DB_last_result, $_zp_DB_details;
 	$_zp_DB_last_result = false;
 	try {
 		$_zp_DB_last_result = $_zp_DB_connection->query($sql);
-	} catch(PDOException $e) {
+	} catch (PDOException $e) {
 		$_zp_DB_last_result = false;
 	}
 	if (!$_zp_DB_last_result && $errorstop) {
-		$sql = str_replace($_zp_DB_details['mysql_prefix'], '['.gettext('prefix').']',$sql);
-		$sql = str_replace($_zp_DB_details['mysql_database'], '['.gettext('DB').']',$sql);
-		trigger_error(sprintf(gettext('%1$s Error: ( %2$s ) failed. %1$s returned the error %3$s'),DATABASE_SOFTWARE,$sql,db_error()), E_USER_ERROR);
+		$sql = str_replace('`' . $_zp_DB_details['mysql_prefix'], '`[' . gettext('prefix') . ']', $sql);
+		$sql = str_replace($_zp_DB_details['mysql_database'], '[' . gettext('DB') . ']', $sql);
+		trigger_error(sprintf(gettext('%1$s Error: ( %2$s ) failed. %1$s returned the error %3$s'), DATABASE_SOFTWARE, $sql, db_error()), E_USER_ERROR);
 	}
 	return $_zp_DB_last_result;
 }
@@ -37,7 +37,7 @@ function query($sql, $errorstop=true) {
  * @return results of the sql statements
  * @since 0.6
  */
-function query_single_row($sql, $errorstop=true) {
+function query_single_row($sql, $errorstop = true) {
 	$result = query($sql, $errorstop);
 	if ($result) {
 		$row = db_fetch_assoc($result);
@@ -56,7 +56,7 @@ function query_single_row($sql, $errorstop=true) {
  * @return results of the sql statements
  * @since 0.6
  */
-function query_full_array($sql, $errorstop=true, $key=NULL) {
+function query_full_array($sql, $errorstop = true, $key = NULL) {
 	$result = query($sql, $errorstop);
 	if ($result) {
 		$allrows = array();
@@ -76,7 +76,6 @@ function query_full_array($sql, $errorstop=true, $key=NULL) {
 	}
 }
 
-
 /**
  * sqlite_real_escape_string standin that insures the DB connection is passed.
  *
@@ -91,6 +90,7 @@ function db_quote($string) {
 /*
  * returns the insert id of the last database insert
  */
+
 function db_insert_id() {
 	global $_zp_DB_connection;
 	return $_zp_DB_connection->lastInsertId();
@@ -99,6 +99,7 @@ function db_insert_id() {
 /*
  * Fetch a result row as an associative array
  */
+
 function db_fetch_assoc($resource) {
 	if (is_object($resource)) {
 		return $resource->fetch(PDO::FETCH_ASSOC);
@@ -109,19 +110,21 @@ function db_fetch_assoc($resource) {
 /*
  * Returns the text of the error message from previous operation
  */
+
 function db_error() {
 	global $_zp_DB_connection;
 	if (is_object($_zp_DB_connection)) {
 		$msgs = $_zp_DB_connection->errorInfo();
 		return $msgs[2];
 	} else {
-		return sprintf(gettext('%s not connected'),DATABASE_SOFTWARE);
+		return sprintf(gettext('%s not connected'), DATABASE_SOFTWARE);
 	}
 }
 
 /*
  * Get number of affected rows in previous operation
  */
+
 function db_affected_rows() {
 	global $_zp_DB_last_result;
 	if (is_object($_zp_DB_last_result)) {
@@ -134,6 +137,7 @@ function db_affected_rows() {
 /*
  * Get a result row as an enumerated array
  */
+
 function db_fetch_row($result) {
 	if (is_object($result)) {
 		return $result->fetch(PDO::FETCH_NUM);
@@ -144,6 +148,7 @@ function db_fetch_row($result) {
 /*
  * Get number of rows in result
  */
+
 function db_num_rows($result) {
 	if (is_array($result)) {
 		return count($result);
