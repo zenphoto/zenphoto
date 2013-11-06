@@ -259,7 +259,8 @@ if (isset($_REQUEST['backup'])) {
 		if (file_exists($filename)) {
 			$handle = fopen($filename, 'r');
 			if ($handle !== false) {
-				$prefix = trim(prefix(), '`');
+				$prefix = trim($prefix);
+				$prefixLen = strlen($prefix);
 				$resource = db_show('tables');
 				if ($resource) {
 					$result = array();
@@ -279,7 +280,7 @@ if (isset($_REQUEST['backup'])) {
 						$table = array_shift($row);
 						$tables[$table] = array();
 						$table_cleared[$table] = false;
-						$result2 = db_list_fields(str_replace($prefix, '', $table));
+						$result2 = db_list_fields(substr($table, $prefixLen));
 						if (is_array($result2)) {
 							foreach ($result2 as $row) {
 								$tables[$table][] = $row['Field'];
@@ -534,19 +535,19 @@ if (isset($_GET['compression'])) {
 					</form>
 					<br />
 					<br />
-	<?php
-}
-$filelist = safe_glob(SERVERPATH . "/" . BACKUPFOLDER . '/*.zdb');
-if (count($filelist) <= 0) {
-	echo gettext('You have not yet created a backup set.');
-} else {
-	?>
+					<?php
+				}
+				$filelist = safe_glob(SERVERPATH . "/" . BACKUPFOLDER . '/*.zdb');
+				if (count($filelist) <= 0) {
+					echo gettext('You have not yet created a backup set.');
+				} else {
+					?>
 					<form name="restore_gallery" action="">
-					<?php XSRFToken('backup'); ?>
+						<?php XSRFToken('backup'); ?>
 						<?php echo gettext('Select the database restore file:'); ?>
 						<br />
 						<select id="backupfile" name="backupfile">
-	<?php generateListFromFiles('', SERVERPATH . "/" . BACKUPFOLDER, '.zdb', true); ?>
+							<?php generateListFromFiles('', SERVERPATH . "/" . BACKUPFOLDER, '.zdb', true); ?>
 						</select>
 						<input type="hidden" name="restore" value="true" />
 						<div class="buttons pad_button" id="dbrestore">
@@ -557,24 +558,24 @@ if (count($filelist) <= 0) {
 						<br class="clearall" />
 						<br class="clearall" />
 					</form>
-	<?php
-}
+					<?php
+				}
 
-echo '<p>';
-if (!$_zp_current_admin_obj->reset) {
-	echo gettext('The backup facility creates database snapshots in the <code>backup</code> folder of your installation. These backups are named in according to the date and time the backup was taken. ' .
-					'The compression level goes from 0 (no compression) to 9 (maximum compression). Higher compression requires more processing and may not result in much space savings.');
-	echo '</p><p>';
-}
-echo gettext('You restore your database by selecting a backup and pressing the <em>Restore the Database</em> button.');
-echo '</p><p class="notebox">' . gettext('<strong>Note:</strong> Each database table is emptied before the restore is attempted. After a successful restore the database will be in the same state as when the backup was created.');
-echo '</p><p>';
-echo gettext('Ideally a restore should be done only on the same version of Zenphoto on which the backup was created. If you are intending to upgrade, first do the restore on the version of Zenphoto you were running, then install the new Zenphoto. If this is not possible the restore can still be done, but if the database fields have changed between versions, data from changed fields will not be restored.');
-echo '</p>'
-?>
+				echo '<p>';
+				if (!$_zp_current_admin_obj->reset) {
+					echo gettext('The backup facility creates database snapshots in the <code>backup</code> folder of your installation. These backups are named in according to the date and time the backup was taken. ' .
+									'The compression level goes from 0 (no compression) to 9 (maximum compression). Higher compression requires more processing and may not result in much space savings.');
+					echo '</p><p>';
+				}
+				echo gettext('You restore your database by selecting a backup and pressing the <em>Restore the Database</em> button.');
+				echo '</p><p class="notebox">' . gettext('<strong>Note:</strong> Each database table is emptied before the restore is attempted. After a successful restore the database will be in the same state as when the backup was created.');
+				echo '</p><p>';
+				echo gettext('Ideally a restore should be done only on the same version of Zenphoto on which the backup was created. If you are intending to upgrade, first do the restore on the version of Zenphoto you were running, then install the new Zenphoto. If this is not possible the restore can still be done, but if the database fields have changed between versions, data from changed fields will not be restored.');
+				echo '</p>'
+				?>
 			</div>
 		</div><!-- content -->
 	</div><!-- main -->
-<?php printAdminFooter(); ?>
+	<?php printAdminFooter(); ?>
 </body>
-	<?php echo "</html>"; ?>
+<?php echo "</html>"; ?>
