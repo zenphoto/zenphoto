@@ -1012,6 +1012,8 @@ class Gallery {
 		//TODO: remove on Zenphoto 1.5
 		if (!TEST_RELEASE) {
 			foreach ($this->data as $option => $value) { //	for compatibility
+				if (is_array($value))
+					$value = serialize($value);
 				setOption($option, $value);
 			}
 		}
