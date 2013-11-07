@@ -132,7 +132,7 @@ $subtab = printSubtabs();
 	</p>
 	<p class='notebox'><?php echo gettext("<strong>Note:</strong> Support for a particular plugin may be theme dependent! You may need to add the plugin theme functions if the theme does not currently provide support."); ?>
 	</p>
-	<form action="?action=saveplugins&amp;page=plugins&amp;tab=<?php echo html_encode($subtab); ?>" method="post">
+	<form id="form_plugins" action="?action=saveplugins&amp;page=plugins&amp;tab=<?php echo html_encode($subtab); ?>" method="post">
 		<?php XSRFToken('saveplugins'); ?>
 		<input type="hidden" name="saveplugins" value="yes" />
 		<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />

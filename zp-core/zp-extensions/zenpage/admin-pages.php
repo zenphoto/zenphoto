@@ -103,7 +103,7 @@ zenpageJSCSS();
 	}
 ?>
 <h1><?php echo gettext('Pages'); ?><span class="zenpagestats"><?php printPagesStatistic();?></span></h1>
-<form action="admin-pages.php" method="post" name="update" onsubmit="return confirmAction();">
+<form action="admin-pages.php" method="post" name="update" id="form_zenpageitemlist" onsubmit="return confirmAction();">
 	<?php XSRFToken('update');?>
 
 <div>

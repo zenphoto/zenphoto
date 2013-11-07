@@ -222,7 +222,7 @@ datepickerJS();
 				<?php
 				$option = getNewsAdminOptionPath(getNewsAdminOption(array('category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1, 'subpage' => 1), '?'));
 				?>
-				<form action="admin-news-articles.php<?php echo $option; ?>" method="post" name="checkeditems" onsubmit="return confirmAction();">
+				<form action="admin-news-articles.php<?php echo $option; ?>" method="post" name="checkeditems" id="form_zenpageitemlist" onsubmit="return confirmAction();">
 					<?php XSRFToken('checkeditems'); ?>
 					<div class="buttons">
 						<button type="submit" title="<?php echo gettext('Apply'); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong>

@@ -299,7 +299,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 								XSRFToken('save');
 							} else {
 								?>
-								<form method="post" name="update" action="admin-edit.php?<?php echo $admintype; ?>&amp;update<?php echo $page; ?>">
+								<form method="post" name="update" id="form_zenpageitemedit" action="admin-edit.php?<?php echo $admintype; ?>&amp;update<?php echo $page; ?>">
 									<?php
 									XSRFToken('update');
 								}
