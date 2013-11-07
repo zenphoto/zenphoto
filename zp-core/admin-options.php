@@ -547,7 +547,7 @@ Zenphoto_Authority::printPasswordFormJS();
 					?>
 					<div id="tab_gallery" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
-						<form action="?action=saveoptions" method="post" autocomplete="off">
+						<form id="form_options" action="?action=saveoptions" method="post" autocomplete="off">
 							<?php XSRFToken('saveoptions'); ?>
 							<input	type="hidden" name="savegeneraloptions" value="yes" />
 							<table class="options">
@@ -999,7 +999,7 @@ Zenphoto_Authority::printPasswordFormJS();
 					?>
 					<div id="tab_gallery" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
-						<form action="?action=saveoptions" method="post" autocomplete="off">
+						<form id="form_options" action="?action=saveoptions" method="post" autocomplete="off">
 							<?php XSRFToken('saveoptions'); ?>
 							<input	type="hidden" name="savegalleryoptions" value="yes" />
 							<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
@@ -1349,7 +1349,7 @@ Zenphoto_Authority::printPasswordFormJS();
 					?>
 					<div id="tab_search" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
-						<form action="?action=saveoptions" method="post" autocomplete="off">
+						<form id="form_options" action="?action=saveoptions" method="post" autocomplete="off">
 							<?php XSRFToken('saveoptions'); ?>
 							<input	type="hidden" name="savesearchoptions" value="yes" />
 							<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
@@ -1567,7 +1567,7 @@ Zenphoto_Authority::printPasswordFormJS();
 					?>
 					<div id="tab_image" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
-						<form action="?action=saveoptions" method="post" autocomplete="off">
+						<form id="form_options" action="?action=saveoptions" method="post" autocomplete="off">
 							<?php XSRFToken('saveoptions'); ?>
 							<input type="hidden" name="saveimageoptions" value="yes" />
 							<p align="center">
@@ -2261,7 +2261,7 @@ Zenphoto_Authority::printPasswordFormJS();
 						}
 						standardThemeOptions($themename, $album);
 						?>
-						<form action="?action=saveoptions" method="post" id="themeoptionsform" autocomplete="off">
+						<form id="form_options" action="?action=saveoptions" method="post" id="themeoptionsform" autocomplete="off">
 							<?php XSRFToken('saveoptions'); ?>
 							<input type="hidden" id="savethemeoptions" name="savethemeoptions" value="yes" />
 							<input type="hidden" name="optiontheme" value="<?php echo html_encode($themename); ?>" />
@@ -2640,7 +2640,7 @@ Zenphoto_Authority::printPasswordFormJS();
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
 						<script type="text/javascript">
 																											var optionholder = new array();</script>
-						<form action="?action=saveoptions<?php if (isset($_GET['single'])) echo '&amp;single=' . $showExtension; ?>" method="post" autocomplete="off">
+						<form id="form_options" action="?action=saveoptions<?php if (isset($_GET['single'])) echo '&amp;single=' . $showExtension; ?>" method="post" autocomplete="off">
 							<?php XSRFToken('saveoptions'); ?>
 							<input type="hidden" name="savepluginoptions" value="yes" />
 							<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
@@ -2814,7 +2814,7 @@ Zenphoto_Authority::printPasswordFormJS();
 					?>
 					<div id="tab_security" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
-						<form action="?action=saveoptions" method="post" autocomplete="off">
+						<form id="form_options" action="?action=saveoptions" method="post" autocomplete="off">
 							<?php XSRFToken('saveoptions'); ?>
 							<input type="hidden" name="savesecurityoptions" value="yes" />
 							<table class="options">
