@@ -141,47 +141,25 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 					</p>
 				</span>
 				<br style="clear:both" /><br />
-
-
-				<table style="float:left;margin-right:2em;">
-
-					<tr>
-						<td width="100"><?php echo gettext("Author:"); ?></td>
-						<td><input type="text" size="40" name="name" value="<?php echo html_encode($name); ?>" /></td>
-					</tr>
-					<tr>
-						<td><?php echo gettext("Web Site:"); ?></td>
-						<td><input type="text" size="40" name="website" value="<?php echo html_encode($website); ?>" /></td>
-					</tr>
-					<tr>
-						<td><?php echo gettext("E-Mail:"); ?></td>
-						<td><input type="text" size="40" name="email" value="<?php echo html_encode($email); ?>" /></td>
-					</tr>
-					<tr>
-						<td><?php echo gettext("Date/Time:"); ?></td>
-						<td><input type="text" size="18" name="date" value="<?php echo date('Y-m-d H:i:s', strtotime($date)); ?>" /></td>
-					</tr>
-					<tr>
-						<td><?php echo gettext("IP:"); ?></td>
-						<td><input type="text" size="18" name="date" value="<?php echo html_encode($IP); ?>" /></td>
-					</tr>
+				<div class="commentformedit_fields">
+					<label for="name"><?php echo gettext("Author:"); ?></label>
+					<input type="text" size="40" name="name" value="<?php echo html_encode($name); ?>" />
+					<label for="website"><?php echo gettext("Web Site:"); ?></label>
+					<input type="text" size="40" name="website" value="<?php echo html_encode($website); ?>" />
+					<label for="email"><?php echo gettext("E-Mail:"); ?></label>
+					<input type="text" size="40" name="email" value="<?php echo html_encode($email); ?>" />
+					<label for="date"><?php echo gettext("Date/Time:"); ?></label>
+					<input type="text" size="18" name="date" value="<?php echo date('Y-m-d H:i:s', strtotime($date)); ?>" />
+					<label for="date"><?php echo gettext("IP:"); ?></label>
+					<input type="text" size="18" name="ip" value="<?php echo html_encode($IP); ?>" />
 					<?php
 					$_comment_form_save_post = zp_getCookie('comment_form_register_save');
 					echo comment_form_edit_comment(false, $_comment_form_save_post);
 					?>
-					<tr>
-						<td valign="top"><?php echo gettext("Comment:"); ?></td>
-						<td><textarea rows="8" cols="60" name="comment" class="textarea_inputbox" /><?php echo html_encode($comment); ?></textarea></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td>
-
-
-						</td>
-					</tr>
-				</table>
-				<div style="width:260px; float:right">
+					<label for="comment"><?php echo gettext("Comment:"); ?></label>
+					<textarea rows="8" cols="60" name="comment" class="textarea_inputbox" /><?php echo html_encode($comment); ?></textarea>
+				</div>
+				<div class="commentformedit_box">
 					<h2 class="h2_bordered_edit"><?php echo gettext('Comment management'); ?></h2>
 					<div class="box-edit">
 						<?php

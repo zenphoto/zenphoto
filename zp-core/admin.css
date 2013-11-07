@@ -2583,3 +2583,27 @@ Tooltip styling
   bottom: -20px;
   top: auto;
 }
+
+
+#form_editcomment label {
+width: 30% !important;
+float: left;
+display: block;
+}
+
+#form_editcomment input,
+#form_editcomment textarea {
+width: 350px !important;
+display: block;
+float: left;
+}
+
+.commentformedit_fields {
+width: 60%;
+float: left;
+}
+
+.commentformedit_box {
+width:260px; 
+float:right;
+}
