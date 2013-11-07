@@ -13,10 +13,10 @@ $cwd = getcwd();
 chdir(dirname(__FILE__));
 $persona = safe_glob('*', GLOB_ONLYDIR);
 chdir($cwd);
-$persona = array_diff($persona, array('images', 'styles'));
 $personalities = array();
 foreach ($persona as $personality) {
-	$personalities[ucfirst(str_replace('_', ' ', $personality))] = $personality;
+	if (file_exists(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus/' . $personality . '/functions.php'))
+		$personalities[ucfirst(str_replace('_', ' ', $personality))] = $personality;
 }
 
 $personality = strtolower(getOption('effervescence_personality'));
@@ -422,7 +422,7 @@ function printFooter($admin = true) {
 }
 
 function commonNewsLoop($paged) {
-	$newstypes = array('album'	 => gettext('album'), 'image'	 => gettext('image'), 'video'	 => gettext('video'), 'news'	 => gettext('news'));
+	$newstypes = array('album' => gettext('album'), 'image' => gettext('image'), 'video' => gettext('video'), 'news' => gettext('news'));
 	while (next_news()) {
 		$newstype = getNewsType();
 		$newstypedisplay = $newstypes[$newstype];
