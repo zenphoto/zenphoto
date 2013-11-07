@@ -107,7 +107,6 @@ if (isset($_GET['mod_rewrite'])) {
 	$mod = '';
 }
 
-
 $zp_cfg = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 $xsrftoken = sha1(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE . $zp_cfg . session_id());
 
@@ -118,11 +117,12 @@ if (strpos($zp_cfg, "\$conf['special_pages']") === false) {
 	$i = strpos($template, "\$conf['special_pages']");
 	$j = strpos($template, '//', $i);
 	$k = strpos($zp_cfg, '/** Do not edit below this line. **/');
-
-	$zp_cfg = substr($zp_cfg, 0, $k) . str_pad('', 80, '/') . "\n" .
-					substr($template, $i, $j - $i) . str_pad('', 5, '/') . "\n" .
-					substr($zp_cfg, $k);
-	$updatezp_config = true;
+	if ($k !== false) {
+		$zp_cfg = substr($zp_cfg, 0, $k) . str_pad('', 80, '/') . "\n" .
+						substr($template, $i, $j - $i) . str_pad('', 5, '/') . "\n" .
+						substr($zp_cfg, $k);
+		$updatezp_config = true;
+	}
 }
 
 $i = strpos($zp_cfg, 'define("DEBUG", false);');
@@ -214,7 +214,7 @@ $curdir = getcwd();
 chdir(dirname(dirname(__FILE__)));
 // Important. when adding new database support this switch may need to be extended,
 $engines = array();
-$preferences = array('mysqli'		 => 1, 'pdo_mysql'	 => 2, 'mysql'			 => 3);
+$preferences = array('mysqli' => 1, 'pdo_mysql' => 2, 'mysql' => 3);
 $cur = 999999;
 $preferred = NULL;
 foreach (setup_glob('functions-db-*.php') as $key => $engineMC) {
@@ -227,7 +227,7 @@ foreach (setup_glob('functions-db-*.php') as $key => $engineMC) {
 			$preferred = $engineMC;
 			$cur = $order;
 		}
-		$engines[$order] = array('user'		 => true, 'pass'		 => true, 'host'		 => true, 'database' => true, 'prefix'	 => true, 'engine'	 => $engineMC, 'enabled'	 => $enabled);
+		$engines[$order] = array('user' => true, 'pass' => true, 'host' => true, 'database' => true, 'prefix' => true, 'engine' => $engineMC, 'enabled' => $enabled);
 	}
 }
 ksort($engines);
@@ -236,7 +236,7 @@ chdir($curdir);
 if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 	unset($_zp_conf_vars);
 	require(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
-	if (isset($_zp_conf_vars) && !isset($conf)) {
+	if (isset($_zp_conf_vars) && !isset($conf) && isset($_zp_conf_vars['special_pages'])) {
 		if (isset($_zp_conf_vars['db_software'])) {
 			$confDB = $_zp_conf_vars['db_software'];
 			if (empty($_POST) && empty($_GET) && ($confDB === 'MySQL' || $preferred != 'MySQL')) {
@@ -2419,7 +2419,7 @@ if ($c <= 0) {
 								echo "</h3>";
 								$sql = 'SHOW KEYS FROM ' . $tbl_options;
 								$result = query_full_array($sql);
-								$unique = array('name'		 => 0, 'ownerid'	 => 0, 'theme'		 => 0);
+								$unique = array('name' => 0, 'ownerid' => 0, 'theme' => 0);
 								foreach ($result as $key) {
 									if (!$key['Non_unique']) {
 										unset($unique[$key['Column_name']]);
