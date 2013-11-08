@@ -166,8 +166,13 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 	global $_user_tags;
 	if ($shorten && ($forceindicator || (mb_strlen($articlecontent) > $shorten))) {
 		$allowed_tags = getAllowedTags('allowed_tags');
+		//remove script to be replaced later
+		preg_match_all('~(<script.*</script>)~is', $articlecontent, $matches);
+		$articlecontent = preg_replace('~<script.*/script>~is', '', $articlecontent);
+
 		$short = mb_substr($articlecontent, 0, $shorten);
 		$short2 = kses($short . '</p>', $allowed_tags);
+
 		if (($l2 = mb_strlen($short2)) < $shorten) {
 			$c = 0;
 			$l1 = $shorten;
@@ -205,7 +210,13 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 				$short = trim(cleanHTML($short . $shortenindicator));
 			}
 		}
-		return $short;
+		$articlecontent = $short;
+	}
+	if (isset($matches)) {
+		//replace the script text
+		foreach ($matches[0] as $script) {
+			$articlecontent = $script . $articlecontent;
+		}
 	}
 	return $articlecontent;
 }
