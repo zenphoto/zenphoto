@@ -883,6 +883,8 @@ class SearchEngine {
 					$d = strtotime('+ 1 month', $d);
 					$d2 = substr(date('Y-m-d H:m:s', $d), 0, 7) . "-01 00:00:00";
 					$sql .= "`$whichdate` >= \"$d1\" AND `$whichdate` < \"$d2\"";
+				} else {
+					$sql .= "`$whichdate`<\"0000-00-00 00:00:00\"";
 				}
 			}
 		}

@@ -2607,3 +2607,14 @@ float: left;
 width:260px; 
 float:right;
 }
+
+/* prevent jumping toolbar buttons of TinyMCE4 in some browsers */
+.mce-container .mce-toolbar button { 
+border: 0 !Important;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+-o-box-sizing: border-box;
+-ms-box-sizing: border-box; 
+box-sizing: border-box;
+}
+
