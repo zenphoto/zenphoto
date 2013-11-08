@@ -51,17 +51,7 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 	}
 	$msg = sprintf(gettext('%1$s: %2$s in %3$s on line %4$s'), $err, $errstr, $errfile, $errline);
 	debugLogBacktrace($msg, 1);
-	// what to do
-	switch ($errno) {
-		default:
-			@ini_set('display_errors', 1);
-		case E_NOTICE:
-		case E_USER_NOTICE:
-		case E_WARNING:
-		case E_USER_WARNING:
-		case E_USER_ERROR:
-			return false;
-	}
+	return false;
 }
 
 /**
