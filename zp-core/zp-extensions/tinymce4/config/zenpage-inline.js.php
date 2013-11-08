@@ -14,6 +14,7 @@ $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
 		language: "<?php echo $locale; ?>",
 		inline: true,
 		menubar: false,
+		relative_urls: false,
 		plugins: [
 			"advlist autolink lists link image charmap print preview anchor",
 			"searchreplace visualblocks code fullscreen",

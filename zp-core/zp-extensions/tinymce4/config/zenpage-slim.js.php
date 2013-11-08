@@ -13,6 +13,7 @@ $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
 		selector: "textarea.texteditor,textarea.content,textarea.desc,textarea.extracontent",
 		language: "<?php echo $locale; ?>",
 		menubar: false,
+		relative_urls: false,
 		plugins: [
 			"advlist autolink lists link image charmap print preview anchor",
 			"searchreplace visualblocks code fullscreen",

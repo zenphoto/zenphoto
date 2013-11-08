@@ -12,7 +12,7 @@ $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
 	tinymce.init({
 		selector: "textarea.texteditor",
 		language: "<?php echo $locale; ?>",
-		theme: "modern",
+		relative_urls: false,
 		plugins: [
 			"advlist autolink lists link image charmap print preview hr anchor pagebreak",
 			"searchreplace wordcount visualblocks visualchars code fullscreen",
