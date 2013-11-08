@@ -59,6 +59,7 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 		case E_USER_NOTICE:
 		case E_WARNING:
 		case E_USER_WARNING:
+		case E_USER_ERROR:
 			return false;
 	}
 }
