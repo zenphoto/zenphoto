@@ -127,12 +127,12 @@ class galleryArticles {
 	private static function publishArticle($obj) {
 		switch ($type = $obj->table) {
 			case 'albums':
-				$text = sprintf(gettext('New album: %1$s'), $item = $obj->getTitle());
+				$text = sprintf(gettext('New album: %1$s'), $obj->getTitle());
 				$link = $obj->getAlbumLink();
 				$thumb = $obj->getAlbumThumb();
 				break;
 			case 'images':
-				$text = sprintf(gettext('New image: [%2$s]%1$s'), $item = $obj->getTitle(), $obj->imagefolder);
+				$text = sprintf(gettext('New image: [%2$s]%1$s'), $obj->getTitle(), $obj->imagefolder);
 				$link = $obj->getImageLink();
 				$thumb = $obj->getThumb();
 				break;

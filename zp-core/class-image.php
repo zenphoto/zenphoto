@@ -148,7 +148,7 @@ class Image extends MediaObject {
 
 		// This is where the magic happens...
 		$album_name = $album->name;
-		$new = parent::PersistentObject('images', array('filename' => $filename, 'albumid'	 => $this->album->getID()), 'filename', false, empty($album_name));
+		$new = parent::PersistentObject('images', array('filename' => $filename, 'albumid' => $this->album->getID()), 'filename', false, empty($album_name));
 		if ($new || $this->filemtime != $this->get('mtime')) {
 			if ($new)
 				$this->setTitle($this->displayname);
@@ -830,7 +830,7 @@ class Image extends MediaObject {
 			}
 		}
 		if ($result) {
-			if (parent::move(array('filename' => $newfilename, 'albumid'	 => $newalbum->getID()))) {
+			if (parent::move(array('filename' => $newfilename, 'albumid' => $newalbum->getID()))) {
 				$this->set('mtime', filemtime($newpath));
 				$this->save();
 				return 0;
@@ -878,7 +878,7 @@ class Image extends MediaObject {
 			}
 		}
 		if ($result) {
-			if ($newID = parent::copy(array('filename' => $filename, 'albumid'	 => $newalbum->getID()))) {
+			if ($newID = parent::copy(array('filename' => $filename, 'albumid' => $newalbum->getID()))) {
 				storeTags(readTags($this->getID(), 'images'), $newID, 'images');
 				query('UPDATE ' . prefix('images') . ' SET `mtime`=' . filemtime($newpath) . ' WHERE `filename`="' . $filename . '" AND `albumid`=' . $newalbum->getID());
 				return 0;
@@ -894,7 +894,7 @@ class Image extends MediaObject {
 	 *
 	 * @return string
 	 */
-	function getImageLink() {
+	function getLink() {
 		if (is_array($this->filename)) {
 			$album = dirname($this->filename['source']);
 			$image = basename($this->filename['source']);
@@ -903,6 +903,15 @@ class Image extends MediaObject {
 			$image = $this->filename;
 		}
 		return rewrite_path('/' . pathurlencode($album) . '/' . urlencode($image) . IM_SUFFIX, '/index.php?album=' . pathurlencode($album) . '&image=' . urlencode($image));
+	}
+
+	/**
+	 * Returns a path urlencoded image page link for the image
+	 * @return string
+	 * @deprecated since version 1.4.6
+	 */
+	function getImageLink() {
+		return $this->getLink();
 	}
 
 	/**
@@ -1241,7 +1250,7 @@ class Transientimage extends Image {
 		}
 		$this->filemtime = @filemtime($this->localpath);
 		$this->comments = null;
-		parent::PersistentObject('images', array('filename' => $filename['name'], 'albumid'	 => $this->album->getID()), 'filename', true, true);
+		parent::PersistentObject('images', array('filename' => $filename['name'], 'albumid' => $this->album->getID()), 'filename', true, true);
 		$this->exists = false;
 	}
 

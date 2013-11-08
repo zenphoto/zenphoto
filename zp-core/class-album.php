@@ -357,9 +357,18 @@ class AlbumBase extends MediaObject {
 	 * Gets the thumbnail URL for the album thumbnail image as returned by $this->getAlbumThumbImage();
 	 * @return string
 	 */
-	function getAlbumThumb() {
+	function getThumb() {
 		$image = $this->getAlbumThumbImage();
 		return $image->getThumb('album');
+	}
+
+	/**
+	 * Gets the thumbnail URL for the album thumbnail image as returned by $this->getAlbumThumbImage();
+	 * @return string
+	 * @deprecated since version 1.4.6
+	 */
+	function getAlbumThumb() {
+		return $this->getThumb();
 	}
 
 	/**
@@ -367,8 +376,18 @@ class AlbumBase extends MediaObject {
 	 *
 	 * @param string $filename thumbnail path
 	 */
-	function setAlbumThumb($filename) {
+	function setThumb($filename) {
 		$this->set('thumb', $filename);
+	}
+
+	/**
+	 * Stores the thumbnail path for an album thumg
+	 *
+	 * @param string $filename thumbnail path
+	 * @deprecated since version 1.4.6
+	 */
+	function setAlbumThumb($filename) {
+		$this->setThumb($filename);
 	}
 
 	/**
@@ -1143,7 +1162,7 @@ class Album extends AlbumBase {
 	 * @param string $page if not null, apppend as page #
 	 * @return string
 	 */
-	function getAlbumLink($page = NULL) {
+	function getLink($page = NULL) {
 		global $_zp_page;
 		if (is_null($page)) {
 			$page = $_zp_page;
@@ -1155,6 +1174,17 @@ class Album extends AlbumBase {
 			$plain .= "&page=$page";
 		}
 		return rewrite_path($rewrite, $plain);
+	}
+
+	/**
+	 * Returns an URL to the album, including the current page number
+	 *
+	 * @param string $page if not null, apppend as page #
+	 * @return string
+	 * @deprecated since version 1.4.6
+	 */
+	function getAlbumLink($page = NULL) {
+		return $this->getLink();
 	}
 
 	/**

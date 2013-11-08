@@ -295,9 +295,19 @@ class ZenpagePage extends ZenpageItems {
 	 *
 	 * @return string
 	 */
-	function getPageLink() {
+	function getLink() {
 		global $_zp_zenpage;
 		return $_zp_zenpage->getPagesLinkPath($this->getTitlelink());
+	}
+
+	/**
+	 * Returns full path to a specific page
+	 *
+	 * @return string
+	 * @deprecated since version 1.4.6
+	 */
+	function getPageLink() {
+		return $this->getLink();
 	}
 
 }

@@ -291,9 +291,20 @@ class ZenpageNews extends ZenpageItems {
 	 *
 	 * @return string
 	 */
-	function getNewsLink() {
+	function getLink() {
 		global $_zp_zenpage;
 		return $_zp_zenpage->getNewsTitlePath($this->getTitlelink());
+	}
+
+	/**
+	 * Returns the url to a news article
+	 *
+	 *
+	 * @return string
+	 * @deprecated since version 1.4.6
+	 */
+	function getNewsLink() {
+		return $this->getLink();
 	}
 
 	/**
