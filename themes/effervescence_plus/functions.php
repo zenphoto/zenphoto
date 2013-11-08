@@ -44,7 +44,7 @@ if (!OFFSET_PATH) {
 			}
 		}
 		if (!$themeColor) {
-			list($personality, $themeColor) = getPersonality();
+			$themeColor = getThemeOption('Theme_colors');
 		}
 
 		$personality = getOption('themeSwitcher_effervescence_personality');
@@ -57,6 +57,8 @@ if (!OFFSET_PATH) {
 		}
 		if ($personality) {
 			setOption('effervescence_personality', $personality, false);
+		} else {
+			$personality = strtolower(getOption('effervescence_personality'));
 		}
 	}
 
