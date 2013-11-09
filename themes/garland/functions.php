@@ -27,6 +27,8 @@ if (!OFFSET_PATH) {
 		}
 		if ($personality) {
 			setOption('garland_personality', $personality, false);
+		} else {
+			$personality = strtolower(getOption('garland_personality'));
 		}
 	} else {
 		$personality = strtolower(getOption('garland_personality'));
@@ -64,9 +66,9 @@ function switcher_controllink($html) {
 	?>
 	<span id="themeSwitcher_garland">
 		<span title="<?php echo gettext("Garland image display handling."); ?>">
-			<?php echo gettext('Personality'); ?>
+				<?php echo gettext('Personality'); ?>
 			<select name="themePersonality" id="themePersonality" onchange="switchPersonality();">
-				<?php generateListFromArray(array($personality), $personalities, false, true); ?>
+	<?php generateListFromArray(array($personality), $personalities, false, true); ?>
 			</select>
 		</span>
 	</span>
@@ -144,13 +146,13 @@ function footer() {
 		<?php @call_user_func('mobileTheme::controlLink'); ?>
 		<br />
 		<?php @call_user_func('printLanguageSelector'); ?>
-		<?php printZenphotoLink(); ?>
+	<?php printZenphotoLink(); ?>
 	</div>
 	<?php
 }
 
 function commonNewsLoop($paged) {
-	$newstypes = array('album'	 => gettext('album'), 'image'	 => gettext('image'), 'video'	 => gettext('video'), 'news'	 => gettext('news'));
+	$newstypes = array('album' => gettext('album'), 'image' => gettext('image'), 'video' => gettext('video'), 'news' => gettext('news'));
 	while (next_news()) {
 		$newstype = getNewsType();
 		$newstypedisplay = $newstypes[$newstype];
@@ -186,7 +188,7 @@ function commonNewsLoop($paged) {
 			<br class="clearall" />
 			<?php printCodeblock(1); ?>
 			<?php printNewsContent(); ?>
-			<?php printCodeblock(2); ?>
+		<?php printCodeblock(2); ?>
 			<br class="clearall" />
 		</div>
 		<?php
