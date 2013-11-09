@@ -4448,7 +4448,7 @@ function checkPageValidity($request, $gallery_page, $page) {
 			} else {
 				$cat = NULL;
 			}
-			$count = (int) ceil(count($_zp_zenpage->getArticles(0, NULL, true, NULL, NULL, NULL, $cat)) / ZP_ARTICLES_PER_PAGE);
+			$count = (int) ceil($_zp_zenpage->getTotalArticles() / ZP_ARTICLES_PER_PAGE);
 			break;
 		default:
 			$count = zp_apply_filter('checkPageValidity', NULL, $gallery_page);
