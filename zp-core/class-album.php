@@ -712,7 +712,7 @@ class Album extends AlbumBase {
 	function __construct($deprecated, $folder8, $cache = true, $quiet = false) {
 		global $_zp_gallery;
 
-		$folder8 = trim($folder8);
+		$folder8 = trim($folder8, '/');
 		$folderFS = internalToFilesystem($folder8);
 		$this->gallery = $_zp_gallery;
 		$localpath = ALBUM_FOLDER_SERVERPATH . $folderFS . "/";
