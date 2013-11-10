@@ -32,10 +32,17 @@ class galleryArticles {
 		setOptionDefault('galleryArticles_images', NULL);
 		setOptionDefault('galleryArticles_albums', NULL);
 		setOptionDefault('galleryArticles_category', NULL);
+		setOptionDefault('galleryArticles_albumCategory', 0);
+		$text = gettext('New album: %1$s');
+		setOptionDefault('galleryArticles_album_text', getAllTranslations($text));
+		$text = gettext('New image: [%2$s]%1$s');
+		setOptionDefault('galleryArticles_image_text', getAllTranslations($text));
 		setOptionDefault('galleryArticles_size', 80);
 		setOptionDefault('galleryArticles_protected', 0);
-		cacheManager::deleteThemeCacheSizes('galleryArticles');
-		cacheManager::addThemeCacheSize('galleryArticles', getOption('galleryArticles_size'), NULL, NULL, NULL, NULL, NULL, NULL, false, getOption('fullimage_watermark'), NULL, NULL);
+		if (class_exists('cacheManager')) {
+			cacheManager::deleteThemeCacheSizes('galleryArticles');
+			cacheManager::addThemeCacheSize('galleryArticles', getOption('galleryArticles_size'), NULL, NULL, NULL, NULL, NULL, NULL, false, getOption('fullimage_watermark'), NULL, NULL);
+		}
 	}
 
 	/**
@@ -53,15 +60,30 @@ class galleryArticles {
 		$list = array('<em>' . gettext('Albums') . '</em>' => 'galleryArticles_albums', '<em>' . gettext('Images') . '</em>' => 'galleryArticles_images');
 
 		$options = array(gettext('Publish for')			 => array('key'				 => 'galleryArticles_items', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
+										'order'			 => 1,
 										'checkboxes' => $list,
 										'desc'			 => gettext('If a <em>type</em> is checked, a news article will be made when an object of that <em>type</em> is published.')),
-						gettext('size')							 => array('key'	 => 'galleryArticles_size', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext('Set the size the image will be displayed.')),
-						gettext('Publish protected') => array('key'	 => 'galleryArticles_protected', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext('Unless this is checked, objects which are "protected" will not have news articles generated.')),
+						gettext('Image title')			 => array('key'					 => 'galleryArticles_image_text', 'type'				 => OPTION_TYPE_TEXTBOX,
+										'order'				 => 3,
+										'multilingual' => true,
+										'desc'				 => gettext('This text will be used as the <em>title</em> of the article. The album folder will be substituted for <code>%2$s</code> and the image title for <code>%1$s</code>.')),
+						gettext('Album title')			 => array('key'					 => 'galleryArticles_album_text', 'type'				 => OPTION_TYPE_TEXTBOX,
+										'order'				 => 2,
+										'multilingual' => true,
+										'desc'				 => gettext('This text will be used as the <em>title</em> of the article. The album title will be substituted for <code>%1$s</code>.')),
+						gettext('size')							 => array('key'		 => 'galleryArticles_size', 'type'	 => OPTION_TYPE_TEXTBOX,
+										'order'	 => 5,
+										'desc'	 => gettext('Set the size the image will be displayed.')),
+						gettext('Publish protected') => array('key'		 => 'galleryArticles_protected', 'type'	 => OPTION_TYPE_CHECKBOX,
+										'order'	 => 4,
+										'desc'	 => gettext('Unless this is checked, objects which are "protected" will not have news articles generated.')),
 						gettext('Category')					 => array('key'				 => 'galleryArticles_category', 'type'			 => OPTION_TYPE_SELECTOR,
+										'order'			 => 6,
 										'selections' => $categories,
-										'desc'			 => gettext('Select a category for the generated articles'))
+										'desc'			 => gettext('Select a category for the generated articles')),
+						gettext('Use album folder')	 => array('key'		 => 'galleryArticles_albumCategory', 'type'	 => OPTION_TYPE_CHECKBOX,
+										'order'	 => 7,
+										'desc'	 => gettext('If this option is checked and a category matching the album folder exists, that will be used as the article category.'))
 		);
 
 		return $options;
@@ -133,13 +155,16 @@ class galleryArticles {
 	 * @param object $obj
 	 */
 	private static function publishArticle($obj) {
+		global $_zp_zenpage;
 		switch ($type = $obj->table) {
 			case 'albums':
-				$text = sprintf(gettext('New album: %1$s'), $obj->getTitle());
+				$text = sprintf(get_language_string(getOption('galleryArticles_album_text')), $obj->getTitle());
+				$folder = $obj->name;
 				$img = $obj->getAlbumThumbImage();
 				break;
 			case 'images':
-				$text = sprintf(gettext('New image: [%2$s]%1$s'), $obj->getTitle(), $obj->imagefolder);
+				$text = sprintf(get_language_string(getOption('galleryArticles_album_text')), $obj->getTitle(), $obj->imagefolder);
+				$folder = $obj->imagefolder;
 				$img = $obj;
 				break;
 		}
@@ -154,7 +179,17 @@ class galleryArticles {
 		$article->setDateTime($date);
 		$article->setAuthor('galleryArticles');
 		$article->save();
-		$article->setCategories(array(getOption('galleryArticles_category')));
+		$cat = getOption('galleryArticles_category');
+		if (getOption('galleryArticles_albumCategory')) {
+			$catlist = $_zp_zenpage->getAllCategories();
+			foreach ($catlist as $category) {
+				if ($category['titlelink'] == $folder) {
+					$cat = $category['titlelink'];
+					break;
+				}
+			}
+		}
+		$article->setCategories(array($cat));
 	}
 
 	/**
