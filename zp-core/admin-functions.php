@@ -1370,7 +1370,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$sort[gettext('Custom')] = 'custom';
 						/*
 						 * not recommended--screws with peoples minds during pagination!
-						  $sort[gettext('Random')] = 'random';
+							$sort[gettext('Random')] = 'random';
 						 */
 						?>
 						<tr>
@@ -1611,7 +1611,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 													$imagename = '/' . $imagename['folder'] . '/' . $imagename['filename'];
 													$filename = basename($imagename);
 												} else {
-													$albumname = dirname($imagename);
+													$albumname = trim(dirname($imagename), '/');
 													if (empty($albumname) || $albumname == '.') {
 														$thumbalbum = $album;
 													} else {
