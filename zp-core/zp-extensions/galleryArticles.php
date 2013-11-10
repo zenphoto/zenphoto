@@ -32,6 +32,10 @@ class galleryArticles {
 		setOptionDefault('galleryArticles_images', NULL);
 		setOptionDefault('galleryArticles_albums', NULL);
 		setOptionDefault('galleryArticles_category', NULL);
+		setOptionDefault('galleryArticles_size', 80);
+		setOptionDefault('galleryArticles_protected', 0);
+		cacheManager::deleteThemeCacheSizes('galleryArticles');
+		cacheManager::addThemeCacheSize('galleryArticles', getOption('galleryArticles_size'), NULL, NULL, NULL, NULL, NULL, NULL, false, getOption('fullimage_watermark'), NULL, NULL);
 	}
 
 	/**
@@ -43,15 +47,19 @@ class galleryArticles {
 		$categories = array();
 		$list = $_zp_zenpage->getAllCategories();
 		foreach ($list as $cat) {
-			$categories[$cat['title']] = $cat['titlelink'];
+			$categories[get_language_string($cat['title'])] = $cat['titlelink'];
 		}
 
 		$list = array('<em>' . gettext('Albums') . '</em>' => 'galleryArticles_albums', '<em>' . gettext('Images') . '</em>' => 'galleryArticles_images');
 
-		$options = array(gettext('Publish for') => array('key'				 => 'galleryArticles_items', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
+		$options = array(gettext('Publish for')			 => array('key'				 => 'galleryArticles_items', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
 										'checkboxes' => $list,
 										'desc'			 => gettext('If a <em>type</em> is checked, a news article will be made when an object of that <em>type</em> is published.')),
-						gettext('Category')		 => array('key'				 => 'galleryArticles_category', 'type'			 => OPTION_TYPE_SELECTOR,
+						gettext('size')							 => array('key'	 => 'galleryArticles_size', 'type' => OPTION_TYPE_TEXTBOX,
+										'desc' => gettext('Set the size the image will be displayed.')),
+						gettext('Publish protected') => array('key'	 => 'galleryArticles_protected', 'type' => OPTION_TYPE_CHECKBOX,
+										'desc' => gettext('Unless this is checked, objects which are "protected" will not have news articles generated.')),
+						gettext('Category')					 => array('key'				 => 'galleryArticles_category', 'type'			 => OPTION_TYPE_SELECTOR,
 										'selections' => $categories,
 										'desc'			 => gettext('Select a category for the generated articles'))
 		);
@@ -128,20 +136,22 @@ class galleryArticles {
 		switch ($type = $obj->table) {
 			case 'albums':
 				$text = sprintf(gettext('New album: %1$s'), $obj->getTitle());
-				$link = $obj->getAlbumLink();
-				$thumb = $obj->getAlbumThumb();
+				$img = $obj->getAlbumThumbImage();
 				break;
 			case 'images':
 				$text = sprintf(gettext('New image: [%2$s]%1$s'), $obj->getTitle(), $obj->imagefolder);
-				$link = $obj->getImageLink();
-				$thumb = $obj->getThumb();
+				$img = $obj;
 				break;
 		}
 		$article = new ZenpageNews(seoFriendly($text));
 		$article->setTitle($text);
-		$article->setContent('<p><a href="' . $link . '"><img src="' . $thumb . '"></p>');
+
+		$article->setContent('<p><a href="' . $obj->getLink() . '"><img src="' . $img->getCustomImage(getOption('galleryArticles_size'), NULL, NULL, NULL, NULL, NULL, NULL) . '"></p><p>' . $obj->getDesc() . '</p>');
 		$article->setShow(true);
-		$article->setDateTime(date('Y-m-d H:i:s'));
+		$date = $obj->getPublishDate();
+		if (!$date)
+			$date = date('Y-m-d H:i:s');
+		$article->setDateTime($date);
 		$article->setAuthor('galleryArticles');
 		$article->save();
 		$article->setCategories(array(getOption('galleryArticles_category')));
@@ -180,4 +190,5 @@ class galleryArticles {
 	}
 
 }
+
 ?>
