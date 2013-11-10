@@ -491,7 +491,7 @@ class Gallery {
 // Load the albums from disk
 			$result = query("SELECT * FROM " . prefix('albums'));
 			while ($row = db_fetch_assoc($result)) {
-				$valid = file_exists($albumpath = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($row['folder'])) && (hasDynamicAlbumSuffix($albumpath) || (is_dir($albumpath) && strpos($albumpath, '/./') === false && strpos($albumpath, '/../') === false && strpos($albumpath, '//' === false) && $albumpath{0} != '/' && $albumpath{0} != '.'));
+				$valid = file_exists($albumpath = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($row['folder'])) && (hasDynamicAlbumSuffix($albumpath) || (is_dir($albumpath) && strpos($albumpath, '/./') === false && strpos($albumpath, '/../') === false && strpos($albumpath, '//') === false && substr($albumpath, -1) != '/' && $albumpath{0} != '/' && $albumpath{0} != '.'));
 				if (!$valid || in_array($row['folder'], $live)) {
 					$dead[] = $row['id'];
 					if ($row['album_theme'] !== '') { // orphaned album theme options table

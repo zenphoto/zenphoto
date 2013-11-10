@@ -98,22 +98,23 @@ switch ($use_side) {
 $args = array($size, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL);
 $imageurl = getImageProcessorURI($args, $albumname, $imagepart);
 
-$iY = round($imageobj->get('thumbY') * $sr);
+$isCrop = $imageobj->get('thumbY');
+$iY = round($isCrop * $sr);
 $cr = max($cropwidth, $cropheight) / getOption('thumb_size');
 $si = min($sizedwidth, $sizedheight);
 $oW = round($si * $cr);
 $oH = round($si * $cr);
 $oX = round(($sizedwidth - $oW) / 2);
 $oY = round(($sizedheight - $oH) / 2);
-if (!is_null($iY)) {
-	$iX = round($imageobj->get('thumbX') * $sr);
-	$iW = round($imageobj->get('thumbW') * $sr);
-	$iH = round($imageobj->get('thumbH') * $sr);
-} else {
+if (is_null($isCrop)) {
 	$iW = $oW;
 	$iH = $oH;
 	$iX = $oX;
 	$iY = $oY;
+} else {
+	$iX = round($imageobj->get('thumbX') * $sr);
+	$iW = round($imageobj->get('thumbW') * $sr);
+	$iH = round($imageobj->get('thumbH') * $sr);
 }
 
 if (isset($_REQUEST['crop'])) {
@@ -292,14 +293,14 @@ printAdminHeader('edit', 'thumbcrop');
 
 				<!-- set the initial view for the preview -->
 				<script type="text/javascript" >
-	// <!-- <![CDATA[
-	jQuery('#preview').css({
-		width: '<?php echo round($cropwidth / $iW * $sizedwidth); ?>px',
-		height: '<?php echo round($cropheight / $iH * $sizedheight); ?>px',
-		marginLeft: '-<?php echo round($cropwidth / $iW * $iX); ?>px',
-		marginTop: '-<?php echo round($cropheight / $iH * $iY); ?>px'
-	});
-	// ]]> -->
+					// <!-- <![CDATA[
+					jQuery('#preview').css({
+						width: '<?php echo round($cropwidth / $iW * $sizedwidth); ?>px',
+						height: '<?php echo round($cropheight / $iH * $sizedheight); ?>px',
+						marginLeft: '-<?php echo round($cropwidth / $iW * $iX); ?>px',
+						marginTop: '-<?php echo round($cropheight / $iH * $iY); ?>px'
+					});
+					// ]]> -->
 				</script>
 				<br style="clear: both" />
 			</div><!-- block -->
