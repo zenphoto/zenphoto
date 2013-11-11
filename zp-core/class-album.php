@@ -1553,17 +1553,16 @@ class Album extends AlbumBase {
 	 * @return array
 	 */
 	protected function loadFileNames($dirs = false) {
+		if ($this->isDynamic()) { // there are no 'real' files
+			return array();
+		}
 		$albumdir = $this->localpath;
 		$dir = @opendir($albumdir);
 		if (!$dir) {
-			if ($this->isDynamic()) {
-// there are no 'real' files
-				return array();
-			}
-			if (!is_dir($albumdir)) {
-				$msg = sprintf(gettext("Error: The album named %s cannot be found."), html_encode($this->name));
-			} else {
+			if (is_dir($albumdir)) {
 				$msg = sprintf(gettext("Error: The album %s is not readable."), html_encode($this->name));
+			} else {
+				$msg = sprintf(gettext("Error: The album named %s cannot be found."), html_encode($this->name));
 			}
 			trigger_error($msg, E_USER_NOTICE);
 			return array();
