@@ -258,24 +258,29 @@ if (!defined('OFFSET_PATH')) {
 										<ul class="options">
 											<?php
 											foreach ($options as $option) {
-												$row = $supportedOptions[$option];
-												if ($row['type'] == OPTION_TYPE_NOTE) {
-													$notes[] = $row;
-												} else {
-													if (false !== $i = stripos($option, chr(0))) {
-														$option = substr($option, 0, $i);
-													}
-													if ($option) {
-														?>
-														<li><code><?php echo $option; ?></code></li>
-														<?php
+												if (array_key_exists($option, $supportedOptions)) {
+													$row = $supportedOptions[$option];
+													if ($row['type'] == OPTION_TYPE_NOTE) {
+														$notes[] = $row;
+													} else {
+														if (false !== $i = stripos($option, chr(0))) {
+															$option = substr($option, 0, $i);
+														}
+														if ($option) {
+															?>
+															<li><code><?php echo $option; ?></code></li>
+															<?php
+														}
 													}
 												}
 											}
 											foreach ($notes as $note) {
-												?>
-												<li><code><?php echo $note['desc']; ?></li>
-												<?php
+												$n = strip_tags($note['desc']);
+												if (!empty($n)) {
+													?>
+													<li><code><?php echo $note['desc']; ?></li>
+													<?php
+												}
 											}
 											?>
 										</ul>
@@ -486,4 +491,3 @@ if (!defined('OFFSET_PATH')) {
 								}
 								return $body;
 							}
-
