@@ -10,6 +10,12 @@ define('OFFSET_PATH', 2); //	 we don't want plugins loaded
 require_once(dirname(__FILE__) . '/admin-globals.php');
 require_once(dirname(__FILE__) . '/template-functions.php');
 
+// need the class plugins to handle video, etc.
+foreach (getEnabledPlugins() as $extension => $plugin) {
+	if ($plugin['priority'] & CLASS_PLUGIN)
+		require_once($plugin['path']);
+}
+
 if (isset($_REQUEST['album'])) {
 	$localrights = ALBUM_RIGHTS;
 } else {
