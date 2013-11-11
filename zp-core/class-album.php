@@ -169,7 +169,11 @@ class AlbumBase extends MediaObject {
 		if (empty($type)) {
 			$parentalbum = $this->getParent();
 			if (is_null($parentalbum)) {
-				$type = $_zp_gallery->getSortType();
+				if ($what == 'image') {
+					$type = IMAGE_SORT_TYPE;
+				} else {
+					$type = $_zp_gallery->getSortType();
+				}
 			} else {
 				$type = $parentalbum->getSortType($what);
 			}
