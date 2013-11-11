@@ -12,8 +12,8 @@ $plugin_is_filter = 9 | THEME_PLUGIN | ADMIN_PLUGIN;
 $plugin_description = gettext("Enables jQuery tag suggestions on the search field.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 
-zp_register_filter('theme_head','tagSuggestJS');
-zp_register_filter('admin_head','tagSuggestJS');
+zp_register_filter('theme_head', 'tagSuggestJS');
+zp_register_filter('admin_head', 'tagSuggestJS');
 
 function tagSuggestJS() {
 	// the scripts needed
@@ -26,30 +26,27 @@ function tagSuggestJS() {
 	<link type="text/css" rel="stylesheet" href="<?php echo pathurlencode($css); ?>" />
 	<?php
 	$taglist = getAllTagsUnique();
-	
+
 	$c = 0;
 	$list = '';
 	foreach ($taglist AS $tag) {
-		if ($c>0) $list .= ',';
+		if ($c > 0)
+			$list .= ',';
 		$c++;
-		$list .= '"'.addslashes($tag).'"';
+		$list .= '"' . addslashes($tag) . '"';
 	}
-	if(OFFSET_PATH == 4) {
+	if (OFFSET_PATH || getOption('search_space_is') == 'OR') {
 		$tagseparator = ' ';
 	} else {
-		if(getOption('search_space_is') == 'OR') {
-			$tagseparator = ' '; 
-		} else {
-			$tagseparator = ',';
-		}
+		$tagseparator = ',';
 	}
 	?>
 	<script type="text/javascript">
 		// <!-- <![CDATA[
-		var _tagList = [<?php  echo $list; ?>];
-		$(function () {
-			$('#search_input, #edit-editable_4, #newtag_tags_').tagSuggest({ separator:'<?php echo $tagseparator; ?>', tags: _tagList })
-			});
+		var _tagList = [<?php echo $list; ?>];
+		$(function() {
+			$('#search_input, #edit-editable_4, #newtag_tags_').tagSuggest({separator: '<?php echo $tagseparator; ?>', tags: _tagList})
+		});
 		// ]]> -->
 	</script>
 	<?php

@@ -12,7 +12,8 @@ define('UPLOAD_ERR_BLOCKED', -2);
 require_once(dirname(__FILE__) . '/functions-basic.php');
 
 zp_session_start();
-require_once(dirname(__FILE__) . '/admin-functions.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/admin-functions.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tag_suggest.php');
 httpsRedirect();
 $_SESSION['adminRequest'] = @$_COOKIE['zp_user_auth']; //	Allow "unprotected" i.php if the request came from an admin session
 $zenphoto_tabs = array();
