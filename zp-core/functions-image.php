@@ -450,7 +450,9 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 				);
 				$iptc_data = zp_imageIPTC($imgfile);
 				if ($iptc_data) {
-					$iptc = array_merge(iptcparse($iptc_data), $iptc);
+					$iptc_data = iptcparse($iptc_data);
+					if ($iptc_data)
+						$iptc = array_merge($iptc_data, $iptc);
 				}
 				$imgfile = str_replace(ALBUM_FOLDER_SERVERPATH, '', $imgfile);
 				$imagename = basename($imgfile);
