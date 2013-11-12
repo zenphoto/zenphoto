@@ -1961,7 +1961,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td><?php echo gettext("Secure image processor"); ?></td>
 									<td>
 										<input type="checkbox" name="secure_image_processor" value="1"
-													 <?php checked('1', getOption('secure_image_processor')); ?> />&nbsp;<?php echo gettext("Enabled"); ?>
+													 <?php checked('1', getOption('secure_image_processor')); ?> />
 									</td>
 									<td><?php
 										echo gettext('When enabled, the image processor will check album access credentials.') .
@@ -2088,7 +2088,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td><?php echo gettext("Use lock image"); ?></td>
 									<td>
 										<input type="checkbox" name="use_lock_image" value="1"
-													 <?php checked('1', getOption('use_lock_image')); ?> />&nbsp;<?php echo gettext("Enabled"); ?>
+													 <?php checked('1', getOption('use_lock_image')); ?> />
 									</td>
 									<td><?php echo gettext("Substitute a <em>lock</em> image for thumbnails of password protected albums when the viewer has not supplied the password. If your theme supplies an <code>images/err-passwordprotected.png</code> image, it will be shown. Otherwise the zenphoto default lock image is displayed."); ?></td>
 								</tr>
