@@ -136,6 +136,7 @@ if (!defined('SERVERPATH')) {
 
 unset($const_serverpath);
 $_zp_mutex = new Mutex();
+$_configMutex = new Mutex('cF');
 
 if (OFFSET_PATH != 2 && empty($_zp_conf_vars['mysql_database'])) {
 	require_once(dirname(__FILE__) . '/reconfigure.php');

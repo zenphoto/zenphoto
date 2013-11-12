@@ -57,14 +57,18 @@ if (isset($_REQUEST['album'])) {
 $albumparm = $folder = $albumwhere = $imagewhere = $id = $r = '';
 if (isset($_REQUEST['return'])) {
 	$return = $_REQUEST['return'];
-	$r = '?page=edit&amp;album=' . html_encode(pathurlencode($ret = sanitize_path($return)));
-	if (strpos($return, '*') === 0) {
-		$r .= '&amp;tab=subalbuminfo';
-		$star = '*';
+	if ($return == '*') {
+		$backurl = 'admin-edit.php';
 	} else {
-		$star = '';
+		$r = '?page=edit&amp;album=' . html_encode(pathurlencode($ret = sanitize_path($return)));
+		if (strpos($return, '*') === 0) {
+			$r .= '&amp;tab=subalbuminfo';
+			$star = '*';
+		} else {
+			$star = '';
+		}
+		$backurl = 'admin-edit.php' . $r . '&amp;return=' . $star . html_encode(pathurlencode($ret));
 	}
-	$backurl = 'admin-edit.php' . $r . '&amp;return=' . $star . html_encode(pathurlencode($ret));
 } else {
 	$ret = '';
 	$backurl = 'admin.php';

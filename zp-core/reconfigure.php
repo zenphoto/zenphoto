@@ -76,7 +76,8 @@ function reconfigureAction($mandatory) {
  * Checks details of configuration change
  */
 function checkSignature($auto) {
-	global $_zp_DB_connection;
+	global $_configMutex;
+	global $_zp_DB_connection, $_reconfigureMutex;
 	if (function_exists('query_full_array') && $_zp_DB_connection) {
 		$old = @unserialize(getOption('zenphoto_install'));
 		$new = installSignature();
@@ -91,7 +92,7 @@ function checkSignature($auto) {
 	$keys = array_unique(array_merge(array_keys($new), array_keys($old)));
 	foreach ($keys as $key) {
 		if (!array_key_exists($key, $new) || !array_key_exists($key, $old) || $old[$key] != $new[$key]) {
-			$diff[$key] = array('old' => $old[$key], 'new' => $new[$key]);
+			$diff[$key] = array('old' => @$old[$key], 'new' => @$new[$key]);
 		}
 	}
 
@@ -101,6 +102,8 @@ function checkSignature($auto) {
 	foreach ($matches[1] as $need) {
 		$needs[] = rtrim(trim($need), ":*");
 	}
+	// serialize the following
+	$_configMutex->lock();
 	if (file_exists(dirname(__FILE__) . '/setup/')) {
 		chdir(dirname(__FILE__) . '/setup/');
 		if ($auto) {
@@ -119,6 +122,7 @@ function checkSignature($auto) {
 		$found = safe_glob('*.*');
 		$needs = array_diff($needs, $found);
 	}
+	$_configMutex->unlock();
 	return array($diff, $needs);
 }
 
