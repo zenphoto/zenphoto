@@ -1201,7 +1201,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										/*
 										 * not recommended--screws with peoples minds during pagination!
 
-										  $sort[gettext('Random')] = 'random';
+											$sort[gettext('Random')] = 'random';
 										 */
 										$cvt = $cv = strtolower($_zp_gallery->getSortType());
 										ksort($sort, SORT_LOCALE_STRING);
@@ -1598,7 +1598,7 @@ Zenphoto_Authority::printPasswordFormJS();
 
 										/*
 										 * not recommended--screws with peoples minds during pagination!
-										  $sort[gettext('Random')] = 'random';
+											$sort[gettext('Random')] = 'random';
 										 */
 										$flip = array_flip($sort);
 										if (isset($flip[$cv])) {
@@ -1945,7 +1945,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td><?php echo gettext("Protect image cache"); ?></td>
 									<td>
 										<input type="checkbox" name="protected_image_cache" value="1"
-													 <?php checked('1', getOption('protected_image_cache')); ?> />&nbsp;<?php echo gettext("Enabled"); ?>
+													 <?php checked('1', getOption('protected_image_cache')); ?> />
 									</td>
 									<td><?php
 										echo gettext('If checked all image URIs will link to the image processor and the image cache will be disabled to browsers via an <em>.htaccess</em> file. Images are still cached but the image processor is used to serve the image rather than allowing the browser to fetch the file.') .
@@ -2851,7 +2851,7 @@ Zenphoto_Authority::printPasswordFormJS();
 								<tr>
 									<td><?php echo gettext('Cookie security') ?></td>
 									<td>
-										<label><input type="checkbox" name="IP_tied_cookies" value="1" <?php checked(1, getOption('IP_tied_cookies')); ?> /><?php echo gettext('enable'); ?></label>
+										<label><input type="checkbox" name="IP_tied_cookies" value="1" <?php checked(1, getOption('IP_tied_cookies')); ?> /></label>
 									</td>
 									<td>
 										<?php echo gettext('Tie cookies to the IP address of the browser.'); ?>
@@ -2871,14 +2871,14 @@ Zenphoto_Authority::printPasswordFormJS();
 								<tr>
 									<td width="175"><?php echo gettext('Obscure cache filenames'); ?></td>
 									<td width="350">
-										<label><input type="checkbox" name="obfuscate_cache" id="obfuscate_cache" value="1" <?php checked(1, getOption('obfuscate_cache')); ?> /><?php echo gettext('enable'); ?></label>
+										<label><input type="checkbox" name="obfuscate_cache" id="obfuscate_cache" value="1" <?php checked(1, getOption('obfuscate_cache')); ?> /></label>
 									</td>
 									<td><?php echo gettext('Cause the filename of cached items to be obscured. This makes it difficult for someone to "guess" the name in a URL.'); ?></td>
 								</tr>
 								<tr>
 									<td><?php echo gettext('Image Processor security') ?></td>
 									<td>
-										<label><input type="checkbox" name="image_processor_flooding_protection" value="1" <?php checked(1, getOption('image_processor_flooding_protection')); ?> /><?php echo gettext('enable'); ?></label>
+										<label><input type="checkbox" name="image_processor_flooding_protection" value="1" <?php checked(1, getOption('image_processor_flooding_protection')); ?> /></label>
 									</td>
 									<td>
 										<?php echo gettext('Add a security parameter to image processor URIs to prevent denial of service attacks requesting arbitrary sized images.'); ?>
@@ -2906,7 +2906,6 @@ Zenphoto_Authority::printPasswordFormJS();
 																	 value="1" <?php checked('1', $_zp_gallery->getUserLogonField()); ?> />
 																	 <?php
 																 }
-																 echo gettext("enable");
 																 ?>
 												</label>
 											</td>
