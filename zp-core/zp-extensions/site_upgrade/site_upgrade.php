@@ -67,9 +67,12 @@ exitZP();
  * @param string $state
  */
 function setSiteState($state) {
+	global $_configMutex;
+	$_configMutex->lock();
 	$zp_cfg = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 	$zp_cfg = updateConfigItem('site_upgrade_state', $state, $zp_cfg);
 	storeConfig($zp_cfg);
+	$_configMutex->unlock();
 	setOption('site_upgrade_state', $state);
 }
 

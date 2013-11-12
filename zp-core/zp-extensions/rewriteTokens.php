@@ -22,6 +22,8 @@ class rewriteTokens {
 	private $conf_vars;
 
 	function __construct() {
+		global $_configMutex;
+		$_configMutex->lock();
 		$zp_cfg = file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 		$i = strpos($zp_cfg, "\$conf['special_pages']");
 		$j = strpos($zp_cfg, '//', $i);
@@ -45,6 +47,11 @@ class rewriteTokens {
 		} else {
 			enableExtension('rewriteTokens', 97 | ADMIN_PLUGIN); //	plugin must be enabled for saving options
 		}
+	}
+
+	function __destruct() {
+		global $_configMutex;
+		$_configMutex->unlock();
 	}
 
 	function getOptionsSupported() {
