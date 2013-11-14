@@ -39,10 +39,13 @@ function listUses($base) {
 					$match = preg_replace('/\s?\(/', '', $match);
 					echo '<li>'.$match.'</li>';
 				}
-				echo '</ul></li></ul>';
+				echo '</ul></li>';
 				$output = true;
 			}
 		}
+	}
+	if ($output) {
+		echo '</ul>';
 	}
 	return $output;
 }
