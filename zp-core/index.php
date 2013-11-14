@@ -32,7 +32,7 @@ require_once(SERVERPATH . "/" . ZENFOLDER . '/controller.php');
 
 $_index_theme = $_zp_script = '';
 $_zp_loaded_plugins = array();
-$_zp_page_check = 'checkPageValidityDummy'; //	Themes must "opt-in" to have URL page numbers validated
+$_zp_page_check = 'checkPageValidity';
 //$_zp_script_timer['controller'] = microtime();
 // Display an arbitrary theme-included PHP page
 if (isset($_GET['p'])) {
