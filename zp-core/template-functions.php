@@ -4281,7 +4281,7 @@ function printPasswordForm($_password_hint, $_password_showuser = NULL, $_passwo
 		if ($_password_showProtected && !$_zp_login_error) {
 			?>
 			<p>
-			<?php echo gettext("The page you are trying to view is password protected."); ?>
+				<?php echo gettext("The page you are trying to view is password protected."); ?>
 			</p>
 			<?php
 		}
@@ -4474,16 +4474,6 @@ function checkPageValidity($request, $gallery_page, $page) {
 		$request = false; //	page is out of range
 	}
 
-	return $request;
-}
-
-/**
- * Used as the default page url checker. Page url checking is an Opt-in for now at least.
- * It simply returns the parameter
- * @param bool $request
- * @return bool
- */
-function checkPageValidityDummy($request) {
 	return $request;
 }
 
