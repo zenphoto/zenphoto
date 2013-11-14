@@ -49,7 +49,30 @@ if (isset($_GET['p'])) {
 } else {
 	$_index_theme = setupTheme();
 }
+
 //$_zp_script_timer['theme setup'] = microtime();
+
+if (!$zp_request && isset($_GET['fromlogout'])) { //	redirect not visible to user
+	zp_load_gallery();
+	$_index_theme = prepareIndexPage();
+	$zp_request = true;
+}
+$_zp_script = zp_apply_filter('load_theme_script', $_zp_script, $zp_request);
+
+//	HTML caching?
+if ($zp_request) {
+	$_zp_HTML_cache->startHTMLCache();
+}
+
+setThemeColumns();
+$custom = SERVERPATH . '/' . THEMEFOLDER . '/' . internalToFilesystem($_index_theme) . '/functions.php';
+if (file_exists($custom)) {
+	require_once($custom);
+} else {
+	$custom = false;
+}
+
+//	Load the THEME plugins
 if (!preg_match('~' . ZENFOLDER . '~', $_zp_script)) {
 	if (DEBUG_PLUGINS) {
 		debugLog('Loading the "theme" plugins.');
@@ -71,26 +94,6 @@ if (!preg_match('~' . ZENFOLDER . '~', $_zp_script)) {
 		}
 		$_zp_loaded_plugins[] = $extension;
 	}
-}
-
-if (!$zp_request && isset($_GET['fromlogout'])) { //	redirect not visible to user
-	zp_load_gallery();
-	$_index_theme = prepareIndexPage();
-	$zp_request = true;
-}
-$_zp_script = zp_apply_filter('load_theme_script', $_zp_script, $zp_request);
-
-//	HTML caching?
-if ($zp_request) {
-	$_zp_HTML_cache->startHTMLCache();
-}
-
-setThemeColumns();
-$custom = SERVERPATH . '/' . THEMEFOLDER . '/' . internalToFilesystem($_index_theme) . '/functions.php';
-if (file_exists($custom)) {
-	require_once($custom);
-} else {
-	$custom = false;
 }
 
 //check for valid page number (may be theme dependent!)
