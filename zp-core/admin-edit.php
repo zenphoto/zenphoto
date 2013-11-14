@@ -9,6 +9,7 @@
 define('OFFSET_PATH', 1);
 
 require_once(dirname(__FILE__) . '/admin-globals.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tag_suggest.php');
 
 admin_securityChecks(ALBUM_RIGHTS, $return = currentRelativeURL());
 
@@ -1177,7 +1178,7 @@ echo "\n</head>";
 																<label class="checkboxlabel">
 																	<input type="radio" id="Delete-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="delete"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');
-																						 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo gettext("Are you sure you want to select this image for deletion?"); ?>')" /> <?php echo gettext("Delete image") ?>
+																										 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo gettext("Are you sure you want to select this image for deletion?"); ?>')" /> <?php echo gettext("Delete image") ?>
 																</label>
 																<br class="clearall" />
 																<div id="movecopydiv-<?php echo $currentimage; ?>" style="padding-top: .5em; padding-left: .5em; display: none;">
