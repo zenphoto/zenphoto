@@ -491,7 +491,14 @@ class Gallery {
 // Load the albums from disk
 			$result = query("SELECT * FROM " . prefix('albums'));
 			while ($row = db_fetch_assoc($result)) {
-				$valid = file_exists($albumpath = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($row['folder'])) && (hasDynamicAlbumSuffix($albumpath) || (is_dir($albumpath) && strpos($albumpath, '/./') === false && strpos($albumpath, '/../') === false && strpos($albumpath, '//') === false && substr($albumpath, -1) != '/' && $albumpath{0} != '/' && $albumpath{0} != '.'));
+				$albumpath = internalToFilesystem($row['folder']);
+				$albumpath_valid = strtr($albumpath, array('//' => '/', '/./' => '/', '/../' => '/'));
+				$albumpath_valid = ltrim(trim($albumpath_valid, '/'), './');
+				$illegal = $albumpath != $albumpath_valid;
+				$valid = file_exists(ALBUM_FOLDER_SERVERPATH . $albumpath_valid) && (hasDynamicAlbumSuffix($albumpath_valid) || is_dir(ALBUM_FOLDER_SERVERPATH . $albumpath_valid));
+				if ($valid && $illegal) { // maybe there is only one record so we can fix it.
+					$valid = query('UPDATE ' . prefix('albums') . ' SET `folder`=' . db_quote($albumpath_valid) . ' WHERE `id`=' . $row['id'], true);
+				}
 				if (!$valid || in_array($row['folder'], $live)) {
 					$dead[] = $row['id'];
 					if ($row['album_theme'] !== '') { // orphaned album theme options table
@@ -1029,5 +1036,4 @@ class Gallery {
 	}
 
 }
-
 ?>
