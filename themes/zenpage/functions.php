@@ -71,7 +71,7 @@ function my_checkPageValidity($request, $gallery_page, $page) {
 			$gallery_page = 'index.php'; //	same as an album gallery index
 			break;
 		case 'index.php':
-			if (!extensionEnabled('zenpage')) { // only one index page if zenpage plugin is enabled
+			if (!extensionEnabled('zenpage') || !getOption('zenpage_zp_index_news')) { // only one index page if zenpage plugin is enabled & displaying
 				break;
 			}
 		default:
