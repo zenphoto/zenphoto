@@ -37,47 +37,48 @@ if (!$plugin_disable) {
 			}
 		}
 	}
+}
 
-	/**
-	 * Searches the zenphoto.org home page for the current zenphoto download
-	 * locates the version number of the download and compares it to the version
-	 * we are running.
-	 *
-	 * @return string If there is a more current version on the WEB, returns its version number otherwise returns FALSE
-	 * @since 1.1.3
-	 */
-	function checkForUpdate() {
-		$webVersion = false;
-		if (is_connected() && class_exists('DOMDocument')) {
-			require_once(dirname(__FILE__) . '/zenphoto_news/rsslib.php');
-			$recents = RSS_Retrieve("http://www.zenphoto.org/index.php?rss=news&category=changelog");
-			if ($recents) {
-				array_shift($recents);
-				$article = array_shift($recents); //	most recent changelog article
-				$v = trim(str_replace('zenphoto-', '', basename($article['link'])));
-				$c = explode('-', ZENPHOTO_VERSION);
-				$c = array_shift($c);
-				if ($v && version_compare($c, $v, "<")) {
-					$webVersion = $v;
-				}
+/**
+ * Searches the zenphoto.org home page for the current zenphoto download
+ * locates the version number of the download and compares it to the version
+ * we are running.
+ *
+ * @return string If there is a more current version on the WEB, returns its version number otherwise returns FALSE
+ * @since 1.1.3
+ */
+function checkForUpdate() {
+	$webVersion = false;
+	if (is_connected() && class_exists('DOMDocument')) {
+		require_once(dirname(__FILE__) . '/zenphoto_news/rsslib.php');
+		$recents = RSS_Retrieve("http://www.zenphoto.org/index.php?rss=news&category=changelog");
+		if ($recents) {
+			array_shift($recents);
+			$article = array_shift($recents); //	most recent changelog article
+			$v = trim(str_replace('zenphoto-', '', basename($article['link'])));
+			$c = explode('-', ZENPHOTO_VERSION);
+			$c = array_shift($c);
+			if ($v && version_compare($c, $v, "<")) {
+				$webVersion = $v;
 			}
 		}
-		return $webVersion;
 	}
+	return $webVersion;
+}
 
-	/**
-	 *
-	 * Displays the "new version available" message on admin pages
-	 * @param unknown_type$tab
-	 * @param unknown_type $subtab
-	 */
-	function admin_showupdate($tab, $subtab) {
-		?>
-		<div class="notebox">
-			<h2><a href="http://www.zenphoto.org" alt="<?php echo gettext('Zenphoto download page'); ?>"><?php echo gettext("A new version of Zenphoto version is available."); ?></a></h2>
-		</div>
-		<?php
-		setOption('last_update_check', time());
-		return $tab;
-	}
+/**
+ *
+ * Displays the "new version available" message on admin pages
+ * @param unknown_type$tab
+ * @param unknown_type $subtab
+ */
+function admin_showupdate($tab, $subtab) {
 	?>
+	<div class="notebox">
+		<h2><a href="http://www.zenphoto.org" alt="<?php echo gettext('Zenphoto download page'); ?>"><?php echo gettext("A new version of Zenphoto version is available."); ?></a></h2>
+	</div>
+	<?php
+	setOption('last_update_check', time());
+	return $tab;
+}
+?>
