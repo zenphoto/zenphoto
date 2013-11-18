@@ -21,7 +21,8 @@ class SearchEngine {
 	var $albums = NULL;
 	var $articles = NULL;
 	var $pages = NULL;
-	var $pattern = array('type' => 'like', 'open' => '%', 'close' => '%');
+	var $pattern;
+	var $tagPattern;
 	private $exact = false;
 	protected $dynalbumname = NULL;
 	protected $album = NULL;
@@ -57,10 +58,35 @@ class SearchEngine {
 	 */
 	function __construct($dynamic_album = false) {
 		global $_zp_exifvars, $_zp_gallery;
-		$this->exact = getOption('exact_tag_match');
-		$searchPattern = getOption('search_match_pattern');
-		if (!empty($searchPattern))
-			$this->pattern = unserialize($searchPattern);
+		switch ((int) getOption('exact_tag_match')) {
+			case 0:
+				// partial
+				$this->tagPattern = array('type' => 'like', 'open' => '%', 'close' => '%');
+				break;
+			case 1:
+				// exact
+				$this->tagPattern = array('type' => '=', 'open' => '', 'close' => '');
+				break;
+			case 2:
+				//word
+				$this->tagPattern = array('type' => 'regexp', 'open' => '[[:<:]]', 'close' => '[[:>:]]');
+				break;
+		}
+
+		switch ((int) getOption('exact_string_match')) {
+			case 0:
+				// pattern
+				$this->pattern = array('type' => 'like', 'open' => '%', 'close' => '%');
+				break;
+			case 1:
+				// partial start
+				$this->pattern = array('type' => 'regexp', 'open' => '[[:<:]]', 'close' => '');
+				break;
+			case 2:
+				//word
+				$this->pattern = array('type' => 'regexp', 'open' => '[[:<:]]', 'close' => '[[:>:]]');
+				break;
+		}
 //image/album fields
 		$this->search_structure['title'] = gettext('Title');
 		$this->search_structure['desc'] = gettext('Description');
@@ -977,7 +1003,7 @@ class SearchEngine {
 		global $_zp_gallery;
 		$weights = $idlist = array();
 		$sql = $allIDs = NULL;
-
+		$tagPattern = $this->tagPattern;
 // create an array of [tag, objectid] pairs for tags
 		$tag_objects = array();
 		$fields = $this->fieldList;
@@ -1013,7 +1039,7 @@ class SearchEngine {
 					}
 					break;
 				case 'tags_exact':
-					$this->exact = true;
+					$tagPattern = array('type' => '=', 'open' => '', 'close' => '');
 				case 'tags':
 					unset($fields[$key]);
 					query('SET @serachfield="tags"');
@@ -1028,11 +1054,12 @@ class SearchEngine {
 								break;
 							default:
 								$targetfound = true;
-								if ($this->exact) {
-									$tagsql .= '`name` = ' . db_quote($singlesearchstring) . ' OR ';
+								if ($tagPattern['type'] == 'like') {
+									$target = db_LIKE_escape($singlesearchstring);
 								} else {
-									$tagsql .= '`name` LIKE ' . db_quote('%' . db_LIKE_escape($singlesearchstring) . '%') . ' OR ';
+									$target = $singlesearchstring;
 								}
+								$tagsql .= '`name` ' . strtoupper($tagPattern['type']) . ' ' . db_quote($tagPattern['open'] . $target . $tagPattern['close']) . ' OR ';
 						}
 					}
 					$tagsql = substr($tagsql, 0, strlen($tagsql) - 4) . ') ORDER BY t.`id`';
@@ -1093,6 +1120,7 @@ class SearchEngine {
 		}
 
 // now do the boolean logic of the search string
+		$exact = $tagPattern['type'] == '=';
 		$objects = array_merge($tag_objects, $field_objects);
 		if (count($objects) != 0) {
 			$tagid = '';
@@ -1155,7 +1183,7 @@ class SearchEngine {
 						$lookfor = strtolower($singlesearchstring);
 						$objectid = NULL;
 						foreach ($taglist as $key => $objlist) {
-							if (($this->exact && $lookfor == $key) || (!$this->exact && preg_match('|' . preg_quote($lookfor) . '|', $key))) {
+							if (($exact && $lookfor == $key) || (!$exact && preg_match('|' . preg_quote($lookfor) . '|', $key))) {
 								if (is_array($objectid)) {
 									$objectid = array_merge($objectid, $objlist);
 								} else {

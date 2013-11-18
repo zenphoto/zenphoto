@@ -172,8 +172,6 @@ if (isset($_GET['action'])) {
 			$fail = '';
 			$search = new SearchEngine();
 			$searchfields = array();
-			setOption('exact_tag_match', sanitize($_POST['SEARCH_tags_tag_match']));
-			unset($_POST['SEARCH_tags_tag_match']);
 			foreach ($_POST as $key => $value) {
 				if (strpos($key, 'SEARCH_') !== false) {
 					$searchfields[] = substr(sanitize(postIndexDecode($key)), 7);
@@ -182,6 +180,8 @@ if (isset($_GET['action'])) {
 			setOption('search_fields', implode(',', $searchfields));
 			setOption('search_cache_duration', sanitize_numeric($_POST['search_cache_duration']));
 			$notify = processCredentials('search');
+			setOption('exact_tag_match', sanitize($_POST['tag_match']));
+			setOption('exact_string_match', sanitize($_POST['string_match']));
 			setOption('search_space_is', sanitize($_POST['search_space_is']));
 			setOption('search_no_albums', (int) isset($_POST['search_no_albums']));
 			setOption('search_no_images', (int) isset($_POST['search_no_images']));
@@ -1463,10 +1463,6 @@ Zenphoto_Authority::printPasswordFormJS();
 									<?php
 									$engine = new SearchEngine();
 									$fields = $engine->getSearchFieldList();
-									$extra = array('tags' => array(array('type' => 'radio', 'display' => gettext('partial'), 'name' => 'tag_match', 'value' => 0, 'checked' => 0),
-																	array('type' => 'radio', 'display' => gettext('exact'), 'name' => 'tag_match', 'value' => 1, 'checked' => 0))
-									);
-									$extra['tags'][(int) (getOption('exact_tag_match') && true)]['checked'] = 1;
 									$set_fields = $engine->allowedSearchFields();
 									$fields = array_diff($fields, $set_fields);
 									?>
@@ -1485,8 +1481,8 @@ Zenphoto_Authority::printPasswordFormJS();
 									<div id="resizable">
 										<ul class="searchchecklist" id="searchchecklist">
 											<?php
-											generateUnorderedListFromArray($set_fields, $set_fields, 'SEARCH_', false, true, true, 'search_fields', $extra);
-											generateUnorderedListFromArray(array(), $fields, 'SEARCH_', false, true, true, 'search_fields', $extra);
+											generateUnorderedListFromArray($set_fields, $set_fields, 'SEARCH_', false, true, true, 'search_fields');
+											generateUnorderedListFromArray(array(), $fields, 'SEARCH_', false, true, true, 'search_fields');
 											?>
 										</ul>
 										<div class="floatright">
@@ -1497,11 +1493,31 @@ Zenphoto_Authority::printPasswordFormJS();
 										</div>
 									</div>
 									<br />
-									<?php echo gettext('Treat spaces as'); ?>
-									<?php generateRadiobuttonsFromArray(getOption('search_space_is'), array(gettext('<em>space</em>') => '', gettext('<em>OR</em>') => 'OR', gettext('<em>AND</em>') => 'AND'), 'search_space_is', false, false); ?>
 									<p>
-										<?php echo gettext('Default search'); ?>
-										<?php generateRadiobuttonsFromArray(getOption('search_within'), array(gettext('<em>New</em>') => '0', gettext('<em>Within</em>') => '1'), 'search_within', false, false); ?>
+										<?php
+										echo gettext('String matching:');
+										generateRadiobuttonsFromArray((int) getOption('exact_string_match'), array(gettext('<em>pattern</em>') => 0, gettext('<em>partial word</em>') => 1, gettext('<em>word</em>') => 2), 'string_match', false, false);
+										?>
+									</p>
+									<p>
+										<?php
+										echo gettext('Tag matching:');
+										generateRadiobuttonsFromArray((int) getOption('exact_tag_match'), array(gettext('<em>partial</em>') => 0, gettext('<em>word</em>') => 2, gettext('<em>exact</em>') => 1), 'tag_match', false, false);
+										?>
+									</p>
+									<p>
+										<?php
+										echo gettext('Treat spaces as');
+										generateRadiobuttonsFromArray(getOption('search_space_is'), array(gettext('<em>space</em>') => '', gettext('<em>OR</em>') => 'OR', gettext('<em>AND</em>') => 'AND'), 'search_space_is', false, false);
+										?>
+									</p>
+									<p>
+										<?php
+										echo gettext('Default search');
+
+
+										generateRadiobuttonsFromArray(getOption('search_within'), array(gettext('<em>New</em>') => '0', gettext('<em>Within</em>') => '1'), 'search_within', false, false);
+										?>
 									</p>
 									<p>
 										<label>
@@ -1536,7 +1552,17 @@ Zenphoto_Authority::printPasswordFormJS();
 								</td>
 								<td>
 									<p><?php echo gettext("<em>Field list</em> is the set of fields on which searches may be performed."); ?></p>
-									<p><?php echo gettext("Search does partial matches on all fields selected with the possible exception of <em>Tags</em>. This means that if the field contains the search criteria anywhere within it a result will be returned. If <em>exact</em> is selected for <em>Tags</em> then the search criteria must exactly match the tag for a result to be returned.") ?></p>
+									<p>
+										<?php
+										echo gettext("Search does matches on all fields chosen based on the matching criteria selected. The <em>string matching</em> criteria is used for all fields except <em>tags</em>. The <em>tag matchind</em> criteria is used for them.");
+										?>
+									<ul>
+										<li><?php echo gettext('<code>pattern</code>: match the target anywhere within the field'); ?></li>
+										<li><?php echo gettext('<code>exact</code>: match the target with whole the field'); ?></li>
+										<li><?php echo gettext('<code>word</code>: match the target with whole words in the field'); ?></li>
+										<li><?php echo gettext('<code>partial word</code>: match the target with the start of words in the field'); ?></li>
+									</ul>
+									</p>
 									<p><?php echo gettext('Setting <code>Treat spaces as</code> to <em>OR</em> will cause search to trigger on any of the words in a string separated by spaces. Setting it to <em>AND</em> will cause the search to trigger only when all strings are present. Leaving the option unchecked will treat the whole string as a search target.') ?></p>
 									<p><?php echo gettext('<code>Default search</code> sets how searches from search page results behave. The search will either be from <em>within</em> the results of the previous search or will be a fresh <em>new</em> search.') ?></p>
 									<p><?php echo gettext('Setting <code>Do not return <em>{item}</em> matches</code> will cause search to ignore <em>{items}</em> when looking for matches.') ?></p>
@@ -2644,7 +2670,7 @@ Zenphoto_Authority::printPasswordFormJS();
 					<div id="tab_plugin" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
 						<script type="text/javascript">
-																							var optionholder = new array();</script>
+																								var optionholder = new array();</script>
 						<form id="form_options" action="?action=saveoptions<?php if (isset($_GET['single'])) echo '&amp;single=' . $showExtension; ?>" method="post" autocomplete="off">
 							<?php XSRFToken('saveoptions'); ?>
 							<input type="hidden" name="savepluginoptions" value="yes" />
