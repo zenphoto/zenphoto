@@ -116,8 +116,8 @@ if ($zp_request && $_zp_script && file_exists($_zp_script = SERVERPATH . "/" . i
 	}
 	// Include the appropriate page for the requested object, and a 200 OK header.
 	header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
-	header("HTTP/1.0 '200 OK'");
-	header("Status: '200 OK'");
+	header("HTTP/1.0 200 OK");
+	header("Status: 200 OK");
 	header('Last-Modified: ' . ZP_LAST_MODIFIED);
 	zp_apply_filter('theme_headers');
 	include(internalToFilesystem($_zp_script));
