@@ -515,11 +515,10 @@ if ($c <= 0) {
 				if ($connection && !isset($_zp_options)) {
 					$sql = "SELECT `name`, `value` FROM " . prefix('options');
 					$optionlist = query_full_array($sql, false);
-					$_zp_options = array();
-					foreach ($optionlist as $option) {
-						$_zp_options[$option['name']] = $option['value'];
-						if ($option['name'] == $key) {
-							$v = $option['value'];
+					if ($optionlist) {
+						$_zp_options = array();
+						foreach ($optionlist as $option) {
+							$_zp_options[$option['name']] = $option['value'];
 						}
 					}
 				}
