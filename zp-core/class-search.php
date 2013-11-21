@@ -40,10 +40,6 @@ class SearchEngine {
 	protected $category_list = NULL; // list of categories for a news search
 	protected $searches = NULL; // remember the criteria for past searches
 	protected $extraparams = array(); // allow plugins to add to search parameters
-	protected $albumsorttype = NULL;
-	protected $albumsortdirection = NULL;
-	protected $imagesorttype = NULL;
-	protected $imagesortdirection = NULL;
 //	mimic album object
 	var $loaded = false;
 	var $table = 'albums';
@@ -317,20 +313,20 @@ class SearchEngine {
 	 * sets sort directions
 	 *
 	 * @param string $val the direction
-	 * @param string $what 'image' if you want the image direction,
-	 *        'album' if you want it for the album
+	 * @param string $what 'images' if you want the image direction,
+	 *        'albums' if you want it for the album
 	 */
-	function setSortDirection($val, $what = NULL) {
-		$this->extraparams[$what . 'sortdirection'] = $sorttype;
+	function setSortDirection($val, $what = 'images') {
+		$this->extraparams[$what . 'sortdirection'] = $val;
 	}
 
 	/**
 	 * Stores the sort type
 	 *
 	 * @param string $sorttype the sort type
-	 * @param string $what 'image' or 'album'
+	 * @param string $what 'images' or 'albums'
 	 */
-	function setSortType($sorttype, $what = NULL) {
+	function setSortType($sorttype, $what = 'images') {
 		$this->extraparams[$what . 'sorttype'] = $sorttype;
 	}
 
@@ -396,13 +392,13 @@ class SearchEngine {
 					if ($alb->loaded) {
 						$this->album = $alb;
 						$this->dynalbumname = $v;
-						$this->albumsorttype = $this->album->getSortType('album');
+						$this->setSortType($this->album->getSortType('album'), 'albums');
 						if ($this->album->getSortDirection('album')) {
-							$this->albumsortdirection = 'DESC';
+							$this->setSortDirection('DESC', 'albums');
 						}
-						$this->imagesorttype = $this->album->getSortType();
+						$this->setSortType($this->album->getSortType(), 'images');
 						if ($this->album->getSortDirection('image')) {
-							$this->imagesortdirection = 'DESC';
+							$this->setSortDirection('DESC', 'images');
 						}
 					}
 					break;
@@ -1320,16 +1316,7 @@ class SearchEngine {
 		if (getOption('search_no_albums') || $this->search_no_albums) {
 			return array();
 		}
-		if (is_null($sorttype)) {
-			$sorttype = $this->albumsorttype;
-		} else {
-			$this->albumsorttype = $sorttype;
-		}
-		if (is_null($sortdirection)) {
-			$sortdirection = $this->albumsortdirection;
-		} else {
-			$this->albumsortdirection = $sortdirection;
-		}
+		list($sorttype, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'sort_order', 'albums');
 		$albums = array();
 		$searchstring = $this->getSearchString();
 		if (empty($searchstring)) {
@@ -1477,16 +1464,7 @@ class SearchEngine {
 		if (getOption('search_no_images') || $this->search_no_images) {
 			return array();
 		}
-		if (is_null($sorttype)) {
-			$sorttype = $this->imagesorttype;
-		} else {
-			$this->imagesorttype = $sorttype;
-		}
-		if (is_null($sortdirection)) {
-			$sortdirection = $this->imagesortdirection;
-		} else {
-			$this->imagesortdirection = $sortdirection;
-		}
+		list($sorttype, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'filename', 'images');
 		if (is_null($mine) && zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 			$mine = true;
 		}
@@ -1691,6 +1669,7 @@ class SearchEngine {
 	private function getSearchPages($sorttype, $sortdirection) {
 		if (!extensionEnabled('zenpage') || getOption('search_no_pages') || $this->search_no_pages)
 			return array();
+		list($sorttype, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'title', 'pages');
 		$searchstring = $this->getSearchString();
 		$searchdate = $this->dates;
 		if (empty($searchstring) && empty($searchdate)) {
@@ -1773,6 +1752,7 @@ class SearchEngine {
 		if (!extensionEnabled('zenpage') || getOption('search_no_news') || $this->search_no_news) {
 			return array();
 		}
+		list($sorttype, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'title', 'news');
 		$searchstring = $this->getSearchString();
 		$searchdate = $this->dates;
 		if (empty($searchstring) && empty($searchdate)) {
