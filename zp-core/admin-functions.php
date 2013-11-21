@@ -595,6 +595,11 @@ function printAdminHeader($tab, $subtab = NULL) {
 				} else {
 					$disabled = '';
 				}
+				$deprecated = @$row['deprecated'];
+				if ($deprecated && $option) {
+					$option = '<div class="warningbox">' . $option . '<br /><em>' . gettext('Deprecated.') . '</em></div>';
+				}
+
 				if ($theme) {
 					$v = getThemeOption($key, $album, $theme);
 				} else {
@@ -1370,7 +1375,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$sort[gettext('Custom')] = 'custom';
 						/*
 						 * not recommended--screws with peoples minds during pagination!
-							$sort[gettext('Random')] = 'random';
+						  $sort[gettext('Random')] = 'random';
 						 */
 						?>
 						<tr>
