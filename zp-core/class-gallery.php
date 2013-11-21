@@ -492,12 +492,13 @@ class Gallery {
 			$result = query("SELECT * FROM " . prefix('albums'));
 			while ($row = db_fetch_assoc($result)) {
 				$albumpath = internalToFilesystem($row['folder']);
-				$albumpath_valid = strtr($albumpath, array('//' => '/', '/./' => '/', '/../' => '/'));
+				$albumpath_valid = preg_replace('~/\.*/~', '/', $albumpath);
 				$albumpath_valid = ltrim(trim($albumpath_valid, '/'), './');
 				$illegal = $albumpath != $albumpath_valid;
 				$valid = file_exists(ALBUM_FOLDER_SERVERPATH . $albumpath_valid) && (hasDynamicAlbumSuffix($albumpath_valid) || is_dir(ALBUM_FOLDER_SERVERPATH . $albumpath_valid));
 				if ($valid && $illegal) { // maybe there is only one record so we can fix it.
-					$valid = query('UPDATE ' . prefix('albums') . ' SET `folder`=' . db_quote($albumpath_valid) . ' WHERE `id`=' . $row['id'], true);
+					$valid = query('UPDATE ' . prefix('albums') . ' SET `folder`=' . db_quote($albumpath_valid) . ' WHERE `id`=' . $row['id'], false);
+					debugLog(sprintf(gettext('Invalid album folder: %1$s %2$s'), $albumpath, $valid ? gettext('fixed') : gettext('discarded')));
 				}
 				if (!$valid || in_array($row['folder'], $live)) {
 					$dead[] = $row['id'];
@@ -1036,4 +1037,5 @@ class Gallery {
 	}
 
 }
+
 ?>

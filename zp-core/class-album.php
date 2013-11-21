@@ -715,7 +715,7 @@ class Album extends AlbumBase {
 		} else if (filesystemToInternal($folderFS) != $folder8) {
 // an attempt to spoof the album name.
 			$msg = sprintf(gettext('Invalid album instantiation: %1$s!=%2$s'), html_encode(filesystemToInternal($folderFS)), html_encode($folder8));
-		} else if (!file_exists($localpath) || !($dynamic || is_dir($localpath)) || $folder8{0} == '.') {
+		} else if (!file_exists($localpath) || !($dynamic || is_dir($localpath)) || $folder8{0} == '.' || preg_match('~/\.*/~', $folder8)) {
 			$msg = sprintf(gettext('Invalid album instantiation: %s does not exist.'), html_encode($folder8));
 		}
 
