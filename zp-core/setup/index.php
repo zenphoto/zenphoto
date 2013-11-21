@@ -1834,7 +1834,7 @@ if ($c <= 0) {
 		`owner` varchar(64) DEFAULT NULL,
 		`codeblock` text,
 		PRIMARY KEY (`id`),
-		KEY `folder` (`folder`)
+		UNIQUE `folder` (`folder`)
 		)	$collation;";
 						}
 
@@ -1902,7 +1902,7 @@ if ($c <= 0) {
 		`password_hint` text,
 		PRIMARY KEY (`id`),
 		KEY (`albumid`),
-		KEY `filename` (`filename`,`albumid`)
+		UNIQUE `filename` (`filename`,`albumid`)
 		)	$collation;";
 						}
 
@@ -2342,6 +2342,10 @@ if ($c <= 0) {
 						$sql_statements[] = "ALTER TABLE $tbl_news ADD COLUMN `truncation` int(1) unsigned NOT NULL default '0'";
 						$sql_statements[] = "ALTER TABLE $tbl_pages ADD COLUMN `truncation` int(1) unsigned NOT NULL default '0'";
 						$sql_statements[] = "CREATE INDEX `albumid` ON $tbl_images (`albumid`)";
+						$sql_statements[] = "ALTER TABLE $tbl_albums DROP INDEX `folder`";
+						$sql_statements[] = "ALTER TABLE $tbl_albums ADD UNIQUE `folder` (`folder`)";
+						$sql_statements[] = "ALTER TABLE $tbl_images DROP INDEX `filename`";
+						$sql_statements[] = "ALTER TABLE $tbl_images ADD UNIQUE `filename` (`filename`, `albumid`)";
 
 						// do this last incase there are any field changes of like names!
 						foreach ($_zp_exifvars as $key => $exifvar) {
@@ -2416,26 +2420,15 @@ if ($c <= 0) {
 									}
 								}
 								echo "</h3>";
-								$sql = 'SHOW KEYS FROM ' . $tbl_options;
-								$result = query_full_array($sql);
-								$unique = array('name' => 0, 'ownerid' => 0, 'theme' => 0);
-								foreach ($result as $key) {
-									if (!$key['Non_unique']) {
-										unset($unique[$key['Column_name']]);
-									}
-								}
-								if (!empty($unique)) {
-									$autorun = false;
-									?>
-									<p class="notebox">
-										<?php
-										printf(gettext('<strong>Warning:</strong> the <code>%s</code> table appears not to have a proper <em>unique_options</em> key. There are probably duplicate options in the table. There should be a unique index key on <em>name</em>, <em>ownerid</em>, and <em>theme</em>.'), trim($tbl_options, '`'));
-										$autorun = false;
-										?>
-									</p>
-									<?php
-								}
 
+								checkUnique($tbl_administrators, array('valid' => 0, 'user' => 0));
+								checkUnique($tbl_albums, array('folder' => 0));
+								checkUnique($tbl_images, array('albumid' => 0, 'filename' => 0));
+								checkUnique($tbl_options, array('name' => 0, 'ownerid' => 0, 'theme' => 0));
+								checkUnique($tbl_news_categories, array('titlelink' => 0));
+								checkUnique($tbl_news, array('titlelink' => 0));
+								checkUnique($tbl_pages, array('titlelink' => 0));
+								checkUnique($tbl_tags, array('name' => 0));
 
 								// set defaults on any options that need it
 								setupLog(gettext("Done with database creation and update"));

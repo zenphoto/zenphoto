@@ -933,7 +933,7 @@ class SearchEngine {
 			case 'albums':
 				if (is_null($sorttype)) {
 					if (empty($this->album)) {
-						list($key, $sortdirection) = $this->sortKey($_zp_gallery->getSortType(), $sortdirection, 'sort_order', 'albums');
+						list($key, $sortdirection) = $this->sortKey($_zp_gallery->getSortType(), $sortdirection, 'title', 'albums');
 						if ($key != '`sort_order`') {
 							if ($_zp_gallery->getSortDirection()) {
 								$key .= " DESC";
@@ -948,7 +948,7 @@ class SearchEngine {
 						}
 					}
 				} else {
-					list($key, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'sort_order', 'albums');
+					list($key, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'title', 'albums');
 					$key = trim($key . ' ' . $sortdirection);
 				}
 				break;
@@ -961,7 +961,7 @@ class SearchEngine {
 				}
 				if (is_null($sorttype)) {
 					if (empty($this->album)) {
-						list($key, $sortdirection) = $this->sortKey(IMAGE_SORT_TYPE, $sortdirection, 'filename', 'images');
+						list($key, $sortdirection) = $this->sortKey(IMAGE_SORT_TYPE, $sortdirection, 'title', 'images');
 						if ($key != '`sort_order`') {
 							if (IMAGE_SORT_DIRECTION) {
 								$key .= " DESC";
@@ -976,7 +976,7 @@ class SearchEngine {
 						}
 					}
 				} else {
-					list($key, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'filename', 'images');
+					list($key, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'title', 'images');
 					$key = trim($key . ' ' . $sortdirection);
 				}
 				break;
@@ -1279,7 +1279,7 @@ class SearchEngine {
 					$sql .= "`folder` ";
 					if (is_null($sorttype)) {
 						if (empty($this->album)) {
-							list($key, $sortdirection) = $this->sortKey($_zp_gallery->getSortType(), $sortdirection, 'sort_order', 'albums');
+							list($key, $sortdirection) = $this->sortKey($_zp_gallery->getSortType(), $sortdirection, 'title', 'albums');
 							if ($_zp_gallery->getSortDirection()) {
 								$key .= " DESC";
 							}
@@ -1292,7 +1292,7 @@ class SearchEngine {
 							}
 						}
 					} else {
-						list($key, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'sort_order', 'albums');
+						list($key, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'title', 'albums');
 						$key = trim($key . ' ' . $sortdirection);
 					}
 					break;
@@ -1305,7 +1305,7 @@ class SearchEngine {
 					$sql .= "`albumid`, `filename` ";
 					if (is_null($sorttype)) {
 						if (empty($this->album)) {
-							list($key, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'filename', 'images');
+							list($key, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'title', 'images');
 							if ($sortdirection) {
 								$key .= " DESC";
 							}
@@ -1318,7 +1318,7 @@ class SearchEngine {
 							}
 						}
 					} else {
-						list($key, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'filename', 'images');
+						list($key, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'title', 'images');
 						$key = trim($key . ' ' . $sortdirection);
 					}
 					break;
@@ -1344,7 +1344,7 @@ class SearchEngine {
 		if (getOption('search_no_albums') || $this->search_no_albums) {
 			return array();
 		}
-		list($sorttype, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'sort_order', 'albums');
+		list($sorttype, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'title', 'albums');
 		$albums = array();
 		$searchstring = $this->getSearchString();
 		if (empty($searchstring)) {
@@ -1492,7 +1492,7 @@ class SearchEngine {
 		if (getOption('search_no_images') || $this->search_no_images) {
 			return array();
 		}
-		list($sorttype, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'filename', 'images');
+		list($sorttype, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'title', 'images');
 		if (is_null($mine) && zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 			$mine = true;
 		}

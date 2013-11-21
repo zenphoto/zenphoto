@@ -58,7 +58,7 @@ function primeMark($text) {
 	<script type="text/javascript">
 		$("#prime<?php echo $primeid; ?>").remove();
 	</script>
-	<div id="prime<?php echo++$primeid; ?>" class="error"><?php printf(gettext('Testing %s.'), $text); ?></div>
+	<div id="prime<?php echo ++$primeid; ?>" class="error"><?php printf(gettext('Testing %s.'), $text); ?></div>
 	<?php
 }
 
@@ -347,7 +347,7 @@ if (!function_exists('fnmatch')) {
 	 * @return bool
 	 */
 	function fnmatch($pattern, $string) {
-		return @preg_match('/^' . strtr(addcslashes($pattern, '\\.+^$(){}=!<>|'), array('*'	 => '.*', '?'	 => '.?')) . '$/i', $string);
+		return @preg_match('/^' . strtr(addcslashes($pattern, '\\.+^$(){}=!<>|'), array('*' => '.*', '?' => '.?')) . '$/i', $string);
 	}
 
 }
@@ -606,5 +606,26 @@ function updateConfigfile($zp_cfg) {
 	@chmod(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, $mod2);
 	$str = configMod();
 	$xsrftoken = sha1(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE . $str . session_id());
+}
+
+function checkUnique($table, $unique) {
+	global $autorun;
+	$sql = 'SHOW KEYS FROM ' . $table;
+	$result = query_full_array($sql);
+	foreach ($result as $key) {
+		if (!$key['Non_unique']) {
+			unset($unique[$key['Column_name']]);
+		}
+	}
+	if (!empty($unique)) {
+		$autorun = false;
+		?>
+		<p class="notebox">
+			<?php
+			printf(gettext('<strong>Warning:</strong> the <code>%s</code> table appears not to have a proper <em>UNIQUE</em> key. There are probably duplicate entries in the table which can cause unpredictable behavior. This can normally be corrected by creating a Zenphoto backup, dropping the table, running setup to restore the table, and then restoring from the backup. Note, however, that the duplicate entries will be lost.'), trim($table, '`'));
+			?>
+		</p>
+		<?php
+	}
 }
 ?>
