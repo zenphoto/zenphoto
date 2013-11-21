@@ -1302,4 +1302,358 @@ function printSlideShowJS() {
 	deprecated_functions::notify(gettext('This feature is now done by a "theme_head" filter. You can remove the function call.'));
 }
 
+/**
+ * Gets the news type of a news item.
+ * "news" for a news article or if using the CombiNews feature
+ * "flvmovie" (for flv, fla, mp3, m4a and mp4/m4v), "image", "3gpmovie" or "quicktime"
+ *
+ * @param obj $newsobj optional news object to check directly outside news context
+ * @return string
+ * @deprecated since version 1.4.6
+ */
+function getNewsType($newsobj = NULL) {
+	global $_zp_current_zenpage_news;
+	deprecated_functions::notify(gettext('CombiNews is deprecated. See the <a href="http://www.zenphoto.org/news/zenphoto-1.4.6">Zenphoto 1.4.6 release notes</a>.'));
+	if (is_null($newsobj)) {
+		$ownerclass = strtolower(get_class($_zp_current_zenpage_news));
+	} else {
+		$ownerclass = strtolower(get_class($newsobj));
+	}
+	switch ($ownerclass) {
+		case "video":
+			return "video";
+		case "album":
+			return "album";
+		case "zenpagenews":
+			return "news";
+		default:
+			return 'image';
+	}
+}
+
+/**
+ * Checks what type the current news item is (See get NewsType())
+ *
+ * @param string $type The type to check for
+ * 										 "news" for a news article or if using the CombiNews feature
+ * 										"flvmovie" (for flv, fla, mp3, m4a and mp4/m4v), "image", "3gpmovie" or "quicktime"
+ * @param obj $newsobj optional news object to check directly outside news context
+ * @return bool
+ * @deprecated since version 1.4.6
+ */
+function is_NewsType($type, $newsobj = NULL) {
+	deprecated_functions::notify(gettext('CombiNews is deprecated. See the <a href="http://www.zenphoto.org/news/zenphoto-1.4.6">Zenphoto 1.4.6 release notes</a>.'));
+	return getNewsType($newsobj) == $type;
+}
+
+/**
+ * CombiNews feature: A general wrapper function to check if this is a 'normal' news article (type 'news' or one of the zenphoto news types
+ *
+ * @return bool
+ * @deprecated since version 1.4.6
+ */
+function is_GalleryNewsType() {
+	deprecated_functions::notify(gettext('CombiNews is deprecated. See the <a href="http://www.zenphoto.org/news/zenphoto-1.4.6">Zenphoto 1.4.6 release notes</a>.'));
+	return is_NewsType("image") || is_NewsType("video") || is_NewsType("album"); // later to be extended with albums, too
+}
+
+/**
+ * Helper function for getNewsContent to get video/audio content if $imageobj is a video/audio object if using Zenpage CombiNews
+ *
+ * @param object $imageobj The object of an image
+ * @deprecated since version 1.4.6
+ */
+function getNewsVideoContent($imageobj) {
+	deprecated_functions::notify(gettext('CombiNews is deprecated. See the <a href="http://www.zenphoto.org/news/zenphoto-1.4.6">Zenphoto 1.4.6 release notes</a>.'));
+	return $imageobj->getBody();
+}
+
+/**
+ * CombiNews feature only: returns the album title if image or movie/audio or false.
+ *
+ * @return mixed
+ * @deprecated since version 1.4.6
+ */
+function getNewsAlbumTitle() {
+	global $_zp_current_zenpage_news;
+	deprecated_functions::notify(gettext('CombiNews is deprecated. See the <a href="http://www.zenphoto.org/news/zenphoto-1.4.6">Zenphoto 1.4.6 release notes</a>.'));
+	if (is_GalleryNewsType()) {
+		if (!is_NewsType("album")) {
+			$albumobj = $_zp_current_zenpage_news->getAlbum();
+			return $albumobj->getTitle();
+		} else {
+			return $_zp_current_zenpage_news->getTitle();
+		}
+	} else {
+		return false;
+	}
+}
+
+/**
+ * CombiNews feature only: returns the raw title of an album if image or movie/audio or false.
+ *
+ * @return string
+ * @deprecated since version 1.4.6
+ */
+function getBareNewsAlbumTitle() {
+	deprecated_functions::notify(gettext('CombiNews is deprecated. See the <a href="http://www.zenphoto.org/news/zenphoto-1.4.6">Zenphoto 1.4.6 release notes</a>.'));
+	return strip_tags(getNewsAlbumTitle());
+}
+
+/**
+ * CombiNews feature only: returns the album name (folder) if image or movie/audio or returns false.
+ *
+ * @return mixed
+ * @deprecated since version 1.4.6
+ */
+function getNewsAlbumName() {
+	global $_zp_current_zenpage_news;
+	deprecated_functions::notify(gettext('CombiNews is deprecated. See the <a href="http://www.zenphoto.org/news/zenphoto-1.4.6">Zenphoto 1.4.6 release notes</a>.'));
+	if (is_GalleryNewsType()) {
+		if (!is_NewsType("album")) {
+			$albumobj = $_zp_current_zenpage_news->getAlbum();
+			return $albumobj->getFolder();
+		} else {
+			return $_zp_current_zenpage_news->getFolder();
+		}
+	} else {
+		return false;
+	}
+}
+
+/**
+ * CombiNews feature only: returns the url to an album if image or movie/audio or returns false.
+ *
+ * @return mixed
+ * @deprecated since version 1.4.6
+ */
+function getNewsAlbumURL() {
+	deprecated_functions::notify(gettext('CombiNews is deprecated. See the <a href="http://www.zenphoto.org/news/zenphoto-1.4.6">Zenphoto 1.4.6 release notes</a>.'));
+	if (getNewsAlbumName()) {
+		return rewrite_path("/" . html_encode(getNewsAlbumName()), "index.php?album=" . html_encode(getNewsAlbumName()));
+	} else {
+		return false;
+	}
+}
+
+/**
+ * CombiNews feature only: Returns the fullimage link if image or movie/audio or false.
+ *
+ * @return mixed
+ * @deprecated since version 1.4.6
+ */
+function getFullNewsImage() {
+	global $_zp_current_zenpage_news;
+	deprecated_functions::notify(gettext('CombiNews is deprecated. See the <a href="http://www.zenphoto.org/news/zenphoto-1.4.6">Zenphoto 1.4.6 release notes</a>.'));
+	if (is_NewsType('image') || is_NewsType('video')) {
+		return $_zp_current_zenpage_news->getFullImage();
+	} else {
+		return false;
+	}
+}
+
+/**
+ * Gets the categories of the current news article
+ *
+ * @return array
+ */
+function getNewsCategories() {
+	global $_zp_current_zenpage_news;
+	if (!is_null($_zp_current_zenpage_news) AND is_NewsType("news")) {
+		$categories = $_zp_current_zenpage_news->getCategories();
+		return $categories;
+	}
+	return false;
+}
+
+/**
+ * Gets the latest news either only news articles or with the latest images or albums
+ *
+ * NOTE: This function excludes articles that are password protected via a category for not logged in users!
+ *
+ * @param int $number The number of news items to get
+ * @param string $option "none" for only news articles
+ * 											 "with_latest_images" for news articles with the latest images by id
+ * 											 "with_latest_images_date" for news articles with the latest images by date
+ * 											 "with_latest_images_mtime" for news articles with the latest images by mtime (upload date)
+ * 											 "with_latest_images_publishdate" for news articles with the latest images by publishdate (if not set date is used)
+ * 											 "with_latest_albums" for news articles with the latest albums by id
+ * 											 "with_latest_albums_date" for news articles with the latest albums by date
+ * 											 "with_latest_albums_mtime" for news articles with the latest albums by mtime (upload date)
+ * 										 	 "with_latest_albums_publishdate" for news articles with the latest albums by publishdate (if not set date is used)
+ * 											 "with_latestupdated_albums" for news articles with the latest updated albums
+ * @param string $category Optional news articles by category (only "none" option)
+ * @param bool $sticky place sticky articles at the front of the list
+ * @param string $sortdirection 'desc' descending (default) or 'asc' ascending
+ * @return array
+ * @deprecated since version 1.4.6
+ */
+function getLatestNews($number = 2, $option = 'none', $category = '', $sticky = true, $sortdirection = 'desc') {
+	global $_zp_zenpage, $_zp_current_zenpage_news;
+	deprecated_functions::notify(gettext('CombiNews is deprecated. See the <a href="http://www.zenphoto.org/news/zenphoto-1.4.6">Zenphoto 1.4.6 release notes</a>.'));
+	$latest = array();
+	switch ($option) {
+		case 'none':
+			if (empty($category)) {
+				$latest = $_zp_zenpage->getArticles($number, NULL, true, NULL, $sortdirection, $sticky, NULL);
+			} else {
+				$catobj = new ZenpageCategory($category);
+				$latest = $catobj->getArticles($number, NULL, true, NULL, $sortdirection, $sticky);
+			}
+			$counter = '';
+			$latestnews = array();
+			if (is_array($latest)) {
+				foreach ($latest as $item) {
+					$article = new ZenpageNews($item['titlelink']);
+					$counter++;
+					$latestnews[$counter] = array(
+									"albumname"	 => $article->getTitle(),
+									"titlelink"	 => $article->getTitlelink(),
+									"date"			 => $article->getDateTime(),
+									"type"			 => "news"
+					);
+					$latest = $latestnews;
+				}
+			}
+			break;
+		case 'with_latest_images':
+			$latest = $_zp_zenpage->getCombiNews($number, 'latestimages-thumbnail', NULL, 'id', $sticky, $sortdirection);
+			break;
+		case 'with_latest_images_date':
+			$latest = $_zp_zenpage->getCombiNews($number, 'latestimages-thumbnail', NULL, 'date', $sticky, $sortdirection);
+			break;
+		case 'with_latest_images_mtime':
+			$latest = $_zp_zenpage->getCombiNews($number, 'latestimages-thumbnail', NULL, 'mtime', $sticky, $sortdirection);
+			break;
+		case 'with_latest_images_publishdate':
+			$latest = $_zp_zenpage->getCombiNews($number, 'latestimages-thumbnail', NULL, 'publishdate', $sticky, $sortdirection);
+			break;
+		case 'with_latest_albums':
+			$latest = $_zp_zenpage->getCombiNews($number, 'latestalbums-thumbnail', NULL, 'id', $sticky, $sortdirection);
+			break;
+		case 'with_latest_albums_date':
+			$latest = $_zp_zenpage->getCombiNews($number, 'latestalbums-thumbnail', NULL, 'date', $sticky, $sortdirection);
+			break;
+		case 'with_latest_albums_mtime':
+			$latest = $_zp_zenpage->getCombiNews($number, 'latestalbums-thumbnail', NULL, 'mtime', $sticky, $sortdirection);
+			break;
+		case 'with_latest_albums_publishdate':
+			$latest = $_zp_zenpage->getCombiNews($number, 'latestalbums-thumbnail', NULL, 'publishdate', $sticky, $sortdirection);
+			break;
+		case 'with_latestupdated_albums':
+			$latest = $_zp_zenpage->getCombiNews($number, 'latestupdatedalbums-thumbnail', NULL, '', $sticky, $sortdirection);
+			break;
+		/* case "latestimagesbyalbum-thumbnail":
+		  $latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'id','',false);
+		  break; */
+	}
+	return $latest;
+}
+
+/**
+ * Prints the latest news either only news articles or with the latest images or albums as a unordered html list
+ *
+ * NOTE: Latest images and albums require the image_album_statistic plugin
+ *
+ * @param int $number The number of news items to get
+ * @param string $option "none" for only news articles
+ * 											 "with_latest_images" for news articles with the latest images by id
+ * 											 "with_latest_images_date" for news articles with the latest images by date
+ * 											 "with_latest_images_mtime" for news articles with the latest images by mtime (upload date)
+ * 											 "with_latest_images_publishdate" for news articles with the latest images by publishdate (if not set date is used)
+ * 											 "with_latest_albums" for news articles with the latest albums by id
+ * 											 "with_latest_albums_date" for news articles with the latest albums by date
+ * 											 "with_latest_albums_mtime" for news articles with the latest albums by mtime (upload date)
+ * 										 	 "with_latest_albums_publishdate" for news articles with the latest albums by publishdate (if not set date is used)
+ * 											 "with_latestupdated_albums" for news articles with the latest updated albums
+ * @param string $category Optional news articles by category (only "none" option"
+ * @param bool $showdate If the date should be shown
+ * @param bool $showcontent If the content should be shown
+ * @param int $contentlength The lengths of the content
+ * @param bool $showcat If the categories should be shown
+ * @param string $readmore Text for the read more link, if empty the option value for "zenpage_readmore" is used
+ * @param bool $sticky place sticky articles at the front of the list
+ * @return string
+ * @deprecated since version 1.4.6
+ */
+function printLatestNews($number = 5, $option = 'with_latest_images', $category = '', $showdate = true, $showcontent = true, $contentlength = 70, $showcat = true, $readmore = NULL, $sticky = true) {
+	global $_zp_gallery, $_zp_current_zenpage_news;
+	deprecated_functions::notify(gettext('CombiNews is deprecated. See the <a href="http://www.zenphoto.org/news/zenphoto-1.4.6">Zenphoto 1.4.6 release notes</a>.'));
+	$latest = getLatestNews($number, $option, $category, $sticky);
+	echo "\n<ul id=\"latestnews\">\n";
+	$count = "";
+	foreach ($latest as $item) {
+		$count++;
+		$category = "";
+		$categories = "";
+		switch ($item['type']) {
+			case 'news':
+				$obj = new ZenpageNews($item['titlelink']);
+				$title = html_encode($obj->getTitle());
+				$link = html_encode(getNewsURL($item['titlelink']));
+				$count2 = 0;
+				$category = $obj->getCategories();
+				foreach ($category as $cat) {
+					$catobj = new ZenpageCategory($cat['titlelink']);
+					$count2++;
+					if ($count2 != 1) {
+						$categories = $categories . ", ";
+					}
+					$categories = $categories . $catobj->getTitle();
+				}
+				$thumb = "";
+				$content = $obj->getContent();
+				if ($obj->getTruncation()) {
+					$shorten = true;
+				}
+				$date = zpFormattedDate(DATE_FORMAT, strtotime($item['date']));
+				$type = 'news';
+				break;
+			case 'images':
+				$obj = newImage(newAlbum($item['albumname']), $item['titlelink']);
+				$categories = $item['albumname'];
+				$title = $obj->getTitle();
+				$link = html_encode($obj->getImageLink());
+				$content = $obj->getDesc();
+				if ($option == "with_latest_image_date") {
+					$date = zpFormattedDate(DATE_FORMAT, $item['date']);
+				} else {
+					$date = zpFormattedDate(DATE_FORMAT, strtotime($item['date']));
+				}
+				$thumb = "<a href=\"" . $link . "\" title=\"" . html_encode(strip_tags($title)) . "\"><img src=\"" . html_encode(pathurlencode($obj->getThumb())) . "\" alt=\"" . html_encode(strip_tags($title)) . "\" /></a>\n";
+				$type = "image";
+				break;
+			case 'albums':
+				$obj = newAlbum($item['albumname']);
+				$title = $obj->getTitle();
+				$categories = "";
+				$link = html_encode($obj->getAlbumLink());
+				$thumb = "<a href=\"" . $link . "\" title=\"" . $title . "\"><img src=\"" . html_encode(pathurlencode($obj->getAlbumThumb())) . "\" alt=\"" . strip_tags($title) . "\" /></a>\n";
+				$content = $obj->getDesc();
+				$date = zpFormattedDate(DATE_FORMAT, strtotime($item['date']));
+				$type = "album";
+				break;
+		}
+		echo "<li>";
+		if (!empty($thumb)) {
+			echo $thumb;
+		}
+		echo "<h3><a href=\"" . $link . "\" title=\"" . strip_tags(html_encode($title)) . "\">" . $title . "</a></h3>\n";
+		if ($showdate) {
+			echo "<span class=\"latestnews-date\">" . $date . "</span>\n";
+		}
+		if ($showcontent) {
+			echo "<span class=\"latestnews-desc\">" . getContentShorten($content, $contentlength, '', $readmore, $link) . "</span>\n";
+		}
+		if ($showcat AND $type != "album" && !empty($categories)) {
+			echo "<span class=\"latestnews-cats\">(" . html_encode($categories) . ")</span>\n";
+		}
+		echo "</li>\n";
+		if ($count == $number) {
+			break;
+		}
+	}
+	echo "</ul>\n";
+}
+
 ?>
