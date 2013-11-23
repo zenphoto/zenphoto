@@ -188,6 +188,30 @@ if (isset($_GET['action'])) {
 			setOption('search_no_pages', (int) isset($_POST['search_no_pages']));
 			setOption('search_no_news', (int) isset($_POST['search_no_news']));
 			setOption('search_within', (int) ($_POST['search_within'] && true));
+			$sorttype = strtolower(sanitize($_POST['sortby'], 3));
+			if ($sorttype == 'custom') {
+				$sorttype = unquote(strtolower(sanitize($_POST['customimagesort'], 3)));
+			}
+			setOption('search_image_sort_type', $sorttype);
+			if (($sorttype == 'manual') || ($sorttype == 'random')) {
+				setOption('search_image_sort_direction', 0);
+			} else {
+				if (empty($sorttype)) {
+					$direction = 0;
+				} else {
+					$direction = isset($_POST['image_sortdirection']);
+				}
+				setOption('search_album_sort_direction', $direction);
+			}
+			$sorttype = strtolower(sanitize($_POST['subalbumsortby'], 3));
+			if ($sorttype == 'custom')
+				$sorttype = strtolower(sanitize($_POST['customalbumsort'], 3));
+			setOption('search_album_sort_type', $sorttype);
+			if (($sorttype == 'manual') || ($sorttype == 'random')) {
+				setOption('search_album_sort_direction', 0);
+			} else {
+				setOption('search_album_sort_direction', isset($_POST['album_sortdirection']));
+			}
 			$returntab = "&tab=search";
 		}
 
@@ -1576,6 +1600,106 @@ Zenphoto_Authority::printPasswordFormJS();
 										<?php echo gettext('Search will remember the results of particular searches so that it can quickly serve multiple pages, etc. Over time this remembered result can become obsolete, so it should be refreshed. This option lets you decide how long before a search will be considered obsolete and thus re-executed. Setting the option to <em>zero</em> disables caching of searches.'); ?>
 									</td>
 								</tr>
+								<?php
+								$sort = $sortby;
+								$sort[gettext('Custom')] = 'custom';
+								?>
+								<tr>
+									<td class="leftcolumn"><?php echo gettext("Sort albums by:"); ?> </td>
+									<td colspan="2">
+										<span class="nowrap">
+											<select id="albumsortselect" name="subalbumsortby" onchange="update_direction(this, 'album_direction_div', 'album_custom_div');">
+												<?php
+												$cvt = $type = strtolower(getOption('search_album_sort_type'));
+												if ($type && !in_array($type, $sort)) {
+													$cv = array('custom');
+												} else {
+													$cv = array($type);
+												}
+												generateListFromArray($cv, $sort, false, true);
+												?>
+											</select>
+											<?php
+											if (($type == 'random') || ($type == '')) {
+												$dsp = 'none';
+											} else {
+												$dsp = 'inline';
+											}
+											?>
+											<label id="album_direction_div" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
+												<?php echo gettext("Descending"); ?>
+												<input type="checkbox" name="album_sortdirection" value="1"
+												<?php
+												if (getOption('search_album_sortdirection')) {
+													echo "CHECKED";
+												};
+												?> />
+											</label>
+										</span>
+										<?php
+										$flip = array_flip($sort);
+										if (empty($type) || isset($flip[$type])) {
+											$dsp = 'none';
+										} else {
+											$dsp = 'block';
+										}
+										?>
+										<span id="album_custom_div<?php echo $suffix; ?>" class="customText" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
+											<br />
+											<?php echo gettext('custom fields:') ?>
+											<input id="customalbumsort" class="customalbumsort" name="customalbumsort" type="text" value="<?php echo html_encode($cvt); ?>" />
+										</span>
+									</td>
+
+								</tr>
+
+								<tr>
+									<td class="leftcolumn"><?php echo gettext("Sort images by:"); ?> </td>
+									<td colspan="2">
+										<span class="nowrap">
+											<select id="imagesortselect" name="sortby" onchange="update_direction(this, 'image_direction_div', 'image_custom_div')">
+												<?php
+												$cvt = $type = strtolower(getOption('search_image_sort_type'));
+												if ($type && !in_array($type, $sort)) {
+													$cv = array('custom');
+												} else {
+													$cv = array($type);
+												}
+												generateListFromArray($cv, $sort, false, true);
+												?>
+											</select>
+											<?php
+											if (($type == 'random') || ($type == '')) {
+												$dsp = 'none';
+											} else {
+												$dsp = 'inline';
+											}
+											?>
+											<label id="image_direction_div" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
+												<?php echo gettext("Descending"); ?>
+												<input type="checkbox" name="image_sortdirection" value="1"
+												<?php
+												if (getOption('search_image_sort_direction')) {
+													echo ' checked="checked"';
+												}
+												?> />
+											</label>
+										</span>
+										<?php
+										$flip = array_flip($sort);
+										if (empty($type) || isset($flip[$type])) {
+											$dsp = 'none';
+										} else {
+											$dsp = 'block';
+										}
+										?>
+										<span id="image_custom_div" class="customText" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
+											<br />
+											<?php echo gettext('custom fields:') ?>
+											<input id="customimagesort" class="customimagesort" name="customimagesort" type="text" value="<?php echo html_encode($cvt); ?>" />
+										</span>
+									</td>
+
 								</tr>
 								<tr>
 									<td colspan="3">
@@ -2670,7 +2794,7 @@ Zenphoto_Authority::printPasswordFormJS();
 					<div id="tab_plugin" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
 						<script type="text/javascript">
-																								var optionholder = new array();</script>
+																							var optionholder = new array();</script>
 						<form id="form_options" action="?action=saveoptions<?php if (isset($_GET['single'])) echo '&amp;single=' . $showExtension; ?>" method="post" autocomplete="off">
 							<?php XSRFToken('saveoptions'); ?>
 							<input type="hidden" name="savepluginoptions" value="yes" />

@@ -52,6 +52,10 @@ class favoritesOptions {
 		setOptionDefault('favorites_add_button', getAllTranslations($str));
 		gettext($str = 'Remove favorite');
 		setOptionDefault('favorites_remove_button', getAllTranslations($str));
+		setOptionDefault('favorites_album_sort_type', 'title');
+		setOptionDefault('favorites_image_sort_type', 'title');
+		setOptionDefault('favorites_album_sort_direction', '');
+		setOptionDefault('favorites_image_sort_direction', '');
 	}
 
 	function getOptionsSupported() {
@@ -91,6 +95,12 @@ class favoritesOptions {
 										'multilingual' => true,
 										'order'				 => 5,
 										'desc'				 => gettext('The favorites page description text.')),
+						gettext('Sort albums by')	 => array('key'		 => 'favorites_albumsort', 'type'	 => OPTION_TYPE_CUSTOM,
+										'order'	 => 9,
+										'desc'	 => ''),
+						gettext('Sort images by')	 => array('key'		 => 'favorites_imagesort', 'type'	 => OPTION_TYPE_CUSTOM,
+										'order'	 => 10,
+										'desc'	 => '')
 		);
 		if (getOption('favorites_link')) {
 			$options[gettext('Standard script naming')] = array('key'		 => 'favorites_link', 'type'	 => OPTION_TYPE_CHECKBOX,
@@ -101,18 +111,131 @@ class favoritesOptions {
 	}
 
 	function handleOption($option, $currentValue) {
+		$sort = array(gettext('Filename')	 => 'filename',
+						gettext('Custom')		 => 'custom',
+						gettext('Date')			 => 'date',
+						gettext('Title')		 => 'title',
+						gettext('ID')				 => 'id',
+						gettext('Filemtime') => 'mtime',
+						gettext('Owner')		 => 'owner',
+						gettext('Published') => 'show'
+		);
 
+		switch ($option) {
+			case 'favorites_albumsort':
+				?>
+				<span class="nowrap">
+					<select id="albumsortselect" name="subalbumsortby" onchange="update_direction(this, 'album_direction_div', 'album_custom_div');">
+						<?php
+						$cvt = $type = strtolower(getOption('favorites_album_sort_type'));
+						if ($type && !in_array($type, $sort)) {
+							$cv = array('custom');
+						} else {
+							$cv = array($type);
+						}
+						generateListFromArray($cv, $sort, false, true);
+						?>
+					</select>
+					<?php
+					if (($type == 'random') || ($type == '')) {
+						$dsp = 'none';
+					} else {
+						$dsp = 'inline';
+					}
+					?>
+					<label id="album_direction_div" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
+						<?php echo gettext("Descending"); ?>
+						<input type="checkbox" name="album_sortdirection" value="1"
+						<?php
+						if (getOption('favorites_album_sortdirection')) {
+							echo "CHECKED";
+						};
+						?> />
+					</label>
+				</span>
+				<?php
+				break;
+			case 'favorites_imagesort':
+				?>
+				<span class="nowrap">
+					<select id="imagesortselect" name="sortby" onchange="update_direction(this, 'image_direction_div', 'image_custom_div')">
+						<?php
+						$cvt = $type = strtolower(getOption('favorites_image_sort_type'));
+						if ($type && !in_array($type, $sort)) {
+							$cv = array('custom');
+						} else {
+							$cv = array($type);
+						}
+						generateListFromArray($cv, $sort, false, true);
+						?>
+					</select>
+					<?php
+					if (($type == 'random') || ($type == '')) {
+						$dsp = 'none';
+					} else {
+						$dsp = 'inline';
+					}
+					?>
+					<label id="image_direction_div" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
+						<?php echo gettext("Descending"); ?>
+						<input type="checkbox" name="image_sortdirection" value="1"
+						<?php
+						if (getOption('favorites_image_sort_direction')) {
+							echo ' checked="checked"';
+						}
+						?> />
+					</label>
+				</span>
+				<?php
+				break;
+		}
+	}
+
+	function handleOptionSave($theme, $album) {
+		$sorttype = strtolower(sanitize($_POST['sortby'], 3));
+		if ($sorttype == 'custom') {
+			$sorttype = unquote(strtolower(sanitize($_POST['customimagesort'], 3)));
+		}
+		setOption('favorites_image_sort_type', $sorttype);
+		if (($sorttype == 'manual') || ($sorttype == 'random')) {
+			setOption('favorites_image_sort_direction', 0);
+		} else {
+			if (empty($sorttype)) {
+				$direction = 0;
+			} else {
+				$direction = isset($_POST['image_sortdirection']);
+			}
+			setOption('favorites_album_sort_direction', $direction);
+		}
+		$sorttype = strtolower(sanitize($_POST['subalbumsortby'], 3));
+		if ($sorttype == 'custom')
+			$sorttype = strtolower(sanitize($_POST['customalbumsort'], 3));
+		setOption('favorites_album_sort_type', $sorttype);
+		if (($sorttype == 'manual') || ($sorttype == 'random')) {
+			setOption('favorites_album_sort_direction', 0);
+		} else {
+			setOption('favorites_album_sort_direction', isset($_POST['album_sortdirection']));
+		}
 	}
 
 }
 
 class favorites extends AlbumBase {
 
+	var $imageSortDirection;
+	var $albumSortDirection;
+	var $imageSortType;
+	var $albumSortType;
+
 	function __construct($user) {
 
 		$this->name = $user;
 		$this->setTitle(get_language_string(getOption('favorites_title')));
 		$this->setDesc(get_language_string(getOption('favorites_desc')));
+		$this->imageSortDirection = getOption('favorites_image_sort_direction');
+		$this->albumSortDirection = getOption('favorites_album_sort_direction');
+		$this->imageSortType = getOption('favorites_image_sort_type');
+		$this->albumSortType = getOption('favorites_album_sort_type');
 	}
 
 	function addImage($img) {
@@ -318,13 +441,45 @@ class favorites extends AlbumBase {
 	static function toolbox($zf) {
 		?>
 		<li>
-			<?php printFavoritesLink(gettext('My favorites')); ?>
+		<?php printFavoritesLink(gettext('My favorites')); ?>
 		</li>
 		<?php
 	}
 
 	static function getFavorites_link() {
 		return preg_replace('~^_PAGE_/~ ', _PAGE_ . '/', getOption('favorites_rewrite'));
+	}
+
+	function getSortDirection($what = 'image') {
+		if ($what == 'image') {
+			return $this->imageSortDirection;
+		} else {
+			return $this->albumSOrtDirection;
+		}
+	}
+
+	function getSortType($what = 'image') {
+		if ($what == 'image') {
+			return $this->imageSortType;
+		} else {
+			return $this->albumSortType;
+		}
+	}
+
+	function setSortDirection($val, $what = 'image') {
+		if ($what == 'image') {
+			$this->imageSortDirection = $val;
+		} else {
+			$this->albumSOrtDirection = $val;
+		}
+	}
+
+	function setSortType($sorttype, $what = 'image') {
+		if ($what == 'image') {
+			return $this->imageSortType;
+		} else {
+			return $this->albumSortType;
+		}
 	}
 
 }
