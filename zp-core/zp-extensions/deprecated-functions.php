@@ -1453,20 +1453,6 @@ function getFullNewsImage() {
 }
 
 /**
- * Gets the categories of the current news article
- *
- * @return array
- */
-function getNewsCategories() {
-	global $_zp_current_zenpage_news;
-	if (!is_null($_zp_current_zenpage_news) AND is_NewsType("news")) {
-		$categories = $_zp_current_zenpage_news->getCategories();
-		return $categories;
-	}
-	return false;
-}
-
-/**
  * Gets the latest news either only news articles or with the latest images or albums
  *
  * NOTE: This function excludes articles that are password protected via a category for not logged in users!

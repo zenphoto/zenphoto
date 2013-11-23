@@ -21,9 +21,11 @@ if (!defined('WEBPATH'))
 			<div id="header">
 
 				<h1><?php printGalleryTitle(); ?></h1>
-				<?php if (getOption('Allow_search')) {
+				<?php
+				if (getOption('Allow_search')) {
 					printSearchForm("", "search", "", gettext("Search gallery"));
-				} ?>
+				}
+				?>
 			</div>
 
 			<div id="content">
@@ -36,21 +38,21 @@ if (!defined('WEBPATH'))
 					<?php
 					if (!extensionEnabled('zenpage') || ($_zp_gallery_page == 'gallery.php' || ($_zp_gallery_page == 'index.php' && !getOption("zenpage_zp_index_news")))) {
 						?>
-							<?php printGalleryDesc(); ?>
-							<?php printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); ?>
+						<?php printGalleryDesc(); ?>
+						<?php printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); ?>
 						<div id="albums">
-	<?php while (next_album()): ?>
+							<?php while (next_album()): ?>
 								<div class="album">
 									<div class="thumb">
 										<a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printBareAlbumTitle(); ?>"><?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, 95, 95, 95, 95); ?></a>
 									</div>
 									<div class="albumdesc">
 										<h3><a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printBareAlbumTitle(); ?>"><?php printAlbumTitle(); ?></a></h3>
-		<?php printAlbumDate(""); ?>
+										<?php printAlbumDate(""); ?>
 										<div><?php echo shortenContent(getAlbumDesc(), 45, '...'); ?></div>
 									</div>
 								</div>
-						<?php endwhile; ?>
+							<?php endwhile; ?>
 						</div>
 						<br style="clear: both" />
 						<?php printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); ?>
@@ -60,14 +62,23 @@ if (!defined('WEBPATH'))
 						printNewsPageListWithNav(gettext('next »'), gettext('« prev'), true, 'pagelist', true);
 						echo "<hr />";
 						while (next_news()):;
+							if (ZENPAGE_COMBINEWS) {
+								$type = getNewsType();
+							} else {
+								$type = 'news';
+							}
 							?>
 							<div class="newsarticle">
-								<h3><?php printNewsTitleLink(); ?><?php echo " <span class='newstype'>[" . getNewsType() . "]</span>"; ?></h3>
-								<div class="newsarticlecredit"><span class="newsarticlecredit-left"><?php printNewsDate();
-							if (function_exists('getCommentCount')) { ?> | <?php echo gettext("Comments:"); ?> <?php echo getCommentCount();
-						} ?></span>
+								<h3><?php printNewsTitleLink(); ?><?php echo " <span class='newstype'>[" . $type . "]</span>"; ?></h3>
+								<div class="newsarticlecredit"><span class="newsarticlecredit-left"><?php
+										printNewsDate();
+										if (function_exists('getCommentCount')) {
+											?> | <?php echo gettext("Comments:"); ?> <?php
+											echo getCommentCount();
+										}
+										?></span>
 									<?php
-									if (is_GalleryNewsType()) {
+									if (ZENPAGE_COMBINEWS && is_GalleryNewsType()) {
 										if (!is_NewsType("album")) {
 											echo " | " . gettext("Album:") . "<a href='" . getNewsAlbumURL() . "' title='" . getBareNewsAlbumTitle() . "'> " . getNewsAlbumTitle() . "</a>";
 										} else {
@@ -78,34 +89,34 @@ if (!defined('WEBPATH'))
 									}
 									?>
 								</div>
-							<?php printNewsContent(); ?>
+								<?php printNewsContent(); ?>
 							<?php printCodeblock(1); ?>
 							<?php printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', '); ?>
 							</div>
-		<?php
-	endwhile;
-	printNewsPageListWithNav(gettext('next »'), gettext('« prev'), true, 'pagelist', true);
-}
-?>
+							<?php
+						endwhile;
+						printNewsPageListWithNav(gettext('next »'), gettext('« prev'), true, 'pagelist', true);
+					}
+					?>
 
 				</div><!-- content left-->
 
 
 				<div id="sidebar">
-					<?php include("sidebar.php"); ?>
+<?php include("sidebar.php"); ?>
 				</div><!-- sidebar -->
 
 
 
 				<div id="footer">
-		<?php include("footer.php"); ?>
+<?php include("footer.php"); ?>
 				</div>
 
 			</div><!-- content -->
 
 		</div><!-- main -->
-<?php
-zp_apply_filter('theme_body_close');
-?>
+		<?php
+		zp_apply_filter('theme_body_close');
+		?>
 	</body>
 </html>

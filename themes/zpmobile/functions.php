@@ -176,7 +176,11 @@ function jqm_printBacktoTopLink() {
  */
 function jqm_getNewsLink() {
 	global $_zp_current_zenpage_news;
-	$newstype = getNewsType();
+	if (ZENPAGE_COMBINEWS) {
+		$newstype = getNewsType();
+	} else {
+		$newstype = 'news';
+	}
 	switch ($newstype) {
 		case "image":
 		case "video":
@@ -197,7 +201,12 @@ function jqm_getNewsLink() {
  */
 function jqm_printCombiNewsThumb() {
 	global $_zp_current_zenpage_news;
-	$newstype = getNewsType();
+	if (ZENPAGE_COMBINEWS) {
+		$newstype = getNewsType();
+	} else {
+		$newstype = 'news';
+	}
+
 	switch ($newstype) {
 		case "image":
 		case "video":

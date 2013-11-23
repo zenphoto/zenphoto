@@ -13,7 +13,7 @@
 /* * **********************************************
  * Global definitions
  */
-
+define('ZENPAGE_COMBINEWS', getOption('zenpage_combinews'));
 
 /* * ********************************************* */
 /* General functions
@@ -85,7 +85,7 @@ function stickyNews($newsobj = NULL) {
 	if (is_null($newsobj)) {
 		$newsobj = $_zp_current_zenpage_news;
 	}
-	if (is_NewsType('news', $newsobj)) {
+	if (!ZENPAGE_COMBINEWS || is_NewsType('news', $newsobj)) {
 		return $newsobj->getSticky();
 	}
 	return false;
@@ -284,7 +284,7 @@ function getNewsID() {
 function getNewsTitle() {
 	global $_zp_current_zenpage_news;
 	if (!is_null($_zp_current_zenpage_news)) {
-		if (is_NewsType("album") && (
+		if (ZENPAGE_COMBINEWS && is_NewsType("album") && (
 						getOption("zenpage_combinews_mode") == "latestimagesbyalbum-thumbnail" ||
 						getOption("zenpage_combinews_mode") == "latestimagesbyalbum-thumbnail-customcrop" ||
 						getOption("zenpage_combinews_mode") == "latestimagesbyalbum-sizedimage" ||
@@ -361,18 +361,22 @@ function printBareNewsTitle() {
 function getNewsTitleLink() {
 	global $_zp_current_zenpage_news;
 	if (!is_null($_zp_current_zenpage_news)) {
-		$type = getNewsType();
-		switch ($type) {
-			case "album":
-				$link = getNewsAlbumURL();
-				break;
-			case "news":
-				$link = $_zp_current_zenpage_news->getTitlelink();
-				break;
-			case "image":
-			case "video":
-				$link = $_zp_current_zenpage_news->getImageLink();
-				break;
+		if (ZENPAGE_COMBINEWS) {
+			$type = getNewsType();
+			switch ($type) {
+				case "album":
+					$link = getNewsAlbumURL();
+					break;
+				case "news":
+					$link = $_zp_current_zenpage_news->getTitlelink();
+					break;
+				case "image":
+				case "video":
+					$link = $_zp_current_zenpage_news->getImageLink();
+					break;
+			}
+		} else {
+			$link = $_zp_current_zenpage_news->getTitlelink();
 		}
 		return $link;
 	}
@@ -388,7 +392,7 @@ function printNewsTitleLink($before = '') {
 		if ($before) {
 			$before = '<span class="beforetext">' . html_encode($before) . '</span>';
 		}
-		if (is_NewsType("news")) {
+		if (!ZENPAGE_COMBINEWS || is_NewsType("news")) {
 			echo "<a href=\"" . html_encode(getNewsURL(getNewsTitleLink())) . "\" title=\"" . getBareNewsTitle() . "\">" . $before . html_encodeTagged(getNewsTitle()) . "</a>";
 		} else if (is_GalleryNewsType()) {
 			echo "<a href=\"" . html_encode(getNewsTitleLink()) . "\" title=\"" . getBareNewsTitle() . "\">" . $before . html_encodeTagged(getNewsTitle()) . "</a>";
@@ -412,7 +416,11 @@ function getNewsContent($shorten = false, $shortenindicator = NULL, $readmore = 
 	if (!$_zp_current_zenpage_news->checkAccess()) {
 		return '<p>' . gettext('<em>This entry belongs to a protected album.</em>') . '</p>';
 	}
-	$newstype = getNewsType();
+	if (ZENPAGE_COMBINEWS) {
+		$newstype = getNewsType;
+	} else {
+		$newstype = 'news';
+	}
 	$excerptbreak = false;
 	if (!$shorten && !is_NewsArticle()) {
 		$shorten = ZP_SHORTEN_LENGTH;
@@ -601,7 +609,11 @@ function getNewsContent($shorten = false, $shortenindicator = NULL, $readmore = 
  */
 function printNewsContent($shorten = false, $shortenindicator = NULL, $readmore = NULL) {
 	global $_zp_current_zenpage_news, $_zp_page;
-	$newstype = getNewsType();
+	if (ZENPAGE_COMBINEWS) {
+		$newstype = getNewsType;
+	} else {
+		$newstype = 'news';
+	}
 	$newscontent = getNewsContent($shorten, $shortenindicator, $readmore);
 	echo html_encodeTagged($newscontent);
 }
@@ -690,7 +702,11 @@ function printNewsExtraContent() {
  */
 function getNewsReadMore() {
 	global $_zp_current_zenpage_news;
-	$type = getNewsType();
+	if (ZENPAGE_COMBINEWS) {
+		$type = getNewsType;
+	} else {
+		$type = 'news';
+	}
 	switch ($type) {
 		case "news":
 			$readmore = get_language_string(ZP_READ_MORE);
@@ -732,7 +748,7 @@ function printNewsCustomData() {
 function getNewsAuthor($fullname = false) {
 	global $_zp_current_zenpage_news, $_zp_authority;
 	if (is_News()) {
-		if (is_NewsType("news")) {
+		if (!ZENPAGE_COMBINEWS || is_NewsType("news")) {
 			return getAuthor($fullname);
 		} else {
 			$authorname = '';
@@ -824,6 +840,20 @@ function printNewsCategoryCustomData() {
 }
 
 /**
+ * Gets the categories of the current news article
+ *
+ * @return array
+ */
+function getNewsCategories() {
+	global $_zp_current_zenpage_news;
+	if (!is_null($_zp_current_zenpage_news) AND (!ZENPAGE_COMBINEWS || is_NewsType("news"))) {
+		$categories = $_zp_current_zenpage_news->getCategories();
+		return $categories;
+	}
+	return false;
+}
+
+/**
  * Prints the categories of current article as a unordered html list
  *
  * @param string $separator A separator to be shown between the category names if you choose to style the list inline
@@ -834,7 +864,7 @@ function printNewsCategories($separator = '', $before = '', $class = '') {
 	$categories = getNewsCategories();
 	$catcount = count($categories);
 	if ($catcount != 0) {
-		if (is_NewsType("news")) {
+		if (!ZENPAGE_COMBINEWS || is_NewsType("news")) {
 			if ($before) {
 				echo '<span class="beforetext">' . html_encode($before) . '</span>';
 			}
@@ -864,7 +894,7 @@ function printNewsCategories($separator = '', $before = '', $class = '') {
 function getNewsDate() {
 	global $_zp_current_zenpage_news;
 	if (!is_null($_zp_current_zenpage_news)) {
-		if (is_GalleryNewsType() && ZP_COMBINEWS_SORTORDER == 'mtime') {
+		if (ZENPAGE_COMBINEWS && is_GalleryNewsType() && ZP_COMBINEWS_SORTORDER == 'mtime') {
 			$d = $_zp_current_zenpage_news->get('mtime');
 			$d = date('Y-m-d H:i:s', $d);
 		} else {
@@ -2593,20 +2623,20 @@ function zenpageAlbumImage($albumname, $imagename = NULL, $size = NULL, $linkalb
 		} else {
 			?>
 			<span style="background:red;color:black;">
-			<?php
-			printf(gettext('<code>zenpageAlbumImage()</code> did not find the image %1$s:%2$s'), $albumname, $imagename);
-			?>
-			</span>
 				<?php
-			}
-		} else {
-			?>
-		<span style="background:red;color:black;">
-		<?php
-		printf(gettext('<code>zenpageAlbumImage()</code> did not find the album %1$s'), $albumname);
-		?>
-		</span>
+				printf(gettext('<code>zenpageAlbumImage()</code> did not find the image %1$s:%2$s'), $albumname, $imagename);
+				?>
+			</span>
 			<?php
 		}
+	} else {
+		?>
+		<span style="background:red;color:black;">
+			<?php
+			printf(gettext('<code>zenpageAlbumImage()</code> did not find the album %1$s'), $albumname);
+			?>
+		</span>
+		<?php
 	}
-	?>
+}
+?>

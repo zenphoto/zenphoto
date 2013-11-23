@@ -66,9 +66,9 @@ function switcher_controllink($html) {
 	?>
 	<span id="themeSwitcher_garland">
 		<span title="<?php echo gettext("Garland image display handling."); ?>">
-				<?php echo gettext('Personality'); ?>
+			<?php echo gettext('Personality'); ?>
 			<select name="themePersonality" id="themePersonality" onchange="switchPersonality();">
-	<?php generateListFromArray(array($personality), $personalities, false, true); ?>
+				<?php generateListFromArray(array($personality), $personalities, false, true); ?>
 			</select>
 		</span>
 	</span>
@@ -146,7 +146,7 @@ function footer() {
 		<?php @call_user_func('mobileTheme::controlLink'); ?>
 		<br />
 		<?php @call_user_func('printLanguageSelector'); ?>
-	<?php printZenphotoLink(); ?>
+		<?php printZenphotoLink(); ?>
 	</div>
 	<?php
 }
@@ -154,8 +154,11 @@ function footer() {
 function commonNewsLoop($paged) {
 	$newstypes = array('album' => gettext('album'), 'image' => gettext('image'), 'video' => gettext('video'), 'news' => gettext('news'));
 	while (next_news()) {
-		$newstype = getNewsType();
-		$newstypedisplay = $newstypes[$newstype];
+		if (ZENPAGE_COMBINEWS) {
+			$newstypedisplay = $newstypes[getNewsType()];
+		} else {
+			$newstypedisplay = gettext('news');
+		}
 		if (stickyNews()) {
 			$newstypedisplay .= ' <small><em>' . gettext('sticky') . '</em></small>';
 		}
@@ -175,7 +178,7 @@ function commonNewsLoop($paged) {
 					?>
 				</span>
 				<?php
-				if (is_GalleryNewsType()) {
+				if (ZENPAGE_COMBINEWS && is_GalleryNewsType()) {
 					echo ' | ' . gettext("Album:") . " <a href='" . getNewsAlbumURL() . "' title='" . getBareNewsAlbumTitle() . "'>" . getNewsAlbumTitle() . "</a>";
 				} else {
 					if (!empty($cat) && !in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
@@ -188,7 +191,7 @@ function commonNewsLoop($paged) {
 			<br class="clearall" />
 			<?php printCodeblock(1); ?>
 			<?php printNewsContent(); ?>
-		<?php printCodeblock(2); ?>
+			<?php printCodeblock(2); ?>
 			<br class="clearall" />
 		</div>
 		<?php
