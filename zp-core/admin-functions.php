@@ -595,11 +595,13 @@ function printAdminHeader($tab, $subtab = NULL) {
 				} else {
 					$disabled = '';
 				}
-				$deprecated = @$row['deprecated'];
-				if ($deprecated && $option) {
-					$option = '<div class="warningbox">' . $option . '<br /><em>' . gettext('Deprecated.') . '</em></div>';
+				if (isset($row['deprecated']) && $option) {
+					$deprecated = $row['deprecated'];
+					if (!$deprecated) {
+						$deprecatedd = gettext('Deprecated.');
+					}
+					$option = '<div class="warningbox">' . $option . '<br /><em>' . $deprecated . '</em></div>';
 				}
-
 				if ($theme) {
 					$v = getThemeOption($key, $album, $theme);
 				} else {
@@ -1007,10 +1009,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<label class="displayinlineright">
 								<input type="<?php echo $type; ?>" id="<?php echo strtolower($listitem) . '_' . $box['name'] . $unique; ?>"<?php echo $class; ?> name="<?php echo $listitem . '_' . $box['name']; ?>"
 											 value="<?php echo html_encode($box['value']); ?>" <?php
-											 if ($box['checked']) {
-												 echo ' checked="checked"';
-											 }
-											 ?>
+					if ($box['checked']) {
+						echo ' checked="checked"';
+					}
+							?>
 											 <?php echo $disable; ?> /> <?php echo $box['display']; ?>
 							</label>
 							<?php
@@ -1409,9 +1411,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<label id="album_direction_div<?php echo $suffix; ?>" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
 										<?php echo gettext("Descending"); ?>
 										<input type="checkbox" name="<?php echo $prefix; ?>album_sortdirection" value="1" <?php
-										if ($album->getSortDirection('album')) {
-											echo "CHECKED";
-										};
+									if ($album->getSortDirection('album')) {
+										echo "CHECKED";
+									};
 										?> />
 									</label>
 								</span>
@@ -4286,7 +4288,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 		?>
 		<select name="subpage" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
 										[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
-							<?php
+						<?php
 							foreach ($rangeset as $page => $range) {
 								?>
 				<option value="<?php echo $page; ?>" <?php if ($page == $subpage) echo ' selected="selected"'; ?>><?php echo $range; ?></option>
