@@ -84,9 +84,9 @@ class SearchEngine {
 				break;
 		}
 		$this->extraparams['albumssorttype'] = getOption('search_album_sort_type');
-		$this->extraparams['albumssortdirection'] = getOption('search_album_sort_direction');
+		$this->extraparams['albumssortdirection'] = getOption('search_album_sort_direction') ? 'DESC' : '';
 		$this->extraparams['imagessorttype'] = getOption('search_image_sort_type');
-		$this->extraparams['imagessortdirection'] = getOption('search_image_sort_direction');
+		$this->extraparams['imagessortdirection'] = getOption('search_image_sort_direction') ? 'DESC' : '';
 
 //image/album fields
 		$this->search_structure['title'] = gettext('Title');

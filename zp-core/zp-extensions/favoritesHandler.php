@@ -147,7 +147,7 @@ class favoritesOptions {
 						<?php echo gettext("Descending"); ?>
 						<input type="checkbox" name="album_sortdirection" value="1"
 						<?php
-						if (getOption('favorites_album_sortdirection')) {
+						if (getOption('favorites_album_sort_direction')) {
 							echo "CHECKED";
 						};
 						?> />
@@ -205,17 +205,18 @@ class favoritesOptions {
 			} else {
 				$direction = isset($_POST['image_sortdirection']);
 			}
-			setOption('favorites_album_sort_direction', $direction);
+			setOption('favorites_image_sort_direction', $direction ? 'DESC' : '');
 		}
 		$sorttype = strtolower(sanitize($_POST['subalbumsortby'], 3));
 		if ($sorttype == 'custom')
 			$sorttype = strtolower(sanitize($_POST['customalbumsort'], 3));
 		setOption('favorites_album_sort_type', $sorttype);
 		if (($sorttype == 'manual') || ($sorttype == 'random')) {
-			setOption('favorites_album_sort_direction', 0);
+			$direction = 0;
 		} else {
-			setOption('favorites_album_sort_direction', isset($_POST['album_sortdirection']));
+			$direction = isset($_POST['album_sortdirection']);
 		}
+		setOption('favorites_album_sort_direction', $direction ? 'DESC' : '');
 	}
 
 }
@@ -441,7 +442,7 @@ class favorites extends AlbumBase {
 	static function toolbox($zf) {
 		?>
 		<li>
-		<?php printFavoritesLink(gettext('My favorites')); ?>
+			<?php printFavoritesLink(gettext('My favorites')); ?>
 		</li>
 		<?php
 	}
@@ -454,7 +455,7 @@ class favorites extends AlbumBase {
 		if ($what == 'image') {
 			return $this->imageSortDirection;
 		} else {
-			return $this->albumSOrtDirection;
+			return $this->albumSortDirection;
 		}
 	}
 
@@ -470,7 +471,7 @@ class favorites extends AlbumBase {
 		if ($what == 'image') {
 			$this->imageSortDirection = $val;
 		} else {
-			$this->albumSOrtDirection = $val;
+			$this->albumSortDirection = $val;
 		}
 	}
 

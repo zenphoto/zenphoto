@@ -193,7 +193,7 @@ if (isset($_GET['action'])) {
 				$sorttype = unquote(strtolower(sanitize($_POST['customimagesort'], 3)));
 			}
 			setOption('search_image_sort_type', $sorttype);
-			if (($sorttype == 'manual') || ($sorttype == 'random')) {
+			if ($sorttype == 'random') {
 				setOption('search_image_sort_direction', 0);
 			} else {
 				if (empty($sorttype)) {
@@ -201,13 +201,13 @@ if (isset($_GET['action'])) {
 				} else {
 					$direction = isset($_POST['image_sortdirection']);
 				}
-				setOption('search_album_sort_direction', $direction);
+				setOption('search_image_sort_direction', $direction);
 			}
 			$sorttype = strtolower(sanitize($_POST['subalbumsortby'], 3));
 			if ($sorttype == 'custom')
 				$sorttype = strtolower(sanitize($_POST['customalbumsort'], 3));
 			setOption('search_album_sort_type', $sorttype);
-			if (($sorttype == 'manual') || ($sorttype == 'random')) {
+			if ($sorttype == 'random') {
 				setOption('search_album_sort_direction', 0);
 			} else {
 				setOption('search_album_sort_direction', isset($_POST['album_sortdirection']));
@@ -1630,7 +1630,7 @@ Zenphoto_Authority::printPasswordFormJS();
 												<?php echo gettext("Descending"); ?>
 												<input type="checkbox" name="album_sortdirection" value="1"
 												<?php
-												if (getOption('search_album_sortdirection')) {
+												if (getOption('search_album_sort_direction')) {
 													echo "CHECKED";
 												};
 												?> />
