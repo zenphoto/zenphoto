@@ -54,13 +54,6 @@
  * 			<li>news</li>
  * 		</ul>
  * 	</li>
- * 	<li>withimages</li>
- * 	<li>withimages_mtime</li>
- * 	<li>withimages_publishdate</li>
- * 	<li>withalbums</li>
- * 	<li>withalbums_mtim</li>
- * 	<li>withalbums_publishdate</li>
- * 	<li>withalbums_publishdate</li>
  * </ul>
  *
  *
@@ -242,26 +235,6 @@ class feed {
 					$this->cattitle = '';
 					$this->newsoption = 'news';
 				}
-
-				if (isset($this->options['withimages'])) {
-					$this->sortorder = NULL;
-					return $this->newsoption = 'withimages';
-				} else if (isset($this->options['withimages_mtime'])) {
-					return $this->newsoption = 'withimages_mtime';
-				} else if (isset($this->options['withimages_publishdate'])) {
-					return $this->newsoption = 'withimages_publishdate';
-				}
-
-				if (isset($this->options['withalbums'])) {
-					$this->sortorder = NULL;
-					return $this->newsoption = 'withalbums';
-				} else if (isset($this->options['withalbums_mtime'])) {
-					return $this->newsoption = 'withalbums_mtime';
-				} else if (isset($this->options['withalbums_publishdate'])) {
-					return $this->newsoption = 'withalbums_publishdate';
-				} else if (isset($this->options['withalbums_latestupdated'])) {
-					return $this->newsoption = 'withalbums_latestupdated';
-				}
 				break;
 			case 'pages':
 				break;
@@ -369,6 +342,7 @@ class feed {
 							$items = getLatestNews($this->itemnumber, 'none', '', false, $this->sortdirection);
 						}
 						break;
+//TODO: remove CombiNews code in 1.4.7
 					case "withimages":
 						//$items = getLatestNews($this->itemnumber,"with_latest_images_date",'',false,$this->sortdirection);
 						$items = $_zp_zenpage->getCombiNews($this->itemnumber, 'latestimages-thumbnail', NULL, 'date', false, $this->sortdirection);
@@ -486,7 +460,7 @@ class feed {
 		switch ($item['type']) {
 			case 'images':
 				$title = get_language_string($item['title']);
-				$obj = newImage(NULL, array('folder'	 => $item['folder'], 'filename' => $item['filename']));
+				$obj = newImage(NULL, array('folder' => $item['folder'], 'filename' => $item['filename']));
 				$link = $obj->getImagelink();
 				$feeditem['pubdate'] = date("r", strtotime($item['date']));
 				$category = $item['albumtitle'];

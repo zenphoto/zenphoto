@@ -172,6 +172,10 @@ class rss_options {
  */
 function getRSSLink($option, $lang = NULL, $addl = NULL) {
 	global $_zp_current_album, $_zp_current_image, $_zp_current_admin_obj, $_zp_current_category;
+	if (strtolower($option) == 'newswithimages') {
+		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
+		deprecated_functions::notify(sprintf(gettext('The %1$s feed is deprecated.'), $option));
+	}
 	if (empty($lang)) {
 		$lang = zpFunctions::getLanguageText(getOption('locale'));
 	}
