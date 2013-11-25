@@ -34,7 +34,10 @@ class deprecated_functions {
 
 	var $internalFunctions = array(
 					'getSearchURL',
-					'printPasswordForm'
+					'printPasswordForm',
+					'getRSSLink',
+					'next_album',
+					'next_image'
 	);
 	var $listed_functions = array();
 
