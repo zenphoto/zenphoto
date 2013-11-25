@@ -4464,7 +4464,11 @@ function checkPageValidity($request, $gallery_page, $page) {
 			} else {
 				$cat = NULL;
 			}
-			$count = (int) ceil($_zp_zenpage->getTotalArticles() / ZP_ARTICLES_PER_PAGE);
+			if (ZENPAGE_COMBINEWS) {
+				$count = (int) ceil($_zp_zenpage->getTotalArticles() / ZP_ARTICLES_PER_PAGE);
+			} else {
+				$count = (int) ceil(count($_zp_zenpage->getArticles()));
+			}
 			break;
 		default:
 			$count = zp_apply_filter('checkPageValidity', NULL, $gallery_page);

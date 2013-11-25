@@ -453,6 +453,7 @@ class Zenpage {
 
 	/**
 	 * Returns the articles count
+	 * @deprecated since version 1.4.6
 	 *
 	 */
 	function getTotalArticles() {
