@@ -453,7 +453,7 @@ setOption('gallery_data', serialize($data));
 
 $_zp_gallery = new Gallery(); // insure we have the proper options instantiated
 
-/* TODO:enable on the 1.5 release
+/* TODO:enable on the 1.4.7 release
  *
   The following options have been relocated to methods of the gallery object. They will be purged form installations
   on the Zenphoto 1.5 release.

@@ -79,18 +79,6 @@ function get_AnyFile_suffixes() {
 	if ($list = getOption('AnyFileSuffixList')) {
 		return unserialize($list);
 	}
-	//TODO: remove on 1.5
-	$alloptionlist = getOptionList();
-	foreach ($alloptionlist as $key => $option) {
-		if (strpos($key, 'AnyFile_file_list_') === 0) {
-			if ($option) {
-				$mysetoptions[] = str_replace('AnyFile_file_list_', '', $key);
-			} else {
-				purgeOption($key);
-			}
-		}
-	}
-	return $mysetoptions;
 }
 
 require_once(dirname(__FILE__) . '/class-textobject/class-textobject_core.php');
