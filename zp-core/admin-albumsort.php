@@ -27,18 +27,24 @@ if (isset($_GET['album'])) {
 	}
 	if (isset($_GET['saved'])) {
 		XSRFdefender('save_sort');
-		parse_str($_POST['sortableList'], $inputArray);
-		if (isset($inputArray['id'])) {
-			$orderArray = $inputArray['id'];
-			if (!empty($orderArray)) {
-				foreach ($orderArray as $key => $id) {
-					$sql = 'UPDATE ' . prefix('images') . ' SET `sort_order`=' . db_quote(sprintf('%03u', $key)) . ' WHERE `id`=' . sanitize_numeric($id);
-					query($sql);
+		if (isset($_POST['ids'])) { //	process bulk actions, not individual image actions.
+			$action = processImageBulkActions($album);
+			if (!empty($action))
+				$_GET['bulkmessage'] = $action;
+		} else {
+			parse_str($_POST['sortableList'], $inputArray);
+			if (isset($inputArray['id'])) {
+				$orderArray = $inputArray['id'];
+				if (!empty($orderArray)) {
+					foreach ($orderArray as $key => $id) {
+						$sql = 'UPDATE ' . prefix('images') . ' SET `sort_order`=' . db_quote(sprintf('%03u', $key)) . ' WHERE `id`=' . sanitize_numeric($id);
+						query($sql);
+					}
+					$album->setSortType("manual");
+					$album->setSortDirection('image', 0);
+					$album->save();
+					$_GET['saved'] = 1;
 				}
-				$album->setSortType("manual");
-				$album->setSortDirection('image', 0);
-				$album->save();
-				$_GET['saved'] = 1;
 			}
 		}
 	}
@@ -63,6 +69,22 @@ echo "\n</head>";
 <body>
 
 	<?php
+	$checkarray_images = array(
+					gettext('*Bulk actions*')			 => 'noaction',
+					gettext('Delete')							 => 'deleteall',
+					gettext('Set to published')		 => 'showall',
+					gettext('Set to unpublished')	 => 'hideall',
+					gettext('Add tags')						 => 'addtags',
+					gettext('Clear tags')					 => 'cleartags',
+					gettext('Disable comments')		 => 'commentsoff',
+					gettext('Enable comments')		 => 'commentson',
+					gettext('Change owner')				 => 'changeowner'
+	);
+	if (extensionEnabled('hitcounter')) {
+		$checkarray_images['Reset hitcounter'] = 'resethitcounter';
+	}
+	$checkarray_images = zp_apply_filter('bulk_image_actions', $checkarray_images);
+
 // Create our album
 	if (!isset($_GET['album'])) {
 		zp_error(gettext("No album provided to sort."));
@@ -110,9 +132,49 @@ echo "\n</head>";
 							</div>
 							<?php
 						} else {
+							if (isset($_GET['bulkmessage'])) {
+								$action = sanitize($_GET['bulkmessage']);
+								switch ($action) {
+									case 'deleteall':
+										$messagebox = gettext('Selected items deleted');
+										break;
+									case 'showall':
+										$messagebox = gettext('Selected items published');
+										break;
+									case 'hideall':
+										$messagebox = gettext('Selected items unpublished');
+										break;
+									case 'commentson':
+										$messagebox = gettext('Comments enabled for selected items');
+										break;
+									case 'commentsoff':
+										$messagebox = gettext('Comments disabled for selected items');
+										break;
+									case 'resethitcounter':
+										$messagebox = gettext('Hitcounter for selected items');
+										break;
+									case 'addtags':
+										$messagebox = gettext('Tags added for selected items');
+										break;
+									case 'cleartags':
+										$messagebox = gettext('Tags cleared for selected items');
+										break;
+									case 'alltags':
+										$messagebox = gettext('Tags added for images of selected items');
+										break;
+									case 'clearalltags':
+										$messagebox = gettext('Tags cleared for images of selected items');
+										break;
+									default:
+										$messagebox = $action;
+										break;
+								}
+							} else {
+								$messagebox = gettext("Nothing changed");
+							}
 							?>
 							<div class="notebox fade-message">
-								<h2><?php echo gettext("Nothing changed"); ?></h2>
+								<h2><?php echo $messagebox; ?></h2>
 							</div>
 							<?php
 						}
@@ -120,6 +182,7 @@ echo "\n</head>";
 					?>
 					<form action="?page=edit&amp;album=<?php echo $album->getFolder(); ?>&amp;saved&amp;tab=sort" method="post" name="sortableListForm" id="sortableListForm">
 						<?php XSRFToken('save_sort'); ?>
+						<?php printBulkActions($checkarray_images, true); ?>
 						<script type="text/javascript">
 							// <!-- <![CDATA[
 							function postSort(form) {
@@ -151,19 +214,25 @@ echo "\n</head>";
 								?>
 								<li id="id_<?php echo $image->getID(); ?>">
 									<img class="imagethumb"
-										 src="<?php echo getAdminThumb($image, 'large'); ?>"
-										 alt="<?php echo html_encode($image->getTitle()); ?>"
-										 title="<?php echo html_encode($image->getTitle()) . ' (' . html_encode($image->getFileName()) . ')'; ?>"
-										 width="80" height="80"  />
-										 <p>
-										 	<input type="checkbox">
-											 <a href="" class="colorbox" title="zoom"><img src="<?php echo WEBPATH . '/' . ZENFOLDER ;?>/images/magnify.png" alt=""></a>
-											 <a href="" class="colorbox" title="edit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER ;?>/images/pencil.png" alt=""></a>
-										</p>
+											 src="<?php echo getAdminThumb($image, 'large'); ?>"
+											 alt="<?php echo html_encode($image->getTitle()); ?>"
+											 title="<?php echo html_encode($image->getTitle()) . ' (' . html_encode($image->getFileName()) . ')'; ?>"
+											 width="80" height="80"  />
+									<p>
+										<input type="checkbox" name="ids[]" value="<?php echo $image->filename; ?>">
+										<a href="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/admin-edit.php?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;image=<?php echo urlencode($image->filename); ?>&amp;tab=imageinfo#IT" title="edit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pencil.png" alt=""></a>
 										<?php
-									 }
-									 ?>
-								</li>
+										if (isImagePhoto($image)) {
+											?>
+											<a href="<?php echo html_encode(pathurlencode($image->getFullImageURL())); ?>" class="colorbox" title="zoom"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/magnify.png" alt=""></a>
+											<?php
+										}
+										?>
+									</p>
+									<?php
+								}
+								?>
+							</li>
 						</ul>
 						<br class="clearall" />
 
