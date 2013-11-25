@@ -2618,3 +2618,23 @@ border: 0 !Important;
 box-sizing: border-box;
 }
 
+
+/* thumb albumsort */
+#images,
+#images li {
+display: inline;
+margin: 0;
+padding: 0;
+}
+
+#images li {
+list-style-type: none;
+float: left;
+margin: 0 8px 8px 0;
+}
+
+#images li p {
+margin: -5px 0 0 0 !important;
+padding: 0;
+}
+

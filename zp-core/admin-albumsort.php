@@ -143,23 +143,29 @@ echo "\n</head>";
 						<br class="clearall" /><br />
 						<p><?php echo gettext("Set the image order by dragging them to the positions you desire."); ?></p>
 
-						<div id="images">
+						<ul id="images">
 							<?php
 							$images = $album->getImages();
 							foreach ($images as $imagename) {
 								$image = newImage($album, $imagename);
 								?>
-								<img class="imagethumb"
-										 id="id_<?php echo $image->getID(); ?>"
+								<li id="id_<?php echo $image->getID(); ?>">
+									<img class="imagethumb"
 										 src="<?php echo getAdminThumb($image, 'large'); ?>"
 										 alt="<?php echo html_encode($image->getTitle()); ?>"
 										 title="<?php echo html_encode($image->getTitle()) . ' (' . html_encode($image->getFileName()) . ')'; ?>"
 										 width="80" height="80"  />
-										 <?php
+										 <p>
+										 	<input type="checkbox">
+											 <a href="" class="colorbox" title="zoom"><img src="<?php echo WEBPATH . '/' . ZENFOLDER ;?>/images/magnify.png" alt=""></a>
+											 <a href="" class="colorbox" title="edit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER ;?>/images/pencil.png" alt=""></a>
+										</p>
+										<?php
 									 }
 									 ?>
-						</div>
-						<br />
+								</li>
+						</ul>
+						<br class="clearall" />
 
 						<div>
 							<input type="hidden" id="sortableList" name="sortableList" value="" />
