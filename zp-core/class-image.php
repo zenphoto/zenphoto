@@ -58,6 +58,7 @@ function newImage($album, $filename, $quiet = false) {
 		if ($album && $album->isDynamic()) {
 			$image->albumname = $album->name;
 			$image->albumlink = $album->linkname;
+			$image->albumnamealbum = $album;
 		}
 		zp_apply_filter('image_instantiate', $image);
 		if ($image->exists) {
@@ -103,6 +104,7 @@ class Image extends MediaObject {
 	var $displayname; // $filename with the extension stripped off.
 	var $album; // An album object for the album containing this image.
 	var $albumname; // The name of the album for which this image was instantiated. (MAY NOT be $this->album->name!!!!).
+	var $albumnamealbum; //	An album object representing the above;
 	var $albumlink; // "rewrite" verwion of the album name, eg. may not have the .alb
 	var $imagefolder; // The album folder containing the image (May be different from the albumname!!!!)
 	protected $index; // The index of the current image in the album array.
@@ -201,7 +203,7 @@ class Image extends MediaObject {
 		if ($filename != filesystemToInternal($fileFS)) { // image name spoof attempt
 			return false;
 		}
-		$this->album = &$album;
+		$this->albumnamealbum = $this->album = &$album;
 		if ($album->name == '') {
 			$this->webpath = ALBUM_FOLDER_WEBPATH . $filename;
 			$this->encwebpath = ALBUM_FOLDER_WEBPATH . rawurlencode($filename);
@@ -1058,7 +1060,7 @@ class Image extends MediaObject {
 	function getIndex() {
 		global $_zp_current_search, $_zp_current_album;
 		if ($this->index == NULL) {
-			$album = $this->getAlbum();
+			$album = $this->albumnamealbum;
 			if (!is_null($_zp_current_search) && !in_context(ZP_ALBUM_LINKED) || $album->isDynamic()) {
 				if ($album->isDynamic()) {
 					$images = $album->getImages();
@@ -1097,11 +1099,7 @@ class Image extends MediaObject {
 		if (!is_null($_zp_current_search) && !in_context(ZP_ALBUM_LINKED)) {
 			$image = $_zp_current_search->getImage($index + 1);
 		} else {
-			if ($this->albumname == $this->imagefolder) {
-				$album = $this->album;
-			} else {
-				$album = newAlbum($this->albumname);
-			}
+			$album = $this->albumnamealbum;
 			$image = $album->getImage($index + 1);
 		}
 		return $image;
@@ -1118,11 +1116,7 @@ class Image extends MediaObject {
 		if (!is_null($_zp_current_search) && !in_context(ZP_ALBUM_LINKED)) {
 			$image = $_zp_current_search->getImage($index - 1);
 		} else {
-			if ($this->albumname == $this->imagefolder) {
-				$album = $this->album;
-			} else {
-				$album = newAlbum($this->albumname);
-			}
+			$album = $this->albumnamealbum;
 			$image = $album->getImage($index - 1);
 		}
 		return $image;
