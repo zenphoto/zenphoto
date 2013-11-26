@@ -1924,7 +1924,7 @@ function getNextAlbum() {
 function getNextAlbumURL() {
 	$nextalbum = getNextAlbum();
 	if ($nextalbum) {
-		return rewrite_path("/" . pathurlencode($nextalbum->name), "/index.php?album=" . pathurlencode($nextalbum->name));
+		return $nextalbum->getAlbumLink();
 	}
 	return false;
 }
@@ -1954,7 +1954,7 @@ function getPrevAlbum() {
 function getPrevAlbumURL() {
 	$prevalbum = getPrevAlbum();
 	if ($prevalbum) {
-		return rewrite_path("/" . pathurlencode($prevalbum->name), "/index.php?album=" . pathurlencode($prevalbum->name));
+		return $prevalbum->getAlbumLink();
 	}
 	return false;
 }
@@ -2533,7 +2533,7 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
 	}
 	?>
 	<span id="<?php echo $span; ?>" class="metadata_title">
-	<?php echo $refh; ?><?php echo $title; ?><?php echo $refa; ?>
+		<?php echo $refh; ?><?php echo $title; ?><?php echo $refa; ?>
 	</span>
 	<div id="<?php echo $dataid; ?>"<?php echo $style; ?>>
 		<div<?php echo $id . $class; ?>>
@@ -3326,7 +3326,7 @@ function printRandomImages($number = 5, $class = null, $option = 'all', $rootAlb
 			if ($fullimagelink) {
 				$randomImageURL = $randomImage->getFullimageURL();
 			} else {
-				$randomImageURL = getURL($randomImage);
+				$randomImageURL = $randomImage->getImageLink();
 			}
 			echo '<a href="' . html_encode($randomImageURL) . '" title="' . sprintf(gettext('View image: %s'), html_encode($randomImage->getTitle())) . '">';
 			switch ($crop) {
@@ -3685,7 +3685,6 @@ function printCustomPageURL($linktext, $page, $q = '', $prev = '', $next = '', $
 function getURL($image) {
 	return rewrite_path(pathurlencode($image->getAlbumName()) . "/" . urlencode($image->filename), "/index.php?album=" . pathurlencode($image->getAlbumName()) . "&image=" . urlencode($image->filename));
 }
-
 //*** Search functions *******************************************************
 //****************************************************************************
 
@@ -3922,7 +3921,7 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 			});
 			// ]]> -->
 			</script>
-	<?php echo $prevtext; ?>
+			<?php echo $prevtext; ?>
 			<div>
 				<input type="text" name="words" value="" id="search_input" size="10" />
 				<?php if (count($fields) > 1 || $searchwords) { ?>
@@ -3966,11 +3965,11 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 							?>
 							<label>
 								<input type="radio" name="search_within" id="search_within-1" value="1"<?php if ($within) echo ' checked="checked"'; ?> onclick="search_(1);" />
-			<?php echo gettext('Within'); ?>
+								<?php echo gettext('Within'); ?>
 							</label>
 							<label>
 								<input type="radio" name="search_within" id="search_within-0" value="1"<?php if (!$within) echo ' checked="checked"'; ?> onclick="search_(0);" />
-							<?php echo gettext('New'); ?>
+								<?php echo gettext('New'); ?>
 							</label>
 							<?php
 						}

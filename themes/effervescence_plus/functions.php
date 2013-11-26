@@ -185,7 +185,7 @@ function printHeadingImage($randomImage) {
 				$randomAlbum = $randomAlbum->getParent();
 			}
 		}
-		$randomImageURL = html_encode(getURL($randomImage));
+		$randomImageURL = html_encode($randomImage->getImageLink());
 		if (getOption('allow_upscale')) {
 			$wide = 620;
 			$high = 180;
