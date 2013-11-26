@@ -32,11 +32,17 @@ if (!defined('WEBPATH'))
 		<div id="main">
 			<div id="gallerytitle">
 				<div class="imgnav">
-					<?php if (hasPrevImage()) { ?>
+					<?php
+					if (hasPrevImage()) {
+						?>
 						<div class="imgprevious"><a href="<?php echo html_encode(getPrevImageURL()); ?>" title="<?php echo gettext("Previous Image"); ?>">« <?php echo gettext("prev"); ?></a></div>
-					<?php } if (hasNextImage()) { ?>
+						<?php
+					} if (hasNextImage()) {
+						?>
 						<div class="imgnext"><a href="<?php echo html_encode(getNextImageURL()); ?>" title="<?php echo gettext("Next Image"); ?>"><?php echo gettext("next"); ?> »</a></div>
-					<?php } ?>
+						<?php
+					}
+					?>
 				</div>
 				<h2>
 					<span>
