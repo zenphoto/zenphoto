@@ -546,7 +546,7 @@ function getGalleryIndexURL($relative = true) {
 		return rewrite_path('/' . _PAGE_ . '/' . $gallink1 . $page, "/index.php?" . $gallink2 . "page=" . $page);
 	} else {
 		if ($specialpage) {
-			return rewrite_path('/' . _PAGE_ . '/' . $gallink1, '?' . substr($gallink2, 0, -1));
+			return rewrite_path('/' . _PAGE_ . '/' . $gallink1, "/index.php?" . substr($gallink2, 0, -1));
 		}
 		return WEBPATH . "/";
 	}
