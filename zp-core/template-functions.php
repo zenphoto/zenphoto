@@ -3676,15 +3676,6 @@ function printCustomPageURL($linktext, $page, $q = '', $prev = '', $next = '', $
 	echo $prev . "<a href=\"" . html_encode(getCustomPageURL($page, $q)) . "\" $class title=\"" . html_encode($linktext) . "\">" . html_encode($linktext) . "</a>" . $next;
 }
 
-/**
- * Returns the URL to an image (This is NOT the URL for the image.php page)
- *
- * @param object $image the image
- * @return string
- */
-function getURL($image) {
-	return rewrite_path(pathurlencode($image->getAlbumName()) . "/" . urlencode($image->filename), "/index.php?album=" . pathurlencode($image->getAlbumName()) . "&image=" . urlencode($image->filename));
-}
 //*** Search functions *******************************************************
 //****************************************************************************
 

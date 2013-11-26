@@ -1645,4 +1645,16 @@ function printLatestNews($number = 5, $option = 'with_latest_images', $category 
 	echo "</ul>\n";
 }
 
+/**
+ * Returns the URL to an image (This is NOT the URL for the image.php page)[sic]
+ *
+ * @param object $image the image
+ * @return string
+ * @deprecated since version 1.4.6
+ */
+function getURL($image) {
+	deprecated_functions::notify(gettext('Use the appropriate object method. <strong>Note: this function gives different results depending on the setting of <code>moc_rewrite</strong> so which object method to use depends on what your settings were!'));
+	return rewrite_path(pathurlencode($image->getAlbumName()) . "/" . urlencode($image->filename), "/index.php?album=" . pathurlencode($image->getAlbumName()) . "&image=" . urlencode($image->filename));
+}
+
 ?>
