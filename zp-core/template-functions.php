@@ -2376,7 +2376,7 @@ function getNextImageURL() {
 	if (is_null($_zp_current_image))
 		return false;
 	$nextimg = $_zp_current_image->getNextImage();
-	return rewrite_path("/" . pathurlencode($nextimg->albumname) . "/" . urlencode($nextimg->filename) . IM_SUFFIX, "/index.php?album=" . pathurlencode($nextimg->albumname) . "&image=" . urlencode($nextimg->filename));
+	return $nextimg->getImagelink();
 }
 
 /**
@@ -2391,7 +2391,7 @@ function getPrevImageURL() {
 	if (is_null($_zp_current_image))
 		return false;
 	$previmg = $_zp_current_image->getPrevImage();
-	return rewrite_path("/" . pathurlencode($previmg->albumname) . "/" . urlencode($previmg->filename) . IM_SUFFIX, "/index.php?album=" . pathurlencode($previmg->albumname) . "&image=" . urlencode($previmg->filename));
+	return $previmg->getImagelink();
 }
 
 /**
@@ -2517,7 +2517,7 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
 	}
 	?>
 	<span id="<?php echo $span; ?>" class="metadata_title">
-		<?php echo $refh; ?><?php echo $title; ?><?php echo $refa; ?>
+	<?php echo $refh; ?><?php echo $title; ?><?php echo $refa; ?>
 	</span>
 	<div id="<?php echo $dataid; ?>"<?php echo $style; ?>>
 		<div<?php echo $id . $class; ?>>
@@ -3906,7 +3906,7 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 			});
 			// ]]> -->
 			</script>
-			<?php echo $prevtext; ?>
+	<?php echo $prevtext; ?>
 			<div>
 				<input type="text" name="words" value="" id="search_input" size="10" />
 				<?php if (count($fields) > 1 || $searchwords) { ?>
@@ -3950,11 +3950,11 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 							?>
 							<label>
 								<input type="radio" name="search_within" id="search_within-1" value="1"<?php if ($within) echo ' checked="checked"'; ?> onclick="search_(1);" />
-								<?php echo gettext('Within'); ?>
+			<?php echo gettext('Within'); ?>
 							</label>
 							<label>
 								<input type="radio" name="search_within" id="search_within-0" value="1"<?php if (!$within) echo ' checked="checked"'; ?> onclick="search_(0);" />
-								<?php echo gettext('New'); ?>
+							<?php echo gettext('New'); ?>
 							</label>
 							<?php
 						}
