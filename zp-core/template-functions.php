@@ -1916,7 +1916,7 @@ function getNextAlbum() {
 function getNextAlbumURL() {
 	$nextalbum = getNextAlbum();
 	if ($nextalbum) {
-		return rewrite_path("/" . pathurlencode($nextalbum->name), "/index.php?album=" . pathurlencode($nextalbum->name));
+		return $nextalbum->getAlbumLink();
 	}
 	return false;
 }
@@ -1946,7 +1946,7 @@ function getPrevAlbum() {
 function getPrevAlbumURL() {
 	$prevalbum = getPrevAlbum();
 	if ($prevalbum) {
-		return rewrite_path("/" . pathurlencode($prevalbum->name), "/index.php?album=" . pathurlencode($prevalbum->name));
+		return $prevalbum->getAlbumLink();
 	}
 	return false;
 }
@@ -2517,7 +2517,7 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
 	}
 	?>
 	<span id="<?php echo $span; ?>" class="metadata_title">
-	<?php echo $refh; ?><?php echo $title; ?><?php echo $refa; ?>
+		<?php echo $refh; ?><?php echo $title; ?><?php echo $refa; ?>
 	</span>
 	<div id="<?php echo $dataid; ?>"<?php echo $style; ?>>
 		<div<?php echo $id . $class; ?>>
@@ -3877,36 +3877,36 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 		<!-- search form -->
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<script type="text/javascript">
-			// <!-- <![CDATA[
-			var within = <?php echo (int) $within; ?>;
-			function search_(way) {
-				within = way;
-				if (way) {
-					$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+		// <!-- <![CDATA[
+		var within = <?php echo (int) $within; ?>;
+		function search_(way) {
+			within = way;
+			if (way) {
+				$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
 
-				} else {
-					lastsearch = '';
-					$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-				}
-				$('#search_input').val('');
+			} else {
+				lastsearch = '';
+				$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
 			}
-			$('#search_form').submit(function() {
-				if (within) {
-					var newsearch = $.trim($('#search_input').val());
-					if (newsearch.substring(newsearch.length - 1) == ',') {
-						newsearch = newsearch.substr(0, newsearch.length - 1);
-					}
-					if (newsearch.length > 0) {
-						$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
-					} else {
-						$('#search_input').val('<?php echo $searchwords; ?>');
-					}
+			$('#search_input').val('');
+		}
+		$('#search_form').submit(function() {
+			if (within) {
+				var newsearch = $.trim($('#search_input').val());
+				if (newsearch.substring(newsearch.length - 1) == ',') {
+					newsearch = newsearch.substr(0, newsearch.length - 1);
 				}
-				return true;
-			});
-			// ]]> -->
+				if (newsearch.length > 0) {
+					$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+				} else {
+					$('#search_input').val('<?php echo $searchwords; ?>');
+				}
+			}
+			return true;
+		});
+		// ]]> -->
 			</script>
-	<?php echo $prevtext; ?>
+			<?php echo $prevtext; ?>
 			<div>
 				<input type="text" name="words" value="" id="search_input" size="10" />
 				<?php if (count($fields) > 1 || $searchwords) { ?>
@@ -3950,11 +3950,11 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 							?>
 							<label>
 								<input type="radio" name="search_within" id="search_within-1" value="1"<?php if ($within) echo ' checked="checked"'; ?> onclick="search_(1);" />
-			<?php echo gettext('Within'); ?>
+								<?php echo gettext('Within'); ?>
 							</label>
 							<label>
 								<input type="radio" name="search_within" id="search_within-0" value="1"<?php if (!$within) echo ' checked="checked"'; ?> onclick="search_(0);" />
-							<?php echo gettext('New'); ?>
+								<?php echo gettext('New'); ?>
 							</label>
 							<?php
 						}
@@ -4265,7 +4265,7 @@ function printPasswordForm($_password_hint, $_password_showuser = NULL, $_passwo
 		if ($_password_showProtected && !$_zp_login_error) {
 			?>
 			<p>
-			<?php echo gettext("The page you are trying to view is password protected."); ?>
+				<?php echo gettext("The page you are trying to view is password protected."); ?>
 			</p>
 			<?php
 		}
