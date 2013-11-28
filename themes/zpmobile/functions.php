@@ -28,8 +28,12 @@ function jqm_printRSSlinks() {
 		if (extensionEnabled('zenpage')) {
 			?>
 			<li class="rsslink"><a href="<?php echo html_encode(getRSSLink('News')); ?>" rel="external" data-ajax="false"><?php echo gettext('News'); ?></a></li>
-			<li class="rsslink"><a href="<?php echo html_encode(getRSSLink('NewsWithImages')); ?>" rel="external" data-ajax="false"><?php echo gettext('News and Gallery'); ?></a></li>
 			<?php
+			if (ZENPAGE_COMBINEWS) {
+				?>
+				<li class="rsslink"><a href="<?php echo html_encode(getRSSLink('NewsWithImages')); ?>" rel="external" data-ajax="false"><?php echo gettext('News and Gallery'); ?></a></li>
+				<?php
+			}
 		}
 		?>
 		<li class="rsslink"><a href="<?php echo html_encode(getRSSLink('Gallery')); ?>" rel="external" data-ajax="false"><?php echo gettext('Gallery'); ?></a></li>
