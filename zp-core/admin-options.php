@@ -1578,11 +1578,11 @@ Zenphoto_Authority::printPasswordFormJS();
 									<p><?php echo gettext("<em>Field list</em> is the set of fields on which searches may be performed."); ?></p>
 									<p>
 										<?php
-										echo gettext("Search does matches on all fields chosen based on the matching criteria selected. The <em>string matching</em> criteria is used for all fields except <em>tags</em>. The <em>tag matchind</em> criteria is used for them.");
+										echo gettext("Search does matches on all fields chosen based on the matching criteria selected. The <em>string matching</em> criteria is used for all fields except <em>tags</em>. The <em>tag matching</em> criteria is used for them.");
 										?>
 									<ul>
 										<li><?php echo gettext('<code>pattern</code>: match the target anywhere within the field'); ?></li>
-										<li><?php echo gettext('<code>exact</code>: match the target with whole the field'); ?></li>
+										<li><?php echo gettext('<code>exact</code>: match the target with the whole field'); ?></li>
 										<li><?php echo gettext('<code>word</code>: match the target with whole words in the field'); ?></li>
 										<li><?php echo gettext('<code>partial word</code>: match the target with the start of words in the field'); ?></li>
 									</ul>
