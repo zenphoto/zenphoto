@@ -2581,18 +2581,21 @@ class zpFunctions {
 				$text = serialize($text);
 			}
 		} else {
-			preg_match_all('|\<\s*img.*?\ssrc\s*=\s*"(.*i\.php\?([^"]*)).*/\>|', $text, $matches);
-			foreach ($matches[2] as $key => $match) {
-				$match = explode('&amp;', $match);
-				$set = array();
-				foreach ($match as $v) {
-					$s = explode('=', $v);
-					$set[$s[0]] = $s[1];
-				}
-				$args = getImageArgs($set);
-				$imageuri = getImageURI($args, urldecode($set['a']), urldecode($set['i']), NULL);
-				if (strpos($imageuri, 'i.php') === false) {
-					$text = str_replace($matches[1][$key], $imageuri, $text);
+			preg_match_all('|<\s*img.*?\ssrc\s*=\s*"([^"]*)?|', $text, $matches);
+			foreach ($matches[1] as $key => $match) {
+				preg_match('|.*i\.php\?(.*)|', $match, $imgproc);
+				if ($imgproc) {
+					$match = explode('&amp;', $imgproc[1]);
+					$set = array();
+					foreach ($match as $v) {
+						$s = explode('=', $v);
+						$set[$s[0]] = $s[1];
+					}
+					$args = getImageArgs($set);
+					$imageuri = getImageURI($args, urldecode($set['a']), urldecode($set['i']), NULL);
+					if (strpos($imageuri, 'i.php') === false) {
+						$text = str_replace($matches[1][$key], $imageuri, $text);
+					}
 				}
 			}
 		}

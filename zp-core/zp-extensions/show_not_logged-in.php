@@ -1,4 +1,5 @@
 <?php
+
 /**
  * When enabled, Zenphoto users will be appear not to be logged-in when viewing gallery pages
  *
@@ -6,8 +7,8 @@
  * @package plugins
  * @subpackage development
  */
-$plugin_is_filter = 95|THEME_PLUGIN;
-$plugin_description = sprintf(gettext("Treats users as not logged in for gallery pages."),DATA_FOLDER);
+$plugin_is_filter = 95 | FEATURE_PLUGIN;
+$plugin_description = sprintf(gettext("Treats users as not logged in for gallery pages."), DATA_FOLDER);
 $plugin_author = "Stephen Billard (sbillard)";
 
 
@@ -40,4 +41,5 @@ class show_not_loggedin {
 	}
 
 }
+
 ?>

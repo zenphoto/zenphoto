@@ -6,7 +6,7 @@
  * @author Stephen Billard (sbillard)
  * @subpackage tools
  */
-$plugin_is_filter = 9 | THEME_PLUGIN | ADMIN_PLUGIN;
+$plugin_is_filter = 9 | FEATURE_PLUGIN | ADMIN_PLUGIN;
 $plugin_description = gettext('Tweet news articles when published.');
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (function_exists('curl_init')) ? false : gettext('The <em>php_curl</em> extension is required');
@@ -458,7 +458,7 @@ class tweet {
 				?>
 				<div class="box" id="overview-news">
 					<h2 class="h2_bordered"><?php echo gettext("Tweet News Errors:"); ?></h2>
-				<?php echo '<p class="errorbox">' . $errors . '</p>'; ?>
+					<?php echo '<p class="errorbox">' . $errors . '</p>'; ?>
 				</div>
 				<?php
 			}
