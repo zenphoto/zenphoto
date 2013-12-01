@@ -66,6 +66,14 @@ $plugin_description = gettext('View available <code>content macros</code>.');
 $plugin_author = "Stephen Billard (sbillard)";
 
 if (zp_loggedin(ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS | ALBUM_RIGHTS)) {
+	foreach (getEnabledPlugins() as $ext => $pn) {
+		$loadtype = $pn['priority'];
+		if ($loadtype & (FEATURE_PLUGIN | THEME_PLUGIN)) {
+			require_once($pn['path']);
+		}
+	}
+	unset($ext);
+	unset($pn);
 	$macros = getMacros();
 	if (!empty($macros)) {
 		zp_register_filter('admin_tabs', 'macro_admin_tabs');
@@ -79,7 +87,7 @@ function macro_admin_tabs($tabs) {
 	return $tabs;
 }
 
-function MacroList_show($macro, $detail) {
+function macroList_show($macro, $detail) {
 	$warned = array();
 	echo '<dl>';
 	$warn = array();

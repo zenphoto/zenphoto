@@ -71,12 +71,7 @@ if (!defined('OFFSET_PATH')) {
 	$imagebuttons = preg_replace('/<a href=[^>]*/i', '<a', zp_apply_filter('edit_image_utilities', '', $_zp_missing_image, 0, '', ''));
 	$albumbuttons = preg_replace('/<a href=[^>]*/i', '<a', zp_apply_filter('edit_album_utilities', '', $_zp_missing_album, ''));
 
-	foreach (getEnabledPlugins() as $ext => $pn) {
-		$loadtype = $pn['priority'];
-		if ($loadtype & (FEATURE_PLUGIN | THEME_PLUGIN)) {
-			require_once($pn['path']);
-		}
-	}
+	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/macroList.php');
 
 	list($plugin_description, $plugin_notice, $plugin_disable, $plugin_author, $plugin_version, $plugin_is_filter, $plugin_URL, $option_interface, $doclink) = $macro_params;
 
@@ -372,7 +367,6 @@ if (!defined('OFFSET_PATH')) {
 									<?php
 								}
 								if (!empty($content_macros)) {
-									require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/macroList.php');
 									echo ngettext('Macro defined:', 'Macros defined:', count($content_macros));
 									foreach ($content_macros as $macro => $detail) {
 										macroList_show($macro, $detail);
