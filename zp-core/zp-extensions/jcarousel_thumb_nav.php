@@ -178,7 +178,7 @@ if (!OFFSET_PATH && getOption('jcarousel_' . $_zp_gallery->getCurrentTheme() . '
 					if ($fullimagelink) {
 						$link = $imgobj->getFullImageURL();
 					} else {
-						$link = $imgobj->getImageLink();
+						$link = $imgobj->getLink();
 					}
 					if (!is_null($_zp_current_image)) {
 						if ($_zp_current_album->isDynamic()) {
@@ -198,7 +198,7 @@ if (!OFFSET_PATH && getOption('jcarousel_' . $_zp_gallery->getCurrentTheme() . '
 						$active = '';
 					}
 					$imageurl = $imgobj->getCustomImage(NULL, $width, $height, $cropw, $croph, NULL, NULL, true);
-				$items .= ' {url: "'.html_encode($imageurl).'", title: "'.html_encode($imgobj->getTitle()).'", link: "'.html_encode($link).'", active: "'.$active.'"},';
+					$items .= ' {url: "' . html_encode($imageurl) . '", title: "' . html_encode($imgobj->getTitle()) . '", link: "' . html_encode($link) . '", active: "' . $active . '"},';
 					$items .= "\n";
 				}
 			}
@@ -211,41 +211,41 @@ if (!OFFSET_PATH && getOption('jcarousel_' . $_zp_gallery->getCurrentTheme() . '
 			}
 			?>
 			<script type="text/javascript">
-				// <!-- <![CDATA[
-				var mycarousel_itemList = [
+			// <!-- <![CDATA[
+			var mycarousel_itemList = [
 			<?php echo $items; ?>
-				];
+			];
 
-				function mycarousel_itemLoadCallback(carousel, state) {
-					for (var i = carousel.first; i <= carousel.last; i++) {
-						if (carousel.has(i)) {
-							continue;
-						}
-						if (i > mycarousel_itemList.length) {
-							break;
-						}
-						carousel.add(i, mycarousel_getItemHTML(mycarousel_itemList[i - 1]));
+			function mycarousel_itemLoadCallback(carousel, state) {
+				for (var i = carousel.first; i <= carousel.last; i++) {
+					if (carousel.has(i)) {
+						continue;
 					}
-				}
-
-				function mycarousel_getItemHTML(item) {
-					if (item.active === "") {
-						html = '<a href="' + item.link + '" title="' + item.title + '"><img src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
-					} else {
-						html = '<a href="' + item.link + '" title="' + item.title + '"><img class="activecarouselimage" src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
+					if (i > mycarousel_itemList.length) {
+						break;
 					}
-					return html;
+					carousel.add(i, mycarousel_getItemHTML(mycarousel_itemList[i - 1]));
 				}
+			}
 
-				jQuery(document).ready(function() {
-					jQuery("#mycarousel").jcarousel({
-						vertical: <?php echo $vertical; ?>,
-						size: mycarousel_itemList.length,
-						start: <?php echo $imgnumber; ?>,
-						scroll: <?php echo $thumbscroll; ?>,
-						itemLoadCallback: {onBeforeAnimation: mycarousel_itemLoadCallback}
-					});
+			function mycarousel_getItemHTML(item) {
+				if (item.active === "") {
+					html = '<a href="' + item.link + '" title="' + item.title + '"><img src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
+				} else {
+					html = '<a href="' + item.link + '" title="' + item.title + '"><img class="activecarouselimage" src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
+				}
+				return html;
+			}
+
+			jQuery(document).ready(function() {
+				jQuery("#mycarousel").jcarousel({
+					vertical: <?php echo $vertical; ?>,
+					size: mycarousel_itemList.length,
+					start: <?php echo $imgnumber; ?>,
+					scroll: <?php echo $thumbscroll; ?>,
+					itemLoadCallback: {onBeforeAnimation: mycarousel_itemLoadCallback}
 				});
+			});
 			// ]]> -->
 			</script>
 			<ul id="mycarousel">

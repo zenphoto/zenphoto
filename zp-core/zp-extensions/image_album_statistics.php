@@ -174,9 +174,9 @@ function printAlbumStatisticItem($album, $option, $showtitle = false, $showdate 
 	}
 	$tempalbum = newAlbum($album['folder']);
 	if ($firstimglink && $tempimage = $tempalbum->getImage(0)) {
-		$albumpath = $tempimage->getImageLink();
+		$albumpath = $tempimage->getLink();
 	} else {
-		$albumpath = $tempalbum->getAlbumLink();
+		$albumpath = $tempalbum->getLink();
 	}
 	echo "<li><a href=\"" . $albumpath . "\" title=\"" . html_encode($tempalbum->getTitle()) . "\">\n";
 	$albumthumb = $tempalbum->getAlbumThumbImage();
@@ -492,7 +492,7 @@ function printImageStatistic($number, $option, $albumfolder = '', $showtitle = f
 		if ($fullimagelink) {
 			$imagelink = $image->getFullImageURL();
 		} else {
-			$imagelink = $image->getImageLink();
+			$imagelink = $image->getLink();
 		}
 		echo '<li><a href="' . html_encode(pathurlencode($imagelink)) . '" title="' . html_encode($image->getTitle()) . "\">\n";
 		switch ($crop) {
@@ -507,7 +507,7 @@ function printImageStatistic($number, $option, $albumfolder = '', $showtitle = f
 				break;
 		}
 		if ($showtitle) {
-			echo '<h3><a href="' . html_encode(pathurlencode($image->getImageLink())) . '" title="' . html_encode($image->getTitle()) . "\">\n";
+			echo '<h3><a href="' . html_encode(pathurlencode($image->getLink())) . '" title="' . html_encode($image->getTitle()) . "\">\n";
 			echo $image->getTitle() . "</a></h3>\n";
 		}
 		if ($showdate) {

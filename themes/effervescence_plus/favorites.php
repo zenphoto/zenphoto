@@ -29,7 +29,7 @@ $map = function_exists('printGoogleMap');
 						if (is_null($album)) {
 							echo '<div class="albdisabledlink">«  ' . gettext('prev') . '</div>';
 						} else {
-							echo '<a href="' . $album->getAlbumLink() .
+							echo '<a href="' . $album->getLink() .
 							'" title="' . html_encode($album->getTitle()) . '">« ' . gettext('prev') . '</a>';
 						}
 						?>
@@ -40,7 +40,7 @@ $map = function_exists('printGoogleMap');
 						if (is_null($album)) {
 							echo '<div class="albdisabledlink">' . gettext('next') . ' »</div>';
 						} else {
-							echo '<a href="' . $album->getAlbumLink() .
+							echo '<a href="' . $album->getLink() .
 							'" title="' . html_encode($album->getTitle()) . '">' . gettext('next') . ' »</a>';
 						}
 						?>

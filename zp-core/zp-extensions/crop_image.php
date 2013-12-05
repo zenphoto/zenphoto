@@ -190,7 +190,7 @@ if (isset($_REQUEST['crop'])) {
 	if ($_REQUEST['performcrop'] == 'backend') {
 		$return = FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&album=' . pathurlencode($albumname) . '&saved&subpage=' . sanitize($_REQUEST['subpage']) . '&tagsort=' . sanitize($_REQUEST['tagsort']) . '&tab=imageinfo';
 	} else {
-		$return = FULLWEBPATH . $imageobj->getImageLink();
+		$return = FULLWEBPATH . $imageobj->getLink();
 	}
 
 	header('Location: ' . $return);

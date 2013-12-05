@@ -461,7 +461,7 @@ class feed {
 			case 'images':
 				$title = get_language_string($item['title']);
 				$obj = newImage(NULL, array('folder' => $item['folder'], 'filename' => $item['filename']));
-				$link = $obj->getImagelink();
+				$link = $obj->getlink();
 				$feeditem['pubdate'] = date("r", strtotime($item['date']));
 				$category = $item['albumtitle'];
 				$website = $item['website'];
@@ -474,7 +474,7 @@ class feed {
 				break;
 			case 'albums':
 				$obj = newAlbum($item['folder']);
-				$link = rtrim($obj->getAlbumlink(), '/');
+				$link = rtrim($obj->getLink(), '/');
 				$feeditem['pubdate'] = date("r", strtotime($item['date']));
 				$category = $item['albumtitle'];
 				$website = $item['website'];

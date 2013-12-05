@@ -1640,7 +1640,7 @@ function getAlbumLinkURL($album = NULL) {
 	} else {
 		$page = 0;
 	}
-	return $album->getAlbumLink($page);
+	return $album->getLink($page);
 }
 
 /**
@@ -1924,7 +1924,7 @@ function getNextAlbum() {
 function getNextAlbumURL() {
 	$nextalbum = getNextAlbum();
 	if ($nextalbum) {
-		return $nextalbum->getAlbumLink();
+		return $nextalbum->getLink();
 	}
 	return false;
 }
@@ -1954,7 +1954,7 @@ function getPrevAlbum() {
 function getPrevAlbumURL() {
 	$prevalbum = getPrevAlbum();
 	if ($prevalbum) {
-		return $prevalbum->getAlbumLink();
+		return $prevalbum->getLink();
 	}
 	return false;
 }
@@ -2392,7 +2392,7 @@ function getNextImageURL() {
 	if (is_null($_zp_current_image))
 		return false;
 	$nextimg = $_zp_current_image->getNextImage();
-	return $nextimg->getImagelink();
+	return $nextimg->getLink();
 }
 
 /**
@@ -2407,7 +2407,7 @@ function getPrevImageURL() {
 	if (is_null($_zp_current_image))
 		return false;
 	$previmg = $_zp_current_image->getPrevImage();
-	return $previmg->getImagelink();
+	return $previmg->getLink();
 }
 
 /**
@@ -2451,7 +2451,7 @@ function getImageLinkURL() {
 	global $_zp_current_image;
 	if (is_null($_zp_current_image))
 		return false;
-	return $_zp_current_image->getImageLink();
+	return $_zp_current_image->getLink();
 }
 
 /**
@@ -3326,7 +3326,7 @@ function printRandomImages($number = 5, $class = null, $option = 'all', $rootAlb
 			if ($fullimagelink) {
 				$randomImageURL = $randomImage->getFullimageURL();
 			} else {
-				$randomImageURL = $randomImage->getImageLink();
+				$randomImageURL = $randomImage->getLink();
 			}
 			echo '<a href="' . html_encode($randomImageURL) . '" title="' . sprintf(gettext('View image: %s'), html_encode($randomImage->getTitle())) . '">';
 			switch ($crop) {

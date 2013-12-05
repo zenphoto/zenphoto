@@ -149,7 +149,7 @@ function printImageslist($number) {
 		" title='" . html_encode($albumthumb->getTitle()) . " (" . html_encode($albumthumb->filename) . ")'>
 																											<img src='" . $imgsizeurl . "' class='" . $backgroundcss . "' /></a>\n";
 
-		echo "<a href='../../../../../.." . html_encode($albumthumb->getImageLink()) .
+		echo "<a href='../../../../../.." . html_encode($albumthumb->getLink()) .
 		"' title='Zoom' rel='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a> " .
 		gettext('<em>Albumthumb</em>') . unpublishedZenphotoItemCheck($albumthumb, false);
 		echo "</div>";
@@ -177,7 +177,7 @@ function printImageslist($number) {
 				$fullimage = pathurlencode(addslashes($imageobj->getFullImage()));
 				$imageType = getImageType($imageobj);
 				$thumburl = $imageobj->getThumb();
-				$imgurl = $imageobj->getimageLink(false);
+				$imgurl = $imageobj->getLink(false);
 				//$sizedimage = $imageobj->getSizedImage(getOption('image_size'));
 				switch ($imageType) {
 					case '':
@@ -226,7 +226,7 @@ function printImageslist($number) {
 																												'" . html_encode(addslashes($albumdesc)) . "');\"" .
 				" title='" . html_encode($imageobj->getTitle()) . " (" . html_encode($imageobj->filename) . ")'>
 																												<img src='" . $imgsizeurl . "' class='" . $backgroundcss . "' /></a>\n";
-				echo "<a href='../../../../../.." . html_encode($imageobj->getImageLink()) .
+				echo "<a href='../../../../../.." . html_encode($imageobj->getLink()) .
 				"' title='Zoom' rel='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a> " .
 				html_encode(shortentitle($imageobj->getTitle(), 8)) . unpublishedZenphotoItemCheck($imageobj, false);
 				echo "</div>\n";

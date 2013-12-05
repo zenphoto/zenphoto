@@ -410,7 +410,7 @@ class slideshow {
 							<a>';
 				} else {
 					if ($linkslides)
-						$slideshow .= '<a href="' . html_encode($image->getImageLink()) . '">';
+						$slideshow .= '<a href="' . html_encode($image->getLink()) . '">';
 					if ($crop) {
 						$img = $image->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, NULL, NULL);
 					} else {

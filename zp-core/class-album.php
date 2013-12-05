@@ -400,6 +400,16 @@ class AlbumBase extends MediaObject {
 	 * @param string $page if not null, apppend as page #
 	 * @return string
 	 */
+	function getLink($page = NULL) {
+		return NULL;
+	}
+
+	/**
+	 *
+	 * @param type $page
+	 * @return null
+	 * @deprecated
+	 */
 	function getAlbumLink($page = NULL) {
 		return NULL;
 	}

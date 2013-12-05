@@ -178,7 +178,7 @@ function jqm_printBacktoTopLink() {
 /**
  * Prints the link to an news entry with combinews support
  */
-function jqm_getNewsLink() {
+function jqm_getLink() {
 	global $_zp_current_zenpage_news;
 	if (ZENPAGE_COMBINEWS) {
 		$newstype = getNewsType();
@@ -188,10 +188,10 @@ function jqm_getNewsLink() {
 	switch ($newstype) {
 		case "image":
 		case "video":
-			$link = $_zp_current_zenpage_news->getImageLink();
+			$link = $_zp_current_zenpage_news->getLink();
 			break;
 		case "album":
-			$link = $_zp_current_zenpage_news->getAlbumLink();
+			$link = $_zp_current_zenpage_news->getLink();
 			break;
 		default:
 			$link = getNewsURL(getNewsTitleLink());

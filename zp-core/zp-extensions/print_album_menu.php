@@ -282,9 +282,9 @@ function printAlbumMenuListAlbum($albums, $path, $folder, $option, $showcount, $
 				$display = $title;
 			}
 			if ($firstimagelink && $topalbum->getNumImages() != 0) {
-				$link = "<li><a " . $current . "href='" . html_encode($topalbum->getImage(0)->getImageLink()) . "' title='" . html_encode($title) . "'>" . html_encode($display) . "</a>" . $count;
+				$link = "<li><a " . $current . "href='" . html_encode($topalbum->getImage(0)->getLink()) . "' title='" . html_encode($title) . "'>" . html_encode($display) . "</a>" . $count;
 			} else {
-				$link = "<li><a " . $current . "href='" . html_encode($topalbum->getAlbumLink(0)) . "' title='" . html_encode($title) . "'>" . html_encode($display) . "</a>" . $count;
+				$link = "<li><a " . $current . "href='" . html_encode($topalbum->getLink(0)) . "' title='" . html_encode($title) . "'>" . html_encode($display) . "</a>" . $count;
 			}
 			echo $link;
 		}
@@ -374,7 +374,7 @@ function printAlbumMenuJumpAlbum($albums, $option, $albumpath, $firstimagelink, 
 
 		$selected = checkSelectedAlbum($subalbum->name, "album");
 		if ($firstimagelink && $subalbum->getNumImages() != 0) {
-			$link = "<option $selected value='" . html_encode($subalbum->getImage(0)->getImageLink()) . "'>" . $arrow . strip_tags($subalbum->getTitle()) . $count . "</option>";
+			$link = "<option $selected value='" . html_encode($subalbum->getImage(0)->getLink()) . "'>" . $arrow . strip_tags($subalbum->getTitle()) . $count . "</option>";
 		} else {
 			$link = "<option $selected value='" . html_encode($albumpath . pathurlencode($subalbum->name)) . "'>" . $arrow . strip_tags($subalbum->getTitle()) . $count . "</option>";
 		}

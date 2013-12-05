@@ -221,7 +221,7 @@ function getItemTitleAndURL($item) {
 				$protected = 0;
 			} else {
 				$obj = newAlbum($item['link']);
-				$url = $obj->getAlbumLink(0);
+				$url = $obj->getLink();
 				$protected = $obj->isProtected();
 				$title = $obj->getTitle();
 			}

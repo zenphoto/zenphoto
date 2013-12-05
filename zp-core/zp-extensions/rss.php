@@ -561,7 +561,7 @@ class RSS extends feed {
 		if ($this->mode == "albums") {
 			$albumobj = newAlbum($item['folder']);
 			$totalimages = $albumobj->getNumImages();
-			$itemlink = $this->host . pathurlencode($albumobj->getAlbumLink());
+			$itemlink = $this->host . pathurlencode($albumobj->getLink());
 			$thumb = $albumobj->getAlbumThumbImage();
 			$thumburl = '<img border="0" src="' . PROTOCOL . '://' . $this->host . pathurlencode($thumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)) . '" alt="' . html_encode($albumobj->getTitle($this->locale)) . '" />';
 			$title = $albumobj->getTitle($this->locale);
@@ -590,7 +590,7 @@ class RSS extends feed {
 		} else {
 			$ext = getSuffix($item->localpath);
 			$albumobj = $item->getAlbum();
-			$itemlink = $this->host . $item->getImagelink();
+			$itemlink = $this->host . $item->getLink();
 			$fullimagelink = $this->host . html_encode(pathurlencode($item->getFullImageURL()));
 			$thumburl = '<img border="0" src="' . PROTOCOL . '://' . $this->host . html_encode(pathurlencode($item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . $item->getTitle($this->locale) . '" /><br />';
 			$title = $item->getTitle($this->locale);
@@ -670,7 +670,7 @@ class RSS extends feed {
 				$categories = get_language_string($albumobj->getTitle('all'), $this->locale);
 				$feeditem['title'] = strip_tags(get_language_string($obj->getTitle('all'), $this->locale));
 				$title = get_language_string($obj->getTitle('all'), $this->locale);
-				$link = $obj->getImageLink();
+				$link = $obj->getLink();
 				$filename = $obj->getFilename();
 				$ext = getSuffix($filename);
 				$album = $albumobj->getFolder();
@@ -691,7 +691,7 @@ class RSS extends feed {
 				$categories = get_language_string($obj->getTitle('all'), $this->locale);
 				$feeditem['title'] = strip_tags(get_language_string($obj->getTitle('all'), $this->locale));
 				$title = get_language_string($obj->getTitle('all'), $this->locale);
-				$link = $obj->getAlbumLink();
+				$link = $obj->getLink();
 				$album = $obj->getFolder();
 				$albumthumb = $obj->getAlbumThumbImage();
 				$content = shortenContent($obj->getDesc($this->locale), getOption('RSS_truncate_length'), '...');

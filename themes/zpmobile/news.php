@@ -53,7 +53,7 @@ if(is_NewsArticle()) {
 	 <?php
 		 while (next_news()): ?>
 			<li>
-			<a href="<?php echo html_encode(jqm_getNewsLink()); ?>" title="<?php printBareNewsTitle(); ?>">
+			<a href="<?php echo html_encode(jqm_getLink()); ?>" title="<?php printBareNewsTitle(); ?>">
 			<?php printNewsTitle(); ?> <small>(<?php printNewsDate();?>)</small>
 			<div class="albumdesc"><?php echo shortenContent(strip_tags(getNewsContent()), 57,'(...)',false); ?></div>
 			<?php jqm_printCombiNewsThumb(); ?>

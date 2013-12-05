@@ -158,7 +158,7 @@ function comment_form_print10Most() {
 function comment_form_edit_comment($raw) {
 	$address = getSerializedArray($raw);
 	if (empty($address)) {
-		$address = array('street'	 => '', 'city'		 => '', 'state'		 => '', 'country'	 => '', 'postal'	 => '', 'website'	 => '');
+		$address = array('street' => '', 'city' => '', 'state' => '', 'country' => '', 'postal' => '', 'website' => '');
 	}
 	$required = getOption('register_user_address_info');
 	if ($required == 'required') {
@@ -166,8 +166,7 @@ function comment_form_edit_comment($raw) {
 	} else {
 		$required = false;
 	}
-	$html =
-					'<p>
+	$html = '<p>
 					<label for="comment_form_street">' .
 					sprintf(gettext('Street%s'), $required) .
 					'</label>
@@ -551,10 +550,10 @@ function comment_form_handle_comment() {
 		$_zp_HTML_cache->disable();
 		if (in_context(ZP_IMAGE)) {
 			$commentobject = $_zp_current_image;
-			$redirectTo = $_zp_current_image->getImageLink();
+			$redirectTo = $_zp_current_image->getLink();
 		} else if (in_context(ZP_ALBUM)) {
 			$commentobject = $_zp_current_album;
-			$redirectTo = $_zp_current_album->getAlbumLink();
+			$redirectTo = $_zp_current_album->getLink();
 		} else if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
 			$commentobject = $_zp_current_zenpage_news;
 			$redirectTo = FULLWEBPATH . '/index.php?p=news&title=' . $_zp_current_zenpage_news->getTitlelink();

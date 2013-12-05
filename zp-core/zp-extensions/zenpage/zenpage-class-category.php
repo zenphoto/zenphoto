@@ -414,9 +414,19 @@ class ZenpageCategory extends ZenpageRoot {
 	 *
 	 * @return string
 	 */
-	function getCategoryLink() {
+	function getLink() {
 		global $_zp_zenpage;
 		return rewrite_path('/' . _CATEGORY_ . '/' . $this->getTitlelink(), "/index.php?p=news&category=" . $this->getTitlelink());
+	}
+
+	/**
+	 *
+	 * @global type $_zp_zenpage
+	 * @return type
+	 * @deprecated
+	 */
+	function getCategoryLink() {
+		return $this->getLink();
 	}
 
 }

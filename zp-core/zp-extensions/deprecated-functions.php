@@ -1533,8 +1533,8 @@ function getLatestNews($number = 2, $option = 'none', $category = '', $sticky = 
 			$latest = $_zp_zenpage->getCombiNews($number, 'latestupdatedalbums-thumbnail', NULL, '', $sticky, $sortdirection);
 			break;
 		/* case "latestimagesbyalbum-thumbnail":
-		  $latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'id','',false);
-		  break; */
+			$latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'id','',false);
+			break; */
 	}
 	return $latest;
 }
@@ -1602,7 +1602,7 @@ function printLatestNews($number = 5, $option = 'with_latest_images', $category 
 				$obj = newImage(newAlbum($item['albumname']), $item['titlelink']);
 				$categories = $item['albumname'];
 				$title = $obj->getTitle();
-				$link = html_encode($obj->getImageLink());
+				$link = html_encode($obj->getLink());
 				$content = $obj->getDesc();
 				if ($option == "with_latest_image_date") {
 					$date = zpFormattedDate(DATE_FORMAT, $item['date']);
@@ -1616,7 +1616,7 @@ function printLatestNews($number = 5, $option = 'with_latest_images', $category 
 				$obj = newAlbum($item['albumname']);
 				$title = $obj->getTitle();
 				$categories = "";
-				$link = html_encode($obj->getAlbumLink());
+				$link = html_encode($obj->getLink());
 				$thumb = "<a href=\"" . $link . "\" title=\"" . $title . "\"><img src=\"" . html_encode(pathurlencode($obj->getAlbumThumb())) . "\" alt=\"" . strip_tags($title) . "\" /></a>\n";
 				$content = $obj->getDesc();
 				$date = zpFormattedDate(DATE_FORMAT, strtotime($item['date']));

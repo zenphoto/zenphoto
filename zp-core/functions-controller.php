@@ -43,7 +43,7 @@ function zpurl($query = NULL) {
 			$encoded_suffix = implode('/', array_map('rawurlencode', explode('/', IM_SUFFIX)));
 			$url = pathurlencode($_zp_current_album->name) . '/' . rawurlencode($_zp_current_image->filename) . $encoded_suffix;
 		} else if (in_context(ZP_ALBUM)) {
-			$url = $_zp_current_album->getAlbumLink($_zp_page);
+			$url = $_zp_current_album->getLink($_zp_page);
 		} else if (in_context(ZP_INDEX)) {
 			$url = ($_zp_page > 1 ? _PAGE_ . '/' . $_zp_page : '');
 		}

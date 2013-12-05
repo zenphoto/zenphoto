@@ -169,14 +169,14 @@ function printRelatedItems($number = 5, $type = 'news', $specific = NULL, $excer
 					switch ($item['type']) {
 						case 'albums':
 							$obj = newAlbum($item['name']);
-							$url = $obj->getAlbumLink();
+							$url = $obj->getLink();
 							$text = $obj->getDesc();
 							$category = gettext('Album');
 							break;
 						case 'images':
 							$alb = newAlbum($item['album']);
 							$obj = newImage($alb, $item['name']);
-							$url = $obj->getImageLink();
+							$url = $obj->getLink();
 							$text = $obj->getDesc();
 							$category = gettext('Image');
 							break;

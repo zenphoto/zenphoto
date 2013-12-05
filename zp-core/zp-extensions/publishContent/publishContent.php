@@ -266,7 +266,7 @@ echo '</head>';
 												<img src="<?php echo html_encode(pathurlencode($thumb)); ?>" width="60" height="60" alt="" title="album thumb" />
 												<?php echo $album->name; ?>
 											</label>
-											<a href="<?php echo $album->getAlbumLink(); ?>" title="<?php echo gettext('view'); ?>"> (<?php echo gettext('view'); ?>)</a>
+											<a href="<?php echo $album->getLink(); ?>" title="<?php echo gettext('view'); ?>"> (<?php echo gettext('view'); ?>)</a>
 										</li>
 										<?php
 									}
@@ -425,7 +425,7 @@ echo '</head>';
 																	<img src="<?php echo html_encode(pathurlencode(getAdminThumb($image, 'large'))); ?>" alt="<?php echo $image->filename; ?>"/>
 																</td>
 																<td>
-																	<?php printf(gettext('%s'), $display); ?><a href="<?php echo html_encode($image->getImageLink()); ?>" title="<?php echo html_encode($image->getTitle()); ?>"> (<?php echo gettext('View'); ?>)</a>
+																	<?php printf(gettext('%s'), $display); ?><a href="<?php echo html_encode($image->getLink()); ?>" title="<?php echo html_encode($image->getTitle()); ?>"> (<?php echo gettext('View'); ?>)</a>
 																</td>
 
 															</tr>
@@ -479,7 +479,7 @@ echo '</head>';
 						$itemobj = new ZenpageCategory($item['titlelink']);
 						if (!$itemobj->getShow()) {
 							$c++;
-							$output .= '<li><label><input type="checkbox" name="' . $item['titlelink'] . '" value="' . $item['titlelink'] . '" class="catcheck" />' . $itemobj->getTitle() . '</label><a href="' . html_encode($itemobj->getCategoryLink()) . '" title="' . html_encode($itemobj->getTitle()) . '"> (' . gettext('View') . ')</a></li>';
+							$output .= '<li><label><input type="checkbox" name="' . $item['titlelink'] . '" value="' . $item['titlelink'] . '" class="catcheck" />' . $itemobj->getTitle() . '</label><a href="' . html_encode($itemobj->getLink()) . '" title="' . html_encode($itemobj->getTitle()) . '"> (' . gettext('View') . ')</a></li>';
 						}
 					}
 					?>
@@ -538,7 +538,7 @@ echo '</head>';
 						$itemobj = new ZenpageNews($item['titlelink']);
 						if (!$itemobj->getShow()) {
 							$c++;
-							$output .= '<li><label><input type="checkbox" name="' . $item['titlelink'] . '" value="' . $item['titlelink'] . '" class="artcheck" />' . $itemobj->getTitle() . '</label><a href="' . html_encode($itemobj->getNewsLink()) . '" title="' . html_encode($itemobj->getTitle()) . '"> (' . gettext('View') . ')</a></li>';
+							$output .= '<li><label><input type="checkbox" name="' . $item['titlelink'] . '" value="' . $item['titlelink'] . '" class="artcheck" />' . $itemobj->getTitle() . '</label><a href="' . html_encode($itemobj->getLink()) . '" title="' . html_encode($itemobj->getTitle()) . '"> (' . gettext('View') . ')</a></li>';
 						}
 					}
 					?>
@@ -594,7 +594,7 @@ echo '</head>';
 						$itemobj = new ZenpagePage($item['titlelink']);
 						if (!$itemobj->getShow()) {
 							$c++;
-							$output .= '<li><label><input type="checkbox" name="' . $item['titlelink'] . '" value="' . $item['titlelink'] . '" class="pagecheck" />' . $itemobj->getTitle() . '</label><a href="' . html_encode($itemobj->getPageLink()) . '" title="' . html_encode($itemobj->getTitle()) . '"> (' . gettext('View') . ')</a></li>';
+							$output .= '<li><label><input type="checkbox" name="' . $item['titlelink'] . '" value="' . $item['titlelink'] . '" class="pagecheck" />' . $itemobj->getTitle() . '</label><a href="' . html_encode($itemobj->getLink()) . '" title="' . html_encode($itemobj->getTitle()) . '"> (' . gettext('View') . ')</a></li>';
 						}
 					}
 					?>

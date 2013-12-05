@@ -246,23 +246,6 @@ echo "\n" . '<div id="content">';
 	function recordMissing($table, $row) {
 		global $missingImages;
 		$obj = getItemByID($table, $row['id']);
-		switch ($table) {
-			case 'news':
-				$obj_link = $obj->getNewsLink();
-				break;
-			case 'pages':
-				$obj_link = $obj->getPageLink();
-				break;
-			case 'news_categories':
-				$obj_link = $obj->getCategoryLink();
-				break;
-			case 'images':
-				$obj_link = $obj->getImageLink();
-				break;
-			case 'albums':
-				$obj_link = $obj->getAlbumLink();
-				break;
-		}
-		$missingImages[$obj_link] = $obj->getTitle();
+		$missingImages[$obj->getLink()] = $obj->getTitle();
 	}
 	?>
