@@ -173,16 +173,13 @@ function printAlbumStatisticItem($album, $option, $showtitle = false, $showdate 
 		}
 	}
 	$tempalbum = newAlbum($album['folder']);
-	if ($firstimglink && $tempalbum->getNumImages() != 0) {
-		$firstimage = $tempalbum->getImages(1); // need only the first so don't get all
-		$firstimage = $firstimage[0];
+	if ($firstimglink && $tempimage = $tempalbum->getImage(0)) {
+		$albumpath = $tempimage->getImageLink();
 	} else {
-		$firstimage = "";
+		$albumpath = $tempalbum->getAlbumLink();
 	}
-	$albumpath = html_encode(rewrite_path("/" . pathurlencode($tempalbum->name . "/" . $firstimage . IM_SUFFIX), "index.php?album=" . pathurlencode($tempalbum->name) . ($firstimage) ? "&amp;image=" . $firstimage : ''));
 	echo "<li><a href=\"" . $albumpath . "\" title=\"" . html_encode($tempalbum->getTitle()) . "\">\n";
 	$albumthumb = $tempalbum->getAlbumThumbImage();
-	$thumb = newImage($tempalbum, $albumthumb->filename);
 	switch ($crop) {
 		case 0:
 			echo "<img src=\"" . html_encode(pathurlencode($albumthumb->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . "\" alt=\"" . html_encode($albumthumb->getTitle()) . "\" /></a>\n<br />";

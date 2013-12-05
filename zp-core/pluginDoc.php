@@ -32,6 +32,8 @@
 if (!defined('OFFSET_PATH')) {
 	define('OFFSET_PATH', 2);
 	require_once(dirname(__FILE__) . '/admin-globals.php');
+	require_once(SERVERPATH . '/' . ZENFOLDER . '/template-functions.php');
+
 	header('Last-Modified: ' . ZP_LAST_MODIFIED);
 	header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 
@@ -60,12 +62,18 @@ if (!defined('OFFSET_PATH')) {
 
 	@require_once($pluginToBeDocPath);
 
+	$macro_params = array($plugin_description, $plugin_notice, $plugin_disable, $plugin_author, $plugin_version, $plugin_is_filter, $plugin_URL, $option_interface, $doclink);
+
 	$buttonlist = zp_apply_filter('admin_utilities_buttons', array());
 	foreach ($buttonlist as $key => $button) {
 		$buttonlist[$key]['enable'] = false;
 	}
 	$imagebuttons = preg_replace('/<a href=[^>]*/i', '<a', zp_apply_filter('edit_image_utilities', '', $_zp_missing_image, 0, '', ''));
 	$albumbuttons = preg_replace('/<a href=[^>]*/i', '<a', zp_apply_filter('edit_album_utilities', '', $_zp_missing_album, ''));
+
+	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/macroList.php');
+
+	list($plugin_description, $plugin_notice, $plugin_disable, $plugin_author, $plugin_version, $plugin_is_filter, $plugin_URL, $option_interface, $doclink) = $macro_params;
 
 	$content_macros = getMacros();
 	krsort($content_macros);
@@ -289,205 +297,204 @@ if (!defined('OFFSET_PATH')) {
 								}
 								if (!empty($buttonlist) || !empty($albumbuttons) || !empty($imagebuttons)) {
 									?>
-									<hr>
-										<?php
-									}
-									if (!empty($buttonlist)) {
-										$buttonlist = sortMultiArray($buttonlist, array('category', 'button_text'), false);
-										?>
-										<div class="box" id="overview-utility">
-											<h2 class="h2_bordered">Utility functions</h2>
-											<?php
-											$category = '';
-											foreach ($buttonlist as $button) {
-												$button_category = @$button['category'];
-												$button_icon = @$button['icon'];
-												if ($category != $button_category) {
-													if ($category) {
-														?>
-														</fieldset>
-														<?php
-													}
-													$category = $button_category;
-													?>
-													<fieldset class="doc_box_field"><legend><?php echo $category; ?></legend>
-														<?php
-													}
-													?>
-													<form class="overview_utility_buttons">
-														<div class="moc_button tip" title="<?php echo @$button['title']; ?>" >
-															<?php
-															if (!empty($button_icon)) {
-																?>
-																<img src="<?php echo $button_icon; ?>" alt="<?php echo @$button['alt']; ?>" />
-																<?php
-															}
-															echo html_encode(@$button['button_text']);
-															?>
-														</div>
-													</form>
-													<?php
-												}
-												if ($category) {
-													?>
-												</fieldset>
-												<?php
-											}
-											?>
-										</div>
-										<br class="clearall" />
-										<?php
-									}
-									if ($albumbuttons) {
-										$albumbuttons = preg_replace('|<hr(\s*)(/)>|', '', $albumbuttons);
-										?>
-										<h2 class="h2_bordered_edit">Album Utilities</h2>
-										<div class="box-edit">
-											<?php echo $albumbuttons; ?>
-										</div>
-										<br class="clearall" />
-										<?php
-									}
-									if ($imagebuttons) {
-										$imagebuttons = preg_replace('|<hr(\s*)(/)>|', '', $imagebuttons);
-										?>
-										<h2 class="h2_bordered_edit">Image Utilities</h2>
-										<div class="box-edit">
-											<?php echo $imagebuttons; ?>
-										</div>
-										<br class="clearall" />
-										<?php
-									}
-									if (!empty($content_macros)) {
-										require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/macroList.php');
-										echo ngettext('Macro defined:', 'Macros defined:', count($content_macros));
-										foreach ($content_macros as $macro => $detail) {
-											macroList_show($macro, $detail);
-										}
-										?>
-										<br class="clearall" />
-										<?php
-									}
-									?>
-									</div>
-									</div>
-									<?php echo $doclink; ?>
-									</div>
-									</body>
+									<hr />
 									<?php
 								}
-							}
-
-							function processCommentBlock($commentBlock) {
-								global $plugin_author, $subpackage;
-								$markup = array(
-												'&lt;i&gt;'			 => '<em>',
-												'&lt;/i&gt;'		 => '</em>',
-												'&lt;b&gt;'			 => '<strong>',
-												'&lt;/b&gt;'		 => '</strong>',
-												'&lt;code&gt;'	 => '<span class="inlinecode">',
-												'&lt;/code&gt;'	 => '</span>',
-												'&lt;hr&gt;'		 => '<hr />',
-												'&lt;ul&gt;'		 => '<ul>',
-												'&lt;/ul&gt;'		 => '</ul>',
-												'&lt;ol&gt;'		 => '<ol>',
-												'&lt;/ol&gt;'		 => '</ol>',
-												'&lt;li&gt;'		 => '<li>',
-												'&lt;/li&gt;'		 => '</li>',
-												'&lt;pre&gt;'		 => '<pre>',
-												'&lt;/pre&gt;'	 => '</pre>',
-												'&lt;br&gt;'		 => '<br />',
-												'&lt;var&gt;'		 => '<span class="inlinecode">',
-												'&lt;/var&gt;'	 => '</span>'
-								);
-								$const_tr = array('%ZENFOLDER%'						 => ZENFOLDER,
-												'%PLUGIN_FOLDER%'				 => PLUGIN_FOLDER,
-												'%USER_PLUGIN_FOLDER%'	 => USER_PLUGIN_FOLDER,
-												'%ALBUMFOLDER%'					 => ALBUMFOLDER,
-												'%THEMEFOLDER%'					 => THEMEFOLDER,
-												'%BACKUPFOLDER%'				 => BACKUPFOLDER,
-												'%UTILITIES_FOLDER%'		 => UTILITIES_FOLDER,
-												'%DATA_FOLDER%'					 => DATA_FOLDER,
-												'%CACHEFOLDER%'					 => CACHEFOLDER,
-												'%UPLOAD_FOLDER%'				 => UPLOAD_FOLDER,
-												'%STATIC_CACHE_FOLDER%'	 => STATIC_CACHE_FOLDER,
-												'%FULLWEBPATH%'					 => FULLWEBPATH,
-												'%WEBPATH%'							 => WEBPATH
-								);
-								$body = $doc = '';
-								$par = false;
-								$empty = false;
-								$lines = explode("\n", strtr($commentBlock, $const_tr));
-								foreach ($lines as $line) {
-									$line = trim(preg_replace('/^\s*\*/', '', $line));
-									if (empty($line)) {
-										if (!$empty) {
-											if ($par) {
-												$doc .= '</p>';
-											}
-											$doc .= '<p>';
-											$empty = $par = true;
-										}
-									} else {
-										if (strpos($line, '@') === 0) {
-											preg_match('/@(.*?)\s/', $line, $matches);
-											if (!empty($matches)) {
-												switch ($matches[1]) {
-													case 'author':
-														$plugin_author = trim(substr($line, 8));
-														break;
-													case 'subpackage':
-														$subpackage = trim(substr($line, 11));
-														break;
-													case 'link':
-														$line = trim(substr($line, 5));
-														$l = strpos($line, ' ');
-														if ($l === false) {
-															$text = $line;
-														} else {
-															$text = substr($line, $l + 1);
-															$line = substr($line, 0, $l);
+								if (!empty($buttonlist)) {
+									$buttonlist = sortMultiArray($buttonlist, array('category', 'button_text'), false);
+									?>
+									<div class="box" id="overview-utility">
+										<h2 class="h2_bordered">Utility functions</h2>
+										<?php
+										$category = '';
+										foreach ($buttonlist as $button) {
+											$button_category = @$button['category'];
+											$button_icon = @$button['icon'];
+											if ($category != $button_category) {
+												if ($category) {
+													?>
+													</fieldset>
+													<?php
+												}
+												$category = $button_category;
+												?>
+												<fieldset class="doc_box_field"><legend><?php echo $category; ?></legend>
+													<?php
+												}
+												?>
+												<form class="overview_utility_buttons">
+													<div class="moc_button tip" title="<?php echo @$button['title']; ?>" >
+														<?php
+														if (!empty($button_icon)) {
+															?>
+															<img src="<?php echo $button_icon; ?>" alt="<?php echo @$button['alt']; ?>" />
+															<?php
 														}
-														$links[] = array('text' => $text, 'link' => $line);
-														break;
-												}
+														echo html_encode(@$button['button_text']);
+														?>
+													</div>
+												</form>
+												<?php
 											}
-										} else {
-											$tags = array();
-											preg_match_all('|<img src="(.*?)"\s*/>|', $line, $matches);
-											if (!empty($matches[0])) {
-												foreach ($matches[0] as $key => $match) {
-													if (!empty($match)) {
-														$line = str_replace($match, '%' . $key . '$i', $line);
-														$tags['%' . $key . '$i'] = '<img src="' . pathurlencode($matches[1][$key]) . '" alt="" />';
-													}
-												}
-											}
-											preg_match_all('|\{@link (.*?)\}|', $line, $matches);
-											if (!empty($matches[0])) {
-												foreach ($matches[0] as $key => $match) {
-													if (!empty($match)) {
-														$line = str_replace($match, '%' . $key . '$l', $line);
-														$l = strpos($matches[1][$key], ' ');
-														if ($l === false) {
-															$link = $text = $matches[1][$key];
-														} else {
-															$text = substr($matches[1][$key], $l + 1);
-															$link = substr($matches[1][$key], 0, $l);
-														}
-														$tags['%' . $key . '$l'] = '<a href="' . html_encode($link) . '">' . strtr(html_encode($text), $markup) . '</a>';
-													}
-												}
-											}
-											$doc .= strtr(html_encode($line), array_merge($tags, $markup)) . ' ';
-											$empty = false;
+											if ($category) {
+												?>
+											</fieldset>
+											<?php
 										}
+										?>
+									</div>
+									<br class="clearall" />
+									<?php
+								}
+								if ($albumbuttons) {
+									$albumbuttons = preg_replace('|<hr(\s*)(/)>|', '', $albumbuttons);
+									?>
+									<h2 class="h2_bordered_edit">Album Utilities</h2>
+									<div class="box-edit">
+										<?php echo $albumbuttons; ?>
+									</div>
+									<br class="clearall" />
+									<?php
+								}
+								if ($imagebuttons) {
+									$imagebuttons = preg_replace('|<hr(\s*)(/)>|', '', $imagebuttons);
+									?>
+									<h2 class="h2_bordered_edit">Image Utilities</h2>
+									<div class="box-edit">
+										<?php echo $imagebuttons; ?>
+									</div>
+									<br class="clearall" />
+									<?php
+								}
+								if (!empty($content_macros)) {
+									echo ngettext('Macro defined:', 'Macros defined:', count($content_macros));
+									foreach ($content_macros as $macro => $detail) {
+										macroList_show($macro, $detail);
 									}
+									?>
+									<br class="clearall" />
+									<?php
 								}
-								if ($par) {
-									$doc .= '</p>';
-									$body .= $doc;
-									$doc = '';
+								?>
+						</div>
+					</div>
+					<?php echo $doclink; ?>
+				</div>
+			</body>
+			<?php
+		}
+	}
+
+	function processCommentBlock($commentBlock) {
+		global $plugin_author, $subpackage;
+		$markup = array(
+						'&lt;i&gt;'			 => '<em>',
+						'&lt;/i&gt;'		 => '</em>',
+						'&lt;b&gt;'			 => '<strong>',
+						'&lt;/b&gt;'		 => '</strong>',
+						'&lt;code&gt;'	 => '<span class="inlinecode">',
+						'&lt;/code&gt;'	 => '</span>',
+						'&lt;hr&gt;'		 => '<hr />',
+						'&lt;ul&gt;'		 => '<ul>',
+						'&lt;/ul&gt;'		 => '</ul>',
+						'&lt;ol&gt;'		 => '<ol>',
+						'&lt;/ol&gt;'		 => '</ol>',
+						'&lt;li&gt;'		 => '<li>',
+						'&lt;/li&gt;'		 => '</li>',
+						'&lt;pre&gt;'		 => '<pre>',
+						'&lt;/pre&gt;'	 => '</pre>',
+						'&lt;br&gt;'		 => '<br />',
+						'&lt;var&gt;'		 => '<span class="inlinecode">',
+						'&lt;/var&gt;'	 => '</span>'
+		);
+		$const_tr = array('%ZENFOLDER%'						 => ZENFOLDER,
+						'%PLUGIN_FOLDER%'				 => PLUGIN_FOLDER,
+						'%USER_PLUGIN_FOLDER%'	 => USER_PLUGIN_FOLDER,
+						'%ALBUMFOLDER%'					 => ALBUMFOLDER,
+						'%THEMEFOLDER%'					 => THEMEFOLDER,
+						'%BACKUPFOLDER%'				 => BACKUPFOLDER,
+						'%UTILITIES_FOLDER%'		 => UTILITIES_FOLDER,
+						'%DATA_FOLDER%'					 => DATA_FOLDER,
+						'%CACHEFOLDER%'					 => CACHEFOLDER,
+						'%UPLOAD_FOLDER%'				 => UPLOAD_FOLDER,
+						'%STATIC_CACHE_FOLDER%'	 => STATIC_CACHE_FOLDER,
+						'%FULLWEBPATH%'					 => FULLWEBPATH,
+						'%WEBPATH%'							 => WEBPATH
+		);
+		$body = $doc = '';
+		$par = false;
+		$empty = false;
+		$lines = explode("\n", strtr($commentBlock, $const_tr));
+		foreach ($lines as $line) {
+			$line = trim(preg_replace('/^\s*\*/', '', $line));
+			if (empty($line)) {
+				if (!$empty) {
+					if ($par) {
+						$doc .= '</p>';
+					}
+					$doc .= '<p>';
+					$empty = $par = true;
+				}
+			} else {
+				if (strpos($line, '@') === 0) {
+					preg_match('/@(.*?)\s/', $line, $matches);
+					if (!empty($matches)) {
+						switch ($matches[1]) {
+							case 'author':
+								$plugin_author = trim(substr($line, 8));
+								break;
+							case 'subpackage':
+								$subpackage = trim(substr($line, 11));
+								break;
+							case 'link':
+								$line = trim(substr($line, 5));
+								$l = strpos($line, ' ');
+								if ($l === false) {
+									$text = $line;
+								} else {
+									$text = substr($line, $l + 1);
+									$line = substr($line, 0, $l);
 								}
-								return $body;
+								$links[] = array('text' => $text, 'link' => $line);
+								break;
+						}
+					}
+				} else {
+					$tags = array();
+					preg_match_all('|<img src="(.*?)"\s*/>|', $line, $matches);
+					if (!empty($matches[0])) {
+						foreach ($matches[0] as $key => $match) {
+							if (!empty($match)) {
+								$line = str_replace($match, '%' . $key . '$i', $line);
+								$tags['%' . $key . '$i'] = '<img src="' . pathurlencode($matches[1][$key]) . '" alt="" />';
 							}
+						}
+					}
+					preg_match_all('|\{@link (.*?)\}|', $line, $matches);
+					if (!empty($matches[0])) {
+						foreach ($matches[0] as $key => $match) {
+							if (!empty($match)) {
+								$line = str_replace($match, '%' . $key . '$l', $line);
+								$l = strpos($matches[1][$key], ' ');
+								if ($l === false) {
+									$link = $text = $matches[1][$key];
+								} else {
+									$text = substr($matches[1][$key], $l + 1);
+									$link = substr($matches[1][$key], 0, $l);
+								}
+								$tags['%' . $key . '$l'] = '<a href="' . html_encode($link) . '">' . strtr(html_encode($text), $markup) . '</a>';
+							}
+						}
+					}
+					$doc .= strtr(html_encode($line), array_merge($tags, $markup)) . ' ';
+					$empty = false;
+				}
+			}
+		}
+		if ($par) {
+			$doc .= '</p>';
+			$body .= $doc;
+			$doc = '';
+		}
+		return $body;
+	}

@@ -46,7 +46,7 @@ global $handle, $buffer, $counter, $file_version, $compression_handler; // so th
 $buffer = '';
 
 function extendExecution() {
-	set_time_limit(30);
+	@set_time_limit(30);
 	echo ' ';
 }
 

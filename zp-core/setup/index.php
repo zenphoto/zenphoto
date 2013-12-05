@@ -1164,7 +1164,7 @@ if ($c <= 0) {
 							}
 
 							primeMark(gettext('Zenphoto files'));
-							set_time_limit(120);
+							@set_time_limit(120);
 							$lcFilesystem = file_exists(strtoupper(__FILE__));
 							$base = $serverpath . '/';
 							getResidentZPFiles(SERVERPATH . '/' . ZENFOLDER, $lcFilesystem);
@@ -2378,7 +2378,7 @@ if ($c <= 0) {
 								}
 								setupLog(gettext("Begin table creation"));
 								foreach ($db_schema as $sql) {
-									set_time_limit(60);
+									@set_time_limit(60);
 									$result = db_create_table($sql);
 									echo ' '; // keep alive
 									if (!$result) {
@@ -2394,7 +2394,7 @@ if ($c <= 0) {
 								// always run the update queries to insure the tables are up to current level
 								setupLog(gettext("Begin table updates"));
 								foreach ($sql_statements as $sql) {
-									set_time_limit(60);
+									@set_time_limit(60);
 									echo ' '; // keep alive
 									$result = db_table_update($sql);
 									if (!$result) {
