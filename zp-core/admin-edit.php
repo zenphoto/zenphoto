@@ -1032,7 +1032,7 @@ echo "\n</head>";
 																<?php
 															}
 															?>
-															<p class="buttons"><a href="<?php echo $image->getImageLink(); ?>"><img src="images/view.png" alt="" /><strong><?php echo gettext('View'); ?></strong></a></p><br style="clear: both" />
+															<p class="buttons"><a href="<?php echo $image->getLink(); ?>"><img src="images/view.png" alt="" /><strong><?php echo gettext('View'); ?></strong></a></p><br style="clear: both" />
 															<p>
 																<?php echo gettext('<strong>Filename:</strong>'); ?>
 																<br />
@@ -1241,30 +1241,30 @@ echo "\n</head>";
 																	<input type="hidden" name="<?php echo $currentimage; ?>-oldrotation" value="<?php echo $rotation; ?>" />
 																	<label class="checkboxlabel">
 																		<input type="radio" id="rotation_none-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="0" <?php
-												checked(0, $rotation);
-												echo $disablerotate
-																	?> />
+																		checked(0, $rotation);
+																		echo $disablerotate
+																		?> />
 																					 <?php echo gettext('none'); ?>
 																	</label>
 																	<label class="checkboxlabel">
 																		<input type="radio" id="rotation_90-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="8" <?php
-																 checked(8, $rotation);
-																 echo $disablerotate
-																					 ?> />
+																		checked(8, $rotation);
+																		echo $disablerotate
+																		?> />
 																					 <?php echo gettext('90 degrees'); ?>
 																	</label>
 																	<label class="checkboxlabel">
 																		<input type="radio" id="rotation_180-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="3" <?php
-																 checked(3, $rotation);
-																 echo $disablerotate
-																					 ?> />
+																		checked(3, $rotation);
+																		echo $disablerotate
+																		?> />
 																					 <?php echo gettext('180 degrees'); ?>
 																	</label>
 																	<label class="checkboxlabel">
 																		<input type="radio" id="rotation_270-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="6" <?php
-																 checked(6, $rotation);
-																 echo $disablerotate
-																					 ?> />
+																		checked(6, $rotation);
+																		echo $disablerotate
+																		?> />
 																					 <?php echo gettext('270 degrees'); ?>
 																	</label>
 																	<?php
@@ -1349,11 +1349,11 @@ echo "\n</head>";
 															</script>
 															<input type="text" id="datepicker_<?php echo $currentimage; ?>" size="20" name="<?php echo $currentimage; ?>-date"
 																		 value="<?php
-									$d = $image->getDateTime();
-									if ($d != '0000-00-00 00:00:00') {
-										echo $d;
-									}
-													?>" />
+																		 $d = $image->getDateTime();
+																		 if ($d != '0000-00-00 00:00:00') {
+																			 echo $d;
+																		 }
+																		 ?>" />
 														</td>
 													</tr>
 
@@ -1372,12 +1372,12 @@ echo "\n</head>";
 																?>
 															</select>
 															<span id="WMUSE_<?php echo $currentimage; ?>" style="display:<?php
-												if ($current == '')
-													echo 'none';
-												else
-													echo 'inline';
-																?>">
-																		<?php $wmuse = $image->getWMUse(); ?>
+															if ($current == '')
+																echo 'none';
+															else
+																echo 'inline';
+															?>">
+																			<?php $wmuse = $image->getWMUse(); ?>
 																<label><input type="checkbox" value="1" id="wm_image-<?php echo $currentimage; ?>" name="wm_image-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_IMAGE) echo 'checked="checked"'; ?> /><?php echo gettext('image'); ?></label>
 																<label><input type="checkbox" value="1" id="wm_thumb-<?php echo $currentimage; ?>" name="wm_thumb-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_THUMB) echo 'checked="checked"'; ?> /><?php echo gettext('thumb'); ?></label>
 																<label><input type="checkbox" value="1" id="wm_full-<?php echo $currentimage; ?>" name="wm_full-<?php echo $currentimage; ?>" <?php if ($wmuse & WATERMARK_FULL) echo 'checked="checked"'; ?> /><?php echo gettext('full image'); ?></label>
