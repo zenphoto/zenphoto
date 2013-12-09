@@ -76,6 +76,13 @@ function updatePage(&$reports, $newpage = false) {
 		if (empty($titlelink)) {
 			$titlelink = seoFriendly($date);
 		}
+		$sql = 'SELECT `id` FROM ' . prefix('pages') . ' WHERE `titlelink`=' . db_quote($titlelink);
+		$rslt = query_single_row($sql, false);
+		if ($rslt) {
+			//already exists
+			$time = explode(' ', microtime());
+			$titlelink = $titlelink . '_' . ($time[1] + $time[0]);
+		}
 		$oldtitlelink = $titlelink;
 	} else {
 		$titlelink = $oldtitlelink = sanitize($_POST['titlelink-old']);
@@ -106,6 +113,12 @@ function updatePage(&$reports, $newpage = false) {
 	}
 	// update page
 	$page = new ZenpagePage($titlelink, true);
+	if ($newpage && $page->loaded) {
+		//already exists
+		$time = explode(' ', microtime());
+		$titlelink = seoFriendly(get_language_string($title)) . '_' . ($time[1] + $time[0]);
+		$page = new ZenpagePage($titlelink, true);
+	}
 	$notice = processCredentials($page);
 	$page->setTitle($title);
 	$page->setContent($content);
@@ -329,6 +342,13 @@ function updateArticle(&$reports, $newarticle = false) {
 		$titlelink = seoFriendly(get_language_string($title));
 		if (empty($titlelink)) {
 			$titlelink = seoFriendly($date);
+		}
+		$sql = 'SELECT `id` FROM ' . prefix('news') . ' WHERE `titlelink`=' . db_quote($titlelink);
+		$rslt = query_single_row($sql, false);
+		if ($rslt) {
+			//already exists
+			$time = explode(' ', microtime());
+			$titlelink = $titlelink . '_' . ($time[1] + $time[0]);
 		}
 		$oldtitlelink = $titlelink;
 		$id = 0;
@@ -833,26 +853,27 @@ function updateCategory(&$reports, $newcategory = false) {
 		$sql = 'SELECT `id` FROM ' . prefix('news_categories') . ' WHERE `titlelink`=' . db_quote($titlelink);
 		$rslt = query_single_row($sql, false);
 		if ($rslt) {
-			$titlelink .= '_' . seoFriendly($date); // force unique so that data may be saved.
+			//already exists
+			$time = explode(' ', microtime());
+			$titlelink = $titlelink . '_' . ($time[1] + $time[0]);
 		}
 		$oldtitlelink = $titlelink;
 	} else {
 		$titlelink = $oldtitlelink = sanitize($_POST['titlelink-old'], 3);
-	}
-
-	if (getcheckboxState('edittitlelink')) {
-		$titlelink = sanitize($_POST['titlelink'], 3);
-		if (empty($titlelink)) {
-			$titlelink = seoFriendly(get_language_string($title));
+		if (getcheckboxState('edittitlelink')) {
+			$titlelink = sanitize($_POST['titlelink'], 3);
 			if (empty($titlelink)) {
-				$titlelink = seoFriendly($date);
+				$titlelink = seoFriendly(get_language_string($title));
+				if (empty($titlelink)) {
+					$titlelink = seoFriendly($date);
+				}
 			}
-		}
-	} else {
-		if (!$permalink) { //	allow the link to change
-			$link = seoFriendly(get_language_string($title));
-			if (!empty($link)) {
-				$titlelink = $link;
+		} else {
+			if (!$permalink) { //	allow the link to change
+				$link = seoFriendly(get_language_string($title));
+				if (!empty($link)) {
+					$titlelink = $link;
+				}
 			}
 		}
 	}
