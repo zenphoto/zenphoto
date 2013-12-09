@@ -709,14 +709,6 @@ function getImageParameters($args, $album = NULL) {
 	$thumb = $thumbstandin;
 
 	switch ($size) {
-		case 0:
-		default:
-			if (empty($size) || !is_numeric($size)) {
-				$size = false; // 0 isn't a valid size anyway, so this is OK.
-			} else {
-				$size = round($size);
-			}
-			break;
 		case 'thumb':
 			$thumb = true;
 			if ($thumb_crop) {
@@ -727,6 +719,14 @@ function getImageParameters($args, $album = NULL) {
 			break;
 		case 'default':
 			$size = $image_default_size;
+			break;
+		case 0:
+		default:
+			if (empty($size) || !is_numeric($size)) {
+				$size = false; // 0 isn't a valid size anyway, so this is OK.
+			} else {
+				$size = round($size);
+			}
 			break;
 	}
 
