@@ -2171,35 +2171,38 @@ function applyMacros($text) {
 			if (!empty($macro['params'])) {
 				$err = false;
 				foreach ($macro['params'] as $key => $type) {
+					$data = false;
 					if (array_key_exists($key, $parms)) {
 						switch (trim($type, '*')) {
 							case 'int':
 								if (is_numeric($parms[$key])) {
 									$parameters[] = (int) $parms[$key];
-									continue 2;
+								} else {
+									$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d should be a number.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
+									$class = 'error';
 								}
-								$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d should be a number.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
-								$class = 'error';
 								break;
 							case 'string':
 								if (is_string($parms[$key])) {
 									$parameters[] = $parms[$key];
-									continue 2;
+								} else {
+									$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d should be a string.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
+									$class = 'error';
 								}
-								$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d should be a string.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
-								$class = 'error';
 								break;
 							case 'bool':
 								switch (strtolower($parms[$key])) {
 									case ("true"):
 										$parameters[] = true;
-										continue 2;
+										break;
 									case ("false"):
 										$parameters[] = false;
-										continue 2;
+										break;
+									default:
+										$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d should be <code>true</code> or <code>false</code>.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
+										$class = 'error';
+										break;
 								}
-								$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d should be <code>true</code> or <code>false</code>.'), trim($macro_instance, '[]'), $key + 1) . '</span>';
-								$class = 'error';
 								break;
 							case 'array':
 								$l = array_slice($parms, $key);
@@ -2219,7 +2222,6 @@ function applyMacros($text) {
 								$class = 'error';
 								break;
 						}
-						break;
 					} else {
 						if (strpos($type, '*') === false) {
 							$data = '<span class="error">' . sprintf(gettext('<em>[%1$s]</em> parameter %2$d is missing.'), trim($macro_instance, '[]'), $key + 1) . '</span>';

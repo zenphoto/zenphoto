@@ -83,7 +83,7 @@ class slideshow {
 	function getOptionsSupported() {
 		$options = array(gettext('Mode')	 => array('key'				 => 'slideshow_mode', 'type'			 => OPTION_TYPE_SELECTOR,
 										'order'			 => 0,
-										'selections' => array(gettext("jQuery Cycle")		 => "jQuery", gettext("jQuery Colorbox") => "colorbox"),
+										'selections' => array(gettext("jQuery Cycle") => "jQuery", gettext("jQuery Colorbox") => "colorbox"),
 										'desc'			 => gettext('<em>jQuery Cycle</em> for slideshow using the jQuery Cycle plugin<br /><em>jQuery Colorbox</em> for slideshow using Colorbox (Colorbox plugin required).<br />NOTE: The jQuery Colorbox mode is attached to the link the printSlideShowLink() function prints and can neither be called directly nor used on the slideshow.php theme page.')),
 						gettext('Speed') => array('key'		 => 'slideshow_speed', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 1,
@@ -111,7 +111,7 @@ class slideshow {
 												'desc'	 => gettext("Height of the images in the slideshow.")),
 								gettext('Cycle Effect')	 => array('key'				 => 'slideshow_effect', 'type'			 => OPTION_TYPE_SELECTOR,
 												'order'			 => 2,
-												'selections' => array(gettext('fade')					 => "fade", gettext('shuffle')			 => "shuffle", gettext('zoom')					 => "zoom", gettext('slide X')			 => "slideX", gettext('slide Y')			 => "slideY", gettext('scroll up')		 => "scrollUp", gettext('scroll down')	 => "scrollDown", gettext('scroll left')	 => "scrollLeft", gettext('scroll right')	 => "scrollRight"),
+												'selections' => array(gettext('fade') => "fade", gettext('shuffle') => "shuffle", gettext('zoom') => "zoom", gettext('slide X') => "slideX", gettext('slide Y') => "slideY", gettext('scroll up') => "scrollUp", gettext('scroll down') => "scrollDown", gettext('scroll left') => "scrollLeft", gettext('scroll right') => "scrollRight"),
 												'desc'			 => gettext("The cycle slide effect to be used.")),
 								gettext('Timeout')			 => array('key'		 => 'slideshow_timeout', 'type'	 => OPTION_TYPE_TEXTBOX,
 												'order'	 => 3,
@@ -124,11 +124,11 @@ class slideshow {
 			case 'colorbox':
 				$options = array_merge($options, array(gettext('Colorbox transition')	 => array('key'				 => 'slideshow_colorbox_transition', 'type'			 => OPTION_TYPE_SELECTOR,
 												'order'			 => 2,
-												'selections' => array(gettext('elastic') => "elastic", gettext('fade')		 => "fade", gettext('none')		 => "none"),
+												'selections' => array(gettext('elastic') => "elastic", gettext('fade') => "fade", gettext('none') => "none"),
 												'desc'			 => gettext("The Colorbox transition slide effect to be used.")),
 								gettext('Colorbox image type')	 => array('key'				 => 'slideshow_colorbox_imagetype', 'type'			 => OPTION_TYPE_SELECTOR,
 												'order'			 => 3,
-												'selections' => array(gettext('full image')	 => "fullimage", gettext('sized image') => "sizedimage"),
+												'selections' => array(gettext('full image') => "fullimage", gettext('sized image') => "sizedimage"),
 												'desc'			 => gettext("The image type you wish to use for the Colorbox. If you choose 'sized image' the slideshow width value will be used for the longest side of the image.")),
 								gettext('Colorbox image title')	 => array('key'		 => 'slideshow_colorbox_imagetitle', 'type'	 => OPTION_TYPE_CHECKBOX,
 												'order'	 => 4,
@@ -149,14 +149,14 @@ class slideshow {
 
 	}
 
-	static function getPlayer($album, $controls = false) {
+	static function getPlayer($album, $controls = false, $width = NULL, $height = NULL) {
 		$albumobj = NULL;
 		if (!empty($album)) {
 			$albumobj = newAlbum($album, NULL, true);
 		}
 		if (is_object($albumobj) && $albumobj->loaded) {
 			$returnpath = rewrite_path('/' . pathurlencode($albumobj->name) . '/', '/index.php?album=' . urlencode($albumobj->name));
-			return slideshow::getShow(false, false, $albumobj, NULL, NULL, NULL, false, false, false, $controls, $returnpath, 0);
+			return slideshow::getShow(false, false, $albumobj, NULL, $width, $height, false, false, false, $controls, $returnpath, 0);
 		} else {
 			return '<div class="errorbox" id="message"><h2>' . gettext('Invalid slideshow album name!') . '</h2></div>';
 		}
@@ -169,15 +169,16 @@ class slideshow {
 			return '<div class="errorbox" id="message"><h2>' . gettext('This album is password protected!') . '</h2></div>';
 		}
 		$slideshow = '';
-
 		$numberofimages = $albumobj->getNumImages();
-
 		// setting the image size
-		if (!empty($width) AND !empty($height)) {
-			$width = $wrapperwidth = sanitize_numeric($width);
-			$height = $wrapperheight = sanitize_numeric($height);
+		if ($width) {
+			$wrapperwidth = $width;
 		} else {
 			$width = $wrapperwidth = getOption("slideshow_width");
+		}
+		if ($height) {
+			$wrapperheight = $height;
+		} else {
 			$height = $wrapperheight = getOption("slideshow_height");
 		}
 		if ($numberofimages == 0) {
@@ -442,10 +443,10 @@ class slideshow {
 	static function macro($macros) {
 		$macros['SLIDESHOW'] = array(
 						'class'	 => 'function',
-						'params' => array('string', 'bool*'),
+						'params' => array('string', 'bool*', 'int*', 'int*'),
 						'value'	 => 'slideshow::getPlayer',
 						'owner'	 => 'slideshow',
-						'desc'	 => gettext('provide the album name as %1 and (optionally) <code>true</code> (or <code>false</code>) as %2 to show (hide) controls. Hiding the controls is the default.')
+						'desc'	 => gettext('provide the album name as %1 and (optionally) <code>true</code> (or <code>false</code>) as %2 to show (hide) controls. Hiding the controls is the default. Width(%3) and height(%4) may also be specified to override the defaults.')
 		);
 		return $macros;
 	}
