@@ -37,10 +37,8 @@ if (!defined('OFFSET_PATH')) {
 	header('Last-Modified: ' . ZP_LAST_MODIFIED);
 	header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 
-	if (is_null($_zp_current_locale)) {
-		$_zp_current_locale = getUserLocale();
-	}
-	$real_locale = $_zp_current_locale;
+	$real_locale = getUserLocale();
+
 	$extension = sanitize($_GET['extension']);
 	$thirdparty = isset($_GET['thirdparty']);
 
