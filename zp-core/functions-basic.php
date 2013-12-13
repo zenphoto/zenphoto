@@ -105,6 +105,7 @@ if (TEST_RELEASE) {
 }
 set_error_handler("zpErrorHandler");
 set_exception_handler("zpErrorHandler");
+$_configMutex = new Mutex('cF');
 if (OFFSET_PATH != 2 && !file_exists($const_serverpath . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 	require_once(dirname(__FILE__) . '/reconfigure.php');
 	reconfigureAction(1);
@@ -136,7 +137,6 @@ if (!defined('SERVERPATH')) {
 
 unset($const_serverpath);
 $_zp_mutex = new Mutex();
-$_configMutex = new Mutex('cF');
 
 if (OFFSET_PATH != 2 && empty($_zp_conf_vars['mysql_database'])) {
 	require_once(dirname(__FILE__) . '/reconfigure.php');
