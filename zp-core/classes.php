@@ -518,7 +518,7 @@ class ThemeObject extends PersistentObject {
 		if (!$this->getID()) { //	requires a valid id to link tags to the object
 			$this->save();
 		}
-		storeTags($tags, $this->getID(), $this->table);
+		storeTags(array_unique($tags), $this->getID(), $this->table);
 	}
 
 	/**
