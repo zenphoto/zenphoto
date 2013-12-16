@@ -15,7 +15,6 @@ $plugin_disable = (zp_has_filter('sendmail') && !extensionEnabled('zenphoto_send
 if ($plugin_disable) {
 	enableExtension('zenphoto_sendmail', 0);
 } else {
-	enableExtension('zenphoto_sendmail', $plugin_is_filter);
 	zp_register_filter('sendmail', 'zenphoto_sendmail');
 }
 
