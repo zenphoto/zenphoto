@@ -149,21 +149,24 @@ function is_GalleryNewsType() {
  */
 function getAuthor($fullname = false) {
 	global $_zp_current_zenpage_page, $_zp_current_zenpage_news;
+
 	if (is_Pages()) {
 		$obj = $_zp_current_zenpage_page;
-	}
-	if (is_News()) {
+	} else if (is_News()) {
 		$obj = $_zp_current_zenpage_news;
+	} else {
+		$obj = false;
 	}
-	if (is_Pages() || is_News()) {
+	if ($obj) {
 		if ($fullname) {
 			$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $obj->getAuthor(), '`valid`=' => 1));
-			if (is_object($admin)) {
+			if (is_object($admin) && $admin->getName()) {
 				return $admin->getName();
 			}
 		}
 		return $obj->getAuthor();
 	}
+	return false;
 }
 
 /* * ********************************************* */
@@ -778,31 +781,25 @@ function printNewsCustomData() {
  * @return string
  */
 function getNewsAuthor($fullname = false) {
-	global $_zp_current_zenpage_news, $_zp_authority;
+	global $_zp_current_zenpage_news;
 	if (is_News()) {
 		if (is_NewsType("news")) {
 			return getAuthor($fullname);
 		} else {
+			//TODO: this is combi-news stuff!
 			$authorname = '';
 			$authorid = $_zp_current_zenpage_news->getOwner();
 			if ($fullname) {
-				$admins = $_zp_authority->getAdministrators();
-				foreach ($admins as $admin) {
-					if ($admin['user'] == $authorid) {
-						$authorname = $admin['name'];
-						break;
-					}
-				}
-				if (empty($authorname)) {
-					return $authorid;
-				} else {
+				$admin = Zenphoto_Authority::getAnAdmin(array('valid' => 1, 'user' => $autoroid));
+				$authorname = $admin->getName();
+				if (!empty($authorname)) {
 					return $authorname;
 				}
-			} else {
-				return $authorid;
 			}
+			return $authorid;
 		}
 	}
+	return false;
 }
 
 /**
