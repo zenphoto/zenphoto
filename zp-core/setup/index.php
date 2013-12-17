@@ -336,7 +336,7 @@ if (defined('CHMOD_VALUE')) {
 }
 
 if (function_exists('setOption')) {
-	setOptionDefault('zp_plugin_security-logger', 9);
+	setOptionDefault('zp_plugin_security-logger', 9 | CLASS_PLUGIN);
 } else { // setup a primitive environment
 	$environ = false;
 	require_once(dirname(__FILE__) . '/setup-primitive.php');
