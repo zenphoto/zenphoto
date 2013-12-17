@@ -316,11 +316,19 @@ if (!zp_loggedin()) {
 										$text = array();
 										if (($reporting & E_ALL) == E_ALL) {
 											$text[] = 'E_ALL';
-											$reporting = $reporting ^ E_ALL;
 										}
-										if ((($reporting | E_NOTICE) & E_ALL) == E_ALL) {
-											$text[] = 'E_ALL ^ E_NOTICE';
-											$reporting = $reporting ^ (E_ALL ^ E_NOTICE);
+										if ((($reporting | E_NOTICE | E_STRICT) & E_ALL) == E_ALL) {
+											$t = 'E_ALL';
+											$reporting = $reporting ^ E_ALL;
+											if ($reporting & E_STRICT) {
+												$t .= ' ^ E_STRICT';
+												$reporting = $reporting ^ E_STRICT;
+											}
+											if ($reporting & E_NOTICE) {
+												$t .= ' ^ E_NOTICE';
+												$reporting = $reporting ^ E_NOTICE;
+											}
+											$text[] = $t;
 										}
 										foreach ($erToTxt as $er => $name) {
 											if ($reporting & $er) {
