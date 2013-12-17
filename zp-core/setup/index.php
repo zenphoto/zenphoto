@@ -25,8 +25,8 @@ require_once(dirname(dirname(__FILE__)) . '/global-definitions.php');
 
 $session_path = session_save_path();
 if (!file_exists($session_path) || !is_writable($session_path)) {
-	@mkdir(dirname(dirname(dirname(__FILE__))) . '/' . DATA_FOLDER . '/PHP_sessions/', $chmod | 0311);
-	session_save_path(dirname(dirname(dirname(__FILE__))) . '/' . DATA_FOLDER . '/PHP_sessions/');
+	@mkdir(dirname(dirname(dirname(__FILE__))) . '/' . DATA_FOLDER . '/PHP_sessions', $chmod | 0311);
+	session_save_path(dirname(dirname(dirname(__FILE__))) . '/' . DATA_FOLDER . '/PHP_sessions');
 }
 
 $session = session_start();
@@ -1728,8 +1728,8 @@ if ($c <= 0) {
 						$collation = db_collation();
 
 						/*						 * *********************************************************************************
-							Add new fields in the upgrade section. This section should remain static except for new
-							tables. This tactic keeps all changes in one place so that noting gets accidentaly omitted.
+						  Add new fields in the upgrade section. This section should remain static except for new
+						  tables. This tactic keeps all changes in one place so that noting gets accidentaly omitted.
 						 * ********************************************************************************** */
 
 						//v1.2
