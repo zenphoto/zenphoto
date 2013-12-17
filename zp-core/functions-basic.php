@@ -160,8 +160,8 @@ define('DATA_MOD', fileperms(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE) 
 
 $_session_path = session_save_path();
 if (!file_exists($_session_path) || !is_writable($_session_path)) {
-	mkdir_recursive(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions/', FOLDER_MOD);
-	session_save_path(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions/');
+	mkdir_recursive(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions', FOLDER_MOD);
+	session_save_path(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions');
 }
 unset($_session_path);
 
