@@ -15,7 +15,7 @@ $_zp_graphics_optionhandlers[] = new lib_GD_Options(); // register option handle
 class lib_GD_Options {
 
 	function __construct() {
-		setOptionDefault('GD_FreeType_Path', SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/gd_fonts');
+
 	}
 
 	/**
@@ -355,7 +355,7 @@ if (!function_exists('zp_graphicsLibInfo')) {
 			$imageinfo = NULL;
 			$rslt = getimagesize($filename, $imageinfo);
 			if (is_array($rslt)) {
-				return array('width'	 => $rslt[0], 'height' => $rslt[1]);
+				return array('width' => $rslt[0], 'height' => $rslt[1]);
 			} else {
 				return false;
 			}
