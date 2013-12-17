@@ -11,8 +11,6 @@ $plugin_author = "Stephen Billard (sbillard)";
 
 zp_register_filter('admin_overview', 'zenphotoDonate::donate');
 
-setOptionDefault('zp_plugin_zenphotoDonate', $plugin_is_filter);
-
 class zenphotoDonate {
 
 	static function donate() {

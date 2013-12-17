@@ -1969,7 +1969,7 @@ function XSRFToken($action) {
  */
 function cron_starter($script, $params, $offsetPath, $inline = false) {
 	global $_zp_authority, $_zp_loggedin, $_zp_current_admin_obj;
-	$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $_zp_authority->master_user, '`valid`=' => 1));
+	$admin = $_zp_authority->getMasterUser();
 
 	if ($inline) {
 		$_zp_current_admin_obj = $admin;

@@ -22,8 +22,6 @@ $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'security_logger';
 
-setOptionDefault('zp_plugin_security-logger', $plugin_is_filter);
-
 if (getOption('logger_log_admin')) {
 	zp_register_filter('admin_login_attempt', 'security_logger::adminLoginLogger');
 	zp_register_filter('federated_login_attempt', 'security_logger::federatedLoginLogger');
@@ -66,13 +64,13 @@ class security_logger {
 	 */
 	function getOptionsSupported() {
 		return array(gettext('Record logon attempts of')		 => array('key'				 => 'logger_log_allowed', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
-										'checkboxes' => array(gettext('Administrators')	 => 'logger_log_admin', gettext('Guests')					 => 'logger_log_guests'),
+										'checkboxes' => array(gettext('Administrators') => 'logger_log_admin', gettext('Guests') => 'logger_log_guests'),
 										'desc'			 => gettext('If checked login attempts will be logged.')),
 						gettext('Record failed admin access')	 => array('key'			 => 'logge_access_log_type', 'type'		 => OPTION_TYPE_RADIO,
-										'buttons'	 => array(gettext('All attempts')				 => 'all', gettext('Only user attempts')	 => 'all_user'),
+										'buttons'	 => array(gettext('All attempts') => 'all', gettext('Only user attempts') => 'all_user'),
 										'desc'		 => gettext('Record admin page access failures.')),
 						gettext('Record logon')								 => array('key'			 => 'logger_log_type', 'type'		 => OPTION_TYPE_RADIO,
-										'buttons'	 => array(gettext('All attempts')					 => 'all', gettext('Successful attempts')	 => 'success', gettext('unsuccessful attempts') => 'fail'),
+										'buttons'	 => array(gettext('All attempts') => 'all', gettext('Successful attempts') => 'success', gettext('unsuccessful attempts') => 'fail'),
 										'desc'		 => gettext('Record login failures, successes, or all attempts.'))
 		);
 	}
@@ -106,10 +104,8 @@ class security_logger {
 				$ip .= ' {' . $forwardedIP . '}';
 			}
 		}
-		$admin = Zenphoto_Authority::getAnAdmin(array('`user`='	 => $_zp_authority->master_user, '`valid`=' => 1));
-		if ($admin) {
-			$locale = $admin->getLanguage();
-		}
+		$admin = $_zp_authority->getMasterUser();
+		$locale = $admin->getLanguage();
 		if (empty($locale)) {
 			$locale = 'en_US';
 		}
@@ -263,7 +259,7 @@ class security_logger {
 		}
 		$name = '';
 		if ($success) {
-			$admin = Zenphoto_Authority::getAnAdmin(array('`user`='	 => $user, '`valid`=' => 1));
+			$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
 			$pass = ''; // mask it from display
 			if (is_object($admin)) {
 				$name = $admin->getName();
@@ -311,7 +307,7 @@ class security_logger {
 		}
 		$name = '';
 		if ($success) {
-			$admin = Zenphoto_Authority::getAnAdmin(array('`user`='	 => $user, '`valid`=' => 1));
+			$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
 			$pass = ''; // mask it from display
 			if (is_object($admin)) {
 				$name = $admin->getName();

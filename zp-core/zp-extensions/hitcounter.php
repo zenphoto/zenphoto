@@ -37,8 +37,6 @@ $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'hitcounter';
 
-setOptionDefault('zp_plugin_hitcounter', $plugin_is_filter);
-
 zp_register_filter('load_theme_script', 'hitcounter::load_script');
 zp_register_filter('admin_utilities_buttons', 'hitcounter::button');
 

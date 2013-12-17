@@ -1804,7 +1804,8 @@ class Album extends AlbumBase {
 			if (is_object($p)) {
 				$owner = $p->getOwner();
 			} else {
-				$owner = $_zp_authority->master_user;
+				$admin = $_zp_authority->getMasterUser();
+				$owner = $admin->getUser();
 			}
 		}
 		return $owner;

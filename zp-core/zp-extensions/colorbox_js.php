@@ -27,8 +27,6 @@ $plugin_notice = gettext('Note that this plugin does not attach Colorbox to any 
 $plugin_author = 'Stephen Billard (sbillard)';
 $option_interface = 'colorbox';
 
-setOptionDefault('zp_plugin_colorbox_js', $plugin_is_filter);
-
 if (OFFSET_PATH) {
 	zp_register_filter('admin_head', 'colorbox::css');
 } else {

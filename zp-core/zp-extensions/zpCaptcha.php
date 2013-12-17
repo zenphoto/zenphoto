@@ -97,7 +97,7 @@ class zpCaptcha extends _zp_captcha {
 		global $_zp_authority;
 		$key = getOption('zenphoto_captcha_key');
 		if (empty($key)) {
-			$admin = Zenphoto_Authority::getAnAdmin(array('`user`='	 => $_zp_authority->master_user, '`valid`=' => 1));
+			$admin = $_zp_authority->getMasterUser();
 			if (is_object($admin)) {
 				$key = $admin->getPass();
 			} else {
@@ -160,7 +160,7 @@ class zpCaptcha extends _zp_captcha {
 		$html = '<label for="code" class="captcha_label">' . $prompt . '</label><img id="captcha" src="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zpCaptcha/c.php?i=' . $cypher . '" alt="Code" />';
 		$input = '<input type="text" id="code" name="code" class="captchainputbox" />';
 		$hidden = '<input type="hidden" name="code_h" value="' . $code . '" />';
-		return array('input'	 => $input, 'html'	 => $html, 'hidden' => $hidden);
+		return array('input' => $input, 'html' => $html, 'hidden' => $hidden);
 	}
 
 }

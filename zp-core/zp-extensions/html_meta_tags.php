@@ -68,13 +68,13 @@ class htmlmetatags {
 		}
 		$options = array(gettext('Cache control')				 => array('key'				 => 'htmlmeta_cache_control', 'type'			 => OPTION_TYPE_SELECTOR,
 										'order'			 => 0,
-										'selections' => array('no-cache' => "no-cache", 'public'	 => "public", 'private'	 => "private", 'no-store' => "no-store"),
+										'selections' => array('no-cache' => "no-cache", 'public' => "public", 'private' => "private", 'no-store' => "no-store"),
 										'desc'			 => gettext("If the browser cache should be used.")),
 						gettext('Pragma')								 => array('key'				 => 'htmlmeta_pragma', 'type'			 => OPTION_TYPE_SELECTOR,
-										'selections' => array('no-cache' => "no-cache", 'cache'		 => "cache"),
+										'selections' => array('no-cache' => "no-cache", 'cache' => "cache"),
 										'desc'			 => gettext("If the pages should be allowed to be cached on proxy servers.")),
 						gettext('Robots')								 => array('key'				 => 'htmlmeta_robots', 'type'			 => OPTION_TYPE_SELECTOR,
-										'selections' => array('noindex'					 => "noindex", 'index'						 => "index", 'nofollow'				 => "nofollow", 'noindex,nofollow' => "noindex,nofollow", 'noindex,follow'	 => "noindex,follow", 'index,nofollow'	 => "index,nofollow", 'none'						 => "none"),
+										'selections' => array('noindex' => "noindex", 'index' => "index", 'nofollow' => "nofollow", 'noindex,nofollow' => "noindex,nofollow", 'noindex,follow' => "noindex,follow", 'index,nofollow' => "index,nofollow", 'none' => "none"),
 										'desc'			 => gettext("If and how robots are allowed to visit the site. Default is 'index'. Note that you also should use a robot.txt file.")),
 						gettext('Revisit after')				 => array('key'	 => 'htmlmeta_revisit_after', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext("Request the crawler to revisit the page after x days.")),
@@ -234,7 +234,7 @@ class htmlmetatags {
 				break;
 			default: // for all other possible static custom pages
 				$custompage = stripSuffix($_zp_gallery_page);
-				$standard = array('contact'	 => gettext('Contact'), 'register' => gettext('Register'), 'search'	 => gettext('Search'), 'archive'	 => gettext('Archive view'), 'password' => gettext('Password required'));
+				$standard = array('contact' => gettext('Contact'), 'register' => gettext('Register'), 'search' => gettext('Search'), 'archive' => gettext('Archive view'), 'password' => gettext('Password required'));
 				if (class_exists('favorites')) {
 					$standard[str_replace(_PAGE_ . '/', '', favorites::getFavorites_link())] = gettext('My favorites');
 				}
@@ -255,7 +255,7 @@ class htmlmetatags {
 		$desc = html_encode($desc);
 		$pagetitle = $pagetitle . getBareGalleryTitle();
 		// get master admin
-		$admin = Zenphoto_Authority::getAnAdmin(array('`user`='	 => $_zp_authority->master_user, '`valid`=' => 1));
+		$admin = $_zp_authority->getMasterUser();
 		$author = $admin->getName();
 		$meta = '';
 		if (getOption('htmlmeta_http-equiv-language')) {

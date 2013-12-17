@@ -12,8 +12,6 @@ $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext('<em>http</em> image upload handler.');
 $plugin_author = 'Stephen Billard (sbillard)';
 
-setOptionDefault('zp_plugin_uploader_http', $plugin_is_filter);
-
 if (zp_loggedin(UPLOAD_RIGHTS)) {
 	zp_register_filter('upload_handlers', 'httpUploadHandler');
 	zp_register_filter('admin_tabs', 'httpUploadHandler_admin_tabs', 10);

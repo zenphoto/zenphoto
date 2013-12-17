@@ -17,8 +17,6 @@ $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 
 $option_interface = 'tinymceOptions';
 
-setOptionDefault('zp_plugin_tiny_mce', $plugin_is_filter);
-
 zp_register_filter('texteditor_config', 'tinymceConfigJS');
 
 /**
