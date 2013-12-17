@@ -1,4 +1,5 @@
 <?php
+
 /**
  *
  * Zenphoto cron task handler
@@ -9,14 +10,14 @@ if (isset($_GET['offsetPath'])) {
 	define('OFFSET_PATH', 1);
 }
 
-require_once(dirname(__FILE__).'/functions.php');
+require_once(dirname(__FILE__) . '/functions.php');
 
 $_zp_current_admin_obj = $_zp_loggedin = NULL;
 $link = sanitize($_POST['link']);
 if (isset($_POST['auth'])) {
 	$auth = sanitize($_POST['auth']);
-	$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $_zp_authority->master_user, '`valid`=' => 1));
-	if (sha1($link.serialize($admin)) == $auth && $admin->getRights()) {
+	$admin = $_zp_authority->getMasterUser();
+	if (sha1($link . serialize($admin)) == $auth && $admin->getRights()) {
 		$_zp_current_admin_obj = $admin;
 		$_zp_loggedin = $admin->getRights();
 	}
@@ -36,5 +37,4 @@ if (isset($_POST['XSRFTag'])) {
 	unset($_REQUEST['XSRFToken']);
 }
 require_once($link);
-
 ?>

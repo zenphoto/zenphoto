@@ -50,7 +50,7 @@ class Zenphoto_Authority {
 	var $admin_other = NULL;
 	var $admin_all = NULL;
 	var $rightsset = NULL;
-	var $master_user = NULL;
+	protected $master_user = NULL;
 	static $preferred_version = 4;
 	static $supports_version = 4;
 	static $hashList = array('pbkdf2' => 3, 'pbkdf2*' => 2, 'sha1' => 1, 'md5' => 0);
@@ -61,11 +61,36 @@ class Zenphoto_Authority {
 	 * @return lib_auth_options
 	 */
 	function __construct() {
-		$sql = 'SELECT * FROM ' . prefix('administrators') . ' WHERE `valid`=1 ORDER BY `rights` DESC, `id` LIMIT 1';
-		$master = query_single_row($sql, false);
-		if ($master) {
-			$this->master_user = $master['user'];
+		$this->admin_all = $this->admin_groups = $this->admin_users = $this->admin_other = array();
+		$sql = 'SELECT * FROM ' . prefix('administrators') . ' ORDER BY `rights` DESC, `id`';
+		$admins = query($sql, false);
+		if ($admins) {
+			while ($user = db_fetch_assoc($admins)) {
+				$this->admin_all[$user['id']] = $user;
+				switch ($user['valid']) {
+					case 1:
+						$this->admin_users[$user['id']] = $user;
+						if (empty($this->master_user))
+							$this->master_user = $user['user'];
+						break;
+					case 0:
+						$this->admin_groups[$user['id']] = $user;
+						break;
+					default:
+						$this->admin_other[$user['id']] = $user;
+						break;
+				}
+			}
+			db_free_result($admins);
 		}
+	}
+
+	function getMasterUser() {
+		return new Zenphoto_Administrator($this->master_user, 1);
+	}
+
+	function isMasterUser($user) {
+		return $user == $this->master_user;
 	}
 
 	/**
@@ -180,28 +205,6 @@ class Zenphoto_Authority {
 	 * @return array
 	 */
 	function getAdministrators($what = 'users') {
-		if (is_null($this->admin_users)) {
-			$this->admin_all = $this->admin_groups = $this->admin_users = $this->admin_other = array();
-			$sql = 'SELECT * FROM ' . prefix('administrators') . ' ORDER BY `rights` DESC, `id`';
-			$admins = query($sql, false);
-			if ($admins) {
-				while ($user = db_fetch_assoc($admins)) {
-					$this->admin_all[$user['id']] = $user;
-					switch ($user['valid']) {
-						case 1:
-							$this->admin_users[$user['id']] = $user;
-							break;
-						case 0:
-							$this->admin_groups[$user['id']] = $user;
-							break;
-						default:
-							$this->admin_other[$user['id']] = $user;
-							break;
-					}
-				}
-				db_free_result($admins);
-			}
-		}
 		switch ($what) {
 			case 'users':
 				return $this->admin_users;
@@ -251,6 +254,8 @@ class Zenphoto_Authority {
 		if (DEBUG_LOGIN) {
 			debugLogBacktrace("checkAuthorization($authCode, $id)");
 		}
+
+
 		$admins = $this->getAdministrators();
 		if (count($admins) == 0) {
 			if (DEBUG_LOGIN) {
@@ -267,6 +272,8 @@ class Zenphoto_Authority {
 			}
 			return $_zp_current_admin_obj->getRights();
 		}
+
+
 		$_zp_current_admin_obj = NULL;
 		if (empty($authCode))
 			return 0; //  so we don't "match" with an empty password
@@ -1292,7 +1299,7 @@ class Zenphoto_Administrator extends PersistentObject {
 		if ($valid) {
 			$rights = $this->getRights();
 			$new_rights = 0;
-			if ($user == $_zp_authority->master_user) {
+			if ($_zp_authority->isMasterUser($user)) {
 				$new_rights = ALL_RIGHTS;
 				$this->master = true;
 			} else {
