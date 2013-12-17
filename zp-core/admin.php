@@ -277,6 +277,9 @@ if (!zp_loggedin()) {
 									<?php echo gettext('WEB path:') . ' <strong>' . WEBPATH . '</strong>' ?>
 								</li>
 								<li>
+									<?php echo gettext('PHP Session path:') . ' <strong>' . session_save_path() . '</strong>' ?>
+								</li>
+								<li>
 									<?php
 									$themes = $_zp_gallery->getThemes();
 									$currenttheme = $_zp_gallery->getCurrentTheme();

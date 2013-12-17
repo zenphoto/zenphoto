@@ -7,8 +7,6 @@
 Define('PHP_MIN_VERSION', '5.2');
 Define('PHP_DESIRED_VERSION', '5.4');
 
-$session = session_start();
-
 // leave this as the first executable statement to avoid problems with PHP not having gettext support.
 if (!function_exists("gettext")) {
 	require_once(dirname(dirname(__FILE__)) . '/lib-gettext/gettext.inc');
@@ -24,6 +22,15 @@ if (version_compare(PHP_VERSION, '5.0.0', '<')) {
 	die(sprintf(gettext('Zenphoto requires PHP version %s or greater'), PHP_MIN_VERSION));
 }
 require_once(dirname(dirname(__FILE__)) . '/global-definitions.php');
+
+$_session_path = session_save_path();
+if (!file_exists($_session_path) || !is_writable($_session_path)) {
+	@mkdir(dirname(dirname(dirname(__FILE__))) . '/' . DATA_FOLDER . '/PHP_sessions/', $chmod | 0311);
+	session_save_path(dirname(dirname(dirname(__FILE__))) . '/' . DATA_FOLDER . '/PHP_sessions/');
+}
+
+$session = session_start();
+
 header('Last-Modified: ' . ZP_LAST_MODIFIED);
 header('Content-Type: text/html; charset=UTF-8');
 header("Cache-Control: no-store, no-cache, must-revalidate, pre-check=0, post-check=0, max-age=0");
@@ -64,6 +71,7 @@ $zptime = time();
 if (!file_exists($serverpath . '/' . DATA_FOLDER)) {
 	@mkdir($serverpath . '/' . DATA_FOLDER, $chmod | 0311);
 }
+
 @unlink(SERVERPATH . '/' . DATA_FOLDER . '/zenphoto.cfg.bak'); //	remove any old backup file
 
 if (file_exists($oldconfig = SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
