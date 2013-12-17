@@ -17,7 +17,6 @@ $option_interface = 'zpTrivialSpam';
 if ($plugin_disable) {
 	enableExtension('trivialSpam', 0);
 } else {
-	setOptionDefault('zp_plugin_trivialSpam', $plugin_is_filter);
 	$_zp_spamFilter = new zpTrivialSpam();
 }
 
@@ -38,7 +37,8 @@ class zpTrivialSpam {
 	 * @return SpamFilter
 	 */
 	function __construct() {
-		setOptionDefault('spamFilter_none_action', 'pass');
+		if (OFFSET_PATH == 2)
+			setOptionDefault('spamFilter_none_action', 'pass');
 	}
 
 	function displayName() {
@@ -59,7 +59,7 @@ class zpTrivialSpam {
 	 */
 	function getOptionsSupported() {
 		return array(gettext('Action') => array('key'				 => 'spamFilter_none_action', 'type'			 => OPTION_TYPE_SELECTOR,
-										'selections' => array(gettext('pass')			 => 'pass', gettext('moderate')	 => 'moderate', gettext('reject')		 => 'reject'),
+										'selections' => array(gettext('pass') => 'pass', gettext('moderate') => 'moderate', gettext('reject') => 'reject'),
 										'desc'			 => gettext('This action will be taken for all messages.')));
 	}
 

@@ -11,7 +11,6 @@ $plugin_is_filter = 7 | ADMIN_PLUGIN;
 $plugin_description = gettext("Places the latest 3 news articles from Zenphoto.org on the admin overview page.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $plugin_disable = (!class_exists('DOMDocument')) ? gettext('PHP <em>DOM Object Model</em> is required.') : false;
-setOptionDefault('zp_plugin_zenphoto_news', $plugin_is_filter);
 
 $option_interface = 'zenphoto_org_news';
 

@@ -10,7 +10,6 @@ $plugin_is_filter = 5 | THEME_PLUGIN | ADMIN_PLUGIN;
 $plugin_description = gettext("Adds example macros.");
 $plugin_author = "Stephen Billard (sbillard)";
 
-setOptionDefault('zp_plugin_exampleMacros', $plugin_is_filter);
 zp_register_filter('content_macro', 'exampleMacros::macro');
 
 class exampleMacros {
@@ -47,7 +46,6 @@ class exampleMacros {
 										'value'	 => 'printCustomPageURL',
 										'owner'	 => 'exampleMacros',
 										'desc'	 => gettext('Provides text for a link to a "custom" script page indicated by a linktext (<code>%1</code>) and a custom page (<code>%2</code>).'))
-
 		);
 		return array_merge($macros, $my_macros);
 	}

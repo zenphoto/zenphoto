@@ -559,6 +559,7 @@ query('UPDATE ' . prefix('administrators') . ' SET `passupdate`=' . db_quote(dat
 setOptionDefault('image_processor_flooding_protection', 1);
 setOptionDefault('codeblock_first_tab', 1);
 setOptionDefault('zp_plugin_rss', 9 | FEATURE_PLUGIN | ADMIN_PLUGIN);
+setOptionDefault('GD_FreeType_Path', SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/gd_fonts');
 
 //The following should be done LAST so it catches anything done above
 //set plugin default options by instantiating the options interface

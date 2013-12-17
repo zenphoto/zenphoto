@@ -22,7 +22,6 @@ $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'security_logger';
 
-setOptionDefault('zp_plugin_security-logger', $plugin_is_filter);
 
 if (getOption('logger_log_admin')) {
 	zp_register_filter('admin_login_attempt', 'security_logger::adminLoginLogger');

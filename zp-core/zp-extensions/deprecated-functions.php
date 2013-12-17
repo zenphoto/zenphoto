@@ -23,7 +23,8 @@ $plugin_notice = gettext("This plugin is <strong>NOT</strong> required for the Z
 $option_interface = 'deprecated_functions';
 $plugin_is_filter = 9 | CLASS_PLUGIN;
 
-enableExtension('deprecated-functions', $plugin_is_filter); //	Yes, I know some people will be annoyed that this keeps coming back,
+if (OFFSET_PATH == 2)
+	enableExtension('deprecated-functions', $plugin_is_filter); //	Yes, I know some people will be annoyed that this keeps coming back,
 //	but each release may deprecated new functions which would then just give
 //	(perhaps unseen) errors. Better the user should disable this once he knows
 //	his site is working.
