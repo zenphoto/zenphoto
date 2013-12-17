@@ -143,7 +143,6 @@ class GoogleMap {
 }
 
 // codeIgniter stuff
-error_reporting(E_ALL ^ E_STRICT); //	required for the CodeIgniter-Google-Maps-V3-API code!
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . COMMON_FOLDER . '/jsMin/JSMin.php');
 
 class CI_load {
@@ -216,7 +215,7 @@ function getGeoCoord($image) {
 
 			$thumb = '<a href="javascript:image(\'' . $_zp_current_image->albumname . '\',\'' . $_zp_current_image->filename . '\');"><img src="' . getCustomImageURL(150) . '" /></a>';
 
-			$result = array('lat'		 => $lat_s, 'long'	 => $long_s, 'title'	 => $_zp_current_image->getTitle(), 'desc'	 => $_zp_current_image->getDesc(), 'thumb'	 => $thumb);
+			$result = array('lat' => $lat_s, 'long' => $long_s, 'title' => $_zp_current_image->getTitle(), 'desc' => $_zp_current_image->getDesc(), 'thumb' => $thumb);
 		}
 	}
 	return $result;
