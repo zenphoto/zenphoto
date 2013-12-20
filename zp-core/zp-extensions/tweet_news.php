@@ -111,7 +111,7 @@ class tweet {
 							'desc'			 => gettext('Select the language for the Tweet message.'));
 		}
 		if (getOption('tweet_news_news') && is_object($_zp_zenpage)) {
-			$catlist = unserialize(getOption('tweet_news_categories'));
+			$catlist = getSerializedArray(getOption('tweet_news_categories'));
 			$news_categories = $_zp_zenpage->getAllCategories(false);
 			$catlist = array(gettext('*not categorized*') => 'tweet_news_categories_none');
 			foreach ($news_categories as $category) {

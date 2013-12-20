@@ -4,9 +4,9 @@
  * @author Stephen Billard (sbillard)
  * @package plugins
  */
-define ('OFFSET_PATH', 4);
-require_once(dirname(dirname(dirname(__FILE__))).'/admin-globals.php');
-require_once(dirname(__FILE__).'/functions.php');
+define('OFFSET_PATH', 4);
+require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
+require_once(dirname(__FILE__) . '/functions.php');
 
 admin_securityChecks(NULL, currentRelativeURL());
 
@@ -14,19 +14,19 @@ $path = '';
 $selected = 0;
 if (isset($_GET['action'])) {
 	XSRFdefender('deprecated');
-	$zplist = unserialize(getOption('Zenphoto_theme_list'));
+	$zplist = getSerializedArray(getOption('Zenphoto_theme_list'));
 	$deprecated = new deprecated_functions();
 	$list = array_diff($deprecated->listed_functions, $deprecated->internalFunctions);
-	$pattern = '([^function^\->]\s+)'.implode('[\(]|([^function^\->]\s+)',$list).'[\(]';
+	$pattern = '([^function^\->]\s+)' . implode('[\(]|([^function^\->]\s+)', $list) . '[\(]';
 	$report = array();
 	$selected = sanitize_numeric($_POST['target']);
 }
 
-$zenphoto_tabs['overview']['subtabs']=array(gettext('Deprecated')=>'');
-printAdminHeader('overview','deprecated');
+$zenphoto_tabs['overview']['subtabs'] = array(gettext('Deprecated') => '');
+printAdminHeader('overview', 'deprecated');
 ?>
 <?php
-echo '</head>'."\n";
+echo '</head>' . "\n";
 ?>
 <body>
 	<?php printLogoAndLinks(); ?>
@@ -35,7 +35,7 @@ echo '</head>'."\n";
 		<div id="content">
 			<?php printSubtabs(); ?>
 			<div id="tab_deprecated" class="tabbox">
-				<h1><?php	echo gettext("Locate calls on deprecated functions."); ?></h1>
+				<h1><?php echo gettext("Locate calls on deprecated functions."); ?></h1>
 				<form action="?action=search" method="post">
 					<?php XSRFToken('deprecated'); ?>
 					<select name="target">
@@ -71,25 +71,25 @@ echo '</head>'."\n";
 						<?php
 						switch ($selected) {
 							case '1':
-								$path = SERVERPATH.'/'.THEMEFOLDER;
+								$path = SERVERPATH . '/' . THEMEFOLDER;
 								$_files = array();
-								getPHPFiles($path,$zplist);
+								getPHPFiles($path, $zplist);
 								$output = listUses($path);
 								break;
 							case '2':
-								$path = SERVERPATH.'/'.USER_PLUGIN_FOLDER;
+								$path = SERVERPATH . '/' . USER_PLUGIN_FOLDER;
 								$_files = array();
-								getPHPFiles($path,array());
+								getPHPFiles($path, array());
 								$output = listUses($path);
 								break;
 							case '3':
-								$path = SERVERPATH.'/'.ZENFOLDER;
+								$path = SERVERPATH . '/' . ZENFOLDER;
 								$_files = array();
-								getPHPFiles($path,array());
+								getPHPFiles($path, array());
 								$output = listUses($path);
 								foreach ($zplist as $theme) {
-									$path = SERVERPATH.'/'.THEMEFOLDER.'/'.$theme;
-									getPHPFiles($path,array());
+									$path = SERVERPATH . '/' . THEMEFOLDER . '/' . $theme;
+									getPHPFiles($path, array());
 									$output = $output || listUses(SERVERPATH);
 								}
 								break;

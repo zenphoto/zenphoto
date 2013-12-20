@@ -1009,10 +1009,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<label class="displayinlineright">
 								<input type="<?php echo $type; ?>" id="<?php echo strtolower($listitem) . '_' . $box['name'] . $unique; ?>"<?php echo $class; ?> name="<?php echo $listitem . '_' . $box['name']; ?>"
 											 value="<?php echo html_encode($box['value']); ?>" <?php
-					if ($box['checked']) {
-						echo ' checked="checked"';
-					}
-							?>
+											 if ($box['checked']) {
+												 echo ' checked="checked"';
+											 }
+											 ?>
 											 <?php echo $disable; ?> /> <?php echo $box['display']; ?>
 							</label>
 							<?php
@@ -1377,7 +1377,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$sort[gettext('Custom')] = 'custom';
 						/*
 						 * not recommended--screws with peoples minds during pagination!
-							$sort[gettext('Random')] = 'random';
+						  $sort[gettext('Random')] = 'random';
 						 */
 						?>
 						<tr>
@@ -1411,9 +1411,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<label id="album_direction_div<?php echo $suffix; ?>" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
 										<?php echo gettext("Descending"); ?>
 										<input type="checkbox" name="<?php echo $prefix; ?>album_sortdirection" value="1" <?php
-									if ($album->getSortDirection('album')) {
-										echo "CHECKED";
-									};
+										if ($album->getSortDirection('album')) {
+											echo "CHECKED";
+										};
 										?> />
 									</label>
 								</span>
@@ -2717,7 +2717,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			$link = '';
 		}
 		if (empty($link) || str_replace('\\', '/', $link) == SERVERPATH . '/' . THEMEFOLDER . '/' . $theme) {
-			$zplist = unserialize(getOption('Zenphoto_theme_list'));
+			$zplist = getSerializedArray(getOption('Zenphoto_theme_list'));
 			return (!in_array($theme, $zplist));
 		} else {
 			return false;
@@ -2725,7 +2725,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	}
 
 	function zenPhotoTheme($theme) {
-		$zplist = unserialize(getOption('Zenphoto_theme_list'));
+		$zplist = getSerializedArray(getOption('Zenphoto_theme_list'));
 		return (in_array($theme, $zplist));
 	}
 
@@ -4016,10 +4016,7 @@ function codeblocktabsJS() {
  * @param int $id
  */
 function printCodeblockEdit($obj, $id) {
-	$codeblock = @unserialize($obj->getCodeblock());
-	if (empty($codeblock)) {
-		$codeblock = array();
-	}
+	$codeblock = getSerializedArray($obj->getCodeblock());
 	$keys = array_keys($codeblock);
 	array_push($keys, 1);
 	$codeblockCount = max($keys) + 1;
@@ -4284,10 +4281,10 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 		}
 		?>
 		<select name="subpage" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
-										[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
-						<?php
-						foreach ($rangeset as $page => $range) {
-							?>
+								[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
+							<?php
+							foreach ($rangeset as $page => $range) {
+								?>
 				<option value="<?php echo $page; ?>" <?php if ($page == $subpage) echo ' selected="selected"'; ?>><?php echo $range; ?></option>
 				<?php
 			}

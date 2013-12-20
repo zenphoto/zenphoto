@@ -282,7 +282,7 @@ class favorites extends AlbumBase {
 			$result = query($sql = 'SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . db_quote($this->name) . ' AND `data` LIKE "%s:4:\"type\";s:6:\"albums\";%"');
 			if ($result) {
 				while ($row = db_fetch_assoc($result)) {
-					$data = unserialize($row['data']);
+					$data = getSerializedArray($row['data']);
 					$albumobj = newAlbum($data['id'], true, true);
 					if ($albumobj->exists) { // fail to instantiate?
 						$subalbums[$data['id']] = $albumobj->getData();
@@ -346,7 +346,7 @@ class favorites extends AlbumBase {
 			if ($result) {
 				while ($row = db_fetch_assoc($result)) {
 					$id = $row['id'];
-					$data = unserialize($row['data']);
+					$data = getSerializedArray($row['data']);
 					$imageObj = newImage(NULL, array('folder' => dirname($data['id']), 'filename' => basename($data['id'])), true);
 					if ($imageObj->exists) {
 						$images[] = array_merge(array('folder' => dirname($data['id']), 'filename' => basename($data['id'])), $imageObj->getData());

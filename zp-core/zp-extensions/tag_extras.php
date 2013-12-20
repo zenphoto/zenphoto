@@ -291,7 +291,7 @@ function getAllTagsFromAlbum_multi_unique($array) {
 		$new[$k] = serialize($na);
 	$uniq = array_unique($new);
 	foreach ($uniq as $k => $ser)
-		$new1[$k] = unserialize($ser);
+		$new1[$k] = getSerializedArray($ser);
 	return ($new1);
 }
 

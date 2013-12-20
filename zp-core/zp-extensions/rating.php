@@ -82,7 +82,7 @@ class jquery_rating {
 		setOptionDefault('rating_split_stars', 2);
 		setOptionDefault('rating_status', 3);
 		setOptionDefault('rating_image_individual_control', 0);
-		$this->ratingstate = array(gettext('open')									 => 3, gettext('members &amp; guests')	 => 2, gettext('members only')					 => 1, gettext('closed')								 => 0);
+		$this->ratingstate = array(gettext('open') => 3, gettext('members &amp; guests') => 2, gettext('members only') => 1, gettext('closed') => 0);
 	}
 
 	/**
@@ -98,12 +98,12 @@ class jquery_rating {
 						gettext('Stars')										 => array('key'	 => 'rating_stars_count', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => sprintf(ngettext('Rating will use %u star.', 'Rating will use %u stars.', $stars), $stars)),
 						gettext('Split stars')							 => array('key'			 => 'rating_split_stars', 'type'		 => OPTION_TYPE_RADIO,
-										'buttons'	 => array(gettext('full')	 => 1, gettext('half')	 => 2, gettext('third') => 3),
+										'buttons'	 => array(gettext('full') => 1, gettext('half') => 2, gettext('third') => 3),
 										'desc'		 => gettext('Show fractional stars based on rating. May cause performance problems for pages with large numbers of rating elements.')),
 						gettext('Individual image control')	 => array('key'	 => 'rating_image_individual_control', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext('Enable to allow voting status control on individual images.')),
 						gettext('Recast vote')							 => array('key'			 => 'rating_recast', 'type'		 => OPTION_TYPE_RADIO,
-										'buttons'	 => array(gettext('No')									 => 0, gettext('Show rating')				 => 1, gettext('Show previous vote')	 => 2),
+										'buttons'	 => array(gettext('No') => 0, gettext('Show rating') => 1, gettext('Show previous vote') => 2),
 										'desc'		 => gettext('Allow users to change their vote. If Show previous vote is chosen, the stars will reflect the last vote of the viewer. Otherwise they will reflect the current rating.')),
 						gettext('Disguise IP')							 => array('key'	 => 'rating_hash_ip', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext('Causes the stored IP addressed to be hashed so as to avoid privacy tracking issues.'))
@@ -199,7 +199,7 @@ class jquery_rating {
 		$rating = 0;
 		if (empty($_rating_current_IPlist)) {
 			if (!empty($usedips)) {
-				$_rating_current_IPlist = unserialize($usedips);
+				$_rating_current_IPlist = getSerializedArray($usedips);
 				if (array_key_exists($ip, $_rating_current_IPlist)) {
 					return $_rating_current_IPlist[$ip];
 				}
@@ -350,7 +350,7 @@ function printRating($vote = 3, $object = NULL, $text = true) {
 	</form>
 	<span class="clearall" ></span>
 	<span class="vote" id="vote<?php echo $unique; ?>" <?php if (!$text) echo 'style="display:none;"'; ?>>
-	<?php echo $msg; ?>
+		<?php echo $msg; ?>
 	</span>
 	<script type="text/javascript">
 		// <!-- <![CDATA[

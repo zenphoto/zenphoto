@@ -146,7 +146,7 @@ $custom = array();
 
 $result = query('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="cacheManager" ORDER BY `aux`');
 while ($row = db_fetch_assoc($result)) {
-	$row = unserialize($row['data']);
+	$row = getSerializedArray($row['data']);
 	$custom[] = $row;
 }
 $custom = sortMultiArray($custom, array('theme', 'thumb', 'image_size', 'image_width', 'image_height'));

@@ -1884,7 +1884,7 @@ class SearchEngine {
 				if ((time() - strtotime($result['date'])) > SEARCH_CACHE_DURATION * 60) {
 					query('DELETE FROM ' . prefix('search_cache') . ' WHERE `id` = ' . $result['id']);
 				} else {
-					if ($result = unserialize($result['data'])) {
+					if ($result = getSerializedArray($result['data'])) {
 						return $result;
 					}
 				}

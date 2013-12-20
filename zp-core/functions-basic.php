@@ -1413,7 +1413,7 @@ function themeSetup($album) {
 	$id = NULL;
 	$theme = getAlbumInherited(filesystemToInternal($album), 'album_theme', $id);
 	if (empty($theme)) {
-		$galleryoptions = unserialize(getOption('gallery_data'));
+		$galleryoptions = getSerializedArray(getOption('gallery_data'));
 		$theme = @$galleryoptions['current_theme'];
 	}
 	loadLocalOptions($id, $theme);
@@ -1531,7 +1531,7 @@ function safe_glob($pattern, $flags = 0) {
 function checkInstall() {
 	preg_match('|([^-]*)|', ZENPHOTO_VERSION, $version);
 	if ($i = getOption('zenphoto_install')) {
-		$install = unserialize($i);
+		$install = getSerializedArray($i);
 	} else {
 		$install = array('ZENPHOTO' => '0.0.0[0000]');
 	}

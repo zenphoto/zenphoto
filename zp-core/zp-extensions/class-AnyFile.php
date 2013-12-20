@@ -76,9 +76,7 @@ class AnyFile_Options {
 
 function get_AnyFile_suffixes() {
 	$mysetoptions = array();
-	if ($list = getOption('AnyFileSuffixList')) {
-		return unserialize($list);
-	}
+	return getSerializedArray(getOption('AnyFileSuffixList'));
 }
 
 require_once(dirname(__FILE__) . '/class-textobject/class-textobject_core.php');

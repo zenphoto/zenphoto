@@ -3174,7 +3174,7 @@ function filterImageQuery($result, $source) {
 function getRandomImages($daily = false) {
 	global $_zp_gallery;
 	if ($daily) {
-		$potd = unserialize(getOption('picture_of_the_day'));
+		$potd = getSerializedArray(getOption('picture_of_the_day'));
 		if (date('Y-m-d', $potd['day']) == date('Y-m-d')) {
 			$album = newAlbum($potd['folder'], true, true);
 			if ($album->exists) {
@@ -3226,7 +3226,7 @@ function getRandomImagesAlbum($rootAlbum = NULL, $daily = false) {
 		}
 	}
 	if ($daily && ($potd = getOption('picture_of_the_day:' . $album->name))) {
-		$potd = unserialize($potd);
+		$potd = getSerializedArray($potd);
 		if (date('Y-m-d', $potd['day']) == date('Y-m-d')) {
 			$rndalbum = newAlbum($potd['folder']);
 			$image = newImage($rndalbum, $potd['filename']);
@@ -3883,34 +3883,34 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 		<!-- search form -->
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<script type="text/javascript">
-			// <!-- <![CDATA[
-			var within = <?php echo (int) $within; ?>;
-			function search_(way) {
-				within = way;
-				if (way) {
-					$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+		// <!-- <![CDATA[
+		var within = <?php echo (int) $within; ?>;
+		function search_(way) {
+			within = way;
+			if (way) {
+				$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
 
-				} else {
-					lastsearch = '';
-					$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-				}
-				$('#search_input').val('');
+			} else {
+				lastsearch = '';
+				$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
 			}
-			$('#search_form').submit(function() {
-				if (within) {
-					var newsearch = $.trim($('#search_input').val());
-					if (newsearch.substring(newsearch.length - 1) == ',') {
-						newsearch = newsearch.substr(0, newsearch.length - 1);
-					}
-					if (newsearch.length > 0) {
-						$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
-					} else {
-						$('#search_input').val('<?php echo $searchwords; ?>');
-					}
+			$('#search_input').val('');
+		}
+		$('#search_form').submit(function() {
+			if (within) {
+				var newsearch = $.trim($('#search_input').val());
+				if (newsearch.substring(newsearch.length - 1) == ',') {
+					newsearch = newsearch.substr(0, newsearch.length - 1);
 				}
-				return true;
-			});
-			// ]]> -->
+				if (newsearch.length > 0) {
+					$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+				} else {
+					$('#search_input').val('<?php echo $searchwords; ?>');
+				}
+			}
+			return true;
+		});
+		// ]]> -->
 			</script>
 			<?php echo $prevtext; ?>
 			<div>
@@ -4374,7 +4374,7 @@ function getCodeblock($number = 1) {
 	if (empty($object)) {
 		return NULL;
 	}
-	$codeblock = unserialize($object->getcodeblock());
+	$codeblock = getSerializedArray($object->getcodeblock());
 	$codeblock = zp_apply_filter('codeblock', @$codeblock[$number], $object, $number);
 	if ($codeblock) {
 		$codeblock = applyMacros($codeblock);
@@ -4394,7 +4394,7 @@ function printCodeblock($number = 1, $what = NULL) {
 	if (is_object($what)) {
 		$codeblock = $what->getCodeblock();
 		if ($codeblock) {
-			$codeblocks = unserialize($codeblock);
+			$codeblocks = getSerializedArray($codeblock);
 			$codeblock = $codeblocks[$number];
 			zp_apply_filter('codeblock', $codeblock, $what, $number);
 			if ($codeblock) {

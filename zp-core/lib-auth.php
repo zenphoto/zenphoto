@@ -1642,12 +1642,7 @@ class Zenphoto_Administrator extends PersistentObject {
 	 * Data to support other credential systems integration
 	 */
 	function getCredentials() {
-		$cred = $this->get('other_credentials');
-		if ($cred) {
-			return unserialize($cred);
-		} else {
-			return array();
-		}
+		return getSerializedArray($this->get('other_credentials'));
 	}
 
 	function setCredentials($cred) {
@@ -1697,7 +1692,7 @@ class Zenphoto_Administrator extends PersistentObject {
 	function getChallengePhraseInfo() {
 		$info = $this->get('challenge_phrase');
 		if ($info) {
-			return unserialize($info);
+			return getSerializedArray($info);
 		} else {
 			return array('challenge' => '', 'response' => '');
 		}

@@ -134,7 +134,7 @@ class cacheManager {
 		$key = 0;
 		while ($row = db_fetch_assoc($result)) {
 			$theme = $row['aux'];
-			$data = unserialize($row['data']);
+			$data = getSerializedArray($row['data']);
 			$custom[$theme][] = $data;
 		}
 		ksort($custom, SORT_LOCALE_STRING);
