@@ -114,6 +114,6 @@ function rewriteHandler() {
 	}
 }
 
-if (MOD_REWRITE)
+if (MOD_REWRITE || isset($_GET['z']))
 	rewriteHandler();
 ?>
