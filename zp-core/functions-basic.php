@@ -152,7 +152,7 @@ if (!defined('FILESYSTEM_CHARSET')) {
 	}
 }
 if (!defined('CHMOD_VALUE')) {
-	define('CHMOD_VALUE', fileperms(dirname(dirname(__FILE__))) & 0666);
+	define('CHMOD_VALUE', fileperms(dirname(__FILE__)) & 0666);
 }
 define('FOLDER_MOD', CHMOD_VALUE | 0311);
 define('FILE_MOD', CHMOD_VALUE & 0666);
