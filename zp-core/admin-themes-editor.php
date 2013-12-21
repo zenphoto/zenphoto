@@ -37,7 +37,7 @@ foreach ($themefiles as $file) {
 	}
 }
 if (isset($_GET['file']))
-	$file_to_edit = str_replace('\\', '/', realpath(SERVERPATH . '/themes/' . internalToFilesystem($theme) . '/' . sanitize($_GET['file'])));
+	$file_to_edit = str_replace('\\', '/', SERVERPATH . '/themes/' . internalToFilesystem($theme) . '/' . sanitize($_GET['file']));
 // realpath() to take care of ../../file.php schemes, str_replace() to sanitize Win32 filenames
 // Handle POST that updates a file
 if (isset($_POST['action']) && $_POST['action'] == 'edit_file' && $file_to_edit) {
@@ -84,8 +84,9 @@ if (!themeIsEditable($theme))
 
 // If we're attempting to edit a file that's not a text file or that does not belong to the theme directory, this is an illegal attempt
 if ($file_to_edit) {
-	if (!in_array($file_to_edit, $themefiles) or !isTextFile($file_to_edit) or filesize($file_to_edit) == 0)
+	if (!in_array($file_to_edit, $themefiles) or !isTextFile($file_to_edit) or filesize($file_to_edit) == 0) {
 		zp_error(gettext('Cannot edit this file!'));
+	}
 }
 ?>
 
@@ -137,11 +138,11 @@ if ($message) {
 	</div>
 
 
-<?php if ($file_to_edit) { ?>
+	<?php if ($file_to_edit) { ?>
 		<div id="editor">
 			<h2 class="h2_bordered"><?php echo sprintf(gettext('File <tt>%s</tt> from theme %s'), sanitize($_GET['file']), $themes[$theme]['name']); ?></h2>
 			<form method="post" action="">
-	<?php XSRFToken('edit_theme'); ?>
+				<?php XSRFToken('edit_theme'); ?>
 				<p><textarea cols="70" rows="35" name="newcontent" id="newcontent"><?php echo $file_content ?></textarea></p>
 				<input type="hidden" name="action" value="edit_file"/>
 				<p class="buttons">
@@ -152,11 +153,11 @@ if ($message) {
 			</form>
 		</div>
 
-<?php } else { ?>
+	<?php } else { ?>
 
 		<p><?php echo gettext('Select a file to edit from the list on your right hand. Keep in mind that you can <strong>break everything</strong> if you are not careful when updating files.'); ?></p>
 
-<?php } ?>
+	<?php } ?>
 
 </div> <!-- theme-editor -->
 
