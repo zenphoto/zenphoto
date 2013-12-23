@@ -52,13 +52,6 @@ function datepickerJS() {
 		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/i18n/jquery.ui.datepicker-<?php echo $lang; ?>.js" type="text/javascript"></script>
 		<?php
 	}
-	?>
-	<script type="text/javascript">
-		// <!-- <![CDATA[
-		$.datepicker.setDefaults({dateFormat: 'yy-mm-dd'});
-		// ]]> -->
-	</script>
-	<?php
 }
 
 /**
@@ -131,58 +124,58 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/admin.js" type="text/javascript" ></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.scrollTo.js" type="text/javascript"></script>
 			<script type="text/javascript">
-		// <!-- <![CDATA[
+				// <!-- <![CDATA[
 	<?php
 	if (zp_has_filter('admin_head', 'colorbox::css')) {
 		?>
-			$(document).ready(function() {
-				$("a.colorbox").colorbox({
-					maxWidth: "98%",
-					maxHeight: "98%",
-					close: '<?php echo gettext("close"); ?>'
-				});
-			});
+					$(document).ready(function() {
+						$("a.colorbox").colorbox({
+							maxWidth: "98%",
+							maxHeight: "98%",
+							close: '<?php echo gettext("close"); ?>'
+						});
+					});
 		<?php
 	}
 	?>
-		$(function() {
-			$(".tooltip ").tooltip({
-				show: 1000,
-				hide: 1000,
-				position: {
-					my: "center bottom-20",
-					at: "center top",
-					using: function(position, feedback) {
-						$(this).css(position);
-						$("<div>")
-										.addClass("arrow")
-										.addClass(feedback.vertical)
-										.addClass(feedback.horizontal)
-										.appendTo(this);
-					}
-				}
-			});
-			$(".page-list_icon").tooltip({
-				show: 1000,
-				hide: 1000,
-				position: {
-					my: "center bottom-20",
-					at: "center top",
-					using: function(position, feedback) {
-						$(this).css(position);
-						$("<div>")
-										.addClass("arrow")
-										.addClass(feedback.vertical)
-										.addClass(feedback.horizontal)
-										.appendTo(this);
-					}
-				}
-			});
-		});
-		jQuery(function($) {
-			$(".fade-message").fadeTo(5000, 1).fadeOut(1000);
-		})
-		// ]]> -->
+				$(function() {
+					$(".tooltip ").tooltip({
+						show: 1000,
+						hide: 1000,
+						position: {
+							my: "center bottom-20",
+							at: "center top",
+							using: function(position, feedback) {
+								$(this).css(position);
+								$("<div>")
+												.addClass("arrow")
+												.addClass(feedback.vertical)
+												.addClass(feedback.horizontal)
+												.appendTo(this);
+							}
+						}
+					});
+					$(".page-list_icon").tooltip({
+						show: 1000,
+						hide: 1000,
+						position: {
+							my: "center bottom-20",
+							at: "center top",
+							using: function(position, feedback) {
+								$(this).css(position);
+								$("<div>")
+												.addClass("arrow")
+												.addClass(feedback.vertical)
+												.addClass(feedback.horizontal)
+												.appendTo(this);
+							}
+						}
+					});
+				});
+				jQuery(function($) {
+					$(".fade-message").fadeTo(5000, 1).fadeOut(1000);
+				})
+				// ]]> -->
 			</script>
 			<?php
 			zp_apply_filter('admin_head');
@@ -193,31 +186,31 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<!--Nested Sortables-->
 			<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.ui.nestedSortable.js"></script>
 			<script type="text/javascript">
-		//<!-- <![CDATA[
-		$(document).ready(function() {
+				//<!-- <![CDATA[
+				$(document).ready(function() {
 
-			$('ul.page-list').nestedSortable({
-				disableNesting: 'no-nest',
-				forcePlaceholderSize: true,
-				handle: 'div',
-				items: 'li',
-				opacity: .6,
-				placeholder: 'placeholder',
-				tabSize: 25,
-				tolerance: 'intersect',
-				toleranceElement: '> div',
-				listType: 'ul'
-			});
+					$('ul.page-list').nestedSortable({
+						disableNesting: 'no-nest',
+						forcePlaceholderSize: true,
+						handle: 'div',
+						items: 'li',
+						opacity: .6,
+						placeholder: 'placeholder',
+						tabSize: 25,
+						tolerance: 'intersect',
+						toleranceElement: '> div',
+						listType: 'ul'
+					});
 
-			$('.serialize').click(function() {
-				serialized = $('ul.page-list').nestedSortable('serialize');
-				if (serialized != original_order) {
-					$('#serializeOutput').html('<input type="hidden" name="order" size="30" maxlength="1000" value="' + serialized + '" />');
-				}
-			})
-			var original_order = $('ul.page-list').nestedSortable('serialize');
-		});
-		// ]]> -->
+					$('.serialize').click(function() {
+						serialized = $('ul.page-list').nestedSortable('serialize');
+						if (serialized != original_order) {
+							$('#serializeOutput').html('<input type="hidden" name="order" size="30" maxlength="1000" value="' + serialized + '" />');
+						}
+					})
+					var original_order = $('ul.page-list').nestedSortable('serialize');
+				});
+				// ]]> -->
 			</script>
 			<!--Nested Sortables End-->
 			<?php
@@ -1341,6 +1334,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									// <!-- <![CDATA[
 									$(function() {
 										$("#datepicker<?php echo $suffix; ?>").datepicker({
+											dateFormat: 'yy-mm-dd',
 											showOn: 'button',
 											buttonImage: 'images/calendar.png',
 											buttonText: '<?php echo gettext('calendar'); ?>',
@@ -1719,6 +1713,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							// <!-- <![CDATA[
 							$(function() {
 								$("#<?php echo $prefix; ?>publishdate,#<?php echo $prefix; ?>expirationdate").datepicker({
+									dateFormat: 'yy-mm-dd',
 									showOn: 'button',
 									buttonImage: '../zp-core/images/calendar.png',
 									buttonText: '<?php echo gettext("calendar"); ?>',

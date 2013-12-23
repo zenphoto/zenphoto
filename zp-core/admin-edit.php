@@ -1114,6 +1114,7 @@ echo "\n</head>";
 																	// <!-- <![CDATA[
 																	$(function() {
 																		$("#publishdate-<?php echo $currentimage; ?>,#expirationdate-<?php echo $currentimage; ?>").datepicker({
+																			dateFormat: 'yy-mm-dd',
 																			showOn: 'button',
 																			buttonImage: '../zp-core/images/calendar.png',
 																			buttonText: '<?php echo gettext("calendar"); ?>',
@@ -1339,6 +1340,7 @@ echo "\n</head>";
 																// <!-- <![CDATA[
 																$(function() {
 																	$("#datepicker_<?php echo $currentimage; ?>").datepicker({
+																		dateFormat: 'yy-mm-dd',
 																		showOn: 'button',
 																		buttonImage: 'images/calendar.png',
 																		buttonText: '<?php echo gettext('calendar'); ?>',

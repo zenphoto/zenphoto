@@ -578,6 +578,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 																// <!-- <![CDATA[
 																$(function() {
 																	$("#date").datepicker({
+																		dateFormat: 'yy-mm-dd',
 																		showOn: 'button',
 																		buttonImage: '../../images/calendar.png',
 																		buttonText: '<?php echo gettext('calendar'); ?>',
@@ -605,6 +606,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 																// <!-- <![CDATA[
 																$(function() {
 																	$("#expiredate").datepicker({
+																		dateFormat: 'yy-mm-dd',
 																		showOn: 'button',
 																		buttonImage: '../../images/calendar.png',
 																		buttonText: '<?php echo gettext('calendar'); ?>',
