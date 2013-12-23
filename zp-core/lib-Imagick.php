@@ -49,9 +49,9 @@ class lib_Imagick_Options {
 	 */
 	function getOptionsSupported() {
 		global $_zp_imagick_present, $_zp_graphics_optionhandlers;
-
-		$disabled = $this->canLoadMsg();
-
+		if ($disabled = $this->canLoadMsg()) {
+			setOption('use_imagick', 0, true);
+		}
 		$imagickOptions = array(
 						gettext('Enable Imagick') => array(
 										'key'			 => 'use_imagick',
