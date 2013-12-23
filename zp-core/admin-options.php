@@ -1605,7 +1605,7 @@ Zenphoto_Authority::printPasswordFormJS();
 								$sort[gettext('Custom')] = 'custom';
 								?>
 								<tr>
-									<td class="leftcolumn"><?php echo gettext("Sort albums by:"); ?> </td>
+									<td class="leftcolumn"><?php echo gettext("Sort albums by"); ?> </td>
 									<td colspan="2">
 										<span class="nowrap">
 											<select id="albumsortselect" name="subalbumsortby" onchange="update_direction(this, 'album_direction_div', 'album_custom_div');">
@@ -1654,7 +1654,7 @@ Zenphoto_Authority::printPasswordFormJS();
 								</tr>
 
 								<tr>
-									<td class="leftcolumn"><?php echo gettext("Sort images by:"); ?> </td>
+									<td class="leftcolumn"><?php echo gettext("Sort images by"); ?> </td>
 									<td colspan="2">
 										<span class="nowrap">
 											<select id="imagesortselect" name="sortby" onchange="update_direction(this, 'image_direction_div', 'image_custom_div')">
@@ -1744,7 +1744,7 @@ Zenphoto_Authority::printPasswordFormJS();
 								}
 								?>
 								<tr>
-									<td><?php echo gettext("Sort images by:"); ?></td>
+									<td><?php echo gettext("Sort images by"); ?></td>
 									<td>
 										<?php
 										$sort = $sortby;

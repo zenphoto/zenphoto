@@ -1434,7 +1434,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						</tr>
 
 						<tr>
-							<td class="leftcolumn"><?php echo gettext("Sort images by:"); ?> </td>
+							<td class="leftcolumn"><?php echo gettext("Sort images by"); ?> </td>
 							<td>
 								<span class="nowrap">
 									<select id="imagesortselect<?php echo $prefix; ?>" name="<?php echo $prefix; ?>sortby" onchange="update_direction(this, 'image_direction_div<?php echo $suffix; ?>', 'image_custom_div<?php echo $suffix; ?>')">
