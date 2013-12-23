@@ -411,7 +411,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 										<tr>
 											<td class="topalign-padding"><?php echo gettext("Title:"); ?></td>
 											<td class="middlecolumn">
-	<?php print_language_string_list($result->getTitle('all'), 'title', false, NULL, 'title', '100%', 'zenpage_language_string_list', 10); ?>
+												<?php print_language_string_list($result->getTitle('all'), 'title', false, NULL, 'title', '100%', 'zenpage_language_string_list', 10); ?>
 											</td>
 											<td class="rightcolumn" rowspan="6">
 												<h2 class="h2_bordered_edit"><?php echo gettext("Publish"); ?></h2>
@@ -481,7 +481,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 															if (GALLERY_SECURITY == 'public') {
 																?>
 																<a href="javascript:toggle_passwords('',true);">
-																<?php echo gettext("Password:"); ?>
+																	<?php echo gettext("Password:"); ?>
 																</a>
 																<?php
 																if (empty($x)) {
@@ -498,7 +498,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 															</p>
 															<div class="passwordextrahide" style="display:none">
 																<a href="javascript:toggle_passwords('',false);">
-			<?php echo gettext("Guest user:"); ?>
+																	<?php echo gettext("Guest user:"); ?>
 																</a>
 																<input type="text" size="27" id="user_name" name="user"
 																			 onkeydown="passwordClear('');"
@@ -512,7 +512,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 																			 value="<?php echo $x; ?>" />
 																<br />
 																<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear('');
-					togglePassword('');"><?php echo gettext('Show password'); ?></label>
+																		togglePassword('');"><?php echo gettext('Show password'); ?></label>
 																<br />
 																<span class="password_field_">
 																	<span id="match"><?php echo gettext("(repeat)"); ?></span>
@@ -526,7 +526,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 																</span>
 																<?php echo gettext("Password hint:"); ?>
 																<br />
-															<?php print_language_string_list($hint, 'hint', false, NULL, 'hint', 27); ?>
+																<?php print_language_string_list($hint, 'hint', false, NULL, 'hint', 27); ?>
 															</div>
 															<?php
 														}
@@ -536,21 +536,21 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 														<label class="checkboxlabel">
 															<input type="radio" id="copy_object" name="copy_delete_object" value="copy"
 																		 onclick="javascript:$('#copyfield').show();
-				$('#deletemsg').hide();" />
-		<?php echo gettext("Copy"); ?>
+																				 $('#deletemsg').hide();" />
+																		 <?php echo gettext("Copy"); ?>
 														</label>
 														<label class="checkboxlabel">
 															<input type="radio" id="delete_object" name="copy_delete_object" value="delete"
 																		 onclick="deleteConfirm('delete_object', '', '<?php printf(gettext('Are you sure you want to delete this %s?'), $deleteitem); ?>');
-				$('#copyfield').hide();" />
-		<?php echo gettext('delete'); ?>
+																				 $('#copyfield').hide();" />
+																		 <?php echo gettext('delete'); ?>
 														</label>
 														<br class="clearall" />
 														<div class="copydelete" id="copyfield" style="display:none" >
 															<?php printf(gettext('copy as: %s'), '<input type="text" name="copy_object_as" value = "" />'); ?>
 														</div>
 														<div class="copydelete" id="deletemsg"	style="padding-top: .5em; padding-left: .5em; color: red; display: none">
-														<?php printf(gettext('%s will be deleted when changes are applied.'), $deleteitem); ?>
+															<?php printf(gettext('%s will be deleted when changes are applied.'), $deleteitem); ?>
 														</div>
 														<?php
 													}
@@ -574,14 +574,15 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 
 															<script type="text/javascript">
 		// <!-- <![CDATA[
-		$(function() {
-		$("#date").datepicker({
-			showOn: 'button',
-			buttonImage: '../../images/calendar.png',
-			buttonText: '<?php echo gettext('calendar'); ?>',
-			buttonImageOnly: true
-		});
-		});
+																$(function() {
+																	$("#date").datepicker({
+																		dateFormat: 'yy-mm-dd',
+																		showOn: 'button',
+																		buttonImage: '../../images/calendar.png',
+																		buttonText: '<?php echo gettext('calendar'); ?>',
+																		buttonImageOnly: true
+																	});
+																});
 		// ]]> -->
 															</script>
 															<?php
@@ -601,14 +602,15 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 														<p>
 															<script type="text/javascript">
 		// <!-- <![CDATA[
-		$(function() {
-		$("#expiredate").datepicker({
-			showOn: 'button',
-			buttonImage: '../../images/calendar.png',
-			buttonText: '<?php echo gettext('calendar'); ?>',
-			buttonImageOnly: true
-		});
-		});
+																$(function() {
+																	$("#expiredate").datepicker({
+																		dateFormat: 'yy-mm-dd',
+																		showOn: 'button',
+																		buttonImage: '../../images/calendar.png',
+																		buttonText: '<?php echo gettext('calendar'); ?>',
+																		buttonImageOnly: true
+																	});
+																});
 		// ]]> -->
 															</script>
 
@@ -666,14 +668,14 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 																	?>
 																	<label>
 																		<input type="checkbox" id="reset_rating" name="reset_rating" value="1" />
-																	<?php printf(gettext('Reset rating (%u stars)'), $hc); ?>
+																		<?php printf(gettext('Reset rating (%u stars)'), $hc); ?>
 																	</label>
 																	<?php
 																} else {
 																	?>
 																	<label>
 																		<input type="checkbox" name="reset_rating" value="1" disabled="disabled"/>
-																	<?php echo gettext('Reset rating (unrated)'); ?>
+																		<?php echo gettext('Reset rating (unrated)'); ?>
 																	</label>
 																	<?php
 																}
@@ -682,22 +684,22 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 															<?php
 														}
 														?>
-													<?php echo zp_apply_filter('general_zenpage_utilities', '', $result); ?>
+														<?php echo zp_apply_filter('general_zenpage_utilities', '', $result); ?>
 													</div>
-														<?php if (is_AdminEditPage("newsarticle")) { ?>
+													<?php if (is_AdminEditPage("newsarticle")) { ?>
 														<h2 class="h2_bordered_edit"><?php echo gettext("Categories"); ?></h2>
 														<div class="zenpagechecklist">
 															<?php
 															if (is_object($result)) {
 																?>
 																<ul>
-																<?php printNestedItemsList('cats-checkboxlist', $result->getID()); ?>
+																	<?php printNestedItemsList('cats-checkboxlist', $result->getID()); ?>
 																</ul>
 																<?php
 															} else {
 																?>
 																<ul>
-																<?php printNestedItemsList('cats-checkboxlist', '', 'all'); ?>
+																	<?php printNestedItemsList('cats-checkboxlist', '', 'all'); ?>
 																</ul>
 																<?php
 															}
@@ -712,7 +714,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 													?>
 													<h2 class="h2_bordered_edit"><?php echo gettext("Tags"); ?></h2>
 													<div class="box-edit-unpadded">
-													<?php tagSelector($result, 'tags_', false, getTagOrder()); ?>
+														<?php tagSelector($result, 'tags_', false, getTagOrder()); ?>
 													</div>
 													<?php
 												}
@@ -788,7 +790,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 											<tr>
 												<td class="topalign-nopadding"><br /><?php echo gettext("Codeblocks:"); ?></td>
 												<td class="topalign-nopadding middlecolumn">
-											<?php printCodeblockEdit($result, 0); ?>
+													<?php printCodeblockEdit($result, 0); ?>
 												</td>
 											</tr>
 											<?php
@@ -819,25 +821,25 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 												} else {
 													?>
 													<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;title=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="images/view.png" alt="" /><?php echo gettext("View"); ?></a>
-			<?php
-		}
-	}
-	?>
+													<?php
+												}
+											}
+											?>
 										</div>
 									</span>
 									<br style="clear: both" />
 								</div>
 							</form>
+							<?php
+						}
+						if (is_AdminEditPage("newsarticle") || is_AdminEditPage("newscategory")) {
+							?>
+					</div>
 					<?php
 				}
-				if (is_AdminEditPage("newsarticle") || is_AdminEditPage("newscategory")) {
-					?>
-					</div>
-			<?php
-		}
-		?>
+				?>
 			</div>
 		</div>
-<?php printAdminFooter(); ?>
+		<?php printAdminFooter(); ?>
 </body>
 </html>

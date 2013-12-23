@@ -305,6 +305,7 @@ echo '</head>';
 					//<!-- <![CDATA[
 					$(function() {
 						$("#publish_date").datepicker({
+							dateFormat: 'yy-mm-dd',
 							showOn: 'button',
 							buttonImage: '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/calendar.png',
 							buttonText: '<?php echo gettext('calendar'); ?>',
