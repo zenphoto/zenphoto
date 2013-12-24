@@ -1360,8 +1360,8 @@ if ($c <= 0) {
 									if (!empty($filelist)) {
 										if (isset($_GET['delete_extra'])) {
 											foreach ($systemlist as $key => $file) {
-												@chmod($file, 0666);
 												if (!is_dir($file)) {
+													@chmod($file, 0777);
 													if (@unlink($file)) {
 														unset($filelist[$key]);
 														unset($systemlist[$key]);
@@ -1370,6 +1370,7 @@ if ($c <= 0) {
 											}
 											rsort($systemlist);
 											foreach ($systemlist as $key => $file) {
+												@chmod($file, 0777);
 												if (@rmdir($file)) {
 													unset($filelist[$key]);
 												}
