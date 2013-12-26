@@ -1326,7 +1326,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 						}
 						?>
 
-
 						<tr>
 							<td class="leftcolumn"><?php echo gettext("Date:"); ?> </td>
 							<td>
@@ -1582,10 +1581,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 										<?php
 										generateListFromArray($selected, $selections, false, true);
 										$imagelist = $album->getImages(0);
-										if ($_zp_gallery->getSecondLevelThumbs()) {
-											$subalbums = $album->getAlbums(0);
-											foreach ($subalbums as $folder) {
-												$newalbum = newAlbum($folder);
+										$subalbums = $album->getAlbums(0);
+										foreach ($subalbums as $folder) {
+											$newalbum = newAlbum($folder);
+											if ($_zp_gallery->getSecondLevelThumbs()) {
 												$images = $newalbum->getImages(0);
 												foreach ($images as $filename) {
 													if (is_array($filename)) {
@@ -1594,8 +1593,14 @@ function printAdminHeader($tab, $subtab = NULL) {
 														$imagelist[] = '/' . $folder . '/' . $filename;
 													}
 												}
+											} else {
+												$t = $newalbum->getAlbumThumbImage();
+												if (strtolower(get_class($t)) !== 'transientimage' && $t->exists) {
+													$imagelist[] = '/' . $t->getAlbumName() . '/' . $t->filename;
+												}
 											}
 										}
+
 										if ($thumb && !is_numeric($thumb)) {
 											// check for current thumb being in the list. If not, add it
 											$target = $thumb;
