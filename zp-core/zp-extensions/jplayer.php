@@ -230,7 +230,7 @@ class jPlayer {
 
 	static function getMacrojplayer($albumname, $imagename, $count = 1) {
 		global $_zp_multimedia_extension;
-		$movie = newImage(NULL, array('folder'	 => $albumname, 'filename' => $imagename), true);
+		$movie = newImage(NULL, array('folder' => $albumname, 'filename' => $imagename), true);
 		if ($movie->exists) {
 			return $_zp_multimedia_extension->getPlayerConfig($movie, NULL, (int) $count);
 		} else {
@@ -297,7 +297,7 @@ class jPlayer {
 		}
 		$autoplay = '';
 		if (getOption('jplayer_autoplay') && !$multiplayer) {
-			$autoplay = ',jPlayer("play")';
+			$autoplay = '.jPlayer("play")';
 		}
 		$videoThumb = '';
 		if (getOption('jplayer_poster') && ($this->mode == 'video' || ($this->mode == 'audio' && getOption('jplayer_audioposter')))) {
@@ -647,8 +647,8 @@ class jPlayer {
 			}
 			?>
 			<script type="text/javascript">
-				//<![CDATA[
-				$(document).ready(function(){
+								//<![CDATA[
+								$(document).ready(function(){
 				new jPlayerPlaylist({
 				jPlayer: "#jquery_jplayer_<?php echo $albumobj->getID(); ?>",
 								cssSelectorAncestor: "#jp_container_<?php echo $albumobj->getID(); ?>"
