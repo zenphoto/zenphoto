@@ -1224,7 +1224,7 @@ class SearchEngine {
 					if (empty($sorttype)) {
 						$key = '`date` DESC';
 					} else {
-						$key = trim('`' . $sorttype . '` ' . $sortdirection);
+						$key = trim($sorttype . $sortdirection);
 					}
 					if ($show) {
 						$show .= '`date`<=' . db_quote(date('Y-m-d H:i:s')) . ' AND ';
