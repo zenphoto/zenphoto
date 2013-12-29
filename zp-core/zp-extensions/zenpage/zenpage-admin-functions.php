@@ -82,6 +82,7 @@ function updatePage(&$reports, $newpage = false) {
 			//already exists
 			$time = explode(' ', microtime());
 			$titlelink = $titlelink . '_' . ($time[1] + $time[0]);
+			$reports[] = "<p class='warningbox fade-message'>" . gettext('Duplicate page title') . '</p>';
 		}
 		$oldtitlelink = $titlelink;
 	} else {
@@ -113,12 +114,7 @@ function updatePage(&$reports, $newpage = false) {
 	}
 	// update page
 	$page = new ZenpagePage($titlelink, true);
-	if ($newpage && $page->loaded) {
-		//already exists
-		$time = explode(' ', microtime());
-		$titlelink = seoFriendly(get_language_string($title)) . '_' . ($time[1] + $time[0]);
-		$page = new ZenpagePage($titlelink, true);
-	}
+
 	$notice = processCredentials($page);
 	$page->setTitle($title);
 	$page->setContent($content);
@@ -349,6 +345,7 @@ function updateArticle(&$reports, $newarticle = false) {
 			//already exists
 			$time = explode(' ', microtime());
 			$titlelink = $titlelink . '_' . ($time[1] + $time[0]);
+			$reports[] = "<p class='warningbox fade-message'>" . gettext('Duplicate article title') . '</p>';
 		}
 		$oldtitlelink = $titlelink;
 		$id = 0;
@@ -856,6 +853,7 @@ function updateCategory(&$reports, $newcategory = false) {
 			//already exists
 			$time = explode(' ', microtime());
 			$titlelink = $titlelink . '_' . ($time[1] + $time[0]);
+			$reports[] = "<p class='warningbox fade-message'>" . gettext('Duplicate category title') . '</p>';
 		}
 		$oldtitlelink = $titlelink;
 	} else {
@@ -972,37 +970,37 @@ function printCategoryListSortableTable($cat, $flag) {
 	?>
 	<div class='page-list_row'>
 		<div class='page-list_title' >
-			<?php echo "<a href='admin-edit.php?newscategory&amp;titlelink=" . $cat->getTitlelink() . "' title='" . gettext('Edit this category') . "'>" . $cattitle . "</a>" . checkHitcounterDisplay($cat->getHitcounter()); ?>
+	<?php echo "<a href='admin-edit.php?newscategory&amp;titlelink=" . $cat->getTitlelink() . "' title='" . gettext('Edit this category') . "'>" . $cattitle . "</a>" . checkHitcounterDisplay($cat->getHitcounter()); ?>
 		</div>
 		<div class="page-list_extra"><?php echo $count; ?> <?php echo gettext("articles"); ?>
 		</div>
 		<div class="page-list_iconwrapper">
 			<div class="page-list_icon"><?php
-				$password = $cat->getPassword();
-				if (!empty($password)) {
-					echo '<img src="../../images/lock.png" style="border: 0px;" alt="' . gettext('Password protected') . '" title="' . gettext('Password protected') . '" />';
-				}
-				?>
+		$password = $cat->getPassword();
+		if (!empty($password)) {
+			echo '<img src="../../images/lock.png" style="border: 0px;" alt="' . gettext('Password protected') . '" title="' . gettext('Password protected') . '" />';
+		}
+	?>
 			</div>
 			<div class="page-list_icon">
-				<?php
-				if ($cat->getShow()) {
-					$title = gettext("Un-publish");
-					?>
+	<?php
+	if ($cat->getShow()) {
+		$title = gettext("Un-publish");
+		?>
 					<a href="?publish=0&amp;titlelink=<?php echo html_encode($cat->getTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo $title; ?>">
 						<img src="../../images/pass.png" alt="<?php gettext("Scheduled for published"); ?>" title="<?php echo $title; ?>" /></a>
-					<?php
-				} else {
-					$title = gettext("Publish");
-					?>
+		<?php
+	} else {
+		$title = gettext("Publish");
+		?>
 					<a href="?publish=1&amp;titlelink=<?php echo html_encode($cat->getTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo $title; ?>">
 						<img src="../../images/action.png" alt="<?php echo gettext("Un-published"); ?>" title="<?php echo $title; ?>" /></a>
-					<?php
-				}
-				?>
+		<?php
+	}
+	?>
 			</div>
 			<div class="page-list_icon">
-				<?php if ($count == 0) { ?>
+	<?php if ($count == 0) { ?>
 					<img src="../../images/icon_inactive.png" alt="<?php gettext('locked'); ?>" />
 					<?php
 				} else {
@@ -1010,20 +1008,20 @@ function printCategoryListSortableTable($cat, $flag) {
 					<a href="../../../index.php?p=news&amp;category=<?php echo js_encode($cat->getTitlelink()); ?>" title="<?php echo gettext("View category"); ?>">
 						<img src="images/view.png" alt="view" />
 					</a>
-				<?php } ?>
+	<?php } ?>
 			</div>
-			<?php
-			if (extensionEnabled('hitcounter')) {
-				?>
+				<?php
+				if (extensionEnabled('hitcounter')) {
+					?>
 				<div class="page-list_icon"><a
 						href="?hitcounter=1&amp;id=<?php echo $cat->getID(); ?>&amp;tab=categories&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>"
 						title="<?php echo gettext("Reset hitcounter"); ?>"> <img
 							src="../../images/reset.png"
 							alt="<?php echo gettext("Reset hitcounter"); ?>" /> </a>
 				</div>
-				<?php
-			}
-			?>
+		<?php
+	}
+	?>
 			<div class="page-list_icon"><a
 					href="javascript:confirmDelete('admin-categories.php?delete=<?php echo js_encode($cat->getTitlelink()); ?>&amp;tab=categories&amp;XSRFToken=<?php echo getXSRFToken('delete_category') ?>',deleteCategory)"
 					title="<?php echo gettext("Delete Category"); ?>"><img
@@ -1382,18 +1380,18 @@ function zenpageJSCSS() {
 function printZenpageIconLegend() {
 	?>
 	<ul class="iconlegend">
-		<?php
-		if (GALLERY_SECURITY == 'public') {
-			?>
+	<?php
+	if (GALLERY_SECURITY == 'public') {
+		?>
 			<li><img src="../../images/lock.png" alt="" /><?php echo gettext("Has Password"); ?></li>	<li><img src="../../images/pass.png" alt="" /><img	src="../../images/action.png" alt="" /><img src="images/clock.png" alt="" /><?php echo gettext("Published/Not published/Scheduled for publishing"); ?></li>
 			<?php
 		}
 		?>
 		<li><img src="../../images/comments-on.png" alt="" /><img src="../../images/comments-off.png" alt="" /><?php echo gettext("Comments on/off"); ?></li>
 		<li><img src="../../images/view.png" alt="" /><?php echo gettext("View"); ?></li>
-		<?php
-		if (extensionEnabled('hitcounter')) {
-			?>
+	<?php
+	if (extensionEnabled('hitcounter')) {
+		?>
 			<li><img src="../../images/reset.png" alt="" /><?php echo gettext("Reset hitcounter"); ?></li>
 			<?php
 		}
@@ -1424,85 +1422,85 @@ function authorSelector($author = NULL) {
 	}
 	?>
 	<select size='1' name="author" id="author">
-		<?php
-		generateListFromArray(array($author), $authors, false, false);
-		?>
-	</select>
 	<?php
-}
+	generateListFromArray(array($author), $authors, false, false);
+	?>
+	</select>
+		<?php
+	}
 
-/**
- * Checks if a page or articles has an expiration date set and prints out this date and a message about it or if it already is expired
- *
- * @param string $object Object of the page or news article to check
- * @return string
- */
-function checkIfExpires($object) {
-	$dt = $object->getExpireDate();
-	if (!empty($dt)) {
-		$expired = $dt < date('Y-m-d H:i:s');
-		echo "<br /><small>";
-		if ($expired) {
-			echo '<strong class="expired">';
-			printf(gettext('Expired: %s'), $dt);
-			echo "</strong>";
+	/**
+	 * Checks if a page or articles has an expiration date set and prints out this date and a message about it or if it already is expired
+	 *
+	 * @param string $object Object of the page or news article to check
+	 * @return string
+	 */
+	function checkIfExpires($object) {
+		$dt = $object->getExpireDate();
+		if (!empty($dt)) {
+			$expired = $dt < date('Y-m-d H:i:s');
+			echo "<br /><small>";
+			if ($expired) {
+				echo '<strong class="expired">';
+				printf(gettext('Expired: %s'), $dt);
+				echo "</strong>";
+			} else {
+				echo '<strong class="expiredate">';
+				printf(gettext("Expires: %s"), $dt);
+				echo "</strong>";
+			}
+			echo "</small>";
+		}
+	}
+
+	/**
+	 * Checks if a page or articles is scheduled for publishing and prints out a message and the future date or the publishing date if not scheduled.
+	 *
+	 * @param string $object Object of the page or news article to check
+	 * @return string
+	 */
+	function checkIfScheduled($object) {
+		$dt = $object->getDateTime();
+		if ($dt > date('Y-m-d H:i:s')) {
+			if ($object->getShow() != 1) {
+				echo '<strong class="inactivescheduledate">' . $dt . '</strong>';
+			} else {
+				echo '<strong class="scheduledate">' . $dt . '</strong>';
+			}
 		} else {
-			echo '<strong class="expiredate">';
-			printf(gettext("Expires: %s"), $dt);
-			echo "</strong>";
+			echo $dt;
 		}
-		echo "</small>";
 	}
-}
 
-/**
- * Checks if a page or articles is scheduled for publishing and prints out a message and the future date or the publishing date if not scheduled.
- *
- * @param string $object Object of the page or news article to check
- * @return string
- */
-function checkIfScheduled($object) {
-	$dt = $object->getDateTime();
-	if ($dt > date('Y-m-d H:i:s')) {
-		if ($object->getShow() != 1) {
-			echo '<strong class="inactivescheduledate">' . $dt . '</strong>';
-		} else {
-			echo '<strong class="scheduledate">' . $dt . '</strong>';
+	/**
+	 * Prints the publish/un-published/scheduled publishing icon with a link for the pages and news articles list.
+	 *
+	 * @param string $object Object of the page or news article to check
+	 * @return string
+	 */
+	function printPublishIconLink($object, $type, $linkback = '') {
+		$urladd = '';
+		if ($type == "news") {
+			if (isset($_GET['subpage'])) {
+				$urladd .= "&amp;subpage=" . sanitize($_GET['subpage']);
+			}
+			if (isset($_GET['date'])) {
+				$urladd .= "&amp;date=" . sanitize($_GET['date']);
+			}
+			if (isset($_GET['category'])) {
+				$urladd .= "&amp;category=" . sanitize($_GET['category']);
+			}
+			if (isset($_GET['sortorder'])) {
+				$urladd .= "&amp;sortorder=" . sanitize($_GET['sortorder']);
+			}
+			if (isset($_GET['articles_page'])) {
+				$urladd .= "&amp;articles_page=" . sanitize_numeric($_GET['articles_page']);
+			}
 		}
-	} else {
-		echo $dt;
-	}
-}
-
-/**
- * Prints the publish/un-published/scheduled publishing icon with a link for the pages and news articles list.
- *
- * @param string $object Object of the page or news article to check
- * @return string
- */
-function printPublishIconLink($object, $type, $linkback = '') {
-	$urladd = '';
-	if ($type == "news") {
-		if (isset($_GET['subpage'])) {
-			$urladd .= "&amp;subpage=" . sanitize($_GET['subpage']);
-		}
-		if (isset($_GET['date'])) {
-			$urladd .= "&amp;date=" . sanitize($_GET['date']);
-		}
-		if (isset($_GET['category'])) {
-			$urladd .= "&amp;category=" . sanitize($_GET['category']);
-		}
-		if (isset($_GET['sortorder'])) {
-			$urladd .= "&amp;sortorder=" . sanitize($_GET['sortorder']);
-		}
-		if (isset($_GET['articles_page'])) {
-			$urladd .= "&amp;articles_page=" . sanitize_numeric($_GET['articles_page']);
-		}
-	}
-	if ($object->getDateTime() > date('Y-m-d H:i:s')) {
-		if ($object->getShow()) {
-			$title = gettext("Publish immediately (skip scheduling)");
-			?>
+		if ($object->getDateTime() > date('Y-m-d H:i:s')) {
+			if ($object->getShow()) {
+				$title = gettext("Publish immediately (skip scheduling)");
+				?>
 			<a href="?skipscheduling=1&amp;titlelink=<?php echo html_encode($object->getTitlelink()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo $title; ?>">
 				<img src="images/clock.png" alt="<?php gettext("Scheduled for published"); ?>" title="<?php echo $title; ?>" /></a>
 			<?php
@@ -1526,223 +1524,223 @@ function printPublishIconLink($object, $type, $linkback = '') {
 				$title = gettext("Publish");
 				?>
 				<a href="?publish=1&amp;titlelink=<?php echo html_encode($object->getTitlelink()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>">
-					<?php
-				} else {
-					$title = gettext("Publish (override expiration)");
-					?>
-					<a href="?publish=2&amp;titlelink=<?php echo html_encode($object->getTitlelink()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>">
-						<?php
-					}
-					?>
-					<img src="../../images/action.png" alt="<?php echo gettext("Un-published"); ?>" title= "<?php echo $title; ?>" /></a>
 				<?php
-			}
-		}
-	}
-
-	/**
-	 * Checks if a checkbox is selected and checks it if.
-	 *
-	 * @param string $field the array field of an item array to be checked (for example "permalink" or "comments on")
-	 */
-	function checkIfChecked($field) {
-		if ($field) {
-			echo 'checked="checked"';
-		}
-	}
-
-	/**
-	 * Checks if the current logged in admin user is the author that locked the page/article.
-	 * Only that author or any user with admin rights will be able to edit or unlock.
-	 *
-	 * @param object $page The array of the page or article to check
-	 * @return bool
-	 */
-	function checkIfLockedPage($page) {
-		if (zp_loggedin(ADMIN_RIGHTS))
-			return true;
-		if ($page->getLocked()) {
-			return $page->isMyItem(ZENPAGE_PAGES_RIGHTS);
-		} else {
-			return true;
-		}
-	}
-
-	/**
-	 * Checks if the current logged in admin user is the author that locked the article.
-	 * Only that author or any user with admin rights will be able to edit or unlock.
-	 *
-	 * @param object $page The array of the page or article to check
-	 * @return bool
-	 */
-	function checkIfLockedNews($news) {
-		if (zp_loggedin(ADMIN_RIGHTS))
-			return true;
-		if ($news->getLocked()) {
-			return $news->isMyItem(ZENPAGE_NEWS_RIGHTS);
-		} else {
-			return true;
-		}
-	}
-
-	/**
-	 * Checks if the current admin-edit.php page is called for news articles or for pages.
-	 *
-	 * @param string $page What you want to check for, "page" or "newsarticle"
-	 * @return bool
-	 */
-	function is_AdminEditPage($page) {
-		return isset($_GET[$page]);
-	}
-
-	/**
-	 * Processes the check box bulk actions
-	 *
-	 */
-	function processZenpageBulkActions($type) {
-		global $_zp_zenpage;
-		$action = false;
-		if (isset($_POST['ids'])) {
-			//echo "action for checked items:". $_POST['checkallaction'];
-			$action = sanitize($_POST['checkallaction']);
-			$links = sanitize($_POST['ids']);
-			$total = count($links);
-			$message = NULL;
-			$sql = '';
-			if ($action != 'noaction') {
-				if ($total > 0) {
-					if ($action == 'addtags' || $action == 'alltags') {
-						$tags = bulkTags();
-					}
-					if ($action == 'addcats') {
-						foreach ($_POST as $key => $value) {
-							$key = postIndexDecode($key);
-							if (substr($key, 0, 3) == 'cat') {
-								if ($value) {
-									$cats[] = substr($key, 3);
-								}
-							}
-						}
-						$cats = sanitize($cats, 3);
-					}
-					$n = 0;
-					foreach ($links as $titlelink) {
-						$class = 'Zenpage' . $type;
-						$obj = new $class($titlelink);
-
-						switch ($action) {
-							case 'deleteall':
-								$obj->remove();
-								break;
-							case 'addtags':
-								$mytags = array_unique(array_merge($tags, $obj->getTags()));
-								$obj->setTags($mytags);
-								break;
-							case 'cleartags':
-								$obj->setTags(array());
-								break;
-							case 'alltags':
-								$allarticles = $obj->getArticles('', 'all', true);
-								foreach ($allarticles as $article) {
-									$newsobj = new ZenpageNews($article['titlelink']);
-									$mytags = array_unique(array_merge($tags, $newsobj->getTags()));
-									$newsobj->setTags($mytags);
-									$newsobj->save();
-								}
-								break;
-							case 'clearalltags':
-								$allarticles = $obj->getArticles('', 'all', true);
-								foreach ($allarticles as $article) {
-									$newsobj = new ZenpageNews($article['titlelink']);
-									$newsobj->setTags(array());
-									$newsobj->save();
-								}
-								break;
-							case 'addcats':
-								$catarray = array();
-								$allcats = $obj->getCategories();
-								foreach ($cats as $cat) {
-									$catitem = $_zp_zenpage->getCategory($cat);
-									$catarray[] = $catitem['titlelink']; //to use the setCategories method we need an array with just the titlelinks!
-								}
-								$allcatsarray = array();
-								foreach ($allcats as $allcat) {
-									$allcatsarray[] = $allcat['titlelink']; //same here!
-								}
-								$mycats = array_unique(array_merge($catarray, $allcatsarray));
-								$obj->setCategories($mycats);
-								break;
-							case 'clearcats':
-								$obj->setCategories(array());
-								break;
-							case 'showall':
-								$obj->set('show', 1);
-								break;
-							case 'hideall':
-								$obj->set('show', 0);
-								break;
-							case 'commentson':
-								$obj->set('commentson', 1);
-								break;
-							case 'commentsoff':
-								$obj->set('commentson', 0);
-								break;
-							case 'resethitcounter':
-								$obj->set('hitcounter', 0);
-								break;
-						}
-						$obj->save();
-					}
+			} else {
+				$title = gettext("Publish (override expiration)");
+				?>
+					<a href="?publish=2&amp;titlelink=<?php echo html_encode($object->getTitlelink()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>">
+					<?php
+				}
+				?>
+					<img src="../../images/action.png" alt="<?php echo gettext("Un-published"); ?>" title= "<?php echo $title; ?>" /></a>
+					<?php
 				}
 			}
 		}
-		return $action;
-	}
 
-	function zenpageBulkActionMessage($action) {
-		switch ($action) {
-			case 'deleteall':
-				$message = gettext('Selected items deleted');
-				break;
-			case 'showall':
-				$message = gettext('Selected items published');
-				break;
-			case 'hideall':
-				$message = gettext('Selected items unpublished');
-				break;
-			case 'commentson':
-				$message = gettext('Comments enabled for selected items');
-				break;
-			case 'commentsoff':
-				$message = gettext('Comments disabled for selected items');
-				break;
-			case 'resethitcounter':
-				$message = gettext('Hitcounter for selected items');
-				break;
-			case 'addtags':
-				$message = gettext('Tags added to selected items');
-				break;
-			case 'cleartags':
-				$message = gettext('Tags cleared from selected items');
-				break;
-			case 'alltags':
-				$message = gettext('Tags added to articles of selected items');
-				break;
-			case 'clearalltags':
-				$message = gettext('Tags cleared from articles of selected items');
-				break;
-			case 'addcats':
-				$message = gettext('Categories added to selected items');
-				break;
-			case 'clearcats':
-				$message = gettext('Categories cleared from selected items');
-				break;
-			default:
-				return "<p class='notebox fade-message'>" . gettext('Nothing changed') . "</p>";
+		/**
+		 * Checks if a checkbox is selected and checks it if.
+		 *
+		 * @param string $field the array field of an item array to be checked (for example "permalink" or "comments on")
+		 */
+		function checkIfChecked($field) {
+			if ($field) {
+				echo 'checked="checked"';
+			}
 		}
-		if (isset($message)) {
-			return "<p class='messagebox fade-message'>" . $message . "</p>";
+
+		/**
+		 * Checks if the current logged in admin user is the author that locked the page/article.
+		 * Only that author or any user with admin rights will be able to edit or unlock.
+		 *
+		 * @param object $page The array of the page or article to check
+		 * @return bool
+		 */
+		function checkIfLockedPage($page) {
+			if (zp_loggedin(ADMIN_RIGHTS))
+				return true;
+			if ($page->getLocked()) {
+				return $page->isMyItem(ZENPAGE_PAGES_RIGHTS);
+			} else {
+				return true;
+			}
 		}
-		return false;
-	}
-	?>
+
+		/**
+		 * Checks if the current logged in admin user is the author that locked the article.
+		 * Only that author or any user with admin rights will be able to edit or unlock.
+		 *
+		 * @param object $page The array of the page or article to check
+		 * @return bool
+		 */
+		function checkIfLockedNews($news) {
+			if (zp_loggedin(ADMIN_RIGHTS))
+				return true;
+			if ($news->getLocked()) {
+				return $news->isMyItem(ZENPAGE_NEWS_RIGHTS);
+			} else {
+				return true;
+			}
+		}
+
+		/**
+		 * Checks if the current admin-edit.php page is called for news articles or for pages.
+		 *
+		 * @param string $page What you want to check for, "page" or "newsarticle"
+		 * @return bool
+		 */
+		function is_AdminEditPage($page) {
+			return isset($_GET[$page]);
+		}
+
+		/**
+		 * Processes the check box bulk actions
+		 *
+		 */
+		function processZenpageBulkActions($type) {
+			global $_zp_zenpage;
+			$action = false;
+			if (isset($_POST['ids'])) {
+				//echo "action for checked items:". $_POST['checkallaction'];
+				$action = sanitize($_POST['checkallaction']);
+				$links = sanitize($_POST['ids']);
+				$total = count($links);
+				$message = NULL;
+				$sql = '';
+				if ($action != 'noaction') {
+					if ($total > 0) {
+						if ($action == 'addtags' || $action == 'alltags') {
+							$tags = bulkTags();
+						}
+						if ($action == 'addcats') {
+							foreach ($_POST as $key => $value) {
+								$key = postIndexDecode($key);
+								if (substr($key, 0, 3) == 'cat') {
+									if ($value) {
+										$cats[] = substr($key, 3);
+									}
+								}
+							}
+							$cats = sanitize($cats, 3);
+						}
+						$n = 0;
+						foreach ($links as $titlelink) {
+							$class = 'Zenpage' . $type;
+							$obj = new $class($titlelink);
+
+							switch ($action) {
+								case 'deleteall':
+									$obj->remove();
+									break;
+								case 'addtags':
+									$mytags = array_unique(array_merge($tags, $obj->getTags()));
+									$obj->setTags($mytags);
+									break;
+								case 'cleartags':
+									$obj->setTags(array());
+									break;
+								case 'alltags':
+									$allarticles = $obj->getArticles('', 'all', true);
+									foreach ($allarticles as $article) {
+										$newsobj = new ZenpageNews($article['titlelink']);
+										$mytags = array_unique(array_merge($tags, $newsobj->getTags()));
+										$newsobj->setTags($mytags);
+										$newsobj->save();
+									}
+									break;
+								case 'clearalltags':
+									$allarticles = $obj->getArticles('', 'all', true);
+									foreach ($allarticles as $article) {
+										$newsobj = new ZenpageNews($article['titlelink']);
+										$newsobj->setTags(array());
+										$newsobj->save();
+									}
+									break;
+								case 'addcats':
+									$catarray = array();
+									$allcats = $obj->getCategories();
+									foreach ($cats as $cat) {
+										$catitem = $_zp_zenpage->getCategory($cat);
+										$catarray[] = $catitem['titlelink']; //to use the setCategories method we need an array with just the titlelinks!
+									}
+									$allcatsarray = array();
+									foreach ($allcats as $allcat) {
+										$allcatsarray[] = $allcat['titlelink']; //same here!
+									}
+									$mycats = array_unique(array_merge($catarray, $allcatsarray));
+									$obj->setCategories($mycats);
+									break;
+								case 'clearcats':
+									$obj->setCategories(array());
+									break;
+								case 'showall':
+									$obj->set('show', 1);
+									break;
+								case 'hideall':
+									$obj->set('show', 0);
+									break;
+								case 'commentson':
+									$obj->set('commentson', 1);
+									break;
+								case 'commentsoff':
+									$obj->set('commentson', 0);
+									break;
+								case 'resethitcounter':
+									$obj->set('hitcounter', 0);
+									break;
+							}
+							$obj->save();
+						}
+					}
+				}
+			}
+			return $action;
+		}
+
+		function zenpageBulkActionMessage($action) {
+			switch ($action) {
+				case 'deleteall':
+					$message = gettext('Selected items deleted');
+					break;
+				case 'showall':
+					$message = gettext('Selected items published');
+					break;
+				case 'hideall':
+					$message = gettext('Selected items unpublished');
+					break;
+				case 'commentson':
+					$message = gettext('Comments enabled for selected items');
+					break;
+				case 'commentsoff':
+					$message = gettext('Comments disabled for selected items');
+					break;
+				case 'resethitcounter':
+					$message = gettext('Hitcounter for selected items');
+					break;
+				case 'addtags':
+					$message = gettext('Tags added to selected items');
+					break;
+				case 'cleartags':
+					$message = gettext('Tags cleared from selected items');
+					break;
+				case 'alltags':
+					$message = gettext('Tags added to articles of selected items');
+					break;
+				case 'clearalltags':
+					$message = gettext('Tags cleared from articles of selected items');
+					break;
+				case 'addcats':
+					$message = gettext('Categories added to selected items');
+					break;
+				case 'clearcats':
+					$message = gettext('Categories cleared from selected items');
+					break;
+				default:
+					return "<p class='notebox fade-message'>" . gettext('Nothing changed') . "</p>";
+			}
+			if (isset($message)) {
+				return "<p class='messagebox fade-message'>" . $message . "</p>";
+			}
+			return false;
+		}
+		?>
