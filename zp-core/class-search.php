@@ -898,7 +898,7 @@ class SearchEngine {
 				if (empty($sorttype)) {
 					$key = '`date` DESC';
 				} else {
-					$key = trim('`' . $sorttype . '`' . ' ' . $sortdirection);
+					$key = trim($sorttype . ' ' . $sortdirection);
 				}
 				break;
 			case 'pages':
