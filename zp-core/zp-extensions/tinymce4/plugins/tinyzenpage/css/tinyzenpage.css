@@ -160,3 +160,8 @@ border-top: 1px dotted gray;
 ul.tinynesteditems li ul li {
 margin-left: -25px;
 }
+
+#zenpageselector,
+#albumselector {
+width: 175px !important;
+}

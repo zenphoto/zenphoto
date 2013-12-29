@@ -66,7 +66,7 @@ if(extensionEnabled('zenpage')) {
 		<div class="panel current">
 			<fieldset>
 				<legend>Zenpage</legend>
-				<select name="zenpage" size="1" onchange="javascript:this.form.submit();">
+				<select id="zenpageselector" name="zenpage" size="1" onchange="javascript:this.form.submit();">
 					<option><?php echo gettext("*Select*"); ?></option>
 					<?php printZenpageItems(); ?>
 				</select>
@@ -81,7 +81,7 @@ if(extensionEnabled('zenpage')) {
 		<div class="panel current">
 			<fieldset>
 				<legend>Zenphoto</legend>
-				<select name="album" size="1" onchange="javascript:this.form.submit();">
+				<select id="albumselector" name="album" size="1" onchange="javascript:this.form.submit();">
 					<option><?php echo gettext("*Select an album*"); ?></option>
 					<?php printFullAlbumsList(); ?>
 				</select>
