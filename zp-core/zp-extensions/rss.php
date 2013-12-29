@@ -20,6 +20,7 @@ class rss_options {
 
 	function __construct() {
 		if (OFFSET_PATH == 2) {
+			setOptionDefault('zp_plugin_rss', $plugin_is_filter);
 //	migrate old RSS options
 			setOptionDefault('RSS_items', getOption('feed_items')); // options for standard images rss
 			setOptionDefault('RSS_imagesize', getOption('feed_imagesize'));

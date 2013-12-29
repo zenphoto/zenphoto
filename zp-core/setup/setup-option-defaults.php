@@ -213,7 +213,6 @@ foreach ($_zp_exifvars as $key => $item) {
 setOptionDefault('IPTC_encoding', 'ISO-8859-1');
 
 setOptionDefault('UTF8_image_URI', 0);
-setOptionDefault('zp_plugin_zpCaptcha', 5 | CLASS_PLUGIN);
 
 setOptionDefault('sharpen_amount', 40);
 setOptionDefault('sharpen_radius', 0.5);
@@ -326,7 +325,6 @@ if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/Zenphoto.package')) {
 </p>
 
 <?php
-setOptionDefault('zp_plugin_security-logger', 9 | CLASS_PLUGIN);
 // migrate search space is opton
 if (getOption('search_space_is_OR')) {
 	setOption('search_space_is', '|');
@@ -455,29 +453,29 @@ $_zp_gallery = new Gallery(); // insure we have the proper options instantiated
 
 /* TODO:enable on the 1.4.7 release
  *
-	The following options have been relocated to methods of the gallery object. They will be purged form installations
-	on the Zenphoto 1.5 release.
+  The following options have been relocated to methods of the gallery object. They will be purged form installations
+  on the Zenphoto 1.5 release.
 
  * gallery_page_unprotected_xxx
  * gallery_sortdirection
  * gallery_sorttype
  * gallery_title
  * Gallery_description
-	gallery_password
-	gallery_user
-	gallery_hint
-	current_theme
+  gallery_password
+  gallery_user
+  gallery_hint
+  current_theme
  * website_title
  * website_url
-	gallery_security
-	login_user_field
-	album_use_new_image_date
-	thumb_select_images
-	album_default
-	image_default
+  gallery_security
+  login_user_field
+  album_use_new_image_date
+  thumb_select_images
+  album_default
+  image_default
 
  * these may have been used in third party themes. Themes should cease using these options and instead use the
-	appropriate gallery methods.
+  appropriate gallery methods.
  */
 if (TEST_RELEASE) {
 	foreach ($data as $key => $option) {
@@ -562,8 +560,6 @@ query('UPDATE ' . prefix('administrators') . ' SET `passhash`=' . ((int) getOpti
 query('UPDATE ' . prefix('administrators') . ' SET `passupdate`=' . db_quote(date('Y-m-d H:i:s')) . ' WHERE `valid`>=1 AND `passupdate` IS NULL');
 setOptionDefault('image_processor_flooding_protection', 1);
 setOptionDefault('codeblock_first_tab', 1);
-setOptionDefault('zp_plugin_rss', 9 | FEATURE_PLUGIN | ADMIN_PLUGIN);
-setOptionDefault('zp_plugin_userAddressFields', 5 | CLASS_PLUGIN);
 setOptionDefault('GD_FreeType_Path', SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/gd_fonts');
 
 //The following should be done LAST so it catches anything done above

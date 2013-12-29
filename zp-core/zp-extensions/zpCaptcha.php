@@ -25,7 +25,9 @@ class zpCaptcha extends _zp_captcha {
 	 * @return captcha
 	 */
 	function __construct() {
+		global $plugin_is_filter;
 		if (OFFSET_PATH == 2) {
+			setOptionDefault('zp_plugin_zpCaptcha', $plugin_is_filter);
 			setOptionDefault('zenphoto_captcha_length', 5);
 			setOptionDefault('zenphoto_captcha_font_size', 18);
 			setOptionDefault('zenphoto_captcha_key', sha1($_SERVER['HTTP_HOST'] . 'a9606420399a77387af2a4b541414ee5' . getUserIP()));

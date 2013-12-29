@@ -50,11 +50,15 @@ class security_logger {
 	 * @return security_logger
 	 */
 	function __construct() {
-		setOptionDefault('logger_log_guests', 1);
-		setOptionDefault('logger_log_admin', 1);
-		setOptionDefault('logger_log_type', 'all');
-		setOptionDefault('logge_access_log_type', 'all_user');
-		setOptionDefault('security_log_size', 5000000);
+		global $plugin_is_filter;
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('zp_plugin_security-logger', $plugin_is_filter);
+			setOptionDefault('logger_log_guests', 1);
+			setOptionDefault('logger_log_admin', 1);
+			setOptionDefault('logger_log_type', 'all');
+			setOptionDefault('logge_access_log_type', 'all_user');
+			setOptionDefault('security_log_size', 5000000);
+		}
 	}
 
 	/**

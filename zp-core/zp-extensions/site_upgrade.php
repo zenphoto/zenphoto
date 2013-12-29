@@ -33,7 +33,7 @@
  * @package plugins
  * @subpackage admin
  */
-$plugin_is_filter = 97|ADMIN_PLUGIN|THEME_PLUGIN;
+$plugin_is_filter = 97 | ADMIN_PLUGIN | THEME_PLUGIN;
 $plugin_description = gettext('Utility to divert access to the gallery to a screen saying the site is upgrading.');
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_notice = (MOD_REWRITE) ? false : gettext('<em>mod_rewrite</em> is not enabled. This plugin may not work without rewrite redirection if the upgrade is significantly different than the running release.');
@@ -43,28 +43,26 @@ switch (OFFSET_PATH) {
 		$state = getOption('site_upgrade_state');
 		if ((!zp_loggedin(ADMIN_RIGHTS) && $state == 'closed_for_test') || $state == 'closed') {
 			if (isset($_GET['rss'])) {
-				if (file_exists(SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/site_upgrade/rss-closed.xml')) {
-					$xml = file_get_contents(SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/site_upgrade/rss-closed.xml');
-					$xml = preg_replace('~<pubDate>(.*)</pubDate>~', '<pubDate>'.date("r",time()).'</pubDate>', $xml);
+				if (file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/rss-closed.xml')) {
+					$xml = file_get_contents(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/rss-closed.xml');
+					$xml = preg_replace('~<pubDate>(.*)</pubDate>~', '<pubDate>' . date("r", time()) . '</pubDate>', $xml);
 					echo $xml;
 				}
 			} else {
-				header('location: '.WEBPATH.'/'.USER_PLUGIN_FOLDER.'/site_upgrade/closed.php');
+				header('location: ' . WEBPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.php');
 			}
 			exit();
 		}
 		break;
 	case 2:
-		if (!file_exists(SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/site_upgrade/closed.php')) {
-			mkdir_recursive(SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/site_upgrade/', FOLDER_MOD);
-			$html = file_get_contents(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/site_upgrade/closed.htm');
-			$html = sprintf($html, sprintf(gettext('%s upgrade'),
-																			$_zp_gallery->getTitle()),FULLWEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/site_upgrade/closed.png',
-																			sprintf(gettext('<strong><em>%s</em></strong> is undergoing an upgrade'),$_zp_gallery->getTitle()), '<a href="'.FULLWEBPATH.'/index.php">'.gettext('Please return later').'</a>',
-																			FULLWEBPATH.'/index.php');
-			file_put_contents(SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/site_upgrade/closed.htm', $html);
-			copy(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/site_upgrade/closed.php', SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/site_upgrade/closed.php');
+		if (!file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.php')) {
+			mkdir_recursive(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/', FOLDER_MOD);
+			$html = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/site_upgrade/closed.htm');
+			$html = sprintf($html, sprintf(gettext('%s upgrade'), $_zp_gallery->getTitle()), FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/site_upgrade/closed.png', sprintf(gettext('<strong><em>%s</em></strong> is undergoing an upgrade'), $_zp_gallery->getTitle()), '<a href="' . FULLWEBPATH . '/index.php">' . gettext('Please return later') . '</a>', FULLWEBPATH . '/index.php');
+			file_put_contents(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.htm', $html);
+			copy(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/site_upgrade/closed.php', SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.php');
 		}
+		setOptionDefault('zp_plugin_failed_site_upgrade', $plugin_is_filter);
 		break;
 	default:
 		zp_register_filter('admin_utilities_buttons', 'site_upgrade_button');
@@ -74,83 +72,81 @@ switch (OFFSET_PATH) {
 			switch (getOption('site_upgrade_state')) {
 				case 'closed':
 					?>
-					<li><?php echo gettext('Site status:');?> <span style="color:RED"><strong><?php echo gettext('The site is closed!'); ?></strong></span></li>
+					<li><?php echo gettext('Site status:'); ?> <span style="color:RED"><strong><?php echo gettext('The site is closed!'); ?></strong></span></li>
 					<?php
 					break;
 				case 'closed_for_test';
 					?>
-					<li><?php echo gettext('Site status:');?> <span style="color:RED"><strong><?php echo gettext('The site is in test mode!'); ?></strong></span></li>
+					<li><?php echo gettext('Site status:'); ?> <span style="color:RED"><strong><?php echo gettext('The site is in test mode!'); ?></strong></span></li>
 					<?php
-				break;
+					break;
 				default:
 					?>
-					<li><?php echo gettext('Site status:');?> <strong><?php echo gettext('The site is opened'); ?></strong></li>
-					<?php
-					break;
+					<li><?php echo gettext('Site status:'); ?> <strong><?php echo gettext('The site is opened'); ?></strong></li>
+								<?php
+								break;
+						}
+					}
 
+					function site_upgrade_button($buttons) {
+						$ht = @file_get_contents(SERVERPATH . '/.htaccess');
+						preg_match('|[# ][ ]*RewriteRule(.*)plugins/site_upgrade/closed|', $ht, $matches);
+						if (!$matches || strpos($matches[0], '#') === 0) {
+							$state = getOption('site_upgrade_state');
+						} else {
+							$state = 'closed';
+						}
+						switch ($state) {
+							case 'closed':
+								$buttons[] = array(
+												'XSRFTag'			 => 'site_upgrade',
+												'category'		 => gettext('Admin'),
+												'enable'			 => true,
+												'button_text'	 => gettext('Site » test mode'),
+												'formname'		 => 'site_upgrade.php',
+												'action'			 => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/site_upgrade/site_upgrade.php',
+												'icon'				 => 'images/lock_open.png',
+												'title'				 => gettext('Make the site available for viewing administrators only.'),
+												'alt'					 => '',
+												'hidden'			 => '<input type="hidden" name="siteState" value="closed_for_test" />',
+												'rights'			 => ADMIN_RIGHTS
+								);
+								break;
+							case 'closed_for_test':
+								$buttons[] = array(
+												'XSRFTag'			 => 'site_upgrade',
+												'category'		 => gettext('Admin'),
+												'enable'			 => true,
+												'button_text'	 => gettext('Site » open'),
+												'formname'		 => 'site_upgrade.php',
+												'action'			 => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/site_upgrade/site_upgrade.php',
+												'icon'				 => 'images/lock.png',
+												'title'				 => gettext('Make site available for viewing.'),
+												'alt'					 => '',
+												'hidden'			 => '<input type="hidden" name="siteState" value="open" />',
+												'rights'			 => ADMIN_RIGHTS
+								);
+								break;
+							default:
+								$buttons[] = array(
+												'XSRFTag'			 => 'site_upgrade',
+												'category'		 => gettext('Admin'),
+												'enable'			 => true,
+												'button_text'	 => gettext('Site » close'),
+												'formname'		 => 'site_upgrade.php',
+												'action'			 => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/site_upgrade/site_upgrade.php',
+												'icon'				 => 'images/lock.png',
+												'title'				 => gettext('Make site unavailable for viewing by redirecting to the "closed.html" page.'),
+												'alt'					 => '',
+												'hidden'			 => '<input type="hidden" name="siteState" value="closed" />',
+												'rights'			 => ADMIN_RIGHTS
+								);
+								break;
+						}
+
+						return $buttons;
+					}
+
+					break;
 			}
-		}
-
-		function site_upgrade_button($buttons) {
-			$ht = @file_get_contents(SERVERPATH.'/.htaccess');
-			preg_match('|[# ][ ]*RewriteRule(.*)plugins/site_upgrade/closed|',$ht,$matches);
-			if (!$matches || strpos($matches[0],'#')===0) {
-				$state = getOption('site_upgrade_state');
-			} else {
-				$state = 'closed';
-			}
-			switch ($state) {
-				case 'closed':
-					$buttons[] = array(
-							'XSRFTag'=>'site_upgrade',
-							'category'=>gettext('Admin'),
-							'enable'=>true,
-							'button_text'=>gettext('Site » test mode'),
-							'formname'=>'site_upgrade.php',
-							'action'=>WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/site_upgrade/site_upgrade.php',
-							'icon'=>'images/lock_open.png',
-							'title'=>gettext('Make the site available for viewing administrators only.'),
-							'alt'=>'',
-							'hidden'=>'<input type="hidden" name="siteState" value="closed_for_test" />',
-							'rights'=> ADMIN_RIGHTS
-							);
-					break;
-				case 'closed_for_test':
-					$buttons[] = array(
-							'XSRFTag'=>'site_upgrade',
-							'category'=>gettext('Admin'),
-							'enable'=>true,
-							'button_text'=>gettext('Site » open'),
-							'formname'=>'site_upgrade.php',
-							'action'=>WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/site_upgrade/site_upgrade.php',
-							'icon'=>'images/lock.png',
-							'title'=>gettext('Make site available for viewing.'),
-							'alt'=>'',
-							'hidden'=>'<input type="hidden" name="siteState" value="open" />',
-							'rights'=> ADMIN_RIGHTS
-							);
-					break;
-				default:
-					$buttons[] = array(
-							'XSRFTag'=>'site_upgrade',
-							'category'=>gettext('Admin'),
-							'enable'=>true,
-							'button_text'=>gettext('Site » close'),
-							'formname'=>'site_upgrade.php',
-							'action'=>WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/site_upgrade/site_upgrade.php',
-							'icon'=>'images/lock.png',
-							'title'=>gettext('Make site unavailable for viewing by redirecting to the "closed.html" page.'),
-							'alt'=>'',
-							'hidden'=>'<input type="hidden" name="siteState" value="closed" />',
-							'rights'=> ADMIN_RIGHTS
-							);
-					break;
-			}
-
-			return $buttons;
-		}
-		break;
-}
-
-
-?>
+			?>

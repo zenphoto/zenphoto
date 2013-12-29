@@ -19,10 +19,14 @@ $plugin_author = "Stephen Billard (sbillard)";
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/fieldExtender.php');
 
+if (OFFSET_PATH == 2)
+	setOptionDefault('zp_plugin_userAddressFields', $plugin_is_filter);
+
 class userAddressFields extends fieldExtender {
 
 	function __construct() {
 		global $_userAddressFields;
+
 		$firstTime = extensionEnabled('userAddressFields') && is_null(getOption('userAddressFieldEdit_addedFields'));
 		parent::constructor('userAddressFields', self::fields());
 		if ($firstTime) { //	migrate the custom data user data
@@ -50,12 +54,12 @@ class userAddressFields extends fieldExtender {
 
 	static function fields() {
 		return array(
-						array('table'	 => 'administrators', 'name'	 => 'street', 'desc'	 => gettext('Street'), 'type'	 => 'tinytext'),
-						array('table'	 => 'administrators', 'name'	 => 'website', 'desc'	 => gettext('Website'), 'type'	 => 'tinytext'),
-						array('table'	 => 'administrators', 'name'	 => 'city', 'desc'	 => gettext('City'), 'type'	 => 'tinytext'),
-						array('table'	 => 'administrators', 'name'	 => 'country', 'desc'	 => gettext('Country'), 'type'	 => 'tinytext'),
-						array('table'	 => 'administrators', 'name'	 => 'state', 'desc'	 => gettext('State'), 'type'	 => 'tinytext'),
-						array('table'	 => 'administrators', 'name'	 => 'postal', 'desc'	 => gettext('Postal code'), 'type'	 => 'tinytext')
+						array('table' => 'administrators', 'name' => 'street', 'desc' => gettext('Street'), 'type' => 'tinytext'),
+						array('table' => 'administrators', 'name' => 'website', 'desc' => gettext('Website'), 'type' => 'tinytext'),
+						array('table' => 'administrators', 'name' => 'city', 'desc' => gettext('City'), 'type' => 'tinytext'),
+						array('table' => 'administrators', 'name' => 'country', 'desc' => gettext('Country'), 'type' => 'tinytext'),
+						array('table' => 'administrators', 'name' => 'state', 'desc' => gettext('State'), 'type' => 'tinytext'),
+						array('table' => 'administrators', 'name' => 'postal', 'desc' => gettext('Postal code'), 'type' => 'tinytext')
 		);
 	}
 
