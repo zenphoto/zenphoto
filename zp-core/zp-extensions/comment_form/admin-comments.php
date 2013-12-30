@@ -421,7 +421,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 					<td class="page-list_icon">
 						<?php
 						if ($private) {
-							echo '<a title="' . gettext("Private message") . '"><img src="<?php echo WEBPATH . ' / ' . ZENFOLDER; ?>/images/reset.png" style="border: 0px;" alt="' . gettext("Private message") . '" /></a>';
+							echo '<a title="' . gettext("Private message") . '"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/reset.png" style="border: 0px;" alt="' . gettext("Private message") . '" /></a>';
 						}
 						?>
 					</td>
