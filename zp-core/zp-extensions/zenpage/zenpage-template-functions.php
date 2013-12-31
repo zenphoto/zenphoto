@@ -2048,7 +2048,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 		case 'categories':
 		case 'allcategories':
 			$items = $_zp_zenpage->getAllCategories();
-			if (is_object($_zp_current_category)) {
+			if (is_object($_zp_current_category) && $mode == 'categories') {
 				$currentitem_sortorder = $_zp_current_category->getSortOrder();
 				$currentitem_id = $_zp_current_category->getID();
 				$currentitem_parentid = $_zp_current_category->getParentID();
@@ -2100,7 +2100,10 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 						if (in_context(ZP_ZENPAGE_NEWS_CATEGORY) && $mode == 'categories') {
 							$totalcount = count($_zp_current_category->getArticles(0));
 						} else {
+							save_context();
+							rem_context(ZP_ZENPAGE_NEWS_DATE);
 							$totalcount = count($_zp_zenpage->getArticles(0));
+							restore_context();
 						}
 					}
 					echo ' <span style="white-space:nowrap;"><small>(' . sprintf(ngettext('%u article', '%u articles', $totalcount), $totalcount) . ')</small></span>';
