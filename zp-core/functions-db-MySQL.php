@@ -156,7 +156,9 @@ function db_error() {
 	if (is_object($_zp_DB_connection)) {
 		return mysql_error();
 	}
-	return sprintf(gettext('%s not connected'), DATABASE_SOFTWARE);
+	if (!$msg = mysql_error())
+		$msg = sprintf(gettext('%s not connected'), DATABASE_SOFTWARE);
+	return $msg;
 }
 
 /*

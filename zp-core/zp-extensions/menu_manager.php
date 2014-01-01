@@ -208,7 +208,7 @@ function getItemTitleAndURL($item) {
 	$title = get_language_string($item['title']);
 	switch ($item['type']) {
 		case "galleryindex":
-			$array = array("title"			 => get_language_string($item['title']), "url"				 => WEBPATH, "name"			 => WEBPATH, 'protected'	 => false, 'theme'			 => $themename);
+			$array = array("title" => get_language_string($item['title']), "url" => WEBPATH, "name" => WEBPATH, 'protected' => false, 'theme' => $themename);
 			break;
 		case "album":
 			$folderFS = internalToFilesystem($item['link']);
@@ -225,7 +225,7 @@ function getItemTitleAndURL($item) {
 				$protected = $obj->isProtected();
 				$title = $obj->getTitle();
 			}
-			$array = array("title"			 => $title, "url"				 => $url, "name"			 => $item['link'], 'protected'	 => $protected, 'theme'			 => $themename);
+			$array = array("title" => $title, "url" => $url, "name" => $item['link'], 'protected' => $protected, 'theme' => $themename);
 			break;
 		case "zenpagepage":
 			$sql = 'SELECT * FROM ' . prefix('pages') . ' WHERE `titlelink`="' . $item['link'] . '"';
@@ -240,11 +240,11 @@ function getItemTitleAndURL($item) {
 				$url = '';
 				$protected = 0;
 			}
-			$array = array("title"			 => $title, "url"				 => $url, "name"			 => $item['link'], 'protected'	 => $protected, 'theme'			 => $themename);
+			$array = array("title" => $title, "url" => $url, "name" => $item['link'], 'protected' => $protected, 'theme' => $themename);
 			break;
 		case "zenpagenewsindex":
 			$url = rewrite_path('/' . _NEWS_, "index.php?p=news");
-			$array = array("title"			 => get_language_string($item['title']), "url"				 => $url, "name"			 => $url, 'protected'	 => false);
+			$array = array("title" => get_language_string($item['title']), "url" => $url, "name" => $url, 'protected' => false);
 			break;
 		case "zenpagecategory":
 			$sql = "SELECT title FROM " . prefix('news_categories') . " WHERE titlelink = '" . $item['link'] . "'";
@@ -259,7 +259,7 @@ function getItemTitleAndURL($item) {
 				$url = '';
 				$protected = 0;
 			}
-			$array = array("title"			 => $title, "url"				 => $url, "name"			 => $item['link'], 'protected'	 => $protected, 'theme'			 => $themename);
+			$array = array("title" => $title, "url" => $url, "name" => $item['link'], 'protected' => $protected, 'theme' => $themename);
 			break;
 		case "custompage":
 			$root = SERVERPATH . '/' . THEMEFOLDER . '/' . $themename . '/';
@@ -269,16 +269,16 @@ function getItemTitleAndURL($item) {
 				$valid = false;
 				$url = '';
 			}
-			$array = array("title"			 => $title, "url"				 => $url, "name"			 => $item['link'], 'protected'	 => false, 'theme'			 => $themename);
+			$array = array("title" => $title, "url" => $url, "name" => $item['link'], 'protected' => false, 'theme' => $themename);
 			break;
 		case "customlink":
-			$array = array("title"			 => get_language_string($item['title']), "url"				 => $item['link'], "name"			 => $item['link'], 'protected'	 => false, 'theme'			 => $themename);
+			$array = array("title" => get_language_string($item['title']), "url" => $item['link'], "name" => $item['link'], 'protected' => false, 'theme' => $themename);
 			break;
 		case 'menulabel':
-			$array = array("title"			 => get_language_string($item['title']), "url"				 => NULL, 'name'			 => $item['title'], 'protected'	 => false, 'theme'			 => $themename);
+			$array = array("title" => get_language_string($item['title']), "url" => NULL, 'name' => $item['title'], 'protected' => false, 'theme' => $themename);
 			break;
 		default:
-			$array = array("title"			 => $item['title'], "url"				 => $item['link'], "name"			 => $item['link'], 'protected'	 => false, 'theme'			 => $themename);
+			$array = array("title" => $item['title'], "url" => $item['link'], "name" => $item['link'], 'protected' => false, 'theme' => $themename);
 			break;
 	}
 	$limit = MENU_TRUNCATE_STRING;
@@ -664,6 +664,36 @@ function printMenuemanagerPageList($menuset = 'default', $class = 'pagelist', $i
 }
 
 /**
+ * Gets the parent menu items of the current menu item. Returns the array of the items or false.
+ * @param string $menuset current menu set
+ * @return array|false
+ */
+function getParentMenuItems($menuset = 'default') {
+	$sortorder = getCurrentMenuItem($menuset);
+	$items = getMenuItems($menuset, getMenuVisibility());
+	if (count($items) > 0) {
+		if ($sortorder) {
+			$parents = array();
+			$order = explode('-', $sortorder);
+			array_pop($order);
+			$look = array();
+			while (count($order) > 0) {
+				$look = implode('-', $order);
+				array_pop($order);
+				if (array_key_exists($look, $items)) {
+					array_unshift($parents, $items[$look]);
+				}
+			}
+			if (!empty($parents)) {
+				sortMultiArray($parents, 'sort_order', $descending = false, $natsort = false, $case_sensitive = false);
+				return $parents;
+			}
+		}
+	}
+	return false;
+}
+
+/**
  * Prints the breadcrumbs of the current page
  *
  * NOTE: this function is entirely dependedn on the menu tree you have
@@ -682,46 +712,30 @@ function printMenuemanagerPageList($menuset = 'default', $class = 'pagelist', $i
  * @param string $after after text
  */
 function printMenumanagerBreadcrumb($menuset = 'default', $before = '', $between = ' | ', $after = ' | ') {
-	if ($before) {
-		echo '<span class="beforetext">' . html_encode($before) . '</span>';
-	}
-	if ($between) {
-		$between = '<span class="betweentext">' . html_encode($between) . '</span>';
-	}
-	$sortorder = getCurrentMenuItem($menuset);
-	$items = getMenuItems($menuset, getMenuVisibility());
-	if (count($items) > 0) {
-		if ($sortorder) {
-			$parents = array();
-			$order = explode('-', $sortorder);
-			array_pop($order);
-			$look = array();
-			while (count($order) > 0) {
-				$look = implode('-', $order);
-				array_pop($order);
-				if (array_key_exists($look, $items)) {
-					array_unshift($parents, $items[$look]);
-				}
-			}
-
-			if (!empty($parents))
-				sortMultiArray($parents, 'sort_order', $descending = false, $natsort = false, $case_sensitive = false);
-			$i = 0;
-			foreach ($parents as $item) {
-				if ($i > 0)
-					echo $between;
-				$itemarray = getItemTitleAndURL($item);
-				if ($item['type'] == 'menulabel') {
-					echo html_encode($itemarray['title']);
-				} else {
-					printLink($itemarray['url'], $itemarray['title'], $itemarray['title']);
-				}
-				$i++;
-			}
+	$parents = getParentMenuItems($menuset);
+	if ($parents) {
+		if ($before) {
+			echo '<span class="beforetext">' . html_encode($before) . '</span>';
 		}
-	}
-	if ($after) {
-		echo '<span class="aftertext">' . html_encode($after) . '</after>';
+		if ($between) {
+			$between = '<span class="betweentext">' . html_encode($between) . '</span>';
+		}
+		$i = 0;
+		foreach ($parents as $item) {
+			if ($i > 0) {
+				echo $between;
+			}
+			$itemarray = getItemTitleAndURL($item);
+			if ($item['type'] == 'menulabel') {
+				echo html_encode($itemarray['title']);
+			} else {
+				printLink($itemarray['url'], $itemarray['title'], $itemarray['title']);
+			}
+			$i++;
+		}
+		if ($after) {
+			echo '<span class="aftertext">' . html_encode($after) . '</span>';
+		}
 	}
 }
 
@@ -801,12 +815,12 @@ function createMenuIfNotExists($menuitems, $menuset = 'default') {
 			$type = $result['type'];
 			switch ($type) {
 				case 'all_items':
-					$orders[$nesting]++;
+					$orders[$nesting] ++;
 					query("INSERT INTO " . prefix('menu') . " (`title`,`link`,`type`,`show`,`menuset`,`sort_order`) " .
 									"VALUES ('" . gettext('Home') . "', '" . WEBPATH . '/' . "','galleryindex','1'," . db_quote($menuset) . ',' . db_quote($orders), true);
 					$orders[$nesting] = addAlbumsToDatabase($menuset, $orders);
 					if (extensionEnabled('zenpage')) {
-						$orders[$nesting]++;
+						$orders[$nesting] ++;
 						query("INSERT INTO " . prefix('menu') . " (title`,`link`,`type`,`show`,`menuset`,`sort_order`) " .
 										"VALUES ('" . gettext('News index') . "', '" . rewrite_path(_NEWS_, '?p=news') . "','zenpagenewsindex','1'," . db_quote($menuset) . ',' . db_quote(sprintf('%03u', $base + 1)), true);
 						$orders[$nesting] = addPagesToDatabase($menuset, $orders) + 1;
@@ -815,17 +829,17 @@ function createMenuIfNotExists($menuitems, $menuset = 'default') {
 					$type = false;
 					break;
 				case 'all_albums':
-					$orders[$nesting]++;
+					$orders[$nesting] ++;
 					$orders[$nesting] = addAlbumsToDatabase($menuset, $orders);
 					$type = false;
 					break;
 				case 'all_zenpagepages':
-					$orders[$nesting]++;
+					$orders[$nesting] ++;
 					$orders[$nesting] = addPagesToDatabase($menuset, $orders);
 					$type = false;
 					break;
 				case 'all_zenpagecategorys':
-					$orders[$nesting]++;
+					$orders[$nesting] ++;
 					$orders[$nesting] = addCategoriesToDatabase($menuset, $orders);
 					$type = false;
 					break;
@@ -903,7 +917,7 @@ function createMenuIfNotExists($menuitems, $menuset = 'default') {
 					break;
 			}
 			if ($success > 0 && $type) {
-				$orders[$nesting]++;
+				$orders[$nesting] ++;
 				$sort_order = '';
 				for ($i = 0; $i < count($orders); $i++) {
 					$sort_order .= sprintf('%03u', $orders[$i]) . '-';
@@ -1002,7 +1016,7 @@ function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $
 				$parents[$indent] = NULL;
 				while ($indent > $level) {
 					if ($open[$indent]) {
-						$open[$indent]--;
+						$open[$indent] --;
 						echo "</li>\n";
 					}
 					$indent--;
@@ -1011,7 +1025,7 @@ function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $
 			} else { // level == indent, have not changed
 				if ($open[$indent]) { // level = indent
 					echo str_pad("\t", $indent, "\t") . "</li>\n";
-					$open[$indent]--;
+					$open[$indent] --;
 				} else {
 					echo "\n";
 				}
@@ -1019,7 +1033,7 @@ function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $
 
 			if ($open[$indent]) { // close an open LI if it exists
 				echo "</li>\n";
-				$open[$indent]--;
+				$open[$indent] --;
 			}
 
 			echo str_pad("\t", $indent - 1, "\t");
@@ -1112,14 +1126,14 @@ function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $
 	while ($indent > 1) {
 		if ($open[$indent]) {
 			echo "</li>\n";
-			$open[$indent]--;
+			$open[$indent] --;
 		}
 		$indent--;
 		echo str_pad("\t", $indent, "\t") . "</ul>";
 	}
 	if ($open[$indent]) {
 		echo "</li>\n";
-		$open[$indent]--;
+		$open[$indent] --;
 	} else {
 		echo "\n";
 	}

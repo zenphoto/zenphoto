@@ -169,7 +169,9 @@ function db_error() {
 	if (is_object($_zp_DB_connection)) {
 		return mysqli_error($_zp_DB_connection);
 	}
-	return sprintf(gettext('%s not connected'), DATABASE_SOFTWARE);
+	if (!$msg = mysqli_connect_error())
+		$msg = sprintf(gettext('%s not connected'), DATABASE_SOFTWARE);
+	return $msg;
 }
 
 /*
