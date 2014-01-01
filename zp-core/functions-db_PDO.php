@@ -112,10 +112,9 @@ function db_fetch_assoc($resource) {
  */
 
 function db_error() {
-	global $_zp_DB_connection;
-	if (is_object($_zp_DB_connection)) {
-		$msgs = $_zp_DB_connection->errorInfo();
-		return $msgs[2];
+	global $_zp_DB_last_result;
+	if (is_object($_zp_DB_last_result)) {
+		return $_zp_DB_last_result->getMessage();
 	} else {
 		return sprintf(gettext('%s not connected'), DATABASE_SOFTWARE);
 	}
