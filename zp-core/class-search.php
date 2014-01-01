@@ -83,10 +83,15 @@ class SearchEngine {
 				$this->pattern = array('type' => 'regexp', 'open' => '[[:<:]]', 'close' => '[[:>:]]');
 				break;
 		}
+
 		$this->extraparams['albumssorttype'] = getOption('search_album_sort_type');
 		$this->extraparams['albumssortdirection'] = getOption('search_album_sort_direction') ? 'DESC' : '';
 		$this->extraparams['imagessorttype'] = getOption('search_image_sort_type');
 		$this->extraparams['imagessortdirection'] = getOption('search_image_sort_direction') ? 'DESC' : '';
+		$this->extraparams['newssorttype'] = 'date';
+		$this->extraparams['newssortdirection'] = 'DESC';
+		$this->extraparams['pagesssorttype'] = 'title';
+		$this->extraparams['pagessortdirection'] = '';
 
 //image/album fields
 		$this->search_structure['title'] = gettext('Title');
@@ -1761,7 +1766,8 @@ class SearchEngine {
 	 *
 	 * @return array
 	 */
-	function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sorttype = "date", $sortdirection = "desc") {
+	function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sorttype = NULL, $sortdirection = NULL) {
+
 		$articles = $this->getSearchArticles($sorttype, $sortdirection);
 		if (empty($articles)) {
 			return array();

@@ -419,7 +419,7 @@ class Zenpage {
 	 * @param int $index
 	 * @return int
 	 */
-	function getArticle($index, $published = NULL, $sortorder = 'date', $sortdirection = 'desc', $sticky = true) {
+	function getArticle($index, $published = NULL, $sortorder = NULL, $sortdirection = NULL, $sticky = true) {
 		$articles = $this->getArticles(0, NULL, true, $sortorder, $sortdirection, $sticky);
 		if ($index >= 0 && $index < count($articles)) {
 			$article = $articles[$index];

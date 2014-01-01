@@ -8,7 +8,7 @@
  */
 /* * ********************************************* */
 /* ZENPAGE TEMPLATE FUNCTIONS
-  /*********************************************** */
+	/*********************************************** */
 
 /* * **********************************************
  * Global definitions
@@ -17,7 +17,7 @@ define('ZENPAGE_COMBINEWS', getOption('zenpage_combinews'));
 
 /* * ********************************************* */
 /* General functions
-  /*********************************************** */
+	/*********************************************** */
 
 /**
  * Checks if the current page is in news context.
@@ -122,7 +122,7 @@ function getAuthor($fullname = false) {
 
 /* * ********************************************* */
 /* News article functions
-  /*********************************************** */
+	/*********************************************** */
 
 /**
  * Returns the number of news articles.
@@ -170,10 +170,6 @@ function next_news($sortorder = NULL, $sortdirection = NULL) {
 		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
 		deprecated_functions::notify(gettext('Sort parameter oprions should be set instead with the setSortType() and setSortDirection() object methods at the head of your script.'));
 	}
-	if (is_null($sortorder))
-		$sortorder = "date";
-	if (is_null($sortdirection))
-		$sortdirection = "desc";
 
 	$_zp_current_zenpage_news_restore = $_zp_current_zenpage_news;
 	if (is_null($_zp_zenpage_articles)) {
@@ -1044,7 +1040,7 @@ function printAllNewsCategories($newsindex = 'All news', $counter = TRUE, $css_i
 
 /* * ********************************************* */
 /* News article URL functions
-  /*********************************************** */
+	/*********************************************** */
 
 /**
  * Returns the full path to a news category
@@ -1181,7 +1177,7 @@ function printNewsURL($titlelink = '') {
 
 /* * ********************************************************* */
 /* News index / category / date archive pagination functions
-  /********************************************************** */
+	/********************************************************** */
 
 function getNewsPathNav($page) {
 	global $_zp_current_category, $_zp_post_date;
@@ -1371,7 +1367,7 @@ function getTotalNewsPages() {
 
 /* * ********************************************************************* */
 /* Single news article pagination functions (previous and next article)
-  /*********************************************************************** */
+	/*********************************************************************** */
 
 /**
  * Returns the title and the titlelink of the next or previous article in single news article pagination as an array
@@ -1470,7 +1466,7 @@ function printPrevNewsLink($prev = "« ", $sortorder = 'date', $sortdirection = 
 
 /* * ******************************************************* */
 /* Functions - shared by Pages and News articles
-  /********************************************************* */
+	/********************************************************* */
 
 /**
  * Gets the statistic for pages, news articles or categories as an unordered list
@@ -2001,7 +1997,7 @@ function printZenpageItemsBreadcrumb($before = NULL, $after = NULL) {
 
 /* * ********************************************* */
 /* Pages functions
-  /*********************************************** */
+	/*********************************************** */
 $_zp_zenpage_pagelist = NULL;
 
 /**
@@ -2470,7 +2466,7 @@ function checkForPage($titlelink) {
 
 /* * ********************************************* */
 /* Comments
-  /*********************************************** */
+	/*********************************************** */
 
 /**
  * Returns if comments are open for this news article or page (TRUE or FALSE)

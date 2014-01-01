@@ -623,7 +623,7 @@ class Gallery {
 						$album = newAlbum($folder);
 						if (!$album->isDynamic()) {
 							if (is_null($album->getDateTime())) { // see if we can get one from an image
-								$images = $album->getImages(0, 0, 'date', 'DESC');
+								$images = $album->getImages(0, 0);
 								if (count($images) > 0) {
 									$image = newImage($album, array_shift($images));
 									$album->setDateTime($image->getDateTime());

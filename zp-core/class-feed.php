@@ -381,7 +381,7 @@ class feed {
 				if ($this->sortorder) {
 					$items = getZenpageStatistic($this->itemnumber, 'pages', $this->sortorder, $this->sortdirection);
 				} else {
-					$items = $_zp_zenpage->getPages(NULL, false, $this->itemnumber, $this->sortorder, $this->sortdirection);
+					$items = $_zp_zenpage->getPages(NULL, false, $this->itemnumber);
 				}
 				break;
 			case 'comments':
