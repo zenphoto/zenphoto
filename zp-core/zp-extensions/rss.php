@@ -52,7 +52,7 @@ class rss_options {
 			purgeOption('feed_title');
 			purgeOption('zenpage_rss_length');
 			purgeOption('zenpage_rss_items');
-		}
+
 		setOptionDefault('RSS_truncate_length', '100');
 		setOptionDefault('RSS_zenpage_items', '10');
 		setOptionDefault('RSS_items', 10); // options for standard images rss
@@ -68,12 +68,13 @@ class rss_options {
 		setOptionDefault('RSS_hitcounter', 1);
 		setOptionDefault('RSS_title', 'both');
 	}
+	}
 
 	function getOptionsSupported() {
 		$options = array(gettext('RSS feeds enabled:')			 => array('key'				 => 'RSS_feed_list', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
 										'order'			 => 0,
 										'checkboxes' => array(gettext('Gallery')						 => 'RSS_album_image',
-														gettext('Comments')						 => 'RSS_comments',
+														gettext('Gallery Comments')		 => 'RSS_comments',
 														gettext('All News')						 => 'RSS_articles',
 														gettext('All Pages')					 => 'RSS_pages',
 														gettext('News/Page Comments')	 => 'RSS_article_comments'
@@ -359,7 +360,7 @@ class RSS extends feed {
 	function __construct($options = NULL) {
 		global $_zp_gallery, $_zp_current_admin_obj, $_zp_loggedin;
 		if (empty($options))
-			return;
+			self::feed404();
 
 		$this->feedtype = $options['rss'];
 		parent::__construct($options);
