@@ -392,6 +392,7 @@ function getImageStatistic($number, $option, $albumfolder = '', $collection = fa
 		case "latest-mtime":
 			$sortorder = "images.mtime";
 			break;
+		default:
 		case "latest":
 			$sortorder = "images.id";
 			break;
@@ -406,9 +407,6 @@ function getImageStatistic($number, $option, $albumfolder = '', $collection = fa
 			break;
 		case "random":
 			$sortorder = "RAND()";
-			break;
-		default:
-			$sortorder = 'id';
 			break;
 	}
 	$imageArray = array();
