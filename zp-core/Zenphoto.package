@@ -966,11 +966,11 @@ zp-core/zp-extensions/publishContent/publishContent.php
 zp-core/zp-extensions/quota_manager.php
 zp-core/zp-extensions/rating
 zp-core/zp-extensions/rating.php
-zp-core/zp-extensions/rating/delete.gif
+zp-core/zp-extensions/rating/delete.png
 zp-core/zp-extensions/rating/jquery.MetaData.js
 zp-core/zp-extensions/rating/jquery.rating.css
 zp-core/zp-extensions/rating/jquery.rating.js
-zp-core/zp-extensions/rating/star.gif
+zp-core/zp-extensions/rating/star.png
 zp-core/zp-extensions/rating/update.php
 zp-core/zp-extensions/reCaptcha
 zp-core/zp-extensions/reCaptcha.php
