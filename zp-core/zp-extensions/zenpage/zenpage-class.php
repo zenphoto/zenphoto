@@ -99,17 +99,10 @@ class Zenpage {
 	 * @param int $number number of pages to get (NULL by default for all)
 	 * @param string $sorttype NULL for the standard order as sorted on the backend, "title", "date", "id", "popular", "mostrated", "toprated", "random"
 	 * @param string $sortdirection "asc" or "desc" for ascending or descending order
-	 * @param object $page set to the page object if this is a subpage request
 	 * @return array
 	 */
-	function getPages($published = NULL, $toplevel = false, $number = NULL, $sorttype = NULL, $sortdirection = NULL, $parent = NULL) {
+	function getPages($published = NULL, $toplevel = false, $number = NULL, $sorttype = NULL, $sortdirection = NULL) {
 		global $_zp_loggedin;
-		if ($parent) {
-			$sortObj = $parent;
-		} else {
-			$sortObj = $this;
-		}
-
 		if (is_null($published)) {
 			$published = !zp_loggedin();
 			$all = zp_loggedin(MANAGE_ALL_PAGES_RIGHTS);
@@ -127,7 +120,7 @@ class Zenpage {
 			$show = $gettop;
 		}
 		if (is_null($sortdirection)) {
-			$sortdirection = $sortObj->sortdirection;
+			$sortdirection = $this->sortdirection;
 		}
 		switch ($sortdirection) {
 			default:
@@ -140,7 +133,7 @@ class Zenpage {
 				break;
 		}
 		if (is_null($sorttype)) {
-			$sorttype = $sortObj->sortorder;
+			$sorttype = $this->sortorder;
 		}
 		switch ($sorttype) {
 			default:
@@ -236,7 +229,6 @@ class Zenpage {
 		} else {
 			$sortObj = $this;
 		}
-
 		if (empty($published)) {
 			if (zp_loggedin() || $category && $category->isMyItem(ZENPAGE_NEWS_RIGHTS)) {
 				$published = "all";
