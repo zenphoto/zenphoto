@@ -1480,7 +1480,8 @@ function getFullNewsImage() {
  */
 function getLatestNews($number = 2, $option = 'none', $category = '', $sticky = true, $sortdirection = 'desc') {
 	global $_zp_zenpage, $_zp_current_zenpage_news;
-	deprecated_functions::notify(gettext('CombiNews is deprecated. See the <a href="http://www.zenphoto.org/news/zenphoto-1.4.6">Zenphoto 1.4.6 release notes</a>.'));
+	if ($option != 'none')
+		deprecated_functions::notify(gettext('CombiNews is deprecated. See the <a href="http://www.zenphoto.org/news/zenphoto-1.4.6">Zenphoto 1.4.6 release notes</a>.'));
 	$latest = array();
 	switch ($option) {
 		case 'none':
@@ -1534,8 +1535,8 @@ function getLatestNews($number = 2, $option = 'none', $category = '', $sticky = 
 			$latest = $_zp_zenpage->getCombiNews($number, 'latestupdatedalbums-thumbnail', NULL, '', $sticky, $sortdirection);
 			break;
 		/* case "latestimagesbyalbum-thumbnail":
-			$latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'id','',false);
-			break; */
+		  $latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'id','',false);
+		  break; */
 	}
 	return $latest;
 }

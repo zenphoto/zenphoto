@@ -20,7 +20,7 @@ if (array_key_exists(0, $folders) && $folders[0] == CACHEFOLDER) {
 
 debug404($album, $image, @$_index_theme);
 $_zp_gallery_page = '404.php';
-$_zp_script = SERVERPATH . "/" . THEMEFOLDER . '/' . internalToFilesystem($_index_theme) . '/404.php';
+$_zp_script = SERVERPATH . "/" . THEMEFOLDER . '/' . internalToFilesystem(@$_index_theme) . '/404.php';
 header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 header("HTTP/1.0 404 Not Found");
 header("Status: 404 Not Found");

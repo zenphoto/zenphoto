@@ -298,9 +298,7 @@ class feed {
 		} else {
 			$imagesize = NULL;
 		}
-		if (is_numeric($imagesize) && !is_null($imagesize) && $imagesize < getOption($this->feed . '_imagesize')) {
-			$imagesize = $imagesize;
-		} else {
+		if (is_null($imagesize) || $imagesize > getOption($this->feed . '_imagesize')) {
 			if ($this->mode == 'albums') {
 				$imagesize = getOption($this->feed . '_imagesize_albums'); // un-cropped image size
 			} else {
@@ -435,7 +433,10 @@ class feed {
 		$obj = new ZenpagePage($item['titlelink']);
 		$feeditem['title'] = $feeditem['title'] = get_language_string($obj->getTitle('all'), $this->locale);
 		$feeditem['link'] = getPageLinkURL($obj->getTitlelink());
-		$feeditem['desc'] = shortenContent($obj->getContent($this->locale), $len, '...');
+		$desc = $obj->getContent($this->locale);
+		$desc = str_replace('//<![CDATA[', '', $desc);
+		$desc = str_replace('//]]>', '', $desc);
+		$feeditem['desc'] = shortenContent($desc, $len, '...');
 		$feeditem['enclosure'] = '';
 		$feeditem['category'] = '';
 		$feeditem['media_content'] = '';

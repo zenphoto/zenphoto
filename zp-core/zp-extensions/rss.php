@@ -53,21 +53,21 @@ class rss_options {
 			purgeOption('zenpage_rss_length');
 			purgeOption('zenpage_rss_items');
 
-		setOptionDefault('RSS_truncate_length', '100');
-		setOptionDefault('RSS_zenpage_items', '10');
-		setOptionDefault('RSS_items', 10); // options for standard images rss
-		setOptionDefault('RSS_imagesize', 240);
-		setOptionDefault('RSS_sortorder', 'latest');
-		setOptionDefault('RSS_items_albums', 10); // options for albums rss
-		setOptionDefault('RSS_imagesize_albums', 240);
-		setOptionDefault('RSS_sortorder_albums', 'latest');
-		setOptionDefault('RSS_enclosure', '0');
-		setOptionDefault('RSS_mediarss', '0');
-		setOptionDefault('RSS_cache', '1');
-		setOptionDefault('RSS_cache_expire', 86400);
-		setOptionDefault('RSS_hitcounter', 1);
-		setOptionDefault('RSS_title', 'both');
-	}
+			setOptionDefault('RSS_truncate_length', '100');
+			setOptionDefault('RSS_zenpage_items', '10');
+			setOptionDefault('RSS_items', 10); // options for standard images rss
+			setOptionDefault('RSS_imagesize', 240);
+			setOptionDefault('RSS_sortorder', 'latest');
+			setOptionDefault('RSS_items_albums', 10); // options for albums rss
+			setOptionDefault('RSS_imagesize_albums', 240);
+			setOptionDefault('RSS_sortorder_albums', 'latest');
+			setOptionDefault('RSS_enclosure', '0');
+			setOptionDefault('RSS_mediarss', '0');
+			setOptionDefault('RSS_cache', '1');
+			setOptionDefault('RSS_cache_expire', 86400);
+			setOptionDefault('RSS_hitcounter', 1);
+			setOptionDefault('RSS_title', 'both');
+		}
 	}
 
 	function getOptionsSupported() {
@@ -411,7 +411,7 @@ class RSS extends feed {
 					$alb = newAlbum($this->albumfolder, true, true);
 					if ($alb->exists) {
 						$albumtitle = $alb->getTitle();
-						if ($this->mode = 'albums' || $this->collection) {
+						if ($this->mode == 'albums' || $this->collection) {
 							$albumname = ' - ' . html_encode($albumtitle) . $this->getChannelTitleExtra();
 						}
 					} else {
@@ -677,7 +677,10 @@ class RSS extends feed {
 				$ext = getSuffix($filename);
 				$album = $albumobj->getFolder();
 				$fullimagelink = $this->host . html_encode(pathurlencode($obj->getFullImageURL()));
-				$content = shortenContent($obj->getDesc($this->locale), getOption('RSS_truncate_length'), '...');
+				$desc = $obj->getContent($this->locale);
+				$desc = str_replace('//<![CDATA[', '', $desc);
+				$desc = str_replace('//]]>', '', $desc);
+				$content = shortenContent($desc, getOption('RSS_truncate_length'), '...');
 				if (isImagePhoto($obj)) {
 					$thumburl = '<img border="0" src="' . PROTOCOL . '://' . $this->host . html_encode(pathurlencode($obj->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . $obj->getTitle($this->locale) . '" /><br />';
 				} else {
