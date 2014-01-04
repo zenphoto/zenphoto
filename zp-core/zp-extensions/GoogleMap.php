@@ -395,16 +395,8 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 			break;
 	}
 
-	if (!is_null($callback)) {
-		call_user_func($callback, $map);
-	}
-
-	/* map display */
-	if (is_null($id)) {
-		$id = $type . $typeid . '_googlemap';
-	}
-	$id_toggle = $id . '_toggle';
-	$id_data = $id . '_data';
+	if ($_n == 1)
+		$map->zoom = 10;
 
 	if ($_n) {
 		$_x = $_x / $_n;
@@ -415,6 +407,17 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 		$lat = atan2($_z, $hyp) * 180 / M_PI;
 		$map->center = $lat . ', ' . $lon;
 	}
+
+	if (!is_null($callback)) {
+		call_user_func($callback, $map);
+	}
+
+	/* map display */
+	if (is_null($id)) {
+		$id = $type . $typeid . '_googlemap';
+	}
+	$id_toggle = $id . '_toggle';
+	$id_data = $id . '_data';
 
 	switch ($hide) {
 		case 'show':
