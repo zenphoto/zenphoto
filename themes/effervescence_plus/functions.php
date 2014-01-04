@@ -428,11 +428,7 @@ function printFooter($admin = true) {
 function commonNewsLoop($paged) {
 	$newstypes = array('album' => gettext('album'), 'image' => gettext('image'), 'video' => gettext('video'), 'news' => gettext('news'));
 	while (next_news()) {
-		if (ZENPAGE_COMBINEWS) {
-			$newstypedisplay = $newstypes[getNewsType()];
-		} else {
-			$newstypedisplay = gettext('news');
-		}
+		$newstypedisplay = gettext('news');
 		if (stickyNews()) {
 			$newstypedisplay .= ' <small><em>' . gettext('sticky') . '</em></small>';
 		}
@@ -452,13 +448,9 @@ function commonNewsLoop($paged) {
 					?>
 				</span>
 				<?php
-				if (ZENPAGE_COMBINEWS && is_GalleryNewsType()) {
-					echo ' | ' . gettext("Album:") . " <a href='" . getNewsAlbumURL() . "' title='" . getBareNewsAlbumTitle() . "'>" . getNewsAlbumTitle() . "</a>";
-				} else {
-					if (!empty($cat)) {
-						echo ' | ';
-						printNewsCategories(", ", gettext("Categories: "), "newscategories");
-					}
+				if (!empty($cat)) {
+					echo ' | ';
+					printNewsCategories(", ", gettext("Categories: "), "newscategories");
 				}
 				?>
 			</div> <!-- newsarticlecredit -->

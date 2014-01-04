@@ -534,9 +534,6 @@ purgeOption('zp_plugin_failed_access_blocker');
 setOptionDefault('plugins_per_page', 20);
 setOptionDefault('users_per_page', 10);
 setOptionDefault('articles_per_page', 15);
-setOptionDefault('combinews-customtitle', getOption('combinews-customtitle-plural'));
-purgeOption('combinews-customtitle-singular');
-purgeOption('combinews-customtitle-plural');
 setOptionDefault('debug_log_size', 5000000);
 setOptionDefault('imageProcessorConcurrency', 30);
 switch (getOption('spam_filter')) {

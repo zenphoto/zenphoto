@@ -287,7 +287,7 @@ function rewrite_path_zenpage($rewrite = '', $plain = '') {
 function getNewsImageTags() {
 	deprecated_functions::notify(gettext('Use object->getTags() method.'));
 	global $_zp_current_zenpage_news;
-	if (is_GalleryNewsType() && is_object($_zp_current_zenpage_news)) {
+	if (is_object($_zp_current_zenpage_news)) {
 		return $_zp_current_zenpage_news->getTags();
 	} else {
 		return false;
@@ -857,9 +857,8 @@ function getCurrentNewsPage() {
  * @since 1.4.1
  */
 function getCombiNews($articles_per_page = '', $mode = '', $published = NULL, $sortorder = '', $sticky = true) {
-	deprecated_functions::notify(gettext('Use the Zenpage class method instead.'));
-	global $_zp_zenpage;
-	return $_zp_zenpage->getCombiNews($articles_per_page, $mode, $published, $sortorder, $sticky);
+	deprecated_functions::notify(gettext('Combinews is removed.'));
+	return array();
 }
 
 /**
@@ -867,9 +866,8 @@ function getCombiNews($articles_per_page = '', $mode = '', $published = NULL, $s
  * @since 1.4.1
  */
 function countCombiNews($published = NULL) {
-	deprecated_functions::notify(gettext('Use the Zenpage class method instead.'));
-	global $_zp_zenpage;
-	return $_zp_zenpage->countCombiNews($published);
+	deprecated_functions::notify(gettext('Combinews is removed.'));
+	return 0;
 }
 
 /**
@@ -1316,23 +1314,8 @@ function printSlideShowJS() {
  * @deprecated since version 1.4.6
  */
 function getNewsType($newsobj = NULL) {
-	global $_zp_current_zenpage_news;
 	deprecated_functions::notify(gettext('CombiNews is deprecated. See the <a href="http://www.zenphoto.org/news/zenphoto-1.4.6">Zenphoto 1.4.6 release notes</a>.'));
-	if (is_null($newsobj)) {
-		$ownerclass = strtolower(get_class($_zp_current_zenpage_news));
-	} else {
-		$ownerclass = strtolower(get_class($newsobj));
-	}
-	switch ($ownerclass) {
-		case "video":
-			return "video";
-		case "album":
-			return "album";
-		case "zenpagenews":
-			return "news";
-		default:
-			return 'image';
-	}
+	return 'news';
 }
 
 /**
@@ -1347,7 +1330,7 @@ function getNewsType($newsobj = NULL) {
  */
 function is_NewsType($type, $newsobj = NULL) {
 	deprecated_functions::notify(gettext('CombiNews is deprecated. See the <a href="http://www.zenphoto.org/news/zenphoto-1.4.6">Zenphoto 1.4.6 release notes</a>.'));
-	return getNewsType($newsobj) == $type;
+	return 'news' == $type;
 }
 
 /**
@@ -1358,7 +1341,7 @@ function is_NewsType($type, $newsobj = NULL) {
  */
 function is_GalleryNewsType() {
 	deprecated_functions::notify(gettext('CombiNews is deprecated. See the <a href="http://www.zenphoto.org/news/zenphoto-1.4.6">Zenphoto 1.4.6 release notes</a>.'));
-	return is_NewsType("image") || is_NewsType("video") || is_NewsType("album"); // later to be extended with albums, too
+	return false;
 }
 
 /**
@@ -1369,7 +1352,7 @@ function is_GalleryNewsType() {
  */
 function getNewsVideoContent($imageobj) {
 	deprecated_functions::notify(gettext('CombiNews is deprecated. See the <a href="http://www.zenphoto.org/news/zenphoto-1.4.6">Zenphoto 1.4.6 release notes</a>.'));
-	return $imageobj->getBody();
+	return NULL;
 }
 
 /**
@@ -1381,16 +1364,7 @@ function getNewsVideoContent($imageobj) {
 function getNewsAlbumTitle() {
 	global $_zp_current_zenpage_news;
 	deprecated_functions::notify(gettext('CombiNews is deprecated. See the <a href="http://www.zenphoto.org/news/zenphoto-1.4.6">Zenphoto 1.4.6 release notes</a>.'));
-	if (is_GalleryNewsType()) {
-		if (!is_NewsType("album")) {
-			$albumobj = $_zp_current_zenpage_news->getAlbum();
-			return $albumobj->getTitle();
-		} else {
-			return $_zp_current_zenpage_news->getTitle();
-		}
-	} else {
-		return false;
-	}
+	return false;
 }
 
 /**
@@ -1413,16 +1387,7 @@ function getBareNewsAlbumTitle() {
 function getNewsAlbumName() {
 	global $_zp_current_zenpage_news;
 	deprecated_functions::notify(gettext('CombiNews is deprecated. See the <a href="http://www.zenphoto.org/news/zenphoto-1.4.6">Zenphoto 1.4.6 release notes</a>.'));
-	if (is_GalleryNewsType()) {
-		if (!is_NewsType("album")) {
-			$albumobj = $_zp_current_zenpage_news->getAlbum();
-			return $albumobj->getFolder();
-		} else {
-			return $_zp_current_zenpage_news->getFolder();
-		}
-	} else {
-		return false;
-	}
+	return false;
 }
 
 /**
@@ -1449,11 +1414,7 @@ function getNewsAlbumURL() {
 function getFullNewsImage() {
 	global $_zp_current_zenpage_news;
 	deprecated_functions::notify(gettext('CombiNews is deprecated. See the <a href="http://www.zenphoto.org/news/zenphoto-1.4.6">Zenphoto 1.4.6 release notes</a>.'));
-	if (is_NewsType('image') || is_NewsType('video')) {
-		return $_zp_current_zenpage_news->getFullImage();
-	} else {
-		return false;
-	}
+	return false;
 }
 
 /**
@@ -1507,36 +1468,6 @@ function getLatestNews($number = 2, $option = 'none', $category = '', $sticky = 
 				}
 			}
 			break;
-		case 'with_latest_images':
-			$latest = $_zp_zenpage->getCombiNews($number, 'latestimages-thumbnail', NULL, 'id', $sticky, $sortdirection);
-			break;
-		case 'with_latest_images_date':
-			$latest = $_zp_zenpage->getCombiNews($number, 'latestimages-thumbnail', NULL, 'date', $sticky, $sortdirection);
-			break;
-		case 'with_latest_images_mtime':
-			$latest = $_zp_zenpage->getCombiNews($number, 'latestimages-thumbnail', NULL, 'mtime', $sticky, $sortdirection);
-			break;
-		case 'with_latest_images_publishdate':
-			$latest = $_zp_zenpage->getCombiNews($number, 'latestimages-thumbnail', NULL, 'publishdate', $sticky, $sortdirection);
-			break;
-		case 'with_latest_albums':
-			$latest = $_zp_zenpage->getCombiNews($number, 'latestalbums-thumbnail', NULL, 'id', $sticky, $sortdirection);
-			break;
-		case 'with_latest_albums_date':
-			$latest = $_zp_zenpage->getCombiNews($number, 'latestalbums-thumbnail', NULL, 'date', $sticky, $sortdirection);
-			break;
-		case 'with_latest_albums_mtime':
-			$latest = $_zp_zenpage->getCombiNews($number, 'latestalbums-thumbnail', NULL, 'mtime', $sticky, $sortdirection);
-			break;
-		case 'with_latest_albums_publishdate':
-			$latest = $_zp_zenpage->getCombiNews($number, 'latestalbums-thumbnail', NULL, 'publishdate', $sticky, $sortdirection);
-			break;
-		case 'with_latestupdated_albums':
-			$latest = $_zp_zenpage->getCombiNews($number, 'latestupdatedalbums-thumbnail', NULL, '', $sticky, $sortdirection);
-			break;
-		/* case "latestimagesbyalbum-thumbnail":
-		  $latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'id','',false);
-		  break; */
 	}
 	return $latest;
 }

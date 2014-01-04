@@ -86,8 +86,6 @@ class feed {
 	protected $cattitle = NULL;
 	protected $newsoption = NULL;
 	protected $titleappendix = NULL;
-	protected $combinews_images = NULL;
-	protected $combinews_albums = NULL;
 	//comment feed specific
 	protected $id = NULL;
 	protected $commentfeedtype = NULL;
@@ -334,6 +332,7 @@ class feed {
 							$items = getLatestNews($this->itemnumber, "none", $this->catlink, false, $this->sortdirection);
 						}
 						break;
+					default:
 					case "news":
 						if ($this->sortorder) {
 							$items = getZenpageStatistic($this->itemnumber, 'news', $this->sortorder, $this->sortdirection);
@@ -341,39 +340,6 @@ class feed {
 							// Needed baceause type variable "news" is used by the feed item method and not set by the class method getArticles!
 							$items = getLatestNews($this->itemnumber, 'none', '', false, $this->sortdirection);
 						}
-						break;
-//TODO: remove CombiNews code in 1.4.7
-					case "withimages":
-						//$items = getLatestNews($this->itemnumber,"with_latest_images_date",'',false,$this->sortdirection);
-						$items = $_zp_zenpage->getCombiNews($this->itemnumber, 'latestimages-thumbnail', NULL, 'date', false, $this->sortdirection);
-						break;
-					case "withimages_id":
-						//$items = getLatestNews($this->itemnumber,"with_latest_images_date",'',false,$this->sortdirection);
-						$items = $_zp_zenpage->getCombiNews($this->itemnumber, 'latestimages-thumbnail', NULL, 'id', false, $this->sortdirection);
-						break;
-					case 'withimages_mtime':
-						//$items = getLatestNews($this->itemnumber,"with_latest_images_mtime",'',false,$this->sortdirection);
-						$items = $_zp_zenpage->getCombiNews($this->itemnumber, 'latestimages-thumbnail', NULL, 'mtime', false, $this->sortdirection);
-						break;
-					case 'withimages_publishdate':
-						//$items = getLatestNews($this->itemnumber,"with_latest_images_publishdate",'',false,$this->sortdirection);
-						$items = $_zp_zenpage->getCombiNews($this->itemnumber, 'latestimages-thumbnail', NULL, 'publishdate', false, $this->sortdirection);
-						break;
-					case 'withalbums':
-						//$items = getLatestNews($this->itemnumber,"with_latest_albums_date",'',false,$this->sortdirection);
-						$items = $_zp_zenpage->getCombiNews($this->itemnumber, 'latestalbums-thumbnail', NULL, 'date', false, $this->sortdirection);
-						break;
-					case 'withalbums_mtime':
-						//$items = getLatestNews($this->itemnumber,"with_latest_albums_mtime",'',false,$this->sortdirection);
-						$items = $_zp_zenpage->getCombiNews($this->itemnumber, 'latestalbums-thumbnail', NULL, 'mtime', false, $this->sortdirection);
-						break;
-					case 'withalbums_publishdate':
-						//$items = getLatestNews($this->itemnumber,"with_latest_albums_publishdate",'',false,$this->sortdirection);
-						$items = $_zp_zenpage->getCombiNews($this->itemnumber, 'latestalbums-thumbnail', NULL, 'publishdate', false, $this->sortdirection);
-						break;
-					case 'withalbums_latestupdated':
-						//$items = getLatestNews($this->itemnumber,"with_latestupdated_albums",'',false,$this->sortdirection);
-						$items = $_zp_zenpage->getCombiNews($this->itemnumber, 'latestupdatedalbums-thumbnail', NULL, '', false, $this->sortdirection);
 						break;
 				}
 				break;
@@ -521,4 +487,5 @@ class feed {
 	}
 
 }
+
 ?>

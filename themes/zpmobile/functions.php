@@ -29,11 +29,6 @@ function jqm_printRSSlinks() {
 			?>
 			<li class="rsslink"><a href="<?php echo html_encode(getRSSLink('News')); ?>" rel="external" data-ajax="false"><?php echo gettext('News'); ?></a></li>
 			<?php
-			if (ZENPAGE_COMBINEWS) {
-				?>
-				<li class="rsslink"><a href="<?php echo html_encode(getRSSLink('NewsWithImages')); ?>" rel="external" data-ajax="false"><?php echo gettext('News and Gallery'); ?></a></li>
-				<?php
-			}
 		}
 		?>
 		<li class="rsslink"><a href="<?php echo html_encode(getRSSLink('Gallery')); ?>" rel="external" data-ajax="false"><?php echo gettext('Gallery'); ?></a></li>
@@ -120,19 +115,17 @@ function jqm_printNewsCategories($separator = '', $class = '') {
 	$categories = getNewsCategories();
 	$catcount = count($categories);
 	if ($catcount != 0) {
-		if (is_NewsType("news")) {
-			echo "<ul class=\"$class\">\n";
-			$count = 0;
-			foreach ($categories as $cat) {
-				$count++;
-				$catobj = new ZenpageCategory($cat['titlelink']);
-				if ($count >= $catcount) {
-					$separator = "";
-				}
-				echo "<li>" . $catobj->getTitle() . "</li>\n";
+		echo "<ul class=\"$class\">\n";
+		$count = 0;
+		foreach ($categories as $cat) {
+			$count++;
+			$catobj = new ZenpageCategory($cat['titlelink']);
+			if ($count >= $catcount) {
+				$separator = "";
 			}
-			echo "</ul>\n";
+			echo "<li>" . $catobj->getTitle() . "</li>\n";
 		}
+		echo "</ul>\n";
 	}
 }
 
@@ -176,54 +169,11 @@ function jqm_printBacktoTopLink() {
 }
 
 /**
- * Prints the link to an news entry with combinews support
+ * Prints the link to an news entry
  */
 function jqm_getLink() {
-	global $_zp_current_zenpage_news;
-	if (ZENPAGE_COMBINEWS) {
-		$newstype = getNewsType();
-	} else {
-		$newstype = 'news';
-	}
-	switch ($newstype) {
-		case "image":
-		case "video":
-			$link = $_zp_current_zenpage_news->getLink();
-			break;
-		case "album":
-			$link = $_zp_current_zenpage_news->getLink();
-			break;
-		default:
-			$link = getNewsURL(getNewsTitleLink());
-			break;
-	}
+	$link = getNewsURL(getNewsTitleLink());
 	return $link;
-}
-
-/**
- * Prints the thumbnail for news in Combinews mode
- */
-function jqm_printCombiNewsThumb() {
-	global $_zp_current_zenpage_news;
-	if (ZENPAGE_COMBINEWS) {
-		$newstype = getNewsType();
-	} else {
-		$newstype = 'news';
-	}
-
-	switch ($newstype) {
-		case "image":
-		case "video":
-			$thumb = '<img src="' . html_encode(pathurlencode($_zp_current_zenpage_news->getCustomImage(NULL, 80, 80, 80, 80, NULL, NULL, true, NULL))) . '" alt="' . html_encode($_zp_current_zenpage_news->getTitle()) . '" />';
-			break;
-		case "album":
-			$obj = $_zp_current_zenpage_news->getAlbumThumbImage();
-			$thumb = '<img src="' . html_encode(pathurlencode($obj->getCustomImage(NULL, 80, 80, 80, 80, NULL, NULL, true, NULL))) . '" alt="' . html_encode($_zp_current_zenpage_news->getTitle()) . '" />';
-		default:
-			$thumb = '';
-			break;
-	}
-	echo $thumb;
 }
 
 /**

@@ -124,7 +124,7 @@ class ZenpageNews extends ZenpageItems {
 	}
 
 	/**
-	 * Checks if an article (not CombiNews gallery items!) is in a password protected category and returns TRUE or FALSE
+	 * Checks if an article is in a password protected category and returns TRUE or FALSE
 	 * NOTE: This function does not check if the password has been entered! Use checkAccess() for that.
 	 *
 	 * @param bool $only set to true to know if the news article belongs only to protected categories (i.e. it is protected)

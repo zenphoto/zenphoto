@@ -39,11 +39,13 @@ if (!defined('WEBPATH') || !class_exists('Zenpage'))
 				<div id="breadcrumb">
 					<h2>
 						<a href="<?php echo getGalleryIndexURL(false); ?>"><?php echo gettext("Index"); ?></a>
-						<?php printNewsIndexURL(NULL, ' » '); ?><strong><?php printZenpageItemsBreadcrumb(' » ', '');
-						printCurrentNewsCategory(" » ");
-						?><?php printNewsTitle(" » ");
+						<?php printNewsIndexURL(NULL, ' » '); ?><strong><?php
+							printZenpageItemsBreadcrumb(' » ', '');
+							printCurrentNewsCategory(" » ");
+							?><?php
+							printNewsTitle(" » ");
 							printCurrentNewsArchive(" » ");
-						?></strong>
+							?></strong>
 					</h2>
 				</div>
 
@@ -55,11 +57,12 @@ if (!defined('WEBPATH') || !class_exists('Zenpage'))
 					if (is_NewsArticle()) {
 						?>
 						<?php if (getPrevNewsURL()) { ?><div class="singlenews_prev"><?php printPrevNewsLink(); ?></div><?php } ?>
-	<?php if (getNextNewsURL()) { ?><div class="singlenews_next"><?php printNextNewsLink(); ?></div><?php } ?>
-								<?php if (getPrevNewsURL() OR getNextNewsURL()) { ?><br style="clear:both" /><?php } ?>
+						<?php if (getNextNewsURL()) { ?><div class="singlenews_next"><?php printNextNewsLink(); ?></div><?php } ?>
+						<?php if (getPrevNewsURL() OR getNextNewsURL()) { ?><br style="clear:both" /><?php } ?>
 						<h3><?php printNewsTitle(); ?></h3>
-						<div class="newsarticlecredit"><span class="newsarticlecredit-left"><?php printNewsDate(); ?> | <?php if (function_exists('getCommentCount')) {
-						echo gettext("Comments:");
+						<div class="newsarticlecredit"><span class="newsarticlecredit-left"><?php printNewsDate(); ?> | <?php
+								if (function_exists('getCommentCount')) {
+									echo gettext("Comments:");
 									?> <?php echo getCommentCount(); ?> |<?php } ?> </span> <?php printNewsCategories(", ", gettext("Categories: "), "newscategories"); ?></div>
 						<?php printNewsContent(); ?>
 						<?php printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', '); ?>
@@ -73,14 +76,9 @@ if (!defined('WEBPATH') || !class_exists('Zenpage'))
 						echo "<hr />";
 // news article loop
 						while (next_news()):;
-							if (ZENPAGE_COMBINEWS) {
-								$type = getNewsType();
-							} else {
-								$type = 'news';
-							}
 							?>
 							<div class="newsarticle">
-								<h3><?php printNewsTitleLink(); ?><?php echo " <span class='newstype'>[" . $type . "]</span>"; ?></h3>
+								<h3><?php printNewsTitleLink(); ?><?php echo " <span class='newstype'>[" . gettext('news') . "]</span>"; ?></h3>
 								<div class="newsarticlecredit">
 									<span class="newsarticlecredit-left">
 										<?php
@@ -92,29 +90,21 @@ if (!defined('WEBPATH') || !class_exists('Zenpage'))
 											echo gettext("Comments:");
 											?>
 											<?php
-										echo getCommentCount();
-									}
-									?></span>
-									<?php
-									if (ZENPAGE_COMBINEWS && is_GalleryNewsType()) {
-										if (!is_NewsType("album")) {
-											echo " | " . gettext("Album:") . "<a href='" . getNewsAlbumURL() . "' title='" . getBareNewsAlbumTitle() . "'> " . getNewsAlbumTitle() . "</a>";
-										} else {
-											echo "<br />";
+											echo getCommentCount();
 										}
-									} else {
-										echo ' | ';
-										printNewsCategories(", ", gettext("Categories: "), "newscategories");
-									}
+										?></span>
+									<?php
+									echo ' | ';
+									printNewsCategories(", ", gettext("Categories: "), "newscategories");
 									?>
 								</div>
-								<?php printNewsContent(); ?>
+									<?php printNewsContent(); ?>
 								<?php printCodeblock(1); ?>
-		<?php
-		if (getTags()) {
-			echo gettext('<strong>Tags:</strong>');
-		} printTags('links', '', 'taglist', ', ');
-		?>
+								<?php
+								if (getTags()) {
+									echo gettext('<strong>Tags:</strong>');
+								} printTags('links', '', 'taglist', ', ');
+								?>
 								<br style="clear:both;" /><br />
 							</div>
 		<?php
@@ -128,12 +118,12 @@ if (!defined('WEBPATH') || !class_exists('Zenpage'))
 
 
 				<div id="sidebar">
-					<?php include("sidebar.php"); ?>
+<?php include("sidebar.php"); ?>
 				</div><!-- sidebar -->
 
 
 				<div id="footer">
-		<?php include("footer.php"); ?>
+<?php include("footer.php"); ?>
 				</div>
 
 			</div><!-- content -->

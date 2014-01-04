@@ -91,10 +91,7 @@ if (function_exists('printCustomMenu') && ($menu = getOption('effervescence_menu
 					?>
 					<?php
 					if (extensionEnabled('zenpage')) {
-						?>
-						<?php printRSSLink("News", "<li>", gettext("News"), '</li>'); ?>
-						<?php if (ZENPAGE_COMBINEWS) printRSSLink("NewsWithImages", "<li>", gettext("News and Gallery"), '</li>'); ?>
-						<?php
+						printRSSLink("News", "<li>", gettext("News"), '</li>');
 					}
 				}
 				?>

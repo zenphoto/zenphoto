@@ -7,19 +7,19 @@ if (!defined('WEBPATH'))
 <html>
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
-<?php printHeadTitle(); ?>
+		<?php printHeadTitle(); ?>
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" />
-<?php jqm_loadScripts(); ?>
+		<?php jqm_loadScripts(); ?>
 	</head>
 
 	<body>
-<?php zp_apply_filter('theme_body_open'); ?>
+		<?php zp_apply_filter('theme_body_open'); ?>
 
 		<div data-role="page" id="mainpage">
 
-<?php jqm_printMainHeaderNav(); ?>
+			<?php jqm_printMainHeaderNav(); ?>
 
 			<div data-role="content">
 
@@ -29,7 +29,7 @@ if (!defined('WEBPATH'))
 					if (function_exists('printLatestImages')) {
 						?>
 						<h2><?php echo gettext('Latest images'); ?></h2>
-							<?php $latestimages = getImageStatistic(8, 'latest', '', false, 0, 'desc'); ?>
+						<?php $latestimages = getImageStatistic(8, 'latest', '', false, 0, 'desc'); ?>
 						<div class="ui-grid-c">
 							<?php
 							$count = '';
@@ -68,7 +68,6 @@ if (!defined('WEBPATH'))
 								<li>
 									<a href="<?php echo html_encode(jqm_getLink()); ?>" title="<?php printBareNewsTitle(); ?>">
 										<?php printNewsTitle(); ?> <small>(<?php printNewsDate(); ?>)</small>
-										<?php jqm_printCombiNewsThumb(); ?>
 									</a>
 								</li>
 								<?php

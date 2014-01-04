@@ -10,14 +10,11 @@
  * Some global variable setup
  *
  */
-define('ZP_SHORTENINDICATOR', $shortenindicator = getOption('zenpage_textshorten_indicator'));
+//TODO: on the 1.4.7 release these combinews defines can be removed.
+define('ZENPAGE_COMBINEWS', getOption('zenpage_combinews'));
+define('ZP_COMBINEWS_SORTORDER', getOption("zenpage_combinews_sortorder"));
 define('ZP_COMBINEWS_CUSTOMTITLE', get_language_string(getOption('combinews-customtitle')));
 define('ZP_COMBINEWS_IMAGETITLES', getOption('combinews-customtitle-imagetitles'));
-define('ZP_SHORTEN_LENGTH', getOption('zenpage_text_length'));
-define('ZP_COMBINEWS_SORTORDER', getOption("zenpage_combinews_sortorder"));
-define('ZP_READ_MORE', getOption("zenpage_read_more"));
-define('ZP_COMBINEWS', getOption('zenpage_combinews'));
-define('ZP_ARTICLES_PER_PAGE', getOption("zenpage_articles_per_page"));
 define('ZP_CN_IMAGESIZE', getOption('zenpage_combinews_imagesize'));
 define('ZP_CN_THUMBWIDTH', getOption('combinews-thumbnail-width'));
 define('ZP_CN_THUMBHEIGHT', getOption('combinews-thumbnail-height'));
@@ -26,6 +23,12 @@ define('ZP_CN_CROPHEIGHT', getOption('combinews-thumbnail-cropheight'));
 define('ZP_CN_CROPX', getOption('combinews-thumbnail-cropx'));
 define('ZP_CN_CROPY', getOption('combinews-thumbnail-cropy'));
 define('ZP_CN_MODE', getOption('zenpage_combinews_mode'));
+
+define('ZP_SHORTENINDICATOR', $shortenindicator = getOption('zenpage_textshorten_indicator'));
+define('ZP_SHORTEN_LENGTH', getOption('zenpage_text_length'));
+define('ZP_READ_MORE', getOption("zenpage_read_more"));
+define('ZP_COMBINEWS', getOption('zenpage_combinews'));
+define('ZP_ARTICLES_PER_PAGE', getOption("zenpage_articles_per_page"));
 if (!defined('MENU_TRUNCATE_STRING'))
 	define('MENU_TRUNCATE_STRING', getOption('menu_truncate_string'));
 if (!defined('MENU_TRUNCATE_INDICATOR'))
@@ -450,21 +453,17 @@ class Zenpage {
 	 */
 	function getTotalArticles() {
 		global $_zp_current_category;
-		if (ZP_COMBINEWS AND !isset($_GET['title']) AND !isset($_GET['category']) AND !isset($_GET['date']) AND OFFSET_PATH != 4) {
-			return $this->countCombiNews();
-		} else {
-			if (empty($_zp_current_category)) {
-				if (isset($_GET['category'])) {
-					$cat = sanitize($_GET['category']);
-					$catobj = new ZenpageCategory($cat);
-				} else {
-					return count($this->getArticles(0));
-				}
+		if (empty($_zp_current_category)) {
+			if (isset($_GET['category'])) {
+				$cat = sanitize($_GET['category']);
+				$catobj = new ZenpageCategory($cat);
 			} else {
-				$catobj = $_zp_current_category;
+				return count($this->getArticles(0));
 			}
-			return count($catobj->getArticles());
+		} else {
+			$catobj = $_zp_current_category;
 		}
+		return count($catobj->getArticles());
 	}
 
 	/**
@@ -765,15 +764,6 @@ class Zenpage {
 		}
 		$_zp_combiNews_cache[$published . $mode . $sticky . $sortorder . $sortdirection] = $result;
 		return $result;
-	}
-
-	/**
-	 * CombiNews Feature: Counts all news articles and all images
-	 *
-	 * @return int
-	 */
-	function countCombiNews($published = NULL) {
-		return count($this->getCombiNews(NULL, NULL, $published));
 	}
 
 	/**

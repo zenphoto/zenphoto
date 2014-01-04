@@ -37,7 +37,8 @@ if (function_exists('printCustomMenu') && getOption('zenpage_custommenu')) {
 			<h3><?php echo gettext("Pages"); ?></h3>
 			<?php printPageMenu("list", "", "menu-active", "submenu", "menu-active"); ?>
 		</div>
-	<?php }
+	<?php
+	}
 } // custom menu check end
 ?>
 
@@ -69,8 +70,6 @@ if (class_exists('RSS') && getOption('RSS_album_image') || getOption('RSS_articl
 			<?php
 			if (extensionEnabled('zenpage')) {
 				printRSSLink("News", "<li>", gettext("News"), '</li>');
-				if (ZENPAGE_COMBINEWS)
-					printRSSLink("NewsWithImages", "<li>", gettext("News and Gallery"), '</li>');
 			}
 			?>
 		</ul>
@@ -100,9 +99,9 @@ if (function_exists("printUserLogin_out") || !zp_loggedin() && function_exists('
 	?>
 	<div class="menu">
 		<ul>
-				<?php
-				if (!zp_loggedin() && function_exists('printRegistrationForm')) {
-					?>
+			<?php
+			if (!zp_loggedin() && function_exists('printRegistrationForm')) {
+				?>
 				<li>
 					<?php
 					if ($_zp_gallery_page != 'register.php') {
@@ -133,9 +132,9 @@ if (function_exists("printUserLogin_out") || !zp_loggedin() && function_exists('
 				<li>
 				<?php mobileTheme::controlLink(NULL, '', ''); ?>
 				</li>
-		<?php
-	}
-	?>
+				<?php
+			}
+			?>
 		</ul>
 	</div>
 	<?php

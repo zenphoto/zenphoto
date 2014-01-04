@@ -62,14 +62,9 @@ if (!defined('WEBPATH'))
 						printNewsPageListWithNav(gettext('next »'), gettext('« prev'), true, 'pagelist', true);
 						echo "<hr />";
 						while (next_news()):;
-							if (ZENPAGE_COMBINEWS) {
-								$type = getNewsType();
-							} else {
-								$type = 'news';
-							}
 							?>
 							<div class="newsarticle">
-								<h3><?php printNewsTitleLink(); ?><?php echo " <span class='newstype'>[" . $type . "]</span>"; ?></h3>
+								<h3><?php printNewsTitleLink(); ?><?php echo " <span class='newstype'>[" . gettext('news') . "]</span>"; ?></h3>
 								<div class="newsarticlecredit"><span class="newsarticlecredit-left"><?php
 										printNewsDate();
 										if (function_exists('getCommentCount')) {
@@ -78,20 +73,12 @@ if (!defined('WEBPATH'))
 										}
 										?></span>
 									<?php
-									if (ZENPAGE_COMBINEWS && is_GalleryNewsType()) {
-										if (!is_NewsType("album")) {
-											echo " | " . gettext("Album:") . "<a href='" . getNewsAlbumURL() . "' title='" . getBareNewsAlbumTitle() . "'> " . getNewsAlbumTitle() . "</a>";
-										} else {
-											echo "<br />";
-										}
-									} else {
-										printNewsCategories(", ", gettext("Categories: "), "newscategories");
-									}
+									printNewsCategories(", ", gettext("Categories: "), "newscategories");
 									?>
 								</div>
 								<?php printNewsContent(); ?>
-							<?php printCodeblock(1); ?>
-							<?php printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', '); ?>
+								<?php printCodeblock(1); ?>
+								<?php printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', '); ?>
 							</div>
 							<?php
 						endwhile;
@@ -103,13 +90,13 @@ if (!defined('WEBPATH'))
 
 
 				<div id="sidebar">
-<?php include("sidebar.php"); ?>
+					<?php include("sidebar.php"); ?>
 				</div><!-- sidebar -->
 
 
 
 				<div id="footer">
-<?php include("footer.php"); ?>
+					<?php include("footer.php"); ?>
 				</div>
 
 			</div><!-- content -->
