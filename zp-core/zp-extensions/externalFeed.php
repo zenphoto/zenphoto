@@ -2,11 +2,23 @@
 /**
  * This plugin handles <i>External</i> feeds:
  *
+ * url: <i>site</i>/index.php?external=<i>type</i>&accesskey=<i>key</i>+feed selections
+ *
+ * The accesskey is obtained from the plugin options. Each request changes the key
+ * for the next. That next key is provided in the feed. If the wrong key is provided
+ * the result is a page not found (404)
+ *
+ * Feed types:
  * Supports all RSS feed options plus individual image, news, and Page requests:
- * <var>?external&album=album</var> for an album
- * <var>?external&album=album&image=image</var> for an image
- * <var>?external=news&titlelink=article</var> for an article
- * <var>?external=pages&titlelink=article</var> for an page
+ * <ul>
+ * <li>?external=gallery
+ * <ul>
+ * <li>&album=<i>album</i> for an album</li>
+ * <li>&album=<i>album</i>&image=<i>image</i> for an image</li>
+ * </ul>
+ * <li>?external=news&titlelink=<i>article</i> for an article</li>
+ * <li>?external=pages&titlelink=<i>page</i> for an page</li>
+ * </ul>
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
@@ -16,7 +28,6 @@
 
 $plugin_is_filter = 9 | FEATURE_PLUGIN | ADMIN_PLUGIN;
 $plugin_description = gettext('The Zenphoto <em>externalFeed</em> handler.');
-$plugin_notice = gettext('This plugin must be enabled to supply <em>externalFeed</em> feeds.');
 
 $plugin_author = "Stephen Billard (sbillard)";
 
@@ -31,10 +42,7 @@ class externalFeed_options {
 			setOptionDefault('externalFeed_items', 10); // options for standard images rss
 			setOptionDefault('externalFeed_imagesize', 240);
 			setOptionDefault('externalFeed_sortorder', 'latest');
-			setOptionDefault('externalFeed_items_albums', 10); // options for albums rss
-			setOptionDefault('externalFeed_imagesize_albums', 240);
 			setOptionDefault('externalFeed_sortorder_albums', 'latest');
-			setOptionDefault('externalFeed_hitcounter', 1);
 		}
 	}
 
@@ -47,21 +55,15 @@ class externalFeed_options {
 														gettext('Pages')							 => 'externalFeed_pages',
 														gettext('News/Page Comments')	 => 'externalFeed_article_comments'
 										),
-										'desc'			 => gettext('Check each externalFeed feed you wish to activate.')),
+										'desc'			 => gettext('Check each feeds you wish to activate.')),
 						gettext('Image feed items:')					 => array('key'		 => 'externalFeed_items', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 1,
-										'desc'	 => gettext("The number of new images and comments you want to appear in your site's externalFeed feed")),
-						gettext('Album feed items:')					 => array('key'		 => 'externalFeed_items_albums', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 2,
-										'desc'	 => gettext("The number of new images and comments you want to appear in your site's externalFeed feed")),
+										'desc'	 => gettext("The number of new images and comments you want to appear in your site's feed")),
 						gettext('Image size')									 => array('key'		 => 'externalFeed_imagesize', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 3,
-										'desc'	 => gettext('Size of externalFeed image feed images:')),
-						gettext('Album image size')						 => array('key'		 => 'externalFeed_imagesize_albums', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 4,
-										'desc'	 => gettext('Size of externalFeed album feed images :')),
+										'desc'	 => gettext('Size of image feed images:')),
 						gettext('Image feed sort order:')			 => array('key'				 => 'externalFeed_sortorder', 'type'			 => OPTION_TYPE_SELECTOR,
-										'order'			 => 6,
+										'order'			 => 7,
 										'selections' => array(gettext('latest by id')					 => 'latest',
 														gettext('latest by date')				 => 'latest-date',
 														gettext('latest by mtime')			 => 'latest-mtime',
@@ -75,25 +77,59 @@ class externalFeed_options {
 														gettext('latest by publishdate') => 'latest-publishdate',
 														gettext('latest updated')				 => 'latestupdated'
 										),
-										'order'			 => 7,
-										'desc'			 => gettext('Choose between latest by id for the latest uploaded and latest updated')),
-						gettext('Hitcounter')									 => array('key'		 => 'externalFeed_hitcounter', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 12,
-										'desc'	 => gettext('Check if you want to store the hitcount on externalFeed feeds.'))
+										'order'			 => 8,
+										'desc'			 => gettext('In addition to the above you may select latest updated.')),
+						gettext('New requestor:')							 => array('key'		 => 'externalFeed_site', 'type'	 => OPTION_TYPE_TEXTBOX,
+										'order'	 => 9,
+										'desc'	 => gettext("Supply a site name to add a new using site.")),
+						gettext('Registered sites:')					 => array('key'		 => 'externalFeed_sitelist', 'type'	 => OPTION_TYPE_CUSTOM,
+										'order'	 => 9,
+										'desc'	 => gettext("Check the box to remove a site."))
 		);
 		if (extensionEnabled('zenpage')) {
 			$options[gettext('Feed text length')] = array('key'		 => 'externalFeed_truncate_length', 'type'	 => OPTION_TYPE_TEXTBOX,
-							'order'	 => 5.5,
-							'desc'	 => gettext("The text length of the Zenpage externalFeed feed items. No value for full length."));
-			$options[gettext('Zenpage feed items')] = array('key'		 => 'externalFeed_zenpage_items', 'type'	 => OPTION_TYPE_TEXTBOX,
+							'order'	 => 6,
+							'desc'	 => gettext("The text length of the Zenpage feed items. No value for full length."));
+			$options[gettext('News feed items')] = array('key'		 => 'externalFeed_zenpage_items', 'type'	 => OPTION_TYPE_TEXTBOX,
 							'order'	 => 5,
-							'desc'	 => gettext("The number of news articles you want to appear in your site's News externalFeed feed."));
+							'desc'	 => gettext("The number of news articles you want to appear in your site's News feed."));
 		}
+
 		return $options;
 	}
 
 	function handleOption($option, $currentValue) {
+		$count = 0;
+		$result = query('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="externalFeed" ORDER BY `aux`');
+		if ($result) {
+			$list = array();
+			while ($row = db_fetch_assoc($result)) {
+				$count++;
+				$key = $row['data'];
+				$site = $row['aux'];
+				?>
+				<div>
+					<label><?php printf(gettext('<em><strong>%1$s</strong></em> key=%2$s'), $site, $key); ?> <input type="checkbox" name="externalFeed_delete_<?php echo $site; ?>" /></label>
+				</div>
+				<?php
+			}
+		}
+		if (!$count)
+			echo gettext('No sites registered');
+	}
 
+	function handleOptionSave($themename, $themealbum) {
+		if ($site = getOption('externalFeed_site')) {
+			purgeOption('externalFeed_site');
+			$key = md5($site . serialize($_SERVER));
+			query('INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("externalFeed",' . db_quote($site) . ',' . db_quote($key) . ') ON DUPLICATE KEY UPDATE `data`=' . db_quote($key));
+		}
+		foreach ($_POST as $option => $value) {
+			if (strpos($option, 'externalFeed_delete_') !== false) {
+				$site = str_replace('externalFeed_delete_', '', $option);
+				query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="externalFeed" AND `aux`=' . db_quote($site));
+			}
+		}
 	}
 
 }
@@ -104,6 +140,7 @@ require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-MimeTypes.php');
 class ExternalFeed extends feed {
 
 	protected $feed = 'externalFeed';
+	protected $key;
 
 	/**
 	 * Creates a feed object from the URL parameters fetched only
@@ -115,21 +152,18 @@ class ExternalFeed extends feed {
 			self::feed404();
 
 		$this->feedtype = $options['external'];
+		$this->key = @$options['accesskey'];
 		parent::__construct($options);
 
-		if (isset($_GET['token'])) {
-//	The link camed from a logged in user, see if it is valid
-			$link = $_GET;
-			unset($link['token']);
-			$token = Zenphoto_Authority::passwordHash(serialize($link), '');
-			if ($token == $_GET['token']) {
-				$adminobj = Zenphoto_Authority::getAnAdmin(array('`id`=' => (int) $link['user']));
-				if ($adminobj) {
-					$_zp_current_admin_obj = $adminobj;
-					$_zp_loggedin = $_zp_current_admin_obj->getRights();
-				}
+
+		if ($this->key) {
+			$result = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="externalFeed" AND `data`=' . db_quote($this->key));
+			if (!$result) {
+				$this->key = NULL;
 			}
 		}
+		if (!$this->key)
+			self::feed404();
 // general feed setup
 		$channeltitlemode = getOption('externalFeed_title');
 		$this->host = html_encode($_SERVER["HTTP_HOST"]);
@@ -186,33 +220,18 @@ class ExternalFeed extends feed {
 				}
 				$titleappendix = gettext(' (Latest news)');
 
-				switch ($this->newsoption) {
-					case 'withalbums':
-					case 'withalbums_mtime':
-					case 'withalbums_publishdate':
-					case 'withalbums_latestupdated':
-						$titleappendix = gettext(' (Latest news and albums)');
+				switch ($this->sortorder) {
+					case 'popular':
+						$titleappendix = gettext(' (Most popular news)');
 						break;
-					case 'withimages':
-					case 'withimages_mtime':
-					case 'withimages_publishdate':
-						$titleappendix = gettext(' (Latest news and images)');
+					case 'mostrated':
+						$titleappendix = gettext(' (Most rated news)');
 						break;
-					default:
-						switch ($this->sortorder) {
-							case 'popular':
-								$titleappendix = gettext(' (Most popular news)');
-								break;
-							case 'mostrated':
-								$titleappendix = gettext(' (Most rated news)');
-								break;
-							case 'toprated':
-								$titleappendix = gettext(' (Top rated news)');
-								break;
-							case 'random':
-								$titleappendix = gettext(' (Random news)');
-								break;
-						}
+					case 'toprated':
+						$titleappendix = gettext(' (Top rated news)');
+						break;
+					case 'random':
+						$titleappendix = gettext(' (Random news)');
 						break;
 				}
 				$this->channel_title = html_encode($this->channel_title . $this->cattitle . $titleappendix);
@@ -286,24 +305,6 @@ class ExternalFeed extends feed {
 				break;
 		}
 		$this->feeditems = $this->getitems();
-	}
-
-	/**
-	 * Updates the hitcoutner for  in the plugin_storage db table.
-	 *
-	 */
-	protected function hitcounter() {
-		if (!zp_loggedin() && getOption('externalFeed_hitcounter')) {
-			$rssuri = $this->getCacheFilename();
-			$type = 'hitcounter';
-			$checkitem = query_single_row("SELECT `data` FROM " . prefix('plugin_storage') . " WHERE `aux` = " . db_quote($rssuri) . " AND `type` = '" . $type . "'", true);
-			if ($checkitem) {
-				$hitcount = $checkitem['data'] + 1;
-				query("UPDATE " . prefix('plugin_storage') . " SET `data` = " . $hitcount . " WHERE `aux` = " . db_quote($rssuri) . " AND `type` = '" . $type . "'", true);
-			} else {
-				query("INSERT INTO " . prefix('plugin_storage') . " (`type`,`aux`,`data`) VALUES ('" . $type . "'," . db_quote($rssuri) . ",1)", true);
-			}
-		}
 	}
 
 	/**
@@ -449,16 +450,27 @@ class ExternalFeed extends feed {
 		global $_zp_gallery;
 		$feeditems = $this->getitems();
 		if (is_array($feeditems)) {
-			$this->hitcounter();
 			header('Content-Type: application/xml');
 			?>
 			<external version="1.0" >
+				<?php
+				if ($this->key) {
+					$key = md5($this->key . serialize($_SERVER));
+					query('UPDATE ' . prefix('plugin_storage') . ' SET `data`=' . db_quote($key) . ' WHERE `type`="externalFeed" AND `data`=' . db_quote($this->key));
+					?>
+					<accesskey><?php echo $key; ?></accesskey>
+					<?php
+				}
+				?>
+
 				<channel>
 					<link href="<?php echo PROTOCOL; ?>://<?php echo $this->host; ?><?php echo html_encode(getRequestURI()); ?>" />
 					<language><?php echo $this->locale_xml; ?></language>
 					<?php
 					foreach ($feeditems as $feeditem) {
-						switch ($this->feedtype) {
+
+						switch
+						($this->feedtype) {
 							case 'gallery':
 								$item = $this->getItemGallery($feeditem);
 								break;
