@@ -9,7 +9,7 @@
  * the result is a page not found (404)
  *
  * Feed types:
- * 
+ *
  * Supports all RSS feed options plus individual Image, News, and Page requests:
  * <ul>
  * 	<li>?external=gallery
@@ -18,6 +18,9 @@
  * 			<li>&album[]=<i>album</i>&album[]=>i>album</i>... for a list of albums</li>
  * 			<li>&album=<i>album</i>&image=<i>image</i> for an image</li>
  * 			<li>&album=<i>album</i>&image[]=<i>image</i>&image[]=<i>image</i>... for a list of images</li>
+ *
+ * 				add &size=<i>size</i> to the image request to select a particular image size. (This
+ * 				cannot be larger than the plugin's image size option.)
  * 		</ul>
  * 	</li>
  * 	<li>?external=news
