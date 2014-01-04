@@ -194,7 +194,7 @@ function omsAdditions() {
  * @param $image		image object
  */
 function getGeoCoord($image) {
-	global $_zp_current_image, $_x, $_y, $_z, $_n;
+	global $_zp_current_image;
 	$result = false;
 	if ((is_object($image)) && ($image->table == 'images')) {
 		$_zp_current_image = $image;
@@ -228,7 +228,6 @@ function getGeoCoord($image) {
  * @param $coord		coordinates array
  */
 function addGeoCoord($map, $coord) {
-	global $_x, $_y, $_z, $_n;
 	if ($coord) {
 		$marker = array();
 
@@ -249,12 +248,6 @@ function addGeoCoord($map, $coord) {
 		$marker['title'] = $coord['title'];
 		$marker['infowindow_content'] = $title . $thumb . $desc;
 		$map->add_marker($marker);
-		$lat_f = (float) $coord['lat'] * M_PI / 180;
-		$long_f = (float) $coord['long'] * M_PI / 180;
-		$_x = $_x + cos($lat_f) * cos($long_f);
-		$_y = $_y + cos($lat_f) * sin($long_f);
-		$_z = $_z + sin($lat_f);
-		$_n++;
 	}
 }
 
@@ -300,7 +293,7 @@ function getAlbumGeodata($album, $map) {
  * @param function $callback optional callback function to set map options.
  */
 function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $callback = NULL) {
-	global $_zp_current_album, $_zp_current_image, $_x, $_y, $_z, $_n;
+	global $_zp_current_album, $_zp_current_image;
 
 	/* controls of parameters */
 	if (is_null($obj)) {
@@ -355,9 +348,26 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 		if (getOption('gmap_map_terrain'))
 			$allowedMapTypes[] = 'TERRAIN';
 	}
-
-	$config['center'] = '0, 0';
-	$config['zoom'] = 'auto';
+	/* configuration of center and zoom values for single image and for albums */
+	switch ($type) {
+		case 'images':
+			$coord = getGeoCoord($obj);
+			if ($coord) {
+				$config['center'] = $coord['lat'] . ', ' . $coord['long'];
+			} else {
+				$config['center'] = '0, 0';
+			}
+			$config['zoom'] = 13;
+			break;
+		case 'albums':
+			$config['center'] = '0, 0';
+			$config['zoom'] = 'auto';
+			break;
+		default:
+			$config['center'] = '0, 0';
+			$config['zoom'] = 'auto';
+			break;
+	}
 	$config['cluster'] = true;
 	$config['zoomControlStyle'] = getOption('gmap_zoom_size');
 	if ($mapTypeControl) {
@@ -393,19 +403,6 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 			}
 		default:
 			break;
-	}
-
-	if ($_n == 1)
-		$map->zoom = 10;
-
-	if ($_n) {
-		$_x = $_x / $_n;
-		$_y = $_y / $_n;
-		$_z = $_z / $_n;
-		$lon = atan2($_y, $_x) * 180 / M_PI;
-		$hyp = sqrt($_x * $_x + $_y * $_y);
-		$lat = atan2($_z, $hyp) * 180 / M_PI;
-		$map->center = $lat . ', ' . $lon;
 	}
 
 	if (!is_null($callback)) {
