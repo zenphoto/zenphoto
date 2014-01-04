@@ -9,15 +9,29 @@
  * the result is a page not found (404)
  *
  * Feed types:
- * Supports all RSS feed options plus individual image, news, and Page requests:
+ * 
+ * Supports all RSS feed options plus individual Image, News, and Page requests:
  * <ul>
- * <li>?external=gallery
- * <ul>
- * <li>&album=<i>album</i> for an album</li>
- * <li>&album=<i>album</i>&image=<i>image</i> for an image</li>
- * </ul>
- * <li>?external=news&titlelink=<i>article</i> for an article</li>
- * <li>?external=pages&titlelink=<i>page</i> for an page</li>
+ * 	<li>?external=gallery
+ * 		<ul>
+ * 			<li>&album=<i>album</i> for an album</li>
+ * 			<li>&album[]=<i>album</i>&album[]=>i>album</i>... for a list of albums</li>
+ * 			<li>&album=<i>album</i>&image=<i>image</i> for an image</li>
+ * 			<li>&album=<i>album</i>&image[]=<i>image</i>&image[]=<i>image</i>... for a list of images</li>
+ * 		</ul>
+ * 	</li>
+ * 	<li>?external=news
+ * 		<ul>
+ * 			<li>&titlelink=<i>article</i> for an article</li>
+ * 			<li>&titlelink[]=<i>article</i>&titlelink[]=<i>article</i>... for a list of articles</li>
+ * 		</ul>
+ * 	</li>
+ * 	<li>?external=news
+ * 		<ul>
+ * 			<li>&titlelink=<i>page</i> for a page</li>
+ * 			<li>&titlelink[]=<i>page</i>&titlelink[]=<i>page</i>... for a list of pages</li>
+ * 	 </ul>
+ * 	</li>
  * </ul>
  *
  * @author Stephen Billard (sbillard)
@@ -404,40 +418,55 @@ class ExternalFeed extends feed {
 	}
 
 	public function getitems() {
-
+		$items = array();
 		if (($album = @$this->options['album'])) {
 			if ($image = @$this->options['image']) {
-				$image = newImage(NULL, array('folder' => $album, 'filename' => $image), true);
-				if ($image->exists) {
-					return array($image);
-				} else {
-					return array();
+				if (!is_array($image)) {
+					$image = array($image);
+				}
+				foreach ($image as $filename) {
+					$obj = newImage(NULL, array('folder' => $album, 'filename' => $filename), true);
+					if ($obj->exists) {
+						$items[] = $obj;
+					}
 				}
 			} else {
-				$album = newAlbum($album);
-				if ($album->exists) {
-					return array($album);
-				} else {
-					return array();
+				if (!is_array($album)) {
+					$album = array($album);
+				}
+				foreach ($album as $folder) {
+					$obj = newAlbum($folder, true);
+					if ($obj->exists) {
+						$items[] = $obj;
+					}
 				}
 			}
+			return $items;
 		}
 
 		if ($this->feedtype == 'news' && $news = @$this->options['titlelink']) {
-			$obj = new ZenpageNews($news, false);
-			if ($obj->loaded) {
-				return array(array('titlelink' => $news));
-			} else {
-				return array();
+			if (!is_array($news)) {
+				$news = array($news);
 			}
+			foreach ($news as $article) {
+				$obj = new ZenpageNews($article, false);
+				if ($obj->loaded) {
+					$items[] = array('titlelink' => $article);
+				}
+			}
+			return $items;
 		}
-		if ($this->feedtype == 'pages' && $page = @$this->options['titlelink']) {
-			$obj = new ZenpagePage($page, false);
-			if ($obj->loaded) {
-				return array(array('titlelink' => $page));
-			} else {
-				return array();
+		if ($this->feedtype == 'pages' && $pages = @$this->options['titlelink']) {
+			if (!is_array($pages)) {
+				$pages = array($pages);
 			}
+			foreach ($pages as $page) {
+				$obj = new ZenpagePage($page, false);
+				if ($obj->loaded) {
+					$items[] = array('titlelink' => $page);
+				}
+			}
+			return $items;
 		}
 		return parent::getitems();
 	}
