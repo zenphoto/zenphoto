@@ -67,8 +67,12 @@ function printItemsListTable($item, $flag) {
 			printItemEditLink($item);
 			?>
 		</div>
-		<div class="page-list_extra"><em><?php echo $item['type']; ?></em></div>
-		<div class="page-list_extra"><?php echo $link; ?></div>
+		<div class="page-list_extra">
+			<em><?php echo $item['type']; ?></em>
+		</div>
+		<div class="page-list_extra">
+			<?php echo $link; ?>
+		</div>
 		<div class="page-list_iconwrapper">
 			<div class="page-list_icon">
 				<?php
@@ -159,29 +163,29 @@ function printItemsList($items) {
 			$open[$indent] = 0;
 		} else if ($level < $indent) {
 			while ($indent > $level) {
-				$open[$indent]--;
+				$open[$indent] --;
 				$indent--;
 				echo "</li>\n" . str_pad("\t", $indent, "\t") . "</ul>\n";
 			}
 		} else { // indent == level
 			if ($open[$indent]) {
 				echo str_pad("\t", $indent, "\t") . "</li>\n";
-				$open[$indent]--;
+				$open[$indent] --;
 			} else {
 				echo "\n";
 			}
 		}
 		if ($open[$indent]) {
 			echo str_pad("\t", $indent, "\t") . "</li>\n";
-			$open[$indent]--;
+			$open[$indent] --;
 		}
 		echo str_pad("\t", $indent - 1, "\t") . "<li id=\"id_" . $item['id'] . "\">";
 		echo printItemsListTable($item, $toodeep);
-		$open[$indent]++;
+		$open[$indent] ++;
 	}
 	while ($indent > 1) {
 		echo "</li>\n";
-		$open[$indent]--;
+		$open[$indent] --;
 		$indent--;
 		echo str_pad("\t", $indent, "\t") . "</ul>";
 	}
