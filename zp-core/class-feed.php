@@ -298,10 +298,12 @@ class feed {
 		} else {
 			$imagesize = NULL;
 		}
-		if (is_null($imagesize) || $imagesize > getOption($this->feed . '_imagesize')) {
-			if ($this->mode == 'albums') {
+		if ($this->mode == 'albums') {
+			if (is_null($imagesize) || $imagesize > getOption($this->feed . '_imagesize_albums')) {
 				$imagesize = getOption($this->feed . '_imagesize_albums'); // un-cropped image size
-			} else {
+			}
+		} else {
+			if (is_null($imagesize) || $imagesize > getOption($this->feed . '_imagesize')) {
 				$imagesize = getOption($this->feed . '_imagesize'); // un-cropped image size
 			}
 		}
@@ -519,5 +521,4 @@ class feed {
 	}
 
 }
-
 ?>

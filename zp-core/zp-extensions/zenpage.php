@@ -63,45 +63,47 @@ $_zp_zenpage = new Zenpage();
 class zenpagecms {
 
 	function zenpagecms() {
-		setOptionDefault('zenpage_articles_per_page', '10');
-		setOptionDefault('zenpage_text_length', '500');
-		setOptionDefault('zenpage_textshorten_indicator', ' (...)');
-		gettext($str = 'Read more');
-		setOptionDefault('zenpage_read_more', getAllTranslations($str));
-		setOptionDefault('zenpage_indexhitcounter', false);
-		setOptionDefault('zenpage_combinews', false);
-		setOptionDefault('zenpage_combinews_readmore', gettext('Visit gallery page'));
-		setOptionDefault('zenpage_combinews_mode', 'latestimage-sizedimage');
-		setOptionDefault('zenpage_combinews_imagesize', '300');
-		setOptionDefault('zenpage_combinews_sortorder', 'mtime');
-		setOptionDefault('zenpage_combinews_gallerylink', 'image');
-		setOptionDefault('combinews-thumbnail-cropwidth', '');
-		setOptionDefault('combinews-thumbnail-cropheight', '');
-		setOptionDefault('combinews-thumbnail-width', '');
-		setOptionDefault('combinews-thumbnail-height', '');
-		setOptionDefault('combinews-thumbnail-cropx', '');
-		setOptionDefault('combinews-thumbnail-cropy', '');
-		setOptionDefault('combinews-latestimagesbyalbum-imgdesc', false);
-		setOptionDefault('combinews-latestimagesbyalbum-imgtitle', false);
-		setOptionDefault('combinews-numberimages', '');
-		gettext($str = 'New in <em>%2$s</em>%1$s: %3$s');
-		setOptionDefault('combinews-customtitle', getAllTranslations($str));
-		setOptionDefault('combinews-customtitle-imagetitles', '6');
-		setOptionDefault('menu_truncate_string', 0);
-		setOptionDefault('menu_truncate_indicator', '');
-		if (class_exists('cacheManager') && getOption('zenpage_combinews')) {
-			cacheManager::deleteThemeCacheSizes('combinews');
-			switch (getOption('zenpage_combinews_mode')) {
-				case 'latestimages-sizedimage-maxspace':
-				case 'latestalbums-sizedimage-maxspace':
-				case 'latestimagesbyalbum-sizedimage-maxspace':
-					cacheManager::addThemeCacheSize('combinews', NULL, getOption('combinews-thumbnail-width'), getOption('combinews-thumbnail-height'), getOption('combinews-thumbnail-width'), getOption('combinews-thumbnail-height'), NULL, NULL, true, NULL, NULL, NULL);
-					break;
-				case 'latestimages-thumbnail-customcrop':
-				case 'latestalbums-thumbnail-customcrop':
-				case 'latestimagesbyalbum-thumbnail-customcrop':
-					cacheManager::addThemeCacheSize('combinews', NULL, getOption('combinews-thumbnail-width'), getOption('combinews-thumbnail-height'), getOption('combinews-thumbnail-cropwidth'), getOption('combinews-thumbnail-cropheight'), getOption('combinews-thumbnail-cropx'), getOption('combinews-thumbnail-cropy'), true, NULL, NULL, NULL);
-					break;
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('zenpage_articles_per_page', '10');
+			setOptionDefault('zenpage_text_length', '500');
+			setOptionDefault('zenpage_textshorten_indicator', ' (...)');
+			gettext($str = 'Read more');
+			setOptionDefault('zenpage_read_more', getAllTranslations($str));
+			setOptionDefault('zenpage_indexhitcounter', false);
+			setOptionDefault('zenpage_combinews', false);
+			setOptionDefault('zenpage_combinews_readmore', gettext('Visit gallery page'));
+			setOptionDefault('zenpage_combinews_mode', 'latestimage-sizedimage');
+			setOptionDefault('zenpage_combinews_imagesize', '300');
+			setOptionDefault('zenpage_combinews_sortorder', 'mtime');
+			setOptionDefault('zenpage_combinews_gallerylink', 'image');
+			setOptionDefault('combinews-thumbnail-cropwidth', '');
+			setOptionDefault('combinews-thumbnail-cropheight', '');
+			setOptionDefault('combinews-thumbnail-width', '');
+			setOptionDefault('combinews-thumbnail-height', '');
+			setOptionDefault('combinews-thumbnail-cropx', '');
+			setOptionDefault('combinews-thumbnail-cropy', '');
+			setOptionDefault('combinews-latestimagesbyalbum-imgdesc', false);
+			setOptionDefault('combinews-latestimagesbyalbum-imgtitle', false);
+			setOptionDefault('combinews-numberimages', '');
+			gettext($str = 'New in <em>%2$s</em>%1$s: %3$s');
+			setOptionDefault('combinews-customtitle', getAllTranslations($str));
+			setOptionDefault('combinews-customtitle-imagetitles', '6');
+			setOptionDefault('menu_truncate_string', 0);
+			setOptionDefault('menu_truncate_indicator', '');
+			if (class_exists('cacheManager') && getOption('zenpage_combinews')) {
+				cacheManager::deleteThemeCacheSizes('combinews');
+				switch (getOption('zenpage_combinews_mode')) {
+					case 'latestimages-sizedimage-maxspace':
+					case 'latestalbums-sizedimage-maxspace':
+					case 'latestimagesbyalbum-sizedimage-maxspace':
+						cacheManager::addThemeCacheSize('combinews', NULL, getOption('combinews-thumbnail-width'), getOption('combinews-thumbnail-height'), getOption('combinews-thumbnail-width'), getOption('combinews-thumbnail-height'), NULL, NULL, true, NULL, NULL, NULL);
+						break;
+					case 'latestimages-thumbnail-customcrop':
+					case 'latestalbums-thumbnail-customcrop':
+					case 'latestimagesbyalbum-thumbnail-customcrop':
+						cacheManager::addThemeCacheSize('combinews', NULL, getOption('combinews-thumbnail-width'), getOption('combinews-thumbnail-height'), getOption('combinews-thumbnail-cropwidth'), getOption('combinews-thumbnail-cropheight'), getOption('combinews-thumbnail-cropx'), getOption('combinews-thumbnail-cropy'), true, NULL, NULL, NULL);
+						break;
+				}
 			}
 		}
 	}

@@ -29,19 +29,26 @@ zp_register_filter('load_theme_script', 'galleryArticles::scan');
 class galleryArticles {
 
 	function __construct() {
-		setOptionDefault('galleryArticles_images', NULL);
-		setOptionDefault('galleryArticles_albums', NULL);
-		setOptionDefault('galleryArticles_category', NULL);
-		setOptionDefault('galleryArticles_albumCategory', 0);
-		$text = gettext('New album: %1$s');
-		setOptionDefault('galleryArticles_album_text', getAllTranslations($text));
-		$text = gettext('New image: [%2$s]%1$s');
-		setOptionDefault('galleryArticles_image_text', getAllTranslations($text));
-		setOptionDefault('galleryArticles_size', 80);
-		setOptionDefault('galleryArticles_protected', 0);
-		if (class_exists('cacheManager')) {
-			cacheManager::deleteThemeCacheSizes('galleryArticles');
-			cacheManager::addThemeCacheSize('galleryArticles', getOption('galleryArticles_size'), NULL, NULL, NULL, NULL, NULL, NULL, false, getOption('fullimage_watermark'), NULL, NULL);
+		if (OFFSET_PATH == 2) {
+			if (getOption('zenpage_combinews')) {
+				//take over for this option
+				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/galleryArticles/combiNews.php');
+			}
+
+			setOptionDefault('galleryArticles_images', NULL);
+			setOptionDefault('galleryArticles_albums', NULL);
+			setOptionDefault('galleryArticles_category', NULL);
+			setOptionDefault('galleryArticles_albumCategory', 0);
+			$text = gettext('New album: %1$s');
+			setOptionDefault('galleryArticles_album_text', getAllTranslations($text));
+			$text = gettext('New image: [%2$s]%1$s');
+			setOptionDefault('galleryArticles_image_text', getAllTranslations($text));
+			setOptionDefault('galleryArticles_size', 80);
+			setOptionDefault('galleryArticles_protected', 0);
+			if (class_exists('cacheManager')) {
+				cacheManager::deleteThemeCacheSizes('galleryArticles');
+				cacheManager::addThemeCacheSize('galleryArticles', getOption('galleryArticles_size'), NULL, NULL, NULL, NULL, NULL, NULL, false, getOption('fullimage_watermark'), NULL, NULL);
+			}
 		}
 	}
 
@@ -154,7 +161,7 @@ class galleryArticles {
 	 * Formats the message and calls sendTweet() on an object
 	 * @param object $obj
 	 */
-	private static function publishArticle($obj) {
+	private static function publishArticle($obj, $override = NULL) {
 		global $_zp_zenpage;
 		switch ($type = $obj->table) {
 			case 'albums':
@@ -180,13 +187,17 @@ class galleryArticles {
 		$article->setDateTime($date);
 		$article->setAuthor('galleryArticles');
 		$article->save();
-		$cat = getOption('galleryArticles_category');
-		if (getOption('galleryArticles_albumCategory')) {
-			$catlist = $_zp_zenpage->getAllCategories();
-			foreach ($catlist as $category) {
-				if ($category['titlelink'] == $folder) {
-					$cat = $category['titlelink'];
-					break;
+		if ($override) {
+			$cat = $override;
+		} else {
+			$cat = getOption('galleryArticles_category');
+			if (getOption('galleryArticles_albumCategory')) {
+				$catlist = $_zp_zenpage->getAllCategories();
+				foreach ($catlist as $category) {
+					if ($category['titlelink'] == $folder) {
+						$cat = $category['titlelink'];
+						break;
+					}
 				}
 			}
 		}

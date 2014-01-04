@@ -656,6 +656,7 @@ class Zenpage {
 			case "latestalbums-sizedimage":
 			case "latestalbums-sizedimage-maxspace":
 			case "latestalbums-fullimage":
+			default:
 				if (empty($show)) {
 					$albumWhere = ' WHERE ' . $albumWhere;
 				} else {
@@ -675,6 +676,7 @@ class Zenpage {
 													" . $show . $albumWhere . ")";
 						break;
 					case 'mtime':
+					default:
 						$albumquery = "(SELECT albums.folder, albums.title, FROM_UNIXTIME(albums.mtime), @type2, @type3 as sticky FROM " . prefix('albums') . " AS albums
 							" . $show . $albumWhere . ")";
 						break;
