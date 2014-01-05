@@ -1444,7 +1444,7 @@ if ($c <= 0) {
 											$ht = close_site($ht);
 										}
 										$htu = strtoupper($ht);
-										@chmod($htfile, 0666);
+										@chmod($htfile, 0777);
 										@unlink($htfile);
 										$ch = file_put_contents($htfile, trim($ht));
 										@chmod($htfile, 0444);
@@ -1516,7 +1516,7 @@ if ($c <= 0) {
 								}
 								if ($save) {
 									// try and fix it
-									@chmod($htfile, 0666);
+									@chmod($htfile, 0777);
 									if (is_writeable($htfile)) {
 										if (@file_put_contents($htfile, $ht)) {
 											$err = '';
@@ -2495,7 +2495,7 @@ if ($c <= 0) {
 									chdir($curdir);
 									$rslt = array();
 									foreach ($list as $component) {
-										@chmod(SERVERPATH . '/' . ZENFOLDER . '/setup/' . $component, 0666);
+										@chmod(SERVERPATH . '/' . ZENFOLDER . '/setup/' . $component, 0777);
 										if (@rename(SERVERPATH . '/' . ZENFOLDER . '/setup/' . $component, SERVERPATH . '/' . ZENFOLDER . '/setup/' . $component . '.xxx')) {
 											@chmod(SERVERPATH . '/' . ZENFOLDER . '/setup/' . $component . '.xxx', FILE_MOD);
 											setupLog(sprintf(gettext('%s protected.'), $component), true);

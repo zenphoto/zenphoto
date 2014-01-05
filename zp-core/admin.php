@@ -86,7 +86,7 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 					$list = safe_glob('*.php');
 					$rslt = array();
 					foreach ($list as $component) {
-						@chmod(SERVERPATH . '/' . ZENFOLDER . '/setup/' . $component, 0666);
+						@chmod(SERVERPATH . '/' . ZENFOLDER . '/setup/' . $component, 0777);
 						if (@rename(SERVERPATH . '/' . ZENFOLDER . '/setup/' . $component, SERVERPATH . '/' . ZENFOLDER . '/setup/' . $component . '.xxx')) {
 							@chmod(SERVERPATH . '/' . ZENFOLDER . '/setup/' . $component . '.xxx', FILE_MOD);
 						} else {

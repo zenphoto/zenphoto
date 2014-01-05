@@ -590,7 +590,7 @@ function updateConfigfile($zp_cfg) {
 	$mod1 = fileperms(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE) & 0777;
 	$mod2 = fileperms(SERVERPATH . '/' . DATA_FOLDER) & 0777;
 
-	@chmod(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, 0666);
+	@chmod(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, 0777);
 	if (is_writeable(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 		rename(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, $backkup = SERVERPATH . '/' . DATA_FOLDER . '/' . str_replace(strrchr(CONFIGFILE, "."), '', CONFIGFILE) . '.bak.php');
 		chmod($backkup, $mod1);
