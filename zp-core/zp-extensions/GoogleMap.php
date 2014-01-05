@@ -194,7 +194,7 @@ function omsAdditions() {
  * @param $image		image object
  */
 function getGeoCoord($image) {
-	global $_zp_current_image, $_x, $_y, $_z, $_n;
+	global $_zp_current_image;
 	$result = false;
 	if ((is_object($image)) && ($image->table == 'images')) {
 		$_zp_current_image = $image;
