@@ -1025,9 +1025,11 @@ zp-core/zp-extensions/publishContent/publishContent.php
 zp-core/zp-extensions/quota_manager.php
 zp-core/zp-extensions/rating
 zp-core/zp-extensions/rating.php
+zp-core/zp-extensions/rating/delete.gif
 zp-core/zp-extensions/rating/jquery.MetaData.js
 zp-core/zp-extensions/rating/jquery.rating.css
 zp-core/zp-extensions/rating/jquery.rating.js
+zp-core/zp-extensions/rating/star.gif
 zp-core/zp-extensions/rating/update.php
 zp-core/zp-extensions/reCaptcha
 zp-core/zp-extensions/reCaptcha.php
@@ -1806,4 +1808,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1808
+1810
