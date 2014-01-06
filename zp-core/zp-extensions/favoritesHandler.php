@@ -438,9 +438,11 @@ class favorites extends AlbumBase {
 			if ($count < $page && isset($_POST['addToFavorites']) && !$_POST['addToFavorites']) {
 				//We've deleted an item, need a place to land when we return
 				global $_zp_page;
-				$count = $page;
-				if ($_zp_page > 1)
-					$_zp_page--;
+				$link = self::getFavorites_link();
+				if ($_zp_page > 2)
+					$link .= '/' . ($_zp_page - 1);
+				header('location: ' . FULLWEBPATH . '/' . $link);
+				exitZP();
 			}
 		}
 		return $count;
