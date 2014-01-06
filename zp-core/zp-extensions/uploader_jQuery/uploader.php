@@ -285,7 +285,7 @@ class UploadHandler {
 					}
 				}
 			} else if ($this->options['discard_aborted_uploads']) {
-				@chmod($file_path, 0666);
+				@chmod($file_path, 0777);
 				unlink($file_path);
 				$file->error = 'abort';
 			}

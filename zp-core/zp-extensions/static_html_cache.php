@@ -286,7 +286,7 @@ class static_html_cache {
 	 */
 	function deletestatic_html_cacheFile($cachefilepath) {
 		if (file_exists($cachefilepath)) {
-			@chmod($cachefilepath, 0666);
+			@chmod($cachefilepath, 0777);
 			@unlink($cachefilepath);
 		}
 	}

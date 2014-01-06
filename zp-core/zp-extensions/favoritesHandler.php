@@ -340,7 +340,8 @@ class favorites extends AlbumBase {
 	 * @return array
 	 */
 	function getImages($page = 0, $firstPageCount = 0, $sorttype = null, $sortdirection = null, $care = true, $mine = NULL) {
-		if (true || is_null($this->images) || $care && $sorttype . $sortdirection !== $this->lastimagesort) {
+		if (is_null($this->images) || $care && $sorttype . $sortdirection !== $this->lastimagesort) {
+			$this->images = NULL;
 			$images = array();
 			$result = query($sql = 'SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . db_quote($this->name) . ' AND `data` LIKE "%s:4:\"type\";s:6:\"images\";%"');
 			if ($result) {
@@ -376,27 +377,26 @@ class favorites extends AlbumBase {
 				}
 				$this->lastimagesort = $sorttype . $sortdirection;
 			}
-			// Return the cut of images based on $page. Page 0 means show all.
-			if ($page == 0) {
-				return $this->images;
-			} else {
-				// Only return $firstPageCount images if we are on the first page and $firstPageCount > 0
-				if (($page == 1) && ($firstPageCount > 0)) {
-					$pageStart = 0;
-					$images_per_page = $firstPageCount;
-				} else {
-					if ($firstPageCount > 0) {
-						$fetchPage = $page - 2;
-					} else {
-						$fetchPage = $page - 1;
-					}
-					$images_per_page = max(1, getOption('  images_per_page'));
-					$pageStart = $firstPageCount + $images_per_page * $fetchPage;
-				}
-				return array_slice($this->images, $pageStart, $images_per_page);
-			}
 		}
-		return $images;
+		// Return the cut of images based on $page. Page 0 means show all.
+		if ($page == 0) {
+			return $this->images;
+		} else {
+			// Only return $firstPageCount images if we are on the first page and $firstPageCount > 0
+			if (($page == 1) && ($firstPageCount > 0)) {
+				$pageStart = 0;
+				$images_per_page = $firstPageCount;
+			} else {
+				if ($firstPageCount > 0) {
+					$fetchPage = $page - 2;
+				} else {
+					$fetchPage = $page - 1;
+				}
+				$images_per_page = max(1, getOption('images_per_page'));
+				$pageStart = $firstPageCount + $images_per_page * $fetchPage;
+			}
+			return array_slice($this->images, $pageStart, $images_per_page);
+		}
 	}
 
 	static function loadScript($script, $request) {
@@ -417,12 +417,12 @@ class favorites extends AlbumBase {
 		return $script;
 	}
 
-	function pageCount($count, $gallery_page) {
+	function pageCount($count, $gallery_page, $page) {
 		global $_firstPageImages, $_oneImagePage;
-		if (!$page = stripSuffix(getOption('favorites_link'))) {
-			$page = 'favorites';
+		if (!$pagename = stripSuffix(getOption('favorites_link'))) {
+			$pagename = 'favorites';
 		}
-		if (stripSuffix($gallery_page) == $page) {
+		if (stripSuffix($gallery_page) == $pagename) {
 			$albums_per_page = max(1, getOption('albums_per_page'));
 			$pageCount = (int) ceil(getNumAlbums() / $albums_per_page);
 			$imageCount = getNumImages();
@@ -435,6 +435,13 @@ class favorites extends AlbumBase {
 			}
 			$images_per_page = max(1, getOption('images_per_page'));
 			$count = ($pageCount + (int) ceil(($imageCount - $_firstPageImages) / $images_per_page));
+			if ($count < $page && isset($_POST['addToFavorites']) && !$_POST['addToFavorites']) {
+				//We've deleted an item, need a place to land when we return
+				global $_zp_page;
+				$count = $page;
+				if ($_zp_page > 1)
+					$_zp_page--;
+			}
 		}
 		return $count;
 	}

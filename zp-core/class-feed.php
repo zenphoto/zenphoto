@@ -125,7 +125,7 @@ class feed {
 				exitZP();
 			} else {
 				if (file_exists($cachefilepath)) {
-					@chmod($cachefilepath, 0666);
+					@chmod($cachefilepath, 0777);
 					@unlink($cachefilepath);
 				}
 				ob_start();

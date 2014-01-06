@@ -110,7 +110,7 @@ function checkSignature($auto) {
 			$found = safe_glob('*.xxx');
 			if (!empty($found)) {
 				foreach ($found as $script) {
-					chmod($script, 0666);
+					chmod($script, 0777);
 					if (@rename($script, stripSuffix($script))) {
 						chmod(stripSuffix($script), FILE_MOD);
 					} else {

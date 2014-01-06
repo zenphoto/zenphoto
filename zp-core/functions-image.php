@@ -437,7 +437,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 		}
 
 		// Create the cached file (with lots of compatibility)...
-		@chmod($newfile, 0666);
+		@chmod($newfile, 0777);
 		if (zp_imageOutput($newim, getSuffix($newfile), $newfile, $quality)) { //	successful save of cached image
 			if (getOption('ImbedIPTC') && getSuffix($newfilename) == 'jpg' && GRAPHICS_LIBRARY != 'Imagick') { // the imbed function works only with JPEG images
 				global $_zp_extra_filetypes; //	because we are doing the require in a function!

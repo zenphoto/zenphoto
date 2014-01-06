@@ -781,7 +781,7 @@ class Image extends MediaObject {
 			$result = true;
 			$filestodelete = safe_glob(substr($this->localpath, 0, strrpos($this->localpath, '.')) . '.*');
 			foreach ($filestodelete as $file) {
-				@chmod($file, 0666);
+				@chmod($file, 0777);
 				$result = $result && @unlink($file);
 			}
 			if ($result) {
@@ -820,7 +820,7 @@ class Image extends MediaObject {
 			return 2;
 		}
 		$filename = basename($this->localpath);
-		@chmod($filename, 0666);
+		@chmod($filename, 0777);
 		$result = @rename($this->localpath, $newpath);
 		@chmod($filename, FILE_MOD);
 		if ($result) {
