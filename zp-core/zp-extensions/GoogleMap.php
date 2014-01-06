@@ -394,7 +394,7 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 	}
 
 	if ($_n == 1)
-		$map->zoom = 10;
+		$map->zoom = 13;
 
 	if ($_n) {
 		$_x = $_x / $_n;
