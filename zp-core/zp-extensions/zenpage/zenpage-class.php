@@ -11,23 +11,12 @@
  *
  */
 //TODO: on the 1.4.7 release these combinews defines can be removed.
-define('ZENPAGE_COMBINEWS', getOption('zenpage_combinews'));
-define('ZP_COMBINEWS_SORTORDER', getOption("zenpage_combinews_sortorder"));
-define('ZP_COMBINEWS_CUSTOMTITLE', get_language_string(getOption('combinews-customtitle')));
-define('ZP_COMBINEWS_IMAGETITLES', getOption('combinews-customtitle-imagetitles'));
-define('ZP_CN_IMAGESIZE', getOption('zenpage_combinews_imagesize'));
-define('ZP_CN_THUMBWIDTH', getOption('combinews-thumbnail-width'));
-define('ZP_CN_THUMBHEIGHT', getOption('combinews-thumbnail-height'));
-define('ZP_CN_CROPWIDTH', getOption('combinews-thumbnail-cropwidth'));
-define('ZP_CN_CROPHEIGHT', getOption('combinews-thumbnail-cropheight'));
-define('ZP_CN_CROPX', getOption('combinews-thumbnail-cropx'));
-define('ZP_CN_CROPY', getOption('combinews-thumbnail-cropy'));
-define('ZP_CN_MODE', getOption('zenpage_combinews_mode'));
+define('ZENPAGE_COMBINEWS', false);
+define('ZP_COMBINEWS', false);
 
 define('ZP_SHORTENINDICATOR', $shortenindicator = getOption('zenpage_textshorten_indicator'));
 define('ZP_SHORTEN_LENGTH', getOption('zenpage_text_length'));
 define('ZP_READ_MORE', getOption("zenpage_read_more"));
-define('ZP_COMBINEWS', getOption('zenpage_combinews'));
 define('ZP_ARTICLES_PER_PAGE', getOption("zenpage_articles_per_page"));
 if (!defined('MENU_TRUNCATE_STRING'))
 	define('MENU_TRUNCATE_STRING', getOption('menu_truncate_string'));
@@ -577,7 +566,7 @@ class Zenpage {
 		}
 
 		if (empty($mode)) {
-			$mode = ZP_CN_MODE;
+			$mode = getOption('zenpage_combinews_mode');
 		}
 
 		if (isset($_zp_combiNews_cache[$published . $mode . $sticky . $sortorder . $sortdirection])) {

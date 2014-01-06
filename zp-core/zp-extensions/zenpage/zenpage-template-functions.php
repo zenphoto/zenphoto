@@ -309,16 +309,6 @@ function getNewsContent($shorten = false, $shortenindicator = NULL, $readmore = 
 	if (!$shorten && !is_NewsArticle()) {
 		$shorten = ZP_SHORTEN_LENGTH;
 	}
-	$articlecontent = "";
-	$size = ZP_CN_IMAGESIZE;
-	$width = ZP_CN_THUMBWIDTH;
-	$height = ZP_CN_THUMBHEIGHT;
-	$cropwidth = ZP_CN_CROPWIDTH;
-	$cropheight = ZP_CN_CROPHEIGHT;
-	$cropx = ZP_CN_CROPX;
-	$cropy = ZP_CN_CROPY;
-	$mode = ZP_CN_MODE;
-	$headline = '';
 
 	$articlecontent = $_zp_current_zenpage_news->getContent();
 	if (!is_NewsArticle()) {
