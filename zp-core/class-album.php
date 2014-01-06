@@ -275,7 +275,12 @@ class AlbumBase extends MediaObject {
 	 * @return array
 	 */
 	function getAlbums($page = 0, $sorttype = null, $sortdirection = null, $care = true, $mine = NULL) {
-		return NULL;
+		if ($page == 0) {
+			return $this->subalbums;
+		} else {
+			$albums_per_page = max(1, getOption('albums_per_page'));
+			return array_slice($this->subalbums, $albums_per_page * ($page - 1), $albums_per_page);
+		}
 	}
 
 	/**
@@ -302,7 +307,25 @@ class AlbumBase extends MediaObject {
 	 * @return array
 	 */
 	function getImages($page = 0, $firstPageCount = 0, $sorttype = null, $sortdirection = null, $care = true, $mine = NULL) {
-		return $this->images;
+// Return the cut of images based on $page. Page 0 means show all.
+		if ($page == 0) {
+			return $this->images;
+		} else {
+// Only return $firstPageCount images if we are on the first page and $firstPageCount > 0
+			if (($page == 1) && ($firstPageCount > 0)) {
+				$pageStart = 0;
+				$images_per_page = $firstPageCount;
+			} else {
+				if ($firstPageCount > 0) {
+					$fetchPage = $page - 2;
+				} else {
+					$fetchPage = $page - 1;
+				}
+				$images_per_page = max(1, getOption('images_per_page'));
+				$pageStart = (int) ($firstPageCount + $images_per_page * $fetchPage);
+			}
+			return array_slice($this->images, $pageStart, $images_per_page);
+		}
 	}
 
 	/**
@@ -401,16 +424,6 @@ class AlbumBase extends MediaObject {
 	 * @return string
 	 */
 	function getLink($page = NULL) {
-		return NULL;
-	}
-
-	/**
-	 *
-	 * @param type $page
-	 * @return null
-	 * @deprecated
-	 */
-	function getAlbumLink($page = NULL) {
 		return NULL;
 	}
 
@@ -904,12 +917,7 @@ class Album extends AlbumBase {
 			$this->subalbums = $_zp_gallery->sortAlbumArray($this, $subalbums, $key, $sortdirection, $mine);
 			$this->lastsubalbumsort = $sorttype . $sortdirection;
 		}
-		if ($page) {
-			$albums_per_page = max(1, getOption('albums_per_page'));
-			return array_slice($this->subalbums, $albums_per_page * ($page - 1), $albums_per_page);
-		} else {
-			return $this->subalbums;
-		}
+		return parent::getImages($page);
 	}
 
 	/**
@@ -949,25 +957,7 @@ class Album extends AlbumBase {
 			$this->images = $images;
 			$this->lastimagesort = $sorttype . $sortdirection;
 		}
-// Return the cut of images based on $page. Page 0 means show all.
-		if ($page == 0) {
-			return $this->images;
-		} else {
-// Only return $firstPageCount images if we are on the first page and $firstPageCount > 0
-			if (($page == 1) && ($firstPageCount > 0)) {
-				$pageStart = 0;
-				$images_per_page = $firstPageCount;
-			} else {
-				if ($firstPageCount > 0) {
-					$fetchPage = $page - 2;
-				} else {
-					$fetchPage = $page - 1;
-				}
-				$images_per_page = max(1, getOption('images_per_page'));
-				$pageStart = (int) ($firstPageCount + $images_per_page * $fetchPage);
-			}
-			return array_slice($this->images, $pageStart, $images_per_page);
-		}
+		return parent::getImages($page);
 	}
 
 	/**

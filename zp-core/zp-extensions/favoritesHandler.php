@@ -36,26 +36,28 @@ $option_interface = 'favoritesOptions';
 class favoritesOptions {
 
 	function __construct() {
-		$old = getOption('favorites_link');
-		if (!$old || is_numeric($old) || $old == 'favorites') {
-			purgeOption('favorites_link');
-		} else {
-			setOptionDefault('favorites_rewrite', "_PAGE_/$old");
+		if (OFFSET_PATH == 2) {
+			$old = getOption('favorites_link');
+			if (!$old || is_numeric($old) || $old == 'favorites') {
+				purgeOption('favorites_link');
+			} else {
+				setOptionDefault('favorites_rewrite', "_PAGE_/$old");
+			}
+			setOptionDefault('favorites_rewrite', '_PAGE_/favorites');
+			gettext($str = 'My favorites');
+			setOptionDefault('favorites_title', getAllTranslations($str));
+			setOptionDefault('favorites_linktext', getAllTranslations($str));
+			gettext($str = 'The albums and images selected as favorites.');
+			setOptionDefault('favorites_desc', getAllTranslations($str));
+			gettext($str = 'Add favorite');
+			setOptionDefault('favorites_add_button', getAllTranslations($str));
+			gettext($str = 'Remove favorite');
+			setOptionDefault('favorites_remove_button', getAllTranslations($str));
+			setOptionDefault('favorites_album_sort_type', 'title');
+			setOptionDefault('favorites_image_sort_type', 'title');
+			setOptionDefault('favorites_album_sort_direction', '');
+			setOptionDefault('favorites_image_sort_direction', '');
 		}
-		setOptionDefault('favorites_rewrite', '_PAGE_/favorites');
-		gettext($str = 'My favorites');
-		setOptionDefault('favorites_title', getAllTranslations($str));
-		setOptionDefault('favorites_linktext', getAllTranslations($str));
-		gettext($str = 'The albums and images selected as favorites.');
-		setOptionDefault('favorites_desc', getAllTranslations($str));
-		gettext($str = 'Add favorite');
-		setOptionDefault('favorites_add_button', getAllTranslations($str));
-		gettext($str = 'Remove favorite');
-		setOptionDefault('favorites_remove_button', getAllTranslations($str));
-		setOptionDefault('favorites_album_sort_type', 'title');
-		setOptionDefault('favorites_image_sort_type', 'title');
-		setOptionDefault('favorites_album_sort_direction', '');
-		setOptionDefault('favorites_image_sort_direction', '');
 	}
 
 	function getOptionsSupported() {
@@ -317,12 +319,7 @@ class favorites extends AlbumBase {
 				$this->lastsubalbumsort = $sorttype . $sortdirection;
 			}
 		}
-		if ($page == 0) {
-			return $this->subalbums;
-		} else {
-			$albums_per_page = max(1, getOption('albums_per_page'));
-			return array_slice($this->subalbums, $albums_per_page * ($page - 1), $albums_per_page);
-		}
+		return parent::getAlbums($page);
 	}
 
 	/**
@@ -378,25 +375,7 @@ class favorites extends AlbumBase {
 				$this->lastimagesort = $sorttype . $sortdirection;
 			}
 		}
-		// Return the cut of images based on $page. Page 0 means show all.
-		if ($page == 0) {
-			return $this->images;
-		} else {
-			// Only return $firstPageCount images if we are on the first page and $firstPageCount > 0
-			if (($page == 1) && ($firstPageCount > 0)) {
-				$pageStart = 0;
-				$images_per_page = $firstPageCount;
-			} else {
-				if ($firstPageCount > 0) {
-					$fetchPage = $page - 2;
-				} else {
-					$fetchPage = $page - 1;
-				}
-				$images_per_page = max(1, getOption('images_per_page'));
-				$pageStart = $firstPageCount + $images_per_page * $fetchPage;
-			}
-			return array_slice($this->images, $pageStart, $images_per_page);
-		}
+		return parent::getImages($page);
 	}
 
 	static function loadScript($script, $request) {
@@ -436,12 +415,9 @@ class favorites extends AlbumBase {
 			$images_per_page = max(1, getOption('images_per_page'));
 			$count = ($pageCount + (int) ceil(($imageCount - $_firstPageImages) / $images_per_page));
 			if ($count < $page && isset($_POST['addToFavorites']) && !$_POST['addToFavorites']) {
-				//We've deleted an item, need a place to land when we return
+				//We've deleted last item on page, need a place to land when we return
 				global $_zp_page;
-				$link = self::getFavorites_link();
-				if ($_zp_page > 2)
-					$link .= '/' . ($_zp_page - 1);
-				header('location: ' . FULLWEBPATH . '/' . $link);
+				header('location: ' . FULLWEBPATH . '/' . $this->getLink($_zp_page - 1));
 				exitZP();
 			}
 		}
@@ -456,8 +432,11 @@ class favorites extends AlbumBase {
 		<?php
 	}
 
-	static function getFavorites_link() {
-		return preg_replace('~^_PAGE_/~ ', _PAGE_ . '/', getOption('favorites_rewrite'));
+	function getLink($page = NULL) {
+		$link = preg_replace('~^_PAGE_/~ ', _PAGE_ . '/', getOption('favorites_rewrite'));
+		if ($page > 1)
+			$link .= '/' . $page;
+		return $link;
 	}
 
 	function getSortDirection($what = 'image') {
@@ -589,11 +568,12 @@ if (!OFFSET_PATH && !$plugin_disable) {
 		}
 
 		function printFavoritesLink($text = NULL) {
+			global $_myFavorites;
 			if (is_null($text)) {
 				$text = get_language_string(getOption('favorites_linktext'));
 			}
 			?>
-			<a href="<?php echo FULLWEBPATH; ?>/<?php echo favorites::getFavorites_link(); ?>" id="favorite_link"><?php echo $text; ?> </a>
+			<a href="<?php echo FULLWEBPATH; ?>/<?php echo $_myFavorites->getLink(); ?>" id="favorite_link"><?php echo $text; ?> </a>
 			<?php
 		}
 

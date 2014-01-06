@@ -746,7 +746,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $i
 	} else {
 		if (isset($_POST['favorites_page'])) {
 			$albumobj = $_myFavorites;
-			$returnpath = rewrite_path(favorites::getFavorites_link() . '/' . $pagenumber, FULLWEBPATH . '/index.php?p=favorites' . '&page=' . $pagenumber);
+			$returnpath = rewrite_path($_myFavorites->getLink() . '/' . $pagenumber, FULLWEBPATH . '/index.php?p=favorites' . '&page=' . $pagenumber);
 		} else {
 			$albumq = query_single_row("SELECT title, folder FROM " . prefix('albums') . " WHERE id = " . $albumid);
 			$albumobj = newAlbum($albumq['folder']);

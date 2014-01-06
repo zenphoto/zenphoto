@@ -365,7 +365,7 @@ function printBareGalleryTitle() {
  * @param bool $listparentpage If the parent Zenpage pages should be printed in reversed order before the current page
  */
 function getHeadTitle($separator = ' | ', $listparentalbums = true, $listparentpages = true) {
-	global $_zp_gallery, $_zp_galley_page, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_gallery_page, $_zp_current_category, $_zp_page;
+	global $_zp_gallery, $_zp_galley_page, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_gallery_page, $_zp_current_category, $_zp_page, $_myFavorites;
 	$mainsitetitle = html_encode(strip_tags(getMainSiteName()));
 	$separator = html_encode($separator);
 	if ($mainsitetitle) {
@@ -439,7 +439,7 @@ function getHeadTitle($separator = ' | ', $listparentalbums = true, $listparentp
 			$custompage = stripSuffix($_zp_gallery_page);
 			$standard = array('contact' => gettext('Contact'), 'register' => gettext('Register'), 'search' => gettext('Search'), 'archive' => gettext('Archive view'), 'password' => gettext('Password required'));
 			if (class_exists('favorites')) {
-				$standard[str_replace(_PAGE_ . '/', '', favorites::getFavorites_link())] = gettext('My favorites');
+				$standard[str_replace(_PAGE_ . '/', '', $_myFavorites->getLink())] = gettext('My favorites');
 			}
 			if (array_key_exists($custompage, $standard)) {
 				return $standard[$custompage] . $pagenumber . $separator . $gallerytitle . $mainsitetitle;
@@ -3883,34 +3883,34 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 		<!-- search form -->
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<script type="text/javascript">
-		// <!-- <![CDATA[
-		var within = <?php echo (int) $within; ?>;
-		function search_(way) {
-			within = way;
-			if (way) {
-				$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+			// <!-- <![CDATA[
+			var within = <?php echo (int) $within; ?>;
+			function search_(way) {
+				within = way;
+				if (way) {
+					$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
 
-			} else {
-				lastsearch = '';
-				$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-			}
-			$('#search_input').val('');
-		}
-		$('#search_form').submit(function() {
-			if (within) {
-				var newsearch = $.trim($('#search_input').val());
-				if (newsearch.substring(newsearch.length - 1) == ',') {
-					newsearch = newsearch.substr(0, newsearch.length - 1);
-				}
-				if (newsearch.length > 0) {
-					$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
 				} else {
-					$('#search_input').val('<?php echo $searchwords; ?>');
+					lastsearch = '';
+					$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
 				}
+				$('#search_input').val('');
 			}
-			return true;
-		});
-		// ]]> -->
+			$('#search_form').submit(function() {
+				if (within) {
+					var newsearch = $.trim($('#search_input').val());
+					if (newsearch.substring(newsearch.length - 1) == ',') {
+						newsearch = newsearch.substr(0, newsearch.length - 1);
+					}
+					if (newsearch.length > 0) {
+						$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+					} else {
+						$('#search_input').val('<?php echo $searchwords; ?>');
+					}
+				}
+				return true;
+			});
+			// ]]> -->
 			</script>
 			<?php echo $prevtext; ?>
 			<div>
