@@ -201,24 +201,23 @@ function getGeoCoord($image) {
 		$exif = $_zp_current_image->getMetaData();
 		if ((!empty($exif['EXIFGPSLatitude'])) && (!empty($exif['EXIFGPSLongitude']))) {
 			$lat_c = explode('.', str_replace(',', '.', $exif['EXIFGPSLatitude']) . '.0');
-			$lat_f = round((float) abs($lat_c[0]) + ($lat_c[1] / pow(10, strlen($lat_c[1]))), 5);
+			$lat_f = round((float) abs($lat_c[0]) + ($lat_c[1] / pow(10, strlen($lat_c[1]))), 12);
 			if (strtoupper(@$exif['EXIFGPSLatitudeRef']{0}) == 'S') {
 				$lat_f = -$lat_f;
 			}
-			$lat_s = str_replace(',', '.', (string) $lat_f);
 
 			$long_c = explode('.', str_replace(',', '.', $exif['EXIFGPSLongitude']) . '.0');
-			$long_f = round((float) abs($long_c[0]) + ($long_c[1] / pow(10, strlen($long_c[1]))), 5);
+			$long_f = round((float) abs($long_c[0]) + ($long_c[1] / pow(10, strlen($long_c[1]))), 12);
 			if (strtoupper(@$exif['EXIFGPSLongitudeRef']{0}) == 'W') {
 				$long_f = -$long_f;
 			}
-			$long_s = str_replace(',', '.', (string) $long_f);
 
 			$thumb = '<a href="javascript:image(\'' . $_zp_current_image->albumname . '\',\'' . $_zp_current_image->filename . '\');"><img src="' . getCustomImageURL(150) . '" /></a>';
 
-			$result = array('lat' => $lat_s, 'long' => $long_s, 'title' => $_zp_current_image->getTitle(), 'desc' => $_zp_current_image->getDesc(), 'thumb' => $thumb);
+			$result = array('lat' => $lat_f, 'long' => $long_f, 'title' => $_zp_current_image->getTitle(), 'desc' => $_zp_current_image->getDesc(), 'thumb' => $thumb);
 		}
 	}
+
 	return $result;
 }
 
@@ -245,12 +244,12 @@ function addGeoCoord($map, $coord) {
 			$thumb = '<p class="map_img">' . $coord['thumb'] . '</p>';
 		}
 
-		$marker['position'] = $coord['lat'] . ", " . $coord['long'];
+		$marker['position'] = number_format($coord['lat'], 12, '.', '') . ", " . number_format($coord['long'], 12, '.', '');
 		$marker['title'] = $coord['title'];
 		$marker['infowindow_content'] = $title . $thumb . $desc;
 		$map->add_marker($marker);
-		$lat_f = (float) $coord['lat'] * M_PI / 180;
-		$long_f = (float) $coord['long'] * M_PI / 180;
+		$lat_f = $coord['lat'] * M_PI / 180;
+		$long_f = $coord['long'] * M_PI / 180;
 		$_x = $_x + cos($lat_f) * cos($long_f);
 		$_y = $_y + cos($lat_f) * sin($long_f);
 		$_z = $_z + sin($lat_f);
@@ -402,9 +401,9 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 		$_x = $_x / $_n;
 		$_y = $_y / $_n;
 		$_z = $_z / $_n;
-		$lon = atan2($_y, $_x) * 180 / M_PI;
+		$lon = number_format(atan2($_y, $_x) * 180 / M_PI, 12, '.', '');
 		$hyp = sqrt($_x * $_x + $_y * $_y);
-		$lat = atan2($_z, $hyp) * 180 / M_PI;
+		$lat = number_format(atan2($_z, $hyp) * 180 / M_PI, 12, '.', '');
 		$map->center = $lat . ', ' . $lon;
 	}
 
