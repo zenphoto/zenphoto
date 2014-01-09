@@ -917,7 +917,7 @@ class Album extends AlbumBase {
 			$this->subalbums = $_zp_gallery->sortAlbumArray($this, $subalbums, $key, $sortdirection, $mine);
 			$this->lastsubalbumsort = $sorttype . $sortdirection;
 		}
-		return parent::getImages($page);
+		return parent::getAlbums($page);
 	}
 
 	/**
@@ -1139,23 +1139,22 @@ class Album extends AlbumBase {
 		}
 
 		$nullimage = SERVERPATH . '/' . ZENFOLDER . '/images/imageDefault.png';
-		if (OFFSET_PATH == 0) {
-// check for theme imageDefault.png if we are in the gallery
-			$theme = '';
-			$uralbum = getUralbum($this);
-			$albumtheme = $uralbum->getAlbumTheme();
-			if (!empty($albumtheme)) {
-				$theme = $albumtheme;
-			} else {
-				$theme = $_zp_gallery->getCurrentTheme();
-			}
-			if (!empty($theme)) {
-				$themeimage = SERVERPATH . '/' . THEMEFOLDER . '/' . $theme . '/images/imageDefault.png';
-				if (file_exists(internalToFilesystem($themeimage))) {
-					$nullimage = $themeimage;
-				}
+// check for theme imageDefault.png 
+		$theme = '';
+		$uralbum = getUralbum($this);
+		$albumtheme = $uralbum->getAlbumTheme();
+		if (!empty($albumtheme)) {
+			$theme = $albumtheme;
+		} else {
+			$theme = $_zp_gallery->getCurrentTheme();
+		}
+		if (!empty($theme)) {
+			$themeimage = SERVERPATH . '/' . THEMEFOLDER . '/' . $theme . '/images/imageDefault.png';
+			if (file_exists(internalToFilesystem($themeimage))) {
+				$nullimage = $themeimage;
 			}
 		}
+
 		$this->albumthumbnail = new transientimage($this, $nullimage);
 		return $this->albumthumbnail;
 	}
