@@ -491,25 +491,16 @@ class feed {
 				$feeditem['pubdate'] = date("r", strtotime($item['date']));
 				$category = $item['albumtitle'];
 				$website = $item['website'];
-				if ($item['type'] == 'albums') {
-					$title = $category;
-				} else {
-					$title = $category . ": " . $title;
-				}
-				$commentpath = PROTOCOL . '://' . $this->host . html_encode($link) . "#" . $item['id'];
+				$title = $category . ": " . $title;
+				$commentpath = PROTOCOL . '://' . $this->host . $link . "#" . $item['id'];
 				break;
 			case 'albums':
 				$obj = newAlbum($item['folder']);
 				$link = rtrim($obj->getAlbumlink(), '/');
 				$feeditem['pubdate'] = date("r", strtotime($item['date']));
-				$category = $item['albumtitle'];
+				$title = get_language_string($item['albumtitle']);
 				$website = $item['website'];
-				if ($item['type'] == 'albums') {
-					$title = $category;
-				} else {
-					$title = $category . ": " . $title;
-				}
-				$commentpath = PROTOCOL . '://' . $this->host . html_encode($link) . "#" . $item['id'];
+				$commentpath = PROTOCOL . '://' . $this->host . $link . "#" . $item['id'];
 				break;
 			case 'news':
 			case 'pages':

@@ -557,9 +557,9 @@ class RSS extends feed {
 		if ($this->mode == "albums") {
 			$albumobj = newAlbum($item['folder']);
 			$totalimages = $albumobj->getNumImages();
-			$itemlink = $this->host . pathurlencode($albumobj->getAlbumLink());
+			$itemlink = $this->host . $albumobj->getAlbumLink();
 			$thumb = $albumobj->getAlbumThumbImage();
-			$thumburl = '<img border="0" src="' . PROTOCOL . '://' . $this->host . pathurlencode($thumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)) . '" alt="' . html_encode($albumobj->getTitle($this->locale)) . '" />';
+			$thumburl = '<img border="0" src="' . PROTOCOL . '://' . $this->host . html_encode(pathurlencode($thumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . html_encode($albumobj->getTitle($this->locale)) . '" />';
 			$title = $albumobj->getTitle($this->locale);
 			if (true || $this->sortorder == "latestupdated") {
 				$filechangedate = filectime(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumobj->name));
@@ -718,6 +718,7 @@ class RSS extends feed {
 	public function printFeed() {
 		global $_zp_gallery;
 		$feeditems = $this->getitems();
+		//NOTE: feeditems are complete HTML so necessarily must have been properly endoded by the server function!
 		if (is_array($feeditems)) {
 			$this->hitcounter();
 			$this->startCache();
@@ -757,7 +758,7 @@ class RSS extends feed {
 						?>
 						<item>
 							<title><![CDATA[<?php echo $item['title']; ?>]]></title>
-							<link><?php echo html_encode($item['link']); ?></link>
+							<link><?php echo $item['link']; ?></link>
 							<description><![CDATA[<?php echo $item['desc']; ?>]]></description>
 							<?php
 							if (!empty($item['enclosure'])) {
@@ -775,7 +776,7 @@ class RSS extends feed {
 								echo $item['media_thumbnail']; //prints xml as well
 							}
 							?>
-							<guid><?php echo html_encode($item['link']); ?></guid>
+							<guid><?php echo $item['link']; ?></guid>
 							<pubDate><?php echo $item['pubdate']; ?></pubDate>
 						</item>
 						<?php
