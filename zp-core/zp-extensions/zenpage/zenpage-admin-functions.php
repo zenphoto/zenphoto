@@ -1445,7 +1445,7 @@ function checkIfExpires($object) {
 	$dt = $object->getExpireDate();
 	if (!empty($dt)) {
 		$expired = $dt < date('Y-m-d H:i:s');
-		echo "<br /><small>";
+		echo " <small>";
 		if ($expired) {
 			echo '<strong class="expired">';
 			printf(gettext('Expired: %s'), $dt);
