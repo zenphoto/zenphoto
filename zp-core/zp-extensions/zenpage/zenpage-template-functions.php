@@ -2925,4 +2925,6 @@ function zenpageAlbumImage($albumname, $imagename = NULL, $size = NULL, $linkalb
 		<?php
 	}
 }
+
+Zenpage::expiry();
 ?>

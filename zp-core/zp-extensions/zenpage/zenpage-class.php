@@ -43,31 +43,30 @@ class Zenpage {
 	 * Class instantiator
 	 */
 	function __construct() {
-		if (OFFSET_PATH !== 2) {
-			/**
-			 * Un-publishes pages/news whose expiration date has been reached
-			 *
-			 */
-			$sql = ' WHERE `date`<="' . date('Y-m-d H:i:s') . '" AND `show`="1"' .
-							' AND `expiredate`<="' . date('Y-m-d H:i:s') . '"' .
-							' AND `expiredate`!="0000-00-00 00:00:00"' .
-							' AND `expiredate` IS NOT NULL';
-			foreach (array('news', 'pages') as $table) {
-				$result = query_full_array('SELECT * FROM ' . prefix($table) . $sql);
-				if ($result) {
-					foreach ($result as $item) {
-						$class = 'Zenpage' . $table;
-						$obj = new $class($item['titlelink']);
-						$obj->setShow(0);
-						$obj->save();
-					}
-				}
-			}
+		$allcategories = query_full_array("SELECT * FROM " . prefix('news_categories') . " ORDER by sort_order");
+		$this->categoryStructure = array();
+		foreach ($allcategories as $cat) {
+			$this->categoryStructure[$cat['id']] = $cat;
+		}
+	}
 
-			$allcategories = query_full_array("SELECT * FROM " . prefix('news_categories') . " ORDER by sort_order");
-			$this->categoryStructure = array();
-			foreach ($allcategories as $cat) {
-				$this->categoryStructure[$cat['id']] = $cat;
+	static function expiry() {
+		/**
+		 * Un-publishes pages/news whose expiration date has been reached
+		 *
+		 */
+		$sql = ' WHERE `date`<="' . date('Y-m-d H:i:s') . '" AND `show`="1"' .
+						' AND `expiredate`<="' . date('Y-m-d H:i:s') . '"' .
+						' AND `expiredate`!="0000-00-00 00:00:00"' .
+						' AND `expiredate` IS NOT NULL';
+		foreach (array('news' => 'ZenpageNews', 'pages' => 'ZenpagePage') as $table => $class) {
+			$result = query_full_array('SELECT * FROM ' . prefix($table) . $sql);
+			if ($result) {
+				foreach ($result as $item) {
+					$obj = new $class($item['titlelink']);
+					$obj->setShow(0);
+					$obj->save();
+				}
 			}
 		}
 	}
