@@ -4468,6 +4468,19 @@ function checkPageValidity($request, $gallery_page, $page) {
 	return $request;
 }
 
+function print404status($album, $image, $obj) {
+	echo "\n<strong>" . gettext("Zenphoto Error:</strong> the requested object was not found.");
+	if (isset($album)) {
+		echo '<br />' . sprintf(gettext('Album: %s'), html_encode($album));
+
+		if (isset($image)) {
+			echo '<br />' . sprintf(gettext('Image: %s'), html_encode($image));
+		}
+	} else {
+		echo '<br />' . sprintf(gettext('Page: %s'), html_encode(substr(basename($obj), 0, -4)));
+	}
+}
+
 zp_register_filter('theme_head', 'printZenJavascripts', 9999);
 zp_register_filter('theme_body_close', 'adminToolbox');
 zp_register_filter('zenphoto_information', 'exposeZenPhotoInformations');

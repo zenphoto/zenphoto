@@ -19,6 +19,7 @@ if (array_key_exists(0, $folders) && $folders[0] == CACHEFOLDER) {
 }
 
 debug404($album, $image, @$_index_theme);
+$obj = $_zp_gallery_page;
 $_zp_gallery_page = '404.php';
 $_zp_script = SERVERPATH . "/" . THEMEFOLDER . '/' . internalToFilesystem(@$_index_theme) . '/404.php';
 header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
@@ -37,20 +38,11 @@ if (file_exists($_zp_script)) {
 		</head>
 		<body>
 			<?php
-			echo "\n<strong>" . gettext("Zenphoto Error:</strong> the requested object was not found.");
-			if (isset($album)) {
-				echo '<br />' . sprintf(gettext('Album: %s'), html_encode($album));
-			}
-			if (isset($image)) {
-				echo '<br />' . sprintf(gettext('Image: %s'), html_encode($image));
-			}
-			if (isset($obj)) {
-				echo '<br />' . sprintf(gettext('Page: %s'), html_encode(substr(basename($obj), 0, -4)));
-			}
+			print404status(isset($album) ? $album : NULL, isset($image) ? $image : NULL, $obj);
 			?>
 			<br />
 			<a href="<?php echo html_encode(getGalleryIndexURL()); ?>"
-				 title="<?php echo gettext('Albums Index'); ?>"><?php echo sprintf(gettext("Return to %s"), getGalleryTitle()); ?></a>
+				 title="<?php echo gettext('Index'); ?>"><?php echo sprintf(gettext("Return to %s"), getGalleryTitle()); ?></a>
 		</body>
 	</html>
 	<?php
