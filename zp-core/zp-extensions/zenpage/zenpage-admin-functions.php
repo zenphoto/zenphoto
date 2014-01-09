@@ -7,6 +7,7 @@
  * @subpackage zenpage
  */
 global $_zp_zenpage, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category;
+Zenpage::expiry();
 
 /**
  * Retrieves posted expiry date and checks it against the current date/time
@@ -44,7 +45,7 @@ function processTags($object) {
 }
 
 /* * ************************
-	/* page functions
+  /* page functions
  * ************************* */
 
 /**
@@ -228,7 +229,7 @@ function printPagesListTable($page, $flag) {
 		<div class="page-list_extra">
 			<?php echo html_encode($page->getAuthor()); ?>
 		</div>
-		<br clear="left">
+
 		<div class="page-list_iconwrapper">
 			<div class="page-list_icon">
 				<?php
@@ -309,7 +310,7 @@ function printPagesListTable($page, $flag) {
 }
 
 /* * ************************
-	/* news article functions
+  /* news article functions
  * ************************* */
 
 /**
@@ -827,7 +828,7 @@ function printArticlesPerPageDropdown() {
 }
 
 /* * ************************
-	/* Category functions
+  /* Category functions
  * ************************* */
 
 /**
@@ -1069,7 +1070,7 @@ function printCategoryCheckboxListEntry($cat, $articleid, $option) {
 }
 
 /* * ************************
-	/* General functions
+  /* General functions
  * ************************* */
 
 /**
@@ -1444,7 +1445,7 @@ function checkIfExpires($object) {
 	$dt = $object->getExpireDate();
 	if (!empty($dt)) {
 		$expired = $dt < date('Y-m-d H:i:s');
-		echo "<br /><small>";
+		echo " <small>";
 		if ($expired) {
 			echo '<strong class="expired">';
 			printf(gettext('Expired: %s'), $dt);
