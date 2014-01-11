@@ -74,7 +74,7 @@ class DownloadList {
 										'desc'	 => gettext('A list of file suffixes to exclude. Separate with comma and omit the dot (e.g "jpg").')),
 						gettext('Zip source')															 => array('key'			 => 'downloadList_zipFromCache', 'type'		 => OPTION_TYPE_RADIO,
 										'order'		 => 6,
-										'buttons'	 => array(gettext('From album')	 => 0, gettext('From Cache')	 => 1),
+										'buttons'	 => array(gettext('From album') => 0, gettext('From Cache') => 1),
 										'desc'		 => gettext('Make the album zip from the album folder or from the sized images in the cache.')),
 						gettext('User rights')														 => array('key'		 => 'downloadList_rights', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 1,
@@ -370,12 +370,12 @@ class AlbumZip {
 		}
 		$_zp_zip_list = array();
 		if ($fromcache) {
-			$opt = array('large_file_size'	 => 5 * 1024 * 1024, 'comment'					 => sprintf(gettext('Created from cached images of %1$s on %2$s.'), $album->name, zpFormattedDate(DATE_FORMAT, time())));
+			$opt = array('large_file_size' => 5 * 1024 * 1024, 'comment' => sprintf(gettext('Created from cached images of %1$s on %2$s.'), $album->name, zpFormattedDate(DATE_FORMAT, time())));
 			loadLocalOptions(false, $_zp_gallery->getCurrentTheme());
 			$defaultSize = getOption('image_size');
 			self::AddAlbumCache($album, strlen($albumname), SERVERPATH . '/' . CACHEFOLDER . '/' . $albumname);
 		} else {
-			$opt = array('large_file_size'	 => 5 * 1024 * 1024, 'comment'					 => sprintf(gettext('Created from images in %1$s on %2$s.'), $album->name, zpFormattedDate(DATE_FORMAT, time())));
+			$opt = array('large_file_size' => 5 * 1024 * 1024, 'comment' => sprintf(gettext('Created from images in %1$s on %2$s.'), $album->name, zpFormattedDate(DATE_FORMAT, time())));
 			self::AddAlbum($album, strlen($albumname), SERVERPATH . '/' . ALBUMFOLDER . '/' . $albumname);
 		}
 		$zip = new ZipStream($albumname . '.zip', $opt);
@@ -560,7 +560,7 @@ function printDownloadLinkAlbumZip($linktext = NULL, $albumobj = NULL, $fromcach
  */
 if (isset($_GET['download'])) {
 	$item = sanitize($_GET['download']);
-	if (empty($item) OR !extensionEnabled('downloadList')) {
+	if (empty($item) || !extensionEnabled('downloadList')) {
 		zp_error(gettext('Forbidden'));
 	}
 	$hash = getOption('downloadList_password');

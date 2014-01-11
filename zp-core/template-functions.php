@@ -4458,7 +4458,7 @@ function checkPageValidity($request, $gallery_page, $page) {
 
 			break;
 		default:
-			$count = zp_apply_filter('checkPageValidity', NULL, $gallery_page);
+			$count = zp_apply_filter('checkPageValidity', NULL, $gallery_page, $page);
 			break;
 	}
 	if ($page > $count) {
