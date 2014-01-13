@@ -721,10 +721,11 @@ zp-core/zp-extensions/crop_image/swap.png
 zp-core/zp-extensions/crop_image/swap_down.png
 zp-core/zp-extensions/crop_image/swap_up.png
 zp-core/zp-extensions/defaultCodeblocks.php
+zp-core/zp-extensions/deprecated-functions
 zp-core/zp-extensions/deprecated-functions.php
-zp-core/zp-extensions/deprecated_functions
-zp-core/zp-extensions/deprecated_functions/check_for_deprecated.php
-zp-core/zp-extensions/deprecated_functions/functions.php
+zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php
+zp-core/zp-extensions/deprecated-functions/deprecated-functions.php
+zp-core/zp-extensions/deprecated-functions/functions.php
 zp-core/zp-extensions/downloadList
 zp-core/zp-extensions/downloadList.php
 zp-core/zp-extensions/downloadList/download_statistics.php
@@ -970,6 +971,7 @@ zp-core/zp-extensions/quota_manager.php
 zp-core/zp-extensions/rating
 zp-core/zp-extensions/rating.php
 zp-core/zp-extensions/rating/delete.png
+zp-core/zp-extensions/rating/deprecated-functions.php
 zp-core/zp-extensions/rating/jquery.MetaData.js
 zp-core/zp-extensions/rating/jquery.rating.css
 zp-core/zp-extensions/rating/jquery.rating.js
@@ -1066,6 +1068,7 @@ zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php
 zp-core/zp-extensions/slideshow
 zp-core/zp-extensions/slideshow.php
 zp-core/zp-extensions/slideshow/controls.png
+zp-core/zp-extensions/slideshow/deprecated-functions.php
 zp-core/zp-extensions/slideshow/jquery.cycle.all.js
 zp-core/zp-extensions/slideshow/slideshow-controls.png
 zp-core/zp-extensions/slideshow/slideshow-counter.php
@@ -1896,6 +1899,7 @@ zp-core/zp-extensions/zenpage/admin-categories.php
 zp-core/zp-extensions/zenpage/admin-edit.php
 zp-core/zp-extensions/zenpage/admin-news-articles.php
 zp-core/zp-extensions/zenpage/admin-pages.php
+zp-core/zp-extensions/zenpage/deprecated-functions.php
 zp-core/zp-extensions/zenpage/images
 zp-core/zp-extensions/zenpage/images/add.png
 zp-core/zp-extensions/zenpage/images/clock.png
@@ -1933,4 +1937,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1935
+1939
