@@ -3,6 +3,35 @@
 /*
  * These are the Zenpage functions which have been deprecated
  */
+require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
+
+class Zenpage_internal_deprecations {
+
+	/**
+	 * @deprecated
+	 * @since 1.4.5
+	 */
+	static function getSubPages() {
+		deprecated_functions::notify(gettext('Use the Zenpage Page class->getPages() method.'));
+	}
+
+	/**
+	 * @deprecated
+	 * @since 1.4.6
+	 */
+	static function next_news() {
+		deprecated_functions::notify(gettext('Sort parameter oprions should be set instead with the setSortType() and setSortDirection() object methods at the head of your script.'));
+	}
+
+	/**
+	 * @deprecated
+	 * @since 1.4.6
+	 */
+	static function next_page() {
+		deprecated_functions::notify(gettext('Sort parameter oprions should be set instead with the setSortType() and setSortDirection() object methods at the head of your script.'));
+	}
+
+}
 
 /**
  * @deprecated

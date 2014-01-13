@@ -36,13 +36,6 @@ zp_register_filter('admin_utilities_buttons', 'deprecated_functions::button');
 
 class deprecated_functions {
 
-	var $internalFunctions = array(
-					'getSearchURL',
-					'printPasswordForm',
-					'getRSSLink',
-					'next_album',
-					'next_image'
-	);
 	var $listed_functions = array();
 
 	function deprecated_functions() {
@@ -51,14 +44,11 @@ class deprecated_functions {
 			$deprecated = stripSuffix($plugin) . '/deprecated-functions.php';
 			if (file_exists($deprecated)) {
 				$deprecated = file_get_contents($deprecated);
-				preg_match_all('/function\040+(.*)\040?\(.*\)\040?\{/', $deprecated, $functions);
-				$this->listed_functions = array_merge($functions[1], $this->internalFunctions);
-				// remove the items from this class and notify function, leaving only the deprecated functions
-				foreach ($this->listed_functions as $key => $funct) {
-					if ($funct == '_emitPluginScripts') { // special case!!!!
-						unset($this->listed_functions[$key]);
-					} else {
-						setOptionDefault('deprecated_' . $funct, 1);
+				preg_match_all('/([static]*)\s*function\s+(.*)\s?\(.*\)\s?\{/', $deprecated, $functions);
+				foreach ($functions[2] as $key => $function) {
+					if (substr($function, 0, 12) != '_deprecated_') { // special case!!!!
+						setOptionDefault('deprecated_' . $function, 1);
+						$this->listed_functions[$function] = $functions[1][$key];
 					}
 				}
 			}
@@ -67,12 +57,12 @@ class deprecated_functions {
 
 	function getOptionsSupported() {
 		$list = array();
-		foreach ($this->listed_functions as $funct) {
-			$list[$funct] = 'deprecated_' . $funct;
+		foreach ($this->listed_functions as $funct => $internal) {
+			$list[($internal) ? $funct . '*' : $funct] = 'deprecated_' . $funct;
 		}
 		return array(gettext('Functions') => array('key'				 => 'deprecated_Function_list', 'type'			 => OPTION_TYPE_CHECKBOX_UL,
 										'checkboxes' => $list,
-										'desc'			 => gettext('Send the <em>deprecated</em> notification message if the function name is checked. Un-checking these boxes will allow you to continue using your theme without warnings while you upgrade its implementation.')));
+										'desc'			 => gettext('Send the <em>deprecated</em> notification message if the function name is checked. Un-checking these boxes will allow you to continue using your theme without warnings while you upgrade its implementation. Functions flagged with an asterix have deprecated parameters.')));
 	}
 
 	/*
@@ -93,7 +83,7 @@ class deprecated_functions {
 			} else {
 				$script = $line = gettext('unknown');
 			}
-			trigger_error(sprintf(gettext('%1$s (called from %2$s line %3$s) is deprecated'), $fcn, $script, $line) . $use . '<br />' . sprintf(gettext('You can disable this error message by going to the <em>deprecated-functions</em> plugin options and un-checking <strong>%s</strong> in the list of functions.' . '<br />'), $fcn), E_USER_WARNING);
+			trigger_error(sprintf(gettext('%1$s (called from %2$s line %3$s) is deprecated'), $fcn, $script, $line) . ' ' . $use . ' ' . sprintf(gettext('You can disable this error message by going to the <em>deprecated-functions</em> plugin options and un-checking <strong>%s</strong> in the list of functions.' . '<br />'), $fcn), E_USER_WARNING);
 		}
 	}
 

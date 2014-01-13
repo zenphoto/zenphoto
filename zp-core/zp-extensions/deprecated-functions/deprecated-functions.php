@@ -3,6 +3,35 @@
 /**
  * Zenphoto general deprecated functions
  */
+require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
+
+class internal_deprecations {
+
+	/**
+	 * @deprecated
+	 * @since 1.4.6
+	 */
+	static function next_album() {
+		deprecated_functions::notify(gettext('Sort parameter oprions should be set instead with the setSortType() and setSortDirection() object methods at the head of your script.'));
+	}
+
+	/**
+	 * @deprecated
+	 * @since 1.4.6
+	 */
+	static function next_image() {
+		deprecated_functions::notify(gettext('Sort parameter oprions should be set instead with the setSortType() and setSortDirection() object methods at the head of your script.'));
+	}
+
+	/**
+	 * @deprecated
+	 * @since 1.4.0
+	 */
+	static function getSearchURL() {
+		deprecated_functions::notify(gettext('Pass array("albums" => array(album, album, ...)) for the object list.'));
+	}
+
+}
 
 /**
  * @deprecated
@@ -158,9 +187,9 @@ function addPluginScript($script) {
 	global $_zp_plugin_scripts;
 	$_zp_plugin_scripts[] = $script;
 
-	if (!function_exists('_emitPluginScripts')) {
+	if (!function_exists('_deprecated_addPluginScript')) {
 
-		function _emitPluginScripts() {
+		function _deprecated_addPluginScript() {
 			global $_zp_plugin_scripts;
 			if (is_array($_zp_plugin_scripts)) {
 				foreach ($_zp_plugin_scripts as $script) {
@@ -169,7 +198,7 @@ function addPluginScript($script) {
 			}
 		}
 
-		zp_register_filter('theme_head', '_emitPluginScripts');
+		zp_register_filter('theme_head', '_deprecated_addPluginScript');
 	}
 }
 

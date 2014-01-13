@@ -210,7 +210,7 @@ class ZenpagePage extends ZenpageItems {
 	 * @deprecated
 	 */
 	function getSubPages() {
-		deprecated_functions::notify(gettext('Use the Zenpage Page class->getPages() method.'));
+		Zenpage_internal_deprecations::getSubPages();
 		return $this->getPages();
 	}
 
