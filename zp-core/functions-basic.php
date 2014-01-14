@@ -611,20 +611,9 @@ function getImageCacheFilename($album8, $image8, $args) {
  */
 function makeSpecialImageName($image) {
 	$filename = basename($image);
-	$i = strpos($image, ZENFOLDER);
-	if ($i === false) {
-		$i = strpos($image, USER_PLUGIN_FOLDER);
-		if ($i === false) {
-			$sourceFolder = basename(dirname(dirname($image)));
-			$sourceSubfolder = basename(dirname($image));
-		} else {
-			$sourceFolder = USER_PLUGIN_FOLDER;
-			$sourceSubfolder = trim(substr($image, $i + strlen(USER_PLUGIN_FOLDER) + 1, - strlen($filename) - 1), '/');
-		}
-	} else {
-		$sourceFolder = ZENFOLDER;
-		$sourceSubfolder = trim(substr($image, $i + strlen(ZENFOLDER) + 1, - strlen($filename) - 1), '/');
-	}
+	$base = explode('/', str_replace(SERVERPATH . '/', '', dirname($image)));
+	$sourceFolder = array_shift($base);
+	$sourceSubfolder = implode('/', $base);
 	return array('source' => $sourceFolder . '/' . $sourceSubfolder . '/' . $filename, 'name' => $sourceFolder . '_' . basename($sourceSubfolder) . '_' . $filename);
 }
 
