@@ -87,7 +87,7 @@ class menu_manager {
 function menu_admin_toolbox_global($zf) {
 	if (zp_loggedin(ADMIN_RIGHTS)) {
 		echo "<li>";
-		printLink($zf . '/' . PLUGIN_FOLDER . '/menu_manager/menu_tab.php', gettext("Menu"), NULL, NULL, NULL);
+		printLinkHTML($zf . '/' . PLUGIN_FOLDER . '/menu_manager/menu_tab.php', gettext("Menu"), NULL, NULL, NULL);
 		echo "</li>\n";
 	}
 }
@@ -498,7 +498,7 @@ function printMenumanagerPrevLink($text, $menuset = 'default', $title = NULL, $c
 	if (is_array($itemarray)) {
 		if (is_null($title))
 			$title = $itemarray['title'];
-		printLink($itemarray['url'], $text, $title, $class, $id);
+		printLinkHTML($itemarray['url'], $text, $title, $class, $id);
 	} else {
 		echo '<span class="disabledlink">' . html_encode($text) . '</span>';
 	}
@@ -548,7 +548,7 @@ function printMenumanagerNextLink($text, $menuset = 'default', $title = NULL, $c
 	if (is_array($itemarray)) {
 		if (is_null($title))
 			$title = $itemarray['title'];
-		printLink($itemarray['url'], $text, $title, $class, $id);
+		printLinkHTML($itemarray['url'], $text, $title, $class, $id);
 	} else {
 		echo '<span class="disabledlink">' . html_encode($text) . '</span>';
 	}
@@ -608,12 +608,12 @@ function printMenuemanagerPageListWithNav($prevtext, $nexttext, $menuset = 'defa
 		if ($firstlast) {
 			echo '<li class="' . ($current == 1 ? 'current' : 'first') . '">';
 			$itemarray = getItemTitleAndURL($items[$itemlist[0]]);
-			printLink($itemarray['url'], 1, gettext("Page 1"));
+			printLinkHTML($itemarray['url'], 1, gettext("Page 1"));
 			echo "</li>\n";
 			if ($j > 2) {
 				echo "<li>";
 				$itemarray = getItemTitleAndURL($items[$itemlist[$k1 - 1]]);
-				printLink($itemarray['url'], ($j - 1 > 2) ? '...' : $k1, sprintf(ngettext('Page %u', 'Page %u', $k1), $k1));
+				printLinkHTML($itemarray['url'], ($j - 1 > 2) ? '...' : $k1, sprintf(ngettext('Page %u', 'Page %u', $k1), $k1));
 				echo "</li>\n";
 			}
 		}
@@ -625,19 +625,19 @@ function printMenuemanagerPageListWithNav($prevtext, $nexttext, $menuset = 'defa
 			} else {
 				$title = sprintf(ngettext('Page %1$u', 'Page %1$u', $i), $i);
 			}
-			printLink($itemarray['url'], $i, $title);
+			printLinkHTML($itemarray['url'], $i, $title);
 			echo "</li>\n";
 		}
 		if ($i < $total) {
 			echo "<li>";
 			$itemarray = getItemTitleAndURL($items[$itemlist[$k2 - 1]]);
-			printLink($itemarray['url'], ($total - $i > 1) ? '...' : $k2, sprintf(ngettext('Page %u', 'Page %u', $k2), $k2));
+			printLinkHTML($itemarray['url'], ($total - $i > 1) ? '...' : $k2, sprintf(ngettext('Page %u', 'Page %u', $k2), $k2));
 			echo "</li>\n";
 		}
 		if ($firstlast && $i <= $total) {
 			echo "\n  <li class=\"last\">";
 			$itemarray = getItemTitleAndURL($items[$itemlist[$total - 1]]);
-			printLink($itemarray['url'], $total, sprintf(ngettext('Page {%u}', 'Page {%u}', $total), $total));
+			printLinkHTML($itemarray['url'], $total, sprintf(ngettext('Page {%u}', 'Page {%u}', $total), $total));
 			echo "</li>";
 		}
 		if ($nextprev) {
@@ -729,7 +729,7 @@ function printMenumanagerBreadcrumb($menuset = 'default', $before = '', $between
 			if ($item['type'] == 'menulabel') {
 				echo html_encode($itemarray['title']);
 			} else {
-				printLink($itemarray['url'], $itemarray['title'], $itemarray['title']);
+				printLinkHTML($itemarray['url'], $itemarray['title'], $itemarray['title']);
 			}
 			$i++;
 		}

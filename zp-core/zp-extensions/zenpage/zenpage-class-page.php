@@ -296,8 +296,7 @@ class ZenpagePage extends ZenpageItems {
 	 * @return string
 	 */
 	function getLink() {
-		global $_zp_zenpage;
-		return $_zp_zenpage->getPagesLinkPath($this->getTitlelink());
+		return zp_apply_filter('getLink', rewrite_path(_PAGES_ . '/' . $this->getTitlelink(), '/index.php?p=pages&title=' . $this->getTitlelink()), $this, NULL);
 	}
 
 	/**
@@ -307,6 +306,7 @@ class ZenpagePage extends ZenpageItems {
 	 * @deprecated since version 1.4.6
 	 */
 	function getPageLink() {
+		Zenpage_internal_deprecations::getPageLink();
 		return $this->getLink();
 	}
 

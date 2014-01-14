@@ -270,7 +270,7 @@ function printBareNewsTitle() {
 function getNewsTitleLink() {
 	global $_zp_current_zenpage_news;
 	if (!is_null($_zp_current_zenpage_news)) {
-		$link = $_zp_current_zenpage_news->getTitlelink();
+		$link = $_zp_current_zenpage_news->getLink();
 		return $link;
 	}
 }
@@ -762,17 +762,13 @@ function printNewsCategoryURL($before = '', $catlink = '') {
 }
 
 /**
- * Returns the full path of the news index page (news page 1) or if the "news on zp index" option is set a link to the gallery index.
+ * Returns the full path of the news index page (news page 1)
  *
  * @return string
  */
 function getNewsIndexURL() {
 	global $_zp_zenpage;
-	if ($_zp_zenpage->news_on_index) {
-		return getGalleryIndexURL(false);
-	} else {
-		return $_zp_zenpage->getNewsIndexURL();
-	}
+	return $_zp_zenpage->getNewsIndexURL();
 }
 
 /**
@@ -843,10 +839,11 @@ function getNewsTitlePath($title) {
 function getNewsURL($titlelink = '') {
 	global $_zp_current_zenpage_news;
 	if (empty($titlelink)) {
-		return $_zp_current_zenpage_news->getLink();
+		$obj = $_zp_current_zenpage_news;
 	} else {
-		return getNewsTitlePath($titlelink);
+		$obj = new ZenpageNews($titlelink);
 	}
+	return $obj->getLink();
 }
 
 /**
@@ -998,11 +995,7 @@ function printNewsPageListWithNav($next, $prev, $nextprev = true, $class = 'page
 			if ($_zp_page == 1) {
 				echo "1";
 			} else {
-				if ($_zp_zenpage->news_on_index) {
-					echo '<a href="' . html_encode(getNewsIndexURL()) . '" title="' . gettext("Page") . ' 1">1</a>';
-				} else {
-					echo '<a href="' . html_encode(getNewsPathNav(1)) . '" title="' . gettext("Page") . ' 1">1</a>';
-				}
+				echo '<a href="' . html_encode(getNewsPathNav(1)) . '" title="' . gettext("Page") . ' 1">1</a>';
 			}
 			echo "</li>\n";
 			if ($j > 2) {
@@ -1074,12 +1067,12 @@ function getNextPrevNews($option = '', $sortorder = 'date', $sortdirection = 'de
 				$article = $_zp_current_zenpage_news->getPrevArticle($sortorder, $sortdirection);
 				if (!$article)
 					return false;
-				return array("link" => getNewsURL($article->getTitlelink()), "title" => $article->getTitle());
+				return array("link" => $article->getLink(), "title" => $article->getTitle());
 			case "next":
 				$article = $_zp_current_zenpage_news->getNextArticle($sortorder, $sortdirection);
 				if (!$article)
 					return false;
-				return array("link" => getNewsURL($article->getTitlelink()), "title" => $article->getTitle());
+				return array("link" => $article->getLink(), "title" => $article->getTitle());
 		}
 	}
 	return false;
@@ -1475,7 +1468,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 				break;
 			case 'categories':
 			case 'allcategories':
-				if (($_zp_gallery_page == "news.php" || ($_zp_zenpage->news_on_index && $_zp_gallery_page == "index.php")) && !is_NewsCategory() && !is_NewsArchive() && !is_NewsArticle()) {
+				if (($_zp_gallery_page == "news.php" ) && !is_NewsCategory() && !is_NewsArchive() && !is_NewsArticle()) {
 					echo "<li $css_class_topactive>" . html_encode($display);
 				} else {
 					echo "<li><a href=\"" . html_encode(getNewsIndexURL()) . "\" title=\"" . html_encode($indexname) . "\">" . html_encode($display) . "</a>";
@@ -2024,16 +2017,6 @@ function getPageSortorder() {
 }
 
 /**
- * Returns path to the pages.php page
- *
- * @return string
- */
-function getPageLinkPath($title) {
-	global $_zp_zenpage;
-	return $_zp_zenpage->getPagesLinkPath($title);
-}
-
-/**
  * Returns full path to a specific page
  *
  * @return string
@@ -2041,10 +2024,11 @@ function getPageLinkPath($title) {
 function getPageLinkURL($titlelink = '') {
 	global $_zp_zenpage, $_zp_current_zenpage_page;
 	if (empty($titlelink)) {
-		return $_zp_current_zenpage_page->getLink();
+		$obj = $_zp_current_zenpage_page;
 	} else {
-		return getPageLinkPath($titlelink);
+		$obj = new ZenpagePage($titlelink);
 	}
+	return $obj->getLink();
 }
 
 /**
@@ -2093,12 +2077,12 @@ function printSubPagesExcerpts($excerptlength = NULL, $readmore = NULL, $shorten
 			$pagetitle = html_encode($pageobj->getTitle());
 			$pagecontent = $pageobj->getContent();
 			if ($pageobj->checkAccess()) {
-				$pagecontent = getContentShorten($pagecontent, $excerptlength, $shortenindicator, $readmore, getPageLinkURL($pageobj->getTitlelink()));
+				$pagecontent = getContentShorten($pagecontent, $excerptlength, $shortenindicator, $readmore, $pageobj->getLink());
 			} else {
 				$pagecontent = '<p><em>' . gettext('This page is password protected') . '</em></p>';
 			}
 			echo '<div class="pageexcerpt">';
-			echo '<h4><a href="' . html_encode(getPageLinkURL($pageobj->getTitlelink())) . '" title="' . strip_tags($pagetitle) . '">' . $pagetitle . '</a></h4>';
+			echo '<h4><a href="' . html_encode($pageobj->getLink()) . '" title="' . strip_tags($pagetitle) . '">' . $pagetitle . '</a></h4>';
 			echo $pagecontent;
 			echo '</div>';
 		}

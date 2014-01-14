@@ -655,7 +655,7 @@ class RSS extends feed {
 			case 'news':
 				$obj = new ZenpageNews($item['titlelink']);
 				$title = $feeditem['title'] = get_language_string($obj->getTitle('all'), $this->locale);
-				$link = getNewsURL($obj->getTitlelink());
+				$link = $obj->getLink();
 				$count2 = 0;
 				$plaincategories = $obj->getCategories();
 				$categories = '';

@@ -255,63 +255,6 @@ function zp_load_request() {
 		zp_load_page();
 		if (isset($_GET['p'])) {
 			$page = str_replace(array('/', '\\', '.'), '', sanitize($_GET['p']));
-			if (isset($_GET['t'])) { //	Zenphoto tiny url
-				unset($_GET['t']);
-				$tiny = sanitize_numeric($page);
-				$asoc = getTableAsoc();
-				$tbl = $tiny & 7;
-				if (array_key_exists($tbl, $asoc)) {
-					$tbl = $asoc[$tbl];
-					$id = $tiny >> 3;
-					$result = query_single_row('SELECT * FROM ' . prefix($tbl) . ' WHERE `id`=' . $id);
-					if ($result) {
-						switch ($tbl) {
-							case 'news':
-							case 'pages':
-								$page = $_GET['p'] = $tbl;
-								$_GET['title'] = $result['titlelink'];
-								break;
-							case 'images':
-								$image = $_GET['image'] = $result['filename'];
-								$result = query_single_row('SELECT * FROM ' . prefix('albums') . ' WHERE `id`=' . $result['albumid']);
-							case 'albums':
-								$album = $_GET['album'] = $result['folder'];
-								unset($_GET['p']);
-								if (!empty($image)) {
-									return zp_load_image($album, $image);
-								} else if (!empty($album)) {
-									return zp_load_album($album);
-								}
-								break;
-							case 'comments':
-								unset($_GET['p']);
-								$commentid = $id;
-								$type = $result['type'];
-								$result = query_single_row('SELECT * FROM ' . prefix($result['type']) . ' WHERE `id`=' . $result['ownerid']);
-								switch ($type) {
-									case 'images':
-										$image = $result['filename'];
-										$result = query_single_row('SELECT * FROM ' . prefix('albums') . ' WHERE `id`=' . $result['albumid']);
-										$redirect = 'index.php?album=' . $result['folder'] . '&image=' . $image;
-										break;
-									case 'albums':
-										$album = $result['folder'];
-										$redirect = 'index.php?album=' . $result['folder'];
-										break;
-									case 'pages':
-										$redirect = 'index.php?p=pages&title=' . $result['titlelink'];
-										break;
-								}
-								$redirect .= '#zp_comment_id_' . $commentid;
-								header("HTTP/1.0 301 Moved Permanently");
-								header("Status: 301 Moved Permanently");
-								header('Location: ' . FULLWEBPATH . '/' . $redirect);
-								exitZP();
-								break;
-						}
-					}
-				}
-			}
 			switch ($page) {
 				case 'search':
 					return zp_load_search();

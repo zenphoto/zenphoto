@@ -702,7 +702,7 @@ function getCommentAuthorLink($title = NULL, $class = NULL, $id = NULL) {
 		if (is_null($title)) {
 			$title = "Visit " . $name;
 		}
-		return getLink($site, $namecoded, $title, $class, $id);
+		return getLinkHTML($site, $namecoded, $title, $class, $id);
 	}
 }
 
@@ -759,7 +759,7 @@ function printEditCommentLink($text, $before = '', $after = '', $title = NULL, $
 		if ($before) {
 			echo '<span class="beforetext">' . html_encode($before) . '</span>';
 		}
-		printLink(WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form//admin-comments.php?page=editcomment&id=' . $_zp_current_comment['id'], $text, $title, $class, $id);
+		printLinkHTML(WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form//admin-comments.php?page=editcomment&id=' . $_zp_current_comment['id'], $text, $title, $class, $id);
 		if ($after) {
 			echo '<span class="aftertext">' . html_encode($after) . '</span>';
 		}

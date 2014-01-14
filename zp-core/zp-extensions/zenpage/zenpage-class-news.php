@@ -292,8 +292,7 @@ class ZenpageNews extends ZenpageItems {
 	 * @return string
 	 */
 	function getLink() {
-		global $_zp_zenpage;
-		return $_zp_zenpage->getNewsTitlePath($this->getTitlelink());
+		return zp_apply_filter('getLink', rewrite_path('/' . _NEWS_ . '/' . $this->getTitlelink(), '/index.php?p=news&title=' . $this->getTitlelink()), $this, NULL);
 	}
 
 	/**
@@ -304,6 +303,7 @@ class ZenpageNews extends ZenpageItems {
 	 * @deprecated since version 1.4.6
 	 */
 	function getNewsLink() {
+		Zenpage_internal_deprecations::getNewsLink();
 		return $this->getLink();
 	}
 

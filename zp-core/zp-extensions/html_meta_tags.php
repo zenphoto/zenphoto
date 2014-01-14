@@ -222,7 +222,7 @@ class htmlmetatags {
 					} else {
 						$pagetitle = gettext('News') . " - ";
 						$desc = '';
-						$canonicalurl = $host . getNewsIndexURL();
+						$canonicalurl = $host . rewrite_path(_NEWS_, "/index.php?p=news");
 					}
 				}
 				break;
@@ -230,7 +230,7 @@ class htmlmetatags {
 				$pagetitle = getBarePageTitle() . " - ";
 				$date = getPageDate();
 				$desc = trim(strip_tags(getPageContent()));
-				$canonicalurl = $host . getPageLinkURL($_zp_current_zenpage_page->getTitlelink());
+				$canonicalurl = $host . $_zp_current_zenpage_page->getLink();
 				break;
 			default: // for all other possible static custom pages
 				$custompage = stripSuffix($_zp_gallery_page);

@@ -1234,7 +1234,7 @@ function generateListFromFiles($currentValue, $root, $suffix, $descending = fals
  * @param string $class optional class
  * @param string $id optional id
  */
-function getLink($url, $text, $title = NULL, $class = NULL, $id = NULL) {
+function getLinkHTML($url, $text, $title = NULL, $class = NULL, $id = NULL) {
 	return "<a href=\"" . html_encode($url) . "\"" .
 					(($title) ? " title=\"" . html_encode(strip_tags($title)) . "\"" : "") .
 					(($class) ? " class=\"$class\"" : "") .
@@ -1250,8 +1250,8 @@ function getLink($url, $text, $title = NULL, $class = NULL, $id = NULL) {
  * @param string $class optional class
  * @param string $id optional id
  */
-function printLink($url, $text, $title = NULL, $class = NULL, $id = NULL) {
-	echo getlink($url, $text, $title, $class, $id);
+function printLinkHTML($url, $text, $title = NULL, $class = NULL, $id = NULL) {
+	echo getLinkHTML($url, $text, $title, $class, $id);
 }
 
 /**
@@ -2016,33 +2016,6 @@ function cron_starter($script, $params, $offsetPath, $inline = false) {
 function zp_loggedin($rights = ALL_RIGHTS) {
 	global $_zp_loggedin;
 	return $_zp_loggedin & ($rights | ADMIN_RIGHTS);
-}
-
-/**
- *
- * Produces the # to table association array
- */
-function getTableAsoc() {
-	return array('1' => 'albums', '2' => 'images', '3' => 'news', '4' => 'pages', '5' => 'comments');
-}
-
-/**
- *
- * Returns a Zenphoto tiny URL to the object
- * @param $obj object
- */
-function getTinyURL($obj) {
-	$asoc = array_flip(getTableAsoc());
-	$tiny = ($obj->getID() << 3) | $asoc[$obj->table];
-	if (MOD_REWRITE) {
-		if (class_exists('seo_locale')) {
-			return seo_locale::localePath(true) . '/tiny/' . $tiny;
-		} else {
-			return FULLWEBPATH . '/tiny/' . $tiny;
-		}
-	} else {
-		return FULLWEBPATH . '/index.php?p=' . $tiny . '&t';
-	}
 }
 
 /**

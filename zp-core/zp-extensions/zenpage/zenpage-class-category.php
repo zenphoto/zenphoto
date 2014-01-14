@@ -416,7 +416,7 @@ class ZenpageCategory extends ZenpageRoot {
 	 */
 	function getLink() {
 		global $_zp_zenpage;
-		return rewrite_path('/' . _CATEGORY_ . '/' . $this->getTitlelink(), "/index.php?p=news&category=" . $this->getTitlelink());
+		return zp_apply_filter('getLink', rewrite_path('/' . _CATEGORY_ . '/' . $this->getTitlelink(), "/index.php?p=news&category=" . $this->getTitlelink()), $this, NULL);
 	}
 
 	/**
@@ -426,6 +426,7 @@ class ZenpageCategory extends ZenpageRoot {
 	 * @deprecated
 	 */
 	function getCategoryLink() {
+		Zenpage_internal_deprecations::getCategoryLink();
 		return $this->getLink();
 	}
 

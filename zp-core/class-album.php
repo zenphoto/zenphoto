@@ -1139,7 +1139,7 @@ class Album extends AlbumBase {
 		}
 
 		$nullimage = SERVERPATH . '/' . ZENFOLDER . '/images/imageDefault.png';
-// check for theme imageDefault.png 
+// check for theme imageDefault.png
 		$theme = '';
 		$uralbum = getUralbum($this);
 		$albumtheme = $uralbum->getAlbumTheme();
@@ -1176,7 +1176,7 @@ class Album extends AlbumBase {
 			$rewrite .= _PAGE_ . '/' . $page;
 			$plain .= "&page=$page";
 		}
-		return rewrite_path($rewrite, $plain);
+		return zp_apply_filter('getLink', rewrite_path($rewrite, $plain), $this, $page);
 	}
 
 	/**

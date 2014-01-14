@@ -22,7 +22,7 @@ if (function_exists('printCustomMenu') && getOption('zenpage_custommenu')) {
 		<div class="menu">
 			<h3><?php echo gettext("Gallery"); ?></h3>
 			<?php
-			if (extensionEnabled('zenpage') && !($_zp_zenpage->news_on_index = getOption("zenpage_zp_index_news")) || !getOption("zenpage_homepage")) {
+			if (extensionEnabled('zenpage') && !(getOption("zenpage_zp_index_news")) || !getOption("zenpage_homepage")) {
 				$allalbums = gettext("Gallery index");
 			} else {
 				$allalbums = "";
@@ -37,7 +37,7 @@ if (function_exists('printCustomMenu') && getOption('zenpage_custommenu')) {
 			<h3><?php echo gettext("Pages"); ?></h3>
 			<?php printPageMenu("list", "", "menu-active", "submenu", "menu-active"); ?>
 		</div>
-	<?php
+		<?php
 	}
 } // custom menu check end
 ?>
@@ -116,21 +116,21 @@ if (function_exists("printUserLogin_out") || !zp_loggedin() && function_exists('
 			if (function_exists('printFavoritesLink')) {
 				?>
 				<li>
-				<?php printFavoritesLink(); ?>
+					<?php printFavoritesLink(); ?>
 				</li>
 				<?php
 			}
 			if (function_exists("printUserLogin_out")) {
 				?>
 				<li>
-				<?php printUserLogin_out("", "", 2); ?>
+					<?php printUserLogin_out("", "", 2); ?>
 				</li>
 				<?php
 			}
 			if (class_exists('mobileTheme')) {
 				?>
 				<li>
-				<?php mobileTheme::controlLink(NULL, '', ''); ?>
+					<?php mobileTheme::controlLink(NULL, '', ''); ?>
 				</li>
 				<?php
 			}

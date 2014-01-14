@@ -621,15 +621,30 @@ function printAdminToolbox($id = 'admin', $customDIV = false) {
 }
 
 /**
- * Returns the URL to an image (This is NOT the URL for the image.php page)[sic]
- *
- * @param object $image the image
- * @return string
- * @deprecated since version 1.4.6
+ * @deprecated
+ * @since version 1.4.6
  */
 function getURL($image) {
 	deprecated_functions::notify(gettext('Use the appropriate object method. <strong>Note:</strong> this function gives different results depending on the setting of <code>mod_rewrite</code> so which object method to use depends on what your settings were!'));
 	return rewrite_path(pathurlencode($image->getAlbumName()) . "/" . urlencode($image->filename), "/index.php?album=" . pathurlencode($image->getAlbumName()) . "&image=" . urlencode($image->filename));
+}
+
+/**
+ * @deprecated
+ * @since version 1.4.6
+ */
+function getLink($url, $text, $title = NULL, $class = NULL, $id = NULL) {
+	deprecated_functions::notify(gettext('use getLinkHTML()'));
+	return getLinkHTML($url, $text, $title, $class, $id);
+}
+
+/**
+ * @deprecated
+ * @since version 1.4.6
+ */
+function printLink($url, $text, $title = NULL, $class = NULL, $id = NULL) {
+	deprecated_functions::notify(gettext('use printLinkHTML()'));
+	echo getLinkHTML($url, $text, $title, $class, $id);
 }
 
 ?>

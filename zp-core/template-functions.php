@@ -92,21 +92,21 @@ function adminToolbox() {
 				if (zp_loggedin(OVERVIEW_RIGHTS)) {
 					?>
 					<li>
-						<?php printLink($zf . '/admin.php', gettext("Overview"), NULL, NULL, NULL); ?>
+						<?php printLinkHTML($zf . '/admin.php', gettext("Overview"), NULL, NULL, NULL); ?>
 					</li>
 					<?php
 				}
 				if (zp_loggedin(UPLOAD_RIGHTS | FILES_RIGHTS | THEMES_RIGHTS)) {
 					?>
 					<li>
-						<?php printLink($zf . '/admin-upload.php', gettext("Upload"), NULL, NULL, NULL); ?>
+						<?php printLinkHTML($zf . '/admin-upload.php', gettext("Upload"), NULL, NULL, NULL); ?>
 					</li>
 					<?php
 				}
 				if (zp_loggedin(ALBUM_RIGHTS)) {
 					?>
 					<li>
-						<?php printLink($zf . '/admin-edit.php', gettext("Albums"), NULL, NULL, NULL); ?>
+						<?php printLinkHTML($zf . '/admin-edit.php', gettext("Albums"), NULL, NULL, NULL); ?>
 					</li>
 					<?php
 				}
@@ -115,38 +115,38 @@ function adminToolbox() {
 				if (zp_loggedin(TAGS_RIGHTS)) {
 					?>
 					<li>
-						<?php printLink($zf . '/admin-tags.php', gettext("Tags"), NULL, NULL, NULL); ?>
+						<?php printLinkHTML($zf . '/admin-tags.php', gettext("Tags"), NULL, NULL, NULL); ?>
 					</li>
 					<?php
 				}
 				if (zp_loggedin(USER_RIGHTS)) {
 					?>
 					<li>
-						<?php printLink($zf . '/admin-users.php', gettext("Users"), NULL, NULL, NULL); ?>
+						<?php printLinkHTML($zf . '/admin-users.php', gettext("Users"), NULL, NULL, NULL); ?>
 					</li>
 					<?php
 				}
 				if (zp_loggedin(OPTIONS_RIGHTS)) {
 					?>
 					<li>
-						<?php printLink($zf . '/admin-options.php?tab=general', gettext("Options"), NULL, NULL, NULL); ?>
+						<?php printLinkHTML($zf . '/admin-options.php?tab=general', gettext("Options"), NULL, NULL, NULL); ?>
 					</li>
 					<?php
 				}
 				if (zp_loggedin(THEMES_RIGHTS)) {
 					?>
 					<li>
-						<?php printLink($zf . '/admin-themes.php', gettext("Themes"), NULL, NULL, NULL); ?>
+						<?php printLinkHTML($zf . '/admin-themes.php', gettext("Themes"), NULL, NULL, NULL); ?>
 					</li>
 					<?php
 				}
 				if (zp_loggedin(ADMIN_RIGHTS)) {
 					?>
 					<li>
-						<?php printLink($zf . '/admin-plugins.php', gettext("Plugins"), NULL, NULL, NULL); ?>
+						<?php printLinkHTML($zf . '/admin-plugins.php', gettext("Plugins"), NULL, NULL, NULL); ?>
 					</li>
 					<li>
-						<?php printLink($zf . '/admin-logs.php', gettext("Logs"), NULL, NULL, NULL); ?>
+						<?php printLinkHTML($zf . '/admin-logs.php', gettext("Logs"), NULL, NULL, NULL); ?>
 					</li>
 					<?php
 				}
@@ -165,7 +165,7 @@ function adminToolbox() {
 						if (zp_loggedin(ADMIN_RIGHTS)) {
 							?>
 							<li>
-								<?php printLink($zf . '/admin-edit.php?page=edit', gettext("Sort Gallery"), NULL, NULL, NULL); ?>
+								<?php printLinkHTML($zf . '/admin-edit.php?page=edit', gettext("Sort Gallery"), NULL, NULL, NULL); ?>
 							</li>
 							<?php
 						}
@@ -198,21 +198,21 @@ function adminToolbox() {
 							// admin is empowered to edit this album--show an edit link
 							?>
 							<li>
-								<?php printLink($zf . '/admin-edit.php?page=edit&album=' . pathurlencode($_zp_current_album->name), gettext('Edit album'), NULL, NULL, NULL); ?>
+								<?php printLinkHTML($zf . '/admin-edit.php?page=edit&album=' . pathurlencode($_zp_current_album->name), gettext('Edit album'), NULL, NULL, NULL); ?>
 							</li>
 							<?php
 							if (!$_zp_current_album->isDynamic()) {
 								if ($_zp_current_album->getNumAlbums()) {
 									?>
 									<li>
-										<?php printLink($zf . '/admin-edit.php?page=edit&album=' . pathurlencode($albumname) . '&tab=subalbuminfo', gettext("Sort subalbums"), NULL, NULL, NULL); ?>
+										<?php printLinkHTML($zf . '/admin-edit.php?page=edit&album=' . pathurlencode($albumname) . '&tab=subalbuminfo', gettext("Sort subalbums"), NULL, NULL, NULL); ?>
 									</li>
 									<?php
 								}
 								if ($_zp_current_album->getNumImages() > 0) {
 									?>
 									<li>
-										<?php printLink($zf . '/admin-albumsort.php?page=edit&album=' . pathurlencode($albumname) . '&tab=sort', gettext("Sort images"), NULL, NULL, NULL); ?>
+										<?php printLinkHTML($zf . '/admin-albumsort.php?page=edit&album=' . pathurlencode($albumname) . '&tab=sort', gettext("Sort images"), NULL, NULL, NULL); ?>
 									</li>
 									<?php
 								}
@@ -231,7 +231,7 @@ function adminToolbox() {
 							// provide an album upload link if the admin has upload rights for this album and it is not a dynamic album
 							?>
 							<li>
-								<?php printLink($zf . '/admin-upload.php?album=' . pathurlencode($albumname), gettext("Upload Here"), NULL, NULL, NULL); ?>
+								<?php printLinkHTML($zf . '/admin-upload.php?album=' . pathurlencode($albumname), gettext("Upload Here"), NULL, NULL, NULL); ?>
 							</li>
 							<?php
 							if (GALLERY_SESSION) { // XSRF defense requires sessions
@@ -814,7 +814,7 @@ function getNextPageURL() {
  */
 function printNextPageLink($text, $title = NULL, $class = NULL, $id = NULL) {
 	if (hasNextPage()) {
-		printLink(getNextPageURL(), $text, $title, $class, $id);
+		printLinkHTML(getNextPageURL(), $text, $title, $class, $id);
 	} else {
 		echo "<span class=\"disabledlink\">$text</span>";
 	}
@@ -848,7 +848,7 @@ function getPrevPageURL() {
  */
 function printPrevPageLink($text, $title = NULL, $class = NULL, $id = NULL) {
 	if (hasPrevPage()) {
-		printLink(getPrevPageURL(), $text, $title, $class, $id);
+		printLinkHTML(getPrevPageURL(), $text, $title, $class, $id);
 	} else {
 		echo "<span class=\"disabledlink\">$text</span>";
 	}
@@ -961,7 +961,7 @@ function printPageListWithNav($prevtext, $nexttext, $_oneImagePage = false, $nex
 				<li class="prev">
 					<?php
 					if ($prev) {
-						printLink($prev, html_encode($prevtext), gettext('Previous Page'));
+						printLinkHTML($prev, html_encode($prevtext), gettext('Previous Page'));
 					} else {
 						?>
 						<span class="disabledlink"><?php echo html_encode($prevtext); ?></span>
@@ -984,7 +984,7 @@ function printPageListWithNav($prevtext, $nexttext, $_oneImagePage = false, $nex
 							if ($current == 1) {
 								echo '1';
 							} else {
-								printLink($nav[1], 1, gettext("Page 1"));
+								printLinkHTML($nav[1], 1, gettext("Page 1"));
 							}
 							?>
 				</li>
@@ -999,7 +999,7 @@ function printPageListWithNav($prevtext, $nexttext, $_oneImagePage = false, $nex
 					<li>
 						<?php
 						$k1 = $i - (int) ($i - $last) / 2;
-						printLink(getPageURL($k1, $total), '...', sprintf(ngettext('Page %u', 'Page %u', $k1), $k1));
+						printLinkHTML(getPageURL($k1, $total), '...', sprintf(ngettext('Page %u', 'Page %u', $k1), $k1));
 						?>
 					</li>
 					<?php
@@ -1008,7 +1008,7 @@ function printPageListWithNav($prevtext, $nexttext, $_oneImagePage = false, $nex
 					<li>
 						<?php
 						$k1 = $last + 1;
-						printLink(getPageURL($k1, $total), $k1, sprintf(ngettext('Page %u', 'Page %u', $k1), $k1));
+						printLinkHTML(getPageURL($k1, $total), $k1, sprintf(ngettext('Page %u', 'Page %u', $k1), $k1));
 						?>
 					</li>
 					<?php
@@ -1020,7 +1020,7 @@ function printPageListWithNav($prevtext, $nexttext, $_oneImagePage = false, $nex
 						echo $i;
 					} else {
 						$title = sprintf(ngettext('Page %1$u', 'Page %1$u', $i), $i);
-						printLink($link, $i, $title);
+						printLinkHTML($link, $i, $title);
 					}
 					?>
 				</li>
@@ -1038,14 +1038,14 @@ function printPageListWithNav($prevtext, $nexttext, $_oneImagePage = false, $nex
 						$k1 = $i - (int) ($i - $last) / 2;
 						?>
 						<li>
-							<?php printLink(getPageURL($k1, $total), '...', sprintf(ngettext('Page %u', 'Page %u', $k1), $k1)); ?>
+							<?php printLinkHTML(getPageURL($k1, $total), '...', sprintf(ngettext('Page %u', 'Page %u', $k1), $k1)); ?>
 						</li>
 						<?php
 					} else if ($d == 2) {
 						$k1 = $last + 1;
 						?>
 						<li>
-							<?php printLink(getPageURL($k1, $total), $k1, sprintf(ngettext('Page %u', 'Page %u', $k1), $k1)); ?>
+							<?php printLinkHTML(getPageURL($k1, $total), $k1, sprintf(ngettext('Page %u', 'Page %u', $k1), $k1)); ?>
 						</li>
 						<?php
 					}
@@ -1055,7 +1055,7 @@ function printPageListWithNav($prevtext, $nexttext, $_oneImagePage = false, $nex
 						if ($current == $i) {
 							echo $i;
 						} else {
-							printLink($link, $i, sprintf(ngettext('Page %u', 'Page %u', $i), $i));
+							printLinkHTML($link, $i, sprintf(ngettext('Page %u', 'Page %u', $i), $i));
 						}
 						?>
 					</li>
@@ -1067,7 +1067,7 @@ function printPageListWithNav($prevtext, $nexttext, $_oneImagePage = false, $nex
 				<li class="next">
 					<?php
 					if ($next) {
-						printLink($next, html_encode($nexttext), gettext('Next Page'));
+						printLinkHTML($next, html_encode($nexttext), gettext('Next Page'));
 					} else {
 						?>
 						<span class="disabledlink"><?php echo html_encode($nexttext); ?></span>
@@ -1449,7 +1449,7 @@ function printHomeLink($before = '', $after = '', $title = NULL, $class = NULL, 
 			if ($before) {
 				echo '<span class="beforetext">' . html_encode(before) . '</span>';
 			}
-			printLink($site, $name, $title, $class, $id);
+			printLinkHTML($site, $name, $title, $class, $id);
 			if ($after) {
 				echo '<span class="aftertext">' . html_encode($after) . '</span>';
 			}
@@ -1652,7 +1652,7 @@ function getAlbumLinkURL($album = NULL) {
  * @param string $id Insert here the CSS-id name with with you want to style the link.
  */
 function printAlbumLink($text, $title, $class = NULL, $id = NULL) {
-	printLink(getAlbumLinkURL(), $text, $title, $class, $id);
+	printLinkHTML(getAlbumLinkURL(), $text, $title, $class, $id);
 }
 
 /**
@@ -2463,7 +2463,7 @@ function getImageLinkURL() {
  * @param string $id optional style id for the link
  */
 function printImageLink($text, $title, $class = NULL, $id = NULL) {
-	printLink(getImageLinkURL(), $text, $title, $class, $id);
+	printLinkHTML(getImageLinkURL(), $text, $title, $class, $id);
 }
 
 /**
@@ -3136,7 +3136,7 @@ function printCustomSizedImageMaxSpace($alt, $width, $height, $class = NULL, $id
  * @param string $id optional URL id
  */
 function printSizedImageLink($size, $text, $title, $class = NULL, $id = NULL) {
-	printLink(getSizedImageURL($size), $text, $title, $class, $id);
+	printLinkHTML(getSizedImageURL($size), $text, $title, $class, $id);
 }
 
 /**

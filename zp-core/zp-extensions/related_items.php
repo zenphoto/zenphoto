@@ -111,12 +111,12 @@ function createRelatedItemsResultArray($result, $type) {
 		switch ($type) {
 			case 'albums':
 				if (get_class($current) != 'Album' || $current->name != $item) {
-					array_push($results, array('name'	 => $item, 'album'	 => '', 'type'	 => $type, 'weight' => '13')); // doesn't have weight so we just add one for sorting later
+					array_push($results, array('name' => $item, 'album' => '', 'type' => $type, 'weight' => '13')); // doesn't have weight so we just add one for sorting later
 				}
 				break;
 			case 'images':
 				if (get_class($current) != 'Image' || ($current->filename != $item['filename'] && $current->getAlbum()->name != $item['folder'])) {
-					array_push($results, array('name'	 => $item['filename'], 'album'	 => $item['folder'], 'type'	 => $type, 'weight' => $item['weight']));
+					array_push($results, array('name' => $item['filename'], 'album' => $item['folder'], 'type' => $type, 'weight' => $item['weight']));
 				}
 				break;
 			case 'news':
@@ -125,12 +125,12 @@ function createRelatedItemsResultArray($result, $type) {
 					if (!isset($item['weight']))
 						$item['weight'] = 13; //	there are circumstances where weights are not generated.
 
-					array_push($results, array('name'	 => $item['titlelink'], 'album'	 => '', 'type'	 => $type, 'weight' => $item['weight']));
+					array_push($results, array('name' => $item['titlelink'], 'album' => '', 'type' => $type, 'weight' => $item['weight']));
 				}
 				break;
 			case 'pages':
 				if (get_class($current) != 'ZenpagePage' || $current->getTitlelink() != $item) {
-					array_push($results, array('name'	 => $item, 'album'	 => '', 'type'	 => $type, 'weight' => '13')); // doesn't have weight so we just add one for sorting later
+					array_push($results, array('name' => $item, 'album' => '', 'type' => $type, 'weight' => '13')); // doesn't have weight so we just add one for sorting later
 				}
 				break;
 		}
@@ -149,7 +149,7 @@ function createRelatedItemsResultArray($result, $type) {
  */
 function printRelatedItems($number = 5, $type = 'news', $specific = NULL, $excerpt = NULL, $thumb = false, $date = false) {
 	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
-	$label = array('albums' => gettext('Albums'), 'images' => gettext('Images'), 'news'	 => gettext('News'), 'pages'	 => gettext('Pages'));
+	$label = array('albums' => gettext('Albums'), 'images' => gettext('Images'), 'news' => gettext('News'), 'pages' => gettext('Pages'));
 	$result = getRelatedItems($type, $specific);
 	$resultcount = count($result);
 	if ($resultcount != 0) {
@@ -182,13 +182,13 @@ function printRelatedItems($number = 5, $type = 'news', $specific = NULL, $excer
 							break;
 						case 'news':
 							$obj = new ZenpageNews($item['name']);
-							$url = getNewsURL($obj->getTitlelink());
+							$url = $obj->getLink());
 							$text = $obj->getContent();
 							$category = gettext('News');
 							break;
 						case 'pages':
 							$obj = new ZenpagePage($item['name']);
-							$url = getPageLinkURL($obj->getTitlelink());
+							$url = $obj->getLink();
 							$text = $obj->getContent();
 							$category = gettext('Page');
 							break;

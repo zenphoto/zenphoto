@@ -25,7 +25,6 @@ if (!defined('MENU_TRUNCATE_INDICATOR'))
 
 class Zenpage {
 
-	var $news_on_index = NULL;
 	var $categoryStructure = array();
 	var $sortorder;
 	var $sortdirection;
@@ -178,15 +177,6 @@ class Zenpage {
 			db_free_result($result);
 		}
 		return $all_pages;
-	}
-
-	/**
-	 * Returns path to the pages.php page without the title(link)
-	 *
-	 * @return string
-	 */
-	function getPagesLinkPath($title) {
-		return rewrite_path(_PAGES_ . '/' . $title, "/index.php?p=pages&title=$title");
 	}
 
 	/*	 * ********************************* */
@@ -760,11 +750,7 @@ class Zenpage {
 	 * @return string
 	 */
 	function getNewsIndexURL() {
-		if ($this->news_on_index) {
-			return getGalleryIndexURL(false);
-		} else {
-			return rewrite_path(_NEWS_, "/index.php?p=news");
-		}
+		return rewrite_path(_NEWS_, "/index.php?p=news");
 	}
 
 	/**
@@ -773,7 +759,7 @@ class Zenpage {
 	 * @return string
 	 */
 	function getNewsCategoryPath($category, $page = NULL) {
-		if ($page) {
+		if ($page > 1) {
 			return rewrite_path('/' . _CATEGORY_ . '/' . $category . '/' . $page, "/index.php?p=news&category=$category&page=$page");
 		} else {
 			return rewrite_path('/' . _CATEGORY_ . '/' . $category, "/index.php?p=news&category=$category");

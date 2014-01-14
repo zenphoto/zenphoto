@@ -31,6 +31,39 @@ class Zenpage_internal_deprecations {
 		deprecated_functions::notify(gettext('Sort parameter oprions should be set instead with the setSortType() and setSortDirection() object methods at the head of your script.'));
 	}
 
+	/**
+	 * @deprecated
+	 * @since 1.4.6
+	 */
+	static function getNewsLink() {
+		deprecated_functions::notify(gettext('Use the getLink method instead'));
+	}
+
+	/**
+	 * @deprecated
+	 * @since 1.4.6
+	 */
+	static function getCategoryLink() {
+		deprecated_functions::notify(gettext('Use the getLink method instead'));
+	}
+
+	/**
+	 * @deprecated
+	 * @since 1.4.6
+	 */
+	static function getPageLink() {
+		deprecated_functions::notify(gettext('Use the getLink method instead'));
+	}
+
+	/**
+	 * @deprecated
+	 * @since 1.4.6
+	 */
+	static function getPagesLinkPath($title) {
+		deprecated_functions::notify(gettext('Create an object and use its getLink method.'));
+		return rewrite_path(_PAGES_ . '/' . $title, "/index.php?p=pages&title=$title");
+	}
+
 }
 
 /**
@@ -878,6 +911,16 @@ function printLatestNews($number = 5, $option = 'with_latest_images', $category 
 		}
 	}
 	echo "</ul>\n";
+}
+
+/**
+ * @deprecated
+ * @since 1.4.6
+ */
+function getPageLinkPath($title) {
+	global $_zp_zenpage;
+	deprecated_functions::notify(gettext('Create an object and use the object getLink'));
+	return $_zp_zenpage->getPagesLinkPath($title);
 }
 
 ?>

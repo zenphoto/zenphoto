@@ -1080,6 +1080,7 @@ zp-core/zp-extensions/tag_suggest
 zp-core/zp-extensions/tag_suggest.php
 zp-core/zp-extensions/tag_suggest/tag.css
 zp-core/zp-extensions/themeSwitcher.php
+zp-core/zp-extensions/tinyURL.php
 zp-core/zp-extensions/tiny_mce
 zp-core/zp-extensions/tiny_mce.php
 zp-core/zp-extensions/tiny_mce/config
@@ -1938,4 +1939,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1940
+1941

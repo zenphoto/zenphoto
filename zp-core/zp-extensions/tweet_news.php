@@ -10,6 +10,7 @@ $plugin_is_filter = 9 | FEATURE_PLUGIN | ADMIN_PLUGIN;
 $plugin_description = gettext('Tweet news articles when published.');
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (function_exists('curl_init')) ? false : gettext('The <em>php_curl</em> extension is required');
+$plugin_notice = (extensionEnabled('TinyURL')) ? '' : gettext('Enable the tinyURL plugin to shorten URLs in your tweets.');
 
 $option_interface = 'tweet';
 
@@ -314,7 +315,11 @@ class tweet {
 			setupCurrentLocale(getOption('tweet_language')); //	the log will be in the language of the master user.
 		}
 		$error = '';
-		$link = getTinyURL($obj);
+		if (class_exists('tinyURL')) {
+			$link = tinyURL::getURL($obj);
+		} else {
+			$link = $obj->getLink();
+		}
 		switch ($type = $obj->table) {
 			case 'pages':
 			case 'news':

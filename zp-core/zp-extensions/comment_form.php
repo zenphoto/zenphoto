@@ -168,7 +168,7 @@ class comment_form {
 		if (zp_loggedin(COMMENT_RIGHTS)) {
 			?>
 			<li>
-				<?php printLink(WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . 'comment_form/admin-comments.php?page=comments&amp;tab=' . gettext('comments'), gettext("Comments"), NULL, NULL, NULL); ?>
+				<?php printLinkHTML(WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . 'comment_form/admin-comments.php?page=comments&amp;tab=' . gettext('comments'), gettext("Comments"), NULL, NULL, NULL); ?>
 			</li>
 			<?php
 		}

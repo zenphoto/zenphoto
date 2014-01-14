@@ -904,7 +904,7 @@ class Image extends MediaObject {
 			$album = $this->albumlink;
 			$image = $this->filename;
 		}
-		return rewrite_path('/' . pathurlencode($album) . '/' . urlencode($image) . IM_SUFFIX, '/index.php?album=' . pathurlencode($album) . '&image=' . urlencode($image));
+		return zp_apply_filter('getLink', rewrite_path('/' . pathurlencode($album) . '/' . urlencode($image) . IM_SUFFIX, '/index.php?album=' . pathurlencode($album) . '&image=' . urlencode($image)), $this, NULL);
 	}
 
 	/**
@@ -1046,9 +1046,9 @@ class Image extends MediaObject {
 		} else {
 			$sw = $sh = NULL;
 		}
-		$filename = $this->filename;
 		$wmt = getWatermarkParam($this, WATERMARK_THUMB);
 		$args = getImageParameters(array($ts, NULL, NULL, $sw, $sh, NULL, NULL, NULL, true, NULL, true, $wmt, NULL, NULL), $this->album->name);
+
 		return getImageURI($args, $this->album->name, $this->filename, $this->filemtime);
 	}
 
@@ -1235,7 +1235,6 @@ class Transientimage extends Image {
 		}
 		$this->album = $album;
 		$this->localpath = $image;
-
 		$filename = makeSpecialImageName($image);
 		$this->filename = $filename;
 		$this->displayname = stripSuffix(basename($image));

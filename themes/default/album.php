@@ -1,7 +1,8 @@
 <?php
 // force UTF-8 Ø
 
-if (!defined('WEBPATH')) die();
+if (!defined('WEBPATH'))
+	die();
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,7 +19,7 @@ if (!defined('WEBPATH')) die();
 			<div id="gallerytitle">
 				<?php
 				if (getOption('Allow_search')) {
-					$album_list = array('albums'=>array($_zp_current_album->name),'pages'=>'0', 'news'=>'0');
+					$album_list = array('albums' => array($_zp_current_album->name), 'pages' => '0', 'news' => '0');
 					printSearchForm('', 'search', gettext('Search within album'), gettext('search'), NULL, NULL, $album_list);
 				}
 				?>
@@ -78,7 +79,7 @@ if (!defined('WEBPATH')) die();
 			}
 			?>
 			<?php printZenphotoLink(); ?>
-			<?php @call_user_func('printUserLogin_out'," | ");	?>
+			<?php @call_user_func('printUserLogin_out', " | "); ?>
 		</div>
 		<?php
 		zp_apply_filter('theme_body_close');

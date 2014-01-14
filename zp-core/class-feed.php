@@ -400,7 +400,7 @@ class feed {
 	protected function getitemPages($item, $len) {
 		$obj = new ZenpagePage($item['titlelink']);
 		$feeditem['title'] = $feeditem['title'] = get_language_string($obj->getTitle('all'), $this->locale);
-		$feeditem['link'] = getPageLinkURL($obj->getTitlelink());
+		$feeditem['link'] = $obj->getLink();
 		$desc = $obj->getContent($this->locale);
 		$desc = str_replace('//<![CDATA[', '', $desc);
 		$desc = str_replace('//]]>', '', $desc);
