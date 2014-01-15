@@ -92,7 +92,7 @@ class tinyURL {
 		$tiny = ($obj->getID() << 3) | $asoc[$obj->table];
 		if (MOD_REWRITE) {
 			if ($page > 1)
-				$tiny.='/' . _PAGE_ . '/' . $page;
+				$tiny.='/' . $page;
 			if (class_exists('seo_locale')) {
 				return seo_locale::localePath(true) . '/tiny/' . $tiny;
 			} else {

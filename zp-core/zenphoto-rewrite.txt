@@ -16,6 +16,7 @@
 
 	#rewrite rule for tinyURLs
 	RewriteRule ^tiny/([0-9]+)/?$               					index.php?p=$1&t [L,QSA]
+	RewriteRule ^tiny/([0-9]+)/([0-9]+)/?$               	index.php?p=$1&page=$2&t [L,QSA]
 
 	#### Rewrite rules for search
 	RewriteRule ^%SEARCH%/*$     													index.php?p=search [L,QSA]
