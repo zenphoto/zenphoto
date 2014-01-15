@@ -105,5 +105,12 @@ class deprecated_functions {
 
 }
 
-// IMPORTANT:: place all deprecated functions below this line!!!
+//Load the deprecated function scripts
+require_once(stripSuffix(__FILE__) . '/deprecated-functions.php');
+foreach (getPluginFiles('*.php') as $extension => $plugin) {
+	$deprecated = stripSuffix($plugin) . '/deprecated-functions.php';
+	if (file_exists($deprecated)) {
+		require_once($deprecated);
+	}
+}
 ?>
