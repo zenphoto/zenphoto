@@ -36,6 +36,10 @@ header('Content-Type: text/html; charset=UTF-8');
 header("Cache-Control: no-store, no-cache, must-revalidate, pre-check=0, post-check=0, max-age=0");
 
 require_once(dirname(__FILE__) . '/setup-functions.php');
+//allow only one setup to run
+$setupMutex = new setupMutex();
+$setupMutex->lock();
+
 if ($debug = isset($_REQUEST['debug'])) {
 	if (!$debug = $_REQUEST['debug']) {
 		$debug = true;
@@ -2764,3 +2768,6 @@ if ($c <= 0) {
 		<?php printSetupFooter(); ?>
 	</body>
 </html>
+<?php
+$setupMutex->unlock();
+?>
