@@ -251,10 +251,12 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 			<?php
 			if (isset($_GET['ndeleted'])) {
 				?>
-				<h2><?php
+				<h2>
+					<?php
 					$n = sanitize_numeric($_GET['ndeleted']);
 					printf(ngettext("%u Comment deleted successfully.", "%u Comment deleted successfully.", $n), $n);
-					?></h2>
+					?>
+				</h2>
 				<?php
 			}
 			if (isset($_GET['saved'])) {
@@ -288,16 +290,21 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 		<p class="buttons"><button type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button></p>
 		<p class="buttons">
 			<?php
-			if (!$fulltext) {
-				?>
-				<a href="?fulltext=1<?php echo $viewall ? '&amp;viewall' : ''; ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_out.png" alt="" /> <?php echo gettext("View full text"); ?></a>
-				<?php
+			if ($fulltext) {
+				$msg = gettext("View truncated");
+				$img = WEBPATH . '/' . ZENFOLDER . '/images/arrow_in.png';
 			} else {
-				?>
-				<a	href="admin-comments.php?fulltext=0<?php echo $viewall ? '&amp;viewall' : ''; ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_in.png" alt="" /> <?php echo gettext("View truncated"); ?></a>
-				<?php
+				$msg = gettext("View full text");
+				$img = WEBPATH . '/' . ZENFOLDER . '/images/arrow_out.png';
 			}
 			?>
+			<a	href="admin-comments.php?fulltext=<?php
+			echo (int) ($fulltext + 1) & 1;
+			if ($viewall)
+				echo '&amp;viewall';
+			if ($pagenum > 1)
+				echo "&amp;subpage=$pagenum";
+			?>"><img src="<?php echo $img; ?>" alt = "" /> <?php echo $msg; ?></a>
 		</p>
 		<br class="clearall" /><br />
 		<table class="bordered">
