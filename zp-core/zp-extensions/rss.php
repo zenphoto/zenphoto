@@ -19,6 +19,7 @@ $option_interface = 'rss_options';
 class rss_options {
 
 	function __construct() {
+		global $plugin_is_filter;
 		if (OFFSET_PATH == 2) {
 			setOptionDefault('zp_plugin_rss', $plugin_is_filter);
 //	migrate old RSS options
