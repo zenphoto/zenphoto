@@ -41,12 +41,16 @@ function rewriteHandler() {
 		if (array_key_exists('rule', $special)) {
 			$specialPageRules[] = "\tRewriteRule " . str_replace('%REWRITE%', $special['rewrite'], $special['rule']);
 		}
+		if (array_key_exists('definition', $special)) {
+			eval('$definitions[$special[\'definition\']] = ' . $special['rewrite'] . ';');
+		}
 	}
-	$rules = str_replace('_SPECIAL_', implode("\n", $specialPageRules), $rules);
-	$rules = explode("\n", $rules);
-	array_push($rules, 'RewriteRule ^(.*)/?$	index.php?album=$1 [L,QSA]'); // catch all rule at the end
-	//	and process them
 
+	$rules = str_replace("\t" . '_SPECIAL_', implode("\n", $specialPageRules), $rules);
+	$rules = explode("\n", $rules);
+
+	array_push($rules, "\t" . 'RewriteRule ^(.*)/?$	index.php?album=$1 [L,QSA]'); // catch all rule at the end
+	//	and process them
 	foreach ($rules as $rule) {
 		if ($rule = trim($rule)) {
 			if ($rule{0} != '#') {

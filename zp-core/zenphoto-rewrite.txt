@@ -1,22 +1,14 @@
 	#definitions
 	Define %ZENFOLDER%			=>	ZENFOLDER
-	Define %PAGES%					=>	_PAGES_
 	Define %PAGE%						=>	_PAGE_
-	Define %NEWS%						=>	_NEWS_
 	Define %SEARCH%					=>	_SEARCH_
 	Define %ARCHIVE%				=>	_ARCHIVE_
-	Define %NEWS_ARCHIVE%		=>	_NEWS_ARCHIVE_
-	Define %CATEGORY%				=>	_CATEGORY_
 	Define %TAGS%						=>	_TAGS_
 
 	#quick links
 	RewriteRule ^$                     										index.php [L,QSA]
 	RewriteRule ^index\.php$                     					index.php [L,QSA]
 	RewriteRule ^admin/*$																	%ZENFOLDER%/admin.php [L,QSA]
-
-	#rewrite rule for tinyURLs
-	RewriteRule ^tiny/([0-9]+)/?$               					index.php?p=$1&t [L,QSA]
-	RewriteRule ^tiny/([0-9]+)/([0-9]+)/?$               	index.php?p=$1&page=$2&t [L,QSA]
 
 	#### Rewrite rules for search
 	RewriteRule ^%SEARCH%/*$     													index.php?p=search [L,QSA]
@@ -26,17 +18,6 @@
 	RewriteRule ^%TAGS%/(.*)/?$ 													index.php?p=search&searchfields=tags&words=$1 [L,QSA]
 	RewriteRule ^%SEARCH%/(.*)/([0-9]+)/?$    						index.php?p=search&words=$1&page=$2 [L,QSA]
 	RewriteRule ^%SEARCH%/(.*)/?$     										index.php?p=search&words=$1 [L,QSA]
-
-	#### Rewrite rules for zenpage
-	RewriteRule ^%PAGES%/*$      													index.php?p=pages [L,QSA]
-	RewriteRule ^%PAGES%/(.*)/?$                 					index.php?p=pages&title=$1 [L,QSA]
-	RewriteRule ^%NEWS%/*$      		       								index.php?p=news [L,QSA]
-	RewriteRule ^%NEWS%/([0-9]+)/?$               				index.php?p=news&page=$1 [L,QSA]
-	RewriteRule ^%CATEGORY%/(.*)/([0-9]+)/?$ 			index.php?p=news&category=$1&page=$2 [L,QSA]
-	RewriteRule ^%CATEGORY%/(.*)/?$          			index.php?p=news&category=$1 [L,QSA]
-	RewriteRule ^%NEWS_ARCHIVE%/(.*)/([0-9]+)/?$  	index.php?p=news&date=$1&page=$2 [L,QSA]
-	RewriteRule ^%NEWS_ARCHIVE%/(.*)/?$           	index.php?p=news&date=$1 [L,QSA]
-	RewriteRule ^%NEWS%/(.*)/?$                   				index.php?p=news&title=$1 [L,QSA]
 
 	#SpecialPages are processed here in the sequence
 	_SPECIAL_

@@ -13,16 +13,28 @@
  * @package plugins
  * @subpackage tools
  */
-$plugin_is_filter = 9 | CLASS_PLUGIN;
+$plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext('Provides short URLs to Zenphoto objects.');
 $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'tinyURL';
 
-if (!OFFSET_PATH) {
-	zp_register_filter('load_request', 'tinyURL::parse');
-	if (getOption('tinyURL_agressive'))
-		zp_register_filter('getLink', 'tinyURL::getTinyURL');
+switch (OFFSET_PATH) {
+	case 0:
+		zp_register_filter('load_request', 'tinyURL::parse');
+		if (getOption('tinyURL_agressive'))
+			zp_register_filter('getLink', 'tinyURL::getTinyURL');
+		//rewrite rule for tinyURLs
+		$_zp_conf_vars['special_pages']['tiny'] = array('define'	 => false, 'rewrite'	 => '^tiny/([0-9]+)/?$',
+						'rule'		 => '%REWRITE% index.php?p=$1&t [L,QSA]');
+		$_zp_conf_vars['special_pages']['tiny_p'] = array('define' => false, 'rewrite' => '^tiny/([0-9]+)/([0-9]+)/?$', 'rule' => '%REWRITE% index.php?p=$1&page=$2&t [L,QSA]');
+		break;
+	case 2:
+		setOptionDefault('zp_plugin_tinyURL', $plugin_is_filter);
+		setOptionDefault('tinyURL_agressive', 0);
+		break;
+	default:
+		break;
 }
 
 class tinyURL {
@@ -37,9 +49,7 @@ class tinyURL {
 	static $tableAsoc = array('1' => 'albums', '2' => 'images', '3' => 'news', '4' => 'pages', '5' => 'comments');
 
 	function __construct() {
-		if (OFFSET_PATH == 2) {
-			setOptionDefault('tinyURL_agressive', 0);
-		}
+
 	}
 
 	function getOptionsSupported() {

@@ -182,7 +182,7 @@ function printRelatedItems($number = 5, $type = 'news', $specific = NULL, $excer
 							break;
 						case 'news':
 							$obj = new ZenpageNews($item['name']);
-							$url = $obj->getLink());
+							$url = $obj->getLink();
 							$text = $obj->getContent();
 							$category = gettext('News');
 							break;

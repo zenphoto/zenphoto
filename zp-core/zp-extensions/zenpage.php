@@ -44,6 +44,46 @@ $plugin_notice = gettext("<strong>Note:</strong> This feature must be integrated
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $option_interface = 'zenpagecms';
 
+//Zenpage rewrite definitions
+
+$_zp_conf_vars['special_pages']['news'] = array('definition' => '%NEWS%', 'rewrite' => '_NEWS_');
+$_zp_conf_vars['special_pages']['category'] = array('definition' => '%CATEGORY%', 'rewrite' => '_CATEGORY_');
+$_zp_conf_vars['special_pages']['news_archive'] = array('definition' => '%NEWS_ARCHIVE%', 'rewrite' => '_NEWS_ARCHIVE_');
+$_zp_conf_vars['special_pages']['pages'] = array('definition' => '%PAGES%', 'rewrite' => '_PAGES_');
+
+//Zenpage rewrite rules
+/*
+  #### Rewrite rules for zenpage
+  RewriteRule ^%PAGES%/*$      													index.php?p=pages [L,QSA]
+  RewriteRule ^%PAGES%/(.*)/?$                 					index.php?p=pages&title=$1 [L,QSA]
+  RewriteRule ^%NEWS%/*$      		       								index.php?p=news [L,QSA]
+  RewriteRule ^%NEWS%/([0-9]+)/?$               				index.php?p=news&page=$1 [L,QSA]
+  RewriteRule ^%CATEGORY%/(.*)/([0-9]+)/?$ 			index.php?p=news&category=$1&page=$2 [L,QSA]
+  RewriteRule ^%CATEGORY%/(.*)/?$          			index.php?p=news&category=$1 [L,QSA]
+  RewriteRule ^%NEWS_ARCHIVE%/(.*)/([0-9]+)/?$  	index.php?p=news&date=$1&page=$2 [L,QSA]
+  RewriteRule ^%NEWS_ARCHIVE%/(.*)/?$           	index.php?p=news&date=$1 [L,QSA]
+  RewriteRule ^%NEWS%/(.*)/?$                   				index.php?p=news&title=$1 [L,QSA]
+ */
+$_zp_conf_vars['special_pages']['zenpagePage'] = array('define'	 => false, 'rewrite'	 => '^%PAGES%/*$',
+				'rule'		 => '%REWRITE% index.php?p=pages [L,QSA]');
+$_zp_conf_vars['special_pages']['zenpagePage_p'] = array('define'	 => false, 'rewrite'	 => '^%PAGES%/(.*)/?$',
+				'rule'		 => '%REWRITE% index.php?p=pages&title=$1 [L, QSA]');
+$_zp_conf_vars['special_pages']['zenpageCategory_p'] = array('define'	 => false, 'rewrite'	 => '^%CATEGORY%/(.*)/([0-9]+)/?$',
+				'rule'		 => '%REWRITE% index.php?p=news&category=$1&page=$2 [L,QSA]');
+$_zp_conf_vars['special_pages']['zenpageCategory'] = array('define'	 => false, 'rewrite'	 => '^%CATEGORY%/(.*)/?$',
+				'rule'		 => '%REWRITE% index.php?p=news&category=$1 [L,QSA]');
+$_zp_conf_vars['special_pages']['zenpageNewArchive_p'] = array('define'	 => false, 'rewrite'	 => '^%NEWS_ARCHIVE%/(.*)/([0-9]+)/?$',
+				'rule'		 => '%REWRITE% index.php?p=news&date=$1&page=$2 [L,QSA]');
+$_zp_conf_vars['special_pages']['zenpageNewArchive'] = array('define'	 => false, 'rewrite'	 => '^%NEWS_ARCHIVE%/(.*)/?$',
+				'rule'		 => '%REWRITE% index.php?p=news&date=$1 [L,QSA]');
+$_zp_conf_vars['special_pages']['zenpageNews_p'] = array('define'	 => false, 'rewrite'	 => '^%NEWS%/([0-9]+)/?$',
+				'rule'		 => '%REWRITE% index.php?p=news&page=$1 [L,QSA]');
+$_zp_conf_vars['special_pages']['zenpageNews_t'] = array('define'	 => false, 'rewrite'	 => '^%NEWS%/(.*)/?$',
+				'rule'		 => '%REWRITE% index.php?p=news&title=$1 [L,QSA]');
+$_zp_conf_vars['special_pages']['zenpageNews'] = array('define'	 => false, 'rewrite'	 => '^%NEWS%/*$',
+				'rule'		 => '%REWRITE% index.php?p=news [L,QSA]');
+
+
 zp_register_filter('checkForGuest', 'zenpagecms::checkForGuest');
 zp_register_filter('isMyItemToView', 'zenpagecms::isMyItemToView');
 zp_register_filter('admin_toolbox_global', 'zenpagecms::admin_toolbox_global');
@@ -90,11 +130,11 @@ class zenpagecms {
 						gettext('Read more')													 => array('key'					 => 'zenpage_read_more', 'type'				 => OPTION_TYPE_TEXTBOX, 'multilingual' => 1,
 										'order'				 => 3,
 										'desc'				 => gettext("The text for the link to the full article.")),
-						gettext('Truncate titles*')		 => array('key'			 => 'menu_truncate_string', 'type'		 => OPTION_TYPE_TEXTBOX,
+						gettext('Truncate titles*')										 => array('key'			 => 'menu_truncate_string', 'type'		 => OPTION_TYPE_TEXTBOX,
 										'disabled' => $_common_truncate_handler,
 										'order'		 => 23,
 										'desc'		 => gettext('Limit titles to this many characters. Zero means no limit.')),
-						gettext('Truncate indicator*') => array('key'			 => 'menu_truncate_indicator', 'type'		 => OPTION_TYPE_TEXTBOX,
+						gettext('Truncate indicator*')								 => array('key'			 => 'menu_truncate_indicator', 'type'		 => OPTION_TYPE_TEXTBOX,
 										'disabled' => $_common_truncate_handler,
 										'order'		 => 24,
 										'desc'		 => gettext('Append this string to truncated titles.'))
@@ -120,11 +160,11 @@ class zenpagecms {
 	static function switcher_head($list) {
 		?>
 		<script type="text/javascript">
-			// <!-- <![CDATA[
+		// <!-- <![CDATA[
 			function switchCMS(checked) {
 				window.location = '?cmsSwitch=' + checked;
 			}
-			// ]]> -->
+		// ]]> -->
 		</script>
 		<?php
 		return $list;
@@ -226,7 +266,7 @@ class zenpagecms {
 	 */
 	static function admin_toolbox_global($zf) {
 		if (zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
-			// admin has zenpage rights, provide link to the Zenpage admin tab
+// admin has zenpage rights, provide link to the Zenpage admin tab
 			echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-news-articles.php\">" . gettext("News") . "</a></li>";
 		}
 		if (zp_loggedin(ZENPAGE_PAGES_RIGHTS)) {
@@ -237,10 +277,10 @@ class zenpagecms {
 
 	static function admin_toolbox_pages($redirect, $zf) {
 		if (zp_loggedin(ZENPAGE_PAGES_RIGHTS)) {
-			// page is zenpage page--provide edit, delete, and add links
+// page is zenpage page--provide edit, delete, and add links
 			echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?page&amp;edit&amp;titlelink=" . urlencode(getPageTitlelink()) . "\">" . gettext("Edit Page") . "</a></li>";
 			if (GALLERY_SESSION) {
-				// XSRF defense requires sessions
+// XSRF defense requires sessions
 				?>
 				<li><a href="javascript:confirmDelete('<?php echo $zf . '/' . PLUGIN_FOLDER; ?>/zenpage/page-admin.php?del=<?php echo getPageID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>',deletePage)"
 							 title="<?php echo gettext("Delete page"); ?>"><?php echo gettext("Delete Page"); ?>
@@ -256,10 +296,10 @@ class zenpagecms {
 		global $_zp_current_category;
 		if (is_NewsArticle()) {
 			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
-				// page is a NewsArticle--provide zenpage edit, delete, and Add links
+// page is a NewsArticle--provide zenpage edit, delete, and Add links
 				echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?newsarticle&amp;edit&amp;titlelink=" . urlencode(getNewsTitlelink()) . "\">" . gettext("Edit Article") . "</a></li>";
 				if (GALLERY_SESSION) {
-					// XSRF defense requires sessions
+// XSRF defense requires sessions
 					?>
 					<li>
 						<a href="javascript:confirmDelete('<?php echo $zf . '/' . PLUGIN_FOLDER; ?>/zenpage/admin-news-articles.php?del=<?php echo getNewsID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>',deleteArticle)"
