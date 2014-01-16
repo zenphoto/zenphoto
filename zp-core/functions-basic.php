@@ -112,15 +112,7 @@ if (OFFSET_PATH != 2 && !file_exists($const_serverpath . '/' . DATA_FOLDER . '/'
 }
 // Including the config file more than once is OK, and avoids $conf missing.
 eval('?>' . file_get_contents($const_serverpath . '/' . DATA_FOLDER . '/' . CONFIGFILE));
-
-if (isset($_zp_conf_vars['special_pages'])) {
-	foreach ($_zp_conf_vars['special_pages'] as $definition) {
-		if ($definition['define']) {
-			define($definition['define'], $definition['rewrite']);
-		}
-	}
-	unset($definition);
-} else {
+if (!isset($_zp_conf_vars['special_pages'])) {
 	$_zp_conf_vars['special_pages'] = array();
 }
 

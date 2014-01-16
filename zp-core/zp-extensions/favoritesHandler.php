@@ -78,9 +78,6 @@ class favoritesOptions {
 										'multilingual' => true,
 										'order'				 => 2,
 										'desc'				 => gettext('The text for the link to the favorites page.')),
-						gettext('Favorites link')	 => array('key'		 => 'favorites_rewrite', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 1,
-										'desc'	 => gettext('The link to use for the favorites script page.  Note: the token <code>_PAGE_</code> stands in for the current <em>page</em> definition.')),
 						gettext('Add button')			 => array('key'					 => 'favorites_add_button', 'type'				 => OPTION_TYPE_TEXTBOX,
 										'multilingual' => true,
 										'order'				 => 6,
@@ -473,11 +470,14 @@ class favorites extends AlbumBase {
 
 }
 
+if (!$page = stripSuffix(getOption('favorites_link'))) {
+	$page = 'favorites';
+}
+$_zp_conf_vars['special_pages']['favorites'] = array('define'	 => '_FAVORITES_', 'rewrite'	 => $page,
+				'option'	 => 'favorites_rewrite', 'default'	 => '_PAGE_/favorites');
+$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => $page, 'rule' => '^%REWRITE%/*$		index.php?p=' . $page . ' [L,QSA]');
+
 if (!OFFSET_PATH && !$plugin_disable) {
-	if (!$page = stripSuffix(getOption('favorites_link'))) {
-		$page = 'favorites';
-	}
-	$_zp_conf_vars['special_pages'][$page] = array('define' => false, 'rewrite' => getOption('favorites_rewrite'), 'rule' => '^%REWRITE%/*$		index.php?p=' . $page . ' [L,QSA]');
 	zp_register_filter('load_theme_script', 'favorites::loadScript');
 	zp_register_filter('checkPageValidity', 'favorites::pageCount');
 	zp_register_filter('admin_toolbox_global', 'favorites::toolbox');

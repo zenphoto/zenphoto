@@ -30,12 +30,14 @@ $plugin_author = "Stephen Billard (sbillard)";
 $option_interface = 'register_user';
 
 
-if (!OFFSET_PATH) {
-	if (!$page = getOption('register_user_page_page')) {
-		$page = 'register';
-	}
-	$_zp_conf_vars['special_pages'][$page] = array('define'	 => false, 'rewrite'	 => getOption('register_user_rewrite'), 'rule'		 => '^%REWRITE%/*$		index.php?p=' . $page . ' [L,QSA]');
+
+if (!$page = getOption('register_user_page_page')) {
+	$page = 'register';
 }
+$_zp_conf_vars['special_pages']['register_user'] = array('define'	 => '_REGISTER_USER_', 'rewrite'	 => $page,
+				'option'	 => 'register_user_page_page', 'default'	 => '_PAGE_/register');
+$_zp_conf_vars['special_pages'][$page] = array('define' => false, 'rewrite' => $page, 'rule' => '^%REWRITE%/*$		index.php?p=' . $page . ' [L,QSA]');
+
 
 if (getOption('register_user_address_info')) {
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form/functions.php');
@@ -76,9 +78,6 @@ class register_user {
 	function getOptionsSupported() {
 		global $_zp_authority, $_common_notify_handler, $_zp_captcha;
 		$options = array(
-						gettext('Registration page link')	 => array('key'		 => 'register_user_rewrite', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 0,
-										'desc'	 => gettext('The link to use for the registration page. Note: the token <code>_PAGE_</code> stands in for the current <em>page</em> definition.')),
 						gettext('Link text')							 => array('key'		 => 'register_user_page_link', 'type'	 => OPTION_TYPE_TEXTAREA,
 										'order'	 => 2,
 										'desc'	 => gettext('If this option is set, the visitor login form will include a link to this page. The link text will be labeled with the text provided.')),
@@ -90,7 +89,7 @@ class register_user {
 										'desc'	 => gettext('If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration.')),
 						gettext('Address fields')					 => array('key'			 => 'register_user_address_info', 'type'		 => OPTION_TYPE_RADIO,
 										'order'		 => 4.5,
-										'buttons'	 => array(gettext('Omit')		 => 0, gettext('Show')		 => 1, gettext('Require') => 'required'),
+										'buttons'	 => array(gettext('Omit') => 0, gettext('Show') => 1, gettext('Require') => 'required'),
 										'desc'		 => gettext('If <em>Address fields</em> are shown or required, the form will include positions for address information. If required, the user must supply data in each address field.') . '<p class="notebox">' . gettext('<strong>Note:</strong> Address fields are handled by the <em>comment_form</em> plugin.') . '</p>'),
 						gettext('User album')							 => array('key'		 => 'register_user_create_album', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 6,
@@ -239,14 +238,14 @@ function printRegistrationForm($thanks = NULL) {
 			$_SERVER['REQUEST_URI'] = $link[0];
 		}
 
-		$userobj = Zenphoto_Authority::getAnAdmin(array('`user`='	 => $params['user'], '`valid`=' => 1));
+		$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $params['user'], '`valid`=' => 1));
 		if ($userobj->getEmail() == $params['email']) {
 			if (!$userobj->getRights()) {
 				$userobj->setCredentials(array('registered', 'user', 'email'));
 				$rights = getOption('register_user_user_rights');
 				$group = NULL;
 				if (!is_numeric($rights)) { //  a group or template
-					$admin = Zenphoto_Authority::getAnAdmin(array('`user`='	 => $rights, '`valid`=' => 0));
+					$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $rights, '`valid`=' => 0));
 					if ($admin) {
 						$userobj->setObjects($admin->getObjects());
 						if ($admin->getName() != 'template') {
@@ -316,7 +315,7 @@ function printRegistrationForm($thanks = NULL) {
 			$notify = 'empty';
 		} else if (!empty($user) && !(empty($admin_n)) && !empty($admin_e)) {
 			if (isset($_POST['disclose_password']) || $pass == trim(sanitize($_POST['pass_r']))) {
-				$currentadmin = Zenphoto_Authority::getAnAdmin(array('`user`='	 => $user, '`valid`>' => 0));
+				$currentadmin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
 				if (is_object($currentadmin)) {
 					$notify = 'exists';
 				}
@@ -369,7 +368,7 @@ function printRegistrationForm($thanks = NULL) {
 						}
 					} else {
 						$userobj->save();
-						$link = rewrite_path('/' . _PAGE_ . '/' . substr($_zp_gallery_page, 0, -4) . '?verify=' . bin2hex(serialize(array('user'	 => $user, 'email'	 => $admin_e))), '/index.php?p=' . substr($_zp_gallery_page, 0, -4) . '&verify=' . bin2hex(serialize(array('user'	 => $user, 'email'	 => $admin_e))), FULLWEBPATH);
+						$link = rewrite_path('/' . _PAGE_ . '/' . substr($_zp_gallery_page, 0, -4) . '?verify=' . bin2hex(serialize(array('user' => $user, 'email' => $admin_e))), '/index.php?p=' . substr($_zp_gallery_page, 0, -4) . '&verify=' . bin2hex(serialize(array('user' => $user, 'email' => $admin_e))), FULLWEBPATH);
 						$message = sprintf(get_language_string(getOption('register_user_text')), $link, $admin_n, $user, $pass);
 						$notify = zp_mail(get_language_string(gettext('Registration confirmation')), $message, array($user => $admin_e));
 						if (empty($notify)) {

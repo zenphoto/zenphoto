@@ -87,7 +87,7 @@ if (isset($_GET['mod_rewrite'])) {
 	<p>
 		<?php echo gettext('Mod_Rewrite check:'); ?>
 		<br />
-		<img src="<?php echo FULLWEBPATH . '/' . _PAGE_; ?>/setup_set-mod_rewrite?z=setup" title="<?php echo gettext('Mod_rewrite'); ?>" alt="<?php echo gettext('Mod_rewrite'); ?>" height="16px" width="16px" />
+		<img src="<?php echo FULLWEBPATH . '/' . $_zp_conf_vars['special_pages']['page']['rewrite']; ?>/setup_set-mod_rewrite?z=setup" title="<?php echo gettext('Mod_rewrite'); ?>" alt="<?php echo gettext('Mod_rewrite'); ?>" height="16px" width="16px" />
 	</p>
 	<?php
 }

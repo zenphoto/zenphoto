@@ -37,7 +37,7 @@ function rewriteHandler() {
 	//	load rewrite rules
 	$rules = trim(file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/zenphoto-rewrite.txt'));
 	$specialPageRules = array();
-	foreach ($_zp_conf_vars['special_pages'] as $page => $special) {
+	foreach ($_zp_conf_vars['special_pages'] as $special) {
 		if (array_key_exists('rule', $special)) {
 			$specialPageRules[] = "\tRewriteRule " . str_replace('%REWRITE%', $special['rewrite'], $special['rule']);
 		}
@@ -117,6 +117,16 @@ function rewriteHandler() {
 		}
 	}
 }
+
+$_definitions = array();
+foreach ($_zp_conf_vars['special_pages'] as $definition) {
+	if (@$definition['define']) {
+		define($definition['define'], strtr($definition['rewrite'], $_definitions));
+		eval('$_definitions[$definition[\'define\']]=' . $definition['define'] . ';');
+	}
+}
+unset($definition);
+unset($_definitions);
 
 if (MOD_REWRITE || isset($_GET['z']))
 	rewriteHandler();

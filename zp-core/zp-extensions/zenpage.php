@@ -44,43 +44,45 @@ $plugin_notice = gettext("<strong>Note:</strong> This feature must be integrated
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $option_interface = 'zenpagecms';
 
+if (OFFSET_PATH == 2) {
+	setOptionDefault('zenpageNewsLink_text', array_key_exists('news', $_zp_conf_vars['special_pages']) ? $_zp_conf_vars['special_pages']['news']['rewrite'] : 'news');
+	setOptionDefault('zenpageCategoryLink_text', array_key_exists('category', $_zp_conf_vars['special_pages']) ? $_zp_conf_vars['special_pages']['category']['rewrite'] : 'category');
+	setOptionDefault('zenpageNewsArchiveLink_text', array_key_exists('news_archive', $_zp_conf_vars['special_pages']) ? $_zp_conf_vars['special_pages']['news_archive']['rewrite'] : '_NEWS_/category');
+	setOptionDefault('zenpagePagesLink_text', array_key_exists('pages', $_zp_conf_vars['special_pages']) ? $_zp_conf_vars['special_pages']['pages']['rewrite'] : 'pages');
+}
+
 //Zenpage rewrite definitions
+$_zp_conf_vars['special_pages']['news'] = array('define'	 => '_NEWS_', 'rewrite'	 => getOption('zenpageNewsLink_text'),
+				'option'	 => 'zenpageNewsLink_text', 'default'	 => 'news');
+$_zp_conf_vars['special_pages']['category'] = array('define'	 => '_CATEGORY_', 'rewrite'	 => getOption('zenpageCategoryLink_text'),
+				'option'	 => 'zenpageCategoryLink_text', 'default'	 => '_NEWS_/category');
+$_zp_conf_vars['special_pages']['news_archive'] = array('define'	 => '_NEWS_ARCHIVE_', 'rewrite'	 => getOption('zenpageNewsArchiveLink_text'),
+				'option'	 => 'zenpageNewsArchiveLink_text', 'default'	 => '_NEWS_/archive');
+$_zp_conf_vars['special_pages']['pages'] = array('define'	 => '_PAGES_', 'rewrite'	 => getOption('zenpagePagesLink_text'),
+				'option'	 => 'zenpagePagesLink_text', 'default'	 => 'pages');
 
-$_zp_conf_vars['special_pages']['news'] = array('definition' => '%NEWS%', 'rewrite' => '_NEWS_');
-$_zp_conf_vars['special_pages']['category'] = array('definition' => '%CATEGORY%', 'rewrite' => '_CATEGORY_');
-$_zp_conf_vars['special_pages']['news_archive'] = array('definition' => '%NEWS_ARCHIVE%', 'rewrite' => '_NEWS_ARCHIVE_');
-$_zp_conf_vars['special_pages']['pages'] = array('definition' => '%PAGES%', 'rewrite' => '_PAGES_');
+$_zp_conf_vars['special_pages'][] = array('definition' => '%NEWS%', 'rewrite' => '_NEWS_');
+$_zp_conf_vars['special_pages'][] = array('definition' => '%CATEGORY%', 'rewrite' => '_CATEGORY_');
+$_zp_conf_vars['special_pages'][] = array('definition' => '%NEWS_ARCHIVE%', 'rewrite' => '_NEWS_ARCHIVE_');
+$_zp_conf_vars['special_pages'][] = array('definition' => '%PAGES%', 'rewrite' => '_PAGES_');
 
-//Zenpage rewrite rules
-/*
-  #### Rewrite rules for zenpage
-  RewriteRule ^%PAGES%/*$      													index.php?p=pages [L,QSA]
-  RewriteRule ^%PAGES%/(.*)/?$                 					index.php?p=pages&title=$1 [L,QSA]
-  RewriteRule ^%NEWS%/*$      		       								index.php?p=news [L,QSA]
-  RewriteRule ^%NEWS%/([0-9]+)/?$               				index.php?p=news&page=$1 [L,QSA]
-  RewriteRule ^%CATEGORY%/(.*)/([0-9]+)/?$ 			index.php?p=news&category=$1&page=$2 [L,QSA]
-  RewriteRule ^%CATEGORY%/(.*)/?$          			index.php?p=news&category=$1 [L,QSA]
-  RewriteRule ^%NEWS_ARCHIVE%/(.*)/([0-9]+)/?$  	index.php?p=news&date=$1&page=$2 [L,QSA]
-  RewriteRule ^%NEWS_ARCHIVE%/(.*)/?$           	index.php?p=news&date=$1 [L,QSA]
-  RewriteRule ^%NEWS%/(.*)/?$                   				index.php?p=news&title=$1 [L,QSA]
- */
-$_zp_conf_vars['special_pages']['zenpagePage'] = array('define'	 => false, 'rewrite'	 => '^%PAGES%/*$',
+$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%PAGES%/*$',
 				'rule'		 => '%REWRITE% index.php?p=pages [L,QSA]');
-$_zp_conf_vars['special_pages']['zenpagePage_p'] = array('define'	 => false, 'rewrite'	 => '^%PAGES%/(.*)/?$',
+$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%PAGES%/(.*)/?$',
 				'rule'		 => '%REWRITE% index.php?p=pages&title=$1 [L, QSA]');
-$_zp_conf_vars['special_pages']['zenpageCategory_p'] = array('define'	 => false, 'rewrite'	 => '^%CATEGORY%/(.*)/([0-9]+)/?$',
+$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%CATEGORY%/(.*)/([0-9]+)/?$',
 				'rule'		 => '%REWRITE% index.php?p=news&category=$1&page=$2 [L,QSA]');
-$_zp_conf_vars['special_pages']['zenpageCategory'] = array('define'	 => false, 'rewrite'	 => '^%CATEGORY%/(.*)/?$',
+$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%CATEGORY%/(.*)/?$',
 				'rule'		 => '%REWRITE% index.php?p=news&category=$1 [L,QSA]');
-$_zp_conf_vars['special_pages']['zenpageNewArchive_p'] = array('define'	 => false, 'rewrite'	 => '^%NEWS_ARCHIVE%/(.*)/([0-9]+)/?$',
+$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%NEWS_ARCHIVE%/(.*)/([0-9]+)/?$',
 				'rule'		 => '%REWRITE% index.php?p=news&date=$1&page=$2 [L,QSA]');
-$_zp_conf_vars['special_pages']['zenpageNewArchive'] = array('define'	 => false, 'rewrite'	 => '^%NEWS_ARCHIVE%/(.*)/?$',
+$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%NEWS_ARCHIVE%/(.*)/?$',
 				'rule'		 => '%REWRITE% index.php?p=news&date=$1 [L,QSA]');
-$_zp_conf_vars['special_pages']['zenpageNews_p'] = array('define'	 => false, 'rewrite'	 => '^%NEWS%/([0-9]+)/?$',
+$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%NEWS%/([0-9]+)/?$',
 				'rule'		 => '%REWRITE% index.php?p=news&page=$1 [L,QSA]');
-$_zp_conf_vars['special_pages']['zenpageNews_t'] = array('define'	 => false, 'rewrite'	 => '^%NEWS%/(.*)/?$',
+$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%NEWS%/(.*)/?$',
 				'rule'		 => '%REWRITE% index.php?p=news&title=$1 [L,QSA]');
-$_zp_conf_vars['special_pages']['zenpageNews'] = array('define'	 => false, 'rewrite'	 => '^%NEWS%/*$',
+$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%NEWS%/*$',
 				'rule'		 => '%REWRITE% index.php?p=news [L,QSA]');
 
 
@@ -104,6 +106,7 @@ class zenpagecms {
 
 	function zenpagecms() {
 		if (OFFSET_PATH == 2) {
+
 			setOptionDefault('zenpage_articles_per_page', '10');
 			setOptionDefault('zenpage_text_length', '500');
 			setOptionDefault('zenpage_textshorten_indicator', ' (...)');
@@ -160,11 +163,11 @@ class zenpagecms {
 	static function switcher_head($list) {
 		?>
 		<script type="text/javascript">
-		// <!-- <![CDATA[
+			// <!-- <![CDATA[
 			function switchCMS(checked) {
 				window.location = '?cmsSwitch=' + checked;
 			}
-		// ]]> -->
+			// ]]> -->
 		</script>
 		<?php
 		return $list;

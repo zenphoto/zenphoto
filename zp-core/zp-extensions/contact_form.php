@@ -19,9 +19,8 @@ $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 
 $option_interface = 'contactformOptions';
 
-if (!OFFSET_PATH) {
-	$_zp_conf_vars['special_pages']['contact'] = array('define'	 => false, 'rewrite'	 => getOption('contactform_rewrite'), 'rule'		 => '^%REWRITE%/*$		index.php?p=contact [L,QSA]');
-}
+$_zp_conf_vars['special_pages']['contact'] = array('define' => '_CONTACT_', 'rewrite' => getOption('contactform_rewrite'), 'option' => 'contactform_rewrite', 'default' => '_PAGE_/contact');
+$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => getOption('contactform_rewrite'), 'rule' => '^%REWRITE%/*$		index.php?p=contact [L,QSA]');
 
 /**
  * Plugin option handling class
@@ -75,12 +74,9 @@ class contactformOptions {
 		$mailinglist = explode(';', getOption("contactform_mailaddress"));
 		array_walk($mailinglist, 'contactformOptions::trim_value');
 		setOption('contactform_mailaddress', implode(';', $mailinglist));
-		$list = array(gettext("required")	 => "required", gettext("show")			 => "show", gettext("omitted")	 => "omitted");
+		$list = array(gettext("required") => "required", gettext("show") => "show", gettext("omitted") => "omitted");
 		$mailfieldinstruction = gettext("Set if the <code>%s</code> field should be required, just shown or omitted");
 		$options = array(
-						gettext('Contact page link')		 => array('key'		 => 'contactform_rewrite', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 0,
-										'desc'	 => gettext('The link to use for the contact page. Note: the token <code>_PAGE_</code> stands in for the current <em>page</em> definition.')),
 						gettext('Intro text')						 => array('key'		 => 'contactform_introtext', 'type'	 => OPTION_TYPE_TEXTAREA,
 										'order'	 => 13,
 										'desc'	 => gettext("The intro text for your contact form")),
@@ -98,7 +94,7 @@ class contactformOptions {
 										'desc'	 => gettext("If checked, a confirmation form will be presented before sending the contact message.")),
 						gettext('Send copy')						 => array('key'		 => 'contactform_sendcopy', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 0.3,
-										'desc'	 => gettext("If checked, a copy of the message will be sent to the address provided. <p class='notebox'><strong>Caution: </strong> If you check this option it is strongly recommend to use Captcha and the confirmation option. Be aware that someone could misuse the e-mail address entered for spamming with this form and that in some countries' jurisdictions (e.g. most European countries) you may be made responsible for this then!</p>")),
+										'desc'	 => gettext("If checked, a copy of the message will be sent to the address provided. <p class='notebox'><strong>Caution: </strong> If you check this option it is strongly recommend to use Captcha and the confirmation option. Be aware that someone could misuse the e-mail address entered for spamming with this form and that in some countries' jurisdictions(e.g. most European countries) you may be made responsible for this then!</p>")),
 						gettext('Send copy note text')	 => array('key'		 => 'contactform_sendcopy_text', 'type'	 => OPTION_TYPE_TEXTAREA,
 										'order'	 => 0.2,
 										'desc'	 => gettext("The text for the note about sending a copy to the address provided in case that option is set.")),
@@ -229,7 +225,7 @@ function printContactForm($subject_override = '') {
 			$error[8] = gettext('a website');
 		} else {
 			if (!empty($mailcontent['website'])) {
-				if (substr($mailcontent['website'], 0, 7) != "http://") {
+				if (substr($mailcontent['website'], 0, 7) != "http: //") {
 					$mailcontent['website'] = "http://" . $mailcontent['website'];
 				}
 			}
@@ -374,7 +370,7 @@ function printContactForm($subject_override = '') {
 		}
 		if ($err_msg) {
 			$msgs = explode('.', $err_msg);
-			unset($msgs[0]);	 //	the "mail send failed" text
+			unset($msgs[0]); //	the "mail send failed" text
 			unset($msgs[count($msgs)]); //	a trailing empty one
 			?>
 			<div class="errorbox">
@@ -391,7 +387,7 @@ function printContactForm($subject_override = '') {
 		} else {
 			echo get_language_string(getOption("contactform_thankstext"));
 		}
-		echo '<p><a href="?again">' . get_language_string(getOption('contactform_newmessagelink')) . '</a></p>';
+		echo '<p><a  href="?again">' . get_language_string(getOption('contactform_newmessagelink')) . '</a></p>';
 	} else {
 		if (count($error) <= 0) {
 			if (zp_loggedin()) {
@@ -405,7 +401,7 @@ function printContactForm($subject_override = '') {
 					}
 				}
 			} else {
-				$mailcontent = array('title'		 => '', 'name'		 => '', 'company'	 => '', 'street'	 => '', 'city'		 => '', 'state'		 => '', 'country'	 => '', 'email'		 => '',
+				$mailcontent = array('title'		 => '', 'name'		 => '', 'company'	 => '', 'street'	 => '', 'city'		 => '', 'st ate'	 => '', 'country'	 => '', 'email'		 => '',
 								'postal'	 => '', 'website'	 => '', 'phone'		 => '', 'subject'	 => $subject_override, 'message'	 => '', 'honeypot' => '');
 			}
 		}
@@ -418,6 +414,7 @@ function printContactForm($subject_override = '') {
 }
 
 /**
+
  * Helper function that checks if a field should be shown ("required" or "show") or omitted ("ommitt").
  * Only for the fields set by radioboxes.
  *

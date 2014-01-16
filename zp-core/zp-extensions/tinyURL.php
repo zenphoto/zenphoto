@@ -11,7 +11,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage tools
+ * @subpackage admin
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext('Provides short URLs to Zenphoto objects.');
@@ -25,17 +25,20 @@ switch (OFFSET_PATH) {
 		if (getOption('tinyURL_agressive'))
 			zp_register_filter('getLink', 'tinyURL::getTinyURL');
 		//rewrite rule for tinyURLs
-		$_zp_conf_vars['special_pages']['tiny'] = array('define'	 => false, 'rewrite'	 => '^tiny/([0-9]+)/?$',
-						'rule'		 => '%REWRITE% index.php?p=$1&t [L,QSA]');
-		$_zp_conf_vars['special_pages']['tiny_p'] = array('define' => false, 'rewrite' => '^tiny/([0-9]+)/([0-9]+)/?$', 'rule' => '%REWRITE% index.php?p=$1&page=$2&t [L,QSA]');
 		break;
 	case 2:
 		setOptionDefault('zp_plugin_tinyURL', $plugin_is_filter);
 		setOptionDefault('tinyURL_agressive', 0);
+		setOptionDefault('tinyURL_text', 'tiny');
 		break;
 	default:
 		break;
 }
+$_zp_conf_vars['special_pages']['tiny'] = array('define'	 => '_TINY_', 'rewrite'	 => getOption('tinyURL_text'),
+				'option'	 => 'tinyURL_text', 'default'	 => 'tiny');
+$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^tiny/([0-9]+)/?$',
+				'rule'		 => '%REWRITE% index.php?p=$1&t [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '^tiny/([0-9]+)/([0-9]+)/?$', 'rule' => '%REWRITE% index.php?p=$1&page=$2&t [L,QSA]');
 
 class tinyURL {
 
@@ -104,9 +107,9 @@ class tinyURL {
 			if ($page > 1)
 				$tiny.='/' . $page;
 			if (class_exists('seo_locale')) {
-				return seo_locale::localePath(true) . '/tiny/' . $tiny;
+				return seo_locale::localePath(true) . '/' . _TINY_ . '/' . $tiny;
 			} else {
-				return FULLWEBPATH . '/tiny/' . $tiny;
+				return FULLWEBPATH . '/' . _TINY_ . '/' . $tiny;
 			}
 		} else {
 			if ($page > 1)

@@ -13,16 +13,20 @@ $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'rewriteTokens';
 
+if (OFFSET_PATH == 2)
+	setOptionDefault('zp_plugin_rewriteTokens', $plugin_is_filter);
+
 require_once(SERVERPATH . '/' . ZENFOLDER . '/functions-config.php');
 
 class rewriteTokens {
 
 	private $zp_cfg_a;
 	private $zp_cfg_b;
-	private $conf_vars;
+	private $conf_vars = array();
+	private $plugin_vars = array();
 
 	function __construct() {
-		global $_configMutex;
+		global $_configMutex, $_zp_conf_vars;
 		$_configMutex->lock();
 		$zp_cfg = file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 		$i = strpos($zp_cfg, "\$conf['special_pages']");
@@ -30,7 +34,13 @@ class rewriteTokens {
 		$this->zp_cfg_a = substr($zp_cfg, 0, $i);
 		$this->zp_cfg_b = substr($zp_cfg, $j);
 		eval(substr($zp_cfg, $i, $j - $i));
-		$this->conf_vars = $conf;
+		$this->conf_vars = $conf['special_pages'];
+
+		foreach ($_zp_conf_vars['special_pages'] as $page => $element) {
+			if (isset($element['option'])) {
+				$this->plugin_vars[$page] = $element;
+			}
+		}
 		if (OFFSET_PATH == 2) {
 			$old = array_keys($conf['special_pages']);
 			$zp_cfg = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/zenphoto_cfg.txt');
@@ -54,29 +64,39 @@ class rewriteTokens {
 		$_configMutex->unlock();
 	}
 
-	function getOptionsSupported() {
-		$options = array();
-		$c = 0;
-		foreach ($this->conf_vars['special_pages'] as $page => $element) {
-			if ($define = $element['define']) {
-				$define = "'" . $define . "'";
-				$desc = sprintf(gettext('Link for <em>%s</em> rule.'), $page);
-			} else {
-				$define = 'false';
-				$desc = sprintf(gettext('Link for <em>%s</em> script page.'), $page);
-			}
-			$options[$page] = array('key'		 => 'rewriteTokens_' . $page, 'type'	 => OPTION_TYPE_CUSTOM,
-							'order'	 => ++$c,
-							'desc'	 => $desc);
+	private static function anOption($page, $element, &$_definitions) {
+		if ($define = $element['define']) {
+			$_definitions[$element['define']] = strtr($element['rewrite'], $_definitions);
+			$desc = sprintf(gettext('<code>%1$s</code> defines <strong>%2$s</strong> as <em>%3$s</em>.'), $page, $define, strtr($element['rewrite'], $_definitions));
+		} else {
+			$desc = sprintf(gettext('Link for <em>%s</em> script page.'), $page);
 		}
+		return array('key'	 => 'rewriteTokens_' . $page, 'type' => OPTION_TYPE_CUSTOM,
+						'desc' => $desc);
+	}
+
+	function getOptionsSupported() {
+		$_definitions = array();
+		$options = array();
 		$options[gettext('Reset')] = array('key'		 => 'rewriteTokens_restore', 'type'	 => OPTION_TYPE_CHECKBOX,
-						'order'	 => ++$c,
+						'order'	 => 99999,
 						'desc'	 => gettext('Restore defaults.'));
+		foreach ($this->conf_vars as $page => $element) {
+			$options[$page] = self::anOption($page, $element, $_definitions);
+		}
+		foreach ($this->plugin_vars as $page => $element) {
+			$options[$page] = self::anOption($page, $element, $_definitions);
+		}
 		return $options;
 	}
 
 	function handleOption($option, $currentValue) {
-		$element = $this->conf_vars['special_pages'][str_replace('rewriteTokens_', '', $option)]['rewrite'];
+		$element = str_replace('rewriteTokens_', '', $option);
+		if (array_key_exists($element, $this->plugin_vars)) {
+			$element = $this->plugin_vars[$element]['rewrite'];
+		} else {
+			$element = $this->conf_vars[$element]['rewrite'];
+		}
 		?>
 		<input type="textbox" name="<?php echo $option; ?>" value="<?php echo $element; ?>" >
 		<?php
@@ -91,14 +111,28 @@ class rewriteTokens {
 			$j = strpos($template, '//', $i);
 			$newtext = substr($template, $i, $j - $i);
 			eval($newtext);
-			$this->conf_vars = $conf;
+			$this->conf_vars = $conf['special_pages'];
+
+			foreach ($this->plugin_vars as $page => $element) {
+				if (isset($element['option'])) {
+					setOption($element['option'], $element['default']);
+				}
+			}
 		} else {
-			foreach ($this->conf_vars['special_pages'] as $page => $element) {
-				$this->conf_vars['special_pages'][$page]['rewrite'] = $_POST['rewriteTokens_' . $page];
+			foreach ($this->conf_vars as $page => $element) {
+				$this->conf_vars[$page]['rewrite'] = $_POST['rewriteTokens_' . $page];
+			}
+
+			foreach ($this->plugin_vars as $page => $element) {
+				if (isset($element['option'])) {
+					$this->plugin_vars[$page]['rewrite'] = $_POST['rewriteTokens_' . $page];
+					setOption($element['option'], $_POST['rewriteTokens_' . $page]);
+				}
 			}
 		}
+
 		$newtext = "\$conf['special_pages'] = array(";
-		foreach ($this->conf_vars['special_pages'] as $page => $element) {
+		foreach ($this->conf_vars as $page => $element) {
 			if ($define = $element['define']) {
 				$define = "'" . $define . "'";
 				$desc = sprintf(gettext('Link for <em>%s</em> rule.'), $page);
