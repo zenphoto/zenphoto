@@ -35,10 +35,11 @@ switch (OFFSET_PATH) {
 		break;
 }
 $_zp_conf_vars['special_pages']['tiny'] = array('define'	 => '_TINY_', 'rewrite'	 => getOption('tinyURL_text'),
-				'option'	 => 'tinyURL_text', 'default'	 => 'tiny');
-$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^tiny/([0-9]+)/?$',
+				'option'	 => 'tinyURL_text', 'default'	 => 'tiny/');
+$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%TINY%([0-9]+)/?$',
 				'rule'		 => '%REWRITE% index.php?p=$1&t [L,QSA]');
-$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '^tiny/([0-9]+)/([0-9]+)/?$', 'rule' => '%REWRITE% index.php?p=$1&page=$2&t [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '^%TINY%([0-9]+)/([0-9]+)/?$', 'rule' => '%REWRITE% index.php?p=$1&page=$2&t [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array('definition' => '%TINY%', 'rewrite' => '_TINY_');
 
 class tinyURL {
 
@@ -107,9 +108,9 @@ class tinyURL {
 			if ($page > 1)
 				$tiny.='/' . $page;
 			if (class_exists('seo_locale')) {
-				return seo_locale::localePath(true) . '/' . _TINY_ . '/' . $tiny;
+				return seo_locale::localePath(true) . '/' . _TINY_ . $tiny;
 			} else {
-				return FULLWEBPATH . '/' . _TINY_ . '/' . $tiny;
+				return FULLWEBPATH . '/' . _TINY_ . $tiny;
 			}
 		} else {
 			if ($page > 1)
@@ -131,6 +132,7 @@ class tinyURL {
 			unset($_GET['t']);
 			$tiny = sanitize_numeric($_GET['p']);
 			$tbl = $tiny & 7;
+
 			if (array_key_exists($tbl, self::$tableAsoc)) {
 				$tbl = self::$tableAsoc[$tbl];
 				$id = $tiny >> 3;
@@ -149,9 +151,9 @@ class tinyURL {
 							$album = $_GET['album'] = $result['folder'];
 							unset($_GET['p']);
 							if (!empty($image)) {
-								return zp_load_image($album, $image);
+								$success = zp_load_image($album, $image);
 							} else if (!empty($album)) {
-								return zp_load_album($album);
+								$success = zp_load_album($album);
 							}
 							break;
 						case 'comments':
@@ -182,7 +184,8 @@ class tinyURL {
 					}
 				}
 			}
-		} return $success;
+		}
+		return $success;
 	}
 
 }
