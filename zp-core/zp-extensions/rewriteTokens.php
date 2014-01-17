@@ -67,7 +67,7 @@ class rewriteTokens {
 	private static function anOption($page, $element, &$_definitions) {
 		if ($define = $element['define']) {
 			$_definitions[$element['define']] = strtr($element['rewrite'], $_definitions);
-			$desc = sprintf(gettext('<code>%1$s</code> defines <strong>%2$s</strong> as <em>%3$s</em>.'), $page, $define, strtr($element['rewrite'], $_definitions));
+			$desc = sprintf(gettext('The <code>%1$s</code> rule defines <strong>%2$s</strong> as <em>%3$s</em>.'), $page, $define, strtr($element['rewrite'], $_definitions));
 		} else {
 			$desc = sprintf(gettext('Link for <em>%s</em> script page.'), $page);
 		}

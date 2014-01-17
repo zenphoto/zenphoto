@@ -46,11 +46,9 @@ function rewriteHandler() {
 		}
 	}
 
-	$rules = str_replace("\t" . '_SPECIAL_', implode("\n", $specialPageRules), $rules);
-	$rules = explode("\n", $rules);
-
-	array_push($rules, "\t" . 'RewriteRule ^(.*)/?$	index.php?album=$1 [L,QSA]'); // catch all rule at the end
-	//	and process them
+	$rules = explode("_SPECIAL_", trim($rules));
+	$rules = array_merge(explode("\n", $rules[0]), $specialPageRules, explode("\n", $rules[1]), array("\t" . 'RewriteRule ^(.*)/?$	index.php?album=$1 [L,QSA]'));
+	//process the rules
 	foreach ($rules as $rule) {
 		if ($rule = trim($rule)) {
 			if ($rule{0} != '#') {
