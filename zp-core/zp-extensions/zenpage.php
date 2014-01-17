@@ -47,7 +47,7 @@ $option_interface = 'zenpagecms';
 if (OFFSET_PATH == 2) {
 	setOptionDefault('zenpageNewsLink_text', array_key_exists('news', $_zp_conf_vars['special_pages']) ? $_zp_conf_vars['special_pages']['news']['rewrite'] : 'news');
 	setOptionDefault('zenpageCategoryLink_text', array_key_exists('category', $_zp_conf_vars['special_pages']) ? $_zp_conf_vars['special_pages']['category']['rewrite'] : 'category');
-	setOptionDefault('zenpageNewsArchiveLink_text', array_key_exists('news_archive', $_zp_conf_vars['special_pages']) ? $_zp_conf_vars['special_pages']['news_archive']['rewrite'] : '_NEWS_/category');
+	setOptionDefault('zenpageNewsArchiveLink_text', array_key_exists('news_archive', $_zp_conf_vars['special_pages']) ? $_zp_conf_vars['special_pages']['news_archive']['rewrite'] : '_NEWS_/archive');
 	setOptionDefault('zenpagePagesLink_text', array_key_exists('pages', $_zp_conf_vars['special_pages']) ? $_zp_conf_vars['special_pages']['pages']['rewrite'] : 'pages');
 }
 
