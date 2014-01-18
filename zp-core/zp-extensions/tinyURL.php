@@ -61,45 +61,30 @@ class tinyURL {
 
 	function getOptionsSupported() {
 		$options = array();
-		if (!MOD_REWRITE) {
-			$options['note'] = array(
-							'key'		 => 'tinyURL_note',
-							'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 0,
-							'desc'	 => gettext('<p class="notebox">Shortened URLs require the <code>mod_rewrite</code> option be enabled.</p>')
-			);
-		}
 		$options[gettext('Use in themes for')] = array(
 						'key'		 => 'tinyURL_agressive',
 						'type'	 => OPTION_TYPE_CUSTOM,
 						'order'	 => 1,
-						'desc'	 => gettext('If an option is chosen, normal theme URLs will be replaced with <i>tinyURL</i>s for that object.') . '<p class="notebox">' . gettext('<strong>NOTE:</strong> Tiny URLs for images are not compatible with a non-empty <em>mod_rewrite suffix</em>  ') . '</p>');
+						'desc'	 => gettext('If an option is chosen, normal theme URLs will be replaced with <i>tinyURL</i>s for that object.')
+		);
 
 		return $options;
 	}
 
 	function handleOption($option, $currentValue) {
-		$imageStatus = '';
-		if (IM_SUFFIX) {
-			$imageStatus = 'disabled="disabled"';
-		} else {
-			if ($currentValue & self::images) {
-				$imageStatus = 'checked="checked"';
-			}
-		}
 		?>
-		<label class="nowrap"><input type="checkbox" name="tinyURL_albums" value="<?php echo self::albums; ?>" <?php if ($currentValue & self::albums) echo 'checked="checked"'; ?>/><?php echo gettext('albums'); ?></label>
-		<label class="nowrap"><input type="checkbox" name="tinyURL_images" value="<?php echo self::images; ?>" <?php echo $imageStatus; ?>/><?php echo gettext('images'); ?></label>
+		<label class="nowrap"><input type="checkbox" name="tinyURL_albums" value="<?php echo self::albums; ?>" <?php if ($currentValue & self::albums) echo 'checked="checked" '; ?>/><?php echo gettext('albums'); ?></label>
+		<label class="nowrap"><input type="checkbox" name="tinyURL_images" value="<?php echo self::images; ?>" <?php if ($currentValue & self::images) echo 'checked="checked" '; ?>/><?php echo gettext('images'); ?></label>
 		<?php
 		if (extensionEnabled('zenpage')) {
 			?>
-			<label class="nowrap"><input type="checkbox" name="tinyURL_news" value="<?php echo self::news; ?>" <?php if ($currentValue & self::news) echo 'checked="checked"'; ?>/><?php echo gettext('news'); ?></label>
+			<label class="nowrap"><input type="checkbox" name="tinyURL_news" value="<?php echo self::news; ?>" <?php if ($currentValue & self::news) echo 'checked="checked" '; ?>/><?php echo gettext('news'); ?></label>
 
 			<!--
-			<label class="nowrap"><input type="checkbox" name="tinyURL_news_categories" value="<?php echo self::news_categories; ?>" <?php if ($currentValue & self::news_categories) echo 'checked="checked"'; ?>/><?php echo gettext('news categories'); ?></label>
+			<label class="nowrap"><input type="checkbox" name="tinyURL_news_categories" value="<?php echo self::news_categories; ?>" <?php if ($currentValue & self::news_categories) echo 'checked="checked" '; ?>/><?php echo gettext('news categories'); ?></label>
 			-->
 
-			<label class="nowrap"><input type="checkbox" name="tinyURL_pages" value="<?php echo self::pages; ?>" <?php if ($currentValue & self::pages) echo 'checked="checked"'; ?>/><?php echo gettext('pages'); ?></label>
+			<label class="nowrap"><input type="checkbox" name="tinyURL_pages" value="<?php echo self::pages; ?>" <?php if ($currentValue & self::pages) echo 'checked="checked" '; ?>/><?php echo gettext('pages'); ?></label>
 			<?php
 		}
 	}

@@ -70,25 +70,77 @@ function zpurl($query = NULL) {
 }
 
 /**
- * Checks to see if the current URL matches the correct one, redirects to the
- * corrected URL if not with a 301 Moved Permanently.
+ * Checks to see if the current URL is a query string url when mod_rewrite is active.
+ * If so it will redirects to the rewritten URL with a 301 Moved Permanently.
  */
 function fix_path_redirect() {
 	if (MOD_REWRITE) {
-		$sfx = IM_SUFFIX;
+		$redirectURL = '';
 		$request_uri = getRequestURI();
-		$i = strpos($request_uri, '?');
-		if ($i !== false) {
-			$params = substr($request_uri, $i + 1);
-			$request_uri = substr($request_uri, 0, $i);
-		} else {
-			$params = '';
+		$parts = parse_url($request_uri);
+		if (isset($parts['query'])) {
+			parse_str($parts['query'], $query);
+			if (isset($query['p'])) {
+				switch ($query['p']) {
+					case 'news':
+						$redirectURL = _NEWS_;
+						if (isset($query['category'])) {
+							$redirectURL = _CATEGORY_;
+							unset($query['category']);
+						} else if (isset($query['date'])) {
+							$redirectURL = _NEWS_ARCHIVE_ . '/' . $query['date'];
+							unset($query['date']);
+						}
+						if (isset($query['title'])) {
+							$redirectURL .='/' . $query['title'];
+							unset($query['title']);
+						}
+						break;
+					case 'pages':
+						$redirectURL = _PAGES_;
+						if (isset($query['title'])) {
+							$redirectURL .='/' . $query['title'];
+							unset($query['title']);
+						}
+						break;
+					case'search':
+						$redirectURL = _SEARCH_;
+						if (isset($query['date'])) {
+							$redirectURL = _ARCHIVE_ . '/' . $query['date'];
+							unset($query['date']);
+						} else if (isset($query['searchfields']) && $query['searchfields'] == 'tags') {
+							$redirectURL = _TAGS_;
+							unset($query['searchfields']);
+						}
+						if (isset($query['words'])) {
+							$redirectURL .= '/' . $query['words'];
+							unset($query['words']);
+						}
+						break;
+					default:
+						$redirectURL = _PAGE_ . '/' . $query['p'];
+						break;
+				}
+				unset($query['p']);
+				if (isset($query['page'])) {
+					$redirectURL.='/' . $query['page'];
+					unset($query['page']);
+				}
+				$q = http_build_query($query);
+				if ($q)
+					$redirectURL.='?' . $q;
+			} else if (isset($query['album'])) {
+				$redirectURL = $query['album'];
+				if (isset($query['image'])) {
+					$redirectURL .= '/' . $query['image'] . IM_SUFFIX;
+				}
+			}
 		}
-		if (strlen($sfx) > 0 && in_context(ZP_IMAGE) && substr($request_uri, -strlen($sfx)) != $sfx) {
-			$redirecturl = zpurl($params);
-			header("HTTP/1.0 301 Moved Permanently");
-			header("Status: 301 Moved Permanently");
-			header('Location: ' . FULLWEBPATH . '/' . $redirecturl);
+
+		if ($redirectURL) {
+//			header("HTTP/1.0 301 Moved Permanently");
+//			header("Status: 301 Moved Permanently");
+			header('Location: ' . FULLWEBPATH . '/' . $redirectURL);
 			exitZP();
 		}
 	}
