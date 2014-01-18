@@ -898,13 +898,14 @@ class Image extends MediaObject {
 	 */
 	function getImageLink() {
 		if (is_array($this->filename)) {
-			$album = dirname($this->filename['source']);
+			$albumq = $album = dirname($this->filename['source']);
 			$image = basename($this->filename['source']);
 		} else {
 			$album = $this->albumlink;
+			$albumq = $this->albumnamealbum->name;
 			$image = $this->filename;
 		}
-		return rewrite_path('/' . pathurlencode($album) . '/' . urlencode($image) . IM_SUFFIX, '/index.php?album=' . pathurlencode($album) . '&image=' . urlencode($image));
+		return rewrite_path('/' . pathurlencode($album) . '/' . urlencode($image) . IM_SUFFIX, '/index.php?album=' . pathurlencode($albumq) . '&image=' . urlencode($image));
 	}
 
 	/**
