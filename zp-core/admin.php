@@ -258,7 +258,8 @@ if (!zp_loggedin()) {
 				} else {
 					?>
 					<div class="warningbox">
-						<h2><?php echo gettext('Your <code>setup</code> scripts are not protected. You should protect them to thwart hackers.'); ?></h2>
+						<h2><?php echo gettext('Your Setup scripts are not protected.'); ?></h2>
+						<?php echo gettext('The Setup environment is not totally secure, you should protect the scripts to thwart hackers. Use the <strong>Setup » protect scripts</strong> button in the <em>admin</em> section of the <em>utilities functions</em>. '); ?>
 					</div>
 					<?php
 					$buttonlist[] = array(
