@@ -16,15 +16,18 @@
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext('Provides short URLs to Zenphoto objects.');
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_disable = (MOD_REWRITE) ? '' : gettext('Shortened URLs require the <code>mod_rewrite</code> option be enabled.');
 
 $option_interface = 'tinyURL';
 
+
 switch (OFFSET_PATH) {
 	case 0:
-		zp_register_filter('load_request', 'tinyURL::parse');
-		if (getOption('tinyURL_agressive'))
-			zp_register_filter('getLink', 'tinyURL::getTinyURL');
-		//rewrite rule for tinyURLs
+		if (!$plugin_disable) {
+			zp_register_filter('load_request', 'tinyURL::parse');
+			if (getOption('tinyURL_agressive'))
+				zp_register_filter('getLink', 'tinyURL::getTinyURL');
+		}
 		break;
 	case 2:
 		setOptionDefault('zp_plugin_tinyURL', $plugin_is_filter);
@@ -57,16 +60,36 @@ class tinyURL {
 	}
 
 	function getOptionsSupported() {
-		$options = array(gettext('Use in themes for') => array('key'		 => 'tinyURL_agressive', 'type'	 => OPTION_TYPE_CUSTOM,
-										'order'	 => 1,
-										'desc'	 => gettext('If an option is chosen, normal theme URLs will be replaced with <i>tinyURL</i>s for that object.')));
+		$options = array();
+		if (!MOD_REWRITE) {
+			$options['note'] = array(
+							'key'		 => 'tinyURL_note',
+							'type'	 => OPTION_TYPE_NOTE,
+							'order'	 => 0,
+							'desc'	 => gettext('<p class="notebox">Shortened URLs require the <code>mod_rewrite</code> option be enabled.</p>')
+			);
+		}
+		$options[gettext('Use in themes for')] = array(
+						'key'		 => 'tinyURL_agressive',
+						'type'	 => OPTION_TYPE_CUSTOM,
+						'order'	 => 1,
+						'desc'	 => gettext('If an option is chosen, normal theme URLs will be replaced with <i>tinyURL</i>s for that object.') . '<p class="notebox">' . gettext('<strong>NOTE:</strong> Tiny URLs for images are not compatible with a non-empty <em>mod_rewrite suffix</em>  ') . '</p>');
+
 		return $options;
 	}
 
 	function handleOption($option, $currentValue) {
+		$imageStatus = '';
+		if (IM_SUFFIX) {
+			$imageStatus = 'disabled="disabled"';
+		} else {
+			if ($currentValue & self::images) {
+				$imageStatus = 'checked="checked"';
+			}
+		}
 		?>
 		<label class="nowrap"><input type="checkbox" name="tinyURL_albums" value="<?php echo self::albums; ?>" <?php if ($currentValue & self::albums) echo 'checked="checked"'; ?>/><?php echo gettext('albums'); ?></label>
-		<label class="nowrap"><input type="checkbox" name="tinyURL_images" value="<?php echo self::images; ?>" <?php if ($currentValue & self::images) echo 'checked="checked"'; ?>/><?php echo gettext('images'); ?></label>
+		<label class="nowrap"><input type="checkbox" name="tinyURL_images" value="<?php echo self::images; ?>" <?php echo $imageStatus; ?>/><?php echo gettext('images'); ?></label>
 		<?php
 		if (extensionEnabled('zenpage')) {
 			?>

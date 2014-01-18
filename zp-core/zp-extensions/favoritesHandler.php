@@ -106,6 +106,15 @@ class favoritesOptions {
 							'order'	 => 0,
 							'desc'	 => '<p class="notebox">' . gettext('<strong>Note:</strong> The <em>favorites</em> theme script should be named <em>favorites.php</em>. Check this box to use the standard script name.') . '</p>');
 		}
+		if (!MOD_REWRITE) {
+			$options['note'] = array(
+							'key'		 => 'favorites_note',
+							'type'	 => OPTION_TYPE_NOTE,
+							'order'	 => 0,
+							'desc'	 => gettext('<p class="notebox">Favorites requires the <code>mod_rewrite</code> option be enabled.</p>')
+			);
+		}
+
 		return $options;
 	}
 
@@ -470,113 +479,115 @@ class favorites extends AlbumBase {
 
 }
 
-if (!$page = stripSuffix(getOption('favorites_link'))) {
-	$page = 'favorites';
-}
-$_zp_conf_vars['special_pages']['favorites'] = array('define'	 => '_FAVORITES_', 'rewrite'	 => $page,
-				'option'	 => 'favorites_rewrite', 'default'	 => '_PAGE_/favorites');
-$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => $page, 'rule' => '^%REWRITE%/*$		index.php?p=' . $page . ' [L,QSA]');
+if (!$plugin_disable) {
+	if (!$page = stripSuffix(getOption('favorites_link'))) {
+		$page = 'favorites';
+	}
+	$_zp_conf_vars['special_pages']['favorites'] = array('define'	 => '_FAVORITES_', 'rewrite'	 => $page,
+					'option'	 => 'favorites_rewrite', 'default'	 => '_PAGE_/favorites');
+	$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => $page, 'rule' => '^%REWRITE%/*$		index.php?p=' . $page . ' [L,QSA]');
 
-if (!OFFSET_PATH && !$plugin_disable) {
-	zp_register_filter('load_theme_script', 'favorites::loadScript');
-	zp_register_filter('checkPageValidity', 'favorites::pageCount');
-	zp_register_filter('admin_toolbox_global', 'favorites::toolbox');
-	if (zp_loggedin()) {
-		$_myFavorites = new favorites($_zp_current_admin_obj->getUser());
-		if (isset($_POST['addToFavorites'])) {
-			$id = sanitize($_POST['id']);
-			switch ($_POST['type']) {
-				case 'images':
-					$img = newImage(NULL, array('folder' => dirname($id), 'filename' => basename($id)));
-					if ($_POST['addToFavorites']) {
-						if ($img->loaded) {
-							$_myFavorites->addImage($img);
+	if (!OFFSET_PATH && !$plugin_disable) {
+		zp_register_filter('load_theme_script', 'favorites::loadScript');
+		zp_register_filter('checkPageValidity', 'favorites::pageCount');
+		zp_register_filter('admin_toolbox_global', 'favorites::toolbox');
+		if (zp_loggedin()) {
+			$_myFavorites = new favorites($_zp_current_admin_obj->getUser());
+			if (isset($_POST['addToFavorites'])) {
+				$id = sanitize($_POST['id']);
+				switch ($_POST['type']) {
+					case 'images':
+						$img = newImage(NULL, array('folder' => dirname($id), 'filename' => basename($id)));
+						if ($_POST['addToFavorites']) {
+							if ($img->loaded) {
+								$_myFavorites->addImage($img);
+							}
+						} else {
+							$_myFavorites->removeImage($img);
 						}
-					} else {
-						$_myFavorites->removeImage($img);
-					}
-					break;
-				case 'albums':
-					$alb = newAlbum($id);
-					if ($_POST['addToFavorites']) {
-						if ($alb->loaded) {
-							$_myFavorites->addAlbum($alb);
+						break;
+					case 'albums':
+						$alb = newAlbum($id);
+						if ($_POST['addToFavorites']) {
+							if ($alb->loaded) {
+								$_myFavorites->addAlbum($alb);
+							}
+						} else {
+							$_myFavorites->removeAlbum($alb);
 						}
-					} else {
-						$_myFavorites->removeAlbum($alb);
-					}
-					break;
+						break;
+				}
 			}
-		}
 
-		function printAddToFavorites($obj, $add = NULL, $remove = NULL) {
-			global $_myFavorites;
-			if (!is_object($obj) || !$obj->exists) {
-				return;
-			}
-			$v = 1;
-			if (is_null($add)) {
-				$add = get_language_string(getOption('favorites_add_button'));
-			}
-			if (is_null($remove)) {
-				$remove = get_language_string(getOption('favorites_remove_button'));
-			} else {
-				$add = $remove;
-			}
-			$table = $obj->table;
-			$target = array('type' => $table);
-			switch ($table) {
-				case 'images':
-					$id = $obj->imagefolder . '/' . $obj->filename;
-					$images = $_myFavorites->getImages(0);
-					foreach ($images as $image) {
-						if ($image['folder'] == $obj->imagefolder && $image['filename'] == $obj->filename) {
-							$v = 0;
-							$add = $remove;
-							break;
-						}
-					}
-					break;
-				case 'albums':
-					$id = $obj->name;
-					$albums = $_myFavorites->getAlbums(0);
-					foreach ($albums as $album) {
-						if ($album == $id) {
-							$v = 0;
-							$add = $remove;
-							break;
-						}
-					}
-					break;
-				default:
-					//We do not handle these.
+			function printAddToFavorites($obj, $add = NULL, $remove = NULL) {
+				global $_myFavorites;
+				if (!is_object($obj) || !$obj->exists) {
 					return;
+				}
+				$v = 1;
+				if (is_null($add)) {
+					$add = get_language_string(getOption('favorites_add_button'));
+				}
+				if (is_null($remove)) {
+					$remove = get_language_string(getOption('favorites_remove_button'));
+				} else {
+					$add = $remove;
+				}
+				$table = $obj->table;
+				$target = array('type' => $table);
+				switch ($table) {
+					case 'images':
+						$id = $obj->imagefolder . '/' . $obj->filename;
+						$images = $_myFavorites->getImages(0);
+						foreach ($images as $image) {
+							if ($image['folder'] == $obj->imagefolder && $image['filename'] == $obj->filename) {
+								$v = 0;
+								$add = $remove;
+								break;
+							}
+						}
+						break;
+					case 'albums':
+						$id = $obj->name;
+						$albums = $_myFavorites->getAlbums(0);
+						foreach ($albums as $album) {
+							if ($album == $id) {
+								$v = 0;
+								$add = $remove;
+								break;
+							}
+						}
+						break;
+					default:
+						//We do not handle these.
+						return;
+				}
+				?>
+				<form name="imageFavorite s" class="imageFavorites"
+							id="imageFavorites<?php echo $obj->getID(); ?>"
+							action="<?php echo html_encode(getRequestURI()); ?>" method="post"
+							accept-charset="UTF-8">
+					<input type="hidden" name="addToFavorites" value="<?php echo $v; ?>" />
+					<input type="hidden" name="type" value="<?php echo html_encode($table); ?>" />
+					<input type="hidden" name="id" value="<?php echo html_encode($id); ?>" />
+					<span id="submit_button">
+						<input type="submit" class="button buttons" value="<?php echo $add; ?>" />
+					</span>
+				</form>
+				<?php
 			}
-			?>
-			<form name="imageFavorite s" class="imageFavorites"
-						id="imageFavorites<?php echo $obj->getID(); ?>"
-						action="<?php echo html_encode(getRequestURI()); ?>" method="post"
-						accept-charset="UTF-8">
-				<input type="hidden" name="addToFavorites" value="<?php echo $v; ?>" />
-				<input type="hidden" name="type" value="<?php echo html_encode($table); ?>" />
-				<input type="hidden" name="id" value="<?php echo html_encode($id); ?>" />
-				<span id="submit_button">
-					<input type="submit" class="button buttons" value="<?php echo $add; ?>" />
-				</span>
-			</form>
-			<?php
-		}
 
-		function printFavoritesLink($text = NULL) {
-			global $_myFavorites;
-			if (is_null($text)) {
-				$text = get_language_string(getOption('favorites_linktext'));
+			function printFavoritesLink($text = NULL) {
+				global $_myFavorites;
+				if (is_null($text)) {
+					$text = get_language_string(getOption('favorites_linktext'));
+				}
+				?>
+				<a href="<?php echo FULLWEBPATH; ?>/<?php echo $_myFavorites->getLink(); ?>" id="favorite_link"><?php echo $text; ?> </a>
+				<?php
 			}
-			?>
-			<a href="<?php echo FULLWEBPATH; ?>/<?php echo $_myFavorites->getLink(); ?>" id="favorite_link"><?php echo $text; ?> </a>
-			<?php
-		}
 
+		}
 	}
 }
 ?>

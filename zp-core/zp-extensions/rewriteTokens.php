@@ -10,6 +10,7 @@
 $plugin_is_filter = 97 | ADMIN_PLUGIN;
 $plugin_description = gettext('Utility to alter the rewrite token substitutions array in the configuration file.');
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_disable = (MOD_REWRITE) ? '' : gettext('Rewrite Tokens are not useful unless the <code>mod_rewrite</code> option is enabled.');
 
 $option_interface = 'rewriteTokens';
 
@@ -78,6 +79,14 @@ class rewriteTokens {
 	function getOptionsSupported() {
 		$_definitions = array();
 		$options = array();
+		if (!MOD_REWRITE) {
+			$options['note'] = array(
+							'key'		 => 'rewriteTokens_note',
+							'type'	 => OPTION_TYPE_NOTE,
+							'order'	 => 0,
+							'desc'	 => gettext('<p class="notebox">Rewrite Tokens are not useful unless the <code>mod_rewrite</code> option is enabled.</p>')
+			);
+		}
 		$options[gettext('Reset')] = array('key'		 => 'rewriteTokens_restore', 'type'	 => OPTION_TYPE_CHECKBOX,
 						'order'	 => 99999,
 						'desc'	 => gettext('Restore defaults.'));
