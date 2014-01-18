@@ -138,8 +138,8 @@ function fix_path_redirect() {
 		}
 
 		if ($redirectURL) {
-//			header("HTTP/1.0 301 Moved Permanently");
-//			header("Status: 301 Moved Permanently");
+			header("HTTP/1.0 301 Moved Permanently");
+			header("Status: 301 Moved Permanently");
 			header('Location: ' . FULLWEBPATH . '/' . $redirectURL);
 			exitZP();
 		}

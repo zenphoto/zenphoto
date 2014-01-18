@@ -203,7 +203,6 @@ if (!zp_loggedin()) {
 			<?php
 			/*			 * * HOME ************************************************************************** */
 			/*			 * ********************************************************************************* */
-
 			if (!empty($msg)) {
 				?>
 				<div class="<?php echo $class; ?> fade-message">
@@ -212,6 +211,72 @@ if (!zp_loggedin()) {
 				<?php
 			}
 			zp_apply_filter('admin_note', 'Overview', NULL);
+			$buttonlist = array();
+
+			$curdir = getcwd();
+			chdir(SERVERPATH . "/" . ZENFOLDER . '/' . UTILITIES_FOLDER . '/');
+			$filelist = safe_glob('*' . 'php');
+			natcasesort($filelist);
+			foreach ($filelist as $utility) {
+				$utilityStream = file_get_contents($utility);
+				$s = strpos($utilityStream, '$buttonlist');
+				if ($s !== false) {
+					$e = strpos($utilityStream, ';', $s);
+					if ($e) {
+						$str = substr($utilityStream, $s, $e - $s) . ';';
+						eval($str);
+					}
+				}
+			}
+			$buttonlist = zp_apply_filter('admin_utilities_buttons', $buttonlist);
+			foreach ($buttonlist as $key => $button) {
+				if (zp_loggedin($button['rights'])) {
+					if (!array_key_exists('category', $button)) {
+						$buttonlist[$key]['category'] = gettext('Misc');
+					}
+				} else {
+					unset($buttonlist[$key]);
+				}
+			}
+			if (PRIMARY_INSTALLATION) {
+				//	button to restore setup files if needed
+				list($diff, $needs) = checkSignature(false);
+				if (!empty($needs)) {
+					$buttonlist[] = array(
+									'XSRFTag'			 => 'restore_setup',
+									'category'		 => gettext('Admin'),
+									'enable'			 => true,
+									'button_text'	 => gettext('Setup » restore scripts'),
+									'formname'		 => 'restore_setup.php',
+									'action'			 => WEBPATH . '/' . ZENFOLDER . '/admin.php?action=restore_setup',
+									'icon'				 => 'images/lock_open.png',
+									'alt'					 => '',
+									'title'				 => gettext('Restores setup files so setup can be run.'),
+									'hidden'			 => '<input type="hidden" name="action" value="restore_setup" />',
+									'rights'			 => ADMIN_RIGHTS
+					);
+				} else {
+					?>
+					<div class="warningbox">
+						<h2><?php echo gettext('Your <code>setup</code> scripts are not protected. You should protect them to thwart hackers.'); ?></h2>
+					</div>
+					<?php
+					$buttonlist[] = array(
+									'XSRFTag'			 => 'protect_setup',
+									'category'		 => gettext('Admin'),
+									'enable'			 => true,
+									'button_text'	 => gettext('Setup » protect scripts'),
+									'formname'		 => 'restore_setup.php',
+									'action'			 => WEBPATH . '/' . ZENFOLDER . '/admin.php?action=protect_setup',
+									'icon'				 => 'images/lock_2.png',
+									'alt'					 => '',
+									'title'				 => gettext('Protects setup files so setup cannot be run.'),
+									'hidden'			 => '<input type="hidden" name="action" value="protect_setup" />',
+									'rights'			 => ADMIN_RIGHTS
+					);
+				}
+			}
+			$buttonlist = sortMultiArray($buttonlist, array('category', 'button_text'), false);
 
 			if (zp_loggedin(OVERVIEW_RIGHTS)) {
 				?>
@@ -501,67 +566,6 @@ if (!zp_loggedin()) {
 						</div><!-- overview-info -->
 						<?php
 					}
-					$buttonlist = array();
-
-					$curdir = getcwd();
-					chdir(SERVERPATH . "/" . ZENFOLDER . '/' . UTILITIES_FOLDER . '/');
-					$filelist = safe_glob('*' . 'php');
-					natcasesort($filelist);
-					foreach ($filelist as $utility) {
-						$utilityStream = file_get_contents($utility);
-						$s = strpos($utilityStream, '$buttonlist');
-						if ($s !== false) {
-							$e = strpos($utilityStream, ';', $s);
-							if ($e) {
-								$str = substr($utilityStream, $s, $e - $s) . ';';
-								eval($str);
-							}
-						}
-					}
-					$buttonlist = zp_apply_filter('admin_utilities_buttons', $buttonlist);
-					foreach ($buttonlist as $key => $button) {
-						if (zp_loggedin($button['rights'])) {
-							if (!array_key_exists('category', $button)) {
-								$buttonlist[$key]['category'] = gettext('Misc');
-							}
-						} else {
-							unset($buttonlist[$key]);
-						}
-					}
-					if (PRIMARY_INSTALLATION) {
-						//	button to restore setup files if needed
-						list($diff, $needs) = checkSignature(false);
-						if (!empty($needs)) {
-							$buttonlist[] = array(
-											'XSRFTag'			 => 'restore_setup',
-											'category'		 => gettext('Admin'),
-											'enable'			 => true,
-											'button_text'	 => gettext('Setup » restore scripts'),
-											'formname'		 => 'restore_setup.php',
-											'action'			 => WEBPATH . '/' . ZENFOLDER . '/admin.php?action=restore_setup',
-											'icon'				 => 'images/lock_open.png',
-											'alt'					 => '',
-											'title'				 => gettext('Restores setup files so setup can be run.'),
-											'hidden'			 => '<input type="hidden" name="action" value="restore_setup" />',
-											'rights'			 => ADMIN_RIGHTS
-							);
-						} else {
-							$buttonlist[] = array(
-											'XSRFTag'			 => 'protect_setup',
-											'category'		 => gettext('Admin'),
-											'enable'			 => true,
-											'button_text'	 => gettext('Setup » protect scripts'),
-											'formname'		 => 'restore_setup.php',
-											'action'			 => WEBPATH . '/' . ZENFOLDER . '/admin.php?action=protect_setup',
-											'icon'				 => 'images/lock_2.png',
-											'alt'					 => '',
-											'title'				 => gettext('Protects setup files so setup cannot be run.'),
-											'hidden'			 => '<input type="hidden" name="action" value="protect_setup" />',
-											'rights'			 => ADMIN_RIGHTS
-							);
-						}
-					}
-					$buttonlist = sortMultiArray($buttonlist, array('category', 'button_text'), false);
 					?>
 					<div class="box overview-utility">
 						<h2 class="h2_bordered"><?php echo gettext("Utility functions"); ?></h2>
