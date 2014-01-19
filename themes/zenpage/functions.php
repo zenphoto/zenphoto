@@ -86,9 +86,25 @@ function my_checkPageValidity($request, $gallery_page, $page) {
 	return checkPageValidity($request, $gallery_page, $page);
 }
 
+/**
+ * makex news page 1 link go to the index page
+ * @param type $link
+ * @param type $obj
+ * @param type $page
+ */
+function newsOnIndex($link, $obj, $page) {
+	if (is_string($obj) && $obj == 'news.php' && $page < 2) {
+		return WEBPATH;
+	}
+	return $link;
+}
+
 if (!OFFSET_PATH) {
 	enableExtension('print_album_menu', 1 | THEME_PLUGIN, false);
 	setOption('user_logout_login_form', 2, false);
 	$_zp_page_check = 'my_checkPageValidity';
+	if (extensionEnabled('zenpage') || getOption('zenpage_zp_index_news')) { // only one index page if zenpage plugin is enabled & displaying
+		zp_register_filter('getLink', 'newsOnIndex');
+	}
 }
 ?>
