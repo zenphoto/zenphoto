@@ -44,7 +44,7 @@ function jqm_printRSSlinks() {
 }
 
 function getPagesLink() {
-	return rewrite_path(_PAGES_ . '/', "/index.php?p=pages");
+	return zp_apply_filter('getLink', rewrite_path(_PAGES_ . '/', "/index.php?p=pages"), 'pages.php', NULL);
 }
 
 /**
@@ -64,7 +64,7 @@ function jqm_printMainHeaderNav() {
 				<li><a href="<?php echo getGalleryIndexURL(); ?>"><?php echo gettext('Gallery'); ?></a></li>
 				<?php if (extensionEnabled('zenpage')) { ?>
 					<li><a href="<?php echo getNewsIndexURL(); ?>"><?php echo gettext('News'); ?></a></li>
-					<li><a href="<?php //echo getPagesLink();  ?>"><?php echo gettext('Pages'); ?></a></li>
+					<li><a href="<?php //echo getPagesLink();   ?>"><?php echo gettext('Pages'); ?></a></li>
 				<?php } ?>
 				<li><a href="<?php echo getCustomPageURL('archive'); ?>"><?php echo gettext('Archive'); ?></a></li>
 			</ul>
