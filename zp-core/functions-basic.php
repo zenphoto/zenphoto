@@ -492,12 +492,12 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 					//has an IM_SUFFIX attached
 					$rimage = basename($matches[1]);
 					$ralbum = trim(dirname($matches[1]), '/');
-					$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
-					if (!is_dir($path)) {
-						if (file_exists($path . '.alb')) {
-							//	it is a dynamic album sans suffix
-							$ralbum .= '.alb';
-						}
+				}
+				$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
+				if (!is_dir($path)) {
+					if (file_exists($path . '.alb')) {
+						//	it is a dynamic album sans suffix
+						$ralbum .= '.alb';
 					}
 				}
 			} else if (getSuffix($ralbum) != 'alb') { //	have to figure it out
@@ -532,6 +532,7 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 				}
 			}
 		}
+
 		if (empty($ralbum)) {
 			unset($_GET[$albumvar]);
 		} else {
