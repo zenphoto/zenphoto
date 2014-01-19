@@ -2543,7 +2543,7 @@ if ($c <= 0) {
 										}
 									}
 								} else {
-									$link = sprintf(gettext('You can now <a href="%1$s">View your gallery</a> or <a href="%2$s">administer.</a>'), WEBPATH . '/', WEBPATH . '/' . ZENFOLDER . '/admin.php');
+									$link = sprintf(gettext('You can now <a href="%1$s">administer your gallery.</a>'), WEBPATH . '/' . ZENFOLDER . '/admin.php');
 								}
 								?>
 								<p id="golink" class="delayshow" style="display:none;"><?php echo $link; ?></p>
