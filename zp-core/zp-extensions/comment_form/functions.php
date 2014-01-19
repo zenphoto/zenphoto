@@ -75,68 +75,31 @@ function comment_form_print10Most() {
 				// ZENPAGE: switch added for zenpage comment support
 				switch ($comment['type']) {
 					case "albums":
-						$image = '';
-						$title = '';
-						$albmdata = query_full_array("SELECT `title`, `folder` FROM " . prefix('albums') .
-										" WHERE `id`=" . $comment['ownerid']);
-						if ($albmdata) {
-							$albumdata = $albmdata[0];
-							$album = $albumdata['folder'];
-							$albumtitle = get_language_string($albumdata['title']);
-							$link = "<a href=\"" . rewrite_path("/$album", "/index.php?album=" . pathurlencode($album)) . "\">" . $albumtitle . $title . "</a>";
-							if (empty($albumtitle))
-								$albumtitle = $album;
+						$album = getItemByID('albums', $comment['ownerid']);
+						if ($album) {
+							$link = "<a href=\"" . $album->getlink() . "\">" . $album->gettitle() . "</a>";
 						}
 						break;
 					case "news": // ZENPAGE: if plugin is installed
 						if (extensionEnabled('zenpage')) {
-							$titlelink = '';
-							$title = '';
-							$newsdata = query_full_array("SELECT `title`, `titlelink` FROM " . prefix('news') .
-											" WHERE `id`=" . $comment['ownerid']);
-							if ($newsdata) {
-								$newsdata = $newsdata[0];
-								$titlelink = $newsdata['titlelink'];
-								$title = get_language_string($newsdata['title']);
-								$link = "<a href=\"" . rewrite_path('/' . _NEWS_ . '/' . $titlelink, "/index.php?p=news&amp;title=" . urlencode($titlelink)) . "\">" . $title . "</a> " . gettext("[news]");
+							$news = getItemByID('news', $comment['ownerid']);
+							if ($news) {
+								$link = "<a href=\"" . $news->getLink() . "\">" . $news->getTitle() . "</a> " . gettext("[news]");
 							}
 						}
 						break;
 					case "pages": // ZENPAGE: if plugin is installed
 						if (extensionEnabled('zenpage')) {
-							$image = '';
-							$title = '';
-							$pagesdata = query_full_array("SELECT `title`, `titlelink` FROM " . prefix('pages') .
-											" WHERE `id`=" . $comment['ownerid']);
-							if ($pagesdata) {
-								$pagesdata = $pagesdata[0];
-								$titlelink = $pagesdata['titlelink'];
-								$title = get_language_string($pagesdata['title']);
-								$link = "<a href=\"" . rewrite_path('/' . _PAGES_ . '/' . $titlelink, "/index.php?p=pages&amp;title=" . urlencode($titlelink)) . "\">" . $title . "</a> " . gettext("[page]");
+							$page = getItemByID('pages', $comment['ownerid']);
+							if ($page) {
+								$link = "<a href=\"" . $page->getlink() . "\">" . $page->getTitle() . "</a> " . gettext("[page]");
 							}
 						}
 						break;
 					default: // all of the image types
-						$imagedata = query_full_array("SELECT `title`, `filename`, `albumid` FROM " . prefix('images') .
-										" WHERE `id`=" . $comment['ownerid']);
-						if ($imagedata) {
-							$imgdata = $imagedata[0];
-							$image = $imgdata['filename'];
-							if ($imgdata['title'] == "")
-								$title = $image;
-							else
-								$title = get_language_string($imgdata['title']);
-							$title = '/ ' . $title;
-							$albmdata = query_full_array("SELECT `folder`, `title` FROM " . prefix('albums') .
-											" WHERE `id`=" . $imgdata['albumid']);
-							if ($albmdata) {
-								$albumdata = $albmdata[0];
-								$album = $albumdata['folder'];
-								$albumtitle = get_language_string($albumdata['title']);
-								$link = "<a href=\"" . rewrite_path("/$album/$image", "/index.php?album=" . pathurlencode($album) . "&amp;image=" . urlencode($image)) . "\">" . $albumtitle . $title . "</a>";
-								if (empty($albumtitle))
-									$albumtitle = $album;
-							}
+						$image = getItemByID('images', $comment['ownerid']);
+						if ($image) {
+							$link = "<a href=\"" . $image->getLink() . "\">" . $image->getTitle() . "</a>";
 						}
 						break;
 				}
@@ -901,37 +864,32 @@ function printLatestComments($number, $shorten = '123', $type = "all", $item = N
 		$date = $comment['date'];
 		switch ($comment['type']) {
 			case 'albums':
+				$album = getItemByID('albums', $comment['ownerid']);
+				if ($album) {
+					echo '<li><a href="' . $album->getLink() . '" class="commentmeta">' . $album->getTitle() . $author . "</a><br />\n";
+					echo '<span class="commentbody">' . $shortcomment . '</span></li>';
+				}
+				break;
 			case 'images':
-				$album = $comment['folder'];
-				if ($comment['type'] == "images") { // check if not comments on albums or Zenpage items
-					$imagetag = '&amp;image=' . $comment['filename'];
-					$imagetagR = '/' . $comment['filename'] . getOption('mod_rewrite_image_suffix');
-				} else {
-					$imagetag = $imagetagR = "";
+				$image = getItemByID('images', $comment['ownerid']);
+				if ($image) {
+					echo '<li><a href="' . $image->getLink() . '" class="commentmeta">' . $image->altum->gettitle() . ': ' . $image->getTitle() . $author . "</a><br />\n";
+					echo '<span class="commentbody">' . $shortcomment . '</span></li>';
 				}
-				$albumtitle = get_language_string($comment['albumtitle']);
-				$title = '';
-				if ($comment['type'] != 'albums') {
-					if ($comment['title'] == "")
-						$title = '';
-					else
-						$title = get_language_string($comment['title']);
-				}
-				if (!empty($title)) {
-					$title = ": " . $title;
-				}
-				echo '<li><a href="' . rewrite_path($album . $imagetagR, '?album=' . $album . $imagetag) . '" class="commentmeta">' . $albumtitle . $title . $author . "</a><br />\n";
-				echo '<span class="commentbody">' . $shortcomment . '</span></li>';
 				break;
 			case 'news':
-				$title = get_language_string($comment['title']);
-				echo '<li><a href="' . rewrite_path('/' . _NEWS_ . '/' . $comment['titlelink'], '/index.php?p=news&amp;title=' . $comment['titlelink']) . '" class="commentmeta">' . gettext('News') . ':' . $title . $author . "</a><br />\n";
-				echo '<span class="commentbody">' . $shortcomment . '</span></li>';
+				$news = getItemByID('news', $comment['ownerid']);
+				if ($news) {
+					echo '<li><a href="' . $news->getLink() . '" class="commentmeta">' . gettext('News') . ':' . $news->getTitle() . $author . "</a><br />\n";
+					echo '<span class="commentbody">' . $shortcomment . '</span></li>';
+				}
 				break;
 			case 'pages':
-				$title = get_language_string($comment['title']);
-				echo '<li><a href="' . rewrite_path('/' . _PAGES_ . '/' . $comment['titlelink'], '/index.php?p=pages&amp;title=' . $comment['titlelink']) . '" class="commentmeta">' . gettext('News') . ':' . $title . $author . "</a><br />\n";
-				echo '<span class="commentbody">' . $shortcomment . '</span></li>';
+				$page = getItemByID('news', $comment['ownerid']);
+				if ($page) {
+					echo '<li><a href="' . $page->getLink() . '" class="commentmeta">' . gettext('News') . ':' . $page->getTitle() . $author . "</a><br />\n";
+					echo '<span class="commentbody">' . $shortcomment . '</span></li>';
+				}
 				break;
 		}
 	}

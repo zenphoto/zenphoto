@@ -232,7 +232,7 @@ function getItemTitleAndURL($item) {
 			$result = query_single_row($sql);
 			if (is_array($result)) {
 				$obj = new ZenpagePage($item['link']);
-				$url = rewrite_path("/" . _PAGES_ . "/" . $item['link'], "/index.php?p=pages&amp;title=" . $item['link']);
+				$url = $obj->getLink();
 				$protected = $obj->isProtected();
 				$title = $obj->getTitle();
 			} else {
@@ -243,7 +243,7 @@ function getItemTitleAndURL($item) {
 			$array = array("title" => $title, "url" => $url, "name" => $item['link'], 'protected' => $protected, 'theme' => $themename);
 			break;
 		case "zenpagenewsindex":
-			$url = rewrite_path('/' . _NEWS_, "index.php?p=news");
+			$url = getNewsIndexURL();
 			$array = array("title" => get_language_string($item['title']), "url" => $url, "name" => $url, 'protected' => false);
 			break;
 		case "zenpagecategory":
@@ -253,7 +253,7 @@ function getItemTitleAndURL($item) {
 				$obj = new ZenpageCategory($item['link']);
 				$title = $obj->getTitle();
 				$protected = $obj->isProtected();
-				$url = rewrite_path('/' . _CATEGORY_ . '/' . $item['link'], "/index.php?p=news&amp;category=" . $item['link']);
+				$url = $obj->getLink();
 			} else {
 				$valid = false;
 				$url = '';
@@ -264,7 +264,7 @@ function getItemTitleAndURL($item) {
 		case "custompage":
 			$root = SERVERPATH . '/' . THEMEFOLDER . '/' . $themename . '/';
 			if (file_exists($root . $item['link'] . '.php')) {
-				$url = rewrite_path('/' . _PAGE_ . '/' . $item['link'], "/index.php?p=" . $item['link']);
+				$url = zp_apply_filter('getLink', rewrite_path('/' . _PAGE_ . '/' . $item['link'], "/index.php?p=" . $item['link']), $item['link'] . '.php', NULL);
 			} else {
 				$valid = false;
 				$url = '';
@@ -822,7 +822,7 @@ function createMenuIfNotExists($menuitems, $menuset = 'default') {
 					if (extensionEnabled('zenpage')) {
 						$orders[$nesting] ++;
 						query("INSERT INTO " . prefix('menu') . " (title`,`link`,`type`,`show`,`menuset`,`sort_order`) " .
-										"VALUES ('" . gettext('News index') . "', '" . rewrite_path(_NEWS_, '?p=news') . "','zenpagenewsindex','1'," . db_quote($menuset) . ',' . db_quote(sprintf('%03u', $base + 1)), true);
+										"VALUES ('" . gettext('News index') . "', '" . getNewsIndexURL() . "','zenpagenewsindex','1'," . db_quote($menuset) . ',' . db_quote(sprintf('%03u', $base + 1)), true);
 						$orders[$nesting] = addPagesToDatabase($menuset, $orders) + 1;
 						$orders[$nesting] = addCategoriesToDatabase($menuset, $orders);
 					}

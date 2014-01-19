@@ -59,9 +59,40 @@ class Zenpage_internal_deprecations {
 	 * @deprecated
 	 * @since 1.4.6
 	 */
-	static function getPagesLinkPath($title) {
+	static function getPagesLinkPath() {
 		deprecated_functions::notify(gettext('Create an object and use its getLink method.'));
-		return rewrite_path(_PAGES_ . '/' . $title, "/index.php?p=pages&title=$title");
+	}
+
+	/**
+	 * @deprecated
+	 * @since 1.4.6
+	 */
+	static function getNewsTitlePath() {
+		deprecated_functions::notify(gettext('Create an object and use its getLink method.'));
+	}
+
+	/**
+	 * @deprecated
+	 * @since 1.4.6
+	 */
+	static function getNewsCategoryPath() {
+		deprecated_functions::notify(gettext('Create an object and use its getLink method.'));
+	}
+
+	/**
+	 * @deprecated
+	 * @since 1.4.6
+	 */
+	static function getNewsArchivePath() {
+		deprecated_functions::notify(gettext('Use getNewsArchivePath().'));
+	}
+
+	/**
+	 * @deprecated
+	 * @since 1.4.6
+	 */
+	static function getNewsIndexURL() {
+		deprecated_functions::notify(gettext('Use getNewsIndexURL().'));
 	}
 
 }
@@ -917,10 +948,30 @@ function printLatestNews($number = 5, $option = 'with_latest_images', $category 
  * @deprecated
  * @since 1.4.6
  */
-function getPageLinkPath($title) {
-	global $_zp_zenpage;
+function getPageLinkPath($titlelink) {
 	deprecated_functions::notify(gettext('Create an object and use the object getLink'));
-	return $_zp_zenpage->getPagesLinkPath($title);
+	$obj = new ZenpagePage($titlelink);
+	return $obj->getLink();
+}
+
+/**
+ * @deprecated
+ * @since 1.4.6
+ */
+function getNewsTitlePath($titlelink) {
+	deprecated_functions::notify(gettext('Create an object and use the object getLink'));
+	$obj = new ZenpageNews($titlelink);
+	return $obj->getLink();
+}
+
+/**
+ * @deprecated
+ * @since 1.4.6
+ */
+function getNewsCategoryPath($category, $page) {
+	deprecated_functions::notify(gettext('Create an object and use the object getLink'));
+	$obj = new ZenpageCategory($category);
+	return $obj->getLink($page);
 }
 
 ?>

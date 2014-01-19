@@ -218,11 +218,11 @@ class htmlmetatags {
 						$pagetitle = $_zp_current_category->getTitlelink() . " - ";
 						$date = strftime(DATE_FORMAT);
 						$desc = trim(strip_tags($_zp_current_category->getDesc()));
-						$canonicalurl = $host . getNewsCategoryURL($_zp_current_category->getTitlelink());
+						$canonicalurl = $host . $_zp_current_category->getLink();
 					} else {
 						$pagetitle = gettext('News') . " - ";
 						$desc = '';
-						$canonicalurl = $host . rewrite_path(_NEWS_, "/index.php?p=news");
+						$canonicalurl = $host . getNewsIndexURL();
 					}
 				}
 				break;

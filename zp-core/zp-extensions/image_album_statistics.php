@@ -492,7 +492,7 @@ function printImageStatistic($number, $option, $albumfolder = '', $showtitle = f
 		} else {
 			$imagelink = $image->getLink();
 		}
-		echo '<li><a href="' . html_encode(pathurlencode($imagelink)) . '" title="' . html_encode($image->getTitle()) . "\">\n";
+		echo '<li><a href="' . html_encode($imagelink) . '" title="' . html_encode($image->getTitle()) . "\">\n";
 		switch ($crop) {
 			case 0:
 				echo '<img src="' . html_encode(pathurlencode($image->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . html_encode($image->getTitle()) . "\" /></a>\n";

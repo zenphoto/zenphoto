@@ -155,7 +155,7 @@ class slideshow {
 			$albumobj = newAlbum($album, NULL, true);
 		}
 		if (is_object($albumobj) && $albumobj->loaded) {
-			$returnpath = rewrite_path('/' . pathurlencode($albumobj->name) . '/', '/index.php?album=' . urlencode($albumobj->name));
+			$returnpath = $albumobj->getLink();
 			return slideshow::getShow(false, false, $albumobj, NULL, $width, $height, false, false, false, $controls, $returnpath, 0);
 		} else {
 			return '<div class="errorbox" id="message"><h2>' . gettext('Invalid slideshow album name!') . '</h2></div>';
@@ -542,7 +542,7 @@ function printSlideShowLink($linktext = NULL, $linkstyle = Null) {
 		case 'jQuery':
 			if ($numberofimages > 1) {
 				?>
-				<form name="slideshow_<?php echo $slideshow_instance; ?>" method="post"	action="<?php echo $slideshowlink; ?>">
+				<form name="slideshow_<?php echo $slideshow_instance; ?>" method="post"	action="<?php echo zp_apply_filter('getLink', $slideshowlink, 'slideshow.php,NULL'); ?>">
 					<?php echo $slideshowhidden; ?>
 					<input type="hidden" name="pagenr" value="<?php echo html_encode($pagenr); ?>" />
 					<input type="hidden" name="albumid" value="<?php echo $albumnr; ?>" />
@@ -751,9 +751,10 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $i
 			$albumq = query_single_row("SELECT title, folder FROM " . prefix('albums') . " WHERE id = " . $albumid);
 			$albumobj = newAlbum($albumq['folder']);
 			if (empty($_POST['imagenumber'])) {
-				$returnpath = rewrite_path('/' . pathurlencode($albumobj->name) . '/' . _PAGE_ . '/' . $pagenumber, '/index.php?album=' . urlencode($albumobj->name) . '&page=' . $pagenumber);
+				$returnpath = $albumobj->getLink($pagenumber);
 			} else {
-				$returnpath = rewrite_path('/' . pathurlencode($albumobj->name) . '/' . rawurlencode(sanitize($_POST['imagefile'])) . getOption('mod_rewrite_image_suffix'), '/index.php?album=' . urlencode($albumobj->name) . '&image=' . urlencode($_POST['imagefile']));
+				$image = newImage($albumobj, sanitize($_POST['imagefile']));
+				$returnpath = $image->getLink();
 			}
 		}
 	}

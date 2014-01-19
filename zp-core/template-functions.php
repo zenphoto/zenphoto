@@ -543,13 +543,16 @@ function getGalleryIndexURL($relative = true) {
 		}
 	}
 	if ($page > 1) {
-		return rewrite_path('/' . _PAGE_ . '/' . $gallink1 . $page, "/index.php?" . $gallink2 . "page=" . $page);
+		$pathr = '/' . _PAGE_ . '/' . $gallink1 . $page;
+		$path = "/index.php?" . $gallink2 . "page=" . $page;
 	} else {
 		if ($specialpage) {
-			return rewrite_path('/' . _PAGE_ . '/' . $gallink1, "/index.php?" . substr($gallink2, 0, -1));
+			$pathr = '/' . _PAGE_ . '/' . $gallink1;
+			$path = "/index.php?" . substr($gallink2, 0, -1);
 		}
-		return WEBPATH . "/";
+		$pathr = $path = "/";
 	}
+	return zp_apply_filter('getLink', rewrite_path($pathr, $path), $specialpage . '.php', $page);
 }
 
 /**
@@ -760,7 +763,7 @@ function getPageURL($page, $total = null) {
 					$pagination1 = '/';
 					$pagination2 = 'index.php';
 					if ($page > 1) {
-						$pagination1 .= '/' . $page;
+						$pagination1 .= _PAGE_ . '/' . $page;
 						$pagination2 .= '?page=' . $page;
 					}
 				} else {
@@ -777,7 +780,7 @@ function getPageURL($page, $total = null) {
 				$pagination2 .= '&page=' . $page;
 			}
 		}
-		return rewrite_path($pagination1, $pagination2);
+		return zp_apply_filter('getLink', rewrite_path($pagination1, $pagination2), $_zp_gallery_page, $page);
 	}
 }
 
@@ -1364,7 +1367,7 @@ function getParentBreadcrumb() {
 	$n = count($parents);
 	if ($n > 0) {
 		foreach ($parents as $parent) {
-			$url = rewrite_path("/" . pathurlencode($parent->name) . "/", "/index.php?album=" . pathurlencode($parent->name));
+			$url = $parent->getLink();
 //cleanup things in description for use as attribute tag
 			$desc = strip_tags(preg_replace('|</p\s*>|i', '</p> ', preg_replace('|<br\s*/>|i', ' ', $parent->getDesc())));
 			$output[] = array('link' => html_encode($url), 'title' => $desc, 'text' => $parent->getTitle());
@@ -3651,7 +3654,7 @@ function getCustomPageURL($page, $q = '') {
 		$result_r .= "?$q";
 		$result .= "&$q";
 	}
-	return rewrite_path($result_r, $result);
+	return zp_apply_filter('getLink', rewrite_path($result_r, $result), $page . '.php', NULL);
 }
 
 /**

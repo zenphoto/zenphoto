@@ -128,7 +128,7 @@ class tinyURL {
 	}
 
 	static function getTinyURL($link, $obj, $page) {
-		if (self::$DBassoc[$obj->table] & getOption('tinyURL_agressive')) {
+		if (is_object($obj) && (self::$DBassoc[$obj->table] & getOption('tinyURL_agressive'))) {
 			return self::getURL($obj, $page);
 		} else {
 			return $link;

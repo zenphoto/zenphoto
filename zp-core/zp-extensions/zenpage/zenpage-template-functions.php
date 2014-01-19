@@ -563,7 +563,7 @@ function printNewsCategories($separator = '', $before = '', $class = '') {
 			if ($count >= $catcount) {
 				$separator = "";
 			}
-			echo "<li><a href=\"" . getNewsCategoryURL($catobj->getTitlelink()) . "\" title=\"" . html_encode($catobj->getTitle()) . "\">" . $catobj->getTitle() . '</a>' . $separator . "</li>\n";
+			echo "<li><a href=\"" . $catobj->getLink() . "\" title=\"" . html_encode($catobj->getTitle()) . "\">" . $catobj->getTitle() . '</a>' . $separator . "</li>\n";
 		}
 		echo "</ul>\n";
 	}
@@ -730,18 +730,18 @@ function printAllNewsCategories($newsindex = 'All news', $counter = TRUE, $css_i
 /**
  * Returns the full path to a news category
  *
- * @param string $catlink The category link of a category
+ * @param string $cat The category titlelink
  *
  * @return string
  */
-function getNewsCategoryURL($catlink = '') {
+function getNewsCategoryURL($cat = NULL) {
 	global $_zp_zenpage, $_zp_current_category;
-	if (empty($catlink)) {
-		$titlelink = $_zp_current_category->getTitlelink();
+	if (empty($cat)) {
+		$obj = $_zp_current_category->getTitlelink();
 	} else {
-		$titlelink = $catlink;
+		$obj = new ZenpageCategory($cat);
 	}
-	return $_zp_zenpage->getNewsCategoryPath($titlelink, 1);
+	return $obj->getLink(1);
 }
 
 /**
@@ -754,21 +754,11 @@ function getNewsCategoryURL($catlink = '') {
  */
 function printNewsCategoryURL($before = '', $catlink = '') {
 	$catobj = new ZenpageCategory($catlink);
-	echo "<a href=\"" . html_encode(getNewsCategoryURL($catlink)) . "\" title=\"" . html_encode($catobj->getTitle()) . "\">";
+	echo "<a href=\"" . html_encode($catobj->getLink()) . "\" title=\"" . html_encode($catobj->getTitle()) . "\">";
 	if ($before) {
 		echo '<span class="beforetext">' . html_encode($before) . '</span>';
 	}
 	echo html_encode($catobj->getTitle()) . "</a>";
-}
-
-/**
- * Returns the full path of the news index page (news page 1)
- *
- * @return string
- */
-function getNewsIndexURL() {
-	global $_zp_zenpage;
-	return $_zp_zenpage->getNewsIndexURL();
 }
 
 /**
@@ -801,32 +791,18 @@ function printNewsIndexURL($name = NULL, $before = '', $archive = NULL) {
 }
 
 /**
- *
- * @return string
- */
-function getNewsCategoryPath($category, $page) {
-	global $_zp_zenpage;
-	return $_zp_zenpage->getNewsCategoryPath($category, $page);
-}
-
-/**
  * Returns partial path of news date archive
  *
  * @return string
  */
 function getNewsArchivePath($date, $page) {
-	global $_zp_zenpage;
-	return $_zp_zenpage->getNewsArchivePath($date, $page);
-}
-
-/**
- * Returns partial path of news article title
- *
- * @return string
- */
-function getNewsTitlePath($title) {
-	global $_zp_zenpage;
-	return $_zp_zenpage->getNewsTitlePath($title);
+	$rewrite = '/' . _NEWS_ARCHIVE_ . '/' . $date;
+	$plain = "/index.php?p=news&date=$date";
+	if ($page > 1) {
+		$rewrite .= '/' . $date . '/' . $page;
+		$plalin.="&page=$page";
+	}
+	return zp_apply_filter('getLink', rewrite_path($rewrite, $plain), 'archive.php', $page);
 }
 
 /**
@@ -864,16 +840,18 @@ function printNewsURL($titlelink = '') {
 function getNewsPathNav($page) {
 	global $_zp_current_category, $_zp_post_date;
 	if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
-		return getNewsCategoryPath($_zp_current_category->getTitlelink(), $page);
+		return $_zp_current_category->getLink($page);
 	}
 	if (in_context(ZP_ZENPAGE_NEWS_DATE)) {
 		return getNewsArchivePath($_zp_post_date, $page);
 	}
-	if ($page) {
-		return rewrite_path('/' . _NEWS_ . '/' . $page, '?index.php&p=news' . '&page=' . $page);
-	} else {
-		return rewrite_path('/' . _NEWS_, '?index.php&p=news');
+	$rewrite = '/' . _NEWS_;
+	$plain = '?index.php&p=news';
+	if ($page > 1) {
+		$rewrite .= '/' . $page;
+		$plain .= '&page = ' . $page;
 	}
+	return zp_apply_filter('getLink', rewrite_path($rewrite, $plain), 'news.php', $page);
 }
 
 /**
@@ -991,17 +969,17 @@ function printNewsPageListWithNav($next, $prev, $nextprev = true, $class = 'page
 			echo "</li>\n";
 		}
 		if ($firstlast) {
-			echo '<li class="' . ($_zp_page == 1 ? 'current' : 'first') . '">';
+			echo '<li class = "' . ($_zp_page == 1 ? 'current' : 'first') . '">';
 			if ($_zp_page == 1) {
 				echo "1";
 			} else {
-				echo '<a href="' . html_encode(getNewsPathNav(1)) . '" title="' . gettext("Page") . ' 1">1</a>';
+				echo '<a href = "' . html_encode(getNewsPathNav(1)) . '" title = "' . gettext("Page") . ' 1">1</a>';
 			}
 			echo "</li>\n";
 			if ($j > 2) {
 				echo "<li>";
 				$linktext = ($j - 1 > 2) ? '...' : $k1;
-				echo '<a href="' . html_encode(getNewsPathNav($k1)) . '" title="' . sprintf(ngettext('Page %u', 'Page %u', $k1), $k1) . '">' . $linktext . '</a>';
+				echo '<a href = "' . html_encode(getNewsPathNav($k1)) . '" title = "' . sprintf(ngettext('Page %u', 'Page %u', $k1), $k1) . '">' . $linktext . '</a>';
 				echo "</li>\n";
 			}
 		}
@@ -1010,14 +988,14 @@ function printNewsPageListWithNav($next, $prev, $nextprev = true, $class = 'page
 			if ($i == $_zp_page) {
 				echo $i;
 			} else {
-				echo '<a href="' . html_encode(getNewsPathNav($i)) . '" title="' . sprintf(ngettext('Page %1$u', 'Page %1$u', $i), $i) . '">' . $i . '</a>';
+				echo '<a href = "' . html_encode(getNewsPathNav($i)) . '" title = "' . sprintf(ngettext('Page %1$u', 'Page %1$u', $i), $i) . '">' . $i . '</a>';
 			}
 			echo "</li>\n";
 		}
 		if ($i < $total) {
 			echo "<li>";
 			$linktext = ($total - $i > 1) ? '...' : $k2;
-			echo '<a href="' . html_encode(getNewsPathNav($k2)) . '" title="' . sprintf(ngettext('Page %u', 'Page %u', $k2), $k2) . '">' . $linktext . '</a>';
+			echo '<a href = "' . html_encode(getNewsPathNav($k2)) . '" title = "' . sprintf(ngettext('Page %u', 'Page %u', $k2), $k2) . '">' . $linktext . '</a>';
 			echo "</li>\n";
 		}
 		if ($firstlast && $i <= $total) {
@@ -1025,12 +1003,12 @@ function printNewsPageListWithNav($next, $prev, $nextprev = true, $class = 'page
 			if ($_zp_page == $total) {
 				echo $total;
 			} else {
-				echo '<a href="' . html_encode(getNewsPathNav($total)) . '" title="' . sprintf(ngettext('Page {%u}', 'Page {%u}', $total), $total) . '">' . $total . '</a>';
+				echo '<a href = "' . html_encode(getNewsPathNav($total)) . '" title = "' . sprintf(ngettext('Page {%u}', 'Page {%u}', $total), $total) . '">' . $total . '</a>';
 			}
 			echo "</li>\n";
 		}
 		if ($nextprev) {
-			echo '<li class="next">';
+			echo '<li class = "next">';
 			printNextNewsPageLink($next);
 			echo "</li>\n";
 		}
@@ -1303,7 +1281,7 @@ function printZenpageStatistic($number = 10, $option = "all", $mode = "popular",
 				$titlelink = html_encode(getNewsCategoryURL($item['titlelink']));
 				break;
 		}
-		echo '<li><a href="' . $titlelink . '" title="' . html_encode(strip_tags($item['title'])) . '"><h3>' . $item['title'];
+		echo '<li><a href = "' . $titlelink . '" title = "' . html_encode(strip_tags($item['title'])) . '"><h3>' . $item['title'];
 		echo '<small>';
 		if ($showtype) {
 			echo ' [' . $item['type'] . ']';
@@ -1390,7 +1368,7 @@ function printTopRatedItems($number = 10, $option = "all", $showstats = true, $s
  * @param string $css_class CSS class of the sub level list(s)
  * @param string $$css_class_active CSS class of the sub level list(s)
  * @param string $indexname insert the name (default "Gallery Index") how you want to call the link to the gallery index, insert "" (default) if you don't use it, it is not printed then.
- * @param int $showsubs Set to depth of sublevels that should be shown always. 0 by default. To show all, set to a true! Only valid if option=="list".
+ * @param int $showsubs Set to depth of sublevels that should be shown always. 0 by default. To show all, set to a true!Only valid if option=="list".
  * @param bool $startlist set to true to output the UL tab (false automatically if you use 'omit-top' or 'list-sub')
  * @param int $limit truncation limit display strings
  * @return string
@@ -1468,7 +1446,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 				break;
 			case 'categories':
 			case 'allcategories':
-				if (($_zp_gallery_page == "news.php" ) && !is_NewsCategory() && !is_NewsArchive() && !is_NewsArticle()) {
+				if (($_zp_gallery_page == "news.php") && !is_NewsCategory() && !is_NewsArchive() && !is_NewsArticle()) {
 					echo "<li $css_class_topactive>" . html_encode($display);
 				} else {
 					echo "<li><a href=\"" . html_encode(getNewsIndexURL()) . "\" title=\"" . html_encode($indexname) . "\">" . html_encode($display) . "</a>";
@@ -1519,7 +1497,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 				$itemid = $catobj->getID();
 				$itemparentid = $catobj->getParentID();
 				$itemtitlelink = $catobj->getTitlelink();
-				$itemurl = getNewsCategoryURL($catobj->getTitlelink());
+				$itemurl = $catobj->getLink();
 				$catcount = count($catobj->getArticles());
 				if ($counter) {
 					$count = ' <span style="white-space:nowrap;"><small>(' . sprintf(ngettext('%u article', '%u articles', $catcount), $catcount) . ')</small></span>';
@@ -1654,7 +1632,7 @@ function printZenpageItemsBreadcrumb($before = NULL, $after = NULL) {
 		}
 		if (is_NewsCategory()) {
 			$catobj = new ZenpageCategory($item);
-			$parentitemurl = getNewsCategoryURL($item);
+			$parentitemurl = $catobj->getLink();
 			$parentitemtitle = $catobj->getTitle();
 		}
 		if ($before) {
@@ -2121,7 +2099,7 @@ function printPageMenu($option = 'list', $css_id = NULL, $css_class_topactive = 
  */
 function checkForPage($titlelink) {
 	if (!empty($titlelink)) {
-		zenpage_load_page($titlelink);
+		load_zenpage_pages($titlelink);
 		return in_context(ZP_ZENPAGE_PAGE);
 	}
 	return false;

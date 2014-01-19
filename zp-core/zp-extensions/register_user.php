@@ -368,7 +368,7 @@ function printRegistrationForm($thanks = NULL) {
 						}
 					} else {
 						$userobj->save();
-						$link = rewrite_path('/' . _PAGE_ . '/' . substr($_zp_gallery_page, 0, -4) . '?verify=' . bin2hex(serialize(array('user' => $user, 'email' => $admin_e))), '/index.php?p=' . substr($_zp_gallery_page, 0, -4) . '&verify=' . bin2hex(serialize(array('user' => $user, 'email' => $admin_e))), FULLWEBPATH);
+						$link = zp_apply_filter('getLink', rewrite_path('/' . _PAGE_ . '/' . substr($_zp_gallery_page, 0, -4) . '?verify=' . bin2hex(serialize(array('user' => $user, 'email' => $admin_e))), '/index.php?p=' . substr($_zp_gallery_page, 0, -4) . '&verify=' . bin2hex(serialize(array('user' => $user, 'email' => $admin_e))), FULLWEBPATH), $_zp_gallery_page, NULL);
 						$message = sprintf(get_language_string(getOption('register_user_text')), $link, $admin_n, $user, $pass);
 						$notify = zp_mail(get_language_string(gettext('Registration confirmation')), $message, array($user => $admin_e));
 						if (empty($notify)) {

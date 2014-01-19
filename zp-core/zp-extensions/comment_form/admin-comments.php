@@ -200,14 +200,14 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 			<br class="clearall" />
 		</div> <!-- div box end -->
 		<?php
-		// end of $page == "editcomment"
+// end of $page == "editcomment"
 	} else {
 		?>
 		<p class="errorbox"><?php echo gettext('Comment does not exist'); ?></p>
 		<?php
 	}
 } else {
-	// Set up some view option variables.
+// Set up some view option variables.
 	if (isset($_GET['fulltext']) && $_GET['fulltext']) {
 		$fulltext = true;
 		$fulltexturl = '?fulltext = 1';
@@ -218,7 +218,6 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 	$allcomments = fetchComments(NULL);
 
 	$pagenum = max((int) @$_GET['subpage'], 1);
-
 
 	$comments = array_slice($allcomments, ($pagenum - 1) * COMMENTS_PER_PAGE, COMMENTS_PER_PAGE);
 	$allcommentscount = count($allcomments);
@@ -345,65 +344,31 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 				// ZENPAGE: switch added for zenpage comment support
 				switch ($comment['type']) {
 					case "albums":
-						$image = '';
-						$title = '';
-						$albmdata = query_full_array("SELECT `title`, `folder` FROM " . prefix('albums') .
-										" WHERE `id`=" . $comment['ownerid']);
-						if ($albmdata) {
-							$albumdata = $albmdata[0];
-							$album = $albumdata['folder'];
-							$albumtitle = get_language_string($albumdata['title']);
-							$link = '<a href = "' . rewrite_path("/$album", "/index.php ? album = " . html_encode(pathurlencode($album))) . '#zp_comment_id_' . $id . '">' . $albumtitle . $title . '</a>';
-							if (empty($albumtitle))
-								$albumtitle = $album;
+						$album = getItemByID('albums', $comment['ownerid']);
+						if ($album) {
+							$link = '<a href = "' . $album->getLink() . '#zp_comment_id_' . $id . '">' . $album->getTitle() . '</a>';
 						}
 						break;
 					case "news": // ZENPAGE: if plugin is installed
 						if (extensionEnabled('zenpage')) {
-							$titlelink = '';
-							$title = '';
-							$newsdata = query_full_array("SELECT `title`, `titlelink` FROM " . prefix('news') .
-											" WHERE `id`=" . $comment['ownerid']);
-							if ($newsdata) {
-								$newsdata = $newsdata[0];
-								$titlelink = $newsdata['titlelink'];
-								$title = get_language_string($newsdata['title']);
-								$link = '<a href = "' . rewrite_path("/news/" . $titlelink, "/index.php? p = news&amp;
-							title = " . urlencode($titlelink)) . '#zp_comment_id_' . $id . '">' . gettext("[news]") . ' ' . $title . "</a> ";
+							$news = getItemByID('news', $comment['ownerid']);
+							if ($news) {
+								$link = '<a href = "' . $news->getLink() . '#zp_comment_id_' . $id . '">' . gettext("[news]") . ' ' . $news->getTitle() . "</a> ";
 							}
 						}
 						break;
 					case "pages": // ZENPAGE: if plugin is installed
 						if (extensionEnabled('zenpage')) {
-							$image = '';
-							$title = '';
-							$pagesdata = query_full_array("SELECT `title`, `titlelink` FROM " . prefix('pages') .
-											" WHERE `id`=" . $comment['ownerid']);
-							if ($pagesdata) {
-								$pagesdata = $pagesdata[0];
-								$titlelink = $pagesdata['titlelink'];
-								$title = get_language_string($pagesdata['title']);
-								$link = "<a href=\"" . rewrite_path('/' . _PAGES_ . '/' . $titlelink, "/index.php?p=pages&amp;title=" . urlencode($titlelink)) . '#zp_comment_id_' . $id . '">' . gettext("[page]") . ' ' . $title . "</a>";
+							$page = getItemByID('pages', $comment['ownerid']);
+							if ($page) {
+								$link = "<a href=\"" . $page->getLink() . '#zp_comment_id_' . $id . '">' . gettext("[page]") . ' ' . $page->getTitle() . "</a>";
 							}
 						}
 						break;
 					default : // all the image types
-						$imagedata = query_full_array("SELECT `title`, `filename`, `albumid` FROM " . prefix('images') .
-										" WHERE `id`=" . $comment['ownerid']);
-						if ($imagedata) {
-							$imgdata = $imagedata[0];
-							$image = $imgdata['filename'];
-							if ($imgdata['title'] == "")
-								$title = $image;
-							else
-								$title = get_language_string($imgdata['title']);
-							$title = '::' . $title;
-							$album = getItemByID('albums', $imgdata['albumid']);
-							if ($album->exists) {
-								$albumtitle = $album->getTitle();
-								$albumname = $album->name;
-								$link = "<a href=\"" . rewrite_path('/' . pathurlencode($albumname . '/' . $image), '/index.php?album=' . html_encode(pathurlencode($album)) . "&amp;image=" . urlencode($image)) . '#zp_comment_id_' . $id . '">' . $albumtitle . $title . "</a>";
-							}
+						$image = getItemByID('images', $comment['ownerid']);
+						if ($image) {
+							$link = "<a href=\"" . $image->getLink() . '#zp_comment_id_' . $id . '">' . $image->getTitle() . "</a>";
 						}
 						break;
 				}

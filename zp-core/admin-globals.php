@@ -17,6 +17,7 @@ httpsRedirect();
 $_SESSION['adminRequest'] = @$_COOKIE['zp_user_auth']; //	Allow "unprotected" i.php if the request came from an admin session
 $zenphoto_tabs = array();
 
+require_once(SERVERPATH . "/" . ZENFOLDER . '/rewrite.php');
 if (OFFSET_PATH != 2 && !getOption('license_accepted')) {
 	require_once(dirname(__FILE__) . '/license.php');
 }

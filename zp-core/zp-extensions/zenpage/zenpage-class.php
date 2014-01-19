@@ -750,42 +750,47 @@ class Zenpage {
 	 * @return string
 	 */
 	function getNewsIndexURL() {
-		return rewrite_path(_NEWS_, "/index.php?p=news");
+		Zenpage_internal_deprecations::getNewsIndexURL();
+		return getNewsIndexURL();
 	}
 
 	/**
 	 * Returns partial path of news category
 	 *
 	 * @return string
+	 * @deprecated since version 1.4.6
 	 */
 	function getNewsCategoryPath($category, $page = NULL) {
+		Zenpage_internal_deprecations::getNewsCategoryPath();
+		$rewrite = '/' . _CATEGORY_ . '/' . $category;
+		$plain = "/index.php?p=news&category=$category";
 		if ($page > 1) {
-			return rewrite_path('/' . _CATEGORY_ . '/' . $category . '/' . $page, "/index.php?p=news&category=$category&page=$page");
-		} else {
-			return rewrite_path('/' . _CATEGORY_ . '/' . $category, "/index.php?p=news&category=$category");
+			$rewrite .='/' . $page;
+			$plain .= '&page=' . $page;
 		}
+		return rewrite_path($rewrite, $plain); //deprecated
 	}
 
 	/**
 	 * Returns partial path of news date archive
 	 *
 	 * @return string
+	 * @deprecated since version 1.4.6
 	 */
 	function getNewsArchivePath($date, $page = NULL) {
-		if ($page > 1) {
-			return rewrite_path('/' . _NEWS_ARCHIVE_ . '/' . $date . '/' . $page, "/index.php?p=news&date=$date&page=$page");
-		} else {
-			return rewrite_path('/' . _NEWS_ARCHIVE_ . '/' . $date, "/index.php?p=news&date=$date");
-		}
+		Zenpage_internal_deprecations::getNewsArchivePath();
+		return getNewsArchivePath($date, $page);
 	}
 
 	/**
 	 * Returns partial path of news article title
 	 *
 	 * @return string
+	 * @deprecated since version 1.4.6
 	 */
 	function getNewsTitlePath($title) {
-		return rewrite_path('/' . _NEWS_ . "/$title", "/index.php?p=news&title=$title");
+		Zenpage_internal_deprecations::getNewsTitlePath();
+		return rewrite_path('/' . _NEWS_ . "/$title", "/index.php?p=news&title=$title"); //deprecated
 	}
 
 	/*	 * ********************************* */
@@ -797,8 +802,10 @@ class Zenpage {
 	 *
 	 * @param string $catname the title of the category
 	 * @return string
+	 * @deprecated since version 1.4.6
 	 */
 	function getCategoryLink($catname) {
+		Zenpage_internal_deprecations::getCategoryLink();
 		foreach ($this->getAllCategories(false) as $cat) {
 			if ($cat['titlelink'] == $catname) {
 				return $cat['title'];

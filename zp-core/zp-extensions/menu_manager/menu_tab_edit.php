@@ -109,7 +109,7 @@ $menuset = checkChosenMenuset();
 							$('#description').html('<?php echo js_encode(gettext("Creates a link to the Zenpage News Index.")); ?>');
 							$('#link').attr('disabled', true);
 							$('#titleinput').show();
-							$('#link').val('<?php echo rewrite_path(_NEWS_, '?p=news'); ?>');
+							$('#link').val('<?php echo getNewsIndexURL(); ?>');
 							break;
 						case 'all_zenpagecategorys':
 							$('#albumselector,#pageselector,#categoryselector,#custompageselector,#titleinput,#titlelabel,#link_row,#visible_row,#span_row').hide();
@@ -266,11 +266,12 @@ if (is_array($result)) {
 					$add = '&amp;update';
 				}
 				?>
-				<form method="post" id="add" name="add" action="menu_tab_edit.php?save<?php echo $add;
+				<form method="post" id="add" name="add" action="menu_tab_edit.php?save<?php
+				echo $add;
 				if ($menuset)
 					echo '&amp;menuset=' . $menuset;
 				?>" style="display: none">
-<?php XSRFToken('update_menu'); ?>
+							<?php XSRFToken('update_menu'); ?>
 					<input type="hidden" name="update" id="update" value="<?php echo html_encode($action); ?>" />
 					<input type="hidden" name="id" id="id" value="<?php echo $id; ?>" />
 					<input type="hidden" name="link-old" id="link-old" value="<?php echo html_encode($link); ?>" />
@@ -280,7 +281,7 @@ if (is_array($result)) {
 						if (is_array($result)) {
 							$selector = html_encode($menuset);
 						} else {
-							$result = array('id'				 => NULL, 'title'			 => '', 'link'			 => '', 'show'			 => 1, 'type'			 => NULL, 'include_li' => 1, 'span_id'		 => '', 'span_class' => '');
+							$result = array('id' => NULL, 'title' => '', 'link' => '', 'show' => 1, 'type' => NULL, 'include_li' => 1, 'span_id' => '', 'span_class' => '');
 							$selector = getMenuSetSelector(false);
 						}
 						?>
@@ -311,7 +312,7 @@ if (is_array($result)) {
 						<tr id="link_row">
 							<td><span id="link_label"></span></td>
 							<td>
-<?php printCustomPageSelector($result['link']); ?>
+								<?php printCustomPageSelector($result['link']); ?>
 								<input name="link" type="text" size="100" id="link" value="<?php echo html_encode($result['link']); ?>" />
 							</td>
 						</tr>
@@ -319,56 +320,56 @@ if (is_array($result)) {
 							<td>
 								<label id="show_visible" for="show" style="display: inline">
 									<input name="show" type="checkbox" id="show" value="1" <?php
-												 if ($result['show'] == 1) {
-													 echo "checked='checked'";
-												 }
-												 ?> style="display: inline" />
-<?php echo gettext("published"); ?>
+									if ($result['show'] == 1) {
+										echo "checked='checked'";
+									}
+									?> style="display: inline" />
+												 <?php echo gettext("published"); ?>
 								</label>
 							</td>
 							<td>
 								<label id="include_li_label" style="display: inline">
 									<input name="include_li" type="checkbox" id="include_li" value="1" <?php
-if ($result['include_li'] == 1) {
-	echo "checked='checked'";
-}
-?> style="display: inline" />
-								<?php echo gettext("Include <em>&lt;LI&gt;</em> element"); ?>
+									if ($result['include_li'] == 1) {
+										echo "checked='checked'";
+									}
+									?> style="display: inline" />
+												 <?php echo gettext("Include <em>&lt;LI&gt;</em> element"); ?>
 								</label>
 							</td>
 						</tr>
 						<tr id="span_row">
 							<td>
-							<label>
-								<input name="span" type="checkbox" id="span" value="1" <?php
-								if ($result['span_id'] || $result['span_class']) {
-									echo "checked='checked'";
-								}
-								?> style="display: inline" />
-<?php echo gettext("Add <em>span</em> tags"); ?>
+								<label>
+									<input name="span" type="checkbox" id="span" value="1" <?php
+									if ($result['span_id'] || $result['span_class']) {
+										echo "checked='checked'";
+									}
+									?> style="display: inline" />
+												 <?php echo gettext("Add <em>span</em> tags"); ?>
 								</label>
 							</td>
 							<td>
-						<?php echo gettext('ID'); ?>
+								<?php echo gettext('ID'); ?>
 								<input name="span_id" type="text" size="20" id="span_id" value="<?php echo html_encode($result['span_id']); ?>" />
-						<?php echo gettext('Class'); ?>
+								<?php echo gettext('Class'); ?>
 								<input name="span_class" type="text" size="20" id="span_class" value="<?php echo html_encode($result['span_class']); ?>" />
 							</td>
 						</tr>
-<?php
-if (is_array($result) && !empty($result['type'])) {
-	$array = getItemTitleAndURL($result);
-	if (!$array['valid']) {
-		?>
+						<?php
+						if (is_array($result) && !empty($result['type'])) {
+							$array = getItemTitleAndURL($result);
+							if (!$array['valid']) {
+								?>
 								<tr>
 									<td colspan="2">
 										<span class="notebox"><?php printf(gettext('Target does not exists in <em>%1$s</em> theme'), $array['theme']); ?></span>
 									</td>
 								</tr>
-		<?php
-	}
-}
-?>
+								<?php
+							}
+						}
+						?>
 					</table>
 					<p class="buttons">
 						<button type="submit"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
@@ -379,7 +380,7 @@ if (is_array($result) && !empty($result['type'])) {
 			</div>
 		</div>
 	</div>
-<?php printAdminFooter(); ?>
+	<?php printAdminFooter(); ?>
 
 </body>
 </html>
