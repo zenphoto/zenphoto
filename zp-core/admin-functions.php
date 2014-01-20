@@ -488,10 +488,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 				$album = newAlbum($folder);
 				if ($album->isDynamic()) {
 					if ($rights == ALL_ALBUMS_RIGHTS) {
-						$list[$album->getFolder()] = $album->getTitle();
+						$list[$album->getFileName()] = $album->getTitle();
 					}
 				} else {
-					$list[$album->getFolder()] = $album->getTitle();
+					$list[$album->getFileName()] = $album->getTitle();
 					genAlbumList($list, $album, $rights); /* generate for subalbums */
 				}
 			}
@@ -1186,7 +1186,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						<?php
 					}
 					?>
-					<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFolder())); ?>">
+					<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
 						<img src="images/view.png" alt="" />
 						<strong><?php echo gettext('View Album'); ?></strong>
 					</a>
@@ -1916,7 +1916,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						<?php
 					}
 					?>
-					<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFolder())); ?>">
+					<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
 						<img src="images/view.png" alt="" />
 						<strong><?php echo gettext('View Album'); ?></strong>
 					</a>
@@ -2120,7 +2120,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					if ($album->getCommentsAllowed()) {
 						if ($enableEdit) {
 							?>
-							<a href="?action=comments&amp;commentson=0&amp;album=<?php echo html_encode($album->getFolder()); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo gettext('Disable comments'); ?>">
+							<a href="?action=comments&amp;commentson=0&amp;album=<?php echo html_encode($album->getFileName()); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo gettext('Disable comments'); ?>">
 								<?php
 							}
 							?>
@@ -2134,7 +2134,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					} else {
 						if ($enableEdit) {
 							?>
-							<a href="?action=comments&amp;commentson=1&amp;album=<?php echo html_encode($album->getFolder()); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo gettext('Enable comments'); ?>">
+							<a href="?action=comments&amp;commentson=1&amp;album=<?php echo html_encode($album->getFileName()); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo gettext('Enable comments'); ?>">
 								<?php
 							}
 							?>
@@ -2210,7 +2210,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				if ($enableEdit) {
 					?>
 					<div class="page-list_icon">
-						<input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $album->getFolder(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" <?php if ($supress) echo ' disabled="disabled"'; ?> />
+						<input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $album->getFileName(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" <?php if ($supress) echo ' disabled="disabled"'; ?> />
 					</div>
 					<?php
 				}

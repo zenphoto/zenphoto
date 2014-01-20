@@ -180,7 +180,7 @@ echo "\n</head>";
 						}
 					}
 					?>
-					<form action="?page=edit&amp;album=<?php echo $album->getFolder(); ?>&amp;saved&amp;tab=sort" method="post" name="sortableListForm" id="sortableListForm">
+					<form action="?page=edit&amp;album=<?php echo $album->getFileName(); ?>&amp;saved&amp;tab=sort" method="post" name="sortableListForm" id="sortableListForm">
 						<?php XSRFToken('save_sort'); ?>
 						<?php printBulkActions($checkarray_images, true); ?>
 						<script type="text/javascript">
@@ -198,7 +198,7 @@ echo "\n</head>";
 								<img	src="images/pass.png" alt="" />
 								<strong><?php echo gettext("Apply"); ?></strong>
 							</button>
-							<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFolder())); ?>">
+							<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
 								<img src="images/view.png" alt="" />
 								<strong><?php echo gettext('View Album'); ?></strong>
 							</a>
@@ -247,7 +247,7 @@ echo "\n</head>";
 									<img	src="images/pass.png" alt="" />
 									<strong><?php echo gettext("Apply"); ?></strong>
 								</button>
-								<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFolder())); ?>">
+								<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
 									<img src="images/view.png" alt="" />
 									<strong><?php echo gettext('View Album'); ?></strong>
 								</a>

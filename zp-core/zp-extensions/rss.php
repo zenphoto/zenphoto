@@ -196,7 +196,7 @@ function getRSSLink($option, $lang = NULL, $addl = NULL) {
 				} else {
 					$album = $_zp_current_album;
 				}
-				$link = array('rss' => 'gallery', 'albumname' => $album->getFolder());
+				$link = array('rss' => 'gallery', 'albumname' => $album->getFileName());
 				break;
 			}
 		case 'collection':
@@ -206,7 +206,7 @@ function getRSSLink($option, $lang = NULL, $addl = NULL) {
 				} else {
 					$album = $_zp_current_album;
 				}
-				$link = array('rss' => 'gallery', 'folder' => $album->getFolder());
+				$link = array('rss' => 'gallery', 'folder' => $album->getFileName());
 			}
 			break;
 		case 'comments':
@@ -231,7 +231,7 @@ function getRSSLink($option, $lang = NULL, $addl = NULL) {
 			break;
 		case 'albumsrsscollection':
 			if (getOption('RSS_album_image')) {
-				$link = array('rss' => 'gallery', 'folder' => $_zp_current_album->getFolder(), 'albumsmode' => '');
+				$link = array('rss' => 'gallery', 'folder' => $_zp_current_album->getFileName(), 'albumsmode' => '');
 			}
 			break;
 		case 'pages':
@@ -676,7 +676,7 @@ class RSS extends feed {
 				$link = $obj->getLink();
 				$filename = $obj->getFilename();
 				$ext = getSuffix($filename);
-				$album = $albumobj->getFolder();
+				$album = $albumobj->getFileName();
 				$fullimagelink = $this->host . html_encode(pathurlencode($obj->getFullImageURL()));
 				$desc = $obj->getContent($this->locale);
 				$desc = str_replace('//<![CDATA[', '', $desc);
@@ -698,7 +698,7 @@ class RSS extends feed {
 				$feeditem['title'] = strip_tags(get_language_string($obj->getTitle('all'), $this->locale));
 				$title = get_language_string($obj->getTitle('all'), $this->locale);
 				$link = $obj->getLink();
-				$album = $obj->getFolder();
+				$album = $obj->getFileName();
 				$albumthumb = $obj->getAlbumThumbImage();
 				$content = shortenContent($obj->getDesc($this->locale), getOption('RSS_truncate_length'), '...');
 				if (isImagePhoto($obj)) {

@@ -295,7 +295,7 @@ class Video extends Image {
 	function getFullImageURL() {
 		// Search for a high quality version of the video
 		if ($vid = parent::getFullImageURL()) {
-			$folder = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($this->album->getFolder());
+			$folder = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($this->album->getFileName());
 			$video = stripSuffix($this->filename);
 			$curdir = getcwd();
 			chdir($folder);

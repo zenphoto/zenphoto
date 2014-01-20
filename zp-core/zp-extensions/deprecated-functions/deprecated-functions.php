@@ -31,8 +31,60 @@ class internal_deprecations {
 		deprecated_functions::notify(gettext('Pass array("albums" => array(album, album, ...)) for the object list.'));
 	}
 
+	/**
+	 * @deprecated
+	 * @since 1.4.0
+	 */
 	static function getGalleryIndexURL() {
 		deprecated_functions::notify(gettext('The parameter to getGalleryIndexURL() is deprecated. Use getCustomPageURL() instead for custom pages.'));
+	}
+
+	/**
+	 * @deprecated
+	 * @since 1.4.0
+	 */
+	static function getFolder() {
+		deprecated_functions::notify(gettext('Use the getFilename() method instead'));
+	}
+
+	/**
+	 * @deprecated
+	 * @since 1.4.0
+	 */
+	static function getImageLink() {
+		deprecated_functions::notify(gettext('Use the getLink() method instead'));
+	}
+
+	/**
+	 * @deprecated
+	 * @since 1.4.0
+	 */
+	static function getAlbumLink() {
+		deprecated_functions::notify(gettext('Use the getLink() method instead'));
+	}
+
+	/**
+	 * @deprecated
+	 * @since 1.4.0
+	 */
+	static function getAlbumSortType() {
+		deprecated_functions::notify(gettext('Use the getSortType() method instead'));
+	}
+
+	/**
+	 * @deprecated
+	 * @since 1.4.0
+	 */
+	static function getAlbumThumb() {
+		deprecated_functions::notify(gettext('Use the getThumb() method instead'));
+	}
+
+	/**
+	 * @deprecated
+	 * @since 1.4.0
+	 */
+	static function setSubalbumSortType($sorttype) {
+		deprecated_functions::notify(gettext('Use the setSortType() method instead'));
 	}
 
 }
@@ -340,11 +392,11 @@ function getRSSHeaderLink($option, $linktext = '', $lang = '') {
 			}
 		case "Album":
 			if (getOption('RSS_album_image')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"" . html_encode($linktext) . "\" href=\"" . $protocol . $host . WEBPATH . "/index.php?rss&amp;albumtitle=" . urlencode(getAlbumTitle()) . "&amp;albumname=" . urlencode($_zp_current_album->getFolder()) . "&amp;lang=" . $lang . "\" />\n";
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"" . html_encode($linktext) . "\" href=\"" . $protocol . $host . WEBPATH . "/index.php?rss&amp;albumtitle=" . urlencode(getAlbumTitle()) . "&amp;albumname=" . urlencode($_zp_current_album->getFileName()) . "&amp;lang=" . $lang . "\" />\n";
 			}
 		case "Collection":
 			if (getOption('RSS_album_image')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"" . html_encode($linktext) . "\" href=\"" . $protocol . $host . WEBPATH . "/index.php?rss&amp;albumtitle=" . urlencode(getAlbumTitle()) . "&amp;folder=" . urlencode($_zp_current_album->getFolder()) . "&amp;lang=" . $lang . "\" />\n";
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"" . html_encode($linktext) . "\" href=\"" . $protocol . $host . WEBPATH . "/index.php?rss&amp;albumtitle=" . urlencode(getAlbumTitle()) . "&amp;folder=" . urlencode($_zp_current_album->getFileName()) . "&amp;lang=" . $lang . "\" />\n";
 			}
 		case "Comments":
 			if (getOption('RSS_comments')) {

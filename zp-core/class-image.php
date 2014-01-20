@@ -914,6 +914,7 @@ class Image extends MediaObject {
 	 * @deprecated since version 1.4.6
 	 */
 	function getImageLink() {
+		internal_deprecations::getImageLink();
 		return $this->getLink();
 	}
 

@@ -726,7 +726,7 @@ class Zenpage {
 						$albumdate = strftime('%Y-%m-%d %H:%M:%S', $timestamp);
 					}
 					$latestalbums[$counter] = array(
-									"albumname"	 => $tempalbum->getFolder(),
+									"albumname"	 => $tempalbum->getFileName(),
 									"titlelink"	 => $tempalbum->getTitle(),
 									"date"			 => $albumdate,
 									"type"			 => 'albums',

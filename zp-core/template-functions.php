@@ -1135,7 +1135,7 @@ function printBareAlbumTitle() {
  */
 function albumNumber() {
 	global $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery;
-	$name = $_zp_current_album->getFolder();
+	$name = $_zp_current_album->getFileName();
 	if (in_context(ZP_SEARCH)) {
 		$albums = $_zp_current_search->getAlbums();
 	} else if (in_context(ZP_ALBUM)) {
@@ -3219,7 +3219,7 @@ function getRandomImagesAlbum($rootAlbum = NULL, $daily = false) {
 			}
 		}
 	} else {
-		$albumfolder = $album->getFolder();
+		$albumfolder = $album->getFileName();
 		if ($album->isMyItem(LIST_RIGHTS)) {
 			$imageWhere = '';
 			$albumInWhere = '';

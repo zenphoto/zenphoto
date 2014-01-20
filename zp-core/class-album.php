@@ -84,6 +84,15 @@ class AlbumBase extends MediaObject {
 	 *
 	 * @return string
 	 */
+	function getFileName() {
+		return $this->name;
+	}
+
+	/**
+	 * Returns the folder on the filesystem
+	 *
+	 * @return string
+	 */
 	function getFolder() {
 		return $this->name;
 	}
@@ -225,6 +234,7 @@ class AlbumBase extends MediaObject {
 	 * @deprecated since version 1.4.5
 	 */
 	function getAlbumSortType() {
+		internal_deprecations::getAlbumSortType();
 		return $this->getSortType('album');
 	}
 
@@ -395,6 +405,7 @@ class AlbumBase extends MediaObject {
 	 * @deprecated since version 1.4.6
 	 */
 	function getAlbumThumb() {
+		internal_deprecations::getAlbumThumb();
 		return $this->getThumb();
 	}
 
@@ -414,7 +425,20 @@ class AlbumBase extends MediaObject {
 	 * @deprecated since version 1.4.6
 	 */
 	function setAlbumThumb($filename) {
+		internal_deprecations::setAlbumThumb();
 		$this->setThumb($filename);
+	}
+
+	/**
+	 * Returns an URL to the album, including the current page number
+	 *
+	 * @param string $page if not null, apppend as page #
+	 * @return string
+	 * @deprecated since version 1.4.6
+	 */
+	function getAlbumLink($page = NULL) {
+		internal_deprecations::getAlbumLink();
+		return $this->getLink();
 	}
 
 	/**
@@ -844,15 +868,6 @@ class Album extends AlbumBase {
 	}
 
 	/**
-	 * Returns the folder on the filesystem
-	 *
-	 * @return string
-	 */
-	function getFolder() {
-		return $this->name;
-	}
-
-	/**
 	 * Returns The parent Album of this Album. NULL if this is a top-level album.
 	 *
 	 * @return object
@@ -1177,17 +1192,6 @@ class Album extends AlbumBase {
 			$plain .= "&page=$page";
 		}
 		return zp_apply_filter('getLink', rewrite_path($rewrite, $plain), $this, $page);
-	}
-
-	/**
-	 * Returns an URL to the album, including the current page number
-	 *
-	 * @param string $page if not null, apppend as page #
-	 * @return string
-	 * @deprecated since version 1.4.6
-	 */
-	function getAlbumLink($page = NULL) {
-		return $this->getLink();
 	}
 
 	/**
