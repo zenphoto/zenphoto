@@ -126,6 +126,6 @@ foreach ($_zp_conf_vars['special_pages'] as $definition) {
 unset($definition);
 unset($_definitions);
 
-if (MOD_REWRITE || isset($_GET['z']))
+if (OFFSET_PATH == 0 && MOD_REWRITE || isset($_GET['z']))
 	rewriteHandler();
 ?>
