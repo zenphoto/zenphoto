@@ -15,7 +15,7 @@ $map = function_exists('printGoogleMap');
 	</head>
 
 	<body onload="blurAnchors()">
-<?php zp_apply_filter('theme_body_open'); ?>
+		<?php zp_apply_filter('theme_body_open'); ?>
 
 		<!-- Wrap Header -->
 		<div id="header">
@@ -47,7 +47,7 @@ $map = function_exists('printGoogleMap');
 					</div><!-- albnext -->
 					<?php
 					if (getOption('Allow_search')) {
-						$album_list = array('albums' => array($_zp_current_album->name), 'pages'	 => '0', 'news'	 => '0');
+						$album_list = array('albums' => array($_zp_current_album->name), 'pages' => '0', 'news' => '0');
 						printSearchForm(NULL, 'search', $_zp_themeroot . '/images/search.png', gettext('Search within album'), NULL, NULL, $album_list);
 					}
 					?>
@@ -68,13 +68,17 @@ $map = function_exists('printGoogleMap');
 						<?php
 						if (getOption('custom_index_page') === 'gallery') {
 							?>
-							<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home'); ?></a> |
+							<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home'); ?></a> |
+							<?php
+						} else {
+							?>
+							<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a> |
 							<?php
 						}
-						?>
-						<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a> |
-<?php printParentBreadcrumb(); ?></span>
-<?php printAlbumTitle(); ?>
+						printGalleryTitle();
+						?></a> |
+						<?php printParentBreadcrumb(); ?></span>
+					<?php printAlbumTitle(); ?>
 				</div>
 			</div> <!-- wrapnav -->
 
@@ -108,16 +112,16 @@ $map = function_exists('printGoogleMap');
 						}
 						?>
 						<li>
-									<?php $annotate = annotateAlbum(); ?>
+							<?php $annotate = annotateAlbum(); ?>
 							<div class="imagethumb">
 								<a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php echo html_encode($annotate) ?>">
-	<?php printCustomAlbumThumbImage($annotate, null, ALBUM_THMB_WIDTH, null, ALBUM_THMB_WIDTH, ALBUM_THUMB_HEIGHT); ?></a>
+									<?php printCustomAlbumThumbImage($annotate, null, ALBUM_THMB_WIDTH, null, ALBUM_THMB_WIDTH, ALBUM_THUMB_HEIGHT); ?></a>
 							</div>
 							<h4>
 								<a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php echo html_encode($annotate) ?>">
-								<?php printAlbumTitle(); ?>
+									<?php printAlbumTitle(); ?>
 								</a>
-						<?php printAddToFavorites($_zp_current_album, '', gettext('Remove')); ?>
+								<?php printAddToFavorites($_zp_current_album, '', gettext('Remove')); ?>
 							</h4>
 						</li>
 						<?php
@@ -181,7 +185,7 @@ $map = function_exists('printGoogleMap');
 					</div> <!-- main -->
 					<div class="clearage"></div>
 					<span style="text-align:center"><?php @call_user_func('printSlideShowLink'); ?></span>
-				<?php if (isset($firstImage)) printNofM('Photo', $firstImage, $lastImage, getNumImages()); ?>
+					<?php if (isset($firstImage)) printNofM('Photo', $firstImage, $lastImage, getNumImages()); ?>
 				</div> <!-- content -->
 				<?php
 			} else { /* no images to display */
@@ -206,7 +210,7 @@ $map = function_exists('printGoogleMap');
 				}
 				?>
 			</div> <!-- pagenumbers -->
-<?php commonComment(); ?>
+			<?php commonComment(); ?>
 		</div> <!-- subcontent -->
 
 		<!-- Footer -->

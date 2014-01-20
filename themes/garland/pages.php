@@ -18,7 +18,10 @@ if (!defined('WEBPATH') || !class_exists('Zenpage'))
 				<div id="header">
 					<div id="logo-floater">
 						<div>
-							<h1 class="title"><a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a></h1>
+							<h1 class="title"><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a></h1>
+
+							<?php echo getGalleryIndexURL(); ?>
+
 						</div>
 					</div>
 				</div>
@@ -37,7 +40,7 @@ if (!defined('WEBPATH') || !class_exists('Zenpage'))
 								<div class="main section" id="main">
 									<h2 id="gallerytitle">
 										<?php printHomeLink('', ' » '); ?>
-										<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a>
+										<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a>
 										<?php printZenpageItemsBreadcrumb(" » ", ""); ?><?php printPageTitle(" » "); ?>
 									</h2>
 									<h3><?php printPageTitle(); ?></h3>

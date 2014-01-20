@@ -14,11 +14,11 @@ if (!defined('WEBPATH'))
 		?>
 		<?php printHeadTitle(); ?>
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
-<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', 'Gallery RSS'); ?>
+		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', 'Gallery RSS'); ?>
 	</head>
 
 	<body onload="blurAnchors()">
-<?php zp_apply_filter('theme_body_open'); ?>
+		<?php zp_apply_filter('theme_body_open'); ?>
 
 		<!-- Wrap Header -->
 		<div id="header">
@@ -28,7 +28,7 @@ if (!defined('WEBPATH'))
 				<div id="logo">
 					<?php
 					if (getOption('Allow_search')) {
-						$album_list = array('albums' => '1', 'pages'	 => '0', 'news'	 => '0');
+						$album_list = array('albums' => '1', 'pages' => '0', 'news' => '0');
 						printSearchForm(NULL, 'search', $_zp_themeroot . '/images/search.png', gettext('Search albums'), NULL, NULL, $album_list);
 					}
 					printLogo();
@@ -43,7 +43,7 @@ if (!defined('WEBPATH'))
 						<?php
 						if (getOption('custom_index_page') === 'gallery') {
 							?>
-							<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home'); ?></a> |
+							<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home'); ?></a> |
 							<?php
 						}
 						printGalleryTitle();
@@ -75,23 +75,23 @@ if (!defined('WEBPATH'))
 						}
 						?>
 						<li>
-									<?php $annotate = annotateAlbum(); ?>
+							<?php $annotate = annotateAlbum(); ?>
 							<div class="imagethumb">
 								<a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php echo $annotate; ?>">
-	<?php printCustomAlbumThumbImage($annotate, null, ALBUM_THMB_WIDTH, null, ALBUM_THMB_WIDTH, ALBUM_THUMB_HEIGHT); ?>
+									<?php printCustomAlbumThumbImage($annotate, null, ALBUM_THMB_WIDTH, null, ALBUM_THMB_WIDTH, ALBUM_THUMB_HEIGHT); ?>
 								</a>
 							</div>
 							<h4><a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php echo $annotate; ?>"><?php printAlbumTitle(); ?></a></h4>
 						</li>
-				<?php } ?>
+					<?php } ?>
 				</ul>
 				<div class="clearage"></div>
-<?php printNofM('Album', $firstAlbum, $lastAlbum, getNumAlbums()); ?>
+				<?php printNofM('Album', $firstAlbum, $lastAlbum, getNumAlbums()); ?>
 
 			</div> <!-- main -->
 			<!-- Page Numbers -->
 			<div id="pagenumbers">
-<?php printPageListWithNav("« " . gettext('prev'), gettext('next') . " »"); ?>
+				<?php printPageListWithNav("« " . gettext('prev'), gettext('next') . " »"); ?>
 			</div>
 		</div> <!-- content -->
 

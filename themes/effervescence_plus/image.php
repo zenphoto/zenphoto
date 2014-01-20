@@ -88,15 +88,21 @@ if (!defined('WEBPATH'))
 								<?php
 								if (getOption('custom_index_page') === 'gallery') {
 									?>
-									<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home'); ?></a> |
+									<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home'); ?></a> |
+									<a href="<?php echo html_encode(getCustomPageURL('gallery')); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a> |
+									<?php
+								} else {
+									?>
+									<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a> |
 									<?php
 								}
-								?>
-								<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a> |
+								printGalleryTitle();
+								?></a> |
 								<?php printParentBreadcrumb();
-								printAlbumBreadcrumb("", " | "); ?>
+								printAlbumBreadcrumb("", " | ");
+								?>
 							</span>
-							<?php printImageTitle(); ?>
+<?php printImageTitle(); ?>
 						</div>
 					</div>
 				</div>
@@ -153,7 +159,7 @@ if (!defined('WEBPATH'))
 				if (function_exists('printGoogleMap')) {
 					?>
 					<div id="map_link">
-	<?php printGoogleMap(); ?>
+					<?php printGoogleMap(); ?>
 					</div>
 					<br class="clearall" />
 					<?php

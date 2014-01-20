@@ -518,41 +518,17 @@ function getMainSiteURL() {
 }
 
 /**
- * Returns the URL of the main gallery page containing the current album
+ * Returns the URL of the main gallery index.php page
  *
- * @param bool $relative set to false to get the true index page
  * @return string
  */
-function getGalleryIndexURL($relative = true) {
+function getGalleryIndexURL() {
 	global $_zp_current_album, $_zp_gallery_page, $_zp_gallery;
-	if ($relative && ($_zp_gallery_page != 'index.php') && in_context(ZP_ALBUM)) {
-		$album = getUrAlbum($_zp_current_album);
-		$page = $album->getGalleryPage();
-	} else {
-		$page = 0;
+	if (func_num_args() !== 0) {
+		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
+		internal_deprecations::getGalleryIndexURL();
 	}
-	$gallink1 = '';
-	$gallink2 = '';
-	$specialpage = false;
-	if ($relative && $specialpage = getOption('custom_index_page')) {
-		if (file_exists(SERVERPATH . '/' . THEMEFOLDER . '/' . $_zp_gallery->getCurrentTheme() . '/' . internalToFilesystem($specialpage) . '.php')) {
-			$gallink1 = $specialpage . '/';
-			$gallink2 = 'p=' . $specialpage . '&';
-		} else {
-			$specialpage = false;
-		}
-	}
-	if ($page > 1) {
-		$pathr = '/' . _PAGE_ . '/' . $gallink1 . $page;
-		$path = "/index.php?" . $gallink2 . "page=" . $page;
-	} else {
-		if ($specialpage) {
-			$pathr = '/' . _PAGE_ . '/' . $gallink1;
-			$path = "/index.php?" . substr($gallink2, 0, -1);
-		}
-		$pathr = $path = "/";
-	}
-	return zp_apply_filter('getLink', rewrite_path($pathr, $path), $specialpage . '.php', $page);
+	return zp_apply_filter('getLink', rewrite_path('/', '/'), 'index.php', NULL);
 }
 
 /**
@@ -3881,34 +3857,34 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 		<!-- search form -->
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<script type="text/javascript">
-			// <!-- <![CDATA[
-			var within = <?php echo (int) $within; ?>;
-			function search_(way) {
-				within = way;
-				if (way) {
-					$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+		// <!-- <![CDATA[
+		var within = <?php echo (int) $within; ?>;
+		function search_(way) {
+			within = way;
+			if (way) {
+				$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
 
-				} else {
-					lastsearch = '';
-					$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-				}
-				$('#search_input').val('');
+			} else {
+				lastsearch = '';
+				$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
 			}
-			$('#search_form').submit(function() {
-				if (within) {
-					var newsearch = $.trim($('#search_input').val());
-					if (newsearch.substring(newsearch.length - 1) == ',') {
-						newsearch = newsearch.substr(0, newsearch.length - 1);
-					}
-					if (newsearch.length > 0) {
-						$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
-					} else {
-						$('#search_input').val('<?php echo $searchwords; ?>');
-					}
+			$('#search_input').val('');
+		}
+		$('#search_form').submit(function() {
+			if (within) {
+				var newsearch = $.trim($('#search_input').val());
+				if (newsearch.substring(newsearch.length - 1) == ',') {
+					newsearch = newsearch.substr(0, newsearch.length - 1);
 				}
-				return true;
-			});
-			// ]]> -->
+				if (newsearch.length > 0) {
+					$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+				} else {
+					$('#search_input').val('<?php echo $searchwords; ?>');
+				}
+			}
+			return true;
+		});
+		// ]]> -->
 			</script>
 			<?php echo $prevtext; ?>
 			<div>

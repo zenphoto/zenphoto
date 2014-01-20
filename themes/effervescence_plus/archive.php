@@ -6,13 +6,13 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
-<?php zp_apply_filter('theme_head'); ?>
+		<?php zp_apply_filter('theme_head'); ?>
 		<?php printHeadTitle(); ?>
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	</head>
 
 	<body onload="blurAnchors()">
-<?php zp_apply_filter('theme_body_open'); ?>
+		<?php zp_apply_filter('theme_body_open'); ?>
 
 		<!-- Wrap Header -->
 		<div id="header">
@@ -20,7 +20,7 @@ if (!defined('WEBPATH'))
 
 				<!-- Logo -->
 				<div id="logo">
-<?php printLogo(); ?>
+					<?php printLogo(); ?>
 				</div>
 			</div> <!-- gallerytitle -->
 
@@ -31,16 +31,20 @@ if (!defined('WEBPATH'))
 						<?php
 						if (getOption('custom_index_page') === 'gallery') {
 							?>
-							<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home'); ?></a> |
+							<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home'); ?></a> |
+							<?php
+						} else {
+							?>
+							<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a> |
 							<?php
 						}
-						?>
-						<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a></span>  | <?php echo gettext('Archive View'); ?>
+						printGalleryTitle();
+						?></a></span>  | <?php echo gettext('Archive View'); ?>
 				</div>
 			</div> <!-- wrapnav -->
 
 			<!-- Random Image -->
-<?php printHeadingImage(getRandomImages(getThemeOption('effervescence_daily_album_image'))); ?>
+			<?php printHeadingImage(getRandomImages(getThemeOption('effervescence_daily_album_image'))); ?>
 		</div> <!-- header -->
 
 		<!-- Wrap Main Body -->
@@ -74,7 +78,7 @@ if (!defined('WEBPATH'))
 						?>
 					</div><!-- content left-->
 					<div id="sidebar">
-					<?php include("sidebar.php"); ?>
+						<?php include("sidebar.php"); ?>
 					</div><!-- sidebar -->
 					<?php
 				}

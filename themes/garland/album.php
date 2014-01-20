@@ -12,11 +12,11 @@ $map = function_exists('printGoogleMap');
 		<?php printHeadTitle(); ?>
 		<?php $handler->theme_head($_zp_themeroot); ?>
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
-<?php if (class_exists('RSS')) printRSSHeaderLink('Album', getAlbumTitle()); ?>
+		<?php if (class_exists('RSS')) printRSSHeaderLink('Album', getAlbumTitle()); ?>
 	</head>
 	<body class="sidebars">
 		<?php zp_apply_filter('theme_body_open'); ?>
-<?php $handler->theme_bodyopen($_zp_themeroot); ?>
+		<?php $handler->theme_bodyopen($_zp_themeroot); ?>
 		<div id="navigation"></div>
 		<div id="wrapper">
 			<div id="container">
@@ -24,14 +24,14 @@ $map = function_exists('printGoogleMap');
 					<div id="logo-floater">
 						<div>
 							<h1 class="title">
-								<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo sanitize(getGalleryTitle()); ?></a>
+								<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo sanitize(getGalleryTitle()); ?></a>
 							</h1>
 						</div>
 					</div>
 				</div><!-- header -->
 				<div class="sidebar">
 					<div id="leftsidebar">
-<?php include("sidebar.php"); ?>
+						<?php include("sidebar.php"); ?>
 					</div>
 				</div>
 				<div id="center">
@@ -40,23 +40,23 @@ $map = function_exists('printGoogleMap');
 							<div class="left-corner"><!-- begin content -->
 								<div class="main section" id="main">
 									<h2 id="gallerytitle">
-<?php printHomeLink('', ' » '); ?>
-										<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php printGalleryTitle(); ?></a> » <?php printParentBreadcrumb("", " » ", " » "); ?><?php echo html_encode(getAlbumTitle()); ?>
+										<?php printHomeLink('', ' » '); ?>
+										<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php printGalleryTitle(); ?></a> » <?php printParentBreadcrumb("", " » ", " » "); ?><?php echo html_encode(getAlbumTitle()); ?>
 									</h2>
 									<?php printAlbumDesc(); ?>
-										<?php printCodeblock(1); ?>
+									<?php printCodeblock(1); ?>
 									<div id="albums">
 										<?php
 										while (next_album()) {
 											?>
 											<div class="album">
 												<a class="albumthumb" href="<?php echo getAlbumLinkURL(); ?>" title="<?php printf(gettext('View album:  %s'), sanitize(getAlbumTitle())); ?>">
-	<?php printCustomAlbumThumbImage(getAlbumTitle(), 85, NULL, NULL, 85, 85); ?>
+													<?php printCustomAlbumThumbImage(getAlbumTitle(), 85, NULL, NULL, 85, 85); ?>
 												</a>
 												<div class="albumdesc">
 													<h3>
 														<a href="<?php echo getAlbumLinkURL(); ?>" title="<?php printf(gettext('View album:  %s'), sanitize(getAlbumTitle())); ?>">
-	<?php printAlbumTitle(); ?>
+															<?php printAlbumTitle(); ?>
 														</a>
 													</h3>
 													<br />

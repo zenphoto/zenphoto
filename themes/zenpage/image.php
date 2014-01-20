@@ -50,8 +50,9 @@ if (!defined('WEBPATH'))
 			<div id="content">
 
 				<div id="breadcrumb">
-					<h2><a href="<?php echo getGalleryIndexURL(false); ?>" title="<?php gettext('Index'); ?>"><?php echo gettext("Index"); ?></a> » <?php printParentBreadcrumb("", " » ", " » ");
-					printAlbumBreadcrumb("  ", " » "); ?>
+					<h2><a href="<?php echo getGalleryIndexURL(); ?>" title="<?php gettext('Index'); ?>"><?php echo gettext("Index"); ?></a> » <?php printParentBreadcrumb("", " » ", " » ");
+					printAlbumBreadcrumb("  ", " » ");
+					?>
 						<strong><?php printImageTitle(); ?></strong> (<?php echo imageNumber() . "/" . getNumImages(); ?>)
 					</h2>
 				</div>
@@ -96,9 +97,11 @@ if (!defined('WEBPATH'))
 					</div>
 					<div id="narrow">
 						<div id="imagedesc"><?php printImageDesc(); ?></div>
-						<?php if (getTags()) {
+						<?php
+						if (getTags()) {
 							echo gettext('<strong>Tags:</strong>');
-						} printTags('links', '', 'taglist', ', '); ?>
+						} printTags('links', '', 'taglist', ', ');
+						?>
 						<br style="clear:both;" /><br />
 						<?php
 						if (function_exists('printSlideShowLink')) {

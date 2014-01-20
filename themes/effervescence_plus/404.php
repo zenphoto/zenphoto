@@ -7,12 +7,12 @@ if (!defined('WEBPATH'))
 <html>
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
-<?php printHeadTitle(); ?>
+		<?php printHeadTitle(); ?>
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	</head>
 
 	<body>
-<?php zp_apply_filter('theme_body_open'); ?>
+		<?php zp_apply_filter('theme_body_open'); ?>
 
 		<!-- Wrap Header -->
 		<div id="header">
@@ -20,7 +20,7 @@ if (!defined('WEBPATH'))
 
 				<!-- Logo -->
 				<div id="logo">
-<?php printLogo(); ?>
+					<?php printLogo(); ?>
 				</div>
 			</div>
 
@@ -31,11 +31,17 @@ if (!defined('WEBPATH'))
 						<?php
 						if (getOption('custom_index_page') === 'gallery') {
 							?>
-							<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home'); ?></a> |
+							if (getOption('custom_index_page') === 'gallery') {
+							?>
+							<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home'); ?></a> |
+							<?php
+						} else {
+							?>
+							<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a> |
 							<?php
 						}
-						?>
-						<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a></span>  |
+						printGalleryTitle();
+						?></a></span>  |
 					<?php
 					print404status(isset($album) ? $album : NULL, isset($image) ? $image : NULL, $obj);
 					?>
@@ -66,7 +72,7 @@ if (!defined('WEBPATH'))
 		<!-- Footer -->
 		<div class="footlinks">
 			<small><?php printThemeInfo(); ?></small>
-<?php printZenphotoLink(); ?>
+			<?php printZenphotoLink(); ?>
 			<br />
 		</div>
 

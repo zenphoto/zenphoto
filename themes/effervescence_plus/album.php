@@ -49,7 +49,7 @@ $map = function_exists('printGoogleMap');
 					</div><!-- albnext -->
 					<?php
 					if (getOption('Allow_search')) {
-						$album_list = array('albums' => array($_zp_current_album->name), 'pages'	 => '0', 'news'	 => '0');
+						$album_list = array('albums' => array($_zp_current_album->name), 'pages' => '0', 'news' => '0');
 						printSearchForm(NULL, 'search', $_zp_themeroot . '/images/search.png', gettext('Search within album'), NULL, NULL, $album_list);
 					}
 					?>
@@ -70,12 +70,16 @@ $map = function_exists('printGoogleMap');
 						<?php
 						if (getOption('custom_index_page') === 'gallery') {
 							?>
-							<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home'); ?></a> |
+							<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home'); ?></a> |
+							<a href="<?php echo html_encode(getCustomPageURL('gallery')); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a> |
+							<?php
+						} else {
+							?>
+							<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a> |
 							<?php
 						}
-						?>
-						<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a> |
-						<?php printParentBreadcrumb(); ?></span>
+						printParentBreadcrumb();
+						?></span>
 					<?php printAlbumTitle(); ?>
 				</div>
 			</div> <!-- wrapnav -->

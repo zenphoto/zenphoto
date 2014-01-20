@@ -30,7 +30,7 @@ if (!defined('WEBPATH') || !class_exists('Zenpage'))
 
 			<div id="content">
 				<div id="breadcrumb">
-					<h2><a href="<?php echo getGalleryIndexURL(false); ?>"><?php echo gettext("Index"); ?></a><?php
+					<h2><a href="<?php echo getGalleryIndexURL(); ?>"><?php echo gettext("Index"); ?></a><?php
 						if (!isset($ishomepage)) {
 							printZenpageItemsBreadcrumb(" » ", "");
 						}
@@ -44,7 +44,7 @@ if (!defined('WEBPATH') || !class_exists('Zenpage'))
 				<div id="content-left">
 					<h2><?php printPageTitle(); ?></h2>
 					<?php
-					echo getGalleryIndexURL(false);
+					echo getGalleryIndexURL();
 
 					printPageContent();
 					printCodeblock(1);

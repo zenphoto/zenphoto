@@ -186,7 +186,7 @@ class htmlmetatags {
 		switch ($_zp_gallery_page) {
 			case 'index.php':
 				$desc = getBareGalleryDesc();
-				$canonicalurl = $host . getGalleryIndexURL(false);
+				$canonicalurl = $host . getGalleryIndexURL();
 				$type = 'website';
 				break;
 			case 'album.php':

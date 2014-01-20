@@ -38,7 +38,7 @@ if (!defined('WEBPATH') || !class_exists('Zenpage'))
 
 				<div id="breadcrumb">
 					<h2>
-						<a href="<?php echo getGalleryIndexURL(false); ?>"><?php echo gettext("Index"); ?></a>
+						<a href="<?php echo getGalleryIndexURL(); ?>"><?php echo gettext("Index"); ?></a>
 						<?php printNewsIndexURL(NULL, ' » '); ?><strong><?php
 							printZenpageItemsBreadcrumb(' » ', '');
 							printCurrentNewsCategory(" » ");
@@ -98,7 +98,7 @@ if (!defined('WEBPATH') || !class_exists('Zenpage'))
 									printNewsCategories(", ", gettext("Categories: "), "newscategories");
 									?>
 								</div>
-									<?php printNewsContent(); ?>
+								<?php printNewsContent(); ?>
 								<?php printCodeblock(1); ?>
 								<?php
 								if (getTags()) {
@@ -107,30 +107,30 @@ if (!defined('WEBPATH') || !class_exists('Zenpage'))
 								?>
 								<br style="clear:both;" /><br />
 							</div>
-		<?php
-	endwhile;
-	printNewsPageListWithNav(gettext('next »'), gettext('« prev'), true, 'pagelist', true);
-}
-?>
+							<?php
+						endwhile;
+						printNewsPageListWithNav(gettext('next »'), gettext('« prev'), true, 'pagelist', true);
+					}
+					?>
 
 
 				</div><!-- content left-->
 
 
 				<div id="sidebar">
-<?php include("sidebar.php"); ?>
+					<?php include("sidebar.php"); ?>
 				</div><!-- sidebar -->
 
 
 				<div id="footer">
-<?php include("footer.php"); ?>
+					<?php include("footer.php"); ?>
 				</div>
 
 			</div><!-- content -->
 
 		</div><!-- main -->
-<?php
-zp_apply_filter('theme_body_close');
-?>
+		<?php
+		zp_apply_filter('theme_body_close');
+		?>
 	</body>
 </html>

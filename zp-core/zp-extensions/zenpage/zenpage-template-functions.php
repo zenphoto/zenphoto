@@ -1368,7 +1368,7 @@ function printTopRatedItems($number = 10, $option = "all", $showstats = true, $s
  * @param string $css_class CSS class of the sub level list(s)
  * @param string $$css_class_active CSS class of the sub level list(s)
  * @param string $indexname insert the name (default "Gallery Index") how you want to call the link to the gallery index, insert "" (default) if you don't use it, it is not printed then.
- * @param int $showsubs Set to depth of sublevels that should be shown always. 0 by default. To show all, set to a true!Only valid if option=="list".
+ * @param int $showsubs Set to depth of sublevels that should be shown always. 0 by default. To show all, set to a true! Only valid if option=="list".
  * @param bool $startlist set to true to output the UL tab (false automatically if you use 'omit-top' or 'list-sub')
  * @param int $limit truncation limit display strings
  * @return string
@@ -1441,7 +1441,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 				if ($_zp_gallery_page == "index.php") {
 					echo "<li $css_class_topactive>" . html_encode($display) . "</li>";
 				} else {
-					echo "<li><a href='" . html_encode(getGalleryIndexURL(true)) . "' title='" . html_encode($indexname) . "'>" . html_encode($display) . "</a></li>";
+					echo "<li><a href='" . html_encode(getGalleryIndexURL()) . "' title='" . html_encode($indexname) . "'>" . html_encode($display) . "</a></li>";
 				}
 				break;
 			case 'categories':
@@ -1486,7 +1486,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 				$itemid = $pageobj->getID();
 				$itemparentid = $pageobj->getParentID();
 				$itemtitlelink = $pageobj->getTitlelink();
-				$itemurl = getPageLinkURL($itemtitlelink);
+				$itemurl = $pageobj->getLink();
 				$count = '';
 				break;
 			case 'categories':

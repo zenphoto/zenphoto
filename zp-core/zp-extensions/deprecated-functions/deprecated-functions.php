@@ -31,6 +31,10 @@ class internal_deprecations {
 		deprecated_functions::notify(gettext('Pass array("albums" => array(album, album, ...)) for the object list.'));
 	}
 
+	static function getGalleryIndexURL() {
+		deprecated_functions::notify(gettext('The parameter to getGalleryIndexURL() is deprecated. Use getCustomPageURL() instead for custom pages.'));
+	}
+
 }
 
 /**

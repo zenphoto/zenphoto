@@ -40,13 +40,16 @@ if (function_exists('printContactForm')) {
 							<?php
 							if (getOption('custom_index_page') === 'gallery') {
 								?>
-								<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home'); ?></a> |
+								<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home'); ?></a> |
+								<?php
+							} else {
+								?>
+								<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a> |
 								<?php
 							}
-							?>
-							<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>">
-								<?php printGalleryTitle(); ?></a></span> |
-								<?php
+							printGalleryTitle();
+							?></a></span> |
+						<?php
 						echo "<em>" . gettext('Contact') . "</em>";
 						?>
 					</div>
