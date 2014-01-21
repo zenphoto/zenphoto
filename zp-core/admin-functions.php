@@ -1370,7 +1370,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$sort[gettext('Custom')] = 'custom';
 						/*
 						 * not recommended--screws with peoples minds during pagination!
-						  $sort[gettext('Random')] = 'random';
+							$sort[gettext('Random')] = 'random';
 						 */
 						?>
 						<tr>
@@ -2276,7 +2276,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		$sorttype = strtolower(sanitize($_POST[$prefix . 'subalbumsortby'], 3));
 		if ($sorttype == 'custom')
 			$sorttype = strtolower(sanitize($_POST[$prefix . 'customalbumsort'], 3));
-		$album->setSubalbumSortType($sorttype);
+		$album->setSortType($sorttype,'album');
 		if (($sorttype == 'manual') || ($sorttype == 'random')) {
 			$album->setSortDirection('album', 0);
 		} else {

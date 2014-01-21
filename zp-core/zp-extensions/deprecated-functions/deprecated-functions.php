@@ -11,7 +11,7 @@ class internal_deprecations {
 	 * @deprecated
 	 * @since 1.4.6
 	 */
-	static function next_album() {
+	public static function next_album() {
 		deprecated_functions::notify(gettext('Sort parameter oprions should be set instead with the setSortType() and setSortDirection() object methods at the head of your script.'));
 	}
 
@@ -19,7 +19,7 @@ class internal_deprecations {
 	 * @deprecated
 	 * @since 1.4.6
 	 */
-	static function next_image() {
+	public static function next_image() {
 		deprecated_functions::notify(gettext('Sort parameter oprions should be set instead with the setSortType() and setSortDirection() object methods at the head of your script.'));
 	}
 
@@ -27,7 +27,7 @@ class internal_deprecations {
 	 * @deprecated
 	 * @since 1.4.0
 	 */
-	static function getSearchURL() {
+	public static function getSearchURL() {
 		deprecated_functions::notify(gettext('Pass array("albums" => array(album, album, ...)) for the object list.'));
 	}
 
@@ -35,7 +35,7 @@ class internal_deprecations {
 	 * @deprecated
 	 * @since 1.4.0
 	 */
-	static function getGalleryIndexURL() {
+	public static function getGalleryIndexURL() {
 		deprecated_functions::notify(gettext('The parameter to getGalleryIndexURL() is deprecated. Use getCustomPageURL() instead for custom pages.'));
 	}
 
@@ -242,19 +242,8 @@ function addPluginScript($script) {
 	deprecated_functions::notify(gettext('Register a "theme_head" filter.'));
 	global $_zp_plugin_scripts;
 	$_zp_plugin_scripts[] = $script;
-
-	if (!function_exists('_deprecated_addPluginScript')) {
-
-		function _deprecated_addPluginScript() {
-			global $_zp_plugin_scripts;
-			if (is_array($_zp_plugin_scripts)) {
-				foreach ($_zp_plugin_scripts as $script) {
-					echo $script . "\n";
-				}
-			}
-		}
-
-		zp_register_filter('theme_head', '_deprecated_addPluginScript');
+	if (!zp_has_filter('theme_head', 'deprecated_functions::addPluginScript()')) {
+		zp_register_filter('theme_head', 'deprecated_functions::addPluginScript()');
 	}
 }
 

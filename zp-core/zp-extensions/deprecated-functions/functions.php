@@ -20,25 +20,39 @@ function getPHPFiles($folder, $exclude) {
 }
 
 function listUses($base) {
-	global $_files, $pattern, $report;
+	global $_files, $pattern, $report, $deprecated;
+	$method = '<em><small>' . gettext('method') . '</small></em> ';
 	$output = false;
 	foreach ($_files as $file) {
 		if (basename($file) != 'deprecated-functions.php') {
 			@set_time_limit(120);
 			$subject = file_get_contents($file);
-			preg_match_all('/' . $pattern . '/', $subject, $matches);
+			preg_match_all($pattern, $subject, $matches);
 			if ($matches && !empty($matches[0])) {
-				$script = basename($file);
 				$location = str_replace($base . '/', '', dirname($file));
 				if (!$output) {
 					echo '<br /><strong>' . $location . '</strong><ul>';
+					$script_location = $base . '/' . $location . '/';
 				}
+				$script = str_replace($script_location, '', $file);
 				echo '<li> ' . $script;
 				echo '<ul>';
-				foreach ($matches[0] as $match) {
+				foreach (array_unique($matches[0]) as $match) {
 					$match = preg_replace('/(.*)?\s/', '', $match);
 					$match = preg_replace('/\s?\(/', '', $match);
-					echo '<li>' . $match . '</li>';
+					$details = $deprecated->listed_functions[$match];
+					switch (trim($details['class'])) {
+						case 'static':
+							$class = '*';
+							break;
+						case 'public static':
+							$class = '**';
+							break;
+						default:
+							$class = '';
+							break;
+					}
+					echo '<li>' . $match . $class . '</li>';
 				}
 				echo '</ul></li>';
 				$output = true;

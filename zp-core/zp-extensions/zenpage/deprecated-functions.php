@@ -7,6 +7,10 @@ require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-f
 
 class Zenpage_internal_deprecations {
 
+	public static function getLatestNews() {
+		deprecated_functions::notify(gettext('CombiNews is deprecated. See the <a href="http://www.zenphoto.org/news/zenphoto-1.4.6">Zenphoto 1.4.6 release notes</a>.'));
+	}
+
 	/**
 	 * @deprecated
 	 * @since 1.4.5
@@ -19,7 +23,7 @@ class Zenpage_internal_deprecations {
 	 * @deprecated
 	 * @since 1.4.6
 	 */
-	static function next_news() {
+	public static function next_news() {
 		deprecated_functions::notify(gettext('Sort parameter oprions should be set instead with the setSortType() and setSortDirection() object methods at the head of your script.'));
 	}
 
@@ -27,7 +31,7 @@ class Zenpage_internal_deprecations {
 	 * @deprecated
 	 * @since 1.4.6
 	 */
-	static function next_page() {
+	public static function next_page() {
 		deprecated_functions::notify(gettext('Sort parameter oprions should be set instead with the setSortType() and setSortDirection() object methods at the head of your script.'));
 	}
 
@@ -781,61 +785,6 @@ function getFullNewsImage() {
 	global $_zp_current_zenpage_news;
 	deprecated_functions::notify(gettext('CombiNews is deprecated. See the <a href="http://www.zenphoto.org/news/zenphoto-1.4.6">Zenphoto 1.4.6 release notes</a>.'));
 	return false;
-}
-
-/**
- * Gets the latest news either only news articles or with the latest images or albums
- *
- * NOTE: This function excludes articles that are password protected via a category for not logged in users!
- *
- * @param int $number The number of news items to get
- * @param string $option "none" for only news articles
- * 											 "with_latest_images" for news articles with the latest images by id
- * 											 "with_latest_images_date" for news articles with the latest images by date
- * 											 "with_latest_images_mtime" for news articles with the latest images by mtime (upload date)
- * 											 "with_latest_images_publishdate" for news articles with the latest images by publishdate (if not set date is used)
- * 											 "with_latest_albums" for news articles with the latest albums by id
- * 											 "with_latest_albums_date" for news articles with the latest albums by date
- * 											 "with_latest_albums_mtime" for news articles with the latest albums by mtime (upload date)
- * 										 	 "with_latest_albums_publishdate" for news articles with the latest albums by publishdate (if not set date is used)
- * 											 "with_latestupdated_albums" for news articles with the latest updated albums
- * @param string $category Optional news articles by category (only "none" option)
- * @param bool $sticky place sticky articles at the front of the list
- * @param string $sortdirection 'desc' descending (default) or 'asc' ascending
- * @return array
- * @deprecated since version 1.4.6
- */
-function getLatestNews($number = 2, $option = 'none', $category = '', $sticky = true, $sortdirection = 'desc') {
-	global $_zp_zenpage, $_zp_current_zenpage_news;
-	if ($option != 'none')
-		deprecated_functions::notify(gettext('CombiNews is deprecated. See the <a href="http://www.zenphoto.org/news/zenphoto-1.4.6">Zenphoto 1.4.6 release notes</a>.'));
-	$latest = array();
-	switch ($option) {
-		case 'none':
-			if (empty($category)) {
-				$latest = $_zp_zenpage->getArticles($number, NULL, true, NULL, $sortdirection, $sticky, NULL);
-			} else {
-				$catobj = new ZenpageCategory($category);
-				$latest = $catobj->getArticles($number, NULL, true, NULL, $sortdirection, $sticky);
-			}
-			$counter = '';
-			$latestnews = array();
-			if (is_array($latest)) {
-				foreach ($latest as $item) {
-					$article = new ZenpageNews($item['titlelink']);
-					$counter++;
-					$latestnews[$counter] = array(
-									"albumname"	 => $article->getTitle(),
-									"titlelink"	 => $article->getTitlelink(),
-									"date"			 => $article->getDateTime(),
-									"type"			 => "news"
-					);
-					$latest = $latestnews;
-				}
-			}
-			break;
-	}
-	return $latest;
 }
 
 /**

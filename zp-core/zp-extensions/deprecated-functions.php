@@ -43,13 +43,14 @@ class deprecated_functions {
 		foreach (getPluginFiles('*.php') as $extension => $plugin) {
 			$deprecated = stripSuffix($plugin) . '/deprecated-functions.php';
 			if (file_exists($deprecated)) {
-				$deprecated = file_get_contents($deprecated);
-				preg_match_all('/([static]*)\s*function\s+(.*)\s?\(.*\)\s?\{/', $deprecated, $functions);
+				$plugin = basename(dirname($deprecated));
+				if ($plugin == 'deprecated-functions')
+					$plugin = 'core';
+				$content = file_get_contents($deprecated);
+				preg_match_all('/([public static|static]*)\s*function\s+(.*)\s?\(.*\)\s?\{/', $content, $functions);
 				foreach ($functions[2] as $key => $function) {
-					if (substr($function, 0, 12) != '_deprecated_') { // special case!!!!
-						setOptionDefault('deprecated_' . $function, 1);
-						$this->listed_functions[$function] = $functions[1][$key];
-					}
+					setOptionDefault('deprecated_' . $plugin . '_' . $functions[1][$key] . '_' . $function, 1);
+					$this->listed_functions[$function] = array('plugin' => $plugin, 'class' => $functions[1][$key]);
 				}
 			}
 		}
@@ -57,12 +58,23 @@ class deprecated_functions {
 
 	function getOptionsSupported() {
 		$list = array();
-		foreach ($this->listed_functions as $funct => $internal) {
-			$list[($internal) ? $funct . '*' : $funct] = 'deprecated_' . $funct;
+		foreach ($this->listed_functions as $funct => $details) {
+			switch (trim($details['class'])) {
+				case 'static':
+					$class = '*';
+					break;
+				case 'public static':
+					$class = '**';
+					break;
+				default:
+					$class = '';
+					break;
+			}
+			$list[$funct . $class] = 'deprecated_' . $details['plugin'] . '_' . $details['class'] . '_' . $funct;
 		}
 		return array(gettext('Functions') => array('key'				 => 'deprecated_Function_list', 'type'			 => OPTION_TYPE_CHECKBOX_UL,
 										'checkboxes' => $list,
-										'desc'			 => gettext('Send the <em>deprecated</em> notification message if the function name is checked. Un-checking these boxes will allow you to continue using your theme without warnings while you upgrade its implementation. Functions flagged with an asterix have deprecated parameters.')));
+										'desc'			 => gettext('Send the <em>deprecated</em> notification message if the function name is checked. Un-checking these boxes will allow you to continue using your theme without warnings while you upgrade its implementation. Functions flagged with an asterisk are class methods. Ones flagged with two asterisks have deprecated parameters.')));
 	}
 
 	/*
@@ -72,6 +84,7 @@ class deprecated_functions {
 	static function notify($use) {
 		$traces = @debug_backtrace();
 		$fcn = $traces[1]['function'];
+
 		if (empty($fcn) || getOption('deprecated_' . $fcn)) {
 			if (empty($fcn))
 				$fcn = gettext('function');
@@ -101,6 +114,15 @@ class deprecated_functions {
 						'rights'			 => ADMIN_RIGHTS
 		);
 		return $buttons;
+	}
+
+	static function addPluginScript() {
+		global $_zp_plugin_scripts;
+		if (is_array($_zp_plugin_scripts)) {
+			foreach ($_zp_plugin_scripts as $script) {
+				echo $script . "\n";
+			}
+		}
 	}
 
 }

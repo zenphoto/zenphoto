@@ -245,6 +245,7 @@ class AlbumBase extends MediaObject {
 	 * @deprecated since version 1.4.5
 	 */
 	function setSubalbumSortType($sorttype) {
+		internal_deprecations::setAlbumSortType();
 		$this->setSortType($sorttype, 'album');
 	}
 

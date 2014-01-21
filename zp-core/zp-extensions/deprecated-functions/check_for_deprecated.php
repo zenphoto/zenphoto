@@ -16,8 +16,15 @@ if (isset($_GET['action'])) {
 	XSRFdefender('deprecated');
 	$zplist = getSerializedArray(getOption('Zenphoto_theme_list'));
 	$deprecated = new deprecated_functions();
-	$list = array_diff($deprecated->listed_functions, $deprecated->internalFunctions);
-	$pattern = '([^function^\->]\s+)' . implode('[\(]|([^function^\->]\s+)', $list) . '[\(]';
+	$list = array();
+	foreach ($deprecated->listed_functions as $func => $details) {
+		$func = preg_quote($func);
+		if (!$details['class']) {
+			$func = '\s' . $func;
+		}
+		$list[] = $func;
+	}
+	$pattern = '/(' . implode('|', $list) . ')\b/';
 	$report = array();
 	$selected = sanitize_numeric($_POST['target']);
 }
@@ -63,7 +70,7 @@ echo '</head>' . "\n";
 				</form>
 
 				<br class="clearall" />
-				<p class="notebox"><?php echo gettext('<strong>NOTE:</strong> This search will have false positives for instance when the function name appears in a comment or quoted string.'); ?></p>
+				<p class="notebox"><?php echo gettext('<strong>NOTE:</strong> This search will have false positives for instance when the function name appears in a comment or quoted string. Functions flagged with an asterisk are class methods. Ones flagged with two asterisks have deprecated parameters. No screening is done on these, so you must verify if there is an issue.'); ?></p>
 				<?php
 				if (isset($_GET['action'])) {
 					?>

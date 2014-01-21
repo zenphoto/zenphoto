@@ -101,7 +101,7 @@ $map = function_exists('printGoogleMap');
 							if ($nextalbum) {
 								?>
 								<div id="nextalbum" class="slides">
-									<a href="<?php echo html_encode(getNextAlbumURL()); ?>" title="<?php echo gettext('Next album'); ?>"><?php echo gettext('Next album »'); ?><br /><img src="<?php echo html_encode(pathurlencode($nextalbum->getAlbumThumb())); ?>" /></a>
+									<a href="<?php echo html_encode(getNextAlbumURL()); ?>" title="<?php echo gettext('Next album'); ?>"><?php echo gettext('Next album »'); ?><br /><img src="<?php echo html_encode(pathurlencode($nextalbum->getThumb())); ?>" /></a>
 								</div>
 								<br />
 								<?php
@@ -109,7 +109,7 @@ $map = function_exists('printGoogleMap');
 							if ($prevalbum) {
 								?>
 								<div id="prevalbum" class="slides">
-									<a href="<?php echo html_encode(getPrevAlbumURL()); ?>" title="<?php echo gettext('Prev Album'); ?>"><?php echo gettext('« Prev Album'); ?><br /><img src="<?php echo html_encode(pathurlencode($prevalbum->getAlbumThumb())); ?>" /></a>
+									<a href="<?php echo html_encode(getPrevAlbumURL()); ?>" title="<?php echo gettext('Prev Album'); ?>"><?php echo gettext('« Prev Album'); ?><br /><img src="<?php echo html_encode(pathurlencode($prevalbum->getThumb())); ?>" /></a>
 								</div>
 								<?php
 							}

@@ -410,13 +410,19 @@ class ZenpageCategory extends ZenpageRoot {
 	/**
 	 * Returns the full path to a news category
 	 *
-	 * @param string $catlink The category link of a category
+	 * @param string $page The category page number
 	 *
 	 * @return string
 	 */
-	function getLink() {
+	function getLink($page = NULL) {
 		global $_zp_zenpage;
-		return zp_apply_filter('getLink', rewrite_path('/' . _CATEGORY_ . '/' . $this->getTitlelink(), "/index.php?p=news&category=" . $this->getTitlelink()), $this, NULL);
+		if ($page > 1) {
+			$pager = '/' . _PAGE_ . '/' . $page;
+			$page = '&p=' . $page;
+		} else {
+			$pager = $page = '';
+		}
+		return zp_apply_filter('getLink', rewrite_path('/' . _CATEGORY_ . '/' . $this->getTitlelink() . $pager, "/index.php?p=news&category=" . $this->getTitlelink() . $page), $this, NULL);
 	}
 
 	/**
