@@ -441,7 +441,7 @@ class favorites extends AlbumBase {
 	function getLink($page = NULL) {
 		$link = preg_replace('~^_PAGE_/~ ', _PAGE_ . '/', getOption('favorites_rewrite'));
 		if ($page > 1)
-			$link .= '/' . $page;
+			$link .= '/' . $page . '/';
 		return $link;
 	}
 

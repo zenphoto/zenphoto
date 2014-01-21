@@ -417,12 +417,12 @@ class ZenpageCategory extends ZenpageRoot {
 	function getLink($page = NULL) {
 		global $_zp_zenpage;
 		if ($page > 1) {
-			$pager = '/' . _PAGE_ . '/' . $page;
+			$pager = _PAGE_ . '/' . $page . '/';
 			$page = '&p=' . $page;
 		} else {
 			$pager = $page = '';
 		}
-		return zp_apply_filter('getLink', rewrite_path('/' . _CATEGORY_ . '/' . $this->getTitlelink() . $pager, "/index.php?p=news&category=" . $this->getTitlelink() . $page), $this, NULL);
+		return zp_apply_filter('getLink', rewrite_path('/' . _CATEGORY_ . '/' . $this->getTitlelink() . '/' . $pager, "/index.php?p=news&category=" . $this->getTitlelink() . $page), $this, NULL);
 	}
 
 	/**
