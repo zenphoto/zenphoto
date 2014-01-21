@@ -199,7 +199,7 @@ function printRelatedItems($number = 5, $type = 'news', $specific = NULL, $excer
 						$thumburl = false;
 						switch ($item['type']) {
 							case 'albums':
-								$thumburl = $obj->getAlbumThumb();
+								$thumburl = $obj->getThumb();
 								break;
 							case 'images':
 								$thumburl = $obj->getThumb();

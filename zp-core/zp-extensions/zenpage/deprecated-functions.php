@@ -865,7 +865,7 @@ function printLatestNews($number = 5, $option = 'with_latest_images', $category 
 				$title = $obj->getTitle();
 				$categories = "";
 				$link = html_encode($obj->getLink());
-				$thumb = "<a href=\"" . $link . "\" title=\"" . $title . "\"><img src=\"" . html_encode(pathurlencode($obj->getAlbumThumb())) . "\" alt=\"" . strip_tags($title) . "\" /></a>\n";
+				$thumb = "<a href=\"" . $link . "\" title=\"" . $title . "\"><img src=\"" . html_encode(pathurlencode($obj->getThumb())) . "\" alt=\"" . strip_tags($title) . "\" /></a>\n";
 				$content = $obj->getDesc();
 				$date = zpFormattedDate(DATE_FORMAT, strtotime($item['date']));
 				$type = "album";

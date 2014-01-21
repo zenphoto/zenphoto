@@ -134,7 +134,7 @@ function printImageslist($number) {
 		$imgsizeurl = $albumthumb->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, TRUE);
 		echo "<div class='thumb'>";
 		echo "<a href=\"javascript: ZenpageDialog.insert('" . $itemid . "','" . $imgurl . "','" .
-		$albumobj->getAlbumThumb() . "','" .
+		$albumobj->getAlbumhumb() . "','" .
 		"','" .
 		urlencode($albumthumb->filename) . "','" .
 		js_encode($albumthumb->getTitle()) . "','" .
@@ -525,32 +525,32 @@ function printAllNestedList() {
 				$open[$indent] = 0;
 			} else if ($level < $indent) {
 				while ($indent > $level) {
-					$open[$indent]--;
+					$open[$indent] --;
 					$indent--;
 					echo "</li>\n" . str_pad("\t", $indent, "\t") . "</ul>\n";
 				}
 			} else { // indent == level
 				if ($open[$indent]) {
 					echo str_pad("\t", $indent, "\t") . "</li>\n";
-					$open[$indent]--;
+					$open[$indent] --;
 				} else {
 					echo "\n";
 				}
 			}
 			if ($open[$indent]) {
 				echo str_pad("\t", $indent, "\t") . "</li>\n";
-				$open[$indent]--;
+				$open[$indent] --;
 			}
 			echo "<li id='" . $itemid . "' class='itemborder'>";
 			echo "<a href=\"javascript:ZenpageDialog.insert('','" . $zenpagepage . "','','','" . $itemtitlelink . "','" . js_encode($itemtitle) . "','','','" . $mode . "','','','','');\" title='" . html_encode($itemcontent) . "'>" . html_encode($itemtitle) . $unpublished . $counter . "</a> <small><em>" . $obj->getDatetime() . "</em></small>";
 			if ($mode == 'pages') {
 				echo " <a href='zoom.php?pages=" . urlencode($itemtitlelink) . "' title='Zoom' class='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a>";
 			}
-			$open[$indent]++;
+			$open[$indent] ++;
 		}
 		while ($indent > 1) {
 			echo "</li>\n";
-			$open[$indent]--;
+			$open[$indent] --;
 			$indent--;
 			echo str_pad("\t", $indent, "\t") . "</ul>";
 		}
@@ -636,34 +636,34 @@ function printTinyZenpageCategorySelector($currentpage = '') {
 	?>
 	<form name ="AutoListBox2" id="categorydropdown" style="float:left" action="#" >
 		<select name="ListBoxURL" size="1" onchange="gotoLink(this.form)">
-	<?php
-	echo "<option $selected value='tinyzenpage.php?zenpage=articles&amp;page=" . $currentpage . "'>" . gettext("All categories") . "</option>\n";
+			<?php
+			echo "<option $selected value='tinyzenpage.php?zenpage=articles&amp;page=" . $currentpage . "'>" . gettext("All categories") . "</option>\n";
 
-	foreach ($result as $cat) {
-		$catobj = new ZenpageCategory($cat['titlelink']);
-		// check if there are articles in this category. If not don't list the category.
-		$count = count($catobj->getArticles(0, 'all'));
-		$count = " (" . $count . ")";
-		if ($category == $cat['titlelink']) {
-			$selected = "selected='selected'";
-		} else {
-			$selected = "";
-		}
-		//This is much easier than hacking the nested list function to work with this
-		$getparents = $catobj->getParents();
-		$levelmark = '';
-		foreach ($getparents as $parent) {
-			$levelmark .= '&raquo; ';
-		}
-		$title = $catobj->getTitle();
-		if (empty($title)) {
-			$title = '*' . $catobj->getTitlelink() . '*';
-		}
-		if ($count != " (0)") {
-			echo "<option $selected value='tinyzenpage.php?zenpage=articles&amp;page=" . $currentpage . "&amp;category=" . $catobj->getTitlelink() . "'>" . $levelmark . $title . $count . "</option>\n";
-		}
-	}
-	?>
+			foreach ($result as $cat) {
+				$catobj = new ZenpageCategory($cat['titlelink']);
+				// check if there are articles in this category. If not don't list the category.
+				$count = count($catobj->getArticles(0, 'all'));
+				$count = " (" . $count . ")";
+				if ($category == $cat['titlelink']) {
+					$selected = "selected='selected'";
+				} else {
+					$selected = "";
+				}
+				//This is much easier than hacking the nested list function to work with this
+				$getparents = $catobj->getParents();
+				$levelmark = '';
+				foreach ($getparents as $parent) {
+					$levelmark .= '&raquo; ';
+				}
+				$title = $catobj->getTitle();
+				if (empty($title)) {
+					$title = '*' . $catobj->getTitlelink() . '*';
+				}
+				if ($count != " (0)") {
+					echo "<option $selected value='tinyzenpage.php?zenpage=articles&amp;page=" . $currentpage . "&amp;category=" . $catobj->getTitlelink() . "'>" . $levelmark . $title . $count . "</option>\n";
+				}
+			}
+			?>
 		</select>
 		<script type="text/javascript" >
 			// <!-- <![CDATA[
