@@ -30,11 +30,6 @@ class galleryArticles {
 
 	function __construct() {
 		if (OFFSET_PATH == 2) {
-			if (getOption('zenpage_combinews')) {
-				//take over for this option
-				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/galleryArticles/combiNews.php');
-			}
-
 			setOptionDefault('galleryArticles_images', NULL);
 			setOptionDefault('galleryArticles_albums', NULL);
 			setOptionDefault('galleryArticles_category', NULL);
@@ -92,6 +87,11 @@ class galleryArticles {
 										'order'	 => 7,
 										'desc'	 => gettext('If this option is checked and a category matching the album folder exists, that will be used as the article category.'))
 		);
+		if (getOption('zenpage_combinews')) {
+			$options[gettext('Import Combi-news')] = array('key'		 => 'galleryArticles_import', 'type'	 => OPTION_TYPE_CHECKBOX,
+							'order'	 => 99,
+							'desc'	 => gettext('If this option is checked, articles will be generated based on your old <em>Combi-news</em> settings.'));
+		}
 
 		return $options;
 	}
@@ -104,6 +104,13 @@ class galleryArticles {
 	 */
 	function handleOption($option, $currentValue) {
 
+	}
+
+	function handleOptionSave($themename, $themealbum) {
+		if (getOption('galleryArticles_import')) {
+			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/galleryArticles/combiNews.php');
+			purgeOption('galleryArticles_import');
+		}
 	}
 
 	/**
