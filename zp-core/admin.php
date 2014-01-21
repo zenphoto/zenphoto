@@ -238,7 +238,7 @@ if (!zp_loggedin()) {
 					unset($buttonlist[$key]);
 				}
 			}
-			if (PRIMARY_INSTALLATION) {
+			if (zpFunctions::hasPrimaryScripts()) {
 				//	button to restore setup files if needed
 				list($diff, $needs) = checkSignature(false);
 				if (!empty($needs)) {

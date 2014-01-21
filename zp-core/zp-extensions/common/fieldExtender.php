@@ -49,7 +49,7 @@ class fieldExtender {
 	 * constructor calls that are no longer in the list will be removed from the
 	 * database (along with any data associated with them.)
 	 *
-	 * @param rray $newfields
+	 * @param array $newfields
 	 */
 	function constructor($me, $newfields) {
 		$previous = getSerializedArray(getOption(get_class($this) . '_addedFields'));
@@ -114,11 +114,13 @@ class fieldExtender {
 	static function _adminSave($updated, $userobj, $i, $alter, $fields) {
 		if ($userobj->getValid()) {
 			foreach ($fields as $field) {
-				if ($field['table'] == 'administrators') {
-					$olddata = $userobj->get($field['name']);
-					$userobj->set($field['name'], $newdata = $_POST[$field['name'] . '_' . $i]);
-					if ($olddata != $newdata) {
-						$updated = true;
+				if (isset($_POST[$field['name']])) {
+					if ($field['table'] == 'administrators') {
+						$olddata = $userobj->get($field['name']);
+						$userobj->set($field['name'], $newdata = $_POST[$field['name'] . '_' . $i]);
+						if ($olddata != $newdata) {
+							$updated = true;
+						}
 					}
 				}
 			}
