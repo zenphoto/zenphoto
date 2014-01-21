@@ -27,7 +27,7 @@ class userAddressFields extends fieldExtender {
 	function __construct() {
 		global $_userAddressFields;
 
-		$firstTime = extensionEnabled('userAddressFields') && is_null(getOption('userAddressFieldEdit_addedFields'));
+		$firstTime = extensionEnabled('userAddressFields') && is_null(getOption('userAddressFields_addedFields'));
 		parent::constructor('userAddressFields', self::fields());
 		if ($firstTime) { //	migrate the custom data user data
 			$result = query('SELECT * FROM ' . prefix('administrators') . ' WHERE `valid`!=0');
