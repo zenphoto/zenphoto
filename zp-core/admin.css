@@ -897,7 +897,7 @@ input.tags {
 
 .overview-utility {
 	width: 500px;
-	margin: 0 0 15px 15px;
+	margin: 0 0 15px 0px;
 	padding: 0px;
 	float: left;
 }
