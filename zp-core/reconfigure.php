@@ -106,7 +106,7 @@ function checkSignature($auto) {
 	$_configMutex->lock();
 	if (file_exists(dirname(__FILE__) . '/setup/')) {
 		chdir(dirname(__FILE__) . '/setup/');
-		if ($auto) {
+		if ($auto && zp_loggedin(ADMIN_RIGHTS)) {
 			$found = safe_glob('*.xxx');
 			if (!empty($found)) {
 				foreach ($found as $script) {
