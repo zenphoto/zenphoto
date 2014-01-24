@@ -607,9 +607,10 @@ function getPluginFiles($pattern, $folder = '', $stripsuffix = true) {
  * @return string
  */
 function getPlugin($plugin, $inTheme = false, $webpath = false) {
+	global $_zp_gallery;
 	$pluginFile = NULL;
 	if ($inTheme === true) {
-		$inTheme = getCurrentTheme();
+		$inTheme = $_zp_gallery->getCurrentTheme();
 	}
 	if ($inTheme) {
 		$pluginFile = '/' . THEMEFOLDER . '/' . internalToFilesystem($inTheme . '/' . $plugin);
