@@ -519,6 +519,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 *    OPTION_TYPE_CHECKBOX:         A checkbox
 	 *    OPTION_TYPE_CUSTOM:           Handled by $optionHandler->handleOption()
 	 *    OPTION_TYPE_TEXTAREA:         A textarea
+	 *    OPTION_TYPE_RICHTEXT:         A textarea with WYSIWYG editor attached
 	 *    OPTION_TYPE_RADIO:            Radio buttons (button names are in the 'buttons' index of the supported options array)
 	 *    OPTION_TYPE_SELECTOR:         Selector (selection list is in the 'selections' index of the supported options array
 	 *                                  null_selection contains the text for the empty selection. If not present there
@@ -542,6 +543,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	define('OPTION_TYPE_CLEARTEXT', 9);
 	define('OPTION_TYPE_NOTE', 10);
 	define('OPTION_TYPE_PASSWORD', 11);
+	define('OPTION_TYPE_RICHTEXT', 12);
 
 	function customOptions($optionHandler, $indent = "", $album = NULL, $showhide = false, $supportedOptions = NULL, $theme = false, $initial = 'none', $extension = NULL) {
 		if (is_null($supportedOptions)) {
@@ -632,6 +634,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						case OPTION_TYPE_PASSWORD:
 						case OPTION_TYPE_TEXTBOX:
 						case OPTION_TYPE_TEXTAREA:
+						case OPTION_TYPE_RICHTEXT;
 							if ($type == OPTION_TYPE_CLEARTEXT) {
 								$clear = 'clear';
 							} else {
@@ -650,10 +653,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 								if ($multilingual) {
 									print_language_string_list($v, $key, $type, NULL, $editor);
 								} else {
-									if ($type == OPTION_TYPE_TEXTAREA) {
+									if ($type == OPTION_TYPE_TEXTAREA || $type == OPTION_TYPE_RICHTEXT) {
 										$v = get_language_string($v); // just in case....
 										?>
-										<textarea id="<?php echo $key; ?>" name="<?php echo $key; ?>" cols="<?php echo TEXTAREA_COLUMNS; ?>"	style="width: 320px" rows="6"<?php echo $disabled; ?>><?php echo html_encode($v); ?></textarea>
+										<textarea id="<?php echo $key; ?>"<?php if ($type == OPTION_TYPE_RICHTEXT) echo ' class="texteditor"'; ?> name="<?php echo $key; ?>" cols="<?php echo TEXTAREA_COLUMNS; ?>"	style="width: 320px" rows="6"<?php echo $disabled; ?>><?php echo html_encode($v); ?></textarea>
 										<?php
 									} else {
 										?>
@@ -2276,7 +2279,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		$sorttype = strtolower(sanitize($_POST[$prefix . 'subalbumsortby'], 3));
 		if ($sorttype == 'custom')
 			$sorttype = strtolower(sanitize($_POST[$prefix . 'customalbumsort'], 3));
-		$album->setSortType($sorttype,'album');
+		$album->setSortType($sorttype, 'album');
 		if (($sorttype == 'manual') || ($sorttype == 'random')) {
 			$album->setSortDirection('album', 0);
 		} else {
