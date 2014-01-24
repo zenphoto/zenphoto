@@ -186,7 +186,7 @@ class Gallery {
 	function getAlbums($page = 0, $sorttype = null, $direction = null, $care = true, $mine = NULL) {
 
 // Have the albums been loaded yet?
-		if (is_null($this->albums) || $care && $sorttype . $direction !== $this->lastalbumsort) {
+		if ($mine || is_null($this->albums) || $care && $sorttype . $direction !== $this->lastalbumsort) {
 
 			$albumnames = $this->loadAlbumNames();
 			$key = $this->getAlbumSortKey($sorttype);

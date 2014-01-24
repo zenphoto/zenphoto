@@ -907,7 +907,7 @@ class Album extends AlbumBase {
 		if (!$this->exists)
 			return array();
 		global $_zp_gallery;
-		if (is_null($this->subalbums) || $care && $sorttype . $sortdirection !== $this->lastsubalbumsort) {
+		if ($mine || is_null($this->subalbums) || $care && $sorttype . $sortdirection !== $this->lastsubalbumsort) {
 			if (is_null($sorttype)) {
 				$sorttype = $this->getSortType('album');
 			}
