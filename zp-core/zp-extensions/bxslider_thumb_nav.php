@@ -1,19 +1,20 @@
 <?php
 /**
- * Responsive JavaScript carousel thumb nav plugin adapted from   
+ * Responsive JavaScript carousel thumb nav plugin adapted from
  * http://http://bxslider.com
  *
- * Place <var>printBxSliderThumbNav()</var> on your theme's image.php where you want it to appear.
+ * Place <var>printThumbNav()</var> on your theme's image.php where you want it to appear.
  *
  * Supports theme based custom css files (place <var>bxslider.css</var> and needed images in your theme's folder).
  *
- * 
+ *
  * @author Malte Müller (acrylian)
  * @package plugins
+ * @subpackage media
  */
 $plugin_description = gettext("Responsive jQuery bxSlider thumb nav plugin based on http://http://bxslider.com");
 $plugin_author = "Malte Müller (acrylian)";
-$plugin_disable = (extensionEnabled('jcarousel_thumb_nav')) ? gettext('Only one Carousel plugin may be enabled.') : '';
+$plugin_disable = (extensionEnabled('jcarousel_thumb_nav')) ? sprintf(gettext('Only one Carousel plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), 'jcarousel_thumb_nav') : '';
 $option_interface = 'bxslider';
 
 /**
@@ -31,7 +32,7 @@ class bxslider {
 		setOptionDefault('bxslider_cropw', '50');
 		setOptionDefault('bxslider_speed', '500');
 		setOptionDefault('bxslider_fullimagelink', '');
-		setOptionDefault('bxslider_mode','horizontal');
+		setOptionDefault('bxslider_mode', 'horizontal');
 		if (class_exists('cacheManager')) {
 			cacheManager::deleteThemeCacheSizes('bxslider_thumb_nav');
 			cacheManager::addThemeCacheSize('bxslider_thumb_nav', NULL, getOption('bxslider_width'), getOption('bxslider_height'), getOption('bxslider_cropw'), getOption('bxslider_croph'), NULL, NULL, true, NULL, NULL, NULL);
@@ -53,16 +54,16 @@ class bxslider {
 										'desc' => ""),
 						gettext('Crop height')		 => array('key'	 => 'bxslider_croph', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => ""),
-						gettext('Speed')		 => array('key'	 => 'bxslider_speed', 'type' => OPTION_TYPE_TEXTBOX,
+						gettext('Speed')					 => array('key'	 => 'bxslider_speed', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext("The speed in miliseconds the slides advance when clicked.)")),
 						gettext('Full image link') => array('key'	 => 'bxslider_fullimagelink', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext("If checked the thumbs link to the full image instead of the image page.")),
-					  gettext('Mode')	 => array('key'	=> 'bxslider_mode', 'type' => OPTION_TYPE_SELECTOR,
+						gettext('Mode')						 => array('key'				 => 'bxslider_mode', 'type'			 => OPTION_TYPE_SELECTOR,
 										'order'			 => 2,
 										'selections' => array(
-												gettext('Horizontal') 				 => "horizontal", 
-												gettext('Vertical') 				 => "vertical",
-												gettext('Fade') 				 => "fade"),
+														gettext('Horizontal')	 => "horizontal",
+														gettext('Vertical')		 => "vertical",
+														gettext('Fade')				 => "fade"),
 										'desc'			 => gettext("The Mide of the thumb nav. Note this might require theme changes.)"))
 		);
 		foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php')) as $theme => $scripts) {
@@ -78,7 +79,7 @@ class bxslider {
 		return $options;
 	}
 
-static function themeJS() {
+	static function themeJS() {
 		$theme = getCurrentTheme();
 		$css = SERVERPATH . '/' . THEMEFOLDER . '/' . internalToFilesystem($theme) . '/jquery.bxslider.css';
 		if (file_exists($css)) {
@@ -87,7 +88,7 @@ static function themeJS() {
 			$css = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/bxslider_thumb_nav/jquery.bxslider.css';
 		}
 		?>
-		
+
 		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/bxslider_thumb_nav/jquery.bxslider.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="<?php echo html_encode($css); ?>" />
 		<?php
@@ -95,7 +96,7 @@ static function themeJS() {
 
 }
 
-if (!OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page))) {
+if (!$plugin_disable && !OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page))) {
 	zp_register_filter('theme_head', 'bxslider::themeJS');
 
 	/** Prints the jQuery jCarousel HTML setup to be replaced by JS
@@ -111,7 +112,7 @@ if (!OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->getCurrentTheme() . '_
 	 * @param string $mode 'horizontal','vertical', 'fade'
 	 * @param int $speed The speed in miliseconds the slides advance when clicked
 	 */
-	function printBxSliderThumbNav($minitems = NULL, $maxitems = NULL, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $fullimagelink = NULL, $mode = NULL, $speed = NULL) {
+	function printThumbNav($minitems = NULL, $maxitems = NULL, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $fullimagelink = NULL, $mode = NULL, $speed = NULL) {
 		global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery_page;
 		//	Just incase the theme has not set the option, at least second try will work!
 		setOptionDefault('bxslider_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page), 1);
@@ -206,7 +207,7 @@ if (!OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->getCurrentTheme() . '_
 						$active = '';
 					}
 					$imageurl = $imgobj->getCustomImage(NULL, $width, $height, $cropw, $croph, NULL, NULL, true);
-					$items[] = '<li'.$active.'><a href="'.$link.'"><img src="' . html_encode($imageurl) . '" alt="' . html_encode($imgobj->getTitle()) . '"></a></li>';
+					$items[] = '<li' . $active . '><a href="' . $link . '"><img src="' . html_encode($imageurl) . '" alt="' . html_encode($imgobj->getTitle()) . '"></a></li>';
 				}
 			}
 			$albumid = $_zp_current_album->get('id');
@@ -214,45 +215,45 @@ if (!OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->getCurrentTheme() . '_
 			$numimages = getNumImages();
 			if (!is_null($_zp_current_image)) {
 				$imgnumber = (imageNumber() - 1);
-				
 			} else {
 				$imgnumber = 0;
 			}
 			?>
 			<ul class="bxslider<?php echo $albumid; ?>">
-				<?php 
-					$count = '';
-					foreach($items as $item) {
-						echo $item;
-					}
+				<?php
+				$count = '';
+				foreach ($items as $item) {
+					echo $item;
+				}
 				?>
 			</ul>
 			<script type="text/javascript">
-				$(document).ready(function(){
-  				$('.bxslider<?php echo $albumid; ?>').bxSlider({
-  					startSlide: <?php echo $imgnumber; ?>,
-  					mode : '<?php echo $mode; ?>',
-  					minSlides: <?php echo $minitems; ?>,
-  					maxSlides: <?php echo $maxitems; ?>,
-  					speed : <?php echo $speed; ?>,
-  					slideWidth: <?php echo $width; ?>,
-  					slideMargin: 5,
-  					pager: false,
-  					adaptiveHeight: true
+				$(document).ready(function() {
+					$('.bxslider<?php echo $albumid; ?>').bxSlider({
+						startSlide: <?php echo $imgnumber; ?>,
+						mode: '<?php echo $mode; ?>',
+						minSlides: <?php echo $minitems; ?>,
+						maxSlides: <?php echo $maxitems; ?>,
+						speed: <?php echo $speed; ?>,
+						slideWidth: <?php echo $width; ?>,
+						slideMargin: 5,
+						pager: false,
+						adaptiveHeight: true
 					});
 				});
 			</script>
 			<?php
 		}
 	}
+
 	//Fallback wrapper function for backward compatibility if jCarousel plugin was uses formerly
-	function printjCarouselThumbNav($minitems = NULL, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $fullimagelink = NULL, $mode = NULL, $speed = NULL) {
-		if(is_null($mode)) {
+	function printThumbNav($minitems = NULL, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $fullimagelink = NULL, $mode = NULL, $speed = NULL) {
+		if (is_null($mode)) {
 			$mode = 'horizontal';
 		} else {
 			$mode = 'vertical';
 		}
-		printBxSliderThumbNav($minitems, $maxitems = NULL, $width, $height, $cropw, $croph, $fullimagelink, $mode, $speed);
+		printThumbNav($minitems, $maxitems = NULL, $width, $height, $cropw, $croph, $fullimagelink, $mode, $speed);
 	}
 
 }

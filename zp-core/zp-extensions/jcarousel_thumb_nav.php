@@ -1,15 +1,17 @@
 <?php
 /**
  * JavaScript thumb nav plugin with dynamic loading of thumbs on request via JavaScript.
- * Place <var>printjCarouselThumbNav()</var> on your theme's image.php where you want it to appear.
+ * Place <var>printThumbNav()</var> on your theme's image.php where you want it to appear.
  *
  * Supports theme based custom css files (place <var>jcarousel.css</var> and needed images in your theme's folder).
  *
  * @author Malte Müller (acrylian)
  * @package plugins
+ * @subpackage media
  */
 $plugin_description = gettext("jQuery jCarousel thumb nav plugin with dynamic loading of thumbs on request via JavaScript.");
 $plugin_author = "Malte Müller (acrylian) based on a jCarousel example";
+$plugin_disable = (extensionEnabled('bxslider_thumb_nav')) ? sprintf(gettext('Only one Carousel plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), 'bxslider_thumb_nav') : '';
 
 $option_interface = 'jcarousel';
 
@@ -94,7 +96,7 @@ class jcarousel {
 
 }
 
-if (!OFFSET_PATH && getOption('jcarousel_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page))) {
+if (!$plugin_disable && !OFFSET_PATH && getOption('jcarousel_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page))) {
 	zp_register_filter('theme_head', 'jcarousel::themeJS');
 
 	/** Prints the jQuery jCarousel HTML setup to be replaced by JS
@@ -108,7 +110,7 @@ if (!OFFSET_PATH && getOption('jcarousel_' . $_zp_gallery->getCurrentTheme() . '
 	 * @param bool $fullimagelink Set to TRUE if you want the thumb link to link to the full image instead of the image page. Set to NULL if you want to use the backend plugin options.
 	 * @param bool $vertical Set to TRUE if you want the thumbs vertical orientated instead of horizontal (false). Set to NULL if you want to use the backend plugin options.
 	 */
-	function printjCarouselThumbNav($thumbscroll = NULL, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $fullimagelink = NULL, $vertical = NULL) {
+	function printThumbNav($thumbscroll = NULL, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $fullimagelink = NULL, $vertical = NULL) {
 		global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery_page;
 		//	Just incase the theme has not set the option, at least second try will work!
 		setOptionDefault('slideshow_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page), 1);
