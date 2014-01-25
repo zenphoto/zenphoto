@@ -681,7 +681,8 @@ class Gallery {
 			$resource = db_show('tables');
 			if ($resource) {
 				while ($row = db_fetch_assoc($resource)) {
-					query('OPTIMIZE TABLE ' . array_shift($row));
+					$tbl = array_shift($row);
+					query('OPTIMIZE TABLE `' . $tbl . '`');
 				}
 				db_free_result($resource);
 			}
