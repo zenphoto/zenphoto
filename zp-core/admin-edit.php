@@ -454,17 +454,19 @@ if (isset($_GET['action'])) {
 					$nd = 4;
 				}
 				if (isset($_GET['return'])) {
-					$albumdir = pathurlencode(sanitize($_GET['return'], 3));
+					$albumdir = sanitize($_GET['return'], 3);
 				} else {
 					$albumdir = dirname($folder);
-
-					if ($albumdir != '/' && $albumdir != '.') {
-						$albumdir = "&album=" . pathurlencode($albumdir);
-					} else {
-						$albumdir = '';
-					}
 				}
+				if ($albumdir != '/' && $albumdir != '.') {
+					$albumdir = "&album=" . pathurlencode($albumdir);
+				} else {
+					$albumdir = '';
+				}
+			} else {
+				$albumdir = '';
 			}
+
 			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-edit.php?page=edit" . $albumdir . "&ndeleted=" . $nd);
 			exitZP();
 			break;
