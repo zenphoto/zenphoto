@@ -32,7 +32,7 @@
  * @package plugins
  */
 $plugin_is_filter = 9 | THEME_PLUGIN | ADMIN_PLUGIN;
-$plugin_description = gettext("Plugin based on the Cycle2 jQuery plugin providing a slideshow.");
+$plugin_description = gettext("Slideshow plugin based on the Cycle2 jQuery plugin.");
 $plugin_author = "Malte Müller (acrylian)";
 $plugin_disable = (extensionEnabled('slideshow')) ? gettext('Only one slideshow plugin may be enabled.') : '';
 
@@ -419,24 +419,24 @@ class cycle {
 
 	static function cycleJS() {
     ?>
-    	<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER. '/' . PLUGIN_FOLDER ?>/cycle2/jquery.cycle2.min.js" type="text/javascript"></script>
-      <script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER. '/' . PLUGIN_FOLDER ?>/cycle2/jquery.cycle2.center.min.js" type="text/javascript"></script>
+    	<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER. '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.min.js" type="text/javascript"></script>
+      <script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER. '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.center.min.js" type="text/javascript"></script>
       <!-- effect plugins -->
-      <script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER. '/' . PLUGIN_FOLDER ?>/cycle2/jquery.cycle2.flip.min.js" type="text/javascript"></script>
-      <script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER. '/' . PLUGIN_FOLDER ?>/cycle2/jquery.cycle2.ie-fade.min.js" type="text/javascript"></script>
-      <script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER. '/' . PLUGIN_FOLDER ?>/cycle2/jquery.cycle2.shuffle.min.js" type="text/javascript"></script>
-      <script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER. '/' . PLUGIN_FOLDER ?>/cycle2/jquery.cycle2.tile.min.js" type="text/javascript"></script>
-      <script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER. '/' . PLUGIN_FOLDER ?>/cycle2/jquery.cycle2.scrollVert.min.js" type="text/javascript"></script>
-      <script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER. '/' . PLUGIN_FOLDER ?>/cycle2/jquery.cycle2.carousel.min.js" type="text/javascript"></script>
+      <script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER. '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.flip.min.js" type="text/javascript"></script>
+      <script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER. '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.ie-fade.min.js" type="text/javascript"></script>
+      <script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER. '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.shuffle.min.js" type="text/javascript"></script>
+      <script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER. '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.tile.min.js" type="text/javascript"></script>
+      <script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER. '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.scrollVert.min.js" type="text/javascript"></script>
+      <script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER. '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.carousel.min.js" type="text/javascript"></script>
       
       <!--  swipe with iOS fix -->
-      <script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER. '/' . PLUGIN_FOLDER ?>/cycle2/jquery.cycle2.swipe.min.js" type="text/javascript"></script>
-      <script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER. '/' . PLUGIN_FOLDER ?>/cycle2/ios6fix.js" type="text/javascript"></script>
-      <link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER. '/' . PLUGIN_FOLDER ?>/cycle2/fonts/style.css" />
-      <link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER. '/' . PLUGIN_FOLDER ?>/cycle2/cycle.css" />
+      <script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER. '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.swipe.min.js" type="text/javascript"></script>
+      <script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER. '/' . PLUGIN_FOLDER ?>/slideshow2/ios6fix.js" type="text/javascript"></script>
+      <link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER. '/' . PLUGIN_FOLDER ?>/slideshow2/fonts/style.css" />
+      <link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER. '/' . PLUGIN_FOLDER ?>/slideshow2/cycle.css" />
      	<!--[if lte IE 7]>
-        <link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER. '/' . PLUGIN_FOLDER ?>/cycle2/fonts/ie7.css" />
-        <script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER. '/' . PLUGIN_FOLDER ?>/cycle2/fonts/ie7.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER. '/' . PLUGIN_FOLDER ?>/slideshow2/fonts/ie7.css" />
+        <script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER. '/' . PLUGIN_FOLDER ?>/slideshow2/fonts/ie7.js" type="text/javascript"></script>
       <![endif]-->
     <?php
   }

@@ -9,12 +9,6 @@
  height: auto;
 }
 
-/* These two are required for the responsive and auto height feature */
-.slideshow .cycle-slideshow { 
-
- 
-}
-
 /* the list of the control */
 .slideshow .slideshow_controls {
   display: block;
@@ -29,31 +23,11 @@
   font-size: 22px;
 }
 
-.slideshow .slide {
-
-}
-
 .slideshow .slide img {
 width: 100%;
 height: auto;
 }
 
-.slideshow .slide h4 {
-}
-
 .slideshow .slide .slide_desc {
 margin: 5px 0 0 0;
 }
-
-/* Carousel 
-***************/
-
-.cycle-carousel .carousel{ 
-	margin: auto !important; 
-	overflow: auto; 
-}
-
-.cycle-carousel .slide img { 
-	width: auto; 
-	height: auto; 
-	}
