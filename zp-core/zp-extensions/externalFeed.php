@@ -179,7 +179,7 @@ class ExternalFeed extends feed {
 				$this->key = NULL;
 			}
 		}
-		if (!$this->key)
+		if (!$this->key && $this->feedtype != 'site_closed')
 			self::feed404();
 // general feed setup
 		$channeltitlemode = getOption('externalFeed_title');
