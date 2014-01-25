@@ -58,15 +58,21 @@ if (function_exists('printCustomMenu') && getOption('zenpage_custommenu')) {
 </div>
 
 <?php
-if (class_exists('RSS') && getOption('RSS_album_image') || getOption('RSS_articles')) {
+if (class_exists('RSS') && (getOption('RSS_album_image') || getOption('RSS_articles'))) {
 	?>
 	<div class="menu">
 		<h3><?php echo gettext("RSS"); ?></h3>
 		<ul>
-			<?php if (!is_null($_zp_current_album)) { ?>
-				<?php printRSSLink('Album', '<li>', gettext('Album RSS'), '</li>'); ?>
-			<?php } ?>
-			<?php printRSSLink('Gallery', '<li>', gettext('Gallery'), '</li>'); ?>
+			<?php
+			if (!is_null($_zp_current_album)) {
+				printRSSLink('Album', '<li>', gettext('Album RSS'), '</li>');
+				?>
+				<?php
+			}
+			?>
+			<?php
+			printRSSLink('Gallery', '<li>', gettext('Gallery'), '</li>');
+			?>
 			<?php
 			if (extensionEnabled('zenpage')) {
 				printRSSLink("News", "<li>", gettext("News"), '</li>');
@@ -84,13 +90,13 @@ if (getOption("zenpage_contactpage") && extensionEnabled('contact_form')) {
 	<div class="menu">
 		<ul>
 			<li>
-				<?php
-				if ($_zp_gallery_page != 'contact.php') {
-					printCustomPageURL(gettext('Contact us'), 'contact', '', '');
-				} else {
-					echo gettext("Contact us");
-				}
-				?></li>
+	<?php
+	if ($_zp_gallery_page != 'contact.php') {
+		printCustomPageURL(gettext('Contact us'), 'contact', '', '');
+	} else {
+		echo gettext("Contact us");
+	}
+	?></li>
 		</ul>
 	</div>
 	<?php
@@ -99,42 +105,42 @@ if (function_exists("printUserLogin_out") || !zp_loggedin() && function_exists('
 	?>
 	<div class="menu">
 		<ul>
-			<?php
-			if (!zp_loggedin() && function_exists('printRegistrationForm')) {
-				?>
+	<?php
+	if (!zp_loggedin() && function_exists('printRegistrationForm')) {
+		?>
 				<li>
+				<?php
+				if ($_zp_gallery_page != 'register.php') {
+					printCustomPageURL(gettext('Register for this site'), 'register', '', '');
+				} else {
+					echo gettext("Register for this site");
+				}
+				?>
+				</li>
 					<?php
-					if ($_zp_gallery_page != 'register.php') {
-						printCustomPageURL(gettext('Register for this site'), 'register', '', '');
-					} else {
-						echo gettext("Register for this site");
-					}
+				}
+				if (function_exists('printFavoritesLink')) {
 					?>
-				</li>
-				<?php
-			}
-			if (function_exists('printFavoritesLink')) {
-				?>
 				<li>
-					<?php printFavoritesLink(); ?>
+				<?php printFavoritesLink(); ?>
 				</li>
-				<?php
-			}
-			if (function_exists("printUserLogin_out")) {
-				?>
+					<?php
+				}
+				if (function_exists("printUserLogin_out")) {
+					?>
 				<li>
-					<?php printUserLogin_out("", "", 2); ?>
+				<?php printUserLogin_out("", "", 2); ?>
 				</li>
-				<?php
-			}
-			if (class_exists('mobileTheme')) {
-				?>
+					<?php
+				}
+				if (class_exists('mobileTheme')) {
+					?>
 				<li>
-					<?php mobileTheme::controlLink(NULL, '', ''); ?>
+				<?php mobileTheme::controlLink(NULL, '', ''); ?>
 				</li>
-				<?php
-			}
-			?>
+					<?php
+				}
+				?>
 		</ul>
 	</div>
 	<?php

@@ -20,27 +20,29 @@ function jqm_loadScripts() {
  */
 function jqm_printRSSlinks() {
 	global $_zp_gallery_page, $_zp_themeroot;
-	?>
-	<h3><?php echo gettext('RSS'); ?></h3>
-	<ul>
-		<?php
-		// these links must change to ones with rel="external" so they are actually loaded via jquerymobile!
-		if (extensionEnabled('zenpage')) {
-			?>
-			<li class="rsslink"><a href="<?php echo html_encode(getRSSLink('News')); ?>" rel="external" data-ajax="false"><?php echo gettext('News'); ?></a></li>
-			<?php
-		}
+	if (class_exists('RSS')) {
 		?>
-		<li class="rsslink"><a href="<?php echo html_encode(getRSSLink('Gallery')); ?>" rel="external" data-ajax="false"><?php echo gettext('Gallery'); ?></a></li>
-		<?php
-		if ($_zp_gallery_page == 'album.php') {
-			?>
-			<li class="rsslink"><a href="<?php echo html_encode(getRSSLink('Album')); ?>" rel="external" data-ajax="false"><?php echo gettext('Album'); ?></a></li>
+		<h3><?php echo gettext('RSS'); ?></h3>
+		<ul>
 			<?php
-		}
-		?>
-	</ul>
-	<?php
+			// these links must change to ones with rel="external" so they are actually loaded via jquerymobile!
+			if (extensionEnabled('zenpage')) {
+				?>
+				<li class="rsslink"><a href="<?php echo html_encode(getRSSLink('News')); ?>" rel="external" data-ajax="false"><?php echo gettext('News'); ?></a></li>
+				<?php
+			}
+			?>
+			<li class="rsslink"><a href="<?php echo html_encode(getRSSLink('Gallery')); ?>" rel="external" data-ajax="false"><?php echo gettext('Gallery'); ?></a></li>
+			<?php
+			if ($_zp_gallery_page == 'album.php') {
+				?>
+				<li class="rsslink"><a href="<?php echo html_encode(getRSSLink('Album')); ?>" rel="external" data-ajax="false"><?php echo gettext('Album'); ?></a></li>
+				<?php
+			}
+			?>
+		</ul>
+		<?php
+	}
 }
 
 function getPagesLink() {
@@ -64,7 +66,7 @@ function jqm_printMainHeaderNav() {
 				<li><a href="<?php echo getGalleryIndexURL(); ?>"><?php echo gettext('Gallery'); ?></a></li>
 				<?php if (extensionEnabled('zenpage')) { ?>
 					<li><a href="<?php echo getNewsIndexURL(); ?>"><?php echo gettext('News'); ?></a></li>
-					<li><a href="<?php //echo getPagesLink();   ?>"><?php echo gettext('Pages'); ?></a></li>
+					<li><a href="<?php //echo getPagesLink();     ?>"><?php echo gettext('Pages'); ?></a></li>
 				<?php } ?>
 				<li><a href="<?php echo getCustomPageURL('archive'); ?>"><?php echo gettext('Archive'); ?></a></li>
 			</ul>
