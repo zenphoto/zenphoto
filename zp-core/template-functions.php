@@ -4424,12 +4424,11 @@ function checkPageValidity($request, $gallery_page, $page) {
 			break;
 		case 'news.php':
 			if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
-				$cat = $_zp_current_category;
+				$count = count($_zp_current_category->getArticles());
 			} else {
-				$cat = NULL;
+				$count = count($_zp_zenpage->getArticles());
 			}
-			$count = (int) ceil(count($_zp_zenpage->getArticles()));
-
+			$count = (int) ceil($count / ZP_ARTICLES_PER_PAGE);
 			break;
 		default:
 			$count = zp_apply_filter('checkPageValidity', NULL, $gallery_page, $page);
