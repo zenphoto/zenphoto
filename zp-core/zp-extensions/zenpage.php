@@ -76,11 +76,11 @@ $_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%C
 				'rule'		 => '%REWRITE% index.php?p=news&category=$1 [L,QSA]');
 $_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%NEWS_ARCHIVE%/(.*)/([0-9]+)/?$',
 				'rule'		 => '%REWRITE% index.php?p=news&date=$1&page=$2 [L,QSA]');
-$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%NEWS_ARCHIVE%/(.*)/?$',
+$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%NEWS_ARCHIVE%/(.+)/?$',
 				'rule'		 => '%REWRITE% index.php?p=news&date=$1 [L,QSA]');
 $_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%NEWS%/([0-9]+)/?$',
 				'rule'		 => '%REWRITE% index.php?p=news&page=$1 [L,QSA]');
-$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%NEWS%/(.*)/?$',
+$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%NEWS%/(.+)/?$',
 				'rule'		 => '%REWRITE% index.php?p=news&title=$1 [L,QSA]');
 $_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%NEWS%/*$',
 				'rule'		 => '%REWRITE% index.php?p=news [L,QSA]');
@@ -299,6 +299,9 @@ class zenpagecms {
 		global $_zp_current_category;
 		if (is_NewsArticle()) {
 			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
+
+
+
 // page is a NewsArticle--provide zenpage edit, delete, and Add links
 				echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?newsarticle&amp;edit&amp;titlelink=" . urlencode(getNewsTitlelink()) . "\">" . gettext("Edit Article") . "</a></li>";
 				if (GALLERY_SESSION) {
