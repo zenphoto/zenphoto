@@ -238,6 +238,7 @@ class favorites extends AlbumBase {
 
 	function __construct($user) {
 
+		$this->table = 'albums';
 		$this->name = $user;
 		$this->setTitle(get_language_string(getOption('favorites_title')));
 		$this->setDesc(get_language_string(getOption('favorites_desc')));

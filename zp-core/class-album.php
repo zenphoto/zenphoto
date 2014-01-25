@@ -44,7 +44,6 @@ class AlbumBase extends MediaObject {
 	protected $dynamic = false; // will be true for dynamic albums
 
 	function __construct($folder8, $cache = true) {
-		$this->table = 'none';
 		$this->linkname = $this->name = $folder8;
 		parent::PersistentObject('albums', array('folder' => $this->name), 'folder', false, true);
 		$this->exists = false;
