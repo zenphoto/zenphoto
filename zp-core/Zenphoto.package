@@ -592,6 +592,17 @@ zp-core/zp-extensions/PHPMailer/class.pop3.php
 zp-core/zp-extensions/PHPMailer/class.smtp.php
 zp-core/zp-extensions/admin-approval.php
 zp-core/zp-extensions/auto_backup.php
+zp-core/zp-extensions/bxslider_thumb_nav
+zp-core/zp-extensions/bxslider_thumb_nav.php
+zp-core/zp-extensions/bxslider_thumb_nav/images
+zp-core/zp-extensions/bxslider_thumb_nav/images/bx_loader.gif
+zp-core/zp-extensions/bxslider_thumb_nav/images/controls.png
+zp-core/zp-extensions/bxslider_thumb_nav/jquery.bxslider.css
+zp-core/zp-extensions/bxslider_thumb_nav/jquery.bxslider.js
+zp-core/zp-extensions/bxslider_thumb_nav/jquery.bxslider.min.js
+zp-core/zp-extensions/bxslider_thumb_nav/plugins
+zp-core/zp-extensions/bxslider_thumb_nav/plugins/jquery.easing.1.3.js
+zp-core/zp-extensions/bxslider_thumb_nav/plugins/jquery.fitvids.js
 zp-core/zp-extensions/cacheManager
 zp-core/zp-extensions/cacheManager.php
 zp-core/zp-extensions/cacheManager/cacheDBImages.php
@@ -1975,4 +1986,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1977
+1988
