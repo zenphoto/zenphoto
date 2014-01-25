@@ -582,7 +582,7 @@ function next_album($all = false, $sorttype = NULL, $sortdirection = NULL, $mine
 			$mine = $sorttype;
 		} else {
 			//	These parameters are deprecated
-			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions/deprecated-functions.php');
+			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
 			internal_deprecations::next_album();
 		}
 	}
@@ -2016,7 +2016,7 @@ function next_image($all = false, $firstPageCount = NULL, $sorttype = null, $sor
 			$mine = $sorttype;
 		} else {
 			//	These parameters are deprecated
-			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions/deprecated-functions.php');
+			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
 			internal_deprecations::next_image();
 		}
 	}
@@ -3676,7 +3676,7 @@ function isArchive() {
 function getSearchURL($words, $dates, $fields, $page, $object_list = NULL) {
 	if (!is_null($object_list)) {
 		if (array_key_exists(0, $object_list)) { // handle old form albums list
-			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions/deprecated-functions.php');
+			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
 			internal_deprecations::getSearchURL();
 			$object_list = array('albums' => $object_list);
 		}

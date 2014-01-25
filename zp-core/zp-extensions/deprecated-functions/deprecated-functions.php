@@ -83,6 +83,14 @@ class internal_deprecations {
 	 * @deprecated
 	 * @since 1.4.0
 	 */
+	static function setAlbumThumb() {
+		deprecated_functions::notify(gettext('Use the setThumb() method instead'));
+	}
+
+	/**
+	 * @deprecated
+	 * @since 1.4.0
+	 */
 	static function setSubalbumSortType($sorttype) {
 		deprecated_functions::notify(gettext('Use the setSortType() method instead'));
 	}

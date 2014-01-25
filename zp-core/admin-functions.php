@@ -2258,7 +2258,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		$album->setDateTime(sanitize($_POST[$prefix . "albumdate"]));
 		$album->setLocation(process_language_string_save($prefix . 'albumlocation', 3));
 		if (isset($_POST[$prefix . 'thumb']))
-			$album->setAlbumThumb(sanitize($_POST[$prefix . 'thumb']));
+			$album->setThumb(sanitize($_POST[$prefix . 'thumb']));
 		$album->setShow((int) isset($_POST[$prefix . 'Published']));
 		$album->setCommentsAllowed(isset($_POST[$prefix . 'allowcomments']));
 		$sorttype = strtolower(sanitize($_POST[$prefix . 'sortby'], 3));

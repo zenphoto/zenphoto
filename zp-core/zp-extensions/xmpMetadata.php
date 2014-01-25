@@ -774,7 +774,7 @@ class xmpMetadata {
 						$album->setDateTime($metadata['EXIFDateTimeOriginal']);
 					}
 					if (array_key_exists('thumb', $metadata)) {
-						$album->setAlbumThumb($metadata['thumb']);
+						$album->setThumb($metadata['thumb']);
 					}
 					if (array_key_exists('owner', $metadata)) {
 						$album->setOwner($metadata['owner']);

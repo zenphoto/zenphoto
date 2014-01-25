@@ -143,8 +143,10 @@ function getAuthor($fullname = false) {
  */
 function getLatestNews($number = 2, $option = 'none', $category = '', $sticky = true, $sortdirection = 'desc') {
 	global $_zp_zenpage, $_zp_current_zenpage_news;
-	if ($option != 'none')
+	if ($option != 'none') {
+		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/deprecated_functions.php');
 		Zenpage_internal_deprecations::getLatestNews();
+	}
 	$latest = array();
 	switch ($option) {
 		case 'none':

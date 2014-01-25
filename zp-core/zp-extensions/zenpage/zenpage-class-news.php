@@ -303,6 +303,7 @@ class ZenpageNews extends ZenpageItems {
 	 * @deprecated since version 1.4.6
 	 */
 	function getNewsLink() {
+		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/deprecated_functions.php');
 		Zenpage_internal_deprecations::getNewsLink();
 		return $this->getLink();
 	}

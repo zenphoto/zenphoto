@@ -210,6 +210,7 @@ class ZenpagePage extends ZenpageItems {
 	 * @deprecated
 	 */
 	function getSubPages() {
+		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/deprecated_functions.php');
 		Zenpage_internal_deprecations::getSubPages();
 		return $this->getPages();
 	}
@@ -306,6 +307,7 @@ class ZenpagePage extends ZenpageItems {
 	 * @deprecated since version 1.4.6
 	 */
 	function getPageLink() {
+		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/deprecated_functions.php');
 		Zenpage_internal_deprecations::getPageLink();
 		return $this->getLink();
 	}

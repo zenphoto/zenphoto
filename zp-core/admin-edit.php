@@ -96,7 +96,7 @@ if (isset($_GET['action'])) {
 						$notify = '&saved' . $notify;
 					}
 					$album = newAlbum($folder);
-					$album->setSortType('manual','album');
+					$album->setSortType('manual', 'album');
 					$album->setSortDirection('album', 0);
 					$album->save();
 				} else {
@@ -275,9 +275,9 @@ if (isset($_GET['action'])) {
 											if ($thumbnail = sanitize($_POST['album_thumb-' . $i])) { //selected as an album thumb
 												$talbum = newAlbum($thumbnail);
 												if ($image->imagefolder == $thumbnail) {
-													$talbum->setAlbumThumb($image->filename);
+													$talbum->setThumb($image->filename);
 												} else {
-													$talbum->setAlbumThumb('/' . $image->imagefolder . '/' . $image->filename);
+													$talbum->setThumb('/' . $image->imagefolder . '/' . $image->filename);
 												}
 												$talbum->save();
 											}
