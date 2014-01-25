@@ -327,7 +327,7 @@ function printBareNewsTitle() {
 function getNewsTitleLink() {
 	global $_zp_current_zenpage_news;
 	if (!is_null($_zp_current_zenpage_news)) {
-		$link = $_zp_current_zenpage_news->getLink();
+		$link = $_zp_current_zenpage_news->getTitleLink();
 		return $link;
 	}
 }
