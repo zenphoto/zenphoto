@@ -9,6 +9,7 @@
 $plugin_is_filter = 9 | THEME_PLUGIN | ADMIN_PLUGIN;
 $plugin_description = gettext('Create news articles when a gallery item is published.');
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_disable = extensionEnabled('zenpage') ? '' : gettext('Gallery Articles requires Zenpage to be enabled.');
 
 $option_interface = 'galleryArticles';
 
@@ -53,46 +54,50 @@ class galleryArticles {
 	 */
 	function getOptionsSupported() {
 		global $_zp_zenpage;
-		$categories = array();
-		$list = $_zp_zenpage->getAllCategories();
-		foreach ($list as $cat) {
-			$categories[get_language_string($cat['title'])] = $cat['titlelink'];
+		if ($_zp_zenpage) {
+			$categories = array();
+			$list = $_zp_zenpage->getAllCategories();
+			foreach ($list as $cat) {
+				$categories[get_language_string($cat['title'])] = $cat['titlelink'];
+			}
+
+			$list = array('<em>' . gettext('Albums') . '</em>' => 'galleryArticles_albums', '<em>' . gettext('Images') . '</em>' => 'galleryArticles_images');
+
+			$options = array(gettext('Publish for')			 => array('key'				 => 'galleryArticles_items', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
+											'order'			 => 1,
+											'checkboxes' => $list,
+											'desc'			 => gettext('If a <em>type</em> is checked, a news article will be made when an object of that <em>type</em> is published.')),
+							gettext('Image title')			 => array('key'					 => 'galleryArticles_image_text', 'type'				 => OPTION_TYPE_TEXTBOX,
+											'order'				 => 3,
+											'multilingual' => true,
+											'desc'				 => gettext('This text will be used as the <em>title</em> of the article. The album title will be substituted for <code>%2$s</code> and the image title for <code>%1$s</code>.')),
+							gettext('Album title')			 => array('key'					 => 'galleryArticles_album_text', 'type'				 => OPTION_TYPE_TEXTBOX,
+											'order'				 => 2,
+											'multilingual' => true,
+											'desc'				 => gettext('This text will be used as the <em>title</em> of the article. The album title will be substituted for <code>%1$s</code>.')),
+							gettext('size')							 => array('key'		 => 'galleryArticles_size', 'type'	 => OPTION_TYPE_TEXTBOX,
+											'order'	 => 5,
+											'desc'	 => gettext('Set the size the image will be displayed.')),
+							gettext('Publish protected') => array('key'		 => 'galleryArticles_protected', 'type'	 => OPTION_TYPE_CHECKBOX,
+											'order'	 => 4,
+											'desc'	 => gettext('Unless this is checked, objects which are "protected" will not have news articles generated.')),
+							gettext('Category')					 => array('key'				 => 'galleryArticles_category', 'type'			 => OPTION_TYPE_SELECTOR,
+											'order'			 => 6,
+											'selections' => $categories,
+											'desc'			 => gettext('Select a category for the generated articles')),
+							gettext('Use album folder')	 => array('key'		 => 'galleryArticles_albumCategory', 'type'	 => OPTION_TYPE_CHECKBOX,
+											'order'	 => 7,
+											'desc'	 => gettext('If this option is checked and a category matching the album folder exists, that will be used as the article category.'))
+			);
+			if (getOption('zenpage_combinews')) {
+				$options[gettext('Import Combi-news')] = array('key'		 => 'galleryArticles_import', 'type'	 => OPTION_TYPE_CHECKBOX,
+								'order'	 => 99,
+								'desc'	 => gettext('If this option is checked, articles will be generated based on your old <em>Combi-news</em> settings.'));
+			}
+		} else {
+			$options = array(gettext('Disabled') => array('key'	 => 'galleryArticles_note', 'type' => OPTION_TYPE_NOTE,
+											'desc' => '<p class="notebox">' . gettext('Gallery Articles requires Zenpage to be enabled.') . '</p>'));
 		}
-
-		$list = array('<em>' . gettext('Albums') . '</em>' => 'galleryArticles_albums', '<em>' . gettext('Images') . '</em>' => 'galleryArticles_images');
-
-		$options = array(gettext('Publish for')			 => array('key'				 => 'galleryArticles_items', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
-										'order'			 => 1,
-										'checkboxes' => $list,
-										'desc'			 => gettext('If a <em>type</em> is checked, a news article will be made when an object of that <em>type</em> is published.')),
-						gettext('Image title')			 => array('key'					 => 'galleryArticles_image_text', 'type'				 => OPTION_TYPE_TEXTBOX,
-										'order'				 => 3,
-										'multilingual' => true,
-										'desc'				 => gettext('This text will be used as the <em>title</em> of the article. The album title will be substituted for <code>%2$s</code> and the image title for <code>%1$s</code>.')),
-						gettext('Album title')			 => array('key'					 => 'galleryArticles_album_text', 'type'				 => OPTION_TYPE_TEXTBOX,
-										'order'				 => 2,
-										'multilingual' => true,
-										'desc'				 => gettext('This text will be used as the <em>title</em> of the article. The album title will be substituted for <code>%1$s</code>.')),
-						gettext('size')							 => array('key'		 => 'galleryArticles_size', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 5,
-										'desc'	 => gettext('Set the size the image will be displayed.')),
-						gettext('Publish protected') => array('key'		 => 'galleryArticles_protected', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 4,
-										'desc'	 => gettext('Unless this is checked, objects which are "protected" will not have news articles generated.')),
-						gettext('Category')					 => array('key'				 => 'galleryArticles_category', 'type'			 => OPTION_TYPE_SELECTOR,
-										'order'			 => 6,
-										'selections' => $categories,
-										'desc'			 => gettext('Select a category for the generated articles')),
-						gettext('Use album folder')	 => array('key'		 => 'galleryArticles_albumCategory', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 7,
-										'desc'	 => gettext('If this option is checked and a category matching the album folder exists, that will be used as the article category.'))
-		);
-		if (getOption('zenpage_combinews')) {
-			$options[gettext('Import Combi-news')] = array('key'		 => 'galleryArticles_import', 'type'	 => OPTION_TYPE_CHECKBOX,
-							'order'	 => 99,
-							'desc'	 => gettext('If this option is checked, articles will be generated based on your old <em>Combi-news</em> settings.'));
-		}
-
 		return $options;
 	}
 
