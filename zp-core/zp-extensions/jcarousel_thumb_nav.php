@@ -101,16 +101,18 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('jcarousel_' . $_zp_gallery->g
 
 	/** Prints the jQuery jCarousel HTML setup to be replaced by JS
 	 *
-	 * @param int $thumbscroll The number of thumbs to scroll by. Note that the CSS might need to be adjusted. Set to NULL if you want to use the backend plugin options.
+	 * @param int $minitems The minimum number of thumbs to be visible always if resized regarding responsiveness.
+	 * @param int $maxitems not supported
 	 * @param int $width Width Set to NULL if you want to use the backend plugin options.
 	 * @param int $height Height Set to NULL if you want to use the backend plugin options.
 	 * @param int $cropw Crop width Set to NULL if you want to use the backend plugin options.
 	 * @param int $croph Crop heigth Set to NULL if you want to use the backend plugin options.
 	 * @param bool $crop TRUE for cropped thumbs, FALSE for un-cropped thumbs. $width and $height then will be used as maxspace. Set to NULL if you want to use the backend plugin options.
 	 * @param bool $fullimagelink Set to TRUE if you want the thumb link to link to the full image instead of the image page. Set to NULL if you want to use the backend plugin options.
-	 * @param bool $vertical Set to TRUE if you want the thumbs vertical orientated instead of horizontal (false). Set to NULL if you want to use the backend plugin options.
+	 * @param string $vertical 'horizontal','vertical', 'fade'
+	 * @param int $speed not supported
 	 */
-	function printThumbNav($thumbscroll = NULL, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $fullimagelink = NULL, $vertical = NULL) {
+	function printThumbNav($minitems = NULL, $maxitems = NULL, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $fullimagelink = NULL, $vertical = NULL, $speed = NULL) {
 		global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery_page;
 		//	Just incase the theme has not set the option, at least second try will work!
 		setOptionDefault('slideshow_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page), 1);
@@ -214,40 +216,40 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('jcarousel_' . $_zp_gallery->g
 			?>
 			<script type="text/javascript">
 			// <!-- <![CDATA[
-			var mycarousel_itemList = [
+				var mycarousel_itemList = [
 			<?php echo $items; ?>
-			];
+				];
 
-			function mycarousel_itemLoadCallback(carousel, state) {
-				for (var i = carousel.first; i <= carousel.last; i++) {
-					if (carousel.has(i)) {
-						continue;
+				function mycarousel_itemLoadCallback(carousel, state) {
+					for (var i = carousel.first; i <= carousel.last; i++) {
+						if (carousel.has(i)) {
+							continue;
+						}
+						if (i > mycarousel_itemList.length) {
+							break;
+						}
+						carousel.add(i, mycarousel_getItemHTML(mycarousel_itemList[i - 1]));
 					}
-					if (i > mycarousel_itemList.length) {
-						break;
+				}
+
+				function mycarousel_getItemHTML(item) {
+					if (item.active === "") {
+						html = '<a href="' + item.link + '" title="' + item.title + '"><img src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
+					} else {
+						html = '<a href="' + item.link + '" title="' + item.title + '"><img class="activecarouselimage" src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
 					}
-					carousel.add(i, mycarousel_getItemHTML(mycarousel_itemList[i - 1]));
+					return html;
 				}
-			}
 
-			function mycarousel_getItemHTML(item) {
-				if (item.active === "") {
-					html = '<a href="' + item.link + '" title="' + item.title + '"><img src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
-				} else {
-					html = '<a href="' + item.link + '" title="' + item.title + '"><img class="activecarouselimage" src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
-				}
-				return html;
-			}
-
-			jQuery(document).ready(function() {
-				jQuery("#mycarousel").jcarousel({
-					vertical: <?php echo $vertical; ?>,
-					size: mycarousel_itemList.length,
-					start: <?php echo $imgnumber; ?>,
-					scroll: <?php echo $thumbscroll; ?>,
-					itemLoadCallback: {onBeforeAnimation: mycarousel_itemLoadCallback}
+				jQuery(document).ready(function() {
+					jQuery("#mycarousel").jcarousel({
+						vertical: <?php echo $vertical; ?>,
+						size: mycarousel_itemList.length,
+						start: <?php echo $imgnumber; ?>,
+						scroll: <?php echo $thumbscroll; ?>,
+						itemLoadCallback: {onBeforeAnimation: mycarousel_itemLoadCallback}
+					});
 				});
-			});
 			// ]]> -->
 			</script>
 			<ul id="mycarousel">

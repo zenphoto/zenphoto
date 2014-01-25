@@ -99,7 +99,7 @@ class bxslider {
 if (!$plugin_disable && !OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page))) {
 	zp_register_filter('theme_head', 'bxslider::themeJS');
 
-	/** Prints the jQuery jCarousel HTML setup to be replaced by JS
+	/** Prints the jQuery bxslider HTML setup to be replaced by JS
 	 *
 	 * @param int $minitems The minimum number of thumbs to be visible always if resized regarding responsiveness.
 	 * @param int $maxitems The maximum number of thumbs to be visible always if resized regarding responsiveness.
@@ -244,16 +244,6 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->ge
 			</script>
 			<?php
 		}
-	}
-
-	//Fallback wrapper function for backward compatibility if jCarousel plugin was uses formerly
-	function printThumbNav($minitems = NULL, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $fullimagelink = NULL, $mode = NULL, $speed = NULL) {
-		if (is_null($mode)) {
-			$mode = 'horizontal';
-		} else {
-			$mode = 'vertical';
-		}
-		printThumbNav($minitems, $maxitems = NULL, $width, $height, $cropw, $croph, $fullimagelink, $mode, $speed);
 	}
 
 }
