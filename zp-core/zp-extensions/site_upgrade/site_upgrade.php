@@ -39,7 +39,7 @@ switch (isset($_GET['siteState']) ? $_GET['siteState'] : NULL) {
 
 			}
 
-			$rss = new setupRSS();
+			$rss = new setupRSS(array('site_closed'));
 			ob_start();
 			$rss->printFeed();
 			$xml = ob_get_contents();

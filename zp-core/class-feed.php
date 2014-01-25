@@ -473,7 +473,7 @@ class feed {
 	static protected function feed404() {
 		header("HTTP/1.0 404 Not Found");
 		header("Status: 404 Not Found");
-		include(ZENFOLDER . '/404.php');
+		include(SERVERPATH . '/' . ZENFOLDER . '/404.php');
 		exitZP();
 	}
 

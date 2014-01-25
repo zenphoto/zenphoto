@@ -19,9 +19,8 @@ if (array_key_exists(0, $folders) && $folders[0] == CACHEFOLDER) {
 }
 
 debug404($album, $image, @$_index_theme);
-$obj = $_zp_gallery_page;
+$obj = @$_zp_gallery_page;
 $_zp_gallery_page = '404.php';
-$_zp_script = SERVERPATH . "/" . THEMEFOLDER . '/' . internalToFilesystem(@$_index_theme) . '/404.php';
 if (isset($_index_theme)) {
 	$_zp_script = SERVERPATH . "/" . THEMEFOLDER . '/' . internalToFilesystem($_index_theme) . '/404.php';
 } else {
