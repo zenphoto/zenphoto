@@ -40,10 +40,12 @@ $plugin_notice = (MOD_REWRITE) ? false : gettext('<em>mod_rewrite</em> is not en
 
 switch (OFFSET_PATH) {
 	case 0:
-		$state = getOption('site_upgrade_state');
+		$state = $_zp_conf_vars['site_upgrade_state'];
 		if ((!zp_loggedin(ADMIN_RIGHTS) && $state == 'closed_for_test') || $state == 'closed') {
-			require_once(SERVERPATH . '/' . PLUGIN_FOLDER . '/site_upgrade/closed.php');
-			exit();
+			if (!preg_match('~' . preg_quote($page) . '/setup_set-mod_rewrite\?z=setup$~', $_SERVER['REQUEST_URI'])) {
+				header('location: ' . WEBPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.php');
+				exit();
+			}
 		}
 		break;
 	case 2:
@@ -133,7 +135,8 @@ switch (OFFSET_PATH) {
 		zp_register_filter('installation_information', 'site_upgrade_status');
 
 		function site_upgrade_status() {
-			switch (getOption('site_upgrade_state')) {
+			global $_zp_conf_vars;
+			switch ($_zp_conf_vars['site_upgrade_state']) {
 				case 'closed':
 					?>
 					<li><?php echo gettext('Site status:'); ?> <span style="color:RED"><strong><?php echo gettext('The site is closed!'); ?></strong></span></li>
@@ -153,10 +156,11 @@ switch (OFFSET_PATH) {
 		}
 
 		function site_upgrade_button($buttons) {
+			global $_zp_conf_vars;
 			$ht = @file_get_contents(SERVERPATH . '/.htaccess');
 			preg_match('|[# ][ ]*RewriteRule(.*)plugins/site_upgrade/closed|', $ht, $matches);
 			if (!$matches || strpos($matches[0], '#') === 0) {
-				$state = getOption('site_upgrade_state');
+				$state = $_zp_conf_vars['site_upgrade_state'];
 			} else {
 				$state = 'closed';
 			}

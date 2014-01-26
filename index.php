@@ -1,7 +1,8 @@
 <?php
 
 define('OFFSET_PATH', 0);
-$_contents = @file_get_contents(dirname(__FILE__) . '/zp-data/zenphoto.cfg');
+$_contents = @file_get_contents(dirname(__FILE__) . '/zp-data/zenphoto.cfg.php');
+
 if ($_contents) {
 	if (strpos($_contents, '<?php') !== false)
 		$_contents = '?>' . $_contents;

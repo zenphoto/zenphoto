@@ -19,6 +19,6 @@ foreach ($glob as $key => $file) {
 	}
 }
 if (empty($xml)) {
-	header('Location: closed.htm', true, 301);
+	echo file_get_contents(dirname(__FILE__) . '/closed.htm');
 }
 ?>
