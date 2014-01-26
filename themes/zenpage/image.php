@@ -62,7 +62,7 @@ if (!defined('WEBPATH'))
 					<?php
 					//
 					if (function_exists('printThumbNav')) {
-						printThumbNav(6, 50, 50, 50, 50, FALSE);
+						printThumbNav(3, 6, 50, 50, 50, 50, FALSE);
 					} else {
 						@call_user_func('printPagedThumbsNav', 6, FALSE, gettext('« prev thumbs'), gettext('next thumbs »'), 40, 40);
 					}
