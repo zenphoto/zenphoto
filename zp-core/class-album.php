@@ -957,7 +957,7 @@ class Album extends AlbumBase {
 	function getImages($page = 0, $firstPageCount = 0, $sorttype = null, $sortdirection = null, $care = true, $mine = NULL) {
 		if (!$this->exists)
 			return array();
-		if (is_null($this->images) || $care && $sorttype . $sortdirection !== $this->lastimagesort) {
+		if ($mine || is_null($this->images) || $care && $sorttype . $sortdirection !== $this->lastimagesort) {
 			if (is_null($sorttype)) {
 				$sorttype = $this->getSortType();
 			}
