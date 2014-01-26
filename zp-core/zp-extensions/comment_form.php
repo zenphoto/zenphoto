@@ -34,7 +34,7 @@ if (OFFSET_PATH) {
 		zp_register_filter('theme_head', 'comment_form_PaginationJS');
 	}
 	if (getOption('tinymce_comments')) {
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tiny_mce.php');
+		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tinymce4.php');
 		zp_register_filter('theme_head', 'comment_form_visualEditor');
 	}
 }
@@ -74,7 +74,7 @@ class comment_form {
 	 */
 	function getOptionsSupported() {
 		global $_zp_captcha;
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tiny_mce.php');
+		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tinymce4.php');
 		$checkboxes = array(gettext('Albums') => 'comment_form_albums', gettext('Images') => 'comment_form_images');
 		if (extensionEnabled('zenpage')) {
 			$checkboxes = array_merge($checkboxes, array(gettext('Pages') => 'comment_form_pages', gettext('News') => 'comment_form_articles'));
