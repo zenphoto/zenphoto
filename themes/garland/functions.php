@@ -160,7 +160,7 @@ function commonNewsLoop($paged) {
 		}
 		?>
 		<div class="newsarticle<?php if (stickyNews()) echo ' sticky'; ?>">
-			<h3><?php printNewsTitleLink(); ?><?php echo " <span class='newstype'>[" . $newstypedisplay . "]</span>"; ?></h3>
+			<h3><?php printNewsLink(); ?><?php echo " <span class='newstype'>[" . $newstypedisplay . "]</span>"; ?></h3>
 			<div class="newsarticlecredit">
 				<span class="newsarticlecredit-left">
 					<?php

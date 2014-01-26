@@ -318,31 +318,28 @@ function printBareNewsTitle() {
 }
 
 /**
- * Returns the titlelink (url name) of the current news article.
- *
- * If using the CombiNews feature this also returns the full path to a image.php page if the item is an image.
+ * Returns the link (url name) of the current news article.
  *
  * @return string
  */
-function getNewsTitleLink() {
+function getNewsLink() {
 	global $_zp_current_zenpage_news;
 	if (!is_null($_zp_current_zenpage_news)) {
-		$link = $_zp_current_zenpage_news->getTitleLink();
-		return $link;
+		return $_zp_current_zenpage_news->getLink();
 	}
 }
 
 /**
- * Prints the titlelin of a news article as a full html link
+ * Prints the title of a news article as a full html link
  *
  * @param string $before insert what you want to be show before the titlelink.
  */
-function printNewsTitleLink($before = '') {
+function printNewsLink($before = '') {
 	if (getNewsTitle()) {
 		if ($before) {
 			$before = '<span class="beforetext">' . html_encode($before) . '</span>';
 		}
-		echo "<a href=\"" . html_encode(getNewsTitleLink()) . "\" title=\"" . getBareNewsTitle() . "\">" . $before . html_encodeTagged(getNewsTitle()) . "</a>";
+		echo "<a href=\"" . html_encode(getNewsLink()) . "\" title=\"" . getBareNewsTitle() . "\">" . $before . html_encodeTagged(getNewsTitle()) . "</a>";
 	}
 }
 
@@ -372,7 +369,7 @@ function getNewsContent($shorten = false, $shortenindicator = NULL, $readmore = 
 		if ($_zp_current_zenpage_news->getTruncation()) {
 			$shorten = true;
 		}
-		$articlecontent = getContentShorten($articlecontent, $shorten, $shortenindicator, $readmore, getNewsURL($_zp_current_zenpage_news->getTitlelink()));
+		$articlecontent = getContentShorten($articlecontent, $shorten, $shortenindicator, $readmore, $_zp_current_zenpage_news->getLink());
 	}
 
 	return $articlecontent;

@@ -110,7 +110,7 @@ if (!defined('WEBPATH'))
 									$c++;
 									?>
 									<li<?php printZDToggleClass('news', $c, $number_to_show); ?>>
-										<h4><?php printNewsTitleLink(); ?></h4>
+										<h4><?php printNewsLink(); ?></h4>
 										<p class="zenpageexcerpt"><?php echo shortenContent(strip_tags(getNewsContent()), 80, getOption("zenpage_textshorten_indicator")); ?></p>
 									</li>
 									<?php

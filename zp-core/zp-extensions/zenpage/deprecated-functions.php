@@ -375,11 +375,7 @@ function printNewsReadMoreLink($readmore = '') {
 	deprecated_functions::notify(gettext('Functionality is now included in getNewsContent(), printNewsContent() and getContentShorten() to properly cover custom shortening via TinyMCE <pagebreak>.'), E_USER_NOTICE);
 	$readmore = getNewsReadMore($readmore);
 	if (!empty($readmore)) {
-		if (is_NewsType("news")) {
-			$newsurl = getNewsURL(getNewsTitleLink());
-		} else {
-			$newsurl = html_encode(getNewsTitleLink());
-		}
+		$newsurl = getNewsURL();
 		echo "<a href='" . $newsurl . "' title=\"" . getBareNewsTitle() . "\">" . html_encode($readmore) . "</a>";
 	}
 }
@@ -923,4 +919,21 @@ function getNewsCategoryPath($category, $page) {
 	return $obj->getLink($page);
 }
 
+/**
+ * @deprecated
+ * @since 1.4.6
+ */
+function getNewsTitleLink() {
+	deprecated_functions::notify(gettext('use GetNewsLink()'));
+	return getNewsLink();
+}
+
+/**
+ * @deprecated
+ * @since 1.4.6
+ */
+function printNewsTitleLink($before = '') {
+	deprecated_functions::notify(gettext('use printNewsLink()'));
+	printNewsLink($before);
+}
 ?>

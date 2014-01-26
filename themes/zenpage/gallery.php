@@ -64,7 +64,7 @@ if (!defined('WEBPATH'))
 						while (next_news()):;
 							?>
 							<div class="newsarticle">
-								<h3><?php printNewsTitleLink(); ?><?php echo " <span class='newstype'>[" . gettext('news') . "]</span>"; ?></h3>
+								<h3><?php printNewsLink(); ?><?php echo " <span class='newstype'>[" . gettext('news') . "]</span>"; ?></h3>
 								<div class="newsarticlecredit"><span class="newsarticlecredit-left"><?php
 										printNewsDate();
 										if (function_exists('getCommentCount')) {

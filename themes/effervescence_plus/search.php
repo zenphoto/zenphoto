@@ -198,7 +198,7 @@ $backgroundImagePath = "";
 											$c++;
 											?>
 											<li<?php if ($c > SHOW_ITEMS) echo ' class="news_extrashow" style="display:none;"'; ?>>
-												<?php printNewsTitleLink(); ?>
+												<?php printNewsLink(); ?>
 												<p style="text-indent:1em;"><?php echo exerpt($_zp_current_zenpage_news->getContent(), TRUNCATE_LENGTH); ?></p>
 											</li>
 											<?php
