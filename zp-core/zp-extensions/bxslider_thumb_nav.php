@@ -5,7 +5,7 @@
  *
  * Place <var>printThumbNav()</var> on your theme's image.php where you want it to appear.
  *
- * Supports theme based custom css files (place <var>bxslider.css</var> and needed images in your theme's folder).
+ * Supports theme based custom css files (place <var>jquery.bxslider.css</var> and needed images in your theme's folder).
  *
  *
  * @author Malte Müller (acrylian)
