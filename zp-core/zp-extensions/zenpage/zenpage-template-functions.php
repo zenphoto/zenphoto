@@ -323,7 +323,7 @@ function printBareNewsTitle() {
  * @param string $titlelink 
  * @return string
  */
-function getNewsLink($titlelink = NULL) {
+function getNewsURL($titlelink = NULL) {
 	global $_zp_current_zenpage_news;
 	if (empty($titlelink)) {
 		$obj = $_zp_current_zenpage_news;
@@ -344,7 +344,7 @@ function printNewsLink($before = '') {
 		if ($before) {
 			$before = '<span class="beforetext">' . html_encode($before) . '</span>';
 		}
-		echo "<a href=\"" . html_encode(getNewsLink()) . "\" title=\"" . getBareNewsTitle() . "\">" . $before . html_encodeTagged(getNewsTitle()) . "</a>";
+		echo "<a href=\"" . html_encode(getNewsURL()) . "\" title=\"" . getBareNewsTitle() . "\">" . $before . html_encodeTagged(getNewsTitle()) . "</a>";
 	}
 }
 
@@ -872,7 +872,7 @@ function getNewsArchivePath($date, $page) {
  * @return string
  */
 function printNewsURL($titlelink = '') {
-	echo html_encode(getNewsLink($titlelink));
+	echo html_encode(getNewsURL($titlelink));
 }
 
 /* * ********************************************************* */
@@ -1317,7 +1317,7 @@ function printZenpageStatistic($number = 10, $option = "all", $mode = "popular",
 			case 'Page':
 				$titlelink = html_encode(getPageLinkURL($item['titlelink']));
 			case 'News':
-				$titlelink = html_encode(getNewsLink($item['titlelink']));
+				$titlelink = html_encode(getNewsURL($item['titlelink']));
 				break;
 			case 'Category':
 				$titlelink = html_encode(getNewsCategoryURL($item['titlelink']));

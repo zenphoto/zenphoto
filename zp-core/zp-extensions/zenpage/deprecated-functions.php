@@ -379,7 +379,7 @@ function printNewsReadMoreLink($readmore = '') {
 	deprecated_functions::notify(gettext('Functionality is now included in getNewsContent(), printNewsContent() and getContentShorten() to properly cover custom shortening via TinyMCE <pagebreak>.'), E_USER_NOTICE);
 	$readmore = getNewsReadMore($readmore);
 	if (!empty($readmore)) {
-		$newsurl = getNewsLink();
+		$newsurl = getNewsURL();
 		echo "<a href='" . $newsurl . "' title=\"" . getBareNewsTitle() . "\">" . html_encode($readmore) . "</a>";
 	}
 }
@@ -827,7 +827,7 @@ function printLatestNews($number = 5, $option = 'with_latest_images', $category 
 			case 'news':
 				$obj = new ZenpageNews($item['titlelink']);
 				$title = html_encode($obj->getTitle());
-				$link = html_encode(getNewsLink($item['titlelink']));
+				$link = html_encode(getNewsURL($item['titlelink']));
 				$count2 = 0;
 				$category = $obj->getCategories();
 				foreach ($category as $cat) {
@@ -928,8 +928,8 @@ function getNewsCategoryPath($category, $page) {
  * @since 1.4.6
  */
 function getNewsTitleLink() {
-	deprecated_functions::notify(gettext('use getNewsLink()'));
-	return getNewsLink();
+	deprecated_functions::notify(gettext('use getNewsURL()'));
+	return getNewsURL();
 }
 
 function printNewsTitleLink($before = '') {
@@ -941,9 +941,9 @@ function printNewsTitleLink($before = '') {
  * @deprecated
  * @since 1.4.6
  */
-function getNewsURL($titlelink = '') {
-	deprecated_functions::notify(gettext('use getNewsLink()'));
-	return getNewsLink($titlelink);
+function getNewsLink($titlelink = '') {
+	deprecated_functions::notify(gettext('use getNewsURL()'));
+	return getNewsURL($titlelink);
 	global $_zp_current_zenpage_news;
 }
 
