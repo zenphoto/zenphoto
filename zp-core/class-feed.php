@@ -453,9 +453,9 @@ class feed {
 				$title = get_language_string($item['title']);
 				$titlelink = $item['titlelink'];
 				$website = $item['website'];
-				if (function_exists('getNewsURL')) {
+				if (function_exists('getNewsLink')) {
 					if ($item['type'] == 'news') {
-						$commentpath = PROTOCOL . '://' . $this->host . html_encode(getNewsURL($titlelink)) . "#" . $item['id'];
+						$commentpath = PROTOCOL . '://' . $this->host . html_encode(getNewsLink($titlelink)) . "#" . $item['id'];
 					} else {
 						$commentpath = PROTOCOL . '://' . $this->host . html_encode(getPageLinkURL($titlelink)) . "#" . $item['id'];
 					}

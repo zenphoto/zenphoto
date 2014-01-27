@@ -178,7 +178,7 @@ function jqm_printBacktoTopLink() {
  * Prints the link to an news entry
  */
 function jqm_getLink() {
-	$link = getNewsURL();
+	$link = getNewsLink();
 	return $link;
 }
 

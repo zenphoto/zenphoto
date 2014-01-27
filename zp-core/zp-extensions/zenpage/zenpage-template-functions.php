@@ -139,7 +139,6 @@ function getAuthor($fullname = false) {
  * @param bool $sticky place sticky articles at the front of the list
  * @param string $sortdirection 'desc' descending (default) or 'asc' ascending
  * @return array
- * @deprecated since version 1.4.6
  */
 function getLatestNews($number = 2, $option = 'none', $category = '', $sticky = true, $sortdirection = 'desc') {
 	global $_zp_zenpage, $_zp_current_zenpage_news;
@@ -318,15 +317,21 @@ function printBareNewsTitle() {
 }
 
 /**
- * Returns the link (url name) of the current news article.
+ * Returns the link (url) of the current news article.
+ * or of the titlelink passed if not empty
  *
+ * @param string $titlelink 
  * @return string
  */
-function getNewsLink() {
+function getNewsLink($titlelink = NULL) {
 	global $_zp_current_zenpage_news;
-	if (!is_null($_zp_current_zenpage_news)) {
-		return $_zp_current_zenpage_news->getLink();
+	if (empty($titlelink)) {
+		$obj = $_zp_current_zenpage_news;
+	} else {
+		$obj = new ZenpageNews($titlelink);
 	}
+	if (!is_null($obj))
+		return $obj->getLink();
 }
 
 /**
@@ -845,7 +850,7 @@ function printNewsIndexURL($name = NULL, $before = '', $archive = NULL) {
 }
 
 /**
- * Returns partial path of news date archive
+ * Returns path of news date archive
  *
  * @return string
  */
@@ -860,23 +865,6 @@ function getNewsArchivePath($date, $page) {
 }
 
 /**
- * Returns the url to a news article
- *
- * @param string $titlelink The titlelink of a news article
- *
- * @return string
- */
-function getNewsURL($titlelink = '') {
-	global $_zp_current_zenpage_news;
-	if (empty($titlelink)) {
-		$obj = $_zp_current_zenpage_news;
-	} else {
-		$obj = new ZenpageNews($titlelink);
-	}
-	return $obj->getLink();
-}
-
-/**
  * Prints the url to a news article
  *
  * @param string $titlelink The titlelink of a news article
@@ -884,7 +872,7 @@ function getNewsURL($titlelink = '') {
  * @return string
  */
 function printNewsURL($titlelink = '') {
-	echo html_encode(getNewsURL($titlelink));
+	echo html_encode(getNewsLink($titlelink));
 }
 
 /* * ********************************************************* */
@@ -1329,7 +1317,7 @@ function printZenpageStatistic($number = 10, $option = "all", $mode = "popular",
 			case 'Page':
 				$titlelink = html_encode(getPageLinkURL($item['titlelink']));
 			case 'News':
-				$titlelink = html_encode(getNewsURL($item['titlelink']));
+				$titlelink = html_encode(getNewsLink($item['titlelink']));
 				break;
 			case 'Category':
 				$titlelink = html_encode(getNewsCategoryURL($item['titlelink']));
