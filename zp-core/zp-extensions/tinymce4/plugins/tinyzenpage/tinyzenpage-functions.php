@@ -601,7 +601,7 @@ function unpublishedZenpageItemCheck($page) {
 }
 
 /**
- * Set the locale for gettext translation of this plugin. Somehow ZenPhoto's setPluginDomain() does not work here...
+ * Set the locale for gettext translation of this plugin. Somehow ZenPhoto's setupDomain() does not work here...
  *
  */
 function setTinyZenpageLocale() {

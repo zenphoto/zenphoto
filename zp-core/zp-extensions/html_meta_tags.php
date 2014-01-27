@@ -213,7 +213,7 @@ class htmlmetatags {
 						$pagetitle = getBareNewsTitle() . " - ";
 						$date = getNewsDate();
 						$desc = trim(strip_tags(getNewsContent()));
-						$canonicalurl = $host . getNewsURL($_zp_current_zenpage_news->getTitlelink());
+						$canonicalurl = $host . $_zp_current_zenpage_news->getLink();
 					} else if (is_NewsCategory()) {
 						$pagetitle = $_zp_current_category->getTitlelink() . " - ";
 						$date = strftime(DATE_FORMAT);

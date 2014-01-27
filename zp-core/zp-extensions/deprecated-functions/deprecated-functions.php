@@ -700,4 +700,24 @@ function printLink($url, $text, $title = NULL, $class = NULL, $id = NULL) {
 	echo getLinkHTML($url, $text, $title, $class, $id);
 }
 
+/**
+ * @deprecated
+ * @since 1.4.6
+ *
+ */
+function setPluginDomain($plugindomain) {
+	deprecated_functions::notify(gettext('use setupDomain()'));
+	return setupDomain($plugindomain, "plugin");
+}
+
+/**
+ * @deprecated
+ * @since 1.4.6
+ *
+ */
+function setThemeDomain($themedomain) {
+	deprecated_functions::notify(gettext('use setupDomain()'));
+	return setupDomain($themedomain, "theme");
+}
+
 ?>

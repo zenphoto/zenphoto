@@ -47,17 +47,19 @@ class deprecated_functions {
 				if ($plugin == 'deprecated-functions')
 					$plugin = 'core';
 				$content = file_get_contents($deprecated);
+
+				preg_match_all('~@deprecated\s.*since\s.*(\d+\.\d+\.\d+)~', $content, $versions);
 				preg_match_all('/([public static|static]*)\s*function\s+(.*)\s?\(.*\)\s?\{/', $content, $functions);
 				foreach ($functions[2] as $key => $function) {
 					setOptionDefault('deprecated_' . $plugin . '_' . $functions[1][$key] . '_' . $function, 1);
-					$this->listed_functions[$function] = array('plugin' => $plugin, 'class' => $functions[1][$key]);
+					$this->listed_functions[$function] = array('plugin' => $plugin, 'class' => $functions[1][$key], 'since' => @$versions[1][$key]);
 				}
 			}
 		}
 	}
 
 	function getOptionsSupported() {
-		$list = array();
+		$options = $deorecated = $list = array();
 		foreach ($this->listed_functions as $funct => $details) {
 			switch (trim($details['class'])) {
 				case 'static':
@@ -70,11 +72,17 @@ class deprecated_functions {
 					$class = '';
 					break;
 			}
-			$list[$funct . $class] = 'deprecated_' . $details['plugin'] . '_' . $details['class'] . '_' . $funct;
+			if ($since = $details['since'])
+				$since = ' (' . $since . ')';
+
+			$list[$funct . $class . $since] = 'deprecated_' . $details['plugin'] . '_' . $details['class'] . '_' . $funct;
 		}
-		return array(gettext('Functions') => array('key'				 => 'deprecated_Function_list', 'type'			 => OPTION_TYPE_CHECKBOX_UL,
-										'checkboxes' => $list,
-										'desc'			 => gettext('Send the <em>deprecated</em> notification message if the function name is checked. Un-checking these boxes will allow you to continue using your theme without warnings while you upgrade its implementation. Functions flagged with an asterisk are class methods. Ones flagged with two asterisks have deprecated parameters.')));
+		$options[gettext('Functions')] = array('key'				 => 'deprecated_Function_list', 'type'			 => OPTION_TYPE_CHECKBOX_UL,
+						'checkboxes' => $list,
+						'order'			 => 1,
+						'desc'			 => gettext('Send the <em>deprecated</em> notification message if the function name is checked. Un-checking these boxes will allow you to continue using your theme without warnings while you upgrade its implementation. Functions flagged with an asterisk are class methods. Ones flagged with two asterisks have deprecated parameters.'));
+
+		return $options;
 	}
 
 	/*

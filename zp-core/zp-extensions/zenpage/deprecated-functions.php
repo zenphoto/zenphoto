@@ -7,6 +7,10 @@ require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-f
 
 class Zenpage_internal_deprecations {
 
+	/**
+	 * @deprecated
+	 * @since 1.4.6
+	 */
 	public static function getLatestNews() {
 		deprecated_functions::notify(gettext('CombiNews is deprecated. See the <a href="http://www.zenphoto.org/news/zenphoto-1.4.6">Zenphoto 1.4.6 release notes</a>.'));
 	}
@@ -936,4 +940,5 @@ function printNewsTitleLink($before = '') {
 	deprecated_functions::notify(gettext('use printNewsLink()'));
 	printNewsLink($before);
 }
+
 ?>

@@ -303,7 +303,7 @@ class zenpagecms {
 
 
 // page is a NewsArticle--provide zenpage edit, delete, and Add links
-				echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?newsarticle&amp;edit&amp;titlelink=" . urlencode(getNewsTitlelink()) . "\">" . gettext("Edit Article") . "</a></li>";
+				echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?newsarticle&amp;edit&amp;titlelink=" . urlencode(getNewsTitle()) . "\">" . gettext("Edit Article") . "</a></li>";
 				if (GALLERY_SESSION) {
 // XSRF defense requires sessions
 					?>
@@ -315,7 +315,7 @@ class zenpagecms {
 				}
 				echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?newsarticle&amp;add\">" . gettext("Add Article") . "</a></li>";
 			}
-			$redirect .= '&amp;title=' . urlencode(getNewsTitlelink());
+			$redirect .= '&amp;title=' . urlencode(getNewsTitle());
 		} else {
 
 			if (!empty($_zp_current_category)) {
