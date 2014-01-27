@@ -43,7 +43,7 @@ global $_zp_gallery, $_zp_gallery_page;
 if (getOption('cycle_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page))) {
 	zp_register_filter('theme_head', 'cycle::cycleJS');
 }
-//zp_register_filter('content_macro', 'cycle::macro');
+zp_register_filter('content_macro', 'cycle::macro');
 
 /**
  * Plugin option handling class
@@ -83,7 +83,7 @@ class cycle {
 		 * 	slideshow options
 		 * ********************* */
 		$options = array(
-						gettext('Slideshow: Mode')	 => array('key'				 => 'slideshow_mode', 'type'			 => OPTION_TYPE_SELECTOR,
+						gettext('Slideshow: Mode')	 => array('key'	=> 'cycle-slideshow_mode', 'type'	=> OPTION_TYPE_SELECTOR,
 										'order'			 => 0,
 										'selections' => array(gettext("jQuery Cycle") => "cycle", gettext("jQuery Colorbox") => "colorbox"),
 										'desc'			 => gettext('<em>jQuery Cycle</em> for slideshow using the jQuery Cycle2 plugin<br /><em>jQuery Colorbox</em> for slideshow using Colorbox (Colorbox plugin required).<br />NOTE: The jQuery Colorbox mode is attached to the link the printSlideShowLink() function prints and can neither be called directly nor used on the slideshow.php theme page.')),
@@ -92,67 +92,67 @@ class cycle {
 										'desc'	 => gettext("Speed of the transition in milliseconds."))
 		);
 
-		switch (getOption('slideshow_mode')) {
+		switch (getOption('cycle-slideshow_mode')) {
 			case 'cycle':
-				$options = array_merge($options, array(gettext('Slideshow: Slide width')					 => array('key'		 => 'cycle-slideshow_width', 'type'	 => OPTION_TYPE_TEXTBOX,
+				$options = array_merge($options, array(gettext('Slideshow: Slide width')	=> array('key'	=> 'cycle-slideshow_width', 'type'	 => OPTION_TYPE_TEXTBOX,
 												'order'	 => 5,
 												'desc'	 => gettext("Width of the images in the slideshow.")),
-								gettext('Slideshow: Slide height')				 => array('key'		 => 'cycle-slideshow_height', 'type'	 => OPTION_TYPE_TEXTBOX,
+								gettext('Slideshow: Slide height')	=> array('key'		 => 'cycle-slideshow_height', 'type'	=> OPTION_TYPE_TEXTBOX,
 												'order'	 => 6,
 												'desc'	 => gettext("Height of the images in the slideshow.")),
-								gettext('Slideshow: Effect')							 => array('key'				 => 'cycle-slideshow_effect', 'type'			 => OPTION_TYPE_SELECTOR,
+								gettext('Slideshow: Effect')	=> array('key'				 => 'cycle-slideshow_effect', 'type'	=> OPTION_TYPE_SELECTOR,
 												'order'			 => 2,
 												'selections' => array(
-																gettext('none')							 => "none",
-																gettext('fade')							 => "fade",
-																gettext('fadeOut')					 => "fadeOut",
-																gettext('shuffle')					 => "shuffle",
+																gettext('none')				=> "none",
+																gettext('fade')				=> "fade",
+																gettext('fadeOut')			=> "fadeOut",
+																gettext('shuffle')			=> "shuffle",
 																gettext('Scroll horizontal') => "scrollHorz",
 																gettext('Scroll vertical')	 => "scrollVert",
 																gettext('Flip horizontal')	 => "flipHorz",
-																gettext('Flip vertical')		 => "flipVert",
-																gettext('Tile slide')				 => "tileSlide",
-																gettext('Tile blind')				 => "tileBlind"),
+																gettext('Flip vertical')	=> "flipVert",
+																gettext('Tile slide')		=> "tileSlide",
+																gettext('Tile blind')		=> "tileBlind"),
 												'desc'			 => gettext("The cycle slide effect to be used. Flip transitions are only supported on browsers that support CSS3 3D transforms. (IE10+, current Chrome, Firefox, Opera and Safari.)")),
-								gettext('Slideshow: Tile Effect - Extra')	 => array('key'				 => 'cycle-slideshow_tileeffect', 'type'			 => OPTION_TYPE_SELECTOR,
-												'order'			 => 2,
+								gettext('Slideshow: Tile Effect - Extra')	 => array('key'	=> 'cycle-slideshow_tileeffect', 'type'	=> OPTION_TYPE_SELECTOR,
+												'order'			 => 3,
 												'selections' => array(
 																gettext('Horziontal')	 => "tileVert",
 																gettext('Vertical')		 => "tileHorz"),
 												'desc'			 => gettext("If one of the tile effects is selected, this is its orientation.")),
-								gettext('Slideshow: Timeout')							 => array('key'		 => 'cycle-slideshow_timeout', 'type'	 => OPTION_TYPE_TEXTBOX,
-												'order'	 => 3,
+								gettext('Slideshow: Timeout')	=> array('key'	=> 'cycle-slideshow_timeout', 'type'	=> OPTION_TYPE_TEXTBOX,
+												'order'	 => 4,
 												'desc'	 => gettext("Milliseconds between slide transitions (0 to disable auto advance.)")),
-								gettext('Slideshow: Description')					 => array('key'		 => 'cycle-slideshow_showdesc', 'type'	 => OPTION_TYPE_CHECKBOX,
-												'order'	 => 4,
+								gettext('Slideshow: Description')	=> array('key'	=> 'cycle-slideshow_showdesc', 'type'	=> OPTION_TYPE_CHECKBOX,
+												'order'	 => 7,
 												'desc'	 => gettext("Check if you want to show the image's description below the slideshow.")),
-								gettext('Slideshow: Swipe gestures')			 => array('key'		 => 'cycle-slideshow_swipe', 'type'	 => OPTION_TYPE_CHECKBOX,
-												'order'	 => 4,
+								gettext('Slideshow: Swipe gestures')	=> array('key'	=> 'cycle-slideshow_swipe', 'type'	=> OPTION_TYPE_CHECKBOX,
+												'order'	 => 8,
 												'desc'	 => gettext("Check if you want to enable touch screen swipe gestures.")),
-								gettext('Slideshow: Pause on hover')			 => array('key'		 => 'cycle-slideshow_pausehover', 'type'	 => OPTION_TYPE_CHECKBOX,
-												'order'	 => 4,
+								gettext('Slideshow: Pause on hover')	=> array('key'	=> 'cycle-slideshow_pausehover', 'type'	=> OPTION_TYPE_CHECKBOX,
+												'order'	 => 9,
 												'desc'	 => gettext("Check if you want the slidesshow to pause on hover."))
 				));
 				break;
 
 			case 'colorbox':
-				$options = array_merge($options, array(gettext('Colorbox: Transition')	 => array('key'				 => 'cycle-slideshow_colorbox_transition', 'type'			 => OPTION_TYPE_SELECTOR,
+				$options = array_merge($options, array(gettext('Colorbox: Transition')	 => array('key'	=> 'cycle-slideshow_colorbox_transition', 'type'			 => OPTION_TYPE_SELECTOR,
 												'order'			 => 2,
 												'selections' => array(
 																gettext('elastic') => "elastic",
 																gettext('fade')		 => "fade",
 																gettext('none')		 => "none"),
 												'desc'			 => gettext("The Colorbox transition slide effect to be used.")),
-								gettext('Colorbox: Image type')	 => array('key'				 => 'cycle-slideshow_colorbox_imagetype', 'type'			 => OPTION_TYPE_SELECTOR,
+								gettext('Colorbox: Image type')	 => array('key'	 => 'cycle-slideshow_colorbox_imagetype', 'type'	=> OPTION_TYPE_SELECTOR,
 												'order'			 => 3,
 												'selections' => array(gettext('full image') => "fullimage", gettext('sized image') => "sizedimage"),
 												'desc'			 => gettext("The image type you wish to use for the Colorbox. If you choose 'sized image' the slideshow width value will be used for the longest side of the image.")),
-								gettext('Colorbox: Image title') => array('key'		 => 'cycle-slideshow_colorbox_imagetitle', 'type'	 => OPTION_TYPE_CHECKBOX,
+								gettext('Colorbox: Image title') => array('key'	=> 'cycle-slideshow_colorbox_imagetitle', 'type'	=> OPTION_TYPE_CHECKBOX,
 												'order'	 => 4,
 												'desc'	 => gettext("If the image title should be shown at the bottom of the Colorbox."))
 				));
-				if (getOption('slideshow_colorbox_imagetype') == 'sizedimage') {
-					$options = array_merge($options, array(gettext('Colorbox: Slide width') => array('key'		 => 'cycle-slideshow_width', 'type'	 => OPTION_TYPE_TEXTBOX,
+				if (getOption('cycle-slideshow_colorbox_imagetype') == 'sizedimage') {
+					$options = array_merge($options, array(gettext('Colorbox: Slide width') => array('key'	=> 'cycle-slideshow_width', 'type'	=> OPTION_TYPE_TEXTBOX,
 													'order'	 => 3.5,
 													'desc'	 => gettext("Width of the images in the slideshow."))
 					));
@@ -165,7 +165,7 @@ class cycle {
 			foreach ($scripts as $script) {
 				$list[$script] = 'cycle_' . $theme . '_' . stripSuffix($script);
 			}
-			$options2[$theme] = array('key'				 => 'cycle_' . $theme . '_scripts', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
+			$options2[$theme] = array('key'				 => 'cycle_' . $theme . '_scripts', 'type'	=> OPTION_TYPE_CHECKBOX_ARRAY,
 							'checkboxes' => $list,
 							'desc'			 => gettext('The scripts for which the cycle2 plugin is enabled. {If themes require it they might set this, otherwise you need to do it manually!}')
 			);
@@ -180,14 +180,14 @@ class cycle {
 
 	}
 
-	static function getSlideshowPlayer($album, $controls = false) {
+	static function getSlideshowPlayer($album, $controls = false, $width = NULL, $height = NULL) {
 		$albumobj = NULL;
 		if (!empty($album)) {
 			$albumobj = newAlbum($album, NULL, true);
 		}
 		if (is_object($albumobj) && $albumobj->loaded) {
 			$returnpath = rewrite_path('/' . pathurlencode($albumobj->name) . '/', '/index.php?album=' . urlencode($albumobj->name));
-			return slideshow::getShow(false, false, $albumobj, NULL, NULL, NULL, false, false, false, $controls, $returnpath, 0);
+			return cycle::getShow(false, false, $albumobj, NULL, $width, $height, false, false, false, $controls, $returnpath, 0);
 		} else {
 			return '<div class="errorbox" id="message"><h2>' . gettext('Invalid slideshow album name!') . '</h2></div>';
 		}
@@ -195,7 +195,7 @@ class cycle {
 
 	static function getShow($heading, $speedctl, $albumobj, $imageobj, $width, $height, $crop, $shuffle, $linkslides, $controls, $returnpath, $imagenumber) {
 		global $_zp_gallery, $_zp_gallery_page;
-		setOption('cycle-cycle-slideshow_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page), 1);
+		setOption('cycle-slideshow_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page), 1);
 		if (!$albumobj->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumobj)) {
 			return '<div class="errorbox" id="message"><h2>' . gettext('This album is password protected!') . '</h2></div>';
 		}
@@ -214,7 +214,7 @@ class cycle {
 			$cropw = NULL;
 			$croph = NULL;
 		}
-		echo $imagenumber;
+		//echo $imagenumber;
 		$slides = $albumobj->getImages(0);
 		$numslides = $albumobj->getNumImages();
 		if ($shuffle) { // means random order, not the effect!
@@ -272,6 +272,7 @@ class cycle {
 		}
 		?>
 		<section class="slideshow"><!-- extra class with album id so we can address slides! -->
+			<?php if ($controls) { ?>
 			<ul class="slideshow_controls">
 				<li><a href="#" data-cycle-cmd="prev" class="cycle-slideshow-prev icon-backward" title="<?php echo gettext('prev'); ?>"></a></li>
 				<li><a href="<?php echo $returnpath; ?>" class="cycle-slideshow-stop icon-stop" title="<?php echo gettext('stop'); ?>"></a></li>
@@ -279,6 +280,7 @@ class cycle {
 				<li><a href="#" data-cycle-cmd="resume" class="cycle-slideshow-resume icon-play" title="<?php echo gettext('play'); ?>"></a></li>
 				<li><a href="#" data-cycle-cmd="next" class="cycle-slideshow-next icon-forward" title="<?php echo gettext('next'); ?>"></a></li>
 			</ul>
+			<?php } ?>
 			<!-- class cylce-slideshow is mandatory! -->
 			<div class="cycle-slideshow"
 					 data-cycle-pause-on-hover=<?php echo $option_pausehover; ?>
@@ -409,10 +411,10 @@ class cycle {
 	static function macro($macros) {
 		$macros['SLIDESHOW'] = array(
 						'class'	 => 'function',
-						'params' => array('string', 'bool*'),
+						'params' => array('string', 'bool*', 'int*', 'int*'),
 						'value'	 => 'cycle::getSlideshowPlayer',
-						'owner'	 => 'cycle-slideshow',
-						'desc'	 => gettext('provide the album name as %1 and (optionally) <code>true</code> (or <code>false</code>) as %2 to show (hide) controls. Hiding the controls is the default.')
+						'owner'	 => 'cycle',
+						'desc'	 => gettext('provide the album name as %1 and (optionally) <code>true</code> (or <code>false</code>) as %2 to show (hide) controls. Hiding the controls is the default. Width(%3) and height(%4) may also be specified to override the defaults.')
 		);
 		return $macros;
 	}
@@ -516,7 +518,7 @@ if (!$plugin_disable) {
 			}
 		}
 		$numberofimages = getNumImages();
-		$option = getOption('slideshow_mode');
+		$option = getOption('cycle-slideshow_mode');
 		switch ($option) {
 			case 'cycle':
 				if ($numberofimages > 1) {
@@ -603,16 +605,16 @@ if (!$plugin_disable) {
 									$style = ' style="display:none"';
 								}
 							}
-							switch (getOption('slideshow_colorbox_imagetype')) {
+							switch (getOption('cycle-slideshow_colorbox_imagetype')) {
 								case 'fullimage':
 									$imagelink = getFullImageURL($imgobj);
 									break;
 								case 'sizedimage':
-									$imagelink = $imgobj->getCustomImage(getOption("slideshow_width"), NULL, NULL, NULL, NULL, NULL, NULL, false, NULL);
+									$imagelink = $imgobj->getCustomImage(getOption("cycle-slideshow_width"), NULL, NULL, NULL, NULL, NULL, NULL, false, NULL);
 									break;
 							}
 							$imagetitle = '';
-							if (getOption('slideshow_colorbox_imagetitle')) {
+							if (getOption('cycle-slideshow_colorbox_imagetitle')) {
 								$imagetitle = html_encode(strip_tags($imgobj->getTitle()));
 							}
 							?>
