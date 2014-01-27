@@ -79,7 +79,7 @@ class comment_form {
 		if (extensionEnabled('zenpage')) {
 			$checkboxes = array_merge($checkboxes, array(gettext('Pages') => 'comment_form_pages', gettext('News') => 'comment_form_articles'));
 		}
-		$configarray = getTinyMCEConfigFiles();
+		$configarray = getTinyMCE4ConfigFiles('comment');
 
 		$options = array(
 						gettext('Enable comment notification')	 => array('key'		 => 'email_new_comments', 'type'	 => OPTION_TYPE_CHECKBOX,

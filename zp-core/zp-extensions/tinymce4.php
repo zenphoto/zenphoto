@@ -101,14 +101,7 @@ function tinymce4ConfigJS($editorconfig, $mode) {
 
 function getTinyMCE4ConfigFiles($mode) {
 	// get only those that work!
-	switch ($mode) {
-		case 'zenphoto':
-			$files = getPluginFiles('zenphoto-*.js.php', 'tinymce4/config/');
-			break;
-		case 'zenpage':
-			$files = getPluginFiles('zenpage-*.js.php', 'tinymce4/config/');
-			break;
-	}
+	$files = getPluginFiles($mode . '-*.js.php', 'tinymce4/config/');
 	$array = array();
 	foreach ($files as $file) {
 		$filename = strrchr($file, '/');
