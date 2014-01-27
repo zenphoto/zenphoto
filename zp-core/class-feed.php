@@ -447,21 +447,19 @@ class feed {
 				break;
 			case 'news':
 			case 'pages':
-				$album = '';
-				$feeditem['pubdate'] = date("r", strtotime($item['date']));
-				$category = '';
-				$title = get_language_string($item['title']);
-				$titlelink = $item['titlelink'];
-				$website = $item['website'];
-				if (function_exists('getNewsURL')) {
-					if ($item['type'] == 'news') {
-						$commentpath = PROTOCOL . '://' . $this->host . html_encode(getNewsURL($titlelink)) . "#" . $item['id'];
-					} else {
-						$commentpath = PROTOCOL . '://' . $this->host . html_encode(getPageLinkURL($titlelink)) . "#" . $item['id'];
-					}
+				if (extensionEnabled('zenpage')) {
+					$album = '';
+					$feeditem['pubdate'] = date("r", strtotime($item['date']));
+					$category = '';
+					$title = get_language_string($item['title']);
+					$titlelink = $item['titlelink'];
+					$website = $item['website'];
+					$obj = new $item['type']($titlelink);
+					$commentpath = PROTOCOL . '://' . $this->host . html_encode($obj->getLink()) . "#" . $item['id'];
 				} else {
 					$commentpath = '';
 				}
+
 				break;
 		}
 		$feeditem['title'] = strip_tags($title . $author);

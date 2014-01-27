@@ -193,7 +193,7 @@ class htmlmetatags {
 				$pagetitle = getBareAlbumTitle() . " - ";
 				$date = getAlbumDate();
 				$desc = getBareAlbumDesc();
-				$canonicalurl = $host . getAlbumLinkURL();
+				$canonicalurl = $host . getAlbumURL();
 				if (getOption('htmlmeta_og-image')) {
 					$thumb = $host . getAlbumThumb();
 				}
@@ -202,7 +202,7 @@ class htmlmetatags {
 				$pagetitle = getBareImageTitle() . " (" . getBareAlbumTitle() . ") - ";
 				$date = getImageDate();
 				$desc = getBareImageDesc();
-				$canonicalurl = $host . getImageLinkURL();
+				$canonicalurl = $host . getImageURL();
 				if (getOption('htmlmeta_og-image')) {
 					$thumb = $host . getImageThumb();
 				}

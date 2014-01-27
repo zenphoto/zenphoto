@@ -39,8 +39,8 @@ if (!defined('WEBPATH')) die();
 		<div id="credit">
 			<?php if (class_exists('RSS')) printRSSLink('Gallery', '', 'RSS', ' | '); ?>
 			<?php
-			if (function_exists('printFavoritesLink')) {
-				printFavoritesLink();
+			if (function_exists('printFavoritesURL')) {
+				printFavoritesURL();
 				?> | <?php
 			}
 			?>

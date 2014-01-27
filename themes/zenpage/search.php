@@ -90,7 +90,7 @@ if (!defined('WEBPATH'))
 									$c++;
 									?>
 									<li<?php printZDToggleClass('pages', $c, $number_to_show); ?>>
-										<h4><?php printPageTitlelink(); ?></h4>
+										<h4><?php printPageURL(); ?></h4>
 										<p class="zenpageexcerpt"><?php echo shortenContent(strip_tags(getPageContent()), 80, getOption("zenpage_textshorten_indicator")); ?></p>
 									</li>
 									<?php
@@ -110,7 +110,7 @@ if (!defined('WEBPATH'))
 									$c++;
 									?>
 									<li<?php printZDToggleClass('news', $c, $number_to_show); ?>>
-										<h4><?php printNewsLink(); ?></h4>
+										<h4><?php printNewsURL(); ?></h4>
 										<p class="zenpageexcerpt"><?php echo shortenContent(strip_tags(getNewsContent()), 80, getOption("zenpage_textshorten_indicator")); ?></p>
 									</li>
 									<?php
@@ -143,10 +143,10 @@ if (!defined('WEBPATH'))
 							<?php while (next_album()): ?>
 								<div class="album">
 									<div class="thumb">
-										<a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printBareAlbumTitle(); ?>"><?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, 95, 95, 95, 95); ?></a>
+										<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printBareAlbumTitle(); ?>"><?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, 95, 95, 95, 95); ?></a>
 									</div>
 									<div class="albumdesc">
-										<h3><a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printBareAlbumTitle(); ?>"><?php printAlbumTitle(); ?></a></h3>
+										<h3><a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printBareAlbumTitle(); ?>"><?php printAlbumTitle(); ?></a></h3>
 										<?php printAlbumDate(""); ?>
 										<p><?php echo truncate_string(getAlbumDesc(), 45); ?></p>
 									</div>
@@ -158,7 +158,7 @@ if (!defined('WEBPATH'))
 						<div id="images">
 							<?php while (next_image()) { ?>
 								<div class="image">
-									<div class="imagethumb"><a href="<?php echo html_encode(getImageLinkURL()); ?>" title="<?php printBareImageTitle(); ?>"><?php printImageThumb(getBareImageTitle()); ?></a></div>
+									<div class="imagethumb"><a href="<?php echo html_encode(getImageURL()); ?>" title="<?php printBareImageTitle(); ?>"><?php printImageThumb(getBareImageTitle()); ?></a></div>
 								</div>
 							<?php } ?>
 						</div>

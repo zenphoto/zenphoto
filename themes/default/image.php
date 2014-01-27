@@ -114,8 +114,8 @@ if (!defined('WEBPATH'))
 			<?php if (class_exists('RSS')) printRSSLink('Gallery', '', 'RSS', ' | '); ?>
 			<?php printCustomPageURL(gettext("Archive View"), "archive"); ?> |
 			<?php
-			if (function_exists('printFavoritesLink')) {
-				printFavoritesLink();
+			if (function_exists('printFavoritesURL')) {
+				printFavoritesURL();
 				?> | <?php
 			}
 			?>

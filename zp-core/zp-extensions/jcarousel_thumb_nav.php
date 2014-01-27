@@ -112,7 +112,7 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('jcarousel_' . $_zp_gallery->g
 	 * @param string $vertical 'horizontal','vertical', 'fade'
 	 * @param int $speed not supported
 	 */
-	function printThumbNav($minitems = NULL, $maxitems = NULL, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $fullimagelink = NULL, $vertical = NULL, $speed = NULL) {
+	function printThumbNav($minitems = NULL, $maxitems = NULL, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $fullimagelink = NULL, $vertical = NULL, $speed = NULL, $thumbscroll = NULL) {
 		global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery_page;
 		//	Just incase the theme has not set the option, at least second try will work!
 		setOptionDefault('slideshow_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page), 1);
@@ -216,40 +216,40 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('jcarousel_' . $_zp_gallery->g
 			?>
 			<script type="text/javascript">
 			// <!-- <![CDATA[
-				var mycarousel_itemList = [
+			var mycarousel_itemList = [
 			<?php echo $items; ?>
-				];
+			];
 
-				function mycarousel_itemLoadCallback(carousel, state) {
-					for (var i = carousel.first; i <= carousel.last; i++) {
-						if (carousel.has(i)) {
-							continue;
-						}
-						if (i > mycarousel_itemList.length) {
-							break;
-						}
-						carousel.add(i, mycarousel_getItemHTML(mycarousel_itemList[i - 1]));
+			function mycarousel_itemLoadCallback(carousel, state) {
+				for (var i = carousel.first; i <= carousel.last; i++) {
+					if (carousel.has(i)) {
+						continue;
 					}
-				}
-
-				function mycarousel_getItemHTML(item) {
-					if (item.active === "") {
-						html = '<a href="' + item.link + '" title="' + item.title + '"><img src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
-					} else {
-						html = '<a href="' + item.link + '" title="' + item.title + '"><img class="activecarouselimage" src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
+					if (i > mycarousel_itemList.length) {
+						break;
 					}
-					return html;
+					carousel.add(i, mycarousel_getItemHTML(mycarousel_itemList[i - 1]));
 				}
+			}
 
-				jQuery(document).ready(function() {
-					jQuery("#mycarousel").jcarousel({
-						vertical: <?php echo $vertical; ?>,
-						size: mycarousel_itemList.length,
-						start: <?php echo $imgnumber; ?>,
-						scroll: <?php echo $thumbscroll; ?>,
-						itemLoadCallback: {onBeforeAnimation: mycarousel_itemLoadCallback}
-					});
+			function mycarousel_getItemHTML(item) {
+				if (item.active === "") {
+					html = '<a href="' + item.link + '" title="' + item.title + '"><img src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
+				} else {
+					html = '<a href="' + item.link + '" title="' + item.title + '"><img class="activecarouselimage" src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
+				}
+				return html;
+			}
+
+			jQuery(document).ready(function() {
+				jQuery("#mycarousel").jcarousel({
+					vertical: <?php echo $vertical; ?>,
+					size: mycarousel_itemList.length,
+					start: <?php echo $imgnumber; ?>,
+					scroll: <?php echo $thumbscroll; ?>,
+					itemLoadCallback: {onBeforeAnimation: mycarousel_itemLoadCallback}
 				});
+			});
 			// ]]> -->
 			</script>
 			<ul id="mycarousel">

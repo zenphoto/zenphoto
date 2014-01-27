@@ -165,7 +165,7 @@ $backgroundImagePath = "";
 											$c++;
 											?>
 											<li<?php if ($c > SHOW_ITEMS) echo ' class="pages_extrashow" style="display:none;"'; ?>>
-												<?php print printPageTitleLink(); ?>
+												<?php print printPageURL(); ?>
 												<p style="text-indent:1em;"><?php echo exerpt($_zp_current_zenpage_page->getContent(), TRUNCATE_LENGTH); ?></p>
 											</li>
 											<?php
@@ -198,7 +198,7 @@ $backgroundImagePath = "";
 											$c++;
 											?>
 											<li<?php if ($c > SHOW_ITEMS) echo ' class="news_extrashow" style="display:none;"'; ?>>
-												<?php printNewsLink(); ?>
+												<?php printNewsURL(); ?>
 												<p style="text-indent:1em;"><?php echo exerpt($_zp_current_zenpage_news->getContent(), TRUNCATE_LENGTH); ?></p>
 											</li>
 											<?php
@@ -255,10 +255,10 @@ $backgroundImagePath = "";
 						<li>
 							<?php $annotate = annotateAlbum(); ?>
 							<div class="imagethumb">
-								<a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php echo $annotate; ?>">
+								<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo $annotate; ?>">
 									<?php printCustomAlbumThumbImage($annotate, null, ALBUM_THMB_WIDTH, null, ALBUM_THMB_WIDTH, ALBUM_THUMB_HEIGHT); ?></a>
 							</div>
-							<h4><a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php echo $annotate; ?>"><?php printAlbumTitle(); ?></a></h4></li>
+							<h4><a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo $annotate; ?>"><?php printAlbumTitle(); ?></a></h4></li>
 						<?php
 					}
 					if (!is_null($firstAlbum)) {

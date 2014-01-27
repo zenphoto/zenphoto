@@ -30,7 +30,7 @@ if (!defined('WEBPATH')) die(); ?>
 		<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b">
 			<?php while (next_album()): ?>
 			<li>
-			<a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo gettext('View album:'); ?>">
+			<a href="<?php echo html_encode(getAlbumURL());?>" title="<?php echo gettext('View album:'); ?>">
 			<?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, 79, 79, 79, 79, NULL, null, NULL,NULL); ?>
 			<?php printAlbumTitle(); ?><small> (<?php printAlbumDate(''); ?>)</small>
 			<div class="albumdesc"><?php echo shortenContent(getAlbumDesc(), 100,'(...)',false); ?></div>
@@ -60,7 +60,7 @@ if (!defined('WEBPATH')) die(); ?>
 						break;
 				}
 			?>
-				<a class="image<?php echo $imgclass; ?>" href="<?php echo html_encode(getImageLinkURL());?>" title="<?php printBareImageTitle();?>">
+				<a class="image<?php echo $imgclass; ?>" href="<?php echo html_encode(getImageURL());?>" title="<?php printBareImageTitle();?>">
 					<?php printCustomSizedImage(getAnnotatedImageTitle(), NULL,230, 230, 230, 230, NULL, NULL, NULL, NULL, true, NULL); ?>
 				</a>
 			<?php endwhile; ?>

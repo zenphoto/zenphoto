@@ -100,9 +100,9 @@ function jqm_printFooterNav() {
 			}
 			?>
 			<?php
-			if (function_exists('printFavoritesLink')) {
+			if (function_exists('printFavoritesURL')) {
 				?>
-				<li><?php printFavoritesLink(); ?></li><?php
+				<li><?php printFavoritesURL(); ?></li><?php
 			}
 			?>
 			<li><?php @call_user_func('mobileTheme::controlLink'); ?></li>

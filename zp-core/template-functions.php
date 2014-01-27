@@ -716,7 +716,7 @@ function getTotalPages($_oneImagePage = false) {
  * @param int $total How many pages there are.
  * @return int
  */
-function getPageURL($page, $total = null) {
+function getPageNumURL($page, $total = null) {
 	global $_zp_current_album, $_zp_gallery, $_zp_current_search, $_zp_gallery_page;
 	if (is_null($total)) {
 		$total = getTotalPages();
@@ -775,7 +775,7 @@ function hasNextPage() {
  * @return string
  */
 function getNextPageURL() {
-	return getPageURL(getCurrentPage() + 1);
+	return getPageNumURL(getCurrentPage() + 1);
 }
 
 /**
@@ -786,7 +786,7 @@ function getNextPageURL() {
  * @param string $class Text for the HTML class
  * @param string $id Text for the HTML id
  */
-function printNextPageLink($text, $title = NULL, $class = NULL, $id = NULL) {
+function printNextPageURL($text, $title = NULL, $class = NULL, $id = NULL) {
 	if (hasNextPage()) {
 		printLinkHTML(getNextPageURL(), $text, $title, $class, $id);
 	} else {
@@ -809,7 +809,7 @@ function hasPrevPage() {
  * @return string
  */
 function getPrevPageURL() {
-	return getPageURL(getCurrentPage() - 1);
+	return getPageNumURL(getCurrentPage() - 1);
 }
 
 /**
@@ -820,7 +820,7 @@ function getPrevPageURL() {
  * @param string $class Insert here the CSS-class name you want to style the link with
  * @param string $id Insert here the CSS-ID name you want to style the link with
  */
-function printPrevPageLink($text, $title = NULL, $class = NULL, $id = NULL) {
+function printPrevPageURL($text, $title = NULL, $class = NULL, $id = NULL) {
 	if (hasPrevPage()) {
 		printLinkHTML(getPrevPageURL(), $text, $title, $class, $id);
 	} else {
@@ -839,9 +839,9 @@ function printPrevPageLink($text, $title = NULL, $class = NULL, $id = NULL) {
  */
 function printPageNav($prevtext, $separator, $nexttext, $class = 'pagenav', $id = NULL) {
 	echo "<div" . (($id) ? " id=\"$id\"" : "") . " class=\"$class\">";
-	printPrevPageLink($prevtext, gettext("Previous Page"));
+	printPrevPageURL($prevtext, gettext("Previous Page"));
 	echo " $separator ";
-	printNextPageLink($nexttext, gettext("Next Page"));
+	printNextPageURL($nexttext, gettext("Next Page"));
 	echo "</div>\n";
 }
 
@@ -874,7 +874,7 @@ function getPageNavList($_oneImagePage, $navlen, $firstlast, $current, $total) {
 		$result['prev'] = NULL;
 	}
 	if ($firstlast) {
-		$result[1] = getPageURL(1, $total);
+		$result[1] = getPageNumURL(1, $total);
 	}
 
 	if ($navlen == 0) {
@@ -890,10 +890,10 @@ function getPageNavList($_oneImagePage, $navlen, $firstlast, $current, $total) {
 	$k2 = $total - round(($total - $ilim) / 2);
 
 	for ($i = $j; $i <= $ilim; $i++) {
-		$result[$i] = getPageURL($i, $total);
+		$result[$i] = getPageNumURL($i, $total);
 	}
 	if ($firstlast) {
-		$result[$total] = getPageURL($total, $total);
+		$result[$total] = getPageNumURL($total, $total);
 	}
 	if (hasNextPage()) {
 		$result['next'] = getNextPageURL();
@@ -973,7 +973,7 @@ function printPageListWithNav($prevtext, $nexttext, $_oneImagePage = false, $nex
 					<li>
 						<?php
 						$k1 = $i - (int) (($i - $last) / 2);
-						printLinkHTML(getPageURL($k1, $total), '...', sprintf(ngettext('Page %u', 'Page %u', $k1), $k1));
+						printLinkHTML(getPageNumURL($k1, $total), '...', sprintf(ngettext('Page %u', 'Page %u', $k1), $k1));
 						?>
 					</li>
 					<?php
@@ -982,7 +982,7 @@ function printPageListWithNav($prevtext, $nexttext, $_oneImagePage = false, $nex
 					<li>
 						<?php
 						$k1 = $last + 1;
-						printLinkHTML(getPageURL($k1, $total), $k1, sprintf(ngettext('Page %u', 'Page %u', $k1), $k1));
+						printLinkHTML(getPageNumURL($k1, $total), $k1, sprintf(ngettext('Page %u', 'Page %u', $k1), $k1));
 						?>
 					</li>
 					<?php
@@ -1012,14 +1012,14 @@ function printPageListWithNav($prevtext, $nexttext, $_oneImagePage = false, $nex
 						$k1 = $i - (int) (($i - $last)) / 2;
 						?>
 						<li>
-							<?php printLinkHTML(getPageURL($k1, $total), '...', sprintf(ngettext('Page %u', 'Page %u', $k1), $k1)); ?>
+							<?php printLinkHTML(getPageNumURL($k1, $total), '...', sprintf(ngettext('Page %u', 'Page %u', $k1), $k1)); ?>
 						</li>
 						<?php
 					} else if ($d == 2) {
 						$k1 = $last + 1;
 						?>
 						<li>
-							<?php printLinkHTML(getPageURL($k1, $total), $k1, sprintf(ngettext('Page %u', 'Page %u', $k1), $k1)); ?>
+							<?php printLinkHTML(getPageNumURL($k1, $total), $k1, sprintf(ngettext('Page %u', 'Page %u', $k1), $k1)); ?>
 						</li>
 						<?php
 					}
@@ -1217,7 +1217,7 @@ function getAlbumBreadcrumb($title = NULL) {
 				$title = gettext('Album Thumbnails');
 			}
 		}
-		return array('link' => getAlbumLinkURL($album), 'title' => $title, 'text' => $album->getDesc());
+		return array('link' => $album->getLink(), 'title' => $title, 'text' => $album->getDesc());
 	}
 	return false;
 }
@@ -1603,7 +1603,7 @@ function getAlbumPage($album = NULL) {
  * @param object $album optional album object
  * @return string
  */
-function getAlbumLinkURL($album = NULL) {
+function getAlbumURL($album = NULL) {
 	global $_zp_current_album;
 	if (is_null($album))
 		$album = $_zp_current_album;
@@ -1625,8 +1625,8 @@ function getAlbumLinkURL($album = NULL) {
  * @param string $class Insert here the CSS-class name with with you want to style the link.
  * @param string $id Insert here the CSS-id name with with you want to style the link.
  */
-function printAlbumLink($text, $title, $class = NULL, $id = NULL) {
-	printLinkHTML(getAlbumLinkURL(), $text, $title, $class, $id);
+function printAlbumURL($text, $title, $class = NULL, $id = NULL) {
+	printLinkHTML(getAlbumURL(), $text, $title, $class, $id);
 }
 
 /**
@@ -2419,7 +2419,7 @@ function getNextImageThumb() {
  *
  * @return string
  */
-function getImageLinkURL() {
+function getImageURL() {
 	if (!in_context(ZP_IMAGE))
 		return false;
 	global $_zp_current_image;
@@ -2427,7 +2427,6 @@ function getImageLinkURL() {
 		return false;
 	return $_zp_current_image->getLink();
 }
-
 /**
  * Prints the link to the current  image.
  *
@@ -2436,8 +2435,8 @@ function getImageLinkURL() {
  * @param string $class optional style class for the link
  * @param string $id optional style id for the link
  */
-function printImageLink($text, $title, $class = NULL, $id = NULL) {
-	printLinkHTML(getImageLinkURL(), $text, $title, $class, $id);
+function printImageURL($text, $title, $class = NULL, $id = NULL) {
+	printLinkHTML(getImageURL(), $text, $title, $class, $id);
 }
 
 /**
@@ -3109,7 +3108,7 @@ function printCustomSizedImageMaxSpace($alt, $width, $height, $class = NULL, $id
  * @param string $class optional URL class
  * @param string $id optional URL id
  */
-function printSizedImageLink($size, $text, $title, $class = NULL, $id = NULL) {
+function printSizedImageURL($size, $text, $title, $class = NULL, $id = NULL) {
 	printLinkHTML(getSizedImageURL($size), $text, $title, $class, $id);
 }
 

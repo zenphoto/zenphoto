@@ -77,11 +77,11 @@ if (!defined('WEBPATH'))
 						<li>
 							<?php $annotate = annotateAlbum(); ?>
 							<div class="imagethumb">
-								<a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php echo $annotate; ?>">
+								<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo $annotate; ?>">
 									<?php printCustomAlbumThumbImage($annotate, null, ALBUM_THMB_WIDTH, null, ALBUM_THMB_WIDTH, ALBUM_THUMB_HEIGHT); ?>
 								</a>
 							</div>
-							<h4><a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php echo $annotate; ?>"><?php printAlbumTitle(); ?></a></h4>
+							<h4><a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo $annotate; ?>"><?php printAlbumTitle(); ?></a></h4>
 						</li>
 					<?php } ?>
 				</ul>

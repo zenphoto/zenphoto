@@ -428,11 +428,11 @@ function generateCaptcha(&$img) {
  * @since 1.4.3
  */
 function printAlbumZip() {
-	deprecated_functions::notify(gettext('Use downloadList plugin <code>printDownloadLinkAlbumZip()</code>.'));
+	deprecated_functions::notify(gettext('Use downloadList plugin <code>printDownloadURLAlbumZip()</code>.'));
 	global $_zp_current_album;
 	enableExtension('downloadList', 20 | ADMIN_PLUGIN | THEME_PLUGIN, false);
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/downloadList.php');
-	printDownloadLinkAlbumZip(gettext('Download a zip file of this album'), $_zp_current_album);
+	printDownloadURLAlbumZip(gettext('Download a zip file of this album'), $_zp_current_album);
 }
 
 /**
@@ -442,7 +442,7 @@ function printAlbumZip() {
 function printImageDiv() {
 	deprecated_functions::notify(gettext('Use printImageThumb().'));
 	if (!isset($_GET['sortable'])) {
-		echo '<a href="' . html_encode(getImageLinkURL()) . '" title="' . html_encode(getImageTitle()) . '">';
+		echo '<a href="' . html_encode(getImageURL()) . '" title="' . html_encode(getImageTitle()) . '">';
 	}
 	printImageThumb(getImageTitle());
 	if (!isset($_GET['sortable'])) {
@@ -718,6 +718,76 @@ function setPluginDomain($plugindomain) {
 function setThemeDomain($themedomain) {
 	deprecated_functions::notify(gettext('use setupDomain()'));
 	return setupDomain($themedomain, "theme");
+}
+
+/**
+ * @deprecated
+ * @since 1.4.6
+ *
+ */
+function getAlbumLinkURL($album = NULL) {
+	deprecated_functions::notify(gettext('use getAlbumURL()'));
+	return getAlbumURL();
+}
+
+/**
+ * @deprecated
+ * @since 1.4.6
+ *
+ */
+function getImageLinkURL() {
+	deprecated_functions::notify(gettext('use getImageURL()'));
+	return getImageULR();
+}
+
+/**
+ * @deprecated
+ * @since 1.4.6
+ *
+ */
+function printAlbumLink($text, $title, $class = NULL, $id = NULL) {
+	deprecated_functions::notify(gettext('use printAlbumURL()'));
+	printAlbumURL($text, $title, $class, $id);
+}
+
+/**
+ * @deprecated
+ * @since 1.4.6
+ *
+ */
+function printImageLink($text, $title, $class = NULL, $id = NULL) {
+	deprecated_functions::notify(gettext('use printImageURL()'));
+	printImageURL($text, $title, $class, $id);
+}
+
+/**
+ * @deprecated
+ * @since 1.4.6
+ *
+ */
+function printNextPageLink($text, $title = NULL, $class = NULL, $id = NULL) {
+	deprecated_functions::notify(gettext('use printNextPageURL()'));
+	printNextPageURL($text, $title, $class, $id);
+}
+
+/**
+ * @deprecated
+ * @since 1.4.6
+ *
+ */
+function printPrevPageLink($text, $title = NULL, $class = NULL, $id = NULL) {
+	deprecated_functions::notify(gettext('use printPrevPageURL()'));
+	printPrevPageURL($text, $title, $class, $id);
+}
+
+/**
+ * @deprecated
+ * @since 1.4.6
+ *
+ */
+function printSizedImageLink($size, $text, $title, $class = NULL, $id = NULL) {
+	deprecated_functions::notify(gettext('use printSizedImageURL()'));
+	printSizedImageURL($size, $text, $title, $class, $id);
 }
 
 ?>

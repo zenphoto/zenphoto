@@ -53,10 +53,10 @@ if (!defined('WEBPATH'))
 						?>
 						<div class="album">
 							<div class="thumb">
-								<a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printAnnotatedAlbumTitle(); ?>"><?php printAlbumThumbImage(getAnnotatedAlbumTitle()); ?></a>
+								<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printAnnotatedAlbumTitle(); ?>"><?php printAlbumThumbImage(getAnnotatedAlbumTitle()); ?></a>
 							</div>
 							<div class="albumdesc">
-								<h3><a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printAnnotatedAlbumTitle(); ?>"><?php printAlbumTitle(); ?></a></h3>
+								<h3><a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printAnnotatedAlbumTitle(); ?>"><?php printAlbumTitle(); ?></a></h3>
 								<p><?php printAlbumDesc(); ?></p>
 								<small><?php printAlbumDate(gettext("Date:") . ' '); ?> </small>
 							</div>
@@ -72,7 +72,7 @@ if (!defined('WEBPATH'))
 						$c++;
 						?>
 						<div class="image">
-							<div class="imagethumb"><a href="<?php echo html_encode(getImageLinkURL()); ?>" title="<?php printBareImageTitle(); ?>"><?php printImageThumb(getAnnotatedImageTitle()); ?></a></div>
+							<div class="imagethumb"><a href="<?php echo html_encode(getImageURL()); ?>" title="<?php printBareImageTitle(); ?>"><?php printImageThumb(getAnnotatedImageTitle()); ?></a></div>
 						</div>
 						<?php
 					}
@@ -92,8 +92,8 @@ if (!defined('WEBPATH'))
 			<?php if (class_exists('RSS')) printRSSLink('Gallery', '', gettext('Gallery RSS'), ' | '); ?>
 			<?php printCustomPageURL(gettext("Archive View"), "archive"); ?> |
 			<?php
-			if (function_exists('printFavoritesLink')) {
-				printFavoritesLink();
+			if (function_exists('printFavoritesURL')) {
+				printFavoritesURL();
 				?> | <?php
 			}
 			?>

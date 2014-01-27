@@ -933,8 +933,8 @@ function getNewsTitleLink() {
 }
 
 function printNewsTitleLink($before = '') {
-	deprecated_functions::notify(gettext('use printNewsLink()'));
-	printNewsLink($before);
+	deprecated_functions::notify(gettext('use printNewsURL()'));
+	printNewsURL($before);
 }
 
 /**
@@ -947,4 +947,30 @@ function getNewsLink($titlelink = '') {
 	global $_zp_current_zenpage_news;
 }
 
+/**
+ * @deprecated
+ * @since 1.4.6
+ */
+function getPageLinkURL($titlelink = '') {
+	deprecated_functions::notify(gettext('use getPageURL()'));
+	return getPageURL($titlelink);
+}
+
+/**
+ * @deprecated
+ * @since 1.4.6
+ */
+function printPageLinkURL($linktext, $titlelink, $prev = '', $next = '', $class = NULL) {
+	deprecated_functions::notify(gettext('use printPageURL()'));
+	printPageURL($linktext, $titlelink, $prev, $next, $class);
+}
+
+/**
+ * @deprecated
+ * @since 1.4.6
+ */
+function printNewsLink($before = '') {
+	deprecated_functions::notify(gettext('use printNewsURL()'));
+	printNewsURL($before);
+}
 ?>

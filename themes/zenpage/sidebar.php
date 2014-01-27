@@ -119,10 +119,10 @@ if (function_exists("printUserLogin_out") || !zp_loggedin() && function_exists('
 				</li>
 					<?php
 				}
-				if (function_exists('printFavoritesLink')) {
+				if (function_exists('printFavoritesURL')) {
 					?>
 				<li>
-				<?php printFavoritesLink(); ?>
+				<?php printFavoritesURL(); ?>
 				</li>
 					<?php
 				}

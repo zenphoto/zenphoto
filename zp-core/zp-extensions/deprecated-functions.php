@@ -39,7 +39,7 @@ class deprecated_functions {
 
 	var $listed_functions = array();
 
-	function deprecated_functions() {
+	function __construct() {
 		global $_internalFunctions;
 		foreach (getPluginFiles('*.php') as $extension => $plugin) {
 			$deprecated = stripSuffix($plugin) . '/deprecated-functions.php';

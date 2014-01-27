@@ -52,7 +52,7 @@ class image_page {
 									}
 								}
 								$annotate = annotateImage();
-								echo '<a href="' . html_encode(getImageLinkURL()) . '"';
+								echo '<a href="' . html_encode(getImageURL()) . '"';
 								echo " title=\"" . $annotate . "\">\n";
 								printImageThumb($annotate);
 								echo "</a>";

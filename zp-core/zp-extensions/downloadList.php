@@ -6,7 +6,7 @@
  * By default the <var>%UPLOAD_FOLDER%</var> folder is chosen so you can use the file manager to manage those files.
  *
  * You can also override that folder by using the <var>printdownloadList()</var> function parameters directly. Additionally
- * you can set a downloadlink to a specific file directly as well using <code>printDownloadLink(<i>path-to-file</i>);<code>.
+ * you can set a downloadlink to a specific file directly as well using <code>printDownloadURL(<i>path-to-file</i>);<code>.
  *
  * The file names and the download path of the items are stored with the number of downloads in the database's plugin_storage table.
  *
@@ -22,7 +22,7 @@
  *
  * To protect the download directory from direct linking you need to set up a proper <var>.htaccess</var> for this folder.
  *
- * The <var>printDownloadLinkAlbumZip()</var> function will create a zipfile of the album <i>on the fly</i>.
+ * The <var>printDownloadAlbumZipURL()</var> function will create a zipfile of the album <i>on the fly</i>.
  * The source of the images may be the original
  * images from the album and its subalbums or they may be the <i>sized</i> images from the cache. Use the latter if you want
  * the images to be watermarked.
@@ -128,7 +128,7 @@ class DownloadList {
 						 onkeyup="passwordStrength('_downloadList');"
 						 value="<?php echo $x; ?>" />
 			<label><input type="checkbox" name="disclose_password_downloadList" id="disclose_password_downloadList" onclick="passwordClear('_downloadList');
-					togglePassword('_downloadList');"><?php echo gettext('Show password'); ?></label>
+							togglePassword('_downloadList');"><?php echo gettext('Show password'); ?></label>
 			<br />
 			<span class="password_field__downloadList">
 				<span id="match_downloadList"><?php echo gettext("(repeat)"); ?></span>
@@ -232,7 +232,7 @@ class DownloadList {
 				if (is_array($file)) { // for sub directories
 					echo $key;
 				} else {
-					printDownloadLink($file);
+					printDownloadURL($file);
 				}
 				if (is_array($file)) {
 					echo '<' . $listtype . '>';
@@ -475,7 +475,7 @@ function getdownloadList($dir8, $filters8, $excludesuffixes, $sort) {
  * Gets the download url for a file
  * @param string $file the path to a file to get a download link.
  */
-function getDownloadLink($file) {
+function getDownloadURL($file) {
 	DownloadList::addListItem($file); // add item to db if not already exists without updating the counter
 	$link = '';
 	if ($id = DownloadList::getItemID($file)) {
@@ -489,7 +489,7 @@ function getDownloadLink($file) {
  * @param string $file the path to a file to print a download link.
  * @param string $linktext Optionally how you wish to call the link. Set/leave  to NULL to use the filename.
  */
-function printDownloadLink($file, $linktext = NULL) {
+function printDownloadURL($file, $linktext = NULL) {
 	if (substr($file, 0, 1) != '/' && strpos($file, ':') === false) {
 		$file = SERVERPATH . '/' . getOption('downloadList_directory') . '/' . $file;
 	}
@@ -513,7 +513,7 @@ function printDownloadLink($file, $linktext = NULL) {
 	} else {
 		$filename = $linktext;
 	}
-	echo '<a href="' . html_encode(getDownloadLink($file)) . '" rel="nofollow">' . html_encode($filename) . '</a><small>' . $filesize . '</small>';
+	echo '<a href="' . html_encode(getDownloadURL($file)) . '" rel="nofollow">' . html_encode($filename) . '</a><small>' . $filesize . '</small>';
 }
 
 /**
@@ -525,7 +525,7 @@ function printDownloadLink($file, $linktext = NULL) {
  * @param object $albumobj
  * @param bool $fromcache if true get the images from the cache
  */
-function printDownloadLinkAlbumZip($linktext = NULL, $albumobj = NULL, $fromcache = NULL) {
+function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache = NULL) {
 	global $_zp_current_album;
 	if (is_null($albumobj)) {
 		$albumobj = $_zp_current_album;

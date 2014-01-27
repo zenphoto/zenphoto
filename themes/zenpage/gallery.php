@@ -44,10 +44,10 @@ if (!defined('WEBPATH'))
 							<?php while (next_album()): ?>
 								<div class="album">
 									<div class="thumb">
-										<a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printBareAlbumTitle(); ?>"><?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, 95, 95, 95, 95); ?></a>
+										<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printBareAlbumTitle(); ?>"><?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, 95, 95, 95, 95); ?></a>
 									</div>
 									<div class="albumdesc">
-										<h3><a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printBareAlbumTitle(); ?>"><?php printAlbumTitle(); ?></a></h3>
+										<h3><a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printBareAlbumTitle(); ?>"><?php printAlbumTitle(); ?></a></h3>
 										<?php printAlbumDate(""); ?>
 										<div><?php echo shortenContent(getAlbumDesc(), 45, '...'); ?></div>
 									</div>
@@ -64,7 +64,7 @@ if (!defined('WEBPATH'))
 						while (next_news()):;
 							?>
 							<div class="newsarticle">
-								<h3><?php printNewsLink(); ?><?php echo " <span class='newstype'>[" . gettext('news') . "]</span>"; ?></h3>
+								<h3><?php printNewsURL(); ?><?php echo " <span class='newstype'>[" . gettext('news') . "]</span>"; ?></h3>
 								<div class="newsarticlecredit"><span class="newsarticlecredit-left"><?php
 										printNewsDate();
 										if (function_exists('getCommentCount')) {

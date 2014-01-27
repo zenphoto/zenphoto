@@ -114,11 +114,11 @@ $map = function_exists('printGoogleMap');
 						<li>
 							<?php $annotate = annotateAlbum(); ?>
 							<div class="imagethumb">
-								<a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php echo html_encode($annotate) ?>">
+								<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo html_encode($annotate) ?>">
 									<?php printCustomAlbumThumbImage($annotate, null, ALBUM_THMB_WIDTH, null, ALBUM_THMB_WIDTH, ALBUM_THUMB_HEIGHT); ?></a>
 							</div>
 							<h4>
-								<a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php echo html_encode($annotate) ?>">
+								<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo html_encode($annotate) ?>">
 									<?php printAlbumTitle(); ?>
 								</a>
 								<?php printAddToFavorites($_zp_current_album, '', gettext('Remove')); ?>
@@ -169,7 +169,7 @@ $map = function_exists('printGoogleMap');
 											}
 										}
 										$annotate = annotateImage();
-										echo '<a href="' . html_encode(getImageLinkURL()) . '"';
+										echo '<a href="' . html_encode(getImageURL()) . '"';
 										echo " title=\"" . $annotate . "\">\n";
 										printImageThumb($annotate);
 										echo "</a>";

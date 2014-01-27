@@ -17,7 +17,7 @@
  * 	</li>
  *
  * 	<li>
- * 	Calls to <i>printFavoritesLink()</i> should be placed anywhere that the visitor should be able to link
+ * 	Calls to <i>printFavoritesURL()</i> should be placed anywhere that the visitor should be able to link
  * 	to his favorites page.
  * 	</li>
  * </ul>
@@ -435,7 +435,7 @@ class favorites extends AlbumBase {
 	static function toolbox($zf) {
 		?>
 		<li>
-			<?php printFavoritesLink(gettext('My favorites')); ?>
+			<?php printFavoritesURL(gettext('My favorites')); ?>
 		</li>
 		<?php
 	}
@@ -579,7 +579,12 @@ if (!$plugin_disable) {
 				<?php
 			}
 
-			function printFavoritesLink($text = NULL) {
+			function getFavoritesURL() {
+				global $_myFavorites;
+				return $_myFavorites->getLink();
+			}
+
+			function printFavoritesURL($text = NULL) {
 				global $_myFavorites;
 				if (is_null($text)) {
 					$text = get_language_string(getOption('favorites_linktext'));

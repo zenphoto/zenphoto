@@ -320,7 +320,7 @@ function printBareNewsTitle() {
  * Returns the link (url) of the current news article.
  * or of the titlelink passed if not empty
  *
- * @param string $titlelink 
+ * @param string $titlelink
  * @return string
  */
 function getNewsURL($titlelink = NULL) {
@@ -339,7 +339,7 @@ function getNewsURL($titlelink = NULL) {
  *
  * @param string $before insert what you want to be show before the titlelink.
  */
-function printNewsLink($before = '') {
+function printNewsURL($before = '') {
 	if (getNewsTitle()) {
 		if ($before) {
 			$before = '<span class="beforetext">' . html_encode($before) . '</span>';
@@ -864,17 +864,6 @@ function getNewsArchivePath($date, $page) {
 	return zp_apply_filter('getLink', rewrite_path($rewrite, $plain), 'archive.php', $page);
 }
 
-/**
- * Prints the url to a news article
- *
- * @param string $titlelink The titlelink of a news article
- *
- * @return string
- */
-function printNewsURL($titlelink = '') {
-	echo html_encode(getNewsURL($titlelink));
-}
-
 /* * ********************************************************* */
 /* News index / category / date archive pagination functions
   /********************************************************** */
@@ -1315,7 +1304,7 @@ function printZenpageStatistic($number = 10, $option = "all", $mode = "popular",
 		}
 		switch ($item['type']) {
 			case 'Page':
-				$titlelink = html_encode(getPageLinkURL($item['titlelink']));
+				$titlelink = html_encode(getPageURL($item['titlelink']));
 			case 'News':
 				$titlelink = html_encode(getNewsURL($item['titlelink']));
 				break;
@@ -1669,7 +1658,7 @@ function printZenpageItemsBreadcrumb($before = NULL, $after = NULL) {
 	foreach ($parentitems as $item) {
 		if (is_Pages()) {
 			$pageobj = new ZenpagePage($item);
-			$parentitemurl = html_encode(getPageLinkURL($item));
+			$parentitemurl = html_encode($pageobj->getLink());
 			$parentitemtitle = $pageobj->getTitle();
 		}
 		if (is_NewsCategory()) {
@@ -1818,12 +1807,13 @@ function getPageTitleLink() {
 
 /**
  * Prints titlelink of a page
+ * !!!!!!!!!!NOT THE URL TO THE PAGE!!!!!!!!!!!!!
  *
  * @return string
  */
 function printPageTitleLink() {
 	global $_zp_current_zenpage_page;
-	echo '<a href="' . html_encode(getPageLinkURL(getPageTitleLink())) . '" title="' . getBarePageTitle() . '">' . getPageTitle() . '</a>';
+	echo html_encode(getPageURL(getPageTitleLink()));
 }
 
 /**
@@ -2041,7 +2031,7 @@ function getPageSortorder() {
  *
  * @return string
  */
-function getPageLinkURL($titlelink = '') {
+function getPageURL($titlelink = '') {
 	global $_zp_zenpage, $_zp_current_zenpage_page;
 	if (empty($titlelink)) {
 		$obj = $_zp_current_zenpage_page;
@@ -2060,11 +2050,11 @@ function getPageLinkURL($titlelink = '') {
  * @param string $next text to follow the URL
  * @param string $class optional class
  */
-function printPageLinkURL($linktext, $titlelink, $prev = '', $next = '', $class = NULL) {
+function printPageURL($linktext, $titlelink, $prev = '', $next = '', $class = NULL) {
 	if (!is_null($class)) {
 		$class = 'class="' . $class . '"';
 	}
-	echo $prev . "<a href=\"" . html_encode(getPageLinkURL($titlelink)) . "\" $class title=\"" . html_encode($linktext) . "\">" . html_encode($linktext) . "</a>" . $next;
+	echo $prev . "<a href=\"" . html_encode(getPageURL($titlelink)) . "\" $class title=\"" . html_encode($linktext) . "\">" . html_encode($linktext) . "</a>" . $next;
 }
 
 /**
@@ -2288,13 +2278,13 @@ function zenpageAlbumImage($albumname, $imagename = NULL, $size = NULL, $linkalb
 			makeImageCurrent($image);
 			if ($linkalbum) {
 				rem_context(ZP_IMAGE);
-				echo '<a href="' . html_encode(getAlbumLinkURL($album)) . '"   title="' . sprintf(gettext('View the %s album'), $albumname) . '">';
+				echo '<a href="' . html_encode($album->getLink()) . '"   title="' . sprintf(gettext('View the %s album'), $albumname) . '">';
 				add_context(ZP_IMAGE);
 				printCustomSizedImage(sprintf(gettext('View the album %s'), $albumname), $size);
 				rem_context(ZP_IMAGE | ZP_ALBUM);
 				echo '</a>';
 			} else {
-				echo '<a href="' . html_encode(getImageLinkURL()) . '" title="' . sprintf(gettext('View %s'), $imagename) . '">';
+				echo '<a href="' . html_encode(getImageURL()) . '" title="' . sprintf(gettext('View %s'), $imagename) . '">';
 				printCustomSizedImage(sprintf(gettext('View %s'), $imagename), $size);
 				rem_context(ZP_IMAGE | ZP_ALBUM);
 				echo '</a>';

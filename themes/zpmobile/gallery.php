@@ -30,7 +30,7 @@ if (!defined('WEBPATH')) die(); ;
 		
 			<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b">
 			<?php while (next_album()): ?>
-					<li><a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo gettext('View album:'); ?> <?php printAnnotatedAlbumTitle();?>"><?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, 80, 80, 80, 80, NULL, null, NULL,NULL); ?>
+					<li><a href="<?php echo html_encode(getAlbumURL());?>" title="<?php echo gettext('View album:'); ?> <?php printAnnotatedAlbumTitle();?>"><?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, 80, 80, 80, 80, NULL, null, NULL,NULL); ?>
 					<?php printAlbumTitle(); ?><small> (<?php printAlbumDate(""); ?>)</small>
 					<div class="albumdesc"><?php echo shortenContent(getAlbumDesc(), 57,'(...)',false); ?></div>
 					<small class="ui-li-count"><?php jqm_printImageAlbumCount()?></small>	

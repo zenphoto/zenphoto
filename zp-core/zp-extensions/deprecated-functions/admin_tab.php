@@ -21,6 +21,9 @@ echo "\n</head>";
 			<div id="container">
 				<div class="tabbox">
 					<h1><?php echo gettext('Deprecated Functions'); ?></h1>
+					<p>
+						<?php echo gettext('Functions flagged with an asterisk are class methods. Ones flagged with two asterisks have deprecated parameters.'); ?>
+					</p>
 					<?php
 					$deprecated = new deprecated_functions();
 					$list = array();

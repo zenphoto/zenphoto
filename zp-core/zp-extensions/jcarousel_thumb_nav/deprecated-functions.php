@@ -12,7 +12,7 @@ require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-f
  */
 function printjCarouselThumbNav($thumbscroll = NULL, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $fullimagelink = NULL, $vertical = NULL) {
 	deprecated_functions::notify(gettext('Use printThumbNav().'));
-	printThumbNav($minitems, NULL, $width, $height, $cropw, $croph, $fullimagelink, $mode, NULL);
+	printThumbNav(NULL, NULL, $width, $height, $cropw, $croph, $fullimagelink, $mode, NULL, $thumbscroll);
 }
 
 ?>

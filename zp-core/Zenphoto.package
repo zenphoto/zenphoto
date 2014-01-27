@@ -751,6 +751,7 @@ zp-core/zp-extensions/deprecated-functions/deprecated-functions.php
 zp-core/zp-extensions/deprecated-functions/functions.php
 zp-core/zp-extensions/downloadList
 zp-core/zp-extensions/downloadList.php
+zp-core/zp-extensions/downloadList/deprecated-functions.php
 zp-core/zp-extensions/downloadList/download_statistics.php
 zp-core/zp-extensions/dynamic-locale
 zp-core/zp-extensions/dynamic-locale.php
@@ -814,6 +815,8 @@ zp-core/zp-extensions/elFinder/php/mime.types
 zp-core/zp-extensions/email-newuser.php
 zp-core/zp-extensions/exampleMacros.php
 zp-core/zp-extensions/externalFeed.php
+zp-core/zp-extensions/favoirtesHandler
+zp-core/zp-extensions/favoirtesHandler/deprecated-functions.php
 zp-core/zp-extensions/favoritesHandler.php
 zp-core/zp-extensions/federated_logon
 zp-core/zp-extensions/federated_logon.php
@@ -1132,6 +1135,11 @@ zp-core/zp-extensions/tinyURL.php
 zp-core/zp-extensions/tinymce4
 zp-core/zp-extensions/tinymce4.php
 zp-core/zp-extensions/tinymce4/config
+zp-core/zp-extensions/tinymce4/config/comment-basic.js.php
+zp-core/zp-extensions/tinymce4/config/comment-full.js.php
+zp-core/zp-extensions/tinymce4/config/comment-inline.js.php
+zp-core/zp-extensions/tinymce4/config/comment-light.js.php
+zp-core/zp-extensions/tinymce4/config/comment-slim.js.php
 zp-core/zp-extensions/tinymce4/config/zenpage-basic.js.php
 zp-core/zp-extensions/tinymce4/config/zenpage-full.js.php
 zp-core/zp-extensions/tinymce4/config/zenpage-inline.js.php
@@ -1389,4 +1397,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1391
+1399
