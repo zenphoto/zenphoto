@@ -404,7 +404,7 @@ class favorites extends AlbumBase {
 		return $script;
 	}
 
-	function pageCount($count, $gallery_page, $page) {
+	static function pageCount($count, $gallery_page, $page) {
 		global $_firstPageImages, $_oneImagePage;
 		if (!$pagename = stripSuffix(getOption('favorites_link'))) {
 			$pagename = 'favorites';

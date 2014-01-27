@@ -1,7 +1,8 @@
 <?php
 // force UTF-8 Ø
 
-if (!defined('WEBPATH')) die();
+if (!defined('WEBPATH'))
+	die();
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,7 +37,7 @@ if (!defined('WEBPATH')) die();
 								<h3><a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printAnnotatedAlbumTitle(); ?>"><?php printAlbumTitle(); ?></a></h3>
 								<small><?php printAlbumDate(""); ?></small>
 								<div><?php printAlbumDesc(); ?></div>
-								<?php printAddToFavorites($_zp_current_album, '',gettext('Remove')); ?>
+								<?php printAddToFavorites($_zp_current_album, '', gettext('Remove')); ?>
 							</div>
 							<p style="clear: both; "></p>
 						</div>
@@ -45,16 +46,16 @@ if (!defined('WEBPATH')) die();
 				<div id="images">
 					<?php
 					while (next_image()) {
-					?>
+						?>
 						<div class="image">
 							<div class="imagethumb">
 								<a href="<?php echo html_encode(getImageURL()); ?>" title="<?php printBareImageTitle(); ?>">
 									<?php printImageThumb(getAnnotatedImageTitle()); ?>
 								</a>
-								<?php printAddToFavorites($_zp_current_image, '',gettext('Remove')); ?>
+								<?php printAddToFavorites($_zp_current_image, '', gettext('Remove')); ?>
 							</div>
 						</div>
-					<?php
+						<?php
 					}
 					?>
 				</div>
@@ -64,7 +65,7 @@ if (!defined('WEBPATH')) die();
 		</div>
 		<div id="credit">
 			<?php printZenphotoLink(); ?>
-			<?php @call_user_func('printUserLogin_out'," | ");	?>
+			<?php @call_user_func('printUserLogin_out', " | "); ?>
 		</div>
 		<?php
 		zp_apply_filter('theme_body_close');
