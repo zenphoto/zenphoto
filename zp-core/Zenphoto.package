@@ -745,6 +745,7 @@ zp-core/zp-extensions/crop_image/swap_up.png
 zp-core/zp-extensions/defaultCodeblocks.php
 zp-core/zp-extensions/deprecated-functions
 zp-core/zp-extensions/deprecated-functions.php
+zp-core/zp-extensions/deprecated-functions/admin_tab.php
 zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php
 zp-core/zp-extensions/deprecated-functions/deprecated-functions.php
 zp-core/zp-extensions/deprecated-functions/functions.php
@@ -1388,4 +1389,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1390
+1391

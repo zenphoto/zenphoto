@@ -33,6 +33,7 @@ if (OFFSET_PATH == 2)
 //	his site is working.
 
 zp_register_filter('admin_utilities_buttons', 'deprecated_functions::button');
+zp_register_filter('admin_tabs', 'deprecated_functions::tabs');
 
 class deprecated_functions {
 
@@ -85,6 +86,13 @@ class deprecated_functions {
 		return $options;
 	}
 
+	static function tabs($tabs) {
+		$tabs['deprecated'] = array('text'		 => gettext("deprecated"),
+						'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions/admin_tab.php?page=deprecated&amp;tab=' . gettext('deprecated'),
+						'subtabs'	 => NULL);
+		return $tabs;
+	}
+
 	/*
 	 * used to provided deprecated function notification.
 	 */
@@ -113,7 +121,7 @@ class deprecated_functions {
 						'category'		 => gettext('Development'),
 						'enable'			 => true,
 						'button_text'	 => gettext('Check deprecated use'),
-						'formname'		 => 'deprecated_functions.php',
+						'formname'		 => 'deprecated_functions_check.php',
 						'action'			 => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions/check_for_deprecated.php',
 						'icon'				 => 'images/magnify.png',
 						'title'				 => gettext("Searches PHP scripts for use of deprecated functions."),
