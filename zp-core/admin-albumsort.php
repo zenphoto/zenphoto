@@ -89,15 +89,12 @@ echo "\n</head>";
 	if (!isset($_GET['album'])) {
 		zp_error(gettext("No album provided to sort."));
 	} else {
-
 		// Layout the page
 		printLogoAndLinks();
 		?>
 
 		<div id="main">
 			<?php printTabs(); ?>
-
-
 			<div id="content">
 				<?php
 				zp_apply_filter('admin_note', 'albums', 'sort');
@@ -123,7 +120,6 @@ echo "\n</head>";
 
 				<div class="tabbox">
 					<?php
-					zp_apply_filter('admin_note', 'albums', 'imageinfo');
 					if (isset($_GET['saved'])) {
 						if (sanitize_numeric($_GET['saved'])) {
 							?>
