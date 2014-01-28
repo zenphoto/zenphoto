@@ -288,14 +288,14 @@ class favorites extends AlbumBase {
 	function getAlbums($page = 0, $sorttype = null, $sortdirection = null, $care = true, $mine = NULL) {
 		global $_zp_gallery;
 		if ($mine || is_null($this->subalbums) || $care && $sorttype . $sortdirection !== $this->lastsubalbumsort) {
-			$subalbums = array();
+			$results = array();
 			$result = query($sql = 'SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . db_quote($this->name) . ' AND `data` LIKE "%s:4:\"type\";s:6:\"albums\";%"');
 			if ($result) {
 				while ($row = db_fetch_assoc($result)) {
 					$data = getSerializedArray($row['data']);
 					$albumobj = newAlbum($data['id'], true, true);
 					if ($albumobj->exists) { // fail to instantiate?
-						$subalbums[$data['id']] = $albumobj->getData();
+						$results[$data['id']] = $albumobj->getData();
 					} else {
 						query("DELETE FROM " . prefix('plugin_storage') . ' WHERE `id`=' . $row['id']);
 					}
@@ -311,19 +311,22 @@ class favorites extends AlbumBase {
 						$sortdirection = '';
 					}
 				}
-				$sortkey = str_replace('`  ', '', $this->getAlbumSortKey($sorttype));
-				if (($sortkey == 'sort_order') || ($sortkey == 'RAND()')) {
-					// manual sort is always ascending
+				$sortkey = $this->getAlbumSortKey($sorttype);
+				if (($sortkey == '`sort_order`') || ($sortkey == 'RAND()')) { // manual sort is always ascending
 					$order = false;
 				} else {
 					if (!is_null($sortdirection)) {
 						$order = strtoupper($sortdirection) == 'DESC';
 					} else {
-						$order = $this->getSortDirection('image');
+						$order = $obj->getSortDirection('album');
 					}
 				}
-				$albums = sortByKey($subalbums, $sortkey, $order);
-				$this->subalbums = array_keys($albums);
+				$results = sortByKey($results, $sortkey, $order);
+				$albums = array();
+				foreach ($results as $album) {
+					$albums[] = $album['folder'];
+				}
+				$this->subalbums = $albums;
 				$this->lastsubalbumsort = $sorttype . $sortdirection;
 			}
 		}
