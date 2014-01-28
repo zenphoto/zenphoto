@@ -40,7 +40,7 @@ $plugin_notice = (MOD_REWRITE) ? false : gettext('<em>mod_rewrite</em> is not en
 
 switch (OFFSET_PATH) {
 	case 0:
-		$state = $_zp_conf_vars['site_upgrade_state'];
+		$state = @$_zp_conf_vars['site_upgrade_state'];
 		if ((!zp_loggedin(ADMIN_RIGHTS) && $state == 'closed_for_test') || $state == 'closed') {
 			if (!preg_match('~' . preg_quote($page) . '/setup_set-mod_rewrite\?z=setup$~', $_SERVER['REQUEST_URI'])) {
 				header('location: ' . WEBPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.php');
@@ -136,20 +136,26 @@ switch (OFFSET_PATH) {
 
 		function site_upgrade_status() {
 			global $_zp_conf_vars;
-			switch ($_zp_conf_vars['site_upgrade_state']) {
+			switch (@$_zp_conf_vars['site_upgrade_state']) {
 				case 'closed':
 					?>
-					<li><?php echo gettext('Site status:'); ?> <span style="color:RED"><strong><?php echo gettext('The site is closed!'); ?></strong></span></li>
+					<li>
+						<?php echo gettext('Site status:'); ?> <span style="color:RED"><strong><?php echo gettext('The site is closed!'); ?></strong></span>
+					</li>
 					<?php
 					break;
 				case 'closed_for_test';
 					?>
-					<li><?php echo gettext('Site status:'); ?> <span style="color:RED"><strong><?php echo gettext('The site is in test mode!'); ?></strong></span></li>
-								<?php
-								break;
-							default:
-								?>
-					<li><?php echo gettext('Site status:'); ?> <strong><?php echo gettext('The site is opened'); ?></strong></li>
+					<li>
+						<?php echo gettext('Site status:'); ?> <span style="color:RED"><strong><?php echo gettext('The site is in test mode!'); ?></strong></span>
+					</li>
+					<?php
+					break;
+				default:
+					?>
+					<li>
+						<?php echo gettext('Site status:'); ?> <strong><?php echo gettext('The site is opened'); ?></strong>
+					</li>
 					<?php
 					break;
 			}
@@ -160,7 +166,7 @@ switch (OFFSET_PATH) {
 			$ht = @file_get_contents(SERVERPATH . '/.htaccess');
 			preg_match('|[# ][ ]*RewriteRule(.*)plugins/site_upgrade/closed|', $ht, $matches);
 			if (!$matches || strpos($matches[0], '#') === 0) {
-				$state = $_zp_conf_vars['site_upgrade_state'];
+				$state = @$_zp_conf_vars['site_upgrade_state'];
 			} else {
 				$state = 'closed';
 			}
