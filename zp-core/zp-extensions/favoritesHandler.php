@@ -322,11 +322,7 @@ class favorites extends AlbumBase {
 					}
 				}
 				$results = sortByKey($results, $sortkey, $order);
-				$albums = array();
-				foreach ($results as $album) {
-					$albums[] = $album['folder'];
-				}
-				$this->subalbums = $albums;
+				$this->subalbums = array_keys($results);
 				$this->lastsubalbumsort = $sorttype . $sortdirection;
 			}
 		}
