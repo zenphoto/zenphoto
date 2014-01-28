@@ -380,6 +380,7 @@ function setOption($key, $value, $persistent = true) {
  * @param mixed $default the value to be used as the default
  */
 function setOptionDefault($key, $default) {
+	global $_zp_options;
 	if (!is_null($default)) {
 		$bt = debug_backtrace();
 		$b = array_shift($bt);

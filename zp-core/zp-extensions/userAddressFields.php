@@ -19,19 +19,14 @@ $plugin_author = "Stephen Billard (sbillard)";
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/fieldExtender.php');
 
-if (OFFSET_PATH == 2)
-	setOptionDefault('zp_plugin_userAddressFields', $plugin_is_filter);
-
 class userAddressFields extends fieldExtender {
 
 	function __construct() {
 		global $_userAddressFields;
-
 		$firstTime = extensionEnabled('userAddressFields') && is_null(getOption('userAddressFields_addedFields'));
 		parent::constructor('userAddressFields', self::fields());
 		if ($firstTime) { //	migrate the custom data user data
 			$result = query('SELECT * FROM ' . prefix('administrators') . ' WHERE `valid`!=0');
-
 			if ($result) {
 				while ($row = db_fetch_assoc($result)) {
 					$custom = getSerializedArray($row['custom_data']);
@@ -41,9 +36,6 @@ class userAddressFields extends fieldExtender {
 							$sql.= '`' . $field . '`=' . db_quote($val) . ',';
 						}
 						$sql .= '`custom_data`=NULL WHERE `id`=' . $row['id'];
-
-						echo "<br/>$sql";
-
 						query($sql);
 					}
 				}
@@ -110,6 +102,7 @@ class userAddressFields extends fieldExtender {
 }
 
 if (OFFSET_PATH == 2) { // setup call: add the fields into the database
+	setOptionDefault('zp_plugin_userAddressFields', $plugin_is_filter);
 	new userAddressFields;
 } else {
 	userAddressFields::register();
