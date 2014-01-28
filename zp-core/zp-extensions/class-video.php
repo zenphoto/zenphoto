@@ -32,11 +32,11 @@ require_once(dirname(__FILE__) . '/class-video/getid3/getid3.php');
 class VideoObject_Options {
 
 	function VideoObject_Options() {
-		setOptionDefault('zp_plugin_class-video_mov_w', 520);
-		setOptionDefault('zp_plugin_class-video_mov_h', 390);
-		setOptionDefault('zp_plugin_class-video_3gp_w', 520);
-		setOptionDefault('zp_plugin_class-video_3gp_h', 390);
-		setOptionDefault('zp_plugin_class-video_videoalt', 'ogg, avi, wmv');
+		setOptionDefault('class-video_mov_w', 520);
+		setOptionDefault('class-video_mov_h', 390);
+		setOptionDefault('class-video_3gp_w', 520);
+		setOptionDefault('class-video_3gp_h', 390);
+		setOptionDefault('class-video_videoalt', 'ogg, avi, wmv');
 	}
 
 	/**
@@ -48,19 +48,19 @@ class VideoObject_Options {
 		return array(gettext('Watermark default images')	 => array('key'		 => 'video_watermark_default_images', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 0,
 										'desc'	 => gettext('Check to place watermark image on default thumbnail images.')),
-						gettext('Quicktime video width')		 => array('key'		 => 'zp_plugin_class-video_mov_w', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Quicktime video width')		 => array('key'		 => 'class-video_mov_w', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 2,
 										'desc'	 => ''),
-						gettext('Quicktime video height')		 => array('key'		 => 'zp_plugin_class-video_mov_h', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Quicktime video height')		 => array('key'		 => 'class-video_mov_h', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 2,
 										'desc'	 => ''),
-						gettext('3gp video width')					 => array('key'		 => 'zp_plugin_class-video_3gp_w', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('3gp video width')					 => array('key'		 => 'class-video_3gp_w', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 2,
 										'desc'	 => ''),
-						gettext('3gp video height')					 => array('key'		 => 'zp_plugin_class-video_3gp_h', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('3gp video height')					 => array('key'		 => 'class-video_3gp_h', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 2,
 										'desc'	 => ''),
-						gettext('High quality alternate')		 => array('key'		 => 'zp_plugin_class-video_videoalt', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('High quality alternate')		 => array('key'		 => 'class-video_videoalt', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 1,
 										'desc'	 => gettext('<code>getFullImageURL()</code> returns a URL to a file with one of these high quality video alternate suffixes if present.'))
 		);
