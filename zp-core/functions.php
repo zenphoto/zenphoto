@@ -1301,7 +1301,7 @@ function sortByKey($results, $sortkey, $order) {
 	foreach ($indicies as $key => $index) {
 		$indicies[$key] = trim($index);
 	}
-	$results = sortMultiArray($results, $indicies, $order);
+	$results = sortMultiArray($results, $indicies, $order, true, false, true);
 	return $results;
 }
 
