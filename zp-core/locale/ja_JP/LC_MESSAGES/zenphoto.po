@@ -17,7 +17,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.4.6\n"
+"Project-Id-Version: Zenphoto 1.4.5 dev\n"
 "Report-Msgid-Bugs-To: webmaster at momo-i.org\n"
 "POT-Creation-Date: 2014-01-28 09:23+0900\n"
 "PO-Revision-Date: 2009-08-12 08:30+0900\n"
@@ -77,16 +77,15 @@ msgid "<strong>Missing theme info file!</strong>"
 msgstr "<strong>テーマ情報ファイルが見つかりません！</strong>"
 
 #: zp-core/class-gallery.php:501
-#, fuzzy, php-format
+#, php-format
 msgid "Invalid album folder: %1$s %2$s"
-msgstr "無効なアルバムのインスタンス化: %1$s!=%2$s"
+msgstr "無効なアルバムフォルダー: %1$s %2$s"
 
 #: zp-core/class-gallery.php:501
 msgid "fixed"
-msgstr ""
+msgstr "固定"
 
 #: zp-core/class-gallery.php:501
-#, fuzzy
 msgid "discarded"
 msgstr "無視"
 
@@ -4360,9 +4359,8 @@ msgid "WEB path:"
 msgstr "Webのパス:"
 
 #: zp-core/admin.php:280
-#, fuzzy
 msgid "PHP Session path:"
-msgstr "PHPバージョン %s"
+msgstr "PHPセッションパス:"
 
 #: zp-core/admin.php:289
 #, php-format
@@ -4571,9 +4569,8 @@ msgid_plural "<strong>%1$u</strong> Categories"
 msgstr[0] "<strong>%u</strong>個のカテゴリ"
 
 #: zp-core/admin.php:693
-#, fuzzy
 msgid "Your user rights do not allow access to administrative functions."
-msgstr "PHPセッションはZenphotoの管理機能に必須です。"
+msgstr "あなたのユーザー権限では管理機能へアクセスできません。"
 
 #: zp-core/admin-themes.php:56
 #, php-format
@@ -4631,13 +4628,12 @@ msgstr ""
 "います。"
 
 #: zp-core/admin-themes.php:181
-#, fuzzy
 msgid ""
 "You can download more themes from the <a href=\"http://www.zenphoto.org/"
 "theme/\">zenphoto themes page</a>."
 msgstr ""
-"<a href=\"http://www.zenphoto.org/zp/theme/\">Zenphotoテーマページ</a>から"
-"もっとテーマをダウンロードすることが出来ます。"
+"<a href=\"http://www.zenphoto.org/theme/\">Zenphotoテーマページ</a>から"
+"多くのテーマをダウンロードすることが出来ます。"
 
 #: zp-core/admin-themes.php:182
 msgid ""
@@ -4714,9 +4710,8 @@ msgid "Duplicate"
 msgstr "複製"
 
 #: zp-core/functions-config.php:31
-#, fuzzy
 msgid "Updating the configuration file"
-msgstr "設定ファイルを更新しました"
+msgstr "設定ファイルを更新中"
 
 #: zp-core/lib-GD.php:28
 msgid "GD TypeFace path"
@@ -6701,9 +6696,9 @@ msgid "Album delete failed"
 msgstr "アルバムの削除に失敗しました"
 
 #: zp-core/admin-functions.php:4612
-#, fuzzy, php-format
+#, php-format
 msgid "There was an error #%d with a move, copy, or rename operation."
-msgstr "移動、コピー、リネーム操作でエラーがありました。"
+msgstr "移動、コピー、リネーム操作でエラー #%d がありました。"
 
 #: zp-core/admin-refresh-metadata.php:38
 msgid "Refresh Database"
@@ -7136,15 +7131,14 @@ msgid "Thai (Windows)"
 msgstr "タイ語(Windows)"
 
 #: zp-core/lib-NoGraphics.php:40
-#, fuzzy
 msgid "There is no PHP Graphics support."
-msgstr "PHPのグラフィック画像サポート"
+msgstr "PHPのグラフィック画像サポートがありません。"
 
 #: zp-core/setup.php:26
-#, fuzzy, php-format
+#, php-format
 msgid "You must restore the setup files from the %1$s [%2$s] release."
 msgstr ""
-"%1$s 【%2$s】のリリースから次のセットアップファイルをレストアしてください："
+"%1$s 【%2$s】のリリースから次のセットアップファイルをレストアしてください。"
 
 #: zp-core/setup.php:28
 msgid ""
@@ -7658,9 +7652,8 @@ msgid "PHP <code>Sessions</code> [appear to not be working]."
 msgstr "PHP <code>セッション</code> 【動作していないように見えます。】"
 
 #: zp-core/setup/index.php:592
-#, fuzzy
 msgid "PHP <code>Sessions</code> [problems with <em>save_save_path</em>]."
-msgstr "PHP <code>セッション</code> 【動作していないように見えます。】"
+msgstr "PHP <code>セッション</code> 【<em>save_save_path</em>に問題が有ります。】"
 
 #: zp-core/setup/index.php:592
 #, php-format
@@ -9073,9 +9066,9 @@ msgid "<em>[%1$s]</em> retuned no data"
 msgstr "<em>【%1$s】</em> データが返されませんでした"
 
 #: zp-core/functions.php:2264
-#, fuzzy, php-format
+#, php-format
 msgid "<em>[%1$s]</em> <code>%2$s</code> is not callable"
-msgstr "<em>%1$s</em> (<code>0%2$o</code>)"
+msgstr "<em>【%1$s】</em> <code>%2$s</code> は呼び出せません"
 
 #: zp-core/functions.php:2291
 #, fuzzy, php-format
@@ -14087,14 +14080,12 @@ msgid "Enter CAPTCHA<strong>*</strong>"
 msgstr "CAPTCHAの入力<strong>*</strong>"
 
 #: zp-core/zp-extensions/contact_form/form.php:124
-#, fuzzy
 msgid "Subject<strong>*</strong>"
-msgstr "<strong>サイズ:</strong>"
+msgstr "件名<strong>*</strong>"
 
 #: zp-core/zp-extensions/contact_form/form.php:129
-#, fuzzy
 msgid "Message<strong>*</strong>"
-msgstr "<strong>サイズ:</strong>"
+msgstr "本文<strong>*</strong>"
 
 #: zp-core/zp-extensions/contact_form/form.php:136
 msgid "Send e-mail"
@@ -14373,9 +14364,9 @@ msgid "Make file and folder names in the Gallery SEO friendly."
 msgstr "Gallery SEOフレンドリーにファイルとフォルダ名を作成します。"
 
 #: zp-core/zp-extensions/seo_cleanup.php:62
-#, fuzzy, php-format
+#, php-format
 msgid "There was an error #%d with the rename operation."
-msgstr "移動、コピー、リネーム操作でエラーがありました。"
+msgstr "リネーム操作でエラー #%d がありました。"
 
 #: zp-core/zp-extensions/seo_cleanup.php:89
 #: zp-core/zp-extensions/seo_cleanup.php:122
@@ -14455,9 +14446,8 @@ msgid "getid3 exceptions for %1$s::%2$s"
 msgstr ""
 
 #: zp-core/zp-extensions/class-video.php:441
-#, fuzzy
 msgid "No multimeida extension installed."
-msgstr "フラッシュプレーヤがインストールされていません"
+msgstr "マルチメディア拡張がインストールされていません"
 
 #: zp-core/zp-extensions/xmpMetadata.php:35
 msgid ""
@@ -16416,9 +16406,8 @@ msgid "View article"
 msgstr "記事の閲覧"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:86
-#, fuzzy
 msgid "Duplicate page title"
-msgstr "%sメニューを複製"
+msgstr "ページタイトルを複製"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:146
 #, php-format
@@ -16478,9 +16467,8 @@ msgid "View page"
 msgstr "ページの閲覧"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:351
-#, fuzzy
 msgid "Duplicate article title"
-msgstr "記事を削除"
+msgstr "記事タイトルを複製"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:422
 #, php-format
@@ -16570,9 +16558,8 @@ msgid "All"
 msgstr "全て"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:859
-#, fuzzy
 msgid "Duplicate category title"
-msgstr "カテゴリを削除"
+msgstr "カテゴリタイトルを複製"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:909
 #, php-format
@@ -17506,7 +17493,6 @@ msgstr "県%s"
 
 #: zp-core/zp-extensions/comment_form/comment_form.php:88
 #: themes/stopdesign/comment_form/comment_form.php:201
-#, fuzzy
 msgid "<strong>*</strong>Required fields"
 msgstr "<strong>*</strong>必須フィールド"
 
@@ -20039,9 +20025,8 @@ msgid "User ID"
 msgstr "ユーザID"
 
 #: zp-core/zp-extensions/register_user/register_user_form.php:80
-#, fuzzy
 msgid "<strong>*</strong>Required"
-msgstr "<strong>*</strong>必須フィールド"
+msgstr "<strong>*</strong>必須"
 
 #: zp-core/zp-extensions/register_user/register_user_form.php:86
 msgid "You may also register using federated credentials"
@@ -20903,9 +20888,8 @@ msgid "Support for <em>favorites</em> handling."
 msgstr "<em>お気に入り</em>を扱うためのサポートです。"
 
 #: zp-core/zp-extensions/favoritesHandler.php:32
-#, fuzzy
 msgid "Mod Rewrite is required for this plugin"
-msgstr "PHPのEXIF拡張はこのオプションで必須です。"
+msgstr "Mod Rewriteはこのプラグインで必須です。"
 
 #: zp-core/zp-extensions/favoritesHandler.php:49
 msgid "The albums and images selected as favorites."
@@ -21402,9 +21386,9 @@ msgid ""
 msgstr ""
 
 #: zp-core/zp-extensions/macroList.php:112
-#, fuzzy, php-format
+#, php-format
 msgid "<code>%s</code> is not callable"
-msgstr "<em>%s</em>は利用不可です。"
+msgstr "<em>%s</em>は呼び出せません。"
 
 #: zp-core/zp-extensions/macroList.php:122
 msgid "An array parameter must be the last parameter."
@@ -21692,17 +21676,14 @@ msgid "URL%s"
 msgstr ""
 
 #: themes/stopdesign/comment_form/comment_form.php:207
-#, fuzzy
 msgid "Private comment"
-msgstr "コメント編集"
+msgstr "プライベートコメント"
 
 #: themes/stopdesign/comment_form/comment_form.php:210
-#, fuzzy
 msgid "(don't publish)"
-msgstr "公開しません"
+msgstr "(公開しません)"
 
 #: themes/stopdesign/comment_form/comment_form.php:218
-#, fuzzy
 msgid "Comment"
 msgstr "コメント"
 
@@ -21789,10 +21770,10 @@ msgid "Gallery data"
 msgstr "ギャラリーデータ"
 
 #: themes/stopdesign/index.php:167
-#, fuzzy, php-format
+#, php-format
 msgid "%u"
 msgid_plural "%u"
-msgstr[0] "%"
+msgstr[0] "%u"
 
 #: themes/stopdesign/index.php:199 themes/zenpage/contact.php:34
 #: themes/zenpage/sidebar.php:87 themes/zenpage/sidebar.php:89
@@ -22742,42 +22723,3 @@ msgstr ""
 "プレーヤーがデバイスでサポートされているが、実際のフォーマットはされていない"
 "場合には単一のイメージページ上のマルチメディアアイテムへの直接リンクを有効に"
 "するには、チェックしてください。"
-
-#~ msgid ""
-#~ "<strong>Note:</strong> if you have created multi-language strings, "
-#~ "uncheck this option, then save anything, you will lose your strings."
-#~ msgstr ""
-#~ "<strong>注:</strong> 多言語文字を作成する場合、このオプションを外して、全"
-#~ "てを保存すると、あなたの文字は消失するでしょう。"
-
-#~ msgid "Enabled"
-#~ msgstr "有効"
-
-#~ msgid "database not connected"
-#~ msgstr "データベースに接続できませんでした"
-
-#~ msgid ""
-#~ "Check your configuration file to make sure you've got the right username, "
-#~ "password, host, and database. If you haven't created the database yet, "
-#~ "now would be a good time."
-#~ msgstr ""
-#~ "ユーザ名、パスワード、ホスト、及びデータベースが正しいことを確実にするため"
-#~ "に、設定ファイルをチェックします。もしデータベースの作成がまだなら、今すぐ"
-#~ "作成してください。"
-
-#~ msgid ""
-#~ "<strong>Warning:</strong> the <code>%s</code> table appears not to have a "
-#~ "proper <em>unique_options</em> key. There are probably duplicate options "
-#~ "in the table. There should be a unique index key on <em>name</em>, "
-#~ "<em>ownerid</em>, and <em>theme</em>."
-#~ msgstr ""
-#~ "<strong>警告:</strong> <code>%s</code>テーブルが適切な<em>unique_options</"
-#~ "em>キーを持っていないように見えます。おそらくテーブル内に重複するオプショ"
-#~ "ンがあります。これらは<em>name</em>、<em>ownerid</em>、及び<em>theme</em>"
-#~ "上で一意のインデックスキーであるべきです。"
-
-#~ msgid "Contact form"
-#~ msgstr "お問合せフォーム"
-
-#~ msgid "Zenphoto gallery"
-#~ msgstr "ZenPhotoギャラリー"
