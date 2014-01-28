@@ -474,13 +474,12 @@ function sortByMultilingual($dbresult, $field, $descending) {
 		$temp[$key] = get_language_string($row[$field]);
 	}
 	natcasesort($temp);
+	if ($descending) {
+		$temp = array_reverse($temp, true);
+	}
 	$result = array();
-	foreach ($temp as $key => $title) {
-		if ($descending) {
-			array_unshift($result, $dbresult[$key]);
-		} else {
-			$result[] = $dbresult[$key];
-		}
+	foreach ($temp as $key => $v) {
+		$result[$key] = $dbresult[$key];
 	}
 	return $result;
 }
@@ -1358,7 +1357,6 @@ function sortMultiArray($array, $index, $descending = false, $natsort = true, $c
 				asort($temp);
 			}
 		}
-
 		foreach (array_keys($temp) as $key) {
 			if (!$preservekeys && is_numeric($key)) {
 				$sorted[] = $array[$key];
