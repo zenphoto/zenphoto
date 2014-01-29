@@ -393,23 +393,21 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 		?>
 		<br class="clearall" />
 		<?php
-		switch ($_zp_gallery_page) {
-			case "image.php":
-				if (class_exists('RSS'))
+		if (class_exists('RSS')) {
+			switch ($_zp_gallery_page) {
+				case "image.php":
 					printRSSLink("Comments-image", "", gettext("Subscribe to comments"), "");
-				break;
-			case "album.php":
-				if (class_exists('RSS'))
+					break;
+				case "album.php":
 					printRSSLink("Comments-album", "", gettext("Subscribe to comments"), "");
-				break;
-			case "news.php":
-				if (class_exists('RSS'))
+					break;
+				case "news.php":
 					printRSSLink("Comments-news", "", gettext("Subscribe to comments"), "");
-				break;
-			case "pages.php":
-				if (class_exists('RSS'))
+					break;
+				case "pages.php":
 					printRSSLink("Comments-page", "", gettext("Subscribe to comments"), "");
-				break;
+					break;
+			}
 		}
 	}
 	?>

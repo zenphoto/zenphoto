@@ -93,31 +93,29 @@ function footer() {
 	?>
 	<div id="footer">
 		<?php
-		$prev = ' | ';
-		switch ($_zp_gallery_page) {
-			default:
-				if (class_exists('RSS'))
+		if (class_exists('RSS')) {
+			$prev = ' | ';
+			switch ($_zp_gallery_page) {
+				default:
 					printRSSLink('Gallery', '', 'RSS', '');
-				break;
-			case 'album.php':
-				if (class_exists('RSS'))
+					break;
+				case 'album.php':
 					printRSSLink('Album', '', 'RSS', '');
-				break;
-			case 'news.php':
-				if (is_NewsCategory()) {
-					if (class_exists('RSS'))
+					break;
+				case 'news.php':
+					if (is_NewsCategory()) {
 						printRSSLink('Category', '', 'RSS', '', true, null, '', NULL, $_zp_current_category->getTitlelink());
-				} else {
-					if (class_exists('RSS'))
+					} else {
 						printRSSLink('News', '', 'RSS', '');
-				}
-				break;
-			case 'password.php':
-				$prev = '';
-				break;
+					}
+					break;
+				case 'password.php':
+					$prev = '';
+					break;
+			}
+		} else {
+			$prev = '';
 		}
-		?>
-		<?php
 		if ($_zp_gallery_page != 'password.php' && $_zp_gallery_page != 'archive.php') {
 			printCustomPageURL(gettext('Archive View'), 'archive', '', $prev, '');
 			$prev = ' | ';
