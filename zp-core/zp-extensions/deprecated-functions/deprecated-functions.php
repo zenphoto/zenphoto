@@ -737,7 +737,7 @@ function getAlbumLinkURL($album = NULL) {
  */
 function getImageLinkURL() {
 	deprecated_functions::notify(gettext('use getImageURL()'));
-	return getImageULR();
+	return getImageURL();
 }
 
 /**
