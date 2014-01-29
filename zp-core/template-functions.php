@@ -990,7 +990,7 @@ function printPageListWithNav($prevtext, $nexttext, $_oneImagePage = false, $nex
 					?>
 					<li>
 						<?php
-						$k1 = $i - (int) ($i - $last) / 2;
+						$k1 = floor($i - (int) ($i - $last) / 2);
 						printLink(getPageURL($k1, $total), '...', sprintf(ngettext('Page %u', 'Page %u', $k1), $k1));
 						?>
 					</li>
@@ -1027,7 +1027,7 @@ function printPageListWithNav($prevtext, $nexttext, $_oneImagePage = false, $nex
 				foreach ($nav as $i => $link) {
 					$d = $i - $last;
 					if ($d > 2) {
-						$k1 = $i - (int) ($i - $last) / 2;
+						$k1 = floor($i - (int) ($i - $last) / 2);
 						?>
 						<li>
 							<?php printLink(getPageURL($k1, $total), '...', sprintf(ngettext('Page %u', 'Page %u', $k1), $k1)); ?>
