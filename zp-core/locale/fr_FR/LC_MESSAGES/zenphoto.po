@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: zenphoto 1.4.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-27 20:40-0500\n"
-"PO-Revision-Date: 2014-01-27 21:25-0500\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2014-01-29 09:04-0500\n"
+"Last-Translator: Michel Gagnon <michel@mgagnon.net>\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "<michel@mgagnon.net>\n"
 "Language: fr_FR\n"
@@ -6625,13 +6625,13 @@ msgid ""
 "in the <em>Admin</em> section of the <em>Utility functions</em>. "
 msgstr ""
 "L’environnement d’installation n’est pas entièrement sécurisé. Vous devriez "
-"protéger les scripts pour contrer les pirates. Utilises le "
-"bouton <strong>« Installation » protéger les scripts »</strong> dans la "
+"protéger les scripts pour contrer les pirates. Utilisez le "
+"bouton <strong>« Installation ›› protéger les scripts »</strong> dans la "
 "section <em>d’administration</em> des fonctions <em>utilitaires</em>."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:269
 msgid "Setup » protect scripts"
-msgstr "Installation » protéger les scripts"
+msgstr "Installation ›› protéger les scripts"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:274
 msgid "Protects setup files so setup cannot be run."
@@ -6692,7 +6692,7 @@ msgstr "Chemin de la session PHP :"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:355
 #, php-format
 msgid "Current gallery theme: <strong>%1$s</strong>"
-msgstr "Thème actuellement utilisé : <strong>%1$s</strong>"
+msgstr "Thème présentement utilisé : <strong>%1$s</strong>"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:358
 #, php-format
@@ -19204,9 +19204,8 @@ msgid ""
 msgstr "toutes les tailles pour <i>%1$s</i>"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinyURL.php:84
-#, fuzzy
 msgid "news categories"
-msgstr "Catégories d’actualités"
+msgstr "catégories d’actualités"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/trivialSpam.php:11
 msgid "Trivial SPAM filter."
@@ -21049,9 +21048,8 @@ msgid "Send e-mail"
 msgstr "Envoyer l’email"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/admin_tab.php:23
-#, fuzzy
 msgid "Deprecated Functions"
-msgstr "Retracer les appels de fonctions obsolètes."
+msgstr "Fonctions obsolètes"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/admin_tab.php:25
 #, fuzzy
@@ -21127,35 +21125,29 @@ msgstr ""
 "tableau array(\"albums\"=>array(album, album, ...))."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:47
-#, fuzzy
 msgid "Use the getFilename() method instead"
-msgstr "Utilisez plutôt la méthode de la classe Zenpage."
+msgstr "Utilisez plutôt la méthode getFilename()"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:55
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:63
-#, fuzzy
 msgid "Use the getLink() method instead"
-msgstr "Utilisez plutôt la méthode de la classe Zenpage."
+msgstr "Utilisez plutôt la méthode getLink()"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:71
-#, fuzzy
 msgid "Use the getSortType() method instead"
-msgstr "Utilisez plutôt la méthode de la classe Zenpage."
+msgstr "Utilisez plutôt la méthode getSortType()"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:79
-#, fuzzy
 msgid "Use the getThumb() method instead"
-msgstr "Utilisez plutôt la méthode de la classe Zenpage."
+msgstr "Utilisez plutôt la méthode getThumb()"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:87
-#, fuzzy
 msgid "Use the setThumb() method instead"
-msgstr "Utilisez plutôt la méthode de la classe Zenpage."
+msgstr "Utilisez plutôt la méthode setThumb()"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:95
-#, fuzzy
 msgid "Use the setSortType() method instead"
-msgstr "Utilisez plutôt la méthode de la classe Zenpage."
+msgstr "Utilisez plutôt la méthode setSortType()"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:105
 msgid "Use printImageMetadata()."
@@ -21371,76 +21363,62 @@ msgstr ""
 "donc de votre configuration !"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:690
-#, fuzzy
 msgid "use getLinkHTML()"
-msgstr "Utiliser Colorbox"
+msgstr "Utilisez getLinkHTML()"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:699
-#, fuzzy
 msgid "use printLinkHTML()"
-msgstr "Utiliser Colorbox"
+msgstr "Utilisez printLinkHTML()"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:709
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:719
-#, fuzzy
 msgid "use setupDomain()"
-msgstr "Utiliser Colorbox"
+msgstr "Utilisez setupDomain()"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:729
-#, fuzzy
 msgid "use getAlbumURL()"
-msgstr "Utiliser Colorbox"
+msgstr "Utilisez getAlbumURL()"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:739
-#, fuzzy
 msgid "use getImageURL()"
-msgstr "Utiliser Colorbox"
+msgstr "Utilisez getImageURL()"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:749
-#, fuzzy
 msgid "use printAlbumURL()"
-msgstr "Utiliser Colorbox"
+msgstr "Utilisez printAlbumURL()"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:759
-#, fuzzy
 msgid "use printImageURL()"
-msgstr "Utiliser Colorbox"
+msgstr "Utilisez printImageURL()"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:769
-#, fuzzy
 msgid "use printNextPageURL()"
-msgstr "Utiliser Colorbox"
+msgstr "Utilisez printNextPageURL()"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:779
-#, fuzzy
 msgid "use printPrevPageURL()"
-msgstr "Utiliser Colorbox"
+msgstr "Utilisez printPrevPageURL()"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:789
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/favoirtesHandler/deprecated-functions.php:9
-#, fuzzy
 msgid "use printSizedImageURL()"
-msgstr "Utiliser Colorbox"
+msgstr "Utilisez printSizedImageURL()"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/functions.php:24
-#, fuzzy
 msgid "method"
-msgstr "Utilisez la méthode objet->getTags()."
+msgstr "méthode"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/downloadList/deprecated-functions.php:8
-#, fuzzy
 msgid "use printDownloadURL()"
-msgstr "Utiliser Colorbox"
+msgstr "Utilisez printDownloadURL()"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/downloadList/deprecated-functions.php:17
-#, fuzzy
 msgid "use getDownloadURL()"
-msgstr "Utiliser Colorbox"
+msgstr "Utilisez getDownloadURL()"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/downloadList/deprecated-functions.php:26
-#, fuzzy
 msgid "use printDownloadAlbumZipURL()"
-msgstr "Utiliser Colorbox"
+msgstr "Utilisez printDownloadAlbumZipURL()"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/downloadList/download_statistics.php:42
 msgid "No statistic available"
@@ -21639,9 +21617,8 @@ msgid "Truncate the titles of the <em>points</em>"
 msgstr "Tronquer les titres des <em>points</em>"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav/deprecated-functions.php:14
-#, fuzzy
 msgid "Use printThumbNav()."
-msgstr "Utiliser Colorbox"
+msgstr "Utilisez printThumbNav()."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList/macroList_tab.php:22
 msgid "Content Macros"
@@ -21847,29 +21824,27 @@ msgid "Custom label added"
 msgstr "Le libellé personnalisé a été ajouté"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:558
-#, fuzzy, php-format
+#, php-format
 msgid "Function menu item <em>%s</em> added"
-msgstr "L’élément de menu de la fonction <em>%s</em> a été ajouté"
+msgstr "Function menu item <em>%s</em> added"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:571
 msgid "<em>HTML</em> added"
 msgstr "<em>HTML</em> ajouté"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:592
-#, fuzzy, php-format
+#, php-format
 msgid "A <em>%1$s</em> item already exists in <em>%2$s </em>!"
-msgstr ""
-"Un élément <em>%1$s</em> avec le lien <em>%2$s</em> existe déjà dans <em>"
-"%3$s</em> !"
+msgstr "Un élément <em>%1$s</em> existe déjà dans <em>%2$s</em> !"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:594
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "A <em>%1$s</em> item with the link <em>%2$s</em> already exists in <em>%3$s "
 "</em>!"
 msgstr ""
-"Un élément <em>%1$s</em> avec le lien <em>%2$s</em> existe déjà dans <em>"
-"%3$s</em> !"
+"A <em>%1$s</em> item with the link <em>%2$s</em> already exists in <em>%3$s "
+"</em>!"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:730
 msgid "Menu item updated!"
@@ -23716,26 +23691,22 @@ msgstr "Utilisez la méthode class->getPages() de la classe de page Zenphoto."
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:47
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:55
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:63
-#, fuzzy
 msgid "Use the getLink method instead"
-msgstr "Utilisez plutôt la méthode de la classe Zenpage."
+msgstr "Utilisez plutôt la méthode getLink."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:71
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:79
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:87
-#, fuzzy
 msgid "Create an object and use its getLink method."
-msgstr "Utilisez la méthode objet->getTags()."
+msgstr "Créez un objet et utilisez la méthode getLink."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:95
-#, fuzzy
 msgid "Use getNewsArchivePath()."
-msgstr "Utiliser Colorbox"
+msgstr "Utilisez getNewsArchivePath()."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:103
-#, fuzzy
 msgid "Use getNewsIndexURL()."
-msgstr "Utiliser Colorbox"
+msgstr "Utilisez getNewsIndexURL()."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:131
 msgid "Use object->getTags() method."
@@ -23949,31 +23920,26 @@ msgstr "utilisez printRSSHeaderLink($option, $linktext, $lang, $categorylink)."
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:901
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:911
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:921
-#, fuzzy
 msgid "Create an object and use the object getLink"
-msgstr "Utilisez la méthode objet->getTags()."
+msgstr "Créez un object et utilisez l’objet getLink"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:931
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:945
-#, fuzzy
 msgid "use getNewsURL()"
-msgstr "Utiliser Colorbox"
+msgstr "Utilisez getNewsURL()"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:936
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:973
-#, fuzzy
 msgid "use printNewsURL()"
-msgstr "Utiliser Colorbox"
+msgstr "Utilisez printNewsURL()"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:955
-#, fuzzy
 msgid "use getPageURL()"
-msgstr "Utiliser Colorbox"
+msgstr "Utilisez getPageURL()"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:964
-#, fuzzy
 msgid "use printPageURL()"
-msgstr "Utiliser Colorbox"
+msgstr "Utilisez printPageURL()"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:86
 msgid "Duplicate page title"
