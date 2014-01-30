@@ -19,6 +19,7 @@ echo "\n</head>";
 ?>
 
 <body>
+	<?php printLogoAndLinks(); ?>
 	<div id="main">
 		<?php printTabs(); ?>
 		<div id="content">
@@ -27,13 +28,15 @@ echo "\n</head>";
 					<h1><?php echo gettext('Rewrite Rules'); ?></h1>
 					<table class="rewrite">
 						<?php
+						$c = 0;
 						foreach ($list as $key => $rule) {
+							$c++;
 							?>
 							<tr>
-								<td class="rewrite_right">
+								<td class="rewrite_left<?php if ($c & 1) echo ' rewrite_bar'; ?>">
 									<?php echo $rule[0]; ?>
 								</td>
-								<td class="rewrite_left">
+								<td class="rewrite_right<?php if ($c & 1) echo ' rewrite_bar'; ?>">
 									<?php echo $rule[1]; ?>
 								</td>
 							</tr>

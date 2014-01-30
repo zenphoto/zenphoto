@@ -8,14 +8,21 @@ and open the template in the editor.
     Author     : Stephen
 */
 
-.rewrite  {
-	border: none;
+.rewrite {
+	margin:0;
+	padding:0;
+	border:0;
 }
 
 .rewrite_left {
-
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 .rewrite_right {
-	width: 25em;
+	padding-right: 10px;
+}
+
+.rewrite_bar {
+	background: #BCF5A9;
 }
