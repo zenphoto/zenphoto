@@ -2,16 +2,15 @@
 
 function rulesList() {
 	global $_zp_conf_vars;
-	$definitions = array();
-
-	list($definitions, $rules) = getRules();
+	list($pluginDefinitions, $rules) = getRules();
+	$definitions = $pluginDefinitions;
 	$list = array();
 	//process the rules
 	foreach ($rules as $rule) {
 		if ($rule = trim($rule)) {
 			if ($rule{0} == '#') {
 				if (trim(ltrim($rule, '#')) == 'quick links') {
-					foreach ($definitions as $def => $v) {
+					foreach ($pluginDefinitions as $def => $v) {
 						$list[] = array('Define ' . $def, $v);
 					}
 				}
