@@ -5,14 +5,20 @@ function rulesList() {
 	list($pluginDefinitions, $rules) = getRules();
 	$definitions = $pluginDefinitions;
 	$list = array();
+	$break = false;
 	//process the rules
 	foreach ($rules as $rule) {
 		if ($rule = trim($rule)) {
 			if ($rule{0} == '#') {
-				if (trim(ltrim($rule, '#')) == 'quick links') {
+				if (trim(ltrim($rule, '#')) == 'Quick links') {
 					foreach ($pluginDefinitions as $def => $v) {
 						$list[] = array('Define ' . $def, $v);
 					}
+				}
+				if ($break) {
+					$list[] = $break;
+				} else {
+					$break = array('&nbsp;', '&nbsp;');
 				}
 				$list[] = array($rule, '&nbsp;');
 			} else {
