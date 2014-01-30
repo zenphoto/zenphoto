@@ -36,7 +36,9 @@ if (!$page = getOption('register_user_page_page')) {
 }
 $_zp_conf_vars['special_pages']['register_user'] = array('define'	 => '_REGISTER_USER_', 'rewrite'	 => $page,
 				'option'	 => 'register_user_page_page', 'default'	 => '_PAGE_/register');
-$_zp_conf_vars['special_pages'][$page] = array('define' => false, 'rewrite' => $page, 'rule' => '^%REWRITE%/*$		index.php?p=' . $page . ' [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array('definition' => '%REGISTER_USER%', 'rewrite' => '_REGISTER_USER_');
+
+$_zp_conf_vars['special_pages'][$page] = array('define' => false, 'rewrite' => '%REGISTER_USER%', 'rule' => '^%REWRITE%/*$		index.php?p=' . $page . ' [L,QSA]');
 
 
 if (getOption('register_user_address_info')) {

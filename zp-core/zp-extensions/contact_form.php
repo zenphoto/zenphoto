@@ -20,7 +20,8 @@ $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $option_interface = 'contactformOptions';
 
 $_zp_conf_vars['special_pages']['contact'] = array('define' => '_CONTACT_', 'rewrite' => getOption('contactform_rewrite'), 'option' => 'contactform_rewrite', 'default' => '_PAGE_/contact');
-$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => getOption('contactform_rewrite'), 'rule' => '^%REWRITE%/*$		index.php?p=contact [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array('definition' => '%CONTACT%', 'rewrite' => '_CONTACT_');
+$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '%CONTACT%', 'rule' => '^%REWRITE%/*$		index.php?p=contact [L,QSA]');
 
 /**
  * Plugin option handling class
