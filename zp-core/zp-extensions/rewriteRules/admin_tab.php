@@ -32,11 +32,11 @@ echo "\n</head>";
 						foreach ($list as $key => $rule) {
 							$c++;
 							?>
-							<tr>
-								<td class="rewrite_left<?php if ($c & 1) echo ' rewrite_bar'; ?>">
+							<tr<?php if ($c & 1) echo ' class="rewrite_bar"'; ?>>
+								<td class="rewrite_left">
 									<?php echo $rule[0]; ?>
 								</td>
-								<td class="rewrite_right<?php if ($c & 1) echo ' rewrite_bar'; ?>">
+								<td class="rewrite_right">
 									<?php echo $rule[1]; ?>
 								</td>
 							</tr>

@@ -20,6 +20,7 @@ and open the template in the editor.
 }
 
 .rewrite_right {
+	padding-left: 2px;
 	padding-right: 10px;
 }
 
