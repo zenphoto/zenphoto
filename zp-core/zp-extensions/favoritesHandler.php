@@ -485,7 +485,7 @@ if (!$plugin_disable) {
 		$page = 'favorites';
 	}
 	$_zp_conf_vars['special_pages']['favorites'] = array('define'	 => '_FAVORITES_', 'rewrite'	 => $page,
-					'option'	 => 'favorites_rewrite', 'default'	 => '_PAGE_/favorites');
+					'option'	 => 'favorites_link', 'default'	 => '_PAGE_/favorites');
 	$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => $page, 'rule' => '^%REWRITE%/*$		index.php?p=' . $page . ' [L,QSA]');
 
 	if (!OFFSET_PATH && !$plugin_disable) {
