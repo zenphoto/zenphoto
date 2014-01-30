@@ -1,11 +1,11 @@
-	#definitions
+	#### definitions
 	Define %ZENFOLDER%			=>	ZENFOLDER
 	Define %PAGE%						=>	_PAGE_
 	Define %SEARCH%					=>	_SEARCH_
 	Define %ARCHIVE%				=>	_ARCHIVE_
 	Define %TAGS%						=>	_TAGS_
 
-	#quick links
+	#### quick links
 	RewriteRule ^$                     										index.php [L,QSA]
 	RewriteRule ^index\.php$                     					index.php [L,QSA]
 	RewriteRule ^admin/*$																	%ZENFOLDER%/admin.php [L,QSA]
@@ -19,10 +19,10 @@
 	RewriteRule ^%SEARCH%/(.*)/([0-9]+)/?$    						index.php?p=search&words=$1&page=$2 [L,QSA]
 	RewriteRule ^%SEARCH%/(.*)/?$     										index.php?p=search&words=$1 [L,QSA]
 
-	#SpecialPages are processed here in the sequence
+	#### Rules created by plugins
 	_SPECIAL_
 
-	# image and album page references
+	#### image and album page references
 	RewriteRule ^%PAGE%/([0-9]+)/?$               			index.php?page=$1 [L,QSA]
 	RewriteRule ^%PAGE%/([A-Za-z0-9_\-]+)/?$      			index.php?p=$1 [L,QSA]
 	RewriteRule ^%PAGE%/([A-Za-z0-9_\-]+)/([0-9]+)/?$   index.php?p=$1&page=$2 [L,QSA]

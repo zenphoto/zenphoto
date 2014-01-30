@@ -34,20 +34,7 @@ function rewriteHandler() {
 	//rewrite base
 	$requesturi = ltrim(substr($request[0], strlen(WEBPATH)), '/');
 
-	//	load rewrite rules
-	$rules = trim(file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/zenphoto-rewrite.txt'));
-	$specialPageRules = array();
-	foreach ($_zp_conf_vars['special_pages'] as $special) {
-		if (array_key_exists('rule', $special)) {
-			$specialPageRules[] = "\tRewriteRule " . str_replace('%REWRITE%', $special['rewrite'], $special['rule']);
-		}
-		if (array_key_exists('definition', $special)) {
-			eval('$definitions[$special[\'definition\']] = ' . $special['rewrite'] . ';');
-		}
-	}
-
-	$rules = explode("_SPECIAL_", trim($rules));
-	$rules = array_merge(explode("\n", $rules[0]), $specialPageRules, explode("\n", $rules[1]), array("\t" . 'RewriteRule ^(.*)/?$	index.php?album=$1 [L,QSA]'));
+	list($definitions, $rules) = getRules();
 	//process the rules
 	foreach ($rules as $rule) {
 		if ($rule = trim($rule)) {
@@ -114,6 +101,26 @@ function rewriteHandler() {
 			}
 		}
 	}
+}
+
+function getRules() {
+	global $_zp_conf_vars;
+	//	load rewrite rules
+	$rules = trim(file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/zenphoto-rewrite.txt'));
+
+	$specialPageRules = array();
+	foreach ($_zp_conf_vars['special_pages'] as $special) {
+		if (array_key_exists('rule', $special)) {
+			$specialPageRules[] = "\tRewriteRule " . str_replace('%REWRITE%', $special['rewrite'], $special['rule']);
+		}
+		if (array_key_exists('definition', $special)) {
+			eval('$definitions[$special[\'definition\']] = ' . $special['rewrite'] . ';');
+		}
+	}
+
+	$rules = explode("_SPECIAL_", trim($rules));
+	$rules = array_merge(explode("\n", $rules[0]), $specialPageRules, explode("\n", $rules[1]), array("\t#### catch-all", "\t" . 'RewriteRule ^(.*)/?$	index.php?album=$1 [L,QSA]'));
+	return array($definitions, $rules);
 }
 
 $_definitions = array();
