@@ -316,7 +316,7 @@ if (!zp_loggedin()) {
 												if ($v && version_compare($c, $v, '>')) {
 													?>
 													<p class="notebox">
-														<a href="http://www.zenphoto.org/index.php?p=news&title=zenphoto-<?php echo $c; ?>">
+														<a href="http://www.zenphoto.org/news/zenphoto-<?php echo $c; ?>">
 															<?php printf(gettext('Preview the release notes for Zenphoto %s'), $c); ?>
 														</a>
 													</p>
