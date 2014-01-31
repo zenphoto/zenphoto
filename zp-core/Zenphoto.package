@@ -1371,7 +1371,6 @@ zp-core/zp-extensions/tinymce4/skins/lightgray/img/anchor.gif
 zp-core/zp-extensions/tinymce4/skins/lightgray/img/loader.gif
 zp-core/zp-extensions/tinymce4/skins/lightgray/img/object.gif
 zp-core/zp-extensions/tinymce4/skins/lightgray/img/trans.gif
-zp-core/zp-extensions/tinymce4/skins/lightgray/skin.classic.min.css
 zp-core/zp-extensions/tinymce4/skins/lightgray/skin.ie7.min.css
 zp-core/zp-extensions/tinymce4/skins/lightgray/skin.min.css
 zp-core/zp-extensions/tinymce4/themes
@@ -1458,4 +1457,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1460
+1459
