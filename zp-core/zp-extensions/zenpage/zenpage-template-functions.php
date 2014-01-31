@@ -859,7 +859,7 @@ function getNewsArchivePath($date, $page) {
 	$plain = "/index.php?p=news&date=$date";
 	if ($page > 1) {
 		$rewrite .= '/' . $date . '/' . $page;
-		$plalin.="&page=$page";
+		$plain .= "&page=$page";
 	}
 	return zp_apply_filter('getLink', rewrite_path($rewrite, $plain), 'archive.php', $page);
 }
