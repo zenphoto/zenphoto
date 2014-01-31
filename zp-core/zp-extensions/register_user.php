@@ -26,19 +26,13 @@ $plugin_is_filter = 5 | FEATURE_PLUGIN;
 $plugin_description = gettext("Provides a means for placing a user registration form on your theme pages.");
 $plugin_author = "Stephen Billard (sbillard)";
 
-
 $option_interface = 'register_user';
 
-
-
-if (!$page = getOption('register_user_page_page')) {
-	$page = 'register';
-}
-$_zp_conf_vars['special_pages']['register_user'] = array('define'	 => '_REGISTER_USER_', 'rewrite'	 => $page,
-				'option'	 => 'register_user_page_page', 'default'	 => '_PAGE_/register');
+$_zp_conf_vars['special_pages']['register_user'] = array('define'	 => '_REGISTER_USER_', 'rewrite'	 => getOption('register_user_rewrite'),
+				'option'	 => 'register_user_rewrite', 'default'	 => '_PAGE_/register');
 $_zp_conf_vars['special_pages'][] = array('definition' => '%REGISTER_USER%', 'rewrite' => '_REGISTER_USER_');
 
-$_zp_conf_vars['special_pages'][$page] = array('define' => false, 'rewrite' => '%REGISTER_USER%', 'rule' => '^%REWRITE%/*$		index.php?p=' . $page . ' [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '%REGISTER_USER%', 'rule' => '^%REWRITE%/*$		index.php?p=' . 'register' . ' [L,QSA]');
 
 
 if (getOption('register_user_address_info')) {
@@ -53,12 +47,6 @@ class register_user {
 
 	function __construct() {
 		global $_zp_authority;
-		$old = getOption('register_user_page_page');
-		if (!$old || is_numeric($old) || $old == 'register') {
-			purgeOption('register_user_page_page');
-		} else {
-			setOptionDefault('register_user_rewrite', "_PAGE_/$old");
-		}
 		setOptionDefault('register_user_rewrite', '_PAGE_/register');
 		gettext($str = 'You have received this email because you registered with the user id %3$s on this site.' . "\n" . 'To complete your registration visit %1$s.');
 		setOptionDefault('register_user_text', getAllTranslations($str));
@@ -81,7 +69,7 @@ class register_user {
 		global $_zp_authority, $_common_notify_handler, $_zp_captcha;
 		$options = array(
 						gettext('Link text')							 => array('key'		 => 'register_user_page_link', 'type'	 => OPTION_TYPE_TEXTAREA,
-										'order'	 => 2,
+										'order'	 => 1,
 										'desc'	 => gettext('If this option is set, the visitor login form will include a link to this page. The link text will be labeled with the text provided.')),
 						gettext('Hint text')							 => array('key'		 => 'register_user_page_tip', 'type'	 => OPTION_TYPE_TEXTAREA,
 										'order'	 => 2.5,
@@ -106,11 +94,6 @@ class register_user {
 										'order'	 => 5,
 										'desc'	 => ($_zp_captcha->name) ? gettext('If checked, the form will include a Captcha verification.') : '<span class="notebox">' . gettext('No captcha handler is enabled.') . '</span>'),
 		);
-		if (getOption('register_user_page_page')) {
-			$options[gettext('Standard script naming')] = array('key'		 => 'register_user_page_page', 'type'	 => OPTION_TYPE_CHECKBOX,
-							'order'	 => 0,
-							'desc'	 => '<p class="notebox">' . gettext('<strong>Note:</strong> The <em>register user</em> theme script should be named <em>register.php</em>. Check this box to use the standard script name.') . '</p>');
-		}
 		if ($_common_notify_handler) {
 			$options['note'] = array('key'		 => 'menu_truncate_note', 'type'	 => OPTION_TYPE_NOTE,
 							'order'	 => 8,

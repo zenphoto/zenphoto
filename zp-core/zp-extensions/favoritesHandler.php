@@ -37,12 +37,6 @@ class favoritesOptions {
 
 	function __construct() {
 		if (OFFSET_PATH == 2) {
-			$old = getOption('favorites_link');
-			if (!$old || is_numeric($old) || $old == 'favorites') {
-				purgeOption('favorites_link');
-			} else {
-				setOptionDefault('favorites_rewrite', "_PAGE_/$old");
-			}
 			setOptionDefault('favorites_rewrite', '_PAGE_/favorites');
 			gettext($str = 'My favorites');
 			setOptionDefault('favorites_title', getAllTranslations($str));
@@ -101,11 +95,6 @@ class favoritesOptions {
 										'order'	 => 10,
 										'desc'	 => '')
 		);
-		if (getOption('favorites_link')) {
-			$options[gettext('Standard script naming')] = array('key'		 => 'favorites_link', 'type'	 => OPTION_TYPE_CHECKBOX,
-							'order'	 => 0,
-							'desc'	 => '<p class="notebox">' . gettext('<strong>Note:</strong> The <em>favorites</em> theme script should be named <em>favorites.php</em>. Check this box to use the standard script name.') . '</p>');
-		}
 		if (!MOD_REWRITE) {
 			$options['note'] = array(
 							'key'		 => 'favorites_note',
@@ -481,12 +470,10 @@ class favorites extends AlbumBase {
 }
 
 if (!$plugin_disable) {
-	if (!$page = stripSuffix(getOption('favorites_link'))) {
-		$page = 'favorites';
-	}
-	$_zp_conf_vars['special_pages']['favorites'] = array('define'	 => '_FAVORITES_', 'rewrite'	 => $page,
+	$_zp_conf_vars['special_pages']['favorites'] = array('define'	 => '_FAVORITES_', 'rewrite'	 => getOption('favorites_link'),
 					'option'	 => 'favorites_link', 'default'	 => '_PAGE_/favorites');
-	$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => $page, 'rule' => '^%REWRITE%/*$		index.php?p=' . $page . ' [L,QSA]');
+	$_zp_conf_vars['special_pages'][] = array('definition' => '%FAVORITES%', 'rewrite' => '_FAVORITES_');
+	$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '%FAVORITES%', 'rule' => '^%REWRITE%/*$		index.php?p=' . 'favorites' . ' [L,QSA]');
 
 	if (!OFFSET_PATH && !$plugin_disable) {
 		zp_register_filter('load_theme_script', 'favorites::loadScript');
