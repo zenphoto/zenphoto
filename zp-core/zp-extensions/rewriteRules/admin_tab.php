@@ -12,12 +12,8 @@ admin_securityChecks(ADMIN_RIGHTS, $return = currentRelativeURL());
 
 $list = rulesList();
 printAdminHeader('rewrite', '');
-?>
-<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/rewriteRules/rewriteRules.css" type="text/css" />
-<?php
 echo "\n</head>";
 ?>
-
 <body>
 	<?php printLogoAndLinks(); ?>
 	<div id="main">
@@ -26,24 +22,22 @@ echo "\n</head>";
 			<div id="container">
 				<div class="tabbox">
 					<h1><?php echo gettext('Rewrite Rules'); ?></h1>
-					<table class="rewrite">
+					<dl class="code">
 						<?php
 						$c = 0;
 						foreach ($list as $key => $rule) {
 							$c++;
 							?>
-							<tr<?php if ($c & 1) echo ' class="rewrite_bar"'; ?>>
-								<td class="rewrite_left">
-									<?php echo $rule[0]; ?>
-								</td>
-								<td class="rewrite_right">
-									<?php echo $rule[1]; ?>
-								</td>
-							</tr>
+								<dt<?php if ($c & 1) echo ' class=" bar"'; ?>>
+									<code><?php echo $rule[0]; ?></code>
+								</dt>
+								<dd<?php if ($c & 1) echo ' class=" bar"'; ?>>
+									<code><?php echo $rule[1]; ?></code>
+								</dd>
 							<?php
 						}
 						?>
-					</table>
+					</dl>
 				</div>
 			</div>
 		</div>

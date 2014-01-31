@@ -7,7 +7,7 @@ and open the template in the editor.
     Created on : Jan 30, 2014, 12:19:01 PM
     Author     : Stephen
 */
-
+/*
 .rewrite {
 	margin:0;
 	padding:0;
@@ -23,7 +23,7 @@ and open the template in the editor.
 	padding-left: 2px;
 	padding-right: 10px;
 }
-
+*/
 .rewrite_bar {
-	background: #E8FFE8;
+	background: #f0f0f0;
 }

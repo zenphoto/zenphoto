@@ -2638,3 +2638,31 @@ margin: -5px 0 0 0 !important;
 padding: 0;
 }
 
+/* definition lists */
+
+dl {
+	display: block;
+	clear: both;
+	width: 100%;
+}
+
+dt,dd {
+display: inline-block;
+width: 35%;
+margin: 0;
+padding: 5px;
+}
+
+dt {
+font-weight: bold;
+}
+
+.bar {
+	background: #f0f0f0;
+}
+
+dd {
+width: 60%;
+margin-left: -10px;
+}
+
