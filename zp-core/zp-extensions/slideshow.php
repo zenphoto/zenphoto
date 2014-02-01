@@ -485,7 +485,10 @@ class slideshow {
 
 }
 
-if (!$plugin_disable) {
+if ($plugin_disable) {
+	enableExtension('slideshow', 0);
+}
+if (extensionEnabled('slideshow')) {
 	$slideshow_instance = 0;
 
 	/**
