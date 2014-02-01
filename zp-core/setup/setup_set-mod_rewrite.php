@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Used to set the mod_rewrite option.
  * This script is accessed via a /page/setup_set-mod_rewrite?z=setup.
@@ -7,8 +8,8 @@
  * @package setup
  *
  */
-require_once(dirname(dirname(__FILE__)).'/functions-basic.php');
-require_once(dirname(__FILE__).'/setup-functions.php');
+require_once(dirname(dirname(__FILE__)) . '/functions-basic.php');
+require_once(dirname(__FILE__) . '/setup-functions.php');
 
 $mod_rewrite = MOD_REWRITE;
 if (is_null($mod_rewrite)) {
@@ -20,9 +21,9 @@ if (is_null($mod_rewrite)) {
 	$msg = gettext('The Zenphoto option "mod_rewrite" is "disabled".');
 }
 setOption('mod_rewrite_detected', 1);
-setupLog(gettext('Notice: "Module mod_rewrite" is working.').' '.$msg, true);
+setupLog(gettext('Notice: "Module mod_rewrite" is working.') . ' ' . $msg, true);
 
-header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
+header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 header('Content-Type: image/png');
-header('Location: ' . FULLWEBPATH.'/'.ZENFOLDER.'/images/pass.png', true, 301);
+header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/images/pass.png', true, 301);
 ?>

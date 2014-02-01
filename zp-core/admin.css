@@ -2586,56 +2586,56 @@ Tooltip styling
 
 
 #form_editcomment label {
-width: 30% !important;
-float: left;
-display: block;
+	width: 30% !important;
+	float: left;
+	display: block;
 }
 
 #form_editcomment input,
 #form_editcomment textarea {
-width: 350px !important;
-display: block;
-float: left;
+	width: 350px !important;
+	display: block;
+	float: left;
 }
 
 .commentformedit_fields {
-width: 60%;
-float: left;
+	width: 60%;
+	float: left;
 }
 
 .commentformedit_box {
-width:260px; 
-float:right;
+	width:260px;
+	float:right;
 }
 
 /* prevent jumping toolbar buttons of TinyMCE4 in some browsers */
-.mce-container .mce-toolbar button { 
-border: 0 !Important;
--webkit-box-sizing: border-box;
--moz-box-sizing: border-box;
--o-box-sizing: border-box;
--ms-box-sizing: border-box; 
-box-sizing: border-box;
+.mce-container .mce-toolbar button {
+	border: 0 !Important;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 
 /* thumb albumsort */
 #images,
 #images li {
-display: inline;
-margin: 0;
-padding: 0;
+	display: inline;
+	margin: 0;
+	padding: 0;
 }
 
 #images li {
-list-style-type: none;
-float: left;
-margin: 0 8px 8px 0;
+	list-style-type: none;
+	float: left;
+	margin: 0 8px 8px 0;
 }
 
 #images li p {
-margin: -5px 0 0 0 !important;
-padding: 0;
+	margin: -5px 0 0 0 !important;
+	padding: 0;
 }
 
 /* definition lists */
@@ -2647,14 +2647,14 @@ dl {
 }
 
 dt,dd {
-display: inline-block;
-width: 35%;
-margin: 0;
-padding: 5px;
+	display: inline-block;
+	width: 35%;
+	margin: 0;
+	padding: 5px;
 }
 
 dt {
-font-weight: bold;
+	font-weight: bold;
 }
 
 .bar {
@@ -2662,7 +2662,10 @@ font-weight: bold;
 }
 
 dd {
-width: 60%;
-margin-left: -10px;
+	width: 60%;
+	margin-left: -10px;
 }
 
+.top {
+	vertical-align: top;
+}

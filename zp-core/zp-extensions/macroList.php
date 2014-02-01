@@ -93,9 +93,9 @@ function macroList_show($macro, $detail) {
 	$warn = array();
 	if (preg_match('/[^\w]/', $macro)) {
 		$warn['identifier'] = gettext('Macro identifiers may not contain special characters.');
-		echo "<dt><code>[<span class=\"error\">$macro</span>";
+		echo '<dt class="top"><code>[<span class="error">' . $macro . '</span>';
 	} else {
-		echo "<dt><code>[$macro";
+		echo '<dt class="top"><code>[' . $macro;
 	}
 	$required = $array = false;
 	if ($detail['class'] == 'expression') {
@@ -143,7 +143,7 @@ function macroList_show($macro, $detail) {
 			$params .= "<em>}</em>";
 		echo $params;
 	}
-	echo ']</code> <em>(' . @$detail['owner'] . ')</em></dt><dd>' . $detail['desc'] . '</dd>';
+	echo ']</code> <em>(' . @$detail['owner'] . ')</em></dt><dd class="top">' . $detail['desc'] . '</dd>';
 	if (count($warn)) {
 		echo '<div class="notebox"><strong>Warning:</strong>';
 		foreach ($warn as $warning) {
