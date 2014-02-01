@@ -108,7 +108,7 @@ function getRules() {
 	//	load rewrite rules
 	$rules = trim(file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/zenphoto-rewrite.txt'));
 
-	$specialPageRules = array();
+	$definitions = $specialPageRules = array();
 	foreach ($_zp_conf_vars['special_pages'] as $special) {
 		if (array_key_exists('rule', $special)) {
 			$specialPageRules[] = "\tRewriteRule " . str_replace('%REWRITE%', $special['rewrite'], $special['rule']);
@@ -119,7 +119,7 @@ function getRules() {
 	}
 
 	$rules = explode("_SPECIAL_", trim($rules));
-	$rules = array_merge(explode("\n", $rules[0]), $specialPageRules, explode("\n", $rules[1]), array("\t#### catch-all", "\t" . 'RewriteRule ^(.*)/?$	index.php?album=$1 [L,QSA]'));
+	$rules = array_merge(explode("\n", $rules[0]), $specialPageRules, explode("\n", $rules[1]), array("\t#### Catch-all", "\t" . 'RewriteRule ^(.*)/?$	index.php?album=$1 [L,QSA]'));
 	return array($definitions, $rules);
 }
 
