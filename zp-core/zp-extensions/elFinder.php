@@ -89,11 +89,7 @@ function elFinder_admin_tabs($tabs) {
 
 function elFinder_tinymce($discard) {
 
-	if (extensionEnabled('tinymce4')) {
-		$file = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/elfinder_4.php';
-	} else {
-		$file = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/elfinder.php' . '?XSRFToken=' . getXSRFToken('elFinder');
-	}
+	$file = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/elfinder_4.php';
 	?>
 	<script type="text/javascript">
 		// <!-- <![CDATA[

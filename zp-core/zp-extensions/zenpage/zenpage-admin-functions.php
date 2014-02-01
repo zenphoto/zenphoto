@@ -59,8 +59,8 @@ function processTags($object) {
 function updatePage(&$reports, $newpage = false) {
 	$title = process_language_string_save("title", 2);
 	$author = sanitize($_POST['author']);
-	$content = zpFunctions::updateImageProcessorLink(process_language_string_save("content", 0)); // TinyMCE already clears unallowed code
-	$extracontent = process_language_string_save("extracontent", 0); // TinyMCE already clears unallowed code
+	$content = zpFunctions::updateImageProcessorLink(process_language_string_save("content", EDITOR_SANITIZE_LEVEL));
+	$extracontent = process_language_string_save("extracontent", EDITOR_SANITIZE_LEVEL);
 	$custom = process_language_string_save("custom_data", 1);
 	$show = getcheckboxState('show');
 	$date = sanitize($_POST['date']);
@@ -69,7 +69,9 @@ function updatePage(&$reports, $newpage = false) {
 	$expiredate = getExpiryDatePost();
 	$commentson = getcheckboxState('commentson');
 	$permalink = getcheckboxState('permalink');
-	$codeblock = processCodeblockSave(0);
+	if (zp_loggedin(CODEBLOCK_RIGHTS)) {
+		$codeblock = processCodeblockSave(0);
+	}
 	$locked = getcheckboxState('locked');
 	$date = sanitize($_POST['date']);
 	if ($newpage) {
@@ -325,8 +327,8 @@ function updateArticle(&$reports, $newarticle = false) {
 	$date = date('Y-m-d_H-i-s');
 	$title = process_language_string_save("title", 2);
 	$author = sanitize($_POST['author']);
-	$content = zpFunctions::updateImageProcessorLink(process_language_string_save("content", 0)); // TinyMCE already clears unallowed code
-	$extracontent = process_language_string_save("extracontent", 0); // TinyMCE already clears unallowed code
+	$content = zpFunctions::updateImageProcessorLink(process_language_string_save("content", EDITOR_SANITIZE_LEVEL));
+	$extracontent = process_language_string_save("extracontent", EDITOR_SANITIZE_LEVEL);
 	$custom = process_language_string_save("custom_data", 1);
 	$show = getcheckboxState('show');
 	$date = sanitize($_POST['date']);
@@ -335,7 +337,9 @@ function updateArticle(&$reports, $newarticle = false) {
 	$lastchange = sanitize($_POST['lastchange']);
 	$lastchangeauthor = sanitize($_POST['lastchangeauthor']);
 	$commentson = getcheckboxState('commentson');
-	$codeblock = processCodeblockSave(0);
+	if (zp_loggedin(CODEBLOCK_RIGHTS)) {
+		$codeblock = processCodeblockSave(0);
+	}
 	$locked = getcheckboxState('locked');
 	if ($newarticle) {
 		$titlelink = seoFriendly(get_language_string($title));
@@ -843,7 +847,7 @@ function updateCategory(&$reports, $newcategory = false) {
 	$id = sanitize_numeric($_POST['id']);
 	$permalink = getcheckboxState('permalink');
 	$title = process_language_string_save("title", 2);
-	$desc = process_language_string_save("desc", 0);
+	$desc = process_language_string_save("desc", EDITOR_SANITIZE_LEVEL);
 	$custom = process_language_string_save("custom_data", 1);
 
 	if ($newcategory) {

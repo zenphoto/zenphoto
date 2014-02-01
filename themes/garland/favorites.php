@@ -19,7 +19,7 @@ if (!defined('WEBPATH'))
 					<div id="logo-floater">
 						<div>
 							<h1 class="title">
-								<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo sanitize(getGalleryTitle()); ?></a>
+								<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo getGalleryTitle(); ?></a>
 							</h1>
 						</div>
 					</div>
@@ -45,12 +45,12 @@ if (!defined('WEBPATH'))
 										while (next_album()) {
 											?>
 											<div class="album">
-												<a class="albumthumb" href="<?php echo getAlbumURL(); ?>" title="<?php printf(gettext('View album:  %s'), sanitize(getAlbumTitle())); ?>">
+												<a class="albumthumb" href="<?php echo getAlbumURL(); ?>" title="<?php printf(gettext('View album:  %s'), getBareAlbumTitle()); ?>">
 													<?php printCustomAlbumThumbImage(getAlbumTitle(), 85, NULL, NULL, 85, 85); ?>
 												</a>
 												<div class="albumdesc">
 													<h3>
-														<a href="<?php echo getAlbumURL(); ?>" title="<?php printf(gettext('View album:  %s'), sanitize(getAlbumTitle())); ?>">
+														<a href="<?php echo getAlbumURL(); ?>" title="<?php printf(gettext('View album:  %s'), getBareAlbumTitle()); ?>">
 															<?php printAlbumTitle(); ?>
 														</a>
 													</h3>
@@ -73,7 +73,7 @@ if (!defined('WEBPATH'))
 											?>
 											<div class="image">
 												<div class="imagethumb">
-													<a href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo sanitize(getImageTitle()); ?>"><?php printImageThumb(getImageTitle()); ?></a>
+													<a href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>"><?php printImageThumb(getImageTitle()); ?></a>
 													<?php printAddToFavorites($_zp_current_image, '', gettext('Remove')); ?>
 												</div>
 											</div>

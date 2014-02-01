@@ -66,7 +66,7 @@ function jqm_printMainHeaderNav() {
 				<li><a href="<?php echo getGalleryIndexURL(); ?>"><?php echo gettext('Gallery'); ?></a></li>
 				<?php if (extensionEnabled('zenpage')) { ?>
 					<li><a href="<?php echo getNewsIndexURL(); ?>"><?php echo gettext('News'); ?></a></li>
-					<li><a href="<?php //echo getPagesLink();      ?>"><?php echo gettext('Pages'); ?></a></li>
+					<li><a href="<?php //echo getPagesLink();        ?>"><?php echo gettext('Pages'); ?></a></li>
 				<?php } ?>
 				<li><a href="<?php echo getCustomPageURL('archive'); ?>"><?php echo gettext('Archive'); ?></a></li>
 			</ul>
@@ -229,8 +229,7 @@ function printZDSearchToggleJS() {
  * @param int $number_to_show how many search results should be shown initially
  */
 function printZDSearchShowMoreLink($option, $number_to_show) {
-	$option = strtolower(sanitize($option));
-	$number_to_show = sanitize_numeric($number_to_show);
+	$option = strtolower($option);
 	switch ($option) {
 		case "news":
 			$num = getNumNews();
@@ -254,9 +253,8 @@ function printZDSearchShowMoreLink($option, $number_to_show) {
  * @param string $c After which result item the toggling should begin. Here to be passed from the results loop.
  */
 function printZDToggleClass($option, $c, $number_to_show) {
-	$option = strtolower(sanitize($option));
+	$option = strtolower($option);
 	$c = sanitize_numeric($c);
-	$number_to_show = sanitize_numeric($number_to_show);
 	if ($c > $number_to_show) {
 		echo ' class="' . $option . '_extrashow" style="display:none;"';
 	}

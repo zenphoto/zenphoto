@@ -140,7 +140,7 @@ if (isset($_GET['action'])) {
 			$_zp_gallery->setThumbSelectImages((int) isset($_POST['thumb_select_images']));
 			$_zp_gallery->setSecondLevelThumbs((int) isset($_POST['multilevel_thumb_select_images']));
 			$_zp_gallery->setTitle(process_language_string_save('gallery_title', 2));
-			$_zp_gallery->setDesc(process_language_string_save('Gallery_description', 1));
+			$_zp_gallery->setDesc(process_language_string_save('Gallery_description', EDITOR_SANITIZE_LEVEL));
 			$_zp_gallery->setWebsiteTitle(process_language_string_save('website_title', 2));
 			$web = sanitize($_POST['website_url'], 3);
 			$_zp_gallery->setWebsiteURL($web);
@@ -162,7 +162,9 @@ if (isset($_GET['action'])) {
 			}
 			$_zp_gallery->setSecurity(sanitize($_POST['gallery_security'], 3));
 			$notify = processCredentials($_zp_gallery);
-			$_zp_gallery->setCodeblock(processCodeblockSave(0));
+			if (zp_loggedin(CODEBLOCK_RIGHTS)) {
+				$_zp_gallery->setCodeblock(processCodeblockSave(0));
+			}
 			$_zp_gallery->save();
 			$returntab = "&tab=gallery";
 		}

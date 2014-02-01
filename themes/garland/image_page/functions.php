@@ -39,11 +39,11 @@ class image_page {
 				}
 				?>
 				<div class="image">
-					<div class="imagethumb"><a href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo sanitize(getImageTitle()); ?>"><?php printImageThumb(getImageTitle()); ?></a></div>
+					<div class="imagethumb"><a href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>"><?php printImageThumb(getImageTitle()); ?></a></div>
 				</div>
-			<?php
-		}
-		?>
+				<?php
+			}
+			?>
 		</div>
 		<br class="clearall" />
 		<?php

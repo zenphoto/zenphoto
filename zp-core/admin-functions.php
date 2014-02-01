@@ -11,6 +11,8 @@ define('TEXTAREA_COLUMNS', 50);
 define('TEXT_INPUT_SIZE', 48);
 define('TEXTAREA_COLUMNS_SHORT', 32);
 define('TEXT_INPUT_SIZE_SHORT', 30);
+if (!defined('EDITOR_SANITIZE_LEVEL'))
+	define('EDITOR_SANITIZE_LEVEL', 1);
 
 /**
  * Print the footer <div> for the bottom of all admin pages.
@@ -1373,7 +1375,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$sort[gettext('Custom')] = 'custom';
 						/*
 						 * not recommended--screws with peoples minds during pagination!
-						  $sort[gettext('Random')] = 'random';
+							$sort[gettext('Random')] = 'random';
 						 */
 						?>
 						<tr>
@@ -2242,7 +2244,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		$tagsprefix = 'tags_' . $prefix;
 		$notify = '';
 		$album->setTitle(process_language_string_save($prefix . 'albumtitle', 2));
-		$album->setDesc(process_language_string_save($prefix . 'albumdesc', 0));
+		$album->setDesc(process_language_string_save($prefix . 'albumdesc', EDITOR_SANITIZE_LEVEL));
 		$tags = array();
 		$l = strlen($tagsprefix);
 		foreach ($_POST as $key => $value) {
@@ -2308,7 +2310,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 			$album->setWatermark(sanitize($_POST[$prefix . 'album_watermark'], 3));
 			$album->setWatermarkThumb(sanitize($_POST[$prefix . 'album_watermark_thumb'], 3));
 		}
-		$album->setCodeblock(processCodeblockSave((int) $prefix));
+		if (zp_loggedin(CODEBLOCK_RIGHTS)) {
+			$album->setCodeblock(processCodeblockSave((int) $prefix));
+		}
 		if (isset($_POST[$prefix . 'owner']))
 			$album->setOwner(sanitize($_POST[$prefix . 'owner']));
 
@@ -3999,7 +4003,6 @@ function codeblocktabsJS() {
 			$('.cbt-' + id).removeClass('selected');
 			$('#cbt' + num + '-' + id).addClass('selected');
 		}
-		;
 
 		function cbadd(id, offset) {
 			var num = $('#cbu-' + id + ' li').size() - offset;
@@ -4042,8 +4045,15 @@ function printCodeblockEdit($obj, $id) {
 				<li><a class="<?php if ($i == 1) echo 'first '; ?>cbt-<?php echo $id; ?>" id="<?php echo 'cbt' . $i . '-' . $id; ?>" href="javascript:cbclick(<?php echo $i . ',' . $id; ?>);" title="<?php printf(gettext('codeblock %u'), $i); ?>">&nbsp;&nbsp;<?php echo $i; ?>&nbsp;&nbsp;</a></li>
 				<?php
 			}
+			if (zp_loggedin(CODEBLOCK_RIGHTS)) {
+				$disabled = '';
+				?>
+				<li><a id="<?php echo 'cbp' . '-' . $id; ?>" href="javascript:cbadd(<?php echo $id; ?>,<?php echo 1 - $start; ?>);" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>
+				<?php
+			} else {
+				$disabled = ' disabled="disabled"';
+			}
 			?>
-			<li><a id="<?php echo 'cbp' . '-' . $id; ?>" href="javascript:cbadd(<?php echo $id; ?>,<?php echo (int) (1 - $start); ?>);" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>
 		</ul>
 
 		<?php
@@ -4057,7 +4067,7 @@ function printCodeblockEdit($obj, $id) {
 					<?php
 				}
 				?>
-				<textarea name="codeblock<?php echo $i; ?>-<?php echo $id; ?>" class="codeblock" id="codeblock<?php echo $i; ?>-<?php echo $id; ?>" rows="40" cols="60"><?php echo html_encode(@$codeblock[$i]); ?></textarea>
+				<textarea name="codeblock<?php echo $i; ?>-<?php echo $id; ?>" class="codeblock" id="codeblock<?php echo $i; ?>-<?php echo $id; ?>" rows="40" cols="60"<?php echo $disabled; ?>><?php echo html_encode(@$codeblock[$i]); ?></textarea>
 			</div>
 			<?php
 		}

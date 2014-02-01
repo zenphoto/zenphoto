@@ -289,7 +289,7 @@ if (isset($_GET['action'])) {
 											$image->setPublishDate(sanitize($_POST['publishdate-' . $i]));
 											$image->setExpireDate(sanitize($_POST['expirationdate-' . $i]));
 											$image->setTitle(process_language_string_save("$i-title", 2));
-											$image->setDesc(process_language_string_save("$i-desc", 0));
+											$image->setDesc(process_language_string_save("$i-desc", EDITOR_SANITIZE_LEVEL));
 											$image->setLocation(process_language_string_save("$i-location", 3));
 											$image->setCity(process_language_string_save("$i-city", 3));
 											$image->setState(process_language_string_save("$i-state", 3));
@@ -336,7 +336,9 @@ if (isset($_GET['action'])) {
 											if (isset($_POST['wm_full-' . $i]))
 												$wmuse = $wmuse | WATERMARK_FULL;
 											$image->setWMUse($wmuse);
-											$image->setCodeblock(processCodeblockSave($i));
+											if (zp_loggedin(CODEBLOCK_RIGHTS)) {
+												$image->setCodeblock(processCodeblockSave($i));
+											}
 											if (isset($_POST[$i . '-owner']))
 												$image->setOwner(sanitize($_POST[$i . '-owner']));
 											$image->set('filesize', filesize($image->localpath));
