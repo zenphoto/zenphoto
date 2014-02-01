@@ -2559,7 +2559,7 @@ class zpFunctions {
 			foreach ($matches[1] as $key => $match) {
 				preg_match('|.*i\.php\?(.*)|', $match, $imgproc);
 				if ($imgproc) {
-					$match = explode('&amp;', $imgproc[1]);
+					$match = preg_split('~\&[amp;]*~', $imgproc[1]);
 					$set = array();
 					foreach ($match as $v) {
 						$s = explode('=', $v);
