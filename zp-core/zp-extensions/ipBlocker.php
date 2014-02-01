@@ -102,7 +102,7 @@ class ipBlocker {
 	}
 
 	function handleOption($option, $currentValue) {
-		$list = v(getOption('ipBlocker_list'));
+		$list = getSerializedArray(getOption('ipBlocker_list'));
 		if (extensionEnabled('ipBlocker')) {
 			$disabled = '';
 		} else {
