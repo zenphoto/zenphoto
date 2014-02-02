@@ -469,13 +469,15 @@ class favorites extends AlbumBase {
 
 }
 
-if (!$plugin_disable) {
+if ($plugin_disable) {
+	enableExtension('favoritesHandler', 0);
+} else {
 	$_zp_conf_vars['special_pages']['favorites'] = array('define'	 => '_FAVORITES_', 'rewrite'	 => getOption('favorites_link'),
 					'option'	 => 'favorites_link', 'default'	 => '_PAGE_/favorites');
 	$_zp_conf_vars['special_pages'][] = array('definition' => '%FAVORITES%', 'rewrite' => '_FAVORITES_');
 	$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '%FAVORITES%', 'rule' => '^%REWRITE%/*$		index.php?p=' . 'favorites' . ' [L,QSA]');
 
-	if (!OFFSET_PATH && !$plugin_disable) {
+	if (!OFFSET_PATH) {
 		zp_register_filter('load_theme_script', 'favorites::loadScript');
 		zp_register_filter('checkPageValidity', 'favorites::pageCount');
 		zp_register_filter('admin_toolbox_global', 'favorites::toolbox');
