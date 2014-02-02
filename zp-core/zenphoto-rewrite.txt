@@ -1,17 +1,18 @@
-	#### definitions
+	#### Definitions
 	Define %ZENFOLDER%			=>	ZENFOLDER
 	Define %PAGE%						=>	_PAGE_
 	Define %SEARCH%					=>	_SEARCH_
 	Define %ARCHIVE%				=>	_ARCHIVE_
 	Define %TAGS%						=>	_TAGS_
 
-	#### quick links
+	#### Quick links
 	RewriteRule ^$                     										index.php [L,QSA]
 	RewriteRule ^index\.php$                     					index.php [L,QSA]
 	RewriteRule ^admin/*$																	%ZENFOLDER%/admin.php [L,QSA]
 
 	#### Rewrite rules for search
-	RewriteRule ^%SEARCH%/*$     													index.php?p=search [L,QSA]
+	RewriteRule ^%SEARCH%/*?$															index.php?p=search [L,QSA]
+	RewriteRule ^%ARCHIVE%/*?$														index.php?p=archive [L,QSA]
 	RewriteRule ^%ARCHIVE%/(.*)/([0-9]+)/?$     					index.php?p=search&date=$1&page=$2 [L,QSA]
 	RewriteRule ^%ARCHIVE%/(.*)/?$     										index.php?p=search&date=$1 [L,QSA]
 	RewriteRule ^%TAGS%/(.*)/([0-9]+)/?$ 									index.php?p=search&searchfields=tags&words=$1&page=$2 [L,QSA]
