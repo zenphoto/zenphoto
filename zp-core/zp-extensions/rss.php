@@ -801,15 +801,18 @@ class RSS extends feed {
 
 }
 
-// RSS feed calls before anything else
-if (!OFFSET_PATH && isset($_GET['rss'])) {
+function executeRSS() {
 	if (!$_GET['rss']) {
 		$_GET['rss'] = 'gallery';
 	}
-//	load the theme plugins just incase
 	$_zp_gallery_page = 'rss.php';
 	$rss = new RSS(sanitize($_GET));
 	$rss->printFeed();
 	exitZP();
+}
+
+// RSS feed calls before anything else
+if (!OFFSET_PATH && isset($_GET['rss'])) {
+	zp_register_filter('load_theme_script', 'executeRSS');
 }
 ?>
