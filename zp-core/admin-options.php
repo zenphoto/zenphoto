@@ -1646,7 +1646,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											$dsp = 'block';
 										}
 										?>
-										<span id="album_custom_div<?php echo $suffix; ?>" class="customText" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
+										<span id="album_custom_div" class="customText" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
 											<br />
 											<?php echo gettext('custom fields:') ?>
 											<input id="customalbumsort" class="customalbumsort" name="customalbumsort" type="text" value="<?php echo html_encode($cvt); ?>" />
@@ -2796,7 +2796,7 @@ Zenphoto_Authority::printPasswordFormJS();
 					<div id="tab_plugin" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
 						<script type="text/javascript">
-																							var optionholder = new array();</script>
+																								var optionholder = new array();</script>
 						<form id="form_options" action="?action=saveoptions<?php if (isset($_GET['single'])) echo '&amp;single=' . $showExtension; ?>" method="post" autocomplete="off">
 							<?php XSRFToken('saveoptions'); ?>
 							<input type="hidden" name="savepluginoptions" value="yes" />
