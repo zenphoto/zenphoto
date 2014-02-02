@@ -235,7 +235,7 @@ class htmlmetatags {
 			default: // for all other possible static custom pages
 				$custompage = stripSuffix($_zp_gallery_page);
 				$standard = array('contact' => gettext('Contact'), 'register' => gettext('Register'), 'search' => gettext('Search'), 'archive' => gettext('Archive view'), 'password' => gettext('Password required'));
-				if (MOD_REWRITE && class_exists('favorites')) {
+				if (is_object($_myFavorites)) {
 					$standard[str_replace(_PAGE_ . '/', '', $_myFavorites->getLink())] = gettext('My favorites');
 				}
 				If (array_key_exists($custompage, $standard)) {
