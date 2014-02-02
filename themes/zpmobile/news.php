@@ -24,7 +24,7 @@ if (!defined('WEBPATH') || !class_exists('Zenpage'))
 
 			<div data-role="content">
 				<div class="content-primary">
-					<h2 class="breadcrumb"><?php printNewsIndexURL(); ?><strong><?php printZenpageItemsBreadcrumb(' ', '');
+					<h2 class="breadcrumb"><?php printNewsBreadcrumb(); ?><strong><?php printZenpageItemsBreadcrumb(' ', '');
 					printCurrentNewsCategory(" "); ?><?php printNewsTitle(" ");
 					printCurrentNewsArchive(" | "); ?></strong></h2>
 					<?php

@@ -211,7 +211,7 @@ class zenpagecms {
 		return $ignore;
 	}
 
-	// zenpage filters
+// zenpage filters
 
 	/**
 	 * Handles password checks
@@ -334,5 +334,15 @@ class zenpagecms {
  */
 function getNewsIndexURL() {
 	return zp_apply_filter('getLink', rewrite_path(_NEWS_, "/index.php?p=news"), 'news.php', NULL);
+}
+
+/**
+ * Returns the full path of the news archive page
+ *
+ * @param string $date the date of the archive page
+ * @return string
+ */
+function getNewsArchiveURL($date) {
+	return zp_apply_filter('getLink', rewrite_path(_NEWS_ARCHIVE_ . '/' . $date . '/', "/index.php?p=news&date=$date"), 'news.php', NULL);
 }
 ?>

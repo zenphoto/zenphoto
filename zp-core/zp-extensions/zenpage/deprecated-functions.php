@@ -973,4 +973,14 @@ function printNewsLink($before = '') {
 	deprecated_functions::notify(gettext('use printNewsURL()'));
 	printNewsURL($before);
 }
+
+/**
+ * @deprecated
+ * @since 1.4.6
+ */
+function printNewsIndexURL($name = NULL, $before = '', $archive = NULL) {
+	deprecated_functions::notify(gettext('use printNewsBreadcrumb()'));
+	printNewsBreadcrumb($name, $before);
+}
+
 ?>

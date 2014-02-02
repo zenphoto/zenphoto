@@ -52,7 +52,7 @@ if (!defined('WEBPATH') || !class_exists('Zenpage'))
 						printGalleryTitle();
 						?></a></span>
 					<?php
-					printNewsIndexURL(NULL, ' | ');
+					printNewsBreadcrumb(NULL, ' | ');
 					printZenpageItemsBreadcrumb(' | ', '');
 					printCurrentNewsCategory(" | ");
 					printNewsTitle(" | ");

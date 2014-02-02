@@ -39,7 +39,7 @@ if (!defined('WEBPATH') || !class_exists('Zenpage'))
 				<div id="breadcrumb">
 					<h2>
 						<a href="<?php echo getGalleryIndexURL(); ?>"><?php echo gettext("Index"); ?></a>
-						<?php printNewsIndexURL(NULL, ' » '); ?><strong><?php
+						<?php printNewsBreadcrumb(NULL, ' » '); ?><strong><?php
 							printZenpageItemsBreadcrumb(' » ', '');
 							printCurrentNewsCategory(" » ");
 							?><?php

@@ -8,10 +8,10 @@ if (!defined('WEBPATH') || !class_exists('Zenpage'))
 		<?php zp_apply_filter('theme_head'); ?>
 		<?php printHeadTitle(); ?>
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
-<?php if (class_exists('RSS')) printRSSHeaderLink("News", "Zenpage news", ""); ?>
+		<?php if (class_exists('RSS')) printRSSHeaderLink("News", "Zenpage news", ""); ?>
 	</head>
 	<body class="sidebars">
-<?php zp_apply_filter('theme_body_open'); ?>
+		<?php zp_apply_filter('theme_body_open'); ?>
 		<div id="navigation"></div>
 		<div id="wrapper">
 			<div id="container">
@@ -25,7 +25,7 @@ if (!defined('WEBPATH') || !class_exists('Zenpage'))
 				<!-- header -->
 				<div class="sidebar">
 					<div id="leftsidebar">
-<?php include("sidebar.php"); ?>
+						<?php include("sidebar.php"); ?>
 					</div>
 				</div>
 
@@ -39,7 +39,7 @@ if (!defined('WEBPATH') || !class_exists('Zenpage'))
 										<?php printHomeLink('', ' » '); ?>
 										<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a>
 										<?php
-										printNewsIndexURL(NULL, ' » ');
+										printNewsBreadcrumb(NULL, ' » ');
 										printZenpageItemsBreadcrumb(' » ', '');
 										printCurrentNewsCategory(" » ");
 										printNewsTitle(" » ");
@@ -63,16 +63,16 @@ if (!defined('WEBPATH') || !class_exists('Zenpage'))
 											</span>
 											<?php printCodeblock(1); ?>
 											<?php printNewsContent(); ?>
-										<?php printCodeblock(2); ?>
+											<?php printCodeblock(2); ?>
 										</div>
 										<?php
 										@call_user_func('printRating');
 										@call_user_func('printCommentForm');
-									} else {	// news article loop
+									} else { // news article loop
 										commonNewsLoop(true);
 									}
 									?>
-<?php footer(); ?>
+									<?php footer(); ?>
 									<p style="clear: both;"></p>
 								</div>
 								<!-- end content -->

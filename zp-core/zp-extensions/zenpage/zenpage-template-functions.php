@@ -825,28 +825,28 @@ function printNewsCategoryURL($before = '', $catlink = '') {
  *
  * @param string $name The linktext
  * @param string $before The text to appear before the link text
- * @param string $archive the link text for an archive page
  */
-function printNewsIndexURL($name = NULL, $before = '', $archive = NULL) {
+function printNewsBreadcrumb($name = NULL, $before = '', $archive = NULL) {
 	global $_zp_post_date;
-
 	if ($_zp_post_date) {
 		if (is_null($archive)) {
 			$name = '<em>' . gettext('Archive') . '</em>';
 		} else {
 			$name = strip_tags(html_encode($archive));
 		}
+		$link = zp_apply_filter('getLink', rewrite_path(_ARCHIVE_ . '/', "/index.php?p=archive"), 'archive.php', NULL);
 	} else {
 		if (is_null($name)) {
 			$name = gettext('News');
 		} else {
 			$name = strip_tags(html_encode($name));
 		}
+		$link = getNewsIndexURL();
 	}
 	if ($before) {
 		echo '<span class="beforetext">' . html_encode($before) . '</span>';
 	}
-	echo "<a href=\"" . html_encode(getNewsIndexURL()) . "\" title=\"" . $name . "\">" . $name . "</a>";
+	echo "<a href=\"" . html_encode($link) . "\" title=\"" . $name . "\">" . $name . "</a>";
 }
 
 /**
