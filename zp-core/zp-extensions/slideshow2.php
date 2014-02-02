@@ -284,7 +284,7 @@ class cycle {
 			<!-- class cylce-slideshow is mandatory! -->
 			<div class="cycle-slideshow"
 					 data-cycle-pause-on-hover=<?php echo $option_pausehover; ?>
-					 data-cycle-fx=<?php echo $option_fx; ?>
+					 data-cycle-fx="<?php echo $option_fx; ?>"
 					 <?php echo $option_tilevertical; ?>
 					 data-cycle-speed=<?php echo getOption('cycle-slideshow_speed'); ?>
 					 data-cycle-timeout=<?php echo getOption('cycle-slideshow_timeout'); ?>
