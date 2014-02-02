@@ -17362,7 +17362,8 @@ msgstr "De rewriteTokens standaardwaarden zijn hersteld."
 msgid ""
 "The <code>%1$s</code> rule defines <strong>%2$s</strong> as <em>%3$s</em>."
 msgstr ""
-"De<code>%1$s</code> regel definiëerd <strong>%2$s</strong> als <em>%3$s</em>."
+"De <code>%1$s</code> regel definiëerd <strong>%2$s</strong> als <em>%3$s</"
+"em>."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/rewriteTokens.php:73
 #: ZpTranslation-Development/zp-core/zp-extensions/rewriteTokens.php:150
