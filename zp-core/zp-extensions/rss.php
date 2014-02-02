@@ -813,6 +813,6 @@ function executeRSS() {
 
 // RSS feed calls before anything else
 if (!OFFSET_PATH && isset($_GET['rss'])) {
-	zp_register_filter('load_theme_script', 'executeRSS');
+	zp_register_filter('load_theme_script', 'executeRSS', 9999);
 }
 ?>
