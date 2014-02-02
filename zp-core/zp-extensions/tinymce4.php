@@ -18,7 +18,8 @@ $plugin_description = gettext("Text editor TinyMCE 4.x");
 $plugin_author = "Malte Müller (acrylian)";
 $option_interface = 'tinymce4Options';
 
-define('EDITOR_SANITIZE_LEVEL', 4);
+if (!defined('EDITOR_SANITIZE_LEVEL'))
+	define('EDITOR_SANITIZE_LEVEL', 4);
 zp_register_filter('texteditor_config', 'tinymce4ConfigJS');
 
 /**
