@@ -846,7 +846,7 @@ function printNewsBreadcrumb($name = NULL, $before = '', $archive = NULL) {
 	if ($before) {
 		echo '<span class="beforetext">' . html_encode($before) . '</span>';
 	}
-	echo "<a href=\"" . html_encode($link) . "\" title=\"" . $name . "\">" . $name . "</a>";
+	echo "<a href=\"" . html_encode($link) . "\" title=\"" . strip_tags($name) . "\">" . $name . "</a>";
 }
 
 /**
