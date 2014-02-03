@@ -7144,7 +7144,7 @@ msgstr ""
 msgid ""
 "You must restore the setup files on your primary installation to run the "
 "setup operation."
-msgstr ""
+msgstr "セットアップを実行するために初期インストールのセットアップファイルをレスと明日r必要が有ります。"
 
 #: zp-core/setup/setup_permissions_changer.php:18
 #, php-format
@@ -7280,7 +7280,7 @@ msgstr "プラグイン:%s オプションインターフェースはインス�
 #: zp-core/setup/setup_pluginOptions.php:40
 #, php-format
 msgid "Plugin:%s enabled (%2$s)"
-msgstr ""
+msgstr "プラグイン:%s が有効 (%2$s)"
 
 #: zp-core/setup/setup_pluginOptions.php:43
 #, php-format
@@ -7660,7 +7660,7 @@ msgstr "PHP <code>セッション</code> 【<em>save_save_path</em>に問題が�
 msgid ""
 "The configured PHP session path could not be used. Zenphoto has set the path "
 "to the %s folder."
-msgstr ""
+msgstr "設定されたPHPのセッションパスは使用できません。Zenphotoは%sフォルダのパスを設定します。"
 
 #: zp-core/setup/index.php:594
 msgid "PHP Sessions are required for Zenphoto administrative functions."
@@ -9043,7 +9043,7 @@ msgstr "<em>【%1$s】</em> パラメータ %2$d は文字列であるべきで�
 msgid ""
 "<em>[%1$s]</em> parameter %2$d should be <code>true</code> or <code>false</"
 "code>."
-msgstr ""
+msgstr "<em>【%1$s】</em>パラメーター%2$dは<code>true</code>または<code>false</code>でなければなりません。"
 
 #: zp-core/functions.php:2221
 #, php-format
@@ -10554,9 +10554,9 @@ msgid "Zenphoto script processing total:%.4f seconds"
 msgstr "Zenphoto 合計スクリプト処理時間: %.4f秒"
 
 #: zp-core/rewrite.php:104
-#, fuzzy, php-format
+#, php-format
 msgid "Error processing rewrite rule: \"%s\""
-msgstr "キャッシュ処理の動作(ワーカー)制限: %s です。"
+msgstr "置き換えルールを実行中のエラー: 「%s」"
 
 #: zp-core/class-search.php:65
 msgid "File/Folder name"
@@ -10995,7 +10995,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/macroList/macroList_tab.php:32
 msgid "Parameter types:"
-msgstr ""
+msgstr "パラメータータイプ:"
 
 #: zp-core/zp-extensions/macroList/macroList_tab.php:34
 msgid ""
@@ -11004,13 +11004,12 @@ msgid ""
 msgstr ""
 
 #: zp-core/zp-extensions/macroList/macroList_tab.php:35
-#, fuzzy
 msgid "<em><strong>int</strong></em> a number"
-msgstr "<strong>%u</strong>個のアルバム"
+msgstr "<em><strong>整数</strong></em>"
 
 #: zp-core/zp-extensions/macroList/macroList_tab.php:36
 msgid "<em><strong>bool</strong></em> <code>true</code> or <code>false</code>"
-msgstr ""
+msgstr "<em><strong>bool</strong></em> <code>true</code> または <code>false</code>"
 
 #: zp-core/zp-extensions/macroList/macroList_tab.php:37
 msgid ""
@@ -12925,9 +12924,8 @@ msgstr "CAPTCHA"
 
 #: zp-core/zp-extensions/contact_form.php:140
 #: zp-core/zp-extensions/register_user.php:106
-#, fuzzy
 msgid "If checked, the form will include a Captcha verification."
-msgstr "<em>Captcha</em>が必須の場合、フォームにCaptchaの検証が含まれます。"
+msgstr "チェックした場合、フォームにCaptchaの検証が含まれます。"
 
 #: zp-core/zp-extensions/contact_form.php:141
 #: zp-core/zp-extensions/mobileTheme.php:102
@@ -14370,9 +14368,9 @@ msgstr "リネーム操作でエラー #%d がありました。"
 
 #: zp-core/zp-extensions/seo_cleanup.php:89
 #: zp-core/zp-extensions/seo_cleanup.php:122
-#, fuzzy, php-format
+#, php-format
 msgid "<em>%1$s</em> rename to <em>%2$s</em> failed: %3$s"
-msgstr "<em>%1$s</em>は<em>%2$s</em>にリネームされました"
+msgstr "<em>%1$s</em>は<em>%2$s</em>のリネームに失敗しました: %3$s"
 
 #: zp-core/zp-extensions/seo_cleanup.php:92
 #: zp-core/zp-extensions/seo_cleanup.php:126
@@ -14393,7 +14391,6 @@ msgid "The Zenphoto <em>audio-video</em> handler."
 msgstr "Zenphoto<em>audio-video</em>ハンドラです。"
 
 #: zp-core/zp-extensions/class-video.php:18
-#, fuzzy
 msgid ""
 "This plugin must always be enabled to use multimedia content. Note that you "
 "should also enable a multimedia player. See the info of the player you use "
@@ -14443,7 +14440,7 @@ msgstr "不正な動画のインスタンス生成: ファイルは存在しま�
 #: zp-core/zp-extensions/class-video.php:392
 #, php-format
 msgid "getid3 exceptions for %1$s::%2$s"
-msgstr ""
+msgstr "%1$s::%2$sのgetid3例外"
 
 #: zp-core/zp-extensions/class-video.php:441
 msgid "No multimeida extension installed."
@@ -15310,13 +15307,12 @@ msgid "use getRSSLink($option,$lang,$categorylink)."
 msgstr "getRSSLink($option,$lang,$categorylink)を使用します。"
 
 #: zp-core/zp-extensions/deprecated-functions.php:1275
-#, fuzzy
 msgid ""
 "use printRSSLink($option, $prev, $linktext, $next, $printIcon, $class, "
 "$lang, $categoryLink)."
 msgstr ""
 "printRSSLink($option, $prev, $linktext, $next, $printIcon, $class, $lang, "
-"categoryLink)を使用します。"
+"$categoryLink)を使用します。"
 
 #: zp-core/zp-extensions/deprecated-functions.php:1285
 msgid "use printRSSHeaderLink($option, $linktext, $lang, $categorylink)."
@@ -15838,9 +15834,9 @@ msgstr "並び順を保存しました。"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:61
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:365
-#, fuzzy, php-format
+#, php-format
 msgid "Target does not exists in <em>%1$s</em> theme"
-msgstr "<em>ニュース</em>の一致を返しません"
+msgstr "ターゲットは<em>%1$s</em>テーマ内に存在しません"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:81
 msgid "The object of this menu is under password protection"
@@ -17677,9 +17673,8 @@ msgid "Comment posted"
 msgstr "コメントが投稿されました"
 
 #: zp-core/zp-extensions/comment_form/functions.php:745
-#, fuzzy
 msgid "Comment posted on unknown page!"
-msgstr "ページごとのコメント数"
+msgstr "コメントが不明なページに投稿されました！"
 
 #: zp-core/zp-extensions/comment_form/functions.php:1075
 #: zp-core/class-feed.php:483
@@ -17804,7 +17799,7 @@ msgstr "スパムとしてマーク"
 
 #: zp-core/zp-extensions/comment_form/admin-comments.php:338
 msgid "The item upon which this comment was posted no longer exists."
-msgstr ""
+msgstr "このコメントが長い間投稿されていないアイテムです。"
 
 #: zp-core/zp-extensions/comment_form/admin-comments.php:338
 msgid "<strong>Missing Object</strong> "
@@ -17896,7 +17891,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/exampleMacros.php:10
 msgid "Adds example macros."
-msgstr ""
+msgstr "サンプルマクロを追加します。"
 
 #: zp-core/zp-extensions/exampleMacros.php:23
 msgid ""
@@ -17936,7 +17931,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/exampleMacros.php:57
 msgid "The PARAM_DUMP macro was passed the following:"
-msgstr ""
+msgstr "PARAM_DUMPマクロは次をパスします: "
 
 #: zp-core/zp-extensions/rating.php:41
 msgid "All ratings have been set to <em>unrated</em>."
@@ -20016,9 +20011,8 @@ msgid "Username* (this will be your user username)"
 msgstr "ユーザ名* (これはあなたのユーザ名になります)"
 
 #: zp-core/zp-extensions/register_user/register_user_form.php:23
-#, fuzzy
 msgid "Email<strong>*</strong> (this will be your user id)"
-msgstr "メール* (これはあなたのユーザIDになります)"
+msgstr "メール<strong>*</strong> (これはあなたのユーザIDになります)"
 
 #: zp-core/zp-extensions/register_user/register_user_form.php:25
 msgid "User ID"
@@ -20379,7 +20373,7 @@ msgstr "このプレーヤは<em>外部アルバム</em>をサポートしませ
 
 #: zp-core/zp-extensions/jplayer.php:71
 msgid "The class-video plugin must be enabled for video support."
-msgstr ""
+msgstr "class-videoプラグインは動画サポートで有効にならなければなりません。"
 
 #: zp-core/zp-extensions/jplayer.php:82
 #, php-format
@@ -20519,7 +20513,7 @@ msgstr ""
 #: zp-core/zp-extensions/jplayer.php:237
 #, php-format
 msgid "%1$s::%2$s not found."
-msgstr ""
+msgstr "%1$s::%2$sが見つかりませんでした。"
 
 #: zp-core/zp-extensions/jplayer.php:247
 #, fuzzy
@@ -21377,13 +21371,13 @@ msgstr "マクロ"
 
 #: zp-core/zp-extensions/macroList.php:95
 msgid "Macro identifiers may not contain special characters."
-msgstr ""
+msgstr "マクロ識別子は特殊文字を含めることはできません。"
 
 #: zp-core/zp-extensions/macroList.php:108
 msgid ""
 "The number of macro parameters must match the number of replacement tokens "
 "in the expression."
-msgstr ""
+msgstr "マクロパラメーターの数は、式中の置換トークンの数と一致する必要があります。"
 
 #: zp-core/zp-extensions/macroList.php:112
 #, php-format
@@ -21392,15 +21386,15 @@ msgstr "<em>%s</em>は呼び出せません。"
 
 #: zp-core/zp-extensions/macroList.php:122
 msgid "An array parameter must be the last parameter."
-msgstr ""
+msgstr "配列のパラメーターは最後のパラメーターでなければなりません。"
 
 #: zp-core/zp-extensions/macroList.php:126
 msgid "Required parameters should not follow optional ones."
-msgstr ""
+msgstr "必須パラメーターはオプションのそれに従ってはいけません。"
 
 #: zp-core/zp-extensions/macroList.php:133
 msgid "Expressions may not have optional parameters."
-msgstr ""
+msgstr "式にはオプションのパラメーターを持っていない場合があります。"
 
 #: zp-core/functions-common.php:35
 msgid "ERROR"
@@ -21673,7 +21667,7 @@ msgstr "(表示されません)"
 #: themes/stopdesign/comment_form/comment_form.php:82
 #, php-format
 msgid "URL%s"
-msgstr ""
+msgstr "URL%s"
 
 #: themes/stopdesign/comment_form/comment_form.php:207
 msgid "Private comment"
