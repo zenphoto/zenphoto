@@ -20,7 +20,7 @@ if (!defined('WEBPATH')) die();
 
 			<?php jqm_printMainHeaderNav(); ?>
 
-<div data-role="content">	
+<div class="ui-content" role="main">	
 		<div class="content-primary">
 		
 			<h2><?php echo gettext("Archive view"); ?></h2>

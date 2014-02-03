@@ -20,7 +20,7 @@ if (!defined('WEBPATH')) die(); ;
 
 		<?php jqm_printMainHeaderNav(); ?>
 	
-	<div data-role="content">	
+	<div class="ui-content" role="main">	
 		<div class="content-primary">
 		<h2>Gallery</h2>
 		<?php printGalleryDesc(); ?>
@@ -28,9 +28,9 @@ if (!defined('WEBPATH')) die(); ;
 		<?php if(hasPrevPage() || hasNextPage()) printPageListWithNav(gettext("prev"), gettext("next"),false,true,'pagelist',NULL,true,7); ?>
 	
 		
-			<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b">
+			<ul data-role="listview" data-inset="true" data-theme="a" class="ui-listview ui-group-theme-a">
 			<?php while (next_album()): ?>
-					<li><a href="<?php echo html_encode(getAlbumURL());?>" title="<?php echo gettext('View album:'); ?> <?php printAnnotatedAlbumTitle();?>"><?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, 80, 80, 80, 80, NULL, null, NULL,NULL); ?>
+					<li class="ui-li-has-thumb"><a href="<?php echo html_encode(getAlbumURL());?>" title="<?php echo gettext('View album:'); ?> <?php printAnnotatedAlbumTitle();?>"><?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, 80, 80, 80, 80, NULL, null, NULL,NULL); ?>
 					<?php printAlbumTitle(); ?><small> (<?php printAlbumDate(""); ?>)</small>
 					<div class="albumdesc"><?php echo shortenContent(getAlbumDesc(), 57,'(...)',false); ?></div>
 					<small class="ui-li-count"><?php jqm_printImageAlbumCount()?></small>	

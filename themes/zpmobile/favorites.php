@@ -22,12 +22,12 @@ if (!defined('WEBPATH')) die(); ?>
 
   <?php jqm_printMainHeaderNav(); ?>
 
-	<div data-role="content">
+	<div class="ui-content" role="main">
 		<div class="content-primary">
 		<h2 class="breadcrumb"><a href="<?php echo getGalleryIndexURL(); ?>"><?php echo gettext('Gallery'); ?></a> <?php printParentBreadcrumb('','',''); ?> <?php printAlbumTitle();?></h2>
 		<?php printAlbumDesc(); ?>
 		<?php if(hasPrevPage() || hasNextPage()) printPageListWithNav(gettext("prev"), gettext("next"),false,true,'pagelist',NULL,true,7); ?>
-		<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b">
+		<ul data-role="listview" data-inset="true" data-theme="a" class="ui-listview ui-group-theme-a">
 			<?php while (next_album()): ?>
 			<li>
 			<a href="<?php echo html_encode(getAlbumURL());?>" title="<?php echo gettext('View album:'); ?>">
@@ -40,7 +40,7 @@ if (!defined('WEBPATH')) die(); ?>
 			</li>
 			<?php endwhile; ?>
 		</ul>
-		<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b">
+		<ul data-role="listview" data-inset="true" data-theme="a" class="ui-listview ui-group-theme-a">
 			<?php while (next_image()): ?>
 			<li>
 			<a href="<?php echo html_encode(getImageURL());?>" title="<?php printBareImageTitle();?>">

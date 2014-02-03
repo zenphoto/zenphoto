@@ -19,18 +19,18 @@ if (!defined('WEBPATH') || !class_exists('Zenpage'))
 
 		<div data-role="page" id="mainpage">
 			<?php jqm_printMainHeaderNav(); ?>
-			<div data-role="content">
+			<div class="ui-content" role="main">
 				<div class="content-primary">
 					<?php if (empty($_GET['title'])) { ?>
 
 
 						<h2><?php echo gettext('Pages'); ?></h2>
 						<br />
-						<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b">
+						<ul data-role="listview" data-inset="true" data-theme="a" class="ui-listview ui-group-theme-a">
 							<?php printPageMenu("list-top", "", "menu-active", "submenu", "menu-active", NULL, true, false, NULL); ?>
 						</ul>
 					<?php } else { ?>
-						<h2 class="breadcrumb"><a href="<?php //echo getPagesLink();  ?>"><?php echo gettext('Pages'); ?></a> <?php printZenpageItemsBreadcrumb('', '  ');
+						<h2 class="breadcrumb"><a href="<?php echo getPagesLink();  ?>"><?php echo gettext('Pages'); ?></a> <?php printZenpageItemsBreadcrumb('', '  ');
 					printPageTitle('');
 						?></strong></h2>
 
@@ -40,7 +40,7 @@ if (!defined('WEBPATH') || !class_exists('Zenpage'))
 						$subpages = $_zp_current_zenpage_page->getPages();
 						if ($subpages) {
 							?>
-							<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b">
+							<ul data-role="listview" data-inset="true" data-theme="a" class="ui-listview ui-group-theme-a">
 								<?php
 								foreach ($subpages as $subpage) {
 									$obj = new ZenpagePage($subpage['titlelink']);

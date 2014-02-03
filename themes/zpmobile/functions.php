@@ -9,8 +9,8 @@ require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/print_album_
 function jqm_loadScripts() {
 	global $_zp_themeroot;
 	?>
-	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/jquerymobile/jquery.mobile-1.3.2.min.css" />
-	<script type="text/javascript" src="<?php echo $_zp_themeroot; ?>/jquerymobile/jquery.mobile-1.3.2.min.js"></script>
+	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/jquerymobile/jquery.mobile-1.4.0.min.css" />
+	<script type="text/javascript" src="<?php echo $_zp_themeroot; ?>/jquerymobile/jquery.mobile-1.4.0.min.js"></script>
 	<?php
 	printZDSearchToggleJS();
 }
@@ -55,7 +55,7 @@ function getPagesLink() {
 function jqm_printMainHeaderNav() {
 	global $_zp_gallery_page, $_zp_zenpage, $_zp_current_album, $_zp_themeroot;
 	?>
-	<div data-role="header" data-position="inline" data-theme="a">
+	<div data-role="header" data-position="inline" data-theme="b">
 		<h1><?php printGalleryTitle(); ?></h1>
 		<a href="<?php echo WEBPATH; ?>/" data-icon="home" data-iconpos="notext"><?php echo gettext('Home'); ?></a>
 		<?php if (getOption('Allow_search')) { ?>
@@ -63,10 +63,10 @@ function jqm_printMainHeaderNav() {
 		<?php } ?>
 		<div data-role="navbar">
 			<ul>
-				<li><a href="<?php echo getGalleryIndexURL(); ?>"><?php echo gettext('Gallery'); ?></a></li>
+				<li><a href="<?php echo getCustomPageURL('gallery'); ?>"><?php echo gettext('Gallery'); ?></a></li>
 				<?php if (extensionEnabled('zenpage')) { ?>
 					<li><a href="<?php echo getNewsIndexURL(); ?>"><?php echo gettext('News'); ?></a></li>
-					<li><a href="<?php //echo getPagesLink();        ?>"><?php echo gettext('Pages'); ?></a></li>
+					<li><a href="<?php echo getPagesLink(); ?>"><?php echo gettext('Pages'); ?></a></li>
 				<?php } ?>
 				<li><a href="<?php echo getCustomPageURL('archive'); ?>"><?php echo gettext('Archive'); ?></a></li>
 			</ul>
@@ -81,13 +81,16 @@ function jqm_printMainHeaderNav() {
 function jqm_printFooterNav() {
 	global $_zp_gallery_page, $_zp_current_album;
 	?>
-	<div id="footer">
+	<div id="footer" data-role="footer">
 		<?php
 		@call_user_func('printLanguageSelector', "langselector");
 		?>
-		<ul>
+		<ul id="footerlist">
 			<li><?php echo gettext('Powered by'); ?> <a href="http://www.zenphoto.org">Zenphoto</a> and <a href="http://jquerymobile.com">jQueryMobile</a></li>
 			<li><?php echo gettext('zpMobile theme by'); ?> <a href="http://www.maltem.de">Malte Müller</a></li>
+		</ul>
+		<div data-role="navbar">
+		<ul id="footernav">
 			<?php
 			if (zp_loggedin()) {
 				$protocol = SERVER_PROTOCOL;
@@ -105,8 +108,9 @@ function jqm_printFooterNav() {
 				<li><?php printFavoritesURL(); ?></li><?php
 			}
 			?>
-			<li><?php @call_user_func('mobileTheme::controlLink'); ?></li>
+			
 		</ul>
+		</div>
 		<!-- /navbar -->
 	</div><!-- footer -->
 	<?php
@@ -165,7 +169,7 @@ function jqm_printMenusLinks() {
 		</div>
 	</div>
 	<?php
-}
+}  
 
 function jqm_printBacktoTopLink() {
 	return ''; // disabled for now as the jquerymobile cache somehow always link this to the previous page...

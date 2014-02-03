@@ -22,7 +22,7 @@ if (!defined('WEBPATH'))
 
 			<?php jqm_printMainHeaderNav(); ?>
 
-			<div data-role="content">
+			<div class="ui-content" role="main">
 				<div class="content-primary">
 
 					<h2 class="breadcrumb"><a href="<?php echo getGalleryIndexURL(); ?>"><?php echo gettext('Gallery'); ?></a><?php printParentBreadcrumb('', '', ''); ?><?php printAlbumBreadcrumb('', ''); ?> <?php printImageTitle(); ?>

@@ -19,7 +19,7 @@
 
 <?php jqm_printMainHeaderNav(); ?>
 
-			<div data-role="content">
+			<div class="ui-content" role="main">
 				<div class="content-primary">
 
 					<h2><?php printSearchBreadcrumb(); ?></h2>
@@ -77,7 +77,7 @@
 							?>
 							<hr />
 							<h3><?php printf(gettext('Pages (%s)'), $numpages); ?> <small><?php printZDSearchShowMoreLink("pages", $number_to_show); ?></small></h3>
-							<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b">
+							<ul data-role="listview" data-inset="true" data-theme="c" class="ui-listview ui-group-theme-a">
 								<?php
 								while (next_page()) {
 									$c++;
@@ -97,7 +97,7 @@
 							$c = 0;
 							?>
 							<h3><?php printf(gettext('Articles (%s)'), $numnews); ?> <small><?php printZDSearchShowMoreLink("news", $number_to_show); ?></small></h3>
-							<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b">
+							<ul data-role="listview" data-inset="true" data-theme="c" class="ui-listview ui-group-theme-a">
 								<?php
 								while (next_news()) {
 									$c++;
@@ -132,7 +132,7 @@
 						?>
 					</h3>
 						<?php if (getNumAlbums() != 0) { ?>
-						<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b">
+						<ul data-role="listview" data-inset="true" data-theme="c" class="ui-listview ui-group-theme-a">
 	<?php while (next_album()): ?>
 								<li>
 									<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?>">

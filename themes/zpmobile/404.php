@@ -21,7 +21,7 @@ if (!defined('WEBPATH'))
 
 <?php jqm_printMainHeaderNav(); ?>
 
-			<div data-role="content">
+			<div class="ui-content" role="main">
 				<div class="content-primary">
 					<h2><a href="<?php echo getGalleryIndexURL(); ?>">Index</a>» <strong><?php echo gettext("Object not found"); ?></strong></h2>
 

@@ -134,6 +134,10 @@ margin: 7px 0 0 0;
 padding: 0;
 }
 
+#collapsible-lists ul li a {
+word-break: break-all !important;
+}
+
 .disabledlink {
 display: none;
 }
@@ -270,22 +274,19 @@ padding-top: 10px !important;
 border-top: 1px solid lightgray;
 }
 
-#footer  ul {
+#footer  ul#footerlist {
 list-style: none;
-margin: 0;
-padding: 0 !important;
-display: inline;
+padding: 0;
+display: block;
+margin-bottom: 20px !important;
 }
 
-footer ul li {
-float: left;
-}
 
 #footer  ul.flags {
 line-height: 25px;
 }
 
-#footer, #footer a {
+#footer, #footer ul#footerlist li a {
 font-size: 12px !important;
 text-align: center;
 padding: 0px 0 2px 0;

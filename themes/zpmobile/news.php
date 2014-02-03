@@ -22,7 +22,7 @@ if (!defined('WEBPATH') || !class_exists('Zenpage'))
 
 <?php jqm_printMainHeaderNav(); ?>
 
-			<div data-role="content">
+			<div class="ui-content" role="main">
 				<div class="content-primary">
 					<h2 class="breadcrumb"><?php printNewsBreadcrumb(); ?><strong><?php printZenpageItemsBreadcrumb(' ', '');
 					printCurrentNewsCategory(" "); ?><?php printNewsTitle(" ");
@@ -55,7 +55,7 @@ if (!defined('WEBPATH') || !class_exists('Zenpage'))
 						} else {
 							printNewsPageListWithNav(gettext('next »'), gettext('« prev'), true, 'pagelist', true, 7);
 							?>
-						<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b">
+						<ul data-role="listview" data-inset="true" data-theme="a" class="ui-listview ui-group-theme-a">
 	<?php while (next_news()): ?>
 								<li>
 									<a href="<?php echo html_encode(jqm_getLink()); ?>" title="<?php printBareNewsTitle(); ?>">

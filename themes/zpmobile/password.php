@@ -20,7 +20,7 @@ if (!defined('WEBPATH')) die();
 
 <?php jqm_printMainHeaderNav(); ?>
 
-<div data-role="content">	
+<div class="ui-content" role="main">	
 	<div class="content-primary">
 		<h2><a href="<?php echo getGalleryIndexURL(); ?>">Index</a> » <strong><strong><?php echo gettext("A password is required for the page you requested"); ?></strong></strong></h2>
 
