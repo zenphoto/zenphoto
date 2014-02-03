@@ -376,15 +376,12 @@ class favorites extends AlbumBase {
 
 	static function loadScript($script, $request) {
 		global $_zp_current_admin_obj, $_zp_gallery_page, $_myFavorites, $_zp_current_album, $_zp_conf_vars, $_myFavorites;
-		if (!$page = stripSuffix(getOption('favorites_link'))) {
-			$page = 'favorites';
-		}
-		if ($_zp_gallery_page == "$page.php") {
+		if ($_zp_gallery_page == "favorites.php") {
 			if (zp_loggedin()) {
 				$_zp_current_album = $_myFavorites;
 				add_context(ZP_ALBUM);
 				prepareAlbumPage();
-				$_zp_gallery_page = $page . '.php ';
+				$_zp_gallery_page = 'favorites.php ';
 			} else {
 				$script = false;
 			}
@@ -394,10 +391,7 @@ class favorites extends AlbumBase {
 
 	static function pageCount($count, $gallery_page, $page) {
 		global $_firstPageImages, $_oneImagePage;
-		if (!$pagename = stripSuffix(getOption('favorites_link'))) {
-			$pagename = 'favorites';
-		}
-		if (stripSuffix($gallery_page) == $pagename) {
+		if (stripSuffix($gallery_page) == 'favorites') {
 			$albums_per_page = max(1, getOption('albums_per_page'));
 			$pageCount = (int) ceil(getNumAlbums() / $albums_per_page);
 			$imageCount = getNumImages();

@@ -438,8 +438,8 @@ function getHeadTitle($separator = ' | ', $listparentalbums = true, $listparentp
 		default: // for all other possible static custom pages
 			$custompage = stripSuffix($_zp_gallery_page);
 			$standard = array('contact' => gettext('Contact'), 'register' => gettext('Register'), 'search' => gettext('Search'), 'archive' => gettext('Archive view'), 'password' => gettext('Password required'));
-			if (class_exists('favorites')) {
-				$standard[str_replace(_PAGE_ . '/', '', $_myFavorites->getLink())] = gettext('My favorites');
+			if (is_object($_myFavorites)) {
+				$standard['favorites'] = gettext('My favorites');
 			}
 			if (array_key_exists($custompage, $standard)) {
 				return $standard[$custompage] . $pagenumber . $separator . $gallerytitle . $mainsitetitle;
@@ -2427,6 +2427,7 @@ function getImageURL() {
 		return false;
 	return $_zp_current_image->getLink();
 }
+
 /**
  * Prints the link to the current  image.
  *
