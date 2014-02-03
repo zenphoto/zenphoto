@@ -191,7 +191,7 @@ class galleryArticles {
 		$article = new ZenpageNews(seoFriendly('galleryAticles-' . $title));
 		$article->setTitle($text);
 
-		$article->setContent('<p><a href="' . $obj->getLink() . '"><img src="' . $img->getCustomImage(getOption('galleryArticles_size'), NULL, NULL, NULL, NULL, NULL, NULL, -1) . '"></p><p>' . $obj->getDesc() . '</p>');
+		$article->setContent('<p><a href="' . $obj->getLink() . '"><img src="' . $img->getCustomImage(getOption('galleryArticles_size'), NULL, NULL, NULL, NULL, NULL, NULL, -1) . '"></a></p><p>' . $obj->getDesc() . '</p>');
 		$article->setShow(true);
 		$date = $obj->getPublishDate();
 		if (!$date)
