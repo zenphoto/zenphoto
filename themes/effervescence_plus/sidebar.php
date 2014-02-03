@@ -24,25 +24,44 @@ if (function_exists('printCustomMenu') && ($menu = getOption('effervescence_menu
 		}
 	}
 	?>
-
-	<div class="menu">
-		<?php
-		if (function_exists("printAlbumMenu")) {
-			?>
-			<h3><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Visit the image gallery'); ?>"><?php echo gettext("Gallery"); ?></a></h3>
+	<?php
+	if (function_exists("printAlbumMenu")) {
+		?>
+		<div class="menu">
 			<?php
-			printAlbumMenu("list", NULL, "", "menu-active", "submenu", "menu-active", "");
-		} else {
+			if (extensionEnabled('zenpage')) {
+				if ($_zp_gallery_page == 'index.php' || $_zp_gallery_page != 'gallery.php') {
+					?>
+					<h3>
+						<a href="<?php echo html_encode(getCustomPageURL('gallery')); ?>" title="<?php echo gettext('Album index'); ?>"><?php echo gettext("Gallery"); ?></a>
+					</h3>
+					<?php
+				}
+			} else {
+				?>
+				<h3><?php echo gettext("Gallery"); ?></h3>
+				<?php
+			}
+			printAlbumMenu("list", "count", "album_menu", "menu", "menu_sub", "menu_sub_active", '');
 			?>
-			<h3><?php echo gettext("Gallery"); ?></h3>
-			<ul>
-				<li><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Visit the image gallery'); ?>"><?php printGalleryTitle(); ?></a></li>
-			</ul>
+		</div>
+		<?php
+	} else {
+		if (extensionEnabled('zenpage')) {
+			?>
+			<div class="menu">
+				<h3><?php echo gettext("Albums"); ?></h3>
+				<ul id="album_menu">
+					<li>
+						<a href="<?php echo html_encode(getCustomPageURL('gallery')); ?>" title="<?php echo gettext('Album index'); ?>"><?php echo gettext('Album index'); ?></a>
+					</li>
+				</ul>
+			</div>
 			<?php
 		}
-		?>
-		<div class="menu_rule"></div>
-	</div>
+	}
+	?>
+
 	<?php
 	if (extensionEnabled('zenpage')) {
 		if (getNumPages(true)) {

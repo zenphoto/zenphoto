@@ -82,15 +82,21 @@ if (function_exists('printCustomMenu') && getThemeOption('custom_index_page', NU
 	if (function_exists("printAlbumMenu")) {
 		?>
 		<div class="menu">
-			<h3><?php echo gettext("Gallery"); ?></h3>
 			<?php
-			$indexname = '';
 			if (extensionEnabled('zenpage')) {
 				if ($_zp_gallery_page == 'index.php' || $_zp_gallery_page != 'gallery.php') {
-					$indexname = gettext('Album index');
+					?>
+					<h3>
+						<a href="<?php echo html_encode(getCustomPageURL('gallery')); ?>" title="<?php echo gettext('Album index'); ?>"><?php echo gettext("Gallery"); ?></a>
+					</h3>
+					<?php
 				}
+			} else {
+				?>
+				<h3><?php echo gettext("Gallery"); ?></h3>
+				<?php
 			}
-			printAlbumMenu("list", "count", "album_menu", "menu", "menu_sub", "menu_sub_active", $indexname);
+			printAlbumMenu("list", "count", "album_menu", "menu", "menu_sub", "menu_sub_active", '');
 			?>
 		</div>
 		<?php
