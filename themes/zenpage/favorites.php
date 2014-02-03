@@ -21,8 +21,7 @@ if (!defined('WEBPATH'))
 				<h1><?php printGalleryTitle(); ?></h1>
 				<?php
 				if (getOption('Allow_search')) {
-					$album_list = array('albums' => array($_zp_current_album->name), 'pages' => '0', 'news' => '0');
-					printSearchForm(NULL, 'search', NULL, gettext('Search album'), NULL, NULL, $album_list);
+					printSearchForm(NULL, 'search', NULL, gettext('Search gallery'));
 				}
 				?>
 			</div>
