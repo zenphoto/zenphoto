@@ -768,7 +768,7 @@ class RSS extends feed {
 						?>
 						<item>
 							<title><![CDATA[<?php echo $item['title']; ?>]]></title>
-							<link><?php echo $item['link']; ?></link>
+							<link><?php echo html_encode($item['link']); ?></link>
 							<description><![CDATA[<?php echo $item['desc']; ?>]]></description>
 							<?php
 							if (!empty($item['enclosure'])) {
@@ -786,8 +786,8 @@ class RSS extends feed {
 								echo $item['media_thumbnail']; //prints xml as well
 							}
 							?>
-							<guid><?php echo $item['link']; ?></guid>
-							<pubDate><?php echo $item['pubdate']; ?></pubDate>
+							<guid><?php echo html_encode($item['link']); ?></guid>
+							<pubDate><?php echo html_encode($item['pubdate']); ?></pubDate>
 						</item>
 						<?php
 					} // foreach
