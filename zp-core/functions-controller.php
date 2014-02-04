@@ -308,7 +308,8 @@ function prepareAlbumPage() {
 		handleSearchParms('album', $_zp_current_album);
 	}
 	$theme = setupTheme();
-	$_zp_gallery_page = basename($_zp_script = THEMEFOLDER . "/$theme/album.php");
+	$_zp_gallery_page = "album.php";
+	$_zp_script = THEMEFOLDER . "/$theme/album.php";
 	return $theme;
 }
 
