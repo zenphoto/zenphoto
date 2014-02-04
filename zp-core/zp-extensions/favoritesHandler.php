@@ -214,6 +214,7 @@ class favoritesOptions {
 			$direction = isset($_POST['album_sortdirection']);
 		}
 		setOption('favorites_album_sort_direction', $direction ? 'DESC' : '');
+		return false;
 	}
 
 }

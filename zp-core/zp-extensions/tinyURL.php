@@ -102,6 +102,7 @@ class tinyURL {
 		if (isset($_POST['tinyURL_pages']))
 			$result = $result | self::pages;
 		setOption('tinyURL_agressive', $result);
+		return false;
 	}
 
 	/**

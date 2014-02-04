@@ -147,6 +147,7 @@ class externalFeed_options {
 				query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="externalFeed" AND `aux`=' . db_quote($site));
 			}
 		}
+		return false;
 	}
 
 }

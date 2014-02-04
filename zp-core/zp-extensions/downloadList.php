@@ -128,7 +128,7 @@ class DownloadList {
 						 onkeyup="passwordStrength('_downloadList');"
 						 value="<?php echo $x; ?>" />
 			<label><input type="checkbox" name="disclose_password_downloadList" id="disclose_password_downloadList" onclick="passwordClear('_downloadList');
-							togglePassword('_downloadList');"><?php echo gettext('Show password'); ?></label>
+					togglePassword('_downloadList');"><?php echo gettext('Show password'); ?></label>
 			<br />
 			<span class="password_field__downloadList">
 				<span id="match_downloadList"><?php echo gettext("(repeat)"); ?></span>
@@ -150,12 +150,11 @@ class DownloadList {
 	static function handleOptionSave($themename, $themealbum) {
 		$notify = processCredentials('downloadList', '_downloadList');
 		if ($notify == '?mismatch=user') {
-			return gettext('You must supply a password for the DownloadList user');
+			return '&custom=' . gettext('You must supply a password for the DownloadList user');
 		} else if ($notify) {
-			return gettext('Your DownloadList passwords were empty or did not match');
-		} else {
-			return '';
+			return '&custom=' . gettext('Your DownloadList passwords were empty or did not match');
 		}
+		return false;
 	}
 
 	/**

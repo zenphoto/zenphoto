@@ -112,6 +112,7 @@ class rewriteTokens {
 	}
 
 	function handleOptionSave($theme, $album) {
+		$notify = false;
 		if (getOption('rewriteTokens_restore')) {
 			$updated = false;
 			purgeOption('rewriteTokens_restore');
@@ -129,13 +130,23 @@ class rewriteTokens {
 			}
 		} else {
 			foreach ($this->conf_vars as $page => $element) {
-				$this->conf_vars[$page]['rewrite'] = $_POST['rewriteTokens_' . $page];
+				$rewrite = sanitize($_POST['rewriteTokens_' . $page]);
+				if (empty($rewrite)) {
+					$notify = '&custom=' . gettext('Rewrite tokens may not be empty.');
+				} else {
+					$this->conf_vars[$page]['rewrite'] = $rewrite;
+				}
 			}
+		}
 
-			foreach ($this->plugin_vars as $page => $element) {
-				if (isset($element['option'])) {
-					$this->plugin_vars[$page]['rewrite'] = $_POST['rewriteTokens_' . $page];
-					setOption($element['option'], $_POST['rewriteTokens_' . $page]);
+		foreach ($this->plugin_vars as $page => $element) {
+			if (isset($element['option'])) {
+				$rewrite = sanitize($_POST['rewriteTokens_' . $page]);
+				if (empty($rewrite)) {
+					$notify = '&custom=' . gettext('Rewrite tokens may not be empty.');
+				} else {
+					$this->plugin_vars[$page]['rewrite'] = $rewrite;
+					setOption($element['option'], $rewrite);
 				}
 			}
 		}
@@ -159,11 +170,7 @@ class rewriteTokens {
 		$newtext = substr($newtext, 0, -1) . "\n												);\n";
 		$zp_cfg = $this->zp_cfg_a . $newtext . $this->zp_cfg_b;
 		storeConfig($zp_cfg);
-		$options['note'] = array(
-						'key'		 => 'rewriteTokens_note', 'type'	 => OPTION_TYPE_NOTE,
-						'order'	 => 0,
-						'desc'	 => sprintf(gettext('<p class="messagebox"><em>%1$s</em>  updated.</p>'), CONFIGFILE)
-		);
+		return $notify;
 	}
 
 }

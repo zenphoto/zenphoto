@@ -265,7 +265,10 @@ class ipBlocker {
 				}
 			}
 		}
-		return $notify;
+		if ($notify)
+			return '&custom=' . $notify;
+		else
+			return false;
 	}
 
 	/**

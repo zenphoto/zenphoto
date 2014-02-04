@@ -116,6 +116,7 @@ class galleryArticles {
 			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/galleryArticles/combiNews.php');
 			purgeOption('galleryArticles_import');
 		}
+		return false;
 	}
 
 	/**
