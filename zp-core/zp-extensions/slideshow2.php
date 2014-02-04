@@ -51,29 +51,32 @@ zp_register_filter('content_macro', 'cycle::macro');
  */
 class cycle {
 
-	function cycleOptions() {
-		//normal slideshow
-		setOptionDefault('cycle-slideshow_width', '595');
-		setOptionDefault('cycle-slideshow_height', '595');
-		setOptionDefault('cycle-slideshow_mode', 'cycle');
-		setOptionDefault('cycle-slideshow_effect', 'fade');
-		setOptionDefault('cycle-slideshow_speed', '1000');
-		setOptionDefault('cycle-slideshow_timeout', '3000');
-		setOptionDefault('cycle-slideshow_showdesc', 0);
-		// colorbox mode
-		setOptionDefault('cycle-slideshow_colorbox_transition', 'fade');
-		setOptionDefault('cycle-slideshow_colorbox_imagetype', 'sizedimage');
-		setOptionDefault('cycle-slideshow_colorbox_imagetitle', 1);
+	function __construct() {
+		global $_zp_gallery;
+		if (OFFSET_PATH == 2) {
+			//normal slideshow
+			setOptionDefault('cycle-slideshow_width', '595');
+			setOptionDefault('cycle-slideshow_height', '595');
+			setOptionDefault('cycle-slideshow_mode', 'cycle');
+			setOptionDefault('cycle-slideshow_effect', 'fade');
+			setOptionDefault('cycle-slideshow_speed', '1000');
+			setOptionDefault('cycle-slideshow_timeout', '3000');
+			setOptionDefault('cycle-slideshow_showdesc', 0);
+			// colorbox mode
+			setOptionDefault('cycle-slideshow_colorbox_transition', 'fade');
+			setOptionDefault('cycle-slideshow_colorbox_imagetype', 'sizedimage');
+			setOptionDefault('cycle-slideshow_colorbox_imagetitle', 1);
 
-		if (class_exists('cycle')) {
-			cacheManager::deleteThemeCacheSizes('cycle');
-			cacheManager::addThemeCacheSize('cycle', NULL, getOption('cycle-slideshow_width'), getOption('cycle-slideshow_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, true);
-			cacheManager::addThemeCacheSize('cycle', NULL, getOption('cycle-slideshow_width'), getOption('cycle-slideshow_height'), getOption('cycle-slideshow_width'), getOption('cycle-slideshow_height'), NULL, NULL, NULL, NULL, NULL, false);
-		}
+			if (class_exists('cycle')) {
+				cacheManager::deleteThemeCacheSizes('cycle');
+				cacheManager::addThemeCacheSize('cycle', NULL, getOption('cycle-slideshow_width'), getOption('cycle-slideshow_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, true);
+				cacheManager::addThemeCacheSize('cycle', NULL, getOption('cycle-slideshow_width'), getOption('cycle-slideshow_height'), getOption('cycle-slideshow_width'), getOption('cycle-slideshow_height'), NULL, NULL, NULL, NULL, NULL, false);
+			}
 
-		//	we will presume that themes slideshow script wants to use the slideshow
-		foreach (array_keys($_zp_gallery->getThemes()) as $theme) {
-			setOptionDefault('cycle-slideshow_' . $theme . '_slideshow', 1);
+			//	we will presume that themes slideshow script wants to use the slideshow
+			foreach (array_keys($_zp_gallery->getThemes()) as $theme) {
+				setOptionDefault('cycle-slideshow_' . $theme . '_slideshow', 1);
+			}
 		}
 	}
 
@@ -200,10 +203,7 @@ class cycle {
 			return '<div class="errorbox" id="message"><h2>' . gettext('This album is password protected!') . '</h2></div>';
 		}
 		// setting the image size
-		if (!empty($width) AND !empty($height)) {
-			$width = sanitize_numeric($width);
-			$height = sanitize_numeric($height);
-		} else {
+		if (empty($width) || empty($height)) {
 			$width = getOption('cycle-slideshow_width');
 			$height = getOption('cycle-slideshow_height');
 		}
@@ -561,23 +561,23 @@ if (extensionEnabled('slideshow2')) {
 					$count = '';
 					?>
 					<script type="text/javascript">
-					$(document).ready(function() {
+						$(document).ready(function() {
 						$("a[rel='slideshow']").colorbox({
-							slideshow: true,
-							loop: true,
-							transition: '<?php echo getOption('cycle-slideshow_colorbox_transition'); ?>',
-							slideshowSpeed: <?php echo getOption('cycle-slideshow_speed'); ?>,
-							slideshowStart: '<?php echo gettext("start slideshow"); ?>',
-							slideshowStop: '<?php echo gettext("stop slideshow"); ?>',
-							previous: '<?php echo gettext("prev"); ?>',
-							next: '<?php echo gettext("next"); ?>',
-							close: '<?php echo gettext("close"); ?>',
-							current: '<?php printf(gettext('image %1$s of %2$s'), '{current}', '{total}'); ?>',
-							maxWidth: '98%',
-							maxHeight: '98%',
-							photo: true
+						slideshow: true,
+						loop: true,
+						transition: '<?php echo getOption('cycle-slideshow_colorbox_transition'); ?>',
+						slideshowSpeed: <?php echo getOption('cycle-slideshow_speed'); ?>,
+						slideshowStart: '<?php echo gettext("start slideshow"); ?>',
+						slideshowStop: '<?php echo gettext("stop slideshow"); ?>',
+						previous: '<?php echo gettext("prev"); ?>',
+						next: '<?php echo gettext("next"); ?>',
+						close: '<?php echo gettext("close"); ?>',
+						current: '<?php printf(gettext('image %1$s of %2$s'), '{current}', '{total}'); ?>',
+						maxWidth: '98%',
+						maxHeight: '98%',
+						photo: true
 						});
-					});
+						});
 					</script>
 					<?php
 					foreach ($images as $image) {
