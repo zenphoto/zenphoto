@@ -41,7 +41,7 @@ $plugin_disable = (extensionEnabled('slideshow2')) ? sprintf(gettext('Only one s
 $option_interface = 'slideshow';
 
 global $_zp_gallery, $_zp_gallery_page;
-if (getOption('slideshow_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page))) {
+if ($_zp_gallery_page == 'slideshoe.php' || getOption('slideshow_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page))) {
 	zp_register_filter('theme_head', 'slideshow::header_js');
 }
 zp_register_filter('content_macro', 'slideshow::macro');
@@ -90,7 +90,7 @@ class slideshow {
 										'order'	 => 1,
 										'desc'	 => gettext("Speed of the transition in milliseconds."))
 		);
-		foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php')) as $theme => $scripts) {
+		foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php', 'slideshow.php', 'functions.php', 'password.php', 'sidebar.php', 'register.php', 'contact.php')) as $theme => $scripts) {
 			$list = array();
 			foreach ($scripts as $script) {
 				$list[$script] = 'slideshow_' . $theme . '_' . stripSuffix($script);
@@ -583,21 +583,21 @@ if (extensionEnabled('slideshow')) {
 					?>
 					<script type="text/javascript">
 						$(document).ready(function() {
-							$("a[rel='slideshow']").colorbox({
-								slideshow: true,
-								loop: true,
-								transition: '<?php echo getOption('slideshow_colorbox_transition'); ?>',
-								slideshowSpeed: <?php echo getOption('slideshow_speed'); ?>,
-								slideshowStart: '<?php echo gettext("start slideshow"); ?>',
-								slideshowStop: '<?php echo gettext("stop slideshow"); ?>',
-								previous: '<?php echo gettext("prev"); ?>',
-								next: '<?php echo gettext("next"); ?>',
-								close: '<?php echo gettext("close"); ?>',
-								current: '<?php printf(gettext('image %1$s of %2$s'), '{current}', '{total}'); ?>',
-								maxWidth: '98%',
-								maxHeight: '98%',
-								photo: true
-							});
+						$("a[rel='slideshow']").colorbox({
+						slideshow: true,
+						loop: true,
+						transition: '<?php echo getOption('slideshow_colorbox_transition'); ?>',
+						slideshowSpeed: <?php echo getOption('slideshow_speed'); ?>,
+						slideshowStart: '<?php echo gettext("start slideshow"); ?>',
+						slideshowStop: '<?php echo gettext("stop slideshow"); ?>',
+						previous: '<?php echo gettext("prev"); ?>',
+						next: '<?php echo gettext("next"); ?>',
+						close: '<?php echo gettext("close"); ?>',
+						current: '<?php printf(gettext('image %1$s of %2$s'), '{current}', '{total}'); ?>',
+						maxWidth: '98%',
+						maxHeight: '98%',
+						photo: true
+						});
 						});
 					</script>
 					<?php

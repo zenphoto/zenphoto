@@ -52,7 +52,7 @@ class jcarousel {
 						gettext('Vertical')				 => array('key'	 => 'jcarousel_vertical', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext("If checked the carousel will flow vertically instead of the default horizontal. Changing this may require theme changes!"))
 		);
-		foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php')) as $theme => $scripts) {
+		foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php', 'functions.php', 'password.php', 'sidebar.php', 'register.php', 'contact.php')) as $theme => $scripts) {
 			$list = array();
 			foreach ($scripts as $script) {
 				$list[$script] = 'jcarousel_' . $theme . '_' . stripSuffix($script);
@@ -76,15 +76,15 @@ class jcarousel {
 		?>
 		<script>
 			(function($) {
-				var userAgent = navigator.userAgent.toLowerCase();
+			var userAgent = navigator.userAgent.toLowerCase();
 
-				$.browser = {
-					version: (userAgent.match(/.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/) || [0, '0'])[1],
-					safari: /webkit/.test(userAgent),
-					opera: /opera/.test(userAgent),
-					msie: /msie/.test(userAgent) && !/opera/.test(userAgent),
-					mozilla: /mozilla/.test(userAgent) && !/(compatible|webkit)/.test(userAgent)
-				};
+			$.browser = {
+			version: (userAgent.match(/.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/) || [0, '0'])[1],
+			safari: /webkit/.test(userAgent),
+			opera: /opera/.test(userAgent),
+			msie: /msie/.test(userAgent) && !/opera/.test(userAgent),
+			mozilla: /mozilla/.test(userAgent) && !/(compatible|webkit)/.test(userAgent)
+			};
 
 			})(jQuery);
 		</script>
@@ -215,42 +215,42 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('jcarousel_' . $_zp_gallery->g
 			}
 			?>
 			<script type="text/javascript">
-			// <!-- <![CDATA[
-			var mycarousel_itemList = [
-			<?php echo $items; ?>
-			];
+				// <!-- <![CDATA[
+				var mycarousel_itemList = [
+				<?php echo $items; ?>
+				];
 
-			function mycarousel_itemLoadCallback(carousel, state) {
+				function mycarousel_itemLoadCallback(carousel, state) {
 				for (var i = carousel.first; i <= carousel.last; i++) {
-					if (carousel.has(i)) {
-						continue;
-					}
-					if (i > mycarousel_itemList.length) {
-						break;
-					}
-					carousel.add(i, mycarousel_getItemHTML(mycarousel_itemList[i - 1]));
+				if (carousel.has(i)) {
+				continue;
 				}
-			}
+				if (i > mycarousel_itemList.length) {
+				break;
+				}
+				carousel.add(i, mycarousel_getItemHTML(mycarousel_itemList[i - 1]));
+				}
+				}
 
-			function mycarousel_getItemHTML(item) {
+				function mycarousel_getItemHTML(item) {
 				if (item.active === "") {
-					html = '<a href="' + item.link + '" title="' + item.title + '"><img src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
+				html = '<a href="' + item.link + '" title="' + item.title + '"><img src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
 				} else {
-					html = '<a href="' + item.link + '" title="' + item.title + '"><img class="activecarouselimage" src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
+				html = '<a href="' + item.link + '" title="' + item.title + '"><img class="activecarouselimage" src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
 				}
 				return html;
-			}
+				}
 
-			jQuery(document).ready(function() {
+				jQuery(document).ready(function() {
 				jQuery("#mycarousel").jcarousel({
-					vertical: <?php echo $vertical; ?>,
-					size: mycarousel_itemList.length,
-					start: <?php echo $imgnumber; ?>,
-					scroll: <?php echo $thumbscroll; ?>,
-					itemLoadCallback: {onBeforeAnimation: mycarousel_itemLoadCallback}
+				vertical: <?php echo $vertical; ?>,
+				size: mycarousel_itemList.length,
+				start: <?php echo $imgnumber; ?>,
+				scroll: <?php echo $thumbscroll; ?>,
+				itemLoadCallback: {onBeforeAnimation: mycarousel_itemLoadCallback}
 				});
-			});
-			// ]]> -->
+				});
+				// ]]> -->
 			</script>
 			<ul id="mycarousel">
 				<!-- The content will be dynamically loaded in here -->

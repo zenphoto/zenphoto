@@ -40,7 +40,7 @@ $plugin_disable = (extensionEnabled('slideshow')) ? sprintf(gettext('Only one sl
 $option_interface = 'cycle';
 
 global $_zp_gallery, $_zp_gallery_page;
-if (getOption('cycle_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page))) {
+if ($_zp_gallery_page == 'slideshow.php' || getOption('cycle_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page))) {
 	zp_register_filter('theme_head', 'cycle::cycleJS');
 }
 zp_register_filter('content_macro', 'cycle::macro');
@@ -163,7 +163,7 @@ class cycle {
 				break;
 		}
 
-		foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php')) as $theme => $scripts) {
+		foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php', 'slideshow.php', 'functions.php', 'password.php', 'sidebar.php', 'register.php', 'contact.php')) as $theme => $scripts) {
 			$list = array();
 			foreach ($scripts as $script) {
 				$list[$script] = 'cycle_' . $theme . '_' . stripSuffix($script);
