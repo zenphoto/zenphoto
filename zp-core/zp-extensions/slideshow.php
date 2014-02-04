@@ -73,7 +73,6 @@ class slideshow {
 		if (class_exists('cacheManager')) {
 			cacheManager::deleteThemeCacheSizes('slideshow');
 			cacheManager::addThemeCacheSize('slideshow', NULL, getOption('slideshow_width'), getOption('slideshow_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, true);
-			cacheManager::addThemeCacheSize('slideshow', NULL, getOption('slideshow_width'), getOption('slideshow_height'), getOption('slideshow_width'), getOption('slideshow_height'), NULL, NULL, NULL, NULL, NULL, false);
 		}
 		//	we will presume that themes slideshow script wants to use the slideshow
 		foreach (array_keys($_zp_gallery->getThemes()) as $theme) {
@@ -583,21 +582,21 @@ if (extensionEnabled('slideshow')) {
 					?>
 					<script type="text/javascript">
 						$(document).ready(function() {
-						$("a[rel='slideshow']").colorbox({
-						slideshow: true,
-						loop: true,
-						transition: '<?php echo getOption('slideshow_colorbox_transition'); ?>',
-						slideshowSpeed: <?php echo getOption('slideshow_speed'); ?>,
-						slideshowStart: '<?php echo gettext("start slideshow"); ?>',
-						slideshowStop: '<?php echo gettext("stop slideshow"); ?>',
-						previous: '<?php echo gettext("prev"); ?>',
-						next: '<?php echo gettext("next"); ?>',
-						close: '<?php echo gettext("close"); ?>',
-						current: '<?php printf(gettext('image %1$s of %2$s'), '{current}', '{total}'); ?>',
-						maxWidth: '98%',
-						maxHeight: '98%',
-						photo: true
-						});
+							$("a[rel='slideshow']").colorbox({
+								slideshow: true,
+								loop: true,
+								transition: '<?php echo getOption('slideshow_colorbox_transition'); ?>',
+								slideshowSpeed: <?php echo getOption('slideshow_speed'); ?>,
+								slideshowStart: '<?php echo gettext("start slideshow"); ?>',
+								slideshowStop: '<?php echo gettext("stop slideshow"); ?>',
+								previous: '<?php echo gettext("prev"); ?>',
+								next: '<?php echo gettext("next"); ?>',
+								close: '<?php echo gettext("close"); ?>',
+								current: '<?php printf(gettext('image %1$s of %2$s'), '{current}', '{total}'); ?>',
+								maxWidth: '98%',
+								maxHeight: '98%',
+								photo: true
+							});
 						});
 					</script>
 					<?php
