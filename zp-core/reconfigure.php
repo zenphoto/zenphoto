@@ -106,16 +106,14 @@ function checkSignature($auto) {
 	$_configMutex->lock();
 	if (file_exists(dirname(__FILE__) . '/setup/')) {
 		chdir(dirname(__FILE__) . '/setup/');
-		if ($auto && zp_loggedin(ADMIN_RIGHTS)) {
-			$found = safe_glob('*.xxx');
-			if (!empty($found)) {
-				foreach ($found as $script) {
-					chmod($script, 0777);
-					if (@rename($script, stripSuffix($script))) {
-						chmod(stripSuffix($script), FILE_MOD);
-					} else {
-						chmod($script, FILE_MOD);
-					}
+		$found = safe_glob('*.xxx');
+		if (!empty($found) && $auto && zp_loggedin(ADMIN_RIGHTS)) {
+			foreach ($found as $script) {
+				chmod($script, 0777);
+				if (@rename($script, stripSuffix($script))) {
+					chmod(stripSuffix($script), FILE_MOD);
+				} else {
+					chmod($script, FILE_MOD);
 				}
 			}
 		}
