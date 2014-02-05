@@ -45,21 +45,21 @@ $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $option_interface = 'zenpagecms';
 
 if (OFFSET_PATH == 2) {
-	setOptionDefault('zenpageNewsLink_text', array_key_exists('news', $_zp_conf_vars['special_pages']) ? $_zp_conf_vars['special_pages']['news']['rewrite'] : 'news');
-	setOptionDefault('zenpageCategoryLink_text', array_key_exists('category', $_zp_conf_vars['special_pages']) ? $_zp_conf_vars['special_pages']['category']['rewrite'] : 'category');
-	setOptionDefault('zenpageNewsArchiveLink_text', array_key_exists('news_archive', $_zp_conf_vars['special_pages']) ? $_zp_conf_vars['special_pages']['news_archive']['rewrite'] : '_NEWS_/archive');
-	setOptionDefault('zenpagePagesLink_text', array_key_exists('pages', $_zp_conf_vars['special_pages']) ? $_zp_conf_vars['special_pages']['pages']['rewrite'] : 'pages');
+	setOptionDefault('zenpageNewsLink', array_key_exists('news', $_zp_conf_vars['special_pages']) ? $_zp_conf_vars['special_pages']['news']['rewrite'] : 'news');
+	setOptionDefault('zenpageCategoryLink', array_key_exists('category', $_zp_conf_vars['special_pages']) ? $_zp_conf_vars['special_pages']['category']['rewrite'] : 'category');
+	setOptionDefault('zenpageNewsArchiveLink', array_key_exists('news_archive', $_zp_conf_vars['special_pages']) ? $_zp_conf_vars['special_pages']['news_archive']['rewrite'] : '_NEWS_/archive');
+	setOptionDefault('zenpagePagesLink', array_key_exists('pages', $_zp_conf_vars['special_pages']) ? $_zp_conf_vars['special_pages']['pages']['rewrite'] : 'pages');
 }
 
 //Zenpage rewrite definitions
-$_zp_conf_vars['special_pages']['news'] = array('define'	 => '_NEWS_', 'rewrite'	 => getOption('zenpageNewsLink_text'),
-				'option'	 => 'zenpageNewsLink_text', 'default'	 => 'news');
-$_zp_conf_vars['special_pages']['category'] = array('define'	 => '_CATEGORY_', 'rewrite'	 => getOption('zenpageCategoryLink_text'),
-				'option'	 => 'zenpageCategoryLink_text', 'default'	 => '_NEWS_/category');
-$_zp_conf_vars['special_pages']['news_archive'] = array('define'	 => '_NEWS_ARCHIVE_', 'rewrite'	 => getOption('zenpageNewsArchiveLink_text'),
-				'option'	 => 'zenpageNewsArchiveLink_text', 'default'	 => '_NEWS_/archive');
-$_zp_conf_vars['special_pages']['pages'] = array('define'	 => '_PAGES_', 'rewrite'	 => getOption('zenpagePagesLink_text'),
-				'option'	 => 'zenpagePagesLink_text', 'default'	 => 'pages');
+$_zp_conf_vars['special_pages']['news'] = array('define'	 => '_NEWS_', 'rewrite'	 => getOption('zenpageNewsLink'),
+				'option'	 => 'zenpageNewsLink', 'default'	 => 'news');
+$_zp_conf_vars['special_pages']['category'] = array('define'	 => '_CATEGORY_', 'rewrite'	 => getOption('zenpageCategoryLink'),
+				'option'	 => 'zenpageCategoryLink', 'default'	 => '_NEWS_/category');
+$_zp_conf_vars['special_pages']['news_archive'] = array('define'	 => '_NEWS_ARCHIVE_', 'rewrite'	 => getOption('zenpageNewsArchiveLink'),
+				'option'	 => 'zenpageNewsArchiveLink', 'default'	 => '_NEWS_/archive');
+$_zp_conf_vars['special_pages']['pages'] = array('define'	 => '_PAGES_', 'rewrite'	 => getOption('zenpagePagesLink'),
+				'option'	 => 'zenpagePagesLink', 'default'	 => 'pages');
 
 $_zp_conf_vars['special_pages'][] = array('definition' => '%NEWS%', 'rewrite' => '_NEWS_');
 $_zp_conf_vars['special_pages'][] = array('definition' => '%CATEGORY%', 'rewrite' => '_CATEGORY_');
