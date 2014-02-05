@@ -122,9 +122,9 @@ class rewriteTokens {
 			$newtext = substr($template, $i, $j - $i);
 			eval($newtext);
 			$this->conf_vars = $conf['special_pages'];
-
 			foreach ($this->plugin_vars as $page => $element) {
 				if (isset($element['option'])) {
+					$this->plugin_vars[$page]['rewrite'] = $element['default'];
 					setOption($element['option'], $element['default']);
 				}
 			}
@@ -136,21 +136,19 @@ class rewriteTokens {
 				} else {
 					$this->conf_vars[$page]['rewrite'] = $rewrite;
 				}
-			}
-		}
-
-		foreach ($this->plugin_vars as $page => $element) {
-			if (isset($element['option'])) {
-				$rewrite = sanitize($_POST['rewriteTokens_' . $page]);
-				if (empty($rewrite)) {
-					$notify = '&custom=' . gettext('Rewrite tokens may not be empty.');
-				} else {
-					$this->plugin_vars[$page]['rewrite'] = $rewrite;
-					setOption($element['option'], $rewrite);
+				foreach ($this->plugin_vars as $page => $element) {
+					if (isset($element['option'])) {
+						$rewrite = sanitize($_POST['rewriteTokens_' . $page]);
+						if (empty($rewrite)) {
+							$notify = '&custom=' . gettext('Rewrite tokens may not be empty.');
+						} else {
+							$this->plugin_vars[$page]['rewrite'] = $rewrite;
+							setOption($element['option'], $rewrite);
+						}
+					}
 				}
 			}
 		}
-
 		$newtext = "\$conf['special_pages'] = array(";
 		foreach ($this->conf_vars as $page => $element) {
 			if ($define = $element['define']) {
