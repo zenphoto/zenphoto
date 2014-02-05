@@ -1163,7 +1163,10 @@ function getAlbumFolder($root = SERVERPATH) {
 			return $root . $_zp_album_folder;
 		case 'in_webpath':
 			if (WEBPATH) { // strip off the WEBPATH
-				$root = str_replace(WEBPATH, '', $root);
+				$pos = strrpos($root, WEBPATH);
+				if($pos !== false) {
+					$root = substr_replace($root, '', $pos, strlen(WEBPATH));
+				}
 				if ($root == '/') {
 					$root = '';
 				}
