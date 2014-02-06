@@ -20,9 +20,10 @@ zp_register_filter('admin_tabs', 'rewriteRules::tabs');
 class rewriteRules {
 
 	static function tabs($tabs) {
-		$tabs['rewrite'] = array('text'		 => gettext("Rewrite Rules"),
-						'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/rewriteRules/admin_tab.php?page=deprecated&amp;tab=' . gettext('rewrite'),
-						'subtabs'	 => NULL);
+		if (zp_loggedin(ADMIN_RIGHTS))
+			$tabs['rewrite'] = array('text'		 => gettext("Rewrite Rules"),
+							'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/rewriteRules/admin_tab.php?page=deprecated&amp;tab=' . gettext('rewrite'),
+							'subtabs'	 => NULL);
 		return $tabs;
 	}
 

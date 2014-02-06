@@ -31,7 +31,6 @@ if (OFFSET_PATH == 2)
 //	but each release may deprecated new functions which would then just give
 //	(perhaps unseen) errors. Better the user should disable this once he knows
 //	his site is working.
-
 zp_register_filter('admin_utilities_buttons', 'deprecated_functions::button');
 zp_register_filter('admin_tabs', 'deprecated_functions::tabs');
 
@@ -87,9 +86,10 @@ class deprecated_functions {
 	}
 
 	static function tabs($tabs) {
-		$tabs['deprecated'] = array('text'		 => gettext("deprecated"),
-						'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions/admin_tab.php?page=deprecated&amp;tab=' . gettext('deprecated'),
-						'subtabs'	 => NULL);
+		if (zp_loggedin(ADMIN_RIGHTS))
+			$tabs['deprecated'] = array('text'		 => gettext("deprecated"),
+							'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions/admin_tab.php?page=deprecated&amp;tab=' . gettext('deprecated'),
+							'subtabs'	 => NULL);
 		return $tabs;
 	}
 

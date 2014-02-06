@@ -61,7 +61,7 @@ function printZenJavascripts() {
  *
  */
 function adminToolbox() {
-	global $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery_page, $_zp_gallery, $_zp_current_admin_obj;
+	global $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery_page, $_zp_gallery, $_zp_current_admin_obj, $_zp_loggedin;
 	if (zp_loggedin()) {
 		$protocol = SERVER_PROTOCOL;
 		if ($protocol == 'https_admin') {
@@ -71,6 +71,7 @@ function adminToolbox() {
 		$id = 'admin';
 		$dataid = 'admin_data';
 		$page = getCurrentPage();
+		ob_start();
 		?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
@@ -89,6 +90,10 @@ function adminToolbox() {
 
 			<ul style="list-style-type: none;" >
 				<?php
+				$outputA = ob_get_contents();
+				ob_end_clean();
+				ob_start();
+
 				if (zp_loggedin(OVERVIEW_RIGHTS)) {
 					?>
 					<li>
@@ -303,6 +308,7 @@ function adminToolbox() {
 						$redirect = zp_apply_filter('admin_toolbox_' . $gal, $redirect, $zf);
 						break;
 				}
+				$redirect = zp_apply_filter('admin_toolbox_close', $redirect, $zf);
 				if ($_zp_current_admin_obj->logout_link) {
 					// logout link
 					$sec = (int) ((SERVER_PROTOCOL == 'https') & true);
@@ -313,10 +319,15 @@ function adminToolbox() {
 					</li>
 					<?php
 				}
-				?>
-			</ul>
-		</div>
-		<?php
+				$outputB = ob_get_contents();
+				ob_end_clean();
+				if ($outputB) {
+					echo $outputA . $outputB;
+					?>
+				</ul>
+			</div>
+			<?php
+		}
 	}
 }
 
@@ -3853,34 +3864,34 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 		<!-- search form -->
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<script type="text/javascript">
-			// <!-- <![CDATA[
-			var within = <?php echo (int) $within; ?>;
-			function search_(way) {
-				within = way;
-				if (way) {
-					$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+		// <!-- <![CDATA[
+		var within = <?php echo (int) $within; ?>;
+		function search_(way) {
+			within = way;
+			if (way) {
+				$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
 
-				} else {
-					lastsearch = '';
-					$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-				}
-				$('#search_input').val('');
+			} else {
+				lastsearch = '';
+				$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
 			}
-			$('#search_form').submit(function() {
-				if (within) {
-					var newsearch = $.trim($('#search_input').val());
-					if (newsearch.substring(newsearch.length - 1) == ',') {
-						newsearch = newsearch.substr(0, newsearch.length - 1);
-					}
-					if (newsearch.length > 0) {
-						$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
-					} else {
-						$('#search_input').val('<?php echo $searchwords; ?>');
-					}
+			$('#search_input').val('');
+		}
+		$('#search_form').submit(function() {
+			if (within) {
+				var newsearch = $.trim($('#search_input').val());
+				if (newsearch.substring(newsearch.length - 1) == ',') {
+					newsearch = newsearch.substr(0, newsearch.length - 1);
 				}
-				return true;
-			});
-			// ]]> -->
+				if (newsearch.length > 0) {
+					$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+				} else {
+					$('#search_input').val('<?php echo $searchwords; ?>');
+				}
+			}
+			return true;
+		});
+		// ]]> -->
 			</script>
 			<?php echo $prevtext; ?>
 			<div>

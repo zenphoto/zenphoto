@@ -256,12 +256,14 @@ if (!zp_loggedin()) {
 									'rights'			 => ADMIN_RIGHTS
 					);
 				} else {
-					?>
-					<div class="warningbox">
-						<h2><?php echo gettext('Your Setup scripts are not protected.'); ?></h2>
-						<?php echo gettext('The Setup environment is not totally secure, you should protect the scripts to thwart hackers. Use the <strong>Setup » protect scripts</strong> button in the <em>Admin</em> section of the <em>Utility functions</em>. '); ?>
-					</div>
-					<?php
+					if (zp_loggedin(ADMIN_RIGHTS)) {
+						?>
+						<div class="warningbox">
+							<h2><?php echo gettext('Your Setup scripts are not protected.'); ?></h2>
+							<?php echo gettext('The Setup environment is not totally secure, you should protect the scripts to thwart hackers. Use the <strong>Setup » protect scripts</strong> button in the <em>Admin</em> section of the <em>Utility functions</em>. '); ?>
+						</div>
+						<?php
+					}
 					$buttonlist[] = array(
 									'XSRFTag'			 => 'protect_setup',
 									'category'		 => gettext('Admin'),
