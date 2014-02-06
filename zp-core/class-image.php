@@ -129,7 +129,7 @@ class Image extends MediaObject {
 	 * @return Image
 	 */
 
-	function __construct(&$album, $filename, $quiet = false) {
+	function __construct($album, $filename, $quiet = false) {
 		global $_zp_current_admin_obj;
 		// $album is an Album object; it should already be created.
 		$msg = false;
@@ -1232,7 +1232,7 @@ class Transientimage extends Image {
 	 * @param string $image the full path to the image
 	 * @return transientimage
 	 */
-	function __construct(&$album, $image) {
+	function __construct($album, $image) {
 		if (!is_object($album)) {
 			$album = new AlbumBase('Transient');
 		}
