@@ -106,7 +106,7 @@ class Video extends Image {
 		$album_name = $album->name;
 		$this->updateDimensions();
 
-		$new = parent::PersistentObject('images', array('filename' => $filename, 'albumid' => $this->album->getID()), 'filename', true, empty($album_name));
+		$new = $this->instantiate('images', array('filename' => $filename, 'albumid' => $this->album->getID()), 'filename', true, empty($album_name));
 		if ($new || $this->filemtime != $this->get('mtime')) {
 			if ($new)
 				$this->setTitle($this->displayname);

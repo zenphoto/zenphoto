@@ -1293,7 +1293,7 @@ class Zenphoto_Administrator extends PersistentObject {
 	function __construct($user, $valid) {
 		global $_zp_authority;
 		$this->passhash = (int) getOption('strong_hash');
-		parent::PersistentObject('administrators', array('user' => $user, 'valid' => $valid), NULL, false, empty($user));
+		$this->instantiate('administrators', array('user' => $user, 'valid' => $valid), NULL, false, empty($user));
 		if (empty($user)) {
 			$this->set('id', -1);
 		}

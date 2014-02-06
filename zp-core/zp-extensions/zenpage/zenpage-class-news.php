@@ -25,7 +25,7 @@ class ZenpageNews extends ZenpageItems {
 		if (is_array($titlelink)) {
 			$titlelink = $titlelink['titlelink'];
 		}
-		$new = parent::PersistentObject('news', array('titlelink' => $titlelink), 'titlelink', true, empty($titlelink), $allowCreate);
+		$new = $this->instantiate('news', array('titlelink' => $titlelink), 'titlelink', true, empty($titlelink), $allowCreate);
 	}
 
 	/**

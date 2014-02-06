@@ -11,6 +11,14 @@ class internal_deprecations {
 	 * @deprecated
 	 * @since 1.4.6
 	 */
+	static function PersistentObject() {
+		deprecated_functions::notify(gettext('Use the instantiate method instead'));
+	}
+
+	/**
+	 * @deprecated
+	 * @since 1.4.6
+	 */
 	public static function next_album() {
 		deprecated_functions::notify(gettext('Sort parameter oprions should be set instead with the setSortType() and setSortDirection() object methods at the head of your script.'));
 	}

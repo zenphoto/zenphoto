@@ -45,7 +45,7 @@ class AlbumBase extends MediaObject {
 
 	function __construct($folder8, $cache = true) {
 		$this->linkname = $this->name = $folder8;
-		parent::PersistentObject('albums', array('folder' => $this->name), 'folder', false, true);
+		$this->instantiate('albums', array('folder' => $this->name), 'folder', false, true);
 		$this->exists = false;
 	}
 
@@ -799,7 +799,7 @@ class Album extends AlbumBase {
 		}
 
 		$this->localpath = $localpath;
-		$new = parent::PersistentObject('albums', array('folder' => $this->name), 'folder', $cache, empty($folder8));
+		$new = $this->instantiate('albums', array('folder' => $this->name), 'folder', $cache, empty($folder8));
 		if ($dynamic) {
 			$new = !$this->get('search_params');
 			if ($new || (filemtime($this->localpath) > $this->get('mtime'))) {

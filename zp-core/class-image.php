@@ -150,7 +150,7 @@ class Image extends MediaObject {
 
 		// This is where the magic happens...
 		$album_name = $album->name;
-		$new = parent::PersistentObject('images', array('filename' => $filename, 'albumid' => $this->album->getID()), 'filename', false, empty($album_name));
+		$new = $this->instantiate('images', array('filename' => $filename, 'albumid' => $this->album->getID()), 'filename', false, empty($album_name));
 		if ($new || $this->filemtime != $this->get('mtime')) {
 			if ($new)
 				$this->setTitle($this->displayname);
@@ -1246,7 +1246,7 @@ class Transientimage extends Image {
 		}
 		$this->filemtime = @filemtime($this->localpath);
 		$this->comments = null;
-		parent::PersistentObject('images', array('filename' => $filename['name'], 'albumid' => $this->album->getID()), 'filename', true, true);
+		$this->instantiate('images', array('filename' => $filename['name'], 'albumid' => $this->album->getID()), 'filename', true, true);
 		$this->exists = false;
 	}
 

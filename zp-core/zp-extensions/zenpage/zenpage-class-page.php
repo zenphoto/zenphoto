@@ -17,7 +17,7 @@ class ZenpagePage extends ZenpageItems {
 		if (is_array($titlelink)) {
 			$titlelink = $titlelink['titlelink'];
 		}
-		$new = parent::PersistentObject('pages', array('titlelink' => $titlelink), 'titlelink', true, empty($titlelink), $allowCreate);
+		$new = $this->instantiate('pages', array('titlelink' => $titlelink), 'titlelink', true, empty($titlelink), $allowCreate);
 	}
 
 	/**

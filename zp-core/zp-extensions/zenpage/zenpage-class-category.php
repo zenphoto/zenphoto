@@ -20,7 +20,7 @@ class ZenpageCategory extends ZenpageRoot {
 		if (is_array($catlink)) {
 			$catlink = $catlink['titlelink'];
 		}
-		$new = parent::PersistentObject('news_categories', array('titlelink' => $catlink), 'titlelink', true, empty($catlink), $create);
+		$new = $this->instantiate('news_categories', array('titlelink' => $catlink), 'titlelink', true, empty($catlink), $create);
 	}
 
 	/**

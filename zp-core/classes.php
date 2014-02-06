@@ -17,7 +17,7 @@
  *
  * A child class should run the follwing in its constructor:
  *
- * $new = parent::PersistentObject('tablename',
+ * $new = $this->instantiate('tablename',
  *   array('uniquestring'=>$value, 'uniqueid'=>$uniqueid));
  *
  * where 'tablename' is the name of the database table to use for this object
@@ -51,6 +51,16 @@ class PersistentObject {
 
 	/**
 	 *
+	 * @deprecated
+	 */
+	function PersistentObject($tablename, $unique_set, $cache_by = NULL, $use_cache = true, $is_transient = false, $allowCreate = true) {
+		deprecated_functions::PersistentObject();
+		return instantiate($tablename, $unique_set, $cache_by, $use_cache, $is_transient, $allowCreate);
+	}
+
+	/**
+	  }
+	 *
 	 * Prime instantiator for Zenphoto objects
 	 * @param $tablename	The name of the database table
 	 * @param $unique_set	An array of unique fields
@@ -60,7 +70,7 @@ class PersistentObject {
 	 * @param $allowCreate Set true to allow a new object to be made.
 	 * @return bool will be true if the unique_set does not already exist
 	 */
-	function PersistentObject($tablename, $unique_set, $cache_by = NULL, $use_cache = true, $is_transient = false, $allowCreate = true) {
+	function instantiate($tablename, $unique_set, $cache_by = NULL, $use_cache = true, $is_transient = false, $allowCreate = true) {
 		global $_zp_object_cache;
 		//	insure a cache entry
 		$classname = get_class($this);

@@ -103,7 +103,7 @@ class TextObject extends Image {
 		$this->sidecars = $_zp_supported_images;
 		$this->objectsThumb = checkObjectsThumb($this->localpath);
 		$this->updateDimensions();
-		$new = parent::PersistentObject('images', array('filename' => $filename, 'albumid'	 => $this->album->getID()), 'filename');
+		$new = $this->instantiate('images', array('filename' => $filename, 'albumid'	 => $this->album->getID()), 'filename');
 		if ($new || $this->filemtime != $this->get('mtime')) {
 			if ($new)
 				$this->setTitle($this->displayname); $title = $this->displayname;

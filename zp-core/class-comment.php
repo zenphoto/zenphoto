@@ -23,7 +23,7 @@ class Comment extends PersistentObject {
 	 * @return Comment
 	 */
 	function __construct($id=NULL) {
-		$new = parent::PersistentObject('comments', array('id'=>$id), 'id', true, is_null($id));
+		$new = $this->instantiate('comments', array('id'=>$id), 'id', true, is_null($id));
 	}
 
 	/**
