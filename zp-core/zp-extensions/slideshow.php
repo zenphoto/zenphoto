@@ -41,7 +41,7 @@ $plugin_disable = (extensionEnabled('slideshow2')) ? sprintf(gettext('Only one s
 $option_interface = 'slideshow';
 
 global $_zp_gallery, $_zp_gallery_page;
-if ($_zp_gallery_page == 'slideshoe.php' || getOption('slideshow_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page))) {
+if ($_zp_gallery_page == 'slideshow.php' || getOption('slideshow_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page))) {
 	zp_register_filter('theme_head', 'slideshow::header_js');
 }
 zp_register_filter('content_macro', 'slideshow::macro');
@@ -56,27 +56,25 @@ zp_register_filter('content_macro', 'slideshow::macro');
  */
 class slideshow {
 
-	function slideshow() {
+	function __construct() {
 		global $_zp_gallery;
-		//setOptionDefault('slideshow_size', '595');
-		setOptionDefault('slideshow_width', '595');
-		setOptionDefault('slideshow_height', '595');
-		setOptionDefault('slideshow_mode', 'jQuery');
-		setOptionDefault('slideshow_effect', 'fade');
-		setOptionDefault('slideshow_speed', '1000');
-		setOptionDefault('slideshow_timeout', '3000');
-		setOptionDefault('slideshow_showdesc', '');
-		setOptionDefault('slideshow_colorbox_transition', 'fade');
-		// incase the flowplayer has not been enabled!!!
-		setOptionDefault('slideshow_colorbox_imagetype', 'sizedimage');
-		setOptionDefault('slideshow_colorbox_imagetitle', 1);
-		if (class_exists('cacheManager')) {
+		if (OFFSET_PATH == 2) {
+			//setOptionDefault('slideshow_size', '595');
+			setOptionDefault('slideshow_width', '595');
+			setOptionDefault('slideshow_height', '595');
+			setOptionDefault('slideshow_mode', 'jQuery');
+			setOptionDefault('slideshow_effect', 'fade');
+			setOptionDefault('slideshow_speed', '1000');
+			setOptionDefault('slideshow_timeout', '3000');
+			setOptionDefault('slideshow_showdesc', '');
+			setOptionDefault('slideshow_colorbox_transition', 'fade');
+			// incase the flowplayer has not been enabled!!!
+			setOptionDefault('slideshow_colorbox_imagetype', 'sizedimage');
+			setOptionDefault('slideshow_colorbox_imagetitle', 1);
+
+			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager.php');
 			cacheManager::deleteThemeCacheSizes('slideshow');
 			cacheManager::addThemeCacheSize('slideshow', NULL, getOption('slideshow_width'), getOption('slideshow_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, true);
-		}
-		//	we will presume that themes slideshow script wants to use the slideshow
-		foreach (array_keys($_zp_gallery->getThemes()) as $theme) {
-			setOptionDefault('slideshow_' . $theme . '_slideshow', 1);
 		}
 	}
 

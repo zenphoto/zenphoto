@@ -7,13 +7,13 @@
  * If it is present it is linked to with a require_once call.
  * If it is not present, no theme options are displayed.
  *
-*/
+ */
 
-require_once(dirname(__FILE__).'/functions.php');
+require_once(dirname(__FILE__) . '/functions.php');
 
 class ThemeOptions {
 
-	function ThemeOptions() {
+	function __construct() {
 		setThemeOptionDefault('Allow_search', true);
 		setThemeOptionDefault('Theme_colors', 'light');
 		setThemeOptionDefault('albums_per_page', 6);
@@ -39,14 +39,14 @@ class ThemeOptions {
 	}
 
 	function getOptionsSupported() {
-		return array(	gettext('Allow search') => array('key' => 'Allow_search', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Check to enable search form.')),
-									gettext('Theme colors') => array('key' => 'Theme_colors', 'type' => OPTION_TYPE_CUSTOM, 'desc' => gettext('Select the colors of the theme'))
-								);
+		return array(gettext('Allow search')	 => array('key' => 'Allow_search', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Check to enable search form.')),
+						gettext('Theme colors')	 => array('key' => 'Theme_colors', 'type' => OPTION_TYPE_CUSTOM, 'desc' => gettext('Select the colors of the theme'))
+		);
 	}
 
-  function getOptionsDisabled() {
-  	return array('custom_index_page');
-  }
+	function getOptionsDisabled() {
+		return array('custom_index_page');
+	}
 
 	function handleOption($option, $currentValue) {
 		global $themecolors;
@@ -56,5 +56,7 @@ class ThemeOptions {
 			echo "</select>\n";
 		}
 	}
+
 }
+
 ?>

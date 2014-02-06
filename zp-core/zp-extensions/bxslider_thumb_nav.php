@@ -23,17 +23,19 @@ $option_interface = 'bxslider';
  */
 class bxslider {
 
-	function bxsliderOptions() {
-		setOptionDefault('bxslider_minitems', '3');
-		setOptionDefault('bxslider_maxitems', '8');
-		setOptionDefault('bxslider_width', '50');
-		setOptionDefault('bxslider_height', '50');
-		setOptionDefault('bxslider_croph', '50');
-		setOptionDefault('bxslider_cropw', '50');
-		setOptionDefault('bxslider_speed', '500');
-		setOptionDefault('bxslider_fullimagelink', '');
-		setOptionDefault('bxslider_mode', 'horizontal');
-		if (class_exists('cacheManager')) {
+	function __construct() {
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('bxslider_minitems', '3');
+			setOptionDefault('bxslider_maxitems', '8');
+			setOptionDefault('bxslider_width', '50');
+			setOptionDefault('bxslider_height', '50');
+			setOptionDefault('bxslider_croph', '50');
+			setOptionDefault('bxslider_cropw', '50');
+			setOptionDefault('bxslider_speed', '500');
+			setOptionDefault('bxslider_fullimagelink', '');
+			setOptionDefault('bxslider_mode', 'horizontal');
+
+			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager.php');
 			cacheManager::deleteThemeCacheSizes('bxslider_thumb_nav');
 			cacheManager::addThemeCacheSize('bxslider_thumb_nav', NULL, getOption('bxslider_width'), getOption('bxslider_height'), getOption('bxslider_cropw'), getOption('bxslider_croph'), NULL, NULL, true, NULL, NULL, NULL);
 		}
@@ -237,17 +239,17 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->ge
 			</ul>
 			<script type="text/javascript">
 				$(document).ready(function() {
-				$('.bxslider<?php echo $albumid; ?>').bxSlider({
-				startSlide: <?php echo $imgnumber; ?>,
-				mode: '<?php echo $mode; ?>',
-				minSlides: <?php echo $minitems; ?>,
-				maxSlides: <?php echo $maxitems; ?>,
-				speed: <?php echo $speed; ?>,
-				slideWidth: <?php echo $width; ?>,
-				slideMargin: 5,
-				pager: false,
-				adaptiveHeight: true
-				});
+					$('.bxslider<?php echo $albumid; ?>').bxSlider({
+						startSlide: <?php echo $imgnumber; ?>,
+						mode: '<?php echo $mode; ?>',
+						minSlides: <?php echo $minitems; ?>,
+						maxSlides: <?php echo $maxitems; ?>,
+						speed: <?php echo $speed; ?>,
+						slideWidth: <?php echo $width; ?>,
+						slideMargin: 5,
+						pager: false,
+						adaptiveHeight: true
+					});
 				});
 			</script>
 			<?php

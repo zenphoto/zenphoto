@@ -33,12 +33,14 @@ $option_interface = 'viewer_size_image_options';
  */
 class viewer_size_image_options {
 
-	function viewer_size_image_options() {
-		$default = getOption('image_size');
-		setOptionDefault('viewer_size_image_sizes', '$s=' . ($default - 200) . '; $s=' . ($default - 100) . '; $s=' . ($default) . '; $s=' . ($default + 100) . '; $s=' . ($default + 200) . ';');
-		setOptionDefault('viewer_size_image_default', '$s=' . $default);
-		setOptionDefault('viewer_size_image_radio', 2);
-		if (class_exists('cacheManager')) {
+	function __construct() {
+		if (OFFSET_PATH == 2) {
+			$default = getOption('image_size');
+			setOptionDefault('viewer_size_image_sizes', '$s=' . ($default - 200) . '; $s=' . ($default - 100) . '; $s=' . ($default) . '; $s=' . ($default + 100) . '; $s=' . ($default + 200) . ';');
+			setOptionDefault('viewer_size_image_default', '$s=' . $default);
+			setOptionDefault('viewer_size_image_radio', 2);
+
+			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager.php');
 			cacheManager::deleteThemeCacheSizes('viewer_size_image');
 			cacheManager::addThemeCacheSize('viewer_size_image', $default - 200, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 			cacheManager::addThemeCacheSize('viewer_size_image', $default - 100, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
@@ -165,10 +167,10 @@ function printUserSizeSelector($text = '', $default = NULL, $usersizes = NULL) {
 		// ]]> -->
 	</script>
 	<div>
-			<?php
-			echo $text;
-			if ($selector) {
-				?>
+		<?php
+		echo $text;
+		if ($selector) {
+			?>
 			<select id="viewer_size_image_selection" name="viewer_size_image_selection" onchange="switchselection();" >
 				<?php
 			}
@@ -210,9 +212,9 @@ function printUserSizeSelector($text = '', $default = NULL, $usersizes = NULL) {
 			if ($selector) {
 				?>
 			</select>
-		<?php
-	}
-	?>
+			<?php
+		}
+		?>
 	</div>
 	<?php
 }

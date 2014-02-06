@@ -67,21 +67,16 @@ class cycle {
 			setOptionDefault('cycle-slideshow_colorbox_imagetype', 'sizedimage');
 			setOptionDefault('cycle-slideshow_colorbox_imagetitle', 1);
 
-			if (class_exists('cycle')) {
-				cacheManager::deleteThemeCacheSizes('cycle');
-				cacheManager::addThemeCacheSize('cycle', NULL, getOption('cycle-slideshow_width'), getOption('cycle-slideshow_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, true);
-			}
-
-			//	we will presume that themes slideshow script wants to use the slideshow
-			foreach (array_keys($_zp_gallery->getThemes()) as $theme) {
-				setOptionDefault('cycle-slideshow_' . $theme . '_slideshow', 1);
-			}
+			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager.php');
+			cacheManager::deleteThemeCacheSizes('cycle');
+			cacheManager::addThemeCacheSize('cycle', NULL, getOption('cycle-slideshow_width'), getOption('cycle-slideshow_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, true);
 		}
 	}
 
 	function getOptionsSupported() {
 
-		/*		 * *********************
+		/**
+		 * *********************
 		 * 	slideshow options
 		 * ********************* */
 		$options = array(
@@ -560,23 +555,23 @@ if (extensionEnabled('slideshow2')) {
 					$count = '';
 					?>
 					<script type="text/javascript">
-					$(document).ready(function() {
-						$("a[rel='slideshow']").colorbox({
-							slideshow: true,
-							loop: true,
-							transition: '<?php echo getOption('cycle-slideshow_colorbox_transition'); ?>',
-							slideshowSpeed: <?php echo getOption('cycle-slideshow_speed'); ?>,
-							slideshowStart: '<?php echo gettext("start slideshow"); ?>',
-							slideshowStop: '<?php echo gettext("stop slideshow"); ?>',
-							previous: '<?php echo gettext("prev"); ?>',
-							next: '<?php echo gettext("next"); ?>',
-							close: '<?php echo gettext("close"); ?>',
-							current: '<?php printf(gettext('image %1$s of %2$s'), '{current}', '{total}'); ?>',
-							maxWidth: '98%',
-							maxHeight: '98%',
-							photo: true
+						$(document).ready(function() {
+							$("a[rel='slideshow']").colorbox({
+								slideshow: true,
+								loop: true,
+								transition: '<?php echo getOption('cycle-slideshow_colorbox_transition'); ?>',
+								slideshowSpeed: <?php echo getOption('cycle-slideshow_speed'); ?>,
+								slideshowStart: '<?php echo gettext("start slideshow"); ?>',
+								slideshowStop: '<?php echo gettext("stop slideshow"); ?>',
+								previous: '<?php echo gettext("prev"); ?>',
+								next: '<?php echo gettext("next"); ?>',
+								close: '<?php echo gettext("close"); ?>',
+								current: '<?php printf(gettext('image %1$s of %2$s'), '{current}', '{total}'); ?>',
+								maxWidth: '98%',
+								maxHeight: '98%',
+								photo: true
+							});
 						});
-					});
 					</script>
 					<?php
 					foreach ($images as $image) {
