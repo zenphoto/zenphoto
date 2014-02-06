@@ -176,7 +176,6 @@ class rss_options {
 function getRSSLink($option, $lang = NULL, $addl = NULL) {
 	global $_zp_current_album, $_zp_current_image, $_zp_current_admin_obj, $_zp_current_category;
 	if (strtolower($option) == 'newswithimages') {
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/rss/deprecated-functions.php');
 		RSS_internal_deprecations::getRSSLink($option);
 	}
 	if (empty($lang)) {

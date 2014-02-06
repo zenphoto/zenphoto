@@ -914,7 +914,6 @@ class Image extends MediaObject {
 	 * @deprecated since version 1.4.6
 	 */
 	function getImageLink() {
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
 		internal_deprecations::getImageLink();
 		return $this->getLink();
 	}

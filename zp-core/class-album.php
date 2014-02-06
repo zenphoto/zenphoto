@@ -233,7 +233,6 @@ class AlbumBase extends MediaObject {
 	 * @deprecated since version 1.4.5
 	 */
 	function getAlbumSortType() {
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
 		internal_deprecations::getAlbumSortType();
 		return $this->getSortType('album');
 	}
@@ -245,7 +244,6 @@ class AlbumBase extends MediaObject {
 	 * @deprecated since version 1.4.5
 	 */
 	function setSubalbumSortType($sorttype) {
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
 		internal_deprecations::setAlbumSortType();
 		$this->setSortType($sorttype, 'album');
 	}
@@ -407,7 +405,6 @@ class AlbumBase extends MediaObject {
 	 * @deprecated since version 1.4.6
 	 */
 	function getAlbumThumb() {
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
 		internal_deprecations::getAlbumThumb();
 		return $this->getThumb();
 	}
@@ -428,7 +425,6 @@ class AlbumBase extends MediaObject {
 	 * @deprecated since version 1.4.6
 	 */
 	function setAlbumThumb($filename) {
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
 		internal_deprecations::setAlbumThumb();
 		$this->setThumb($filename);
 	}
@@ -441,7 +437,6 @@ class AlbumBase extends MediaObject {
 	 * @deprecated since version 1.4.6
 	 */
 	function getAlbumLink($page = NULL) {
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
 		internal_deprecations::getAlbumLink();
 		return $this->getLink();
 	}
