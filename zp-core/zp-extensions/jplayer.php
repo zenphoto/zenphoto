@@ -82,6 +82,7 @@ if (!empty($_zp_multimedia_extension->name) || $plugin_disable) {
 		trigger_error(sprintf(gettext('jPlayer not enabled, %s is already instantiated.'), get_class($_zp_multimedia_extension)), E_USER_NOTICE);
 	}
 } else {
+
 	addPluginType('flv', 'Video');
 	addPluginType('fla', 'Video');
 	addPluginType('mp3', 'Video');
@@ -96,26 +97,25 @@ class jplayer_options {
 
 	public $name = 'jPlayer';
 
-	function __construct() {
-		if (OFFSET_PATH == 2) {
-			setOptionDefault('jplayer_autoplay', '');
-			setOptionDefault('jplayer_poster', 1);
-			setOptionDefault('jplayer_postercrop', 1);
-			setOptionDefault('jplayer_showtitle', '');
-			setOptionDefault('jplayer_playlist', '');
-			setOptionDefault('jplayer_playlist_numbered', 1);
-			setOptionDefault('jplayer_playlist_playtime', 0);
-			setOptionDefault('jplayer_download', '');
-			setOptionDefault('jplayer_size', 'jp-video-270p');
-			setOptionDefault('jplayer_skin', 'zenphotolight');
-			setOptionDefault('jplayer_counterparts', 0);
-			/* TODO: what are these sizes?
-			  require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/cacheManager.php');
-			  $player = new jPlayer();
-			  cacheManager::deleteThemeCacheSizes('jplayer');
-			  cacheManager::addThemeCacheSize('jplayer', NULL, $player->width, $player->height, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-			 */
-		}
+	function jplayer_options() {
+		setOptionDefault('jplayer_autoplay', '');
+		setOptionDefault('jplayer_poster', 1);
+		setOptionDefault('jplayer_postercrop', 1);
+		setOptionDefault('jplayer_showtitle', '');
+		setOptionDefault('jplayer_playlist', '');
+		setOptionDefault('jplayer_playlist_numbered', 1);
+		setOptionDefault('jplayer_playlist_playtime', 0);
+		setOptionDefault('jplayer_download', '');
+		setOptionDefault('jplayer_size', 'jp-video-270p');
+		setOptionDefault('jplayer_skin', 'zenphotolight');
+		setOptionDefault('jplayer_counterparts', 0);
+		/* TODO: what are these sizes?
+		  if (class_exists('cacheManager')) {
+		  $player = new jPlayer();
+		  cacheManager::deleteThemeCacheSizes('jplayer');
+		  cacheManager::addThemeCacheSize('jplayer', NULL, $player->width, $player->height, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+		  }
+		 */
 	}
 
 	function getOptionsSupported() {

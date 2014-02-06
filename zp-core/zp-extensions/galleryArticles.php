@@ -41,10 +41,10 @@ class galleryArticles {
 			setOptionDefault('galleryArticles_image_text', getAllTranslations($text));
 			setOptionDefault('galleryArticles_size', 80);
 			setOptionDefault('galleryArticles_protected', 0);
-
-			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager.php');
-			cacheManager::deleteThemeCacheSizes('galleryArticles');
-			cacheManager::addThemeCacheSize('galleryArticles', getOption('galleryArticles_size'), NULL, NULL, NULL, NULL, NULL, NULL, false, getOption('fullimage_watermark'), NULL, NULL);
+			if (class_exists('cacheManager')) {
+				cacheManager::deleteThemeCacheSizes('galleryArticles');
+				cacheManager::addThemeCacheSize('galleryArticles', getOption('galleryArticles_size'), NULL, NULL, NULL, NULL, NULL, NULL, false, getOption('fullimage_watermark'), NULL, NULL);
+			}
 		}
 	}
 

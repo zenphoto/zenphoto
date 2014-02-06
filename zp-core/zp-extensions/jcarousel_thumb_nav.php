@@ -21,17 +21,15 @@ $option_interface = 'jcarousel';
  */
 class jcarousel {
 
-	function __construct() {
-		if (OFFSET_PATH == 2) {
-			setOptionDefault('jcarousel_scroll', '3');
-			setOptionDefault('jcarousel_width', '50');
-			setOptionDefault('jcarousel_height', '50');
-			setOptionDefault('jcarousel_croph', '50');
-			setOptionDefault('jcarousel_cropw', '50');
-			setOptionDefault('jcarousel_fullimagelink', '');
-			setOptionDefault('jcarousel_vertical', 0);
-
-			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager.php');
+	function jcarouselOptions() {
+		setOptionDefault('jcarousel_scroll', '3');
+		setOptionDefault('jcarousel_width', '50');
+		setOptionDefault('jcarousel_height', '50');
+		setOptionDefault('jcarousel_croph', '50');
+		setOptionDefault('jcarousel_cropw', '50');
+		setOptionDefault('jcarousel_fullimagelink', '');
+		setOptionDefault('jcarousel_vertical', 0);
+		if (class_exists('cacheManager')) {
 			cacheManager::deleteThemeCacheSizes('jcarousel_thumb_nav');
 			cacheManager::addThemeCacheSize('jcarousel_thumb_nav', NULL, getOption('jcarousel_width'), getOption('jcarousel_height'), getOption('jcarousel_cropw'), getOption('jcarousel_croph'), NULL, NULL, true, NULL, NULL, NULL);
 		}
@@ -78,15 +76,15 @@ class jcarousel {
 		?>
 		<script>
 			(function($) {
-				var userAgent = navigator.userAgent.toLowerCase();
+			var userAgent = navigator.userAgent.toLowerCase();
 
-				$.browser = {
-					version: (userAgent.match(/.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/) || [0, '0'])[1],
-					safari: /webkit/.test(userAgent),
-					opera: /opera/.test(userAgent),
-					msie: /msie/.test(userAgent) && !/opera/.test(userAgent),
-					mozilla: /mozilla/.test(userAgent) && !/(compatible|webkit)/.test(userAgent)
-				};
+			$.browser = {
+			version: (userAgent.match(/.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/) || [0, '0'])[1],
+			safari: /webkit/.test(userAgent),
+			opera: /opera/.test(userAgent),
+			msie: /msie/.test(userAgent) && !/opera/.test(userAgent),
+			mozilla: /mozilla/.test(userAgent) && !/(compatible|webkit)/.test(userAgent)
+			};
 
 			})(jQuery);
 		</script>
@@ -217,42 +215,42 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('jcarousel_' . $_zp_gallery->g
 			}
 			?>
 			<script type="text/javascript">
-			// <!-- <![CDATA[
-			var mycarousel_itemList = [
-			<?php echo $items; ?>
-			];
+				// <!-- <![CDATA[
+				var mycarousel_itemList = [
+				<?php echo $items; ?>
+				];
 
-			function mycarousel_itemLoadCallback(carousel, state) {
+				function mycarousel_itemLoadCallback(carousel, state) {
 				for (var i = carousel.first; i <= carousel.last; i++) {
-					if (carousel.has(i)) {
-						continue;
-					}
-					if (i > mycarousel_itemList.length) {
-						break;
-					}
-					carousel.add(i, mycarousel_getItemHTML(mycarousel_itemList[i - 1]));
+				if (carousel.has(i)) {
+				continue;
 				}
-			}
+				if (i > mycarousel_itemList.length) {
+				break;
+				}
+				carousel.add(i, mycarousel_getItemHTML(mycarousel_itemList[i - 1]));
+				}
+				}
 
-			function mycarousel_getItemHTML(item) {
+				function mycarousel_getItemHTML(item) {
 				if (item.active === "") {
-					html = '<a href="' + item.link + '" title="' + item.title + '"><img src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
+				html = '<a href="' + item.link + '" title="' + item.title + '"><img src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
 				} else {
-					html = '<a href="' + item.link + '" title="' + item.title + '"><img class="activecarouselimage" src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
+				html = '<a href="' + item.link + '" title="' + item.title + '"><img class="activecarouselimage" src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
 				}
 				return html;
-			}
+				}
 
-			jQuery(document).ready(function() {
+				jQuery(document).ready(function() {
 				jQuery("#mycarousel").jcarousel({
-					vertical: <?php echo $vertical; ?>,
-					size: mycarousel_itemList.length,
-					start: <?php echo $imgnumber; ?>,
-					scroll: <?php echo $thumbscroll; ?>,
-					itemLoadCallback: {onBeforeAnimation: mycarousel_itemLoadCallback}
+				vertical: <?php echo $vertical; ?>,
+				size: mycarousel_itemList.length,
+				start: <?php echo $imgnumber; ?>,
+				scroll: <?php echo $thumbscroll; ?>,
+				itemLoadCallback: {onBeforeAnimation: mycarousel_itemLoadCallback}
 				});
-			});
-			// ]]> -->
+				});
+				// ]]> -->
 			</script>
 			<ul id="mycarousel">
 				<!-- The content will be dynamically loaded in here -->
