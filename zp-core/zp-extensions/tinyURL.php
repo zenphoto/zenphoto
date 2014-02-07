@@ -53,7 +53,7 @@ class tinyURL {
 	const pages = 16;
 
 	static $DBassoc = array('albums' => self::albums, 'images' => self::images, 'news' => self::news, 'news_categories' => self::news_categories, 'pages' => self::pages);
-	static $tableAsoc = array('1' => 'albums', '2' => 'images', '3' => 'news', '4' => 'pages', '5' => 'comments');
+	static $tableAsoc = array('1' => 'albums', '2' => 'images', '3' => 'news', '4' => 'pages', '5' => 'comments', '6' => 'news_categories');
 
 	function __construct() {
 
@@ -80,9 +80,7 @@ class tinyURL {
 			?>
 			<label class="nowrap"><input type="checkbox" name="tinyURL_news" value="<?php echo self::news; ?>" <?php if ($currentValue & self::news) echo 'checked="checked" '; ?>/><?php echo gettext('news'); ?></label>
 
-			<!--
 			<label class="nowrap"><input type="checkbox" name="tinyURL_news_categories" value="<?php echo self::news_categories; ?>" <?php if ($currentValue & self::news_categories) echo 'checked="checked" '; ?>/><?php echo gettext('news categories'); ?></label>
-			-->
 
 			<label class="nowrap"><input type="checkbox" name="tinyURL_pages" value="<?php echo self::pages; ?>" <?php if ($currentValue & self::pages) echo 'checked="checked" '; ?>/><?php echo gettext('pages'); ?></label>
 			<?php
@@ -152,6 +150,10 @@ class tinyURL {
 						case 'pages':
 							$_GET['p'] = $tbl;
 							$_GET['title'] = $result['titlelink'];
+							break;
+						case 'news_categories';
+							$_GET['p'] = 'news';
+							$_GET['category'] = $result['titlelink'];
 							break;
 						case 'images':
 							$image = $_GET['image'] = $result['filename'];
