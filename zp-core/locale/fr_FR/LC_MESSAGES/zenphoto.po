@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-06 20:15-0500\n"
-"PO-Revision-Date: 2014-02-06 20:27-0500\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2014-02-07 17:23-0500\n"
+"PO-Revision-Date: 2014-02-07 17:29-0500\n"
+"Last-Translator: Michel Gagnon <michel@mgagnon.net>\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "<michel@mgagnon.net>\n"
 "Language: fr_FR\n"
@@ -151,9 +151,9 @@ msgstr "Voir l’album :"
 #: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/news.php:48
 #: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/search.php:163
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:4290
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:592
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:276
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:571
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:589
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:270
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:565
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:30
 msgid "prev"
 msgstr "préc."
@@ -191,10 +191,10 @@ msgstr "préc."
 #: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/news.php:50
 #: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/search.php:163
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:4318
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:468
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:593
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:280
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:572
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:469
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:590
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:274
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:566
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:31
 msgid "next"
 msgstr "suiv."
@@ -308,8 +308,8 @@ msgstr "Couleur du thème"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:137
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-plugins.php:81
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/GoogleMap.php:501
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:594
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:573
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:591
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:567
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user_login-out.php:154
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:73
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:33
@@ -981,7 +981,7 @@ msgstr "Galerie"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/utilities/gallery_statistics.php:572
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:106
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/comment_form.php:78
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:64
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:63
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/multiple_layouts.php:90
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/related_items.php:152
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tweet_news.php:90
@@ -1091,8 +1091,8 @@ msgstr "Actualités"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1326
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3814
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:237
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:748
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:709
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:745
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:703
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:67
 msgid "Search"
 msgstr "Recherche"
@@ -1256,7 +1256,7 @@ msgstr "Aucun"
 
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/themeoptions.php:126
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/themeoptions.php:92
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:73
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:74
 msgid "Fade"
 msgstr "Fondu"
 
@@ -1267,16 +1267,16 @@ msgstr "Ajuster (réduire ou agrandir)"
 
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/themeoptions.php:126
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/themeoptions.php:92
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:71
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:72
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/GoogleMap.php:94
 msgid "Horizontal"
 msgstr "Horizontal"
 
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/themeoptions.php:126
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/themeoptions.php:92
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:72
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:52
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:123
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:73
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:53
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:117
 msgid "Vertical"
 msgstr "Vertical"
 
@@ -1336,9 +1336,9 @@ msgstr "Image de la page d’accueil"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/image_effects.php:137
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/image_effects.php:141
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/image_effects.php:145
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:127
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:108
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:146
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:124
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:102
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:140
 msgid "none"
 msgstr "aucune"
 
@@ -1548,12 +1548,12 @@ msgid "Comments:"
 msgstr "Commentaires :"
 
 #: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/image.php:67
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:23
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:24
 msgid "« prev thumbs"
 msgstr "« vignettes précédentes"
 
 #: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/image.php:67
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:25
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:26
 msgid "next thumbs »"
 msgstr "vignettes suivantes »"
 
@@ -1751,8 +1751,8 @@ msgid "Latest news"
 msgstr "Actualités récentes"
 
 #: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/search.php:158
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:507
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:486
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:504
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:480
 msgid "View Slideshow"
 msgstr "Voir le diaporama"
 
@@ -2630,8 +2630,8 @@ msgid "thumb"
 msgstr "vignette"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1389
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:131
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:150
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:128
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:144
 msgid "full image"
 msgstr "image pleine grandeur"
 
@@ -2819,7 +2819,7 @@ msgstr "Voir l’accueil de la galerie"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/utilities/gallery_statistics.php:563
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:106
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/comment_form.php:78
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:64
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:63
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/multiple_layouts.php:90
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/related_items.php:152
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tweet_news.php:90
@@ -5468,12 +5468,12 @@ msgid "Image size:"
 msgstr "Taille de l’image : "
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-options.php:2669
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:44
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:45
 msgid "height"
 msgstr "hauteur"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-options.php:2673
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:42
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:43
 msgid "width"
 msgstr "largeur"
 
@@ -5735,7 +5735,7 @@ msgstr "Extensions disponibles"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-plugins.php:152
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/class-search.php:98
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:87
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:119
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:116
 msgid "Description"
 msgstr "Description"
 
@@ -9454,14 +9454,18 @@ msgstr ""
 msgid "Error processing rewrite rule: \"%s\""
 msgstr "Erreur lors du traitement de la règles de réécriture :  \"%s\""
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/setup.php:26
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/setup.php:29
+msgid "Click to restore the setup scripts and run setup."
+msgstr "Cliquer ici pour restaurer le script d’installation et le relancer."
+
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/setup.php:31
 #, php-format
 msgid "You must restore the setup files from the %1$s [%2$s] release."
 msgstr ""
 "Vous devez restaurer les fichiers d’installation (dossier « setup ») de la "
 "version %1$s [%2$s]."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/setup.php:28
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/setup.php:34
 msgid ""
 "You must restore the setup files on your primary installation to run the "
 "setup operation."
@@ -13242,11 +13246,11 @@ msgstr ""
 "Une seule extension de carousel peut être activée. Or, <a href=\"#%1$s"
 "\"><code>%1$s</code></a> l’est déjà."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:45
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:46
 msgid "Minimum items"
 msgstr "Nombre minimum d’éléments"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:46
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:47
 msgid ""
 "The minimum number of slides to be shown. Slides will be sized down if "
 "carousel becomes smaller than the original size."
@@ -13254,11 +13258,11 @@ msgstr ""
 "Le nombre minimal de diapositives affichées. Les diapositives seront "
 "réduites si le carousel devient plus petit que la taille originale."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:48
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:49
 msgid "Maximum items"
 msgstr "Nombre maximum d’éléments"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:49
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:50
 msgid ""
 "The maximum number of slides to be shown. Slides will be sized up if "
 "carousel becomes larger than the original size."
@@ -13266,74 +13270,74 @@ msgstr ""
 "Le nombre maximal de diapositives affichées. Les diapositives seront "
 "agrandies si le carousel devient plus grand que la taille originale."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:51
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:52
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:212
 msgid "Width"
 msgstr "Largeur"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:52
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:53
 msgid "Width of the thumb. Note that the CSS might need to be adjusted."
 msgstr ""
 "Largeur de la vignette. Le fichier CSS peut nécessiter des ajustements."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:54
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:55
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:212
 msgid "Height"
 msgstr "Hauteur"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:55
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:56
 msgid "Height of the thumb. Note that the CSS might need to be adjusted."
 msgstr ""
 "Hauteur de la vignette. Le fichier CSS peut nécessiter des ajustements."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:57
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:58
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:213
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:46
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:49
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:47
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:50
 msgid "Crop width"
 msgstr "Rognage : largeur"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:60
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:61
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:213
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:48
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:51
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:49
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:52
 msgid "Crop height"
 msgstr "Rognage : hauteur"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:63
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:88
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:64
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:85
 msgid "Speed"
 msgstr "Vitesse"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:64
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:65
 msgid "The speed in miliseconds the slides advance when clicked.)"
 msgstr ""
 "La vitesse (en millisecondes) à laquelle la diapositive avance lorqu’on "
 "clique sur celle-ci."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:66
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:50
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:67
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:51
 msgid "Full image link"
 msgstr "Lien vers l’image pleine grandeur"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:67
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:51
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:68
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:52
 msgid "If checked the thumbs link to the full image instead of the image page."
 msgstr ""
 "Si coché, le lien des vignettes pointe vers l’image pleine grandeur elle-"
 "même au lieu de pointer à la page de visualisation de l’image."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:69
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:84
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:70
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:81
 msgid "Mode"
 msgstr "Mode"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:74
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:75
 msgid "The mode of the thumb nav. Note this might require theme changes."
 msgstr ""
 "Le mode de navigation par vignettes. Le thème peut devoir être modifié."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:84
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:85
 msgid ""
 "The scripts for which BxSlider is enabled. {If themes require it they might "
 "set this, otherwise you need to do it manually!}"
@@ -13680,7 +13684,7 @@ msgstr "PDF"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/class-WEBdocs.php:66
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/class-WEBdocs.php:73
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/comment_form.php:136
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:98
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:97
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4.php:46
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4.php:51
 msgid "Disabled"
@@ -14929,7 +14933,7 @@ msgstr "En plus de ci-dessus, vous pouvez choisir le dernier mis à jour."
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/externalFeed.php:99
 #, fuzzy
 msgid "New requestor:"
-msgstr "Nouveau requérant :"
+msgstr "Nouveau"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/externalFeed.php:101
 msgid "Supply a site name to add a new using site."
@@ -15097,8 +15101,8 @@ msgid ""
 "<p class=\"notebox\">Favorites requires the <code>mod_rewrite</code> option "
 "be enabled.</p>"
 msgstr ""
-"<p class=\"notebox\">Pour les favoris, l’option <code>mod_rewrite</code> "
-"doit être activée.</p>"
+"<p class=\"notebox\">*<strong>Note. </strong> Ce paramétrage est aussi "
+"utilisé par d’autres extensions.</p>"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/federated_logon.php:49
 msgid "Handles logon from <em>OpenID</em> credential providers."
@@ -15365,7 +15369,7 @@ msgstr ""
 "Créer un article d’actualité lorsqu’un élément est publié dans la galerie."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:12
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:99
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:98
 msgid "Gallery Articles requires Zenpage to be enabled."
 msgstr ""
 "Pour utiliser les articles de gallerie, il faut que Zenpage soit activé."
@@ -15380,11 +15384,11 @@ msgstr "Nouvel album : %1$s"
 msgid "New image: [%2$s]%1$s"
 msgstr "Nouvelle image : [%2$s]%1$s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:66
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:65
 msgid "Publish for"
 msgstr "Publier pour"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:69
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:68
 msgid ""
 "If a <em>type</em> is checked, a news article will be made when an object of "
 "that <em>type</em> is published."
@@ -15392,12 +15396,12 @@ msgstr ""
 "Si un <em>type</em> est coché, un article d’actualité sera créé lorsqu’un "
 "objet de ce <em>type</em> sera publié."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:70
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:69
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:102
 msgid "Image title"
 msgstr "Titre de l’image"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:73
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:72
 #, php-format
 msgid ""
 "This text will be used as the <em>title</em> of the article. The album title "
@@ -15408,12 +15412,12 @@ msgstr ""
 "sera remplacé par <code>%2$s</code> et le titre de l’image par <code>%1$s</"
 "code>."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:74
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:73
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:103
 msgid "Album title"
 msgstr "Titre de l’album"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:77
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:76
 #, php-format
 msgid ""
 "This text will be used as the <em>title</em> of the article. The album title "
@@ -15422,19 +15426,19 @@ msgstr ""
 "Ce texte sera utilisé comme <em>titre</em> de l’article. Le titre de l’abum "
 "sera substitué pour <code>%1$s</code>."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:78
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:77
 msgid "size"
 msgstr "taille"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:80
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:79
 msgid "Set the size the image will be displayed."
 msgstr "Choisissez la taille d’affichage de l’image."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:81
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:80
 msgid "Publish protected"
 msgstr "Publier les contenus protégés"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:83
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:82
 msgid ""
 "Unless this is checked, objects which are \"protected\" will not have news "
 "articles generated."
@@ -15442,21 +15446,21 @@ msgstr ""
 "Si cette option n’est pas cochée, les items protégés ne généreront pas "
 "d’article d’actualité."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:84
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:83
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:125
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:211
 msgid "Category"
 msgstr "Catégorie"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:87
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:86
 msgid "Select a category for the generated articles"
 msgstr "Choisissez une catégorie pour les articles générés"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:88
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:87
 msgid "Use album folder"
 msgstr "Utilisez le dossier de l’album"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:90
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:89
 msgid ""
 "If this option is checked and a category matching the album folder exists, "
 "that will be used as the article category."
@@ -15464,11 +15468,11 @@ msgstr ""
 "Si cette option est sélectionnée et une catégorie correspondant au dossier "
 "de l’album existe, celle-ci sera utilisée comme catégorie de l’article."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:93
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:92
 msgid "Import Combi-news"
 msgstr "Importation Combi-news"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:95
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:94
 msgid ""
 "If this option is checked, articles will be generated based on your old "
 "<em>Combi-news</em> settings."
@@ -16112,11 +16116,11 @@ msgstr ""
 "extension jCarousel thumb nav de jQuery, avec chargement dynamique des "
 "vignettes à la demande par JavaScript."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:40
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:41
 msgid "Thumbs number"
 msgstr "Nombre de vignettes"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:41
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:42
 msgid ""
 "The number of thumbs to scroll by. Note that the CSS might need to be "
 "adjusted."
@@ -16124,15 +16128,15 @@ msgstr ""
 "Définit le nombre de vignettes à faire défiler à la fois. Le fichier CSS "
 "peut nécessiter des ajustements."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:43
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:44
 msgid "Width of the carousel. Note that the CSS might need to be adjusted."
 msgstr "Largeur du carrousel. Le fichier CSS peut nécessiter des ajustements."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:45
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:46
 msgid "Height of the carousel. Note that the CSS might need to be adjusted."
 msgstr "Hauteur du carrousel. Le fichier CSS peut nécessiter des ajustements."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:53
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:54
 msgid ""
 "If checked the carousel will flow vertically instead of the default "
 "horizontal. Changing this may require theme changes!"
@@ -16140,7 +16144,7 @@ msgstr ""
 "Si ce paramètre est activé, le caroussel se déplacera verticalement et non "
 "horizontalement. Cela peut nécessiter des modifications à votre thème."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:62
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:63
 msgid ""
 "The scripts for which jCarousel is enabled. {If themes require it they might "
 "set this, otherwise you need to do it manually!}"
@@ -16183,29 +16187,29 @@ msgstr "Le plugin class-vidéo doit être activé pour supporter les vidéos."
 msgid "jPlayer not enabled, %s is already instantiated."
 msgstr "jPlayer n’est pas activé car %s est déjà instancié."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:129
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:130
 msgid "Autoplay"
 msgstr "Lecture automatique"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:130
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:131
 msgid "Disabled automatically if several players on one page"
 msgstr "Désactivé automatiquement s’il y a plusieurs lecteurs dans la page"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:131
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:132
 msgid "Poster (Videothumb)"
 msgstr "Affiche (vignette vidéo)"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:132
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:133
 msgid "If the videothumb should be shown (jplayer calls it poster)."
 msgstr ""
 "Indique si la vignette vidéo doit être affichée (jPlayer appelle cela une "
 "affiche)"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:133
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:134
 msgid "Audio poster (Videothumb)"
 msgstr "Affiche audio (vignette audio)"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:134
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:135
 msgid ""
 "If the poster should be shown for audio files (mp3,m4a,fla) (does not apply "
 "for playlists which are all or none)."
@@ -16213,12 +16217,12 @@ msgstr ""
 "Indique si le poster doit être affiché pour les fichiers audio (mp3,m4a,fla) "
 "(ne s’applique pas aux listes de lecture qui sont tout ou rien)."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:135
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:136
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:129
 msgid "Show title"
 msgstr "Afficher le titre"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:136
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:137
 msgid ""
 "If the title should be shown below the player in single player mode (not "
 "needed on normal themes) (ignored in playlists naturally)."
@@ -16227,11 +16231,11 @@ msgstr ""
 "individuelle » (pas nécessaire sur les thèmes normaux) (ignoré pour les "
 "listes de lecture)"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:137
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:138
 msgid "Playlist support"
 msgstr "Gestion des listes de lecture"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:138
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:139
 msgid ""
 "Enable this if you wish to use the playlist mode this loads the scripts "
 "needed. NOTE: You have to add the function printjPlayerPlaylist() to your "
@@ -16241,57 +16245,57 @@ msgstr ""
 "chargera les scripts nécessaires. Vous devrez ajouter la fonction "
 "printjPlayerPlaylist() à votre thème (référez-vous à la documentation)."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:139
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:140
 msgid "Playlist numbered"
 msgstr "Liste de lecture numérotée"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:140
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:141
 msgid "Enable this if you wish the playlist to be numbered."
 msgstr "Cocher pour numéroter les éléments de la liste de lecture."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:141
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:142
 msgid "Playlist playtime"
 msgstr "Temps de lecture de la liste"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:142
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:143
 msgid "Enable if you want to show the playtime of playlist entries."
 msgstr "Cocher pour afficher la durée des éléments de liste de lecture."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:143
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:144
 msgid "Enable download"
 msgstr "Autoriser le téléchargement"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:144
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:145
 msgid "Enables direct file downloads (playlists only)."
 msgstr ""
 "Autorise le téléchargement direct des fichiers (seulement pour les listes de "
 "lecture)"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:145
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:146
 msgid "Player size"
 msgstr "Taille de la fenêtre de lecture"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:147
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:148
 msgid "jp-video-270p (480x270px)"
 msgstr "jp-video-270p (480x270px)"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:148
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:149
 msgid "jp-video-360p (640x360px)"
 msgstr "jp-video-360p (640x360px)"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:149
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:150
 msgid "jp-video-480p (720x405px)*"
 msgstr "jp-video-480p (720x405px)*"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:150
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:151
 msgid "jp-video-720p (1280x720px)*"
 msgstr "jp-video-720p (1280x720px)*"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:151
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:152
 msgid "jp-video-1080p (1920x1080px)*"
 msgstr "jp-video-1080p (1920x1080px)*"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:152
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:153
 msgid ""
 "jPlayer is dependent on their HTML and CSS based skin. Sizes marked with a "
 "<strong>*</strong> are supported by the two Zenphoto custom skins only "
@@ -16307,11 +16311,11 @@ msgstr ""
 "thème ou en développer un ; vous devez aussi modifier les valeurs dans la "
 "méthode de la classe de l’extension getPlayerSize()."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:153
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:154
 msgid "Player skin"
 msgstr "Thème du lecteur"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:155
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:156
 msgid ""
 "Select the skin (theme) to use. <br />NOTE: Since the skin is pure HTML/CSS "
 "only there may be display issues with certain themes that require manual "
@@ -16326,12 +16330,12 @@ msgstr ""
 "personnalisé dans le dossier racine des extensions. Pour de plus amples "
 "renseignements, consulter la documentation des extensions."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:237
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:238
 #, php-format
 msgid "%1$s::%2$s not found."
 msgstr "%1$s::%2$s ne peut être trouvé."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:247
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:248
 msgid ""
 "provide the album name (%1), media file name (%2) and a unique number (%3). "
 "(If there is only player instance on the page the parameter may be omitted.)"
@@ -16340,72 +16344,72 @@ msgstr ""
 "unique (%3)  (s’il n’y a qu’une instance du lecteur sur la page, ce "
 "paramètre peut être omis)."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:288
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:289
 msgid "This multimedia format is not supported by jPlayer"
 msgstr "Ce format multimédia n’est pas supporté par jPlayer"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:462
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:463
 msgid "previous"
 msgstr "précédente"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:465
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:279
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:466
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:273
 msgid "play"
 msgstr "lecture"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:466
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:278
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:467
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:272
 msgid "pause"
 msgstr "pause"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:471
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:277
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:472
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:271
 msgid "stop"
 msgstr "arrêt"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:472
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:473
 msgid "mute"
 msgstr "sourdine"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:473
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:474
 msgid "unmute"
 msgstr "enlever la sourdine"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:474
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:475
 msgid "max volume"
 msgstr "volume maximum"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:482
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:483
 msgid "full screen"
 msgstr "plein écran"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:483
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:484
 msgid "restore screen"
 msgstr "restauration de l’image"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:488
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:114
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:111
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:489
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:111
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:105
 msgid "shuffle"
 msgstr "lecture aléatoire"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:489
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:490
 msgid "shuffle off"
 msgstr "lecture aléatoire désactivée"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:493
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:494
 msgid "repeat"
 msgstr "répétition"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:494
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:495
 msgid "repeat off"
 msgstr "répétition désactivée"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:500
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:501
 msgid "Update Required"
 msgstr "Mise à jour requise"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:501
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:502
 msgid ""
 "To play the media you will need to either update your browser to a recent "
 "version or update your <a href=\"http://get.adobe.com/flashplayer/\" target="
@@ -16766,11 +16770,11 @@ msgstr ""
 "Prépare un bloc de vignettes de navigation dans le fichier image.php, "
 "indépendamment des vignettes du fichier album.php."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:41
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:42
 msgid "Thumbs per page"
 msgstr "Vignettes par page"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:42
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:43
 msgid ""
 "Controls the number of images on a page. You might need to change this after "
 "switching themes to make it look better."
@@ -16778,49 +16782,49 @@ msgstr ""
 "Indique le nombre d’images par page. Vous devrez peut être modifier la "
 "valeur après avoir changé de thème pour en améliorer l’apparence."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:43
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:44
 msgid "Counter"
 msgstr "Compteur"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:44
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:45
 msgid "If you want to show the counter 'x - y of z images'."
 msgstr "Cocher pour afficher le compteur « x – y sur z images »."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:45
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:46
 msgid "Prevtext"
 msgstr "TextePrécédent"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:46
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:47
 msgid "The text for the previous thumbs."
 msgstr "Le texte pour les vignettes précédentes."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:47
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:48
 msgid "Nexttext"
 msgstr "TexteSuivant"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:48
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:49
 msgid "The text for the next thumbs."
 msgstr "Le texte pour les vignettes suivantes."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:50
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:51
 msgid ""
 "The thumb crop width is the maximum width when height is the shortest side"
 msgstr ""
 "La <em>largeur de rognage des vignettes</em> est la largeur maximale quand "
 "la hauteur est la plus petite dimension"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:52
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:53
 msgid ""
 "The thumb crop height is the maximum height when width is the shortest side"
 msgstr ""
 "La <em>hauteur de rognage des vignettes</em> est la hauteur maximale quand "
 "la largeur est la plus petite dimension"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:53
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:54
 msgid "Crop"
 msgstr "Rogner"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:54
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:55
 msgid ""
 "If checked the thumbnail will be a centered portion of the image with the "
 "given width and height after being resized to thumb size (by shortest side). "
@@ -16832,11 +16836,11 @@ msgstr ""
 "em>. Sinon, la vignette correspondra à l’image pleine grandeur originale "
 "redimensionnée à la taille des vignettes (selon le plus petit côté)."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:55
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:56
 msgid "Placeholders"
 msgstr "Substituants"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:56
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:57
 msgid ""
 "if you want to use placeholder for layout reasons to fill up the thumbs if "
 "the number of thumbs does not match images per page. Recommended only for "
@@ -16847,45 +16851,45 @@ msgstr ""
 "vignettes ne correspond pas au nombre d’images par page. Recommandé "
 "seulement pour les vignettes rognées."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:57
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:58
 msgid "Page list"
 msgstr "Liste des pages"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:58
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:59
 msgid "If you want the list of the pages to be shown."
 msgstr "Cocher pour afficher la liste des pages."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:59
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:60
 msgid "Pages list prev and next links"
 msgstr ""
 "Liens de navigation « précédent » et « suivant » dans la liste des pages"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:60
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:61
 msgid ""
 "If you want to show previous and next thumb page links with the page list."
 msgstr ""
 "Cocher pour afficher les liens des pages de vignettes précédente et suivante "
 "sur la liste des pages."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:61
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:62
 msgid "Pages list length"
 msgstr "Longueur de la liste des pages"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:62
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:63
 msgid "The number of links for the page list."
 msgstr "Le nombre de liens pour la liste des pages."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:220
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:363
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:221
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:364
 msgid "previous thumbs"
 msgstr "vignettes précédentes"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:313
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:386
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:314
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:387
 msgid "next thumbs"
 msgstr "vignettes suivantes"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:339
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:340
 #, php-format
 msgid "Images %1$u-%2$u of %3$u (%4$u/%5$u)"
 msgstr "Images %1$u – %2$u sur %3$u (%4$u/%5$u)"
@@ -17611,7 +17615,7 @@ msgstr "%s apparentés"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/rewriteRules.php:15
 #, fuzzy
 msgid "Site rewrite rules tab."
-msgstr "Onglet des règles de réécriture"
+msgstr "Onglet de règles de réécriture des adresses du site."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/rewriteRules.php:24
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/rewriteRules/admin_tab.php:24
@@ -17646,8 +17650,7 @@ msgstr "Les rewriteTokens ont été réinitialisés"
 #, fuzzy, php-format
 msgid ""
 "The <code>%1$s</code> rule defines <strong>%2$s</strong> as <em>%3$s</em>."
-msgstr ""
-"La règle <code>%1$s</code> définit <strong>%2$s</strong> comme <em>%3$s</em>."
+msgstr "Options pour <code><strong>%1$s</strong></code> : <em>%2$s</em>"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/rewriteTokens.php:73
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/rewriteTokens.php:159
@@ -18568,17 +18571,17 @@ msgstr ""
 "Une seule extension de diaporama peut être activée. Or, <a href=\"#%1$s"
 "\"><code>%1$s</code></a> l’est déjà."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:86
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:90
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:83
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:84
 msgid "jQuery Cycle"
 msgstr "jQuery Cycle"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:86
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:90
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:83
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:84
 msgid "jQuery Colorbox"
 msgstr "jQuery Colorbox"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:87
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:84
 msgid ""
 "<em>jQuery Cycle</em> for slideshow using the jQuery Cycle plugin<br /"
 "><em>jQuery Colorbox</em> for slideshow using Colorbox (Colorbox plugin "
@@ -18593,12 +18596,12 @@ msgstr ""
 "peut pas être appelé directement ni utilisé dans la page slideshow.php du "
 "thème."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:90
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:94
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:87
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:88
 msgid "Speed of the transition in milliseconds."
 msgstr "Vitesse de la transition en millisecondes."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:99
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:96
 msgid ""
 "The scripts for which the slideshow is enabled. {Should have been set by the "
 "themes!}"
@@ -18606,112 +18609,112 @@ msgstr ""
 "Les scripts pour lesquels le diaporama est activé. <br />(Cela devrait être "
 "spécifié par les thèmes.)"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:106
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:138
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:103
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:135
 msgid "Slide width"
 msgstr "Largeur de la diapositive"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:108
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:140
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:101
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:159
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:105
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:137
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:95
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:153
 msgid "Width of the images in the slideshow."
 msgstr "Largeur des images dans le diaporama."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:109
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:106
 msgid "Slide height"
 msgstr "Hauteur de la diapositive"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:111
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:104
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:108
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:98
 msgid "Height of the images in the slideshow."
 msgstr "Hauteur des images dans le diaporama."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:112
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:109
 msgid "Cycle Effect"
 msgstr "Transitions"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:114
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:127
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:109
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:145
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:111
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:124
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:103
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:139
 msgid "fade"
 msgstr "fondu"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:114
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:111
 msgid "zoom"
 msgstr "zoom"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:114
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:111
 msgid "slide X"
 msgstr "selon l’axe X"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:114
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:111
 msgid "slide Y"
 msgstr "selon l’axe Y"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:114
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:111
 msgid "scroll up"
 msgstr "vers le haut"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:114
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:111
 msgid "scroll down"
 msgstr "vers le bas"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:114
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:111
 msgid "scroll left"
 msgstr "vers la gauche"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:114
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:111
 msgid "scroll right"
 msgstr "vers la droite"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:115
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:112
 msgid "The cycle slide effect to be used."
 msgstr "L’effet de transition à utiliser entre les images."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:116
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:113
 msgid "Timeout"
 msgstr "Limite de temps"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:118
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:127
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:115
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:121
 msgid "Milliseconds between slide transitions (0 to disable auto advance.)"
 msgstr ""
 "Nombre de millisecondes entre les transitions inter-images (mettre 0 pour "
 "désactiver la bascule automatique)."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:121
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:130
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:118
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:124
 msgid "Check if you want to show the image's description below the slideshow."
 msgstr ""
 "Cocher cette case pour afficher la description de l’image sous le diaporama."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:125
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:122
 msgid "Colorbox transition"
 msgstr "Transition Colorbox"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:127
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:144
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:124
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:138
 msgid "elastic"
 msgstr "élastique"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:128
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:147
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:125
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:141
 msgid "The Colorbox transition slide effect to be used."
 msgstr "L’effet de transition Colorbox à utiliser."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:129
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:126
 msgid "Colorbox image type"
 msgstr "Type d’image Colorbox"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:131
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:150
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:128
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:144
 msgid "sized image"
 msgstr "image redimensionnée"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:132
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:151
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:129
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:145
 msgid ""
 "The image type you wish to use for the Colorbox. If you choose 'sized image' "
 "the slideshow width value will be used for the longest side of the image."
@@ -18720,57 +18723,57 @@ msgstr ""
 "redimensionnée », la largeur du diaporama sera utilisée comme plus longue "
 "dimension de l’image."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:133
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:130
 msgid "Colorbox image title"
 msgstr "Titre d’image Colorbox"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:135
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:154
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:132
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:148
 msgid "If the image title should be shown at the bottom of the Colorbox."
 msgstr ""
 "Indique si le titre de l’image est affiché en bas de la boîte Colorbox."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:161
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:194
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:158
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:188
 msgid "Invalid slideshow album name!"
 msgstr "Le nom du diaporama de l’album est invalide !"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:169
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:202
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:166
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:196
 msgid "This album is password protected!"
 msgstr "Cet album est protégé par mot de passe !"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:185
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:270
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:182
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:264
 msgid "No images for the slideshow!"
 msgstr "Aucune image dans le diaporama !"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:353
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:350
 msgid "Previous"
 msgstr "Précédente"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:354
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:351
 msgid "Stop and return to album or image page"
 msgstr "Arrêter et retourner à la page de l’album ou de l’image"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:355
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:352
 msgid "Pause (to stop the slideshow without returning)"
 msgstr "Pause (pour arrêter le diaporama sans revenir à la page précédente)"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:356
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:353
 msgid "Play"
 msgstr "Lecture"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:357
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:354
 msgid "Next"
 msgstr "Suivante"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:388
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:385
 msgid ":"
 msgstr ":"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:449
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:416
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:446
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:410
 msgid ""
 "provide the album name as %1 and (optionally) <code>true</code> (or "
 "<code>false</code>) as %2 to show (hide) controls. Hiding the controls is "
@@ -18782,8 +18785,8 @@ msgstr ""
 "défaut, les contrôles ne sont pas affichés. On peut aussi substituer les "
 "valeurs par défaut en spécifiant la largeur (%3) et la hauteur (%4)."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:571
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:550
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:568
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:544
 #, php-format
 msgid ""
 "Slideshow not available because colorbox is not enabled on %1$s <em>%2$s</"
@@ -18792,24 +18795,24 @@ msgstr ""
 "Le diaporama n’est pas disponible car Colorbox n’est activé sur les pages "
 "<em>%2$s</em> de %1$s."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:590
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:569
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:587
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:563
 msgid "start slideshow"
 msgstr "démarrer le diaporama"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:591
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:570
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:588
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:564
 msgid "stop slideshow"
 msgstr "arrêter le diaporama"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:595
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:574
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:592
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:568
 #, php-format
 msgid "image %1$s of %2$s"
 msgstr "image %1$s de %2$s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:702
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:662
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:699
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:656
 msgid "Invalid linking to the slideshow page."
 msgstr "Lien vers le diaporama incorrect."
 
@@ -18817,11 +18820,11 @@ msgstr "Lien vers le diaporama incorrect."
 msgid "Slideshow plugin based on the Cycle2 jQuery plugin."
 msgstr "Extension Slideshow, basée sur l’extension jQuery Cycle2."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:88
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:82
 msgid "Slideshow: Mode"
 msgstr "Diaporama : mode"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:91
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:85
 msgid ""
 "<em>jQuery Cycle</em> for slideshow using the jQuery Cycle2 plugin<br /"
 "><em>jQuery Colorbox</em> for slideshow using Colorbox (Colorbox plugin "
@@ -18836,51 +18839,51 @@ msgstr ""
 "peut pas être appelé directement ni utilisé dans la page slideshow.php du "
 "thème."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:92
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:86
 msgid "Slideshow: Speed"
 msgstr "Diaporama : vitesse"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:99
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:93
 msgid "Slideshow: Slide width"
 msgstr "Diaporama : largeur de la diapositive"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:102
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:96
 msgid "Slideshow: Slide height"
 msgstr "Diaporama : hauteur de la diapositive"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:105
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:99
 msgid "Slideshow: Effect"
 msgstr "Diaporama : effet"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:110
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:104
 msgid "fadeOut"
 msgstr "fondu vers le noir"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:112
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:106
 msgid "Scroll horizontal"
 msgstr "Balayage horizontal"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:113
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:107
 msgid "Scroll vertical"
 msgstr "Balayage vertical"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:114
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:108
 msgid "Flip horizontal"
 msgstr "Basculement horizontal"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:115
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:109
 msgid "Flip vertical"
 msgstr "Basculement vertical"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:116
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:110
 msgid "Tile slide"
 msgstr "Damier"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:117
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:111
 msgid "Tile blind"
 msgstr "Store"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:118
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:112
 msgid ""
 "The cycle slide effect to be used. Flip transitions are only supported on "
 "browsers that support CSS3 3D transforms. (IE10+, current Chrome, Firefox, "
@@ -18891,63 +18894,63 @@ msgstr ""
 "tridimensionnelles css3 (IE10 + et les versions récentes de Chrome, Firefox, "
 "Opera et Safari)."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:119
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:113
 msgid "Slideshow: Tile Effect - Extra"
 msgstr "Diaporama : effet damier – extra"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:122
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:116
 msgid "Horziontal"
 msgstr "Horizontal"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:124
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:118
 msgid "If one of the tile effects is selected, this is its orientation."
 msgstr ""
 "Si l’un des effets de damier ou de store est sélectionné, définir ici son "
 "orientation."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:125
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:119
 msgid "Slideshow: Timeout"
 msgstr "Diaporama : limite de temps"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:128
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:122
 msgid "Slideshow: Description"
 msgstr "Diaporama : description"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:131
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:125
 msgid "Slideshow: Swipe gestures"
 msgstr "Diaporama : interface gestuelle"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:133
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:127
 msgid "Check if you want to enable touch screen swipe gestures."
 msgstr "Cocher pour activer l’interface gestuelle sur écran tactile."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:134
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:128
 msgid "Slideshow: Pause on hover"
 msgstr "Diaporama : pause avec le pointeur"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:136
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:130
 msgid "Check if you want the slidesshow to pause on hover."
 msgstr ""
 "Cocher si vous voulez que le diaporama s’arrête lorsque la souris passe au-"
 "dessus de la photo"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:141
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:135
 msgid "Colorbox: Transition"
 msgstr "Colorbox : transition"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:148
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:142
 msgid "Colorbox: Image type"
 msgstr "Colorbox : type d’image"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:152
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:146
 msgid "Colorbox: Image title"
 msgstr "Colorbox : titre d’image"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:157
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:151
 msgid "Colorbox: Slide width"
 msgstr "Colorbox : largeur de la diapositive"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:172
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:166
 msgid ""
 "The scripts for which the cycle2 plugin is enabled. {If themes require it "
 "they might set this, otherwise you need to do it manually!}"
@@ -19165,7 +19168,7 @@ msgstr ""
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinyURL.php:64
 #, fuzzy
 msgid "Use in themes for"
-msgstr "Utilisez dans des thèmes pour"
+msgstr "Utiliser dans des thèmes pour "
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinyURL.php:68
 #, fuzzy
@@ -19173,8 +19176,8 @@ msgid ""
 "If an option is chosen, normal theme URLs will be replaced with <i>tinyURL</"
 "i>s for that object."
 msgstr ""
-"Lorsqu’un paramètre est sélectionné, l’URL normalement générée par le thème "
-"sera remplacée par l’URL abrégée (<i>(tinyURL</i>) de l’objet"
+"Si ce paramètre est sélectionné, les URL normalement produites par le thème "
+"seront remplacées par les URL abrégées <i>tinyURL</i> de ces objets."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinyURL.php:84
 msgid "news categories"
@@ -19638,11 +19641,11 @@ msgstr ""
 "Offre aux utilisateurs la possibilité de sélectionner la taille de "
 "visualisation des images."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/viewer_size_image.php:52
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/viewer_size_image.php:53
 msgid "Image sizes allowed"
 msgstr "Tailles d’images autorisées"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/viewer_size_image.php:54
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/viewer_size_image.php:55
 msgid ""
 "List of sizes from which the viewer may select.<br />The form is \"$s=&lt;"
 "size&gt;\" or \"$h=&lt;height&gt;,$w=&lt;width&gt;\"....<br />See "
@@ -19652,37 +19655,37 @@ msgstr ""
 "$s=&lt;taille&gt; » ou « $h=&lt;hauteur&gt;,$w=&lt;largeur&gt; »....<br /"
 ">Voir la fonction printCustomSizedImage() pour plus de détails"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/viewer_size_image.php:55
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/viewer_size_image.php:56
 msgid "Selector"
 msgstr "Sélecteur"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/viewer_size_image.php:56
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/viewer_size_image.php:57
 msgid "Radio buttons"
 msgstr "Boutons radio"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/viewer_size_image.php:56
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/viewer_size_image.php:57
 msgid "Drop-down"
 msgstr "Menu déroulant"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/viewer_size_image.php:57
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/viewer_size_image.php:58
 msgid "Choose the kind of selector to be presented the viewer."
 msgstr "Choisir le type de sélecteur à afficher au visiteur."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/viewer_size_image.php:58
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/viewer_size_image.php:59
 msgid "Default size"
 msgstr "Taille par défaut"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/viewer_size_image.php:59
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/viewer_size_image.php:60
 msgid ""
 "The initial size for the image. Format is a single instance of the sizes "
 "list."
 msgstr "La taille initiale de l’image."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/viewer_size_image.php:96
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/viewer_size_image.php:97
 msgid "Select image size"
 msgstr "Choisir la taille de l’image"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/viewer_size_image.php:105
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/viewer_size_image.php:106
 msgid ""
 "There is a format error in your <em>viewer_size_image_sizes</em> option "
 "string."
@@ -19690,26 +19693,26 @@ msgstr ""
 "Il y a une erreur de format dans la chaîne de paramètres de "
 "<em>viewer_size_image_sizes</em>."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/viewer_size_image.php:122
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/viewer_size_image.php:123
 msgid "There is a format error in your $usersizes string."
 msgstr "Il y a une erreur de format dans la chaîne $usersizes."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/viewer_size_image.php:177
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/viewer_size_image.php:178
 #, php-format
 msgid "%1$s x %2$s px"
 msgstr "%1$s x %2$s px"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/viewer_size_image.php:183
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/viewer_size_image.php:184
 #, php-format
 msgid "%s px"
 msgstr "%s px"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/viewer_size_image.php:238
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/viewer_size_image.php:239
 msgid "There is a format error in user size selection"
 msgstr ""
 "Il y a une erreur de format dans la sélection de la taille de l’utilisateur"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/viewer_size_image.php:241
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/viewer_size_image.php:242
 msgid "There is a format error in your $default parameter"
 msgstr "Il y a une erreur de format dans le paramètre $default"
 
@@ -21071,7 +21074,6 @@ msgid "No calls on deprecated functions were found."
 msgstr "Aucun appel de fonctions obsolètes n’a été trouvé."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:15
-#, fuzzy
 msgid "Use the instantiate method instead"
 msgstr "Utilisez plutôt la méthode d’instantiation"
 
