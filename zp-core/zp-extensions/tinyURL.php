@@ -117,14 +117,14 @@ class tinyURL {
 			if ($page > 1)
 				$tiny.='/' . $page;
 			if (class_exists('seo_locale')) {
-				return seo_locale::localePath(true) . '/' . _TINY_ . $tiny;
+				return seo_locale::localePath(false) . '/' . _TINY_ . $tiny;
 			} else {
-				return FULLWEBPATH . '/' . _TINY_ . $tiny;
+				return WEBPATH . '/' . _TINY_ . $tiny;
 			}
 		} else {
 			if ($page > 1)
 				$tiny.= '&page=' . $page;
-			return FULLWEBPATH . '/index.php?p=' . $tiny . '&t';
+			return WEBPATH . '/index.php?p=' . $tiny . '&t';
 		}
 	}
 

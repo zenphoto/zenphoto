@@ -563,7 +563,7 @@ class RSS extends feed {
 		if ($this->mode == "albums") {
 			$albumobj = newAlbum($item['folder']);
 			$totalimages = $albumobj->getNumImages();
-			$itemlink = $this->host . $albumobj->getAlbumLink();
+			$itemlink = $this->host . $albumobj->getLink();
 			$thumb = $albumobj->getAlbumThumbImage();
 			$thumburl = '<img border="0" src="' . PROTOCOL . '://' . $this->host . html_encode(pathurlencode($thumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . html_encode($albumobj->getTitle($this->locale)) . '" />';
 			$title = $albumobj->getTitle($this->locale);
