@@ -98,24 +98,25 @@ class jplayer_options {
 	public $name = 'jPlayer';
 
 	function jplayer_options() {
-		setOptionDefault('jplayer_autoplay', '');
-		setOptionDefault('jplayer_poster', 1);
-		setOptionDefault('jplayer_postercrop', 1);
-		setOptionDefault('jplayer_showtitle', '');
-		setOptionDefault('jplayer_playlist', '');
-		setOptionDefault('jplayer_playlist_numbered', 1);
-		setOptionDefault('jplayer_playlist_playtime', 0);
-		setOptionDefault('jplayer_download', '');
-		setOptionDefault('jplayer_size', 'jp-video-270p');
-		setOptionDefault('jplayer_skin', 'zenphotolight');
-		setOptionDefault('jplayer_counterparts', 0);
-		/* TODO: what are these sizes?
-		  if (class_exists('cacheManager')) {
-		  $player = new jPlayer();
-		  cacheManager::deleteThemeCacheSizes('jplayer');
-		  cacheManager::addThemeCacheSize('jplayer', NULL, $player->width, $player->height, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-		  }
-		 */
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('jplayer_autoplay', '');
+			setOptionDefault('jplayer_poster', 1);
+			setOptionDefault('jplayer_postercrop', 1);
+			setOptionDefault('jplayer_showtitle', '');
+			setOptionDefault('jplayer_playlist', '');
+			setOptionDefault('jplayer_playlist_numbered', 1);
+			setOptionDefault('jplayer_playlist_playtime', 0);
+			setOptionDefault('jplayer_download', '');
+			setOptionDefault('jplayer_size', 'jp-video-270p');
+			setOptionDefault('jplayer_skin', 'zenphotolight');
+			setOptionDefault('jplayer_counterparts', 0);
+			/* TODO: what are these sizes?
+			  require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager.php');
+			  $player = new jPlayer();
+			  cacheManager::deleteThemeCacheSizes('jplayer');
+			  cacheManager::addThemeCacheSize('jplayer', NULL, $player->width, $player->height, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+			 */
+		}
 	}
 
 	function getOptionsSupported() {
@@ -647,80 +648,80 @@ class jPlayer {
 			}
 			?>
 			<script type="text/javascript">
-								//<![CDATA[
-								$(document).ready(function(){
+				//<![CDATA[
+				$(document).ready(function(){
 				new jPlayerPlaylist({
 				jPlayer: "#jquery_jplayer_<?php echo $albumobj->getID(); ?>",
-								cssSelectorAncestor: "#jp_container_<?php echo $albumobj->getID(); ?>"
+				cssSelectorAncestor: "#jp_container_<?php echo $albumobj->getID(); ?>"
 				}, [
-			<?php
-			$count = '';
-			$number = '';
-			foreach ($entries as $entry) {
-				$count++;
-				if (is_array($entry)) {
-					$ext = getSuffix($entry['filename']);
-				} else {
-					$ext = getSuffix($entry);
-				}
-				$numbering = '';
-				if (in_array($ext, $suffixes)) {
-					$number++;
-					if (getOption('jplayer_playlist_numbered')) {
-						$numbering = '<span>' . $number . '</span>';
+				<?php
+				$count = '';
+				$number = '';
+				foreach ($entries as $entry) {
+					$count++;
+					if (is_array($entry)) {
+						$ext = getSuffix($entry['filename']);
+					} else {
+						$ext = getSuffix($entry);
 					}
-					$video = newImage($albumobj, $entry);
-					$videoThumb = '';
-					$this->setModeAndSuppliedFormat($ext);
-					if ($option == 'playlist' && getOption('jplayer_poster')) {
-						$albumfolder = $albumobj->name;
-						$videoThumb = ',poster:"' . $video->getCustomImage(null, $this->width, $this->height, $this->width, $this->height, null, null, true) . '"';
-					}
-					$playtime = '';
-					if (getOption('jplayer_playlist_playtime')) {
-						if (!empty($playtime)) {
-							$playtime = ' (' . $video->get('VideoPlaytime') . ')';
+					$numbering = '';
+					if (in_array($ext, $suffixes)) {
+						$number++;
+						if (getOption('jplayer_playlist_numbered')) {
+							$numbering = '<span>' . $number . '</span>';
 						}
-					}
-					?>
+						$video = newImage($albumobj, $entry);
+						$videoThumb = '';
+						$this->setModeAndSuppliedFormat($ext);
+						if ($option == 'playlist' && getOption('jplayer_poster')) {
+							$albumfolder = $albumobj->name;
+							$videoThumb = ',poster:"' . $video->getCustomImage(null, $this->width, $this->height, $this->width, $this->height, null, null, true) . '"';
+						}
+						$playtime = '';
+						if (getOption('jplayer_playlist_playtime')) {
+							if (!empty($playtime)) {
+								$playtime = ' (' . $video->get('VideoPlaytime') . ')';
+							}
+						}
+						?>
 						{
 						title:"<?php echo $numbering . html_encode($video->getTitle()) . $playtime; ?>",
-					<?php if (getOption('jplayer_download')) { ?>
+						<?php if (getOption('jplayer_download')) { ?>
 							free:true,
-					<?php } ?>
-					<?php echo $this->supplied; ?>:"<?php echo html_encode(pathurlencode($url = $video->getFullImage(FULLWEBPATH))); ?>"
-					<?php echo $this->getCounterpartFiles($url, $ext); ?>
-					<?php echo $videoThumb; ?>
+						<?php } ?>
+						<?php echo $this->supplied; ?>:"<?php echo html_encode(pathurlencode($url = $video->getFullImage(FULLWEBPATH))); ?>"
+						<?php echo $this->getCounterpartFiles($url, $ext); ?>
+						<?php echo $videoThumb; ?>
 						}
-					<?php
-					if ($numimages != $count) {
-						echo ',';
-					}
-				} // if video
-			} // foreach
+						<?php
+						if ($numimages != $count) {
+							echo ',';
+						}
+					} // if video
+				} // foreach
 // for some reason the playlist must run with supplied: "flash,html" because otherwise neither videothumbs(poster) nor flv/flv work on Safari 4.1.
 // Seems the flash fallback fails here
-			?>
+				?>
 				], {
 				swfPath: "<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/jplayer/js",
-								solution: "flash,html",
-			<?php if ($option == 'playlist') { ?>
+				solution: "flash,html",
+				<?php if ($option == 'playlist') { ?>
 					supplied: "m4v, mp4, m4a, mp3, fla, flv<?php echo $this->supplied_counterparts; ?>"
-			<?php } else { ?>
+				<?php } else { ?>
 					supplied: "m4a, mp3, fla<?php echo $this->supplied_counterparts; ?>"
-				<?php
-			}
-			if ($option != 'playlist-audio') {
-				?>
+					<?php
+				}
+				if ($option != 'playlist-audio') {
+					?>
 					, size: {
 					width: "<?php echo $this->width; ?>px",
-									height: "<?php echo $this->height; ?>px",
-									cssClass: "<?php echo $this->playersize; ?>"
+					height: "<?php echo $this->height; ?>px",
+					cssClass: "<?php echo $this->playersize; ?>"
 					}
-			<?php } ?>
+				<?php } ?>
 				});
 				});
-								//]]>
+				//]]>
 			</script>
 			<?php
 			if ($option == 'playlist') {

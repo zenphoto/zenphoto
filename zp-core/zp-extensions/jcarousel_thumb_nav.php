@@ -22,14 +22,15 @@ $option_interface = 'jcarousel';
 class jcarousel {
 
 	function jcarouselOptions() {
-		setOptionDefault('jcarousel_scroll', '3');
-		setOptionDefault('jcarousel_width', '50');
-		setOptionDefault('jcarousel_height', '50');
-		setOptionDefault('jcarousel_croph', '50');
-		setOptionDefault('jcarousel_cropw', '50');
-		setOptionDefault('jcarousel_fullimagelink', '');
-		setOptionDefault('jcarousel_vertical', 0);
-		if (class_exists('cacheManager')) {
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('jcarousel_scroll', '3');
+			setOptionDefault('jcarousel_width', '50');
+			setOptionDefault('jcarousel_height', '50');
+			setOptionDefault('jcarousel_croph', '50');
+			setOptionDefault('jcarousel_cropw', '50');
+			setOptionDefault('jcarousel_fullimagelink', '');
+			setOptionDefault('jcarousel_vertical', 0);
+			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager.php');
 			cacheManager::deleteThemeCacheSizes('jcarousel_thumb_nav');
 			cacheManager::addThemeCacheSize('jcarousel_thumb_nav', NULL, getOption('jcarousel_width'), getOption('jcarousel_height'), getOption('jcarousel_cropw'), getOption('jcarousel_croph'), NULL, NULL, true, NULL, NULL, NULL);
 		}
@@ -217,7 +218,7 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('jcarousel_' . $_zp_gallery->g
 			<script type="text/javascript">
 				// <!-- <![CDATA[
 				var mycarousel_itemList = [
-				<?php echo $items; ?>
+			<?php echo $items; ?>
 				];
 
 				function mycarousel_itemLoadCallback(carousel, state) {

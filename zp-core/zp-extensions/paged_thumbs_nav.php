@@ -18,20 +18,21 @@ $option_interface = 'pagedthumbsOptions';
 class pagedthumbsOptions {
 
 	function pagedthumbsOptions() {
-		setOptionDefault('pagedthumbs_imagesperpage', '10');
-		setOptionDefault('pagedthumbs_counter', '');
-		gettext($str = '« prev thumbs');
-		setOptionDefault('pagedthumbs_prevtext', getAllTranslations($str));
-		gettext($str = 'next thumbs »');
-		setOptionDefault('pagedthumbs_nexttext', getAllTranslations($str));
-		setOptionDefault('pagedthumbs_width', '50');
-		setOptionDefault('pagedthumbs_height', '50');
-		setOptionDefault('pagedthumbs_crop', '1');
-		setOptionDefault('pagedthumbs_placeholders', '');
-		setOptionDefault('pagedthumbs_pagelist', '');
-		setOptionDefault('pagedthumbs_pagelistprevnext', '');
-		setOptionDefault('pagedthumbs_pagelistlength', '6');
-		if (class_exists('cacheManager')) {
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('pagedthumbs_imagesperpage', '10');
+			setOptionDefault('pagedthumbs_counter', '');
+			gettext($str = '« prev thumbs');
+			setOptionDefault('pagedthumbs_prevtext', getAllTranslations($str));
+			gettext($str = 'next thumbs »');
+			setOptionDefault('pagedthumbs_nexttext', getAllTranslations($str));
+			setOptionDefault('pagedthumbs_width', '50');
+			setOptionDefault('pagedthumbs_height', '50');
+			setOptionDefault('pagedthumbs_crop', '1');
+			setOptionDefault('pagedthumbs_placeholders', '');
+			setOptionDefault('pagedthumbs_pagelist', '');
+			setOptionDefault('pagedthumbs_pagelistprevnext', '');
+			setOptionDefault('pagedthumbs_pagelistlength', '6');
+			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager.php');
 			cacheManager::deleteThemeCacheSizes('paged_thumbs_nav');
 			cacheManager::addThemeCacheSize('paged_thumbs_nav', NULL, getOption('pagedthumbs_width'), getOption('pagedthumbs_height'), NULL, NULL, NULL, NULL, true, NULL, NULL, NULL);
 		}
