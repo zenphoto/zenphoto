@@ -2,7 +2,7 @@
 require_once(dirname(__FILE__) . '/admin-globals.php');
 require_once(dirname(__FILE__) . '/reconfigure.php');
 
-list($diff, $needs) = checkSignature(TEST_RELEASE || isset($_GET['xsrfToken']) && $_GET['xsrfToken'] == getXSRFToken('setup'));
+list($diff, $needs) = checkSignature(isset($_GET['xsrfToken']) && $_GET['xsrfToken'] == getXSRFToken('setup'));
 if (empty($needs)) {
 	header('Location: setup/index.php');
 } else {
@@ -23,7 +23,13 @@ if (empty($needs)) {
 						<p>
 							<?php
 							if (zpFunctions::hasPrimaryScripts()) {
-								printf(gettext('You must restore the setup files from the %1$s [%2$s] release.'), ZENPHOTO_VERSION, ZENPHOTO_RELEASE);
+								chdir(dirname(__FILE__) . '/setup/');
+								$found = safe_glob('*.xxx');
+								if ($found && zp_loggedin(ADMIN_RIGHTS)) {
+									echo '<a href="' . WEBPATH . '/' . ZENFOLDER . '/setup.php?xsrfToken=' . getXSRFToken('setup') . '">' . gettext('Click to restore the setup scripts and run setup.') . '</a>';
+								} else {
+									printf(gettext('You must restore the setup files from the %1$s [%2$s] release.'), ZENPHOTO_VERSION, ZENPHOTO_RELEASE);
+								}
 							} else {
 								echo gettext('You must restore the setup files on your primary installation to run the setup operation.');
 							}
