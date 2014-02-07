@@ -58,23 +58,23 @@ class slideshow {
 
 	function slideshow() {
 		global $_zp_gallery;
-		//setOptionDefault('slideshow_size', '595');
-		setOptionDefault('slideshow_width', '595');
-		setOptionDefault('slideshow_height', '595');
-		setOptionDefault('slideshow_mode', 'jQuery');
-		setOptionDefault('slideshow_effect', 'fade');
-		setOptionDefault('slideshow_speed', '1000');
-		setOptionDefault('slideshow_timeout', '3000');
-		setOptionDefault('slideshow_showdesc', '');
-		setOptionDefault('slideshow_colorbox_transition', 'fade');
-		// incase the flowplayer has not been enabled!!!
-		setOptionDefault('slideshow_colorbox_imagetype', 'sizedimage');
-		setOptionDefault('slideshow_colorbox_imagetitle', 1);
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager.php');
-		cacheManager::deleteThemeCacheSizes('slideshow');
-		cacheManager::addThemeCacheSize('slideshow', NULL, getOption('slideshow_width'), getOption('slideshow_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, true);
-	}
-
+		if (OFFSET_PATH == 2) {
+			//setOptionDefault('slideshow_size', '595');
+			setOptionDefault('slideshow_width', '595');
+			setOptionDefault('slideshow_height', '595');
+			setOptionDefault('slideshow_mode', 'jQuery');
+			setOptionDefault('slideshow_effect', 'fade');
+			setOptionDefault('slideshow_speed', '1000');
+			setOptionDefault('slideshow_timeout', '3000');
+			setOptionDefault('slideshow_showdesc', '');
+			setOptionDefault('slideshow_colorbox_transition', 'fade');
+			// incase the flowplayer has not been enabled!!!
+			setOptionDefault('slideshow_colorbox_imagetype', 'sizedimage');
+			setOptionDefault('slideshow_colorbox_imagetitle', 1);
+			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager.php');
+			cacheManager::deleteThemeCacheSizes('slideshow');
+			cacheManager::addThemeCacheSize('slideshow', NULL, getOption('slideshow_width'), getOption('slideshow_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, true);
+		}
 	}
 
 	function getOptionsSupported() {
@@ -544,7 +544,7 @@ if (extensionEnabled('slideshow')) {
 				if ($numberofimages > 1) {
 					?>
 					<form name="slideshow_<?php echo $slideshow_instance; ?>" method="post"	action="<?php echo zp_apply_filter('getLink', $slideshowlink, 'slideshow.php,NULL'); ?>">
-					<?php echo $slideshowhidden; ?>
+						<?php echo $slideshowhidden; ?>
 						<input type="hidden" name="pagenr" value="<?php echo html_encode($pagenr); ?>" />
 						<input type="hidden" name="albumid" value="<?php echo $albumnr; ?>" />
 						<input type="hidden" name="numberofimages" value="<?php echo $numberofimages; ?>" />
@@ -552,7 +552,7 @@ if (extensionEnabled('slideshow')) {
 						<input type="hidden" name="imagefile" value="<?php echo html_encode($imagefile); ?>" />
 						<?php if (!empty($linkstyle)) echo '<p style="' . $linkstyle . '">'; ?>
 						<a class="slideshowlink" id="slideshowlink_<?php echo $slideshow_instance; ?>" 	href="javascript:document.slideshow_<?php echo $slideshow_instance; ?>.submit()"><?php echo $linktext; ?></a>
-					<?php if (!empty($linkstyle)) echo '</p>'; ?>
+						<?php if (!empty($linkstyle)) echo '</p>'; ?>
 					</form>
 					<?php
 				}
@@ -579,21 +579,21 @@ if (extensionEnabled('slideshow')) {
 					?>
 					<script type="text/javascript">
 						$(document).ready(function() {
-						$("a[rel='slideshow']").colorbox({
-						slideshow: true,
-						loop: true,
-						transition: '<?php echo getOption('slideshow_colorbox_transition'); ?>',
-						slideshowSpeed: <?php echo getOption('slideshow_speed'); ?>,
-						slideshowStart: '<?php echo gettext("start slideshow"); ?>',
-						slideshowStop: '<?php echo gettext("stop slideshow"); ?>',
-						previous: '<?php echo gettext("prev"); ?>',
-						next: '<?php echo gettext("next"); ?>',
-						close: '<?php echo gettext("close"); ?>',
-						current: '<?php printf(gettext('image %1$s of %2$s'), '{current}', '{total}'); ?>',
-						maxWidth: '98%',
-						maxHeight: '98%',
-						photo: true
-						});
+							$("a[rel='slideshow']").colorbox({
+								slideshow: true,
+								loop: true,
+								transition: '<?php echo getOption('slideshow_colorbox_transition'); ?>',
+								slideshowSpeed: <?php echo getOption('slideshow_speed'); ?>,
+								slideshowStart: '<?php echo gettext("start slideshow"); ?>',
+								slideshowStop: '<?php echo gettext("stop slideshow"); ?>',
+								previous: '<?php echo gettext("prev"); ?>',
+								next: '<?php echo gettext("next"); ?>',
+								close: '<?php echo gettext("close"); ?>',
+								current: '<?php printf(gettext('image %1$s of %2$s'), '{current}', '{total}'); ?>',
+								maxWidth: '98%',
+								maxHeight: '98%',
+								photo: true
+							});
 						});
 					</script>
 					<?php
