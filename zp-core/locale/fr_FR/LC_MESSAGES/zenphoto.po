@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-07 22:54-0500\n"
-"PO-Revision-Date: 2014-02-07 23:39-0500\n"
+"POT-Creation-Date: 2014-02-07 23:51-0500\n"
+"PO-Revision-Date: 2014-02-07 23:52-0500\n"
 "Last-Translator: \n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "<michel@mgagnon.net>\n"
@@ -13528,11 +13528,11 @@ msgstr "Date de la dernière sauvegarde automatique : %s."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:15
 msgid ""
-"Responsive jQuery bxSlider thumb nav plugin based on http://http://bxslider."
-"com"
+"Responsive jQuery bxSlider thumb nav plugin based on <a href='http://"
+"bxslider.com'>http://bxslider.com</a>"
 msgstr ""
-"Extension fluide « jQuery bxSlider thumb nav » basée sur http://http://"
-"bxslider.com."
+"Extension fluide « jQuery bxSlider thumb nav », d’après <a href='http://"
+"bxslider.com'>http://bxslider.com</a>."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:17
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:14
