@@ -25,11 +25,11 @@ if (isset($_index_theme)) {
 } else {
 	$_zp_script = NULL;
 }
-debug404($album, $image, @$_index_theme);
 header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 header("HTTP/1.0 404 Not Found");
 header("Status: 404 Not Found");
 zp_apply_filter('theme_headers');
+debug404($album, $image, @$_index_theme);
 if ($_zp_script && file_exists($_zp_script)) {
 	if (isset($custom) && $custom)
 		require_once($custom);
