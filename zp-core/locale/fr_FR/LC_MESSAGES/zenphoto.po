@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto 1.4.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-07 22:54-0500\n"
-"PO-Revision-Date: 2014-02-07 23:18-0500\n"
+"PO-Revision-Date: 2014-02-07 23:32-0500\n"
 "Last-Translator: \n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "<michel@mgagnon.net>\n"
@@ -6736,7 +6736,7 @@ msgstr "Bibliothèque graphique : <strong>%s</strong>"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:435
 #, php-format
 msgid "supporting: %s"
-msgstr "%s supporté"
+msgstr "formats supportés : %s"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:438
 #, php-format
@@ -6745,7 +6745,7 @@ msgid ""
 "less!)"
 msgstr ""
 "Limite de mémoire de PHP : <strong>%1$s</strong> (Note : votre serveur peut "
-"en fournir moins !)"
+"en allouer moins.)"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:442
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/utilities/database_reference.php:102
@@ -18894,7 +18894,7 @@ msgstr "Un endroit unique pour voir rapidement le contenu non publié."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/publishContent.php:38
 msgid "Publish content"
-msgstr "Publier le contenu"
+msgstr "Publier du contenu"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/publishContent.php:42
 msgid "Manage published state of content in your gallery."
@@ -24160,7 +24160,7 @@ msgstr ""
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenphotoDonate.php:19
 msgid "Like using Zenphoto? Donate!"
-msgstr "Vous aimez utiliser Zenphoto ? Alors donnez !"
+msgstr "Vous aimez utiliser Zenphoto ? Alors faites un don !"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenphotoDonate.php:33
 msgid ""
