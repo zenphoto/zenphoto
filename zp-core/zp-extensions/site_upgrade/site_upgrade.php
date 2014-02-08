@@ -35,6 +35,6 @@ function setSiteState($state) {
 	$zp_cfg = updateConfigItem('site_upgrade_state', $state, $zp_cfg);
 	storeConfig($zp_cfg);
 	$_configMutex->unlock();
-
+}
 
 ?>
