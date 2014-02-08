@@ -1,7 +1,7 @@
 <?php
 /**
  * Responsive JavaScript carousel thumb nav plugin adapted from
- * http://http://bxslider.com
+ * http://bxslider.com
  *
  * Place <var>printThumbNav()</var> on your theme's image.php where you want it to appear.
  *
@@ -12,7 +12,7 @@
  * @package plugins
  * @subpackage media
  */
-$plugin_description = gettext("Responsive jQuery bxSlider thumb nav plugin based on http://http://bxslider.com");
+$plugin_description = gettext("Responsive jQuery bxSlider thumb nav plugin based on <a href='http://bxslider.com'>http://bxslider.com</a>");
 $plugin_author = "Malte Müller (acrylian)";
 $plugin_disable = (extensionEnabled('jcarousel_thumb_nav')) ? sprintf(gettext('Only one Carousel plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), 'jcarousel_thumb_nav') : '';
 $option_interface = 'bxslider';
