@@ -283,7 +283,7 @@ function printAlbumMenuListAlbum($albums, $folder, $option, $showcount, $showsub
 			if ($firstimagelink && $topalbum->getNumImages() != 0) {
 				$link = "<li><a " . $current . "href='" . html_encode($topalbum->getImage(0)->getLink()) . "' title='" . html_encode($title) . "'>" . html_encode($display) . "</a>" . $count;
 			} else {
-				$link = "<li><a " . $current . "href='" . html_encode($topalbum->getLink()) . "' title='" . html_encode($title) . "'>" . html_encode($display) . "</a>" . $count;
+				$link = "<li><a " . $current . "href='" . html_encode($topalbum->getLink(1)) . "' title='" . html_encode($title) . "'>" . html_encode($display) . "</a>" . $count;
 			}
 			echo $link;
 		}
