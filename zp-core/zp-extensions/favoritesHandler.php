@@ -37,7 +37,7 @@ class favoritesOptions {
 
 	function __construct() {
 		if (OFFSET_PATH == 2) {
-			setOptionDefault('favorites_rewrite', '_PAGE_/favorites');
+			setOptionDefault('favorites_link', '_PAGE_/favorites');
 			gettext($str = 'My favorites');
 			setOptionDefault('favorites_title', getAllTranslations($str));
 			setOptionDefault('favorites_linktext', getAllTranslations($str));
@@ -479,7 +479,9 @@ class favorites extends AlbumBase {
 	}
 
 	function getLink($page = NULL) {
-		$link = preg_replace('~^_PAGE_/~ ', _PAGE_ . '/', getOption('favorites_rewrite'));
+
+
+		$link = preg_replace('~^_PAGE_/~ ', _PAGE_ . '/', getOption('favorites_link'));
 		if ($page > 1)
 			$link .= '/' . $page . '/';
 		return $link;
