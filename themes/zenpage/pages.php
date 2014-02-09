@@ -44,8 +44,6 @@ if (!defined('WEBPATH') || !class_exists('Zenpage'))
 				<div id="content-left">
 					<h2><?php printPageTitle(); ?></h2>
 					<?php
-					echo getGalleryIndexURL();
-
 					printPageContent();
 					printCodeblock(1);
 					if (getTags()) {
