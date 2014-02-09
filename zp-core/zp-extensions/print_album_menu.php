@@ -362,8 +362,6 @@ function printAlbumMenuJumpAlbum($albums, $option, $albumpath, $firstimagelink, 
 	global $_zp_gallery;
 	foreach ($albums as $album) {
 		$subalbum = newAlbum($album, true);
-
-
 		if ($option === "count" AND $subalbum->getNumImages() > 0) {
 			$count = " (" . $subalbum->getNumImages() . ")";
 		} else {
@@ -375,7 +373,7 @@ function printAlbumMenuJumpAlbum($albums, $option, $albumpath, $firstimagelink, 
 		if ($firstimagelink && $subalbum->getNumImages() != 0) {
 			$link = "<option $selected value='" . html_encode($subalbum->getImage(0)->getLink()) . "'>" . $arrow . strip_tags($subalbum->getTitle()) . $count . "</option>";
 		} else {
-			$link = "<option $selected value='" . html_encode($albumpath . pathurlencode($subalbum->name)) . "'>" . $arrow . strip_tags($subalbum->getTitle()) . $count . "</option>";
+			$link = "<option $selected value='" . html_encode($subalbum->getLink(1)) . "'>" . $arrow . strip_tags($subalbum->getTitle()) . $count . "</option>";
 		}
 		echo $link;
 		$subalbums = $subalbum->getAlbums();
