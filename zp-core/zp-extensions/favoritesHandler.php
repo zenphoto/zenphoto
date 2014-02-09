@@ -244,6 +244,7 @@ class favorites extends AlbumBase {
 		$filename = $img->filename;
 		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("favorites",' . db_quote($this->name) . ',' . db_quote(serialize(array('type' => 'images', 'id' => $folder . '/' . $filename))) . ')';
 		query($sql);
+		zp_apply_filter('favoritesHandler_action', 'add', $img, $this->name);
 	}
 
 	function removeImage($img) {
@@ -251,18 +252,72 @@ class favorites extends AlbumBase {
 		$filename = $img->filename;
 		$sql = 'DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . db_quote($this->name) . ' AND `data`=' . db_quote(serialize(array('type' => 'images', 'id' => $folder . '/' . $filename)));
 		query($sql);
+		zp_apply_filter('favoritesHandler_action', 'remove', $img, $this->name);
 	}
 
 	function addAlbum($alb) {
 		$folder = $alb->name;
 		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("favorites",' . db_quote($this->name) . ',' . db_quote(serialize(array('type' => 'albums', 'id' => $folder))) . ')';
 		query($sql);
+		zp_apply_filter('favoritesHandler_action', 'add', $alb, $this->name);
 	}
 
 	function removeAlbum($alb) {
 		$folder = $alb->name;
 		$sql = 'DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . db_quote($this->name) . ' AND `data`=' . db_quote(serialize(array('type' => 'albums', 'id' => $folder)));
 		query($sql);
+		zp_apply_filter('favoritesHandler_action', 'remove', $alb, $this->name);
+	}
+
+	static function getWatchers($obj) {
+		switch ($obj->table) {
+			case 'images':
+				$folder = $obj->imagefolder;
+				$filename = $obj->filename;
+				$sql = 'SELECT DISTINCT `aux` FROM ' . prefix('plugin_storage') . '  WHERE `data`=' . db_quote(serialize(array('type' => 'images', 'id' => $folder . '/' . $filename)));
+				break;
+			case 'albums':
+				$folder = $obj->name;
+				$sql = 'SELECT DISTINCT `aux` FROM ' . prefix('plugin_storage') . '  WHERE `data`=' . db_quote(serialize(array('type' => 'albums', 'id' => $folder)));
+				break;
+		}
+		$watchers = array();
+		$result = query_full_array($sql);
+		if ($result) {
+			foreach ($result as $watch) {
+				$watchers[] = $watch['aux'];
+			}
+		}
+		return $watchers;
+	}
+
+	static function showWatchers($html, $obj, $prefix) {
+		$watchers = self::getWatchers($obj);
+		if (!empty($watchers)) {
+			natcasesort($watchers);
+			?>
+			<tr>
+				<td>
+					<?php echo gettext('Users watching:'); ?>
+				</td>
+				<td>
+					<ul class="userlist">
+						<?php
+						foreach ($watchers as $watchee) {
+							?>
+							<li>
+								<?php echo html_encode($watchee); ?>
+							</li>
+							<?php
+						}
+						?>
+					</ul>
+				</td>
+			</tr>
+			<?php
+		}
+
+		return $html;
 	}
 
 	/**
@@ -472,7 +527,10 @@ if ($plugin_disable) {
 	$_zp_conf_vars['special_pages'][] = array('definition' => '%FAVORITES%', 'rewrite' => '_FAVORITES_');
 	$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '%FAVORITES%', 'rule' => '^%REWRITE%/*$		index.php?p=' . 'favorites' . ' [L,QSA]');
 
-	if (!OFFSET_PATH) {
+	if (OFFSET_PATH) {
+		zp_register_filter('edit_album_custom_data', 'favorites::showWatchers');
+		zp_register_filter('edit_image_custom_data', 'favorites::showWatchers');
+	} else {
 		zp_register_filter('load_theme_script', 'favorites::loadScript');
 		zp_register_filter('checkPageValidity', 'favorites::pageCount');
 		zp_register_filter('admin_toolbox_global', 'favorites::toolbox');

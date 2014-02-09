@@ -2669,3 +2669,10 @@ dd {
 .top {
 	vertical-align: top;
 }
+
+ul.userlist {
+	clear: both;
+	padding: 0;
+	margin: 0px;
+	list-style-type: none;
+}
