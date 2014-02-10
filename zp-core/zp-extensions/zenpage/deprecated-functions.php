@@ -17,14 +17,6 @@ class Zenpage_internal_deprecations {
 
 	/**
 	 * @deprecated
-	 * @since 1.4.5
-	 */
-	static function getSubPages() {
-		deprecated_functions::notify(gettext('Use the Zenpage Page class->getPages() method.'));
-	}
-
-	/**
-	 * @deprecated
 	 * @since 1.4.6
 	 */
 	public static function next_news() {
@@ -101,6 +93,14 @@ class Zenpage_internal_deprecations {
 	 */
 	static function getNewsIndexURL() {
 		deprecated_functions::notify(gettext('Use getNewsIndexURL().'));
+	}
+
+	/**
+	 * @deprecated
+	 * @since 1.4.5
+	 */
+	static function getSubPages() {
+		deprecated_functions::notify(gettext('Use the Zenpage Page class->getPages() method.'));
 	}
 
 }

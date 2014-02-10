@@ -33,7 +33,7 @@ class internal_deprecations {
 
 	/**
 	 * @deprecated
-	 * @since 1.4.0
+	 * @since 1.4.6
 	 */
 	public static function getSearchURL() {
 		deprecated_functions::notify(gettext('Pass array("albums" => array(album, album, ...)) for the object list.'));
@@ -41,7 +41,7 @@ class internal_deprecations {
 
 	/**
 	 * @deprecated
-	 * @since 1.4.0
+	 * @since 1.4.6
 	 */
 	public static function getGalleryIndexURL() {
 		deprecated_functions::notify(gettext('The parameter to getGalleryIndexURL() is deprecated. Use getCustomPageURL() instead for custom pages.'));
@@ -49,7 +49,7 @@ class internal_deprecations {
 
 	/**
 	 * @deprecated
-	 * @since 1.4.0
+	 * @since 1.4.6
 	 */
 	static function getFolder() {
 		deprecated_functions::notify(gettext('Use the getFilename() method instead'));
@@ -57,7 +57,7 @@ class internal_deprecations {
 
 	/**
 	 * @deprecated
-	 * @since 1.4.0
+	 * @since 1.4.6
 	 */
 	static function getImageLink() {
 		deprecated_functions::notify(gettext('Use the getLink() method instead'));
@@ -65,7 +65,7 @@ class internal_deprecations {
 
 	/**
 	 * @deprecated
-	 * @since 1.4.0
+	 * @since 1.4.6
 	 */
 	static function getAlbumLink() {
 		deprecated_functions::notify(gettext('Use the getLink() method instead'));
@@ -73,7 +73,7 @@ class internal_deprecations {
 
 	/**
 	 * @deprecated
-	 * @since 1.4.0
+	 * @since 1.4.6
 	 */
 	static function getAlbumSortType() {
 		deprecated_functions::notify(gettext('Use the getSortType() method instead'));
@@ -81,7 +81,7 @@ class internal_deprecations {
 
 	/**
 	 * @deprecated
-	 * @since 1.4.0
+	 * @since 1.4.6
 	 */
 	static function getAlbumThumb() {
 		deprecated_functions::notify(gettext('Use the getThumb() method instead'));
@@ -89,7 +89,7 @@ class internal_deprecations {
 
 	/**
 	 * @deprecated
-	 * @since 1.4.0
+	 * @since 1.4.6
 	 */
 	static function setAlbumThumb() {
 		deprecated_functions::notify(gettext('Use the setThumb() method instead'));
@@ -97,7 +97,7 @@ class internal_deprecations {
 
 	/**
 	 * @deprecated
-	 * @since 1.4.0
+	 * @since 1.4.6
 	 */
 	static function setSubalbumSortType($sorttype) {
 		deprecated_functions::notify(gettext('Use the setSortType() method instead'));

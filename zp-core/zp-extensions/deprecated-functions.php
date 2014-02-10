@@ -48,7 +48,7 @@ class deprecated_functions {
 					$plugin = 'core';
 				$content = file_get_contents($deprecated);
 
-				preg_match_all('~@deprecated\s.*since\s.*(\d+\.\d+\.\d+)~', $content, $versions);
+				preg_match_all('~@deprecated\s+.*since\s+.*(\d+\.\d+\.\d+)~', $content, $versions);
 				preg_match_all('/([public static|static]*)\s*function\s+(.*)\s?\(.*\)\s?\{/', $content, $functions);
 				foreach ($functions[2] as $key => $function) {
 					setOptionDefault('deprecated_' . $plugin . '_' . $functions[1][$key] . '_' . $function, 1);
