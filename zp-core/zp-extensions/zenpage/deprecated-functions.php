@@ -3,7 +3,6 @@
 /*
  * These are the Zenpage functions which have been deprecated
  */
-require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
 
 class Zenpage_internal_deprecations {
 

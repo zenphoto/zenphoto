@@ -3,7 +3,6 @@
 /*
  * RSS deprecated functions
  */
-require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
 
 class RSS_internal_deprecations {
 

@@ -3,7 +3,6 @@
 /*
  * Slideshow deprecated functions
  */
-require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
 
 /**
  * @deprecated

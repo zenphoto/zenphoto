@@ -1070,9 +1070,9 @@ zp-core/zp-extensions/elFinder/php/mime.types
 zp-core/zp-extensions/email-newuser.php
 zp-core/zp-extensions/exampleMacros.php
 zp-core/zp-extensions/externalFeed.php
-zp-core/zp-extensions/favoirtesHandler
-zp-core/zp-extensions/favoirtesHandler/deprecated-functions.php
+zp-core/zp-extensions/favoritesHandler
 zp-core/zp-extensions/favoritesHandler.php
+zp-core/zp-extensions/favoritesHandler/deprecated-functions.php
 zp-core/zp-extensions/federated_logon
 zp-core/zp-extensions/federated_logon.php
 zp-core/zp-extensions/federated_logon/Auth
