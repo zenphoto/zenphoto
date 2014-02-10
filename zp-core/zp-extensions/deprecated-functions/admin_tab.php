@@ -40,7 +40,7 @@ echo "\n</head>";
 								break;
 						}
 						$list[$details['since']][$details['plugin']][] = $funct . $class;
-						krsort($list);
+						krsort($list, SORT_NATURAL | SORT_FLAG_CASE);
 					}
 					?>
 					<ul style="list-style-type: none;">
@@ -51,6 +51,7 @@ echo "\n</head>";
 								<h1><?php echo $release; ?></h1>
 								<ul style="list-style-type: none;">
 									<?php
+									ksort($plugins, SORT_NATURAL | SORT_FLAG_CASE);
 									foreach ($plugins as $plugin => $functions) {
 										?>
 										<li>

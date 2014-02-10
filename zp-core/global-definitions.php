@@ -7,6 +7,8 @@ require_once(dirname(__FILE__) . '/version.php'); // Include the version info.
 if (!function_exists("gettext")) {
 	require_once(dirname(__FILE__) . '/lib-gettext/gettext.inc');
 }
+if (!defined('SORT_FLAG_CASE'))
+	define('SORT_FLAG_CASE', 0);
 
 define('ZENFOLDER', 'zp-core');
 define('PLUGIN_FOLDER', 'zp-extensions');
@@ -44,6 +46,6 @@ define('DEBUG_PLUGINS', false); // set to true to log plugin load sequence.
 define('DEBUG_FILTERS', false); // set to true to log filter application sequence.
 define('EXPLAIN_SELECTS', false); //	set to true to log the "EXPLAIN" of SELECT queries in the debug log
 
-define('DB_NOT_CONNECTED', serialize(array('mysql_host'		 => gettext('not connected'), 'mysql_database' => gettext('not connected'), 'mysql_prefix'	 => gettext('not connected'), 'mysql_user'		 => '', 'mysql_pass'		 => '')));
+define('DB_NOT_CONNECTED', serialize(array('mysql_host' => gettext('not connected'), 'mysql_database' => gettext('not connected'), 'mysql_prefix' => gettext('not connected'), 'mysql_user' => '', 'mysql_pass' => '')));
 $_zp_DB_details = unserialize(DB_NOT_CONNECTED);
 ?>
