@@ -982,4 +982,20 @@ function printNewsIndexURL($name = NULL, $before = '', $archive = NULL) {
 	printNewsBreadcrumb($name, $before);
 }
 
+/**
+ * @deprecated
+ * @since 1.4.6
+ */
+function zenpageOpenedForComments() {
+	deprecated_functions::notify(gettext('use the comment_form openForComments() function passing PAGES or NEWS as appropriate.'));
+	global $_zp_current_zenpage_news, $_zp_current_zenpage_page;
+	if (is_NewsArticle()) {
+		$obj = $_zp_current_zenpage_news;
+	}
+	if (is_Pages()) {
+		$obj = $_zp_current_zenpage_page;
+	}
+	return $obj->getCommentsAllowed();
+}
+
 ?>

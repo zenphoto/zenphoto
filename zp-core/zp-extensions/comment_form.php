@@ -199,25 +199,25 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 		case 'album.php':
 			if (!getOption('comment_form_albums'))
 				return;
-			$comments_open = OpenedForComments(ALBUM);
+			$comments_open = openedForComments(ALBUM);
 			$formname = '/comment_form.php';
 			break;
 		case 'image.php':
 			if (!getOption('comment_form_images'))
 				return;
-			$comments_open = OpenedForComments(IMAGE);
+			$comments_open = openedForComments(IMAGE);
 			$formname = '/comment_form.php';
 			break;
 		case 'pages.php':
 			if (!getOption('comment_form_pages'))
 				return;
-			$comments_open = zenpageOpenedForComments();
+			$comments_open = openedForComments(PAGES);
 			$formname = '/comment_form.php';
 			break;
 		case 'news.php':
 			if (!getOption('comment_form_articles'))
 				return;
-			$comments_open = zenpageOpenedForComments();
+			$comments_open = openedForComments(NEWS);
 			$formname = '/comment_form.php';
 			break;
 		default:
