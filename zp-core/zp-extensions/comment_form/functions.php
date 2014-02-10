@@ -1018,10 +1018,10 @@ function openedForComments($what = 15) {
 		$result = $result && $_zp_current_album->getCommentsAllowed();
 	}
 	if (PAGES & $what) {
-		$result = $result && $_zp_current_zenpage_news->getCommentsAllowed();
+		$result = $result && $_zp_current_zenpage_page->getCommentsAllowed();
 	}
 	if (is_NewsArticle() && (NEWS & $what)) {
-		$result = $result && $_zp_current_zenpage_page->getCommentsAllowed();
+		$result = $result && $_zp_current_zenpage_news->getCommentsAllowed();
 	}
 	return $result;
 }
