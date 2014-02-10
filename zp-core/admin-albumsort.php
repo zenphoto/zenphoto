@@ -169,7 +169,7 @@ echo "\n</head>";
 								$messagebox = gettext("Nothing changed");
 							}
 							?>
-							<div class="notebox fade-message">
+							<div class="messagebox fade-message">
 								<h2><?php echo $messagebox; ?></h2>
 							</div>
 							<?php
