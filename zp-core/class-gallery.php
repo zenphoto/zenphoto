@@ -652,13 +652,10 @@ class Gallery {
 			if ($images) {
 				$c = 0;
 				while ($image = db_fetch_assoc($images)) {
-					$sql = 'SELECT `folder` FROM ' . prefix('albums') . ' WHERE `id`="' . $image['albumid'] . '";';
-					$row = query_single_row($sql);
-					$imageName = internalToFilesystem(ALBUM_FOLDER_SERVERPATH . $row['folder'] . '/' . $image['filename']);
-					if (file_exists($imageName)) {
-						$mtime = filemtime($imageName);
-						if ($image['mtime'] != $mtime) { // file has changed since we last saw it
-							$imageobj = newImage(newAlbum($row['folder']), $image['filename']);
+					$albumobj = getItemByID('albums', $image['albumid']);
+					if ($albumobj->exists && file_exists($imageName = internalToFilesystem(ALBUM_FOLDER_SERVERPATH . $albumobj->name . '/' . $image['filename']))) {
+						if ($image['mtime'] != $mtime = filemtime($imageName)) { // file has changed since we last saw it
+							$imageobj = newImage($albumobj, $image['filename']);
 							$imageobj->set('mtime', $mtime);
 							$imageobj->updateMetaData(); // prime the EXIF/IPTC fields
 							$imageobj->updateDimensions(); // update the width/height & account for rotation

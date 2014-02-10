@@ -2067,14 +2067,14 @@ function getLanguageFlag($lang) {
  * @return mixed
  */
 function getItemByID($table, $id) {
-	if ($result = query_single_row('SELECT * FROM ' . prefix($table) . ' WHERE id =' . $id)) {
+	if ($result = query_single_row('SELECT * FROM ' . prefix($table) . ' WHERE id =' . (int) $id)) {
 		switch ($table) {
 			case 'images':
 				if ($alb = getItemByID('albums', $result['albumid'])) {
-					return newImage($alb, $result['filename']);
+					return newImage($alb, $result['filename'], true);
 				}
 			case 'albums':
-				return newAlbum($result['folder']);
+				return newAlbum($result['folder'], false, true);
 			case 'news':
 				return new ZenpageNews($result['titlelink']);
 			case 'pages':
