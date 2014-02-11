@@ -923,22 +923,6 @@ function getCommentCount() {
 }
 
 /**
- * Returns true if neither the album nor the image have comments closed
- *
- * @return bool
- */
-function getCommentsAllowed() {
-	global $_zp_current_image, $_zp_current_album;
-	if (in_context(ZP_IMAGE)) {
-		if (is_null($_zp_current_image))
-			return false;
-		return $_zp_current_image->getCommentsAllowed();
-	} else {
-		return $_zp_current_album->getCommentsAllowed();
-	}
-}
-
-/**
  * Iterate through comments; use the ZP_COMMENT context.
  * Return true if there are more comments
  * @param  bool $desc set true for desecnding order
