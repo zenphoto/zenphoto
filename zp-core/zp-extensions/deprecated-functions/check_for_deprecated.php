@@ -61,6 +61,9 @@ echo '</head>' . "\n";
 							<?php
 						}
 						?>
+						<option value=4<?php if ($selected == 4) echo ' selected="selected"'; ?>>
+							<?php echo gettext('In Codeblocks'); ?>
+						</option>
 					</select>
 					<br class="clearall" /><br />
 					<span class="buttons">
@@ -99,6 +102,9 @@ echo '</head>' . "\n";
 									getPHPFiles($path, array());
 									$output = $output || listUses(SERVERPATH);
 								}
+								break;
+							case 4:
+								$output = listDBUses();
 								break;
 						}
 						if (!$output) {
