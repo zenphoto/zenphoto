@@ -79,7 +79,9 @@ if (isset($_GET['mod_rewrite'])) {
 	<script type="text/javascript">
 		$(function() {
 			$('img').error(function() {
-				$(this).attr('src', '../images/fail.png');
+				var link = $(this).attr('src');
+				var title = $(this).attr('title');
+				$(this).parent().html('<a href="' + link + '"><img src="../images/fail.png" title="' + title + '"></a>');
 				imageErr = true;
 			});
 		});
@@ -87,9 +89,9 @@ if (isset($_GET['mod_rewrite'])) {
 	<p>
 		<?php echo gettext('Mod_Rewrite check:'); ?>
 		<br />
-		<a href="<?php echo FULLWEBPATH . '/' . $_zp_conf_vars['special_pages']['page']['rewrite']; ?>/setup_set-mod_rewrite?z=setup">
+		<span>
 			<img src="<?php echo FULLWEBPATH . '/' . $_zp_conf_vars['special_pages']['page']['rewrite']; ?>/setup_set-mod_rewrite?z=setup" title="<?php echo gettext('Mod_rewrite'); ?>" alt="<?php echo gettext('Mod_rewrite'); ?>" height="16px" width="16px" />
-		</a>
+		</span>
 	</p>
 	<?php
 }
@@ -320,9 +322,9 @@ if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/Zenphoto.package')) {
 	echo gettext('Theme setup:') . '<br />';
 	foreach (array_keys($_zp_gallery->getThemes()) as $theme) {
 		?>
-		<a href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_themeOptions.php?theme=' . $theme; ?>">
+		<span>
 			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_themeOptions.php?theme=' . $theme; ?>" title="<?php echo $theme; ?>" alt="<?php echo $theme; ?>" height="16px" width="16px" />
-		</a>
+		</span
 		<?php
 	}
 	?>
@@ -574,9 +576,9 @@ $plugins = getPluginFiles('*.php');
 	echo gettext('Plugin setup:') . '<br />';
 	foreach ($plugins as $extension) {
 		?>
-		<a href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_pluginOptions.php?plugin=' . $extension; ?>">
+		<span>
 			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_pluginOptions.php?plugin=' . $extension; ?>" title="<?php echo $extension; ?>" alt="<?php echo $extension; ?>" height="16px" width="16px" />
-		</a>
+		</span>
 		<?php
 	}
 	?>
