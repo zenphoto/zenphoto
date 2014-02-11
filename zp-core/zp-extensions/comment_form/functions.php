@@ -994,35 +994,4 @@ function getCommentStored($numeric = false) {
 	}
 	return $_zp_comment_stored;
 }
-
-define("IMAGE", 1);
-define("ALBUM", 2);
-define("PAGES", 4);
-define("NEWS", 8);
-
-/**
- * Checks to see if comment posting is allowed for an image/album
-
- * Returns true if comment posting should be allowed
- *
- * @param int $what the degree of control desired allowed values: ALBUM, IMAGE, and ALBUM+IMAGE, etc.
- * @return bool
- */
-function openedForComments($what = 15) {
-	global $_zp_current_image, $_zp_current_album, $_zp_current_zenpage_news, $_zp_current_zenpage_page;
-	$result = true;
-	if (IMAGE & $what) {
-		$result = $result && $_zp_current_image->getCommentsAllowed();
-	}
-	if (ALBUM & $what) {
-		$result = $result && $_zp_current_album->getCommentsAllowed();
-	}
-	if (PAGES & $what) {
-		$result = $result && $_zp_current_zenpage_page->getCommentsAllowed();
-	}
-	if (is_NewsArticle() && (NEWS & $what)) {
-		$result = $result && $_zp_current_zenpage_news->getCommentsAllowed();
-	}
-	return $result;
-}
 ?>

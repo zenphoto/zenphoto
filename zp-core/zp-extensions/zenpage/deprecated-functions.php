@@ -987,7 +987,7 @@ function printNewsIndexURL($name = NULL, $before = '', $archive = NULL) {
  * @since 1.4.6
  */
 function zenpageOpenedForComments() {
-	deprecated_functions::notify(gettext('use the comment_form openForComments() function passing PAGES or NEWS as appropriate.'));
+	deprecated_functions::notify(gettext("use the object's getCommentsAllowed() method"));
 	global $_zp_current_zenpage_news, $_zp_current_zenpage_page;
 	if (is_NewsArticle()) {
 		$obj = $_zp_current_zenpage_news;

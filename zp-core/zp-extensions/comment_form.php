@@ -186,7 +186,8 @@ class comment_form {
  * @param bool $desc_order default false, set to true to change the comment order to descending ( = newest to oldest)
  */
 function printCommentForm($showcomments = true, $addcommenttext = NULL, $addheader = true, $comment_commententry_mod = '', $desc_order = false) {
-	global $_zp_gallery_page, $_zp_current_admin_obj, $_zp_current_comment, $_zp_captcha, $_zp_authority, $_zp_HTML_cache;
+	global $_zp_gallery_page, $_zp_current_admin_obj, $_zp_current_comment, $_zp_captcha, $_zp_authority, $_zp_HTML_cache, $_zp_current_image, $_zp_current_album, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
+
 	if (getOption('email_new_comments')) {
 		$email_list = $_zp_authority->getAdminEmail();
 		if (empty($email_list)) {
@@ -199,31 +200,28 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 		case 'album.php':
 			if (!getOption('comment_form_albums'))
 				return;
-			$comments_open = openedForComments(ALBUM);
-			$formname = '/comment_form.php';
+			$obj = $_zp_current_album;
 			break;
 		case 'image.php':
 			if (!getOption('comment_form_images'))
 				return;
-			$comments_open = openedForComments(IMAGE);
-			$formname = '/comment_form.php';
+			$obj = $_zp_current_image;
 			break;
 		case 'pages.php':
 			if (!getOption('comment_form_pages'))
 				return;
-			$comments_open = openedForComments(PAGES);
-			$formname = '/comment_form.php';
+			$obj = $_zp_current_zenpage_page;
 			break;
 		case 'news.php':
-			if (!getOption('comment_form_articles'))
+			if (!getOption('comment_form_articles') || !is_NewsArticle())
 				return;
-			$comments_open = openedForComments(NEWS);
-			$formname = '/comment_form.php';
+			$obj = $_zp_current_zenpage_news;
 			break;
 		default:
 			return;
 			break;
 	}
+	$comments_open = $obj->getCommentsAllowed();
 	?>
 	<!-- printCommentForm -->
 	<div id="commentcontent">
@@ -373,7 +371,7 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 				<div id="commententry" <?php echo $comment_commententry_mod; ?>>
 					<?php
 					$theme = getCurrentTheme();
-					$form = getPlugin('comment_form' . $formname, $theme);
+					$form = getPlugin('comment_form/comment_form.php', $theme);
 					require($form);
 					?>
 				</div><!-- id="commententry" -->
