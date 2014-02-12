@@ -969,6 +969,7 @@ zp-core/zp-extensions/comment_form
 zp-core/zp-extensions/comment_form.php
 zp-core/zp-extensions/comment_form/admin-comments.php
 zp-core/zp-extensions/comment_form/comment_form.php
+zp-core/zp-extensions/comment_form/deprecated-functions.php
 zp-core/zp-extensions/comment_form/functions.php
 zp-core/zp-extensions/common
 zp-core/zp-extensions/common/adGallery
@@ -1656,4 +1657,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1658
+1659
