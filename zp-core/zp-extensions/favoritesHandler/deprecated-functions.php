@@ -6,7 +6,7 @@
  *
  */
 function printFavoritesLink($text = NULL) {
-	deprecated_functions::notify(gettext('use printSizedImageURL()'));
+	deprecated_functions::notify(gettext('use printFavoritesURL()'));
 	printFavoritesURL($text);
 }
 
