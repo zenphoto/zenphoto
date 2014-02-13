@@ -2052,6 +2052,9 @@ function printPageURL($linktext = NULL, $titlelink = NULL, $prev = '', $next = '
 	if (!is_null($class)) {
 		$class = 'class="' . $class . '"';
 	}
+	if(is_null($linktext)) {
+		$linktext = getPageTitle();
+	}
 	echo $prev . "<a href=\"" . html_encode(getPageURL($titlelink)) . "\" $class title=\"" . html_encode($linktext) . "\">" . html_encode($linktext) . "</a>" . $next;
 }
 
