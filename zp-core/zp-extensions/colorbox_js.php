@@ -101,6 +101,25 @@ class colorbox {
 		}
 		?>
 		<script type="text/javascript" src="<?php echo FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/colorbox_js/jquery.colorbox-min.js"></script>
+		<script>
+			/* Colorbox resize function */
+var resizeTimer;
+function resizeColorBox()
+{
+    if (resizeTimer) clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+            if (jQuery('#cboxOverlay').is(':visible')) {
+                    jQuery.colorbox.resize({width:'90%', maxHeight:'90%'}); 
+                    jQuery('#cboxLoadedContent img').css('max-width','100%').css('height','auto');
+            }
+    }, 300)
+}
+
+// Resize Colorbox when resizing window or changing mobile device orientation
+jQuery(window).resize(resizeColorBox);
+window.addEventListener("orientationchange", resizeColorBox, false);
+		
+		</script>
 		<?php
 	}
 
