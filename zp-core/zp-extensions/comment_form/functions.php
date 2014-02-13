@@ -873,7 +873,7 @@ function printLatestComments($number, $shorten = '123', $type = "all", $item = N
 			case 'images':
 				$image = getItemByID('images', $comment['ownerid']);
 				if ($image) {
-					echo '<li><a href="' . $image->getLink() . '" class="commentmeta">' . $image->altum->gettitle() . ': ' . $image->getTitle() . $author . "</a><br />\n";
+					echo '<li><a href="' . $image->getLink() . '" class="commentmeta">' . $image->album->gettitle() . ': ' . $image->getTitle() . $author . "</a><br />\n";
 					echo '<span class="commentbody">' . $shortcomment . '</span></li>';
 				}
 				break;
