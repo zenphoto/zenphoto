@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.6\n"
 "Report-Msgid-Bugs-To: webmaster at momo-i.org\n"
-"POT-Creation-Date: 2014-02-13 11:08+0900\n"
+"POT-Creation-Date: 2014-02-14 09:08+0900\n"
 "PO-Revision-Date: 2009-08-12 08:30+0900\n"
 "Last-Translator: momo-i <webmaster at momo-i dot org>\n"
 "Language-Team: Japanese\n"
@@ -1847,21 +1847,21 @@ msgstr ""
 
 #: zp-core/admin-options.php:1586
 msgid "<code>pattern</code>: match the target anywhere within the field"
-msgstr ""
+msgstr "<code>パターン</code: フィールド内のターゲットのどこにでも一致"
 
 #: zp-core/admin-options.php:1587
 msgid "<code>exact</code>: match the target with the whole field"
-msgstr ""
+msgstr "<code>正確な</code>: フィールド全体でターゲットと一致"
 
 #: zp-core/admin-options.php:1588
 msgid "<code>word</code>: match the target with whole words in the field"
-msgstr ""
+msgstr "<code>単語</code>: フィールド内の単語全体でターゲットと一致"
 
 #: zp-core/admin-options.php:1589
 msgid ""
 "<code>partial word</code>: match the target with the start of words in the "
 "field"
-msgstr ""
+msgstr "<code>部分的な単語</code>: フィールド内の単語の先頭でターゲットと一致"
 
 #: zp-core/admin-options.php:1592
 msgid ""
@@ -4800,7 +4800,7 @@ msgstr "複製"
 msgid ""
 "The Zenphoto configuration file is corrupt. You will need to restore it from "
 "a backup."
-msgstr ""
+msgstr "Zenphotoの設定ファイルが壊れています。バックアップから復元する必要があります。"
 
 #: zp-core/functions-config.php:35
 msgid "Updating the configuration file"
@@ -7252,7 +7252,7 @@ msgstr "PHPのグラフィック画像サポートがありません。"
 
 #: zp-core/setup.php:29
 msgid "Click to restore the setup scripts and run setup."
-msgstr ""
+msgstr "セットアップスクリプトとセットアップの実行を復元するにはクリックします。"
 
 #: zp-core/setup.php:31
 #, php-format
@@ -7399,7 +7399,7 @@ msgstr "プラグイン:%s オプションインターフェースはインス�
 #: zp-core/setup/setup_pluginOptions.php:40
 #, php-format
 msgid "Plugin:%s enabled (%2$s)"
-msgstr ""
+msgstr "プラグイン:%s 有効 (%2$s)"
 
 #: zp-core/setup/setup_pluginOptions.php:43
 #, php-format
@@ -7611,7 +7611,7 @@ msgstr "厳密でない"
 msgid ""
 "A corrupt configuration file was detected. You should remove or repair the "
 "file and re-run setup."
-msgstr ""
+msgstr "壊れた設定ファイルを検出しました。ファイルを削除または修復してセットアップを再実行してください。"
 
 #: zp-core/setup/index.php:310
 msgid "upgrade"
@@ -7780,7 +7780,7 @@ msgstr ""
 msgid ""
 "The configured PHP session path could not be used. Zenphoto has set the path "
 "to the %s folder."
-msgstr ""
+msgstr "設定したPHPセッションパスは使用することができませんでした。Zenphotoは%sフォルダーへパスを設定します。"
 
 #: zp-core/setup/index.php:598
 msgid "PHP Sessions are required for Zenphoto administrative functions."
@@ -10133,12 +10133,11 @@ msgstr ""
 
 #: zp-core/utilities/backup_restore.php:434
 msgid "The maximum error count was exceeded and the restore aborted."
-msgstr ""
+msgstr "最大エラーカウントを超えたためレストアを中断しました。"
 
 #: zp-core/utilities/backup_restore.php:437
-#, fuzzy
 msgid "Restore encountered the following errors:"
-msgstr "リストアの例外に遭遇しました"
+msgstr "リストアで次のエラーが発生:"
 
 #: zp-core/utilities/backup_restore.php:462
 msgid "Zenphoto Rights migration failed!"
@@ -11080,7 +11079,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/macroList/macroList_tab.php:32
 msgid "Parameter types:"
-msgstr ""
+msgstr "パラメータータイプ:"
 
 #: zp-core/zp-extensions/macroList/macroList_tab.php:34
 msgid ""
@@ -11089,13 +11088,12 @@ msgid ""
 msgstr ""
 
 #: zp-core/zp-extensions/macroList/macroList_tab.php:35
-#, fuzzy
 msgid "<em><strong>int</strong></em> a number"
-msgstr "<strong>%u</strong>個のアルバム"
+msgstr "<em><strong>int</strong></em> 数値"
 
 #: zp-core/zp-extensions/macroList/macroList_tab.php:36
 msgid "<em><strong>bool</strong></em> <code>true</code> or <code>false</code>"
-msgstr ""
+msgstr "<em><strong>bool</strong></em> <code>true</code> または <code>false</code>"
 
 #: zp-core/zp-extensions/macroList/macroList_tab.php:37
 msgid ""
@@ -11991,69 +11989,57 @@ msgstr ""
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:698
 msgid "use getLinkHTML()"
-msgstr ""
+msgstr "getLinkHTML()を使用します。"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:707
-#, fuzzy
 msgid "use printLinkHTML()"
-msgstr "printRating()を使用します。"
+msgstr "printLinkHTML()を使用します。"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:717
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:727
-#, fuzzy
 msgid "use setupDomain()"
 msgstr "サブドメインを使用"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:737
-#, fuzzy
 msgid "use getAlbumURL()"
-msgstr "getAllAlbums()を使用します。"
+msgstr "getAlbumURL()を使用します。"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:747
-#, fuzzy
 msgid "use getImageURL()"
-msgstr "getImageMetaData()を使用します。"
+msgstr "getImageURL()を使用します。"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:757
-#, fuzzy
 msgid "use printAlbumURL()"
-msgstr "printAlbumLocation()を使用します。"
+msgstr "printAlbumURL()を使用します。"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:767
-#, fuzzy
 msgid "use printImageURL()"
-msgstr "printImageThumb()を使用します。"
+msgstr "printImageURL()を使用します。"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:777
-#, fuzzy
 msgid "use printNextPageURL()"
-msgstr "printTags()を使用します。"
+msgstr "printNextPageURL()を使用します。"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:787
-#, fuzzy
 msgid "use printPrevPageURL()"
-msgstr "printTags()を使用します。"
+msgstr "printPrevPageURL()を使用します。"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:797
-#: zp-core/zp-extensions/favoritesHandler/deprecated-functions.php:9
-#, fuzzy
 msgid "use printSizedImageURL()"
-msgstr "printCustomSizedImageMaxSpace()を使用します。"
+msgstr "printSizedImageURL()を使用します。"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:807
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:990
-#, fuzzy
 msgid "use the object's getCommentsAllowed() method"
-msgstr "object->getTags()メソッドを使用します。"
+msgstr "オブジェクトのgetCommentsAllowed()メソッドを使用します。"
 
 #: zp-core/zp-extensions/deprecated-functions/functions.php:49
 msgid "method"
-msgstr ""
+msgstr "メソッド"
 
 #: zp-core/zp-extensions/deprecated-functions/admin_tab.php:23
-#, fuzzy
 msgid "Deprecated Functions"
-msgstr "非推奨"
+msgstr "非推奨関数"
 
 #: zp-core/zp-extensions/deprecated-functions/admin_tab.php:25
 msgid ""
@@ -12317,22 +12303,21 @@ msgstr "公開されるとニュース記事をツイートします。"
 #: zp-core/zp-extensions/galleryArticles.php:12
 #: zp-core/zp-extensions/galleryArticles.php:98
 msgid "Gallery Articles requires Zenpage to be enabled."
-msgstr ""
+msgstr "Gallery記事はZenpageの有効化が必要です。"
 
 #: zp-core/zp-extensions/galleryArticles.php:38
-#, fuzzy, php-format
+#, php-format
 msgid "New album: %1$s"
-msgstr "新規アルバム: %s "
+msgstr "新規アルバム: %1$s"
 
 #: zp-core/zp-extensions/galleryArticles.php:40
-#, fuzzy, php-format
+#, php-format
 msgid "New image: [%2$s]%1$s"
 msgstr "新規画像: 【%2$s】%1$s "
 
 #: zp-core/zp-extensions/galleryArticles.php:65
-#, fuzzy
 msgid "Publish for"
-msgstr "公開"
+msgstr "公開:"
 
 #: zp-core/zp-extensions/galleryArticles.php:68
 #, fuzzy
@@ -12369,9 +12354,8 @@ msgid ""
 msgstr ""
 
 #: zp-core/zp-extensions/galleryArticles.php:77
-#, fuzzy
 msgid "size"
-msgstr "サイズ ="
+msgstr "サイズ"
 
 #: zp-core/zp-extensions/galleryArticles.php:79
 #, fuzzy
@@ -12560,15 +12544,15 @@ msgstr "%sを使用するログイン"
 
 #: zp-core/zp-extensions/downloadList/deprecated-functions.php:8
 msgid "use printDownloadURL()"
-msgstr ""
+msgstr "printDownloadURL()を使用します。"
 
 #: zp-core/zp-extensions/downloadList/deprecated-functions.php:17
 msgid "use getDownloadURL()"
-msgstr ""
+msgstr "getDownloadURL()を使用します。"
 
 #: zp-core/zp-extensions/downloadList/deprecated-functions.php:26
 msgid "use printDownloadAlbumZipURL()"
-msgstr ""
+msgstr "printDownloadAlbumZipURL()を使用します。"
 
 #: zp-core/zp-extensions/downloadList/download_statistics.php:42
 msgid "No statistic available"
@@ -12792,7 +12776,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/tinymce4.php:17
 msgid "Text editor TinyMCE 4.x"
-msgstr ""
+msgstr "テキストエディター TinyMCE 4.x"
 
 #: zp-core/zp-extensions/tinymce4.php:43
 msgid "Text editor configuration - Zenphoto"
@@ -13853,14 +13837,13 @@ msgid ""
 msgstr ""
 
 #: zp-core/zp-extensions/tinyURL.php:83
-#, fuzzy
 msgid "news categories"
 msgstr "ニュースカテゴリ"
 
 #: zp-core/zp-extensions/contact_form/form.php:15
-#, fuzzy, php-format
+#, php-format
 msgid "Title%s"
-msgstr "タイトル"
+msgstr "タイトル%s"
 
 #: zp-core/zp-extensions/contact_form/form.php:23
 #: zp-core/zp-extensions/comment_form/comment_form.php:18
@@ -13869,9 +13852,9 @@ msgid "Name%s"
 msgstr "名前%s"
 
 #: zp-core/zp-extensions/contact_form/form.php:37
-#, fuzzy, php-format
+#, php-format
 msgid "Company%s"
-msgstr "会社"
+msgstr "会社%s"
 
 #: zp-core/zp-extensions/contact_form/form.php:45
 #: zp-core/zp-extensions/comment_form/comment_form.php:52
@@ -14721,12 +14704,11 @@ msgstr "不正な動画のインスタンス生成: ファイルは存在しま�
 #: zp-core/zp-extensions/class-video.php:400
 #, php-format
 msgid "getid3 exceptions for %1$s::%2$s"
-msgstr ""
+msgstr "%1$s::%2$sのgetid3例外"
 
 #: zp-core/zp-extensions/class-video.php:448
-#, fuzzy
 msgid "No multimeida extension installed."
-msgstr "フラッシュプレーヤがインストールされていません"
+msgstr "マルチメディア拡張がインストールされていません"
 
 #: zp-core/zp-extensions/xmpMetadata.php:35
 msgid ""
@@ -16374,13 +16356,12 @@ msgid "Create an object and use its getLink method."
 msgstr ""
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:86
-#, fuzzy
 msgid "Use getNewsArchivePath()."
-msgstr "rewrite_path()を使用します。"
+msgstr "getNewsArchivePath()を使用します。"
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:94
 msgid "Use getNewsIndexURL()."
-msgstr ""
+msgstr "getNewsIndexURL()を使用します。"
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:102
 msgid "Use the Zenpage Page class->getPages() method."
@@ -16589,37 +16570,33 @@ msgstr ""
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:910
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:920
 msgid "Create an object and use the object getLink"
-msgstr ""
+msgstr "オブジェクトを作成してオブジェクトgetLinkを使用します"
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:930
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:944
 msgid "use getNewsURL()"
-msgstr ""
+msgstr "getNewsURL()を使用します。"
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:935
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:972
-#, fuzzy
 msgid "use printNewsURL()"
-msgstr "printTags()を使用します。"
+msgstr "printNewsURL()を使用します。"
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:954
 msgid "use getPageURL()"
-msgstr ""
+msgstr "getPageURL()を使用します。"
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:963
-#, fuzzy
 msgid "use printPageURL()"
-msgstr "printTags()を使用します。"
+msgstr "printPageURL()を使用します。"
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:981
-#, fuzzy
 msgid "use printNewsBreadcrumb()"
-msgstr "printZenpageItemsBreadcrumb()を使用します。"
+msgstr "printNewsBreadcrumb()を使用します。"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:88
-#, fuzzy
 msgid "Duplicate page title"
-msgstr "%sメニューを複製"
+msgstr "ページタイトルを複製"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:148
 #, php-format
@@ -17248,32 +17225,32 @@ msgid "%u article"
 msgid_plural "%u articles"
 msgstr[0] "%u 記事"
 
-#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2090
+#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2093
 msgid "This page is password protected"
 msgstr "このページはパスワードで保護されています"
 
-#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2263
+#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2266
 #, php-format
 msgid "View the %s album"
 msgstr "アルバム%sの閲覧"
 
-#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2265
+#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2268
 #, php-format
 msgid "View the album %s"
 msgstr "アルバム %s の閲覧"
 
-#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2269
-#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2270
+#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2272
+#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2273
 #, php-format
 msgid "View %s"
 msgstr "%sの閲覧"
 
-#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2278
+#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2281
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the image %1$s:%2$s"
 msgstr "<code>zenpageAlbumImage()</code>は画像%1$sを見つけませんでした:%2$s"
 
-#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2287
+#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2290
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code>はアルバム%1$sを見つけませんでした"
@@ -17331,7 +17308,6 @@ msgid "Change <em>Threshold</em> values"
 msgstr "<em>しきい</em>値を変更"
 
 #: zp-core/zp-extensions/galleryArticles/combiNews.php:7
-#, fuzzy
 msgid "combiNews"
 msgstr "コンビニュース"
 
@@ -18088,7 +18064,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/exampleMacros.php:10
 msgid "Adds example macros."
-msgstr ""
+msgstr "サンプルマクロを追加します。"
 
 #: zp-core/zp-extensions/exampleMacros.php:23
 msgid ""
@@ -18504,9 +18480,8 @@ msgid ""
 msgstr ""
 
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:46
-#, fuzzy
 msgid "Minimum items"
-msgstr "アイテムの非表示"
+msgstr "最小アイテム数"
 
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:47
 msgid ""
@@ -18516,7 +18491,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:49
 msgid "Maximum items"
-msgstr ""
+msgstr "最大アイテム数"
 
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:50
 msgid ""
@@ -18666,7 +18641,7 @@ msgstr "このサイトに登録"
 
 #: zp-core/zp-extensions/externalFeed.php:104
 msgid "Check the box to remove a site."
-msgstr ""
+msgstr "サイトを削除するにはボックスにチェックをします。"
 
 #: zp-core/zp-extensions/externalFeed.php:107
 #: zp-core/zp-extensions/rss.php:137
@@ -19958,6 +19933,11 @@ msgstr "更新"
 msgid "Email renewal link"
 msgstr "メールリニューアルリンク"
 
+#: zp-core/zp-extensions/favoritesHandler/deprecated-functions.php:9
+#, fuzzy
+msgid "use printFavoritesURL()"
+msgstr "printTags()を使用します。"
+
 #: zp-core/zp-extensions/colorbox_js.php:25
 msgid "Loads Colorbox JS and CSS scripts for selected theme page scripts."
 msgstr ""
@@ -20871,7 +20851,7 @@ msgstr ""
 #: zp-core/zp-extensions/jplayer.php:238
 #, php-format
 msgid "%1$s::%2$s not found."
-msgstr ""
+msgstr "%1$s::%2$sは見つかりませんでした。"
 
 #: zp-core/zp-extensions/jplayer.php:248
 #, fuzzy
