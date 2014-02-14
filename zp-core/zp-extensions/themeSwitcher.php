@@ -168,7 +168,10 @@ class themeSwitcher {
 
 $_themeSwitcherThemelist = array();
 foreach ($_zp_gallery->getThemes() as $__key => $__theme) {
-	$_themeSwitcherThemelist[$__key] = getOption('themeSwitcher_theme_' . $__key);
+	$set = getOption('themeSwitcher_theme_' . $__key);
+	if (is_null($set)) //newly arrived theme?
+		$set = 1;
+	$_themeSwitcherThemelist[$__key] = $set;
 }
 unset($__key);
 unset($__theme);
