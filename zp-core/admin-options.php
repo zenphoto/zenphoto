@@ -93,21 +93,23 @@ if (isset($_GET['action'])) {
 			setOption('site_email', sanitize($_POST['site_email']), 3);
 			$_zp_gallery->setGallerySession((int) isset($_POST['album_session']));
 			$_zp_gallery->save();
-			$p = sanitize($_POST['zenphoto_cookie_path']);
-			if (empty($p)) {
-				zp_clearCookie('zenphoto_cookie_path');
-			} else {
-				$p = '/' . trim($p, '/') . '/';
-				if ($p == '//') {
-					$p = '/';
+			if (isset($_POST['zenphoto_cookie_path'])) {
+				$p = sanitize($_POST['zenphoto_cookie_path']);
+				if (empty($p)) {
+					zp_clearCookie('zenphoto_cookie_path');
+				} else {
+					$p = '/' . trim($p, '/') . '/';
+					if ($p == '//') {
+						$p = '/';
+					}
+					//	save a cookie to see if change works
+					$returntab .= '&cookiepath';
+					zp_setCookie('zenphoto_cookie_path', $p, NULL, $p);
 				}
-				//	save a cookie to see if change works
-				$returntab .= '&cookiepath';
-				zp_setCookie('zenphoto_cookie_path', $p, NULL, $p);
-			}
-			setOption('zenphoto_cookie_path', $p);
-			if (isset($_POST['cookie_persistence'])) {
-				setOption('cookie_persistence', sanitize_numeric($_POST['cookie_persistence']));
+				setOption('zenphoto_cookie_path', $p);
+				if (isset($_POST['cookie_persistence'])) {
+					setOption('cookie_persistence', sanitize_numeric($_POST['cookie_persistence']));
+				}
 			}
 
 			setOption('site_email_name', process_language_string_save('site_email_name', 3));
@@ -2796,7 +2798,7 @@ Zenphoto_Authority::printPasswordFormJS();
 					<div id="tab_plugin" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
 						<script type="text/javascript">
-																								var optionholder = new array();</script>
+																							var optionholder = new array();</script>
 						<form id="form_options" action="?action=saveoptions<?php if (isset($_GET['single'])) echo '&amp;single=' . $showExtension; ?>" method="post" autocomplete="off">
 							<?php XSRFToken('saveoptions'); ?>
 							<input type="hidden" name="savepluginoptions" value="yes" />
