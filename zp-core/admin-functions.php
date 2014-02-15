@@ -2452,9 +2452,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 		}
 		$strings = getSerializedArray($dbstring);
 		if (count($strings) == 1) {
-			$lang = array_flip($strings);
-			if (!array_shift($lang)) {
-				$strings = array($locale => $dbstring);
+			$keys = array_keys($strings);
+			$lang = array_shift($keys);
+			if (!is_string($lang)) {
+				$strings = array($locale => array_shift($strings));
 			}
 		}
 		$emptylang = generateLanguageList();
