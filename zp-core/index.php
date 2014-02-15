@@ -12,10 +12,20 @@ $_zp_script_timer['start'] = microtime();
 // force UTF-8 Ø
 require_once(dirname(__FILE__) . '/global-definitions.php');
 require_once(dirname(__FILE__) . '/functions.php');
+if (DEBUG_PLUGINS) {
+	debugLog('Loading the "feature" plugins.');
+}
 foreach (getEnabledPlugins() as $extension => $plugin) {
 	$loadtype = $plugin['priority'];
 	if ($loadtype & FEATURE_PLUGIN) {
+		if (DEBUG_PLUGINS) {
+			list($usec, $sec) = explode(" ", microtime());
+			$start = (float) $usec + (float) $sec;
+		}
 		require_once($plugin['path']);
+		if (DEBUG_PLUGINS) {
+			zpFunctions::pluginDebug($extension, $priority, $start);
+		}
 		$_zp_loaded_plugins[] = $extension;
 	}
 }
@@ -88,11 +98,8 @@ if (!preg_match('~' . ZENFOLDER . '~', $_zp_script)) {
 				$start = (float) $usec + (float) $sec;
 			}
 			require_once($plugin['path']);
-			$_zp_loaded_plugins[] = $extension;
 			if (DEBUG_PLUGINS) {
-				list($usec, $sec) = explode(" ", microtime());
-				$end = (float) $usec + (float) $sec;
-				debugLog(sprintf('    ' . $extension . '(THEME:%u)=>%.4fs', $priority & PLUGIN_PRIORITY, $end - $start));
+				zpFunctions::pluginDebug($extension, $priority, $start);
 			}
 			//		$_zp_script_timer['load '.$extension] = microtime();
 		}

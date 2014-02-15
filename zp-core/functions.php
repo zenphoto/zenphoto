@@ -2576,6 +2576,27 @@ class zpFunctions {
 		return $text;
 	}
 
+	static function pluginDebug($extension, $priority, $start) {
+		list($usec, $sec) = explode(" ", microtime());
+		$end = (float) $usec + (float) $sec;
+		$class = array();
+		if ($priority & CLASS_PLUGIN) {
+			$class[] = 'CLASS';
+		}
+		if ($priority & ADMIN_PLUGIN) {
+			$class[] = 'ADMIN';
+		}
+		if ($priority & FEATURE_PLUGIN) {
+			$class[] = 'FEATURE';
+		}
+		if ($priority & THEME_PLUGIN) {
+			$class[] = 'THEME';
+		}
+		if (empty($class))
+			$class[] = 'theme';
+		debugLog(sprintf('    ' . $extension . '(%s:%u)=>%.4fs', implode('|', $class), $priority & PLUGIN_PRIORITY, $end - $start));
+	}
+
 }
 
 /**

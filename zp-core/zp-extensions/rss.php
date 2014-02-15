@@ -8,7 +8,7 @@
  */
 // force UTF-8 Ø
 
-$plugin_is_filter = 9 | FEATURE_PLUGIN | ADMIN_PLUGIN;
+$plugin_is_filter = 9 | FEATURE_PLUGIN;
 $plugin_description = gettext('The Zenphoto <em>RSS</em> handler.');
 $plugin_notice = gettext('This plugin must be enabled to supply <em>RSS</em> feeds.') . '<br />' . gettext('<strong>Note:</strong> Theme support is required to display RSS links.');
 
