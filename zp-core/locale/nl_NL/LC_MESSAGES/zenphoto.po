@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-08 14:56+0100\n"
+"POT-Creation-Date: 2014-02-15 09:26+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -205,7 +205,7 @@ msgstr "volgende"
 #: ZpTranslation-Development/themes/zenpage/image.php:102
 #: ZpTranslation-Development/themes/zenpage/news.php:68
 #: ZpTranslation-Development/themes/zenpage/news.php:105
-#: ZpTranslation-Development/themes/zenpage/pages.php:52
+#: ZpTranslation-Development/themes/zenpage/pages.php:50
 #: ZpTranslation-Development/themes/zpmobile/news.php:40
 #: ZpTranslation-Development/themes/zpmobile/pages.php:55
 msgid "<strong>Tags:</strong>"
@@ -461,19 +461,19 @@ msgid "The Zenphoto object you are requesting cannot be found."
 msgstr "Het Zenphoto object dat je zoekt kan niet gevonden worden."
 
 #: ZpTranslation-Development/themes/effervescence_plus/404.php:60
-#: ZpTranslation-Development/zp-core/template-functions.php:4454
+#: ZpTranslation-Development/zp-core/template-functions.php:4431
 #, php-format
 msgid "Album: %s"
 msgstr "Album: %s"
 
 #: ZpTranslation-Development/themes/effervescence_plus/404.php:63
-#: ZpTranslation-Development/zp-core/template-functions.php:4457
+#: ZpTranslation-Development/zp-core/template-functions.php:4434
 #, php-format
 msgid "Image: %s"
 msgstr "Afbeelding: %s"
 
 #: ZpTranslation-Development/themes/effervescence_plus/404.php:66
-#: ZpTranslation-Development/zp-core/template-functions.php:4460
+#: ZpTranslation-Development/zp-core/template-functions.php:4437
 #, php-format
 msgid "Page: %s"
 msgstr "Pagina: %s"
@@ -645,7 +645,7 @@ msgstr[0] "%u afbeelding"
 msgstr[1] "%u afbeeldingen"
 
 #: ZpTranslation-Development/themes/effervescence_plus/functions.php:378
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:239
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:237
 #, php-format
 msgid "%u Comment"
 msgid_plural "%u Comments"
@@ -947,8 +947,8 @@ msgstr "Albumindex"
 #: ZpTranslation-Development/zp-core/lib-auth.php:578
 #: ZpTranslation-Development/zp-core/lib-auth.php:584
 #: ZpTranslation-Development/zp-core/lib-auth.php:585
-#: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:385
-#: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:386
+#: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:387
+#: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:388
 #: ZpTranslation-Development/zp-core/zp-extensions/defaultCodeblocks.php:34
 #: ZpTranslation-Development/zp-core/zp-extensions/externalFeed.php:69
 #: ZpTranslation-Development/zp-core/zp-extensions/rss.php:77
@@ -1091,7 +1091,7 @@ msgstr "Nieuws"
 #: ZpTranslation-Development/zp-core/zp-extensions/html_meta_tags.php:237
 #: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:745
 #: ZpTranslation-Development/zp-core/zp-extensions/slideshow2.php:703
-#: ZpTranslation-Development/zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:67
+#: ZpTranslation-Development/zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:70
 msgid "Search"
 msgstr "Zoeken"
 
@@ -6117,7 +6117,7 @@ msgstr "Huidig thema"
 
 #: ZpTranslation-Development/zp-core/admin-themes.php:289
 #: ZpTranslation-Development/zp-core/utilities/gallery_statistics.php:446
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:289
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:287
 #: ZpTranslation-Development/zp-core/zp-extensions/comment_form/admin-comments.php:417
 msgid "Edit"
 msgstr "Bewerken"
@@ -8305,7 +8305,7 @@ msgstr "XMP waardering"
 msgid "No captcha handler is enabled."
 msgstr "Er is geen CAPTCHA plugin geactiveerd."
 
-#: ZpTranslation-Development/zp-core/global-definitions.php:47
+#: ZpTranslation-Development/zp-core/global-definitions.php:51
 msgid "not connected"
 msgstr "geen verbinding"
 
@@ -9458,7 +9458,7 @@ msgstr "Log uit"
 
 #: ZpTranslation-Development/zp-core/template-functions.php:453
 #: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:41
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:421
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:476
 #: ZpTranslation-Development/zp-core/zp-extensions/html_meta_tags.php:239
 msgid "My favorites"
 msgstr "Mijn favorieten"
@@ -9571,15 +9571,15 @@ msgstr "Nieuw"
 msgid "no date"
 msgstr "geen datum"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:4255
+#: ZpTranslation-Development/zp-core/template-functions.php:4232
 msgid "The page you are trying to view is password protected."
 msgstr "Deze pagina is beveiligd met een wachtwoord."
 
-#: ZpTranslation-Development/zp-core/template-functions.php:4260
+#: ZpTranslation-Development/zp-core/template-functions.php:4237
 msgid "login"
 msgstr "login"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:4277
+#: ZpTranslation-Development/zp-core/template-functions.php:4254
 msgid ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
 "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
@@ -9587,7 +9587,7 @@ msgstr ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
 "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:4452
+#: ZpTranslation-Development/zp-core/template-functions.php:4429
 msgid "Zenphoto Error:</strong> the requested object was not found."
 msgstr "Zenphoto fout:</strong> het gevraagde object kon niet gevonden worden."
 
@@ -12305,53 +12305,53 @@ msgstr "Overzetten van  lib-auth data versie %1$s => versie %2$s"
 msgid "failed"
 msgstr "Mislukt"
 
-#: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:88
+#: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:90
 msgid "Mod_Rewrite check:"
 msgstr "Mod_Rewrite controle:"
 
-#: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:91
+#: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:93
 msgid "Mod_rewrite"
 msgstr "Mod_rewrite"
 
-#: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:243
+#: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:245
 msgid "Users with full privileges"
 msgstr "Gebruikers met volledige rechten."
 
-#: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:252
+#: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:254
 msgid "Users allowed only to view zenphoto objects"
 msgstr "Gebruikers met alléén toestemming om albums te bekijken."
 
-#: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:261
+#: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:263
 msgid "Banned users"
 msgstr "Geweigerde gebruikers."
 
-#: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:270
+#: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:272
 msgid "Managers of one or more albums"
 msgstr "Beheerders van één of meer albums."
 
-#: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:279
+#: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:281
 msgid "Default user settings"
 msgstr "Standaard gebruikers-instellingen."
 
-#: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:288
+#: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:290
 msgid "Newly registered and verified users"
 msgstr "Nieuwe gregistreerde en geferifiëerde gebruikers."
 
-#: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:320
+#: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:322
 msgid "Theme setup:"
 msgstr "Thema setup:"
 
-#: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:342
+#: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:344
 #, php-format
 msgid "Copyright %1$u: %2$s"
 msgstr "Copyright %1$u: %2$s"
 
-#: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:392
+#: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:394
 msgid ""
 "You can insert your Gallery description on the Admin Options Gallery tab."
 msgstr "Hier kun je een beschrijving van de galerij invoeren."
 
-#: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:574
+#: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:576
 msgid "Plugin setup:"
 msgstr "Plugin setup:"
 
@@ -13458,12 +13458,12 @@ msgstr "Album niet gevonden: Album bestaat niet."
 msgid "Invalid video instantiation: file does not exist."
 msgstr "Video niet gevonden: bestand bestaat niet."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/class-video.php:392
+#: ZpTranslation-Development/zp-core/zp-extensions/class-video.php:400
 #, php-format
 msgid "getid3 exceptions for %1$s::%2$s"
 msgstr "getid3 uitzonderingen voor %1$s::%2$s"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/class-video.php:441
+#: ZpTranslation-Development/zp-core/zp-extensions/class-video.php:448
 msgid "No multimeida extension installed."
 msgstr "Er is geen multimedia extensie geïnstalleerd."
 
@@ -13809,38 +13809,38 @@ msgstr "Vink uit om de jQuery paginering uit te zetten. Normaal staat dit aan."
 msgid "comments"
 msgstr "reacties"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:197
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:198
 msgid "Add a comment:"
 msgstr "Reageer"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:235
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:233
 msgid "No Comments"
 msgstr "Geen reacties"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:249
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:247
 msgid "show comments"
 msgstr "toon reacties"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:253
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:251
 msgid "hide comments"
 msgstr "verberg reacties"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:287
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:285
 msgid "on"
 msgstr "op"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:310
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:308
 msgid "Only registered users may post comments."
 msgstr "Alleen geregistreerde gebruikers kunnen reacties plaatsen."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:385
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:383
 msgid "Closed for comments."
 msgstr "Gesloten voor reacties."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:399
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:402
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:405
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:408
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:397
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:400
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:403
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:406
 msgid "Subscribe to comments"
 msgstr "RSS reacties."
 
@@ -14878,6 +14878,10 @@ msgid ""
 msgstr ""
 "<p class=\"notebox\">Voor favorieten moet de <code>mod_rewrite</code> optie "
 "geactiveerd zijn.</p>"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:301
+msgid "Users watching:"
+msgstr "Bezoekers:"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/federated_logon.php:49
 msgid "Handles logon from <em>OpenID</em> credential providers."
@@ -20649,7 +20653,7 @@ msgstr "Reactie geplaatst"
 msgid "Comment posted on unknown page!"
 msgstr "Reactie gepost op onbekende pagina!"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:978
+#: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:962
 msgid "Anonymous"
 msgstr "Anoniem"
 
@@ -20726,7 +20730,11 @@ msgstr "In plugins"
 msgid "In Zenphoto code"
 msgstr "In Zenphoto code"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:73
+#: ZpTranslation-Development/zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:65
+msgid "In Codeblocks"
+msgstr "In Codeblocks"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:76
 msgid ""
 "<strong>NOTE:</strong> This search will have false positives for instance "
 "when the function name appears in a comment or quoted string. Functions "
@@ -20739,7 +20747,7 @@ msgstr ""
 "asterix zijn class methodes. Functies met twee asterixen hebben verouderde "
 "parameters."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:106
+#: ZpTranslation-Development/zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:112
 msgid "No calls on deprecated functions were found."
 msgstr "Er zijn geen verouderde functies gevonden."
 
@@ -20749,8 +20757,8 @@ msgstr "Gebruik in plaats hiervoor de methode om te instantiëren."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:23
 #: ZpTranslation-Development/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:31
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:31
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:39
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:22
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:30
 msgid ""
 "Sort parameter oprions should be set instead with the setSortType() and "
 "setSortDirection() object methods at the head of your script."
@@ -20810,8 +20818,8 @@ msgid "Use getCommentDateTime()."
 msgstr "Gebruik getCommentDateTime()."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:169
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:113
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:122
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:112
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:121
 msgid "Use getHitcounter()."
 msgstr "Gebruik getHitcounter()."
 
@@ -21040,11 +21048,15 @@ msgid "use printPrevPageURL()"
 msgstr "Gebruik printPrevPageURL()"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:797
-#: ZpTranslation-Development/zp-core/zp-extensions/favoirtesHandler/deprecated-functions.php:9
 msgid "use printSizedImageURL()"
 msgstr "Gebruik printSizedImageURL()"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/deprecated-functions/functions.php:24
+#: ZpTranslation-Development/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:807
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:990
+msgid "use the object's getCommentsAllowed() method"
+msgstr "gebruik de getCommentsAllowed() methode."
+
+#: ZpTranslation-Development/zp-core/zp-extensions/deprecated-functions/functions.php:49
 msgid "method"
 msgstr "methode"
 
@@ -21154,6 +21166,10 @@ msgstr "Zenphoto data (%s)"
 msgid "Backup files (%s)"
 msgstr "Backup bestanden (%s)"
 
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler/deprecated-functions.php:9
+msgid "use printFavoritesURL()"
+msgstr "gebruik printFavoritesURL()"
+
 #: ZpTranslation-Development/zp-core/zp-extensions/federated_logon/OpenID_logon.php:33
 #: ZpTranslation-Development/zp-core/zp-extensions/federated_logon/OpenID_logon.php:36
 msgid "OpenID Authentication"
@@ -21251,7 +21267,7 @@ msgstr "Verkort de beschrijvende tekst voor elk <em>punt</em>."
 msgid "Truncate the titles of the <em>points</em>"
 msgstr "Verkort de titels van de <em>punten</em>."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/jcarousel_thumb_nav/deprecated-functions.php:14
+#: ZpTranslation-Development/zp-core/zp-extensions/jcarousel_thumb_nav/deprecated-functions.php:7
 msgid "Use printThumbNav()."
 msgstr "Gebruik printThumbNav()."
 
@@ -21996,8 +22012,8 @@ msgstr "Publiceer pagina's"
 msgid "No unpublished pages"
 msgstr "Geen ongepubliceerde pagina's"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/rating/deprecated-functions.php:13
-#: ZpTranslation-Development/zp-core/zp-extensions/rating/deprecated-functions.php:25
+#: ZpTranslation-Development/zp-core/zp-extensions/rating/deprecated-functions.php:12
+#: ZpTranslation-Development/zp-core/zp-extensions/rating/deprecated-functions.php:24
 msgid "Use printRating()."
 msgstr "Gebruik printRating()."
 
@@ -22025,7 +22041,7 @@ msgstr "Je kunt ook registreren met \"federated\" gegevens"
 msgid "Error processing rewrite rule:"
 msgstr "Fout bij het verwerken van rewrite-regel:"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/rss/deprecated-functions.php:15
+#: ZpTranslation-Development/zp-core/zp-extensions/rss/deprecated-functions.php:14
 #, php-format
 msgid "The %1$s feed is deprecated."
 msgstr "De %1$s feed is verouderd."
@@ -22172,7 +22188,7 @@ msgstr "Leeg de sitemap-cache"
 msgid "Sitemap files are being generated...Patience please."
 msgstr "De sitemap-bestanden worden aangemaakt...een ogenblik geduld."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/slideshow/deprecated-functions.php:13
+#: ZpTranslation-Development/zp-core/zp-extensions/slideshow/deprecated-functions.php:12
 msgid ""
 "This feature is now done by a \"theme_head\" filter. You can remove the "
 "function call."
@@ -23272,17 +23288,17 @@ msgstr ""
 "De volgorde van de aangegeven pagina's kan niet worden bewaard omdat er te "
 "diep is genest. Verplaats ze a.u.b. naar een hoger niveau."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:15
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:687
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:702
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:713
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:724
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:736
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:747
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:759
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:770
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:786
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:818
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:14
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:686
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:701
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:712
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:723
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:735
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:746
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:758
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:769
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:785
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:817
 msgid ""
 "CombiNews is deprecated. See the <a href=\"http://www.zenphoto.org/news/"
 "zenphoto-1.4.6\">Zenphoto 1.4.6 release notes</a>."
@@ -23290,112 +23306,112 @@ msgstr ""
 "CombiNews is verouderd. Zie de <a href=\"http://www.zenphoto.org/news/"
 "zenphoto-1.4.6\">Zenphoto 1.4.6 release notes</a>."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:23
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:38
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:46
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:54
+msgid "Use the getLink method instead"
+msgstr "Gebruik in plaats hiervoor de getLink methode."
+
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:62
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:70
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:78
+msgid "Create an object and use its getLink method."
+msgstr "Maak een object en gebruik de getLink methode."
+
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:86
+msgid "Use getNewsArchivePath()."
+msgstr "Gebruik getNewsArchivePath()"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:94
+msgid "Use getNewsIndexURL()."
+msgstr "gebruik getNewsIndexURL()."
+
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:102
 msgid "Use the Zenpage Page class->getPages() method."
 msgstr ""
 "Gebruik in plaats hiervoor de Zenpage page <em>class->getPages()</em> "
 "methode."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:47
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:55
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:63
-msgid "Use the getLink method instead"
-msgstr "Gebruik in plaats hiervoor de getLink methode."
-
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:71
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:79
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:87
-msgid "Create an object and use its getLink method."
-msgstr "Maak een object en gebruik de getLink methode."
-
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:95
-msgid "Use getNewsArchivePath()."
-msgstr "Gebruik getNewsArchivePath()"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:103
-msgid "Use getNewsIndexURL()."
-msgstr "gebruik getNewsIndexURL()."
-
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:131
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:130
 msgid "Use object->getTags() method."
 msgstr "Gebruik de object->getTags() methode."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:145
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:144
 msgid "Use printTags()."
 msgstr "Gebruik printTags()."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:154
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:153
 msgid "Use instead the Zenpage category class method getSubCategories()."
 msgstr ""
 "Gebruik in plaats hiervoor de Zenpage categorie class methode "
 "getSubCategories()."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:165
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:164
 msgid "Use instead the Zenpage news class method inProtectedCategory()."
 msgstr ""
 "Gebruik in plaats hiervoor de Zenpage nieuws class methode "
 "inProtectedCategory()."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:181
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:180
 msgid "Use instead the Zenpage category class method isProtected()."
 msgstr ""
 "Gebruik in plaats hiervoor de Zenpage categorie class methode isProtected()."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:196
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:195
 msgid "Use instead the Zenpage category class method getParents()."
 msgstr ""
 "Gebruik in plaats hiervoor de Zenpage categorie class methode getParents()."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:205
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:204
 msgid "Use instead the Zenpage category class method getTitle()."
 msgstr ""
 "Gebruik in plaats hiervoor de Zenpage categorie class methode getTitle()."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:215
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:214
 msgid "Use instead the Zenpage category class method getID()."
 msgstr "Gebruik in plaats hiervoor de Zenpage categorie class methode getID()."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:226
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:225
 msgid "Use instead the Zenpage category class method getParentID()."
 msgstr ""
 "Gebruik in plaats hiervoor de Zenpage categorie class methode getParentID()."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:236
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:235
 msgid "Use instead the Zenpage category class method getSortOrder()."
 msgstr ""
 "Gebruik in plaats hiervoor de Zenpage categorie class methode getSortOrder()."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:246
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:245
 msgid "Use instead the Zenpage page class method getParents()."
 msgstr "Gebruik in plaats hiervoor de Zenpage page class methode getParents()."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:255
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:254
 msgid "Use instead the Zenpage page class method isProtected()."
 msgstr ""
 "Gebruik in plaats hiervoor de Zenpage page class methode isProtected()."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:267
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:266
 msgid "Use instead the Zenpage category class method isMyItem()."
 msgstr ""
 "Gebruik in plaats hiervoor de Zenpage categorie class methode isMyItem()."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:279
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:309
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:278
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:308
 msgid "Use instead the Zenpage category class method checkforGuest()."
 msgstr ""
 "Gebruik in plaats hiervoor de Zenpage categorie class methode checkforGuest"
 "()."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:290
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:289
 msgid "Use instead the Zenpage news class method isMyItem()."
 msgstr "Gebruik in plaats hiervoor de Zenpage nieuws class methode isMyItem()."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:300
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:299
 msgid "Use instead the Zenpage news class method checkNewsAccess()."
 msgstr ""
 "Gebruik in plaats hiervoor de Zenpage nieuws class methode checkNewsAccess()."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:319
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:318
 msgid ""
 "Use instead the Zenpage category global object variable: "
 "$_zp_current_category->getTitlelink()."
@@ -23403,7 +23419,7 @@ msgstr ""
 "Gebruik in plaats hiervoor de Zenpage categorie global object variabele: "
 "$_zp_current_category->getTitlelink()."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:329
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:328
 msgid ""
 "Use instead the Zenpage category global object variable: "
 "$_zp_current_category->getID()."
@@ -23411,7 +23427,7 @@ msgstr ""
 "Gebruik in plaats hiervoor de Zenpage categorie global object variabele:  "
 "$_zp_current_category->getID()."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:339
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:338
 msgid ""
 "Use instead the Zenpage category global object variable: "
 "$_zp_current_category->getParentID()."
@@ -23419,7 +23435,7 @@ msgstr ""
 "Gebruik in plaats hiervoor de Zenpage categorie global object variabele:   "
 "$_zp_current_category->getParentID()."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:349
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:348
 msgid ""
 "Use instead the Zenpage news global object variable: "
 "$_zp_current_zenpage_news->inNewsCategory($catlink)."
@@ -23427,7 +23443,7 @@ msgstr ""
 "Gebruik in plaats hiervoor de Zenpage nieuws global object variabele:  "
 "$_zp_current_zenpage_news->inNewsCategory($catlink)."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:359
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:358
 msgid ""
 "Use instead the Zenpage news global object variable: "
 "$_zp_current_zenpage_news->inSubNewsCategoryOf($catlink)."
@@ -23435,7 +23451,7 @@ msgstr ""
 "Gebruik in plaats hiervoor de Zenpage nieuws global object variabele:  "
 "$_zp_current_zenpage_news->inSubNewsCategoryOf($catlink)."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:370
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:369
 msgid ""
 "Use instead the Zenpage category global object variable: "
 "$_zp_current_category->isSubNewsCategoryOf($catlink)."
@@ -23443,7 +23459,7 @@ msgstr ""
 "Gebruik in plaats hiervoor de Zenpage categorie global object variabele:   "
 "$_zp_current_category->isSubNewsCategoryOf($catlink)."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:379
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:378
 msgid ""
 "Functionality is now included in getNewsContent(), printNewsContent() and "
 "getContentShorten() to properly cover custom shortening via TinyMCE "
@@ -23452,7 +23468,7 @@ msgstr ""
 "Zelf ingestelde inkorting via de TinyMCE pagebreak is nu verwerkt in "
 "getNewsContent(), printNewsContent() en getContentShorten()."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:392
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:391
 msgid ""
 "Use getContentShorten() instead. Note the read more url must be passed "
 "directly."
@@ -23460,11 +23476,11 @@ msgstr ""
 "Gebruik hiervoor in de plaats getContentShorten(). Let wel dat de <em>read "
 "more</em> parameter moet worden opgegeven."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:401
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:400
 msgid "This happens automatically."
 msgstr "Dit gebeurt automatisch."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:409
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:408
 msgid ""
 "Use the method from either the ZenpagePage or the ZenpageCategory class "
 "instead."
@@ -23472,30 +23488,30 @@ msgstr ""
 "Gebruik hiervoor in de plaats de methode van de ZenpagePage class of de "
 "ZenpageCategory class."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:428
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:438
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:526
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:536
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:574
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:584
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:594
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:427
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:437
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:525
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:535
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:573
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:583
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:593
 msgid "Use the Zenpage class method instead."
 msgstr "Gebruik in plaats hiervoor de Zenpage class methode."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:455
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:454
 msgid "Count the articles instead."
 msgstr "Tel in plaats hiervan de artikelen."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:546
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:545
 msgid "Use the global $_zp_page instead."
 msgstr "Gebruik in plaats hiervoor de <em>global</em> $_zp_page."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:556
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:565
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:555
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:564
 msgid "Combinews is removed."
 msgstr "Combinews is verwijderd."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:604
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:603
 msgid ""
 "Use the template function <code>getRSSLink()</code> instead. NOTE: While "
 "this function gets a full html link  <code>getRSSLink()</code> just returns "
@@ -23505,15 +23521,15 @@ msgstr ""
 "OPMERKING: de <code>getRSSLink()</code> retourneerd alleen een URL (zonder "
 "HTML)"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:644
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:643
 msgid "use printLatestComments($number, $shorten, $type, $itemID, $id);"
 msgstr "gebruik printLatestComments($number, $shorten, $type, $itemID, $id);"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:653
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:652
 msgid "use getRSSLink($option,$lang,$categorylink)."
 msgstr "gebruik getRSSLink($option,$lang,$categorylink)."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:662
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:661
 msgid ""
 "use printRSSLink($option, $prev, $linktext, $next, $printIcon, $class, "
 "$lang, $categoryLink)."
@@ -23521,35 +23537,35 @@ msgstr ""
 "gebruik printRSSLink($option, $prev, $linktext, $next, $printIcon, $class, "
 "$lang, categoryLink)."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:672
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:671
 msgid "use printRSSHeaderLink($option, $linktext, $lang, $categorylink)."
 msgstr "gebruik printRSSHeaderLink($option, $linktext, $lang, $categorylink)."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:901
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:911
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:921
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:900
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:910
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:920
 msgid "Create an object and use the object getLink"
 msgstr "Maak een object en gebruik de getLink methode."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:931
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:945
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:930
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:944
 msgid "use getNewsURL()"
 msgstr "Gebruik getNewsURL()"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:936
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:973
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:935
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:972
 msgid "use printNewsURL()"
 msgstr "Gebruik printNewsURL()"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:955
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:954
 msgid "use getPageURL()"
 msgstr "Gebruik getPageURL()"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:964
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:963
 msgid "use printPageURL()"
 msgstr "Gebruik printPageURL()"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:982
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/deprecated-functions.php:981
 msgid "use printNewsBreadcrumb()"
 msgstr "Gebruik printNewsBreadcrumb()"
 
@@ -23882,32 +23898,32 @@ msgid_plural "%u articles"
 msgstr[0] "%u artikel"
 msgstr[1] "%u artikelen"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2090
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2093
 msgid "This page is password protected"
 msgstr "Deze pagina is beveiligd met een wachtwoord!"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2279
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2266
 #, php-format
 msgid "View the %s album"
 msgstr "Bekijk het %s album"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2281
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2268
 #, php-format
 msgid "View the album %s"
 msgstr "Bekijk het album %s"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2285
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2286
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2272
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2273
 #, php-format
 msgid "View %s"
 msgstr "Album %s bekijken"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2294
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2281
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the image %1$s:%2$s"
 msgstr "<code>zenpageAlbumImage()</code> kan afbeelding %1$s:%2$s niet vinden."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2303
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2290
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> kan album %1$s niet vinden."
