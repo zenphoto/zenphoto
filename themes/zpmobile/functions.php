@@ -90,26 +90,31 @@ function jqm_printFooterNav() {
 			<li><?php echo gettext('zpMobile theme by'); ?> <a href="http://www.maltem.de">Malte Müller</a></li>
 		</ul>
 		<div data-role="navbar">
-		<ul id="footernav">
-			<?php
-			if (zp_loggedin()) {
-				$protocol = SERVER_PROTOCOL;
-				if ($protocol == 'https_admin') {
-					$protocol = 'https';
+			<ul id="footernav">
+				<?php
+				$bail = '<li></li>';
+				if (zp_loggedin()) {
+					$protocol = SERVER_PROTOCOL;
+					if ($protocol == 'https_admin') {
+						$protocol = 'https';
+					}
+					$bail = '';
+					?>
+					<li><a rel="external" href="<?php echo html_encode($protocol . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . '/' . ZENFOLDER); ?>"><?php echo gettext('Admin'); ?></a></li>
+					<?php
 				}
 				?>
-				<li><a rel="external" href="<?php echo html_encode($protocol . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . '/' . ZENFOLDER); ?>"><?php echo gettext('Admin'); ?></a></li>
 				<?php
-			}
-			?>
-			<?php
-			if (function_exists('printFavoritesURL')) {
+				if (function_exists('printFavoritesURL')) {
+					$bail = '';
+					?>
+					<li><?php printFavoritesURL(); ?></li>
+					<?php
+				}
+				echo $bail;
 				?>
-				<li><?php printFavoritesURL(); ?></li><?php
-			}
-			?>
-			
-		</ul>
+
+			</ul>
 		</div>
 		<!-- /navbar -->
 	</div><!-- footer -->
@@ -169,7 +174,7 @@ function jqm_printMenusLinks() {
 		</div>
 	</div>
 	<?php
-}  
+}
 
 function jqm_printBacktoTopLink() {
 	return ''; // disabled for now as the jquerymobile cache somehow always link this to the previous page...
