@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Zenphoto 1.4.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-16 12:18+0100\n"
-"PO-Revision-Date: 2014-02-16 13:02+0100\n"
+"PO-Revision-Date: 2014-02-16 14:23+0100\n"
 "Last-Translator: Malte Müller (acrylian) <wartgart@gmx.net>\n"
 "Language-Team: Malte Müller (acrylian)\n"
 "Language: de_DE\n"
@@ -8248,6 +8248,8 @@ msgid ""
 "The Zenphoto configuration file is corrupt. You will need to restore it from "
 "a backup."
 msgstr ""
+"Die Zenphoto-Konfigurations-Datei ist korrupt. Sie werden sie von einem "
+"Backup wiederherstellen müssen."
 
 #: zenphoto-devzp/zp-core/functions-config.php:35
 msgid "Updating the configuration file"
@@ -9485,6 +9487,8 @@ msgid ""
 "The maximum height used by the site for processed images. Set to %d for "
 "unconstrained. Default is <strong>%d</strong>"
 msgstr ""
+"Die maximale Höhe der auf der Website verwendeten Bilder. Lockere "
+"Einstellung auf %d. Standard ist <strong>%d</strong>"
 
 #: zenphoto-devzp/zp-core/lib-Imagick.php:84
 msgid "Max width"
@@ -9496,6 +9500,8 @@ msgid ""
 "The maximum width used by the site for processed images. Set to %d for "
 "unconstrained. Default is <strong>%d</strong>."
 msgstr ""
+"Die maximale Breite der auf der Website verwendeten Bilder. Lockere "
+"Einstellung auf %d. Standard ist <strong>%d</strong>"
 
 #: zenphoto-devzp/zp-core/lib-Imagick.php:101
 #, php-format
@@ -10450,6 +10456,7 @@ msgstr "Fehler beim Ausführen der Rewrite-Regel: \"%s\""
 #: zenphoto-devzp/zp-core/setup.php:29
 msgid "Click to restore the setup scripts and run setup."
 msgstr ""
+"Hier klicken, um die Setup-Skripte wiederherzustellen und Setup auszuführen."
 
 #: zenphoto-devzp/zp-core/setup.php:31
 #, php-format
@@ -10461,6 +10468,8 @@ msgid ""
 "You must restore the setup files on your primary installation to run the "
 "setup operation."
 msgstr ""
+"Sie müssen die Setup-Dateien von Ihrer Hauptinstallation wiederherstellen, "
+"um Setup ausführen zu können."
 
 #: zenphoto-devzp/zp-core/setup/index.php:22
 #, php-format
@@ -10492,6 +10501,8 @@ msgid ""
 "A corrupt configuration file was detected. You should remove or repair the "
 "file and re-run setup."
 msgstr ""
+"Es wurde eine korrupte Installationsdatei gefunden. Sie sollten es entfernen "
+"oder reparieren und dann Setup ausführen."
 
 #: zenphoto-devzp/zp-core/setup/index.php:315
 msgid "upgrade"
@@ -10667,6 +10678,8 @@ msgid ""
 "The configured PHP session path could not be used. Zenphoto has set the path "
 "to the %s folder."
 msgstr ""
+"Der konfigurierte PHP-Session-Pfad konnte nicht verwendet werden. Zenphoto "
+"hat den Pfad daher auf den Ordner %s gesetzt."
 
 #: zenphoto-devzp/zp-core/setup/index.php:603
 msgid "PHP Sessions are required for Zenphoto administrative functions."
@@ -12119,6 +12132,13 @@ msgid ""
 "the table, and then restoring from the backup. Note, however, that the "
 "duplicate entries will be lost."
 msgstr ""
+"<strong>Warnung:</strong> Die <code>%s</code>-Tabelle schein keinen  "
+"<em>UNIQUE</em>-Schlüssel definiert zu habeb. Es existieren daher "
+"wahrscheinlich duplizierte Einträge, die unerwünschtes Verhalten nach sich "
+"ziehen können.  Dies kann normalerweise korrigiert werden, indem Sie ein "
+"Zenphoto-Datenbank-Backup erstellen, die Tabelle löschen, Setup erneut "
+"ausführen und dann vom Backup wiederherstellen. In jedem Fall gehen die "
+"duplizierten Einträge verloren."
 
 #: zenphoto-devzp/zp-core/setup/setup-option-defaults.php:8
 msgid "Set Zenphoto default options"
@@ -12586,6 +12606,8 @@ msgstr ""
 #: zenphoto-devzp/zp-core/utilities/backup_restore.php:434
 msgid "The maximum error count was exceeded and the restore aborted."
 msgstr ""
+"Die maximale Fehleranzahl wurde überschritten und die Wiederherstellung "
+"abgebrochen."
 
 #: zenphoto-devzp/zp-core/utilities/backup_restore.php:437
 msgid "Restore encountered the following errors:"
@@ -13406,6 +13428,8 @@ msgid ""
 "Responsive jQuery bxSlider thumb nav plugin based on <a href='http://"
 "bxslider.com'>http://bxslider.com</a>"
 msgstr ""
+"Responsives jQuery bxSlider Plugin basierend auf <a href='http://bxslider."
+"com'>http://bxslider.com</a>"
 
 #: zenphoto-devzp/zp-core/zp-extensions/bxslider_thumb_nav.php:17
 #: zenphoto-devzp/zp-core/zp-extensions/jcarousel_thumb_nav.php:14
@@ -13426,6 +13450,8 @@ msgid ""
 "The minimum number of slides to be shown. Slides will be sized down if "
 "carousel becomes smaller than the original size."
 msgstr ""
+"Das Minimum an angezeigten Slides. Diese Anzahl wird angezeigt, wenn das "
+"Carousel kleiner als die Originalgröße angezeigt wird."
 
 #: zenphoto-devzp/zp-core/zp-extensions/bxslider_thumb_nav.php:49
 msgid "Maximum items"
@@ -13436,6 +13462,8 @@ msgid ""
 "The maximum number of slides to be shown. Slides will be sized up if "
 "carousel becomes larger than the original size."
 msgstr ""
+"Das Maximum an angezeigten Slides. Diese Anzahl wird angezeigt, wenn das "
+"Carousel größer als die Originalgröße angezeigt wird."
 
 #: zenphoto-devzp/zp-core/zp-extensions/bxslider_thumb_nav.php:52
 #: zenphoto-devzp/zp-core/zp-extensions/cacheManager.php:212
@@ -13478,6 +13506,8 @@ msgstr "Geschwindigkeit"
 #: zenphoto-devzp/zp-core/zp-extensions/bxslider_thumb_nav.php:65
 msgid "The speed in miliseconds the slides advance when clicked.)"
 msgstr ""
+"Die Geschwindigkeit zum nächsten Slide in Milisekunden, wenn weiter geklickt "
+"wird."
 
 #: zenphoto-devzp/zp-core/zp-extensions/bxslider_thumb_nav.php:67
 #: zenphoto-devzp/zp-core/zp-extensions/jcarousel_thumb_nav.php:51
@@ -13499,6 +13529,7 @@ msgstr "Modus"
 #: zenphoto-devzp/zp-core/zp-extensions/bxslider_thumb_nav.php:75
 msgid "The mode of the thumb nav. Note this might require theme changes."
 msgstr ""
+"Der Modus der Thumbnavigation. Dies kann Änderungen am Theme erfordern."
 
 #: zenphoto-devzp/zp-core/zp-extensions/bxslider_thumb_nav.php:85
 msgid ""
@@ -14635,6 +14666,7 @@ msgstr "Als SPAM markieren"
 #: zenphoto-devzp/zp-core/zp-extensions/comment_form/admin-comments.php:340
 msgid "The item upon which this comment was posted no longer exists."
 msgstr ""
+"Das Objekt, zu dem dieser Kommentar abgegeben wurde, existiert nicht mehr."
 
 #: zenphoto-devzp/zp-core/zp-extensions/comment_form/admin-comments.php:340
 msgid "<strong>Missing Object</strong> "
@@ -14934,6 +14966,9 @@ msgid ""
 "You will need to run <a href=\"%1$s\">setup</a> to update the database with "
 "the custom fields defined by the <em>%2$s</em> plugin."
 msgstr ""
+"Sie müssen <a href=\"%1$s\">Setup</a> erneut ausführen, um die Datenbank mit "
+"den durch das <em>%2$s</em>-Plugin definierten benutzerdefinierten Felder zu "
+"aktualisieren."
 
 #: zenphoto-devzp/zp-core/zp-extensions/contact_form.php:17
 msgid ""
@@ -15347,6 +15382,7 @@ msgstr "Codeblöcke"
 #: zenphoto-devzp/zp-core/zp-extensions/defaultCodeblocks.php:44
 msgid "Codeblocks to be inserted when the one for the object is empty."
 msgstr ""
+"Codeblöcke, die eingefügt  werden sollen, wenn der für das Objekt leer ist."
 
 #: zenphoto-devzp/zp-core/zp-extensions/deprecated-functions.php:24
 msgid "Provides deprecated Zenphoto functions."
@@ -15429,6 +15465,8 @@ msgid ""
 "Functions flagged with an asterisk are class methods. Ones flagged with two "
 "asterisks have deprecated parameters."
 msgstr ""
+"Funktionen mit einem Sternchen sind Klassenmethoden, die mit zwei haben "
+"veraltete Parameter."
 
 #: zenphoto-devzp/zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:32
 msgid "Deprecated"
@@ -15462,6 +15500,11 @@ msgid ""
 "have deprecated parameters. No screening is done on these, so you must "
 "verify if there is an issue."
 msgstr ""
+"<strong>HINWEIS:</strong> Dies Suche kann falsche Treffer ausgeben, wenn zum "
+"Beispiel Funktionennamen innerhalb von Anführungszeichen oder Kommentaren "
+"vorkommen. Funktionen mit einem Sternchen sind Klassenmethoden, die mit zwei "
+"haben veraltete Parameter. Es finden für diese keine Überprüfung statt, so "
+"dass Sie dies selbst machen müssen."
 
 #: zenphoto-devzp/zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:112
 msgid "No calls on deprecated functions were found."
@@ -15479,16 +15522,22 @@ msgid ""
 "Sort parameter oprions should be set instead with the setSortType() and "
 "setSortDirection() object methods at the head of your script."
 msgstr ""
+"Sortierungsparameter sollten stattdessen mit den Klassenmethoden "
+"setSortType() and setSortDirection() im Kopfbereich Ihres Skriptes definiert "
+"werden."
 
 #: zenphoto-devzp/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:39
 msgid "Pass array(\"albums\" => array(album, album, ...)) for the object list."
 msgstr ""
+"Geben Sie array(\"albums\" => array(album, album, …)) für die Objektliste an."
 
 #: zenphoto-devzp/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:47
 msgid ""
 "The parameter to getGalleryIndexURL() is deprecated. Use getCustomPageURL() "
 "instead for custom pages."
 msgstr ""
+"Die Parameter für getGalleryIndexURL() sind veraltet. Verwenden Sie "
+"getCustomPageURL() für benutzerdefinierte Seiten."
 
 #: zenphoto-devzp/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:55
 msgid "Use the getFilename() method instead"
@@ -15724,6 +15773,10 @@ msgid ""
 "gives different results depending on the setting of <code>mod_rewrite</code> "
 "so which object method to use depends on what your settings were!"
 msgstr ""
+"Nutzen Sie die entsprechende Objektmethode. <strong>Hinweis:</strong> Diese "
+"Funktion gibt abhängig von der <code>mod_rewrite</code>-Einstellung "
+"unterschiedliche Ergebisse aus, so dass welchen Methode Sie benutzen müssen, "
+"von Ihrer Einstellung abhängt."
 
 #: zenphoto-devzp/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:698
 msgid "use getLinkHTML()"
@@ -16172,6 +16225,8 @@ msgid ""
 "An example of how to reference global variables. In this case to dump the "
 "current gallery page variable."
 msgstr ""
+"Ein Beispiel, wie man globale Variablen referenziert. In diesem Fall die "
+"Ausgabe der aktuellen Galerieseite."
 
 #: zenphoto-devzp/zp-core/zp-extensions/exampleMacros.php:43
 msgid ""
@@ -16292,7 +16347,7 @@ msgstr "Album-Feed-Sortierung:"
 
 #: zenphoto-devzp/zp-core/zp-extensions/externalFeed.php:98
 msgid "In addition to the above you may select latest updated."
-msgstr ""
+msgstr "Zusätzlich zu Obigem können Sie die zuletzt aktualisierten auswählen."
 
 #: zenphoto-devzp/zp-core/zp-extensions/externalFeed.php:99
 msgid "New requestor:"
@@ -16300,7 +16355,7 @@ msgstr "Neue Anfrage:"
 
 #: zenphoto-devzp/zp-core/zp-extensions/externalFeed.php:101
 msgid "Supply a site name to add a new using site."
-msgstr ""
+msgstr "Geben Sie einen Sitenamen an, um eine weitere nutzende Site anzugeben."
 
 #: zenphoto-devzp/zp-core/zp-extensions/externalFeed.php:102
 msgid "Registered sites:"
@@ -16308,7 +16363,7 @@ msgstr "Registrierte Sites:"
 
 #: zenphoto-devzp/zp-core/zp-extensions/externalFeed.php:104
 msgid "Check the box to remove a site."
-msgstr ""
+msgstr "Auswählen, um eine Site zu entfernen."
 
 #: zenphoto-devzp/zp-core/zp-extensions/externalFeed.php:107
 #: zenphoto-devzp/zp-core/zp-extensions/rss.php:137
@@ -16460,7 +16515,7 @@ msgstr "Favoritenseiten-Beschreibung"
 msgid ""
 "<p class=\"notebox\">Favorites requires the <code>mod_rewrite</code> option "
 "be enabled.</p>"
-msgstr ""
+msgstr "<p class=\"notebox\">Favoriten erfordern <code>mod_rewrite</code>.</p>"
 
 #: zenphoto-devzp/zp-core/zp-extensions/favoritesHandler.php:301
 msgid "Users watching:"
@@ -16760,7 +16815,7 @@ msgstr "Artikel beim Veröffentlichen eines Galerieeintrages erstellen."
 #: zenphoto-devzp/zp-core/zp-extensions/galleryArticles.php:12
 #: zenphoto-devzp/zp-core/zp-extensions/galleryArticles.php:98
 msgid "Gallery Articles requires Zenpage to be enabled."
-msgstr ""
+msgstr "Gallery Articles benötigt das Zenpage CMS-Plugin."
 
 #: zenphoto-devzp/zp-core/zp-extensions/galleryArticles.php:38
 #, php-format
@@ -16796,6 +16851,8 @@ msgid ""
 "will be substituted for <code>%2$s</code> and the image title for <code>"
 "%1$s</code>."
 msgstr ""
+"Dieser Text wird als <em>Titel</em> des Artikels genutzt. Der Albumtitel "
+"wird mit <code>%2$s</code> ersetzt und der Bildtitel <code>%1$s</code>."
 
 #: zenphoto-devzp/zp-core/zp-extensions/galleryArticles.php:73
 #: zenphoto-devzp/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:103
@@ -16808,6 +16865,8 @@ msgid ""
 "This text will be used as the <em>title</em> of the article. The album title "
 "will be substituted for <code>%1$s</code>."
 msgstr ""
+"Dieser Text wird als <em>Titel</em> des Artikels genutzt. Der Albumtitel "
+"wird mit <code>%1$s</code> ersetzt."
 
 #: zenphoto-devzp/zp-core/zp-extensions/galleryArticles.php:77
 msgid "size"
@@ -16826,6 +16885,8 @@ msgid ""
 "Unless this is checked, objects which are \"protected\" will not have news "
 "articles generated."
 msgstr ""
+"Sofern diese nicht ausgewählt ist, werden für geschützte Objekte keine "
+"Artikel erstellt."
 
 #: zenphoto-devzp/zp-core/zp-extensions/galleryArticles.php:83
 #: zenphoto-devzp/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:125
@@ -16835,7 +16896,7 @@ msgstr "Kategorie"
 
 #: zenphoto-devzp/zp-core/zp-extensions/galleryArticles.php:86
 msgid "Select a category for the generated articles"
-msgstr ""
+msgstr "Wählen Sie eine Kategorie für die erstellten Artikel."
 
 #: zenphoto-devzp/zp-core/zp-extensions/galleryArticles.php:87
 msgid "Use album folder"
@@ -16846,6 +16907,8 @@ msgid ""
 "If this option is checked and a category matching the album folder exists, "
 "that will be used as the article category."
 msgstr ""
+"Wenn dies ausgewählt ist und eine Kategorie, die dem Albumordner entspricht, "
+"exisitert, wird diese als Artikelkategorie verwendet."
 
 #: zenphoto-devzp/zp-core/zp-extensions/galleryArticles.php:92
 msgid "Import Combi-news"
@@ -16856,6 +16919,8 @@ msgid ""
 "If this option is checked, articles will be generated based on your old "
 "<em>Combi-news</em> settings."
 msgstr ""
+"Wenn dies ausgewählt ist, werden die Artikel basierend auf der alten "
+"<em>CombiNews</em>-Einstellung erstellt."
 
 #: zenphoto-devzp/zp-core/zp-extensions/galleryArticles/combiNews.php:7
 msgid "combiNews"
@@ -16863,7 +16928,7 @@ msgstr "CombiNews"
 
 #: zenphoto-devzp/zp-core/zp-extensions/galleryArticles/combiNews.php:8
 msgid "Auto category for ported combi-news articles."
-msgstr ""
+msgstr "Automatische Kategorie für portierte CombiNews-Artikel."
 
 #: zenphoto-devzp/zp-core/zp-extensions/googleVerify.php:12
 msgid ""
@@ -17700,13 +17765,15 @@ msgstr "Macros"
 
 #: zenphoto-devzp/zp-core/zp-extensions/macroList.php:95
 msgid "Macro identifiers may not contain special characters."
-msgstr ""
+msgstr "Macro-Definitionen dürfen keine Sonderzeichen enthalten."
 
 #: zenphoto-devzp/zp-core/zp-extensions/macroList.php:108
 msgid ""
 "The number of macro parameters must match the number of replacement tokens "
 "in the expression."
 msgstr ""
+"Die Anzahl der Macro-Parameter muss der Anzahl an Ersatzkürzel innerhalb des "
+"Ausdrucks entsprechen."
 
 #: zenphoto-devzp/zp-core/zp-extensions/macroList.php:112
 #, php-format
@@ -17723,7 +17790,7 @@ msgstr "Pflichtparameter dürfen nicht auf optionale folgen."
 
 #: zenphoto-devzp/zp-core/zp-extensions/macroList.php:133
 msgid "Expressions may not have optional parameters."
-msgstr ""
+msgstr "Ausdrücke dürfen keine optionalen Parameter haben."
 
 #: zenphoto-devzp/zp-core/zp-extensions/macroList/macroList_tab.php:22
 msgid "Content Macros"
@@ -19551,6 +19618,8 @@ msgid ""
 "Rewrite Tokens are not useful unless the <code>mod_rewrite</code> option is "
 "enabled."
 msgstr ""
+"Rewrite-Tokens sind nicht sinnvoll, sofern <code>mod_rewrite</em> nicht "
+"aktiviert ist."
 
 #: zenphoto-devzp/zp-core/zp-extensions/rewriteTokens.php:56
 msgid "rewriteTokens restored to default"
@@ -19575,6 +19644,8 @@ msgid ""
 "<p class=\"notebox\">Rewrite Tokens are not useful unless the "
 "<code>mod_rewrite</code> option is enabled.</p>"
 msgstr ""
+"<p class=\"notebox\">Rewrite-Tokens sind nicht sinnvoll, sofern "
+"<code>mod_rewrite</em> nicht aktiviert ist.</p>"
 
 #: zenphoto-devzp/zp-core/zp-extensions/rewriteTokens.php:92
 msgid "Restore defaults."
@@ -20859,7 +20930,7 @@ msgstr ""
 
 #: zenphoto-devzp/zp-core/zp-extensions/slideshow2.php:36
 msgid "Slideshow plugin based on the Cycle2 jQuery plugin."
-msgstr ""
+msgstr "Slideshow-Plugin basierend auf dem Cycle2-jQuery-Plugin."
 
 #: zenphoto-devzp/zp-core/zp-extensions/slideshow2.php:82
 msgid "Slideshow: Mode"
@@ -20921,7 +20992,7 @@ msgstr "Dias kacheln"
 
 #: zenphoto-devzp/zp-core/zp-extensions/slideshow2.php:111
 msgid "Tile blind"
-msgstr ""
+msgstr "Kachelblenden"
 
 #: zenphoto-devzp/zp-core/zp-extensions/slideshow2.php:112
 msgid ""
@@ -20929,10 +21000,13 @@ msgid ""
 "browsers that support CSS3 3D transforms. (IE10+, current Chrome, Firefox, "
 "Opera and Safari.)"
 msgstr ""
+"Der zu verwendende Cycle-Effekt. Blätter-Übergänge werden nur von Browser "
+"unterstützt, die CSS3-3D-Transformationen verstehen (IE10+, current Chrome, "
+"Firefox, Opera and Safari.)"
 
 #: zenphoto-devzp/zp-core/zp-extensions/slideshow2.php:113
 msgid "Slideshow: Tile Effect - Extra"
-msgstr ""
+msgstr "Slideshow: Kachel-Effekt - Extra"
 
 #: zenphoto-devzp/zp-core/zp-extensions/slideshow2.php:116
 msgid "Horziontal"
@@ -20941,6 +21015,7 @@ msgstr "Horizontal"
 #: zenphoto-devzp/zp-core/zp-extensions/slideshow2.php:118
 msgid "If one of the tile effects is selected, this is its orientation."
 msgstr ""
+"Wenn einer der beiden Kachel-Effekte gewählt ist, ist diese die Ausrichtung."
 
 #: zenphoto-devzp/zp-core/zp-extensions/slideshow2.php:119
 msgid "Slideshow: Timeout"
@@ -21129,6 +21204,8 @@ msgid ""
 "If an option is chosen, normal theme URLs will be replaced with <i>tinyURL</"
 "i>s for that object."
 msgstr ""
+"Wenn eine Einstellung ausgewählt ist, werden normale Theme-URLs mit einer "
+"<i>tinyURL</i> für diese Objekt ersetzt."
 
 #: zenphoto-devzp/zp-core/zp-extensions/tinyURL.php:83
 msgid "news categories"
@@ -21136,7 +21213,7 @@ msgstr "Neuigkeiten-Kategorien"
 
 #: zenphoto-devzp/zp-core/zp-extensions/tinymce4.php:17
 msgid "Text editor TinyMCE 4.x"
-msgstr ""
+msgstr "Texteditor TinyMCE 4.x"
 
 #: zenphoto-devzp/zp-core/zp-extensions/tinymce4.php:43
 msgid "Text editor configuration - Zenphoto"
@@ -21624,6 +21701,7 @@ msgstr "Die <em>php_curl</em>-Erweiterung ist erforderlich"
 #: zenphoto-devzp/zp-core/zp-extensions/tweet_news.php:13
 msgid "Enable the tinyURL plugin to shorten URLs in your tweets."
 msgstr ""
+"Aktivieren Sie das tinyURL-Plugin, um die URLs in Ihren Tweets zu kürzen."
 
 #: zenphoto-devzp/zp-core/zp-extensions/tweet_news.php:73
 msgid "Consumer key"
@@ -23291,7 +23369,7 @@ msgstr "Verwenden Sie die getLink-Klassemethode"
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/deprecated-functions.php:70
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/deprecated-functions.php:78
 msgid "Create an object and use its getLink method."
-msgstr ""
+msgstr "Erstellen Sie ein Objekt und nutzen Sie dessen Methode getLink()."
 
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/deprecated-functions.php:86
 msgid "Use getNewsArchivePath()."
