@@ -417,7 +417,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					} else {
 						$link = 'href = "' . WEBPATH . $link . '"';
 					}
-					echo '<li' . (($current == $tab) ? ' class="current"' : '') . '><a id="' . $tab . '" ' . $link . '>' . $key . '</a></li>' . "\n";
+					echo '<li' . (($current == $tab) ? ' class="current"' : '') . '><a ' . $link . '>' . $key . '</a></li>' . "\n";
 				}
 				?>
 			</ul>
