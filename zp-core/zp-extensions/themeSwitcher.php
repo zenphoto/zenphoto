@@ -156,7 +156,7 @@ class themeSwitcher {
 
 	static function active() {
 		global $_showNotLoggedin_real_auth;
-		if (isset($_showNotLoggedin_real_auth)) {
+		if (is_object($_showNotLoggedin_real_auth)) {
 			$loggedin = $_showNotLoggedin_real_auth->getRights();
 		} else {
 			$loggedin = zp_loggedin();

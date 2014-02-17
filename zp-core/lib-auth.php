@@ -999,8 +999,9 @@ class Zenphoto_Authority {
 						</script>
 						<?php
 					}
+					$redirect = zp_apply_filter('login_redirect_link', getRequestURI());
 					?>
-					<form name="login" action="<?php echo html_encode(pathurlencode(getRequestURI())); ?>" method="post">
+					<form name="login" action="<?php echo html_encode(pathurlencode($redirect)); ?>" method="post">
 						<input type="hidden" name="login" value="1" />
 						<input type="hidden" name="password" value="1" />
 						<input type="hidden" name="redirect" value="<?php echo html_encode(pathurlencode($redirect)); ?>" />
@@ -1085,7 +1086,7 @@ class Zenphoto_Authority {
 	static function printPasswordFormJS() {
 		?>
 		<script type="text/javascript">
-		// <!-- <![CDATA[
+			// <!-- <![CDATA[
 			function passwordStrength(id) {
 				var inputa = '#pass' + id;
 				var inputb = '#pass_r' + id;
@@ -1196,7 +1197,7 @@ class Zenphoto_Authority {
 					$('.password_field_' + id).show();
 				}
 			}
-		// ]]> -->
+			// ]]> -->
 		</script>
 		<?php
 	}
@@ -1222,7 +1223,7 @@ class Zenphoto_Authority {
 		<p>
 			<label for="disclose_password<?php echo $id; ?>"><?php echo gettext('Show password'); ?></label>
 			<input type="checkbox" name="disclose_password<?php echo $id; ?>" id="disclose_password<?php echo $id; ?>" onclick="passwordClear('<?php echo $id; ?>');
-					togglePassword('<?php echo $id; ?>');">
+							togglePassword('<?php echo $id; ?>');">
 		</p>
 		<p class="password_field_<?php echo $id; ?>">
 			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>"><?php echo gettext("Repeat password") . $flag; ?></label>
