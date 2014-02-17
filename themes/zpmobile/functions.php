@@ -90,26 +90,26 @@ function jqm_printFooterNav() {
 			<li><?php echo gettext('zpMobile theme by'); ?> <a href="http://www.maltem.de">Malte Müller</a></li>
 		</ul>
 		<?php
-			$adminlink = '';
-			$favoriteslink = '';
-			if (zp_loggedin()) {
-				$protocol = SERVER_PROTOCOL;
-				if ($protocol == 'https_admin') {
-					$protocol = 'https';
-				}
-				$adminlink = '<li><a rel="external" href="'.html_encode($protocol . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . '/' . ZENFOLDER).'/admin.php">'.gettext('Admin').'</a></li>';
+		$adminlink = '';
+		$favoriteslink = '';
+		if (zp_loggedin()) {
+			$protocol = SERVER_PROTOCOL;
+			if ($protocol == 'https_admin') {
+				$protocol = 'https';
 			}
-			if (function_exists('printFavoritesURL')) {
-				$favoriteslink = '<li><a href="'.FULLWEBPATH.'/'.getFavoritesURL().'">'.gettext("Favorites").'</a></li>';
-			}
-			if(!empty($adminlink) || !empty($favoriteslink)) {
+			$adminlink = '<li><a rel="external" href="' . html_encode($protocol . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . '/' . ZENFOLDER) . '/admin.php">' . gettext('Admin') . '</a></li>';
+		}
+		if (function_exists('printFavoritesURL')) {
+			$favoriteslink = '<li><a href="' . FULLWEBPATH . '/' . getFavoritesURL() . '">' . gettext("Favorites") . '</a></li>';
+		}
+		if ($adminlink || $favoriteslink) {
 			?>
-				<div data-role="navbar">
-					<ul id="footernav">
-						<?php echo $adminlink.$favoriteslink; ?>
-					</ul>
-				</div>
-				<!-- /navbar -->
+			<div data-role="navbar">
+				<ul id="footernav">
+					<?php echo $adminlink . $favoriteslink; ?>
+				</ul>
+			</div>
+			<!-- /navbar -->
 		<?php } ?>
 	</div><!-- footer -->
 	<?php
