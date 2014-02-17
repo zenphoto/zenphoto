@@ -24,7 +24,7 @@
 $plugin_description = gettext("Provides deprecated Zenphoto functions.");
 $plugin_notice = gettext("This plugin is <strong>NOT</strong> required for the Zenphoto distributed functions.");
 $option_interface = 'deprecated_functions';
-$plugin_is_filter = 9 | CLASS_PLUGIN;
+$plugin_is_filter = 900 | CLASS_PLUGIN;
 
 if (OFFSET_PATH == 2)
 	enableExtension('deprecated-functions', $plugin_is_filter); //	Yes, I know some people will be annoyed that this keeps coming back,

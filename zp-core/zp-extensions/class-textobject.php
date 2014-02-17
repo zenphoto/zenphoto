@@ -1,4 +1,5 @@
 <?php
+
 /**
  *
  * Supports files of the following types:
@@ -16,7 +17,7 @@
  * Some key points to note:
  * <ul>
  * 	<li>The naming convention for these plugins is class-«handler class».php.</li>
- *	<li>The statement setting the plugin_is_filter variable must be near the front of the file. This is important
+ * 	<li>The statement setting the plugin_is_filter variable must be near the front of the file. This is important
  * as it is the indicator to the Zenphoto plugin loader to load the script at the same point that other
  * object modules are loaded.</li>
  * <li>These objects are extension to the zenphoto "Image" class. This means they have all the properties of
@@ -52,8 +53,7 @@
  * @subpackage media
  *
  */
-
-$plugin_is_filter = 9|CLASS_PLUGIN;
+$plugin_is_filter = 990 | CLASS_PLUGIN;
 $plugin_description = gettext('Provides a means for showing text type documents (.txt, .html, .htm).');
 $plugin_author = "Stephen Billard (sbillard)";
 
@@ -75,11 +75,11 @@ class TextObject_Options {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		return array(gettext('Watermark default images') => array ('key' => 'textobject_watermark_default_images', 'type' => OPTION_TYPE_CHECKBOX,
-																	'desc' => gettext('Check to place watermark image on default thumbnail images.')));
+		return array(gettext('Watermark default images') => array('key'	 => 'textobject_watermark_default_images', 'type' => OPTION_TYPE_CHECKBOX,
+										'desc' => gettext('Check to place watermark image on default thumbnail images.')));
 	}
 
 }
 
-require_once(dirname(__FILE__).'/class-textobject/class-textobject_core.php');
+require_once(dirname(__FILE__) . '/class-textobject/class-textobject_core.php');
 ?>

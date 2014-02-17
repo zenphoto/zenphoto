@@ -18,7 +18,7 @@
  * @package plugins
  * @subpackage development
  */
-$plugin_is_filter = 98 | CLASS_PLUGIN;
+$plugin_is_filter = 500 | CLASS_PLUGIN;
 $plugin_description = gettext('Allow a visitor to select the theme of the gallery.');
 $plugin_author = "Stephen Billard (sbillard)";
 

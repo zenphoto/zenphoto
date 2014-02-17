@@ -7,7 +7,7 @@
  * @package plugins
  * @subpackage mail
  */
-$plugin_is_filter = 8 | CLASS_PLUGIN;
+$plugin_is_filter = 800 | CLASS_PLUGIN;
 $plugin_description = gettext("Zenphoto outgoing mail handler based on the <em>PHPMailer</em> class mailing facility.");
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (zp_has_filter('sendmail') && !extensionEnabled('PHPMailer')) ? sprintf(gettext('Only one Email handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), stripSuffix(get_filterScript('sendmail'))) : '';
@@ -50,12 +50,12 @@ class zp_PHPMailer {
 	 */
 	function getOptionsSupported() {
 		return array(gettext('Mail protocol')				 => array('key'			 => 'PHPMailer_mail_protocol', 'type'		 => OPTION_TYPE_RADIO,
-										'buttons'	 => array('POP3'		 => 'pop3', 'SMTP'		 => 'smtp', 'SendMail' => 'sendmail'),
+										'buttons'	 => array('POP3' => 'pop3', 'SMTP' => 'smtp', 'SendMail' => 'sendmail'),
 										'desc'		 => gettext('Select the mail protocol you wish to be used.')),
 						gettext('Outgoing mail server')	 => array('key'	 => 'PHPMailer_server', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext('Outgoing mail server.')),
 						gettext('Secure mail')					 => array('key'			 => 'PHPMailer_secure', 'type'		 => OPTION_TYPE_RADIO,
-										'buttons'	 => array(gettext('no')	 => 0, gettext('SSL') => 'ssl', gettext('TLS') => 'tls'),
+										'buttons'	 => array(gettext('no') => 0, gettext('SSL') => 'ssl', gettext('TLS') => 'tls'),
 										'desc'		 => gettext('Set to use a secure protocol.')),
 						gettext('Mail user')						 => array('key'	 => 'PHPMailer_user', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext('<em>User ID</em> for mail server.')),

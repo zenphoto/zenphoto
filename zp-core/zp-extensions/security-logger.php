@@ -16,7 +16,7 @@
  * @package plugins
  * @subpackage admin
  */
-$plugin_is_filter = 10 | CLASS_PLUGIN;
+$plugin_is_filter = 100 | CLASS_PLUGIN;
 $plugin_description = gettext('Logs selected security events.');
 $plugin_author = "Stephen Billard (sbillard)";
 

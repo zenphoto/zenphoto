@@ -19,7 +19,7 @@
  * @package plugins
  * @subpackage admin
  */
-$plugin_is_filter = 90 | CLASS_PLUGIN;
+$plugin_is_filter = 400 | CLASS_PLUGIN;
 $plugin_description = gettext("Adds static HTML cache functionality to Zenphoto.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 

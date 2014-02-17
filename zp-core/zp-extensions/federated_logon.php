@@ -45,7 +45,7 @@
  * @package plugins
  * @subpackage users
  */
-$plugin_is_filter = 9 | CLASS_PLUGIN;
+$plugin_is_filter = 900 | CLASS_PLUGIN;
 $plugin_description = gettext('Handles logon from <em>OpenID</em> credential providers.');
 $plugin_notice = sprintf(gettext('Run the <a href="%s">OpenID detect</a> script to check compatibility of your server configuration.'), FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/federated_logon/Auth/OpenID_detect.php');
 $plugin_author = "Stephen Billard (sbillard)";
@@ -191,7 +191,7 @@ class federated_logon {
 	 * @param $redirect
 	 */
 	static function credentials($user, $email, $name, $redirect) {
-		$userobj = Zenphoto_Authority::getAnAdmin(array('`user`='	 => $user, '`valid`=' => 1));
+		$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
 		$more = false;
 		if ($userobj) { //	update if changed
 			$save = false;
@@ -208,7 +208,7 @@ class federated_logon {
 			}
 		} else { //	User does not exist, create him
 			$groupname = getOption('federated_login_group');
-			$groupobj = Zenphoto_Authority::getAnAdmin(array('`user`='	 => $groupname, '`valid`=' => 0));
+			$groupobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $groupname, '`valid`=' => 0));
 			if ($groupobj) {
 				$group = NULL;
 				if ($groupobj->getName() != 'template') {
@@ -233,7 +233,7 @@ class federated_logon {
 						$userobj->createPrimealbum();
 					}
 				} else {
-					$groupobj = Zenphoto_Authority::getAnAdmin(array('`user`='	 => 'federated_verify', '`valid`=' => 0));
+					$groupobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => 'federated_verify', '`valid`=' => 0));
 					if (empty($groupobj)) {
 						$groupobj = Zenphoto_Authority::newAdministrator('federated_verify', 0);
 						$groupobj->setName('group');
@@ -273,7 +273,7 @@ class federated_logon {
 			$userobj->save();
 			$admin_e = $userobj->getEmail();
 			$user = $userobj->getUser();
-			$key = bin2hex(serialize(array('user'	 => $user, 'email'	 => $admin_e, 'date'	 => time())));
+			$key = bin2hex(serialize(array('user' => $user, 'email' => $admin_e, 'date' => time())));
 			$link = FULLWEBPATH . '/index.php?verify_federated_user=' . $key;
 			$message = sprintf(gettext('Visit %s to validate your federated logon credentials.'), $link);
 			zp_mail(get_language_string(gettext('Federated user confirmation')), $message, array($user => $admin_e));
@@ -304,8 +304,7 @@ class federated_logon {
 				$email = $userobj->getEmail();
 				if (empty($email)) {
 					$msg = gettext('<strong>NOTE:</strong> Update your profile with a valid <em>e-mail</em> address and you will be sent a link to validate your access to the site.');
-					$myhtml =
-									'<tr' . ((!$current) ? ' style="display:none;"' : '') . ' class="userextrainfo">
+					$myhtml = '<tr' . ((!$current) ? ' style="display:none;"' : '') . ' class="userextrainfo">
 							<td' . ((!empty($background)) ? ' style="' . $background . '"' : '') . ' valign="top" colspan="2">' . "\n" .
 									'<p class="notebox">' . $msg . '</p>' . "\n" .
 									'</td>
@@ -315,8 +314,7 @@ class federated_logon {
 			}
 		} else if ($federated) {
 			$msg = gettext("<strong>NOTE:</strong> User's credentials came from a Federated logon.");
-			$myhtml =
-							'<tr' . ((!$current) ? ' style="display:none;"' : '') . ' class="userextrainfo">
+			$myhtml = '<tr' . ((!$current) ? ' style="display:none;"' : '') . ' class="userextrainfo">
 					<td' . ((!empty($background)) ? ' style="' . $background . '"' : '') . ' valign="top" colspan="2">' . "\n" .
 							'<p class="notebox">' . $msg . '</p>' . "\n" .
 							'</td>
@@ -336,10 +334,10 @@ class federated_logon {
 		if (isset($_GET['verify_federated_user'])) {
 			$params = unserialize(pack("H*", trim(sanitize($_GET['verify_federated_user']), '.')));
 			if ((time() - $params['date']) < 2592000) {
-				$userobj = Zenphoto_Authority::getAnAdmin(array('`user`='	 => $params['user'], '`email`=' => $params['email'], '`valid`>' => 0));
+				$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $params['user'], '`email`=' => $params['email'], '`valid`>' => 0));
 				if ($userobj) {
 					$groupname = getOption('federated_login_group');
-					$groupobj = Zenphoto_Authority::getAnAdmin(array('`user`='	 => $groupname, '`valid`=' => 0));
+					$groupobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $groupname, '`valid`=' => 0));
 					if ($groupobj) {
 						$userobj->setRights($groupobj->getRights());
 						$userobj->setGroup($groupname);
@@ -376,30 +374,30 @@ class federated_logon {
 		$alt_handlers = federated_logon::alt_login_handler('');
 		?>
 		<ul class="logon_buttons">
-			<?php
-			foreach ($alt_handlers as $handler => $details) {
-				$script = $details['script'];
-				$authority = str_replace('_logon', '', stripSuffix(basename($script)));
-				if (is_null($redirect)) {
-					$details['params'][] = 'redirect=/' . ZENFOLDER . '/admin.php';
-				} else {
-					if (!empty($redirect)) {
-						$details['params'][] = 'redirect=' . $redirect;
-					}
+		<?php
+		foreach ($alt_handlers as $handler => $details) {
+			$script = $details['script'];
+			$authority = str_replace('_logon', '', stripSuffix(basename($script)));
+			if (is_null($redirect)) {
+				$details['params'][] = 'redirect=/' . ZENFOLDER . '/admin.php';
+			} else {
+				if (!empty($redirect)) {
+					$details['params'][] = 'redirect=' . $redirect;
 				}
-				If (count($details['params'])) {
-					$params = "'" . implode("','", $details['params']) . "'";
-				} else {
-					$params = '';
-				}
-				?>
+			}
+			If (count($details['params'])) {
+				$params = "'" . implode("','", $details['params']) . "'";
+			} else {
+				$params = '';
+			}
+			?>
 				<li>
 					<span class="fed_buttons">
 						<a href="javascript:launchScript('<?php echo $script; ?>',[<?php echo $params; ?>]);" title="<?php echo $authority; ?>" >
-							<?php
-							$logo = ltrim(str_replace(WEBPATH, '', dirname($script)) . '/' . $authority . '.png', '/');
-							if (file_exists(SERVERPATH . '/' . $logo)) {
-								?>
+			<?php
+			$logo = ltrim(str_replace(WEBPATH, '', dirname($script)) . '/' . $authority . '.png', '/');
+			if (file_exists(SERVERPATH . '/' . $logo)) {
+				?>
 								<img src="<?php echo WEBPATH . '/' . $logo; ?>" alt="<?php echo $authority; ?>" title="<?php printf(gettext('Login using %s'), $authority); ?>" />
 								<?php
 							} else {
@@ -409,12 +407,12 @@ class federated_logon {
 						</a>
 					</span>
 				</li>
-				<?php
-			}
-			?>
+			<?php
+		}
+		?>
 		</ul>
-		<?php
-	}
+			<?php
+		}
 
-}
-?>
+	}
+	?>

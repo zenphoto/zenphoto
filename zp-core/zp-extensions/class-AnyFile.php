@@ -13,7 +13,7 @@
  * @subpackage media
  *
  */
-$plugin_is_filter = 9 | CLASS_PLUGIN;
+$plugin_is_filter = 990 | CLASS_PLUGIN;
 $plugin_description = gettext('Provides a means for handling arbitrary file types. (No rendering provided!)');
 $plugin_author = "Stephen Billard (sbillard)";
 

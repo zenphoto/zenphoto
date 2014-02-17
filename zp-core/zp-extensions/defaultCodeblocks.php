@@ -8,7 +8,7 @@
  * @package plugins
  * @subpackage media
  */
-$plugin_is_filter = 9 | ADMIN_PLUGIN | THEME_PLUGIN;
+$plugin_is_filter = 500 | ADMIN_PLUGIN | THEME_PLUGIN;
 $plugin_description = gettext('Create default codeblocks.');
 $plugin_author = "Stephen Billard (sbillard)";
 $option_interface = 'defaultCodeblocks';

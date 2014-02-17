@@ -1,4 +1,5 @@
 <?php
+
 /**
  *
  * You will be presented a list un-published albums and a list of not visible images. You can select albums and
@@ -23,29 +24,30 @@
  * @package plugins
  * @subpackage admin
  */
-
-$plugin_is_filter = 9|ADMIN_PLUGIN;
+$plugin_is_filter = 500 | ADMIN_PLUGIN;
 $plugin_description = gettext('A single place to quickly review your unpublished content.');
 $plugin_author = "Stephen Billard (sbillard)";
 
 zp_register_filter('admin_utilities_buttons', 'publishContent::button');
 
 class publishContent {
+
 	static function button($buttons) {
 		$buttons[] = array(
-										'category'=>gettext('Admin'),
-										'enable'=>true,
-										'button_text'=>gettext('Publish content'),
-										'formname'=>'publishContent_button',
-										'action'=>WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/publishContent/publishContent.php',
-										'icon'=>'images/calendar.png',
-										'title'=>gettext('Manage published state of content in your gallery.'),
-										'alt'=>'',
-										'hidden'=> '',
-										'rights'=> ALBUM_RIGHTS
+						'category'		 => gettext('Admin'),
+						'enable'			 => true,
+						'button_text'	 => gettext('Publish content'),
+						'formname'		 => 'publishContent_button',
+						'action'			 => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/publishContent/publishContent.php',
+						'icon'				 => 'images/calendar.png',
+						'title'				 => gettext('Manage published state of content in your gallery.'),
+						'alt'					 => '',
+						'hidden'			 => '',
+						'rights'			 => ALBUM_RIGHTS
 		);
 		return $buttons;
 	}
+
 }
 
 ?>
