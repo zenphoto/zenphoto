@@ -96,9 +96,9 @@ function zp_filter_unique_id($hook, $function, $priority) {
 			$function[0]->_zp_filters_id = $count;
 			$obj_idx .= $count;
 			unset($count);
-		}
-		else
+		} else {
 			$obj_idx .= $function[0]->_zp_filters_id;
+		}
 		return $obj_idx;
 	}
 	// Static Calling
@@ -176,7 +176,7 @@ function zp_apply_filter($hook, $value = '') {
  * @param int $accepted_args optional. The number of arguments the function accpets (default: 1).
  * @return boolean Whether the function was registered as a filter before it was removed.
  */
-function zp_remove_filter($hook, $function_to_remove, $priority = 10, $accepted_args = 1) {
+function zp_remove_filter($hook, $function_to_remove, $priority = 5, $accepted_args = 1) {
 	global $_zp_filters;
 
 	$function_to_remove = zp_filter_unique_id($hook, $function_to_remove, $priority);
