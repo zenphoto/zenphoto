@@ -172,13 +172,16 @@ function zp_apply_filter($hook, $value = '') {
  * global array $_zp_filters storage for all of the filters
  * @param string $hook The filter hook to which the function to be removed is hooked.
  * @param callback $function_to_remove The name of the function which should be removed.
- * @param int $priority optional. The priority of the function (default: 10).
+ * @param int $priority optional. The priority of the function. If not supplied we will get it from zp_has_filter
  * @param int $accepted_args optional. The number of arguments the function accpets (default: 1).
  * @return boolean Whether the function was registered as a filter before it was removed.
  */
-function zp_remove_filter($hook, $function_to_remove, $priority = 5, $accepted_args = 1) {
+function zp_remove_filter($hook, $function_to_remove, $priority = NULL, $accepted_args = 1) {
 	global $_zp_filters;
 
+	if (is_null($priority)) {
+		$priority = zp_has_filter($hook, $function_to_remove);
+	}
 	$function_to_remove = zp_filter_unique_id($hook, $function_to_remove, $priority);
 
 	$remove = isset($_zp_filters[$hook][$priority][$function_to_remove]);
