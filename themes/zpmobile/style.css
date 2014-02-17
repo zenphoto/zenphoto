@@ -270,7 +270,7 @@ li.rsslink {
 }
 
 #footer {
-padding-top: 10px !important;
+padding: 10px 0 0 0 !important;
 border-top: 1px solid lightgray;
 }
 

@@ -89,34 +89,28 @@ function jqm_printFooterNav() {
 			<li><?php echo gettext('Powered by'); ?> <a href="http://www.zenphoto.org">Zenphoto</a> and <a href="http://jquerymobile.com">jQueryMobile</a></li>
 			<li><?php echo gettext('zpMobile theme by'); ?> <a href="http://www.maltem.de">Malte Müller</a></li>
 		</ul>
-		<div data-role="navbar">
-			<ul id="footernav">
-				<?php
-				$bail = '<li></li>';
-				if (zp_loggedin()) {
-					$protocol = SERVER_PROTOCOL;
-					if ($protocol == 'https_admin') {
-						$protocol = 'https';
-					}
-					$bail = '';
-					?>
-					<li><a rel="external" href="<?php echo html_encode($protocol . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . '/' . ZENFOLDER); ?>"><?php echo gettext('Admin'); ?></a></li>
-					<?php
+		<?php
+			$adminlink = '';
+			$favoriteslink = '';
+			if (zp_loggedin()) {
+				$protocol = SERVER_PROTOCOL;
+				if ($protocol == 'https_admin') {
+					$protocol = 'https';
 				}
-				?>
-				<?php
-				if (function_exists('printFavoritesURL')) {
-					$bail = '';
-					?>
-					<li><?php printFavoritesURL(); ?></li>
-					<?php
-				}
-				echo $bail;
-				?>
-
-			</ul>
-		</div>
-		<!-- /navbar -->
+				$adminlink = '<li><a rel="external" href="'.html_encode($protocol . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . '/' . ZENFOLDER).'/admin.php">'.gettext('Admin').'</a></li>';
+			}
+			if (function_exists('printFavoritesURL')) {
+				$favoriteslink = '<li><a href="'.FULLWEBPATH.'/'.getFavoritesURL().'">'.gettext("Favorites").'</a></li>';
+			}
+			if(!empty($adminlink) || !empty($favoriteslink)) {
+			?>
+				<div data-role="navbar">
+					<ul id="footernav">
+						<?php echo $adminlink.$favoriteslink; ?>
+					</ul>
+				</div>
+				<!-- /navbar -->
+		<?php } ?>
 	</div><!-- footer -->
 	<?php
 }
