@@ -148,6 +148,30 @@ class rss_options {
 
 	}
 
+	function handleOptionSave() {
+		if (isset($_POST['saverssoptions'])) {
+			setOption('RSS_items', sanitize($_POST['RSS_items'], 3));
+			setOption('RSS_imagesize', sanitize($_POST['RSS_imagesize'], 3));
+			setOption('RSS_sortorder', sanitize($_POST['RSS_sortorder'], 3));
+			setOption('RSS_items_albums', sanitize($_POST['RSS_items_albums'], 3));
+			setOption('RSS_imagesize_albums', sanitize($_POST['RSS_imagesize_albums'], 3));
+			setOption('RSS_sortorder_albums', sanitize($_POST['RSS_sortorder_albums'], 3));
+			setOption('RSS_title', sanitize($_POST['RSS_title'], 3));
+			setOption('RSS_cache_expire', sanitize($_POST['RSS_cache_expire'], 3));
+			setOption('RSS_enclosure', (int) isset($_POST['RSS_enclosure']));
+			setOption('RSS_mediarss', (int) isset($_POST['RSS_mediarss']));
+			setOption('RSS_cache', (int) isset($_POST['RSS_cache']));
+			setOption('RSS_album_image', (int) isset($_POST['RSS_album_image']));
+			setOption('RSS_comments', (int) isset($_POST['RSS_comments']));
+			setOption('RSS_articles', (int) isset($_POST['RSS_articles']));
+			setOption('RSS_pages', (int) isset($_POST['RSS_pages']));
+			setOption('RSS_article_comments', (int) isset($_POST['RSS_article_comments']));
+			setOption('RSS_hitcounter', (int) isset($_POST['RSS_hitcounter']));
+			setOption('RSS_portable_link', (int) isset($_POST['RSS_portable_link']));
+			$returntab = "&tab=rss";
+		}
+	}
+
 }
 
 /**
