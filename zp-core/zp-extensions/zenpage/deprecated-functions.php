@@ -931,6 +931,10 @@ function getNewsTitleLink() {
 	return getNewsURL();
 }
 
+/**
+ * @deprecated
+ * @since 1.4.6
+ */
 function printNewsTitleLink($before = '') {
 	deprecated_functions::notify(gettext('use printNewsURL()'));
 	printNewsURL($before);
