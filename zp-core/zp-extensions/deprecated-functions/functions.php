@@ -24,6 +24,7 @@ function formatList($title, $matches) {
 	echo '<li> ' . $title;
 	echo '<ul>';
 	foreach (array_unique($matches[0]) as $match) {
+		$match = strtr($match, array('->' => '', '::' => ''));
 		$match = preg_replace('/(.*)?\s/', '', $match);
 		$match = preg_replace('/\s?\(/', '', $match);
 		$details = $deprecated->listed_functions[$match];
@@ -32,7 +33,10 @@ function formatList($title, $matches) {
 				$class = '*';
 				break;
 			case 'public static':
-				$class = '**';
+				$class = '+';
+				break;
+			case 'final static':
+				$class = '*+';
 				break;
 			default:
 				$class = '';
@@ -48,6 +52,7 @@ function listUses($base) {
 	global $_files, $pattern, $report;
 	$method = '<em><small>' . gettext('method') . '</small></em> ';
 	$output = false;
+	$oldLocation = '';
 	foreach ($_files as $file) {
 		if (basename($file) != 'deprecated-functions.php') {
 			@set_time_limit(120);
@@ -55,8 +60,12 @@ function listUses($base) {
 			preg_match_all($pattern, $subject, $matches);
 			if ($matches && !empty($matches[0])) {
 				$location = str_replace($base . '/', '', dirname($file));
-				if (!$output) {
+				if ($location != $oldLocation) {
+					if ($output) {
+						echo '</ul>';
+					}
 					echo '<br /><strong>' . $location . '</strong><ul>';
+					$oldLocation = $location;
 					$script_location = $base . '/' . $location . '/';
 				}
 				$script = str_replace($script_location, '', $file);

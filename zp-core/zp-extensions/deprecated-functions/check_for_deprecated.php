@@ -19,11 +19,19 @@ if (isset($_GET['action'])) {
 	$list = array();
 	foreach ($deprecated->listed_functions as $func => $details) {
 		$func = preg_quote($func);
-		if (!$details['class']) {
-			$func = '\s' . $func;
+		switch (trim($details['class'])) {
+			case 'final static':
+			case 'static':
+				$list[] = '->\s*' . $func;
+				$list[] = '::\s*' . $func;
+				break;
+			case 'public static':
+			default:
+				$list[] = '\s+' . $func;
+				break;
 		}
-		$list[] = $func;
 	}
+
 	$pattern = '/(' . implode('|', $list) . ')\b/';
 	$report = array();
 	$selected = sanitize_numeric($_POST['target']);
@@ -73,7 +81,7 @@ echo '</head>' . "\n";
 				</form>
 
 				<br class="clearall" />
-				<p class="notebox"><?php echo gettext('<strong>NOTE:</strong> This search will have false positives for instance when the function name appears in a comment or quoted string. Functions flagged with an asterisk are class methods. Ones flagged with two asterisks have deprecated parameters. No screening is done on these, so you must verify if there is an issue.'); ?></p>
+				<p class="notebox"><?php echo gettext('<strong>NOTE:</strong> This search will have false positives for instance when the function name appears in a comment or quoted string. Functions flagged with an "*" are class methods. Ones flagged "+" have deprecated parameters. No screening is done on these, so you must verify if there is an issue.'); ?></p>
 				<?php
 				if (isset($_GET['action'])) {
 					?>

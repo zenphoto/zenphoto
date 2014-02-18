@@ -22,18 +22,22 @@ echo "\n</head>";
 				<div class="tabbox">
 					<h1><?php echo gettext('Deprecated Functions'); ?></h1>
 					<p>
-						<?php echo gettext('Functions flagged with an asterisk are class methods. Ones flagged with two asterisks have deprecated parameters.'); ?>
+						<?php echo gettext('Functions flagged with an "*" are class methods. Ones flagged with "+" have deprecated parameters.'); ?>
 					</p>
 					<?php
 					$deprecated = new deprecated_functions();
 					$list = array();
-					foreach ($deprecated->listed_functions as $funct => $details) {
+					$listed = $deprecated->listed_functions;
+					foreach ($listed as $funct => $details) {
 						switch (trim($details['class'])) {
 							case 'static':
 								$class = '*';
 								break;
 							case 'public static':
-								$class = '**';
+								$class = '+';
+								break;
+							case 'final static':
+								$class = '*+';
 								break;
 							default:
 								$class = '';
@@ -53,6 +57,8 @@ echo "\n</head>";
 									<?php
 									ksort($plugins, SORT_NATURAL | SORT_FLAG_CASE);
 									foreach ($plugins as $plugin => $functions) {
+										if (empty($plugin))
+											$plugin = "<em>zp-core</em>";
 										?>
 										<li>
 											<h2><?php echo $plugin; ?></h2>
