@@ -859,7 +859,7 @@ function getImageProcessorURI($args, $album, $image) {
 }
 
 // Don't let anything get above this, to save the server from burning up...
-define('MAX_SIZE', 3000);
+define('MAX_SIZE', getOption('image_max_size'));
 
 /**
  * Extract the image parameters from the input variables
@@ -1164,7 +1164,7 @@ function getAlbumFolder($root = SERVERPATH) {
 		case 'in_webpath':
 			if (WEBPATH) { // strip off the WEBPATH
 				$pos = strrpos($root, WEBPATH);
-				if($pos !== false) {
+				if ($pos !== false) {
 					$root = substr_replace($root, '', $pos, strlen(WEBPATH));
 				}
 				if ($root == '/') {

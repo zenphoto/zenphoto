@@ -219,31 +219,9 @@ if (isset($_GET['action'])) {
 			$returntab = "&tab=search";
 		}
 
-		/*		 * * RSS options ** */
-		if (isset($_POST['saverssoptions'])) {
-			setOption('RSS_items', sanitize($_POST['RSS_items'], 3));
-			setOption('RSS_imagesize', sanitize($_POST['RSS_imagesize'], 3));
-			setOption('RSS_sortorder', sanitize($_POST['RSS_sortorder'], 3));
-			setOption('RSS_items_albums', sanitize($_POST['RSS_items_albums'], 3));
-			setOption('RSS_imagesize_albums', sanitize($_POST['RSS_imagesize_albums'], 3));
-			setOption('RSS_sortorder_albums', sanitize($_POST['RSS_sortorder_albums'], 3));
-			setOption('RSS_title', sanitize($_POST['RSS_title'], 3));
-			setOption('RSS_cache_expire', sanitize($_POST['RSS_cache_expire'], 3));
-			setOption('RSS_enclosure', (int) isset($_POST['RSS_enclosure']));
-			setOption('RSS_mediarss', (int) isset($_POST['RSS_mediarss']));
-			setOption('RSS_cache', (int) isset($_POST['RSS_cache']));
-			setOption('RSS_album_image', (int) isset($_POST['RSS_album_image']));
-			setOption('RSS_comments', (int) isset($_POST['RSS_comments']));
-			setOption('RSS_articles', (int) isset($_POST['RSS_articles']));
-			setOption('RSS_pages', (int) isset($_POST['RSS_pages']));
-			setOption('RSS_article_comments', (int) isset($_POST['RSS_article_comments']));
-			setOption('RSS_hitcounter', (int) isset($_POST['RSS_hitcounter']));
-			setOption('RSS_portable_link', (int) isset($_POST['RSS_portable_link']));
-			$returntab = "&tab=rss";
-		}
-
 		/*		 * * Image options ** */
 		if (isset($_POST['saveimageoptions'])) {
+			setOption('image_max_size', sanitize_numeric($_POST['image_max_size']));
 			setOption('image_quality', sanitize($_POST['image_quality'], 3));
 			setOption('thumb_quality', sanitize($_POST['thumb_quality'], 3));
 			setOption('image_allow_upscale', (int) isset($_POST['image_allow_upscale']));
@@ -253,6 +231,7 @@ if (isset($_GET['action'])) {
 			setOption('ImbedIPTC', (int) isset($_POST['ImbedIPTC']));
 			setOption('default_copyright', sanitize($_POST['default_copyright']));
 			setOption('sharpen_amount', sanitize_numeric($_POST['sharpen_amount']));
+			setOption('image_max_size', sanitize_numeric($_POST['image_max_size']));
 			$num = str_replace(',', '.', sanitize($_POST['sharpen_radius']));
 			if (is_numeric($num))
 				setOption('sharpen_radius', $num);
@@ -1796,6 +1775,13 @@ Zenphoto_Authority::printPasswordFormJS();
 										<p><?php echo gettext("Default sort order for images."); ?></p>
 										<p><?php echo gettext('Custom sort values must be database field names. You can have multiple fields separated by commas.') ?></p>
 									</td>
+								</tr>
+								<tr>
+									<td><?php echo gettext('Maximum image size'); ?></td>
+									<td width="350">
+										<input type="textbox" name="image_max_size" value="<?php echo getOption('image_max_size'); ?>" />
+									</td>
+									<td><?php echo gettext('The limit on how large an image may be resized. Too large and your server will spend all its time sizing images.'); ?></td>
 								</tr>
 								<tr>
 									<td width="175"><?php echo gettext("Image quality:"); ?></td>

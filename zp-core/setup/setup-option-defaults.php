@@ -201,6 +201,7 @@ setOptionDefault('custom_index_page', '');
 setOptionDefault('picture_of_the_day', serialize(array('day' => NULL, 'folder' => NULL, 'filename' => NULL)));
 setOptionDefault('exact_tag_match', 0);
 
+setOptionDefault('image_max_size', 3000);
 setOptionDefault('EXIFMake', 1);
 setOptionDefault('EXIFModel', 1);
 setOptionDefault('EXIFExposureTime', 1);
