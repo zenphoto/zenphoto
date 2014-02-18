@@ -45,7 +45,7 @@ class deprecated_functions {
 			if (file_exists($deprecated)) {
 				$plugin = basename(dirname($deprecated));
 				if ($plugin == 'deprecated-functions')
-					$plugin = 'core';
+					$plugin = '';
 				$content = file_get_contents($deprecated);
 
 				preg_match_all('~@deprecated\s+.*since\s+.*(\d+\.\d+\.\d+)~', $content, $versions);
