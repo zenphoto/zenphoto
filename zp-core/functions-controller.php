@@ -66,6 +66,11 @@ function zpRewriteURL($query) {
 			$redirectURL.='?' . $q;
 	} else if (isset($query['album'])) {
 		$redirectURL = $query['album'];
+		if (hasDynamicAlbumSuffix($redirectURL)) {
+			if (!file_exists(ALBUM_FOLDER_SERVERPATH . '/' . stripSuffix($redirectURL))) {
+				$redirectURL = stripSuffix($redirectURL);
+			}
+		}
 		if (isset($query['image'])) {
 			$redirectURL .= '/' . $query['image'] . IM_SUFFIX;
 		}
