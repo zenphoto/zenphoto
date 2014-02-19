@@ -34,7 +34,6 @@ class bxslider {
 			setOptionDefault('bxslider_speed', '500');
 			setOptionDefault('bxslider_fullimagelink', '');
 			setOptionDefault('bxslider_mode', 'horizontal');
-			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager.php');
 			cacheManager::deleteThemeCacheSizes('bxslider_thumb_nav');
 			cacheManager::addThemeCacheSize('bxslider_thumb_nav', NULL, getOption('bxslider_width'), getOption('bxslider_height'), getOption('bxslider_cropw'), getOption('bxslider_croph'), NULL, NULL, true, NULL, NULL, NULL);
 		}
@@ -238,17 +237,17 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->ge
 			</ul>
 			<script type="text/javascript">
 				$(document).ready(function() {
-				$('.bxslider<?php echo $albumid; ?>').bxSlider({
-				startSlide: <?php echo $imgnumber; ?>,
-				mode: '<?php echo $mode; ?>',
-				minSlides: <?php echo $minitems; ?>,
-				maxSlides: <?php echo $maxitems; ?>,
-				speed: <?php echo $speed; ?>,
-				slideWidth: <?php echo $width; ?>,
-				slideMargin: 5,
-				pager: false,
-				adaptiveHeight: true
-				});
+					$('.bxslider<?php echo $albumid; ?>').bxSlider({
+						startSlide: <?php echo $imgnumber; ?>,
+						mode: '<?php echo $mode; ?>',
+						minSlides: <?php echo $minitems; ?>,
+						maxSlides: <?php echo $maxitems; ?>,
+						speed: <?php echo $speed; ?>,
+						slideWidth: <?php echo $width; ?>,
+						slideMargin: 5,
+						pager: false,
+						adaptiveHeight: true
+					});
 				});
 			</script>
 			<?php

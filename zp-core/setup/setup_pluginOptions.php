@@ -21,6 +21,7 @@ require_once(getPlugin($extension . '.php'));
 if ($option_interface) {
 	//	prime the default options
 	setupLog(sprintf(gettext('Plugin:%s option interface instantiated'), $extension), true);
+	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager.php');
 	$option_interface = new $option_interface;
 }
 if (extensionEnabled($extension)) {

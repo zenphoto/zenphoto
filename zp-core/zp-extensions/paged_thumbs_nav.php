@@ -32,7 +32,6 @@ class pagedthumbsOptions {
 			setOptionDefault('pagedthumbs_pagelist', '');
 			setOptionDefault('pagedthumbs_pagelistprevnext', '');
 			setOptionDefault('pagedthumbs_pagelistlength', '6');
-			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager.php');
 			cacheManager::deleteThemeCacheSizes('paged_thumbs_nav');
 			cacheManager::addThemeCacheSize('paged_thumbs_nav', NULL, getOption('pagedthumbs_width'), getOption('pagedthumbs_height'), NULL, NULL, NULL, NULL, true, NULL, NULL, NULL);
 		}
