@@ -13899,31 +13899,28 @@ msgid "E-Mail%s"
 msgstr "メールアドレス%s"
 
 #: zp-core/zp-extensions/contact_form/form.php:93
-#, fuzzy, php-format
+#, php-format
 msgid "Website%s"
-msgstr "ウェブサイト"
+msgstr "ウェブサイト%s"
 
 #: zp-core/zp-extensions/contact_form/form.php:101
-#, fuzzy, php-format
+#, php-format
 msgid "Phone%s"
-msgstr "電話"
+msgstr "電話%s"
 
 #: zp-core/zp-extensions/contact_form/form.php:107
 #: zp-core/zp-extensions/comment_form/comment_form.php:74
 #: zp-core/zp-extensions/register_user/register_user_form.php:113
-#, fuzzy
 msgid "Enter CAPTCHA<strong>*</strong>"
 msgstr "CAPTCHAの入力<strong>*</strong>"
 
 #: zp-core/zp-extensions/contact_form/form.php:123
-#, fuzzy
 msgid "Subject<strong>*</strong>"
-msgstr "<strong>サイズ:</strong>"
+msgstr "件名<strong>*</strong>"
 
 #: zp-core/zp-extensions/contact_form/form.php:127
-#, fuzzy
 msgid "Message<strong>*</strong>"
-msgstr "<strong>サイズ:</strong>"
+msgstr "本文<strong>*</strong>"
 
 #: zp-core/zp-extensions/contact_form/form.php:134
 msgid "Send e-mail"
@@ -14906,9 +14903,9 @@ msgid "Tweet me"
 msgstr "ツイートミー"
 
 #: zp-core/zp-extensions/rss/deprecated-functions.php:14
-#, fuzzy, php-format
+#, php-format
 msgid "The %1$s feed is deprecated."
-msgstr "Codeblock 0 は非推奨です。"
+msgstr "%1$s フィード は非推奨です。"
 
 #: zp-core/zp-extensions/search_statistics.php:25
 msgid "Collects and displays search criteria."
@@ -15183,7 +15180,6 @@ msgstr ""
 
 #: zp-core/zp-extensions/deprecated-functions.php:90
 #: zp-core/zp-extensions/deprecated-functions.php:91
-#, fuzzy
 msgid "deprecated"
 msgstr "非推奨"
 
@@ -15904,7 +15900,7 @@ msgid "<em>HTML</em> added"
 msgstr "<em>HTML</em>を追加しました"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:592
-#, fuzzy, php-format
+#, php-format
 msgid "A <em>%1$s</em> item already exists in <em>%2$s </em>!"
 msgstr "<em>%1$s</em>アイテムははすでに<em>%2$s</em>に存在します！"
 
@@ -16341,9 +16337,8 @@ msgstr ""
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:38
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:46
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:54
-#, fuzzy
 msgid "Use the getLink method instead"
-msgstr "Zenpage class methodを代わりに使用します。"
+msgstr "getLink methodを代わりに使用します。"
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:62
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:70
@@ -16526,9 +16521,8 @@ msgstr "global $_zp_page を代わりに使用します。"
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:555
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:564
-#, fuzzy
 msgid "Combinews is removed."
-msgstr "コメントは承認されました"
+msgstr "コンビニュースは削除されました。"
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:603
 msgid ""
@@ -16549,13 +16543,12 @@ msgid "use getRSSLink($option,$lang,$categorylink)."
 msgstr "getRSSLink($option,$lang,$categorylink)を使用します。"
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:661
-#, fuzzy
 msgid ""
 "use printRSSLink($option, $prev, $linktext, $next, $printIcon, $class, "
 "$lang, $categoryLink)."
 msgstr ""
 "printRSSLink($option, $prev, $linktext, $next, $printIcon, $class, $lang, "
-"categoryLink)を使用します。"
+"$categoryLink)を使用します。"
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:671
 msgid "use printRSSHeaderLink($option, $linktext, $lang, $categorylink)."
@@ -16652,9 +16645,8 @@ msgid "View page"
 msgstr "ページの閲覧"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:355
-#, fuzzy
 msgid "Duplicate article title"
-msgstr "記事を削除"
+msgstr "重複記事タイトル"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:426
 #, php-format
@@ -16744,9 +16736,8 @@ msgid "All"
 msgstr "全て"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:863
-#, fuzzy
 msgid "Duplicate category title"
-msgstr "カテゴリを削除"
+msgstr "重複カテゴリタイトル"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:913
 #, php-format
@@ -17676,7 +17667,6 @@ msgid "Site%s"
 msgstr "県%s"
 
 #: zp-core/zp-extensions/comment_form/comment_form.php:88
-#, fuzzy
 msgid "<strong>*</strong>Required fields"
 msgstr "<strong>*</strong>必須フィールド"
 
@@ -17836,9 +17826,8 @@ msgid "Comment posted"
 msgstr "コメントが投稿されました"
 
 #: zp-core/zp-extensions/comment_form/functions.php:528
-#, fuzzy
 msgid "Comment posted on unknown page!"
-msgstr "ページごとのコメント数"
+msgstr "不明なページにコメントが投稿されました！"
 
 #: zp-core/zp-extensions/comment_form/functions.php:858
 #: zp-core/class-feed.php:426
@@ -18330,15 +18319,13 @@ msgstr ""
 "用したいサイズです。"
 
 #: zp-core/zp-extensions/rewriteRules/functions.php:33
-#, fuzzy
 msgid "Error processing rewrite rule:"
-msgstr "キャッシュ処理の動作(ワーカー)制限: %s です。"
+msgstr "Rewriteルールの処理中のエラー:"
 
 #: zp-core/zp-extensions/rewriteRules/admin_tab.php:24
 #: zp-core/zp-extensions/rewriteRules.php:24
-#, fuzzy
 msgid "Rewrite Rules"
-msgstr "Rewriteルールを更新しました"
+msgstr "Rewriteルール"
 
 #: zp-core/zp-extensions/uploader_jQuery.php:15
 msgid "<em>jQuery</em> image upload handler."
@@ -18631,9 +18618,8 @@ msgid "Supply a site name to add a new using site."
 msgstr ""
 
 #: zp-core/zp-extensions/externalFeed.php:102
-#, fuzzy
 msgid "Registered sites:"
-msgstr "このサイトに登録"
+msgstr "登録済みサイト:"
 
 #: zp-core/zp-extensions/externalFeed.php:104
 msgid "Check the box to remove a site."
@@ -18652,9 +18638,8 @@ msgstr ""
 "れません。"
 
 #: zp-core/zp-extensions/externalFeed.php:110
-#, fuzzy
 msgid "News feed items"
-msgstr "画像フィードアイテム:"
+msgstr "ニュースフィードアイテム:"
 
 #: zp-core/zp-extensions/externalFeed.php:112
 #, fuzzy
@@ -18663,14 +18648,13 @@ msgid ""
 msgstr "サイトのニュースRSSフィードに表示したいニュース記事数です。"
 
 #: zp-core/zp-extensions/externalFeed.php:129
-#, fuzzy, php-format
+#, php-format
 msgid "<em><strong>%1$s</strong></em> key=%2$s"
-msgstr "<strong>%u</strong>個のアルバム"
+msgstr "<em><strong>%1$s</strong></em> key=%2$s"
 
 #: zp-core/zp-extensions/externalFeed.php:135
-#, fuzzy
 msgid "No sites registered"
-msgstr "セットアップファイルを復元しました。"
+msgstr "登録済みサイトはありません"
 
 #: zp-core/zp-extensions/externalFeed.php:239
 #: zp-core/zp-extensions/rss.php:458
@@ -18783,12 +18767,11 @@ msgid "%1$s: %2$s"
 msgstr "%1$s: %2$s"
 
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:151
-#, fuzzy
 msgid ""
 "<strong>Note:</strong> the following objects have images that appear to no "
 "longer exist."
 msgstr ""
-"<strong>注:</strong> タイトルリンクの編集はパーマリンク設定を上書きします。"
+"<strong>注:</strong> 以下のオブジェクトは存在しなくなったように見える画像を持っています。"
 
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:165
 msgid ""
@@ -19931,9 +19914,8 @@ msgid "Email renewal link"
 msgstr "メールリニューアルリンク"
 
 #: zp-core/zp-extensions/favoritesHandler/deprecated-functions.php:9
-#, fuzzy
 msgid "use printFavoritesURL()"
-msgstr "printTags()を使用します。"
+msgstr "printFavoritesURL()を使用します。"
 
 #: zp-core/zp-extensions/colorbox_js.php:25
 msgid "Loads Colorbox JS and CSS scripts for selected theme page scripts."
@@ -20371,18 +20353,16 @@ msgid "Username* (this will be your user username)"
 msgstr "ユーザ名* (これはあなたのユーザ名になります)"
 
 #: zp-core/zp-extensions/register_user/register_user_form.php:22
-#, fuzzy
 msgid "Email<strong>*</strong> (this will be your user id)"
-msgstr "メール* (これはあなたのユーザIDになります)"
+msgstr "メール<strong>*</strong> (これはあなたのユーザIDになります)"
 
 #: zp-core/zp-extensions/register_user/register_user_form.php:24
 msgid "User ID"
 msgstr "ユーザID"
 
 #: zp-core/zp-extensions/register_user/register_user_form.php:128
-#, fuzzy
 msgid "<strong>*</strong>Required"
-msgstr "<strong>*</strong>必須フィールド"
+msgstr "<strong>*</strong>必須"
 
 #: zp-core/zp-extensions/register_user/register_user_form.php:134
 msgid "You may also register using federated credentials"
@@ -20451,14 +20431,12 @@ msgstr ""
 "す。"
 
 #: zp-core/zp-extensions/rewriteRules.php:15
-#, fuzzy
 msgid "Site rewrite rules tab."
-msgstr "Rewriteルールを更新しました"
+msgstr "サイトのrewriteルールタブです。"
 
 #: zp-core/zp-extensions/rewriteRules.php:25
-#, fuzzy
 msgid "rewrite"
-msgstr "mod_rewrite"
+msgstr "rewrite"
 
 #: zp-core/zp-extensions/GoogleMap.php:14
 msgid ""
@@ -20686,13 +20664,12 @@ msgstr ""
 "マルチメディアファイルを扱うための<strong>jPlayer</strong>を有効にします。"
 
 #: zp-core/zp-extensions/jplayer.php:69
-#, fuzzy
 msgid ""
 "<strong>IMPORTANT</strong>: Only one multimedia extension plugin can be "
 "enabled at the time and the class-video plugin must be enabled, too."
 msgstr ""
-"<strong>重要</strong>: ひとつのマルチメディアプレーヤープラグインのみ一度に有"
-"効にできてclass-videoプラグインも有効になります。"
+"<strong>重要</strong>: ひとつのマルチメディア拡張のみ一度に有"
+"効にでき、class-videoプラグインも有効にする必要が有ります。"
 
 #: zp-core/zp-extensions/jplayer.php:69
 msgid ""
@@ -20728,9 +20705,8 @@ msgid "Poster (Videothumb)"
 msgstr "ポスター(動画のサムネイル)"
 
 #: zp-core/zp-extensions/jplayer.php:132
-#, fuzzy
 msgid "If the videothumb should be shown (jplayer calls it poster)."
-msgstr "サムネイルを表示する場合(jplayerはポスターを呼び出します)"
+msgstr "動画サムネイルを表示する場合(jplayerはポスターを呼び出します)"
 
 #: zp-core/zp-extensions/jplayer.php:133
 msgid "Audio poster (Videothumb)"
@@ -20988,9 +20964,8 @@ msgid "clear width and height fields"
 msgstr "幅と高さのフィールドをクリア"
 
 #: zp-core/zp-extensions/userAddressFields.php:17
-#, fuzzy
 msgid "Adds user address fields"
-msgstr "住所フィールド"
+msgstr "ユーザーの住所フィールドを追加"
 
 #: zp-core/zp-extensions/paged_thumbs_nav.php:10
 msgid ""
@@ -21225,9 +21200,8 @@ msgid "Support for <em>favorites</em> handling."
 msgstr "<em>お気に入り</em>を扱うためのサポートです。"
 
 #: zp-core/zp-extensions/favoritesHandler.php:32
-#, fuzzy
 msgid "Mod Rewrite is required for this plugin"
-msgstr "PHPのEXIF拡張はこのオプションで必須です。"
+msgstr "mod_rewriteはこのプラグインで必須です。"
 
 #: zp-core/zp-extensions/favoritesHandler.php:44
 msgid "The albums and images selected as favorites."
@@ -21376,9 +21350,8 @@ msgid "externalFeed suspended"
 msgstr ""
 
 #: zp-core/zp-extensions/site_upgrade.php:110
-#, fuzzy
 msgid "The external feed is currently not available."
-msgstr "RSSフィードは現在利用可能ではありません。"
+msgstr "外部フィードは現在利用可能ではありません。"
 
 #: zp-core/zp-extensions/site_upgrade.php:143
 #: zp-core/zp-extensions/site_upgrade.php:150
@@ -21636,9 +21609,8 @@ msgid "Slideshow plugin based on the Cycle2 jQuery plugin."
 msgstr ""
 
 #: zp-core/zp-extensions/slideshow2.php:81
-#, fuzzy
 msgid "Slideshow: Mode"
-msgstr "スライドショー"
+msgstr "スライドショー: モード"
 
 #: zp-core/zp-extensions/slideshow2.php:84
 #, fuzzy
@@ -21656,39 +21628,32 @@ msgstr ""
 "できないということです。"
 
 #: zp-core/zp-extensions/slideshow2.php:85
-#, fuzzy
 msgid "Slideshow: Speed"
-msgstr "スライドショー"
+msgstr "スライドショー: スピード"
 
 #: zp-core/zp-extensions/slideshow2.php:92
-#, fuzzy
 msgid "Slideshow: Slide width"
-msgstr "スライドの幅"
+msgstr "スライドショー: スライドの幅"
 
 #: zp-core/zp-extensions/slideshow2.php:95
-#, fuzzy
 msgid "Slideshow: Slide height"
-msgstr "スライドの高さ"
+msgstr "スライドショー: スライドの高さ"
 
 #: zp-core/zp-extensions/slideshow2.php:98
-#, fuzzy
 msgid "Slideshow: Effect"
-msgstr "スライドショー"
+msgstr "スライドショー: エフェクト"
 
 #: zp-core/zp-extensions/slideshow2.php:103
-#, fuzzy
 msgid "fadeOut"
-msgstr "フェード"
+msgstr "フェードアウト"
 
 #: zp-core/zp-extensions/slideshow2.php:105
-#, fuzzy
 msgid "Scroll horizontal"
-msgstr "水平"
+msgstr "水平にスクロール"
 
 #: zp-core/zp-extensions/slideshow2.php:106
-#, fuzzy
 msgid "Scroll vertical"
-msgstr "左にスクロール"
+msgstr "垂直にスクロール"
 
 #: zp-core/zp-extensions/slideshow2.php:107
 #, fuzzy
