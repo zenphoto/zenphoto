@@ -417,7 +417,7 @@ class ZenpageCategory extends ZenpageRoot {
 	function getLink($page = NULL) {
 		global $_zp_zenpage;
 		if ($page > 1) {
-			$pager = _PAGE_ . '/' . $page . '/';
+			$pager = $page . '/';
 			$page = '&p=' . $page;
 		} else {
 			$pager = $page = '';
