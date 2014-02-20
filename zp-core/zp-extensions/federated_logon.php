@@ -47,10 +47,10 @@
  */
 $plugin_is_filter = 900 | CLASS_PLUGIN;
 $plugin_description = gettext('Handles logon from <em>OpenID</em> credential providers.');
-$plugin_notice = sprintf(gettext('Run the <a href="%s">OpenID detect</a> script to check compatibility of your server configuration.'), FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/federated_logon/Auth/OpenID_detect.php');
+$plugin_notice = sprintf(gettext('Run the <a href="%s">OpenID detect</a> script to check compatibility of your server configuration.'), FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/federated_logon/Auth/OpenID_detect.php?test_query=a%26b');
 $plugin_author = "Stephen Billard (sbillard)";
 
-$plugin_disable = (getOption('federated_logon_detect')) ? false : sprintf(gettext('Run the <a href="%s">OpenID detect</a> script to check compatibility of your server configuration.'), FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/federated_logon/Auth/OpenID_detect.php');
+$plugin_disable = (getOption('federated_logon_detect')) ? false : sprintf(gettext('Run the <a href="%s">OpenID detect</a> script to check compatibility of your server configuration.'), FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/federated_logon/Auth/OpenID_detect.php?test_query=a%26b');
 if ($plugin_disable) {
 	enableExtension('federated_logon', 0);
 } else {
@@ -374,30 +374,30 @@ class federated_logon {
 		$alt_handlers = federated_logon::alt_login_handler('');
 		?>
 		<ul class="logon_buttons">
-		<?php
-		foreach ($alt_handlers as $handler => $details) {
-			$script = $details['script'];
-			$authority = str_replace('_logon', '', stripSuffix(basename($script)));
-			if (is_null($redirect)) {
-				$details['params'][] = 'redirect=/' . ZENFOLDER . '/admin.php';
-			} else {
-				if (!empty($redirect)) {
-					$details['params'][] = 'redirect=' . $redirect;
+			<?php
+			foreach ($alt_handlers as $handler => $details) {
+				$script = $details['script'];
+				$authority = str_replace('_logon', '', stripSuffix(basename($script)));
+				if (is_null($redirect)) {
+					$details['params'][] = 'redirect=/' . ZENFOLDER . '/admin.php';
+				} else {
+					if (!empty($redirect)) {
+						$details['params'][] = 'redirect=' . $redirect;
+					}
 				}
-			}
-			If (count($details['params'])) {
-				$params = "'" . implode("','", $details['params']) . "'";
-			} else {
-				$params = '';
-			}
-			?>
+				If (count($details['params'])) {
+					$params = "'" . implode("','", $details['params']) . "'";
+				} else {
+					$params = '';
+				}
+				?>
 				<li>
 					<span class="fed_buttons">
 						<a href="javascript:launchScript('<?php echo $script; ?>',[<?php echo $params; ?>]);" title="<?php echo $authority; ?>" >
-			<?php
-			$logo = ltrim(str_replace(WEBPATH, '', dirname($script)) . '/' . $authority . '.png', '/');
-			if (file_exists(SERVERPATH . '/' . $logo)) {
-				?>
+							<?php
+							$logo = ltrim(str_replace(WEBPATH, '', dirname($script)) . '/' . $authority . '.png', '/');
+							if (file_exists(SERVERPATH . '/' . $logo)) {
+								?>
 								<img src="<?php echo WEBPATH . '/' . $logo; ?>" alt="<?php echo $authority; ?>" title="<?php printf(gettext('Login using %s'), $authority); ?>" />
 								<?php
 							} else {
@@ -407,12 +407,12 @@ class federated_logon {
 						</a>
 					</span>
 				</li>
-			<?php
-		}
-		?>
+				<?php
+			}
+			?>
 		</ul>
-			<?php
-		}
-
+		<?php
 	}
-	?>
+
+}
+?>
