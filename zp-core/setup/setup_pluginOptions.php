@@ -18,13 +18,9 @@ setupLog(sprintf(gettext('Plugin:%s setup started'), $extension), true);
 $option_interface = NULL;
 $plugin_is_filter = 5 | THEME_PLUGIN;
 require_once(getPlugin($extension . '.php'));
-if ($option_interface) {
-	//	prime the default options
-	setupLog(sprintf(gettext('Plugin:%s option interface instantiated'), $extension), true);
-	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager.php');
-	$option_interface = new $option_interface;
-}
+
 if (extensionEnabled($extension)) {
+	//	update the enabled priority
 	$priority = $plugin_is_filter & PLUGIN_PRIORITY;
 	if ($plugin_is_filter & CLASS_PLUGIN) {
 		$priority .= ' | CLASS_PLUGIN';
@@ -41,6 +37,14 @@ if (extensionEnabled($extension)) {
 	setupLog(sprintf(gettext('Plugin:%s enabled (%2$s)'), $extension, $priority), true);
 	enableExtension($extension, $plugin_is_filter);
 }
+
+if ($option_interface) {
+	//	prime the default options
+	setupLog(sprintf(gettext('Plugin:%s option interface instantiated'), $extension), true);
+	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager.php');
+	$option_interface = new $option_interface;
+}
+
 setupLog(sprintf(gettext('Plugin:%s setup completed'), $extension), true);
 
 $iMutex->unlock();
