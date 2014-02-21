@@ -453,11 +453,11 @@ if (isset($_REQUEST['backup'])) {
 			</script>
 		';
 	}
-
-	if (getOptionFromDB('zenphoto_install') !== $signaure) {
+	$_zp_options = NULL; //invalidate any options from before the restore
+	if (getOption('zenphoto_install') !== $signaure) {
 		$l1 = '<a href="' . WEBPATH . '/' . ZENFOLDER . '/setup.php">';
 		$messages .= '<div class="notebox">
-			<h2>' . sprintf(gettext('You have restored from an older version of Zenphoto. You will need to run %1$ssetup%2$s for proper migration'), $l1, '</a>') . '</h2>
+			<h2>' . sprintf(gettext('You have restored your database from a different instance of Zenphoto. You should run %1$ssetup%2$s to insure proper migration.'), $l1, '</a>') . '</h2>
 			</div>';
 	}
 
