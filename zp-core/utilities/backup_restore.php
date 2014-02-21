@@ -453,7 +453,14 @@ if (isset($_REQUEST['backup'])) {
 			</script>
 		';
 	}
-	setOption('zenphoto_install', $signaure);
+
+	if (getOptionFromDB('zenphoto_install') !== $signaure) {
+		$l1 = '<a href="' . WEBPATH . '/' . ZENFOLDER . '/setup.php">';
+		$messages .= '<div class="notebox">
+			<h2>' . sprintf(gettext('You have restored from an older version of Zenphoto. You will need to run %1$ssetup%2$s for proper migration'), $l1, '</a>') . '</h2>
+			</div>';
+	}
+
 	setOption('license_accepted', ZENPHOTO_VERSION . '[' . ZENPHOTO_RELEASE . ']');
 	if ($oldlibauth != Zenphoto_Authority::getVersion()) {
 		if (!$_zp_authority->migrateAuth($oldlibauth)) {
@@ -485,9 +492,9 @@ if (isset($_GET['compression'])) {
 ?>
 
 <body>
-		<?php printLogoAndLinks(); ?>
+	<?php printLogoAndLinks(); ?>
 	<div id="main">
-			<?php printTabs(); ?>
+		<?php printTabs(); ?>
 		<div id="content">
 			<?php
 			if (!$_zp_current_admin_obj->reset) {
@@ -495,7 +502,7 @@ if (isset($_GET['compression'])) {
 			}
 			?>
 			<div class="tabbox">
-					<?php zp_apply_filter('admin_note', 'backkup', ''); ?>
+				<?php zp_apply_filter('admin_note', 'backkup', ''); ?>
 				<h1>
 					<?php
 					if ($_zp_current_admin_obj->reset) {
@@ -512,7 +519,7 @@ if (isset($_GET['compression'])) {
 				<p>
 					<?php printf(gettext("Database software <strong>%s</strong>"), DATABASE_SOFTWARE); ?><br />
 					<?php printf(gettext("Database name <strong>%s</strong>"), db_name()); ?><br />
-<?php printf(gettext("Tables prefix <strong>%s</strong>"), trim(prefix(), '`')); ?>
+					<?php printf(gettext("Tables prefix <strong>%s</strong>"), trim(prefix(), '`')); ?>
 				</p>
 				<br />
 				<br />
@@ -520,7 +527,7 @@ if (isset($_GET['compression'])) {
 				if (!$_zp_current_admin_obj->reset) {
 					?>
 					<form name="backup_gallery" action="">
-	<?php XSRFToken('backup'); ?>
+						<?php XSRFToken('backup'); ?>
 						<input type="hidden" name="backup" value="true" />
 						<div class="buttons pad_button" id="dbbackup">
 							<button class="fixedwidth tooltip" type="submit" title="<?php echo gettext("Backup the tables in your database."); ?>">
@@ -550,7 +557,7 @@ if (isset($_GET['compression'])) {
 					?>
 					<form name="restore_gallery" action="">
 						<?php XSRFToken('backup'); ?>
-	<?php echo gettext('Select the database restore file:'); ?>
+						<?php echo gettext('Select the database restore file:'); ?>
 						<br />
 						<select id="backupfile" name="backupfile">
 							<?php generateListFromFiles('', SERVERPATH . "/" . BACKUPFOLDER, '.zdb', true); ?>
