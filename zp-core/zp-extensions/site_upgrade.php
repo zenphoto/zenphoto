@@ -33,7 +33,7 @@
  * @package plugins
  * @subpackage admin
  */
-$plugin_is_filter = 1000 | ADMIN_PLUGIN | THEME_PLUGIN;
+$plugin_is_filter = 1000 | ADMIN_PLUGIN | FEATURE_PLUGIN;
 $plugin_description = gettext('Utility to divert access to the gallery to a screen saying the site is upgrading.');
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_notice = (MOD_REWRITE) ? false : gettext('<em>mod_rewrite</em> is not enabled. This plugin may not work without rewrite redirection if the upgrade is significantly different than the running release.');
@@ -42,6 +42,11 @@ switch (OFFSET_PATH) {
 	case 0:
 		$state = @$_zp_conf_vars['site_upgrade_state'];
 		if ((!zp_loggedin(ADMIN_RIGHTS) && $state == 'closed_for_test') || $state == 'closed') {
+			if (isset($_zp_conf_vars['special_pages']['page']['rewrite'])) {
+				$page = $_zp_conf_vars['special_pages']['page']['rewrite'];
+			} else {
+				$page = 'page';
+			}
 			if (!preg_match('~' . preg_quote($page) . '/setup_set-mod_rewrite\?z=setup$~', $_SERVER['REQUEST_URI'])) {
 				header('location: ' . WEBPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.php');
 				exit();
