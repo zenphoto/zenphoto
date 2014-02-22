@@ -49,7 +49,12 @@ setupLog(sprintf(gettext('Plugin:%s setup completed'), $extension), true);
 
 $iMutex->unlock();
 
+$fp = fopen(SERVERPATH . '/' . ZENFOLDER . '/images/pass.png', 'rb');
+// send the right headers
 header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
-header('Content-Type: image/png');
-header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/images/pass.png', true, 301);
+header("Content-Type: image/png");
+header("Content-Length: " . filesize(SERVERPATH . '/' . ZENFOLDER . '/images/pass.png'));
+// dump the picture and stop the script
+fpassthru($fp);
+fclose($fp);
 ?>
