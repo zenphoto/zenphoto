@@ -195,7 +195,7 @@ function omsAdditions() {
 function getGeoCoord($image) {
 	global $_zp_current_image;
 	$result = false;
-	if ((is_object($image)) && ($image->table == 'images')) {
+	if (isImageClass($image)) {
 		$_zp_current_image = $image;
 		$exif = $_zp_current_image->getMetaData();
 		if ((!empty($exif['EXIFGPSLatitude'])) && (!empty($exif['EXIFGPSLongitude']))) {

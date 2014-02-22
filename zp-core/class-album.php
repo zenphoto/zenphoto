@@ -20,6 +20,22 @@ function newAlbum($folder8, $cache = true, $quiet = false) {
 	return new Album(NULL, $folder8, $cache, $quiet);
 }
 
+/**
+ * Returns true if the object is a zenphoto 'album'
+ *
+ * @param object $album
+ * @return bool
+ */
+function isAlbumClass($album = NULL) {
+	global $_zp_current_album;
+	if (is_null($album)) {
+		if (!in_context(ZP_ALBUM))
+			return false;
+		$album = $_zp_current_album;
+	}
+	return is_object($album) && ($album->table == 'albums');
+}
+
 class AlbumBase extends MediaObject {
 
 	var $name; // Folder name of the album (full path from the albums folder)

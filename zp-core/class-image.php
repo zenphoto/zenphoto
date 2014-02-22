@@ -82,11 +82,10 @@ function newImage($album, $filename, $quiet = false) {
  * @return bool
  */
 function isImageClass($image = NULL) {
-	global $_zp_extra_filetypes;
+	global $_zp_current_image;
 	if (is_null($image)) {
 		if (!in_context(ZP_IMAGE))
 			return false;
-		global $_zp_current_image;
 		$image = $_zp_current_image;
 	}
 	return is_object($image) && ($image->table == 'images');

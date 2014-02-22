@@ -501,7 +501,7 @@ function deleteLayoutSelection($allow, $obj) {
 	$type = 'multiple_layouts_' . $obj->table;
 	if (getOption($type)) {
 		$query = query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND type = "' . $type . '"', false);
-		if ($obj->table == 'albums') {
+		if (isAlbumClass($obj)) {
 			$result = query_single_row('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND type = "multiple_layouts_albums_images"', false);
 		}
 	}
@@ -521,7 +521,7 @@ function copyLayoutSelection($newid, $obj) {
 		if ($result) {
 			$query = query('INSERT INTO ' . prefix('plugin_storage') . ' (type,aux,data) VALUES ("' . $result['type'] . '", ' . $newid . ', ' . db_quote($result['data']) . ')');
 		}
-		if ($obj->table == 'albums') {
+		if (isAlbumClass($obj)) {
 			$result = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND type = "multiple_layouts_albums_images"', false);
 			if ($result) {
 				$query = query('INSERT INTO ' . prefix('plugin_storage') . ' (type,aux,data) VALUES ("multiple_layouts_albums_images", ' . $newid . ', ' . db_quote($result['data']) . ')');
