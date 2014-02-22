@@ -110,12 +110,12 @@ function createRelatedItemsResultArray($result, $type) {
 	foreach ($result as $item) {
 		switch ($type) {
 			case 'albums':
-				if (get_class($current) != 'Album' || $current->name != $item) {
+				if (isAlbumClass($current) || $current->name != $item) {
 					array_push($results, array('name' => $item, 'album' => '', 'type' => $type, 'weight' => '13')); // doesn't have weight so we just add one for sorting later
 				}
 				break;
 			case 'images':
-				if (get_class($current) != 'Image' || ($current->filename != $item['filename'] && $current->getAlbum()->name != $item['folder'])) {
+				if (isImageClass($current) || ($current->filename != $item['filename'] && $current->getAlbum()->name != $item['folder'])) {
 					array_push($results, array('name' => $item['filename'], 'album' => $item['folder'], 'type' => $type, 'weight' => $item['weight']));
 				}
 				break;
