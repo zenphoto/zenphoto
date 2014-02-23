@@ -115,7 +115,7 @@ function createRelatedItemsResultArray($result, $type) {
 				}
 				break;
 			case 'images':
-				if (isImageClass($current) || ($current->filename != $item['filename'] && $current->getAlbum()->name != $item['folder'])) {
+				if (isImageClass($current) || $current->filename != $item['filename']) {
 					array_push($results, array('name' => $item['filename'], 'album' => $item['folder'], 'type' => $type, 'weight' => $item['weight']));
 				}
 				break;
