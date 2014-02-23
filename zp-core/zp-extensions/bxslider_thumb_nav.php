@@ -181,12 +181,12 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->ge
 				$searchimages = false;
 			}
 			if (in_context(ZP_SEARCH_LINKED) && $searchimages) {
-				$jcarousel_items = $_zp_current_search->getImages();
+				$bxslider_items = $_zp_current_search->getImages();
 			} else {
-				$jcarousel_items = $_zp_current_album->getImages();
+				$bxslider_items = $_zp_current_album->getImages();
 			}
-			if (count($jcarousel_items) >= 2) {
-				foreach ($jcarousel_items as $item) {
+			if (count($bxslider_items) >= 2) {
+				foreach ($bxslider_items as $item) {
 					if (is_array($item)) {
 						$imgobj = newImage(newAlbum($item['folder']), $item['filename']);
 					} else {
@@ -238,7 +238,6 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->ge
 			<script type="text/javascript">
 				$(document).ready(function() {
 					$('.bxslider<?php echo $albumid; ?>').bxSlider({
-						startSlide: <?php echo $imgnumber; ?>,
 						mode: '<?php echo $mode; ?>',
 						minSlides: <?php echo $minitems; ?>,
 						maxSlides: <?php echo $maxitems; ?>,
@@ -246,7 +245,8 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->ge
 						slideWidth: <?php echo $width; ?>,
 						slideMargin: 5,
 						pager: false,
-						adaptiveHeight: true
+						adaptiveHeight: true,
+						useCSS: false
 					});
 				});
 			</script>
