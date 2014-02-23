@@ -19,6 +19,8 @@ $plugin_disable = (version_compare(PHP_VERSION, '5.3') >= 0) ? false : gettext('
 if ($plugin_disable) {
 	enableExtension('uploader_jQuery', 0);
 } else {
+	if (OFFSET_PATH == 2)
+		setoptiondefault('zp_plugin_uploader_jQuery', $plutin_is_filter);
 	if (zp_loggedin(UPLOAD_RIGHTS)) {
 		zp_register_filter('upload_handlers', 'jQueryUploadHandler');
 		zp_register_filter('admin_tabs', 'jQueryUploadHandler_admin_tabs', 5);
