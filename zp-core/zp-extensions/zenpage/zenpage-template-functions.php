@@ -143,7 +143,6 @@ function getAuthor($fullname = false) {
 function getLatestNews($number = 2, $option = 'none', $category = '', $sticky = true, $sortdirection = 'desc') {
 	global $_zp_zenpage, $_zp_current_zenpage_news;
 	if ($option != 'none') {
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/deprecated_functions.php');
 		Zenpage_internal_deprecations::getLatestNews();
 	}
 	$latest = array();
@@ -2052,7 +2051,7 @@ function printPageURL($linktext = NULL, $titlelink = NULL, $prev = '', $next = '
 	if (!is_null($class)) {
 		$class = 'class="' . $class . '"';
 	}
-	if(is_null($linktext)) {
+	if (is_null($linktext)) {
 		$linktext = getPageTitle();
 	}
 	echo $prev . "<a href=\"" . html_encode(getPageURL($titlelink)) . "\" $class title=\"" . html_encode($linktext) . "\">" . html_encode($linktext) . "</a>" . $next;

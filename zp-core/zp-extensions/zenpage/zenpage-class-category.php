@@ -432,7 +432,6 @@ class ZenpageCategory extends ZenpageRoot {
 	 * @deprecated
 	 */
 	function getCategoryLink() {
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/deprecated_functions.php');
 		Zenpage_internal_deprecations::getCategoryLink();
 		return $this->getLink();
 	}

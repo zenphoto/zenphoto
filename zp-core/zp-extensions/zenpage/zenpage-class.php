@@ -750,7 +750,6 @@ class Zenpage {
 	 * @return string
 	 */
 	function getNewsIndexURL() {
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/deprecated_functions.php');
 		Zenpage_internal_deprecations::getNewsIndexURL();
 		return getNewsIndexURL();
 	}
@@ -762,7 +761,6 @@ class Zenpage {
 	 * @deprecated since version 1.4.6
 	 */
 	function getNewsCategoryPath($category, $page = NULL) {
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/deprecated_functions.php');
 		Zenpage_internal_deprecations::getNewsCategoryPath();
 		$rewrite = '/' . _CATEGORY_ . '/' . $category;
 		$plain = "/index.php?p=news&category=$category";
@@ -780,7 +778,6 @@ class Zenpage {
 	 * @deprecated since version 1.4.6
 	 */
 	function getNewsArchivePath($date, $page = NULL) {
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/deprecated_functions.php');
 		Zenpage_internal_deprecations::getNewsArchivePath();
 		return getNewsArchivePath($date, $page);
 	}
@@ -792,7 +789,6 @@ class Zenpage {
 	 * @deprecated since version 1.4.6
 	 */
 	function getNewsTitlePath($title) {
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/deprecated_functions.php');
 		Zenpage_internal_deprecations::getNewsTitlePath();
 		return rewrite_path('/' . _NEWS_ . "/$title", "/index.php?p=news&title=$title"); //deprecated
 	}
@@ -809,7 +805,6 @@ class Zenpage {
 	 * @deprecated since version 1.4.6
 	 */
 	function getCategoryLink($catname) {
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/deprecated_functions.php');
 		Zenpage_internal_deprecations::getCategoryLink();
 		foreach ($this->getAllCategories(false) as $cat) {
 			if ($cat['titlelink'] == $catname) {
