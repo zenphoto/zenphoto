@@ -2554,9 +2554,9 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
  * @return array
  */
 function getSizeCustomImage($size, $width = NULL, $height = NULL, $cw = NULL, $ch = NULL, $cx = NULL, $cy = NULL) {
+	global $_zp_current_album, $_zp_current_image;
 	if (!in_context(ZP_IMAGE))
 		return false;
-	global $_zp_current_album, $_zp_current_image;
 	if (is_null($_zp_current_image))
 		return false;
 	$h = $_zp_current_image->getHeight();
@@ -3893,7 +3893,7 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 		});
 		// ]]> -->
 			</script>
-			<?php echo $prevtext; ?>
+	<?php echo $prevtext; ?>
 			<div>
 				<input type="text" name="words" value="" id="search_input" size="10" />
 				<?php if (count($fields) > 1 || $searchwords) { ?>
@@ -3937,11 +3937,11 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 							?>
 							<label>
 								<input type="radio" name="search_within" id="search_within-1" value="1"<?php if ($within) echo ' checked="checked"'; ?> onclick="search_(1);" />
-								<?php echo gettext('Within'); ?>
+			<?php echo gettext('Within'); ?>
 							</label>
 							<label>
 								<input type="radio" name="search_within" id="search_within-0" value="1"<?php if (!$within) echo ' checked="checked"'; ?> onclick="search_(0);" />
-								<?php echo gettext('New'); ?>
+							<?php echo gettext('New'); ?>
 							</label>
 							<?php
 						}
@@ -4229,7 +4229,7 @@ function printPasswordForm($_password_hint, $_password_showuser = NULL, $_passwo
 		if ($_password_showProtected && !$_zp_login_error) {
 			?>
 			<p>
-				<?php echo gettext("The page you are trying to view is password protected."); ?>
+			<?php echo gettext("The page you are trying to view is password protected."); ?>
 			</p>
 			<?php
 		}

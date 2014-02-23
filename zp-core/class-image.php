@@ -987,6 +987,59 @@ class Image extends MediaObject {
 	}
 
 	/**
+	 * Returns the default sized image HTML
+	 *
+	 * @return string
+	 */
+	function getContent() {
+		$class = '';
+		if (!$this->getShow()) {
+			$class .= " not_visible";
+		}
+		$album = $this->getAlbum();
+		$pwd = $album->getPassword();
+		if (!empty($pwd)) {
+			$class .= " password_protected";
+		}
+		$size = getOption('image_size');
+		$h = $this->getHeight();
+		$w = $this->getWidth();
+		$side = getOption('image_use_side');
+		$us = getOption('image_allow_upscale');
+		$dim = $size;
+
+		if ($w == 0) {
+			$hprop = 1;
+		} else {
+			$hprop = round(($h / $w) * $dim);
+		}
+		if ($h == 0) {
+			$wprop = 1;
+		} else {
+			$wprop = round(($w / $h) * $dim);
+		}
+
+		if (($size && ($side == 'longest' && $h > $w) || ($side == 'height') || ($side == 'shortest' && $h < $w))) {
+// Scale the height
+			$newh = $dim;
+			$neww = $wprop;
+		} else {
+// Scale the width
+			$neww = $dim;
+			$newh = $hprop;
+		}
+		if (!$us && $newh >= $h && $neww >= $w) {
+			$neww = $w;
+			$newh = $h;
+		}
+		$html = '<img src="' . html_encode(pathurlencode($this->getSizedImage($size))) . '" alt="' . html_encode($this->getTitle()) . '"' .
+						' width="' . $neww . '" height="' . $newh . '"' .
+						(($class) ? " class=\"$class\"" : "") . " />";
+		$html = zp_apply_filter('standard_image_html', $html);
+		return $html;
+	}
+
+	/**
 	 * Returns the image file name for the thumbnail image.
 	 *
 	 * @param string $path override path
