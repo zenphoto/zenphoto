@@ -244,6 +244,7 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->ge
 						speed: <?php echo $speed; ?>,
 						slideWidth: <?php echo $width; ?>,
 						slideMargin: 5,
+						moveSlides: <?php echo $maxitems; ?> - 1,
 						pager: false,
 						adaptiveHeight: true,
 						useCSS: false

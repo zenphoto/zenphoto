@@ -16,8 +16,6 @@
 
 .bx-wrapper {
 	position: relative;
-	margin: 0 auto 60px;
-	margin-bottom: 100px;
 	min-height: 80px;
 	height: auto;
 	*zoom: 1;
@@ -42,8 +40,9 @@
 	-webkit-box-shadow: 0 0 5px #ccc;
 	box-shadow: 0 0 5px #ccc; */
 	border: solid #fff 5px;
-	left: -5px;
+	left: -6px;
 	background: #fff;
+	padding: 0 4px 0 0px;
 }
 
 .bx-wrapper .bx-pager,
@@ -105,12 +104,12 @@
 /* DIRECTION CONTROLS (NEXT / PREV) */
 
 .bx-wrapper .bx-prev {
-	left: 10px;
+	left: -40px;
 	background: url(images/controls.png) no-repeat 0 -32px;
 }
 
 .bx-wrapper .bx-next {
-	right: 10px;
+	right: -42px;
 	background: url(images/controls.png) no-repeat -43px -32px;
 }
 
