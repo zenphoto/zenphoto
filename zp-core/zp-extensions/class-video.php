@@ -283,7 +283,7 @@ class Video extends Image {
 		} else {
 			$width = $width * $size / $height;
 		}
-		return $this->getBody($width, $height);
+		return $this->getContent($width, $height);
 	}
 
 	/**
@@ -311,6 +311,11 @@ class Video extends Image {
 		return $vid;
 	}
 
+	function getBody($w = NULL, $h = NULL) {
+		Video_deprecated_functions::getBody();
+		$this->getContent($w, $h);
+	}
+
 	/**
 	 * returns the content of the vido
 	 *
@@ -318,7 +323,7 @@ class Video extends Image {
 	 * @param $h
 	 * @return string
 	 */
-	function getBody($w = NULL, $h = NULL) {
+	function getContent($w = NULL, $h = NULL) {
 		global $_zp_multimedia_extension;
 		if (is_null($w))
 			$w = $this->getWidth();

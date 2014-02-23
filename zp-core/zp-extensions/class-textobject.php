@@ -24,7 +24,7 @@
  * an image plus whatever you add. Of course you will need to override some of the image class functions to
  * implement the functionality of your new class.</li>
  * <li>There is one VERY IMPORTANT method that you must provide which is not part of the "Image" base class. That
- * getBody() method. This method is called by template-functions.php in place of where it would normally put a URL
+ * getContent() method. This method is called by template-functions.php in place of where it would normally put a URL
  * to the image to show. This method must do everything needed to cause your image object to be viewable by the
  * browser.</li>
  * </ul>

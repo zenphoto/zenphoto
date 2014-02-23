@@ -24,7 +24,7 @@
  * an image plus whatever you add. Of course you will need to override some of the image class functions to
  * implement the functionality of your new class.
  * 4. There is one VERY IMPORTANT method that you must provide which is not part of the "Image" base class. That
- * getBody() method. This method is called by template-functions.php in place of where it would normally put a URL
+ * getContent() method. This method is called by template-functions.php in place of where it would normally put a URL
  * to the image to show. This method must do everything needed to cause your image object to be viewable by the
  * browser.
  *
@@ -103,7 +103,7 @@ class TextObject extends Image {
 		$this->sidecars = $_zp_supported_images;
 		$this->objectsThumb = checkObjectsThumb($this->localpath);
 		$this->updateDimensions();
-		$new = $this->instantiate('images', array('filename' => $filename, 'albumid'	 => $this->album->getID()), 'filename');
+		$new = $this->instantiate('images', array('filename' => $filename, 'albumid' => $this->album->getID()), 'filename');
 		if ($new || $this->filemtime != $this->get('mtime')) {
 			if ($new)
 				$this->setTitle($this->displayname); $title = $this->displayname;
@@ -173,6 +173,11 @@ class TextObject extends Image {
 		return getImageURI($args, $alb, $filename, $mtime);
 	}
 
+	function getBody($w = NULL, $h = NULL) {
+		TextObject_deprecated_functions::getBody();
+		$this->getContent($w, $h);
+	}
+
 	/**
 	 * Returns the content of the text file
 	 *
@@ -180,7 +185,7 @@ class TextObject extends Image {
 	 * @param int $h optional height
 	 * @return string
 	 */
-	function getBody($w = NULL, $h = NULL) {
+	function getContent($w = NULL, $h = NULL) {
 		$this->updateDimensions();
 		if (is_null($w))
 			$w = $this->getWidth();
@@ -236,7 +241,7 @@ class TextObject extends Image {
 			}
 			return getImageURI($args, $this->album->name, $filename, $mtime);
 		} else {
-			return $this->getBody($width, $height);
+			return $this->getContent($width, $height);
 		}
 	}
 
@@ -258,7 +263,7 @@ class TextObject extends Image {
 				break;
 		}
 
-		return $this->getBody($w, $h);
+		return $this->getContent($w, $h);
 	}
 
 	/**

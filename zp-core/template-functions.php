@@ -2742,7 +2742,7 @@ function printDefaultSizedImage($alt, $class = NULL, $id = NULL) {
 		$html = zp_apply_filter('standard_image_html', $html);
 		echo $html;
 	} else { // better be a plugin class then
-		echo $_zp_current_image->getBody();
+		echo $_zp_current_image->getContent();
 	}
 }
 
@@ -3038,7 +3038,7 @@ function printCustomSizedImage($alt, $size, $width = NULL, $height = NULL, $crop
 		$html = zp_apply_filter('custom_image_html', $html, $thumbStandin);
 		echo $html;
 	} else { // better be a plugin
-		echo $_zp_current_image->getBody($width, $height);
+		echo $_zp_current_image->getContent($width, $height);
 	}
 }
 
