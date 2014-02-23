@@ -27,7 +27,7 @@ function formatList($title, $matches) {
 		$match = strtr($match, array('->' => '', '::' => ''));
 		$match = preg_replace('/(.*)?\s/', '', $match);
 		$match = preg_replace('/\s?\(/', '', $match);
-		$details = $deprecated->listed_functions[$match];
+		$details = $deprecated->unique_functions[$match];
 		switch (trim($details['class'])) {
 			case 'static':
 				$class = '*';
@@ -42,6 +42,8 @@ function formatList($title, $matches) {
 				$class = '';
 				break;
 		}
+		if ($details['multiple'])
+			$class .= '&amp;';
 		echo '<li>' . $match . $class . '</li>';
 	}
 	echo '</ul></li>';

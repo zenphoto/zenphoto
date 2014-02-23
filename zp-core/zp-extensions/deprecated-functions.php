@@ -37,6 +37,7 @@ zp_register_filter('admin_tabs', 'deprecated_functions::tabs');
 class deprecated_functions {
 
 	var $listed_functions = array();
+	var $unique_functions = array();
 
 	function __construct() {
 		global $_internalFunctions;
@@ -47,12 +48,11 @@ class deprecated_functions {
 				if ($plugin == 'deprecated-functions')
 					$plugin = '';
 				$content = file_get_contents($deprecated);
-
 				preg_match_all('~@deprecated\s+.*since\s+.*(\d+\.\d+\.\d+)~', $content, $versions);
 				preg_match_all('/([public static|static]*)\s*function\s+(.*)\s?\(.*\)\s?\{/', $content, $functions);
 				foreach ($functions[2] as $key => $function) {
 					setOptionDefault('deprecated_' . $plugin . '_' . $functions[1][$key] . '_' . $function, 1);
-					$this->listed_functions[$function] = array('plugin' => $plugin, 'class' => $functions[1][$key], 'since' => @$versions[1][$key]);
+					$this->unique_functions[$function] = $this->listed_functions[$plugin . '::' . $function] = array('plugin' => $plugin, 'function' => $function, 'class' => $functions[1][$key], 'since' => @$versions[1][$key], 'multiple' => array_key_exists($function, $this->unique_functions));
 				}
 			}
 		}

@@ -28,7 +28,7 @@ echo "\n</head>";
 					$deprecated = new deprecated_functions();
 					$list = array();
 					$listed = $deprecated->listed_functions;
-					foreach ($listed as $funct => $details) {
+					foreach ($listed as $details) {
 						switch (trim($details['class'])) {
 							case 'static':
 								$class = '*';
@@ -43,7 +43,7 @@ echo "\n</head>";
 								$class = '';
 								break;
 						}
-						$list[$details['since']][$details['plugin']][] = $funct . $class;
+						$list[$details['since']][$details['plugin']][] = $details['function'] . $class;
 						krsort($list, SORT_NATURAL | SORT_FLAG_CASE);
 					}
 					?>

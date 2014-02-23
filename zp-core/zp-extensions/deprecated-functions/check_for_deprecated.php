@@ -17,8 +17,8 @@ if (isset($_GET['action'])) {
 	$zplist = getSerializedArray(getOption('Zenphoto_theme_list'));
 	$deprecated = new deprecated_functions();
 	$list = array();
-	foreach ($deprecated->listed_functions as $func => $details) {
-		$func = preg_quote($func);
+	foreach ($deprecated->listed_functions as $details) {
+		$func = preg_quote($details['function']);
 		switch (trim($details['class'])) {
 			case 'final static':
 			case 'static':
@@ -81,7 +81,7 @@ echo '</head>' . "\n";
 				</form>
 
 				<br class="clearall" />
-				<p class="notebox"><?php echo gettext('<strong>NOTE:</strong> This search will have false positives for instance when the function name appears in a comment or quoted string. Functions flagged with an "*" are class methods. Ones flagged "+" have deprecated parameters. No screening is done on these, so you must verify if there is an issue.'); ?></p>
+				<p class="notebox"><?php echo gettext('<strong>NOTE:</strong> This search will have false positives for instance when the function name appears in a comment or quoted string. Functions flagged with an "*" are class methods. Ones flagged "+" have deprecated parameters. Ones flagged with "&amp;" are deprecated in multiple places. No screening is done on these, so you must verify if there is an issue.'); ?></p>
 				<?php
 				if (isset($_GET['action'])) {
 					?>
