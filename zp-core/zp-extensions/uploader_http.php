@@ -13,7 +13,7 @@ $plugin_description = gettext('<em>http</em> image upload handler.');
 $plugin_author = 'Stephen Billard (sbillard)';
 
 if (OFFSET_PATH == 2)
-	setoptiondefault('zp_plugin_uploader_http', $plutin_is_filter);
+	setoptiondefault('zp_plugin_uploader_http', $plugin_is_filter);
 
 if (zp_loggedin(UPLOAD_RIGHTS)) {
 	zp_register_filter('upload_handlers', 'httpUploadHandler');
