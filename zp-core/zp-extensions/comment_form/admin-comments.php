@@ -118,7 +118,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 		if ($commentarr) {
 			extract($commentarr);
 			?>
-			<form id="form_editcomment" action="?action=savecomment" method="post">
+			<form class="dirty-check" id="form_editcomment" action="?action=savecomment" method="post">
 				<?php XSRFToken('savecomment'); ?>
 				<input	type="hidden" name="id" value="<?php echo $id; ?>" />
 				<span class="buttons">
@@ -286,7 +286,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 	}
 	?>
 
-	<form name="comments" id="form_commentlist" action="?action=applycomments" method="post"	onsubmit="return confirmAction();">
+	<form class="dirty-check" name="comments" id="form_commentlist" action="?action=applycomments" method="post"	onsubmit="return confirmAction();">
 		<?php XSRFToken('applycomments'); ?>
 		<input type="hidden" name="subpage" value="<?php echo html_encode($pagenum) ?>" />
 		<p class="buttons"><button type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button></p>

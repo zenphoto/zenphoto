@@ -222,7 +222,7 @@ datepickerJS();
 				<?php
 				$option = getNewsAdminOptionPath(getNewsAdminOption(array('category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1, 'subpage' => 1), '?'));
 				?>
-				<form action="admin-news-articles.php<?php echo $option; ?>" method="post" name="checkeditems" id="form_zenpageitemlist" onsubmit="return confirmAction();">
+				<form class="dirty-check" action="admin-news-articles.php<?php echo $option; ?>" method="post" name="checkeditems" id="form_zenpageitemlist" onsubmit="return confirmAction();">
 					<?php XSRFToken('checkeditems'); ?>
 					<div class="buttons">
 						<button type="submit" title="<?php echo gettext('Apply'); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong>
@@ -321,17 +321,19 @@ datepickerJS();
 										<?php
 										if ($article->getCommentsAllowed()) {
 											?>
-											<a href="?commentson=0&amp;titlelink=<?php echo html_encode($article->getTitlelink());
-								echo $option;
+											<a href="?commentson=0&amp;titlelink=<?php
+											echo html_encode($article->getTitlelink());
+											echo $option;
 											?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Disable comments'); ?>">
 												<img src="../../images/comments-on.png" alt="" title="<?php echo gettext("Comments on"); ?>" style="border: 0px;"/>
 											</a>
 											<?php
 										} else {
 											?>
-											<a href="?commentson=1&amp;titlelink=<?php echo html_encode($article->getTitlelink());
-											echo $option;
-											?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Enable comments'); ?>">
+											<a href="?commentson=1&amp;titlelink=<?php
+												 echo html_encode($article->getTitlelink());
+												 echo $option;
+												 ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Enable comments'); ?>">
 												<img src="../../images/comments-off.png" alt="" title="<?php echo gettext("Comments off"); ?>" style="border: 0px;"/>
 											</a>
 											<?php
@@ -350,7 +352,8 @@ datepickerJS();
 	<?php } ?>
 
 								<td class="page-list_icon">
-									<a href="../../../index.php?p=news&amp;title=<?php echo $article->getTitlelink();
+									<a href="../../../index.php?p=news&amp;title=<?php
+	echo $article->getTitlelink();
 	echo $option;
 	?>" title="<?php echo gettext('View article'); ?>">
 										<img src="images/view.png" alt="" title="<?php echo gettext('View article'); ?>" />
@@ -362,18 +365,20 @@ datepickerJS();
 									if (extensionEnabled('hitcounter')) {
 										?>
 										<td class="page-list_icon">
-											<a href="?hitcounter=1&amp;titlelink=<?php echo html_encode($article->getTitlelink());
-									 echo $option;
+											<a href="?hitcounter=1&amp;titlelink=<?php
+								echo html_encode($article->getTitlelink());
+								echo $option;
 										?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo gettext('Reset hitcounter'); ?>">
 												<img src="../../images/reset.png" alt="" title="<?php echo gettext('Reset hitcounter'); ?>" /></a>
 										</td>
-												 <?php
-											 }
-											 ?>
+											<?php
+										}
+										?>
 									<td class="page-list_icon">
-										<a href="javascript:confirmDelete('admin-news-articles.php?delete=<?php echo $article->getTitlelink();
-											 echo $option;
-											 ?>&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>','<?php echo js_encode(gettext('Are you sure you want to delete this article? THIS CANNOT BE UNDONE!')); ?>')" title="<?php echo gettext('Delete article'); ?>">
+										<a href="javascript:confirmDelete('admin-news-articles.php?delete=<?php
+									 echo $article->getTitlelink();
+									 echo $option;
+									 ?>&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>','<?php echo js_encode(gettext('Are you sure you want to delete this article? THIS CANNOT BE UNDONE!')); ?>')" title="<?php echo gettext('Delete article'); ?>">
 											<img src="../../images/fail.png" alt="" title="<?php echo gettext('Delete article'); ?>" /></a>
 									</td>
 									<td class="page-list_icon">

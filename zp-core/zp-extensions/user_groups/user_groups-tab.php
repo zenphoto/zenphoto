@@ -41,7 +41,7 @@ if (isset($_GET['action'])) {
 			$groupobj = Zenphoto_Authority::newAdministrator($groupname, 0);
 			$groupobj->remove();
 			// clear out existing user assignments
-			Zenphoto_Authority::updateAdminField('group', NULL, array('`valid`>='	 => '1', '`group`='	 => $groupname));
+			Zenphoto_Authority::updateAdminField('group', NULL, array('`valid`>=' => '1', '`group`=' => $groupname));
 			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_groups/user_groups-tab.php?page=users&tab=groups&deleted&subpage=' . $subpage);
 			exitZP();
 		case 'savegroups':
@@ -82,14 +82,14 @@ if (isset($_GET['action'])) {
 								}
 							}
 							//user assignments: first clear out existing ones
-							Zenphoto_Authority::updateAdminField('group', NULL, array('`valid`>='	 => '1', '`group`='	 => $groupname));
+							Zenphoto_Authority::updateAdminField('group', NULL, array('`valid`>=' => '1', '`group`=' => $groupname));
 							//then add the ones marked
 							$target = 'user_' . $i . '-';
 							foreach ($_POST as $item => $username) {
 								$item = sanitize(postIndexDecode($item));
 								if (strpos($item, $target) !== false) {
 									$username = substr($item, strlen($target));
-									$user = Zenphoto_Authority::getAnAdmin(array('`user`='		 => $username, '`valid`>='	 => 1));
+									$user = Zenphoto_Authority::getAnAdmin(array('`user`=' => $username, '`valid`>=' => 1));
 									$user->setRights($group->getRights());
 									$user->setObjects($group->getObjects());
 									$user->setGroup($groupname);
@@ -112,7 +112,7 @@ if (isset($_GET['action'])) {
 					if (isset($_POST[$i . 'group'])) {
 						$newgroups = sanitize($_POST[$i . 'group']);
 						$username = trim(sanitize($_POST[$i . '-user'], 3));
-						$userobj = Zenphoto_Authority::getAnAdmin(array('`user`='		 => $username, '`valid`>='	 => 1));
+						$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $username, '`valid`>=' => 1));
 						user_groups::merge_rights($userobj, $newgroups);
 						$userobj->save();
 					}
@@ -192,7 +192,7 @@ echo '</head>' . "\n";
 							echo gettext("Set group rights and select one or more albums for the users in the group to manage. Users with <em>User admin</em> or <em>Manage all albums</em> rights can manage all albums. All others may manage only those that are selected.");
 							?>
 						</p>
-						<form action="?action=savegroups&amp;tab=groups" method="post" autocomplete="off" onsubmit="return checkSubmit()" >
+						<form class="dirty-check" action="?action=savegroups&amp;tab=groups" method="post" autocomplete="off" onsubmit="return checkSubmit()" >
 							<?php XSRFToken('savegroups'); ?>
 							<p class="buttons">
 								<button type="submit"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
@@ -211,7 +211,7 @@ echo '</head>' . "\n";
 										</span>
 									</th>
 									<th>
-										<?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/user_groups/user_groups-tab.php', array('page' => 'users', 'tab'	 => 'groups')); ?>
+										<?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/user_groups/user_groups-tab.php', array('page' => 'users', 'tab' => 'groups')); ?>
 									</th>
 									<th></th>
 								</tr>
@@ -219,7 +219,7 @@ echo '</head>' . "\n";
 								<?php
 								$id = 0;
 								$groupselector = $groups;
-								$groupselector[''] = array('id'								 => -1, 'user'							 => '', 'name'							 => 'group', 'rights'						 => ALL_RIGHTS ^ MANAGE_ALL_ALBUM_RIGHTS, 'valid'							 => 0, 'other_credentials'	 => '');
+								$groupselector[''] = array('id' => -1, 'user' => '', 'name' => 'group', 'rights' => ALL_RIGHTS ^ MANAGE_ALL_ALBUM_RIGHTS, 'valid' => 0, 'other_credentials' => '');
 								foreach ($groupselector as $key => $user) {
 									$groupname = $user['user'];
 									$groupid = $user['id'];
@@ -245,9 +245,9 @@ echo '</head>' . "\n";
 												?>
 												<em>
 													<label><input type="radio" name="<?php echo $id; ?>-type" value="group" checked="checked" onclick="javascrpt:toggle('users<?php echo $id; ?>');
-										toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('group'); ?></label>
+															toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('group'); ?></label>
 													<label><input type="radio" name="<?php echo $id; ?>-type" value="template" onclick="javascrpt:toggle('users<?php echo $id; ?>');
-										toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('template'); ?></label>
+															toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('template'); ?></label>
 												</em>
 												<br />
 												<input type="text" size="35" id="group-<?php echo $id ?>" name="<?php echo $id ?>-group" value=""
@@ -291,7 +291,7 @@ echo '</head>' . "\n";
 												<?php
 												if (empty($groupname) && !empty($groups)) {
 													?>
-				<?php echo gettext('clone:'); ?>
+													<?php echo gettext('clone:'); ?>
 													<br />
 													<select name="<?php echo $id; ?>-initgroup" onchange="javascript:$('#hint<?php echo $id; ?>').html(this.options[this.selectedIndex].title);">
 														<option title=""></option>
@@ -313,7 +313,7 @@ echo '</head>' . "\n";
 													<?php
 												}
 												?>
-			<?php echo gettext('description:'); ?>
+												<?php echo gettext('description:'); ?>
 												<br />
 												<textarea name="<?php echo $id; ?>-desc" cols="40" rows="4"><?php echo html_encode($desc); ?></textarea>
 
@@ -332,7 +332,7 @@ echo '</head>' . "\n";
 														}
 														?>
 														<ul class="shortchecklist">
-			<?php generateUnorderedListFromArray($members, $users, 'user_' . $id . '-', false, true, false); ?>
+															<?php generateUnorderedListFromArray($members, $users, 'user_' . $id . '-', false, true, false); ?>
 														</ul>
 													</div>
 												</div>
@@ -385,7 +385,7 @@ echo '</head>' . "\n";
 										</span>
 									</th>
 									<th>
-		<?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/user_groups/user_groups-tab.php', array('page' => 'users', 'tab'	 => 'groups')); ?>
+										<?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/user_groups/user_groups-tab.php', array('page' => 'users', 'tab' => 'groups')); ?>
 									</th>
 									<th></th>
 								</tr>
@@ -446,12 +446,12 @@ echo '</head>' . "\n";
 						}
 						?>
 						<p>
-		<?php
-		echo gettext("Assign users to groups.");
-		?>
+							<?php
+							echo gettext("Assign users to groups.");
+							?>
 						</p>
-						<form action="?action=saveauserassignments" method="post" autocomplete="off" >
-		<?php XSRFToken('saveauserassignments'); ?>
+						<form class="dirty-check" action="?action=saveauserassignments" method="post" autocomplete="off" >
+							<?php XSRFToken('saveauserassignments'); ?>
 							<p class="buttons">
 								<button type="submit"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 								<button type="reset"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
@@ -477,7 +477,7 @@ echo '</head>' . "\n";
 												<?php echo $user['user']; ?>
 											</td>
 											<td style="border-top: 1px solid #D1DBDF;" valign="top" >
-										<?php echo user_groups::groupList($userobj, $id, '', $user['group'], false); ?>
+												<?php echo user_groups::groupList($userobj, $id, '', $user['group'], false); ?>
 											</td>
 										</tr>
 										<?php

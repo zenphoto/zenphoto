@@ -125,21 +125,24 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zenphoto.js" type="text/javascript" ></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/admin.js" type="text/javascript" ></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.scrollTo.js" type="text/javascript"></script>
+			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.are-you-sure.js" type="text/javascript"></script>
 			<script type="text/javascript">
 				// <!-- <![CDATA[
+				$(document).ready(function() {
 	<?php
 	if (zp_has_filter('admin_head', 'colorbox::css')) {
 		?>
-					$(document).ready(function() {
 						$("a.colorbox").colorbox({
 							maxWidth: "98%",
 							maxHeight: "98%",
 							close: '<?php echo gettext("close"); ?>'
 						});
-					});
+
 		<?php
 	}
 	?>
+					$('form.dirty-check').areYouSure({'message': '<?php echo gettext('You have unsaved changes!'); ?>'});
+				});
 				$(function() {
 					$(".tooltip ").tooltip({
 						show: 1000,
@@ -3674,7 +3677,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 	}
 	?>
 	<span style="float:right">
-		<select name="checkallaction" id="checkallaction" size="1" onchange="checkFor(this);" >
+		<select class="ays-ignore" name="checkallaction" id="checkallaction" size="1" onchange="checkFor(this);" >
 			<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
 		</select>
 		<?php
@@ -3684,7 +3687,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 			<?php
 			echo gettext("Check All");
 			?>
-			<input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
+			<input class="ays-ignore" type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
 			<?php
 		}
 		?>
@@ -3695,7 +3698,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 		<div id="mass_tags" style="display:none;">
 			<div id="mass_tags_data">
 				<?php
-				tagSelector(NULL, 'mass_tags_', false, false);
+				tagSelector(NULL, 'mass_tags_', false, false, true, false, 'ays-ignore');
 				?>
 			</div>
 		</div>
@@ -3716,7 +3719,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 		?>
 		<div id="mass_owner" style="display:none;">
 			<ul id="mass_owner_data">
-				<select id="massownermenu" name="massownerselect" onchange="">
+				<select class="ays-ignore" id="massownermenu" name="massownerselect" onchange="">
 					<?php
 					echo admin_album_list(NULL);
 					?>
@@ -3734,7 +3737,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 				<?php
 				echo gettext('Destination');
 				?>
-				<select id="massalbumselectmenu" name="massalbumselect" onchange="">
+				<select class="ays-ignore" id="massalbumselectmenu" name="massalbumselect" onchange="">
 					<?php
 					foreach ($mcr_albumlist as $fullfolder => $albumtitle) {
 						$singlefolder = $fullfolder;

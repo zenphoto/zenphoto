@@ -102,7 +102,7 @@ if (isset($_GET['action'])) {
 							$nouser = false;
 							if (isset($_POST[$i . '-newuser'])) {
 								$newuser = $user;
-								$userobj = Zenphoto_Authority::getAnAdmin(array('`user`='	 => $user, '`valid`>' => 0));
+								$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
 								if (is_object($userobj)) {
 									$notify = '?exists';
 									break;
@@ -356,7 +356,7 @@ echo $refresh;
 							}
 							$rangeset = getPageSelector($list, USERS_PER_PAGE);
 						}
-						$newuser = array('id'					 => -1, 'user'				 => '', 'pass'				 => '', 'name'				 => '', 'email'				 => '', 'rights'			 => $rights, 'custom_data'	 => NULL, 'valid'				 => 1, 'group'				 => $groupname);
+						$newuser = array('id' => -1, 'user' => '', 'pass' => '', 'name' => '', 'email' => '', 'rights' => $rights, 'custom_data' => NULL, 'valid' => 1, 'group' => $groupname);
 						$alterrights = '';
 					} else {
 						$alterrights = ' disabled="disabled"';
@@ -440,7 +440,7 @@ echo $refresh;
 							}
 						}
 					</script>
-					<form action="?action=saveoptions<?php echo str_replace('&', '&amp;', $ticket); ?>" method="post" autocomplete="off" onsubmit="return checkNewuser();" >
+					<form class="dirty-check" action="?action=saveoptions<?php echo str_replace('&', '&amp;', $ticket); ?>" method="post" autocomplete="off" onsubmit="return checkNewuser();" >
 						<?php XSRFToken('saveadmin'); ?>
 						<input type="hidden" name="saveadminoptions" value="yes" />
 						<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
@@ -588,7 +588,7 @@ echo $refresh;
 															<em><?php echo gettext("New User"); ?></em>
 															<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="adminuser<?php echo $id; ?>" name="adminuser<?php echo $id; ?>" value=""
 																		 onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', visible);
-									$('#adminuser<?php echo $id; ?>').focus();" />
+																				 $('#adminuser<?php echo $id; ?>').focus();" />
 
 															<?php
 														} else {
