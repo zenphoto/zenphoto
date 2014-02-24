@@ -1093,7 +1093,6 @@ class Zenphoto_Authority {
 				var displaym = '#match' + id;
 				var displays = '#strength' + id;
 				var numeric = 0;
-				var inputa = '#pass' + id;
 				var special = 0;
 				var upper = 0;
 				var lower = 0;
@@ -1143,13 +1142,14 @@ class Zenphoto_Authority {
 					if (strength < <?php echo (int) getOption('password_strength'); ?>) {
 						$(inputb).attr('disabled', 'disabled');
 						$(displays).css('color', '#ff0000');
-						$(displays).html('<?php echo gettext('password strength weak'); ?>');
+						$(displays).html('<?php echo gettext('password strength too weak'); ?>');
 					} else {
 						$(inputb).removeAttr('disabled');
 						passwordMatch(id);
 					}
 					var url = 'url(<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/strengths/strength' + strength + '.png)';
 					$(inputa).css('background-image', url);
+					$(inputa).css('background-size', '100%');
 				}
 			}
 
