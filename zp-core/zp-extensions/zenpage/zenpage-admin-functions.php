@@ -45,7 +45,7 @@ function processTags($object) {
 }
 
 /* * ************************
-  /* page functions
+	/* page functions
  * ************************* */
 
 /**
@@ -312,7 +312,7 @@ function printPagesListTable($page, $flag) {
 }
 
 /* * ************************
-  /* news article functions
+	/* news article functions
  * ************************* */
 
 /**
@@ -832,7 +832,7 @@ function printArticlesPerPageDropdown() {
 }
 
 /* * ************************
-  /* Category functions
+	/* Category functions
  * ************************* */
 
 /**
@@ -1052,7 +1052,7 @@ function printCategoryListSortableTable($cat, $flag) {
  * @param int $id ID of the news article if the categories an existing articles is assigned to shall be shown, empty if this is a new article to be added.
  * @param string $option "all" to show all categories if creating a new article without categories assigned, empty if editing an existing article that already has categories assigned.
  */
-function printCategoryCheckboxListEntry($cat, $articleid, $option) {
+function printCategoryCheckboxListEntry($cat, $articleid, $option, $class = '') {
 	$selected = '';
 	if (($option != "all") && !$cat->transient && !empty($articleid)) {
 		$cat2news = query_single_row("SELECT cat_id FROM " . prefix('news2cat') . " WHERE news_id = " . $articleid . " AND cat_id = " . $cat->getID());
@@ -1070,11 +1070,11 @@ function printCategoryCheckboxListEntry($cat, $articleid, $option) {
 		$protected = '';
 	}
 	$catid = $cat->getID();
-	echo "<label for='cat" . $catid . "'><input name='cat" . $catid . "' id='cat" . $catid . "' type='checkbox' value='" . $catid . "' " . $selected . " />" . $catname . " " . $protected . "</label>\n";
+	echo '<label for="cat' . $catid . '"><input name="cat' . $catid . '" class="' . $class . '" id="cat' . $catid . '" type="checkbox" value="' . $catid . '"' . $selected . ' />' . $catname . ' ' . $protected . "</label>\n";
 }
 
 /* * ************************
-  /* General functions
+	/* General functions
  * ************************* */
 
 /**
@@ -1087,7 +1087,7 @@ function printCategoryCheckboxListEntry($cat, $articleid, $option) {
  * @param string $option Only for $listtype = 'cats-checkboxlist': "all" to show all categories if creating a new article without categories assigned, empty if editing an existing article that already has categories assigned.
  * @return string | bool
  */
-function printNestedItemsList($listtype = 'cats-sortablelist', $articleid = '', $option = '') {
+function printNestedItemsList($listtype = 'cats-sortablelist', $articleid = '', $option = '', $class = 'nestedItem') {
 	global $_zp_zenpage;
 	switch ($listtype) {
 		case 'cats-checkboxlist':
@@ -1159,7 +1159,7 @@ function printNestedItemsList($listtype = 'cats-sortablelist', $articleid = '', 
 			switch ($listtype) {
 				case 'cats-checkboxlist':
 					echo "<li>\n";
-					printCategoryCheckboxListEntry($itemobj, $articleid, $option);
+					printCategoryCheckboxListEntry($itemobj, $articleid, $option, $class);
 					break;
 				case 'cats-sortablelist':
 					echo str_pad("\t", $indent - 1, "\t") . "<li id=\"id_" . $itemid . "\" class=\"clear-element page-item1 left\">";
