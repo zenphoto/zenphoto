@@ -1436,17 +1436,14 @@ zp-core/zp-extensions/tinymce4.php
 zp-core/zp-extensions/tinymce4/config
 zp-core/zp-extensions/tinymce4/config/comment-basic.js.php
 zp-core/zp-extensions/tinymce4/config/comment-full.js.php
-zp-core/zp-extensions/tinymce4/config/comment-inline.js.php
 zp-core/zp-extensions/tinymce4/config/comment-light.js.php
 zp-core/zp-extensions/tinymce4/config/comment-slim.js.php
 zp-core/zp-extensions/tinymce4/config/zenpage-basic.js.php
 zp-core/zp-extensions/tinymce4/config/zenpage-full.js.php
-zp-core/zp-extensions/tinymce4/config/zenpage-inline.js.php
 zp-core/zp-extensions/tinymce4/config/zenpage-light.js.php
 zp-core/zp-extensions/tinymce4/config/zenpage-slim.js.php
 zp-core/zp-extensions/tinymce4/config/zenphoto-basic.js.php
 zp-core/zp-extensions/tinymce4/config/zenphoto-full.js.php
-zp-core/zp-extensions/tinymce4/config/zenphoto-inline.js.php
 zp-core/zp-extensions/tinymce4/config/zenphoto-light.js.php
 zp-core/zp-extensions/tinymce4/config/zenphoto-slim.js.php
 zp-core/zp-extensions/tinymce4/langs
@@ -1696,4 +1693,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1698
+1695
