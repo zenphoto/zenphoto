@@ -3893,7 +3893,7 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 		});
 		// ]]> -->
 			</script>
-	<?php echo $prevtext; ?>
+			<?php echo $prevtext; ?>
 			<div>
 				<input type="text" name="words" value="" id="search_input" size="10" />
 				<?php if (count($fields) > 1 || $searchwords) { ?>
@@ -3937,11 +3937,11 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 							?>
 							<label>
 								<input type="radio" name="search_within" id="search_within-1" value="1"<?php if ($within) echo ' checked="checked"'; ?> onclick="search_(1);" />
-			<?php echo gettext('Within'); ?>
+								<?php echo gettext('Within'); ?>
 							</label>
 							<label>
 								<input type="radio" name="search_within" id="search_within-0" value="1"<?php if (!$within) echo ' checked="checked"'; ?> onclick="search_(0);" />
-							<?php echo gettext('New'); ?>
+								<?php echo gettext('New'); ?>
 							</label>
 							<?php
 						}
@@ -4229,7 +4229,7 @@ function printPasswordForm($_password_hint, $_password_showuser = NULL, $_passwo
 		if ($_password_showProtected && !$_zp_login_error) {
 			?>
 			<p>
-			<?php echo gettext("The page you are trying to view is password protected."); ?>
+				<?php echo gettext("The page you are trying to view is password protected."); ?>
 			</p>
 			<?php
 		}
@@ -4301,35 +4301,37 @@ function exposeZenPhotoInformations($obj = '', $plugins = '', $theme = '') {
  * Use printCodeblock() if you need to execute script code.
  *
  * @param int $number The codeblock you want to get
+ * @param mixed $what optonal object for which you want the codeblock
  *
  * @return string
  */
-function getCodeblock($number = 1) {
+function getCodeblock($number = 1, $object = NULL) {
 	global $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_gallery, $_zp_gallery_page;
 	if (!$number) {
 		setOptionDefault('codeblock_first_tab', 0);
 	}
-	$object = NULL;
-	if ($_zp_gallery_page == 'index.php') {
-		$object = $_zp_gallery;
-	}
-	if (in_context(ZP_ALBUM)) {
-		$object = $_zp_current_album;
-	}
-	if (in_context(ZP_IMAGE)) {
-		$object = $_zp_current_image;
-	}
-	if (in_context(ZP_ZENPAGE_PAGE)) {
-		if ($_zp_current_zenpage_page->checkAccess()) {
-			$object = $_zp_current_zenpage_page;
+	if (!is_object($object)) {
+		if ($_zp_gallery_page == 'index.php') {
+			$object = $_zp_gallery;
+		}
+		if (in_context(ZP_ALBUM)) {
+			$object = $_zp_current_album;
+		}
+		if (in_context(ZP_IMAGE)) {
+			$object = $_zp_current_image;
+		}
+		if (in_context(ZP_ZENPAGE_PAGE)) {
+			if ($_zp_current_zenpage_page->checkAccess()) {
+				$object = $_zp_current_zenpage_page;
+			}
+		}
+		if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
+			if ($_zp_current_zenpage_news->checkAccess()) {
+				$object = $_zp_current_zenpage_news;
+			}
 		}
 	}
-	if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
-		if ($_zp_current_zenpage_news->checkAccess()) {
-			$object = $_zp_current_zenpage_news;
-		}
-	}
-	if (empty($object)) {
+	if (!is_object($object)) {
 		return NULL;
 	}
 	$codeblock = getSerializedArray($object->getcodeblock());
@@ -4349,21 +4351,7 @@ function getCodeblock($number = 1) {
  * @return string
  */
 function printCodeblock($number = 1, $what = NULL) {
-	if (is_object($what)) {
-		$codeblock = $what->getCodeblock();
-		if ($codeblock) {
-			$codeblocks = getSerializedArray($codeblock);
-			$codeblock = $codeblocks[$number];
-			zp_apply_filter('codeblock', $codeblock, $what, $number);
-			if ($codeblock) {
-				$codeblock = applyMacros($codeblock);
-			}
-		} else {
-			return;
-		}
-	} else {
-		$codeblock = getCodeblock($number);
-	}
+	$codeblock = getCodeblock($number, $what);
 	if ($codeblock) {
 		$context = get_context();
 		eval('?>' . $codeblock);
