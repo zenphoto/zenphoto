@@ -128,9 +128,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.are-you-sure.js" type="text/javascript"></script>
 			<script type="text/javascript">
 				// <!-- <![CDATA[
-				function tinyMCEChanged() {
-					$('.dirty-check').addClass('dirty');
-				}
 
 				$(document).ready(function() {
 	<?php

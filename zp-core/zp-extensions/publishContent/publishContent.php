@@ -192,7 +192,7 @@ echo '</head>';
 								<?php
 							}
 							?>
-							<form name="set_publication" action="" method="post">
+							<form class="dirty-check" name="set_publication" action="" method="post">
 								<?php XSRFToken('publishContent'); ?>
 								<input type="hidden" name="set_defaults" value="true" />
 								<label><input type="checkbox" name="album_default"	value="1"<?php if ($albpublish) echo ' checked="checked"'; ?> /> <?php echo gettext("Publish albums by default"); ?></label>

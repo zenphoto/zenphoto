@@ -23,7 +23,7 @@ $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
 		toolbar2: "print preview media | forecolor backcolor emoticons | code | fullscreen tinyzenpage",
 		setup: function(ed) {
 			ed.on('change', function(e) {
-				tinyMCEChanged();
+				$('.dirty-check').addClass('dirty');
 			});
 		}
 	});

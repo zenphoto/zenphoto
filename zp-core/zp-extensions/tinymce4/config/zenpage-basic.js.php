@@ -21,7 +21,7 @@ $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
 					toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code | fullscreen tinyzenpage",
 					setup: function(ed) {
 						ed.on('change', function(e) {
-							tinyMCEChanged();
+							$('.dirty-check').addClass('dirty');
 						});
 
 					});
