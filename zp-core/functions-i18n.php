@@ -5,9 +5,6 @@
  * @package core
  */
 // force UTF-8 Ø
-
-define('DEBUG_LOCALE', false); // used for examining language selection problems
-
 function setupLanguageArray() {
 	global $_zp_languages;
 	$_zp_languages = array(
@@ -371,19 +368,21 @@ function parseHttpAcceptLanguage($str = NULL) {
 			$morecode = array_key_exists(3, $found) ? $found[3] : false;
 			// full lang code
 			$fullcode = $morecode ? $code . '_' . $morecode : $code;
-			// coefficient
+			// coefficient (preference value, will be used in sorting the list)
 			$coef = sprintf('%3.1f', array_key_exists(5, $found) ? $found[5] : '1');
 			// for sorting by coefficient
-			$key = $coef . '-' . $code;
-			// adding
-			$accepted[$key] = array('code' => $code, 'coef' => $coef, 'morecode' => $morecode, 'fullcode' => $fullcode);
+			if ($coef) { //	q=0 means do not supply this language
+				$key = $coef . '-' . $code;
+				// adding
+				$accepted[$key] = array('code' => $code, 'coef' => $coef, 'morecode' => $morecode, 'fullcode' => $fullcode);
+			}
 		}
 	}
 	// sorting the list by coefficient desc
 	krsort($accepted);
 	if (DEBUG_LOCALE) {
 		debugLog("parseHttpAcceptLanguage($str)");
-		debugLogVar('$accepted', $accepted);
+		debugLogVar('parseHttpAcceptLanguage::$accepted', $accepted);
 	}
 	return $accepted;
 }
