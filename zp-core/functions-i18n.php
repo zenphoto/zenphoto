@@ -5,9 +5,8 @@
  * @package core
  */
 // force UTF-8 Ø
-function setupLanguageArray() {
-	global $_zp_languages;
-	$_zp_languages = array(
+function getLanguageArray() {
+	return array(
 					'af'		 => gettext('Afrikaans'),
 					'sq_AL'	 => gettext('Albanian'),
 					'ar_AE'	 => gettext('Arabic (United Arab Emirates)'),
@@ -140,18 +139,16 @@ function setupLanguageArray() {
  *
  */
 function generateLanguageList($all = false) {
-	global $_zp_languages, $_zp_active_languages, $_zp_all_languages;
+	global $_zp_active_languages, $_zp_all_languages;
 	if (is_null($_zp_all_languages)) {
-		if (is_null($_zp_languages)) {
-			setupLanguageArray();
-		}
+		$zp_languages = getLanguageArray();
 		$dir = @opendir(SERVERPATH . "/" . ZENFOLDER . "/locale/");
 		$_zp_active_languages = $_zp_all_languages = array();
 		if ($dir !== false) {
 			while ($dirname = readdir($dir)) {
 				if (is_dir(SERVERPATH . "/" . ZENFOLDER . "/locale/" . $dirname) && (substr($dirname, 0, 1) != '.')) {
-					if (isset($_zp_languages[$dirname])) {
-						$language = $_zp_languages[$dirname];
+					if (isset($zp_languages[$dirname])) {
+						$language = $zp_languages[$dirname];
 						if (empty($language)) {
 							$language = $dirname;
 						}
@@ -257,14 +254,11 @@ function ngettext_pl($msgid1, $msgid2, $n, $plugin) {
  * @return string
  */
 function i18nSetLocale($locale) {
-	global $_zp_RTL_css, $_zp_languages;
+	global $_zp_RTL_css;
 	$en1 = LOCAL_CHARSET;
 	$en2 = str_replace('ISO-', 'ISO', $en1);
 	$simple = explode('-', $locale);
 	$rslt = setlocale(LC_ALL, $locale . '.UTF8', $locale . '.UTF-8', $locale . '@euro', $locale . '.' . $en2, $locale . '.' . $en1, $locale, $simple[0], NULL);
-	if (is_null($_zp_languages)) {
-		setupLanguageArray();
-	}
 	$_zp_RTL_css = in_array(substr($rslt, 0, 2), array('fa', 'ar', 'he', 'hi', 'ur'));
 	return $rslt;
 }
@@ -275,6 +269,7 @@ function i18nSetLocale($locale) {
  * @param $type
  */
 function setupDomain($domain = NULL, $type = NULL) {
+	global $_zp_active_languages, $_zp_all_languages;
 	switch ($type) {
 		case "plugin":
 			$domainpath = getPlugin($domain . "/locale/");
@@ -293,6 +288,8 @@ function setupDomain($domain = NULL, $type = NULL) {
 		bind_textdomain_codeset($domain, 'UTF-8');
 	}
 	textdomain($domain);
+	//invalidate because the locale was not setup until now
+	$_zp_active_languages = $_zp_all_languages = NULL;
 }
 
 /**
