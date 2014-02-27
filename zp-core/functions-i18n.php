@@ -372,12 +372,12 @@ function parseHttpAcceptLanguage($str = NULL) {
 			$coef = sprintf('%3.1f', array_key_exists(5, $found) ? $found[5] : '1');
 			// for sorting by coefficient
 			if ($coef) { //	q=0 means do not supply this language
-				$key = $coef . '-' . $code;
 				// adding
-				$accepted[$key] = array('code' => $code, 'coef' => $coef, 'morecode' => $morecode, 'fullcode' => $fullcode);
+				$accepted[$coef . '-' . $code] = array('code' => $code, 'coef' => $coef, 'morecode' => $morecode, 'fullcode' => $fullcode);
 			}
 		}
 	}
+
 	// sorting the list by coefficient desc
 	krsort($accepted);
 	if (DEBUG_LOCALE) {

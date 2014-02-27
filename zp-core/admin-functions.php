@@ -1379,7 +1379,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$sort[gettext('Custom')] = 'custom';
 						/*
 						 * not recommended--screws with peoples minds during pagination!
-						  $sort[gettext('Random')] = 'random';
+							$sort[gettext('Random')] = 'random';
 						 */
 						?>
 						<tr>
@@ -2462,9 +2462,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 				$strings = array($locale => array_shift($strings));
 			}
 		}
-		$emptylang = generateLanguageList();
+		$activelang = generateLanguageList();
 
-		if (getOption('multi_lingual') && !empty($emptylang)) {
+		if (getOption('multi_lingual') && !empty($activelang)) {
 			if ($textbox) {
 				if (strpos($wide, '%') === false) {
 					$width = ' cols="' . $wide . '"';
@@ -2478,8 +2478,35 @@ function printAdminHeader($tab, $subtab = NULL) {
 					$width = ' style="width:' . ((int) $wide - 2) . '%;"';
 				}
 			}
-			$emptylang = array_flip($emptylang);
-			unset($emptylang['']);
+
+			// put the language list in perferred order
+			$preferred = array($_zp_current_locale);
+			foreach (parseHttpAcceptLanguage() as $lang) {
+				$preferred[] = str_replace('-', '_', $lang['fullcode']);
+			}
+			$preferred = array_unique($preferred);
+			$emptylang = array();
+
+			foreach ($preferred as $lang) {
+				foreach ($activelang as $key => $active) {
+					if ($active == $lang) {
+						$emptylang[$active] = $key;
+						unset($activelang[$key]);
+						continue 2;
+					}
+				}
+				if (strlen($lang) == 2) { //	"wild card language"
+					foreach ($activelang as $key => $active) {
+						if (substr($active, 0, 2) == $lang) {
+							$emptylang[$active] = $key;
+						}
+					}
+				}
+			}
+			foreach ($activelang as $key => $active) {
+				$emptylang[$active] = $key;
+			}
+
 			if ($textbox) {
 				$class = 'box';
 			} else {
@@ -2508,11 +2535,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 						<?php
 					}
 				}
-			}
-			if ($empty && isset($emptylang[$locale])) {
-				$element = @$emptylang[$locale];
-				unset($emptylang[$locale]);
-				$emptylang = array_merge(array($locale => $element), $emptylang);
 			}
 			foreach ($emptylang as $key => $lang) {
 				?>
