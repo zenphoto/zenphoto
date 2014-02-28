@@ -237,6 +237,9 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->ge
 			</ul>
 			<script type="text/javascript">
 				$(document).ready(function() {
+					var index = $('.bxslider<?php echo $albumid; ?> li.activeimg').index();
+					index = ++index;
+					currentPager = parseInt(index / <?php echo $maxitems; ?>)
 					$('.bxslider<?php echo $albumid; ?>').bxSlider({
 						mode: '<?php echo $mode; ?>',
 						minSlides: <?php echo $minitems; ?>,
@@ -247,7 +250,8 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->ge
 						moveSlides: <?php echo $maxitems; ?> - 1,
 						pager: false,
 						adaptiveHeight: true,
-						useCSS: false
+						useCSS: false,
+						startSlide: currentPager
 					});
 				});
 			</script>
