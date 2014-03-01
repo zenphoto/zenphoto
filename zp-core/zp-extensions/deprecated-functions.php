@@ -9,6 +9,14 @@
  * The actual set of functions resides in a <var>deprecated-functions.php</var> script within
  * the plugins folder. (General deprecated functions are in the %PLUGIN_FOLDER%/deprecated-functins folder)
  *
+ * Convention is that the deprecated functions script will have a class defined for containing the following:
+ *
+ * <ul>
+ * <li>general functions with parameters which have been deprecated: these are declared <var>public static</var></li>
+ * <li>class methods that have been deprecated: these are declared <var>static</var></li>
+ * <li>clas methods with parameters which have been deprecated: these are declared <var>final static</var></li>
+ * </ul>
+ *
  * The default settings cause an <var>E_USER_NOTICE</var> error to be generated when the function is used.
  * The text of the error message will tell you how to replace calls on the deprecated function. The error
  * message can be disabled to allow your scripts to continue to run. Visit the <i>deprecated-functions</i>
@@ -52,7 +60,7 @@ class deprecated_functions {
 				preg_match_all('/([public static|static]*)\s*function\s+(.*)\s?\(.*\)\s?\{/', $content, $functions);
 				foreach ($functions[2] as $key => $function) {
 					setOptionDefault('deprecated_' . $plugin . '_' . $functions[1][$key] . '_' . $function, 1);
-					$this->unique_functions[$function] = $this->listed_functions[$plugin . '::' . $function] = array('plugin' => $plugin, 'function' => $function, 'class' => $functions[1][$key], 'since' => @$versions[1][$key], 'multiple' => array_key_exists($function, $this->unique_functions));
+					$this->unique_functions[strtolower($function)] = $this->listed_functions[$plugin . '::' . $function] = array('plugin' => $plugin, 'function' => $function, 'class' => trim($functions[1][$key]), 'since' => @$versions[1][$key], 'multiple' => array_key_exists($function, $this->unique_functions));
 				}
 			}
 		}
@@ -61,7 +69,7 @@ class deprecated_functions {
 	function getOptionsSupported() {
 		$options = $deorecated = $list = array();
 		foreach ($this->listed_functions as $funct => $details) {
-			switch (trim($details['class'])) {
+			switch ($details['class']) {
 				case 'static':
 					$class = '*';
 					break;
