@@ -65,7 +65,7 @@ class comment_form {
 		setOptionDefault('comment_form_comments_per_page', 10);
 		setOptionDefault('comment_form_pagination', true);
 		setOptionDefault('comment_form_toggle', 1);
-		setOptionDefault('tinymce_comments', 'comment-basic.js.php');
+		setOptionDefault('tinymce4_comments', 'comment-basic.js.php');
 	}
 
 	/**
