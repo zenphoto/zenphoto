@@ -64,6 +64,7 @@ class comment_form {
 		setOptionDefault('comment_form_showURL', 1);
 		setOptionDefault('comment_form_comments_per_page', 10);
 		setOptionDefault('comment_form_pagination', true);
+		setOptionDefault('comment_form_toggle', 1);
 		setOptionDefault('tinymce_comments', 'comment_form-default.js.php');
 	}
 
@@ -242,13 +243,13 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 						// <!-- <![CDATA[
 						function toggleComments(hide) {
 							if (hide) {
-								$('div.comment').hide();
-								$('.Pagination').hide();
-								$('#comment_toggle').html('<button class="button buttons" onclick="javascript:toggleComments(false);"><?php echo gettext('show comments'); ?></button>');
-							} else {
 								$('div.comment').show();
 								$('.Pagination').show();
-								$('#comment_toggle').html('<button class="button buttons" onclick="javascript:toggleComments(true);"><?php echo gettext('hide comments'); ?></button>');
+								$('#comment_toggle').html('<button class="button buttons" onclick="javascript:toggleComments(false);"><?php echo gettext('hide comments'); ?></button>');
+							} else {
+								$('div.comment').hide();
+								$('.Pagination').hide();
+								$('#comment_toggle').html('<button class="button buttons" onclick="javascript:toggleComments(true);"><?php echo gettext('show comments'); ?></button>');
 							}
 						}
 						$(document).ready(function() {
