@@ -10,7 +10,7 @@ $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
 <script type="text/javascript">
 // <!-- <![CDATA[
 	tinymce.init({
-		selector: "textarea.texteditor",
+		selector: "textarea.textarea_inputbox",
 		language: "<?php echo $locale; ?>",
 		menubar: false,
 		relative_urls: false,
