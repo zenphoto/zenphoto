@@ -29,7 +29,7 @@ echo "\n</head>";
 					$list = array();
 					$listed = $deprecated->listed_functions;
 					foreach ($listed as $details) {
-						switch (trim($details['class'])) {
+						switch ($details['class']) {
 							case 'static':
 								$class = '*';
 								break;

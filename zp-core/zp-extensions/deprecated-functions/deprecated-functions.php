@@ -3,8 +3,6 @@
 /**
  * Zenphoto general deprecated functions
  */
-require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
-
 class internal_deprecations {
 
 	/**

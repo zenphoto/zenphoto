@@ -19,20 +19,10 @@ if (isset($_GET['action'])) {
 	$list = array();
 	foreach ($deprecated->listed_functions as $details) {
 		$func = preg_quote($details['function']);
-		switch (trim($details['class'])) {
-			case 'final static':
-			case 'static':
-				$list[] = '->\s*' . $func;
-				$list[] = '::\s*' . $func;
-				break;
-			case 'public static':
-			default:
-				$list[] = '\s+' . $func;
-				break;
-		}
+		$list[$func] = $func;
 	}
 
-	$pattern = '/(' . implode('|', $list) . ')\b/';
+	$pattern = '/(->\s*|::\s*|\b)(' . implode('|', $list) . ')\s*\(/i';
 	$report = array();
 	$selected = sanitize_numeric($_POST['target']);
 }
@@ -81,7 +71,7 @@ echo '</head>' . "\n";
 				</form>
 
 				<br class="clearall" />
-				<p class="notebox"><?php echo gettext('<strong>NOTE:</strong> This search will have false positives for instance when the function name appears in a comment or quoted string. Functions flagged with an "*" are class methods. Ones flagged "+" have deprecated parameters. Ones flagged with "&amp;" are deprecated in multiple places. No screening is done on these, so you must verify if there is an issue.'); ?></p>
+				<p class="notebox"><?php echo gettext('<strong>NOTE:</strong> This search will have false positives for instance when the function name appears in a comment or quoted string. Functions flagged with an "*" are class methods. Ones flagged "+" have deprecated parameters.'); ?></p>
 				<?php
 				if (isset($_GET['action'])) {
 					?>
@@ -90,35 +80,23 @@ echo '</head>' . "\n";
 						switch ($selected) {
 							case '1':
 								$path = SERVERPATH . '/' . THEMEFOLDER;
-								$_files = array();
-								getPHPFiles($path, $zplist);
-								$output = listUses($path);
+								listUses(getPHPFiles($path, $zplist), $path, $pattern);
 								break;
 							case '2':
 								$path = SERVERPATH . '/' . USER_PLUGIN_FOLDER;
-								$_files = array();
-								getPHPFiles($path, array());
-								$output = listUses($path);
+								listUses(getPHPFiles($path, array()), $path, $pattern);
 								break;
 							case '3':
 								$path = SERVERPATH . '/' . ZENFOLDER;
-								$_files = array();
-								getPHPFiles($path, array());
-								$output = listUses($path);
+								listUses(getPHPFiles($path, array()), $path, $pattern);
 								foreach ($zplist as $theme) {
 									$path = SERVERPATH . '/' . THEMEFOLDER . '/' . $theme;
-									getPHPFiles($path, array());
-									$output = $output || listUses(SERVERPATH);
+									$output || listUses(getPHPFiles($path, array()), SERVERPATH, $pattern);
 								}
 								break;
 							case 4:
-								$output = listDBUses();
+								listDBUses($pattern);
 								break;
-						}
-						if (!$output) {
-							?>
-							<p class="messagebox"><?php echo gettext('No calls on deprecated functions were found.'); ?></p>
-							<?php
 						}
 						?>
 					</div>
