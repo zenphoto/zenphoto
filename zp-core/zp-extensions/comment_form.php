@@ -243,13 +243,13 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 						// <!-- <![CDATA[
 						function toggleComments(hide) {
 							if (hide) {
-								$('div.comment').show();
-								$('.Pagination').show();
-								$('#comment_toggle').html('<button class="button buttons" onclick="javascript:toggleComments(false);"><?php echo gettext('hide comments'); ?></button>');
-							} else {
 								$('div.comment').hide();
 								$('.Pagination').hide();
-								$('#comment_toggle').html('<button class="button buttons" onclick="javascript:toggleComments(true);"><?php echo gettext('show comments'); ?></button>');
+								$('#comment_toggle').html('<button class="button buttons" onclick="javascript:toggleComments(false);"><?php echo gettext('show comments'); ?></button>');
+							} else {
+								$('div.comment').show();
+								$('.Pagination').show();
+								$('#comment_toggle').html('<button class="button buttons" onclick="javascript:toggleComments(true);"><?php echo gettext('hide comments'); ?></button>');
 							}
 						}
 						$(document).ready(function() {
