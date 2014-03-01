@@ -29,7 +29,7 @@ if (OFFSET_PATH) {
 	zp_register_filter('admin_tabs', 'comment_form::admin_tabs');
 } else {
 	zp_register_filter('handle_comment', 'comment_form_postcomment');
-	zp_register_filter('object_addComment', 'comment_form_addCcomment');
+	zp_register_filter('object_addComment', 'comment_form_addComment');
 	if (getOption('comment_form_pagination')) {
 		zp_register_filter('theme_head', 'comment_form_PaginationJS');
 	}
