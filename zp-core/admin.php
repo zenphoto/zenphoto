@@ -51,7 +51,7 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 				case "clear_rss_cache":
 					if (class_exists('RSS')) {
 						XSRFdefender('clear_cache');
-						$RSS = new RSS();
+						$RSS = new RSS(array('rss' => 'null'));
 						$RSS->clearCache();
 						$class = 'messagebox';
 						$msg = gettext('RSS cache cleared.');

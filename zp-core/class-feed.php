@@ -236,6 +236,8 @@ class feed {
 				break;
 			case 'pages':
 				break;
+			case 'null': //we just want the class instantiated
+				return;
 		}
 		if (isset($this->options['itemnumber'])) {
 			$this->itemnumber = (int) $this->options['itemnumber'];

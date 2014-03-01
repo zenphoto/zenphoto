@@ -389,12 +389,12 @@ class RSS extends feed {
 		$this->feedtype = $options['rss'];
 		parent::__construct($options);
 
-		if (isset($_GET['token'])) {
+		if (isset($options['token'])) {
 //	The link camed from a logged in user, see if it is valid
-			$link = $_GET;
+			$link = $options;
 			unset($link['token']);
 			$token = Zenphoto_Authority::passwordHash(serialize($link), '');
-			if ($token == $_GET['token']) {
+			if ($token == $options['token']) {
 				$adminobj = Zenphoto_Authority::getAnAdmin(array('`id`=' => (int) $link['user']));
 				if ($adminobj) {
 					$_zp_current_admin_obj = $adminobj;
@@ -555,6 +555,8 @@ class RSS extends feed {
 					require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
 				}
 				break;
+			case 'null': //we just want the class instantiated
+				return;
 		}
 		$this->feeditems = $this->getitems();
 	}

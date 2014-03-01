@@ -321,6 +321,8 @@ class ExternalFeed extends feed {
 					require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
 				}
 				break;
+			case 'null': //we just want the class instantiated
+				return;
 		}
 		$this->feeditems = $this->getitems();
 	}
