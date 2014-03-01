@@ -185,7 +185,7 @@ function printAlbumStatisticItem($album, $option, $showtitle = false, $showdate 
 			echo "<img src=\"" . html_encode(pathurlencode($albumthumb->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . "\" alt=\"" . html_encode($albumthumb->getTitle()) . "\" /></a>\n<br />";
 			break;
 		case 1;
-			echo "<img src=\"" . html_encode(pathurlencode($albumthumb->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE))) . "\" alt=\"" . html_encode($albumthumb->getTitle()) . "\" /></a>\n<br />";
+			echo "<img src=\"" . html_encode(pathurlencode($albumthumb->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE))) . "\" alt=\"" . html_encode($albumthumb->getTitle()) . "\" width=\"".$width."\" height=\"".$height."\" /></a>\n<br />";
 			break;
 		case 2:
 			echo "<img src=\"" . html_encode(pathurlencode($albumthumb->getThumb())) . "\" alt=\"" . html_encode($albumthumb->getTitle()) . "\" /></a>\n<br />";
@@ -498,7 +498,7 @@ function printImageStatistic($number, $option, $albumfolder = '', $showtitle = f
 				echo '<img src="' . html_encode(pathurlencode($image->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . html_encode($image->getTitle()) . "\" /></a>\n";
 				break;
 			case 1:
-				echo '<img src="' . html_encode(pathurlencode($image->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE))) . '" alt="' . html_encode($image->getTitle()) . "\" /></a>\n";
+				echo '<img src="' . html_encode(pathurlencode($image->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE))) . '" alt="' . html_encode($image->getTitle()) . "\" width=\"".$width."\" height=\"".$height."\" /></a>\n";
 				break;
 			case 2:
 				echo '<img src="' . html_encode(pathurlencode($image->getThumb())) . '" alt="' . html_encode($image->getTitle()) . "\" /></a>\n<br />";
