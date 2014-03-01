@@ -131,7 +131,7 @@ class comment_form {
 						gettext('Comments per page')						 => array('key'		 => 'comment_form_comments_per_page', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 9,
 										'desc'	 => gettext('The comments that should show per page on the admin tab and when using the jQuery pagination')),
-						gettext('Comment editor configuration')	 => array('key'						 => 'tinymce_comments', 'type'					 => OPTION_TYPE_SELECTOR,
+						gettext('Comment editor configuration')	 => array('key'						 => 'tinymce4_comments', 'type'					 => OPTION_TYPE_SELECTOR,
 										'order'					 => 1,
 										'selections'		 => $configarray,
 										'null_selection' => gettext('Disabled'),
