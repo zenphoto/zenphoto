@@ -8,12 +8,12 @@
  * Supports theme based custom css files (place <var>jquery.bxslider.css</var> and needed images in your theme's folder).
  *
  *
- * @author Malte Müller (acrylian)
+ * @author Malte Müller (acrylian), Stephen Billard (sbillard), Fred Sondaar (fretzl)
  * @package plugins
  * @subpackage media
  */
 $plugin_description = gettext("Responsive jQuery bxSlider thumb nav plugin based on <a href='http://bxslider.com'>http://bxslider.com</a>");
-$plugin_author = "Malte Müller (acrylian)";
+$plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard), Fred Sondaar (fretzl)";
 $plugin_disable = (extensionEnabled('jcarousel_thumb_nav')) ? sprintf(gettext('Only one Carousel plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), 'jcarousel_thumb_nav') : '';
 $option_interface = 'bxslider';
 
