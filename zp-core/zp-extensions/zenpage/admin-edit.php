@@ -406,7 +406,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 										?>
 									</p>
 									<p class="notebox"><?php echo gettext("<strong>Important:</strong> If setting a password for a page its subpages inherit the protection."); ?></p>
-									<p><?php echo gettext("Hint: If you need more space for your text use TinyMCE's full screen mode (Click the blue square on the top right of editor's control bar)."); ?></p>
+									<p><?php echo gettext("Hint: If you need more space for your text use TinyMCE's full screen mode (Click the expend icon of editor's control bar, near ZP icon)."); ?></p>
 								</div>
 								<div <?php if (is_AdminEditPage("page")) echo 'class="box"'; ?> style="padding:15px; margin-top: 10px">
 									<table class="formlayout">
