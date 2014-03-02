@@ -27,11 +27,10 @@ if (!defined('WEBPATH'))
 			<!-- Crumb Trail Navigation -->
 			<div id="wrapnav">
 				<div id="navbar">
-					<span><?php printHomeLink('', ' | '); ?>
+					<span>
 						<?php
+						printHomeLink('', ' | ');
 						if (getOption('custom_index_page') === 'gallery') {
-							?>
-							if (getOption('custom_index_page') === 'gallery') {
 							?>
 							<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home'); ?></a> |
 							<?php
@@ -41,7 +40,8 @@ if (!defined('WEBPATH'))
 							<?php
 						}
 						printGalleryTitle();
-						?></a></span>  |
+						?>
+						</a></span>  |
 					<?php
 					print404status(isset($album) ? $album : NULL, isset($image) ? $image : NULL, $obj);
 					?>
