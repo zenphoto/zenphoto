@@ -19,7 +19,7 @@ class Zenpage_internal_deprecations {
 	 * @since 1.4.6
 	 */
 	public static function next_news() {
-		deprecated_functions::notify(gettext('Sort parameter oprions should be set instead with the setSortType() and setSortDirection() object methods at the head of your script.'));
+		deprecated_functions::notify(gettext('Sort parameter options should be set instead with the setSortType() and setSortDirection() object methods at the head of your script.'));
 	}
 
 	/**
@@ -27,7 +27,7 @@ class Zenpage_internal_deprecations {
 	 * @since 1.4.6
 	 */
 	public static function next_page() {
-		deprecated_functions::notify(gettext('Sort parameter oprions should be set instead with the setSortType() and setSortDirection() object methods at the head of your script.'));
+		deprecated_functions::notify(gettext('Sort parameter options should be set instead with the setSortType() and setSortDirection() object methods at the head of your script.'));
 	}
 
 	/**
