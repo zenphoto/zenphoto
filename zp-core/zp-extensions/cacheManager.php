@@ -19,17 +19,16 @@
  * already been cached. Your browser will then request these images causing the caching process to be
  * executed.
  *
- * The <i>default</i>, <i>effervescence+</i>,<i>garland</i>, <i>stopdesign</i>, and <i>zenpage</i> themes have created <i>Caching</i> size options
- * for the images sizes they use. The <i>stopdesign</i> theme creates some two sets of thumbnail sizes, one for landscape and one for protrait
- * "35mm slide" thumbnails. You may wish not to apply both (or either) of these sizes if you do not want the excess images. The caching
- * process does not consider the image orientation, it simply creates a cache image at the sizes specified.
+ * The Zenphoto distributed themes have created <i>Caching</i> size options
+ * for the images sizes they use.
  *
  *
  * <b>Notes:</b>
  * <ul>
  * 		<li>
  * 			Setting theme options or installing a new version of Zenphoto will re-create these caching sizes.
- * 			Use a different <i>theme name</i> for custom versions that you create.
+ * 			Use a different <i>theme name</i> for custom versions that you create. If you set image options that
+ * 			impact the default caching you will need to re-create these caching sizes by one of the above methods.
  * 		</li>
  *
  * 		<li>
@@ -43,6 +42,36 @@
  * 			If some images seem to never be rendered you may be experiencing memory limit or other graphics processor
  * 			errors. You can click on the image that does not render to get the <var>i.php</var> debug screen for the
  * 			image. This may help in figuring out what has gone wrong.
+ * 		</li>
+ * 		<li>
+ * 			Caching sizes shown on the <var>cache images</var> tab will be identified
+ * 			with the same post-fixes as the image names in your cache folders. Some examples
+ * 			are shown below:
+ * 			<ul>
+ * 					<li>
+ * 					<var>_595</var>: sized to 595 pixels
+ * 				</li>
+ * 				<li>
+ * 					<var>_w180_cw180_ch80_thumb</var>: a size of 180px wide and 80px high
+ * 							and it is a thumbnail (<var>thumb</var>)
+ * 				</li>
+ * 				<li>
+ * 					<var>_85_cw72_ch72_thumb_copyright_gray</var>: sized 85px cropped at about
+ * 							7.6% (one half of 72/85) from the horizontal and vertical sides with a
+ * 							watermark (<var>copyright</var>) and rendered in grayscale (<var>gray</var>)
+ * 				</li>
+ * 				<li>
+ * 					<var>_w85_h85_cw350_ch350_cx43_cy169_thumb_copyright</var>: a custom cropped 85px
+ * 						thumbnail with watermark.
+ * 				</li>
+ * 			</ul>
+ *
+ * 			If a field is not represented in the cache size, it is not applied.
+ *
+ * 			Custom crops (those with cx and cy)
+ * 			really cannot be cached easily since each image has unique values. See the
+ * 			<i>template-functions</i>::<var>getCustomImageURL()</var> comment block
+ * 			for details on these fields.
  * 		</li>
  * </ul>
  *
