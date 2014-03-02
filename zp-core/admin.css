@@ -467,6 +467,7 @@ ul.nav li:hover > ul {
 	border-radius: 5px;
 	margin-bottom: 10px;
 	font-size: 100%;
+	list-style-type: none;
 }
 
 .warningbox li {
