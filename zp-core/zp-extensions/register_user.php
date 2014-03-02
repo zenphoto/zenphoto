@@ -191,6 +191,10 @@ class register_user {
 		return $result;
 	}
 
+	static function getLink() {
+		return _REGISTER_USER_;
+	}
+
 }
 
 /**
@@ -510,5 +514,22 @@ function printRegistrationForm($thanks = NULL) {
 		$form = getPlugin('register_user/register_user_form.php', true);
 		require_once($form);
 	}
+}
+
+/**
+ * prints the link to the register user page
+ *
+ * @param string $linktext Text for the URL
+ * @param string $page page name to include in URL
+ * @param string $q query string to add to url
+ * @param string $prev text to insert before the URL
+ * @param string $next text to follow the URL
+ * @param string $class optional class
+ */
+function printRegisterURL($linktext, $prev = '', $next = '', $class = NULL) {
+	if (!is_null($class)) {
+		$class = 'class="' . $class . '"';
+	}
+	echo $prev . "<a href=\"" . html_encode(register_user::getLink()) . "\" $class title=\"" . html_encode($linktext) . "\">" . html_encode($linktext) . "</a>" . $next;
 }
 ?>

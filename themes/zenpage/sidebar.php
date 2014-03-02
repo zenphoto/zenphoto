@@ -90,13 +90,13 @@ if (getOption("zenpage_contactpage") && extensionEnabled('contact_form')) {
 	<div class="menu">
 		<ul>
 			<li>
-	<?php
-	if ($_zp_gallery_page != 'contact.php') {
-		printCustomPageURL(gettext('Contact us'), 'contact', '', '');
-	} else {
-		echo gettext("Contact us");
-	}
-	?></li>
+				<?php
+				if ($_zp_gallery_page != 'contact.php') {
+					printCustomPageURL(gettext('Contact us'), 'contact', '', '');
+				} else {
+					echo gettext("Contact us");
+				}
+				?></li>
 		</ul>
 	</div>
 	<?php
@@ -105,42 +105,42 @@ if (function_exists("printUserLogin_out") || !zp_loggedin() && function_exists('
 	?>
 	<div class="menu">
 		<ul>
-	<?php
-	if (!zp_loggedin() && function_exists('printRegistrationForm')) {
-		?>
+			<?php
+			if (!zp_loggedin() && function_exists('printRegisterURL')) {
+				?>
 				<li>
+					<?php
+					if ($_zp_gallery_page != 'register.php') {
+						printRegisterURL(gettext('Register for this site'));
+					} else {
+						echo gettext("Register for this site");
+					}
+					?>
+				</li>
 				<?php
-				if ($_zp_gallery_page != 'register.php') {
-					printCustomPageURL(gettext('Register for this site'), 'register', '', '');
-				} else {
-					echo gettext("Register for this site");
-				}
+			}
+			if (function_exists('printFavoritesURL')) {
 				?>
-				</li>
-					<?php
-				}
-				if (function_exists('printFavoritesURL')) {
-					?>
 				<li>
-				<?php printFavoritesURL(); ?>
+					<?php printFavoritesURL(); ?>
 				</li>
-					<?php
-				}
-				if (function_exists("printUserLogin_out")) {
-					?>
-				<li>
-				<?php printUserLogin_out("", "", 2); ?>
-				</li>
-					<?php
-				}
-				if (class_exists('mobileTheme')) {
-					?>
-				<li>
-				<?php mobileTheme::controlLink(NULL, '', ''); ?>
-				</li>
-					<?php
-				}
+				<?php
+			}
+			if (function_exists("printUserLogin_out")) {
 				?>
+				<li>
+					<?php printUserLogin_out("", "", 2); ?>
+				</li>
+				<?php
+			}
+			if (class_exists('mobileTheme')) {
+				?>
+				<li>
+					<?php mobileTheme::controlLink(NULL, '', ''); ?>
+				</li>
+				<?php
+			}
+			?>
 		</ul>
 	</div>
 	<?php

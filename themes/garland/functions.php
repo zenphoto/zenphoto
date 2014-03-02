@@ -128,8 +128,8 @@ function footer() {
 		}
 		?>
 		<?php
-		if ($_zp_gallery_page != 'register.php' && function_exists('printRegistrationForm') && !zp_loggedin() && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('register'))) {
-			printCustomPageURL(gettext('Register for this site'), 'register', '', $prev, '');
+		if ($_zp_gallery_page != 'register.php' && function_exists('printRegisterURL') && !zp_loggedin() && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('register'))) {
+			printRegisterURL(gettext('Register for this site'), $prev, '');
 			$prev = ' | ';
 		}
 		?>

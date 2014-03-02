@@ -59,8 +59,8 @@ if (!defined('WEBPATH'))
 			}
 			?>
 			<?php
-			if (!zp_loggedin() && function_exists('printRegistrationForm')) {
-				printCustomPageURL(gettext('Register for this site'), 'register', '', '', ' | ');
+			if (!zp_loggedin() && function_exists('printRegisterURL')) {
+				printRegisterURL(gettext('Register for this site'), '', ' | ');
 			}
 			?>
 			<?php
