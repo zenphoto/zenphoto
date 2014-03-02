@@ -2785,7 +2785,10 @@ Zenphoto_Authority::printPasswordFormJS();
 					<div id="tab_plugin" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
 						<script type="text/javascript">
-																							var optionholder = new array();</script>
+																							// <!-- <![CDATA[
+																							var optionholder = new Array();
+																							// ]]> -->
+						</script>
 						<form class="dirty-check" id="form_options" action="?action=saveoptions<?php if (isset($_GET['single'])) echo '&amp;single=' . $showExtension; ?>" method="post" autocomplete="off">
 							<?php XSRFToken('saveoptions'); ?>
 							<input type="hidden" name="savepluginoptions" value="yes" />
@@ -2931,26 +2934,26 @@ Zenphoto_Authority::printPasswordFormJS();
 							?>
 						</form>
 						<script type="text/javascript">
-																							// <!-- <![CDATA[
-																											function setShow(v) {
+																											// <!-- <![CDATA[
+																															function setShow(v) {
 	<?php
 	foreach ($showlist as $show) {
 		?>
-																												$('<?php echo $show; ?>').val(v);
+																																$('<?php echo $show; ?>').val(v);
+		<?php
+	}
+	?>
+																															}
+																											window.onload = function() {
+	<?php
+	foreach ($reveal as $extension) {
+		?>
+																												toggleExtraInfo('<?php echo $extension; ?>', 'plugin', true);
 		<?php
 	}
 	?>
 																											}
-																							window.onload = function() {
-	<?php
-	foreach ($reveal as $extension) {
-		?>
-																								toggleExtraInfo('<?php echo $extension; ?>', 'plugin', true);
-		<?php
-	}
-	?>
-																							}
-																							// ]]> -->
+																											// ]]> -->
 						</script>
 					</div>
 					<!-- end of tab_plugin div -->
