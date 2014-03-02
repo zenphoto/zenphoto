@@ -1417,6 +1417,7 @@ zp-core/zp-extensions/slideshow2/jquery.cycle2.carousel.min.js
 zp-core/zp-extensions/slideshow2/jquery.cycle2.center.min.js
 zp-core/zp-extensions/slideshow2/jquery.cycle2.flip.min.js
 zp-core/zp-extensions/slideshow2/jquery.cycle2.ie-fade.min.js
+zp-core/zp-extensions/slideshow2/jquery.cycle2.js.map
 zp-core/zp-extensions/slideshow2/jquery.cycle2.min.js
 zp-core/zp-extensions/slideshow2/jquery.cycle2.scrollVert.min.js
 zp-core/zp-extensions/slideshow2/jquery.cycle2.shuffle.min.js
@@ -1695,4 +1696,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1697
+1698
