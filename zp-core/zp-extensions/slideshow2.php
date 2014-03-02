@@ -40,7 +40,7 @@ $plugin_disable = (extensionEnabled('slideshow')) ? sprintf(gettext('Only one sl
 $option_interface = 'cycle';
 
 global $_zp_gallery, $_zp_gallery_page;
-if ($_zp_gallery_page == 'slideshow.php' || getOption('cycle_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page))) {
+if (($_zp_gallery_page == 'slideshow.php' && getOption('cycle-slideshow_mode') == 'cycle') || getOption('cycle_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page))) {
 	zp_register_filter('theme_head', 'cycle::cycleJS');
 }
 zp_register_filter('content_macro', 'cycle::macro');
