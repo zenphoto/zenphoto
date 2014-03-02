@@ -65,12 +65,6 @@ if (isset($_GET['p'])) {
 }
 
 //$_zp_script_timer['theme setup'] = microtime();
-
-if (!$zp_request && isset($_GET['fromlogout'])) { //	redirect not visible to user
-	zp_load_gallery();
-	$_index_theme = prepareIndexPage();
-	$zp_request = true;
-}
 $_zp_script = zp_apply_filter('load_theme_script', $_zp_script, $zp_request);
 
 //	HTML caching?
@@ -114,6 +108,7 @@ if ($_zp_page < 0) {
 } else if ($zp_request && $_zp_page > 1) {
 	$zp_request = $_zp_page_check($zp_request, $_zp_gallery_page, $_zp_page);
 }
+
 //$_zp_script_timer['theme scripts'] = microtime();
 if ($zp_request && $_zp_script && file_exists($_zp_script = SERVERPATH . "/" . internalToFilesystem($_zp_script))) {
 	if (checkAccess($hint, $show)) { // ok to view

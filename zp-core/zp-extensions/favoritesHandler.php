@@ -629,12 +629,14 @@ if ($plugin_disable) {
 
 			function printFavoritesURL($text = NULL) {
 				global $_myFavorites;
-				if (is_null($text)) {
-					$text = get_language_string(getOption('favorites_linktext'));
+				if (zp_loggedin(ALBUM_RIGHTS)) {
+					if (is_null($text)) {
+						$text = get_language_string(getOption('favorites_linktext'));
+					}
+					?>
+					<a href="<?php echo FULLWEBPATH; ?>/<?php echo $_myFavorites->getLink(); ?>" id="favorite_link"><?php echo $text; ?> </a>
+					<?php
 				}
-				?>
-				<a href="<?php echo FULLWEBPATH; ?>/<?php echo $_myFavorites->getLink(); ?>" id="favorite_link"><?php echo $text; ?> </a>
-				<?php
 			}
 
 		}
