@@ -527,9 +527,18 @@ function printRegistrationForm($thanks = NULL) {
  * @param string $class optional class
  */
 function printRegisterURL($linktext, $prev = '', $next = '', $class = NULL) {
-	if (!is_null($class)) {
-		$class = 'class="' . $class . '"';
+	if (!zp_loggedin()) {
+		if (!is_null($class)) {
+			$class = 'class="' . $class . '"';
+		}
+		if (is_null($linktext)) {
+			$linktext = get_language_string(getOption('register_user_page_link'));
+		}
+		echo $prev;
+		?>
+		<a href="<?php echo FULLWEBPATH; ?>/<?php echo html_encode(register_user::getLink()); ?>"<?php echo $class; ?> title="<?php echo html_encode($linktext); ?>" id="register_link"><?php echo $linktext; ?> </a>
+		<?php
+		echo $next;
 	}
-	echo $prev . "<a href=\"" . html_encode(register_user::getLink()) . "\" $class title=\"" . html_encode($linktext) . "\">" . html_encode($linktext) . "</a>" . $next;
 }
 ?>
