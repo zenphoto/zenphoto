@@ -18,7 +18,7 @@ $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
 			"searchreplace visualblocks code fullscreen",
 			"insertdatetime media table contextmenu paste tinyzenpage"
 		],
-		toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | fullscreen tinyzenpage"
+		toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | fullscreen"
 	});
 // ]]> -->
 </script>

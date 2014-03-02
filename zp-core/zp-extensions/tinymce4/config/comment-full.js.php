@@ -20,7 +20,7 @@ $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
 			"emoticons template paste tinyzenpage"
 		],
 		toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-		toolbar2: "print preview media | forecolor backcolor emoticons | code | fullscreen tinyzenpage",
+		toolbar2: "print preview media | forecolor backcolor emoticons | code | fullscreen",
 	});
 // ]]> -->
 </script>
