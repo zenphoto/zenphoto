@@ -60,7 +60,7 @@ function formatList($title, $subject, $pattern) {
 			}
 			if (!$started) {
 				$started = true;
-				echo '<li class="warningbox"> ' . $title;
+				echo '<li class="warningbox nobullet"> ' . $title;
 				echo '<ul>';
 			}
 			echo '<li>' . $match . $class . '</li>';
