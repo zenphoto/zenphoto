@@ -9,6 +9,7 @@
 define('OFFSET_PATH', 2);
 require_once('setup-functions.php');
 require_once(dirname(dirname(__FILE__)) . '/admin-globals.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager.php');
 
 $iMutex = new Mutex('i', getOption('imageProcessorConcurrency'));
 $iMutex->lock();
@@ -40,8 +41,7 @@ if (extensionEnabled($extension)) {
 
 if ($option_interface) {
 	//	prime the default options
-	setupLog(sprintf(gettext('Plugin:%s option interface instantiated'), $extension), true);
-	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager.php');
+	setupLog(sprintf(gettext('Plugin:%1$s option interface instantiated (%2$s)'), $extension, $option_interface), true);
 	$option_interface = new $option_interface;
 }
 
