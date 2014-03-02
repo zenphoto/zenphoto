@@ -12,9 +12,6 @@ class ZenpageCategory extends ZenpageRoot {
 	var $manage_rights = MANAGE_ALL_NEWS_RIGHTS;
 	var $manage_some_rights = ZENPAGE_NEWS_RIGHTS;
 	var $view_rights = ALL_NEWS_RIGHTS;
-	var $sortorder;
-	var $sortdirection;
-	var $sortSticky = true;
 
 	function __construct($catlink, $create = NULL) {
 		if (is_array($catlink)) {
