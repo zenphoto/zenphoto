@@ -26,6 +26,9 @@ if (!defined('MENU_TRUNCATE_INDICATOR'))
 class Zenpage {
 
 	var $categoryStructure = array();
+	var $sortorder;
+	var $sortdirection;
+	var $sortSticky = true;
 
 	/**
 	 * Class instantiator
@@ -890,6 +893,18 @@ class Zenpage {
 		return 'Zenpage';
 	}
 
+	function setSortDirection($value) {
+		$this->sort_direction = (int) ($value && true);
+	}
+
+	function setSortSticky($value) {
+		$this->sortSticky = (bool) $value;
+	}
+
+	function setSortType($value) {
+		$this->sorttype = $value;
+	}
+
 }
 
 // ZenpageCMS
@@ -946,10 +961,6 @@ class ZenpageRoot extends ThemeObject {
 		$this->set("titlelink", $v);
 	}
 
-	/**
-	 *
-	 * @param bool $value
-	 */
 	function setSortDirection($value) {
 		$this->sort_direction = (int) ($value && true);
 	}
@@ -958,10 +969,6 @@ class ZenpageRoot extends ThemeObject {
 		$this->sortSticky = (bool) $value;
 	}
 
-	/**
-	 *
-	 * @param string $value
-	 */
 	function setSortType($value) {
 		$this->sorttype = $value;
 	}
