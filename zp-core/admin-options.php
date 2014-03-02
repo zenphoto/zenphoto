@@ -336,6 +336,7 @@ if (isset($_GET['action'])) {
 						$sql .= ' AND `ownerid`=0';
 					}
 					query($sql);
+					$themeswitch = true;
 				} else {
 					$ncw = $cw = getThemeOption('thumb_crop_width', $table, $themename);
 					$nch = $ch = getThemeOption('thumb_crop_height', $table, $themename);
@@ -2406,7 +2407,7 @@ Zenphoto_Authority::printPasswordFormJS();
 						}
 						standardThemeOptions($themename, $album);
 						?>
-						<form class="dirty-check" id="form_options" action="?action=saveoptions" method="post" id="themeoptionsform" autocomplete="off">
+						<form class="dirty-check" action="?action=saveoptions" method="post" id="themeoptionsform" autocomplete="off">
 							<?php XSRFToken('saveoptions'); ?>
 							<input type="hidden" id="savethemeoptions" name="savethemeoptions" value="yes" />
 							<input type="hidden" name="optiontheme" value="<?php echo html_encode($themename); ?>" />
