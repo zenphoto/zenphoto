@@ -75,8 +75,9 @@ class tinymce4Options {
 
 }
 
-function tinymce4ConfigJS($editorconfig, $mode) {
-	if (empty($editorconfig)) { // only if we get here first!
+function tinymce4ConfigJS($mode) {
+	global $_editorconfig;
+	if (empty($_editorconfig)) { // only if we get here first!
 		$locale = 'en';
 		$loc = str_replace('_', '-', getOption("locale"));
 		if ($loc) {
@@ -90,15 +91,15 @@ function tinymce4ConfigJS($editorconfig, $mode) {
 			}
 		}
 
-		$editorconfig = getOption('tinymce4_' . $mode);
-		if (!empty($editorconfig)) {
-			$editorconfig = getPlugin('/tinymce4/config/' . $editorconfig);
-			if (!empty($editorconfig)) {
-				require_once($editorconfig);
+		$_editorconfig = getOption('tinymce4_' . $mode);
+		if (!empty($_editorconfig)) {
+			$_editorconfig = getPlugin('/tinymce4/config/' . $_editorconfig);
+			if (!empty($_editorconfig)) {
+				require_once($_editorconfig);
 			}
 		}
 	}
-	return $editorconfig;
+	return $mode;
 }
 
 function getTinyMCE4ConfigFiles($mode) {

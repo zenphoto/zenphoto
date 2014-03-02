@@ -54,7 +54,7 @@ function comment_form_PaginationJS() {
 }
 
 function comment_form_visualEditor() {
-	zp_apply_filter('texteditor_config', '', 'comments');
+	zp_apply_filter('texteditor_config', 'comments');
 }
 
 /**

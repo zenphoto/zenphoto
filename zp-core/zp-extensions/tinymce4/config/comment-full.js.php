@@ -4,7 +4,6 @@
  *
  * Zenpage plugin default light configuration
  */
-$filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
 ?>
 <script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER . "/" . PLUGIN_FOLDER; ?>/tinymce4/tinymce.min.js"></script>
 <script type="text/javascript">

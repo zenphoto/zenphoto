@@ -89,7 +89,7 @@ function elFinder_admin_tabs($tabs) {
 
 function elFinder_tinymce($discard) {
 
-	$file = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/elfinder_4.php';
+	$file = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/elfinder.php?XSRFToken=' . getXSRFToken('elFinder');
 	?>
 	<script type="text/javascript">
 		// <!-- <![CDATA[

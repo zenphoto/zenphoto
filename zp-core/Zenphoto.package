@@ -1058,7 +1058,6 @@ zp-core/zp-extensions/elFinder/css/elfinder.min.css
 zp-core/zp-extensions/elFinder/css/theme.css
 zp-core/zp-extensions/elFinder/elfinder-logo.png
 zp-core/zp-extensions/elFinder/elfinder.php
-zp-core/zp-extensions/elFinder/elfinder_4.php
 zp-core/zp-extensions/elFinder/filemanager.php
 zp-core/zp-extensions/elFinder/img
 zp-core/zp-extensions/elFinder/img/arrows-active.png
@@ -1696,4 +1695,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1698
+1697

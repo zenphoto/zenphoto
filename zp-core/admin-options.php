@@ -485,7 +485,7 @@ if ($_zp_admin_subtab == 'gallery' || $_zp_admin_subtab == 'image') {
 	</script>
 	<?php
 }
-zp_apply_filter('texteditor_config', '', 'zenphoto');
+zp_apply_filter('texteditor_config', 'zenphoto');
 Zenphoto_Authority::printPasswordFormJS();
 ?>
 </head>

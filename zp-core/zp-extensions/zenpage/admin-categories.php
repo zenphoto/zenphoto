@@ -61,7 +61,7 @@ if (isset($_GET['id'])) {
 }
 
 printAdminHeader('news', 'categories');
-zp_apply_filter('texteditor_config', '', 'zenpage');
+zp_apply_filter('texteditor_config', 'zenpage');
 printSortableHead();
 zenpageJSCSS();
 ?>

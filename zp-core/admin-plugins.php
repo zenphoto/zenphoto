@@ -63,7 +63,7 @@ if (isset($_GET['action'])) {
 }
 $saved = isset($_GET['saved']);
 printAdminHeader('plugins');
-zp_apply_filter('texteditor_config', '', 'zenphoto');
+zp_apply_filter('texteditor_config', 'zenphoto');
 
 natcasesort($pluginlist);
 $rangeset = getPageSelector($pluginlist, PLUGINS_PER_PAGE);

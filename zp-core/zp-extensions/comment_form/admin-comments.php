@@ -99,7 +99,7 @@ printAdminHeader('comments');
 	// ]]> -->
 </script>
 <?php
-zp_apply_filter('texteditor_config', '', 'comments');
+zp_apply_filter('texteditor_config', 'comments');
 echo "\n</head>";
 echo "\n<body>";
 printLogoAndLinks();

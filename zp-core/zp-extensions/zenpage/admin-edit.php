@@ -122,7 +122,7 @@ if (is_AdminEditPage('newscategory')) {
 }
 
 printAdminHeader($tab, ($result->transient) ? gettext('add') : gettext('edit'));
-zp_apply_filter('texteditor_config', '', 'zenpage');
+zp_apply_filter('texteditor_config', 'zenpage');
 zenpageJSCSS();
 datepickerJS();
 codeblocktabsJS();
