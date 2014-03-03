@@ -17,7 +17,12 @@ define('IMAGE_SORT_TYPE', getOption('image_sorttype'));
  * @return Album
  */
 function newAlbum($folder8, $cache = true, $quiet = false) {
-	return new Album(NULL, $folder8, $cache, $quiet);
+	switch (getSuffix($folder8)) {
+		case 'alb':
+			return new dynamicAlbum($folder8, $cache, $quiet);
+		default:
+			return new Album($folder8, $cache, $quiet);
+	}
 }
 
 /**
@@ -45,8 +50,6 @@ class AlbumBase extends MediaObject {
 	var $images = null; // Full images array storage.
 	var $parent = null; // The parent album name
 	var $parentalbum = null; // The parent album's album object (lazy)
-	var $gallery;
-	var $searchengine; // cache the search engine for dynamic albums
 	var $sidecars = array(); // keeps the list of suffixes associated with this album
 	var $manage_rights = MANAGE_ALL_ALBUM_RIGHTS;
 	var $manage_some_rights = ALBUM_RIGHTS;
@@ -57,7 +60,6 @@ class AlbumBase extends MediaObject {
 	protected $lastsubalbumsort = NULL;
 	protected $albumthumbnail = NULL; // remember the album thumb for the duration of the script
 	protected $subrights = NULL; //	cache for album subrights
-	protected $dynamic = false; // will be true for dynamic albums
 
 	function __construct($folder8, $cache = true) {
 		$this->linkname = $this->name = $folder8;
@@ -776,88 +778,48 @@ class Album extends AlbumBase {
 	 * @param bool $cache load from cache if present
 	 * @return Album
 	 */
-	function __construct($deprecated, $folder8, $cache = true, $quiet = false) {
+	function __construct($folder8, $cache = true, $quiet = false) {
 		global $_zp_gallery;
 
 		$folder8 = trim($folder8, '/');
 		$folderFS = internalToFilesystem($folder8);
-		$this->gallery = $_zp_gallery;
 		$localpath = ALBUM_FOLDER_SERVERPATH . $folderFS . "/";
-		$msg = false;
 		$this->linkname = $this->name = $folder8;
-		if ($dynamic = hasDynamicAlbumSuffix($folder8)) {
-			$localpath = substr($localpath, 0, -1);
-			$this->dynamic = true;
-			if (!is_dir(stripSuffix($localpath))) {
-				$this->linkname = stripSuffix($folder8);
-			}
-		}
-		if (empty($folder8)) {
-			$msg = gettext('Invalid album instantiation: No album name');
-		} else if (filesystemToInternal($folderFS) != $folder8) {
-// an attempt to spoof the album name.
-			$msg = sprintf(gettext('Invalid album instantiation: %1$s!=%2$s'), html_encode(filesystemToInternal($folderFS)), html_encode($folder8));
-		} else if (!file_exists($localpath) || !($dynamic || is_dir($localpath)) || $folder8{0} == '.' || preg_match('~/\.*/~', $folder8)) {
-			$msg = sprintf(gettext('Invalid album instantiation: %s does not exist.'), html_encode($folder8));
-		}
-
-		if ($msg) {
-			$this->exists = false;
-			if (!$quiet) {
-				trigger_error($msg, E_USER_ERROR);
-			}
-			return;
-		}
-
 		$this->localpath = $localpath;
+		if (!$this->_albumCheck($folder8, $folderFS, $quiet))
+			return;
+
 		$new = $this->instantiate('albums', array('folder' => $this->name), 'folder', $cache, empty($folder8));
-		if ($dynamic) {
-			$new = !$this->get('search_params');
-			if ($new || (filemtime($this->localpath) > $this->get('mtime'))) {
-				$constraints = '';
-				$data = file_get_contents($this->localpath);
-				while (!empty($data)) {
-					$data1 = trim(substr($data, 0, $i = strpos($data, "\n")));
-					if ($i === false) {
-						$data1 = $data;
-						$data = '';
-					} else {
-						$data = substr($data, $i + 1);
-					}
-					if (strpos($data1, 'WORDS=') !== false) {
-						$words = "words=" . urlencode(substr($data1, 6));
-					}
-					if (strpos($data1, 'THUMB=') !== false) {
-						$thumb = trim(substr($data1, 6));
-						$this->set('thumb', $thumb);
-					}
-					if (strpos($data1, 'FIELDS=') !== false) {
-						$fields = "&searchfields=" . trim(substr($data1, 7));
-					}
-					if (strpos($data1, 'CONSTRAINTS=') !== false) {
-						$constraint = trim(substr($data1, 12));
-						$constraints = '&' . $constraint;
-					}
-				}
-				if (!empty($words)) {
-					if (empty($fields)) {
-						$fields = '&searchfields=tags';
-					}
-					$this->set('search_params', $words . $fields . $constraints);
-				}
-				$this->set('mtime', filemtime($this->localpath));
-				if ($new) {
-					$title = $this->get('title');
-					$this->set('title', substr($title, 0, -4)); // Strip the .'.alb' suffix
-				}
-				$this->set('dynamic', 1);
-			}
-		}
+
 		if ($new) {
 			$this->save();
 			zp_apply_filter('new_album', $this);
 		}
 		zp_apply_filter('album_instantiate', $this);
+	}
+
+	/**
+	 * album validity check
+	 * @return boolean
+	 */
+	protected function _albumCheck($folder8, $folderFS, $quiet) {
+		$msg = false;
+		if (empty($folder8)) {
+			$msg = gettext('Invalid album instantiation: No album name');
+		} else if (filesystemToInternal($folderFS) != $folder8) {
+// an attempt to spoof the album name.
+			$msg = sprintf(gettext('Invalid album instantiation: %1$s!=%2$s'), html_encode(filesystemToInternal($folderFS)), html_encode($folder8));
+		} else if (!file_exists($this->localpath) || !(is_dir($this->localpath)) || $folder8{0} == '.' || preg_match('~/\.*/~', $folder8)) {
+			$msg = sprintf(gettext('Invalid album instantiation: %s does not exist.'), html_encode($folder8));
+		}
+		if ($msg) {
+			$this->exists = false;
+			if (!$quiet) {
+				trigger_error($msg, E_USER_ERROR);
+			}
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -871,7 +833,7 @@ class Album extends AlbumBase {
 		parent::setDefaults();
 		$parentalbum = $this->getParent();
 		$this->set('mtime', filemtime($this->localpath));
-		if ($this->isDynamic() || !$_zp_gallery->getAlbumUseImagedate()) {
+		if (!$_zp_gallery->getAlbumUseImagedate()) {
 			$this->setDateTime(strftime('%Y-%m-%d %H:%M:%S', $this->get('mtime')));
 		}
 		$title = trim($this->name);
@@ -909,6 +871,20 @@ class Album extends AlbumBase {
 	}
 
 	/**
+	 * Guts of fetching the subalbums
+	 * @return array
+	 */
+	protected function _getAlbums() {
+		$dirs = $this->loadFileNames(true);
+		$subalbums = array();
+		foreach ($dirs as $dir) {
+			$dir = $this->name . '/' . $dir;
+			$subalbums[] = $dir;
+		}
+		return $subalbums;
+	}
+
+	/**
 	 * Returns all folder names for all the subdirectories.
 	 *
 	 * @param string $page  Which page of subalbums to display.
@@ -933,22 +909,23 @@ class Album extends AlbumBase {
 					$sortdirection = '';
 				}
 			}
-			if ($this->isDynamic()) {
-				$search = $this->getSearchEngine();
-				$subalbums = $search->getAlbums(0, NULL, NULL, false);
-			} else {
-				$dirs = $this->loadFileNames(true);
-				$subalbums = array();
-				foreach ($dirs as $dir) {
-					$dir = $this->name . '/' . $dir;
-					$subalbums[] = $dir;
-				}
-			}
+			$subalbums = $this->_getAlbums();
 			$key = $this->getAlbumSortKey($sorttype);
 			$this->subalbums = $_zp_gallery->sortAlbumArray($this, $subalbums, $key, $sortdirection, $mine);
 			$this->lastsubalbumsort = $sorttype . $sortdirection;
 		}
 		return parent::getAlbums($page);
+	}
+
+	/**
+	 * Guts of image fetch
+	 * @return type
+	 */
+	protected function _getImages($sorttype, $sortdirection, $care, $mine) {
+// Load, sort, and store the images in this Album.
+		$images = $this->loadFileNames();
+		$images = $this->sortImageArray($images, $sorttype, $sortdirection, $mine);
+		return $images;
 	}
 
 	/**
@@ -977,15 +954,7 @@ class Album extends AlbumBase {
 					$sortdirection = 'DESC';
 				}
 			}
-			if ($this->isDynamic()) {
-				$searchengine = $this->getSearchEngine();
-				$images = $searchengine->getImages(0, 0, $sorttype, $sortdirection, $care, $mine);
-			} else {
-// Load, sort, and store the images in this Album.
-				$images = $this->loadFileNames();
-				$images = $this->sortImageArray($images, $sorttype, $sortdirection, $mine);
-			}
-			$this->images = $images;
+			$this->images = $this->_getImages($sorttype, $sortdirection, $care, $mine);
 			$this->lastimagesort = $sorttype . $sortdirection;
 		}
 		return parent::getImages($page);
@@ -1287,36 +1256,12 @@ class Album extends AlbumBase {
 	 */
 	function remove() {
 		$rslt = false;
-		if (parent::remove()) {
-			if (!$this->isDynamic()) {
-				foreach ($this->getAlbums() as $folder) {
-					$subalbum = newAlbum($folder);
-					$subalbum->remove();
-				}
-				foreach ($this->getImages() as $filename) {
-					$image = newImage($this, $filename);
-					$image->remove();
-				}
-				$curdir = getcwd();
-				chdir($this->localpath);
-				$filelist = safe_glob('*');
-				foreach ($filelist as $file) {
-					if (($file != '.') && ($file != '..')) {
-						@chmod($file, 0777);
-						unlink($this->localpath . $file); // clean out any other files in the folder
-					}
-				}
-				chdir($curdir);
-			}
+		if (PersistentObject::remove()) {
 			query("DELETE FROM " . prefix('options') . "WHERE `ownerid`=" . $this->id);
 			query("DELETE FROM " . prefix('comments') . "WHERE `type`='albums' AND `ownerid`=" . $this->id);
 			query("DELETE FROM " . prefix('obj_to_tag') . "WHERE `type`='albums' AND `objectid`=" . $this->id);
 			$success = true;
-			if ($this->isDynamic()) {
-				$filestoremove = safe_glob(substr($this->localpath, 0, strrpos($this->localpath, '.')) . '.*');
-			} else {
-				$filestoremove = safe_glob(substr($this->localpath, 0, -1) . '.*');
-			}
+			$filestoremove = safe_glob(substr($this->localpath, 0, -1) . '.*');
 			foreach ($filestoremove as $file) {
 				if (in_array(strtolower(getSuffix($file)), $this->sidecars)) {
 					@chmod($file, 0777);
@@ -1324,11 +1269,7 @@ class Album extends AlbumBase {
 				}
 			}
 			@chmod($this->localpath, 0777);
-			if ($this->isDynamic()) {
-				$rslt = @unlink($this->localpath) && $success;
-			} else {
-				$rslt = @rmdir($this->localpath) && $success;
-			}
+			$rslt = @rmdir($this->localpath) && $success;
 		}
 		clearstatcache();
 		return $rslt;
@@ -1365,13 +1306,9 @@ class Album extends AlbumBase {
 				return 4;
 			}
 		}
-		if ($this->isDynamic()) {
-			$filemask = substr($this->localpath, 0, strrpos($this->localpath, '.')) . '.*';
-			$perms = FILE_MOD;
-		} else {
-			$filemask = substr($this->localpath, 0, -1) . '.*';
-			$perms = FOLDER_MOD;
-		}
+		$filemask = substr($this->localpath, 0, -1) . '.*';
+		$perms = FOLDER_MOD;
+
 		@chmod($this->localpath, 0777);
 		$success = @rename($this->localpath, $dest);
 		@chmod($dest, $perms);
@@ -1390,27 +1327,27 @@ class Album extends AlbumBase {
 			if ($success) {
 				zp_apply_filter('album_rename_move', $this->name, $newfolder);
 				$this->updateParent($newfolder);
-				if (!$this->isDynamic()) {
+
 //rename the cache folder
-					$cacherename = @rename(SERVERCACHE . '/' . $oldfolder, SERVERCACHE . '/' . $newfolder);
+				$cacherename = @rename(SERVERCACHE . '/' . $oldfolder, SERVERCACHE . '/' . $newfolder);
 // Then: go through the db and change the album (and subalbum) paths. No ID changes are necessary for a move.
 // Get the subalbums.
-					$sql = "SELECT id, folder FROM " . prefix('albums') . " WHERE folder LIKE " . db_quote(db_LIKE_escape($oldfolder) . '/%');
-					$result = query($sql);
-					if ($result) {
-						while ($subrow = db_fetch_assoc($result)) {
-							$newsubfolder = $subrow['folder'];
-							$newsubfolder = $newfolder . substr($newsubfolder, strlen($oldfolder));
-							$sql = "UPDATE " . prefix('albums') . " SET folder=" . db_quote($newsubfolder) . " WHERE id=" . $subrow['id'];
-							if (query($sql)) {
-								zp_apply_filter('album_rename_move', $subrow['folder'], $newsubfolder);
-							} else {
-								$success = false;
-							}
+				$sql = "SELECT id, folder FROM " . prefix('albums') . " WHERE folder LIKE " . db_quote(db_LIKE_escape($oldfolder) . '/%');
+				$result = query($sql);
+				if ($result) {
+					while ($subrow = db_fetch_assoc($result)) {
+						$newsubfolder = $subrow['folder'];
+						$newsubfolder = $newfolder . substr($newsubfolder, strlen($oldfolder));
+						$sql = "UPDATE " . prefix('albums') . " SET folder=" . db_quote($newsubfolder) . " WHERE id=" . $subrow['id'];
+						if (query($sql)) {
+							zp_apply_filter('album_rename_move', $subrow['folder'], $newsubfolder);
+						} else {
+							$success = false;
 						}
 					}
-					db_free_result($result);
 				}
+				db_free_result($result);
+
 				if ($success) {
 					return 0;
 				}
@@ -1452,13 +1389,8 @@ class Album extends AlbumBase {
 // Disallow copying to a subfolder of the current folder (infinite loop).
 			return 4;
 		}
-		if ($this->isDynamic()) {
-			$success = @copy($this->localpath, $dest);
-			$filemask = substr($this->localpath, 0, strrpos($this->localpath, '.')) . '.*';
-		} else {
-			$success = mkdir_recursive($dest, FOLDER_MOD) === TRUE;
-			$filemask = substr($this->localpath, 0, -1) . '.*';
-		}
+		$success = mkdir_recursive($dest, FOLDER_MOD) === TRUE;
+		$filemask = substr($this->localpath, 0, -1) . '.*';
 		if ($success) {
 //	replicate the album metadata and sub-files
 			$uniqueset = array('folder' => $newfolder);
@@ -1484,22 +1416,21 @@ class Album extends AlbumBase {
 				}
 			}
 			if ($success) {
-				if (!$this->isDynamic()) {
 //	copy the images
-					$images = $this->getImages(0);
-					foreach ($images as $imagename) {
-						$image = newImage($this, $imagename);
-						$success = $success && !$image->copy($newfolder);
-					}
+				$images = $this->getImages(0);
+				foreach ($images as $imagename) {
+					$image = newImage($this, $imagename);
+					$success = $success && !$image->copy($newfolder);
+				}
 // copy the subalbums.
-					$subalbums = $this->getAlbums(0);
-					foreach ($subalbums as $subalbumname) {
-						$subalbum = newAlbum($subalbumname);
-						if ($subalbum->copy($newfolder)) {
-							$success = false;
-						}
+				$subalbums = $this->getAlbums(0);
+				foreach ($subalbums as $subalbumname) {
+					$subalbum = newAlbum($subalbumname);
+					if ($subalbum->copy($newfolder)) {
+						$success = false;
 					}
 				}
+
 				if ($success) {
 					return 0;
 				}
@@ -1588,8 +1519,6 @@ class Album extends AlbumBase {
 	 * load accurate values into the database.
 	 */
 	function preLoad() {
-		if (!$this->isDynamic())
-			return; // nothing to do
 		$images = $this->getImages(0);
 		$subalbums = $this->getAlbums(0);
 		foreach ($subalbums as $dir) {
@@ -1606,9 +1535,6 @@ class Album extends AlbumBase {
 	 * @return array
 	 */
 	protected function loadFileNames($dirs = false) {
-		if ($this->isDynamic()) { // there are no 'real' files
-			return array();
-		}
 		$albumdir = $this->localpath;
 		$dir = @opendir($albumdir);
 		if (!$dir) {
@@ -1669,42 +1595,7 @@ class Album extends AlbumBase {
 	 * @return bool
 	 */
 	function isDynamic() {
-		return $this->dynamic;
-	}
-
-	/**
-	 * Returns the search parameters for a dynamic album
-	 *
-	 * @return string
-	 */
-	function getSearchParams() {
-		return $this->get('search_params');
-	}
-
-	/**
-	 * Sets the search parameters of a dynamic album
-	 *
-	 * @param string $params The search string to produce the dynamic album
-	 */
-	function setSearchParams($params) {
-		$this->set('search_params', $params);
-	}
-
-	/**
-	 * Returns the search engine for a dynamic album
-	 *
-	 * @return object
-	 */
-	function getSearchEngine() {
-		if (!$this->isDynamic())
-			return null;
-		if (!is_null($this->searchengine))
-			return $this->searchengine;
-		$this->searchengine = new SearchEngine(true);
-		$params = $this->get('search_params');
-		$params .= '&albumname=' . $this->name;
-		$this->searchengine->setSearchParams($params);
-		return $this->searchengine;
+		return false;
 	}
 
 	/**
@@ -1818,6 +1709,351 @@ class Album extends AlbumBase {
 			}
 		}
 		return $owner;
+	}
+
+}
+
+class dynamicAlbum extends Album {
+
+	var $searchengine; // cache the search engine for dynamic albums
+
+	function __construct($folder8, $cache = true, $quiet = false) {
+		parent::__construct($folder8, $cache, $quiet);
+		$this->setDateTime(strftime('%Y-%m-%d %H:%M:%S', $this->get('mtime')));
+		if (!is_dir(stripSuffix($this->localpath))) {
+			$this->linkname = stripSuffix($folder8);
+		}
+
+		$new = !$this->get('search_params');
+		if ($new || (filemtime($this->localpath) > $this->get('mtime'))) {
+			$constraints = '';
+			$data = file_get_contents($this->localpath);
+			while (!empty($data)) {
+				$data1 = trim(substr($data, 0, $i = strpos($data, "\n")));
+				if ($i === false) {
+					$data1 = $data;
+					$data = '';
+				} else {
+					$data = substr($data, $i + 1);
+				}
+				if (strpos($data1, 'WORDS=') !== false) {
+					$words = "words=" . urlencode(substr($data1, 6));
+				}
+				if (strpos($data1, 'THUMB=') !== false) {
+					$thumb = trim(substr($data1, 6));
+					$this->set('thumb', $thumb);
+				}
+				if (strpos($data1, 'FIELDS=') !== false) {
+					$fields = "&searchfields=" . trim(substr($data1, 7));
+				}
+				if (strpos($data1, 'CONSTRAINTS=') !== false) {
+					$constraint = trim(substr($data1, 12));
+					$constraints = '&' . $constraint;
+				}
+			}
+			if (!empty($words)) {
+				if (empty($fields)) {
+					$fields = '&searchfields=tags';
+				}
+				$this->set('search_params', $words . $fields . $constraints);
+			}
+			$this->set('mtime', filemtime($this->localpath));
+			if ($new) {
+				$title = $this->get('title');
+				$this->set('title', substr($title, 0, -4)); // Strip the .'.alb' suffix
+			}
+		}
+	}
+
+	/**
+	 * album validity check
+	 * @param type $folder8
+	 * @return boolean
+	 */
+	protected function _albumCheck($folder8, $folderFS, $quiet) {
+		$this->localpath = rtrim($this->localpath, '/');
+
+		$msg = false;
+		if (empty($folder8)) {
+			$msg = gettext('Invalid album instantiation: No album name');
+		} else if (filesystemToInternal($folderFS) != $folder8) {
+// an attempt to spoof the album name.
+			$msg = sprintf(gettext('Invalid album instantiation: %1$s!=%2$s'), html_encode(filesystemToInternal($folderFS)), html_encode($folder8));
+		} else if (!file_exists($this->localpath) || is_dir($this->localpath)) {
+			$msg = sprintf(gettext('Invalid album instantiation: %s does not exist.'), html_encode($folder8));
+		}
+		if ($msg) {
+			$this->exists = false;
+			if (!$quiet) {
+				trigger_error($msg, E_USER_ERROR);
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Returns the search parameters for a dynamic album
+	 *
+	 * @return string
+	 */
+	function getSearchParams() {
+		return $this->get('search_params');
+	}
+
+	/**
+	 * Sets the search parameters of a dynamic album
+	 *
+	 * @param string $params The search string to produce the dynamic album
+	 */
+	function setSearchParams($params) {
+		$this->set('search_params', $params);
+	}
+
+	/**
+	 * Returns the search engine for a dynamic album
+	 *
+	 * @return object
+	 */
+	function getSearchEngine() {
+		if (!is_null($this->searchengine))
+			return $this->searchengine;
+		$this->searchengine = new SearchEngine(true);
+		$params = $this->get('search_params');
+		$params .= '&albumname=' . $this->name;
+		$this->searchengine->setSearchParams($params);
+		return $this->searchengine;
+	}
+
+	/**
+	 * Guts of fetching the subalbums
+	 * @return array
+	 */
+	protected function _getAlbums() {
+		$search = $this->getSearchEngine();
+		return $search->getAlbums(0, NULL, NULL, false);
+	}
+
+	/**
+	 * Guts of image fetch
+	 * @return type
+	 */
+	protected function _getImages($sorttype, $sortdirection, $care, $mine) {
+		$searchengine = $this->getSearchEngine();
+		return $searchengine->getImages(0, 0, $sorttype, $sortdirection, $care, $mine);
+	}
+
+	/**
+	 * Delete the entire album PERMANENTLY. Be careful! This is unrecoverable.
+	 * Returns true if successful
+	 *
+	 * @return bool
+	 */
+	function remove() {
+		$rslt = false;
+		if (PersistentObject::remove()) {
+			foreach ($this->getAlbums() as $folder) {
+				$subalbum = newAlbum($folder);
+				$subalbum->remove();
+			}
+			foreach ($this->getImages() as $filename) {
+				$image = newImage($this, $filename);
+				$image->remove();
+			}
+			$curdir = getcwd();
+			chdir($this->localpath);
+			$filelist = safe_glob('*');
+			foreach ($filelist as $file) {
+				if (($file != '.') && ($file != '..')) {
+					@chmod($file, 0777);
+					unlink($this->localpath . $file); // clean out any other files in the folder
+				}
+			}
+			chdir($curdir);
+
+			query("DELETE FROM " . prefix('options') . "WHERE `ownerid`=" . $this->id);
+			query("DELETE FROM " . prefix('comments') . "WHERE `type`='albums' AND `ownerid`=" . $this->id);
+			query("DELETE FROM " . prefix('obj_to_tag') . "WHERE `type`='albums' AND `objectid`=" . $this->id);
+			$success = true;
+			$filestoremove = safe_glob(substr($this->localpath, 0, strrpos($this->localpath, '.')) . '.*');
+			foreach ($filestoremove as $file) {
+				if (in_array(strtolower(getSuffix($file)), $this->sidecars)) {
+					@chmod($file, 0777);
+					$success = $success && unlink($file);
+				}
+			}
+			@chmod($this->localpath, 0777);
+			$rslt = @unlink($this->localpath) && $success;
+		}
+		clearstatcache();
+		return $rslt;
+	}
+
+	/**
+	 * Move this album to the location specified by $newfolder, copying all
+	 * metadata, subalbums, and subalbums' metadata with it.
+	 * @param $newfolder string the folder to move to, including the name of the current folder (possibly renamed).
+	 * @return int 0 on success and error indicator on failure.
+	 *
+	 */
+	function move($newfolder) {
+// First, ensure the new base directory exists.
+		$oldfolder = $this->name;
+		$dest = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($newfolder);
+// Check to see if the destination already exists
+		if (file_exists($dest)) {
+// Disallow moving an album over an existing one.
+			return 3;
+		}
+		$oldfolders = explode('/', $oldfolder);
+		$newfolders = explode('/', $newfolder);
+		$sub = count($newfolders) > count($oldfolders);
+		if ($sub) {
+			for ($i = 0; $i < count($oldfolders); $i++) {
+				if ($newfolders[$i] != $oldfolders[$i]) {
+					$sub = false;
+					break;
+				}
+			}
+			if ($sub) {
+// Disallow moving to a subfolder of the current folder.
+				return 4;
+			}
+		}
+		$filemask = substr($this->localpath, 0, strrpos($this->localpath, '.')) . '.*';
+		$perms = FILE_MOD;
+		@chmod($this->localpath, 0777);
+		$success = @rename($this->localpath, $dest);
+		@chmod($dest, $perms);
+		if ($success) {
+			$filestomove = safe_glob($filemask);
+			foreach ($filestomove as $file) {
+				if (in_array(strtolower(getSuffix($file)), $this->sidecars)) {
+					$d = dirname($dest) . '/' . basename($file);
+					@chmod($file, 0777);
+					$success = $success && @rename($file, $d);
+					@chmod($d, FILE_MOD);
+				}
+			}
+			$sql = "UPDATE " . prefix('albums') . " SET folder=" . db_quote($newfolder) . " WHERE `id` = " . $this->id;
+			$success = query($sql);
+			if ($success) {
+				zp_apply_filter('album_rename_move', $this->name, $newfolder);
+				$this->updateParent($newfolder);
+//rename the cache folder
+				$cacherename = @rename(SERVERCACHE . '/' . $oldfolder, SERVERCACHE . '/' . $newfolder);
+// Then: go through the db and change the album (and subalbum) paths. No ID changes are necessary for a move.
+// Get the subalbums.
+				$sql = "SELECT id, folder FROM " . prefix('albums') . " WHERE folder LIKE " . db_quote(db_LIKE_escape($oldfolder) . '/%');
+				$result = query($sql);
+				if ($result) {
+					while ($subrow = db_fetch_assoc($result)) {
+						$newsubfolder = $subrow['folder'];
+						$newsubfolder = $newfolder . substr($newsubfolder, strlen($oldfolder));
+						$sql = "UPDATE " . prefix('albums') . " SET folder=" . db_quote($newsubfolder) . " WHERE id=" . $subrow['id'];
+						if (query($sql)) {
+							zp_apply_filter('album_rename_move', $subrow['folder'], $newsubfolder);
+						} else {
+							$success = false;
+						}
+					}
+				}
+				db_free_result($result);
+				if ($success) {
+					return 0;
+				}
+			}
+		}
+		return 1;
+	}
+
+	/**
+	 * Copy this album to the location specified by $newfolder, copying all
+	 * metadata, subalbums, and subalbums' metadata with it.
+	 * @param $newfolder string the folder to copy to, including the name of the current folder (possibly renamed).
+	 * @return int 0 on success and error indicator on failure.
+	 *
+	 */
+	function copy($newfolder) {
+// album name to destination folder
+		if (substr($newfolder, -1, 1) != '/')
+			$newfolder .= '/';
+		$newfolder .= basename($this->localpath);
+// First, ensure the new base directory exists.
+		$oldfolder = $this->name;
+		$dest = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($newfolder);
+// Check to see if the destination directory already exists
+		if (file_exists($dest)) {
+// Disallow moving an album over an existing one.
+			return 3;
+		}
+		if (substr($newfolder, count($oldfolder)) == $oldfolder) {
+// Disallow copying to a subfolder of the current folder (infinite loop).
+			return 4;
+		}
+		$success = @copy($this->localpath, $dest);
+		$filemask = substr($this->localpath, 0, strrpos($this->localpath, '.')) . '.*';
+		if ($success) {
+//	replicate the album metadata and sub-files
+			$uniqueset = array('folder' => $newfolder);
+			$parentname = dirname($newfolder);
+			if (empty($parentname) || $parentname == '/' || $parentname == '.') {
+				$uniqueset['parentid'] = NULL;
+			} else {
+				$parent = newAlbum($parentname);
+				$uniqueset['parentid'] = $parent->getID();
+			}
+			$newID = parent::copy($uniqueset);
+			if ($newID) {
+//	replicate the tags
+				storeTags(readTags($this->getID(), 'albums'), $newID, 'albums');
+//	copy the sidecar files
+
+				$filestocopy = safe_glob($filemask);
+
+				foreach ($filestocopy as $file) {
+					if (in_array(strtolower(getSuffix($file)), $this->sidecars)) {
+						$success = $success && @copy($file, dirname($dest) . '/' . basename($file));
+					}
+				}
+			}
+			if ($success) {
+//	copy the images
+				$images = $this->getImages(0);
+				foreach ($images as $imagename) {
+					$image = newImage($this, $imagename);
+					$success = $success && !$image->copy($newfolder);
+				}
+// copy the subalbums.
+				$subalbums = $this->getAlbums(0);
+				foreach ($subalbums as $subalbumname) {
+					$subalbum = newAlbum($subalbumname);
+					if ($subalbum->copy($newfolder)) {
+						$success = false;
+					}
+				}
+				if ($success) {
+					return 0;
+				}
+			}
+		}
+		return 1;
+	}
+
+	/**
+	 * Simply creates objects of all the images and sub-albums in this album to
+	 * load accurate values into the database.
+	 */
+	function preLoad() {
+		return; // nothing to do
+	}
+
+	protected function loadFileNames($dirs = false) {
+		return array();
+	}
+
+	function isDynamic() {
+		return true;
 	}
 
 }
