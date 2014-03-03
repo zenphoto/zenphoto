@@ -214,6 +214,7 @@ function printRegistrationForm($thanks = NULL) {
 		// expung the verify query string as it will cause us to come back here if login fails.
 		unset($_GET['verify']);
 		$link = explode('?', getRequestURI());
+		$p = array();
 		if (isset($link[1])) {
 			$p = explode('&', $link[1]);
 			foreach ($p as $k => $v) {
@@ -222,9 +223,10 @@ function printRegistrationForm($thanks = NULL) {
 				}
 			}
 			unset($p['verify']);
-			$_SERVER['REQUEST_URI'] = $link[0] . '?' . implode('&', $p);
-		} else {
-			$_SERVER['REQUEST_URI'] = $link[0];
+		}
+		$_SERVER['REQUEST_URI'] = $link[0];
+		if (!empty($p)) {
+			$_SERVER['REQUEST_URI'] .= '?' . implode('&', $p);
 		}
 
 		$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $params['user'], '`valid`=' => 1));
@@ -378,7 +380,7 @@ function printRegistrationForm($thanks = NULL) {
 	}
 
 	if (zp_loggedin()) {
-		if (isset($_GET['userlog']) && $_GET['userlog'] == 1) {
+		if (isset($_GET['login'])) {
 			echo '<meta http-equiv="refresh" content="1; url=' . WEBPATH . '/">';
 		} else {
 			echo '<div class="errorbox fade-message">';
@@ -386,6 +388,9 @@ function printRegistrationForm($thanks = NULL) {
 			echo '</div>';
 		}
 		return;
+	}
+	if (isset($_GET['login'])) { //presumably the user failed to login....
+		$notify = 'loginfailed';
 	}
 	if (!empty($notify)) {
 		switch ($notify) {
@@ -402,12 +407,12 @@ function printRegistrationForm($thanks = NULL) {
 			case 'loginfailed':
 				$link = getRequestURI();
 				if (strpos($link, '?') === false) {
-					$_SERVER['REQUEST_URI'] = $link . '?login';
+					$_SERVER['REQUEST_URI'] = $link . '?login=true';
 				} else {
-					$_SERVER['REQUEST_URI'] = $link . '&login';
+					$_SERVER['REQUEST_URI'] = $link . '&login=true';
 				}
 				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_login-out.php');
-				printPasswordForm('', true, false, WEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=users');
+				printPasswordForm(NULL, true, false, WEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=users');
 				$notify = 'success';
 				break;
 			case 'honeypot': //pretend it was accepted
