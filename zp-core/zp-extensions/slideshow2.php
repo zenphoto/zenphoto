@@ -375,7 +375,7 @@ class cycle {
 		}
 		// no space in carousels for this!
 		if (getOption("cycle-slideshow_showdesc") && !$carousel) {
-			$slidecontent .= '<div class="slide_desc">' . html_encode($imgobj->getDesc()) . '</div>' . "\n";
+			$slidecontent .= '<div class="slide_desc">' . $imgobj->getDesc(). '</div>' . "\n";
 		}
 		$slidecontent .= '</div>' . "\n";
 		echo $slidecontent;
