@@ -27,7 +27,7 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 			</label>
 			<input type="text" id="adminuser" name="user" value="<?php echo html_encode($user); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" />
 		</p>
-		<?php $_zp_authority->printPasswordForm('', false, NULL, false, $flag = '<strong>*</strong>'); ?>
+		<?php $_zp_authority->printPasswordForm(NULL, false, NULL, false, $flag = '<strong>*</strong>'); ?>
 		<p>
 			<label for="admin_name"><?php echo gettext("Name"); ?><strong>*</strong></label>
 			<input type="text" id="admin_name" name="admin_name" value="<?php echo html_encode($admin_n); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" />
@@ -44,7 +44,7 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 		if (extensionEnabled('userAddressFields')) {
 			$address = getSerializedArray(zp_getCookie('reister_user_form_addresses'));
 			if (empty($address)) {
-				$address = array('street'	 => '', 'city'		 => '', 'state'		 => '', 'country'	 => '', 'postal'	 => '', 'website'	 => '');
+				$address = array('street' => '', 'city' => '', 'state' => '', 'country' => '', 'postal' => '', 'website' => '');
 			}
 			$required = getOption('register_user_address_info');
 			if ($required == 'required') {

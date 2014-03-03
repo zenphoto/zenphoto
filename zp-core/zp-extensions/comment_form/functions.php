@@ -286,7 +286,6 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 		$whattocheck = $check;
 	}
 	$type = $receiver->table;
-	$class = get_class($receiver);
 	$receiver->getComments();
 	$name = trim($name);
 	$email = trim($email);
@@ -381,9 +380,8 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 							'date'				 => $commentobj->getDateTime(),
 							'custom_data'	 => $commentobj->getCustomData());
 		}
-		$class = strtolower(get_class($receiver));
-		switch ($class) {
-			case "album":
+		switch ($type) {
+			case "albums":
 				$url = "album=" . pathurlencode($receiver->name);
 				$ur_album = getUrAlbum($receiver);
 				if ($moderate) {
@@ -392,7 +390,7 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 					$action = sprintf(gettext('A comment has been posted on your album "%1$s".'), $receiver->name);
 				}
 				break;
-			case "zenpagenews":
+			case "news":
 				$url = "p=news&title=" . urlencode($receiver->getTitlelink());
 				if ($moderate) {
 					$action = sprintf(gettext('A comment has been placed in moderation on your article "%1$s".'), $receiver->getTitlelink());
@@ -400,7 +398,7 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 					$action = sprintf(gettext('A comment has been posted on your article "%1$s".'), $receiver->getTitlelink());
 				}
 				break;
-			case "zenpagepage":
+			case "pages":
 				$url = "p=pages&title=" . urlencode($receiver->getTitlelink());
 				if ($moderate) {
 					$action = sprintf(gettext('A comment has been placed in moderation on your page "%1$s".'), $receiver->getTitlelink());

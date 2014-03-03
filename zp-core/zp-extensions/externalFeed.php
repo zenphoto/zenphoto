@@ -358,7 +358,7 @@ class ExternalFeed extends feed {
 			$feeditem['title'] = $imagenumber;
 			$feeditem['pubdate'] = date("r", strtotime($albumobj->getDateTime()));
 		} else {
-			if (get_class($item) == 'Album') {
+			if (isAlbumClass($item)) {
 				$albumobj = $item;
 				$thumb = $albumobj->getAlbumThumbImage();
 			} else {

@@ -38,7 +38,7 @@ function newImage($album, $filename, $quiet = false) {
 			$xalbum = $album;
 		}
 	}
-	if (!is_object($xalbum) || strtoLower(get_class($xalbum)) != 'album' || !$xalbum->exists) {
+	if (!is_object($xalbum) || !$xalbum->exists || !isAlbumClass($xalbum)) {
 		if (!$quiet) {
 			$msg = sprintf(gettext('Bad album object parameter to newImage(%s)'), $filename);
 			trigger_error($msg, E_USER_NOTICE);
