@@ -93,6 +93,9 @@ function footer() {
 	?>
 	<div id="footer">
 		<?php
+		if (function_exists('printFavoritesURL') && $_zp_gallery_page != 'password.php' && $_zp_gallery_page != 'favorites.php') {
+			printFavoritesURL(NULL, '', ' | ', '<br />');
+		}
 		if (class_exists('RSS')) {
 			$prev = ' | ';
 			switch ($_zp_gallery_page) {
@@ -131,12 +134,6 @@ function footer() {
 		if ($_zp_gallery_page != 'register.php' && function_exists('printRegisterURL') && !zp_loggedin() && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('register'))) {
 			printRegisterURL(gettext('Register for this site'), $prev, '');
 			$prev = ' | ';
-		}
-		?>
-		<?php
-		if (function_exists('printFavoritesURL') && $_zp_gallery_page != 'password.php' && $_zp_gallery_page != 'favorites.php') {
-			?> | <?php
-			printFavoritesURL();
 		}
 		?>
 		<?php if (!in_array($_zp_gallery_page, $exclude_login)) @call_user_func('printUserLogin_out', $prev); ?>

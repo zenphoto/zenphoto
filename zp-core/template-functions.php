@@ -591,7 +591,7 @@ function next_album($all = false, $sorttype = NULL, $sortdirection = NULL, $mine
 		if (gettype($sorttype) == 'boolean' && func_num_args() == 2) {
 			$mine = $sorttype;
 		} else {
-			//	These parameters are deprecated
+//	These parameters are deprecated
 			internal_deprecations::next_album();
 		}
 	}
@@ -739,34 +739,30 @@ function getPageNumURL($page, $total = null) {
 		$searchfields = $_zp_current_search->getSearchFields(true);
 		$searchpagepath = getSearchURL($searchwords, $searchdate, $searchfields, $page, array('albums' => $_zp_current_search->getAlbumList()));
 		return $searchpagepath;
-	} else {
-		if (in_array($_zp_gallery_page, array('index.php', 'album.php', 'image.php'))) {
-			if (in_context(ZP_ALBUM)) {
-				return $_zp_current_album->getLink($page);
-			} else {
-				if (in_context(ZP_INDEX)) {
-					$pagination1 = '/';
-					$pagination2 = 'index.php';
-					if ($page > 1) {
-						$pagination1 .= _PAGE_ . '/' . $page;
-						$pagination2 .= '?page=' . $page;
-					}
-				} else {
-					return NULL;
-				}
+	} else if (in_context(ZP_ALBUM)) {
+		return $_zp_current_album->getLink($page);
+	} else if (in_array($_zp_gallery_page, array('index.php', 'album.php', 'image.php'))) {
+		if (in_context(ZP_INDEX)) {
+			$pagination1 = '/';
+			$pagination2 = 'index.php';
+			if ($page > 1) {
+				$pagination1 .= _PAGE_ . '/' . $page;
+				$pagination2 .= '?page=' . $page;
 			}
 		} else {
-// handle custom page
-			$pg = stripSuffix($_zp_gallery_page);
-			$pagination1 = '/' . _PAGE_ . '/' . $pg . '/';
-			$pagination2 = 'index.php?p=' . $pg;
-			if ($page > 1) {
-				$pagination1 .= $page;
-				$pagination2 .= '&page=' . $page;
-			}
+			return NULL;
 		}
-		return zp_apply_filter('getLink', rewrite_path($pagination1, $pagination2), $_zp_gallery_page, $page);
+	} else {
+// handle custom page
+		$pg = stripSuffix($_zp_gallery_page);
+		$pagination1 = '/' . _PAGE_ . '/' . $pg . '/';
+		$pagination2 = 'index.php?p=' . $pg;
+		if ($page > 1) {
+			$pagination1 .= $page;
+			$pagination2 .= '&page=' . $page;
+		}
 	}
+	return zp_apply_filter('getLink', rewrite_path($pagination1, $pagination2), $_zp_gallery_page, $page);
 }
 
 /**
@@ -958,12 +954,12 @@ function printPageListWithNav($prevtext, $nexttext, $_oneImagePage = false, $nex
 			if ($firstlast) {
 				?>
 				<li class="<?php
-				if ($current == 1)
-					echo 'current';
-				else
-					echo 'first';
+		if ($current == 1)
+			echo 'current';
+		else
+			echo 'first';
 				?>">
-							<?php
+						<?php
 							if ($current == 1) {
 								echo '1';
 							} else {
@@ -2024,7 +2020,7 @@ function next_image($all = false, $firstPageCount = NULL, $sorttype = null, $sor
 		if (gettype($sorttype) == 'boolean' && func_num_args() == 3) {
 			$mine = $sorttype;
 		} else {
-			//	These parameters are deprecated
+//	These parameters are deprecated
 			internal_deprecations::next_image();
 		}
 	}
@@ -3864,34 +3860,34 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 		<!-- search form -->
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<script type="text/javascript">
-		// <!-- <![CDATA[
-		var within = <?php echo (int) $within; ?>;
-		function search_(way) {
-			within = way;
-			if (way) {
-				$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+			// <!-- <![CDATA[
+			var within = <?php echo (int) $within; ?>;
+			function search_(way) {
+				within = way;
+				if (way) {
+					$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
 
-			} else {
-				lastsearch = '';
-				$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-			}
-			$('#search_input').val('');
-		}
-		$('#search_form').submit(function() {
-			if (within) {
-				var newsearch = $.trim($('#search_input').val());
-				if (newsearch.substring(newsearch.length - 1) == ',') {
-					newsearch = newsearch.substr(0, newsearch.length - 1);
-				}
-				if (newsearch.length > 0) {
-					$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
 				} else {
-					$('#search_input').val('<?php echo $searchwords; ?>');
+					lastsearch = '';
+					$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
 				}
+				$('#search_input').val('');
 			}
-			return true;
-		});
-		// ]]> -->
+			$('#search_form').submit(function() {
+				if (within) {
+					var newsearch = $.trim($('#search_input').val());
+					if (newsearch.substring(newsearch.length - 1) == ',') {
+						newsearch = newsearch.substr(0, newsearch.length - 1);
+					}
+					if (newsearch.length > 0) {
+						$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+					} else {
+						$('#search_input').val('<?php echo $searchwords; ?>');
+					}
+				}
+				return true;
+			});
+			// ]]> -->
 			</script>
 			<?php echo $prevtext; ?>
 			<div>
@@ -3905,10 +3901,10 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 					foreach ($object_list as $key => $list) {
 						?>
 						<input type="hidden" name="in<?php echo $key ?>" value="<?php
-						if (is_array($list))
-							echo html_encode(implode(',', $list));
-						else
-							echo html_encode($list);
+			if (is_array($list))
+				echo html_encode(implode(',', $list));
+			else
+				echo html_encode($list);
 						?>" />
 									 <?php
 								 }

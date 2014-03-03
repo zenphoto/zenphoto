@@ -120,11 +120,7 @@ if (function_exists("printUserLogin_out") || !zp_loggedin() && function_exists('
 				<?php
 			}
 			if (function_exists('printFavoritesURL')) {
-				?>
-				<li>
-					<?php printFavoritesURL(); ?>
-				</li>
-				<?php
+				printFavoritesURL(NULL, '<li>', '</li><li>', '</li>');
 			}
 			if (function_exists("printUserLogin_out")) {
 				?>

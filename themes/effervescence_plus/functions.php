@@ -389,8 +389,7 @@ function printFooter($admin = true) {
 		<br />
 		<?php
 		if (function_exists('printFavoritesURL') && $_zp_gallery_page != 'password.php' && $_zp_gallery_page != 'favorites.php') {
-			printFavoritesURL();
-			echo '<br />';
+			printFavoritesURL(NULL, '', ' | ', '<br />');
 		}
 		?>
 		<?php

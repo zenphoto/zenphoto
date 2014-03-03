@@ -100,7 +100,10 @@ function jqm_printFooterNav() {
 			$adminlink = '<li><a rel="external" href="' . html_encode($protocol . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . '/' . ZENFOLDER) . '/admin.php">' . gettext('Admin') . '</a></li>';
 		}
 		if (function_exists('printFavoritesURL')) {
-			$favoriteslink = '<li><a href="' . FULLWEBPATH . '/' . getFavoritesURL() . '">' . gettext("Favorites") . '</a></li>';
+			ob_start();
+			printFavoritesURL(NULL, '<li>', '</li><li>', '</li>');
+			$favoriteslink = ob_get_contents();
+			ob_end_clean();
 		}
 		if ($adminlink || $favoriteslink) {
 			?>

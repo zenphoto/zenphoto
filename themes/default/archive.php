@@ -1,7 +1,8 @@
 <?php
 // force UTF-8 Ø
 
-if (!defined('WEBPATH')) die();
+if (!defined('WEBPATH'))
+	die();
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,16 +11,18 @@ if (!defined('WEBPATH')) die();
 		<?php printHeadTitle(); ?>
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 		<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
-		<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/default/common.css" type="text/css" />
+		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . THEMEFOLDER; ?>/default/common.css" type="text/css" />
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
 	</head>
 	<body>
 		<?php zp_apply_filter('theme_body_open'); ?>
 		<div id="main">
 			<div id="gallerytitle">
-				<?php if (getOption('Allow_search')) {
+				<?php
+				if (getOption('Allow_search')) {
 					printSearchForm();
-				} ?>
+				}
+				?>
 				<h2>
 					<span>
 						<?php printHomeLink('', ' | '); ?>
@@ -37,15 +40,14 @@ if (!defined('WEBPATH')) die();
 			</div>
 		</div>
 		<div id="credit">
-			<?php if (class_exists('RSS')) printRSSLink('Gallery', '', 'RSS', ' | '); ?>
 			<?php
 			if (function_exists('printFavoritesURL')) {
-				printFavoritesURL();
-				?> | <?php
+				printFavoritesURL(NULL, '', ' | ', '<br />');
 			}
 			?>
+			<?php if (class_exists('RSS')) printRSSLink('Gallery', '', 'RSS', ' | '); ?>
 			<?php printZenphotoLink(); ?>
-			<?php @call_user_func('printUserLogin_out'," | "); ?>
+			<?php @call_user_func('printUserLogin_out', " | "); ?>
 		</div>
 		<?php
 		zp_apply_filter('theme_body_close');

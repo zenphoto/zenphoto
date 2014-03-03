@@ -111,14 +111,13 @@ if (!defined('WEBPATH'))
 			</div>
 		</div>
 		<div id="credit">
-			<?php if (class_exists('RSS')) printRSSLink('Gallery', '', 'RSS', ' | '); ?>
-			<?php printCustomPageURL(gettext("Archive View"), "archive"); ?> |
 			<?php
 			if (function_exists('printFavoritesURL')) {
-				printFavoritesURL();
-				?> | <?php
+				printFavoritesURL(NULL, '', ' | ', '<br />');
 			}
 			?>
+			<?php if (class_exists('RSS')) printRSSLink('Gallery', '', 'RSS', ' | '); ?>
+			<?php printCustomPageURL(gettext("Archive View"), "archive"); ?> |
 			<?php printZenphotoLink(); ?>
 			<?php @call_user_func('printUserLogin_out', " | "); ?>
 		</div>

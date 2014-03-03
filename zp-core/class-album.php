@@ -9,6 +9,8 @@
 define('IMAGE_SORT_DIRECTION', getOption('image_sortdirection'));
 define('IMAGE_SORT_TYPE', getOption('image_sorttype'));
 
+$_zp_albumHandlers = array('alb' => 'dynamicAlbum');
+
 /**
  * Wrapper instantiation function for albums. Do not instantiate directly
  * @param string $folder8 the name of the folder (inernal character set)
@@ -17,11 +19,11 @@ define('IMAGE_SORT_TYPE', getOption('image_sorttype'));
  * @return Album
  */
 function newAlbum($folder8, $cache = true, $quiet = false) {
-	switch (getSuffix($folder8)) {
-		case 'alb':
-			return new dynamicAlbum($folder8, $cache, $quiet);
-		default:
-			return new Album($folder8, $cache, $quiet);
+	global $_zp_albumHandlers;
+	if (($suffix = getSuffix($folder8)) && array_key_exists($suffix, $_zp_albumHandlers)) {
+		return new $_zp_albumHandlers[$suffix]($folder8, $cache, $quiet);
+	} else {
+		return new Album($folder8, $cache, $quiet);
 	}
 }
 
@@ -745,7 +747,6 @@ class AlbumBase extends MediaObject {
 	 * Owner functions
 	 */
 	function getOwner() {
-		global $_zp_authority;
 		$owner = $this->get('owner');
 		return $owner;
 	}

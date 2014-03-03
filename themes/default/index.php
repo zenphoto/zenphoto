@@ -50,6 +50,11 @@ if (!defined('WEBPATH'))
 			</div>
 		</div>
 		<div id="credit">
+			<?php
+			if (function_exists('printFavoritesURL')) {
+				printFavoritesURL(NULL, '', ' | ', '<br />');
+			}
+			?>
 			<?php @call_user_func('printUserLogin_out', '', ' | '); ?>
 			<?php if (class_exists('RSS')) printRSSLink('Gallery', '', 'RSS', ' | '); ?>
 			<?php printCustomPageURL(gettext("Archive View"), "archive"); ?> |
@@ -61,12 +66,6 @@ if (!defined('WEBPATH'))
 			<?php
 			if (!zp_loggedin() && function_exists('printRegisterURL')) {
 				printRegisterURL(gettext('Register for this site'), '', ' | ');
-			}
-			?>
-			<?php
-			if (function_exists('printFavoritesURL')) {
-				printFavoritesURL();
-				?> | <?php
 			}
 			?>
 			<?php printZenphotoLink(); ?>
