@@ -20,13 +20,13 @@ $plugin_disable = (MOD_REWRITE) ? '' : gettext('Shortened URLs require the <code
 
 $option_interface = 'tinyURL';
 
+if (getOption('tinyURL_agressive'))
+	zp_register_filter('getLink', 'tinyURL::getTinyURL');
 
 switch (OFFSET_PATH) {
 	case 0:
 		if (!$plugin_disable) {
 			zp_register_filter('load_request', 'tinyURL::parse');
-			if (getOption('tinyURL_agressive'))
-				zp_register_filter('getLink', 'tinyURL::getTinyURL');
 		}
 		break;
 	case 2:

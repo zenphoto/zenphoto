@@ -1036,7 +1036,9 @@ echo "\n</head>";
 																<?php
 															}
 															?>
-															<p class="buttons"><a href="<?php echo $image->getLink(); ?>"><img src="images/view.png" alt="" /><strong><?php echo gettext('View'); ?></strong></a></p><br style="clear: both" />
+															<p class="buttons">
+																<a href="<?php echo $image->getLink(); ?>"><img src="images/view.png" alt="" /><strong><?php echo gettext('View'); ?></strong></a>
+															</p><br style="clear: both" />
 															<p>
 																<?php echo gettext('<strong>Filename:</strong>'); ?>
 																<br />
@@ -1188,7 +1190,7 @@ echo "\n</head>";
 																<label class="checkboxlabel">
 																	<input type="radio" id="Delete-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="delete"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');
-																						 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo gettext("Are you sure you want to select this image for deletion?"); ?>')" /> <?php echo gettext("Delete image") ?>
+																										 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo gettext("Are you sure you want to select this image for deletion?"); ?>')" /> <?php echo gettext("Delete image") ?>
 																</label>
 																<br class="clearall" />
 																<div id="movecopydiv-<?php echo $currentimage; ?>" style="padding-top: .5em; padding-left: .5em; display: none;">

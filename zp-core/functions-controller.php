@@ -16,25 +16,29 @@
 function zpRewriteURL($query) {
 	$redirectURL = '';
 	if (isset($query['p'])) {
+		sanitize($query);
 		switch ($query['p']) {
 			case 'news':
 				$redirectURL = _NEWS_;
 				if (isset($query['category'])) {
-					$redirectURL = _CATEGORY_;
+					$obj = new ZenpageCategory($query['category']);
+					$redirectURL = $obj->getLink();
 					unset($query['category']);
 				} else if (isset($query['date'])) {
 					$redirectURL = _NEWS_ARCHIVE_ . '/' . $query['date'];
 					unset($query['date']);
 				}
 				if (isset($query['title'])) {
-					$redirectURL .='/' . $query['title'];
+					$obj = new ZenpageNews($query['title']);
+					$redirectURL = $obj->getLink();
 					unset($query['title']);
 				}
 				break;
 			case 'pages':
 				$redirectURL = _PAGES_;
 				if (isset($query['title'])) {
-					$redirectURL .='/' . $query['title'];
+					$obj = new ZenpagePage($query['title']);
+					$redirectURL = $obj->getLink();
 					unset($query['title']);
 				}
 				break;
@@ -53,10 +57,11 @@ function zpRewriteURL($query) {
 				}
 				break;
 			default:
-				$redirectURL = _PAGE_ . '/' . $query['p'];
+				$redirectURL = getCustomPageURL($query['p']);
 				break;
 		}
 		unset($query['p']);
+		$redirectURL = preg_replace('~^' . WEBPATH . '/~', '', $redirectURL);
 		if (isset($query['page'])) {
 			$redirectURL.='/' . $query['page'];
 			unset($query['page']);
@@ -65,15 +70,17 @@ function zpRewriteURL($query) {
 		if ($q)
 			$redirectURL.='?' . $q;
 	} else if (isset($query['album'])) {
-		$redirectURL = $query['album'];
-		if (hasDynamicAlbumSuffix($redirectURL)) {
-			if (!file_exists(ALBUM_FOLDER_SERVERPATH . '/' . stripSuffix($redirectURL))) {
-				$redirectURL = stripSuffix($redirectURL);
-			}
-		}
 		if (isset($query['image'])) {
-			$redirectURL .= '/' . $query['image'] . IM_SUFFIX;
+			$obj = newImage(NULL, array('folder' => $query['album'], 'filename' => $query['image']));
+			unset($query['image']);
+		} else {
+			$obj = newAlbum($query['album']);
 		}
+		unset($query['album']);
+		$redirectURL = preg_replace('~^' . WEBPATH . '/~', '', $obj->getLink());
+		$q = http_build_query($query);
+		if ($q)
+			$redirectURL.='?' . $q;
 	}
 	return $redirectURL;
 }
