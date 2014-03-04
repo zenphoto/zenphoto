@@ -1016,7 +1016,7 @@ function rewrite_path($rewrite, $plain, $webpath = NULL) {
 			$webpath = WEBPATH;
 		}
 	}
-	if (MOD_REWRITE) {
+	if (MOD_REWRITE && !OFFSET_PATH) { //	apply only on front end
 		$path = $rewrite;
 	} else {
 		$path = $plain;
