@@ -53,14 +53,17 @@ class deprecated_functions {
 			$deprecated = stripSuffix($plugin) . '/deprecated-functions.php';
 			if (file_exists($deprecated)) {
 				$plugin = basename(dirname($deprecated));
-				if ($plugin == 'deprecated-functions')
+				if ($plugin == 'deprecated-functions') {
 					$plugin = '';
+				} else {
+					$plugin .= '::';
+				}
 				$content = file_get_contents($deprecated);
 				preg_match_all('~@deprecated\s+.*since\s+.*(\d+\.\d+\.\d+)~', $content, $versions);
 				preg_match_all('/([public static|static]*)\s*function\s+(.*)\s?\(.*\)\s?\{/', $content, $functions);
 				foreach ($functions[2] as $key => $function) {
-					setOptionDefault('deprecated_' . $plugin . '_' . $functions[1][$key] . '_' . $function, 1);
-					$this->unique_functions[strtolower($function)] = $this->listed_functions[$plugin . '::' . $function] = array('plugin' => $plugin, 'function' => $function, 'class' => trim($functions[1][$key]), 'since' => @$versions[1][$key], 'multiple' => array_key_exists($function, $this->unique_functions));
+					setOptionDefault('deprecated_' . $key, 1);
+					$this->unique_functions[strtolower($function)] = $this->listed_functions[$plugin . $function] = array('plugin' => $plugin, 'function' => $function, 'class' => trim($functions[1][$key]), 'since' => @$versions[1][$key], 'multiple' => array_key_exists($function, $this->unique_functions));
 				}
 			}
 		}
@@ -83,8 +86,9 @@ class deprecated_functions {
 			if ($since = $details['since'])
 				$since = ' (' . $since . ')';
 
-			$list[$funct . $class . $since] = 'deprecated_' . $details['plugin'] . '_' . $details['class'] . '_' . $funct;
+			$list[$funct] = 'deprecated_' . str_replace('::', '_', $funct);
 		}
+
 		$options[gettext('Functions')] = array('key'				 => 'deprecated_Function_list', 'type'			 => OPTION_TYPE_CHECKBOX_UL,
 						'checkboxes' => $list,
 						'order'			 => 1,
