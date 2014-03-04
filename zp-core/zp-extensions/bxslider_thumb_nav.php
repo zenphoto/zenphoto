@@ -131,11 +131,13 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->ge
 			} else {
 				$minitems = sanitize_numeric($minitems);
 			}
+			$minitems = max(1, (int) $minitems);
 			if (is_null($maxitems)) {
 				$maxitems = getOption('bxslider_maxitems');
 			} else {
 				$maxitems = sanitize_numeric($maxitems);
 			}
+			$maxitems = max(1, (int) $maxitems);
 			if (is_null($width)) {
 				$width = getOption('bxslider_width');
 			} else {
