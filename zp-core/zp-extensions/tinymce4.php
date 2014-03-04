@@ -109,7 +109,9 @@ function getTinyMCE4ConfigFiles($mode) {
 	foreach ($files as $file) {
 		$filename = strrchr($file, '/');
 		$filename = substr($filename, 1);
-		$array[ucfirst(substr($filename, 0, strpos($filename, '.js.php')))] = $filename;
+		$option = preg_replace('/^' . $mode . '-/', '', $filename);
+		$option = ucfirst(preg_replace('/.js.php$/', '', $option));
+		$array[$option] = $filename;
 	}
 	return $array;
 }

@@ -33,7 +33,7 @@ if (OFFSET_PATH) {
 	if (getOption('comment_form_pagination')) {
 		zp_register_filter('theme_head', 'comment_form_PaginationJS');
 	}
-	if (getOption('tinymce_comments')) {
+	if (getOption('tinymce4_comments')) {
 		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tinymce4.php');
 		zp_register_filter('theme_head', 'comment_form_visualEditor');
 	}
