@@ -13,7 +13,7 @@ require_once(dirname(__FILE__) . '/functions.php');
 
 class ThemeOptions {
 
-	function _construct() {
+	function __construct() {
 		setThemeOptionDefault('Allow_search', true);
 		setThemeOptionDefault('Theme_colors', 'light');
 		setThemeOptionDefault('albums_per_page', 6);
@@ -33,12 +33,15 @@ class ThemeOptions {
 		if (class_exists('cacheManager')) {
 			$me = basename(dirname(__FILE__));
 			cacheManager::deleteThemeCacheSizes($me);
-			cacheManager::addThemeCacheSize($me, getThemeOption('image_size'), NULL, NULL, NULL, NULL, NULL, NULL, false, getOption('fullimage_watermark'), NULL, NULL);
-			cacheManager::addThemeCacheSize($me, getThemeOption('thumb_size'), NULL, NULL, getThemeOption('thumb_crop_width'), getThemeOption('thumb_crop_height'), NULL, NULL, true, getOption('Image_watermark'), NULL, NULL);
+			cacheManager::addThemeCacheSize($me, getThemeOption('image_size'), NULL, NULL, NULL, NULL, NULL, NULL, false, NULL, NULL, NULL);
+			cacheManager::addThemeCacheSize($me, getThemeOption('thumb_size'), NULL, NULL, getThemeOption('thumb_crop_width'), getThemeOption('thumb_crop_height'), NULL, NULL, true, NULL, NULL, NULL);
 		}
 	}
 
 	function getOptionsSupported() {
+
+		zp_error('default getOptionsSupported');
+
 		return array(gettext('Allow search')	 => array('key' => 'Allow_search', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Check to enable search form.')),
 						gettext('Theme colors')	 => array('key' => 'Theme_colors', 'type' => OPTION_TYPE_CUSTOM, 'desc' => gettext('Select the colors of the theme'))
 		);

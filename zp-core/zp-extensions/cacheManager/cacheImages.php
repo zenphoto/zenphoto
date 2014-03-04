@@ -39,7 +39,6 @@ function loadAlbum($album) {
 	}
 	loadLocalOptions($id, $theme);
 	$_zp_current_album = $album;
-
 	if ($album->getNumImages() > 0) {
 		echo "<br />" . $album->name . ' ';
 		while (next_image(true)) {
@@ -80,7 +79,16 @@ function loadAlbum($album) {
 							$cy = isset($cacheimage['crop_y']) ? $cacheimage['crop_y'] : NULL;
 						}
 						$effects = isset($cacheimage['gray']) ? $cacheimage['gray'] : NULL;
-						$passedWM = isset($cacheimage['wmk']) ? $cacheimage['wmk'] : NULL;
+						if (isset($cacheimage['wmk'])) {
+							$passedWM = $cacheimage['wmk'];
+						} else {
+							if ($thumbstandin) {
+								$passedWM = getWatermarkParam($_zp_current_image, WATERMARK_THUMB);
+							} else {
+								$passedWM = getWatermarkParam($_zp_current_image, WATERMARK_IMAGE);
+							}
+						}
+
 						if (isset($cacheimage['maxspace'])) {
 							getMaxSpaceContainer($width, $height, $_zp_current_image, $thumbstandin);
 						}
@@ -112,7 +120,8 @@ function loadAlbum($album) {
 			}
 		}
 		if ($count)
-			echo ' } ';
+			echo '
+						} ';
 		printf(ngettext('[%u image]', '[%u images]', $count), $count);
 		echo "<br />\n";
 	}
@@ -139,12 +148,15 @@ if ($alb) {
 	}
 } else {
 	$object = '<em>' . gettext('Gallery') . '</em>';
-	$zenphoto_tabs['overview']['subtabs'] = array(gettext('Cache images')				 => PLUGIN_FOLDER . '/cacheManager/cacheImages.php?page=overview&amp;tab=images',
-					gettext('Cache stored images') => PLUGIN_FOLDER . '/cacheManager/cacheDBImages.php?page=overview&amp;tab=DB&amp;XSRFToken=' . getXSRFToken('cacheDBImages'));
+	$zenphoto_tabs['overview']['subtabs'] = array(gettext('Cache images')				 => PLUGIN_FOLDER . '/cacheManager/cacheImages.php?page = overview & amp;
+						tab = images',
+					gettext('Cache stored images') => PLUGIN_FOLDER . '/cacheManager/cacheDBImages.php?page = overview & amp;
+						tab = DB & amp;
+						XSRFToken = ' . getXSRFToken('cacheDBImages'));
 }
 $custom = array();
 
-$result = query('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="cacheManager" ORDER BY `aux`');
+$result = query('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type` = "cacheManager" ORDER BY `aux`');
 while ($row = db_fetch_assoc($result)) {
 	$row = getSerializedArray($row['data']);
 	$custom[] = $row;
@@ -153,7 +165,7 @@ $custom = sortMultiArray($custom, array('theme', 'thumb', 'image_size', 'image_w
 
 if (isset($_GET['select'])) {
 	XSRFdefender('cacheImages');
-	$enabled = $_POST['enable'];
+	$enabled = @$_POST['enable'];
 } else {
 	$enabled = false;
 }
@@ -163,9 +175,9 @@ echo "\n</head>";
 echo "\n<body>";
 
 printLogoAndLinks();
-echo "\n" . '<div id="main">';
+echo "\n" . '<div id = "main">';
 printTabs();
-echo "\n" . '<div id="content">';
+echo "\n" . '<div id = "content">';
 ?>
 <?php printSubtabs(); ?>
 <div class="tabbox">
@@ -177,7 +189,7 @@ echo "\n" . '<div id="content">';
 	$count = 0;
 
 	if ($alb) {
-		$r = '/admin-edit.php?page=edit&album=' . $alb;
+		$r = '/admin-edit.php?page = edit&album = ' . $alb;
 		echo "\n<h2>" . $clear . "</h2>";
 	} else {
 		$r = '/admin.php';
@@ -201,7 +213,8 @@ echo "\n" . '<div id="content">';
 			html = $('#' + theme + '_arrow').html();
 			if (html.match(/down/)) {
 				html = html.replace(/_down/, '_up');
-				html = html.replace(/title="<?php echo gettext('Show'); ?>/, 'title="<?php echo gettext('Hide'); ?>"');
+				html = html.replace(/title = "<?php echo gettext('Show'); ?>/, 'title="<?php echo gettext('Hide');
+	?>"');
 				$('#' + theme + '_list').show();
 			} else {
 				html = html.replace(/_up/, '_down');
@@ -218,6 +231,7 @@ echo "\n" . '<div id="content">';
 			<?php
 			if (getOption('cache_full_image') && (!is_array($enabled) || in_array('*', $enabled))) {
 				if (is_array($enabled)) {
+					unset($enabled[array_search('*', $enabled)]);
 					$checked = ' checked="checked" disabled="disabled"';
 				} else {
 					$checked = '';

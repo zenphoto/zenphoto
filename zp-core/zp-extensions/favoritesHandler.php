@@ -515,7 +515,7 @@ class favorites extends AlbumBase {
 	}
 
 	static function toolbox($zf) {
-		printFavoritesURL(NULL, '<li>', '</li><li>', '</li>');
+		printFavoritesURL(gettext('Favorites'), '<li>', '</li><li>', '</li>');
 	}
 
 	function getLink($page = NULL, $instance = NULL) {
