@@ -94,12 +94,6 @@ class colorbox {
 		$css = getPlugin($themepath, $inTheme, true);
 		?>
 		<link rel="stylesheet" href="<?php echo $css; ?>" type="text/css" />
-		<?php
-		$navigator_user_agent = ( isset($_SERVER['HTTP_USER_AGENT']) ) ? strtolower($_SERVER['HTTP_USER_AGENT']) : '';
-		if (preg_match('/msie\s[1-8]\./i', $navigator_user_agent)) {
-			include(dirname(__FILE__) . '/colorbox_js/colorbox_ie.css.php');
-		}
-		?>
 		<script type="text/javascript" src="<?php echo FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/colorbox_js/jquery.colorbox-min.js"></script>
 		<script>
 			/* Colorbox resize function */

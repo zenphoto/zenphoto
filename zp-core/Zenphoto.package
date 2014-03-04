@@ -911,7 +911,6 @@ zp-core/zp-extensions/cloneZenphoto/clone.php
 zp-core/zp-extensions/cloneZenphoto/cloneTab.php
 zp-core/zp-extensions/colorbox_js
 zp-core/zp-extensions/colorbox_js.php
-zp-core/zp-extensions/colorbox_js/colorbox_ie.css.php
 zp-core/zp-extensions/colorbox_js/i18n
 zp-core/zp-extensions/colorbox_js/i18n/jquery.colorbox-ar.js
 zp-core/zp-extensions/colorbox_js/i18n/jquery.colorbox-bg.js
@@ -956,15 +955,6 @@ zp-core/zp-extensions/colorbox_js/themes/example1/colorbox.css
 zp-core/zp-extensions/colorbox_js/themes/example1/images
 zp-core/zp-extensions/colorbox_js/themes/example1/images/border.png
 zp-core/zp-extensions/colorbox_js/themes/example1/images/controls.png
-zp-core/zp-extensions/colorbox_js/themes/example1/images/ie6
-zp-core/zp-extensions/colorbox_js/themes/example1/images/ie6/borderBottomCenter.png
-zp-core/zp-extensions/colorbox_js/themes/example1/images/ie6/borderBottomLeft.png
-zp-core/zp-extensions/colorbox_js/themes/example1/images/ie6/borderBottomRight.png
-zp-core/zp-extensions/colorbox_js/themes/example1/images/ie6/borderMiddleLeft.png
-zp-core/zp-extensions/colorbox_js/themes/example1/images/ie6/borderMiddleRight.png
-zp-core/zp-extensions/colorbox_js/themes/example1/images/ie6/borderTopCenter.png
-zp-core/zp-extensions/colorbox_js/themes/example1/images/ie6/borderTopLeft.png
-zp-core/zp-extensions/colorbox_js/themes/example1/images/ie6/borderTopRight.png
 zp-core/zp-extensions/colorbox_js/themes/example1/images/loading.gif
 zp-core/zp-extensions/colorbox_js/themes/example1/images/loading_background.png
 zp-core/zp-extensions/colorbox_js/themes/example1/images/overlay.png
@@ -986,15 +976,6 @@ zp-core/zp-extensions/colorbox_js/themes/example4/colorbox.css
 zp-core/zp-extensions/colorbox_js/themes/example4/images
 zp-core/zp-extensions/colorbox_js/themes/example4/images/border1.png
 zp-core/zp-extensions/colorbox_js/themes/example4/images/border2.png
-zp-core/zp-extensions/colorbox_js/themes/example4/images/ie6
-zp-core/zp-extensions/colorbox_js/themes/example4/images/ie6/borderBottomCenter.png
-zp-core/zp-extensions/colorbox_js/themes/example4/images/ie6/borderBottomLeft.png
-zp-core/zp-extensions/colorbox_js/themes/example4/images/ie6/borderBottomRight.png
-zp-core/zp-extensions/colorbox_js/themes/example4/images/ie6/borderMiddleLeft.png
-zp-core/zp-extensions/colorbox_js/themes/example4/images/ie6/borderMiddleRight.png
-zp-core/zp-extensions/colorbox_js/themes/example4/images/ie6/borderTopCenter.png
-zp-core/zp-extensions/colorbox_js/themes/example4/images/ie6/borderTopLeft.png
-zp-core/zp-extensions/colorbox_js/themes/example4/images/ie6/borderTopRight.png
 zp-core/zp-extensions/colorbox_js/themes/example4/images/loading.gif
 zp-core/zp-extensions/colorbox_js/themes/example5
 zp-core/zp-extensions/colorbox_js/themes/example5.jpg
@@ -1695,4 +1676,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1697
+1678
