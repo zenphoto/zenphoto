@@ -51,8 +51,8 @@ var ZenpageDialog = {
 		var cssclass = '';
 		var albumname = '<?php if(isset($_GET["album"]))  { echo html_encode(sanitize($_GET["album"])); } else { $_GET["album"] = ""; } ?>';
 		var webpath = '<?php echo WEBPATH; ?>'
-		var modrewrite = '<?php echo MOD_REWRITE; ?>';
-		var modrewritesuffix = '<?php echo getOption("mod_rewrite_image_suffix"); ?>';
+		//var modrewrite = '<?php echo MOD_REWRITE; ?>';
+		//var modrewritesuffix = '<?php echo getOption("mod_rewrite_image_suffix"); ?>';
 		var plainimgtitle = imgtitle.replace(/'|\\'/g, "\\'");
 		var plainalbumtitle = albumtitle.replace(/'|\\'/g, "\\'");
 		var player = '';
@@ -122,11 +122,7 @@ var ZenpageDialog = {
 		}
 		// getting the link type checkbox values
 		if($('#imagelink').prop('checked')) {
-			if(modrewrite == '1') {
-				linkpart1 = '<a href=\''+webpath+'/'+albumname+'/'+imgname+modrewritesuffix+'\' title=\''+plainimgtitle+'\' class=\'zenpage_imagelink\'>';
-			} else {
-				linkpart1 = '<a href=\''+webpath+'/index.php?album='+albumname+'&amp;image='+imgname+'\' title=\''+plainimgtitle+'\' class=\'zenpage_imagelink\'>';
-			}
+			linkpart1 = '<a href=\''+webpath+'/index.php?album='+albumname+'&amp;image='+imgname+'\' title=\''+plainimgtitle+'\' class=\'zenpage_imagelink\'>';
 			linkpart2 = '</a>';
 		}
 		if($('#fullimagelink').prop('checked')) {
@@ -134,11 +130,7 @@ var ZenpageDialog = {
 				linkpart2 = '</a>';
 		}
 		if($('#albumlink').prop('checked')) {
-			if(modrewrite == '1') {
-				linkpart1 = '<a href=\''+webpath+'/'+albumname+'\' title=\''+plainalbumtitle+'\' class=\'zenpage_albumlink\'>';
-			} else {
-				linkpart1 = '<a href=\''+webpath+'/index.php?album='+albumname+'\' title=\''+plainalbumtitle+'\' class=\'zenpage_albumlink\'>';
-			}
+			linkpart1 = '<a href=\''+webpath+'/index.php?album='+albumname+'\' title=\''+plainalbumtitle+'\' class=\'zenpage_albumlink\'>';
 			linkpart2 = '</a>';
 		}
 		if($('#customlink').prop('checked')) {
@@ -198,26 +190,14 @@ var ZenpageDialog = {
 				}
 				break;
 			case 'pages':
-				if(modrewrite) {
-					imglink = '<a href=\''+webpath+'/'+imgurl+'\' title=\''+plainimgtitle+'\'>'+imgtitle+'</a>';
-				} else {
-					imglink = '<a href=\''+webpath+'/index.php?p=pages&amp;title='+imgname+'\' title=\''+plainimgtitle+'\'>'+imgtitle+'</a>';
-				}
+				imglink = '<a href=\''+webpath+'/index.php?p=pages&amp;title='+imgname+'\' title=\''+plainimgtitle+'\'>'+imgtitle+'</a>';
 				break;
 			case 'articles':
-				if(modrewrite) {
-					imglink = '<a href=\''+webpath+'/'+imgurl+'\' title=\''+plainimgtitle+'\'>'+imgtitle+'</a>';
-				} else {
-					imglink = '<a href=\''+webpath+'/index.php?p=news&amp;title='+imgname+'\' title=\''+plainimgtitle+'\'>'+imgtitle+'</a>';
-				}
+				imglink = '<a href=\''+webpath+'/index.php?p=news&amp;title='+imgname+'\' title=\''+plainimgtitle+'\'>'+imgtitle+'</a>';
 				break;
 			case 'categories':
-				if(modrewrite) {
-					imglink = '<a href=\''+webpath+'/'+imgurl+'\' title=\''+plainimgtitle+'\'>'+imgtitle+'</a>';
-				} else {
-					imglink = '<a href=\''+webpath+'/index.php?p=news&amp;category='+imgname+'\' title=\''+plainimgtitle+'\'>'+imgtitle+'</a>';
-				}
-			break;
+				imglink = '<a href=\''+webpath+'/index.php?p=news&amp;category='+imgname+'\' title=\''+plainimgtitle+'\'>'+imgtitle+'</a>';
+				break;
 		}
 		if(!stopincluding) {
 			tinyMCEPopup.execCommand('mceInsertContent', false, imglink);
