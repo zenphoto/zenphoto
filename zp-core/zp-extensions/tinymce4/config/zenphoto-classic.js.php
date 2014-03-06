@@ -24,9 +24,9 @@ if ($filehandler) {
 					plugins: [
 									"advlist autolink autosave link image lists charmap print preview hr anchor pagebreak spellchecker",
 									"searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-									"table contextmenu directionality emoticons template textcolor paste fullpage textcolor tinyzenpage"
+									"table contextmenu directionality emoticons template textcolor paste textcolor tinyzenpage"
 					],
-									toolbar1: "newdocument fullpage | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | styleselect formatselect fontselect fontsizeselect",
+									toolbar1: "newdocument | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | styleselect formatselect fontselect fontsizeselect",
 									toolbar2: "cut copy paste | searchreplace | bullist numlist | outdent indent blockquote | undo redo | link unlink anchor image media code | inserttime preview | forecolor backcolor",
 									toolbar3: "table | hr removeformat | subscript superscript | charmap emoticons | print fullscreen | ltr rtl | spellchecker | visualchars visualblocks nonbreaking template pagebreak restoredraft tinyzenpage",
 									menubar: false,
