@@ -55,6 +55,8 @@ if (isset($_REQUEST['album'])) {
 	$tab = 'overview';
 }
 $albumparm = $folder = $albumwhere = $imagewhere = $id = $r = '';
+$ret = '';
+$backurl = 'admin.php';
 if (isset($_REQUEST['return'])) {
 	$return = $_REQUEST['return'];
 	if ($return == '*') {
@@ -69,9 +71,6 @@ if (isset($_REQUEST['return'])) {
 		}
 		$backurl = 'admin-edit.php' . $r . '&amp;return=' . $star . html_encode(pathurlencode($ret));
 	}
-} else {
-	$ret = '';
-	$backurl = 'admin.php';
 }
 
 if (isset($_REQUEST['album'])) {
@@ -95,8 +94,9 @@ if (isset($_GET['refresh'])) {
 	if (empty($imageid)) {
 		$metaURL = $backurl;
 	} else {
-		if (!empty($ret))
+		if (!empty($ret)) {
 			$ret = '&amp;return=' . $ret;
+		}
 		$metaURL = $redirecturl = '?' . $type . 'refresh=continue&amp;id=' . $imageid . $albumparm . $ret . '&XSRFToken=' . getXSRFToken('refresh');
 	}
 } else {
