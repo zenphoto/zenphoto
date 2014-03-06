@@ -134,9 +134,21 @@ function getLatestNews($number = 2, $category = '', $sticky = true, $sortdirecti
 	global $_zp_zenpage, $_zp_current_zenpage_news;
 	//check if things are deprecated
 	$args = func_get_args();
-	if (count($args != 4)) {
+	$deprecated = array(
+					"none",
+					"with_latest_images",
+					"with_latest_images_date",
+					"with_latest_images_mtime",
+					"with_latest_images_publishdate",
+					"with_latest_albums",
+					"with_latest_albums_date",
+					"with_latest_albums_mtime",
+					"with_latest_albums_publishdate",
+					"with_latestupdated_albums");
+	if (in_array($category, $deprecated)) {
 		// there must be the old options parameter!
 		Zenpage_internal_deprecations::getLatestNews();
+		list($number, $category, $sticky, $sortdirection ) = array_merge($args, array(NULL, NULL, NULL, NULL, NULL));
 	}
 	$latest = array();
 	if (empty($category)) {
@@ -184,9 +196,21 @@ function printLatestNews($number = 5, $category = '', $showdate = true, $showcon
 	global $_zp_gallery, $_zp_current_zenpage_news;
 	//check if things are deprecated
 	$args = func_get_args();
-	if (count($args != 8)) {
+	$deprecated = array(
+					"none",
+					"with_latest_images",
+					"with_latest_images_date",
+					"with_latest_images_mtime",
+					"with_latest_images_publishdate",
+					"with_latest_albums",
+					"with_latest_albums_date",
+					"with_latest_albums_mtime",
+					"with_latest_albums_publishdate",
+					"with_latestupdated_albums");
+	if (in_array($category, $deprecated)) {
 		// there must be the old options parameter!
 		Zenpage_internal_deprecations::printLatestNews();
+		list($number, $option, $category, $showdate, $showcontent, $contentlength, $showcat, $readmore, $sticky) = array_merge($args, array(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL));
 	}
 
 	$latest = getLatestNews($number, $category, $sticky);

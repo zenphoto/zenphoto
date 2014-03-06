@@ -74,7 +74,8 @@ class deprecated_functions {
 					$option = 'deprecated_' . $plugin . '_' . $function . $flag;
 
 					setOptionDefault($option, 1);
-					$this->unique_functions[strtolower($function)] = $this->listed_functions[$name] = array('plugin'	 => $name,
+					$this->unique_functions[strtolower($function)] = $this->listed_functions[$name] = array(
+									'plugin'	 => $plugin,
 									'function' => $function,
 									'class'		 => trim($functions[1][$key]),
 									'since'		 => @$versions[1][$key],
@@ -120,11 +121,11 @@ class deprecated_functions {
 			$use = ' ' . $use;
 		//get the container folder
 		if (isset($traces[0]['file']) && isset($traces[0]['line'])) {
-			$script = basename($traces[0]['file']);
+			$script = basename(dirname($traces[0]['file']));
 		} else {
 			$script = 'unknown';
 		}
-		if ($script == 'deprecated-functions.php') {
+		if ($script == 'deprecated-functions') {
 			$plugin = 'core';
 		} else {
 			$plugin = $script;
