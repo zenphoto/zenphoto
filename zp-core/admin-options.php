@@ -1168,7 +1168,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											}
 										}
 										?>
-										<ul class="customchecklist">
+										<ul class="shortchecklist">
 											<?php generateUnorderedListFromArray($current, $list, 'gallery_page_unprotected_', false, true, true); ?>
 										</ul>
 									</td>

@@ -1525,20 +1525,20 @@ button.positive,.buttons a.positive {
 	height: 1%;
 }
 
-.customchecklist li {
-	background: none;
-	padding-left: 0;
-	text-align: left;
-}
-
 /* CSS for custom checklists */
 .customchecklist {
 	border: 1px solid #ccc;
 	list-style: none;
-	height: 8em;
+	height: 15em;
 	overflow: auto;
 	width: 20em;
 	background-color: white;
+}
+
+.customchecklist li {
+	background: none;
+	padding-left: 0;
+	text-align: left;
 }
 
 .customchecklist,.customchecklist li {

@@ -53,17 +53,33 @@ class deprecated_functions {
 			$deprecated = stripSuffix($plugin) . '/deprecated-functions.php';
 			if (file_exists($deprecated)) {
 				$plugin = basename(dirname($deprecated));
-				if ($plugin == 'deprecated-functions') {
-					$plugin = '';
-				} else {
-					$plugin .= '::';
-				}
 				$content = file_get_contents($deprecated);
 				preg_match_all('~@deprecated\s+.*since\s+.*(\d+\.\d+\.\d+)~', $content, $versions);
 				preg_match_all('/([public static|static]*)\s*function\s+(.*)\s?\(.*\)\s?\{/', $content, $functions);
+				if ($plugin == 'deprecated-functions') {
+					$plugin = 'core';
+					$suffix = '';
+				} else {
+					$suffix = ' (' . $plugin . ')';
+				}
 				foreach ($functions[2] as $key => $function) {
-					setOptionDefault('deprecated_' . $key, 1);
-					$this->unique_functions[strtolower($function)] = $this->listed_functions[$plugin . $function] = array('plugin' => $plugin, 'function' => $function, 'class' => trim($functions[1][$key]), 'since' => @$versions[1][$key], 'multiple' => array_key_exists($function, $this->unique_functions));
+
+					if ($functions[1][$key]) {
+						$flag = '_method';
+						$star = '*';
+					} else {
+						$star = $flag = '';
+					}
+					$name = $function . $star . $suffix;
+					$option = 'deprecated_' . $plugin . '_' . $function . $flag;
+
+					setOptionDefault($option, 1);
+					$this->unique_functions[strtolower($function)] = $this->listed_functions[$name] = array('plugin'	 => $name,
+									'function' => $function,
+									'class'		 => trim($functions[1][$key]),
+									'since'		 => @$versions[1][$key],
+									'option'	 => $option,
+									'multiple' => array_key_exists($function, $this->unique_functions));
 				}
 			}
 		}
@@ -72,21 +88,7 @@ class deprecated_functions {
 	function getOptionsSupported() {
 		$options = $deorecated = $list = array();
 		foreach ($this->listed_functions as $funct => $details) {
-			switch ($details['class']) {
-				case 'static':
-					$class = '*';
-					break;
-				case 'public static':
-					$class = '**';
-					break;
-				default:
-					$class = '';
-					break;
-			}
-			if ($since = $details['since'])
-				$since = ' (' . $since . ')';
-
-			$list[$funct] = 'deprecated_' . str_replace('::', '_', $funct);
+			$list[$funct] = $details['option'];
 		}
 
 		$options[gettext('Functions')] = array('key'				 => 'deprecated_Function_list', 'type'			 => OPTION_TYPE_CHECKBOX_UL,
@@ -112,18 +114,35 @@ class deprecated_functions {
 	static function notify($use) {
 		$traces = @debug_backtrace();
 		$fcn = $traces[1]['function'];
+		if (empty($fcn))
+			$fcn = gettext('function');
+		if (!empty($use))
+			$use = ' ' . $use;
+		//get the container folder
+		if (isset($traces[0]['file']) && isset($traces[0]['line'])) {
+			$script = basename($traces[0]['file']);
+		} else {
+			$script = 'unknown';
+		}
+		if ($script == 'deprecated-functions.php') {
+			$plugin = 'core';
+		} else {
+			$plugin = $script;
+		}
+		if (isset($traces[1]['file']) && isset($traces[1]['line'])) {
+			$script = basename($traces[1]['file']);
+			$line = $traces[1]['line'];
+		} else {
+			$script = $line = gettext('unknown');
+		}
 
-		if (empty($fcn) || getOption('deprecated_' . $fcn)) {
-			if (empty($fcn))
-				$fcn = gettext('function');
-			if (!empty($use))
-				$use = ' ' . $use;
-			if (isset($traces[1]['file']) && isset($traces[1]['line'])) {
-				$script = basename($traces[1]['file']);
-				$line = $traces[1]['line'];
-			} else {
-				$script = $line = gettext('unknown');
-			}
+		if (@$traces[1]['class']) {
+			$flag = '_method';
+		} else {
+			$flag = '';
+		}
+		$option = 'deprecated_' . $plugin . '_' . $fcn . $flag;
+		if (($fcn == 'function') || getOption($option)) {
 			trigger_error(sprintf(gettext('%1$s (called from %2$s line %3$s) is deprecated'), $fcn, $script, $line) . $use . ' ' . sprintf(gettext('You can disable this error message by going to the <em>deprecated-functions</em> plugin options and un-checking <strong>%s</strong> in the list of functions.' . '<br />'), $fcn), E_USER_WARNING);
 		}
 	}
