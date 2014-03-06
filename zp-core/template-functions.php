@@ -579,29 +579,23 @@ function getCurrentTheme() {
  * Returns true if there are albums, false if none
  *
  * @param bool $all true to go through all the albums
- * @param string $sorttype overrides default sort type
- * @param string $sortdirection overrides default sort direction
  * @param bool $mine override the password checks
  * @return bool
  * @since 0.6
  */
-function next_album($all = false, $sorttype = NULL, $sortdirection = NULL, $mine = NULL) {
+function next_album($all = false, $mine = false) {
 	global $_zp_albums, $_zp_gallery, $_zp_current_album, $_zp_page, $_zp_current_album_restore, $_zp_current_search;
-	if (!is_null($sorttype) || !is_null($sortdirection)) {
-		if (gettype($sorttype) == 'boolean' && func_num_args() == 2) {
-			$mine = $sorttype;
-		} else {
-//	These parameters are deprecated
-			internal_deprecations::next_album();
-		}
+	if (gettype($mine) != 'boolean' || func_num_args() > 2) {
+		internal_deprecations::next_album();
 	}
+
 	if (is_null($_zp_albums)) {
 		if (in_context(ZP_SEARCH)) {
-			$_zp_albums = $_zp_current_search->getAlbums($all ? 0 : $_zp_page, $sorttype, $sortdirection, true, $mine);
+			$_zp_albums = $_zp_current_search->getAlbums($all ? 0 : $_zp_page, NULL, NULL, true, $mine);
 		} else if (in_context(ZP_ALBUM)) {
-			$_zp_albums = $_zp_current_album->getAlbums($all ? 0 : $_zp_page, $sorttype, $sortdirection, true, $mine);
+			$_zp_albums = $_zp_current_album->getAlbums($all ? 0 : $_zp_page, NULL, NULL, true, $mine);
 		} else {
-			$_zp_albums = $_zp_gallery->getAlbums($all ? 0 : $_zp_page, $sorttype, $sortdirection, true, $mine);
+			$_zp_albums = $_zp_gallery->getAlbums($all ? 0 : $_zp_page, NULL, NULL, true, $mine);
 		}
 		if (empty($_zp_albums)) {
 			return NULL;
@@ -954,12 +948,12 @@ function printPageListWithNav($prevtext, $nexttext, $_oneImagePage = false, $nex
 			if ($firstlast) {
 				?>
 				<li class="<?php
-		if ($current == 1)
-			echo 'current';
-		else
-			echo 'first';
+				if ($current == 1)
+					echo 'current';
+				else
+					echo 'first';
 				?>">
-						<?php
+							<?php
 							if ($current == 1) {
 								echo '1';
 							} else {
@@ -2007,23 +2001,17 @@ function getTotalImagesIn($album) {
  * @param bool $all set to true disable pagination
  * @param int $firstPageCount the number of images which can go on the page that transitions between albums and images
  * 							Normally this parameter should be NULL so as to use the default computations.
- * @param string $sorttype overrides the default sort type
- * @param string $sortdirection overrides the default sort direction.
  * @param bool $mine overridePassword the password check
  * @return bool
  *
  * @return bool
  */
-function next_image($all = false, $firstPageCount = NULL, $sorttype = null, $sortdirection = NULL, $mine = NULL) {
+function next_image($all = false, $firstPageCount = NULL, $mine = false) {
 	global $_zp_images, $_zp_current_image, $_zp_current_album, $_zp_page, $_zp_current_image_restore, $_zp_current_search, $_zp_gallery, $_firstPageImages;
-	if (!is_null($sorttype) || !is_null($sortdirection)) {
-		if (gettype($sorttype) == 'boolean' && func_num_args() == 3) {
-			$mine = $sorttype;
-		} else {
-//	These parameters are deprecated
-			internal_deprecations::next_image();
-		}
+	if (gettype($mine) != 'boolean' || func_num_args() > 3) {
+		internal_deprecations::next_image();
 	}
+
 	if (is_null($firstPageCount)) {
 		$firstPageCount = $_firstPageImages;
 	}
@@ -2043,9 +2031,9 @@ function next_image($all = false, $firstPageCount = NULL, $sorttype = null, $sor
 	}
 	if (is_null($_zp_images)) {
 		if (in_context(ZP_SEARCH)) {
-			$_zp_images = $_zp_current_search->getImages($all ? 0 : ($imagePage), $firstPageCount, $sorttype, $sortdirection, true, $mine);
+			$_zp_images = $_zp_current_search->getImages($all ? 0 : ($imagePage), $firstPageCount, NULL, NULL, true, $mine);
 		} else {
-			$_zp_images = $_zp_current_album->getImages($all ? 0 : ($imagePage), $firstPageCount, $sorttype, $sortdirection, true, $mine);
+			$_zp_images = $_zp_current_album->getImages($all ? 0 : ($imagePage), $firstPageCount, NULL, NULL, true, $mine);
 		}
 		if (empty($_zp_images)) {
 			return NULL;
@@ -3901,10 +3889,10 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 					foreach ($object_list as $key => $list) {
 						?>
 						<input type="hidden" name="in<?php echo $key ?>" value="<?php
-			if (is_array($list))
-				echo html_encode(implode(',', $list));
-			else
-				echo html_encode($list);
+						if (is_array($list))
+							echo html_encode(implode(',', $list));
+						else
+							echo html_encode($list);
 						?>" />
 									 <?php
 								 }

@@ -318,18 +318,11 @@ function getNumNews($total = false) {
  * NOTE: If you set the sortorder and sortdirection parameters you also have to set the same ones
  * on the next/prevNewsLink/URL functions for the single news article pagination!
  *
- * @param string $sortorder "date" for sorting by date (default)
- * 													"title" for sorting by title
- * 													This parameter is not used for date archives and CombiNews mode.
- * @param string $sortdirection "desc" (default) for descending sort order
- * 													    "asc" for ascending sort order
- * 											        This parameter is not used for date archives and CombiNews mode
- *
  * @return bool
  */
-function next_news($sortorder = NULL, $sortdirection = NULL) {
+function next_news() {
 	global $_zp_zenpage, $_zp_current_zenpage_news, $_zp_current_zenpage_news_restore, $_zp_zenpage_articles, $_zp_current_category, $_zp_gallery, $_zp_current_search;
-	if (!is_null($sortorder) || !is_null($sortdirection)) {
+	if (func_num_args() != 0) {
 		//	These parameters are deprecated
 		Zenpage_internal_deprecations::next_news();
 	}
@@ -338,12 +331,12 @@ function next_news($sortorder = NULL, $sortdirection = NULL) {
 	if (is_null($_zp_zenpage_articles)) {
 		if (in_context(ZP_SEARCH)) {
 			//note: we do not know how to paginate the search page, so for now we will return all news articles
-			$_zp_zenpage_articles = $_zp_current_search->getArticles(ZP_ARTICLES_PER_PAGE, NULL, true, $sortorder, $sortdirection);
+			$_zp_zenpage_articles = $_zp_current_search->getArticles(ZP_ARTICLES_PER_PAGE, NULL, true, NULL, NULL);
 		} else {
 			if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
-				$_zp_zenpage_articles = $_zp_current_category->getArticles(ZP_ARTICLES_PER_PAGE, NULL, false, $sortorder, $sortdirection);
+				$_zp_zenpage_articles = $_zp_current_category->getArticles(ZP_ARTICLES_PER_PAGE, NULL, false, NULL, NULL);
 			} else {
-				$_zp_zenpage_articles = $_zp_zenpage->getArticles(ZP_ARTICLES_PER_PAGE, NULL, false, $sortorder, $sortdirection);
+				$_zp_zenpage_articles = $_zp_zenpage->getArticles(ZP_ARTICLES_PER_PAGE, NULL, false, NULL, NULL);
 			}
 			if (empty($_zp_zenpage_articles)) {
 				return NULL;
@@ -1829,26 +1822,24 @@ function getNumPages($total = false) {
 /**
  * Returns pages from the current page object/search/or parent pages based on context
  * Updates $_zp_zenpage_curent_page and returns true if there is another page to be delivered
- * @param string $sorttype
- * @param string $sortdirection
  * @return boolean
  */
-function next_page($sorttype = NULL, $sortdirection = NULL) {
+function next_page() {
 	global $_zp_zenpage, $_zp_next_pagelist, $_zp_current_search, $_zp_current_zenpage_page, $_zp_current_page_restore;
-	if (!is_null($sorttype) || !is_null($sortdirection)) {
+	if (func_num_args() != 0) {
 		//	These parameters are deprecated
 		Zenpage_internal_deprecations::next_page();
 	}
 
 	if (is_null($_zp_next_pagelist)) {
 		if (in_context(ZP_SEARCH)) {
-			$_zp_next_pagelist = $_zp_current_search->getPages(NULL, false, NULL, $sorttype, $sortdirection);
+			$_zp_next_pagelist = $_zp_current_search->getPages(NULL, false, NULL, NULL, NULL);
 		} else if (in_context(ZP_ZENPAGE_PAGE)) {
 			if (!is_null($_zp_current_zenpage_page)) {
-				$_zp_next_pagelist = $_zp_current_zenpage_page->getPages(NULL, false, NULL, $sorttype, $sortdirection);
+				$_zp_next_pagelist = $_zp_current_zenpage_page->getPages(NULL, false, NULL, NULL, NULL);
 			}
 		} else {
-			$_zp_next_pagelist = $_zp_zenpage->getPages(NULL, true, NULL, $sorttype, $sortdirection);
+			$_zp_next_pagelist = $_zp_zenpage->getPages(NULL, true, NULL, NULL, NULL);
 		}
 		save_context();
 		add_context(ZP_ZENPAGE_PAGE);
