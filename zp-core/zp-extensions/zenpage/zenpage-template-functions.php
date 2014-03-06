@@ -150,29 +150,12 @@ function getLatestNews($number = 2, $category = '', $sticky = true, $sortdirecti
 		Zenpage_internal_deprecations::getLatestNews();
 		list($number, $category, $sticky, $sortdirection ) = array_merge($args, array(NULL, NULL, NULL, NULL, NULL));
 	}
-	$latest = array();
 	if (empty($category)) {
 		$latest = $_zp_zenpage->getArticles($number, NULL, true, NULL, $sortdirection, $sticky, NULL);
 	} else {
 		$catobj = new ZenpageCategory($category);
 		$latest = $catobj->getArticles($number, NULL, true, NULL, $sortdirection, $sticky);
 	}
-	$counter = '';
-	$latestnews = array();
-	if (is_array($latest)) {
-		foreach ($latest as $item) {
-			$article = new ZenpageNews($item['titlelink']);
-			$counter++;
-			$latestnews[$counter] = array(
-							"albumname"	 => $article->getTitle(),
-							"titlelink"	 => $article->getTitlelink(),
-							"date"			 => $article->getDateTime(),
-							"type"			 => "news"
-			);
-			$latest = $latestnews;
-		}
-	}
-
 	return $latest;
 }
 
@@ -190,7 +173,6 @@ function getLatestNews($number = 2, $category = '', $sticky = true, $sortdirecti
  * @param string $readmore Text for the read more link, if empty the option value for "zenpage_readmore" is used
  * @param bool $sticky place sticky articles at the front of the list
  * @return string
- * @deprecated since version 1.4.6
  */
 function printLatestNews($number = 5, $category = '', $showdate = true, $showcontent = true, $contentlength = 70, $showcat = true, $readmore = NULL, $sticky = true) {
 	global $_zp_gallery, $_zp_current_zenpage_news;
@@ -220,58 +202,30 @@ function printLatestNews($number = 5, $category = '', $showdate = true, $showcon
 		$count++;
 		$category = "";
 		$categories = "";
-		switch ($item['type']) {
-			case 'news':
-				$obj = new ZenpageNews($item['titlelink']);
-				$title = html_encode($obj->getTitle());
-				$link = html_encode(getNewsURL($item['titlelink']));
-				$count2 = 0;
-				$category = $obj->getCategories();
-				foreach ($category as $cat) {
-					$catobj = new ZenpageCategory($cat['titlelink']);
-					$count2++;
-					if ($count2 != 1) {
-						$categories = $categories . ", ";
-					}
-					$categories = $categories . $catobj->getTitle();
-				}
-				$thumb = "";
-				$content = $obj->getContent();
-				if ($obj->getTruncation()) {
-					$shorten = true;
-				}
-				$date = zpFormattedDate(DATE_FORMAT, strtotime($item['date']));
-				$type = 'news';
-				break;
-			case 'images':
-				$obj = newImage(newAlbum($item['albumname']), $item['titlelink']);
-				$categories = $item['albumname'];
-				$title = $obj->getTitle();
-				$link = html_encode($obj->getLink());
-				$content = $obj->getDesc();
-				if ($option == "with_latest_image_date") {
-					$date = zpFormattedDate(DATE_FORMAT, $item['date']);
-				} else {
-					$date = zpFormattedDate(DATE_FORMAT, strtotime($item['date']));
-				}
-				$thumb = "<a href=\"" . $link . "\" title=\"" . html_encode(strip_tags($title)) . "\"><img src=\"" . html_encode(pathurlencode($obj->getThumb())) . "\" alt=\"" . html_encode(strip_tags($title)) . "\" /></a>\n";
-				$type = "image";
-				break;
-			case 'albums':
-				$obj = newAlbum($item['albumname']);
-				$title = $obj->getTitle();
-				$categories = "";
-				$link = html_encode($obj->getLink());
-				$thumb = "<a href=\"" . $link . "\" title=\"" . $title . "\"><img src=\"" . html_encode(pathurlencode($obj->getThumb())) . "\" alt=\"" . strip_tags($title) . "\" /></a>\n";
-				$content = $obj->getDesc();
-				$date = zpFormattedDate(DATE_FORMAT, strtotime($item['date']));
-				$type = "album";
-				break;
+
+		$obj = new ZenpageNews($item['titlelink']);
+		$title = html_encode($obj->getTitle());
+		$link = html_encode(getNewsURL($item['titlelink']));
+		$count2 = 0;
+		$category = $obj->getCategories();
+		foreach ($category as $cat) {
+			$catobj = new ZenpageCategory($cat['titlelink']);
+			$count2++;
+			if ($count2 != 1) {
+				$categories = $categories . ", ";
+			}
+			$categories = $categories . $catobj->getTitle();
 		}
+		$thumb = "";
+		$content = $obj->getContent();
+		if ($obj->getTruncation()) {
+			$shorten = true;
+		}
+		$date = zpFormattedDate(DATE_FORMAT, strtotime($item['date']));
+
+
+
 		echo "<li>";
-		if (!empty($thumb)) {
-			echo $thumb;
-		}
 		echo "<h3><a href=\"" . $link . "\" title=\"" . strip_tags(html_encode($title)) . "\">" . $title . "</a></h3>\n";
 		if ($showdate) {
 			echo "<span class=\"latestnews-date\">" . $date . "</span>\n";
@@ -279,7 +233,7 @@ function printLatestNews($number = 5, $category = '', $showdate = true, $showcon
 		if ($showcontent) {
 			echo "<span class=\"latestnews-desc\">" . getContentShorten($content, $contentlength, '', $readmore, $link) . "</span>\n";
 		}
-		if ($showcat AND $type != "album" && !empty($categories)) {
+		if ($showcat && !empty($categories)) {
 			echo "<span class=\"latestnews-cats\">(" . html_encode($categories) . ")</span>\n";
 		}
 		echo "</li>\n";
