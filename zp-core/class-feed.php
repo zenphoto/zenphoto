@@ -331,7 +331,7 @@ class feed {
 						if ($this->sortorder) {
 							$items = getZenpageStatistic($this->itemnumber, 'categories', $this->sortorder, $this->sortdirection);
 						} else {
-							$items = getLatestNews($this->itemnumber, "none", $this->catlink, false, $this->sortdirection);
+							$items = getLatestNews($this->itemnumber, $this->catlink, false, $this->sortdirection);
 						}
 						break;
 					default:
@@ -340,7 +340,7 @@ class feed {
 							$items = getZenpageStatistic($this->itemnumber, 'news', $this->sortorder, $this->sortdirection);
 						} else {
 							// Needed baceause type variable "news" is used by the feed item method and not set by the class method getArticles!
-							$items = getLatestNews($this->itemnumber, 'none', '', false, $this->sortdirection);
+							$items = getLatestNews($this->itemnumber, '', false, $this->sortdirection);
 						}
 						break;
 				}
