@@ -99,7 +99,7 @@ class Zenpage_internal_deprecations {
 	 * @since 1.4.6
 	 */
 	static function getNewsIndexURL() {
-		deprecated_functions::notify(gettext('Use getNewsIndexURL().'));
+		deprecated_functions::notify(gettext('The Zenpage class method is deprecated. Use the global function getNewsIndexURL().'));
 	}
 
 	/**
@@ -877,15 +877,6 @@ function printPageLinkURL($linktext, $titlelink, $prev = '', $next = '', $class 
 function printNewsLink($before = '') {
 	deprecated_functions::notify(gettext('use printNewsURL()'));
 	printNewsURL($before);
-}
-
-/**
- * @deprecated
- * @since 1.4.6
- */
-function printNewsIndexURL($name = NULL, $before = '', $archive = NULL) {
-	deprecated_functions::notify(gettext('use printNewsBreadcrumb()'));
-	printNewsBreadcrumb($name, $before);
 }
 
 /**

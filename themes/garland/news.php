@@ -39,7 +39,7 @@ if (!defined('WEBPATH') || !class_exists('Zenpage'))
 										<?php printHomeLink('', ' » '); ?>
 										<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a>
 										<?php
-										printNewsBreadcrumb(NULL, ' » ');
+										printNewsIndexURL(NULL, ' » ');
 										printZenpageItemsBreadcrumb(' » ', '');
 										printCurrentNewsCategory(" » ");
 										printNewsTitle(" » ");

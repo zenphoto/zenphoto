@@ -887,7 +887,7 @@ function printNewsCategoryURL($before = '', $catlink = '') {
  * @param string $name The linktext
  * @param string $before The text to appear before the link text
  */
-function printNewsBreadcrumb($name = NULL, $before = '', $archive = NULL) {
+function printNewsIndexURL($name = NULL, $before = '', $archive = NULL) {
 	global $_zp_post_date;
 	if ($_zp_post_date) {
 		if (is_null($archive)) {
