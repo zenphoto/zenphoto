@@ -49,7 +49,6 @@ zp_register_filter('admin_utilities_buttons', 'DownloadList::button');
 class DownloadList {
 
 	function __construct() {
-		purgeOption('downloadlist_directory'); //have seen this (lc version) in two installs
 		setOptionDefault('downloadList_directory', UPLOAD_FOLDER);
 		setOptionDefault('downloadList_showfilesize', 1);
 		setOptionDefault('downloadList_showdownloadcounter', 1);
@@ -82,7 +81,7 @@ class DownloadList {
 										'desc'	 => gettext('Check if users are required to have <em>file</em> rights to download.'))
 		);
 		if (GALLERY_SECURITY == 'public') {
-			$options[gettext('credentials')] = array('key'		 => 'downloadlist_credentials', 'type'	 => OPTION_TYPE_CUSTOM,
+			$options[gettext('credentials')] = array('key'		 => 'downloadList_credentials', 'type'	 => OPTION_TYPE_CUSTOM,
 							'order'	 => 0,
 							'desc'	 => gettext('Provide credentials to password protect downloads'));
 		}
@@ -129,7 +128,7 @@ class DownloadList {
 						 onkeyup="passwordStrength('_downloadList');"
 						 value="<?php echo $x; ?>" />
 			<label><input type="checkbox" name="disclose_password_downloadList" id="disclose_password_downloadList" onclick="passwordClear('_downloadList');
-							togglePassword('_downloadList');"><?php echo gettext('Show password'); ?></label>
+					togglePassword('_downloadList');"><?php echo gettext('Show password'); ?></label>
 			<br />
 			<span class="password_field__downloadList">
 				<span id="match_downloadList"><?php echo gettext("(repeat)"); ?></span>
@@ -188,6 +187,9 @@ class DownloadList {
 
 	static function getListItemsFromDB() {
 		$downloaditems = query_full_array("SELECT id, `aux`, `data` FROM " . prefix('plugin_storage') . " WHERE `type` = 'downloadList'");
+
+		var_dump($downloaditems);
+
 		return $downloaditems;
 	}
 
@@ -492,7 +494,6 @@ function printDownloadURL($file, $linktext = NULL) {
 	if (substr($file, 0, 1) != '/' && strpos($file, ':') === false) {
 		$file = SERVERPATH . '/' . getOption('downloadList_directory') . '/' . $file;
 	}
-
 	$filesize = '';
 	if (getOption('downloadList_showfilesize')) {
 		$filesize = filesize(internalToFilesystem($file));

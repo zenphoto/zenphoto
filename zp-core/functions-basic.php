@@ -316,26 +316,23 @@ function js_encode($this_string) {
  */
 function getOption($key) {
 	global $_zp_conf_vars, $_zp_options;
-	if (isset($_zp_options[$key])) {
-		return $_zp_options[$key];
-	} else {
-		$v = NULL;
-		if (is_null($_zp_options) && function_exists('query_full_array')) { // may be too early to use database!
-			// option table not yet loaded, load it (but not the theme options!)
-			$sql = "SELECT `name`, `value` FROM " . prefix('options') . ' WHERE (`theme`="" OR `theme` IS NULL) AND `ownerid`=0';
-			$optionlist = query_full_array($sql, false);
-			if ($optionlist !== false) {
-				$_zp_options = array();
-				foreach ($optionlist as $option) {
-					$_zp_options[$option['name']] = $option['value'];
-					if ($option['name'] == $key) {
-						$v = $option['value'];
-					}
-				}
+	$key = strtolower($key);
+	if (is_null($_zp_options) && function_exists('query_full_array')) { // may be too early to use database!
+		// option table not yet loaded, load it (but not the theme options!)
+		$sql = "SELECT `name`, `value` FROM " . prefix('options') . ' WHERE (`theme`="" OR `theme` IS NULL) AND `ownerid`=0';
+		$optionlist = query_full_array($sql, false);
+		if ($optionlist !== false) {
+			$_zp_options = array();
+			foreach ($optionlist as $option) {
+				$_zp_options[strtolower($option['name'])] = $option['value'];
 			}
 		}
 	}
-	return $v;
+	if (isset($_zp_options[$key])) {
+		return $_zp_options[$key];
+	} else {
+		return NULL;
+	}
 }
 
 /**
@@ -364,7 +361,7 @@ function setOption($key, $value, $persistent = true) {
 		$result = true;
 	}
 	if ($result) {
-		$_zp_options[$key] = $value;
+		$_zp_options[strtolower($key)] = $value;
 		return true;
 	} else {
 		return false;
@@ -408,7 +405,7 @@ function setOptionDefault($key, $default) {
 			$sql .= db_quote($creator) . ');';
 		}
 		if (query($sql, false)) {
-			$_zp_options[$key] = $default;
+			$_zp_options[strtolower($key)] = $default;
 		}
 	}
 }
@@ -426,7 +423,7 @@ function loadLocalOptions($albumid, $theme) {
 	$optionlist = query_full_array($sql, false);
 	if ($optionlist !== false) {
 		foreach ($optionlist as $option) {
-			$_zp_options[$option['name']] = $option['value'];
+			$_zp_options[strtolower($option['name'])] = $option['value'];
 		}
 	}
 	if ($albumid) {
@@ -435,7 +432,7 @@ function loadLocalOptions($albumid, $theme) {
 		$optionlist = query_full_array($sql, false);
 		if ($optionlist !== false) {
 			foreach ($optionlist as $option) {
-				$_zp_options[$option['name']] = $option['value'];
+				$_zp_options[strtolower($option['name'])] = $option['value'];
 			}
 		}
 	}
@@ -443,7 +440,7 @@ function loadLocalOptions($albumid, $theme) {
 
 function purgeOption($key) {
 	global $_zp_options;
-	unset($_zp_options[$key]);
+	unset($_zp_options[strtolower($key)]);
 	$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `name`=' . db_quote($key);
 	query($sql, false);
 }
