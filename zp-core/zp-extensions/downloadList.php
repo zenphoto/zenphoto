@@ -49,6 +49,7 @@ zp_register_filter('admin_utilities_buttons', 'DownloadList::button');
 class DownloadList {
 
 	function __construct() {
+		purgeOption('downloadlist_directory'); //have seen this (lc version) in two installs
 		setOptionDefault('downloadList_directory', UPLOAD_FOLDER);
 		setOptionDefault('downloadList_showfilesize', 1);
 		setOptionDefault('downloadList_showdownloadcounter', 1);
@@ -477,7 +478,7 @@ function getDownloadURL($file) {
 	$link = '';
 	if ($id = DownloadList::getItemID($file)) {
 		$query['download'] = $id;
-		$link = FULLWEBPATH . '/' . $request['path'] . '?' . http_build_query($query);
+		$link = FULLWEBPATH . '/' . preg_replace('~^' . WEBPATH . '/~', '', $request['path']) . '?' . http_build_query($query);
 	}
 	return $link;
 }
@@ -556,7 +557,7 @@ function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache
 		if ($fromcache) {
 			$query['fromcache'] = 'true';
 		}
-		$link = FULLWEBPATH . '/' . $request['path'] . '?' . http_build_query($query);
+		$link = FULLWEBPATH . '/' . preg_replace('~^' . WEBPATH . '/~', '', $request['path']) . '?' . http_build_query($query);
 		echo '<a href="' . html_encode($link) . '" rel="nofollow">' . html_encode($file) . '</a>' . $filesize;
 	}
 }
