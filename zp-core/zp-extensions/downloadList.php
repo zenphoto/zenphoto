@@ -387,14 +387,6 @@ class AlbumZip {
 
 }
 
-$request = getRequestURI();
-if (strpos($request, '?') === false) {
-	define('DOWNLOADLIST_LINKPATH', FULLWEBPATH . '/' . substr($request, strlen(WEBPATH) + 1) . '?download=');
-} else {
-	define('DOWNLOADLIST_LINKPATH', FULLWEBPATH . '/' . substr($request, strlen(WEBPATH) + 1) . '&download=');
-}
-unset($request);
-
 /**
  * Prints the actual download list included all subfolders and files
  * @param string $dir An optional different folder to generate the list that overrides the folder set on the option.
@@ -475,10 +467,17 @@ function getdownloadList($dir8, $filters8, $excludesuffixes, $sort) {
  * @param string $file the path to a file to get a download link.
  */
 function getDownloadURL($file) {
+	$request = parse_url(getRequestURI());
+	if (isset($request['query'])) {
+		$query = parse_query($request['query']);
+	} else {
+		$query = array();
+	}
 	DownloadList::addListItem($file); // add item to db if not already exists without updating the counter
 	$link = '';
 	if ($id = DownloadList::getItemID($file)) {
-		$link = DOWNLOADLIST_LINKPATH . $id;
+		$query['download'] = $id;
+		$link = FULLWEBPATH . '/' . $request['path'] . '?' . http_build_query($query);
 	}
 	return $link;
 }
@@ -526,6 +525,12 @@ function printDownloadURL($file, $linktext = NULL) {
  */
 function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache = NULL) {
 	global $_zp_current_album;
+	$request = parse_url(getRequestURI());
+	if (isset($request['query'])) {
+		$query = parse_query($request['query']);
+	} else {
+		$query = array();
+	}
 	if (is_null($albumobj)) {
 		$albumobj = $_zp_current_album;
 	}
@@ -546,10 +551,12 @@ function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache
 		if (!empty($linktext)) {
 			$file = $linktext;
 		}
-		$link = DOWNLOADLIST_LINKPATH . pathurlencode($albumobj->name) . '&albumzip';
+		$query['download'] = pathurlencode($albumobj->name);
+		$query['albumzip'] = 'true';
 		if ($fromcache) {
-			$link .= '&fromcache';
+			$query['fromcache'] = 'true';
 		}
+		$link = FULLWEBPATH . '/' . $request['path'] . '?' . http_build_query($query);
 		echo '<a href="' . html_encode($link) . '" rel="nofollow">' . html_encode($file) . '</a>' . $filesize;
 	}
 }
@@ -564,7 +571,7 @@ if (isset($_GET['download'])) {
 	}
 	$hash = getOption('downloadList_password');
 	if (GALLERY_SECURITY != 'public' || $hash) {
-		//	credentials required to download
+//	credentials required to download
 		if (!zp_loggedin((getOption('downloadList_rights')) ? FILES_RIGHTS : ALL_RIGHTS)) {
 			$user = getOption('downloadList_user');
 			zp_handle_password('download_auth', $hash, $user);
