@@ -2681,9 +2681,7 @@ ul.userlist {
 
 form.dirty button[type=submit],
 form.dirty input[type=submit] {
-	color: orange;
-	border: 1px solid darkgray;
+	border: 1px solid orange;
 }
-
 
 
