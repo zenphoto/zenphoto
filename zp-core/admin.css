@@ -2679,23 +2679,11 @@ ul.userlist {
 }
 
 
-form.dirty-check button[type=submit],
-form.dirty-check input[type=submit] {
-	background: #858585 !important;
-	color: white;
-	border-bottom: 1px solid #494949;
-	border-top: 1px solid #5a5a5a;
-	border-left: 1px solid #5a5a5a;
-	border-right: 1px solid #5a5a5a;
-}
-
-form.dirty-check button[type=submit]:hover,
-form.dirty-check button[type=submit]:active,
-form.dirty-check input[type=submit]:hover, 
-form.dirty-check input[type=submit]:active{
+form.dirty button[type=submit],
+form.dirty input[type=submit] {
 	color: orange;
 	border: 1px solid darkgray;
-	
-	background: #d7e5a6 !important;
 }
+
+
 
