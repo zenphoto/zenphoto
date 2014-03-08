@@ -303,7 +303,7 @@ class zenpagecms {
 
 
 // page is a NewsArticle--provide zenpage edit, delete, and Add links
-				echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?newsarticle&amp;edit&amp;titlelink=" . urlencode($_zp_current_zenpage_news->getTitlelink()) . "\">" . gettext("Edit Article") . "</a></li>";
+				echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?newsarticle&amp;edit&amp;titlelink=" . urlencode($_zp_current_zenpage_news->getLink()) . "\">" . gettext("Edit Article") . "</a></li>";
 				if (GALLERY_SESSION) {
 // XSRF defense requires sessions
 					?>
