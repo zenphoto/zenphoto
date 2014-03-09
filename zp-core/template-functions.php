@@ -1484,7 +1484,7 @@ function getAlbumLocation() {
  * @author Ozh
  */
 function printAlbumLocation() {
-	echo html_encodeTagged(getAlbumLocation);
+	echo html_encodeTagged(getAlbumLocation());
 }
 
 /**
