@@ -274,8 +274,9 @@ class DownloadList {
 		?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
-
-			alert('<?php printf(gettext('File %s not found.'), $file); ?>');
+			window.onload = function() {
+				alert('<?php printf(gettext('File "%s" was not found.'), $file); ?>');
+			}
 			// ]]> -->
 		</script>
 		<?php
