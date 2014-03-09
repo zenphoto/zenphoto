@@ -2681,13 +2681,14 @@ ul.userlist {
 
 form.dirty button[type=submit],
 form.dirty input[type=submit] {
- border: 2px solid #74b341 !important;
+ border: 1px solid #74b341 !important;
+ background: #d7e5a6;
 }
 
 form.dirty button[type=submit]:hover,
 form.dirty button[type=submit]:active,
 form.dirty input[type=submit]:hover,
 form.dirty input[type=submit]:active{
-	border: 2px solid green !important;
-	background: #d7e5a6;
+	border: 1px solid green !important;
+	background: #eff6d5; 
 }
