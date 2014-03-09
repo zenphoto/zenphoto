@@ -535,7 +535,7 @@ if ($c <= 0) {
 					if ($optionlist) {
 						$_zp_options = array();
 						foreach ($optionlist as $option) {
-							$_zp_options[$option['name']] = $option['value'];
+							$_zp_options[strtolower($option['name'])] = $option['value'];
 						}
 					}
 				}

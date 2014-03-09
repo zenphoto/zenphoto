@@ -128,7 +128,7 @@ class DownloadList {
 						 onkeyup="passwordStrength('_downloadList');"
 						 value="<?php echo $x; ?>" />
 			<label><input type="checkbox" name="disclose_password_downloadList" id="disclose_password_downloadList" onclick="passwordClear('_downloadList');
-					togglePassword('_downloadList');"><?php echo gettext('Show password'); ?></label>
+							togglePassword('_downloadList');"><?php echo gettext('Show password'); ?></label>
 			<br />
 			<span class="password_field__downloadList">
 				<span id="match_downloadList"><?php echo gettext("(repeat)"); ?></span>
@@ -233,13 +233,11 @@ class DownloadList {
 				<?php
 				if (is_array($file)) { // for sub directories
 					echo $key;
-				} else {
-					printDownloadURL($file);
-				}
-				if (is_array($file)) {
 					echo '<' . $listtype . '>';
 					self::printListArray($file, $listtype);
 					echo '</' . $listtype . '>';
+				} else {
+					printDownloadURL($file);
 				}
 				?>
 			</li>
@@ -264,6 +262,23 @@ class DownloadList {
 						'rights'			 => ADMIN_RIGHTS,
 		);
 		return $buttons;
+	}
+
+	static function noFile() {
+		global $_downloadFile;
+		if (TEST_RELEASE) {
+			$file = $_downloadFile;
+		} else {
+			$file = basename($_downloadFile);
+		}
+		?>
+		<script type="text/javascript">
+			// <!-- <![CDATA[
+
+			alert('<?php printf(gettext('File %s not found.'), $file); ?>');
+			// ]]> -->
+		</script>
+		<?php
 	}
 
 }
@@ -421,7 +436,7 @@ function printdownloadList($dir = '', $listtype = 'ol', $filters = array(), $exc
  * @return array
  */
 function getdownloadList($dir8, $filters8, $excludesuffixes, $sort) {
-	$filters = Array('.', '..', '.DS_Store', 'Thumbs.db', '.htaccess', '.svn');
+	$filters = Array('Thumbs.db');
 	foreach ($filters8 as $key => $file) {
 		$filters[$key] = internalToFilesystem($file);
 	}
@@ -453,12 +468,14 @@ function getdownloadList($dir8, $filters8, $excludesuffixes, $sort) {
 		natsort($dirs);
 	}
 	foreach ($dirs as $file) {
-		if (is_dir(internalToFilesystem($dir) . '/' . $file)) {
-			$dirN = filesystemToInternal($dir) . "/" . filesystemToInternal($file);
-			$dir_array[$file] = getdownloadList($dirN, $filters8, $excludesuffixes, $sort);
-		} else {
-			if (!in_array(getSuffix($file), $excludesuffixes)) {
-				$dir_array[$file] = $dir . '/' . filesystemToInternal($file);
+		if (@$file{0} != '.') { //	exclude "hidden" files
+			if (is_dir(internalToFilesystem($dir) . '/' . $file)) {
+				$dirN = filesystemToInternal($dir) . "/" . filesystemToInternal($file);
+				$dir_array[$file] = getdownloadList($dirN, $filters8, $excludesuffixes, $sort);
+			} else {
+				if (!in_array(getSuffix($file), $excludesuffixes)) {
+					$dir_array[$file] = $dir . '/' . filesystemToInternal($file);
+				}
 			}
 		}
 	}
@@ -496,7 +513,7 @@ function printDownloadURL($file, $linktext = NULL) {
 	}
 	$filesize = '';
 	if (getOption('downloadList_showfilesize')) {
-		$filesize = filesize(internalToFilesystem($file));
+		$filesize = @filesize(internalToFilesystem($file));
 		$filesize = ' (' . byteConvert($filesize) . ')';
 	}
 	if (getOption('downloadList_showdownloadcounter')) {
@@ -600,22 +617,24 @@ if (isset($_GET['download'])) {
 		$cd = getcwd();
 		$item = sanitize_numeric($item);
 		$path = query_single_row("SELECT `aux` FROM " . prefix('plugin_storage') . " WHERE id=" . $item);
-		$file = internalToFilesystem($path['aux']);
-		if (file_exists($file)) {
-			DownloadList::updateListItemCount($file);
-			$ext = getSuffix($file);
+		$_downloadFile = internalToFilesystem($path['aux']);
+		if (file_exists($_downloadFile)) {
+			DownloadList::updateListItemCount($_downloadFile);
+			$ext = getSuffix($_downloadFile);
 			$mimetype = getMimeString($ext);
 			header('Content-Description: File Transfer');
 			header('Content-Type: ' . $mimetype);
-			header('Content-Disposition: attachment; filename=' . basename(urldecode($file)));
+			header('Content-Disposition: attachment; filename=' . basename(urldecode($_downloadFile)));
 			header('Content-Transfer-Encoding: binary');
 			header('Expires: 0');
 			header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 			header('Pragma: public');
-			header('Content-Length: ' . filesize($file));
+			header('Content-Length: ' . filesize($_downloadFile));
 			flush();
-			readfile($file);
+			readfile($_downloadFile);
 			exitZP();
+		} else {
+			zp_register_filter('theme_body_open', 'DownloadList::noFile');
 		}
 	}
 }
