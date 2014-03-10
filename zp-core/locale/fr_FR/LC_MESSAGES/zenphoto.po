@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-05 13:00-0500\n"
-"PO-Revision-Date: 2014-03-05 13:06-0500\n"
+"POT-Creation-Date: 2014-03-10 09:14-0500\n"
+"PO-Revision-Date: 2014-03-10 09:18-0500\n"
 "Last-Translator: Michel Gagnon <michel@mgagnon.net>\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "<michel@mgagnon.net>\n"
@@ -452,7 +452,7 @@ msgstr "Accueil principal"
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:105
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/slideshow.php:33
 #: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/functions.php:60
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1425
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1419
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager.php:820
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:450
 msgid "Home"
@@ -464,19 +464,19 @@ msgid "The Zenphoto object you are requesting cannot be found."
 msgstr "L’objet Zenphoto demandé n’a pu être trouvé."
 
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/404.php:60
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4415
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4403
 #, php-format
 msgid "Album: %s"
 msgstr "Album : %s"
 
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/404.php:63
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4418
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4406
 #, php-format
 msgid "Image: %s"
 msgstr "Image : %s"
 
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/404.php:66
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4421
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4409
 #, php-format
 msgid "Page: %s"
 msgstr "Page : %s"
@@ -593,7 +593,7 @@ msgid "Effervescence %1$s %2$s"
 msgstr "Effervescence %1$s %2$s"
 
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/functions.php:323
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1110
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1104
 msgid "The album is password protected."
 msgstr "Cet album est protégé par mot de passe."
 
@@ -1028,9 +1028,9 @@ msgstr "Pages"
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/themeoptions.php:78
 #: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/sidebar.php:46
 #: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/functions.php:71
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1274
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1329
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:831
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1268
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1323
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:894
 msgid "Archive"
 msgstr "Archive"
 
@@ -1079,7 +1079,7 @@ msgstr "Flux RSS"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage.php:273
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:881
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:888
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:838
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:901
 msgid "News"
 msgstr "Actualités"
 
@@ -1087,9 +1087,9 @@ msgstr "Actualités"
 #: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/album.php:26
 #: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/functions.php:62
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:451
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1291
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1322
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3810
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1285
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1316
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3798
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:237
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:744
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:702
@@ -3209,7 +3209,7 @@ msgstr "Page précédente"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:2428
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:2430
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:951
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1014
 msgid "Next page"
 msgstr "Page suivante"
 
@@ -6675,7 +6675,7 @@ msgid "Official build"
 msgstr "Version officielle"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:301
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/functions-basic.php:1229
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/functions-basic.php:1226
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/setup/index.php:405
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/security-logger.php:132
 msgid "clone"
@@ -7170,8 +7170,8 @@ msgid "Categories"
 msgstr "Catégories"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/full-image.php:15
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/downloadList.php:365
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/downloadList.php:563
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/downloadList.php:384
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/downloadList.php:590
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/ipBlocker.php:355
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/ipBlocker.php:356
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/ipBlocker.php:366
@@ -7189,12 +7189,12 @@ msgstr "Pas assez d’arguments ! Image non trouvée."
 msgid "Forbidden(2)"
 msgstr "Interdit (2)"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/functions-basic.php:1200
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/functions-basic.php:1197
 #, php-format
 msgid "%s log size limit exceeded"
 msgstr "La taille maximale du fichier de journalisation %s est dépassée"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/functions-basic.php:1200
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/functions-basic.php:1197
 #, php-format
 msgid "The %1$s log has exceeded its size limit and has been renamed to %2$s."
 msgstr ""
@@ -9594,81 +9594,81 @@ msgstr "Se déconnecter"
 msgid "My favorites"
 msgstr "Mes favoris"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:847
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:943
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:841
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:937
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager.php:605
 msgid "Previous Page"
 msgstr "Page précédente"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:849
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1049
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:843
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1043
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager.php:645
 msgid "Next Page"
 msgstr "Page suivante"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:966
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:960
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager.php:611
 msgid "Page 1"
 msgstr "Page 1"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:981
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:990
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1020
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1027
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1037
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:975
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:984
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1014
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1021
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1031
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager.php:616
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager.php:634
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1011
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1027
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1074
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1090
 #, php-format
 msgid "Page %u"
 msgid_plural "Page %u"
 msgstr[0] "Page %u"
 msgstr[1] "Page %u"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1001
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:995
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager.php:626
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1020
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1083
 #, php-format
 msgid "Page %1$u"
 msgid_plural "Page %1$u"
 msgstr[0] "Page %1$u"
 msgstr[1] "Page %1$u"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1113
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1107
 msgid "The album is un-published."
 msgstr "Cet album n’est pas publié."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1222
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1216
 msgid "Album Thumbnails"
 msgstr "Vignettes de l’album"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1322
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1316
 msgid "Return to search"
 msgstr "Retour à la recherche"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1329
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1323
 msgid "Return to archive"
 msgstr "Retour à l’archive"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:2118
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:2106
 msgid "The image is marked un-published."
 msgstr "L’image est marquée comme non publiée."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:2490
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:2478
 msgid "Image Info"
 msgstr "Détails sur l’image"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3309
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3297
 #, php-format
 msgid "View image: %s"
 msgstr "Voir l’image : %s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3497
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3485
 msgid "No popular tags"
 msgstr "Aucun tag populaire"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3805
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3793
 msgid ""
 "printSearchForm $album_list parameter is deprecated. Pass array(\"albums"
 "\"=>array(album, album, ...)) instead."
@@ -9676,41 +9676,41 @@ msgstr ""
 "Le paramètre $album_list de printSearchForm est obsolète. Utilisez plutôt un "
 "tableau array(\"albums\"=>array(album, album, ...))."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3821
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3809
 #, php-format
 msgid "%s within previous results"
 msgstr "%s parmi les résultats précédents"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3896
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3884
 msgid "search options"
 msgstr "options de recherche"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3896
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3884
 msgid "fields"
 msgstr "champs"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3936
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3924
 msgid "Within"
 msgstr "Parmi"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3940
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3928
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/flag_thumbnail.php:91
 msgid "New"
 msgstr "Nouveau"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3998
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3986
 msgid "no date"
 msgstr "sans date"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4228
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4216
 msgid "The page you are trying to view is password protected."
 msgstr "La page que vous essayez d’afficher est protégée par mot de passe."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4233
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4221
 msgid "login"
 msgstr "Connexion"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4250
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4238
 msgid ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
 "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
@@ -9719,7 +9719,7 @@ msgstr ""
 "plus simple\"><span id=\"zen-part\">Zen</span><span id=\"photo-part\">PHOTO</"
 "span></a>"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4413
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4401
 msgid "Zenphoto Error:</strong> the requested object was not found."
 msgstr "Erreur Zenphoto :</strong> l’objet demandé n’a pas été trouvé."
 
@@ -12363,7 +12363,7 @@ msgstr ""
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/setup/setup-functions.php:225
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/setup/setup-functions.php:230
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:125
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:137
 msgid "unknown"
 msgstr "inconnu"
 
@@ -12869,7 +12869,7 @@ msgstr ""
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/utilities/database_reference.php:13
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/utilities/gallery_statistics.php:19
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/utilities/phpInfo.php:12
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/downloadList.php:252
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/downloadList.php:253
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/search_statistics.php:79
 msgid "Info"
 msgstr "Infos"
@@ -14453,7 +14453,7 @@ msgstr "Catégorie de nouvelles"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:101
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:434
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:219
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1005
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1068
 msgid "Page"
 msgstr "Page"
 
@@ -14485,11 +14485,11 @@ msgstr ""
 "Cette extension n’est <strong>pas</strong> nécessaire pour les fonctions "
 "utilisées dans les extensions et les modules distribués par Zenphoto."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:92
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:95
 msgid "Functions"
 msgstr "Fonctions obsolètes"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:95
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:98
 msgid ""
 "Send the <em>deprecated</em> notification message if the function name is "
 "checked. Un-checking these boxes will allow you to continue using your theme "
@@ -14504,21 +14504,21 @@ msgstr ""
 "méthodes de classe. Celles signalées par deux astérisques ont des paramètres "
 "obsolètes."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:102
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:103
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:105
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:106
 msgid "deprecated"
 msgstr "obsolète"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:118
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:119
 msgid "function"
 msgstr "la fonction"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:127
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:147
 #, php-format
 msgid "%1$s (called from %2$s line %3$s) is deprecated"
 msgstr "%1$s (appelée depuis la ligne %3$s de %2$s) est obsolète."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:127
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:147
 #, php-format
 msgid ""
 "You can disable this error message by going to the <em>deprecated-functions</"
@@ -14529,20 +14529,20 @@ msgstr ""
 "l’extension <em>deprecated-functions</em> (fonctions obsolètes) et en "
 "décochant <strong>%s</strong> de la liste des fonctions.<br />"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:133
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:153
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/markRelease.php:52
 msgid "Development"
 msgstr "Développement"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:135
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:155
 msgid "Check deprecated use"
 msgstr "Vérification de l’usage de fonctions obsolètes"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:139
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:159
 msgid "Searches PHP scripts for use of deprecated functions."
 msgstr "Inspecte les scripts PHP à la recherche de fonctions obsolètes."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:140
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:160
 msgid "Check for update"
 msgstr "Vérifier s’il existe une mise à jour de Zenphoto"
 
@@ -14644,35 +14644,40 @@ msgstr "Vous devez fournir un mot de passe pour l’utilisateur de DownloadList"
 msgid "Your DownloadList passwords were empty or did not match"
 msgstr "Vos mots de passe de DownloadList sont vides ou ne correspondent pas"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/downloadList.php:254
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/downloadList.php:255
 msgid "Download statistics"
 msgstr "Statistiques de téléchargement"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/downloadList.php:258
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/downloadList.php:259
 msgid "Counts of downloads"
 msgstr "Nombre de téléchargements"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/downloadList.php:350
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/downloadList.php:278
+#, php-format
+msgid "File \"%s\" was not found."
+msgstr "Le fichier « %s » ne peut être trouvé."
+
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/downloadList.php:369
 #, php-format
 msgid "Page error: %2$s (%1$s)"
 msgstr "Erreur sur la page : %2$s (%1$s)"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/downloadList.php:368
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/downloadList.php:387
 msgid "Album not found"
 msgstr "Album non trouvé"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/downloadList.php:372
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/downloadList.php:391
 #, php-format
 msgid "Created from cached images of %1$s on %2$s."
 msgstr "Créé d’images mises en cache de %1$s sur %2$s."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/downloadList.php:377
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/downloadList.php:396
 #, php-format
 msgid "Created from images in %1$s on %2$s."
 msgstr "Créé d’images de %1$s sur %2$s."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/downloadList.php:504
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/downloadList.php:538
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/downloadList.php:523
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/downloadList.php:563
 #, php-format
 msgid "%u download"
 msgid_plural "%u downloads"
@@ -16631,7 +16636,7 @@ msgstr[0] "Page %1$u (page courante)"
 msgstr[1] "Page %1$u (page courante)"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager.php:640
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1035
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1098
 #, php-format
 msgid "Page {%u}"
 msgid_plural "Page {%u}"
@@ -20896,7 +20901,7 @@ msgstr "Ajouter un commentaire"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/comment_form/deprecated-functions.php:9
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:805
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:994
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:887
 msgid "use the object's getCommentsAllowed() method"
 msgstr "Utilisez la méthode getCommentsAllowed() de l’objet"
 
@@ -21145,8 +21150,8 @@ msgstr "Utilisez plutôt la méthode d’instantiation"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:21
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:29
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:22
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:30
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:38
 msgid ""
 "Sort parameter options should be set instead with the setSortType() and "
 "setSortDirection() object methods at the head of your script."
@@ -21207,8 +21212,8 @@ msgid "Use getCommentDateTime()."
 msgstr "Utilisez getCommentDateTime()."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:167
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:112
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:121
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:120
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:129
 msgid "Use getHitcounter()."
 msgstr "Utilisez getHitcounter()."
 
@@ -23723,127 +23728,124 @@ msgstr ""
 "enregistrez leur disposition."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:14
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:686
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:701
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:712
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:723
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:735
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:746
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:758
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:769
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:785
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:817
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:22
 msgid ""
-"CombiNews is deprecated. See the <a href=\"http://www.zenphoto.org/news/"
-"zenphoto-1.4.6\">Zenphoto 1.4.6 release notes</a>."
+"CombiNews is deprecated. Remove the  \"$option\" parameter. See the <a href="
+"\"http://www.zenphoto.org/news/zenphoto-1.4.6\">Zenphoto 1.4.6 release "
+"notes</a>."
 msgstr ""
-"Combinews n’est plus utilisé. Voir les <a href=\"http://www.zenphoto.org/"
-"news/zenphoto-1.4.6\">notes de la version Zenphoto 1.4.6</a>."
+"Combinews est obsolète. Veuillez enlever le paramètre « $option ». Voir les "
+"<a href=\"http://www.zenphoto.org/news/zenphoto-1.4.6\">notes de Zenphoto "
+"1.4.6</a>."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:38
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:46
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:54
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:62
 msgid "Use the getLink method instead"
 msgstr "Utilisez plutôt la méthode getLink."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:62
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:70
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:78
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:86
 msgid "Create an object and use its getLink method."
 msgstr "Créez un objet et utilisez la méthode getLink."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:86
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:94
 msgid "Use getNewsArchivePath()."
 msgstr "Utilisez getNewsArchivePath()."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:94
-msgid "Use getNewsIndexURL()."
-msgstr "Utilisez getNewsIndexURL()."
-
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:102
+msgid ""
+"The Zenpage class method is deprecated. Use the global function "
+"getNewsIndexURL()."
+msgstr ""
+"La méthode de classe Zenpage est obsolète. Utilisez plutôt la fonction "
+"globale getNewsIndexURL()."
+
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:110
 msgid "Use the Zenpage Page class->getPages() method."
 msgstr "Utilisez la méthode class->getPages() de la classe de page Zenphoto."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:130
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:138
 msgid "Use object->getTags() method."
 msgstr "Utilisez la méthode objet->getTags()."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:144
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:152
 msgid "Use printTags()."
 msgstr "Utilisez printTags()."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:153
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:161
 msgid "Use instead the Zenpage category class method getSubCategories()."
 msgstr ""
 "Utilisez plutôt la méthode getSubCategories() de la classe de catégorie "
 "Zenpage."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:164
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:172
 msgid "Use instead the Zenpage news class method inProtectedCategory()."
 msgstr ""
 "Utilisez plutôt la méthode inProtectedCategory() de la classe d’actualités "
 "Zenpage."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:180
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:188
 msgid "Use instead the Zenpage category class method isProtected()."
 msgstr ""
 "Utilisez plutôt la méthode isProtected() de la classe de catégorie Zenpage."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:195
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:203
 msgid "Use instead the Zenpage category class method getParents()."
 msgstr ""
 "Utilisez plutôt la méthode getParents() de la classe de catégorie Zenpage."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:204
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:212
 msgid "Use instead the Zenpage category class method getTitle()."
 msgstr ""
 "Utilisez plutôt la méthode getTitle() de la classe de catégorie Zenpage."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:214
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:222
 msgid "Use instead the Zenpage category class method getID()."
 msgstr "Utilisez plutôt la méthode getID() de la classe de catégorie Zenpage."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:225
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:233
 msgid "Use instead the Zenpage category class method getParentID()."
 msgstr ""
 "Utilisez plutôt la méthode getParentID() de la classe de catégorie Zenpage."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:235
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:243
 msgid "Use instead the Zenpage category class method getSortOrder()."
 msgstr ""
 "Utilisez plutôt la méthode getSortOrder() de la classe de catégorie Zenpage."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:245
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:253
 msgid "Use instead the Zenpage page class method getParents()."
 msgstr "Utilisez plutôt la méthode getParents() de la classe de page Zenpage."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:254
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:262
 msgid "Use instead the Zenpage page class method isProtected()."
 msgstr "Utilisez plutôt la méthode isProtected() de la classe de page Zenpage."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:266
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:274
 msgid "Use instead the Zenpage category class method isMyItem()."
 msgstr ""
 "Utilisez plutôt la méthode isMyItem() de la classe de catégorie Zenpage."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:278
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:308
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:286
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:316
 msgid "Use instead the Zenpage category class method checkforGuest()."
 msgstr ""
 "Utilisez plutôt la méthode checkforGuest() de la classe de catégorie Zenpage."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:289
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:297
 msgid "Use instead the Zenpage news class method isMyItem()."
 msgstr ""
 "Utilisez plutôt la méthode isMyItem() de la classe d’actualités Zenpage."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:299
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:307
 msgid "Use instead the Zenpage news class method checkNewsAccess()."
 msgstr ""
 "Utilisez plutôt la méthode checkNewsAccess() de la classe d’actualités "
 "Zenpage."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:318
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:326
 msgid ""
 "Use instead the Zenpage category global object variable: "
 "$_zp_current_category->getTitlelink()."
@@ -23851,7 +23853,7 @@ msgstr ""
 "Utilisez plutôt la variable objet globale $_zp_current_category-"
 ">getTitlelink() de la classe de catégorie Zenpage."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:328
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:336
 msgid ""
 "Use instead the Zenpage category global object variable: "
 "$_zp_current_category->getID()."
@@ -23859,7 +23861,7 @@ msgstr ""
 "Utilisez plutôt la variable objet globale $_zp_current_category->getID() de "
 "la classe de catégorie Zenpage."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:338
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:346
 msgid ""
 "Use instead the Zenpage category global object variable: "
 "$_zp_current_category->getParentID()."
@@ -23867,7 +23869,7 @@ msgstr ""
 "Utilisez plutôt la variable objet globale $_zp_current_category-"
 ">getParentID() de la classe de catégorie Zenpage."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:348
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:356
 msgid ""
 "Use instead the Zenpage news global object variable: "
 "$_zp_current_zenpage_news->inNewsCategory($catlink)."
@@ -23875,7 +23877,7 @@ msgstr ""
 "Utilisez plutôt la variable objet globale $_zp_current_category-"
 ">inNewsCategory($catlink) de la classe d’actualités Zenpage."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:358
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:366
 msgid ""
 "Use instead the Zenpage news global object variable: "
 "$_zp_current_zenpage_news->inSubNewsCategoryOf($catlink)."
@@ -23883,7 +23885,7 @@ msgstr ""
 "Utilisez plutôt la variable objet globale $_zp_current_category-"
 ">inSubNewsCategoryOf($catlink) de la classe d’actualités Zenpage."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:369
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:377
 msgid ""
 "Use instead the Zenpage category global object variable: "
 "$_zp_current_category->isSubNewsCategoryOf($catlink)."
@@ -23891,7 +23893,7 @@ msgstr ""
 "Utilisez plutôt la variable objet globale $_zp_current_category-"
 ">isSubNewsCategoryOf($catlink) de la classe de catégorie Zenpage."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:378
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:386
 msgid ""
 "Functionality is now included in getNewsContent(), printNewsContent() and "
 "getContentShorten() to properly cover custom shortening via TinyMCE "
@@ -23901,7 +23903,7 @@ msgstr ""
 "printNewsContent() et getContentShorten() pour gérer efficacement la "
 "troncation via la balise <pagebreak> de TinyMCE."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:391
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:399
 msgid ""
 "Use getContentShorten() instead. Note the read more url must be passed "
 "directly."
@@ -23909,41 +23911,41 @@ msgstr ""
 "Utilisez plutôt getContentShorten(). Notez que l’URL « lire la suite » doit "
 "être passée directement."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:400
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:408
 msgid "This happens automatically."
 msgstr "Ceci se produit automatiquement."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:408
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:416
 msgid ""
 "Use the method from either the ZenpagePage or the ZenpageCategory class "
 "instead."
 msgstr ""
 "Utilisez plutôt la méthode de la classe ZenpagePage ou ZenpageCategory."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:427
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:437
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:525
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:535
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:573
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:583
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:593
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:435
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:445
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:533
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:543
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:581
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:591
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:601
 msgid "Use the Zenpage class method instead."
 msgstr "Utilisez plutôt la méthode de la classe Zenpage."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:454
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:462
 msgid "Count the articles instead."
 msgstr "Faites plutôt le décompte des articles."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:545
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:553
 msgid "Use the global $_zp_page instead."
 msgstr "Utilisez plutôt la variable globale $_zp_page."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:555
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:564
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:563
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:572
 msgid "Combinews is removed."
 msgstr "CombiNews est supprimé."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:603
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:611
 msgid ""
 "Use the template function <code>getRSSLink()</code> instead. NOTE: While "
 "this function gets a full html link  <code>getRSSLink()</code> just returns "
@@ -23953,15 +23955,15 @@ msgstr ""
 "que cette fonction-ci renvoie un lien html pleinement qualifié, la fonction "
 "<code>getRSSLink()</code> renvoie uniqument l’URL."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:643
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:651
 msgid "use printLatestComments($number, $shorten, $type, $itemID, $id);"
 msgstr "utilisez printLatestComments($number, $shorten, $type, $itemID, $id);"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:652
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:660
 msgid "use getRSSLink($option,$lang,$categorylink)."
 msgstr "utilisez getRSSLink($option,$lang,$categorylink)."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:661
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:669
 msgid ""
 "use printRSSLink($option, $prev, $linktext, $next, $printIcon, $class, "
 "$lang, $categoryLink)."
@@ -23969,37 +23971,49 @@ msgstr ""
 "utilisez printRSSLink($option, $prev, $linktext, $next, $printIcon, $class, "
 "$lang, categoryLink)."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:671
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:679
 msgid "use printRSSHeaderLink($option, $linktext, $lang, $categorylink)."
 msgstr "utilisez printRSSHeaderLink($option, $linktext, $lang, $categorylink)."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:900
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:910
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:920
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:694
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:709
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:720
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:731
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:743
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:754
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:766
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:777
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:793
+msgid ""
+"CombiNews is deprecated. See the <a href=\"http://www.zenphoto.org/news/"
+"zenphoto-1.4.6\">Zenphoto 1.4.6 release notes</a>."
+msgstr ""
+"Combinews n’est plus utilisé. Voir les <a href=\"http://www.zenphoto.org/"
+"news/zenphoto-1.4.6\">notes de la version Zenphoto 1.4.6</a>."
+
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:802
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:812
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:822
 msgid "Create an object and use the object getLink"
 msgstr "Créez un object et utilisez l’objet getLink"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:930
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:948
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:832
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:850
 msgid "use getNewsURL()"
 msgstr "Utilisez getNewsURL()"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:939
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:976
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:841
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:878
 msgid "use printNewsURL()"
 msgstr "Utilisez printNewsURL()"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:958
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:860
 msgid "use getPageURL()"
 msgstr "Utilisez getPageURL()"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:967
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:869
 msgid "use printPageURL()"
 msgstr "Utilisez printPageURL()"
-
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:985
-msgid "use printNewsBreadcrumb()"
-msgstr "Utilisez printNewsBreadcrumb()"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:88
 msgid "Duplicate page title"
@@ -24315,51 +24329,57 @@ msgstr "Catégories ajoutées aux éléments sélectionnés"
 msgid "Categories cleared from selected items"
 msgstr "Catégories enlevées des éléments sélectionnés"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:363
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:426
 msgid "<em>This entry belongs to a protected album.</em>"
 msgstr "<em>Cette entrée appartient à un album protégé.</em>"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:919
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:982
 msgid "Prev page"
 msgstr "Page préc."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1492
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1532
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1555
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1595
 #, php-format
 msgid "%u article"
 msgid_plural "%u articles"
 msgstr[0] "%u article"
 msgstr[1] "%u articles"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2092
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2153
 msgid "This page is password protected"
 msgstr "Cette page est protégée par mot de passe"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2265
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2326
 #, php-format
 msgid "View the %s album"
 msgstr "Voir l’album %s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2267
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2328
 #, php-format
 msgid "View the album %s"
 msgstr "Voir l’album %s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2271
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2272
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2332
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2333
 #, php-format
 msgid "View %s"
 msgstr "Voir %s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2280
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2341
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the image %1$s:%2$s"
 msgstr "<code>zenpageAlbumImage()</code> n’a pas trouvé l’image %1$s:%2$s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2289
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2350
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> n’a pas trouvé l’album %1$s"
+
+#~ msgid "Use getNewsIndexURL()."
+#~ msgstr "Utilisez getNewsIndexURL()."
+
+#~ msgid "use printNewsBreadcrumb()"
+#~ msgstr "Utilisez printNewsBreadcrumb()"
 
 #~ msgid "method"
 #~ msgstr "méthode"
