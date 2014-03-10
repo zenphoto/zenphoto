@@ -33,7 +33,6 @@ function rewriteHandler() {
 	$request = explode('?', getRequestURI());
 	//rewrite base
 	$requesturi = ltrim(substr($request[0], strlen(WEBPATH)), '/');
-
 	list($definitions, $rules) = getRules();
 	//process the rules
 	foreach ($rules as $rule) {
@@ -54,9 +53,11 @@ function rewriteHandler() {
 							$flags = array();
 							$banner = explode(',', strtoupper($matches[3]));
 							foreach ($banner as $flag) {
+								$flag = strtoupper(trim($flag));
 								$f = explode('=', $flag);
 								$flags[$f[0]] = isset($f[1]) ? $f[1] : NULL;
 							}
+
 							if (!array_key_exists('QSA', $flags)) {
 								//	merge the existing query parameters with whatever the rewrite rule supplies
 								$_REQUEST = array_diff($_REQUEST, $_GET);

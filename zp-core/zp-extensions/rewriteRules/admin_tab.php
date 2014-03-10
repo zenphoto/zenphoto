@@ -16,6 +16,7 @@ echo "\n</head>";
 ?>
 <body>
 	<?php printLogoAndLinks(); ?>
+
 	<div id="main">
 		<?php printTabs(); ?>
 		<div id="content">
@@ -28,12 +29,12 @@ echo "\n</head>";
 						foreach ($list as $key => $rule) {
 							$c++;
 							?>
-								<dt<?php if ($c & 1) echo ' class=" bar"'; ?>>
-									<code><?php echo $rule[0]; ?></code>
-								</dt>
-								<dd<?php if ($c & 1) echo ' class=" bar"'; ?>>
-									<code><?php echo $rule[1]; ?></code>
-								</dd>
+							<dt<?php if ($c & 1) echo ' class=" bar"'; ?>>
+							<code><?php echo $rule[0], ' ' . $rule[1]; ?></code>
+							</dt>
+							<dd<?php if ($c & 1) echo ' class=" bar"'; ?>>
+								<code><?php echo $rule[2]; ?></code>
+							</dd>
 							<?php
 						}
 						?>
