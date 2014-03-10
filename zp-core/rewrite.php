@@ -34,6 +34,7 @@ function rewriteHandler() {
 	//rewrite base
 	$requesturi = ltrim(substr($request[0], strlen(WEBPATH)), '/');
 	list($definitions, $rules) = getRules();
+
 	//process the rules
 	foreach ($rules as $rule) {
 		if ($rule = trim($rule)) {
@@ -55,11 +56,11 @@ function rewriteHandler() {
 							foreach ($banner as $flag) {
 								$flag = strtoupper(trim($flag));
 								$f = explode('=', $flag);
-								$flags[$f[0]] = isset($f[1]) ? $f[1] : NULL;
+								$flags[trim($f[0])] = isset($f[1]) ? trim($f[1]) : NULL;
 							}
 
 							if (!array_key_exists('QSA', $flags)) {
-								//	merge the existing query parameters with whatever the rewrite rule supplies
+								//	QSA means merge the query parameters. Otherwise we clear them
 								$_REQUEST = array_diff($_REQUEST, $_GET);
 								$_GET = array();
 							}
@@ -91,7 +92,7 @@ function rewriteHandler() {
 							break;
 						}
 					} else {
-						zp_error(sprintf(gettext('Error processing rewrite rule: "%s"'), trim(str_replace('RewriteRule', '', $rule))), E_USER_WARNING);
+						zp_error(sprintf(gettext('Error processing rewrite rule: "%s"'), trim(preg_replace('~^rewriterule~i', '', $rule))), E_USER_WARNING);
 					}
 				} else {
 					if (preg_match('~define\s+(.*?)\s*\=\>\s*(.*)$~i', $rule, $matches)) {
