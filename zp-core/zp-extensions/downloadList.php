@@ -128,7 +128,7 @@ class DownloadList {
 						 onkeyup="passwordStrength('_downloadList');"
 						 value="<?php echo $x; ?>" />
 			<label><input type="checkbox" name="disclose_password_downloadList" id="disclose_password_downloadList" onclick="passwordClear('_downloadList');
-							togglePassword('_downloadList');"><?php echo gettext('Show password'); ?></label>
+					togglePassword('_downloadList');"><?php echo gettext('Show password'); ?></label>
 			<br />
 			<span class="password_field__downloadList">
 				<span id="match_downloadList"><?php echo gettext("(repeat)"); ?></span>
@@ -187,9 +187,6 @@ class DownloadList {
 
 	static function getListItemsFromDB() {
 		$downloaditems = query_full_array("SELECT id, `aux`, `data` FROM " . prefix('plugin_storage') . " WHERE `type` = 'downloadList'");
-
-		var_dump($downloaditems);
-
 		return $downloaditems;
 	}
 
@@ -208,7 +205,6 @@ class DownloadList {
 	 * @return bool|string
 	 */
 	static function getItemID($path) {
-		$path = sanitize($path);
 		$downloaditem = query_single_row("SELECT id, `aux`, `data` FROM " . prefix('plugin_storage') . " WHERE `type` = 'downloadList' AND `aux` = " . db_quote($path));
 		if ($downloaditem) {
 			return $downloaditem['id'];
@@ -488,6 +484,9 @@ function getdownloadList($dir8, $filters8, $excludesuffixes, $sort) {
  * @param string $file the path to a file to get a download link.
  */
 function getDownloadURL($file) {
+	if (substr($file, 0, 1) != '/' && strpos($file, ':') === false) {
+		$file = SERVERPATH . '/' . getOption('downloadList_directory') . '/' . $file;
+	}
 	$request = parse_url(getRequestURI());
 	if (isset($request['query'])) {
 		$query = parse_query($request['query']);
@@ -615,8 +614,7 @@ if (isset($_GET['download'])) {
 		exitZP();
 	} else {
 		require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-MimeTypes.php');
-		$cd = getcwd();
-		$item = sanitize_numeric($item);
+		$item = (int) $item;
 		$path = query_single_row("SELECT `aux` FROM " . prefix('plugin_storage') . " WHERE id=" . $item);
 		$_downloadFile = internalToFilesystem($path['aux']);
 		if (file_exists($_downloadFile)) {
