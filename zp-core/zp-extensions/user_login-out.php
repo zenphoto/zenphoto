@@ -108,7 +108,8 @@ if (in_context(ZP_INDEX)) {
  * @param string $logouttext optional replacement text for "Logout"
  */
 function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $logouttext = NULL) {
-	global $__redirect, $_zp_current_admin_obj, $_zp_login_error;
+	global $__redirect, $_zp_current_admin_obj, $_zp_login_error, $_zp_gallery_page;
+	$excludedPages = array('password.php', 'register.php', 'favorites.php', '404.php');
 	$logintext = gettext('Login');
 	if (is_null($logouttext))
 		$logouttext = gettext("Logout");
@@ -125,13 +126,13 @@ function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $l
 	} else {
 		if ($loginlink = zp_apply_filter('login_link', false)) {
 			if ($before) {
-				echo '<span class="beforetext">' . html_encode($before) . '</span>';
+				echo '<span class="beforetext">' . html_encodeTagged($before) . '</span>';
 			}
 			?>
 			<a href="<?php echo $loginlink; ?>" title="<?php echo $logintext; ?>"><?php echo $logintext; ?></a>
 			<?php
 			if ($after) {
-				echo '<span class="aftertext">' . html_encode($after) . '</span>';
+				echo '<span class="aftertext">' . html_encodeTagged($after) . '</span>';
 			}
 			return;
 		}
@@ -141,7 +142,7 @@ function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $l
 	}
 	$cookies = Zenphoto_Authority::getAuthCookies();
 	if (empty($cookies) && !zp_loggedin()) {
-		if ($showLoginForm) {
+		if ($showLoginForm && !in_array($_zp_gallery_page, $excludedPages)) {
 			if ($showLoginForm > 1) {
 				if (zp_has_filter('theme_head', 'colorbox::css')) {
 					?>
@@ -161,7 +162,7 @@ function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $l
 					<?php
 				}
 				if ($before) {
-					echo '<span class="beforetext">' . html_encode($before) . '</span>';
+					echo '<span class="beforetext">' . html_encodeTagged($before) . '</span>';
 				}
 				?>
 				<a href="#" class="logonlink" title="<?php echo $logintext; ?>"><?php echo $logintext; ?></a>
@@ -170,7 +171,7 @@ function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $l
 				}
 				?>
 				<div class="passwordform">
-				<?php printPasswordForm('', true, false); ?>
+					<?php printPasswordForm('', true, false); ?>
 				</div>
 				<?php
 				if ($showLoginForm > 1) {
@@ -178,13 +179,13 @@ function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $l
 				</span>
 				<?php
 				if ($after) {
-					echo '<span class="aftertext">' . html_encode($after) . '</span>';
+					echo '<span class="aftertext">' . html_encodeTagged($after) . '</span>';
 				}
 			}
 		}
 	} else {
 		if ($before) {
-			echo '<span class="beforetext">' . html_encode($before) . '</span>';
+			echo '<span class="beforetext">' . html_encodeTagged($before) . '</span>';
 		}
 		$logoutlink = "javascript:launchScript('" . FULLWEBPATH . "/',[" . implode(',', $params) . "]);";
 		?>
@@ -192,7 +193,7 @@ function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $l
 			 title="<?php echo $logouttext; ?>"><?php echo $logouttext; ?></a>
 		<?php
 		if ($after) {
-			echo '<span class="aftertext">' . html_encode($after) . '</span>';
+			echo '<span class="aftertext">' . html_encodeTagged($after) . '</span>';
 		}
 	}
 }

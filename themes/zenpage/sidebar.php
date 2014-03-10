@@ -101,7 +101,7 @@ if (getOption("zenpage_contactpage") && extensionEnabled('contact_form')) {
 	</div>
 	<?php
 }
-if ((function_exists("printUserLogin_out") && $_zp_gallery_page != 'register.php') || !zp_loggedin() && function_exists('printRegistrationForm') || class_exists('mobileTheme')) {
+if ((function_exists("printUserLogin_out") ) || !zp_loggedin() && function_exists('printRegistrationForm') || class_exists('mobileTheme')) {
 	?>
 	<div class="menu">
 		<ul>
@@ -122,12 +122,8 @@ if ((function_exists("printUserLogin_out") && $_zp_gallery_page != 'register.php
 			if (function_exists('printFavoritesURL')) {
 				printFavoritesURL(NULL, '<li>', '</li><li>', '</li>');
 			}
-			if (function_exists("printUserLogin_out") && $_zp_gallery_page != 'register.php') {
-				?>
-				<li>
-					<?php printUserLogin_out("", "", 2); ?>
-				</li>
-				<?php
+			if (function_exists("printUserLogin_out")) {
+				printUserLogin_out("<li>", "</li>", 2);
 			}
 			if (class_exists('mobileTheme')) {
 				?>

@@ -89,7 +89,6 @@ function gMapOptionsAlbum($map) {
 
 function footer() {
 	global $_zp_gallery_page, $_zp_current_category, $_zp_gallery;
-	$exclude_login = array('password.php', 'register.php', 'contact.php');
 	?>
 	<div id="footer">
 		<?php
@@ -136,7 +135,7 @@ function footer() {
 			$prev = ' | ';
 		}
 		?>
-		<?php if (!in_array($_zp_gallery_page, $exclude_login)) @call_user_func('printUserLogin_out', $prev); ?>
+		<?php @call_user_func('printUserLogin_out', $prev); ?>
 		<br />
 		<?php @call_user_func('mobileTheme::controlLink'); ?>
 		<br />

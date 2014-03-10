@@ -27,6 +27,7 @@ if (function_exists('printRegistrationForm')) {
 				<h2><?php echo gettext('User Registration') ?></h2>
 				<?php printRegistrationForm(); ?>
 			</div>
+			<?php @call_user_func('printUserLogin_out', ""); ?>
 			<?php @call_user_func('printLanguageSelector'); ?>
 			<div id="credit">
 				<?php printZenphotoLink(); ?>

@@ -399,10 +399,7 @@ function printFooter($admin = true) {
 		}
 		?>
 		<?php
-		if ($_zp_gallery_page != 'password.php') {
-			@call_user_func('printUserLogin_out', '');
-			echo '<br />';
-		}
+		@call_user_func('printUserLogin_out', '', '<br />');
 		?>
 		<?php
 		if ($_zp_gallery_page != 'contact.php' && extensionEnabled('contact_form') && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('contact'))) {
@@ -436,24 +433,24 @@ function commonNewsLoop($paged) {
 			<h3><?php printNewsURL(); ?><?php echo " <span class='newstype'>[" . $newstypedisplay . "]</span>"; ?></h3>
 			<div class="newsarticlecredit">
 				<span class="newsarticlecredit-left">
+		<?php
+		$count = @call_user_func('getCommentCount');
+		$cat = getNewsCategories();
+		printNewsDate();
+		if ($count > 0) {
+			echo ' | ';
+			printf(gettext("Comments: %d"), $count);
+		}
+		?>
+				</span>
 					<?php
-					$count = @call_user_func('getCommentCount');
-					$cat = getNewsCategories();
-					printNewsDate();
-					if ($count > 0) {
+					if (!empty($cat)) {
 						echo ' | ';
-						printf(gettext("Comments: %d"), $count);
+						printNewsCategories(", ", gettext("Categories: "), "newscategories");
 					}
 					?>
-				</span>
-				<?php
-				if (!empty($cat)) {
-					echo ' | ';
-					printNewsCategories(", ", gettext("Categories: "), "newscategories");
-				}
-				?>
 			</div> <!-- newsarticlecredit -->
-			<?php printCodeblock(1); ?>
+				<?php printCodeblock(1); ?>
 			<?php printNewsContent(); ?>
 			<?php printCodeblock(2); ?>
 			<br class="clearall" />
@@ -473,41 +470,41 @@ function commonComment() {
 	if (function_exists('printCommentForm')) {
 		?>
 		<div id="commentbox">
-			<?php
-			if (getCommentErrors() || getCommentCount() == 0) {
-				$style = NULL;
-				$head = '';
-			} else {
+		<?php
+		if (getCommentErrors() || getCommentCount() == 0) {
+			$style = NULL;
+			$head = '';
+		} else {
 //TODO: if the following line is used as intended the comment textarea is hidden to start with and when shown is not full width.
 //				$style = ' class="comment" style="display:none;"';
-				$style = ' class="commentx" style="display:block;"';
-				$head = "<div$style><h3>" . gettext('Add a comment') . '</h3></div>';
-			}
-			printCommentForm(true, $head, true, $style);
-			?>
+			$style = ' class="commentx" style="display:block;"';
+			$head = "<div$style><h3>" . gettext('Add a comment') . '</h3></div>';
+		}
+		printCommentForm(true, $head, true, $style);
+		?>
 		</div><!-- id="commentbox" -->
-		<?php
+			<?php
+		}
 	}
-}
 
-function my_checkPageValidity($request, $gallery_page, $page) {
-	switch ($gallery_page) {
-		case 'gallery.php':
-			$gallery_page = 'index.php'; //	same as an album gallery index
-			break;
-		case 'index.php':
-			if (!extensionEnabled('zenpage') || getOption('custom_index_page') == 'gallery') { // only one index page if zenpage plugin is enabled or custom index page is set
+	function my_checkPageValidity($request, $gallery_page, $page) {
+		switch ($gallery_page) {
+			case 'gallery.php':
+				$gallery_page = 'index.php'; //	same as an album gallery index
 				break;
-			}
-		default:
-			if ($page != 1) {
-				return false;
-			}
-		case 'news.php':
-		case 'album.php':
-		case 'search.php':
-			break;
+			case 'index.php':
+				if (!extensionEnabled('zenpage') || getOption('custom_index_page') == 'gallery') { // only one index page if zenpage plugin is enabled or custom index page is set
+					break;
+				}
+			default:
+				if ($page != 1) {
+					return false;
+				}
+			case 'news.php':
+			case 'album.php':
+			case 'search.php':
+				break;
+		}
+		return checkPageValidity($request, $gallery_page, $page);
 	}
-	return checkPageValidity($request, $gallery_page, $page);
-}
-?>
+	?>
