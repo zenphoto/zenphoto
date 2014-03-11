@@ -64,7 +64,10 @@ if (!defined('WEBPATH') || !class_exists('Zenpage'))
 								if (function_exists('getCommentCount')) {
 									echo gettext("Comments:");
 									?> <?php echo getCommentCount(); ?> |<?php } ?> </span> <?php printNewsCategories(", ", gettext("Categories: "), "newscategories"); ?></div>
-						<?php printNewsContent(); ?>
+						<?php 
+						printNewsContent(); 
+						printCodeblock(1);
+						?>
 						<?php printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', '); ?>
 						<br style="clear:both;" /><br />
 						<?php @call_user_func('printRating'); ?>

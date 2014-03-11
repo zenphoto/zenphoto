@@ -52,7 +52,6 @@ if (!defined('WEBPATH') || !class_exists('Zenpage'))
 					?>
 					<br style="clear:both;" /><br />
 					<?php @call_user_func('printRating'); ?>
-
 					<?php @call_user_func('printCommentForm'); ?>
 				</div><!-- content left-->
 
