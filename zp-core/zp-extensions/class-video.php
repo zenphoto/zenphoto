@@ -79,7 +79,7 @@ class Video extends Image {
 	 * @param sting $filename the filename of the image
 	 * @return Image
 	 */
-	function __construct(&$album, $filename, $quiet = false) {
+	function __construct($album, $filename, $quiet = false) {
 		global $_zp_supported_images;
 		$msg = false;
 		if (!is_object($album) || !$album->exists) {
