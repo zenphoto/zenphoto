@@ -298,7 +298,6 @@ if ($plugin_disable) {
 				if (!zp_loggedin() || $_myFavorites->getOwner() != $_zp_current_admin_obj->getUser() || !is_object($obj) || !$obj->exists) {
 					return;
 				}
-				$multi = getOption('favorites_multi') && $_zp_gallery_page != 'favorites.php';
 
 				$v = 1;
 				if (is_null($add)) {
@@ -311,7 +310,14 @@ if ($plugin_disable) {
 				}
 				$table = $obj->table;
 				$target = array('type' => $table);
-				$list = $_myFavorites->list;
+				if ($_zp_gallery_page == 'favorites.php') {
+					//	 only need one remove button since we know the instance
+					$multi = false;
+					$list = array($_myFavorites->instance);
+				} else {
+					$multi = getOption('favorites_multi');
+					$list = $_myFavorites->list;
+				}
 				$seen = array_flip($list);
 				switch ($table) {
 					case 'images':
@@ -340,7 +346,6 @@ if ($plugin_disable) {
 							foreach ($albums as $album) {
 								if ($album == $id) {
 									$seen[$instance] = true;
-									;
 									favorites::ad_removeButton($obj, $id, 0, $remove, $instance, $multi);
 									break;
 								}

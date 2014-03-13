@@ -54,7 +54,7 @@ class favorites extends AlbumBase {
 	 * @return bool
 	 */
 	function isDynamic() {
-		return true;
+		return false;
 	}
 
 	function getList() {
@@ -347,7 +347,7 @@ class favorites extends AlbumBase {
 	static function ad_removeButton($obj, $id, $v, $add, $instance, $multi) {
 		global $_myFavorites;
 		$table = $obj->table;
-		if ($instance) {
+		if ($instance && $multi) {
 			$add .= '::' . $instance;
 		}
 		?>
