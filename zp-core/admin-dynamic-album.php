@@ -15,10 +15,9 @@ $imagelist = array();
 
 function getSubalbumImages($folder) {
 	global $imagelist, $_zp_gallery;
-	if (hasDynamicAlbumSuffix($folder)) {
-		return;
-	}
 	$album = newAlbum($folder);
+	if ($album->isDynamic())
+		return;
 	$images = $album->getImages();
 	foreach ($images as $image) {
 		$imagelist[] = '/' . $folder . '/' . $image;
@@ -141,7 +140,7 @@ while ($old != $albumname) {
 }
 ?>
 <form class="dirty-check" action="?savealbum" method="post">
-<?php XSRFToken('savealbum'); ?>
+	<?php XSRFToken('savealbum'); ?>
 	<input type="hidden" name="savealbum" value="yes" />
 	<table>
 		<tr>
@@ -251,7 +250,7 @@ while ($old != $albumname) {
 			<td><?php echo gettext('Album <em>Tag</em>'); ?></td>
 			<td>
 				<input type="text" size="40" name="album_tag" id="album_tag" value="<?php echo html_encode($albumname); ?>" disabled="disabled" />
-<?php echo gettext('Select <em>tagged</em> to tag the current search results with this <em>tag</em> and use as the album criteria.'); ?>
+				<?php echo gettext('Select <em>tagged</em> to tag the current search results with this <em>tag</em> and use as the album criteria.'); ?>
 			</td>
 		</tr>
 		<tr>

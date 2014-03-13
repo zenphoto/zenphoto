@@ -819,4 +819,34 @@ function openedForComments() {
 	return false;
 }
 
+/**
+ * @deprecated
+ * @since 1.4.6
+ *
+ */
+function addPluginType($suffix, $objectName) {
+	deprecated_functions::notify(gettext("use Gallery::addImageHandler()"));
+	return Gallery::addImageHandler($suffix, $objectName);
+}
+
+/**
+ * @deprecated
+ * @since 1.4.6
+ *
+ */
+function is_valid_image($filename) {
+	deprecated_functions::notify(gettext("use Gallery::validImage()"));
+	return Gallery::validImage($filename);
+}
+
+/**
+ * @deprecated
+ * @since 1.4.6
+ *
+ */
+function is_valid_other_type($filename) {
+	deprecated_functions::notify(gettext("use Gallery::validImageAlt()"));
+	return Gallery::validImageAlt($filename);
+}
+
 ?>

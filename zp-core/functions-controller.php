@@ -313,8 +313,7 @@ function prepareIndexPage() {
  */
 function prepareAlbumPage() {
 	global $_zp_current_album, $_zp_gallery_page, $_zp_script;
-	if ($_zp_current_album->isDynamic()) {
-		$search = $_zp_current_album->getSearchEngine();
+	if ($_zp_current_album->isDynamic() && ($search = $_zp_current_album->getSearchEngine())) {
 		zp_setCookie("zenphoto_search_params", $search->getSearchParams(), SEARCH_DURATION);
 	} else {
 		handleSearchParms('album', $_zp_current_album);
@@ -335,7 +334,7 @@ function prepareImagePage() {
 	handleSearchParms('image', $_zp_current_album, $_zp_current_image);
 	$theme = setupTheme();
 	$_zp_gallery_page = basename($_zp_script = THEMEFOLDER . "/$theme/image.php");
-	// re-initialize video dimensions if needed
+// re-initialize video dimensions if needed
 	if (isImageVideo()) {
 		$_zp_current_image->updateDimensions();
 	}
@@ -385,7 +384,7 @@ function prepareCustomPage() {
 //force license page if not acknowledged
 if (!getOption('license_accepted')) {
 	if (isset($_GET['z']) && $_GET['z'] != 'setup') {
-		// License needs agreement
+// License needs agreement
 		$_GET['p'] = 'license';
 		$_GET['z'] = '';
 	}

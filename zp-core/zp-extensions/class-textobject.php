@@ -58,9 +58,9 @@ $plugin_description = gettext('Provides a means for showing text type documents 
 $plugin_author = "Stephen Billard (sbillard)";
 
 
-addPluginType('htm', 'TextObject');
-addPluginType('html', 'TextObject');
-addPluginType('txt', 'TextObject');
+Gallery::addImageHandler('htm', 'TextObject');
+Gallery::addImageHandler('html', 'TextObject');
+Gallery::addImageHandler('txt', 'TextObject');
 $option_interface = 'textObject_Options';
 
 /**

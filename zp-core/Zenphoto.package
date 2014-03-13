@@ -1093,6 +1093,7 @@ zp-core/zp-extensions/externalFeed.php
 zp-core/zp-extensions/favoritesHandler
 zp-core/zp-extensions/favoritesHandler.php
 zp-core/zp-extensions/favoritesHandler/deprecated-functions.php
+zp-core/zp-extensions/favoritesHandler/favoritesClass.php
 zp-core/zp-extensions/federated_logon
 zp-core/zp-extensions/federated_logon.php
 zp-core/zp-extensions/federated_logon/Auth
@@ -1676,4 +1677,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1678
+1679

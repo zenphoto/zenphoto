@@ -20,15 +20,15 @@ $plugin_author = "Stephen Billard (sbillard)";
 $option_interface = 'WEBdocs_Options';
 
 if (getOption('WEBdocs_pdf_provider')) {
-	addPluginType('pdf', 'WEBdocs');
+	Gallery::addImageHandler('pdf', 'WEBdocs');
 }
 if (getOption('WEBdocs_pps_provider')) {
-	addPluginType('pps', 'WEBdocs');
-	addPluginType('ppt', 'WEBdocs');
+	Gallery::addImageHandler('pps', 'WEBdocs');
+	Gallery::addImageHandler('ppt', 'WEBdocs');
 }
 if (getOption('WEBdocs_tif_provider')) {
-	addPluginType('tif', 'WEBdocs');
-	addPluginType('tiff', 'WEBdocs');
+	Gallery::addImageHandler('tif', 'WEBdocs');
+	Gallery::addImageHandler('tiff', 'WEBdocs');
 }
 
 /**

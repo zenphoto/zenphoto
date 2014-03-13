@@ -6,7 +6,7 @@
  */
 // force UTF-8 Ø
 
-$_zp_extra_filetypes = array(); // contains file extensions and the handler class
+$_zp_extra_filetypes = array(); // contains file extensions and the handler class for alternate images
 
 define('WATERMARK_IMAGE', 1);
 define('WATERMARK_THUMB', 2);
@@ -45,10 +45,10 @@ function newImage($album, $filename, $quiet = false) {
 		}
 		return $_zp_missing_image;
 	}
-	if ($object = is_valid_other_type($filename)) {
+	if ($object = Gallery::validImageAlt($filename)) {
 		$image = New $object($xalbum, $filename, $quiet);
 	} else {
-		if (is_valid_image($filename)) {
+		if (Gallery::validImage($filename)) {
 			$image = New Image($xalbum, $filename, $quiet);
 		} else {
 			$image = NULL;

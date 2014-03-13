@@ -465,7 +465,25 @@ function getOptionList() {
  * @return bool
  */
 function hasDynamicAlbumSuffix($path) {
-	return getSuffix($path) == 'alb';
+	global $_zp_albumHandlers;
+	return array_key_exists(getSuffix($path), $_zp_albumHandlers);
+}
+
+/**
+ * checks if there is a file with the prefix and one of the
+ * handled suffixes. Returns the found suffix
+ *
+ * @param type $path
+ * @return string
+ */
+function isHandledAlbum($path) {
+	global $_zp_albumHandlers;
+	foreach (array_keys($_zp_albumHandlers) as $suffix) {
+		if (file_exists($path . '.' . $suffix)) {
+			//	it is a handled album sans suffix
+			return $suffix;
+		}
+	} return NULL;
 }
 
 /**
@@ -479,7 +497,7 @@ function hasDynamicAlbumSuffix($path) {
  * @param string $imagevar	$_GET index for "images"
  */
 function rewrite_get_album_image($albumvar, $imagevar) {
-	global $_zp_rewritten;
+	global $_zp_rewritten, $_zp_albumHandlers;
 	$ralbum = isset($_GET[$albumvar]) ? trim(sanitize_path($_GET[$albumvar]), '/') : NULL;
 	$rimage = isset($_GET[$imagevar]) ? sanitize($_GET[$imagevar]) : NULL;
 	//	we assume that everything is correct if rewrite rules were not applied
@@ -493,12 +511,12 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 				}
 				$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
 				if (!is_dir($path)) {
-					if (file_exists($path . '.alb')) {
+					if ($suffix = isHandledAlbum($path)) {
 						//	it is a dynamic album sans suffix
-						$ralbum .= '.alb';
+						$ralbum .= '.' . $suffix;
 					}
 				}
-			} else if (getSuffix($ralbum) != 'alb') { //	have to figure it out
+			} else if (!hasDynamicAlbumSuffix($path)) { //	have to figure it out
 				$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
 				if (file_exists($path)) {
 					if (!is_dir($path)) {
@@ -506,24 +524,24 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 						$rimage = basename($ralbum);
 						$ralbum = trim(dirname($ralbum), '/');
 					}
-				} else if (file_exists($path . '.alb')) {
+				} else if ($suffix = isHandledAlbum($path)) {
 					//	it is a dynamic album sans suffix
-					$ralbum .= '.alb';
+					$ralbum .= '.' . $suffix;
 				} else {
 					//	Perhaps a dynamicalbum/image
 					$path = trim(dirname($ralbum), '/');
 					if ($path != '.') {
-						if (getSuffix($path) == 'alb') {
+						if (hasDynamicAlbumSuffix($path)) {
 							$path = stripSuffix($path);
 						}
 						$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $path);
 						if (!is_dir($path)) {
-							if (file_exists($path . '.alb')) {
-								//	it is a dynamic album sans suffix
+							if (isHandledAlbum($path)) {
+								//	it is a alternate album sans suffix
 								$rimage = basename($ralbum);
 								$ralbum = trim(dirname($ralbum), '/');
-								if (getSuffix($ralbum) != 'alb')
-									$ralbum .= '.alb';
+								if (getSuffix($ralbum) != $suffix)
+									$ralbum .= '.' . $suffix;
 							}
 						}
 					}
@@ -1298,28 +1316,6 @@ function getAlbumArray($albumstring, $includepaths = false) {
 	} else {
 		return explode('/', $albumstring);
 	}
-}
-
-/**
- * Returns true if the file is an image
- *
- * @param string $filename the name of the target
- * @return bool
- */
-function is_valid_image($filename) {
-	global $_zp_supported_images;
-	return in_array(getSuffix($filename), $_zp_supported_images);
-}
-
-/**
- * Returns true if the file is handled by a plugin object
- *
- * @param string $filename
- * @return bool
- */
-function is_valid_other_type($filename) {
-	global $_zp_extra_filetypes;
-	return @$_zp_extra_filetypes[getSuffix($filename)];
 }
 
 /**

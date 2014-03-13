@@ -3206,7 +3206,7 @@ function getRandomImagesAlbum($rootAlbum = NULL, $daily = false) {
 		shuffle($images);
 		while (count($images) > 0) {
 			$result = array_pop($images);
-			if (is_valid_image($result['filename'])) {
+			if (Gallery::validImage($result['filename'])) {
 				$image = newImage(newAlbum($result['folder']), $result['filename']);
 			}
 		}

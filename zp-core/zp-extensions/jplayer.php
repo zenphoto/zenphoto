@@ -83,12 +83,12 @@ if (!empty($_zp_multimedia_extension->name) || $plugin_disable) {
 	}
 } else {
 
-	addPluginType('flv', 'Video');
-	addPluginType('fla', 'Video');
-	addPluginType('mp3', 'Video');
-	addPluginType('mp4', 'Video');
-	addPluginType('m4v', 'Video');
-	addPluginType('m4a', 'Video');
+	Gallery::addImageHandler('flv', 'Video');
+	Gallery::addImageHandler('fla', 'Video');
+	Gallery::addImageHandler('mp3', 'Video');
+	Gallery::addImageHandler('mp4', 'Video');
+	Gallery::addImageHandler('m4v', 'Video');
+	Gallery::addImageHandler('m4a', 'Video');
 
 	zp_register_filter('content_macro', 'jPlayer::macro');
 }

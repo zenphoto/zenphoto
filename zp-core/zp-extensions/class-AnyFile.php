@@ -19,7 +19,7 @@ $plugin_author = "Stephen Billard (sbillard)";
 
 
 foreach (get_AnyFile_suffixes() as $suffix) {
-	addPluginType($suffix, 'AnyFile');
+	Gallery::addImageHandler($suffix, 'AnyFile');
 }
 $option_interface = 'AnyFile_Options';
 

@@ -18,8 +18,8 @@ $plugin_description = gettext('The Zenphoto <em>audio-video</em> handler.');
 $plugin_notice = gettext('This plugin must always be enabled to use multimedia content. Note that you should also enable a multimedia player. See the info of the player you use to see how it is configured.');
 $plugin_author = "Stephen Billard (sbillard)";
 
-addPluginType('3gp', 'Video');
-addPluginType('mov', 'Video');
+Gallery::addImageHandler('3gp', 'Video');
+Gallery::addImageHandler('mov', 'Video');
 $option_interface = 'VideoObject_Options';
 
 define('GETID3_INCLUDEPATH', SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/class-video/getid3/');

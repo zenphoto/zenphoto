@@ -5,9 +5,9 @@
  * ***************************************************************************** */
 
 require_once(dirname(__FILE__) . '/classes.php');
-require_once(dirname(__FILE__) . '/class-image.php');
-require_once(dirname(__FILE__) . '/class-album.php');
 require_once(dirname(__FILE__) . '/class-gallery.php');
+require_once(dirname(__FILE__) . '/class-album.php');
+require_once(dirname(__FILE__) . '/class-image.php');
 require_once(dirname(__FILE__) . '/class-search.php');
 require_once(dirname(__FILE__) . '/class-comment.php');
 

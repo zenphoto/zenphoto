@@ -1026,6 +1026,50 @@ class Gallery {
 		return $this->table . " (" . $this->id . ")";
 	}
 
+	/**
+	 * registers object handlers for image varients
+	 * @global array $_zp_extra_filetypes
+	 * @param type $suffix
+	 * @param type $objectName
+	 */
+	static function addImageHandler($suffix, $objectName) {
+		global $_zp_extra_filetypes;
+		$_zp_extra_filetypes[strtolower($suffix)] = $objectName;
+	}
+
+	/**
+	 * Returns true if the file is an image
+	 *
+	 * @param string $filename the name of the target
+	 * @return bool
+	 */
+	static function validImage($filename) {
+		global $_zp_supported_images;
+		return in_array(getSuffix($filename), $_zp_supported_images);
+	}
+
+	/**
+	 * Returns true if the file is handled by an image handler plugin object
+	 *
+	 * @param string $filename
+	 * @return bool
+	 */
+	static function validImageAlt($filename) {
+		global $_zp_extra_filetypes;
+		return @$_zp_extra_filetypes[getSuffix($filename)];
+	}
+
+	/**
+	 * registers object handlers for album varients
+	 * @global array $_zp_albumHandlers
+	 * @param type $suffix
+	 * @param type $objectName
+	 */
+	static function addAlbumHandler($suffix, $objectName) {
+		global $_zp_albumHandlers;
+		$_zp_albumHandlers[strtolower($suffix)] = $objectName;
+	}
+
 }
 
 ?>

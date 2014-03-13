@@ -1046,17 +1046,6 @@ function setupTheme($album = NULL) {
 }
 
 /**
- * Registers a plugin as handler for a file extension
- *
- * @param string $suffix the file extension
- * @param string $objectName the name of the object that handles this extension
- */
-function addPluginType($suffix, $objectName) {
-	global $_zp_extra_filetypes;
-	$_zp_extra_filetypes[strtolower($suffix)] = $objectName;
-}
-
-/**
  * Returns an array of unique tag names
  *
  * @return array

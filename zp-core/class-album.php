@@ -9,7 +9,7 @@
 define('IMAGE_SORT_DIRECTION', getOption('image_sortdirection'));
 define('IMAGE_SORT_TYPE', getOption('image_sorttype'));
 
-$_zp_albumHandlers = array('alb' => 'dynamicAlbum');
+Gallery::addAlbumHandler('alb', 'dynamicAlbum');
 
 /**
  * Wrapper instantiation function for albums. Do not instantiate directly
@@ -20,7 +20,8 @@ $_zp_albumHandlers = array('alb' => 'dynamicAlbum');
  */
 function newAlbum($folder8, $cache = true, $quiet = false) {
 	global $_zp_albumHandlers;
-	if (($suffix = getSuffix($folder8)) && array_key_exists($suffix, $_zp_albumHandlers)) {
+	$suffix = getSuffix($folder8);
+	if ($suffix && array_key_exists($suffix, $_zp_albumHandlers)) {
 		return new $_zp_albumHandlers[$suffix]($folder8, $cache, $quiet);
 	} else {
 		return new Album($folder8, $cache, $quiet);
@@ -780,7 +781,6 @@ class Album extends AlbumBase {
 	 * @return Album
 	 */
 	function __construct($folder8, $cache = true, $quiet = false) {
-		global $_zp_gallery;
 
 		$folder8 = trim($folder8, '/');
 		$folderFS = internalToFilesystem($folder8);
@@ -1557,10 +1557,10 @@ class Album extends AlbumBase {
 				if ($dirs && (is_dir($albumdir . $file) || hasDynamicAlbumSuffix($file))) {
 					$files[] = $file8;
 				} else if (!$dirs && is_file($albumdir . $file)) {
-					if (is_valid_other_type($file)) {
+					if (Gallery::validImageAlt($file)) {
 						$files[] = $file8;
 						$others[] = $file8;
-					} else if (is_valid_image($file)) {
+					} else if (Gallery::validImage($file)) {
 						$files[] = $file8;
 					}
 				}
@@ -1574,7 +1574,7 @@ class Album extends AlbumBase {
 				foreach ($files as $image) {
 					if ($image != $other) {
 						$image_root = substr($image, 0, strrpos($image, "."));
-						if ($image_root == $others_root && is_valid_image($image)) {
+						if ($image_root == $others_root && Gallery::validImage($image)) {
 							$others_thumbs[] = $image;
 						}
 					}
@@ -1761,7 +1761,7 @@ class dynamicAlbum extends Album {
 			$this->set('mtime', filemtime($this->localpath));
 			if ($new) {
 				$title = $this->get('title');
-				$this->set('title', substr($title, 0, -4)); // Strip the .'.alb' suffix
+				$this->set('title', stripSuffix($title)); // Strip the suffix
 			}
 		}
 	}

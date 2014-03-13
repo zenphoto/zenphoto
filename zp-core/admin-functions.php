@@ -1278,13 +1278,13 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
 																onclick="passwordClear('<?php echo $suffix; ?>');
-																		togglePassword('<?php echo $suffix; ?>');" /><?php echo gettext('Show password'); ?></label>
+																				togglePassword('<?php echo $suffix; ?>');" /><?php echo gettext('Show password'); ?></label>
 								</td>
 								<td>
 									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
 												 onkeydown="passwordClear
-														 '<?php echo $suffix; ?>'
-																		 );"
+																 '<?php echo $suffix; ?>'
+																				 );"
 												 id="user_name<?php echo $suffix; ?>" name="user<?php echo $suffix; ?>"
 												 value="<?php echo $album->getUser(); ?>" />
 								</td>
@@ -1307,8 +1307,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 										<input type="password"
 													 id="pass<?php echo $suffix; ?>" name="pass<?php echo $suffix; ?>"
 													 onkeydown="passwordClear
-															 '<?php echo $suffix; ?>'
-																			 );"
+																	 '<?php echo $suffix; ?>'
+																					 );"
 													 onkeyup="passwordStrength('<?php echo $suffix; ?>');"
 													 value="<?php echo $x; ?>" />
 										<br />
@@ -1316,8 +1316,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 											<input type="password"
 														 id="pass_r<?php echo $suffix; ?>" name="pass_r<?php echo $suffix; ?>" disabled="disabled"
 														 onkeydown="passwordClear
-																 '<?php echo $suffix; ?>'
-																				 );"
+																		 '<?php echo $suffix; ?>'
+																						 );"
 														 onkeyup="passwordMatch('<?php echo $suffix; ?>');"
 														 value="<?php echo $x; ?>" />
 										</span>
@@ -1636,7 +1636,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 													$image = newImage($thumbalbum, $filename);
 												}
 												$selected = ($imagename == $thumb);
-												if (is_valid_image($filename) || !is_null($image->objectsThumb)) {
+												if (Gallery::validImage($filename) || !is_null($image->objectsThumb)) {
 													echo "\n<option";
 													if ($_zp_gallery->getThumbSelectImages()) {
 														echo " class=\"thumboption\"";
@@ -1804,7 +1804,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						<label class="checkboxlabel">
 							<input type="radio" id="Delete-<?php echo $prefix; ?>" name="a-<?php echo $prefix; ?>MoveCopyRename" value="delete"
 										 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-												 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);" <?php echo $isPrimaryAlbum; ?> />
+													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);" <?php echo $isPrimaryAlbum; ?> />
 										 <?php echo gettext("Delete album"); ?>
 						</label>
 
@@ -2639,7 +2639,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				while ($zip_entry = zip_read($zip)) { // Skip non-images in the zip file.
 					$fname = zip_entry_name($zip_entry);
 					$seoname = internalToFilesystem(seoFriendly($fname));
-					if (is_valid_image($seoname) || is_valid_other_type($seoname)) {
+					if (Gallery::validImage($seoname) || Gallery::validImageAlt($seoname)) {
 						if (zip_entry_open($zip, $zip_entry, "r")) {
 							$buf = zip_entry_read($zip_entry, zip_entry_filesize($zip_entry));
 							$path_file = str_replace("/", DIRECTORY_SEPARATOR, $dir . '/' . $seoname);
@@ -4325,7 +4325,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 		}
 		?>
 		<select name="subpage" class="ays-ignore" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
-								[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
+										[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
 							<?php
 							foreach ($rangeset as $page => $range) {
 								?>
