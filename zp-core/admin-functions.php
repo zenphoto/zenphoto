@@ -451,7 +451,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				);
 			}
 		}
-		if (!$album->isDynamic() && $album->getNumAlbums() > 0) {
+		if (!$album->isDynamic() && $album->getNumAlbums()) {
 			$zenphoto_tabs['edit']['subtabs'] = array_merge(
 							array(gettext('Subalbums') => 'admin-edit.php' . $albumlink . '&amp;tab=subalbuminfo'), $zenphoto_tabs['edit']['subtabs']
 			);
@@ -1278,13 +1278,13 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
 																onclick="passwordClear('<?php echo $suffix; ?>');
-																				togglePassword('<?php echo $suffix; ?>');" /><?php echo gettext('Show password'); ?></label>
+																		togglePassword('<?php echo $suffix; ?>');" /><?php echo gettext('Show password'); ?></label>
 								</td>
 								<td>
 									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
 												 onkeydown="passwordClear
-																 '<?php echo $suffix; ?>'
-																				 );"
+														 '<?php echo $suffix; ?>'
+																		 );"
 												 id="user_name<?php echo $suffix; ?>" name="user<?php echo $suffix; ?>"
 												 value="<?php echo $album->getUser(); ?>" />
 								</td>
@@ -1306,18 +1306,14 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<p>
 										<input type="password"
 													 id="pass<?php echo $suffix; ?>" name="pass<?php echo $suffix; ?>"
-													 onkeydown="passwordClear
-																	 '<?php echo $suffix; ?>'
-																					 );"
+													 onkeydown="passwordClearZ('<?php echo $suffix; ?>');"
 													 onkeyup="passwordStrength('<?php echo $suffix; ?>');"
 													 value="<?php echo $x; ?>" />
 										<br />
 										<span class="password_field_<?php echo $suffix; ?>">
 											<input type="password"
 														 id="pass_r<?php echo $suffix; ?>" name="pass_r<?php echo $suffix; ?>" disabled="disabled"
-														 onkeydown="passwordClear
-																		 '<?php echo $suffix; ?>'
-																						 );"
+														 onkeydown="passwordClear('<?php echo $suffix; ?>');"
 														 onkeyup="passwordMatch('<?php echo $suffix; ?>');"
 														 value="<?php echo $x; ?>" />
 										</span>
@@ -1804,7 +1800,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						<label class="checkboxlabel">
 							<input type="radio" id="Delete-<?php echo $prefix; ?>" name="a-<?php echo $prefix; ?>MoveCopyRename" value="delete"
 										 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);" <?php echo $isPrimaryAlbum; ?> />
+												 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);" <?php echo $isPrimaryAlbum; ?> />
 										 <?php echo gettext("Delete album"); ?>
 						</label>
 
@@ -1958,7 +1954,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			</div>
 			<?php
 		}
-		if ($imagcount || (!$album->isDynamic() && $album->getNumAlbums() > 0)) {
+		if ($imagcount || (!$album->isDynamic() && $album->getNumAlbums())) {
 			?>
 			<div class="button buttons tooltip" title="<?php echo gettext("Refreshes the metadata for the album."); ?>">
 				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-refresh-metadata.php?album=' . html_encode($album->name) . '&amp;return=' . html_encode($album->name); ?>&amp;XSRFToken=<?php echo getXSRFToken('refresh'); ?>">
@@ -2346,9 +2342,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 			// Append the album name.
 			$dest = ($dest ? $dest . '/' : '') . (strpos($album->name, '/') === FALSE ? $album->name : basename($album->name));
 			if ($dest && $dest != $album->name) {
-				if ($album->isDynamic()) { // be sure there is a .alb suffix
-					if (substr($dest, -4) != '.alb') {
-						$dest .= '.alb';
+				if ($suffix = $album->isDynamic()) { // be sure there is a .alb suffix
+					if (substr($dest, -4) != '.' . $suffix) {
+						$dest .= '.' . suffix;
 					}
 				}
 				if ($e = $album->move($dest)) {
@@ -2378,9 +2374,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 				$renameto = dirname($album->name) . '/' . $renameto;
 			}
 			if ($renameto != $album->name) {
-				if ($album->isDynamic()) { // be sure there is a .alb suffix
-					if (substr($renameto, -4) != '.alb') {
-						$renameto .= '.alb';
+				if ($suffix = $album->isDynamic()) { // be sure there is a .alb suffix
+					if (substr($renameto, -4) != '.' . $suffix) {
+						$renameto .= '.' . $suffix;
 					}
 				}
 				if ($e = $album->rename($renameto)) {
@@ -3462,7 +3458,7 @@ function getNestedAlbumList($subalbum, $levels, $level = array()) {
 		if (!is_null($subalbum) || $albumobj->isMyItem(ALBUM_RIGHTS)) {
 			$level[$cur] = sprintf('%03u', $albumobj->getSortOrder());
 			$list[] = array('name' => $analbum, 'sort_order' => $level);
-			if ($cur < $levels && ($albumobj->getNumAlbums() > 0) && !$albumobj->isDynamic()) {
+			if ($cur < $levels && ($albumobj->getNumAlbums()) && !$albumobj->isDynamic()) {
 				$list = array_merge($list, getNestedAlbumList($albumobj, $levels + 1, $level));
 			}
 		}
@@ -4325,7 +4321,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 		}
 		?>
 		<select name="subpage" class="ays-ignore" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
-										[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
+								[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
 							<?php
 							foreach ($rangeset as $page => $range) {
 								?>

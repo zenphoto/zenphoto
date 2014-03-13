@@ -313,7 +313,7 @@ function prepareIndexPage() {
  */
 function prepareAlbumPage() {
 	global $_zp_current_album, $_zp_gallery_page, $_zp_script;
-	if ($_zp_current_album->isDynamic() && ($search = $_zp_current_album->getSearchEngine())) {
+	if ($search = $_zp_current_album->getSearchEngine()) {
 		zp_setCookie("zenphoto_search_params", $search->getSearchParams(), SEARCH_DURATION);
 	} else {
 		handleSearchParms('album', $_zp_current_album);

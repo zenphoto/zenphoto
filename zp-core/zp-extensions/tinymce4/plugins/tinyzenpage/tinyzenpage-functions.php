@@ -165,7 +165,7 @@ function printImageslist($number) {
 				if ($nr === $imagecount) {
 					break;
 				}
-				if ($albumobj->isDynamic()) {
+				if (is_array($images[$nr])) {
 					$linkalbumobj = newAlbum($images[$nr]['folder']);
 					$imageobj = newImage($linkalbumobj, $images[$nr]['filename']);
 				} else {

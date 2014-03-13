@@ -611,7 +611,7 @@ class AlbumBase extends MediaObject {
 	 * @return object
 	 */
 	function getSearchEngine() {
-		return null;
+		return NULL;
 	}
 
 	/**
@@ -1591,15 +1591,6 @@ class Album extends AlbumBase {
 	}
 
 	/**
-	 * Returns true if the album is "dynamic"
-	 *
-	 * @return bool
-	 */
-	function isDynamic() {
-		return false;
-	}
-
-	/**
 	 * Returns the theme for the album
 	 *
 	 * @return string
@@ -2054,7 +2045,7 @@ class dynamicAlbum extends Album {
 	}
 
 	function isDynamic() {
-		return true;
+		return 'alb';
 	}
 
 }

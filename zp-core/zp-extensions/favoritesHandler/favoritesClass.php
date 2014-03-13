@@ -48,15 +48,6 @@ class favorites extends AlbumBase {
 		}
 	}
 
-	/**
-	 * Returns true if the album is "dynamic"
-	 *
-	 * @return bool
-	 */
-	function isDynamic() {
-		return false;
-	}
-
 	function getList() {
 		return $this->list;
 	}
