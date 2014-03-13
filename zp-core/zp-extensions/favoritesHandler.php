@@ -255,7 +255,7 @@ if ($plugin_disable) {
 	} else {
 		zp_register_filter('load_theme_script', 'favorites::loadScript');
 		zp_register_filter('checkPageValidity', 'favorites::pageCount');
-		zp_register_filter('admin_toolbox_global', 'favorites::toolbox');
+		zp_register_filter('admin_toolbox_global', 'favorites::toolbox', 21);
 		if (zp_loggedin()) {
 			if (isset($_POST['addToFavorites'])) {
 				$___Favorites = new favorites($_zp_current_admin_obj->getUser());
@@ -386,7 +386,7 @@ if ($plugin_disable) {
 						echo $betwixt;
 						$betwixt = $between;
 						?>
-						<a href="<?php echo FULLWEBPATH; ?>/<?php echo $link; ?>" id="favorite_link"><?php echo html_encode($display); ?> </a>
+						<a href="<?php echo FULLWEBPATH; ?>/<?php echo $link; ?>" class="favorite_link"><?php echo html_encode($display); ?> </a>
 						<?php
 					}
 					echo $after;

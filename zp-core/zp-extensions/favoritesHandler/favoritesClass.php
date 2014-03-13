@@ -48,6 +48,15 @@ class favorites extends AlbumBase {
 		}
 	}
 
+	/**
+	 * Returns true if the album is "dynamic"
+	 *
+	 * @return bool
+	 */
+	function isDynamic() {
+		return true;
+	}
+
 	function getList() {
 		return $this->list;
 	}
@@ -247,8 +256,10 @@ class favorites extends AlbumBase {
 		global $_zp_current_admin_obj, $_zp_gallery_page, $_myFavorites, $_zp_current_album, $_zp_conf_vars, $_myFavorites;
 		if ($_zp_gallery_page == "favorites.php") {
 			if (zp_loggedin()) {
-				if (isset($_GET['title']))
+				if (isset($_GET['title'])) {
 					$_myFavorites->instance = sanitize($_GET['title']);
+					$_myFavorites->setTitle($_myFavorites->getTitle() . '::' . $_myFavorites->instance);
+				}
 				$_zp_current_album = $_myFavorites;
 				add_context(ZP_ALBUM);
 				prepareAlbumPage();
@@ -287,6 +298,7 @@ class favorites extends AlbumBase {
 
 	static function toolbox($zf) {
 		printFavoritesURL(gettext('Favorites'), '<li>', '</li><li>', '</li>');
+		return $zf;
 	}
 
 	function getLink($page = NULL, $instance = NULL) {
