@@ -1023,7 +1023,7 @@ class Gallery {
 	 * @return string
 	 */
 	public function __toString() {
-		return $this->table . " (" . $this->id . ")";
+		return 'Gallery object';
 	}
 
 	/**
