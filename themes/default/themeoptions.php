@@ -39,9 +39,6 @@ class ThemeOptions {
 	}
 
 	function getOptionsSupported() {
-
-		zp_error('default getOptionsSupported');
-
 		return array(gettext('Allow search')	 => array('key' => 'Allow_search', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Check to enable search form.')),
 						gettext('Theme colors')	 => array('key' => 'Theme_colors', 'type' => OPTION_TYPE_CUSTOM, 'desc' => gettext('Select the colors of the theme'))
 		);
