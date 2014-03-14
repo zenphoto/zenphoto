@@ -503,13 +503,13 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 	//	we assume that everything is correct if rewrite rules were not applied
 	if ($_zp_rewritten) {
 		if (!empty($ralbum) && empty($rimage)) { //	rewrite rules never set the image part!
+			$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
 			if (IM_SUFFIX) { // require the rewrite have the suffix as well
 				if (preg_match('|^(.*)' . preg_quote(IM_SUFFIX) . '$|', $ralbum, $matches)) {
 					//has an IM_SUFFIX attached
 					$rimage = basename($matches[1]);
 					$ralbum = trim(dirname($matches[1]), '/');
 				}
-				$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
 				if (!is_dir($path)) {
 					if ($suffix = isHandledAlbum($path)) {
 						//	it is a dynamic album sans suffix
@@ -517,7 +517,6 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 					}
 				}
 			} else if (!hasDynamicAlbumSuffix($path)) { //	have to figure it out
-				$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
 				if (file_exists($path)) {
 					if (!is_dir($path)) {
 						//	it is not an album. Assume image
