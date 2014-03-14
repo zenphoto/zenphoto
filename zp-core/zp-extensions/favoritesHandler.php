@@ -6,11 +6,16 @@
  * <b>Note:</b>
  *
  * If the <i>multi mode</i> option is enabled there may be multiple instances
- * of a user's favorites. <var>Add</var> buttons will include a text field for the name of the
- * instance. If left blank, the <i>un-named</i> favorite is selected.
+ * of a user's favorites. When an object is added to favorites, an identifier may
+ * be specified. (The <var>Add</var> buttons will include a text field for the name of the
+ * instance.) If specified that is the "name" of the favorites instance that
+ * will contain the object. If the name is left empty the object will be added
+ * to the <i>un-named</i> favorite instance.
  *
  * If an object is contained in multiple favorites there will be multiple <var>remove</var> buttons.
- * The button will have the favoirtes instance name appended if not the<i>un-named</i> favorites.
+ * The button will have the favoirtes instance name appended if not the <i>un-named</i> favorites.
+ *
+ * <var>printFavoriresURL()</var> will print links to each defined favorites instance.
  *
  * Themes must be modified to use this plugin.
  * <ul>

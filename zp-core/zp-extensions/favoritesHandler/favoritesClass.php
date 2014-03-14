@@ -11,7 +11,7 @@ class favorites extends AlbumBase {
 	var $albumSortType;
 	var $list = array('');
 	var $owner;
-	var $instance;
+	var $instance = '';
 
 	function __construct($user) {
 		$this->table = 'albums';
