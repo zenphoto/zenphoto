@@ -46,44 +46,46 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 			if (empty($address)) {
 				$address = array('street' => '', 'city' => '', 'state' => '', 'country' => '', 'postal' => '', 'website' => '');
 			}
-			$required = getOption('register_user_address_info');
+			$show = $required = getOption('register_user_address_info');
 			if ($required == 'required') {
 				$required = '*';
 			} else {
 				$required = false;
 			}
-			?>
-			<p>
-				<label for="comment_form_street">
-					<?php printf(gettext('Street%s'), $required); ?>
-				</label>
-				<input type="text" name="0-comment_form_street" id="comment_form_street" class="inputbox" size="40" value="<?php echo $address['street']; ?>">
-			</p>
-			<p>
-				<label for="comment_form_city">
-					<?php printf(gettext('City%s'), $required); ?>
-				</label>
-				<input type="text" name="0-comment_form_city" id="comment_form_city" class="inputbox" size="40" value="<?php echo $address['city']; ?>">
-			</p>
-			<p>
-				<label for="comment_form_state">
-					<?php printf(gettext('State%s'), $required); ?>
-				</label>
-				<input type="text" name="0-comment_form_state" id="comment_form_state" class="inputbox" size="40" value="<?php echo $address['state']; ?>">
-			</p>
-			<p>
-				<label for="comment_form_country">
-					<?php printf(gettext('Country%s'), $required); ?>
-				</label>
-				<input type="text" name="0-comment_form_country" id="comment_form_country" class="inputbox" size="40" value="<?php echo $address['country']; ?>">
-			</p>
-			<p>
-				<label for="comment_form_postal">
-					<?php printf(gettext('Postal code%s'), $required); ?>
-				</label>
-				<input type="text" name="0-comment_form_postal" id="comment_form_postal" class="inputbox" size="40" value="<?php echo $address['postal']; ?>">
-			</p>
-			<?php
+			if ($show) {
+				?>
+				<p>
+					<label for="comment_form_street">
+						<?php printf(gettext('Street%s'), $required); ?>
+					</label>
+					<input type="text" name="0-comment_form_street" id="comment_form_street" class="inputbox" size="40" value="<?php echo $address['street']; ?>">
+				</p>
+				<p>
+					<label for="comment_form_city">
+						<?php printf(gettext('City%s'), $required); ?>
+					</label>
+					<input type="text" name="0-comment_form_city" id="comment_form_city" class="inputbox" size="40" value="<?php echo $address['city']; ?>">
+				</p>
+				<p>
+					<label for="comment_form_state">
+						<?php printf(gettext('State%s'), $required); ?>
+					</label>
+					<input type="text" name="0-comment_form_state" id="comment_form_state" class="inputbox" size="40" value="<?php echo $address['state']; ?>">
+				</p>
+				<p>
+					<label for="comment_form_country">
+						<?php printf(gettext('Country%s'), $required); ?>
+					</label>
+					<input type="text" name="0-comment_form_country" id="comment_form_country" class="inputbox" size="40" value="<?php echo $address['country']; ?>">
+				</p>
+				<p>
+					<label for="comment_form_postal">
+						<?php printf(gettext('Postal code%s'), $required); ?>
+					</label>
+					<input type="text" name="0-comment_form_postal" id="comment_form_postal" class="inputbox" size="40" value="<?php echo $address['postal']; ?>">
+				</p>
+				<?php
+			}
 		}
 
 		$html = zp_apply_filter('register_user_form', '');
