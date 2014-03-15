@@ -89,7 +89,7 @@ class favoritesOptions {
 										'multilingual' => true,
 										'order'				 => 2,
 										'desc'				 => gettext('The text for the link to the favorites page.')),
-						gettext('Multi mode')			 => array('key'		 => 'favorites_multi', 'type'	 => OPTION_TYPE_CHECKBOX,
+						gettext('Multiple sets')	 => array('key'		 => 'favorites_multi', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 6,
 										'desc'	 => gettext('If enabled a user may have multiple (named) favorites.')),
 						gettext('Add button')			 => array('key'					 => 'favorites_add_button', 'type'				 => OPTION_TYPE_TEXTBOX,
