@@ -12,6 +12,7 @@ require_once(SERVERPATH . '/' . ZENFOLDER . '/functions-config.php');
 admin_securityChecks(OPTIONS_RIGHTS, currentRelativeURL());
 
 define('PLUGINS_PER_PAGE', max(1, getOption('plugins_per_page')));
+define('PLUGINS_PER_PAGE_OPTIONS', max(1, getOption('plugins_per_page_options')));
 if (isset($_GET['subpage'])) {
 	$subpage = sanitize_numeric($_GET['subpage']);
 } else {
@@ -115,6 +116,7 @@ if (isset($_GET['action'])) {
 			setOption('site_email_name', process_language_string_save('site_email_name', 3));
 			setOption('users_per_page', sanitize_numeric($_POST['users_per_page']));
 			setOption('plugins_per_page', sanitize_numeric($_POST['plugins_per_page']));
+			setOption('plugins_per_page_options', sanitize_numeric($_POST['plugins_per_page_options']));
 			if (isset($_POST['articles_per_page'])) {
 				setOption('articles_per_page', sanitize_numeric($_POST['articles_per_page']));
 			}
@@ -940,6 +942,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td width="175">
 										<p><?php echo gettext("Users per page:"); ?></p>
 										<p><?php echo gettext("Plugins per page:"); ?></p>
+										<p><?php echo gettext("Plugins per page (Options):"); ?></p>
 										<?php
 										if (extensionEnabled('zenpage')) {
 											?>
@@ -952,6 +955,8 @@ Zenphoto_Authority::printPasswordFormJS();
 										<input type="text" size="5" id="users_per_page" name="users_per_page"  value="<?php echo getOption('users_per_page'); ?>" />
 										<br />
 										<input type="text" size="5" id="plugins_per_page" name="plugins_per_page"  value="<?php echo getOption('plugins_per_page'); ?>" />
+										<br />
+										<input type="text" size="5" id="plugins_per_page_options" name="plugins_per_page_options"  value="<?php echo getOption('plugins_per_page_options'); ?>" />
 										<?php
 										if (extensionEnabled('zenpage')) {
 											?>
@@ -2779,8 +2784,8 @@ Zenphoto_Authority::printPasswordFormJS();
 						}
 						natcasesort($plugins);
 					}
-					$rangeset = getPageSelector($plugins, PLUGINS_PER_PAGE);
-					$plugins = array_slice($plugins, $subpage * PLUGINS_PER_PAGE, PLUGINS_PER_PAGE);
+					$rangeset = getPageSelector($plugins, PLUGINS_PER_PAGE_OPTIONS);
+					$plugins = array_slice($plugins, $subpage * PLUGINS_PER_PAGE_OPTIONS, PLUGINS_PER_PAGE_OPTIONS);
 					?>
 					<div id="tab_plugin" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>

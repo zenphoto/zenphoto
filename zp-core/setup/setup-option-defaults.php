@@ -539,6 +539,7 @@ if (!is_null($autoRotate)) {
 
 purgeOption('zp_plugin_failed_access_blocker');
 setOptionDefault('plugins_per_page', 20);
+setOptionDefault('plugins_per_page_options', 10);
 setOptionDefault('users_per_page', 10);
 setOptionDefault('articles_per_page', 15);
 setOptionDefault('debug_log_size', 5000000);
