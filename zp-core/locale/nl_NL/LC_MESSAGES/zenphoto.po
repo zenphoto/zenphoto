@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-14 17:37+0100\n"
+"POT-Creation-Date: 2014-03-15 08:12+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -395,7 +395,7 @@ msgstr ""
 "kleur van het thema kiezen via de admin opties tab en de  optie "
 "<em>Themakleuren</em> te wijzigen."
 
-#: ZpTranslation-Development/themes/default/themeoptions.php:45
+#: ZpTranslation-Development/themes/default/themeoptions.php:42
 #: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:109
 #: ZpTranslation-Development/themes/garland/themeoptions.php:74
 #: ZpTranslation-Development/themes/zenpage/themeoptions.php:66
@@ -403,19 +403,19 @@ msgstr ""
 msgid "Allow search"
 msgstr "Sta zoeken toe"
 
-#: ZpTranslation-Development/themes/default/themeoptions.php:45
+#: ZpTranslation-Development/themes/default/themeoptions.php:42
 #: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:109
 #: ZpTranslation-Development/themes/zenpage/themeoptions.php:66
 #: ZpTranslation-Development/themes/zpmobile/themeoptions.php:37
 msgid "Check to enable search form."
 msgstr "Vink aan om het zoekveld te tonen."
 
-#: ZpTranslation-Development/themes/default/themeoptions.php:46
+#: ZpTranslation-Development/themes/default/themeoptions.php:43
 #: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:116
 msgid "Theme colors"
 msgstr "Themakleuren"
 
-#: ZpTranslation-Development/themes/default/themeoptions.php:46
+#: ZpTranslation-Development/themes/default/themeoptions.php:43
 #: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:116
 msgid "Select the colors of the theme"
 msgstr "Selecteer de kleuren van het thema."
@@ -2433,7 +2433,7 @@ msgstr "Algemeen"
 #: ZpTranslation-Development/zp-core/admin-functions.php:1675
 #: ZpTranslation-Development/zp-core/admin-functions.php:2099
 #: ZpTranslation-Development/zp-core/admin-globals.php:31
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:133
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:138
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-edit.php:442
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:664
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1529
@@ -2857,7 +2857,7 @@ msgstr "Tag toevoegen"
 #: ZpTranslation-Development/zp-core/admin-functions.php:1213
 #: ZpTranslation-Development/zp-core/admin-globals.php:30
 #: ZpTranslation-Development/zp-core/class-search.php:109
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:132
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:137
 msgid "Owner"
 msgstr "Eigenaar"
 
@@ -2915,7 +2915,7 @@ msgstr "Wachtwoord hint:"
 #: ZpTranslation-Development/zp-core/admin-options.php:1736
 #: ZpTranslation-Development/zp-core/exif/makers/canon.php:275
 #: ZpTranslation-Development/zp-core/exif/makers/fujifilm.php:93
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:127
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:132
 msgid "Custom"
 msgstr "Eigen"
 
@@ -2937,8 +2937,8 @@ msgstr "*parent album subalbum sorteervolgorde"
 #: ZpTranslation-Development/zp-core/admin-options.php:1614
 #: ZpTranslation-Development/zp-core/admin-options.php:1663
 #: ZpTranslation-Development/zp-core/admin-options.php:1764
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:159
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:192
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:164
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:197
 msgid "Descending"
 msgstr "Aflopend"
 
@@ -2954,7 +2954,7 @@ msgstr "database veld(en)"
 #: ZpTranslation-Development/zp-core/admin-functions.php:1435
 #: ZpTranslation-Development/zp-core/admin-options.php:1641
 #: ZpTranslation-Development/zp-core/admin-options.php:1731
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:109
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:114
 msgid "Sort images by"
 msgstr "Sorteer afbeeldingen op"
 
@@ -3547,13 +3547,13 @@ msgstr ""
 "Er is een fout opgetreden #%d bij het verplaatsen, kopiëren of verplaatsen."
 
 #: ZpTranslation-Development/zp-core/admin-globals.php:25
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:126
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:131
 msgid "Filename"
 msgstr "bestandsnaam"
 
 #: ZpTranslation-Development/zp-core/admin-globals.php:26
 #: ZpTranslation-Development/zp-core/class-search.php:102
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:128
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:133
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-edit.php:573
 msgid "Date"
 msgstr "datum"
@@ -3562,21 +3562,21 @@ msgstr "datum"
 #: ZpTranslation-Development/zp-core/class-search.php:97
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:105
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:107
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:98
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:129
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:103
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:134
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:58
 #: ZpTranslation-Development/zp-core/zp-extensions/rss.php:128
 msgid "Title"
 msgstr "Titel"
 
 #: ZpTranslation-Development/zp-core/admin-globals.php:28
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:130
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:135
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:353
 msgid "ID"
 msgstr "ID"
 
 #: ZpTranslation-Development/zp-core/admin-globals.php:29
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:131
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:136
 msgid "Filemtime"
 msgstr "laatste verandering"
 
@@ -4712,7 +4712,7 @@ msgstr ""
 "em> is ingesteld worden zoekopdrachten niet bewaard."
 
 #: ZpTranslation-Development/zp-core/admin-options.php:1592
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:106
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:111
 msgid "Sort albums by"
 msgstr "Sorteer albums op"
 
@@ -5700,7 +5700,7 @@ msgstr "Beschikbare plugins"
 
 #: ZpTranslation-Development/zp-core/admin-plugins.php:152
 #: ZpTranslation-Development/zp-core/class-search.php:98
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:102
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:107
 #: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:115
 msgid "Description"
 msgstr "Beschrijving"
@@ -6607,7 +6607,7 @@ msgid "Official build"
 msgstr "Officiële versie"
 
 #: ZpTranslation-Development/zp-core/admin.php:301
-#: ZpTranslation-Development/zp-core/functions-basic.php:1244
+#: ZpTranslation-Development/zp-core/functions-basic.php:1243
 #: ZpTranslation-Development/zp-core/setup/index.php:405
 #: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:132
 msgid "clone"
@@ -8182,12 +8182,12 @@ msgstr "Te weinig argumenten! Afbeelding niet gevonden."
 msgid "Forbidden(2)"
 msgstr "Verboden (2)"
 
-#: ZpTranslation-Development/zp-core/functions-basic.php:1215
+#: ZpTranslation-Development/zp-core/functions-basic.php:1214
 #, php-format
 msgid "%s log size limit exceeded"
 msgstr "%s log limiet overschreden"
 
-#: ZpTranslation-Development/zp-core/functions-basic.php:1215
+#: ZpTranslation-Development/zp-core/functions-basic.php:1214
 #, php-format
 msgid "The %1$s log has exceeded its size limit and has been renamed to %2$s."
 msgstr "Het %1$s log heeft z'n limiet bereikt en is hernoemd %2$s."
@@ -12354,7 +12354,7 @@ msgid "Logout"
 msgstr "Log uit"
 
 #: ZpTranslation-Development/zp-core/template-functions.php:453
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:53
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:58
 #: ZpTranslation-Development/zp-core/zp-extensions/html_meta_tags.php:239
 msgid "My favorites"
 msgstr "Mijn favorieten"
@@ -16386,68 +16386,70 @@ msgid_plural "%s (%u images)"
 msgstr[0] "%s (%u afbeelding)"
 msgstr[1] "%s (%u afbeeldingen)"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:39
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:44
 msgid "Support for <em>favorites</em> handling."
 msgstr "Voor de verwerking van <em>favorites</em>."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:41
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:46
 msgid "Mod Rewrite is required for this plugin"
 msgstr "Mod Rewrite is nodig voor deze plugin."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:56
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:61
 msgid "The albums and images selected as favorites."
 msgstr "De albums en afbeeldingen die zijn geselecteerd als favorieten."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:58
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:63
 msgid "Add favorite"
 msgstr "Voeg toe aan favorieten"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:60
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:65
 msgid "Remove favorite"
 msgstr "Verwijder favoriet"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:83
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:88
 #: ZpTranslation-Development/zp-core/zp-extensions/register_user.php:71
 msgid "Link text"
 msgstr "Link tekst"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:86
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:91
 msgid "The text for the link to the favorites page."
 msgstr "De tekst voor de link naar de favorietenpagina."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:87
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:92
 msgid "Multi mode"
 msgstr "Multi modus"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:89
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:94
 msgid "If enabled a user may have multiple (named) favorites."
 msgstr ""
+"Vink aan als je meerdere sets met favorieten wilt.<br />Je kunt iedere set "
+"een eigen naam geven."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:90
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:95
 msgid "Add button"
 msgstr "Voeg toe knop"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:93
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:98
 msgid "Default text for the <em>add to favorites</em> button."
 msgstr "Tekst voor de <em>Voeg toe aan favorieten</em> knop."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:94
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:99
 msgid "Remove button"
 msgstr "Verwijder knop"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:97
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:102
 msgid "Default text for the <em>remove from favorites</em> button."
 msgstr "Tekst voor de <em>Verwijder uit favorieten</em> knop."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:101
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:106
 msgid "The favorites page title text."
 msgstr "De titel voor de favorietenpagina"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:105
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:110
 msgid "The favorites page description text."
 msgstr "Beschrijving van de favorietenpagina."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:118
+#: ZpTranslation-Development/zp-core/zp-extensions/favoritesHandler.php:123
 msgid ""
 "<p class=\"notebox\">Favorites requires the <code>mod_rewrite</code> option "
 "be enabled.</p>"
