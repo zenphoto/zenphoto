@@ -411,7 +411,7 @@ class cycle {
 		
 		<?php if(getOption('cycle-slideshow_effect') == 'flipHorz' || getOption('cycle-slideshow_effect') == 'flipVert') { ?>
 			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.flip.min.js" type="text/javascript"></script>
-		<?php 
+		<?php } ?>
 		
 		<!--[if lt IE 9]>
 			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.ie-fade.min.js" type="text/javascript"></script>
