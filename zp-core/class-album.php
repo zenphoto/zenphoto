@@ -1288,9 +1288,12 @@ class Album extends AlbumBase {
 		$oldfolder = $this->name;
 		$dest = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($newfolder);
 // Check to see if the destination already exists
+		$inplace = false;
 		if (file_exists($dest)) {
 // Disallow moving an album over an existing one.
-			return 3;
+			if (!$inplace = (CASE_INSENSITIVE && strtolower($dest) == strtolower(rtrim($this->localpath, '/')))) {
+				return 3;
+			}
 		}
 		$oldfolders = explode('/', $oldfolder);
 		$newfolders = explode('/', $newfolder);

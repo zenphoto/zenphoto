@@ -813,10 +813,13 @@ class Image extends MediaObject {
 			// Nothing to do - moving the file to the same place.
 			return 2;
 		}
+		$inplace = false;
 		$newpath = $newalbum->localpath . internalToFilesystem($newfilename);
 		if (file_exists($newpath)) {
 			// If the file exists, don't overwrite it.
-			return 2;
+			if (!$inplace = (CASE_INSENSITIVE && strtolower($newpath) == strtolower($this->localpath))) {
+				return 2;
+			}
 		}
 		$filename = basename($this->localpath);
 		@chmod($filename, 0777);
@@ -831,7 +834,7 @@ class Image extends MediaObject {
 			}
 		}
 		if ($result) {
-			if (parent::move(array('filename' => $newfilename, 'albumid' => $newalbum->getID()))) {
+			if (parent::move(array('filename' => $newfilename, 'albumid' => $newalbum->getID())) || $inplace) {
 				$this->set('mtime', filemtime($newpath));
 				$this->save();
 				return 0;
