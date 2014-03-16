@@ -35,7 +35,7 @@ define('THEME_PLUGIN', 1024);
 define('PLUGIN_PRIORITY', 1023);
 
 define('SYMLINK', function_exists('symlink') && strpos(@ini_get("suhosin.executor.func.blacklist"), 'symlink') === false);
-define('CASE_INSENSITIVE', file_exists(dirname(__FILE__) . '/Global-Definitions.PHP'));
+define('CASE_INSENSITIVE', file_exists(strtoupper(__FILE__)));
 
 define('TEST_RELEASE', strpos(ZENPHOTO_VERSION, '-') !== false);
 
