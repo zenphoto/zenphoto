@@ -65,6 +65,8 @@ if (defined('OFFSET_PATH')) {
 
 	function cleanAlbum($obj) {
 		global $albumcount;
+		if (!$obj->isDynamic())
+			checkFolder($obj);
 		$display = true;
 		$subalbum = $obj->name;
 		$file = basename($subalbum);
@@ -89,13 +91,13 @@ if (defined('OFFSET_PATH')) {
 				printf(gettext('<em>%1$s</em> rename to <em>%2$s</em> failed: %3$s'), $subalbum, $newname, $error);
 				echo "<br />\n";
 			} else {
+				$obj->save();
+				clearstatcache();
 				printf(gettext('<em>%1$s</em> renamed to <em>%2$s</em>'), $subalbum, $newname);
 				echo "<br />\n";
 				$albumcount++;
 			}
 		}
-		if (!$obj->isDynamic())
-			checkFolder($obj);
 	}
 
 	function checkFolder($album) {
@@ -122,6 +124,8 @@ if (defined('OFFSET_PATH')) {
 					printf(gettext('<em>%1$s</em> rename to <em>%2$s</em> failed: %3$s'), $filename, $seoname, $error);
 					echo "<br />\n";
 				} else {
+					$image->save();
+					clearstatcache();
 					echo '&nbsp;&nbsp;';
 					printf(gettext('<em>%1$s</em> renamed to <em>%2$s</em>'), $filename, $seoname);
 					echo "<br />\n";
