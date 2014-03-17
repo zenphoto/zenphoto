@@ -2062,6 +2062,7 @@ function getItemByID($table, $id) {
 				if ($alb = getItemByID('albums', $result['albumid'])) {
 					return newImage($alb, $result['filename'], true);
 				}
+				break;
 			case 'albums':
 				return newAlbum($result['folder'], false, true);
 			case 'news':

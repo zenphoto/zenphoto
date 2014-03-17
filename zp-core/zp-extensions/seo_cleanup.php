@@ -65,21 +65,11 @@ if (defined('OFFSET_PATH')) {
 
 	function cleanAlbum($obj) {
 		global $albumcount;
-		if (!$obj->isDynamic())
-			checkFolder($obj);
-		$display = true;
 		$subalbum = $obj->name;
 		$file = basename($subalbum);
 		$seoname = seoFriendly($file);
+
 		if ($seoname != $file) {
-			if ($display) {
-				$name = dirname($subalbum);
-				if ($name == '.') {
-					$name = '';
-				}
-				echo '<p class="notebox">' . $name . "</p>\n";
-				$display = false;
-			}
 			$newname = dirname($subalbum);
 			if (empty($newname) || $newname == '.') {
 				$newname = $seoname;
@@ -96,44 +86,43 @@ if (defined('OFFSET_PATH')) {
 				printf(gettext('<em>%1$s</em> renamed to <em>%2$s</em>'), $subalbum, $newname);
 				echo "<br />\n";
 				$albumcount++;
+				$obj = newAlbum($newname);
 			}
 		}
+		if (!$obj->isDynamic())
+			checkFolder($obj);
 	}
 
 	function checkFolder($album) {
-		$display = true;
-
-		global $albums, $count, $albumcount;
-		$albums = $album->getAlbums(0);
-		foreach ($albums as $subalbum) {
+		global $count, $albumcount;
+		$subalbums = $album->getAlbums(0);
+		foreach ($subalbums as $subalbum) {
 			$obj = newAlbum($subalbum);
 			cleanAlbum($obj);
 		}
-		$display = true;
+		$folder = $album->name . '::';
 		$files = $album->getImages(0);
 		foreach ($files as $filename) {
 			$seoname = seoFriendly($filename);
 			if (stripSuffix($seoname) != stripSuffix($filename)) {
-				if ($display) {
-					echo '<p class="notebox">' . $album->name . "</p>\n";
-					$display = false;
-				}
 				$image = newImage($album, $filename);
 				if ($e = $image->rename($seoname)) {
 					$error = getE($e, $filename, $seoname);
-					printf(gettext('<em>%1$s</em> rename to <em>%2$s</em> failed: %3$s'), $filename, $seoname, $error);
+					printf(gettext('<em>%1$s</em> rename to <em>%2$s</em> failed: %3$s'), $folder . $filename, $seoname, $error);
 					echo "<br />\n";
 				} else {
 					$image->save();
 					clearstatcache();
 					echo '&nbsp;&nbsp;';
-					printf(gettext('<em>%1$s</em> renamed to <em>%2$s</em>'), $filename, $seoname);
+					printf(gettext('<em>%1$s</em> renamed to <em>%2$s</em>'), $folder . $filename, $seoname);
 					echo "<br />\n";
 					$count++;
 				}
 			}
 		}
 	}
+
+	$_zp_gallery->garbageCollect();
 
 	$zenphoto_tabs['overview']['subtabs'] = array(gettext('SEO cleaner') => '');
 	printAdminHeader('overview', 'SEO cleaner');
@@ -165,7 +154,33 @@ if (defined('OFFSET_PATH')) {
 					foreach ($albums as $album) {
 						$obj = newAlbum($album);
 						cleanAlbum($obj);
+					}
+					if ($albumcount || $count) {
 						?>
+						<div class="notebox">
+							<p>
+								<?php
+								if ($albumcount) {
+									printf(ngettext('%d album cleaned.', '%d albums cleaned', $albumcount), $albumcount);
+								} else {
+									echo gettext('No albums cleaned.');
+								}
+								?>
+							</p>
+							<p>
+								<?php
+								if ($count) {
+									printf(ngettext('%d image cleaned.', '%d images cleaned', $albumcount), $albumcount);
+								} else {
+									echo gettext('No images cleaned.');
+								}
+								?>
+							</p>
+						</div>
+						<?php
+					} else {
+						?>
+						<p class="notebox"><?php echo gettext('No albums or images cleaned up.'); ?></p>
 						<?php
 					}
 					?>

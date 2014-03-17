@@ -519,6 +519,65 @@ class AlbumBase extends MediaObject {
 	}
 
 	/**
+	 * common album move code
+	 * @param type $newfolder
+	 * @return int
+	 */
+	protected function _move($newfolder) {
+// First, ensure the new base directory exists.
+		$dest = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($newfolder);
+// Check to see if the destination already exists
+		if (file_exists($dest)) {
+// Disallow moving an album over an existing one.
+			if (!(CASE_INSENSITIVE && strtolower($dest) == strtolower(rtrim($this->localpath, '/')))) {
+				return 3;
+			}
+		}
+		$oldfolders = explode('/', $this->name);
+		$newfolders = explode('/', $newfolder);
+		$sub = count($newfolders) > count($oldfolders);
+		if ($sub) {
+			for ($i = 0; $i < count($oldfolders); $i++) {
+				if ($newfolders[$i] != $oldfolders[$i]) {
+					$sub = false;
+					break;
+				}
+			}
+			if ($sub) {
+// Disallow moving to a subfolder of the current folder.
+				return 4;
+			}
+		}
+		$filemask = substr($this->localpath, 0, -1) . '.*';
+		$perms = FOLDER_MOD;
+
+		@chmod($this->localpath, 0777);
+		$success = @rename($this->localpath, $dest);
+		$this->localpath = $dest;
+		@chmod($dest, $perms);
+		if ($success) {
+			$filestomove = safe_glob($filemask);
+			foreach ($filestomove as $file) {
+				if (in_array(strtolower(getSuffix($file)), $this->sidecars)) {
+					$d = stripslashes($dest) . '.' . getSuffix($file);
+					@chmod($file, 0777);
+					$success = $success && @rename($file, $d);
+					@chmod($d, FILE_MOD);
+				}
+			}
+			clearstatcache();
+			$success = self::move($newfolder);
+			if ($success) {
+				$this->updateParent($newfolder);
+//rename the cache folder
+				$cacherename = @rename(SERVERCACHE . '/' . $this->name, SERVERCACHE . '/' . $newfolder);
+				return 0;
+			}
+		}
+		return 1;
+	}
+
+	/**
 	 * Move this album to the location specified by $newfolder, copying all
 	 * metadata, subalbums, and subalbums' metadata with it.
 	 * @param $newfolder string the folder to move to, including the name of the current folder (possibly renamed).
@@ -526,7 +585,7 @@ class AlbumBase extends MediaObject {
 	 *
 	 */
 	function move($newfolder) {
-		return parent::move($newfolder);
+		return parent::move(array('folder' => $newfolder));
 	}
 
 	/**
@@ -535,7 +594,7 @@ class AlbumBase extends MediaObject {
 	 * @return boolean true on success or false on failure.
 	 */
 	function rename($newfolder) {
-		return self::move($newfolder);
+		return $this->move($newfolder);
 	}
 
 	/**
@@ -1284,89 +1343,24 @@ class Album extends AlbumBase {
 	 *
 	 */
 	function move($newfolder) {
-// First, ensure the new base directory exists.
-		$oldfolder = $this->name;
-		$dest = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($newfolder);
-// Check to see if the destination already exists
-		$inplace = false;
-		if (file_exists($dest)) {
-// Disallow moving an album over an existing one.
-			if (!$inplace = (CASE_INSENSITIVE && strtolower($dest) == strtolower(rtrim($this->localpath, '/')))) {
-				return 3;
-			}
-		}
-		$oldfolders = explode('/', $oldfolder);
-		$newfolders = explode('/', $newfolder);
-		$sub = count($newfolders) > count($oldfolders);
-		if ($sub) {
-			for ($i = 0; $i < count($oldfolders); $i++) {
-				if ($newfolders[$i] != $oldfolders[$i]) {
-					$sub = false;
-					break;
-				}
-			}
-			if ($sub) {
-// Disallow moving to a subfolder of the current folder.
-				return 4;
-			}
-		}
-		$filemask = substr($this->localpath, 0, -1) . '.*';
-		$perms = FOLDER_MOD;
-
-		@chmod($this->localpath, 0777);
-		$success = @rename($this->localpath, $dest);
-		@chmod($dest, $perms);
-		if ($success) {
-			$filestomove = safe_glob($filemask);
-			foreach ($filestomove as $file) {
-				if (in_array(strtolower(getSuffix($file)), $this->sidecars)) {
-					$d = dirname($dest) . '/' . basename($file);
-					@chmod($file, 0777);
-					$success = $success && @rename($file, $d);
-					@chmod($d, FILE_MOD);
-				}
-			}
-			$sql = "UPDATE " . prefix('albums') . " SET folder=" . db_quote($newfolder) . " WHERE `id` = " . $this->id;
-			$success = query($sql);
-			if ($success) {
-				zp_apply_filter('album_rename_move', $this->name, $newfolder);
-				$this->updateParent($newfolder);
-
-//rename the cache folder
-				$cacherename = @rename(SERVERCACHE . '/' . $oldfolder, SERVERCACHE . '/' . $newfolder);
+		$rslt = $this->_move($newfolder);
+		if (!$rslt) {
 // Then: go through the db and change the album (and subalbum) paths. No ID changes are necessary for a move.
 // Get the subalbums.
-				$sql = "SELECT id, folder FROM " . prefix('albums') . " WHERE folder LIKE " . db_quote(db_LIKE_escape($oldfolder) . '/%');
-				$result = query($sql);
-				if ($result) {
-					while ($subrow = db_fetch_assoc($result)) {
-						$newsubfolder = $subrow['folder'];
-						$newsubfolder = $newfolder . substr($newsubfolder, strlen($oldfolder));
-						$sql = "UPDATE " . prefix('albums') . " SET folder=" . db_quote($newsubfolder) . " WHERE id=" . $subrow['id'];
-						if (query($sql)) {
-							zp_apply_filter('album_rename_move', $subrow['folder'], $newsubfolder);
-						} else {
-							$success = false;
-						}
-					}
-				}
-				db_free_result($result);
-
-				if ($success) {
-					return 0;
+			$sql = "SELECT id, folder FROM " . prefix('albums') . " WHERE folder LIKE " . db_quote(db_LIKE_escape($this->name) . '/%');
+			$result = query($sql);
+			if ($result) {
+				while ($subrow = db_fetch_assoc($result)) {
+					$newsubfolder = $subrow['folder'];
+					$newsubfolder = $newfolder . substr($newsubfolder, strlen($this->name));
+					$sql = "UPDATE " . prefix('albums') . " SET folder=" . db_quote($newsubfolder) . " WHERE id=" . $subrow['id'];
+					query($sql);
 				}
 			}
+			db_free_result($result);
+			return 0;
 		}
-		return 1;
-	}
-
-	/**
-	 * Rename this album folder. Alias for move($newfoldername);
-	 * @param string $newfolder the new folder name of this album (including subalbum paths)
-	 * @return boolean true on success or false on failure.
-	 */
-	function rename($newfolder) {
-		return self::move($newfolder);
+		return $rslt;
 	}
 
 	/**
@@ -1539,6 +1533,7 @@ class Album extends AlbumBase {
 	 * @return array
 	 */
 	protected function loadFileNames($dirs = false) {
+		clearstatcache();
 		$albumdir = $this->localpath;
 		$dir = @opendir($albumdir);
 		if (!$dir) {
@@ -1892,74 +1887,7 @@ class dynamicAlbum extends Album {
 	 *
 	 */
 	function move($newfolder) {
-// First, ensure the new base directory exists.
-		$oldfolder = $this->name;
-		$dest = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($newfolder);
-// Check to see if the destination already exists
-		if (file_exists($dest)) {
-// Disallow moving an album over an existing one.
-			return 3;
-		}
-		$oldfolders = explode('/', $oldfolder);
-		$newfolders = explode('/', $newfolder);
-		$sub = count($newfolders) > count($oldfolders);
-		if ($sub) {
-			for ($i = 0; $i < count($oldfolders); $i++) {
-				if ($newfolders[$i] != $oldfolders[$i]) {
-					$sub = false;
-					break;
-				}
-			}
-			if ($sub) {
-// Disallow moving to a subfolder of the current folder.
-				return 4;
-			}
-		}
-		$filemask = substr($this->localpath, 0, strrpos($this->localpath, '.')) . '.*';
-		$perms = FILE_MOD;
-		@chmod($this->localpath, 0777);
-		$success = @rename($this->localpath, $dest);
-		@chmod($dest, $perms);
-		if ($success) {
-			$filestomove = safe_glob($filemask);
-			foreach ($filestomove as $file) {
-				if (in_array(strtolower(getSuffix($file)), $this->sidecars)) {
-					$d = dirname($dest) . '/' . basename($file);
-					@chmod($file, 0777);
-					$success = $success && @rename($file, $d);
-					@chmod($d, FILE_MOD);
-				}
-			}
-			$sql = "UPDATE " . prefix('albums') . " SET folder=" . db_quote($newfolder) . " WHERE `id` = " . $this->id;
-			$success = query($sql);
-			if ($success) {
-				zp_apply_filter('album_rename_move', $this->name, $newfolder);
-				$this->updateParent($newfolder);
-//rename the cache folder
-				$cacherename = @rename(SERVERCACHE . '/' . $oldfolder, SERVERCACHE . '/' . $newfolder);
-// Then: go through the db and change the album (and subalbum) paths. No ID changes are necessary for a move.
-// Get the subalbums.
-				$sql = "SELECT id, folder FROM " . prefix('albums') . " WHERE folder LIKE " . db_quote(db_LIKE_escape($oldfolder) . '/%');
-				$result = query($sql);
-				if ($result) {
-					while ($subrow = db_fetch_assoc($result)) {
-						$newsubfolder = $subrow['folder'];
-						$newsubfolder = $newfolder . substr($newsubfolder, strlen($oldfolder));
-						$sql = "UPDATE " . prefix('albums') . " SET folder=" . db_quote($newsubfolder) . " WHERE id=" . $subrow['id'];
-						if (query($sql)) {
-							zp_apply_filter('album_rename_move', $subrow['folder'], $newsubfolder);
-						} else {
-							$success = false;
-						}
-					}
-				}
-				db_free_result($result);
-				if ($success) {
-					return 0;
-				}
-			}
-		}
-		return 1;
+		return $this->_move($newfolder);
 	}
 
 	/**
