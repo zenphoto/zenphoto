@@ -407,7 +407,122 @@ class AlbumBase extends MediaObject {
 	 * @return Image
 	 */
 	function getAlbumThumbImage() {
-		$this->albumthumbnail = new transientimage($this, SERVERPATH . '/' . ZENFOLDER . '/images/imageDefault.png');
+		global $_zp_albumthumb_selector, $_zp_gallery;
+
+		if (!is_null($this->albumthumbnail)) {
+			return $this->albumthumbnail;
+		}
+
+		$albumdir = $this->localpath;
+		$thumb = $this->get('thumb');
+		if (is_null($thumb)) {
+			$this->set('thumb', $thumb = getOption('AlbumThumbSelect'));
+		}
+		$i = strpos($thumb, '/');
+		if ($root = ($i === 0)) {
+			$thumb = substr($thumb, 1); // strip off the slash
+			$albumdir = ALBUM_FOLDER_SERVERPATH;
+		}
+		if (!empty($thumb) && !is_numeric($thumb)) {
+			if (file_exists($albumdir . internalToFilesystem($thumb))) {
+				if ($i === false) {
+					return newImage($this, $thumb);
+				} else {
+					$pieces = explode('/', $thumb);
+					$i = count($pieces);
+					$thumb = $pieces[$i - 1];
+					unset($pieces[$i - 1]);
+					$albumdir = implode('/', $pieces);
+					if (!$root) {
+						$albumdir = $this->name . "/" . $albumdir;
+					} else {
+						$albumdir = $albumdir . "/";
+					}
+					$this->albumthumbnail = newImage(newAlbum($albumdir), $thumb);
+					return $this->albumthumbnail;
+				}
+			} else {
+				$this->set('thumb', $thumb = getOption('AlbumThumbSelect'));
+			}
+		}
+		if ($shuffle = empty($thumb)) {
+			$thumbs = $this->getImages(0, 0, NULL, NULL, false);
+		} else {
+			$thumbs = $this->getImages(0, 0, $_zp_albumthumb_selector[(int) $thumb]['field'], $_zp_albumthumb_selector[(int) $thumb]['direction']);
+		}
+		if (!is_null($thumbs)) {
+			if ($shuffle) {
+				shuffle($thumbs);
+			}
+			$mine = $this->isMyItem(LIST_RIGHTS);
+			$other = NULL;
+			while (count($thumbs) > 0) {
+// first check for images
+				$thumb = array_shift($thumbs);
+				$thumb = newImage($this, $thumb);
+				if ($mine || $thumb->getShow()) {
+					if (isImagePhoto($thumb)) {
+// legitimate image
+						$this->albumthumbnail = $thumb;
+						return $this->albumthumbnail;
+					} else {
+						if (!is_null($thumb->objectsThumb)) {
+//	"other" image with a thumb sidecar
+							$this->albumthumbnail = $thumb;
+							return $this->albumthumbnail;
+						} else {
+							if (is_null($other)) {
+								$other = $thumb;
+							}
+						}
+					}
+				}
+			}
+			if (!is_null($other)) {
+//	"other" image, default thumb
+				$this->albumthumbnail = $other;
+				return $this->albumthumbnail;
+			}
+		}
+
+// Otherwise, look in sub-albums.
+		$subalbums = $this->getAlbums();
+		if (!is_null($subalbums)) {
+			if ($shuffle) {
+				shuffle($subalbums);
+			}
+			while (count($subalbums) > 0) {
+				$folder = array_pop($subalbums);
+				$subalbum = newAlbum($folder);
+				$pwd = $subalbum->getPassword();
+				if (($subalbum->getShow() && empty($pwd)) || $subalbum->isMyItem(LIST_RIGHTS)) {
+					$thumb = $subalbum->getAlbumThumbImage();
+					if (strtolower(get_class($thumb)) !== 'transientimage' && $thumb->exists) {
+						$this->albumthumbnail = $thumb;
+						return $thumb;
+					}
+				}
+			}
+		}
+
+		$nullimage = SERVERPATH . '/' . ZENFOLDER . '/images/imageDefault.png';
+// check for theme imageDefault.png
+		$theme = '';
+		$uralbum = getUralbum($this);
+		$albumtheme = $uralbum->getAlbumTheme();
+		if (!empty($albumtheme)) {
+			$theme = $albumtheme;
+		} else {
+			$theme = $_zp_gallery->getCurrentTheme();
+		}
+		if (!empty($theme)) {
+			$themeimage = SERVERPATH . '/' . THEMEFOLDER . '/' . $theme . '/images/imageDefault.png';
+			if (file_exists(internalToFilesystem($themeimage))) {
+				$nullimage = $themeimage;
+			}
+		}
+
+		$this->albumthumbnail = new transientimage($this, $nullimage);
 		return $this->albumthumbnail;
 	}
 
@@ -1090,133 +1205,6 @@ class Album extends AlbumBase {
 			}
 		}
 		return $images_ordered;
-	}
-
-	/**
-	 * Gets the album's set thumbnail image from the database if one exists,
-	 * otherwise, finds the first image in the album or sub-album and returns it
-	 * as an Image object.
-	 *
-	 * @return Image
-	 */
-	function getAlbumThumbImage() {
-		global $_zp_albumthumb_selector, $_zp_gallery;
-
-		if (!is_null($this->albumthumbnail)) {
-			return $this->albumthumbnail;
-		}
-
-		$albumdir = $this->localpath;
-		$thumb = $this->get('thumb');
-		if (is_null($thumb)) {
-			$this->set('thumb', $thumb = getOption('AlbumThumbSelect'));
-		}
-		$i = strpos($thumb, '/');
-		if ($root = ($i === 0)) {
-			$thumb = substr($thumb, 1); // strip off the slash
-			$albumdir = ALBUM_FOLDER_SERVERPATH;
-		}
-		if (!empty($thumb) && !is_numeric($thumb)) {
-			if (file_exists($albumdir . internalToFilesystem($thumb))) {
-				if ($i === false) {
-					return newImage($this, $thumb);
-				} else {
-					$pieces = explode('/', $thumb);
-					$i = count($pieces);
-					$thumb = $pieces[$i - 1];
-					unset($pieces[$i - 1]);
-					$albumdir = implode('/', $pieces);
-					if (!$root) {
-						$albumdir = $this->name . "/" . $albumdir;
-					} else {
-						$albumdir = $albumdir . "/";
-					}
-					$this->albumthumbnail = newImage(newAlbum($albumdir), $thumb);
-					return $this->albumthumbnail;
-				}
-			} else {
-				$this->set('thumb', $thumb = getOption('AlbumThumbSelect'));
-			}
-		}
-		if ($shuffle = empty($thumb)) {
-			$thumbs = $this->getImages(0, 0, NULL, NULL, false);
-		} else {
-			$thumbs = $this->getImages(0, 0, $_zp_albumthumb_selector[(int) $thumb]['field'], $_zp_albumthumb_selector[(int) $thumb]['direction']);
-		}
-		if (!is_null($thumbs)) {
-			if ($shuffle) {
-				shuffle($thumbs);
-			}
-			$mine = $this->isMyItem(LIST_RIGHTS);
-			$other = NULL;
-			while (count($thumbs) > 0) {
-// first check for images
-				$thumb = array_shift($thumbs);
-				$thumb = newImage($this, $thumb);
-				if ($mine || $thumb->getShow()) {
-					if (isImagePhoto($thumb)) {
-// legitimate image
-						$this->albumthumbnail = $thumb;
-						return $this->albumthumbnail;
-					} else {
-						if (!is_null($thumb->objectsThumb)) {
-//	"other" image with a thumb sidecar
-							$this->albumthumbnail = $thumb;
-							return $this->albumthumbnail;
-						} else {
-							if (is_null($other)) {
-								$other = $thumb;
-							}
-						}
-					}
-				}
-			}
-			if (!is_null($other)) {
-//	"other" image, default thumb
-				$this->albumthumbnail = $other;
-				return $this->albumthumbnail;
-			}
-		}
-
-// Otherwise, look in sub-albums.
-		$subalbums = $this->getAlbums();
-		if (!is_null($subalbums)) {
-			if ($shuffle) {
-				shuffle($subalbums);
-			}
-			while (count($subalbums) > 0) {
-				$folder = array_pop($subalbums);
-				$subalbum = newAlbum($folder);
-				$pwd = $subalbum->getPassword();
-				if (($subalbum->getShow() && empty($pwd)) || $subalbum->isMyItem(LIST_RIGHTS)) {
-					$thumb = $subalbum->getAlbumThumbImage();
-					if (strtolower(get_class($thumb)) !== 'transientimage' && $thumb->exists) {
-						$this->albumthumbnail = $thumb;
-						return $thumb;
-					}
-				}
-			}
-		}
-
-		$nullimage = SERVERPATH . '/' . ZENFOLDER . '/images/imageDefault.png';
-// check for theme imageDefault.png
-		$theme = '';
-		$uralbum = getUralbum($this);
-		$albumtheme = $uralbum->getAlbumTheme();
-		if (!empty($albumtheme)) {
-			$theme = $albumtheme;
-		} else {
-			$theme = $_zp_gallery->getCurrentTheme();
-		}
-		if (!empty($theme)) {
-			$themeimage = SERVERPATH . '/' . THEMEFOLDER . '/' . $theme . '/images/imageDefault.png';
-			if (file_exists(internalToFilesystem($themeimage))) {
-				$nullimage = $themeimage;
-			}
-		}
-
-		$this->albumthumbnail = new transientimage($this, $nullimage);
-		return $this->albumthumbnail;
 	}
 
 	/**
