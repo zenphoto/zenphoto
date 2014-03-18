@@ -21,10 +21,10 @@ Gallery::addAlbumHandler('alb', 'dynamicAlbum');
 function newAlbum($folder8, $cache = true, $quiet = false) {
 	global $_zp_albumHandlers;
 	$suffix = getSuffix($folder8);
-	if ($suffix && array_key_exists($suffix, $_zp_albumHandlers)) {
-		return new $_zp_albumHandlers[$suffix]($folder8, $cache, $quiet);
-	} else {
+	if (!$suffix || !array_key_exists($suffix, $_zp_albumHandlers) || file_exists(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($folder8) . "/")) {
 		return new Album($folder8, $cache, $quiet);
+	} else {
+		return new $_zp_albumHandlers[$suffix]($folder8, $cache, $quiet);
 	}
 }
 
@@ -657,10 +657,11 @@ class AlbumBase extends MediaObject {
 		$perms = FOLDER_MOD;
 
 		@chmod($this->localpath, 0777);
-		$success = @rename($this->localpath, $dest);
-		$this->localpath = $dest;
+		$success = @rename(rtrim($this->localpath, '/'), $dest);
 		@chmod($dest, $perms);
+
 		if ($success) {
+			$this->localpath = $dest . "/";
 			$filestomove = safe_glob($filemask);
 			foreach ($filestomove as $file) {
 				if (in_array(strtolower(getSuffix($file)), $this->sidecars)) {
@@ -702,6 +703,10 @@ class AlbumBase extends MediaObject {
 		return $this->move($newfolder);
 	}
 
+	protected function succeed($dest) {
+		return false;
+	}
+
 	/**
 	 * Copy this album to the location specified by $newfolder, copying all
 	 * metadata, subalbums, and subalbums' metadata with it.
@@ -726,7 +731,7 @@ class AlbumBase extends MediaObject {
 // Disallow copying to a subfolder of the current folder (infinite loop).
 			return 4;
 		}
-		$success = mkdir_recursive($dest, FOLDER_MOD) === TRUE;
+		$success = $this->succeed($dest);
 		$filemask = substr($this->localpath, 0, -1) . '.*';
 		if ($success) {
 //	replicate the album metadata and sub-files
@@ -743,37 +748,19 @@ class AlbumBase extends MediaObject {
 //	replicate the tags
 				storeTags(readTags($this->getID(), 'albums'), $newID, 'albums');
 //	copy the sidecar files
-
 				$filestocopy = safe_glob($filemask);
-
 				foreach ($filestocopy as $file) {
 					if (in_array(strtolower(getSuffix($file)), $this->sidecars)) {
 						$success = $success && @copy($file, dirname($dest) . '/' . basename($file));
 					}
 				}
 			}
-			if ($success) {
-//	copy the images
-				$images = $this->getImages(0);
-				foreach ($images as $imagename) {
-					$image = newImage($this, $imagename);
-					$success = $success && !$image->copy($newfolder);
-				}
-// copy the subalbums.
-				$subalbums = $this->getAlbums(0);
-				foreach ($subalbums as $subalbumname) {
-					$subalbum = newAlbum($subalbumname);
-					if ($subalbum->copy($newfolder)) {
-						$success = false;
-					}
-				}
-
-				if ($success) {
-					return 0;
-				}
-			}
 		}
-		return 1;
+		if ($success) {
+			return 0;
+		} else {
+			return 1;
+		}
 	}
 
 	/**
@@ -1347,11 +1334,42 @@ class Album extends AlbumBase {
 	 * @return bool
 	 */
 	function remove() {
-		if ($rslt = parent::remove()) {
-			@chmod($this->localpath, 0777);
-			$rslt = @rmdir($this->localpath);
+		$rslt = false;
+		if (PersistentObject::remove()) {
+			foreach ($this->getImages() as $filename) {
+				$image = newImage($this, $filename);
+				$image->remove();
+			}
+			foreach ($this->getAlbums() as $folder) {
+				$subalbum = newAlbum($folder);
+				$subalbum->remove();
+			}
+			$curdir = getcwd();
+			chdir($this->localpath);
+			$filelist = safe_glob('*');
+			foreach ($filelist as $file) {
+				if (($file != '.') && ($file != '..')) {
+					@chmod($file, 0777);
+					unlink($this->localpath . $file); // clean out any other files in the folder
+				}
+			}
+			chdir($curdir);
 			clearstatcache();
+			query("DELETE FROM " . prefix('options') . "WHERE `ownerid`=" . $this->id);
+			query("DELETE FROM " . prefix('comments') . "WHERE `type`='albums' AND `ownerid`=" . $this->id);
+			query("DELETE FROM " . prefix('obj_to_tag') . "WHERE `type`='albums' AND `objectid`=" . $this->id);
+			$success = true;
+			$filestoremove = safe_glob(substr($this->localpath, 0, strrpos($this->localpath, '.')) . '.*');
+			foreach ($filestoremove as $file) {
+				if (in_array(strtolower(getSuffix($file)), $this->sidecars)) {
+					@chmod($file, 0777);
+					$success = $success && unlink($file);
+				}
+			}
+			@chmod($this->localpath, 0777);
+			$rslt = @rmdir($this->localpath) && $success;
 		}
+		clearstatcache();
 		return $rslt;
 	}
 
@@ -1379,6 +1397,46 @@ class Album extends AlbumBase {
 			}
 			db_free_result($result);
 			return 0;
+		}
+		return $rslt;
+	}
+
+	protected function succeed($dest) {
+		return mkdir_recursive($dest, FOLDER_MOD) === TRUE;
+	}
+
+	/**
+	 * Copy this album to the location specified by $newfolder, copying all
+	 * metadata, subalbums, and subalbums' metadata with it.
+	 * @param $newfolder string the folder to copy to, including the name of the current folder (possibly renamed).
+	 * @return int 0 on success and error indicator on failure.
+	 *
+	 */
+	function copy($newfolder) {
+		$rslt = parent::copy($newfolder);
+		if (!$rslt) {
+			$newfolder .= '/' . basename($this->name);
+			$success = true;
+//	copy the images
+			$images = $this->getImages(0);
+			foreach ($images as $imagename) {
+				$image = newImage($this, $imagename);
+				if ($rslt = $image->copy($newfolder)) {
+					$success = false;
+				}
+			}
+// copy the subalbums.
+			$subalbums = $this->getAlbums(0);
+			foreach ($subalbums as $subalbumname) {
+				$subalbum = newAlbum($subalbumname);
+				if ($rslt = $subalbum->copy($newfolder)) {
+					$success = false;
+				}
+			}
+			if ($success) {
+				return 0;
+			}
+			return 1;
 		}
 		return $rslt;
 	}
@@ -1523,17 +1581,24 @@ class Album extends AlbumBase {
 
 }
 
-class dynamicAlbum extends Album {
+class dynamicAlbum extends AlbumBase {
 
 	var $searchengine; // cache the search engine for dynamic albums
 
 	function __construct($folder8, $cache = true, $quiet = false) {
-		parent::__construct($folder8, $cache, $quiet);
-		$this->setDateTime(strftime('%Y-%m-%d %H:%M:%S', $this->get('mtime')));
+		$folder8 = trim($folder8, '/');
+		$folderFS = internalToFilesystem($folder8);
+		$localpath = ALBUM_FOLDER_SERVERPATH . $folderFS . "/";
+		$this->linkname = $this->name = $folder8;
+		$this->localpath = $localpath;
+		if (!$this->_albumCheck($folder8, $folderFS, $quiet))
+			return;
+		$new = $this->instantiate('albums', array('folder' => $this->name), 'folder', $cache, empty($folder8));
+		parent::__construct($folder8, $cache);
+		$this->exists = true;
 		if (!is_dir(stripSuffix($this->localpath))) {
 			$this->linkname = stripSuffix($folder8);
 		}
-
 		$new = !$this->get('search_params');
 		if ($new || (filemtime($this->localpath) > $this->get('mtime'))) {
 			$constraints = '';
@@ -1571,8 +1636,11 @@ class dynamicAlbum extends Album {
 			if ($new) {
 				$title = $this->get('title');
 				$this->set('title', stripSuffix($title)); // Strip the suffix
+				$this->save();
+				zp_apply_filter('new_album', $this);
 			}
 		}
+		zp_apply_filter('album_instantiate', $this);
 	}
 
 	/**
@@ -1660,42 +1728,11 @@ class dynamicAlbum extends Album {
 	 * @return bool
 	 */
 	function remove() {
-		$rslt = false;
-		if (PersistentObject::remove()) {
-			foreach ($this->getAlbums() as $folder) {
-				$subalbum = newAlbum($folder);
-				$subalbum->remove();
-			}
-			foreach ($this->getImages() as $filename) {
-				$image = newImage($this, $filename);
-				$image->remove();
-			}
-			$curdir = getcwd();
-			chdir($this->localpath);
-			$filelist = safe_glob('*');
-			foreach ($filelist as $file) {
-				if (($file != '.') && ($file != '..')) {
-					@chmod($file, 0777);
-					unlink($this->localpath . $file); // clean out any other files in the folder
-				}
-			}
-			chdir($curdir);
-
-			query("DELETE FROM " . prefix('options') . "WHERE `ownerid`=" . $this->id);
-			query("DELETE FROM " . prefix('comments') . "WHERE `type`='albums' AND `ownerid`=" . $this->id);
-			query("DELETE FROM " . prefix('obj_to_tag') . "WHERE `type`='albums' AND `objectid`=" . $this->id);
-			$success = true;
-			$filestoremove = safe_glob(substr($this->localpath, 0, strrpos($this->localpath, '.')) . '.*');
-			foreach ($filestoremove as $file) {
-				if (in_array(strtolower(getSuffix($file)), $this->sidecars)) {
-					@chmod($file, 0777);
-					$success = $success && unlink($file);
-				}
-			}
+		if ($rslt = parent::remove()) {
 			@chmod($this->localpath, 0777);
-			$rslt = @unlink($this->localpath) && $success;
+			$rslt = @unlink($this->localpath);
+			clearstatcache();
 		}
-		clearstatcache();
 		return $rslt;
 	}
 
@@ -1710,6 +1747,10 @@ class dynamicAlbum extends Album {
 		return $this->_move($newfolder);
 	}
 
+	protected function succeed($dest) {
+		return @copy($this->localpath, $dest);
+	}
+
 	/**
 	 * Copy this album to the location specified by $newfolder, copying all
 	 * metadata, subalbums, and subalbums' metadata with it.
@@ -1718,69 +1759,7 @@ class dynamicAlbum extends Album {
 	 *
 	 */
 	function copy($newfolder) {
-// album name to destination folder
-		if (substr($newfolder, -1, 1) != '/')
-			$newfolder .= '/';
-		$newfolder .= basename($this->localpath);
-// First, ensure the new base directory exists.
-		$oldfolder = $this->name;
-		$dest = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($newfolder);
-// Check to see if the destination directory already exists
-		if (file_exists($dest)) {
-// Disallow moving an album over an existing one.
-			return 3;
-		}
-		if (substr($newfolder, count($oldfolder)) == $oldfolder) {
-// Disallow copying to a subfolder of the current folder (infinite loop).
-			return 4;
-		}
-		$success = @copy($this->localpath, $dest);
-		$filemask = substr($this->localpath, 0, strrpos($this->localpath, '.')) . '.*';
-		if ($success) {
-//	replicate the album metadata and sub-files
-			$uniqueset = array('folder' => $newfolder);
-			$parentname = dirname($newfolder);
-			if (empty($parentname) || $parentname == '/' || $parentname == '.') {
-				$uniqueset['parentid'] = NULL;
-			} else {
-				$parent = newAlbum($parentname);
-				$uniqueset['parentid'] = $parent->getID();
-			}
-			$newID = parent::copy($uniqueset);
-			if ($newID) {
-//	replicate the tags
-				storeTags(readTags($this->getID(), 'albums'), $newID, 'albums');
-//	copy the sidecar files
-
-				$filestocopy = safe_glob($filemask);
-
-				foreach ($filestocopy as $file) {
-					if (in_array(strtolower(getSuffix($file)), $this->sidecars)) {
-						$success = $success && @copy($file, dirname($dest) . '/' . basename($file));
-					}
-				}
-			}
-			if ($success) {
-//	copy the images
-				$images = $this->getImages(0);
-				foreach ($images as $imagename) {
-					$image = newImage($this, $imagename);
-					$success = $success && !$image->copy($newfolder);
-				}
-// copy the subalbums.
-				$subalbums = $this->getAlbums(0);
-				foreach ($subalbums as $subalbumname) {
-					$subalbum = newAlbum($subalbumname);
-					if ($subalbum->copy($newfolder)) {
-						$success = false;
-					}
-				}
-				if ($success) {
-					return 0;
-				}
-			}
-		}
-		return 1;
+		return parent::copy($newfolder);
 	}
 
 	/**

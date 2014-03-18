@@ -1278,7 +1278,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
 																onclick="passwordClear('<?php echo $suffix; ?>');
-																				togglePassword('<?php echo $suffix; ?>');" /><?php echo gettext('Show password'); ?></label>
+																		togglePassword('<?php echo $suffix; ?>');" /><?php echo gettext('Show password'); ?></label>
 								</td>
 								<td>
 									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
@@ -1373,7 +1373,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$sort[gettext('Custom')] = 'custom';
 						/*
 						 * not recommended--screws with peoples minds during pagination!
-							$sort[gettext('Random')] = 'random';
+						  $sort[gettext('Random')] = 'random';
 						 */
 						?>
 						<tr>
@@ -1793,26 +1793,18 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', 'rename');" <?php echo $isPrimaryAlbum; ?> />
 										 <?php echo gettext("Rename Folder"); ?>
 						</label>
-						<?php
-						if (!$album->isDynamic()) {
-							$ci = count($album->getImages(0));
-							$ca = count($album->getAlbums(0));
-							if ($ca || $ci) {
-								$isPrimaryAlbum = ' disabed="disabled"';
-							}
-						}
-						?>
+
 						<label class="checkboxlabel">
 							<input type="radio" id="Delete-<?php echo $prefix; ?>" name="a-<?php echo $prefix; ?>MoveCopyRename" value="delete"
 							<?php
 							if ($isPrimaryAlbum) {
 								?>
-											 disabled="disabled" title="<?php echo gettext('The album is not empty'); ?>"
+											 disabled="disabled"
 											 <?php
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -2213,17 +2205,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 					<?php
 					$myalbum = $_zp_current_admin_obj->getAlbum();
 					$supress = !zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS) && $myalbum && $album->getID() == $myalbum->getID();
-					$title = gettext('unavailable');
-					$full = false;
-					if (!$album->isDynamic()) {
-						if ($ci || $ca) {
-							$full = true;
-							$title = gettext('The album is not empty');
-						}
-					}
-					if (!$enableEdit || $supress || $full) {
+					if (!$enableEdit || $supress) {
 						?>
-						<img src="images/icon_inactive.png" style="border: 0px;" alt="" title="<?php echo $title; ?>" />
+						<img src="images/icon_inactive.png" style="border: 0px;" alt="" title="<?php echo gettext('unavailable'); ?>" />
 						<?php
 					} else {
 						?>
@@ -4344,7 +4328,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 		}
 		?>
 		<select name="subpage" class="ays-ignore" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
-										[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
+								[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
 							<?php
 							foreach ($rangeset as $page => $range) {
 								?>
