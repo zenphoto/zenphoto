@@ -967,7 +967,7 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
  * @param array $row database row of the object
  */
 function checkPublishDates($row) {
-	if ($row['show']) {
+	if (@$row['show']) {
 		if (isset($row['expiredate']) && $row['expiredate'] && $row['expiredate'] != '0000-00-00 00:00:00') {
 			if ($row['expiredate'] <= date('Y-m-d H:i:s')) {
 				return 1;
