@@ -32,14 +32,24 @@ class rewriteTokens {
 		$zp_cfg = file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 		$i = strpos($zp_cfg, "\$conf['special_pages']");
 		$j = strpos($zp_cfg, '//', $i);
-		$this->zp_cfg_a = substr($zp_cfg, 0, $i);
-		$this->zp_cfg_b = substr($zp_cfg, $j);
-		eval(substr($zp_cfg, $i, $j - $i));
-		$this->conf_vars = $conf['special_pages'];
-
-		foreach ($_zp_conf_vars['special_pages'] as $page => $element) {
-			if (isset($element['option'])) {
-				$this->plugin_vars[$page] = $element;
+		if ($i === false || $j === false) {
+			$conf = array('special_pages' => array());
+			$this->conf_vars = $conf['special_pages'];
+			$i = strpos($zp_cfg, '/** Do not edit below this line. **/');
+			if ($i === false) {
+				zp_error(gettext('The Zenphoto configuration file is corrupt. You will need to restore it from a backup.'));
+			}
+			$this->zp_cfg_a = substr($zp_cfg, 0, $i);
+			$this->zp_cfg_b = "//\n" . substr($zp_cfg, $i);
+		} else {
+			$this->zp_cfg_a = substr($zp_cfg, 0, $i);
+			$this->zp_cfg_b = substr($zp_cfg, $j);
+			eval(substr($zp_cfg, $i, $j - $i));
+			$this->conf_vars = $conf['special_pages'];
+			foreach ($_zp_conf_vars['special_pages'] as $page => $element) {
+				if (isset($element['option'])) {
+					$this->plugin_vars[$page] = $element;
+				}
 			}
 		}
 		if (OFFSET_PATH == 2) {
