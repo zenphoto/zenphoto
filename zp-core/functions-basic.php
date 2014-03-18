@@ -509,6 +509,7 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 					//has an IM_SUFFIX attached
 					$rimage = basename($matches[1]);
 					$ralbum = trim(dirname($matches[1]), '/');
+					$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
 				}
 				if (!is_dir($path)) {
 					if ($suffix = isHandledAlbum($path)) {
