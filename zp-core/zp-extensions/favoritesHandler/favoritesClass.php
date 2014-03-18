@@ -32,14 +32,6 @@ class favorites extends AlbumBase {
 		}
 	}
 
-	function getOwner() {
-		return $this->owner;
-	}
-
-	function setOwner($owner) {
-		$this->owner = $owner;
-	}
-
 	protected function getInstance() {
 		if ($this->instance) {
 			return serialize(array($this->owner, $this->instance));
@@ -301,38 +293,6 @@ class favorites extends AlbumBase {
 		if ($page > 1)
 			$link .= '/' . $page . '/';
 		return $link;
-	}
-
-	function getSortDirection($what = 'image') {
-		if ($what == 'image') {
-			return $this->imageSortDirection;
-		} else {
-			return $this->albumSortDirection;
-		}
-	}
-
-	function getSortType($what = 'image') {
-		if ($what == 'image') {
-			return $this->imageSortType;
-		} else {
-			return $this->albumSortType;
-		}
-	}
-
-	function setSortDirection($val, $what = 'image') {
-		if ($what == 'image') {
-			$this->imageSortDirection = $val;
-		} else {
-			$this->albumSortDirection = $val;
-		}
-	}
-
-	function setSortType($sorttype, $what = 'image') {
-		if ($what == 'image') {
-			return $this->imageSortType;
-		} else {
-			return $this->albumSortType;
-		}
 	}
 
 	static function ad_removeButton($obj, $id, $v, $add, $instance, $multi) {
