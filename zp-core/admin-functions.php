@@ -3096,7 +3096,7 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 						$extra[$item['data']][] = array('name' => 'name', 'value' => $item['name'], 'display' => '', 'checked' => 0);
 						$extra[$item['data']][] = array('name' => 'edit', 'value' => MANAGED_OBJECT_RIGHTS_EDIT, 'display' => $icon_edit_album, 'checked' => $item['edit'] & MANAGED_OBJECT_RIGHTS_EDIT);
 						if (($rights & UPLOAD_RIGHTS)) {
-							if (hasDynamicAlbumSuffix($item['data'])) {
+							if (hasDynamicAlbumSuffix($item['data']) && !isdir(ALBUM_FOLDER_SERVERPATH . $item['data'])) {
 								$extra[$item['data']][] = array('name' => 'upload', 'value' => MANAGED_OBJECT_RIGHTS_UPLOAD, 'display' => $icon_upload_disabled, 'checked' => 0, 'disable' => true);
 							} else {
 								$extra[$item['data']][] = array('name' => 'upload', 'value' => MANAGED_OBJECT_RIGHTS_UPLOAD, 'display' => $icon_upload, 'checked' => $item['edit'] & MANAGED_OBJECT_RIGHTS_UPLOAD);
@@ -3112,7 +3112,7 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 					$extra2[$unmanaged][] = array('name' => 'name', 'value' => $unmanaged, 'display' => '', 'checked' => 0);
 					$extra2[$unmanaged][] = array('name' => 'edit', 'value' => MANAGED_OBJECT_RIGHTS_EDIT, 'display' => $icon_edit_album, 'checked' => 1);
 					if (($rights & UPLOAD_RIGHTS)) {
-						if (hasDynamicAlbumSuffix($unmanaged)) {
+						if (hasDynamicAlbumSuffix($unmanaged) && !isdir(ALBUM_FOLDER_SERVERPATH . $unmanaged)) {
 							$extra2[$unmanaged][] = array('name' => 'upload', 'value' => MANAGED_OBJECT_RIGHTS_UPLOAD, 'display' => $icon_upload_disabled, 'checked' => 0, 'disable' => true);
 						} else {
 							$extra2[$unmanaged][] = array('name' => 'upload', 'value' => MANAGED_OBJECT_RIGHTS_UPLOAD, 'display' => $icon_upload, 'checked' => 1);
@@ -4731,6 +4731,12 @@ function checkAlbumParentid($albumname, $id, $recorder) {
 		$msg = sprintf('Fixed album <strong>%1$s</strong>: parentid was %2$s should have been %3$s<br />', $albumname, $oldid, $id);
 		$recorder($msg, true);
 		echo $msg;
+
+
+		var_dump($album);
+
+
+		exit();
 	}
 	$id = $album->getID();
 	if (!$album->isDynamic()) {

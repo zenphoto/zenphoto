@@ -213,7 +213,7 @@ function getItemTitleAndURL($item) {
 		case "album":
 			$folderFS = internalToFilesystem($item['link']);
 			$localpath = ALBUM_FOLDER_SERVERPATH . $folderFS;
-			$dynamic = hasDynamicAlbumSuffix($folderFS);
+			$dynamic = hasDynamicAlbumSuffix($folderFS) && !isdir($folderFS);
 			$valid = file_exists($localpath) && ($dynamic || is_dir($localpath));
 			if (!$valid || strpos($localpath, '..') !== false) {
 				$valid = false;

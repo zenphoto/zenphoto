@@ -66,7 +66,7 @@ printLogoAndLinks();
 		genAlbumList($albumlist);
 		//	remove dynamic albums--can't upload to them
 		foreach ($albumlist as $key => $albumname) {
-			if (hasDynamicAlbumSuffix($key)) {
+			if (hasDynamicAlbumSuffix($key) && !isdir(ALBUM_FOLDER_SERVERPATH . $key)) {
 				unset($albumlist[$key]);
 			}
 		}
@@ -86,32 +86,32 @@ foreach ($albumlist as $key => $value) {
 		</script>
 
 		<div class="tabbox">
-<?php zp_apply_filter('admin_note', 'upload', 'images'); ?>
+			<?php zp_apply_filter('admin_note', 'upload', 'images'); ?>
 			<h1><?php echo gettext("Upload Images"); ?></h1>
 			<p>
-<?php
-natcasesort($_zp_supported_images);
-$types = array_keys($_zp_extra_filetypes);
-$types = array_merge($_zp_supported_images, $types);
-$types[] = 'ZIP';
-$types = zp_apply_filter('upload_filetypes', $types);
-natcasesort($types);
-$upload_extensions = $types;
-$last = strtoupper(array_pop($types));
-$s1 = strtoupper(implode(', ', $types));
-$used = 0;
+				<?php
+				natcasesort($_zp_supported_images);
+				$types = array_keys($_zp_extra_filetypes);
+				$types = array_merge($_zp_supported_images, $types);
+				$types[] = 'ZIP';
+				$types = zp_apply_filter('upload_filetypes', $types);
+				natcasesort($types);
+				$upload_extensions = $types;
+				$last = strtoupper(array_pop($types));
+				$s1 = strtoupper(implode(', ', $types));
+				$used = 0;
 
-if (count($types) > 1) {
-	printf(gettext('This web-based upload accepts the file formats: %s, and %s.'), $s1, $last);
-} else {
-	printf(gettext('This web-based upload accepts the file formats: %s and %s.'), $s1, $last);
-}
-?>
+				if (count($types) > 1) {
+					printf(gettext('This web-based upload accepts the file formats: %s, and %s.'), $s1, $last);
+				} else {
+					printf(gettext('This web-based upload accepts the file formats: %s and %s.'), $s1, $last);
+				}
+				?>
 			</p>
 			<p class="notebox">
-<?php
-echo gettext('<strong>Note: </strong>');
-?>
+				<?php
+				echo gettext('<strong>Note: </strong>');
+				?>
 				<br />
 				<?php
 				if ($last == 'ZIP') {
@@ -137,41 +137,41 @@ echo gettext('<strong>Note: </strong>');
 				echo zp_apply_filter('get_upload_header_text', gettext('Don\'t forget, you can also use <acronym title="File Transfer Protocol">FTP</acronym> to upload folders of images into the albums directory!'));
 				?>
 			</p>
-				<?php
-				if (isset($_GET['error'])) {
-					$errormsg = sanitize($_GET['error']);
-					?>
+			<?php
+			if (isset($_GET['error'])) {
+				$errormsg = sanitize($_GET['error']);
+				?>
 				<div class="errorbox fade-message">
 					<h2><?php echo gettext("Upload Error"); ?></h2>
-	<?php echo (empty($errormsg) ? gettext("There was an error submitting the form. Please try again.") : $errormsg); ?>
+					<?php echo (empty($errormsg) ? gettext("There was an error submitting the form. Please try again.") : $errormsg); ?>
 				</div>
-					<?php
-				}
-				if (isset($_GET['uploaded'])) {
-					?>
+				<?php
+			}
+			if (isset($_GET['uploaded'])) {
+				?>
 				<div class="messagebox fade-message">
 					<h2><?php echo gettext("Upload complete"); ?></h2>
-	<?php echo gettext('Your files have been uploaded.'); ?>
+					<?php echo gettext('Your files have been uploaded.'); ?>
 				</div>
-					<?php
-				}
-				if (SAFE_MODE) {
-					?>
+				<?php
+			}
+			if (SAFE_MODE) {
+				?>
 				<div class="warningbox fade-message">
 					<h2><?php echo gettext("PHP Safe Mode Restrictions in effect!"); ?></h2>
 					<p><?php echo gettext("Zenphoto may be unable to perform uploads when PHP Safe Mode restrictions are in effect"); ?></p>
 				</div>
-	<?php
-}
-$rootrights = zp_apply_filter('upload_root_ui', accessAllAlbums(UPLOAD_RIGHTS));
-if ($rootrights || !empty($albumlist)) {
-	echo gettext("Upload to:");
-	if (isset($_GET['new'])) {
-		$checked = ' checked="checked"';
-	} else {
-		$checked = '';
-	}
-	?>
+				<?php
+			}
+			$rootrights = zp_apply_filter('upload_root_ui', accessAllAlbums(UPLOAD_RIGHTS));
+			if ($rootrights || !empty($albumlist)) {
+				echo gettext("Upload to:");
+				if (isset($_GET['new'])) {
+					$checked = ' checked="checked"';
+				} else {
+					$checked = '';
+				}
+				?>
 				<script type="text/javascript">
 					// <!-- <![CDATA[
 	<?php seoFriendlyJS(); ?>
@@ -201,9 +201,9 @@ if ($rootrights || !empty($albumlist)) {
 					<form class="dirty-check" name="file_upload_datum" id="file_upload_datum" method="post" action="<?php echo $formAction; ?>" enctype="multipart/form-data" >
 
 						<select id="albumselectmenu" name="albumselect" onchange="albumSelect()">
-	<?php
-	if ($rootrights) {
-		?>
+							<?php
+							if ($rootrights) {
+								?>
 								<option value="" selected="selected" style="font-weight: bold;">/</option>
 								<?php
 							}
@@ -248,19 +248,19 @@ if ($rootrights || !empty($albumlist)) {
 							?>
 						</select>
 
-	<?php
-	if (empty($passedalbum)) {
-		$modified_rights = MANAGED_OBJECT_RIGHTS_EDIT;
-	} else {
-		$rightsalbum = $rightsalbum = newAlbum($passedalbum);
-		$modified_rights = $rightsalbum->albumSubRights();
-	}
-	if ($modified_rights & MANAGED_OBJECT_RIGHTS_EDIT) { //	he has edit rights, allow new album creation
-		$display = '';
-	} else {
-		$display = ' display:none;';
-	}
-	?>
+						<?php
+						if (empty($passedalbum)) {
+							$modified_rights = MANAGED_OBJECT_RIGHTS_EDIT;
+						} else {
+							$rightsalbum = $rightsalbum = newAlbum($passedalbum);
+							$modified_rights = $rightsalbum->albumSubRights();
+						}
+						if ($modified_rights & MANAGED_OBJECT_RIGHTS_EDIT) { //	he has edit rights, allow new album creation
+							$display = '';
+						} else {
+							$display = ' display:none;';
+						}
+						?>
 						<div id="newalbumbox" style="margin-top: 5px;<?php echo $display; ?>">
 							<div>
 								<input type="checkbox" name="newalbum" id="newalbumcheckbox"<?php echo $checked; ?> onclick="albumSwitch(this.form.albumselect, false, '<?php echo gettext('That name is already used.'); ?>', '<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>')" />
@@ -272,12 +272,12 @@ if ($rootrights || !empty($albumlist)) {
 							</div>
 						</div>
 						<div id="albumtext" style="margin-top: 5px;<?php echo $display; ?>">
-	<?php echo gettext("titled:"); ?>
+							<?php echo gettext("titled:"); ?>
 							<input type="text" name="albumtitle" id="albumtitle" size="42"
 										 onkeyup="buttonstate(updateFolder(this, 'folderdisplay', 'autogen', '<?php echo gettext('That name is already used.'); ?>', '<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>'));" />
 
 							<div style="position: relative; margin-top: 4px;">
-	<?php echo gettext("with the folder name:"); ?>
+								<?php echo gettext("with the folder name:"); ?>
 								<div id="foldererror" style="display: none; color: #D66; position: absolute; z-index: 100; top: 2.5em; left: 0px;"></div>
 								<input type="text" name="folderdisplay" disabled="disabled" id="folderdisplay" size="18"
 											 onkeyup="buttonstate(validateFolder(this, '<?php echo gettext('That name is already used.'); ?>', '<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>'));" />
@@ -289,13 +289,13 @@ if ($rootrights || !empty($albumlist)) {
 							</div>
 						</div>
 						<hr />
-	<?php upload_form($uploadlimit, $passedalbum); ?>
+						<?php upload_form($uploadlimit, $passedalbum); ?>
 					</form>
 					<div id="upload_action">
-	<?php
-	//	load the uploader specific form stuff
-	upload_extra($uploadlimit, $passedalbum);
-	?>
+						<?php
+						//	load the uploader specific form stuff
+						upload_extra($uploadlimit, $passedalbum);
+						?>
 					</div><!-- upload action -->
 
 					<script type="text/javascript">
@@ -342,11 +342,11 @@ if ($rootrights || !empty($albumlist)) {
 						buttonstate($('#folderdisplay').val() != '');
 						// ]]> -->
 					</script>
-	<?php
-} else {
-	echo gettext("There are no albums to which you can upload.");
-}
-?>
+					<?php
+				} else {
+					echo gettext("There are no albums to which you can upload.");
+				}
+				?>
 			</div><!-- albumselect -->
 
 		</div><!-- tabbox -->
