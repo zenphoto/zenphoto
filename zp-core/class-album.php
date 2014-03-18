@@ -616,7 +616,7 @@ class AlbumBase extends MediaObject {
 			foreach ($filestoremove as $file) {
 				if (in_array(strtolower(getSuffix($file)), $this->sidecars)) {
 					@chmod($file, 0777);
-					$success = $success && unlink($file);
+					unlink($file);
 				}
 			}
 		}
@@ -1349,7 +1349,7 @@ class Album extends AlbumBase {
 	function remove() {
 		if ($rslt = parent::remove()) {
 			@chmod($this->localpath, 0777);
-			$rslt = @rmdir($this->localpath) && $success;
+			$rslt = @rmdir($this->localpath);
 			clearstatcache();
 		}
 		return $rslt;
