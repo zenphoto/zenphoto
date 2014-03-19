@@ -303,7 +303,7 @@ class favorites extends AlbumBase {
 			$add .= '[' . $instance . ']';
 		}
 		?>
-		<form name="imageFavorite s" class="imageFavorites"
+		<form name="imageFavorites" class="imageFavorites"
 					id="imageFavorites<?php echo $obj->getID(); ?>"
 					action="<?php echo html_encode(getRequestURI()); ?>" method="post"
 					accept-charset="UTF-8">
@@ -317,7 +317,7 @@ class favorites extends AlbumBase {
 			if ($v) {
 				if ($multi) {
 					?>
-					<input type="text" name="instance" value="" />
+					<input type="text" name="instance" class="favorite_instance" value="" />
 					<?php
 				}
 			} else {

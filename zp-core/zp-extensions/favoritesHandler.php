@@ -265,7 +265,7 @@ if ($plugin_disable) {
 			if (isset($_POST['addToFavorites'])) {
 				$___Favorites = new favorites($_zp_current_admin_obj->getUser());
 				if (isset($_POST['instance']) && $_POST['instance']) {
-					$___Favorites->instance = sanitize($_POST['instance']);
+					$___Favorites->instance = trim(sanitize($_POST['instance']));
 					unset($_POST['instance']);
 				}
 				$id = sanitize($_POST['id']);
@@ -299,7 +299,7 @@ if ($plugin_disable) {
 			$_myFavorites = new favorites($_zp_current_admin_obj->getUser());
 
 			function printAddToFavorites($obj, $add = NULL, $remove = NULL) {
-				global $_myFavorites, $_zp_current_admin_obj, $_zp_gallery_page;
+				global $_myFavorites, $_zp_current_admin_obj, $_zp_gallery_page, $_myFavorites_button_count;
 				if (!zp_loggedin() || $_myFavorites->getOwner() != $_zp_current_admin_obj->getUser() || !is_object($obj) || !$obj->exists) {
 					return;
 				}
@@ -322,6 +322,20 @@ if ($plugin_disable) {
 				} else {
 					$multi = getOption('favorites_multi');
 					$list = $_myFavorites->list;
+					if (extensionEnabled('tag_suggest') && !$_myFavorites_button_count) {
+						$_myFavorites_button_count++;
+						$favList = array_slice($list, 1);
+						?>
+						<script type="text/javascript">
+							// <!-- <![CDATA[
+							var _favList = ['<?php echo implode("','", $favList); ?>'];
+							$(function() {
+							$('.favorite_instance').tagSuggest({ tags: _favList})
+							});
+							// ]]> -->
+						</script>
+						<?php
+					}
 				}
 				$seen = array_flip($list);
 				switch ($table) {
