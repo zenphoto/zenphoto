@@ -237,12 +237,13 @@ class favorites extends AlbumBase {
 
 	static function loadScript($script, $request) {
 		global $_zp_current_admin_obj, $_zp_gallery_page, $_myFavorites, $_zp_current_album, $_zp_conf_vars, $_myFavorites;
+		if (isset($_REQUEST['title'])) {
+			$_myFavorites->instance = sanitize($_REQUEST['title']);
+			if ($_myFavorites->instance)
+				$_myFavorites->setTitle($_myFavorites->getTitle() . '[' . $_myFavorites->instance . ']');
+		}
 		if ($_zp_gallery_page == "favorites.php") {
 			if (zp_loggedin()) {
-				if (isset($_GET['title'])) {
-					$_myFavorites->instance = sanitize($_GET['title']);
-					$_myFavorites->setTitle($_myFavorites->getTitle() . '::' . $_myFavorites->instance);
-				}
 				$_zp_current_album = $_myFavorites;
 				add_context(ZP_ALBUM);
 				prepareAlbumPage();
@@ -285,7 +286,7 @@ class favorites extends AlbumBase {
 	}
 
 	function getLink($page = NULL, $instance = NULL) {
-		$link = preg_replace('~^_PAGE_/~ ', _PAGE_ . '/', _FAVORITES_);
+		$link = WEBPATH . '/' . preg_replace('~^_PAGE_/~ ', _PAGE_ . '/', _FAVORITES_);
 		if (is_null($instance))
 			$instance = $this->instance;
 		if ($instance)
@@ -299,7 +300,7 @@ class favorites extends AlbumBase {
 		global $_myFavorites;
 		$table = $obj->table;
 		if ($instance && $multi) {
-			$add .= '::' . $instance;
+			$add .= '[' . $instance . ']';
 		}
 		?>
 		<form name="imageFavorite s" class="imageFavorites"

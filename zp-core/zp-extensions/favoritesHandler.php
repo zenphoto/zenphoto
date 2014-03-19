@@ -396,7 +396,7 @@ if ($plugin_disable) {
 						echo $betwixt;
 						$betwixt = $between;
 						?>
-						<a href="<?php echo FULLWEBPATH; ?>/<?php echo $link; ?>" class="favorite_link"><?php echo html_encode($display); ?> </a>
+						<a href="<?php echo $link; ?>" class="favorite_link"><?php echo html_encode($display); ?> </a>
 						<?php
 					}
 					echo $after;

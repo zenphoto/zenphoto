@@ -408,35 +408,35 @@ class cycle {
 		<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.min.js" type="text/javascript"></script>
 		<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.center.min.js" type="text/javascript"></script>
 		<!-- effect plugins -->
-		
-		<?php if(getOption('cycle-slideshow_effect') == 'flipHorz' || getOption('cycle-slideshow_effect') == 'flipVert') { ?>
+
+		<?php if (getOption('cycle-slideshow_effect') == 'flipHorz' || getOption('cycle-slideshow_effect') == 'flipVert') { ?>
 			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.flip.min.js" type="text/javascript"></script>
 		<?php } ?>
-		
+
 		<!--[if lt IE 9]>
 			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.ie-fade.min.js" type="text/javascript"></script>
-		<![endif]-->	
-		
-		<?php if(getOption('cycle-slideshow_effect') == 'shuffle') { ?>
+		<![endif]-->
+
+		<?php if (getOption('cycle-slideshow_effect') == 'shuffle') { ?>
 			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.shuffle.min.js" type="text/javascript"></script>
 		<?php } ?>
-		
-		<?php if(getOption('cycle-slideshow_effect') == 'tileSlide' || getOption('cycle-slideshow_effect') == 'tileBlind') { ?>
+
+		<?php if (getOption('cycle-slideshow_effect') == 'tileSlide' || getOption('cycle-slideshow_effect') == 'tileBlind') { ?>
 			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.tile.min.js" type="text/javascript"></script>
 		<?php } ?>
-		
-		<?php if(getOption('cycle-slideshow_effect') == 'scrollVert') { ?>
+
+		<?php if (getOption('cycle-slideshow_effect') == 'scrollVert') { ?>
 			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.scrollVert.min.js" type="text/javascript"></script>
 		<?php } ?>
-		
+
 		<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.carousel.min.js" type="text/javascript"></script>
 
 		<!--  swipe with iOS fix -->
-		<?php if(getOption('cycle-slideshow_swipe')) { ?>
+		<?php if (getOption('cycle-slideshow_swipe')) { ?>
 			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.swipe.min.js" type="text/javascript"></script>
 			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/ios6fix.js" type="text/javascript"></script>
 		<?php } ?>
-		
+
 		<link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/fonts/style.css" />
 		<link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/cycle.css" />
 		<!--[if lte IE 7]>
@@ -485,7 +485,7 @@ if (extensionEnabled('slideshow2')) {
 	 * @param string $linkstyle Style of Text for the link
 	 */
 	function printSlideShowLink($linktext = NULL, $linkstyle = Null) {
-		global $_zp_gallery, $_zp_current_image, $_zp_current_album, $_zp_current_search, $slideshow_instance, $_zp_gallery_page;
+		global $_zp_gallery, $_zp_current_image, $_zp_current_album, $_zp_current_search, $slideshow_instance, $_zp_gallery_page, $_myFavorites;
 		if (is_null($linktext)) {
 			$linktext = gettext('View Slideshow');
 		}
@@ -520,7 +520,7 @@ if (extensionEnabled('slideshow2')) {
 				$slideshowlink = rewrite_path(pathurlencode($_zp_current_album->getFolder()) . '/' . _PAGE_ . '/slideshow', "index.php?p=slideshow&amp;album=" . urlencode($_zp_current_album->getFolder()));
 			} else {
 				$slideshowlink = rewrite_path('/' . _PAGE_ . '/slideshow', "index.php?p=slideshow");
-				$slideshowhidden = '<input type="hidden" name="favorites_page" value="1" />';
+				$slideshowhidden = '<input type="hidden" name="favorites_page" value="1" />' . "\n" . '<input type="hidden" name="title" value="' . $_myFavorites->instance . '" />';
 			}
 		}
 		$numberofimages = getNumImages();
@@ -564,23 +564,23 @@ if (extensionEnabled('slideshow2')) {
 					$count = '';
 					?>
 					<script type="text/javascript">
-					$(document).ready(function() {
+						$(document).ready(function() {
 						$("a[rel='slideshow']").colorbox({
-							slideshow: true,
-							loop: true,
-							transition: '<?php echo getOption('cycle-slideshow_colorbox_transition'); ?>',
-							slideshowSpeed: <?php echo getOption('cycle-slideshow_speed'); ?>,
-							slideshowStart: '<?php echo gettext("start slideshow"); ?>',
-							slideshowStop: '<?php echo gettext("stop slideshow"); ?>',
-							previous: '<?php echo gettext("prev"); ?>',
-							next: '<?php echo gettext("next"); ?>',
-							close: '<?php echo gettext("close"); ?>',
-							current: '<?php printf(gettext('image %1$s of %2$s'), '{current}', '{total}'); ?>',
-							maxWidth: '98%',
-							maxHeight: '98%',
-							photo: true
+						slideshow: true,
+						loop: true,
+						transition: '<?php echo getOption('cycle-slideshow_colorbox_transition'); ?>',
+						slideshowSpeed: <?php echo getOption('cycle-slideshow_speed'); ?>,
+						slideshowStart: '<?php echo gettext("start slideshow"); ?>',
+						slideshowStop: '<?php echo gettext("stop slideshow"); ?>',
+						previous: '<?php echo gettext("prev"); ?>',
+						next: '<?php echo gettext("next"); ?>',
+						close: '<?php echo gettext("close"); ?>',
+						current: '<?php printf(gettext('image %1$s of %2$s'), '{current}', '{total}'); ?>',
+						maxWidth: '98%',
+						maxHeight: '98%',
+						photo: true
 						});
-					});
+						});
 					</script>
 					<?php
 					foreach ($images as $image) {
@@ -715,14 +715,15 @@ if (extensionEnabled('slideshow2')) {
 		} else {
 			if (isset($_POST['favorites_page'])) {
 				$albumobj = $_myFavorites;
-				$returnpath = rewrite_path(favorites::getFavorites_link() . '/' . $pagenumber, FULLWEBPATH . '/index.php?p=favorites' . '&page=' . $pagenumber);
+				$returnpath = $_myFavorites->getLink($pagenumber);
 			} else {
 				$albumq = query_single_row("SELECT title, folder FROM " . prefix('albums') . " WHERE id = " . $albumid);
 				$albumobj = newAlbum($albumq['folder']);
 				if (empty($_POST['imagenumber'])) {
-					$returnpath = rewrite_path('/' . pathurlencode($albumobj->name) . '/' . _PAGE_ . '/' . $pagenumber, '/index.php?album=' . urlencode($albumobj->name) . '&page=' . $pagenumber);
+					$returnpath = $albumobj->getLink($pagenumber);
 				} else {
-					$returnpath = rewrite_path('/' . pathurlencode($albumobj->name) . '/' . rawurlencode(sanitize($_POST['imagefile'])) . getOption('mod_rewrite_image_suffix'), '/index.php?album=' . urlencode($albumobj->name) . '&image=' . urlencode($_POST['imagefile']));
+					$image = newImage($albumobj, sanitize($_POST['imagefile']));
+					$returnpath = $image->getLink();
 				}
 			}
 		}

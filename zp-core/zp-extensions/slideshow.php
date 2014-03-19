@@ -533,7 +533,7 @@ if (extensionEnabled('slideshow')) {
 				$slideshowlink = rewrite_path(pathurlencode($_zp_current_album->getFileName()) . '/' . _PAGE_ . '/slideshow', "index.php?p=slideshow&amp;album=" . urlencode($_zp_current_album->getFileName()));
 			} else {
 				$slideshowlink = rewrite_path('/' . _PAGE_ . '/slideshow', "index.php?p=slideshow");
-				$slideshowhidden = '<input type="hidden" name="favorites_page" value="1" />';
+				$slideshowhidden = '<input type="hidden" name="favorites_page" value="1" />' . "\n" . '<input type="hidden" name="title" value="' . $_myFavorites->instance . '" />';
 			}
 		}
 		$numberofimages = getNumImages();
@@ -578,21 +578,21 @@ if (extensionEnabled('slideshow')) {
 					?>
 					<script type="text/javascript">
 						$(document).ready(function() {
-							$("a[rel='slideshow']").colorbox({
-								slideshow: true,
-								loop: true,
-								transition: '<?php echo getOption('slideshow_colorbox_transition'); ?>',
-								slideshowSpeed: <?php echo getOption('slideshow_speed'); ?>,
-								slideshowStart: '<?php echo gettext("start slideshow"); ?>',
-								slideshowStop: '<?php echo gettext("stop slideshow"); ?>',
-								previous: '<?php echo gettext("prev"); ?>',
-								next: '<?php echo gettext("next"); ?>',
-								close: '<?php echo gettext("close"); ?>',
-								current: '<?php printf(gettext('image %1$s of %2$s'), '{current}', '{total}'); ?>',
-								maxWidth: '98%',
-								maxHeight: '98%',
-								photo: true
-							});
+						$("a[rel='slideshow']").colorbox({
+						slideshow: true,
+						loop: true,
+						transition: '<?php echo getOption('slideshow_colorbox_transition'); ?>',
+						slideshowSpeed: <?php echo getOption('slideshow_speed'); ?>,
+						slideshowStart: '<?php echo gettext("start slideshow"); ?>',
+						slideshowStop: '<?php echo gettext("stop slideshow"); ?>',
+						previous: '<?php echo gettext("prev"); ?>',
+						next: '<?php echo gettext("next"); ?>',
+						close: '<?php echo gettext("close"); ?>',
+						current: '<?php printf(gettext('image %1$s of %2$s'), '{current}', '{total}'); ?>',
+						maxWidth: '98%',
+						maxHeight: '98%',
+						photo: true
+						});
 						});
 					</script>
 					<?php
@@ -746,7 +746,7 @@ if (extensionEnabled('slideshow')) {
 		} else {
 			if (isset($_POST['favorites_page'])) {
 				$albumobj = $_myFavorites;
-				$returnpath = rewrite_path($_myFavorites->getLink() . '/' . $pagenumber, FULLWEBPATH . '/index.php?p=favorites' . '&page=' . $pagenumber);
+				$returnpath = $_myFavorites->getLink($pagenumber);
 			} else {
 				$albumq = query_single_row("SELECT title, folder FROM " . prefix('albums') . " WHERE id = " . $albumid);
 				$albumobj = newAlbum($albumq['folder']);
