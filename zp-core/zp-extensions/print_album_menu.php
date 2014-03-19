@@ -230,7 +230,7 @@ function printAlbumMenuListAlbum($albums, $folder, $option, $showcount, $showsub
 						&& $level <= $pagelevel) // but not too deep\
 						);
 
-		if ($process && hasDynamicAlbumSuffix($album) && !isdir(ALBUM_FOLDER_SERVERPATH . $album)) {
+		if ($process && hasDynamicAlbumSuffix($album) && !is_dir(ALBUM_FOLDER_SERVERPATH . $album)) {
 			if (in_array($album, $_recursion_limiter))
 				$process = false; // skip already seen dynamic albums
 		}

@@ -908,7 +908,7 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 		if (!is_null($album)) {
 			$albumname = $album->name;
 			zp_setCookie('zenphoto_last_album', $albumname);
-			if (hasDynamicAlbumSuffix($albumname) && !isdir(ALBUM_FOLDER_SERVERPATH . $albumname)) {
+			if (hasDynamicAlbumSuffix($albumname) && !is_dir(ALBUM_FOLDER_SERVERPATH . $albumname)) {
 				$albumname = stripSuffix($albumname); // strip off the suffix as it will not be reflected in the search path
 			}
 			//	see if the album is within the search context. NB for these purposes we need to look at all albums!

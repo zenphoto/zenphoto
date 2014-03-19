@@ -66,7 +66,7 @@ printLogoAndLinks();
 		genAlbumList($albumlist);
 		//	remove dynamic albums--can't upload to them
 		foreach ($albumlist as $key => $albumname) {
-			if (hasDynamicAlbumSuffix($key) && !isdir(ALBUM_FOLDER_SERVERPATH . $key)) {
+			if (hasDynamicAlbumSuffix($key) && !is_dir(ALBUM_FOLDER_SERVERPATH . $key)) {
 				unset($albumlist[$key]);
 			}
 		}

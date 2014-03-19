@@ -517,7 +517,7 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 						$ralbum .= '.' . $suffix;
 					}
 				}
-			} else if (!hasDynamicAlbumSuffix($path) && !isdir(ALBUM_FOLDER_SERVERPATH . $path)) { //	have to figure it out
+			} else if (!hasDynamicAlbumSuffix($path) && !is_dir(ALBUM_FOLDER_SERVERPATH . $path)) { //	have to figure it out
 				if (file_exists($path)) {
 					if (!is_dir($path)) {
 						//	it is not an album. Assume image
@@ -531,7 +531,7 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 					//	Perhaps a dynamicalbum/image
 					$path = trim(dirname($ralbum), '/');
 					if ($path != '.') {
-						if (hasDynamicAlbumSuffix($path) && !isdir(ALBUM_FOLDER_SERVERPATH . $path)) {
+						if (hasDynamicAlbumSuffix($path) && !is_dir(ALBUM_FOLDER_SERVERPATH . $path)) {
 							$path = stripSuffix($path);
 						}
 						$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $path);

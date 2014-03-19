@@ -1276,23 +1276,17 @@ class Album extends AlbumBase {
 					$sortdirection = '';
 				}
 			}
-			$subalbums = $this->_getAlbums();
+			$dirs = $this->loadFileNames(true);
+			$subalbums = array();
+			foreach ($dirs as $dir) {
+				$dir = $this->name . '/' . $dir;
+				$subalbums[] = $dir;
+			}
 			$key = $this->getAlbumSortKey($sorttype);
 			$this->subalbums = $_zp_gallery->sortAlbumArray($this, $subalbums, $key, $sortdirection, $mine);
 			$this->lastsubalbumsort = $sorttype . $sortdirection;
 		}
 		return parent::getAlbums($page);
-	}
-
-	/**
-	 * Guts of image fetch
-	 * @return type
-	 */
-	protected function _getImages($sorttype, $sortdirection, $care, $mine) {
-// Load, sort, and store the images in this Album.
-		$images = $this->loadFileNames();
-		$images = $this->sortImageArray($images, $sorttype, $sortdirection, $mine);
-		return $images;
 	}
 
 	/**
@@ -1321,7 +1315,8 @@ class Album extends AlbumBase {
 					$sortdirection = 'DESC';
 				}
 			}
-			$this->images = $this->_getImages($sorttype, $sortdirection, $care, $mine);
+			$images = $this->loadFileNames();
+			$this->images = $this->sortImageArray($images, $sorttype, $sortdirection, $mine);
 			$this->lastimagesort = $sorttype . $sortdirection;
 		}
 		return parent::getImages($page);
@@ -1670,6 +1665,40 @@ class dynamicAlbum extends AlbumBase {
 	}
 
 	/**
+	 * Returns all folder names for all the subdirectories.
+	 *
+	 * @param string $page  Which page of subalbums to display.
+	 * @param string $sorttype The sort strategy
+	 * @param string $sortdirection The direction of the sort
+	 * @param bool $care set to false if the order does not matter
+	 * @param bool $mine set true/false to override ownership
+	 * @return array
+	 */
+	function getAlbums($page = 0, $sorttype = null, $sortdirection = null, $care = true, $mine = NULL) {
+		global $_zp_gallery;
+		if (!$this->exists)
+			return array();
+		if ($mine || is_null($this->subalbums) || $care && $sorttype . $sortdirection !== $this->lastsubalbumsort) {
+			if (is_null($sorttype)) {
+				$sorttype = $this->getSortType('album');
+			}
+			if (is_null($sortdirection)) {
+				if ($this->getSortDirection('album')) {
+					$sortdirection = 'DESC';
+				} else {
+					$sortdirection = '';
+				}
+			}
+			$searchengine = $this->getSearchEngine();
+			$subalbums = $searchengine->getAlbums(0, $sorttype, $sortdirection, $care, $mine);
+			$key = $this->getAlbumSortKey($sorttype);
+			$this->subalbums = $_zp_gallery->sortAlbumArray($this, $subalbums, $key, $sortdirection, $mine);
+			$this->lastsubalbumsort = $sorttype . $sortdirection;
+		}
+		return parent::getAlbums($page);
+	}
+
+	/**
 	 * Returns the search parameters for a dynamic album
 	 *
 	 * @return string
@@ -1703,21 +1732,36 @@ class dynamicAlbum extends AlbumBase {
 	}
 
 	/**
-	 * Guts of fetching the subalbums
+	 * Returns a of a slice of the images for this album. They will
+	 * also be sorted according to the sort type of this album, or by filename if none
+	 * has been set.
+	 *
+	 * @param int $page  Which page of images should be returned. If zero, all images are returned.
+	 * @param int $firstPageCount count of images that go on the album/image transition page
+	 * @param string $sorttype optional sort type
+	 * @param string $sortdirection optional sort direction
+	 * @param bool $care set to false if the order of the images does not matter
+	 * @param bool $mine set true/false to override ownership
+	 *
 	 * @return array
 	 */
-	protected function _getAlbums() {
-		$search = $this->getSearchEngine();
-		return $search->getAlbums(0, NULL, NULL, false);
-	}
-
-	/**
-	 * Guts of image fetch
-	 * @return type
-	 */
-	protected function _getImages($sorttype, $sortdirection, $care, $mine) {
-		$searchengine = $this->getSearchEngine();
-		return $searchengine->getImages(0, 0, $sorttype, $sortdirection, $care, $mine);
+	function getImages($page = 0, $firstPageCount = 0, $sorttype = null, $sortdirection = null, $care = true, $mine = NULL) {
+		if (!$this->exists)
+			return array();
+		if ($mine || is_null($this->images) || $care && $sorttype . $sortdirection !== $this->lastimagesort) {
+			if (is_null($sorttype)) {
+				$sorttype = $this->getSortType();
+			}
+			if (is_null($sortdirection)) {
+				if ($this->getSortDirection('image')) {
+					$sortdirection = 'DESC';
+				}
+			}
+			$searchengine = $this->getSearchEngine();
+			$this->images = $searchengine->getImages(0, 0, $sorttype, $sortdirection, $care, $mine);
+			$this->lastimagesort = $sorttype . $sortdirection;
+		}
+		return parent::getImages($page);
 	}
 
 	/**
