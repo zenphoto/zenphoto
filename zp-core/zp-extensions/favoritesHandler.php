@@ -12,6 +12,9 @@
  * will contain the object. If the name is left empty the object will be added
  * to the <i>un-named</i> favorite instance.
  *
+ * <b?}>Note:</b> if the <var>tgag_suggest</var> plugin is enabled there will be
+ * suggestions made for the text field much like the "tag suggestions" for searching.
+ *
  * If an object is contained in multiple favorites there will be multiple <var>remove</var> buttons.
  * The button will have the favoirtes instance name appended if not the <i>un-named</i> favorites.
  *
@@ -20,8 +23,8 @@
  * Themes must be modified to use this plugin.
  * <ul>
  * 	<li>
- * 	The theme should have a custom page based on its standard <i>album</i> page. The default name for this
- *  page is favorites.php, but it may be changed by option.
+ * 	The theme should have a custom page based on its standard <i>album</i> page. The name for this
+ *  page is favorites.php.
  *  This page and the standard <i>album</i> page "next" loops should contain calls on
  *  <i>printAddToFavorites($object)</i> for each object. This provides the "remove" button.
  * 	</li>
@@ -330,7 +333,7 @@ if ($plugin_disable) {
 							// <!-- <![CDATA[
 							var _favList = ['<?php echo implode("','", $favList); ?>'];
 							$(function() {
-							$('.favorite_instance').tagSuggest({ tags: _favList})
+								$('.favorite_instance').tagSuggest({tags: _favList})
 							});
 							// ]]> -->
 						</script>
