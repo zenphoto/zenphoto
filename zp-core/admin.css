@@ -387,7 +387,7 @@ ul.nav li:hover > ul {
 	_top: 1px; /* IE Only */
 }
 
-.subnav li   . a:hover {
+.subnav li a:hover {
 	border-top: 1px solid #CBCBCB;
 	border-left: 1px solid #CBCBCB;
 	border-right: 1px solid #CBCBCB;

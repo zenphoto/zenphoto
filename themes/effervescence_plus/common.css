@@ -257,11 +257,11 @@ width: 90% !important;
 	text-align:center;
 }
 .logon_link a {
-	color:#0a9eff; !important
+	color:#0a9eff !important;
 }
 
 .logon_link a:hover {
-	color: #FF8A00; !important
+	color: #FF8A00 !important;
 	text-decoration: none;
 	border-bottom: 1px solid #FF8A00;
 }
