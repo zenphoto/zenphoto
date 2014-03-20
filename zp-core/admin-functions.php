@@ -909,7 +909,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @param string $str
 	 */
 	function postIndexEncode($str) {
-		return strtr(urlencode($str), array('.' => '__2E__', '+' => '__20__', '%' => '__25__', '&' => '__26__'));
+		return strtr(urlencode($str), array('.' => '__2E__', '+' => '__20__', '%' => '__25__', '&' => '__26__', "'" => '__27__'));
 	}
 
 	/**
@@ -919,7 +919,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @return string
 	 */
 	function postIndexDecode($str) {
-		return urldecode(strtr($str, array('__2E__' => '.', '__20__' => '+', '__25__' => '%', '__26__' => '&')));
+		return urldecode(strtr($str, array('__2E__' => '.', '__20__' => '+', '__25__' => '%', '__26__' => '&', '__27__' => "'")));
 	}
 
 	/**
@@ -1373,7 +1373,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$sort[gettext('Custom')] = 'custom';
 						/*
 						 * not recommended--screws with peoples minds during pagination!
-						  $sort[gettext('Random')] = 'random';
+							$sort[gettext('Random')] = 'random';
 						 */
 						?>
 						<tr>
@@ -3704,7 +3704,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 	?>
 	<span style="float:right">
 		<select class="ays-ignore" name="checkallaction" id="checkallaction" size="1" onchange="checkFor(this);" >
-			<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
+		<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
 		</select>
 		<?php
 		if ($checkAll) {
@@ -4668,21 +4668,21 @@ function consolidatedEditMessages($subtab) {
 	if (!empty($errorbox)) {
 		?>
 		<div class="errorbox fade-message">
-			<?php echo implode('<br />', $errorbox); ?>
+		<?php echo implode('<br />', $errorbox); ?>
 		</div>
 		<?php
 	}
 	if (!empty($notebox)) {
 		?>
 		<div class="notebox fade-message">
-			<?php echo implode('<br />', $notebox); ?>
+		<?php echo implode('<br />', $notebox); ?>
 		</div>
 		<?php
 	}
 	if (!empty($messagebox)) {
 		?>
 		<div class="messagebox fade-message">
-			<?php echo implode('<br />', $messagebox); ?>
+		<?php echo implode('<br />', $messagebox); ?>
 		</div>
 		<?php
 	}
