@@ -46,6 +46,7 @@ class null_seo {
 	 * @return string
 	 */
 	static function filter($string) {
+  $string = trim($string);
 		$string = preg_replace("/\s+/","-",$string);
 		return $string;
 	}
