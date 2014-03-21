@@ -100,7 +100,7 @@ if (defined('OFFSET_PATH')) {
 			$obj = newAlbum($subalbum);
 			cleanAlbum($obj);
 		}
-		$folder = $album->name . '::';
+		$folder = $album->name . '/';
 		$files = $album->getImages(0);
 		foreach ($files as $filename) {
 			$seoname = seoFriendly($filename);
