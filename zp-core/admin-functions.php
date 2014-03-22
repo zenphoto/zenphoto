@@ -4573,7 +4573,7 @@ function consolidatedEditMessages($subtab) {
 	}
 	if (isset($_GET['mismatch'])) {
 		if ($_GET['mismatch'] == 'user') {
-			$errorbox[] = gettext("You must supply a  password.");
+			$errorbox[] = gettext("You must supply a password.");
 		} else {
 			$errorbox[] = gettext("Your passwords did not match.");
 		}

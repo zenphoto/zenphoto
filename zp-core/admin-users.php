@@ -407,7 +407,7 @@ echo $refresh;
 						echo '<div class="errorbox fade-message">';
 						switch ($_GET['mismatch']) {
 							case 'mismatch':
-								echo "<h2>" . gettext('You must supply a password') . "</h2>";
+								echo "<h2>" . gettext('You must supply a password.') . "</h2>";
 								break;
 							case 'nothing':
 								echo "<h2>" . gettext('User name not provided') . "</h2>";
@@ -416,7 +416,7 @@ echo $refresh;
 								echo '<h2>' . html_encode(urldecode(sanitize($_GET['error'], 2))) . '</h2>';
 								break;
 							default:
-								echo "<h2>" . gettext('Your passwords did not match') . "</h2>";
+								echo "<h2>" . gettext('Your passwords did not match.') . "</h2>";
 								break;
 						}
 						echo '</div>';

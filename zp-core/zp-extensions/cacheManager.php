@@ -427,7 +427,7 @@ class cacheManager {
 			$title = gettext('Finds images that have not been cached and creates the cached versions.');
 		} else {
 			$disable = ' disabled="disabled"';
-			$title = gettext("You must first set the plugin's options for cached image parameters.");
+			$title = gettext("You must first set the plugin options for cached image parameters.");
 		}
 		$html .= '<div class="button buttons tooltip" title="' . $title . '"><a href="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager/cacheImages.php?album=' . html_encode($object->name) . '&amp;XSRFToken=' . getXSRFToken('cacheImages') . '"' . $disable . '><img src="images/cache.png" />' . gettext('Cache album images') . '</a><br class="clearall" /></div>';
 		return $html;

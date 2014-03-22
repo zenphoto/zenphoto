@@ -421,7 +421,7 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 			if (!is_valid_email_zp($email)) {
 				unset($bcc_addresses[$key]);
 				if (empty($result)) {
-					$result = gettext('Mail send failed. ');
+					$result = gettext('Mail send failed.');
 				}
 				$result = ' ' . sprintf(gettext('Invalid "bcc" mail address %s.'), $email);
 			}
