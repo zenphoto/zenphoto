@@ -1078,17 +1078,17 @@ class zenphoto_seo {
 	 * @return string
 	 */
 	static function filter($string) {
-    // strip/convert a few specific characters
-    $string = trim(strtr($string, zenphoto_seo::$specialchars));
-    if (getOption('zenphoto_seo_lowercase'))
-      $string = strtolower($string);
-    $string = preg_replace("/\s+/", "-", $string);
-    $string = preg_replace("/[^a-zA-Z0-9_.-]/", "-", $string);
-    $string = str_replace(array('---', '--'), '-', $string);
-    return $string;
-  }
+		// strip/convert a few specific characters
+		$string = strtr($string, zenphoto_seo::$specialchars);
+		if (getOption('zenphoto_seo_lowercase'))
+			$string = strtolower($string);
+		$string = preg_replace("/\s+/", "-", $string);
+		$string = preg_replace("/[^a-zA-Z0-9_.-]/", "-", $string);
+		$string = str_replace(array('---', '--'), '-', $string);
+		return $string;
+	}
 
-  static function js($string) {
+	static function js($string) {
 		$xlate = array();
 		foreach (zenphoto_seo::$specialchars as $from => $to) {
 			if (array_key_exists($to, $xlate)) {
@@ -1097,8 +1097,11 @@ class zenphoto_seo {
 				$xlate[$to] = $from;
 			}
 		}
-		$js = "
-			function seoFriendlyJS(fname) {\n";
+		$js = '
+			function seoFriendlyJS(fname) {
+				fname=fname.trim();
+				fname=fname.replace(/\s+\.\s*/,' . ');
+			';
 
 		foreach ($xlate as $to => $from) {
 			$js .= "				fname = fname.replace(/[" . $from . "]/g, '" . $to . "');\n";

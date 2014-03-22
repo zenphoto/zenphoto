@@ -1858,10 +1858,11 @@ function getUserIP() {
  * @return string
  */
 function seoFriendly($string) {
+	$string = trim(preg_replace('~\s+\.\s*~', '.', $string));
 	if (zp_has_filter('seoFriendly')) {
 		$string = zp_apply_filter('seoFriendly', $string);
 	} else { // no filter, do basic cleanup
-  $string = trim($string);
+		$string = trim($string);
 		$string = preg_replace("/\s+/", "-", $string);
 		$string = preg_replace("/[^a-zA-Z0-9_.-]/", "-", $string);
 		$string = str_replace(array('---', '--'), '-', $string);
@@ -1879,6 +1880,8 @@ function seoFriendlyJS() {
 	} else {
 		?>
 		function seoFriendlyJS(fname) {
+		fname=fname.trim();
+		fname=fname.replace(/\s+\.\s*/,'.');
 		fname = fname.replace(/\s+/g, '-');
 		fname = fname.replace(/[^a-zA-Z0-9_.-]/g, '-');
 		fname = fname.replace(/--*/g, '-');
