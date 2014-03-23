@@ -237,8 +237,8 @@ class favorites extends AlbumBase {
 
 	static function loadScript($script, $request) {
 		global $_zp_current_admin_obj, $_zp_gallery_page, $_myFavorites, $_zp_current_album, $_zp_conf_vars, $_myFavorites;
-		if (isset($_REQUEST['title'])) {
-			$_myFavorites->instance = sanitize($_REQUEST['title']);
+		if ($_myFavorites && isset($_REQUEST['instance'])) {
+			$_myFavorites->instance = sanitize($_REQUEST['instance']);
 			if ($_myFavorites->instance)
 				$_myFavorites->setTitle($_myFavorites->getTitle() . '[' . $_myFavorites->instance . ']');
 		}
