@@ -22,6 +22,7 @@ $option_interface = 'comment_form';
 
 zp_register_filter('admin_toolbox_global', 'comment_form::toolbox');
 
+require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form/class-comment.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form/functions.php');
 
 if (OFFSET_PATH) {
