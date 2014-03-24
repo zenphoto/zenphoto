@@ -2592,12 +2592,17 @@ Tooltip styling
 	display: block;
 }
 
-#form_editcomment input,
-#form_editcomment textarea {
-	width: 350px !important;
-	display: block;
-	float: left;
+#form_editcomment input {
+width: 60% !important;
 }
+
+
+#form_editcomment textarea {
+clear: both !important;
+display: block;
+width: 100% !important;
+}
+
 
 .commentformedit_fields {
 	width: 60%;

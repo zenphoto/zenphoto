@@ -156,14 +156,8 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 					$_comment_form_save_post = zp_getCookie('comment_form_register_save');
 					echo comment_form_edit_comment($_comment_form_save_post);
 					?>
-					<table>
-						<tr>
-							<td>
-								<label for="comment"><?php echo gettext("Comment:"); ?></label>
-								<textarea rows="8" cols="60" name="comment" class="texteditor" /><?php echo html_encode($comment); ?></textarea>
-							<td>
-						<tr>
-					</table>
+					<label for="comment"><?php echo gettext("Comment:"); ?></label>
+					<textarea rows="8" cols="60" name="comment" class="texteditor" /><?php echo html_encode($comment); ?></textarea>
 				</div>
 				<div class="commentformedit_box">
 					<h2 class="h2_bordered_edit"><?php echo gettext('Comment management'); ?></h2>
