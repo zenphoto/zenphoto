@@ -178,6 +178,7 @@ class PersistentObject {
 	function copy($new_unique_set) {
 		// Check if we have a row
 		$result = query('SELECT * FROM ' . prefix($this->table) . getWhereClause($new_unique_set) . ' LIMIT 1;');
+
 		if ($result && db_num_rows($result) == 0) {
 			if (!zp_apply_filter('copy_object', true, $this, $new_unique_set)) {
 				return false;
@@ -667,10 +668,11 @@ class ThemeObject extends PersistentObject {
 	 * @param string $ip the IP address of the comment poster
 	 * @param bool $private set to true if the comment is for the admin only
 	 * @param bool $anon set to true if the poster wishes to remain anonymous
+	 * @param string $customdata
 	 * @return object
 	 */
-	function addComment($name, $email, $website, $comment, $code, $code_ok, $ip, $private, $anon) {
-		$goodMessage = zp_apply_filter('object_addComment', $name, $email, $website, $comment, $code, $code_ok, $this, $ip, $private, $anon);
+	function addComment($name, $email, $website, $comment, $code, $code_ok, $ip, $private, $anon, $customdata) {
+		$goodMessage = zp_apply_filter('object_addComment', $name, $email, $website, $comment, $code, $code_ok, $this, $ip, $private, $anon, $customdata);
 		return $goodMessage;
 	}
 
