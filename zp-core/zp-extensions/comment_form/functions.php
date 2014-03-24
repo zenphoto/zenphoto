@@ -651,19 +651,19 @@ function getCommentAuthorSite() {
  */
 function getCommentAuthorLink($title = NULL, $class = NULL, $id = NULL) {
 	global $_zp_current_comment;
-	$site = $_zp_current_comment['website'];
 	$name = $_zp_current_comment['name'];
 	if ($_zp_current_comment['anon']) {
-		$name = substr($name, 1, strlen($name) - 2); // strip off the < and >
+		$site = NULL;
+	} else {
+		$site = $_zp_current_comment['website'];
 	}
-	$namecoded = html_encode($_zp_current_comment['name']);
 	if (empty($site)) {
-		echo $namecoded;
+		return html_encode($_zp_current_comment['name']);
 	} else {
 		if (is_null($title)) {
 			$title = "Visit " . $name;
 		}
-		return getLinkHTML($site, $namecoded, $title, $class, $id);
+		return getLinkHTML($site, $_zp_current_comment['name'], $title, $class, $id);
 	}
 }
 
