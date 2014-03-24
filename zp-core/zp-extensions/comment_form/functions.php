@@ -118,12 +118,15 @@ function comment_form_print10Most() {
  * @param string $discard always empty
  * @return string
  */
-function comment_form_edit_comment($raw) {
+function comment_form_edit_comment($raw, $required = NULL) {
 	$address = getSerializedArray($raw);
 	if (empty($address)) {
 		$address = array('street' => '', 'city' => '', 'state' => '', 'country' => '', 'postal' => '', 'website' => '');
 	}
-	$required = getOption('register_user_address_info');
+	if (is_null($required)) {
+		$required = getOption('register_user_address_info');
+	}
+
 	if ($required == 'required') {
 		$required = '*';
 	} else {
@@ -254,10 +257,11 @@ define('COMMENT_SEND_EMAIL', 32);
  * @param string $ip the IP address of the comment poster
  * @param bool $private set to true if the comment is for the admin only
  * @param bool $anon set to true if the poster wishes to remain anonymous
+ * @param string $customdata
  * @param bit $check bitmask of which fields must be checked. If set overrides the options
  * @return object
  */
-function comment_form_addComment($name, $email, $website, $comment, $code, $code_ok, $receiver, $ip, $private, $anon, $check = false) {
+function comment_form_addComment($name, $email, $website, $comment, $code, $code_ok, $receiver, $ip, $private, $anon, $customdata, $check = false) {
 	global $_zp_captcha, $_zp_gallery, $_zp_authority, $_zp_comment_on_hold, $_zp_spamFilter;
 	if ($check === false) {
 		$whattocheck = 0;
@@ -290,8 +294,8 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 	$name = trim($name);
 	$email = trim($email);
 	$website = trim($website);
-	// Let the comment have trailing line breaks and space? Nah...
-	// Also (in)validate HTML here, and in $name.
+// Let the comment have trailing line breaks and space? Nah...
+// Also (in)validate HTML here, and in $name.
 	$comment = trim($comment);
 	$receiverid = $receiver->getID();
 	$goodMessage = 2;
@@ -315,6 +319,7 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 	$commentobj->setPrivate($private);
 	$commentobj->setAnon($anon);
 	$commentobj->setInModeration(0);
+	$commentobj->setCustomData($customdata);
 	if (($whattocheck & COMMENT_EMAIL_REQUIRED) && (empty($email) || !is_valid_email_zp($email))) {
 		$commentobj->setInModeration(-2);
 		$commentobj->comment_error_text .= ' ' . gettext("You must supply an e-mail address.");
@@ -566,7 +571,7 @@ function comment_form_handle_comment() {
 			$p_private = isset($_POST['private']);
 			$p_anon = isset($_POST['anon']);
 
-			$commentadded = $commentobject->addComment($p_name, $p_email, $p_website, $p_comment, $code1, $code2, $p_server, $p_private, $p_anon);
+			$commentadded = $commentobject->addComment($p_name, $p_email, $p_website, $p_comment, $code1, $code2, $p_server, $p_private, $p_anon, serialize(getCommentAddress(0)));
 
 			$comment_error = $commentadded->getInModeration();
 			$_zp_comment_stored = array('name'		 => $commentadded->getName(),
@@ -929,7 +934,7 @@ function getCommentCount() {
  */
 function next_comment($desc = false) {
 	global $_zp_current_image, $_zp_current_album, $_zp_current_comment, $_zp_comments, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
-	//ZENPAGE: comments support
+//ZENPAGE: comments support
 	if (is_null($_zp_current_comment)) {
 		if (in_context(ZP_IMAGE) AND in_context(ZP_ALBUM)) {
 			if (is_null($_zp_current_image))

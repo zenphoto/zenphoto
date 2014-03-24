@@ -79,7 +79,7 @@ if (isset($_GET['action'])) {
 			$comment->setComment(sanitize($_POST['comment'], 1));
 			$comment->setCustomData($_comment_form_save_post = serialize(getCommentAddress(0)));
 			$comment->save();
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form/admin-comments.php?saved');
+			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form/admin-comments.php?saved&page=editcomment&id=' . $comment->getID());
 			exitZP();
 	}
 }
@@ -117,6 +117,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 		$commentarr = query_single_row("SELECT * FROM " . prefix('comments') . " WHERE id = $id LIMIT 1");
 		if ($commentarr) {
 			extract($commentarr);
+			$commentarr = array_merge($commentarr, getSerializedArray($commentarr['custom_data']));
 			?>
 			<form class="dirty-check" id="form_editcomment" action="?action=savecomment" method="post">
 				<?php XSRFToken('savecomment'); ?>
@@ -153,8 +154,8 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 					<label for="date"><?php echo gettext("IP:"); ?></label>
 					<input type="text" size="18" name="ip" value="<?php echo html_encode($IP); ?>" />
 					<?php
-					$_comment_form_save_post = zp_getCookie('comment_form_register_save');
-					echo comment_form_edit_comment($_comment_form_save_post);
+					$_comment_form_save_post = $commentarr;
+					echo comment_form_edit_comment($_comment_form_save_post, false);
 					?>
 					<label for="comment"><?php echo gettext("Comment:"); ?></label>
 					<textarea rows="8" cols="60" name="comment" class="texteditor"><?php echo html_encode($comment); ?></textarea>
