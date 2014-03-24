@@ -99,7 +99,7 @@ printAdminHeader('comments');
 	// ]]> -->
 </script>
 <?php
-zp_apply_filter('texteditor_config', 'comments');
+zp_apply_filter('texteditor_config', 'zenphoto');
 echo "\n</head>";
 echo "\n<body>";
 printLogoAndLinks();
@@ -157,7 +157,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 					echo comment_form_edit_comment($_comment_form_save_post);
 					?>
 					<label for="comment"><?php echo gettext("Comment:"); ?></label>
-					<textarea rows="8" cols="60" name="comment" class="textarea_inputbox" /><?php echo html_encode($comment); ?></textarea>
+					<textarea rows="8" cols="60" name="comment" class="texteditor" /><?php echo html_encode($comment); ?></textarea>
 				</div>
 				<div class="commentformedit_box">
 					<h2 class="h2_bordered_edit"><?php echo gettext('Comment management'); ?></h2>
@@ -387,7 +387,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 						<?php
 						echo $website ? "<a href=\"$website\">$author</a>" : $author;
 						if ($anon) {
-							echo ' <a title="' . gettext('Anonymous posting') . '"><img src="<?php echo WEBPATH . ' / ' . ZENFOLDER; ?>/images/action.png" style="border: 0px;" alt="' . gettext("Anonymous posting") . '" /></a>';
+							echo ' <a title="' . gettext('Anonymous posting') . '"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/action.png" style="border: 0px;" alt="' . gettext("Anonymous posting") . '" /></a>';
 						}
 						?>
 					</td>
