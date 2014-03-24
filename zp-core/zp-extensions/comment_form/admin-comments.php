@@ -157,7 +157,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 					echo comment_form_edit_comment($_comment_form_save_post);
 					?>
 					<label for="comment"><?php echo gettext("Comment:"); ?></label>
-					<textarea rows="8" cols="60" name="comment" class="texteditor" /><?php echo html_encode($comment); ?></textarea>
+					<textarea rows="8" cols="60" name="comment" class="texteditor"><?php echo html_encode($comment); ?></textarea>
 				</div>
 				<div class="commentformedit_box">
 					<h2 class="h2_bordered_edit"><?php echo gettext('Comment management'); ?></h2>
