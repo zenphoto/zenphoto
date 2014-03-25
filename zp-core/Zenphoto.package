@@ -811,6 +811,7 @@ zp-core/pluginDoc.php
 zp-core/reconfigure.php
 zp-core/rewrite.php
 zp-core/setup.php
+zp-core/template-filters.php
 zp-core/template-functions.php
 zp-core/utilities
 zp-core/utilities/backup_restore.php
@@ -1677,4 +1678,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1679
+1680
