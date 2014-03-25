@@ -192,88 +192,14 @@ class register_user {
 	}
 
 	static function getLink() {
-		return _REGISTER_USER_;
+		return zp_apply_filter('getLink', _REGISTER_USER_, 'register.php', NULL);
 	}
 
-}
-
-/**
- * Parses the verification and registration if they have occurred
- * places the user registration form
- *
- * @param string $thanks the message shown on successful registration
- */
-function printRegistrationForm($thanks = NULL) {
-	global $notify, $admin_e, $admin_n, $user, $_zp_authority, $_zp_captcha, $_zp_gallery_page, $_zp_gallery;
-	require_once(SERVERPATH . '/' . ZENFOLDER . '/admin-functions.php');
-	$userobj = NULL;
-	// handle any postings
-	if (isset($_GET['verify'])) {
-		$currentadmins = $_zp_authority->getAdministrators();
-		$params = unserialize(pack("H*", trim(sanitize($_GET['verify']), '.')));
-		// expung the verify query string as it will cause us to come back here if login fails.
-		unset($_GET['verify']);
-		$link = explode('?', getRequestURI());
-		$p = array();
-		if (isset($link[1])) {
-			$p = explode('&', $link[1]);
-			foreach ($p as $k => $v) {
-				if (strpos($v, 'verify=') === 0) {
-					unset($p[$k]);
-				}
-			}
-			unset($p['verify']);
-		}
-		$_SERVER['REQUEST_URI'] = $link[0];
-		if (!empty($p)) {
-			$_SERVER['REQUEST_URI'] .= '?' . implode('&', $p);
-		}
-
-		$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $params['user'], '`valid`=' => 1));
-		if ($userobj->getEmail() == $params['email']) {
-			if (!$userobj->getRights()) {
-				$userobj->setCredentials(array('registered', 'user', 'email'));
-				$rights = getOption('register_user_user_rights');
-				$group = NULL;
-				if (!is_numeric($rights)) { //  a group or template
-					$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $rights, '`valid`=' => 0));
-					if ($admin) {
-						$userobj->setObjects($admin->getObjects());
-						if ($admin->getName() != 'template') {
-							$group = $rights;
-						}
-						$rights = $admin->getRights();
-					} else {
-						$rights = NO_RIGHTS;
-					}
-				}
-				$userobj->setRights($rights | NO_RIGHTS);
-				$userobj->setGroup($group);
-				zp_apply_filter('register_user_verified', $userobj);
-				$notify = false;
-				if (getOption('register_user_notify')) {
-					$notify = zp_mail(gettext('Zenphoto Gallery registration'), sprintf(gettext('%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail address of %3$s.'), $userobj->getName(), $userobj->getUser(), $userobj->getEmail()));
-				}
-				if (empty($notify)) {
-					if (getOption('register_user_create_album')) {
-						$userobj->createPrimealbum();
-					}
-					$notify = 'verified';
-					$_POST['user'] = $userobj->getUser();
-				}
-				$userobj->save();
-			} else {
-				$notify = 'already_verified';
-			}
-		} else {
-			$notify = 'not_verified'; // User ID no longer exists
-		}
-	}
-
-	if (isset($_POST['register_user'])) {
-
+	static function post_processor() {
+		global $admin_e, $admin_n, $user, $_zp_authority, $_zp_captcha, $_zp_gallery, $_notify, $_link, $_message;
+		//Handle registration
 		if (isset($_POST['username']) && !empty($_POST['username'])) {
-			$notify = 'honeypot'; // honey pot check
+			$_notify = 'honeypot'; // honey pot check
 		}
 		if (getOption('register_user_captcha')) {
 			if (isset($_POST['code'])) {
@@ -284,12 +210,12 @@ function printRegistrationForm($thanks = NULL) {
 				$code_ok = '';
 			}
 			if (!$_zp_captcha->checkCaptcha($code, $code_ok)) {
-				$notify = 'invalidcaptcha';
+				$_notify = 'invalidcaptcha';
 			}
 		}
 		$admin_n = trim(sanitize($_POST['admin_name']));
 		if (empty($admin_n)) {
-			$notify = 'incomplete';
+			$_notify = 'incomplete';
 		}
 		if (isset($_POST['admin_email'])) {
 			$admin_e = trim(sanitize($_POST['admin_email']));
@@ -297,20 +223,20 @@ function printRegistrationForm($thanks = NULL) {
 			$admin_e = trim(sanitize($_POST['user']));
 		}
 		if (!is_valid_email_zp($admin_e)) {
-			$notify = 'invalidemail';
+			$_notify = 'invalidemail';
 		}
 
 		$pass = trim(sanitize($_POST['pass']));
 		$user = trim(sanitize($_POST['user']));
 		if (empty($pass)) {
-			$notify = 'empty';
+			$_notify = 'empty';
 		} else if (!empty($user) && !(empty($admin_n)) && !empty($admin_e)) {
 			if (isset($_POST['disclose_password']) || $pass == trim(sanitize($_POST['pass_r']))) {
 				$currentadmin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
 				if (is_object($currentadmin)) {
-					$notify = 'exists';
+					$_notify = 'exists';
 				}
-				if (empty($notify)) {
+				if (empty($_notify)) {
 					$userobj = Zenphoto_Authority::newAdministrator('');
 					$userobj->transient = false;
 					$userobj->setUser($user);
@@ -354,29 +280,107 @@ function printRegistrationForm($thanks = NULL) {
 
 					zp_apply_filter('register_user_registered', $userobj);
 					if ($userobj->transient) {
-						if (empty($notify)) {
-							$notify = 'filter';
+						if (empty($_notify)) {
+							$_notify = 'filter';
 						}
 					} else {
 						$userobj->save();
-						$link = zp_apply_filter('getLink', rewrite_path('/' . _PAGE_ . '/' . substr($_zp_gallery_page, 0, -4) . '?verify=' . bin2hex(serialize(array('user' => $user, 'email' => $admin_e))), '/index.php?p=' . substr($_zp_gallery_page, 0, -4) . '&verify=' . bin2hex(serialize(array('user' => $user, 'email' => $admin_e))), FULLWEBPATH), $_zp_gallery_page, NULL);
-						$message = sprintf(get_language_string(getOption('register_user_text')), $link, $admin_n, $user, $pass);
-						$notify = zp_mail(get_language_string(gettext('Registration confirmation')), $message, array($user => $admin_e));
-						if (empty($notify)) {
-							$notify = 'accepted';
+						$_link = register_user::getLink() . '?verify=' . bin2hex(serialize(array('user' => $user, 'email' => $admin_e)));
+						$_message = sprintf(get_language_string(getOption('register_user_text')), $_link, $admin_n, $user, $pass);
+						$_notify = zp_mail(get_language_string(gettext('Registration confirmation')), $_message, array($user => $admin_e));
+						if (empty($_notify)) {
+							$_notify = 'accepted';
 						}
 					}
 				}
 			} else {
-				$notify = 'mismatch';
+				$_notify = 'mismatch';
 			}
 		} else {
-			$notify = 'incomplete';
+			$_notify = 'incomplete';
+		}
+	}
+
+}
+
+/**
+ * Parses the verification and registration if they have occurred
+ * places the user registration form
+ *
+ * @param string $thanks the message shown on successful registration
+ */
+function printRegistrationForm($thanks = NULL) {
+	global $admin_e, $admin_n, $user, $_zp_authority, $_zp_captcha, $_zp_gallery, $_notify, $_link, $_message;
+	require_once(SERVERPATH . '/' . ZENFOLDER . '/admin-functions.php');
+	$userobj = NULL;
+	// handle any postings
+	if (isset($_GET['verify'])) {
+		$currentadmins = $_zp_authority->getAdministrators();
+		$params = unserialize(pack("H*", trim(sanitize($_GET['verify']), '.')));
+		// expung the verify query string as it will cause us to come back here if login fails.
+		unset($_GET['verify']);
+		$_link = explode('?', getRequestURI());
+		$p = array();
+		if (isset($_link[1])) {
+			$p = explode('&', $_link[1]);
+			foreach ($p as $k => $v) {
+				if (strpos($v, 'verify=') === 0) {
+					unset($p[$k]);
+				}
+			}
+			unset($p['verify']);
+		}
+		$_SERVER['REQUEST_URI'] = $_link[0];
+		if (!empty($p)) {
+			$_SERVER['REQUEST_URI'] .= '?' . implode('&', $p);
+		}
+
+		$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $params['user'], '`valid`=' => 1));
+
+		var_dump($userobj);
+
+
+		if ($userobj->getEmail() == $params['email']) {
+			if (!$userobj->getRights()) {
+				$userobj->setCredentials(array('registered', 'user', 'email'));
+				$rights = getOption('register_user_user_rights');
+				$group = NULL;
+				if (!is_numeric($rights)) { //  a group or template
+					$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $rights, '`valid`=' => 0));
+					if ($admin) {
+						$userobj->setObjects($admin->getObjects());
+						if ($admin->getName() != 'template') {
+							$group = $rights;
+						}
+						$rights = $admin->getRights();
+					} else {
+						$rights = NO_RIGHTS;
+					}
+				}
+				$userobj->setRights($rights | NO_RIGHTS);
+				$userobj->setGroup($group);
+				zp_apply_filter('register_user_verified', $userobj);
+				if (getOption('register_user_notify')) {
+					$_notify = zp_mail(gettext('Zenphoto Gallery registration'), sprintf(gettext('%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail address of %3$s.'), $userobj->getName(), $userobj->getUser(), $userobj->getEmail()));
+				}
+				if (empty($_notify)) {
+					if (getOption('register_user_create_album')) {
+						$userobj->createPrimealbum();
+					}
+					$_notify = 'verified';
+					$_POST['user'] = $userobj->getUser();
+				}
+				$userobj->save();
+			} else {
+				$_notify = 'already_verified';
+			}
+		} else {
+			$_notify = 'not_verified'; // User ID no longer exists
 		}
 	}
 
 	if (isset($_GET['login'])) { //presumably the user failed to login....
-		$notify = 'loginfailed';
+		$_notify = 'loginfailed';
 	}
 
 	if (zp_loggedin()) {
@@ -390,10 +394,10 @@ function printRegistrationForm($thanks = NULL) {
 		return;
 	}
 	if (isset($_GET['login'])) { //presumably the user failed to login....
-		$notify = 'loginfailed';
+		$_notify = 'loginfailed';
 	}
-	if (!empty($notify)) {
-		switch ($notify) {
+	if (!empty($_notify)) {
+		switch ($_notify) {
 			case'verified':
 				if (is_null($thanks))
 					$thanks = gettext("Thank you for registering.");
@@ -405,15 +409,15 @@ function printRegistrationForm($thanks = NULL) {
 			<?php
 			case 'already_verified':
 			case 'loginfailed':
-				$link = getRequestURI();
-				if (strpos($link, '?') === false) {
-					$_SERVER['REQUEST_URI'] = $link . '?login=true';
+				$_link = getRequestURI();
+				if (strpos($_link, '?') === false) {
+					$_SERVER['REQUEST_URI'] = $_link . '?login=true';
 				} else {
-					$_SERVER['REQUEST_URI'] = $link . '&login=true';
+					$_SERVER['REQUEST_URI'] = $_link . '&login=true';
 				}
 				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_login-out.php');
 				printPasswordForm(NULL, true, false, WEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=users');
-				$notify = 'success';
+				$_notify = 'success';
 				break;
 			case 'honeypot': //pretend it was accepted
 			case 'accepted':
@@ -422,8 +426,8 @@ function printRegistrationForm($thanks = NULL) {
 					<p><?php echo gettext('Your registration information has been accepted. An email has been sent to you to verify your email address.'); ?></p>
 				</div>
 				<?php
-				if ($notify != 'honeypot')
-					$notify = 'success'; // of course honeypot catches are no success!
+				if ($_notify != 'honeypot')
+					$_notify = 'success'; // of course honeypot catches are no success!
 				break;
 			case 'exists':
 				?>
@@ -509,13 +513,13 @@ function printRegistrationForm($thanks = NULL) {
 				?>
 				<div class="errorbox fade-message">
 					<h2><?php echo gettext("Registration failed."); ?></h2>
-					<p><?php echo $notify; ?></p>
+					<p><?php echo $_notify; ?></p>
 				</div>
 				<?php
 				break;
 		}
 	}
-	if ($notify != 'success') {
+	if ($_notify != 'success') {
 		$form = getPlugin('register_user/register_user_form.php', true);
 		require_once($form);
 	}
@@ -524,26 +528,27 @@ function printRegistrationForm($thanks = NULL) {
 /**
  * prints the link to the register user page
  *
- * @param string $linktext Text for the URL
- * @param string $page page name to include in URL
- * @param string $q query string to add to url
  * @param string $prev text to insert before the URL
  * @param string $next text to follow the URL
  * @param string $class optional class
  */
-function printRegisterURL($linktext, $prev = '', $next = '', $class = NULL) {
+function printRegisterURL($_linktext, $prev = '', $next = '', $class = NULL) {
 	if (!zp_loggedin()) {
 		if (!is_null($class)) {
 			$class = 'class="' . $class . '"';
 		}
-		if (is_null($linktext)) {
-			$linktext = get_language_string(getOption('register_user_page_link'));
+		if (is_null($_linktext)) {
+			$_linktext = get_language_string(getOption('register_user_page_link'));
 		}
 		echo $prev;
 		?>
-		<a href="<?php echo FULLWEBPATH; ?>/<?php echo html_encode(register_user::getLink()); ?>"<?php echo $class; ?> title="<?php echo html_encode($linktext); ?>" id="register_link"><?php echo $linktext; ?> </a>
+		<a href="<?php echo FULLWEBPATH; ?>/<?php echo html_encode(register_user::getLink()); ?>"<?php echo $class; ?> title="<?php echo html_encode($_linktext); ?>" id="register_link"><?php echo $_linktext; ?> </a>
 		<?php
 		echo $next;
 	}
+}
+
+if (isset($_POST['register_user'])) {
+	zp_register_filter('load_theme_script', 'register_user::post_processor');
 }
 ?>
