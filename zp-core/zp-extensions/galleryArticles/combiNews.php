@@ -1,8 +1,18 @@
 <?php
 
-global $plugin_is_filter, $_zp_zenpage;
+class Combi extends Zenpage {
+
+	function getOldCombiNews() {
+		return $this->getCombiNews(NULL, NULL, 'published');
+	}
+
+}
+
+global $plugin_is_filter;
 enableExtension('galleryArticles', $plugin_is_filter);
-$combi = $_zp_zenpage->getCombiNews(NULL, NULL, 'published');
+
+$obj = new Combi();
+$combi = $obj->getOldCombiNews();
 $cat = new ZenpageCategory('combiNews', true);
 $cat->setTitle(gettext('combiNews'));
 $cat->setDesc(gettext('Auto category for ported combi-news articles.'));
