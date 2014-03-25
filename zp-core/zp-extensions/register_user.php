@@ -285,7 +285,7 @@ class register_user {
 						}
 					} else {
 						$userobj->save();
-						$_link = register_user::getLink() . '?verify=' . bin2hex(serialize(array('user' => $user, 'email' => $admin_e)));
+						$_link = FULLWEBPATH . '/' . register_user::getLink() . '?verify=' . bin2hex(serialize(array('user' => $user, 'email' => $admin_e)));
 						$_message = sprintf(get_language_string(getOption('register_user_text')), $_link, $admin_n, $user, $pass);
 						$_notify = zp_mail(get_language_string(gettext('Registration confirmation')), $_message, array($user => $admin_e));
 						if (empty($_notify)) {
@@ -336,11 +336,7 @@ function printRegistrationForm($thanks = NULL) {
 		}
 
 		$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $params['user'], '`valid`=' => 1));
-
-		var_dump($userobj);
-
-
-		if ($userobj->getEmail() == $params['email']) {
+		if ($userobj && $userobj->getEmail() == $params['email']) {
 			if (!$userobj->getRights()) {
 				$userobj->setCredentials(array('registered', 'user', 'email'));
 				$rights = getOption('register_user_user_rights');
