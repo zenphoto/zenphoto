@@ -9,7 +9,8 @@
 define('OFFSET_PATH', 1);
 
 require_once(dirname(__FILE__) . '/admin-globals.php');
-require_once(dirname(__FILE__) . '/reconfigure.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/reconfigure.php');
+
 if (isset($_GET['_zp_login_error'])) {
 	$_zp_login_error = sanitize($_GET['_zp_login_error']);
 }
@@ -478,8 +479,9 @@ if (!zp_loggedin()) {
 							</ul>
 
 							<?php
+							require_once(SERVERPATH . '/' . ZENFOLDER . '/template-filters.php');
 							$plugins = array_keys(getEnabledPlugins());
-							$filters = array();
+							$filters = $_zp_filters;
 							$c = count($plugins);
 							?>
 							<h3><a href="javascript:toggle('plugins_hide');toggle('plugins_show');" ><?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?></a></h3>

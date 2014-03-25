@@ -4410,7 +4410,5 @@ function print404status($album, $image, $obj) {
 	}
 }
 
-zp_register_filter('theme_head', 'printZenJavascripts', 9999);
-zp_register_filter('theme_body_close', 'adminToolbox');
-zp_register_filter('zenphoto_information', 'exposeZenPhotoInformations');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/template-filters.php');
 ?>
