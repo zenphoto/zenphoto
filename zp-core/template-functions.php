@@ -1216,7 +1216,7 @@ function getAlbumBreadcrumb($title = NULL) {
 				$title = gettext('Album Thumbnails');
 			}
 		}
-		return array('link' => $album->getLink(), 'title' => $title, 'text' => $album->getDesc());
+		return array('link' => $album->getLink(), 'text' => $title, 'title' => $album->getDesc());
 	}
 	return false;
 }
@@ -1235,8 +1235,8 @@ function printAlbumBreadcrumb($before = '', $after = '', $title = NULL) {
 		} else {
 			$output = '';
 		}
-		$output .= "<a href=\"" . html_encode($breadcrumb['link']) . "\">";
-		$output .= html_encode($breadcrumb['title']);
+		$output .= '<a href="' . html_encode($breadcrumb['link']) . '" title="' . html_encode($breadcrumb['title']) . '">';
+		$output .= html_encode($breadcrumb['text']);
 		$output .= '</a>';
 		if ($after) {
 			$output .= '<span class="aftertext">' . html_encode($after) . '</span>';
