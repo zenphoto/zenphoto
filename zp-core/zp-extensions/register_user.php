@@ -77,10 +77,6 @@ class register_user {
 						gettext('Notify*')								 => array('key'		 => 'register_user_notify', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 4,
 										'desc'	 => gettext('If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration.')),
-						gettext('Address fields')					 => array('key'			 => 'register_user_address_info', 'type'		 => OPTION_TYPE_RADIO,
-										'order'		 => 4.5,
-										'buttons'	 => array(gettext('Omit') => 0, gettext('Show') => 1, gettext('Require') => 'required'),
-										'desc'		 => gettext('If <em>Address fields</em> are shown or required, the form will include positions for address information. If required, the user must supply data in each address field.') . '<p class="notebox">' . gettext('<strong>Note:</strong> Address fields are handled by the <em>comment_form</em> plugin.') . '</p>'),
 						gettext('User album')							 => array('key'		 => 'register_user_create_album', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 6,
 										'desc'	 => gettext('If checked, an album will be created and assigned to the user.')),
@@ -94,6 +90,12 @@ class register_user {
 										'order'	 => 5,
 										'desc'	 => ($_zp_captcha->name) ? gettext('If checked, the form will include a Captcha verification.') : '<span class="notebox">' . gettext('No captcha handler is enabled.') . '</span>'),
 		);
+		if (extensionEnabled('userAddressFields')) {
+			$options[gettext('Address fields')] = array('key'			 => 'register_user_address_info', 'type'		 => OPTION_TYPE_RADIO,
+							'order'		 => 4.5,
+							'buttons'	 => array(gettext('Omit') => 0, gettext('Show') => 1, gettext('Require') => 'required'),
+							'desc'		 => gettext('If <em>Address fields</em> are shown or required, the form will include positions for address information. If required, the user must supply data in each address field.'));
+		}
 		if ($_common_notify_handler) {
 			$options['note'] = array('key'		 => 'menu_truncate_note', 'type'	 => OPTION_TYPE_NOTE,
 							'order'	 => 8,
