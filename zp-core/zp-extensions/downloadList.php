@@ -128,7 +128,7 @@ class DownloadList {
 						 onkeyup="passwordStrength('_downloadList');"
 						 value="<?php echo $x; ?>" />
 			<label><input type="checkbox" name="disclose_password_downloadList" id="disclose_password_downloadList" onclick="passwordClear('_downloadList');
-					togglePassword('_downloadList');"><?php echo gettext('Show password'); ?></label>
+							togglePassword('_downloadList');"><?php echo gettext('Show password'); ?></label>
 			<br />
 			<span class="password_field__downloadList">
 				<span id="match_downloadList"><?php echo gettext("(repeat)"); ?></span>
@@ -586,7 +586,13 @@ function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache
 if (isset($_GET['download'])) {
 	$item = sanitize($_GET['download']);
 	if (empty($item) || !extensionEnabled('downloadList')) {
-		zp_error(gettext('Forbidden'));
+		if (TEST_RELEASE) {
+			zp_error(gettext('Forbidden'));
+		} else {
+			header("HTTP/1.0 403 " . gettext("Forbidden"));
+			header("Status: 403 " . gettext("Forbidden"));
+			exitZP(); //	terminate the script with no output
+		}
 	}
 	$hash = getOption('downloadList_password');
 	if (GALLERY_SECURITY != 'public' || $hash) {

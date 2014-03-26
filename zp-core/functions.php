@@ -1611,7 +1611,7 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 	global $_zp_loggedin, $_zp_login_error, $_zp_current_album, $_zp_current_zenpage_page, $_zp_gallery;
 	if (empty($authType)) { // not supplied by caller
 		$check_auth = '';
-		if (isset($_GET['z']) && $_GET['p'] == 'full-image' || isset($_GET['p']) && $_GET['p'] == '*full-image') {
+		if (isset($_GET['z']) && @$_GET['p'] == 'full-image' || isset($_GET['p']) && $_GET['p'] == '*full-image') {
 			$authType = 'zp_image_auth';
 			$check_auth = getOption('protected_image_password');
 			$check_user = getOption('protected_image_user');

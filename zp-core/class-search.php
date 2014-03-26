@@ -1256,7 +1256,7 @@ class SearchEngine {
 						$news_list = $this->subsetNewsCategories();
 						$idlist = array_intersect($news_list, $idlist);
 						if (count($idlist) == 0) {
-							return NULL;
+							return array(false, array());
 						}
 					}
 					if (empty($sorttype)) {
