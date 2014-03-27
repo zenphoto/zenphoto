@@ -167,9 +167,9 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 	if ($shorten && ($forceindicator || (mb_strlen($articlecontent) > $shorten))) {
 		$allowed_tags = getAllowedTags('allowed_tags');
 		//remove script to be replaced later
-		preg_match_all('~(<script.*</script>)~is', $articlecontent, $matches);
-		$articlecontent = preg_replace('~<script.*/script>~is', '', $articlecontent);
-
+		$articlecontent = preg_replace('~<script.*?/script>~is', '', $articlecontent);
+		//remove HTML comments
+		$articlecontent = preg_replace('~<!--.*?-->~is', '', $articlecontent);
 		$short = mb_substr($articlecontent, 0, $shorten);
 		$short2 = kses($short . '</p>', $allowed_tags);
 
