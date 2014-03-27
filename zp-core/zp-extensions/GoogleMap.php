@@ -30,7 +30,7 @@ if (isset($_zp_gallery_page) && $_zp_gallery_page != 'index.php') {
  */
 class GoogleMap {
 
-	function GoogleMap() {
+	function __construct() {
 		setOptionDefault('gmap_width', 595);
 		setOptionDefault('gmap_height', 300);
 		setOptionDefault('gmap_map_roadmap', 1);

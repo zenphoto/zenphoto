@@ -36,7 +36,7 @@ class auto_backup {
 	 * class instantiation function
 	 *
 	 */
-	function auto_backup() {
+	function __construct() {
 		setOptionDefault('backup_interval', 7);
 		setOptionDefault('backups_to_keep', 5);
 	}

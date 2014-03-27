@@ -31,7 +31,7 @@ class zp_PHPMailer {
 	 *
 	 * @return zp_PHPMailer
 	 */
-	function zp_PHPMailer() {
+	function __construct() {
 		setOptionDefault('PHPMailer_mail_protocol', 'sendmail');
 		setOptionDefault('PHPMailer_server', '');
 		setOptionDefault('PHPMailer_pop_port', '110');

@@ -37,7 +37,7 @@ if (getOption('WEBdocs_tif_provider')) {
  */
 class WEBdocs_Options {
 
-	function WEBdocs_Options() {
+	function __construct() {
 		setOptionDefault('WEBdocs_pdf_provider', 'local');
 		setOptionDefault('WEBdocs_pps_provider', 'google');
 		setOptionDefault('WEBdocs_tif_provider', 'zoho');
