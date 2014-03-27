@@ -323,7 +323,7 @@ function html_encodeTagged($str, $allowScript = true) {
 		$str = str_replace($tag, '%' . $key . '$s', $str);
 	}
 	//entities
-	preg_match_all('/(&[a-z#]+;)/', $str, $matches);
+	preg_match_all('/(&[a-z#]+;)/i', $str, $matches);
 	foreach (array_unique($matches[0]) as $key => $entity) {
 		$tags[3]['%' . $key . '$e'] = $entity;
 		$str = str_replace($entity, '%' . $key . '$e', $str);
