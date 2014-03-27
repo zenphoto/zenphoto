@@ -103,6 +103,10 @@ class comment_form {
 										'order'		 => 0.4,
 										'buttons'	 => array(gettext('Omit') => 0, gettext('For guests') => 2, gettext('Require') => 1),
 										'desc'		 => ($_zp_captcha->name) ? gettext('If <em>Captcha</em> is required, the form will include a Captcha verification.') : '<span class="notebox">' . gettext('No captcha handler is enabled.') . '</span>'),
+						gettext('Address fields')								 => array('key'			 => 'comment_form_addresses', 'type'		 => OPTION_TYPE_RADIO,
+										'order'		 => 7,
+										'buttons'	 => array(gettext('Omit') => 0, gettext('Show') => 1, gettext('Require') => 'required'),
+										'desc'		 => gettext('If <em>Address fields</em> are shown or required, the form will include positions for address information. If required, the poster must supply data in each address field.')),
 						gettext('Allow comments on')						 => array('key'				 => 'comment_form_allowed', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
 										'order'			 => 0.9,
 										'checkboxes' => $checkboxes,
@@ -137,12 +141,6 @@ class comment_form {
 										'order'	 => 3,
 										'desc'	 => gettext('Uncheck to disable the jQuery pagination of comments. Enabled by default.')),
 		);
-		if (extensionEnabled('userAddressFields')) {
-			$options[gettext('Address fields')] = array('key'			 => 'comment_form_addresses', 'type'		 => OPTION_TYPE_RADIO,
-										'order'		 => 0.5,
-										'buttons'	 => array(gettext('Omit') => 0, gettext('Show') => 1, gettext('Require') => 'required'),
-										'desc'		 => gettext('If <em>Address fields</em> are shown or required, the form will include positions for address information. If required, the poster must supply data in each address field.'));
-		}
 		return $options;
 	}
 
