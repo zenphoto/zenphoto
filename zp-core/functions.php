@@ -1926,11 +1926,30 @@ function debug404($album, $image, $theme) {
 			if ($target == $uri)
 				return;
 		}
+		$server = array();
+		foreach (array('REQUEST_URI', 'HTTP_REFERER', 'REMOTE_ADDR', 'REDIRECT_STATUS') as $key) {
+			$server[$key] = @$_SERVER[$key];
+		}
+		$request = $_REQUEST;
+		$request['theme'] = $theme;
+		if (!empty($image)) {
+			$request['image'] = $image;
+		}
+
 		trigger_error(sprintf(gettext('Zenphoto processed a 404 error on %s. See the debug log for details.'), $target), E_USER_NOTICE);
-		debugLog("404 error: album=$album; image=$image; theme=$theme");
-		debugLogVar('$_SERVER ', $_SERVER);
-		debugLogVar('$_REQUEST ', $_REQUEST);
-		debugLog('');
+		ob_start();
+		var_dump($server);
+		$server = preg_replace('~array\s*\(.*\)\s*~', '', html_decode(strip_tags(ob_get_contents())));
+		ob_end_clean();
+		ob_start();
+		var_dump($request);
+		$request['theme'] = $theme;
+		if (!empty($image)) {
+			$request['image'] = $image;
+		}
+		$request = preg_replace('~array\s*\(.*\)\s*~', '', html_decode(strip_tags(ob_get_contents())));
+		ob_end_clean();
+		debugLog("404 error details\n" . $server . $request);
 	}
 }
 
