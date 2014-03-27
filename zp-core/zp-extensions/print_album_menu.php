@@ -37,7 +37,7 @@ $_recursion_limiter = array();
  */
 class print_album_menu {
 
-	function register_user_options() {
+	function __construct() {
 		setOptionDefault('print_album_menu_showsubs', 0);
 		setOptionDefault('print_album_menu_count', 1);
 		setOptionDefault('menu_truncate_string', 0);
