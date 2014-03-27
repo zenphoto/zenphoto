@@ -15,7 +15,7 @@ $cypher = preg_replace('/[^0-9a-f]/', '', sanitize(isset($_GET['i']) ? $_GET['i'
 $key = getOption('zenphoto_captcha_key');
 $string = rc4($key, pack("H*", $cypher));
 $len = getOption('zenphoto_captcha_length');
-$string = str_pad($string, '*', $len - strlen($string));
+$string = str_pad($string, $len - strlen($string), '*');
 
 if (isset($_GET['f'])) {
 	$fontname = sanitize($_GET['f'], 3);
