@@ -48,7 +48,7 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 			}
 			$show = $required = getOption('register_user_address_info');
 			if ($required == 'required') {
-				$required = '*';
+				$required = '<strong>*</strong>';
 			} else {
 				$required = false;
 			}
