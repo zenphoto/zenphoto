@@ -543,7 +543,7 @@ class Zenpage {
 	 * @return array
 	 * @deprecated since version 1.4.6
 	 */
-	function getCombiNews($articles_per_page = '', $mode = '', $published = NULL, $sortorder = NULL, $sticky = true, $sortdirection = 'desc') {
+	protected function getCombiNews($articles_per_page = '', $mode = '', $published = NULL, $sortorder = NULL, $sticky = true, $sortdirection = 'desc') {
 		global $_zp_combiNews_cache, $_zp_gallery;
 
 		if (is_null($published)) {

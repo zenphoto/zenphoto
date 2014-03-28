@@ -167,9 +167,9 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 	if ($shorten && ($forceindicator || (mb_strlen($articlecontent) > $shorten))) {
 		$allowed_tags = getAllowedTags('allowed_tags');
 		//remove script to be replaced later
-		preg_match_all('~(<script.*</script>)~is', $articlecontent, $matches);
-		$articlecontent = preg_replace('~<script.*/script>~is', '', $articlecontent);
-
+		$articlecontent = preg_replace('~<script.*?/script>~is', '', $articlecontent);
+		//remove HTML comments
+		$articlecontent = preg_replace('~<!--.*?-->~is', '', $articlecontent);
 		$short = mb_substr($articlecontent, 0, $shorten);
 		$short2 = kses($short . '</p>', $allowed_tags);
 
@@ -1611,7 +1611,7 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 	global $_zp_loggedin, $_zp_login_error, $_zp_current_album, $_zp_current_zenpage_page, $_zp_gallery;
 	if (empty($authType)) { // not supplied by caller
 		$check_auth = '';
-		if (isset($_GET['z']) && $_GET['p'] == 'full-image' || isset($_GET['p']) && $_GET['p'] == '*full-image') {
+		if (isset($_GET['z']) && @$_GET['p'] == 'full-image' || isset($_GET['p']) && $_GET['p'] == '*full-image') {
 			$authType = 'zp_image_auth';
 			$check_auth = getOption('protected_image_password');
 			$check_user = getOption('protected_image_user');
@@ -1926,11 +1926,30 @@ function debug404($album, $image, $theme) {
 			if ($target == $uri)
 				return;
 		}
+		$server = array();
+		foreach (array('REQUEST_URI', 'HTTP_REFERER', 'REMOTE_ADDR', 'REDIRECT_STATUS') as $key) {
+			$server[$key] = @$_SERVER[$key];
+		}
+		$request = $_REQUEST;
+		$request['theme'] = $theme;
+		if (!empty($image)) {
+			$request['image'] = $image;
+		}
+
 		trigger_error(sprintf(gettext('Zenphoto processed a 404 error on %s. See the debug log for details.'), $target), E_USER_NOTICE);
-		debugLog("404 error: album=$album; image=$image; theme=$theme");
-		debugLogVar('$_SERVER ', $_SERVER);
-		debugLogVar('$_REQUEST ', $_REQUEST);
-		debugLog('');
+		ob_start();
+		var_dump($server);
+		$server = preg_replace('~array\s*\(.*\)\s*~', '', html_decode(strip_tags(ob_get_contents())));
+		ob_end_clean();
+		ob_start();
+		var_dump($request);
+		$request['theme'] = $theme;
+		if (!empty($image)) {
+			$request['image'] = $image;
+		}
+		$request = preg_replace('~array\s*\(.*\)\s*~', '', html_decode(strip_tags(ob_get_contents())));
+		ob_end_clean();
+		debugLog("404 error details\n" . $server . $request);
 	}
 }
 

@@ -346,11 +346,12 @@ function setupCurrentLocale($override = NULL) {
  * @return array
  */
 function parseHttpAcceptLanguage($str = NULL) {
-	if (!isset($_SERVER['HTTP_ACCEPT_LANGUAGE']))
-		return array();
 	// getting http instruction if not provided
 	if (!$str) {
-		$str = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+		$str = @$_SERVER['HTTP_ACCEPT_LANGUAGE'];
+	}
+	if (!is_string($str)) {
+		return array();
 	}
 	$langs = explode(',', $str);
 	// creating output list
@@ -553,10 +554,10 @@ function timezoneDiff($server, $local) {
 		foreach ($timezones as $key => $zones) {
 			foreach ($zones as $id => $zone) {
 				if (!isset($offset_server) && $zone['timezone_id'] === $server) {
-					$offset_server = $zone['offset'];
+					$offset_server = (int) $zone['offset'];
 				}
 				if (!isset($offset_local) && $zone['timezone_id'] === $local) {
-					$offset_local = $zone['offset'];
+					$offset_local = (int) $zone['offset'];
 				}
 				if (isset($offset_server) && isset($offset_local)) {
 					return ($offset_server - $offset_local) / 3600;

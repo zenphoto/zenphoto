@@ -675,65 +675,19 @@ class RSS extends feed {
 	protected function getItemNews($item) {
 		$categories = '';
 		$feeditem['enclosure'] = '';
-		$itemtype = strtolower($item['type']); // needed because getZenpageStatistic returns "News" instead of "news" for unknown reasons...
-//get the type of the news item
-		switch ($itemtype) {
-			case 'news':
-				$obj = new ZenpageNews($item['titlelink']);
-				$title = $feeditem['title'] = get_language_string($obj->getTitle('all'), $this->locale);
-				$link = $obj->getLink();
-				$count2 = 0;
-				$plaincategories = $obj->getCategories();
-				$categories = '';
-				foreach ($plaincategories as $cat) {
-					$catobj = new ZenpageCategory($cat['titlelink']);
-					$categories .= get_language_string($catobj->getTitle('all'), $this->locale) . ', ';
-				}
-				$categories = rtrim($categories, ', ');
-				$feeditem['desc'] = shortenContent($obj->getContent($this->locale), getOption('RSS_truncate_length'), '...');
-				break;
-			case 'images':
-				$albumobj = newAlbum($item['albumname']);
-				$obj = newImage($albumobj, $item['titlelink']);
-				$categories = get_language_string($albumobj->getTitle('all'), $this->locale);
-				$feeditem['title'] = strip_tags(get_language_string($obj->getTitle('all'), $this->locale));
-				$title = get_language_string($obj->getTitle('all'), $this->locale);
-				$link = $obj->getLink();
-				$filename = $obj->getFilename();
-				$ext = getSuffix($filename);
-				$album = $albumobj->getFileName();
-				$fullimagelink = $this->host . html_encode(pathurlencode($obj->getFullImageURL()));
-				$desc = $obj->getContent($this->locale);
-				$desc = str_replace('//<![CDATA[', '', $desc);
-				$desc = str_replace('//]]>', '', $desc);
-				$content = shortenContent($desc, getOption('RSS_truncate_length'), '...');
-				if (isImagePhoto($obj)) {
-					$thumburl = '<img border="0" src="' . PROTOCOL . '://' . $this->host . html_encode(pathurlencode($obj->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . $obj->getTitle($this->locale) . '" /><br />';
-				} else {
-					$thumburl = '<img border="0" src="' . PROTOCOL . '://' . $this->host . html_encode(pathurlencode($obj->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . $obj->getTitle($this->locale) . '" /><br />';
-				}
-				$feeditem['desc'] = '<a title="' . html_encode($feeditem['title']) . ' in ' . html_encode($categories) . '" href="' . PROTOCOL . '://' . $this->host . $link . '">' . $thumburl . '</a><br />' . $content;
-				if (getOption("RSS_enclosure")) {
-					$feeditem['enclosure'] = '<enclosure url="' . PROTOCOL . '://' . $fullimagelink . '" type="' . getMimeString($ext) . '" length="' . filesize($obj->localpath) . '" />';
-				}
-				break;
-			case 'albums':
-				$obj = newAlbum($item['albumname']);
-				$categories = get_language_string($obj->getTitle('all'), $this->locale);
-				$feeditem['title'] = strip_tags(get_language_string($obj->getTitle('all'), $this->locale));
-				$title = get_language_string($obj->getTitle('all'), $this->locale);
-				$link = $obj->getLink();
-				$album = $obj->getFileName();
-				$albumthumb = $obj->getAlbumThumbImage();
-				$content = shortenContent($obj->getDesc($this->locale), getOption('RSS_truncate_length'), '...');
-				if (isImagePhoto($obj)) {
-					$thumburl = '<img border="0" src="' . PROTOCOL . '://' . $this->host . html_encode(pathurlencode($albumthumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . $obj->getTitle($this->locale) . '" /><br />';
-				} else {
-					$thumburl = '<img border="0" src="' . PROTOCOL . '://' . $this->host . html_encode(pathurlencode($albumthumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . $obj->getTitle($this->locale) . '" /><br />';
-				}
-				$feeditem['desc'] = '<a title="' . html_encode($feeditem['title']) . '" href="' . PROTOCOL . '://' . $this->host . $link . '">' . $thumburl . '</a><br />' . $content;
-				break;
+		$obj = new ZenpageNews($item['titlelink']);
+		$title = $feeditem['title'] = get_language_string($obj->getTitle('all'), $this->locale);
+		$link = $obj->getLink();
+		$count2 = 0;
+		$plaincategories = $obj->getCategories();
+		$categories = '';
+		foreach ($plaincategories as $cat) {
+			$catobj = new ZenpageCategory($cat['titlelink']);
+			$categories .= get_language_string($catobj->getTitle('all'), $this->locale) . ', ';
 		}
+		$categories = rtrim($categories, ', ');
+		$feeditem['desc'] = shortenContent($obj->getContent($this->locale), getOption('RSS_truncate_length'), '...');
+
 		if (!empty($categories)) {
 			$feeditem['category'] = html_encode($categories);
 			$feeditem['title'] = $title . ' (' . $categories . ')';

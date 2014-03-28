@@ -155,8 +155,17 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 					<input type="text" size="18" name="ip" value="<?php echo html_encode($IP); ?>" />
 					<?php
 					$_comment_form_save_post = $commentarr;
-					echo comment_form_edit_comment($_comment_form_save_post, false);
 					?>
+					<label for="comment_form_street"><?php echo gettext('Street:'); ?></label>
+					<input type="text" name="0-comment_form_street" id="comment_form_street" class="inputbox" size="40" value="<?php echo @$address['street']; ?>">
+					<label for="comment_form_city"><?php echo gettext('City:'); ?></label>
+					<input type="text" name="0-comment_form_city" id="comment_form_city" class="inputbox" size="40" value="<?php echo @$address['city']; ?>">
+					<label for="comment_form_state"><?php echo gettext('State:'); ?></label>
+					<input type="text" name="0-comment_form_state" id="comment_form_state" class="inputbox" size="40" value="<?php echo @$address['state']; ?>">
+					<label for="comment_form_country"><?php echo gettext('Country:'); ?></label>
+					<input type="text" name="0-comment_form_country" id="comment_form_country" class="inputbox" size="40" value="<?php echo @$address['country']; ?>">
+					<label for="comment_form_postal"><?php echo gettext('Postal code:'); ?></label>
+					<input type="text" name="0-comment_form_postal" id="comment_form_postal" class="inputbox" size="40" value="<?php echo @$address['postal']; ?>">
 					<label for="comment"><?php echo gettext("Comment:"); ?></label>
 					<textarea rows="8" cols="60" name="comment" class="texteditor"><?php echo html_encode($comment); ?></textarea>
 				</div>

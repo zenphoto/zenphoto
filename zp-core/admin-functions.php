@@ -1373,7 +1373,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$sort[gettext('Custom')] = 'custom';
 						/*
 						 * not recommended--screws with peoples minds during pagination!
-							$sort[gettext('Random')] = 'random';
+						  $sort[gettext('Random')] = 'random';
 						 */
 						?>
 						<tr>
@@ -2938,16 +2938,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 */
 	function currentRelativeURL() {
 		$source = str_replace(SERVERPATH, WEBPATH, str_replace('\\', '/', $_SERVER['SCRIPT_FILENAME']));
-		$q = '';
-		if (!empty($_GET)) {
-			foreach ($_GET as $parm => $value) {
-				if ($value) {
-					$q .= $parm . '=' . $value . '&';
-				} else {
-					$q .= $parm . '&';
-				}
-			}
-			$q = '?' . substr($q, 0, -1);
+		if (empty($_GET)) {
+			$q = '';
+		} else {
+			$q = '?' . http_build_query($_GET);
 		}
 		return pathurlencode($source) . $q;
 	}
@@ -2973,15 +2967,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 			$link .= "<a href='" . WEBPATH . '/' . ZENFOLDER . "/admin-edit.php?page=edit&amp;album=" . html_encode(pathurlencode($parent->name)) . "'>" . removeParentAlbumNames($parent) . "</a>/";
 		}
 		return $link;
-	}
-
-	/**
-	 * prints the album breadcrumb for the album edit page
-	 *
-	 * @param object $album Object of the album
-	 */
-	function printAlbumBreadcrumbAdmin($album) {
-		echo getAlbumBreadcrumbAdmin($album);
 	}
 
 	/**
@@ -3034,7 +3019,11 @@ function printAdminHeader($tab, $subtab = NULL) {
 						?>
 						<label title="<?php echo html_encode(get_language_string($right['hint'])); ?>">
 							<input type="checkbox" name="<?php echo $id . '-' . $rightselement; ?>" id="<?php echo $rightselement . '-' . $id; ?>" class="user-<?php echo $id; ?>"
-										 value="<?php echo $right['value']; ?>"<?php if ($rights & $right['value']) echo ' checked="checked"'; echo $alterrights; ?> /> <?php echo $right['name']; ?>
+										 value="<?php echo $right['value']; ?>"<?php
+										 if ($rights & $right['value'])
+											 echo ' checked="checked"';
+										 echo $alterrights;
+										 ?> /> <?php echo $right['name']; ?>
 						</label>
 						<?php
 					} else {
@@ -3704,7 +3693,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 	?>
 	<span style="float:right">
 		<select class="ays-ignore" name="checkallaction" id="checkallaction" size="1" onchange="checkFor(this);" >
-		<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
+			<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
 		</select>
 		<?php
 		if ($checkAll) {
@@ -4668,21 +4657,21 @@ function consolidatedEditMessages($subtab) {
 	if (!empty($errorbox)) {
 		?>
 		<div class="errorbox fade-message">
-		<?php echo implode('<br />', $errorbox); ?>
+			<?php echo implode('<br />', $errorbox); ?>
 		</div>
 		<?php
 	}
 	if (!empty($notebox)) {
 		?>
 		<div class="notebox fade-message">
-		<?php echo implode('<br />', $notebox); ?>
+			<?php echo implode('<br />', $notebox); ?>
 		</div>
 		<?php
 	}
 	if (!empty($messagebox)) {
 		?>
 		<div class="messagebox fade-message">
-		<?php echo implode('<br />', $messagebox); ?>
+			<?php echo implode('<br />', $messagebox); ?>
 		</div>
 		<?php
 	}

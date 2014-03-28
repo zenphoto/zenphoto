@@ -145,7 +145,7 @@ switch (OFFSET_PATH) {
 				case 'closed':
 					?>
 					<li>
-						<?php echo gettext('Site status:'); ?> <span style="color:RED"><strong><?php echo gettext('The site is closed!'); ?></strong></span>
+						<?php echo gettext('Site status:'); ?> <span style="color:RED"><strong><?php echo gettext('The site is closed!'); ?></strong></span>&nbsp;&nbsp;<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/setup.php"><?php echo gettext('Run setup'); ?></a>
 					</li>
 					<?php
 					break;

@@ -45,7 +45,7 @@ function processTags($object) {
 }
 
 /* * ************************
-	/* page functions
+  /* page functions
  * ************************* */
 
 /**
@@ -222,16 +222,16 @@ function printPagesListTable($page, $flag) {
 			?>
 		</div>
 		<div class="page-list_extra">
-			<?php
-			checkIfScheduled($page);
-			checkIfExpires($page);
-			?>
+			<span>
+				<?php echo html_encode($page->getAuthor()); ?>
+			</span>
 		</div>
-
 		<div class="page-list_extra">
-			<?php echo html_encode($page->getAuthor()); ?>
+			<?php printPublished($page); ?>
 		</div>
-
+		<div class="page-list_extra">
+			<?php printExpired($page); ?>
+		</div>
 		<div class="page-list_iconwrapper">
 			<div class="page-list_icon">
 				<?php
@@ -312,7 +312,7 @@ function printPagesListTable($page, $flag) {
 }
 
 /* * ************************
-	/* news article functions
+  /* news article functions
  * ************************* */
 
 /**
@@ -832,7 +832,7 @@ function printArticlesPerPageDropdown() {
 }
 
 /* * ************************
-	/* Category functions
+  /* Category functions
  * ************************* */
 
 /**
@@ -1074,7 +1074,7 @@ function printCategoryCheckboxListEntry($cat, $articleid, $option, $class = '') 
 }
 
 /* * ************************
-	/* General functions
+  /* General functions
  * ************************* */
 
 /**
@@ -1440,45 +1440,39 @@ function authorSelector($author = NULL) {
 }
 
 /**
- * Checks if a page or articles has an expiration date set and prints out this date and a message about it or if it already is expired
+ * Prints data info for objects
  *
  * @param string $object Object of the page or news article to check
  * @return string
  */
-function checkIfExpires($object) {
-	$dt = $object->getExpireDate();
-	if (!empty($dt)) {
-		$expired = $dt < date('Y-m-d H:i:s');
-		echo " <small>";
-		if ($expired) {
-			echo '<strong class="expired">';
-			printf(gettext('Expired: %s'), $dt);
-			echo "</strong>";
+function printPublished($object) {
+	$dt = $object->getDateTime();
+	if ($dt > date('Y-m-d H:i:s')) {
+		if ($object->getShow() != 1) {
+			echo '<span class="inactivescheduledate">' . $dt . '</strong>';
 		} else {
-			echo '<strong class="expiredate">';
-			printf(gettext("Expires: %s"), $dt);
-			echo "</strong>";
+			echo '<span class="scheduledate">' . $dt . '</strong>';
 		}
-		echo "</small>";
+	} else {
+		echo '<span>' . $dt . '</span>';
 	}
 }
 
 /**
- * Checks if a page or articles is scheduled for publishing and prints out a message and the future date or the publishing date if not scheduled.
+ * Prints data info for objects
  *
  * @param string $object Object of the page or news article to check
  * @return string
  */
-function checkIfScheduled($object) {
-	$dt = $object->getDateTime();
-	if ($dt > date('Y-m-d H:i:s')) {
-		if ($object->getShow() != 1) {
-			echo '<strong class="inactivescheduledate">' . $dt . '</strong>';
+function printExpired($object) {
+	$dt = $object->getExpireDate();
+	if (!empty($dt)) {
+		$expired = $dt < date('Y-m-d H:i:s');
+		if ($expired) {
+			echo ' <span class="expired">' . $dt . "</span>";
 		} else {
-			echo '<strong class="scheduledate">' . $dt . '</strong>';
+			echo ' <span class="expiredate">' . $dt . "</span>";
 		}
-	} else {
-		echo $dt;
 	}
 }
 

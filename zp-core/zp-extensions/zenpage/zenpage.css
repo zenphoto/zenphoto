@@ -199,7 +199,7 @@ DIV.container IMG {
 
 /* scrollable sortables for zenpage
 -------------------------------------------------*/
-	/* CSS for checklists */
+/* CSS for checklists */
 div.zenpagechecklist,
 #zenpagetags .tagchecklist {
 	border: 1px solid #ccc;
@@ -247,7 +247,7 @@ div.zenpagechecklist,
 }
 
 .box-edit-unpadded {
-width: 257px;
+	width: 257px;
 }
 
 div.zenpagechecklist label:hover,
@@ -393,7 +393,6 @@ ul.language_string_list {
 .scheduledpublishing, .expire {
 	color: red;
 	font-weight: normal;
-	font-style: normal;
 }
 
 .scheduledate {
@@ -403,7 +402,7 @@ ul.language_string_list {
 
 .inactivescheduledate {
 	color: red;
-	font-weight: normal;
+	font-weight: bold;
 }
 
 .expiredate {
@@ -412,7 +411,7 @@ ul.language_string_list {
 }
 .expired {
 	color: red;
-	font-weight: normal;
+	font-weight: bold;
 }
 
 div.floatright form {
@@ -423,11 +422,11 @@ div.floatright form {
 form#articledatesdropdown,
 form#unpublisheddropdown,
 form#categoriesdropdown {
-margin-right: 0px;
+	margin-right: 0px;
 }
 
 form#sortorderdropdown {
-margin-right: 0px;
+	margin-right: 0px;
 }
 
 

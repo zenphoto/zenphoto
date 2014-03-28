@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-22 12:33+0100\n"
-"PO-Revision-Date: 2014-03-22 12:33+0100\n"
+"POT-Creation-Date: 2014-03-27 22:31+0100\n"
+"PO-Revision-Date: 2014-03-27 22:31+0100\n"
 "Last-Translator: vincent3569 <vincent_bourganel@yahoo.fr>\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "<michel@mgagnon.net>\n"
@@ -150,7 +150,7 @@ msgstr "Voir l'album :"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/image.php:32
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/news.php:48
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/search.php:163
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4320
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4309
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:30
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/slideshow.php:588
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:269
@@ -190,7 +190,7 @@ msgstr "préc."
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/image.php:35
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/news.php:50
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/search.php:163
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4348
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4337
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:31
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:468
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/slideshow.php:589
@@ -499,7 +499,7 @@ msgid "News archive"
 msgstr "Archives des actualités"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/effervescence_plus/contact.php:53
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2356
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2359
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/template-functions.php:451
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:237
 msgid "Contact"
@@ -648,7 +648,7 @@ msgstr[0] "%u image"
 msgstr[1] "%u images"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/effervescence_plus/functions.php:378
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:238
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:241
 #, php-format
 msgid "%u Comment"
 msgid_plural "%u Comments"
@@ -972,7 +972,7 @@ msgstr "Galerie"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/effervescence_plus/sidebar.php:53
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/garland/sidebar.php:107
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1978
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3127
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3116
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/lib-auth.php:525
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/lib-auth.php:531
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/lib-auth.php:542
@@ -991,7 +991,7 @@ msgstr "Galerie"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/utilities/gallery_statistics.php:72
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/utilities/gallery_statistics.php:572
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:135
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:79
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:80
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:62
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/multiple_layouts.php:90
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/related_items.php:152
@@ -1009,8 +1009,8 @@ msgstr "Albums"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:165
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/pages.php:27
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/pages.php:33
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3022
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3154
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3007
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3143
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/lib-auth.php:526
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/lib-auth.php:529
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/lib-auth.php:544
@@ -1022,7 +1022,7 @@ msgstr "Albums"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/utilities/gallery_statistics.php:80
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/utilities/gallery_statistics.php:589
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:138
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:81
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:82
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/externalFeed.php:72
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/multiple_layouts.php:92
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/related_items.php:152
@@ -1065,8 +1065,8 @@ msgstr "Flux RSS"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:31
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:68
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:153
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3022
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3140
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3007
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3129
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/lib-auth.php:527
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/lib-auth.php:530
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/lib-auth.php:543
@@ -1079,9 +1079,9 @@ msgstr "Flux RSS"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/template-functions.php:424
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/template-functions.php:426
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:137
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:81
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:881
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:888
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:82
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:833
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:840
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/defaultCodeblocks.php:36
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/externalFeed.php:71
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:223
@@ -1329,12 +1329,12 @@ msgstr "À part"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/effervescence_plus/themeoptions.php:130
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/garland/themeoptions.php:96
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:91
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:95
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:99
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:103
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:107
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:82
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:92
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:96
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:100
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:104
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:143
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:96
 msgid "Omit"
 msgstr "Aucun"
 
@@ -1674,7 +1674,7 @@ msgstr "Archives"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:39
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:462
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4565
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4554
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/lib-auth.php:510
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/defaultCodeblocks.php:34
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:81
@@ -1693,8 +1693,8 @@ msgid "zpMobile theme by"
 msgstr "Thème zpMobile par"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:100
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:247
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:269
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:248
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:270
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/lib-auth.php:516
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/lib-auth.php:535
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/lib-auth.php:560
@@ -1788,7 +1788,7 @@ msgstr "Retour à %s"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:73
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:649
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:317
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:327
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:181
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:149
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:248
@@ -1803,11 +1803,11 @@ msgstr "*Actions en lot*"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-themes.php:299
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/setup/index.php:1083
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:234
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:127
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:128
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:318
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:425
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:441
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:129
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:328
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:435
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:451
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:182
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:244
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/publishContent/publishContent.php:421
@@ -1891,70 +1891,70 @@ msgid "Image order saved"
 msgstr "Ordre des images sauvegardé"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:135
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4609
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:237
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4598
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:247
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:920
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1713
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1707
 msgid "Selected items deleted"
 msgstr "Les éléments sélectionnés ont été supprimés"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:138
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4612
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4601
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:924
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1716
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1710
 msgid "Selected items published"
 msgstr "Les éléments sélectionnés sont publiés"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:141
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4615
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4604
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:928
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1719
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1713
 msgid "Selected items unpublished"
 msgstr "Les éléments sélectionnés ne sont plus publiés"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:144
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4618
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1722
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4607
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1716
 msgid "Comments enabled for selected items"
 msgstr "Les commentaires pour les éléments sélectionnés sont activés"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:147
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4621
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1725
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4610
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1719
 msgid "Comments disabled for selected items"
 msgstr "Les commentaires pour les éléments sélectionnés sont désactivés"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:150
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4624
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1728
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4613
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1722
 msgid "Hitcounter for selected items"
 msgstr "Compteur d'affichage pour les éléments sélectionnés"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:153
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4627
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4616
 msgid "Tags added for selected items"
 msgstr "Les tags ont été ajoutés aux éléments sélectionnés"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:156
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4630
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4619
 msgid "Tags cleared for selected items"
 msgstr "Les tags ont été effacés des éléments sélectionnés"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:159
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4633
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4622
 msgid "Tags added for images of selected items"
 msgstr "Les tags ont été ajoutés aux images des éléments sélectionnés"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:162
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4636
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4625
 msgid "Tags cleared for images of selected items"
 msgstr "Les tags ont été effacés des images des éléments sélectionnés"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:169
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4603
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4592
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:12
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:36
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1749
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1743
 msgid "Nothing changed"
 msgstr "Aucun changement"
 
@@ -2013,13 +2013,13 @@ msgstr "Retour"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-plugins.php:140
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-plugins.php:393
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-thumbcrop.php:270
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:455
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:829
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:456
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:826
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:253
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:339
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:133
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:292
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:434
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:134
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:302
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:444
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/crop_image.php:347
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:154
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:237
@@ -2056,7 +2056,7 @@ msgid "Set the image order by dragging them to the positions you desire."
 msgstr "Choisissez l'ordre des images en les déplaçant dans l'ordre désiré."
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:219
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3083
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3072
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:31
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:124
 msgid "edit"
@@ -2282,8 +2282,8 @@ msgstr ""
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:854
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1717
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3714
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:329
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3703
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:339
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:208
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:161
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:268
@@ -2353,8 +2353,8 @@ msgstr "Afficher les images par :"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-plugins.php:394
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-themes-editor.php:150
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-thumbcrop.php:266
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:456
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:830
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:457
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:827
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/lib-auth.php:1025
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/contact_form/form.php:135
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/crop_image.php:344
@@ -2449,7 +2449,7 @@ msgstr "Général"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:141
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:442
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:664
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1529
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1523
 msgid "Published"
 msgstr "Publié"
 
@@ -2543,8 +2543,8 @@ msgstr "vers"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1819
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1856
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1864
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:137
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:139
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:138
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:140
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/uploader_http/upload_form.php:68
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/uploader_http/upload_form.php:69
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:124
@@ -2653,14 +2653,17 @@ msgid "Location:"
 msgstr "Lieu : "
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1416
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:161
 msgid "City:"
 msgstr "Ville : "
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1422
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:163
 msgid "State:"
 msgstr "État, province : "
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1428
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:165
 msgid "Country:"
 msgstr "Pays : "
 
@@ -2778,7 +2781,7 @@ msgid "%1$s %2$s: %3$s%4$s"
 msgstr "%1$s %2$s : %3$s%4$s"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:122
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4430
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4419
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/pluginDoc.php:127
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/user-expiry.php:106
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/user_groups.php:218
@@ -2829,7 +2832,7 @@ msgstr "Voir l'accueil de la galerie"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/utilities/gallery_statistics.php:76
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/utilities/gallery_statistics.php:563
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:135
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:79
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:80
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:62
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/multiple_layouts.php:90
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/related_items.php:152
@@ -2850,10 +2853,10 @@ msgid "Deprecated."
 msgstr "Obsolète"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:792
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4429
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4418
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-options.php:1504
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-tags.php:157
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:475
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:476
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/publishContent/publishContent.php:252
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/publishContent/publishContent.php:510
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/publishContent/publishContent.php:568
@@ -3267,50 +3270,50 @@ msgstr ""
 "Le nouveau thème personnalisé a été créé, mais sa description ne peut être "
 "mise à jour"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3016
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3001
 msgid "Rights:"
 msgstr "Droits :"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3076
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3065
 msgid "edit rights"
 msgstr "Droits d'édition"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3077
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3066
 msgid "view unpublished items"
 msgstr "Afficher les éléments non publiés"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3078
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3067
 msgid "upload rights"
 msgstr "Droits de chargement"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3079
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3068
 msgid "the album is dynamic"
 msgstr "l'album est dynamique"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3081
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3070
 msgid "Primary album"
 msgstr "Album principal"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3085
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3074
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/elFinder.php:76
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/uploader_http.php:32
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery.php:39
 msgid "upload"
 msgstr "chargement"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3087
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3076
 msgid "view unpublished"
 msgstr "Afficher les éléments non publiés"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3126
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3115
 msgid "Managed albums:"
 msgstr "Albums gérés : "
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3139
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3128
 msgid "Managed news categories:"
 msgstr "Catégories d'actualités gérées :"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3141
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3130
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/utilities/gallery_statistics.php:605
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/multiple_layouts.php:92
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:130
@@ -3318,24 +3321,24 @@ msgstr "Catégories d'actualités gérées :"
 msgid "News categories"
 msgstr "Catégories d'actualités"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3153
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3142
 msgid "Managed pages:"
 msgstr "Pages gérées : "
 
 # General update at line 2669 : Select one or more %1$s for the %2$s to manage.
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3159
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3148
 #, php-format
 msgid "Select one or more %1$s for the %2$s to manage."
 msgstr "Sélectionnez un ou plusieurs %1$s de %2$s à gérer."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3160
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3149
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:780
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:789
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:795
 msgid "user"
 msgstr "utilisateur"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3161
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3150
 #, php-format
 msgid ""
 "Users with \"Admin\" or \"Manage all %1$s\" rights can manage all %2$s. All "
@@ -3345,114 +3348,114 @@ msgstr ""
 "<em>Gérer tous les %1$s</em> peuvent gérer tous les %2$s. Les autres ne "
 "peuvent gérer que ceux qui sont sélectionnés."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3164
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3153
 #, php-format
 msgid "You may manage these %s subject to the above rights."
 msgstr ""
 "Vous avez la possibilité de gérer ces %s en fonction des droits ci-dessus."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3577
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3566
 #, php-format
 msgid "Show %u album level"
 msgid_plural "Show %u album levels"
 msgstr[0] "Afficher %u niveau d'albums"
 msgstr[1] "Afficher %u niveaux d'albums"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3580
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3569
 #, php-format
 msgid "%u image per page"
 msgid_plural "%u images per page"
 msgstr[0] "%u image par page"
 msgstr[1] "%u images par page"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3657
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3669
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3681
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3693
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3646
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3658
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3670
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3682
 msgid "ok"
 msgstr "Ok"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3764
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3753
 msgid "Destination"
 msgstr "Destination"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4040
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4075
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4029
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4064
 #, php-format
 msgid "codeblock %u"
 msgstr "Bloc de code %u"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4041
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4081
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4030
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4070
 msgid "add codeblock"
 msgstr "ajouter un bloc de code"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4096
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4085
 msgid "Codeblock 0 is deprecated."
 msgstr "Le bloc de code 0 n'est plus utilisé."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4179
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4168
 #, php-format
 msgid "\"%s\" Cross Site Request Forgery blocked."
 msgstr "« %s » tentative d'hameçonnage bloquée."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4394
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4383
 msgid "setup"
 msgstr "installation"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4394
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4383
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-globals.php:108
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-options.php:972
 msgid "security"
 msgstr "sécurité"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4394
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4383
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-options.php:972
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/markRelease.php:41
 msgid "debug"
 msgstr "déboggage"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4431
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4420
 msgid "demo"
 msgstr "démonstrateur"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4432
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4421
 msgid "development"
 msgstr "développement"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4433
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4422
 msgid "feed"
 msgstr "Flux RSS"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4434
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4423
 msgid "mail"
 msgstr "Email"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4435
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4424
 msgid "media"
 msgstr "médias"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4436
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4425
 msgid "misc"
-msgstr "varia"
+msgstr "divers"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4437
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4426
 msgid "spam"
 msgstr "indésirables"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4438
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4427
 msgid "seo"
 msgstr "moteurs de recherche"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4439
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4428
 msgid "tools"
 msgstr "outils"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4440
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4429
 msgid "uploader"
 msgstr "chargement"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4441
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4430
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-globals.php:91
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/user-expiry.php:94
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/user-expiry.php:104
@@ -3460,40 +3463,40 @@ msgstr "chargement"
 msgid "users"
 msgstr "utilisateurs"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4442
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4431
 msgid "utilities"
 msgstr "utilitaires"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4563
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4552
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/defaultCodeblocks.php:34
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/related_items.php:181
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:101
 msgid "Image"
 msgstr "Image"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4569
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4558
 #, php-format
 msgid "%s failed to delete."
 msgstr "%s n'a pu être effacé(e)."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4571
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4560
 #, php-format
 msgid "%s deleted successfully."
 msgstr "%s a bien été supprimé(e)."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4576
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:410
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4565
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:411
 msgid "You must supply a password."
 msgstr "Vous devez fournir un mot de passe."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4578
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4567
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-options.php:534
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:419
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:448
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:420
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:450
 msgid "Your passwords did not match."
 msgstr "Vos mots de passe ne correspondent pas"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4585
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4574
 msgid ""
 "The image edit form submission has been truncated. Try displaying fewer "
 "images on a page."
@@ -3501,64 +3504,64 @@ msgstr ""
 "Le formulaire d'édition des images a été tronqué. Veuillez afficher moins "
 "d'images par page."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4588
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4577
 msgid "Hit counters have been reset."
 msgstr "Les compteurs d'affichage ont été remis à zéro."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4591
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4580
 msgid "Cache has been purged."
 msgstr "Le cache a été vidé."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4594
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4583
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-upload.php:154
 msgid "Your files have been uploaded."
 msgstr "Vos fichiers ont été chargés."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4597
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4586
 #, php-format
 msgid "<em>%s</em> already exists."
 msgstr "<em>%s</em> existe déjà."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4600
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:267
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4589
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:277
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:214
 msgid "Changes applied"
 msgstr "Modifications appliquées"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4646
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4635
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:50
 msgid "Image already exists."
 msgstr "L'image existe déjà."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4649
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4638
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:52
 msgid "Album already exists."
 msgstr "L'album existe déjà."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4652
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4641
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:54
 msgid "Cannot move, copy, or rename to a subalbum of this album."
 msgstr ""
 "Impossible de déplacer, de copier ou de renommer vers un sous-album de cet "
 "album."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4655
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4644
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:56
 msgid "Cannot move, copy, or rename to a dynamic album."
 msgstr ""
 "Impossible de déplacer, de copier ou de renommer vers un album dynamique."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4658
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4647
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:58
 msgid "Cannot rename an image to a different suffix"
 msgstr "Impossible de changer le suffixe de l'image"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4661
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4650
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:60
 msgid "Album delete failed"
 msgstr "L'album n'a pu être effacé"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4664
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4653
 #, php-format
 msgid "There was an error #%d with a move, copy, or rename operation."
 msgstr ""
@@ -3699,14 +3702,14 @@ msgstr "Aucun journal à visualiser."
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-options.php:507
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-plugins.php:119
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:285
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:286
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:145
 msgid "Error"
 msgstr "Erreur !"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-options.php:508
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-plugins.php:120
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:286
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:287
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:146
 msgid ""
 "The form submission is incomplete. Perhaps the form size exceeds configured "
@@ -3773,7 +3776,7 @@ msgstr "Lisez le guide de dépannage sur zenphoto.org pour plus de détails."
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-options.php:2931
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-options.php:2979
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-options.php:3095
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:456
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:457
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/search_statistics/search_analysis.php:267
 msgid "reset"
 msgstr "reset"
@@ -5204,7 +5207,7 @@ msgstr "Métadonnées"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-options.php:2289
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-options.php:2290
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-options.php:2291
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:473
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:474
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/GoogleMap.php:85
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/contact_form.php:78
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:100
@@ -6194,8 +6197,8 @@ msgstr "Thème utilisé"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-themes.php:289
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/utilities/gallery_statistics.php:446
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:288
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:417
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:291
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:427
 msgid "Edit"
 msgstr "Modifier"
 
@@ -6377,65 +6380,65 @@ msgstr "Généré automatiquement"
 msgid "There are no albums to which you can upload."
 msgstr "Il n'existe aucun album dans lequel vous pouvez charger des images."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:136
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:138
 #, php-format
 msgid "%s password may not be empty!"
 msgstr "Le mot de passe %s ne peut pas être vide !"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:275
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:276
 msgid ""
 "Password reset request.<br />You may now set admin usernames and passwords."
 msgstr ""
 "Demande de réinitialisation du mot de passe. <br />Vous pouvez maintenant "
 "définir les identifiant et mot de passe de l'administrateur."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:291
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:292
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:156
 msgid "Saved"
 msgstr "Enregistré"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:393
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:394
 msgid "Your Allowed tags change did not parse successfully."
 msgstr "Le changement de vos tags autorisés ne s'est pas déroulé correctement."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:398
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:399
 msgid "Rights migration failed."
 msgstr "La migration des droits a échoué."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:403
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:404
 msgid "User id already used."
 msgstr "Ce nom d'utilisateur est déjà utilisé."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:413
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:414
 msgid "User name not provided"
 msgstr "Nom d'utilisateur non saisi"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:426
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:427
 msgid "Your Website URL is not valid"
 msgstr "L'URL de votre site internet n'est pas valide"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:467
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:468
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:208
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:382
 msgid "Expand all"
 msgstr "Tout afficher"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:469
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:470
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:210
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:384
 msgid "Collapse all"
 msgstr "Tout masquer"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:476
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:536
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:477
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:537
 msgid "pending verification"
 msgstr "en attente de vérification"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:480
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:481
 msgid "no group"
 msgstr "aucun groupe"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:542
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:543
 msgid "Master"
 msgstr "compte-maître"
 
@@ -6529,7 +6532,7 @@ msgstr ""
 msgid "The <em>master</em> account has full rights to all albums."
 msgstr "Le <em>compte-maître</em> a l'accès intégral à tous les albums."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:842
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:839
 #, php-format
 msgid ""
 "The <em>Zenphoto_Authority</em> object supports a higher version of user "
@@ -6540,11 +6543,11 @@ msgstr ""
 "droits d'utilisateurs que celle présentement sélectionnée. Envisagez de "
 "migrer ces droits pour bénéficier des nouvelles fonctionnalités."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:845
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:842
 msgid "Migrate rights"
 msgstr "Migrer les droits"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:855
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:852
 #, php-format
 msgid ""
 "You may wish to revert the <em>Zenphoto_Authority</em> user rights to "
@@ -6554,91 +6557,91 @@ msgstr ""
 "<em>Zenphoto_Authority</em> à la version %s pour la compatibilité avec les "
 "versions antérieures de Zenphoto."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:858
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:855
 msgid "Revert rights"
 msgstr "Rétablir les droits"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:876
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:873
 msgid "User names may not contain \"?\", \"&\", or quotation marks."
 msgstr ""
 "Le nom d'utilisateur ne peut contenir « ? », « & », « \" » ni des caractères "
 "accentués."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:881
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:878
 #, php-format
 msgid "The user \"%s\" already exists."
 msgstr "L'utilisateur « %s » existe déjà."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:46
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:47
 msgid "Image cache cleared."
 msgstr "Cache d'images vidé."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:57
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:58
 msgid "RSS cache cleared."
 msgstr "Cache RSS vidé."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:68
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:69
 msgid "HTML cache cleared."
 msgstr "Cache HTML vidé."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:76
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:77
 msgid "enabled"
 msgstr "activé"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:78
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:79
 msgid "Setup files restored."
 msgstr "Fichiers d'installation restaurés."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:97
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:98
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/setup/index.php:2518
 msgid "protected"
 msgstr "protégé"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:99
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:100
 msgid "Setup files protected."
 msgstr "Fichiers d'installation protégés."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:128
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:129
 msgid "purge Image cache"
 msgstr "purger le cache d'images"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:129
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:130
 msgid "purge RSS cache"
 msgstr "purger le cache RSS"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:130
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:131
 msgid "reset all hitcounters"
 msgstr "remettre les compteurs à zéro"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:136
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:137
 #, php-format
 msgid "You do not have proper rights to %s."
 msgstr "Vous n'avez pas les droits suffisants pour %s."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:141
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:142
 #, php-format
 msgid "You do not have proper rights to access %s."
 msgstr "Vous n'avez pas les droits suffisants pour accéder à %s."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:235
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:236
 msgid "Misc"
 msgstr "Varia"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:249
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:250
 msgid "Setup » restore scripts"
 msgstr "Installation » restaurer les scripts"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:254
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:255
 msgid "Restores setup files so setup can be run."
 msgstr ""
 "Restaure les fichiers d'installation pour permettre de lancer le script "
 "d'installation."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:262
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:263
 msgid "Your Setup scripts are not protected."
 msgstr "Les fichiers d'installation ne sont pas protégés."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:263
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:264
 msgid ""
 "The Setup environment is not totally secure, you should protect the scripts "
 "to thwart hackers. Use the <strong>Setup » protect scripts</strong> button "
@@ -6650,82 +6653,82 @@ msgstr ""
 "section des fonctions <em>utilitaires</em> de la page <em>aperçu</em> de "
 "l'administration."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:271
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:272
 msgid "Setup » protect scripts"
 msgstr "Installation ›› protéger les scripts"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:276
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:277
 msgid "Protects setup files so setup cannot be run."
 msgstr ""
 "Protège les fichiers d'installation pour empêcher le script d'installation "
 "d'être exécuté."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:292
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:293
 msgid "Installation information"
 msgstr "Information sur l'installation"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:296
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:297
 msgid "<em>Debug build</em>"
 msgstr "<em>Version de développement</em>"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:298
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:299
 msgid "Official build"
 msgstr "Version officielle"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:301
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:302
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions-basic.php:1244
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/setup/index.php:405
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/security-logger.php:132
 msgid "clone"
 msgstr "clone"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:307
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:308
 #, php-format
 msgid "Zenphoto version <strong>%1$s [%2$s] (%3$s)</strong>"
 msgstr "Version de Zenphoto <strong>%1$s [%2$s] (%3$s)</strong>"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:322
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:323
 #, php-format
 msgid "Preview the release notes for Zenphoto %s"
 msgstr "Visualiser les notes de la version Zenphoto %s"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:335
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:336
 #, php-format
 msgid "Current locale setting: <strong>%1$s</strong>"
 msgstr "Paramètre régional présentement utilisé : <strong>%1$s</strong>"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:337
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:338
 msgid "<strong>Locale setting has failed</strong>"
 msgstr "<strong>Le paramètre régional a échoué !</strong>"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:342
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:343
 msgid "Server path:"
 msgstr "Chemin d'accès du serveur :"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:345
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:346
 msgid "WEB path:"
 msgstr "Chemin d'accès internet :"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:348
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:349
 msgid "PHP Session path:"
 msgstr "Chemin de la session PHP :"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:357
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:358
 #, php-format
 msgid "Current gallery theme: <strong>%1$s</strong>"
 msgstr "Thème présentement utilisé : <strong>%1$s</strong>"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:360
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:361
 #, php-format
 msgid "PHP version: <strong>%1$s</strong>"
 msgstr "Version de PHP : <strong>%1$s</strong>"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:409
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:410
 #, php-format
 msgid "PHP Error reporting: <strong>%s</strong>"
 msgstr "Type de rapport d'erreurs PHP : <strong>%s</strong>"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:415
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:416
 msgid ""
 "PHP error messages may be displayed on WEB pages. This may disclose site "
 "sensitive information."
@@ -6733,29 +6736,29 @@ msgstr ""
 "Les messages d'erreurs PHP peuvent être affichés sur des pages internet et "
 "ainsi divulguer des renseignements sensibles."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:415
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:416
 msgid "<em>display_errors</em> is <strong>On</strong>"
 msgstr ""
 "L'affichage des erreurs ( paramètre <em>display_errors</em>) est "
 "<strong>activé</strong>"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:419
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:420
 msgid "<em>display_errors</em> is <strong>Off</strong>"
 msgstr ""
 "L'affichage des erreurs ( paramètre <em>display_errors</em>) est "
 "<strong>déactivé</strong>"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:425
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:426
 #, php-format
 msgid "Graphics support: <strong>%s</strong>"
 msgstr "Bibliothèque graphique : <strong>%s</strong>"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:435
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:436
 #, php-format
 msgid "supporting: %s"
 msgstr "formats supportés : %s"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:438
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:439
 #, php-format
 msgid ""
 "PHP memory limit: <strong>%1$s</strong> (Note: Your server might allocate "
@@ -6764,147 +6767,147 @@ msgstr ""
 "Limite de mémoire de PHP : <strong>%1$s</strong> (Note : votre serveur peut "
 "en allouer moins.)"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:442
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:443
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/utilities/database_reference.php:102
 #, php-format
 msgid "%1$s version: <strong>%2$s</strong>"
 msgstr "Version de %1$s : <strong>%2$s</strong>"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:446
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:447
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/utilities/database_reference.php:105
 #, php-format
 msgid "Database name: <strong>%1$s</strong>"
 msgstr "Nom de la base de données : <strong>%s</strong>"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:451
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:452
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/utilities/database_reference.php:111
 #, php-format
 msgid "Table prefix: <strong>%1$s</strong>"
 msgstr "Préfixe des tables : <strong>%1$s</strong>"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:460
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:461
 msgid "No spam filter configured"
 msgstr "Aucun filtre de contenu indésirable n'a été configuré"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:462
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:463
 #, php-format
 msgid "Spam filter: <strong>%s</strong>"
 msgstr "Filtre anti-spam : <strong>%s</strong>"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:468
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:469
 #, php-format
 msgid "CAPTCHA generator: <strong>%s</strong>"
 msgstr "Générateur de Captcha : <strong>%s</strong>"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:474
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:475
 msgid "There is no mail handler configured!"
 msgstr "Aucun gestionnaire de mail configuré !"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:485
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:487
 #, php-format
 msgid "%u active plugin:"
 msgid_plural "%u active plugins:"
 msgstr[0] "%u extension activée :"
 msgstr[1] "%u extensions activées :"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:521
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:559
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:523
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:561
 msgid "<em>none</em>"
 msgstr "<em>aucune</em>"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:532
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:534
 #, php-format
 msgid "%u active filter:"
 msgid_plural "%u active filters:"
 msgstr[0] "%u filtre activé :"
 msgstr[1] "%u filtres activés :"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:574
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:576
 msgid "Utility functions"
 msgstr "Utilitaires"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:619
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:621
 msgid "Gallery Stats"
 msgstr "Statistiques de la galerie"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:626
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:628
 #, php-format
 msgid "<strong>%1$u</strong> Image (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Images (%2$u un-published)"
 msgstr[0] "<strong>%1$u</strong> image (%2$u non publiée)"
 msgstr[1] "<strong>%1$u</strong> images (%2$u non publiée(s))"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:628
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:630
 #, php-format
 msgid "<strong>%u</strong> Image"
 msgid_plural "<strong>%u</strong> Images"
 msgstr[0] "<strong>%u</strong> image"
 msgstr[1] "<strong>%u</strong> images"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:637
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:639
 #, php-format
 msgid "<strong>%1$u</strong> Album (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Albums (%2$u un-published)"
 msgstr[0] "<strong>%1$u</strong> album (%2$u non publié)"
 msgstr[1] "(<strong>%1$u</strong> albums (%2$u non publié(s))"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:639
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:641
 #, php-format
 msgid "<strong>%u</strong> Album"
 msgid_plural "<strong>%u</strong> Albums"
 msgstr[0] "<strong>%u</strong> album"
 msgstr[1] "<strong>%u</strong> albums"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:648
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:650
 #, php-format
 msgid "<strong>%1$u</strong> Comment (%2$u in moderation)"
 msgid_plural "<strong>%1$u</strong> Comments (%2$u in moderation)"
 msgstr[0] "<strong>%1$u</strong> commentaires (%2$u en modération)"
 msgstr[1] "<strong>%1$u</strong> commentaires (%2$u en modération)"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:650
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:652
 #, php-format
 msgid "<strong>%u</strong> Comment"
 msgid_plural "<strong>%u</strong> Comments"
 msgstr[0] "<strong>%u</strong> commentaire"
 msgstr[1] "<strong>%u</strong> commentaires"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:661
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:663
 #, php-format
 msgid "<strong>%1$u</strong> Page"
 msgid_plural "<strong>%1$u</strong> Pages"
 msgstr[0] "<strong>%1$u</strong> page"
 msgstr[1] "<strong>%1$u</strong> pages"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:663
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:665
 #, php-format
 msgid "<strong>%1$u</strong> Page (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Pages (%2$u un-published)"
 msgstr[0] "<strong>%1$u</strong> page (%2$u non publiée)"
 msgstr[1] "<strong>%1$u</strong> pages (%2$u non publiée(s))"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:671
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:673
 #, php-format
 msgid "<strong>%1$u</strong> News"
 msgid_plural "<strong>%1$u</strong> News"
 msgstr[0] "<strong>%1$u</strong> actualité"
 msgstr[1] "<strong>%1$u</strong> actualités"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:673
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:675
 #, php-format
 msgid "<strong>%1$u</strong> News (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> News (%2$u un-published)"
 msgstr[0] "<strong>%1$u</strong> actualité (%2$u non publiée)"
 msgstr[1] "<strong>%1$u</strong> actualités (%2$u non publiée(s))"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:680
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:682
 #, php-format
 msgid "<strong>%1$u</strong> Category"
 msgid_plural "<strong>%1$u</strong> Categories"
 msgstr[0] "<strong>%1$u</strong> catégorie"
 msgstr[1] "<strong>%1$u</strong> catégories"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:700
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin.php:702
 msgid "Your user rights do not allow access to administrative functions."
 msgstr ""
 "Vos droits utilisateur ne vous permettent pas d'accéder aux fonctions "
@@ -6978,7 +6981,7 @@ msgid "Bad "
 msgstr "Mauvais"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/class-feed.php:428
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:856
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:808
 msgid "by"
 msgstr "par"
 
@@ -7107,7 +7110,7 @@ msgid "Location/Place"
 msgstr "Lieu"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/class-search.php:105
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2379
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2382
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/contact_form.php:117
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/contact_form.php:119
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/userAddressFields.php:51
@@ -7839,7 +7842,7 @@ msgid "Flash Did Not Fire"
 msgstr "Le flash ne s'est pas déclenché"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/exif/makers/canon.php:236
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2365
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2368
 msgid "Flash Fired"
 msgstr "Flash déclenché"
 
@@ -8238,7 +8241,9 @@ msgstr "Naturel"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/full-image.php:15
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/downloadList.php:380
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/downloadList.php:589
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/downloadList.php:590
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/downloadList.php:592
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/downloadList.php:593
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/ipBlocker.php:355
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/ipBlocker.php:356
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/ipBlocker.php:366
@@ -9088,32 +9093,32 @@ msgstr ""
 msgid "0 Bytes"
 msgstr "0 octet"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:1926
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:1929
 #, php-format
 msgid "Zenphoto processed a 404 error on %s. See the debug log for details."
 msgstr ""
 "Zenphoto a produit une erreur 404 sur %s. Voir le journal de déboggage pour "
 "plus de détails."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2089
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2092
 msgid "Click to show content"
 msgstr "Cliquer pour afficher le contenu"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2094
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2097
 msgid "Click to hide content"
 msgstr "Cliquer pour masquer le contenu"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2144
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2147
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d should be a number."
 msgstr "<em>[%1$s]</em> le paramètre %2$d doit être numérique."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2152
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2155
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d should be a string."
 msgstr "<em>[%1$s]</em> le paramètre %2$d doit être une chaine de caractère."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2165
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2168
 #, php-format
 msgid ""
 "<em>[%1$s]</em> parameter %2$d should be <code>true</code> or <code>false</"
@@ -9122,343 +9127,343 @@ msgstr ""
 "<em>[%1$s]</em> le paramètre %2$d doit avoir les valeurs <code>true</code> "
 "ou <code>false</code>."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2184
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2187
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d is incorrectly defined."
 msgstr "<em>[%1$s]</em> le paramètre %2$d n'est pas correctement défini."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2190
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2193
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d is missing."
 msgstr "<em>[%1$s]</em> le paramètre %2$d est manquant."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2199
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2202
 #, php-format
 msgid "<em>[%1$s]</em> macro does not take parameters"
 msgstr "La macro <em>[%1$s]</em> ne prend aucun paramètre."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2222
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2249
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2225
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2252
 #, php-format
 msgid "<em>[%1$s]</em> retuned no data"
 msgstr "<em>[%1$s]</em> n'a retourné aucune donnée"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2227
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2230
 #, php-format
 msgid "<em>[%1$s]</em> <code>%2$s</code> is not callable"
 msgstr "<em>[%1$s]</em> <code>%2$s</code> ne peut être lancée"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2254
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2257
 #, php-format
 msgid "<em>[%1$s]</em> takes %2$d parameter"
 msgid_plural "<em>[%1$s]</em> takes %2$d parameters"
 msgstr[0] "<em>[%1$s]</em> requiert %2$d paramètre"
 msgstr[1] "<em>[%1$s]</em> requiert %2$d paramètres"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2337
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2340
 msgid "Camera Maker"
 msgstr "Fabricant de l'appareil"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2338
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2341
 msgid "Camera Model"
 msgstr "Modèle d'appareil"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2339
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2342
 msgid "Image Title"
 msgstr "Titre de l'image"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2340
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2343
 msgid "Object Name"
 msgstr "Nom de l'objet"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2341
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2344
 msgid "Image Headline"
 msgstr "Fait saillant de l'image"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2342
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2345
 msgid "Image Caption"
 msgstr "Légende de l'image"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2343
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2346
 msgid "Image Caption Writer"
 msgstr "Auteur de la légende de l'image"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2344
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2347
 msgid "Time Taken"
 msgstr "Heure de prise de vue"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2345
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2348
 msgid "Original Time Taken"
 msgstr "Heure de prise de vue originale"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2346
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2349
 msgid "Time Digitized"
 msgstr "Heure de la numérisation"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2347
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2350
 msgid "Date Created"
 msgstr "Date de création"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2348
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2351
 msgid "Time Created"
 msgstr "Heure de création"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2349
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2352
 msgid "Digital Creation Date"
 msgstr "Date de création numérique"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2350
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2353
 msgid "Digital Creation Time"
 msgstr "Heure de création numérique"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2351
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2354
 msgid "Artist"
 msgstr "Artiste"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2352
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2355
 msgid "Image Credit"
 msgstr "Crédits de l'image"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2353
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2356
 msgid "Byline"
 msgstr "Accroche"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2354
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2357
 msgid "Byline Title"
 msgstr "Titre de l'accroche"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2355
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2358
 msgid "Image Source"
 msgstr "Source de l'image"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2357
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2360
 msgid "Copyright Holder"
 msgstr "Titulaire du copyright"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2358
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2361
 msgid "Copyright Notice"
 msgstr "Informations de copyright"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2359
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2362
 msgid "Keywords"
 msgstr "Mots-clés"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2360
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2363
 msgid "Shutter Speed"
 msgstr "Vitesse d'obturation"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2361
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2364
 msgid "Aperture"
 msgstr "Ouverture"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2362
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2365
 msgid "ISO Sensitivity"
 msgstr "Sensibilité ISO"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2363
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2366
 msgid "Exposure Compensation"
 msgstr "Correction de l'exposition"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2364
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2367
 msgid "Metering Mode"
 msgstr "Mode de mesure"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2366
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2369
 msgid "Original Width"
 msgstr "Largeur de l'image pleine grandeur"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2367
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2370
 msgid "Original Height"
 msgstr "Hauteur de l'image pleine grandeur"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2368
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2371
 msgid "Orientation"
 msgstr "Orientation"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2369
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2372
 msgid "Software"
 msgstr "Logiciel"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2370
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2373
 msgid "Contrast Setting"
 msgstr "Réglage du contraste"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2371
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2374
 msgid "Sharpness Setting"
 msgstr "Réglage du renforcement"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2372
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2375
 msgid "Saturation Setting"
 msgstr "Réglage de la saturation"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2373
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2376
 msgid "White Balance"
 msgstr "Balance des blancs"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2374
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2377
 msgid "Subject Distance"
 msgstr "Distance du sujet"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2375
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2378
 msgid "Focal Length"
 msgstr "Longueur de focale"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2376
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2379
 msgid "Lens Type"
 msgstr "Type d'objectif"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2377
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2380
 msgid "Lens Info"
 msgstr "Détails sur l'objectif"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2378
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2381
 msgid "35mm Focal Length Equivalent"
 msgstr "Longueur focale équivalente pour pellicule 35 mm"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2380
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2383
 msgid "Sub-location"
 msgstr "Lieu (très précis)"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2381
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2384
 msgid "Province/State"
 msgstr "État, province"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2382
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2385
 msgid "Country/Primary Location Code"
 msgstr "Code du pays/de la localisation primaire"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2383
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2386
 msgid "Country/Primary Location Name"
 msgstr "Nom du pays/de la localisation primaire"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2384
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2387
 msgid "Content Location Code"
 msgstr "Code du lieu du contenu"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2385
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2388
 msgid "Content Location Name"
 msgstr "Lieu du contenu"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2386
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2389
 msgid "Latitude"
 msgstr "Latitude"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2387
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2390
 msgid "Latitude Reference"
 msgstr "Latitude de référence"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2388
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2391
 msgid "Longitude"
 msgstr "Longitude"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2389
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2392
 msgid "Longitude Reference"
 msgstr "Longitude de référence"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2390
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2393
 msgid "Altitude"
 msgstr "Altitude"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2391
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2394
 msgid "Altitude Reference"
 msgstr "Altitude de référence"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2392
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2395
 msgid "Originating Program "
 msgstr "Programme d'origine"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2393
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2396
 msgid "Program Version"
 msgstr "Version du programme"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2394
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2397
 msgid "Video File Format"
 msgstr "Format de fichier vidéo"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2395
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2398
 msgid "Video File Size"
 msgstr "Taille du fichier vidéo"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2396
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2399
 msgid "Video Artist"
 msgstr "Artiste de la vidéo"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2397
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2400
 msgid "Video Title"
 msgstr "Titre de la vidéo"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2398
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2401
 msgid "Bitrate"
 msgstr "Débit"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2399
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2402
 msgid "Bitrate_Mode"
 msgstr "Bitrate_Mode"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2400
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2403
 msgid "Bits per sample"
 msgstr "Bits par échantillon"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2401
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2404
 msgid "Codec"
 msgstr "Codec"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2402
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2405
 msgid "Compression Ratio"
 msgstr "Taux de compression"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2403
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2406
 msgid "Video Dataformat"
 msgstr "Format des données vidéos"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2404
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2407
 msgid "File Encoder"
 msgstr "Encodeur de fichiers"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2405
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2408
 msgid "Sample rate"
 msgstr "Taux d'échantillonage"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2406
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2409
 msgid "Channel mode"
 msgstr "Mode de canaux"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2407
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2410
 msgid "Format"
 msgstr "Format"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2408
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2411
 msgid "Channels"
 msgstr "Canaux"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2409
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2412
 msgid "Frame rate"
 msgstr "Nombre de cadres / seconde"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2410
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2413
 msgid "X Resolution"
 msgstr "Résolution en X"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2411
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2414
 msgid "Y Resolution"
 msgstr "Résolution en Y"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2412
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2415
 msgid "Aspect ratio"
 msgstr "Ratio d'aspect"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2413
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2416
 msgid "Play Time"
 msgstr "Robustesse minimale du mot de passe"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2414
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2417
 msgid "XMP Rating"
 msgstr "Vote XMP"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2601
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:104
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions.php:2604
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:105
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/contact_form.php:137
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:95
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:91
 msgid "No captcha handler is enabled."
 msgstr "Aucun gestionnaire de captcha n'est activé."
 
@@ -9683,8 +9688,8 @@ msgstr "Poster des commentaires"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/lib-auth.php:524
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/lib-auth.php:548
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/lib-auth.php:574
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:172
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:228
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:175
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:238
 msgid "Comments"
 msgstr "Commentaires"
 
@@ -9987,7 +9992,7 @@ msgid "All rights"
 msgstr "Tous les droits"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/lib-auth.php:595
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:141
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:143
 msgid "Default rights"
 msgstr "Droits par défaut"
 
@@ -10106,7 +10111,7 @@ msgstr ""
 "afin d'obtenir votre question secrète."
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/lib-auth.php:946
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user/register_user_form.php:131
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user/register_user_form.php:108
 msgid "Submit"
 msgstr "Soumettre"
 
@@ -13142,12 +13147,12 @@ msgstr "à "
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:216
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:221
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:308
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:91
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:95
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:99
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:107
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:92
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:96
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:100
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:143
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:183
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:82
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:96
 msgid "Show"
 msgstr "Afficher"
 
@@ -14110,7 +14115,7 @@ msgstr "PDF"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/class-WEBdocs.php:55
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/class-WEBdocs.php:66
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/class-WEBdocs.php:73
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:137
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:134
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:96
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/tinymce4.php:46
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/tinymce4.php:51
@@ -14451,39 +14456,39 @@ msgstr ""
 msgid "Provides a unified comment handling facility."
 msgstr "Offre un outil unifié de gestion des commentaires."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:86
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:87
 msgid "Enable comment notification"
 msgstr "Activer la notification des commentaires"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:88
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:89
 msgid "Email the Admin when new comments are posted"
 msgstr ""
 "Envoyer un email à l'administrateur quand de nouveaux commentaires sont "
 "envoyés."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:89
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:90
 msgid "Name field"
 msgstr "Champ « nom »"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:91
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:95
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:99
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:103
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:107
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:82
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:92
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:96
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:100
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:104
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:143
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:96
 msgid "Require"
 msgstr "Obligatoire"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:92
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:93
 msgid "If the <em>Name</em> field is required, the poster must provide a name."
 msgstr ""
 "Si le champ <em>Nom</em> est obligatoire, l'utilisateur doit saisir un nom."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:93
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:94
 msgid "Email field"
 msgstr "Champ « email »"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:96
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:97
 msgid ""
 "If the <em>Email</em> field is required, the poster must provide an email "
 "address."
@@ -14491,26 +14496,26 @@ msgstr ""
 "Si le champ <em>Email</em> est obligatoire, l'utilisateur doit saisir une "
 "adresse d'email."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:97
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:98
 msgid "Website field"
 msgstr "Champ « site internet »"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:100
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:101
 msgid ""
 "If the <em>Website</em> field is required, the poster must provide a website."
 msgstr ""
 "Si le champ <em>Site internet</em> est obligatoire, l'utilisateur doit "
 "saisir un site internet."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:101
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:102
 msgid "Captcha field"
 msgstr "Captcha"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:103
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:104
 msgid "For guests"
 msgstr "Invités"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:104
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:105
 msgid ""
 "If <em>Captcha</em> is required, the form will include a Captcha "
 "verification."
@@ -14518,12 +14523,124 @@ msgstr ""
 "Si un <em>Captcha</em> est obligatoire, le formulaire comporte la validation "
 "par Captcha."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:105
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:80
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:106
+msgid "Allow comments on"
+msgstr "Autoriser les commentaires"
+
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:109
+msgid "Comment forms will be presented on the checked pages."
+msgstr "Les formulaires de commentaires sont affichés sur les pages cochées."
+
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:110
+msgid "Toggled comment block"
+msgstr "Masquer les commentaires"
+
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:112
+msgid ""
+"If checked, existing comments will be initially hidden. Clicking on the "
+"provided button will show them."
+msgstr ""
+"Si cette option est activée, les commentaires existants sont masqués par "
+"défaut. Le visiteur doit cliquer sur un bouton pour les voir."
+
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:113
+msgid "Show author URL"
+msgstr "Afficher l'URL de l'auteur"
+
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:115
+msgid ""
+"To discourage SPAM, uncheck this box and the author URL will not be revealed."
+msgstr ""
+"Pour décourager le spam, décochez cette case afin de ne pas afficher l'URL "
+"de l'auteur."
+
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:116
+msgid "Only members can comment"
+msgstr "Seuls les membres peuvent commenter"
+
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:118
+msgid "If checked, only logged in users will be allowed to post comments."
+msgstr ""
+"Si l'option est activée, seuls les utilisateurs connectés peuvent poster des "
+"commentaires."
+
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:119
+msgid "Allow private postings"
+msgstr "Autoriser les messages privés"
+
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:121
+msgid ""
+"If checked, posters may mark their comments as private (not for publishing)."
+msgstr ""
+"Si cette option est cochée, les commentateurs peuvent marquer leur message "
+"comme privé (non destiné à la publication)."
+
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:122
+msgid "Allow anonymous posting"
+msgstr "Autoriser les commentaires anonymes"
+
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:124
+msgid ""
+"If checked, posters may exclude their personal information from the "
+"published post."
+msgstr ""
+"Si cette option est cochée, les commentateurs peuvent cacher leurs "
+"renseignements personnels du message publié."
+
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:125
+msgid "Include RSS link"
+msgstr "Inclure un lien RSS"
+
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:127
+msgid ""
+"If checked, an RSS link will be included at the bottom of the comment "
+"section."
+msgstr ""
+"Si l'option est activée, un lien RSS apparaîtra au bas de la section des "
+"commentaires"
+
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:128
+msgid "Comments per page"
+msgstr "Nombre de commentaires par page"
+
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:130
+msgid ""
+"The comments that should show per page on the admin tab and when using the "
+"jQuery pagination"
+msgstr ""
+"Le nombre de commentaires à afficher sur une page lorsqu'on utilise la "
+"pagination jQuery."
+
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:131
+msgid "Comment editor configuration"
+msgstr "Configuration de l'éditeur de commentaires"
+
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:135
+msgid ""
+"Configuration file for TinyMCE when used for comments. Set to "
+"<code>Disabled</code> to disable visual editing."
+msgstr ""
+"Fichier de configuration de TinyMCE lorsqu'il est utilisé pour les "
+"commentaires. Choisir <code>désactivé</code> pour désactiver l'édition "
+"visuelle."
+
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:136
+msgid "Pagination"
+msgstr "Pagination"
+
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:138
+msgid ""
+"Uncheck to disable the jQuery pagination of comments. Enabled by default."
+msgstr ""
+"Décocher pour désactiver la pagination jQuery des commentaires. Fonction "
+"activée par défaut."
+
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:141
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:94
 msgid "Address fields"
 msgstr "Champs d'adresse"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:108
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:144
 msgid ""
 "If <em>Address fields</em> are shown or required, the form will include "
 "positions for address information. If required, the poster must supply data "
@@ -14533,156 +14650,44 @@ msgstr ""
 "formulaire comporte des champs pour les détails de l'adresse. Si ces champs "
 "sont obligatoires, l'utilisateur doit tous les remplir."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:109
-msgid "Allow comments on"
-msgstr "Autoriser les commentaires"
-
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:112
-msgid "Comment forms will be presented on the checked pages."
-msgstr "Les formulaires de commentaires sont affichés sur les pages cochées."
-
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:113
-msgid "Toggled comment block"
-msgstr "Masquer les commentaires"
-
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:115
-msgid ""
-"If checked, existing comments will be initially hidden. Clicking on the "
-"provided button will show them."
-msgstr ""
-"Si cette option est activée, les commentaires existants sont masqués par "
-"défaut. Le visiteur doit cliquer sur un bouton pour les voir."
-
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:116
-msgid "Show author URL"
-msgstr "Afficher l'URL de l'auteur"
-
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:118
-msgid ""
-"To discourage SPAM, uncheck this box and the author URL will not be revealed."
-msgstr ""
-"Pour décourager le spam, décochez cette case afin de ne pas afficher l'URL "
-"de l'auteur."
-
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:119
-msgid "Only members can comment"
-msgstr "Seuls les membres peuvent commenter"
-
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:121
-msgid "If checked, only logged in users will be allowed to post comments."
-msgstr ""
-"Si l'option est activée, seuls les utilisateurs connectés peuvent poster des "
-"commentaires."
-
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:122
-msgid "Allow private postings"
-msgstr "Autoriser les messages privés"
-
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:124
-msgid ""
-"If checked, posters may mark their comments as private (not for publishing)."
-msgstr ""
-"Si cette option est cochée, les commentateurs peuvent marquer leur message "
-"comme privé (non destiné à la publication)."
-
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:125
-msgid "Allow anonymous posting"
-msgstr "Autoriser les commentaires anonymes"
-
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:127
-msgid ""
-"If checked, posters may exclude their personal information from the "
-"published post."
-msgstr ""
-"Si cette option est cochée, les commentateurs peuvent cacher leurs "
-"renseignements personnels du message publié."
-
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:128
-msgid "Include RSS link"
-msgstr "Inclure un lien RSS"
-
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:130
-msgid ""
-"If checked, an RSS link will be included at the bottom of the comment "
-"section."
-msgstr ""
-"Si l'option est activée, un lien RSS apparaîtra au bas de la section des "
-"commentaires"
-
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:131
-msgid "Comments per page"
-msgstr "Nombre de commentaires par page"
-
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:133
-msgid ""
-"The comments that should show per page on the admin tab and when using the "
-"jQuery pagination"
-msgstr ""
-"Le nombre de commentaires à afficher sur une page lorsqu'on utilise la "
-"pagination jQuery."
-
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:134
-msgid "Comment editor configuration"
-msgstr "Configuration de l'éditeur de commentaires"
-
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:138
-msgid ""
-"Configuration file for TinyMCE when used for comments. Set to "
-"<code>Disabled</code> to disable visual editing."
-msgstr ""
-"Fichier de configuration de TinyMCE lorsqu'il est utilisé pour les "
-"commentaires. Choisir <code>désactivé</code> pour désactiver l'édition "
-"visuelle."
-
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:139
-msgid "Pagination"
-msgstr "Pagination"
-
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:141
-msgid ""
-"Uncheck to disable the jQuery pagination of comments. Enabled by default."
-msgstr ""
-"Décocher pour désactiver la pagination jQuery des commentaires. Fonction "
-"activée par défaut."
-
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:156
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:157
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:172
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:159
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:160
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:175
 msgid "comments"
 msgstr "commentaires"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:199
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:202
 msgid "Add a comment:"
 msgstr "Ajouter un commentaire : "
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:234
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:237
 msgid "No Comments"
 msgstr "Aucun commentaire"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:248
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:251
 msgid "show comments"
 msgstr "afficher les commentaires"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:252
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:255
 msgid "hide comments"
 msgstr "masquer les commentaires"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:286
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:289
 msgid "on"
 msgstr "le"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:309
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:312
 msgid "Only registered users may post comments."
 msgstr "Seuls les utilisateurs enregistrés peuvent poster des commentaires."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:384
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:387
 msgid "Closed for comments."
 msgstr "Fermé aux commentaires."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:398
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:401
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:404
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:407
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:410
 msgid "Subscribe to comments"
 msgstr "S'abonner aux commentaires"
 
@@ -14690,187 +14695,195 @@ msgstr "S'abonner aux commentaires"
 msgid "edit comment"
 msgstr "modifier le commentaire"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:126
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:423
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:127
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:433
 msgid "Are you sure you want to delete this comment?"
 msgstr "Êtes-vous certain(e) de vous vouloir supprimer ce commentaire ?"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:145
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:146
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:424
 msgid "Author:"
 msgstr "Auteur : "
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:147
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:148
 msgid "Web Site:"
 msgstr "Site internet : "
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:149
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:150
 msgid "E-Mail:"
 msgstr "Email :"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:151
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:152
 msgid "Date/Time:"
 msgstr "Date et heure : "
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:153
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:154
 msgid "IP:"
 msgstr "IP :"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:159
+msgid "Street:"
+msgstr "Rue :"
+
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:167
+msgid "Postal code:"
+msgstr "Code postal :"
+
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:169
 msgid "Comment:"
 msgstr "Commentaire : "
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:163
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:173
 msgid "Comment management"
 msgstr "Gestion des commentaires"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:167
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:177
 msgid "Comment is un-approved"
 msgstr "Le commentaires est bloqué"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:168
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:320
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:178
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:330
 msgid "Approve"
 msgstr "Approuver"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:169
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:179
 msgid "Approve this comment"
 msgstr "Approuver ce commentaire"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:173
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:183
 msgid "Comment is approved"
 msgstr "Le commentaire est approuvé"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:174
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:184
 msgid "Un-approve"
 msgstr "Bloquer"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:175
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:185
 msgid "Un-approve this comment"
 msgstr "Bloquer ce commentaire"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:181
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:191
 msgid "Comment is private"
 msgstr "Le commentaire est privé"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:183
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:193
 msgid "Comment is public"
 msgstr "Le commentaire est public"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:187
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:197
 msgid "Comment is anonymous"
 msgstr "Le commentaire est anonyme"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:189
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:199
 msgid "Comment is not anonymous"
 msgstr "Le commentaire n'est pas anonyme"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:206
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:216
 msgid "Comment does not exist"
 msgstr "Le commentaire n'existe pas"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:240
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:250
 msgid "Selected items marked as spam"
 msgstr "Les éléments sélectionnés ont été marqués comme spam"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:243
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:253
 msgid "Selected items approved"
 msgstr "Les éléments sélectionnés sont approuvés"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:259
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:269
 #, php-format
 msgid "%u Comment deleted successfully."
 msgid_plural "%u Comment deleted successfully."
 msgstr[0] "%u commentaire a bien été supprimé."
 msgstr[1] "%u commentaires ont bien été supprimés."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:277
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:287
 msgid "You can edit or delete comments on your images."
 msgstr ""
 "Vous pouvez modifier ou supprimer les commentaires faits sur vos images."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:296
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:306
 msgid "View truncated"
 msgstr "Voir le texte tronqué"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:299
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:309
 msgid "View full text"
 msgstr "Voir le texte complet"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:314
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:324
 msgid "Edit this comment"
 msgstr "Modifier ce commentaire"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:319
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:329
 msgid "Mark as spam"
 msgstr "Marquer comme spam"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:340
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:350
 msgid "The item upon which this comment was posted no longer exists."
 msgstr "L'élément pour lequel ce commentaire a été publié n'existe plus."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:340
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:350
 msgid "<strong>Missing Object</strong> "
 msgstr "<strong>Objet absent !</strong>"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:356
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:366
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:87
 msgid "[news]"
 msgstr "[actualités]"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:364
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:374
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:95
 msgid "[page]"
 msgstr "[page]"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:390
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:438
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:400
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:448
 msgid "Anonymous posting"
 msgstr "Affichage anonyme"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:399
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:436
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:409
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:446
 msgid "Private message"
 msgstr "Message privé"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:406
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:416
 msgid "Approve this message (not SPAM)"
 msgstr "Approuver ce message (non spam)"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:407
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:417
 msgid "Approve this message (not SPAM"
 msgstr "Approuver ce message (non spam"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:411
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:412
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:421
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:422
 msgid "Mark this message as SPAM"
 msgstr "Marquer ce message comme spam"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:416
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:426
 msgid "Edit this comment."
 msgstr "Modifier ce commentaire."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:419
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:429
 msgid "Reply:"
 msgstr "Répondre : "
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:420
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:430
 msgid "Reply"
 msgstr "Répondre"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:424
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:434
 msgid "Delete this comment."
 msgstr "Supprimer ce commentaire."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:437
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:447
 msgid "Marked as spam/approved"
 msgstr "Marqué comme spam/approuvé"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:439
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:449
 msgid "Edit comment"
 msgstr "Modifier le commentaire"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:440
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:450
 msgid "E-mail comment author"
 msgstr "Envoyer un email à l'auteur du commentaire"
 
@@ -14896,7 +14909,6 @@ msgid "Site%s"
 msgstr "Site internet%s"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/comment_form.php:52
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:134
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/contact_form/form.php:45
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user/register_user_form.php:59
 #, php-format
@@ -14904,7 +14916,6 @@ msgid "Street%s"
 msgstr "Rue%s"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/comment_form.php:56
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:140
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/contact_form/form.php:53
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user/register_user_form.php:65
 #, php-format
@@ -14912,7 +14923,6 @@ msgid "City%s"
 msgstr "Ville%s"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/comment_form.php:60
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:146
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/contact_form/form.php:61
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user/register_user_form.php:71
 #, php-format
@@ -14920,7 +14930,6 @@ msgid "State%s"
 msgstr "État, province%s"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/comment_form.php:64
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:152
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/contact_form/form.php:69
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user/register_user_form.php:77
 #, php-format
@@ -14928,7 +14937,6 @@ msgid "Country%s"
 msgstr "Pays%s"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/comment_form.php:68
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:158
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/contact_form/form.php:77
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user/register_user_form.php:83
 #, php-format
@@ -14937,7 +14945,7 @@ msgstr "Code postal%s"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/comment_form.php:74
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/contact_form/form.php:107
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user/register_user_form.php:115
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user/register_user_form.php:92
 msgid "Enter CAPTCHA<strong>*</strong>"
 msgstr "Saisir le captcha<strong>*</strong>"
 
@@ -14972,42 +14980,42 @@ msgstr "<strong>erreur de base de données</strong> "
 msgid "<em>%1$s</em> commented on %2$s:"
 msgstr "<em>%1$s</em> a commenté sur %2$s  :"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:214
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:164
 msgid "Mail send failed"
 msgstr "L'envoi du mail a échoué"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:220
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:170
 msgid "Error posting comment:"
 msgid_plural "Errors posting comment:"
 msgstr[0] "Erreur lors de l'envoi du commentaire :"
 msgstr[1] "Erreurs lors de l'envoi du commentaire :"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:320
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:272
 msgid "You must supply an e-mail address."
 msgstr "Vous devez saisir une adresse mail."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:325
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:277
 msgid "You must enter your name."
 msgstr "Vous devez saisir votre nom."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:330
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:282
 msgid "You must supply a WEB page URL."
 msgstr "Vous devez saisir une adresse de page web."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:336
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:288
 msgid "CAPTCHA verification failed."
 msgstr "La vérification du Captcha a échoué."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:342
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:294
 msgid "You must enter something in the comment text."
 msgstr "Vous devez saisir du texte dans le champ du commentaire."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:351
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:303
 #, php-format
 msgid "Your comment was rejected by the <em>%s</em> SPAM filter."
 msgstr "Votre commentaire a été rejeté par le filtre anti-SPAM <em>%s</em>."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:355
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:307
 #, php-format
 msgid ""
 "Your comment has been marked for moderation by the <em>%s</em> SPAM filter."
@@ -15015,38 +15023,38 @@ msgstr ""
 "Votre commentaire a été marqué pour modération ultérieure par le filtre anti-"
 "SPAM <em>%s</em>."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:388
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:340
 #, php-format
 msgid "A comment has been placed in moderation on your album \"%1$s\"."
 msgstr "Un commentaire est en attente de modération sur votre album « %1$s »."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:390
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:342
 #, php-format
 msgid "A comment has been posted on your album \"%1$s\"."
 msgstr "Un commentaire a été posté sur votre album « %1$s »."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:396
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:348
 #, php-format
 msgid "A comment has been placed in moderation on your article \"%1$s\"."
 msgstr ""
 "Un commentaire est en attente de modération sur votre article « %1$s »."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:398
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:350
 #, php-format
 msgid "A comment has been posted on your article \"%1$s\"."
 msgstr "Un commentaire a été posté sur votre article « %1$s »."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:404
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:356
 #, php-format
 msgid "A comment has been placed in moderation on your page \"%1$s\"."
 msgstr "Un commentaire est en attente de modération sur votre page « %1$s »."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:406
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:358
 #, php-format
 msgid "A comment has been posted on your page \"%1$s\"."
 msgstr "Un commentaire a été posté sur votre page « %1$s »."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:414
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:366
 #, php-format
 msgid ""
 "A comment has been placed in moderation on your image \"%1$s\" in the album "
@@ -15055,13 +15063,13 @@ msgstr ""
 "Un commentaire est en attente de modération sur votre image « %1$s » de "
 "l'album « %2$s »."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:416
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:368
 #, php-format
 msgid "A comment has been posted on your image \"%1$s\" in the album \"%2$s\"."
 msgstr ""
 "Un commentaire a été posté sur votre image « %1$s » de l'album « %2$s »."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:422
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:374
 #, php-format
 msgid ""
 "Author: %1$s\n"
@@ -15078,7 +15086,7 @@ msgstr ""
 "\n"
 "%4$s"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:423
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:375
 #, php-format
 msgid ""
 "You can view all comments about this item here:\n"
@@ -15087,7 +15095,7 @@ msgstr ""
 "Vous pouvez voir tous les commentaires sur cet élément ici :\n"
 "%1$s"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:424
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:376
 #, php-format
 msgid ""
 "You can edit the comment here:\n"
@@ -15096,15 +15104,15 @@ msgstr ""
 "Vous pouvez modifier le commentaire ici :\n"
 "%1$s"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:453
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:405
 msgid "Comment posted"
 msgstr "Commentaire publié"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:526
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:478
 msgid "Comment posted on unknown page!"
 msgstr "Commentaire publié sur une page inconnue !"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:960
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:912
 msgid "Anonymous"
 msgstr "Anonyme"
 
@@ -15301,12 +15309,12 @@ msgid "Website"
 msgstr "Site internet"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/contact_form.php:135
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:93
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:89
 msgid "CAPTCHA"
 msgstr "Captcha"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/contact_form.php:137
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:95
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:91
 msgid "If checked, the form will include a Captcha verification."
 msgstr "Si coché, le formulaire comportera une validation par Captcha."
 
@@ -16241,7 +16249,7 @@ msgstr ""
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/dynamic-locale.php:189
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/federated_logon.php:134
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:148
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:106
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:108
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/sitemap-extended.php:183
 msgid ""
 "<p class=\"notebox\">*<strong>Note:</strong> The setting of this option is "
@@ -16743,8 +16751,8 @@ msgstr "Veuillez décocher les protocoles que vous ne voulez pas supporter."
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/federated_logon.php:122
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/federated_logon.php:123
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:77
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:110
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:111
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:112
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:113
 msgid "Notify*"
 msgstr "Notifier*"
 
@@ -16760,7 +16768,7 @@ msgstr ""
 "fédérée ne transmet pas l'adresse d'email.)"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/federated_logon.php:123
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:111
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:113
 msgid ""
 "Of course there must be some Administrator with an e-mail address for this "
 "option to make sense!"
@@ -16808,12 +16816,12 @@ msgstr ""
 "proviennent d'une authentification unique fédérée."
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/federated_logon.php:352
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:255
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:362
 msgid "Zenphoto Gallery registration"
 msgstr "Inscription à la galerie Zenphoto"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/federated_logon.php:352
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:255
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:362
 #, php-format
 msgid ""
 "%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail "
@@ -16913,8 +16921,8 @@ msgstr "Séléctionnez l'icône utilisée pour les images géolocalisées."
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/flag_thumbnail.php:85
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:665
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1007
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1521
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1545
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1515
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1539
 msgid "Un-published"
 msgstr "Non publié(e)"
 
@@ -17114,11 +17122,11 @@ msgstr ""
 "Si ce paramètre est coché, les articles seront générés d'après vos anciens "
 "paramètres <em>Combi-news</em>."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/galleryArticles/combiNews.php:7
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/galleryArticles/combiNews.php:17
 msgid "combiNews"
 msgstr "combiNews"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/galleryArticles/combiNews.php:8
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/galleryArticles/combiNews.php:18
 msgid "Auto category for ported combi-news articles."
 msgstr "Catégorie automatique pour les articles combi-news portés."
 
@@ -19074,7 +19082,7 @@ msgstr "Tout supprimer"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/publishContent/publishContent.php:411
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:419
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1004
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1534
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1528
 msgid "Publish"
 msgstr "Publier"
 
@@ -19578,47 +19586,29 @@ msgstr ""
 "Si activé, un mail est envoyé à l'administrateur de la galerie lorsqu'un "
 "nouvel utilisateur a validé son inscription."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:83
-msgid ""
-"If <em>Address fields</em> are shown or required, the form will include "
-"positions for address information. If required, the user must supply data in "
-"each address field."
-msgstr ""
-"Si les <em>champs d'adresse</em> sont affichés ou requis, le formulaire "
-"comporte des champs pour inscrire les détails de l'adresse. Si les champs "
-"sont requis, l'utilisateur devra remplir tous les champs d'adresse."
-
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:83
-msgid ""
-"<strong>Note:</strong> Address fields are handled by the <em>comment_form</"
-"em> plugin."
-msgstr ""
-"<strong>Note. </strong> Les champs d'adresse sont gérés par l'extension "
-"<em>comment_form</em>."
-
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:84
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:80
 msgid "User album"
 msgstr "Album de l'utilisateur"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:86
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:82
 msgid "If checked, an album will be created and assigned to the user."
 msgstr "Si coché, un album sera créé et attribué à l'utilisateur"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:87
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:83
 msgid "Email ID"
 msgstr "Identifiant email"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:89
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:85
 msgid "If checked, The user's e-mail address will be used as his User ID."
 msgstr ""
 "Si cette option est cochée, l'adresse email de l'utilisateur sera utilisée "
 "comme identifiant."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:90
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:86
 msgid "Email notification text"
 msgstr "Texte pour la notification par email"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:92
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:88
 #, php-format
 msgid ""
 "Text for the body of the email sent to the registrant for registration "
@@ -19638,7 +19628,17 @@ msgstr ""
 "(<code>%4$s</code>).<br /><br />*Par souci de sécurité, nous recommandons "
 "toutefois <strong>de ne pas</strong> inscrire <em>le mot de passe</em>.</p>"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:102
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:97
+msgid ""
+"If <em>Address fields</em> are shown or required, the form will include "
+"positions for address information. If required, the user must supply data in "
+"each address field."
+msgstr ""
+"Si les <em>champs d'adresse</em> sont affichés ou requis, le formulaire "
+"comporte des champs pour inscrire les détails de l'adresse. Si les champs "
+"sont requis, l'utilisateur devra remplir tous les champs d'adresse."
+
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:104
 msgid ""
 "* The option may be set via the <a href=\"javascript:"
 "gotoName('register_user');\"><em>register_user</em></a> plugin options."
@@ -19646,15 +19646,15 @@ msgstr ""
 "* Ce paramètre est configuré avec ceux de l'extension <a href=\"javascript:"
 "gotoName('register_user');\"><em>register_user</em></a>."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:131
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:133
 msgid "Default user group"
 msgstr "Groupe par défaut de l'utilisateur"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:134
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:136
 msgid "Initial group assignment for the new user."
 msgstr "Groupe initial pour le nouvel utilisateur."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:143
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:145
 msgid ""
 "Initial rights for the new user. (If no rights are set, approval of the user "
 "will be required.)"
@@ -19662,45 +19662,45 @@ msgstr ""
 "Droits accordés initialement à un nouvel utilisateur. (Si aucun droit n'est "
 "accordé, l'utilisateur devra être approuvé.)"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:332
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:260
 msgid "You must supply the street field."
 msgstr "Vous devez saisir le nom de la rue."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:336
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:264
 msgid "You must supply the city field."
 msgstr "Vous devez saisir le nom de la ville."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:340
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:268
 msgid "You must supply the state field."
 msgstr "Vous devez saisir le nom de l'état ou de la province."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:344
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:272
 msgid "You must supply the country field."
 msgstr "Vous devez saisir le nom du pays."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:348
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:276
 msgid "You must supply the postal code field."
 msgstr "Vous devez saisir le code postal."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:364
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:292
 msgid "Registration confirmation"
 msgstr "Confirmation de l'inscription"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:387
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:389
 msgid "you are already logged in."
 msgstr "vous êtes déjà connecté(e)."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:399
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:401
 msgid "Thank you for registering."
 msgstr "Merci de vous être inscrit."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:403
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:405
 msgid "You may now log onto the site and verify your personal information."
 msgstr ""
 "Vous pouvez maintenant vous connecter au site et vérifier vos renseignements "
 "personnels."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:422
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:424
 msgid ""
 "Your registration information has been accepted. An email has been sent to "
 "you to verify your email address."
@@ -19708,52 +19708,52 @@ msgstr ""
 "Votre demande d'inscription a été acceptée. Un email vous a été envoyé pour "
 "vérifier votre adresse."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:431
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:439
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:447
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:455
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:463
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:471
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:479
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:495
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:511
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:433
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:441
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:449
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:457
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:465
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:473
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:481
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:497
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:513
 msgid "Registration failed."
 msgstr "L'inscription a échoué."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:432
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:434
 #, php-format
 msgid "The user ID <em>%s</em> is already in use."
 msgstr "L'identifiant <em>%s</em> que vous avez choisi est déjà utilisé."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:440
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:442
 msgid "Passwords may not be empty."
 msgstr "Les mots de passe ne peuvent pas être vides !"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:456
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:458
 msgid "You have not filled in all the fields."
 msgstr "Vous n'avez pas rempli tous les champs."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:464
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:466
 msgid "Invalid verification link."
 msgstr "Lien de vérification invalide."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:472
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:474
 msgid "Enter a valid email address."
 msgstr "Saisissez une adresse email valide."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:480
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:482
 msgid "The CAPTCHA you entered was not correct."
 msgstr "Le Captcha que vous avez saisi est incorrect."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:487
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:489
 msgid "Verification failed."
 msgstr "La validation a échoué."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:488
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:490
 msgid "Your registration request could not be completed."
 msgstr "Votre demande d'inscription n'a pu être effectuée correctement."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:501
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:503
 msgid ""
 "Your registration attempt failed a <code>register_user_registered</code> "
 "filter check."
@@ -19773,11 +19773,11 @@ msgstr "Email<strong>*</strong> (ce sera votre identifiant)"
 msgid "User ID"
 msgstr "Identifiant"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user/register_user_form.php:130
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user/register_user_form.php:107
 msgid "<strong>*</strong>Required"
 msgstr "<strong>*</strong> Champs obligatoires"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user/register_user_form.php:136
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user/register_user_form.php:113
 msgid "You may also register using federated credentials"
 msgstr ""
 "Vous pouvez aussi vous inscrire en utilisant votre identifiant et votre mot "
@@ -20560,6 +20560,10 @@ msgstr "État du site :"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/site_upgrade.php:148
 msgid "The site is closed!"
 msgstr "Le site est fermé."
+
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/site_upgrade.php:148
+msgid "Run setup"
+msgstr "Lancer l’installation"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/site_upgrade.php:155
 msgid "The site is in test mode!"
@@ -24098,12 +24102,12 @@ msgid "Edit this category"
 msgstr "Modifier cette catégorie"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:998
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1526
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1520
 msgid "Un-publish"
 msgstr "Ne plus publier"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1001
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1515
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1509
 msgid "Scheduled for published"
 msgstr "Publication planifiée"
 
@@ -24178,49 +24182,39 @@ msgstr[1] "(<strong>%1$u</strong> catégories)"
 msgid "Published/Not published/Scheduled for publishing"
 msgstr "Publié(e) / Non publié(e) / Planifié(e)"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1455
-#, php-format
-msgid "Expired: %s"
-msgstr "Expiré : %s"
-
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1459
-#, php-format
-msgid "Expires: %s"
-msgstr "Expire : %s"
-
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1512
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1506
 msgid "Publish immediately (skip scheduling)"
 msgstr "Publier immédiatement (sans planification)"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1518
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1512
 msgid "Enable scheduled publishing"
 msgstr "Activer la publication planifiée"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1539
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1533
 msgid "Publish (override expiration)"
 msgstr "Publier (sans tenir compte de la date d'expiration)"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1731
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1725
 msgid "Tags added to selected items"
 msgstr "Les tags ont été ajoutés aux éléments sélectionnés"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1734
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1728
 msgid "Tags cleared from selected items"
 msgstr "Les tags des éléments sélectionnés ont été effacés"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1737
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1731
 msgid "Tags added to articles of selected items"
 msgstr "Les tags ont été ajoutés aux articles des éléments sélectionnés"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1740
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1734
 msgid "Tags cleared from articles of selected items"
 msgstr "Les tags des éléments sélectionnés ont été effacés"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1743
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1737
 msgid "Categories added to selected items"
 msgstr "Catégories ajoutées aux éléments sélectionnés"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1746
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1740
 msgid "Categories cleared from selected items"
 msgstr "Catégories enlevées des éléments sélectionnés"
 
@@ -24403,6 +24397,19 @@ msgid ""
 msgstr ""
 "Taille à utiliser si la police utilisée le permet (Polices <em>TTF</em> et "
 "<em>Imagick</em>)."
+
+#~ msgid ""
+#~ "<strong>Note:</strong> Address fields are handled by the "
+#~ "<em>comment_form</em> plugin."
+#~ msgstr ""
+#~ "<strong>Note. </strong> Les champs d'adresse sont gérés par l'extension "
+#~ "<em>comment_form</em>."
+
+#~ msgid "Expired: %s"
+#~ msgstr "Expiré : %s"
+
+#~ msgid "Expires: %s"
+#~ msgstr "Expire : %s"
 
 #~ msgid "Your passwords did not match"
 #~ msgstr "Vos mots de passe ne correspondent pas"

@@ -21,7 +21,7 @@ Gallery::addAlbumHandler('alb', 'dynamicAlbum');
 function newAlbum($folder8, $cache = true, $quiet = false) {
 	global $_zp_albumHandlers;
 	$suffix = getSuffix($folder8);
-	if (!$suffix || !array_key_exists($suffix, $_zp_albumHandlers) || file_exists(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($folder8) . "/")) {
+	if (!$suffix || !array_key_exists($suffix, $_zp_albumHandlers) || is_dir(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($folder8))) {
 		return new Album($folder8, $cache, $quiet);
 	} else {
 		return new $_zp_albumHandlers[$suffix]($folder8, $cache, $quiet);

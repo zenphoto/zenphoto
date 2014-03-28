@@ -817,7 +817,7 @@ class Zenphoto_Authority {
 	function printLoginForm($redirect = null, $logo = true, $showUserField = true, $showCaptcha = true, $hint = '') {
 		global $_zp_login_error, $_zp_captcha, $_zp_gallery;
 		if (is_null($redirect)) {
-			$redirect = WEBPATH . '/' . ZENFOLDER . '/admin.php';
+			$redirect = getRequestURI();
 		}
 
 		if (isset($_POST['user'])) {
@@ -999,7 +999,7 @@ class Zenphoto_Authority {
 						</script>
 						<?php
 					}
-					$redirect = zp_apply_filter('login_redirect_link', getRequestURI());
+					$redirect = zp_apply_filter('login_redirect_link', $redirect);
 					?>
 					<form name="login" action="<?php echo html_encode(pathurlencode($redirect)); ?>" method="post">
 						<input type="hidden" name="login" value="1" />
@@ -1223,7 +1223,7 @@ class Zenphoto_Authority {
 		<p>
 			<label for="disclose_password<?php echo $id; ?>"><?php echo gettext('Show password'); ?></label>
 			<input type="checkbox" name="disclose_password<?php echo $id; ?>" id="disclose_password<?php echo $id; ?>" onclick="passwordClear('<?php echo $id; ?>');
-							togglePassword('<?php echo $id; ?>');">
+					togglePassword('<?php echo $id; ?>');">
 		</p>
 		<p class="password_field_<?php echo $id; ?>">
 			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>"><?php echo gettext("Repeat password") . $flag; ?></label>

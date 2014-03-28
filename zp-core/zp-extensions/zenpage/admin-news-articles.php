@@ -291,16 +291,16 @@ datepickerJS();
 
 								</td>
 								<td>
-									<?php
-									checkIfScheduled($article);
-									checkIfExpires($article);
-									?>
-								</td>
-								<td>
 									<?php printArticleCategories($article) ?><br />
 								</td>
 								<td>
 									<?php echo html_encode($article->getAuthor()); ?>
+								</td>
+								<td>
+									<?php printPublished($article); ?>
+								</td>
+								<td>
+									<?php printExpired($article); ?>
 								</td>
 								<td class="page-list_icon">
 									<?php
@@ -331,9 +331,9 @@ datepickerJS();
 										} else {
 											?>
 											<a href="?commentson=1&amp;titlelink=<?php
-												 echo html_encode($article->getTitlelink());
-												 echo $option;
-												 ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Enable comments'); ?>">
+											echo html_encode($article->getTitlelink());
+											echo $option;
+											?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Enable comments'); ?>">
 												<img src="../../images/comments-off.png" alt="" title="<?php echo gettext("Comments off"); ?>" style="border: 0px;"/>
 											</a>
 											<?php
@@ -349,13 +349,13 @@ datepickerJS();
 									<td class="page-list_icon">
 										<img src="../../images/icon_inactive.png" alt="<?php gettext('locked'); ?>" />
 									</td>
-	<?php } ?>
+								<?php } ?>
 
 								<td class="page-list_icon">
 									<a href="../../../index.php?p=news&amp;title=<?php
-	echo $article->getTitlelink();
-	echo $option;
-	?>" title="<?php echo gettext('View article'); ?>">
+									echo $article->getTitlelink();
+									echo $option;
+									?>" title="<?php echo gettext('View article'); ?>">
 										<img src="images/view.png" alt="" title="<?php echo gettext('View article'); ?>" />
 									</a>
 								</td>
@@ -366,25 +366,25 @@ datepickerJS();
 										?>
 										<td class="page-list_icon">
 											<a href="?hitcounter=1&amp;titlelink=<?php
-								echo html_encode($article->getTitlelink());
-								echo $option;
-										?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo gettext('Reset hitcounter'); ?>">
+											echo html_encode($article->getTitlelink());
+											echo $option;
+											?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo gettext('Reset hitcounter'); ?>">
 												<img src="../../images/reset.png" alt="" title="<?php echo gettext('Reset hitcounter'); ?>" /></a>
 										</td>
-											<?php
-										}
-										?>
+										<?php
+									}
+									?>
 									<td class="page-list_icon">
 										<a href="javascript:confirmDelete('admin-news-articles.php?delete=<?php
-									 echo $article->getTitlelink();
-									 echo $option;
-									 ?>&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>','<?php echo js_encode(gettext('Are you sure you want to delete this article? THIS CANNOT BE UNDONE!')); ?>')" title="<?php echo gettext('Delete article'); ?>">
+										echo $article->getTitlelink();
+										echo $option;
+										?>&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>','<?php echo js_encode(gettext('Are you sure you want to delete this article? THIS CANNOT BE UNDONE!')); ?>')" title="<?php echo gettext('Delete article'); ?>">
 											<img src="../../images/fail.png" alt="" title="<?php echo gettext('Delete article'); ?>" /></a>
 									</td>
 									<td class="page-list_icon">
 										<input type="checkbox" name="ids[]" value="<?php echo $article->getTitlelink(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
 									</td>
-	<?php } else { ?>
+								<?php } else { ?>
 									<td class="page-list_icon">
 										<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
 									</td>
@@ -394,13 +394,13 @@ datepickerJS();
 									<td class="page-list_icon">
 										<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
 									</td>
-								<?php
-							}
-							?>
+									<?php
+								}
+								?>
 							</tr>
-	<?php
-}
-?>
+							<?php
+						}
+						?>
 						<tr>
 							<td id="imagenavb" colspan="11"><?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/zenpage/admin-news-articles.php', $options); ?>	</td>
 						</tr>
@@ -409,12 +409,12 @@ datepickerJS();
 
 					<p class="buttons"><button type="submit" title="<?php echo gettext('Apply'); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong></button></p>
 				</form>
-	<?php printZenpageIconLegend(); ?>
+				<?php printZenpageIconLegend(); ?>
 				<br class="clearall" />
 			</div> <!-- tab_articles -->
 		</div> <!-- content -->
 	</div> <!-- main -->
 
-<?php printAdminFooter(); ?>
+	<?php printAdminFooter(); ?>
 </body>
 </html>

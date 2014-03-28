@@ -24,12 +24,13 @@ if (isset($_GET['ticket'])) {
 admin_securityChecks(USER_RIGHTS, currentRelativeURL());
 
 $newuser = array();
-$showset = array();
-foreach ($_REQUEST as $param => $value) {
-	if (strpos($param, 'show-') === 0) {
-		$showset[] = substr($param, 5);
-	}
+if (isset($_REQUEST['show']) && is_array($_REQUEST['show'])) {
+	$showset = $_REQUEST['show'];
+} else {
+	$showset = array();
 }
+
+
 if (isset($_GET['subpage'])) {
 	$subpage = sanitize_numeric($_GET['subpage']);
 } else {
@@ -86,6 +87,7 @@ if (isset($_GET['action'])) {
 							admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
 						}
 					}
+
 					$alter = isset($_POST['alter_enabled']);
 					$nouser = true;
 					$returntab = $newuser = false;
@@ -195,7 +197,7 @@ if (isset($_GET['action'])) {
 								markUpdated();
 							}
 							if ($updated) {
-								$returntab .= '&show-' . $user;
+								$returntab .= '&show[]=' . $user;
 								$msg = zp_apply_filter('save_user', $msg, $userobj, $what);
 								if (empty($msg)) {
 									if (!$notify)
@@ -219,8 +221,7 @@ if (isset($_GET['action'])) {
 	}
 	$returntab .= "&page=users";
 	if (!empty($newuser)) {
-		$returntab .= '&show-' . $newuser;
-		unset($_POST['show-']);
+		$returntab .= '&show[]=' . $newuser;
 	}
 	if (empty($notify)) {
 		$notify = '?saved';
@@ -464,9 +465,9 @@ echo $refresh;
 									?>
 									<th>
 										<span style="font-weight: normal">
-											<a href="javascript:setShow(1);toggleExtraInfo('','user',true);"><?php echo gettext('Expand all'); ?></a>
+											<a href="javascript:toggleExtraInfo('','user',true);"><?php echo gettext('Expand all'); ?></a>
 											|
-											<a href="javascript:setShow(0);toggleExtraInfo('','user',false);"><?php echo gettext('Collapse all'); ?></a>
+											<a href="javascript:toggleExtraInfo('','user',false);"><?php echo gettext('Collapse all'); ?></a>
 										</span>
 									</th>
 									<th>
@@ -520,7 +521,7 @@ echo $refresh;
 								$local_alterrights = $alterrights;
 								$userid = $user['user'];
 								$current = in_array($userid, $showset);
-								$showlist[] = '#show-' . $userid;
+
 								if ($userid == $_zp_current_admin_obj->getuser()) {
 									$userobj = $_zp_current_admin_obj;
 								} else {
@@ -568,7 +569,6 @@ echo $refresh;
 										<table class="bordered" style="border: 0" id='user-<?php echo $id; ?>'>
 											<tr>
 												<td style="margin-top: 0px; width:20em;<?php echo $background; ?>" valign="top">
-													<input type="hidden" name="show-<?php echo $userid; ?>" id="show_<?php echo $id; ?>" value="<?php echo ($current); ?>" />
 													<?php
 													if (empty($userid)) {
 														$displaytitle = gettext("Show details");
@@ -588,7 +588,7 @@ echo $refresh;
 															<em><?php echo gettext("New User"); ?></em>
 															<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="adminuser<?php echo $id; ?>" name="adminuser<?php echo $id; ?>" value=""
 																		 onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', visible);
-																						 $('#adminuser<?php echo $id; ?>').focus();" />
+																				 $('#adminuser<?php echo $id; ?>').focus();" />
 
 															<?php
 														} else {
@@ -800,9 +800,6 @@ echo $refresh;
 												</td>
 											</tr>
 											<?php echo $custom_row; ?>
-
-
-
 										</table> <!-- end individual admin table -->
 									</td>
 								</tr>
@@ -883,15 +880,6 @@ echo $refresh;
 								}
 							}
 							return true;
-						}
-						function setShow(v) {
-<?php
-foreach ($showlist as $show) {
-	?>
-								$('<?php echo $show; ?>').val(v);
-	<?php
-}
-?>
 						}
 						// ]]> -->
 					</script>

@@ -23,7 +23,7 @@ $option_interface = 'bxslider';
  */
 class bxslider {
 
-	function bxsliderOptions() {
+	function __construct() {
 		if (OFFSET_PATH == 2) {
 			setOptionDefault('bxslider_minitems', '3');
 			setOptionDefault('bxslider_maxitems', '8');

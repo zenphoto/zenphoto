@@ -297,12 +297,6 @@ function html_encode($this_string) {
  */
 function html_encodeTagged($str, $allowScript = true) {
 	$tags = array();
-	//html comments
-	preg_match_all('|<!--.*-->|ixs', $str, $matches);
-	foreach (array_unique($matches[0]) as $key => $tag) {
-		$tags[0]['%' . $key . '$-'] = $tag;
-		$str = str_replace($tag, '%' . $key . '$-', $str);
-	}
 	//javascript
 	if ($allowScript) {
 		preg_match_all('!<script.*>.*</script>!ixs', $str, $matches);
@@ -316,6 +310,8 @@ function html_encodeTagged($str, $allowScript = true) {
 		$str = preg_replace('|<(.*)onclick|ixs', '%$c', $str);
 		$tags[2]['%$c'] = '&lt;<strike>onclick</strike>';
 	}
+	//strip html comments
+	$str = preg_replace('~<!--.*?-->~is', '', $str);
 	// markup
 	preg_match_all("/<\/?\w+((\s+(\w|\w[\w-]*\w)(\s*=\s*(?:\".*?\"|'.*?'|[^'\">\s]+))?)+\s*|\s*)\/?>/i", $str, $matches);
 	foreach (array_unique($matches[0]) as $key => $tag) {
@@ -323,7 +319,7 @@ function html_encodeTagged($str, $allowScript = true) {
 		$str = str_replace($tag, '%' . $key . '$s', $str);
 	}
 	//entities
-	preg_match_all('/(&[a-z#]+;)/', $str, $matches);
+	preg_match_all('/(&[a-z#]+;)/i', $str, $matches);
 	foreach (array_unique($matches[0]) as $key => $entity) {
 		$tags[3]['%' . $key . '$e'] = $entity;
 		$str = str_replace($entity, '%' . $key . '$e', $str);
@@ -331,6 +327,12 @@ function html_encodeTagged($str, $allowScript = true) {
 	$str = htmlspecialchars($str, ENT_FLAGS, LOCAL_CHARSET);
 	foreach (array_reverse($tags, true) as $taglist) {
 		$str = strtr($str, $taglist);
+	}
+	if (class_exists('tidy')) {
+		$tidy = new tidy();
+		$tidy->parseString($str, array('show-body-only' => true), 'utf8');
+		$tidy->cleanRepair();
+		$str = trim($tidy);
 	}
 	return $str;
 }

@@ -48,7 +48,7 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 			}
 			$show = $required = getOption('register_user_address_info');
 			if ($required == 'required') {
-				$required = '*';
+				$required = '<strong>*</strong>';
 			} else {
 				$required = false;
 			}
@@ -88,29 +88,6 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 			}
 		}
 
-		$html = zp_apply_filter('register_user_form', '');
-		if (!empty($html)) {
-			$rows = explode('</tr>', $html);
-			foreach ($rows as $row) {
-				if (!empty($row)) {
-					$row = str_replace('<tr>', '', $row);
-					$elements = explode('</td>', $row);
-					$col1 = trim(str_replace(array('<td>', ':'), '', $elements[0]));
-					if (count($elements) == 1) { //	new style form
-						echo $col1;
-					} else { //	old table style form
-						$col2 = str_replace('size="40"', 'size="' . TEXT_INPUT_SIZE . '"', $elements[1]);
-						$col2 = str_replace('class="inputbox"', '', $input);
-						?>
-						<p>
-							<label><?php echo $col1; ?></label>
-							<?php echo trim(str_replace('<td>', '', $col2)); ?>
-						</p>
-						<?php
-					}
-				}
-			}
-		}
 		if (getOption('register_user_captcha')) {
 			$captcha = $_zp_captcha->getCaptcha(gettext("Enter CAPTCHA<strong>*</strong>"));
 			?>
