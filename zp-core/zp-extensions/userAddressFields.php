@@ -1,12 +1,12 @@
 <?php
 
 /*
- * This plugin is used to extend the administrator table to add user address fields
- * for use by the comment_form and register_user plugins.
+ * This plugin is used to extend the administrator table to add user address fields.
  *
- * <b>NOTE:</b> you must run setup after enabling this plugin to cause changes to
+ * <b>NOTE:</b> you must run setup after enabling or disabling this plugin to cause changes to
  * be made to the database. (Database changes should not be made on an active site.
- * You should close the site when you run setup.)
+ * You should close the site when you run setup.) If you disable the plugin all data
+ * contained in the fields will be discarded.
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
