@@ -1,7 +1,7 @@
 <?php
 
+$glob = array();
 if (($dir = opendir(dirname(__FILE__))) !== false) {
-	$glob = array();
 	while (($file = readdir($dir)) !== false) {
 		preg_match('~(.*)\-closed\.*~', $file, $matches);
 		if (@$matches[1]) {
@@ -11,7 +11,7 @@ if (($dir = opendir(dirname(__FILE__))) !== false) {
 }
 $xml = '';
 foreach ($glob as $key => $file) {
-	if (true || isset($_GET['$key'])) {
+	if (isset($_GET['$key'])) {
 		$path = dirname(__FILE__) . '/' . $file;
 		$xml = file_get_contents($path);
 		$xml = preg_replace('~<pubDate>(.*)</pubDate>~', '<pubDate>' . date("r", time()) . '</pubDate>', $xml);
