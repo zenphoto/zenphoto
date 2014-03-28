@@ -473,7 +473,7 @@ function hasDynamicAlbumSuffix($path) {
  * checks if there is a file with the prefix and one of the
  * handled suffixes. Returns the found suffix
  *
- * @param type $path
+ * @param type $path SERVER path to be tested
  * @return string
  */
 function isHandledAlbum($path) {
@@ -511,44 +511,19 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 					$ralbum = trim(dirname($matches[1]), '/');
 					$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
 				}
-				if (!is_dir($path)) {
-					if ($suffix = isHandledAlbum($path)) {
-						//	it is a dynamic album sans suffix
-						$ralbum .= '.' . $suffix;
-					}
+			} else { //	have to figure it out
+				if (Gallery::validImage($ralbum) || Gallery::validImageAlt($ralbum)) { //	it is an image request
+					$rimage = basename($ralbum);
+					$ralbum = trim(dirname($ralbum), '/');
+					$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
 				}
-			} else if (!hasDynamicAlbumSuffix($path) && !is_dir(ALBUM_FOLDER_SERVERPATH . $path)) { //	have to figure it out
-				if (file_exists($path)) {
-					if (!is_dir($path)) {
-						//	it is not an album. Assume image
-						$rimage = basename($ralbum);
-						$ralbum = trim(dirname($ralbum), '/');
-					}
-				} else if ($suffix = isHandledAlbum($path)) {
-					//	it is a dynamic album sans suffix
+			}
+			if (!is_dir($path)) {
+				if ($suffix = isHandledAlbum($path)) { //	it is a dynamic album sans suffix
 					$ralbum .= '.' . $suffix;
-				} else {
-					//	Perhaps a dynamicalbum/image
-					$path = trim(dirname($ralbum), '/');
-					if ($path != '.') {
-						if (hasDynamicAlbumSuffix($path) && !is_dir(ALBUM_FOLDER_SERVERPATH . $path)) {
-							$path = stripSuffix($path);
-						}
-						$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $path);
-						if (!is_dir($path)) {
-							if (isHandledAlbum($path)) {
-								//	it is a alternate album sans suffix
-								$rimage = basename($ralbum);
-								$ralbum = trim(dirname($ralbum), '/');
-								if (getSuffix($ralbum) != $suffix)
-									$ralbum .= '.' . $suffix;
-							}
-						}
-					}
 				}
 			}
 		}
-
 		if (empty($ralbum)) {
 			unset($_GET[$albumvar]);
 		} else {
