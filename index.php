@@ -1,7 +1,10 @@
 <?php
 
 define('OFFSET_PATH', 0);
-$_contents = @file_get_contents(dirname(__FILE__) . '/zp-data/zenphoto.cfg.php');
+if (!$_zp_script = @$_SERVER['SCRIPT_FILENAME']) {
+	$_zp_script = __FILE__;
+}
+$_contents = @file_get_contents(dirname($_zp_script) . '/zp-data/zenphoto.cfg.php');
 
 if ($_contents) {
 	if (strpos($_contents, '<?php') !== false)
