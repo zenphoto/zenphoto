@@ -585,7 +585,7 @@ function getCurrentTheme() {
  */
 function next_album($all = false, $mine = NULL) {
 	global $_zp_albums, $_zp_gallery, $_zp_current_album, $_zp_page, $_zp_current_album_restore, $_zp_current_search;
-	if (gettype($mine) != 'NULL' || func_num_args() > 2) {
+	if (($mine != NULL && gettype($mine) != 'boolean') || func_num_args() > 2) {
 		internal_deprecations::next_album();
 	}
 
@@ -2008,7 +2008,7 @@ function getTotalImagesIn($album) {
  */
 function next_image($all = false, $firstPageCount = NULL, $mine = NULL) {
 	global $_zp_images, $_zp_current_image, $_zp_current_album, $_zp_page, $_zp_current_image_restore, $_zp_current_search, $_zp_gallery, $_firstPageImages;
-	if (gettype($mine) != 'NULL' || func_num_args() > 3) {
+	if (($mine != NULL && gettype($mine) != 'boolean') || func_num_args() > 3) {
 		internal_deprecations::next_image();
 	}
 	if (is_null($firstPageCount)) {
