@@ -101,10 +101,10 @@ class user_expiry {
 			} else {
 				$subtabs = array();
 			}
-			$subtabs[gettext('users')] = 'admin-users.php?page=users&amp;tab=users';
-			$subtabs[gettext('expiry')] = PLUGIN_FOLDER . '/user-expiry/user-expiry-tab.php?page=users&amp;tab=expiry';
+			$subtabs[gettext('users')] = 'admin-users.php?page=users&tab=users';
+			$subtabs[gettext('expiry')] = PLUGIN_FOLDER . '/user-expiry/user-expiry-tab.php?page=users&tab=expiry';
 			$tabs['users'] = array('text'		 => gettext("admin"),
-							'link'		 => WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=users&amp;tab=users',
+							'link'		 => WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=users&tab=users',
 							'subtabs'	 => $subtabs,
 							'default'	 => 'users');
 		}
@@ -257,7 +257,7 @@ class user_expiry {
 			}
 		}
 		if (user_expiry::checkPasswordRenew()) {
-			header("Location: " . FULLWEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=users&amp;tab=users');
+			header("Location: " . FULLWEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=users&tab=users');
 			exitZP();
 		}
 		return $path;
