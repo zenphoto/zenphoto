@@ -14,6 +14,7 @@ $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
 									language: "<?php echo $locale; ?>",
 									menubar: false,
 									relative_urls: false,
+									content_css: "<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/tinymce4/config/content.css",
 <?php
 if ($filehandler) {
 	?>

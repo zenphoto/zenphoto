@@ -18,6 +18,7 @@
 			"searchreplace visualblocks code fullscreen",
 			"insertdatetime media table contextmenu paste tinyzenpage"
 		],
+		content_css: "<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/tinymce4/config/content.css",
 		toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code | fullscreen"
 	});
 // ]]> -->
