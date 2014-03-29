@@ -432,7 +432,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 
 	function setAlbumSubtabs($album) {
 		global $zenphoto_tabs;
-		$albumlink = '?page=edit&amp;album=' . urlencode($album->name);
+		$albumlink = '?page=edit&album=' . urlencode($album->name);
 		$default = NULL;
 		if (!is_array($zenphoto_tabs['edit']['subtabs'])) {
 			$zenphoto_tabs['edit']['subtabs'] = array();

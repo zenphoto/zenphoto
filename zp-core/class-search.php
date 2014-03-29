@@ -1388,7 +1388,7 @@ class SearchEngine {
 									case 2:
 										$row['show'] = 0;
 								}
-								if ($mine || (is_null($mine) && $album->isMyItem(LIST_RIGHTS) && $viewUnpublished) || (checkAlbumPassword($albumname) && $row['show'])) {
+								if ($mine || (is_null($mine) && $album->isMyItem(LIST_RIGHTS)) || (checkAlbumPassword($albumname) && ($row['show'] || $viewUnpublished))) {
 									if (empty($this->album_list) || in_array($albumname, $this->album_list)) {
 										$result[] = array('name' => $albumname, 'weight' => $weights[$row['id']]);
 									}
@@ -1552,7 +1552,7 @@ class SearchEngine {
 									$row['show'] = 0;
 									break;
 							}
-							if ($mine || is_null($mine) && ($album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($albumname) && $album->getShow())) {
+							if ($mine || is_null($mine) && ($album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($albumname) && ($album->getShow() || $viewUnpublished))) {
 								$allow = empty($this->album_list) || in_array($albumname, $this->album_list);
 							}
 							$albums_seen[$albumid] = $albumrow = array('allow' => $allow, 'viewUnpublished' => $viewUnpublished, 'folder' => $albumname, 'localpath' => ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumname) . '/');
