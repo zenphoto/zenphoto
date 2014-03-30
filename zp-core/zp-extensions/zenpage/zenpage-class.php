@@ -254,44 +254,43 @@ class Zenpage {
 			if ($sticky) {
 				$sticky = 'sticky DESC,';
 			}
+			if (is_null($sortdirection))
+				$sortdirection = $sortObj->sortdirection;
 			switch ($sortdirection) {
-				case NULL:
-					$sortdirection = $sortObj->sortdirection;
-				case "desc":
+				case 0:
 				default:
-					$dir = "DESC";
+					$dir = " DESC";
 					break;
-				case "asc":
-					$dir = "ASC";
+				case 1:
+					$dir = " ASC";
 					$sticky = false; //makes no sense
 					break;
 			}
 			// sortorder and sortdirection (only used for all news articles and categories naturally)
+			if (is_null($sortorder))
+				$sortorder = $sortObj->sortorder;
 			switch ($sortorder) {
-				case NULL:
-					$sortorder = $sortObj->sortorder;
 				case "date":
 				default:
-					$sort1 = "date";
+					$sort1 = "date" . $dir;
 					break;
 				case 'lastchange':
-					$sort1 = 'lastchange';
+					$sort1 = 'lastchange' . $dir;
 					break;
 				case "id":
-					$sort1 = "id";
+					$sort1 = "id" . $dir;
 					break;
 				case "title":
-					$sort1 = "title";
+					$sort1 = "title" . $dir;
 					break;
 				case "popular":
-					$sort1 = 'hitcounter';
+					$sort1 = 'hitcounter' . $dir;
 					break;
 				case "mostrated":
-					$sort1 = 'total_votes';
+					$sort1 = 'total_votes' . $dir;
 					break;
 				case "toprated":
 					$sort1 = '(total_value/total_votes) DESC, total_value';
-					$dir = '';
 					break;
 				case "random":
 					$sort1 = 'RAND()';
@@ -346,9 +345,12 @@ class Zenpage {
 				$order .= " date DESC";
 			} else {
 				$datesearch = "";
-				if ($category)
+				if ($category) {
 					$order .= ' news.';
-				$order .= " $sort1 $dir";
+				} else {
+					$order .= ' ';
+				}
+				$order .= $sort1;
 			}
 			if ($category) {
 				$sql = "SELECT DISTINCT news.date, news.title, news.titlelink FROM " . prefix('news') . " as news, " . prefix('news2cat') . " as cat WHERE" . $cat . $show . $order;
@@ -894,7 +896,7 @@ class Zenpage {
 	}
 
 	function setSortDirection($value) {
-		$this->sort_direction = (int) ($value && true);
+		$this->sortdirection = (int) ($value && true);
 	}
 
 	function setSortSticky($value) {
@@ -902,7 +904,7 @@ class Zenpage {
 	}
 
 	function setSortType($value) {
-		$this->sorttype = $value;
+		$this->sortorder = $value;
 	}
 
 }
@@ -962,7 +964,7 @@ class ZenpageRoot extends ThemeObject {
 	}
 
 	function setSortDirection($value) {
-		$this->sort_direction = (int) ($value && true);
+		$this->sortdirection = (int) ($value && true);
 	}
 
 	function setSortSticky($value) {
@@ -970,7 +972,7 @@ class ZenpageRoot extends ThemeObject {
 	}
 
 	function setSortType($value) {
-		$this->sorttype = $value;
+		$this->sortorder = $value;
 	}
 
 }

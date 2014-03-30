@@ -103,7 +103,7 @@ class deprecated_functions {
 	static function tabs($tabs) {
 		if (zp_loggedin(ADMIN_RIGHTS))
 			$tabs['deprecated'] = array('text'		 => gettext("deprecated"),
-							'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions/admin_tab.php?page=deprecated&amp;tab=' . gettext('deprecated'),
+							'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions/admin_tab.php?page=deprecated&tab=' . gettext('deprecated'),
 							'subtabs'	 => NULL);
 		return $tabs;
 	}

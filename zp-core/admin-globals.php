@@ -75,8 +75,8 @@ if ($_zp_loggedin) {
 		if ($_zp_loggedin & ZENPAGE_NEWS_RIGHTS) {
 			$zenphoto_tabs['news'] = array('text'		 => gettext("news"),
 							'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-news-articles.php',
-							'subtabs'	 => array(gettext('articles')		 => PLUGIN_FOLDER . '/zenpage/admin-news-articles.php?page=news&amp;tab=articles',
-											gettext('categories')	 => PLUGIN_FOLDER . '/zenpage/admin-categories.php?page=news&amp;tab=categories'),
+							'subtabs'	 => array(gettext('articles')		 => PLUGIN_FOLDER . '/zenpage/admin-news-articles.php?page=news&tab=articles',
+											gettext('categories')	 => PLUGIN_FOLDER . '/zenpage/admin-categories.php?page=news&tab=categories'),
 							'default'	 => 'articles');
 		}
 	}
@@ -98,28 +98,28 @@ if ($_zp_loggedin) {
 	$optiondefault = '';
 	if ($_zp_loggedin & OPTIONS_RIGHTS) {
 		if ($_zp_loggedin & ADMIN_RIGHTS) {
-			$optiondefault = '&amp;tab=general';
-			$subtabs[gettext("general")] = 'admin-options.php?page=options&amp;tab=general';
+			$optiondefault = '&tab=general';
+			$subtabs[gettext("general")] = 'admin-options.php?page=options&tab=general';
 		} else {
-			$optiondefault = '&amp;tab=gallery';
+			$optiondefault = '&tab=gallery';
 		}
-		$subtabs[gettext("gallery")] = 'admin-options.php?page=options&amp;tab=gallery';
+		$subtabs[gettext("gallery")] = 'admin-options.php?page=options&tab=gallery';
 		if ($_zp_loggedin & ADMIN_RIGHTS) {
-			$subtabs[gettext("security")] = 'admin-options.php?page=options&amp;tab=security';
+			$subtabs[gettext("security")] = 'admin-options.php?page=options&tab=security';
 		}
-		$subtabs[gettext("image")] = 'admin-options.php?page=options&amp;tab=image';
+		$subtabs[gettext("image")] = 'admin-options.php?page=options&tab=image';
 	}
 	if ($_zp_loggedin & ADMIN_RIGHTS) {
 		if (empty($optiondefault))
-			$optiondefault = '&amp;tab=plugin';
-		$subtabs[gettext("plugin")] = 'admin-options.php?page=options&amp;tab=plugin';
+			$optiondefault = '&tab=plugin';
+		$subtabs[gettext("plugin")] = 'admin-options.php?page=options&tab=plugin';
 	}
 	if ($_zp_loggedin & OPTIONS_RIGHTS) {
-		$subtabs[gettext("search")] = 'admin-options.php?page=options&amp;tab=search';
+		$subtabs[gettext("search")] = 'admin-options.php?page=options&tab=search';
 		if ($_zp_loggedin & THEMES_RIGHTS) {
 			if (empty($optiondefault))
-				$optiondefault = '&amp;tab=theme';
-			$subtabs[gettext("theme")] = 'admin-options.php?page=options&amp;tab=theme';
+				$optiondefault = '&tab=theme';
+			$subtabs[gettext("theme")] = 'admin-options.php?page=options&tab=theme';
 		}
 		$zenphoto_tabs['options'] = array('text'		 => gettext("options"),
 						'link'		 => WEBPATH . "/" . ZENFOLDER . '/admin-options.php?page=options' . $optiondefault,

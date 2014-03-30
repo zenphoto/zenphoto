@@ -8,7 +8,8 @@ if (!defined('WEBPATH'))
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
 		<?php printHeadTitle(); ?>
-		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
+		<meta charset="<?php echo LOCAL_CHARSET; ?>">
+		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>">
 		<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . THEMEFOLDER; ?>/default/common.css" type="text/css" />
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>

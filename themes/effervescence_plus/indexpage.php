@@ -14,6 +14,7 @@ if (!defined('WEBPATH')) die();
 	}
 	?>
 	<?php printHeadTitle(); ?>
+	<meta charset="<?php echo LOCAL_CHARSET; ?>">
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 </head>
 

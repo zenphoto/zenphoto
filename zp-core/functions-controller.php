@@ -21,7 +21,9 @@ function zpRewriteURL($query) {
 			case 'news':
 				$redirectURL = _NEWS_;
 				if (isset($query['category'])) {
-					$obj = new ZenpageCategory($query['category']);
+					$obj = new ZenpageCategory($query['category'], false);
+					if (!$obj->loaded)
+						return '';
 					$redirectURL = $obj->getLink();
 					unset($query['category']);
 				} else if (isset($query['date'])) {
@@ -29,7 +31,9 @@ function zpRewriteURL($query) {
 					unset($query['date']);
 				}
 				if (isset($query['title'])) {
-					$obj = new ZenpageNews($query['title']);
+					$obj = new ZenpageNews($query['title'], false);
+					if (!$obj->loaded)
+						return '';
 					$redirectURL = $obj->getLink();
 					unset($query['title']);
 				}
@@ -37,7 +41,9 @@ function zpRewriteURL($query) {
 			case 'pages':
 				$redirectURL = _PAGES_;
 				if (isset($query['title'])) {
-					$obj = new ZenpagePage($query['title']);
+					$obj = new ZenpagePage($query['title'], false);
+					if (!$obj->loaded)
+						return '';
 					$redirectURL = $obj->getLink();
 					unset($query['title']);
 				}
@@ -68,19 +74,21 @@ function zpRewriteURL($query) {
 		}
 		$q = http_build_query($query);
 		if ($q)
-			$redirectURL.='?' . $q;
+			$redirectURL .= '?' . $q;
 	} else if (isset($query['album'])) {
 		if (isset($query['image'])) {
-			$obj = newImage(NULL, array('folder' => $query['album'], 'filename' => $query['image']));
+			$obj = newImage(NULL, array('folder' => $query['album'], 'filename' => $query['image']), true);
 			unset($query['image']);
 		} else {
-			$obj = newAlbum($query['album']);
+			$obj = newAlbum($query['album'], NULL, true);
 		}
 		unset($query['album']);
+		if (!$obj->exists)
+			return '';
 		$redirectURL = preg_replace('~^' . WEBPATH . '/~', '', $obj->getLink());
 		$q = http_build_query($query);
 		if ($q)
-			$redirectURL.='?' . $q;
+			$redirectURL .= '?' . $q;
 	}
 	return $redirectURL;
 }

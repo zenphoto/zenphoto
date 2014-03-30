@@ -232,7 +232,7 @@ datepickerJS();
 
 					<table class="bordered">
 						<tr>
-							<th colspan="11" id="imagenav">
+							<th colspan="12" id="imagenav">
 								<?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/zenpage/admin-news-articles.php', $options); ?>
 							</th>
 						</tr>
@@ -242,7 +242,7 @@ datepickerJS();
 							</th>
 
 
-							<th colspan="4">
+							<th colspan="5">
 								<?php
 								$checkarray = array(
 												gettext('*Bulk actions*')			 => 'noaction',
@@ -264,7 +264,7 @@ datepickerJS();
 							</th>
 						</tr>
 						<tr class="newstr">
-							<td class="subhead" colspan="11">
+							<td class="subhead" colspan="12">
 								<label style="float: right"><?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
 								</label>
 							</td>

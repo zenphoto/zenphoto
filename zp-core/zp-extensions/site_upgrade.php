@@ -54,12 +54,12 @@ switch (OFFSET_PATH) {
 		}
 		break;
 	case 2:
-		if (!file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.php')) {
-			mkdir_recursive(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/', FOLDER_MOD);
+		mkdir_recursive(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/', FOLDER_MOD);
+		copy(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/site_upgrade/closed.php', SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.php');
+		if (!file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.htm')) {
 			$html = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/site_upgrade/closed.htm');
 			$html = sprintf($html, sprintf(gettext('%s upgrade'), $_zp_gallery->getTitle()), FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/site_upgrade/closed.png', sprintf(gettext('<strong><em>%s</em></strong> is undergoing an upgrade'), $_zp_gallery->getTitle()), '<a href="' . FULLWEBPATH . '/index.php">' . gettext('Please return later') . '</a>', FULLWEBPATH . '/index.php');
 			file_put_contents(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.htm', $html);
-			copy(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/site_upgrade/closed.php', SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.php');
 		}
 		if (!file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/rss_closed.xml')) {
 			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/rss.php');
@@ -133,7 +133,7 @@ switch (OFFSET_PATH) {
 			ob_end_clean();
 			file_put_contents(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/externalFeed-closed.xml', $xml);
 		}
-		setOptionDefault('zp_plugin_failed_site_upgrade', $plugin_is_filter);
+		setOptionDefault('zp_plugin_site_upgrade', $plugin_is_filter);
 		break;
 	default:
 		zp_register_filter('admin_utilities_buttons', 'site_upgrade_button');

@@ -103,8 +103,10 @@ if (in_context(ZP_INDEX)) {
  *
  * @param string $before before text
  * @param string $after after text
- * @param bool $showLoginForm to display a login form if no one is logged in set to 1 (for in colorbox, set to, but
- * 							but you must have colorbox enabled for the theme pages where this link appears.)
+ * @param int $showLoginForm to display a login form
+ * 				to not display a login form set to 0
+ * 				to display a login form set to 1
+ * 				to display a login form in colorbox, set to 2, but you must have colorbox enabled for the theme pages where this link appears.)
  * @param string $logouttext optional replacement text for "Logout"
  */
 function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $logouttext = NULL) {

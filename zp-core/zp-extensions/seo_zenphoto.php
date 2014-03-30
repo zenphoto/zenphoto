@@ -1100,7 +1100,7 @@ class zenphoto_seo {
 		$js = '
 			function seoFriendlyJS(fname) {
 				fname=fname.trim();
-				fname=fname.replace(/\s+\.\s*/,' . ');
+				fname=fname.replace(/\s+\.\s*/,".");
 			';
 
 		foreach ($xlate as $to => $from) {

@@ -86,7 +86,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	$subtabtext = '';
 	if ($_zp_admin_subtab && $tabrow && array_key_exists('subtabs', $tabrow) && $tabrow['subtabs']) {
 		foreach ($tabrow['subtabs'] as $key => $link) {
-			$i = strpos($link, '&amp;tab=');
+			$i = strpos($link, '&tab=');
 			if ($i !== false) {
 				$text = substr($link, $i + 9);
 				if ($text == $_zp_admin_subtab) {
@@ -297,7 +297,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			foreach ($zenphoto_tabs as $key => $atab) {
 				?>
 				<li <?php if ($_zp_admin_tab == $key) echo 'class="current"' ?>>
-					<a href="<?php echo $atab['link']; ?>"><?php echo $atab['text']; ?></a>
+					<a href="<?php echo html_encode($atab['link']); ?>"><?php echo html_encode($atab['text']); ?></a>
 					<?php
 					$subtabs = $zenphoto_tabs[$key]['subtabs'];
 					if (is_array($subtabs)) { // don't print <ul> if there is nothing
@@ -312,7 +312,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										$link = WEBPATH . $link;
 									}
 									?>
-									<li><a href="<?php echo $link; ?>"><?php echo $key; ?></a></li>
+									<li><a href="<?php echo html_encode($link); ?>"><?php echo html_encode($key); ?></a></li>
 									<?php
 								} // foreach end
 								?>
@@ -417,11 +417,11 @@ function printAdminHeader($tab, $subtab = NULL) {
 						}
 					}
 					if (strpos($link, '/') !== 0) { // zp_core relative
-						$link = 'href = "' . WEBPATH . '/' . ZENFOLDER . '/' . $link . '"';
+						$link = WEBPATH . '/' . ZENFOLDER . '/' . $link;
 					} else {
-						$link = 'href = "' . WEBPATH . $link . '"';
+						$link = WEBPATH . $link;
 					}
-					echo '<li' . (($current == $tab) ? ' class="current"' : '') . '><a ' . $link . '>' . $key . '</a></li>' . "\n";
+					echo '<li' . (($current == $tab) ? ' class="current"' : '') . '><a href="' . html_encode($link) . '">' . html_encode($key) . '</a></li>' . "\n";
 				}
 				?>
 			</ul>
@@ -432,7 +432,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 
 	function setAlbumSubtabs($album) {
 		global $zenphoto_tabs;
-		$albumlink = '?page=edit&amp;album=' . urlencode($album->name);
+		$albumlink = '?page=edit&album=' . urlencode($album->name);
 		$default = NULL;
 		if (!is_array($zenphoto_tabs['edit']['subtabs'])) {
 			$zenphoto_tabs['edit']['subtabs'] = array();
@@ -441,25 +441,25 @@ function printAdminHeader($tab, $subtab = NULL) {
 		if (!$album->isDynamic() && $album->getNumImages()) {
 			if ($subrights & (MANAGED_OBJECT_RIGHTS_UPLOAD || MANAGED_OBJECT_RIGHTS_EDIT)) {
 				$zenphoto_tabs['edit']['subtabs'] = array_merge(
-								array(gettext('Images') => 'admin-edit.php' . $albumlink . '&amp;tab=imageinfo'), $zenphoto_tabs['edit']['subtabs']
+								array(gettext('Images') => 'admin-edit.php' . $albumlink . '&tab=imageinfo'), $zenphoto_tabs['edit']['subtabs']
 				);
 				$default = 'imageinfo';
 			}
 			if ($subrights & MANAGED_OBJECT_RIGHTS_EDIT) {
 				$zenphoto_tabs['edit']['subtabs'] = array_merge(
-								array(gettext('Image order') => 'admin-albumsort.php' . $albumlink . '&amp;tab=sort'), $zenphoto_tabs['edit']['subtabs']
+								array(gettext('Image order') => 'admin-albumsort.php' . $albumlink . '&tab=sort'), $zenphoto_tabs['edit']['subtabs']
 				);
 			}
 		}
 		if (!$album->isDynamic() && $album->getNumAlbums()) {
 			$zenphoto_tabs['edit']['subtabs'] = array_merge(
-							array(gettext('Subalbums') => 'admin-edit.php' . $albumlink . '&amp;tab=subalbuminfo'), $zenphoto_tabs['edit']['subtabs']
+							array(gettext('Subalbums') => 'admin-edit.php' . $albumlink . '&tab=subalbuminfo'), $zenphoto_tabs['edit']['subtabs']
 			);
 			$default = 'subalbuminfo';
 		}
 		if ($subrights & MANAGED_OBJECT_RIGHTS_EDIT) {
 			$zenphoto_tabs['edit']['subtabs'] = array_merge(
-							array(gettext('Album') => 'admin-edit.php' . $albumlink . '&amp;tab=albuminfo'), $zenphoto_tabs['edit']['subtabs']
+							array(gettext('Album') => 'admin-edit.php' . $albumlink . '&tab=albuminfo'), $zenphoto_tabs['edit']['subtabs']
 			);
 			$default = 'albuminfo';
 		}
@@ -1169,7 +1169,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				if ($parent == '/' || $parent == '.' || empty($parent)) {
 					$parent = '';
 				} else {
-					$parent = '&amp;album=' . $parent . '&amp;tab=subalbuminfo';
+					$parent = '&amp;album=' . $parent . '&tab=subalbuminfo';
 				}
 				?>
 				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>">
@@ -1278,7 +1278,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
 																onclick="passwordClear('<?php echo $suffix; ?>');
-																		togglePassword('<?php echo $suffix; ?>');" /><?php echo gettext('Show password'); ?></label>
+																				togglePassword('<?php echo $suffix; ?>');" /><?php echo gettext('Show password'); ?></label>
 								</td>
 								<td>
 									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
@@ -1804,7 +1804,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -4124,6 +4124,7 @@ function admin_securityChecks($rights, $return) {
 	global $_zp_current_admin_obj, $_zp_loggedin;
 	checkInstall();
 	httpsRedirect();
+
 	if ($_zp_current_admin_obj && $_zp_current_admin_obj->reset) {
 		$_zp_loggedin = USER_RIGHTS;
 	}
@@ -4317,7 +4318,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 		}
 		?>
 		<select name="subpage" class="ays-ignore" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
-								[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
+										[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
 							<?php
 							foreach ($rangeset as $page => $range) {
 								?>
@@ -4394,7 +4395,7 @@ function getLogTabs() {
 			} else {
 				$logfiletext = str_replace('_', ' ', $log);
 			}
-			$subtabs = array_merge($subtabs, array($logfiletext => 'admin-logs.php?page=logs&amp;tab=' . $log));
+			$subtabs = array_merge($subtabs, array($logfiletext => 'admin-logs.php?page=logs&tab=' . $log));
 			if (filesize($logfile) > 0 && empty($default)) {
 				$default = $log;
 			}
@@ -4452,12 +4453,12 @@ function getPluginTabs() {
 	}
 
 	ksort($classes);
-	$tabs[$classXlate['all']] = 'admin-plugins.php?page=plugins&amp;tab=all';
+	$tabs[$classXlate['all']] = 'admin-plugins.php?page=plugins&tab=all';
 	$currentlist = array_keys($paths);
 
 
 	foreach ($classes as $class => $list) {
-		$tabs[$classXlate[$class]] = 'admin-plugins.php?page=plugins&amp;tab=' . $class;
+		$tabs[$classXlate[$class]] = 'admin-plugins.php?page=plugins&tab=' . $class;
 		if ($class == $default) {
 			$currentlist = $list['list'];
 		}

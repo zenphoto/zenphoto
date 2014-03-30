@@ -321,7 +321,7 @@ $subtab = printSubtabs();
 						<?php
 						if ($subtab == 'all') {
 							$tab = $member[$extension];
-							echo '<span class="displayrightsmall"><a href="' . $tabs[$tab] . '"><em>' . $tab . '</em></a></span>';
+							echo '<span class="displayrightsmall"><a href="' . html_encode($tabs[$tab]) . '"><em>' . $tab . '</em></a></span>';
 						}
 						?>
 					</td>

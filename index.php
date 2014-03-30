@@ -1,7 +1,10 @@
 <?php
 
 define('OFFSET_PATH', 0);
-$_contents = @file_get_contents(dirname(__FILE__) . '/zp-data/zenphoto.cfg.php');
+if (!$_zp_script = @$_SERVER['SCRIPT_FILENAME']) {
+	$_zp_script = __FILE__;
+}
+$_contents = @file_get_contents(dirname($_zp_script) . '/zp-data/zenphoto.cfg.php');
 
 if ($_contents) {
 	if (strpos($_contents, '<?php') !== false)
@@ -14,7 +17,9 @@ if ($_contents) {
 			$page = 'page';
 		}
 		if (!preg_match('~' . preg_quote($page) . '/setup_set-mod_rewrite\?z=setup$~', $_SERVER['REQUEST_URI'])) {
-			header('location: plugins/site_upgrade/closed.php');
+			if (file_exists(dirname($_zp_script) . '/plugins/site_upgrade/closed.php')) {
+				header('location: plugins/site_upgrade/closed.php');
+			}
 			exit();
 		}
 	}

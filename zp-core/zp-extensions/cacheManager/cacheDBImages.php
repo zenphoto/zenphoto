@@ -15,8 +15,8 @@ admin_securityChecks(NULL, $return = currentRelativeURL());
 
 XSRFdefender('cacheDBImages');
 
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Cache images')				 => PLUGIN_FOLDER . '/cacheManager/cacheImages.php?page=overview&amp;tab=images',
-				gettext('Cache stored images') => PLUGIN_FOLDER . '/cacheManager/cacheDBImages.php?page=overview&amp;tab=DB&amp;XSRFToken=' . getXSRFToken('cacheDBImages'));
+$zenphoto_tabs['overview']['subtabs'] = array(gettext('Cache images')				 => PLUGIN_FOLDER . '/cacheManager/cacheImages.php?page=overview&tab=images',
+				gettext('Cache stored images') => PLUGIN_FOLDER . '/cacheManager/cacheDBImages.php?page=overview&tab=DB&amp;XSRFToken=' . getXSRFToken('cacheDBImages'));
 printAdminHeader('overview', 'DB');
 echo "\n</head>";
 echo "\n<body>";

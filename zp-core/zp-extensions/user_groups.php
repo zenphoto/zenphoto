@@ -196,8 +196,7 @@ class user_groups {
 				$grouppart = '<code>' . gettext('no group affiliation') . '</code>';
 			}
 		}
-		$result =
-						"\n" . '<tr' . ((!$current) ? ' style="display:none;"' : '') . ' class="userextrainfo">' . "\n" .
+		$result = "\n" . '<tr' . ((!$current) ? ' style="display:none;"' : '') . ' class="userextrainfo">' . "\n" .
 						'<td width="20%"' . ((!empty($background)) ? ' style="' . $background . '"' : '') . ' valign="top">' . "\n" . sprintf(gettext('User group membership: %s'), $grouppart) . "\n" .
 						"</td>\n<td" . ((!empty($background)) ? ' style="' . $background . '"' : '') . ">" . '<div class="notebox"><p>' . gettext('Templates are highlighted.') . $notice . '</p><p>' . gettext('<strong>Note:</strong> When a group is assigned <em>rights</em> and <em>managed objects</em> are determined by the group!') . '</p></div></td>' . "\n" .
 						"</tr>\n";
@@ -212,11 +211,11 @@ class user_groups {
 			} else {
 				$subtabs = array();
 			}
-			$subtabs[gettext('users')] = 'admin-users.php?page=users&amp;tab=users';
-			$subtabs[gettext('assignments')] = PLUGIN_FOLDER . '/user_groups/user_groups-tab.php?page=users&amp;tab=assignments';
-			$subtabs[gettext('groups')] = PLUGIN_FOLDER . '/user_groups/user_groups-tab.php?page=users&amp;tab=groups';
+			$subtabs[gettext('users')] = 'admin-users.php?page=users&tab=users';
+			$subtabs[gettext('assignments')] = PLUGIN_FOLDER . '/user_groups/user_groups-tab.php?page=users&tab=assignments';
+			$subtabs[gettext('groups')] = PLUGIN_FOLDER . '/user_groups/user_groups-tab.php?page=users&tab=groups';
 			$tabs['users'] = array('text'		 => gettext("admin"),
-							'link'		 => WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=users&amp;tab=users',
+							'link'		 => WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=users&tab=users',
 							'subtabs'	 => $subtabs,
 							'default'	 => 'users');
 		}
