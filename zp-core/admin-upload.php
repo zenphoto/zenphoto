@@ -13,8 +13,10 @@ admin_securityChecks(UPLOAD_RIGHTS | FILES_RIGHTS, $return = currentRelativeURL(
 
 if (isset($_GET['type'])) {
 	$uploadtype = sanitize($_GET['tab']);
+	zp_setCookie('uploadtype', $uploadtype);
 } else {
 	$uploadtype = zp_getcookie('uploadtype');
+	$_GET['tab'] = $uploadtype;
 }
 
 $handlers = array_keys($uploadHandlers = zp_apply_filter('upload_handlers', array()));
@@ -32,7 +34,6 @@ if (count($handlers) > 0) {
 		$uploadtype = array_shift($handlers);
 	}
 	require_once($uploadHandlers[$uploadtype] . '/upload_form.php');
-	zp_setCookie('uploadtype', $uploadtype);
 } else {
 
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/no_uploader.php');

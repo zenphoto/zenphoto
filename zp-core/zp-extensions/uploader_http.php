@@ -30,16 +30,12 @@ function httpUploadHandler_admin_tabs($tabs) {
 	$mylink = 'admin-upload.php?page=upload&tab=http&type=' . gettext('images');
 	if (is_null($tabs['upload'])) {
 		$tabs['upload'] = array('text'		 => gettext("upload"),
-						'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . $mylink,
+						'link'		 => WEBPATH . "/" . ZENFOLDER . '/admin-upload.php',
 						'subtabs'	 => NULL);
-	} else {
-		$default = str_replace(WEBPATH . '/' . ZENFOLDER . '/', '', $tabs['upload']['link']);
-		preg_match('|&tab=([^&]*)&type=([^&]*)|', $default, $matches);
-		$tabs['upload']['subtabs'][sprintf(gettext('%1$s (%2$s)'), $matches[2], $matches[1])] = $default;
-		$tabs['upload']['subtabs'][$me] = $mylink;
-		$tabs['upload']['default'] = $me;
-		$tabs['upload']['link'] = WEBPATH . "/" . ZENFOLDER . '/' . $mylink;
 	}
+	$tabs['upload']['subtabs'][$me] = $mylink;
+	if (zp_getcookie('uploadtype') == 'http')
+		$tabs['upload']['link'] = $mylink;
 	return $tabs;
 }
 
