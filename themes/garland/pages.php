@@ -7,6 +7,7 @@ if (!defined('WEBPATH') || !class_exists('Zenpage'))
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
 		<?php printHeadTitle(); ?>
+		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
 	</head>
