@@ -57,6 +57,8 @@ class htmlmetatags {
 		setOptionDefault('htmlmeta_name-date', '1');
 		setOptionDefault('htmlmeta_canonical-url', '0');
 		setOptionDefault('htmlmeta_sitelogo', '');
+		setOptionDefault('htmlmeta_twittercard', '');
+		setOptionDefault('htmlmeta_twittername', '');
 	}
 
 	// Gettext calls are removed because some terms like "noindex" are fixed terms that should not be translated so user know what setting they make.
@@ -85,6 +87,8 @@ class htmlmetatags {
 										'desc'	 => gettext('This adds a link element to the head of each page with a <em>canonical url</em>. If the <code>seo_locale</code> plugin is enabled or <code>use subdomains</code> is checked it also generates alternate links for other languages (<code>&lt;link&nbsp;rel="alternate" hreflang="</code>...<code>" href="</code>...<code>" /&gt;</code>).')),
 						gettext('Site logo')						 => array('key'	 => 'htmlmeta_sitelogo', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext("Enter the full url to a specific site logo image. Facebook, Google+ and others will use that as the thumb shown in link previews within posts. For image or album pages the default size album or image thumb is used automatically.")),
+						gettext('Twitter name')						 => array('key'	 => 'htmlmeta_twittername', 'type' => OPTION_TYPE_TEXTBOX,
+										'desc' => gettext("If you enabled Twitter card meta tags, you need to enter your Twitter user name here.")),
 						gettext('HTML meta tags')				 => array('key'				 => 'htmlmeta_tags', 'type'			 => OPTION_TYPE_CHECKBOX_UL,
 										"checkboxes" => array(
 														"http-equiv='language'"								 => "htmlmeta_http-equiv-language",
@@ -128,7 +132,8 @@ class htmlmetatags {
 														"property='og:description'"						 => "htmlmeta_og-description",
 														"property='og:url'"										 => "htmlmeta_og-url",
 														"property='og:type'"									 => "htmlmeta_og-type",
-														"name='pinterest' content='nopin'"		 => "htmlmeta_name-pinterest"
+														"name='pinterest' content='nopin'"		 => "htmlmeta_name-pinterest",
+														"twitter:card"		 										 => "htmlmeta_twittercard"
 										),
 										"desc"			 => gettext("Which of the HTML meta tags should be used. For info about these in detail please refer to the net.")),
 						gettext('Use subdomains') . '*'	 => array('key'			 => 'dynamic_locale_subdomain', 'type'		 => OPTION_TYPE_CHECKBOX,
@@ -194,7 +199,7 @@ class htmlmetatags {
 				$date = getAlbumDate();
 				$desc = getBareAlbumDesc();
 				$canonicalurl = $host . getAlbumURL();
-				if (getOption('htmlmeta_og-image')) {
+				if (getOption('htmlmeta_og-image') || getOption('htmlmeta_twittercard')) {
 					$thumb = $host . getAlbumThumb();
 				}
 				break;
@@ -203,7 +208,7 @@ class htmlmetatags {
 				$date = getImageDate();
 				$desc = getBareImageDesc();
 				$canonicalurl = $host . getImageURL();
-				if (getOption('htmlmeta_og-image')) {
+				if (getOption('htmlmeta_og-image') || getOption('htmlmeta_twittercard')) {
 					$thumb = $host . getImageThumb();
 				}
 				break;
@@ -219,10 +224,12 @@ class htmlmetatags {
 						$date = strftime(DATE_FORMAT);
 						$desc = trim(strip_tags($_zp_current_category->getDesc()));
 						$canonicalurl = $host . $_zp_current_category->getLink();
+						$type = 'category';
 					} else {
 						$pagetitle = gettext('News') . " - ";
 						$desc = '';
 						$canonicalurl = $host . getNewsIndexURL();
+						$type = 'website';
 					}
 				}
 				break;
@@ -259,134 +266,148 @@ class htmlmetatags {
 		$author = $admin->getName();
 		$meta = '';
 		if (getOption('htmlmeta_http-equiv-language')) {
-			$meta .= '<meta http-equiv="language" content="' . $locale . '" />' . "\n";
+			$meta .= '<meta http-equiv="language" content="' . $locale . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-language')) {
-			$meta .= '<meta name="language" content="' . $locale . '" />' . "\n";
+			$meta .= '<meta name="language" content="' . $locale . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-content-language')) {
-			$meta .= '<meta name="content-language" content="' . $locale . '" />' . "\n";
+			$meta .= '<meta name="content-language" content="' . $locale . '">' . "\n";
 		}
 		if (getOption('htmlmeta_http-equiv-imagetoolbar')) {
-			$meta .= '<meta http-equiv="imagetoolbar" content="false" />' . "\n";
+			$meta .= '<meta http-equiv="imagetoolbar" content="false">' . "\n";
 		}
 		if (getOption('htmlmeta_http-equiv-cache-control')) {
-			$meta .= '<meta http-equiv="cache-control" content="' . getOption("htmlmeta_cache_control") . '" />' . "\n";
+			$meta .= '<meta http-equiv="cache-control" content="' . getOption("htmlmeta_cache_control") . '">' . "\n";
 		}
 		if (getOption('htmlmeta_http-equiv-pragma')) {
-			$meta .= '<meta http-equiv="pragma" content="' . getOption("htmlmeta_pragma") . '" />' . "\n";
+			$meta .= '<meta http-equiv="pragma" content="' . getOption("htmlmeta_pragma") . '">' . "\n";
 		}
 		if (getOption('htmlmeta_http-equiv-content-style-type')) {
-			$meta .= '<meta http-equiv="Content-Style-Type" content="text/css" />' . "\n";
+			$meta .= '<meta http-equiv="Content-Style-Type" content="text/css">' . "\n";
 		}
 		if (getOption('htmlmeta_name-title')) {
-			$meta .= '<meta name="title" content="' . html_encode($pagetitle) . '" />' . "\n";
+			$meta .= '<meta name="title" content="' . html_encode($pagetitle) . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-keywords')) {
-			$meta .= '<meta name="keywords" content="' . htmlmetatags::getMetaKeywords() . '" />' . "\n";
+			$meta .= '<meta name="keywords" content="' . htmlmetatags::getMetaKeywords() . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-description')) {
-			$meta .= '<meta name="description" content="' . $desc . '" />' . "\n";
+			$meta .= '<meta name="description" content="' . $desc . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-page-topic')) {
-			$meta .= '<meta name="page-topic" content="' . $desc . '" />' . "\n";
+			$meta .= '<meta name="page-topic" content="' . $desc . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-robots')) {
-			$meta .= '<meta name="robots" content="' . getOption("htmlmeta_robots") . '" />' . "\n";
+			$meta .= '<meta name="robots" content="' . getOption("htmlmeta_robots") . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-publisher')) {
-			$meta .= '<meta name="publisher" content="' . FULLWEBPATH . '" />' . "\n";
+			$meta .= '<meta name="publisher" content="' . FULLWEBPATH . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-creator')) {
-			$meta .= '<meta name="creator" content="' . FULLWEBPATH . '" />' . "\n";
+			$meta .= '<meta name="creator" content="' . FULLWEBPATH . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-author')) {
-			$meta .= '<meta name="author" content="' . $author . '" />' . "\n";
+			$meta .= '<meta name="author" content="' . $author . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-copyright')) {
-			$meta .= '<meta name="copyright" content=" (c) ' . FULLWEBPATH . ' - ' . $author . '" />' . "\n";
+			$meta .= '<meta name="copyright" content=" (c) ' . FULLWEBPATH . ' - ' . $author . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-rights')) {
-			$meta .= '<meta name="rights" content="' . $author . '" />' . "\n";
+			$meta .= '<meta name="rights" content="' . $author . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-revisit-after')) {
-			$meta .= '<meta name="revisit-after" content="' . getOption("htmlmeta_revisit_after") . '" />' . "\n";
+			$meta .= '<meta name="revisit-after" content="' . getOption("htmlmeta_revisit_after") . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-expires')) {
-			$meta .= '<meta name="expires" content="' . getOption("htmlmeta_expires") . '" />' . "\n";
+			$meta .= '<meta name="expires" content="' . getOption("htmlmeta_expires") . '">' . "\n";
 		}
 
 		// DC meta data
 		if (getOption('htmlmeta_name-DC-title')) {
-			$meta .= '<meta name="DC.title" content="' . $pagetitle . '" />' . "\n";
+			$meta .= '<meta name="DC.title" content="' . $pagetitle . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-DC-keywords')) {
-			$meta .= '<meta name="DC.keywords" content="' . htmlmetatags::getMetaKeywords() . '" />' . "\n";
+			$meta .= '<meta name="DC.keywords" content="' . htmlmetatags::getMetaKeywords() . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-DC-description')) {
-			$meta .= '<meta name="DC.description" content="' . $desc . '" />' . "\n";
+			$meta .= '<meta name="DC.description" content="' . $desc . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-DC-language')) {
-			$meta .= '<meta name="DC.language" content="' . $locale . '" />' . "\n";
+			$meta .= '<meta name="DC.language" content="' . $locale . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-DC-subject')) {
-			$meta .= '<meta name="DC.subject" content="' . $desc . '" />' . "\n";
+			$meta .= '<meta name="DC.subject" content="' . $desc . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-DC-publisher')) {
-			$meta .= '<meta name="DC.publisher" content="' . FULLWEBPATH . '" />' . "\n";
+			$meta .= '<meta name="DC.publisher" content="' . FULLWEBPATH . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-DC-creator')) {
-			$meta .= '<meta name="DC.creator" content="' . FULLWEBPATH . '" />' . "\n";
+			$meta .= '<meta name="DC.creator" content="' . FULLWEBPATH . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-DC-date')) {
-			$meta .= '<meta name="DC.date" content="' . $date . '" />' . "\n";
+			$meta .= '<meta name="DC.date" content="' . $date . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-DC-type')) {
-			$meta .= '<meta name="DC.type" content="Text" /> <!-- ? -->' . "\n";
+			$meta .= '<meta name="DC.type" content="Text"> <!-- ? -->' . "\n";
 		}
 		if (getOption('htmlmeta_name-DC-format')) {
-			$meta .= '<meta name="DC.format" content="text/html" /><!-- What else? -->' . "\n";
+			$meta .= '<meta name="DC.format" content="text/html"><!-- What else? -->' . "\n";
 		}
 		if (getOption('htmlmeta_name-DC-identifier')) {
-			$meta .= '<meta name="DC.identifier" content="' . FULLWEBPATH . '" />' . "\n";
+			$meta .= '<meta name="DC.identifier" content="' . FULLWEBPATH . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-DC-rights')) {
-			$meta .= '<meta name="DC.rights" content="' . FULLWEBPATH . '" />' . "\n";
+			$meta .= '<meta name="DC.rights" content="' . FULLWEBPATH . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-DC-source')) {
-			$meta .= '<meta name="DC.source" content="' . $url . '" />' . "\n";
+			$meta .= '<meta name="DC.source" content="' . $url . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-DC-relation')) {
-			$meta .= '<meta name="DC.relation" content="' . FULLWEBPATH . '" />' . "\n";
+			$meta .= '<meta name="DC.relation" content="' . FULLWEBPATH . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-DC-Date.created')) {
-			$meta .= '<meta name="DC.Date.created" content="' . $date . '" />' . "\n";
+			$meta .= '<meta name="DC.Date.created" content="' . $date . '">' . "\n";
 		}
 
 		// OpenGraph meta
 		if (getOption('htmlmeta_og-title')) {
-			$meta .= '<meta property="og:title" content="' . $pagetitle . '" />' . "\n";
+			$meta .= '<meta property="og:title" content="' . $pagetitle . '">' . "\n";
 		}
 		if (getOption('htmlmeta_og-image') && !empty($thumb)) {
-			$meta .= '<meta property="og:image" content="' . $thumb . '" />' . "\n";
+			$meta .= '<meta property="og:image" content="' . $thumb . '">' . "\n";
 		}
 		if (getOption('htmlmeta_og-description')) {
-			$meta .= '<meta property="og:description" content="' . $desc . '" />' . "\n";
+			$meta .= '<meta property="og:description" content="' . $desc . '">' . "\n";
 		}
 		if (getOption('htmlmeta_og-url')) {
-			$meta .= '<meta property="og:url" content="' . html_encode($url) . '" />' . "\n";
+			$meta .= '<meta property="og:url" content="' . html_encode($url) . '">' . "\n";
 		}
 		if (getOption('htmlmeta_og-type')) {
-			$meta .= '<meta property="og:type" content="' . $type . '" />' . "\n";
+			$meta .= '<meta property="og:type" content="' . $type . '">' . "\n";
 		}
 
 		// Social network extras
 		if (getOption('htmlmeta_name-pinterest')) {
-			$meta .= '<meta name="pinterest" content="nopin" />' . "\n";
+			$meta .= '<meta name="pinterest" content="nopin">' . "\n";
 		} // dissalow users to pin images on Pinterest
+		
+		// Twitter card
+		$twittername = getOption('htmlmeta_twittername');
+		if (getOption('htmlmeta_twittercard') || !empty($twittername)) {
+			$meta .= '<meta property="twitter:creator" content="' . $twittername . '">' . "\n";
+			$meta .= '<meta property="twitter:site" content="' . $twittername . '">' . "\n";
+			$meta .= '<meta property="twitter:card" content="summary">' . "\n";
+			$meta .= '<meta property="twitter:title" content="' . $pagetitle . '">' . "\n";
+			$meta .= '<meta property="twitter:description" content="' . $desc . '">' . "\n";
+			if (!empty($thumb)) {
+				$meta .= '<meta property="twitter:image" content="' . $thumb . '">' . "\n";
+			}
+		}
+		
 		// Canonical url
 		if (getOption('htmlmeta_canonical-url')) {
-			$meta .= '<link rel="canonical" href="' . $canonicalurl . '" />' . "\n";
+			$meta .= '<link rel="canonical" href="' . $canonicalurl . '">' . "\n";
 			if (METATAG_LOCALE_TYPE) {
 				$langs = generateLanguageList();
 				if (count($langs) != 1) {
@@ -437,7 +458,7 @@ class htmlmetatags {
 									$altlink .= '/' . _PAGE_ . '/' . html_encode($pagetitle);
 									break;
 							} // switch
-							$meta .= '<link rel="alternate" hreflang="' . $langcheck . '" href="' . $altlink . '" />' . "\n";
+							$meta .= '<link rel="alternate" hreflang="' . $langcheck . '" href="' . $altlink . '">' . "\n";
 						} // if lang
 					} // foreach
 				} // if count
