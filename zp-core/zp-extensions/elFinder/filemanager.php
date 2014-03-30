@@ -6,15 +6,12 @@
  * @subpackage admin
  */
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
-
 admin_securityChecks(FILES_RIGHTS, currentRelativeURL());
-
-printAdminHeader('upload', 'files');
-
+zp_setCookie('uploadtype', 'elFinder');
 $locale = substr(getOption("locale"), 0, 2);
 if (empty($locale))
 	$locale = 'en';
-zp_setCookie('uploadtype', 'elFinder');
+printAdminHeader('upload', 'files');
 ?>
 
 <link rel="stylesheet" type="text/css" media="screen" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/'; ?>css/elfinder.min.css">
@@ -33,15 +30,15 @@ echo "\n</head>";
 
 <body>
 
-<?php printLogoAndLinks(); ?>
+	<?php printLogoAndLinks(); ?>
 	<div id="main">
-	<?php printTabs(); ?>
+		<?php printTabs(); ?>
 		<div id="content">
-		<?php ?>
+			<?php ?>
 			<div id="container">
-			<?php $subtab = printSubtabs(); ?>
+				<?php $subtab = printSubtabs(); ?>
 				<div class="tabbox">
-				<?php zp_apply_filter('admin_note', 'upload', $subtab); ?>
+					<?php zp_apply_filter('admin_note', 'upload', $subtab); ?>
 					<h1><?php echo gettext('File Manager'); ?></h1>
 					<script type="text/javascript">
 						$().ready(function() {
@@ -56,15 +53,15 @@ echo "\n</head>";
 							}).elfinder('instance');
 						});
 					</script>
-<?php
-if (zp_loggedin(ALBUM_RIGHTS)) {
-	?>
-						<p class="notebox">
-						<?php echo gettext('<strong>Note:</strong> Accessing the Albums folder with this utility is equivalent to using FTP to access it. <em>Copy</em> and <em>rename</em> do not carry the Zenphoto data with the change.'); ?>
-						</p>
-							<?php
-						}
+					<?php
+					if (zp_loggedin(ALBUM_RIGHTS)) {
 						?>
+						<p class="notebox">
+							<?php echo gettext('<strong>Note:</strong> Accessing the Albums folder with this utility is equivalent to using FTP to access it. <em>Copy</em> and <em>rename</em> do not carry the Zenphoto data with the change.'); ?>
+						</p>
+						<?php
+					}
+					?>
 					<!-- Element where elFinder will be created (REQUIRED) -->
 					<div id="elfinder"></div>
 				</div>
@@ -72,7 +69,7 @@ if (zp_loggedin(ALBUM_RIGHTS)) {
 		</div>
 	</div>
 	<br class="clearall" />
-<?php printAdminFooter(); ?>
+	<?php printAdminFooter(); ?>
 
 </body>
 </html>
