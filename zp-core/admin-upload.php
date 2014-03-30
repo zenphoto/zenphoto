@@ -11,8 +11,8 @@ require_once(dirname(__FILE__) . '/admin-globals.php');
 
 admin_securityChecks(UPLOAD_RIGHTS | FILES_RIGHTS, $return = currentRelativeURL());
 
-if (isset($_GET['uploadtype'])) {
-	$uploadtype = sanitize($_GET['uploadtype']);
+if (isset($_GET['type'])) {
+	$uploadtype = sanitize($_GET['tab']);
 } else {
 	$uploadtype = zp_getcookie('uploadtype');
 }
