@@ -418,7 +418,7 @@ function setupLanguageSelector() {
 	$languages = generateLanguageList();
 	if (isset($_REQUEST['locale'])) {
 		$locale = sanitize($_REQUEST['locale']);
-		if (getOption('locale') != $locale) {
+		if (getOption('locale') != $locale || getOption('unsupported_' . $locale)) {
 			?>
 			<div class="errorbox">
 				<h2>
@@ -438,30 +438,32 @@ function setupLanguageSelector() {
 		krsort($_languages, SORT_LOCALE_STRING);
 		$currentValue = getOption('locale');
 		foreach ($_languages as $text => $lang) {
-			?>
-			<li<?php if ($lang == $currentValue) echo ' class="currentLanguage"'; ?>>
-				<?php
-				if ($lang != $currentValue) {
-					?>
-					<a href="javascript:launchScript('',['locale=<?php echo $lang; ?>']);" >
-						<?php
-					}
-					if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/locale/' . $lang . '/flag.png')) {
-						$flag = WEBPATH . '/' . ZENFOLDER . '/locale/' . $lang . '/flag.png';
-					} else {
-						$flag = WEBPATH . '/' . ZENFOLDER . '/locale/missing_flag.png';
-					}
-					?>
-					<img src="<?php echo $flag; ?>" alt="<?php echo $text; ?>" title="<?php echo $text; ?>" />
+			if (setupLocale($lang)) {
+				?>
+				<li<?php if ($lang == $currentValue) echo ' class="currentLanguage"'; ?>>
 					<?php
 					if ($lang != $currentValue) {
 						?>
-					</a>
-					<?php
-				}
-				?>
-			</li>
-			<?php
+						<a href="javascript:launchScript('',['locale=<?php echo $lang; ?>']);" >
+							<?php
+						}
+						if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/locale/' . $lang . '/flag.png')) {
+							$flag = WEBPATH . '/' . ZENFOLDER . '/locale/' . $lang . '/flag.png';
+						} else {
+							$flag = WEBPATH . '/' . ZENFOLDER . '/locale/missing_flag.png';
+						}
+						?>
+						<img src="<?php echo $flag; ?>" alt="<?php echo $text; ?>" title="<?php echo $text; ?>" />
+						<?php
+						if ($lang != $currentValue) {
+							?>
+						</a>
+						<?php
+					}
+					?>
+				</li>
+				<?php
+			}
 		}
 		?>
 	</ul>
@@ -634,6 +636,16 @@ function mkdir_r($pathname, $mode) {
 		mkdir_r(dirname($pathname), $mode);
 	}
 	return is_dir($pathname) || @mkdir($pathname, $mode);
+}
+
+function setupLocale($locale) {
+	global $_zp_RTL_css;
+	$en1 = LOCAL_CHARSET;
+	$en2 = str_replace('ISO-', 'ISO', $en1);
+	$simple = explode('-', $locale);
+	$rslt = setlocale(LC_ALL, $locale . '.UTF8', $locale . '.UTF-8', $locale . '@euro', $locale . '.' . $en2, $locale . '.' . $en1, $locale, $simple[0], NULL);
+	$_zp_RTL_css = in_array(substr($rslt, 0, 2), array('fa', 'ar', 'he', 'hi', 'ur'));
+	return $rslt;
 }
 
 /**

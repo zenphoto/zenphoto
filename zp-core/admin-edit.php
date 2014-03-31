@@ -616,6 +616,12 @@ if (isset($_GET['album']) && (empty($subtab) || $subtab == 'albuminfo') || isset
 	function confirmAction() {
 		if ($('#checkallaction').val() == 'deleteall') {
 			return confirm('<?php echo js_encode(gettext("Are you sure you want to delete the checked items?")); ?>');
+		} else if ($('#checkallaction').val() == 'deleteallalbum') {
+			if (confirm(deleteAlbum1)) {
+				return confirm(deleteAlbum2);
+			} else {
+				return false;
+			}
 		} else {
 			return true;
 		}
@@ -659,11 +665,14 @@ echo "\n</head>";
 			if (extensionEnabled('hitcounter')) {
 				$checkarray['Reset hitcounter'] = 'resethitcounter';
 			}
-			$checkarray_albums = array_merge($checkarray_images, array(gettext('Add tags to images')		 => 'alltags',
-							gettext('Clear tags of images')	 => 'clearalltags')
-			);
-			$checkarray_images = array_merge($checkarray_images, array(gettext('Move')	 => 'moveimages',
-							gettext('Copy')	 => 'copyimages')
+			$checkarray_albums = array_merge($checkarray_images, array(
+							gettext('Delete')								 => 'deleteallalbum',
+							gettext('Add tags to images')		 => 'alltags',
+							gettext('Clear tags of images')	 => 'clearalltags'));
+			$checkarray_images = array_merge($checkarray_images, array(
+							gettext('Delete')	 => 'deleteall',
+							gettext('Move')		 => 'moveimages',
+							gettext('Copy')		 => 'copyimages')
 			);
 			$checkarray_images = zp_apply_filter('bulk_image_actions', $checkarray_images);
 			$checkarray_albums = zp_apply_filter('bulk_album_actions', $checkarray_albums);

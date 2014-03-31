@@ -3832,7 +3832,7 @@ function processAlbumBulkActions() {
 				$n++;
 				$albumobj = newAlbum($albumname);
 				switch ($action) {
-					case 'deleteall':
+					case 'deleteallalbum':
 						$albumobj->remove();
 						break;
 					case 'showall':
@@ -4595,6 +4595,7 @@ function consolidatedEditMessages($subtab) {
 	if (isset($_GET['bulkmessage'])) {
 		$action = sanitize($_GET['bulkmessage']);
 		switch ($action) {
+			case 'deleteallalbum':
 			case 'deleteall':
 				$messagebox[] = gettext('Selected items deleted');
 				break;
