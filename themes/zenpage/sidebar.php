@@ -20,14 +20,24 @@ if (function_exists('printCustomMenu') && getOption('zenpage_custommenu')) {
 
 	<?php if (function_exists("printAlbumMenu")) { ?>
 		<div class="menu">
-			<h3><?php echo gettext("Gallery"); ?></h3>
-			<?php
-			if (extensionEnabled('zenpage') && !(getOption("zenpage_zp_index_news")) || !getOption("zenpage_homepage")) {
-				$allalbums = gettext("Gallery index");
+		<?php if (extensionEnabled('zenpage')) {
+				if ($_zp_gallery_page == 'index.php' || $_zp_gallery_page != 'gallery.php') {
+					?>
+					<h3>
+						<a href="<?php echo html_encode(getCustomPageURL('gallery')); ?>" title="<?php echo gettext('Album index'); ?>"><?php echo gettext("Gallery"); ?></a>
+					</h3>
+					<?php
+				} else {
+					?>
+					<h3><?php echo gettext("Gallery"); ?></h3>
+					<?php
+				}
 			} else {
-				$allalbums = "";
+				?>
+				<h3><?php echo gettext("Gallery"); ?></h3>
+				<?php
 			}
-			printAlbumMenu("list", NULL, "", "menu-active", "submenu", "menu-active", $allalbums, false, false);
+			printAlbumMenu("list", "count", "", "menu-active", "submenu", "menu-active", '');
 			?>
 		</div>
 	<?php } ?>
