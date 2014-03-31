@@ -567,6 +567,13 @@ setOptionDefault('image_processor_flooding_protection', 1);
 setOptionDefault('codeblock_first_tab', 1);
 setOptionDefault('GD_FreeType_Path', SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/gd_fonts');
 
+$_languages = generateLanguageList('all');
+foreach ($_languages as $text => $lang) {
+	if (!setupLocale($lang)) {
+		setOption('unsupported_' . $lang, 1);
+	}
+}
+
 //The following should be done LAST so it catches anything done above
 //set plugin default options by instantiating the options interface
 $plugins = getPluginFiles('*.php');

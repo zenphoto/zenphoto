@@ -300,37 +300,35 @@ function setupDomain($domain = NULL, $type = NULL) {
  * @return mixed
  */
 function setupCurrentLocale($override = NULL) {
-	if (empty($domain) && empty($type)) {
-		if (is_null($override)) {
-			$locale = getOption('locale');
-		} else {
-			$locale = $override;
-		}
-		if (getOption('disallow_' . $locale)) {
-			if (DEBUG_LOCALE)
-				debugLogBacktrace("setupCurrentLocale($override): $locale denied by option.");
-			$locale = getOption('locale');
-			if (empty($locale) || getOption('disallow_' . $locale)) {
-				$languages = generateLanguageList();
-				$locale = array_shift($languages);
-			}
-		}
-		// gettext setup
-		@putenv("LANG=$locale"); // Windows ???
-		@putenv("LANGUAGE=$locale"); // Windows ???
-		$result = i18nSetLocale($locale);
-		if (!$result) {
-			if (isset($_REQUEST['locale']) || is_null($override)) { // and it was chosen via locale
-				if (isset($_REQUEST['oldlocale'])) {
-					$locale = sanitize($_REQUEST['oldlocale'], 3);
-					setOption('locale', $locale, false);
-					zp_clearCookie('dynamic_locale');
-				}
-			}
-		}
-		if (DEBUG_LOCALE)
-			debugLogBacktrace("setupCurrentLocale($override): locale=$locale, \$result=$result");
+	if (is_null($override)) {
+		$locale = getOption('locale');
+	} else {
+		$locale = $override;
 	}
+	if (getOption('disallow_' . $locale)) {
+		if (DEBUG_LOCALE)
+			debugLogBacktrace("setupCurrentLocale($override): $locale denied by option.");
+		$locale = getOption('locale');
+		if (empty($locale) || getOption('disallow_' . $locale)) {
+			$languages = generateLanguageList();
+			$locale = array_shift($languages);
+		}
+	}
+	// gettext setup
+	@putenv("LANG=$locale"); // Windows ???
+	@putenv("LANGUAGE=$locale"); // Windows ???
+	$result = i18nSetLocale($locale);
+	if (!$result) {
+		if (isset($_REQUEST['locale']) || is_null($override)) { // and it was chosen via locale
+			if (isset($_REQUEST['oldlocale'])) {
+				$locale = sanitize($_REQUEST['oldlocale'], 3);
+				setOption('locale', $locale, false);
+				zp_clearCookie('dynamic_locale');
+			}
+		}
+	}
+	if (DEBUG_LOCALE)
+		debugLogBacktrace("setupCurrentLocale($override): locale=$locale, \$result=$result");
 	setupDomain();
 	return $result;
 }

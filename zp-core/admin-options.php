@@ -698,12 +698,21 @@ Zenphoto_Authority::printPasswordFormJS();
 												} else {
 													$flag = getLanguageFlag($dirname);
 												}
-												if (getOption('disallow_' . $dirname)) {
-													$c_attrs = '';
-													$r_attrs = ' disabled="disabled"';
+												if (getOption('unsupported_' . $dirname)) {
+													$c_attrs = $r_attrs = ' disabled="disabled"';
 												} else {
-													$c_attrs = ' checked="checked"';
-													$r_attrs = '';
+													if (getOption('disallow_' . $dirname)) {
+														$c_attrs = '';
+														$r_attrs = ' disabled="disabled"';
+													} else {
+														if (getOption('disallow_' . $dirname)) {
+															$c_attrs = '';
+															$r_attrs = ' disabled="disabled"';
+														} else {
+															$c_attrs = ' checked="checked"';
+															$r_attrs = '';
+														}
+													}
 												}
 												if ($dirname == $currentValue) {
 													$r_attrs = ' checked="checked"';

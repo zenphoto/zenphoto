@@ -2763,7 +2763,7 @@ if ($c <= 0) {
 					}
 					?>
 					<?php
-					if ($noxlate > 0 && empty($_POST) && empty($_GET)) {
+					if ($noxlate > 0 && !isset($_GET['checked'])) {
 						setupLanguageSelector();
 					}
 					?>
