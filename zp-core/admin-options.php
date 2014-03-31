@@ -548,19 +548,21 @@ Zenphoto_Authority::printPasswordFormJS();
 				printSubtabs();
 
 				if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
-					if (isset($_GET['local_failed'])) {
-						$languages = generateLanguageList('all');
-						$locale = sanitize($_GET['local_failed']);
-						echo '<div class="errorbox fade-message">';
-						echo "<h2>" .
-						sprintf(gettext("<em>%s</em> is not available."), html_encode($languages[$locale])) .
-						' ' . sprintf(gettext("The locale %s is not supported on your server."), html_encode($locale)) .
-						'<br />' . gettext('See the troubleshooting guide on zenphoto.org for details.') .
-						"</h2>";
-						echo '</div>';
-					}
 					?>
 					<div id="tab_gallery" class="tabbox">
+						<?php
+						if (isset($_GET['local_failed'])) {
+							$languages = array_flip(generateLanguageList('all'));
+							$locale = sanitize($_GET['local_failed']);
+							echo '<div class="errorbox">';
+							echo "<h2>" .
+							sprintf(gettext("<em>%s</em> is not available."), html_encode($languages[$locale])) .
+							' ' . sprintf(gettext("The locale %s is not supported on your server."), html_encode($locale)) .
+							'<br />' . gettext('See the troubleshooting guide on zenphoto.org for details.') .
+							"</h2>";
+							echo '</div>';
+						}
+						?>
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
 						<form class="dirty-check" id="form_options" action="?action=saveoptions" method="post" autocomplete="off">
 							<?php XSRFToken('saveoptions'); ?>
@@ -836,10 +838,15 @@ Zenphoto_Authority::printPasswordFormJS();
 											asort($totalsets);
 											foreach ($totalsets as $key => $char) {
 												?>
-												<option value="<?php echo $key; ?>" <?php if ($key == LOCAL_CHARSET) echo 'selected="selected"'; if (!array_key_exists($key, $sets)) echo 'style="color: gray"'; ?>><?php echo $char; ?></option>
-												<?php
-											}
-											?>
+												<option value="<?php echo $key; ?>" <?php
+												if ($key == LOCAL_CHARSET)
+													echo 'selected="selected"';
+												if (!array_key_exists($key, $sets))
+													echo 'style="color: gray"';
+												?>><?php echo $char; ?></option>
+																<?php
+															}
+															?>
 										</select>
 									</td>
 									<td>
