@@ -303,15 +303,12 @@ class favorites extends AlbumBase {
 			$add .= '[' . $instance . ']';
 		}
 		?>
-		<form name="imageFavorites" class="imageFavorites"
-					id="imageFavorites<?php echo $obj->getID(); ?>"
-					action="<?php echo html_encode(getRequestURI()); ?>" method="post"
-					accept-charset="UTF-8">
-			<input type="hidden" name="addToFavorites" value="<?php echo $v; ?>" />
-			<input type="hidden" name="type" value="<?php echo html_encode($table); ?>" />
-			<input type="hidden" name="id" value="<?php echo html_encode($id); ?>" />
-			<span id="submit_button">
-				<input type="submit" class="button buttons" value="<?php echo $add; ?>" title="<?php echo $add; ?>"/>
+		<form name="imageFavorites_<?php echo $instance; ?>" class = "imageFavorites" id = "imageFavorites<?php echo $instance . $obj->getID(); ?>" action = "<?php echo html_encode(getRequestURI()); ?>" method = "post" accept-charset = "UTF-8">
+			<input type = "hidden" name = "addToFavorites" value = "<?php echo $v; ?>" />
+			<input type = "hidden" name = "type" value = "<?php echo html_encode($table); ?>" />
+			<input type = "hidden" name = "id" value = "<?php echo html_encode($id); ?>" />
+			<span id = "submit_button<?php echo $instance; ?>">
+				<input type = "submit" class = "button buttons" value = "<?php echo $add; ?>" title = "<?php echo $add; ?>"/>
 			</span>
 			<?php
 			if ($v) {
