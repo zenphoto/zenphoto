@@ -298,14 +298,26 @@ if (!zp_loggedin()) {
 								} else {
 									$official = gettext('Official build');
 								}
-								if (!zpFunctions::hasPrimaryScripts()) {
-									$official .= ' <em>' . gettext('clone') . '</em>';
+								if (zpFunctions::hasPrimaryScripts()) {
+									$source = '';
+								} else {
+									$clone = clonedFrom();
+									$official .= ' <em>' . gettext('clone') . '<em>';
+									if (dirname($clone) == dirname(SERVERPATH)) {
+										$link = dirname(WEBPATH) . '/' . basename($clone) . '/';
+										$source = '<a href="' . $link . '">' . $clone . '</a>';
+									} else {
+										$source = $clone;
+									}
+									$source = '<br />&nbsp;&nbsp;&nbsp;' . sprintf(gettext('souorce: %s'), $source);
 								}
+
 								$graphics_lib = zp_graphicsLibInfo();
 								?>
 								<li>
 									<?php
 									printf(gettext('Zenphoto version <strong>%1$s [%2$s] (%3$s)</strong>'), ZENPHOTO_VERSION, '<a title="' . ZENPHOTO_FULL_RELEASE . '">' . ZENPHOTO_RELEASE . '</a>', $official);
+									echo $source;
 									if (extensionEnabled('check_for_update') && TEST_RELEASE) {
 										if (is_connected() && class_exists('DOMDocument')) {
 											require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenphoto_news/rsslib.php');
