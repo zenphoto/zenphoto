@@ -641,9 +641,20 @@ class SearchEngine {
 						$c1 = $c;
 					}
 					break;
+				case '!':
+					if (substr($searchstring . ' ', $i, 3) == '!* ') {
+						if (!empty($target)) {
+							$r = trim($target);
+							if (!empty($r)) {
+								$last = $result[] = $r;
+							}
+						}
+						$target = '!*';
+						$i++;
+						break;
+					}
 				case '&':
 				case '|':
-				case '!':
 				case '(':
 				case ')':
 					if (!empty($target)) {
@@ -714,6 +725,7 @@ class SearchEngine {
 		if (array_key_exists($lasttoken, $opChars) && $opChars[$lasttoken] == 1) {
 			array_pop($result);
 		}
+
 		$this->processed_search = zp_apply_filter('search_criteria', $result);
 		return $this->processed_search;
 	}
@@ -1033,6 +1045,14 @@ class SearchEngine {
 							case '(':
 							case ')':
 								break;
+							case '*':
+								$targetfound = true;
+								$tagsql .= "COALESCE(title, '') != ''" . ' OR ';
+								break;
+							case '!*':
+								$targetfound = true;
+								$tagsql .= "COALESCE(title, '') = ''" . ' OR ';
+								break;
 							default:
 								$targetfound = true;
 								$tagsql .= '`title` = ' . db_quote($singlesearchstring) . ' OR ';
@@ -1057,6 +1077,7 @@ class SearchEngine {
 							case '|':
 							case '(':
 							case ')':
+							case '*':
 								break;
 							default:
 								$targetfound = true;
@@ -1090,8 +1111,8 @@ class SearchEngine {
 			}
 			foreach ($searchstring as $singlesearchstring) {
 				switch ($singlesearchstring) {
-					case '&':
 					case '!':
+					case '&':
 					case '|':
 					case '(':
 					case ')':
@@ -1100,21 +1121,30 @@ class SearchEngine {
 						$targetfound = true;
 						query('SET @serachtarget=' . db_quote($singlesearchstring));
 						foreach ($fields as $fieldname) {
-							if ($tbl == 'albums' && $fieldname == 'filename') {
+							if ($tbl == 'albums' && strtolower($fieldname) == 'filename') {
 								$fieldname = 'folder';
 							} else {
 								$fieldname = strtolower($fieldname);
 							}
 							if ($fieldname && in_array($fieldname, $columns)) {
 								query('SET @serachfield=' . db_quote($fieldname));
-
-								if ($this->pattern['type'] == 'like') {
-									$target = db_LIKE_escape($singlesearchstring);
-								} else {
-									$target = $singlesearchstring;
+								switch ($singlesearchstring) {
+									case '*':
+										$sql = 'SELECT @serachtarget AS name, @serachfield AS field, `id` AS `objectid` FROM ' . prefix($tbl) . ' WHERE (' . "COALESCE(`$fieldname`, '') != ''" . ') ORDER BY `id`';
+										break;
+									case '!*':
+										$sql = 'SELECT @serachtarget AS name, @serachfield AS field, `id` AS `objectid` FROM ' . prefix($tbl) . ' WHERE (' . "COALESCE(`$fieldname`, '') = ''" . ') ORDER BY `id`';
+										break;
+										;
+									default:
+										if ($this->pattern['type'] == 'like') {
+											$target = db_LIKE_escape($singlesearchstring);
+										} else {
+											$target = $singlesearchstring;
+										}
+										$fieldsql = ' `' . $fieldname . '` ' . strtoupper($this->pattern['type']) . ' ' . db_quote($this->pattern['open'] . $target . $this->pattern['close']);
+										$sql = 'SELECT @serachtarget AS name, @serachfield AS field, `id` AS `objectid` FROM ' . prefix($tbl) . ' WHERE (' . $fieldsql . ') ORDER BY `id`';
 								}
-								$fieldsql = ' `' . $fieldname . '` ' . strtoupper($this->pattern['type']) . ' ' . db_quote($this->pattern['open'] . $target . $this->pattern['close']);
-								$sql = 'SELECT @serachtarget AS name, @serachfield AS field, `id` AS `objectid` FROM ' . prefix($tbl) . ' WHERE (' . $fieldsql . ') ORDER BY `id`';
 								$objects = query_full_array($sql, false);
 								if (is_array($objects)) {
 									$field_objects = array_merge($field_objects, $objects);
