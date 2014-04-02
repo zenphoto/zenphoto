@@ -303,10 +303,10 @@ if (!zp_loggedin()) {
 								} else {
 									$clone = clonedFrom();
 									$official .= ' <em>' . gettext('clone') . '<em>';
-									$base = dirname(substr(SERVERPATH, 0, -strlen(WEBPATH)));
-									$clone = substr($clone, strlen($base));
-									if (strpos(WEBPATH, dirname($clone)) == 0) {
-										$link = $clone . '/' . ZENFOLDER . '/admin.php';
+									$base = substr(SERVERPATH, 0, -strlen(WEBPATH));
+									if (strpos($base, $clone) == 0) {
+										$base = substr($clone, strlen($base));
+										$link = $base . '/' . ZENFOLDER . '/admin.php';
 										$source = '<a href="' . $link . '">' . $clone . '</a>';
 									} else {
 										$source = $clone;
