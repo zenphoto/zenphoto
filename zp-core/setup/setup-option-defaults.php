@@ -463,17 +463,17 @@ $_zp_gallery = new Gallery(); // insure we have the proper options instantiated
   The following options have been relocated to methods of the gallery object. They will be purged form installations
   on the Zenphoto 1.5 release.
 
- * gallery_page_unprotected_xxx
- * gallery_sortdirection
- * gallery_sorttype
- * gallery_title
- * Gallery_description
+  gallery_page_unprotected_xxx
+  gallery_sortdirection
+  gallery_sorttype
+  gallery_title
+  Gallery_description
   gallery_password
   gallery_user
   gallery_hint
   current_theme
- * website_title
- * website_url
+  website_title
+  website_url
   gallery_security
   login_user_field
   album_use_new_image_date
@@ -567,10 +567,35 @@ setOptionDefault('image_processor_flooding_protection', 1);
 setOptionDefault('codeblock_first_tab', 1);
 setOptionDefault('GD_FreeType_Path', SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/gd_fonts');
 
+$vers = explode('-', ZENPHOTO_VERSION);
+$vers = explode('.', $vers[0]);
+while (count($vers) < 3) {
+	$vers[] = 0;
+}
+$zpversion = $vers[0] . '.' . $vers[1] . '.' . $vers[2];
 $_languages = generateLanguageList('all');
-foreach ($_languages as $text => $lang) {
-	if (!setupLocale($lang)) {
-		setOption('unsupported_' . $lang, 1);
+foreach ($_languages as $language => $dirname) {
+	if (!empty($dirname) && $dirname != 'en_US') {
+		$version = '';
+		$po = file_get_contents(SERVERPATH . "/" . ZENFOLDER . "/locale/" . $dirname . '/LC_MESSAGES/zenphoto.po');
+		$i = strpos($po, 'Project-Id-Version:');
+		if ($i !== false) {
+			$j = strpos($po, '\n', $i);
+			if ($j !== false) {
+				$pversion = strtolower(substr($po, $i + 19, $j - $i - 19));
+				$vers = explode('.', trim(str_replace('zenphoto', '', $pversion)));
+				while (count($vers) < 3) {
+					$vers[] = 0;
+				}
+				$version = (int) $vers[0] . '.' . (int) $vers[1] . '.' . (int) $vers[2];
+			}
+		}
+		if (is_null(getOption('disallow_' . $dirname)) && $version < $zpversion) {
+			setOptionDefault('disallow_' . $dirname, 1);
+		}
+		if (!setupLocale($dirname)) {
+			setOption('unsupported_' . $dirname, 1);
+		}
 	}
 }
 
