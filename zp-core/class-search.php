@@ -642,17 +642,6 @@ class SearchEngine {
 					}
 					break;
 				case '!':
-					if (substr($searchstring . ' ', $i, 3) == '!* ') {
-						if (!empty($target)) {
-							$r = trim($target);
-							if (!empty($r)) {
-								$last = $result[] = $r;
-							}
-						}
-						$target = '!*';
-						$i++;
-						break;
-					}
 				case '&':
 				case '|':
 				case '(':
@@ -1047,11 +1036,7 @@ class SearchEngine {
 								break;
 							case '*':
 								$targetfound = true;
-								$tagsql .= "COALESCE(title, '') != ''" . ' OR ';
-								break;
-							case '!*':
-								$targetfound = true;
-								$tagsql .= "COALESCE(title, '') = ''" . ' OR ';
+								$tagsql .= "COALESCE(title, '') != '' OR ";
 								break;
 							default:
 								$targetfound = true;
@@ -1077,7 +1062,11 @@ class SearchEngine {
 							case '|':
 							case '(':
 							case ')':
+								break;
 							case '*':
+								query('SET @emptyfield="*"');
+								$tagsql = str_replace('t.`name`', '@emptyfield as name', $tagsql);
+								$tagsql .= "t.`name` IS NOT NULL OR ";
 								break;
 							default:
 								$targetfound = true;
@@ -1086,7 +1075,7 @@ class SearchEngine {
 								} else {
 									$target = $singlesearchstring;
 								}
-								$tagsql .= '`name` ' . strtoupper($tagPattern['type']) . ' ' . db_quote($tagPattern['open'] . $target . $tagPattern['close']) . ' OR ';
+								$tagsql .= 't.`name` ' . strtoupper($tagPattern['type']) . ' ' . db_quote($tagPattern['open'] . $target . $tagPattern['close']) . ' OR ';
 						}
 					}
 					$tagsql = substr($tagsql, 0, strlen($tagsql) - 4) . ') ORDER BY t.`id`';
@@ -1099,6 +1088,8 @@ class SearchEngine {
 					break;
 			}
 		}
+
+
 // create an array of [name, objectid] pairs for the search fields.
 		$field_objects = array();
 		if (count($fields) > 0) {
@@ -1132,10 +1123,6 @@ class SearchEngine {
 									case '*':
 										$sql = 'SELECT @serachtarget AS name, @serachfield AS field, `id` AS `objectid` FROM ' . prefix($tbl) . ' WHERE (' . "COALESCE(`$fieldname`, '') != ''" . ') ORDER BY `id`';
 										break;
-									case '!*':
-										$sql = 'SELECT @serachtarget AS name, @serachfield AS field, `id` AS `objectid` FROM ' . prefix($tbl) . ' WHERE (' . "COALESCE(`$fieldname`, '') = ''" . ') ORDER BY `id`';
-										break;
-										;
 									default:
 										if ($this->pattern['type'] == 'like') {
 											$target = db_LIKE_escape($singlesearchstring);
@@ -1169,7 +1156,6 @@ class SearchEngine {
 				}
 				$taglist[$tagid][] = $object['objectid'];
 			}
-
 			$op = '';
 			$idstack = array();
 			$opstack = array();
