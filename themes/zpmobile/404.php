@@ -2,25 +2,26 @@
 // force UTF-8 Ø
 if (!defined('WEBPATH'))
 	die();
+$obj = @$_zp_gallery_page;
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
-<?php printHeadTitle(); ?>
+		<?php printHeadTitle(); ?>
 		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" />
-<?php jqm_loadScripts(); ?>
+		<?php jqm_loadScripts(); ?>
 	</head>
 
 	<body>
-<?php zp_apply_filter('theme_body_open'); ?>
+		<?php zp_apply_filter('theme_body_open'); ?>
 
 		<div data-role="page" id="mainpage">
 
-<?php jqm_printMainHeaderNav(); ?>
+			<?php jqm_printMainHeaderNav(); ?>
 
 			<div class="ui-content" role="main">
 				<div class="content-primary">
@@ -37,14 +38,14 @@ if (!defined('WEBPATH'))
 
 				</div>
 				<div class="content-secondary">
-			<?php jqm_printMenusLinks(); ?>
+					<?php jqm_printMenusLinks(); ?>
 				</div>
 			</div><!-- /content -->
-<?php jqm_printBacktoTopLink(); ?>
-		<?php jqm_printFooterNav(); ?>
+			<?php jqm_printBacktoTopLink(); ?>
+			<?php jqm_printFooterNav(); ?>
 		</div><!-- /page -->
 
-<?php zp_apply_filter('theme_body_close');
-?>
+		<?php zp_apply_filter('theme_body_close');
+		?>
 	</body>
 </html>

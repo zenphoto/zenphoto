@@ -3,6 +3,7 @@
 
 if (!defined('WEBPATH'))
 	die();
+$obj = @$_zp_gallery_page;
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,11 +26,11 @@ if (!defined('WEBPATH'))
 				</h2>
 			</div>
 			<div id="padbox">
-				<?php print404status(isset($album) ? $album : NULL, isset($image) ? $image : NULL, $obj); ?>
+<?php print404status(isset($album) ? $album : NULL, isset($image) ? $image : NULL, $obj); ?>
 			</div>
 		</div>
 		<div id="credit">
-			<?php printZenphotoLink(); ?>
+		<?php printZenphotoLink(); ?>
 		</div>
 		<?php
 		zp_apply_filter('theme_body_close');

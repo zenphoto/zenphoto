@@ -1,6 +1,7 @@
 <?php
 if (!defined('WEBPATH'))
 	die();
+$obj = @$_zp_gallery_page;
 ?>
 <!DOCTYPE html>
 <html>
