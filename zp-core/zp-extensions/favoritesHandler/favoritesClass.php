@@ -308,7 +308,7 @@ class favorites extends AlbumBase {
 			$add .= '[' . $instance . ']';
 		}
 		?>
-		<form name="<?php echo $table; ?>Favorites_<?php echo $instance . $tag; ?>" class = "<?php echo $table; ?>Favorites<?php echo $tag; ?>"  action = "<?php echo html_encode(getRequestURI()); ?>" method = "post" accept-charset = "UTF-8">
+		<form name="<?php echo $table . $obj->getID(); ?>Favorites_<?php echo $instance . $tag; ?>" class = "<?php echo $table; ?>Favorites<?php echo $tag; ?>"  action = "<?php echo html_encode(getRequestURI()); ?>" method = "post" accept-charset = "UTF-8">
 			<input type = "hidden" name = "addToFavorites" value = "<?php echo $v; ?>" />
 			<input type = "hidden" name = "type" value = "<?php echo html_encode($table); ?>" />
 			<input type = "hidden" name = "id" value = "<?php echo html_encode($id); ?>" />
