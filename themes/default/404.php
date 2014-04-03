@@ -3,34 +3,33 @@
 
 if (!defined('WEBPATH'))
 	die();
-$obj = @$_zp_gallery_page;
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
-<?php printHeadTitle(); ?>
+		<?php printHeadTitle(); ?>
 		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 		<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . THEMEFOLDER; ?>/default/common.css" type="text/css" />
 	</head>
 	<body>
-<?php zp_apply_filter('theme_body_open'); ?>
+		<?php zp_apply_filter('theme_body_open'); ?>
 		<div id="main">
 			<div id="gallerytitle">
 				<h2>
 					<span>
-<?php printHomeLink('', ' | '); ?><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php printGalleryTitle(); ?></a>
+						<?php printHomeLink('', ' | '); ?><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php printGalleryTitle(); ?></a>
 					</span> | <?php echo gettext("Object not found"); ?>
 				</h2>
 			</div>
 			<div id="padbox">
-<?php print404status(isset($album) ? $album : NULL, isset($image) ? $image : NULL, $obj); ?>
+				<?php print404status(isset($album) ? $album : NULL, isset($image) ? $image : NULL, $obj); ?>
 			</div>
 		</div>
 		<div id="credit">
-		<?php printZenphotoLink(); ?>
+			<?php printZenphotoLink(); ?>
 		</div>
 		<?php
 		zp_apply_filter('theme_body_close');

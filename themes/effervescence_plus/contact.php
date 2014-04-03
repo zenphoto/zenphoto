@@ -85,6 +85,6 @@ if (function_exists('printContactForm')) {
 	</html>
 	<?php
 } else {
-	include(dirname(__FILE__) . '/404.php');
+	include(SERVERPATH . '/' . ZENFOLDER . '/404.php');
 }
 ?>

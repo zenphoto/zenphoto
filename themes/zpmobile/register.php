@@ -9,7 +9,7 @@ if (function_exists('printRegistrationForm')) {
 		<head>
 			<?php zp_apply_filter('theme_head'); ?>
 			<?php printHeadTitle(); ?>
-		  <meta charset="<?php echo LOCAL_CHARSET; ?>">
+			<meta charset="<?php echo LOCAL_CHARSET; ?>">
 			<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" />
@@ -44,6 +44,6 @@ if (function_exists('printRegistrationForm')) {
 	</html>
 	<?php
 } else {
-	include(dirname(__FILE__) . '/404.php');
+	include(SERVERPATH . '/' . ZENFOLDER . '/404.php');
 }
 ?>

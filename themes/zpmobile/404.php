@@ -2,7 +2,6 @@
 // force UTF-8 Ø
 if (!defined('WEBPATH'))
 	die();
-$obj = @$_zp_gallery_page;
 ?>
 <!DOCTYPE html>
 <html>
