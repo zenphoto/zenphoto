@@ -86,10 +86,23 @@ $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'cacheManager';
 
+require_once(SERVERPATH . '/' . ZENFOLDER . '/class-feed.php');
 
 zp_register_filter('admin_utilities_buttons', 'cacheManager::overviewbutton');
 zp_register_filter('edit_album_utilities', 'cacheManager::albumbutton', -9999);
 zp_register_filter('show_change', 'cacheManager::published');
+
+class cacheManagerFeed extends feed {
+
+//fake feed descendent class so we can use the feed::clearCache()
+
+	protected $feed = NULL;
+
+	function __construct($feed) {
+		$this->feed = $feed;
+	}
+
+}
 
 /**
  *
@@ -311,45 +324,18 @@ class cacheManager {
 	 * @param object $obj
 	 */
 	static function published($obj) {
+		$_zp_feeds = array('RSS'); //	Add to this array any feed classes that need cache clearing
+
 		if (getOption('cacheManager_' . $obj->table)) {
-			//	TODO: clear other feed caches?
-			if (class_exists('RSS')) {
-				$RSS = new RSS();
-			} else {
-				$RSS = NULL;
-			}
 			if (class_exists('static_html_cache')) {
 				static_html_cache::clearHTMLCache('index');
 			}
-			switch ($type = $obj->table) {
-				case 'pages':
-					if (class_exists('static_html_cache')) {
-						static_html_cache::clearHTMLCache();
-					}
-					if ($RSS)
-						$RSS->clearCache();
-					break;
-				case 'news':
-					if (class_exists('static_html_cache')) {
-						static_html_cache::clearHTMLCache();
-					}
-					if ($RSS)
-						$RSS->clearCache();
-					break;
-				case 'albums':
-					if (class_exists('static_html_cache')) {
-						static_html_cache::clearHTMLCache();
-					}
-					if ($RSS)
-						$RSS->clearCache();
-					break;
-				case 'images':
-					if (class_exists('static_html_cache')) {
-						static_html_cache::clearHTMLCache();
-					}
-					if ($RSS)
-						$RSS->clearCache();
-					break;
+			if (class_exists('static_html_cache')) {
+				static_html_cache::clearHTMLCache();
+			}
+			foreach ($_zp_feeds as $feed) {
+				$feeder = new cacheManagerFeed($feed);
+				$feeder->clearCache();
 			}
 		}
 		return $obj;
