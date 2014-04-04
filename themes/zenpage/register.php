@@ -58,4 +58,5 @@ if (function_exists('printRegistrationForm')) {
 	<?php
 } else {
 	include(SERVERPATH . '/' . ZENFOLDER . '/404.php');
+}
 	?>
