@@ -18,6 +18,7 @@ class ZenpageCategory extends ZenpageRoot {
 			$catlink = $catlink['titlelink'];
 		}
 		$new = $this->instantiate('news_categories', array('titlelink' => $catlink), 'titlelink', true, empty($catlink), $create);
+		$this->exists = $this->loaded;
 	}
 
 	/**
