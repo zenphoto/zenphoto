@@ -1,77 +1,83 @@
 <?php
-if (!defined('WEBPATH') || !class_exists('Zenpage'))
+if (!defined('WEBPATH'))
 	die();
-?>
-<!DOCTYPE html>
-<html>
-	<head>
-		<?php zp_apply_filter('theme_head'); ?>
-		<?php printHeadTitle(); ?>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
-		<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
-		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
-	</head>
-	<body class="sidebars">
-		<?php zp_apply_filter('theme_body_open'); ?>
-		<div id="navigation"></div>
-		<div id="wrapper">
-			<div id="container">
-				<div id="header">
-					<div id="logo-floater">
-						<div>
-							<h1 class="title"><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a></h1>
+if (class_exists('Zenpage')) {
+	?>
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<?php zp_apply_filter('theme_head'); ?>
+			<?php printHeadTitle(); ?>
+			<meta charset="<?php echo LOCAL_CHARSET; ?>">
+			<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
+			<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
+		</head>
+		<body class="sidebars">
+			<?php zp_apply_filter('theme_body_open'); ?>
+			<div id="navigation"></div>
+			<div id="wrapper">
+				<div id="container">
+					<div id="header">
+						<div id="logo-floater">
+							<div>
+								<h1 class="title"><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a></h1>
 
-							<?php echo getGalleryIndexURL(); ?>
+								<?php echo getGalleryIndexURL(); ?>
 
+							</div>
 						</div>
 					</div>
-				</div>
-				<!-- header -->
-				<div class="sidebar">
-					<div id="leftsidebar">
-						<?php include("sidebar.php"); ?>
+					<!-- header -->
+					<div class="sidebar">
+						<div id="leftsidebar">
+							<?php include("sidebar.php"); ?>
+						</div>
 					</div>
-				</div>
 
-				<div id="center">
-					<div id="squeeze">
-						<div class="right-corner">
-							<div class="left-corner">
-								<!-- begin content -->
-								<div class="main section" id="main">
-									<h2 id="gallerytitle">
-										<?php printHomeLink('', ' » '); ?>
-										<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a>
-										<?php printZenpageItemsBreadcrumb(" » ", ""); ?><?php printPageTitle(" » "); ?>
-									</h2>
-									<h3><?php printPageTitle(); ?></h3>
-									<div id="pagetext">
-										<?php printCodeblock(1); ?>
-										<?php printPageContent(); ?>
-										<?php printCodeblock(2); ?>
+					<div id="center">
+						<div id="squeeze">
+							<div class="right-corner">
+								<div class="left-corner">
+									<!-- begin content -->
+									<div class="main section" id="main">
+										<h2 id="gallerytitle">
+											<?php printHomeLink('', ' » '); ?>
+											<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a>
+											<?php printZenpageItemsBreadcrumb(" » ", ""); ?><?php printPageTitle(" » "); ?>
+										</h2>
+										<h3><?php printPageTitle(); ?></h3>
+										<div id="pagetext">
+											<?php printCodeblock(1); ?>
+											<?php printPageContent(); ?>
+											<?php printCodeblock(2); ?>
+										</div>
+										<?php
+										@call_user_func('printRating');
+										@call_user_func('printCommentForm');
+										footer();
+										?>
+										<p style="clear: both;"></p>
 									</div>
-									<?php
-									@call_user_func('printRating');
-									@call_user_func('printCommentForm');
-									footer();
-									?>
-									<p style="clear: both;"></p>
-								</div>
-								<!-- end content -->
-								<span class="clear"></span> </div>
+									<!-- end content -->
+									<span class="clear"></span> </div>
+							</div>
 						</div>
 					</div>
-				</div>
-				<span class="clear"></span>
-				<div class="sidebar">
-					<div id="rightsidebar">
-						<?php printTags('links', gettext('Tags: '), NULL, ''); ?>
-					</div><!-- right sidebar -->
-				</div><!-- sidebar -->
-			</div><!-- /container -->
-		</div>
-		<?php
-		zp_apply_filter('theme_body_close');
-		?>
-	</body>
-</html>
+					<span class="clear"></span>
+					<div class="sidebar">
+						<div id="rightsidebar">
+							<?php printTags('links', gettext('Tags: '), NULL, ''); ?>
+						</div><!-- right sidebar -->
+					</div><!-- sidebar -->
+				</div><!-- /container -->
+			</div>
+			<?php
+			zp_apply_filter('theme_body_close');
+			?>
+		</body>
+	</html>
+	<?php
+} else {
+	include(SERVERPATH . '/' . ZENFOLDER . '/404.php');
+}
+?>
