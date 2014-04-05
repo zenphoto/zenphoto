@@ -126,7 +126,9 @@ function updatePage(&$reports, $newpage = false) {
 	$page->setShow($show);
 	$page->setDateTime($date);
 	$page->setCommentsAllowed($commentson);
-	$page->setCodeblock($codeblock);
+	if (zp_loggedin(CODEBLOCK_RIGHTS)) {
+		$page->setCodeblock($codeblock);
+	}
 	$page->setAuthor($author);
 	$page->setLastchange($lastchange);
 	$page->setLastchangeauthor($lastchangeauthor);
@@ -394,7 +396,9 @@ function updateArticle(&$reports, $newarticle = false) {
 	$article->setShow($show);
 	$article->setDateTime($date);
 	$article->setCommentsAllowed($commentson);
-	$article->setCodeblock($codeblock);
+	if (zp_loggedin(CODEBLOCK_RIGHTS)) {
+		$article->setCodeblock($codeblock);
+	}
 	$article->setAuthor($author);
 	$article->setLastchange($lastchange);
 	$article->setLastchangeauthor($lastchangeauthor);

@@ -26,6 +26,7 @@ class ZenpageNews extends ZenpageItems {
 			$titlelink = $titlelink['titlelink'];
 		}
 		$new = $this->instantiate('news', array('titlelink' => $titlelink), 'titlelink', true, empty($titlelink), $allowCreate);
+		$this->exists = $this->loaded;
 	}
 
 	/**

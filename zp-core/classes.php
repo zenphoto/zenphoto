@@ -39,6 +39,7 @@ define('OBJECT_CACHE_DEPTH', 150); //	how many objects to hold for each object c
 class PersistentObject {
 
 	var $loaded = false;
+	var $exists = false;
 	var $table;
 	var $transient;
 	protected $id = 0;
@@ -326,12 +327,12 @@ class PersistentObject {
 	 * true if successful, false if not.
 	 */
 	function save() {
+		if ($this->transient)
+			return false; // If this object isn't supposed to be persisted, don't save it.
 		if (!$this->unique_set) { // If we don't have a unique set, then this is incorrect. Don't attempt to save.
 			zp_error('empty $this->unique set is empty');
-			return;
+			return false;
 		}
-		if ($this->transient)
-			return; // If this object isn't supposed to be persisted, don't save it.
 		if (!$this->id) {
 			$this->setDefaults();
 			// Create a new object and set the id from the one returned.

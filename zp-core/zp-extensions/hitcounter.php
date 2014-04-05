@@ -178,12 +178,12 @@ class hitcounter {
 							}
 							break;
 						case 'pages.php':
-							if (!zp_loggedin(ZENPAGE_PAGES_RIGHTS)) {
+							if (class_exists('Zenpage') && !zp_loggedin(ZENPAGE_PAGES_RIGHTS)) {
 								$_zp_current_zenpage_page->countHit();
 							}
 							break;
 						case 'news.php':
-							if (!zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
+							if (class_exists('Zenpage') && !zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
 								if (is_NewsArticle()) {
 									$_zp_current_zenpage_news->countHit();
 								} else if (is_NewsCategory()) {

@@ -299,20 +299,20 @@ class favorites extends AlbumBase {
 	static function ad_removeButton($obj, $id, $v, $add, $instance, $multi) {
 		global $_myFavorites;
 		$table = $obj->table;
+		if ($v) {
+			$tag = '_add';
+		} else {
+			$tag = '_remove';
+		}
 		if ($instance && $multi) {
 			$add .= '[' . $instance . ']';
 		}
 		?>
-		<form name="imageFavorites" class="imageFavorites"
-					id="imageFavorites<?php echo $obj->getID(); ?>"
-					action="<?php echo html_encode(getRequestURI()); ?>" method="post"
-					accept-charset="UTF-8">
-			<input type="hidden" name="addToFavorites" value="<?php echo $v; ?>" />
-			<input type="hidden" name="type" value="<?php echo html_encode($table); ?>" />
-			<input type="hidden" name="id" value="<?php echo html_encode($id); ?>" />
-			<span id="submit_button">
-				<input type="submit" class="button buttons" value="<?php echo $add; ?>" title="<?php echo $add; ?>"/>
-			</span>
+		<form name="<?php echo $table . $obj->getID(); ?>Favorites_<?php echo $instance . $tag; ?>" class = "<?php echo $table; ?>Favorites<?php echo $tag; ?>"  action = "<?php echo html_encode(getRequestURI()); ?>" method = "post" accept-charset = "UTF-8">
+			<input type = "hidden" name = "addToFavorites" value = "<?php echo $v; ?>" />
+			<input type = "hidden" name = "type" value = "<?php echo html_encode($table); ?>" />
+			<input type = "hidden" name = "id" value = "<?php echo html_encode($id); ?>" />
+			<input type = "submit" class = "button buttons" value = "<?php echo $add; ?>" title = "<?php echo $add; ?>"/>
 			<?php
 			if ($v) {
 				if ($multi) {

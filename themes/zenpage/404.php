@@ -39,7 +39,7 @@ if (!defined('WEBPATH'))
 
 
 				<div id="footer">
-<?php include("footer.php"); ?>
+					<?php include("footer.php"); ?>
 				</div>
 
 
@@ -47,8 +47,8 @@ if (!defined('WEBPATH'))
 			</div><!-- content -->
 
 		</div><!-- main -->
-<?php
-zp_apply_filter('theme_body_close');
-?>
+		<?php
+		zp_apply_filter('theme_body_close');
+		?>
 	</body>
 </html>

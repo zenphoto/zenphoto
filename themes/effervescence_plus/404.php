@@ -1,7 +1,7 @@
 <?php
+// force UTF-8 Ø
 if (!defined('WEBPATH'))
 	die();
-// force UTF-8 Ø
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,9 +43,7 @@ if (!defined('WEBPATH'))
 						printGalleryTitle();
 						?>
 						</a></span>  |
-					<?php
-					print404status(isset($album) ? $album : NULL, isset($image) ? $image : NULL, $obj);
-					?>
+					<?php echo "<em>" . gettext('Page not found') . "</em>"; ?>
 				</div>
 			</div>
 
@@ -56,16 +54,7 @@ if (!defined('WEBPATH'))
 			<small>&nbsp;</small>
 			<div id="main">
 				<?php
-				echo gettext("The Zenphoto object you are requesting cannot be found.");
-				if (isset($album)) {
-					echo '<br />' . sprintf(gettext('Album: %s'), html_encode($album));
-				}
-				if (isset($image)) {
-					echo '<br />' . sprintf(gettext('Image: %s'), html_encode($image));
-				}
-				if (isset($obj)) {
-					echo '<br />' . sprintf(gettext('Page: %s'), html_encode(substr(basename($obj), 0, -4)));
-				}
+				print404status(isset($album) ? $album : NULL, isset($image) ? $image : NULL, $obj);
 				?>
 			</div>
 		</div>

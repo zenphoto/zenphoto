@@ -113,11 +113,14 @@ class multipleLayoutOptions {
  * @return result
  */
 function getSelectedLayout($obj, $type) {
-	$assignedlayout = query_single_row("SELECT * FROM " . prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND `type` = "' . $type . '"');
-	if (!$assignedlayout || empty($assignedlayout['data'])) {
-		$assignedlayout = checkParentLayouts($obj, $type);
+	if ($obj && $obj->exists) {
+		$assignedlayout = query_single_row("SELECT * FROM " . prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND `type` = "' . $type . '"');
+		if (!$assignedlayout || empty($assignedlayout['data'])) {
+			$assignedlayout = checkParentLayouts($obj, $type);
+		}
+		return $assignedlayout;
 	}
-	return $assignedlayout;
+	return false;
 }
 
 /**

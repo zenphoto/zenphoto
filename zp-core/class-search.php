@@ -641,9 +641,9 @@ class SearchEngine {
 						$c1 = $c;
 					}
 					break;
+				case '!':
 				case '&':
 				case '|':
-				case '!':
 				case '(':
 				case ')':
 					if (!empty($target)) {
@@ -714,6 +714,7 @@ class SearchEngine {
 		if (array_key_exists($lasttoken, $opChars) && $opChars[$lasttoken] == 1) {
 			array_pop($result);
 		}
+
 		$this->processed_search = zp_apply_filter('search_criteria', $result);
 		return $this->processed_search;
 	}
@@ -1033,6 +1034,10 @@ class SearchEngine {
 							case '(':
 							case ')':
 								break;
+							case '*':
+								$targetfound = true;
+								$tagsql .= "COALESCE(title, '') != '' OR ";
+								break;
 							default:
 								$targetfound = true;
 								$tagsql .= '`title` = ' . db_quote($singlesearchstring) . ' OR ';
@@ -1058,6 +1063,11 @@ class SearchEngine {
 							case '(':
 							case ')':
 								break;
+							case '*':
+								query('SET @emptyfield="*"');
+								$tagsql = str_replace('t.`name`', '@emptyfield as name', $tagsql);
+								$tagsql .= "t.`name` IS NOT NULL OR ";
+								break;
 							default:
 								$targetfound = true;
 								if ($tagPattern['type'] == 'like') {
@@ -1065,7 +1075,7 @@ class SearchEngine {
 								} else {
 									$target = $singlesearchstring;
 								}
-								$tagsql .= '`name` ' . strtoupper($tagPattern['type']) . ' ' . db_quote($tagPattern['open'] . $target . $tagPattern['close']) . ' OR ';
+								$tagsql .= 't.`name` ' . strtoupper($tagPattern['type']) . ' ' . db_quote($tagPattern['open'] . $target . $tagPattern['close']) . ' OR ';
 						}
 					}
 					$tagsql = substr($tagsql, 0, strlen($tagsql) - 4) . ') ORDER BY t.`id`';
@@ -1078,6 +1088,8 @@ class SearchEngine {
 					break;
 			}
 		}
+
+
 // create an array of [name, objectid] pairs for the search fields.
 		$field_objects = array();
 		if (count($fields) > 0) {
@@ -1090,8 +1102,8 @@ class SearchEngine {
 			}
 			foreach ($searchstring as $singlesearchstring) {
 				switch ($singlesearchstring) {
-					case '&':
 					case '!':
+					case '&':
 					case '|':
 					case '(':
 					case ')':
@@ -1100,21 +1112,26 @@ class SearchEngine {
 						$targetfound = true;
 						query('SET @serachtarget=' . db_quote($singlesearchstring));
 						foreach ($fields as $fieldname) {
-							if ($tbl == 'albums' && $fieldname == 'filename') {
+							if ($tbl == 'albums' && strtolower($fieldname) == 'filename') {
 								$fieldname = 'folder';
 							} else {
 								$fieldname = strtolower($fieldname);
 							}
 							if ($fieldname && in_array($fieldname, $columns)) {
 								query('SET @serachfield=' . db_quote($fieldname));
-
-								if ($this->pattern['type'] == 'like') {
-									$target = db_LIKE_escape($singlesearchstring);
-								} else {
-									$target = $singlesearchstring;
+								switch ($singlesearchstring) {
+									case '*':
+										$sql = 'SELECT @serachtarget AS name, @serachfield AS field, `id` AS `objectid` FROM ' . prefix($tbl) . ' WHERE (' . "COALESCE(`$fieldname`, '') != ''" . ') ORDER BY `id`';
+										break;
+									default:
+										if ($this->pattern['type'] == 'like') {
+											$target = db_LIKE_escape($singlesearchstring);
+										} else {
+											$target = $singlesearchstring;
+										}
+										$fieldsql = ' `' . $fieldname . '` ' . strtoupper($this->pattern['type']) . ' ' . db_quote($this->pattern['open'] . $target . $this->pattern['close']);
+										$sql = 'SELECT @serachtarget AS name, @serachfield AS field, `id` AS `objectid` FROM ' . prefix($tbl) . ' WHERE (' . $fieldsql . ') ORDER BY `id`';
 								}
-								$fieldsql = ' `' . $fieldname . '` ' . strtoupper($this->pattern['type']) . ' ' . db_quote($this->pattern['open'] . $target . $this->pattern['close']);
-								$sql = 'SELECT @serachtarget AS name, @serachfield AS field, `id` AS `objectid` FROM ' . prefix($tbl) . ' WHERE (' . $fieldsql . ') ORDER BY `id`';
 								$objects = query_full_array($sql, false);
 								if (is_array($objects)) {
 									$field_objects = array_merge($field_objects, $objects);
@@ -1139,7 +1156,6 @@ class SearchEngine {
 				}
 				$taglist[$tagid][] = $object['objectid'];
 			}
-
 			$op = '';
 			$idstack = array();
 			$opstack = array();

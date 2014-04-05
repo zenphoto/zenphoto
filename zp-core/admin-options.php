@@ -686,12 +686,14 @@ Zenphoto_Authority::printPasswordFormJS();
 													}
 													if (version_compare($version, $zpversion) < 0) {
 														if (empty($version)) {
-															$version = '?';
+															$version = '0.0.0';
 														}
 														$language .= ' <small>{v' . $version . '}</small>';
 														$languageAlt .= ' {v' . $version . '}';
 														$class = ' style="background-color:#FFEFB7;"';
 													}
+												} else {
+													$version = $zpversion;
 												}
 												if (empty($dirname)) {
 													$flag = WEBPATH . '/' . ZENFOLDER . '/locale/auto.png';
@@ -705,15 +707,11 @@ Zenphoto_Authority::printPasswordFormJS();
 														$c_attrs = '';
 														$r_attrs = ' disabled="disabled"';
 													} else {
-														if (getOption('disallow_' . $dirname)) {
-															$c_attrs = '';
-															$r_attrs = ' disabled="disabled"';
-														} else {
-															$c_attrs = ' checked="checked"';
-															$r_attrs = '';
-														}
+														$c_attrs = ' checked="checked"';
+														$r_attrs = '';
 													}
 												}
+
 												if ($dirname == $currentValue) {
 													$r_attrs = ' checked="checked"';
 													$c_attrs = ' checked="checked" disabled="disabled"';

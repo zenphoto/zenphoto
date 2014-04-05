@@ -18,6 +18,7 @@ class ZenpagePage extends ZenpageItems {
 			$titlelink = $titlelink['titlelink'];
 		}
 		$new = $this->instantiate('pages', array('titlelink' => $titlelink), 'titlelink', true, empty($titlelink), $allowCreate);
+		$this->exists = $this->loaded;
 	}
 
 	/**
