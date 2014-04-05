@@ -326,7 +326,7 @@ if (!zp_loggedin()) {
 									} else {
 										$source = $clone;
 									}
-									$source = '<br />&nbsp;&nbsp;&nbsp;' . sprintf(gettext('souorce: %s'), $source);
+									$source = '<br />&nbsp;&nbsp;&nbsp;' . sprintf(gettext('source: %s'), $source);
 								}
 
 								$graphics_lib = zp_graphicsLibInfo();
