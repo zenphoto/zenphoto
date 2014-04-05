@@ -239,9 +239,9 @@ if (!zp_loggedin()) {
 					unset($buttonlist[$key]);
 				}
 			}
+			list($diff, $needs) = checkSignature(false);
 			if (zpFunctions::hasPrimaryScripts()) {
 				//	button to restore setup files if needed
-				list($diff, $needs) = checkSignature(false);
 				if (!empty($needs)) {
 					$buttonlist[] = array(
 									'XSRFTag'			 => 'restore_setup',
@@ -280,6 +280,21 @@ if (!zp_loggedin()) {
 					);
 				}
 			}
+			if (empty($needs)) {
+				$buttonlist[] = array(
+								'category'		 => gettext('Admin'),
+								'enable'			 => true,
+								'button_text'	 => gettext('Run setup'),
+								'formname'		 => 'run_setup.php',
+								'action'			 => WEBPATH . '/' . ZENFOLDER . '/setup.php',
+								'icon'				 => 'images/Zp.png',
+								'alt'					 => '',
+								'title'				 => gettext('Run the setup script.'),
+								'hidden'			 => '',
+								'rights'			 => ADMIN_RIGHTS
+				);
+			}
+
 			$buttonlist = sortMultiArray($buttonlist, array('category', 'button_text'), false);
 
 			if (zp_loggedin(OVERVIEW_RIGHTS)) {
