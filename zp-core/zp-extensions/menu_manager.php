@@ -221,7 +221,7 @@ function getItemTitleAndURL($item) {
 				$protected = 0;
 			} else {
 				$obj = newAlbum($item['link']);
-				$url = $obj->getLink();
+				$url = $obj->getLink(0);
 				$protected = $obj->isProtected();
 				$title = $obj->getTitle();
 			}
@@ -232,7 +232,7 @@ function getItemTitleAndURL($item) {
 			$result = query_single_row($sql);
 			if (is_array($result)) {
 				$obj = new ZenpagePage($item['link']);
-				$url = $obj->getLink();
+				$url = $obj->getLink(0);
 				$protected = $obj->isProtected();
 				$title = $obj->getTitle();
 			} else {
@@ -253,7 +253,7 @@ function getItemTitleAndURL($item) {
 				$obj = new ZenpageCategory($item['link']);
 				$title = $obj->getTitle();
 				$protected = $obj->isProtected();
-				$url = $obj->getLink();
+				$url = $obj->getLink(0);
 			} else {
 				$valid = false;
 				$url = '';
