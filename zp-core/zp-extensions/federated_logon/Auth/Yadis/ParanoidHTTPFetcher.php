@@ -129,20 +129,8 @@ class Auth_Yadis_ParanoidHTTPFetcher extends Auth_Yadis_HTTPFetcher {
             curl_setopt($c, CURLOPT_URL, $url);
 
             if (defined('Auth_OpenID_VERIFY_HOST')) {
-                // set SSL verification options only if Auth_OpenID_VERIFY_HOST
-                // is explicitly set, otherwise use system default.
-                if (Auth_OpenID_VERIFY_HOST) {
-                    curl_setopt($c, CURLOPT_SSL_VERIFYPEER, true);
-                    curl_setopt($c, CURLOPT_SSL_VERIFYHOST, 2);
-                    if (defined('Auth_OpenID_CAINFO')) {
-                        curl_setopt($c, CURLOPT_CAINFO, Auth_OpenID_CAINFO);
-                    }
-                } else {
-                    curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
-                }
-            }
-            if (defined('Auth_OpenID_HTTP_PROXY')) {
-                curl_setopt($c, CURLOPT_PROXY, Auth_OpenID_HTTP_PROXY);
+                curl_setopt($c, CURLOPT_SSL_VERIFYPEER, true);
+                curl_setopt($c, CURLOPT_SSL_VERIFYHOST, 2);
             }
             curl_exec($c);
 
@@ -165,10 +153,8 @@ class Auth_Yadis_ParanoidHTTPFetcher extends Auth_Yadis_HTTPFetcher {
                 curl_close($c);
 
                 if (defined('Auth_OpenID_VERIFY_HOST') &&
-                    Auth_OpenID_VERIFY_HOST == true &&
                     $this->isHTTPS($url)) {
-                    Auth_OpenID::log('OpenID: Verified SSL host %s using '.
-                                     'curl/get', $url);
+//                    Auth_OpenID::log('OpenID: Verified SSL host %s using '.'curl/get', $url);
                 }
                 $new_headers = array();
 
@@ -178,6 +164,8 @@ class Auth_Yadis_ParanoidHTTPFetcher extends Auth_Yadis_HTTPFetcher {
                         $new_headers[$name] = $value;
                     }
                 }
+
+//                Auth_OpenID::log("Successfully fetched '%s': GET response code %s",$url, $code);
 
                 return new Auth_Yadis_HTTPResponse($url, $code,
                                                     $new_headers, $body);
@@ -203,10 +191,6 @@ class Auth_Yadis_ParanoidHTTPFetcher extends Auth_Yadis_HTTPFetcher {
             curl_setopt($c, CURLOPT_NOSIGNAL, true);
         }
 
-        if (defined('Auth_OpenID_HTTP_PROXY')) {
-            curl_setopt($c, CURLOPT_PROXY, Auth_OpenID_HTTP_PROXY);
-        }
-
         curl_setopt($c, CURLOPT_POST, true);
         curl_setopt($c, CURLOPT_POSTFIELDS, $body);
         curl_setopt($c, CURLOPT_TIMEOUT, $this->timeout);
@@ -215,17 +199,8 @@ class Auth_Yadis_ParanoidHTTPFetcher extends Auth_Yadis_HTTPFetcher {
                     array($this, "_writeData"));
 
         if (defined('Auth_OpenID_VERIFY_HOST')) {
-            // set SSL verification options only if Auth_OpenID_VERIFY_HOST
-            // is explicitly set, otherwise use system default.
-            if (Auth_OpenID_VERIFY_HOST) {
-                curl_setopt($c, CURLOPT_SSL_VERIFYPEER, true);
-                curl_setopt($c, CURLOPT_SSL_VERIFYHOST, 2);
-                if (defined('Auth_OpenID_CAINFO')) {
-                    curl_setopt($c, CURLOPT_CAINFO, Auth_OpenID_CAINFO);
-                }
-            } else {
-                curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
-            }
+            curl_setopt($c, CURLOPT_SSL_VERIFYPEER, true);
+            curl_setopt($c, CURLOPT_SSL_VERIFYHOST, 2);
         }
 
         curl_exec($c);
@@ -239,9 +214,7 @@ class Auth_Yadis_ParanoidHTTPFetcher extends Auth_Yadis_HTTPFetcher {
             return null;
         }
 
-        if (defined('Auth_OpenID_VERIFY_HOST') &&
-            Auth_OpenID_VERIFY_HOST == true &&
-            $this->isHTTPS($url)) {
+        if (defined('Auth_OpenID_VERIFY_HOST') && $this->isHTTPS($url)) {
             Auth_OpenID::log('OpenID: Verified SSL host %s using '.
                              'curl/post', $url);
         }
@@ -258,6 +231,9 @@ class Auth_Yadis_ParanoidHTTPFetcher extends Auth_Yadis_HTTPFetcher {
             }
 
         }
+
+        Auth_OpenID::log("Successfully fetched '%s': POST response code %s",
+                         $url, $code);
 
         return new Auth_Yadis_HTTPResponse($url, $code,
                                            $new_headers, $body);

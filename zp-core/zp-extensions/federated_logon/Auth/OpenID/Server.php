@@ -2,7 +2,7 @@
 
 /**
  * OpenID server protocol and logic.
- * 
+ *
  * Overview
  *
  * An OpenID server must perform three tasks:
@@ -10,7 +10,7 @@
  *  1. Examine the incoming request to determine its nature and validity.
  *  2. Make a decision about how to respond to this request.
  *  3. Format the response according to the protocol.
- * 
+ *
  * The first and last of these tasks may performed by the {@link
  * Auth_OpenID_Server::decodeRequest()} and {@link
  * Auth_OpenID_Server::encodeResponse} methods.  Who gets to do the
@@ -37,7 +37,7 @@
  * {@link Auth_OpenID_Server::handleRequest()}.
  *
  * OpenID Extensions
- * 
+ *
  * Do you want to provide other information for your users in addition
  * to authentication?  Version 1.2 of the OpenID protocol allows
  * consumers to add extensions to their requests.  For example, with
@@ -132,9 +132,9 @@ define('Auth_OpenID_ENCODE_HTML_FORM', 'HTML form');
 /**
  * @access private
  */
-function Auth_OpenID_isError($obj, $cls = 'Auth_OpenID_ServerError')
+function Auth_OpenID_isError($obj, $cls = Auth_OpenID_ServerError)
 {
-    return is_a($obj, $cls);
+    return ($obj instanceof $cls);
 }
 
 /**
@@ -527,7 +527,7 @@ class Auth_OpenID_DiffieHellmanSHA1ServerSession {
     {
         $result = Auth_OpenID_DiffieHellmanSHA1ServerSession::getDH($message);
 
-        if (is_a($result, 'Auth_OpenID_ServerError')) {
+        if (($result instanceof  Auth_OpenID_ServerError)) {
             return $result;
         } else {
             list($dh, $consumer_pubkey) = $result;
@@ -564,7 +564,7 @@ class Auth_OpenID_DiffieHellmanSHA256ServerSession
     {
         $result = Auth_OpenID_DiffieHellmanSHA1ServerSession::getDH($message);
 
-        if (is_a($result, 'Auth_OpenID_ServerError')) {
+        if ($result instanceof Auth_OpenID_ServerError) {
             return $result;
         } else {
             list($dh, $consumer_pubkey) = $result;
@@ -630,7 +630,7 @@ class Auth_OpenID_AssociateRequest extends Auth_OpenID_Request {
 
         $session = call_user_func(array($session_class, 'fromMessage'),
                                   $message);
-        if (is_a($session, 'Auth_OpenID_ServerError')) {
+        if ($session instanceof Auth_OpenID_ServerError) {
             return $session;
         }
 
@@ -661,7 +661,7 @@ class Auth_OpenID_AssociateRequest extends Auth_OpenID_Request {
         $response->fields->updateArgs(Auth_OpenID_OPENID_NS,
            $this->session->answer($assoc->secret));
 
-        if (! ($this->session->session_type == 'no-encryption' 
+        if (! ($this->session->session_type == 'no-encryption'
                && $this->message->isOpenID1())) {
             $response->fields->setArg(Auth_OpenID_OPENID_NS,
                                       'session_type',
@@ -733,7 +733,7 @@ class Auth_OpenID_CheckIDRequest extends Auth_OpenID_Request {
      * deprecated since version 2.0.2
      */
     var $namespace;
-    
+
     static function make($message, $identity, $return_to, $trust_root = null,
                   $immediate = false, $assoc_handle = null, $server = null)
     {
@@ -792,7 +792,7 @@ class Auth_OpenID_CheckIDRequest extends Auth_OpenID_Request {
     function equals($other)
     {
         return (
-                (is_a($other, 'Auth_OpenID_CheckIDRequest')) &&
+                ($other instanceof Auth_OpenID_CheckIDRequest) &&
                 ($this->namespace == $other->namespace) &&
                 ($this->assoc_handle == $other->assoc_handle) &&
                 ($this->identity == $other->identity) &&
@@ -872,13 +872,13 @@ class Auth_OpenID_CheckIDRequest extends Auth_OpenID_Request {
         } else {
             $trust_root_param = 'realm';
         }
-        $trust_root = $message->getArg(Auth_OpenID_OPENID_NS, 
+        $trust_root = $message->getArg(Auth_OpenID_OPENID_NS,
                                        $trust_root_param);
         if (! $trust_root) {
             $trust_root = $return_to;
         }
 
-        if (! $message->isOpenID1() && 
+        if (! $message->isOpenID1() &&
             ($return_to === null) &&
             ($trust_root === null)) {
             return new Auth_OpenID_ServerError($message,
@@ -896,7 +896,7 @@ class Auth_OpenID_CheckIDRequest extends Auth_OpenID_Request {
                                                 $assoc_handle,
                                                 $server);
 
-        if (is_a($obj, 'Auth_OpenID_ServerError')) {
+        if ($obj instanceof Auth_OpenID_ServerError) {
             return $obj;
         }
 
@@ -1455,7 +1455,7 @@ class Auth_OpenID_Encoder {
         $encode_as = $response->whichEncoding();
         if ($encode_as == Auth_OpenID_ENCODE_KVFORM) {
             $wr = new $cls(null, null, $response->encodeToKVForm());
-            if (is_a($response, 'Auth_OpenID_ServerError')) {
+            if ($response instanceof Auth_OpenID_ServerError) {
                 $wr->code = AUTH_OPENID_HTTP_ERROR;
             }
         } else if ($encode_as == Auth_OpenID_ENCODE_URL) {
@@ -1496,7 +1496,7 @@ class Auth_OpenID_SigningEncoder extends Auth_OpenID_Encoder {
     {
         // the isinstance is a bit of a kludge... it means there isn't
         // really an adapter to make the interfaces quite match.
-        if (!is_a($response, 'Auth_OpenID_ServerError') &&
+        if (!$response instanceof Auth_OpenID_ServerError &&
             $response->needsSigning()) {
 
             if (!$this->signatory) {
@@ -1576,7 +1576,7 @@ class Auth_OpenID_Decoder {
         $handlerCls = Auth_OpenID::arrayGet($this->handlers, $mode,
                                             $this->defaultDecoder($message));
 
-        if (!is_a($handlerCls, 'Auth_OpenID_ServerError')) {
+        if (!($handlerCls instanceof Auth_OpenID_ServerError)) {
             return call_user_func_array(array($handlerCls, 'fromMessage'),
                                         array($message, $this->server));
         } else {
@@ -1704,7 +1704,7 @@ class Auth_OpenID_Server {
     {
         if (method_exists($this, "openid_" . $request->mode)) {
             $handler = array($this, "openid_" . $request->mode);
-            return call_user_func_array($handler, array($request));
+            return call_user_func($handler, &$request);
         }
         return null;
     }

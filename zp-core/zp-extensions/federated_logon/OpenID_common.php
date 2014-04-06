@@ -54,43 +54,27 @@ function &getStore() {
 	 * created elsewhere.  After you're done playing with the example
 	 * script, you'll have to remove this directory manually.
 	 */
-	$store_path = null;
-	if (function_exists('sys_get_temp_dir')) {
-		$store_path = sys_get_temp_dir();
-	} else {
-		if (strpos(PHP_OS, 'WIN') === 0) {
-			$store_path = $_ENV['TMP'];
-			if (!isset($store_path)) {
-				$dir = 'C:\Windows\Temp';
-			}
-		} else {
-			$store_path = @$_ENV['TMPDIR'];
-			if (!isset($store_path)) {
-				$store_path = '/tmp';
-			}
-		}
-	}
-	$store_path .= DIRECTORY_SEPARATOR . '_php_consumer_test';
+	$tmpfile = tempnam("dummy", "");
+	$store_path = dirname($tmpfile);
+	unlink($tmpfile);
 
-	if (!file_exists($store_path) &&
-					!mkdir($store_path)) {
-		print "Could not create the FileStore directory '$store_path'. " .
-						" Please check the effective permissions.";
+	if (!file_exists($store_path) && !mkdir_recursive($store_path, FOLDER_MOD)) {
+		printf(gettext('Could not create the FileStore directory %s. Please check the effective permissions.'), $store_path);
 		exit(0);
 	}
-	$r = new Auth_OpenID_FileStore($store_path);
 
-	return $r;
+	$store = new Auth_OpenID_FileStore($store_path);
+	return $store;
 }
 
-function &getConsumer() {
+function getConsumer() {
 	/**
 	 * Create a consumer object using the store object created
 	 * earlier.
 	 */
 	$store = getStore();
-	$r = new Auth_OpenID_Consumer($store);
-	return $r;
+	$consumer = new Auth_OpenID_Consumer($store);
+	return $consumer;
 }
 
 function getScheme() {

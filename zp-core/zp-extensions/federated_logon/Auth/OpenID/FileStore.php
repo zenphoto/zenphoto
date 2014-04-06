@@ -300,22 +300,13 @@ class Auth_OpenID_FileStore extends Auth_OpenID_OpenIDStore {
             return null;
         }
 
-        if (file_exists($filename) !== true) {
-            return null;
-        }
-
         $assoc_file = @fopen($filename, 'rb');
 
         if ($assoc_file === false) {
             return null;
         }
 
-        $filesize = filesize($filename);
-        if ($filesize === false || $filesize <= 0) {
-            return null;
-        }
-
-        $assoc_s = fread($assoc_file, $filesize);
+        $assoc_s = fread($assoc_file, filesize($filename));
         fclose($assoc_file);
 
         if (!$assoc_s) {
