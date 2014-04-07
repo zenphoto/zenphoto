@@ -108,7 +108,7 @@ function run() {
 }
 
 $error = run();
-if ($success) {
+if ($error) {
 	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?_zp_login_error=' . sprintf(gettext('Federated logon error:<br />%s'), $error));
 	exitZP();
 }
