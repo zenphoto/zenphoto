@@ -20,6 +20,7 @@
  * @author Stephen Billard (sbillard)
  *
  * @package plugins
+ * @subpackage media
  */
 $plugin_is_filter = 800 | THEME_PLUGIN;
 $plugin_description = gettext('Loads Colorbox JS and CSS scripts for selected theme page scripts.');
@@ -110,7 +111,7 @@ class colorbox {
 				}, 300)
 			}
 
-		// Resize Colorbox when resizing window or changing mobile device orientation
+			// Resize Colorbox when resizing window or changing mobile device orientation
 			jQuery(window).resize(resizeColorBox);
 			window.addEventListener("orientationchange", resizeColorBox, false);
 

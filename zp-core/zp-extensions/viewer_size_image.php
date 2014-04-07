@@ -21,6 +21,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage media
  */
 $plugin_description = gettext("Provides a means allowing users to select the image size to view.");
 $plugin_author = "Stephen Billard (sbillard)";

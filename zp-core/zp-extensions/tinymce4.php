@@ -11,7 +11,7 @@
  *
  * @author Malte Müller (acrylian)
  * @package plugins
- * @subpackage tools
+ * @subpackage admin
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext("Text editor TinyMCE 4.x");

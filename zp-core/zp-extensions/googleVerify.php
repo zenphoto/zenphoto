@@ -5,7 +5,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage admin
+ * @subpackage development
  */
 $plugin_is_filter = 600 | THEME_PLUGIN;
 $plugin_description = gettext("Places a Google Site Verification metatag into the header of your site's pages.");
