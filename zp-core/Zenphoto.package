@@ -1123,7 +1123,6 @@ zp-core/zp-extensions/federated_logon/Auth/OpenID/Nonce.php
 zp-core/zp-extensions/federated_logon/Auth/OpenID/PAPE.php
 zp-core/zp-extensions/federated_logon/Auth/OpenID/Parse.php
 zp-core/zp-extensions/federated_logon/Auth/OpenID/PostgreSQLStore.php
-zp-core/zp-extensions/federated_logon/Auth/OpenID/PredisStore.php
 zp-core/zp-extensions/federated_logon/Auth/OpenID/SQLStore.php
 zp-core/zp-extensions/federated_logon/Auth/OpenID/SQLiteStore.php
 zp-core/zp-extensions/federated_logon/Auth/OpenID/SReg.php
@@ -1682,4 +1681,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1684
+1683
