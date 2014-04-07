@@ -586,8 +586,9 @@ class AlbumBase extends MediaObject {
 	 * @return string
 	 */
 	function getLink($page = NULL) {
+		global $_zp_current_album;
 		global $_zp_page;
-		if (is_null($page)) {
+		if (is_null($page) && $_zp_current_album && $_zp_current_album->name == $this->name) {
 			$page = $_zp_page;
 		}
 		$rewrite = pathurlencode($this->linkname) . '/';

@@ -60,8 +60,7 @@ class Auth_Yadis_ProxyResolver {
 
             $some_services = $xrds->services($filters);
             $services = array_merge($services, $some_services);
-            // TODO:
-            //  * If we do get hits for multiple service_types, we're
+             //  * If we do get hits for multiple service_types, we're
             //    almost certainly going to have duplicated service
             //    entries and broken priority ordering.
         }

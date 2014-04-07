@@ -40,7 +40,7 @@ class Auth_OpenID_AX {
      */
     static function isError($thing)
     {
-        return is_a($thing, 'Auth_OpenID_AX_Error');
+        return ($thing instanceof Auth_OpenID_AX_Error);
     }
 }
 
@@ -308,7 +308,7 @@ class Auth_OpenID_AX_FetchRequest extends Auth_OpenID_AX_Message {
     /**
      * Get the serialized form of this attribute fetch request.
      *
-     * @returns Auth_OpenID_AX_FetchRequest The fetch request message parameters
+     * @return Auth_OpenID_AX_FetchRequest The fetch request message parameters
      */
     function getExtensionArgs()
     {
@@ -738,7 +738,7 @@ class Auth_OpenID_AX_KeyValueMessage extends Auth_OpenID_AX_Message {
      * Get the list of values for this attribute in the
      * fetch_response.
      *
-     * XXX: what to do if the values are not present? default
+     * what to do if the values are not present? default
      * parameter? this is funny because it's always supposed to return
      * a list, so the default may break that, though it's provided by
      * the user's code, so it might be okay. If no default is
@@ -937,7 +937,6 @@ class Auth_OpenID_AX_FetchResponse extends Auth_OpenID_AX_KeyValueMessage {
 
         $result = $obj->parseExtensionArgs($ax_args);
         if (Auth_OpenID_AX::isError($result)) {
-            #XXX log me
             return null;
         }
         return $obj;

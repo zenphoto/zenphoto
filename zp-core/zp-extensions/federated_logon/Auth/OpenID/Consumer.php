@@ -29,7 +29,7 @@
  * identity check.
  *
  * LIBRARY DESIGN
- * 
+ *
  * This consumer library is designed with that flow in mind.  The goal
  * is to make it as easy as possible to perform the above steps
  * securely.
@@ -427,7 +427,7 @@ class Auth_OpenID_Consumer {
             $loader->fromSession($endpoint_data);
 
         $message = Auth_OpenID_Message::fromPostArgs($query);
-        $response = $this->consumer->complete($message, $endpoint, 
+        $response = $this->consumer->complete($message, $endpoint,
                                               $current_url);
         $this->session->del($this->_token_key);
 
@@ -672,7 +672,7 @@ class Auth_OpenID_GenericConsumer {
     /**
      * @access private
      */
-    function _completeInvalid($message, $endpoint, $unused)
+    function _completeInvalid($message, $endpoint, $unused=null)
     {
         $mode = $message->getArg(Auth_OpenID_OPENID_NS, 'mode',
                                  '<No mode set>');
@@ -829,7 +829,6 @@ class Auth_OpenID_GenericConsumer {
         $msg_return_to = $message->getArg(Auth_OpenID_OPENID_NS,
                                           'return_to');
         if (Auth_OpenID::isFailure($return_to)) {
-            // XXX log me
             return false;
         }
 
@@ -888,7 +887,7 @@ class Auth_OpenID_GenericConsumer {
         if (Auth_OpenID::isFailure($return_to)) {
             return $return_to;
         }
-        // XXX: this should be checked by _idResCheckForFields
+        // this should be checked by _idResCheckForFields
         if (!$return_to) {
             return new Auth_OpenID_FailureResponse(null,
                            "Response has no return_to");
@@ -946,7 +945,7 @@ class Auth_OpenID_GenericConsumer {
 
         if ($assoc) {
             if ($assoc->getExpiresIn() <= 0) {
-                // XXX: It might be a good idea sometimes to re-start
+                // It might be a good idea sometimes to re-start
                 // the authentication with a new association. Doing it
                 // automatically opens the possibility for
                 // denial-of-service by a server that just returns
@@ -966,7 +965,7 @@ class Auth_OpenID_GenericConsumer {
             }
         } else {
             // It's not an association we know about.  Stateless mode
-            // is our only possible path for recovery.  XXX - async
+            // is our only possible path for recovery.
             // framework will not want to block on this call to
             // _checkAuth.
             if (!$this->_checkAuth($message, $server_url)) {
@@ -1029,7 +1028,7 @@ class Auth_OpenID_GenericConsumer {
         if ($endpoint !== null) {
             $result = $this->_verifyDiscoverySingle($endpoint, $to_match);
 
-            if (is_a($result, 'Auth_OpenID_TypeURIMismatch')) {
+            if (($result instanceof Auth_OpenID_TypeURIMismatch)) {
                 $result = $this->_verifyDiscoverySingle($endpoint,
                                                         $to_match_1_0);
             }
@@ -1183,11 +1182,9 @@ class Auth_OpenID_GenericConsumer {
     function _discoverAndVerify($claimed_id, $to_match_endpoints)
     {
         // oidutil.log('Performing discovery on %s' % (claimed_id,))
-        list($unused, $services) = call_user_func_array($this->discoverMethod,
-                                                        array(
-                                                            $claimed_id,
-                                                            &$this->fetcher,
-                                                        ));
+        list($unused, $services) = call_user_func($this->discoverMethod,
+                                                  $claimed_id,
+                                                  $this->fetcher);
 
         if (!$services) {
             return new Auth_OpenID_FailureResponse(null,
@@ -1202,7 +1199,7 @@ class Auth_OpenID_GenericConsumer {
     /**
      * @access private
      */
-    function _verifyDiscoveryServices($claimed_id, 
+    function _verifyDiscoveryServices($claimed_id,
                                       $services, $to_match_endpoints)
     {
         // Search the services resulting from discovery to find one
@@ -1210,7 +1207,7 @@ class Auth_OpenID_GenericConsumer {
 
         foreach ($services as $endpoint) {
             foreach ($to_match_endpoints as $to_match_endpoint) {
-                $result = $this->_verifyDiscoverySingle($endpoint, 
+                $result = $this->_verifyDiscoverySingle($endpoint,
                                                         $to_match_endpoint);
 
                 if (!Auth_OpenID::isFailure($result)) {
@@ -1346,7 +1343,7 @@ class Auth_OpenID_GenericConsumer {
 
         $resp_message = $this->_makeKVPost($request, $server_url);
         if (($resp_message === null) ||
-            (is_a($resp_message, 'Auth_OpenID_ServerErrorContainer'))) {
+            (($resp_message instanceof Auth_OpenID_ServerErrorContainer))) {
             return false;
         }
 
@@ -1368,7 +1365,7 @@ class Auth_OpenID_GenericConsumer {
             }
         }
         $ca_message = $message->copy();
-        $ca_message->setArg(Auth_OpenID_OPENID_NS, 'mode', 
+        $ca_message->setArg(Auth_OpenID_OPENID_NS, 'mode',
                             'check_authentication');
         return $ca_message;
     }
@@ -1514,7 +1511,7 @@ class Auth_OpenID_GenericConsumer {
             return null;
         }
 
-        if (is_a($assoc, 'Auth_OpenID_ServerErrorContainer')) {
+        if (($assoc instanceof Auth_OpenID_ServerErrorContainer)) {
             $why = $assoc;
 
             $supportedTypes = $this->_extractSupportedAssociationType(
@@ -1529,7 +1526,7 @@ class Auth_OpenID_GenericConsumer {
                 $assoc = $this->_requestAssociation(
                                    $endpoint, $assoc_type, $session_type);
 
-                if (is_a($assoc, 'Auth_OpenID_ServerErrorContainer')) {
+                if (($assoc instanceof Auth_OpenID_ServerErrorContainer)) {
                     // Do not keep trying, since it rejected the
                     // association type that it told us to use.
                     // oidutil.log('Server %s refused its suggested association
@@ -1561,8 +1558,7 @@ class Auth_OpenID_GenericConsumer {
         if ($response_message === null) {
             // oidutil.log('openid.associate request failed: %s' % (why[0],))
             return null;
-        } else if (is_a($response_message,
-                        'Auth_OpenID_ServerErrorContainer')) {
+        } else if (($response_message instanceof Auth_OpenID_ServerErrorContainer)) {
             return $response_message;
         }
 
@@ -1606,7 +1602,7 @@ class Auth_OpenID_GenericConsumer {
 
         $expires_in = Auth_OpenID::intval($expires_in_str);
         if ($expires_in === false) {
-            
+
             $err = sprintf("Could not parse expires_in from association ".
                            "response %s", print_r($assoc_response, true));
             return new Auth_OpenID_FailureResponse(null, $err);
@@ -1953,7 +1949,7 @@ class Auth_OpenID_AuthRequest {
     function htmlMarkup($realm, $return_to=null, $immediate=false,
                         $form_tag_attrs=null)
     {
-        $form = $this->formMarkup($realm, $return_to, $immediate, 
+        $form = $this->formMarkup($realm, $return_to, $immediate,
                                   $form_tag_attrs);
 
         if (Auth_OpenID::isFailure($form)) {
