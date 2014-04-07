@@ -1103,7 +1103,7 @@ class ZenpageItems extends ZenpageRoot {
 		if ($locale !== 'all') {
 			$text = get_language_string($text, $locale);
 		}
-		$text = zpFunctions::unTagURLs($text);
+		$text = applyMacros(zpFunctions::unTagURLs($text));
 		return $text;
 	}
 
