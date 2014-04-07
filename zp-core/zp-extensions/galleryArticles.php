@@ -4,7 +4,7 @@
  *
  * @package plugins
  * @author Stephen Billard (sbillard)
- * @subpackage tools
+ * @subpackage misc
  */
 $plugin_is_filter = 600 | THEME_PLUGIN | ADMIN_PLUGIN;
 $plugin_description = gettext('Create news articles when a gallery item is published.');
@@ -192,7 +192,7 @@ class galleryArticles {
 		$article = new ZenpageNews(seoFriendly('galleryAticles-' . $title));
 		$article->setTitle($text);
 
-		$article->setContent('<p><a class="'.$class.'" href="' . $obj->getLink() . '"><img src="' . $img->getCustomImage(getOption('galleryArticles_size'), NULL, NULL, NULL, NULL, NULL, NULL, -1) . '"></a></p><p>' . $obj->getDesc() . '</p>');
+		$article->setContent('<p><a class="' . $class . '" href="' . $obj->getLink() . '"><img src="' . $img->getCustomImage(getOption('galleryArticles_size'), NULL, NULL, NULL, NULL, NULL, NULL, -1) . '"></a></p><p>' . $obj->getDesc() . '</p>');
 		$article->setShow(true);
 		$date = $obj->getPublishDate();
 		if (!$date)

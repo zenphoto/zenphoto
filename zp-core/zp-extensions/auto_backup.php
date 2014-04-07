@@ -13,7 +13,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage utilities
+ * @subpackage admin
  */
 $plugin_is_filter = 2 | ADMIN_PLUGIN | THEME_PLUGIN;
 $plugin_description = gettext("Periodically backup the Zenphoto database.");

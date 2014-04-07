@@ -4,7 +4,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage utilities
+ * @subpackage admin
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext("Checks if there is a Zenphoto versions that is newer than the installed version.");

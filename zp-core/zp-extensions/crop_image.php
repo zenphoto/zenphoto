@@ -7,7 +7,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage tools
+ * @subpackage misc
  */
 if (isset($_REQUEST['performcrop'])) {
 	if (!defined('OFFSET_PATH'))

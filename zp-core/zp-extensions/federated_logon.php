@@ -255,6 +255,7 @@ class federated_logon {
 			Zenphoto_Authority::logUser($userobj);
 			if ($redirect) {
 				header("Location: " . $redirect);
+				exitZP();
 			}
 		}
 		return $more;
