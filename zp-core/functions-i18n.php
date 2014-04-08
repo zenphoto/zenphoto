@@ -138,7 +138,7 @@ function getLanguageArray() {
  * @return array
  *
  */
-function generateLanguageList($all = false) {
+function generateLanguageList($all = false, $alpha = true) {
 	global $_zp_active_languages, $_zp_all_languages;
 	if (is_null($_zp_all_languages)) {
 		$zp_languages = getLanguageArray();
@@ -163,8 +163,10 @@ function generateLanguageList($all = false) {
 			}
 			closedir($dir);
 		}
-		ksort($_zp_all_languages);
-		ksort($_zp_active_languages);
+		if ($alpha) {
+			ksort($_zp_all_languages);
+			ksort($_zp_active_languages);
+		}
 	}
 	if ($all) {
 		return $_zp_all_languages;
