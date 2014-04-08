@@ -583,7 +583,7 @@ echo $refresh;
 															<em><?php echo gettext("New User"); ?></em>
 															<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="adminuser<?php echo $id; ?>" name="adminuser<?php echo $id; ?>" value=""
 																		 onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', visible);
-																				 $('#adminuser<?php echo $id; ?>').focus();" />
+																						 $('#adminuser<?php echo $id; ?>').focus();" />
 
 															<?php
 														} else {
@@ -765,7 +765,7 @@ echo $refresh;
 														$album_alter_rights = ' disabled="disabled"';
 													}
 													if ($ismaster) {
-														echo '<p>' . gettext("The <em>master</em> account has full rights to all albums.") . '</p>';
+														echo '<p>' . gettext("The <em>master</em> account has full rights to all objects.") . '</p>';
 													} else {
 														if (is_object($primeAlbum)) {
 															$flag = array($primeAlbum->name);
