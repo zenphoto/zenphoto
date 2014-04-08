@@ -64,6 +64,10 @@ function parseAllowedTags(&$source) {
 			return false;
 		}
 		$tag = trim(substr($source, 0, $i));
+		//strip forbidden tags from list
+		if ($tag == 'script') {
+			return 0;
+		}
 		$source = trim(substr($source, $i + 2));
 		if (substr($source, 0, 1) != "(") {
 			return false;

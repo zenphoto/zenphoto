@@ -51,11 +51,11 @@ if (isset($_GET['action'])) {
 			$tags = strtolower(sanitize($_POST['allowed_tags'], 0));
 			$test = "(" . $tags . ")";
 			$a = parseAllowedTags($test);
-			if ($a !== false) {
+			if ($a) {
 				setOption('allowed_tags', $tags);
 				$notify = '';
 			} else {
-				$notify = '?tag_parse_error';
+				$notify = '?tag_parse_error=' . $a;
 			}
 			$oldloc = SITE_LOCALE; // get the option as stored in the database, not what might have been set by a cookie
 			$newloc = sanitize($_POST['locale'], 3);
@@ -502,6 +502,17 @@ Zenphoto_Authority::printPasswordFormJS();
 			<div id="container">
 				<?php
 				$subtab = getSubtabs();
+				if (isset($_GET['tag_parse_error'])) {
+					echo '<div class="errorbox fade-message">';
+					echo "<h2>";
+					if ($_GET['tag_parse_error'] === '0') {
+						echo gettext("Forbidden tag.");
+					} else {
+						echo gettext("Your Allowed tags change did not parse successfully.");
+					}
+					echo "</h2>";
+					echo '</div>';
+				}
 				if (isset($_GET['post_error'])) {
 					echo '<div class="errorbox">';
 					echo "<h2>" . gettext('Error') . "</h2>";
@@ -895,7 +906,11 @@ Zenphoto_Authority::printPasswordFormJS();
 																							}
 																			// ]]> -->
 										</script>
-										<p><?php echo gettext("Tags and attributes allowed in comments, descriptions, and other fields."); ?></p>
+										<p><?php
+											echo gettext("Tags and attributes allowed in comments, descriptions, and other fields.");
+											if (EDITOR_SANITIZE_LEVEL == 4)
+												echo ' ' . gettext('<strong>NOTE:</strong> visual editing is enabled so the editor overrides these settings on fields where the it is active.');
+											?></p>
 										<p><?php echo gettext("Follow the form <em>tag</em> =&gt; (<em>attribute</em> =&gt; (<em>attribute</em>=&gt; (), <em>attribute</em> =&gt; ()...)))"); ?></p>
 										<p class="buttons">
 											<a href="javascript:resetallowedtags()" ><?php echo gettext('reset to default'); ?></a>

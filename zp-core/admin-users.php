@@ -389,11 +389,6 @@ echo $refresh;
 						echo "<h2>Deleted</h2>";
 						echo '</div>';
 					}
-					if (isset($_GET['tag_parse_error'])) {
-						echo '<div class="errorbox fade-message">';
-						echo "<h2>" . gettext("Your Allowed tags change did not parse successfully.") . "</h2>";
-						echo '</div>';
-					}
 					if (isset($_GET['migration_error'])) {
 						echo '<div class="errorbox fade-message">';
 						echo "<h2>" . gettext("Rights migration failed.") . "</h2>";
