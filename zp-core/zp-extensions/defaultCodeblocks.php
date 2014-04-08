@@ -6,7 +6,7 @@
  * @package plugins
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage media
+ * @subpackage misc
  */
 $plugin_is_filter = 500 | ADMIN_PLUGIN | THEME_PLUGIN;
 $plugin_description = gettext('Create default codeblocks.');
