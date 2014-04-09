@@ -47,7 +47,7 @@ if (getOption('dynamic_locale_subdomain')) {
  *
  */
 function printLanguageSelector($flags = NULL) {
-	$languages = generateLanguageList(false, $flags);
+	$languages = generateLanguageList();
 	if (isset($_REQUEST['locale'])) {
 		$locale = sanitize($_REQUEST['locale']);
 		if (getOption('locale') != $locale) {
@@ -67,6 +67,7 @@ function printLanguageSelector($flags = NULL) {
 		$flags = getOption('dynamic_locale_visual');
 	}
 	if ($flags) {
+		asort($languages);
 		?>
 		<ul class="flags">
 			<?php
