@@ -906,12 +906,11 @@ Zenphoto_Authority::printPasswordFormJS();
 																							}
 																			// ]]> -->
 										</script>
-										<p><?php
-											echo gettext("Tags and attributes allowed in comments, descriptions, and other fields.");
-											if (EDITOR_SANITIZE_LEVEL == 4)
-												echo ' ' . gettext('<strong>NOTE:</strong> visual editing is enabled so the editor overrides these settings on fields where the it is active.');
-											?></p>
+										<p><?php echo gettext("Tags and attributes allowed in comments, descriptions, and other fields."); ?><p>
 										<p><?php echo gettext("Follow the form <em>tag</em> =&gt; (<em>attribute</em> =&gt; (<em>attribute</em>=&gt; (), <em>attribute</em> =&gt; ()...)))"); ?></p>
+										<?php if (EDITOR_SANITIZE_LEVEL == 4) { ?>
+											<p class="notebox"><?php echo gettext('<strong>Note:</strong> visual editing is enabled so the editor overrides these settings on tags where the it is active.'); ?></p>
+										<?php } ?>
 										<p class="buttons">
 											<a href="javascript:resetallowedtags()" ><?php echo gettext('reset to default'); ?></a>
 										</p>
