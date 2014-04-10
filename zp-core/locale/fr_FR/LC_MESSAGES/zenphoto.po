@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-09 21:19+0100\n"
-"PO-Revision-Date: 2014-04-09 21:23+0100\n"
+"POT-Creation-Date: 2014-04-11 00:02+0100\n"
+"PO-Revision-Date: 2014-04-11 00:05+0100\n"
 "Last-Translator: vincent3569 <vincent_bourganel@yahoo.fr>\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "<michel@mgagnon.net>\n"
@@ -1961,7 +1961,7 @@ msgstr "Aucun changement"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-thumbcrop.php:272
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-thumbcrop.php:274
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:191
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:393
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:390
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/crop_image.php:352
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/crop_image.php:353
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/crop_image.php:358
@@ -2003,8 +2003,8 @@ msgstr "Retour"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-thumbcrop.php:270
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:451
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:821
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:253
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:339
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:250
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:336
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:134
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:302
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:444
@@ -2060,8 +2060,8 @@ msgid "dynamic"
 msgstr "dynamique"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-dynamic-album.php:112
-msgid "zenphoto Create Dynamic Album"
-msgstr "Création d'un album dynamique Zenphoto"
+msgid "Create Dynamic Album"
+msgstr "Création d’un album dynamique"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-dynamic-album.php:116
 msgid "Failed to save the album file"
@@ -5890,7 +5890,7 @@ msgstr "Poursuivre l'actualisation des métadonnées."
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/lib-auth.php:947
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/setup/index.php:1615
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:165
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:377
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:374
 msgid "Refresh"
 msgstr "Actualiser"
 
@@ -13166,9 +13166,9 @@ msgstr "à "
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:192
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:196
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:217
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:216
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:221
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:308
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:213
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:218
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:305
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:92
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:96
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form.php:100
@@ -13803,8 +13803,8 @@ msgstr ""
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:192
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:196
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:216
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:221
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:213
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:218
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:184
 msgid "Hide"
 msgstr "Masquer"
@@ -13862,10 +13862,8 @@ msgid "Cache"
 msgstr "Cache"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:356
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:18
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:151
-msgid "Cache images"
-msgstr "Mettre les images en cache"
+msgid "Cache manager"
+msgstr "Gestionnaire de cache"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager.php:370
 msgid "Purge RSS cache"
@@ -13898,10 +13896,15 @@ msgstr ""
 msgid "Cache album images"
 msgstr "Mettre en cache les images de l'album"
 
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:18
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:151
+msgid "Cache images"
+msgstr "Mettre les images en cache"
+
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:19
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:153
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:152
 msgid "Cache stored images"
-msgstr "Mettre en cache les images"
+msgstr "Mettre en cache les images du site"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:36
 msgid ""
@@ -13995,7 +13998,7 @@ msgstr[0] "%s référence au dossier des images en cache réparée."
 msgstr[1] "%s références au dossier des images en cache réparées."
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:190
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:392
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:389
 msgid "Back to the overview"
 msgstr "Retour à l'aperçu"
 
@@ -14006,46 +14009,46 @@ msgid_plural "[%u images]"
 msgstr[0] "[%u image]"
 msgstr[1] "[%u images]"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:188
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:185
 #, php-format
 msgid "Refreshing cache for %s"
 msgstr "Actualisation du cache pour %s"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:253
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:250
 msgid "Full Image"
 msgstr "image pleine grandeur"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:289
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:286
 msgid "invalid_MaxSpace"
 msgstr "MaxSpace_invalide"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:313
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:310
 #, php-format
 msgid "all sizes for <i>%1$s</i>"
 msgstr "toutes les tailles pour <i>%1$s</i>"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:359
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:356
 #, php-format
 msgid "%u cache size to apply."
 msgid_plural "%u cache sizes to apply."
 msgstr[0] "%u taille du cache à appliquer."
 msgstr[1] "%u tailles de cache à appliquer."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:374
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:371
 #, php-format
 msgid "%u cache size requested"
 msgid_plural "%u cache sizes requested"
 msgstr[0] "%u taille demandée du cache."
 msgstr[1] "%u tailles demandées du cache."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:375
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:372
 #, php-format
 msgid "Finished processing %1$u image (%2$s)."
 msgid_plural "Finished processing %1$u images (%2$s)."
 msgstr[0] "Traitement de %1$u image complété (%2$s)."
 msgstr[1] "Traitement de %1$u images complété (%2$s)."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:377
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:374
 msgid ""
 "Refresh the caching of the selected image sizes if some images did not "
 "render."
@@ -14053,15 +14056,15 @@ msgstr ""
 "Actualise la mise en cache des tailles sélectionnées des images si le rendu "
 "des images n'était pas complet."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:384
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:381
 msgid "No cache sizes enabled."
 msgstr "Aucune taille définie pour la mise en cache."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:388
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:385
 msgid "Cache the images"
 msgstr "Mettre en cache les images"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:388
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:385
 msgid "Executes the caching of the selected image sizes."
 msgstr "Effectue la mise en cache des tailles sélectionnées des images."
 
