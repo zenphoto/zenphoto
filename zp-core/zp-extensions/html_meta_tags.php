@@ -256,8 +256,8 @@ class htmlmetatags {
 		}
 		// shorten desc to the allowed 200 characters if necesssary.
 		$desc = sanitize($desc,3);
-		if (strlen($desc) > 200) {
-			$desc = trim(substr($desc, 0, 200));
+		if (strlen($desc) > 160) {
+			$desc = trim(substr($desc, 0, 160));
 		}
 		$desc = html_encode($desc);
 		$pagetitle = $pagetitle . getBareGalleryTitle();
