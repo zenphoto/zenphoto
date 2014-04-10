@@ -255,7 +255,7 @@ class htmlmetatags {
 				break;
 		}
 		// shorten desc to the allowed 200 characters if necesssary.
-		$desc = strip_tags($desc);
+		$desc = sanitize($desc,3);
 		if (strlen($desc) > 200) {
 			$desc = trim(substr($desc, 0, 200));
 		}
