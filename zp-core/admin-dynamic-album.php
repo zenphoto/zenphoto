@@ -109,7 +109,7 @@ echo "\n" . '<div id="main">';
 printTabs();
 echo "\n" . '<div id="content">';
 zp_apply_filter('admin_note', 'albums', 'dynamic');
-echo "<h1>" . gettext("zenphoto Create Dynamic Album") . "</h1>\n";
+echo "<h1>" . gettext("Create Dynamic Album") . "</h1>\n";
 
 if (isset($_POST['savealbum'])) { // we fell through, some kind of error
 	echo "<div class=\"errorbox space\">";
