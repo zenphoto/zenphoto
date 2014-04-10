@@ -281,7 +281,7 @@ if (!defined('OFFSET_PATH')) {
 												}
 											}
 											foreach ($notes as $note) {
-												$n = strip_tags($note['desc']);
+												$n = getBare($note['desc']);
 												if (!empty($n)) {
 													?>
 													<li><code><?php echo $note['desc']; ?></li>

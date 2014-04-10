@@ -350,7 +350,7 @@ function getGalleryTitle() {
  * @return string
  */
 function getBareGalleryTitle() {
-	return strip_tags(getGalleryTitle());
+	return getBare(getGalleryTitle());
 }
 
 /**
@@ -377,7 +377,7 @@ function printBareGalleryTitle() {
  */
 function getHeadTitle($separator = ' | ', $listparentalbums = true, $listparentpages = true) {
 	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_gallery_page, $_zp_current_category, $_zp_page, $_myFavorites;
-	$mainsitetitle = html_encode(strip_tags(getMainSiteName()));
+	$mainsitetitle = html_encode(getBare(getMainSiteName()));
 	$separator = html_encode($separator);
 	if ($mainsitetitle) {
 		$mainsitetitle = $separator . $mainsitetitle;
@@ -400,7 +400,7 @@ function getHeadTitle($separator = ' | ', $listparentalbums = true, $listparentp
 				if (count($parents) != 0) {
 					$parents = array_reverse($parents);
 					foreach ($parents as $parent) {
-						$parentalbums .= html_encode(strip_tags($parent->getTitle())) . $separator;
+						$parentalbums .= html_encode(getBare($parent->getTitle())) . $separator;
 					}
 				}
 			} else {
@@ -421,7 +421,7 @@ function getHeadTitle($separator = ' | ', $listparentalbums = true, $listparentp
 				if (is_NewsArticle()) {
 					return html_encode(getBareNewsTitle()) . $pagenumber . $separator . gettext('News') . $separator . $gallerytitle . $mainsitetitle;
 				} else if (is_NewsCategory()) {
-					return html_encode(strip_tags($_zp_current_category->getTitle())) . $pagenumber . $separator . gettext('News') . $separator . $gallerytitle . $mainsitetitle;
+					return html_encode(getBare($_zp_current_category->getTitle())) . $pagenumber . $separator . gettext('News') . $separator . $gallerytitle . $mainsitetitle;
 				} else {
 					return gettext('News') . $pagenumber . $separator . $gallerytitle . $mainsitetitle;
 				}
@@ -435,7 +435,7 @@ function getHeadTitle($separator = ' | ', $listparentalbums = true, $listparentp
 					$parents = array_reverse($parents);
 					foreach ($parents as $parent) {
 						$obj = new ZenpagePage($parent);
-						$parentpages .= html_encode(strip_tags($obj->getTitle())) . $separator;
+						$parentpages .= html_encode(getBare($obj->getTitle())) . $separator;
 					}
 				}
 			} else {
@@ -492,7 +492,7 @@ function getGalleryDesc() {
  * @return string
  */
 function getBareGalleryDesc() {
-	return strip_tags(getGalleryDesc());
+	return getBare(getGalleryDesc());
 }
 
 /**
@@ -1088,7 +1088,7 @@ function getAlbumTitle() {
  * @return string
  */
 function getBareAlbumTitle() {
-	return strip_tags(getAlbumTitle());
+	return getBare(getAlbumTitle());
 }
 
 /**
@@ -1268,7 +1268,7 @@ function printSearchBreadcrumb($between = NULL, $class = NULL, $search = NULL, $
 			$text = gettext('Archive');
 			$textdecoration = true;
 		} else {
-			$text = strip_tags(html_encode($archive));
+			$text = getBare(html_encode($archive));
 			$textdecoration = false;
 		}
 		echo "<a href=\"" . html_encode(getCustomPageURL('archive', NULL)) . "\"$class title=\"" . $text . "\">";
@@ -1285,7 +1285,7 @@ function printSearchBreadcrumb($between = NULL, $class = NULL, $search = NULL, $
 			$text = gettext('Search');
 			$textdecoration = true;
 		} else {
-			$text = strip_tags(html_encode($search));
+			$text = getBare(html_encode($search));
 			$textdecoration = false;
 		}
 		printf('%s' . $text . '%s', $textdecoration ? '<em>' : '', $textdecoration ? '</em>' : '');
@@ -1344,7 +1344,7 @@ function getParentBreadcrumb() {
 		foreach ($parents as $parent) {
 			$url = $parent->getLink();
 //cleanup things in description for use as attribute tag
-			$desc = strip_tags(preg_replace('|</p\s*>|i', '</p> ', preg_replace('|<br\s*/>|i', ' ', $parent->getDesc())));
+			$desc = getBare(preg_replace('|</p\s*>|i', '</p> ', preg_replace('|<br\s*/>|i', ' ', $parent->getDesc())));
 			$output[] = array('link' => html_encode($url), 'title' => $desc, 'text' => $parent->getTitle());
 		}
 	}
@@ -1390,7 +1390,7 @@ function printParentBreadcrumb($before = NULL, $between = NULL, $after = NULL, $
 			if (!empty($desc) && $truncate) {
 				$desc = truncate_string($desc, $truncate, $elipsis);
 			}
-			$output .= '<a href="' . html_encode($crumb['link']) . '"' . ' title="' . html_encode(strip_tags($desc)) . '">' . html_encode($crumb['text']) . '</a>';
+			$output .= '<a href="' . html_encode($crumb['link']) . '"' . ' title="' . html_encode(getBare($desc)) . '">' . html_encode($crumb['text']) . '</a>';
 			$i++;
 		}
 		if ($after) {
@@ -1505,7 +1505,7 @@ function getAlbumDesc() {
  * @return string
  */
 function getBareAlbumDesc() {
-	return strip_tags(getAlbumDesc());
+	return getBare(getAlbumDesc());
 }
 
 /**
@@ -2090,7 +2090,7 @@ function getImageTitle() {
  * @return string
  */
 function getBareImageTitle() {
-	return strip_tags(getImageTitle());
+	return getBare(getImageTitle());
 }
 
 /**
@@ -2257,7 +2257,7 @@ function getImageDesc() {
  * @return string
  */
 function getBareImageDesc() {
-	return strip_tags(getImageDesc());
+	return getBare(getImageDesc());
 }
 
 /**

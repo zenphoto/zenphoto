@@ -188,7 +188,7 @@ function commonNewsLoop($paged) {
 }
 
 function exerpt($content, $length) {
-	return shortenContent(strip_tags($content), $length, getOption("zenpage_textshorten_indicator"));
+	return shortenContent(getBare($content), $length, getOption("zenpage_textshorten_indicator"));
 }
 
 function my_checkPageValidity($request, $gallery_page, $page) {

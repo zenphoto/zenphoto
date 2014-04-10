@@ -226,7 +226,7 @@ function printLatestNews($number = 5, $category = '', $showdate = true, $showcon
 
 
 		echo "<li>";
-		echo "<h3><a href=\"" . $link . "\" title=\"" . strip_tags(html_encode($title)) . "\">" . $title . "</a></h3>\n";
+		echo "<h3><a href=\"" . $link . "\" title=\"" . getBare(html_encode($title)) . "\">" . $title . "</a></h3>\n";
 		if ($showdate) {
 			echo "<span class=\"latestnews-date\">" . $date . "</span>\n";
 		}
@@ -370,7 +370,7 @@ function printNewsTitle($before = '') {
  * @return string
  */
 function getBareNewsTitle() {
-	return strip_tags(getNewsTitle());
+	return getBare(getNewsTitle());
 }
 
 function printBareNewsTitle() {
@@ -893,21 +893,21 @@ function printNewsIndexURL($name = NULL, $before = '', $archive = NULL) {
 		if (is_null($archive)) {
 			$name = '<em>' . gettext('Archive') . '</em>';
 		} else {
-			$name = strip_tags(html_encode($archive));
+			$name = getBare(html_encode($archive));
 		}
 		$link = zp_apply_filter('getLink', rewrite_path(_ARCHIVE_ . '/', "/index.php?p=archive"), 'archive.php', NULL);
 	} else {
 		if (is_null($name)) {
 			$name = gettext('News');
 		} else {
-			$name = strip_tags(html_encode($name));
+			$name = getBare(html_encode($name));
 		}
 		$link = getNewsIndexURL();
 	}
 	if ($before) {
 		echo '<span class="beforetext">' . html_encode($before) . '</span>';
 	}
-	echo "<a href=\"" . html_encode($link) . "\" title=\"" . strip_tags($name) . "\">" . $name . "</a>";
+	echo "<a href=\"" . html_encode($link) . "\" title=\"" . getBare($name) . "\">" . $name . "</a>";
 }
 
 /**
@@ -1189,7 +1189,7 @@ function getPrevNewsURL($sortorder = 'date', $sortdirection = 'desc') {
 function printNextNewsLink($next = " »", $sortorder = 'date', $sortdirection = 'desc') {
 	$article_url = getNextPrevNews("next", $sortorder, $sortdirection);
 	if ($article_url && array_key_exists('link', $article_url) && $article_url['link'] != "") {
-		echo "<a href=\"" . html_encode($article_url['link']) . "\" title=\"" . html_encode(strip_tags($article_url['title'])) . "\">" . $article_url['title'] . "</a> " . html_encode($next);
+		echo "<a href=\"" . html_encode($article_url['link']) . "\" title=\"" . html_encode(getBare($article_url['title'])) . "\">" . $article_url['title'] . "</a> " . html_encode($next);
 	}
 }
 
@@ -1206,7 +1206,7 @@ function printNextNewsLink($next = " »", $sortorder = 'date', $sortdirection = 
 function printPrevNewsLink($prev = "« ", $sortorder = 'date', $sortdirection = 'desc') {
 	$article_url = getNextPrevNews("prev", $sortorder, $sortdirection);
 	if ($article_url && array_key_exists('link', $article_url) && $article_url['link'] != "") {
-		echo html_encode($prev) . " <a href=\"" . html_encode($article_url['link']) . "\" title=\"" . html_encode(strip_tags($article_url['title'])) . "\">" . $article_url['title'] . "</a>";
+		echo html_encode($prev) . " <a href=\"" . html_encode($article_url['link']) . "\" title=\"" . html_encode(getBare($article_url['title'])) . "\">" . $article_url['title'] . "</a>";
 	}
 }
 
@@ -1373,7 +1373,7 @@ function printZenpageStatistic($number = 10, $option = "all", $mode = "popular",
 				$titlelink = html_encode(getNewsCategoryURL($item['titlelink']));
 				break;
 		}
-		echo '<li><a href = "' . $titlelink . '" title = "' . html_encode(strip_tags($item['title'])) . '"><h3>' . $item['title'];
+		echo '<li><a href = "' . $titlelink . '" title = "' . html_encode(getBare($item['title'])) . '"><h3>' . $item['title'];
 		echo '<small>';
 		if ($showtype) {
 			echo ' [' . $item['type'] . ']';
@@ -1676,7 +1676,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 				if ($limit) {
 					$itemtitle = shortenContent($itemtitle, $limit, MENU_TRUNCATE_INDICATOR);
 				}
-				echo "<li><a $current href=\"" . html_encode($itemurl) . "\" title=\"" . html_encode(strip_tags($itemtitle)) . "\">" . html_encode($itemtitle) . "</a>" . $count;
+				echo "<li><a $current href=\"" . html_encode($itemurl) . "\" title=\"" . html_encode(getBare($itemtitle)) . "\">" . html_encode($itemtitle) . "</a>" . $count;
 			}
 		}
 	}
@@ -1839,7 +1839,7 @@ function printPageTitle($before = NULL) {
  * @return string
  */
 function getBarePageTitle() {
-	return strip_tags(getPageTitle());
+	return getBare(getPageTitle());
 }
 
 /**
@@ -1971,7 +1971,7 @@ function getPageContent($titlelink = NULL, $published = true) {
 	// print content of a page directly on a normal zenphoto theme page or any other page for example
 	if (!empty($titlelink)) {
 		$page = new ZenpagePage($titlelink);
-		if ($page->getShow() OR (!$page->getShow() AND !$published)) {
+		if ($page->getShow() OR ( !$page->getShow() AND ! $published)) {
 			return $page->getContent();
 		}
 	}
@@ -2006,7 +2006,7 @@ function getPageExtraContent($titlelink = '', $published = true) {
 	// print content of a page directly on a normal zenphoto theme page for example
 	if (!empty($titlelink)) {
 		$page = new ZenpagePage($titlelink);
-		if ($page->getShow() OR (!$page->getShow() AND !$published)) {
+		if ($page->getShow() OR ( !$page->getShow() AND ! $published)) {
 			return $page->getExtracontent();
 		}
 	}
@@ -2153,7 +2153,7 @@ function printSubPagesExcerpts($excerptlength = NULL, $readmore = NULL, $shorten
 				$pagecontent = '<p><em>' . gettext('This page is password protected') . '</em></p>';
 			}
 			echo '<div class="pageexcerpt">';
-			echo '<h4><a href="' . html_encode($pageobj->getLink()) . '" title="' . strip_tags($pagetitle) . '">' . $pagetitle . '</a></h4>';
+			echo '<h4><a href="' . html_encode($pageobj->getLink()) . '" title="' . getBare($pagetitle) . '">' . $pagetitle . '</a></h4>';
 			echo $pagecontent;
 			echo '</div>';
 		}

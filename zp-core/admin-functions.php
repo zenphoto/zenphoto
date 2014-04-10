@@ -1278,7 +1278,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
 																onclick="passwordClear('<?php echo $suffix; ?>');
-																				togglePassword('<?php echo $suffix; ?>');" /><?php echo gettext('Show password'); ?></label>
+																		togglePassword('<?php echo $suffix; ?>');" /><?php echo gettext('Show password'); ?></label>
 								</td>
 								<td>
 									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
@@ -1804,7 +1804,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -2051,7 +2051,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					<a href="?page=edit&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>" title="<?php echo sprintf(gettext('Edit this album: %s'), $album->name); ?>">
 						<?php
 					}
-					echo strip_tags($album->getTitle());
+					echo getBare($album->getTitle());
 					if ($enableEdit) {
 						?>
 					</a>
@@ -2694,7 +2694,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @return string
 	 */
 	function commentReply($str, $name, $albumtitle, $imagetitle) {
-		$str = "$name commented on $imagetitle in the album $albumtitle: %0D%0A%0D%0A" . implode('%0D%0A', explode('\n', wordwrap(strip_tags($str), 75, '\n')));
+		$str = "$name commented on $imagetitle in the album $albumtitle: %0D%0A%0D%0A" . implode('%0D%0A', explode('\n', wordwrap(getBare($str), 75, '\n')));
 		return $str;
 	}
 
@@ -4318,7 +4318,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 		}
 		?>
 		<select name="subpage" class="ays-ignore" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
-										[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
+								[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
 							<?php
 							foreach ($rangeset as $page => $range) {
 								?>

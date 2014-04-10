@@ -371,9 +371,9 @@ function printAlbumMenuJumpAlbum($albums, $option, $albumpath, $firstimagelink, 
 
 		$selected = checkSelectedAlbum($subalbum->name, "album");
 		if ($firstimagelink && $subalbum->getNumImages() != 0) {
-			$link = "<option $selected value='" . html_encode($subalbum->getImage(0)->getLink()) . "'>" . $arrow . strip_tags($subalbum->getTitle()) . $count . "</option>";
+			$link = "<option $selected value='" . html_encode($subalbum->getImage(0)->getLink()) . "'>" . $arrow . getBare($subalbum->getTitle()) . $count . "</option>";
 		} else {
-			$link = "<option $selected value='" . html_encode($subalbum->getLink(1)) . "'>" . $arrow . strip_tags($subalbum->getTitle()) . $count . "</option>";
+			$link = "<option $selected value='" . html_encode($subalbum->getLink(1)) . "'>" . $arrow . getBare($subalbum->getTitle()) . $count . "</option>";
 		}
 		echo $link;
 		$subalbums = $subalbum->getAlbums();

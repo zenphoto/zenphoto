@@ -156,8 +156,21 @@ function ksesProcess($input_string, $allowed_tags) {
 	if (function_exists('kses')) {
 		return kses($input_string, $allowed_tags);
 	} else {
-		return strip_tags($input_string);
+		return getBare($input_string);
 	}
+}
+
+/**
+ * Cleans tags and some content.
+ * @param type $content
+ * @return type
+ */
+function getBare($content) {
+	$content = preg_replace('~<script.*?/script>~is', '', $content);
+	$content = preg_replace('~<style.*?/style>~is', '', $content);
+	$content = preg_replace('~<!--.*?-->~is', '', $content);
+	$content = strip_tags($content);
+	return $content;
 }
 
 /** returns a sanitized string for the sanitize function
@@ -179,10 +192,11 @@ function sanitize_string($input, $sanitize_level) {
 				return ksesProcess($input, getAllowedTags('style_tags'));
 			case 3:
 				// Full sanitation.  Strips all code.
-				return strip_tags($input);
+				return getBare($input);
 			case 1:
 				// Text formatting sanititation.
-				$input = ksesProcess($input, getAllowedTags('allowed_tags'));
+				$input = sanitize_script($input);
+				return ksesProcess($input, getAllowedTags('allowed_tags'));
 			case 4:
 			default:
 				// for internal use to eliminate security injections
@@ -407,7 +421,7 @@ function debugLogVar($message) {
 	var_dump($var);
 	$str = ob_get_contents();
 	ob_end_clean();
-	debugLog(trim($message) . "\r" . html_decode(strip_tags($str)));
+	debugLog(trim($message) . "\r" . html_decode(getBare($str)));
 }
 
 /**

@@ -366,7 +366,7 @@ function printRSSHeaderLink($option, $linktext, $lang = '', $addl = NULL) {
 	if ($protocol == 'https_admin') {
 		$protocol = 'https://';
 	}
-	echo "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"" . html_encode(strip_tags($linktext)) . "\" href=\"" .
+	echo "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"" . html_encode(getBare($linktext)) . "\" href=\"" .
 	$protocol . $host . html_encode(getRSSLink($option, $lang, $addl)) . "\" />\n";
 }
 
@@ -412,7 +412,7 @@ class RSS extends feed {
 				$this->channel_title = $_zp_gallery->getBareTitle($this->locale);
 				break;
 			case 'website':
-				$this->channel_title = strip_tags($_zp_gallery->getWebsiteTitle($this->locale));
+				$this->channel_title = getBare($_zp_gallery->getWebsiteTitle($this->locale));
 				break;
 			case 'both':
 				$website_title = $_zp_gallery->getWebsiteTitle($this->locale);
@@ -446,7 +446,7 @@ class RSS extends feed {
 				}
 				$albumname = $this->getChannelTitleExtra();
 
-				$this->channel_title = html_encode($this->channel_title . ' ' . strip_tags($albumname));
+				$this->channel_title = html_encode($this->channel_title . ' ' . getBare($albumname));
 				$this->imagesize = $this->getImageSize();
 				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/image_album_statistics.php');
 				break;
@@ -719,7 +719,7 @@ class RSS extends feed {
 					<title><?php echo $this->channel_title; ?></title>
 					<link><?php echo PROTOCOL . '://' . $this->host . WEBPATH; ?></link>
 					<atom:link href="<?php echo PROTOCOL; ?>://<?php echo $this->host; ?><?php echo html_encode(getRequestURI()); ?>" rel="self"	type="application/rss+xml" />
-					<description><?php echo strip_tags($_zp_gallery->getDesc($this->locale)); ?></description>
+					<description><?php echo getBare($_zp_gallery->getDesc($this->locale)); ?></description>
 					<language><?php echo $this->locale_xml; ?></language>
 					<pubDate><?php echo date("r", time()); ?></pubDate>
 					<lastBuildDate><?php echo date("r", time()); ?></lastBuildDate>

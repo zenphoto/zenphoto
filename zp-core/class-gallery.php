@@ -57,7 +57,7 @@ class Gallery {
 	 * @return string
 	 */
 	function getBareTitle($locale = NULL) {
-		return strip_tags($this->getTitle($locale));
+		return getBare($this->getTitle($locale));
 	}
 
 	function setTitle($title) {

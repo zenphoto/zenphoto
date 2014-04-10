@@ -1113,7 +1113,7 @@ function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $
 						if (empty($itemURL)) {
 							$itemURL = FULLWEBPATH;
 						}
-						echo '<a href="' . $itemURL . '" title="' . strip_tags($itemtitle) . '">' . $itemtitle . '</a>' . $itemcounter;
+						echo '<a href="' . $itemURL . '" title="' . getBare($itemtitle) . '">' . $itemtitle . '</a>' . $itemcounter;
 						break;
 				}
 				if ($item['span_id'] || $item['span_class']) {

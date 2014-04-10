@@ -1229,7 +1229,7 @@ function generateListFromFiles($currentValue, $root, $suffix, $descending = fals
  */
 function getLinkHTML($url, $text, $title = NULL, $class = NULL, $id = NULL) {
 	return "<a href=\"" . html_encode($url) . "\"" .
-					(($title) ? " title=\"" . html_encode(strip_tags($title)) . "\"" : "") .
+					(($title) ? " title=\"" . html_encode(getBare($title)) . "\"" : "") .
 					(($class) ? " class=\"$class\"" : "") .
 					(($id) ? " id=\"$id\"" : "") . ">" .
 					html_encode($text) . "</a>";
@@ -1943,7 +1943,7 @@ function debug404($album, $image, $theme) {
 		trigger_error(sprintf(gettext('Zenphoto processed a 404 error on %s. See the debug log for details.'), $target), E_USER_NOTICE);
 		ob_start();
 		var_dump($server);
-		$server = preg_replace('~array\s*\(.*\)\s*~', '', html_decode(strip_tags(ob_get_contents())));
+		$server = preg_replace('~array\s*\(.*\)\s*~', '', html_decode(getBare(ob_get_contents())));
 		ob_end_clean();
 		ob_start();
 		var_dump($request);
@@ -1951,7 +1951,7 @@ function debug404($album, $image, $theme) {
 		if (!empty($image)) {
 			$request['image'] = $image;
 		}
-		$request = preg_replace('~array\s*\(.*\)\s*~', '', html_decode(strip_tags(ob_get_contents())));
+		$request = preg_replace('~array\s*\(.*\)\s*~', '', html_decode(getBare(ob_get_contents())));
 		ob_end_clean();
 		debugLog("404 error details\n" . $server . $request);
 	}

@@ -395,7 +395,8 @@ function printFooter($admin = true) {
 		<?php
 		if ($_zp_gallery_page == 'gallery.php') {
 			if (class_exists('RSS'))
-				printRSSLink('Gallery', '', 'Gallery RSS', ''); echo '<br />';
+				printRSSLink('Gallery', '', 'Gallery RSS', '');
+			echo '<br />';
 		}
 		?>
 		<?php
@@ -414,7 +415,7 @@ function printFooter($admin = true) {
 		}
 		?>
 		<?php @call_user_func('mobileTheme::controlLink'); ?>
-		<?php @call_user_func('printLanguageSelector'); ?>
+	<?php @call_user_func('printLanguageSelector'); ?>
 		<br class="clearall" />
 	</div>
 	<!-- Administration Toolbox -->
@@ -433,26 +434,26 @@ function commonNewsLoop($paged) {
 			<h3><?php printNewsURL(); ?><?php echo " <span class='newstype'>[" . $newstypedisplay . "]</span>"; ?></h3>
 			<div class="newsarticlecredit">
 				<span class="newsarticlecredit-left">
-		<?php
-		$count = @call_user_func('getCommentCount');
-		$cat = getNewsCategories();
-		printNewsDate();
-		if ($count > 0) {
-			echo ' | ';
-			printf(gettext("Comments: %d"), $count);
-		}
-		?>
-				</span>
 					<?php
-					if (!empty($cat)) {
+					$count = @call_user_func('getCommentCount');
+					$cat = getNewsCategories();
+					printNewsDate();
+					if ($count > 0) {
 						echo ' | ';
-						printNewsCategories(", ", gettext("Categories: "), "newscategories");
+						printf(gettext("Comments: %d"), $count);
 					}
 					?>
+				</span>
+				<?php
+				if (!empty($cat)) {
+					echo ' | ';
+					printNewsCategories(", ", gettext("Categories: "), "newscategories");
+				}
+				?>
 			</div> <!-- newsarticlecredit -->
-				<?php printCodeblock(1); ?>
+			<?php printCodeblock(1); ?>
 			<?php printNewsContent(); ?>
-			<?php printCodeblock(2); ?>
+		<?php printCodeblock(2); ?>
 			<br class="clearall" />
 		</div>
 		<?php
@@ -463,48 +464,48 @@ function commonNewsLoop($paged) {
 }
 
 function exerpt($content, $length) {
-	return shortenContent(strip_tags($content), $length, getOption("zenpage_textshorten_indicator"));
+	return shortenContent(getBare($content), $length, getOption("zenpage_textshorten_indicator"));
 }
 
 function commonComment() {
 	if (function_exists('printCommentForm')) {
 		?>
 		<div id="commentbox">
-		<?php
-		if (getCommentErrors() || getCommentCount() == 0) {
-			$style = NULL;
-			$head = '';
-		} else {
+			<?php
+			if (getCommentErrors() || getCommentCount() == 0) {
+				$style = NULL;
+				$head = '';
+			} else {
 //TODO: if the following line is used as intended the comment textarea is hidden to start with and when shown is not full width.
 //				$style = ' class="comment" style="display:none;"';
-			$style = ' class="commentx" style="display:block;"';
-			$head = "<div$style><h3>" . gettext('Add a comment') . '</h3></div>';
-		}
-		printCommentForm(true, $head, true, $style);
-		?>
+				$style = ' class="commentx" style="display:block;"';
+				$head = "<div$style><h3>" . gettext('Add a comment') . '</h3></div>';
+			}
+			printCommentForm(true, $head, true, $style);
+			?>
 		</div><!-- id="commentbox" -->
-			<?php
-		}
+		<?php
 	}
+}
 
-	function my_checkPageValidity($request, $gallery_page, $page) {
-		switch ($gallery_page) {
-			case 'gallery.php':
-				$gallery_page = 'index.php'; //	same as an album gallery index
+function my_checkPageValidity($request, $gallery_page, $page) {
+	switch ($gallery_page) {
+		case 'gallery.php':
+			$gallery_page = 'index.php'; //	same as an album gallery index
+			break;
+		case 'index.php':
+			if (!extensionEnabled('zenpage') || getOption('custom_index_page') == 'gallery') { // only one index page if zenpage plugin is enabled or custom index page is set
 				break;
-			case 'index.php':
-				if (!extensionEnabled('zenpage') || getOption('custom_index_page') == 'gallery') { // only one index page if zenpage plugin is enabled or custom index page is set
-					break;
-				}
-			default:
-				if ($page != 1) {
-					return false;
-				}
-			case 'news.php':
-			case 'album.php':
-			case 'search.php':
-				break;
-		}
-		return checkPageValidity($request, $gallery_page, $page);
+			}
+		default:
+			if ($page != 1) {
+				return false;
+			}
+		case 'news.php':
+		case 'album.php':
+		case 'search.php':
+			break;
 	}
-	?>
+	return checkPageValidity($request, $gallery_page, $page);
+}
+?>

@@ -97,7 +97,7 @@ function printImageslist($number) {
 	global $_zp_gallery, $host;
 	$args = array(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
-	if (isset($_GET['album']) AND !empty($_GET['album'])) {
+	if (isset($_GET['album']) && ! empty($_GET['album'])) {
 
 		$album = urldecode(sanitize($_GET['album']));
 		$albumobj = newAlbum($album);
@@ -329,7 +329,7 @@ function printNewsArticlesList($number) {
 				$count++;
 				echo "<li>";
 				if ($_GET['zenpage'] == "articles") {
-					echo "<a href=\"javascript:ZenpageDialog.insert('','news/" . $newsobj->getTitlelink() . "','','','" . $newsobj->getTitlelink() . "','" . addslashes($newsobj->getTitle()) . "','','','articles','','','','');\" title='" . html_encode(truncate_string(strip_tags($newsobj->getContent()), 300)) . "'>" . addslashes($newsobj->getTitle()) . unpublishedZenpageItemCheck($newsobj) . "</a> <small><em>" . $newsobj->getDatetime() . "</em></small>";
+					echo "<a href=\"javascript:ZenpageDialog.insert('','news/" . $newsobj->getTitlelink() . "','','','" . $newsobj->getTitlelink() . "','" . addslashes($newsobj->getTitle()) . "','','','articles','','','','');\" title='" . html_encode(truncate_string(getBare($newsobj->getContent()), 300)) . "'>" . addslashes($newsobj->getTitle()) . unpublishedZenpageItemCheck($newsobj) . "</a> <small><em>" . $newsobj->getDatetime() . "</em></small>";
 					echo " <a href='zoom.php?news=" . urlencode($newsobj->getTitlelink()) . "' title='Zoom' class='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a><br />";
 					echo '<small><em>' . gettext('Categories:');
 					$cats = $newsobj->getCategories();
@@ -363,7 +363,7 @@ function printNewsArticlesList($number) {
  */
 function checkAlbumForImages() {
 	global $_zp_gallery;
-	if (isset($_GET['album']) AND !empty($_GET['album'])) {
+	if (isset($_GET['album']) && ! empty($_GET['album'])) {
 		$album = urldecode(sanitize($_GET['album']));
 		if ($album == 'gallery') {
 			return FALSE;
@@ -497,7 +497,7 @@ function printAllNestedList() {
 			switch ($mode) {
 				case 'pages':
 					$obj = new ZenpagePage($item['titlelink']);
-					$itemcontent = truncate_string(strip_tags($obj->getContent()), 300);
+					$itemcontent = truncate_string(getBare($obj->getContent()), 300);
 					$zenpagepage = _PAGES_ . '/' . $item['titlelink'];
 					$unpublished = unpublishedZenpageItemCheck($obj);
 					$counter = '';

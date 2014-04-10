@@ -282,9 +282,9 @@ class tweet {
 	 * @return string
 	 */
 	private static function composeStatus($link, $title, $text) {
-		$text = trim(html_decode(strip_tags($text)));
+		$text = trim(html_decode(getBare($text)));
 		if ($title) {
-			$title = trim(html_decode(strip_tags($title))) . ': ';
+			$title = trim(html_decode(getBare($title))) . ': ';
 		}
 		if (strlen($title . $text . ' ' . $link) > 140) {
 			$c = 140 - strlen($link);

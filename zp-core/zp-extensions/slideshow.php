@@ -634,7 +634,7 @@ if (extensionEnabled('slideshow')) {
 							}
 							$imagetitle = '';
 							if (getOption('slideshow_colorbox_imagetitle')) {
-								$imagetitle = html_encode(strip_tags($imgobj->getTitle()));
+								$imagetitle = html_encode(getBare($imgobj->getTitle()));
 							}
 							?>
 							<a href="<?php echo html_encode(pathurlencode($imagelink)); ?>" rel="slideshow"<?php echo $style; ?> title="<?php echo $imagetitle; ?>"><?php echo $linktext; ?></a>

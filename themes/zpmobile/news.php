@@ -26,11 +26,12 @@ if (class_exists('Zenpage')) {
 
 				<div class="ui-content" role="main">
 					<div class="content-primary">
-						<h2 class="breadcrumb"><?php printNewsIndexURL(); ?><strong><?php printZenpageItemsBreadcrumb(' ', '');
-			printCurrentNewsCategory(" ");
-				?><?php printNewsTitle(" ");
-							printCurrentNewsArchive(" | ");
-				?></strong></h2>
+						<h2 class="breadcrumb"><?php printNewsIndexURL(); ?><strong><?php
+								printZenpageItemsBreadcrumb(' ', '');
+								printCurrentNewsCategory(" ");
+								printNewsTitle(" ");
+								printCurrentNewsArchive(" | ");
+								?></strong></h2>
 						<?php
 // single news article
 						if (is_NewsArticle()) {
@@ -48,12 +49,14 @@ if (class_exists('Zenpage')) {
 							}
 							?>
 							<br class="clearall" />
-							<?php if (getPrevNewsURL()) {
+							<?php
+							if (getPrevNewsURL()) {
 								$prevnews = getPrevNewsURL();
 								?><a class="imgprevious" href="<?php echo html_encode($prevnews['link']); ?>" data-role="button" data-icon="arrow-l" data-iconpos="left" data-inline="true"><?php echo gettext("prev"); ?></a><?php } ?>
-		<?php if (getNextNewsURL()) {
-			$nextnews = getNextNewsURL();
-			?><a class="imgnext" href="<?php echo html_encode($nextnews['link']); ?>" data-role="button" data-icon="arrow-r" data-iconpos="right" data-inline="true"><?php echo gettext("next"); ?></a><?php } ?>
+							<?php
+							if (getNextNewsURL()) {
+								$nextnews = getNextNewsURL();
+								?><a class="imgnext" href="<?php echo html_encode($nextnews['link']); ?>" data-role="button" data-icon="arrow-r" data-iconpos="right" data-inline="true"><?php echo gettext("next"); ?></a><?php } ?>
 							<?php if (getPrevNewsURL() || getNextNewsURL()) { ?><?php } ?>
 
 
@@ -66,7 +69,7 @@ if (class_exists('Zenpage')) {
 									<li>
 										<a href="<?php echo html_encode(jqm_getLink()); ?>" title="<?php printBareNewsTitle(); ?>">
 									<?php printNewsTitle(); ?> <small>(<?php printNewsDate(); ?>)</small>
-											<div class="albumdesc"><?php echo shortenContent(strip_tags(getNewsContent()), 57, '(...)', false); ?></div>
+											<div class="albumdesc"><?php echo shortenContent(getBare(getNewsContent()), 57, '(...)', false); ?></div>
 										</a>
 									</li>
 								<?php
@@ -80,11 +83,11 @@ if (class_exists('Zenpage')) {
 
 					</div>
 					<div class="content-secondary">
-	<?php jqm_printMenusLinks(); ?>
+				<?php jqm_printMenusLinks(); ?>
 					</div>
 				</div><!-- /content -->
 			<?php jqm_printBacktoTopLink(); ?>
-	<?php jqm_printFooterNav(); ?>
+			<?php jqm_printFooterNav(); ?>
 			</div><!-- /page -->
 
 	<?php zp_apply_filter('theme_body_close');

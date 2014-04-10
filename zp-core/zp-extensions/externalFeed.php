@@ -192,7 +192,7 @@ class ExternalFeed extends feed {
 				$this->channel_title = $_zp_gallery->getBareTitle($this->locale);
 				break;
 			case 'website':
-				$this->channel_title = strip_tags($_zp_gallery->getWebsiteTitle($this->locale));
+				$this->channel_title = getBare($_zp_gallery->getWebsiteTitle($this->locale));
 				break;
 			case 'both':
 				$website_title = $_zp_gallery->getWebsiteTitle($this->locale);
@@ -227,7 +227,7 @@ class ExternalFeed extends feed {
 				}
 				$albumname = $this->getChannelTitleExtra();
 
-				$this->channel_title = html_encode($this->channel_title . ' ' . strip_tags($albumname));
+				$this->channel_title = html_encode($this->channel_title . ' ' . getBare($albumname));
 				$this->imagesize = $this->getImageSize();
 				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/image_album_statistics.php');
 				break;
