@@ -353,9 +353,9 @@ class cacheManager {
 		$buttons[] = array(
 						'category'		 => gettext('Cache'),
 						'enable'			 => $enable,
-						'button_text'	 => gettext('Cache images'),
+						'button_text'	 => gettext('Cache manager'),
 						'formname'		 => 'cacheManager_button',
-						'action'			 => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager/cacheImages.php',
+						'action'			 => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager/cacheImages.php?page=overview&tab=images',
 						'icon'				 => 'images/cache.png',
 						'alt'					 => '',
 						'hidden'			 => '',
