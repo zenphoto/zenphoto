@@ -184,11 +184,13 @@ function sanitize_string($input, $sanitize_level) {
 		if (get_magic_quotes_gpc()) {
 			$input = stripslashes($input);
 		}
+		$input = str_replace(chr(0), " ", $input);
 		switch ($sanitize_level) {
 			case 0:
-				return str_replace(chr(0), " ", $input);
+				return $input;
 			case 2:
 				// Strips non-style tags.
+				$input = sanitize_script($input);
 				return ksesProcess($input, getAllowedTags('style_tags'));
 			case 3:
 				// Full sanitation.  Strips all code.
