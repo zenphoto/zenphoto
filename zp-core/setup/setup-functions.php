@@ -642,8 +642,17 @@ function setupLocale($locale) {
 	global $_zp_RTL_css;
 	$en1 = LOCAL_CHARSET;
 	$en2 = str_replace('ISO-', 'ISO', $en1);
-	$simple = explode('-', $locale);
-	$rslt = setlocale(LC_ALL, $locale . '.UTF8', $locale . '.UTF-8', $locale . '@euro', $locale . '.' . $en2, $locale . '.' . $en1, $locale, $simple[0], NULL);
+	$simple = str_replace('_', '-', $locale);
+	$simple = explode('-', $simple);
+	$try[$locale . '.UTF8'] = $locale . '.UTF8';
+	$try[$locale . '.UTF-8'] = $locale . '.UTF-8';
+	$try[$locale . '.@euro'] = $locale . '.@euro';
+	$try[$locale . '.' . $en2] = $locale . '.' . $en2;
+	$try[$locale . '.' . $en1] = $locale . '.' . $en1;
+	$try[$locale] = $locale;
+	$try[$simple[0]] = $simple[0];
+	$try['NULL'] = NULL;
+	$rslt = setlocale(LC_ALL, $try);
 	$_zp_RTL_css = in_array(substr($rslt, 0, 2), array('fa', 'ar', 'he', 'hi', 'ur'));
 	return $rslt;
 }

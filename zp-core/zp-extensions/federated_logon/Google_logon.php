@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Google accounts logon handler.
  *
@@ -8,12 +9,11 @@
  * @package plugins
  * @subpackage users
  */
-
 require_once("OpenID_common.php");
 session_start();
 
-if (isset($_GET['redirect'])) {
-	$redirect = sanitizeRedirect($_GET['redirect']);
+if (isset($_REQUEST['redirect'])) {
+	$redirect = sanitizeRedirect($_REQUEST['redirect']);
 } else {
 	$redirect = '';
 }

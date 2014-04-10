@@ -174,15 +174,15 @@ function sanitize_string($input, $sanitize_level) {
 		switch ($sanitize_level) {
 			case 0:
 				return str_replace(chr(0), " ", $input);
-			case 1:
-				// Text formatting sanititation.
-				return ksesProcess($input, getAllowedTags('allowed_tags'));
 			case 2:
 				// Strips non-style tags.
 				return ksesProcess($input, getAllowedTags('style_tags'));
 			case 3:
 				// Full sanitation.  Strips all code.
 				return strip_tags($input);
+			case 1:
+				// Text formatting sanititation.
+				$input = ksesProcess($input, getAllowedTags('allowed_tags'));
 			case 4:
 			default:
 				// for internal use to eliminate security injections

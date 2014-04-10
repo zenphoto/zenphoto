@@ -5,7 +5,7 @@
  *
  * @author Malte Müller (acrylian)
  * @package plugins
- * @subpackage utilities
+ * @subpackage misc
  */
 if (defined('OFFSET_PATH')) {
 	$plugin_is_filter = 5 | ADMIN_PLUGIN;

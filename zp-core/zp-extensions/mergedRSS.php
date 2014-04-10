@@ -14,6 +14,7 @@
  *
  * @author Malte Müller (acrylian)
  * @package plugins
+ * @subpackage feed
  */
 $plugin_description = gettext("Merges several RSS feeds into one.");
 $plugin_author = "Malte Müller (acrylian)";

@@ -136,7 +136,7 @@ class ipBlocker {
 				}
 				?>
 				<script type="text/javascript">
-				<!--
+					<!--
 					function clearips() {
 				<?php
 				for ($i = 0; $i <= $key + 4; $i++) {
@@ -147,7 +147,7 @@ class ipBlocker {
 				}
 				?>
 					}
-				//-->
+					//-->
 				</script>
 				<p class="buttons">
 					<a href="javascript:clearips();"><?php echo gettext('clear list'); ?></a>
@@ -277,7 +277,7 @@ class ipBlocker {
 	 * @param string $user ignored
 	 * @param string $pass ignored
 	 */
-	static function login($loggedin, $user, $pass) {
+	static function login($loggedin, $user, $pass = NULL) {
 		if (!$loggedin) {
 			self::adminGate('', '');
 		}

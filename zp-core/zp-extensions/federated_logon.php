@@ -50,7 +50,7 @@ $plugin_description = gettext('Handles logon from <em>OpenID</em> credential pro
 $plugin_notice = sprintf(gettext('Run the <a href="%s">OpenID detect</a> script to check compatibility of your server configuration.'), FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/federated_logon/Auth/OpenID_detect.php?test_query=a%26b');
 $plugin_author = "Stephen Billard (sbillard)";
 
-$plugin_disable = (getOption('federated_logon_detect')) ? false : sprintf(gettext('The the <a href="%s">OpenID detect</a> script has not been run.'), FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/federated_logon/Auth/OpenID_detect.php?test_query=a%26b');
+$plugin_disable = (getOption('federated_logon_detect')) ? false : sprintf(gettext('The <a href="%s">OpenID detect</a> script has not been run.'), FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/federated_logon/Auth/OpenID_detect.php?test_query=a%26b');
 if ($plugin_disable) {
 	enableExtension('federated_logon', 0);
 } else {
@@ -255,6 +255,7 @@ class federated_logon {
 			Zenphoto_Authority::logUser($userobj);
 			if ($redirect) {
 				header("Location: " . $redirect);
+				exitZP();
 			}
 		}
 		return $more;

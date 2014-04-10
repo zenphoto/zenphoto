@@ -31,7 +31,7 @@
  *
  * @author Malte Müller (acrylian)
  * @package plugins
- * @subpackage tools
+ * @subpackage misc
  * @tags "file download", "download manager", download
  */
 $plugin_is_filter = 800 | ADMIN_PLUGIN | THEME_PLUGIN;
