@@ -93,7 +93,7 @@ function tinymce4ConfigJS($mode) {
 
 		$_editorconfig = getOption('tinymce4_' . $mode);
 		if (!empty($_editorconfig)) {
-			$_editorconfig = getPlugin('/tinymce4/config/' . $_editorconfig);
+			$_editorconfig = getPlugin('/tinymce4/config/' . $_editorconfig, true);
 			if (!empty($_editorconfig)) {
 				require_once($_editorconfig);
 			}

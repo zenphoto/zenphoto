@@ -182,6 +182,6 @@ if (isset($_GET['themeSwitcher'])) {
 if (zp_getCookie('themeSwitcher_theme')) {
 	zp_register_filter('setupTheme', 'themeSwitcher::theme');
 }
-zp_register_filter('theme_head', 'themeSwitcher::head');
+zp_register_filter('theme_head', 'themeSwitcher::head', 999);
 zp_register_filter('theme_body_open', 'themeSwitcher::controlLink');
 ?>
