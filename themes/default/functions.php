@@ -20,8 +20,8 @@ function css_head($ignore) {
 	}
 
 	if ($editorConfig = getOption('tinymce4_comments')) {
-		if (strpos($themeColor, 'dark') !== false && strpos($editorConfig, 'dark') === false) {
-			setOption('tinymce4_comments', str_replace('.js', '_dark.js', $editorConfig), false);
+		if (strpos($themeColor, 'dark') !== false) {
+			setOption('tinymce4_comments', 'dark_' . $editorConfig, false);
 		}
 	}
 

@@ -18,7 +18,7 @@
 			"insertdatetime media nonbreaking save table contextmenu directionality",
 			"emoticons template paste tinyzenpage"
 		],
-		content_css: "<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/tinymce4/config/content.css",
+		content_css: "<?php echo getPlugin('tinymce4/config/content.css', true, FULLWEBPATH); ?>",
 		toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
 		toolbar2: "print preview media | forecolor backcolor emoticons | code | fullscreen",
 	});

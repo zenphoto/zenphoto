@@ -632,7 +632,11 @@ function getPlugin($plugin, $inTheme = false, $webpath = false) {
 	}
 	if ($pluginFile) {
 		if ($webpath) {
-			return WEBPATH . filesystemToInternal($pluginFile);
+			if (is_string($webpath)) {
+				return $webpath . filesystemToInternal($pluginFile);
+			} else {
+				return WEBPATH . filesystemToInternal($pluginFile);
+			}
 		} else {
 			return SERVERPATH . $pluginFile;
 		}
