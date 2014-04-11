@@ -255,11 +255,7 @@ class htmlmetatags {
 				break;
 		}
 		// shorten desc to the allowed 200 characters if necesssary.
-		$desc = getBare($desc);
-		if (strlen($desc) > 200) {
-			$desc = trim(substr($desc, 0, 200));
-		}
-		$desc = html_encode($desc);
+		$desc = html_encode(trim(substr(getBare($desc), 0, 160)));
 		$pagetitle = $pagetitle . getBareGalleryTitle();
 		// get master admin
 		$admin = $_zp_authority->getMasterUser();
