@@ -301,7 +301,7 @@ class Gallery {
 
 	/**
 	 * Returns the foldername of the current theme.
-	 * if no theme is set, returns "default".
+	 * if no theme is set, picks the "first" theme.
 	 * @return string
 	 */
 	function getCurrentTheme() {
