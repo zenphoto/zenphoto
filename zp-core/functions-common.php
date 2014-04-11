@@ -170,6 +170,8 @@ function getBare($content) {
 	$content = preg_replace('~<style.*?/style>~is', '', $content);
 	$content = preg_replace('~<!--.*?-->~is', '', $content);
 	$content = strip_tags($content);
+	$content = str_replace('&nbsp;', ' ', $content);
+	$content = html_entity_decode($content, ENT_QUOTES, 'UTF-8');
 	return $content;
 }
 

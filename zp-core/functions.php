@@ -443,6 +443,19 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 				$message = $_zp_UTF8->convert($message, LOCAL_CHARSET);
 			}
 
+			//	we do not support rich text
+			$message = preg_replace('~<p[^>]*>~', "\n", $message); // Replace the start <p> or <p attr="">
+			$message = preg_replace('~</p>~', "\n", $message); // Replace the end
+			$message = preg_replace('~<br[^>]*>~', "\n", $message); // Replace <br> or <br ...>
+			$message = preg_replace('~<ol[^>]*>~', "", $message); // Replace the start <ol> or <ol attr="">
+			$message = preg_replace('~</ol>~', "", $message); // Replace the end
+			$message = preg_replace('~<ul[^>]*>~', "", $message); // Replace the start <ul> or <ul attr="">
+			$message = preg_replace('~</ul>~', "", $message); // Replace the end
+			$message = preg_replace('~<li[^>]*>~', ".\t", $message); // Replace the start <li> or <li attr="">
+			$message = preg_replace('~</li>~', "", $message); // Replace the end
+			$message = getBare($message);
+			$message = preg_replace('~\n\n\n+~', "\n\n", $message);
+
 			// Send the mail
 			if (count($email_list) > 0) {
 				$result = zp_apply_filter('sendmail', '', $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $replyTo); // will be true if all mailers succeeded
