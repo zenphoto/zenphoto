@@ -72,9 +72,12 @@ if (isset($_GET['action'])) {
 			XSRFdefender('savecomment');
 			$id = sanitize_numeric($_POST['id']);
 			$comment = new Comment($id);
-			$comment->setName(sanitize($_POST['name'], 3));
-			$comment->setEmail(sanitize($_POST['email'], 3));
-			$comment->setWebsite(sanitize($_POST['website'], 3));
+			if (isset($_POST['name']))
+				$comment->setName(sanitize($_POST['name'], 3));
+			if (isset($_POST['email']))
+				$comment->setEmail(sanitize($_POST['email'], 3));
+			if (isset($_POST['website']))
+				$comment->setWebsite(sanitize($_POST['website'], 3));
 			$comment->setDateTime(sanitize($_POST['date'], 3));
 			$comment->setComment(sanitize($_POST['comment'], 1));
 			$comment->setCustomData($_comment_form_save_post = serialize(getCommentAddress(0)));
@@ -143,30 +146,49 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 				</span>
 				<br style="clear:both" /><br />
 				<div class="commentformedit_fields">
-					<label for="name"><?php echo gettext("Author:"); ?></label>
-					<input type="text" size="40" name="name" value="<?php echo html_encode($name); ?>" />
-					<label for="website"><?php echo gettext("Web Site:"); ?></label>
-					<input type="text" size="40" name="website" value="<?php echo html_encode($website); ?>" />
-					<label for="email"><?php echo gettext("E-Mail:"); ?></label>
-					<input type="text" size="40" name="email" value="<?php echo html_encode($email); ?>" />
+					<?php
+					if (getOption('comment_name_required')) {
+						?>
+						<label for="name"><?php echo gettext("Author:"); ?></label>
+						<input type="text" size="40" name="name" value="<?php echo html_encode($name); ?>" />
+						<?php
+					}
+					if (getOption('comment_web_required')) {
+						?>
+						<label for="website"><?php echo gettext("Web Site:"); ?></label>
+						<input type="text" size="40" name="website" value="<?php echo html_encode($website); ?>" />
+						<?php
+					}
+					if (getOption('comment_email_required')) {
+						?>
+						<label for="email"><?php echo gettext("E-Mail:"); ?></label>
+						<input type="text" size="40" name="email" value="<?php echo html_encode($email); ?>" />
+						<?php
+					}
+					?>
 					<label for="date"><?php echo gettext("Date/Time:"); ?></label>
 					<input type="text" size="18" name="date" value="<?php echo date('Y-m-d H:i:s', strtotime($date)); ?>" />
 					<label for="date"><?php echo gettext("IP:"); ?></label>
 					<input type="text" size="18" name="ip" value="<?php echo html_encode($IP); ?>" />
 					<?php
 					$_comment_form_save_post = $commentarr;
+					if (getOption('comment_form_addresses')) {
+						?>
+						<label for="comment_form_street"><?php echo gettext('Street:'); ?></label>
+						<input type="text" name="0-comment_form_street" id="comment_form_street" class="inputbox" size="40" value="<?php echo @$address['street']; ?>">
+						<label for="comment_form_city"><?php echo gettext('City:'); ?></label>
+						<input type="text" name="0-comment_form_city" id="comment_form_city" class="inputbox" size="40" value="<?php echo @$address['city']; ?>">
+						<label for="comment_form_state"><?php echo gettext('State:'); ?></label>
+						<input type="text" name="0-comment_form_state" id="comment_form_state" class="inputbox" size="40" value="<?php echo @$address['state']; ?>">
+						<label for="comment_form_country"><?php echo gettext('Country:'); ?></label>
+						<input type="text" name="0-comment_form_country" id="comment_form_country" class="inputbox" size="40" value="<?php echo @$address['country']; ?>">
+						<label for="comment_form_postal"><?php echo gettext('Postal code:'); ?></label>
+						<input type="text" name="0-comment_form_postal" id="comment_form_postal" class="inputbox" size="40" value="<?php echo @$address['postal']; ?>">
+						<?php
+					}
 					?>
-					<label for="comment_form_street"><?php echo gettext('Street:'); ?></label>
-					<input type="text" name="0-comment_form_street" id="comment_form_street" class="inputbox" size="40" value="<?php echo @$address['street']; ?>">
-					<label for="comment_form_city"><?php echo gettext('City:'); ?></label>
-					<input type="text" name="0-comment_form_city" id="comment_form_city" class="inputbox" size="40" value="<?php echo @$address['city']; ?>">
-					<label for="comment_form_state"><?php echo gettext('State:'); ?></label>
-					<input type="text" name="0-comment_form_state" id="comment_form_state" class="inputbox" size="40" value="<?php echo @$address['state']; ?>">
-					<label for="comment_form_country"><?php echo gettext('Country:'); ?></label>
-					<input type="text" name="0-comment_form_country" id="comment_form_country" class="inputbox" size="40" value="<?php echo @$address['country']; ?>">
-					<label for="comment_form_postal"><?php echo gettext('Postal code:'); ?></label>
-					<input type="text" name="0-comment_form_postal" id="comment_form_postal" class="inputbox" size="40" value="<?php echo @$address['postal']; ?>">
-					<label for="comment"><?php echo gettext("Comment:"); ?></label>
+					<label for = "comment"><?php echo gettext("Comment:");
+					?></label>
 					<textarea rows="8" cols="60" name="comment" class="texteditor"><?php echo html_encode($comment); ?></textarea>
 				</div>
 				<div class="commentformedit_box">
