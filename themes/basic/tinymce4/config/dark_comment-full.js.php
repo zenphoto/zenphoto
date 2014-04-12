@@ -1,8 +1,8 @@
 <?php
 /**
- * The configuration functions for TinyMCE
+ * The configuration functions for TinyMCE 4.x.
  *
- * Zenpage plugin default light configuration
+ * Comment form plugin default light configuration
  */
 ?>
 <script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER . "/" . PLUGIN_FOLDER; ?>/tinymce4/tinymce.min.js"></script>
@@ -12,16 +12,16 @@
 		skin: "tundora",
 		selector: "textarea.textarea_inputbox",
 		language: "<?php echo $locale; ?>",
+		menubar: false,
 		relative_urls: false,
 		plugins: [
 			"advlist autolink lists link image charmap print preview hr anchor pagebreak",
-			"searchreplace wordcount visualblocks visualchars code fullscreen",
-			"insertdatetime media nonbreaking save table contextmenu directionality",
-			"emoticons template paste tinyzenpage"
+			"searchreplace visualblocks code",
+			"insertdatetime media table contextmenu",
+			"emoticons paste"
 		],
-		content_css: "<?php echo FULLWEBPATH . '/' . THEMEFOLDER; ?>/default/tinymce4/config/dark_content.css",
-		toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-		toolbar2: "print preview media | forecolor backcolor emoticons | code | fullscreen",
+		content_css: "<?php echo FULLWEBPATH . '/' . THEMEFOLDER . '/' . basename(dirname(dirname(dirname(__FILE__)))); ?>/tinymce4/config/dark_content.css",
+		toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | preview | forecolor backcolor emoticons | code"
 	});
 // ]]> -->
 </script>

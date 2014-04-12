@@ -31,9 +31,7 @@ themes/basic/theme_description.php
 themes/basic/themeoptions.php
 themes/basic/tinymce4
 themes/basic/tinymce4/config
-themes/basic/tinymce4/config/dark_comment-basic.js.php
 themes/basic/tinymce4/config/dark_comment-full.js.php
-themes/basic/tinymce4/config/dark_comment-light.js.php
 themes/basic/tinymce4/config/dark_comment-slim.js.php
 themes/basic/tinymce4/config/dark_content.css
 themes/effervescence_plus
@@ -1423,9 +1421,7 @@ zp-core/zp-extensions/tinyURL.php
 zp-core/zp-extensions/tinymce4
 zp-core/zp-extensions/tinymce4.php
 zp-core/zp-extensions/tinymce4/config
-zp-core/zp-extensions/tinymce4/config/comment-basic.js.php
 zp-core/zp-extensions/tinymce4/config/comment-full.js.php
-zp-core/zp-extensions/tinymce4/config/comment-light.js.php
 zp-core/zp-extensions/tinymce4/config/comment-slim.js.php
 zp-core/zp-extensions/tinymce4/config/content.css
 zp-core/zp-extensions/tinymce4/config/zenpage-basic.js.php
@@ -1710,4 +1706,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1712
+1708
