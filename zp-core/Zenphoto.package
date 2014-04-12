@@ -32,6 +32,7 @@ themes/basic/themeoptions.php
 themes/basic/tinymce4
 themes/basic/tinymce4/config
 themes/basic/tinymce4/config/dark_comment-full.js.php
+themes/basic/tinymce4/config/dark_comment-ribbon.js.php
 themes/basic/tinymce4/config/dark_comment-slim.js.php
 themes/basic/tinymce4/config/dark_content.css
 themes/effervescence_plus
@@ -1422,6 +1423,7 @@ zp-core/zp-extensions/tinymce4
 zp-core/zp-extensions/tinymce4.php
 zp-core/zp-extensions/tinymce4/config
 zp-core/zp-extensions/tinymce4/config/comment-full.js.php
+zp-core/zp-extensions/tinymce4/config/comment-ribbon.js.php
 zp-core/zp-extensions/tinymce4/config/comment-slim.js.php
 zp-core/zp-extensions/tinymce4/config/content.css
 zp-core/zp-extensions/tinymce4/config/zenpage-basic.js.php
@@ -1706,4 +1708,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1708
+1710

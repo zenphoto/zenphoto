@@ -19,6 +19,7 @@
 			"insertdatetime media table contextmenu",
 			"emoticons paste"
 		],
+		statusbar: false,
 		content_css: "<?php echo getPlugin('tinymce4/config/content.css', true, FULLWEBPATH); ?>",
 		toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | preview | forecolor backcolor emoticons | code"
 	});

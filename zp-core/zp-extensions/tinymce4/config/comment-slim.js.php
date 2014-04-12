@@ -18,6 +18,7 @@
 			"searchreplace visualblocks code",
 			"insertdatetime media table contextmenu paste"
 		],
+		statusbar: false,
 		content_css: "<?php echo getPlugin('tinymce4/config/content.css', true, FULLWEBPATH); ?>",
 		toolbar: "bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | code"
 	});
