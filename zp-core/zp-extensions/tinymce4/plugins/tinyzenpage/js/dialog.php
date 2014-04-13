@@ -77,7 +77,7 @@ var ZenpageDialog = {
 		}
 		if($('#customsize').prop('checked')) {
 			if(video) {
-				alert('<?php echo gettext('It is not possible to a include a custom size %s.'); ?>'.replace(/%s/,imgname));
+				alert("<?php echo gettext('It is not possible to a include a custom size %s.'); ?>".replace(/%s/,imgname));
 				stopincluding = true;
 			}
 			imagesize = '&amp;s='+$('#size').val();
@@ -88,7 +88,7 @@ var ZenpageDialog = {
 		}
 		if($('#fullimage').prop('checked')) {
 			if(video) {
-				alert('<?php echo gettext('It is not possible to a include a full size %s.'); ?>'.replace(/%s/,imgname));
+				alert("<?php echo gettext('It is not possible to a include a full size %s.'); ?>".replace(/%s/,imgname));
 				stopincluding = true;
 			}
 			imagesize = '';

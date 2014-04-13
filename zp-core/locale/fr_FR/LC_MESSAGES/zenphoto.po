@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-12 23:11+0100\n"
-"PO-Revision-Date: 2014-04-12 23:20+0100\n"
+"POT-Creation-Date: 2014-04-13 22:14+0100\n"
+"PO-Revision-Date: 2014-04-13 22:15+0100\n"
 "Last-Translator: vincent3569 <vincent_bourganel@yahoo.fr>\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "<michel@mgagnon.net>\n"
@@ -370,7 +370,7 @@ msgid "Total matches for <em>%1$s</em>: %2$u"
 msgstr "Nombre de résultats pour <em>%1$s</em> : %2$u"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/search.php:62
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1352
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1381
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1333
 msgid "Date:"
 msgstr "Date : "
@@ -645,7 +645,7 @@ msgstr "album"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/effervescence_plus/functions.php:426
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/garland/functions.php:149
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1398
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1427
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-globals.php:110
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-options.php:2657
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/image_album_statistics.php:205
@@ -920,7 +920,7 @@ msgstr "Racine des albums"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:66
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:159
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/image.php:29
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1602
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1634
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-options.php:2381
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-options.php:2382
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-themes.php:101
@@ -1338,7 +1338,7 @@ msgstr "Image de la page d'accueil"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/effervescence_plus/themeoptions.php:143
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/garland/themeoptions.php:87
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zenpage/themeoptions.php:69
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1263
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1285
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-options.php:1981
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-options.php:1994
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-options.php:2022
@@ -1773,7 +1773,7 @@ msgid "Return to %s"
 msgstr "Retour à %s"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:73
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:655
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:659
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:349
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:181
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:149
@@ -1783,9 +1783,9 @@ msgid "*Bulk actions*"
 msgstr "*Actions en lot*"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:74
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:656
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:669
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:660
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:673
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:677
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2002
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-logs.php:110
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-themes.php:299
@@ -1808,7 +1808,7 @@ msgid "Delete"
 msgstr "Supprimer"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:75
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:657
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:661
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:147
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:250
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:144
@@ -1816,7 +1816,7 @@ msgid "Set to published"
 msgstr "Publier"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:76
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:658
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:662
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:148
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:251
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:145
@@ -1824,7 +1824,7 @@ msgid "Set to unpublished"
 msgstr "Dépublier"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:77
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:659
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:663
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-tags.php:223
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-tags.php:224
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:252
@@ -1833,14 +1833,14 @@ msgid "Add tags"
 msgstr "Ajouter des tags"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:78
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:660
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:664
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:253
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:147
 msgid "Clear tags"
 msgstr "Effacer les tags"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:79
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:661
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:665
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2135
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:254
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:327
@@ -1850,7 +1850,7 @@ msgid "Disable comments"
 msgstr "Désactiver les commentaires"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:80
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:662
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:666
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2149
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:255
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:336
@@ -1860,7 +1860,7 @@ msgid "Enable comments"
 msgstr "Activer les commentaires"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:81
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:663
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:667
 msgid "Change owner"
 msgstr "Changer de propriétaire"
 
@@ -1869,7 +1869,7 @@ msgid "No album provided to sort."
 msgstr "Aucun album proposé pour le tri."
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:108
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:759
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:763
 #, php-format
 msgid "Edit Album: <em>%1$s%2$s</em>"
 msgstr "Modifier l'album : <em>%1$s%2$s</em>."
@@ -1948,12 +1948,12 @@ msgstr "Aucun changement"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:192
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:240
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:826
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:885
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:981
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1521
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1614
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1644
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:830
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:889
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1000
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1553
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1646
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1677
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1177
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1910
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-refresh-metadata.php:154
@@ -1974,14 +1974,14 @@ msgstr "Retour"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:195
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:244
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:833
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:889
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:985
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1525
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1617
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1647
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1704
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1745
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:837
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:893
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1004
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1557
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1649
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1680
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1739
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1782
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1181
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1914
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-options.php:583
@@ -2121,7 +2121,7 @@ msgstr "Champs de recherche : "
 msgid "Create the album"
 msgstr "Créer l'album"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:515
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:519
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/uploader_http/uploader.php:75
 msgid ""
 "The album couldn't be created in the 'albums' folder. This is usually a "
@@ -2133,7 +2133,7 @@ msgstr ""
 "albums et du cache pour les rendre inscriptibles en utilisant une ligne de "
 "commande :"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:516
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:520
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/uploader_http/uploader.php:76
 msgid ""
 "or use your FTP program to give everyone write permissions to those folders."
@@ -2141,12 +2141,12 @@ msgstr ""
 "ou utilisez votre logiciel FTP pour donner les droits d'écriture dans ces "
 "dossiers à <em>tout le monde</em>."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:608
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:612
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/template-functions.php:48
 msgid "Are you sure you want to delete this entire album?"
 msgstr "Êtes-vous certain(e) de vouloir supprimer cet album au complet ?"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:609
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:613
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/template-functions.php:49
 msgid ""
 "Are you Absolutely Positively sure you want to delete the album? THIS CANNOT "
@@ -2155,17 +2155,17 @@ msgstr ""
 "Êtes-vous ABSOLUMENT certain(e) de vouloir supprimer l'album ? Cette action "
 "NE PEUT PAS être annulée !"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:611
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:615
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/template-functions.php:79
 msgid "New album name?"
 msgstr "Nom du nouvel album ?"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:611
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:615
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/template-functions.php:79
 msgid "new album"
 msgstr "nouvel album"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:618
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:622
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:97
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:126
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:73
@@ -2174,56 +2174,56 @@ msgstr "nouvel album"
 msgid "Are you sure you want to delete the checked items?"
 msgstr "Êtes-vous certain(e) de vous vouloir supprimer les éléments cochés ?"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:649
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:653
 msgid "Show thumbnail stand-in"
 msgstr "Afficher l'image de substitution des vignettes"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:652
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:656
 msgid "Show album thumb"
 msgstr "Afficher la vignette de l'album"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:670
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:674
 msgid "Add tags to images"
 msgstr "Ajouter des tags aux images"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:671
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:675
 msgid "Clear tags of images"
 msgstr "Effacer les tags des images"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:674
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1189
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:678
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1209
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1782
 msgid "Move"
 msgstr "Déplacer"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:675
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1193
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:679
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1214
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1788
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:542
 msgid "Copy"
 msgstr "Copier"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:748
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:752
 msgid "Image metadata refreshed."
 msgstr "Les métadonnées des images ont été actualisées."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:795
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1666
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:799
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1700
 msgid " descending"
 msgstr " décroissant"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:804
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:808
 #, php-format
 msgid "Current sort: <em>%1$s%2$s</em>. "
 msgstr "Clé de tri utilisée : <em>%1$s%2$s</em>."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:808
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1680
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:812
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1714
 msgid "Drag the albums into the order you wish them displayed."
 msgstr "Déplacez les albums dans l'ordre où vous souhaitez les afficher."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:811
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1683
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:815
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1717
 msgid ""
 "<strong>Note:</strong> Dragging an album under a different parent will move "
 "the album. You cannot move albums under a <em>dynamic</em> album."
@@ -2232,7 +2232,7 @@ msgstr ""
 "déplacera. Vous ne pouvez pas déplacer des albums vers <em>un album "
 "dynamique</em>."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:817
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:821
 #, php-format
 msgid ""
 "Select an album to edit its description and data, or <a href=\"?"
@@ -2243,10 +2243,10 @@ msgstr ""
 "href=\"?page=edit&amp;album=%s&amp;massedit\">modifiez en lot</a> tous les "
 "albums de premier niveau de la galerie."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:836
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:838
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:892
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:894
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:840
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:842
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:896
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:898
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1191
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1193
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1924
@@ -2254,13 +2254,13 @@ msgstr ""
 msgid "New subalbum"
 msgstr "Nouveau sous-album"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:847
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1716
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:851
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1752
 msgid "Edit this album"
 msgstr "Modifier cet album"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:856
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1721
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:860
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1757
 msgid ""
 "Thumbnail generation may be time consuming on slow servers on when there are "
 "a lot of images."
@@ -2268,8 +2268,8 @@ msgstr ""
 "S'il y a beaucoup d'images, la création de vignettes peut prendre beaucoup "
 "de temps sur un serveur lent."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:863
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1726
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:867
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1762
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3703
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:361
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:208
@@ -2279,24 +2279,24 @@ msgstr ""
 msgid "Check All"
 msgstr "Tout cocher"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:944
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:962
 msgid "Click on the image to change the thumbnail cropping."
 msgstr "Cliquer sur l'image pour changer le rognage de la vignette."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:946
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:964
 msgid "expand all fields"
 msgstr "afficher tous les champs"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:947
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:965
 msgid "collapse all fields"
 msgstr "masquer tous les champs"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:953
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:971
 #, php-format
 msgid "%s (descending)"
 msgstr "%s (décroissant)"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:955
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:973
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1371
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-options.php:1240
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/exif/exif.php:493
@@ -2312,14 +2312,14 @@ msgstr "%s (décroissant)"
 msgid "Manual"
 msgstr "Manuel"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:959
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:977
 msgid "Display images by:"
 msgstr "Afficher les images par :"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:989
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1529
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1620
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1650
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1008
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1561
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1653
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1684
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1185
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1918
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-logs.php:117
@@ -2362,17 +2362,17 @@ msgstr "Afficher les images par :"
 msgid "Reset"
 msgstr "Réinitialiser"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1033
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1300
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1052
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1322
 #, php-format
 msgid "crop %s"
 msgstr "rognage %s"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1044
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1063
 msgid "Zoom"
 msgstr "Zoom"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1049
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1068
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/utilities/gallery_statistics.php:443
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/utilities/gallery_statistics.php:446
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:243
@@ -2389,31 +2389,31 @@ msgstr "Zoom"
 msgid "View"
 msgstr "Voir"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1052
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1071
 msgid "<strong>Filename:</strong>"
 msgstr "<strong>Nom de fichier :</strong>"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1058
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1077
 msgid "<strong>Image id:</strong>"
 msgstr "<strong>Identifiant de l'image : </strong> "
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1059
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1078
 msgid "<strong>Dimensions:</strong>"
 msgstr "<strong>Dimensions :</strong>"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1059
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1078
 msgid "px"
 msgstr "px"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1060
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1079
 msgid "<strong>Size:</strong>"
 msgstr "<strong>Taille :</strong>"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1062
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1081
 msgid "Owner:"
 msgstr "Propriétaire : "
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1077
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1096
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1669
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/lib-auth.php:533
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/lib-auth.php:534
@@ -2430,7 +2430,7 @@ msgstr "Propriétaire : "
 msgid "General"
 msgstr "Général"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1081
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1100
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1673
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2106
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-globals.php:31
@@ -2441,12 +2441,12 @@ msgstr "Général"
 msgid "Published"
 msgstr "Publié"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1089
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1108
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1681
 msgid "Allow Comments"
 msgstr "Autoriser les commentaires"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1100
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1119
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:657
 #, php-format
 msgid "Reset hitcounter (%u hit)"
@@ -2454,21 +2454,21 @@ msgid_plural "Reset hitcounter (%u hits)"
 msgstr[0] "Remettre le compteur à zéro (total : %u vue)"
 msgstr[1] "Remettre le compteur à zéro (total : %u vues)"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1113
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1132
 #, php-format
 msgid "Reset rating (%u star)"
 msgid_plural "Reset rating (%u stars)"
 msgstr[0] "Effacer les votes (%u étoile)"
 msgstr[1] "Effacer les votes (%u étoiles)"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1120
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1139
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1712
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:680
 msgid "Reset rating (unrated)"
 msgstr "Effacer les votes (pas encore évalué)"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1135
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1361
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1154
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1390
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1342
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1727
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/publishContent/publishContent.php:311
@@ -2477,57 +2477,57 @@ msgstr "Effacer les votes (pas encore évalué)"
 msgid "calendar"
 msgstr "calendrier"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1142
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1167
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1161
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1186
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1734
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1759
 msgid "Future publishing date."
 msgstr "Date de publication ultérieure."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1153
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1177
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1172
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1196
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1745
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1769
 msgid "Expired!"
 msgstr "Expiré !"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1162
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1181
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1754
 msgid "Publish date"
 msgstr "Date de publication"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1172
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1191
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1764
 msgid "Expiration date"
 msgstr "Date d'expiration"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1184
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1203
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1776
 msgid "Utilities"
 msgstr "Utilitaires"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1197
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1219
 msgid "Rename File"
 msgstr "Renommer le fichier"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1202
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1224
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/publishContent/publishContent.php:356
 msgid "Are you sure you want to select this image for deletion?"
 msgstr "Êtes-vous certain(e) de vous vouloir supprimer cette image ?"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1202
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1224
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/template-functions.php:261
 msgid "Delete image"
 msgstr "Supprimer l'image"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1206
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1233
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1228
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1255
 msgid "to"
 msgstr "vers"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1229
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1235
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1241
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1251
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1257
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1263
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1819
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1856
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1864
@@ -2539,42 +2539,42 @@ msgstr "vers"
 msgid "Cancel"
 msgstr "Annuler"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1240
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1262
 msgid "Image will be deleted when changes are applied."
 msgstr "La photo sera effacée quand les modifications seront appliquées."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1249
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1271
 msgid "Rotation:"
 msgstr "Rotation :"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1270
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1292
 msgid "90 degrees"
 msgstr "90 degrés"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1277
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1299
 msgid "180 degrees"
 msgstr "180 degrés"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1284
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1306
 msgid "270 degrees"
 msgstr "270 degrés"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1291
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1313
 #, php-format
 msgid "Refresh %s metadata"
 msgstr "Actualiser les métadonnées de %s"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1293
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1315
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-refresh-metadata.php:45
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/utilities/refresh_metadata.php:6
 msgid "Refresh Metadata"
 msgstr "Actualiser les métadonnées"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1302
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1324
 msgid "Crop thumbnail"
 msgstr "Rogner la vignette"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1313
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1338
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1874
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/class-search.php:99
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/lib-auth.php:514
@@ -2589,117 +2589,113 @@ msgstr "Rogner la vignette"
 msgid "Tags"
 msgstr "Tags"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1326
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1354
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:300
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:414
 msgid "Title:"
 msgstr "Titre : "
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1331
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1360
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:296
 msgid "Description:"
 msgstr "Description : "
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1339
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1368
 msgid "Set as thumbnail for:"
 msgstr "Utiliser comme vignette pour :"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1381
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1410
 msgid "Image watermark:"
 msgstr "Filigrane de l'image : "
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1384
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1413
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1529
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1544
 msgid "*no watermark"
 msgstr "*aucun filigrane"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1385
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1414
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1530
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1545
 msgid "*default"
 msgstr "*réglages par défaut"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1399
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1428
 msgid "thumb"
 msgstr "vignette"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1400
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1429
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/slideshow.php:127
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:143
 msgid "full image"
 msgstr "image pleine grandeur"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1409
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1438
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1362
 msgid "Custom data:"
 msgstr "Données personnalisées : "
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1419
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1448
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1352
 msgid "Location:"
 msgstr "Lieu : "
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1425
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1454
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:179
 msgid "City:"
 msgstr "Ville : "
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1431
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1460
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:181
 msgid "State:"
 msgstr "État, province : "
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1437
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1466
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:183
 msgid "Country:"
 msgstr "Pays : "
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1443
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1472
 msgid "Credit:"
 msgstr "Crédits : "
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1449
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1478
 msgid "Copyright:"
 msgstr "Copyright : "
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1457
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1487
 msgid "Metadata:"
 msgstr "Métadonnées :"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1474
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1504
 msgid "None selected for display"
 msgstr "Aucune n'est sélectionnée pour être affichée"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1488
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1522
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1659
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-options.php:1367
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:793
 msgid "Codeblocks:"
 msgstr "Blocs de code :"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1500
-msgid "show more fields"
-msgstr "afficher plus de champs"
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1533
+msgid "Edit all image data"
+msgstr "Modifier toutes les données de l'image"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1502
-msgid "show fewer fields"
-msgstr "afficher moins de champs"
-
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1600
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1632
 msgid "Edit All Albums in"
 msgstr "Modifier tous les albums de"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1658
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1692
 msgid "Edit Gallery"
 msgstr "Modifier la galerie"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1677
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1711
 #, php-format
 msgid "Current sort: <em>%1$s%2$s</em>."
 msgstr "Clé de tri utilisée : <em>%1$s%2$s</em>."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1690
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1724
 msgid ""
 "Select an album to edit its description and data, or <a href=\"?"
 "page=edit&amp;massedit\">mass-edit</a> all gallery level albums."
@@ -2708,13 +2704,13 @@ msgstr ""
 "href=\"?page=edit&amp;massedit\">modifiez en lot</a> tous les albums de la "
 "galerie."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1709
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1750
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1765
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1745
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1788
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1804
 msgid "New album"
 msgstr "Nouvel album"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1761
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1799
 msgid "There are no albums for you to edit."
 msgstr "Vous n'avez aucun album à éditer."
 
@@ -21656,7 +21652,7 @@ msgstr ""
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/js/dialog.php:80
 #, php-format
 msgid "It is not possible to a include a custom size %s."
-msgstr "Il n'est pas possible d'inclure un(e) %s de taille personnalisée."
+msgstr "Il est impossible d'inclure un(e) %s de taille personnalisée."
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/js/dialog.php:91
 #, php-format
@@ -24488,6 +24484,12 @@ msgid ""
 msgstr ""
 "Taille à utiliser si la police utilisée le permet (Polices <em>TTF</em> et "
 "<em>Imagick</em>)."
+
+#~ msgid "show more fields"
+#~ msgstr "afficher plus de champs"
+
+#~ msgid "show fewer fields"
+#~ msgstr "afficher moins de champs"
 
 #~ msgid "Plugins per page (Options):"
 #~ msgstr "Extensions par page (Options) :"
