@@ -10,7 +10,7 @@ $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
 <script type="text/javascript">
 // <!-- <![CDATA[
 					tinymce.init({
-					selector: "textarea.content,textarea.desc,textarea.extracontent",
+					selector: "textarea.texteditor",
 									language: "<?php echo $locale; ?>",
 									relative_urls: false,
 									content_css: "<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/tinymce4/config/content.css",
@@ -28,8 +28,8 @@ if ($filehandler) {
 									"insertdatetime media nonbreaking save table contextmenu directionality",
 									"emoticons template paste tinyzenpage"
 					],
-									toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-									toolbar2: "print preview media | forecolor backcolor emoticons tinyzenpage | code fullscreen",
+									toolbar: false,
+									statusbar: false,
 									setup: function(ed) {
 									ed.on('change', function(e) {
 									$('.dirty-check').addClass('dirty');

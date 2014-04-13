@@ -29,7 +29,7 @@ zp_register_filter('texteditor_config', 'tinymce4ConfigJS');
 class tinymce4Options {
 
 	function tinymce4Options() {
-		setOptionDefault('tinymce4_zenphoto', 'zenphoto-slim.js.php');
+		setOptionDefault('tinymce4_zenphoto', 'zenphoto-ribbon.js.php');
 		setOptionDefault('tinymce4_zenpage', 'zenpage-slim.js.php');
 		if (getOption('zp_plugin_tiny_mce')) {
 			setOptionDefault('zp_plugin_tinymce4', 5 | ADMIN_PLUGIN);
