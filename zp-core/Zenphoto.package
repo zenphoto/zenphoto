@@ -1430,6 +1430,7 @@ zp-core/zp-extensions/tinymce4/config/zenpage-basic.js.php
 zp-core/zp-extensions/tinymce4/config/zenpage-classic.js.php
 zp-core/zp-extensions/tinymce4/config/zenpage-full.js.php
 zp-core/zp-extensions/tinymce4/config/zenpage-light.js.php
+zp-core/zp-extensions/tinymce4/config/zenpage-ribbon.js.php
 zp-core/zp-extensions/tinymce4/config/zenpage-slim.js.php
 zp-core/zp-extensions/tinymce4/config/zenphoto-basic.js.php
 zp-core/zp-extensions/tinymce4/config/zenphoto-classic.js.php
@@ -1709,4 +1710,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1711
+1712
