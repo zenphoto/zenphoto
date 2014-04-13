@@ -1082,15 +1082,20 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<script>
 				$(function() {
 					$("#resizable_<?php echo $postit; ?>").resizable({
+		<?php
+		if (is_bool($resizeable)) {
+			?>
 						maxWidth: 250,
-						minWidth: 250,
-						minHeight: 120,
-						resize: function(event, ui) {
-							$('#list_<?php echo $postit; ?>').height($('#resizable_<?php echo $postit; ?>').height());
-						}
-					});
+			<?php
+		}
+		?>
+					minWidth: 250,
+									minHeight: 120,
+									resize: function(event, ui) {
+									$('#list_<?php echo $postit; ?>').height($('#resizable_<?php echo $postit; ?>').height());
+									}
 				});
-			</script>
+				});</script>
 			<?php
 		} else {
 			$tagclass = 'tagchecklist';
@@ -1107,7 +1112,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<?php
 		}
 		?>
-		<div id="resizable_<?php echo $postit; ?>">
+		<div id="resizable_<?php echo $postit; ?>" class="tag_div">
 			<ul id="list_<?php echo $postit; ?>" class="<?php echo $tagclass; ?>">
 				<?php
 				if ($showCounts) {

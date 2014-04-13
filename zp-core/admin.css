@@ -1361,7 +1361,6 @@ button.positive,.buttons a.positive {
 	border: 1px solid #ccc;
 	list-style: none;
 	height: 120px;
-	width: 255px;
 	overflow: auto;
 	background-color: white;
 }
@@ -1385,6 +1384,10 @@ button.positive,.buttons a.positive {
 	text-align: left;
 	float: left;
 }
+.tag_div {
+	width: 100%;
+}
+
 .new_tag {
 	border:none;
 	text-decoration: none;

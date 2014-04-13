@@ -1331,23 +1331,18 @@ echo "\n</head>";
 																?>
 																<span class="clearall" ></span>
 															</div>
-															<?php
-															if ($singleimage) {
-																;
-																?>
-																<h2 class="h2_bordered_edit" ><?php echo gettext("Tags"); ?></h2>
-																<div class="box-edit-unpadded" style="width: 19.6em;">
-																	<?php tagSelector($image, 'tags_' . $currentimage . '-', false, $tagsort); ?>
-																</div>
-																<?php
-															};
-															?>
 														</td>
 														<td class = "bulk_checkbox">
-															<div class = "page-list_icon">
-																<input class = "checkbox" type = "checkbox" name = "ids[]" value = "<?php echo $image->getFileName(); ?>" onclick = "triggerAllBox(this.form, 'ids[]', this.for
-																													m.allbox);" />
-															</div>
+															<?php
+															if (!$singleimage) {
+																?>
+																<div class = "page-list_icon">
+																	<input class = "checkbox" type = "checkbox" name = "ids[]" value = "<?php echo $image->getFileName(); ?>" onclick = "triggerAllBox(this.form, 'ids[]', this.for
+																														m.allbox);" />
+																</div>
+																<?php
+															}
+															?>
 														</td>
 													</tr>
 													<tr>
@@ -1430,19 +1425,27 @@ echo "\n</head>";
 															</span>
 														</td>
 													</tr>
+													<tr>
+														<td valign="top"><?php echo gettext("Tags:"); ?></td>
+														<td>
+															<div class="box-edit-unpadded">
+																<?php tagSelector($image, 'tags_' . $currentimage . '-', false, $tagsort, true, 1); ?>
+															</div>
+														</td>
+													</tr>
 													<?php
-													$custom = zp_apply_filter('edit_image_custom_data', '', $image, $currentimage);
-													if (empty($custom)) {
-														?>
-														<tr>
-															<td valign="top"><?php echo gettext("Custom data:"); ?></td>
-															<td><?php print_language_string_list($image->getCustomData('all'), $currentimage . '-custom_data', true, NULL, 'texteditor_imagecustomdata', '100%'); ?></td>
-														</tr>
-														<?php
-													} else {
-														echo $custom;
-													}
 													if ($singleimage) {
+														$custom = zp_apply_filter('edit_image_custom_data', '', $image, $currentimage);
+														if (empty($custom)) {
+															?>
+															<tr>
+																<td valign="top"><?php echo gettext("Custom data:"); ?></td>
+																<td><?php print_language_string_list($image->getCustomData('all'), $currentimage . '-custom_data', true, NULL, 'texteditor_imagecustomdata', '100%'); ?></td>
+															</tr>
+															<?php
+														} else {
+															echo $custom;
+														}
 														?>
 														<tr>
 															<td valign="top"><?php echo gettext("Location:"); ?></td>

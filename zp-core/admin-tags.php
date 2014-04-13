@@ -180,6 +180,7 @@ printAdminHeader('tags');
 										<li>
 											<label>
 												<?php echo $item; ?>
+												<br />
 												<input id="<?php echo $listitem; ?>" name="<?php echo $listitem; ?>" type="text" size='33' />
 											</label>
 										</li>
