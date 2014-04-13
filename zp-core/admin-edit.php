@@ -26,19 +26,23 @@ $imagesTab_imageCount = 10;
 processEditSelection($subtab);
 
 //check for security incursions
+$album = NULL;
+$allow = true;
 if (isset($_GET['album'])) {
 	$folder = sanitize_path($_GET['album']);
-	$album = newAlbum($folder);
-	$allow = $album->isMyItem(ALBUM_RIGHTS);
-	if (!$allow) {
-		if (isset($_GET['uploaded'])) { // it was an upload to an album which we cannot edit->return to sender
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-upload.php?uploaded=1');
-			exitZP();
+	$album = newAlbum($folder, false, true);
+	if ($album->exists) {
+		$allow = $album->isMyItem(ALBUM_RIGHTS);
+		if (!$allow) {
+			if (isset($_GET['uploaded'])) { // it was an upload to an album which we cannot edit->return to sender
+				header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-upload.php?uploaded=1');
+				exitZP();
+			}
 		}
+	} else {
+		$album = NULL;
+		unset($_GET['album']);
 	}
-} else {
-	$album = NULL;
-	$allow = true;
 }
 if (!zp_apply_filter('admin_managed_albums_access', $allow, $return)) {
 	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $return);
@@ -906,8 +910,7 @@ echo "\n</head>";
 					$singleimage = NULL;
 					if (isset($_GET['singleimage'])) {
 						$simage = sanitize($_GET['singleimage']);
-						$i = array_search($singleimage, $images);
-						if ($i === false) {
+						if (array_search($simage, $images) !== false) {
 							$allimagecount = 1;
 							$singleimage = $simage;
 							$images = array($simage);
@@ -1203,22 +1206,22 @@ echo "\n</head>";
 																<label class="checkboxlabel">
 																	<input type="radio" id="move-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="move"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>'
-																																									 , 'move');"  /> <?php echo gettext("Move"); ?>
+																																	 , 'move');"  /> <?php echo gettext("Move"); ?>
 																</label>
 																<label class="checkboxlabel">
 																	<input type="radio" id="copy-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="copy"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>'
-																																									 , 'copy');"  /> <?php echo gettext("Copy"); ?>
+																																	 , 'copy');"  /> <?php echo gettext("Copy"); ?>
 																</label>
 																<label class="checkboxlabel">
 																	<input type="radio" id="rename-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="rename"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>',
-																																									 'rename');"  /> <?php echo gettext("Rename File"); ?>
+																																	 'rename');"  /> <?php echo gettext("Rename File"); ?>
 																</label>
 																<label class="checkboxlabel">
 																	<input type="radio" id="Delete-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="delete"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');
-																																									 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo gettext("Are you sure you want to select this image for deletion?"); ?>')" /> <?php echo gettext("Delete image") ?>
+																																	 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo gettext("Are you sure you want to select this image for deletion?"); ?>')" /> <?php echo gettext("Delete image") ?>
 																</label>
 																<br class="clearall" />
 																<div id="movecopydiv-<?php echo $currentimage; ?>" style="padding-top: .5em; padding-left: .5em; display: none;">
@@ -1343,7 +1346,7 @@ echo "\n</head>";
 														<td class = "bulk_checkbox">
 															<div class = "page-list_icon">
 																<input class = "checkbox" type = "checkbox" name = "ids[]" value = "<?php echo $image->getFileName(); ?>" onclick = "triggerAllBox(this.form, 'ids[]', this.for
-																																					m.allbox);" />
+																													m.allbox);" />
 															</div>
 														</td>
 													</tr>
@@ -1646,7 +1649,7 @@ echo "\n</head>";
 							<img	src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong>
 						</button>
 						<button type="reset" onclick="javascript:$('.deletemsg
-																													').hide();" >
+																											').hide();" >
 							<img	src="images/fail.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
 						</button>
 					</span>
@@ -1677,7 +1680,7 @@ echo "\n</head>";
 							<img	src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong>
 						</button>
 						<button type="reset" onclick="javascript:$('.deletemsg
-																																	').hide();" >
+																															').hide();" >
 							<img	src="images/fail.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
 						</button>
 					</span>
@@ -1727,7 +1730,7 @@ echo "\n</head>";
 					printEditDropdown('', array('1', '2', '3', '4', '5'), $album_nesting);
 					?>
 					<form class="dirty-check" action="?page=edit&amp;action=savealbumorder" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confir
-																																						mAction();">
+																																		mAction();">
 									<?php XSRFToken('savealbumorder'); ?>
 						<p class="buttons">
 							<?php
@@ -1739,7 +1742,7 @@ echo "\n</head>";
 							if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 								?>
 								<button type="button" onclick="javascript:newAlbum('
-																																											', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
+																																					', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
 												<?php
 											}
 											?>
@@ -1757,7 +1760,7 @@ echo "\n</head>";
 								</label>
 								<label style="float: right">
 									<?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this
-																																														.checked);" />
+																																												.checked);" />
 								</label>
 							</div>
 
@@ -1782,7 +1785,7 @@ echo "\n</head>";
 							if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 								?>
 								<button type="button" onclick="javascript:newAlbum('
-																																															', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
+																																									', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
 												<?php
 											}
 											?>
@@ -1798,7 +1801,7 @@ echo "\n</head>";
 						?>
 						<p class="buttons">
 							<button type="button" onclick="javascript:newAlbum('
-																																																		', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
+																																												', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
 						</p>
 						<?php
 					}
