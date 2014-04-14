@@ -275,13 +275,13 @@ foreach ($albumlist as $key => $value) {
 						<div id="albumtext" style="margin-top: 5px;<?php echo $display; ?>">
 							<?php echo gettext("titled:"); ?>
 							<input type="text" name="albumtitle" id="albumtitle" size="42"
-										 onkeyup="buttonstate(updateFolder(this, 'folderdisplay', 'autogen', '<?php echo gettext('That name is already used.'); ?>', '<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>'));" />
+										 onkeyup="buttonstate(updateFolder(this, 'folderdisplay', 'autogen', '<?php echo addslashes(gettext('That name is already used.')); ?>', '<?php echo addslashes(gettext('This upload has to have a folder. Type a title or folder name to continue...')); ?>'));" />
 
 							<div style="position: relative; margin-top: 4px;">
 								<?php echo gettext("with the folder name:"); ?>
 								<div id="foldererror" style="display: none; color: #D66; position: absolute; z-index: 100; top: 2.5em; left: 0px;"></div>
 								<input type="text" name="folderdisplay" disabled="disabled" id="folderdisplay" size="18"
-											 onkeyup="buttonstate(validateFolder(this, '<?php echo gettext('That name is already used.'); ?>', '<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>'));" />
+											 onkeyup="buttonstate(validateFolder(this, '<?php echo addslashes(gettext('That name is already used.')); ?>', '<?php echo addslashes(gettext('This upload has to have a folder. Type a title or folder name to continue...')); ?>'));" />
 								<input type="checkbox" name="autogenfolder" id="autogen" checked="checked"
 											 onclick="buttonstate(toggleAutogen('folderdisplay', 'albumtitle', this));" />
 								<label for="autogen"><?php echo gettext("Auto-generate"); ?></label>
