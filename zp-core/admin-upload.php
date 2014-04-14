@@ -192,7 +192,7 @@ foreach ($albumlist as $key => $value) {
 						var sel = document.getElementById('albumselectmenu');
 						var selected = sel.options[sel.selectedIndex].value;
 						$('#folderslot').val(selected);
-						var state = albumSwitch(sel, true, '<?php echo gettext('That name is already used.'); ?>', '<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>');
+						var state = albumSwitch(sel, true, '<?php echo addslashes(gettext('That name is already used.')); ?>', '<?php echo addslashes(gettext('This upload has to have a folder. Type a title or folder name to continue...')); ?>');
 						buttonstate(state);
 					}
 					// ]]> -->
@@ -264,7 +264,7 @@ foreach ($albumlist as $key => $value) {
 						?>
 						<div id="newalbumbox" style="margin-top: 5px;<?php echo $display; ?>">
 							<div>
-								<input type="checkbox" name="newalbum" id="newalbumcheckbox"<?php echo $checked; ?> onclick="albumSwitch(this.form.albumselect, false, '<?php echo gettext('That name is already used.'); ?>', '<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>')" />
+								<input type="checkbox" name="newalbum" id="newalbumcheckbox"<?php echo $checked; ?> onclick="albumSwitch(this.form.albumselect, false, '<?php echo addslashes(gettext('That name is already used.')); ?>', '<?php echo addslashes(gettext('This upload has to have a folder. Type a title or folder name to continue...')); ?>')" />
 								<label for="newalbumcheckbox"><?php echo gettext("Make a new Album"); ?></label>
 							</div>
 							<div id="publishtext"><?php echo gettext("and"); ?>
@@ -310,7 +310,7 @@ foreach ($albumlist as $key => $value) {
 		<?php
 	}
 	?>
-						albumSwitch(document.getElementById('albumselectmenu'), false, '<?php echo gettext('That name is already used.'); ?>', '<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>');
+						albumSwitch(document.getElementById('albumselectmenu'), false, '<?php echo addslashes(gettext('That name is already used.')); ?>', '<?php echo addslashes(gettext('This upload has to have a folder. Type a title or folder name to continue...')); ?>');
 	<?php
 	if (isset($_GET['folderdisplay'])) {
 		?>
