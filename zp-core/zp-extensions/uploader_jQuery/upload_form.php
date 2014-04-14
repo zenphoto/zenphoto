@@ -38,7 +38,7 @@ function upload_extra($uploadlimit, $passedalbum) {
 			// Initialize the jQuery File Upload widget:
 			$('#fileupload').fileupload({
 				url: '<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/uploader_jQuery/uploader.php' ?>'<?php if ($uploadlimit) echo ",
-							maxFileSize:" . $uploadlimit; ?>
+maxFileSize:" . $uploadlimit; ?>
 			});
 
 			// Open download dialogs via iframes,
@@ -55,12 +55,13 @@ function upload_extra($uploadlimit, $passedalbum) {
 			);
 
 			/*
-			 $('#fileupload').bind('fileuploadadd', function (e, data) {
+			 $('#fileupload').bind('fileuploadadd', function(e, data) {
+			 alert('add');
 			 upload_fail = false;
 			 });
 
 
-			 $('#fileupload').bind('fileuploaddone', function (e, data) {
+			 $('#fileupload').bind('fileuploaddone', function(e, data) {
 			 alert('done');
 			 upload_fail = false;
 			 });

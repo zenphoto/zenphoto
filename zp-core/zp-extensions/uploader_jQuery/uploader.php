@@ -267,8 +267,7 @@ class UploadHandler {
 						unzip($targetFile, $targetPath);
 						unlink($targetFile);
 					} else {
-						$error = UPLOAD_ERR_EXTENSION; // invalid file uploaded
-						break;
+						$file->error = $error = UPLOAD_ERR_EXTENSION; // invalid file uploaded
 					}
 				}
 			} else {
