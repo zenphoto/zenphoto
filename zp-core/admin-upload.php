@@ -199,7 +199,7 @@ foreach ($albumlist as $key => $value) {
 				</script>
 				<div id="albumselect">
 
-					<form class="dirty-check" name="file_upload_datum" id="file_upload_datum" method="post" action="<?php echo $formAction; ?>" enctype="multipart/form-data" >
+					<form name="file_upload_datum" id="file_upload_datum" method="post" action="<?php echo $formAction; ?>" enctype="multipart/form-data" >
 
 						<select id="albumselectmenu" name="albumselect" onchange="albumSelect()">
 							<?php
