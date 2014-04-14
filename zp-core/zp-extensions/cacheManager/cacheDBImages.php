@@ -58,7 +58,7 @@ echo "\n" . '<div id="content">';
 					while ($row = db_fetch_assoc($result)) {
 						$imageprocessor++;
 						preg_match_all('|\<\s*img.*?\ssrc\s*=\s*"(.*i\.php\?([^"]*)).*/\>|', $row[$field], $matches);
-						foreach ($matches[2] as $uri) {
+						foreach ($matches[1] as $uri) {
 							$params = parse_url(html_entity_decode($uri));
 							if (array_key_exists('query', $params)) {
 								parse_str($params['query'], $query);
