@@ -59,7 +59,7 @@ echo "\n" . '<div id="content">';
 						$imageprocessor++;
 						preg_match_all('|\<\s*img.*?\ssrc\s*=\s*"(.*i\.php\?([^"]*)).*/\>|', $row[$field], $matches);
 						foreach ($matches[2] as $uri) {
-							$params = parse_url($uri);
+							$params = parse_url(html_entity_decode($uri));
 							if (array_key_exists('query', $params)) {
 								parse_str($params['query'], $query);
 								if (!file_exists(getAlbumFolder() . $query['a'] . '/' . $query['i'])) {
