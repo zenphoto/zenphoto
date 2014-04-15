@@ -9,7 +9,7 @@
  *
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
-$plugin_description = gettext('Mark installation as "released".');
+$plugin_description = gettext('Mark installation as “released”.');
 $plugin_author = "Stephen Billard (sbillard)";
 
 zp_register_filter('admin_utilities_buttons', 'markRelease_button');
@@ -55,7 +55,7 @@ function markRelease_button($buttons) {
 					'formname'		 => 'markRelease_button',
 					'action'			 => '?markRelease=' . $action,
 					'icon'				 => $mark ? 'images/comments-on.png' : 'images/comments-off.png',
-					'title'				 => sprintf(gettext('Edits the version.php file making a "%s" install.'), $text[$action]),
+					'title'				 => sprintf(gettext('Edits the version.php file making a “%s” install.'), $text[$action]),
 					'alt'					 => '',
 					'hidden'			 => '<input type="hidden" name="markRelease" value="' . $action . '" />',
 					'rights'			 => ADMIN_RIGHTS,

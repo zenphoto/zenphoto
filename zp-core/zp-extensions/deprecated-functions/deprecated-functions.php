@@ -253,7 +253,7 @@ function getAllSubalbums($param = NULL) {
  * @since 1.4.0
  */
 function addPluginScript($script) {
-	deprecated_functions::notify(gettext('Register a "theme_head" filter.'));
+	deprecated_functions::notify(gettext('Register a “theme_head” filter.'));
 	global $_zp_plugin_scripts;
 	$_zp_plugin_scripts[] = $script;
 	if (!zp_has_filter('theme_head', 'deprecated_functions::addPluginScript()')) {
@@ -473,7 +473,7 @@ function getImageID() {
  * @since 1.4.3
  */
 function printImageID() {
-	deprecated_functions::notify(gettext('Use echo "image_".$_zp_current_image->getID().'));
+	deprecated_functions::notify(gettext('Use echo “image_”.$_zp_current_image->getID().'));
 	if (!in_context(ZP_IMAGE))
 		return false;
 	global $_zp_current_image;
@@ -485,7 +485,7 @@ function printImageID() {
  * @since 1.4.3
  */
 function getAlbumId() {
-	deprecated_functions::notify(gettext('Use echo "image_".$_zp_current_album->getID().'));
+	deprecated_functions::notify(gettext('Use echo “image_”.$_zp_current_album->getID().'));
 	global $_zp_current_album;
 	if (is_null($_zp_current_album)) {
 		return null;

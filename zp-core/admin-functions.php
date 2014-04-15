@@ -1378,7 +1378,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$sort[gettext('Custom')] = 'custom';
 						/*
 						 * not recommended--screws with peoples minds during pagination!
-							$sort[gettext('Random')] = 'random';
+						  $sort[gettext('Random')] = 'random';
 						 */
 						?>
 						<tr>
@@ -2792,12 +2792,12 @@ function printAdminHeader($tab, $subtab = NULL) {
 
 		// If the target theme already exists, nothing to do.
 		if (is_dir($target)) {
-			return gettext('Cannot create new theme.') . ' ' . sprintf(gettext('Directory "%s" already exists!'), basename($target));
+			return gettext('Cannot create new theme.') . ' ' . sprintf(gettext('Directory “%s” already exists!'), basename($target));
 		}
 
 		// If source dir is missing, exit too
 		if (!is_dir($source)) {
-			return gettext('Cannot create new theme.') . ' ' . sprintf(gettext('Cannot find theme directory "%s" to copy!'), basename($source));
+			return gettext('Cannot create new theme.') . ' ' . sprintf(gettext('Cannot find theme directory “%s” to copy!'), basename($source));
 		}
 
 		// We must be able to write to the themes dir.
@@ -4171,7 +4171,7 @@ function XSRFdefender($action) {
 		zp_apply_filter('admin_XSRF_access', false, $action);
 		header("HTTP/1.0 302 Found");
 		header("Status: 302 Found");
-		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&error&msg=' . sprintf(gettext('"%s" Cross Site Request Forgery blocked.'), $action));
+		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&error&msg=' . sprintf(gettext('“%s” Cross Site Request Forgery blocked.'), $action));
 		exitZP();
 	}
 	unset($_REQUEST['XSRFToken']);

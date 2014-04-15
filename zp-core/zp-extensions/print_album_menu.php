@@ -48,7 +48,7 @@ class print_album_menu {
 		global $_common_truncate_handler;
 		$options = array(gettext('"List" subalbum level') => array('key'		 => 'print_album_menu_showsubs', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 0,
-										'desc'	 => gettext('The depth of subalbum levels shown with the <code>printAlbumMenu</code> and <code>printAlbumMenuList</code> "List" option. Note: themes may override this default.')),
+										'desc'	 => gettext('The depth of subalbum levels shown with the <code>printAlbumMenu</code> and <code>printAlbumMenuList</code> “List” option. Note: themes may override this default.')),
 						gettext('Show counts')					 => array('key'		 => 'print_album_menu_count', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 1,
 										'desc'	 => gettext('If checked, image and album counts will be included in the list. Note: Themes may override this option.')),

@@ -382,7 +382,7 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 			if (empty($result)) {
 				$result = gettext('Mail send failed.');
 			}
-			$result .= sprintf(gettext('Invalid "reply-to" mail address %s.'), $m);
+			$result .= sprintf(gettext('Invalid “reply-to” mail address %s.'), $m);
 		}
 	}
 	if (is_null($email_list)) {
@@ -394,7 +394,7 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 				if (empty($result)) {
 					$result = gettext('Mail send failed.');
 				}
-				$result .= ' ' . sprintf(gettext('Invalid "to" mail address %s.'), $email);
+				$result .= ' ' . sprintf(gettext('Invalid “to” mail address %s.'), $email);
 			}
 		}
 	}
@@ -405,7 +405,7 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 			if (empty($result)) {
 				$result = gettext('Mail send failed.');
 			}
-			$result .= ' ' . gettext('"cc" list provided without "to" address list.');
+			$result .= ' ' . gettext('"cc" list provided without “to” address list.');
 			return $result;
 		}
 		foreach ($cc_addresses as $key => $email) {
@@ -414,7 +414,7 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 				if (empty($result)) {
 					$result = gettext('Mail send failed.');
 				}
-				$result = ' ' . sprintf(gettext('Invalid "cc" mail address %s.'), $email);
+				$result = ' ' . sprintf(gettext('Invalid “cc” mail address %s.'), $email);
 			}
 		}
 	}
@@ -427,7 +427,7 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 				if (empty($result)) {
 					$result = gettext('Mail send failed.');
 				}
-				$result = ' ' . sprintf(gettext('Invalid "bcc" mail address %s.'), $email);
+				$result = ' ' . sprintf(gettext('Invalid “bcc” mail address %s.'), $email);
 			}
 		}
 	}
@@ -472,7 +472,7 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 		if (empty($result)) {
 			$result = gettext('Mail send failed.');
 		}
-		$result .= ' ' . gettext('No "to" address list provided.');
+		$result .= ' ' . gettext('No “to” address list provided.');
 	}
 	return $result;
 }

@@ -870,7 +870,7 @@ echo $refresh;
 							}
 							for (i = 0; i < admins.length; i++) {
 								if (admins[i] == newuser) {
-									alert(sprintf('<?php echo js_encode(gettext('The user "%s" already exists.')); ?>', newuser));
+									alert(sprintf('<?php echo js_encode(gettext('The user “%s” already exists.')); ?>', newuser));
 									return false;
 								}
 							}
