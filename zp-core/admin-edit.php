@@ -516,7 +516,7 @@ if (isset($_GET['action'])) {
 				exitZP();
 			} else {
 				$AlbumDirName = str_replace(SERVERPATH, '', $_zp_gallery->albumdir);
-				zp_error(gettext("The album couldn't be created in the 'albums' folder. This is usually a permissions problem. Try setting the permissions on the albums and cache folders to be world-writable using a shell:") . " <code>chmod 777 " . $AlbumDirName . '/' . CACHEFOLDER . '/' . "</code>, "
+				zp_error(gettext("The album couldn’t be created in the 'albums' folder. This is usually a permissions problem. Try setting the permissions on the albums and cache folders to be world-writable using a shell:") . " <code>chmod 777 " . $AlbumDirName . '/' . CACHEFOLDER . '/' . "</code>, "
 								. gettext("or use your FTP program to give everyone write permissions to those folders."));
 			}
 			break;
@@ -612,7 +612,7 @@ if (isset($_GET['album']) && (empty($subtab) || $subtab == 'albuminfo') || isset
 					var deleteAlbum1 = "<?php echo gettext("Are you sure you want to delete this entire album?"); ?>";
 					var deleteAlbum2 = "<?php echo gettext("Are you Absolutely Positively sure you want to delete the album? THIS CANNOT BE UNDONE!"); ?>";
 					function newAlbum(folder, albumtab) {
-					var album = prompt('<?php echo gettext('New album name?'); ?>', '<?php echo gettext('new album'); ?>');
+					var album = prompt('<?php echo addslashes(gettext('New album name?')); ?>', '<?php echo addslashes(gettext('new album')); ?>');
 									if (album) {
 					launchScript('', ['action=newalbum', 'folder=' + folder, 'name=' + encodeURIComponent(album), 'albumtab=' + albumtab, 'XSRFToken=<?php echo getXSRFToken('newalbum'); ?>']);
 					}
@@ -837,7 +837,7 @@ echo "\n</head>";
 											<strong><?php echo gettext("Apply"); ?></strong>
 										</button>
 										<div class="floatright">
-											<button type="button" title="<?php echo gettext('New subalbum'); ?>" onclick="javascript:newAlbum('<?php echo pathurlencode($album->name); ?>', false);">
+											<button type="button" title="<?php echo addslashes(gettext('New subalbum')); ?>" onclick="javascript:newAlbum('<?php echo pathurlencode($album->name); ?>', false);">
 												<img src="images/folder.png" alt="" />
 												<strong><?php echo gettext('New subalbum'); ?></strong>
 											</button>
@@ -857,7 +857,7 @@ echo "\n</head>";
 									</div>
 									<div class="subhead">
 										<label class="buttons" style="float: left">
-											<a href="admin-edit.php?page=edit&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;tab=subalbuminfo&amp;showthumbs=<?php echo $thumbshow ?>" title="<?php echo gettext('Thumbnail generation may be time consuming on slow servers on when there are a lot of images.'); ?>">
+											<a href="admin-edit.php?page=edit&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;tab=subalbuminfo&amp;showthumbs=<?php echo $thumbshow ?>" title="<?php echo addslashes(gettext('Thumbnail generation may be time consuming on slow servers on when there are a lot of images.')); ?>">
 												<?php echo $thumbmsg; ?>
 											</a>
 										</label>
@@ -893,7 +893,7 @@ echo "\n</head>";
 										<strong><?php echo gettext("Apply"); ?></strong>
 									</button>
 									<div class="floatright">
-										<button type="button" title="<?php echo gettext('New subalbum'); ?>" onclick="javascript:newAlbum('<?php echo pathurlencode($album->name); ?>', false);">
+										<button type="button" title="<?php echo addslashes(gettext('New subalbum')); ?>" onclick="javascript:newAlbum('<?php echo pathurlencode($album->name); ?>', false);">
 											<img src="images/folder.png" alt="" />
 											<strong><?php echo gettext('New subalbum'); ?></strong>
 										</button>
@@ -961,8 +961,8 @@ echo "\n</head>";
 										<tr>
 											<td><?php echo gettext("Click on the image to change the thumbnail cropping."); ?>	</td>
 											<td>
-												<a href="javascript:toggleExtraInfo('','image',true);"><?php echo gettext('expand all fields'); ?></a>
-												| <a href="javascript:toggleExtraInfo('','image',false);"><?php echo gettext('collapse all fields'); ?></a>
+												<a href="javascript:toggleExtraInfo('','image',true);"><?php echo addslashes(gettext('expand all fields')); ?></a>
+												| <a href="javascript:toggleExtraInfo('','image',false);"><?php echo addslashes(gettext('collapse all fields')); ?></a>
 											</td>
 											<td align="right">
 												<?php
@@ -1221,7 +1221,7 @@ echo "\n</head>";
 																<label class="checkboxlabel">
 																	<input type="radio" id="Delete-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="delete"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');
-																																	 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo gettext("Are you sure you want to select this image for deletion?"); ?>')" /> <?php echo gettext("Delete image") ?>
+																																	 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
 																</label>
 																<br class="clearall" />
 																<div id="movecopydiv-<?php echo $currentimage; ?>" style="padding-top: .5em; padding-left: .5em; display: none;">

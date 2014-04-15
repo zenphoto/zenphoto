@@ -120,7 +120,7 @@ class cycle {
 												'desc'	 => gettext("Milliseconds between slide transitions (0 to disable auto advance.)")),
 								gettext('Slideshow: Description')					 => array('key'		 => 'cycle-slideshow_showdesc', 'type'	 => OPTION_TYPE_CHECKBOX,
 												'order'	 => 7,
-												'desc'	 => gettext("Check if you want to show the image's description below the slideshow.")),
+												'desc'	 => gettext("Check if you want to show the image’s description below the slideshow.")),
 								gettext('Slideshow: Swipe gestures')			 => array('key'		 => 'cycle-slideshow_swipe', 'type'	 => OPTION_TYPE_CHECKBOX,
 												'order'	 => 8,
 												'desc'	 => gettext("Check if you want to enable touch screen swipe gestures.")),

@@ -843,7 +843,7 @@ class Zenphoto_Authority {
 				$info = $admin->getChallengePhraseInfo();
 			}
 			if (empty($info['challenge'])) {
-				$questions = array(gettext("What is your father's middle name?"),
+				$questions = array(gettext("What is your father’s middle name?"),
 								gettext("What street did your Grandmother live on?"),
 								gettext("Who was your favorite singer?"),
 								gettext("When did you first get a computer?"),

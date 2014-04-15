@@ -314,7 +314,7 @@ class federated_logon {
 				}
 			}
 		} else if ($federated) {
-			$msg = gettext("<strong>NOTE:</strong> User's credentials came from a Federated logon.");
+			$msg = gettext("<strong>NOTE:</strong> User’s credentials came from a Federated logon.");
 			$myhtml = '<tr' . ((!$current) ? ' style="display:none;"' : '') . ' class="userextrainfo">
 					<td' . ((!empty($background)) ? ' style="' . $background . '"' : '') . ' valign="top" colspan="2">' . "\n" .
 							'<p class="notebox">' . $msg . '</p>' . "\n" .

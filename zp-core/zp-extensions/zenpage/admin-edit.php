@@ -384,9 +384,9 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 								<div id="tips" style="display:none">
 									<br />
 									<h2><?php echo gettext("Usage tips"); ?></h2>
-									<p><?php echo gettext("Check <em>Edit Titlelink</em> if you need to customize how the title appears in URLs. Otherwise it will be automatically updated to any changes made to the title. If you want to prevent this check <em>Enable permaTitlelink</em> and the titlelink stays always the same (recommended if you use Zenphoto's multilingual mode)."); ?></p>
+									<p><?php echo gettext("Check <em>Edit Titlelink</em> if you need to customize how the title appears in URLs. Otherwise it will be automatically updated to any changes made to the title. If you want to prevent this check <em>Enable permaTitlelink</em> and the titlelink stays always the same (recommended if you use Zenphoto’s multilingual mode)."); ?></p>
 									<p class="notebox"><?php echo gettext("<strong>Note:</strong> Edit titlelink overrides the permalink setting."); ?></p>
-									<p class="notebox"><?php echo gettext("<strong>Important:</strong> If you are using Zenphoto's multi-lingual mode the Titlelink is generated from the Title of the currently selected language."); ?></p>
+									<p class="notebox"><?php echo gettext("<strong>Important:</strong> If you are using Zenphoto’s multi-lingual mode the Titlelink is generated from the Title of the currently selected language."); ?></p>
 									<p><?php echo gettext("If you lock an article only the current active author/user or any user with full admin rights will be able to edit it later again!"); ?></p>
 									<?php
 									if (is_AdminEditPage("newsarticle")) {
@@ -406,7 +406,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 										?>
 									</p>
 									<p class="notebox"><?php echo gettext("<strong>Important:</strong> If setting a password for a page its subpages inherit the protection."); ?></p>
-									<p><?php echo gettext("Hint: If you need more space for your text use TinyMCE's full screen mode (Click the expend icon of editor's control bar, near ZP icon)."); ?></p>
+									<p><?php echo gettext("Hint: If you need more space for your text use TinyMCE’s full screen mode (Click the expend icon of editor’s control bar, near ZP icon)."); ?></p>
 								</div>
 								<div <?php if (is_AdminEditPage("page")) echo 'class="box"'; ?> style="padding:15px; margin-top: 10px">
 									<table class="formlayout">
@@ -514,7 +514,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 																			 value="<?php echo $x; ?>" />
 																<br />
 																<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear('');
-																					togglePassword('');"><?php echo gettext('Show password'); ?></label>
+																		togglePassword('');"><?php echo gettext('Show password'); ?></label>
 																<br />
 																<span class="password_field_">
 																	<span id="match"><?php echo gettext("(repeat)"); ?></span>
@@ -538,13 +538,13 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 														<label class="checkboxlabel">
 															<input type="radio" id="copy_object" name="copy_delete_object" value="copy"
 																		 onclick="javascript:$('#copyfield').show();
-																						 $('#deletemsg').hide();" />
+																				 $('#deletemsg').hide();" />
 																		 <?php echo gettext("Copy"); ?>
 														</label>
 														<label class="checkboxlabel">
 															<input type="radio" id="delete_object" name="copy_delete_object" value="delete"
-																		 onclick="deleteConfirm('delete_object', '', '<?php printf(gettext('Are you sure you want to delete this %s?'), $deleteitem); ?>');
-																						 $('#copyfield').hide();" />
+																		 onclick="deleteConfirm('delete_object', '', '<?php addslashes(printf(gettext('Are you sure you want to delete this %s?'), $deleteitem)); ?>');
+																				 $('#copyfield').hide();" />
 																		 <?php echo gettext('delete'); ?>
 														</label>
 														<br class="clearall" />

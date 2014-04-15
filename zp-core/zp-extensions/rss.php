@@ -83,10 +83,10 @@ class rss_options {
 										'desc'			 => gettext('Check each RSS feed you wish to activate.')),
 						gettext('Image feed items:')			 => array('key'		 => 'RSS_items', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 1,
-										'desc'	 => gettext("The number of new images and comments you want to appear in your site's RSS feed")),
+										'desc'	 => gettext("The number of new images and comments you want to appear in your site’s RSS feed")),
 						gettext('Album feed items:')			 => array('key'		 => 'RSS_items_albums', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 2,
-										'desc'	 => gettext("The number of new images and comments you want to appear in your site's RSS feed")),
+										'desc'	 => gettext("The number of new images and comments you want to appear in your site’s RSS feed")),
 						gettext('Image size')							 => array('key'		 => 'RSS_imagesize', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 3,
 										'desc'	 => gettext('Size of RSS image feed images:')),
@@ -100,7 +100,7 @@ class rss_options {
 														gettext('latest by mtime')			 => 'latest-mtime',
 														gettext('latest by publishdate') => 'latest-publishdate'
 										),
-										'desc'			 => gettext("Choose between latest by id for the latest uploaded, latest by date for the latest uploaded fetched by date, or latest by mtime for the latest uploaded fetched by the file's last change timestamp.")),
+										'desc'			 => gettext("Choose between latest by id for the latest uploaded, latest by date for the latest uploaded fetched by date, or latest by mtime for the latest uploaded fetched by the file’ last change timestamp.")),
 						gettext('Album feed sort order:')	 => array('key'				 => 'RSS_sortorder_albums', 'type'			 => OPTION_TYPE_SELECTOR,
 										'selections' => array(gettext('latest by id')					 => 'latest',
 														gettext('latest by date')				 => 'latest-date',
@@ -139,7 +139,7 @@ class rss_options {
 							'desc'	 => gettext("The text length of the Zenpage RSS feed items. No value for full length."));
 			$options[gettext('Zenpage feed items')] = array('key'		 => 'RSS_zenpage_items', 'type'	 => OPTION_TYPE_TEXTBOX,
 							'order'	 => 5,
-							'desc'	 => gettext("The number of news articles you want to appear in your site's News RSS feed."));
+							'desc'	 => gettext("The number of news articles you want to appear in your site’s News RSS feed."));
 		}
 		return $options;
 	}

@@ -7,7 +7,7 @@
  * @author Malte Müller (acrylian)
  * @package plugins
  */
-$plugin_description = gettext("Prints a paged thumbs navigation on image.php, independent of the album.php's thumbs.");
+$plugin_description = gettext("Prints a paged thumbs navigation on image.php, independent of the album.php’s thumbs.");
 $plugin_author = "Malte Müller (acrylian)";
 $option_interface = 'pagedthumbsOptions';
 

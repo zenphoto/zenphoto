@@ -581,7 +581,7 @@ function getLastImageURL() {
  * @since 1.4.4
  */
 function getTheme(&$zenCSS, &$themeColor, $defaultColor) {
-	deprecated_functions::notify(gettext("If you need this function copy it to your theme's functions.php script."));
+	deprecated_functions::notify(gettext("If you need this function copy it to your theme’s functions.php script."));
 	global $_zp_themeroot;
 	$themeColor = getThemeOption('Theme_colors');
 	$zenCSS = $_zp_themeroot . '/styles/' . $themeColor . '.css';
@@ -802,7 +802,7 @@ function printSizedImageLink($size, $text, $title, $class = NULL, $id = NULL) {
  *
  */
 function openedForComments() {
-	deprecated_functions::notify(gettext("use the object's getCommentsAllowed() method"));
+	deprecated_functions::notify(gettext("use the object’s getCommentsAllowed() method"));
 	global $_zp_gallery_page, $_zp_current_image, $_zp_current_album, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
 	switch ($_zp_gallery_page) {
 		case 'album.php':

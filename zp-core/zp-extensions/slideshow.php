@@ -114,7 +114,7 @@ class slideshow {
 												'desc'	 => gettext("Milliseconds between slide transitions (0 to disable auto advance.)")),
 								gettext('Description')	 => array('key'		 => 'slideshow_showdesc', 'type'	 => OPTION_TYPE_CHECKBOX,
 												'order'	 => 4,
-												'desc'	 => gettext("Check if you want to show the image's description below the slideshow."))
+												'desc'	 => gettext("Check if you want to show the image’s description below the slideshow."))
 				));
 				break;
 			case 'colorbox':

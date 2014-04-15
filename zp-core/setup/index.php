@@ -2744,7 +2744,7 @@ if ($c <= 0) {
 							<div class="error">
 								<h3><?php echo gettext("database did not connect"); ?></h3>
 								<p>
-									<?php echo gettext("If you haven't created the database yet, now would be a good time."); ?>
+									<?php echo gettext("If you haven not created the database yet, now would be a good time."); ?>
 								</p>
 							</div>
 							<?php

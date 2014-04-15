@@ -123,7 +123,7 @@ echo '</head>';
 				}
 				?>
 				<h1><?php echo gettext("Download Statistics"); ?></h1>
-				<p><?php echo gettext("Shows statistical graphs and info about your gallery's downloads if using the downloadList plugin."); ?></p>
+				<p><?php echo gettext("Shows statistical graphs and info about your gallery’s downloads if using the downloadList plugin."); ?></p>
 				<p><?php echo gettext("Entries marked red do not exist in the download folder anymore but are kept for the statistics until you remove them manually via the button."); ?></p>
 
 				<?php

@@ -25,7 +25,7 @@ class zenphotoDonate {
 				<input type="hidden" name="no_note" value="1"> <input type="hidden" name="currency_code" value="USD">
 				<input type="hidden" name="tax" value="0">
 				<input type="hidden" name="bn" value="PP-DonationsBF">
-				<input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but21.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+				<input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but21.gif" border="0" name="submit" alt="Make payments with PayPal - it is fast, free and secure!">
 				<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
 			</form>
 			<br class="clearall" />

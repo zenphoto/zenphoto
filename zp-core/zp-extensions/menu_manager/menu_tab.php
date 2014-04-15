@@ -137,12 +137,12 @@ printSortableHead();
 				?></h1>
 
 			<form class="dirty-check" action="menu_tab.php?menuset=<?php echo $menuset; ?>" method="post" name="update" onsubmit="return confirmAction();">
-					<?php XSRFToken('update_menu'); ?>
+				<?php XSRFToken('update_menu'); ?>
 				<p>
 					<?php echo gettext("Drag the items into the order and nesting you wish displayed. Place the menu on your theme pages by calling printCustomMenu()."); ?>
 				</p>
 				<p class="notebox">
-				<?php echo gettext("<strong>IMPORTANT:</strong> This menu's order is completely independent from any order of albums or pages set on the other admin pages. Use with customized themes that do not wish the standard Zenphoto display structure. Zenphoto functions such as the breadcrumb functions and the next_album() loop will NOT reflect of this menu's structure!"); ?>
+					<?php echo gettext("<strong>IMPORTANT:</strong> This menu’s order is completely independent from any order of albums or pages set on the other admin pages. Use with customized themes that do not wish the standard Zenphoto display structure. Zenphoto functions such as the breadcrumb functions and the next_album() loop will NOT reflect of this menu’s structure!"); ?>
 				</p>
 				<?php
 				foreach ($reports as $report) {
@@ -198,14 +198,14 @@ printSortableHead();
 								}
 								?>
 								<select name="checkallaction" id="checkallaction" size="1">
-	<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
+									<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
 								</select>
 							</span>
 						</div>
 						<br class="clearall" />
 						<div class="subhead">
 							<label style="float: right">
-	<?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
+								<?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
 							</label>
 						</div>
 						<ul class="page-list">
@@ -245,7 +245,7 @@ printSortableHead();
 			</ul>
 		</div>
 	</div>
-<?php printAdminFooter(); ?>
+	<?php printAdminFooter(); ?>
 
 </body>
 </html>

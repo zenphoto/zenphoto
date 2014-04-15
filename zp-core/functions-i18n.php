@@ -32,7 +32,7 @@ function getLanguageArray() {
 					'bn_BD'	 => gettext('Bengali'),
 					'bg_BG'	 => gettext('Bulgarian'),
 					'ca_ES'	 => gettext('Catalan'),
-					'zh_CN'	 => gettext('Chinese (People\'s Republic of China)'),
+					'zh_CN'	 => gettext('Chinese (People’s Republic of China)'),
 					'zh_HK'	 => gettext('Chinese (Hong Kong)'),
 					'zh_TW'	 => gettext('Chinese (Taiwan)'),
 					'hr_HR'	 => gettext('Croatian'),

@@ -11,7 +11,7 @@
  * @package plugins
  * @subpackage seo
  */
-$plugin_description = gettext("A plugin to print the most common HTML meta tags to the head of your site's pages.");
+$plugin_description = gettext("A plugin to print the most common HTML meta tags to the head of your site’s pages.");
 $plugin_author = "Malte Müller (acrylian)";
 
 $option_interface = 'htmlmetatags';
