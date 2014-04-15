@@ -543,8 +543,8 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 														</label>
 														<label class="checkboxlabel">
 															<input type="radio" id="delete_object" name="copy_delete_object" value="delete"
-																		 onclick="deleteConfirm('delete_object', '', '<?php printf(gettext('Are you sure you want to delete this %s?'), $deleteitem); ?>');
-																						 $('#copyfield').hide();" />
+																		 onclick="deleteConfirm('delete_object', '', '<?php addslashes(printf(gettext('Are you sure you want to delete this %s?'), $deleteitem)); ?>');
+																				 $('#copyfield').hide();" />
 																		 <?php echo gettext('delete'); ?>
 														</label>
 														<br class="clearall" />

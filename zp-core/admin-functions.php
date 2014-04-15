@@ -136,13 +136,13 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$("a.colorbox").colorbox({
 							maxWidth: "98%",
 							maxHeight: "98%",
-							close: '<?php echo gettext("close"); ?>'
+							close: '<?php echo addslashes(gettext("close")); ?>'
 						});
 
 		<?php
 	}
 	?>
-					$('form.dirty-check').areYouSure({'message': '<?php echo gettext('You have unsaved changes!'); ?>'});
+					$('form.dirty-check').areYouSure({'message': '<?php echo addslashes(gettext('You have unsaved changes!')); ?>'});
 				});
 				$(function() {
 					$(".tooltip ").tooltip({
@@ -1193,7 +1193,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					<?php
 					if (!$album->isDynamic()) {
 						?>
-						<button type="button" title="<?php echo gettext('New subalbum'); ?>" onclick="javascript:newAlbum('<?php echo pathurlencode($album->name); ?>', true);">
+						<button type="button" title="<?php echo addslashes(gettext('New subalbum')); ?>" onclick="javascript:newAlbum('<?php echo pathurlencode($album->name); ?>', true);">
 							<img src="images/folder.png" alt="" />
 							<strong><?php echo gettext('New subalbum'); ?></strong>
 						</button>
@@ -1268,7 +1268,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									} else {
 										$x = '          ';
 										?>
-										<a onclick="resetPass('<?php echo $suffix; ?>');" title="<?php echo gettext('clear password'); ?>"><img src="images/lock.png" /></a>
+										<a onclick="resetPass('<?php echo $suffix; ?>');" title="<?php echo addslashes(gettext('clear password')); ?>"><img src="images/lock.png" /></a>
 										<?php
 									}
 									?>
@@ -1283,7 +1283,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
 																onclick="passwordClear('<?php echo $suffix; ?>');
-																		togglePassword('<?php echo $suffix; ?>');" /><?php echo gettext('Show password'); ?></label>
+																		togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
 								</td>
 								<td>
 									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
@@ -1344,7 +1344,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 											dateFormat: 'yy-mm-dd',
 											showOn: 'button',
 											buttonImage: 'images/calendar.png',
-											buttonText: '<?php echo gettext('calendar'); ?>',
+											buttonText: '<?php echo addslashes(gettext('calendar')); ?>',
 											buttonImageOnly: true
 										});
 									});
@@ -1378,7 +1378,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$sort[gettext('Custom')] = 'custom';
 						/*
 						 * not recommended--screws with peoples minds during pagination!
-						  $sort[gettext('Random')] = 'random';
+							$sort[gettext('Random')] = 'random';
 						 */
 						?>
 						<tr>
@@ -1729,7 +1729,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									dateFormat: 'yy-mm-dd',
 									showOn: 'button',
 									buttonImage: '../zp-core/images/calendar.png',
-									buttonText: '<?php echo gettext("calendar"); ?>',
+									buttonText: '<?php echo addslashes(gettext("calendar")); ?>',
 									buttonImageOnly: true
 								});
 								$('#<?php echo $prefix; ?>publishdate').change(function() {
@@ -1821,7 +1821,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<?php echo gettext('Album will be deleted when changes are applied.'); ?>
 							<br class="clearall" />
 							<p class="buttons">
-								<a	href="javascript:toggleAlbumMCR('<?php echo $prefix; ?>', '');"><img src="images/reset.png" alt="" /><?php echo gettext("Cancel"); ?></a>
+								<a	href="javascript:toggleAlbumMCR('<?php echo $prefix; ?>', '');"><img src="images/reset.png" alt="" /><?php echo addslashes(gettext("Cancel")); ?></a>
 							</p>
 						</div>
 						<div id="a-<?php echo $prefix; ?>movecopydiv" style="padding-top: .5em; padding-left: .5em; display: none;">
@@ -1858,7 +1858,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							</select>
 							<br class="clearall" /><br />
 							<p class="buttons">
-								<a href="javascript:toggleAlbumMCR('<?php echo $prefix; ?>', '');"><img src="images/reset.png" alt="" /><?php echo gettext("Cancel"); ?></a>
+								<a href="javascript:toggleAlbumMCR('<?php echo $prefix; ?>', '');"><img src="images/reset.png" alt="" /><?php echo addslashes(gettext("Cancel")); ?></a>
 							</p>
 						</div>
 						<div id="a-<?php echo $prefix; ?>renamediv" style="padding-top: .5em; padding-left: .5em; display: none;">
@@ -1866,7 +1866,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<input name="a-<?php echo $prefix; ?>renameto" type="text" value="<?php echo basename($album->name); ?>"/><br />
 							<br class="clearall" />
 							<p class="buttons">
-								<a href="javascript:toggleAlbumMCR('<?php echo $prefix; ?>', '');"><img src="images/reset.png" alt="" /><?php echo gettext("Cancel"); ?></a>
+								<a href="javascript:toggleAlbumMCR('<?php echo $prefix; ?>', '');"><img src="images/reset.png" alt="" /><?php echo addslashes(gettext("Cancel")); ?></a>
 							</p>
 						</div>
 						<span class="clearall" ></span>
@@ -1926,7 +1926,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					<?php
 					if (!$album->isDynamic()) {
 						?>
-						<button type="button" title="<?php echo gettext('New subalbum'); ?>" onclick="javascript:newAlbum('<?php echo pathurlencode($album->name); ?>', true);">
+						<button type="button" title="<?php echo addslashes(gettext('New subalbum')); ?>" onclick="javascript:newAlbum('<?php echo pathurlencode($album->name); ?>', true);">
 							<img src="images/folder.png" alt="" />
 							<strong><?php echo gettext('New subalbum'); ?></strong>
 						</button>
@@ -1954,12 +1954,12 @@ function printAdminHeader($tab, $subtab = NULL) {
 	function printAlbumButtons($album) {
 		if ($imagcount = $album->getNumImages() > 0) {
 			?>
-			<div class="button buttons tooltip" title="<?php echo gettext("Clears the album's cached images."); ?>">
+			<div class="button buttons tooltip" title="<?php echo addslashes(gettext("Clears the album’s cached images.")); ?>">
 				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?action=clear_cache&amp;album=' . html_encode($album->name); ?>&amp;XSRFToken=<?php echo getXSRFToken('clear_cache'); ?>">
 					<img src="images/edit-delete.png" /><?php echo gettext('Clear album image cache'); ?></a>
 				<br class="clearall" />
 			</div>
-			<div class="button buttons tooltip" title="<?php echo gettext("Resets album's hit counters."); ?>">
+			<div class="button buttons tooltip" title="<?php echo gettext("Resets album’s hit counters."); ?>">
 				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?action=reset_hitcounters&amp;album=' . html_encode($album->name) . '&amp;albumid=' . $album->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter'); ?>">
 					<img src="images/reset.png" /><?php echo gettext('Reset album hit counters'); ?></a>
 				<br class="clearall" />
