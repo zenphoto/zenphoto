@@ -82,6 +82,12 @@ echo "\n" . '<div id="content">';
 										$refresh++;
 									}
 								}
+							} else {
+								?>
+								<p>
+									<?php printf(gettext('Malformed image processor uri found in table <em>%1$s</em> at record %2$s: %3$s'), $table, $row['id'], html_encode($uri)); ?>
+								</p>
+								<?php
 							}
 						}
 					}
