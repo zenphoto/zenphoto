@@ -129,7 +129,7 @@ class zenpagecms {
 										'desc'	 => gettext("The length of news article excerpts in news or news category pages. Leave empty for full text.")),
 						gettext('News article text shorten indicator') => array('key'		 => 'zenpage_textshorten_indicator', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 2,
-										'desc'	 => gettext("Something that indicates that the article text is shortened, ' (...)' by default.")),
+										'desc'	 => gettext("Something that indicates that the article text is shortened, “ (...)” by default.")),
 						gettext('Read more')													 => array('key'					 => 'zenpage_read_more', 'type'				 => OPTION_TYPE_TEXTBOX, 'multilingual' => 1,
 										'order'				 => 3,
 										'desc'				 => gettext("The text for the link to the full article.")),

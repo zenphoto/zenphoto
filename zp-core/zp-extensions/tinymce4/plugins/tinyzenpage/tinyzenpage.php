@@ -178,14 +178,14 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 
 										<h3>Zenpage</h3>
 										<p>
-											<?php echo gettext("Select <em>pages</em>, <em>articles</em> or <em>categories</em> to show a list of these items. Click on a title to include a link. Hover of the link to see an excerpt of the page or article. Un-published pages or articles are marked with an '*' and protected with an '+'. There are no further options."); ?>
+											<?php echo gettext("Select <em>pages</em>, <em>articles</em> or <em>categories</em> to show a list of these items. Click on a title to include a link. Hover of the link to see an excerpt of the page or article. Un-published pages or articles are marked with an “*” and protected with an “+”. There are no further options."); ?>
 										</p>
 
 										<h3>Zenphoto</h3>
 										<p>
 											<?php
 											echo gettext("Select an album to include images from into your page or article. Click on the image to include it." .
-															" Un-published albums or images are marked with an '*'." .
+															" Un-published albums or images are marked with an “*”." .
 															" You can also click on the magnify glass icon to see a preview of the item. The preview opens in a colorbox showing the frontend/theme view." .
 															" The first thumbnail is always the thumbnail of the selected album." .
 															" It is titled <em>Albumthumb</em> and appears on every thumbnail page.");
@@ -230,7 +230,7 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 										</ul>
 
 										<p>
-											<?php echo gettext("Also tinyZenpage attaches a default CSS class to the image (if image is chosen) to be styled with your theme’s css. If you choose left or right align '_left' or '_right' is appended:"); ?>
+											<?php echo gettext("Also tinyZenpage attaches a default CSS class to the image (if image is chosen) to be styled with your theme’s css. If you choose left or right align “_left” or “_right” is appended:"); ?>
 										</p>
 										<ul>
 											<li><?php echo gettext("Default thumbnail: <em>zenpage_thumb</em> /<em>zenpage_thumb_left</em> /<em>zenpage_thumb_right</em>"); ?></li>

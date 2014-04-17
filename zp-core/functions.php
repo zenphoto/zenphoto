@@ -405,7 +405,7 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 			if (empty($result)) {
 				$result = gettext('Mail send failed.');
 			}
-			$result .= ' ' . gettext('"cc" list provided without “to” address list.');
+			$result .= ' ' . gettext('“cc” list provided without “to” address list.');
 			return $result;
 		}
 		foreach ($cc_addresses as $key => $email) {

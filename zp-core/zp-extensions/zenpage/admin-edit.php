@@ -395,7 +395,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 										<?php
 									}
 									?>
-									<p><?php echo gettext("<em>Scheduled publishing:</em> To automatically publish a page/news article in the future set it to 'published' and enter a future date in the date field manually. Note this works on server time!"); ?></p>
+									<p><?php echo gettext("<em>Scheduled publishing:</em> To automatically publish a page/news article in the future set it to “published” and enter a future date in the date field manually. Note this works on server time!"); ?></p>
 									<p><?php echo gettext("<em>Expiration date:</em> Enter a future date in the date field manually to set a date the page or article will be set un-published automatically. After the page/article has been expired it can only be published again if the expiration date is deleted. Note this works on server time!"); ?></p>
 									<p><?php echo gettext("<em>ExtraContent:</em> Here you can enter extra content for example to be printed on the sidebar"); ?></p>
 									<p>
@@ -514,7 +514,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 																			 value="<?php echo $x; ?>" />
 																<br />
 																<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear('');
-																		togglePassword('');"><?php echo gettext('Show password'); ?></label>
+																					togglePassword('');"><?php echo gettext('Show password'); ?></label>
 																<br />
 																<span class="password_field_">
 																	<span id="match"><?php echo gettext("(repeat)"); ?></span>
@@ -538,13 +538,13 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 														<label class="checkboxlabel">
 															<input type="radio" id="copy_object" name="copy_delete_object" value="copy"
 																		 onclick="javascript:$('#copyfield').show();
-																				 $('#deletemsg').hide();" />
+																						 $('#deletemsg').hide();" />
 																		 <?php echo gettext("Copy"); ?>
 														</label>
 														<label class="checkboxlabel">
 															<input type="radio" id="delete_object" name="copy_delete_object" value="delete"
 																		 onclick="deleteConfirm('delete_object', '', '<?php addslashes(printf(gettext('Are you sure you want to delete this %s?'), $deleteitem)); ?>');
-																				 $('#copyfield').hide();" />
+																						 $('#copyfield').hide();" />
 																		 <?php echo gettext('delete'); ?>
 														</label>
 														<br class="clearall" />

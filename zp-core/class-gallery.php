@@ -215,9 +215,9 @@ class Gallery {
 		$dir = opendir($albumdir);
 		if (!$dir) {
 			if (!is_dir($albumdir)) {
-				$msg .= sprintf(gettext('Error: The \'albums\' directory (%s) cannot be found.'), $this->albumdir);
+				$msg .= sprintf(gettext('Error: The “albums” directory (%s) cannot be found.'), $this->albumdir);
 			} else {
-				$msg .= sprintf(gettext('Error: The \'albums\' directory (%s) is not readable.'), $this->albumdir);
+				$msg .= sprintf(gettext('Error: The “albums” directory (%s) is not readable.'), $this->albumdir);
 			}
 			zp_error($msg);
 		}

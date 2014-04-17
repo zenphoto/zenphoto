@@ -58,7 +58,7 @@ if (isset($_GET['deletemenuset'])) {
 	$sql = 'DELETE FROM ' . prefix('menu') . ' WHERE `menuset`=' . db_quote(sanitize($_GET['deletemenuset']));
 	query($sql);
 	$_menu_manager_items = array();
-	$reports[] = "<p class='messagebox fade-message'>" . sprintf(gettext("Menu '%s' deleted"), html_encode(sanitize($_GET['deletemenuset']))) . "</p>";
+	$reports[] = "<p class='messagebox fade-message'>" . sprintf(gettext("Menu “%s” deleted"), html_encode(sanitize($_GET['deletemenuset']))) . "</p>";
 }
 if (isset($_GET['dupmenuset'])) {
 	XSRFdefender('dup_menu');
@@ -70,9 +70,9 @@ if (isset($_GET['dupmenuset'])) {
 		$menuitems[$key]['nesting'] = $order;
 	}
 	if (createMenuIfNotExists($menuitems, $menuset)) {
-		$reports[] = "<p class='messagebox fade-message'>" . sprintf(gettext("Menu '%s' duplicated"), html_encode($oldmenuset)) . "</p>";
+		$reports[] = "<p class='messagebox fade-message'>" . sprintf(gettext("Menu “%s” duplicated"), html_encode($oldmenuset)) . "</p>";
 	} else {
-		$reports[] = "<p class='messagebox fade-message'>" . sprintf(gettext("Menu '%s' already exists"), html_encode($menuset)) . "</p>";
+		$reports[] = "<p class='messagebox fade-message'>" . sprintf(gettext("Menu “%s” already exists"), html_encode($menuset)) . "</p>";
 	}
 }
 // publish or un-publish page by click

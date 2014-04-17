@@ -135,7 +135,7 @@ foreach ($albumlist as $key => $value) {
 				?>
 				<br />
 				<?php
-				echo zp_apply_filter('get_upload_header_text', gettext('Don\'t forget, you can also use <acronym title="File Transfer Protocol">FTP</acronym> to upload folders of images into the albums directory!'));
+				echo zp_apply_filter('get_upload_header_text', gettext('Don’t forget, you can also use <acronym title="File Transfer Protocol">FTP</acronym> to upload folders of images into the albums directory!'));
 				?>
 			</p>
 			<?php

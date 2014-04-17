@@ -344,7 +344,7 @@ function setupAllowedMaps($defaultmap, $allowedmaps) {
  * @since 1.4.0
  */
 function printPreloadScript() {
-	deprecated_functions::notify(gettext('printPreloadScript is deprecated. It is a helper for a specific theme and should be placed within that theme\'s "functions.php" script.'));
+	deprecated_functions::notify(gettext('printPreloadScript is deprecated. It is a helper for a specific theme and should be placed within that theme’s "functions.php" script.'));
 	global $_zp_current_image;
 	$size = getOption('image_size');
 	if (hasNextImage() || hasPrevImage()) {

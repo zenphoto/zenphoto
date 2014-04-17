@@ -82,7 +82,7 @@ class register_user {
 										'desc'	 => gettext('If checked, an album will be created and assigned to the user.')),
 						gettext('Email ID')								 => array('key'		 => 'register_user_email_is_id', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 4,
-										'desc'	 => gettext('If checked, The user\'s e-mail address will be used as his User ID.')),
+										'desc'	 => gettext('If checked, The use’s e-mail address will be used as his User ID.')),
 						gettext('Email notification text') => array('key'		 => 'register_user_text', 'type'	 => OPTION_TYPE_TEXTAREA,
 										'order'	 => 3,
 										'desc'	 => gettext('Text for the body of the email sent to the registrant for registration verification. <p class="notebox"><strong>Note:</strong> You must include <code>%1$s</code> in your message where you wish the <em>registration verification</em> link to appear. You may also insert the registrant’s <em>name</em> (<code>%2$s</code>), <em>user id</em> (<code>%3$s</code>), and <em>password</em>* (<code>%4$s</code>).<br /><br />*For security reasons we recommend <strong>not</strong> inserting the <em>password</em>.</p>')),

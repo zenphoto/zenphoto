@@ -769,7 +769,7 @@ if ($c <= 0) {
 							}
 
 
-							$good = checkMark($cfg, sprintf(gettext('<em>%1$s</em> file'), CONFIGFILE), sprintf(gettext('<em>%1$s</em> file [does not exist]'), CONFIGFILE), sprintf(gettext('Setup was not able to create this file. You will need to copy the <code>%1$s/zenphoto_cfg.txt</code> file to <code>%2$s/%3$s</code> then edit it as indicated in the file\'s comments.'), ZENFOLDER, DATA_FOLDER, CONFIGFILE)) && $good;
+							$good = checkMark($cfg, sprintf(gettext('<em>%1$s</em> file'), CONFIGFILE), sprintf(gettext('<em>%1$s</em> file [does not exist]'), CONFIGFILE), sprintf(gettext('Setup was not able to create this file. You will need to copy the <code>%1$s/zenphoto_cfg.txt</code> file to <code>%2$s/%3$s</code> then edit it as indicated in the file’s comments.'), ZENFOLDER, DATA_FOLDER, CONFIGFILE)) && $good;
 							if ($cfg) {
 								primeMark(gettext('File permissions'));
 								$chmodselector = '<form action="#"><input type="hidden" name="xsrfToken" value="' . $xsrftoken . '" />' .
@@ -1737,8 +1737,8 @@ if ($c <= 0) {
 						$collation = db_collation();
 
 						/*						 * *********************************************************************************
-							Add new fields in the upgrade section. This section should remain static except for new
-							tables. This tactic keeps all changes in one place so that noting gets accidentaly omitted.
+						  Add new fields in the upgrade section. This section should remain static except for new
+						  tables. This tactic keeps all changes in one place so that noting gets accidentaly omitted.
 						 * ********************************************************************************** */
 
 						//v1.2

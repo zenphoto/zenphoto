@@ -131,20 +131,20 @@ class cycle {
 				break;
 
 			case 'colorbox':
-				$options = array_merge($options, array(gettext('Colorbox: Transition')	 => array('key'				 => 'cycle-slideshow_colorbox_transition', 'type'			 => OPTION_TYPE_SELECTOR,
-												'order'			 => 2,
-												'selections' => array(
-																gettext('elastic') => "elastic",
-																gettext('fade')		 => "fade",
-																gettext('none')		 => "none"),
-												'desc'			 => gettext("The Colorbox transition slide effect to be used.")),
-								gettext('Colorbox: Image type')	 => array('key'				 => 'cycle-slideshow_colorbox_imagetype', 'type'			 => OPTION_TYPE_SELECTOR,
-												'order'			 => 3,
-												'selections' => array(gettext('full image') => "fullimage", gettext('sized image') => "sizedimage"),
-												'desc'			 => gettext("The image type you wish to use for the Colorbox. If you choose 'sized image' the slideshow width value will be used for the longest side of the image.")),
-								gettext('Colorbox: Image title') => array('key'		 => 'cycle-slideshow_colorbox_imagetitle', 'type'	 => OPTION_TYPE_CHECKBOX,
-												'order'	 => 4,
-												'desc'	 => gettext("If the image title should be shown at the bottom of the Colorbox."))
+				$options = array_merge($options, array(gettext('Colorbox: Transition') => array('key' => 'cycle-slideshow_colorbox_transition', 'type' => OPTION_TYPE_SELECTOR,
+				'order' => 2,
+				'selections' => array(
+				gettext('elastic') => "elastic",
+				gettext('fade') => "fade",
+				gettext('none') => "none"),
+				'desc' => gettext("The Colorbox transition slide effect to be used.")),
+				gettext('Colorbox: Image type') => array('key' => 'cycle-slideshow_colorbox_imagetype', 'type' => OPTION_TYPE_SELECTOR,
+				'order' => 3,
+				'selections' => array(gettext('full image') => "fullimage", gettext(“sized image”) => "sizedimage"),
+				'desc' => gettext("The image type you wish to use for the Colorbox. If you choose “sized image” the slideshow width value will be used for the longest side of the image.")),
+				gettext('Colorbox: Image title') => array('key' => 'cycle-slideshow_colorbox_imagetitle', 'type' => OPTION_TYPE_CHECKBOX,
+				'order' => 4,
+				'desc' => gettext("If the image title should be shown at the bottom of the Colorbox."))
 				));
 				if (getOption('cycle-slideshow_colorbox_imagetype') == 'sizedimage') {
 					$options = array_merge($options, array(gettext('Colorbox: Slide width') => array('key'		 => 'cycle-slideshow_width', 'type'	 => OPTION_TYPE_TEXTBOX,
@@ -564,23 +564,23 @@ if (extensionEnabled('slideshow2')) {
 					$count = '';
 					?>
 					<script type="text/javascript">
-					$(document).ready(function() {
-						$("a[rel='slideshow']").colorbox({
-							slideshow: true,
-							loop: true,
-							transition: '<?php echo getOption('cycle-slideshow_colorbox_transition'); ?>',
-							slideshowSpeed: <?php echo getOption('cycle-slideshow_speed'); ?>,
-							slideshowStart: '<?php echo gettext("start slideshow"); ?>',
-							slideshowStop: '<?php echo gettext("stop slideshow"); ?>',
-							previous: '<?php echo gettext("prev"); ?>',
-							next: '<?php echo gettext("next"); ?>',
-							close: '<?php echo gettext("close"); ?>',
-							current: '<?php printf(gettext('image %1$s of %2$s'), '{current}', '{total}'); ?>',
-							maxWidth: '98%',
-							maxHeight: '98%',
-							photo: true
+						$(document).ready(function() {
+							$("a[rel='slideshow']").colorbox({
+								slideshow: true,
+								loop: true,
+								transition: '<?php echo getOption('cycle-slideshow_colorbox_transition'); ?>',
+								slideshowSpeed: <?php echo getOption('cycle-slideshow_speed'); ?>,
+								slideshowStart: '<?php echo gettext("start slideshow"); ?>',
+								slideshowStop: '<?php echo gettext("stop slideshow"); ?>',
+								previous: '<?php echo gettext("prev"); ?>',
+								next: '<?php echo gettext("next"); ?>',
+								close: '<?php echo gettext("close"); ?>',
+								current: '<?php printf(gettext('image %1$s of %2$s'), '{current}', '{total}'); ?>',
+								maxWidth: '98%',
+								maxHeight: '98%',
+								photo: true
+							});
 						});
-					});
 					</script>
 					<?php
 					foreach ($images as $image) {

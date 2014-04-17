@@ -125,7 +125,7 @@ class slideshow {
 								gettext('Colorbox image type')	 => array('key'				 => 'slideshow_colorbox_imagetype', 'type'			 => OPTION_TYPE_SELECTOR,
 												'order'			 => 3,
 												'selections' => array(gettext('full image') => "fullimage", gettext('sized image') => "sizedimage"),
-												'desc'			 => gettext("The image type you wish to use for the Colorbox. If you choose 'sized image' the slideshow width value will be used for the longest side of the image.")),
+												'desc'			 => gettext("The image type you wish to use for the Colorbox. If you choose “sized image” the slideshow width value will be used for the longest side of the image.")),
 								gettext('Colorbox image title')	 => array('key'		 => 'slideshow_colorbox_imagetitle', 'type'	 => OPTION_TYPE_CHECKBOX,
 												'order'	 => 4,
 												'desc'	 => gettext("If the image title should be shown at the bottom of the Colorbox."))
