@@ -50,4 +50,27 @@ function getImageProcessorURIFromCacheName($match, $watermarks) {
 	return array($image, getImageArgs($set));
 }
 
+function getTitle($table, $row) {
+	switch ($table) {
+		case 'images':
+			$album = query_single_row('SELECT `folder` FROM ' . prefix('albums') . ' WHERE `id`=' . $row[albumid]);
+			$title = sprintf(gettext('%1$s: image %2$s'), $album['folder'], $row[$filename]);
+			break;
+		case 'albums':
+			$title = sprintf(gettext('album %s'), $row[$folder]);
+			break;
+		case 'news':
+		case 'pages':
+			$title = sprintf(gettext('%1$s: %2$s'), $table, $row['titlelink']);
+			break;
+	}
+	return $title;
+}
+
+function recordMissing($table, $row, $image) {
+	global $missingImages;
+	$obj = getItemByID($table, $row['id']);
+	$missingImages[] = '<a href="' . $obj->getLink() . '">' . $obj->getTitle() . '</a> (' . html_encode($image) . ')<br />';
+}
+
 ?>

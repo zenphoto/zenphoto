@@ -362,7 +362,7 @@ class ipBlocker {
 
 }
 
-if (ipBlocker::suspended()) {
+if (extensionEnabled('ibBlocker') && ipBlocker::suspended()) {
 	header("HTTP/1.0 403 " . gettext("Forbidden"));
 	header("Status: 403 " . gettext("Forbidden"));
 	exitZP(); //	terminate the script with no output

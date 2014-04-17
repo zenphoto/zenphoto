@@ -501,7 +501,7 @@ if ($c <= 0) {
 		<title><?php printf('Zenphoto %s', $upgrade ? $upgrade : gettext('install')); ?></title>
 		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css" type="text/css" />
 
-		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.js" type="text/javascript"></script>
+		<?php echo JQUERY_SCRIPT; ?>
 		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zenphoto.js" type="text/javascript" ></script>
 		<script type="text/javascript">
 			var imageErr = false;
@@ -911,7 +911,7 @@ if ($c <= 0) {
 						<?php
 						if (!UTF8_IMAGE_URI) {
 							?>
-																$('#UTF8_uri_warn').html('<?php echo gettext('You should enable the URL option <em>UTF8 image URIs</em>.'); ?>' + ' <?php echo gettext('<a href="javascript:uri(true)">Please do</a>'); ?>');
+																$('#UTF8_uri_warn').html('<?php echo addslashes(gettext('You should enable the URL option <em>UTF8 image URIs</em>.')); ?>' + ' <?php echo addslashes(gettext('<a href="javascript:uri(true)">Please do</a>')); ?>');
 																$('#UTF8_uri_warn').show();
 							<?php
 							if ($autorun) {
@@ -923,12 +923,12 @@ if ($c <= 0) {
 						?>
 														};
 														image.onerror = function() {
-															$('#UTF8_uri_text').html('<?php echo $req_iso; ?>');
+															$('#UTF8_uri_text').html('<?php echo addslashes($req_iso); ?>');
 						<?php
 						if (UTF8_IMAGE_URI) {
 							?>
 																$('#UTF8_uri').attr('class', 'warn');
-																$('#UTF8_uri_warn').html('<?php echo gettext('You should disable the URL option <em>UTF8 image URIs</em>.'); ?>' + ' <?php echo gettext('<a href="javascript:uri(false)">Please do</a>'); ?>');
+																$('#UTF8_uri_warn').html('<?php echo addslashes(gettext('You should disable the URL option <em>UTF8 image URIs</em>.')); ?>' + ' <?php echo gettext('<a href="javascript:uri(false)">Please do</a>'); ?>');
 																$('#UTF8_uri_warn').show();
 							<?php
 							if ($autorun) {
@@ -1737,8 +1737,8 @@ if ($c <= 0) {
 						$collation = db_collation();
 
 						/*						 * *********************************************************************************
-						  Add new fields in the upgrade section. This section should remain static except for new
-						  tables. This tactic keeps all changes in one place so that noting gets accidentaly omitted.
+							Add new fields in the upgrade section. This section should remain static except for new
+							tables. This tactic keeps all changes in one place so that noting gets accidentaly omitted.
 						 * ********************************************************************************** */
 
 						//v1.2
