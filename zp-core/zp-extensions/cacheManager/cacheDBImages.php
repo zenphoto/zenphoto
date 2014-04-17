@@ -90,11 +90,12 @@ echo "\n" . '<div id="content">';
 
 				$sql = 'SELECT * FROM ' . prefix($table) . ' WHERE `' . $field . '` REGEXP "<img.*src\s*=\s*\".*' . CACHEFOLDER . '((\\.|[^\"])*)"';
 				$result = query($sql);
+
 				if ($result) {
 					while ($row = db_fetch_assoc($result)) {
 						preg_match_all('~\<img.*src\s*=\s*"((\\.|[^"])*)~', $row[$field], $matches);
 						foreach ($matches[1] as $key => $match) {
-							if (preg_match('~[{*WEBPATH*}|' . WEBPATH . ']/' . CACHEFOLDER . '/~', $match)) {
+							if (preg_match('~/' . CACHEFOLDER . '/~', $match)) {
 								$found++;
 								list($image, $args) = getImageProcessorURIFromCacheName($match, $watermarks);
 								if (!file_exists(getAlbumFolder() . $image)) {
@@ -116,17 +117,16 @@ echo "\n" . '<div id="content">';
 										</a>
 										<?php
 									}
-
-									//Check for cache folder having moved (Site relocated?)
-									preg_match('~(.*/)' . CACHEFOLDER . '~', $match, $foldermatches);
-									if ($foldermatches[1] != WEBPATH . '/') {
-										$fixedFolder++;
-										$target = $foldermatches[1] . CACHEFOLDER . '/' . stripSuffix($image);
-										$update = WEBPATH . '/' . CACHEFOLDER . '/' . stripSuffix($image);
-										$row[$field] = updateCacheFolder($row[$field], $target, $update);
-										$sql = 'UPDATE ' . prefix($table) . ' SET `' . $field . '`=' . db_quote($row[$field]) . ' WHERE `id`=' . $row['id'];
-										query($sql);
-									}
+								}
+								//Check for cache folder having moved (Site relocated?)
+								preg_match('~(.*/)' . CACHEFOLDER . '/~', $match, $foldermatches);
+								if ($foldermatches[1] != '{*WEBPATH*}/') {
+									$fixedFolder++;
+									$target = $foldermatches[1] . CACHEFOLDER . '/' . stripSuffix($image);
+									$update = '{*WEBPATH*}/' . CACHEFOLDER . '/' . stripSuffix($image);
+									$row[$field] = updateCacheFolder($row[$field], $target, $update);
+									$sql = 'UPDATE ' . prefix($table) . ' SET `' . $field . '`=' . db_quote($row[$field]) . ' WHERE `id`=' . $row['id'];
+									query($sql);
 								}
 							}
 						}
