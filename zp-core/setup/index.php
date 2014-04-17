@@ -911,7 +911,7 @@ if ($c <= 0) {
 						<?php
 						if (!UTF8_IMAGE_URI) {
 							?>
-																$('#UTF8_uri_warn').html('<?php echo gettext('You should enable the URL option <em>UTF8 image URIs</em>.'); ?>' + ' <?php echo gettext('<a href="javascript:uri(true)">Please do</a>'); ?>');
+																$('#UTF8_uri_warn').html('<?php echo addslashes(gettext('You should enable the URL option <em>UTF8 image URIs</em>.')); ?>' + ' <?php echo addslashes(gettext('<a href="javascript:uri(true)">Please do</a>')); ?>');
 																$('#UTF8_uri_warn').show();
 							<?php
 							if ($autorun) {
@@ -923,12 +923,12 @@ if ($c <= 0) {
 						?>
 														};
 														image.onerror = function() {
-															$('#UTF8_uri_text').html('<?php echo $req_iso; ?>');
+															$('#UTF8_uri_text').html('<?php echo addslashes($req_iso); ?>');
 						<?php
 						if (UTF8_IMAGE_URI) {
 							?>
 																$('#UTF8_uri').attr('class', 'warn');
-																$('#UTF8_uri_warn').html('<?php echo gettext('You should disable the URL option <em>UTF8 image URIs</em>.'); ?>' + ' <?php echo gettext('<a href="javascript:uri(false)">Please do</a>'); ?>');
+																$('#UTF8_uri_warn').html('<?php echo addslashes(gettext('You should disable the URL option <em>UTF8 image URIs</em>.')); ?>' + ' <?php echo gettext('<a href="javascript:uri(false)">Please do</a>'); ?>');
 																$('#UTF8_uri_warn').show();
 							<?php
 							if ($autorun) {
