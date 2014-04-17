@@ -501,7 +501,7 @@ if ($c <= 0) {
 		<title><?php printf('Zenphoto %s', $upgrade ? $upgrade : gettext('install')); ?></title>
 		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css" type="text/css" />
 
-		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.js" type="text/javascript"></script>
+		<?php echo JQUERY_SCRIPT; ?>
 		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zenphoto.js" type="text/javascript" ></script>
 		<script type="text/javascript">
 			var imageErr = false;
@@ -1737,8 +1737,8 @@ if ($c <= 0) {
 						$collation = db_collation();
 
 						/*						 * *********************************************************************************
-						  Add new fields in the upgrade section. This section should remain static except for new
-						  tables. This tactic keeps all changes in one place so that noting gets accidentaly omitted.
+							Add new fields in the upgrade section. This section should remain static except for new
+							tables. This tactic keeps all changes in one place so that noting gets accidentaly omitted.
 						 * ********************************************************************************** */
 
 						//v1.2
