@@ -41,7 +41,7 @@ class pagedthumbsOptions {
 		return array(gettext('Thumbs per page')								 => array('key'	 => 'pagedthumbs_imagesperpage', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext("Controls the number of images on a page. You might need to change this after switching themes to make it look better.")),
 						gettext('Counter')												 => array('key'	 => 'pagedthumbs_counter', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext("If you want to show the counter 'x - y of z images'.")),
+										'desc' => gettext("If you want to show the counter “x - y of z images”.")),
 						gettext('Prevtext')												 => array('key'					 => 'pagedthumbs_prevtext', 'type'				 => OPTION_TYPE_TEXTBOX,
 										'desc'				 => gettext("The text for the previous thumbs."), 'multilingual' => 1),
 						gettext('Nexttext')												 => array('key'					 => 'pagedthumbs_nexttext', 'type'				 => OPTION_TYPE_TEXTBOX,
