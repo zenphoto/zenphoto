@@ -9,7 +9,7 @@ function jQueryUpload_headers() {
 function jQueryUpload_head() {
 	$head = ob_get_contents();
 	ob_end_clean();
-	$head = str_replace('/js/jqueryui/', '/' . PLUGIN_FOLDER . '/uploader_jQuery/jqueryui/', $head);
+	$head = str_replace('<script src="' . WEBPATH . '/' . ZENFOLDER . '/js/jqueryui/jquery-ui-zenphoto.js" type="text/javascript"></script>', '<script src="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/uploader_jQuery/jqueryui/jquery-ui-zenphoto.js"></script>', $head);
 	echo $head;
 }
 
