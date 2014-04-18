@@ -413,7 +413,8 @@ function inventMenuItem($menuset, $visibility) {
  * @return int
  */
 function getCurrentMenuItem($menuset) {
-	$currentpageURL = html_encode(getRequestURI());
+	$currentpageURL = rtrim(str_replace('\\', '/', html_encode(getRequestURI())), '/');
+
 	if (isset($_GET['page'])) { // must strip out page numbers, all "pages" are equal
 		if (MOD_REWRITE) {
 			if (isset($_GET['album'])) {
@@ -433,7 +434,6 @@ function getCurrentMenuItem($menuset) {
 			}
 		}
 	}
-	$currentpageURL = rtrim(str_replace('\\', '/', $currentpageURL), '/');
 	$visibility = 'all';
 	$items = getMenuItems($menuset, $visibility);
 	$currentkey = NULL;
