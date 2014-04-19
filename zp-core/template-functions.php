@@ -2534,25 +2534,29 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
  * @param int $ch crop height
  * @param int $cx crop x axis
  * @param int $cy crop y axis
+ * @param $image object the image for which the size is desired. NULL means the current image
  * @return array
  */
-function getSizeCustomImage($size, $width = NULL, $height = NULL, $cw = NULL, $ch = NULL, $cx = NULL, $cy = NULL) {
-	global $_zp_current_album, $_zp_current_image;
+function getSizeCustomImage($size, $width = NULL, $height = NULL, $cw = NULL, $ch = NULL, $cx = NULL, $cy = NULL, $image = NULL) {
+	global $_zp_current_image;
 	if (!in_context(ZP_IMAGE))
 		return false;
-	if (is_null($_zp_current_image))
+	if (is_null($image))
+		$image = $_zp_current_image;
+	if (is_null($image))
 		return false;
-	$h = $_zp_current_image->getHeight();
-	$w = $_zp_current_image->getWidth();
+
+	$h = $image->getHeight();
+	$w = $image->getWidth();
 	if (isImageVideo()) { // size is determined by the player
 		return array($w, $h);
 	}
-	$h = $_zp_current_image->getHeight();
-	$w = $_zp_current_image->getWidth();
+	$h = $image->getHeight();
+	$w = $image->getWidth();
 	$side = getOption('image_use_side');
 	$us = getOption('image_allow_upscale');
 
-	$args = getImageParameters(array($size, $width, $height, $cw, $ch, $cx, $cy, NULL, NULL, NULL, NULL, NULL, NULL, NULL), $_zp_current_album->name);
+	$args = getImageParameters(array($size, $width, $height, $cw, $ch, $cx, $cy, NULL, NULL, NULL, NULL, NULL, NULL, NULL), $image->album->name);
 	@list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;
 	if (!empty($size)) {
 		$dim = $size;
@@ -2606,82 +2610,97 @@ function getSizeCustomImage($size, $width = NULL, $height = NULL, $cw = NULL, $c
  * Returns an array [width, height] of the default-sized image.
  *
  * @param int $size override the 'image_zize' option
+ * @param $image object the image for which the size is desired. NULL means the current image
  *
  * @return array
  */
-function getSizeDefaultImage($size = NULL) {
+function getSizeDefaultImage($size = NULL, $image = NULL) {
 	if (is_null($size))
 		$size = getOption('image_size');
-	return getSizeCustomImage($size);
+	return getSizeCustomImage($size, $image);
 }
 
 /**
  * Returns an array [width, height] of the original image.
  *
+ * @param $image object the image for which the size is desired. NULL means the current image
+ *
  * @return array
  */
-function getSizeFullImage() {
+function getSizeFullImage($image = NULL) {
 	global $_zp_current_image;
-	if (is_null($_zp_current_image))
+	if (is_null($image))
+		$image = $_zp_current_image;
+	if (is_null($image))
 		return false;
-	return array($_zp_current_image->getWidth(), $_zp_current_image->getHeight());
+	return array($image->getWidth(), $image->getHeight());
 }
 
 /**
  * The width of the default-sized image (in printDefaultSizedImage)
  *
- * @param int $size override the 'image_zize' option
+ * @param $image object the image for which the size is desired. NULL means the current image
  *
  * @return int
  */
-function getDefaultWidth($size = NULL) {
-	$size_a = getSizeDefaultImage($size);
+function getDefaultWidth($size = NULL, $image = NULL) {
+	$size_a = getSizeDefaultImage($size, $image);
 	return $size_a[0];
 }
 
 /**
  * Returns the height of the default-sized image (in printDefaultSizedImage)
  *
- * @param int $size override the 'image_zize' option
+ * @param $image object the image for which the size is desired. NULL means the current image
  *
  * @return int
  */
-function getDefaultHeight($size = NULL) {
-	$size_a = getSizeDefaultImage($size);
+function getDefaultHeight($size = NULL, $image = NULL) {
+	$size_a = getSizeDefaultImage($size, $image);
 	return $size_a[1];
 }
 
 /**
  * Returns the width of the original image
  *
+ * @param $image object the image for which the size is desired. NULL means the current image
+ *
  * @return int
  */
-function getFullWidth() {
+function getFullWidth($image = NULL) {
 	global $_zp_current_image;
-	if (is_null($_zp_current_image))
+	if (is_null($image))
+		$image = $_zp_current_image;
+	if (is_null($image))
 		return false;
-	return $_zp_current_image->getWidth();
+	return $image->getWidth();
 }
 
 /**
  * Returns the height of the original image
  *
+ * @param $image object the image for which the size is desired. NULL means the current image
+ *
  * @return int
  */
-function getFullHeight() {
+function getFullHeight($image = NULL) {
 	global $_zp_current_image;
-	if (is_null($_zp_current_image))
+	if (is_null($image))
+		$image = $_zp_current_image;
+	if (is_null($image))
 		return false;
-	return $_zp_current_image->getHeight();
+	return $image->getHeight();
 }
 
 /**
  * Returns true if the image is landscape-oriented (width is greater than height)
  *
+ * @param $image object the image for which the size is desired. NULL means the current image
+ *
  * @return bool
  */
-function isLandscape() {
-	if (getFullWidth() >= getFullHeight())
+function isLandscape($imge = NULL) {
+	if (getFullWidth($image) >= getFullHeight($image))
 		return true;
 	return false;
 }
@@ -2689,13 +2708,17 @@ function isLandscape() {
 /**
  * Returns the url to the default sized image.
  *
+ * @param $image object the image for which the size is desired. NULL means the current image
+ *
  * @return string
  */
-function getDefaultSizedImage() {
+function getDefaultSizedImage($image = NULL) {
 	global $_zp_current_image;
-	if (is_null($_zp_current_image))
+	if (is_null($image))
+		$image = $_zp_current_image;
+	if (is_null($image))
 		return false;
-	return $_zp_current_image->getSizedImage(getOption('image_size'));
+	return $image->getSizedImage(getOption('image_size'));
 }
 
 /**
