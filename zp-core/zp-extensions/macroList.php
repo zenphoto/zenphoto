@@ -83,7 +83,7 @@ if (OFFSET_PATH != 2 && zp_loggedin(ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS |
 function macro_admin_tabs($tabs) {
 	$mylink = PLUGIN_FOLDER . '/macroList/macroList_tab.php?page=macros&tab=' . gettext('macros');
 	if (!isset($tabs['development'])) {
-		$tabs['development'] = array('text'		 => gettext("Development"),
+		$tabs['development'] = array('text'		 => gettext("development"),
 						'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . $mylink,
 						'subtabs'	 => NULL);
 	}

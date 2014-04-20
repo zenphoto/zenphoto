@@ -22,7 +22,7 @@ class rewriteRules {
 	static function tabs($tabs) {
 		$mylink = PLUGIN_FOLDER . '/rewriteRules/admin_tab.php?page=development&amp;tab=' . gettext('rewrite');
 		if (!isset($tabs['development'])) {
-			$tabs['development'] = array('text'		 => gettext("Development"),
+			$tabs['development'] = array('text'		 => gettext("development"),
 							'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . $mylink,
 							'subtabs'	 => NULL);
 		}

@@ -104,7 +104,7 @@ class deprecated_functions {
 		if (zp_loggedin(ADMIN_RIGHTS)) {
 			$mylink = PLUGIN_FOLDER . '/deprecated-functions/admin_tab.php?page=deprecated&tab=' . gettext('deprecated');
 			if (!isset($tabs['development'])) {
-				$tabs['development'] = array('text'		 => gettext("Development"),
+				$tabs['development'] = array('text'		 => gettext("development"),
 								'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . $mylink,
 								'subtabs'	 => NULL);
 			}
