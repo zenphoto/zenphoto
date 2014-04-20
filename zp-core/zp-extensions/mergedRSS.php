@@ -57,7 +57,7 @@ class MergedRSSOptions {
 						gettext('RSS feeds to merge') => array('key'					 => 'mergedrss_feeds', 'type'				 => OPTION_TYPE_TEXTAREA,
 										'order'				 => 11,
 										'multilingual' => false,
-										'desc'				 => gettext('Enter the full urls of the feeds to merge separated by semicolons(e.g. "http://www.domain1.com/rss; http://www.domain2.com/rss")'))
+										'desc'				 => gettext('Enter the full urls of the feeds to merge separated by semicolons (e.g. "http://www.domain1.com/rss; http://www.domain2.com/rss")'))
 		);
 	}
 

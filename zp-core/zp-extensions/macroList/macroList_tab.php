@@ -35,7 +35,7 @@ echo "\n</head>";
 								<li><?php echo gettext('<em><strong>string</strong></em> may be enclosed in quotation marks when the macro is invoked. The quotes are stripped before the macro is processed.'); ?></li>
 								<li><?php echo gettext('<em><strong>int</strong></em> a number'); ?></li>
 								<li><?php echo gettext('<em><strong>bool</strong></em> <code>true</code> or <code>false</code>'); ?></li>
-								<li><?php echo gettext('<em><strong>array</strong></em> an assignment list e.g. u=w</code> <code>x=y</code>....'); ?></li>
+								<li><?php echo gettext('<em><strong>array</strong></em> an assignment list e.g. <code>u=w</code> <code>x=y</code>....'); ?></li>
 							</ol>
 							<p><?php echo gettext('Parameters within braces are optional.'); ?></p>
 						</div>
