@@ -61,7 +61,7 @@ function upload_form($uploadlimit, $passedalbum) {
 		<!-- This is the template that others are copied from -->
 		<div class="fileuploadbox" id="filetemplate" ><input type="file" size="40" name="files[]" value="x" /></div>
 	</div>
-	<p id="addUploadBoxes"><a href="javascript:addUploadBoxes('place','filetemplate',5)" title="<?php echo gettext("Doesn not reload!"); ?>">+ <?php echo gettext("Add more upload boxes"); ?></a> <small>
+	<p id="addUploadBoxes"><a href="javascript:addUploadBoxes('place','filetemplate',5)" title="<?php echo gettext("Does not reload!"); ?>">+ <?php echo gettext("Add more upload boxes"); ?></a> <small>
 			<?php echo gettext("(will not reload the page, but remember your upload limits!)"); ?></small></p>
 
 	<p id="fileUploadbuttons" class="buttons" style="display: none;">

@@ -95,7 +95,7 @@
 	if (getOption('comment_form_private') && !$disabled['private']) {
 		?>
 		<p>
-			<label for="private"><?php echo gettext("Private comment (don not publish)"); ?></label>
+			<label for="private"><?php echo gettext("Private comment (do not publish)"); ?></label>
 			<input type="checkbox" id="private" name="private" value="1"<?php if ($stored['private']) echo ' checked="checked"'; ?> />
 		</p>
 		<?php

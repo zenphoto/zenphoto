@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-20 16:03-0500\n"
-"PO-Revision-Date: 2014-04-20 16:35-0500\n"
+"POT-Creation-Date: 2014-04-20 16:42-0500\n"
+"PO-Revision-Date: 2014-04-20 16:43-0500\n"
 "Last-Translator: \n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "<michel@mgagnon.net>\n"
@@ -9476,7 +9476,7 @@ msgstr ""
 "0777."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/i.php:114
-msgid "The cache directory is not writable! Attempts to chmod didn not work."
+msgid "The cache directory is not writable! Attempts to chmod did not work."
 msgstr ""
 "Le dossier du cache n’est pas accessible en écriture ! Les tentatives de "
 "chmod n’ont pas abouti."
@@ -14964,7 +14964,7 @@ msgid "<strong>*</strong>Required fields"
 msgstr "<strong>*</strong> Champs obligatoires"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/comment_form/comment_form.php:98
-msgid "Private comment (don not publish)"
+msgid "Private comment (do not publish)"
 msgstr "Commentaire privé (ne pas publier)"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/comment_form/comment_form.php:109
@@ -18119,11 +18119,11 @@ msgstr "<em><strong>bool</strong></em> <code>true</var> ou <var>false</code>"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList/macroList_tab.php:37
 msgid ""
-"<em><strong>array</strong></em> an assignment list e.g. u=w</code> "
+"<em><strong>array</strong></em> an assignment list e.g. <code>u=w</code> "
 "<code>x=y</code>...."
 msgstr ""
 "<em><strong>Tableau</strong></em> : liste d’affectations – ex. <code>u=w</"
-"code> <code>x=y</code>...."
+"code> <code>x=y</code>…"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList/macroList_tab.php:39
 msgid "Parameters within braces are optional."
@@ -18752,7 +18752,7 @@ msgstr "Flux RSS à fusionner"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/mergedRSS.php:60
 msgid ""
-"Enter the full urls of the feeds to merge separated by semicolons(e.g. "
+"Enter the full urls of the feeds to merge separated by semicolons (e.g. "
 "\"http://www.domain1.com/rss; http://www.domain2.com/rss\")"
 msgstr ""
 "Saisissez les URL complètes des flux à fusionner, séparées par des points-"
@@ -22231,7 +22231,8 @@ msgid "images (%s)"
 msgstr "Images (%s)"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_http/upload_form.php:64
-msgid "Doesn not reload!"
+#, fuzzy
+msgid "Does not reload!"
 msgstr "Ne recharge pas la page !"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_http/upload_form.php:64
