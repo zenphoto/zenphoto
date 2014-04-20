@@ -20,10 +20,13 @@ zp_register_filter('admin_tabs', 'rewriteRules::tabs');
 class rewriteRules {
 
 	static function tabs($tabs) {
-		if (zp_loggedin(ADMIN_RIGHTS))
-			$tabs['rewrite'] = array('text'		 => gettext("Rewrite Rules"),
-							'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/rewriteRules/admin_tab.php?page=deprecated&amp;tab=' . gettext('rewrite'),
+		$mylink = PLUGIN_FOLDER . '/rewriteRules/admin_tab.php?page=development&amp;tab=' . gettext('rewrite');
+		if (!isset($tabs['development'])) {
+			$tabs['development'] = array('text'		 => gettext("Development"),
+							'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . $mylink,
 							'subtabs'	 => NULL);
+		}
+		$tabs['development']['subtabs'][gettext("rewrite")] = $mylink;
 		return $tabs;
 	}
 

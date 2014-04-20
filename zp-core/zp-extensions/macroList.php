@@ -81,9 +81,13 @@ if (OFFSET_PATH != 2 && zp_loggedin(ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS |
 }
 
 function macro_admin_tabs($tabs) {
-	$tabs['macros'] = array('text'		 => gettext("macros"),
-					'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/macroList/macroList_tab.php?page=macros&tab=' . gettext('macros'),
-					'subtabs'	 => NULL);
+	$mylink = PLUGIN_FOLDER . '/macroList/macroList_tab.php?page=macros&tab=' . gettext('macros');
+	if (!isset($tabs['development'])) {
+		$tabs['development'] = array('text'		 => gettext("Development"),
+						'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . $mylink,
+						'subtabs'	 => NULL);
+	}
+	$tabs['development']['subtabs'][gettext("macros")] = $mylink;
 	return $tabs;
 }
 

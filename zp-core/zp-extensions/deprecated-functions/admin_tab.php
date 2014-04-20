@@ -7,7 +7,7 @@
  */
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
-printAdminHeader('deprecated', '');
+printAdminHeader('development', gettext('deprecated'));
 
 echo "\n</head>";
 ?>
@@ -19,6 +19,7 @@ echo "\n</head>";
 		<?php printTabs(); ?>
 		<div id="content">
 			<div id="container">
+				<?php printSubtabs(); ?>
 				<div class="tabbox">
 					<h1><?php echo gettext('Deprecated Functions'); ?></h1>
 					<p>

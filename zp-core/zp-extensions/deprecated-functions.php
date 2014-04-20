@@ -101,10 +101,15 @@ class deprecated_functions {
 	}
 
 	static function tabs($tabs) {
-		if (zp_loggedin(ADMIN_RIGHTS))
-			$tabs['deprecated'] = array('text'		 => gettext("deprecated"),
-							'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions/admin_tab.php?page=deprecated&tab=' . gettext('deprecated'),
-							'subtabs'	 => NULL);
+		if (zp_loggedin(ADMIN_RIGHTS)) {
+			$mylink = PLUGIN_FOLDER . '/deprecated-functions/admin_tab.php?page=deprecated&tab=' . gettext('deprecated');
+			if (!isset($tabs['development'])) {
+				$tabs['development'] = array('text'		 => gettext("Development"),
+								'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . $mylink,
+								'subtabs'	 => NULL);
+			}
+			$tabs['development']['subtabs'][gettext("deprecated")] = $mylink;
+		}
 		return $tabs;
 	}
 
