@@ -297,7 +297,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			foreach ($zenphoto_tabs as $key => $atab) {
 				?>
 				<li <?php if ($_zp_admin_tab == $key) echo 'class="current"' ?>>
-					<a href="<?php echo html_encode($atab['link']); ?>"><?php echo html_encode($atab['text']); ?></a>
+					<a href="<?php echo html_encode($atab['link']); ?>"><?php echo html_encode(ucfirst($atab['text'])); ?></a>
 					<?php
 					$subtabs = $zenphoto_tabs[$key]['subtabs'];
 					if (is_array($subtabs)) { // don't print <ul> if there is nothing
@@ -312,7 +312,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										$link = WEBPATH . $link;
 									}
 									?>
-									<li><a href="<?php echo html_encode($link); ?>"><?php echo html_encode($key); ?></a></li>
+									<li><a href="<?php echo html_encode($link); ?>"><?php echo html_encode(ucfirst($key)); ?></a></li>
 									<?php
 								} // foreach end
 								?>
@@ -421,7 +421,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					} else {
 						$link = WEBPATH . $link;
 					}
-					echo '<li' . (($current == $tab) ? ' class="current"' : '') . '><a href="' . html_encode($link) . '">' . html_encode($key) . '</a></li>' . "\n";
+					echo '<li' . (($current == $tab) ? ' class="current"' : '') . '><a href="' . html_encode($link) . '">' . html_encode(ucfirst($key)) . '</a></li>' . "\n";
 				}
 				?>
 			</ul>
