@@ -11,7 +11,7 @@ require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/rewriteRules
 admin_securityChecks(ADMIN_RIGHTS, $return = currentRelativeURL());
 
 $list = rulesList();
-printAdminHeader('rewrite', '');
+printAdminHeader('development', gettext('rewrite'));
 echo "\n</head>";
 ?>
 <body>
@@ -20,6 +20,7 @@ echo "\n</head>";
 	<div id="main">
 		<?php printTabs(); ?>
 		<div id="content">
+			<?php printSubtabs(); ?>
 			<div id="container">
 				<div class="tabbox">
 					<h1><?php echo gettext('Rewrite Rules'); ?></h1>

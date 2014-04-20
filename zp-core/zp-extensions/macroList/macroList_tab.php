@@ -6,7 +6,7 @@
  * @subpackage admin
  */
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
-printAdminHeader('macros', '');
+printAdminHeader('development', gettext('macros'));
 
 echo "\n</head>";
 ?>
@@ -18,6 +18,7 @@ echo "\n</head>";
 		<?php printTabs(); ?>
 		<div id="content">
 			<div id="container">
+				<?php printSubtabs(); ?>
 				<div class="tabbox">
 					<h1><?php echo gettext('Content Macros'); ?></h1>
 					<?php

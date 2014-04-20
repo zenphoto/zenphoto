@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto 1.4.6 github\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-15 23:18+0100\n"
-"PO-Revision-Date: 2014-03-16 22:23+0100\n"
+"PO-Revision-Date: 2014-04-21 00:26+0100\n"
 "Last-Translator: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language-Team: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language: danish\n"
@@ -291,7 +291,7 @@ msgid ""
 "jQuerymobile.com'>jQuerymobile framework</a>."
 msgstr ""
 "Et tema der primært er for mobil/smartphone browsing idet det bruger  <a "
-"href='http://jQuerymobile.com'>jQuerymobile framework</a>."
+"href=‘http://jQuerymobile.com’>jQuerymobile framework</a>."
 
 #: /home/jes/workspace/zenphoto/themes/zpmobile/image.php:32
 #: /home/jes/workspace/zenphoto/themes/zenpage/image.php:43
@@ -777,8 +777,8 @@ msgid ""
 "<a href=\"http://angoulvant.net/\">Stephane Angoulvant</a> with "
 "modifications by Stephen Billard (sbillard)"
 msgstr ""
-"<a href=\"http://angoulvant.net/\">Stephane Angoulvant</a> med "
-"modifikationer af Stephen Billard (sbillard)"
+"<a href=\"http://angoulvant.net\">Stephane Angoulvant</a> med modifikationer "
+"af Stephen Billard (sbillard)"
 
 #: /home/jes/workspace/zenphoto/themes/effervescence_plus/theme_description.php:10
 msgid ""
@@ -912,7 +912,7 @@ msgid ""
 "<em>menu_manager</em> plugin must also be enabled."
 msgstr ""
 "<strong>Obs:</strong> Denne valgmulighed er kun mulig hvis du har "
-"<em>Galleri indexside linket</em>  sat til /\"galleri/\". <em>Menu_manager</"
+"<em>Galleri indexside linket</em>  sat til \"galleri\". <em>Menu_manager</"
 "em> skal selvfølgeligt også være aktiveret."
 
 #: /home/jes/workspace/zenphoto/themes/effervescence_plus/themeoptions.php:104
@@ -3167,7 +3167,7 @@ msgid ""
 "permissions problem. Try setting the permissions on the albums and cache "
 "folders to be world-writable using a shell:"
 msgstr ""
-"Albummet kunne ikke oprettes i 'album' mappen.Dette er normalt et problem "
+"Albummet kunne ikke oprettes i ‘album’ mappen.Dette er normalt et problem "
 "vedrørende rettigheder. Forsøg at sætte rettighederne på album og "
 "cachemapperne til at være skrivbare for alle ved hjælp af en skal:"
 
@@ -4961,7 +4961,7 @@ msgstr "Mail Send mislykkes."
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:426
 #, php-format
 msgid "Invalid \"bcc\" mail address %s."
-msgstr "Ugyldig \"bcc\" mailadresse %s."
+msgstr "Ugyldig “bcc\" mailadresse %s."
 
 #: /home/jes/workspace/zenphoto/zp-core/functions.php:452
 msgid "Mail send failed. There is no mail handler configured."
@@ -5553,7 +5553,7 @@ msgid ""
 "comment\" option is set, only users with this right may post comments."
 msgstr ""
 "Når comment_form plugin bruges til kommentarer og  \"Kun medlemmer kan "
-"kommentere\"  er valgt i instillinger, kan kun brugere med denne ret sende "
+"kommentere\" er valgt i instillinger, kan kun brugere med denne ret sende "
 "kommentarer."
 
 #: /home/jes/workspace/zenphoto/zp-core/lib-auth.php:524
@@ -6032,12 +6032,12 @@ msgstr "Fejl i behandling af rewrite regel : \"%s\""
 #: /home/jes/workspace/zenphoto/zp-core/class-gallery.php:218
 #, php-format
 msgid "Error: The 'albums' directory (%s) cannot be found."
-msgstr "Fejl: 'Albummets' mappe (%s) kan ikke findes."
+msgstr "Fejl: ‘Albummets’ mappe (%s) kan ikke findes."
 
 #: /home/jes/workspace/zenphoto/zp-core/class-gallery.php:220
 #, php-format
 msgid "Error: The 'albums' directory (%s) is not readable."
-msgstr "Fejl: 'Albummets' mappe (%s) er ikke læsbar."
+msgstr "Fejl: ‘Albummets’ mappe (%s) er ikke læsbar."
 
 #: /home/jes/workspace/zenphoto/zp-core/class-gallery.php:291
 #: /home/jes/workspace/zenphoto/zp-core/exif/exif.php:501
@@ -6507,8 +6507,7 @@ msgid ""
 "diacritical marks try changing the <em>UTF8 image URIs</em> setting."
 msgstr ""
 "Hvis du har problemer med billeder hvis navne indeholder tegn med "
-"diakritiske tegn, prøv at ændre indstillingen for <em>UTF8 billed URI'er</"
-"em>."
+"diakritiske tegn, prøv at ændre indstillingen for <em>UTF8 billed URIer</em>."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:645
 msgid ""
@@ -7113,7 +7112,7 @@ msgid ""
 "<a href=\"javascript:toggle('albumpub');\" >Details</a> for <em>publish "
 "albums by default</em>"
 msgstr ""
-"<a href=\"javascript:toggle('albumpub');\" >Detaljer</a> for "
+"<a href=\"javascript:toggle(‘albumpub’);\" >Detaljer</a> for "
 "<em>offentliggør albums som standard</em>"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1314
@@ -7130,7 +7129,7 @@ msgid ""
 "<a href=\"javascript:toggle('imagepub');\" >Details</a> for <em>publish "
 "images by default</em>"
 msgstr ""
-"<a href=\"javascript:toggle('imagepub');\" >Detaljer</a> for "
+"<a href=\"javascript:toggle(‘imagepub’);\" >Detaljer</a> for "
 "<em>offentliggør som standard billeder</em>"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1318
@@ -7147,7 +7146,7 @@ msgid ""
 "<a href=\"javascript:toggle('albumdate');\" >Details</a> for <em>use latest "
 "image date as album date</em>"
 msgstr ""
-"<a href=\"javascript:toggle('albumdate');\" >Detaljer</a> for <em>brug "
+"<a href=\"javascript:toggle(‘albumdate’);\" >Detaljer</a> for <em>brug "
 "seneste billeds dato som albumdato</em>"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1323
@@ -7172,7 +7171,7 @@ msgid ""
 "<a href=\"javascript:toggle('visualthumb');\" >Details</a> for <em>visual "
 "thumb selection</em>"
 msgstr ""
-"<a href=\"javascript:toggle('visualthumb');\" >Detaljer</a> for <em>visuel "
+"<a href=\"javascript:toggle(‘visualthumb’);\" >Detaljer</a> for <em>visuel "
 "miniaturevalg</em>"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1332
@@ -7197,7 +7196,7 @@ msgid ""
 "<a href=\"javascript:toggle('multithumb');\" >Details</a> for <em>subalbum "
 "thumb selection</em>"
 msgstr ""
-"<a href=\"javascript:toggle('multithumb');\" >Detaljer</a> for "
+"<a href=\"javascript:toggle(‘multithumb’);\" >Detaljer</a> for "
 "<em>underalbum miniaturevalg</em>"
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-options.php:1337
@@ -7733,7 +7732,7 @@ msgid ""
 "are still cached but the image processor is used to serve the image rather "
 "than allowing the browser to fetch the file."
 msgstr ""
-"Hvis markeret vil alle billed-URI'er linke til billedprocessoren og "
+"Hvis markeret vil alle billed-URIer linke til billedprocessoren og "
 "billedcachen vil blive deaktiveret for browsere via en <em>.htaccess</em>-"
 "fil. Billederne er stadig cached men billedprocessoren bruges til at servere "
 "billedet stedet for at lade browseren hente filen."
@@ -8746,7 +8745,7 @@ msgid ""
 "An error occurred while copying files. Please delete manually the new theme "
 "directory '%s' and retry or copy files manually."
 msgstr ""
-"der opstod en fejl under filkopiering. Slet den nye temamappe '%s' manuelt "
+"der opstod en fejl under filkopiering. Slet den nye temamappe ‘%s’ manuelt "
 "og prøv igen, eller kopier filerne manuelt."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:2838
@@ -8834,8 +8833,7 @@ msgid ""
 "others may manage only those that are selected."
 msgstr ""
 "Brugere med \"Admin\" eller \"Håndter alle %1$s\" rettigheder kan håndtere "
-"alle %2$s. All others may manage only those that are selected. Alle andre "
-"kan kun administrere dem, der er valgt."
+"alle %2$s. Alle andre kan kun administrere dem, der er valgt."
 
 #: /home/jes/workspace/zenphoto/zp-core/admin-functions.php:3157
 #, php-format
@@ -11297,7 +11295,7 @@ msgstr "Du bør aktivere URL indstillingen <em>UTF8 billed URI</em>."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:914
 msgid "<a href=\"javascript:uri(true)\">Please do</a>"
-msgstr "<a href=\"javascript:uri(true)\">Gør venligst</a>"
+msgstr "<a href=\"javascript:uri(true)\">Udfør venligst</a>"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:931
 msgid "You should disable the URL option <em>UTF8 image URIs</em>."
@@ -11305,7 +11303,7 @@ msgstr "Du bør deaktivere URL indstillingen <em>UTF8 billed URI</em>."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:931
 msgid "<a href=\"javascript:uri(false)\">Please do</a>"
-msgstr "<a href=\"javascript:uri(false)\">Gør venligst</a>"
+msgstr "<a href=\"javascript:uri(false)\"><Udfør venligst</a>"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:953
 #: /home/jes/workspace/zenphoto/zp-core/setup/setup-functions.php:123
@@ -11334,8 +11332,8 @@ msgid ""
 " <code>%1$s</code> support (<a onclick=\"$('#%1$s').toggle('show')\" "
 ">experimental</a>)"
 msgstr ""
-"<code>%1$s</code>support (<a onclick=\"$('#%1$s').toggle"
-"('show')\">eksperimentel</a>)"
+"<code>%1$s</code>support (<a onclick=\"$(‘#%1$s’).toggle"
+"(‘show’)\">eksperimentel</a>)"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:982
 #, php-format
@@ -11868,7 +11866,7 @@ msgstr "Setup kunne ikke lave en <em>robots.txt</em> fil."
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1566
 msgid "albums [<code>$conf['external_album_folder']</code> is deprecated]"
-msgstr "albums [<code>$conf['external_album_folder']</code> er forældet]"
+msgstr "albums [<code>$conf[‘external_album_folder’]</code> er forældet]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1566
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1590
@@ -11889,7 +11887,7 @@ msgid ""
 "<em>albums</em> folder [The line <code>\\$conf['album_folder']</code> is "
 "missing from your configuration file]"
 msgstr ""
-"<em>albums</em> mappe [Linien <code>\\$conf['album_folder']</code> mangler i "
+"<em>albums</em> mappe [Linien <code>\\$conf[‘album_folder’]</code> mangler i "
 "din konfigurationsfil]"
 
 #: /home/jes/workspace/zenphoto/zp-core/setup/index.php:1594
@@ -12711,7 +12709,7 @@ msgid ""
 "the slideshow width value will be used for the longest side of the image."
 msgstr ""
 "Den billedtype du ønsker at bruge med Colorbox. Hvis du vælger "
-"'dimensioneret billede' vil diasshowets breddeværdi blive brugt på den "
+"‘dimensioneret billede’ vil diasshowets breddeværdi blive brugt på den "
 "længste side af billedet."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/slideshow2.php:145
@@ -13487,7 +13485,7 @@ msgstr ""
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/quota_manager.php:33
 #, php-format
 msgid "<a href=\"#%1$s\"><code>%1$s</code></a> is already enabled."
-msgstr "<a href=\"#%1$s\"><code>%1$s</code></a> er altid aktiveret."
+msgstr "<a href=\"#%1$s\"><code>%1$s</code></a> er allerede aktiveret."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/quota_manager.php:73
 msgid "Default quota"
@@ -13598,7 +13596,7 @@ msgid ""
 "('print_album_menu');\"><em>print_album_menu</em></a> plugin options."
 msgstr ""
 "*Disse muligheder kan sættes via <a href=\"javascript:gotoName"
-"('print_album_menu');\"><em>print_album_menu</em></a> plugin indstillinger."
+"(‘print_album_menu’);\"><em>print_album_menu</em></a> plugin indstillinger."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/print_album_menu.php:73
 msgid ""
@@ -14440,7 +14438,7 @@ msgid ""
 "may be made responsible for this then!</p>"
 msgstr ""
 "Hvis afkrydset, vil en kopi af meddelelsen sendes til den givne adresse. <p "
-"class='notebox'> <strong>Forsigtig:</strong> Hvis du afkrydser dette må det "
+"class=‘notebox’> <strong>Forsigtig:</strong> Hvis du afkrydser dette må det "
 "på det kraftigste anbefales at bruge Captcha og bekræftelses muligheden. Vær "
 "opmærksom på, at nogen kunne misbruge den indtastede e-mail adresse  til "
 "spamming med denne formular, og at der i nogle landes jurisdiktioner (f.eks "
@@ -15466,7 +15464,7 @@ msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/simpleSpam.php:64
 msgid "Banned IPs"
-msgstr "Blokerede IP'er"
+msgstr "Blokerede IPer"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/simpleSpam.php:66
 msgid "Prevent posts from this list of IP addresses"
@@ -15716,7 +15714,7 @@ msgid ""
 "<em>password</em>* (<code>%4$s</code>).<br /><br />*For security reasons we "
 "recommend <strong>not</strong> inserting the <em>password</em>.</p>"
 msgstr ""
-"Tekst for meddelelsen i e-mailen der sendet til registranten for "
+"Tekst for meddelelsen i e-mailen der sendes til registranten for "
 "verifikation af registreringen. <p class=\"notebox\"><strong>Bemærk:</"
 "strong> Du skal inkludere <code>%1$s</code> i din meddelelse  der hvor du "
 "ønsker at linket til  <em>verifikation af registreringen</em> skal vises. Du "
@@ -15731,7 +15729,7 @@ msgid ""
 "('register_user');\"><em>register_user</em></a> plugin options."
 msgstr ""
 "* Indstillingen kan sættes via  <a href=\"javascript:gotoName"
-"('register_user');\"><em>register_user</em></a> plugin indstillingerne."
+"(‘register_user’);\"><em>register_user</em></a> plugin indstillingerne."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/register_user.php:106
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/federated_logon.php:134
@@ -16107,7 +16105,7 @@ msgid ""
 "Please see <a href='http://jplayer.org'>jplayer.org</a> for more info about "
 "the player and its license."
 msgstr ""
-"Se venligst <a href='http://jplayer.org'>jplayer.org</a> for mere "
+"Se venligst <a href=‘http://jplayer.org’>jplayer.org</a> for mere "
 "information om jplayer og dens licens."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/jplayer.php:71
@@ -16326,7 +16324,7 @@ msgid ""
 msgstr ""
 "For at afspille mediet skal du enten opdatere din browser til en nyere "
 "version eller opdatere din <a href=\"http://get.adobe.com/flashplayer/\" "
-"target=\"_blank\">Flash plugin</a>."
+"target=\"_blank\">Flash plugin</a>.”"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:15
 msgid ""
@@ -16334,7 +16332,7 @@ msgid ""
 "bxslider.com'>http://bxslider.com</a>"
 msgstr ""
 "Responsive jQuery bxSlider miniature-navigeringsplugin baseret på <a "
-"href='http://bxslider.com'>http://bxslider.com</a>"
+"href=‘http://bxslider.com’>http://bxslider.com</a>"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/bxslider_thumb_nav.php:45
 msgid "Minimum items"
@@ -16399,7 +16397,7 @@ msgstr "Verifikation indhold"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/googleVerify.php:41
 msgid "Insert the <em>content</em> portion of the meta tag supplied by Google."
-msgstr "Indsæt <em>indholdsdelen</em> af metatag'en fra Google."
+msgstr "Indsæt <em>indholdsdelen</em> af metatagen fra Google."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/publishContent.php:28
 msgid "A single place to quickly review your unpublished content."
@@ -16421,7 +16419,7 @@ msgid ""
 "php's thumbs."
 msgstr ""
 "Printer en sideinddelt miniaturenavigation i image.php, uafhængigt af albums."
-"php's miniaturer."
+"php‘s miniaturer."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:41
 msgid "Thumbs per page"
@@ -16441,7 +16439,7 @@ msgstr "Tæller"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:44
 msgid "If you want to show the counter 'x - y of z images'."
-msgstr "Om du ønsker at vise tælleren 'x - y af z billeder'."
+msgstr "Om du ønsker at vise tælleren ‘x - y af z billeder’."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:45
 msgid "Prevtext"
@@ -16548,7 +16546,7 @@ msgid ""
 "Allows only users with Admin or Manage All rights to change the publish "
 "state of objects."
 msgstr ""
-"Tillad kun brugere med Admin eller 'Administrer Alle' rettigheder  at ændre "
+"Tillad kun brugere med Admin eller ‘Administrer Alle’ rettigheder  at ændre "
 "offentliggørelsesstatus af objekter."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/admin-approval.php:39
@@ -16761,7 +16759,7 @@ msgid ""
 "('federated_logon');\"><em>register_user</em></a> plugin options."
 msgstr ""
 "* Indstillingen kan sættes via <a href=\"javascript:gotoName"
-"('federated_logon');\"><em>register_user</em></a> plugin indstillinger."
+"(‘federated_logon’);\"><em>register_user</em></a> plugin indstillinger."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/federated_logon.php:250
 #, php-format
@@ -17301,8 +17299,8 @@ msgid ""
 "* This option may be set via the <a href=\"javascript:gotoName('dynamic-"
 "locale');\"><em>dynamic-locale</em></a> plugin options."
 msgstr ""
-"Denne mulighed kan vælges via <a href=\"javascript:gotoName('dynamic-"
-"locale');\"><em>dynamic-locale</em></a> plugin indstillinger."
+"Denne mulighed kan vælges via <a href=\"javascript:gotoName(‘dynamic-"
+"locale’);\"><em>dynamic-locale</em></a> plugin indstillinger."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/tinyURL.php:17
 msgid "Provides short URLs to Zenphoto objects."
@@ -17781,7 +17779,7 @@ msgid ""
 "('menu_manager');\"><em>menu_manager</em></a> plugin options."
 msgstr ""
 "*Disse indstillinger kan sættes via <a href=\"javascript:gotoName"
-"('menu_manager');\"><em>menu_manager</em></a> plugin indstillinger."
+"(‘menu_manager’);\"><em>menu_manager</em></a> plugin indstillinger."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/menu_manager.php:72
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage.php:154
@@ -18380,7 +18378,7 @@ msgstr "Indekator for Nyhedsartikel tekstforkortning."
 msgid ""
 "Something that indicates that the article text is shortened, ' (...)' by "
 "default."
-msgstr "Noget der viser at artikelteksten er forkortet, '(...)' som standard. "
+msgstr "Noget der viser at artikelteksten er forkortet, ‘(...)’ som standard. "
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage.php:135
 msgid "The text for the link to the full article."
@@ -18391,7 +18389,7 @@ msgid ""
 "* These options may be set via the <a href=\"javascript:gotoName('zenpage');"
 "\"><em>Zenpage</em></a> plugin options."
 msgstr ""
-"*Disse indstillnger kan sættes via  <a href=\"javascript:gotoName('zenpage');"
+"*Disse indstillnger kan sættes via  <a href=\"javascript:gotoName(‘zenpage’);"
 "\"><em>Zenpage</em></a> plugin indstillinger."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage.php:185
@@ -18562,9 +18560,8 @@ msgid ""
 "If checked, the defined <em>text</em> will be used in place of the icon. "
 "(Use the class <code>textasnewflag</code> for styling \"text\" overlays.)"
 msgstr ""
-"Hvis markeret vil den definerede <em>tekst</em> blive brugt i stedet for "
-"ikon. (Brug klassen <code>textasnewflag</code> til at style \"tekst\" "
-"overdække.)"
+"If checked, the defined <em>text</em> will be used in place of the icon. "
+"(Use the class <code>textasnewflag</code> for styling \"text\" overlays.)"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/html_meta_tags.php:14
 msgid ""
@@ -18599,7 +18596,7 @@ msgid ""
 "If and how robots are allowed to visit the site. Default is 'index'. Note "
 "that you also should use a robot.txt file."
 msgstr ""
-"Hvis og hvordan robotter skal tillades at besøge sitet. Standard er 'index'. "
+"Hvis og hvordan robotter skal tillades at besøge sitet. Standard er ‘index’. "
 "Bemærk at du også bør bruge en robot.txt fil."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/html_meta_tags.php:79
@@ -18678,7 +18675,7 @@ msgid ""
 "('html_meta_tags');\"><em>html_meta_tags</em></a> plugin options."
 msgstr ""
 "* Denne indstilling kan sættes via <a href=\"javascript:gotoName"
-"('html_meta_tags');\"> <em>html_meta_tags</em></a> plugin indstillinger."
+"(‘html_meta_tags’);\"> <em>html_meta_tags</em></a> plugin indstillinger."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/seo_zenphoto.php:9
 msgid ""
@@ -18902,7 +18899,7 @@ msgid ""
 "found' error."
 msgstr ""
 "Temaer vil ikke vises i denne liste hvis et valg af dem ville resultere i en "
-"'ikke-fundet' fejl."
+"‘ikke-fundet’ fejl."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/cloneZenphoto.php:24
 msgid ""
@@ -18972,7 +18969,7 @@ msgstr ""
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/ipBlocker.php:88
 msgid "How the plugin will interpret the IP list."
-msgstr "Hvordan fortolker plugin'et IP-listen."
+msgstr "Hvordan fortolker pluginet IP-listen."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/ipBlocker.php:89
 msgid "Logon threshold"
@@ -19219,8 +19216,8 @@ msgid ""
 "* This option may be set via the <a href=\"javascript:gotoName('sitemap-"
 "extended');\"><em>sitemap-extended</em></a> plugin options."
 msgstr ""
-"* Denne indstilling kan sættes via <a href=\"javascript:gotoName('sitemap-"
-"extended');\"> <em>sitemap-extended</em></a> plugin indstillinger."
+"* Denne indstilling kan sættes via <a href=\"javascript:gotoName(‘sitemap-"
+"extended’);\"> <em>sitemap-extended</em></a> plugin indstillinger."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/sitemap-extended.php:201
 msgid "Sitemap tools"
@@ -19817,7 +19814,7 @@ msgid ""
 "field manually. Note this works on server time!"
 msgstr ""
 "<em> Planlagt udgivelse:</em> For at udgive en side/nyhedsaktikel automatisk "
-"i fremtiden , sæt den til 'publiceret' og indtast en fremtidig dato i "
+"i fremtiden , sæt den til ‘publiceret’ og indtast en fremtidig dato i "
 "datofeltet. Bemærk at dette bruger server-tiden!"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:399
@@ -19873,7 +19870,7 @@ msgid ""
 "Hint: If you need more space for your text use TinyMCE's full screen mode "
 "(Click the expend icon of editor's control bar, near ZP icon)."
 msgstr ""
-"Tip: Hvis du behøver mere plads til din tekst, brug TinyMCE's fuldskærm "
+"Tip: Hvis du behøver mere plads til din tekst, brug TinyMCEs fuldskærm "
 "tilstand (klik udvid-ikonet i editorens kontrolbjælke, nær ZP-ikonet)."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:419
@@ -20157,7 +20154,7 @@ msgid ""
 "Use getContentShorten() instead. Note the read more url must be passed "
 "directly."
 msgstr ""
-"Brug getContentShorten() i stedet. Bemærk at 'læs mere'-url skal angives "
+"Brug getContentShorten() i stedet. Bemærk at ‘læs mere’-url skal angives "
 "direkte."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:408
@@ -21215,11 +21212,11 @@ msgstr "Søgeudtryk brugt"
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/search_statistics/search_analysis.php:237
 #, php-format
 msgid "Top %u Search IPs"
-msgstr "Top %u søge-IP'er"
+msgstr "Top %u søge-IPer"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/search_statistics/search_analysis.php:239
 msgid "Search IPs"
-msgstr "Søge-IP'er"
+msgstr "Søge-IPer"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/search_statistics/search_analysis.php:271
 msgid "Change <em>Threshold</em> values"
@@ -21241,7 +21238,7 @@ msgid ""
 "menuset.)"
 msgstr ""
 "Dette tilføjer menuelementer for alle Zenphoto objekter. (Det opretter et "
-"\"standard\" menusæt.)"
+"\"Standard\" menusæt.)"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:69
 msgid "This is the normal Zenphoto gallery Index page."
@@ -21424,17 +21421,17 @@ msgstr "Menupunkt slettet"
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:61
 #, php-format
 msgid "Menu '%s' deleted"
-msgstr "Menu '%s' slettet"
+msgstr "Menu ‘%s‘ slettet"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:73
 #, php-format
 msgid "Menu '%s' duplicated"
-msgstr "Menu '%s' dublikeret"
+msgstr "Menu ‘%s’ dublikeret"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:75
 #, php-format
 msgid "Menu '%s' already exists"
-msgstr "Menu '%s' eksisterer allerede"
+msgstr "Menu ‘%s’ eksisterer allerede"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:103
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:109
@@ -22192,7 +22189,7 @@ msgstr ""
 "Vælg <em>sider</em>, <em>artikler</em> eller <em>kategorier</em> for at vise "
 "en liste af disse elementer. Klik på en titel for at inkludere et link. Svæv "
 "over linket for at se et udrag af siden eller artiklen. Ikke-publicerede "
-"sider eller artikler er markeret med en '*' og beskyttede med et '+'. Der er "
+"sider eller artikler er markeret med en ‘*’ og beskyttede med et ‘+’. Der er "
 "ikke flere indstillinger."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:187
@@ -22206,7 +22203,7 @@ msgid ""
 msgstr ""
 "Vælg et album der skal indeholde billeder fra til din side eller artikel. "
 "Klik på et billede for at inkludere det. Ikke-publicerede albums eller "
-"billeder er markerede med en '*'. Du kan også klikke på forstørrelsesglas-"
+"billeder er markerede med en ‘*’. Du kan også klikke på forstørrelsesglas-"
 "ikonen for at se en forvisning af elementet. (Forvisningen åbner i en "
 "Colorbox der viser frontend-temaets visning.) Den første miniature er altid "
 "miniaturen for det valgte album. Det har titlen <em>Albumminiature</em> og "
@@ -22332,7 +22329,7 @@ msgid ""
 msgstr ""
 "TinyZenpage tilføjer også en standard CSS klasse til billedet (hvis billed "
 "er valgt) så det styles med dit temas CSS. Hvis du vælger venstre eller "
-"højre justeret tilføjes '_left' eller '_right':"
+"højre justeret tilføjes ‘_left’ eller ‘_right’:"
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:236
 msgid ""
@@ -22376,7 +22373,7 @@ msgid ""
 "description."
 msgstr ""
 "Hvis du oveni har afkrydset <em>Vis titel</em> eller <em>Vis beskrivelse</"
-"em> for et billede eller album omgiver div'en med klassen "
+"em> for et billede eller album omgiver diven med klassen "
 "<em>zenpagte_wrapper</em> billede og link. Indenfor dette, efter billede og "
 "link, er en div med klassen <em>zenpage_title</em> omgivede titlen, "
 "respektive <em>zenpage_desc</em> omgivende beskrivelsen."
@@ -22400,7 +22397,7 @@ msgid ""
 "page using Colorbox or similar *box scripts."
 msgstr ""
 "Originalbillede-link: <em>zenpage_fullimagelink</em>. Derudover tilføjes "
-"<em>rel='colorbox'</em> så du kan gå gennem alle billederne på en side med "
+"<em>rel=‘colorbox’</em> så du kan gå gennem alle billederne på en side med "
 "hjælp af Colorbox eller lignende *box scripts."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:248
@@ -23194,8 +23191,8 @@ msgid ""
 "maximum length of a URL</a>."
 msgstr ""
 "For information om URL begrænsninger se <a href=\"javascript:parent.window."
-"location='http://www.boutell.com/newfaq/misc/urllength.html';\">What is the "
-"maximum length of a URL</a>."
+"location=‘http://www.boutell.com/newfaq/misc/urllength.html’;\">Hvad er "
+"maximum længden af en URL</a>."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/GoogleMap/Map.php:110
 msgid ""
@@ -23214,8 +23211,8 @@ msgid ""
 "Enable the <a href=\"javascript:parent.window.location=%s;\">GoogleMap "
 "option</a> <em>Map sessions</em>."
 msgstr ""
-"Aktiver <a href=\"javascript:parent.window.location=%s;\">GoogleMap "
-"indstillinger</a> <em>Map sessions</em>."
+"Enable the <a href=\"javascript:parent.window.location=%s;\">GoogleMap "
+"option</a> <em>Map sessions</em>."
 
 #: /home/jes/workspace/zenphoto/zp-core/zp-extensions/GoogleMap/Map.php:122
 msgid "Reduce the number of <em>points</em> being displayed"

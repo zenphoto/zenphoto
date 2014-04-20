@@ -8,12 +8,12 @@
  */
 /* * ********************************************* */
 /* ZENPAGE TEMPLATE FUNCTIONS
-  /*********************************************** */
+	/*********************************************** */
 
 
 /* * ********************************************* */
 /* General functions
-  /*********************************************** */
+	/*********************************************** */
 
 /**
  * Checks if the current page is in news context.
@@ -117,7 +117,7 @@ function getAuthor($fullname = false) {
 
 /* * ********************************************* */
 /* News article functions
-  /*********************************************** */
+	/*********************************************** */
 
 /**
  * Gets the latest news either only news articles or with the latest images or albums
@@ -281,7 +281,6 @@ function next_news() {
 		Zenpage_internal_deprecations::next_news();
 	}
 
-	$_zp_current_zenpage_news_restore = $_zp_current_zenpage_news;
 	if (is_null($_zp_zenpage_articles)) {
 		if (in_context(ZP_SEARCH)) {
 			//note: we do not know how to paginate the search page, so for now we will return all news articles
@@ -296,29 +295,17 @@ function next_news() {
 				return NULL;
 			}
 		}
-		while (!empty($_zp_zenpage_articles)) {
-			$news = array_shift($_zp_zenpage_articles);
-			if (is_array($news)) {
-				add_context(ZP_ZENPAGE_NEWS_ARTICLE);
-				$_zp_current_zenpage_news = new ZenpageNews($news['titlelink']);
-				return true;
-			} else {
-				break;
-			}
-		}
-	} else {
-		$_zp_current_zenpage_news = NULL;
-		while (!empty($_zp_zenpage_articles)) {
-			$news = array_shift($_zp_zenpage_articles);
-			if (is_array($news)) {
-				add_context(ZP_ZENPAGE_NEWS_ARTICLE);
-				$_zp_current_zenpage_news = new ZenpageNews($news['titlelink']);
-				return true;
-			} else {
-				break;
-			}
+		$_zp_current_zenpage_news_restore = $_zp_current_zenpage_news;
+	}
+	if (!empty($_zp_zenpage_articles)) {
+		$news = array_shift($_zp_zenpage_articles);
+		if (is_array($news)) {
+			add_context(ZP_ZENPAGE_NEWS_ARTICLE);
+			$_zp_current_zenpage_news = new ZenpageNews($news['titlelink']);
+			return true;
 		}
 	}
+
 	$_zp_zenpage_articles = NULL;
 	$_zp_current_zenpage_news = $_zp_current_zenpage_news_restore;
 	rem_context(ZP_ZENPAGE_NEWS_ARTICLE);
@@ -845,7 +832,7 @@ function printAllNewsCategories($newsindex = 'All news', $counter = TRUE, $css_i
 
 /* * ********************************************* */
 /* News article URL functions
-  /*********************************************** */
+	/*********************************************** */
 
 /**
  * Returns the full path to a news category
@@ -927,7 +914,7 @@ function getNewsArchivePath($date, $page) {
 
 /* * ********************************************************* */
 /* News index / category / date archive pagination functions
-  /********************************************************** */
+	/********************************************************** */
 
 function getNewsPathNav($page) {
 	global $_zp_current_category, $_zp_post_date;
@@ -1115,7 +1102,7 @@ function getTotalNewsPages() {
 
 /* * ********************************************************************* */
 /* Single news article pagination functions (previous and next article)
-  /*********************************************************************** */
+	/*********************************************************************** */
 
 /**
  * Returns the title and the titlelink of the next or previous article in single news article pagination as an array
@@ -1212,7 +1199,7 @@ function printPrevNewsLink($prev = "« ", $sortorder = 'date', $sortdirection = 
 
 /* * ******************************************************* */
 /* Functions - shared by Pages and News articles
-  /********************************************************* */
+	/********************************************************* */
 
 /**
  * Gets the statistic for pages, news articles or categories as an unordered list
@@ -1739,7 +1726,7 @@ function printZenpageItemsBreadcrumb($before = NULL, $after = NULL) {
 
 /* * ********************************************* */
 /* Pages functions
-  /*********************************************** */
+	/*********************************************** */
 $_zp_zenpage_pagelist = NULL;
 
 /**
@@ -2200,7 +2187,7 @@ function checkForPage($titlelink) {
 
 /* * ********************************************* */
 /* Comments
-  /*********************************************** */
+	/*********************************************** */
 
 /**
  * Gets latest comments for news articles and pages
