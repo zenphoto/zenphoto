@@ -80,7 +80,7 @@ class ThemeOptions {
 			$pages = $_zp_zenpage->getPages(false);
 			$list = array();
 			foreach ($pages as $page) {
-				$list[strip_tags($page['title'])] = $page['titlelink'];
+				$list[getBare($page['title'])] = $page['titlelink'];
 			}
 			$options[gettext('Custom Homepage')] = array('key'						 => 'garland_customHome', 'type'					 => OPTION_TYPE_SELECTOR,
 							'selections'		 => $list,

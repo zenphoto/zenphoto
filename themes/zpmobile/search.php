@@ -1,4 +1,5 @@
-<?php if (!defined('WEBPATH'))
+<?php
+if (!defined('WEBPATH'))
 	die();
 ?>
 <!DOCTYPE html>
@@ -85,7 +86,7 @@
 									?>
 									<li<?php printZDToggleClass('pages', $c, $number_to_show); ?>>
 										<h4><?php printPageURL(); ?></h4>
-										<p class="zenpageexcerpt"><?php echo shortenContent(strip_tags(getPageContent()), 80, getOption("zenpage_textshorten_indicator")); ?></p>
+										<p class="zenpageexcerpt"><?php echo shortenContent(getBare(getPageContent()), 80, getOption("zenpage_textshorten_indicator")); ?></p>
 									</li>
 									<?php
 								}
@@ -105,7 +106,7 @@
 									?>
 									<li<?php printZDToggleClass('news', $c, $number_to_show); ?>>
 										<h4><?php printNewsURL(); ?></h4>
-										<p class="zenpageexcerpt"><?php echo shortenContent(strip_tags(getNewsContent()), 80, getOption("zenpage_textshorten_indicator")); ?></p>
+										<p class="zenpageexcerpt"><?php echo shortenContent(getBare(getNewsContent()), 80, getOption("zenpage_textshorten_indicator")); ?></p>
 									</li>
 									<?php
 								}
@@ -166,10 +167,10 @@
 
 				</div>
 				<div class="content-secondary">
-			<?php jqm_printMenusLinks(); ?>
+<?php jqm_printMenusLinks(); ?>
 				</div>
 			</div><!-- /content -->
-		<?php jqm_printBacktoTopLink(); ?>
+			<?php jqm_printBacktoTopLink(); ?>
 		<?php jqm_printFooterNav(); ?>
 		</div><!-- /page -->
 <?php zp_apply_filter('theme_body_close'); ?>

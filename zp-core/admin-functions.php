@@ -120,7 +120,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			}
 			?>
 			<title><?php echo sprintf(gettext('%1$s %2$s: %3$s%4$s'), html_encode($_zp_gallery->getTitle()), gettext('admin'), html_encode($tabtext), html_encode($subtabtext)); ?></title>
-			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.js" type="text/javascript"></script>
+			<?php echo JQUERY_SCRIPT; ?>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui-zenphoto.js" type="text/javascript"></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zenphoto.js" type="text/javascript" ></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/admin.js" type="text/javascript" ></script>
@@ -136,13 +136,13 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$("a.colorbox").colorbox({
 							maxWidth: "98%",
 							maxHeight: "98%",
-							close: '<?php echo gettext("close"); ?>'
+							close: '<?php echo addslashes(gettext("close")); ?>'
 						});
 
 		<?php
 	}
 	?>
-					$('form.dirty-check').areYouSure({'message': '<?php echo gettext('You have unsaved changes!'); ?>'});
+					$('form.dirty-check').areYouSure({'message': '<?php echo addslashes(gettext('You have unsaved changes!')); ?>'});
 				});
 				$(function() {
 					$(".tooltip ").tooltip({
@@ -297,7 +297,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			foreach ($zenphoto_tabs as $key => $atab) {
 				?>
 				<li <?php if ($_zp_admin_tab == $key) echo 'class="current"' ?>>
-					<a href="<?php echo html_encode($atab['link']); ?>"><?php echo html_encode($atab['text']); ?></a>
+					<a href="<?php echo html_encode($atab['link']); ?>"><?php echo html_encode(ucfirst($atab['text'])); ?></a>
 					<?php
 					$subtabs = $zenphoto_tabs[$key]['subtabs'];
 					if (is_array($subtabs)) { // don't print <ul> if there is nothing
@@ -312,7 +312,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										$link = WEBPATH . $link;
 									}
 									?>
-									<li><a href="<?php echo html_encode($link); ?>"><?php echo html_encode($key); ?></a></li>
+									<li><a href="<?php echo html_encode($link); ?>"><?php echo html_encode(ucfirst($key)); ?></a></li>
 									<?php
 								} // foreach end
 								?>
@@ -421,7 +421,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					} else {
 						$link = WEBPATH . $link;
 					}
-					echo '<li' . (($current == $tab) ? ' class="current"' : '') . '><a href="' . html_encode($link) . '">' . html_encode($key) . '</a></li>' . "\n";
+					echo '<li' . (($current == $tab) ? ' class="current"' : '') . '><a href="' . html_encode($link) . '">' . html_encode(ucfirst($key)) . '</a></li>' . "\n";
 				}
 				?>
 			</ul>
@@ -1082,15 +1082,20 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<script>
 				$(function() {
 					$("#resizable_<?php echo $postit; ?>").resizable({
+		<?php
+		if (is_bool($resizeable)) {
+			?>
 						maxWidth: 250,
-						minWidth: 250,
-						minHeight: 120,
-						resize: function(event, ui) {
-							$('#list_<?php echo $postit; ?>').height($('#resizable_<?php echo $postit; ?>').height());
-						}
-					});
+			<?php
+		}
+		?>
+					minWidth: 250,
+									minHeight: 120,
+									resize: function(event, ui) {
+									$('#list_<?php echo $postit; ?>').height($('#resizable_<?php echo $postit; ?>').height());
+									}
 				});
-			</script>
+				});</script>
 			<?php
 		} else {
 			$tagclass = 'tagchecklist';
@@ -1107,7 +1112,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<?php
 		}
 		?>
-		<div id="resizable_<?php echo $postit; ?>">
+		<div id="resizable_<?php echo $postit; ?>" class="tag_div">
 			<ul id="list_<?php echo $postit; ?>" class="<?php echo $tagclass; ?>">
 				<?php
 				if ($showCounts) {
@@ -1188,7 +1193,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					<?php
 					if (!$album->isDynamic()) {
 						?>
-						<button type="button" title="<?php echo gettext('New subalbum'); ?>" onclick="javascript:newAlbum('<?php echo pathurlencode($album->name); ?>', true);">
+						<button type="button" title="<?php echo addslashes(gettext('New subalbum')); ?>" onclick="javascript:newAlbum('<?php echo pathurlencode($album->name); ?>', true);">
 							<img src="images/folder.png" alt="" />
 							<strong><?php echo gettext('New subalbum'); ?></strong>
 						</button>
@@ -1263,7 +1268,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									} else {
 										$x = '          ';
 										?>
-										<a onclick="resetPass('<?php echo $suffix; ?>');" title="<?php echo gettext('clear password'); ?>"><img src="images/lock.png" /></a>
+										<a onclick="resetPass('<?php echo $suffix; ?>');" title="<?php echo addslashes(gettext('clear password')); ?>"><img src="images/lock.png" /></a>
 										<?php
 									}
 									?>
@@ -1278,7 +1283,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
 																onclick="passwordClear('<?php echo $suffix; ?>');
-																				togglePassword('<?php echo $suffix; ?>');" /><?php echo gettext('Show password'); ?></label>
+																				togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
 								</td>
 								<td>
 									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
@@ -1339,7 +1344,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 											dateFormat: 'yy-mm-dd',
 											showOn: 'button',
 											buttonImage: 'images/calendar.png',
-											buttonText: '<?php echo gettext('calendar'); ?>',
+											buttonText: '<?php echo addslashes(gettext('calendar')); ?>',
 											buttonImageOnly: true
 										});
 									});
@@ -1724,7 +1729,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									dateFormat: 'yy-mm-dd',
 									showOn: 'button',
 									buttonImage: '../zp-core/images/calendar.png',
-									buttonText: '<?php echo gettext("calendar"); ?>',
+									buttonText: '<?php echo addslashes(gettext("calendar")); ?>',
 									buttonImageOnly: true
 								});
 								$('#<?php echo $prefix; ?>publishdate').change(function() {
@@ -1816,7 +1821,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<?php echo gettext('Album will be deleted when changes are applied.'); ?>
 							<br class="clearall" />
 							<p class="buttons">
-								<a	href="javascript:toggleAlbumMCR('<?php echo $prefix; ?>', '');"><img src="images/reset.png" alt="" /><?php echo gettext("Cancel"); ?></a>
+								<a	href="javascript:toggleAlbumMCR('<?php echo $prefix; ?>', '');"><img src="images/reset.png" alt="" /><?php echo addslashes(gettext("Cancel")); ?></a>
 							</p>
 						</div>
 						<div id="a-<?php echo $prefix; ?>movecopydiv" style="padding-top: .5em; padding-left: .5em; display: none;">
@@ -1853,7 +1858,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							</select>
 							<br class="clearall" /><br />
 							<p class="buttons">
-								<a href="javascript:toggleAlbumMCR('<?php echo $prefix; ?>', '');"><img src="images/reset.png" alt="" /><?php echo gettext("Cancel"); ?></a>
+								<a href="javascript:toggleAlbumMCR('<?php echo $prefix; ?>', '');"><img src="images/reset.png" alt="" /><?php echo addslashes(gettext("Cancel")); ?></a>
 							</p>
 						</div>
 						<div id="a-<?php echo $prefix; ?>renamediv" style="padding-top: .5em; padding-left: .5em; display: none;">
@@ -1861,7 +1866,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<input name="a-<?php echo $prefix; ?>renameto" type="text" value="<?php echo basename($album->name); ?>"/><br />
 							<br class="clearall" />
 							<p class="buttons">
-								<a href="javascript:toggleAlbumMCR('<?php echo $prefix; ?>', '');"><img src="images/reset.png" alt="" /><?php echo gettext("Cancel"); ?></a>
+								<a href="javascript:toggleAlbumMCR('<?php echo $prefix; ?>', '');"><img src="images/reset.png" alt="" /><?php echo addslashes(gettext("Cancel")); ?></a>
 							</p>
 						</div>
 						<span class="clearall" ></span>
@@ -1921,7 +1926,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					<?php
 					if (!$album->isDynamic()) {
 						?>
-						<button type="button" title="<?php echo gettext('New subalbum'); ?>" onclick="javascript:newAlbum('<?php echo pathurlencode($album->name); ?>', true);">
+						<button type="button" title="<?php echo addslashes(gettext('New subalbum')); ?>" onclick="javascript:newAlbum('<?php echo pathurlencode($album->name); ?>', true);">
 							<img src="images/folder.png" alt="" />
 							<strong><?php echo gettext('New subalbum'); ?></strong>
 						</button>
@@ -1949,12 +1954,12 @@ function printAdminHeader($tab, $subtab = NULL) {
 	function printAlbumButtons($album) {
 		if ($imagcount = $album->getNumImages() > 0) {
 			?>
-			<div class="button buttons tooltip" title="<?php echo gettext("Clears the album's cached images."); ?>">
+			<div class="button buttons tooltip" title="<?php echo addslashes(gettext("Clears the album’s cached images.")); ?>">
 				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?action=clear_cache&amp;album=' . html_encode($album->name); ?>&amp;XSRFToken=<?php echo getXSRFToken('clear_cache'); ?>">
 					<img src="images/edit-delete.png" /><?php echo gettext('Clear album image cache'); ?></a>
 				<br class="clearall" />
 			</div>
-			<div class="button buttons tooltip" title="<?php echo gettext("Resets album's hit counters."); ?>">
+			<div class="button buttons tooltip" title="<?php echo gettext("Resets album’s hit counters."); ?>">
 				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?action=reset_hitcounters&amp;album=' . html_encode($album->name) . '&amp;albumid=' . $album->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter'); ?>">
 					<img src="images/reset.png" /><?php echo gettext('Reset album hit counters'); ?></a>
 				<br class="clearall" />
@@ -2051,7 +2056,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					<a href="?page=edit&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>" title="<?php echo sprintf(gettext('Edit this album: %s'), $album->name); ?>">
 						<?php
 					}
-					echo strip_tags($album->getTitle());
+					echo getBare($album->getTitle());
 					if ($enableEdit) {
 						?>
 					</a>
@@ -2694,7 +2699,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @return string
 	 */
 	function commentReply($str, $name, $albumtitle, $imagetitle) {
-		$str = "$name commented on $imagetitle in the album $albumtitle: %0D%0A%0D%0A" . implode('%0D%0A', explode('\n', wordwrap(strip_tags($str), 75, '\n')));
+		$str = "$name commented on $imagetitle in the album $albumtitle: %0D%0A%0D%0A" . implode('%0D%0A', explode('\n', wordwrap(getBare($str), 75, '\n')));
 		return $str;
 	}
 
@@ -2787,12 +2792,12 @@ function printAdminHeader($tab, $subtab = NULL) {
 
 		// If the target theme already exists, nothing to do.
 		if (is_dir($target)) {
-			return gettext('Cannot create new theme.') . ' ' . sprintf(gettext('Directory "%s" already exists!'), basename($target));
+			return gettext('Cannot create new theme.') . ' ' . sprintf(gettext('Directory “%s” already exists!'), basename($target));
 		}
 
 		// If source dir is missing, exit too
 		if (!is_dir($source)) {
-			return gettext('Cannot create new theme.') . ' ' . sprintf(gettext('Cannot find theme directory "%s" to copy!'), basename($source));
+			return gettext('Cannot create new theme.') . ' ' . sprintf(gettext('Cannot find theme directory “%s” to copy!'), basename($source));
 		}
 
 		// We must be able to write to the themes dir.
@@ -2834,7 +2839,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		foreach ($source_files as $file) {
 			$newfile = str_replace($source, $target, $file);
 			if (!copy("$file", "$newfile"))
-				return sprintf(gettext("An error occurred while copying files. Please delete manually the new theme directory '%s' and retry or copy files manually."), basename($target));
+				return sprintf(gettext("An error occurred while copying files. Please delete manually the new theme directory “%s” and retry or copy files manually."), basename($target));
 			@chmod("$newfile", FOLDER_MOD);
 		}
 
@@ -4166,16 +4171,12 @@ function XSRFdefender($action) {
 		zp_apply_filter('admin_XSRF_access', false, $action);
 		header("HTTP/1.0 302 Found");
 		header("Status: 302 Found");
-		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&error&msg=' . sprintf(gettext('"%s" Cross Site Request Forgery blocked.'), $action));
+		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&error&msg=' . sprintf(gettext('“%s” Cross Site Request Forgery blocked.'), $action));
 		exitZP();
 	}
 	unset($_REQUEST['XSRFToken']);
-	if (isset($_POST['XSRFToken'])) {
-		unset($_POST['XSRFToken']);
-	}
-	if (isset($_GET['XSRFToken'])) {
-		unset($_GET['XSRFToken']);
-	}
+	unset($_POST['XSRFToken']);
+	unset($_GET['XSRFToken']);
 }
 
 /**

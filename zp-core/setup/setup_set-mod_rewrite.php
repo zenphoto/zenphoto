@@ -13,15 +13,15 @@ require_once(dirname(__FILE__) . '/setup-functions.php');
 
 $mod_rewrite = MOD_REWRITE;
 if (is_null($mod_rewrite)) {
-	$msg = gettext('The Zenphoto option "mod_rewrite" will be set to "enabled".');
+	$msg = gettext('The Zenphoto option “mod_rewrite” will be set to “enabled”.');
 	setOption('mod_rewrite', 1);
 } else if ($mod_rewrite) {
-	$msg = gettext('The Zenphoto option "mod_rewrite" is "enabled".');
+	$msg = gettext('The Zenphoto option “mod_rewrite” is “enabled”.');
 } else {
-	$msg = gettext('The Zenphoto option "mod_rewrite" is "disabled".');
+	$msg = gettext('The Zenphoto option “mod_rewrite” is “disabled”.');
 }
 setOption('mod_rewrite_detected', 1);
-setupLog(gettext('Notice: "Module mod_rewrite" is working.') . ' ' . $msg, true);
+setupLog(gettext('Notice: “Module mod_rewrite” is working.') . ' ' . $msg, true);
 
 $fp = fopen(SERVERPATH . '/' . ZENFOLDER . '/images/pass.png', 'rb');
 // send the right headers

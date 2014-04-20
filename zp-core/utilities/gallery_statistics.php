@@ -22,7 +22,7 @@ $buttonlist[] = array(
 				'formname'		 => 'gallery_statistics.php',
 				'action'			 => 'utilities/gallery_statistics.php',
 				'icon'				 => 'images/bar_graph.png',
-				'title'				 => gettext('Shows statistical graphs and info about your gallery\'s images and albums.'),
+				'title'				 => gettext('Shows statistical graphs and info about your gallery’s images and albums.'),
 				'alt'					 => '',
 				'hidden'			 => '',
 				'rights'			 => ADMIN_RIGHTS
@@ -199,7 +199,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 					foreach ($allalbums as $album) {
 						$albumobj = newAlbum($album['folder']);
 						if ($albumobj->loaded) {
-							$albumentry = array("id"					 => $albumobj->getID(), "title"				 => $albumobj->getTitle(), "folder"			 => $albumobj->name, "imagenumber"	 => $albumobj->getNumImages(), "show"				 => $albumobj->getShow());
+							$albumentry = array("id" => $albumobj->getID(), "title" => $albumobj->getTitle(), "folder" => $albumobj->name, "imagenumber" => $albumobj->getNumImages(), "show" => $albumobj->getShow());
 							array_unshift($albums, $albumentry);
 						}
 					}
@@ -557,7 +557,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 				</ul>
 
 				<?php
-				if (!isset($_GET['stats']) AND !isset($_GET['fulllist'])) {
+				if (!isset($_GET['stats']) AND ! isset($_GET['fulllist'])) {
 					?>
 					<ul class="statistic_navlist">
 						<li><strong><?php echo gettext("Images"); ?></strong>

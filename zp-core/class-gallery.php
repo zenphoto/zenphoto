@@ -57,7 +57,7 @@ class Gallery {
 	 * @return string
 	 */
 	function getBareTitle($locale = NULL) {
-		return strip_tags($this->getTitle($locale));
+		return getBare($this->getTitle($locale));
 	}
 
 	function setTitle($title) {
@@ -215,9 +215,9 @@ class Gallery {
 		$dir = opendir($albumdir);
 		if (!$dir) {
 			if (!is_dir($albumdir)) {
-				$msg .= sprintf(gettext('Error: The \'albums\' directory (%s) cannot be found.'), $this->albumdir);
+				$msg .= sprintf(gettext('Error: The “albums” directory (%s) cannot be found.'), $this->albumdir);
 			} else {
-				$msg .= sprintf(gettext('Error: The \'albums\' directory (%s) is not readable.'), $this->albumdir);
+				$msg .= sprintf(gettext('Error: The “albums” directory (%s) is not readable.'), $this->albumdir);
 			}
 			zp_error($msg);
 		}
@@ -301,7 +301,7 @@ class Gallery {
 
 	/**
 	 * Returns the foldername of the current theme.
-	 * if no theme is set, returns "default".
+	 * if no theme is set, picks the "first" theme.
 	 * @return string
 	 */
 	function getCurrentTheme() {

@@ -12,7 +12,6 @@ require_once(SERVERPATH . '/' . ZENFOLDER . '/functions-config.php');
 admin_securityChecks(OPTIONS_RIGHTS, currentRelativeURL());
 
 define('PLUGINS_PER_PAGE', max(1, getOption('plugins_per_page')));
-define('PLUGINS_PER_PAGE_OPTIONS', max(1, getOption('plugins_per_page_options')));
 if (isset($_GET['subpage'])) {
 	$subpage = sanitize_numeric($_GET['subpage']);
 } else {
@@ -116,7 +115,6 @@ if (isset($_GET['action'])) {
 			setOption('site_email_name', process_language_string_save('site_email_name', 3));
 			setOption('users_per_page', sanitize_numeric($_POST['users_per_page']));
 			setOption('plugins_per_page', sanitize_numeric($_POST['plugins_per_page']));
-			setOption('plugins_per_page_options', sanitize_numeric($_POST['plugins_per_page_options']));
 			if (isset($_POST['articles_per_page'])) {
 				setOption('articles_per_page', sanitize_numeric($_POST['articles_per_page']));
 			}
@@ -615,7 +613,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											<input type="text" size="3" name="time_offset" value="<?php echo html_encode($offset); ?>" />
 										</td>
 										<td>
-											<p><?php echo gettext("If you're in a different time zone from your server, set the offset in hours of your time zone from that of the server. For instance if your server is on the US East Coast (<em>GMT</em> - 5) and you are on the Pacific Coast (<em>GMT</em> - 8), set the offset to 3 (-5 - (-8))."); ?></p>
+											<p><?php echo gettext("If you are in a different time zone from your server, set the offset in hours of your time zone from that of the server. For instance if your server is on the US East Coast (<em>GMT</em> - 5) and you are on the Pacific Coast (<em>GMT</em> - 8), set the offset to 3 (-5 - (-8))."); ?></p>
 										</td>
 										<?php
 									}
@@ -647,7 +645,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									</td>
 									<td>
 										<p>
-											<?php echo gettext("If you have Apache <em>mod rewrite</em> (or equivalent), put a checkmark on the <em>mod rewrite</em> option and you'll get nice cruft-free URLs."); ?>
+											<?php echo gettext("If you have Apache <em>mod rewrite</em> (or equivalent), put a checkmark on the <em>mod rewrite</em> option and you will get nice cruft-free URLs."); ?>
 											<?php echo sprintf(gettext('The <em>tokens</em> used in rewritten URIs may be altered to your taste. See the <a href="%s">plugin options</a> for <code>rewriteTokens</code>.'), WEBPATH . '/' . ZENFOLDER . '/admin-options.php?page=options&tab=plugin&single=rewriteTokens'); ?>
 											<?php
 											if (!getOption('mod_rewrite_detected'))
@@ -777,7 +775,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									</td>
 									<td>
 										<p><?php echo gettext("You can disable languages by unchecking their checkboxes. Only checked languages will be available to the installation."); ?></p>
-										<p><?php echo gettext("Select the preferred language to display text in. (Set to <em>HTTP_Accept_Language</em> to use the language preference specified by the viewer's browser.)"); ?></p>
+										<p><?php echo gettext("Select the preferred language to display text in. (Set to <em>HTTP_Accept_Language</em> to use the language preference specified by the viewer’s browser.)"); ?></p>
 										<p><?php echo gettext("Set <em>Multi-lingual</em> to enable multiple language input for options that provide theme text."); ?></p>
 
 									</td>
@@ -970,7 +968,6 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td width="175">
 										<p><?php echo gettext("Users per page:"); ?></p>
 										<p><?php echo gettext("Plugins per page:"); ?></p>
-										<p><?php echo gettext("Plugins per page (Options):"); ?></p>
 										<?php
 										if (extensionEnabled('zenpage')) {
 											?>
@@ -983,8 +980,6 @@ Zenphoto_Authority::printPasswordFormJS();
 										<input type="text" size="5" id="users_per_page" name="users_per_page"  value="<?php echo getOption('users_per_page'); ?>" />
 										<br />
 										<input type="text" size="5" id="plugins_per_page" name="plugins_per_page"  value="<?php echo getOption('plugins_per_page'); ?>" />
-										<br />
-										<input type="text" size="5" id="plugins_per_page_options" name="plugins_per_page_options"  value="<?php echo getOption('plugins_per_page_options'); ?>" />
 										<?php
 										if (extensionEnabled('zenpage')) {
 											?>
@@ -1357,7 +1352,7 @@ Zenphoto_Authority::printPasswordFormJS();
 
 										<p><?php echo gettext("<a href=\"javascript:toggle('visualthumb');\" >Details</a> for <em>visual thumb selection</em>"); ?></p>
 										<div id="visualthumb" style="display: none">
-											<p><?php echo gettext("Setting this option places thumbnails in the album thumbnail selection list (the dropdown list on each album's edit page). In Firefox the dropdown shows the thumbs, but in IE and Safari only the names are displayed (even if the thumbs are loaded!). In albums with many images loading these thumbs takes much time and is unnecessary when the browser won't display them. Uncheck this option and the images will not be loaded. "); ?></p>
+											<p><?php echo gettext("Setting this option places thumbnails in the album thumbnail selection list (the dropdown list on each album’s edit page). In Firefox the dropdown shows the thumbs, but in IE and Safari only the names are displayed (even if the thumbs are loaded!). In albums with many images loading these thumbs takes much time and is unnecessary when the browser will not display them. Uncheck this option and the images will not be loaded. "); ?></p>
 										</div>
 
 										<p><?php echo gettext("<a href=\"javascript:toggle('multithumb');\" >Details</a> for <em>subalbum thumb selection</em>"); ?></p>
@@ -1919,7 +1914,7 @@ Zenphoto_Authority::printPasswordFormJS();
 								<tr>
 									<td><?php echo gettext("Allow upscale:"); ?></td>
 									<td><input type="checkbox" name="image_allow_upscale" value="1" <?php checked('1', getOption('image_allow_upscale')); ?> /></td>
-									<td><?php echo gettext("Allow images to be scaled up to the requested size. This could result in loss of quality, so it's off by default."); ?></td>
+									<td><?php echo gettext("Allow images to be scaled up to the requested size. This could result in loss of quality, so it is off by default."); ?></td>
 								</tr>
 								<tr>
 									<td><?php echo gettext("Sharpen:"); ?></td>
@@ -2118,7 +2113,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										}
 										?>
 									</td>
-									<td><?php echo gettext("Select a type for the images stored in the image cache. Select <em>Original</em> to preserve the original image's type."); ?></td>
+									<td><?php echo gettext("Select a type for the images stored in the image cache. Select <em>Original</em> to preserve the original image’s type."); ?></td>
 								</tr>
 								<tr>
 									<td><?php echo gettext("Protect image cache"); ?></td>
@@ -2780,23 +2775,12 @@ Zenphoto_Authority::printPasswordFormJS();
 						$showExtension = sanitize($_GET['single']);
 						$_GET['show-' . $showExtension] = true;
 					} else {
-						if (preg_match('/show-(.+)[&\n]*$/', $_SERVER['QUERY_STRING'], $matches)) {
-							$matches = explode('&', $matches[1]);
-							$showExtension = sanitize($matches[0]);
-							if ($showExtension) {
-								$path = getPlugin($showExtension . '.php');
-								if (!$path) {
-									$showExtension = NULL;
-								}
-							}
-						} else {
-							$showExtension = NULL;
-						}
+						$showExtension = NULL;
 					}
 
 					$_zp_plugin_count = 0;
 
-					$plugins = $showlist = array();
+					$plugins = array();
 					if (isset($_GET['single'])) {
 						$plugins = array($showExtension);
 					} else {
@@ -2812,8 +2796,8 @@ Zenphoto_Authority::printPasswordFormJS();
 						}
 						natcasesort($plugins);
 					}
-					$rangeset = getPageSelector($plugins, PLUGINS_PER_PAGE_OPTIONS);
-					$plugins = array_slice($plugins, $subpage * PLUGINS_PER_PAGE_OPTIONS, PLUGINS_PER_PAGE_OPTIONS);
+					$rangeset = getPageSelector($plugins, PLUGINS_PER_PAGE);
+					$plugins = array_slice($plugins, $subpage * PLUGINS_PER_PAGE, PLUGINS_PER_PAGE);
 					?>
 					<div id="tab_plugin" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
@@ -2835,21 +2819,19 @@ Zenphoto_Authority::printPasswordFormJS();
 										</p>
 									</td>
 								</tr>
-								<tr>
-									<th style="text-align:left">
-										<span style="font-weight: normal">
-											<a href="javascript:setShow(1);toggleExtraInfo('','plugin',true);"><?php echo gettext('Expand plugin options'); ?></a>
-											|
-											<a href="javascript:setShow(0);toggleExtraInfo('','plugin',false);"><?php echo gettext('Collapse all plugin options'); ?></a>
-										</span>
-									</th>
-									<th style="text-align:right; padding-right: 10px;">
-										<?php printPageSelector($subpage, $rangeset, 'admin-options.php', array('page' => 'options', 'tab' => 'plugin')); ?>
-									</th>
-									<th></th>
-								</tr>
 								<?php
-								$reveal = array();
+								if (!$showExtension) {
+									?>
+									<tr>
+										<th style="text-align:left">
+										</th>
+										<th style="text-align:right; padding-right: 10px;">
+											<?php printPageSelector($subpage, $rangeset, 'admin-options.php', array('page' => 'options', 'tab' => 'plugin')); ?>
+										</th>
+										<th></th>
+									</tr>
+									<?php
+								}
 								foreach ($plugins as $extension) {
 									$option_interface = NULL;
 									$path = getPlugin($extension . '.php');
@@ -2875,7 +2857,6 @@ Zenphoto_Authority::printPasswordFormJS();
 										}
 									}
 									if (!empty($option_interface)) {
-										$showlist[] = '#_show-' . $extension;
 										$_zp_plugin_count++;
 										?>
 										<!-- <?php echo $extension; ?> -->
@@ -2884,8 +2865,7 @@ Zenphoto_Authority::printPasswordFormJS();
 												<table class="options" style="border: 0" id="plugin-<?php echo $extension; ?>">
 													<tr>
 														<?php
-														if (isset($_GET['show-' . $extension]) || count($plugins) == 1) {
-															$reveal[] = $extension;
+														if ($showExtension) {
 															$v = 1;
 														} else {
 															$v = 0;
@@ -2893,20 +2873,25 @@ Zenphoto_Authority::printPasswordFormJS();
 														?>
 														<th style="text-align:left; width: 20%">
 															<span id="<?php echo $extension; ?>" ></span>
-															<input type="hidden" name="show-<?php echo $extension; ?>" id="show-<?php echo $extension; ?>" value="<?php echo $v; ?>" />
-															<span style="display:block" class="pluginextrashow">
-																<a href="javascript:$('#show-<?php echo $extension; ?>').val(1);toggleExtraInfo('<?php echo $extension; ?>','plugin',true);"><?php echo $extension; ?></a>
-																<?php
-																if ($warn) {
-																	?>
-																	<img src="images/action.png" alt="<?php echo gettext('warning'); ?>" />
-																	<?php
-																}
+															<?php
+															if (!$showExtension) {
+																$optionlink = FULLWEBPATH . '/' . ZENFOLDER . '/admin-options.php?page=options&amp;tab=plugin&amp;single=' . $extension;
 																?>
-															</span>
-															<span style="display:none" class="pluginextrahide">
-																<a href="javascript:$('#show-<?php echo $extension; ?>').val(0);toggleExtraInfo('<?php echo $extension; ?>','plugin',false);"><?php echo $extension; ?></a>
-															</span>
+																<span class="icons"><a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), $extension); ?>"><img class="icon-position-top3" src="images/options.png" alt="" />
+																		<?php
+																	}
+																	echo $extension;
+																	if (!$showExtension) {
+																		?>
+																	</a></span>
+																<?php
+															}
+															if ($warn) {
+																?>
+																<img src="images/action.png" alt="<?php echo gettext('warning'); ?>" />
+																<?php
+															}
+															?>
 														</th>
 														<th style="text-align:left; font-weight: normal;" colspan="2">
 															<?php echo $plugin_description; ?>
@@ -2922,9 +2907,11 @@ Zenphoto_Authority::printPasswordFormJS();
 														</tr>
 														<?php
 													}
-													$supportedOptions = $option_interface->getOptionsSupported();
-													if (count($supportedOptions) > 0) {
-														customOptions($option_interface, '', NULL, 'plugin', $supportedOptions, NULL, 'none', $extension);
+													if ($showExtension) {
+														$supportedOptions = $option_interface->getOptionsSupported();
+														if (count($supportedOptions) > 0) {
+															customOptions($option_interface, '', NULL, false, $supportedOptions, NULL, NULL, $extension);
+														}
 													}
 													?>
 												</table>
@@ -2966,28 +2953,7 @@ Zenphoto_Authority::printPasswordFormJS();
 							}
 							?>
 						</form>
-						<script type="text/javascript">
-																											// <!-- <![CDATA[
-																															function setShow(v) {
-	<?php
-	foreach ($showlist as $show) {
-		?>
-																																$('<?php echo $show; ?>').val(v);
-		<?php
-	}
-	?>
-																															}
-																											window.onload = function() {
-	<?php
-	foreach ($reveal as $extension) {
-		?>
-																												toggleExtraInfo('<?php echo $extension; ?>', 'plugin', true);
-		<?php
-	}
-	?>
-																											}
-																											// ]]> -->
-						</script>
+
 					</div>
 					<!-- end of tab_plugin div -->
 					<?php
@@ -3019,7 +2985,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										</select>
 									</td>
 									<td>
-										<p><?php echo gettext("Normally this option should be set to <em>http</em>. If you're running a secure server, change this to <em>https</em>. Select <em>secure admin</em> if you need only to insure secure access to <code>admin</code> pages."); ?></p>
+										<p><?php echo gettext("Normally this option should be set to <em>http</em>. If you are running a secure server, change this to <em>https</em>. Select <em>secure admin</em> if you need only to insure secure access to <code>admin</code> pages."); ?></p>
 										<p class="notebox"><?php
 											echo gettext("<strong>Note:</strong>" .
 															"<br /><br />Login from the front-end user login form is secure only if <em>https</em> is selected." .

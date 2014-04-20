@@ -501,7 +501,7 @@ if ($c <= 0) {
 		<title><?php printf('Zenphoto %s', $upgrade ? $upgrade : gettext('install')); ?></title>
 		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css" type="text/css" />
 
-		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.js" type="text/javascript"></script>
+		<?php echo JQUERY_SCRIPT; ?>
 		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zenphoto.js" type="text/javascript" ></script>
 		<script type="text/javascript">
 			var imageErr = false;
@@ -769,7 +769,7 @@ if ($c <= 0) {
 							}
 
 
-							$good = checkMark($cfg, sprintf(gettext('<em>%1$s</em> file'), CONFIGFILE), sprintf(gettext('<em>%1$s</em> file [does not exist]'), CONFIGFILE), sprintf(gettext('Setup was not able to create this file. You will need to copy the <code>%1$s/zenphoto_cfg.txt</code> file to <code>%2$s/%3$s</code> then edit it as indicated in the file\'s comments.'), ZENFOLDER, DATA_FOLDER, CONFIGFILE)) && $good;
+							$good = checkMark($cfg, sprintf(gettext('<em>%1$s</em> file'), CONFIGFILE), sprintf(gettext('<em>%1$s</em> file [does not exist]'), CONFIGFILE), sprintf(gettext('Setup was not able to create this file. You will need to copy the <code>%1$s/zenphoto_cfg.txt</code> file to <code>%2$s/%3$s</code> then edit it as indicated in the file’s comments.'), ZENFOLDER, DATA_FOLDER, CONFIGFILE)) && $good;
 							if ($cfg) {
 								primeMark(gettext('File permissions'));
 								$chmodselector = '<form action="#"><input type="hidden" name="xsrfToken" value="' . $xsrftoken . '" />' .
@@ -911,7 +911,7 @@ if ($c <= 0) {
 						<?php
 						if (!UTF8_IMAGE_URI) {
 							?>
-																$('#UTF8_uri_warn').html('<?php echo gettext('You should enable the URL option <em>UTF8 image URIs</em>.'); ?>' + ' <?php echo gettext('<a href="javascript:uri(true)">Please do</a>'); ?>');
+																$('#UTF8_uri_warn').html('<?php echo addslashes(gettext('You should enable the URL option <em>UTF8 image URIs</em>.')); ?>' + ' <?php echo addslashes(gettext('<a href="javascript:uri(true)">Please do</a>')); ?>');
 																$('#UTF8_uri_warn').show();
 							<?php
 							if ($autorun) {
@@ -923,12 +923,12 @@ if ($c <= 0) {
 						?>
 														};
 														image.onerror = function() {
-															$('#UTF8_uri_text').html('<?php echo $req_iso; ?>');
+															$('#UTF8_uri_text').html('<?php echo addslashes($req_iso); ?>');
 						<?php
 						if (UTF8_IMAGE_URI) {
 							?>
 																$('#UTF8_uri').attr('class', 'warn');
-																$('#UTF8_uri_warn').html('<?php echo gettext('You should disable the URL option <em>UTF8 image URIs</em>.'); ?>' + ' <?php echo gettext('<a href="javascript:uri(false)">Please do</a>'); ?>');
+																$('#UTF8_uri_warn').html('<?php echo addslashes(gettext('You should disable the URL option <em>UTF8 image URIs</em>.')); ?>' + ' <?php echo gettext('<a href="javascript:uri(false)">Please do</a>'); ?>');
 																$('#UTF8_uri_warn').show();
 							<?php
 							if ($autorun) {
@@ -2744,7 +2744,7 @@ if ($c <= 0) {
 							<div class="error">
 								<h3><?php echo gettext("database did not connect"); ?></h3>
 								<p>
-									<?php echo gettext("If you haven't created the database yet, now would be a good time."); ?>
+									<?php echo gettext("If you haven not created the database yet, now would be a good time."); ?>
 								</p>
 							</div>
 							<?php

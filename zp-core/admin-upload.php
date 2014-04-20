@@ -135,7 +135,7 @@ foreach ($albumlist as $key => $value) {
 				?>
 				<br />
 				<?php
-				echo zp_apply_filter('get_upload_header_text', gettext('Don\'t forget, you can also use <acronym title="File Transfer Protocol">FTP</acronym> to upload folders of images into the albums directory!'));
+				echo zp_apply_filter('get_upload_header_text', gettext('Don’t forget, you can also use <acronym title="File Transfer Protocol">FTP</acronym> to upload folders of images into the albums directory!'));
 				?>
 			</p>
 			<?php
@@ -192,14 +192,14 @@ foreach ($albumlist as $key => $value) {
 						var sel = document.getElementById('albumselectmenu');
 						var selected = sel.options[sel.selectedIndex].value;
 						$('#folderslot').val(selected);
-						var state = albumSwitch(sel, true, '<?php echo gettext('That name is already used.'); ?>', '<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>');
+						var state = albumSwitch(sel, true, '<?php echo addslashes(gettext('That name is already used.')); ?>', '<?php echo addslashes(gettext('This upload has to have a folder. Type a title or folder name to continue...')); ?>');
 						buttonstate(state);
 					}
 					// ]]> -->
 				</script>
 				<div id="albumselect">
 
-					<form class="dirty-check" name="file_upload_datum" id="file_upload_datum" method="post" action="<?php echo $formAction; ?>" enctype="multipart/form-data" >
+					<form name="file_upload_datum" id="file_upload_datum" method="post" action="<?php echo $formAction; ?>" enctype="multipart/form-data" >
 
 						<select id="albumselectmenu" name="albumselect" onchange="albumSelect()">
 							<?php
@@ -264,7 +264,7 @@ foreach ($albumlist as $key => $value) {
 						?>
 						<div id="newalbumbox" style="margin-top: 5px;<?php echo $display; ?>">
 							<div>
-								<input type="checkbox" name="newalbum" id="newalbumcheckbox"<?php echo $checked; ?> onclick="albumSwitch(this.form.albumselect, false, '<?php echo gettext('That name is already used.'); ?>', '<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>')" />
+								<input type="checkbox" name="newalbum" id="newalbumcheckbox"<?php echo $checked; ?> onclick="albumSwitch(this.form.albumselect, false, '<?php echo addslashes(gettext('That name is already used.')); ?>', '<?php echo addslashes(gettext('This upload has to have a folder. Type a title or folder name to continue...')); ?>')" />
 								<label for="newalbumcheckbox"><?php echo gettext("Make a new Album"); ?></label>
 							</div>
 							<div id="publishtext"><?php echo gettext("and"); ?>
@@ -275,13 +275,13 @@ foreach ($albumlist as $key => $value) {
 						<div id="albumtext" style="margin-top: 5px;<?php echo $display; ?>">
 							<?php echo gettext("titled:"); ?>
 							<input type="text" name="albumtitle" id="albumtitle" size="42"
-										 onkeyup="buttonstate(updateFolder(this, 'folderdisplay', 'autogen', '<?php echo gettext('That name is already used.'); ?>', '<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>'));" />
+										 onkeyup="buttonstate(updateFolder(this, 'folderdisplay', 'autogen', '<?php echo addslashes(gettext('That name is already used.')); ?>', '<?php echo addslashes(gettext('This upload has to have a folder. Type a title or folder name to continue...')); ?>'));" />
 
 							<div style="position: relative; margin-top: 4px;">
 								<?php echo gettext("with the folder name:"); ?>
 								<div id="foldererror" style="display: none; color: #D66; position: absolute; z-index: 100; top: 2.5em; left: 0px;"></div>
 								<input type="text" name="folderdisplay" disabled="disabled" id="folderdisplay" size="18"
-											 onkeyup="buttonstate(validateFolder(this, '<?php echo gettext('That name is already used.'); ?>', '<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>'));" />
+											 onkeyup="buttonstate(validateFolder(this, '<?php echo addslashes(gettext('That name is already used.')); ?>', '<?php echo addslashes(gettext('This upload has to have a folder. Type a title or folder name to continue...')); ?>'));" />
 								<input type="checkbox" name="autogenfolder" id="autogen" checked="checked"
 											 onclick="buttonstate(toggleAutogen('folderdisplay', 'albumtitle', this));" />
 								<label for="autogen"><?php echo gettext("Auto-generate"); ?></label>
@@ -310,7 +310,7 @@ foreach ($albumlist as $key => $value) {
 		<?php
 	}
 	?>
-						albumSwitch(document.getElementById('albumselectmenu'), false, '<?php echo gettext('That name is already used.'); ?>', '<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>');
+						albumSwitch(document.getElementById('albumselectmenu'), false, '<?php echo addslashes(gettext('That name is already used.')); ?>', '<?php echo addslashes(gettext('This upload has to have a folder. Type a title or folder name to continue...')); ?>');
 	<?php
 	if (isset($_GET['folderdisplay'])) {
 		?>

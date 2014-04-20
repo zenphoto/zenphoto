@@ -11,7 +11,7 @@
  * @package plugins
  * @subpackage seo
  */
-$plugin_description = gettext("A plugin to print the most common HTML meta tags to the head of your site's pages.");
+$plugin_description = gettext("A plugin to print the most common HTML meta tags to the head of your site’s pages.");
 $plugin_author = "Malte Müller (acrylian)";
 
 $option_interface = 'htmlmetatags';
@@ -77,7 +77,7 @@ class htmlmetatags {
 										'desc'			 => gettext("If the pages should be allowed to be cached on proxy servers.")),
 						gettext('Robots')								 => array('key'				 => 'htmlmeta_robots', 'type'			 => OPTION_TYPE_SELECTOR,
 										'selections' => array('noindex' => "noindex", 'index' => "index", 'nofollow' => "nofollow", 'noindex,nofollow' => "noindex,nofollow", 'noindex,follow' => "noindex,follow", 'index,nofollow' => "index,nofollow", 'none' => "none"),
-										'desc'			 => gettext("If and how robots are allowed to visit the site. Default is 'index'. Note that you also should use a robot.txt file.")),
+										'desc'			 => gettext("If and how robots are allowed to visit the site. Default is “index”. Note that you also should use a robot.txt file.")),
 						gettext('Revisit after')				 => array('key'	 => 'htmlmeta_revisit_after', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext("Request the crawler to revisit the page after x days.")),
 						gettext('Expires')							 => array('key'	 => 'htmlmeta_expires', 'type' => OPTION_TYPE_TEXTBOX,
@@ -87,7 +87,7 @@ class htmlmetatags {
 										'desc'	 => gettext('This adds a link element to the head of each page with a <em>canonical url</em>. If the <code>seo_locale</code> plugin is enabled or <code>use subdomains</code> is checked it also generates alternate links for other languages (<code>&lt;link&nbsp;rel="alternate" hreflang="</code>...<code>" href="</code>...<code>" /&gt;</code>).')),
 						gettext('Site logo')						 => array('key'	 => 'htmlmeta_sitelogo', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext("Enter the full url to a specific site logo image. Facebook, Google+ and others will use that as the thumb shown in link previews within posts. For image or album pages the default size album or image thumb is used automatically.")),
-						gettext('Twitter name')						 => array('key'	 => 'htmlmeta_twittername', 'type' => OPTION_TYPE_TEXTBOX,
+						gettext('Twitter name')					 => array('key'	 => 'htmlmeta_twittername', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext("If you enabled Twitter card meta tags, you need to enter your Twitter user name here.")),
 						gettext('HTML meta tags')				 => array('key'				 => 'htmlmeta_tags', 'type'			 => OPTION_TYPE_CHECKBOX_UL,
 										"checkboxes" => array(
@@ -133,7 +133,7 @@ class htmlmetatags {
 														"property='og:url'"										 => "htmlmeta_og-url",
 														"property='og:type'"									 => "htmlmeta_og-type",
 														"name='pinterest' content='nopin'"		 => "htmlmeta_name-pinterest",
-														"twitter:card"		 										 => "htmlmeta_twittercard"
+														"twitter:card"												 => "htmlmeta_twittercard"
 										),
 										"desc"			 => gettext("Which of the HTML meta tags should be used. For info about these in detail please refer to the net.")),
 						gettext('Use subdomains') . '*'	 => array('key'			 => 'dynamic_locale_subdomain', 'type'		 => OPTION_TYPE_CHECKBOX,
@@ -217,12 +217,12 @@ class htmlmetatags {
 					if (is_NewsArticle()) {
 						$pagetitle = getBareNewsTitle() . " - ";
 						$date = getNewsDate();
-						$desc = trim(strip_tags(getNewsContent()));
+						$desc = trim(getBare(getNewsContent()));
 						$canonicalurl = $host . $_zp_current_zenpage_news->getLink();
 					} else if (is_NewsCategory()) {
 						$pagetitle = $_zp_current_category->getTitlelink() . " - ";
 						$date = strftime(DATE_FORMAT);
-						$desc = trim(strip_tags($_zp_current_category->getDesc()));
+						$desc = trim(getBare($_zp_current_category->getDesc()));
 						$canonicalurl = $host . $_zp_current_category->getLink();
 						$type = 'category';
 					} else {
@@ -236,7 +236,7 @@ class htmlmetatags {
 			case 'pages.php':
 				$pagetitle = getBarePageTitle() . " - ";
 				$date = getPageDate();
-				$desc = trim(strip_tags(getPageContent()));
+				$desc = trim(getBare(getPageContent()));
 				$canonicalurl = $host . $_zp_current_zenpage_page->getLink();
 				break;
 			default: // for all other possible static custom pages
@@ -255,11 +255,7 @@ class htmlmetatags {
 				break;
 		}
 		// shorten desc to the allowed 200 characters if necesssary.
-		$desc = sanitize($desc,3);
-		if (strlen($desc) > 200) {
-			$desc = trim(substr($desc, 0, 200));
-		}
-		$desc = html_encode($desc);
+		$desc = html_encode(trim(substr(getBare($desc), 0, 160)));
 		$pagetitle = $pagetitle . getBareGalleryTitle();
 		// get master admin
 		$admin = $_zp_authority->getMasterUser();
@@ -391,7 +387,6 @@ class htmlmetatags {
 		if (getOption('htmlmeta_name-pinterest')) {
 			$meta .= '<meta name="pinterest" content="nopin">' . "\n";
 		} // dissalow users to pin images on Pinterest
-		
 		// Twitter card
 		$twittername = getOption('htmlmeta_twittername');
 		if (getOption('htmlmeta_twittercard') || !empty($twittername)) {
@@ -404,7 +399,7 @@ class htmlmetatags {
 				$meta .= '<meta property="twitter:image" content="' . $thumb . '">' . "\n";
 			}
 		}
-		
+
 		// Canonical url
 		if (getOption('htmlmeta_canonical-url')) {
 			$meta .= '<link rel="canonical" href="' . $canonicalurl . '">' . "\n";

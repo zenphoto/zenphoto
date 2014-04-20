@@ -41,7 +41,7 @@ if (isset($_GET['mergedrss'])) {
 	}
 	$gallery = new Gallery();
 	// Create new MergedRSS object with desired parameters
-	$MergedRSS = new MergedRSS($feeds, strip_tags(get_language_string($gallery->getTitle(), $locale)), FULLWEBPATH, strip_tags(get_language_string($gallery->getDesc(), $locale)), $RSS_date);
+	$MergedRSS = new MergedRSS($feeds, getBare(get_language_string($gallery->getTitle(), $locale)), FULLWEBPATH, getBare(get_language_string($gallery->getDesc(), $locale)), $RSS_date);
 
 	//Export the first 10 items to screen
 	$MergedRSS->export(false, true, 20); //getOption('RSS_items')
@@ -57,7 +57,7 @@ class MergedRSSOptions {
 						gettext('RSS feeds to merge') => array('key'					 => 'mergedrss_feeds', 'type'				 => OPTION_TYPE_TEXTAREA,
 										'order'				 => 11,
 										'multilingual' => false,
-										'desc'				 => gettext('Enter the full urls of the feeds to merge separated by semicolons(e.g. "http://www.domain1.com/rss; http://www.domain2.com/rss")'))
+										'desc'				 => gettext('Enter the full urls of the feeds to merge separated by semicolons (e.g. "http://www.domain1.com/rss; http://www.domain2.com/rss")'))
 		);
 	}
 

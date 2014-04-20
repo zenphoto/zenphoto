@@ -337,25 +337,25 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 				$url = "album=" . pathurlencode($receiver->name);
 				$ur_album = getUrAlbum($receiver);
 				if ($moderate) {
-					$action = sprintf(gettext('A comment has been placed in moderation on your album "%1$s".'), $receiver->name);
+					$action = sprintf(gettext('A comment has been placed in moderation on your album “%1$s”.'), $receiver->name);
 				} else {
-					$action = sprintf(gettext('A comment has been posted on your album "%1$s".'), $receiver->name);
+					$action = sprintf(gettext('A comment has been posted on your album “%1$s”.'), $receiver->name);
 				}
 				break;
 			case "news":
 				$url = "p=news&title=" . urlencode($receiver->getTitlelink());
 				if ($moderate) {
-					$action = sprintf(gettext('A comment has been placed in moderation on your article "%1$s".'), $receiver->getTitlelink());
+					$action = sprintf(gettext('A comment has been placed in moderation on your article “%1$s”.'), $receiver->getTitlelink());
 				} else {
-					$action = sprintf(gettext('A comment has been posted on your article "%1$s".'), $receiver->getTitlelink());
+					$action = sprintf(gettext('A comment has been posted on your article “%1$s”.'), $receiver->getTitlelink());
 				}
 				break;
 			case "pages":
 				$url = "p=pages&title=" . urlencode($receiver->getTitlelink());
 				if ($moderate) {
-					$action = sprintf(gettext('A comment has been placed in moderation on your page "%1$s".'), $receiver->getTitlelink());
+					$action = sprintf(gettext('A comment has been placed in moderation on your page “%1$s”.'), $receiver->getTitlelink());
 				} else {
-					$action = sprintf(gettext('A comment has been posted on your page "%1$s".'), $receiver->getTitlelink());
+					$action = sprintf(gettext('A comment has been posted on your page “%1$s”.'), $receiver->getTitlelink());
 				}
 				break;
 			default: // all image types
@@ -363,9 +363,9 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 				$url = "album=" . pathurlencode($album->name) . "&image=" . urlencode($receiver->filename);
 				$ur_album = getUrAlbum($album);
 				if ($moderate) {
-					$action = sprintf(gettext('A comment has been placed in moderation on your image "%1$s" in the album "%2$s".'), $receiver->getTitle(), $album->name);
+					$action = sprintf(gettext('A comment has been placed in moderation on your image “%1$s” in the album “%2$s”.'), $receiver->getTitle(), $album->name);
 				} else {
-					$action = sprintf(gettext('A comment has been posted on your image "%1$s" in the album "%2$s".'), $receiver->getTitle(), $album->name);
+					$action = sprintf(gettext('A comment has been posted on your image “%1$s” in the album “%2$s”.'), $receiver->getTitle(), $album->name);
 				}
 				break;
 		}

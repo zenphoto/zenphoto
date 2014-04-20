@@ -384,9 +384,9 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 								<div id="tips" style="display:none">
 									<br />
 									<h2><?php echo gettext("Usage tips"); ?></h2>
-									<p><?php echo gettext("Check <em>Edit Titlelink</em> if you need to customize how the title appears in URLs. Otherwise it will be automatically updated to any changes made to the title. If you want to prevent this check <em>Enable permaTitlelink</em> and the titlelink stays always the same (recommended if you use Zenphoto's multilingual mode)."); ?></p>
+									<p><?php echo gettext("Check <em>Edit Titlelink</em> if you need to customize how the title appears in URLs. Otherwise it will be automatically updated to any changes made to the title. If you want to prevent this check <em>Enable permaTitlelink</em> and the titlelink stays always the same (recommended if you use Zenphoto’s multilingual mode)."); ?></p>
 									<p class="notebox"><?php echo gettext("<strong>Note:</strong> Edit titlelink overrides the permalink setting."); ?></p>
-									<p class="notebox"><?php echo gettext("<strong>Important:</strong> If you are using Zenphoto's multi-lingual mode the Titlelink is generated from the Title of the currently selected language."); ?></p>
+									<p class="notebox"><?php echo gettext("<strong>Important:</strong> If you are using Zenphoto’s multi-lingual mode the Titlelink is generated from the Title of the currently selected language."); ?></p>
 									<p><?php echo gettext("If you lock an article only the current active author/user or any user with full admin rights will be able to edit it later again!"); ?></p>
 									<?php
 									if (is_AdminEditPage("newsarticle")) {
@@ -395,7 +395,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 										<?php
 									}
 									?>
-									<p><?php echo gettext("<em>Scheduled publishing:</em> To automatically publish a page/news article in the future set it to 'published' and enter a future date in the date field manually. Note this works on server time!"); ?></p>
+									<p><?php echo gettext("<em>Scheduled publishing:</em> To automatically publish a page/news article in the future set it to “published” and enter a future date in the date field manually. Note this works on server time!"); ?></p>
 									<p><?php echo gettext("<em>Expiration date:</em> Enter a future date in the date field manually to set a date the page or article will be set un-published automatically. After the page/article has been expired it can only be published again if the expiration date is deleted. Note this works on server time!"); ?></p>
 									<p><?php echo gettext("<em>ExtraContent:</em> Here you can enter extra content for example to be printed on the sidebar"); ?></p>
 									<p>
@@ -406,7 +406,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 										?>
 									</p>
 									<p class="notebox"><?php echo gettext("<strong>Important:</strong> If setting a password for a page its subpages inherit the protection."); ?></p>
-									<p><?php echo gettext("Hint: If you need more space for your text use TinyMCE's full screen mode (Click the expend icon of editor's control bar, near ZP icon)."); ?></p>
+									<p><?php echo gettext("Hint: If you need more space for your text use TinyMCE’s full screen mode (Click the expend icon of editor’s control bar, near ZP icon)."); ?></p>
 								</div>
 								<div <?php if (is_AdminEditPage("page")) echo 'class="box"'; ?> style="padding:15px; margin-top: 10px">
 									<table class="formlayout">
@@ -543,7 +543,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 														</label>
 														<label class="checkboxlabel">
 															<input type="radio" id="delete_object" name="copy_delete_object" value="delete"
-																		 onclick="deleteConfirm('delete_object', '', '<?php printf(gettext('Are you sure you want to delete this %s?'), $deleteitem); ?>');
+																		 onclick="deleteConfirm('delete_object', '', '<?php addslashes(printf(gettext('Are you sure you want to delete this %s?'), $deleteitem)); ?>');
 																						 $('#copyfield').hide();" />
 																		 <?php echo gettext('delete'); ?>
 														</label>

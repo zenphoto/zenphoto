@@ -83,10 +83,10 @@ class rss_options {
 										'desc'			 => gettext('Check each RSS feed you wish to activate.')),
 						gettext('Image feed items:')			 => array('key'		 => 'RSS_items', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 1,
-										'desc'	 => gettext("The number of new images and comments you want to appear in your site's RSS feed")),
+										'desc'	 => gettext("The number of new images and comments you want to appear in your site’s RSS feed")),
 						gettext('Album feed items:')			 => array('key'		 => 'RSS_items_albums', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 2,
-										'desc'	 => gettext("The number of new images and comments you want to appear in your site's RSS feed")),
+										'desc'	 => gettext("The number of new images and comments you want to appear in your site’s RSS feed")),
 						gettext('Image size')							 => array('key'		 => 'RSS_imagesize', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 3,
 										'desc'	 => gettext('Size of RSS image feed images:')),
@@ -100,7 +100,7 @@ class rss_options {
 														gettext('latest by mtime')			 => 'latest-mtime',
 														gettext('latest by publishdate') => 'latest-publishdate'
 										),
-										'desc'			 => gettext("Choose between latest by id for the latest uploaded, latest by date for the latest uploaded fetched by date, or latest by mtime for the latest uploaded fetched by the file's last change timestamp.")),
+										'desc'			 => gettext("Choose between latest by id for the latest uploaded, latest by date for the latest uploaded fetched by date, or latest by mtime for the latest uploaded fetched by the file’ last change timestamp.")),
 						gettext('Album feed sort order:')	 => array('key'				 => 'RSS_sortorder_albums', 'type'			 => OPTION_TYPE_SELECTOR,
 										'selections' => array(gettext('latest by id')					 => 'latest',
 														gettext('latest by date')				 => 'latest-date',
@@ -128,7 +128,7 @@ class rss_options {
 						gettext('Title')									 => array('key'			 => 'RSS_title', 'type'		 => OPTION_TYPE_RADIO,
 										'order'		 => 13,
 										'buttons'	 => array(gettext('Gallery title') => 'gallery', gettext('Website title') => 'website', gettext('Both') => 'both'),
-										'desc'		 => gettext("Select what you want to use as the main RSS feed (channel) title. 'Both' means Website title followed by Gallery title")),
+										'desc'		 => gettext("Select what you want to use as the main RSS feed (channel) title. “Both” means Website title followed by Gallery title")),
 						gettext('Portable RSS link')			 => array('key'		 => 'RSS_portable_link', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 14,
 										'desc'	 => gettext('If checked links generated for logged‑in users will include a token identifying the user. Use of that link when not logged‑in will give the same feed as if the user were logged‑in.'))
@@ -139,7 +139,7 @@ class rss_options {
 							'desc'	 => gettext("The text length of the Zenpage RSS feed items. No value for full length."));
 			$options[gettext('Zenpage feed items')] = array('key'		 => 'RSS_zenpage_items', 'type'	 => OPTION_TYPE_TEXTBOX,
 							'order'	 => 5,
-							'desc'	 => gettext("The number of news articles you want to appear in your site's News RSS feed."));
+							'desc'	 => gettext("The number of news articles you want to appear in your site’s News RSS feed."));
 		}
 		return $options;
 	}
@@ -366,7 +366,7 @@ function printRSSHeaderLink($option, $linktext, $lang = '', $addl = NULL) {
 	if ($protocol == 'https_admin') {
 		$protocol = 'https://';
 	}
-	echo "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"" . html_encode(strip_tags($linktext)) . "\" href=\"" .
+	echo "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"" . html_encode(getBare($linktext)) . "\" href=\"" .
 	$protocol . $host . html_encode(getRSSLink($option, $lang, $addl)) . "\" />\n";
 }
 
@@ -412,7 +412,7 @@ class RSS extends feed {
 				$this->channel_title = $_zp_gallery->getBareTitle($this->locale);
 				break;
 			case 'website':
-				$this->channel_title = strip_tags($_zp_gallery->getWebsiteTitle($this->locale));
+				$this->channel_title = getBare($_zp_gallery->getWebsiteTitle($this->locale));
 				break;
 			case 'both':
 				$website_title = $_zp_gallery->getWebsiteTitle($this->locale);
@@ -446,7 +446,7 @@ class RSS extends feed {
 				}
 				$albumname = $this->getChannelTitleExtra();
 
-				$this->channel_title = html_encode($this->channel_title . ' ' . strip_tags($albumname));
+				$this->channel_title = html_encode($this->channel_title . ' ' . getBare($albumname));
 				$this->imagesize = $this->getImageSize();
 				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/image_album_statistics.php');
 				break;
@@ -719,7 +719,7 @@ class RSS extends feed {
 					<title><?php echo $this->channel_title; ?></title>
 					<link><?php echo PROTOCOL . '://' . $this->host . WEBPATH; ?></link>
 					<atom:link href="<?php echo PROTOCOL; ?>://<?php echo $this->host; ?><?php echo html_encode(getRequestURI()); ?>" rel="self"	type="application/rss+xml" />
-					<description><?php echo strip_tags($_zp_gallery->getDesc($this->locale)); ?></description>
+					<description><?php echo getBare($_zp_gallery->getDesc($this->locale)); ?></description>
 					<language><?php echo $this->locale_xml; ?></language>
 					<pubDate><?php echo date("r", time()); ?></pubDate>
 					<lastBuildDate><?php echo date("r", time()); ?></lastBuildDate>

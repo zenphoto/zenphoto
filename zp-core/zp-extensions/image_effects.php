@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This plugin is an example demonstrating the use of the various <i>image_html</i> filters.
  * Each effect is defined by a text file these sections (no individual section is required).
@@ -22,17 +23,17 @@
  * 	Multiple files are separated by semicolons. Each is tested.
  *
  * The following tokens are available to represent paths:
- *	<ul>
- *		<li><var>%WEBPATH%</v> to represent the WEB path to the Zenphoto installation.</li>
- *		<li><var>%SERVERPATH%</var> to represent the server path to the Zenphoto installation.</li>
- *		<li><var>%PLUGIN_FOLDER%</var> to represent the Zenphoto "extensions" folder.</li>
- *		<li><var>%USER_PLUGIN_FOLDER%</var> to represent the root "plugin" folder.</li>
- *		<li><var>%ZENFOLDER%</var> to represent the zp-core folder.</li>
+ * 	<ul>
+ * 		<li><var>%WEBPATH%</v> to represent the WEB path to the Zenphoto installation.</li>
+ * 		<li><var>%SERVERPATH%</var> to represent the server path to the Zenphoto installation.</li>
+ * 		<li><var>%PLUGIN_FOLDER%</var> to represent the Zenphoto "extensions" folder.</li>
+ * 		<li><var>%USER_PLUGIN_FOLDER%</var> to represent the root "plugin" folder.</li>
+ * 		<li><var>%ZENFOLDER%</var> to represent the zp-core folder.</li>
  * </ul>
  *
  * Pixastic effects:<br>
- *	Included standard are several effects from {@link http://www.pixastic.com/ Pixastic}. Please visit their site for
- *	detailed documentation.
+ * 	Included standard are several effects from {@link http://www.pixastic.com/ Pixastic}. Please visit their site for
+ * 	detailed documentation.
  *
  * Effenberger effects::<br>
  * 	Some effects which can be used are the javascript effects created by Christian Effenberger
@@ -55,8 +56,7 @@
  * @package plugins
  * @subpackage media
  */
-
-$plugin_description = gettext('Attaches "Image effects" to images and thumbnails.');
+$plugin_description = gettext('Attaches “Image effects” to images and thumbnails.');
 $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'image_effects';
@@ -76,12 +76,11 @@ class image_effects {
 	var $effects = NULL;
 
 	function __construct() {
-		$effect = getPluginFiles('*.txt','image_effects');
+		$effect = getPluginFiles('*.txt', 'image_effects');
 		foreach ($this->effects = array_keys($effect) as $suffix) {
-			setOptionDefault('image_effects_random_'.$suffix, 1);
+			setOptionDefault('image_effects_random_' . $suffix, 1);
 		}
 	}
-
 
 	/**
 	 * Reports the supported options
@@ -89,75 +88,75 @@ class image_effects {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		$list = array('random'=>'!');
+		$list = array('random' => '!');
 		$docs = array();
-		$effenberger = array('bevel','corner','crippleedge','curl','filmed','glossy','instant','reflex','slided','sphere');
-		foreach($this->effects as $effect) {
-			$rand[$effect] = 'image_effects_random_'.$effect;
+		$effenberger = array('bevel', 'corner', 'crippleedge', 'curl', 'filmed', 'glossy', 'instant', 'reflex', 'slided', 'sphere');
+		foreach ($this->effects as $effect) {
+			$rand[$effect] = 'image_effects_random_' . $effect;
 			$effectdata = image_effects::getEffect($effect);
 			$list[$effect] = $effect;
-			$docs[chr(0).$effect] = array('key' => 'image_effect_'.$effect, 'order' => $effect, 'type' => OPTION_TYPE_CUSTOM);
+			$docs[chr(0) . $effect] = array('key' => 'image_effect_' . $effect, 'order' => $effect, 'type' => OPTION_TYPE_CUSTOM);
 			if (array_key_exists('source', $effectdata)) {
-				$docs[chr(0).$effect]['desc'] = $effectdata['source'];
+				$docs[chr(0) . $effect]['desc'] = $effectdata['source'];
 			} else {
-				$docs[chr(0).$effect]['desc'] = gettext('No acknowledgement');
+				$docs[chr(0) . $effect]['desc'] = gettext('No acknowledgement');
 			}
 			if (array_key_exists('error', $effectdata)) {
-				$docs[chr(0).$effect]['desc'] .= '<p class="notebox">'.$effectdata['error'].'</p>';
-				query('DELETE FROM '.prefix('options').' WHERE `name`="image_custom_random_'.$effect.'"');
+				$docs[chr(0) . $effect]['desc'] .= '<p class="notebox">' . $effectdata['error'] . '</p>';
+				query('DELETE FROM ' . prefix('options') . ' WHERE `name`="image_custom_random_' . $effect . '"');
 				if (in_array($effect, $effenberger)) {
-					$docs[chr(0).$effect]['desc'] .= '<p class="notebox">'.gettext('<strong>Note:</strong> Although this plugin supports <em>Effenberger effects</em>, due to licensing considerations no <em>Effenberger effects</em> scripts are included. See <a href="http://www.netzgesta.de/cvi/">CVI Astonishing Image Effects</a> by Christian Effenberger to select and download effects.').'</p>';
+					$docs[chr(0) . $effect]['desc'] .= '<p class="notebox">' . gettext('<strong>Note:</strong> Although this plugin supports <em>Effenberger effects</em>, due to licensing considerations no <em>Effenberger effects</em> scripts are included. See <a href="http://www.netzgesta.de/cvi/">CVI Astonishing Image Effects</a> by Christian Effenberger to select and download effects.') . '</p>';
 				}
 			}
 		}
 		if (count($list) == 0) {
-			return array(gettext('No effects') => array('key' => 'image_effect_none', 'type' => OPTION_TYPE_CUSTOM,
-										'desc' => ''));
+			return array(gettext('No effects') => array('key'	 => 'image_effect_none', 'type' => OPTION_TYPE_CUSTOM,
+											'desc' => ''));
 		}
-		foreach (array('image_std_images','image_custom_images','image_std_image_thumbs','image_std_album_thumbs','image_custom_image_thumbs','image_custom_album_thumbs') as $option) {
+		foreach (array('image_std_images', 'image_custom_images', 'image_std_image_thumbs', 'image_std_album_thumbs', 'image_custom_image_thumbs', 'image_custom_album_thumbs') as $option) {
 			$effect = getOption($option);
-			if ($effect && $effect!='!' && !array_key_exists($effect,$list)) {
-				$error[$effect] = '<p class="errorbox">'.sprintf(gettext('<strong>Error:</strong> <em>%s</em> effect no longer exists.'),$effect).'</p>';
+			if ($effect && $effect != '!' && !array_key_exists($effect, $list)) {
+				$error[$effect] = '<p class="errorbox">' . sprintf(gettext('<strong>Error:</strong> <em>%s</em> effect no longer exists.'), $effect) . '</p>';
 			}
 		}
-		$std = array(	gettext('Images (standard)') => array('key' => 'image_std_images', 'type' => OPTION_TYPE_SELECTOR,
-										'order' => 0,
-										'selections' => $list, 'null_selection' => gettext('none'),
-										'desc' => gettext('Apply <em>effect</em> to images shown via the <code>printDefaultSizedImage()</code> function.')),
-									gettext('Images (custom)') =>array('key' => 'image_custom_images', 'type' => OPTION_TYPE_SELECTOR,
-										'order' => 0,
-										'selections' => $list, 'null_selection' => gettext('none'),
-										'desc' => gettext('Apply <em>effect</em> to images shown via the custom image functions.')),
-									gettext('Image thumbnails (standard)') =>array('key' => 'image_std_image_thumbs', 'type' => OPTION_TYPE_SELECTOR,
-										'order' => 0,
-										'selections' => $list, 'null_selection' => gettext('none'),
-										'desc' => gettext('Apply <em>effect</em> to images shown via the <code>printImageThumb()</code> function.')),
-									gettext('Album thumbnails (standard)') =>array('key' => 'image_std_album_thumbs', 'type' => OPTION_TYPE_SELECTOR,
-										'order' => 0,
-										'selections' => $list, 'null_selection' => gettext('none'),
-										'desc' => gettext('Apply <em>effect</em> to images shown via the <code>printAlbumThumbImage()</code> function.')),
-									gettext('Image thumbnails (custom)') =>array('key' => 'image_custom_image_thumbs', 'type' => OPTION_TYPE_SELECTOR,
-										'order' => 0,
-										'selections' => $list, 'null_selection' => gettext('none'),
-										'desc' => gettext('Apply <em>effect</em> to images shown via the custom image functions when <em>thumbstandin</em> is set.')),
-									gettext('Album thumbnails  (custom)') =>array('key' => 'image_custom_album_thumbs', 'type' => OPTION_TYPE_SELECTOR,
-										'order' => 0,
-										'selections' => $list, 'null_selection' => gettext('none'),
-										'desc' => gettext('Apply <em>effect</em> to images shown via the <code>printCustomAlbumThumbImage()</code> function.')),
-									gettext('Random pool') => array('key' => 'image_effects_random_', 'type' => OPTION_TYPE_CHECKBOX_UL,
-										'order' => 1,
+		$std = array(gettext('Images (standard)')					 => array('key'						 => 'image_std_images', 'type'					 => OPTION_TYPE_SELECTOR,
+										'order'					 => 0,
+										'selections'		 => $list, 'null_selection' => gettext('none'),
+										'desc'					 => gettext('Apply <em>effect</em> to images shown via the <code>printDefaultSizedImage()</code> function.')),
+						gettext('Images (custom)')						 => array('key'						 => 'image_custom_images', 'type'					 => OPTION_TYPE_SELECTOR,
+										'order'					 => 0,
+										'selections'		 => $list, 'null_selection' => gettext('none'),
+										'desc'					 => gettext('Apply <em>effect</em> to images shown via the custom image functions.')),
+						gettext('Image thumbnails (standard)') => array('key'						 => 'image_std_image_thumbs', 'type'					 => OPTION_TYPE_SELECTOR,
+										'order'					 => 0,
+										'selections'		 => $list, 'null_selection' => gettext('none'),
+										'desc'					 => gettext('Apply <em>effect</em> to images shown via the <code>printImageThumb()</code> function.')),
+						gettext('Album thumbnails (standard)') => array('key'						 => 'image_std_album_thumbs', 'type'					 => OPTION_TYPE_SELECTOR,
+										'order'					 => 0,
+										'selections'		 => $list, 'null_selection' => gettext('none'),
+										'desc'					 => gettext('Apply <em>effect</em> to images shown via the <code>printAlbumThumbImage()</code> function.')),
+						gettext('Image thumbnails (custom)')	 => array('key'						 => 'image_custom_image_thumbs', 'type'					 => OPTION_TYPE_SELECTOR,
+										'order'					 => 0,
+										'selections'		 => $list, 'null_selection' => gettext('none'),
+										'desc'					 => gettext('Apply <em>effect</em> to images shown via the custom image functions when <em>thumbstandin</em> is set.')),
+						gettext('Album thumbnails  (custom)')	 => array('key'						 => 'image_custom_album_thumbs', 'type'					 => OPTION_TYPE_SELECTOR,
+										'order'					 => 0,
+										'selections'		 => $list, 'null_selection' => gettext('none'),
+										'desc'					 => gettext('Apply <em>effect</em> to images shown via the <code>printCustomAlbumThumbImage()</code> function.')),
+						gettext('Random pool')								 => array('key'				 => 'image_effects_random_', 'type'			 => OPTION_TYPE_CHECKBOX_UL,
+										'order'			 => 1,
 										'checkboxes' => $rand,
-										'desc' => gettext('Pool of effects for the <em>random</em> effect selection.')),
-									8										=> array('type'=>OPTION_TYPE_NOTE,
-																			'order'=>8.9,
-																			'desc'=>'<hr />'),
-									chr(0) => array('key' => 'image_effects_docs', 'type' => OPTION_TYPE_CUSTOM,
-										'order' => 9,
-										'desc' => '<em>'.gettext('Acknowledgments').'</em>')
-									);
+										'desc'			 => gettext('Pool of effects for the <em>random</em> effect selection.')),
+						8																			 => array('type'	 => OPTION_TYPE_NOTE,
+										'order'	 => 8.9,
+										'desc'	 => '<hr />'),
+						chr(0)																 => array('key'		 => 'image_effects_docs', 'type'	 => OPTION_TYPE_CUSTOM,
+										'order'	 => 9,
+										'desc'	 => '<em>' . gettext('Acknowledgments') . '</em>')
+		);
 
 		ksort($docs);
-		return array_merge($std,$docs);
+		return array_merge($std, $docs);
 	}
 
 	/**
@@ -172,22 +171,22 @@ class image_effects {
 				gettext('No image effects found.');
 				break;
 			case 'image_effects_docs':
-				echo '<em>'.gettext('Effect').'</em>';
+				echo '<em>' . gettext('Effect') . '</em>';
 				break;
 			default:
-				echo str_replace('image_effect_','',$option);
+				echo str_replace('image_effect_', '', $option);
 				break;
 		}
 	}
 
 	static function effectsJS() {
 		global $_image_effects_random;
-		$effectlist = array_keys(getPluginFiles('*.txt','image_effects'));
+		$effectlist = array_keys(getPluginFiles('*.txt', 'image_effects'));
 		shuffle($effectlist);
 		$common = array();
 		do {
 			$_image_effects_random = array_shift($effectlist);
-			if (getOption('image_effects_random_'.$_image_effects_random)) {
+			if (getOption('image_effects_random_' . $_image_effects_random)) {
 				$effectdata = image_effects::getEffect($_image_effects_random);
 				$invalid_effect = $effectdata && array_key_exists('error', $effectdata);
 			} else {
@@ -195,11 +194,12 @@ class image_effects {
 			}
 		} while ($_image_effects_random && $invalid_effect);
 
-		if (!$_image_effects_random) echo "<br />random effect empty!";
+		if (!$_image_effects_random)
+			echo "<br />random effect empty!";
 
-		$selected_effects = array_unique(array(	getOption('image_std_images'), getOption('image_custom_images'),
-																						getOption('image_std_album_thumbs'), getOption('image_std_image_thumbs'),
-																						getOption('image_custom_album_thumbs'), $_image_effects_random));
+		$selected_effects = array_unique(array(getOption('image_std_images'), getOption('image_custom_images'),
+						getOption('image_std_album_thumbs'), getOption('image_std_image_thumbs'),
+						getOption('image_custom_album_thumbs'), $_image_effects_random));
 		if (false !== $key = array_search('!', $selected_effects)) {
 			unset($selected_effects[$key]);
 		}
@@ -209,15 +209,15 @@ class image_effects {
 				if (array_key_exists('head', $effectdata)) {
 					$common_data = trim($effectdata['head']);
 					while ($common_data) {
-						$i = strcspn ($common_data,'= >');
+						$i = strcspn($common_data, '= >');
 						if ($i === false) {
 							$common_data = '';
 						} else {
-							$tag = '</'.trim(substr($common_data, 1, $i)).'>';
+							$tag = '</' . trim(substr($common_data, 1, $i)) . '>';
 							$k = strpos($common_data, '>');
-							$j = strpos($common_data,$tag, $k+1);
+							$j = strpos($common_data, $tag, $k + 1);
 							if ($j === false) {
-								$j = strpos($common_data,'/>');
+								$j = strpos($common_data, '/>');
 								if ($j === false) {
 									$common_data = '';
 								} else {
@@ -229,7 +229,7 @@ class image_effects {
 							if ($j === false) {
 								$common_data = '';
 							} else {
-								$common_element = substr($common_data,0,$j);
+								$common_element = substr($common_data, 0, $j);
 								$common_data = trim(substr($common_data, strlen($common_element)));
 								$common_element = trim($common_element);
 								if (!in_array($common_element, $common)) {
@@ -241,7 +241,7 @@ class image_effects {
 				}
 			}
 			if (!empty($common)) {
-				echo implode("\n",$common);
+				echo implode("\n", $common);
 			}
 		}
 	}
@@ -249,36 +249,31 @@ class image_effects {
 	private static function getEffect($effect) {
 		global $image_effects;
 		$effectdata = array();
-		$file = getPlugin('image_effects/'.internalToFilesystem($effect).'.txt');
+		$file = getPlugin('image_effects/' . internalToFilesystem($effect) . '.txt');
 		if (file_exists($file)) {
 			$text = file_get_contents($file);
-			foreach (array('head','class','extra','validate','common', 'source') as $tag) {
-				$i = strpos($text, '<'.$tag.'>');
+			foreach (array('head', 'class', 'extra', 'validate', 'common', 'source') as $tag) {
+				$i = strpos($text, '<' . $tag . '>');
 				if ($i !== false) {
-					$j = strpos($text, '</'.$tag.'>');
+					$j = strpos($text, '</' . $tag . '>');
 					if ($j !== false) {
-						$effectdata[$tag] = str_replace('%ZENFOLDER%',ZENFOLDER,
-																str_replace('%SERVERPATH%',SERVERPATH,
-																str_replace('%USER_PLUGIN_FOLDER%',USER_PLUGIN_FOLDER,
-																str_replace('%PLUGIN_FOLDER%',PLUGIN_FOLDER,
-																str_replace('%WEBPATH%',WEBPATH,
-																substr($text,$s=$i+strlen($tag)+2,$j-$s))))));
+						$effectdata[$tag] = str_replace('%ZENFOLDER%', ZENFOLDER, str_replace('%SERVERPATH%', SERVERPATH, str_replace('%USER_PLUGIN_FOLDER%', USER_PLUGIN_FOLDER, str_replace('%PLUGIN_FOLDER%', PLUGIN_FOLDER, str_replace('%WEBPATH%', WEBPATH, substr($text, $s = $i + strlen($tag) + 2, $j - $s))))));
 					}
 				}
 			}
 			if (empty($effectdata)) {
-				return array('error'=>sprintf(gettext('<strong>Warning:</strong> <em>%1$s</em> invalid effect definition file'),$effect));
+				return array('error' => sprintf(gettext('<strong>Warning:</strong> <em>%1$s</em> invalid effect definition file'), $effect));
 			}
 			if (array_key_exists('validate', $effectdata)) {
 				$effectdata['error'] = array();
-				foreach (explode(';',$effectdata['validate']) as $file) {
+				foreach (explode(';', $effectdata['validate']) as $file) {
 					$file = trim($file);
 					if ($file && !file_exists($file)) {
 						$effectdata['error'][] = basename($file);
 					}
 				}
 				if (count($effectdata['error']) > 0) {
-					$effectdata['error'] = sprintf(ngettext('<strong>Warning:</strong> <em>%1$s</em> missing effect component: %2$s','<strong>Warning:</strong><em>%1$s</em> missing effect components: %2$s',count($effectdata['error'])),$effect,implode(', ',$effectdata['error']));
+					$effectdata['error'] = sprintf(ngettext('<strong>Warning:</strong> <em>%1$s</em> missing effect component: %2$s', '<strong>Warning:</strong><em>%1$s</em> missing effect components: %2$s', count($effectdata['error'])), $effect, implode(', ', $effectdata['error']));
 				} else {
 					unset($effectdata['error']);
 				}
@@ -287,36 +282,36 @@ class image_effects {
 			$image_effects[$effect] = $effectdata;
 			return $effectdata;
 		} else {
-				return array('error'=>sprintf(gettext('<strong>Warning:</strong> <em>%1$s</em> missing effect definition file'),$effect));
+			return array('error' => sprintf(gettext('<strong>Warning:</strong> <em>%1$s</em> missing effect definition file'), $effect));
 		}
 	}
 
 	private static function insertClass($html, $effect) {
 		global $_image_effects_random;
-		if ($effect=='!') {
+		if ($effect == '!') {
 			$effect = $_image_effects_random;
 		}
 		$effectData = image_effects::getEffect($effect);
 		if (array_key_exists('error', $effectData)) {
-			$html .= '<span class="errorbox">'.$effectData['error']."</span>\n";
+			$html .= '<span class="errorbox">' . $effectData['error'] . "</span>\n";
 		} else {
 			if (array_key_exists('class', $effectData)) {
-				$i = strpos($html,'<img');
+				$i = strpos($html, '<img');
 				if ($i !== false) {
 					$i = strpos($html, 'class=', $i);
 					if ($i === false) {
 						$i = strpos($html, '/>');
-						$html = substr($html, 0, $i).'class="'.$effectData['class'].'" '.substr($html,$i);
+						$html = substr($html, 0, $i) . 'class="' . $effectData['class'] . '" ' . substr($html, $i);
 					} else {
-						$quote = substr($html, $i+6,1);
-						$i = strpos($html, $quote, $i+7);
-						$html = substr($html, 0, $i).' '.$effectData['class'].substr($html,$i);
+						$quote = substr($html, $i + 6, 1);
+						$i = strpos($html, $quote, $i + 7);
+						$html = substr($html, 0, $i) . ' ' . $effectData['class'] . substr($html, $i);
 					}
 				}
 			}
 			if (array_key_exists('extra', $effectData)) {
 				$i = strpos($html, '/>');
-				$html = substr($html, 0, $i).' '.$effectData['extra'].' '.substr($html, $i);
+				$html = substr($html, 0, $i) . ' ' . $effectData['extra'] . ' ' . substr($html, $i);
 			}
 		}
 		return $html;
@@ -324,7 +319,7 @@ class image_effects {
 
 	static function std_images($html) {
 		if ($effect = getOption('image_std_images')) {
-			$html = image_effects::insertClass($html,	$effect);
+			$html = image_effects::insertClass($html, $effect);
 		}
 		return $html;
 	}
@@ -332,11 +327,11 @@ class image_effects {
 	static function custom_images($html, $thumbstandin) {
 		if ($thumbstandin) {
 			if ($effect = getOption('image_custom_image_thumbs')) {
-				$html = image_effects::insertClass($html,	$effect);
+				$html = image_effects::insertClass($html, $effect);
 			}
 		} else {
 			if ($effect = getOption('image_custom_images')) {
-				$html = image_effects::insertClass($html,	$effect);
+				$html = image_effects::insertClass($html, $effect);
 			}
 		}
 		return $html;
@@ -344,24 +339,25 @@ class image_effects {
 
 	static function std_album_thumbs($html) {
 		if ($effect = getOption('image_std_album_thumbs')) {
-			$html = image_effects::insertClass($html,	$effect);
+			$html = image_effects::insertClass($html, $effect);
 		}
 		return $html;
 	}
 
 	static function std_image_thumbs($html) {
 		if ($effect = getOption('image_std_image_thumbs')) {
-			$html = image_effects::insertClass($html,	$effect);
+			$html = image_effects::insertClass($html, $effect);
 		}
 		return $html;
 	}
 
 	static function custom_album_thumbs($html) {
 		if ($effect = getOption('image_custom_album_thumbs')) {
-			$html = image_effects::insertClass($html,	$effect);
+			$html = image_effects::insertClass($html, $effect);
 		}
 		return $html;
 	}
 
 }
+
 ?>

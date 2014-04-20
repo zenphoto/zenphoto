@@ -120,7 +120,7 @@ class cycle {
 												'desc'	 => gettext("Milliseconds between slide transitions (0 to disable auto advance.)")),
 								gettext('Slideshow: Description')					 => array('key'		 => 'cycle-slideshow_showdesc', 'type'	 => OPTION_TYPE_CHECKBOX,
 												'order'	 => 7,
-												'desc'	 => gettext("Check if you want to show the image's description below the slideshow.")),
+												'desc'	 => gettext("Check if you want to show the image’s description below the slideshow.")),
 								gettext('Slideshow: Swipe gestures')			 => array('key'		 => 'cycle-slideshow_swipe', 'type'	 => OPTION_TYPE_CHECKBOX,
 												'order'	 => 8,
 												'desc'	 => gettext("Check if you want to enable touch screen swipe gestures.")),
@@ -140,8 +140,8 @@ class cycle {
 												'desc'			 => gettext("The Colorbox transition slide effect to be used.")),
 								gettext('Colorbox: Image type')	 => array('key'				 => 'cycle-slideshow_colorbox_imagetype', 'type'			 => OPTION_TYPE_SELECTOR,
 												'order'			 => 3,
-												'selections' => array(gettext('full image') => "fullimage", gettext('sized image') => "sizedimage"),
-												'desc'			 => gettext("The image type you wish to use for the Colorbox. If you choose 'sized image' the slideshow width value will be used for the longest side of the image.")),
+												'selections' => array(gettext('full image') => "fullimage", gettext("sized image") => "sizedimage"),
+												'desc'			 => gettext("The image type you wish to use for the Colorbox. If you choose “sized image” the slideshow width value will be used for the longest side of the image.")),
 								gettext('Colorbox: Image title') => array('key'		 => 'cycle-slideshow_colorbox_imagetitle', 'type'	 => OPTION_TYPE_CHECKBOX,
 												'order'	 => 4,
 												'desc'	 => gettext("If the image title should be shown at the bottom of the Colorbox."))
@@ -564,23 +564,23 @@ if (extensionEnabled('slideshow2')) {
 					$count = '';
 					?>
 					<script type="text/javascript">
-						$(document).ready(function() {
+					$(document).ready(function() {
 						$("a[rel='slideshow']").colorbox({
-						slideshow: true,
-						loop: true,
-						transition: '<?php echo getOption('cycle-slideshow_colorbox_transition'); ?>',
-						slideshowSpeed: <?php echo getOption('cycle-slideshow_speed'); ?>,
-						slideshowStart: '<?php echo gettext("start slideshow"); ?>',
-						slideshowStop: '<?php echo gettext("stop slideshow"); ?>',
-						previous: '<?php echo gettext("prev"); ?>',
-						next: '<?php echo gettext("next"); ?>',
-						close: '<?php echo gettext("close"); ?>',
-						current: '<?php printf(gettext('image %1$s of %2$s'), '{current}', '{total}'); ?>',
-						maxWidth: '98%',
-						maxHeight: '98%',
-						photo: true
+							slideshow: true,
+							loop: true,
+							transition: '<?php echo getOption('cycle-slideshow_colorbox_transition'); ?>',
+							slideshowSpeed: <?php echo getOption('cycle-slideshow_speed'); ?>,
+							slideshowStart: '<?php echo gettext("start slideshow"); ?>',
+							slideshowStop: '<?php echo gettext("stop slideshow"); ?>',
+							previous: '<?php echo gettext("prev"); ?>',
+							next: '<?php echo gettext("next"); ?>',
+							close: '<?php echo gettext("close"); ?>',
+							current: '<?php printf(gettext('image %1$s of %2$s'), '{current}', '{total}'); ?>',
+							maxWidth: '98%',
+							maxHeight: '98%',
+							photo: true
 						});
-						});
+					});
 					</script>
 					<?php
 					foreach ($images as $image) {
@@ -621,7 +621,7 @@ if (extensionEnabled('slideshow2')) {
 							}
 							$imagetitle = '';
 							if (getOption('cycle-slideshow_colorbox_imagetitle')) {
-								$imagetitle = html_encode(strip_tags($imgobj->getTitle()));
+								$imagetitle = html_encode(getBare($imgobj->getTitle()));
 							}
 							?>
 							<a href="<?php echo html_encode(pathurlencode($imagelink)); ?>" rel="slideshow"<?php echo $style; ?> title="<?php echo $imagetitle; ?>"><?php echo $linktext; ?></a>
@@ -662,11 +662,11 @@ if (extensionEnabled('slideshow2')) {
 	 */
 	function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $imageobj = NULL, $width = NULL, $height = NULL, $crop = false, $shuffle = false, $linkslides = false, $controls = true) {
 		global $_myFavorites, $_zp_conf_vars;
-		if (!isset($_POST['albumid']) AND !is_object($albumobj)) {
+		if (!isset($_POST['albumid']) AND ! is_object($albumobj)) {
 			return '<div class="errorbox" id="message"><h2>' . gettext('Invalid linking to the slideshow page.') . '</h2></div>';
 		}
 		//getting the image to start with
-		if (!empty($_POST['imagenumber']) AND !is_object($imageobj)) {
+		if (!empty($_POST['imagenumber']) AND ! is_object($imageobj)) {
 			$imagenumber = sanitize_numeric($_POST['imagenumber']) - 1; // slideshows starts with 0, but zp with 1.
 		} elseif (is_object($imageobj)) {
 			$imagenumber = $imageobj->getIndex();

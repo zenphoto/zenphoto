@@ -75,7 +75,7 @@ class externalFeed_options {
 										'desc'			 => gettext('Check each feeds you wish to activate.')),
 						gettext('Image feed items:')					 => array('key'		 => 'externalFeed_items', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 1,
-										'desc'	 => gettext("The number of new images and comments you want to appear in your site's feed")),
+										'desc'	 => gettext("The number of new images and comments you want to appear in your site’s feed")),
 						gettext('Image size')									 => array('key'		 => 'externalFeed_imagesize', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 3,
 										'desc'	 => gettext('Size of image feed images:')),
@@ -86,7 +86,7 @@ class externalFeed_options {
 														gettext('latest by mtime')			 => 'latest-mtime',
 														gettext('latest by publishdate') => 'latest-publishdate'
 										),
-										'desc'			 => gettext("Choose between latest by id for the latest uploaded, latest by date for the latest uploaded fetched by date, or latest by mtime for the latest uploaded fetched by the file's last change timestamp.")),
+										'desc'			 => gettext("Choose between latest by id for the latest uploaded, latest by date for the latest uploaded fetched by date, or latest by mtime for the latest uploaded fetched by the file’s last change timestamp.")),
 						gettext('Album feed sort order:')			 => array('key'				 => 'externalFeed_sortorder_albums', 'type'			 => OPTION_TYPE_SELECTOR,
 										'selections' => array(gettext('latest by id')					 => 'latest',
 														gettext('latest by date')				 => 'latest-date',
@@ -109,7 +109,7 @@ class externalFeed_options {
 							'desc'	 => gettext("The text length of the Zenpage feed items. No value for full length."));
 			$options[gettext('News feed items')] = array('key'		 => 'externalFeed_zenpage_items', 'type'	 => OPTION_TYPE_TEXTBOX,
 							'order'	 => 5,
-							'desc'	 => gettext("The number of news articles you want to appear in your site's News feed."));
+							'desc'	 => gettext("The number of news articles you want to appear in your site’s News feed."));
 		}
 
 		return $options;
@@ -192,7 +192,7 @@ class ExternalFeed extends feed {
 				$this->channel_title = $_zp_gallery->getBareTitle($this->locale);
 				break;
 			case 'website':
-				$this->channel_title = strip_tags($_zp_gallery->getWebsiteTitle($this->locale));
+				$this->channel_title = getBare($_zp_gallery->getWebsiteTitle($this->locale));
 				break;
 			case 'both':
 				$website_title = $_zp_gallery->getWebsiteTitle($this->locale);
@@ -227,7 +227,7 @@ class ExternalFeed extends feed {
 				}
 				$albumname = $this->getChannelTitleExtra();
 
-				$this->channel_title = html_encode($this->channel_title . ' ' . strip_tags($albumname));
+				$this->channel_title = html_encode($this->channel_title . ' ' . getBare($albumname));
 				$this->imagesize = $this->getImageSize();
 				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/image_album_statistics.php');
 				break;

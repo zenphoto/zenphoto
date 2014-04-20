@@ -5,6 +5,7 @@
  *
  * @package core
  */
+define('JQUERY_SCRIPT', '<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>');
 
 /**
  *
@@ -156,8 +157,23 @@ function ksesProcess($input_string, $allowed_tags) {
 	if (function_exists('kses')) {
 		return kses($input_string, $allowed_tags);
 	} else {
-		return strip_tags($input_string);
+		return getBare($input_string);
 	}
+}
+
+/**
+ * Cleans tags and some content.
+ * @param type $content
+ * @return type
+ */
+function getBare($content) {
+	$content = preg_replace('~<script.*?/script>~is', '', $content);
+	$content = preg_replace('~<style.*?/style>~is', '', $content);
+	$content = preg_replace('~<!--.*?-->~is', '', $content);
+	$content = strip_tags($content);
+	$content = str_replace('&nbsp;', ' ', $content);
+	$content = html_entity_decode($content, ENT_QUOTES, 'UTF-8');
+	return $content;
 }
 
 /** returns a sanitized string for the sanitize function
@@ -171,18 +187,21 @@ function sanitize_string($input, $sanitize_level) {
 		if (get_magic_quotes_gpc()) {
 			$input = stripslashes($input);
 		}
+		$input = str_replace(chr(0), " ", $input);
 		switch ($sanitize_level) {
 			case 0:
-				return str_replace(chr(0), " ", $input);
+				return $input;
 			case 2:
 				// Strips non-style tags.
+				$input = sanitize_script($input);
 				return ksesProcess($input, getAllowedTags('style_tags'));
 			case 3:
 				// Full sanitation.  Strips all code.
-				return strip_tags($input);
+				return getBare($input);
 			case 1:
 				// Text formatting sanititation.
-				$input = ksesProcess($input, getAllowedTags('allowed_tags'));
+				$input = sanitize_script($input);
+				return ksesProcess($input, getAllowedTags('allowed_tags'));
 			case 4:
 			default:
 				// for internal use to eliminate security injections
@@ -407,7 +426,7 @@ function debugLogVar($message) {
 	var_dump($var);
 	$str = ob_get_contents();
 	ob_end_clean();
-	debugLog(trim($message) . "\r" . html_decode(strip_tags($str)));
+	debugLog(trim($message) . "\r" . html_decode(getBare($str)));
 }
 
 /**

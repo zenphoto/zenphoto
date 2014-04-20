@@ -111,7 +111,7 @@ if (!is_dir(SERVERCACHE)) {
 if (!is_writable(SERVERCACHE)) {
 	@chmod(SERVERCACHE, FOLDER_MOD);
 	if (!is_writable(SERVERCACHE))
-		imageError('404 Not Found', gettext("The cache directory is not writable! Attempts to chmod didn't work."), 'err-cachewrite.png');
+		imageError('404 Not Found', gettext("The cache directory is not writable! Attempts to chmod did not work."), 'err-cachewrite.png');
 }
 if (!file_exists($imgfile)) {
 	if (isset($_GET['z'])) { //	flagged as a special image

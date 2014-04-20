@@ -371,7 +371,7 @@ function inventMenuItem($menuset, $visibility) {
 				}
 			}
 			if (!empty($currentkey)) {
-				if (is_object($_zp_current_zenpage_news)) {
+				if (is_NewsArticle()) {
 					$item = array('id'				 => 9999, 'sort_order' => $currentkey, 'parentid'	 => $item['id'], 'type'			 => 'zenpagenews',
 									'include_li' => true, 'title'			 => $_zp_current_zenpage_news->getTitle(),
 									'show'			 => 1, 'link'			 => '', 'menuset'		 => $menuset);
@@ -413,7 +413,8 @@ function inventMenuItem($menuset, $visibility) {
  * @return int
  */
 function getCurrentMenuItem($menuset) {
-	$currentpageURL = html_encode(getRequestURI());
+	$currentpageURL = rtrim(str_replace('\\', '/', html_encode(getRequestURI())), '/');
+
 	if (isset($_GET['page'])) { // must strip out page numbers, all "pages" are equal
 		if (MOD_REWRITE) {
 			if (isset($_GET['album'])) {
@@ -433,7 +434,6 @@ function getCurrentMenuItem($menuset) {
 			}
 		}
 	}
-	$currentpageURL = rtrim(str_replace('\\', '/', $currentpageURL), '/');
 	$visibility = 'all';
 	$items = getMenuItems($menuset, $visibility);
 	$currentkey = NULL;
@@ -1113,7 +1113,7 @@ function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $
 						if (empty($itemURL)) {
 							$itemURL = FULLWEBPATH;
 						}
-						echo '<a href="' . $itemURL . '" title="' . strip_tags($itemtitle) . '">' . $itemtitle . '</a>' . $itemcounter;
+						echo '<a href="' . $itemURL . '" title="' . getBare($itemtitle) . '">' . $itemtitle . '</a>' . $itemcounter;
 						break;
 				}
 				if ($item['span_id'] || $item['span_class']) {

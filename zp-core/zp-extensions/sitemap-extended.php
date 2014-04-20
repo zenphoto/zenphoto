@@ -677,7 +677,7 @@ function getSitemapGoogleImageVideoExtras($albumobj, $imageobj, $locale) {
 		$data .= sitemap_echonl("\t\t<video:video>\n\t\t\t<video:thumbnail_loc>" . $host . html_encode($imageobj->getThumb()) . "</video:thumbnail_loc>\n");
 		$data .= sitemap_echonl("\t\t\t<video:title>" . html_encode($imageobj->getTitle($locale)) . "</video:title>");
 		if ($imageobj->getDesc()) {
-			$data .= sitemap_echonl("\t\t\t<video:description>" . html_encode(strip_tags($imageobj->getDesc($locale))) . "</video:description>");
+			$data .= sitemap_echonl("\t\t\t<video:description>" . html_encode(getBare($imageobj->getDesc($locale))) . "</video:description>");
 		}
 		$data .= sitemap_echonl("\t\t\t<video:content_loc>" . $host . pathurlencode($imageobj->getFullImageURL()) . "</video:content_loc>");
 		$data .= sitemap_echonl("\t\t</video:video>");
@@ -686,7 +686,7 @@ function getSitemapGoogleImageVideoExtras($albumobj, $imageobj, $locale) {
 		// disabled for the multilingual reasons above
 		$data .= sitemap_echonl("\t\t\t<image:title>" . html_encode($imageobj->getTitle($locale)) . "</image:title>");
 		if ($imageobj->getDesc()) {
-			$data .= sitemap_echonl("\t\t\t<image:caption>" . html_encode(strip_tags($imageobj->getDesc($locale))) . "</image:caption>");
+			$data .= sitemap_echonl("\t\t\t<image:caption>" . html_encode(getBare($imageobj->getDesc($locale))) . "</image:caption>");
 		}
 		if (!empty($license)) {
 			$data .= sitemap_echonl("\t\t\t<image:license>" . $license . "</image:license>");

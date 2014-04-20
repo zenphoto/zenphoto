@@ -421,12 +421,12 @@ echo '</head>' . "\n";
 								if (newgroup == '')
 									return true;
 								if (newgroup.indexOf('?') >= 0 || newgroup.indexOf('&') >= 0 || newgroup.indexOf('"') >= 0 || newgroup.indexOf('\'') >= 0) {
-									alert('<?php echo gettext('Group names may not contain "?", "&", or quotation marks.'); ?>');
+									alert('<?php echo gettext('Group names may not contain “?”, “&”, or quotation marks.'); ?>');
 									return false;
 								}
 								for (i = newgroupid - 1; i >= 0; i--) {
 									if ($('#group-' + i).val() == newgroup) {
-										alert(sprintf('<?php echo gettext('The group "%s" already exists.'); ?>', newgroup));
+										alert(sprintf('<?php echo gettext('The group “%s” already exists.'); ?>', newgroup));
 										return false;
 									}
 								}

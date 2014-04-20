@@ -183,7 +183,7 @@ echo "\n</head>";
 										<p>
 											<span class="nowrap">
 												<?php
-												echo str_replace(' ', '&nbsp;', html_encode(strip_tags(trim($line))));
+												echo str_replace(' ', '&nbsp;', html_encode(getBare(trim($line))));
 												?>
 											</span>
 										</p>

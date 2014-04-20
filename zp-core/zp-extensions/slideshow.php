@@ -114,7 +114,7 @@ class slideshow {
 												'desc'	 => gettext("Milliseconds between slide transitions (0 to disable auto advance.)")),
 								gettext('Description')	 => array('key'		 => 'slideshow_showdesc', 'type'	 => OPTION_TYPE_CHECKBOX,
 												'order'	 => 4,
-												'desc'	 => gettext("Check if you want to show the image's description below the slideshow."))
+												'desc'	 => gettext("Check if you want to show the image’s description below the slideshow."))
 				));
 				break;
 			case 'colorbox':
@@ -125,7 +125,7 @@ class slideshow {
 								gettext('Colorbox image type')	 => array('key'				 => 'slideshow_colorbox_imagetype', 'type'			 => OPTION_TYPE_SELECTOR,
 												'order'			 => 3,
 												'selections' => array(gettext('full image') => "fullimage", gettext('sized image') => "sizedimage"),
-												'desc'			 => gettext("The image type you wish to use for the Colorbox. If you choose 'sized image' the slideshow width value will be used for the longest side of the image.")),
+												'desc'			 => gettext("The image type you wish to use for the Colorbox. If you choose “sized image” the slideshow width value will be used for the longest side of the image.")),
 								gettext('Colorbox image title')	 => array('key'		 => 'slideshow_colorbox_imagetitle', 'type'	 => OPTION_TYPE_CHECKBOX,
 												'order'	 => 4,
 												'desc'	 => gettext("If the image title should be shown at the bottom of the Colorbox."))
@@ -634,7 +634,7 @@ if (extensionEnabled('slideshow')) {
 							}
 							$imagetitle = '';
 							if (getOption('slideshow_colorbox_imagetitle')) {
-								$imagetitle = html_encode(strip_tags($imgobj->getTitle()));
+								$imagetitle = html_encode(getBare($imgobj->getTitle()));
 							}
 							?>
 							<a href="<?php echo html_encode(pathurlencode($imagelink)); ?>" rel="slideshow"<?php echo $style; ?> title="<?php echo $imagetitle; ?>"><?php echo $linktext; ?></a>

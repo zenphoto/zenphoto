@@ -1240,7 +1240,7 @@ function checkForEmptyTitle($titlefield, $type, $truncate = true) {
 			$text = gettext("Untitled category");
 			break;
 	}
-	$title = strip_tags($titlefield);
+	$title = getBare($titlefield);
 	if ($title) {
 		if ($truncate) {
 			$title = truncate_string($title, 40);

@@ -16,7 +16,7 @@ admin_securityChecks(NULL, $return = currentRelativeURL());
 XSRFdefender('cacheDBImages');
 
 $zenphoto_tabs['overview']['subtabs'] = array(gettext('Cache images')				 => PLUGIN_FOLDER . '/cacheManager/cacheImages.php?page=overview&tab=images',
-				gettext('Cache stored images') => PLUGIN_FOLDER . '/cacheManager/cacheDBImages.php?page=overview&tab=DB&amp;XSRFToken=' . getXSRFToken('cacheDBImages'));
+				gettext('Cache stored images') => PLUGIN_FOLDER . '/cacheManager/cacheDBImages.php?page=overview&tab=DB&XSRFToken=' . getXSRFToken('cacheDBImages'));
 printAdminHeader('overview', 'DB');
 echo "\n</head>";
 echo "\n<body>";
@@ -58,18 +58,19 @@ echo "\n" . '<div id="content">';
 					while ($row = db_fetch_assoc($result)) {
 						$imageprocessor++;
 						preg_match_all('|\<\s*img.*?\ssrc\s*=\s*"(.*i\.php\?([^"]*)).*/\>|', $row[$field], $matches);
-						foreach ($matches[2] as $uri) {
-							$params = parse_url($uri);
+						foreach ($matches[1] as $uri) {
+							$params = parse_url(html_entity_decode($uri));
 							if (array_key_exists('query', $params)) {
 								parse_str($params['query'], $query);
 								if (!file_exists(getAlbumFolder() . $query['a'] . '/' . $query['i'])) {
-									recordMissing($table, $row);
+									recordMissing($table, $row, $query['a'] . '/' . $query['i']);
 								} else {
-									$url = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/i.php?' . $uri . '" height="20" width="20" alt="X" />';
-									$text = zpFunctions::updateImageProcessorLink($url);
-									if ($text == $url) {
+									$text = zpFunctions::updateImageProcessorLink($uri);
+									if (strpos($text, 'i.php') !== false) {
+										$url = '<img src="' . $uri . '" height="20" width="20" alt="X" />';
+										$title = getTitle($table, $row) . ' ' . gettext('image processor reference');
 										?>
-										<a href="<?php echo $uri; ?>&amp;debug" title="<?php echo gettext('image processor reference'); ?>">
+										<a href="<?php echo $uri; ?>&amp;debug" title="<?php echo $title; ?>">
 											<?php echo $url . "\n"; ?>
 										</a>
 										<?php
@@ -89,50 +90,40 @@ echo "\n" . '<div id="content">';
 
 				$sql = 'SELECT * FROM ' . prefix($table) . ' WHERE `' . $field . '` REGEXP "<img.*src\s*=\s*\".*' . CACHEFOLDER . '((\\.|[^\"])*)"';
 				$result = query($sql);
+
 				if ($result) {
 					while ($row = db_fetch_assoc($result)) {
 						preg_match_all('~\<img.*src\s*=\s*"((\\.|[^"])*)~', $row[$field], $matches);
 						foreach ($matches[1] as $key => $match) {
-							$found++;
-							list($image, $args) = getImageProcessorURIFromCacheName($match, $watermarks);
-							if (!file_exists(getAlbumFolder() . $image)) {
-								recordMissing($table, $row);
-							} else {
-								$uri = getImageURI($args, dirname($image), basename($image), NULL);
-								if (strpos($uri, 'i.php?') !== false) {
-									$fixed++;
-									switch ($table) {
-										case 'images':
-											$album = query_single_row('SELECT `folder` FROM ' . prefix('albums') . ' WHERE `id`=' . $row[albumid]);
-											$title = sprintf(gettext('%1$s: image %2$s'), $album['folder'], $row[$filename]);
-											break;
-										case 'albums':
-											$title = sprintf(gettext('album %s'), $row[$folder]);
-											break;
-										case 'news':
-										case 'pages':
-											$title = sprintf(gettext('%1$s: %2$s'), $table, $row['titlelink']);
-											break;
-									}
-									?>
-									<a href="<?php echo html_encode($uri); ?>&amp;debug" title="<?php echo $title; ?>">
-										<?php
-										if (isset($set['t'])) {
-											echo '<img src="' . html_encode(pathurlencode($uri)) . '" height="8" width="8" alt="x" />' . "\n";
-										} else {
-											echo '<img src="' . html_encode(pathurlencode($uri)) . '" height="20" width="20" alt="X" />' . "\n";
-										}
+							if (preg_match('~/' . CACHEFOLDER . '/~', $match)) {
+								$found++;
+								list($image, $args) = getImageProcessorURIFromCacheName($match, $watermarks);
+								if (!file_exists(getAlbumFolder() . $image)) {
+									recordMissing($table, $row, $image);
+								} else {
+									$uri = getImageURI($args, dirname($image), basename($image), NULL);
+									if (strpos($uri, 'i.php?') !== false) {
+										$fixed++;
+										$title = getTitle($table, $row);
 										?>
-									</a>
-									<?php
+										<a href="<?php echo html_encode($uri); ?>&amp;debug" title="<?php echo $title; ?>">
+											<?php
+											if (isset($set['t'])) {
+												echo '<img src="' . html_encode(pathurlencode($uri)) . '" height="8" width="8" alt="x" />' . "\n";
+											} else {
+												echo '<img src="' . html_encode(pathurlencode($uri)) . '" height="20" width="20" alt="X" />' . "\n";
+											}
+											?>
+										</a>
+										<?php
+									}
 								}
-
 								//Check for cache folder having moved (Site relocated?)
-								preg_match('~(.*/)' . CACHEFOLDER . '~', $match, $foldermatches);
-								if ($foldermatches[1] != WEBPATH . '/') {
+								preg_match('~(.*/)' . CACHEFOLDER . '/~', $match, $foldermatches);
+								if ($foldermatches[1] != '{*WEBPATH*}/') {
 									$fixedFolder++;
 									$target = $foldermatches[1] . CACHEFOLDER . '/' . stripSuffix($image);
-									$update = WEBPATH . '/' . CACHEFOLDER . '/' . stripSuffix($image);
+									$update = '{*WEBPATH*}/' . CACHEFOLDER . '/' . stripSuffix($image);
 									$row[$field] = updateCacheFolder($row[$field], $target, $update);
 									$sql = 'UPDATE ' . prefix($table) . ' SET `' . $field . '`=' . db_quote($row[$field]) . ' WHERE `id`=' . $row['id'];
 									query($sql);
@@ -152,10 +143,8 @@ echo "\n" . '<div id="content">';
 					?>
 				</p>
 				<?php
-				foreach ($missingImages as $link => $missing) {
-					?>
-					<a href="<?php echo $link; ?>"><?php echo $missing; ?></a><br />
-					<?php
+				foreach ($missingImages as $missing) {
+					echo $missing;
 				}
 				?>
 			</div>
@@ -241,11 +230,5 @@ echo "\n" . '<div id="content">';
 			$text = str_replace($target, $update, $text);
 		}
 		return $text;
-	}
-
-	function recordMissing($table, $row) {
-		global $missingImages;
-		$obj = getItemByID($table, $row['id']);
-		$missingImages[$obj->getLink()] = $obj->getTitle();
 	}
 	?>

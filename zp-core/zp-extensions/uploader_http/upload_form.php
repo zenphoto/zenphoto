@@ -1,13 +1,16 @@
 <?php
+
 function upload_head() {
-	$myfolder = WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/uploader_http';
+	$myfolder = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/uploader_http';
 	?>
 	<link rel="stylesheet" type="text/css" href="<?php echo $myfolder; ?>/httpupload.css">
 	<script type="text/javascript" src="<?php echo $myfolder; ?>/httpupload.js"></script>
 	<?php
-	return $myfolder.'/uploader.php';
+	return $myfolder . '/uploader.php';
 }
+
 function upload_extra($uploadlimit, $passedalbum) {
+
 }
 
 function upload_form($uploadlimit, $passedalbum) {
@@ -19,8 +22,8 @@ function upload_form($uploadlimit, $passedalbum) {
 		// <!-- <![CDATA[
 		window.totalinputs = 5;
 		function addUploadBoxes(placeholderid, copyfromid, num) {
-			for (i=0; i<num; i++) {
-				jQuery('#'+copyfromid).clone().insertBefore('#'+placeholderid);
+			for (i = 0; i < num; i++) {
+				jQuery('#' + copyfromid).clone().insertBefore('#' + placeholderid);
 				window.totalinputs++;
 				if (window.totalinputs >= 50) {
 					jQuery('#addUploadBoxes').toggle('slow');
@@ -31,7 +34,7 @@ function upload_form($uploadlimit, $passedalbum) {
 		function resetBoxes() {
 			window.totalinputs = 5;
 			$('#uploadboxes').html('<div id="place" style="display: none;"></div>');
-			addUploadBoxes('place','filetemplate',5);
+			addUploadBoxes('place', 'filetemplate', 5);
 		}
 		// ]]> -->
 	</script>
@@ -54,12 +57,12 @@ function upload_form($uploadlimit, $passedalbum) {
 		<!-- New boxes get inserted before this -->
 
 	</div>
-		<div style="display:none">
+	<div style="display:none">
 		<!-- This is the template that others are copied from -->
 		<div class="fileuploadbox" id="filetemplate" ><input type="file" size="40" name="files[]" value="x" /></div>
-		</div>
-		<p id="addUploadBoxes"><a href="javascript:addUploadBoxes('place','filetemplate',5)" title="<?php echo gettext("Doesn't reload!"); ?>">+ <?php echo gettext("Add more upload boxes"); ?></a> <small>
-		<?php echo gettext("(won't reload the page, but remember your upload limits!)"); ?></small></p>
+	</div>
+	<p id="addUploadBoxes"><a href="javascript:addUploadBoxes('place','filetemplate',5)" title="<?php echo gettext("Does not reload!"); ?>">+ <?php echo gettext("Add more upload boxes"); ?></a> <small>
+			<?php echo gettext("(will not reload the page, but remember your upload limits!)"); ?></small></p>
 
 	<p id="fileUploadbuttons" class="buttons" style="display: none;">
 		<button type="submit" value="<?php echo gettext('Upload'); ?>" onclick="this.form.folder.value = this.form.folderdisplay.value;" class="button">
@@ -74,5 +77,4 @@ function upload_form($uploadlimit, $passedalbum) {
 
 	<?php
 }
-
 ?>

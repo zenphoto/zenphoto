@@ -865,12 +865,12 @@ echo $refresh;
 							if (newuser == '')
 								return true;
 							if (newuser.indexOf('?') >= 0 || newuser.indexOf('&') >= 0 || newuser.indexOf('"') >= 0 || newuser.indexOf('\'') >= 0) {
-								alert('<?php echo js_encode(gettext('User names may not contain "?", "&", or quotation marks.')); ?>');
+								alert('<?php echo js_encode(gettext('User names may not contain “?”, “&", or quotation marks.')); ?>');
 								return false;
 							}
 							for (i = 0; i < admins.length; i++) {
 								if (admins[i] == newuser) {
-									alert(sprintf('<?php echo js_encode(gettext('The user "%s" already exists.')); ?>', newuser));
+									alert(sprintf('<?php echo js_encode(gettext('The user “%s” already exists.')); ?>', newuser));
 									return false;
 								}
 							}

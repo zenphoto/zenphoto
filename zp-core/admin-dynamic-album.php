@@ -278,7 +278,7 @@ while ($old != $albumname) {
 
 	</table>
 
-	<input type="submit" value="<?php echo gettext('Create the album'); ?>" class="button" />
+	<input type="submit" value="<?php echo addslashes(gettext('Create the album')); ?>" class="button" />
 </form>
 
 <?php

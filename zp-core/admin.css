@@ -1361,7 +1361,6 @@ button.positive,.buttons a.positive {
 	border: 1px solid #ccc;
 	list-style: none;
 	height: 120px;
-	width: 255px;
 	overflow: auto;
 	background-color: white;
 }
@@ -1385,6 +1384,10 @@ button.positive,.buttons a.positive {
 	text-align: left;
 	float: left;
 }
+.tag_div {
+	width: 100%;
+}
+
 .new_tag {
 	border:none;
 	text-decoration: none;
@@ -2172,14 +2175,20 @@ button.positive,.log_buttons a.positive {
 }
 
 .metadata_table {
+	width:100%;
 	table-layout: fixed;
-	border: 1px solid #BAC9CF;
 	word-wrap: break-word;
 }
 
+.medtadata_tag {
+	width:30%;
+	text-align: right;
+}
+
 .metadata_container {
-	width: 350px;
-	height: 320px;
+	border: 1px solid #BAC9CF;
+	width: 100%;
+	height: 180px;
 	overflow:scroll;
 	overflow-x:hidden;
 }
@@ -2593,14 +2602,14 @@ Tooltip styling
 }
 
 #form_editcomment input {
-width: 60% !important;
+	width: 60% !important;
 }
 
 
 #form_editcomment textarea {
-clear: both !important;
-display: block;
-width: 100% !important;
+	clear: both !important;
+	display: block;
+	width: 100% !important;
 }
 
 
@@ -2686,8 +2695,8 @@ ul.userlist {
 
 form.dirty button[type=submit],
 form.dirty input[type=submit] {
- border: 1px solid #74b341 !important;
- background: #d7e5a6;
+	border: 1px solid #74b341 !important;
+	background: #d7e5a6;
 }
 
 form.dirty button[type=submit]:hover,
@@ -2695,9 +2704,9 @@ form.dirty button[type=submit]:active,
 form.dirty input[type=submit]:hover,
 form.dirty input[type=submit]:active{
 	border: 1px solid green !important;
-	background: #eff6d5; 
+	background: #eff6d5;
 }
 
 .mce-tinymce.mce-container .mce-toolbar {
-float: left;
+	float: left;
 }

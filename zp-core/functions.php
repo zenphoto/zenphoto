@@ -382,7 +382,7 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 			if (empty($result)) {
 				$result = gettext('Mail send failed.');
 			}
-			$result .= sprintf(gettext('Invalid "reply-to" mail address %s.'), $m);
+			$result .= sprintf(gettext('Invalid “reply-to” mail address %s.'), $m);
 		}
 	}
 	if (is_null($email_list)) {
@@ -394,7 +394,7 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 				if (empty($result)) {
 					$result = gettext('Mail send failed.');
 				}
-				$result .= ' ' . sprintf(gettext('Invalid "to" mail address %s.'), $email);
+				$result .= ' ' . sprintf(gettext('Invalid “to” mail address %s.'), $email);
 			}
 		}
 	}
@@ -405,7 +405,7 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 			if (empty($result)) {
 				$result = gettext('Mail send failed.');
 			}
-			$result .= ' ' . gettext('"cc" list provided without "to" address list.');
+			$result .= ' ' . gettext('“cc” list provided without “to” address list.');
 			return $result;
 		}
 		foreach ($cc_addresses as $key => $email) {
@@ -414,7 +414,7 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 				if (empty($result)) {
 					$result = gettext('Mail send failed.');
 				}
-				$result = ' ' . sprintf(gettext('Invalid "cc" mail address %s.'), $email);
+				$result = ' ' . sprintf(gettext('Invalid “cc” mail address %s.'), $email);
 			}
 		}
 	}
@@ -427,7 +427,7 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 				if (empty($result)) {
 					$result = gettext('Mail send failed.');
 				}
-				$result = ' ' . sprintf(gettext('Invalid "bcc" mail address %s.'), $email);
+				$result = ' ' . sprintf(gettext('Invalid “bcc” mail address %s.'), $email);
 			}
 		}
 	}
@@ -442,6 +442,19 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 				$subject = $_zp_UTF8->convert($subject, LOCAL_CHARSET);
 				$message = $_zp_UTF8->convert($message, LOCAL_CHARSET);
 			}
+
+			//	we do not support rich text
+			$message = preg_replace('~<p[^>]*>~', "\n", $message); // Replace the start <p> or <p attr="">
+			$message = preg_replace('~</p>~', "\n", $message); // Replace the end
+			$message = preg_replace('~<br[^>]*>~', "\n", $message); // Replace <br> or <br ...>
+			$message = preg_replace('~<ol[^>]*>~', "", $message); // Replace the start <ol> or <ol attr="">
+			$message = preg_replace('~</ol>~', "", $message); // Replace the end
+			$message = preg_replace('~<ul[^>]*>~', "", $message); // Replace the start <ul> or <ul attr="">
+			$message = preg_replace('~</ul>~', "", $message); // Replace the end
+			$message = preg_replace('~<li[^>]*>~', ".\t", $message); // Replace the start <li> or <li attr="">
+			$message = preg_replace('~</li>~', "", $message); // Replace the end
+			$message = getBare($message);
+			$message = preg_replace('~\n\n\n+~', "\n\n", $message);
 
 			// Send the mail
 			if (count($email_list) > 0) {
@@ -459,7 +472,7 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 		if (empty($result)) {
 			$result = gettext('Mail send failed.');
 		}
-		$result .= ' ' . gettext('No "to" address list provided.');
+		$result .= ' ' . gettext('No “to” address list provided.');
 	}
 	return $result;
 }
@@ -632,7 +645,11 @@ function getPlugin($plugin, $inTheme = false, $webpath = false) {
 	}
 	if ($pluginFile) {
 		if ($webpath) {
-			return WEBPATH . filesystemToInternal($pluginFile);
+			if (is_string($webpath)) {
+				return $webpath . filesystemToInternal($pluginFile);
+			} else {
+				return WEBPATH . filesystemToInternal($pluginFile);
+			}
 		} else {
 			return SERVERPATH . $pluginFile;
 		}
@@ -1229,7 +1246,7 @@ function generateListFromFiles($currentValue, $root, $suffix, $descending = fals
  */
 function getLinkHTML($url, $text, $title = NULL, $class = NULL, $id = NULL) {
 	return "<a href=\"" . html_encode($url) . "\"" .
-					(($title) ? " title=\"" . html_encode(strip_tags($title)) . "\"" : "") .
+					(($title) ? " title=\"" . html_encode(getBare($title)) . "\"" : "") .
 					(($class) ? " class=\"$class\"" : "") .
 					(($id) ? " id=\"$id\"" : "") . ">" .
 					html_encode($text) . "</a>";
@@ -1943,7 +1960,7 @@ function debug404($album, $image, $theme) {
 		trigger_error(sprintf(gettext('Zenphoto processed a 404 error on %s. See the debug log for details.'), $target), E_USER_NOTICE);
 		ob_start();
 		var_dump($server);
-		$server = preg_replace('~array\s*\(.*\)\s*~', '', html_decode(strip_tags(ob_get_contents())));
+		$server = preg_replace('~array\s*\(.*\)\s*~', '', html_decode(getBare(ob_get_contents())));
 		ob_end_clean();
 		ob_start();
 		var_dump($request);
@@ -1951,7 +1968,7 @@ function debug404($album, $image, $theme) {
 		if (!empty($image)) {
 			$request['image'] = $image;
 		}
-		$request = preg_replace('~array\s*\(.*\)\s*~', '', html_decode(strip_tags(ob_get_contents())));
+		$request = preg_replace('~array\s*\(.*\)\s*~', '', html_decode(getBare(ob_get_contents())));
 		ob_end_clean();
 		debugLog("404 error details\n" . $server . $request);
 	}

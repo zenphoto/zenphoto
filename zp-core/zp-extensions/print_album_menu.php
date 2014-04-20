@@ -48,7 +48,7 @@ class print_album_menu {
 		global $_common_truncate_handler;
 		$options = array(gettext('"List" subalbum level') => array('key'		 => 'print_album_menu_showsubs', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 0,
-										'desc'	 => gettext('The depth of subalbum levels shown with the <code>printAlbumMenu</code> and <code>printAlbumMenuList</code> "List" option. Note: themes may override this default.')),
+										'desc'	 => gettext('The depth of subalbum levels shown with the <code>printAlbumMenu</code> and <code>printAlbumMenuList</code> “List” option. Note: themes may override this default.')),
 						gettext('Show counts')					 => array('key'		 => 'print_album_menu_count', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 1,
 										'desc'	 => gettext('If checked, image and album counts will be included in the list. Note: Themes may override this option.')),
@@ -371,9 +371,9 @@ function printAlbumMenuJumpAlbum($albums, $option, $albumpath, $firstimagelink, 
 
 		$selected = checkSelectedAlbum($subalbum->name, "album");
 		if ($firstimagelink && $subalbum->getNumImages() != 0) {
-			$link = "<option $selected value='" . html_encode($subalbum->getImage(0)->getLink()) . "'>" . $arrow . strip_tags($subalbum->getTitle()) . $count . "</option>";
+			$link = "<option $selected value='" . html_encode($subalbum->getImage(0)->getLink()) . "'>" . $arrow . getBare($subalbum->getTitle()) . $count . "</option>";
 		} else {
-			$link = "<option $selected value='" . html_encode($subalbum->getLink(1)) . "'>" . $arrow . strip_tags($subalbum->getTitle()) . $count . "</option>";
+			$link = "<option $selected value='" . html_encode($subalbum->getLink(1)) . "'>" . $arrow . getBare($subalbum->getTitle()) . $count . "</option>";
 		}
 		echo $link;
 		$subalbums = $subalbum->getAlbums();

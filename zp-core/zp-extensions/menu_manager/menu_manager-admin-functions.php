@@ -550,7 +550,7 @@ function addItem(&$reports) {
 				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to give your menu item a <strong>title</strong>!") . " </p>";
 				return $result;
 			}
-			$result['link'] = sanitize($_POST['link'], 0);
+			$result['link'] = sanitize($_POST['link'], 4);
 			if (empty($result['link'])) {
 				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to provide a <strong>function</strong>!") . " </p>";
 				return $result;
@@ -563,7 +563,7 @@ function addItem(&$reports) {
 				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to give your menu item a <strong>title</strong>!") . " </p>";
 				return $result;
 			}
-			$result['link'] = sanitize($_POST['link'], 0);
+			$result['link'] = sanitize($_POST['link'], 4);
 			if (empty($result['link'])) {
 				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to provide a <strong>function</strong>!") . " </p>";
 				return $result;
@@ -692,7 +692,7 @@ $reports) {
 				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to give your menu item a <strong>title</strong>!") . " </p>";
 				return $result;
 			}
-			$result['link'] = sanitize($_POST['link'], 0);
+			$result['link'] = sanitize($_POST['link'], 4);
 			if (empty($result['link'])) {
 				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to provide a <strong>function</strong>!") . " </p>";
 				return $result;
@@ -704,14 +704,14 @@ $reports) {
 				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to give your menu item a <strong>title</strong>!") . " </p>";
 				return $result;
 			}
-			$result['link'] = sanitize($_POST['link'], 0);
+			$result['link'] = sanitize($_POST['link'], 4);
 			if (empty($result['link'])) {
 				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to provide a <strong>function</strong>!") . " </p>";
 				return $result;
 			}
 			break;
 		default:
-			$result['link'] = sanitize($_POST['link'], 0);
+			$result['link'] = sanitize($_POST['link'], 4);
 			break;
 	}
 	// update the category in the category table

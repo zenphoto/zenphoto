@@ -621,7 +621,7 @@ function getZenpageRSSHeaderLink($option = '', $categorylink = '', $linktext = '
 	if ($option == 'Category') {
 		if (!is_null($categorylink)) {
 			$categorylink = '&amp;category=' . html_encode($categorylink);
-		} elseif (empty($categorylink) AND !is_null($_zp_current_category)) {
+		} elseif (empty($categorylink) AND ! is_null($_zp_current_category)) {
 			$categorylink = '&amp;category=' . $_zp_current_category->getTitlelink();
 		} else {
 			$categorylink = '';
@@ -884,7 +884,7 @@ function printNewsLink($before = '') {
  * @since 1.4.6
  */
 function zenpageOpenedForComments() {
-	deprecated_functions::notify(gettext("use the object's getCommentsAllowed() method"));
+	deprecated_functions::notify(gettext("use the object’s getCommentsAllowed() method"));
 	global $_zp_current_zenpage_news, $_zp_current_zenpage_page;
 	if (is_NewsArticle()) {
 		$obj = $_zp_current_zenpage_news;

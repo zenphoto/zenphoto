@@ -1,7 +1,7 @@
 <?php
 zp_register_filter('themeSwitcher_head', 'switcher_head');
 zp_register_filter('themeSwitcher_Controllink', 'switcher_controllink');
-zp_register_filter('theme_head', 'css_head', 0);
+zp_register_filter('theme_head', 'css_head', 500);
 enableExtension('zenpage', 0, false); //	we do not support it
 
 $curdir = getcwd();
@@ -18,6 +18,13 @@ function css_head($ignore) {
 	if (!$themeColor) {
 		$themeColor = getThemeOption('Theme_colors');
 	}
+
+	if ($editorConfig = getOption('tinymce4_comments')) {
+		if (strpos($themeColor, 'dark') !== false) {
+			setOption('tinymce4_comments', 'dark_' . $editorConfig, false);
+		}
+	}
+
 	$zenCSS = $_zp_themeroot . '/styles/' . $themeColor . '.css';
 	$unzenCSS = str_replace(WEBPATH, '', $zenCSS);
 	if (!file_exists(SERVERPATH . internalToFilesystem($unzenCSS))) {

@@ -7,7 +7,7 @@
  * @author Malte Müller (acrylian)
  * @package plugins
  */
-$plugin_description = gettext("Prints a paged thumbs navigation on image.php, independent of the album.php's thumbs.");
+$plugin_description = gettext("Prints a paged thumbs navigation on image.php, independent of the album.php’s thumbs.");
 $plugin_author = "Malte Müller (acrylian)";
 $option_interface = 'pagedthumbsOptions';
 
@@ -41,7 +41,7 @@ class pagedthumbsOptions {
 		return array(gettext('Thumbs per page')								 => array('key'	 => 'pagedthumbs_imagesperpage', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext("Controls the number of images on a page. You might need to change this after switching themes to make it look better.")),
 						gettext('Counter')												 => array('key'	 => 'pagedthumbs_counter', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext("If you want to show the counter 'x - y of z images'.")),
+										'desc' => gettext("If you want to show the counter “x - y of z images”.")),
 						gettext('Prevtext')												 => array('key'					 => 'pagedthumbs_prevtext', 'type'				 => OPTION_TYPE_TEXTBOX,
 										'desc'				 => gettext("The text for the previous thumbs."), 'multilingual' => 1),
 						gettext('Nexttext')												 => array('key'					 => 'pagedthumbs_nexttext', 'type'				 => OPTION_TYPE_TEXTBOX,
@@ -255,15 +255,15 @@ class pagedThumbsNav {
 			} else {
 				$css = "";
 			}
-			echo "<a $css href=\"" . html_encode($image->getLink()) . "\" title=\"" . html_encode(strip_tags($image->getTitle())) . "\">";
+			echo "<a $css href=\"" . html_encode($image->getLink()) . "\" title=\"" . html_encode(getBare($image->getTitle())) . "\">";
 
 			if ($this->crop) {
-				$html = "<img src='" . html_encode(pathurlencode($image->getCustomImage(null, $this->width, $this->height, $this->width, $this->height, null, null, true))) . "' alt=\"" . html_encode(strip_tags($image->getTitle())) . "\" width='" . $this->width . "' height='" . $this->height . "' />";
+				$html = "<img src='" . html_encode(pathurlencode($image->getCustomImage(null, $this->width, $this->height, $this->width, $this->height, null, null, true))) . "' alt=\"" . html_encode(getBare($image->getTitle())) . "\" width='" . $this->width . "' height='" . $this->height . "' />";
 			} else {
 				$maxwidth = $this->width; // needed because otherwise getMaxSpaceContainer will use the values of the first image for all others, too
 				$maxheight = $this->height;
 				getMaxSpaceContainer($maxwidth, $maxheight, $image, true);
-				$html = "<img src=\"" . html_encode(pathurlencode($image->getCustomImage(NULL, $maxwidth, $maxheight, NULL, NULL, NULL, NULL, true))) . "\" alt=\"" . html_encode(strip_tags($image->getTitle())) . "\" />";
+				$html = "<img src=\"" . html_encode(pathurlencode($image->getCustomImage(NULL, $maxwidth, $maxheight, NULL, NULL, NULL, NULL, true))) . "\" alt=\"" . html_encode(getBare($image->getTitle())) . "\" />";
 			}
 			echo zp_apply_filter('custom_image_html', $html, true);
 			echo "</a>\n";

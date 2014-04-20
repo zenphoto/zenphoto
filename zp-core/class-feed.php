@@ -464,7 +464,7 @@ class feed {
 
 				break;
 		}
-		$feeditem['title'] = strip_tags($title . $author);
+		$feeditem['title'] = getBare($title . $author);
 		$feeditem['link'] = $commentpath;
 		$feeditem['desc'] = $item['comment'];
 		return $feeditem;

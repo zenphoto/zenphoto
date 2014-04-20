@@ -1,6 +1,22 @@
 <?php
+zp_register_filter('admin_headers', 'jQueryUpload_headers', 0);
+zp_register_filter('admin_head', 'jQueryUpload_head');
+
+function jQueryUpload_headers() {
+	ob_start();
+}
+
+function jQueryUpload_head() {
+	$head = ob_get_contents();
+	ob_end_clean();
+	//insure we are running compatible scripts
+	$head = str_replace(JQUERY_SCRIPT, '<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" >', $head);
+	$head = str_replace('<script src="' . WEBPATH . '/' . ZENFOLDER . '/js/jqueryui/jquery-ui-zenphoto.js" type="text/javascript"></script>', '<script src="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/uploader_jQuery/jqueryui/jquery-ui-zenphoto.js"></script>', $head);
+	echo $head;
+}
+
 function upload_head() {
-	$myfolder = WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/uploader_jQuery';
+	$myfolder = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/uploader_jQuery';
 	?>
 	<script type="text/javascript" src="<?php echo $myfolder; ?>/jquery.tmpl.min.js"></script>
 	<script type="text/javascript" src="<?php echo $myfolder; ?>/jquery.iframe-transport.js"></script>
@@ -8,8 +24,9 @@ function upload_head() {
 	<script type="text/javascript" src="<?php echo $myfolder; ?>/jquery.fileupload-ui.js"></script>
 	<link rel="stylesheet" href="<?php echo $myfolder; ?>/jquery.fileupload-ui.css">
 	<?php
-	return $myfolder.'/uploader.php';
+	return $myfolder . '/uploader.php';
 }
+
 function upload_extra($uploadlimit, $passedalbum) {
 	global $_zp_current_admin_obj;
 	?>
@@ -17,65 +34,65 @@ function upload_extra($uploadlimit, $passedalbum) {
 		// <!-- <![CDATA[
 		// application
 		var upload_fail = false;
-		$(function () {
+		$(function() {
 			'use strict';
 
 			// Initialize the jQuery File Upload widget:
 			$('#fileupload').fileupload({
-																	url: '<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/uploader_jQuery/uploader.php'?>'<?php
-																	if ($uploadlimit) echo ",
-																	maxFileSize:".$uploadlimit; ?>
-																	});
+				url: '<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/uploader_jQuery/uploader.php' ?>'<?php if ($uploadlimit) echo ",
+maxFileSize:" . $uploadlimit; ?>
+			});
 
 			// Open download dialogs via iframes,
 			// to prevent aborting current uploads:
 			$('#fileupload .files').delegate(
-																			'a:not([target^=_blank])',
-																			'click',
-																			function (e) {
-																										e.preventDefault();
-																										$('<iframe style="display:none;"></iframe>')
-																												.prop('src', this.href)
-																												.appendTo('body');
-																										}
-																			);
+							'a:not([target^=_blank])',
+							'click',
+							function(e) {
+								e.preventDefault();
+								$('<iframe style="display:none;"></iframe>')
+												.prop('src', this.href)
+												.appendTo('body');
+							}
+			);
 
-/*
-			$('#fileupload').bind('fileuploadadd', function (e, data) {
-																																upload_fail = false;
-																																});
+			/*
+			 $('#fileupload').bind('fileuploadadd', function(e, data) {
+			 alert('add');
+			 upload_fail = false;
+			 });
 
 
-			$('#fileupload').bind('fileuploaddone', function (e, data) {
-																																	alert('done');
-																																	upload_fail = false;
-																																	});
-*/
+			 $('#fileupload').bind('fileuploaddone', function(e, data) {
+			 alert('done');
+			 upload_fail = false;
+			 });
+			 */
 
-			$('#fileupload').bind('fileuploadfail', function (e, data) {
-																																	//alert('fail');
-																																	upload_fail = true;
-																																	});
+			$('#fileupload').bind('fileuploadfail', function(e, data) {
+				//alert('fail');
+				upload_fail = true;
+			});
 
-			$('#fileupload').bind('fileuploadstop', function (e, data) {
-																																	if (upload_fail) {
-																																		//alert('upload failed');
-																																		// clean up any globals since we are staying on the page
-																																		upload_fail = false;
-																																	} else {
-																																		<?php
-																																		if (zp_loggedin(ALBUM_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) {
-																																			?>
-																																			launchScript('admin-edit.php',['page=edit','subpage=1','tab=imageinfo','album='+encodeURIComponent($('#folderdisplay').val()),'uploaded=1','albumimagesort=id_desc']);
-																																			<?php
-																																		} else {
-																																			?>
-																																			launchScript('admin-upload.php',['uploaded=1']);
-																																			<?php
-																																		}
-																																		?>
-																																	}
-																																	});
+			$('#fileupload').bind('fileuploadstop', function(e, data) {
+				if (upload_fail) {
+					//alert('upload failed');
+					// clean up any globals since we are staying on the page
+					upload_fail = false;
+				} else {
+	<?php
+	if (zp_loggedin(ALBUM_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) {
+		?>
+						launchScript('admin-edit.php', ['page=edit', 'subpage=1', 'tab=imageinfo', 'album=' + encodeURIComponent($('#folderdisplay').val()), 'uploaded=1', 'albumimagesort=id_desc']);
+		<?php
+	} else {
+		?>
+						launchScript('admin-upload.php', ['uploaded=1']);
+		<?php
+	}
+	?>
+				}
+			});
 
 		});
 		// ]]> -->
@@ -105,71 +122,72 @@ function upload_extra($uploadlimit, $passedalbum) {
 	</div>
 	<script id="template-upload" type="text/x-jquery-tmpl">
 		<tr class="template-upload{{if error}} ui-state-error{{/if}}">
-			<td class="preview"></td>
-			<td class="name">{{if name}}${name}{{else}}Untitled{{/if}}</td>
-			<td class="size">${sizef}</td>
-				{{if error}}
-					<td class="error" colspan="2"><?php echo gettext('Error:'); ?>
-					{{if error === 'maxFileSize'}}<?php echo gettext('File is too big'); ?>
-					{{else error === 'minFileSize'}}<?php echo gettext('File is too small'); ?>
-					{{else error === 'acceptFileTypes'}}<?php echo gettext('Filetype not allowed'); ?>
-					{{else error === 'maxNumberOfFiles'}}<?php echo gettext('Max number of files exceeded'); ?>
-					{{else}}${error}
-				{{/if}}
-			</td>
-			{{else}}
-				<td class="progress"><div></div></td>
-				<td class="start" style="display:none"><button><?php echo gettext('Start'); ?></button></td>
-			{{/if}}
-				<td class="cancel"><button><?php echo gettext('Cancel'); ?></button></td>
+		<td class="preview"></td>
+		<td class="name">{{if name}}${name}{{else}}Untitled{{/if}}</td>
+		<td class="size">${sizef}</td>
+		{{if error}}
+		<td class="error" colspan="2"><?php echo gettext('Error:'); ?>
+		{{if error === 'maxFileSize'}}<?php echo gettext('File is too big'); ?>
+		{{else error === 'minFileSize'}}<?php echo gettext('File is too small'); ?>
+		{{else error === 'acceptFileTypes'}}<?php echo gettext('Filetype not allowed'); ?>
+		{{else error === 'maxNumberOfFiles'}}<?php echo gettext('Max number of files exceeded'); ?>
+		{{else}}${error}
+		{{/if}}
+		</td>
+		{{else}}
+		<td class="progress"><div></div></td>
+		<td class="start" style="display:none"><button><?php echo gettext('Start'); ?></button></td>
+		{{/if}}
+		<td class="cancel"><button><?php echo gettext('Cancel'); ?></button></td>
 		</tr>
 	</script>
 	<script id="template-download" type="text/x-jquery-tmpl">
 		{{if error !== 'emptyResult'}}
 		<tr class="template-download{{if error}}} ui-state-error{{/if}}">
-			{{if error}}
-				<td></td>
-				<td class="name">${name}</td>
-				<td class="size">${sizef}</td>
-				<td class="error" colspan="2"><?php echo gettext('Error:'); ?>
-					{{if error === 1}}<?php echo gettext('File exceeds upload_max_filesize (php.ini directive)'); ?>
-					{{else error === 2}}<?php echo gettext('File exceeds MAX_FILE_SIZE (HTML form directive)'); ?>
-					{{else error === 3}}<?php echo gettext('File was only partially uploaded'); ?>
-					{{else error === 4}}<?php echo gettext('No File was uploaded'); ?>
-					{{else error === 5}}<?php echo gettext('Missing a temporary folder'); ?>
-					{{else error === 6}}<?php echo gettext('Failed to write file to disk'); ?>
-					{{else error === 7}}<?php echo gettext('File upload stopped by extension'); ?>
-					{{else error === 'maxFileSize'}}<?php echo gettext('File is too big'); ?>
-					{{else error === 'minFileSize'}}<?php echo gettext('File is too small'); ?>
-					{{else error === 'acceptFileTypes'}}<?php echo gettext('Filetype not allowed'); ?>
-					{{else error === 'maxNumberOfFiles'}}<?php echo gettext('Max number of files exceeded'); ?>
-					{{else error === 'uploadedBytes'}}<?php echo gettext('Uploaded bytes exceed file size'); ?>
-					{{else error === 'emptyResult'}}<?php echo gettext('Empty file upload result'); ?>
-					{{else}}${error}
-					{{/if}}
-				</td>
-				<td class="delete">
-					<button data-type="${delete_type}" data-url="${delete_url}">Delete</button>
- 				</td>
-			{{else}}
-				<td class="preview">
-					{{if thumbnail_url}}
-						<a href="${url}" target="_blank"><img src="${thumbnail_url}"></a>
-					{{/if}}
-				</td>
-				<td class="name">
-					<a href="${url}"{{if thumbnail_url}} target="_blank"{{/if}}>${name}</a>
-				</td>
-				<td class="size">${sizef}</td>
-				<td colspan="2"></td>
-				<td class="delete"><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/pass.png" /></td>
-			{{/if}}
+		{{if error}}
+		<td></td>
+		<td class="name">${name}</td>
+		<td class="size">${sizef}</td>
+		<td class="error" colspan="2"><?php echo gettext('Error:'); ?>
+		{{if error === 1}}<?php echo gettext('File exceeds upload_max_filesize (php.ini directive)'); ?>
+		{{else error === 2}}<?php echo gettext('File exceeds MAX_FILE_SIZE (HTML form directive)'); ?>
+		{{else error === 3}}<?php echo gettext('File was only partially uploaded'); ?>
+		{{else error === 4}}<?php echo gettext('No File was uploaded'); ?>
+		{{else error === 5}}<?php echo gettext('Missing a temporary folder'); ?>
+		{{else error === 6}}<?php echo gettext('Failed to write file to disk'); ?>
+		{{else error === 7}}<?php echo gettext('File upload stopped by extension'); ?>
+		{{else error === 'maxFileSize'}}<?php echo gettext('File is too big'); ?>
+		{{else error === 'minFileSize'}}<?php echo gettext('File is too small'); ?>
+		{{else error === 'acceptFileTypes'}}<?php echo gettext('Filetype not allowed'); ?>
+		{{else error === 'maxNumberOfFiles'}}<?php echo gettext('Max number of files exceeded'); ?>
+		{{else error === 'uploadedBytes'}}<?php echo gettext('Uploaded bytes exceed file size'); ?>
+		{{else error === 'emptyResult'}}<?php echo gettext('Empty file upload result'); ?>
+		{{else}}${error}
+		{{/if}}
+		</td>
+		<td class="delete">
+		<button data-type="${delete_type}" data-url="${delete_url}">Delete</button>
+		</td>
+		{{else}}
+		<td class="preview">
+		{{if thumbnail_url}}
+		<a href="${url}" target="_blank"><img src="${thumbnail_url}"></a>
+		{{/if}}
+		</td>
+		<td class="name">
+		<a href="${url}"{{if thumbnail_url}} target="_blank"{{/if}}>${name}</a>
+		</td>
+		<td class="size">${sizef}</td>
+		<td colspan="2"></td>
+		<td class="delete"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" /></td>
+		{{/if}}
 		</tr>
-	{{/if}}
+		{{/if}}
 	</script>
 	<?php
 }
-function upload_form($uploadlimit, $passedalbum) {
-}
 
+function upload_form($uploadlimit, $passedalbum) {
+
+}
 ?>

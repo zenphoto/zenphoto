@@ -1,0 +1,8 @@
+* {
+	font-size: 13px;
+	color: #888;
+}
+body, .mceContentBody {
+	background-color: #111;
+	color: #888;
+}
