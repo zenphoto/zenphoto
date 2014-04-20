@@ -9,6 +9,8 @@ function jQueryUpload_headers() {
 function jQueryUpload_head() {
 	$head = ob_get_contents();
 	ob_end_clean();
+	//insure we are running compatible scripts
+	$head = str_replace(JQUERY_SCRIPT, '<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" >', $head);
 	$head = str_replace('<script src="' . WEBPATH . '/' . ZENFOLDER . '/js/jqueryui/jquery-ui-zenphoto.js" type="text/javascript"></script>', '<script src="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/uploader_jQuery/jqueryui/jquery-ui-zenphoto.js"></script>', $head);
 	echo $head;
 }
