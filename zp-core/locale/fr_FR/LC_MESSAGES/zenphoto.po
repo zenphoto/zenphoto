@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-20 16:42-0500\n"
-"PO-Revision-Date: 2014-04-20 16:43-0500\n"
+"POT-Creation-Date: 2014-04-20 21:02-0500\n"
+"PO-Revision-Date: 2014-04-20 21:03-0500\n"
 "Last-Translator: \n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "<michel@mgagnon.net>\n"
@@ -648,7 +648,7 @@ msgstr "album"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1422
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-globals.php:110
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-options.php:2657
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/image_album_statistics.php:205
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/image_album_statistics.php:208
 msgid "image"
 msgstr "image"
 
@@ -737,7 +737,7 @@ msgstr "Recherche dans les albums"
 
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/image_gallery/functions.php:46
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/image_gallery/functions.php:46
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:137
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:139
 msgid "Start"
 msgstr "Démarrer"
 
@@ -1027,7 +1027,7 @@ msgstr "Pages"
 #: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/functions.php:71
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1268
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1323
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:894
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:881
 msgid "Archive"
 msgstr "Archive"
 
@@ -1076,7 +1076,7 @@ msgstr "Flux RSS"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/related_items.php:187
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tweet_news.php:92
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage.php:273
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:901
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:888
 msgid "News"
 msgstr "Actualités"
 
@@ -1086,7 +1086,7 @@ msgstr "Actualités"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:451
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1285
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1316
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3820
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3821
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:68
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:244
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:744
@@ -2535,7 +2535,7 @@ msgstr "vers"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:143
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_http/upload_form.php:71
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_http/upload_form.php:72
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:139
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:141
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -3084,7 +3084,7 @@ msgstr "Modifier cet album : %s"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:2069
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:2072
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/image_album_statistics.php:207
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/image_album_statistics.php:210
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinyURL.php:77
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tweet_news.php:431
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_http.php:30
@@ -3197,7 +3197,7 @@ msgstr "Page précédente"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:2436
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:2438
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1014
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1001
 msgid "Next page"
 msgstr "Page suivante"
 
@@ -3405,6 +3405,9 @@ msgid "demo"
 msgstr "démonstrateur"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:4423
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:107
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList.php:86
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/rewriteRules.php:25
 msgid "development"
 msgstr "développement"
 
@@ -12132,7 +12135,7 @@ msgstr ""
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/setup/setup-functions.php:225
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/setup/setup-functions.php:230
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:137
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:142
 msgid "unknown"
 msgstr "inconnu"
 
@@ -12556,8 +12559,8 @@ msgstr "Page 1"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1031
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager.php:616
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager.php:634
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1074
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1090
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1061
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1077
 #, php-format
 msgid "Page %u"
 msgid_plural "Page %u"
@@ -12566,7 +12569,7 @@ msgstr[1] "Page %u"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:995
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager.php:626
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1083
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1070
 #, php-format
 msgid "Page %1$u"
 msgid_plural "Page %1$u"
@@ -12589,24 +12592,24 @@ msgstr "Retour à la recherche"
 msgid "Return to archive"
 msgstr "Retour à l’archive"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:2105
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:2090
 msgid "The image is marked un-published."
 msgstr "L’image est marquée comme non publiée."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:2477
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:2462
 msgid "Image Info"
 msgstr "Détails sur l’image"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3319
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3317
 #, php-format
 msgid "View image: %s"
 msgstr "Voir l’image : %s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3507
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3508
 msgid "No popular tags"
 msgstr "Aucun tag populaire"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3815
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3816
 msgid ""
 "printSearchForm $album_list parameter is deprecated. Pass array(\"albums"
 "\"=>array(album, album, ...)) instead."
@@ -12614,41 +12617,41 @@ msgstr ""
 "Le paramètre $album_list de printSearchForm est obsolète. Utilisez plutôt un "
 "tableau array(\"albums\"=>array(album, album, ...))."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3831
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3832
 #, php-format
 msgid "%s within previous results"
 msgstr "%s parmi les résultats précédents"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3906
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3907
 msgid "search options"
 msgstr "options de recherche"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3906
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3907
 msgid "fields"
 msgstr "champs"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3946
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3947
 msgid "Within"
 msgstr "Parmi"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3950
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3951
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/flag_thumbnail.php:91
 msgid "New"
 msgstr "Nouveau"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4008
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4009
 msgid "no date"
 msgstr "sans date"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4238
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4239
 msgid "The page you are trying to view is password protected."
 msgstr "La page que vous essayez d’afficher est protégée par mot de passe."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4243
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4244
 msgid "login"
 msgstr "Connexion"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4260
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4261
 msgid ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
 "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
@@ -12657,21 +12660,21 @@ msgstr ""
 "plus simple\"><span id=\"zen-part\">Zen</span><span id=\"photo-part\">PHOTO</"
 "span></a>"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4423
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4424
 msgid "Zenphoto Error:</strong> the requested object was not found."
 msgstr "Erreur Zenphoto :</strong> l’objet demandé n’a pas été trouvé."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4425
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4426
 #, php-format
 msgid "Album: %s"
 msgstr "Album : %s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4428
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4429
 #, php-format
 msgid "Image: %s"
 msgstr "Image : %s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4431
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4432
 #, php-format
 msgid "Page: %s"
 msgstr "Page : %s"
@@ -15523,7 +15526,7 @@ msgstr "Catégorie de nouvelles"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/related_items.php:193
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:434
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:219
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1068
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1055
 msgid "Page"
 msgstr "Page"
 
@@ -15575,20 +15578,21 @@ msgstr ""
 "obsolètes."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:105
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:106
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:111
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/admin_tab.php:10
 msgid "deprecated"
 msgstr "obsolète"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:119
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:124
 msgid "function"
 msgstr "la fonction"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:147
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:152
 #, php-format
 msgid "%1$s (called from %2$s line %3$s) is deprecated"
 msgstr "%1$s (appelée depuis la ligne %3$s de %2$s) est obsolète."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:147
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:152
 #, php-format
 msgid ""
 "You can disable this error message by going to the <em>deprecated-functions</"
@@ -15600,28 +15604,28 @@ msgstr ""
 "obsolètes) et en décochant <strong>%s</strong> de la liste des fonctions."
 "<br />"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:153
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:158
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/markRelease.php:52
 msgid "Development"
 msgstr "Développement"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:155
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:160
 msgid "Check deprecated use"
 msgstr "Vérification de l’usage de fonctions obsolètes"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:159
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:164
 msgid "Searches PHP scripts for use of deprecated functions."
 msgstr "Inspecte les scripts PHP à la recherche de fonctions obsolètes."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:160
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:165
 msgid "Check for update"
 msgstr "Vérifier s’il existe une mise à jour de Zenphoto"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/admin_tab.php:23
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/admin_tab.php:24
 msgid "Deprecated Functions"
 msgstr "Fonctions obsolètes"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/admin_tab.php:25
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/admin_tab.php:26
 msgid ""
 "Functions flagged with an \"*\" are class methods. Ones flagged with \"+\" "
 "have deprecated parameters."
@@ -16347,13 +16351,13 @@ msgstr "Données Zenphoto (%s)"
 msgid "Backup files (%s)"
 msgstr "Fichier de sauvegarde (%s)"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/email-newuser.php:11
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/email-newuser.php:12
 msgid "Emails a password reset request to a newly created user."
 msgstr ""
 "Envoie un email à l’utilisateur nouvellement créé pour lui demander de "
 "définir son mot de passe."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/email-newuser.php:24
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/email-newuser.php:25
 #, php-format
 msgid ""
 "You are receiving this e-mail because a user code (%1$s) has been created "
@@ -16362,20 +16366,19 @@ msgstr ""
 "Vous avez reçu ce message parce qu’un code d’utilisateur (%1$s) a été créé "
 "pour vous sur la galerie Zenphoto %2$s."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/email-newuser.php:25
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/email-newuser.php:26
 #, php-format
 msgid "To set your Zenphoto User password visit: %s"
 msgstr ""
 "Pour définir votre mot de passe de cette galerie, veuillez aller à : %s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/email-newuser.php:26
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/email-newuser.php:27
 msgid "This ticket will automatically expire in 3 days."
 msgstr "Ce billet expirera automatiquement dans 3 jours."
 
-# This one needs to be double-checked as it is an error message generated by the rest of the variable. So I think that  it is something like: "The Zenphoto user created has this problem"
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/email-newuser.php:27
-msgid "The Zenphoto user created"
-msgstr "L’utilisateur Zenphoto créé"
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/email-newuser.php:28
+msgid "Zenphoto user created"
+msgstr "L’utilisateur Zenphoto a été créé"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/email-newuser.php:41
 msgid "New users will be mailed a password set link"
@@ -17440,25 +17443,25 @@ msgstr ""
 "Fonctions qui fournissent de nombreuses statistiques sur les images et les "
 "albums de la galerie."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/image_album_statistics.php:203
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/image_album_statistics.php:206
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/rss.php:610
 #, php-format
 msgid "Last update: %s"
 msgstr "Dernière mise à jour : %s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/image_album_statistics.php:209
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/image_album_statistics.php:212
 #, php-format
 msgid "%1$u new %2$s"
 msgstr "%1$u nouveaux %2$s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/image_album_statistics.php:220
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/image_album_statistics.php:520
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/image_album_statistics.php:223
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/image_album_statistics.php:526
 #, php-format
 msgid "Rating: %1$u (Votes: %2$u)"
 msgstr "Vote : %1$u (Nombre de voix : %2$u)"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/image_album_statistics.php:227
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/image_album_statistics.php:527
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/image_album_statistics.php:230
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/image_album_statistics.php:533
 #, php-format
 msgid "Views: %u"
 msgstr "Affichages : %u"
@@ -18040,15 +18043,16 @@ msgid "View available <code>content macros</code>."
 msgstr "Permet de visualiser les <code>macros de contenus</code> existantes."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList.php:84
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList.php:85
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList.php:90
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList/macroList_tab.php:9
 msgid "macros"
 msgstr "macros"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList.php:95
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList.php:99
 msgid "Macro identifiers may not contain special characters."
 msgstr "Les identifiants de macros ne peuvent contenir de caractères spéciaux."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList.php:108
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList.php:112
 msgid ""
 "The number of macro parameters must match the number of replacement tokens "
 "in the expression."
@@ -18056,34 +18060,34 @@ msgstr ""
 "Le nombre de paramètres de la macro doit être identique au nombre de "
 "variables-substituts dans l’expression."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList.php:112
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList.php:116
 #, php-format
 msgid "<code>%s</code> is not callable"
 msgstr "<code>%s</code> ne peut être lancé"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList.php:122
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList.php:126
 msgid "An array parameter must be the last parameter."
 msgstr "Un paramètre-tableau (<em>array</em>) doit être le dernier paramètre."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList.php:126
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList.php:130
 msgid "Required parameters should not follow optional ones."
 msgstr ""
 "Les paramètres obligatoires ne doivent pas être inscrits après les "
 "paramètres facultatifs."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList.php:133
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList.php:137
 msgid "Expressions may not have optional parameters."
 msgstr "Les expressions ne peuvent avoir de paramètres facultatifs."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList/macroList_tab.php:22
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList/macroList_tab.php:23
 msgid "Content Macros"
 msgstr "Macros de contenu"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList/macroList_tab.php:27
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList/macroList_tab.php:28
 msgid "No macros have been defined."
 msgstr "Aucune macro n’a été définie."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList/macroList_tab.php:31
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList/macroList_tab.php:32
 #, php-format
 msgid ""
 "These Content macros can be used to insert Zenphoto items as described into "
@@ -18096,11 +18100,11 @@ msgstr ""
 "zenpage</em>, et <em>contenu boni zenpage</em>. Remplacez tous les "
 "paramètres (<em>%d</em>) par les valeurs appropriées."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList/macroList_tab.php:32
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList/macroList_tab.php:33
 msgid "Parameter types:"
 msgstr "Types de paramètres :"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList/macroList_tab.php:34
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList/macroList_tab.php:35
 msgid ""
 "<em><strong>string</strong></em> may be enclosed in quotation marks when the "
 "macro is invoked. The quotes are stripped before the macro is processed."
@@ -18109,15 +18113,15 @@ msgstr ""
 "lorsque la macro est appelée. Les guillemets sont supprimés avant que la "
 "macro soit traitée."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList/macroList_tab.php:35
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList/macroList_tab.php:36
 msgid "<em><strong>int</strong></em> a number"
 msgstr "<em><strong>int</strong></em> est un nombre entier"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList/macroList_tab.php:36
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList/macroList_tab.php:37
 msgid "<em><strong>bool</strong></em> <code>true</code> or <code>false</code>"
 msgstr "<em><strong>bool</strong></em> <code>true</var> ou <var>false</code>"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList/macroList_tab.php:37
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList/macroList_tab.php:38
 msgid ""
 "<em><strong>array</strong></em> an assignment list e.g. <code>u=w</code> "
 "<code>x=y</code>...."
@@ -18125,7 +18129,7 @@ msgstr ""
 "<em><strong>Tableau</strong></em> : liste d’affectations – ex. <code>u=w</"
 "code> <code>x=y</code>…"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList/macroList_tab.php:39
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/macroList/macroList_tab.php:40
 msgid "Parameters within braces are optional."
 msgstr "Les paramètres entre accolades sont optionnels."
 
@@ -18211,7 +18215,7 @@ msgstr[0] "Page %1$u (page courante)"
 msgstr[1] "Page %1$u (page courante)"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager.php:640
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1098
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1085
 #, php-format
 msgid "Page {%u}"
 msgid_plural "Page {%u}"
@@ -19875,14 +19879,15 @@ msgstr "%s apparentés"
 msgid "Site rewrite rules tab."
 msgstr "Liste des règles de réécriture."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/rewriteRules.php:24
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/rewriteRules/admin_tab.php:25
-msgid "Rewrite Rules"
-msgstr "Règles de réécriture"
-
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/rewriteRules.php:25
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/rewriteRules.php:23
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/rewriteRules.php:29
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/rewriteRules/admin_tab.php:14
 msgid "rewrite"
 msgstr "Réécriture"
+
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/rewriteRules/admin_tab.php:26
+msgid "Rewrite Rules"
+msgstr "Règles de réécriture"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/rewriteRules/functions.php:35
 msgid "Error processing rewrite rule:"
@@ -22231,7 +22236,6 @@ msgid "images (%s)"
 msgstr "Images (%s)"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_http/upload_form.php:64
-#, fuzzy
 msgid "Does not reload!"
 msgstr "Ne recharge pas la page !"
 
@@ -22322,80 +22326,80 @@ msgstr "gestionnaire de chargement d’images <em>jQuery</em>."
 msgid "jQuery uploader requires PHP 5.3 or greater."
 msgstr "Le gestionnaire de chargement jQuery requiert PHP 5.3 ou plus récent."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:107
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:109
 msgid "Add files..."
 msgstr "Ajouter des fichiers..."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:111
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:113
 msgid "Start upload"
 msgstr "Démarrer le chargement"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:112
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:114
 msgid "Cancel upload"
 msgstr "Annuler le chargmeent"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:127
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:149
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:129
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:151
 msgid "Error:"
 msgstr "Erreur :"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:128
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:157
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:130
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:159
 msgid "File is too big"
 msgstr "Le fichier est trop gros"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:129
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:158
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:131
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:160
 msgid "File is too small"
 msgstr "Le fichier est trop petit"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:130
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:159
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:132
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:161
 msgid "Filetype not allowed"
 msgstr "Type de fichier non autorisé"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:131
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:160
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:133
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:162
 msgid "Max number of files exceeded"
 msgstr "Nombre maximal de fichiers dépassé"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:150
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:152
 msgid "File exceeds upload_max_filesize (php.ini directive)"
 msgstr ""
 "La taille du fichier excède la taille définie par la directive php.ini « "
 "upload_max_filesize »"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:151
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:153
 msgid "File exceeds MAX_FILE_SIZE (HTML form directive)"
 msgstr ""
 "La taille du fichier excède la taille définie par la directive « "
 "MAX_FILE_SIZE » du formulaire HTML"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:152
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:154
 msgid "File was only partially uploaded"
 msgstr "Le fichier a été chargé en partie seulement"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:153
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:155
 msgid "No File was uploaded"
 msgstr "Aucun fichier n’a été chargé"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:154
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:156
 msgid "Missing a temporary folder"
 msgstr "Un fichier temporaire est absent"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:155
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:157
 msgid "Failed to write file to disk"
 msgstr "L’écriture sur le disque a échoué"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:156
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:158
 msgid "File upload stopped by extension"
 msgstr "Le chargement du fichier a été arrêté par son extension"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:161
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:163
 msgid "Uploaded bytes exceed file size"
 msgstr "Le nombre d’octets chargés est plus grand que la taille du fichier"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:162
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:164
 msgid "Empty file upload result"
 msgstr "Résultat du chargement vide"
 
@@ -24335,48 +24339,48 @@ msgstr "Catégories ajoutées aux éléments sélectionnés"
 msgid "Categories cleared from selected items"
 msgstr "Catégories enlevées des éléments sélectionnés"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:426
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:413
 msgid "<em>This entry belongs to a protected album.</em>"
 msgstr "<em>Cette entrée appartient à un album protégé.</em>"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:982
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:969
 msgid "Prev page"
 msgstr "Page préc."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1555
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1595
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1542
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1582
 #, php-format
 msgid "%u article"
 msgid_plural "%u articles"
 msgstr[0] "%u article"
 msgstr[1] "%u articles"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2153
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2140
 msgid "This page is password protected"
 msgstr "Cette page est protégée par mot de passe"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2326
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2313
 #, php-format
 msgid "View the %s album"
 msgstr "Voir l’album %s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2328
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2315
 #, php-format
 msgid "View the album %s"
 msgstr "Voir l’album %s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2332
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2333
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2319
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2320
 #, php-format
 msgid "View %s"
 msgstr "Voir %s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2341
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2328
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the image %1$s:%2$s"
 msgstr "<code>zenpageAlbumImage()</code> n’a pas trouvé l’image %1$s:%2$s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2350
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2337
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> n’a pas trouvé l’album %1$s"
