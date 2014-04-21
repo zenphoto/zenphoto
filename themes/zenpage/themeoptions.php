@@ -12,6 +12,7 @@
 class ThemeOptions {
 
 	function __construct() {
+		$me = basename(dirname(__FILE__));
 		setThemeOptionDefault('zenpage_zp_index_news', false);
 		setThemeOptionDefault('Allow_search', true);
 		setThemeOptionDefault('Use_thickbox', true);
@@ -29,16 +30,15 @@ class ThemeOptions {
 		setThemeOptionDefault('thumb_crop_height', 95);
 		setThemeOptionDefault('thumb_crop', 1);
 		setThemeOptionDefault('thumb_transition', 1);
-		setOptionDefault('colorbox_zenpage_album', 1);
-		setOptionDefault('colorbox_zenpage_image', 1);
-		setOptionDefault('colorbox_zenpage_search', 1);
+		setOptionDefault('colorbox_' . $me . '_album', 1);
+		setOptionDefault('colorbox_' . $me . '_image', 1);
+		setOptionDefault('colorbox_' . $me . '_search', 1);
 		if (extensionEnabled('zenpage')) {
 			setThemeOption('custom_index_page', 'gallery', NULL, 'zenpage', false);
 		} else {
 			setThemeOption('custom_index_page', '', NULL, 'zenpage', false);
 		}
 		if (class_exists('cacheManager')) {
-			$me = basename(dirname(__FILE__));
 			cacheManager::deleteThemeCacheSizes($me);
 			cacheManager::addThemeCacheSize($me, NULL, 580, 580, NULL, NULL, NULL, NULL, NULL, false, NULL, true);
 			cacheManager::addThemeCacheSize($me, 95, NULL, NULL, getThemeOption('thumb_crop_width'), getThemeOption('thumb_crop_height'), NULL, NULL, true, NULL, NULL, NULL);

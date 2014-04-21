@@ -1682,6 +1682,7 @@ function printAlbumThumbImage($alt, $class = NULL, $id = NULL) {
   if ($id) {
     $id = ' id="' . $id . '"';
   }
+  $thumb = getAlbumThumb();
   $thumbobj = $_zp_current_album->getAlbumThumbImage();
   $sizes = getSizeDefaultThumb($thumbobj);
   $size = ' width="' . $sizes[0] . '" height="' . $sizes[1] . '"';
