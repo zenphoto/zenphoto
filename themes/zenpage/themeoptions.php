@@ -12,6 +12,7 @@
 class ThemeOptions {
 
 	function __construct() {
+		$me = basename(dirname(__FILE__));
 		setThemeOptionDefault('zenpage_zp_index_news', false);
 		setThemeOptionDefault('Allow_search', true);
 		setThemeOptionDefault('Use_thickbox', true);
@@ -29,16 +30,15 @@ class ThemeOptions {
 		setThemeOptionDefault('thumb_crop_height', 95);
 		setThemeOptionDefault('thumb_crop', 1);
 		setThemeOptionDefault('thumb_transition', 1);
-		setOptionDefault('colorbox_zenpage_album', 1);
-		setOptionDefault('colorbox_zenpage_image', 1);
-		setOptionDefault('colorbox_zenpage_search', 1);
+		setOptionDefault('colorbox_' . $me . '_album', 1);
+		setOptionDefault('colorbox_' . $me . '_image', 1);
+		setOptionDefault('colorbox_' . $me . '_search', 1);
 		if (extensionEnabled('zenpage')) {
 			setThemeOption('custom_index_page', 'gallery', NULL, 'zenpage', false);
 		} else {
 			setThemeOption('custom_index_page', '', NULL, 'zenpage', false);
 		}
 		if (class_exists('cacheManager')) {
-			$me = basename(dirname(__FILE__));
 			cacheManager::deleteThemeCacheSizes($me);
 			cacheManager::addThemeCacheSize($me, NULL, 580, 580, NULL, NULL, NULL, NULL, NULL, false, NULL, true);
 			cacheManager::addThemeCacheSize($me, 95, NULL, NULL, getThemeOption('thumb_crop_width'), getThemeOption('thumb_crop_height'), NULL, NULL, true, NULL, NULL, NULL);
@@ -65,8 +65,8 @@ class ThemeOptions {
 		}
 		return array(gettext('Allow search')							 => array('key' => 'Allow_search', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Check to enable search form.')),
 						gettext('Use Colorbox')							 => array('key' => 'Use_thickbox', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Check to display of the full size image with Colorbox.')),
-						gettext('News on index page')				 => array('key' => 'zenpage_zp_index_news', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext("Enable this if you want to show the news section's first page on the <code>index.php</code> page.")),
-						gettext('Homepage')									 => array('key' => 'zenpage_homepage', 'type' => OPTION_TYPE_SELECTOR, 'selections' => $list, 'null_selection' => gettext('none'), 'desc' => gettext("Choose here any <em>un-published Zenpage page</em> (listed by <em>titlelink</em>) to act as your site's homepage instead the normal gallery index.") . "<p class='notebox'>" . gettext("<strong>Note:</strong> This of course overrides the <em>News on index page</em> option and your theme must be setup for this feature! Visit the theming tutorial for details.") . "</p>"),
+						gettext('News on index page')				 => array('key' => 'zenpage_zp_index_news', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext("Enable this if you want to show the news section’s first page on the <code>index.php</code> page.")),
+						gettext('Homepage')									 => array('key' => 'zenpage_homepage', 'type' => OPTION_TYPE_SELECTOR, 'selections' => $list, 'null_selection' => gettext('none'), 'desc' => gettext("Choose here any <em>un-published Zenpage page</em> (listed by <em>titlelink</em>) to act as your site’s homepage instead the normal gallery index.") . "<p class='notebox'>" . gettext("<strong>Note:</strong> This of course overrides the <em>News on index page</em> option and your theme must be setup for this feature! Visit the theming tutorial for details.") . "</p>"),
 						gettext('Use standard contact page') => array('key' => 'zenpage_contactpage', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Disable this if you do not want to use the separate contact page with the contact form. You can also use the codeblock of a page for this. See the contact_form plugin documentation for more info.')),
 						gettext('Use custom menu')					 => array('key' => 'zenpage_custommenu', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Check this if you want to use the <em>menu_manager</em> plugin if enabled to build a custom menu instead of the separate standard ones. A standard menu named "zenpage" is created and used automatically.'))
 		);

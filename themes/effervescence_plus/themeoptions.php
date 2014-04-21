@@ -25,7 +25,7 @@ class ThemeOptions {
 			}
 			purgeOption('Theme_personality');
 		}
-
+		$me = basename(dirname(__FILE__));
 		setThemeOptionDefault('Theme_logo', '');
 		setThemeOptionDefault('Allow_search', true);
 		setThemeOptionDefault('Slideshow', true);
@@ -49,14 +49,13 @@ class ThemeOptions {
 		setThemeOptionDefault('thumb_crop', 1);
 		setThemeOptionDefault('effervescence_daily_album_image', 1);
 		setThemeOptionDefault('effervescence_daily_album_image_effect', '');
-		setOptionDefault('colorbox_effervescence_plus_album', 1);
-		setOptionDefault('colorbox_effervescence_plus_image', 1);
-		setOptionDefault('colorbox_effervescence_plus_search', 1);
+		setOptionDefault('colorbox_' . $me . '_album', 1);
+		setOptionDefault('colorbox_' . $me . '_image', 1);
+		setOptionDefault('colorbox_' . $me . '_search', 1);
 		if (extensionEnabled('zenpage')) {
 			setThemeOption('custom_index_page', 'gallery', NULL, 'effervescence_plus', false);
 		}
 		if (class_exists('cacheManager')) {
-			$me = basename(dirname(__FILE__));
 			cacheManager::deleteThemeCacheSizes($me);
 			cacheManager::addThemeCacheSize($me, 595, NULL, NULL, NULL, NULL, NULL, NULL, false, NULL, NULL, NULL);
 			cacheManager::addThemeCacheSize($me, getThemeOption('thumb_size'), NULL, NULL, getThemeOption('thumb_crop_width'), getThemeOption('thumb_crop_height'), NULL, NULL, true, NULL, NULL, NULL);

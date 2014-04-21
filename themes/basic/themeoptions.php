@@ -14,6 +14,7 @@ require_once(dirname(__FILE__) . '/functions.php');
 class ThemeOptions {
 
 	function __construct() {
+		$me = basename(dirname(__FILE__));
 		setThemeOptionDefault('Allow_search', true);
 		setThemeOptionDefault('Theme_colors', 'light');
 		setThemeOptionDefault('albums_per_page', 6);
@@ -27,9 +28,9 @@ class ThemeOptions {
 		setThemeOptionDefault('thumb_crop_height', 100);
 		setThemeOptionDefault('thumb_crop', 1);
 		setThemeOptionDefault('thumb_transition', 1);
-		setOptionDefault('colorbox_basic_album', 1);
-		setOptionDefault('colorbox_basic_image', 1);
-		setOptionDefault('colorbox_basic_search', 1);
+		setOptionDefault('colorbox_' . $me . '_album', 1);
+		setOptionDefault('colorbox_' . $me . '_image', 1);
+		setOptionDefault('colorbox_' . $me . '_search', 1);
 		if (class_exists('cacheManager')) {
 			$me = basename(dirname(__FILE__));
 			cacheManager::deleteThemeCacheSizes($me);
