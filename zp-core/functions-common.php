@@ -310,12 +310,13 @@ function html_encode($this_string) {
 /**
  * HTML encodes the non-metatag part of the string.
  *
- * @param string $str string to be encoded
+ * @param string $original string to be encoded
  * @param bool $allowScript set to false to prevent pass-through of script tags.
  * @return string
  */
-function html_encodeTagged($str, $allowScript = true) {
+function html_encodeTagged($original, $allowScript = true) {
 	$tags = array();
+	$str = $original;
 	//javascript
 	if ($allowScript) {
 		preg_match_all('!<script.*>.*</script>!ixs', $str, $matches);
@@ -347,11 +348,11 @@ function html_encodeTagged($str, $allowScript = true) {
 	foreach (array_reverse($tags, true) as $taglist) {
 		$str = strtr($str, $taglist);
 	}
-	if (class_exists('tidy')) {
+	if (class_exists('tidy') && $str != $original) {
 		$tidy = new tidy();
 		$tidy->parseString($str, array('show-body-only' => true), 'utf8');
 		$tidy->cleanRepair();
-		$str = trim($tidy);
+		$str = $tidy;
 	}
 	return $str;
 }
