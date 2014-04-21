@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-18 18:25+0100\n"
+"POT-Creation-Date: 2014-04-21 11:45+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -645,7 +645,7 @@ msgstr "album"
 #: zp-fixing-quotes/zp-core/admin-edit.php:1422
 #: zp-fixing-quotes/zp-core/admin-globals.php:110
 #: zp-fixing-quotes/zp-core/admin-options.php:2657
-#: zp-fixing-quotes/zp-core/zp-extensions/image_album_statistics.php:205
+#: zp-fixing-quotes/zp-core/zp-extensions/image_album_statistics.php:208
 msgid "image"
 msgstr "afbeelding"
 
@@ -734,7 +734,7 @@ msgstr "Zoek in albums"
 
 #: zp-fixing-quotes/themes/effervescence_plus/image_gallery/functions.php:46
 #: zp-fixing-quotes/themes/garland/image_gallery/functions.php:46
-#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:137
+#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:139
 msgid "Start"
 msgstr "Start"
 
@@ -1025,7 +1025,7 @@ msgstr "Pagina’s"
 #: zp-fixing-quotes/themes/zpmobile/functions.php:71
 #: zp-fixing-quotes/zp-core/template-functions.php:1268
 #: zp-fixing-quotes/zp-core/template-functions.php:1323
-#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:894
+#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:881
 msgid "Archive"
 msgstr "Archief"
 
@@ -1074,7 +1074,7 @@ msgstr "RSS"
 #: zp-fixing-quotes/zp-core/zp-extensions/related_items.php:187
 #: zp-fixing-quotes/zp-core/zp-extensions/tweet_news.php:92
 #: zp-fixing-quotes/zp-core/zp-extensions/zenpage.php:273
-#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:901
+#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:888
 msgid "News"
 msgstr "Nieuws"
 
@@ -1084,7 +1084,7 @@ msgstr "Nieuws"
 #: zp-fixing-quotes/zp-core/template-functions.php:451
 #: zp-fixing-quotes/zp-core/template-functions.php:1285
 #: zp-fixing-quotes/zp-core/template-functions.php:1316
-#: zp-fixing-quotes/zp-core/template-functions.php:3797
+#: zp-fixing-quotes/zp-core/template-functions.php:3821
 #: zp-fixing-quotes/zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:68
 #: zp-fixing-quotes/zp-core/zp-extensions/html_meta_tags.php:244
 #: zp-fixing-quotes/zp-core/zp-extensions/slideshow.php:744
@@ -2523,7 +2523,7 @@ msgstr "naar"
 #: zp-fixing-quotes/zp-core/zp-extensions/comment_form/admin-comments.php:143
 #: zp-fixing-quotes/zp-core/zp-extensions/uploader_http/upload_form.php:71
 #: zp-fixing-quotes/zp-core/zp-extensions/uploader_http/upload_form.php:72
-#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:139
+#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:141
 msgid "Cancel"
 msgstr "Annuleer"
 
@@ -3072,7 +3072,7 @@ msgstr "Bewerk dit album: %s"
 
 #: zp-fixing-quotes/zp-core/admin-functions.php:2069
 #: zp-fixing-quotes/zp-core/admin-functions.php:2072
-#: zp-fixing-quotes/zp-core/zp-extensions/image_album_statistics.php:207
+#: zp-fixing-quotes/zp-core/zp-extensions/image_album_statistics.php:210
 #: zp-fixing-quotes/zp-core/zp-extensions/tinyURL.php:77
 #: zp-fixing-quotes/zp-core/zp-extensions/tweet_news.php:431
 #: zp-fixing-quotes/zp-core/zp-extensions/uploader_http.php:30
@@ -3185,7 +3185,7 @@ msgstr "Vorige pagina"
 
 #: zp-fixing-quotes/zp-core/admin-functions.php:2436
 #: zp-fixing-quotes/zp-core/admin-functions.php:2438
-#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1014
+#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1001
 msgid "Next page"
 msgstr "Volgende pagina"
 
@@ -3390,6 +3390,9 @@ msgid "demo"
 msgstr "demo"
 
 #: zp-fixing-quotes/zp-core/admin-functions.php:4423
+#: zp-fixing-quotes/zp-core/zp-extensions/deprecated-functions.php:107
+#: zp-fixing-quotes/zp-core/zp-extensions/macroList.php:86
+#: zp-fixing-quotes/zp-core/zp-extensions/rewriteRules.php:25
 msgid "development"
 msgstr "ontwikkeling"
 
@@ -9393,9 +9396,10 @@ msgstr ""
 "De cache map bestaat niet. Maak deze a.u.b aan en zet de permissies op 0777."
 
 #: zp-fixing-quotes/zp-core/i.php:114
-msgid "The cache directory is not writable! Attempts to chmod didn not work."
+msgid "The cache directory is not writable! Attempts to chmod did not work."
 msgstr ""
-"De cache directory is niet schrijfbaar! Pogingen om te chmodden zijn mislukt."
+"De cache directory is niet schrijfbaar! Pogingen om dit te veranderen "
+"(chmod) zijn mislukt."
 
 #: zp-fixing-quotes/zp-core/i.php:128
 #, php-format
@@ -11954,7 +11958,7 @@ msgstr "Setup kon de volgende submappen niet aanmaken:<br />%s"
 
 #: zp-fixing-quotes/zp-core/setup/setup-functions.php:225
 #: zp-fixing-quotes/zp-core/setup/setup-functions.php:230
-#: zp-fixing-quotes/zp-core/zp-extensions/deprecated-functions.php:137
+#: zp-fixing-quotes/zp-core/zp-extensions/deprecated-functions.php:142
 msgid "unknown"
 msgstr "onbekend"
 
@@ -12375,8 +12379,8 @@ msgstr "pagina 1"
 #: zp-fixing-quotes/zp-core/template-functions.php:1031
 #: zp-fixing-quotes/zp-core/zp-extensions/menu_manager.php:616
 #: zp-fixing-quotes/zp-core/zp-extensions/menu_manager.php:634
-#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1074
-#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1090
+#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1061
+#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1077
 #, php-format
 msgid "Page %u"
 msgid_plural "Page %u"
@@ -12385,7 +12389,7 @@ msgstr[1] "pagina’s %u"
 
 #: zp-fixing-quotes/zp-core/template-functions.php:995
 #: zp-fixing-quotes/zp-core/zp-extensions/menu_manager.php:626
-#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1083
+#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1070
 #, php-format
 msgid "Page %1$u"
 msgid_plural "Page %1$u"
@@ -12408,24 +12412,24 @@ msgstr "Keer terug naar <em>zoeken</em>"
 msgid "Return to archive"
 msgstr "Keer terug naar <em>archief</em>"
 
-#: zp-fixing-quotes/zp-core/template-functions.php:2105
+#: zp-fixing-quotes/zp-core/template-functions.php:2090
 msgid "The image is marked un-published."
 msgstr "Deze afbeelding is als niet-gepubliceerd gemarkeerd."
 
-#: zp-fixing-quotes/zp-core/template-functions.php:2477
+#: zp-fixing-quotes/zp-core/template-functions.php:2462
 msgid "Image Info"
 msgstr "Foto-informatie"
 
-#: zp-fixing-quotes/zp-core/template-functions.php:3296
+#: zp-fixing-quotes/zp-core/template-functions.php:3317
 #, php-format
 msgid "View image: %s"
 msgstr "Bekijk afbeelding: %s"
 
-#: zp-fixing-quotes/zp-core/template-functions.php:3484
+#: zp-fixing-quotes/zp-core/template-functions.php:3508
 msgid "No popular tags"
 msgstr "Geen populaire tags"
 
-#: zp-fixing-quotes/zp-core/template-functions.php:3792
+#: zp-fixing-quotes/zp-core/template-functions.php:3816
 msgid ""
 "printSearchForm $album_list parameter is deprecated. Pass array(\"albums"
 "\"=>array(album, album, ...)) instead."
@@ -12433,41 +12437,41 @@ msgstr ""
 "printSearchForm $album_list parameter is verouderd. Gebruik in plaats "
 "daarvan array(“albums”=>aray(album, album,...))."
 
-#: zp-fixing-quotes/zp-core/template-functions.php:3808
+#: zp-fixing-quotes/zp-core/template-functions.php:3832
 #, php-format
 msgid "%s within previous results"
 msgstr "%s binnen vorige resultaten"
 
-#: zp-fixing-quotes/zp-core/template-functions.php:3883
+#: zp-fixing-quotes/zp-core/template-functions.php:3907
 msgid "search options"
 msgstr "zoekopties"
 
-#: zp-fixing-quotes/zp-core/template-functions.php:3883
+#: zp-fixing-quotes/zp-core/template-functions.php:3907
 msgid "fields"
 msgstr "velden"
 
-#: zp-fixing-quotes/zp-core/template-functions.php:3923
+#: zp-fixing-quotes/zp-core/template-functions.php:3947
 msgid "Within"
 msgstr "binnen"
 
-#: zp-fixing-quotes/zp-core/template-functions.php:3927
+#: zp-fixing-quotes/zp-core/template-functions.php:3951
 #: zp-fixing-quotes/zp-core/zp-extensions/flag_thumbnail.php:91
 msgid "New"
 msgstr "Nieuw"
 
-#: zp-fixing-quotes/zp-core/template-functions.php:3985
+#: zp-fixing-quotes/zp-core/template-functions.php:4009
 msgid "no date"
 msgstr "geen datum"
 
-#: zp-fixing-quotes/zp-core/template-functions.php:4215
+#: zp-fixing-quotes/zp-core/template-functions.php:4239
 msgid "The page you are trying to view is password protected."
 msgstr "Deze pagina is beveiligd met een wachtwoord."
 
-#: zp-fixing-quotes/zp-core/template-functions.php:4220
+#: zp-fixing-quotes/zp-core/template-functions.php:4244
 msgid "login"
 msgstr "login"
 
-#: zp-fixing-quotes/zp-core/template-functions.php:4237
+#: zp-fixing-quotes/zp-core/template-functions.php:4261
 msgid ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
 "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
@@ -12475,21 +12479,21 @@ msgstr ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
 "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
 
-#: zp-fixing-quotes/zp-core/template-functions.php:4400
+#: zp-fixing-quotes/zp-core/template-functions.php:4424
 msgid "Zenphoto Error:</strong> the requested object was not found."
 msgstr "Zenphoto fout:</strong> het gevraagde object kon niet gevonden worden."
 
-#: zp-fixing-quotes/zp-core/template-functions.php:4402
+#: zp-fixing-quotes/zp-core/template-functions.php:4426
 #, php-format
 msgid "Album: %s"
 msgstr "Album: %s"
 
-#: zp-fixing-quotes/zp-core/template-functions.php:4405
+#: zp-fixing-quotes/zp-core/template-functions.php:4429
 #, php-format
 msgid "Image: %s"
 msgstr "Afbeelding: %s"
 
-#: zp-fixing-quotes/zp-core/template-functions.php:4408
+#: zp-fixing-quotes/zp-core/template-functions.php:4432
 #, php-format
 msgid "Page: %s"
 msgstr "Pagina: %s"
@@ -14741,7 +14745,7 @@ msgid "<strong>*</strong>Required fields"
 msgstr "<strong>*</strong>Verplichte velden"
 
 #: zp-fixing-quotes/zp-core/zp-extensions/comment_form/comment_form.php:98
-msgid "Private comment (don not publish)"
+msgid "Private comment (do not publish)"
 msgstr "Privé bericht (niet publiceren)"
 
 #: zp-fixing-quotes/zp-core/zp-extensions/comment_form/comment_form.php:109
@@ -15295,7 +15299,7 @@ msgstr "Nieuws categorie"
 #: zp-fixing-quotes/zp-core/zp-extensions/related_items.php:193
 #: zp-fixing-quotes/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:434
 #: zp-fixing-quotes/zp-core/zp-extensions/zenpage/admin-edit.php:219
-#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1068
+#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1055
 msgid "Page"
 msgstr "Pagina"
 
@@ -15344,20 +15348,21 @@ msgstr ""
 "functienaam is aangevinkt."
 
 #: zp-fixing-quotes/zp-core/zp-extensions/deprecated-functions.php:105
-#: zp-fixing-quotes/zp-core/zp-extensions/deprecated-functions.php:106
+#: zp-fixing-quotes/zp-core/zp-extensions/deprecated-functions.php:111
+#: zp-fixing-quotes/zp-core/zp-extensions/deprecated-functions/admin_tab.php:10
 msgid "deprecated"
 msgstr "verouderd"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/deprecated-functions.php:119
+#: zp-fixing-quotes/zp-core/zp-extensions/deprecated-functions.php:124
 msgid "function"
 msgstr "functie"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/deprecated-functions.php:147
+#: zp-fixing-quotes/zp-core/zp-extensions/deprecated-functions.php:152
 #, php-format
 msgid "%1$s (called from %2$s line %3$s) is deprecated"
 msgstr "%1$s (aangeroepen van %2$s lijn %3$s) is verouderd"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/deprecated-functions.php:147
+#: zp-fixing-quotes/zp-core/zp-extensions/deprecated-functions.php:152
 #, php-format
 msgid ""
 "You can disable this error message by going to the <em>deprecated-functions</"
@@ -15368,28 +15373,28 @@ msgstr ""
 "<em>deprecated-functions</em> plugin te gaan en daar <strong>%s</strong> in "
 "de lijst van functies uit te vinken."
 
-#: zp-fixing-quotes/zp-core/zp-extensions/deprecated-functions.php:153
+#: zp-fixing-quotes/zp-core/zp-extensions/deprecated-functions.php:158
 #: zp-fixing-quotes/zp-core/zp-extensions/markRelease.php:52
 msgid "Development"
 msgstr "Development"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/deprecated-functions.php:155
+#: zp-fixing-quotes/zp-core/zp-extensions/deprecated-functions.php:160
 msgid "Check deprecated use"
 msgstr "Controleer op gebruik van verouderde functies"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/deprecated-functions.php:159
+#: zp-fixing-quotes/zp-core/zp-extensions/deprecated-functions.php:164
 msgid "Searches PHP scripts for use of deprecated functions."
 msgstr "Doorzoekt PHP scripts op het gebruik van verouderde functies."
 
-#: zp-fixing-quotes/zp-core/zp-extensions/deprecated-functions.php:160
+#: zp-fixing-quotes/zp-core/zp-extensions/deprecated-functions.php:165
 msgid "Check for update"
 msgstr "Controleer op  updates."
 
-#: zp-fixing-quotes/zp-core/zp-extensions/deprecated-functions/admin_tab.php:23
+#: zp-fixing-quotes/zp-core/zp-extensions/deprecated-functions/admin_tab.php:24
 msgid "Deprecated Functions"
 msgstr "Verouderde functies"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/deprecated-functions/admin_tab.php:25
+#: zp-fixing-quotes/zp-core/zp-extensions/deprecated-functions/admin_tab.php:26
 msgid ""
 "Functions flagged with an \"*\" are class methods. Ones flagged with \"+\" "
 "have deprecated parameters."
@@ -16102,13 +16107,13 @@ msgstr "Zenphoto data (%s)"
 msgid "Backup files (%s)"
 msgstr "Backup bestanden (%s)"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/email-newuser.php:11
+#: zp-fixing-quotes/zp-core/zp-extensions/email-newuser.php:12
 msgid "Emails a password reset request to a newly created user."
 msgstr ""
 "Stuurt een e-mail naar een nieuwe gebruiker voor het instellen van een "
 "wachtwoord."
 
-#: zp-fixing-quotes/zp-core/zp-extensions/email-newuser.php:24
+#: zp-fixing-quotes/zp-core/zp-extensions/email-newuser.php:25
 #, php-format
 msgid ""
 "You are receiving this e-mail because a user code (%1$s) has been created "
@@ -16117,17 +16122,17 @@ msgstr ""
 "Je ontvangt deze e-mail omdat een gebruiker met de naam  %1$s is aangemaakt "
 "voor Zenphoto galerij %2$s."
 
-#: zp-fixing-quotes/zp-core/zp-extensions/email-newuser.php:25
+#: zp-fixing-quotes/zp-core/zp-extensions/email-newuser.php:26
 #, php-format
 msgid "To set your Zenphoto User password visit: %s"
 msgstr "Om je Zenphoto wachtwoord in te stellen ga je naar: %s"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/email-newuser.php:26
+#: zp-fixing-quotes/zp-core/zp-extensions/email-newuser.php:27
 msgid "This ticket will automatically expire in 3 days."
 msgstr "De mogelijkheid om hiervan gebruik te maken verloopt na 3 dagen."
 
-#: zp-fixing-quotes/zp-core/zp-extensions/email-newuser.php:27
-msgid "The Zenphoto user created"
+#: zp-fixing-quotes/zp-core/zp-extensions/email-newuser.php:28
+msgid "Zenphoto user created"
 msgstr "Nieuwe Zenphoto gebruiker"
 
 #: zp-fixing-quotes/zp-core/zp-extensions/email-newuser.php:41
@@ -17173,25 +17178,25 @@ msgstr ""
 "Functies die diverse statistieken over afbeeldingen en albums in de galerij "
 "leveren."
 
-#: zp-fixing-quotes/zp-core/zp-extensions/image_album_statistics.php:203
+#: zp-fixing-quotes/zp-core/zp-extensions/image_album_statistics.php:206
 #: zp-fixing-quotes/zp-core/zp-extensions/rss.php:610
 #, php-format
 msgid "Last update: %s"
 msgstr "Laatste update: %s"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/image_album_statistics.php:209
+#: zp-fixing-quotes/zp-core/zp-extensions/image_album_statistics.php:212
 #, php-format
 msgid "%1$u new %2$s"
 msgstr "%1$u nieuw %2$s"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/image_album_statistics.php:220
-#: zp-fixing-quotes/zp-core/zp-extensions/image_album_statistics.php:520
+#: zp-fixing-quotes/zp-core/zp-extensions/image_album_statistics.php:223
+#: zp-fixing-quotes/zp-core/zp-extensions/image_album_statistics.php:526
 #, php-format
 msgid "Rating: %1$u (Votes: %2$u)"
 msgstr "waardering: %1$u (Stemmen: %2$u )"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/image_album_statistics.php:227
-#: zp-fixing-quotes/zp-core/zp-extensions/image_album_statistics.php:527
+#: zp-fixing-quotes/zp-core/zp-extensions/image_album_statistics.php:230
+#: zp-fixing-quotes/zp-core/zp-extensions/image_album_statistics.php:533
 #, php-format
 msgid "Views: %u"
 msgstr "Bekeken: %u"
@@ -17763,15 +17768,16 @@ msgid "View available <code>content macros</code>."
 msgstr "Lijst met beschikbare <code>content macros</code>."
 
 #: zp-fixing-quotes/zp-core/zp-extensions/macroList.php:84
-#: zp-fixing-quotes/zp-core/zp-extensions/macroList.php:85
+#: zp-fixing-quotes/zp-core/zp-extensions/macroList.php:90
+#: zp-fixing-quotes/zp-core/zp-extensions/macroList/macroList_tab.php:9
 msgid "macros"
 msgstr "macro’s"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/macroList.php:95
+#: zp-fixing-quotes/zp-core/zp-extensions/macroList.php:99
 msgid "Macro identifiers may not contain special characters."
 msgstr "Macro’s mogen geen diakritische tekens bevaten."
 
-#: zp-fixing-quotes/zp-core/zp-extensions/macroList.php:108
+#: zp-fixing-quotes/zp-core/zp-extensions/macroList.php:112
 msgid ""
 "The number of macro parameters must match the number of replacement tokens "
 "in the expression."
@@ -17779,32 +17785,32 @@ msgstr ""
 "Het aantal macro-parameters moet hetzelfde zijn als het aantal elementen in "
 "de expressie. (%1, %2, %3, etc.)"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/macroList.php:112
+#: zp-fixing-quotes/zp-core/zp-extensions/macroList.php:116
 #, php-format
 msgid "<code>%s</code> is not callable"
 msgstr "<code>%s</code> kan niet aangeroepen worden."
 
-#: zp-fixing-quotes/zp-core/zp-extensions/macroList.php:122
+#: zp-fixing-quotes/zp-core/zp-extensions/macroList.php:126
 msgid "An array parameter must be the last parameter."
 msgstr "Een array-parameter moet de laatste parameter zijn."
 
-#: zp-fixing-quotes/zp-core/zp-extensions/macroList.php:126
+#: zp-fixing-quotes/zp-core/zp-extensions/macroList.php:130
 msgid "Required parameters should not follow optional ones."
 msgstr "Verplichte parameters mogen niet na optionele parameters komen."
 
-#: zp-fixing-quotes/zp-core/zp-extensions/macroList.php:133
+#: zp-fixing-quotes/zp-core/zp-extensions/macroList.php:137
 msgid "Expressions may not have optional parameters."
 msgstr "Expressies mogen geen extra parameters bevatten."
 
-#: zp-fixing-quotes/zp-core/zp-extensions/macroList/macroList_tab.php:22
+#: zp-fixing-quotes/zp-core/zp-extensions/macroList/macroList_tab.php:23
 msgid "Content Macros"
 msgstr "Content Macro’s"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/macroList/macroList_tab.php:27
+#: zp-fixing-quotes/zp-core/zp-extensions/macroList/macroList_tab.php:28
 msgid "No macros have been defined."
 msgstr "Er zijn geen macro’s gedefiniëerd."
 
-#: zp-fixing-quotes/zp-core/zp-extensions/macroList/macroList_tab.php:31
+#: zp-fixing-quotes/zp-core/zp-extensions/macroList/macroList_tab.php:32
 #, php-format
 msgid ""
 "These Content macros can be used to insert Zenphoto items as described into "
@@ -17816,11 +17822,11 @@ msgstr ""
 "<em>beschrijvingen</em>, <em>zenpage content</em>, en <em>zenpage extra "
 "content</em>. Vervang parameters (<em>%d</em>) door de gewenste waarden. "
 
-#: zp-fixing-quotes/zp-core/zp-extensions/macroList/macroList_tab.php:32
+#: zp-fixing-quotes/zp-core/zp-extensions/macroList/macroList_tab.php:33
 msgid "Parameter types:"
 msgstr "Type parameters:"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/macroList/macroList_tab.php:34
+#: zp-fixing-quotes/zp-core/zp-extensions/macroList/macroList_tab.php:35
 msgid ""
 "<em><strong>string</strong></em> may be enclosed in quotation marks when the "
 "macro is invoked. The quotes are stripped before the macro is processed."
@@ -17828,23 +17834,23 @@ msgstr ""
 "<em><strong>string</strong></em> mag tussen aanhalingstekens. De "
 "aanhalingstekens worden verwijderd voordat de macro toegepast wordt."
 
-#: zp-fixing-quotes/zp-core/zp-extensions/macroList/macroList_tab.php:35
+#: zp-fixing-quotes/zp-core/zp-extensions/macroList/macroList_tab.php:36
 msgid "<em><strong>int</strong></em> a number"
 msgstr "<em><strong>int</strong></em> een cijfer"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/macroList/macroList_tab.php:36
+#: zp-fixing-quotes/zp-core/zp-extensions/macroList/macroList_tab.php:37
 msgid "<em><strong>bool</strong></em> <code>true</code> or <code>false</code>"
 msgstr "<em><strong>bool</strong></em> <code>true</code> of <code>false</code>"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/macroList/macroList_tab.php:37
+#: zp-fixing-quotes/zp-core/zp-extensions/macroList/macroList_tab.php:38
 msgid ""
-"<em><strong>array</strong></em> an assignment list e.g. u=w</code> "
+"<em><strong>array</strong></em> an assignment list e.g. <code>u=w</code> "
 "<code>x=y</code>...."
 msgstr ""
 "<em><strong>array</strong></em> een lijst met toewijzingen (<code>u = w</"
 "code> <code>x = y</code>...)."
 
-#: zp-fixing-quotes/zp-core/zp-extensions/macroList/macroList_tab.php:39
+#: zp-fixing-quotes/zp-core/zp-extensions/macroList/macroList_tab.php:40
 msgid "Parameters within braces are optional."
 msgstr "Parameters tussen accolades zijn ook mogelijk."
 
@@ -17932,7 +17938,7 @@ msgstr[0] "pagina %1$u"
 msgstr[1] "pagina %1$u"
 
 #: zp-fixing-quotes/zp-core/zp-extensions/menu_manager.php:640
-#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1098
+#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1085
 #, php-format
 msgid "Page {%u}"
 msgid_plural "Page {%u}"
@@ -18460,12 +18466,12 @@ msgstr "RSS feeds om samen te voegen"
 
 #: zp-fixing-quotes/zp-core/zp-extensions/mergedRSS.php:60
 msgid ""
-"Enter the full urls of the feeds to merge separated by semicolons(e.g. "
+"Enter the full urls of the feeds to merge separated by semicolons (e.g. "
 "\"http://www.domain1.com/rss; http://www.domain2.com/rss\")"
 msgstr ""
 "Vul de volledige URL’s van de feed in , gescheiden door een punt-komma, om "
-"samen te voegen. (b.v. \"http://www.domein1.com/rss; http://www.domein2.com/"
-"rss\")"
+"samen te voegen. (b.v. “http://www.domein1.com/rss; http://www.domein2.com/"
+"rss”)"
 
 #: zp-fixing-quotes/zp-core/zp-extensions/mobileTheme.php:77
 msgid "Select your theme based on the device connecting to your site"
@@ -19569,14 +19575,15 @@ msgstr "Gerelateerd %s"
 msgid "Site rewrite rules tab."
 msgstr "Site rewrite-regels tab"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/rewriteRules.php:24
-#: zp-fixing-quotes/zp-core/zp-extensions/rewriteRules/admin_tab.php:25
-msgid "Rewrite Rules"
-msgstr "rewrite regels"
-
-#: zp-fixing-quotes/zp-core/zp-extensions/rewriteRules.php:25
+#: zp-fixing-quotes/zp-core/zp-extensions/rewriteRules.php:23
+#: zp-fixing-quotes/zp-core/zp-extensions/rewriteRules.php:29
+#: zp-fixing-quotes/zp-core/zp-extensions/rewriteRules/admin_tab.php:14
 msgid "rewrite"
 msgstr "rewrite"
+
+#: zp-fixing-quotes/zp-core/zp-extensions/rewriteRules/admin_tab.php:26
+msgid "Rewrite Rules"
+msgstr "rewrite regels"
 
 #: zp-fixing-quotes/zp-core/zp-extensions/rewriteRules/functions.php:35
 msgid "Error processing rewrite rule:"
@@ -21875,7 +21882,7 @@ msgid "images (%s)"
 msgstr "afbeeldingen (%s)"
 
 #: zp-fixing-quotes/zp-core/zp-extensions/uploader_http/upload_form.php:64
-msgid "Doesn not reload!"
+msgid "Does not reload!"
 msgstr "Herlaad niet!"
 
 #: zp-fixing-quotes/zp-core/zp-extensions/uploader_http/upload_form.php:64
@@ -21962,76 +21969,76 @@ msgstr "<em>jQuery</em> afbeeldings uploader."
 msgid "jQuery uploader requires PHP 5.3 or greater."
 msgstr "jQuery uploader heeft PHP 5.3 of hoger nodig."
 
-#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:107
+#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:109
 msgid "Add files..."
 msgstr "Bestanden toevoegen..."
 
-#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:111
+#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:113
 msgid "Start upload"
 msgstr "Start upload"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:112
+#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:114
 msgid "Cancel upload"
 msgstr "Stop upload"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:127
-#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:149
+#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:129
+#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:151
 msgid "Error:"
 msgstr "Fout:"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:128
-#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:157
+#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:130
+#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:159
 msgid "File is too big"
 msgstr "Bestand is te groot"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:129
-#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:158
+#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:131
+#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:160
 msgid "File is too small"
 msgstr "Bestand is te klein"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:130
-#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:159
+#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:132
+#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:161
 msgid "Filetype not allowed"
 msgstr "Bestandstype niet toegestaan"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:131
-#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:160
+#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:133
+#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:162
 msgid "Max number of files exceeded"
 msgstr "Maximaal aantal bestanden overschreden"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:150
+#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:152
 msgid "File exceeds upload_max_filesize (php.ini directive)"
 msgstr "Bestand overschrijdt <em>upload_max_filesize</em> (php.ini instelling)"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:151
+#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:153
 msgid "File exceeds MAX_FILE_SIZE (HTML form directive)"
 msgstr "Bestand overschrijdt <em>MAX_FILE_SIZE</em> (HTML formulier richtlijn)"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:152
+#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:154
 msgid "File was only partially uploaded"
 msgstr "Bestand is slechts gedeeltelijk ge-upload"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:153
+#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:155
 msgid "No File was uploaded"
 msgstr "Er is geen bestand ge-upload."
 
-#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:154
+#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:156
 msgid "Missing a temporary folder"
 msgstr "Een tijdelijke map ontbreekt"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:155
+#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:157
 msgid "Failed to write file to disk"
 msgstr "Schrijven naar schijf mislukt."
 
-#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:156
+#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:158
 msgid "File upload stopped by extension"
 msgstr "Upload gestopt door een verkeerde extensie"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:161
+#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:163
 msgid "Uploaded bytes exceed file size"
 msgstr "Aantal ge-uploade bytes overschrijdt bestandsgrootte"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:162
+#: zp-fixing-quotes/zp-core/zp-extensions/uploader_jQuery/upload_form.php:164
 msgid "Empty file upload result"
 msgstr "Leeg bestand ge-upload"
 
@@ -23952,48 +23959,48 @@ msgstr "Categorieën toegevoegd aan geselecteerde onderdelen."
 msgid "Categories cleared from selected items"
 msgstr "Categorieën verwijderd uit geselecteerde onderdelen."
 
-#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:426
+#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:413
 msgid "<em>This entry belongs to a protected album.</em>"
 msgstr "<em>Deze invoer valt onder een beveiligd album.</em>"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:982
+#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:969
 msgid "Prev page"
 msgstr "Vorige pagina"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1555
-#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1595
+#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1542
+#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1582
 #, php-format
 msgid "%u article"
 msgid_plural "%u articles"
 msgstr[0] "%u artikel"
 msgstr[1] "%u artikelen"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2153
+#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2140
 msgid "This page is password protected"
 msgstr "Deze pagina is beveiligd met een wachtwoord!"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2326
+#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2313
 #, php-format
 msgid "View the %s album"
 msgstr "Bekijk het %s album"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2328
+#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2315
 #, php-format
 msgid "View the album %s"
 msgstr "Bekijk het album %s"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2332
-#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2333
+#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2319
+#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2320
 #, php-format
 msgid "View %s"
 msgstr "Album %s bekijken"
 
-#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2341
+#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2328
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the image %1$s:%2$s"
 msgstr "<code>zenpageAlbumImage()</code> kan afbeelding %1$s:%2$s niet vinden."
 
-#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2350
+#: zp-fixing-quotes/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2337
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> kan album %1$s niet vinden."
