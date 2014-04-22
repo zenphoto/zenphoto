@@ -69,17 +69,22 @@ function my_checkPageValidity($request, $gallery_page, $page) {
 			$gallery_page = 'index.php'; //	same as an album gallery index
 			break;
 		case 'index.php':
-			if (!extensionEnabled('zenpage') || !getOption('zenpage_zp_index_news')) { // only one index page if zenpage plugin is enabled & displaying
-				break;
+			if (extensionEnabled('zenpage')) {
+				if (getOption('zenpage_zp_index_news')) {
+					$gallery_page = 'news.php'; //	really a news page
+					break;
+				}
+				return $page == 1; // only one page if zenpage enabled.
 			}
-		default:
-			if ($page != 1) {
-				return false;
-			}
+			break;
 		case 'news.php':
 		case 'album.php':
 		case 'search.php':
 			break;
+		default:
+			if ($page != 1) {
+				return false;
+			}
 	}
 	return checkPageValidity($request, $gallery_page, $page);
 }
@@ -91,8 +96,18 @@ function my_checkPageValidity($request, $gallery_page, $page) {
  * @param type $page
  */
 function newsOnIndex($link, $obj, $page) {
-	if (is_string($obj) && $obj == 'news.php' && $page < 2) {
-		return rtrim(WEBPATH, '/') . '/';
+	if (is_string($obj) && $obj == 'news.php') {
+		if (MOD_REWRITE) {
+			if (preg_match('~' . _NEWS_ . '[/\d/]*$~', $link)) {
+				$link = WEBPATH;
+				if ($page > 1)
+					$link .= '/' . _PAGE_ . '/' . $page;
+			}
+		} else {
+			if (strpos($link, 'category=') === false && strpos($link, 'title=') === false) {
+				$link = str_replace('?&', '?', rtrim(str_replace('p=news', '', $link), '?'));
+			}
+		}
 	}
 	return $link;
 }
