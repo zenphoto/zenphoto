@@ -1378,7 +1378,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$sort[gettext('Custom')] = 'custom';
 						/*
 						 * not recommended--screws with peoples minds during pagination!
-						  $sort[gettext('Random')] = 'random';
+							$sort[gettext('Random')] = 'random';
 						 */
 						?>
 						<tr>
@@ -4175,12 +4175,8 @@ function XSRFdefender($action) {
 		exitZP();
 	}
 	unset($_REQUEST['XSRFToken']);
-	if (isset($_POST['XSRFToken'])) {
-		unset($_POST['XSRFToken']);
-	}
-	if (isset($_GET['XSRFToken'])) {
-		unset($_GET['XSRFToken']);
-	}
+	unset($_POST['XSRFToken']);
+	unset($_GET['XSRFToken']);
 }
 
 /**
