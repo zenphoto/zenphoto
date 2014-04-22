@@ -657,7 +657,7 @@ function getSitemapGoogleLoopIndex($imageCount, $pageCount) {
  */
 function getSitemapGoogleImageVideoExtras($albumobj, $imageobj, $locale) {
 	$data = '';
-	$host = SERVER_PROTOCOL . '://' . html_encode($_SERVER["HTTP_HOST"]);
+	$host = PROTOCOL . '://' . html_encode($_SERVER["HTTP_HOST"]);
 	$ext = strtolower(strrchr($imageobj->filename, "."));
 	$location = '';
 	if ($imageobj->getLocation()) {

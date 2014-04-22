@@ -2978,10 +2978,9 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td width="175"><?php echo gettext("Server protocol:"); ?></td>
 									<td width="350">
 										<select id="server_protocol" name="server_protocol">
-											<?php $protocol = SERVER_PROTOCOL; ?>
-											<option value="http" <?php if ($protocol == 'http') echo 'selected="selected"'; ?>>http</option>
-											<option value="https" <?php if ($protocol == 'https') echo 'selected="selected"'; ?>>https</option>
-											<option value="https_admin" <?php if ($protocol == 'https_admin') echo 'selected="selected"'; ?>><?php echo gettext('secure admin'); ?></option>
+											<option value="http" <?php if (SERVER_PROTOCOL == 'http') echo 'selected="selected"'; ?>>http</option>
+											<option value="https" <?php if (SERVER_PROTOCOL == 'https') echo 'selected="selected"'; ?>>https</option>
+											<option value="https_admin" <?php if (SERVER_PROTOCOL == 'https_admin') echo 'selected="selected"'; ?>><?php echo gettext('secure admin'); ?></option>
 										</select>
 									</td>
 									<td>

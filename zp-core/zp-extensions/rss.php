@@ -361,13 +361,8 @@ function printRSSLink($option, $prev, $linktext, $next, $printIcon = true, $clas
  *
  */
 function printRSSHeaderLink($option, $linktext, $lang = '', $addl = NULL) {
-	$host = html_encode($_SERVER["HTTP_HOST"]);
-	$protocol = SERVER_PROTOCOL . '://';
-	if ($protocol == 'https_admin') {
-		$protocol = 'https://';
-	}
 	echo "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"" . html_encode(getBare($linktext)) . "\" href=\"" .
-	$protocol . $host . html_encode(getRSSLink($option, $lang, $addl)) . "\" />\n";
+	PROTOCOL . '://' . html_encode($_SERVER["HTTP_HOST"]) . html_encode(getRSSLink($option, $lang, $addl)) . "\" />\n";
 }
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/class-feed.php');

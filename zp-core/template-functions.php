@@ -63,11 +63,7 @@ function printZenJavascripts() {
 function adminToolbox() {
 	global $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery_page, $_zp_gallery, $_zp_current_admin_obj, $_zp_loggedin;
 	if (zp_loggedin()) {
-		$protocol = SERVER_PROTOCOL;
-		if ($protocol == 'https_admin') {
-			$protocol = 'https';
-		}
-		$zf = $protocol . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . "/" . ZENFOLDER;
+		$zf = PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . "/" . ZENFOLDER;
 		$id = 'admin';
 		$dataid = 'admin_data';
 		$page = getCurrentPage();
@@ -3869,34 +3865,34 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 		<!-- search form -->
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<script type="text/javascript">
-			// <!-- <![CDATA[
-			var within = <?php echo (int) $within; ?>;
-			function search_(way) {
-				within = way;
-				if (way) {
-					$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+		// <!-- <![CDATA[
+		var within = <?php echo (int) $within; ?>;
+		function search_(way) {
+			within = way;
+			if (way) {
+				$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
 
-				} else {
-					lastsearch = '';
-					$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-				}
-				$('#search_input').val('');
+			} else {
+				lastsearch = '';
+				$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
 			}
-			$('#search_form').submit(function() {
-				if (within) {
-					var newsearch = $.trim($('#search_input').val());
-					if (newsearch.substring(newsearch.length - 1) == ',') {
-						newsearch = newsearch.substr(0, newsearch.length - 1);
-					}
-					if (newsearch.length > 0) {
-						$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
-					} else {
-						$('#search_input').val('<?php echo $searchwords; ?>');
-					}
+			$('#search_input').val('');
+		}
+		$('#search_form').submit(function() {
+			if (within) {
+				var newsearch = $.trim($('#search_input').val());
+				if (newsearch.substring(newsearch.length - 1) == ',') {
+					newsearch = newsearch.substr(0, newsearch.length - 1);
 				}
-				return true;
-			});
-			// ]]> -->
+				if (newsearch.length > 0) {
+					$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+				} else {
+					$('#search_input').val('<?php echo $searchwords; ?>');
+				}
+			}
+			return true;
+		});
+		// ]]> -->
 			</script>
 			<?php echo $prevtext; ?>
 			<div>

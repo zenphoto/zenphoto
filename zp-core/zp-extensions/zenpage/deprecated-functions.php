@@ -611,10 +611,7 @@ function getZenpageRSSHeaderLink($option = '', $categorylink = '', $linktext = '
 	deprecated_functions::notify(gettext('Use the template function <code>getRSSLink()</code> instead. NOTE: While this function gets a full html link  <code>getRSSLink()</code> just returns the URL.'));
 	global $_zp_current_category;
 	$host = html_encode($_SERVER["HTTP_HOST"]);
-	$protocol = SERVER_PROTOCOL . '://';
-	if ($protocol == 'https_admin') {
-		$protocol = 'https://';
-	}
+	$protocol = PROTOCOL . '://';
 	if (empty($lang)) {
 		$lang = getOption("locale");
 	}
