@@ -584,6 +584,7 @@ zp-core/js/htmlencoder.js
 zp-core/js/jquery.Jcrop.css
 zp-core/js/jquery.Jcrop.js
 zp-core/js/jquery.are-you-sure.js
+zp-core/js/jquery.js
 zp-core/js/jquery.masonry.min.js
 zp-core/js/jquery.pagination.js
 zp-core/js/jquery.scrollTo.js
@@ -1649,7 +1650,23 @@ zp-core/zp-extensions/uploader_jQuery/jquery.fileupload.js
 zp-core/zp-extensions/uploader_jQuery/jquery.iframe-transport.js
 zp-core/zp-extensions/uploader_jQuery/jquery.tmpl.min.js
 zp-core/zp-extensions/uploader_jQuery/jqueryui
+zp-core/zp-extensions/uploader_jQuery/jqueryui/images
+zp-core/zp-extensions/uploader_jQuery/jqueryui/images/ui-bg_flat_0_aaaaaa_40x100.png
+zp-core/zp-extensions/uploader_jQuery/jqueryui/images/ui-bg_flat_75_ffffff_40x100.png
+zp-core/zp-extensions/uploader_jQuery/jqueryui/images/ui-bg_glass_55_fbf9ee_1x400.png
+zp-core/zp-extensions/uploader_jQuery/jqueryui/images/ui-bg_glass_65_ffffff_1x400.png
+zp-core/zp-extensions/uploader_jQuery/jqueryui/images/ui-bg_glass_75_dadada_1x400.png
+zp-core/zp-extensions/uploader_jQuery/jqueryui/images/ui-bg_glass_75_e6e6e6_1x400.png
+zp-core/zp-extensions/uploader_jQuery/jqueryui/images/ui-bg_glass_95_fef1ec_1x400.png
+zp-core/zp-extensions/uploader_jQuery/jqueryui/images/ui-bg_highlight-soft_75_cccccc_1x100.png
+zp-core/zp-extensions/uploader_jQuery/jqueryui/images/ui-icons_2e83ff_256x240.png
+zp-core/zp-extensions/uploader_jQuery/jqueryui/images/ui-icons_222222_256x240.png
+zp-core/zp-extensions/uploader_jQuery/jqueryui/images/ui-icons_454545_256x240.png
+zp-core/zp-extensions/uploader_jQuery/jqueryui/images/ui-icons_888888_256x240.png
+zp-core/zp-extensions/uploader_jQuery/jqueryui/images/ui-icons_cd0a0a_256x240.png
+zp-core/zp-extensions/uploader_jQuery/jqueryui/jquery-ui-zenphoto.css
 zp-core/zp-extensions/uploader_jQuery/jqueryui/jquery-ui-zenphoto.js
+zp-core/zp-extensions/uploader_jQuery/jqueryui/readme.txt
 zp-core/zp-extensions/uploader_jQuery/pbar-ani.gif
 zp-core/zp-extensions/uploader_jQuery/upload_form.php
 zp-core/zp-extensions/uploader_jQuery/uploader.php
@@ -1711,4 +1728,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1713
+1730
