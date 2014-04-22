@@ -187,5 +187,6 @@ foreach (getPluginFiles('*.php') as $extension => $plugin) {
 	if (file_exists($deprecated)) {
 		require_once($deprecated);
 	}
+	unset($deprecated);
 }
 ?>
