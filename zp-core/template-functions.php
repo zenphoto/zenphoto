@@ -1666,33 +1666,32 @@ function getPasswordProtectImage($extra) {
  * @param string $id Insert here the CSS-id name with with you want to style the link.
  *  */
 function printAlbumThumbImage($alt, $class = NULL, $id = NULL) {
-  global $_zp_current_album, $_zp_themeroot;
-  if (!$_zp_current_album->getShow()) {
-    $class .= " not_visible";
-  }
-  $pwd = $_zp_current_album->getPassword();
-  if (!empty($pwd)) {
-    $class .= " password_protected";
-  }
+	global $_zp_current_album, $_zp_themeroot;
+	if (!$_zp_current_album->getShow()) {
+		$class .= " not_visible";
+	}
+	$pwd = $_zp_current_album->getPassword();
+	if (!empty($pwd)) {
+		$class .= " password_protected";
+	}
 
-  $class = trim($class);
-  if ($class) {
-    $class = ' class="' . $class . '"';
-  }
-  if ($id) {
-    $id = ' id="' . $id . '"';
-  }
-  $thumb = getAlbumThumb();
-  $thumbobj = $_zp_current_album->getAlbumThumbImage();
-  $sizes = getSizeDefaultThumb($thumbobj);
-  $size = ' width="' . $sizes[0] . '" height="' . $sizes[1] . '"';
-  if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || empty($pwd)) {
-    $html = '<img src="' . html_encode(pathurlencode($thumb)) . '"' . $size . ' alt="' . html_encode($alt) . '"' . $class . $id . ' />';
-    $html = zp_apply_filter('standard_album_thumb_html', $html);
-    echo $html;
-  } else {
-    echo getPasswordProtectImage($size);
-  }
+	$class = trim($class);
+	if ($class) {
+		$class = ' class="' . $class . '"';
+	}
+	if ($id) {
+		$id = ' id="' . $id . '"';
+	}
+	$thumbobj = $_zp_current_album->getAlbumThumbImage();
+	$sizes = getSizeDefaultThumb($thumbobj);
+	$size = ' width="' . $sizes[0] . '" height="' . $sizes[1] . '"';
+	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || empty($pwd)) {
+		$html = '<img src="' . html_encode(pathurlencode($thumbobj->getThumb('album'))) . '"' . $size . ' alt="' . html_encode($alt) . '"' . $class . $id . ' />';
+		$html = zp_apply_filter('standard_album_thumb_html', $html);
+		echo $html;
+	} else {
+		echo getPasswordProtectImage($size);
+	}
 }
 
 /**
@@ -2535,8 +2534,6 @@ function getSizeCustomImage($size, $width = NULL, $height = NULL, $cw = NULL, $c
 	if (isImageVideo()) { // size is determined by the player
 		return array($w, $h);
 	}
-	$h = $image->getHeight();
-	$w = $image->getWidth();
 	$side = getOption('image_use_side');
 	$us = getOption('image_allow_upscale');
 
@@ -2766,7 +2763,7 @@ function printImageThumb($alt, $class = NULL, $id = NULL) {
 		$class .= " password_protected";
 	}
 	$url = getImageThumb();
-	$sizes = getSizeDefaultThumb($image = NULL);
+	$sizes = getSizeDefaultThumb();
 	$size = ' width="' . $sizes[0] . '" height="' . $sizes[1] . '"';
 	$class = trim($class);
 	if ($class) {
@@ -2787,28 +2784,28 @@ function printImageThumb($alt, $class = NULL, $id = NULL) {
  * @return aray
  */
 function getSizeDefaultThumb($image = NULL) {
-  global $_zp_current_image;
-  if (is_null($image)) {
-    $image = $_zp_current_image;
-  }
-  $s = getOption('thumb_size');
-  if (getOption('thumb_crop')) {
-    $w = getOption('thumb_crop_width');
-    $h = getOption('thumb_crop_height');
-    if ($w > $h) {
-      //landscape
-      $h = round($h * $s / $w);
-      $w = $s;
-    } else {
-      //portrait
-      $w = round($w * $s / $h);
-      $h = $s;
-    }
-  } else {
-    $w = $h = $s;
-    getMaxSpaceContainer($w, $h, $image, true);
-  }
-  return array($w, $h);
+	global $_zp_current_image;
+	if (is_null($image)) {
+		$image = $_zp_current_image;
+	}
+	$s = getOption('thumb_size');
+	if (getOption('thumb_crop')) {
+		$w = getOption('thumb_crop_width');
+		$h = getOption('thumb_crop_height');
+		if ($w > $h) {
+			//landscape
+			$h = round($h * $s / $w);
+			$w = $s;
+		} else {
+			//portrait
+			$w = round($w * $s / $h);
+			$h = $s;
+		}
+	} else {
+		$w = $h = $s;
+		getMaxSpaceContainer($w, $h, $image, true);
+	}
+	return array($w, $h);
 }
 
 /**
@@ -3318,16 +3315,16 @@ function printRandomImages($number = 5, $class = null, $option = 'all', $rootAlb
 			echo '<a href="' . html_encode($randomImageURL) . '" title="' . sprintf(gettext('View image: %s'), html_encode($randomImage->getTitle())) . '">';
 			switch ($crop) {
 				case 0:
-     $sizes = getSizeCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, $randomImage); 
-					$html = '<img src="' . html_encode(pathurlencode($randomImage->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($randomImage->getTitle()) . '" />'."\n";
+					$sizes = getSizeCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, $randomImage);
+					$html = '<img src="' . html_encode(pathurlencode($randomImage->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($randomImage->getTitle()) . '" />' . "\n";
 					break;
 				case 1:
-     $sizes = getSizeCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, $randomImage); 
-					$html = '<img src="' . html_encode(pathurlencode($randomImage->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE))) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($randomImage->getTitle()) . '" />'."\n";
+					$sizes = getSizeCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, $randomImage);
+					$html = '<img src="' . html_encode(pathurlencode($randomImage->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE))) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($randomImage->getTitle()) . '" />' . "\n";
 					break;
 				case 2:
-     $sizes = getSizeDefaultThumb($randomImage); 
-					$html = '<img src="' . html_encode(pathurlencode($randomImage->getThumb())) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($randomImage->getTitle()) . '" />'."\n";
+					$sizes = getSizeDefaultThumb($randomImage);
+					$html = '<img src="' . html_encode(pathurlencode($randomImage->getThumb())) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($randomImage->getTitle()) . '" />' . "\n";
 					break;
 			}
 			echo zp_apply_filter('custom_image_html', $html, false);
