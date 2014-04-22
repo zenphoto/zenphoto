@@ -100,7 +100,6 @@ if (!preg_match('~' . ZENFOLDER . '~', $_zp_script)) {
 		}
 	}
 }
-unset($deprecated);
 
 //check for valid page number (may be theme dependent!)
 if ($_zp_page < 0) {
