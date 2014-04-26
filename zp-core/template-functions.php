@@ -2676,7 +2676,7 @@ function getFullHeight($image = NULL) {
  *
  * @return bool
  */
-function isLandscape($imge = NULL) {
+function isLandscape($image = NULL) {
 	if (getFullWidth($image) >= getFullHeight($image))
 		return true;
 	return false;
