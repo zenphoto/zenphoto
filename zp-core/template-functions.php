@@ -2527,7 +2527,7 @@ function getSizeCustomImage($size, $width = NULL, $height = NULL, $cw = NULL, $c
 
 	$h = $image->getHeight();
 	$w = $image->getWidth();
-	if (isImageVideo()) { // size is determined by the player
+	if (isImageVideo($image)) { // size is determined by the player
 		return array($w, $h);
 	}
 	$side = getOption('image_use_side');
