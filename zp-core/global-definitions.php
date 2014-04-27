@@ -37,7 +37,7 @@ define('PLUGIN_PRIORITY', 1023);
 define('SYMLINK', function_exists('symlink') && strpos(@ini_get("suhosin.executor.func.blacklist"), 'symlink') === false);
 define('CASE_INSENSITIVE', file_exists(strtoupper(__FILE__)));
 
-define('TEST_RELEASE', strpos(ZENPHOTO_VERSION, '-') !== false);
+define('TEST_RELEASE', preg_match('~-[^RC]~', ZENPHOTO_VERSION));
 
 define('DEBUG_LOGIN', false); // set to true to log admin saves and login attempts
 define('DEBUG_ERROR', TEST_RELEASE); // set to true to supplies the calling sequence with zp_error messages
