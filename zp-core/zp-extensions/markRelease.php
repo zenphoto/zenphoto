@@ -32,7 +32,7 @@ if (isset($_REQUEST['markRelease'])) {
 	} else {
 		preg_match_all('~([^-]*)~', $currentVersion, $matches);
 		$mark = $matches[0][0] . '-DEBUG';
-		$version = "define('ZENPHOTO_VERSION', '$mark'); //original: define('ZENPHOTO_VERSION_', '$originalVersion');";
+		$version = "define('ZENPHOTO_VERSION', '$mark'); //original: define('ZENPHOTO_VERSION', '$originalVersion');";
 	}
 	$v = preg_replace("~define\('ZENPHOTO_VERSION.*\n~", $version . "\n", $v);
 	file_put_contents(SERVERPATH . '/' . ZENFOLDER . '/version.php', $v);
