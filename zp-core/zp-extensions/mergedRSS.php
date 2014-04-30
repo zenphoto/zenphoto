@@ -44,20 +44,29 @@ if (isset($_GET['mergedrss'])) {
 	$MergedRSS = new MergedRSS($feeds, getBare(get_language_string($gallery->getTitle(), $locale)), FULLWEBPATH, getBare(get_language_string($gallery->getDesc(), $locale)), $RSS_date);
 
 	//Export the first 10 items to screen
-	$MergedRSS->export(false, true, 20); //getOption('RSS_items')
-	// Retrieve the first 5 items as xml code
-	//$xml = $MergedRSS->export(true, false, 5);
+	$mergedrss_feeditems = getOption('mergedrss_items');
+	if(empty($mergedrss_feeditems)) {
+		$mergedrss_feeditems = 10;
+	}
+	$MergedRSS->export(false, true, $mergedrss_feeditems); //getOption('RSS_items')
 	exitZP();
 }
 
 class MergedRSSOptions {
+
+	function __construct() {
+		setOptionDefault('mergedrss_items', 10);
+	}	
 
 	function getOptionsSupported() {
 		return array(
 						gettext('RSS feeds to merge') => array('key'					 => 'mergedrss_feeds', 'type'				 => OPTION_TYPE_TEXTAREA,
 										'order'				 => 11,
 										'multilingual' => false,
-										'desc'				 => gettext('Enter the full urls of the feeds to merge separated by semicolons (e.g. "http://www.domain1.com/rss; http://www.domain2.com/rss")'))
+										'desc'				 => gettext('Enter the full urls of the feeds to merge separated by semicolons (e.g. "http://www.domain1.com/rss; http://www.domain2.com/rss")')),
+										gettext('Feed items:')			 => array('key'		 => 'mergedrss_items', 'type'	 => OPTION_TYPE_TEXTBOX,
+										'order'	 => 2,
+										'desc'	 => gettext("The number of new entries you want to appear in your site’s RSS feed")),
 		);
 	}
 
