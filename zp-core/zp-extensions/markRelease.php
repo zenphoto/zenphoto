@@ -25,6 +25,9 @@ if (isset($_REQUEST['markRelease'])) {
 		$originalVersion = preg_replace("~-DEBUG~i", '', $currentVersion);
 	}
 	if ($_REQUEST['markRelease'] == 'released') {
+		if (preg_match('~-[^RC]~', $originalVersion)) {
+			$originalVersion = preg_replace('~-.*~', '', $originalVersion);
+		}
 		$version = "define('ZENPHOTO_VERSION', '$originalVersion');";
 	} else {
 		preg_match_all('~([^-]*)~', $currentVersion, $matches);
