@@ -17,15 +17,15 @@ zp_register_filter('admin_utilities_buttons', 'markRelease_button');
 if (isset($_REQUEST['markRelease'])) {
 	XSRFdefender('markRelease');
 	$v = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/version.php');
-	preg_match_all("~(define\('ZENPHOTO_VERSION[_]*',\s*'([^']*)'\))~", $v, $matches);
+	preg_match_all("~(define\('ZENPHOTO_VERSION',\s*'([^']*)'\))~", $v, $matches);
 	$currentVersion = $matches[2][0];
 	if (isset($matches[2][1])) {
 		$originalVersion = $matches[2][1];
 	} else {
-		$originalVersion = preg_replace("~-DEBUG~i", '', $currentVersion);
+		$originalVersion = preg_replace("~-[^RC]~i", '', $currentVersion);
 	}
 	if ($_REQUEST['markRelease'] == 'released') {
-		if (preg_match('~-[^RC]~', $originalVersion)) {
+		if (preg_match('~-[^RC]~i', $originalVersion)) {
 			$originalVersion = preg_replace('~-.*~', '', $originalVersion);
 		}
 		$version = "define('ZENPHOTO_VERSION', '$originalVersion');";
