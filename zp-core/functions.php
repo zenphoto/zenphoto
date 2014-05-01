@@ -2021,6 +2021,7 @@ function cron_starter($script, $params, $offsetPath, $inline = false) {
 			$paramlist .= '&' . $key . '=' . $value;
 		}
 		$paramlist .= '&auth=' . $auth . '&offsetPath=' . $offsetPath;
+		$_zp_HTML_cache->abortHTMLCache();
 		?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
