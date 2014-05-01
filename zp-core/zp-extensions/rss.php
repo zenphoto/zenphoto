@@ -118,7 +118,7 @@ class rss_options {
 										'desc'	 => gettext('Check if media RSS support is to be enabled. This support is used by some services and programs (only Images RSS).')),
 						gettext('Cache')									 => array('key'		 => 'RSS_cache', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 10,
-										'desc'	 => gettext('Check if you want to enable static RSS feed caching. The cached file will be placed within the cache_html folder.')),
+										'desc'	 => sprintf(gettext('Check if you want to enable static RSS feed caching. The cached file will be placed within the <em>%s</em> folder.'), STATIC_CACHE_FOLDER)),
 						gettext('Cache expiration')				 => array('key'		 => 'RSS_cache_expire', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 11,
 										'desc'	 => gettext('Cache expire default is 86400 seconds (1 day = 24 hrs * 60 min * 60 sec).')),

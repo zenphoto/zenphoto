@@ -329,7 +329,6 @@ class cacheManager {
 		global $_zp_HTML_cache, $_zp_cached_feeds;
 
 		if (getOption('cacheManager_' . $obj->table)) {
-			$_zp_HTML_cache->clearHTMLCache('index');
 			$_zp_HTML_cache->clearHTMLCache();
 			foreach ($_zp_cached_feeds as $feed) {
 				$feeder = new cacheManagerFeed($feed);

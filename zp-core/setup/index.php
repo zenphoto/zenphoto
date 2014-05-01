@@ -1314,7 +1314,7 @@ if ($c <= 0) {
 										$plugin_subfolders[] = implode('/', $folders);
 										unset($installed_files[$key]); // this will be taken care of later
 										break;
-									case 'cache_html':
+									case STATIC_CACHE_FOLDER:
 										$Cache_html_subfolders[] = implode('/', $folders);
 										unset($installed_files[$key]);
 										break;
