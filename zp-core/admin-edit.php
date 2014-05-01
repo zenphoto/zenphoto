@@ -1744,8 +1744,7 @@ echo "\n</head>";
 							}
 							if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 								?>
-								<button type="button" onclick="javascript:newAlbum('
-																																								', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
+								<button type="button" onclick="javascript:newAlbum('', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
 												<?php
 											}
 											?>
@@ -1787,8 +1786,7 @@ echo "\n</head>";
 							}
 							if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 								?>
-								<button type="button" onclick="javascript:newAlbum('
-																																												', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
+								<button type="button" onclick="javascript:newAlbum('', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
 												<?php
 											}
 											?>
@@ -1803,8 +1801,7 @@ echo "\n</head>";
 					if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 						?>
 						<p class="buttons">
-							<button type="button" onclick="javascript:newAlbum('
-																																															', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
+							<button type="button" onclick="javascript:newAlbum('', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
 						</p>
 						<?php
 					}
