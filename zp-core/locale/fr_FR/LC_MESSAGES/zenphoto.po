@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-02 21:26+0100\n"
-"PO-Revision-Date: 2014-05-02 22:06+0100\n"
+"POT-Creation-Date: 2014-05-02 23:52+0100\n"
+"PO-Revision-Date: 2014-05-02 23:53+0100\n"
 "Last-Translator: vincent3569 <vincent_bourganel@yahoo.fr>\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "<michel@mgagnon.net>\n"
@@ -21002,13 +21002,13 @@ msgstr ""
 "<code>www.yourdomain.com/zenphoto/index.php?sitemap</code>."
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:129
-#, fuzzy
+#, php-format
 msgid ""
 "The sitemap cache is cleared if you create new ones. All files are stored in "
-"the <code>/"
+"the <code>/%s/sitemap/</code> folder."
 msgstr ""
 "Le cache du sitemap est purgé si vous en créez un nouveau. Tous les fichiers "
-"sont enregistrés dans le dossier <code>/cache_html/sitemap/</code>."
+"sont enregistrés dans le dossier <code>/%s/sitemap/</code>."
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:130
 msgid "Generate sitemaps"
