@@ -4721,12 +4721,6 @@ function checkAlbumParentid($albumname, $id, $recorder) {
 		$msg = sprintf('Fixed album <strong>%1$s</strong>: parentid was %2$s should have been %3$s<br />', $albumname, $oldid, $id);
 		$recorder($msg, true);
 		echo $msg;
-
-
-		var_dump($album);
-
-
-		exit();
 	}
 	$id = $album->getID();
 	if (!$album->isDynamic()) {

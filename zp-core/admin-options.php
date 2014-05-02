@@ -152,7 +152,7 @@ if (isset($_GET['action'])) {
 				$st = strtolower(sanitize($_POST['customalbumsort'], 3));
 			$_zp_gallery->setSortType($st);
 			if (($st == 'manual') || ($st == 'random')) {
-				$_zp_gallery->setSortDirection(0);
+				$_zp_gallery->setSortDirection(false);
 			} else {
 				$_zp_gallery->setSortDirection(isset($_POST['gallery_sortdirection']));
 			}
