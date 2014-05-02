@@ -154,7 +154,7 @@ if (isset($_GET['action'])) {
 			if (($st == 'manual') || ($st == 'random')) {
 				$_zp_gallery->setSortDirection(0);
 			} else {
-				$_zp_gallery->setSortDirection((int) isset($_POST['gallery_sortdirection']));
+				$_zp_gallery->setSortDirection(isset($_POST['gallery_sortdirection']));
 			}
 			foreach ($_POST as $item => $value) {
 				if (strpos($item, 'gallery-page_') === 0) {

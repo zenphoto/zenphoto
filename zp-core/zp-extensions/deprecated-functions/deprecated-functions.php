@@ -49,6 +49,14 @@ class internal_deprecations {
 	 * @deprecated
 	 * @since 1.4.6
 	 */
+	public static function setSortDirection() {
+		deprecated_functions::notify(gettext('The parameter order album::setSortDirection($what, $val) is deprecated. Use album::setSortDirection($val, $what) instead.'));
+	}
+
+	/**
+	 * @deprecated
+	 * @since 1.4.6
+	 */
 	static function getFolder() {
 		deprecated_functions::notify(gettext('Use the getFilename() method instead'));
 	}

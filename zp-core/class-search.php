@@ -348,12 +348,16 @@ class SearchEngine {
 	/**
 	 * sets sort directions
 	 *
-	 * @param string $val the direction
+	 * @param bool $val the direction
 	 * @param string $what 'images' if you want the image direction,
 	 *        'albums' if you want it for the album
 	 */
 	function setSortDirection($val, $what = 'images') {
-		$this->extraparams[$what . 'sortdirection'] = $val;
+		if ($val) {
+			$this->extraparams[$what . 'sortdirection'] = 'DESC';
+		} else {
+			$this->extraparams[$what . 'sortdirection'] = 'ASC';
+		}
 	}
 
 	/**
@@ -429,13 +433,9 @@ class SearchEngine {
 						$this->album = $alb;
 						$this->dynalbumname = $v;
 						$this->setSortType($this->album->getSortType('album'), 'albums');
-						if ($this->album->getSortDirection('album')) {
-							$this->setSortDirection('DESC', 'albums');
-						}
+						$this->setSortDirection($this->album->getSortDirection('album'), 'albums');
 						$this->setSortType($this->album->getSortType(), 'images');
-						if ($this->album->getSortDirection('image')) {
-							$this->setSortDirection('DESC', 'images');
-						}
+						$this->setSortDirection($this->album->getSortDirection('image'), 'images');
 					}
 					break;
 				case 'inimages':
