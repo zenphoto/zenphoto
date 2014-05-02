@@ -15,17 +15,15 @@ function getImageProcessorURIFromCacheName($match, $watermarks) {
 		} else {
 			$c = substr($check, 0, 1);
 			if ($c == 'w' || $c == 'h') {
-				$v = (int) substr($check, 1);
-				if ($v) {
-					$set[$c] = $v;
+				if (is_numeric($v = substr($check, 1))) {
+					$set[$c] = (int) $v;
 					continue;
 				}
 			}
 			if ($c == 'c') {
 				$c = substr($check, 0, 2);
-				$v = (int) substr($check, 2);
-				if ($v) {
-					$set[$c] = $v;
+				if (is_numeric($v = substr($check, 2))) {
+					$set[$c] = (int) $v;
 					continue;
 				}
 			}
