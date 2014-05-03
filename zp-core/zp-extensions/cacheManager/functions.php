@@ -9,7 +9,7 @@ function getImageProcessorURIFromCacheName($match, $watermarks) {
 	$params = explode('_', stripSuffix($match));
 	while (!$done && count($params) > 1) {
 		$check = array_pop($params);
-		if (is_numeric($check)) {
+		if (is_numeric($check) && !isset($set['w']) && !isset($set['h'])) {
 			$set['s'] = $check;
 			break;
 		} else {
@@ -29,7 +29,7 @@ function getImageProcessorURIFromCacheName($match, $watermarks) {
 			}
 			if (!isset($set['w']) && !isset($set['h']) && !isset($set['s'])) {
 				if (!isset($set['wm']) && in_array($check, $watermarks)) {
-					$set['wm'] = $check;
+					$set['wmk'] = $check;
 				} else if ($check == 'thumb') {
 					$set['t'] = true;
 				} else {
