@@ -143,7 +143,7 @@ class feed {
 			$cachefilepath = internalToFilesystem($this->getCacheFilename());
 			if (!empty($cachefilepath)) {
 				$cachefilepath = SERVERPATH . '/' . STATIC_CACHE_FOLDER . '/' . strtolower($this->feed) . '/' . $cachefilepath;
-				mkdir_recursive(SERVERPATH . '/' . STATIC_CACHE_FOLDER . '.' . strtolower($this->feed) . '/', FOLDER_MOD);
+				mkdir_recursive(SERVERPATH . '/' . STATIC_CACHE_FOLDER . '/' . strtolower($this->feed) . '/', FOLDER_MOD);
 				$pagecontent = ob_get_contents();
 				ob_end_clean();
 				if ($fh = @fopen($cachefilepath, "w")) {
