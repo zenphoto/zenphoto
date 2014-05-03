@@ -112,15 +112,10 @@ class Zenpage {
 		if (is_null($sortdirection)) {
 			$sortdirection = $this->sortdirection;
 		}
-		switch ($sortdirection) {
-			default:
-			case 'asc':
-				$sortdir = ' ASC';
-				break;
-			default:
-			case 'desc':
-				$sortdir = ' DESC';
-				break;
+		if ($sortdirection) {
+			$sortdir = ' ASC';
+		} else {
+			$sortdir = ' DESC';
 		}
 		if (is_null($sorttype)) {
 			$sorttype = $this->sortorder;
@@ -152,6 +147,7 @@ class Zenpage {
 				break;
 			case 'random':
 				$sortorder = 'RAND()';
+				$sortdir = '';
 				break;
 			default:
 				$sortorder = 'sort_order';
@@ -198,8 +194,7 @@ class Zenpage {
 	 * @param boolean $ignorepagination Since also used for the news loop this function automatically paginates the results if the "page" GET variable is set. To avoid this behaviour if using it directly to get articles set this TRUE (default FALSE)
 	 * @param string $sortorder "date" (default), "title", "id, "popular", "mostrated", "toprated", "random"
 	 * 													This parameter is not used for date archives
-	 * @param string $sortdirection "asc" or "desc" for ascending or descending order
-	 * 											        This parameter is not used for date archives
+	 * @param bool $sortdirection This parameter is not used for date archives
 	 * @param bool $sticky set to true to place "sticky" articles at the front of the list.
 	 * @return array
 	 */
@@ -256,15 +251,12 @@ class Zenpage {
 			}
 			if (is_null($sortdirection))
 				$sortdirection = $sortObj->sortdirection;
-			switch ($sortdirection) {
-				case 0:
-				default:
-					$dir = " DESC";
-					break;
-				case 1:
-					$dir = " ASC";
-					$sticky = false; //makes no sense
-					break;
+
+			if ($sortdirection) {
+				$dir = " ASC";
+				$sticky = false; //makes no sense
+			} else {
+				$dir = " DESC";
 			}
 			// sortorder and sortdirection (only used for all news articles and categories naturally)
 			if (is_null($sortorder))
@@ -357,6 +349,7 @@ class Zenpage {
 			} else {
 				$sql = "SELECT date, title, titlelink FROM " . prefix('news') . $show . $datesearch . " " . $order;
 			}
+
 			$resource = query($sql);
 			$result = array();
 			if ($resource) {
@@ -368,7 +361,7 @@ class Zenpage {
 				}
 				db_free_result($resource);
 				if ($sort1 == 'title') { // multi-lingual field!
-					$result = sortByMultilingual($result, 'title', $dir == 'DESC');
+					$result = sortByMultilingual($result, 'title', $sortdierction);
 					if ($sticky) {
 						$result = sortMultiArray($result, array('sticky'), true);
 					}
