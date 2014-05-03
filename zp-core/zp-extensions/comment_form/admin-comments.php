@@ -306,7 +306,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 	}
 	?>
 
-	<p><?php echo gettext("You can edit or delete comments on your images."); ?></p>
+	<p><?php echo gettext("You can edit or delete comments."); ?></p>
 
 	<?php
 	if ($totalpages > 1) {
