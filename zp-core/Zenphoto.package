@@ -584,6 +584,7 @@ zp-core/js/htmlencoder.js
 zp-core/js/jquery.Jcrop.css
 zp-core/js/jquery.Jcrop.js
 zp-core/js/jquery.are-you-sure.js
+zp-core/js/jquery.js
 zp-core/js/jquery.masonry.min.js
 zp-core/js/jquery.pagination.js
 zp-core/js/jquery.scrollTo.js
@@ -1711,4 +1712,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1713
+1714

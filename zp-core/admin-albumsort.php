@@ -41,7 +41,7 @@ if (isset($_GET['album'])) {
 						query($sql);
 					}
 					$album->setSortType("manual");
-					$album->setSortDirection('image', 0);
+					$album->setSortDirection(false, 'image');
 					$album->save();
 					$_GET['saved'] = 1;
 				}

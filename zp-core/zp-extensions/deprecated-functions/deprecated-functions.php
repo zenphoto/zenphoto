@@ -49,6 +49,14 @@ class internal_deprecations {
 	 * @deprecated
 	 * @since 1.4.6
 	 */
+	public static function setSortDirection() {
+		deprecated_functions::notify(gettext('The parameter order album::setSortDirection($what, $val) is deprecated. Use album::setSortDirection($val, $what) instead.'));
+	}
+
+	/**
+	 * @deprecated
+	 * @since 1.4.6
+	 */
 	static function getFolder() {
 		deprecated_functions::notify(gettext('Use the getFilename() method instead'));
 	}
@@ -381,10 +389,7 @@ function getRSSHeaderLink($option, $linktext = '', $lang = '') {
 	deprecated_functions::notify(gettext('Use the template function <code>getRSSLink()</code> instead. NOTE: While this function gets a full html link <code>getRSSLink()</code> just returns the URL.'));
 	global $_zp_current_album;
 	$host = html_encode($_SERVER["HTTP_HOST"]);
-	$protocol = SERVER_PROTOCOL . '://';
-	if ($protocol == 'https_admin') {
-		$protocol = 'https://';
-	}
+	$protocol = PROTOCOL . '://';
 	if (empty($lang)) {
 		$lang = getOption("locale");
 	}

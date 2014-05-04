@@ -235,6 +235,7 @@ foreach ($_zp_cachefileSuffix as $key => $type) {
 
 require_once(dirname(__FILE__) . '/lib-encryption.php');
 
+//NOTE: SERVER_PROTOCOL is the option PROTOCOL is what should be used in links!!!!
 define('SERVER_PROTOCOL', getOption('server_protocol'));
 switch (SERVER_PROTOCOL) {
 	case 'https':

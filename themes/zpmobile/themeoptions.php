@@ -12,6 +12,7 @@
 class ThemeOptions {
 
 	function __construct() {
+		$me = basename(dirname(__FILE__));
 		setThemeOptionDefault('Allow_search', true);
 		setThemeOptionDefault('thumb_transition', 1);
 		setOptionDefault('colorbox_default_album', 1);

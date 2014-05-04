@@ -53,15 +53,18 @@ class colorbox {
 			$list[ucfirst($theme)] = $theme;
 		}
 		$opts = array(gettext('Colorbox theme') => array('key'				 => 'colorbox_theme', 'type'			 => OPTION_TYPE_SELECTOR,
+										'order'			 => 0,
 										'selections' => $list,
 										'desc'			 => gettext("The Colorbox script comes with 5 example themes you can select here. If you select <em>custom (within theme)</em> you need to place a folder <em>colorbox_js</em> containing a <em>colorbox.css</em> file and a folder <em>images</em> within the current theme to override to use a custom Colorbox theme."))
 		);
+		$c = 1;
 		foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php')) as $theme => $scripts) {
 			$list = array();
 			foreach ($scripts as $script) {
 				$list[$script] = 'colorbox_' . $theme . '_' . stripSuffix($script);
 			}
 			$opts[$theme] = array('key'				 => 'colorbox_' . $theme . '_scripts', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
+							'order'			 => $c++,
 							'checkboxes' => $list,
 							'desc'			 => gettext('The scripts for which Colorbox is enabled. {Should have been set by the themes!}')
 			);

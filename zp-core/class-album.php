@@ -229,13 +229,13 @@ class AlbumBase extends MediaObject {
 	/**
 	 * sets sort directions for the album
 	 *
-	 * @param string $val the direction
+	 * @param bool $val the direction
 	 * @param string $what 'image_sortdirection' if you want the image direction,
 	 *        'album_sortdirection' if you want it for the album
 	 */
 	function setSortDirection($val, $what = 'image') {
 		if (!is_bool($val)) {
-//TODO: old (deprecated) parameter order remove in 1.4.7
+			internal_deprecations::setSortDirection();
 			$t = $val;
 			$val = $what;
 			$what = $t;

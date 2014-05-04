@@ -501,7 +501,7 @@ if ($c <= 0) {
 		<title><?php printf('Zenphoto %s', $upgrade ? $upgrade : gettext('install')); ?></title>
 		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css" type="text/css" />
 
-		<?php echo JQUERY_SCRIPT; ?>
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.js" type="text/javascript"></script>
 		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zenphoto.js" type="text/javascript" ></script>
 		<script type="text/javascript">
 			var imageErr = false;
@@ -1314,7 +1314,7 @@ if ($c <= 0) {
 										$plugin_subfolders[] = implode('/', $folders);
 										unset($installed_files[$key]); // this will be taken care of later
 										break;
-									case 'cache_html':
+									case STATIC_CACHE_FOLDER:
 										$Cache_html_subfolders[] = implode('/', $folders);
 										unset($installed_files[$key]);
 										break;
@@ -1324,7 +1324,7 @@ if ($c <= 0) {
 							foreach ($installed_files as $extra) {
 								$filelist .= filesystemToInternal(str_replace($base, '', $extra) . '<br />');
 							}
-							if (count($installed_files) > 0) {
+							if (zpFunctions::hasPrimaryScripts() && count($installed_files) > 0) {
 								if (defined('TEST_RELEASE') && TEST_RELEASE) {
 									$msg1 = gettext("Zenphoto core files [This is a <em>debug</em> build. Some files are missing or seem wrong]");
 								} else {
@@ -2495,47 +2495,6 @@ if ($c <= 0) {
 							}
 
 							if ($createTables) {
-								if (isset($_GET['protect_files'])) {
-									require_once(dirname(dirname(__FILE__)) . '/' . PLUGIN_FOLDER . '/security-logger.php');
-									$curdir = getcwd();
-									chdir(dirname(__FILE__));
-									$list = setup_glob('*.php');
-									chdir($curdir);
-									$rslt = array();
-									foreach ($list as $component) {
-										@chmod(SERVERPATH . '/' . ZENFOLDER . '/setup/' . $component, 0777);
-										if (@rename(SERVERPATH . '/' . ZENFOLDER . '/setup/' . $component, SERVERPATH . '/' . ZENFOLDER . '/setup/' . $component . '.xxx')) {
-											@chmod(SERVERPATH . '/' . ZENFOLDER . '/setup/' . $component . '.xxx', FILE_MOD);
-											setupLog(sprintf(gettext('%s protected.'), $component), true);
-										} else {
-											@chmod(SERVERPATH . '/' . ZENFOLDER . '/setup/' . $component, FILE_MOD);
-											setupLog(sprintf(gettext('failed to protect %s.'), $component), true);
-											$rslt[] = '../setup/' . $component;
-										}
-									}
-
-									if (empty($rslt)) {
-										zp_apply_filter('log_setup', true, 'protect', gettext('protected'));
-										?>
-										<p class="messagebox"><?php echo gettext('Setup scripts protected.'); ?></p>
-										<?php
-									} else {
-										$rslt = implode(', ', $rslt);
-										zp_apply_filter('log_setup', false, 'protect', $rslt);
-										?>
-										<p class="errorbox">
-											<?php printf(gettext('Failed to protect: %s'), $rslt); ?>
-										</p>
-										<?php
-										$autorun = false;
-									}
-								} else {
-									if (!(defined('TEST_RELEASE') && TEST_RELEASE)) {
-										$origautorun = $autorun;
-										$autorun = 'setup';
-									}
-								}
-
 								if ($_zp_loggedin == ADMIN_RIGHTS) {
 									$filelist = safe_glob(SERVERPATH . "/" . BACKUPFOLDER . '/*.zdb');
 									if (count($filelist) > 0) {
@@ -2556,14 +2515,9 @@ if ($c <= 0) {
 								switch ($autorun) {
 									case false:
 										break;
+									case 'gallery':
 									case 'admin':
 										$autorun = WEBPATH . '/' . ZENFOLDER . '/admin.php';
-										break;
-									case 'gallery':
-										$autorun = WEBPATH . '/';
-										break;
-									case 'setup':
-										$autorun = WEBPATH . '/' . ZENFOLDER . '/setup/index.php?checked&autorun=' . $origautorun . '&protect_files&xsrfToken=' . $xsrftoken;
 										break;
 									default:
 										break;

@@ -33,8 +33,6 @@ if (empty($locale))
 			<?php
 		}
 		?>
-		<!-- TinyMCE Popup class (REQUIRED) -->
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/tiny_mce/tiny_mce_popup.js"></script>
 
 		<!-- elFinder initialization (REQUIRED) -->
 		<script type="text/javascript" charset="utf-8">

@@ -250,7 +250,7 @@ class jPlayer {
 	}
 
 	static function headJS() {
-		$skin = @array_shift(getPluginFiles('*.css', '/jplayer/skin/' . getOption('jplayer_skin')));
+		$skin = @array_shift(getPluginFiles('*.css', 'jplayer/skin/' . getOption('jplayer_skin')));
 		if (file_exists($skin)) {
 			$skin = str_replace(SERVERPATH, WEBPATH, $skin); //replace SERVERPATH as that does not work as a CSS link
 		} else {

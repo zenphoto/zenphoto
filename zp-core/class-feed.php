@@ -119,7 +119,7 @@ class feed {
 	protected function startCache() {
 		$caching = getOption($this->feed . "_cache") && !zp_loggedin();
 		if ($caching) {
-			$cachefilepath = SERVERPATH . '/cache_html/' . strtolower($this->feed) . '/' . internalToFilesystem($this->getCacheFilename());
+			$cachefilepath = SERVERPATH . '/' . STATIC_CACHE_FOLDER . '/' . strtolower($this->feed) . '/' . internalToFilesystem($this->getCacheFilename());
 			if (file_exists($cachefilepath) AND time() - filemtime($cachefilepath) < getOption($this->feed . "_cache_expire")) {
 				echo file_get_contents($cachefilepath);
 				exitZP();
@@ -142,8 +142,8 @@ class feed {
 		if ($caching) {
 			$cachefilepath = internalToFilesystem($this->getCacheFilename());
 			if (!empty($cachefilepath)) {
-				$cachefilepath = SERVERPATH . '/cache_html/' . strtolower($this->feed) . '/' . $cachefilepath;
-				mkdir_recursive(SERVERPATH . '/cache_html/' . strtolower($this->feed) . '/', FOLDER_MOD);
+				$cachefilepath = SERVERPATH . '/' . STATIC_CACHE_FOLDER . '/' . strtolower($this->feed) . '/' . $cachefilepath;
+				mkdir_recursive(SERVERPATH . '/' . STATIC_CACHE_FOLDER . '/' . strtolower($this->feed) . '/', FOLDER_MOD);
 				$pagecontent = ob_get_contents();
 				ob_end_clean();
 				if ($fh = @fopen($cachefilepath, "w")) {

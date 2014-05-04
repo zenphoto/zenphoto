@@ -118,7 +118,7 @@ class rss_options {
 										'desc'	 => gettext('Check if media RSS support is to be enabled. This support is used by some services and programs (only Images RSS).')),
 						gettext('Cache')									 => array('key'		 => 'RSS_cache', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 10,
-										'desc'	 => gettext('Check if you want to enable static RSS feed caching. The cached file will be placed within the cache_html folder.')),
+										'desc'	 => sprintf(gettext('Check if you want to enable static RSS feed caching. The cached file will be placed within the <em>%s</em> folder.'), STATIC_CACHE_FOLDER)),
 						gettext('Cache expiration')				 => array('key'		 => 'RSS_cache_expire', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 11,
 										'desc'	 => gettext('Cache expire default is 86400 seconds (1 day = 24 hrs * 60 min * 60 sec).')),
@@ -361,13 +361,8 @@ function printRSSLink($option, $prev, $linktext, $next, $printIcon = true, $clas
  *
  */
 function printRSSHeaderLink($option, $linktext, $lang = '', $addl = NULL) {
-	$host = html_encode($_SERVER["HTTP_HOST"]);
-	$protocol = SERVER_PROTOCOL . '://';
-	if ($protocol == 'https_admin') {
-		$protocol = 'https://';
-	}
 	echo "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"" . html_encode(getBare($linktext)) . "\" href=\"" .
-	$protocol . $host . html_encode(getRSSLink($option, $lang, $addl)) . "\" />\n";
+	PROTOCOL . '://' . html_encode($_SERVER["HTTP_HOST"]) . html_encode(getRSSLink($option, $lang, $addl)) . "\" />\n";
 }
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/class-feed.php');

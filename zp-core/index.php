@@ -100,7 +100,6 @@ if (!preg_match('~' . ZENFOLDER . '~', $_zp_script)) {
 		}
 	}
 }
-unset($deprecated);
 
 //check for valid page number (may be theme dependent!)
 if ($_zp_page < 0) {
@@ -129,8 +128,8 @@ if ($zp_request && $_zp_script && file_exists($_zp_script = SERVERPATH . "/" . i
 	zp_apply_filter('theme_headers');
 	include(internalToFilesystem($_zp_script));
 } else {
-	// If the requested object does not exist, issue a 404 and redirect to the theme's
-	// 404.php page, or a 404.php in the zp-core folder.
+	// If the requested object does not exist, issue a 404 and redirect to the 404.php
+	// in the zp-core folder. This script will load the theme 404 page if it exists.
 	$_zp_HTML_cache->abortHTMLCache();
 	include(SERVERPATH . "/" . ZENFOLDER . '/404.php');
 }

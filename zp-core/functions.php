@@ -1604,7 +1604,7 @@ function sanitizeRedirect($redirectTo, $forceHost = false) {
 			$redirect .= $redir['scheme'] . '://' . sanitize($redir['host']);
 		} else {
 			if ($forceHost) {
-				$redirect .= SERVER_PROTOCOL . '://' . $_SERVER['HTTP_HOST'];
+				$redirect .= PROTOCOL . '://' . $_SERVER['HTTP_HOST'];
 				if (WEBPATH && strpos($redirectTo, WEBPATH) === false) {
 					$redirect .= WEBPATH;
 				}
@@ -2000,7 +2000,7 @@ function XSRFToken($action) {
  * @param bool $inline set to true to run the task "in-line". Set false run asynchronously
  */
 function cron_starter($script, $params, $offsetPath, $inline = false) {
-	global $_zp_authority, $_zp_loggedin, $_zp_current_admin_obj;
+	global $_zp_authority, $_zp_loggedin, $_zp_current_admin_obj, $_zp_HTML_cache;
 	$admin = $_zp_authority->getMasterUser();
 
 	if ($inline) {
@@ -2021,6 +2021,7 @@ function cron_starter($script, $params, $offsetPath, $inline = false) {
 			$paramlist .= '&' . $key . '=' . $value;
 		}
 		$paramlist .= '&auth=' . $auth . '&offsetPath=' . $offsetPath;
+		$_zp_HTML_cache->abortHTMLCache();
 		?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[

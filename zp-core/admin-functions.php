@@ -120,7 +120,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			}
 			?>
 			<title><?php echo sprintf(gettext('%1$s %2$s: %3$s%4$s'), html_encode($_zp_gallery->getTitle()), gettext('admin'), html_encode($tabtext), html_encode($subtabtext)); ?></title>
-			<?php echo JQUERY_SCRIPT; ?>
+			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.js" type="text/javascript"></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui-zenphoto.js" type="text/javascript"></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zenphoto.js" type="text/javascript" ></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/admin.js" type="text/javascript" ></script>
@@ -1283,7 +1283,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
 																onclick="passwordClear('<?php echo $suffix; ?>');
-																				togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
+																		togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
 								</td>
 								<td>
 									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
@@ -1809,7 +1809,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -2281,23 +2281,23 @@ function printAdminHeader($tab, $subtab = NULL) {
 		}
 		$album->setSortType($sorttype);
 		if (($sorttype == 'manual') || ($sorttype == 'random')) {
-			$album->setSortDirection('image', 0);
+			$album->setSortDirection(false, 'image');
 		} else {
 			if (empty($sorttype)) {
-				$direction = 0;
+				$direction = false;
 			} else {
 				$direction = isset($_POST[$prefix . 'image_sortdirection']);
 			}
-			$album->setSortDirection('image', $direction);
+			$album->setSortDirection($direction, 'image');
 		}
 		$sorttype = strtolower(sanitize($_POST[$prefix . 'subalbumsortby'], 3));
 		if ($sorttype == 'custom')
 			$sorttype = strtolower(sanitize($_POST[$prefix . 'customalbumsort'], 3));
 		$album->setSortType($sorttype, 'album');
 		if (($sorttype == 'manual') || ($sorttype == 'random')) {
-			$album->setSortDirection('album', 0);
+			$album->setSortDirection(false, 'album');
 		} else {
-			$album->setSortDirection('album', isset($_POST[$prefix . 'album_sortdirection']));
+			$album->setSortDirection(isset($_POST[$prefix . 'album_sortdirection']), 'album');
 		}
 		if (isset($_POST['reset_hitcounter' . $prefix])) {
 			$album->set('hitcounter', 0);
@@ -4319,7 +4319,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 		}
 		?>
 		<select name="subpage" class="ays-ignore" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
-										[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
+								[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
 							<?php
 							foreach ($rangeset as $page => $range) {
 								?>
@@ -4721,12 +4721,6 @@ function checkAlbumParentid($albumname, $id, $recorder) {
 		$msg = sprintf('Fixed album <strong>%1$s</strong>: parentid was %2$s should have been %3$s<br />', $albumname, $oldid, $id);
 		$recorder($msg, true);
 		echo $msg;
-
-
-		var_dump($album);
-
-
-		exit();
 	}
 	$id = $album->getID();
 	if (!$album->isDynamic()) {

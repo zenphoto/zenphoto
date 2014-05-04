@@ -64,7 +64,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'edit_file' && $file_to_edit)
 if ($file_to_edit) {
 	$file_content = @file_get_contents($file_to_edit);
 	$file_content = html_encode($file_content);
-	$what = html_encode('edit=>' . basename($file_to_edit));
+	$what = 'edit»' . basename($file_to_edit);
 } else {
 	$what = 'edit';
 }
@@ -84,7 +84,7 @@ if (!themeIsEditable($theme))
 
 // If we're attempting to edit a file that's not a text file or that does not belong to the theme directory, this is an illegal attempt
 if ($file_to_edit) {
-	if (!in_array($file_to_edit, $themefiles) or !isTextFile($file_to_edit) or filesize($file_to_edit) == 0) {
+	if (!in_array($file_to_edit, $themefiles) or ! isTextFile($file_to_edit) or filesize($file_to_edit) == 0) {
 		zp_error(gettext('Cannot edit this file!'));
 	}
 }

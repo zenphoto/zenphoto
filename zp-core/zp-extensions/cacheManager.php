@@ -92,6 +92,8 @@ zp_register_filter('admin_utilities_buttons', 'cacheManager::overviewbutton');
 zp_register_filter('edit_album_utilities', 'cacheManager::albumbutton', -9999);
 zp_register_filter('show_change', 'cacheManager::published');
 
+$_zp_cached_feeds = array('RSS'); //	Add to this array any feed classes that need cache clearing
+
 class cacheManagerFeed extends feed {
 
 //fake feed descendent class so we can use the feed::clearCache()
@@ -324,16 +326,11 @@ class cacheManager {
 	 * @param object $obj
 	 */
 	static function published($obj) {
-		$_zp_feeds = array('RSS'); //	Add to this array any feed classes that need cache clearing
+		global $_zp_HTML_cache, $_zp_cached_feeds;
 
 		if (getOption('cacheManager_' . $obj->table)) {
-			if (class_exists('static_html_cache')) {
-				static_html_cache::clearHTMLCache('index');
-			}
-			if (class_exists('static_html_cache')) {
-				static_html_cache::clearHTMLCache();
-			}
-			foreach ($_zp_feeds as $feed) {
+			$_zp_HTML_cache->clearHTMLCache();
+			foreach ($_zp_cached_feeds as $feed) {
 				$feeder = new cacheManagerFeed($feed);
 				$feeder->clearCache();
 			}

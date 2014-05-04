@@ -4,7 +4,7 @@
  * Generates individually sitemap.org compatible XML files for use with Google and other search engines.
  * It supports albums and images as well as optionally Zenpage pages, news articles and news categories.
  * Sitemaps need to be generated via the button on the admin overview page and then are cached as static
- * files in the /cache_html/sitemap/ folder.
+ * files in the /%STATIC_CACHE_FOLDER%/sitemap/ folder.
  * There are individual sitemaps for all of the above item types generated as well as a sitemapindex file.
  * Album sitemaps are splitted into individual sitemaps per album (incl. all albums pages) and image sitemaps
  * into individual sitemaps per album.
@@ -27,7 +27,7 @@ $option_interface = 'sitemap';
 
 zp_register_filter('admin_utilities_buttons', 'sitemap::button');
 
-$sitemapfolder = SERVERPATH . '/cache_html/sitemap';
+$sitemapfolder = SERVERPATH . '/' . STATIC_CACHE_FOLDER . '/sitemap';
 if (!file_exists($sitemapfolder)) {
 	if (!mkdir_recursive($sitemapfolder, FOLDER_MOD)) {
 		die(gettext("sitemap cache folder could not be created. Please try to create it manually via FTP with chmod 0777."));
@@ -213,7 +213,7 @@ class sitemap {
 }
 
 if (isset($_GET['sitemap'])) {
-	$sitemappath = SERVERPATH . '/cache_html/sitemap/sitemapindex.xml';
+	$sitemappath = SERVERPATH . '/' . STATIC_CACHE_FOLDER . '/sitemap/sitemapindex.xml';
 	if (file_exists($sitemappath)) {
 		$sitemapfile = file_get_contents($sitemappath);
 		echo $sitemapfile;
@@ -238,7 +238,7 @@ function sitemap_echonl($string) {
  */
 function generateSitemapCacheFile($filename, $data) {
 	if (!empty($data)) {
-		$filepath = SERVERPATH . '/cache_html/sitemap/' . $filename . '.xml';
+		$filepath = SERVERPATH . '/' . STATIC_CACHE_FOLDER . '/sitemap/' . $filename . '.xml';
 		$handler = fopen($filepath, 'w');
 		fwrite($handler, $data);
 		fclose($handler);
@@ -252,19 +252,19 @@ function generateSitemapCacheFile($filename, $data) {
  */
 function generateSitemapIndexCacheFile() {
 	$data = '';
-	$cachefolder = SERVERPATH . '/cache_html/sitemap/';
+	$cachefolder = SERVERPATH . '/' . STATIC_CACHE_FOLDER . '/sitemap/';
 	$dirs = array_diff(scandir($cachefolder), array('.', '..', '.DS_Store', 'Thumbs.db', '.htaccess', '.svn'));
 	if ($dirs) {
 		$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
 		$data .= sitemap_echonl('<sitemapindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/siteindex.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 		foreach ($dirs as $dir) {
 			$data .= sitemap_echonl("\t<sitemap>");
-			$data .= sitemap_echonl("\t\t<loc>" . FULLWEBPATH . '/cache_html/sitemap/' . $dir . '</loc>');
+			$data .= sitemap_echonl("\t\t<loc>" . FULLWEBPATH . '/' . STATIC_CACHE_FOLDER . '/sitemap/' . $dir . '</loc>');
 			$data .= sitemap_echonl("\t\t<lastmod>" . sitemap_getISO8601Date() . '</lastmod>');
 			$data .= sitemap_echonl("\t</sitemap>");
 		}
 		$data .= sitemap_echonl('</sitemapindex>');
-		$filepath = SERVERPATH . '/cache_html/sitemap/sitemapindex.xml';
+		$filepath = SERVERPATH . '/' . STATIC_CACHE_FOLDER . '/sitemap/sitemapindex.xml';
 		$handler = fopen($filepath, 'w');
 		fwrite($handler, $data);
 		fclose($handler);
@@ -657,7 +657,7 @@ function getSitemapGoogleLoopIndex($imageCount, $pageCount) {
  */
 function getSitemapGoogleImageVideoExtras($albumobj, $imageobj, $locale) {
 	$data = '';
-	$host = SERVER_PROTOCOL . '://' . html_encode($_SERVER["HTTP_HOST"]);
+	$host = PROTOCOL . '://' . html_encode($_SERVER["HTTP_HOST"]);
 	$ext = strtolower(strrchr($imageobj->filename, "."));
 	$location = '';
 	if ($imageobj->getLocation()) {
@@ -954,7 +954,7 @@ function getSitemapZenpageNewsCategories() {
  *
  */
 function clearSitemapCache() {
-	$cachefolder = SERVERPATH . "/cache_html/sitemap/";
+	$cachefolder = SERVERPATH . '/' . STATIC_CACHE_FOLDER . '/sitemap/';
 	if (is_dir($cachefolder)) {
 		$handle = opendir($cachefolder);
 		while (false !== ($filename = readdir($handle))) {

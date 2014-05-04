@@ -6,7 +6,7 @@
  *
  * Exceptions to this are the <var>password.php</var> and <var>404.php</var> pages, any page listed in the
  * <i>Excluded pages</i> option, and any page whose script makes a call on the
- * <var>static_cache_html_disable_cache()</var> function. <b>NOTE:</b> this function only prevents the
+ * <var>static_cache_html::disable()</var> function. <b>NOTE:</b> this function only prevents the
  * creation of a cache image of the page being viewed. If there is already an existing
  * cached page and none of the other exclusions are in effect, the cached page will be
  * shown.

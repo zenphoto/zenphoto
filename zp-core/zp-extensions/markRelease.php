@@ -15,37 +15,40 @@ $plugin_author = "Stephen Billard (sbillard)";
 zp_register_filter('admin_utilities_buttons', 'markRelease_button');
 
 if (isset($_REQUEST['markRelease'])) {
-	if ($_REQUEST['markRelease'] == 'released') {
-		$mark = '';
-		$action = 'debug';
-	} else {
-		$mark = '-DEBUG';
-		$action = 'released';
-	}
 	XSRFdefender('markRelease');
-	$i = strpos($rawversion = ZENPHOTO_VERSION, '-');
-	if ($i === false) {
-		$rawversion = ZENPHOTO_VERSION;
-	} else {
-		$rawversion = substr(ZENPHOTO_VERSION, 0, $i);
-	}
 	$v = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/version.php');
-	$v = str_replace(ZENPHOTO_VERSION, $rawversion . $mark, $v);
+	preg_match_all("~(define\('ZENPHOTO_VERSION',\s*'([^']*)'\))~", $v, $matches);
+	$currentVersion = $matches[2][0];
+	if (isset($matches[2][1])) {
+		$originalVersion = $matches[2][1];
+	} else {
+		$originalVersion = preg_replace("~-[^RC]~i", '', $currentVersion);
+	}
+	if ($_REQUEST['markRelease'] == 'released') {
+		if (preg_match('~-[^RC]~i', $originalVersion)) {
+			$originalVersion = preg_replace('~-.*~', '', $originalVersion);
+		}
+		$version = "define('ZENPHOTO_VERSION', '$originalVersion');";
+	} else {
+		preg_match_all('~([^-]*)~', $currentVersion, $matches);
+		$mark = $matches[0][0] . '-DEBUG';
+		$version = "define('ZENPHOTO_VERSION', '$mark'); //original: define('ZENPHOTO_VERSION', '$originalVersion');";
+	}
+	$v = preg_replace("~define\('ZENPHOTO_VERSION.*\n~", $version . "\n", $v);
 	file_put_contents(SERVERPATH . '/' . ZENFOLDER . '/version.php', $v);
 	header('location:' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
 
-	exit();
+	exitZP();
 }
 
 function markRelease_button($buttons) {
 	$text = array('released' => gettext('released'), 'debug' => gettext('debug'));
-	$i = strpos($rawversion = ZENPHOTO_VERSION, '-');
-	if ($i === false) {
-		$mark = '';
-		$action = 'debug';
-	} else {
+	if (TEST_RELEASE) {
 		$mark = '-DEBUG';
 		$action = 'released';
+	} else {
+		$mark = '';
+		$action = 'debug';
 	}
 
 	$buttons[] = array(

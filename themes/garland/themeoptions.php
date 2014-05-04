@@ -6,6 +6,7 @@ require_once(dirname(__FILE__) . '/functions.php');
 class ThemeOptions {
 
 	function __construct() {
+		$me = basename(dirname(__FILE__));
 		setThemeOptionDefault('Allow_search', true);
 		setThemeOptionDefault('Allow_cloud', true);
 		setThemeOptionDefault('albums_per_page', 6);
@@ -23,9 +24,9 @@ class ThemeOptions {
 		setThemeOptionDefault('garland_personality', 'image_page');
 		setThemeOptionDefault('garland_transition', 'slide-hori');
 		setThemeOptionDefault('garland_caption_location', 'image');
-		setOptionDefault('colorbox_garland_image', 1);
-		setOptionDefault('colorbox_garland_album', 1);
-		setOptionDefault('colorbox_garland_search', 1);
+		setOptionDefault('colorbox_' . $me . '_image', 1);
+		setOptionDefault('colorbox_' . $me . '_album', 1);
+		setOptionDefault('colorbox_' . $me . '_search', 1);
 		setThemeOptionDefault('garland_menu', '');
 		if (extensionEnabled('zenpage')) {
 			setThemeOption('custom_index_page', 'gallery', NULL, 'garland', false);

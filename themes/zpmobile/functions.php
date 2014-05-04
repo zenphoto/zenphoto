@@ -93,11 +93,8 @@ function jqm_printFooterNav() {
 		$adminlink = '';
 		$favoriteslink = '';
 		if (zp_loggedin()) {
-			$protocol = SERVER_PROTOCOL;
-			if ($protocol == 'https_admin') {
-				$protocol = 'https';
-			}
-			$adminlink = '<li><a rel="external" href="' . html_encode($protocol . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . '/' . ZENFOLDER) . '/admin.php">' . gettext('Admin') . '</a></li>';
+			$adminlink = '<li><a rel="external" href="' . PROTOCOL . '://' . html_encode($_SERVER['HTTP_HOST'] . WEBPATH . '/' . ZENFOLDER) . '/admin.php">' . gettext('Admin') . '</a></li>';
+			;
 		}
 		if (function_exists('printFavoritesURL')) {
 			ob_start();
@@ -109,11 +106,11 @@ function jqm_printFooterNav() {
 			?>
 			<div data-role="navbar">
 				<ul id="footernav">
-					<?php echo $adminlink . $favoriteslink; ?>
+		<?php echo $adminlink . $favoriteslink; ?>
 				</ul>
 			</div>
 			<!-- /navbar -->
-		<?php } ?>
+	<?php } ?>
 	</div><!-- footer -->
 	<?php
 }
@@ -148,26 +145,26 @@ function jqm_printMenusLinks() {
 	global $_zp_gallery_page;
 	?>
 	<div id="collapsible-lists" data-collapsed="false">
-		<?php if (extensionEnabled('zenpage')) { ?>
+	<?php if (extensionEnabled('zenpage')) { ?>
 			<div data-role="collapsible" data-content-theme="c" data-theme="b"<?php if ($_zp_gallery_page == 'news.php') echo ' data-collapsed="false"'; ?>>
 				<h3><?php echo gettext('News'); ?></h3>
-				<?php printAllNewsCategories(gettext("All news"), TRUE, "", "menu-active", true, "submenu", "menu-active"); ?>
+			<?php printAllNewsCategories(gettext("All news"), TRUE, "", "menu-active", true, "submenu", "menu-active"); ?>
 			</div>
 		<?php } ?>
-		<?php if (function_exists('printAlbumMenu')) { ?>
+	<?php if (function_exists('printAlbumMenu')) { ?>
 			<div data-role="collapsible" data-content-theme="c" data-theme="b"<?php if ($_zp_gallery_page == 'gallery.php' || $_zp_gallery_page == 'album.php' || $_zp_gallery_page == 'image.php') echo ' data-collapsed="false"'; ?>>
 				<h3><?php echo gettext('Gallery'); ?></h3>
-				<?php printAlbumMenu('list', true, '', '', '', '', 'Gallery Index', false, false, false); ?>
+			<?php printAlbumMenu('list', true, '', '', '', '', 'Gallery Index', false, false, false); ?>
 			</div>
 		<?php } ?>
-		<?php if (extensionEnabled('zenpage')) { ?>
+	<?php if (extensionEnabled('zenpage')) { ?>
 			<div data-role="collapsible" data-content-theme="c" data-theme="b"<?php if ($_zp_gallery_page == 'pages.php') echo ' data-collapsed="false"'; ?>>
 				<h3><?php echo gettext('Pages'); ?></h3>
-				<?php printPageMenu("list", "", "menu-active", "submenu", "menu-active", NULL, true, true, NULL); ?>
+			<?php printPageMenu("list", "", "menu-active", "submenu", "menu-active", NULL, true, true, NULL); ?>
 			</div>
-		<?php } ?>
+			<?php } ?>
 		<div data-role="collapsible" data-content-theme="c" data-theme="b">
-			<?php jqm_printRSSlinks(); ?>
+	<?php jqm_printRSSlinks(); ?>
 		</div>
 	</div>
 	<?php

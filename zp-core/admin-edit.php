@@ -101,7 +101,7 @@ if (isset($_GET['action'])) {
 					}
 					$album = newAlbum($folder);
 					$album->setSortType('manual', 'album');
-					$album->setSortDirection('album', 0);
+					$album->setSortDirection(false, 'album');
 					$album->save();
 				} else {
 					$notify = '&noaction';
@@ -1744,11 +1744,10 @@ echo "\n</head>";
 							}
 							if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 								?>
-								<button type="button" onclick="javascript:newAlbum('
-																																								', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
-												<?php
-											}
-											?>
+								<button type="button" onclick="javascript:newAlbum('', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
+								<?php
+							}
+							?>
 						</p>
 						<br class="clearall" /><br />
 						<div class="bordered">
@@ -1763,7 +1762,7 @@ echo "\n</head>";
 								</label>
 								<label style="float: right">
 									<?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this
-																																												.checked);" />
+																																								.checked);" />
 								</label>
 							</div>
 
@@ -1787,11 +1786,10 @@ echo "\n</head>";
 							}
 							if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 								?>
-								<button type="button" onclick="javascript:newAlbum('
-																																												', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
-												<?php
-											}
-											?>
+								<button type="button" onclick="javascript:newAlbum('', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
+								<?php
+							}
+							?>
 						</p>
 
 					</form>
@@ -1803,8 +1801,7 @@ echo "\n</head>";
 					if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 						?>
 						<p class="buttons">
-							<button type="button" onclick="javascript:newAlbum('
-																																															', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
+							<button type="button" onclick="javascript:newAlbum('', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
 						</p>
 						<?php
 					}
