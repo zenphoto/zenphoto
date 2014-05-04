@@ -234,7 +234,7 @@ class AlbumBase extends MediaObject {
 	 *        'album_sortdirection' if you want it for the album
 	 */
 	function setSortDirection($val, $what = 'image') {
-		if (!is_bool($val)) {
+		if (is_string($val)) {
 			internal_deprecations::setSortDirection();
 			$t = $val;
 			$val = $what;
