@@ -361,7 +361,7 @@ class Zenpage {
 				}
 				db_free_result($resource);
 				if ($sort1 == 'title') { // multi-lingual field!
-					$result = sortByMultilingual($result, 'title', $sortdierction);
+					$result = sortByMultilingual($result, 'title', $sortdirection);
 					if ($sticky) {
 						$result = sortMultiArray($result, array('sticky'), true);
 					}
