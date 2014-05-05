@@ -4402,6 +4402,11 @@ function getLogTabs() {
 			}
 		}
 	}
+
+	$names = array_flip($subtabs);
+	natcasesort($names);
+	$subtabs = array_flip($names);
+
 	return array($subtabs, $default);
 }
 
