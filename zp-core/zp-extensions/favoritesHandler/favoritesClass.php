@@ -287,13 +287,19 @@ class favorites extends AlbumBase {
 
 	function getLink($page = NULL, $instance = NULL) {
 		$link = WEBPATH . '/' . preg_replace('~^_PAGE_/~ ', _PAGE_ . '/', _FAVORITES_);
+		$link_no = 'index.php?p=favorites';
 		if (is_null($instance))
 			$instance = $this->instance;
-		if ($instance)
-			$link .='/' . rtrim($instance, '/');
-		if ($page > 1)
+		if ($instance) {
+			$instance = rtrim($instance, '/');
+			$link .='/' . $instance;
+			$link_no .= '&instance=' . $instance;
+		}
+		if ($page > 1) {
 			$link .= '/' . $page . '/';
-		return $link;
+			$link_no .= '&page=' . $page;
+		}
+		return zp_apply_filter('getLink', rewrite_path($link, $link_no), 'favorites.php', $page);
 	}
 
 	static function ad_removeButton($obj, $id, $v, $add, $instance, $multi) {
