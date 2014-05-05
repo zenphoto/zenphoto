@@ -181,7 +181,7 @@ class cycle {
 			$albumobj = newAlbum($album, NULL, true);
 		}
 		if (is_object($albumobj) && $albumobj->loaded) {
-			$returnpath = rewrite_path('/' . pathurlencode($albumobj->name) . '/', '/index.php?album=' . urlencode($albumobj->name));
+			$returnpath = rewrite_path(pathurlencode($albumobj->name) . '/', '/index.php?album=' . urlencode($albumobj->name));
 			return cycle::getShow(false, false, $albumobj, NULL, $width, $height, false, false, false, $controls, $returnpath, 0);
 		} else {
 			return '<div class="errorbox" id="message"><h2>' . gettext('Invalid slideshow album name!') . '</h2></div>';
@@ -500,7 +500,7 @@ if (extensionEnabled('slideshow2')) {
 			$imagenumber = '';
 			$imagefile = '';
 			$albumnr = 0;
-			$slideshowlink = rewrite_path('/' . _PAGE_ . '/slideshow', "index.php?p=slideshow");
+			$slideshowlink = rewrite_path(_PAGE_ . '/slideshow', "index.php?p=slideshow");
 			$slideshowhidden = '<input type="hidden" name="preserve_search_params" value="' . html_encode($_zp_current_search->getSearchParams()) . '" />';
 		} else {
 			if (in_context(ZP_IMAGE)) {
@@ -519,7 +519,7 @@ if (extensionEnabled('slideshow2')) {
 			if ($albumnr) {
 				$slideshowlink = rewrite_path(pathurlencode($_zp_current_album->getFolder()) . '/' . _PAGE_ . '/slideshow', "index.php?p=slideshow&amp;album=" . urlencode($_zp_current_album->getFolder()));
 			} else {
-				$slideshowlink = rewrite_path('/' . _PAGE_ . '/slideshow', "index.php?p=slideshow");
+				$slideshowlink = rewrite_path(_PAGE_ . '/slideshow', "index.php?p=slideshow");
 				$slideshowhidden = '<input type="hidden" name="favorites_page" value="1" />' . "\n" . '<input type="hidden" name="title" value="' . $_myFavorites->instance . '" />';
 			}
 		}

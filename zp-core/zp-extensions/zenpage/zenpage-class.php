@@ -785,7 +785,7 @@ class Zenpage {
 	 */
 	function getNewsTitlePath($title) {
 		Zenpage_internal_deprecations::getNewsTitlePath();
-		return rewrite_path('/' . _NEWS_ . "/$title", "/index.php?p=news&title=$title"); //deprecated
+		return rewrite_path(_NEWS_ . "/$title", "/index.php?p=news&title=$title"); //deprecated
 	}
 
 	/*	 * ********************************* */
