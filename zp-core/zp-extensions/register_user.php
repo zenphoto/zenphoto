@@ -194,7 +194,7 @@ class register_user {
 	}
 
 	static function getLink() {
-		return zp_apply_filter('getLink', _REGISTER_USER_, 'register.php', NULL);
+		return zp_apply_filter('getLink', rewrite_path(_REGISTER_USER_ . '/', '/index.php?p=register'), 'register.php', NULL);
 	}
 
 	static function post_processor() {
@@ -287,7 +287,7 @@ class register_user {
 						}
 					} else {
 						$userobj->save();
-						$_link = FULLWEBPATH . '/' . register_user::getLink() . '?verify=' . bin2hex(serialize(array('user' => $user, 'email' => $admin_e)));
+						$_link = PROTOCOL . "://" . $_SERVER['HTTP_HOST'] . register_user::getLink() . '?verify=' . bin2hex(serialize(array('user' => $user, 'email' => $admin_e)));
 						$_message = sprintf(get_language_string(getOption('register_user_text')), $_link, $admin_n, $user, $pass);
 						$_notify = zp_mail(get_language_string(gettext('Registration confirmation')), $_message, array($user => $admin_e));
 						if (empty($_notify)) {
@@ -526,6 +526,7 @@ function printRegistrationForm($thanks = NULL) {
 /**
  * prints the link to the register user page
  *
+ * @param string $_linktext text for the link
  * @param string $prev text to insert before the URL
  * @param string $next text to follow the URL
  * @param string $class optional class
@@ -540,7 +541,7 @@ function printRegisterURL($_linktext, $prev = '', $next = '', $class = NULL) {
 		}
 		echo $prev;
 		?>
-		<a href="<?php echo FULLWEBPATH; ?>/<?php echo html_encode(register_user::getLink()); ?>"<?php echo $class; ?> title="<?php echo html_encode($_linktext); ?>" id="register_link"><?php echo $_linktext; ?> </a>
+		<a href="<?php echo html_encode(register_user::getLink()); ?>"<?php echo $class; ?> title="<?php echo html_encode($_linktext); ?>" id="register_link"><?php echo $_linktext; ?> </a>
 		<?php
 		echo $next;
 	}
