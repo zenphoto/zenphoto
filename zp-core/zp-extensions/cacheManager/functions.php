@@ -42,9 +42,10 @@ function getImageProcessorURIFromCacheName($match, $watermarks) {
 		}
 	}
 	$image = preg_replace('~.*/' . CACHEFOLDER . '/~', '', implode('_', $params)) . '.' . getSuffix($match);
-	if (getOption('obfuscate_cache')) {
-		$image = dirname($image) . '/' . substr(basename($image), CACHE_HASH_LENGTH);
-	}
+	//	strip out the obfustication
+	$album = dirname($image);
+	$image = preg_replace('~^[0-9a-f]{' . (CACHE_HASH_LENGTH - 1) . ',' . (CACHE_HASH_LENGTH - 1) . '}\.~', '', basename($image));
+	$image = $album . '/' . $image;
 	return array($image, getImageArgs($set));
 }
 
@@ -69,6 +70,33 @@ function recordMissing($table, $row, $image) {
 	global $missingImages;
 	$obj = getItemByID($table, $row['id']);
 	$missingImages[] = '<a href="' . $obj->getLink() . '">' . $obj->getTitle() . '</a> (' . html_encode($image) . ')<br />';
+}
+
+/**
+ * Updates the path to the cache folder
+ * @param mixed $text
+ * @param string $target
+ * @param string $update
+ * @return mixed
+ */
+function updateCacheName($text, $target, $update) {
+	if (is_string($text) && preg_match('/^a:[0-9]+:{/', $text)) { //	serialized array
+		$text = getSerializedArray($text);
+		$serial = true;
+	} else {
+		$serial = false;
+	}
+	if (is_array($text)) {
+		foreach ($text as $key => $textelement) {
+			$text[$key] = updateCacheName($textelement, $target, $update);
+		}
+		if ($serial) {
+			$text = serialize($text);
+		}
+	} else {
+		$text = str_replace($target, $update, $text);
+	}
+	return $text;
 }
 
 ?>
