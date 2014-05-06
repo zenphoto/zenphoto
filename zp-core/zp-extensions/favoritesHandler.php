@@ -319,8 +319,11 @@ if (OFFSET_PATH) {
 				$multi = false;
 				$list = array($_myFavorites->instance);
 			} else {
-				$multi = getOption('favorites_multi');
-				$list = $_myFavorites->list;
+				if ($multi = getOption('favorites_multi')) {
+					$list = $_myFavorites->list;
+				} else {
+					$list = array('');
+				}
 				if (extensionEnabled('tag_suggest') && !$_myFavorites_button_count) {
 					$_myFavorites_button_count++;
 					$favList = array_slice($list, 1);
@@ -352,7 +355,7 @@ if (OFFSET_PATH) {
 							}
 						}
 					}
-					if (in_array(false, $seen))
+					if ($multi || in_array(false, $seen))
 						favorites::ad_removeButton($obj, $id, 1, $add, NULL, $multi);
 					break;
 				case 'albums':
@@ -369,7 +372,7 @@ if (OFFSET_PATH) {
 							}
 						}
 					}
-					if (in_array(false, $seen))
+					if ($multi || in_array(false, $seen))
 						favorites::ad_removeButton($obj, $id, 1, $add, NULL, $multi);
 					break;
 				default:
@@ -399,12 +402,10 @@ if (OFFSET_PATH) {
 				$betwixt = NULL;
 				echo $before;
 				foreach ($_myFavorites->getList()as $instance) {
+					$link = $_myFavorites->getLink(NULL, $instance);
+					$display = $text;
 					if ($instance) {
-						$link = $_myFavorites->getLink(NULL, $instance);
-						$display = $text . '[' . $instance . ']';
-					} else {
-						$link = $_myFavorites->getLink();
-						$display = $text;
+						$display .= '[' . $instance . ']';
 					}
 					echo $betwixt;
 					$betwixt = $between;
