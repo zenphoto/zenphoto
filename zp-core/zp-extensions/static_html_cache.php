@@ -11,6 +11,11 @@
  * cached page and none of the other exclusions are in effect, the cached page will be
  * shown.
  *
+ * Caching is also aborted when the page being rendered is not static. For instance
+ * pages containing a link to the image processor will not be cached so that the
+ * image may be cached and the link changed to the cache folder. Similarly, pages
+ * which contain comment forms are not cached because then the comment would never show.
+ *
  * In addition, caching does not occur for pages viewed by Zenphoto users if the user has
  * <var>ADMIN</var> privileges or if he is the manager of an album being viewed or whose images are
  * being viewed. Likewise, Zenpage News and Pages are not cached when viewed by the author.
