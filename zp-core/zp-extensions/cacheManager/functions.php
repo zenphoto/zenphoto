@@ -1,6 +1,6 @@
 <?php
 
-define("CACHE_HASH_LENGTH", strlen(sha1(HASH_SEED)) + 1);
+define("CACHE_HASH_LENGTH", strlen(sha1(HASH_SEED)));
 
 function getImageProcessorURIFromCacheName($match, $watermarks) {
 	$args = array(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
@@ -44,7 +44,7 @@ function getImageProcessorURIFromCacheName($match, $watermarks) {
 	$image = preg_replace('~.*/' . CACHEFOLDER . '/~', '', implode('_', $params)) . '.' . getSuffix($match);
 	//	strip out the obfustication
 	$album = dirname($image);
-	$image = preg_replace('~^[0-9a-f]{' . (CACHE_HASH_LENGTH - 1) . ',' . (CACHE_HASH_LENGTH - 1) . '}\.~', '', basename($image));
+	$image = preg_replace('~^[0-9a-f]{' . CACHE_HASH_LENGTH . '}\.~', '', basename($image));
 	$image = $album . '/' . $image;
 	return array($image, getImageArgs($set));
 }
