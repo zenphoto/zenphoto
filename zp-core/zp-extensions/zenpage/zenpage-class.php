@@ -88,7 +88,7 @@ class Zenpage {
 	 * @param bool $toplevel TRUE for only the toplevel pages
 	 * @param int $number number of pages to get (NULL by default for all)
 	 * @param string $sorttype NULL for the standard order as sorted on the backend, "title", "date", "id", "popular", "mostrated", "toprated", "random"
-	 * @param string $sortdirection "asc" or "desc" for ascending or descending order
+	 * @param string $sortdirection TRUE for ascenting, FALSE for descending
 	 * @return array
 	 */
 	function getPages($published = NULL, $toplevel = false, $number = NULL, $sorttype = NULL, $sortdirection = NULL) {
@@ -194,7 +194,7 @@ class Zenpage {
 	 * @param boolean $ignorepagination Since also used for the news loop this function automatically paginates the results if the "page" GET variable is set. To avoid this behaviour if using it directly to get articles set this TRUE (default FALSE)
 	 * @param string $sortorder "date" (default), "title", "id, "popular", "mostrated", "toprated", "random"
 	 * 													This parameter is not used for date archives
-	 * @param bool $sortdirection This parameter is not used for date archives
+	 * @param bool $sortdirection TRUE for ascending, FALSE for descending. Note: This parameter is not used for date archives
 	 * @param bool $sticky set to true to place "sticky" articles at the front of the list.
 	 * @return array
 	 */
@@ -827,20 +827,14 @@ class Zenpage {
 	 * Gets all categories
 	 * @param bool $visible TRUE for published and unprotected
 	 * @param string $sorttype NULL for the standard order as sorted on the backend, "title", "id", "popular", "random"
-	 * @param string $sortdirection "asc" or "desc" for ascending or descending order
+	 * @param bool $sortdirection TRUE for ascending or FALSE for descending order
 	 * @return array
 	 */
 	function getAllCategories($visible = true, $sorttype = NULL, $sortdirection = NULL) {
 		$structure = $this->getCategoryStructure();
-		switch ($sortdirection) {
-			case 'asc':
-			default:
-				$sortdir = FALSE;
-				break;
-			case 'desc':
-				$sortdir = TRUE;
-				break;
-		}
+  if (is_null($sortdirection))
+				$sortdirection = $sortObj->sortdirection;
+
 		switch ($sorttype) {
 			case "id":
 				$sortorder = "id";
@@ -873,7 +867,7 @@ class Zenpage {
 			if ($sorttype == 'random') {
 				shuffle($structure);
 			} else {
-				$structure = sortMultiArray($structure, $sortorder, $sortdir, true, false, false);
+				$structure = sortMultiArray($structure, $sortorder, $sortdirection, true, false, false);
 			}
 		}
 		return $structure;
