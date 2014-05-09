@@ -360,7 +360,7 @@ class Zenpage {
 					}
 				}
 				db_free_result($resource);
-				if ($sort1 == 'title') { // multi-lingual field!
+				if ($sortorder == 'title') { // multi-lingual field!
 					$result = sortByMultilingual($result, 'title', $sortdirection);
 					if ($sticky) {
 						$result = sortMultiArray($result, array('sticky'), true);
@@ -832,8 +832,8 @@ class Zenpage {
 	 */
 	function getAllCategories($visible = true, $sorttype = NULL, $sortdirection = NULL) {
 		$structure = $this->getCategoryStructure();
-  if (is_null($sortdirection))
-				$sortdirection = $this->sortdirection;
+		if (is_null($sortdirection))
+			$sortdirection = $this->sortdirection;
 
 		switch ($sorttype) {
 			case "id":
