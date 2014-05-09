@@ -41,6 +41,9 @@ function getImageProcessorURIFromCacheName($match, $watermarks) {
 			}
 		}
 	}
+	if (!isset($set['wmk'])) {
+		$set['wmk'] = '!';
+	}
 	$image = preg_replace('~.*/' . CACHEFOLDER . '/~', '', implode('_', $params)) . '.' . getSuffix($match);
 	//	strip out the obfustication
 	$album = dirname($image);
