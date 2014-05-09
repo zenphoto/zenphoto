@@ -133,15 +133,15 @@ function getAuthor($fullname = false) {
 function getLatestNews($number = 2, $category = '', $sticky = true, $sortdirection = 'desc') {
 	global $_zp_zenpage, $_zp_current_zenpage_news;
 	//check if things are deprecated
- switch($sortdirection) {
-   case 'desc':
-   default:
-     $sortdir = false;
-     break;
-   case 'asc':
-     $sortdir = true;
-     break;
- }
+	switch (strtolower($sortdirection)) {
+		case 'desc':
+		default:
+			$sortdir = false;
+			break;
+		case 'asc':
+			$sortdir = true;
+			break;
+	}
 	$args = func_get_args();
 	$deprecated = array(
 					"none",
@@ -944,15 +944,7 @@ function getNewsPathNav($page) {
 function getPrevNewsPageURL() {
 	global $_zp_page;
 	if ($_zp_page > 1) {
-		if ($_zp_page == 2) {
-			if (is_NewsCategory()) {
-				return getNewsPathNav(1);
-			} else {
-				return getNewsIndexURL();
-			}
-		} else {
-			return getNewsPathNav($_zp_page - 1);
-		}
+		return getNewsPathNav($_zp_page - 1);
 	} else {
 		return false;
 	}
@@ -1121,15 +1113,8 @@ function getTotalNewsPages() {
  */
 function getNextPrevNews($option = '', $sortorder = 'date', $sortdirection = 'desc') {
 	global $_zp_zenpage, $_zp_current_zenpage_news;
- switch($sortdirection) {
-   case 'desc':
-   default:
-     $sortdir = false;
-     break;
-   case 'asc':
-     $sortdir = true;
-     break;
- }
+
+	$sortdir = strtolower($sortdirection) == 'desc';
 	if (!empty($option)) {
 		switch ($option) {
 			case "prev":
@@ -1230,15 +1215,7 @@ function printPrevNewsLink($prev = "« ", $sortorder = 'date', $sortdirection = 
  */
 function getZenpageStatistic($number = 10, $option = "all", $mode = "popular", $sortdirection = 'desc') {
 	global $_zp_zenpage, $_zp_current_zenpage_news, $_zp_current_zenpage_pages;
- switch($sortdirection) {
-   case 'desc':
-   default:
-     $sortdir = false;
-     break;
-   case 'asc':
-     $sortdir = true;
-     break;
- }
+	$sortdir = strtolower($sortdirection) == 'desc';
 	$statsarticles = array();
 	$statscats = array();
 	$statspages = array();

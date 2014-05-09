@@ -88,7 +88,7 @@ class Zenpage {
 	 * @param bool $toplevel TRUE for only the toplevel pages
 	 * @param int $number number of pages to get (NULL by default for all)
 	 * @param string $sorttype NULL for the standard order as sorted on the backend, "title", "date", "id", "popular", "mostrated", "toprated", "random"
-	 * @param string $sortdirection TRUE for ascenting, FALSE for descending
+	 * @param string $sortdirection false for ascenting, true for descending
 	 * @return array
 	 */
 	function getPages($published = NULL, $toplevel = false, $number = NULL, $sorttype = NULL, $sortdirection = NULL) {
@@ -113,9 +113,9 @@ class Zenpage {
 			$sortdirection = $this->sortdirection;
 		}
 		if ($sortdirection) {
-			$sortdir = ' ASC';
-		} else {
 			$sortdir = ' DESC';
+		} else {
+			$sortdir = ' ASC';
 		}
 		if (is_null($sorttype)) {
 			$sorttype = $this->sortorder;
@@ -253,10 +253,10 @@ class Zenpage {
 				$sortdirection = $sortObj->sortdirection;
 
 			if ($sortdirection) {
-				$dir = " ASC";
-				$sticky = false; //makes no sense
-			} else {
 				$dir = " DESC";
+			} else {
+				$sticky = false; //makes no sense
+				$dir = " ASC";
 			}
 			// sortorder and sortdirection (only used for all news articles and categories naturally)
 			if (is_null($sortorder))
@@ -584,7 +584,7 @@ class Zenpage {
 		if ($sticky) {
 			$stickyorder = 'sticky DESC,';
 		}
-		switch ($sortdirection) {
+		switch (strtolower($sortdirection)) {
 			case 'desc':
 			default:
 				$sortdir = 'DESC';
