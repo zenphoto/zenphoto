@@ -82,7 +82,7 @@ if (class_exists('Zenpage')) {
 							while (next_news()):;
 								?>
 								<div class="newsarticle">
-									<h3><?php printNewsURL(); ?><?php echo " <span class='newstype'>[" . gettext('news') . "]</span>"; ?></h3>
+									<h3><?php printNewsURL(); ?></h3>
 									<div class="newsarticlecredit">
 										<span class="newsarticlecredit-left">
 											<?php
