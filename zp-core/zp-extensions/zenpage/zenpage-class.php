@@ -345,9 +345,9 @@ class Zenpage {
 				$order .= $sort1;
 			}
 			if ($category) {
-				$sql = "SELECT DISTINCT news.date, news.title, news.titlelink FROM " . prefix('news') . " as news, " . prefix('news2cat') . " as cat WHERE" . $cat . $show . $order;
+				$sql = "SELECT DISTINCT news.date, news.title, news.titlelink, news.sticky FROM " . prefix('news') . " as news, " . prefix('news2cat') . " as cat WHERE" . $cat . $show . $order;
 			} else {
-				$sql = "SELECT date, title, titlelink FROM " . prefix('news') . $show . $datesearch . " " . $order;
+				$sql = "SELECT date, title, titlelink, sticky FROM " . prefix('news') . $show . $datesearch . " " . $order;
 			}
 
 			$resource = query($sql);
@@ -363,7 +363,15 @@ class Zenpage {
 				if ($sortorder == 'title') { // multi-lingual field!
 					$result = sortByMultilingual($result, 'title', $sortdirection);
 					if ($sticky) {
-						$result = sortMultiArray($result, array('sticky'), true);
+						$stickyItems = array();
+						foreach ($result as $key => $element) {
+							if ($element['sticky']) {
+								array_unshift($stickyItems, $element);
+								unset($result[$key]);
+							}
+						}
+						$stickyItems = sortMultiArray($stickyItems, 'sticky', true);
+						$result = array_merge($stickyItems, $result);
 					}
 				}
 			}
