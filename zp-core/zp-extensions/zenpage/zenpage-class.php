@@ -833,7 +833,7 @@ class Zenpage {
 	function getAllCategories($visible = true, $sorttype = NULL, $sortdirection = NULL) {
 		$structure = $this->getCategoryStructure();
   if (is_null($sortdirection))
-				$sortdirection = $sortObj->sortdirection;
+				$sortdirection = $this->sortdirection;
 
 		switch ($sorttype) {
 			case "id":
