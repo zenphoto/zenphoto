@@ -20,6 +20,9 @@
  * Otherwise it will not work. It is all or none.
  * See {@link http://jplayer.org/latest/developer-guide/#reference-html5-media the developer guide} for info on that.
  *
+ * If you have problems with any format being recognized, you might need to tell your server about the mime types first:
+ * See examples on {@link http://jplayer.org/latest/developer-guide/#jPlayer-server-response the jplayer site}.
+ *
  * Note on POPCORN Support (http://popcornjs.org)
  * jPlayer has support for this interactive libary and its plugin is included but currently not loaded or implemented. You need to customize the plugin or your theme to use it.
  * Please refer to http://jplayer.org/latest/developer-guide/ and http://popcornjs.org to learn about this extra functionality.
