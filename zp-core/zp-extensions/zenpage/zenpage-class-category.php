@@ -420,7 +420,7 @@ class ZenpageCategory extends ZenpageRoot {
 		} else {
 			$pager = $page = '';
 		}
-		return zp_apply_filter('getLink', rewrite_path('/' . _CATEGORY_ . '/' . $this->getTitlelink() . '/' . $pager, "/index.php?p=news&category=" . $this->getTitlelink() . $page), $this, NULL);
+		return zp_apply_filter('getLink', rewrite_path(_CATEGORY_ . '/' . $this->getTitlelink() . '/' . $pager, "/index.php?p=news&category=" . $this->getTitlelink() . $page), $this, NULL);
 	}
 
 	/**

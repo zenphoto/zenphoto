@@ -238,7 +238,7 @@ class favorites extends AlbumBase {
 	static function loadScript($script, $request) {
 		global $_zp_current_admin_obj, $_zp_gallery_page, $_myFavorites, $_zp_current_album, $_zp_conf_vars, $_myFavorites;
 		if ($_myFavorites && isset($_REQUEST['instance'])) {
-			$_myFavorites->instance = sanitize($_REQUEST['instance']);
+			$_myFavorites->instance = sanitize(rtrim($_REQUEST['instance'], '/'));
 			if ($_myFavorites->instance)
 				$_myFavorites->setTitle($_myFavorites->getTitle() . '[' . $_myFavorites->instance . ']');
 		}
@@ -286,14 +286,20 @@ class favorites extends AlbumBase {
 	}
 
 	function getLink($page = NULL, $instance = NULL) {
-		$link = WEBPATH . '/' . preg_replace('~^_PAGE_/~ ', _PAGE_ . '/', _FAVORITES_);
+		$link = _FAVORITES_ . '/';
+		$link_no = 'index.php?p=favorites';
 		if (is_null($instance))
 			$instance = $this->instance;
-		if ($instance)
-			$link .='/' . rtrim($instance, '/');
-		if ($page > 1)
-			$link .= '/' . $page . '/';
-		return $link;
+		if ($instance) {
+			$instance = rtrim($instance, '/');
+			$link .= $instance . '/';
+			$link_no .= '&instance=' . $instance;
+		}
+		if ($page > 1) {
+			$link .= $page . '/';
+			$link_no .= '&page=' . $page;
+		}
+		return zp_apply_filter('getLink', rewrite_path($link, $link_no), 'favorites.php', $page);
 	}
 
 	static function ad_removeButton($obj, $id, $v, $add, $instance, $multi) {

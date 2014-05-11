@@ -79,13 +79,13 @@ datepickerJS();
 	<?php
 	printLogoAndLinks();
 	?>
-	<div id="main">
+  <div id="main">
 		<?php
 		printTabs();
 		?>
-		<div id="content">
+    <div id="content">
 			<?php $subtab = printSubtabs(); ?>
-			<div id="tab_articles" class="tabbox">
+      <div id="tab_articles" class="tabbox">
 				<?php
 				zp_apply_filter('admin_note', 'news', $subtab);
 				if ($reports) {
@@ -99,7 +99,7 @@ datepickerJS();
 					}
 				}
 				?>
-				<h1><?php echo gettext('Articles'); ?>
+        <h1><?php echo gettext('Articles'); ?>
 					<?php
 					if (isset($_GET['category'])) {
 						echo "<em>" . html_encode(sanitize($_GET['category'])) . '</em>';
@@ -125,36 +125,18 @@ datepickerJS();
 						$published = 'all';
 					}
 					$sortorder = 'date';
-					$direction = 'desc';
+					$direction = true;
 					if (isset($_GET['sortorder'])) {
-						switch ($_GET['sortorder']) {
-							case 'date-desc':
-								$sortorder = 'date';
-								$direction = 'desc';
-								break;
-							case 'date-asc':
-								$sortorder = 'date';
-								$direction = 'asc';
-								break;
-							case 'title-desc':
-								$sortorder = 'title';
-								$direction = 'desc';
-								break;
-							case 'title-asc':
-								$sortorder = 'title';
-								$direction = 'asc';
-								break;
-						}
+						list($sortorder, $sortdirection) = explode('-', $_GET['sortorder']);
+						$direction = $sortdirection == 'desc';
 					}
 					if (isset($_GET['category'])) {
 						$catobj = new ZenpageCategory(sanitize($_GET['category']));
-						$resultU = $catobj->getArticles(0, 'unpublished', false, $sortorder, $direction);
-						$result = $catobj->getArticles(0, $published, false, $sortorder, $direction);
 					} else {
 						$catobj = NULL;
-						$resultU = $_zp_zenpage->getArticles(0, 'unpublished', false, $sortorder, $direction);
-						$result = $_zp_zenpage->getArticles(0, $published, false, $sortorder, $direction);
 					}
+					$resultU = $_zp_zenpage->getArticles(0, 'unpublished', false, $sortorder, $direction, false, $catobj);
+					$result = $_zp_zenpage->getArticles(0, $published, false, $sortorder, $direction, false, $catobj);
 					foreach ($result as $key => $article) {
 						$article = new ZenpageNews($article['titlelink']);
 						if (!$article->isMyItem(ZENPAGE_NEWS_RIGHTS)) {
@@ -205,8 +187,8 @@ datepickerJS();
 						$rangeset = $options = array();
 					}
 					?>
-					<span class="zenpagestats"><?php printNewsStatistic($articles, count($resultU)); ?></span></h1>
-				<div class="floatright">
+          <span class="zenpagestats"><?php printNewsStatistic($articles, count($resultU)); ?></span></h1>
+        <div class="floatright">
 					<?php
 					printCategoryDropdown($subpage);
 					printArticleDatesDropdown($subpage);
@@ -214,35 +196,35 @@ datepickerJS();
 					printSortOrderDropdown($subpage);
 					printArticlesPerPageDropdown($subpage);
 					?>
-					<span class="buttons">
-						<a href="admin-edit.php?newsarticle&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>"> <img src="images/add.png" alt="" /> <strong><?php echo gettext("New Article"); ?></strong></a>
-					</span>
-					<br style="clear: both" />
-				</div>
+          <span class="buttons">
+            <a href="admin-edit.php?newsarticle&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>"> <img src="images/add.png" alt="" /> <strong><?php echo gettext("New Article"); ?></strong></a>
+          </span>
+          <br style="clear: both" />
+        </div>
 				<?php
 				$option = getNewsAdminOptionPath(getNewsAdminOption(array('category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1, 'subpage' => 1), '?'));
 				?>
-				<form class="dirty-check" action="admin-news-articles.php<?php echo $option; ?>" method="post" name="checkeditems" id="form_zenpageitemlist" onsubmit="return confirmAction();">
+        <form class="dirty-check" action="admin-news-articles.php<?php echo $option; ?>" method="post" name="checkeditems" id="form_zenpageitemlist" onsubmit="return confirmAction();">
 					<?php XSRFToken('checkeditems'); ?>
-					<div class="buttons">
-						<button type="submit" title="<?php echo gettext('Apply'); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong>
-						</button>
-					</div>
-					<br style="clear: both" /><br />
+          <div class="buttons">
+            <button type="submit" title="<?php echo gettext('Apply'); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong>
+            </button>
+          </div>
+          <br style="clear: both" /><br />
 
-					<table class="bordered">
-						<tr>
-							<th colspan="12" id="imagenav">
+          <table class="bordered">
+            <tr>
+              <th colspan="12" id="imagenav">
 								<?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/zenpage/admin-news-articles.php', $options); ?>
-							</th>
-						</tr>
-						<tr>
-							<th colspan="7"><?php echo gettext('Edit this article'); ?>
+              </th>
+            </tr>
+            <tr>
+              <th colspan="7"><?php echo gettext('Edit this article'); ?>
 
-							</th>
+              </th>
 
 
-							<th colspan="5">
+              <th colspan="5">
 								<?php
 								$checkarray = array(
 												gettext('*Bulk actions*')			 => 'noaction',
@@ -261,14 +243,14 @@ datepickerJS();
 								}
 								printBulkActions($checkarray);
 								?>
-							</th>
-						</tr>
-						<tr class="newstr">
-							<td class="subhead" colspan="12">
-								<label style="float: right"><?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
-								</label>
-							</td>
-						</tr>
+              </th>
+            </tr>
+            <tr class="newstr">
+              <td class="subhead" colspan="12">
+                <label style="float: right"><?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
+                </label>
+              </td>
+            </tr>
 						<?php
 						foreach ($result as $article) {
 							$article = new ZenpageNews($article['titlelink']);
@@ -401,19 +383,19 @@ datepickerJS();
 							<?php
 						}
 						?>
-						<tr>
-							<td id="imagenavb" colspan="11"><?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/zenpage/admin-news-articles.php', $options); ?>	</td>
-						</tr>
-					</table>
+            <tr>
+              <td id="imagenavb" colspan="11"><?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/zenpage/admin-news-articles.php', $options); ?>	</td>
+            </tr>
+          </table>
 
 
-					<p class="buttons"><button type="submit" title="<?php echo gettext('Apply'); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong></button></p>
-				</form>
+          <p class="buttons"><button type="submit" title="<?php echo gettext('Apply'); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong></button></p>
+        </form>
 				<?php printZenpageIconLegend(); ?>
-				<br class="clearall" />
-			</div> <!-- tab_articles -->
-		</div> <!-- content -->
-	</div> <!-- main -->
+        <br class="clearall" />
+      </div> <!-- tab_articles -->
+    </div> <!-- content -->
+  </div> <!-- main -->
 
 	<?php printAdminFooter(); ?>
 </body>

@@ -102,13 +102,15 @@ class deprecated_functions {
 
 	static function tabs($tabs) {
 		if (zp_loggedin(ADMIN_RIGHTS)) {
-			$mylink = PLUGIN_FOLDER . '/deprecated-functions/admin_tab.php?page=deprecated&tab=' . gettext('deprecated');
 			if (!isset($tabs['development'])) {
 				$tabs['development'] = array('text'		 => gettext("development"),
-								'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . $mylink,
 								'subtabs'	 => NULL);
 			}
-			$tabs['development']['subtabs'][gettext("deprecated")] = $mylink;
+			$tabs['development']['subtabs'][gettext("deprecated")] = PLUGIN_FOLDER . '/deprecated-functions/admin_tab.php?page=deprecated&tab=' . gettext('deprecated');
+			$named = array_flip($tabs['development']['subtabs']);
+			natcasesort($named);
+			$tabs['development']['subtabs'] = $named = array_flip($named);
+			$tabs['development']['link'] = array_shift($named);
 		}
 		return $tabs;
 	}

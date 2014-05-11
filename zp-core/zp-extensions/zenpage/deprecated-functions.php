@@ -773,7 +773,7 @@ function getNewsAlbumName() {
 function getNewsAlbumURL() {
 	deprecated_functions::notify(gettext('CombiNews is deprecated. See the <a href="http://www.zenphoto.org/news/zenphoto-1.4.6">Zenphoto 1.4.6 release notes</a>.'));
 	if (getNewsAlbumName()) {
-		return rewrite_path("/" . html_encode(getNewsAlbumName()), "index.php?album=" . html_encode(getNewsAlbumName()));
+		return rewrite_path(html_encode(getNewsAlbumName()), "index.php?album=" . html_encode(getNewsAlbumName()));
 	} else {
 		return false;
 	}

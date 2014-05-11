@@ -189,7 +189,7 @@ class ZenpagePage extends ZenpageItems {
 	 * @param bool $toplevel ignored, left for parameter compatibility
 	 * @param int $number number of pages to get (NULL by default for all)
 	 * @param string $sorttype NULL for the standard order as sorted on the backend, "title", "date", "popular", "mostrated", "toprated", "random"
-	 * @param string $sortdirection "asc" or "desc" for ascending or descending order
+	 * @param string $sortdirection false for ascending, true for descending
 	 * @return array
 	 */
 	function getPages($published = NULL, $toplevel = false, $number = NULL, $sorttype = NULL, $sortdirection = NULL) {

@@ -46,7 +46,6 @@
 $plugin_is_filter = 5 | FEATURE_PLUGIN;
 $plugin_description = gettext('Support for <em>favorites</em> handling.');
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_disable = (MOD_REWRITE) ? '' : gettext('Mod Rewrite is required for this plugin');
 
 $option_interface = 'favoritesOptions';
 
@@ -242,185 +241,182 @@ class favoritesOptions {
 
 }
 
-if ($plugin_disable) {
-	enableExtension('favoritesHandler', 0);
+$_zp_conf_vars['special_pages']['favorites'] = array('define'	 => '_FAVORITES_', 'rewrite'	 => getOption('favorites_link'),
+				'option'	 => 'favorites_link', 'default'	 => '_PAGE_/favorites');
+$_zp_conf_vars['special_pages'][] = array('definition' => '%FAVORITES%', 'rewrite' => '_FAVORITES_');
+$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%FAVORITES%/(.+)/([0-9]+)/?$',
+				'rule'		 => '%REWRITE% index.php?p=favorites&instance=$1&page=$2 [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%FAVORITES%/([0-9]+)/?$',
+				'rule'		 => '%REWRITE% index.php?p=favorites&page=$1 [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%FAVORITES%/(.+)/?$',
+				'rule'		 => '%REWRITE% index.php?p=favorites&instance=$1 [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%FAVORITES%/*$',
+				'rule'		 => '%REWRITE% index.php?p=favorites [L,QSA]');
+
+if (OFFSET_PATH) {
+	zp_register_filter('edit_album_custom_data', 'favorites::showWatchers');
+	zp_register_filter('edit_image_custom_data', 'favorites::showWatchers');
 } else {
-	$_zp_conf_vars['special_pages']['favorites'] = array('define'	 => '_FAVORITES_', 'rewrite'	 => getOption('favorites_link'),
-					'option'	 => 'favorites_link', 'default'	 => '_PAGE_/favorites');
-	$_zp_conf_vars['special_pages'][] = array('definition' => '%FAVORITES%', 'rewrite' => '_FAVORITES_');
-	$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%FAVORITES%/(.+)/([0-9]+)/?$',
-					'rule'		 => '%REWRITE% index.php?p=favorites&instance=$1&page=$2 [L,QSA]');
-	$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%FAVORITES%/([0-9]+)/?$',
-					'rule'		 => '%REWRITE% index.php?p=favorites&page=$1 [L,QSA]');
-	$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%FAVORITES%/(.+)/?$',
-					'rule'		 => '%REWRITE% index.php?p=favorites&instance=$1 [L,QSA]');
-	$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%FAVORITES%/*$',
-					'rule'		 => '%REWRITE% index.php?p=favorites [L,QSA]');
-
-	if (OFFSET_PATH) {
-		zp_register_filter('edit_album_custom_data', 'favorites::showWatchers');
-		zp_register_filter('edit_image_custom_data', 'favorites::showWatchers');
-	} else {
-		zp_register_filter('load_theme_script', 'favorites::loadScript');
-		zp_register_filter('checkPageValidity', 'favorites::pageCount');
-		zp_register_filter('admin_toolbox_global', 'favorites::toolbox', 21);
-		if (zp_loggedin()) {
-			if (isset($_POST['addToFavorites'])) {
-				$___Favorites = new favorites($_zp_current_admin_obj->getUser());
-				if (isset($_POST['instance']) && $_POST['instance']) {
-					$___Favorites->instance = trim(sanitize($_POST['instance']));
-					unset($_POST['instance']);
-				}
-				$id = sanitize($_POST['id']);
-				switch ($_POST['type']) {
-					case 'images':
-						$img = newImage(NULL, array('folder' => dirname($id), 'filename' => basename($id)));
-						if ($_POST['addToFavorites']) {
-							if ($img->loaded) {
-								$___Favorites->addImage($img);
-							}
-						} else {
-							$___Favorites->removeImage($img);
-						}
-						break;
-					case 'albums':
-						$alb = newAlbum($id);
-						if ($_POST['addToFavorites']) {
-							if ($alb->loaded) {
-								$___Favorites->addAlbum($alb);
-							}
-						} else {
-							$___Favorites->removeAlbum($alb);
-						}
-						break;
-				}
-				unset($___Favorites);
-				if (isset($_instance)) {
-					unset($_instance);
-				}
+	zp_register_filter('load_theme_script', 'favorites::loadScript');
+	zp_register_filter('checkPageValidity', 'favorites::pageCount');
+	zp_register_filter('admin_toolbox_global', 'favorites::toolbox', 21);
+	if (zp_loggedin()) {
+		if (isset($_POST['addToFavorites'])) {
+			$___Favorites = new favorites($_zp_current_admin_obj->getUser());
+			if (isset($_POST['instance']) && $_POST['instance']) {
+				$___Favorites->instance = trim(sanitize($_POST['instance']));
+				unset($_POST['instance']);
 			}
-			$_myFavorites = new favorites($_zp_current_admin_obj->getUser());
-
-			function printAddToFavorites($obj, $add = NULL, $remove = NULL) {
-				global $_myFavorites, $_zp_current_admin_obj, $_zp_gallery_page, $_myFavorites_button_count;
-				if (!zp_loggedin() || $_myFavorites->getOwner() != $_zp_current_admin_obj->getUser() || !is_object($obj) || !$obj->exists) {
-					return;
-				}
-
-				$v = 1;
-				if (is_null($add)) {
-					$add = get_language_string(getOption('favorites_add_button'));
-				}
-				if (is_null($remove)) {
-					$remove = get_language_string(getOption('favorites_remove_button'));
-				} else {
-					$add = $remove;
-				}
-				$table = $obj->table;
-				$target = array('type' => $table);
-				if ($_zp_gallery_page == 'favorites.php') {
-					//	 only need one remove button since we know the instance
-					$multi = false;
-					$list = array($_myFavorites->instance);
-				} else {
-					$multi = getOption('favorites_multi');
-					$list = $_myFavorites->list;
-					if (extensionEnabled('tag_suggest') && !$_myFavorites_button_count) {
-						$_myFavorites_button_count++;
-						$favList = array_slice($list, 1);
-						?>
-						<script type="text/javascript">
-							// <!-- <![CDATA[
-							var _favList = ['<?php echo implode("','", $favList); ?>'];
-							$(function() {
-								$('.favorite_instance').tagSuggest({tags: _favList})
-							});
-							// ]]> -->
-						</script>
-						<?php
+			$id = sanitize($_POST['id']);
+			switch ($_POST['type']) {
+				case 'images':
+					$img = newImage(NULL, array('folder' => dirname($id), 'filename' => basename($id)));
+					if ($_POST['addToFavorites']) {
+						if ($img->loaded) {
+							$___Favorites->addImage($img);
+						}
+					} else {
+						$___Favorites->removeImage($img);
 					}
-				}
-				$seen = array_flip($list);
-				switch ($table) {
-					case 'images':
-						$id = $obj->imagefolder . '/' . $obj->filename;
-						foreach ($list as $instance) {
-							$_myFavorites->instance = $instance;
-							$images = $_myFavorites->getImages(0);
-							$seen[$instance] = false;
-							foreach ($images as $image) {
-								if ($image['folder'] == $obj->imagefolder && $image['filename'] == $obj->filename) {
-									$seen[$instance] = true;
-									favorites::ad_removeButton($obj, $id, 0, $remove, $instance, $multi);
-									break;
-								}
-							}
+					break;
+				case 'albums':
+					$alb = newAlbum($id);
+					if ($_POST['addToFavorites']) {
+						if ($alb->loaded) {
+							$___Favorites->addAlbum($alb);
 						}
-						if (in_array(false, $seen))
-							favorites::ad_removeButton($obj, $id, 1, $add, NULL, $multi);
-						break;
-					case 'albums':
-						$id = $obj->name;
-						foreach ($list as $instance) {
-							$_myFavorites->instance = $instance;
-							$albums = $_myFavorites->getAlbums(0);
-							$seen[$instance] = false;
-							foreach ($albums as $album) {
-								if ($album == $id) {
-									$seen[$instance] = true;
-									favorites::ad_removeButton($obj, $id, 0, $remove, $instance, $multi);
-									break;
-								}
-							}
-						}
-						if (in_array(false, $seen))
-							favorites::ad_removeButton($obj, $id, 1, $add, NULL, $multi);
-						break;
-					default:
-//We do not handle these.
-						return;
-				}
-			}
-
-			function getFavoritesURL() {
-				global $_myFavorites;
-				return $_myFavorites->getLink();
-			}
-
-			/**
-			 * Prints links to the favorites "albums"
-			 *
-			 * @global favorites $_myFavorites
-			 * @param type $text
-			 */
-			function printFavoritesURL($text = NULL, $before = NULL, $between = NULL, $after = NULL) {
-				global $_myFavorites;
-				if (zp_loggedin(ALBUM_RIGHTS)) {
-					if (is_null($text)) {
-						$text = get_language_string(getOption('favorites_linktext'));
+					} else {
+						$___Favorites->removeAlbum($alb);
 					}
-					$list = $_myFavorites->getList();
-					$betwixt = NULL;
-					echo $before;
-					foreach ($_myFavorites->getList()as $instance) {
-						if ($instance) {
-							$link = $_myFavorites->getLink(NULL, $instance);
-							$display = $text . '[' . $instance . ']';
-						} else {
-							$link = $_myFavorites->getLink();
-							$display = $text;
-						}
-						echo $betwixt;
-						$betwixt = $between;
-						?>
-						<a href="<?php echo $link; ?>" class="favorite_link"><?php echo html_encode($display); ?> </a>
-						<?php
-					}
-					echo $after;
-				}
+					break;
 			}
-
+			unset($___Favorites);
+			if (isset($_instance)) {
+				unset($_instance);
+			}
 		}
+		$_myFavorites = new favorites($_zp_current_admin_obj->getUser());
+
+		function printAddToFavorites($obj, $add = NULL, $remove = NULL) {
+			global $_myFavorites, $_zp_current_admin_obj, $_zp_gallery_page, $_myFavorites_button_count;
+			if (!zp_loggedin() || $_myFavorites->getOwner() != $_zp_current_admin_obj->getUser() || !is_object($obj) || !$obj->exists) {
+				return;
+			}
+
+			$v = 1;
+			if (is_null($add)) {
+				$add = get_language_string(getOption('favorites_add_button'));
+			}
+			if (is_null($remove)) {
+				$remove = get_language_string(getOption('favorites_remove_button'));
+			} else {
+				$add = $remove;
+			}
+			$table = $obj->table;
+			$target = array('type' => $table);
+			if ($_zp_gallery_page == 'favorites.php') {
+				//	 only need one remove button since we know the instance
+				$multi = false;
+				$list = array($_myFavorites->instance);
+			} else {
+				if ($multi = getOption('favorites_multi')) {
+					$list = $_myFavorites->list;
+				} else {
+					$list = array('');
+				}
+				if (extensionEnabled('tag_suggest') && !$_myFavorites_button_count) {
+					$_myFavorites_button_count++;
+					$favList = array_slice($list, 1);
+					?>
+					<script type="text/javascript">
+						// <!-- <![CDATA[
+						var _favList = ['<?php echo implode("','", $favList); ?>'];
+						$(function() {
+							$('.favorite_instance').tagSuggest({tags: _favList})
+						});
+						// ]]> -->
+					</script>
+					<?php
+				}
+			}
+			$seen = array_flip($list);
+			switch ($table) {
+				case 'images':
+					$id = $obj->imagefolder . '/' . $obj->filename;
+					foreach ($list as $instance) {
+						$_myFavorites->instance = $instance;
+						$images = $_myFavorites->getImages(0);
+						$seen[$instance] = false;
+						foreach ($images as $image) {
+							if ($image['folder'] == $obj->imagefolder && $image['filename'] == $obj->filename) {
+								$seen[$instance] = true;
+								favorites::ad_removeButton($obj, $id, 0, $remove, $instance, $multi);
+								break;
+							}
+						}
+					}
+					if ($multi || in_array(false, $seen))
+						favorites::ad_removeButton($obj, $id, 1, $add, NULL, $multi);
+					break;
+				case 'albums':
+					$id = $obj->name;
+					foreach ($list as $instance) {
+						$_myFavorites->instance = $instance;
+						$albums = $_myFavorites->getAlbums(0);
+						$seen[$instance] = false;
+						foreach ($albums as $album) {
+							if ($album == $id) {
+								$seen[$instance] = true;
+								favorites::ad_removeButton($obj, $id, 0, $remove, $instance, $multi);
+								break;
+							}
+						}
+					}
+					if ($multi || in_array(false, $seen))
+						favorites::ad_removeButton($obj, $id, 1, $add, NULL, $multi);
+					break;
+				default:
+//We do not handle these.
+					return;
+			}
+		}
+
+		function getFavoritesURL() {
+			global $_myFavorites;
+			return $_myFavorites->getLink();
+		}
+
+		/**
+		 * Prints links to the favorites "albums"
+		 *
+		 * @global favorites $_myFavorites
+		 * @param type $text
+		 */
+		function printFavoritesURL($text = NULL, $before = NULL, $between = NULL, $after = NULL) {
+			global $_myFavorites;
+			if (zp_loggedin(ALBUM_RIGHTS)) {
+				if (is_null($text)) {
+					$text = get_language_string(getOption('favorites_linktext'));
+				}
+				$list = $_myFavorites->getList();
+				$betwixt = NULL;
+				echo $before;
+				foreach ($_myFavorites->getList()as $instance) {
+					$link = $_myFavorites->getLink(NULL, $instance);
+					$display = $text;
+					if ($instance) {
+						$display .= '[' . $instance . ']';
+					}
+					echo $betwixt;
+					$betwixt = $between;
+					?>
+					<a href="<?php echo $link; ?>" class="favorite_link"><?php echo html_encode($display); ?> </a>
+					<?php
+				}
+				echo $after;
+			}
+		}
+
 	}
 }
 ?>

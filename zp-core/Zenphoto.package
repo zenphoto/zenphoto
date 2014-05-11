@@ -1355,7 +1355,9 @@ zp-core/zp-extensions/rewriteRules
 zp-core/zp-extensions/rewriteRules.php
 zp-core/zp-extensions/rewriteRules/admin_tab.php
 zp-core/zp-extensions/rewriteRules/functions.php
+zp-core/zp-extensions/rewriteTokens
 zp-core/zp-extensions/rewriteTokens.php
+zp-core/zp-extensions/rewriteTokens/admin_tab.php
 zp-core/zp-extensions/rss
 zp-core/zp-extensions/rss.php
 zp-core/zp-extensions/rss/deprecated-functions.php
@@ -1712,4 +1714,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1714
+1716

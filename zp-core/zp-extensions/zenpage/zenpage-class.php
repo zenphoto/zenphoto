@@ -88,7 +88,7 @@ class Zenpage {
 	 * @param bool $toplevel TRUE for only the toplevel pages
 	 * @param int $number number of pages to get (NULL by default for all)
 	 * @param string $sorttype NULL for the standard order as sorted on the backend, "title", "date", "id", "popular", "mostrated", "toprated", "random"
-	 * @param string $sortdirection "asc" or "desc" for ascending or descending order
+	 * @param string $sortdirection false for ascenting, true for descending
 	 * @return array
 	 */
 	function getPages($published = NULL, $toplevel = false, $number = NULL, $sorttype = NULL, $sortdirection = NULL) {
@@ -113,9 +113,9 @@ class Zenpage {
 			$sortdirection = $this->sortdirection;
 		}
 		if ($sortdirection) {
-			$sortdir = ' ASC';
-		} else {
 			$sortdir = ' DESC';
+		} else {
+			$sortdir = ' ASC';
 		}
 		if (is_null($sorttype)) {
 			$sorttype = $this->sortorder;
@@ -194,7 +194,7 @@ class Zenpage {
 	 * @param boolean $ignorepagination Since also used for the news loop this function automatically paginates the results if the "page" GET variable is set. To avoid this behaviour if using it directly to get articles set this TRUE (default FALSE)
 	 * @param string $sortorder "date" (default), "title", "id, "popular", "mostrated", "toprated", "random"
 	 * 													This parameter is not used for date archives
-	 * @param bool $sortdirection This parameter is not used for date archives
+	 * @param bool $sortdirection TRUE for ascending, FALSE for descending. Note: This parameter is not used for date archives
 	 * @param bool $sticky set to true to place "sticky" articles at the front of the list.
 	 * @return array
 	 */
@@ -253,10 +253,10 @@ class Zenpage {
 				$sortdirection = $sortObj->sortdirection;
 
 			if ($sortdirection) {
-				$dir = " ASC";
-				$sticky = false; //makes no sense
-			} else {
 				$dir = " DESC";
+			} else {
+				$sticky = false; //makes no sense
+				$dir = " ASC";
 			}
 			// sortorder and sortdirection (only used for all news articles and categories naturally)
 			if (is_null($sortorder))
@@ -345,9 +345,9 @@ class Zenpage {
 				$order .= $sort1;
 			}
 			if ($category) {
-				$sql = "SELECT DISTINCT news.date, news.title, news.titlelink FROM " . prefix('news') . " as news, " . prefix('news2cat') . " as cat WHERE" . $cat . $show . $order;
+				$sql = "SELECT DISTINCT news.date, news.title, news.titlelink, news.sticky FROM " . prefix('news') . " as news, " . prefix('news2cat') . " as cat WHERE" . $cat . $show . $order;
 			} else {
-				$sql = "SELECT date, title, titlelink FROM " . prefix('news') . $show . $datesearch . " " . $order;
+				$sql = "SELECT date, title, titlelink, sticky FROM " . prefix('news') . $show . $datesearch . " " . $order;
 			}
 
 			$resource = query($sql);
@@ -360,10 +360,18 @@ class Zenpage {
 					}
 				}
 				db_free_result($resource);
-				if ($sort1 == 'title') { // multi-lingual field!
-					$result = sortByMultilingual($result, 'title', $sortdierction);
+				if ($sortorder == 'title') { // multi-lingual field!
+					$result = sortByMultilingual($result, 'title', $sortdirection);
 					if ($sticky) {
-						$result = sortMultiArray($result, array('sticky'), true);
+						$stickyItems = array();
+						foreach ($result as $key => $element) {
+							if ($element['sticky']) {
+								array_unshift($stickyItems, $element);
+								unset($result[$key]);
+							}
+						}
+						$stickyItems = sortMultiArray($stickyItems, 'sticky', true);
+						$result = array_merge($stickyItems, $result);
 					}
 				}
 			}
@@ -584,7 +592,7 @@ class Zenpage {
 		if ($sticky) {
 			$stickyorder = 'sticky DESC,';
 		}
-		switch ($sortdirection) {
+		switch (strtolower($sortdirection)) {
 			case 'desc':
 			default:
 				$sortdir = 'DESC';
@@ -785,7 +793,7 @@ class Zenpage {
 	 */
 	function getNewsTitlePath($title) {
 		Zenpage_internal_deprecations::getNewsTitlePath();
-		return rewrite_path('/' . _NEWS_ . "/$title", "/index.php?p=news&title=$title"); //deprecated
+		return rewrite_path(_NEWS_ . "/$title", "/index.php?p=news&title=$title"); //deprecated
 	}
 
 	/*	 * ********************************* */
@@ -827,20 +835,14 @@ class Zenpage {
 	 * Gets all categories
 	 * @param bool $visible TRUE for published and unprotected
 	 * @param string $sorttype NULL for the standard order as sorted on the backend, "title", "id", "popular", "random"
-	 * @param string $sortdirection "asc" or "desc" for ascending or descending order
+	 * @param bool $sortdirection TRUE for ascending or FALSE for descending order
 	 * @return array
 	 */
 	function getAllCategories($visible = true, $sorttype = NULL, $sortdirection = NULL) {
 		$structure = $this->getCategoryStructure();
-		switch ($sortdirection) {
-			case 'asc':
-			default:
-				$sortdir = FALSE;
-				break;
-			case 'desc':
-				$sortdir = TRUE;
-				break;
-		}
+		if (is_null($sortdirection))
+			$sortdirection = $this->sortdirection;
+
 		switch ($sorttype) {
 			case "id":
 				$sortorder = "id";
@@ -873,7 +875,7 @@ class Zenpage {
 			if ($sorttype == 'random') {
 				shuffle($structure);
 			} else {
-				$structure = sortMultiArray($structure, $sortorder, $sortdir, true, false, false);
+				$structure = sortMultiArray($structure, $sortorder, $sortdirection, true, false, false);
 			}
 		}
 		return $structure;

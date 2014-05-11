@@ -94,7 +94,6 @@ function jqm_printFooterNav() {
 		$favoriteslink = '';
 		if (zp_loggedin()) {
 			$adminlink = '<li><a rel="external" href="' . PROTOCOL . '://' . html_encode($_SERVER['HTTP_HOST'] . WEBPATH . '/' . ZENFOLDER) . '/admin.php">' . gettext('Admin') . '</a></li>';
-			;
 		}
 		if (function_exists('printFavoritesURL')) {
 			ob_start();

@@ -133,6 +133,15 @@ function getAuthor($fullname = false) {
 function getLatestNews($number = 2, $category = '', $sticky = true, $sortdirection = 'desc') {
 	global $_zp_zenpage, $_zp_current_zenpage_news;
 	//check if things are deprecated
+	switch (strtolower($sortdirection)) {
+		case 'desc':
+		default:
+			$sortdir = false;
+			break;
+		case 'asc':
+			$sortdir = true;
+			break;
+	}
 	$args = func_get_args();
 	$deprecated = array(
 					"none",
@@ -151,10 +160,10 @@ function getLatestNews($number = 2, $category = '', $sticky = true, $sortdirecti
 		list($number, $category, $sticky, $sortdirection ) = array_merge($args, array(NULL, NULL, NULL, NULL, NULL));
 	}
 	if (empty($category)) {
-		$latest = $_zp_zenpage->getArticles($number, NULL, true, NULL, $sortdirection, $sticky, NULL);
+		$latest = $_zp_zenpage->getArticles($number, NULL, true, NULL, $sortdir, $sticky, NULL);
 	} else {
 		$catobj = new ZenpageCategory($category);
-		$latest = $catobj->getArticles($number, NULL, true, NULL, $sortdirection, $sticky);
+		$latest = $catobj->getArticles($number, NULL, true, NULL, $sortdir, $sticky);
 	}
 	return $latest;
 }
@@ -222,9 +231,6 @@ function printLatestNews($number = 5, $category = '', $showdate = true, $showcon
 			$shorten = true;
 		}
 		$date = zpFormattedDate(DATE_FORMAT, strtotime($item['date']));
-
-
-
 		echo "<li>";
 		echo "<h3><a href=\"" . $link . "\" title=\"" . getBare(html_encode($title)) . "\">" . $title . "</a></h3>\n";
 		if ($showdate) {
@@ -268,9 +274,6 @@ function getNumNews($total = false) {
  * Returns the next news item on a page.
  * sets $_zp_current_zenpage_news to the next news item
  * Returns true if there is an new item to be shown
- *
- * NOTE: If you set the sortorder and sortdirection parameters you also have to set the same ones
- * on the next/prevNewsLink/URL functions for the single news article pagination!
  *
  * @return bool
  */
@@ -941,15 +944,7 @@ function getNewsPathNav($page) {
 function getPrevNewsPageURL() {
 	global $_zp_page;
 	if ($_zp_page > 1) {
-		if ($_zp_page == 2) {
-			if (is_NewsCategory()) {
-				return getNewsPathNav(1);
-			} else {
-				return getNewsIndexURL();
-			}
-		} else {
-			return getNewsPathNav($_zp_page - 1);
-		}
+		return getNewsPathNav($_zp_page - 1);
 	} else {
 		return false;
 	}
@@ -1118,15 +1113,17 @@ function getTotalNewsPages() {
  */
 function getNextPrevNews($option = '', $sortorder = 'date', $sortdirection = 'desc') {
 	global $_zp_zenpage, $_zp_current_zenpage_news;
+
+	$sortdir = strtolower($sortdirection) == 'desc';
 	if (!empty($option)) {
 		switch ($option) {
 			case "prev":
-				$article = $_zp_current_zenpage_news->getPrevArticle($sortorder, $sortdirection);
+				$article = $_zp_current_zenpage_news->getPrevArticle($sortorder, $sortdir);
 				if (!$article)
 					return false;
 				return array("link" => $article->getLink(), "title" => $article->getTitle());
 			case "next":
-				$article = $_zp_current_zenpage_news->getNextArticle($sortorder, $sortdirection);
+				$article = $_zp_current_zenpage_news->getNextArticle($sortorder, $sortdir);
 				if (!$article)
 					return false;
 				return array("link" => $article->getLink(), "title" => $article->getTitle());
@@ -1213,11 +1210,12 @@ function printPrevNewsLink($prev = "« ", $sortorder = 'date', $sortdirection = 
  * 										 "mostrated" for news articles and pages
  * 										 "toprated" for news articles and pages
  * 										 "random" for pages and news articles
- * @param string $sortdir "asc" for ascending or "desc" for descending (default)
+ * @param string $sortdirection "asc" for ascending or "desc" for descending (default)
  * @return array
  */
-function getZenpageStatistic($number = 10, $option = "all", $mode = "popular", $sortdir = 'desc') {
+function getZenpageStatistic($number = 10, $option = "all", $mode = "popular", $sortdirection = 'desc') {
 	global $_zp_zenpage, $_zp_current_zenpage_news, $_zp_current_zenpage_pages;
+	$sortdir = strtolower($sortdirection) == 'desc';
 	$statsarticles = array();
 	$statscats = array();
 	$statspages = array();

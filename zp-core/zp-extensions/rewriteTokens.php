@@ -14,8 +14,10 @@ $plugin_disable = (MOD_REWRITE) ? '' : gettext('Rewrite Tokens are not useful un
 
 $option_interface = 'rewriteTokens';
 
-if (OFFSET_PATH == 2)
+if (OFFSET_PATH == 2) {
 	setOptionDefault('zp_plugin_rewriteTokens', $plugin_is_filter);
+}
+zp_register_filter('admin_tabs', 'rewriteTokens::tabs');
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/functions-config.php');
 
@@ -75,7 +77,7 @@ class rewriteTokens {
 		$_configMutex->unlock();
 	}
 
-	private static function anOption($page, $element, &$_definitions) {
+	protected static function anOption($page, $element, &$_definitions) {
 		if ($define = $element['define']) {
 			$_definitions[$element['define']] = strtr($element['rewrite'], $_definitions);
 			$desc = sprintf(gettext('The <code>%1$s</code> rule defines <strong>%2$s</strong> as <em>%3$s</em>.'), $page, $define, strtr($element['rewrite'], $_definitions));
@@ -179,6 +181,21 @@ class rewriteTokens {
 		$zp_cfg = $this->zp_cfg_a . $newtext . $this->zp_cfg_b;
 		storeConfig($zp_cfg);
 		return $notify;
+	}
+
+	static function tabs($tabs) {
+		if (zp_loggedin(ADMIN_RIGHTS)) {
+			if (!isset($tabs['development'])) {
+				$tabs['development'] = array('text'		 => gettext("development"),
+								'subtabs'	 => NULL);
+			}
+			$tabs['development']['subtabs'][gettext("tokens")] = PLUGIN_FOLDER . '/rewriteTokens/admin_tab.php?page=tokens&tab=' . gettext('tokens');
+			$named = array_flip($tabs['development']['subtabs']);
+			natcasesort($named);
+			$tabs['development']['subtabs'] = $named = array_flip($named);
+			$tabs['development']['link'] = array_shift($named);
+		}
+		return $tabs;
 	}
 
 }

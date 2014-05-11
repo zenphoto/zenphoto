@@ -276,9 +276,9 @@ function i18nSetLocale($locale) {
 }
 
 /**
- * Sets the translation domain and
- * @param $domaine
- * @param $type
+ * Sets the translation domain and type for optional theme or plugin based translations
+ * @param $domaine If $type "plugin" or "theme" the file/folder name of the theme or plugin
+ * @param $type NULL (Zenphoto main translation), "theme" or "plugin"
  */
 function setupDomain($domain = NULL, $type = NULL) {
 	global $_zp_active_languages, $_zp_all_languages;

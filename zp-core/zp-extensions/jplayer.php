@@ -11,14 +11,17 @@
  * The counterpart formats are not valid formats for Zenphoto itself as that would confuse the management.
  * Therefore these formats can be uploaded via ftp only.
  * The files needed to have the same file name (beware the character case!). In single player usage the player
- * will check via file system if a counterpart file exists if counterpart support is enabled.
+ * will check via file system if a counterpart file exists.
  * <b>NOTE:</b> Counterpart format does not work correctly on playlists yet. Detailed reason: Priority solution
  * setting must be "flash" as otherwise flv and fla will not work on some browsers like Safari.
  * This in return disables counterpart support for ogg and webm files for some reason on Firefox).
- * Since the flash fallback covers all essential formats ths is not much of an issue for visitors though.
+ * Since the flash fallback covers all essential formats this is not much of an issue for visitors though.
  *
  * Otherwise it will not work. It is all or none.
  * See {@link http://jplayer.org/latest/developer-guide/#reference-html5-media the developer guide} for info on that.
+ *
+ * If you have problems with any format being recognized, you might need to tell your server about the mime types first:
+ * See examples on {@link http://jplayer.org/latest/developer-guide/#jPlayer-server-response the jplayer site}.
  *
  * Note on POPCORN Support (http://popcornjs.org)
  * jPlayer has support for this interactive libary and its plugin is included but currently not loaded or implemented. You need to customize the plugin or your theme to use it.

@@ -95,6 +95,7 @@ echo "\n" . '<div id="content">';
 					while ($row = db_fetch_assoc($result)) {
 						preg_match_all('~\<img.*src\s*=\s*"((\\.|[^"])*)~', $row[$field], $matches);
 						foreach ($matches[1] as $key => $match) {
+							$updated = false;
 							if (preg_match('~/' . CACHEFOLDER . '/~', $match)) {
 								$found++;
 								list($image, $args) = getImageProcessorURIFromCacheName($match, $watermarks);
@@ -108,8 +109,8 @@ echo "\n" . '<div id="content">';
 										?>
 										<a href="<?php echo html_encode($uri); ?>&amp;debug" title="<?php echo $title; ?>">
 											<?php
-											if (isset($set['t'])) {
-												echo '<img src="' . html_encode(pathurlencode($uri)) . '" height="8" width="8" alt="x" />' . "\n";
+											if (isset($args[10])) {
+												echo '<img src="' . html_encode(pathurlencode($uri)) . '" height="15" width="15" alt="x" />' . "\n";
 											} else {
 												echo '<img src="' . html_encode(pathurlencode($uri)) . '" height="20" width="20" alt="X" />' . "\n";
 											}
@@ -118,17 +119,17 @@ echo "\n" . '<div id="content">';
 										<?php
 									}
 								}
-								//Check for cache folder having moved (Site relocated?)
-								preg_match('~(.*/)' . CACHEFOLDER . '/~', $match, $foldermatches);
-								if ($foldermatches[1] != '{*WEBPATH*}/') {
-									$fixedFolder++;
-									$target = $foldermatches[1] . CACHEFOLDER . '/' . stripSuffix($image);
-									$update = '{*WEBPATH*}/' . CACHEFOLDER . '/' . stripSuffix($image);
-									$row[$field] = updateCacheFolder($row[$field], $target, $update);
-									$sql = 'UPDATE ' . prefix($table) . ' SET `' . $field . '`=' . db_quote($row[$field]) . ' WHERE `id`=' . $row['id'];
-									query($sql);
+								$cache_file = '{*WEBPATH*}/' . CACHEFOLDER . getImageCacheFilename(dirname($image), basename($image), $args);
+								if ($match != $cache_file) {
+									//need to update the record.
+									$row[$field] = updateCacheName($row[$field], $match, $cache_file);
+									$updated = true;
 								}
 							}
+						}
+						if ($updated) {
+							$sql = 'UPDATE ' . prefix($table) . ' SET `' . $field . '`=' . db_quote($row[$field]) . ' WHERE `id`=' . $row['id'];
+							query($sql);
 						}
 					}
 				}
@@ -204,31 +205,4 @@ echo "\n" . '<div id="content">';
 
 	echo "\n</body>";
 	echo "\n</head>";
-
-	/**
-	 * Updates the path to the cache folder
-	 * @param mixed $text
-	 * @param string $target
-	 * @param string $update
-	 * @return mixed
-	 */
-	function updateCacheFolder($text, $target, $update) {
-		if (is_string($text) && preg_match('/^a:[0-9]+:{/', $text)) { //	serialized array
-			$text = getSerializedArray($text);
-			$serial = true;
-		} else {
-			$serial = false;
-		}
-		if (is_array($text)) {
-			foreach ($text as $key => $textelement) {
-				$text[$key] = updateCacheFolder($textelement, $target, $update);
-			}
-			if ($serial) {
-				$text = serialize($text);
-			}
-		} else {
-			$text = str_replace($target, $update, $text);
-		}
-		return $text;
-	}
 	?>
