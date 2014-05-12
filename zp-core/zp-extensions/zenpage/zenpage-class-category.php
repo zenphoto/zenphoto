@@ -12,6 +12,9 @@ class ZenpageCategory extends ZenpageRoot {
 	var $manage_rights = MANAGE_ALL_NEWS_RIGHTS;
 	var $manage_some_rights = ZENPAGE_NEWS_RIGHTS;
 	var $view_rights = ALL_NEWS_RIGHTS;
+	protected $sortorder = 'date';
+	protected $sortdirection = true;
+	protected $sortSticky = true;
 
 	function __construct($catlink, $create = NULL) {
 		if (is_array($catlink)) {
@@ -107,6 +110,30 @@ class ZenpageCategory extends ZenpageRoot {
 	 */
 	function setSortOrder($sortorder) {
 		$this->set('sort_order', $sortorder);
+	}
+
+	function getSortDirection() {
+		return $this->sortdirection;
+	}
+
+	function setSortDirection($value) {
+		$this->sortdirection = (int) ($value && true);
+	}
+
+	function getSortType() {
+		return $this->sortorder;
+	}
+
+	function setSortType($value) {
+		$this->sortorder = $value;
+	}
+
+	function getSortSticky() {
+		return $this->sortSticky;
+	}
+
+	function setSortSticky($value) {
+		$this->sortSticky = (bool) $value;
 	}
 
 	function getUser() {

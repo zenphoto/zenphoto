@@ -1343,7 +1343,7 @@ function sortMultiArray($array, $index, $descending = false, $natsort = true, $c
 			$temp[$key] = '';
 			foreach ($indicies as $index) {
 				if (is_array($row) && array_key_exists($index, $row)) {
-					$temp[$key] .= $row[$index] . $separator;
+					$temp[$key] .= get_language_string($row[$index]) . $separator;
 					if (in_array($index, $remove_criteria)) {
 						unset($array[$key][$index]);
 					}

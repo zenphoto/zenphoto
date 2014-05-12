@@ -26,9 +26,13 @@ if (!defined('MENU_TRUNCATE_INDICATOR'))
 class Zenpage {
 
 	var $categoryStructure = array();
-	var $sortorder;
-	var $sortdirection;
-	var $sortSticky = true;
+	// article defaults (mirrors category vars)
+	protected $sortorder = 'date';
+	protected $sortdirection = true;
+	protected $sortSticky = true;
+	// page defaults
+	protected $page_sortorder;
+	protected $page_sortdirection;
 
 	/**
 	 * Class instantiator
@@ -93,6 +97,12 @@ class Zenpage {
 	 */
 	function getPages($published = NULL, $toplevel = false, $number = NULL, $sorttype = NULL, $sortdirection = NULL) {
 		global $_zp_loggedin;
+		if (is_null($sortdirection)) {
+			$sortdirection = $this->getSortDirection('pages');
+		}
+		if (is_null($sorttype)) {
+			$sorttype = $this->getSortType('pages');
+		}
 		if (is_null($published)) {
 			$published = !zp_loggedin();
 			$all = zp_loggedin(MANAGE_ALL_PAGES_RIGHTS);
@@ -109,16 +119,10 @@ class Zenpage {
 				$gettop = " WHERE parentid IS NULL";
 			$show = $gettop;
 		}
-		if (is_null($sortdirection)) {
-			$sortdirection = $this->sortdirection;
-		}
 		if ($sortdirection) {
 			$sortdir = ' DESC';
 		} else {
 			$sortdir = ' ASC';
-		}
-		if (is_null($sorttype)) {
-			$sorttype = $this->sortorder;
 		}
 		switch ($sorttype) {
 			default:
@@ -200,11 +204,6 @@ class Zenpage {
 	 */
 	function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sortorder = NULL, $sortdirection = NULL, $sticky = NULL, $category = NULL) {
 		global $_zp_current_category, $_zp_post_date, $_zp_newsCache;
-		if ($category) {
-			$sortObj = $category;
-		} else {
-			$sortObj = $this;
-		}
 		if (empty($published)) {
 			if (zp_loggedin() || $category && $category->isMyItem(ZENPAGE_NEWS_RIGHTS)) {
 				$published = "all";
@@ -212,10 +211,23 @@ class Zenpage {
 				$published = "published";
 			}
 		}
-
 		$newsCacheIndex = "$sortorder-$sortdirection-$published-" . (bool) $sticky;
-		if ($category)
+		if ($category) {
 			$newsCacheIndex .= '-' . $category->getTitlelink();
+			$sortObj = $category;
+		} else {
+			$sortObj = $this;
+		}
+		if (is_null($sticky)) {
+			$sticky = $sortObj->getSortSticky();
+		}
+
+		if (is_null($sortdirection)) {
+			$sortdirection = $sortObj->getSortDirection('news');
+		}
+		if (is_null($sortorder)) {
+			$sortorder = $sortObj->getSortType('news');
+		}
 
 		if (isset($_zp_newsCache[$newsCacheIndex])) {
 			$result = $_zp_newsCache[$newsCacheIndex];
@@ -243,24 +255,15 @@ class Zenpage {
 				$showConjunction = ' WHERE ';
 			}
 
-			if (is_null($sticky)) {
-				$sticky = $sortObj->sortSticky;
-			}
 			if ($sticky) {
 				$sticky = 'sticky DESC,';
 			}
-			if (is_null($sortdirection))
-				$sortdirection = $sortObj->sortdirection;
-
 			if ($sortdirection) {
 				$dir = " DESC";
 			} else {
-				$sticky = false; //makes no sense
 				$dir = " ASC";
 			}
 			// sortorder and sortdirection (only used for all news articles and categories naturally)
-			if (is_null($sortorder))
-				$sortorder = $sortObj->sortorder;
 			switch ($sortorder) {
 				case "date":
 				default:
@@ -304,12 +307,12 @@ class Zenpage {
 					$getUnpublished = true;
 					break;
 				case 'sticky':
-					$show = ' `sticky` <> 0';
+					$show = "$showConjunction `sticky` <> 0";
 					$getUnpublished = true;
 					break;
 				case "all":
 					$getUnpublished = true;
-					$show = "";
+					$show = false;
 					break;
 			}
 			$order = " ORDER BY $sticky";
@@ -349,7 +352,6 @@ class Zenpage {
 			} else {
 				$sql = "SELECT date, title, titlelink, sticky FROM " . prefix('news') . $show . $datesearch . " " . $order;
 			}
-
 			$resource = query($sql);
 			$result = array();
 			if ($resource) {
@@ -890,16 +892,44 @@ class Zenpage {
 		return 'Zenpage';
 	}
 
-	function setSortDirection($value) {
-		$this->sortdirection = (int) ($value && true);
+	function getSortDirection($what = 'news') {
+		if ($what == 'pages') {
+			return $this->page_sortdirection;
+		} else {
+			return $this->sortdirection;
+		}
+	}
+
+	function setSortDirection($value, $what = 'news') {
+		if ($what == 'pages') {
+			$this->page_sortdirection = (int) ($value && true);
+		} else {
+			$this->sortdirection = (int) ($value && true);
+		}
+	}
+
+	function getSortType($what = 'news') {
+		if ($what == 'pages') {
+			return $this->page_sortorder;
+		} else {
+			return $this->sortorder;
+		}
+	}
+
+	function setSortType($value, $what = 'news') {
+		if ($what == 'pages') {
+			$this->page_sortorder = $value;
+		} else {
+			$this->sortorder = $value;
+		}
+	}
+
+	function getSortSticky() {
+		return $this->sortSticky;
 	}
 
 	function setSortSticky($value) {
 		$this->sortSticky = (bool) $value;
-	}
-
-	function setSortType($value) {
-		$this->sortorder = $value;
 	}
 
 }
@@ -913,16 +943,9 @@ class Zenpage {
  */
 class ZenpageRoot extends ThemeObject {
 
-	var $sortorder;
-	var $sortdirection;
-	var $sortSticky = true;
-
-	/**
-	 * Class instantiator
-	 */
-	function ZenpageRoot() {
-		// no action required
-	}
+	protected $sortorder;
+	protected $sortdirection;
+	protected $sortSticky = true;
 
 	/**
 	 * Returns the perma link status (only used on admin)
@@ -956,18 +979,6 @@ class ZenpageRoot extends ThemeObject {
 	 */
 	function setTitlelink($v) {
 		$this->set("titlelink", $v);
-	}
-
-	function setSortDirection($value) {
-		$this->sortdirection = (int) ($value && true);
-	}
-
-	function setSortSticky($value) {
-		$this->sortSticky = (bool) $value;
-	}
-
-	function setSortType($value) {
-		$this->sortorder = $value;
 	}
 
 }

@@ -258,10 +258,18 @@ datepickerJS();
 							<tr class="newstr">
 								<td>
 									<?php
-									$sticky = '';
-									if ($article->getSticky()) {
-										$sticky = ' <small>[' . gettext('sticky') . ']</small>';
+									switch ($article->getSticky()) {
+										case 1:
+											$sticky = ' <small>[' . gettext('sticky') . ']</small>';
+											break;
+										case 9:
+											$sticky = ' <small><strong>[' . gettext('sticky') . ']</strong></small>';
+											break;
+										default:
+											$sticky = '';
+											break;
 									}
+
 									if (checkIfLockedNews($article)) {
 										echo '<a href="admin-edit.php' . getNewsAdminOptionPath(array_merge(array('newsarticle' => NULL, 'titlelink' => urlencode($article->getTitlelink())), getNewsAdminOption(array('category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1, 'subpage' => 1)))) . '">';
 										checkForEmptyTitle($article->getTitle(), "news");
