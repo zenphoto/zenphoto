@@ -155,9 +155,11 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 		}
 		function toggleTitlelink() {
 			if (jQuery('#edittitlelink:checked').val() == 1) {
+				$('#titlelinkrow').show();
 				$('#titlelink').removeAttr("disabled");
 			} else {
 				$('#titlelink').attr("disabled", true);
+				$('#titlelinkrow').hide();
 			}
 		}
 	<?php
@@ -723,7 +725,23 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 												?>
 											</td>
 										</tr>
-										<tr>
+
+										<?php
+										if (!$result->transient) {
+											?>
+											<tr>
+												<td>
+													<input type="button" value="<?php echo gettext("Link:"); ?>" onclick="$('#item_link').select();" title="<?php echo gettext('Click to select link'); ?>" />
+												</td>
+												<td class="middlecolumn">
+													<input  type="text" size="92" name="item_link" id="item_link" value="<?php echo $result->getLink(); ?>" disabled="disabled" />
+												</td>
+											</tr>
+											<?php
+										}
+										?>
+
+										<tr id="titlelinkrow" style="display:none">
 											<td><?php echo gettext("TitleLink:"); ?></td>
 											<td class="middlecolumn">
 												<?php

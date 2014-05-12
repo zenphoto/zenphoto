@@ -589,46 +589,46 @@ if (isset($_GET['album']) && (empty($subtab) || $subtab == 'albuminfo') || isset
 	<script type="text/javascript" src="js/encoder.js"></script>
 	<script type="text/javascript" src="js/tag.js"></script>
 	<script type="text/javascript">
-						//<!-- <![CDATA[
-						var albumdbfields = [<?php echo $albumdbfields; ?>];
-						$(function() {
-						$('.customalbumsort').tagSuggest({
-						tags: albumdbfields
-						});
-						});
-						var imagedbfields = [<?php echo $imagedbfields; ?>];
-						$(function() {
-						$('.customimagesort').tagSuggest({
-						tags: imagedbfields
-						});
-						});
-						// ]]> -->
+		//<!-- <![CDATA[
+		var albumdbfields = [<?php echo $albumdbfields; ?>];
+		$(function() {
+			$('.customalbumsort').tagSuggest({
+				tags: albumdbfields
+			});
+		});
+		var imagedbfields = [<?php echo $imagedbfields; ?>];
+		$(function() {
+			$('.customimagesort').tagSuggest({
+				tags: imagedbfields
+			});
+		});
+		// ]]> -->
 	</script>
 	<?php
 }
 ?>
 <script type="text/javascript">
-					//<!-- <![CDATA[
-					var deleteAlbum1 = "<?php echo gettext("Are you sure you want to delete this entire album?"); ?>";
-					var deleteAlbum2 = "<?php echo gettext("Are you Absolutely Positively sure you want to delete the album? THIS CANNOT BE UNDONE!"); ?>";
-					function newAlbum(folder, albumtab) {
-					var album = prompt('<?php echo addslashes(gettext('New album name?')); ?>', '<?php echo addslashes(gettext('new album')); ?>');
-									if (album) {
-					launchScript('', ['action=newalbum', 'folder=' + folder, 'name=' + encodeURIComponent(album), 'albumtab=' + albumtab, 'XSRFToken=<?php echo getXSRFToken('newalbum'); ?>']);
-					}
-					}
+	//<!-- <![CDATA[
+	var deleteAlbum1 = "<?php echo gettext("Are you sure you want to delete this entire album?"); ?>";
+	var deleteAlbum2 = "<?php echo gettext("Are you Absolutely Positively sure you want to delete the album? THIS CANNOT BE UNDONE!"); ?>";
+	function newAlbum(folder, albumtab) {
+		var album = prompt('<?php echo addslashes(gettext('New album name?')); ?>', '<?php echo addslashes(gettext('new album')); ?>');
+		if (album) {
+			launchScript('', ['action=newalbum', 'folder=' + folder, 'name=' + encodeURIComponent(album), 'albumtab=' + albumtab, 'XSRFToken=<?php echo getXSRFToken('newalbum'); ?>']);
+		}
+	}
 	function confirmAction() {
-	if ($('#checkallaction').val() == 'deleteall') {
-	return confirm('<?php echo js_encode(gettext("Are you sure you want to delete the checked items?")); ?>');
-	} else if ($('#checkallaction').val() == 'deleteallalbum') {
-	if (confirm(deleteAlbum1)) {
-	return confirm(deleteAlbum2);
-	} else {
-	return false;
-	}
-	} else {
-	return true;
-	}
+		if ($('#checkallaction').val() == 'deleteall') {
+			return confirm('<?php echo js_encode(gettext("Are you sure you want to delete the checked items?")); ?>');
+		} else if ($('#checkallaction').val() == 'deleteallalbum') {
+			if (confirm(deleteAlbum1)) {
+				return confirm(deleteAlbum2);
+			} else {
+				return false;
+			}
+		} else {
+			return true;
+		}
 	}
 	// ]]> -->
 </script>
@@ -1078,19 +1078,11 @@ echo "\n</head>";
 															<p><?php echo gettext("<strong>Dimensions:</strong>"); ?><br /><?php echo $image->getWidth(); ?> x  <?php echo $image->getHeight() . ' ' . gettext('px'); ?></p>
 															<p><?php echo gettext("<strong>Size:</strong>"); ?><br /><?php echo byteConvert($image->getImageFootprint()); ?></p>
 														</td>
-														<td align="left" valign="top"><?php echo gettext("Owner:"); ?></td>
+														<td align="left" valign="top">
+															<input type="button" value="<?php echo gettext("Link:"); ?>" onclick="$('#image_link-<?php echo $currentimage; ?>').select();" title="<?php echo gettext('Click to select link'); ?>" />
+														</td>
 														<td style="width:100%;">
-															<?php
-															if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
-																?>
-																<select name="<?php echo $currentimage; ?>-owner">
-																	<?php echo admin_album_list($image->getOwner()); ?>
-																</select>
-																<?php
-															} else {
-																echo $image->getOwner();
-															}
-															?>
+															<input type="text" name="<?php echo $currentimage; ?>-image_link" id="image_link-<?php echo $currentimage; ?>" value="<?php echo $image->getLink(); ?>" disabled="disabled" style="width:100%;" />
 														</td>
 														<td style="padding-left: 1em; text-align: left; border-bottom:none;" rowspan="14" valign="top">
 															<h2 class="h2_bordered_edit"><?php echo gettext("General"); ?></h2>
@@ -1145,35 +1137,35 @@ echo "\n</head>";
 																$expirationdate = $image->getExpireDate();
 																?>
 																<script type="text/javascript">
-																					// <!-- <![CDATA[
-																					$(function() {
-																					$("#publishdate-<?php echo $currentimage; ?>,#expirationdate-<?php echo $currentimage; ?>").datepicker({
-																					dateFormat: 'yy-mm-dd',
-																									showOn: 'button',
-																									buttonImage: '../zp-core/images/calendar.png',
-																									buttonText: '<?php echo gettext("calendar"); ?>',
-																									buttonImageOnly: true
-																					});
-																									$('#publishdate-<?php echo $currentimage; ?>').change(function() {
-																					var today = new Date();
-																									var pub = $('#publishdate-<?php echo $currentimage; ?>').datepicker('getDate');
-																									if (pub.getTime() > today.getTime()) {
-																					$(".scheduledpublishing-<?php echo $currentimage; ?>").html('<br /><?php echo addslashes(gettext('Future publishing date.')); ?>');
-																					} else {
-																					$(".scheduledpublishing-<?php echo $currentimage; ?>").html('');
-																					}
-																					});
-																									$('#expirationdate-<?php echo $currentimage; ?>').change(function() {
-																					var today = new Date();
-																									var expiry = $('#expirationdate-<?php echo $currentimage; ?>').datepicker('getDate');
-																									if (expiry.getTime() > today.getTime()) {
-																					$(".expire<-<?php echo $currentimage; ?>").html('');
-																					} else {
-																					$(".expire-<?php echo $currentimage; ?>").html('<br /><?php echo addslashes(gettext('Expired!')); ?>');
-																					}
-																					});
-																					});
-																					// ]]> -->
+																	// <!-- <![CDATA[
+																	$(function() {
+																		$("#publishdate-<?php echo $currentimage; ?>,#expirationdate-<?php echo $currentimage; ?>").datepicker({
+																			dateFormat: 'yy-mm-dd',
+																			showOn: 'button',
+																			buttonImage: '../zp-core/images/calendar.png',
+																			buttonText: '<?php echo gettext("calendar"); ?>',
+																			buttonImageOnly: true
+																		});
+																		$('#publishdate-<?php echo $currentimage; ?>').change(function() {
+																			var today = new Date();
+																			var pub = $('#publishdate-<?php echo $currentimage; ?>').datepicker('getDate');
+																			if (pub.getTime() > today.getTime()) {
+																				$(".scheduledpublishing-<?php echo $currentimage; ?>").html('<br /><?php echo addslashes(gettext('Future publishing date.')); ?>');
+																			} else {
+																				$(".scheduledpublishing-<?php echo $currentimage; ?>").html('');
+																			}
+																		});
+																		$('#expirationdate-<?php echo $currentimage; ?>').change(function() {
+																			var today = new Date();
+																			var expiry = $('#expirationdate-<?php echo $currentimage; ?>').datepicker('getDate');
+																			if (expiry.getTime() > today.getTime()) {
+																				$(".expire<-<?php echo $currentimage; ?>").html('');
+																			} else {
+																				$(".expire-<?php echo $currentimage; ?>").html('<br /><?php echo addslashes(gettext('Expired!')); ?>');
+																			}
+																		});
+																	});
+																	// ]]> -->
 																</script>
 																<br class="clearall" />
 																<hr />
@@ -1206,22 +1198,22 @@ echo "\n</head>";
 																<label class="checkboxlabel">
 																	<input type="radio" id="move-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="move"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>'
-																																					 , 'move');"  /> <?php echo gettext("Move"); ?>
+																														 , 'move');"  /> <?php echo gettext("Move"); ?>
 																</label>
 																<label class="checkboxlabel">
 																	<input type="radio" id="copy-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="copy"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>'
-																																					 , 'copy');"  /> <?php echo gettext("Copy"); ?>
+																														 , 'copy');"  /> <?php echo gettext("Copy"); ?>
 																</label>
 																<label class="checkboxlabel">
 																	<input type="radio" id="rename-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="rename"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>',
-																																					 'rename');"  /> <?php echo gettext("Rename File"); ?>
+																														 'rename');"  /> <?php echo gettext("Rename File"); ?>
 																</label>
 																<label class="checkboxlabel">
 																	<input type="radio" id="Delete-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="delete"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');
-																																					 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
+																										 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
 																</label>
 																<br class="clearall" />
 																<div id="movecopydiv-<?php echo $currentimage; ?>" style="padding-top: .5em; padding-left: .5em; display: none;">
@@ -1338,12 +1330,29 @@ echo "\n</head>";
 																?>
 																<div class = "page-list_icon">
 																	<input class = "checkbox" type = "checkbox" name = "ids[]" value = "<?php echo $image->getFileName(); ?>" onclick = "triggerAllBox(this.form, 'ids[]', this.for
-																																			m.allbox);" />
+																												m.allbox);" />
 																</div>
 																<?php
 															}
 															?>
 														</td>
+													</tr>
+													<tr>
+														<td align="left" valign="top"><?php echo gettext("Owner:"); ?></td>
+														<td style="width:100%;">
+															<?php
+															if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
+																?>
+																<select name="<?php echo $currentimage; ?>-owner">
+																	<?php echo admin_album_list($image->getOwner()); ?>
+																</select>
+																<?php
+															} else {
+																echo $image->getOwner();
+															}
+															?>
+														</td>
+
 													</tr>
 													<tr>
 														<td align = "left" valign = "top"><?php echo gettext("Title:");
@@ -1376,17 +1385,17 @@ echo "\n</head>";
 														<td valign="top"><?php echo gettext("Date:"); ?></td>
 														<td>
 															<script type="text/javascript">
-																								// <!-- <![CDATA[
-																								$(function() {
-																								$("#datepicker_<?php echo $currentimage; ?>").datepicker({
-																								dateFormat: 'yy-mm-dd',
-																												showOn: 'button',
-																												buttonImage: 'images/calendar.png',
-																												buttonText: '<?php echo gettext('calendar'); ?>',
-																												buttonImageOnly: true
-																								});
-																								});
-																								// ]]> -->
+																// <!-- <![CDATA[
+																$(function() {
+																	$("#datepicker_<?php echo $currentimage; ?>").datepicker({
+																		dateFormat: 'yy-mm-dd',
+																		showOn: 'button',
+																		buttonImage: 'images/calendar.png',
+																		buttonText: '<?php echo gettext('calendar'); ?>',
+																		buttonImageOnly: true
+																	});
+																});
+																// ]]> -->
 															</script>
 															<input type="text" id="datepicker_<?php echo $currentimage; ?>" size="20" name="<?php echo $currentimage; ?>-date"
 																		 value="<?php
@@ -1579,9 +1588,9 @@ echo "\n</head>";
 									if (!empty($target_image)) {
 										?>
 										<script type="text/javascript" >
-																							// <!-- <![CDATA[
-																							toggleExtraInfo('<?php echo $target_image_nr; ?>', 'image', true);
-																							// ]]> -->
+											// <!-- <![CDATA[
+											toggleExtraInfo('<?php echo $target_image_nr; ?>', 'image', true);
+															// ]]> -->
 										</script>
 										<?php
 									}
@@ -1652,7 +1661,7 @@ echo "\n</head>";
 							<img	src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong>
 						</button>
 						<button type="reset" onclick="javascript:$('.deletemsg
-																												').hide();" >
+																				').hide();" >
 							<img	src="images/fail.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
 						</button>
 					</span>
@@ -1683,7 +1692,7 @@ echo "\n</head>";
 							<img	src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong>
 						</button>
 						<button type="reset" onclick="javascript:$('.deletemsg
-																																').hide();" >
+																								').hide();" >
 							<img	src="images/fail.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
 						</button>
 					</span>
@@ -1733,7 +1742,7 @@ echo "\n</head>";
 					printEditDropdown('', array('1', '2', '3', '4', '5'), $album_nesting);
 					?>
 					<form class="dirty-check" action="?page=edit&amp;action=savealbumorder" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confir
-																																				mAction();">
+																												mAction();">
 									<?php XSRFToken('savealbumorder'); ?>
 						<p class="buttons">
 							<?php
@@ -1762,7 +1771,7 @@ echo "\n</head>";
 								</label>
 								<label style="float: right">
 									<?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this
-																																								.checked);" />
+																																.checked);" />
 								</label>
 							</div>
 

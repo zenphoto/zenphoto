@@ -1215,6 +1215,14 @@ function printAdminHeader($tab, $subtab = NULL) {
 				<td valign="top">
 					<table class="width100percent">
 						<tr>
+							<td class="leftcolumn">
+								<input type="button" value="<?php echo gettext("Link"); ?>" onclick="$('#album_link').select();" title="<?php echo gettext('Click to select link'); ?>" />
+							</td>
+							<td class="middlecolumn">
+								<input type="text" name="album_link" id="album_link" value="<?php echo $album->getLink(); ?>" disabled="disabled" />
+							</td>
+						</tr>
+						<tr>
 							<td class="leftcolumn"><?php echo gettext("Owner"); ?></td>
 							<td class="middlecolumn">
 								<?php
@@ -1283,7 +1291,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
 																onclick="passwordClear('<?php echo $suffix; ?>');
-																		togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
+																				togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
 								</td>
 								<td>
 									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
@@ -1378,7 +1386,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$sort[gettext('Custom')] = 'custom';
 						/*
 						 * not recommended--screws with peoples minds during pagination!
-							$sort[gettext('Random')] = 'random';
+						  $sort[gettext('Random')] = 'random';
 						 */
 						?>
 						<tr>
@@ -1809,7 +1817,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -4279,12 +4287,12 @@ function getPageSelector($list, $itmes_per_page, $diff = 'fullText') {
 	if ($pages > 1) {
 		$ranges = array();
 		for ($page = 0; $page < $pages; $page++) {
-			$ranges[$page]['start'] = strtolower(get_language_string($list[$page * $itmes_per_page]));
+			$ranges[$page]['start'] = strtolower($list[$page * $itmes_per_page]);
 			$last = (int) ($page * $itmes_per_page + $itmes_per_page - 1);
 			if (array_key_exists($last, $list)) {
-				$ranges[$page]['end'] = strtolower(get_language_string($list[$last]));
+				$ranges[$page]['end'] = strtolower($list[$last]);
 			} else {
-				$ranges[$page]['end'] = strtolower(get_language_string(@array_pop($list)));
+				$ranges[$page]['end'] = strtolower(@array_pop($list));
 			}
 		}
 		$last = '';
@@ -4319,7 +4327,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 		}
 		?>
 		<select name="subpage" class="ays-ignore" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
-								[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
+										[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
 							<?php
 							foreach ($rangeset as $page => $range) {
 								?>

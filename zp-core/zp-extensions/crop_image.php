@@ -129,8 +129,7 @@ switch ($use_side) {
 		break;
 }
 
-$args = array($size, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL);
-$imageurl = getImageProcessorURI($args, $albumname, $imagepart);
+$imageurl = getImageProcessorURI(array($size, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL), $albumname, $imagepart);
 $iW = round($sizedwidth * 0.9);
 $iH = round($sizedheight * 0.9);
 $iX = round($sizedwidth * 0.05);
@@ -206,13 +205,13 @@ printAdminHeader('edit', gettext('crop image'));
 ?>
 
 <script src="<?php echo WEBPATH . '/' . ZENFOLDER ?>/js/jquery.Jcrop.js" type="text/javascript"></script>
+<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/htmlencoder.js"></script>
 <link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER ?>/js/jquery.Jcrop.css" type="text/css" />
 <link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/crop_image/crop_image.css" type="text/css" />
 <script type="text/javascript" >
 	//<!-- <![CDATA[
 	var jcrop_api;
 	jQuery(window).load(function() {
-
 		initJcrop();
 		function initJcrop() {
 			jcrop_api = jQuery.Jcrop('#cropbox');
@@ -229,7 +228,7 @@ printAdminHeader('edit', gettext('crop image'));
 
 		jQuery('#aspect-ratio-width').keyup(aspectChange);
 		jQuery('#aspect-ratio-height').keyup(aspectChange);
-
+		$('#crop').removeClass('dirty');
 	});
 
 	function clearAspect() {
@@ -238,11 +237,12 @@ printAdminHeader('edit', gettext('crop image'));
 		$('#aspect-ratio-height').val('');
 		resetBoundingBox();
 		showCoords(jcrop_api.tellSelect());
+		$('#crop').removeClass('dirty');
 	}
 
 	function aspectChange() {
-		var aspectWidth = jQuery('#aspect-ratio-width').attr('value');
-		var aspectHeight = jQuery('#aspect-ratio-height').attr('value');
+		var aspectWidth = jQuery('#aspect-ratio-width').val();
+		var aspectHeight = jQuery('#aspect-ratio-height').val();
 		if (!aspectWidth)
 			aspectWidth = aspectHeight;
 		if (!aspectHeight)
@@ -263,16 +263,14 @@ printAdminHeader('edit', gettext('crop image'));
 		jcrop_api.setOptions({aspectRatio: aspectWidth / aspectHeight});
 		showCoords(jcrop_api.tellSelect());
 	}
-	function clearAspect() {
-		$('#aspect-ratio-width').val('');
-		$('#aspect-ratio-height').val('');
-	}
 
 	// Our simple event handler, called from onchange and onSelect
 	// event handlers, as per the Jcrop invocation above
 	function showCoords(c) {
 		var new_width = Math.round(c.w * (<?php echo $width ?> /<?php echo $sizedwidth ?>));
 		var new_height = Math.round(c.h * (<?php echo $height ?> /<?php echo $sizedheight ?>));
+		var rw = <?php echo round($width / $sizedwidth); ?>;
+		var rh = <?php echo round($height / $sizedheight); ?>;
 
 		jQuery('#x').val(c.x);
 		jQuery('#y').val(c.y);
@@ -282,6 +280,15 @@ printAdminHeader('edit', gettext('crop image'));
 		jQuery('#h').val(c.h);
 		jQuery('#new-width').text(new_width);
 		jQuery('#new-height').text(new_height);
+
+		cw = c.w * rw;
+		ch = c.h * rh;
+		cx = c.x * rw;
+		cy = c.y * rh;
+		uri = '<?php echo WEBPATH . '/' . ZENFOLDER . "/i.php?a=$albumname&i=$imagename"; ?>' + '&w=' + new_width + '&h=' + new_height + '&cw=' + cw + '&ch=' + ch + '&cx=' + cx + '&cy=' + cy;
+		jQuery('#imageURI').val(uri);
+		jQuery('#imageURI').attr('size', uri.length + 10);
+		$('#crop').addClass('dirty');
 	}
 
 	function resetBoundingBox() {
@@ -289,7 +296,7 @@ printAdminHeader('edit', gettext('crop image'));
 	}
 
 	function checkCoords() {
-		return true;
+		return confirm('<?php echo gettext('Are you sure you want to permanently alter this image?'); ?>');
 	}
 
 	// ]]> -->
@@ -321,7 +328,7 @@ printAdminHeader('edit', gettext('crop image'));
 					</div>
 					<span class="clearall" ></span>
 					<?php
-					printf(gettext('width:%1$s %2$s height:%3$s %4$s clear %5$s'), '<input type="text" id="aspect-ratio-width" name="aspect-ratio-width" value="" size="5" />', '&nbsp;<span id="aspect" ><a id="swap_button" href="javascript:swapAspect();" title="' . gettext('swap width and height fields') . '" > <img src="crop_image/swap.png"> </a></span>&nbsp;', '<input type="text" id="aspect-ratio-height" name="aspect-ratio-height" value="" size="5" />', '<a href="javascript:clearAspect();" title="' . gettext('clear width and height fields') . '" >', '</a>')
+					printf(gettext('width:%1$s %2$s height:%3$s'), '<input type="text" id="aspect-ratio-width" name="aspect-ratio-width" value="" size="5" />', '&nbsp;<span id="aspect" ><a id="swap_button" href="javascript:swapAspect();" title="' . gettext('swap width and height fields') . '" > <img src="crop_image/swap.png"> </a></span>&nbsp;', '<input type="text" id="aspect-ratio-height" name="aspect-ratio-height" value="" size="5" />');
 					?>
 
 					<!-- This is the form that our event handler fills -->
@@ -339,6 +346,11 @@ printAdminHeader('edit', gettext('crop image'));
 						<input type="hidden" id="subpage" name="subpage" value="<?php echo html_encode($subpage); ?>" />
 						<input type="hidden" id="crop" name="crop" value="crop" />
 						<input type="hidden" id="performcrop" name="performcrop" value="<?php echo html_encode(sanitize($_REQUEST['performcrop'])); ?>" />
+						<p>
+							<input type="button" value="<?php echo gettext("Image Link:"); ?>" onclick="$('#imageURI').select();" title="<?php echo gettext('Click to select link'); ?>" />
+							<br />
+							<input type="text" name="imageURI" id="imageURI" disabled="disabled" title="<?php echo gettext('Copy and insert this link for an image cropped as shown.'); ?>" />
+						</p>
 						<p class="buttons">
 							<button type="button" onclick="clearAspect();" >
 								<img src="../images/fail.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
@@ -362,9 +374,7 @@ printAdminHeader('edit', gettext('crop image'));
 							}
 							?>
 						</p>
-						<br />
 					</form>
-
 				</div>
 
 				<br style="clear: both" />
