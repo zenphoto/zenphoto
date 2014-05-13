@@ -8,7 +8,7 @@
 // force UTF-8 Ø
 
 define('OFFSET_PATH', 1);
-require_once(preg_replace('~/zp-core~', '', dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME'])))) . "/zp-core/admin-globals.php");
+require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 
 admin_securityChecks(OPTIONS_RIGHTS, $return = currentRelativeURL());
 
@@ -56,9 +56,10 @@ printAdminHeader('options', '');
 							$owners[ZENFOLDER . '/' . PLUGIN_FOLDER][$plugin] = $plugin;
 						}
 					}
-
 					$sql = 'SELECT DISTINCT `creator` FROM ' . prefix('options');
 					$result = query_full_array($sql);
+
+
 					foreach ($result as $owner) {
 						$structure = explode('/', $owner['creator']);
 						switch (count($structure)) {
@@ -102,9 +103,14 @@ printAdminHeader('options', '');
 							<br class="clearall" />
 
 							<p>
-								<?php echo gettext('Check an item to purge options associated with it.'); ?>
-								<?php echo gettext('Items that are <span class="missing_owner">higlighed</span> appear no longer to exist.'); ?>
+								<?php echo gettext('Check an item to purge options associated with it. Items that are <span class="missing_owner">higlighed</span> appear no longer to exist.'); ?>
 							</p>
+							<ul>
+								<li>
+									<?php printf(gettext('<span class="missing_owner">higlighed</span>%s '), '<input type="checkbox" id="missing" onclick="$(\'.missing\').prop(\'checked\', $(\'#missing\').prop(\'checked\'));">');
+									?>
+								</li>
+							</ul>
 
 
 							<ul>

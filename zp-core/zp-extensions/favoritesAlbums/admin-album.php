@@ -7,7 +7,7 @@
 // force UTF-8 Ø
 
 define('OFFSET_PATH', 1);
-require_once(preg_replace('~/zp-core~', '', dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME'])))) . "/zp-core/admin-globals.php");
+require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/template-functions.php');
 
 admin_securityChecks(ALBUM_RIGHTS, $return = currentRelativeURL());
