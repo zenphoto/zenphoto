@@ -51,18 +51,9 @@ class PersistentObject {
 	private $updates = NULL;
 
 	/**
-	 *
-	 * @deprecated
-	 */
-	function PersistentObject($tablename, $unique_set, $cache_by = NULL, $use_cache = true, $is_transient = false, $allowCreate = true) {
-		deprecated_functions::PersistentObject();
-		return instantiate($tablename, $unique_set, $cache_by, $use_cache, $is_transient, $allowCreate);
-	}
-
-	/**
 	  }
 	 *
-	 * Prime instantiator for Zenphoto objects
+	 * Prime instantiator for zenphoto objects
 	 * @param $tablename	The name of the database table
 	 * @param $unique_set	An array of unique fields
 	 * @param $cache_by

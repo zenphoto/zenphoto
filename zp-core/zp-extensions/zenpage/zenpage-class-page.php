@@ -206,16 +206,6 @@ class ZenpagePage extends ZenpageItems {
 	}
 
 	/**
-	 * Gets the sub pages recursivly by titlelink
-	 * @return array
-	 * @deprecated
-	 */
-	function getSubPages() {
-		Zenpage_internal_deprecations::getSubPages();
-		return $this->getPages();
-	}
-
-	/**
 	 * Checks if user is allowed to access the page
 	 * @param $hint
 	 * @param $show
@@ -298,17 +288,6 @@ class ZenpagePage extends ZenpageItems {
 	 */
 	function getLink() {
 		return zp_apply_filter('getLink', rewrite_path(_PAGES_ . '/' . $this->getTitlelink(), '/index.php?p=pages&title=' . $this->getTitlelink()), $this, NULL);
-	}
-
-	/**
-	 * Returns full path to a specific page
-	 *
-	 * @return string
-	 * @deprecated since version 1.4.6
-	 */
-	function getPageLink() {
-		Zenpage_internal_deprecations::getPageLink();
-		return $this->getLink();
 	}
 
 }

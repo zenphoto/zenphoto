@@ -392,7 +392,7 @@ class Image extends MediaObject {
 				}
 			}
 		}
-		/* "import" metadata into Zenphoto fields as makes sense */
+		/* "import" metadata into database fields as makes sense */
 		zp_apply_filter('image_metadata', $this);
 
 		/* iptc date */
@@ -909,16 +909,6 @@ class Image extends MediaObject {
 			$image = $this->filename;
 		}
 		return zp_apply_filter('getLink', rewrite_path(pathurlencode($album) . '/' . urlencode($image) . IM_SUFFIX, '/index.php?album=' . pathurlencode($albumq) . '&image=' . urlencode($image)), $this, NULL);
-	}
-
-	/**
-	 * Returns a path urlencoded image page link for the image
-	 * @return string
-	 * @deprecated since version 1.4.6
-	 */
-	function getImageLink() {
-		internal_deprecations::getImageLink();
-		return $this->getLink();
 	}
 
 	/**

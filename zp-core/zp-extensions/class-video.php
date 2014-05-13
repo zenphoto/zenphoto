@@ -311,11 +311,6 @@ class Video extends Image {
 		return $vid;
 	}
 
-	function getBody($w = NULL, $h = NULL) {
-		Video_deprecated_functions::getBody();
-		$this->getContent($w, $h);
-	}
-
 	/**
 	 * returns the content of the vido
 	 *

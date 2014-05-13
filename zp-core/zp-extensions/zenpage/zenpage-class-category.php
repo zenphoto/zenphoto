@@ -450,17 +450,6 @@ class ZenpageCategory extends ZenpageRoot {
 		return zp_apply_filter('getLink', rewrite_path(_CATEGORY_ . '/' . $this->getTitlelink() . '/' . $pager, "/index.php?p=news&category=" . $this->getTitlelink() . $page), $this, NULL);
 	}
 
-	/**
-	 *
-	 * @global type $_zp_zenpage
-	 * @return type
-	 * @deprecated
-	 */
-	function getCategoryLink() {
-		Zenpage_internal_deprecations::getCategoryLink();
-		return $this->getLink();
-	}
-
 }
 
 // zenpage news category class end

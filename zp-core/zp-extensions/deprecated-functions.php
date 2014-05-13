@@ -1,10 +1,10 @@
 <?php
 
 /**
- * This plugin deals with functions have been removed from mainstream Zenphoto as they have been
+ * This plugin deals with functions have been removed from the mainstream as they have been
  * supplanted.
  * They are not maintained and they are not guaranteed to function correctly with the
- * current version of Zenphoto.
+ * current version.
  *
  * The actual set of functions resides in a <var>deprecated-functions.php</var> script within
  * the plugins folder. (General deprecated functions are in the %PLUGIN_FOLDER%/deprecated-functins folder)
@@ -29,8 +29,8 @@
  * @package plugins
  * @subpackage development
  */
-$plugin_description = gettext("Provides deprecated Zenphoto functions.");
-$plugin_notice = gettext("This plugin is <strong>NOT</strong> required for the Zenphoto distributed functions.");
+$plugin_description = gettext("Provides replacements for deprecated functions.");
+$plugin_notice = gettext("This plugin is <strong>NOT</strong> required for the distributed code.");
 $option_interface = 'deprecated_functions';
 $plugin_is_filter = 900 | CLASS_PLUGIN;
 

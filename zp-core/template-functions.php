@@ -530,10 +530,6 @@ function getMainSiteURL() {
  * @return string
  */
 function getGalleryIndexURL() {
-	global $_zp_current_album, $_zp_gallery_page, $_zp_gallery;
-	if (func_num_args() !== 0) {
-		internal_deprecations::getGalleryIndexURL();
-	}
 	return zp_apply_filter('getLink', rewrite_path('/', '/'), 'index.php', NULL);
 }
 
@@ -581,9 +577,6 @@ function getCurrentTheme() {
  */
 function next_album($all = false, $mine = NULL) {
 	global $_zp_albums, $_zp_gallery, $_zp_current_album, $_zp_page, $_zp_current_album_restore, $_zp_current_search;
-	if (($mine != NULL && gettype($mine) != 'boolean') || func_num_args() > 2) {
-		internal_deprecations::next_album();
-	}
 
 	if (is_null($_zp_albums)) {
 		if (in_context(ZP_SEARCH)) {
@@ -1989,9 +1982,6 @@ function getTotalImagesIn($album) {
  */
 function next_image($all = false, $firstPageCount = NULL, $mine = NULL) {
 	global $_zp_images, $_zp_current_image, $_zp_current_album, $_zp_page, $_zp_current_image_restore, $_zp_current_search, $_zp_gallery, $_firstPageImages;
-	if (($mine != NULL && gettype($mine) != 'boolean') || func_num_args() > 3) {
-		internal_deprecations::next_image();
-	}
 	if (is_null($firstPageCount)) {
 		$firstPageCount = $_firstPageImages;
 	}
@@ -3683,12 +3673,6 @@ function isArchive() {
  * @since 1.1.3
  */
 function getSearchURL($words, $dates, $fields, $page, $object_list = NULL) {
-	if (!is_null($object_list)) {
-		if (array_key_exists(0, $object_list)) { // handle old form albums list
-			internal_deprecations::getSearchURL();
-			$object_list = array('albums' => $object_list);
-		}
-	}
 	$urls = '';
 	$rewrite = false;
 	if (MOD_REWRITE) {
@@ -3804,12 +3788,6 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 	$engine = new SearchEngine();
 	if (!is_null($_zp_current_search) && !$_zp_current_search->getSearchWords()) {
 		$engine->clearSearchWords();
-	}
-	if (!is_null($object_list)) {
-		if (array_key_exists(0, $object_list)) { // handle old form albums list
-			trigger_error(gettext('printSearchForm $album_list parameter is deprecated. Pass array("albums"=>array(album, album, ...)) instead.'), E_USER_NOTICE);
-			$object_list = array('albums' => $object_list);
-		}
 	}
 	if (empty($buttontext)) {
 		$buttontext = gettext("Search");

@@ -297,23 +297,11 @@ class ZenpageNews extends ZenpageItems {
 	}
 
 	/**
-	 * Returns the url to a news article
-	 *
-	 *
-	 * @return string
-	 * @deprecated since version 1.4.6
-	 */
-	function getNewsURL() {
-		Zenpage_internal_deprecations::getNewsURL();
-		return $this->getLink();
-	}
-
-	/**
 	 * Get the index of this article
-  * 
+	 *
 	 * @param string $sortorder
 	 * @param bool $sortdirection TRUE for ascending, FALSE for descending
-  * @param bool $sticky If sticky article should come first
+	 * @param bool $sticky If sticky article should come first
 	 * @return int
 	 */
 	function getIndex($sortorder, $sortdirection, $sticky) {
@@ -333,14 +321,12 @@ class ZenpageNews extends ZenpageItems {
 
 	/**
 	 * Return the previous article
-  * 
-  * @param string $sortorder
+	 *
+	 * @param string $sortorder
 	 * @param bool $sortdirection TRUE for ascending, FALSE for descending
-  * @param bool $sticky If sticky article should come first
+	 * @param bool $sticky If sticky article should come first
 	 * @return object
 	 */
- 
- 
 	function getPrevArticle($sortorder = 'date', $sortdirection = false, $sticky = true) {
 		global $_zp_zenpage, $_zp_current_zenpage_news;
 		$index = $this->getIndex($sortorder, $sortdirection, $sticky);
@@ -350,10 +336,10 @@ class ZenpageNews extends ZenpageItems {
 
 	/**
 	 * Returns the next article.
-  * 
+	 *
 	 * @param string $sortorder
 	 * @param bool $sortdirection TRUE for ascending, FALSE for descending
-  * @param bool $sticky If sticky article should come first
+	 * @param bool $sticky If sticky article should come first
 	 * @return object
 	 */
 	function getNextArticle($sortorder = 'date', $sortdirection = false, $sticky = true) {
@@ -364,5 +350,6 @@ class ZenpageNews extends ZenpageItems {
 	}
 
 }
+
 // zenpage news class end
 ?>

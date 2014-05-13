@@ -132,7 +132,6 @@ function getAuthor($fullname = false) {
  */
 function getLatestNews($number = 2, $category = '', $sticky = true, $sortdirection = 'desc') {
 	global $_zp_zenpage, $_zp_current_zenpage_news;
-	//check if things are deprecated
 	switch (strtolower($sortdirection)) {
 		case 'desc':
 		default:
@@ -141,23 +140,6 @@ function getLatestNews($number = 2, $category = '', $sticky = true, $sortdirecti
 		case 'asc':
 			$sortdir = true;
 			break;
-	}
-	$args = func_get_args();
-	$deprecated = array(
-					"none",
-					"with_latest_images",
-					"with_latest_images_date",
-					"with_latest_images_mtime",
-					"with_latest_images_publishdate",
-					"with_latest_albums",
-					"with_latest_albums_date",
-					"with_latest_albums_mtime",
-					"with_latest_albums_publishdate",
-					"with_latestupdated_albums");
-	if (in_array($category, $deprecated)) {
-		// there must be the old options parameter!
-		Zenpage_internal_deprecations::getLatestNews();
-		list($number, $category, $sticky, $sortdirection ) = array_merge($args, array(NULL, NULL, NULL, NULL, NULL));
 	}
 	if (empty($category)) {
 		$latest = $_zp_zenpage->getArticles($number, NULL, true, NULL, $sortdir, $sticky, NULL);
@@ -185,24 +167,6 @@ function getLatestNews($number = 2, $category = '', $sticky = true, $sortdirecti
  */
 function printLatestNews($number = 5, $category = '', $showdate = true, $showcontent = true, $contentlength = 70, $showcat = true, $readmore = NULL, $sticky = true) {
 	global $_zp_gallery, $_zp_current_zenpage_news;
-	//check if things are deprecated
-	$args = func_get_args();
-	$deprecated = array(
-					"none",
-					"with_latest_images",
-					"with_latest_images_date",
-					"with_latest_images_mtime",
-					"with_latest_images_publishdate",
-					"with_latest_albums",
-					"with_latest_albums_date",
-					"with_latest_albums_mtime",
-					"with_latest_albums_publishdate",
-					"with_latestupdated_albums");
-	if (in_array($category, $deprecated)) {
-		// there must be the old options parameter!
-		Zenpage_internal_deprecations::printLatestNews();
-		list($number, $option, $category, $showdate, $showcontent, $contentlength, $showcat, $readmore, $sticky) = array_merge($args, array(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL));
-	}
 
 	$latest = getLatestNews($number, $category, $sticky);
 	echo "\n<ul id=\"latestnews\">\n";
@@ -279,10 +243,6 @@ function getNumNews($total = false) {
  */
 function next_news() {
 	global $_zp_zenpage, $_zp_current_zenpage_news, $_zp_current_zenpage_news_restore, $_zp_zenpage_articles, $_zp_current_category, $_zp_gallery, $_zp_current_search;
-	if (func_num_args() != 0) {
-		//	These parameters are deprecated
-		Zenpage_internal_deprecations::next_news();
-	}
 
 	if (is_null($_zp_zenpage_articles)) {
 		if (in_context(ZP_SEARCH)) {
@@ -1765,10 +1725,6 @@ function getNumPages($total = false) {
  */
 function next_page() {
 	global $_zp_zenpage, $_zp_next_pagelist, $_zp_current_search, $_zp_current_zenpage_page, $_zp_current_page_restore;
-	if (func_num_args() != 0) {
-		//	These parameters are deprecated
-		Zenpage_internal_deprecations::next_page();
-	}
 
 	if (is_null($_zp_next_pagelist)) {
 		if (in_context(ZP_SEARCH)) {
