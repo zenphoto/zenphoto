@@ -539,7 +539,7 @@ function getSerializedArray($string) {
 		} else {
 			return array();
 		}
-	} else if (empty($string)) {
+	} else if (strlen($string) == 0 && !is_bool($string)) {
 		return array();
 	} else {
 		return array($string);
