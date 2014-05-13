@@ -1,0 +1,129 @@
+<?php
+/**
+ * purge options tab
+ *
+ * @package plugins
+ * @subpackage admin
+ */
+// force UTF-8 Ø
+
+define('OFFSET_PATH', 1);
+require_once(preg_replace('~/zp-core~', '', dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME'])))) . "/zp-core/admin-globals.php");
+
+admin_securityChecks(OPTIONS_RIGHTS, $return = currentRelativeURL());
+
+$xlate = array('plugins' => gettext('User plugins'), 'zp-core/zp-extensions' => gettext('Extensions'), 'themes' => gettext('Themes'));
+
+if (isset($_POST['purge'])) {
+	XSRFdefender('purgeOptions');
+	if (isset($_POST['del'])) {
+		foreach ($_POST['del'] as $owner) {
+			$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `creator` = ' . db_quote($owner);
+			$result = query($sql);
+			if (preg_match('~^' . THEMEFOLDER . '/~', $owner)) {
+				$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `creator` = ' . db_quote($owner . '/themeoptions.php');
+				$result = query($sql);
+			}
+			if (preg_match('~^' . PLUGIN_FOLDER . '/~', $owner) || preg_match('~^' . USER_PLUGIN_FOLDER . '/~', $owner)) {
+				purgeOption('zp_plugin_' . stripSuffix(basename($owner)));
+			}
+		}
+	}
+}
+
+printAdminHeader('options', '');
+?>
+<link rel="stylesheet" href="purgeOptions.css" type="text/css">
+</head>
+<body>
+	<?php printLogoAndLinks(); ?>
+	<div id="main">
+		<?php printTabs(); ?>
+		<div id="content">
+			<div id="container">
+				<?php printSubtabs(); ?>
+				<div class="tabbox">
+					<?php
+					$owners = array();
+					$sql = 'SELECT `name` FROM ' . prefix('options') . ' WHERE `name` LIKE "zp_plugin_%"';
+					$result = query_full_array($sql);
+					foreach ($result as $plugin) {
+						$plugin = str_replace('zp_plugin_', '', $plugin['name']) . '.php';
+						$file = str_replace(SERVERPATH, '', getPlugin($plugin, false));
+						if (strpos($file, PLUGIN_FOLDER) === false) {
+							$owners[USER_PLUGIN_FOLDER][$plugin] = $plugin;
+						} else {
+							$owners[ZENFOLDER . '/' . PLUGIN_FOLDER][$plugin] = $plugin;
+						}
+					}
+
+					$sql = 'SELECT DISTINCT `creator` FROM ' . prefix('options');
+					$result = query_full_array($sql);
+					foreach ($result as $owner) {
+						$structure = explode('/', $owner['creator']);
+						switch (count($structure)) {
+							case 1:
+								break;
+							case 2:
+								$owners[$structure[0]][] = $structure[1];
+								break;
+							case 3:
+								$owners[$structure[0]][$structure[1]][] = $structure[2];
+								break;
+							case 4:
+								$owners[$structure[0]][$structure[1]][$structure[2]][] = $structure[3];
+								break;
+						}
+					}
+					if (isset($owners[ZENFOLDER][PLUGIN_FOLDER]))
+						$owners[ZENFOLDER . '/' . PLUGIN_FOLDER] = $owners['zp-core']['zp-extensions'];
+					unset($owners[ZENFOLDER]);
+
+					if (isset($owners[THEMEFOLDER])) {
+						foreach ($owners[THEMEFOLDER] as $theme => $v) {
+							if (is_array($v)) {
+								$owners[THEMEFOLDER][] = $theme;
+								unset($owners[THEMEFOLDER][$theme]);
+							}
+						}
+						$owners[THEMEFOLDER] = array_unique($owners[THEMEFOLDER]);
+					}
+					if (empty($owners)) {
+						echo gettext('No option owners have been located.');
+					} else {
+						?>
+						<form class="dirty-check" action="?page=options&tab=purge" method="post" >
+							<?php XSRFToken('purgeOptions'); ?>
+							<input type="hidden" name="purge" value="1" />.
+							<p class = "buttons" >
+								<button type="submit" value="<?php echo gettext('Apply') ?>"> <img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /> <strong><?php echo gettext("Apply"); ?> </strong></button >
+								<button type="" "reset" value="<?php echo gettext('reset') ?>"> <img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /> <strong><?php echo gettext("Reset"); ?> </strong></button>
+							</p>
+							<br class="clearall" />
+
+							<p>
+								<?php echo gettext('Check an item to purge options associated with it.'); ?>
+								<?php echo gettext('Items that are <span class="missing_owner">higlighed</span> appear no longer to exist.'); ?>
+							</p>
+
+
+							<ul>
+								<?php listOwners($owners); ?>
+							</ul>
+							<p class="buttons">
+								<button type="submit" value="<?php echo gettext('Apply') ?>" > <img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt = "" /> <strong><?php echo gettext("Apply"); ?> </strong></button>
+								<button type="reset" value="<?php echo gettext('reset') ?>" > <img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /> <strong><?php echo gettext("Reset"); ?> </strong></button>
+							</p>
+							<br class="clearall" />
+						</form>
+						<?php
+					}
+					?>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br class="clearall" />
+	<?php printAdminFooter(); ?>
+</body>
+</html>
