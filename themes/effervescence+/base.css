@@ -1,0 +1,1216 @@
+/*
+Theme Name: Effervescence
+Author: Stephane Angoulvant (modified (badly) by ulfben)
+Author URI: http://angoulvant.net/sblog
+Version: 1.0
+ 
+CSS template for Effervescence +
+pallets are from http://www.colourlovers.com/
+*/
+
+
+
+
+/* Main Stuff
+------------------------------ */
+html {
+height: 100%;
+margin-bottom: 0.1em;
+}
+* {
+margin: 0;
+padding: 0;
+}
+.aligncenter2 {
+margin: 0 auto;
+width: 610px;
+}
+.clearage {
+clear: both;
+padding: 0;
+margin: 0;
+}
+hr {
+clear: both;
+height: 0;
+border: 0;
+border-top: 1px solid __A_0__; /*unknown*/
+margin: 0 0 12px 0;
+padding: 0;
+}
+img {
+border: 0;
+}
+blockquote {
+border-left: 1px dotted __A_1__;
+margin-left: 20px;
+padding-left: 20px;
+font-style: italic;
+color: __C_0__; /*whenever a paragraph is held within blockquote tags.*/
+}
+
+#flash {
+	height: 675px ;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 20px;
+}
+#exif_link, #exif_link a{
+	width:100px;
+	font-weight:bold;
+	color:__C_1__;
+}
+#imagemetadata {
+  text-align: center;
+  color: __C_2__;
+}
+#imgmetadata_data a {
+  color: __C_3__;
+}
+#imagemetadata_data a:hover {
+text-decoration: none;
+color: __C_4__;
+}
+
+#imagemetadata table {
+  text-align: left;
+  line-height: 1em;
+  top: 2em;
+  right: 0px;
+  background-color: __C_5__;
+}
+
+#imagemetadata table td {
+  background-color: __C_6__;
+  padding: 2px 5px;
+}
+
+/* Text Styles
+------------------------------ */
+
+/* Front Page Title --- */
+h1 {
+font: normal 20px Trebuchet MS, Arial, Helvetica, Tahoma, Verdana, serif;
+letter-spacing: -2px;
+}
+#logo h1 a{ 
+color: __C_7__;
+font: bold 30px Monotype Corsiva, Apple Chancery, Zaph Chancery, Comic Sans, cursive, serif;
+}
+h1 a:hover {
+border: none;
+}
+* html h1 a {
+height:35px;
+height:0px;
+}
+h1 a{ 
+height:0px;
+}
+
+/* Image Page Title  --- */
+#logo2 h1 a{ 
+color: __C_8__;
+font: bold 30px Monotype Corsiva, Apple Chancery, Zaph Chancery, Comic Sans, cursive, serif;
+}
+
+h2 {
+color: __C_9__; /*unknown*/
+font: bold 23px Trebuchet MS, Arial, Helvetica, Tahoma, Verdana, serif;
+display: inline;
+letter-spacing: -1px;
+}
+h2 a          {
+color:  __C_10__; /*unknown*/
+text-decoration: none;
+font-weight: bold;
+border: none;
+}
+h2 a:hover {
+color: __C_11__; /*unknown*/
+font-weight: bold;
+border: none;
+}
+
+/* Album Nav */
+.albnav {
+float: right;
+width: 140px;
+text-align: center;
+}
+.albnav .albprevious a, .albnav .albnext a {
+display: block;
+width: 50%;
+height: 100%;
+float: left;
+font-size: 120%;
+text-decoration: none;
+font-weight: bold;
+line-height: 200%;
+color: __C_12__; /*prev / next in subalbums */
+}
+.albnav .albprevious a:hover, .albnav .albnext a:hover {
+text-decoration: none;
+font-weight: bold;
+color: __C_13__; /*prev / next hover in subalbum*/
+}
+.albnav .albprevious a {
+float: left;
+font-weight: bold;
+}
+.albnav .albnext a {
+float: right;
+font-weight: bold;
+}
+.albnav .albdisabledlink {
+display: block;
+width: 50%;
+height: 100%;
+float: left;
+font-size: 120%;
+text-decoration: none;
+font-weight: bold;
+line-height: 200%;
+color:  __C_14__; /*disabled prev/next links i subalbums (upper part of the screen)*/
+cursor: default;
+}
+
+/* Intro Text  --- */
+h3 {
+color: __C_15__; /*textcolor in comment header ("X Comments") */
+font: normal 17px Trebuchet MS, Arial, Helvetica, Tahoma, Verdana, sans-serif;
+text-align: left;
+font-weight: bold;
+margin-left: 10px;
+}
+#navbar h3 {
+margin-left: 10px;
+text-align: justify;
+}
+h3 a {
+color: __C_16__;
+border: none;
+font-weight: bold;
+}
+h3 a:hover {
+color: __C_17__;
+border: none;
+font-weight: bold;
+}
+
+/* Gallery Titles  --- */
+h4 {
+text-align: center;
+font: 14px/22px Arial, Helvetica, Tahoma, Verdana, sans-serif;
+color: __C_18__; /*unknown*/
+}
+h4 a {
+color: __C_19__; /*album titles in thumbview*/
+border: none;
+font-weight: bold;
+}
+h4 a:hover {
+color: __C_20__; /*album titles in thumbview on mouse over*/
+border: none;
+font-weight: bold;
+}
+
+/* comments
+------------------------------ */
+#commentbox {
+	background: __B_1__; /*color around the main div in index.*/
+	width: 650px;
+	margin: 0 auto;
+  color: __C_21__; /*textbox labels*/
+	font-size: 12px;
+	padding: 10px;
+}
+#commentcontent {
+	padding: 10px;
+}
+#commentcount {
+background: __B_2__;/* background for commentheader (where it says "X Comments")*/
+height: 40px;
+padding: 10px;
+margin: 0 auto;
+width: 610px;
+}
+
+#comments {
+clear: both;
+display: block;
+margin: 0 auto; 
+width: 610px; 
+text-align: left;
+}
+
+#commententry {
+clear: both;
+display: block;
+margin: 0 auto; 
+text-align: left;
+width: 610px;
+}
+#commentcontent h3 {
+	padding: 10px;
+	background: __B_3__;
+}
+
+.comment {
+margin-bottom: 20px;
+}
+
+.commentinfo {
+color: __C_22__; /*datum of a comment*/
+font-style: italic;
+border-bottom: 1px solid __A_2__ ;  /*seperator between comment info and comment text.*/
+padding: 5px 0 3px;
+}
+/* Comment Authors  --- */
+.commentinfo h4 {
+display: inline;
+font-style: italic;
+font-weight: bold;
+font: 14px/22px Arial, Helvetica, Tahoma, Verdana, sans-serif;
+color: __C_23__; /*the author name*/
+}
+.commentinfo h4 a {
+color: __C_24__; /*author name if they've given a link to their homepage*/
+border: none;
+font-style: normal; 
+font-weight: bold;
+}
+.commentinfo h4 a:hover {
+color: __C_25__; /*... master of the obvious.*/
+border: none;
+font-weight: bold;
+}
+.commentinfo a {
+color: __C_26__; /*links in commentingo (EDIT-link)*/
+border: none;
+font-style: normal; 
+font-weight: bold;
+}
+.commenttext {
+margin-top: 5px;
+padding: 0 5px;
+color: __C_27__; /*comment text color*/
+}
+/* Comment Form
+------------------------------ */
+#commentform {
+margin-top: 10px;
+}
+#commentbox input {
+font: 12px/22px Arial, Helvetica, Tahoma, Verdana, sans-serif;
+border: none;
+padding: 2px;
+color: __C_28__; /*Color of text in textbox*/
+}
+#commentbox input:focus {
+background: __B_4__;  /*Color of textbox when focused*/
+}
+#commentbox textarea {
+font: 12px/16px Arial, Helvetica, Tahoma, Verdana, sans-serif;
+background: __B_5__; /*Color of textarea when unfocused*/
+border-top: 1px solid __A_3__ ;
+border-left: 1px solid __A_4__ ;
+border-right: 1px solid __A_5__ ;
+border-bottom: 1px solid __A_6__;
+color: __C_29__; /*textcolor when writing a comment*/
+margin: 5px 0 5px 0;
+padding: 3px;
+width: 600px;
+}
+#commentbox textarea:focus {
+background: __B_6__; /*Color of textarea when focused*/
+}
+
+/* jQuery pagination comments */
+
+.Pagination {
+	margin-bottom: 10px;
+}
+
+.Pagination span.current,
+.Pagination span.next,
+.Pagination a,
+.Pagination a.next {
+	padding:0px 4px 0px 4px;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.Pagination span.prev,
+.Pagination a.prev {
+	padding:0px 4px 0px 0px;
+	margin-left: 0;
+	margin-right: 0px;
+}
+
+/* Links  --- */
+a {
+color: __C_30__; /*the current pagination link */
+text-decoration: none;
+font-weight: bold;
+}
+a:hover {
+color: __C_31__;
+text-decoration: none;
+font-weight: bold;
+}
+.disabledlink {
+color: __C_32__;  /* __A_7__; to hide disabled links in the backgroundcolor... */
+cursor: default;
+font-weight: bold;
+}
+#navbar a {
+color: __C_33__;
+}
+#navbar a:hover {
+color: __C_34__;
+}
+#main2 #navbar a { /*Same as navbar a, but in single-image view.*/
+    color: __C_35__;
+}
+#main2 #navbar a:hover {
+color: __C_36__;
+}
+#description a:hover {
+color: __C_37__;
+text-decoration: underline;
+}
+#main2 #description a {
+color: __C_38__;
+}
+#main2 #description a:hover {
+color: __C_39__;
+}
+.commenttext a {
+color: __C_40__;
+cursor: pointer;
+}
+.commenttext a:hover {
+color: __C_41__;
+text-decoration: underline;
+}
+
+/* Main Layout
+------------------------------ */
+body {
+font: 14px/22px Arial, Helvetica, Tahoma, Verdana, sans-serif;
+color: __C_42__;
+background: __B_7__; /*body background*/
+text-align: left;
+margin: 0 auto 0 auto;
+}
+#content {
+background: __B_8__; /*color around the main div in index.*/
+}
+#main {
+background: __B_9__; /*div around thumbs in index*/
+text-align: left;
+width: 630px;
+margin: 0 auto 0 auto;
+padding-bottom: 10px;
+}
+#main a {
+text-decoration: none;
+}
+#subcontent {
+background: __B_10__; /*around the main div in sub-albums.*/
+margin-bottom: 5px;
+}
+#submain {
+background: __B_11__; /*div around thumbs in subalbums.*/
+text-align: left;
+width: 630px;
+margin: 0 auto 0 auto;
+padding-bottom: 10px;
+}
+#submain a {
+text-decoration:none;
+}
+#main2 {
+    background: __B_12__; /*div in single-image view.*/
+    text-align: left;
+	padding-bottom: 30px;
+}
+#main3 {
+margin: 0 auto 0 auto;
+padding: 10px 20px 20px 20px;
+background: __B_13__; /*background around comment area */
+}
+#main4 {
+    margin: 0 auto 0 auto;
+	padding-left: 0px;
+	padding-right: 0px;	
+	background: __B_14__; /*page background in single-image view.*/
+	color: __C_43__;
+}
+#header {
+background: __B_15__; /*the header area above the nav-bar*/
+text-align: left;
+border: none;
+padding: 0;
+margin: 0;
+}
+#galleryheader {
+background: __B_16__; /*the header area above the nav-bar, single image view*/
+text-align: left;
+border: none;
+padding: 0;
+margin: 0;
+}
+#gallerytitle {
+width: 640px;
+position: relative;
+padding: 18px 10px 18px 10px;
+margin: 0 auto 0 auto;
+}
+#description {
+color: __C_44__; /*text color for descriptions*/
+text-align: justify;
+padding: 7px 7px;
+margin: 0px auto 0px auto;
+width: 620px;
+}
+#main2 #description {
+margin: 0 auto 0 auto;
+text-align: justify;
+color: __C_45__; /* unknown */
+}
+#pagenumbers {
+text-align: center;
+margin: 0 auto 20px auto;
+}
+#pagenumbers a {
+text-decoration: none;
+}
+#images {
+padding: 25px 0 0 10px;
+}
+
+/* Page Navigation
+------------------------------ */
+#navbar {
+padding: 4px 7px;
+margin: 0 auto 14px auto;
+width: 620px;
+color: __C_46__; /*text in bread-crumb navigato. (last node and the pipes)*/
+}
+#randomhead {
+	padding: 0;
+	margin: 0 auto 14px auto;
+	width: 630px;
+	border: none;
+	line-height: 0px;
+	background-color: transparent;
+	text-align: center;
+}
+#randomhead img {
+	border: 6px solid __A_8__;
+}
+#pic_day {
+	padding: 0;
+	margin: 0 auto 14px auto;
+	border: none;
+	line-height: 0px;
+	background-color: transparent;
+	text-align: center;
+}
+#pic_day img {
+	border: 6px solid __A_9__;
+}
+
+#wrapnav {
+background: __B_17__;  /*nav bar in single-image.*/
+margin-bottom: 30px;
+}
+#wrapnav a {
+text-decoration:none;
+}
+
+#header #wrapnav {
+background: __B_18__; /*navbar in subdirs.*/
+margin-bottom: 0px;
+}
+
+#main2 #navbar {
+padding: 4px 7px;
+border: none;
+margin: 0 auto 0 auto;
+width: 620px;
+color: __C_49__; /*text in navbar in single-image, only the last node.*/
+}
+
+ul.pagelist { 
+clear: both;
+padding: 0;
+margin: 20px 0 0 0;
+list-style-type: none;
+}
+ul.pagelist li {
+display: inline;
+}
+ul.pagelist li a, ul.pagelist span.disabledlink {
+padding: 4px;
+}
+ul.pagelist li.current a {
+color: __C_50__ ; /*denotes the current page were on (1..5 etc) (I'm hiding it in the background)*/
+}
+ul.pagelist li.prev {
+margin-right: 10px;
+}
+ul.pagelist li.next {
+margin-left: 10px;
+}
+.pagenav {
+clear: both;
+}
+
+
+/* AJAX
+------------------------------ */
+#albumDescEditable:hover {
+ background: __B_19__; /*unknown*/
+}
+#imageDescEditable:hover {
+ background: __B_20__; /*unknown*/
+}
+
+
+/* Image Thumbnails
+------------------------------ */
+.imagethumb a {
+border-top: 2px solid __A_10__;
+border-left: 2px solid __A_11__;
+border-right: 2px solid __A_12__;
+border-bottom: 2px solid __A_13__; 
+display: block;
+padding: 7px;
+margin: 6px;
+background: __B_21__;
+line-height: 0px;
+}
+.imagethumb a:visited {
+border-top: 2px solid __A_14__;
+border-left: 2px solid __A_15__;
+border-right: 2px solid __A_16__  ;
+border-bottom: 2px solid __A_17__  ; 
+background: __B_22__;
+}
+.imagethumb a:hover {
+border-top: 2px solid __A_18__;
+border-left: 2px solid __A_19__;
+border-right: 2px solid __A_20__;
+border-bottom: 2px solid __A_21__;
+background: __B_23__;
+}
+#albums li:hover h4 a {
+color: __C_51__; //albumnamnen, n�r du hovrar.
+}
+.imagethumb {
+float: left;
+text-align: center;
+}
+#albums .imagethumb {
+float: none;
+}
+#randomhead .imagethumb {
+float: none;
+}
+
+/* Album Thumbnails
+------------------------------ */
+#albums {
+padding: 0px 0 0px 0;
+}
+#albums li {
+margin: 0 0 0px 0;
+padding: 0;
+border: 0;
+float: left;
+list-style: none;
+}
+
+
+/* Individual Image
+------------------------------ */
+.imgwrap {
+	width: 615px;
+	margin:0 auto;
+	padding-left: 2em;
+	padding-right: 2em
+}
+.imgwrap ul {
+   text-align: center;
+   margin-left: 0;
+   margin-rignt: 0;
+   padding: 0;
+   list-style-type: none;
+}
+.imgwrap li {
+   margin: 0;
+   padding: 0;
+   float: left;
+   text-align: center;
+   width: 50%
+}
+    
+.image { 
+margin: 0;
+padding: 0;
+border: 0;
+}
+#image {
+	width: 615px;
+	margin: 0 auto;
+}
+#image_container.photo {
+	color: __C_52__;
+	text-align: center;
+	border: 2px solid __A_22__;
+	padding: 7px;
+	background: __B_24__;
+	margin-bottom: 10px;
+}
+#image_container.video {
+	text-align: center;
+	border: 0;
+	padding: 0px;
+	background: none;
+	margin-bottom: 10px;
+}
+
+#image_container a {
+	color: __C_53__;	
+}
+.imgnav {
+float: right;
+width: 140px;
+text-align: center;
+}
+.imgnav .imgprevious a, .imgnav .imgnext a {
+display: block;
+width: 50%;
+height: 100%;
+float: left;
+font-size: 120%;
+text-decoration: none;
+line-height: 200%;
+color: __C_54__; /*header next/prev in single-image view.*/
+}
+.imgnav .imgprevious a:hover, .imgnav .imgnext a:hover {
+text-decoration: none;
+color: __C_55__; /*header next/prev i single-image view, mouse over.*/
+}  
+.imgnav .imgprevious a{
+float: left;
+}
+.imgnav .imgnext a {
+float: right;
+}
+.imgnav .imgdisabledlink {
+display: block;
+width: 50%;
+height: 100%;
+float: left;
+font-size: 120%;
+text-decoration: none;
+line-height: 200%;
+color: __C_56__; /*disabled next/prev in single image view*/
+}
+
+/* Forms
+------------------------------ */
+.checkbox {
+cursor: pointer;
+}
+
+/* Footer
+------------------------------------ */
+.footlinks {
+color: __C_57__;
+font-size: 11px;
+text-align: center;
+padding: 4px 0;
+clear: both;
+}
+.footlinks a {
+color: __C_58__;
+text-decoration:underline;
+}
+.footlinks a:hover {
+color: __C_59__;
+}
+/* Error Messages
+------------------------------ */
+.errorbox {
+	list-style-type: none;
+	padding: 20px;
+	background-color: __C_60__;
+	border-top: 1px solid __A_23__;
+	border-left: 1px solid __A_24__;
+	border-right: 1px solid __A_25__;
+	border-bottom: 5px solid __A_26__;
+	margin-bottom: 10px;
+	font-size: 100%;
+	color: __C_61__;
+}
+.errorbox h2 {
+	color: __C_62__;
+	font-size: 130%;
+	font-weight: bold;
+	margin: 0px;
+}
+.errorlist {
+	list-style-type: none;
+}	
+
+#map{
+	width: 595px;
+	margin: 0 auto;
+}
+#map_link {
+	text-align: center;
+	color: __C_63__;
+}
+#map_link a {
+	text-decroation: none;
+}
+
+/* Admin Toolbox
+------------------------------ */
+#admin, #admin_data{
+	position:fixed;
+	right:0;
+	top:0;
+	border-left: 1px solid __A_27__;
+	border-bottom: 1px solid __A_28__;
+	width: 10em;
+	padding: 0.5em;
+}
+#admin, #admin_data ul {
+	text-align: left;
+}
+#admin, #admin_data a {
+	text-decoration:none;
+}
+#admin_data{
+	top: 2em;
+	background-image:url(../images/25percent.png);
+}
+#admin h3 {
+	font: 100% Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-weight: bold;
+	color: __C_64__;
+	margin:0;
+	padding:0;
+}
+#admin h3 a {
+	text-decoration:none;
+}
+
+/* Search Box
+------------------------------ */
+#search {
+	float: right;
+	width: 175px;
+	text-align: left;
+	margin-top: 26px;
+	_margin-top: 24px; /* IE Only */
+}
+#search input.button {
+  padding: 1px;
+  font-size: 80%;
+}
+#search a {
+	text-decoration: none;
+	border:none;
+	outline: none
+}
+#search a:visited {
+	text-decoration: none;
+	border:none;
+	outline: none
+}
+#search a:hover {
+	text-decoration: none;
+	border:none;
+	outline: none
+}
+#search a:active {
+	text-decoration: none;
+	border:none;
+	outline: none
+}
+#search ul {
+border: 1px solid __A_29__; position:absolute; text-align:left; list-style: none; 
+height: 8em; width: 20em; overflow: auto; 
+color: __C_65__;
+background-image:url(../images/50percent.png);
+}
+#searchfields_icon {
+position: relative;
+top: 4px;
+}
+#search_submit {
+position: relative;
+top: 6px;
+}
+
+.clear {
+  clear:both;
+  height:10px;
+}
+/* Archive View
+---------------------------- */
+#archive{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+#archive p {
+	padding:10px 0;
+	margin:20px 0;
+	background: __B_25__;
+	font-size: 18px;
+}
+ul.archive {
+	text-align: center;
+	padding:0;
+	list-style:none;
+	width:500px;
+}
+ul.archive .year {
+	text-align: center;
+	margin-bottom:5px;
+	font-weight:bold;
+	font-size:18px;
+	color: __C_66__;
+}
+ul.archive .month {
+	text-align: center;
+	font-size: 14px;
+	list-style:none;
+	border-top:2px solid white;
+	padding-top: 5px;
+}
+#tag_cloud {
+	text-align: center;
+	padding-bottom: 5px;
+}
+
+#tag_cloud ul li {
+	text-align: center;
+	display: inline;
+	list-style-type: none;
+	line-height: 2em;
+}
+#tag_cloud p {
+	padding:10px 0;
+	margin:20px 0;
+	background: __B_26__;
+	font-size: 18px;
+	text-align: center;
+}
+#content-left {
+width: 590px;
+height: 100%;
+float: left;
+margin-top: 2em;
+margin-bottom: 2em;
+margin-left: 0;
+margin-right: 0;
+padding-top: 0.8em;
+padding-left: 45px;
+padding-right: 45px;
+font-size: 1.2em;
+line-height: 1.6em; 
+}
+
+#content-left h2 {
+font-size: 1.2em;
+line-height: 2em;
+}
+#content-left h3 {
+font-size: 1.4em;
+margin-left: 0px;
+margin-bottom: 0.5em;
+}
+#content-left h3 a {
+text-decoration:none;
+}
+#content-left p {
+font-size: 1em;
+line-height: 1.1em;
+margin-bottom: 1em;
+clear: both;
+}
+#sidebar {
+width: 360px;
+height: 100%;
+float: right;
+background-color: transparent;
+margin-right: 4px;
+border-top: 0px dotted red;  
+}
+.menu {
+font: 18px Arial, Helvetica, Tahoma, Verdana, sans-serif;
+margin-top: 0em;
+padding-top: 0em;
+padding-bottom: 0em;
+padding-left: 1em;
+padding-right: 1em;
+height: 100%; 
+}
+.menu_rule {
+padding-top: 0em;
+padding-bottom: 0em;
+margin-top: 0.5em;
+margin-bottom: 0.5em;
+border-bottom: 1px dotted darkgray;
+background-image: none;
+background-repeat: no-repeat;
+background-position: 1px 0px;
+}
+.menu h3 {
+font-size: 1em;
+font-weight: normal;
+text-transform: uppercase;
+color: __C_68__;
+margin-bottom: 0.5em; 
+margin-top: 0.7em;
+margin-left: 1.6em;
+border: 0px solid gray;
+}
+.menu ul {
+list-style: none;
+padding-left: 1.8em;
+padding-right: 1em;
+margin-top: 0.2em;
+}
+.menu ul li {
+padding-left: 20px;
+padding-bottom: 3px;
+background-image: url(__arrow_right__);
+background-repeat: no-repeat;
+background-position: 1px 0px;
+}
+.menu ul li.menu_menulabel {
+color: __C_69__;
+font-size: 1em;
+font-weight: normal;
+text-transform: uppercase;
+text-decoration:none;
+background-image: none;
+}
+.menu ul li.menu_menulabel ul.submenu li {
+font-style: normal;
+text-decoration:none;
+text-transform: none;
+}
+.menu ul li a {
+text-decoration:none;
+}
+.menu ul li.menu-active {
+color: __C_70__;
+background-image: url(../images/dark-bullet.png);
+}
+
+.menu h3 a {
+color: __C_71__;
+font-size: 1em;
+font-weight: normal;
+text-transform: uppercase;
+text-decoration:none
+}
+.menu h3 a:hover {
+color: __C_72__;
+}
+
+.submenu {
+list-style: none;
+margin-left: -25px;
+padding: 2px;
+}
+#archive_news {
+	text-align: center;
+	padding-bottom: 5px;
+}
+#archive_news ul li {
+	display: inline;
+	list-style-type: none;
+}
+#archive_news p {
+	padding:10px 0;
+	margin:20px 0;
+	background: __B_27__;
+	font-size: 18px;
+	text-align: center;
+}
+#pagetext {
+font-size: 1em;
+line-height: 1em;
+margin-bottom: 1em;	
+}
+#pagetext p {
+	line-height: 1em;
+}
+ul {
+	margin-left: 1em;
+	margin-bottom: 0.8em;
+}
+ul li {
+	margin-left: 1em;
+}
+
+#pagetext a:link, a:active, a:visited {
+text-decoration:underline;
+}
+#pagetext h3 a:link, a:active, a:visited {
+text-decoration:none;
+}
+/* News Articles
+------------------------------ */
+
+.newsarticle {
+padding-top: 1em;
+padding-bottom: 1em;
+border-bottom: 1px dotted __A_30__;
+line-height: 1em;
+}
+
+.newsarticle a:link, a:active, a:visited {
+text-decoration:underline;
+}
+.newsarticlecredit {
+margin-top: 0px;
+margin-bottom: 10px;
+
+}
+
+.newsarticlecredit-left {
+float: left;
+margin-right: 0.3em;
+}
+
+.newscategories {
+margin: 0;
+padding: 0;
+display: inline;
+}
+
+.newscategories li {
+display: inline;
+list-style: none;
+}
+
+.singlenews_prev {
+float: left;
+}
+.singlenews_next {
+float: right;
+}
+
+.newstype {
+font-size: 0.8em;
+}
+
+/* Zenphoto link
+------------------------------ */
+
+#zen-part {
+ font-family: Arial, Helvetica, sans-serif;
+ font-size: 1.8em;
+ font-weight: 100;
+}
+
+#photo-part {
+ font-family: Arial, Helvetica, sans-serif;
+ font-size: 0.9em;
+ font-weight: bold;
+}
+
+.inputbox {
+	width: 250px;
+	padding: 2px;
+}
+#efsearch {
+padding: 0px;
+}
+#efsearchhead_pages {
+padding: 10px;
+background: __B_28__;
+}
+#efsearchhead_pages p {
+text-align: right;
+font-size: 80%;
+}
+#efsearchhead_news {
+padding: 10px;
+background: __B_29__;
+}
+#efsearchhead_news p {
+text-align: right;
+font-size: 80%;
+}
+#efsearchhead_gallery {
+padding: 10px;
+background: __B_30__;
+}
+#efsearchhead_gallery p {
+text-align: right;
+font-size: 80%;
+}
+
+.efsearchtext {
+margin-top: 5px;
+padding: 0 5px;
+color: __C_73__; /*comment text color*/
+}
+.efsearchtext a {
+color: __C_74__;
+cursor: pointer;
+}
+.efsearchtext a:hover {
+color: __C_75__;
+text-decoration: underline;
+}
+.efsearchtext ul {
+list-style-type: none;
+padding-left:20px
+}
+.efsearchtext p {
+text-indent: 1em;
+}
+
+/* tinyZenpage title addition */
+.zenpage_wrapper_left {
+margin-right: 10px;
+padding: 0px 10px 10px 0px;
+}
+
+.zenpage_wrapper_right {
+margin-left: 10px;
+padding: 0px 0px 10px 10px;
+}
+
+div.zenpage_title {
+font-style: italic;
+}
+.textobject {
+	text-align: left !important;
+	text-decoration: none !important;
+	overflow:scroll !important;
+}
+
+#googlemap_data {
+	color:__C_76__;
+}
+
+.clearall {
+clear: both !important;
+}
+

@@ -29,7 +29,7 @@ if (!defined('WEBPATH'))
 					<div id="content-error">
 						<div class="errorbox">
 							<?php
-							echo gettext("The Zenphoto object you are requesting cannot be found.");
+							echo gettext("The object you are requesting cannot be found.");
 							print404status(isset($album) ? $album : NULL, isset($image) ? $image : NULL, $obj);
 							?>
 						</div>

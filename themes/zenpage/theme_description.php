@@ -1,8 +1,7 @@
 <?php
 
 // force UTF-8 Ø
-
-// Zenphoto theme definition file
+// Theme definition file
 $theme_description['name'] = 'Zenpage';
 $theme_description['author'] = 'Malte Müller (acrylian)';
 $theme_description['version'] = true;

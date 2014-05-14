@@ -86,7 +86,7 @@ function jqm_printFooterNav() {
 		@call_user_func('printLanguageSelector', "langselector");
 		?>
 		<ul id="footerlist">
-			<li><?php echo gettext('Powered by'); ?> <a href="http://www.zenphoto.org">Zenphoto</a> and <a href="http://jquerymobile.com">jQueryMobile</a></li>
+			<li><?php printZenphotoLink(); ?> and <a href="http://jquerymobile.com">jQueryMobile</a></li>
 			<li><?php echo gettext('zpMobile theme by'); ?> <a href="http://www.maltem.de">Malte Müller</a></li>
 		</ul>
 		<?php
@@ -105,11 +105,11 @@ function jqm_printFooterNav() {
 			?>
 			<div data-role="navbar">
 				<ul id="footernav">
-		<?php echo $adminlink . $favoriteslink; ?>
+					<?php echo $adminlink . $favoriteslink; ?>
 				</ul>
 			</div>
 			<!-- /navbar -->
-	<?php } ?>
+		<?php } ?>
 	</div><!-- footer -->
 	<?php
 }
@@ -144,26 +144,26 @@ function jqm_printMenusLinks() {
 	global $_zp_gallery_page;
 	?>
 	<div id="collapsible-lists" data-collapsed="false">
-	<?php if (extensionEnabled('zenpage')) { ?>
+		<?php if (extensionEnabled('zenpage')) { ?>
 			<div data-role="collapsible" data-content-theme="c" data-theme="b"<?php if ($_zp_gallery_page == 'news.php') echo ' data-collapsed="false"'; ?>>
 				<h3><?php echo gettext('News'); ?></h3>
-			<?php printAllNewsCategories(gettext("All news"), TRUE, "", "menu-active", true, "submenu", "menu-active"); ?>
+				<?php printAllNewsCategories(gettext("All news"), TRUE, "", "menu-active", true, "submenu", "menu-active"); ?>
 			</div>
 		<?php } ?>
-	<?php if (function_exists('printAlbumMenu')) { ?>
+		<?php if (function_exists('printAlbumMenu')) { ?>
 			<div data-role="collapsible" data-content-theme="c" data-theme="b"<?php if ($_zp_gallery_page == 'gallery.php' || $_zp_gallery_page == 'album.php' || $_zp_gallery_page == 'image.php') echo ' data-collapsed="false"'; ?>>
 				<h3><?php echo gettext('Gallery'); ?></h3>
-			<?php printAlbumMenu('list', true, '', '', '', '', 'Gallery Index', false, false, false); ?>
+				<?php printAlbumMenu('list', true, '', '', '', '', 'Gallery Index', false, false, false); ?>
 			</div>
 		<?php } ?>
-	<?php if (extensionEnabled('zenpage')) { ?>
+		<?php if (extensionEnabled('zenpage')) { ?>
 			<div data-role="collapsible" data-content-theme="c" data-theme="b"<?php if ($_zp_gallery_page == 'pages.php') echo ' data-collapsed="false"'; ?>>
 				<h3><?php echo gettext('Pages'); ?></h3>
-			<?php printPageMenu("list", "", "menu-active", "submenu", "menu-active", NULL, true, true, NULL); ?>
+				<?php printPageMenu("list", "", "menu-active", "submenu", "menu-active", NULL, true, true, NULL); ?>
 			</div>
-			<?php } ?>
+		<?php } ?>
 		<div data-role="collapsible" data-content-theme="c" data-theme="b">
-	<?php jqm_printRSSlinks(); ?>
+			<?php jqm_printRSSlinks(); ?>
 		</div>
 	</div>
 	<?php
