@@ -1,23 +1,18 @@
-Zenphoto
-========
+# About ZenPhoto20
 
-**http://www.zenphoto.org**
+ZenPhoto20 is a standalone CMS for multimedia focused websites. Our focus lies on being easy to use and having all the features there when you need them (but out of the way if you do not.)
 
-Welcome to the Zenphoto git repository!
+ZenPhoto20 features support for images, video and audio formats, a news section (blog), and custom pages to run entire websites.
 
-About Zenphoto
---------------
+This makes ZenPhoto20 the ideal CMS for personal websites of illustrators, artists, designers, photographers, film makers and musicians.
 
-Zenphoto is a standalone CMS for multimedia focused websites. Our focus lies on being easy to use and having all the features there when you need them (but out of the way if you do not.)
 
-Zenphoto features support for images, video and audio formats, and the Zenpage CMS plugin provides a fully integrated news section (blog) and custom pages to run entire websites.
+ZenPhoto20 was created with a fork of the Zenphoto repository at the time of the Zenphoto 1.4.6 release.
+The intent of this branching is to clean up the years of detritus that the original code accumulated. At the same time
+the we intend to modernize the support process and enable third party contributors to easily get their works attached to the release packages.
 
-This makes Zenphoto the ideal CMS for personal websites of illustrators, artists, designers, photographers, film makers and musicians.
+# Support
 
-Support
-------
+ZenPhoto20 will be updated incrementally via GitHub. We will tag reases when new features are added or significant bugs are fixed. There will not be a fixed release cycle nor a "Development" stream.
 
-There is a support forum for Zenphoto discussions at www.zenphoto.org/support.
-
-If you think you have run into a Zenphoto bug please follow the following guidelines:
-http://www.zenphoto.org/news/general-contributor-guidelines#reporting-bugs
+Problems may be reported and features requested via repository [__issues__](https://github.com/ZenPhoto20/ZenPhoto20/issues)
