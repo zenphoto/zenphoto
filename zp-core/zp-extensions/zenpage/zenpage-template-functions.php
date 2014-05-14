@@ -8,12 +8,12 @@
  */
 /* * ********************************************* */
 /* ZENPAGE TEMPLATE FUNCTIONS
-  /*********************************************** */
+	/*********************************************** */
 
 
 /* * ********************************************* */
 /* General functions
-  /*********************************************** */
+	/*********************************************** */
 
 /**
  * Checks if the current page is in news context.
@@ -117,7 +117,7 @@ function getAuthor($fullname = false) {
 
 /* * ********************************************* */
 /* News article functions
-  /*********************************************** */
+	/*********************************************** */
 
 /**
  * Gets the latest news either only news articles or with the latest images or albums
@@ -127,20 +127,12 @@ function getAuthor($fullname = false) {
  * @param int $number The number of news items to get
  * @param string $category Optional news articles by category (only "none" option)
  * @param bool $sticky place sticky articles at the front of the list
- * @param string $sortdirection 'desc' descending (default) or 'asc' ascending
+ * @param string $sortdirection 'asc' ascending otherwise descending
  * @return array
  */
 function getLatestNews($number = 2, $category = '', $sticky = true, $sortdirection = 'desc') {
 	global $_zp_zenpage, $_zp_current_zenpage_news;
-	switch (strtolower($sortdirection)) {
-		case 'desc':
-		default:
-			$sortdir = false;
-			break;
-		case 'asc':
-			$sortdir = true;
-			break;
-	}
+	$sortdir = strtolower($sortdirection) != 'asc';
 	if (empty($category)) {
 		$latest = $_zp_zenpage->getArticles($number, NULL, true, NULL, $sortdir, $sticky, NULL);
 	} else {
@@ -795,7 +787,7 @@ function printAllNewsCategories($newsindex = 'All news', $counter = TRUE, $css_i
 
 /* * ********************************************* */
 /* News article URL functions
-  /*********************************************** */
+	/*********************************************** */
 
 /**
  * Returns the full path to a news category
@@ -877,7 +869,7 @@ function getNewsArchivePath($date, $page) {
 
 /* * ********************************************************* */
 /* News index / category / date archive pagination functions
-  /********************************************************** */
+	/********************************************************** */
 
 function getNewsPathNav($page) {
 	global $_zp_current_category, $_zp_post_date;
@@ -1057,7 +1049,7 @@ function getTotalNewsPages() {
 
 /* * ********************************************************************* */
 /* Single news article pagination functions (previous and next article)
-  /*********************************************************************** */
+	/*********************************************************************** */
 
 /**
  * Returns the title and the titlelink of the next or previous article in single news article pagination as an array
@@ -1074,7 +1066,7 @@ function getTotalNewsPages() {
 function getNextPrevNews($option = '', $sortorder = 'date', $sortdirection = 'desc') {
 	global $_zp_zenpage, $_zp_current_zenpage_news;
 
-	$sortdir = strtolower($sortdirection) == 'desc';
+	$sortdir = strtolower($sortdirection) != 'asc';
 	if (!empty($option)) {
 		switch ($option) {
 			case "prev":
@@ -1156,7 +1148,7 @@ function printPrevNewsLink($prev = "« ", $sortorder = 'date', $sortdirection = 
 
 /* * ******************************************************* */
 /* Functions - shared by Pages and News articles
-  /********************************************************* */
+	/********************************************************* */
 
 /**
  * Gets the statistic for pages, news articles or categories as an unordered list
@@ -1170,12 +1162,12 @@ function printPrevNewsLink($prev = "« ", $sortorder = 'date', $sortdirection = 
  * 										 "mostrated" for news articles and pages
  * 										 "toprated" for news articles and pages
  * 										 "random" for pages and news articles
- * @param string $sortdirection "asc" for ascending or "desc" for descending (default)
+ * @param string $sortdirection "asc" for ascending otherwise descending (default)
  * @return array
  */
 function getZenpageStatistic($number = 10, $option = "all", $mode = "popular", $sortdirection = 'desc') {
 	global $_zp_zenpage, $_zp_current_zenpage_news, $_zp_current_zenpage_pages;
-	$sortdir = strtolower($sortdirection) == 'desc';
+	$sortdir = strtolower($sortdirection) != 'asc';
 	$statsarticles = array();
 	$statscats = array();
 	$statspages = array();
@@ -1684,7 +1676,7 @@ function printZenpageItemsBreadcrumb($before = NULL, $after = NULL) {
 
 /* * ********************************************* */
 /* Pages functions
-  /*********************************************** */
+	/*********************************************** */
 $_zp_zenpage_pagelist = NULL;
 
 /**
@@ -2141,7 +2133,7 @@ function checkForPage($titlelink) {
 
 /* * ********************************************* */
 /* Comments
-  /*********************************************** */
+	/*********************************************** */
 
 /**
  * Gets latest comments for news articles and pages

@@ -174,12 +174,9 @@ class feed {
 		}
 		$this->locale_xml = strtr($this->locale, '_', '-');
 		if (isset($this->options['sortdir'])) {
-			$this->sortdirection = $this->options['sortdir'];
-			if ($this->sortdirection = !'desc' || $sortdir != 'asc') {
-				$this->sortdirection = 'desc';
-			}
+			$this->sortdirection = strtolower($this->options['sortdir']) != 'asc';
 		} else {
-			$this->sortdirection = 'desc';
+			$this->sortdirection = true;
 		}
 		if (isset($this->options['sortorder'])) {
 			$this->sortorder = $this->options['sortorder'];
