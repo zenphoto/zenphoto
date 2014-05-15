@@ -952,7 +952,7 @@ class AlbumBase extends MediaObject {
 			$order = false;
 		} else {
 			if (!is_null($sortdirection)) {
-				$order = strtoupper($sortdirection) == 'DESC';
+				$order = strtolower($sortdirection) == 'desc';
 			} else {
 				$order = $this->getSortDirection('image');
 			}

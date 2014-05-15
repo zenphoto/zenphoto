@@ -30,6 +30,7 @@ require_once(dirname(dirname(__FILE__)) . '/template-functions.php');
  * 		"latestupdated" for the latest updated
  * 		"random" for random order (yes, strictly no statistical order...)
  * @param string $albumfolder The name of an album to get only the statistc for its subalbums
+ * @param mixed $sortdirection "asc" for ascending order otherwise order is descending
  * @return string
  */
 function getAlbumStatistic($number = 5, $option, $albumfolder = '', $sortdirection = 'desc') {
@@ -43,12 +44,12 @@ function getAlbumStatistic($number = 5, $option, $albumfolder = '', $sortdirecti
 	}
 	getAllAccessibleAlbums($obj, $albumlist, false);
 	switch (strtolower($sortdirection)) {
-		case 'desc':
-		default:
-			$sortdir = 'DESC';
-			break;
+		case false:
 		case 'asc':
 			$sortdir = 'ASC';
+			break;
+		default:
+			$sortdir = 'DESC';
 			break;
 	}
 	if (empty($albumlist)) {
@@ -357,6 +358,7 @@ function printLatestUpdatedAlbums($number = 5, $showtitle = false, $showdate = f
  * @param string $albumfolder foldername of an specific album
  * @param bool $collection only if $albumfolder is set: true if you want to get statistics from this album and all of its subalbums
  * @param integer $threshold the minimum number of ratings an image must have to be included in the list. (Default 0)
+ * @param mixed $sortdirection "asc" for ascending order otherwise order is descending
  * @return string
  */
 function getImageStatistic($number, $option, $albumfolder = '', $collection = false, $threshold = 0, $sortdirection = 'desc') {
@@ -377,12 +379,12 @@ function getImageStatistic($number, $option, $albumfolder = '', $collection = fa
 		$albumWhere .= ' AND images.total_votes >= ' . $threshold;
 	}
 	switch (strtolower($sortdirection)) {
-		case 'desc':
-		default:
-			$sortdir = 'DESC';
-			break;
+		case false:
 		case 'asc':
 			$sortdir = 'ASC';
+			break;
+		default:
+			$sortdir = 'DESC';
 			break;
 	}
 	switch ($option) {

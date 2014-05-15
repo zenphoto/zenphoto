@@ -10,10 +10,6 @@
  * Some global variable setup
  *
  */
-//TODO: on the 1.4.7 release these combinews defines can be removed.
-define('ZENPAGE_COMBINEWS', false);
-define('ZP_COMBINEWS', false);
-
 define('ZP_SHORTENINDICATOR', $shortenindicator = getOption('zenpage_textshorten_indicator'));
 define('ZP_SHORTEN_LENGTH', getOption('zenpage_text_length'));
 define('ZP_READ_MORE', getOption("zenpage_read_more"));
@@ -427,6 +423,25 @@ class Zenpage {
 			$offset = ($page - 1) * $articles_per_page;
 		}
 		return $offset;
+	}
+
+	/**
+	 * Returns the articles count
+	 *
+	 */
+	function getTotalArticles() {
+		global $_zp_current_category;
+		if (empty($_zp_current_category)) {
+			if (isset($_GET['category'])) {
+				$cat = sanitize($_GET['category']);
+				$catobj = new ZenpageCategory($cat);
+			} else {
+				return count($this->getArticles(0));
+			}
+		} else {
+			$catobj = $_zp_current_category;
+		}
+		return count($catobj->getArticles());
 	}
 
 	/**

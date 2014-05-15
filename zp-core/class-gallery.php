@@ -761,7 +761,7 @@ class Gallery {
 			$order = false;
 		} else {
 			if (!is_null($sortdirection)) {
-				$order = strtoupper($sortdirection) == 'DESC';
+				$order = strtolower($sortdirection) == 'desc';
 			} else {
 				$order = $obj->getSortDirection('album');
 			}
@@ -830,7 +830,7 @@ class Gallery {
 	}
 
 	/**
-	 * Title to be used for the home (not Zenphoto gallery) WEBsite
+	 * Title to be used for the home (not gallery) WEBsite
 	 */
 	function getWebsiteTitle($locale = NULL) {
 		$text = $this->get('website_title');
@@ -846,7 +846,7 @@ class Gallery {
 	}
 
 	/**
-	 * The URL of the home (not Zenphoto gallery) WEBsite
+	 * The URL of the home (not gallery) WEBsite
 	 */
 	function getWebsiteURL() {
 		return $this->get('website_url');

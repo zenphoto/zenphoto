@@ -78,12 +78,13 @@ class Combi extends Zenpage {
 			$stickyorder = 'sticky DESC,';
 		}
 		switch (strtolower($sortdirection)) {
+			case false:
+			case 'asc':
+				$sortdir = 'ASC';
+				break;
 			case 'desc':
 			default:
 				$sortdir = 'DESC';
-				break;
-			case 'asc':
-				$sortdir = 'ASC';
 				break;
 		}
 		$type3 = query("SET @type3:='0'");

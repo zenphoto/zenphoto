@@ -128,7 +128,7 @@ datepickerJS();
 					$direction = true;
 					if (isset($_GET['sortorder'])) {
 						list($sortorder, $sortdirection) = explode('-', $_GET['sortorder']);
-						$direction = $sortdirection == 'desc';
+						$direction = $sortdirection && $sortdirection == 'desc';
 					}
 					if (isset($_GET['category'])) {
 						$catobj = new ZenpageCategory(sanitize($_GET['category']));

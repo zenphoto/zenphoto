@@ -166,7 +166,7 @@ class favorites extends AlbumBase {
 					$order = false;
 				} else {
 					if (!is_null($sortdirection)) {
-						$order = strtoupper($sortdirection) == 'DESC';
+						$order = $sortdirection && strtolower($sortdirection) == 'desc';
 					} else {
 						$order = $obj->getSortDirection('album');
 					}
@@ -219,7 +219,7 @@ class favorites extends AlbumBase {
 					$order = false;
 				} else {
 					if (!is_null($sortdirection)) {
-						$order = strtoupper($sortdirection) == 'DESC';
+						$order = $sortdirection && strtolower($sortdirection) == 'desc';
 					} else {
 						$order = $this->getSortDirection('image');
 					}
