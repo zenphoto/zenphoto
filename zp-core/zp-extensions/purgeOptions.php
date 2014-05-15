@@ -42,25 +42,30 @@ function listOwners($owners, $nest = '') {
 		<li>
 			<?php
 			if (is_array($detail)) {
+				$autocheck = str_replace('/', '_', $nest . $owner);
 				if (array_key_exists($owner, $xlate)) {
 					echo $xlate[$owner];
 				} else {
 					echo $owner;
 				}
 				?>
+				<input type="checkbox" id="<?php echo $autocheck; ?>" onclick="$('.<?php echo $autocheck; ?>').prop('checked', $('#<?php echo $autocheck; ?>').prop('checked'));">
 				<ul>
 					<?php listOwners($detail, $nest . $owner . '/'); ?>
+
 				</ul>
 				<?php
 			} else {
+				$autocheck = str_replace('/', '_', rtrim($nest, '/'));
 				if (file_exists(SERVERPATH . '/' . internalToFilesystem($nest . $detail))) {
-					$class = '';
+					$missing = $labelclass = '';
 				} else {
-					$class = ' class="missing_owner"';
+					$labelclass = 'missing_owner';
+					$missing = ' missing';
 				}
 				?>
-				<label<?php echo $class; ?>>
-					<input type="checkbox" name="del[]" value="<?php echo $nest . $detail; ?>"><?php echo stripSuffix($detail); ?>
+				<label class="<?php echo $labelclass; ?>">
+					<input type="checkbox" name="del[]" class="<?php echo $autocheck . $missing; ?>" value="<?php echo $nest . $detail; ?>"><?php echo stripSuffix($detail); ?>
 				</label>
 				<?php
 			}

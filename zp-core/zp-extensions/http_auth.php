@@ -71,8 +71,8 @@ class http_auth {
 	 */
 	function getOptionsSupported() {
 		return array(gettext('User validation') => array('key'			 => 'http_auth_trust', 'type'		 => OPTION_TYPE_RADIO,
-										'buttons'	 => array(gettext('verify')	 => '0', gettext('trusted') => '1'),
-										'desc'		 => gettext('Set to <em>trusted</em> to presume the HTTP user is securely authorized. (This setting does not verify passwords against the Zenphoto user.)')));
+										'buttons'	 => array(gettext('verify') => '0', gettext('trusted') => '1'),
+										'desc'		 => gettext('Set to <em>trusted</em> to presume the HTTP user is securely authorized. (This setting does not verify passwords against the zenphoto user.)')));
 	}
 
 	function handleOption($option, $currentValue) {
@@ -101,7 +101,7 @@ class http_auth {
 				$user = $_SERVER['PHP_AUTH_USER'];
 				$pass = $_SERVER['PHP_AUTH_PW'];
 				if (getOption('http_auth_trust')) {
-					$userobj = Zenphoto_Authority::getAnAdmin(array('`user`='	 => $user, '`valid`=' => 1));
+					$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
 				} else {
 					$userobj = Zenphoto_Authority::checkLogon($user, $pass);
 				}

@@ -734,7 +734,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 													<input type="button" value="<?php echo gettext("Link:"); ?>" onclick="$('#item_link').select();" title="<?php echo gettext('Click to select link'); ?>" />
 												</td>
 												<td class="middlecolumn">
-													<input  type="text" size="92" name="item_link" id="item_link" value="<?php echo $result->getLink(); ?>" disabled="disabled" />
+													<input  type="text"  name="item_link" id="item_link" value="<?php echo $result->getLink(); ?>" disabled="disabled" />
 												</td>
 											</tr>
 											<?php

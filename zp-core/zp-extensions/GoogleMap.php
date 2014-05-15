@@ -44,7 +44,6 @@ class GoogleMap {
 		setOptionDefault('gmap_sessions', 1);
 		if (OFFSET_PATH == 2) {
 			setOptionDefault('gmap_display', 'hide');
-			purgeOption('gmap_hide');
 		}
 		setOptionDefault('gmap_display', 'show');
 	}

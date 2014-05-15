@@ -38,22 +38,6 @@ class rss_options {
 			setOptionDefault('RSS_truncate_length', getOption('zenpage_rss_length'));
 			setOptionDefault('RSS_zenpage_items', getOption('zenpage_rss_items'));
 
-
-			purgeOption('feed_items');
-			purgeOption('feed_imagesize');
-			purgeOption('feed_sortorder');
-			purgeOption('feed_items_albums');
-			purgeOption('feed_imagesize_albums');
-			purgeOption('feed_sortorder_albums');
-			purgeOption('feed_enclosure');
-			purgeOption('feed_mediarss');
-			purgeOption('feed_cache');
-			purgeOption('feed_cache_expire');
-			purgeOption('feed_hitcounter');
-			purgeOption('feed_title');
-			purgeOption('zenpage_rss_length');
-			purgeOption('zenpage_rss_items');
-
 			setOptionDefault('RSS_truncate_length', '100');
 			setOptionDefault('RSS_zenpage_items', '10');
 			setOptionDefault('RSS_items', 10); // options for standard images rss
@@ -199,9 +183,6 @@ class rss_options {
  */
 function getRSSLink($option, $lang = NULL, $addl = NULL) {
 	global $_zp_current_album, $_zp_current_image, $_zp_current_admin_obj, $_zp_current_category;
-	if (strtolower($option) == 'newswithimages') {
-		RSS_internal_deprecations::getRSSLink($option);
-	}
 	if (empty($lang)) {
 		$lang = zpFunctions::getLanguageText(getOption('locale'));
 	}

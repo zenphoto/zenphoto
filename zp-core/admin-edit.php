@@ -693,6 +693,7 @@ echo "\n</head>";
 
 				$oldalbumimagesort = getOption('albumimagesort');
 				$direction = getOption('albumimagedirection');
+				$direction = $direction && $direction != 'asc';
 				if ($album->isDynamic()) {
 					$subalbums = array();
 					$allimages = array();
@@ -708,7 +709,9 @@ echo "\n</head>";
 						} else {
 							$retunNull = '';
 						}
-						$sql = 'SELECT * FROM ' . prefix('images') . ' WHERE (`albumid`=' . $album->getID() . ') AND (' . $retunNull . ' `owner`="' . $requestor . '") ORDER BY `' . $oldalbumimagesort . '` ' . $direction;
+						$sql = 'SELECT * FROM ' . prefix('images') . ' WHERE (`albumid`=' . $album->getID() . ') AND (' . $retunNull . ' `owner`="' . $requestor . '") ORDER BY `' . $oldalbumimagesort . '`';
+						if ($direction)
+							$sql .= ' DESC';
 						$result = query($sql);
 						if ($result) {
 							while ($row = db_fetch_assoc($result)) {
@@ -1771,7 +1774,7 @@ echo "\n</head>";
 								</label>
 								<label style="float: right">
 									<?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this
-																																.checked);" />
+																									.checked);" />
 								</label>
 							</div>
 

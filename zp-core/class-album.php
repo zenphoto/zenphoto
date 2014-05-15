@@ -271,7 +271,7 @@ class AlbumBase extends MediaObject {
 	 *
 	 * @param string $page  Which page of subalbums to display.
 	 * @param string $sorttype The sort strategy
-	 * @param string $sortdirection The direction of the sort
+	 * @param bool $sortdirection The direction of the sort
 	 * @param bool $care set to false if the order does not matter
 	 * @param bool $mine set true/false to override ownership
 	 * @return array
@@ -302,7 +302,7 @@ class AlbumBase extends MediaObject {
 	 * @param string $page  Which page of images should be returned. If zero, all images are returned.
 	 * @param int $firstPageCount count of images that go on the album/image transition page
 	 * @param string $sorttype optional sort type
-	 * @param string $sortdirection optional sort direction
+	 * @param bool $sortdirection optional sort direction
 	 * @param bool $care set to false if the order of the images does not matter
 	 * @param bool $mine set true/false to override ownership
 	 *
@@ -934,7 +934,7 @@ class AlbumBase extends MediaObject {
 	 *
 	 * @param array $images The array of filenames to be sorted.
 	 * @param  string $sorttype optional sort type
-	 * @param  string $sortdirection optional sort direction
+	 * @param  bool $sortdirection optional sort direction
 	 * @param bool $mine set to true/false to override ownership clause
 	 * @return array
 	 */
@@ -952,12 +952,15 @@ class AlbumBase extends MediaObject {
 			$order = false;
 		} else {
 			if (!is_null($sortdirection)) {
-				$order = strtolower($sortdirection) == 'desc';
+				$order = $sortdirection && strtolower($sortdirection) != 'asc';
 			} else {
 				$order = $this->getSortDirection('image');
 			}
 		}
-		$result = query($sql = "SELECT * FROM " . prefix("images") . " WHERE `albumid`= " . $this->getID() . ' ORDER BY ' . $sortkey . ' ' . $sortdirection);
+		$sql = "SELECT * FROM " . prefix("images") . " WHERE `albumid`= " . $this->getID() . ' ORDER BY ' . $sortkey;
+		if ($order)
+			$sql .= ' DESC';
+		$result = query($sql);
 		$results = array();
 		while ($row = db_fetch_assoc($result)) {
 			$filename = $row['filename'];
@@ -1178,7 +1181,7 @@ class Album extends AlbumBase {
 	 *
 	 * @param string $page  Which page of subalbums to display.
 	 * @param string $sorttype The sort strategy
-	 * @param string $sortdirection The direction of the sort
+	 * @param bool $sortdirection The direction of the sort
 	 * @param bool $care set to false if the order does not matter
 	 * @param bool $mine set true/false to override ownership
 	 * @return array
@@ -1192,12 +1195,9 @@ class Album extends AlbumBase {
 				$sorttype = $this->getSortType('album');
 			}
 			if (is_null($sortdirection)) {
-				if ($this->getSortDirection('album')) {
-					$sortdirection = 'DESC';
-				} else {
-					$sortdirection = '';
-				}
+				$sortdirection = $this->getSortDirection('album');
 			}
+			$sortdirection = $sortdirection && strtolower($sortdirection) != 'asc';
 			$dirs = $this->loadFileNames(true);
 			$subalbums = array();
 			foreach ($dirs as $dir) {
@@ -1219,7 +1219,7 @@ class Album extends AlbumBase {
 	 * @param int $page  Which page of images should be returned. If zero, all images are returned.
 	 * @param int $firstPageCount count of images that go on the album/image transition page
 	 * @param string $sorttype optional sort type
-	 * @param string $sortdirection optional sort direction
+	 * @param bool $sortdirection optional sort direction
 	 * @param bool $care set to false if the order of the images does not matter
 	 * @param bool $mine set true/false to override ownership
 	 *
@@ -1228,15 +1228,14 @@ class Album extends AlbumBase {
 	function getImages($page = 0, $firstPageCount = 0, $sorttype = null, $sortdirection = null, $care = true, $mine = NULL) {
 		if (!$this->exists)
 			return array();
+		if (is_null($sorttype)) {
+			$sorttype = $this->getSortType();
+		}
+		if (is_null($sortdirection)) {
+			$sortdirection = $this->getSortDirection('image');
+		}
+		$sortdirection = $sortdirection && strtolower($sortdirection) != 'asc';
 		if ($mine || is_null($this->images) || $care && $sorttype . $sortdirection !== $this->lastimagesort) {
-			if (is_null($sorttype)) {
-				$sorttype = $this->getSortType();
-			}
-			if (is_null($sortdirection)) {
-				if ($this->getSortDirection('image')) {
-					$sortdirection = 'DESC';
-				}
-			}
 			$images = $this->loadFileNames();
 			$this->images = $this->sortImageArray($images, $sorttype, $sortdirection, $mine);
 			$this->lastimagesort = $sorttype . $sortdirection;
@@ -1591,7 +1590,7 @@ class dynamicAlbum extends AlbumBase {
 	 *
 	 * @param string $page  Which page of subalbums to display.
 	 * @param string $sorttype The sort strategy
-	 * @param string $sortdirection The direction of the sort
+	 * @param bool $sortdirection The direction of the sort
 	 * @param bool $care set to false if the order does not matter
 	 * @param bool $mine set true/false to override ownership
 	 * @return array
@@ -1600,17 +1599,14 @@ class dynamicAlbum extends AlbumBase {
 		global $_zp_gallery;
 		if (!$this->exists)
 			return array();
+		if (is_null($sorttype)) {
+			$sorttype = $this->getSortType('album');
+		}
+		if (is_null($sortdirection)) {
+			$sortdirection = $this->getSortDirection('album');
+		}
+		$sortdirection = $sortdirection && strtolower($sortdirection) != 'asc';
 		if ($mine || is_null($this->subalbums) || $care && $sorttype . $sortdirection !== $this->lastsubalbumsort) {
-			if (is_null($sorttype)) {
-				$sorttype = $this->getSortType('album');
-			}
-			if (is_null($sortdirection)) {
-				if ($this->getSortDirection('album')) {
-					$sortdirection = 'DESC';
-				} else {
-					$sortdirection = '';
-				}
-			}
 			$searchengine = $this->getSearchEngine();
 			$subalbums = $searchengine->getAlbums(0, $sorttype, $sortdirection, $care, $mine);
 			$key = $this->getAlbumSortKey($sorttype);
@@ -1661,7 +1657,7 @@ class dynamicAlbum extends AlbumBase {
 	 * @param int $page  Which page of images should be returned. If zero, all images are returned.
 	 * @param int $firstPageCount count of images that go on the album/image transition page
 	 * @param string $sorttype optional sort type
-	 * @param string $sortdirection optional sort direction
+	 * @param bol $sortdirection optional sort direction
 	 * @param bool $care set to false if the order of the images does not matter
 	 * @param bool $mine set true/false to override ownership
 	 *
@@ -1670,15 +1666,14 @@ class dynamicAlbum extends AlbumBase {
 	function getImages($page = 0, $firstPageCount = 0, $sorttype = null, $sortdirection = null, $care = true, $mine = NULL) {
 		if (!$this->exists)
 			return array();
+		if (is_null($sorttype)) {
+			$sorttype = $this->getSortType();
+		}
+		if (is_null($sortdirection)) {
+			$sortdirection = $this->getSortDirection('image');
+		}
+		$sortdirection = $sortdirection && strtolower($sortdirection) != 'asc';
 		if ($mine || is_null($this->images) || $care && $sorttype . $sortdirection !== $this->lastimagesort) {
-			if (is_null($sorttype)) {
-				$sorttype = $this->getSortType();
-			}
-			if (is_null($sortdirection)) {
-				if ($this->getSortDirection('image')) {
-					$sortdirection = 'DESC';
-				}
-			}
 			$searchengine = $this->getSearchEngine();
 			$this->images = $searchengine->getImages(0, 0, $sorttype, $sortdirection, $care, $mine);
 			$this->lastimagesort = $sorttype . $sortdirection;

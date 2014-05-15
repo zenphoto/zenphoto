@@ -564,23 +564,23 @@ if (extensionEnabled('slideshow2')) {
 					$count = '';
 					?>
 					<script type="text/javascript">
-					$(document).ready(function() {
-						$("a[rel='slideshow']").colorbox({
-							slideshow: true,
-							loop: true,
-							transition: '<?php echo getOption('cycle-slideshow_colorbox_transition'); ?>',
-							slideshowSpeed: <?php echo getOption('cycle-slideshow_speed'); ?>,
-							slideshowStart: '<?php echo gettext("start slideshow"); ?>',
-							slideshowStop: '<?php echo gettext("stop slideshow"); ?>',
-							previous: '<?php echo gettext("prev"); ?>',
-							next: '<?php echo gettext("next"); ?>',
-							close: '<?php echo gettext("close"); ?>',
-							current: '<?php printf(gettext('image %1$s of %2$s'), '{current}', '{total}'); ?>',
-							maxWidth: '98%',
-							maxHeight: '98%',
-							photo: true
+						$(document).ready(function() {
+							$("a[rel='slideshow']").colorbox({
+								slideshow: true,
+								loop: true,
+								transition: '<?php echo getOption('cycle-slideshow_colorbox_transition'); ?>',
+								slideshowSpeed: <?php echo getOption('cycle-slideshow_speed'); ?>,
+								slideshowStart: '<?php echo gettext("start slideshow"); ?>',
+								slideshowStop: '<?php echo gettext("stop slideshow"); ?>',
+								previous: '<?php echo gettext("prev"); ?>',
+								next: '<?php echo gettext("next"); ?>',
+								close: '<?php echo gettext("close"); ?>',
+								current: '<?php printf(gettext('image %1$s of %2$s'), '{current}', '{total}'); ?>',
+								maxWidth: '98%',
+								maxHeight: '98%',
+								photo: true
+							});
 						});
-					});
 					</script>
 					<?php
 					foreach ($images as $image) {

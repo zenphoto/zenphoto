@@ -29,7 +29,7 @@ $conf['db_software'] = 'MySQLi';		// preferred database
 $conf['mysql_user'] = '';           // Supply your Database user id.
 $conf['mysql_pass'] = '';           // Supply your Database password.
 $conf['mysql_host'] = 'localhost';  // Supply the name of your Database server.
-$conf['mysql_database'] = '';       // Supply the name of Zenphoto's database
+$conf['mysql_database'] = '';       // Supply the name of zenphoto's database
 // If you're sharing the database with other tables, use a prefix to be safe.
 $conf['mysql_prefix'] = ".";
 
@@ -81,7 +81,7 @@ $conf['special_pages'] = array(
 ////////////////////////////////////////////////////////////////////////////////
 // Uncomment the following two lines ONLY IF YOU'RE HAVING PROBLEMS,
 // like "file not found" or "not readable" errors.
-// These allow you to override Zenphoto's detection of the correct paths
+// These allow you to override zenphoto's detection of the correct paths
 // on your server, which might work better on some setups.
 ////////////////////////////////////////////////////////////////////////////////
 

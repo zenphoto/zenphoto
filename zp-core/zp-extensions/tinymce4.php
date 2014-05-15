@@ -7,7 +7,7 @@
  * <var>%USER_PLUGIN_FOLDER%/tiny_mce/config</var>
  * There is a naming convention since there is a difference between Zenphoto (gallery) and Zenpag (news/pages) editor configurations
  * - zenphoto-<yourcustomname>.js.php
- * - zenpagae-<yourcustomname>.js.php
+ * - zenpage-<yourcustomname>.js.php
  *
  * @author Malte Müller (acrylian)
  * @package plugins
@@ -30,22 +30,19 @@ class tinymce4Options {
 
 	function tinymce4Options() {
 		setOptionDefault('tinymce4_zenphoto', 'zenphoto-ribbon.js.php');
-		setOptionDefault('tinymce4_zenpage', 'zenpage-slim.js.php');
-		if (getOption('zp_plugin_tiny_mce')) {
-			setOptionDefault('zp_plugin_tinymce4', 5 | ADMIN_PLUGIN);
-			purgeOption('zp_plugin_tiny_mce');
-		}
+		setOptionDefault('tinymce4_zenpage', 'zenpage-ribbon.js.php');
+		setOptionDefault('zp_plugin_tinymce4', 5 | ADMIN_PLUGIN);
 	}
 
 	function getOptionsSupported() {
 		$configs_zenpage = getTinyMCE4ConfigFiles('zenpage');
 		$configs_zenphoto = getTinyMCE4ConfigFiles('zenphoto');
-		$options = array(gettext('Text editor configuration - Zenphoto')	 => array('key'						 => 'tinymce4_zenphoto', 'type'					 => OPTION_TYPE_SELECTOR,
+		$options = array(gettext('Text editor configuration - zenphoto')	 => array('key'						 => 'tinymce4_zenphoto', 'type'					 => OPTION_TYPE_SELECTOR,
 										'order'					 => 0,
 										'selections'		 => $configs_zenphoto,
 										'null_selection' => gettext('Disabled'),
 										'desc'					 => gettext('Applies to <em>admin</em> editable text other than for Zenpage pages and news articles.')),
-						gettext('Text editor configuration - Zenpage')	 => array('key'						 => 'tinymce4_zenpage', 'type'					 => OPTION_TYPE_SELECTOR,
+						gettext('Text editor configuration - zenpage')	 => array('key'						 => 'tinymce4_zenpage', 'type'					 => OPTION_TYPE_SELECTOR,
 										'order'					 => 0,
 										'selections'		 => $configs_zenpage,
 										'null_selection' => gettext('Disabled'),

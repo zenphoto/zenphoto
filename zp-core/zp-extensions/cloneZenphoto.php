@@ -20,12 +20,12 @@
  * @subpackage admin
  */
 
-$plugin_is_filter = 5|ADMIN_PLUGIN;
+$plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext('Allows multiple Zenphoto installations to share a single set of Zenphoto script files.');
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_disable = (SYMLINK)?(zpFunctions::hasPrimaryScripts())?false:gettext('Only the primary installation may clone offspring installations.'):gettext('Your server does not support symbolic linking.');
+$plugin_disable = (SYMLINK) ? (zpFunctions::hasPrimaryScripts()) ? false : gettext('Only the primary installation may clone offspring installations.') : gettext('Your server does not support symbolic linking.');
 
-require_once(SERVERPATH.'/'.ZENFOLDER.'/reconfigure.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/reconfigure.php');
 if (!$plugin_disable) {
 	zp_register_filter('admin_utilities_buttons', 'cloneZenphoto::button');
 }
@@ -34,19 +34,20 @@ class cloneZenphoto {
 
 	static function button($buttons) {
 		$buttons[] = array(
-											'category'=>gettext('Admin'),
-											'enable'=>true,
-											'button_text'=>gettext('Clone installation'),
-											'formname'=>'cloneZenphoto',
-											'action'=>PLUGIN_FOLDER.'/cloneZenphoto/cloneTab.php',
-											'icon'=>'images/folder.png',
-											'title'=>gettext('Create a new installation using links to the current install files.'),
-											'alt'=>gettext('Clone'),
-											'hidden'=>'',
-											'rights'=> ADMIN_RIGHTS
-											);
+						'category'		 => gettext('Admin'),
+						'enable'			 => true,
+						'button_text'	 => gettext('Clone installation'),
+						'formname'		 => 'cloneZenphoto',
+						'action'			 => PLUGIN_FOLDER . '/cloneZenphoto/cloneTab.php',
+						'icon'				 => 'images/folder.png',
+						'title'				 => gettext('Create a new installation using links to the current install files.'),
+						'alt'					 => gettext('Clone'),
+						'hidden'			 => '',
+						'rights'			 => ADMIN_RIGHTS
+		);
 		return $buttons;
 	}
 
 }
+
 ?>

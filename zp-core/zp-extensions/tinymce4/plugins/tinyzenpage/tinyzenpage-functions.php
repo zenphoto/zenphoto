@@ -97,7 +97,7 @@ function printImageslist($number) {
 	global $_zp_gallery, $host;
 	$args = array(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
-	if (isset($_GET['album']) && ! empty($_GET['album'])) {
+	if (isset($_GET['album']) && !empty($_GET['album'])) {
 
 		$album = urldecode(sanitize($_GET['album']));
 		$albumobj = newAlbum($album);
@@ -363,7 +363,7 @@ function printNewsArticlesList($number) {
  */
 function checkAlbumForImages() {
 	global $_zp_gallery;
-	if (isset($_GET['album']) && ! empty($_GET['album'])) {
+	if (isset($_GET['album']) && !empty($_GET['album'])) {
 		$album = urldecode(sanitize($_GET['album']));
 		if ($album == 'gallery') {
 			return FALSE;

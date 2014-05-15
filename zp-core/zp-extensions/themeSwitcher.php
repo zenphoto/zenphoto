@@ -103,7 +103,7 @@ class themeSwitcher {
 		<script type="text/javascript">
 			// <!-- <![CDATA[
 			function switchTheme(reloc) {
-				window.location = reloc.replace(/%t/, $('#themeSwitcher').val());
+				window.location = reloc.replace(/%t/, encodeURIComponent($('#themeSwitcher').val()));
 			}
 			// ]]> -->
 		</script>

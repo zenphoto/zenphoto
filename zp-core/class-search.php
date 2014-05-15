@@ -849,7 +849,7 @@ class SearchEngine {
 	/**
 	 * get connical sort key and direction parameters.
 	 * @param type $sorttype sort field desired
-	 * @param type $sortdirection DESC or ASC
+	 * @param bool $sortdirection DESC or ASC
 	 * @param type $defaulttype if no sort type otherwise selected use this one
 	 * @param type $table the database table being searched
 	 * @return array
@@ -1345,7 +1345,8 @@ class SearchEngine {
 						}
 					} else {
 						list($key, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'title', 'images');
-						$key = trim($key . ' ' . $sortdirection);
+						if ($sortdirection)
+							$key .= ' DESC';
 					}
 					break;
 			}
@@ -1510,7 +1511,7 @@ class SearchEngine {
 	 * Returns an array of image names found in the search
 	 *
 	 * @param string $sorttype what to sort on
-	 * @param string $sortdirection what direction
+	 * @param bool $sortdirection what direction
 	 * @param bool $mine set true/false to overried ownership
 	 * @return array
 	 */
@@ -1704,7 +1705,7 @@ class SearchEngine {
 	 * @param bool $toplevel ignored, left for parameter compatibility
 	 * @param int $number ignored, left for parameter compatibility
 	 * @param string $sorttype the sort key
-	 * @param strng $sortdirection the sort order
+	 * @param bool $sortdirection the sort order
 	 *
 	 * @return array
 	 */
@@ -1716,7 +1717,7 @@ class SearchEngine {
 	 * Returns a list of Pages Titlelinks found in the search
 	 *
 	 * @parm string $sorttype optional sort field
-	 * @param string $sortdirection optional ordering
+	 * @param bool $sortdirection optional ordering
 	 *
 	 * @return array
 	 */
@@ -1778,7 +1779,7 @@ class SearchEngine {
 	 * @param bool $published placeholder for consistent parameter list
 	 * @param bool $ignorepagination ignore pagination
 	 * @param string $sorttype field to sort on
-	 * @param string $sortdirection sort order
+	 * @param bool $sortdirection sort order
 	 *
 	 * @return array
 	 */
@@ -1799,7 +1800,7 @@ class SearchEngine {
 	 * Returns a list of News Titlelinks found in the search
 	 *
 	 * @param string $sorttype field to sort on
-	 * @param string $sortdirection sort order
+	 * @param bool $sortdirection sort order
 	 *
 	 * @return array
 	 */

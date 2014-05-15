@@ -32,9 +32,6 @@ class contactformOptions {
 	function contactformOptions() {
 		global $_zp_authority;
 
-		if (OFFSET_PATH == 2 && !getOption('contactform_mailaddress')) {
-			purgeOption('contactform_mailaddress');
-		}
 		setOptionDefault('contactform_rewrite', '_PAGE_/contact');
 		gettext($str = '<p>Fields with <strong>*</strong> are required. HTML or any other code is not allowed.</p>');
 		setOptionDefault('contactform_introtext', getAllTranslations($str));

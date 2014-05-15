@@ -121,7 +121,6 @@ if (!defined('OFFSET_PATH')) {
 			}
 		} else {
 			$plugin_URL = 'http://www.zenphoto.org/documentation/plugins/' . $sublink . '_' . PLUGIN_FOLDER . '---' . $extension . '.php.html';
-			$doclink = sprintf(gettext('See also the Zenphoto online documentation: <a href="%1$s">%2$s</a>'), $plugin_URL, $extension);
 		}
 		$pluginusage = gettext('Plugin usage information');
 		$pagetitle = sprintf(gettext('%1$s %2$s: %3$s'), html_encode($_zp_gallery->getTitle()), gettext('admin'), html_encode($extension));
@@ -376,7 +375,6 @@ if (!defined('OFFSET_PATH')) {
 								?>
 						</div>
 					</div>
-					<?php echo $doclink; ?>
 				</div>
 			</body>
 			<?php

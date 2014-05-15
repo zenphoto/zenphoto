@@ -46,7 +46,7 @@ if (isset($_GET['mergedrss'])) {
 
 	//Export the first 10 items to screen
 	$mergedrss_feeditems = getOption('mergedrss_items');
-	if(empty($mergedrss_feeditems)) {
+	if (empty($mergedrss_feeditems)) {
 		$mergedrss_feeditems = 10;
 	}
 	$MergedRSS->export(false, true, $mergedrss_feeditems); //getOption('RSS_items')
@@ -57,15 +57,15 @@ class MergedRSSOptions {
 
 	function __construct() {
 		setOptionDefault('mergedrss_items', 10);
-	}	
+	}
 
 	function getOptionsSupported() {
 		return array(
-						gettext('RSS feeds to merge') => array('key'					 => 'mergedrss_feeds', 'type'				 => OPTION_TYPE_TEXTAREA,
+						gettext('RSS feeds to merge')	 => array('key'					 => 'mergedrss_feeds', 'type'				 => OPTION_TYPE_TEXTAREA,
 										'order'				 => 11,
 										'multilingual' => false,
 										'desc'				 => gettext('Enter the full urls of the feeds to merge separated by semicolons (e.g. "http://www.domain1.com/rss; http://www.domain2.com/rss")')),
-										gettext('Feed items:')			 => array('key'		 => 'mergedrss_items', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Feed items:')				 => array('key'		 => 'mergedrss_items', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 2,
 										'desc'	 => gettext("The number of new entries you want to appear in your site’s RSS feed")),
 		);

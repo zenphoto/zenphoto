@@ -96,7 +96,7 @@ function checkSignature($auto) {
 		}
 	}
 
-	$package = file_get_contents(dirname(__FILE__) . '/Zenphoto.package');
+	$package = file_get_contents(dirname(__FILE__) . '/zenphoto.package');
 	preg_match_all('|' . ZENFOLDER . '/setup/(.*)|', $package, $matches);
 	$needs = array();
 	foreach ($matches[1] as $need) {

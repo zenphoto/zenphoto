@@ -30,9 +30,6 @@ for ($i = 0; $i < 30; $i++) {
 }
 
 
-purgeOption('zenphoto_release');
-purgeOption('zenphoto_version');
-purgeOption('zenphoto_install');
 setOption('zenphoto_install', serialize(installSignature()));
 
 if (Zenphoto_Authority::$preferred_version > ($oldv = getOption('libauth_version'))) {
@@ -302,8 +299,6 @@ setOptionDefault('RSS_pages', 1);
 setOptionDefault('RSS_article_comments', 1);
 
 setOptionDefault('AlbumThumbSelect', 1);
-purgeOption('AlbumThumbSelectField');
-purgeOption('AlbumThumbSelectDirection');
 
 setOptionDefault('site_email', "zenphoto@" . $_SERVER['SERVER_NAME']);
 setOptionDefault('site_email_name', 'Zenphoto');
@@ -458,108 +453,14 @@ setOption('gallery_data', serialize($data));
 
 $_zp_gallery = new Gallery(); // insure we have the proper options instantiated
 
-/* TODO:enable on the 1.4.7 release
- *
-  The following options have been relocated to methods of the gallery object. They will be purged form installations
-  on the Zenphoto 1.5 release.
-
-  gallery_page_unprotected_xxx
-  gallery_sortdirection
-  gallery_sorttype
-  gallery_title
-  Gallery_description
-  gallery_password
-  gallery_user
-  gallery_hint
-  current_theme
-  website_title
-  website_url
-  gallery_security
-  login_user_field
-  album_use_new_image_date
-  thumb_select_images
-  album_default
-  image_default
-
- * these may have been used in third party themes. Themes should cease using these options and instead use the
-  appropriate gallery methods.
- */
-if (TEST_RELEASE) {
-	foreach ($data as $key => $option) {
-		purgeOption($key);
-	}
-	foreach ($optionlist as $key => $option) {
-		if (strpos($key, 'gallery_page_unprotected_') === 0) {
-			purgeOption($key);
-		}
-	}
-}
-
-//	cleanup options for missing elements
-$sql = 'SELECT DISTINCT `creator` FROM ' . prefix('options') . ' WHERE `creator` IS NOT NULL';
-$result = query_full_array($sql);
-if (is_array($result)) {
-	foreach ($result as $row) {
-		$filename = $row['creator'];
-		if (!file_exists(SERVERPATH . '/' . $filename)) {
-			$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `creator`=' . db_quote($filename);
-			query($sql);
-			if (strpos($filename, PLUGIN_FOLDER) !== false || strpos($filename, USER_PLUGIN_FOLDER) !== false) {
-				purgeOption('zp_plugin_' . stripSuffix(basename($filename)));
-			}
-		}
-	}
-}
-// missing themes
-$sql = 'SELECT DISTINCT `theme` FROM ' . prefix('options') . ' WHERE `theme` IS NOT NULL';
-$result = query_full_array($sql);
-if (is_array($result)) {
-	foreach ($result as $row) {
-		$filename = THEMEFOLDER . '/' . $row['theme'];
-		if ($filename && !file_exists(SERVERPATH . '/' . $filename)) {
-			$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `theme`=' . db_quote($row['theme']);
-			query($sql);
-		}
-	}
-}
-
 setOptionDefault('search_cache_duration', 30);
 setOptionDefault('search_within', 1);
 setOption('last_update_check', 30);
 
-$autoRotate = getOption('auto_rotate');
-if (!is_null($autoRotate)) {
-	if (!$autoRotate) {
-		query('UPDATE ' . prefix('images') . ' SET `EXIFOrientation`=NULL');
-		setOption('EXIFOrientation', 0);
-		setOption('EXIFOrientation-disabled', 1);
-	}
-	purgeOption('auto_rotate');
-}
-
-purgeOption('zp_plugin_failed_access_blocker');
-setOptionDefault('plugins_per_page', 20);
-setOptionDefault('plugins_per_page_options', 10);
-setOptionDefault('users_per_page', 10);
-setOptionDefault('articles_per_page', 15);
-setOptionDefault('debug_log_size', 5000000);
-setOptionDefault('imageProcessorConcurrency', 30);
-switch (getOption('spam_filter')) {
-	case 'none':
-		setOptionDefault('zp_plugin_trivialSpam', 5 | CLASS_PLUGIN);
-		break;
-	case 'simple':
-		setOptionDefault('zp_plugin_simpleSpam', 5 | CLASS_PLUGIN);
-		break;
-	default:
-		setOptionDefault('zp_plugin_legacySpam', 5 | CLASS_PLUGIN);
-		break;
-}
 setOptionDefault('search_album_sort_type', 'title');
 setOptionDefault('search_image_sort_type', 'title');
 setOptionDefault('search_album_sort_direction', '');
 setOptionDefault('search_image_sort_direction', '');
-purgeOption('zp_plugin_releaseUpdater');
 
 query('UPDATE ' . prefix('administrators') . ' SET `passhash`=' . ((int) getOption('strong_hash')) . ' WHERE `valid`>=1 AND `passhash` IS NULL');
 query('UPDATE ' . prefix('administrators') . ' SET `passupdate`=' . db_quote(date('Y-m-d H:i:s')) . ' WHERE `valid`>=1 AND `passupdate` IS NULL');

@@ -760,13 +760,14 @@ class Gallery {
 		if (($sortkey == '`sort_order`') || ($sortkey == 'RAND()')) { // manual sort is always ascending
 			$order = false;
 		} else {
-			if (!is_null($sortdirection)) {
-				$order = strtolower($sortdirection) == 'desc';
-			} else {
-				$order = $obj->getSortDirection('album');
+			if (is_null($sortdirection)) {
+				$sortdirection = $this->getSortDirection('album');
 			}
+			$order = $sortdirection && strtolower($sortdirection) != 'asc';
 		}
-		$sql = 'SELECT * FROM ' . prefix("albums") . ' WHERE `parentid`' . $albumid . ' ORDER BY ' . $sortkey . ' ' . $sortdirection;
+		$sql = 'SELECT * FROM ' . prefix("albums") . ' WHERE `parentid`' . $albumid . ' ORDER BY ' . $sortkey;
+		if ($order)
+			$sql .= ' DESC';
 		$result = query($sql);
 		$results = array();
 //	check database aganist file system
