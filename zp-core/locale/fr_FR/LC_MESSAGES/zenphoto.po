@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-02 23:52+0100\n"
-"PO-Revision-Date: 2014-05-02 23:53+0100\n"
+"POT-Creation-Date: 2014-05-17 18:53+0100\n"
+"PO-Revision-Date: 2014-05-17 18:59+0100\n"
 "Last-Translator: vincent3569 <vincent_bourganel@yahoo.fr>\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "<michel@mgagnon.net>\n"
@@ -59,7 +59,7 @@ msgstr "Accueil de la galerie"
 msgid "Object not found"
 msgstr "Objet non trouvé"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/album.php:24
+#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/album.php:25
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/effervescence_plus/album.php:54
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/effervescence_plus/search.php:87
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/garland/sidebar.php:9
@@ -68,13 +68,13 @@ msgstr "Objet non trouvé"
 msgid "Search within album"
 msgstr "Recherche dans l’album"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/album.php:24
+#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/album.php:25
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-globals.php:118
 msgid "search"
 msgstr "recherche"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/album.php:30
-#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/favorites.php:23
+#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/album.php:31
+#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/favorites.php:24
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/image.php:51
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/effervescence_plus/404.php:40
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/effervescence_plus/album.php:75
@@ -95,10 +95,10 @@ msgstr "recherche"
 msgid "Albums Index"
 msgstr "Racine des albums"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/album.php:42
-#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/album.php:45
-#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/favorites.php:35
-#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/favorites.php:38
+#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/album.php:43
+#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/album.php:46
+#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/favorites.php:36
+#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/favorites.php:39
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/index.php:38
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/index.php:41
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/search.php:57
@@ -118,8 +118,8 @@ msgstr "Racine des albums"
 msgid "View album:"
 msgstr "Voir l’album :"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/album.php:64
-#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/favorites.php:64
+#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/album.php:65
+#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/favorites.php:65
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/image.php:39
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/index.php:50
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/search.php:88
@@ -158,8 +158,8 @@ msgstr "Voir l’album :"
 msgid "prev"
 msgstr "préc."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/album.php:64
-#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/favorites.php:64
+#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/album.php:65
+#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/favorites.php:65
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/image.php:43
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/index.php:50
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/search.php:88
@@ -192,14 +192,14 @@ msgstr "préc."
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/search.php:165
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4339
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:31
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:468
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:471
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/slideshow.php:589
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:273
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:576
 msgid "next"
 msgstr "suiv."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/album.php:66
+#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/album.php:67
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/image.php:105
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zenpage/album.php:75
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zenpage/favorites.php:73
@@ -213,12 +213,12 @@ msgstr "suiv."
 msgid "<strong>Tags:</strong>"
 msgstr "<strong>Tags :</strong> "
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/album.php:79
+#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/album.php:80
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zenpage/sidebar.php:78
 msgid "Album RSS"
 msgstr "Flux RSS de l’album"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/album.php:80
+#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/album.php:81
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/archive.php:32
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/image.php:121
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/index.php:61
@@ -273,8 +273,8 @@ msgstr "Contactez-nous"
 msgid "Contact us."
 msgstr "Contactez-nous."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/favorites.php:41
-#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/favorites.php:56
+#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/favorites.php:42
+#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/basic/favorites.php:57
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/effervescence_plus/favorites.php:124
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/effervescence_plus/favorites.php:176
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/garland/favorites.php:61
@@ -662,7 +662,6 @@ msgstr "vidéo"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/garland/functions.php:149
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/garland/functions.php:151
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zenpage/gallery.php:68
-#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zenpage/news.php:85
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-globals.php:76
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/tinyURL.php:81
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/tweet_news.php:406
@@ -672,7 +671,8 @@ msgstr "actualités"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/effervescence_plus/functions.php:430
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/garland/functions.php:153
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:455
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:281
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:263
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:266
 msgid "sticky"
 msgstr "épinglé"
 
@@ -820,7 +820,7 @@ msgstr "Pages (%s)"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/garland/search.php:114
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/garland/search.php:147
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zenpage/functions.php:46
-#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:246
+#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:245
 msgid "Show more results"
 msgstr "Afficher plus de résultats"
 
@@ -829,7 +829,7 @@ msgstr "Afficher plus de résultats"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/garland/search.php:115
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/garland/search.php:148
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zenpage/functions.php:47
-#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:247
+#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:246
 msgid "Show fewer results"
 msgstr "Afficher moins de résultats"
 
@@ -888,7 +888,7 @@ msgstr "Articles d’actualité"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/garland/themeoptions.php:45
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zenpage/sidebar.php:16
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zenpage/themeoptions.php:49
-#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:151
+#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:150
 msgid "All news"
 msgstr "Toutes les actualités"
 
@@ -918,7 +918,7 @@ msgstr "Racine des albums"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/favorites.php:29
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:35
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:66
-#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:156
+#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:155
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/image.php:29
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:1637
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-options.php:2381
@@ -992,7 +992,7 @@ msgstr "Albums"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zenpage/sidebar.php:47
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zenpage/themeoptions.php:53
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:69
-#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:162
+#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:161
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/pages.php:29
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/pages.php:35
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3012
@@ -1027,7 +1027,7 @@ msgstr "Pages"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:71
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/template-functions.php:1264
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/template-functions.php:1319
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:881
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:876
 msgid "Archive"
 msgstr "Archive"
 
@@ -1050,7 +1050,7 @@ msgstr "Flux RSS"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zenpage/sidebar.php:88
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:31
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:68
-#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:150
+#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:149
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3012
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:3134
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/lib-auth.php:527
@@ -1076,7 +1076,7 @@ msgstr "Flux RSS"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/related_items.php:187
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/tweet_news.php:92
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage.php:273
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:888
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:883
 msgid "News"
 msgstr "Actualités"
 
@@ -1658,7 +1658,7 @@ msgstr "Archives"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:39
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:462
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4554
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4559
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/lib-auth.php:510
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/defaultCodeblocks.php:34
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:81
@@ -1696,19 +1696,19 @@ msgstr "Thème zpMobile par"
 msgid "Admin"
 msgstr "Administrer"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:176
+#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:175
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/utilities/gallery_statistics.php:849
 msgid "Back to top"
 msgstr "En haut"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:195
+#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:194
 #, php-format
 msgid "%d album"
 msgid_plural "%d albums"
 msgstr[0] "%u album"
 msgstr[1] "%u albums"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:200
+#: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/functions.php:199
 #, php-format
 msgid "%d image"
 msgid_plural "%d images"
@@ -1729,7 +1729,7 @@ msgid "View meta data"
 msgstr "Visualiser les métadonnées"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/themes/zpmobile/index.php:32
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/class-feed.php:259
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/class-feed.php:256
 msgid "Latest images"
 msgstr "Images récentes"
 
@@ -1778,7 +1778,7 @@ msgstr "Retour à %s"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:349
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:181
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:149
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:248
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:230
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:142
 msgid "*Bulk actions*"
 msgstr "*Actions en lot*"
@@ -1801,7 +1801,7 @@ msgstr "*Actions en lot*"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:244
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/publishContent/publishContent.php:421
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:150
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:249
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:231
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:143
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1042
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1413
@@ -1811,7 +1811,7 @@ msgstr "Supprimer"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:75
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:661
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:147
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:250
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:232
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:144
 msgid "Set to published"
 msgstr "Publier"
@@ -1819,7 +1819,7 @@ msgstr "Publier"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:76
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:662
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:148
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:251
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:233
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:145
 msgid "Set to unpublished"
 msgstr "Dépublier"
@@ -1828,14 +1828,14 @@ msgstr "Dépublier"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:663
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-tags.php:224
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-tags.php:225
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:252
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:234
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:146
 msgid "Add tags"
 msgstr "Ajouter des tags"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:78
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:664
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:253
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:235
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:147
 msgid "Clear tags"
 msgstr "Effacer les tags"
@@ -1843,8 +1843,8 @@ msgstr "Effacer les tags"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:79
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:665
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2140
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:254
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:327
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:236
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:317
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:148
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:254
 msgid "Disable comments"
@@ -1853,8 +1853,8 @@ msgstr "Désactiver les commentaires"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:80
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-edit.php:666
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2154
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:255
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:336
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:237
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:326
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:149
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:260
 msgid "Enable comments"
@@ -1880,7 +1880,7 @@ msgid "Image order saved"
 msgstr "Ordre des images sauvegardé"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:135
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4599
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4604
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:269
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:920
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1711
@@ -1888,59 +1888,59 @@ msgid "Selected items deleted"
 msgstr "Les éléments sélectionnés ont été supprimés"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:138
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4602
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4607
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:924
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1714
 msgid "Selected items published"
 msgstr "Les éléments sélectionnés sont publiés"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:141
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4605
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4610
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:928
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1717
 msgid "Selected items unpublished"
 msgstr "Les éléments sélectionnés ne sont plus publiés"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:144
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4608
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4613
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1720
 msgid "Comments enabled for selected items"
 msgstr "Les commentaires pour les éléments sélectionnés sont activés"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:147
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4611
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4616
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1723
 msgid "Comments disabled for selected items"
 msgstr "Les commentaires pour les éléments sélectionnés sont désactivés"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:150
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4614
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4619
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1726
 msgid "Hitcounter for selected items"
 msgstr "Compteur d’affichage pour les éléments sélectionnés"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:153
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4617
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4622
 msgid "Tags added for selected items"
 msgstr "Les tags ont été ajoutés aux éléments sélectionnés"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:156
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4620
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4625
 msgid "Tags cleared for selected items"
 msgstr "Les tags ont été effacés des éléments sélectionnés"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:159
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4623
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4628
 msgid "Tags added for images of selected items"
 msgstr "Les tags ont été ajoutés aux images des éléments sélectionnés"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:162
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4626
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4631
 msgid "Tags cleared for images of selected items"
 msgstr "Les tags ont été effacés des images des éléments sélectionnés"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-albumsort.php:169
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4592
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4597
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:12
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:36
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1747
@@ -1961,7 +1961,7 @@ msgstr "Aucun changement"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-themes-editor.php:107
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-thumbcrop.php:272
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-thumbcrop.php:274
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:180
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:181
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:390
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/crop_image.php:352
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/crop_image.php:353
@@ -2025,8 +2025,8 @@ msgstr "Retour"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:179
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:180
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:185
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:228
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:410
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:210
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:400
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:121
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:177
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:179
@@ -2274,7 +2274,7 @@ msgstr ""
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:361
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:208
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:161
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:268
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:250
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:158
 msgid "Check All"
 msgstr "Tout cocher"
@@ -2347,7 +2347,7 @@ msgstr "Afficher les images par :"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/contact_form/form.php:135
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/crop_image.php:344
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:376
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteTokens.php:100
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteTokens.php:102
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:120
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:217
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/user_groups/user_groups-tab.php:199
@@ -2434,7 +2434,7 @@ msgstr "Général"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1678
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2111
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-globals.php:31
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:141
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:140
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:442
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:668
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1527
@@ -2750,7 +2750,7 @@ msgid "%1$s %2$s: %3$s%4$s"
 msgstr "%1$s %2$s : %3$s%4$s"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:122
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4421
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4426
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/pluginDoc.php:127
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/user-expiry.php:106
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/user_groups.php:217
@@ -2822,7 +2822,7 @@ msgid "Deprecated."
 msgstr "Obsolète"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:792
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4420
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4425
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-options.php:1527
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-tags.php:157
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:471
@@ -2841,7 +2841,7 @@ msgstr "Ajouter des tags"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1218
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-globals.php:30
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/class-search.php:109
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:140
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:139
 msgid "Owner"
 msgstr "Propriétaire"
 
@@ -2899,7 +2899,7 @@ msgstr "Astuce pour le mot de passe : "
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-options.php:1764
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/exif/makers/canon.php:275
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/exif/makers/fujifilm.php:93
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:135
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:134
 msgid "Custom"
 msgstr "Personnalisé"
 
@@ -2921,8 +2921,8 @@ msgstr "*ordre de tri des images du sous-album comme celui de l’album parent"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-options.php:1642
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-options.php:1691
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-options.php:1792
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:167
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:200
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:166
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:199
 msgid "Descending"
 msgstr "Décroissant"
 
@@ -2938,7 +2938,7 @@ msgstr "champs personnalisés :"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:1438
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-options.php:1669
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-options.php:1759
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:117
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:116
 msgid "Sort images by"
 msgstr "Trier les images par"
 
@@ -3106,7 +3106,7 @@ msgid "Subalbum List"
 msgstr "Liste des sous-albums"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2098
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:308
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:298
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:241
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:995
 msgid "Password protected"
@@ -3129,13 +3129,13 @@ msgstr "Non publié(e)"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2144
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:649
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:328
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:318
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:255
 msgid "Comments on"
 msgstr "Commentaires actifs"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2158
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:337
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:327
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:261
 msgid "Comments off"
 msgstr "Commentaires désactivés"
@@ -3197,7 +3197,7 @@ msgstr "Page précédente"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2436
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:2438
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1001
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:988
 msgid "Next page"
 msgstr "Page suivante"
 
@@ -3400,46 +3400,47 @@ msgstr "sécurité"
 msgid "debug"
 msgstr "déboggage"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4422
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4427
 msgid "demo"
 msgstr "démonstrateur"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4423
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:107
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/macroList.php:86
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteRules.php:25
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4428
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:106
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/macroList.php:85
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteRules.php:24
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteTokens.php:189
 msgid "development"
 msgstr "développement"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4424
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4429
 msgid "feed"
 msgstr "Flux RSS"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4425
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4430
 msgid "mail"
 msgstr "Email"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4426
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4431
 msgid "media"
 msgstr "médias"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4427
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4432
 msgid "misc"
 msgstr "divers"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4428
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4433
 msgid "spam"
 msgstr "indésirables"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4429
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4434
 msgid "seo"
 msgstr "moteurs de recherche"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4430
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4435
 msgid "uploader"
 msgstr "chargement"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4431
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4436
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-globals.php:91
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/user-expiry.php:94
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/user-expiry.php:104
@@ -3447,36 +3448,36 @@ msgstr "chargement"
 msgid "users"
 msgstr "utilisateurs"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4552
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4557
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/defaultCodeblocks.php:34
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/related_items.php:181
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:101
 msgid "Image"
 msgstr "Image"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4558
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4563
 #, php-format
 msgid "%s failed to delete."
 msgstr "%s n’a pu être effacé(e)."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4560
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4565
 #, php-format
 msgid "%s deleted successfully."
 msgstr "%s a bien été supprimé(e)."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4565
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4570
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:406
 msgid "You must supply a password."
 msgstr "Vous devez fournir un mot de passe."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4567
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4572
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-options.php:543
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-users.php:415
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:450
 msgid "Your passwords did not match."
 msgstr "Vos mots de passe ne correspondent pas"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4574
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4579
 msgid ""
 "The image edit form submission has been truncated. Try displaying fewer "
 "images on a page."
@@ -3484,64 +3485,64 @@ msgstr ""
 "Le formulaire d’édition des images a été tronqué. Veuillez afficher moins "
 "d’images par page."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4577
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4582
 msgid "Hit counters have been reset."
 msgstr "Les compteurs d’affichage ont été remis à zéro."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4580
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4585
 msgid "Cache has been purged."
 msgstr "Le cache a été vidé."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4583
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4588
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-upload.php:155
 msgid "Your files have been uploaded."
 msgstr "Vos fichiers ont été chargés."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4586
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4591
 #, php-format
 msgid "<em>%s</em> already exists."
 msgstr "<em>%s</em> existe déjà."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4589
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4594
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:299
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:214
 msgid "Changes applied"
 msgstr "Modifications appliquées"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4636
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4641
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:50
 msgid "Image already exists."
 msgstr "L’image existe déjà."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4639
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4644
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:52
 msgid "Album already exists."
 msgstr "L’album existe déjà."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4642
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4647
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:54
 msgid "Cannot move, copy, or rename to a subalbum of this album."
 msgstr ""
 "Impossible de déplacer, de copier ou de renommer vers un sous-album de cet "
 "album."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4645
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4650
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:56
 msgid "Cannot move, copy, or rename to a dynamic album."
 msgstr ""
 "Impossible de déplacer, de copier ou de renommer vers un album dynamique."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4648
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4653
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:58
 msgid "Cannot rename an image to a different suffix"
 msgstr "Impossible de changer le suffixe de l’image"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4651
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4656
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/seo_cleanup.php:60
 msgid "Album delete failed"
 msgstr "L’album n’a pu être effacé"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4654
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-functions.php:4659
 #, php-format
 msgid "There was an error #%d with a move, copy, or rename operation."
 msgstr ""
@@ -3549,13 +3550,13 @@ msgstr ""
 "ou de renommage."
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-globals.php:25
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:134
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:133
 msgid "Filename"
 msgstr "Nom de fichier"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-globals.php:26
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/class-search.php:102
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:136
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:135
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:573
 msgid "Date"
 msgstr "Date"
@@ -3564,21 +3565,21 @@ msgstr "Date"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/class-search.php:97
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/contact_form.php:105
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/contact_form.php:107
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:106
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:137
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:105
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:136
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:58
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rss.php:128
 msgid "Title"
 msgstr "Titre"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-globals.php:28
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:138
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:137
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:353
 msgid "ID"
 msgstr "ID"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-globals.php:29
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:139
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:138
 msgid "Filemtime"
 msgstr "Date de modification"
 
@@ -4745,7 +4746,7 @@ msgstr ""
 "recherches en cache."
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-options.php:1620
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:114
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:113
 msgid "Sort albums by"
 msgstr "Trier les albums par"
 
@@ -5749,7 +5750,7 @@ msgstr "Extensions disponibles"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-plugins.php:152
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/class-search.php:98
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:110
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:109
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/slideshow.php:115
 msgid "Description"
 msgstr "Description"
@@ -5877,7 +5878,7 @@ msgstr "Poursuivre l’actualisation des métadonnées."
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/admin-refresh-metadata.php:130
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/lib-auth.php:947
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/setup/index.php:1615
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:154
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:155
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:374
 msgid "Refresh"
 msgstr "Actualiser"
@@ -6938,43 +6939,43 @@ msgstr "Erreur : l’album %s n’est pas lisible."
 msgid "Error: The album named %s cannot be found."
 msgstr "Erreur : l’album %s est introuvable."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/class-feed.php:257
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/class-feed.php:254
 msgid "Latest albums"
 msgstr "Albums récents"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/class-feed.php:263
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/class-feed.php:260
 msgid "latest updated albums"
 msgstr "Albums récemment mis à jour"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/class-feed.php:267
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/class-feed.php:264
 msgid "Most popular albums"
 msgstr "Albums les plus populaires"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/class-feed.php:269
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/class-feed.php:266
 msgid "Most popular images"
 msgstr "Images les plus populaires"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/class-feed.php:274
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/class-feed.php:271
 msgid "Top rated albums"
 msgstr "Albums les mieux évalués"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/class-feed.php:276
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/class-feed.php:273
 msgid "Top rated images"
 msgstr "Images les mieux évaluées"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/class-feed.php:281
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/class-feed.php:278
 msgid "Random albums"
 msgstr "Albums choisis aléatoirement"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/class-feed.php:283
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/class-feed.php:280
 msgid "Random images"
 msgstr "Images aléatoires"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/class-feed.php:391
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/class-feed.php:388
 msgid "Bad "
 msgstr "Mauvais"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/class-feed.php:428
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/class-feed.php:425
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:808
 msgid "by"
 msgstr "par"
@@ -8301,7 +8302,7 @@ msgid "%1$s: %2$s in %3$s on line %4$s"
 msgstr "%1$s : %2$s dans %3$s à la ligne %4$s"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/functions-config.php:19
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteTokens.php:40
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteTokens.php:42
 msgid ""
 "The Zenphoto configuration file is corrupt. You will need to restore it from "
 "a backup."
@@ -12115,7 +12116,7 @@ msgstr ""
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/setup/setup-functions.php:225
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/setup/setup-functions.php:230
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:142
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:144
 msgid "unknown"
 msgstr "inconnu"
 
@@ -12429,7 +12430,7 @@ msgstr ""
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/template-functions.php:51
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:132
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:67
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:381
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:371
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-pages.php:73
 msgid "Are you sure you want to delete this article? THIS CANNOT BE UNDONE!"
 msgstr ""
@@ -12510,7 +12511,7 @@ msgid "Logout"
 msgstr "Se déconnecter"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/template-functions.php:449
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:61
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:60
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:246
 msgid "My favorites"
 msgstr "Mes favoris"
@@ -12539,8 +12540,8 @@ msgstr "Page 1"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/template-functions.php:1027
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager.php:616
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager.php:634
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1061
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1077
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1048
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1064
 #, php-format
 msgid "Page %u"
 msgid_plural "Page %u"
@@ -12549,7 +12550,7 @@ msgstr[1] "Page %u"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/template-functions.php:991
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager.php:626
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1070
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1057
 #, php-format
 msgid "Page %1$u"
 msgid_plural "Page %1$u"
@@ -13900,7 +13901,7 @@ msgstr "Si le fichier de cache pour l’image n’existe pas, il sera créé."
 msgid "image processor reference"
 msgstr "Référence du processeur d’images"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:142
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:143
 msgid ""
 "<strong>Note:</strong> the following objects have images that appear to no "
 "longer exist."
@@ -13908,49 +13909,49 @@ msgstr ""
 "<strong>Note  :</strong> les objets suivants ont des images qui semblent ne "
 "plus exister."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:154
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:155
 msgid ""
 "Refresh the caching of the images stored in the database if some images did "
 "not render."
 msgstr ""
 "Actualise la mise en cache des images si le rendu n’était pas complété."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:158
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:159
 #, php-format
 msgid "%u image processor reference found."
 msgid_plural "%u image processor references found."
 msgstr[0] "%u référence au processeur d’images trouvée."
 msgstr[1] "%u références au processeur d’images trouvées."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:160
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:161
 msgid ""
 "You should use the refresh button to convert these to cached image references"
 msgstr ""
 "Vous devez utiliser le bouton Actualiser pour les convertir en références "
 "vers les images mises en cache"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:165
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:166
 #, php-format
 msgid "%u cached image reference found."
 msgid_plural "%u cached image references found."
 msgstr[0] "%u référence aux images en cache trouvée."
 msgstr[1] "%u références aux images en cache trouvées."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:169
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:170
 #, php-format
 msgid "%s reference re-cached."
 msgid_plural "%s references re-cached."
 msgstr[0] "Référence %s mise de nouveau en cache"
 msgstr[1] "Références %s mises de nouveau en cache"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:174
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:175
 #, php-format
 msgid "%s cache folder reference fixed."
 msgid_plural "%s cache folder references fixed."
 msgstr[0] "%s référence au dossier des images en cache réparée."
 msgstr[1] "%s références au dossier des images en cache réparées."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:179
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheDBImages.php:180
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/cacheImages.php:389
 msgid "Back to the overview"
 msgstr "Retour à l’aperçu"
@@ -14021,17 +14022,17 @@ msgstr "Mettre en cache les images"
 msgid "Executes the caching of the selected image sizes."
 msgstr "Effectue la mise en cache des tailles sélectionnées des images."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/functions.php:55
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/functions.php:59
 #, php-format
 msgid "%1$s: image %2$s"
 msgstr "%1$s : image %2$s"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/functions.php:58
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/functions.php:62
 #, php-format
 msgid "album %s"
 msgstr "album %s"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/functions.php:62
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/cacheManager/functions.php:66
 #, php-format
 msgid "%1$s: %2$s"
 msgstr "%1$s : %2$s"
@@ -14791,9 +14792,8 @@ msgstr[0] "%u commentaire a bien été supprimé."
 msgstr[1] "%u commentaires ont bien été supprimés."
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:309
-msgid "You can edit or delete comments on your images."
-msgstr ""
-"Vous pouvez modifier ou supprimer les commentaires faits sur vos images."
+msgid "You can edit or delete comments."
+msgstr "Vous pouvez modifier ou supprimer les commentaires."
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/admin-comments.php:328
 msgid "View truncated"
@@ -14955,7 +14955,7 @@ msgid "Add Comment"
 msgstr "Ajouter un commentaire"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/comment_form/deprecated-functions.php:9
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:802
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:810
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:884
 msgid "use the object’s getCommentsAllowed() method"
 msgstr "Utilisez la méthode getCommentsAllowed() de l’objet"
@@ -15506,7 +15506,7 @@ msgstr "Catégorie de nouvelles"
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/related_items.php:193
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:434
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:219
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1055
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1042
 msgid "Page"
 msgstr "Page"
 
@@ -15557,22 +15557,21 @@ msgstr ""
 "méthodes de classe. Celles signalées par deux astérisques ont des paramètres "
 "obsolètes."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:105
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:111
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:109
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/admin_tab.php:10
 msgid "deprecated"
 msgstr "obsolète"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:124
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:126
 msgid "function"
 msgstr "la fonction"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:152
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:154
 #, php-format
 msgid "%1$s (called from %2$s line %3$s) is deprecated"
 msgstr "%1$s (appelée depuis la ligne %3$s de %2$s) est obsolète."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:152
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:154
 #, php-format
 msgid ""
 "You can disable this error message by going to the <em>deprecated-functions</"
@@ -15584,20 +15583,20 @@ msgstr ""
 "obsolètes) et en décochant <strong>%s</strong> de la liste des fonctions."
 "<br />"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:158
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:160
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/markRelease.php:55
 msgid "Development"
 msgstr "Développement"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:160
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:162
 msgid "Check deprecated use"
 msgstr "Vérification de l’usage de fonctions obsolètes"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:164
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:166
 msgid "Searches PHP scripts for use of deprecated functions."
 msgstr "Inspecte les scripts PHP à la recherche de fonctions obsolètes."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:165
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions.php:167
 msgid "Check for update"
 msgstr "Vérifier s’il existe une mise à jour de Zenphoto"
 
@@ -15679,117 +15678,125 @@ msgstr ""
 "getCustomPageURL() au lieu de pages personnalisées."
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:53
+msgid ""
+"The parameter order album::setSortDirection($what, $val) is deprecated. Use "
+"album::setSortDirection($val, $what) instead."
+msgstr ""
+"Le paramètre de tri album::setSortDirection($what, $val) est déprécié. "
+"Utilisez album::setSortDirection($val, $what) à la place."
+
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:61
 msgid "Use the getFilename() method instead"
 msgstr "Utilisez plutôt la méthode getFilename()"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:61
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:69
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:77
 msgid "Use the getLink() method instead"
 msgstr "Utilisez plutôt la méthode getLink()"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:77
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:85
 msgid "Use the getSortType() method instead"
 msgstr "Utilisez plutôt la méthode getSortType()"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:85
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:93
 msgid "Use the getThumb() method instead"
 msgstr "Utilisez plutôt la méthode getThumb()"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:93
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:101
 msgid "Use the setThumb() method instead"
 msgstr "Utilisez plutôt la méthode setThumb()"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:101
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:109
 msgid "Use the setSortType() method instead"
 msgstr "Utilisez plutôt la méthode setSortType()"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:111
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:119
 msgid "Use printImageMetadata()."
 msgstr "Utilisez printImageMetadata()."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:124
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:132
 msgid "Use printCustomSizedImageMaxSpace()."
 msgstr "Utilisez printCustomSizedImageMaxSpace()."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:137
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:157
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:145
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:165
 msgid "Use getCommentDateTime()."
 msgstr "Utilisez getCommentDateTime()."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:167
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:175
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:120
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/deprecated-functions.php:129
 msgid "Use getHitcounter()."
 msgstr "Utilisez getHitcounter()."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:176
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:184
 msgid "Use truncate_string()."
 msgstr "Utilisez truncate_string()."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:185
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:193
 msgid "Use getImageMetaData()."
 msgstr "Utilisez getImageMetaData()."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:197
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:205
 msgid "Use getAlbumLocation()."
 msgstr "Utilisez getAlbumLocation()."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:211
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:219
 msgid "Use printAlbumLocation()."
 msgstr "Utilisez printAlbumLocation()."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:220
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:228
 msgid "No longer supported."
 msgstr "N’est plus supporté."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:229
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:237
 msgid "Use rewrite_path()."
 msgstr "Utilisez rewrite_path()."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:238
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:246
 msgid "Use getNumAlbums()."
 msgstr "Utilisez getNumAlbums()."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:247
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:255
 msgid "Use getAllAlbums()."
 msgstr "Utilisez getAllAlbums()."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:256
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:264
 msgid "Register a “theme_head” filter."
 msgstr "Enregistrez un filtre « theme_head » (en-tête de thème)."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:269
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:277
 msgid "Use zp_apply_filter(\"theme_head\")."
 msgstr "Utilisez zp_apply_filter(\"theme_head\")."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:278
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:286
 msgid "Use instead the theme options for images and albums per row."
 msgstr ""
 "Utilisez plutôt les options de thème pour définir le nombre d’images et "
 "d’albums par rangée."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:291
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:299
 msgid "Use printZenpageItemsBreadcrumb()."
 msgstr "Utilisez printZenpageItemsBreadcrumb()."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:300
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:308
 msgid "Use instead the Album class method isMyItem()."
 msgstr "Utilisez plutôt la méthode isMyItem() de la classe Album."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:310
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:318
 msgid ""
 "There is no need for this function as password handling is done by the core."
 msgstr ""
 "Cette fonction est inutile puisque la gestion des mots de passe est "
 "effectuée par l’application elle-même."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:319
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:329
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:339
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:327
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:337
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:347
 msgid "The google-maps plugin is deprecated. Convert to GoogleMap."
 msgstr "L’extension google-maps est obsolète. Utilisez dorénavant GoogleMap."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:347
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:355
 msgid ""
 "printPreloadScript is deprecated. It is a helper for a specific theme and "
 "should be placed within that theme’s \"functions.php\" script."
@@ -15798,12 +15805,12 @@ msgstr ""
 "thème en particulier et doit dorénavant être placée dans le script « "
 "functions.php » de ce thème."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:369
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:377
 msgid "Use the album class method <code>isProtected()</code> instead."
 msgstr ""
 "Utilisez plutôt la méthode<code> isProtected()</code> de la classe Album."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:381
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:389
 msgid ""
 "Use the template function <code>getRSSLink()</code> instead. NOTE: While "
 "this function gets a full html link <code>getRSSLink()</code> just returns "
@@ -15813,7 +15820,7 @@ msgstr ""
 "que cette fonction renvoie un lien html pleinement qualifié, la fonction "
 "<code>getRSSLink()</code> renvoie uniqument l’URL."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:425
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:433
 msgid ""
 "Use $_zp_captcha->getCaptcha($prompt). Note that you will require updating "
 "your code to the new function."
@@ -15821,82 +15828,82 @@ msgstr ""
 "Utilisez plutôt $_zp_captcha->getCaptcha($prompt). Notez que vous devrez "
 "mettre votre code à jour avec cette nouvelle fonction."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:434
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:442
 msgid "Use downloadList plugin <code>printDownloadURLAlbumZip()</code>."
 msgstr ""
 "Utilisez l’extension downloadList <code>printDownloadLinkAlbumZip()</code>."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:438
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:446
 msgid "Download a zip file of this album"
 msgstr "Télécharger un fichier zip de cet album"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:446
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:454
 msgid "Use printImageThumb()."
 msgstr "Utilisez printImageThumb()."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:461
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:469
 msgid "Use $_zp_current_image->getID()."
 msgstr "Utilisez $_zp_current_image->getID()."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:473
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:481
 msgid "Use echo “image_”.$_zp_current_image->getID()."
 msgstr "Utilisez echo \"image_\".$_zp_current_image->getID()."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:485
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:493
 msgid "Use echo “image_”.$_zp_current_album->getID()."
 msgstr "Utilisez echo \"image_\".$_zp_current_album->getID()."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:498
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:506
 msgid "Just what do you expect this does?"
 msgstr "Que pensez-vous qu’il devrait se passer ?"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:510
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:521
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:532
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:518
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:529
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:540
 msgid "Use object methods."
 msgstr "Utilisez des méthodes objets"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:544
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:552
 msgid "Use echo $_zp_current_image->getSortOrder()."
 msgstr "Utilisez echo $_zp_current_image->getSortOrder()."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:581
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:589
 msgid "If you need this function copy it to your theme’s functions.php script."
 msgstr ""
 "Si vous avez besoin de cette fonction, copiez-en le script dans le fichier « "
 "functions.php » de votre thème."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:600
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:608
 msgid "use $_zp_captcha->getCaptcha() and format the results as desired."
 msgstr ""
 "utilisez $_zp_captcha->getCaptcha() et formattez les résultats tel que "
 "désiré."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:602
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:610
 msgid "Enter CAPTCHA <strong>*</strong>"
 msgstr "Saisir le captcha<strong>*</strong>"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:621
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:629
 msgid "Front end editing is not supported. Use the property specific methods."
 msgstr ""
 "L’édition à partir des pages du site n’est pas supportée. Utilisez les "
 "méthodes spécifiques de propriété."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:642
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:650
 #, php-format
 msgid "printField() invalid function call, context %X."
 msgstr "appel invalide de la fonction printField() – contexte %X."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:646
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:654
 #, php-format
 msgid "printField() invalid function call, field:%s."
 msgstr "appel invalide de la fonction printField() – champ : %s."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:650
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:658
 msgid "printField() invalid function call, not an object."
 msgstr "appel invalide de la fonction printField() – ce n’est pas un objet."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:676
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:684
 msgid ""
 "This feature is now done by a \"theme_body_close\" filter. You can remove "
 "the function call."
@@ -15904,7 +15911,7 @@ msgstr ""
 "Cette fonctionnalité est désormais réalisée par le filtre \"theme_body_close"
 "\". Vous pouvez supprimer l’appel à cette fonction."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:684
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:692
 msgid ""
 "Use the appropriate object method. <strong>Note:</strong> this function "
 "gives different results depending on the setting of <code>mod_rewrite</code> "
@@ -15915,56 +15922,56 @@ msgstr ""
 "<code>mod_rewrite</code>. Le choix de la méthode d’objet à utiliser dépend "
 "donc de votre configuration !"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:693
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:701
 msgid "use getLinkHTML()"
 msgstr "Utilisez getLinkHTML()"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:702
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:710
 msgid "use printLinkHTML()"
 msgstr "Utilisez printLinkHTML()"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:712
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:722
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:720
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:730
 msgid "use setupDomain()"
 msgstr "Utilisez setupDomain()"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:732
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:740
 msgid "use getAlbumURL()"
 msgstr "Utilisez getAlbumURL()"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:742
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:750
 msgid "use getImageURL()"
 msgstr "Utilisez getImageURL()"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:752
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:760
 msgid "use printAlbumURL()"
 msgstr "Utilisez printAlbumURL()"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:762
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:770
 msgid "use printImageURL()"
 msgstr "Utilisez printImageURL()"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:772
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:780
 msgid "use printNextPageURL()"
 msgstr "Utilisez printNextPageURL()"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:782
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:790
 msgid "use printPrevPageURL()"
 msgstr "Utilisez printPrevPageURL()"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:792
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:800
 msgid "use printSizedImageURL()"
 msgstr "Utilisez printSizedImageURL()"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:825
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:833
 msgid "use Gallery::addImageHandler()"
 msgstr "utilisez Gallery::addImageHandler()"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:835
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:843
 msgid "use Gallery::validImage()"
 msgstr "utilisez Gallery::validImage()"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:845
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:853
 msgid "use Gallery::validImageAlt()"
 msgstr "utilisez Gallery::validImageAlt()"
 
@@ -16285,11 +16292,11 @@ msgstr "fichiers (%s)"
 msgid "files"
 msgstr "fichiers"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/elFinder/filemanager.php:42
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/elFinder/filemanager.php:40
 msgid "File Manager"
 msgstr "Explorateur de fichiers"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/elFinder/filemanager.php:60
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/elFinder/filemanager.php:58
 msgid ""
 "<strong>Note:</strong> Accessing the Albums folder with this utility is "
 "equivalent to using FTP to access it. <em>Copy</em> and <em>rename</em> do "
@@ -16633,64 +16640,60 @@ msgstr[1] "%s (%u images)"
 msgid "Support for <em>favorites</em> handling."
 msgstr "Gestionnaire des <em>favoris</em>."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:49
-msgid "Mod Rewrite is required for this plugin"
-msgstr "Le module ModRewrite est requis pour utiliser cette extension"
-
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:64
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:63
 msgid "The albums and images selected as favorites."
 msgstr "Les albums et les images sélectionnés comme favoris."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:66
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:65
 msgid "Add favorite"
 msgstr "Ajouter un favori"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:68
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:67
 msgid "Remove favorite"
 msgstr "Enlever un favori"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:91
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:90
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/register_user.php:71
 msgid "Link text"
 msgstr "Texte descriptif du lien"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:94
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:93
 msgid "The text for the link to the favorites page."
 msgstr "Le texte descriptif du lien vers la page des favoris."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:95
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:94
 msgid "Multiple sets"
 msgstr "Enregistrements multiples."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:97
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:96
 msgid "If enabled a user may have multiple (named) favorites."
 msgstr "Si activé, un utilisateur peut avoir des favoris avec noms multiples."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:98
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:97
 msgid "Add button"
 msgstr "Bouton Ajouter"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:101
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:100
 msgid "Default text for the <em>add to favorites</em> button."
 msgstr "Texte par défaut du bouton <em>ajouter aux favoris</em>."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:102
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:101
 msgid "Remove button"
 msgstr "Bouton Enlever"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:105
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:104
 msgid "Default text for the <em>remove from favorites</em> button."
 msgstr "Texte par défaut du bouton <em>enlever des favoris</em>."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:109
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:108
 msgid "The favorites page title text."
 msgstr "Texte du titre de la page des favoris."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:113
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:112
 msgid "The favorites page description text."
 msgstr "Texte descriptif de la page des favoris."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:126
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:125
 msgid ""
 "<p class=\"notebox\">Favorites requires the <code>mod_rewrite</code> option "
 "be enabled.</p>"
@@ -17714,11 +17717,11 @@ msgstr ""
 msgid "Use printThumbNav()."
 msgstr "Utilisez printThumbNav()."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:68
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:71
 msgid "Enable <strong>jPlayer</strong> to handle multimedia files."
 msgstr "Active <strong>jPlayer</strong> pour traiter les fichiers multimédias."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:69
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:72
 msgid ""
 "<strong>IMPORTANT</strong>: Only one multimedia extension plugin can be "
 "enabled at the time and the class-video plugin must be enabled, too."
@@ -17727,7 +17730,7 @@ msgstr ""
 "être activée à la fois et l’extension class-video doit également être "
 "activée."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:69
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:72
 msgid ""
 "Please see <a href='http://jplayer.org'>jplayer.org</a> for more info about "
 "the player and its license."
@@ -17735,42 +17738,42 @@ msgstr ""
 "Veuillez consulter <a href='http://jplayer.org'>jplayer.org</a> pour plus "
 "d’informations sur ce lecteur et sa licence."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:71
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:74
 msgid "This player does not support <em>External Albums</em>."
 msgstr "Ce lecteur ne gère pas les <em>albums externes</em>."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:71
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:74
 msgid "The class-video plugin must be enabled for video support."
 msgstr "L’extension class-vidéo doit être activée pour supporter les vidéos."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:82
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:85
 #, php-format
 msgid "jPlayer not enabled, %s is already instantiated."
 msgstr "jPlayer n’est pas activé car %s est déjà instancié."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:129
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:132
 msgid "Autoplay"
 msgstr "Lecture automatique"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:130
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:133
 msgid "Disabled automatically if several players on one page"
 msgstr "Désactivé automatiquement s’il y a plusieurs lecteurs dans la page"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:131
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:134
 msgid "Poster (Videothumb)"
 msgstr "Affiche (vignette vidéo)"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:132
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:135
 msgid "If the videothumb should be shown (jplayer calls it poster)."
 msgstr ""
 "Indique si la vignette vidéo doit être affichée (jPlayer appelle cela une "
 "affiche)"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:133
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:136
 msgid "Audio poster (Videothumb)"
 msgstr "Affiche audio (vignette audio)"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:134
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:137
 msgid ""
 "If the poster should be shown for audio files (mp3,m4a,fla) (does not apply "
 "for playlists which are all or none)."
@@ -17778,12 +17781,12 @@ msgstr ""
 "Indique si le poster doit être affiché pour les fichiers audio (mp3,m4a,fla) "
 "(ne s’applique pas aux listes de lecture qui sont tout ou rien)."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:135
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:138
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:129
 msgid "Show title"
 msgstr "Afficher le titre"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:136
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:139
 msgid ""
 "If the title should be shown below the player in single player mode (not "
 "needed on normal themes) (ignored in playlists naturally)."
@@ -17792,11 +17795,11 @@ msgstr ""
 "individuelle » (pas nécessaire sur les thèmes normaux) (ignoré pour les "
 "listes de lecture)"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:137
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:140
 msgid "Playlist support"
 msgstr "Gestion des listes de lecture"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:138
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:141
 msgid ""
 "Enable this if you wish to use the playlist mode this loads the scripts "
 "needed. NOTE: You have to add the function printjPlayerPlaylist() to your "
@@ -17806,57 +17809,57 @@ msgstr ""
 "chargera les scripts nécessaires. Vous devrez ajouter la fonction "
 "printjPlayerPlaylist() à votre thème (référez-vous à la documentation)."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:139
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:142
 msgid "Playlist numbered"
 msgstr "Liste de lecture numérotée"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:140
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:143
 msgid "Enable this if you wish the playlist to be numbered."
 msgstr "Cocher pour numéroter les éléments de la liste de lecture."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:141
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:144
 msgid "Playlist playtime"
 msgstr "Temps de lecture de la liste"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:142
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:145
 msgid "Enable if you want to show the playtime of playlist entries."
 msgstr "Cocher pour afficher la durée des éléments de liste de lecture."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:143
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:146
 msgid "Enable download"
 msgstr "Autoriser le téléchargement"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:144
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:147
 msgid "Enables direct file downloads (playlists only)."
 msgstr ""
 "Autorise le téléchargement direct des fichiers (seulement pour les listes de "
 "lecture)"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:145
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:148
 msgid "Player size"
 msgstr "Taille de la fenêtre de lecture"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:147
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:150
 msgid "jp-video-270p (480x270px)"
 msgstr "jp-video-270p (480x270px)"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:148
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:151
 msgid "jp-video-360p (640x360px)"
 msgstr "jp-video-360p (640x360px)"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:149
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:152
 msgid "jp-video-480p (720x405px)*"
 msgstr "jp-video-480p (720x405px)*"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:150
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:153
 msgid "jp-video-720p (1280x720px)*"
 msgstr "jp-video-720p (1280x720px)*"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:151
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:154
 msgid "jp-video-1080p (1920x1080px)*"
 msgstr "jp-video-1080p (1920x1080px)*"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:152
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:155
 msgid ""
 "jPlayer is dependent on their HTML and CSS based skin. Sizes marked with a "
 "<strong>*</strong> are supported by the two Zenphoto custom skins only "
@@ -17872,11 +17875,11 @@ msgstr ""
 "thème ou en développer un ; vous devez aussi modifier les valeurs dans la "
 "méthode de la classe de l’extension getPlayerSize()."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:153
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:156
 msgid "Player skin"
 msgstr "Thème du lecteur"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:155
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:158
 msgid ""
 "Select the skin (theme) to use. <br />NOTE: Since the skin is pure HTML/CSS "
 "only there may be display issues with certain themes that require manual "
@@ -17891,12 +17894,12 @@ msgstr ""
 "personnalisé dans le dossier racine des extensions. Pour de plus amples "
 "renseignements, consulter la documentation des extensions."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:237
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:240
 #, php-format
 msgid "%1$s::%2$s not found."
 msgstr "%1$s::%2$s ne peut être trouvé."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:247
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:250
 msgid ""
 "provide the album name (%1), media file name (%2) and a unique number (%3). "
 "(If there is only player instance on the page the parameter may be omitted.)"
@@ -17905,72 +17908,72 @@ msgstr ""
 "unique (%3)  (s’il n’y a qu’une instance du lecteur sur la page, ce "
 "paramètre peut être omis)."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:288
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:291
 msgid "This multimedia format is not supported by jPlayer"
 msgstr "Ce format multimédia n’est pas supporté par jPlayer"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:462
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:465
 msgid "previous"
 msgstr "précédente"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:465
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:468
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:272
 msgid "play"
 msgstr "lecture"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:466
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:469
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:271
 msgid "pause"
 msgstr "pause"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:471
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:474
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:270
 msgid "stop"
 msgstr "arrêt"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:472
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:475
 msgid "mute"
 msgstr "sourdine"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:473
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:476
 msgid "unmute"
 msgstr "enlever la sourdine"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:474
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:477
 msgid "max volume"
 msgstr "volume maximum"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:482
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:485
 msgid "full screen"
 msgstr "plein écran"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:483
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:486
 msgid "restore screen"
 msgstr "restauration de l’image"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:488
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:491
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/slideshow.php:110
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:104
 msgid "shuffle"
 msgstr "lecture aléatoire"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:489
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:492
 msgid "shuffle off"
 msgstr "lecture aléatoire désactivée"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:493
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:496
 msgid "repeat"
 msgstr "répétition"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:494
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:497
 msgid "repeat off"
 msgstr "répétition désactivée"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:500
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:503
 msgid "Update Required"
 msgstr "Mise à jour requise"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:501
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/jplayer.php:504
 msgid ""
 "To play the media you will need to either update your browser to a recent "
 "version or update your <a href=\"http://get.adobe.com/flashplayer/\" target="
@@ -18022,17 +18025,16 @@ msgstr "Choisir l’ancien filtre de contenu indésirable à utiliser."
 msgid "View available <code>content macros</code>."
 msgstr "Permet de visualiser les <code>macros de contenus</code> existantes."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/macroList.php:84
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/macroList.php:90
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/macroList.php:88
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/macroList/macroList_tab.php:9
 msgid "macros"
 msgstr "macros"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/macroList.php:99
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/macroList.php:101
 msgid "Macro identifiers may not contain special characters."
 msgstr "Les identifiants de macros ne peuvent contenir de caractères spéciaux."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/macroList.php:112
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/macroList.php:114
 msgid ""
 "The number of macro parameters must match the number of replacement tokens "
 "in the expression."
@@ -18040,22 +18042,22 @@ msgstr ""
 "Le nombre de paramètres de la macro doit être identique au nombre de "
 "variables-substituts dans l’expression."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/macroList.php:116
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/macroList.php:118
 #, php-format
 msgid "<code>%s</code> is not callable"
 msgstr "<code>%s</code> ne peut être lancé"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/macroList.php:126
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/macroList.php:128
 msgid "An array parameter must be the last parameter."
 msgstr "Un paramètre-tableau (<em>array</em>) doit être le dernier paramètre."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/macroList.php:130
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/macroList.php:132
 msgid "Required parameters should not follow optional ones."
 msgstr ""
 "Les paramètres obligatoires ne doivent pas être inscrits après les "
 "paramètres facultatifs."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/macroList.php:137
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/macroList.php:139
 msgid "Expressions may not have optional parameters."
 msgstr "Les expressions ne peuvent avoir de paramètres facultatifs."
 
@@ -18195,7 +18197,7 @@ msgstr[0] "Page %1$u (page courante)"
 msgstr[1] "Page %1$u (page courante)"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/menu_manager.php:640
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1085
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1072
 #, php-format
 msgid "Page {%u}"
 msgid_plural "Page {%u}"
@@ -19869,8 +19871,7 @@ msgstr "%s apparentés"
 msgid "Site rewrite rules tab."
 msgstr "Liste des règles de réécriture."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteRules.php:23
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteRules.php:29
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteRules.php:27
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteRules/admin_tab.php:14
 msgid "rewrite"
 msgstr "Réécriture"
@@ -19899,11 +19900,11 @@ msgstr ""
 "Les jetons de réécriture sont inutiles sauf si l’option <code>mod_rewrite</"
 "code> est activée."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteTokens.php:66
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteTokens.php:68
 msgid "rewriteTokens restored to default"
 msgstr "Les rewriteTokens ont été réinitialisés"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteTokens.php:81
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteTokens.php:83
 #, php-format
 msgid ""
 "The <code>%1$s</code> rule defines <strong>%2$s</strong> as <em>%3$s</em>."
@@ -19911,13 +19912,13 @@ msgstr ""
 "La règle <code>%1$s</code> définit <strong>%2$s</strong> en tant que <em>"
 "%3$s</em>."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteTokens.php:83
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteTokens.php:169
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteTokens.php:85
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteTokens.php:171
 #, php-format
 msgid "Link for <em>%s</em> script page."
 msgstr "Lien vers le fichier du script <em>%s</em>."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteTokens.php:97
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteTokens.php:99
 msgid ""
 "<p class=\"notebox\">Rewrite Tokens are not useful unless the "
 "<code>mod_rewrite</code> option is enabled.</p>"
@@ -19925,19 +19926,31 @@ msgstr ""
 "<p class=\"notebox\">Les jetons de réécriture sont inutiles sauf si l’option "
 "<code>mod_rewrite</code> est activée.</p>"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteTokens.php:102
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteTokens.php:104
 msgid "Restore defaults."
 msgstr "Réinitialiser."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteTokens.php:145
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteTokens.php:153
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteTokens.php:147
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteTokens.php:155
 msgid "Rewrite tokens may not be empty."
 msgstr "Les jetons de réécriture ne peuvent être vides."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteTokens.php:166
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteTokens.php:168
 #, php-format
 msgid "Link for <em>%s</em> rule."
 msgstr "Lien pour la règle <em>%s</em>."
+
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteTokens.php:192
+msgid "tokens"
+msgstr "jetons"
+
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteTokens/admin_tab.php:10
+msgid "rewriteTokens"
+msgstr "jetons de réécriture"
+
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rewriteTokens/admin_tab.php:26
+msgid "Rewrite Tokens"
+msgstr "Jetons de réécriture"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/rss.php:12
 msgid "The Zenphoto <em>RSS</em> handler."
@@ -21438,12 +21451,12 @@ msgstr ""
 "requièrent peuvent activer ce paramètre ; sinon, vous devrez le faire vous-"
 "même.}"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/static_html_cache.php:23
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/static_html_cache.php:28
 msgid "Adds static HTML cache functionality to Zenphoto."
 msgstr "Ajoute une fonctionnalité de cache HTML statique à Zenphoto."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/static_html_cache.php:31
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/static_html_cache.php:39
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/static_html_cache.php:36
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/static_html_cache.php:44
 msgid ""
 "Static HTML Cache folder could not be created. Please try to create it "
 "manually via FTP with chmod 0777."
@@ -21451,7 +21464,7 @@ msgstr ""
 "Le dossier du cache HTML statique n’a pu être créé. Essayez de le créer "
 "manuellement via FTP avec les droits chmod 0777."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/static_html_cache.php:166
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/static_html_cache.php:171
 #, php-format
 msgid ""
 "Cached content of %3$s served by static_html_cache in %1$.4f seconds plus "
@@ -21460,11 +21473,11 @@ msgstr ""
 "Contenu en cache de %3$s servi par static_html_cache en %1$.4f secondes plus "
 "%2$.4f secondes incompressibles, liées à Zenphoto."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/static_html_cache.php:324
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/static_html_cache.php:329
 msgid "Static HTML cache expire"
 msgstr "Délai d’expiration du cache HTML statique"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/static_html_cache.php:325
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/static_html_cache.php:330
 msgid ""
 "When the cache should expire in seconds. Default is 86400 seconds (1 day  = "
 "24 hrs * 60 min * 60 sec)."
@@ -21472,11 +21485,11 @@ msgstr ""
 "Durée d’expiration du cache (en secondes). La valeur par défaut est de 86400 "
 "s (1 jour = 24 h * 60 min * 60 s)."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/static_html_cache.php:326
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/static_html_cache.php:331
 msgid "Excluded pages"
 msgstr "Pages exclues"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/static_html_cache.php:327
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/static_html_cache.php:332
 msgid ""
 "The list of pages to be excluded from cache generation. Pages that can be "
 "excluded are custom theme pages including Zenpage pages (these optionally "
@@ -23292,8 +23305,8 @@ msgid "Edit Article"
 msgstr "Modifier l’article"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage.php:312
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:381
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:382
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:371
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:372
 msgid "Delete article"
 msgstr "Supprimer l’article"
 
@@ -23350,8 +23363,8 @@ msgstr ""
 "enregistrez leur disposition."
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-categories.php:195
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:371
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:372
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:361
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:362
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:287
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:288
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1032
@@ -23382,7 +23395,7 @@ msgstr "Date future de publication :"
 
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:195
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:226
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:218
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:200
 msgid "New Article"
 msgstr "Nouvel article"
 
@@ -23679,23 +23692,23 @@ msgstr "Article supprimé !"
 msgid "Hitcounter reset"
 msgstr "Les compteurs d’affichage ont été remis à zéro"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:240
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:222
 msgid "Edit this article"
 msgstr "Modifier cet article"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:256
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:238
 msgid "Add categories"
 msgstr "Ajouter des catégories"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:257
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:239
 msgid "Clear categories"
 msgstr "Effacer les catégories"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:347
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:350
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:389
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:392
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:395
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:337
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:340
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:379
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:382
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:385
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:269
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:272
 #: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:302
@@ -23705,8 +23718,8 @@ msgstr "Effacer les catégories"
 msgid "locked"
 msgstr "verrouillé(e)"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:358
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:359
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:348
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:349
 msgid "View article"
 msgstr "Voir l’article"
 
@@ -24331,48 +24344,48 @@ msgstr "Catégories ajoutées aux éléments sélectionnés"
 msgid "Categories cleared from selected items"
 msgstr "Catégories enlevées des éléments sélectionnés"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:413
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:408
 msgid "<em>This entry belongs to a protected album.</em>"
 msgstr "<em>Cette entrée appartient à un album protégé.</em>"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:969
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:956
 msgid "Prev page"
 msgstr "Page préc."
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1542
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1582
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1532
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1572
 #, php-format
 msgid "%u article"
 msgid_plural "%u articles"
 msgstr[0] "%u article"
 msgstr[1] "%u articles"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2140
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2130
 msgid "This page is password protected"
 msgstr "Cette page est protégée par mot de passe"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2313
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2303
 #, php-format
 msgid "View the %s album"
 msgstr "Voir l’album %s"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2315
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2305
 #, php-format
 msgid "View the album %s"
 msgstr "Voir l’album %s"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2319
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2320
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2309
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2310
 #, php-format
 msgid "View %s"
 msgstr "Voir %s"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2328
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2318
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the image %1$s:%2$s"
 msgstr "<code>zenpageAlbumImage()</code> n’a pas trouvé l’image %1$s:%2$s"
 
-#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2337
+#: C:\Users\Famille\Documents\GitHub\zenphoto/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2327
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> n’a pas trouvé l’album %1$s"
@@ -24510,6 +24523,9 @@ msgid ""
 msgstr ""
 "Taille à utiliser si la police utilisée le permet (Polices <em>TTF</em> et "
 "<em>Imagick</em>)."
+
+#~ msgid "Mod Rewrite is required for this plugin"
+#~ msgstr "Le module ModRewrite est requis pour utiliser cette extension"
 
 #~ msgid "%s protected."
 #~ msgstr "%s protégé(e)."
