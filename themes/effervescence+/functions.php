@@ -176,7 +176,7 @@ function printHeadingImage($randomImage) {
 	}
 	echo '<div id="randomhead">';
 	if (is_null($randomImage)) {
-		echo '<img src="' . $_zp_themeroot . '/images/zen-logo.jpg" alt="' . gettext('There were no images from which to select the random heading.') . '" />';
+		echo '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/zen-logo.png" title="' . gettext('There were no images from which to select the random heading.') . '" />';
 	} else {
 		$randomAlbum = $randomImage->getAlbum();
 		$randomAlt1 = $randomAlbum->getTitle();
