@@ -3,7 +3,10 @@
  * Provides extensions to the image utilities to crop images.
  *
  * Places an image crop button in the image utilities box of the images tab.
- * <b>Note:</b> this plugin permanently changes the image. There is no <i>undo</i>.
+ *
+ * You can either apply the crop to the original image or you can copy a link to the cropped
+ * image and paste it elsewhere in your theme (or other web pages.)
+ * <b>Note:</b> There is no <i>undo</i> once a crop is applied to the original image.
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
@@ -92,6 +95,7 @@ if (isImagePhoto($imageobj)) {
 // get appropriate $sizedwidth and $sizedheight
 switch ($use_side) {
 	case 'longest':
+		$originalSize = min($width, $height);
 		$size = min(400, $width, $height);
 		if ($width >= $height) {
 			$sr = $size / $width;
@@ -99,11 +103,12 @@ switch ($use_side) {
 			$sizedheight = round($height / $width * $size);
 		} else {
 			$sr = $size / $height;
-			$sizedwidth = Round($width / $height * $size);
+			$sizedwidth = round($width / $height * $size);
 			$sizedheight = $size;
 		}
 		break;
 	case 'shortest':
+		$originalSize = min($width, $height);
 		$size = min(400, $width, $height);
 		if ($width < $height) {
 			$sr = $size / $width;
@@ -111,20 +116,20 @@ switch ($use_side) {
 			$sizedheight = round($height / $width * $size);
 		} else {
 			$sr = $size / $height;
-			$sizedwidth = Round($width / $height * $size);
+			$sizedwidth = round($width / $height * $size);
 			$sizedheight = $size;
 		}
 		break;
 	case 'width':
-		$size = $width;
+		$originalSize = $size = $width;
 		$sr = 1;
 		$sizedwidth = $size;
 		$sizedheight = round($height / $width * $size);
 		break;
 	case 'height':
-		$size = $height;
+		$originalSize = $size = $height;
 		$sr = 1;
-		$sizedwidth = Round($width / $height * $size);
+		$sizedwidth = round($width / $height * $size);
 		$sizedheight = $size;
 		break;
 }
@@ -211,6 +216,9 @@ printAdminHeader('edit', gettext('crop image'));
 <script type="text/javascript" >
 	//<!-- <![CDATA[
 	var jcrop_api;
+	var sizedWidth = <?php echo $sizedwidth ?>;
+	var sizedHeight = <?php echo $sizedheight ?>;
+	var oldSize = <?php echo $size; ?>;
 	jQuery(window).load(function() {
 		initJcrop();
 		function initJcrop() {
@@ -228,13 +236,28 @@ printAdminHeader('edit', gettext('crop image'));
 
 		jQuery('#aspect-ratio-width').keyup(aspectChange);
 		jQuery('#aspect-ratio-height').keyup(aspectChange);
+		jQuery('#new_size').keyup(sizeChange);
 		$('#crop').removeClass('dirty');
 	});
 
-	function clearAspect() {
+	function sizeChange() {
+		var size = jQuery('#new_size').val();
+		if (size > 0) {
+			r = oldSize / size;
+			sizedWidth = Math.round(sizedWidth * r);
+			sizedHeight = Math.round(sizedHeight * r);
+			oldSize = size;
+			showCoords(jcrop_api.tellSelect());
+		}
+	}
+
+	function resetButton() {
 		jcrop_api.setOptions({aspectRatio: 0});
 		$('#aspect-ratio-width').val('');
 		$('#aspect-ratio-height').val('');
+		sizedWidth = <?php echo $sizedwidth ?>;
+		sizedHeight = <?php echo $sizedheight ?>;
+		jQuery('#new_size').val(<?php echo $originalSize; ?>);
 		resetBoundingBox();
 		showCoords(jcrop_api.tellSelect());
 		$('#crop').removeClass('dirty');
@@ -267,10 +290,9 @@ printAdminHeader('edit', gettext('crop image'));
 	// Our simple event handler, called from onchange and onSelect
 	// event handlers, as per the Jcrop invocation above
 	function showCoords(c) {
-		var new_width = Math.round(c.w * (<?php echo $width ?> /<?php echo $sizedwidth ?>));
-		var new_height = Math.round(c.h * (<?php echo $height ?> /<?php echo $sizedheight ?>));
-		var rw = <?php echo round($width / $sizedwidth); ?>;
-		var rh = <?php echo round($height / $sizedheight); ?>;
+
+		var new_width = Math.round(c.w * (<?php echo $width ?> / sizedWidth));
+		var new_height = Math.round(c.h * (<?php echo $height ?> / sizedHeight));
 
 		jQuery('#x').val(c.x);
 		jQuery('#y').val(c.y);
@@ -281,10 +303,11 @@ printAdminHeader('edit', gettext('crop image'));
 		jQuery('#new-width').text(new_width);
 		jQuery('#new-height').text(new_height);
 
-		cw = c.w * rw;
-		ch = c.h * rh;
-		cx = c.x * rw;
-		cy = c.y * rh;
+		cw = Math.round(c.w * <?php echo $width / $sizedwidth; ?>);
+		ch = Math.round(c.h * <?php echo $width / $sizedwidth; ?>);
+		cx = Math.round(c.x * <?php echo $width / $sizedwidth; ?>);
+		cy = Math.round(c.y * <?php echo $height / $sizedheight; ?>);
+
 		uri = '<?php echo WEBPATH . '/' . ZENFOLDER . "/i.php?a=$albumname&i=$imagename"; ?>' + '&w=' + new_width + '&h=' + new_height + '&cw=' + cw + '&ch=' + ch + '&cx=' + cx + '&cy=' + cy;
 		jQuery('#imageURI').val(uri);
 		jQuery('#imageURI').attr('size', uri.length + 10);
@@ -317,23 +340,28 @@ printAdminHeader('edit', gettext('crop image'));
 			<div style="display:block">
 
 				<div style="text-align:left; float: left;">
-
-					<div style="width: <?php echo $sizedwidth; ?>px; height: <?php echo $sizedheight; ?>px; margin-bottom: 10px; border: 4px solid gray;">
-						<!-- This is the image we're attaching Jcrop to -->
-						<img src="<?php echo html_encode(pathurlencode($imageurl)); ?>" id="cropbox" />
-						<p class="floatright">
-							<?php echo sprintf(gettext('(<span id="new-width">%1$u</span> x <span id="new-height">%2$u</span> pixels)'), round($iW * ($width / $sizedwidth)), round($iH * ($height / $sizedheight)));
-							?>
-						</p>
-					</div>
-					<span class="clearall" ></span>
-					<?php
-					printf(gettext('width:%1$s %2$s height:%3$s'), '<input type="text" id="aspect-ratio-width" name="aspect-ratio-width" value="" size="5" />', '&nbsp;<span id="aspect" ><a id="swap_button" href="javascript:swapAspect();" title="' . gettext('swap width and height fields') . '" > <img src="crop_image/swap.png"> </a></span>&nbsp;', '<input type="text" id="aspect-ratio-height" name="aspect-ratio-height" value="" size="5" />');
-					?>
-
 					<!-- This is the form that our event handler fills -->
 					<form class="dirty-check" name="crop" id="crop" action="?crop" onsubmit="return checkCoords();">
 						<?php XSRFToken('crop'); ?>
+
+						<div style="width: <?php echo $sizedwidth; ?>px; height: <?php echo $sizedheight; ?>px; margin-bottom: 10px; border: 4px solid gray;">
+							<!-- This is the image we're attaching Jcrop to -->
+							<img src="<?php echo html_encode(pathurlencode($imageurl)); ?>" id="cropbox" />
+							<span class="floatright">
+								<?php echo sprintf(gettext('(<span id="new-width">%1$u</span> x <span id="new-height">%2$u</span> pixels)'), round($iW * ($width / $sizedwidth)), round($iH * ($height / $sizedheight)));
+								?>
+							</span>
+						</div>
+						<span class="clearall" ></span>
+						<p class="floatleft">
+							<?php echo gettext('size'); ?>
+							<input type = "text" name = "new_size" id = "new_size" size = "5" value = "<?php echo $originalSize; ?>" />
+							<br />
+							<?php
+							printf(gettext('crop width:%1$s %2$s crop height:%3$s'), '<input type="text" id="aspect-ratio-width" name="aspect-ratio-width" value="" size="5" />', '&nbsp;<span id="aspect" ><a id="swap_button" href="javascript:swapAspect();" title="' . gettext('swap width and height fields') . '" > <img src="crop_image/swap.png"> </a></span>&nbsp;', '<input type="text" id="aspect-ratio-height" name="aspect-ratio-height" value="" size="5" />');
+							?>
+						</p>
+
 						<input type="hidden" size="4" id="x" name="x" value="<?php echo $iX ?>" />
 						<input type="hidden" size="4" id="y" name="y" value="<?php echo $iY ?>" />
 						<input type="hidden" size="4" id="x2" name="x2" value="<?php echo $iX + $iW ?>" />
@@ -346,13 +374,13 @@ printAdminHeader('edit', gettext('crop image'));
 						<input type="hidden" id="subpage" name="subpage" value="<?php echo html_encode($subpage); ?>" />
 						<input type="hidden" id="crop" name="crop" value="crop" />
 						<input type="hidden" id="performcrop" name="performcrop" value="<?php echo html_encode(sanitize($_REQUEST['performcrop'])); ?>" />
-						<p>
-							<input type="button" value="<?php echo gettext("Image Link:"); ?>" onclick="$('#imageURI').select();" title="<?php echo gettext('Click to select link'); ?>" />
+						<p class="floatleft">
+							<input type="button" value="<?php echo gettext("Image Link:"); ?>" onclick="$('#imageURI').select();" title="<?php echo gettext('Click to select link so you can copy it to your clipboard'); ?>" />
 							<br />
 							<input type="text" name="imageURI" id="imageURI" disabled="disabled" title="<?php echo gettext('Copy and insert this link for an image cropped as shown.'); ?>" />
 						</p>
 						<p class="buttons">
-							<button type="button" onclick="clearAspect();" >
+							<button type="button" onclick="resetButton();" >
 								<img src="../images/fail.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
 							</button>
 							<button type="submit" id="submit" name="submit" value="<?php echo gettext('Apply the cropping') ?>">

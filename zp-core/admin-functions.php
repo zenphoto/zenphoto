@@ -1216,7 +1216,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					<table class="width100percent">
 						<tr>
 							<td class="leftcolumn">
-								<input type="button" value="<?php echo gettext("Link"); ?>" onclick="$('#album_link').select();" title="<?php echo gettext('Click to select link'); ?>" />
+								<input type="button" value="<?php echo gettext("Link"); ?>" onclick="$('#album_link').select();" title="<?php echo gettext('Click to select link so you can copy it to your clipboard'); ?>" />
 							</td>
 							<td class="middlecolumn">
 								<input type="text" name="album_link" id="album_link" value="<?php echo $album->getLink(); ?>" disabled="disabled" />
@@ -1291,7 +1291,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
 																onclick="passwordClear('<?php echo $suffix; ?>');
-																		togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
+																				togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
 								</td>
 								<td>
 									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
@@ -1817,7 +1817,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -2719,7 +2719,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @return string
 	 */
 	function isolate($target, $str) {
-		if (preg_match('|' . preg_quote($target) . '\s*?=(.+?);[ \f\v\t]*[\n\r]|s', $str, $matches)) {
+		if (preg_match('|' . preg_quote($target) . '\s*?=*(.+?);[ \f\v\t]*[\n\r]|s', $str, $matches)) {
 			return $matches[0];
 		}
 		return false;
@@ -2771,16 +2771,20 @@ function printAdminHeader($tab, $subtab = NULL) {
 			$link = '';
 		}
 		if (empty($link) || str_replace('\\', '/', $link) == SERVERPATH . '/' . THEMEFOLDER . '/' . $theme) {
-			$zplist = getSerializedArray(getOption('Zenphoto_theme_list'));
-			return (!in_array($theme, $zplist));
+			return !zenPhotoTheme($theme);
 		} else {
 			return false;
 		}
 	}
 
 	function zenPhotoTheme($theme) {
-		$zplist = getSerializedArray(getOption('Zenphoto_theme_list'));
-		return (in_array($theme, $zplist));
+		$theme_description = array();
+		$desc = SERVERPATH . '/' . THEMEFOLDER . '/' . $theme . '/theme_description.php';
+		if (file_exists($desc)) {
+			require($desc);
+			return isset($theme_description['distribution']) && $theme_description['distribution'];
+		}
+		return false;
 	}
 
 	/**
@@ -4327,7 +4331,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 		}
 		?>
 		<select name="subpage" class="ays-ignore" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
-								[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
+										[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
 							<?php
 							foreach ($rangeset as $page => $range) {
 								?>
