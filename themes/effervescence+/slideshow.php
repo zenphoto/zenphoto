@@ -8,12 +8,12 @@ if (function_exists('printSlideShow')) {
 	<html>
 		<head>
 			<?php zp_apply_filter('theme_head'); ?>
-	<?php printHeadTitle(); ?>
+			<?php printHeadTitle(); ?>
 			<meta charset="<?php echo LOCAL_CHARSET; ?>">
 			<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 		</head>
 		<body>
-	<?php zp_apply_filter('theme_body_open'); ?>
+			<?php zp_apply_filter('theme_body_open'); ?>
 			<!-- Wrap Everything -->
 			<div id="main4">
 				<div id="main2">
@@ -22,7 +22,7 @@ if (function_exists('printSlideShow')) {
 					<div id="galleryheader">
 						<div id="gallerytitle">
 							<div id="logo2">
-	<?php printLogo(); ?>
+								<?php printLogo(); ?>
 							</div>
 						</div> <!-- gallery title -->
 
@@ -67,7 +67,7 @@ if (function_exists('printSlideShow')) {
 				<div id="content">
 					<div id="main">
 						<div id="slideshowpage">
-	<?php printSlideShow(false, true); ?>
+							<?php printSlideShow(false, true); ?>
 						</div>
 					</div> <!-- main -->
 				</div> <!-- content -->
@@ -78,7 +78,7 @@ if (function_exists('printSlideShow')) {
 				<?php
 				printThemeInfo();
 				?>
-			<?php printZenphotoLink(); ?>
+				<?php printZenPhoto('gray'); ?>
 			</div> <!-- footlinks -->
 			<?php
 			printFooter();

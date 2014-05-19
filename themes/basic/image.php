@@ -119,7 +119,7 @@ if (!defined('WEBPATH'))
 			?>
 			<?php if (class_exists('RSS')) printRSSLink('Gallery', '', 'RSS', ' | '); ?>
 			<?php printCustomPageURL(gettext("Archive View"), "archive"); ?> |
-			<?php printZenphotoLink(); ?>
+			<?php printZenPhoto20(); ?>
 			<?php @call_user_func('printUserLogin_out', " | "); ?>
 		</div>
 		<?php

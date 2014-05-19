@@ -38,7 +38,7 @@ if (!defined('WEBPATH'))
 				echo '</p>';
 			}
 			?>
-			<?php printZenphotoLink(); ?>
+			<?php printZenPhoto20(); ?>
 		</div>
 		<?php
 		zp_apply_filter('theme_body_close');

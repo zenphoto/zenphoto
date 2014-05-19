@@ -69,7 +69,7 @@ if (!defined('WEBPATH'))
 				printRegisterURL(gettext('Register for this site'), '', ' | ');
 			}
 			?>
-			<?php printZenphotoLink(); ?>
+			<?php printZenPhoto20(); ?>
 		</div>
 		<?php @call_user_func('mobileTheme::controlLink'); ?>
 		<?php @call_user_func('printLanguageSelector'); ?>

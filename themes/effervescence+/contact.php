@@ -72,7 +72,7 @@ if (function_exists('printContactForm')) {
 			<div class="footlinks">
 
 				<?php printThemeInfo(); ?>
-				<?php printZenphotoLink(); ?>
+				<?php printZenPhoto('gray'); ?>
 
 			</div> <!-- footerlinks -->
 

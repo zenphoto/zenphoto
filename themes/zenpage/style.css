@@ -1442,3 +1442,10 @@ input.button {
 .clearright {
 	clear: right !important;
 }
+
+.zen-logo, .zen-logo a {
+	text-decoration: none;
+}
+.zen-logo img {
+	vertical-align: sub;
+}

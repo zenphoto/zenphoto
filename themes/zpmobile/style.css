@@ -1,39 +1,39 @@
 body {
-background-color: black !important;
+	background-color: black !important;
 }
 
 .content-primary {
-margin-bottom: 15px;
+	margin-bottom: 15px;
 }
 .content-secondary {
-margin-top: 0px;
+	margin-top: 0px;
 }
 
 
 #latest {
-margin: 0;
-padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 #latest img {
-padding: 0;
-border: 1px solid gray;
-float: left;
+	padding: 0;
+	border: 1px solid gray;
+	float: left;
 }
 
 
 .image img {
-padding: 0;
-height: auto;
-width: 98%;
-border: 1px solid gray;
+	padding: 0;
+	height: auto;
+	width: 98%;
+	border: 1px solid gray;
 
 }
 
 ul.pagelist {
-text-align: left;
-margin: 15px 0px 0px 0px;
-padding: 0;
+	text-align: left;
+	margin: 15px 0px 0px 0px;
+	padding: 0;
 }
 
 ul.pagelist li {
@@ -49,7 +49,7 @@ ul.taglist li a,
 #tagcloud a,
 .archive a,
 #archive a,
-h2.breadcrumb a, 
+h2.breadcrumb a,
 ul.pagelist li a {
 	font-weight: normal;
 	text-decoration: none;
@@ -71,7 +71,7 @@ ul.taglist li a,
 
 
 .disabled_nav {
-display: none;
+	display: none;
 }
 #admin_data a:hover,
 #admin a:hover,
@@ -80,7 +80,7 @@ ul.taglist li a:hover,
 #tagcloud a:hover,
 .archive a:hover,
 #archive a:hover,
-h2.breadcrumb a:hover, 
+h2.breadcrumb a:hover,
 ul.pagelist li a:hover {
 	text-decoration: none;
 	background-color: lightgray;
@@ -91,7 +91,7 @@ ul.taglist li a:active,
 #tagcloud a:active,
 .archive a:active,
 #archive a:active,
-h2.breadcrumb a:active, 
+h2.breadcrumb a:active,
 ul.pagelist li a:active,
 ul.pagelist li a:active {
 	text-decoration: none;
@@ -121,30 +121,30 @@ div#latest ul li {
 }
 
 li {
-margin: 7px 0 0px 0;
+	margin: 7px 0 0px 0;
 }
 
 #collapsible-lists ul {
-margin: 0 0px 0 10px;
-padding: 0;
-line-height: 22px;
+	margin: 0 0px 0 10px;
+	padding: 0;
+	line-height: 22px;
 }
 #collapsible-lists ul li {
-margin: 7px 0 0 0;
-padding: 0;
+	margin: 7px 0 0 0;
+	padding: 0;
 }
 
 #collapsible-lists ul li a {
-word-break: break-all !important;
+	word-break: break-all !important;
 }
 
 .disabledlink {
-display: none;
+	display: none;
 }
 
 ul li div.contenttext {
 
-font-weight: normal;
+	font-weight: normal;
 }
 
 div.albumdesc {
@@ -158,26 +158,26 @@ div.albumdesc {
 }
 
 #mainpage {
-position: relative;
+	position: relative;
 }
 
 .image-favorite {
-min-height: 140px;
+	min-height: 140px;
 }
 
 #image {
-clear: both;
-margin: 10px 0px 15px 0px;
-padding: 0;
-width: 100%;
-height: auto;
-text-align: center;
-z-index: 500;
-position: relative;
+	clear: both;
+	margin: 10px 0px 15px 0px;
+	padding: 0;
+	width: 100%;
+	height: auto;
+	text-align: center;
+	z-index: 500;
+	position: relative;
 }
 
 #image img {
-border: 1px solid lightgray;
+	border: 1px solid lightgray;
 }
 
 /* centering flowplayer 3 and jPlayer on image.php (and jplayer playlists elsewhere) */
@@ -188,60 +188,60 @@ border: 1px solid lightgray;
 }
 
 a.jp-play,
-a.jp-pause, 
-a.jp-stop, 
-a.jp-previous, 
+a.jp-pause,
+a.jp-stop,
+a.jp-previous,
 a.jp-next {
 	position: relative;
 	top: -5px;
 }
-ul.jp-toggles { 
- position: relative;
- top: -5px;
+ul.jp-toggles {
+	position: relative;
+	top: -5px;
 }
 
 
 .content-primary .imgnav {
-width: 100%;
-margin: 5px 0 0px 0;
-padding: 0;
-text-align: center;
-z-index: 1000;
+	width: 100%;
+	margin: 5px 0 0px 0;
+	padding: 0;
+	text-align: center;
+	z-index: 1000;
 }
 
 
 #image img {
-width: 100% !important;
+	width: 100% !important;
 }
 
 h2 {
-font-size: 16px;
-margin: 0;
-padding: 0;
-line-height: 28px;
+	font-size: 16px;
+	margin: 0;
+	padding: 0;
+	line-height: 28px;
 }
 
 h2.breadcrumb {
-margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 h3 {
-font-size: 14px;
-margin-bottom: 0px;
-line-height: 24px;
+	font-size: 14px;
+	margin-bottom: 0px;
+	line-height: 24px;
 
 }
 
 h4 {
- font-size: 14px;
- line-height: 24px;
+	font-size: 14px;
+	line-height: 24px;
 
 }
 
 
 
 ul.archive {
-margin-left: -10px;
+	margin-left: -10px;
 
 }
 ul.archive > li {
@@ -250,7 +250,7 @@ ul.archive > li {
 }
 ul.tags,
 ul.archive ul {
-	list-style: none;	
+	list-style: none;
 	margin-left: -25px;
 	margin-top: 5px;
 	line-height: 28px;
@@ -266,45 +266,45 @@ li.rsslink {
 	list-style: none;
 	margin-left: -15px;
 	background: url(images/rss.png) no-repeat center left;
-	padding-left: 25px !important; 
+	padding-left: 25px !important;
 }
 
 #footer {
-padding: 10px 0 0 0 !important;
-border-top: 1px solid lightgray;
+	padding: 10px 0 0 0 !important;
+	border-top: 1px solid lightgray;
 }
 
 #footer  ul#footerlist {
-list-style: none;
-padding: 0;
-display: block;
-margin-bottom: 20px !important;
+	list-style: none;
+	padding: 0;
+	display: block;
+	margin-bottom: 20px !important;
 }
 
 
 #footer  ul.flags {
-line-height: 25px;
+	line-height: 25px;
 }
 
 #footer, #footer ul#footerlist li a {
-font-size: 12px !important;
-text-align: center;
-padding: 0px 0 2px 0;
+	font-size: 12px !important;
+	text-align: center;
+	padding: 0px 0 2px 0;
 }
 
 #imagemetadata table {
-width: 100%;
+	width: 100%;
 }
 
 #imagemetadata table,
 #imagemetadata table td {
-border: 1px solid gray;
-border-collapse: collapse;
+	border: 1px solid gray;
+	border-collapse: collapse;
 }
 
 #imagemetadata table td {
-padding: 2px;
-vertical-align: top;
+	padding: 2px;
+	vertical-align: top;
 }
 
 
@@ -312,22 +312,22 @@ vertical-align: top;
 ------------------------------ */
 
 #commentcontent {
-font-weight: normal;
+	font-weight: normal;
 }
 
 #commentcontent .comment {
-padding: 5px;
-background-color: lightgray;
-border: 1px solid darkgray;
-margin-bottom: 5px;
+	padding: 5px;
+	background-color: lightgray;
+	border: 1px solid darkgray;
+	margin-bottom: 5px;
 }
 
 #commentcontent .comment h4 {
-margin: 0;
+	margin: 0;
 }
 
 #commentform table {
-width: 100%;
+	width: 100%;
 }
 
 
@@ -369,36 +369,36 @@ width: 100%;
 }
 
 #search_form .button {
-width: 200px;
+	width: 200px;
 }
 
 .clearall {
-clear: both !important;
+	clear: both !important;
 }
 
 
 @media screen and (min-width: 500px) {
 	.content-primary {
-   	 line-height: 20px;
+		line-height: 20px;
   }
 }
 
 @media screen and (min-width: 960px) {
-		#mainpage {
-			max-width: 960px;
-			border-left: 0px solid lightgray;
-			border-right: 0px solid lightgray;
-			margin: 0 auto;
-		}
-	  .content-primary {
+	#mainpage {
+		max-width: 960px;
+		border-left: 0px solid lightgray;
+		border-right: 0px solid lightgray;
+		margin: 0 auto;
+	}
+	.content-primary {
    	width: 600px;
    	float: left;
    	margin-right: 10px;
    	padding-right: 10px;
-  	}
-  
+	}
+
   .content-primary {
-  line-height: 20px;
+		line-height: 20px;
   }
   .content-secondary {
    	width: 300px;
@@ -409,4 +409,11 @@ clear: both !important;
 .error {
 	color: #C33;
 	font-weight: bold;
+}
+
+.zen-logo, .zen-logo a {
+	text-decoration: none;
+}
+.zen-logo img {
+	vertical-align: sub;
 }

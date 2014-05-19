@@ -718,3 +718,7 @@ a.slideshowlink {
 .clearright {
 	clear: right !important;
 }
+
+.zen-logo img {
+	vertical-align: sub;
+}

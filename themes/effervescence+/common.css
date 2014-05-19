@@ -121,7 +121,7 @@ button.positive,.buttons a.positive {
 /*sidebar vertical buttons */
 .box-edit .buttons a,
 .theme_links .buttons a{
-width: 90% !important;
+	width: 90% !important;
 }
 
 /*------------------------------------- */
@@ -331,52 +331,59 @@ label:hover {
 }
 
 #registration_form p, #commentform p, #mailform p {
-clear: both;
-margin-bottom: 8px;
+	clear: both;
+	margin-bottom: 8px;
 }
 
 #registration_form label,
 #commentform label,
 #mailform label {
-width: 30% !important;
-float: left; 
-display: block;
+	width: 30% !important;
+	float: left;
+	display: block;
 }
 
 #registration_form input[type="text"],
 #registration_form input[type="password"],
 #mailform input[type="text"],
 #commentform input[type="text"] {
-width: 65%;
+	width: 65%;
 }
 
 input.button {
-padding: 5px 8px 5px 8px!important;
-margin: 5px 0 0 0;
+	padding: 5px 8px 5px 8px!important;
+	margin: 5px 0 0 0;
 }
 
-#mailform textarea, 
+#mailform textarea,
 #commentform textarea#comment {
-clear: both;
-width: 95% !important;
-height: 150px;
+	clear: both;
+	width: 95% !important;
+	height: 150px;
 }
 
 img#captcha {
-display: block;
-float: left;
-margin-bottom: 5px;
+	display: block;
+	float: left;
+	margin-bottom: 5px;
 }
 input#code {
-float: left;
-margin-left: 10px;
-width: 10em !important;
+	float: left;
+	margin-left: 10px;
+	width: 10em !important;
 }
 #recaptcha_widget_div {
-float: left;
+	float: left;
 }
 
 .error {
 	color: #C33;
 	font-weight: bold;
+}
+
+.zen-logo, .zen-logo a {
+	text-decoration: none;
+}
+.zen-logo img {
+	vertical-align: sub;
 }

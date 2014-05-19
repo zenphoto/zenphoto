@@ -33,6 +33,22 @@ function css_head($ignore) {
 	return $ignore;
 }
 
+function printZenPhoto20() {
+	global $themeColor;
+	switch ($themeColor) {
+		case 'dark':
+			$logo = 'blue';
+			break;
+		case'light':
+			$logo = 'light';
+			break;
+		default:
+			$logo = 'sterile';
+			break;
+	}
+	printZenphotoLink($logo);
+}
+
 function switcher_head($ignore) {
 	global $personalities, $themecolors, $themeColor;
 	$themeColor = getOption('themeSwitcher_default_color');
