@@ -13,7 +13,7 @@
  * @package plugins
  * @subpackage admin
  */
-$plugin_is_filter = 5 | ADMIN_PLUGIN;
+$plugin_is_filter = defaultExtension(5 | ADMIN_PLUGIN);
 $plugin_description = gettext("Text editor TinyMCE 4.x");
 $plugin_author = "Malte Müller (acrylian)";
 $option_interface = 'tinymce4Options';
@@ -31,7 +31,6 @@ class tinymce4Options {
 	function tinymce4Options() {
 		setOptionDefault('tinymce4_zenphoto', 'zenphoto-ribbon.js.php');
 		setOptionDefault('tinymce4_zenpage', 'zenpage-ribbon.js.php');
-		setOptionDefault('zp_plugin_tinymce4', 5 | ADMIN_PLUGIN);
 	}
 
 	function getOptionsSupported() {

@@ -287,7 +287,7 @@ if (!zp_loggedin()) {
 								'button_text'	 => gettext('Run setup'),
 								'formname'		 => 'run_setup.php',
 								'action'			 => WEBPATH . '/' . ZENFOLDER . '/setup.php',
-								'icon'				 => 'images/Zp.png',
+								'icon'				 => 'images/zp.png',
 								'alt'					 => '',
 								'title'				 => gettext('Run the setup script.'),
 								'hidden'			 => '',
@@ -335,28 +335,6 @@ if (!zp_loggedin()) {
 									<?php
 									printf(gettext('Zenphoto version <strong>%1$s [%2$s] (%3$s)</strong>'), ZENPHOTO_VERSION, '<a title="' . ZENPHOTO_FULL_RELEASE . '">' . ZENPHOTO_RELEASE . '</a>', $official);
 									echo $source;
-									if (extensionEnabled('check_for_update') && TEST_RELEASE) {
-										if (is_connected() && class_exists('DOMDocument')) {
-											require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenphoto_news/rsslib.php');
-											$recents = RSS_Retrieve("http://www.zenphoto.org/index.php?rss=news&category=changelog");
-											if ($recents) {
-												array_shift($recents);
-												$article = array_shift($recents); //	most recent changelog article
-												$v = trim(str_replace('zenphoto-', '', basename($article['link'])));
-												$c = explode('-', ZENPHOTO_VERSION);
-												$c = array_shift($c);
-												if ($v && version_compare($c, $v, '>')) {
-													?>
-													<p class="notebox">
-														<a href="http://www.zenphoto.org/news/zenphoto-<?php echo $c; ?>">
-															<?php printf(gettext('Preview the release notes for Zenphoto %s'), $c); ?>
-														</a>
-													</p>
-													<?php
-												}
-											}
-										}
-									}
 									?>
 								</li>
 								<li>

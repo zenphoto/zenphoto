@@ -31,9 +31,9 @@ include_once SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/php
  * @return bool|null
  * */
 function access($attr, $path, $data, $volume) {
-	return strpos(basename($path), '.') === 0	// if file/folder begins with '.' (dot)
+	return strpos(basename($path), '.') === 0 // if file/folder begins with '.' (dot)
 					? !($attr == 'read' || $attr == 'write') // set read+write to false, other (locked+hidden) set to true
-					: null;				 // else elFinder decide it itself
+					: null; // else elFinder decide it itself
 }
 
 function accessImage($attr, $path, $data, $volume) {
@@ -77,7 +77,12 @@ if ($_REQUEST['origin'] == 'upload') {
 	}
 
 	if (zp_loggedin(THEMES_RIGHTS)) {
-		$zplist = getSerializedArray(getOption('Zenphoto_theme_list'));
+		$zplist = array();
+		foreach ($_zp_gallery->getThemes() as $theme => $data) {
+			if (zenPhotoTheme($theme)) {
+				$zplist[] = preg_quote($theme);
+			}
+		}
 		$opts['roots'][1] = array(
 						'driver'				 => 'LocalFileSystem',
 						'startPath'			 => SERVERPATH . '/' . THEMEFOLDER . '/',
@@ -147,10 +152,10 @@ if ($_REQUEST['origin'] == 'upload') {
 				}
 				$_not_edit[$key] = $_not_upload[$key] = $folder = preg_quote($folder);
 				switch ($modified_rights & (MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_EDIT)) {
-					case MANAGED_OBJECT_RIGHTS_UPLOAD:		// upload but not edit
+					case MANAGED_OBJECT_RIGHTS_UPLOAD: // upload but not edit
 						unset($_not_upload[$key]);
 						break;
-					case MANAGED_OBJECT_RIGHTS_EDIT:		// edit but not upload
+					case MANAGED_OBJECT_RIGHTS_EDIT: // edit but not upload
 						unset($_not_edit[$key]);
 						break;
 					case MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_EDIT: // edit and upload

@@ -329,7 +329,7 @@ function printNewsArticlesList($number) {
 				$count++;
 				echo "<li>";
 				if ($_GET['zenpage'] == "articles") {
-					echo "<a href=\"javascript:ZenpageDialog.insert('','news/" . $newsobj->getTitlelink() . "','','','" . $newsobj->getTitlelink() . "','" . addslashes($newsobj->getTitle()) . "','','','articles','','','','');\" title='" . html_encode(truncate_string(getBare($newsobj->getContent()), 300)) . "'>" . addslashes($newsobj->getTitle()) . unpublishedZenpageItemCheck($newsobj) . "</a> <small><em>" . $newsobj->getDatetime() . "</em></small>";
+					echo "<a href=\"javascript:ZenpageDialog.insert('','" . _NEWS_ . '/' . $newsobj->getTitlelink() . "','','','" . $newsobj->getLink() . "','" . addslashes($newsobj->getTitle()) . "','','','articles','','','','');\" title='" . html_encode(truncate_string(getBare($newsobj->getContent()), 300)) . "'>" . addslashes($newsobj->getTitle()) . unpublishedZenpageItemCheck($newsobj) . "</a> <small><em>" . $newsobj->getDatetime() . "</em></small>";
 					echo " <a href='zoom.php?news=" . urlencode($newsobj->getTitlelink()) . "' title='Zoom' class='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a><br />";
 					echo '<small><em>' . gettext('Categories:');
 					$cats = $newsobj->getCategories();
@@ -505,13 +505,13 @@ function printAllNestedList() {
 				case 'categories':
 					$obj = new ZenpageCategory($item['titlelink']);
 					$itemcontent = $obj->getTitle();
-					$zenpagepage = "news/category/" . $item['titlelink'];
+					$zenpagepage = _CATEGORY_ . $item['titlelink'];
 					$unpublished = unpublishedZenpageItemCheck($obj);
 					$counter = ' (' . count($obj->getArticles()) . ') ';
 					break;
 			}
 			$itemsortorder = $obj->getSortOrder();
-			$itemtitlelink = $obj->getTitlelink();
+			$itemtitlelink = $obj->getLink();
 			$itemtitle = $obj->getTitle();
 			$itemid = $obj->getID();
 			$order = explode('-', $itemsortorder);

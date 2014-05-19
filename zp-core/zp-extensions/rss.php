@@ -8,7 +8,7 @@
  */
 // force UTF-8 Ø
 
-$plugin_is_filter = 900 | FEATURE_PLUGIN;
+$plugin_is_filter = defaultExtension(900 | FEATURE_PLUGIN);
 $plugin_description = gettext('The Zenphoto <em>RSS</em> handler.');
 $plugin_notice = gettext('This plugin must be enabled to supply <em>RSS</em> feeds.') . '<br />' . gettext('<strong>Note:</strong> Theme support is required to display RSS links.');
 
@@ -21,23 +21,6 @@ class rss_options {
 	function __construct() {
 		global $plugin_is_filter;
 		if (OFFSET_PATH == 2) {
-			setOptionDefault('zp_plugin_rss', $plugin_is_filter);
-//	migrate old RSS options
-			setOptionDefault('RSS_items', getOption('feed_items')); // options for standard images rss
-			setOptionDefault('RSS_imagesize', getOption('feed_imagesize'));
-			setOptionDefault('RSS_sortorder', getOption('feed_sortorder'));
-			setOptionDefault('RSS_items_albums', getOption('feed_items_albums')); // options for albums rss
-			setOptionDefault('RSS_imagesize_albums', getOption('feed_imagesize_albums'));
-			setOptionDefault('RSS_sortorder_albums', getOption('feed_sortorder_albums'));
-			setOptionDefault('RSS_enclosure', getOption('feed_enclosure'));
-			setOptionDefault('RSS_mediarss', getOption('feed_mediarss'));
-			setOptionDefault('RSS_cache', getOption('feed_cache'));
-			setOptionDefault('RSS_cache_expire', getOption('feed_cache_expire'));
-			setOptionDefault('RSS_hitcounter', getOption('feed_hitcounter'));
-			setOptionDefault('RSS_title', getOption('feed_title'));
-			setOptionDefault('RSS_truncate_length', getOption('zenpage_rss_length'));
-			setOptionDefault('RSS_zenpage_items', getOption('zenpage_rss_items'));
-
 			setOptionDefault('RSS_truncate_length', '100');
 			setOptionDefault('RSS_zenpage_items', '10');
 			setOptionDefault('RSS_items', 10); // options for standard images rss

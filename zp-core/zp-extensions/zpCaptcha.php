@@ -8,7 +8,7 @@
  */
 // force UTF-8 Ø
 
-$plugin_is_filter = 5 | CLASS_PLUGIN;
+$plugin_is_filter = defaultExtension(5 | CLASS_PLUGIN);
 $plugin_description = gettext("Zenphoto captcha handler.");
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = ($_zp_captcha->name && $_zp_captcha->name != 'zpCaptcha') ? sprintf(gettext('Only one Captcha handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), $_zp_captcha->name) : '';
@@ -27,7 +27,6 @@ class zpCaptcha extends _zp_captcha {
 	function __construct() {
 		global $plugin_is_filter;
 		if (OFFSET_PATH == 2) {
-			setOptionDefault('zp_plugin_zpCaptcha', $plugin_is_filter);
 			setOptionDefault('zenphoto_captcha_length', 5);
 			setOptionDefault('zenphoto_captcha_font_size', 18);
 			setOptionDefault('zenphoto_captcha_key', sha1($_SERVER['HTTP_HOST'] . 'a9606420399a77387af2a4b541414ee5' . getUserIP()));

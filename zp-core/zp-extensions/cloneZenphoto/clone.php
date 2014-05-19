@@ -23,9 +23,10 @@ if (trim($folder, '/') == SERVERPATH) {
 } else {
 	$success = true;
 	$targets = array(ZENFOLDER => 'dir', USER_PLUGIN_FOLDER => 'dir', 'index.php' => 'file');
-	$zplist = $_zp_gallery->getThemes();
-	foreach ($zplist as $theme => $data) {
-		$targets[THEMEFOLDER . '/' . $theme] = 'dir';
+	foreach ($_zp_gallery->getThemes() as $theme => $data) {
+		if (zenPhotoTheme($theme)) {
+			$targets[THEMEFOLDER . '/' . $theme] = 'dir';
+		}
 	}
 	foreach (array(internalToFilesystem('charset_tést'), internalToFilesystem('charset.tést')) as $charset) {
 		if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . $charset)) {

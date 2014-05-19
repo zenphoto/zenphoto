@@ -26,7 +26,7 @@ if ($filehandler) {
 									"advlist autolink lists link image charmap print preview hr anchor pagebreak",
 									"searchreplace wordcount visualblocks visualchars code fullscreen",
 									"insertdatetime media nonbreaking save table contextmenu directionality",
-									"emoticons template paste tinyzenpage"
+									"emoticons template paste <?php if (extensionEnabled('tinyZenpage')) echo "tinyzenpage"; ?>"
 					],
 									toolbar: false,
 									setup: function(ed) {

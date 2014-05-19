@@ -2,7 +2,7 @@
 /**
  * The configuration functions for TinyMCE 4.x.
  *
- * Zenphoto plugin default light configuration
+ * zenphoto plugin default light configuration
  */
 $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
 ?>
@@ -26,7 +26,7 @@ if ($filehandler) {
 					plugins: [
 									"advlist autolink lists link image charmap print preview anchor",
 									"searchreplace visualblocks code fullscreen",
-									"insertdatetime media table contextmenu paste tinyzenpage"
+									"insertdatetime media table contextmenu paste <?php if (extensionEnabled('tinyZenpage')) echo "tinyzenpage"; ?>"
 					],
 									toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image tinyzenpage | code fullscreen",
 									setup: function(ed) {

@@ -402,7 +402,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 									<p><?php echo gettext("<em>ExtraContent:</em> Here you can enter extra content for example to be printed on the sidebar"); ?></p>
 									<p>
 										<?php
-										echo gettext("<em>Codeblocks:</em> Use these fields if you need to enter php code (for example Zenphoto functions) or JavaScript code.");
+										echo gettext("<em>Codeblocks:</em> Use these fields if you need to enter php code (for example zenphoto functions) or JavaScript code.");
 										echo gettext("You also can use the codeblock fields as custom fields.");
 										echo gettext("Note that your theme must be setup to use the codeblock functions. Note also that codeblock fields are not multi-lingual.");
 										?>
@@ -516,7 +516,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 																			 value="<?php echo $x; ?>" />
 																<br />
 																<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear('');
-																					togglePassword('');"><?php echo gettext('Show password'); ?></label>
+																		togglePassword('');"><?php echo gettext('Show password'); ?></label>
 																<br />
 																<span class="password_field_">
 																	<span id="match"><?php echo gettext("(repeat)"); ?></span>
@@ -540,13 +540,13 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 														<label class="checkboxlabel">
 															<input type="radio" id="copy_object" name="copy_delete_object" value="copy"
 																		 onclick="javascript:$('#copyfield').show();
-																						 $('#deletemsg').hide();" />
+																				 $('#deletemsg').hide();" />
 																		 <?php echo gettext("Copy"); ?>
 														</label>
 														<label class="checkboxlabel">
 															<input type="radio" id="delete_object" name="copy_delete_object" value="delete"
 																		 onclick="deleteConfirm('delete_object', '', '<?php addslashes(printf(gettext('Are you sure you want to delete this %s?'), $deleteitem)); ?>');
-																						 $('#copyfield').hide();" />
+																				 $('#copyfield').hide();" />
 																		 <?php echo gettext('delete'); ?>
 														</label>
 														<br class="clearall" />
@@ -731,7 +731,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 											?>
 											<tr>
 												<td>
-													<input type="button" value="<?php echo gettext("Link:"); ?>" onclick="$('#item_link').select();" title="<?php echo gettext('Click to select link'); ?>" />
+													<input type="button" value="<?php echo gettext("Link:"); ?>" onclick="$('#item_link').select();" title="<?php echo gettext('Click to select link so you can copy it to your clipboard'); ?>" />
 												</td>
 												<td class="middlecolumn">
 													<input  type="text"  name="item_link" id="item_link" value="<?php echo $result->getLink(); ?>" disabled="disabled" />

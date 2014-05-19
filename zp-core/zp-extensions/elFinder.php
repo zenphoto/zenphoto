@@ -21,7 +21,7 @@
  * @package plugins
  * @subpackage uploader
  */
-$plugin_is_filter = 5 | ADMIN_PLUGIN;
+$plugin_is_filter = defaultExtension(5 | ADMIN_PLUGIN);
 $plugin_description = gettext('Provides file handling for the <code>upload/files</code> tab and the <em>TinyMCE</em> file browser.');
 $plugin_author = "Stephen Billard (sbillard)";
 
@@ -79,7 +79,7 @@ function elFinder_admin_tabs($tabs) {
 	}
 	$tabs['upload']['subtabs'][$me] = $mylink;
 	if (zp_getcookie('uploadtype') == 'elFinder')
-		$tabs['upload']['link'] = $mylink;
+		$tabs['upload']['link'] = WEBPATH . "/" . ZENFOLDER . '/' . $mylink;
 	return $tabs;
 }
 

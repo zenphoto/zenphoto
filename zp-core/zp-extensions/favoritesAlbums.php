@@ -27,7 +27,6 @@
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext('Publish <em>favorites</em> into albums that others can view.');
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_version = 1.0;
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/favoritesHandler/favoritesClass.php');
 if (strpos(__FILE__, ZENFOLDER) === false) {

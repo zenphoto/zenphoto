@@ -1,6 +1,6 @@
 <?php
 /**
- * This is the "files" upload tab
+ * This is the "tokens" upload tab
  *
  * @package plugins
  * @subpackage admin

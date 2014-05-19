@@ -11,7 +11,7 @@
  * @package plugins
  * @subpackage uploader
  */
-$plugin_is_filter = 5 | ADMIN_PLUGIN;
+$plugin_is_filter = defaultExtension(5 | ADMIN_PLUGIN);
 $plugin_description = gettext('<em>jQuery</em> image upload handler.');
 $plugin_author = 'Stephen Billard (sbillard)';
 $plugin_disable = (version_compare(PHP_VERSION, '5.3') >= 0) ? false : gettext('jQuery uploader requires PHP 5.3 or greater.');
@@ -19,8 +19,6 @@ $plugin_disable = (version_compare(PHP_VERSION, '5.3') >= 0) ? false : gettext('
 if ($plugin_disable) {
 	enableExtension('uploader_jQuery', 0);
 } else {
-	if (OFFSET_PATH == 2)
-		setoptiondefault('zp_plugin_uploader_jQuery', $plugin_is_filter);
 	if (zp_loggedin(UPLOAD_RIGHTS)) {
 		zp_register_filter('upload_handlers', 'jQueryUploadHandler');
 		zp_register_filter('admin_tabs', 'jQueryUploadHandler_admin_tabs', 5);
@@ -42,7 +40,7 @@ function jQueryUploadHandler_admin_tabs($tabs) {
 	}
 	$tabs['upload']['subtabs'][$me] = $mylink;
 	if (zp_getcookie('uploadtype') == 'jQuery')
-		$tabs['upload']['link'] = $mylink;
+		$tabs['upload']['link'] = WEBPATH . "/" . ZENFOLDER . '/' . $mylink;
 	return $tabs;
 }
 

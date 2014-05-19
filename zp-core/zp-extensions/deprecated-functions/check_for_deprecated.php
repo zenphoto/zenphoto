@@ -14,7 +14,12 @@ $path = '';
 $selected = 0;
 if (isset($_GET['action'])) {
 	XSRFdefender('deprecated');
-	$zplist = getSerializedArray(getOption('Zenphoto_theme_list'));
+	$zplist = array();
+	foreach ($_zp_gallery->getThemes() as $theme => $data) {
+		if (zenPhotoTheme($theme)) {
+			$zplist[] = $theme;
+		}
+	}
 	$deprecated = new deprecated_functions();
 	$list = array();
 	foreach ($deprecated->listed_functions as $details) {

@@ -13,7 +13,7 @@
  * @subpackage users
  *
  */
-$plugin_is_filter = 5 | CLASS_PLUGIN;
+$plugin_is_filter = defaultExtension(5 | CLASS_PLUGIN);
 $plugin_description = gettext('Adds user address fields');
 $plugin_author = "Stephen Billard (sbillard)";
 
@@ -102,7 +102,6 @@ class userAddressFields extends fieldExtender {
 }
 
 if (OFFSET_PATH == 2) { // setup call: add the fields into the database
-	setOptionDefault('zp_plugin_userAddressFields', $plugin_is_filter);
 	new userAddressFields;
 } else {
 	userAddressFields::register();

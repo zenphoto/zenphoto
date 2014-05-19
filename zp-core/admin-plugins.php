@@ -156,9 +156,27 @@ $subtab = printSubtabs();
 			<?php
 			foreach ($filelist as $extension) {
 				$opt = 'zp_plugin_' . $extension;
-				$third_party_plugin = strpos($paths[$extension], ZENFOLDER) === false;
 				$pluginStream = file_get_contents($paths[$extension]);
 				$parserr = 0;
+				$plugin_URL = FULLWEBPATH . '/' . ZENFOLDER . '/pluginDoc.php?extension=' . $extension;
+				if ($third_party_plugin = strpos($paths[$extension], ZENFOLDER) === false) {
+					if ($str = isolate('@category', $pluginStream)) {
+						preg_match('|@category\s+(.*)\s|', $str, $matches);
+						if (isset($matches[1]) && $matches[1] == 'package') {
+							$third_party_plugin = false;
+							$ico = 'images/zp.png';
+							$whose = gettext('Supplemental plugin');
+							$plugin_URL .= '&amp;type=supplemental';
+						}
+					}
+					if ($third_party_plugin) {
+						$whose = gettext('Third party plugin');
+						$plugin_URL .= '&amp;type=thirdparty';
+					}
+				} else {
+					$whose = gettext('Official plugin');
+					$ico = 'images/zp_gold.png';
+				}
 				if ($str = isolate('$plugin_description', $pluginStream)) {
 					if (false === eval($str)) {
 						$parserr = $parserr | 1;
@@ -202,10 +220,6 @@ $subtab = printSubtabs();
 					}
 				} else {
 					$plugin_disable = false;
-				}
-				$plugin_URL = FULLWEBPATH . '/' . ZENFOLDER . '/pluginDoc.php?extension=' . $extension;
-				if ($third_party_plugin) {
-					$plugin_URL .= '&amp;thirdparty';
 				}
 				$currentsetting = getOption($opt);
 				$plugin_is_filter = 1 | THEME_PLUGIN;
@@ -252,16 +266,12 @@ $subtab = printSubtabs();
 						<label id="<?php echo $extension; ?>">
 							<?php
 							if ($third_party_plugin) {
-								$whose = gettext('third party plugin');
 								$path = stripSuffix($paths[$extension]) . '/logo.png';
 								if (file_exists($path)) {
 									$ico = str_replace(SERVERPATH, WEBPATH, $path);
 								} else {
 									$ico = 'images/place_holder_icon.png';
 								}
-							} else {
-								$whose = 'Zenphoto official plugin';
-								$ico = 'images/zp_gold.png';
 							}
 							?>
 							<img class="zp_logoicon" src="<?php echo $ico; ?>" alt="<?php echo gettext('logo'); ?>" title="<?php echo $whose; ?>" />
@@ -282,7 +292,7 @@ $subtab = printSubtabs();
 							}
 							if ($icon & ADMIN_PLUGIN) {
 								?>
-								<a title="<?php echo gettext('admin plugin'); ?>"><img class="zp_logoicon" src="images/cache.png" /></a>
+								<a title="<?php echo gettext('Admin plugin'); ?>"><img class="zp_logoicon" src="images/cache.png" /></a>
 								<?php
 							} else {
 								?>
@@ -385,9 +395,11 @@ $subtab = printSubtabs();
 		<br />
 		<ul class="iconlegend">
 			<li><img src="images/zp_gold.png" alt=""><?php echo gettext('Official plugin'); ?></li>
+			<li><img src="images/zp.png" alt=""><?php echo gettext('Supplemental plugin'); ?></li>
+			<li><img src="images/cache.png" alt=""><?php echo gettext('Admin plugin'); ?></li>
 			<li><img src="images/info.png" alt=""><?php echo gettext('Usage info'); ?></li>
 			<li><img src="images/options.png" alt=""><?php echo gettext('Options'); ?></li>
-			<li><img src="images/warn.png" alt=""><?php echo gettext('Warning note'); ?></li>
+			<li><img src="images/action.png" alt=""><img src="images/warn.png" alt=""><?php echo gettext('Warning note'); ?></li>
 		</ul>
 		<p class="buttons">
 			<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>

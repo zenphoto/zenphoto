@@ -15,9 +15,8 @@
  * @subpackage admin
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
-$plugin_description = gettext('List option owners.');
+$plugin_description = gettext('Provides a means to purge options for Themes and Plugins.');
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_version = 1.0;
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/favoritesHandler/favoritesClass.php');
 if (strpos(__FILE__, ZENFOLDER) === false) {

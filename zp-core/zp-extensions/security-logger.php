@@ -16,7 +16,7 @@
  * @package plugins
  * @subpackage admin
  */
-$plugin_is_filter = 100 | CLASS_PLUGIN;
+$plugin_is_filter = defaultExtension(100 | CLASS_PLUGIN);
 $plugin_description = gettext('Logs selected security events.');
 $plugin_author = "Stephen Billard (sbillard)";
 
@@ -52,7 +52,6 @@ class security_logger {
 	function __construct() {
 		global $plugin_is_filter;
 		if (OFFSET_PATH == 2) {
-			setOptionDefault('zp_plugin_security-logger', $plugin_is_filter);
 			setOptionDefault('logger_log_guests', 1);
 			setOptionDefault('logger_log_admin', 1);
 			setOptionDefault('logger_log_type', 'all');

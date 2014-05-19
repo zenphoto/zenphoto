@@ -13,7 +13,7 @@
  * @package plugins
  * @subpackage admin
  */
-$plugin_is_filter = 5 | CLASS_PLUGIN;
+$plugin_is_filter = defaultExtension(5 | CLASS_PLUGIN);
 $plugin_description = gettext('Provides short URLs to zenphoto objects.');
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (MOD_REWRITE) ? '' : gettext('Shortened URLs require the <code>mod_rewrite</code> option be enabled.');
@@ -30,7 +30,6 @@ switch (OFFSET_PATH) {
 		}
 		break;
 	case 2:
-		setOptionDefault('zp_plugin_tinyURL', $plugin_is_filter);
 		setOptionDefault('tinyURL_agressive', 0);
 		setOptionDefault('tinyURL_text', 'tiny');
 		break;

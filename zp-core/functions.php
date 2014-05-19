@@ -699,6 +699,19 @@ function enableExtension($extension, $priority, $persistent = true) {
 }
 
 /**
+ * call this if the extension should be enabled by default
+ * @param type $priority
+ */
+function defaultExtension($priority) {
+	if (OFFSET_PATH == 2) {
+		$bt = debug_backtrace();
+		$b = array_shift($bt);
+		setOptionDefault('zp_plugin_' . stripSuffix(basename($b['file'])), $priority);
+	}
+	return $priority;
+}
+
+/**
  * Gets an array of comments for the current admin
  *
  * @param int $number how many comments desired
