@@ -11,8 +11,8 @@
  * 	</ul>
  *
  * The theme files <var>slideshow.php</var>, <var>slideshow.css</var>, and <var>slideshow-controls.png</var> must reside in the theme
- * folder. If you are creating a custom theme, copy these files form the "default" theme of the Zenphoto
- * distribution. Note that the Colorbox mode does not require these files as it is called on your theme's image.php and album.php direclty
+ * folder. If you are creating a custom theme, copy these files one of the distributed themes.
+ * Note that the Colorbox mode does not require these files as it is called on your theme's image.php and album.php direclty
  * via the slideshow button. The Colorbox plugin must be enabled and setup for these pages.
  *
  * <b>NOTE:</b> The jQuery Cycle and the jQuery Colorbox modes do not support movie and audio files.

@@ -1,6 +1,6 @@
 <?php
 /**
- * Clone Zenphoto tab
+ * Clone tab
  *
  *
  * @package admin
@@ -23,7 +23,7 @@ printAdminHeader('overview', 'clone');
 		<div id="content">
 			<?php printSubtabs(); ?>
 			<div class="tabbox">
-	<h1><?php echo (gettext('Create a new install with symbolic links to the current Zenphoto scripts.')); ?></h1>
+				<h1><?php echo (gettext('Create a new install with symbolic links to the current installation scripts.')); ?></h1>
 				<?php zp_apply_filter('admin_note', 'clone', ''); ?>
 				<?php
 				if (isset($success)) {
@@ -47,7 +47,7 @@ printAdminHeader('overview', 'clone');
 				} else {
 					?>
 					<p class="notebox">
-			<?php echo gettext('<strong>Note:</strong> Existing Zenphoto scripts will be removed from the target if they exist.')?>
+						<?php echo gettext('<strong>Note:</strong> Existing Site scripts will be removed from the target if they exist.') ?>
 					</p>
 					<?php
 				}

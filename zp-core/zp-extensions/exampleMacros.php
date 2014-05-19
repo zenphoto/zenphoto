@@ -30,7 +30,7 @@ class exampleMacros {
 										'params' => array(),
 										'value'	 => ZENPHOTO_VERSION,
 										'owner'	 => 'exampleMacros',
-										'desc'	 => gettext('Prints the version of the Zenphoto installation.')),
+										'desc'	 => gettext('Prints the version of the installation.')),
 						'CURRENT_SCRIPT'	 => array('class'	 => 'expression',
 										'params' => array(),
 										'value'	 => '"current script: ".stripSuffix($GLOBALS["_zp_gallery_page"]);',

@@ -55,7 +55,7 @@ echo "\n</head>";
 					if (zp_loggedin(ALBUM_RIGHTS)) {
 						?>
 						<p class="notebox">
-							<?php echo gettext('<strong>Note:</strong> Accessing the Albums folder with this utility is equivalent to using FTP to access it. <em>Copy</em> and <em>rename</em> do not carry the Zenphoto data with the change.'); ?>
+							<?php echo gettext('<strong>Note:</strong> Accessing the Albums folder with this utility is equivalent to using FTP to access it. <em>Copy</em> and <em>rename</em> do not carry the database data with the change.'); ?>
 						</p>
 						<?php
 					}

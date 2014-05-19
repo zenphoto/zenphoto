@@ -1,6 +1,7 @@
 <?php
+
 /**
- * "Clones" the currrent Zenphoto installation to a new location using symlinks. The <i>zp-core</i>, <i>themes</i>, <i>user plugins</i>
+ * "Clones" the currrent installation to a new location using symlinks. The <i>zp-core</i>, <i>themes</i>, <i>user plugins</i>
  * folders and the root <i>index.php</i> file are symlinked. Setup will create the other needed folders.
  *
  * The <i>Clone installation</i> button will take you to the cloning page where you can select a folder destination
@@ -8,7 +9,7 @@
  * installation. (This presumes the <var>setup</var> files are present. If not you will be told which files
  * need to be reloaded.)
  *
- * <b>Note:</b> If the destination already has a Zenphoto installation these files and folders will be removed by the cloning
+ * <b>Note:</b> If the destination already has a installation these files and folders will be removed by the cloning
  * process!
  *
  * The <i>Delete setup scripts</i> button will remove the <var>setup</var> files from the current installation. This is
@@ -19,9 +20,8 @@
  * @package plugins
  * @subpackage admin
  */
-
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
-$plugin_description = gettext('Allows multiple Zenphoto installations to share a single set of Zenphoto script files.');
+$plugin_description = gettext('Allows multiple installations to share a single set of script files.');
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (SYMLINK) ? (zpFunctions::hasPrimaryScripts()) ? false : gettext('Only the primary installation may clone offspring installations.') : gettext('Your server does not support symbolic linking.');
 

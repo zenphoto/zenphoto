@@ -8,7 +8,7 @@
  * The theme file <var>slideshow.php</var> is required witin your theme's folder. A <var>slideshow.css</var> is optional.
  * Required special css should best be incorporated into the theme's css.
  *
- * If you are creating a custom theme, copy these files from an official Zenphoto theme.
+ * If you are creating a custom theme, copy these files from an official theme.
  * Note that the Colorbox mode does not require these files as it is called on your theme's image.php and album.php directly
  * via the slideshow button. The Colorbox plugin must be enabled and setup for these pages.
  *
@@ -517,7 +517,7 @@ if (extensionEnabled('slideshow2')) {
 				$albumnr = $_zp_current_album->getID();
 			}
 			if ($albumnr) {
-				$slideshowlink = rewrite_path(pathurlencode($_zp_current_album->getFolder()) . '/' . _PAGE_ . '/slideshow', "index.php?p=slideshow&amp;album=" . urlencode($_zp_current_album->getFolder()));
+				$slideshowlink = rewrite_path(pathurlencode($_zp_current_album->getFilename()) . '/' . _PAGE_ . '/slideshow', "index.php?p=slideshow&amp;album=" . urlencode($_zp_current_album->getFilename()));
 			} else {
 				$slideshowlink = rewrite_path(_PAGE_ . '/slideshow', "index.php?p=slideshow");
 				$slideshowhidden = '<input type="hidden" name="favorites_page" value="1" />' . "\n" . '<input type="hidden" name="title" value="' . $_myFavorites->instance . '" />';

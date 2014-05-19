@@ -333,7 +333,7 @@ if (!zp_loggedin()) {
 								?>
 								<li>
 									<?php
-									printf(gettext('Zenphoto version <strong>%1$s [%2$s] (%3$s)</strong>'), ZENPHOTO_VERSION, '<a title="' . ZENPHOTO_FULL_RELEASE . '">' . ZENPHOTO_RELEASE . '</a>', $official);
+									printf(gettext('ZenPhoto20 version <strong>%1$s [%2$s] (%3$s)</strong>'), ZENPHOTO_VERSION, '<a title="' . ZENPHOTO_FULL_RELEASE . '">' . ZENPHOTO_RELEASE . '</a>', $official);
 									echo $source;
 									?>
 								</li>

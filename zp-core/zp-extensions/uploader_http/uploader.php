@@ -139,7 +139,7 @@ if (!isset($_POST['processed'])) {
 			$errormsg = gettext('You have attempted to upload to an album for which you do not have upload rights');
 			break;
 		case UPLOAD_ERR_EXTENSION:
-			$errormsg = gettext('You have attempted to upload one or more files which are not Zenphoto supported file types');
+			$errormsg = gettext('You have attempted to upload one or more files which are not supported file types');
 			break;
 		case UPLOAD_ERR_CANT_WRITE:
 			$errormsg = gettext('The uploader could not write the file.');

@@ -1,6 +1,6 @@
 <?php
 /**
- * Allows registered users to select and manage "favorite" Zenphoto objects.
+ * Allows registered users to select and manage "favorite" objects.
  * Currently just images & albums are supported.
  *
  * <b>Note:</b>

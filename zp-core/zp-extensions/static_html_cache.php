@@ -2,7 +2,7 @@
 
 /**
  *
- * Used to cache Theme pages (i.e. those pages launched by the Zenphoto index.php script.)
+ * Used to cache Theme pages (i.e. those pages launched by the index.php script.)
  *
  * Exceptions to this are the <var>password.php</var> and <var>404.php</var> pages, any page listed in the
  * <i>Excluded pages</i> option, and any page whose script makes a call on the
@@ -16,7 +16,7 @@
  * image may be cached and the link changed to the cache folder. Similarly, pages
  * which contain comment forms are not cached because then the comment would never show.
  *
- * In addition, caching does not occur for pages viewed by Zenphoto users if the user has
+ * In addition, caching does not occur for pages viewed by logged-in users if the user has
  * <var>ADMIN</var> privileges or if he is the manager of an album being viewed or whose images are
  * being viewed. Likewise, Zenpage News and Pages are not cached when viewed by the author.
  *
@@ -25,7 +25,7 @@
  * @subpackage admin
  */
 $plugin_is_filter = 400 | CLASS_PLUGIN;
-$plugin_description = gettext("Adds static HTML cache functionality to Zenphoto.");
+$plugin_description = gettext("Adds static HTML cache functionality.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 
 $option_interface = 'static_html_cache';
@@ -168,7 +168,7 @@ class static_html_cache {
 						$start_cache = (float) $usec + (float) $sec;
 						list($usec, $sec) = explode(' ', microtime());
 						$end = (float) $usec + (float) $sec;
-						echo "<!-- " . sprintf(gettext('Cached content of %3$s served by static_html_cache in %1$.4f seconds plus %2$.4f seconds unavoidable Zenphoto overhead.'), $end - $start_cache, $start_cache - $start, date('D, d M Y H:i:s', filemtime($cachefilepath))) . " -->\n";
+						echo "<!-- " . sprintf(gettext('Cached content of %3$s served by static_html_cache in %1$.4f seconds plus %2$.4f seconds unavoidable overhead.'), $end - $start_cache, $start_cache - $start, date('D, d M Y H:i:s', filemtime($cachefilepath))) . " -->\n";
 						exitZP();
 					}
 				}

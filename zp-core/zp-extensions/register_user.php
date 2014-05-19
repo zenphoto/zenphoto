@@ -10,7 +10,7 @@
  * user registrations. Then put a link to that script on your index page so that people
  * who wish to register will click on the link and be taken to the registration page.
  *
- * When successfully registered, a new Zenphoto user will be created with no logon rights. An e-mail
+ * When successfully registered, a new User will be created with no logon rights. An e-mail
  * will be sent to the user with a link to activate the user ID. When he clicks on that link
  * he will be taken to the registration page and the verification process will be completed.
  * At this point the user ID rights are set to the value of the plugin default user rights option
@@ -359,7 +359,7 @@ function printRegistrationForm($thanks = NULL) {
 				$userobj->setGroup($group);
 				zp_apply_filter('register_user_verified', $userobj);
 				if (getOption('register_user_notify')) {
-					$_notify = zp_mail(gettext('Zenphoto Gallery registration'), sprintf(gettext('%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail address of %3$s.'), $userobj->getName(), $userobj->getUser(), $userobj->getEmail()));
+					$_notify = zp_mail(gettext('ZenPhoto20 Gallery registration'), sprintf(gettext('%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail address of %3$s.'), $userobj->getName(), $userobj->getUser(), $userobj->getEmail()));
 				}
 				if (empty($_notify)) {
 					if (getOption('register_user_create_album')) {

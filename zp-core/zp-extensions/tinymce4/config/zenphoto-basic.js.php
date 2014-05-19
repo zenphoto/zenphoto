@@ -2,7 +2,7 @@
 /**
  * The configuration functions for TinyMCE 4.x.
  *
- * Zenphoto plugin default light configuration
+ * zenphoto plugin default light configuration
  */
 $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
 ?>

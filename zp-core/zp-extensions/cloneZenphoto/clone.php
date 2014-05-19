@@ -1,7 +1,8 @@
 <?php
+
 /**
  *
- * Zenphoto site cloner
+ * site cloner
  *
  * @package admin
  */

@@ -1,6 +1,6 @@
 <?php
 /**
- * tinyZenpage - A TinyMCE plugin for Zenphoto with Zenpage
+ * tinyZenpage - A TinyMCE plugin for zenpage
  * @author Malte Müller (acrylian)
  * @license GPL v2
  */
@@ -9,7 +9,7 @@
 $host = "http://" . html_encode($_SERVER["HTTP_HOST"]);
 
 /**
- * Prints all albums of the Zenphoto gallery as a partial drop down menu (<option></option> parts).
+ * Prints all albums of the gallery as a partial drop down menu (<option></option> parts).
  *
  * @return string
  */
@@ -380,7 +380,7 @@ function checkAlbumForImages() {
 }
 
 /**
- * Checks if the full Zenphoto include form options should be shown
+ * Checks if the full gallery include form options should be shown
  *
  * @return bool
  */

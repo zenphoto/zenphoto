@@ -5,7 +5,7 @@ $conf = array();
 /** Do not edit above this line. **/
 /**********************************/
 
-/*//////////   zenPHOTO Configuration Variables   ///////////////////////////////
+/*//////////   ZenPhoto20 Configuration Variables   ///////////////////////////////
 
 For most installations Setup will copy this source and make the necessary changes to it.
 Unless this fails you most likely have no need even to read this file.
@@ -65,7 +65,7 @@ $conf['server_protocol'] = "http";
 // Otherwise you should leave it at "http"
 //
 ////////////////////////////////////////////////////////////////////////////////
-// Zenphoto special URL rule definitions
+// Special URL rule definitions
 //
 // for further documentation see the rewrite.php doc block
 //

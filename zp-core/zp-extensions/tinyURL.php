@@ -104,7 +104,7 @@ class tinyURL {
 
 	/**
 	 *
-	 * Returns a Zenphoto tiny URL to the object
+	 * Returns a tiny URL to the object
 	 * @param $obj object
 	 */
 	static function getURL($obj, $page = NULL) {

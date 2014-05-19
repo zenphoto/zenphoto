@@ -1,7 +1,7 @@
 <?php
 
 /**
- * functions common to both the Zenphoto core and setup's basic environment
+ * functions common to both the core and setup's basic environment
  *
  * @package core
  */
@@ -66,7 +66,7 @@ function filesystemToInternal($filename) {
 }
 
 /**
- * Converts a Zenphoto Internal filename string to one compatible with the file system
+ * Converts an Internal filename string to one compatible with the file system
  *
  * @param string $filename the file name to convert
  * @return string

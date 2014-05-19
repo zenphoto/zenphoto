@@ -1,7 +1,7 @@
 <?php
 
 /**
- * root script for Zenphoto
+ * root script for ZenPhoto20
  * @package core
  *
  */
@@ -144,10 +144,10 @@ $_zp_script_timer['end'] = microtime();
 foreach ($_zp_script_timer as $step => $time) {
 	list($usec, $sec) = explode(" ", $time);
 	$cur = (float) $usec + (float) $sec;
-	printf("<!-- " . gettext('Zenphoto script processing %1$s:%2$.4f seconds') . " -->\n", $step, $cur - $last);
+	printf("<!-- " . gettext('Script processing %1$s:%2$.4f seconds') . " -->\n", $step, $cur - $last);
 	$last = $cur;
 }
 if (count($_zp_script_timer) > 1)
-	printf("<!-- " . gettext('Zenphoto script processing total:%.4f seconds') . " -->\n", $last - $first);
+	printf("<!-- " . gettext('Script processing total:%.4f seconds') . " -->\n", $last - $first);
 $_zp_HTML_cache->endHTMLCache();
 ?>

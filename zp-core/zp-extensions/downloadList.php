@@ -2,7 +2,7 @@
 /**
  *
  * A plugin to generate a file download list.
- * This download folder can be relative to your Zenphoto root (<i>foldername</i>) or external to it (<i>../foldername</i>).
+ * This download folder can be relative to your installation  root (<i>foldername</i>) or external to it (<i>../foldername</i>).
  * By default the <var>%UPLOAD_FOLDER%</var> folder is chosen so you can use the file manager to manage those files.
  *
  * You can also override that folder by using the <var>printdownloadList()</var> function parameters directly. Additionally
@@ -62,7 +62,7 @@ class DownloadList {
 	function getOptionsSupported() {
 		$options = array(gettext('Download directory')											 => array('key'		 => 'downloadList_directory', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 2,
-										'desc'	 => gettext("This download folder can be relative to your Zenphoto installation (<em>foldername</em>) or external to it (<em>../foldername</em>)! You can override this setting by using the parameter of the printdownloadList() directly on calling.")),
+										'desc'	 => gettext("This download folder can be relative to your installation (<em>foldername</em>) or external to it (<em>../foldername</em>)! You can override this setting by using the parameter of the printdownloadList() directly on calling.")),
 						gettext('Show filesize of download items')				 => array('key'		 => 'downloadList_showfilesize', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 3,
 										'desc'	 => ''),
@@ -128,7 +128,7 @@ class DownloadList {
 						 onkeyup="passwordStrength('_downloadList');"
 						 value="<?php echo $x; ?>" />
 			<label><input type="checkbox" name="disclose_password_downloadList" id="disclose_password_downloadList" onclick="passwordClear('_downloadList');
-							togglePassword('_downloadList');"><?php echo gettext('Show password'); ?></label>
+					togglePassword('_downloadList');"><?php echo gettext('Show password'); ?></label>
 			<br />
 			<span class="password_field__downloadList">
 				<span id="match_downloadList"><?php echo gettext("(repeat)"); ?></span>
@@ -425,7 +425,7 @@ function printdownloadList($dir = '', $listtype = 'ol', $filters = array(), $exc
  * @param string $dir8 An optional different folder to generate the list that overrides the folder set on the option.
  * 										This could be a subfolder of the main download folder set on the plugin's options. You have to include the base directory as like this:
  * 										"folder" or "folder/subfolder" or "../folder"
- * 										You can also set any folder within or without the root of your Zenphoto installation as a download folder with this directly
+ * 										You can also set any folder within or without the root of your installation as a download folder with this directly
  * @param string $listtype "ol" or "ul" for the type of HTML list you want to use
  * @param array $filters8 an array of files to exclude from the list. Standard items are '.', '..','.DS_Store','Thumbs.db','.htaccess','.svn'
  * @param array $excludesuffixes an array of file suffixes (without trailing dot to exclude from the list (e.g. "jpg")
@@ -536,7 +536,7 @@ function printDownloadURL($file, $linktext = NULL) {
 /**
  *
  * Prints a download link for an album zip of the current album (therefore to be used only on album.php/image.php).
- * This function only creates a download count and then redirects to the original Zenphoto album zip download.
+ * This function only creates a download count and then redirects to the original album zip download.
  *
  * @param string $linktext
  * @param object $albumobj

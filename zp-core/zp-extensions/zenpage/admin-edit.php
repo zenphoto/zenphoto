@@ -386,9 +386,9 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 								<div id="tips" style="display:none">
 									<br />
 									<h2><?php echo gettext("Usage tips"); ?></h2>
-									<p><?php echo gettext("Check <em>Edit Titlelink</em> if you need to customize how the title appears in URLs. Otherwise it will be automatically updated to any changes made to the title. If you want to prevent this check <em>Enable permaTitlelink</em> and the titlelink stays always the same (recommended if you use Zenphoto’s multilingual mode)."); ?></p>
+									<p><?php echo gettext("Check <em>Edit Titlelink</em> if you need to customize how the title appears in URLs. Otherwise it will be automatically updated to any changes made to the title. If you want to prevent this check <em>Enable permaTitlelink</em> and the titlelink stays always the same (recommended if you use multilingual mode)."); ?></p>
 									<p class="notebox"><?php echo gettext("<strong>Note:</strong> Edit titlelink overrides the permalink setting."); ?></p>
-									<p class="notebox"><?php echo gettext("<strong>Important:</strong> If you are using Zenphoto’s multi-lingual mode the Titlelink is generated from the Title of the currently selected language."); ?></p>
+									<p class="notebox"><?php echo gettext("<strong>Important:</strong> If you are using multi-lingual mode the Titlelink is generated from the Title of the currently selected language."); ?></p>
 									<p><?php echo gettext("If you lock an article only the current active author/user or any user with full admin rights will be able to edit it later again!"); ?></p>
 									<?php
 									if (is_AdminEditPage("newsarticle")) {

@@ -45,7 +45,7 @@ class lib_GD_Options {
 if (!function_exists('zp_graphicsLibInfo')) {
 
 	/**
-	 * Zenphoto image manipulation functions using the PHP GD library
+	 * Image manipulation functions using the PHP GD library
 	 *
 	 */
 	if (extension_loaded('gd')) { // only define the functions if we have the proper versions

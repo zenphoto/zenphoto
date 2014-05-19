@@ -1,7 +1,7 @@
 <?php
 
 /**
- * The plugin usses general existing Zenphoto info like <i>gallery description</i>, <i>tags</i> or Zenpage <i>news categories</i>.
+ * The plugin usses general existing gallery info like <i>gallery description</i>, <i>tags</i> or Zenpage <i>news categories</i>.
  * It also has support for <var><link rel="canonical" href="" /></var>
  *
  * Just enable the plugin and the meta data will be inserted into your <var><head></var> section.
@@ -66,7 +66,7 @@ class htmlmetatags {
 		global $_common_locale_type;
 		$localdesc = '<p>' . gettext('If checked links to the alternative languages will be in the form <code><em>language</em>.domain</code> where <code><em>language</em></code> is the language code, e.g. <code><em>fr</em></code> for French.') . '</p>';
 		if (!$_common_locale_type) {
-			$localdesc .= '<p>' . gettext('This requires that you have created the appropriate subdomains pointing to your Zenphoto installation. That is <code>fr.mydomain.com/zenphoto/</code> must point to the same location as <code>mydomain.com/zenphoto/</code>. (Some providers will automatically redirect undefined subdomains to the main domain. If your provider does this, no subdomain creation is needed.)') . '</p>';
+			$localdesc .= '<p>' . gettext('This requires that you have created the appropriate subdomains pointing to your installation. That is <code>fr.mydomain.com/zenphoto/</code> must point to the same location as <code>mydomain.com/zenphoto/</code>. (Some providers will automatically redirect undefined subdomains to the main domain. If your provider does this, no subdomain creation is needed.)') . '</p>';
 		}
 		$options = array(gettext('Cache control')				 => array('key'				 => 'htmlmeta_cache_control', 'type'			 => OPTION_TYPE_SELECTOR,
 										'order'			 => 0,

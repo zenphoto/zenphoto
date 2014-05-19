@@ -9,7 +9,7 @@
  * <i>Closing</i> the site will cause links to the site <i>front end</i> to be redirected to a script in
  * the folder <var>plugins/site_upgrade</var>. Access to the admin pages remains available.
  * You should close the site while
- * you are uploading a new Zenphoto release so that users will not catch the site in an unstable state.
+ * you are uploading a new release so that users will not catch the site in an unstable state.
  *
  * After you have uploaded the new release and run Setup you place the site in <i>test mode</i>. In this mode
  * only logged in <i>Administrators</i> can access the <i>front end</i>. You can then, as the administrator, view the
@@ -19,8 +19,8 @@
  *
  * Change the files in <var>plugins/site_upgrade</var> to meet your needs. (<b>Note</b> these files will
  * be copied to that folder during setup the first time you do an install. Setup will not overrite any existing
- * versions of these files, so if a change is made to the Zenphoto versions of the files you will have to update
- * your copies either by removing them before running setup or by manually applying the Zenphoto changes to your
+ * versions of these files, so if a change is made to the distributed versions of the files you will have to update
+ * your copies either by removing them before running setup or by manually applying the distributed file changes to your
  * files.)
  *
  *
@@ -243,7 +243,6 @@ switch (OFFSET_PATH) {
 			ob_end_clean();
 			file_put_contents(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/externalFeed-closed.xml', $xml);
 		}
-		setOptionDefault('zp_plugin_site_upgrade', $plugin_is_filter);
 		break;
 }
 ?>

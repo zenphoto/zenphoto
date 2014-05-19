@@ -44,7 +44,7 @@
 // force UTF-8 Ø
 
 $plugin_is_filter = 900 | FEATURE_PLUGIN | ADMIN_PLUGIN;
-$plugin_description = gettext('The Zenphoto <em>externalFeed</em> handler.');
+$plugin_description = gettext('The <em>externalFeed</em> handler.');
 
 $plugin_author = "Stephen Billard (sbillard)";
 

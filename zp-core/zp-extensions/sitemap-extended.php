@@ -69,7 +69,7 @@ class sitemap {
 		global $_common_locale_type;
 		$localdesc = '<p>' . gettext('If checked links to the alternative languages will be in the form <code><em>language</em>.domain</code> where <code><em>language</em></code> is the language code, e.g. <code><em>fr</em></code> for French.') . '</p>';
 		if (!$_common_locale_type) {
-			$localdesc .= '<p>' . gettext('This requires that you have created the appropriate subdomains pointing to your Zenphoto installation. That is <code>fr.mydomain.com/zenphoto/</code> must point to the same location as <code>mydomain.com/zenphoto/</code>. (Some providers will automatically redirect undefined subdomains to the main domain. If your provider does this, no subdomain creation is needed.)') . '</p>';
+			$localdesc .= '<p>' . gettext('This requires that you have created the appropriate subdomains pointing to your installation. That is <code>fr.mydomain.com/zenphoto/</code> must point to the same location as <code>mydomain.com/zenphoto/</code>. (Some providers will automatically redirect undefined subdomains to the main domain. If your provider does this, no subdomain creation is needed.)') . '</p>';
 		}
 		$options = array(
 						gettext('Gallery index page')													 => array('key'					 => 'sitemap_galleryindex', 'type'				 => OPTION_TYPE_TEXTBOX,
@@ -86,7 +86,7 @@ class sitemap {
 										'selections' => array(gettext("date")	 => "date",
 														gettext("mtime") => "mtime"),
 										'desc'			 => gettext('Field to use for the last modification date of images.')),
-						gettext('Change frequency - Zenphoto index')					 => array('key'				 => 'sitemap_changefreq_index', 'type'			 => OPTION_TYPE_SELECTOR,
+						gettext('Change frequency - ZenPhoto20 index')				 => array('key'				 => 'sitemap_changefreq_index', 'type'			 => OPTION_TYPE_SELECTOR,
 										'order'			 => 2,
 										'selections' => array(gettext("always")	 => "always",
 														gettext("hourly")	 => "hourly",
@@ -158,7 +158,7 @@ class sitemap {
 										'desc'			 => ''),
 						gettext('Enable Google image and video extension')		 => array('key'		 => 'sitemap_google', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 9,
-										'desc'	 => gettext('If checked, the XML output file will be formatted using the Google XML image and video extensions where applicable.') . '<p class="notebox">' . gettext('<strong>Note:</strong> Other search engines (Yahoo, Bing) might not be able to read your sitemap. Also the Google extensions cover only image and video formats. If you use custom file types that are not covered by Zenphoto standard plugins or types like .mp3, .txt and .html you should probably not use this or modify the plugin. Also, if your site is really huge think about if you really need this setting as the creation may cause extra workload of your server and result in timeouts') . '</p>'),
+										'desc'	 => gettext('If checked, the XML output file will be formatted using the Google XML image and video extensions where applicable.') . '<p class="notebox">' . gettext('<strong>Note:</strong> Other search engines (Yahoo, Bing) might not be able to read your sitemap. Also the Google extensions cover only image and video formats. If you use custom file types that are not covered by standard plugins or types like .mp3, .txt and .html you should probably not use this or modify the plugin. Also, if your site is really huge think about if you really need this setting as the creation may cause extra workload of your server and result in timeouts') . '</p>'),
 						gettext('Google - URL to image license')							 => array('key'					 => 'sitemap_license', 'type'				 => OPTION_TYPE_TEXTBOX,
 										'order'				 => 10,
 										'multilingual' => true,
@@ -342,7 +342,7 @@ function sitemap_getDBLimit($items_per_sitemap = 2) {
 
 /* * TODO index links are not splitted into several sitemaps yet
  *
- * Gets the links to the index of a Zenphoto gallery incl. index pagination
+ * Gets the links to the index of a gallery incl. index pagination
  *
  * @return string
  */
@@ -673,7 +673,7 @@ function getSitemapGoogleImageVideoExtras($albumobj, $imageobj, $locale) {
 		$location .= $imageobj->getCountry($locale);
 	}
 	$license = get_language_string(getOption('sitemap_license'), $locale);
-	if (isImageVideo($imageobj) && in_array($ext, array('.mpg', '.mpeg', '.mp4', '.m4v', '.mov', '.wmv', '.asf', '.avi', '.ra', '.ram', '.flv', '.swf'))) { // google says it can index these so we list them even if unsupported by Zenphoto
+	if (isImageVideo($imageobj) && in_array($ext, array('.mpg', '.mpeg', '.mp4', '.m4v', '.mov', '.wmv', '.asf', '.avi', '.ra', '.ram', '.flv', '.swf'))) { // google says it can index these so we list them even if unsupported by zenphoto
 		$data .= sitemap_echonl("\t\t<video:video>\n\t\t\t<video:thumbnail_loc>" . $host . html_encode($imageobj->getThumb()) . "</video:thumbnail_loc>\n");
 		$data .= sitemap_echonl("\t\t\t<video:title>" . html_encode($imageobj->getTitle($locale)) . "</video:title>");
 		if ($imageobj->getDesc()) {

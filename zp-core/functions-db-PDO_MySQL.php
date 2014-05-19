@@ -40,7 +40,7 @@ function db_connect($config, $errorstop = true) {
 	} catch (PDOException $e) {
 		$_zp_DB_last_result = $e;
 		if ($errorstop) {
-			zp_error(sprintf(gettext('MySql Error: Zenphoto received the error %s when connecting to the database server.'), $e->getMessage()));
+			zp_error(sprintf(gettext('MySql Error: ZenPhoto20 received the error %s when connecting to the database server.'), $e->getMessage()));
 		}
 		$_zp_DB_connection = NULL;
 		return false;

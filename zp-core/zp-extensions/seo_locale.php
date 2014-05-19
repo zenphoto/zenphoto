@@ -20,7 +20,7 @@
  * Where <i>languageid</i> is the local identifier (e.g. en, en_US, fr_FR, etc.)
  *
  *
- * <b>NOTE:</b> the implementation of these URIs requires that Zenphoto parse the URI, save the
+ * <b>NOTE:</b> the implementation of these URIs requires that zenphoto parse the URI, save the
  * language request to a cookie, then redirect to the "native" URI. This means that there is an extra
  * redirect for <b>EACH</b> page request!
  *

@@ -149,7 +149,7 @@ class user_expiry {
 							$credentials[] = 'exiry_notice';
 							$userobj->setCredentials($credentials);
 							$userobj->save();
-							$message = sprintf(gettext('Your user id for the Zenphoto site %s will expire on %s.'), $_zp_gallery->getTitle(), date('Y-m-d', $expires));
+							$message = sprintf(gettext('Your user id for the ZenPhoto20 site %s will expire on %s.'), $_zp_gallery->getTitle(), date('Y-m-d', $expires));
 							$notify = zp_mail(get_language_string(gettext('User id expiration')), $message, array($userobj->getName() => $mail));
 						}
 					}

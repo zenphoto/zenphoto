@@ -30,14 +30,14 @@ function db_connect($config, $errorstop = true) {
 	}
 	if (!$_zp_DB_connection) {
 		if ($errorstop) {
-			zp_error(sprintf(gettext('MySQL Error: Zenphoto received the error %s when connecting to the database server.'), mysql_error()));
+			zp_error(sprintf(gettext('MySQL Error: ZenPhoto20 received the error %s when connecting to the database server.'), mysql_error()));
 		}
 		return false;
 	}
 	$_zp_DB_details['mysql_host'] = $config['mysql_host'];
 	if (!@mysql_select_db($config['mysql_database'])) {
 		if ($errorstop) {
-			zp_error(sprintf(gettext('MySQL Error: MySQL returned the error %1$s when Zenphoto tried to select the database %2$s.'), mysql_error(), $config['mysql_database']));
+			zp_error(sprintf(gettext('MySQL Error: MySQL returned the error %1$s when ZenPhoto20 tried to select the database %2$s.'), mysql_error(), $config['mysql_database']));
 		}
 		return false;
 	}

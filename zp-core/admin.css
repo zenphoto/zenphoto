@@ -157,7 +157,7 @@ code {
 ------------------------------ */
 
 /**
- * Horizontal CSS Drop-Down Menu Module - adaption acrylian for Zenphoto
+ * Horizontal CSS Drop-Down Menu Module
  *
  * @file		dropdown.css
  * @package		Dropdown
@@ -1815,8 +1815,7 @@ ul.pagelist li.current {
 #administration {
 	float: left;
 	text-align: left;
-	font-size: 2em;
-	text-decoration: none;
+	vertical-align: sub;
 }
 
 span.tagMatches {

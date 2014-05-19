@@ -35,7 +35,7 @@ function printVersion() {
 /**
  * Print any Javascript required by zenphoto.
  */
-function printZenJavascripts() {
+function printThemeHeadItems() {
 	global $_zp_current_album;
 	?>
 	<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jquery.js"></script>
@@ -3843,34 +3843,34 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 		<!-- search form -->
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<script type="text/javascript">
-		// <!-- <![CDATA[
-		var within = <?php echo (int) $within; ?>;
-		function search_(way) {
-			within = way;
-			if (way) {
-				$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+			// <!-- <![CDATA[
+			var within = <?php echo (int) $within; ?>;
+			function search_(way) {
+				within = way;
+				if (way) {
+					$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
 
-			} else {
-				lastsearch = '';
-				$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-			}
-			$('#search_input').val('');
-		}
-		$('#search_form').submit(function() {
-			if (within) {
-				var newsearch = $.trim($('#search_input').val());
-				if (newsearch.substring(newsearch.length - 1) == ',') {
-					newsearch = newsearch.substr(0, newsearch.length - 1);
-				}
-				if (newsearch.length > 0) {
-					$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
 				} else {
-					$('#search_input').val('<?php echo $searchwords; ?>');
+					lastsearch = '';
+					$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
 				}
+				$('#search_input').val('');
 			}
-			return true;
-		});
-		// ]]> -->
+			$('#search_form').submit(function() {
+				if (within) {
+					var newsearch = $.trim($('#search_input').val());
+					if (newsearch.substring(newsearch.length - 1) == ',') {
+						newsearch = newsearch.substr(0, newsearch.length - 1);
+					}
+					if (newsearch.length > 0) {
+						$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+					} else {
+						$('#search_input').val('<?php echo $searchwords; ?>');
+					}
+				}
+				return true;
+			});
+			// ]]> -->
 			</script>
 			<?php echo $prevtext; ?>
 			<div>
@@ -4227,10 +4227,14 @@ function printPasswordForm($_password_hint, $_password_showuser = NULL, $_passwo
 
 /**
  * prints the zenphoto logo and link
+ * @param string $mod set background
  *
  */
-function printZenphotoLink() {
-	echo gettext("Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>");
+function printZenphotoLink($mod = null) {
+	if ($mod)
+		$mod = '-' . $mod;
+	$image = getPlugin('images/zen-logo' . $mod . '.png', true, true);
+	printf(gettext('<span class="zen-logo"><a href="https://github.com/ZenPhoto20/ZenPhoto20" title="A simpler album content management system">Powered by <img src="%s" /></a></span>'), $image);
 }
 
 /**
@@ -4394,7 +4398,7 @@ function checkPageValidity($request, $gallery_page, $page) {
 
 function print404status($album, $image, $obj) {
 	global $_zp_page;
-	echo "\n<strong>" . gettext("Zenphoto Error:</strong> the requested object was not found.");
+	echo "\n<strong>" . gettext("Error:</strong> the requested object was not found.");
 	if (isset($album)) {
 		echo '<br />' . sprintf(gettext('Album: %s'), html_encode($album));
 

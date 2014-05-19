@@ -1,8 +1,8 @@
 <?php
 
 /*
- * Note: Zenphoto does not want html entities encoded. This script has been modified
- * to prevent the encodings. Search for Zenphoto for changes.
+ * Note: We do not want html entities encoded. This script has been modified
+ * to prevent the encodings. Search for "//update//" for changes.
  */
 
 # kses 0.2.2 - HTML/XHTML filter that only allows some elements and attributes
@@ -44,9 +44,9 @@ function kses($string, $allowed_html, $allowed_protocols = array('http', 'https'
 ###############################################################################
 	$string = kses_no_null($string);
 	$string = kses_js_entities($string);
-//  $string = kses_normalize_entities($string); Zenphoto does not want & encoded
+//  $string = kses_normalize_entities($string); //update// does not want & encoded
 	$string = kses_hook($string);
-//  $allowed_html = kses_array_lc($allowed_html); Zenphoto insures that these are already lowercase
+//  $allowed_html = kses_array_lc($allowed_html); //update// insures that these are already lowercase
 	return kses_split($string, $allowed_html, $allowed_protocols);
 }
 
@@ -76,7 +76,7 @@ function kses_split($string, $allowed_html, $allowed_protocols) {
 # matches stray ">" characters.
 ###############################################################################
 	global $_allowed_html, $_allowed_protocols;
-	//Zenphoto:preg_replace with the "e" modifier is deprecated, use callback
+	//update// preg_replace with the "e" modifier is deprecated, use callback
 	$_allowed_html = $allowed_html;
 	$_allowed_protocols = $allowed_protocols;
 
@@ -96,8 +96,7 @@ function kses_split2($matches) {
 # ma, no strip_tags()!). Otherwise it splits the tag into an element and an
 # attribute list.
 ###############################################################################
-{
-	//Zenphoto:preg_replace with the "e" modifier is deprecated, this is the callback
+	//update// preg_replace with the "e" modifier is deprecated, this is the callback
 	global $_allowed_html, $_allowed_protocols;
 	$allowed_html = $_allowed_html;
 	$allowed_protocols = $_allowed_protocols;
@@ -403,7 +402,6 @@ function kses_no_null($string) {
 ###############################################################################
 # This function removes any NULL characters in $string.
 ###############################################################################
-{
 	$string = preg_replace('/\0+/', '', $string);
 	$string = preg_replace('/(\\\\0)+/', '', $string);
 
@@ -472,7 +470,7 @@ function kses_bad_protocol_once($string, $allowed_protocols) {
 ###############################################################################
 
 	global $_allowed_protocols;
-	//Zenphoto:preg_replace with the "e" modifier is deprecated, use callback
+	//update//  preg_replace with the "e" modifier is deprecated, use callback
 	$_allowed_protocols = $allowed_protocols;
 
 	return preg_replace_callback('/^((&[^;]*;|[\sA-Za-z0-9])*)' .
@@ -486,7 +484,7 @@ function kses_bad_protocol_once2($matches) {
 # This function processes URL protocols, checks to see if they're in the white-
 # list or not, and returns different data depending on the answer.
 ###############################################################################
-	//Zenphoto:preg_replace with the "e" modifier is deprecated, this is the callback
+	//update// preg_replace with the "e" modifier is deprecated, this is the callback
 	global $_allowed_protocols;
 	$allowed_protocols = $_allowed_protocols;
 

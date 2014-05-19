@@ -5,7 +5,7 @@
  * stores all the default values for options
  * @package setup
  */
-setupLog(gettext('Set Zenphoto default options'), true);
+setupLog(gettext('Set default options'), true);
 
 require(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 require_once(dirname(dirname(__FILE__)) . '/' . PLUGIN_FOLDER . '/security-logger.php');
@@ -301,26 +301,18 @@ setOptionDefault('RSS_article_comments', 1);
 setOptionDefault('AlbumThumbSelect', 1);
 
 setOptionDefault('site_email', "zenphoto@" . $_SERVER['SERVER_NAME']);
-setOptionDefault('site_email_name', 'Zenphoto');
-
-if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/Zenphoto.package')) {
-	$package = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/Zenphoto.package');
-	if (!empty($package)) {
-		preg_match_all('|[^/]themes/([^/\r\n]*)|', $package, $matches);
-		$themes = array_unique($matches[1]);
-		setOption('Zenphoto_theme_list', serialize($themes));
-	}
-}
+setOptionDefault('site_email_name', 'ZenPhoto20');
 ?>
 <p>
 	<?php
+	$themes = array_keys($_zp_gallery->getThemes());
 	natcasesort($themes);
 	echo gettext('Theme setup:') . '<br />';
-	foreach (array_keys($_zp_gallery->getThemes()) as $theme) {
+	foreach ($themes as $theme) {
 		?>
 		<span>
-			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_themeOptions.php?theme=' . $theme; ?>" title="<?php echo $theme; ?>" alt="<?php echo $theme; ?>" height="16px" width="16px" />
-		</span
+			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_themeOptions.php?theme=' . urlencode($theme); ?>" title="<?php echo $theme; ?>" alt="<?php echo $theme; ?>" height="16px" width="16px" />
+		</span>
 		<?php
 	}
 	?>
@@ -457,6 +449,12 @@ setOptionDefault('search_cache_duration', 30);
 setOptionDefault('search_within', 1);
 setOption('last_update_check', 30);
 
+setOptionDefault('plugins_per_page', 20);
+setOptionDefault('plugins_per_page_options', 10);
+setOptionDefault('users_per_page', 10);
+setOptionDefault('articles_per_page', 15);
+setOptionDefault('debug_log_size', 5000000);
+setOptionDefault('imageProcessorConcurrency', 30);
 setOptionDefault('search_album_sort_type', 'title');
 setOptionDefault('search_image_sort_type', 'title');
 setOptionDefault('search_album_sort_direction', '');

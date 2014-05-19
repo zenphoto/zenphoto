@@ -229,7 +229,7 @@ function folderCheck($which, $path, $class, $subfolders, $recurse, $chmod, $upda
 					} else {
 						$chmod_class = gettext('unknown');
 					}
-					return checkMark(-1, '', sprintf(gettext('<em>%1$s</em> folder%2$s [permissions failure]'), $which, $f), sprintf(gettext('Setup could not change the file permissions from <em>%1$s</em> (<code>0%2$o</code>) to <em>%3$s</em> (<code>0%4$o</code>). You will have to set the permissions manually. See the <a href="http://www.zenphoto.org/news/troubleshooting-zenphoto#29">Troubleshooting guide</a> for details on Zenphoto permissions requirements.'), $perms_class, $perms, $chmod_class, $chmod));
+					return checkMark(-1, '', sprintf(gettext('<em>%1$s</em> folder%2$s [permissions failure]'), $which, $f), sprintf(gettext('Setup could not change the file permissions from <em>%1$s</em> (<code>0%2$o</code>) to <em>%3$s</em> (<code>0%4$o</code>). You will have to set the permissions manually.'), $perms_class, $perms, $chmod_class, $chmod));
 				} else {
 					if ($recurse) {
 						?>
@@ -575,8 +575,8 @@ function configMod() {
 
 function printSetupFooter() {
 	echo "<div id=\"footer\">";
-	echo "\n  <a href=\"http://www.zenphoto.org\" title=\"" . gettext('The simpler media website CMS') . "\">zen<strong>photo</strong></a>";
-	echo " | <a href=\"http://www.zenphoto.org/support/\" title=\"" . gettext('Forum') . '">' . gettext('Forum') . "</a> | <a href=\"https://github.com/zenphoto/zenphoto/issues\" title=\"Bugtracker\">Bugtracker </a> | <a href=\"http://www.zenphoto.org/news/category/changelog\" title=\"" . gettext('View Change log') . "\">" . gettext('Change log') . "</a>\n</div>";
+	echo "\n  <a href=\"https://github.com/ZenPhoto20/ZenPhoto20\" title=\"" . gettext('The simpler media website CMS') . "\">ZenPhoto20</a>";
+	echo " | <a href=\"https://github.com/ZenPhoto20/ZenPhoto20/issues\" title=\"Support\">" . gettext('Support') . "</a> | <a href=\"hhttps://github.com/ZenPhoto20/ZenPhoto20/commits/master\" title=\"" . gettext('View Change log') . "\">" . gettext('Change log') . "</a>\n</div>";
 }
 
 function setupUserAuthorized() {
@@ -624,7 +624,7 @@ function checkUnique($table, $unique) {
 		?>
 		<p class="notebox">
 			<?php
-			printf(gettext('<strong>Warning:</strong> the <code>%s</code> table appears not to have a proper <em>UNIQUE</em> key. There are probably duplicate entries in the table which can cause unpredictable behavior. This can normally be corrected by creating a Zenphoto backup, dropping the table, running setup to restore the table, and then restoring from the backup. Note, however, that the duplicate entries will be lost.'), trim($table, '`'));
+			printf(gettext('<strong>Warning:</strong> the <code>%s</code> table appears not to have a proper <em>UNIQUE</em> key. There are probably duplicate entries in the table which can cause unpredictable behavior. This can normally be corrected by creating a ZenPhoto20 backup, dropping the table, running setup to restore the table, and then restoring from the backup. Note, however, that the duplicate entries will be lost.'), trim($table, '`'));
 			?>
 		</p>
 		<?php
@@ -658,7 +658,7 @@ function setupLocale($locale) {
 }
 
 /**
- * Zenphoto Mutex class
+ * zenphoto Mutex class
  * @author Stephen
  *
  */

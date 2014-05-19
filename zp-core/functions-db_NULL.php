@@ -22,7 +22,7 @@ function db_connect($config, $errorstop = true) {
 	$_zp_DB_details = unserialize(DB_NOT_CONNECTED);
 	$_zp_DB_connection = NULL;
 	if ($errorstop) {
-		zp_error(gettext('MySQLi Error: Zenphoto could not instantiate a connection.'));
+		zp_error(gettext('MySQLi Error: ZenPhoto20 could not instantiate a connection.'));
 	}
 	return false;
 	return $_zp_DB_connection;

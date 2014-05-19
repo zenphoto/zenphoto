@@ -61,12 +61,12 @@ $menuset = checkChosenMenuset();
 						case 'all_items':
 							$('#albumselector,#pageselector,#categoryselector,#custompageselector,#titleinput,#titlelabel,#link_row,#visible_row,#span_row').hide();
 							$('#selector').html('<?php echo js_encode(gettext("All menu items")); ?>');
-							$('#description').html('<?php echo js_encode(gettext('This adds menu items for all Zenphoto objects. (It creates a "default" menuset.)')); ?>');
+							$('#description').html('<?php echo js_encode(gettext('This adds menu items for all zenphoto objects. (It creates a "default" menuset.)')); ?>');
 							break;
 						case "galleryindex":
 							$('#albumselector,#pageselector,#categoryselector,#custompageselector,#link_row').hide();
 							$('#selector').html('<?php echo js_encode(gettext("Gallery index")); ?>');
-							$('#description').html('<?php echo js_encode(gettext("This is the normal Zenphoto gallery Index page.")); ?>');
+							$('#description').html('<?php echo js_encode(gettext("This is the normal zenphoto gallery Index page.")); ?>');
 							$('#link').attr('disabled', true);
 							$('#titleinput').show();
 							$('#link').val('<?php echo WEBPATH; ?>/');
@@ -74,12 +74,12 @@ $menuset = checkChosenMenuset();
 						case 'all_albums':
 							$('#albumselector,#pageselector,#categoryselector,#titleinput,#titlelabel,#link_row,#visible_row,#span_row').hide();
 							$('#selector').html('<?php echo js_encode(gettext("All Albums")); ?>');
-							$('#description').html('<?php echo js_encode(gettext("This adds menu items for all Zenphoto albums.")); ?>');
+							$('#description').html('<?php echo js_encode(gettext("This adds menu items for all zenphoto albums.")); ?>');
 							break;
 						case 'album':
 							$('#pageselector,#categoryselector,#custompageselector,#titleinput,#link_row').hide();
 							$('#selector').html('<?php echo js_encode(gettext("Album")); ?>');
-							$('#description').html('<?php echo js_encode(gettext("Creates a link to a Zenphoto Album.")); ?>');
+							$('#description').html('<?php echo js_encode(gettext("Creates a link to a zenphoto Album.")); ?>');
 							$('#link').attr('disabled', true);
 							$('#albumselector').show();
 							$('#titlelabel').html('<?php echo js_encode(gettext('Album')); ?>');
@@ -138,7 +138,7 @@ $menuset = checkChosenMenuset();
 						case "customlink":
 							$('#albumselector,#pageselector,#categoryselector,#custompageselector').hide();
 							$('#selector').html('<?php echo js_encode(gettext("Custom link")); ?>');
-							$('#description').html('<?php echo js_encode(gettext("Creates a link outside the Zenphoto structure. Use of a full URL is recommended (e.g. http://www.domain.com).")); ?>');
+							$('#description').html('<?php echo js_encode(gettext("Creates a link outside the zenphoto structure. Use of a full URL is recommended (e.g. http://www.domain.com).")); ?>');
 							$('#link').removeAttr('disabled');
 							$('#link_label').html('<?php echo js_encode(gettext('URL')); ?>');
 							$('#titleinput').show();

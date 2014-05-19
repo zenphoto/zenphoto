@@ -142,7 +142,7 @@ printSortableHead();
 					<?php echo gettext("Drag the items into the order and nesting you wish displayed. Place the menu on your theme pages by calling printCustomMenu()."); ?>
 				</p>
 				<p class="notebox">
-					<?php echo gettext("<strong>IMPORTANT:</strong> This menu’s order is completely independent from any order of albums or pages set on the other admin pages. Use with customized themes that do not wish the standard Zenphoto display structure. Zenphoto functions such as the breadcrumb functions and the next_album() loop will NOT reflect of this menu’s structure!"); ?>
+					<?php echo gettext("<strong>IMPORTANT:</strong> This menu’s order is completely independent from any order of albums or pages set on the other admin pages. Use with customized themes that do not wish the standard zenphoto display structure. zenphoto functions such as the breadcrumb functions and the next_album() loop will NOT reflect of this menu’s structure!"); ?>
 				</p>
 				<?php
 				foreach ($reports as $report) {

@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Use this plugin to handle filetypes as "images" that are not otherwise provided for by Zenphoto.
+ * Use this plugin to handle filetypes as "images" that are not otherwise provided for by zenphoto.
  *
  * Default thumbnail images may be created in the <var>%USER_PLUGIN_FOLDER%/class-AnyFile</var> folder. The naming convention is
  * <i>suffix</i><var>Default.png</var>. If no such file is found, the class object default thumbnail will be used.

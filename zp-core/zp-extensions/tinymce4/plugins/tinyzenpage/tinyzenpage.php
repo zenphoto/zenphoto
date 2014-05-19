@@ -8,7 +8,7 @@ if (extensionEnabled('zenpage'))
 header('Last-Modified: ' . ZP_LAST_MODIFIED);
 header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 ?>
-<!-- tinyZenpage - A TinyMCE plugin for Zenphoto with Zenpage
+<!-- tinyZenpage - A TinyMCE plugin for zenpage
 		 Version: 1.4.6
 		 Author: Malte Müller (acrylian), Stephen Billard (sbillard)
 		 inspired by Alessandro "Simbul" Morandi's  ZenphotoPress (http://simbul.bzaar.net/zenphotopress)
@@ -203,7 +203,7 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 
 										<h4><?php echo gettext("Image size"); ?></h4>
 										<ul>
-											<li><?php echo gettext("Thumbnail: Size as set in Zenphoto’s options"); ?></li>
+											<li><?php echo gettext("Thumbnail: Size as set in theme’s options"); ?></li>
 											<li><?php echo gettext("Custom thumbnail: size for the longest side / (cropwidth x cropheight). You can set default sizes for this on the TinyMCE plugin options."); ?></li>
 											<li>
 												<?php echo gettext("Sized image/multimedia item: The sized image as set in gallery default theme’s options."); ?>

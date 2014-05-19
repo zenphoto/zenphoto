@@ -5,7 +5,7 @@
  *
  * You can place your own additional custom configuration files within
  * <var>%USER_PLUGIN_FOLDER%/tiny_mce/config</var>
- * There is a naming convention since there is a difference between Zenphoto (gallery) and Zenpag (news/pages) editor configurations
+ * There is a naming convention since there is a difference between gallery(image/album) and zenpage (news/pages) editor configurations
  * - zenphoto-<yourcustomname>.js.php
  * - zenpage-<yourcustomname>.js.php
  *

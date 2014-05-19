@@ -6,7 +6,7 @@
  *
  * Relevant metadata found will be incorporated into the image (or album object)
  * see <i>{@link http://www.aiim.org/documents/standards/xmpspecification.pdf  Adobe XMP Specification}</i>
- * for xmp metadata description. This plugin attempts to map the <i>xmp metadata</i> to Zenphoto or IPTC fields.
+ * for xmp metadata description. This plugin attempts to map the <i>xmp metadata</i> to database or IPTC fields.
  *
  * If a sidecar file exists, it will take precedence (the image file will not be
  * examined.) The sidecar file should reside in the same folder, have the same <i>prefix</i> name as the

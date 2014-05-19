@@ -700,7 +700,6 @@ function enableExtension($extension, $priority, $persistent = true) {
 
 /**
  * call this if the extension should be enabled by default
- * @param type $priority
  */
 function defaultExtension($priority) {
 	if (OFFSET_PATH == 2) {
@@ -1067,7 +1066,7 @@ function setupTheme($album = NULL) {
 			<head>
 			</head>
 			<body>
-				<strong><?php printf(gettext('Zenphoto found no theme scripts. Please check the <em>%s</em> folder of your installation.'), THEMEFOLDER); ?></strong>
+				<strong><?php printf(gettext('No theme scripts found. Please check the <em>%s</em> folder of your installation.'), THEMEFOLDER); ?></strong>
 			</body>
 		</html>
 		<?php
@@ -1970,7 +1969,7 @@ function debug404($album, $image, $theme) {
 			$request['image'] = $image;
 		}
 
-		trigger_error(sprintf(gettext('Zenphoto processed a 404 error on %s. See the debug log for details.'), $target), E_USER_NOTICE);
+		trigger_error(sprintf(gettext('ZenPhoto20 processed a 404 error on %s. See the debug log for details.'), $target), E_USER_NOTICE);
 		ob_start();
 		var_dump($server);
 		$server = preg_replace('~array\s*\(.*\)\s*~', '', html_decode(getBare(ob_get_contents())));

@@ -1,18 +1,18 @@
 <?php
 /**
- * Zenphoto is already the easiest gallery management system available but it does not have any normal page management
- * capability. Therefore many people use Zenphoto in combination with another CMS.
+ * ZenPhoto20 is already the easiest gallery management system available but it does not have any normal page management
+ * capability. Therefore many people use zenphoto in combination with another CMS.
  *
  * With Zenpage you can now extend the easy to use interface to manage an entire site with a news section (blog) for
- * announcements. Considering Zenphoto's image, video and audio management capabilites this is the ideal solution for
+ * announcements. Considering zenphoto's image, video and audio management capabilites this is the ideal solution for
  * personal portfolio sites of artists, graphic/web designers, illustrators, musicians, multimedia/video artists,
  * photographers and many more.
  *
- * You could even run an audio or podcast blog with Zenphoto and Zenpage.
+ * You could even run an audio or podcast blog with zenphoto and zenpage.
  *
  * <b>Features</b>
  * <ul>
- * <li>Fully integrated with Zenphoto</li>
+ * <li>Fully integrated with ZenPhoto20</li>
  * <li>Custom page management</li>
  * <li>News section with nested categories (blog)</li>
  * <li>Tags for pages and news articles</li>
@@ -23,14 +23,7 @@
  * <li>CombiNews feature to show the lastest gallery items like image, videos or audio within the news section as if they were news articles</li>
  * <li>Localization and multi-lingual</li>
  * <li>WSIWYG text editor {@link "http://tinymce.moxiecode.com/index.php TinyMCE} with Ajax File Manager included</li>
- * <li>TinyMCE plugin <i>tinyZenpage</i> to include Zenphoto and Zenpage items into your articles or pages</li>
- * </ul>
- * <b>Usage</b>
- * <ul>
- * <li>{@link http://www.zenphoto.org/2009/03/theming-tutorial/#part-4 Zenpage theming } (part 4 of the Zenphoto theming tutorial)</li>
- * <li>{@link http://www.zenphoto.org/documentation/li_plugins.html	Zenpage functions guide }guide is now included in the plugins section of the Zenphoto functions guide
- * </li>
- * <li>{@link http://www.zenphoto.org/2009/03/troubleshooting-zenpage/ Zenpage troubleshooting (FAQ) }</li>
+ * <li>TinyMCE plugin <i>tinyZenpage</i> to include zenphoto and zenpage items into your articles or pages</li>
  * </ul>
  *
  *

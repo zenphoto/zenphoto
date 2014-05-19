@@ -309,7 +309,7 @@ if (isset($_GET['action'])) {
 			$themename = sanitize($_POST['optiontheme'], 3);
 			$returntab = "&tab=theme";
 			if ($themename)
-				$returntab .= '&optiontheme=' . $themename;
+				$returntab .= '&optiontheme=' . urlencode($themename);
 			// all theme specific options are custom options, handled below
 			if (!isset($_POST['themealbum']) || empty($_POST['themealbum'])) {
 				$themeswitch = urldecode(sanitize_path($_POST['old_themealbum'])) != '';
@@ -768,7 +768,7 @@ Zenphoto_Authority::printPasswordFormJS();
 															$('ul.languagelist').scrollTo('li:eq(<?php echo ($ci - 2); ?>)');
 															});</script>
 										<br class="clearall" />
-										<p class="notebox"><?php printf(gettext('Highlighted languages are not current with Zenphoto Version %1$s. (The version Zenphoto of the out-of-date language is shown in braces.) Please check the <a href="%2$s">translation repository</a> for new and updated language translations.'), $zpversion, 'https://github.com/zenphoto/zenphoto/tree/master/zp-core/locale'); ?></p>
+										<p class="notebox"><?php echo gettext('Highlighted languages are not current with version %1$s. (The version of the out-of-date language is shown in braces.)'); ?></p>
 										<label class="checkboxlabel">
 											<input type="checkbox" name="multi_lingual" value="1"	<?php checked('1', getOption('multi_lingual')); ?> /><?php echo gettext('Multi-lingual'); ?>
 										</label>
@@ -944,12 +944,12 @@ Zenphoto_Authority::printPasswordFormJS();
 										<?php
 										if (!GALLERY_SESSION) {
 											?>
-											<p><?php printf(gettext('The <em>path</em> Zenphoto will use when storing cookies. (Leave empty to default to <em>%s</em>)'), WEBPATH); ?></p>
+											<p><?php printf(gettext('The <em>path</em> to use when storing cookies. (Leave empty to default to <em>%s</em>)'), WEBPATH); ?></p>
 											<p><?php echo gettext("Set to the time in seconds that cookies should be kept by browsers."); ?></p>
 											<?php
 										}
 										?>
-										<p><?php echo gettext('If this option is selected Zenphoto will use <a href="http://www.w3schools.com/php/php_sessions.asp">PHP sessions</a> instead of cookies to make visitor settings persistent.'); ?></p>
+										<p><?php echo gettext('If this option is selected <a href="http://www.w3schools.com/php/php_sessions.asp">PHP sessions</a> will be used instead of cookies to make visitor settings persistent.'); ?></p>
 										<p class="notebox"><?php echo gettext('<strong>NOTE</strong>: Sessions will normally close when the browser closes causing all password and other data to be discarded. They may close more frequently depending on the runtime configuration. Longer <em>lifetime</em> of sessions is generally more conducive to a pleasant user experience. Cookies are the prefered storage option since their duration is determined by the <em>Cookie duration</em> option. ') ?>
 									</td>
 								</tr>
@@ -962,7 +962,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										<p><?php print_language_string_list(getOption('site_email_name'), 'site_email_name'); ?></p>
 										<p><input type="text" size="48" id="site_email" name="site_email"  value="<?php echo getOption('site_email'); ?>" /></p>
 									</td>
-									<td><?php echo gettext("This email name and address will be used as the <em>From</em> address for all mails sent by Zenphoto."); ?></td>
+									<td><?php echo gettext("This email name and address will be used as the <em>From</em> address for all mails sent by the gallery."); ?></td>
 								</tr>
 								<tr>
 									<td width="175">
@@ -1058,7 +1058,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td width="350">
 										<?php print_language_string_list($_zp_gallery->getTitle('all'), 'gallery_title') ?>
 									</td>
-									<td><?php echo gettext("What you want to call your Zenphoto site."); ?></td>
+									<td><?php echo gettext("What you want to call your site."); ?></td>
 								</tr>
 								<tr>
 									<td width="175"><?php echo gettext("Gallery description:"); ?></td>
@@ -1334,11 +1334,11 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td>
 										<p><?php echo gettext("<a href=\"javascript:toggle('albumpub');\" >Details</a> for <em>publish albums by default</em>"); ?></p>
 										<div id="albumpub" style="display: none">
-											<p><?php echo gettext("This sets the default behavior for when Zenphoto discovers an album. If checked, the album will be published, if unchecked it will be unpublished.") ?></p>
+											<p><?php echo gettext("This sets the default behavior for when an album is discovered. If checked, the album will be published, if unchecked it will be unpublished.") ?></p>
 										</div>
 										<p><?php echo gettext("<a href=\"javascript:toggle('imagepub');\" >Details</a> for <em>publish images by default</em>"); ?></p>
 										<div id="imagepub" style="display: none">
-											<p><?php echo gettext("This sets the default behavior for when Zenphoto discovers an image. If checked, the image will be published, if unchecked it will be unpublished.") ?></p>
+											<p><?php echo gettext("This sets the default behavior for when an image is discovered. If checked, the image will be published, if unchecked it will be unpublished.") ?></p>
 										</div>
 										<p><?php echo gettext("<a href=\"javascript:toggle('albumdate');\" >Details</a> for <em>use latest image date as album date</em>"); ?></p>
 										<div id="albumdate" style="display: none">
@@ -1346,7 +1346,7 @@ Zenphoto_Authority::printPasswordFormJS();
 												<?php echo gettext("If you wish your album date to reflect the date of the latest image uploaded set this option. Otherwise the date will be set initially to the date the album was created.") ?>
 											</p>
 											<p class="notebox">
-												<?php echo gettext('<strong>NOTE</strong>: Zenphoto will update the album date only if an image is discovered which is newer than the current date of the album.'); ?>
+												<?php echo gettext('<strong>NOTE</strong>: The album date will be updated only if an image is discovered which is newer than the current date of the album.'); ?>
 											</p>
 										</div>
 
@@ -1880,7 +1880,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										</p>
 									</td>
 									<td>
-										<p><?php echo gettext("Compression quality for images and thumbnails generated by Zenphoto."); ?></p>
+										<p><?php echo gettext("Compression quality for generated images and thumbnails generated."); ?></p>
 										<p><?php echo gettext("Quality ranges from 0 (worst quality, smallest file) to 100 (best quality, biggest file). "); ?></p>
 									</td>
 								</tr>
@@ -1901,7 +1901,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									?>
 									<td><input type="checkbox" name="use_embedded_thumb" value="1" <?php checked('1', getOption('use_embedded_thumb')); ?><?php echo $disabled; ?> /></td>
 									<td>
-										<p><?php echo gettext('If set, Zenphoto will use the thumbnail imbedded in the image when creating a cached image that is equal or smaller in size. Note: the quality of this image varies by camera and its orientation may not match the master image.'); ?></p>
+										<p><?php echo gettext('If set, thumbnail imbedded in the image will be used when creating a cached image that is equal or smaller in size. Note: the quality of this image varies by camera and its orientation may not match the master image.'); ?></p>
 										<?php
 										if ($disabled) {
 											?>
@@ -2438,7 +2438,7 @@ Zenphoto_Authority::printPasswordFormJS();
 						<form class="dirty-check" action="?action=saveoptions" method="post" id="themeoptionsform" autocomplete="off">
 							<?php XSRFToken('saveoptions'); ?>
 							<input type="hidden" id="savethemeoptions" name="savethemeoptions" value="yes" />
-							<input type="hidden" name="optiontheme" value="<?php echo html_encode($themename); ?>" />
+							<input type="hidden" name="optiontheme" value="<?php echo urlencode($themename); ?>" />
 							<input type="hidden" name="old_themealbum" value="<?php echo pathurlencode($alb); ?>" />
 							<table class='bordered options'>
 
@@ -2498,7 +2498,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										<td align="left">
 											<?php echo gettext('<strong>Standard options</strong>') ?>
 										</td>
-										<td colspan="2" ><?php echo gettext('<em>These image and album presentation options provided by the Zenphoto core for all themes.</em>') . '<p class="notebox">' . gettext('<strong>Note:</strong> These are <em>recommendations</em> as themes may choose to override them for design reasons'); ?></p></td>
+										<td colspan="2" ><?php echo gettext('<em>These image and album presentation options provided by the Core for all themes.</em>') . '<p class="notebox">' . gettext('<strong>Note:</strong> These are <em>recommendations</em> as themes may choose to override them for design reasons'); ?></p></td>
 									</tr>
 									<tr>
 										<td style='width: 175px'><?php echo gettext("Albums:"); ?></td>
@@ -3058,7 +3058,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											</td>
 											<td>
 												<?php
-												echo gettext('If enabled guest logon forms will include the <em>User Name</em> field. This allows <em>Zenphoto</em> users to logon from the form.');
+												echo gettext('If enabled guest logon forms will include the <em>User Name</em> field. This allows users to logon from the form.');
 												if ($disable) {
 													echo '<p class="notebox">' . gettext('<strong>Note</strong>: This field is required because one or more of the <em>Guest</em> passwords has a user name associated.') . '</p>';
 												}

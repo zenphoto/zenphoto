@@ -16,7 +16,7 @@ function updateConfigItem($item, $value, $zp_cfg, $quote = true) {
 		if (isset($parts[1])) {
 			$zp_cfg = $parts[0] . "\$conf['" . $item . "'] = " . $value . ";\n/** Do not edit below this line. **/" . $parts[1];
 		} else {
-			zp_error(gettext('The Zenphoto configuration file is corrupt. You will need to restore it from a backup.'));
+			zp_error(gettext('The configuration file is corrupt. You will need to restore it from a backup.'));
 		}
 	} else {
 		$i = strpos($zp_cfg, '=', $i);
@@ -27,7 +27,7 @@ function updateConfigItem($item, $value, $zp_cfg, $quote = true) {
 }
 
 /**
- * backs-up and updates the Zenphoto configuration file
+ * backs-up and updates the configuration file
  *
  * @param string $zp_cfg
  */

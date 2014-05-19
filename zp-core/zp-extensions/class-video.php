@@ -14,7 +14,7 @@
 // force UTF-8 Ø
 
 $plugin_is_filter = 990 | CLASS_PLUGIN;
-$plugin_description = gettext('The Zenphoto <em>audio-video</em> handler.');
+$plugin_description = gettext('The <em>audio-video</em> handler.');
 $plugin_notice = gettext('This plugin must always be enabled to use multimedia content. Note that you should also enable a multimedia player. See the info of the player you use to see how it is configured.');
 $plugin_author = "Stephen Billard (sbillard)";
 
@@ -187,7 +187,7 @@ class Video extends Image {
 			$imgfile = $path . '/' . THEMEFOLDER . '/' . internalToFilesystem($_zp_gallery->getCurrentTheme()) . '/images' . $img;
 			if (!file_exists($imgfile)) { // first check if the theme has adefault image
 				$imgfile = $path . '/' . THEMEFOLDER . '/' . internalToFilesystem($_zp_gallery->getCurrentTheme()) . '/images/multimediaDefault.png';
-				if (!file_exists($imgfile)) { // if theme has a generic default image use it otherwise use the Zenphoto image
+				if (!file_exists($imgfile)) { // if theme has a generic default image use it otherwise use the standard image
 					$imgfile = $path . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . substr(basename(__FILE__), 0, -4) . $img;
 				}
 			}

@@ -552,7 +552,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 					<li><nobr><?php printf(gettext("Image cache size: <strong>%s</strong>"), byteConvert(gallerystats_filesize_r(SERVERPATH . '/' . CACHEFOLDER))); ?></nobr></li>
 					<li><nobr><?php printf(gettext("HTML cache size: <strong>%s</strong>"), byteConvert(gallerystats_filesize_r(SERVERPATH . '/' . STATIC_CACHE_FOLDER))); ?></nobr></li>
 					<li><nobr><?php printf(gettext("Uploaded folder size: <strong>%s</strong>"), byteConvert(gallerystats_filesize_r(SERVERPATH . '/' . UPLOAD_FOLDER))); ?></nobr></li>
-					<li><nobr><?php printf(gettext("Zenphoto scripts size: <strong>%s</strong>"), byteConvert(gallerystats_filesize_r(SERVERPATH . '/' . ZENFOLDER))); ?></nobr></li>
+					<li><nobr><?php printf(gettext("Core scripts size: <strong>%s</strong>"), byteConvert(gallerystats_filesize_r(SERVERPATH . '/' . ZENFOLDER))); ?></nobr></li>
 
 				</ul>
 

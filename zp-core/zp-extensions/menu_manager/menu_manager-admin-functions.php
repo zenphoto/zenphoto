@@ -455,7 +455,7 @@ function addItem(&$reports) {
 				addPagesToDatabase($menuset);
 				addCategoriesToDatabase($menuset);
 			}
-			$reports[] = "<p class = 'messagebox fade-message'>" . gettext("Menu items for all Zenphoto objects added.") . " </p>";
+			$reports[] = "<p class = 'messagebox fade-message'>" . gettext("Menu items for all objects added.") . " </p>";
 			return NULL;
 		case 'all_albums':
 			addAlbumsToDatabase($menuset);
@@ -748,7 +748,7 @@ $reports) {
 }
 
 /**
- * Prints all albums of the Zenphoto gallery as a partial drop down menu (<option></option> parts).
+ * Prints all albums of the gallery as a partial drop down menu (<option></option> parts).
  *
  * @param string $current
 

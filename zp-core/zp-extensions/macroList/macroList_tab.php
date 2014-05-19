@@ -29,7 +29,7 @@ echo "\n</head>";
 					} else {
 						?>
 						<div>
-							<p><?php echo gettext('These Content macros can be used to insert Zenphoto items as described into <em>descriptions</em>, <em>zenpage content</em>, and <em>zenpage extra content</em>.</p> <p>Replace any parameters (<em>%d</em>) with the appropriate value.'); ?></p>
+							<p><?php echo gettext('These Content macros can be used to insert items as described into <em>descriptions</em>, <em>zenpage content</em>, and <em>zenpage extra content</em>.</p> <p>Replace any parameters (<em>%d</em>) with the appropriate value.'); ?></p>
 							<p><?php echo gettext('Parameter types:'); ?></p>
 							<ol>
 								<li><?php echo gettext('<em><strong>string</strong></em> may be enclosed in quotation marks when the macro is invoked. The quotes are stripped before the macro is processed.'); ?></li>

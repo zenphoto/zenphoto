@@ -18,7 +18,7 @@
  * <ul>
  * 	<li>The naming convention for these plugins is class-«handler class».php.</li>
  * 	<li>The statement setting the plugin_is_filter variable must be near the front of the file. This is important
- * as it is the indicator to the Zenphoto plugin loader to load the script at the same point that other
+ * as it is the indicator to the plugin loader to load the script at the same point that other
  * object modules are loaded.</li>
  * <li>These objects are extension to the zenphoto "Image" class. This means they have all the properties of
  * an image plus whatever you add. Of course you will need to override some of the image class functions to

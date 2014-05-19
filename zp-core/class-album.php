@@ -109,15 +109,6 @@ class AlbumBase extends MediaObject {
 	}
 
 	/**
-	 * Returns the folder on the filesystem
-	 *
-	 * @return string
-	 */
-	function getFolder() {
-		return $this->name;
-	}
-
-	/**
 	 * Returns The parent Album of this Album. NULL if this is a top-level album.
 	 *
 	 * @return object

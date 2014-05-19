@@ -16,3 +16,5 @@ the we intend to modernize the support process and enable third party contributo
 ZenPhoto20 will be updated incrementally via GitHub. We will tag reases when new features are added or significant bugs are fixed. There will not be a fixed release cycle nor a "Development" stream.
 
 Problems may be reported and features requested via repository [__issues__](https://github.com/ZenPhoto20/ZenPhoto20/issues)
+
+Discussions are hosted on the [ZenPhoto20 __Google Group__](https://groups.google.com/forum/#!forum/zenphoto20)

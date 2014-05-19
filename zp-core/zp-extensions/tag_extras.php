@@ -9,7 +9,7 @@
  * @author Malte Müller (acrylian)
  * @package plugins
  */
-$plugin_description = gettext("Provides functions to print a tag cloud of all tags from a Zenphoto object.");
+$plugin_description = gettext("Provides functions to print a tag cloud of all tags from a zenphoto object.");
 $plugin_author = "Malte Müller (acrylian)";
 
 /**

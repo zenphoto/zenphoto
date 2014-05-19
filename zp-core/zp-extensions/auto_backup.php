@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This plugin provides a facility to periodically run the Zenphoto backup utility. Use it to
+ * This plugin provides a facility to periodically run the backup utility. Use it to
  * insure that database backups are done on a regular basis.
  *
  * <b>NOTE:</b> The WEB site must be visited and live pages must be served for this
@@ -18,7 +18,7 @@
  * @subpackage admin
  */
 $plugin_is_filter = 2 | ADMIN_PLUGIN | THEME_PLUGIN;
-$plugin_description = gettext("Periodically backup the Zenphoto database.");
+$plugin_description = gettext("Periodically backup the database.");
 $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'auto_backup';

@@ -1,16 +1,16 @@
 <?php
 /**
- * Zenphoto USER credentials handlers
+ * USER credentials handlers
  *
  * An alternate authorization script may be provided to override this script. To do so, make a script that
- * implements the classes declared below. Place the new script inthe <ZENFOLDER>/plugins/alt/ folder. Zenphoto
+ * implements the classes declared below. Place the new script inthe <ZENFOLDER>/plugins/alt/ folder. ZenPhoto20
  * will then will be automatically loaded the alternate script in place of this one.
  *
  * Replacement libraries must implement two classes:
  * 		"Authority" class: Provides the methods used for user authorization and management
  * 			store an instantiation of this class in $_zp_authority.
  *
- * 		Administrator: supports the basic Zenphoto needs for object manipulation of administrators.
+ * 		Administrator: supports the basic needs for object manipulation of administrators.
  * (You can include this script and extend the classes if that suits your needs.)
  *
  * The global $_zp_current_admin_obj represents the current admin with.
@@ -110,7 +110,7 @@ class Zenphoto_Authority {
 										'desc' => sprintf(gettext('Users must provide passwords a strength of at least %s. The repeat password field will be disabled until this floor is met.'), '<span id="password_strength_display">' . getOption('password_strength') . '</span>')),
 						gettext('Password hash algorithm')	 => array('key'				 => 'strong_hash', 'type'			 => OPTION_TYPE_SELECTOR,
 										'selections' => $encodings,
-										'desc'			 => sprintf(gettext('The hashing algorithm used by Zenphoto. In order of robustness the choices are %s'), '<code>' . implode('</code> > <code>', array_flip($encodings)) . '</code>'))
+										'desc'			 => sprintf(gettext('The hashing algorithm to be used. In order of robustness the choices are %s'), '<code>' . implode('</code> > <code>', array_flip($encodings)) . '</code>'))
 		);
 	}
 
@@ -686,9 +686,9 @@ class Zenphoto_Authority {
 					if ($_zp_captcha->checkCaptcha(trim(@$_POST['code']), sanitize(@$_POST['code_h'], 3))) {
 						require_once(dirname(__FILE__) . '/load_objectClasses.php'); // be sure that the plugins are loaded for the mail handler
 						if (empty($post_user)) {
-							$requestor = gettext('You are receiving this e-mail because of a password reset request on your Zenphoto gallery.');
+							$requestor = gettext('You are receiving this e-mail because of a password reset request on your ZenPhoto20 gallery.');
 						} else {
-							$requestor = sprintf(gettext("You are receiving this e-mail because of a password reset request on your Zenphoto gallery from a user who tried to log in as %s."), $post_user);
+							$requestor = sprintf(gettext("You are receiving this e-mail because of a password reset request on your ZenPhoto20 gallery from a user who tried to log in as %s."), $post_user);
 						}
 						$admins = $this->getAdministrators();
 						$mails = array();
@@ -731,9 +731,9 @@ class Zenphoto_Authority {
 						} else {
 							$ref = self::getResetTicket($user['user'], $user['pass']);
 							$msg = "\n" . $requestor .
-											"\n" . sprintf(gettext("To reset your Zenphoto Admin passwords visit: %s"), FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?ticket=$ref&user=" . $user['user']) .
+											"\n" . sprintf(gettext("To reset your Admin passwords visit: %s"), FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?ticket=$ref&user=" . $user['user']) .
 											"\n" . gettext("If you do not wish to reset your passwords just ignore this message. This ticket will automatically expire in 3 days.");
-							$err_msg = zp_mail(gettext("The Zenphoto information you requested"), $msg, $mails, $cclist);
+							$err_msg = zp_mail(gettext("The ZenPhoto20 information you requested"), $msg, $mails, $cclist);
 							if (empty($err_msg)) {
 								$_zp_login_error = 2;
 							} else {
@@ -1279,7 +1279,7 @@ class Zenphoto_Administrator extends PersistentObject {
 	var $objects = NULL;
 	var $master = false; //	will be set to true if this is the inherited master user
 	var $msg = NULL; //	a means of storing error messages from filter processing
-	var $logout_link = true; // for a Zenphoto logout
+	var $logout_link = true; // for a zenphoto logout
 	var $reset = false; // if true the user was setup by a "reset password" event
 	var $passhash; // the hash algorithm used in creating the password
 

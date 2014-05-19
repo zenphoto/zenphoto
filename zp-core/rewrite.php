@@ -1,7 +1,7 @@
 <?php
 
 /**
- * "Rewrite" handling for Zenphoto
+ * "Rewrite" handling for zenphoto
  *
  * The basic rules are found in the zenphoto-rewrite.txt file. Additional rules can be provided by plugins. But
  * for the plugin to load in time for the rules to be seen it must be either a CLASS_PLUGIN or a FEATURE_PLUGIN.
@@ -9,7 +9,7 @@
  * of three elements: <var>define</var>, <var>rewrite</var>, and (optionally) <var>rule</rule>.
  *
  * Elemments which have a <var>define</var> and no <var>rule</rule> are processed by rewrite rules in the
- * zenphoto-rewrite.txt file and the <var>define</var> is used internally to Zenphoto to reference
+ * zenphoto-rewrite.txt file and the <var>define</var> is used internally to zenphoto to reference
  * the rewrite text when building links.
  *
  * Elements with a <var>rule</rule> defined are processed after Search, Pages, and News rewrite rules and before

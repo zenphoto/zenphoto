@@ -47,20 +47,20 @@ if (isset($_GET['user']) && $_GET['user']) {
     <div id="verify-form">
       <form method="get" name="submit_openid" action="OpenID_try_auth.php" onsubmit="return submiturl();">
 				<p><img alt="" src="Verisign.png"></p>
-<?php echo gettext('Verisign user id:'); ?>
+				<?php echo gettext('Verisign user id:'); ?>
         <input type="hidden" name="action" value="verify" />
         <input type="text" size="60" name="openid_identifier" id="openid_identifier" value="" />
         <input type="submit" value="<?php echo gettext('Verify') ?>" />
       </form>
-<?php
-if (!empty($redirect)) {
-	?>
+			<?php
+			if (!empty($redirect)) {
+				?>
 				<p>
-					<a href="<?php echo $redirect; ?>" title="<?php echo gettext('Return to Zenphoto'); ?>" ><?php echo gettext('Return to Zenphoto'); ?></a>
+					<a href="<?php echo $redirect; ?>" title="<?php echo gettext('Return to ZenPhoto20'); ?>" ><?php echo gettext('Return to ZenPhoto20'); ?></a>
 				</p>
-	<?php
-}
-?>
+				<?php
+			}
+			?>
     </div>
   </body>
 </html>

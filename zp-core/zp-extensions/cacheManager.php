@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * This plugin is the centralized Cache manager for Zenphoto. It provides:
+ * This plugin is the centralized Cache manager for zenphoto. It provides:
  * <ul>
  * 		<li>Options to purge the HTML and RSS caches on publish state changes of:
  * 			<ul>
@@ -19,14 +19,14 @@
  * already been cached. Your browser will then request these images causing the caching process to be
  * executed.
  *
- * The Zenphoto distributed themes have created <i>Caching</i> size options
+ * The <i>distributed</i> themes have created <i>Caching</i> size options
  * for the images sizes they use.
  *
  *
  * <b>Notes:</b>
  * <ul>
  * 		<li>
- * 			Setting theme options or installing a new version of Zenphoto will re-create these caching sizes.
+ * 			Setting theme options or installing a new version of ZenPhoto20 will re-create these caching sizes.
  * 			Use a different <i>theme name</i> for custom versions that you create. If you set image options that
  * 			impact the default caching you will need to re-create these caching sizes by one of the above methods.
  * 		</li>

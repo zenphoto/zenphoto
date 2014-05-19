@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This  is the root class for use by plugins to extend the Zenphoto database
+ * This  is the root class for use by plugins to extend the database
  * table fields. The administrative tabs for the objects will have input items
  * for these new fields. They will be placed in the proximate location of the
  * "custom data" field on the page.
@@ -10,7 +10,7 @@
  * fields. They will be enabled in the list by default. The standard search
  * form allows a visitor to choose to disable the field for a particular search.
  *
- * Since the Zenphoto objects are not directly aware of these new fields, themes
+ * Since the objects are not directly aware of these new fields, themes
  * must use the "get()" methods to retrieve the content for display. E.g.
  * <code>echo $_zp_current_album->get('new_field');</code>
  *

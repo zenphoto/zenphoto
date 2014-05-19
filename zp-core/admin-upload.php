@@ -18,7 +18,6 @@ if (isset($_GET['type'])) {
 	$uploadtype = zp_getcookie('uploadtype');
 	$_GET['tab'] = $uploadtype;
 }
-
 $handlers = array_keys($uploadHandlers = zp_apply_filter('upload_handlers', array()));
 if (!zp_loggedin(UPLOAD_RIGHTS) || empty($handlers)) {
 	//	redirect to the files page if present
@@ -116,7 +115,7 @@ foreach ($albumlist as $key => $value) {
 				<br />
 				<?php
 				if ($last == 'ZIP') {
-					echo gettext('ZIP files must contain only Zenphoto supported <em>image</em> types.');
+					echo gettext('ZIP files must contain only supported <em>image</em> types.');
 					?>
 					<br />
 					<?php
@@ -160,7 +159,7 @@ foreach ($albumlist as $key => $value) {
 				?>
 				<div class="warningbox fade-message">
 					<h2><?php echo gettext("PHP Safe Mode Restrictions in effect!"); ?></h2>
-					<p><?php echo gettext("Zenphoto may be unable to perform uploads when PHP Safe Mode restrictions are in effect"); ?></p>
+					<p><?php echo gettext("These restrictions may prevent PHP scripts from uploading files."); ?></p>
 				</div>
 				<?php
 			}

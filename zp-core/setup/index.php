@@ -19,7 +19,7 @@ define('HTACCESS_VERSION', '1.4.5'); // be sure to change this the one in .htacc
 define('OFFSET_PATH', 2);
 
 if (version_compare(PHP_VERSION, '5.0.0', '<')) {
-	die(sprintf(gettext('Zenphoto requires PHP version %s or greater'), PHP_MIN_VERSION));
+	die(sprintf(gettext('ZenPhoto20 requires PHP version %s or greater'), PHP_MIN_VERSION));
 }
 require_once(dirname(dirname(__FILE__)) . '/global-definitions.php');
 
@@ -320,6 +320,8 @@ if ($selected_database) {
 				query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'] . 'administrators' . ' ADD COLUMN `lastloggedin` datetime', false);
 				query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'] . 'administrators' . ' ADD COLUMN `challenge_phrase` TEXT', false);
 			}
+		} else {
+			$upgrade = gettext("install");
 		}
 		$environ = true;
 		require_once(dirname(dirname(__FILE__)) . '/admin-functions.php');
@@ -404,7 +406,7 @@ if ($setup_checked) {
 		} else {
 			$clone = ' ' . gettext('clone');
 		}
-		setupLog(sprintf(gettext('Zenphoto Setup v%1$s[%2$s]%3$s: %4$s'), ZENPHOTO_VERSION, ZENPHOTO_RELEASE, $clone, date('r')), true, true); // initialize the log file
+		setupLog(sprintf(gettext('ZenPhoto20 Setup v%1$s[%2$s]%3$s: %4$s'), ZENPHOTO_VERSION, ZENPHOTO_RELEASE, $clone, date('r')), true, true); // initialize the log file
 	}
 	if ($environ) {
 		setupLog(gettext("Full environment"));
@@ -426,69 +428,6 @@ if (!isset($_zp_setupCurrentLocale_result) || empty($_zp_setupCurrentLocale_resu
 }
 
 $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"));
-if ($i = getOption('zenphoto_install')) {
-	$install = unserialize($i);
-	$prevRel = $install['ZENPHOTO'];
-} else {
-	$prevRel = '';
-}
-
-if (empty($prevRel)) {
-	// pre 1.4.2 release, compute the version
-	$prevRel = getOption('zenphoto_release');
-	$zp_versions = array('1.2'		 => '2213', '1.2.1'	 => '2635', '1.2.2'	 => '2983', '1.2.3'	 => '3427', '1.2.4'	 => '3716', '1.2.5'	 => '4022',
-					'1.2.6'	 => '4335', '1.2.7'	 => '4741', '1.2.8'	 => '4881', '1.2.9'	 => '5088',
-					'1.3.0'	 => '5088', '1.3.1'	 => '5736',
-					'1.4'		 => '6454', '1.4.1'	 => '6506',
-					'x.x.x'	 => '99999999');
-	if (empty($prevRel)) {
-		$release = gettext('Upgrade from before Zenphoto v1.2');
-		$prevRel = '1.x';
-		$c = count($zp_versions);
-		$check = -1;
-	} else {
-		$c = 0;
-		foreach ($zp_versions as $rel => $build) {
-			if ($build > $prevRel) {
-				break;
-			} else {
-				$c++;
-				$release = sprintf(gettext('Upgrade from Zenphoto v%s'), $rel);
-			}
-		}
-		if ($c == count($zp_versions) - 1) {
-			$check = 1;
-			$release = gettext('Reinstalling current Zenphoto release');
-			$upgrade = gettext('reinstall');
-		} else {
-			$check = -1;
-			$c = count($zp_versions) - 1 - $c;
-		}
-	}
-} else {
-	preg_match('/[0-9,\.]*/', ZENPHOTO_VERSION, $matches);
-	$rel = explode('.', $matches[0] . '.0');
-	preg_match('/[0-9,\.]*/', $prevRel, $matches);
-	$prevRel = explode('.', $matches[0] . '.0');
-	$release = sprintf(gettext('Upgrade from Zenphoto v%s'), $matches[0]);
-	$c = ($rel[0] - $prevRel[0]) * 100 + ($rel[1] - $prevRel[1]) * 10 + ($rel[1] - $prevRel[1]);
-	if ($prevRel[0] == 1 && $prevRel[1] <= 3) {
-		$c = $c - 8; // there were only two 1.3.x releases
-	}
-	switch ($c) {
-		case 1:
-			$check = 1;
-			break;
-		default:
-			$check = -1;
-			break;
-	}
-}
-if ($c <= 0) {
-	$check = 1;
-	$release = gettext('Reinstalling current Zenphoto release');
-	$upgrade = gettext('reinstall');
-}
 ?>
 
 <!DOCTYPE html>
@@ -498,7 +437,7 @@ if ($c <= 0) {
 	<head>
 
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<title><?php printf('Zenphoto %s', $upgrade ? $upgrade : gettext('install')); ?></title>
+		<title><?php printf('ZenPhoto20 %s', $upgrade); ?></title>
 		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css" type="text/css" />
 
 		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.js" type="text/javascript"></script>
@@ -521,8 +460,8 @@ if ($c <= 0) {
 
 		<div id="main">
 
-			<h1><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/zen-logo.png" title="<?php echo gettext('Zenphoto Setup'); ?>" alt="<?php echo gettext('Zenphoto Setup'); ?>" align="bottom" />
-				<span><?php echo $upgrade ? $upgrade : gettext("Setup"); ?></span>
+			<h1><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/zen-logo.png" title="<?php echo gettext('ZenPhoto20 Setup'); ?>" alt="<?php echo gettext('ZenPhoto20 Setup'); ?>" />
+				<span><?php echo $upgrade; ?></span>
 			</h1>
 
 			<div id="content">
@@ -546,7 +485,7 @@ if ($c <= 0) {
 					}
 					?>
 					<p>
-						<?php printf(gettext("Welcome to Zenphoto! This page will set up Zenphoto %s on your web server."), ZENPHOTO_VERSION); ?>
+						<?php printf(gettext("Welcome to ZenPhoto20! This page will set up the version %s on your web server."), ZENPHOTO_VERSION); ?>
 					</p>
 					<h2><?php echo gettext("Systems Check:"); ?></h2>
 					<?php
@@ -570,13 +509,12 @@ if ($c <= 0) {
 						?>
 						<ul>
 							<?php
-							checkmark($check, $release, $release . ' ' . sprintf(ngettext('[%u release skipped]', '[%u releases skipped]', $c), $c), gettext('We do not test upgrades that skip releases. We recommend you upgrade in sequence.'));
 						} else {
 							?>
 							<ul>
 								<?php
 								$prevRel = false;
-								checkmark(1, sprintf(gettext('Installing Zenphoto v%s'), ZENPHOTO_VERSION), '', '');
+								checkmark(1, sprintf(gettext('Installing ZenPhoto20 v%s'), ZENPHOTO_VERSION), '', '');
 							}
 							chdir(dirname(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE));
 							$test = setup_glob('*.log');
@@ -589,7 +527,7 @@ if ($c <= 0) {
 									break;
 								}
 							}
-							checkMark($p, sprintf(gettext('<em>%s</em> security'), DATA_FOLDER), sprintf(gettext('<em>%s</em> security [is compromised]'), DATA_FOLDER), sprintf(gettext('Zenphoto suggests you make the sensitive files in the %1$s folder accessable by <em>owner</em> only (permissions = 0600). The file permissions for <em>%2$s</em> are %3$04o which may allow unauthorized access.'), DATA_FOLDER, $file, $permission));
+							checkMark($p, sprintf(gettext('<em>%s</em> security'), DATA_FOLDER), sprintf(gettext('<em>%s</em> security [is compromised]'), DATA_FOLDER), sprintf(gettext('ZenPhoto20 suggests you make the sensitive files in the %1$s folder accessable by <em>owner</em> only (permissions = 0600). The file permissions for <em>%2$s</em> are %3$04o which may allow unauthorized access.'), DATA_FOLDER, $file, $permission));
 
 							$err = versionCheck(PHP_MIN_VERSION, PHP_DESIRED_VERSION, PHP_VERSION);
 							$good = checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('PHP Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk.'), PHP_MIN_VERSION, PHP_DESIRED_VERSION), false) && $good;
@@ -598,9 +536,9 @@ if ($c <= 0) {
 								checkmark(true, gettext('PHP <code>Sessions</code>.'), gettext('PHP <code>Sessions</code> [appear to not be working].'), '', true);
 							} else {
 								if ($session && session_id() && $session_path != session_save_path()) {
-									checkmark(-1, '', gettext('PHP <code>Sessions</code> [problems with <em>save_save_path</em>].'), sprintf(gettext('The configured PHP session path could not be used. Zenphoto has set the path to the %s folder.'), DATA_FOLDER), true);
+									checkmark(-1, '', gettext('PHP <code>Sessions</code> [problems with <em>save_save_path</em>].'), sprintf(gettext('The configured PHP session path could not be used. ZenPhoto20 has set the path to the %s folder.'), DATA_FOLDER), true);
 								} else {
-									checkmark(0, '', gettext('PHP <code>Sessions</code> [appear to not be working].'), gettext('PHP Sessions are required for Zenphoto administrative functions.'), true);
+									checkmark(0, '', gettext('PHP <code>Sessions</code> [appear to not be working].'), gettext('PHP Sessions are required for administrative functions.'), true);
 								}
 							}
 
@@ -623,7 +561,7 @@ if ($c <= 0) {
 							} else {
 								$safe = true;
 							}
-							checkMark($safe, gettext("PHP <code>Safe Mode</code>"), gettext("PHP <code>Safe Mode</code> [is set]"), gettext("Zenphoto functionality is reduced when PHP <code>safe mode</code> restrictions are in effect."));
+							checkMark($safe, gettext("PHP <code>Safe Mode</code>"), gettext("PHP <code>Safe Mode</code> [is set]"), gettext("ZenPhoto20 functionality is reduced when PHP <code>safe mode</code> restrictions are in effect."));
 
 							if (!extension_loaded('suhosin')) {
 								$blacklist = @ini_get("suhosin.executor.func.blacklist");
@@ -641,7 +579,7 @@ if ($c <= 0) {
 										}
 									}
 									$issue--;
-									$good = checkMark($issue, '', gettext('<code>Suhosin</code> module [is enabled]'), sprintf(gettext('The following PHP functions are blocked: %s. Flagged functions are required by Zenphoto. Other functions in the list may be used by Zenphoto, possibly causing reduced functionality or Zenphoto failures.'), '<code>' . implode('</code>, <code>', $blacklist) . '</code>'), $abort) && $good;
+									$good = checkMark($issue, '', gettext('<code>Suhosin</code> module [is enabled]'), sprintf(gettext('The following PHP functions are blocked: %s. Flagged functions are required. Other functions in the list may be used, possibly causing reduced functionality or failures.'), '<code>' . implode('</code>, <code>', $blacklist) . '</code>'), $abort) && $good;
 								}
 							}
 
@@ -651,7 +589,7 @@ if ($c <= 0) {
 							} else {
 								$magic_quotes_disabled = true;
 							}
-							checkMark($magic_quotes_disabled, gettext("PHP <code>magic_quotes_gpc</code>"), gettext("PHP <code>magic_quotes_gpc</code> [is enabled]"), gettext('We strongly recommend disabling <code>magic_quotes_gpc</code>. For more information See <em><a href="http://www.zenphoto.org/news/troubleshooting-zenphoto#what-is-magic_quotes_gpc-and-why-should-it-be-disabled-">What is magic_quotes_gpc and why should it be disabled?</a></em> in the Zenphoto troubleshooting guide.'));
+							checkMark($magic_quotes_disabled, gettext("PHP <code>magic_quotes_gpc</code>"), gettext("PHP <code>magic_quotes_gpc</code> [is enabled]"), gettext('We strongly recommend disabling <code>magic_quotes_gpc</code>.'));
 							if (get_magic_quotes_runtime()) {
 								$magic_quotes_disabled = 0;
 							} else {
@@ -682,7 +620,7 @@ if ($c <= 0) {
 							}
 							checkmark($display, gettext('PHP <code>display_errors</code>'), sprintf(gettext('PHP <code>display_errors</code> [is enabled]'), $display), gettext('This setting may result in PHP error messages being displayed on WEB pages. These displays may contain sensitive information about your site.') . $aux, $display && !TEST_RELEASE);
 
-							checkMark($noxlate, gettext('PHP <code>gettext()</code> support'), gettext('PHP <code>gettext()</code> support [is not present]'), gettext("Localization of Zenphoto requires native PHP <code>gettext()</code> support"));
+							checkMark($noxlate, gettext('PHP <code>gettext()</code> support'), gettext('PHP <code>gettext()</code> support [is not present]'), gettext("Localization requires native PHP <code>gettext()</code> support"));
 							checkmark(function_exists('flock') ? 1 : -1, gettext('PHP <code>flock</code> support'), gettext('PHP <code>flock</code> support [is not present]'), gettext('Zenpoto uses <code>flock</code> for serializing critical regions of code. Without <code>flock</code> active sites may experience <em>race conditions</em> which may be causing inconsistent data.'));
 							if ($_zp_setupCurrentLocale_result === false) {
 								checkMark(-1, gettext('PHP <code>setlocale()</code>'), ' ' . gettext('PHP <code>setlocale()</code> failed'), gettext("Locale functionality is not implemented on your platform or the specified locale does not exist. Language translation may not work.") . '<br />' . gettext('See the <a  href="http://www.zenphoto.org/news/troubleshooting-zenphoto#24">troubleshooting guide</a> on zenphoto.org for details.'));
@@ -758,7 +696,7 @@ if ($c <= 0) {
 									foreach ($_zp_graphics_optionhandlers as $handler) {
 										$graphicsmsg .= $handler->canLoadMsg($handler);
 									}
-									checkmark(0, '', gettext('Graphics support [configuration error]'), gettext('No Zenphoto image handling library was loaded. Be sure that your PHP has a graphics support.') . ' ' . trim($graphicsmsg));
+									checkmark(0, '', gettext('Graphics support [configuration error]'), gettext('No image handling library was loaded. Be sure that your PHP has a graphics support.') . ' ' . trim($graphicsmsg));
 								}
 							}
 							if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
@@ -790,13 +728,13 @@ if ($c <= 0) {
 									$severity = -2;
 								}
 								$msg = sprintf(gettext('File Permissions [are %s]'), $value);
-								checkMark($severity, $msg, $msg, '<p>' . gettext('If file permissions are not set to <em>strict</em> or tighter there could be a security risk. However, on some servers Zenphoto does not function correctly with tight file permissions. If Zenphoto has permission errors, run setup again and select a more relaxed permission.') . '</p>' .
+								checkMark($severity, $msg, $msg, '<p>' . gettext('If file permissions are not set to <em>strict</em> or tighter there could be a security risk. However, on some servers the software does not function correctly with tight file permissions. If permission errors occur, run setup again and select a more relaxed permission.') . '</p>' .
 												$chmodselector);
 
 								if (setupUserAuthorized()) {
 									if ($environ) {
 										if (isMac()) {
-											checkMark(-1, '', gettext('Your filesystem is Macintosh'), gettext('Zenphoto is unable to deal with Macintosh file names containing diacritical marks. You should avoid these.'), false);
+											checkMark(-1, '', gettext('Your filesystem is Macintosh'), gettext('Macintosh file names containing diacritical marks are beyond the scope of this software. You should avoid these.'), false);
 											?>
 											<input
 												type="hidden" name="FILESYSTEM_CHARSET" value="UTF-8" />
@@ -860,22 +798,22 @@ if ($c <= 0) {
 												if ((filesystemToInternal(trim($test)) == 'ést')) {
 													//	and the active character set define worked
 													$notice = 1;
-													$msg = sprintf(gettext('The Zenphoto filesystem character define is %1$s [confirmed]'), $charset_defined);
+													$msg = sprintf(gettext('The filesystem character define is %1$s [confirmed]'), $charset_defined);
 													$msg1 = '';
 												} else {
 													if ($selectedset == 'unknown') {
 														$notice = 1;
-														$msg = gettext('The Zenphoto filesystem character define is ISO-8859-1 [assumed]');
+														$msg = gettext('The filesystem character define is ISO-8859-1 [assumed]');
 														$msg1 = '';
 													} else {
 														//	active character set is not correct
 														$notice = 0;
-														$msg1 = sprintf(gettext('The Zenphoto filesystem character define is %1$s [which seems wrong]'), $charset_defined);
+														$msg1 = sprintf(gettext('The filesystem character define is %1$s [which seems wrong]'), $charset_defined);
 													}
 												}
 											} else {
 												//	no test file
-												$msg1 = sprintf(gettext('The Zenphoto filesystem character define is %1$s [no test performed]'), $charset_defined);
+												$msg1 = sprintf(gettext('The filesystem character define is %1$s [no test performed]'), $charset_defined);
 												$msg2 = '<p>' . sprintf(gettext('Setup did not perform a test of the filesystem character set. You can cause setup to test for a proper definition by creating a file in your <code>%1$s</code> folder named <strong><code>%2$s</code></strong> and re-running setup.'), DATA_FOLDER, 'charset_tést') . '</p>' . $msg2;
 												if (isset($_zp_conf_vars['FILESYSTEM_CHARSET'])) {
 													//	but we have a define value
@@ -1184,30 +1122,30 @@ if ($c <= 0) {
 										}
 										checkmark($err, gettext('Database <code>field collations</code>'), $msg2, sprintf(ngettext('%s is not UTF-8. You should consider porting your data to UTF-8 and changing the collation of the database fields to <code>utf8_unicode_ci</code>', '%s are not UTF-8. You should consider porting your data to UTF-8 and changing the collation of the database fields to <code>utf8_unicode_ci</code>', count($fieldlist)), implode(', ', $fieldlist)));
 									} else {
-										checkmark(-1, '', gettext('Database <code>$conf["UTF-8"]</code> [is not set <em>true</em>]'), gettext('You should consider porting your data to UTF-8 and changing the collation of the database fields to <code>utf8_unicode_ci</code> and setting this <em>true</em>. Zenphoto works best with pure UTF-8 encodings.'));
+										checkmark(-1, '', gettext('Database <code>$conf["UTF-8"]</code> [is not set <em>true</em>]'), gettext('You should consider porting your data to UTF-8 and changing the collation of the database fields to <code>utf8_unicode_ci</code> and setting this <em>true</em>.'));
 									}
 								}
 							}
 
-							primeMark(gettext('Zenphoto files'));
+							primeMark(gettext('ZenPhoto20 files'));
 							@set_time_limit(120);
 							$lcFilesystem = file_exists(strtoupper(__FILE__));
 							$base = $serverpath . '/';
 							getResidentZPFiles(SERVERPATH . '/' . ZENFOLDER, $lcFilesystem);
 							if ($lcFilesystem) {
-								$res = array_search(strtolower($base . ZENFOLDER . '/Zenphoto.package'), $_zp_resident_files);
+								$res = array_search(strtolower($base . ZENFOLDER . '/zenphoto.package'), $_zp_resident_files);
 								$base = strtolower($base);
 							} else {
-								$res = array_search($base . ZENFOLDER . '/Zenphoto.package', $_zp_resident_files);
+								$res = array_search($base . ZENFOLDER . '/zenphoto.package', $_zp_resident_files);
 							}
 							unset($_zp_resident_files[$res]);
-							$cum_mean = filemtime(SERVERPATH . '/' . ZENFOLDER . '/Zenphoto.package');
+							$cum_mean = filemtime(SERVERPATH . '/' . ZENFOLDER . '/zenphoto.package');
 							$hours = 3600;
 							$lowset = $cum_mean - $hours;
 							$highset = $cum_mean + $hours;
 
 							$package_file_count = false;
-							$package = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/Zenphoto.package');
+							$package = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/zenphoto.package');
 							if ($lcFilesystem) { // case insensitive file systems
 								$package = strtolower($package);
 							}
@@ -1217,13 +1155,13 @@ if ($c <= 0) {
 								$package_file_count = is_numeric($count) && ($count > 0) && ($count == count($installed_files));
 							}
 							if (!$package_file_count) {
-								checkMark(-1, '', gettext("Zenphoto package [missing]"), gettext('The file <code>Zenphoto.package</code> is either missing, not readable, or defective. Your installation may be corrupt!'));
+								checkMark(-1, '', gettext("ZenPhoto20 package [missing]"), gettext('The file <code>zenphoto.package</code> is either missing, not readable, or defective. Your installation may be corrupt!'));
 								$installed_files = array();
 							}
 							$folders = array();
 							if ($updatechmod) {
 								$permissions = 1;
-								setupLog(sprintf(gettext('Setting permissions (0%o) for Zenphoto package.'), $chmod), true);
+								setupLog(sprintf(gettext('Setting permissions (0%o) for ZenPhoto20 package.'), $chmod), true);
 							} else {
 								$permission = 0;
 							}
@@ -1324,25 +1262,25 @@ if ($c <= 0) {
 							foreach ($installed_files as $extra) {
 								$filelist .= filesystemToInternal(str_replace($base, '', $extra) . '<br />');
 							}
-							if (zpFunctions::hasPrimaryScripts() && count($installed_files) > 0) {
+							if (class_exists('zpFunctions') && zpFunctions::hasPrimaryScripts() && count($installed_files) > 0) {
 								if (defined('TEST_RELEASE') && TEST_RELEASE) {
-									$msg1 = gettext("Zenphoto core files [This is a <em>debug</em> build. Some files are missing or seem wrong]");
+									$msg1 = gettext("ZenPhoto20 core files [This is a <em>debug</em> build. Some files are missing or seem wrong]");
 								} else {
-									$msg1 = gettext("Zenphoto core files [Some files are missing or seem wrong]");
+									$msg1 = gettext("ZenPhoto20 core files [Some files are missing or seem wrong]");
 								}
 								$msg2 = gettext('Perhaps there was a problem with the upload. You should check the following files: ') . '<br /><code>' . substr($filelist, 0, -6) . '</code>';
 								$mark = -1;
 							} else {
 								if (defined('TEST_RELEASE') && TEST_RELEASE) {
 									$mark = -1;
-									$msg1 = gettext("Zenphoto core files [This is a <em>debug</em> build]");
+									$msg1 = gettext("ZenPhoto20 core files [This is a <em>debug</em> build]");
 								} else {
 									$msg1 = '';
 									$mark = 1;
 								}
 								$msg2 = '';
 							}
-							checkMark($mark, gettext("Zenphoto core files"), $msg1, $msg2, false);
+							checkMark($mark, gettext("ZenPhoto20 core files"), $msg1, $msg2, false);
 							if (setupUserAuthorized() && $connection) {
 								primeMark(gettext('Installation files'));
 								$systemlist = $filelist = array();
@@ -1386,14 +1324,14 @@ if ($c <= 0) {
 											}
 
 											if (!empty($filelist)) {
-												checkmark(-1, '', gettext('Zenphoto core folders [Some unknown files were found]'), gettext('The following files could not be deleted.') . '<br /><code>' . implode('<br />', $filelist) . '<code>');
+												checkmark(-1, '', gettext('ZenPhoto20 core folders [Some unknown files were found]'), gettext('The following files could not be deleted.') . '<br /><code>' . implode('<br />', $filelist) . '<code>');
 											}
 										} else {
-											checkMark(-1, '', gettext('Zenphoto core folders [Some unknown files were found]'), gettext('You should remove the following files: ') . '<br /><code>' . implode('<br />', $filelist) .
+											checkMark(-1, '', gettext('ZenPhoto20 core folders [Some unknown files were found]'), gettext('You should remove the following files: ') . '<br /><code>' . implode('<br />', $filelist) .
 															'</code><p class="buttons"><a href="?delete_extra' . ($debug ? '&amp;debug' : '') . '">' . gettext("Delete extra files") . '</a></p><br class="clearall" /><br class="clearall" />');
 										}
 									}
-									checkMark($permissions, gettext("Zenphoto core file permissions"), gettext("Zenphoto core file permissions [not correct]"), gettext('Setup could not set the one or more components to the selected permissions level. You will have to set the permissions manually. See the <a href="http://www.zenphoto.org/news/troubleshooting-zenphoto#29">Troubleshooting guide</a> for details on Zenphoto permissions requirements.'));
+									checkMark($permissions, gettext("ZenPhoto20 core file permissions"), gettext("ZenPhoto20 core file permissions [not correct]"), gettext('Setup could not set the one or more components to the selected permissions level. You will have to set the permissions manually.'));
 								}
 							}
 							$msg = gettext("<em>.htaccess</em> file");
@@ -1463,7 +1401,7 @@ if ($c <= 0) {
 										$desc = gettext("Server seems not to be Apache or Apache-compatible, <code>.htaccess</code> not required.");
 										$ch = -1;
 									} else {
-										$desc = sprintf(gettext("The <em>.htaccess</em> file in your root folder is not the same version as the one distributed with this version of Zenphoto. If you have made changes to <em>.htaccess</em>, merge those changes with the <em>%s/htaccess</em> file to produce a new <em>.htaccess</em> file."), ZENFOLDER);
+										$desc = sprintf(gettext("The <em>.htaccess</em> file in your root folder is not the same version as the one distributed with this version of ZenPhoto20. If you have made changes to <em>.htaccess</em>, merge those changes with the <em>%s/htaccess</em> file to produce a new <em>.htaccess</em> file."), ZENFOLDER);
 										if (setupUserAuthorized()) {
 											$desc .= ' ' . gettext('<p class="buttons"><a href="?copyhtaccess" >Replace the existing <em>.htaccess</em> file with the current version</a></p><br style="clear:both" /><br />');
 										}
@@ -1591,7 +1529,7 @@ if ($c <= 0) {
 							}
 
 							$good = folderCheck('cache', $serverpath . '/' . CACHEFOLDER . '/', 'std', NULL, true, $chmod | 0311, $updatechmod) && $good;
-							$good = checkmark(file_exists($en_US), gettext('<em>locale</em> folders'), gettext('<em>locale</em> folders [Are not complete]'), gettext('Be sure you have uploaded the complete Zenphoto package. You must have at least the <em>en_US</em> folder.')) && $good;
+							$good = checkmark(file_exists($en_US), gettext('<em>locale</em> folders'), gettext('<em>locale</em> folders [Are not complete]'), gettext('Be sure you have uploaded the complete ZenPhoto20 package. You must have at least the <em>en_US</em> folder.')) && $good;
 							$good = folderCheck(gettext('uploaded'), $serverpath . '/' . UPLOAD_FOLDER . '/', 'std', NULL, false, $chmod | 0311, $updatechmod) && $good;
 							$good = folderCheck(DATA_FOLDER, $serverpath . '/' . DATA_FOLDER . '/', 'std', NULL, false, $chmod | 0311, $updatechmod) && $good;
 							@rmdir(SERVERPATH . '/' . DATA_FOLDER . '/mutex');
@@ -1737,8 +1675,8 @@ if ($c <= 0) {
 						$collation = db_collation();
 
 						/*						 * *********************************************************************************
-						  Add new fields in the upgrade section. This section should remain static except for new
-						  tables. This tactic keeps all changes in one place so that noting gets accidentaly omitted.
+							Add new fields in the upgrade section. This section should remain static except for new
+							tables. This tactic keeps all changes in one place so that noting gets accidentaly omitted.
 						 * ********************************************************************************** */
 
 						//v1.2

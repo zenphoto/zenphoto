@@ -59,7 +59,7 @@ echo '</head>' . "\n";
 						if (TEST_RELEASE) {
 							?>
 							<option value=3<?php if ($selected == 3) echo ' selected="selected"'; ?>>
-								<?php echo gettext('In Zenphoto code'); ?>
+								<?php echo gettext('In ZenPhoto20 code'); ?>
 							</option>
 							<?php
 						}

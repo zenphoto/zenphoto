@@ -19,9 +19,9 @@
  * NOTE: These apply ONLY to the plugin's document block. Normal string use (e.g. plugin_notices, etc.).
  * should use standard markup.
  *
- * The Zenphoto definitions for folder names and paths are represented by <var>%define%</var> (e.g. <var>%WEBPATH%</var>). The
+ * The definitions for folder names and paths are represented by <var>%define%</var> (e.g. <var>%WEBPATH%</var>). The
  * document processor will substitute the actual value for these tags when it renders the document.
- * Image URIs are also processed. Use the appropriate Zenphoto definition tokens to cause the URI to point
+ * Image URIs are also processed. Use the appropriate definition tokens to cause the URI to point
  * to the actual image. E.g. <var><img src="%WEBPATH%/%ZENFOLDER%/images/action.png" /></var>
  *
  * @package admin

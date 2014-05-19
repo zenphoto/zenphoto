@@ -9,9 +9,8 @@
 // force UTF-8 Ø
 
 $plugin_is_filter = defaultExtension(900 | FEATURE_PLUGIN);
-$plugin_description = gettext('The Zenphoto <em>RSS</em> handler.');
+$plugin_description = gettext('The <em>RSS</em> handler.');
 $plugin_notice = gettext('This plugin must be enabled to supply <em>RSS</em> feeds.') . '<br />' . gettext('<strong>Note:</strong> Theme support is required to display RSS links.');
-
 $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'rss_options';
@@ -161,7 +160,7 @@ class rss_options {
  * 																		"Comments-page" for comments of only the page it is called from
  * 																		"Comments-all" for comments from all albums, images, news articels and pages
  * 																		"Pages" feed for all pages
- * @param string $lang optional to display a feed link for a specific language. Enter the locale like "de_DE" (the locale must be installed on your Zenphoto to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
+ * @param string $lang optional to display a feed link for a specific language. Enter the locale like "de_DE" (the locale must be installed to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
  * @param string $addl provided additional data for feeds (e.g. album object for album feeds, $categorylink for zenpage categories
  */
 function getRSSLink($option, $lang = NULL, $addl = NULL) {
@@ -290,7 +289,7 @@ function getRSSLink($option, $lang = NULL, $addl = NULL) {
  * @param string $next text to appear after the link
  * @param bool $printIcon print an RSS icon beside it? if true, the icon is zp-core/images/rss.png
  * @param string $class css class
- * @param string $lang optional to display a feed link for a specific language. Enter the locale like "de_DE" (the locale must be installed on your Zenphoto to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
+ * @param string $lang optional to display a feed link for a specific language. Enter the locale like "de_DE" (the locale must be installed to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
  * @param string $addl provided additional data for feeds (e.g. album object for album feeds, $categorylink for zenpage categories
  */
 function printRSSLink($option, $prev, $linktext, $next, $printIcon = true, $class = null, $lang = '', $addl = NULL) {
@@ -320,7 +319,7 @@ function printRSSLink($option, $prev, $linktext, $next, $printIcon = true, $clas
  * 																		"AlbumsRSS" for latest albums
  * 																		"AlbumsRSScollection" only for latest subalbums with the album it is called from
  * @param string $linktext title of the link
- * @param string $lang optional to display a feed link for a specific language. Enter the locale like "de_DE" (the locale must be installed on your Zenphoto to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
+ * @param string $lang optional to display a feed link for a specific language. Enter the locale like "de_DE" (the locale must be installed to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
  * @param string $addl provided additional data for feeds (e.g. album object for album feeds, $categorylink for zenpage categories
  *
  */
@@ -683,7 +682,7 @@ class RSS extends feed {
 					<pubDate><?php echo date("r", time()); ?></pubDate>
 					<lastBuildDate><?php echo date("r", time()); ?></lastBuildDate>
 					<docs>http://blogs.law.harvard.edu/tech/rss</docs>
-					<generator>Zenphoto RSS Generator</generator>
+					<generator>ZenPhoto20 RSS Generator</generator>
 					<?php
 					foreach ($feeditems as $feeditem) {
 						switch ($this->feedtype) {

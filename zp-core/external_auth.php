@@ -24,7 +24,7 @@ class external_auth {
 	 * The check() method should return "false" if there is no valid visitor or an array of
 	 * User information if there is one.
 	 *
-	 * If there is a valid user, the user name is checked against Zenphoto users. If such user exists
+	 * If there is a valid user, the user name is checked against zenphoto users. If such user exists
 	 * he will be automatically logged in. If no user by that userid exists a transient user will be
 	 * created and logged in. User details are filled in from the user information in the passed array.
 	 *
@@ -32,7 +32,7 @@ class external_auth {
 	 * there are some special handling items that may be present:
 	 * 	<ul>
 	 * 		<li>groups: an array of the user's group membership</li>
-	 * 		<li>objects: a Zenphoto "managed object list" array</li>
+	 * 		<li>objects: a "managed object list" array</li>
 	 * 		<li>album: the name of the user's primary album</li>
 	 * 		<li>logout_link: information that the plugin can use when a user loggs out</li>
 	 * 	</ul>
@@ -48,7 +48,7 @@ class external_auth {
 	 */
 	function check($authorized) {
 		global $_zp_current_admin_obj;
-		if (!$authorized) {	// not logged in via normal Zenphoto handling
+		if (!$authorized) { // not logged in via normal zenphoto handling
 			if ($result = $this->user()) {
 				$user = $result['user'];
 				$searchfor = array('`user`=' => $user, '`valid`=' => 1);
@@ -74,7 +74,7 @@ class external_auth {
 								unset($result['authority']);
 								break;
 							case 'groups':
-								//	find the corresponding Zenphoto group (if it exists)
+								//	find the corresponding zenphoto group (if it exists)
 								$rights = NO_RIGHTS;
 								$objects = array();
 								$groups = $value;
@@ -99,7 +99,7 @@ class external_auth {
 								break;
 							case 'defaultgroup':
 								if (!$member && isset($result['defaultgroup'])) {
-									//	No Zenphoto group, use the default group
+									//	No zenphoto group, use the default group
 									$group = $result['defaultgroup'];
 									$groupobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $group, '`valid`=' => 0));
 									if ($groupobj) {

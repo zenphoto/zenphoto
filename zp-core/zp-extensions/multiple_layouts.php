@@ -8,7 +8,7 @@
  * The additional files have to be clones of the standard theme pages which must be kept as default ones.
  * The file names of these additional files must match these patterns and should not include special characters or characters with diacritical marks:
  *
- * Zenphoto gallery items:
+ * Gallery items:
  * <hr>
  * For albums: album<i>customname</i>.php<br>
  * For images : image<i>customname</i>.php
@@ -108,8 +108,8 @@ class multipleLayoutOptions {
  * Gets the selected layout page for this item. Returns false if nothing is selected.
  *
  * @param object $obj the object being selected
- * @param string $type For Zenphoto gallery items "multiple_layouts_albums", "multiple_layouts_images"
- * 										 For Zenpage CMS items , "multiple_layouts_pages", , "multiple_layouts_news" , "multiple_layouts_news_categories"
+ * @param string $type For Gallery items "multiple_layouts_albums", "multiple_layouts_images"
+ * 										 For zenpage items "multiple_layouts_pages", , "multiple_layouts_news" , "multiple_layouts_news_categories"
  * @return result
  */
 function getSelectedLayout($obj, $type) {
@@ -127,8 +127,8 @@ function getSelectedLayout($obj, $type) {
  * Checks if there is a layout inherited from a parent items (album, page or category) and returns it. Returns false otherwise.
  *
  * @param object $obj the object being selected
- * @param string $type For Zenphoto gallery items "multiple_layouts_albums"
- * 										 For Zenpage CMS items , "multiple_layouts_pages", , "multiple_layouts_news" , "multiple_layouts_news_categories"
+ * @param string $type For gallery items "multiple_layouts_albums"
+ * 										 For zenpage items , "multiple_layouts_pages", , "multiple_layouts_news" , "multiple_layouts_news_categories"
  * @return result
  */
 function checkParentLayouts($obj, $type) {

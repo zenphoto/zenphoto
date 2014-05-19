@@ -327,7 +327,7 @@ div.zenpagechecklist label.hover,
 	height: 1%;
 }
 
-/* used for the password list on pages that is too wide as it uses Zenphoto css by default */
+/* used for the password list on pages that is too wide as it uses standard css by default */
 ul.language_string_list {
 	width: 205px !important;
 }

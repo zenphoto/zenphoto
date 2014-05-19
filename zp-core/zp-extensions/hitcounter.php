@@ -1,6 +1,6 @@
 <?php
 /**
- * Provides automatic hitcounter counting for Zenphoto objects
+ * Provides automatic hitcounter counting for gallery objects
  * @author Stephen Billard (sbillard)
  * @package plugins
  */
@@ -32,7 +32,7 @@ if (!defined('OFFSET_PATH')) {
 }
 
 $plugin_is_filter = 5 | ADMIN_PLUGIN | FEATURE_PLUGIN;
-$plugin_description = gettext('Automatically increments hitcounters on Zenphoto objects viewed by a <em>visitor</em>.');
+$plugin_description = gettext('Automatically increments hitcounters on gallery objects viewed by a <em>visitor</em>.');
 $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'hitcounter';

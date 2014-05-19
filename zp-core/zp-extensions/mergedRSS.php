@@ -5,12 +5,12 @@
  *
  * Based on David Stinemetze's {@link http://www.widgetsandburritos.com/technical/programming/merge-rss-feeds-php-cache/ MergedRSS Class}
  *
- * If you ever wanted to have a Zenphoto RSS that for example returns latest images for <i>album x</i>
+ * If you ever wanted to have a RSS that for example returns latest images for <i>album x</i>
  * but latest albums for <i>album y</i> this is the tool to use. Just enter the urls of the seperate feeds and it will return the combined feed.
  *
  * The merged feed is called by yourdomain.com/index.php?mergedrss
  *
- * While this plugin is meant for Zenphoto's RSS feeds, you could also use even external RSS feeds.
+ * While this plugin is meant for RSS feeds, you could also use even external RSS feeds.
  * But be aware that hijacking content may be a vialation of applicable laws!
  *
  * @author Malte Müller (acrylian)

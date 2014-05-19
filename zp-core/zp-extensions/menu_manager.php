@@ -6,8 +6,8 @@
  *
  * Use the <var>Menu</var> tab to create your menus. Use <var>printCustomMenu()</var> to place them on your pages.
  *
- * This plugin is recommend for customized themes only that do not use the standard Zenphoto
- * display structure. Standard Zenphoto functions like the breadcrumb functions or the <var>next_album()</var>
+ * This plugin is recommend for customized themes only that do not use the standard
+ * display structure. Standard functions like the breadcrumb functions or the <var>next_album()</var>
  * loop for example will <b>NOT</b> take care of this menu's structure!
  *
  * @author Stephen Billard (sbillard), Malte Müller (acrylian)

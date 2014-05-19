@@ -1219,7 +1219,7 @@ function debugLog($message, $reset = false) {
 				} else {
 					$clone = ' ' . gettext('clone');
 				}
-				fwrite($f, '{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT} Zenphoto v" . ZENPHOTO_VERSION . '[' . ZENPHOTO_FULL_RELEASE . ']' . $clone . "\n");
+				fwrite($f, '{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT} ZenPhoto20 v" . ZENPHOTO_VERSION . '[' . ZENPHOTO_FULL_RELEASE . ']' . $clone . "\n");
 			}
 		} else {
 			$f = fopen($path, 'a');
@@ -1511,7 +1511,7 @@ function exitZP() {
 
 /**
  *
- * Computes the "installation signature" of the Zenphoto install
+ * Computes the "installation signature" of the zenphoto install
  * @return string
  */
 function installSignature() {
@@ -1559,7 +1559,7 @@ function zp_session_start() {
 }
 
 /**
- * Zenphoto Mutex class
+ * Mutex class
  * @author Stephen
  *
  */

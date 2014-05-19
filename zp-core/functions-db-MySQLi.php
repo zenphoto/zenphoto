@@ -30,14 +30,14 @@ function db_connect($config, $errorstop = true) {
 	}
 	if (!$_zp_DB_connection) {
 		if ($errorstop) {
-			zp_error(gettext('MySQLi Error: Zenphoto could not instantiate a connection.'));
+			zp_error(gettext('MySQLi Error: ZenPhoto20 could not instantiate a connection.'));
 		}
 		return false;
 	}
 	$_zp_DB_details['mysql_host'] = $config['mysql_host'];
 	if (!$_zp_DB_connection->select_db($config['mysql_database'])) {
 		if ($errorstop) {
-			zp_error(sprintf(gettext('MySQLi Error: MySQLi returned the error %1$s when Zenphoto tried to select the database %2$s.'), $_zp_DB_connection->error, $config['mysql_database']));
+			zp_error(sprintf(gettext('MySQLi Error: MySQLi returned the error %1$s when ZenPhoto20 tried to select the database %2$s.'), $_zp_DB_connection->error, $config['mysql_database']));
 		}
 		return false;
 	}

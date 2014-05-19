@@ -1,4 +1,4 @@
-/* Zenphoto administration javascript. */
+/* administration javascript. */
 
 function albumSwitch(sel, unchecknewalbum, msg1, msg2) {
 	var selected = sel.options[sel.selectedIndex];

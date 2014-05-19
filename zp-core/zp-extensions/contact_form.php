@@ -1,6 +1,6 @@
 <?php
 /**
- * Prints an e-mail contact form that uses Zenphoto's internal validation functions for <i>e-mail</i> and <i>URL</i>.
+ * Prints an e-mail contact form that uses internal validation functions for <i>e-mail</i> and <i>URL</i>.
  * <i>Name</i>, <i>e-mail address</i>, <i>subject</i> and <i>message</i> are required fields by default.
  * You need to set a custom mail address to be used for the messages destination.
  *
@@ -166,7 +166,7 @@ function getField($field, $level = 3) {
 }
 
 /**
- * Prints the mail contact form, handles checks and the mail sending. It uses Zenphoto's check for valid e-mail address and website URL and also supports CAPTCHA.
+ * Prints the mail contact form, handles checks and the mail sending. It uses zenphoto's check for valid e-mail address and website URL and also supports CAPTCHA.
  * The contact form itself is a separate file and is located within the /contact_form/form.php so that it can be style as needed.
  *
  * @param string $subject_override set to override the subject.

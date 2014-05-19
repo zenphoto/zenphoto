@@ -25,16 +25,15 @@ function printAdminFooter($addl = '') {
 	?>
 	<div id="footer">
 		<?php
-		printf(gettext('<a href="http://www.zenphoto.org" title="The simpler media website CMS">Zen<strong>photo</strong></a> version %1$s [%2$s]'), ZENPHOTO_VERSION, ZENPHOTO_RELEASE);
+		echo gettext('<a href="https://github.com/ZenPhoto20/ZenPhoto20" title="A simpler web album"><span style="vertical-align:sub;"><img src="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/images/zen-logo-dark.png" /></span></a> ') . sprintf(gettext('version %1$s [%2$s]'), ZENPHOTO_VERSION, ZENPHOTO_RELEASE);
+
 		if (!empty($addl)) {
 			echo ' | ' . $addl;
 		}
 		?>
-		| <a href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/license.php' ?>" title="<?php echo gettext('Zenphoto licence'); ?>"><?php echo gettext('License'); ?></a>
-		| <a href="http://www.zenphoto.org/news/category/user-guide" title="<?php echo gettext('User guide'); ?>"><?php echo gettext('User guide'); ?></a>
-		| <a href="http://www.zenphoto.org/support/" title="<?php echo gettext('Forum'); ?>"><?php echo gettext('Forum'); ?></a>
-		| <a href="https://github.com/zenphoto/zenphoto/issues" title="<?php echo gettext('Bugtracker'); ?>"><?php echo gettext('Bugtracker'); ?></a>
-		| <a href="http://www.zenphoto.org/news/category/changelog" title="<?php echo gettext('View Change log'); ?>"><?php echo gettext('Change log'); ?></a>
+		| <a href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/license.php' ?>" title="<?php echo gettext('Zenphoto20 licence'); ?>"><?php echo gettext('License'); ?></a>
+		| <a href="https://github.com/ZenPhoto20/ZenPhoto20" title="<?php echo gettext('Support'); ?>"><?php echo gettext('Support'); ?></a>
+		| <a href="https://github.com/ZenPhoto20/ZenPhoto20/commits/master" title="<?php echo gettext('View Change log'); ?>"><?php echo gettext('Change log'); ?></a>
 		| <?php printf(gettext('Server date: %s'), date('Y-m-d H:i:s')); ?>
 	</div>
 	<?php
@@ -239,7 +238,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		<span id="administration">
 			<img id="logo" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/zen-logo.png"
 					 title="<?php echo sprintf(gettext('%1$s administration:%2$s%3$s'), html_encode($_zp_gallery->getTitle()), html_encode($_zp_admin_tab), html_encode($subtab)); ?>"
-					 alt="<?php echo gettext('Zenphoto Administration'); ?>" align="bottom" />
+					 alt="<?php echo gettext('ZenPhoto20 Administration'); ?>" />
 		</span>
 		<?php
 		echo "\n<div id=\"links\">";
@@ -1386,7 +1385,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$sort[gettext('Custom')] = 'custom';
 						/*
 						 * not recommended--screws with peoples minds during pagination!
-							$sort[gettext('Random')] = 'random';
+						  $sort[gettext('Random')] = 'random';
 						 */
 						?>
 						<tr>
@@ -2869,7 +2868,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		$theme_description['date'] = date('Y-m-d H:m:s', time());
 
 		$description = sprintf('<' . '?php
-				// Zenphoto theme definition file
+				// Theme definition file
 				$theme_description["name"] = "%s";
 				$theme_description["author"] = "%s";
 				$theme_description["version"] = "%s";
