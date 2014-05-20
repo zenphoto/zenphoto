@@ -34,11 +34,20 @@ $plugin_notice = gettext("This plugin is <strong>NOT</strong> required for the d
 $option_interface = 'deprecated_functions';
 $plugin_is_filter = 900 | CLASS_PLUGIN;
 
-if (OFFSET_PATH == 2)
-	enableExtension('deprecated-functions', $plugin_is_filter); //	Yes, I know some people will be annoyed that this keeps coming back,
-//	but each release may deprecated new functions which would then just give
-//	(perhaps unseen) errors. Better the user should disable this once he knows
-//	his site is working.
+if (OFFSET_PATH == 2) {
+	$deprecated = new deprecated_functions();
+	$listed = $deprecated->listed_functions;
+	if (empty($listed)) {
+		enableExtension('deprecated-functions', 0);
+	} else {
+		enableExtension('deprecated-functions', $plugin_is_filter);
+		//	Yes, I know some people will be annoyed that this keeps coming back,
+		//	but each release may deprecated new functions which would then just give
+		//	(perhaps unseen) errors. Better the user should disable this once he knows
+		//	his site is working.
+	}
+}
+
 zp_register_filter('admin_utilities_buttons', 'deprecated_functions::button');
 zp_register_filter('admin_tabs', 'deprecated_functions::tabs');
 
@@ -53,7 +62,7 @@ class deprecated_functions {
 			$deprecated = stripSuffix($plugin) . '/deprecated-functions.php';
 			if (file_exists($deprecated)) {
 				$plugin = basename(dirname($deprecated));
-				$content = file_get_contents($deprecated);
+				$content = preg_replace('~#.*function~', '', file_get_contents($deprecated)); //	remove the comments!
 				preg_match_all('~@deprecated\s+.*since\s+.*(\d+\.\d+\.\d+)~', $content, $versions);
 				preg_match_all('/([public static|static]*)\s*function\s+(.*)\s?\(.*\)\s?\{/', $content, $functions);
 				if ($plugin == 'deprecated-functions') {
