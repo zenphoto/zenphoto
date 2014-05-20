@@ -2501,8 +2501,8 @@ Zenphoto_Authority::printPasswordFormJS();
 										<td colspan="2" ><?php echo gettext('<em>These image and album presentation options provided by the Core for all themes.</em>') . '<p class="notebox">' . gettext('<strong>Note:</strong> These are <em>recommendations</em> as themes may choose to override them for design reasons'); ?></p></td>
 									</tr>
 									<tr>
-										<td style='width: 175px'><?php echo gettext("Albums:"); ?></td>
-										<td>
+										<td style="width: 175px"><?php echo gettext("Albums:"); ?></td>
+										<td style="width: 350px">
 											<?php
 											if (in_array('albums_per_row', $unsupportedOptions)) {
 												$disable = ' disabled="disabled"';

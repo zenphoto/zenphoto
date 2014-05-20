@@ -549,6 +549,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	define('OPTION_TYPE_NOTE', 10);
 	define('OPTION_TYPE_PASSWORD', 11);
 	define('OPTION_TYPE_RICHTEXT', 12);
+	define('OPTION_TYPE_NUMBER', 13);
 
 	function customOptions($optionHandler, $indent = "", $album = NULL, $showhide = false, $supportedOptions = NULL, $theme = false, $initial = 'none', $extension = NULL) {
 		if (is_null($supportedOptions)) {
@@ -634,6 +635,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<td colspan="3"><?php echo $desc; ?></td>
 							<?php
 							break;
+						case OPTION_TYPE_NUMBER:
 						case OPTION_TYPE_CLEARTEXT:
 							$multilingual = false;
 						case OPTION_TYPE_PASSWORD:
@@ -664,8 +666,13 @@ function printAdminHeader($tab, $subtab = NULL) {
 										<textarea id="<?php echo $key; ?>"<?php if ($type == OPTION_TYPE_RICHTEXT) echo ' class="texteditor"'; ?> name="<?php echo $key; ?>" cols="<?php echo TEXTAREA_COLUMNS; ?>"	style="width: 320px" rows="6"<?php echo $disabled; ?>><?php echo html_encode($v); ?></textarea>
 										<?php
 									} else {
+										if ($type == OPTION_TYPE_NUMBER) {
+											$wide = '100px';
+										} else {
+											$wide = '338px';
+										}
 										?>
-										<input type="<?php echo $inputtype; ?>" size="40" id="<?php echo $key; ?>" name="<?php echo $key; ?>" style="width: 338px" value="<?php echo html_encode($v); ?>"<?php echo $disabled; ?> />
+										<input type="<?php echo $inputtype; ?>" id="<?php echo $key; ?>" name="<?php echo $key; ?>" style="width: <?php echo $wide; ?>" value="<?php echo html_encode($v); ?>"<?php echo $disabled; ?> />
 										<?php
 									}
 								}
