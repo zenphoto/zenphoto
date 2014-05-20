@@ -21,16 +21,12 @@ plugins/no_show.php
 plugins/pluginEnabler
 plugins/pluginEnabler.php
 plugins/pluginEnabler/handler.php
-plugins/pseudomail.php
 plugins/showNoUserRights.php
 plugins/singleAlbum.php
 plugins/text_watermark
 plugins/text_watermark.php
 plugins/text_watermark/createwatermark.php
 plugins/text_watermark/text_watermark.htm
-plugins/zenphoto_package
-plugins/zenphoto_package.php
-plugins/zenphoto_package/zenphoto_package_generator.php
 themes
 themes/basic
 themes/basic/404.php
@@ -2093,4 +2089,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2095
+2091
