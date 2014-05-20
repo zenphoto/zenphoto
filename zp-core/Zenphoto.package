@@ -416,6 +416,7 @@ themes/zpgalleriffic/css/dark.css
 themes/zpgalleriffic/css/light.css
 themes/zpgalleriffic/css/style.css
 themes/zpgalleriffic/footer.php
+themes/zpgalleriffic/functions.php
 themes/zpgalleriffic/gallery.php
 themes/zpgalleriffic/header.php
 themes/zpgalleriffic/image.php
@@ -511,6 +512,7 @@ themes/zpminimal/css/cbStyles/style5/images/loading_background.png
 themes/zpminimal/css/main.css
 themes/zpminimal/css/reset.css
 themes/zpminimal/css/slideshow.css
+themes/zpminimal/functions.php
 themes/zpminimal/gallery.php
 themes/zpminimal/image.php
 themes/zpminimal/images
@@ -2091,4 +2093,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2093
+2095
