@@ -3,8 +3,10 @@
 
 <div class="right">
 	<?php if ($zpfocus_social) include ("inc-social.php"); ?>
-	<h1 id="tagline"><?php printParentBreadcrumb("", " / ", " / ");
-	printAlbumBreadcrumb("", " / "); ?><?php printImageTitle(true); ?></h1>
+	<h1 id="tagline"><?php
+		printParentBreadcrumb("", " / ", " / ");
+		printAlbumBreadcrumb("", " / ");
+		?><?php printImageTitle(true); ?></h1>
 	<?php if ($zpfocus_logotype) { ?>
 		<a style="display:block;" href="<?php echo getGalleryIndexURL(); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/<?php echo $zpfocus_logofile; ?>" alt="<?php echo getBareGalleryTitle(); ?>" /></a>
 	<?php } else { ?>
@@ -34,22 +36,26 @@
 	<p class="description"><?php printImageDesc(true, '', gettext('(Edit Description...)')); ?></p>
 	<div id="img-full">
 		<div>
-			<?php if (($zpfocus_final_link) == 'colorbox') { ?><a rel="zoom" href="<?php if ($zpfocus_cbtarget) {
-				echo htmlspecialchars(getDefaultSizedImage());
-			} else {
-				echo htmlspecialchars(getUnprotectedImageURL());
-			} ?>" title="<?php echo getBareImageTitle(); ?>"><?php printCustomSizedImageMaxSpace(getImageTitle(), 600, 900); ?></a><?php } ?>
-	<?php if (($zpfocus_final_link) == 'nolink') {
-		printCustomSizedImageMaxSpace(getImageTitle(), 600, 900);
-	} ?>
-	<?php if (($zpfocus_final_link) == 'standard') { ?><a href="<?php echo htmlspecialchars(getFullImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>"><?php printCustomSizedImageMaxSpace(getImageTitle(), 600, 900); ?></a><?php } ?>
-	<?php if (($zpfocus_final_link) == 'standard-new') { ?><a target="_blank" href="<?php echo htmlspecialchars(getFullImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>"><?php printCustomSizedImageMaxSpace(getImageTitle(), 600, 900); ?></a><?php } ?>
+			<?php if (($zpfocus_final_link) == 'colorbox') { ?><a rel="zoom" href="<?php
+				if ($zpfocus_cbtarget) {
+					echo htmlspecialchars(getDefaultSizedImage());
+				} else {
+					echo htmlspecialchars(getUnprotectedImageURL());
+				}
+				?>" title="<?php echo getBareImageTitle(); ?>"><?php printCustomSizedImageMaxSpace(getImageTitle(), 600, 900); ?></a><?php } ?>
+				 <?php
+				 if (($zpfocus_final_link) == 'nolink') {
+					 printCustomSizedImageMaxSpace(getImageTitle(), 600, 900);
+				 }
+				 ?>
+			<?php if (($zpfocus_final_link) == 'standard') { ?><a href="<?php echo htmlspecialchars(getFullImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>"><?php printCustomSizedImageMaxSpace(getImageTitle(), 600, 900); ?></a><?php } ?>
+<?php if (($zpfocus_final_link) == 'standard-new') { ?><a target="_blank" href="<?php echo htmlspecialchars(getFullImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>"><?php printCustomSizedImageMaxSpace(getImageTitle(), 600, 900); ?></a><?php } ?>
 		</div>
 	</div>
 
 	<?php
-	if (function_exists('printjCarouselThumbNav')) {
-		printjCarouselThumbNav(5, 87, 87, 87, 87, false);
+	if (function_exists('printThumbNav')) {
+		printThumbNav(5, NULL, 87, 87, 87, 87, false);
 	} else {
 		if (function_exists("printPagedThumbsNav")) {
 			printPagedThumbsNav(5, true, ' ', ' ', 87, 87);
@@ -57,21 +63,22 @@
 	}
 	?>
 
-	<?php if (function_exists('printRating')) { ?>
+		<?php if (function_exists('printRating')) { ?>
 		<div id="rating" class="rating-news">
 		<?php printRating(); ?>
 		</div>
 	<?php } ?>
 
-<?php if (function_exists('printGoogleMap')) { ?>
+		<?php if (function_exists('printGoogleMap')) { ?>
 		<div class="gmap">
-				<?php setOption('gmap_width', 600, false);
-				printGoogleMap(); ?>
+		<?php setOption('gmap_width', 600, false);
+		printGoogleMap();
+		?>
 		</div>
-<?php } ?>
+	<?php } ?>
 <?php printCodeblock(); ?>
 
-<?php if (function_exists('printCommentForm')) printCommentForm(); ?>
+			<?php if (function_exists('printCommentForm')) printCommentForm(); ?>
 
 	<div class="loading">
 		<div id="exif" style="padding:20px; background:#fff; border:5px solid #eee;">

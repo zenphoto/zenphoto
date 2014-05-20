@@ -1,5 +1,18 @@
 <?php
 $_zp_page_check = 'my_checkPageValidity';
+setOption('themeSwitcher_css', ".themeSwitcherControlLink {\n" .
+				" position: fixed;\n" .
+				" z-index: 10000;\n" .
+				" left: 0px;\n" .
+				" top: 40px;\n" .
+				" border-bottom: 1px solid #444;\n" .
+				" border-left: 1px solid #444;\n" .
+				" color: black;\n" .
+				" padding: 2px;\n" .
+				" background-color: #f5f5f5;\n" .
+				"}\n", false
+);
+
 setOption('zp_plugin_colorbox', false, false);
 $zenpage = getOption('zp_plugin_zenpage');
 if ((function_exists('printGslideshow')) && (function_exists('printSlideShow'))) {
@@ -171,9 +184,8 @@ function printZDToggleClass($option, $c, $number_to_show) {
 	}
 }
 
-function printLatestNewsCustom($number = 5, $option = 'with_latest_images', $category = '', $showdate = true, $showcontent = true, $contentlength = 70, $showcat = true) {
+function printLatestNewsCustom($number = 5, $category = '', $showdate = true, $showcontent = true, $contentlength = 70, $showcat = true) {
 	global $_zp_gallery, $_zp_current_zenpage_news;
-	//trigger_error(gettext('printLatestNews is deprecated. Use printLatestCombiNews().'), E_USER_NOTICE);
 	$latest = getLatestNews($number, $category);
 	echo "\n<div id=\"latestnews-spotlight\">\n";
 	$count = "";
