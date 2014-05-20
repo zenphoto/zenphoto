@@ -35,7 +35,7 @@ function purgeOptions_admin_tabs($tabs) {
 }
 
 function listOwners($owners, $nest = '') {
-	global $xlate;
+	global $xlate, $highlighted;
 	foreach ($owners as $owner => $detail) {
 		?>
 		<li>
@@ -62,6 +62,7 @@ function listOwners($owners, $nest = '') {
 				} else {
 					$labelclass = 'missing_owner';
 					$missing = ' missing';
+					$highlighted = true;
 				}
 				if (empty($detail)) {
 					$display = 'unknown';

@@ -45,6 +45,7 @@ printAdminHeader('options', '');
 				<div class="tabbox">
 					<?php
 					$owners = array();
+					$highlighted = false;
 					$sql = 'SELECT `name` FROM ' . prefix('options') . ' WHERE `name` LIKE "zp_plugin_%"';
 					$result = query_full_array($sql);
 					foreach ($result as $plugin) {
@@ -101,16 +102,25 @@ printAdminHeader('options', '');
 							<br class="clearall" />
 
 							<p>
-								<?php echo gettext('Check an item to purge options associated with it. Items that are <span class="missing_owner">higlighed</span> appear no longer to exist.'); ?>
+								<?php
+								echo gettext('Check an item to purge options associated with it.');
+								if ($highlighted) {
+									gettext('Items that are <span class="missing_owner">higlighed</span> appear no longer to exist.');
+								}
+								?>
 							</p>
-							<ul>
-								<li>
-									<?php printf(gettext('<span class="missing_owner">higlighed</span>%s '), '<input type="checkbox" id="missing" onclick="$(\'.missing\').prop(\'checked\', $(\'#missing\').prop(\'checked\'));">');
-									?>
-								</li>
-							</ul>
-
-
+							<?php
+							if ($highlighted) {
+								?>
+								<ul>
+									<li>
+										<?php printf(gettext('<span class="missing_owner">higlighed</span>%s '), '<input type="checkbox" id="missing" onclick="$(\'.missing\').prop(\'checked\', $(\'#missing\').prop(\'checked\'));">');
+										?>
+									</li>
+								</ul>
+								<?php
+							}
+							?>
 							<ul>
 								<?php listOwners($owners); ?>
 							</ul>
