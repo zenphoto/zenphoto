@@ -1082,7 +1082,7 @@ class Image extends MediaObject {
 	 *
 	 * @return string
 	 */
-	function getThumb($type = 'image') {
+	function getThumb($type = 'image', $wmt = NULL) {
 		$ts = getOption('thumb_size');
 		if (getOption('thumb_crop')) {
 			$sw = getOption('thumb_crop_width');
@@ -1094,7 +1094,8 @@ class Image extends MediaObject {
 		} else {
 			$sw = $sh = NULL;
 		}
-		$wmt = getWatermarkParam($this, WATERMARK_THUMB);
+		if (empty($wmt))
+			$wmt = getWatermarkParam($this, WATERMARK_THUMB);
 		$args = getImageParameters(array($ts, NULL, NULL, $sw, $sh, NULL, NULL, NULL, true, NULL, true, $wmt, NULL, NULL), $this->album->name);
 
 		return getImageURI($args, $this->album->name, $this->filename, $this->filemtime);

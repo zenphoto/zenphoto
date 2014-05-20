@@ -20,7 +20,7 @@ if (!$albumobj->isMyItem(ALBUM_RIGHTS)) { // prevent nefarious access to this pa
 $use_side = getOption('image_use_side');
 // get full width and height
 $imageobj = newImage($albumobj, $imagename);
-$currentthumbimage = $imageobj->getThumb();
+$currentthumbimage = $imageobj->getThumb('image', '!');
 setOption('image_use_side', 'longest', false);
 $cropwidth = getOption("thumb_crop_width");
 $cropheight = getOption("thumb_crop_height");

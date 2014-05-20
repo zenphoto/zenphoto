@@ -2709,3 +2709,8 @@ form.dirty input[type=submit]:active{
 .mce-tinymce.mce-container .mce-toolbar {
 	float: left;
 }
+
+.zenlogo img {
+	text-decoration: none !important;
+	vertical-align: sub;
+}

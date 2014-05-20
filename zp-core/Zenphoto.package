@@ -947,6 +947,7 @@ zp-core/images/toggleroh.png
 zp-core/images/view.png
 zp-core/images/warn.png
 zp-core/images/wheel.png
+zp-core/images/zen-logo-light.png
 zp-core/images/zen-logo.png
 zp-core/images/zp.png
 zp-core/images/zp_gold.png
@@ -2090,4 +2091,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2092
+2093
