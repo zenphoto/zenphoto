@@ -1,6 +1,10 @@
 .missing_owner{
 	color: red;
 }
+.empty_name {
+	color:red;
+	text-decoration:line-through;
+}
 ul {
 	list-style: none;
 }

@@ -58,8 +58,6 @@ printAdminHeader('options', '');
 					}
 					$sql = 'SELECT DISTINCT `creator` FROM ' . prefix('options');
 					$result = query_full_array($sql);
-
-
 					foreach ($result as $owner) {
 						$structure = explode('/', $owner['creator']);
 						switch (count($structure)) {

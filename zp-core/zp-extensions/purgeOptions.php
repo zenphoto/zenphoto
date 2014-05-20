@@ -56,15 +56,24 @@ function listOwners($owners, $nest = '') {
 				<?php
 			} else {
 				$autocheck = str_replace('/', '_', rtrim($nest, '/'));
-				if (file_exists(SERVERPATH . '/' . internalToFilesystem($nest . $detail))) {
-					$missing = $labelclass = '';
+				if ($detail && file_exists(SERVERPATH . '/' . internalToFilesystem($nest . $detail))) {
+					$missing = '';
+					$labelclass = 'none';
 				} else {
 					$labelclass = 'missing_owner';
 					$missing = ' missing';
 				}
+				if (empty($detail)) {
+					$display = 'unknown';
+					$labelclass = ' empty_name';
+					$checked = 'checked="checked"';
+				} else {
+					$display = $detail = stripSuffix($detail);
+					$checked = false;
+				}
 				?>
 				<label class="<?php echo $labelclass; ?>">
-					<input type="checkbox" name="del[]" class="<?php echo $autocheck . $missing; ?>" value="<?php echo $nest . $detail; ?>"><?php echo stripSuffix($detail); ?>
+					<input type="checkbox" name="del[]" class="<?php echo $autocheck . $missing; ?>" value="<?php echo $nest . $detail; ?>"<?php echo $checked; ?> /><?php echo $display; ?>
 				</label>
 				<?php
 			}
