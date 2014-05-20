@@ -251,6 +251,10 @@ printAdminHeader('edit', gettext('crop image'));
 		}
 	}
 
+	function watermarkChange() {
+		showCoords(jcrop_api.tellSelect());
+	}
+
 	function resetButton() {
 		jcrop_api.setOptions({aspectRatio: 0});
 		$('#aspect-ratio-width').val('');
@@ -307,8 +311,12 @@ printAdminHeader('edit', gettext('crop image'));
 		ch = Math.round(c.h * <?php echo $width / $sizedwidth; ?>);
 		cx = Math.round(c.x * <?php echo $width / $sizedwidth; ?>);
 		cy = Math.round(c.y * <?php echo $height / $sizedheight; ?>);
+		wmk = jQuery('#watermark').val();
+		if (wmk == '') {
+			wmk = '!';
+		}
 
-		uri = '<?php echo WEBPATH . '/' . ZENFOLDER . "/i.php?a=$albumname&i=$imagename"; ?>' + '&w=' + new_width + '&h=' + new_height + '&cw=' + cw + '&ch=' + ch + '&cx=' + cx + '&cy=' + cy;
+		uri = '<?php echo WEBPATH . '/' . ZENFOLDER . "/i.php?a=$albumname&i=$imagename"; ?>' + '&w=' + new_width + '&h=' + new_height + '&cw=' + cw + '&ch=' + ch + '&cx=' + cx + '&cy=' + cy + '&wmk=' + wmk;
 		jQuery('#imageURI').val(uri);
 		jQuery('#imageURI').attr('size', uri.length + 10);
 		$('#crop').addClass('dirty');
@@ -376,6 +384,17 @@ printAdminHeader('edit', gettext('crop image'));
 						<input type="hidden" id="performcrop" name="performcrop" value="<?php echo html_encode(sanitize($_REQUEST['performcrop'])); ?>" />
 						<p class="floatleft">
 							<input type="button" value="<?php echo gettext("Image Link:"); ?>" onclick="$('#imageURI').select();" title="<?php echo gettext('Click to select link so you can copy it to your clipboard'); ?>" />
+							<?php
+							echo gettext('Link image watermark');
+							?>
+							<select id="watermark" name="watermark" onchange="watermarkChange();">
+								<option value="<?php echo NO_WATERMARK; ?>" style="background-color:LightGray"><?php echo gettext('*no watermark'); ?></option>
+								<?php
+								$watermarks = getWatermarks();
+								generateListFromArray(array($current), $watermarks, false, false);
+								?>
+							</select>
+
 							<br />
 							<input type="text" name="imageURI" id="imageURI" disabled="disabled" title="<?php echo gettext('Copy and insert this link for an image cropped as shown.'); ?>" />
 						</p>
