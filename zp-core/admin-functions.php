@@ -25,7 +25,7 @@ function printAdminFooter($addl = '') {
 	?>
 	<div id="footer">
 		<?php
-		echo gettext('<a href="https://github.com/ZenPhoto20/ZenPhoto20" title="A simpler web album"><span style="vertical-align:sub;"><img src="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/images/zen-logo-dark.png" /></span></a> ') . sprintf(gettext('version %1$s [%2$s]'), ZENPHOTO_VERSION, ZENPHOTO_RELEASE);
+		echo gettext('<a href="https://github.com/ZenPhoto20/ZenPhoto20" title="A simpler web album"><span style="vertical-align:sub;"><img src="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/images/zen-logo.png" /></span></a> ') . sprintf(gettext('version %1$s [%2$s]'), ZENPHOTO_VERSION, ZENPHOTO_RELEASE);
 
 		if (!empty($addl)) {
 			echo ' | ' . $addl;
