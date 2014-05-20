@@ -240,48 +240,6 @@ printAdminHeader('edit', 'thumbcrop');
 						<img src="<?php echo $imageurl; ?>" id="cropbox" />
 					</div>
 
-					<!-- This is the form that our event handler fills -->
-					<form class="dirty-check" name="crop" id="crop" action="?crop" onsubmit="return checkCoords();">
-						<?php XSRFToken('thumb_crop'); ?>
-						<input type="hidden" size="4" id="x" name="x" value="<?php echo $iX ?>" />
-						<input type="hidden" size="4" id="y" name="y" value="<?php echo $iY ?>" />
-						<input type="hidden" size="4" id="x2" name="x2" value="<?php echo $iX + $iW ?>" />
-						<input type="hidden" size="4" id="y2" name="y2" value="<?php echo $iY + $iH ?>" />
-						<input type="hidden" size="4" id="w" name="w" value="<?php echo $iW ?>" />
-						<input type="hidden" size="4" id="h" name="h" value="<?php echo $iH ?>"  />
-						<input type="hidden" id="cropw" name="cropw" value="<?php echo $cropwidth; ?>" />
-						<input type="hidden" id="croph" name="croph" value="<?php echo $cropheight; ?>" />
-						<input type="hidden" id="a" name="a" value="<?php echo html_encode($albumname); ?>" />
-						<input type="hidden" id="i" name="i" value="<?php echo html_encode($imagename); ?>" />
-						<input type="hidden" id="tagsort" name="tagsort" value="<?php echo html_encode($tagsort); ?>" />
-						<input type="hidden" id="subpage" name="subpage" value="<?php echo html_encode($subpage); ?>" />
-						<input type="hidden" id="crop" name="crop" value="crop" />
-						<?php
-						if (getOption('thumb_crop')) {
-							?>
-							<input name="clear_crop" id="clear_crop" type="checkbox" value="1"  onclick="resetCheck();" /> <?php echo gettext("Reset to the default cropping"); ?><br />
-							<br />
-							<p class="buttons">
-								<button type="button" onclick="resetBoundingBox();" >
-									<img src="images/fail.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
-								</button>
-								<button type="submit" id="submit" name="submit" value="<?php echo gettext('Apply the cropping') ?>">
-									<img src="images/pass.png" alt="" />
-									<strong><?php echo gettext("Apply"); ?></strong>
-								</button>
-								<button type="reset" value="<?php echo gettext('Back') ?>" onclick="window.location = 'admin-edit.php?page=edit&album=<?php echo html_encode(pathurlencode($albumname)); ?>&subpage=<?php echo html_encode($subpage); ?>&tagsort=<?php echo html_encode($tagsort); ?>&tab=imageinfo'">
-									<img src="images/arrow_left_blue_round.png" alt="" />
-									<strong><?php echo gettext("Back"); ?></strong>
-								</button>
-							</p><br />
-
-							<?php
-						} else {
-							echo gettext('Thumbnail cropping is disabled. Enable this option for the theme if you wish cropped thumbnails.');
-						}
-						?>
-					</form>
-
 				</div>
 
 				<div style="float: left; width:<?php echo $cropwidth; ?>px; text-align: center; margin-left: 10px; margin-bottom: 10px;">
@@ -290,6 +248,48 @@ printAdminHeader('edit', 'thumbcrop');
 					</div>
 					<?php echo gettext("thumbnail preview"); ?>
 				</div>
+				<br clear="all">
+				<!-- This is the form that our event handler fills -->
+				<form class="dirty-check" name="crop" id="crop" action="?crop" onsubmit="return checkCoords();">
+					<?php XSRFToken('thumb_crop'); ?>
+					<input type="hidden" size="4" id="x" name="x" value="<?php echo $iX ?>" />
+					<input type="hidden" size="4" id="y" name="y" value="<?php echo $iY ?>" />
+					<input type="hidden" size="4" id="x2" name="x2" value="<?php echo $iX + $iW ?>" />
+					<input type="hidden" size="4" id="y2" name="y2" value="<?php echo $iY + $iH ?>" />
+					<input type="hidden" size="4" id="w" name="w" value="<?php echo $iW ?>" />
+					<input type="hidden" size="4" id="h" name="h" value="<?php echo $iH ?>"  />
+					<input type="hidden" id="cropw" name="cropw" value="<?php echo $cropwidth; ?>" />
+					<input type="hidden" id="croph" name="croph" value="<?php echo $cropheight; ?>" />
+					<input type="hidden" id="a" name="a" value="<?php echo html_encode($albumname); ?>" />
+					<input type="hidden" id="i" name="i" value="<?php echo html_encode($imagename); ?>" />
+					<input type="hidden" id="tagsort" name="tagsort" value="<?php echo html_encode($tagsort); ?>" />
+					<input type="hidden" id="subpage" name="subpage" value="<?php echo html_encode($subpage); ?>" />
+					<input type="hidden" id="crop" name="crop" value="crop" />
+					<?php
+					if (getOption('thumb_crop')) {
+						?>
+						<input name="clear_crop" id="clear_crop" type="checkbox" value="1"  onclick="resetCheck();" /> <?php echo gettext("Reset to the default cropping"); ?><br />
+						<br />
+						<p class="buttons">
+							<button type="button" onclick="resetBoundingBox();" >
+								<img src="images/fail.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
+							</button>
+							<button type="submit" id="submit" name="submit" value="<?php echo gettext('Apply the cropping') ?>">
+								<img src="images/pass.png" alt="" />
+								<strong><?php echo gettext("Apply"); ?></strong>
+							</button>
+							<button type="reset" value="<?php echo gettext('Back') ?>" onclick="window.location = 'admin-edit.php?page=edit&album=<?php echo html_encode(pathurlencode($albumname)); ?>&subpage=<?php echo html_encode($subpage); ?>&tagsort=<?php echo html_encode($tagsort); ?>&tab=imageinfo'">
+								<img src="images/arrow_left_blue_round.png" alt="" />
+								<strong><?php echo gettext("Back"); ?></strong>
+							</button>
+						</p><br />
+
+						<?php
+					} else {
+						echo gettext('Thumbnail cropping is disabled. Enable this option for the theme if you wish cropped thumbnails.');
+					}
+					?>
+				</form>
 
 				<!-- set the initial view for the preview -->
 				<script type="text/javascript" >
