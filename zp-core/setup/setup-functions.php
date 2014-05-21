@@ -575,7 +575,7 @@ function configMod() {
 
 function printSetupFooter() {
 	echo "<div id=\"footer\">";
-	echo "\n  <a href=\"https://github.com/ZenPhoto20/ZenPhoto20\" title=\"" . gettext('The simpler media website CMS') . "\">ZenPhoto20</a>";
+	echo gettext('<span class="zenlogo"><a href="https://github.com/ZenPhoto20/ZenPhoto20" title="' . gettext('A simpler media content management system') . '"><img src="' . WEBPATH . '/' . ZENFOLDER . '/' . '/images/zen-logo-light.png" /></a></span> ');
 	echo " | <a href=\"https://github.com/ZenPhoto20/ZenPhoto20/issues\" title=\"Support\">" . gettext('Support') . "</a> | <a href=\"hhttps://github.com/ZenPhoto20/ZenPhoto20/commits/master\" title=\"" . gettext('View Change log') . "\">" . gettext('Change log') . "</a>\n</div>";
 }
 
