@@ -24,9 +24,11 @@ if (isset($_POST['purge'])) {
 				$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `creator` = ' . db_quote($owner . '/themeoptions.php');
 				$result = query($sql);
 			}
-			if (preg_match('~^' . PLUGIN_FOLDER . '/~', $owner) || preg_match('~^' . USER_PLUGIN_FOLDER . '/~', $owner)) {
-				purgeOption('zp_plugin_' . stripSuffix(basename($owner)));
-			}
+		}
+	}
+	if (isset($_POST['purge'])) {
+		foreach ($_POST['purge'] as $plugin) {
+			purgeOption('zp_plugin_' . stripSuffix($plugin));
 		}
 	}
 }

@@ -56,21 +56,28 @@ function listOwners($owners, $nest = '') {
 				<?php
 			} else {
 				$autocheck = str_replace('/', '_', rtrim($nest, '/'));
+
 				if ($detail && file_exists(SERVERPATH . '/' . internalToFilesystem($nest . $detail))) {
 					$missing = '';
 					$labelclass = 'none';
+					$checked = false;
 				} else {
 					$labelclass = 'missing_owner';
 					$missing = ' missing';
+					$checked = ' checked="checked"';
 					$highlighted = true;
+					if (basename($nest) != THEMEFOLDER) {
+						?>
+						<input type="hidden" name="purge[]" value="<?php echo $detail; ?>" />
+						<?php
+					}
 				}
 				if (empty($detail)) {
 					$display = 'unknown';
 					$labelclass = ' empty_name';
-					$checked = 'checked="checked"';
+					$checked = ' checked="checked"';
 				} else {
 					$display = $detail = stripSuffix($detail);
-					$checked = false;
 				}
 				?>
 				<label class="<?php echo $labelclass; ?>">

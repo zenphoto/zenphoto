@@ -9,12 +9,11 @@ plugins/disableWatermark.php
 plugins/filter-fileSearches.php
 plugins/filterDoc
 plugins/filterDoc.php
-plugins/filterDoc/Codeblock1.txt
-plugins/filterDoc/Codeblock2.txt
 plugins/filterDoc/admin_tab.php
 plugins/filterDoc/filter descriptions.txt
 plugins/filterDoc/filter list.html
 plugins/filterDoc/filter list_index.html
+plugins/filterDoc/intro.html
 plugins/galleryToken.php
 plugins/headConsolidator.php
 plugins/no_show.php
@@ -287,11 +286,9 @@ themes/zpfocus
 themes/zpfocus/404.php
 themes/zpfocus/album.php
 themes/zpfocus/archive.php
-themes/zpfocus/changelog.txt
 themes/zpfocus/contact.php
 themes/zpfocus/css
 themes/zpfocus/css/ie6.css
-themes/zpfocus/css/index.html
 themes/zpfocus/css/main.css
 themes/zpfocus/css/print.css
 themes/zpfocus/functions.php
@@ -1472,7 +1469,6 @@ zp-core/zp-extensions/externalFeed.php
 zp-core/zp-extensions/favoritesAlbums
 zp-core/zp-extensions/favoritesAlbums.php
 zp-core/zp-extensions/favoritesAlbums/admin-album.php
-zp-core/zp-extensions/favoritesAlbums/logo.png
 zp-core/zp-extensions/favoritesHandler
 zp-core/zp-extensions/favoritesHandler.php
 zp-core/zp-extensions/favoritesHandler/favoritesClass.php
@@ -1654,7 +1650,6 @@ zp-core/zp-extensions/publishContent/publishContent.css
 zp-core/zp-extensions/publishContent/publishContent.php
 zp-core/zp-extensions/purgeOptions
 zp-core/zp-extensions/purgeOptions.php
-zp-core/zp-extensions/purgeOptions/logo.png
 zp-core/zp-extensions/purgeOptions/purgeOptions.css
 zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php
 zp-core/zp-extensions/quota_manager.php
@@ -2089,4 +2084,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2091
+2086
