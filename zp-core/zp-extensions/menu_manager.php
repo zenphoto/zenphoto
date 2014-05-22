@@ -56,7 +56,7 @@ class menu_manager {
 										'order'		 => 2,
 										'disabled' => $_common_truncate_handler,
 										'desc'		 => gettext('Append this string to truncated titles.')),
-						gettext('Truncate titles*')		 => array('key'		 => 'menu_truncate_string', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Truncate titles*')		 => array('key'		 => 'menu_truncate_string', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 1,
 										'desc'	 => gettext('Limit titles to this many characters. Zero means no limit.'))
 		);

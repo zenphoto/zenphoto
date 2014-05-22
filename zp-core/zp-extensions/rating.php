@@ -95,7 +95,7 @@ class jquery_rating {
 		return array(gettext('Voting state')							 => array('key'			 => 'rating_status', 'type'		 => OPTION_TYPE_RADIO,
 										'buttons'	 => $this->ratingstate,
 										'desc'		 => gettext('<em>Enable</em> state of voting.')),
-						gettext('Stars')										 => array('key'	 => 'rating_stars_count', 'type' => OPTION_TYPE_TEXTBOX,
+						gettext('Stars')										 => array('key'	 => 'rating_stars_count', 'type' => OPTION_TYPE_NUMBER,
 										'desc' => sprintf(ngettext('Rating will use %u star.', 'Rating will use %u stars.', $stars), $stars)),
 						gettext('Split stars')							 => array('key'			 => 'rating_split_stars', 'type'		 => OPTION_TYPE_RADIO,
 										'buttons'	 => array(gettext('full') => 1, gettext('half') => 2, gettext('third') => 3),

@@ -68,16 +68,16 @@ class user_expiry {
 	 */
 	function getOptionsSupported() {
 		return
-						array(gettext('Days until expiration') => array('key'		 => 'user_expiry_interval', 'type'	 => OPTION_TYPE_CLEARTEXT,
+						array(gettext('Days until expiration') => array('key'		 => 'user_expiry_interval', 'type'	 => OPTION_TYPE_NUMBER,
 														'order'	 => 1,
 														'desc'	 => gettext('The number of days until a user is flagged as expired. Set to zero for no expiry.')),
-										gettext('Warning interval')			 => array('key'		 => 'user_expiry_warn_interval', 'type'	 => OPTION_TYPE_CLEARTEXT,
+										gettext('Warning interval')			 => array('key'		 => 'user_expiry_warn_interval', 'type'	 => OPTION_TYPE_NUMBER,
 														'order'	 => 2,
 														'desc'	 => gettext('The period in days before the expiry during which a warning message will be sent to the user. (If set to zero, no warning occurs.)')),
-										gettext('Auto renew')						 => array('key'		 => 'user_expiry_auto_renew', 'type'	 => OPTION_TYPE_CHECKBOX,
+										gettext('Auto renew')						 => array('key'		 => 'user_expiry_auto_renew', 'type'	 => OPTION_TYPE_NUMBER,
 														'order'	 => 3,
 														'desc'	 => gettext('Automatically renew the subscription if the user visits during the warning period.')),
-										gettext('Password cycle')				 => array('key'		 => 'user_expiry_password_cycle', 'type'	 => OPTION_TYPE_CLEARTEXT,
+										gettext('Password cycle')				 => array('key'		 => 'user_expiry_password_cycle', 'type'	 => OPTION_TYPE_NUMBER,
 														'order'	 => 4,
 														'desc'	 => gettext('Number of days between required password changes. Set to zero for no required changes.'))
 		);

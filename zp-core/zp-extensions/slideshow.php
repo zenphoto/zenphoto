@@ -81,7 +81,7 @@ class slideshow {
 										'order'			 => 0,
 										'selections' => array(gettext("jQuery Cycle") => "jQuery", gettext("jQuery Colorbox") => "colorbox"),
 										'desc'			 => gettext('<em>jQuery Cycle</em> for slideshow using the jQuery Cycle plugin<br /><em>jQuery Colorbox</em> for slideshow using Colorbox (Colorbox plugin required).<br />NOTE: The jQuery Colorbox mode is attached to the link the printSlideShowLink() function prints and can neither be called directly nor used on the slideshow.php theme page.')),
-						gettext('Speed') => array('key'		 => 'slideshow_speed', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Speed') => array('key'		 => 'slideshow_speed', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 1,
 										'desc'	 => gettext("Speed of the transition in milliseconds."))
 		);
@@ -99,17 +99,17 @@ class slideshow {
 
 		switch (getOption('slideshow_mode')) {
 			case 'jQuery':
-				$options = array_merge($options, array(gettext('Slide width')	 => array('key'		 => 'slideshow_width', 'type'	 => OPTION_TYPE_TEXTBOX,
+				$options = array_merge($options, array(gettext('Slide width')	 => array('key'		 => 'slideshow_width', 'type'	 => OPTION_TYPE_NUMBER,
 												'order'	 => 5,
 												'desc'	 => gettext("Width of the images in the slideshow.")),
-								gettext('Slide height')	 => array('key'		 => 'slideshow_height', 'type'	 => OPTION_TYPE_TEXTBOX,
+								gettext('Slide height')	 => array('key'		 => 'slideshow_height', 'type'	 => OPTION_TYPE_NUMBER,
 												'order'	 => 6,
 												'desc'	 => gettext("Height of the images in the slideshow.")),
 								gettext('Cycle Effect')	 => array('key'				 => 'slideshow_effect', 'type'			 => OPTION_TYPE_SELECTOR,
 												'order'			 => 2,
 												'selections' => array(gettext('fade') => "fade", gettext('shuffle') => "shuffle", gettext('zoom') => "zoom", gettext('slide X') => "slideX", gettext('slide Y') => "slideY", gettext('scroll up') => "scrollUp", gettext('scroll down') => "scrollDown", gettext('scroll left') => "scrollLeft", gettext('scroll right') => "scrollRight"),
 												'desc'			 => gettext("The cycle slide effect to be used.")),
-								gettext('Timeout')			 => array('key'		 => 'slideshow_timeout', 'type'	 => OPTION_TYPE_TEXTBOX,
+								gettext('Timeout')			 => array('key'		 => 'slideshow_timeout', 'type'	 => OPTION_TYPE_NUMBER,
 												'order'	 => 3,
 												'desc'	 => gettext("Milliseconds between slide transitions (0 to disable auto advance.)")),
 								gettext('Description')	 => array('key'		 => 'slideshow_showdesc', 'type'	 => OPTION_TYPE_CHECKBOX,
@@ -131,7 +131,7 @@ class slideshow {
 												'desc'	 => gettext("If the image title should be shown at the bottom of the Colorbox."))
 				));
 				if (getOption('slideshow_colorbox_imagetype') == 'sizedimage') {
-					$options = array_merge($options, array(gettext('Slide width') => array('key'		 => 'slideshow_width', 'type'	 => OPTION_TYPE_TEXTBOX,
+					$options = array_merge($options, array(gettext('Slide width') => array('key'		 => 'slideshow_width', 'type'	 => OPTION_TYPE_NUMBER,
 													'order'	 => 3.5,
 													'desc'	 => gettext("Width of the images in the slideshow."))
 					));

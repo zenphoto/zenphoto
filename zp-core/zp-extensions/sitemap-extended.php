@@ -163,7 +163,7 @@ class sitemap {
 										'order'				 => 10,
 										'multilingual' => true,
 										'desc'				 => gettext('Optional. Used only if the Google extension is checked. Must be an absolute URL address of the form: http://mydomain.com/license.html')),
-						gettext('Sitemap processing chunk')										 => array('key'		 => 'sitemap_processing_chunk', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Sitemap processing chunk')										 => array('key'		 => 'sitemap_processing_chunk', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 11,
 										'desc'	 => gettext('The number of albums that will be processed for each sitemap file. Lower this value if you get script timeouts when creating the files.')),
 						gettext('Use subdomains') . '*'												 => array('key'			 => 'dynamic_locale_subdomain', 'type'		 => OPTION_TYPE_CHECKBOX,

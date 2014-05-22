@@ -65,7 +65,7 @@ class MergedRSSOptions {
 										'order'				 => 11,
 										'multilingual' => false,
 										'desc'				 => gettext('Enter the full urls of the feeds to merge separated by semicolons (e.g. "http://www.domain1.com/rss; http://www.domain2.com/rss")')),
-						gettext('Feed items:')				 => array('key'		 => 'mergedrss_items', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Feed items:')				 => array('key'		 => 'mergedrss_items', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 2,
 										'desc'	 => gettext("The number of new entries you want to appear in your site’s RSS feed")),
 		);

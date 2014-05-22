@@ -86,10 +86,10 @@ class ipBlocker {
 										'order'		 => 3,
 										'buttons'	 => $buttons,
 										'desc'		 => gettext('How the plugin will interpret the IP list.')),
-						gettext('Logon threshold') => array('key'		 => 'ipBlocker_threshold', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Logon threshold') => array('key'		 => 'ipBlocker_threshold', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 1,
 										'desc'	 => gettext('Admin page requests will be ignored after this many failed tries.')),
-						gettext('Logon cool off')	 => array('key'		 => 'ipBlocker_timeout', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Logon cool off')	 => array('key'		 => 'ipBlocker_timeout', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 2,
 										'desc'	 => gettext('The block will be removed after this many minutes.'))
 		);

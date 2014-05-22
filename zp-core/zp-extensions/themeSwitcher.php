@@ -56,7 +56,7 @@ class themeSwitcher {
 		foreach ($themes as $key => $theme) {
 			$list[$theme['name']] = 'themeSwitcher_theme_' . $key;
 		}
-		$options = array(gettext('Cookie duration') => array('key'	 => 'themeSwitcher_timeout', 'type' => OPTION_TYPE_TEXTBOX,
+		$options = array(gettext('Cookie duration') => array('key'	 => 'themeSwitcher_timeout', 'type' => OPTION_TYPE_NUMBER,
 										'desc' => gettext('The time in minutes that the theme switcher cookie lasts.')),
 						gettext('Selector CSS')		 => array('key'					 => 'themeSwitcher_css', 'type'				 => OPTION_TYPE_TEXTAREA,
 										'multilingual' => false,

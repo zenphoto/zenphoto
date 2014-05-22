@@ -114,10 +114,10 @@ class zenpagecms {
 	function getOptionsSupported() {
 		global $_common_truncate_handler;
 
-		$options = array(gettext('Articles per page (theme)')					 => array('key'		 => 'zenpage_articles_per_page', 'type'	 => OPTION_TYPE_TEXTBOX,
+		$options = array(gettext('Articles per page (theme)')					 => array('key'		 => 'zenpage_articles_per_page', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 0,
 										'desc'	 => gettext("How many news articles you want to show per page on the news or news category pages.")),
-						gettext('News article text length')						 => array('key'		 => 'zenpage_text_length', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('News article text length')						 => array('key'		 => 'zenpage_text_length', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 1,
 										'desc'	 => gettext("The length of news article excerpts in news or news category pages. Leave empty for full text.")),
 						gettext('News article text shorten indicator') => array('key'		 => 'zenpage_textshorten_indicator', 'type'	 => OPTION_TYPE_TEXTBOX,
@@ -126,7 +126,7 @@ class zenpagecms {
 						gettext('Read more')													 => array('key'					 => 'zenpage_read_more', 'type'				 => OPTION_TYPE_TEXTBOX, 'multilingual' => 1,
 										'order'				 => 3,
 										'desc'				 => gettext("The text for the link to the full article.")),
-						gettext('Truncate titles*')										 => array('key'			 => 'menu_truncate_string', 'type'		 => OPTION_TYPE_TEXTBOX,
+						gettext('Truncate titles*')										 => array('key'			 => 'menu_truncate_string', 'type'		 => OPTION_TYPE_NUMBER,
 										'disabled' => $_common_truncate_handler,
 										'order'		 => 23,
 										'desc'		 => gettext('Limit titles to this many characters. Zero means no limit.')),

@@ -31,7 +31,7 @@ class htmlmetatags {
 		setOptionDefault('htmlmeta_cache_control', 'no-cache');
 		setOptionDefault('htmlmeta_pragma', 'no-cache');
 		setOptionDefault('htmlmeta_robots', 'index');
-		setOptionDefault('htmlmeta_revisit_after', '10 Days');
+		setOptionDefault('htmlmeta_revisit_after', '10');
 		setOptionDefault('htmlmeta_expires', '43200');
 		setOptionDefault('htmlmeta_tags', '');
 
@@ -78,9 +78,9 @@ class htmlmetatags {
 						gettext('Robots')								 => array('key'				 => 'htmlmeta_robots', 'type'			 => OPTION_TYPE_SELECTOR,
 										'selections' => array('noindex' => "noindex", 'index' => "index", 'nofollow' => "nofollow", 'noindex,nofollow' => "noindex,nofollow", 'noindex,follow' => "noindex,follow", 'index,nofollow' => "index,nofollow", 'none' => "none"),
 										'desc'			 => gettext("If and how robots are allowed to visit the site. Default is “index”. Note that you also should use a robot.txt file.")),
-						gettext('Revisit after')				 => array('key'	 => 'htmlmeta_revisit_after', 'type' => OPTION_TYPE_TEXTBOX,
+						gettext('Revisit after')				 => array('key'	 => 'htmlmeta_revisit_after', 'type' => OPTION_TYPE_NUMBER,
 										'desc' => gettext("Request the crawler to revisit the page after x days.")),
-						gettext('Expires')							 => array('key'	 => 'htmlmeta_expires', 'type' => OPTION_TYPE_TEXTBOX,
+						gettext('Expires')							 => array('key'	 => 'htmlmeta_expires', 'type' => OPTION_TYPE_NUMBER,
 										'desc' => gettext("When the page should be loaded directly from the server and not from any cache. You can either set a date/time in international date format <em>Sat, 15 Dec 2001 12:00:00 GMT (example)</em> or a number. A number then means seconds, the default value <em>43200</em> means 12 hours.")),
 						gettext('Canonical URL link')		 => array('key'		 => 'htmlmeta_canonical-url', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 11,
@@ -313,7 +313,7 @@ class htmlmetatags {
 			$meta .= '<meta name="rights" content="' . $author . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-revisit-after')) {
-			$meta .= '<meta name="revisit-after" content="' . getOption("htmlmeta_revisit_after") . '">' . "\n";
+			$meta .= '<meta name="revisit-after" content="' . getOption("htmlmeta_revisit_after") . ' days">' . "\n";
 		}
 		if (getOption('htmlmeta_name-expires')) {
 			$meta .= '<meta name="expires" content="' . getOption("htmlmeta_expires") . '">' . "\n";

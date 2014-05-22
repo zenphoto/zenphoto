@@ -73,10 +73,10 @@ class externalFeed_options {
 														gettext('News/Page Comments')	 => 'externalFeed_article_comments'
 										),
 										'desc'			 => gettext('Check each feeds you wish to activate.')),
-						gettext('Image feed items:')					 => array('key'		 => 'externalFeed_items', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Image feed items:')					 => array('key'		 => 'externalFeed_items', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 1,
 										'desc'	 => gettext("The number of new images and comments you want to appear in your site’s feed")),
-						gettext('Image size')									 => array('key'		 => 'externalFeed_imagesize', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Image size')									 => array('key'		 => 'externalFeed_imagesize', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 3,
 										'desc'	 => gettext('Size of image feed images:')),
 						gettext('Image feed sort order:')			 => array('key'				 => 'externalFeed_sortorder', 'type'			 => OPTION_TYPE_SELECTOR,
@@ -104,10 +104,10 @@ class externalFeed_options {
 										'desc'	 => gettext("Check the box to remove a site."))
 		);
 		if (extensionEnabled('zenpage')) {
-			$options[gettext('Feed text length')] = array('key'		 => 'externalFeed_truncate_length', 'type'	 => OPTION_TYPE_TEXTBOX,
+			$options[gettext('Feed text length')] = array('key'		 => 'externalFeed_truncate_length', 'type'	 => OPTION_TYPE_NUMBER,
 							'order'	 => 6,
 							'desc'	 => gettext("The text length of the Zenpage feed items. No value for full length."));
-			$options[gettext('News feed items')] = array('key'		 => 'externalFeed_zenpage_items', 'type'	 => OPTION_TYPE_TEXTBOX,
+			$options[gettext('News feed items')] = array('key'		 => 'externalFeed_zenpage_items', 'type'	 => OPTION_TYPE_NUMBER,
 							'order'	 => 5,
 							'desc'	 => gettext("The number of news articles you want to appear in your site’s News feed."));
 		}

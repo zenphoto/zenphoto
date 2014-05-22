@@ -129,7 +129,7 @@ class comment_form {
 						gettext('Include RSS link')							 => array('key'		 => 'comment_form_rss', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 8,
 										'desc'	 => gettext('If checked, an RSS link will be included at the bottom of the comment section.')),
-						gettext('Comments per page')						 => array('key'		 => 'comment_form_comments_per_page', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Comments per page')						 => array('key'		 => 'comment_form_comments_per_page', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 9,
 										'desc'	 => gettext('The comments that should show per page on the admin tab and when using the jQuery pagination')),
 						gettext('Comment editor configuration')	 => array('key'						 => 'tinymce4_comments', 'type'					 => OPTION_TYPE_SELECTOR,

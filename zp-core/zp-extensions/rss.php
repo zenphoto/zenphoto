@@ -47,19 +47,19 @@ class rss_options {
 														gettext('News/Page Comments')	 => 'RSS_article_comments'
 										),
 										'desc'			 => gettext('Check each RSS feed you wish to activate.')),
-						gettext('Image feed items:')			 => array('key'		 => 'RSS_items', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Image feed items:')			 => array('key'		 => 'RSS_items', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 1,
 										'desc'	 => gettext("The number of new images and comments you want to appear in your site’s RSS feed")),
-						gettext('Album feed items:')			 => array('key'		 => 'RSS_items_albums', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Album feed items:')			 => array('key'		 => 'RSS_items_albums', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 2,
 										'desc'	 => gettext("The number of new images and comments you want to appear in your site’s RSS feed")),
-						gettext('Image size')							 => array('key'		 => 'RSS_imagesize', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Image size')							 => array('key'		 => 'RSS_imagesize', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 3,
 										'desc'	 => gettext('Size of RSS image feed images:')),
-						gettext('Album image size')				 => array('key'		 => 'RSS_imagesize_albums', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Album image size')				 => array('key'		 => 'RSS_imagesize_albums', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 4,
 										'desc'	 => gettext('Size of RSS album feed images :')),
-						gettext('Image feed sort order:')	 => array('key'				 => 'RSS_sortorder', 'type'			 => OPTION_TYPE_SELECTOR,
+						gettext('Image feed sort order:')	 => array('key'				 => 'RSS_sortorder', 'type'			 => OPTION_TYPE_NUMBER,
 										'order'			 => 6,
 										'selections' => array(gettext('latest by id')					 => 'latest',
 														gettext('latest by date')				 => 'latest-date',
@@ -85,7 +85,7 @@ class rss_options {
 						gettext('Cache')									 => array('key'		 => 'RSS_cache', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 10,
 										'desc'	 => sprintf(gettext('Check if you want to enable static RSS feed caching. The cached file will be placed within the <em>%s</em> folder.'), STATIC_CACHE_FOLDER)),
-						gettext('Cache expiration')				 => array('key'		 => 'RSS_cache_expire', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Cache expiration')				 => array('key'		 => 'RSS_cache_expire', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 11,
 										'desc'	 => gettext('Cache expire default is 86400 seconds (1 day = 24 hrs * 60 min * 60 sec).')),
 						gettext('Hitcounter')							 => array('key'		 => 'RSS_hitcounter', 'type'	 => OPTION_TYPE_CHECKBOX,
@@ -100,10 +100,10 @@ class rss_options {
 										'desc'	 => gettext('If checked links generated for logged‑in users will include a token identifying the user. Use of that link when not logged‑in will give the same feed as if the user were logged‑in.'))
 		);
 		if (extensionEnabled('zenpage')) {
-			$options[gettext('Feed text length')] = array('key'		 => 'RSS_truncate_length', 'type'	 => OPTION_TYPE_TEXTBOX,
+			$options[gettext('Feed text length')] = array('key'		 => 'RSS_truncate_length', 'type'	 => OPTION_TYPE_NUMBER,
 							'order'	 => 5.5,
 							'desc'	 => gettext("The text length of the Zenpage RSS feed items. No value for full length."));
-			$options[gettext('Zenpage feed items')] = array('key'		 => 'RSS_zenpage_items', 'type'	 => OPTION_TYPE_TEXTBOX,
+			$options[gettext('Zenpage feed items')] = array('key'		 => 'RSS_zenpage_items', 'type'	 => OPTION_TYPE_NUMBER,
 							'order'	 => 5,
 							'desc'	 => gettext("The number of news articles you want to appear in your site’s News RSS feed."));
 		}

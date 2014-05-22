@@ -37,15 +37,15 @@ class jcarousel {
 
 	function getOptionsSupported() {
 		global $_zp_gallery;
-		$options = array(gettext('Thumbs number')	 => array('key'	 => 'jcarousel_scroll', 'type' => OPTION_TYPE_TEXTBOX,
+		$options = array(gettext('Thumbs number')	 => array('key'	 => 'jcarousel_scroll', 'type' => OPTION_TYPE_NUMBER,
 										'desc' => gettext("The number of thumbs to scroll by. Note that the CSS might need to be adjusted.")),
-						gettext('width')					 => array('key'	 => 'jcarousel_width', 'type' => OPTION_TYPE_TEXTBOX,
+						gettext('width')					 => array('key'	 => 'jcarousel_width', 'type' => OPTION_TYPE_NUMBER,
 										'desc' => gettext("Width of the carousel. Note that the CSS might need to be adjusted.")),
-						gettext('height')					 => array('key'	 => 'jcarousel_height', 'type' => OPTION_TYPE_TEXTBOX,
+						gettext('height')					 => array('key'	 => 'jcarousel_height', 'type' => OPTION_TYPE_NUMBER,
 										'desc' => gettext("Height of the carousel. Note that the CSS might need to be adjusted.")),
-						gettext('Crop width')			 => array('key'	 => 'jcarousel_cropw', 'type' => OPTION_TYPE_TEXTBOX,
+						gettext('Crop width')			 => array('key'	 => 'jcarousel_cropw', 'type' => OPTION_TYPE_NUMBER,
 										'desc' => ""),
-						gettext('Crop height')		 => array('key'	 => 'jcarousel_croph', 'type' => OPTION_TYPE_TEXTBOX,
+						gettext('Crop height')		 => array('key'	 => 'jcarousel_croph', 'type' => OPTION_TYPE_NUMBER,
 										'desc' => ""),
 						gettext('Full image link') => array('key'	 => 'jcarousel_fullimagelink', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext("If checked the thumbs link to the full image instead of the image page.")),
@@ -215,42 +215,42 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('jcarousel_' . $_zp_gallery->g
 			}
 			?>
 			<script type="text/javascript">
-				// <!-- <![CDATA[
-				var mycarousel_itemList = [
+			// <!-- <![CDATA[
+			var mycarousel_itemList = [
 			<?php echo $items; ?>
-				];
+			];
 
-				function mycarousel_itemLoadCallback(carousel, state) {
-					for (var i = carousel.first; i <= carousel.last; i++) {
-						if (carousel.has(i)) {
-							continue;
-						}
-						if (i > mycarousel_itemList.length) {
-							break;
-						}
-						carousel.add(i, mycarousel_getItemHTML(mycarousel_itemList[i - 1]));
+			function mycarousel_itemLoadCallback(carousel, state) {
+				for (var i = carousel.first; i <= carousel.last; i++) {
+					if (carousel.has(i)) {
+						continue;
 					}
-				}
-
-				function mycarousel_getItemHTML(item) {
-					if (item.active === "") {
-						html = '<a href="' + item.link + '" title="' + item.title + '"><img src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
-					} else {
-						html = '<a href="' + item.link + '" title="' + item.title + '"><img class="activecarouselimage" src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
+					if (i > mycarousel_itemList.length) {
+						break;
 					}
-					return html;
+					carousel.add(i, mycarousel_getItemHTML(mycarousel_itemList[i - 1]));
 				}
+			}
 
-				jQuery(document).ready(function() {
-					jQuery("#mycarousel").jcarousel({
-						vertical: <?php echo $vertical; ?>,
-						size: mycarousel_itemList.length,
-						start: <?php echo $imgnumber; ?>,
-						scroll: <?php echo $thumbscroll; ?>,
-						itemLoadCallback: {onBeforeAnimation: mycarousel_itemLoadCallback}
-					});
+			function mycarousel_getItemHTML(item) {
+				if (item.active === "") {
+					html = '<a href="' + item.link + '" title="' + item.title + '"><img src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
+				} else {
+					html = '<a href="' + item.link + '" title="' + item.title + '"><img class="activecarouselimage" src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
+				}
+				return html;
+			}
+
+			jQuery(document).ready(function() {
+				jQuery("#mycarousel").jcarousel({
+					vertical: <?php echo $vertical; ?>,
+					size: mycarousel_itemList.length,
+					start: <?php echo $imgnumber; ?>,
+					scroll: <?php echo $thumbscroll; ?>,
+					itemLoadCallback: {onBeforeAnimation: mycarousel_itemLoadCallback}
 				});
-				// ]]> -->
+			});
+			// ]]> -->
 			</script>
 			<ul id="mycarousel">
 				<!-- The content will be dynamically loaded in here -->

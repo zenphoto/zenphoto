@@ -38,7 +38,7 @@ class pagedthumbsOptions {
 	}
 
 	function getOptionsSupported() {
-		return array(gettext('Thumbs per page')								 => array('key'	 => 'pagedthumbs_imagesperpage', 'type' => OPTION_TYPE_TEXTBOX,
+		return array(gettext('Thumbs per page')								 => array('key'	 => 'pagedthumbs_imagesperpage', 'type' => OPTION_TYPE_NUMBER,
 										'desc' => gettext("Controls the number of images on a page. You might need to change this after switching themes to make it look better.")),
 						gettext('Counter')												 => array('key'	 => 'pagedthumbs_counter', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext("If you want to show the counter “x - y of z images”.")),
@@ -46,9 +46,9 @@ class pagedthumbsOptions {
 										'desc'				 => gettext("The text for the previous thumbs."), 'multilingual' => 1),
 						gettext('Nexttext')												 => array('key'					 => 'pagedthumbs_nexttext', 'type'				 => OPTION_TYPE_TEXTBOX,
 										'desc'				 => gettext("The text for the next thumbs."), 'multilingual' => 1),
-						gettext('Crop width')											 => array('key'	 => 'pagedthumbs_width', 'type' => OPTION_TYPE_TEXTBOX,
+						gettext('Crop width')											 => array('key'	 => 'pagedthumbs_width', 'type' => OPTION_TYPE_NUMBER,
 										'desc' => gettext("The thumb crop width is the maximum width when height is the shortest side")),
-						gettext('Crop height')										 => array('key'	 => 'pagedthumbs_height', 'type' => OPTION_TYPE_TEXTBOX,
+						gettext('Crop height')										 => array('key'	 => 'pagedthumbs_height', 'type' => OPTION_TYPE_NUMBER,
 										'desc' => gettext("The thumb crop height is the maximum height when width is the shortest side")),
 						gettext('Crop')														 => array('key'	 => 'pagedthumbs_crop', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext("If checked the thumbnail will be a centered portion of the image with the given width and height after being resized to thumb size (by shortest side). Otherwise, it will be the full image resized to thumb size (by shortest side).")),

@@ -56,7 +56,7 @@ class zpCaptcha extends _zp_captcha {
 										'order'			 => 3,
 										'selections' => array_merge(array('*' . gettext('random') . '*' => '*'), $fontlist),
 										'desc'			 => gettext('The font to use for CAPTCHA characters.')),
-						gettext('CAPTCHA font size')	 => array('key'		 => 'zenphoto_captcha_font_size', 'type'	 => OPTION_TYPE_CLEARTEXT,
+						gettext('CAPTCHA font size')	 => array('key'		 => 'zenphoto_captcha_font_size', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 3.5,
 										'desc'	 => gettext('The size to use if the font is scalable (<em>TTF</em> and <em>Imagick</em> fonts.)')),
 						''														 => array('key'		 => 'zenphoto_captcha_image', 'type'	 => OPTION_TYPE_CUSTOM,
