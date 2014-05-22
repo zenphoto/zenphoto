@@ -1,17 +1,8 @@
 <?php
+setOption('themeSwitcher_css', preg_replace('~top:\s.*px;~', 'top: 40px;', getOption('themeSwitcher_css')), false);
+
 // Check some settings
-setOption('themeSwitcher_css', ".themeSwitcherControlLink {\n" .
-				" position: fixed;\n" .
-				" z-index: 10000;\n" .
-				" left: 0px;\n" .
-				" top: 40px;\n" .
-				" border-bottom: 1px solid #444;\n" .
-				" border-left: 1px solid #444;\n" .
-				" color: black;\n" .
-				" padding: 2px;\n" .
-				" background-color: #f5f5f5;\n" .
-				"}\n", false
-);
+
 $zenpage = getOption('zp_plugin_zenpage');
 $thumbcrop = getOption('thumb_crop');
 $zpskel_disablewarning = getOption('zpskel_disablewarning'); // test is disable warning is checked

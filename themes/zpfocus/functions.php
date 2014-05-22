@@ -1,17 +1,6 @@
 <?php
 $_zp_page_check = 'my_checkPageValidity';
-setOption('themeSwitcher_css', ".themeSwitcherControlLink {\n" .
-				" position: fixed;\n" .
-				" z-index: 10000;\n" .
-				" left: 0px;\n" .
-				" top: 40px;\n" .
-				" border-bottom: 1px solid #444;\n" .
-				" border-left: 1px solid #444;\n" .
-				" color: black;\n" .
-				" padding: 2px;\n" .
-				" background-color: #f5f5f5;\n" .
-				"}\n", false
-);
+setOption('themeSwitcher_css', preg_replace('~top:\s.*px;~', 'top: 40px;', getOption('themeSwitcher_css')), false);
 
 setOption('zp_plugin_colorbox', false, false);
 $zenpage = getOption('zp_plugin_zenpage');

@@ -51,10 +51,28 @@
 				<?php } ?>
 				<?php if (($zenpage) && ($zpskel_usenews) && (getOption('RSS_articles'))) { ?>
 					<li><?php printRSSLink('News', '', gettext('News'), '', false); ?></li>
-					<?php if ((function_exists('printCommentForm')) && getOption('RSS_article_comments')) { ?><li><?php printRSSLink('Comments-all', '', '', gettext('Comments'), '', false); ?></li><?php } ?>
-				<?php } else { ?>
-						<?php if ((function_exists('printCommentForm')) && getOption('RSS_comments')) { ?><li><?php printRSSLink('Comments', '', gettext('Comments'), '', false); ?></li><?php } ?>
-					<?php } ?>
+					<?php
+					if ((function_exists('printCommentForm')) && getOption('RSS_article_comments')) {
+						?>
+						<li>
+							<?php printRSSLink('Comments-all', '', gettext('Comments'), '', false); ?>
+						</li>
+						<?php
+					}
+					?>
+					<?php
+				} else {
+					?>
+					<?php
+					if ((function_exists('printCommentForm')) && getOption('RSS_comments')) {
+						?>
+						<li>
+							<?php printRSSLink('Comments', '', gettext('Comments'), '', false); ?>
+						</li>
+						<?php
+					}
+					?>
+				<?php } ?>
 			</ul>
 		</div>
 	</div>
