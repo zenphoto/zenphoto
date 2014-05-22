@@ -120,7 +120,7 @@
 		<title><?php echo $zpfocus_metatitle; ?></title>
 		<meta name="description" content="<?php echo $zpfocus_metadesc; ?>" />
 
-		<?php require_once(ZENFOLDER . "/zp-extensions/print_album_menu.php"); ?>
+		<?php require_once(SERVERPATH . '/' . ZENFOLDER . "/zp-extensions/print_album_menu.php"); ?>
 
 		<link rel="stylesheet" type="text/css" href="<?php echo $_zp_themeroot; ?>/css/main.css" />
 		<?php if (getOption('zpfocus_center_site')) { ?>
@@ -193,34 +193,34 @@
 			printZDSearchToggleJS();
 		}
 		?>
-<?php if (getOption('zpfocus_customcss') != null) { ?>
+		<?php if (getOption('zpfocus_customcss') != null) { ?>
 			<style>
-			<?php echo getOption('zpfocus_customcss'); ?>
+	<?php echo getOption('zpfocus_customcss'); ?>
 			</style>
 		<?php } ?>
 	</head>
 	<body>
-<?php zp_apply_filter('theme_body_open'); ?>
+		<?php zp_apply_filter('theme_body_open'); ?>
 		<div id="nav">
 			<div id="nav-wrap">
 				<ul class="sf-menu">
 					<li class="nav-first"><a href="<?php echo getGalleryIndexURL(); ?>"><?php echo gettext('Home'); ?></a></li>
-						<?php if (($zpfocus_menutype) == 'dropdown') { ?>
-							<?php if (($zpfocus_homepage) == 'none') { ?>
+					<?php if (($zpfocus_menutype) == 'dropdown') { ?>
+						<?php if (($zpfocus_homepage) == 'none') { ?>
 							<li><a class="placeholder"><?php echo gettext('Gallery'); ?></a>
-								<?php } else { ?>
+							<?php } else { ?>
 								<li><?php printCustomPageURL(gettext('Gallery'), "gallery"); ?>
-							<?php } ?>
-							<?php printAlbumMenuList('list', '', '', 'active', '', 'active', '', true, false, true, true, null); ?>
+								<?php } ?>
+								<?php printAlbumMenuList('list', '', '', 'active', '', 'active', '', true, false, true, true, null); ?>
 							</li>
-							<?php } ?>
-							<?php if (function_exists("printNestedMenu")) { ?>
+						<?php } ?>
+						<?php if (function_exists("printNestedMenu")) { ?>
 							<li><a class="placeholder"><?php echo gettext('Pages'); ?></a>
-							<?php printNestedMenu('list', 'pages', false, null, 'active', null, 'active', null, true, true, 30); ?>
+								<?php printNestedMenu('list', 'pages', false, null, 'active', null, 'active', null, true, true, 30); ?>
 							</li>
-								<?php if ($zpfocus_news) { ?>
+							<?php if ($zpfocus_news) { ?>
 								<li><a href="<?php echo getNewsIndexURL(); ?>"><?php echo gettext('News'); ?></a>
-								<?php printNestedMenu('list', 'categories', false, null, 'active', null, 'active', null, true, true, 30); ?>
+									<?php printNestedMenu('list', 'categories', false, null, 'active', null, 'active', null, true, true, 30); ?>
 								</li>
 							<?php } ?>
 						<?php } ?>
@@ -228,20 +228,20 @@
 							<li><?php printCustomPageURL(gettext('Contact'), "contact"); ?></li>
 						<?php } ?>
 
-							<?php if ($zpfocus_show_archive) { ?>
+						<?php if ($zpfocus_show_archive) { ?>
 							<li><?php printCustomPageURL(gettext('Archive'), "archive"); ?>
 							<?php } ?>
 							</ul>
-								<?php if ($zpfocus_allow_search) { ?>
+							<?php if ($zpfocus_allow_search) { ?>
 								<div>
-								<?php printSearchForm('', 'searchform', '', gettext('SEARCH'), "$_zp_themeroot/images/search-drop.jpg", null, null, null); ?>
+									<?php printSearchForm('', 'searchform', '', gettext('SEARCH'), "$_zp_themeroot/images/search-drop.jpg", null, null, null); ?>
 								</div>
-								<?php } ?>
-								<?php if (($zpfocus_menutype) == 'jump') { ?>
+							<?php } ?>
+							<?php if (($zpfocus_menutype) == 'jump') { ?>
 								<div id="jumpmenu">
-								<?php printAlbumMenu('jump'); ?>
+									<?php printAlbumMenu('jump'); ?>
 								</div>
-<?php } ?>
+							<?php } ?>
 							</div>
 							</div>
 							<div class="wrap">
