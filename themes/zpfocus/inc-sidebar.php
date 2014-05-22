@@ -9,7 +9,7 @@
 		}
 		if ((in_context(ZP_ALBUM)) || (in_context(ZP_IMAGE))) {
 			$sstype = 'album';
-			$ssalbum = $_zp_current_album->getFilename();
+			$ssalbum = $_zp_current_album;
 			$sstitle = gettext('Random Album Image');
 		} else {
 			$sstype = 'all';
@@ -54,10 +54,10 @@
 			<?php } else { ?>
 				<div id="spotlight1">
 					<h4 class="blockhead"><span><?php echo gettext('Latest News'); ?></span></h4>
-				<?php printLatestNews(3, '', true, true, 150, true, null); ?>
-			<?php } ?>
+					<?php printLatestNews(3, '', true, true, 150, true, null); ?>
+				<?php } ?>
 			</div>
-<?php } ?>
+		<?php } ?>
 
 		<!-- PRINTS COMMENTS IN SIDEBAR -->
 
@@ -80,17 +80,17 @@
 					<h4 class="blockhead"><span><?php echo gettext('Latest News Comments'); ?></span></h4>
 					<?php printLatestComments(3, '100'); ?>
 				<?php } ?>
-			<?php
+				<?php
 			}
 		}
 		?>
 
 		<!-- PRINTS NEWS CATEGORIES IF IN NEWS CONTEXT -->
-					<?php if ($_zp_gallery_page == 'news.php') { ?>
+		<?php if ($_zp_gallery_page == 'news.php') { ?>
 			<div id="newscats">
 				<h4 class="blockhead"><span><?php echo gettext('News Categories'); ?></span></h4>
-	<?php printAllNewsCategories(''); ?>
+						<?php printAllNewsCategories(''); ?>
 			</div>
-<?php } ?>
+		<?php } ?>
 
 	</div>

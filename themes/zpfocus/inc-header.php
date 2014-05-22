@@ -17,6 +17,7 @@
 				$zpfocus_metadesc = truncate_string(getBareGalleryDesc(), 150, '...');
 				$galleryactive = true;
 				break;
+			case 'favorites.php':
 			case 'album.php':
 				if ($_zp_page > 1) {
 					$metatitle = getBareAlbumTitle() . " ($_zp_page)";
@@ -119,18 +120,18 @@
 		<title><?php echo $zpfocus_metatitle; ?></title>
 		<meta name="description" content="<?php echo $zpfocus_metadesc; ?>" />
 
-<?php require_once(ZENFOLDER . "/zp-extensions/print_album_menu.php"); ?>
+		<?php require_once(ZENFOLDER . "/zp-extensions/print_album_menu.php"); ?>
 
 		<link rel="stylesheet" type="text/css" href="<?php echo $_zp_themeroot; ?>/css/main.css" />
-<?php if (getOption('zpfocus_center_site')) { ?>
+		<?php if (getOption('zpfocus_center_site')) { ?>
 			<link rel="stylesheet" type="text/css" href="<?php echo $_zp_themeroot; ?>/css/center.css" />
-<?php } ?>
+		<?php } ?>
 		<link rel="stylesheet" type="text/css" href="<?php echo $_zp_themeroot; ?>/css/print.css" media="print" />
 		<!--[if lte IE 6]>
 		<link rel="stylesheet" type="text/css" href="<?php echo $_zp_themeroot; ?>/css/ie6.css" />
 		<![endif]-->
 		<link rel="shortcut icon" href="<?php echo $_zp_themeroot; ?>/images/favicon.ico" />
-<?php zp_apply_filter('theme_head'); ?>
+		<?php zp_apply_filter('theme_head'); ?>
 		<script type="text/javascript" src="<?php echo $_zp_themeroot; ?>/js/superfish.js"></script>
 		<script type="text/javascript">
 			jQuery(function() {
@@ -142,9 +143,9 @@
 				};
 <?php } ?>
 		</script>
-<?php if (($zpfocus_showrandom) == 'rotator') { ?>
+		<?php if (($zpfocus_showrandom) == 'rotator') { ?>
 			<script src="<?php echo FULLWEBPATH . "/" . ZENFOLDER ?>/zp-extensions/slideshow/jquery.cycle.all.js" type="text/javascript"></script>
-<?php } ?>
+		<?php } ?>
 		<script src="<?php echo FULLWEBPATH . "/" . ZENFOLDER ?>/zp-extensions/colorbox_js/jquery.colorbox-min.js" type="text/javascript"></script>
 		<link rel="stylesheet" href="<?php echo FULLWEBPATH . "/" . ZENFOLDER ?>/zp-extensions/colorbox_js/themes/<?php echo $zpfocus_cbstyle; ?>/colorbox.css" type="text/css" media="screen"/>
 		<script type="text/javascript">
@@ -177,66 +178,68 @@
 					maxWidth: '90%'
 				});
 				$(".inline").colorbox({width: "400px", inline: true, href: "#exif"});
-						<?php if (($zpfocus_showrandom) == 'rotator') { ?>
+<?php if (($zpfocus_showrandom) == 'rotator') { ?>
 					$('#random-wrap ul').cycle({
 						fx: '<?php echo $zpfocus_rotatoreffect; ?>',
 						timeout: <?php echo $zpfocus_rotatorspeed; ?>,
 						pause: 1
 					});
-						<?php } ?>
+<?php } ?>
 				$('#random-wrap').css('display', 'block');
 			});
 		</script>
-						<?php if ($_zp_gallery_page == 'search.php') {
-							printZDSearchToggleJS();
-						} ?>
-						<?php if (getOption('zpfocus_customcss') != null) { ?>
+		<?php
+		if ($_zp_gallery_page == 'search.php') {
+			printZDSearchToggleJS();
+		}
+		?>
+<?php if (getOption('zpfocus_customcss') != null) { ?>
 			<style>
-							<?php echo getOption('zpfocus_customcss'); ?>
+			<?php echo getOption('zpfocus_customcss'); ?>
 			</style>
-							<?php } ?>
+		<?php } ?>
 	</head>
 	<body>
-							<?php zp_apply_filter('theme_body_open'); ?>
+<?php zp_apply_filter('theme_body_open'); ?>
 		<div id="nav">
 			<div id="nav-wrap">
 				<ul class="sf-menu">
 					<li class="nav-first"><a href="<?php echo getGalleryIndexURL(); ?>"><?php echo gettext('Home'); ?></a></li>
-							<?php if (($zpfocus_menutype) == 'dropdown') { ?>
-									<?php if (($zpfocus_homepage) == 'none') { ?>
+						<?php if (($zpfocus_menutype) == 'dropdown') { ?>
+							<?php if (($zpfocus_homepage) == 'none') { ?>
 							<li><a class="placeholder"><?php echo gettext('Gallery'); ?></a>
 								<?php } else { ?>
 								<li><?php printCustomPageURL(gettext('Gallery'), "gallery"); ?>
-	<?php } ?>
-	<?php printAlbumMenuList('list', '', '', 'active', '', 'active', '', true, false, true, true, null); ?>
+							<?php } ?>
+							<?php printAlbumMenuList('list', '', '', 'active', '', 'active', '', true, false, true, true, null); ?>
 							</li>
-<?php } ?>
-<?php if (function_exists("printNestedMenu")) { ?>
+							<?php } ?>
+							<?php if (function_exists("printNestedMenu")) { ?>
 							<li><a class="placeholder"><?php echo gettext('Pages'); ?></a>
-	<?php printNestedMenu('list', 'pages', false, null, 'active', null, 'active', null, true, true, 30); ?>
+							<?php printNestedMenu('list', 'pages', false, null, 'active', null, 'active', null, true, true, 30); ?>
 							</li>
-	<?php if ($zpfocus_news) { ?>
+								<?php if ($zpfocus_news) { ?>
 								<li><a href="<?php echo getNewsIndexURL(); ?>"><?php echo gettext('News'); ?></a>
-		<?php printNestedMenu('list', 'categories', false, null, 'active', null, 'active', null, true, true, 30); ?>
+								<?php printNestedMenu('list', 'categories', false, null, 'active', null, 'active', null, true, true, 30); ?>
 								</li>
-	<?php } ?>
-<?php } ?>
-<?php if (function_exists('printContactForm')) { ?>
+							<?php } ?>
+						<?php } ?>
+						<?php if (function_exists('printContactForm')) { ?>
 							<li><?php printCustomPageURL(gettext('Contact'), "contact"); ?></li>
-<?php } ?>
+						<?php } ?>
 
-<?php if ($zpfocus_show_archive) { ?>
+							<?php if ($zpfocus_show_archive) { ?>
 							<li><?php printCustomPageURL(gettext('Archive'), "archive"); ?>
-<?php } ?>
+							<?php } ?>
 							</ul>
-<?php if ($zpfocus_allow_search) { ?>
+								<?php if ($zpfocus_allow_search) { ?>
 								<div>
-	<?php printSearchForm('', 'searchform', '', gettext('SEARCH'), "$_zp_themeroot/images/search-drop.jpg", null, null, null); ?>
+								<?php printSearchForm('', 'searchform', '', gettext('SEARCH'), "$_zp_themeroot/images/search-drop.jpg", null, null, null); ?>
 								</div>
-<?php } ?>
-<?php if (($zpfocus_menutype) == 'jump') { ?>
+								<?php } ?>
+								<?php if (($zpfocus_menutype) == 'jump') { ?>
 								<div id="jumpmenu">
-	<?php printAlbumMenu('jump'); ?>
+								<?php printAlbumMenu('jump'); ?>
 								</div>
 <?php } ?>
 							</div>

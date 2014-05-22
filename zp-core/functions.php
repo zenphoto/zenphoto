@@ -2653,7 +2653,7 @@ class _zp_captcha {
 
 	var $name = NULL; // "captcha" name if no captcha plugin loaded
 
-	function getCaptcha($prompt) {
+	function getCaptcha($prompt = NULL) {
 		return array('input' => NULL, 'html' => '<p class="errorbox">' . gettext('No captcha handler is enabled.') . '</p>', 'hidden' => '');
 	}
 

@@ -67,6 +67,10 @@
 	<h3><?php echo gettext("Toolbox"); ?></h3>
 	<ul>
 		<?php
+		if (function_exists('printFavoritesURL')) {
+			printFavoritesURL(NULL, '<li>', '</li><li>', '</li>');
+		}
+		?>		<?php
 		if ($_zp_gallery_page == "archive.php") {
 			echo "<li class='menu-active'>" . gettext("Site archive view") . "</li>";
 		} else {

@@ -1,13 +1,13 @@
 <?php
 if (!defined('WEBPATH'))
 	die();
-header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 ?>
 <!DOCTYPE html>
 <head>
-	<title><?php echo gettext("News"); ?> <?php echo getBareNewsTitle(""); ?><?php printCurrentNewsCategory(" | ");
-printCurrentNewsArchive();
-?> | <?php echo getBareGalleryTitle(); ?></title>
+	<title><?php echo gettext("News"); ?> <?php echo getBareNewsTitle(""); ?><?php
+		printCurrentNewsCategory(" | ");
+		printCurrentNewsArchive();
+		?> | <?php echo getBareGalleryTitle(); ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo getOption('charset'); ?>" />
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 	<?php printRSSHeaderLink("Gallery", gettext('Gallery RSS')); ?>
@@ -27,8 +27,9 @@ printCurrentNewsArchive();
 			<div id="breadcrumb">
 				<h2>
 						<?php if (is_NewsArticle()) { ?>
-						<a href="<?php echo getGalleryIndexURL(); ?>"><?php echo gettext("Index"); ?></a> <?php printNewsIndexURL("News", " » "); ?><strong><?php printCurrentNewsCategory(" » Category - "); ?><?php printNewsTitle(" » ");
-						printCurrentNewsArchive(" » ");
+						<a href="<?php echo getGalleryIndexURL(); ?>"><?php echo gettext("Index"); ?></a> <?php printNewsIndexURL("News", " » "); ?><strong><?php printCurrentNewsCategory(" » Category - "); ?><?php
+							printNewsTitle(" » ");
+							printCurrentNewsArchive(" » ");
 							?></strong>
 					<?php } else { ?>
 						<a href="<?php echo getGalleryIndexURL(); ?>"><?php echo gettext("Index"); ?></a> » <strong><?php echo gettext("News"); ?></strong>
@@ -59,10 +60,10 @@ printCurrentNewsArchive();
 						printRating();
 					}
 					?>
-						<?php
+					<?php
 // COMMENTS TEST
-						if (function_exists('printCommentForm')) {
-							?>
+					if (function_exists('printCommentForm')) {
+						?>
 						<div id="comments">
 						<?php printCommentForm(); ?>
 						</div>
@@ -81,14 +82,14 @@ printCurrentNewsArchive();
 						<div class="newsarticle">
 							<h3><?php printNewsURL(); ?></h3>
 							<div class="newsarticlecredit"><span class="newsarticlecredit-left"><?php printNewsDate(); ?> | <?php echo gettext("Comments:"); ?> <?php echo getCommentCount(); ?></span>
-							<?php
-							echo ' | ';
-							printNewsCategories(", ", gettext("Categories: "), "newscategories");
-							?>
+								<?php
+								echo ' | ';
+								printNewsCategories(", ", gettext("Categories: "), "newscategories");
+								?>
 							</div>
-		<?php printNewsContent(); ?>
-						<?php printCodeblock(1); ?>
-						<?php printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', '); ?>
+							<?php printNewsContent(); ?>
+		<?php printCodeblock(1); ?>
+		<?php printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', '); ?>
 							<br style="clear:both;" /><br />
 						</div>
 
@@ -104,7 +105,7 @@ printCurrentNewsArchive();
 
 
 			<div id="sidebar">
-				<?php include("sidebar.php"); ?>
+<?php include("sidebar.php"); ?>
 			</div><!-- sidebar -->
 
 

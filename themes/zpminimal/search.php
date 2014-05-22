@@ -42,11 +42,11 @@ if (!empty($searchdate)) {
 					<div id="thumbs-wrap">
 						<?php while (next_image()): $c++; ?>
 						<div class="thumb-maxspace">
-							<a class="thumb-link" href="<?php echo html_encode(getImageLinkURL());?>" title="<?php echo getBareImageTitle(); ?>"><?php printImageThumb(getAnnotatedImageTitle()); ?></a>
+							<a class="thumb-link" href="<?php echo html_encode(getImageURL());?>" title="<?php echo getBareImageTitle(); ?>"><?php printImageThumb(getAnnotatedImageTitle()); ?></a>
 							<?php if (($zpmin_colorbox) && ($cbscript) && (!isImageVideo())) { ?>
 							<div class="cblinks">
 								<a class="thickbox" href="<?php echo html_encode(getUnprotectedImageURL());?>" title="<?php echo getBareImageTitle(); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/zoom.png" /></a>
-								<a href="<?php echo html_encode(getImageLinkURL());?>" title="<?php echo getBareImageTitle(); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/details.png" /></a>
+								<a href="<?php echo html_encode(getImageURL());?>" title="<?php echo getBareImageTitle(); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/details.png" /></a>
 							</div>
 							<?php } ?>
 						</div>

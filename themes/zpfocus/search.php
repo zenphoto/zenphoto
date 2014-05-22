@@ -167,10 +167,10 @@
 						 }
 										 ?>" title="<?php echo getBareImageTitle(); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/search.png" alt="Zoom Image" /></a><?php } ?>
 							<?php if ((getCommentCount()) > 0) { ?>
-									<a class="album-tool" href="<?php echo htmlspecialchars(getImageLinkURL()); ?>" title="<?php echo getCommentCount(); ?> Comments"><img src="<?php echo $_zp_themeroot; ?>/images/shout.png" alt="Comments" /></a>
+									<a class="album-tool" href="<?php echo htmlspecialchars(getImageURL()); ?>" title="<?php echo getCommentCount(); ?> Comments"><img src="<?php echo $_zp_themeroot; ?>/images/shout.png" alt="Comments" /></a>
 								<?php } ?>
 							</div>
-							<a class="thumb" href="<?php echo htmlspecialchars(getImageLinkURL()); ?>" title="<?php echo getBareImageTitle(); ?>">
+							<a class="thumb" href="<?php echo htmlspecialchars(getImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>">
 								<?php printCustomSizedImage(getBareImageTitle(), null, 160, 120, 160, 120, null, null, 'thumb', null, true); ?>
 							</a>
 								 <?php } else { ?>
@@ -184,10 +184,10 @@
 					}
 									?>" title="<?php echo getBareImageTitle(); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/search.png" alt="Zoom Image" /></a><?php } ?>
 						<?php if ((getCommentCount()) > 0) { ?>
-									<a class="album-tool" href="<?php echo htmlspecialchars(getImageLinkURL()); ?>" title="<?php echo getCommentCount(); ?> Comments"><img src="<?php echo $_zp_themeroot; ?>/images/shout.png" alt="Comments" /></a>
+									<a class="album-tool" href="<?php echo htmlspecialchars(getImageURL()); ?>" title="<?php echo getCommentCount(); ?> Comments"><img src="<?php echo $_zp_themeroot; ?>/images/shout.png" alt="Comments" /></a>
 				<?php } ?>
 							</div>
-							<a class="thumb" href="<?php echo htmlspecialchars(getImageLinkURL()); ?>" title="<?php echo getBareImageTitle(); ?>">
+							<a class="thumb" href="<?php echo htmlspecialchars(getImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>">
 				<?php printCustomSizedImage(getBareImageTitle(), null, 120, 160, 120, 160, null, null, 'thumb', null, true); ?>
 							</a>
 			<?php } ?>

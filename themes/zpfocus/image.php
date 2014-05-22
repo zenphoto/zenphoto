@@ -11,7 +11,7 @@
 		<a style="display:block;" href="<?php echo getGalleryIndexURL(); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/<?php echo $zpfocus_logofile; ?>" alt="<?php echo getBareGalleryTitle(); ?>" /></a>
 	<?php } else { ?>
 		<h2 id="logo"><a href="<?php echo getGalleryIndexURL(); ?>"><?php echo getBareGalleryTitle(); ?></a></h2>
-<?php } ?>
+	<?php } ?>
 
 	<div id="img-topbar" class="clearfix">
 		<?php if (hasNextImage()) { ?>
@@ -19,16 +19,16 @@
 		<?php } ?>
 		<?php if (hasPrevImage()) { ?>
 			<a id="img-prev" href="<?php echo getPrevImageURL(); ?>" title="Previous Image">&lt; Prev</a>
-<?php } ?>
+		<?php } ?>
 		<span id="img-title"><?php printImageTitle(true); ?></span>
 	</div>
 	<div class="album-details">
 		<?php if ($useGslideshow) { ?>
 			<div class="slideshowlink"><?php printSlideShowLink(gettext('Slideshow')); ?></div>
-<?php } ?>
+		<?php } ?>
 		<ul>
 			<li><?php printImageDate('', '', null, true); ?></li>
-<?php if (getImageMetadata()) { ?><li>&nbsp;&nbsp;<a href="javascript:void(0);" class="inline"><?php echo gettext('EXIF Metadata') ?></a></li><?php } ?>
+			<?php if (getImageMetadata()) { ?><li>&nbsp;&nbsp;<a href="javascript:void(0);" class="inline"><?php echo gettext('EXIF Metadata') ?></a></li><?php } ?>
 		</ul>
 		<div class="album-tags"><?php printTags('links', gettext('TAGS:  '), 'taglist', ', ', true, '', true); ?></div>
 	</div>
@@ -49,9 +49,15 @@
 				 }
 				 ?>
 			<?php if (($zpfocus_final_link) == 'standard') { ?><a href="<?php echo htmlspecialchars(getFullImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>"><?php printCustomSizedImageMaxSpace(getImageTitle(), 600, 900); ?></a><?php } ?>
-<?php if (($zpfocus_final_link) == 'standard-new') { ?><a target="_blank" href="<?php echo htmlspecialchars(getFullImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>"><?php printCustomSizedImageMaxSpace(getImageTitle(), 600, 900); ?></a><?php } ?>
+			<?php if (($zpfocus_final_link) == 'standard-new') { ?><a target="_blank" href="<?php echo htmlspecialchars(getFullImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>"><?php printCustomSizedImageMaxSpace(getImageTitle(), 600, 900); ?></a><?php } ?>
 		</div>
 	</div>
+	<?php
+	if (function_exists('printAddToFavorites')) {
+		printAddToFavorites($_zp_current_image);
+		echo '<br/>';
+	}
+	?>
 
 	<?php
 	if (function_exists('printThumbNav')) {
@@ -63,26 +69,27 @@
 	}
 	?>
 
-		<?php if (function_exists('printRating')) { ?>
+	<?php if (function_exists('printRating')) { ?>
 		<div id="rating" class="rating-news">
-		<?php printRating(); ?>
+			<?php printRating(); ?>
 		</div>
 	<?php } ?>
 
-		<?php if (function_exists('printGoogleMap')) { ?>
+	<?php if (function_exists('printGoogleMap')) { ?>
 		<div class="gmap">
-		<?php setOption('gmap_width', 600, false);
-		printGoogleMap();
-		?>
+			<?php
+			setOption('gmap_width', 600, false);
+			printGoogleMap();
+			?>
 		</div>
 	<?php } ?>
-<?php printCodeblock(); ?>
+	<?php printCodeblock(); ?>
 
-			<?php if (function_exists('printCommentForm')) printCommentForm(); ?>
+	<?php if (function_exists('printCommentForm')) printCommentForm(); ?>
 
 	<div class="loading">
 		<div id="exif" style="padding:20px; background:#fff; border:5px solid #eee;">
-<?php printImageMetadata('', false); ?>
+			<?php printImageMetadata('', false); ?>
 		</div>
 	</div>
 

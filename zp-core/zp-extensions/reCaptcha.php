@@ -53,7 +53,7 @@ class reCaptcha extends _zp_captcha {
 	 * @return unknown
 	 */
 	function getOptionsSupported() {
-		$themes = array(gettext('Red')				 => 'red', gettext('White')			 => 'white', gettext('Black Glass') => 'blackglass', gettext('Clean')			 => 'clean');
+		$themes = array(gettext('Red') => 'red', gettext('White') => 'white', gettext('Black Glass') => 'blackglass', gettext('Clean') => 'clean');
 		$custom = getPluginFiles('*', 'reCaptcha', false);
 		foreach ($custom as $theme => $path) {
 			if (is_dir($path)) {
@@ -104,13 +104,13 @@ class reCaptcha extends _zp_captcha {
 	 *
 	 * @return string;
 	 */
-	function getCaptcha($prompt) {
+	function getCaptcha($prompt = NULL) {
 		$theme = getOption('reCaptcha_theme');
 		$publicKey = getOption('reCaptcha_public_key');
 		$lang = strtolower(substr(ZENPHOTO_LOCALE, 0, 2));
 
 		if (!getOption('reCaptcha_public_key')) {
-			return array('input'	 => '', 'html'	 => '<p class="errorbox">' . gettext('reCAPTCHA is not properly configured.') . '</p>', 'hidden' => '');
+			return array('input' => '', 'html' => '<p class="errorbox">' . gettext('reCAPTCHA is not properly configured.') . '</p>', 'hidden' => '');
 		} else {
 
 			$source = getPlugin('reCaptcha/' . $theme . '/reCaptcha.html');
@@ -149,7 +149,7 @@ class reCaptcha extends _zp_captcha {
 							"				};\n" .
 							"</script>\n";
 			$html .= recaptcha_get_html($publicKey, NULL, secureServer());
-			return array('html'	 => '<label class="captcha_label">' . $prompt . '</label>', 'input'	 => $themejs . $html);
+			return array('html' => '<label class="captcha_label">' . $prompt . '</label>', 'input' => $themejs . $html);
 		}
 	}
 
