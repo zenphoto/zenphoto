@@ -1773,7 +1773,7 @@ function getOptionFromDB($key) {
  * @param bool $default set to true for setting default theme options (does not set the option if it already exists)
  */
 function setThemeOption($key, $value, $album, $theme, $default = false) {
-	global $_zp_gallery;
+	global $_zp_options;
 	if (is_null($album)) {
 		$id = 0;
 	} else {
@@ -1792,8 +1792,12 @@ function setThemeOption($key, $value, $album, $theme, $default = false) {
 		$sqlu .= db_quote($value);
 	}
 	$sql .= ') ';
-	if (!$default) {
+	if ($default) {
+		if (!isset($_zp_options[$key]))
+			$_zp_options[$key] = $value;
+	} else {
 		$sql .= $sqlu;
+		$_zp_options[$key] = $value;
 	}
 	$result = query($sql, false);
 }
