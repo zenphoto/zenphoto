@@ -26,8 +26,8 @@ if (isset($_POST['purge'])) {
 			}
 		}
 	}
-	if (isset($_POST['purge'])) {
-		foreach ($_POST['purge'] as $plugin) {
+	if (isset($_POST['missingplugin'])) {
+		foreach ($_POST['missingplugin'] as $plugin) {
 			purgeOption('zp_plugin_' . stripSuffix($plugin));
 		}
 	}

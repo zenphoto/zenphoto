@@ -68,7 +68,7 @@ function listOwners($owners, $nest = '') {
 					$highlighted = true;
 					if (basename($nest) != THEMEFOLDER) {
 						?>
-						<input type="hidden" name="purge[]" value="<?php echo $detail; ?>" />
+						<input type="hidden" name="missingplugin[]" value="<?php echo $detail; ?>" />
 						<?php
 					}
 				}
