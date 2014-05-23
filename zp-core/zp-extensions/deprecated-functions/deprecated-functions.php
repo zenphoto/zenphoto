@@ -439,11 +439,11 @@ function generateCaptcha(&$img) {
  * @since 1.4.3
  */
 function printAlbumZip() {
-	deprecated_functions::notify(gettext('Use downloadList plugin <code>printDownloadURLAlbumZip()</code>.'));
+	deprecated_functions::notify(gettext('Use downloadList plugin <code>printDownloadAlbumZipURL()</code>.'));
 	global $_zp_current_album;
 	enableExtension('downloadList', 20 | ADMIN_PLUGIN | THEME_PLUGIN, false);
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/downloadList.php');
-	printDownloadURLAlbumZip(gettext('Download a zip file of this album'), $_zp_current_album);
+	printDownloadAlbumZipURL(gettext('Download a zip file of this album'), $_zp_current_album);
 }
 
 /**
