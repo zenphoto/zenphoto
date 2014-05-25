@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-16 18:24+0100\n"
-"PO-Revision-Date: 2014-05-16 18:26+0100\n"
+"POT-Creation-Date: 2014-05-25 15:05+0100\n"
+"PO-Revision-Date: 2014-05-25 15:06+0100\n"
 "Last-Translator: Malte Müller (acrylian) <wartgart@gmx.net>\n"
 "Language-Team: Malte Müller (acrylian)\n"
 "Language: de_DE\n"
@@ -669,6 +669,7 @@ msgstr "Neuigkeiten"
 #: zenphoto-devzp/themes/garland/functions.php:153
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-edit.php:455
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:263
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:266
 msgid "sticky"
 msgstr "Oben behalten"
 
@@ -1023,7 +1024,7 @@ msgstr "Seiten"
 #: zenphoto-devzp/themes/zpmobile/functions.php:71
 #: zenphoto-devzp/zp-core/template-functions.php:1264
 #: zenphoto-devzp/zp-core/template-functions.php:1319
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:884
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:876
 msgid "Archive"
 msgstr "Archiv"
 
@@ -1072,7 +1073,7 @@ msgstr "RSS"
 #: zenphoto-devzp/zp-core/zp-extensions/related_items.php:187
 #: zenphoto-devzp/zp-core/zp-extensions/tweet_news.php:92
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage.php:273
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:891
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:883
 msgid "News"
 msgstr "Neuigkeiten"
 
@@ -1722,7 +1723,7 @@ msgid "View meta data"
 msgstr "Metadaten ansehen"
 
 #: zenphoto-devzp/themes/zpmobile/index.php:32
-#: zenphoto-devzp/zp-core/class-feed.php:259
+#: zenphoto-devzp/zp-core/class-feed.php:256
 msgid "Latest images"
 msgstr "Neuste Bilder"
 
@@ -1837,7 +1838,7 @@ msgstr "Schlagwörter löschen"
 #: zenphoto-devzp/zp-core/admin-edit.php:665
 #: zenphoto-devzp/zp-core/admin-functions.php:2140
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:236
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:309
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:317
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-pages.php:148
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:254
 msgid "Disable comments"
@@ -1847,7 +1848,7 @@ msgstr "Kommentare abschalten"
 #: zenphoto-devzp/zp-core/admin-edit.php:666
 #: zenphoto-devzp/zp-core/admin-functions.php:2154
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:237
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:318
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:326
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-pages.php:149
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:260
 msgid "Enable comments"
@@ -2019,7 +2020,7 @@ msgstr "Zurück"
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-categories.php:180
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-edit.php:185
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:210
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:392
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:400
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-pages.php:121
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-pages.php:177
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-pages.php:179
@@ -3097,7 +3098,7 @@ msgid "Subalbum List"
 msgstr "Subalbum-Übersicht"
 
 #: zenphoto-devzp/zp-core/admin-functions.php:2098
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:290
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:298
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:241
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:995
 msgid "Password protected"
@@ -3120,13 +3121,13 @@ msgstr "Unveröffentlicht"
 
 #: zenphoto-devzp/zp-core/admin-functions.php:2144
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-edit.php:649
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:310
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:318
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:255
 msgid "Comments on"
 msgstr "Kommentare erlauben"
 
 #: zenphoto-devzp/zp-core/admin-functions.php:2158
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:319
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:327
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:261
 msgid "Comments off"
 msgstr "Kommentare aus"
@@ -3188,7 +3189,7 @@ msgstr "Vorherige Seite"
 
 #: zenphoto-devzp/zp-core/admin-functions.php:2436
 #: zenphoto-devzp/zp-core/admin-functions.php:2438
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:996
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:988
 msgid "Next page"
 msgstr "Nächste Seite"
 
@@ -6900,43 +6901,43 @@ msgstr "Fehler: Das Album %s ist nicht lesbar."
 msgid "Error: The album named %s cannot be found."
 msgstr "Fehler: Das Album %s wurde nicht gefunden."
 
-#: zenphoto-devzp/zp-core/class-feed.php:257
+#: zenphoto-devzp/zp-core/class-feed.php:254
 msgid "Latest albums"
 msgstr "Neuste Alben"
 
-#: zenphoto-devzp/zp-core/class-feed.php:263
+#: zenphoto-devzp/zp-core/class-feed.php:260
 msgid "latest updated albums"
 msgstr "Zuletzt geänderte Alben"
 
-#: zenphoto-devzp/zp-core/class-feed.php:267
+#: zenphoto-devzp/zp-core/class-feed.php:264
 msgid "Most popular albums"
 msgstr "Beliebteste Alben"
 
-#: zenphoto-devzp/zp-core/class-feed.php:269
+#: zenphoto-devzp/zp-core/class-feed.php:266
 msgid "Most popular images"
 msgstr "Beliebteste Bilder"
 
-#: zenphoto-devzp/zp-core/class-feed.php:274
+#: zenphoto-devzp/zp-core/class-feed.php:271
 msgid "Top rated albums"
 msgstr "Am besten bewertete Alben"
 
-#: zenphoto-devzp/zp-core/class-feed.php:276
+#: zenphoto-devzp/zp-core/class-feed.php:273
 msgid "Top rated images"
 msgstr "Am besten bewertete Bilder"
 
-#: zenphoto-devzp/zp-core/class-feed.php:281
+#: zenphoto-devzp/zp-core/class-feed.php:278
 msgid "Random albums"
 msgstr "Zufallsalben"
 
-#: zenphoto-devzp/zp-core/class-feed.php:283
+#: zenphoto-devzp/zp-core/class-feed.php:280
 msgid "Random images"
 msgstr "Zufallsbilder"
 
-#: zenphoto-devzp/zp-core/class-feed.php:391
+#: zenphoto-devzp/zp-core/class-feed.php:388
 msgid "Bad "
 msgstr "Schlecht"
 
-#: zenphoto-devzp/zp-core/class-feed.php:428
+#: zenphoto-devzp/zp-core/class-feed.php:425
 #: zenphoto-devzp/zp-core/zp-extensions/comment_form/functions.php:808
 msgid "by"
 msgstr "von"
@@ -12286,11 +12287,11 @@ msgstr "Die Zenphoto-Einstellung „mod_rewrite“ wird auf „aktiviert“ gest
 
 #: zenphoto-devzp/zp-core/setup/setup_set-mod_rewrite.php:19
 msgid "The Zenphoto option “mod_rewrite” is “enabled”."
-msgstr "Die Zenphoto-Einstellung „mod_rewrite“ ist „eingeschalte“."
+msgstr "Die Zenphoto-Einstellung „mod_rewrite“ ist „aktiviert“."
 
 #: zenphoto-devzp/zp-core/setup/setup_set-mod_rewrite.php:21
 msgid "The Zenphoto option “mod_rewrite” is “disabled”."
-msgstr "Die Zenphoto-Einstellung „mod_rewrite“ ist „ausgeschaltet“."
+msgstr "Die Zenphoto-Einstellung „mod_rewrite“ ist „deaktiviert“."
 
 #: zenphoto-devzp/zp-core/setup/setup_set-mod_rewrite.php:24
 msgid "Notice: “Module mod_rewrite” is working."
@@ -12320,7 +12321,7 @@ msgstr ""
 #: zenphoto-devzp/zp-core/template-functions.php:51
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-edit.php:132
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:67
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:363
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:371
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-pages.php:73
 msgid "Are you sure you want to delete this article? THIS CANNOT BE UNDONE!"
 msgstr ""
@@ -12430,8 +12431,8 @@ msgstr "Seite 1"
 #: zenphoto-devzp/zp-core/template-functions.php:1027
 #: zenphoto-devzp/zp-core/zp-extensions/menu_manager.php:616
 #: zenphoto-devzp/zp-core/zp-extensions/menu_manager.php:634
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1056
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1072
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1048
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1064
 #, php-format
 msgid "Page %u"
 msgid_plural "Page %u"
@@ -12440,7 +12441,7 @@ msgstr[1] "Seite %u"
 
 #: zenphoto-devzp/zp-core/template-functions.php:991
 #: zenphoto-devzp/zp-core/zp-extensions/menu_manager.php:626
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1065
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1057
 #, php-format
 msgid "Page %1$u"
 msgid_plural "Page %1$u"
@@ -15396,7 +15397,7 @@ msgstr "Neuigkeiten-Kategorie"
 #: zenphoto-devzp/zp-core/zp-extensions/related_items.php:193
 #: zenphoto-devzp/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:434
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-edit.php:219
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1050
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1042
 msgid "Page"
 msgstr "Seite"
 
@@ -15719,9 +15720,9 @@ msgstr ""
 "mit der neuen Funktion aktualisieren."
 
 #: zenphoto-devzp/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:442
-msgid "Use downloadList plugin <code>printDownloadURLAlbumZip()</code>."
+msgid "Use downloadList plugin <code>printDownloadAlbumZipURL()</code>."
 msgstr ""
-"Verwenden Sie das DownloadList-Plugin <code>printDownloadLinkAlbumZip()</"
+"Verwenden Sie das DownloadList-Plugin <code>printDownloadAlbumZipURL()</"
 "code>."
 
 #: zenphoto-devzp/zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:446
@@ -18056,7 +18057,7 @@ msgstr[0] "Seite %1$u (Aktuelle Seite)"
 msgstr[1] "Seite %1$u (Aktuelle Seite)"
 
 #: zenphoto-devzp/zp-core/zp-extensions/menu_manager.php:640
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1080
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1072
 #, php-format
 msgid "Page {%u}"
 msgid_plural "Page {%u}"
@@ -23100,8 +23101,8 @@ msgid "Edit Article"
 msgstr "Artikel bearbeiten"
 
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage.php:312
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:363
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:364
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:371
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:372
 msgid "Delete article"
 msgstr "Artikel löschen"
 
@@ -23158,8 +23159,8 @@ msgstr ""
 "höhere Ebene und speichern Sie die Reihenfolge."
 
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-categories.php:195
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:353
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:354
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:361
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:362
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:287
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:288
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1032
@@ -23499,11 +23500,11 @@ msgstr "Kategorien hinzufügen"
 msgid "Clear categories"
 msgstr "Kategorien entfernen"
 
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:329
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:332
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:371
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:374
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:377
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:337
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:340
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:379
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:382
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:385
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:269
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:272
 #: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:302
@@ -23513,8 +23514,8 @@ msgstr "Kategorien entfernen"
 msgid "locked"
 msgstr "gesperrt"
 
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:340
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:341
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:348
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/admin-news-articles.php:349
 msgid "View article"
 msgstr "Artikel ansehen"
 
@@ -24146,49 +24147,49 @@ msgstr "Kategorien wurden den ausgewählten Einträgen hinzugefügt"
 msgid "Categories cleared from selected items"
 msgstr "Kategorien von den ausgewählten Einträgen gelöscht"
 
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:416
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:408
 msgid "<em>This entry belongs to a protected album.</em>"
 msgstr "<em>Dieser Eintrag gehört zu einem geschützten Album.</em>"
 
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:964
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:956
 msgid "Prev page"
 msgstr "Vorherige Seite"
 
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1540
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1580
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1532
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1572
 #, php-format
 msgid "%u article"
 msgid_plural "%u articles"
 msgstr[0] "%u Artikel"
 msgstr[1] "%u Artikel"
 
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2138
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2130
 msgid "This page is password protected"
 msgstr "Diese Seite ist passwortgeschützt"
 
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2311
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2303
 #, php-format
 msgid "View the %s album"
 msgstr "Album %s ansehen"
 
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2313
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2305
 #, php-format
 msgid "View the album %s"
 msgstr "Album %s ansehen"
 
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2317
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2318
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2309
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2310
 #, php-format
 msgid "View %s"
 msgstr "%s ansehen"
 
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2326
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2318
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the image %1$s:%2$s"
 msgstr ""
 "<code>zenpageAlbumImage()</code> konnte das Bild %1$s:%2$s nicht finden"
 
-#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2335
+#: zenphoto-devzp/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2327
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> konnte das Album %1$s nicht finden"
