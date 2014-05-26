@@ -1,15 +1,15 @@
- This is an example file for creating a robots.txt file to 
-keep webbots from finding duplicate or invalid content in 
-your zenphoto gallelry.
+# This is an example file for creating a robots.txt file to 
+# keep webbots from finding duplicate or invalid content in 
+# your zenphoto gallery.
+#
+# See: http://www.robotstxt.org/ for details on robots.txt.
+#
+# Modify the lines below to change "zenphoto" to the folder 
+# where you have installed your zenphoto gallery.
+#
+# Delete these comments and rename the file robots.txt.
+# Place it in the root folder of your web pages.
 
-See: http://www.robotstxt.org/ for details on robots.txt.
-
-Modify the lines below to change "zenphoto" to the folder 
-where you have installed your zenphoto gallery.
-
-Delete these comments and rename the file robots.txt.
-Place it in the root folder of your web pages.
-****delete all lines above and including this one *******
 User-agent: *
 Disallow: /zenphoto/albums/
 Allow: /zenphoto/cache/
@@ -20,3 +20,8 @@ Disallow: /zenphoto/zp-data/
 Disallow: /zenphoto/page/search/
 Disallow: /zenphoto/uploaded/
 Disallow: /zenphoto/backup/
+
+# Link to the sitemap file if using teh sitemap-extended plugin.
+# Change it to your domain and uncomment the line to use it:
+# sitemap: http://www.yourdomain.com/cache_html/sitemap/sitemapindex.xml
+
