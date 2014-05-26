@@ -1177,27 +1177,29 @@ class SearchEngine {
 						$objectid = $idlist;
 						$idlist = array_pop($idstack);
 						$op = array_pop($opstack);
-						switch ($op) {
-							case '&':
-								if (is_array($objectid)) {
-									$idlist = array_intersect($idlist, $objectid);
-								} else {
-									$idlist = array();
-								}
-								break;
-							case '!':
-								break; // Paren followed by NOT is nonsensical?
-							case '&!':
-								if (is_array($objectid)) {
-									$idlist = array_diff($idlist, $objectid);
-								}
-								break;
-							case '';
-							case '|':
-								if (is_array($objectid)) {
-									$idlist = array_merge($idlist, $objectid);
-								}
-								break;
+						if (is_array($idlist)) {
+							switch ($op) {
+								case '&':
+									if (is_array($objectid)) {
+										$idlist = array_intersect($idlist, $objectid);
+									} else {
+										$idlist = array();
+									}
+									break;
+								case '!':
+									break; // Paren followed by NOT is nonsensical?
+								case '&!':
+									if (is_array($objectid)) {
+										$idlist = array_diff($idlist, $objectid);
+									}
+									break;
+								case '';
+								case '|':
+									if (is_array($objectid)) {
+										$idlist = array_merge($idlist, $objectid);
+									}
+									break;
+							}
 						}
 						$op = '';
 						break;
