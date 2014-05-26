@@ -393,9 +393,7 @@ if (!zp_loggedin()) {
 										}
 										$reporting = error_reporting();
 										$text = array();
-										if (($reporting & E_ALL) == E_ALL) {
-											$text[] = 'E_ALL';
-										}
+
 										if ((($reporting | E_NOTICE | E_STRICT) & E_ALL) == E_ALL) {
 											$t = 'E_ALL';
 											$reporting = $reporting ^ E_ALL;
@@ -408,7 +406,13 @@ if (!zp_loggedin()) {
 												$reporting = $reporting ^ E_NOTICE;
 											}
 											$text[] = $t;
+										} else {
+											if (($reporting & E_ALL) == E_ALL) {
+												$text[] = 'E_ALL';
+												$reporting = $reporting ^ E_ALL;
+											}
 										}
+
 										foreach ($erToTxt as $er => $name) {
 											if ($reporting & $er) {
 												$text[] = $name;
