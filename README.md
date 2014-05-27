@@ -18,3 +18,6 @@ ZenPhoto20 will be updated incrementally via GitHub. We will tag reases when new
 Problems may be reported and features requested via repository [__issues__](https://github.com/ZenPhoto20/ZenPhoto20/issues)
 
 Discussions are hosted on the [ZenPhoto20 __Google Group__](https://groups.google.com/forum/#!forum/zenphoto20)
+
+# Also of interest
+[WIKI](https://github.com/ZenPhoto20/ZenPhoto20/wiki)
