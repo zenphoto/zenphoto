@@ -1309,6 +1309,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 											foreach ($systemlist as $key => $file) {
 												if (!is_dir($file)) {
 													@chmod($file, 0777);
+													clearstatcache();
 													if (@unlink($file)) {
 														unset($filelist[$key]);
 														unset($systemlist[$key]);
@@ -1318,6 +1319,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 											rsort($systemlist);
 											foreach ($systemlist as $key => $file) {
 												@chmod($file, 0777);
+												clearstatcache();
 												if (@rmdir($file)) {
 													unset($filelist[$key]);
 												}
@@ -1675,8 +1677,8 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						$collation = db_collation();
 
 						/*						 * *********************************************************************************
-							Add new fields in the upgrade section. This section should remain static except for new
-							tables. This tactic keeps all changes in one place so that noting gets accidentaly omitted.
+						  Add new fields in the upgrade section. This section should remain static except for new
+						  tables. This tactic keeps all changes in one place so that noting gets accidentaly omitted.
 						 * ********************************************************************************** */
 
 						//v1.2
