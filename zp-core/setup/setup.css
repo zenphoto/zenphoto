@@ -323,3 +323,6 @@ li {
 	text-align: right;
 }
 
+.zen-logo img {
+	vertical-align: sub;
+}
