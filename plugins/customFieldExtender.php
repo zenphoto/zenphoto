@@ -1,0 +1,117 @@
+<?php
+
+/*
+ * This plugin is used to extend the gallery database table fields. The
+ * administrative tabs for the objects will have input items for these new fields.
+ * They will be placed in the proximate location of the "custom data" field on the page.
+ *
+ * Fields added to searchable objects will be included in the list of selectable search
+ * fields. They will be enabled in the list by default. The standard search
+ * form allows a visitor to choose to disable the field for a particular search.
+ *
+ * Since the objects are not directly aware of these new fields, themes
+ * must use the "get()" methods to retrieve the content for display. E.g.
+ * <code>echo $_zp_current_album->get('new_field');</code>
+ *
+ * Fields are defined in the class as a multi-dimensional array, one row per
+ * object/field. The elements of each row are:
+ *
+ * "table" is the database table name (without prefix) of the object to which the field is to be added.
+ * "name" is the MySQL field name for the new field
+ * "desc" is the "display name" of the field
+ * "type" is the database field type: int, varchar, tinytext, text, mediumtext, and longtext.
+ * "size" is the byte size of the varchar or int field (it is not needed for other types)
+ *
+ * Database
+ * fields must conform to {@link http://dev.mysql.com/doc/refman/5.0/en/identifiers.html MySQL field naming rules}.
+ * If fields are subsequently removed from this array, they will be dropped from the database.
+ *
+ * <b>NOTE:</b> you must run setup to cause changes to be made to the database.
+ * (Database changes should not be made on an active site. You should close the site
+ * when you run setup.)
+ *
+ * If a field already exists in the database the database definition will stand.
+ * If you need to change the type or size of a field you must remove it from the
+ * array (commenting it out works), run setup, add back the field with the new
+ * definition, and run setup again. This process does delete any stored data, so
+ * you may want to use the backup/restore facility to save and later restore
+ * existing field data.
+ *
+ * If you disable the plugin and run setup, all fields defined will be removed
+ * from the database.
+ *
+ * @author Stephen Billard (sbillard)
+ * @package plugins
+ * @subpackage example
+ * @category package
+ *
+ */
+$plugin_is_filter = 5 | CLASS_PLUGIN;
+$plugin_description = gettext('Adds user defined fields to database tables');
+$plugin_notice = gettext('This plugin attaches the "custom data" filters. The raw custom data field is not editable when the plugin has fields defined for the object.');
+$plugin_author = "Stephen Billard (sbillard)";
+
+if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/fieldExtender.php')) {
+	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/fieldExtender.php');
+} else {
+	require_once(stripSuffix(__FILE__) . '/fieldExtender.php');
+}
+
+class customFieldExtender extends fieldExtender {
+
+	static $fields = array(
+					array('table' => 'albums', 'name' => 'Finish_Disc', 'desc' => 'Finish Disc', 'type' => 'varchar', 'size' => 50),
+					array('table' => 'albums', 'name' => 'Finish_Lip', 'desc' => 'Finish Lip', 'type' => 'varchar', 'size' => 50),
+					array('table' => 'albums', 'name' => 'Option', 'desc' => 'Option', 'type' => 'varchar', 'size' => 50),
+					array('table' => 'albums', 'name' => 'Front_Size', 'desc' => 'Front Size', 'type' => 'varchar', 'size' => 50),
+					array('table' => 'albums', 'name' => 'Rear_Size', 'desc' => 'Rear Size', 'type' => 'varchar', 'size' => 50)
+	);
+
+	function __construct() {
+		parent::constructor('customFieldExtender', self::$fields);
+	}
+
+	static function addToSearch($list) {
+		return parent::_addToSearch($list, self::$fields);
+	}
+
+	static function adminSave($updated, $userobj, $i, $alter) {
+		parent::_adminSave($updated, $userobj, $i, $alter, self::$fields);
+	}
+
+	static function adminEdit($html, $userobj, $i, $background, $current) {
+		return parent::_adminEdit($html, $userobj, $i, $background, $current, self::$fields);
+	}
+
+	static function mediaItemSave($object, $i) {
+		return parent::_mediaItemSave($object, $i, self::$fields);
+	}
+
+	static function mediaItemEdit($html, $object, $i) {
+		return parent::_mediaItemEdit($html, $object, $i, self::$fields);
+	}
+
+	static function zenpageItemSave($custom, $object) {
+		return parent::_zenpageItemSave($custom, $object, self::$fields);
+	}
+
+	static function zenpageItemEdit($html, $object) {
+		return parent::_zenpageItemEdit($html, $object, self::$fields);
+	}
+
+	static function register() {
+		parent::_register('customFieldExtender', self::$fields);
+	}
+
+	static function adminNotice($tab, $subtab) {
+		parent::_adminNotice($tab, $subtab, 'customFieldExtender');
+	}
+
+}
+
+if (OFFSET_PATH == 2) { // setup call: add the fields into the database
+	new customFieldExtender;
+} else {
+	customFieldExtender::register();
+}
+?>

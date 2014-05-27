@@ -1,0 +1,14 @@
+			<external version="1.0" >
+				
+				<channel>
+					<link href="http://localhost/test_sites/dev/zp-core/setup/setup_pluginOptions.php?plugin=site_upgrade" />
+					<language>en-US</language>
+											<item>
+							<title><![CDATA[externalFeed suspended]]></title>
+							<link>http://localhost/test_sites/dev/</link>
+							<description><![CDATA[The external feed is currently not available.]]></description>
+														<pubDate>Mon, 19 May 2014 14:13:09 -0300</pubDate>
+						</item>
+										</channel>
+			</external>
+			

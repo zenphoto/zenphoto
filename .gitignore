@@ -26,7 +26,7 @@
 /plugins/gd_fonts/*
 /plugins/imagick_fonts/*
 /plugins/watermarks/*
-/plugins/*
+
 
 # /uploaded/
 /uploaded/*

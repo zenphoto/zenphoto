@@ -1,0 +1,22 @@
+<?xml-stylesheet type="text/css" href="/test_sites/dev/zp-core/zp-extensions/rss/rss.css" ?>
+			<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+				<channel>
+					<title>Home Link - localhost</title>
+					<link>http://localhost/test_sites/dev</link>
+					<atom:link href="http://localhost/test_sites/dev/zp-core/setup/setup_pluginOptions.php?plugin=site_upgrade" rel="self"	type="application/rss+xml" />
+					<description>User provided Gallery Description. This is a simple description that will show up on some themes.Another line of description.</description>
+					<language>en-US</language>
+					<pubDate>Mon, 19 May 2014 14:13:09 -0300</pubDate>
+					<lastBuildDate>Mon, 19 May 2014 14:13:09 -0300</lastBuildDate>
+					<docs>http://blogs.law.harvard.edu/tech/rss</docs>
+					<generator>ZenPhoto20 RSS Generator</generator>
+											<item>
+							<title><![CDATA[RSS suspended]]></title>
+							<link></link>
+							<description><![CDATA[The RSS feed is currently not available.]]></description>
+														<guid></guid>
+							<pubDate>Mon, 19 May 2014 14:13:09 -0300</pubDate>
+						</item>
+										</channel>
+			</rss>
+			
