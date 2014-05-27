@@ -77,7 +77,7 @@ function listOwners($owners, $nest = '') {
 					$labelclass = ' empty_name';
 					$checked = ' checked="checked"';
 				} else {
-					$display = $detail = stripSuffix($detail);
+					$display = stripSuffix($detail);
 				}
 				?>
 				<label class="<?php echo $labelclass; ?>">

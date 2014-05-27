@@ -18,10 +18,10 @@ if (isset($_POST['purge'])) {
 	XSRFdefender('purgeOptions');
 	if (isset($_POST['del'])) {
 		foreach ($_POST['del'] as $owner) {
-			$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `creator` = ' . db_quote($owner);
+			$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `creator` LIKE ' . db_quote('%' . basename($owner));
 			$result = query($sql);
 			if (preg_match('~^' . THEMEFOLDER . '/~', $owner)) {
-				$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `creator` = ' . db_quote($owner . '/themeoptions.php');
+				$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `creator` LIKE ' . db_quote('%' . basename($owner) . '/themeoptions.php');
 				$result = query($sql);
 			}
 		}
@@ -47,7 +47,6 @@ printAdminHeader('options', '');
 				<div class="tabbox">
 					<?php
 					$owners = array();
-					$highlighted = false;
 					$sql = 'SELECT `name` FROM ' . prefix('options') . ' WHERE `name` LIKE "zp_plugin_%"';
 					$result = query_full_array($sql);
 					foreach ($result as $plugin) {
@@ -106,23 +105,17 @@ printAdminHeader('options', '');
 							<p>
 								<?php
 								echo gettext('Check an item to purge options associated with it.');
-								if ($highlighted) {
-									gettext('Items that are <span class="missing_owner">higlighed</span> appear no longer to exist.');
-								}
 								?>
+								<span class="highlighted">
+									<?php echo gettext('Items that are <span class="missing_owner">higlighed</span> appear no longer to exist.') ?>
+								</span>
 							</p>
-							<?php
-							if ($highlighted) {
-								?>
-								<ul>
-									<li>
-										<?php printf(gettext('<span class="missing_owner">higlighed</span>%s '), '<input type="checkbox" id="missing" onclick="$(\'.missing\').prop(\'checked\', $(\'#missing\').prop(\'checked\'));">');
-										?>
-									</li>
-								</ul>
-								<?php
-							}
-							?>
+							<ul class="highlighted">
+								<li>
+									<?php printf(gettext('<span class="missing_owner">higlighed</span>%s '), '<input type="checkbox" id="missing" checked="checked" onclick="$(\'.missing\').prop(\'checked\', $(\'#missing\').prop(\'checked\'));">');
+									?>
+								</li>
+							</ul>
 							<ul>
 								<?php listOwners($owners); ?>
 							</ul>
@@ -139,6 +132,15 @@ printAdminHeader('options', '');
 			</div>
 		</div>
 	</div>
+	<?php
+	if (!isset($highlighted)) {
+		?>
+		<script type="text/javascript">
+			$('.highlighted').remove();
+		</script>
+		<?php
+	}
+	?>
 	<br class="clearall" />
 	<?php printAdminFooter(); ?>
 </body>
