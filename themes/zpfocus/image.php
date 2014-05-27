@@ -7,11 +7,17 @@
 		printParentBreadcrumb("", " / ", " / ");
 		printAlbumBreadcrumb("", " / ");
 		?><?php printImageTitle(true); ?></h1>
-	<?php if ($zpfocus_logotype) { ?>
+	<?php
+	if ($zpfocus_logotype) {
+		?>
 		<a style="display:block;" href="<?php echo getGalleryIndexURL(); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/<?php echo $zpfocus_logofile; ?>" alt="<?php echo getBareGalleryTitle(); ?>" /></a>
-	<?php } else { ?>
+		<?php
+	} else {
+		?>
 		<h2 id="logo"><a href="<?php echo getGalleryIndexURL(); ?>"><?php echo getBareGalleryTitle(); ?></a></h2>
-	<?php } ?>
+		<?php
+	}
+	?>
 
 	<div id="img-topbar" class="clearfix">
 		<?php if (hasNextImage()) { ?>
@@ -48,7 +54,7 @@
 					 printCustomSizedImageMaxSpace(getImageTitle(), 600, 900);
 				 }
 				 ?>
-			<?php if (($zpfocus_final_link) == 'standard') { ?><a href="<?php echo htmlspecialchars(getFullImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>"><?php printCustomSizedImageMaxSpace(getImageTitle(), 600, 900); ?></a><?php } ?>
+				 <?php if (($zpfocus_final_link) == 'standard') { ?><a href="<?php echo htmlspecialchars(getFullImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>"><?php printCustomSizedImageMaxSpace(getImageTitle(), 600, 900); ?></a><?php } ?>
 			<?php if (($zpfocus_final_link) == 'standard-new') { ?><a target="_blank" href="<?php echo htmlspecialchars(getFullImageURL()); ?>" title="<?php echo getBareImageTitle(); ?>"><?php printCustomSizedImageMaxSpace(getImageTitle(), 600, 900); ?></a><?php } ?>
 		</div>
 	</div>
