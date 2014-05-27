@@ -449,8 +449,7 @@ setOptionDefault('search_cache_duration', 30);
 setOptionDefault('search_within', 1);
 setOption('last_update_check', 30);
 
-setOptionDefault('plugins_per_page', 20);
-setOptionDefault('plugins_per_page_options', 10);
+setOptionDefault('plugins_per_page', 25);
 setOptionDefault('users_per_page', 10);
 setOptionDefault('articles_per_page', 15);
 setOptionDefault('debug_log_size', 5000000);
