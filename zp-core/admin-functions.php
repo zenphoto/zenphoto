@@ -25,7 +25,7 @@ function printAdminFooter($addl = '') {
 	?>
 	<div id="footer">
 		<?php
-		echo gettext('<span class="zenlogo"><a href="https://github.com/ZenPhoto20/ZenPhoto20" title="' . gettext('A simpler media content management system') . '"><img src="' . WEBPATH . '/' . ZENFOLDER . '/' . '/images/zen-logo-light.png" /></a></span> ') . sprintf(gettext('version %1$s [%2$s]'), ZENPHOTO_VERSION, ZENPHOTO_RELEASE);
+		echo gettext('<span class="zenlogo"><a href="https://github.com/ZenPhoto20/ZenPhoto20" title="' . gettext('A simpler media content management system') . '"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/zen-logo-light.png" /></a></span> ') . sprintf(gettext('version %1$s [%2$s]'), ZENPHOTO_VERSION, ZENPHOTO_RELEASE);
 
 		if (!empty($addl)) {
 			echo ' | ' . $addl;
@@ -1403,7 +1403,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	$sort[gettext('Custom')] = 'custom';
 	/*
 	 * not recommended--screws with peoples minds during pagination!
-	  $sort[gettext('Random')] = 'random';
+		$sort[gettext('Random')] = 'random';
 	 */
 	?>
 						<tr>
