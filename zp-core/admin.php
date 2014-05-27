@@ -248,7 +248,7 @@ if (!zp_loggedin()) {
 									'category'		 => gettext('Admin'),
 									'enable'			 => true,
 									'button_text'	 => gettext('Setup » restore scripts'),
-									'formname'		 => 'restore_setup.php',
+									'formname'		 => 'restore_setup',
 									'action'			 => WEBPATH . '/' . ZENFOLDER . '/admin.php?action=restore_setup',
 									'icon'				 => 'images/lock_open.png',
 									'alt'					 => '',
@@ -270,7 +270,7 @@ if (!zp_loggedin()) {
 									'category'		 => gettext('Admin'),
 									'enable'			 => true,
 									'button_text'	 => gettext('Setup » protect scripts'),
-									'formname'		 => 'restore_setup.php',
+									'formname'		 => 'restore_setup',
 									'action'			 => WEBPATH . '/' . ZENFOLDER . '/admin.php?action=protect_setup',
 									'icon'				 => 'images/lock_2.png',
 									'alt'					 => '',
@@ -285,7 +285,7 @@ if (!zp_loggedin()) {
 								'category'		 => gettext('Admin'),
 								'enable'			 => true,
 								'button_text'	 => gettext('Run setup'),
-								'formname'		 => 'run_setup.php',
+								'formname'		 => 'run_setup',
 								'action'			 => WEBPATH . '/' . ZENFOLDER . '/setup.php',
 								'icon'				 => 'images/zp.png',
 								'alt'					 => '',
@@ -602,7 +602,7 @@ if (!zp_loggedin()) {
 									<?php
 								}
 								?>
-								<form name="<?php echo $button['formname']; ?>"	action="<?php echo $button['action']; ?>" class="overview_utility_buttons">
+								<form name="<?php echo $button['formname']; ?>"	id="<?php echo $button['formname']; ?>" action="<?php echo $button['action']; ?>" class="overview_utility_buttons">
 									<?php if (isset($button['XSRFTag']) && $button['XSRFTag']) XSRFToken($button['XSRFTag']); ?>
 									<?php echo $button['hidden']; ?>
 									<div class="buttons tooltip" title="<?php echo html_encode($button['title']); ?>">

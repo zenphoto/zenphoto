@@ -113,7 +113,7 @@ switch (OFFSET_PATH) {
 									'category'		 => gettext('Admin'),
 									'enable'			 => true,
 									'button_text'	 => gettext('Site » test mode'),
-									'formname'		 => 'site_upgrade.php',
+									'formname'		 => 'site_upgrade',
 									'action'			 => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/site_upgrade/site_upgrade.php',
 									'icon'				 => 'images/lock_open.png',
 									'title'				 => gettext('Make the site available for viewing administrators only.'),
@@ -128,7 +128,7 @@ switch (OFFSET_PATH) {
 									'category'		 => gettext('Admin'),
 									'enable'			 => true,
 									'button_text'	 => gettext('Site » open'),
-									'formname'		 => 'site_upgrade.php',
+									'formname'		 => 'site_upgrade',
 									'action'			 => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/site_upgrade/site_upgrade.php',
 									'icon'				 => 'images/lock.png',
 									'title'				 => gettext('Make site available for viewing.'),
@@ -136,6 +136,18 @@ switch (OFFSET_PATH) {
 									'hidden'			 => '<input type="hidden" name="siteState" value="open" />',
 									'rights'			 => ADMIN_RIGHTS
 					);
+					list($diff, $needs) = checkSignature(false);
+					if (zpFunctions::hasPrimaryScripts() && empty($needs)) {
+						?>
+						<script type="text/javascript">
+							window.onload = function() {
+								$('#site_upgrade').submit(function(event) {
+									return confirm('<?php echo gettext('You should protect your setup scripts first.'); ?>');
+								})
+							}
+						</script>
+						<?php
+					}
 					break;
 				default:
 					$buttons[] = array(
