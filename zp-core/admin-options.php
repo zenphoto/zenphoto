@@ -682,23 +682,30 @@ Zenphoto_Authority::printPasswordFormJS();
 													$version = '';
 													$po = file_get_contents(SERVERPATH . "/" . ZENFOLDER . "/locale/" . $dirname . '/LC_MESSAGES/zenphoto.po');
 													$i = strpos($po, 'Project-Id-Version:');
+													$v = 'v';
 													if ($i !== false) {
 														$j = strpos($po, '\n', $i);
 														if ($j !== false) {
 															$pversion = strtolower(substr($po, $i + 19, $j - $i - 19));
-															$vers = explode('.', trim(str_replace('zenphoto', '', $pversion)));
+															if (strpos($pversion, 'zenphoto20') !== false) {
+																$vers = explode('.', trim(str_replace('zenphoto20', '', $pversion)));
+															} else {
+																$vers = explode('.', trim(str_replace('zenphoto', '', $pversion)));
+																$v = 'zenphoto ';
+															}
 															while (count($vers) < 3) {
 																$vers[] = 0;
 															}
 															$version = (int) $vers[0] . '.' . (int) $vers[1] . '.' . (int) $vers[2];
 														}
 													}
-													if (version_compare($version, $zpversion) < 0) {
-														if (empty($version)) {
-															$version = '0.0.0';
+													if ($v == 'zenphoto ' || version_compare($version, $zpversion) < 0) {
+														if (empty($version) || $version == '0.0.0') {
+															$version = '';
+															$v = '?';
 														}
-														$language .= ' <small>{v' . $version . '}</small>';
-														$languageAlt .= ' {v' . $version . '}';
+														$language .= ' <small>{' . $v . $version . '}</small>';
+														$languageAlt .= ' {' . $v . $version . '}';
 														$class = ' style="background-color:#FFEFB7;"';
 													}
 												} else {
@@ -768,7 +775,7 @@ Zenphoto_Authority::printPasswordFormJS();
 															$('ul.languagelist').scrollTo('li:eq(<?php echo ($ci - 2); ?>)');
 															});</script>
 										<br class="clearall" />
-										<p class="notebox"><?php echo gettext('Highlighted languages are not current with version %1$s. (The version of the out-of-date language is shown in braces.)'); ?></p>
+										<p class="notebox"><?php printf(gettext('Highlighted languages are not current with ZenPhoto20 v%1$s. (The version of the out-of-date language is shown in braces.)'), $zpversion); ?></p>
 										<label class="checkboxlabel">
 											<input type="checkbox" name="multi_lingual" value="1"	<?php checked('1', getOption('multi_lingual')); ?> /><?php echo gettext('Multi-lingual'); ?>
 										</label>
