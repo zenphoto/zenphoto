@@ -190,6 +190,21 @@ class AlbumBase extends MediaObject {
 	}
 
 	/**
+	 * sets sort directions
+	 *
+	 * @param bool $val the direction
+	 * @param string $what 'images' if you want the image direction,
+	 *        'albums' if you want it for the album
+	 */
+	function setSortDirection($val, $what = 'images') {
+		if ($what == 'images') {
+			$this->set('image_sortdirection', (int) ($val && true));
+		} else {
+			$this->set('album_sortdirection', (int) ($val && true));
+		}
+	}
+
+	/**
 	 * Returns the sort type of the album images
 	 * Will return a parent sort type if the sort type for this album is empty
 	 *
