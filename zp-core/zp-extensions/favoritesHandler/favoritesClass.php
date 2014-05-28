@@ -232,7 +232,7 @@ class favorites extends AlbumBase {
 				$this->lastimagesort = $sorttype . $sortdirection;
 			}
 		}
-		return parent::getImages($page);
+		return parent::getImages($page, $firstPageCount);
 	}
 
 	static function loadScript($script, $request) {
