@@ -141,8 +141,8 @@ switch (OFFSET_PATH) {
 						?>
 						<script type="text/javascript">
 							window.onload = function() {
-								$('#site_upgrade').submit(function(event) {
-									return confirm('<?php echo gettext('You should protect your setup scripts first.'); ?>');
+								$('#site_upgrade').submit(function() {
+									return confirm('<?php echo gettext('Your setup scripts are not protected!'); ?>');
 								})
 							}
 						</script>
