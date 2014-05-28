@@ -700,7 +700,8 @@ Zenphoto_Authority::printPasswordFormJS();
 														}
 													}
 													if ($v == 'zenphoto ' || version_compare($version, $zpversion) < 0) {
-														if (empty($version)) {
+														if (empty($version) || $version == '0.0.0') {
+															$version = '';
 															$v = '?';
 														}
 														$language .= ' <small>{' . $v . $version . '}</small>';
