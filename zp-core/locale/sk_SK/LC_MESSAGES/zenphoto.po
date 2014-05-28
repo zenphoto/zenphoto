@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.4.6\n"
+"Project-Id-Version: ZenPhoto20 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-04 22:38+0100\n"
 "PO-Revision-Date: 2014-05-04 23:34+0100\n"
