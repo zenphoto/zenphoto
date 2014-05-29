@@ -284,8 +284,8 @@ if (isset($_GET['action'])) {
 			if ($st == 'custom') {
 				$st = unQuote(strtolower(sanitize($_POST['customimagesort'], 3)));
 			}
-			setOption('image_sorttype', $st);
-			setOption('image_sortdirection', (int) isset($_POST['image_sortdirection']));
+			$_zp_gallery->setSortType($st, 'image');
+			$_zp_gallery->setSortDirection((int) isset($_POST['image_sortdirection']), 'image');
 			setOption('use_embedded_thumb', (int) isset($_POST['use_embedded_thumb']));
 			setOption('IPTC_encoding', sanitize($_POST['IPTC_encoding']));
 			foreach ($_zp_exifvars as $key => $item) {
@@ -302,6 +302,7 @@ if (isset($_GET['action'])) {
 						break;
 				}
 			}
+			$_zp_gallery->save();
 			$returntab = "&tab=image";
 		}
 		/*		 * * Theme options ** */
@@ -1795,7 +1796,7 @@ Zenphoto_Authority::printPasswordFormJS();
 												?>
 											</select>
 											<label id="image_sortdirection" style="display:<?php echo $dspd; ?>white-space:nowrap;">
-												<input type="checkbox" name="image_sortdirection"	value="1" <?php checked('1', getOption('image_sortdirection')); ?> />
+												<input type="checkbox" name="image_sortdirection"	value="1" <?php checked('1', $_zp_gallery->getSortDirection('image')); ?> />
 												<?php echo gettext("Descending"); ?>
 											</label>
 										</span>

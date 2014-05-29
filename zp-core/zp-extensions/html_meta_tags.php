@@ -42,7 +42,6 @@ class htmlmetatags {
 		setOptionDefault('htmlmeta_http-equiv-cache-control', '1');
 		setOptionDefault('htmlmeta_http-equiv-pragma', '1');
 		setOptionDefault('htmlmeta_http-equiv-content-style-type', '1');
-		setOptionDefault('htmlmeta_name-title', '1');
 		setOptionDefault('htmlmeta_name=keywords', '1');
 		setOptionDefault('htmlmeta_name-description', '1');
 		setOptionDefault('htmlmeta_name-robot', '1');
@@ -98,7 +97,6 @@ class htmlmetatags {
 														"http-equiv='cache-control'"					 => "htmlmeta_http-equiv-cache-control",
 														"http-equiv='pragma'"									 => "htmlmeta_http-equiv-pragma",
 														"http-equiv='content-style-type'"			 => "htmlmeta_http-equiv-content-style-type",
-														"name='title'"												 => "htmlmeta_name-title",
 														"name='keywords'"											 => "htmlmeta_name-keywords",
 														"name='description'"									 => "htmlmeta_name-description",
 														"name='page-topic'"										 => "htmlmeta_name-page-topic",
@@ -274,16 +272,13 @@ class htmlmetatags {
 			$meta .= '<meta http-equiv="imagetoolbar" content="false">' . "\n";
 		}
 		if (getOption('htmlmeta_http-equiv-cache-control')) {
-			$meta .= '<meta http-equiv="cache-control" content="' . getOption("htmlmeta_cache_control") . '">' . "\n";
+			$meta .= '<meta http-equiv="Cache-control" content="' . getOption("htmlmeta_cache_control") . '">' . "\n";
 		}
 		if (getOption('htmlmeta_http-equiv-pragma')) {
 			$meta .= '<meta http-equiv="pragma" content="' . getOption("htmlmeta_pragma") . '">' . "\n";
 		}
 		if (getOption('htmlmeta_http-equiv-content-style-type')) {
 			$meta .= '<meta http-equiv="Content-Style-Type" content="text/css">' . "\n";
-		}
-		if (getOption('htmlmeta_name-title')) {
-			$meta .= '<meta name="title" content="' . html_encode($pagetitle) . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-keywords')) {
 			$meta .= '<meta name="keywords" content="' . htmlmetatags::getMetaKeywords() . '">' . "\n";
@@ -316,7 +311,10 @@ class htmlmetatags {
 			$meta .= '<meta name="revisit-after" content="' . getOption("htmlmeta_revisit_after") . ' days">' . "\n";
 		}
 		if (getOption('htmlmeta_name-expires')) {
-			$meta .= '<meta name="expires" content="' . getOption("htmlmeta_expires") . '">' . "\n";
+			$expires = getOption("htmlmeta_expires");
+			if ($expires == (int) $expires)
+				$expires = preg_replace('|\s\-\d+|', '', date('r', time() + $expires)) . ' GMT';
+			$meta .= '<meta name="expires" content="' . $expires . '">' . "\n";
 		}
 
 		// DC meta data

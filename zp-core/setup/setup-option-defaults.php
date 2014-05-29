@@ -120,8 +120,6 @@ if (getOption('perform_video_watermark')) {
 	setoptionDefault('Video_watermark', $v);
 }
 
-setOptionDefault('image_sorttype', 'Filename');
-setOptionDefault('image_sortdirection', '0');
 setOptionDefault('hotlink_protection', '1');
 
 setOptionDefault('search_fields', 'title,desc,tags,file,location,city,state,country,content,author');
@@ -441,7 +439,24 @@ if (!isset($data['image_publish'])) {
 	$data['image_publish'] = $set;
 }
 $data['unprotected_pages'] = $unprotected;
+if (!isset($data['image_sorttype'])) {
+	$set = getOption('image_sorttype');
+	if (is_null($set))
+		$set = 'Filename';
+	$data['image_sorttype'] = $set;
+}
+if (!isset($data['image_sortdirection'])) {
+	$set = getOption('image_sortdirection');
+	if (is_null($set))
+		$set = 0;
+	$data['image_sorttype'] = $set;
+}
+
 setOption('gallery_data', serialize($data));
+// purge the old versions of these
+foreach ($data as $key => $value) {
+	purgeOption($key);
+}
 
 $_zp_gallery = new Gallery(); // insure we have the proper options instantiated
 

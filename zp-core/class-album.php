@@ -6,8 +6,8 @@
  */
 // force UTF-8 Ø
 
-define('IMAGE_SORT_DIRECTION', getOption('image_sortdirection'));
-define('IMAGE_SORT_TYPE', getOption('image_sorttype'));
+define('IMAGE_SORT_DIRECTION', $_zp_gallery->getSortDirection('image'));
+define('IMAGE_SORT_TYPE', $_zp_gallery->getSortType('image'));
 
 Gallery::addAlbumHandler('alb', 'dynamicAlbum');
 
