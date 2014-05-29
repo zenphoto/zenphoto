@@ -152,21 +152,36 @@ class Gallery {
 		return lookupSortKey($sorttype, 'sort_order', 'albums');
 	}
 
-	function getSortDirection() {
-		return $this->get('sort_direction');
+	function getSortDirection($what = 'album') {
+		if ($what == 'image') {
+			return $this->get('image_sortdirection');
+		} else {
+			return $this->get('sort_direction');
+		}
 	}
 
-	function setSortDirection($value) {
-		$this->set('sort_direction', (int) ($value && true));
+	function setSortDirection($value, $what = 'album') {
+		if ($what == 'image') {
+			$this->set('image_sortdirection', (int) ($value && true));
+		} else {
+			$this->set('sort_direction', (int) ($value && true));
+		}
 	}
 
-	function getSortType() {
-		$type = $this->get('gallery_sorttype');
-		return $type;
+	function getSortType($what = 'album') {
+		if ($what == 'image') {
+			return $this->get('image_sorttype');
+		} else {
+			return $this->get('gallery_sorttype');
+		}
 	}
 
-	function setSortType($value) {
-		$this->set('gallery_sorttype', $value);
+	function setSortType($value, $what = 'album') {
+		if ($what == 'image') {
+			$this->set('image_sorttype', $value);
+		} else {
+			$this->set('gallery_sorttype', $value);
+		}
 	}
 
 	/**
