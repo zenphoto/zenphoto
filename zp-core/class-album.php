@@ -1320,7 +1320,7 @@ class Album extends AlbumBase {
 			$this->images = $this->sortImageArray($images, $sorttype, $sortdirection, $mine);
 			$this->lastimagesort = $sorttype . $sortdirection;
 		}
-		return parent::getImages($page);
+		return parent::getImages($page, $firstPageCount);
 	}
 
 	/**
@@ -1762,7 +1762,7 @@ class dynamicAlbum extends AlbumBase {
 			$this->images = $searchengine->getImages(0, 0, $sorttype, $sortdirection, $care, $mine);
 			$this->lastimagesort = $sorttype . $sortdirection;
 		}
-		return parent::getImages($page);
+		return parent::getImages($page, $firstPageCount);
 	}
 
 	/**
