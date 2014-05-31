@@ -19,9 +19,9 @@ function css_head($ignore) {
 		$themeColor = getThemeOption('Theme_colors');
 	}
 
-	if ($editorConfig = getOption('tinymce4_comments')) {
+	if ($editorConfig = getOption('tinymce_comments')) {
 		if (strpos($themeColor, 'dark') !== false) {
-			setOption('tinymce4_comments', 'dark_' . $editorConfig, false);
+			setOption('tinymce_comments', 'dark_' . $editorConfig, false);
 		}
 	}
 

@@ -2622,7 +2622,7 @@ Tooltip styling
 	float:right;
 }
 
-/* prevent jumping toolbar buttons of TinyMCE4 in some browsers */
+/* prevent jumping toolbar buttons of tinymce in some browsers */
 .mce-container .mce-toolbar button {
 	border: 0 !Important;
 	-webkit-box-sizing: border-box;

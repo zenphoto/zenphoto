@@ -34,8 +34,8 @@ if (OFFSET_PATH) {
 	if (getOption('comment_form_pagination')) {
 		zp_register_filter('theme_head', 'comment_form_PaginationJS');
 	}
-	if (getOption('tinymce4_comments')) {
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tinymce4.php');
+	if (getOption('tinymce_comments')) {
+		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tinymce.php');
 		zp_register_filter('theme_head', 'comment_form_visualEditor');
 	}
 }
@@ -48,9 +48,9 @@ class comment_form {
 	 */
 	function comment_form() {
 		if (OFFSET_PATH == 2) {
-			$old = getOption('tinymce4_comments');
+			$old = getOption('tinymce_comments');
 			if (strpos($old, '.js.php') !== false)
-				setOption('tinymce4_comments', str_replace('.js.php', '.php', $old));
+				setOption('tinymce_comments', str_replace('.js.php', '.php', $old));
 		}
 
 		setOptionDefault('email_new_comments', 1);
@@ -72,7 +72,7 @@ class comment_form {
 		setOptionDefault('comment_form_comments_per_page', 10);
 		setOptionDefault('comment_form_pagination', true);
 		setOptionDefault('comment_form_toggle', 1);
-		setOptionDefault('tinymce4_comments', 'comment-ribbon.php');
+		setOptionDefault('tinymce_comments', 'comment-ribbon.php');
 	}
 
 	/**
@@ -82,12 +82,12 @@ class comment_form {
 	 */
 	function getOptionsSupported() {
 		global $_zp_captcha;
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tinymce4.php');
+		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tinymce.php');
 		$checkboxes = array(gettext('Albums') => 'comment_form_albums', gettext('Images') => 'comment_form_images');
 		if (extensionEnabled('zenpage')) {
 			$checkboxes = array_merge($checkboxes, array(gettext('Pages') => 'comment_form_pages', gettext('News') => 'comment_form_articles'));
 		}
-		$configarray = getTinyMCE4ConfigFiles('comment');
+		$configarray = gettinymceConfigFiles('comment');
 
 		$options = array(
 						gettext('Enable comment notification')	 => array('key'		 => 'email_new_comments', 'type'	 => OPTION_TYPE_CHECKBOX,
@@ -138,7 +138,7 @@ class comment_form {
 						gettext('Comments per page')						 => array('key'		 => 'comment_form_comments_per_page', 'type'	 => OPTION_TYPE_NUMBER,
 										'order'	 => 9,
 										'desc'	 => gettext('The comments that should show per page on the admin tab and when using the jQuery pagination')),
-						gettext('Comment editor configuration')	 => array('key'						 => 'tinymce4_comments', 'type'					 => OPTION_TYPE_SELECTOR,
+						gettext('Comment editor configuration')	 => array('key'						 => 'tinymce_comments', 'type'					 => OPTION_TYPE_SELECTOR,
 										'order'					 => 1,
 										'selections'		 => $configarray,
 										'null_selection' => gettext('Disabled'),
