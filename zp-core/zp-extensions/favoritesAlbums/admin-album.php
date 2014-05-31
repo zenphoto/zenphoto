@@ -111,7 +111,7 @@ while ($old != $albumname) {
 	$albumname = str_replace('--', '-', $albumname);
 }
 ?>
-<form class="dirty-check" action="?savealbum" method="post">
+<form class="dirtylistening" action="?savealbum" method="post">
 	<?php XSRFToken('savealbum'); ?>
 	<input type="hidden" name="savealbum" value="yes" />
 	<input type="hidden" name="title" value="<?php echo sanitize($_GET['title']); ?>" />

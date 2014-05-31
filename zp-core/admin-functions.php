@@ -141,7 +141,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		<?php
 	}
 	?>
-					$('form.dirty-check').areYouSure({'message': '<?php echo addslashes(gettext('You have unsaved changes!')); ?>'});
+					$('form.dirtylistening').areYouSure({'message': '<?php echo addslashes(gettext('You have unsaved changes!')); ?>'});
 				});
 				$(function() {
 					$(".tooltip ").tooltip({
@@ -3726,7 +3726,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 	}
 	?>
 	<span style="float:right">
-		<select class="ays-ignore" name="checkallaction" id="checkallaction" size="1" onchange="checkFor(this);" >
+		<select class="ignoredirty" name="checkallaction" id="checkallaction" size="1" onchange="checkFor(this);" >
 			<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
 		</select>
 		<?php
@@ -3736,7 +3736,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 			<?php
 			echo gettext("Check All");
 			?>
-			<input class="ays-ignore" type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
+			<input class="ignoredirty" type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
 			<?php
 		}
 		?>
@@ -3747,7 +3747,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 		<div id="mass_tags" style="display:none;">
 			<div id="mass_tags_data">
 				<?php
-				tagSelector(NULL, 'mass_tags_', false, false, true, false, 'checkTagsAuto ays-ignore');
+				tagSelector(NULL, 'mass_tags_', false, false, true, false, 'checkTagsAuto ignoredirty');
 				?>
 			</div>
 		</div>
@@ -3758,7 +3758,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 		<div id="mass_cats" style="display:none;">
 			<ul id="mass_cats_data">
 				<?php
-				printNestedItemsList('cats-checkboxlist', '', 'all', 'ays-ignore');
+				printNestedItemsList('cats-checkboxlist', '', 'all', 'ignoredirty');
 				?>
 			</ul>
 		</div>
@@ -3768,7 +3768,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 		?>
 		<div id="mass_owner" style="display:none;">
 			<ul id="mass_owner_data">
-				<select class="ays-ignore" id="massownermenu" name="massownerselect" onchange="">
+				<select class="ignoredirty" id="massownermenu" name="massownerselect" onchange="">
 					<?php
 					echo admin_album_list(NULL);
 					?>
@@ -3786,7 +3786,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 				<?php
 				echo gettext('Destination');
 				?>
-				<select class="ays-ignore" id="massalbumselectmenu" name="massalbumselect" onchange="">
+				<select class="ignoredirty" id="massalbumselectmenu" name="massalbumselect" onchange="">
 					<?php
 					foreach ($mcr_albumlist as $fullfolder => $albumtitle) {
 						$singlefolder = $fullfolder;
@@ -4347,7 +4347,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 			<?php
 		}
 		?>
-		<select name="subpage" class="ays-ignore" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
+		<select name="subpage" class="ignoredirty" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
 										[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
 							<?php
 							foreach ($rangeset as $page => $range) {

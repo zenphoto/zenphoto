@@ -60,7 +60,7 @@ if (empty($MCEtoolbars)) {
 									setup: function(editor) {
 									editor.on('blur', function(ed, e) {
 									if (editor.isDirty()) {
-									$('.dirty-check').addClass('dirty');
+									$('.dirtylistening').addClass('dirty');
 									}
 									});
 									}

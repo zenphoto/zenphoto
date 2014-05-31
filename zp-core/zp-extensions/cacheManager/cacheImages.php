@@ -222,7 +222,7 @@ echo "\n" . '<div id = "content">';
 		}
 		//]]> -->
 	</script>
-	<form class="dirty-check" name="size_selections" action="?select&album=<?php echo $alb; ?>" method="post">
+	<form class="dirtylistening" name="size_selections" action="?select&album=<?php echo $alb; ?>" method="post">
 		<?php XSRFToken('cacheImages') ?>
 		<ol class="no_bullets">
 			<?php

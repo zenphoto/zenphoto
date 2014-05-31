@@ -26,9 +26,9 @@
       }, options);
 
     var getValue = function($field) {
-      if ($field.hasClass('ays-ignore')
+      if ($field.hasClass('ignoredirty')
           || $field.hasClass('aysIgnore')
-          || $field.attr('data-ays-ignore')
+          || $field.attr('data-ignoredirty')
           || $field.attr('name') === undefined) {
         return null;
       }
