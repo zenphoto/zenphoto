@@ -4,12 +4,12 @@
  * Back-end <i>WYSIWYG</i> editor TinyMCE 4.x.
  *
  * You can place your own additional custom configuration files within
- * <var>%USER_PLUGIN_FOLDER%/tiny_mce/config</var>
- * There is a naming convention since there is a difference between gallery(image/album) and zenpage (news/pages) editor configurations
- * - zenphoto-<yourcustomname>.js.php
- * - zenpage-<yourcustomname>.js.php
+ * <var>%USER_PLUGIN_FOLDER%/tiny_mce/config</var> or <var>%THEMEFOLDER%/tiny_mce/config</var>
+ * There is a naming convention for editor configurations
+ * - zenphoto-<name>.php
+ * - zenpage-<name>.php
+ * - comment-<name>.php
  *
- * @author Malte Müller (acrylian)
  * @package plugins
  * @subpackage admin
  */
@@ -29,8 +29,16 @@ zp_register_filter('texteditor_config', 'tinymce4ConfigJS');
 class tinymce4Options {
 
 	function tinymce4Options() {
-		setOptionDefault('tinymce4_zenphoto', 'zenphoto-ribbon.js.php');
-		setOptionDefault('tinymce4_zenpage', 'zenpage-ribbon.js.php');
+		if (OFFSET_PATH == 2) {
+			$old = getOption('tinymce4_zenphoto');
+			if (strpos($old, '.js.php') !== false)
+				setOption('tinymce4_zenphoto', str_replace('.js.php', '.php', $old));
+			$old = getOption('tinymce4_zenpage');
+			if (strpos($old, '.js.php') !== false)
+				setOption('tinymce4_zenpage', str_replace('.js.php', '.php', $old));
+		}
+		setOptionDefault('tinymce4_zenphoto', 'zenphoto-ribbon.php');
+		setOptionDefault('tinymce4_zenpage', 'zenpage-ribbon.php');
 	}
 
 	function getOptionsSupported() {
@@ -89,7 +97,7 @@ function tinymce4ConfigJS($mode) {
 
 		$_editorconfig = getOption('tinymce4_' . $mode);
 		if (!empty($_editorconfig)) {
-			$_editorconfig = getPlugin('/tinymce4/config/' . $_editorconfig, true);
+			$_editorconfig = getPlugin('tinymce4/config/' . $_editorconfig, true);
 			if (!empty($_editorconfig)) {
 				require_once($_editorconfig);
 			}
@@ -100,13 +108,13 @@ function tinymce4ConfigJS($mode) {
 
 function getTinyMCE4ConfigFiles($mode) {
 	// get only those that work!
-	$files = getPluginFiles($mode . '-*.js.php', 'tinymce4/config/');
+	$files = getPluginFiles($mode . '-*.php', 'tinymce4/config/');
 	$array = array();
 	foreach ($files as $file) {
 		$filename = strrchr($file, '/');
 		$filename = substr($filename, 1);
 		$option = preg_replace('/^' . $mode . '-/', '', $filename);
-		$option = ucfirst(preg_replace('/.js.php$/', '', $option));
+		$option = ucfirst(preg_replace('/.php$/', '', $option));
 		$array[$option] = $filename;
 	}
 	return $array;

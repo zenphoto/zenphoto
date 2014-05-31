@@ -47,6 +47,12 @@ class comment_form {
 	 *
 	 */
 	function comment_form() {
+		if (OFFSET_PATH == 2) {
+			$old = getOption('tinymce4_comments');
+			if (strpos($old, '.js.php') !== false)
+				setOption('tinymce4_comments', str_replace('.js.php', '.php', $old));
+		}
+
 		setOptionDefault('email_new_comments', 1);
 		setOptionDefault('comment_name_required', 'required');
 		setOptionDefault('comment_email_required', 'required');
@@ -66,7 +72,7 @@ class comment_form {
 		setOptionDefault('comment_form_comments_per_page', 10);
 		setOptionDefault('comment_form_pagination', true);
 		setOptionDefault('comment_form_toggle', 1);
-		setOptionDefault('tinymce4_comments', 'comment-ribbon.js.php');
+		setOptionDefault('tinymce4_comments', 'comment-ribbon.php');
 	}
 
 	/**

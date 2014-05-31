@@ -1076,6 +1076,7 @@ zp-core/zp-extensions/tinymce4/config
 zp-core/zp-extensions/tinymce4/config/comment-full.js.php
 zp-core/zp-extensions/tinymce4/config/comment-ribbon.js.php
 zp-core/zp-extensions/tinymce4/config/comment-slim.js.php
+zp-core/zp-extensions/tinymce4/config/config.js.php
 zp-core/zp-extensions/tinymce4/config/content.css
 zp-core/zp-extensions/tinymce4/config/zenpage-basic.js.php
 zp-core/zp-extensions/tinymce4/config/zenpage-full.js.php
@@ -1342,4 +1343,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1344
+1345
