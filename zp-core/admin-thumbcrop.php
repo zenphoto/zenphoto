@@ -250,7 +250,7 @@ printAdminHeader('edit', 'thumbcrop');
 				</div>
 				<br clear="all">
 				<!-- This is the form that our event handler fills -->
-				<form class="dirtylistening" name="crop" id="crop" action="?crop" onsubmit="return checkCoords();">
+				<form class="dirtylistening" onReset="setClean('crop');" name="crop" id="crop" action="?crop" onsubmit="return checkCoords();">
 					<?php XSRFToken('thumb_crop'); ?>
 					<input type="hidden" size="4" id="x" name="x" value="<?php echo $iX ?>" />
 					<input type="hidden" size="4" id="y" name="y" value="<?php echo $iY ?>" />

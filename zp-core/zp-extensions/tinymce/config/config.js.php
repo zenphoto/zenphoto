@@ -18,6 +18,8 @@ if (!getOption('tinymce_tinyzenpage')) {
 ?>
 <script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER . "/" . PLUGIN_FOLDER; ?>/tinymce/tinymce.min.js"></script>
 <script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER . "/" . PLUGIN_FOLDER; ?>/tinymce/jquery.tinymce.min.js"></script>
+<script src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/dirtyforms/tinymce.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 // <!-- <![CDATA[
 					tinymce.init({
@@ -55,15 +57,21 @@ if (empty($MCEtoolbars)) {
 	}
 }
 ?>
+
 					statusbar: <?php echo ($MCEstatusbar) ? 'true' : 'false'; ?>,
 									menubar: <?php echo ($MCEmenubar) ? 'true' : 'false'; ?>,
 									setup: function(editor) {
 									editor.on('blur', function(ed, e) {
-									if (editor.isDirty()) {
-									$('.dirtylistening').addClass('dirty');
+									form = $(editor.getContainer()).closest('form');
+													if (editor.isDirty()) {
+									$(form).addClass('tinyDirty');
+									} else {
+									$(form).removeClass('tinyDirty');
 									}
 									});
 									}
+
+
 					});
 					// ]]> -->
 </script>

@@ -124,10 +124,14 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zenphoto.js" type="text/javascript" ></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/admin.js" type="text/javascript" ></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.scrollTo.js" type="text/javascript"></script>
-			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.are-you-sure.js" type="text/javascript"></script>
+			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/dirtyforms/jquery.dirtyforms.js" type="text/javascript"></script>
 			<script type="text/javascript">
 				// <!-- <![CDATA[
 
+				function setClean(id) {
+					$('form#' + id).dirtyForms('setClean');
+					$('form#' + id).removeClass('tinyDirty');
+				}
 				$(document).ready(function() {
 	<?php
 	if (zp_has_filter('admin_head', 'colorbox::css')) {
@@ -137,11 +141,11 @@ function printAdminHeader($tab, $subtab = NULL) {
 							maxHeight: "98%",
 							close: '<?php echo addslashes(gettext("close")); ?>'
 						});
-
 		<?php
 	}
 	?>
-					$('form.dirtylistening').areYouSure({'message': '<?php echo addslashes(gettext('You have unsaved changes!')); ?>'});
+					$.DirtyForms.message = '<?php echo addslashes(gettext('You have unsaved changes!')); ?>';
+					$('form.dirtylistening').dirtyForms();
 				});
 				$(function() {
 					$(".tooltip ").tooltip({
@@ -206,7 +210,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 						toleranceElement: '> div',
 						listType: 'ul'
 					});
-
 					$('.serialize').click(function() {
 						serialized = $('ul.page-list').nestedSortable('serialize');
 						if (serialized != original_order) {
@@ -1309,7 +1312,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
 																onclick="passwordClear('<?php echo $suffix; ?>');
-																				togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
+																		togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
 								</td>
 								<td>
 									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
@@ -1835,7 +1838,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -4049,7 +4052,6 @@ function codeblocktabsJS() {
 			var tabContainers = $('div.tabs > div');
 			$('.first').addClass('selected');
 		});
-
 		function cbclick(num, id) {
 			$('.cbx-' + id).hide();
 			$('#cb' + num + '-' + id).show();
@@ -4348,7 +4350,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 		}
 		?>
 		<select name="subpage" class="ignoredirty" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
-										[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
+								[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
 							<?php
 							foreach ($rangeset as $page => $range) {
 								?>

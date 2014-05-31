@@ -266,7 +266,7 @@ if (is_array($result)) {
 					$add = '&amp;update';
 				}
 				?>
-				<form class="dirtylistening" method="post" id="add" name="add" action="menu_tab_edit.php?save<?php
+				<form class="dirtylistening" onReset="setClean('add');"  method="post" id="add" name="add" action="menu_tab_edit.php?save<?php
 				echo $add;
 				if ($menuset)
 					echo '&amp;menuset=' . $menuset;

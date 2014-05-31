@@ -192,7 +192,7 @@ echo '</head>' . "\n";
 							echo gettext("Set group rights and select one or more albums for the users in the group to manage. Users with <em>User admin</em> or <em>Manage all albums</em> rights can manage all albums. All others may manage only those that are selected.");
 							?>
 						</p>
-						<form class="dirtylistening" action="?action=savegroups&amp;tab=groups" method="post" autocomplete="off" onsubmit="return checkSubmit()" >
+						<form class="dirtylistening" onReset="setClean('savegroups_form');" id="savegroups_form" action="?action=savegroups&amp;tab=groups" method="post" autocomplete="off" onsubmit="return checkSubmit()" >
 							<?php XSRFToken('savegroups'); ?>
 							<p class="buttons">
 								<button type="submit"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
@@ -450,7 +450,7 @@ echo '</head>' . "\n";
 							echo gettext("Assign users to groups.");
 							?>
 						</p>
-						<form class="dirtylistening" action="?action=saveauserassignments" method="post" autocomplete="off" >
+						<form class="dirtylistening" onReset="setClean('saveAssignments_form');" id="saveAssignments_form" action="?action=saveauserassignments" method="post" autocomplete="off" >
 							<?php XSRFToken('saveauserassignments'); ?>
 							<p class="buttons">
 								<button type="submit"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>

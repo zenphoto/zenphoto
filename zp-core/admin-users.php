@@ -436,7 +436,7 @@ echo $refresh;
 							}
 						}
 					</script>
-					<form class="dirtylistening" action="?action=saveoptions<?php echo str_replace('&', '&amp;', $ticket); ?>" method="post" autocomplete="off" onsubmit="return checkNewuser();" >
+					<form class="dirtylistening" onReset="setClean('user_form');" id="user_form" action="?action=saveoptions<?php echo str_replace('&', '&amp;', $ticket); ?>" method="post" autocomplete="off" onsubmit="return checkNewuser();" >
 						<?php XSRFToken('saveadmin'); ?>
 						<input type="hidden" name="saveadminoptions" value="yes" />
 						<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
@@ -583,7 +583,7 @@ echo $refresh;
 															<em><?php echo gettext("New User"); ?></em>
 															<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="adminuser<?php echo $id; ?>" name="adminuser<?php echo $id; ?>" value=""
 																		 onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', visible);
-																						 $('#adminuser<?php echo $id; ?>').focus();" />
+																				 $('#adminuser<?php echo $id; ?>').focus();" />
 
 															<?php
 														} else {

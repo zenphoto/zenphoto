@@ -139,7 +139,7 @@ printAdminHeader('tags');
 				<tr>
 					<td valign='top'>
 						<h2 class="h2_bordered_edit"><?php echo gettext("Delete tags from the gallery"); ?></h2>
-						<form class="dirtylistening" name="tag_delete" id="form_tagdelete" action="?delete=true&amp;tagsort=<?php echo html_encode($tagsort); ?>" method="post">
+						<form class="dirtylistening" onReset="setClean('form_tagdelete');" name="tag_delete" id="form_tagdelete" action="?delete=true&amp;tagsort=<?php echo html_encode($tagsort); ?>" method="post" >
 							<?php XSRFToken('tag_delete'); ?>
 							<div class="box-tags-unpadded">
 								<?php
@@ -168,7 +168,7 @@ printAdminHeader('tags');
 
 					<td valign='top'>
 						<h2 class="h2_bordered_edit"><?php echo gettext("Rename tags"); ?></h2>
-						<form class="dirtylistening" name="tag_rename" id="form_tagrename" action="?rename=true&amp;tagsort=<?php echo html_encode($tagsort); ?>" method="post">
+						<form class="dirtylistening" onReset="setClean('form_tagrename');" name="tag_rename" id="form_tagrename" action="?rename=true&amp;tagsort=<?php echo html_encode($tagsort); ?>" method="post" >
 							<?php XSRFToken('tag_rename'); ?>
 							<div class="box-tags-unpadded">
 								<ul class="tagrenamelist">
@@ -205,7 +205,7 @@ printAdminHeader('tags');
 
 					<td valign='top'>
 						<h2 class="h2_bordered_edit"><?php echo gettext("New tags"); ?></h2>
-						<form class="dirtylistening" name="new_tags" id="form_newtags" action="?newtags=true&amp;tagsort=<?php echo html_encode($tagsort); ?>" method="post">
+						<form class="dirtylistening" onReset="setClean('form_newtags');"  name="new_tags" id="form_newtags" action="?newtags=true&amp;tagsort=<?php echo html_encode($tagsort); ?>" method="post">
 							<?php XSRFToken('new_tags'); ?>
 							<div class="box-tags-unpadded">
 								<ul class="tagnewlist">

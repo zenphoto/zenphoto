@@ -139,7 +139,7 @@ while ($old != $albumname) {
 	$albumname = str_replace('--', '-', $albumname);
 }
 ?>
-<form class="dirtylistening" action="?savealbum" method="post">
+<form class="dirtylistening" onReset="setClean('savealbun_form');" id="savealbun_form" action="?savealbum" method="post" >
 	<?php XSRFToken('savealbum'); ?>
 	<input type="hidden" name="savealbum" value="yes" />
 	<table>

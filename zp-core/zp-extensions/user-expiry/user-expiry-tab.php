@@ -113,7 +113,7 @@ echo '</head>' . "\n";
 				<p>
 					<?php echo gettext("Manage user expiry."); ?>
 				</p>
-				<form action="?action=expiry" class="dirtylistening" method="post" autocomplete="off" >
+				<form action="?action=expiry" class="dirtylistening" onReset="setClean('userExpiry_form');" id="userExpiry_form" method="post" autocomplete="off" >
 					<?php XSRFToken('expiry'); ?>
 					<span class="buttons">
 						<button type="submit"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>

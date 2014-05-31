@@ -237,7 +237,6 @@ zp-core/js/farbtastic.css
 zp-core/js/farbtastic.js
 zp-core/js/htmlencoder.js
 zp-core/js/Jcrop.gif
-zp-core/js/jquery.are-you-sure.js
 zp-core/js/jquery.Jcrop.css
 zp-core/js/jquery.Jcrop.js
 zp-core/js/jquery.js
@@ -250,6 +249,9 @@ zp-core/js/tag.js
 zp-core/js/toggleElements.css
 zp-core/js/upload.js
 zp-core/js/zenphoto.js
+zp-core/js/dirtyforms
+zp-core/js/dirtyforms/jquery.dirtyforms.js
+zp-core/js/dirtyforms/tinymce.js
 zp-core/js/jqueryui
 zp-core/js/jqueryui/jquery-ui-zenphoto.css
 zp-core/js/jqueryui/jquery-ui-zenphoto.js
@@ -1337,4 +1339,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1339
+1341

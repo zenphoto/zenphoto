@@ -349,7 +349,7 @@ printAdminHeader('edit', gettext('crop image'));
 
 				<div style="text-align:left; float: left;">
 					<!-- This is the form that our event handler fills -->
-					<form class="dirtylistening" name="crop" id="crop" action="?crop" onsubmit="return checkCoords();">
+					<form class="dirtylistening" onReset="setClean('crop');"  name="crop" id="crop" action="?crop" onsubmit="return checkCoords();">
 						<?php XSRFToken('crop'); ?>
 
 						<div style="width: <?php echo $sizedwidth; ?>px; height: <?php echo $sizedheight; ?>px; margin-bottom: 10px; border: 4px solid gray;">
