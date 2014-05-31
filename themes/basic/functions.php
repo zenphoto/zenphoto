@@ -21,7 +21,8 @@ function css_head($ignore) {
 
 	if ($editorConfig = getOption('tinymce_comments')) {
 		if (strpos($themeColor, 'dark') !== false) {
-			setOption('tinymce_comments', 'dark_' . $editorConfig, false);
+			$editorConfig = str_replace('_dark', '', stripSuffix($editorConfig)) . '_dark.php';
+			setOption('tinymce_comments', $editorConfig, false);
 		}
 	}
 
