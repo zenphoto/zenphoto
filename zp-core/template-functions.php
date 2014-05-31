@@ -2298,8 +2298,11 @@ function printImageCustomData() {
  * @author Ozh
  */
 function printImageData($field, $label = '') {
-	global $_zp_current_image;
-	echo html_encodeTagged($_zp_current_image->get($field));
+  global $_zp_current_image;
+  $text = $_zp_current_image->get($field);
+  if (!empty($text)) {
+    echo html_encodeTagged($label . $text);
+  }
 }
 
 /**
@@ -2308,10 +2311,10 @@ function printImageData($field, $label = '') {
  * @return bool
  */
 function hasNextImage() {
-	global $_zp_current_image;
-	if (is_null($_zp_current_image))
-		return false;
-	return $_zp_current_image->getNextImage();
+  global $_zp_current_image;
+  if (is_null($_zp_current_image))
+    return false;
+  return $_zp_current_image->getNextImage();
 }
 
 /**
@@ -2320,10 +2323,10 @@ function hasNextImage() {
  * @return bool
  */
 function hasPrevImage() {
-	global $_zp_current_image;
-	if (is_null($_zp_current_image))
-		return false;
-	return $_zp_current_image->getPrevImage();
+  global $_zp_current_image;
+  if (is_null($_zp_current_image))
+    return false;
+  return $_zp_current_image->getPrevImage();
 }
 
 /**
