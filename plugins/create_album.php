@@ -221,7 +221,7 @@ function create_album_save($updated, $userobj, $i, $alter) {
 						$userobj->setObjects(array_merge($userobj->getObjects(), array('data' => $alb, 'name' => $title, 'edit' => MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_VIEW)));
 						$userobj->save();
 					} else {
-						$_create_album_errors[$user] = sprintf(gettext('Unabel to create %s.'), $alb);
+						$_create_album_errors[$user] = sprintf(gettext('Unable to create %s.'), $alb);
 					}
 				}
 			}
