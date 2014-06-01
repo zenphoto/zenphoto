@@ -105,7 +105,7 @@ function headConolidator_end() {
 	}
 	$data = implode("\n", $unprocessed);
 	if (!empty($data)) {
-		echo '<!-- ' . gettext('un processed heading items') . " -->\n" . trim($data) . "\n";
+		echo '<!-- ' . gettext('unprocessed heading items') . " -->\n" . trim($data) . "\n";
 	}
 
 	echo '<!-- ' . gettext('end of theme_head items') . " -->\n";
