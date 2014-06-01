@@ -41,7 +41,6 @@ zp-core/admin-refresh-metadata.php
 zp-core/admin-rtl.css
 zp-core/admin-statistics.css
 zp-core/admin-tags.php
-zp-core/admin-themes-editor.php
 zp-core/admin-themes.php
 zp-core/admin-thumbcrop.php
 zp-core/admin-upload.php
@@ -539,6 +538,7 @@ zp-core/zp-extensions/slideshow2.php
 zp-core/zp-extensions/static_html_cache.php
 zp-core/zp-extensions/tag_extras.php
 zp-core/zp-extensions/tag_suggest.php
+zp-core/zp-extensions/themeEditor.php
 zp-core/zp-extensions/themeSwitcher.php
 zp-core/zp-extensions/tinymce.php
 zp-core/zp-extensions/tinyURL.php
@@ -1070,6 +1070,8 @@ zp-core/zp-extensions/slideshow2/fonts/ie7.js
 zp-core/zp-extensions/slideshow2/fonts/style.css
 zp-core/zp-extensions/tag_suggest
 zp-core/zp-extensions/tag_suggest/tag.css
+zp-core/zp-extensions/themeEditor
+zp-core/zp-extensions/themeEditor/themes-editor.php
 zp-core/zp-extensions/tinymce
 zp-core/zp-extensions/tinymce/jquery.tinymce.min.js
 zp-core/zp-extensions/tinymce/license.txt
@@ -1339,4 +1341,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1341
+1343

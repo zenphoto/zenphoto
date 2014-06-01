@@ -7,7 +7,7 @@
 // force UTF-8 �
 
 define('OFFSET_PATH', 1);
-require_once(dirname(__FILE__) . '/admin-globals.php');
+require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 
 admin_securityChecks(THEMES_RIGHTS, currentRelativeURL());
 
@@ -103,7 +103,7 @@ if ($message) {
 
 <p class="buttons">
 	<a title="<?php echo gettext('Back to the theme list'); ?>" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-themes.php">
-		<img	src="images/arrow_left_blue_round.png" alt="" />
+		<img	src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_left_blue_round.png" alt="" />
 		<strong><?php echo gettext("Back"); ?></strong>
 	</a>
 </p>
@@ -138,7 +138,9 @@ if ($message) {
 	</div>
 
 
-	<?php if ($file_to_edit) { ?>
+	<?php
+	if ($file_to_edit) {
+		?>
 		<div id="editor">
 			<h2 class="h2_bordered"><?php echo sprintf(gettext('File <tt>%s</tt> from theme %s'), sanitize($_GET['file']), $themes[$theme]['name']); ?></h2>
 			<form class="dirtylistening" onReset="setClean('themeedit_form');" id="themeedit_form" method="post" action="">
@@ -146,18 +148,22 @@ if ($message) {
 				<p><textarea cols="70" rows="35" name="newcontent" id="newcontent"><?php echo $file_content ?></textarea></p>
 				<input type="hidden" name="action" value="edit_file"/>
 				<p class="buttons">
-					<button type="submit" value="<?php echo gettext('Update File') ?>" title="<?php echo gettext("Update File"); ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Update File"); ?></strong></button>
-					<button type="reset" value="<?php echo gettext('Reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+					<button type="submit" value="<?php echo gettext('Update File') ?>" title="<?php echo gettext("Update File"); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Update File"); ?></strong></button>
+					<button type="reset" value="<?php echo gettext('Reset') ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 				</p>
 				<br class="clearall" />
 			</form>
 		</div>
 
-	<?php } else { ?>
-
-		<p><?php echo gettext('Select a file to edit from the list on your right hand. Keep in mind that you can <strong>break everything</strong> if you are not careful when updating files.'); ?></p>
-
-	<?php } ?>
+		<?php
+	} else {
+		?>
+		<div id="editor">
+			<p><?php echo gettext('Select a file to edit from the list on your right hand. Keep in mind that you can <strong>break everything</strong> if you are not careful when updating files.'); ?></p>
+		</div>
+		<?php
+	}
+	?>
 
 </div> <!-- theme-editor -->
 

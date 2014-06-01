@@ -1007,6 +1007,7 @@ input.tags {
 }
 
 #theme-editor #editor {
+	min-height: 500px;
 	margin-right: 210px;
 	background: #ECF1F2;
 	background: #F7F8F9;
