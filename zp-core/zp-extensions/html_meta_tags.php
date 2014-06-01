@@ -36,12 +36,9 @@ class htmlmetatags {
 		setOptionDefault('htmlmeta_tags', '');
 
 		// the html meta tag selector prechecked ones
-		setOptionDefault('htmlmeta_http-equiv-language', '1');
-		setOptionDefault('htmlmeta_name-language', '1');
 		setOptionDefault('htmlmeta_htmlmeta_tags', '1');
 		setOptionDefault('htmlmeta_http-equiv-cache-control', '1');
 		setOptionDefault('htmlmeta_http-equiv-pragma', '1');
-		setOptionDefault('htmlmeta_http-equiv-content-style-type', '1');
 		setOptionDefault('htmlmeta_name=keywords', '1');
 		setOptionDefault('htmlmeta_name-description', '1');
 		setOptionDefault('htmlmeta_name-robot', '1');
@@ -90,14 +87,9 @@ class htmlmetatags {
 										'desc' => gettext("If you enabled Twitter card meta tags, you need to enter your Twitter user name here.")),
 						gettext('HTML meta tags')				 => array('key'				 => 'htmlmeta_tags', 'type'			 => OPTION_TYPE_CHECKBOX_UL,
 										"checkboxes" => array(
-														"http-equiv='language'"								 => "htmlmeta_http-equiv-language",
-														"name = 'language'"										 => "htmlmeta_name-language",
-														"content-language"										 => "htmlmeta_name-content-language",
-														"http-equiv='imagetoolbar' ('false')"	 => "htmlmeta_http-equiv-imagetoolbar",
 														"http-equiv='cache-control'"					 => "htmlmeta_http-equiv-cache-control",
 														"http-equiv='pragma'"									 => "htmlmeta_http-equiv-pragma",
 														"http-equiv='content-style-type'"			 => "htmlmeta_http-equiv-content-style-type",
-														"name='title'"												 => "htmlmeta_name-title",
 														"name='keywords'"											 => "htmlmeta_name-keywords",
 														"name='description'"									 => "htmlmeta_name-description",
 														"name='page-topic'"										 => "htmlmeta_name-page-topic",
@@ -111,21 +103,6 @@ class htmlmetatags {
 														"name='revisit-after'"								 => "htmlmeta_name-revisit-after",
 														"name='expires'"											 => "htmlmeta_name-expires",
 														"name='date'"													 => "htmlmeta_name-date",
-														"name='DC.title'"											 => "htmlmeta_name-DC-title",
-														"name='DC.keywords'"									 => "htmlmeta_name-DC-keywords",
-														"name='DC.description'"								 => "htmlmeta_name-DC-description",
-														"name='DC.language'"									 => "htmlmeta_name-DC-language",
-														"name='DC.subject'"										 => "htmlmeta_name-DC-subject",
-														"name='DC.publisher'"									 => "htmlmeta_name-DC-publisher",
-														"name='DC.creator'"										 => "htmlmeta_name-DC-creator",
-														"name='DC.date'"											 => "htmlmeta_name-DC-date",
-														"name='DC.type'"											 => "htmlmeta_name-DC-type",
-														"name='DC.format'"										 => "htmlmeta_name-DC-format",
-														"name='DC.identifier'"								 => "htmlmeta_name-DC-identifier",
-														"name='DC.rights'"										 => "htmlmeta_name-DC-rights",
-														"name='DC.source'"										 => "htmlmeta_name-DC-source",
-														"name='DC.relation'"									 => "htmlmeta_name-DC-relation",
-														"name='DC.Date.created'"							 => "htmlmeta_name-DC-Date-created",
 														"property='og:title'"									 => "htmlmeta_og-title",
 														"property='og:image'"									 => "htmlmeta_og-image",
 														"property='og:description'"						 => "htmlmeta_og-description",
@@ -260,29 +237,11 @@ class htmlmetatags {
 		$admin = $_zp_authority->getMasterUser();
 		$author = $admin->getName();
 		$meta = '';
-		if (getOption('htmlmeta_http-equiv-language')) {
-			$meta .= '<meta http-equiv="language" content="' . $locale . '">' . "\n";
-		}
-		if (getOption('htmlmeta_name-language')) {
-			$meta .= '<meta name="language" content="' . $locale . '">' . "\n";
-		}
-		if (getOption('htmlmeta_name-content-language')) {
-			$meta .= '<meta name="content-language" content="' . $locale . '">' . "\n";
-		}
-		if (getOption('htmlmeta_http-equiv-imagetoolbar')) {
-			$meta .= '<meta http-equiv="imagetoolbar" content="false">' . "\n";
-		}
 		if (getOption('htmlmeta_http-equiv-cache-control')) {
 			$meta .= '<meta http-equiv="Cache-control" content="' . getOption("htmlmeta_cache_control") . '">' . "\n";
 		}
 		if (getOption('htmlmeta_http-equiv-pragma')) {
 			$meta .= '<meta http-equiv="pragma" content="' . getOption("htmlmeta_pragma") . '">' . "\n";
-		}
-		if (getOption('htmlmeta_http-equiv-content-style-type')) {
-			$meta .= '<meta http-equiv="Content-Style-Type" content="text/css">' . "\n";
-		}
-		if (getOption('htmlmeta_name-title')) {
-			$meta .= '<meta name="title" content="' . html_encode($pagetitle) . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-keywords')) {
 			$meta .= '<meta name="keywords" content="' . htmlmetatags::getMetaKeywords() . '">' . "\n";
@@ -319,53 +278,6 @@ class htmlmetatags {
 				if ($expires == (int) $expires)
 					$expires = preg_replace('|\s\-\d+|', '', date('r', time() + $expires)) . ' GMT';
 				$meta .= '<meta name="expires" content="' . $expires . '">' . "\n";
-		}
-
-		// DC meta data
-		if (getOption('htmlmeta_name-DC-title')) {
-			$meta .= '<meta name="DC.title" content="' . $pagetitle . '">' . "\n";
-		}
-		if (getOption('htmlmeta_name-DC-keywords')) {
-			$meta .= '<meta name="DC.keywords" content="' . htmlmetatags::getMetaKeywords() . '">' . "\n";
-		}
-		if (getOption('htmlmeta_name-DC-description')) {
-			$meta .= '<meta name="DC.description" content="' . $desc . '">' . "\n";
-		}
-		if (getOption('htmlmeta_name-DC-language')) {
-			$meta .= '<meta name="DC.language" content="' . $locale . '">' . "\n";
-		}
-		if (getOption('htmlmeta_name-DC-subject')) {
-			$meta .= '<meta name="DC.subject" content="' . $desc . '">' . "\n";
-		}
-		if (getOption('htmlmeta_name-DC-publisher')) {
-			$meta .= '<meta name="DC.publisher" content="' . FULLWEBPATH . '">' . "\n";
-		}
-		if (getOption('htmlmeta_name-DC-creator')) {
-			$meta .= '<meta name="DC.creator" content="' . FULLWEBPATH . '">' . "\n";
-		}
-		if (getOption('htmlmeta_name-DC-date')) {
-			$meta .= '<meta name="DC.date" content="' . $date . '">' . "\n";
-		}
-		if (getOption('htmlmeta_name-DC-type')) {
-			$meta .= '<meta name="DC.type" content="Text"> <!-- ? -->' . "\n";
-		}
-		if (getOption('htmlmeta_name-DC-format')) {
-			$meta .= '<meta name="DC.format" content="text/html"><!-- What else? -->' . "\n";
-		}
-		if (getOption('htmlmeta_name-DC-identifier')) {
-			$meta .= '<meta name="DC.identifier" content="' . FULLWEBPATH . '">' . "\n";
-		}
-		if (getOption('htmlmeta_name-DC-rights')) {
-			$meta .= '<meta name="DC.rights" content="' . FULLWEBPATH . '">' . "\n";
-		}
-		if (getOption('htmlmeta_name-DC-source')) {
-			$meta .= '<meta name="DC.source" content="' . $url . '">' . "\n";
-		}
-		if (getOption('htmlmeta_name-DC-relation')) {
-			$meta .= '<meta name="DC.relation" content="' . FULLWEBPATH . '">' . "\n";
-		}
-		if (getOption('htmlmeta_name-DC-Date.created')) {
-			$meta .= '<meta name="DC.Date.created" content="' . $date . '">' . "\n";
 		}
 
 		// OpenGraph meta
