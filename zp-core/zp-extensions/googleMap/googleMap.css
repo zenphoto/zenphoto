@@ -1,0 +1,46 @@
+/*
+CSS Rules for google map plugin
+Author: Vincent3569
+*/
+
+.hidden_map {
+	position: absolute;
+	left: -50000px;
+}
+.map_img {
+	text-align: center;
+	margin: 0 0 10px;
+}
+.map_title {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 90%;
+	color: #444;
+	margin: 0 0 10px;
+}
+.map_desc {
+	font-family: Corbel, Verdana, Arial, sans-serif;
+	font-size: 90%;
+	color: #333;
+	text-align: justify;
+	margin: 10px 0 0;
+}
+img, a img {
+    border: medium none;
+}
+.errorbox {
+	padding: 5px;
+	background-color: #FDD;
+	border-top: 1px solid #FAA;
+	border-right: 1px solid #FAA;
+	border-bottom: 5px solid #FAA;
+	border-left: 1px solid #FAA;
+	margin-bottom: 10px;
+	font-size: 100%;
+	color: #DD6666;
+}
+.errorbox h2 {
+	color: #DD6666;
+	font-size: 100%;
+	font-weight: bold;
+	margin: 0px;
+}
