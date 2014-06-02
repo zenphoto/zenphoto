@@ -37,6 +37,7 @@ function printVersion() {
  */
 function printThemeHeadItems() {
 	global $_zp_current_album;
+	printStandardMeta();
 	?>
 	<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jquery.js"></script>
 	<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/zenphoto.js"></script>
@@ -2471,7 +2472,7 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
 	}
 	?>
 	<span id="<?php echo $span; ?>" class="metadata_title">
-	<?php echo $refh; ?><?php echo $title; ?><?php echo $refa; ?>
+		<?php echo $refh; ?><?php echo $title; ?><?php echo $refa; ?>
 	</span>
 	<div id="<?php echo $dataid; ?>"<?php echo $style; ?>>
 		<div<?php echo $id . $class; ?>>
@@ -3874,7 +3875,7 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 		});
 		// ]]> -->
 			</script>
-	<?php echo $prevtext; ?>
+			<?php echo $prevtext; ?>
 			<div>
 				<input type="text" name="words" value="" id="search_input" size="10" />
 				<?php if (count($fields) > 1 || $searchwords) { ?>
@@ -3918,11 +3919,11 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 							?>
 							<label>
 								<input type="radio" name="search_within" id="search_within-1" value="1"<?php if ($within) echo ' checked="checked"'; ?> onclick="search_(1);" />
-			<?php echo gettext('Within'); ?>
+								<?php echo gettext('Within'); ?>
 							</label>
 							<label>
 								<input type="radio" name="search_within" id="search_within-0" value="1"<?php if (!$within) echo ' checked="checked"'; ?> onclick="search_(0);" />
-							<?php echo gettext('New'); ?>
+								<?php echo gettext('New'); ?>
 							</label>
 							<?php
 						}
@@ -4210,7 +4211,7 @@ function printPasswordForm($_password_hint, $_password_showuser = NULL, $_passwo
 		if ($_password_showProtected && !$_zp_login_error) {
 			?>
 			<p>
-			<?php echo gettext("The page you are trying to view is password protected."); ?>
+				<?php echo gettext("The page you are trying to view is password protected."); ?>
 			</p>
 			<?php
 		}

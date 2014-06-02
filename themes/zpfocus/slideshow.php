@@ -34,7 +34,7 @@ if (!defined('WEBPATH'))
 			<link rel="stylesheet" href="<?php echo WEBPATH; ?>/themes/zenpage/slideshow.css" type="text/css" />
 	<?php zp_apply_filter('theme_head'); ?>
 			<title><?php printBareGalleryTitle(); ?> <?php echo gettext("Slideshow"); ?></title>
-			<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
+			 
 	<?php printSlideShowJS(); ?>
 
 		</head>
