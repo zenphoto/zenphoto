@@ -10,6 +10,10 @@ if (!defined('WEBPATH'))
 		
 		<?php zp_apply_filter('theme_head'); ?>
 		<?php printHeadTitle(); ?>
+<<<<<<< HEAD
+=======
+		<meta charset="<?php echo LOCAL_CHARSET; ?>">
+>>>>>>> upstream/master
 		<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 		<link rel="stylesheet" href="<?php echo pathurlencode(dirname(dirname($zenCSS))); ?>/common.css" type="text/css" />
 		head>
