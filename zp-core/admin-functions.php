@@ -125,18 +125,14 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/admin.js" type="text/javascript" ></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.scrollTo.js" type="text/javascript"></script>
 
-			<!--	dirtyForms has problems with "dirtyignore"
-						<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/dirtyforms/jquery.dirtyforms.js" type="text/javascript"></script>
-			-->
-			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.are-you-sure.js" type="text/javascript"></script>
+			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/dirtyforms/jquery.dirtyforms.js" type="text/javascript"></script>
 
 
 			<script type="text/javascript">
 				// <!-- <![CDATA[
 
 				function setClean(id) {
-					//	dirtyForms has problems with "dirtyignore"
-					//			$('form#' + id).dirtyForms('setClean');
+					$('form#' + id).dirtyForms('setClean');
 					$('form#' + id).removeClass('tinyDirty');
 				}
 				$(document).ready(function() {
@@ -151,10 +147,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 		<?php
 	}
 	?>
-					//	dirtyForms has problems with "dirtyignore"
-					//		$.DirtyForms.message = '<?php echo addslashes(gettext('You have unsaved changes!')); ?>';
-					//		$('form.dirtylistening').dirtyForms();
-					$('form.dirtylistening').areYouSure({'message': '<?php echo addslashes(gettext('You have unsaved changes!')); ?>'});
+					$.DirtyForms.message = '<?php echo addslashes(gettext('You have unsaved changes!')); ?>';
+					$('form.dirtylistening').dirtyForms();
 
 				});
 				$(function() {
