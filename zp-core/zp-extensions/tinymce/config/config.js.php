@@ -65,6 +65,7 @@ if (empty($MCEtoolbars)) {
 									form = $(editor.getContainer()).closest('form');
 													if (editor.isDirty()) {
 									$(form).addClass('tinyDirty');
+													$('.dirtylistening').addClass('dirty'); //dirtyForms has problems with "dirtyignore"
 									} else {
 									$(form).removeClass('tinyDirty');
 									}
