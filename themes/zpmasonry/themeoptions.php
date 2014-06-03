@@ -142,9 +142,10 @@ class ThemeOptions {
 						gettext('Use News Feature')														 => array('key'		 => 'zpmas_usenews', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 21,
 										'desc'	 => gettext("IF you have the Zenpage plugin enabled, you can uncheck this to NOT use the news feature of the Zenpage plugin (use only pages)")),
-						gettext('Custom CSS')																	 => array('order'	 => 9, 'key'		 => 'zpmas_customcss', 'type'	 => OPTION_TYPE_TEXTAREA,
-										'order'	 => 22,
-										'desc'	 => gettext('Enter any custom CSS, safely carries over upon theme upgrade.'))
+						gettext('Custom CSS')																	 => array('order'				 => 9, 'key'					 => 'zpmas_customcss', 'type'				 => OPTION_TYPE_TEXTAREA,
+										'order'				 => 22,
+										'multilingual' => false,
+										'desc'				 => gettext('Enter any custom CSS, safely carries over upon theme upgrade.'))
 		);
 	}
 
