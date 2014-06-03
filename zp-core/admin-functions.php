@@ -304,7 +304,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				if (array_key_exists('alert', $zenphoto_tabs[$key])) {
 					$alert = $zenphoto_tabs[$key]['alert'];
 				} else {
-					$alert = NULL;
+					$alert = array();
 				}
 				$class = '';
 				if ($_zp_admin_tab == $key) {
@@ -329,8 +329,15 @@ function printAdminHeader($tab, $subtab = NULL) {
 									} else {
 										$link = WEBPATH . $link;
 									}
+
+
+									if (in_array($key, $alert)) {
+										$subclass = ' class="subdropdownalert"';
+									} else {
+										$subclass = '';
+									}
 									?>
-									<li><a href="<?php echo html_encode($link); ?>"><?php echo html_encode(ucfirst($key)); ?></a></li>
+									<li<?php echo $subclass; ?>><a href="<?php echo html_encode($link); ?>"><?php echo html_encode(ucfirst($key)); ?></a></li>
 									<?php
 								} // foreach end
 								?>

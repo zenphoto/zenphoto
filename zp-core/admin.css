@@ -278,7 +278,7 @@ ul.nav li.alert a {
 	border-right: 1px solid #CBCBCB;
 	color: black;
 	background: none;
-	background-color: #FF8A00;
+	background-color: yellow;
 	background-repeat: repeat-x;
 	cursor: default;
 	height: 21px;
@@ -317,6 +317,16 @@ ul.nav ul.subdropdown li a {
 	height: auto;
 	background: #F8F8F8;
 	font-size: 14px;
+}
+
+ul.nav ul.subdropdown li.subdropdownalert a {
+	border: 1px solid #CBCBCB;
+	margin: 0;
+	padding: 5px;
+	top: 0;
+	background: none;
+	background-color:yellow;
+	background-repeat: repeat-x;
 }
 
 ul.nav ul.subdropdown li a:hover {
@@ -408,7 +418,7 @@ ul.nav li:hover > ul {
 	border-right: 1px solid #CBCBCB;
 	color: #4D646F;
 	background: none;
-	background-color: #FF8A00;
+	background-color: yellow;
 	cursor: default;
 	height: 21px;
 	_height: 24px;
