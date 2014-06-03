@@ -1,9 +1,12 @@
-<?php if (!defined('WEBPATH')) die();
+<?php
+if (!defined('WEBPATH'))
+	die();
 if (function_exists('printAddThis')) {
 	$zpmin_social = true;
 } else {
 	$zpmin_social = false;
-} ?>
+}
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -71,7 +74,6 @@ if (function_exists('printAddThis')) {
 			case 'slideshow.php':
 				$zpmin_metatitle = getBareAlbumTitle() . ' | ' . gettext('Slideshow') . ' | ';
 				if (!function_exists('printGslideshow')) {
-					printSlideShowJS();
 					echo '<link rel="stylesheet" href="' . $_zp_themeroot . '/css/slideshow.css" type="text/css" />';
 				}
 				$showsearch = false;
@@ -114,9 +116,11 @@ if (function_exists('printAddThis')) {
 		<style type="text/css">.album-maxspace,.thumb-maxspace{zoom:1;display:inline;}#search{padding:2px 6px 6px 6px;}</style>
 		<![endif]-->
 		<?php printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
-		<?php if (function_exists("printRSSHeaderLink")) {
+		<?php
+		if (function_exists("printRSSHeaderLink")) {
 			printRSSHeaderLink("News", "", gettext('News RSS'), "");
-		} ?>
+		}
+		?>
 
 		<?php
 		$zenpage = getOption('zp_plugin_zenpage');
@@ -185,7 +189,7 @@ if (function_exists('printAddThis')) {
 			}
 			.cblinks{top:<?php echo $cblinks_top; ?>px;}
 		</style>
-<?php if (getOption('zp_plugin_reCaptcha')) { ?>
+		<?php if (getOption('zp_plugin_reCaptcha')) { ?>
 			<script type="text/javascript" charset="utf-8">
 				var RecaptchaOptions = {
 					theme: 'clean'
@@ -203,24 +207,28 @@ if (function_exists('printAddThis')) {
 				// ]]> -->
 			</script>
 
-<?php } ?>
+			<?php } ?>
 	</head>
 	<body>
-<?php zp_apply_filter('theme_body_open'); ?>
+						 <?php zp_apply_filter('theme_body_open'); ?>
 		<div id="wrapper">
-			<div id="header"<?php if (!$showsearch) {
-	echo ' style="text-align:center;"';
-} ?>>
-<?php if ($zpmin_logo) { ?>
+			<div id="header"<?php
+						 if (!$showsearch) {
+							 echo ' style="text-align:center;"';
+						 }
+						 ?>>
+					<?php if ($zpmin_logo) { ?>
 					<div id="image-logo"><a href="<?php echo htmlspecialchars(getGalleryIndexURL()); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/<?php echo $zpmin_logo; ?>" /></a></div>
-<?php } else { ?>
+				<?php } else { ?>
 					<h1 id="logo"><a href="<?php echo htmlspecialchars(getGalleryIndexURL()); ?>"><?php echo getGalleryTitle(); ?></a></h1>
-<?php } ?>
-<?php if ($zpmin_social) { ?>
+				<?php } ?>
+				<?php if ($zpmin_social) { ?>
 					<div id="social">
 	<?php printAddThis(); ?>
 					</div>
 <?php } ?>
-<?php if ($showsearch) {
+<?php
+if ($showsearch) {
 	printSearchForm('', 'searchform', '', gettext('Search'), "$_zp_themeroot/images/drop.gif", null, null, "$_zp_themeroot/images/reset.gif");
-} ?>
+}
+?>

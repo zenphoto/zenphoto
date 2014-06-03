@@ -48,7 +48,12 @@
 			<?php } ?>
 				<br class="clear" />
 			</div>
-			<?php @call_user_func('printGoogleMap'); ?>			</div>
+				<?php if (function_exists('printGoogleMap')) { ?>
+				<div id="map">
+					<?php printGoogleMap(); ?>
+				</div>
+				<?php } ?>
+			</div>
 		<div class="five columns offset-by-one sidebar">
 				<?php if ($zpskel_social) include ("inc-social.php"); ?>
 				<?php if (($nextimg) || ($previmg)) { ?>

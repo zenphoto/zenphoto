@@ -14,7 +14,7 @@ if (!defined('WEBPATH'))
 	<!DOCTYPE html>
 	<html>
 		<head>
-	<?php zp_apply_filter('theme_head'); ?>
+			<?php zp_apply_filter('theme_head'); ?>
 			<meta charset="<?php echo LOCAL_CHARSET; ?>" />
 			<meta name="viewport" content="width=device-width" />
 			<title><?php echo gettext('Slideshow') . ' | ' . getBareGalleryTitle(); ?></title>
@@ -22,7 +22,7 @@ if (!defined('WEBPATH'))
 		<body>
 			<?php zp_apply_filter('theme_body_open'); ?>
 			<?php printGslideshow(); ?>
-	<?php zp_apply_filter('theme_body_close'); ?>
+			<?php zp_apply_filter('theme_body_close'); ?>
 		</body>
 	</html>
 
@@ -32,18 +32,16 @@ if (!defined('WEBPATH'))
 	<html xmlns="http://www.w3.org/1999/xhtml">
 		<head>
 			<link rel="stylesheet" href="<?php echo WEBPATH; ?>/themes/zenpage/slideshow.css" type="text/css" />
-	<?php zp_apply_filter('theme_head'); ?>
+			<?php zp_apply_filter('theme_head'); ?>
 			<title><?php printBareGalleryTitle(); ?> <?php echo gettext("Slideshow"); ?></title>
-			 
-	<?php printSlideShowJS(); ?>
 
 		</head>
 		<body>
-				<?php zp_apply_filter('theme_body_open'); ?>
+			<?php zp_apply_filter('theme_body_open'); ?>
 			<div id="slideshowpage">
-			<?php printSlideShow(true, true); ?>
+				<?php printSlideShow(true, true); ?>
 			</div>
-	<?php zp_apply_filter('theme_body_close'); ?>
+			<?php zp_apply_filter('theme_body_close'); ?>
 
 		</body>
 	</html>
