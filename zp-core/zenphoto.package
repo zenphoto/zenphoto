@@ -19,10 +19,6 @@ themes/basic/slideshow.php
 themes/basic/theme.png
 themes/basic/theme_description.php
 themes/basic/themeoptions.php
-themes/basic/.quarantine
-themes/basic/.tmb
-themes/basic/.tmb/l1_c2xpZGVzaG93LWNvbnRyb2xzLnBuZw1399924466.png
-themes/basic/.tmb/l1_dGhlbWUucG5n1399924466.png
 themes/basic/images
 themes/basic/images/50percent.png
 themes/basic/images/admin-buttonback.jpg
@@ -751,8 +747,6 @@ themes/zpskeleton/search.php
 themes/zpskeleton/theme.png
 themes/zpskeleton/theme_description.php
 themes/zpskeleton/themeoptions.php
-themes/zpskeleton/.quarantine
-themes/zpskeleton/.tmb
 themes/zpskeleton/comment_form
 themes/zpskeleton/comment_form/comment_form.php
 themes/zpskeleton/contact_form
@@ -2134,4 +2128,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2136
+2130
