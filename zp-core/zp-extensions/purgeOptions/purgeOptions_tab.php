@@ -93,7 +93,7 @@ printAdminHeader('options', '');
 						echo gettext('No option owners have been located.');
 					} else {
 						?>
-						<form class="dirty-check" action="?page=options&tab=purge" method="post" >
+						<form class="dirtylistening" onReset="setClean('purge_options_form');" id="purge_options_form" action="?page=options&tab=purge" method="post" >
 							<?php XSRFToken('purgeOptions'); ?>
 							<input type="hidden" name="purge" value="1" />.
 							<p class = "buttons" >

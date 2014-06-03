@@ -378,6 +378,8 @@ if (isset($_GET['action'])) {
 						setThemeOption('images_per_page', $images_per_page, $table, $themename);
 						setThemeOption('images_per_row', $images_per_row, $table, $themename);
 					}
+					setThemeOption('theme_head_separator', sanitize($_POST['theme_head_separator']), $table, $themename);
+					setThemeOption('theme_head_listparents', (int) isset($_POST['theme_head_listparents']), $table, $themename);
 
 					if (isset($_POST['thumb_transition']))
 						setThemeOption('thumb_transition', (int) ((sanitize_numeric($_POST['thumb_transition']) - 1) && true), $table, $themename);
@@ -574,7 +576,7 @@ Zenphoto_Authority::printPasswordFormJS();
 						}
 						?>
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
-						<form class="dirty-check" id="form_options" action="?action=saveoptions" method="post" autocomplete="off">
+						<form class="dirtylistening" onReset="setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
 							<?php XSRFToken('saveoptions'); ?>
 							<input	type="hidden" name="savegeneraloptions" value="yes" />
 							<table class="options">
@@ -1048,7 +1050,7 @@ Zenphoto_Authority::printPasswordFormJS();
 					?>
 					<div id="tab_gallery" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
-						<form class="dirty-check" id="form_options" action="?action=saveoptions" method="post" autocomplete="off">
+						<form class="dirtylistening" onReset="setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
 							<?php XSRFToken('saveoptions'); ?>
 							<input	type="hidden" name="savegalleryoptions" value="yes" />
 							<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
@@ -1398,7 +1400,7 @@ Zenphoto_Authority::printPasswordFormJS();
 					?>
 					<div id="tab_search" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
-						<form class="dirty-check" id="form_options" action="?action=saveoptions" method="post" autocomplete="off">
+						<form class="dirtylistening" onReset="setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
 							<?php XSRFToken('saveoptions'); ?>
 							<input	type="hidden" name="savesearchoptions" value="yes" />
 							<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
@@ -1742,7 +1744,7 @@ Zenphoto_Authority::printPasswordFormJS();
 					?>
 					<div id="tab_image" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
-						<form class="dirty-check" id="form_options" action="?action=saveoptions" method="post" autocomplete="off">
+						<form class="dirtylistening" onReset="setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
 							<?php XSRFToken('saveoptions'); ?>
 							<input type="hidden" name="saveimageoptions" value="yes" />
 							<p align="center">
@@ -2443,7 +2445,7 @@ Zenphoto_Authority::printPasswordFormJS();
 						}
 						standardThemeOptions($themename, $album);
 						?>
-						<form class="dirty-check" action="?action=saveoptions" method="post" id="themeoptionsform" autocomplete="off">
+						<form class="dirtylistening" onReset="setClean('themeoptionsform');" action="?action=saveoptions" method="post" id="themeoptionsform" autocomplete="off" >
 							<?php XSRFToken('saveoptions'); ?>
 							<input type="hidden" id="savethemeoptions" name="savethemeoptions" value="yes" />
 							<input type="hidden" name="optiontheme" value="<?php echo urlencode($themename); ?>" />
@@ -2724,6 +2726,15 @@ Zenphoto_Authority::printPasswordFormJS();
 										}
 										?>
 										<tr>
+											<td><?php echo gettext("Theme head &lt;title&gt; tag"); ?></td>
+											<td>
+												<label><input type="checkbox" name="theme_head_listparents" value="1"<?php if (getThemeOption('theme_head_listparents', $album, $themename)) echo ' checked="checked"'; ?> /><?php echo gettext('enabled'); ?></label>
+												<br />
+												<input type="text" name="theme_head_separator" size="2em" value="<?php echo getThemeOption('theme_head_separator', $album, $themename); ?>" /><?php echo "separator"; ?>
+											</td>
+											<td><?php echo gettext('Select if you want parent breadcrumbs and if so the separator for them.'); ?></td>
+										</tr>
+										<tr>
 											<td><?php echo gettext("Gallery index page link:"); ?></td>
 											<td>
 												<select id="custom_index_page" name="custom_index_page"<?php echo $disable; ?>>
@@ -2814,7 +2825,7 @@ Zenphoto_Authority::printPasswordFormJS();
 																							var optionholder = new Array();
 																							// ]]> -->
 						</script>
-						<form class="dirty-check" id="form_options" action="?action=saveoptions<?php if (isset($_GET['single'])) echo '&amp;single=' . $showExtension; ?>" method="post" autocomplete="off">
+						<form class="dirtylistening" onReset="setClean('form_options');" id="form_options" action="?action=saveoptions<?php if (isset($_GET['single'])) echo '&amp;single=' . $showExtension; ?>" method="post" autocomplete="off" >
 							<?php XSRFToken('saveoptions'); ?>
 							<input type="hidden" name="savepluginoptions" value="yes" />
 							<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
@@ -2970,7 +2981,7 @@ Zenphoto_Authority::printPasswordFormJS();
 					?>
 					<div id="tab_security" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
-						<form class="dirty-check" id="form_options" action="?action=saveoptions" method="post" autocomplete="off">
+						<form class="dirtylistening" onReset="setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
 							<?php XSRFToken('saveoptions'); ?>
 							<input type="hidden" name="savesecurityoptions" value="yes" />
 							<table class="options">

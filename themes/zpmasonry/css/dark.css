@@ -1,0 +1,106 @@
+@import url('reset.css');
+@import url('main.css');
+
+/* Color Style */
+body,
+#menu,
+.side-menu li a,
+.image-nav,
+#copy,
+input[type="submit"]:hover,input[type="reset"]:hover,
+#search_input,
+#searchextrashow,
+.news-truncate .newsarticlecredit span,
+#slideshowlink a:hover,
+#password-div  input
+{background-color:#282828;}
+
+#sidebar-inner,
+#pagination,
+.box,
+#infscr-loading,
+#breadcrumbs,
+#subscribeextrashow,
+#admin_data,
+#password-div,
+input,textarea,select,
+.newsarticlecredit span
+{background-color:#202020;}
+
+#footer-inner,
+#header-inner,
+#nav li.active a,
+#nav li a.active,
+#nav li a:hover,
+.box.album,
+.side-menu li a:hover,
+.side-menu li a.active,
+.overlay,
+#slideshowlink a,
+.jcarousel-list li,
+.image-block,
+.jcarousel-item-placeholder,
+#cycle li h3,
+#ss-title,
+#cycle
+{background-color:#121212;}
+
+#sidebar-inner,
+#pagination,
+.box,
+#infscr-loading,
+#breadcrumbs,
+#subscribeextrashow,
+#admin_data,
+#password-div,
+input,textarea,select,
+.newsarticlecredit span,
+#search_input,
+#searchextrashow,
+#slideshowlink a:hover
+{border-color:#121212;}
+
+.news-truncate .newsarticlecredit,
+#slideshowlink a
+{border-color:#282828;}
+
+#sidebar-inner,
+.newsarticlecredit 
+{border-top-color:#202020;}
+
+#sidebar-inner.fixed 
+{border-top-color:#121212;}
+
+body
+{color:#cbcbcb;}
+
+h1#logo a,
+h1,h2,h3,
+#nav li.active a,
+.date,.counts,.tags,
+#copy,
+input,textarea,select,
+.side-menu li a,
+#cycle li h3 a,
+#ss-title
+{color:#fff;}
+
+a:link,a:active,a:visited{color:#2494DB;}
+a:hover{color:#7ccc0cb;}
+
+#breadcrumbs{background-image:url(../images/home-inv.png);}
+#search_input{background-image:url(../images/search-inv.png);}
+.date{background-image:url(../images/calendar-inv.png);}
+.tags{background-image:url(../images/tag-inv.png);}
+.counts{background-image:url(../images/star-inv.png);}
+#backtotop{background-image:url(../images/arrow-alt-up-inv.png);}
+#admin h3 a{background-image: url(../images/tools-inv.png);}
+.pass{background-image: url(../images/padlock-closed-inv.png);}
+
+#slideshowlink a{background-image: url(../images/cinema-inv.png);}
+
+.jcarousel-list li,.image-block,.jcarousel-item-placeholder
+{background-image:url(../images/loading.gif);}
+
+img.activecarouselimage
+{border-color:#fff!important;}

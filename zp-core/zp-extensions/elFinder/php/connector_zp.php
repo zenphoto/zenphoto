@@ -58,8 +58,23 @@ function accessAlbums($attr, $path, $data, $volume) {
 $opts = array();
 
 if ($_REQUEST['origin'] == 'upload') {
+	$rights = zp_loggedin();
+	$themeAlias = sprintf(gettext('Themes (%s)'), THEMEFOLDER);
+	if (isset($_REQUEST['themeEdit'])) {
+		$rights = 0;
+		$themeRequest = sanitize($_REQUEST['themeEdit']);
+		if (zp_loggedin(THEMES_RIGHTS) && file_exists(SERVERPATH . '/' . THEMEFOLDER . '/' . $themeRequest)) {
+			if (!zenPhotoTheme($themeRequest)) {
+				$themeAlias = sprintf(gettext('%s'), $themeRequest);
+				$themeRequest .= '/';
+				$rights = THEMES_RIGHTS;
+			}
+		}
+	} else {
+		$themeRequest = '';
+	}
 
-	if (zp_loggedin(FILES_RIGHTS)) {
+	if ($rights & FILES_RIGHTS) {
 		$opts['roots'][0] = array(
 						'driver'				 => 'LocalFileSystem',
 						'startPath'			 => SERVERPATH . '/' . UPLOAD_FOLDER . '/',
@@ -76,7 +91,7 @@ if ($_REQUEST['origin'] == 'upload') {
 		);
 	}
 
-	if (zp_loggedin(THEMES_RIGHTS)) {
+	if ($rights & THEMES_RIGHTS) {
 		$zplist = array();
 		foreach ($_zp_gallery->getThemes() as $theme => $data) {
 			if (zenPhotoTheme($theme)) {
@@ -85,10 +100,10 @@ if ($_REQUEST['origin'] == 'upload') {
 		}
 		$opts['roots'][1] = array(
 						'driver'				 => 'LocalFileSystem',
-						'startPath'			 => SERVERPATH . '/' . THEMEFOLDER . '/',
-						'path'					 => SERVERPATH . '/' . THEMEFOLDER . '/',
-						'URL'						 => WEBPATH . '/' . THEMEFOLDER . '/',
-						'alias'					 => sprintf(gettext('Themes (%s)'), THEMEFOLDER),
+						'startPath'			 => SERVERPATH . '/' . THEMEFOLDER . '/' . $themeRequest,
+						'path'					 => SERVERPATH . '/' . THEMEFOLDER . '/' . $themeRequest,
+						'URL'						 => WEBPATH . '/' . THEMEFOLDER . '/' . $themeRequest,
+						'alias'					 => $themeAlias,
 						'mimeDetect'		 => 'internal',
 						'tmbPath'				 => '.tmb',
 						'utf8fix'				 => true,
@@ -113,7 +128,7 @@ if ($_REQUEST['origin'] == 'upload') {
 		);
 	}
 
-	if (zp_loggedin(UPLOAD_RIGHTS)) {
+	if ($rights & UPLOAD_RIGHTS) {
 		$opts['roots'][2] = array(
 						'driver'			 => 'LocalFileSystem',
 						'startPath'		 => getAlbumFolder(SERVERPATH),
@@ -128,7 +143,7 @@ if ($_REQUEST['origin'] == 'upload') {
 						'uploadAllow'	 => array('image'),
 						'acceptedName' => '/^[^\.].*$/'
 		);
-		if (zp_loggedin(ADMIN_RIGHTS)) {
+		if ($rights & ADMIN_RIGHTS) {
 			$opts['roots'][2]['accessControl'] = 'access';
 		} else {
 			$opts['roots'][2]['accessControl'] = 'accessAlbums';
@@ -215,7 +230,7 @@ if ($_REQUEST['origin'] == 'upload') {
 		}
 	}
 
-	if (zp_loggedin(ADMIN_RIGHTS)) {
+	if ($rights & ADMIN_RIGHTS) {
 		$opts['roots'][3] = array(
 						'driver'				 => 'LocalFileSystem',
 						'startPath'			 => SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/',
@@ -260,7 +275,7 @@ if ($_REQUEST['origin'] == 'upload') {
 		);
 	}
 } else { //	origin == 'tinyMCE
-	if (zp_loggedin(FILES_RIGHTS)) {
+	if ($rights & FILES_RIGHTS) {
 		$opts['roots'][0] = array(
 						'driver'				 => 'LocalFileSystem',
 						'startPath'			 => SERVERPATH . '/' . UPLOAD_FOLDER . '/',

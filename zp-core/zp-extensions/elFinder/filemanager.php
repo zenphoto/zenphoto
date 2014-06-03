@@ -45,6 +45,16 @@ echo "\n</head>";
 								customData: {
 									'XSRFToken': '<?php echo getXSRFToken('elFinder'); ?>',
 									'zp_user_auth': '<?php echo zp_getCookie('zp_user_auth'); ?>',
+<?php
+if (isset($_REQUEST['themeEdit'])) {
+	$theme = sanitize($_REQUEST['themeEdit']);
+	if (zp_loggedin(THEMES_RIGHTS) && is_dir(SERVERPATH . '/' . THEMEFOLDER . '/' . $theme)) {
+		?>
+											'themeEdit': '<?php echo $theme; ?>',
+		<?php
+	}
+}
+?>
 									'origin': 'upload'
 								},
 								url: '<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/elFinder/php/connector_zp.php'  				// connector URL (REQUIRED)

@@ -134,9 +134,9 @@ if (!defined('OFFSET_PATH')) {
 		<!DOCTYPE html>
 		<html xmlns="http://www.w3.org/1999/xhtml">
 			<head>
-				<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css" type="text/css" />
-				<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
+				<?php printStandardMeta(); ?>
 				<title><?php echo $pagetitle; ?></title>
+				<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css" type="text/css" />
 				<style>
 					.doc_box_field {
 						padding-left: 0px;

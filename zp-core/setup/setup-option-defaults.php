@@ -307,6 +307,9 @@ setOptionDefault('site_email_name', 'ZenPhoto20');
 	natcasesort($themes);
 	echo gettext('Theme setup:') . '<br />';
 	foreach ($themes as $theme) {
+		if (!zenPhotoTheme($theme)) {
+			enableExtension('deprecated_functions', 900 | CLASS_PLUGIN);
+		}
 		?>
 		<span>
 			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_themeOptions.php?theme=' . urlencode($theme); ?>" title="<?php echo $theme; ?>" alt="<?php echo $theme; ?>" height="16px" width="16px" />
@@ -479,6 +482,9 @@ query('UPDATE ' . prefix('administrators') . ' SET `passupdate`=' . db_quote(dat
 setOptionDefault('image_processor_flooding_protection', 1);
 setOptionDefault('codeblock_first_tab', 1);
 setOptionDefault('GD_FreeType_Path', SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/gd_fonts');
+
+setOptionDefault('theme_head_listparents', 0);
+setOptionDefault('theme_head_separator', ' | ');
 
 $vers = explode('-', ZENPHOTO_VERSION);
 $vers = explode('.', $vers[0]);

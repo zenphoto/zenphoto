@@ -6,9 +6,9 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
+		
 		<?php zp_apply_filter('theme_head'); ?>
-		<?php printHeadTitle(); ?>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
+		
 		<?php if (zp_has_filter('theme_head', 'colorbox::css')) { ?>
 			<script type="text/javascript">
 				// <!-- <![CDATA[
@@ -98,7 +98,8 @@ if (!defined('WEBPATH'))
 								}
 								printGalleryTitle();
 								?></a> |
-								<?php printParentBreadcrumb();
+								<?php
+								printParentBreadcrumb();
 								printAlbumBreadcrumb("", " | ");
 								?>
 							</span>
@@ -159,7 +160,7 @@ if (!defined('WEBPATH'))
 				if (function_exists('printGoogleMap')) {
 					?>
 					<div id="map_link">
-					<?php printGoogleMap(); ?>
+	<?php printGoogleMap(); ?>
 					</div>
 					<br class="clearall" />
 					<?php

@@ -16,11 +16,9 @@ $backgroundImagePath = "";
 <!DOCTYPE html>
 <html>
 	<head>
-		<?php
-		zp_apply_filter('theme_head');
-		?>
-		<?php printHeadTitle(); ?>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
+		
+		<?php zp_apply_filter('theme_head'); ?>
+		
 		<?php $handler->theme_head($_zp_themeroot); ?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[

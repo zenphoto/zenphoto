@@ -11,6 +11,18 @@ require_once(dirname(__FILE__) . '/admin-globals.php');
 
 admin_securityChecks(UPLOAD_RIGHTS | FILES_RIGHTS, $return = currentRelativeURL());
 
+if (isset($_GET['page'])) {
+	$page = sanitize($_GET['page']);
+} else {
+	$link = $zenphoto_tabs['upload']['link'];
+	if (strpos($link, 'admin-upload.php') == false) {
+		header('location: ' . $link);
+		exitZP();
+	}
+	$page = "upload";
+	$_GET['page'] = 'upload';
+}
+
 if (isset($_GET['type'])) {
 	$uploadtype = sanitize($_GET['tab']);
 	zp_setCookie('uploadtype', $uploadtype);
@@ -38,9 +50,6 @@ if (count($handlers) > 0) {
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/no_uploader.php');
 	exitZP();
 }
-
-$page = "upload";
-$_GET['page'] = 'upload';
 
 printAdminHeader('upload', 'albums');
 ?>

@@ -1293,8 +1293,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									} else if (strpos($extra, 'php.ini') !== false) {
 										$phi_ini_count++;
 									} else if (defined('TEST_RELEASE') && TEST_RELEASE || (strpos($extra, '/.svn') === false)) {
-										$systemlist[] = $extra;
-										$filelist[] = $_zp_UTF8->convert(str_replace($base, '', $extra), FILESYSTEM_CHARSET, 'UTF-8');
+										$systemlist[] = str_replace($base, '', $extra);
 									} else {
 										$svncount++;
 									}
@@ -1306,32 +1305,32 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									$filelist[] = '<br />' . sprintf(ngettext('php.ini [%s instance]', 'php.ini [%s instances]', $phi_ini_count), $phi_ini_count);
 								}
 								if ($package_file_count) { //	no point in this if the package list was damaged!
-									if (!empty($filelist)) {
+									if (!empty($systemlist)) {
 										if (isset($_GET['delete_extra'])) {
-											foreach ($systemlist as $key => $file) {
+											foreach ($systemlist as $key => $file8) {
+												$file = $base . $_zp_UTF8->convert($file8, FILESYSTEM_CHARSET, 'UTF-8');
 												if (!is_dir($file)) {
 													@chmod($file, 0777);
-													clearstatcache();
-													if (@unlink($file)) {
-														unset($filelist[$key]);
+													if (@unlink($file) || !file_exists($file)) {
 														unset($systemlist[$key]);
+													} else {
+														$filelist[] = $file8;
 													}
 												}
 											}
 											rsort($systemlist);
-											foreach ($systemlist as $key => $file) {
+											foreach ($systemlist as $key => $file8) {
+												$file = $base . $_zp_UTF8->convert($file8, FILESYSTEM_CHARSET, 'UTF-8');
 												@chmod($file, 0777);
-												clearstatcache();
-												if (@rmdir($file)) {
-													unset($filelist[$key]);
+												if (!@rmdir($file) || is_dir($file)) {
+													$filelist[] = $file8;
 												}
 											}
-
 											if (!empty($filelist)) {
 												checkmark(-1, '', gettext('ZenPhoto20 core folders [Some unknown files were found]'), gettext('The following files could not be deleted.') . '<br /><code>' . implode('<br />', $filelist) . '<code>');
 											}
 										} else {
-											checkMark(-1, '', gettext('ZenPhoto20 core folders [Some unknown files were found]'), gettext('You should remove the following files: ') . '<br /><code>' . implode('<br />', $filelist) .
+											checkMark(-1, '', gettext('ZenPhoto20 core folders [Some unknown files were found]'), gettext('You should remove the following files: ') . '<br /><code>' . implode('<br />', $systemlist) .
 															'</code><p class="buttons"><a href="?delete_extra' . ($debug ? '&amp;debug' : '') . '">' . gettext("Delete extra files") . '</a></p><br class="clearall" /><br class="clearall" />');
 										}
 									}

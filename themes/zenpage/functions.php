@@ -81,6 +81,7 @@ function my_checkPageValidity($request, $gallery_page, $page) {
 			break;
 		case 'news.php':
 		case 'album.php':
+		case 'favorites.php';
 		case 'search.php':
 			break;
 		default:
