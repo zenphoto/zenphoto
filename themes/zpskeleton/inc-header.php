@@ -30,6 +30,7 @@ $zpskel_social = function_exists('printAddThis');
 				$galleryactive = true;
 				break;
 			case 'album.php':
+			case 'favorites.php';
 				if ($_zp_page > 1) {
 					$metatitle = getBareAlbumTitle() . " ($_zp_page)";
 				} else {
@@ -132,7 +133,7 @@ $zpskel_social = function_exists('printAddThis');
 		<meta name="description" content="<?php echo $zpskel_metadesc; ?>" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/css/style.css">
-<?php if (!$zpskel_ismobile) { ?>
+		<?php if (!$zpskel_ismobile) { ?>
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" />
 			<script src="<?php echo $_zp_themeroot; ?>/js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
 			<script type="text/javascript" charset="utf-8">
@@ -145,19 +146,19 @@ $zpskel_social = function_exists('printAddThis');
 				});
 			</script>
 		<?php } ?>
-<?php if ($_zp_gallery_page == "search.php") printZDSearchToggleJS(); ?>
+		<?php if ($_zp_gallery_page == "search.php") printZDSearchToggleJS(); ?>
 		<link rel="shortcut icon" href="<?php echo $_zp_themeroot; ?>/images/favicon.ico">
 		<link rel="apple-touch-icon" href="<?php echo $_zp_themeroot; ?>/images/apple-touch-icon.png">
 		<link rel="apple-touch-icon" sizes="72x72" href="<?php echo $_zp_themeroot; ?>/images/apple-touch-icon-72x72.png">
 		<link rel="apple-touch-icon" sizes="114x114" href="<?php echo $_zp_themeroot; ?>/images/apple-touch-icon-114x114.png">
-<?php if (getOption('zpskel_customcss') != null) { ?>
+		<?php if (getOption('zpskel_customcss') != null) { ?>
 			<style>
-			<?php echo getOption('zpskel_customcss'); ?>
+	<?php echo getOption('zpskel_customcss'); ?>
 			</style>
-<?php } ?>
+		<?php } ?>
 	</head>
 	<body>
-<?php zp_apply_filter('theme_body_open'); ?>
+		<?php zp_apply_filter('theme_body_open'); ?>
 		<div class="wrapper topbar">
 			<div class="container">
 				<div class="sixteen columns">
@@ -166,14 +167,14 @@ $zpskel_social = function_exists('printAddThis');
 						<li class="menu">
 							<a class="menu" href="#"><?php echo gettext('Menu'); ?></a>
 							<ul class="menu-dropdown">
-<?php if (($zenpage) && ($zenpage_homepage != 'none')) { ?>
+								<?php if (($zenpage) && ($zenpage_homepage != 'none')) { ?>
 									<li <?php if ($_zp_gallery_page == "index.php") { ?>class="active" <?php } ?>><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Home'); ?>"><?php echo gettext('Home'); ?></a></li>
 									<li <?php if ((!empty($galleryactive)) && ($_zp_gallery_page != "index.php")) { ?>class="active" <?php } ?>><?php printCustomPageURL(gettext('Gallery'), "gallery"); ?></li>
 								<?php } else { ?>
 									<li <?php if (!empty($galleryactive)) { ?>class="active" <?php } ?>><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery'); ?>"><?php echo gettext('Gallery'); ?></a></li>
-									<?php } ?>
+								<?php } ?>
 									<?php if ($zpskel_archive) { ?><li <?php if ($_zp_gallery_page == "archive.php") { ?>class="active" <?php } ?>><a href="<?php echo getCustomPageURL('archive'); ?>" title="<?php echo gettext('Archive View'); ?>"><?php echo gettext('Archive'); ?></a></li><?php } ?>
-<?php if ((function_exists('getNewsIndexURL')) && ($zpskel_usenews)) { ?>
+									<?php if ((function_exists('getNewsIndexURL')) && ($zpskel_usenews)) { ?>
 									<li <?php if ($_zp_gallery_page == "news.php") { ?>class="active" <?php } ?>>
 										<a href="<?php echo getNewsIndexURL(); ?>"><?php echo gettext('News'); ?></a>
 									</li>
@@ -182,7 +183,7 @@ $zpskel_social = function_exists('printAddThis');
 								<?php if (function_exists('printPageMenu')) { ?>
 									<li class="divider"></li>
 									<?php printPageMenu('list-top', '', 'active', '', 'active', '', true, false); ?>
-<?php } ?>
+								<?php } ?>
 							</ul>
 
 							<?php

@@ -60,10 +60,11 @@ if (isset($_GET['action'])) {
 	}
 }
 
-list($subtabs, $default) = getLogTabs();
+list($subtabs, $default, $new) = getLogTabs();
 $zenphoto_tabs['logs'] = array('text'		 => gettext("logs"),
 				'link'		 => WEBPATH . "/" . ZENFOLDER . '/admin-logs.php?page=logs',
 				'subtabs'	 => $subtabs,
+				'alert'		 => $new,
 				'default'	 => $default);
 
 printAdminHeader('logs', $default);
@@ -91,7 +92,11 @@ echo "\n</head>";
 				?>
 				<h1><?php echo gettext("View logs:"); ?></h1>
 
-				<?php $subtab = printSubtabs(); ?>
+				<?php
+				$subtab = printSubtabs();
+				setOption('logviewed_' . $subtab, time());
+				?>
+
 				<!-- A log -->
 				<div id="theme-editor" class="tabbox">
 					<?php zp_apply_filter('admin_note', 'logs', $subtab); ?>

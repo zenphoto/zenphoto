@@ -39,7 +39,7 @@
 <?php } ?>
 	</div>
 </div>
-<?php if (($_zp_gallery_page == 'image.php') && (function_exists('printPagedThumbsNav')) && (!function_exists('printjCarouselThumbNav'))) {
+<?php if (($_zp_gallery_page == 'image.php') && (function_exists('printPagedThumbsNav')) && (!function_exists('printThumbNav'))) {
 	printPagedThumbsNav('8', true, '', '', 50, 50, true);
 } ?>
 <?php if (function_exists('printLanguageSelector')) {

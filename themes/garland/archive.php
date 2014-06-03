@@ -5,14 +5,14 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
+		
 		<?php zp_apply_filter('theme_head'); ?>
-		<?php printHeadTitle(); ?>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
+		
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
-<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
+		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
 	</head>
 	<body class="sidebars">
-<?php zp_apply_filter('theme_body_open'); ?>
+		<?php zp_apply_filter('theme_body_open'); ?>
 		<div id="navigation"></div>
 		<div id="wrapper">
 			<div id="container">
@@ -26,7 +26,7 @@ if (!defined('WEBPATH'))
 				<!-- header -->
 				<div class="sidebar">
 					<div id="leftsidebar">
-<?php include("sidebar.php"); ?>
+						<?php include("sidebar.php"); ?>
 					</div>
 				</div>
 
@@ -37,7 +37,7 @@ if (!defined('WEBPATH'))
 								<!-- begin content -->
 								<div class="main section" id="main">
 									<h2 id="gallerytitle">
-<?php printHomeLink('', ' » '); ?>
+										<?php printHomeLink('', ' » '); ?>
 										<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a> » <?php echo gettext('Archive View'); ?>
 									</h2>
 
@@ -53,7 +53,7 @@ if (!defined('WEBPATH'))
 										?>
 									</div>
 
-<?php footer(); ?>
+									<?php footer(); ?>
 									<p style="clear: both;"></p>
 								</div>
 								<!-- end content -->
@@ -64,7 +64,7 @@ if (!defined('WEBPATH'))
 				<div class="sidebar">
 					<div id="rightsidebar">
 						<h2>Popular Tags</h2>
-<?php printAllTagsAs('cloud', 'tags'); ?>
+						<?php printAllTagsAs('cloud', 'tags'); ?>
 					</div>
 				</div>
 				<span class="clear"></span>

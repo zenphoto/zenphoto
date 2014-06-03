@@ -289,11 +289,12 @@ if (count($themelist) == 0) {
 							}
 						}
 
-						if (themeIsEditable($theme)) {
+						$editable = zp_apply_filter('theme_editor', '', $theme);
+						if ($editable && themeIsEditable($theme)) {
 							?>
 							<li>
 								<p class="buttons">
-									<a onclick="launchScript('admin-themes-editor.php', ['theme=<?php echo urlencode($theme); ?>']);">
+									<a onclick="<?php echo $editable; ?>;">
 										<img src="images/pencil.png" alt="" /><?php echo gettext("Edit"); ?>
 									</a>
 								</p><br />

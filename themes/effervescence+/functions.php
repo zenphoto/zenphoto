@@ -503,6 +503,7 @@ function my_checkPageValidity($request, $gallery_page, $page) {
 			}
 		case 'news.php':
 		case 'album.php':
+		case 'favorites.php';
 		case 'search.php':
 			break;
 	}

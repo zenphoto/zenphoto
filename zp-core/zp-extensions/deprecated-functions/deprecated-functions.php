@@ -40,4 +40,13 @@ class internal_deprecations {
 #		printDefaultSizedImage(getImageTitle());
 #	}
 #}
+
+/**
+ * @deprecated
+ * @since 1.0.0
+ */
+function printHeadTitle($separator = ' | ', $listparentalbums = true, $listparentpages = true) {
+	deprecated_functions::notify(gettext('This feature is handled in the "theme_head" filter. For parameters set the theme options.'));
+}
+
 ?>

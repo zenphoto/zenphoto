@@ -7,8 +7,8 @@
 <div id="content">
 	<div id="main"<?php if ($zpmin_switch) echo ' class="switch"'; ?>>
 		<?php
-		if (function_exists('printjCarouselThumbNav')) {
-			printjCarouselThumbNav(2, 77, 77, 77, 77);
+		if (function_exists('printThumbNav')) {
+			printThumbNav(2, 77, 77, 77, 77);
 		}
 		?>
 		<div id="image-wrap">

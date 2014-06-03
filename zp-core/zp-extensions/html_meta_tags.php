@@ -87,29 +87,29 @@ class htmlmetatags {
 										'desc' => gettext("If you enabled Twitter card meta tags, you need to enter your Twitter user name here.")),
 						gettext('HTML meta tags')				 => array('key'				 => 'htmlmeta_tags', 'type'			 => OPTION_TYPE_CHECKBOX_UL,
 										"checkboxes" => array(
-														"http-equiv='cache-control'"					 => "htmlmeta_http-equiv-cache-control",
-														"http-equiv='pragma'"									 => "htmlmeta_http-equiv-pragma",
-														"http-equiv='content-style-type'"			 => "htmlmeta_http-equiv-content-style-type",
-														"name='keywords'"											 => "htmlmeta_name-keywords",
-														"name='description'"									 => "htmlmeta_name-description",
-														"name='page-topic'"										 => "htmlmeta_name-page-topic",
-														"name='robots'"												 => "htmlmeta_name-robots",
-														"name='publisher'"										 => "htmlmeta_name-publisher",
-														"name='creator'"											 => "htmlmeta_name-creator",
-														"name='author'"												 => "htmlmeta_name-author",
-														"name='copyright'"										 => "htmlmeta_name-copyright",
-														"name='rights'"												 => "htmlmeta_name-rights",
-														"name='generator' ('Zenphoto')"				 => "htmlmeta_name-generator",
-														"name='revisit-after'"								 => "htmlmeta_name-revisit-after",
-														"name='expires'"											 => "htmlmeta_name-expires",
-														"name='date'"													 => "htmlmeta_name-date",
-														"property='og:title'"									 => "htmlmeta_og-title",
-														"property='og:image'"									 => "htmlmeta_og-image",
-														"property='og:description'"						 => "htmlmeta_og-description",
-														"property='og:url'"										 => "htmlmeta_og-url",
-														"property='og:type'"									 => "htmlmeta_og-type",
-														"name='pinterest' content='nopin'"		 => "htmlmeta_name-pinterest",
-														"twitter:card"												 => "htmlmeta_twittercard"
+														"http-equiv='cache-control'"			 => "htmlmeta_http-equiv-cache-control",
+														"http-equiv='pragma'"							 => "htmlmeta_http-equiv-pragma",
+														"http-equiv='content-style-type'"	 => "htmlmeta_http-equiv-content-style-type",
+														"name='keywords'"									 => "htmlmeta_name-keywords",
+														"name='description'"							 => "htmlmeta_name-description",
+														"name='page-topic'"								 => "htmlmeta_name-page-topic",
+														"name='robots'"										 => "htmlmeta_name-robots",
+														"name='publisher'"								 => "htmlmeta_name-publisher",
+														"name='creator'"									 => "htmlmeta_name-creator",
+														"name='author'"										 => "htmlmeta_name-author",
+														"name='copyright'"								 => "htmlmeta_name-copyright",
+														"name='rights'"										 => "htmlmeta_name-rights",
+														"name='generator' ('Zenphoto')"		 => "htmlmeta_name-generator",
+														"name='revisit-after'"						 => "htmlmeta_name-revisit-after",
+														"name='expires'"									 => "htmlmeta_name-expires",
+														"name='date'"											 => "htmlmeta_name-date",
+														"property='og:title'"							 => "htmlmeta_og-title",
+														"property='og:image'"							 => "htmlmeta_og-image",
+														"property='og:description'"				 => "htmlmeta_og-description",
+														"property='og:url'"								 => "htmlmeta_og-url",
+														"property='og:type'"							 => "htmlmeta_og-type",
+														"name='pinterest' content='nopin'" => "htmlmeta_name-pinterest",
+														"twitter:card"										 => "htmlmeta_twittercard"
 										),
 										"desc"			 => gettext("Which of the HTML meta tags should be used. For info about these in detail please refer to the net.")),
 						gettext('Use subdomains') . '*'	 => array('key'			 => 'dynamic_locale_subdomain', 'type'		 => OPTION_TYPE_CHECKBOX,
@@ -171,6 +171,7 @@ class htmlmetatags {
 				$type = 'website';
 				break;
 			case 'album.php':
+			case 'favorites.php';
 				$pagetitle = getBareAlbumTitle() . " - ";
 				$date = getAlbumDate();
 				$desc = getBareAlbumDesc();
@@ -274,10 +275,10 @@ class htmlmetatags {
 			$meta .= '<meta name="revisit-after" content="' . getOption("htmlmeta_revisit_after") . ' days">' . "\n";
 		}
 		if (getOption('htmlmeta_name-expires')) {
-				$expires = getOption("htmlmeta_expires");
-				if ($expires == (int) $expires)
-					$expires = preg_replace('|\s\-\d+|', '', date('r', time() + $expires)) . ' GMT';
-				$meta .= '<meta name="expires" content="' . $expires . '">' . "\n";
+			$expires = getOption("htmlmeta_expires");
+			if ($expires == (int) $expires)
+				$expires = preg_replace('|\s\-\d+|', '', date('r', time() + $expires)) . ' GMT';
+			$meta .= '<meta name="expires" content="' . $expires . '">' . "\n";
 		}
 
 		// OpenGraph meta
@@ -335,6 +336,7 @@ class htmlmetatags {
 								case 'index.php':
 									break;
 								case 'album.php':
+								case 'favorites.php';
 									$altlink .= '/' . html_encode($_zp_current_album->name);
 									break;
 								case 'image.php':

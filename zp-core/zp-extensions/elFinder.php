@@ -64,6 +64,7 @@ class elFinder_options {
 
 if (getOption('elFinder_files') && zp_loggedin(FILES_RIGHTS)) {
 	zp_register_filter('admin_tabs', 'elFinder_admin_tabs', 50);
+	zp_register_filter('theme_editor', 'elFinderThemeEdit');
 }
 if (getOption('elFinder_tinymce')) {
 	zp_register_filter('tinymce_zenpage_config', 'elFinder_tinymce');
@@ -111,5 +112,15 @@ function elFinder_tinymce($discard) {
 
 	<?php
 	return 'elFinderBrowser';
+}
+
+function elFinderThemeEdit($html, $theme) {
+	$html = "launchScript('" . PLUGIN_FOLDER . "/elFinder/filemanager.php', [
+													'page=upload',
+													'tab=elFinder',
+													'type=files',
+													'themeEdit=<?php echo" . urlencode($theme) . "'
+												]);";
+	return $html;
 }
 ?>

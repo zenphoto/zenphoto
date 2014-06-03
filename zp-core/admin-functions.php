@@ -107,7 +107,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	<!DOCTYPE html>
 	<html>
 		<head>
-			<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
+			<?php printStandardMeta(); ?>
 			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/toggleElements.css" type="text/css" />
 			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui-zenphoto.css" type="text/css" />
 			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css" type="text/css" />
@@ -124,10 +124,17 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zenphoto.js" type="text/javascript" ></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/admin.js" type="text/javascript" ></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.scrollTo.js" type="text/javascript"></script>
-			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.are-you-sure.js" type="text/javascript"></script>
+
+			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/dirtyforms/jquery.dirtyforms.js" type="text/javascript"></script>
+
+
 			<script type="text/javascript">
 				// <!-- <![CDATA[
 
+				function setClean(id) {
+					$('form#' + id).dirtyForms('setClean');
+					$('form#' + id).removeClass('tinyDirty');
+				}
 				$(document).ready(function() {
 	<?php
 	if (zp_has_filter('admin_head', 'colorbox::css')) {
@@ -137,11 +144,12 @@ function printAdminHeader($tab, $subtab = NULL) {
 							maxHeight: "98%",
 							close: '<?php echo addslashes(gettext("close")); ?>'
 						});
-
 		<?php
 	}
 	?>
-					$('form.dirty-check').areYouSure({'message': '<?php echo addslashes(gettext('You have unsaved changes!')); ?>'});
+					$.DirtyForms.message = '<?php echo addslashes(gettext('You have unsaved changes!')); ?>';
+					$('form.dirtylistening').dirtyForms();
+
 				});
 				$(function() {
 					$(".tooltip ").tooltip({
@@ -206,7 +214,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 						toleranceElement: '> div',
 						listType: 'ul'
 					});
-
 					$('.serialize').click(function() {
 						serialized = $('ul.page-list').nestedSortable('serialize');
 						if (serialized != original_order) {
@@ -294,8 +301,20 @@ function printAdminHeader($tab, $subtab = NULL) {
 		<ul class="nav" style="width: <?php echo $main_tab_space; ?>em">
 			<?php
 			foreach ($zenphoto_tabs as $key => $atab) {
+				if (array_key_exists('alert', $zenphoto_tabs[$key])) {
+					$alert = $zenphoto_tabs[$key]['alert'];
+				} else {
+					$alert = NULL;
+				}
+				$class = '';
+				if ($_zp_admin_tab == $key) {
+					$class = 'current';
+				} else {
+					if (!empty($alert))
+						$class = 'alert';
+				}
 				?>
-				<li <?php if ($_zp_admin_tab == $key) echo 'class="current"' ?>>
+				<li<?php if ($class) echo ' class="' . $class . '"' ?>>
 					<a href="<?php echo html_encode($atab['link']); ?>"><?php echo html_encode(ucfirst($atab['text'])); ?></a>
 					<?php
 					$subtabs = $zenphoto_tabs[$key]['subtabs'];
@@ -351,6 +370,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				}
 			}
 		}
+
 		if (empty($current)) {
 			if (isset($zenphoto_tabs[$_zp_admin_tab]['default'])) {
 				$current = $zenphoto_tabs[$_zp_admin_tab]['default'];
@@ -376,6 +396,12 @@ function printAdminHeader($tab, $subtab = NULL) {
 	function printSubtabs() {
 		global $zenphoto_tabs, $_zp_admin_tab, $_zp_admin_subtab;
 		$tabs = @$zenphoto_tabs[$_zp_admin_tab]['subtabs'];
+		if (array_key_exists('alert', $zenphoto_tabs[$_zp_admin_tab])) {
+			$alert = $zenphoto_tabs[$_zp_admin_tab]['alert'];
+		} else {
+			$alert = array();
+		}
+
 		$current = getSubtabs();
 		if (!empty($tabs)) {
 			$chars = 0;
@@ -420,7 +446,15 @@ function printAdminHeader($tab, $subtab = NULL) {
 					} else {
 						$link = WEBPATH . $link;
 					}
-					echo '<li' . (($current == $tab) ? ' class="current"' : '') . '><a href="' . html_encode($link) . '">' . html_encode(ucfirst($key)) . '</a></li>' . "\n";
+					$class = '';
+					if ($tab == $current) {
+						$class = 'current';
+					} else {
+						if (in_array($key, $alert)) {
+							$class = 'alertsubtab';
+						}
+					}
+					echo '<li' . (($class) ? ' class="' . $class . '"' : '') . '><a href="' . html_encode($link) . '">' . html_encode(ucfirst($key)) . '</a></li>' . "\n";
 				}
 				?>
 			</ul>
@@ -3726,7 +3760,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 	}
 	?>
 	<span style="float:right">
-		<select class="ays-ignore" name="checkallaction" id="checkallaction" size="1" onchange="checkFor(this);" >
+		<select class="ignoredirty" name="checkallaction" id="checkallaction" size="1" onchange="checkFor(this);" >
 			<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
 		</select>
 		<?php
@@ -3736,7 +3770,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 			<?php
 			echo gettext("Check All");
 			?>
-			<input class="ays-ignore" type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
+			<input class="ignoredirty" type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
 			<?php
 		}
 		?>
@@ -3747,7 +3781,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 		<div id="mass_tags" style="display:none;">
 			<div id="mass_tags_data">
 				<?php
-				tagSelector(NULL, 'mass_tags_', false, false, true, false, 'checkTagsAuto ays-ignore');
+				tagSelector(NULL, 'mass_tags_', false, false, true, false, 'checkTagsAuto ignoredirty');
 				?>
 			</div>
 		</div>
@@ -3758,7 +3792,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 		<div id="mass_cats" style="display:none;">
 			<ul id="mass_cats_data">
 				<?php
-				printNestedItemsList('cats-checkboxlist', '', 'all', 'ays-ignore');
+				printNestedItemsList('cats-checkboxlist', '', 'all', 'ignoredirty');
 				?>
 			</ul>
 		</div>
@@ -3768,7 +3802,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 		?>
 		<div id="mass_owner" style="display:none;">
 			<ul id="mass_owner_data">
-				<select class="ays-ignore" id="massownermenu" name="massownerselect" onchange="">
+				<select class="ignoredirty" id="massownermenu" name="massownerselect" onchange="">
 					<?php
 					echo admin_album_list(NULL);
 					?>
@@ -3786,7 +3820,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 				<?php
 				echo gettext('Destination');
 				?>
-				<select class="ays-ignore" id="massalbumselectmenu" name="massalbumselect" onchange="">
+				<select class="ignoredirty" id="massalbumselectmenu" name="massalbumselect" onchange="">
 					<?php
 					foreach ($mcr_albumlist as $fullfolder => $albumtitle) {
 						$singlefolder = $fullfolder;
@@ -4049,7 +4083,6 @@ function codeblocktabsJS() {
 			var tabContainers = $('div.tabs > div');
 			$('.first').addClass('selected');
 		});
-
 		function cbclick(num, id) {
 			$('.cbx-' + id).hide();
 			$('#cb' + num + '-' + id).show();
@@ -4163,7 +4196,7 @@ function admin_securityChecks($rights, $return) {
 		$_zp_loggedin = USER_RIGHTS;
 	}
 	if (!zp_loggedin($rights)) {
-		// prevent nefarious access to this page.
+// prevent nefarious access to this page.
 		$returnurl = urldecode($return);
 		if (!zp_apply_filter('admin_allow_access', false, $returnurl)) {
 			$uri = explode('?', $returnurl);
@@ -4181,7 +4214,7 @@ function admin_securityChecks($rights, $return) {
  */
 function httpsRedirect() {
 	if (SERVER_PROTOCOL == 'https_admin') {
-		// force https login
+// force https login
 		if (!isset($_SERVER["HTTPS"])) {
 			$redirect = "https://" . $_SERVER['HTTP_HOST'] . getRequestURI();
 			header("Location:$redirect");
@@ -4347,7 +4380,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 			<?php
 		}
 		?>
-		<select name="subpage" class="ays-ignore" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
+		<select name="subpage" class="ignoredirty" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
 										[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
 							<?php
 							foreach ($rangeset as $page => $range) {
@@ -4409,14 +4442,17 @@ function admin_album_list($owner) {
  * Figures out which log tabs to display
  */
 function getLogTabs() {
-	$subtabs = array();
+	$new = $subtabs = array();
 	$default = NULL;
-	$localizer = array('setup' => gettext('setup'), 'security' => gettext('security'), 'debug' => gettext('debug'));
+	$localizer = array('setup' => gettext('setup'), 'security' => gettext('security'), 'debug' => gettext('debug'), 'deprecated' => gettext('deprecated'));
 	$filelist = safe_glob(SERVERPATH . "/" . DATA_FOLDER . '/*.log');
 	if (count($filelist) > 0) {
 		$tab = sanitize(@$_GET['tab'], 3);
 		foreach ($filelist as $logfile) {
 			$log = substr(basename($logfile), 0, -4);
+			if (filemtime($logfile) > getOption('logviewed_' . $log)) {
+				$new[] = $log;
+			}
 			if ($log == $tab) {
 				$default = $tab;
 			}
@@ -4436,7 +4472,7 @@ function getLogTabs() {
 	natcasesort($names);
 	$subtabs = array_flip($names);
 
-	return array($subtabs, $default);
+	return array($subtabs, $default, $new);
 }
 
 /**
@@ -4546,7 +4582,7 @@ function processCredentials($object, $suffix = '') {
 			}
 			if (empty($pwd)) {
 				if (strlen($_POST['pass' . $suffix]) == 0) {
-					// clear the  password
+// clear the  password
 					if (is_object($object)) {
 						$object->setPassword(NULL);
 					} else {

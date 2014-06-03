@@ -7,9 +7,9 @@ if (class_exists('Zenpage')) {
 	<!DOCTYPE html>
 	<html>
 		<head>
+			
 			<?php zp_apply_filter('theme_head'); ?>
-			<?php printHeadTitle(); ?>
-			<meta charset="<?php echo LOCAL_CHARSET; ?>">
+			
 			<?php if (class_exists('RSS')) printRSSHeaderLink("Pages", "Zenpage news", ""); ?>
 		</head>
 
