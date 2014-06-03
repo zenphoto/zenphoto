@@ -378,6 +378,8 @@ if (isset($_GET['action'])) {
 						setThemeOption('images_per_page', $images_per_page, $table, $themename);
 						setThemeOption('images_per_row', $images_per_row, $table, $themename);
 					}
+					setThemeOption('theme_head_separator', sanitize($_POST['theme_head_separator']), $table, $themename);
+					setThemeOption('theme_head_listparents', (int) isset($_POST['theme_head_listparents']), $table, $themename);
 
 					if (isset($_POST['thumb_transition']))
 						setThemeOption('thumb_transition', (int) ((sanitize_numeric($_POST['thumb_transition']) - 1) && true), $table, $themename);
@@ -2723,6 +2725,15 @@ Zenphoto_Authority::printPasswordFormJS();
 											$disable = '';
 										}
 										?>
+										<tr>
+											<td><?php echo gettext("Theme head &lt;title&gt; tag"); ?></td>
+											<td>
+												<label><input type="checkbox" name="theme_head_listparents" value="1"<?php if (getThemeOption('theme_head_listparents', $album, $themename)) echo ' checked="checked"'; ?> /><?php echo gettext('enabled'); ?></label>
+												<br />
+												<input type="text" name="theme_head_separator" size="2em" value="<?php echo getThemeOption('theme_head_separator', $album, $themename); ?>" /><?php echo "separator"; ?>
+											</td>
+											<td><?php echo gettext('Select if you want parent breadcrumbs and if so the separator for them.'); ?></td>
+										</tr>
 										<tr>
 											<td><?php echo gettext("Gallery index page link:"); ?></td>
 											<td>

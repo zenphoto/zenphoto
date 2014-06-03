@@ -14,7 +14,7 @@ if (function_exists('printContactForm')) {
 		<head>
 			
 			<?php zp_apply_filter('theme_head'); ?>
-			<?php printHeadTitle(); ?>
+			
 		</head>
 
 		<body onload="blurAnchors()">

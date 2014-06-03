@@ -142,10 +142,11 @@ if ($_zp_loggedin) {
 	}
 
 	if ($_zp_loggedin & ADMIN_RIGHTS) {
-		list($subtabs, $default) = getLogTabs();
+		list($subtabs, $default, $new) = getLogTabs();
 		$zenphoto_tabs['logs'] = array('text'		 => gettext("logs"),
 						'link'		 => WEBPATH . "/" . ZENFOLDER . '/admin-logs.php?page=logs',
 						'subtabs'	 => $subtabs,
+						'alert'		 => $new,
 						'default'	 => $default);
 	}
 	if (!$_zp_current_admin_obj->getID()) {

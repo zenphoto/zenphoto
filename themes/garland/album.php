@@ -8,7 +8,7 @@ $map = function_exists('printGoogleMap');
 	<head>
 		
 		<?php zp_apply_filter('theme_head'); ?>
-		<?php printHeadTitle(); ?>
+		
 		<?php $handler->theme_head($_zp_themeroot); ?>
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Album', getAlbumTitle()); ?>

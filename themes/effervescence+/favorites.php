@@ -11,7 +11,7 @@ if (class_exists('favorites')) {
 		<head>
 			
 			<?php zp_apply_filter('theme_head'); ?>
-			<?php printHeadTitle(); ?>
+			
 		</head>
 
 		<body onload="blurAnchors()">

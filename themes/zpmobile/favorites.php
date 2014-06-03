@@ -8,7 +8,7 @@ if (class_exists('favorites')) {
 	<html>
 		<head>
 			<?php zp_apply_filter('theme_head'); ?>
-			<?php printHeadTitle(); ?>
+			
 			
 			 
 			<meta name="viewport" content="width=device-width, initial-scale=1">

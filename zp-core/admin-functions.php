@@ -301,8 +301,20 @@ function printAdminHeader($tab, $subtab = NULL) {
 		<ul class="nav" style="width: <?php echo $main_tab_space; ?>em">
 			<?php
 			foreach ($zenphoto_tabs as $key => $atab) {
+				if (array_key_exists('alert', $zenphoto_tabs[$key])) {
+					$alert = $zenphoto_tabs[$key]['alert'];
+				} else {
+					$alert = NULL;
+				}
+				$class = '';
+				if ($_zp_admin_tab == $key) {
+					$class = 'current';
+				} else {
+					if (!empty($alert))
+						$class = 'alert';
+				}
 				?>
-				<li <?php if ($_zp_admin_tab == $key) echo 'class="current"' ?>>
+				<li<?php if ($class) echo ' class="' . $class . '"' ?>>
 					<a href="<?php echo html_encode($atab['link']); ?>"><?php echo html_encode(ucfirst($atab['text'])); ?></a>
 					<?php
 					$subtabs = $zenphoto_tabs[$key]['subtabs'];
@@ -384,6 +396,12 @@ function printAdminHeader($tab, $subtab = NULL) {
 	function printSubtabs() {
 		global $zenphoto_tabs, $_zp_admin_tab, $_zp_admin_subtab;
 		$tabs = @$zenphoto_tabs[$_zp_admin_tab]['subtabs'];
+		if (array_key_exists('alert', $zenphoto_tabs[$_zp_admin_tab])) {
+			$alert = $zenphoto_tabs[$_zp_admin_tab]['alert'];
+		} else {
+			$alert = array();
+		}
+
 		$current = getSubtabs();
 		if (!empty($tabs)) {
 			$chars = 0;
@@ -428,7 +446,15 @@ function printAdminHeader($tab, $subtab = NULL) {
 					} else {
 						$link = WEBPATH . $link;
 					}
-					echo '<li' . (($current == $tab) ? ' class="current"' : '') . '><a href="' . html_encode($link) . '">' . html_encode(ucfirst($key)) . '</a></li>' . "\n";
+					$class = '';
+					if ($tab == $current) {
+						$class = 'current';
+					} else {
+						if (in_array($key, $alert)) {
+							$class = 'alertsubtab';
+						}
+					}
+					echo '<li' . (($class) ? ' class="' . $class . '"' : '') . '><a href="' . html_encode($link) . '">' . html_encode(ucfirst($key)) . '</a></li>' . "\n";
 				}
 				?>
 			</ul>
@@ -1317,7 +1343,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
 																onclick="passwordClear('<?php echo $suffix; ?>');
-																		togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
+																				togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
 								</td>
 								<td>
 									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
@@ -1843,7 +1869,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -4170,7 +4196,7 @@ function admin_securityChecks($rights, $return) {
 		$_zp_loggedin = USER_RIGHTS;
 	}
 	if (!zp_loggedin($rights)) {
-		// prevent nefarious access to this page.
+// prevent nefarious access to this page.
 		$returnurl = urldecode($return);
 		if (!zp_apply_filter('admin_allow_access', false, $returnurl)) {
 			$uri = explode('?', $returnurl);
@@ -4188,7 +4214,7 @@ function admin_securityChecks($rights, $return) {
  */
 function httpsRedirect() {
 	if (SERVER_PROTOCOL == 'https_admin') {
-		// force https login
+// force https login
 		if (!isset($_SERVER["HTTPS"])) {
 			$redirect = "https://" . $_SERVER['HTTP_HOST'] . getRequestURI();
 			header("Location:$redirect");
@@ -4355,7 +4381,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 		}
 		?>
 		<select name="subpage" class="ignoredirty" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
-								[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
+										[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
 							<?php
 							foreach ($rangeset as $page => $range) {
 								?>
@@ -4416,14 +4442,17 @@ function admin_album_list($owner) {
  * Figures out which log tabs to display
  */
 function getLogTabs() {
-	$subtabs = array();
+	$new = $subtabs = array();
 	$default = NULL;
-	$localizer = array('setup' => gettext('setup'), 'security' => gettext('security'), 'debug' => gettext('debug'));
+	$localizer = array('setup' => gettext('setup'), 'security' => gettext('security'), 'debug' => gettext('debug'), 'deprecated' => gettext('deprecated'));
 	$filelist = safe_glob(SERVERPATH . "/" . DATA_FOLDER . '/*.log');
 	if (count($filelist) > 0) {
 		$tab = sanitize(@$_GET['tab'], 3);
 		foreach ($filelist as $logfile) {
 			$log = substr(basename($logfile), 0, -4);
+			if (filemtime($logfile) > getOption('logviewed_' . $log)) {
+				$new[] = $log;
+			}
 			if ($log == $tab) {
 				$default = $tab;
 			}
@@ -4443,7 +4472,7 @@ function getLogTabs() {
 	natcasesort($names);
 	$subtabs = array_flip($names);
 
-	return array($subtabs, $default);
+	return array($subtabs, $default, $new);
 }
 
 /**
@@ -4553,7 +4582,7 @@ function processCredentials($object, $suffix = '') {
 			}
 			if (empty($pwd)) {
 				if (strlen($_POST['pass' . $suffix]) == 0) {
-					// clear the  password
+// clear the  password
 					if (is_object($object)) {
 						$object->setPassword(NULL);
 					} else {

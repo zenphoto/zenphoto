@@ -8,7 +8,7 @@ if (function_exists('printSlideShow')) {
 	<html>
 		<head>
 			
-			<?php printHeadTitle(); ?>
+			
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 			<?php zp_apply_filter('theme_head'); ?>
 		</head>

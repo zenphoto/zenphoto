@@ -9,7 +9,7 @@ if (function_exists('printSlideShow')) {
 		<head>
 			
 			<?php zp_apply_filter('theme_head'); ?>
-			<?php printHeadTitle(); ?>
+			
 		</head>
 		<body>
 			<?php zp_apply_filter('theme_body_open'); ?>

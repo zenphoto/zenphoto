@@ -31,6 +31,7 @@ if (function_exists('printAddThis')) {
 				$zpmin_social = false;
 				break;
 			case 'album.php':
+			case 'favorites.php';
 				$zpmin_metatitle = getBareAlbumTitle() . ' | ';
 				$zpmin_metadesc = truncate_string(getBareAlbumDesc(), 150, '...');
 				printRSSHeaderLink('Album', getAlbumTitle());
@@ -195,8 +196,8 @@ if (function_exists('printAddThis')) {
 					theme: 'clean'
 				};
 			</script>
-<?php } ?>
-<?php if ((($zpmin_colorbox) || (($zpmin_finallink) == 'colorbox')) && ($cbscript)) { ?>
+		<?php } ?>
+		<?php if ((($zpmin_colorbox) || (($zpmin_finallink) == 'colorbox')) && ($cbscript)) { ?>
 			<script src="<?php echo FULLWEBPATH . "/" . ZENFOLDER ?>/zp-extensions/colorbox_js/jquery.colorbox-min.js" type="text/javascript"></script>
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/css/cbStyles/<?php echo $zpmin_cbstyle; ?>/colorbox.css" type="text/css" media="screen"/>
 			<script type="text/javascript">
@@ -207,28 +208,28 @@ if (function_exists('printAddThis')) {
 				// ]]> -->
 			</script>
 
-			<?php } ?>
+		<?php } ?>
 	</head>
 	<body>
-						 <?php zp_apply_filter('theme_body_open'); ?>
+		<?php zp_apply_filter('theme_body_open'); ?>
 		<div id="wrapper">
 			<div id="header"<?php
-						 if (!$showsearch) {
-							 echo ' style="text-align:center;"';
-						 }
-						 ?>>
-					<?php if ($zpmin_logo) { ?>
+			if (!$showsearch) {
+				echo ' style="text-align:center;"';
+			}
+			?>>
+						 <?php if ($zpmin_logo) { ?>
 					<div id="image-logo"><a href="<?php echo htmlspecialchars(getGalleryIndexURL()); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/<?php echo $zpmin_logo; ?>" /></a></div>
 				<?php } else { ?>
 					<h1 id="logo"><a href="<?php echo htmlspecialchars(getGalleryIndexURL()); ?>"><?php echo getGalleryTitle(); ?></a></h1>
 				<?php } ?>
 				<?php if ($zpmin_social) { ?>
 					<div id="social">
-	<?php printAddThis(); ?>
+						<?php printAddThis(); ?>
 					</div>
-<?php } ?>
-<?php
-if ($showsearch) {
-	printSearchForm('', 'searchform', '', gettext('Search'), "$_zp_themeroot/images/drop.gif", null, null, "$_zp_themeroot/images/reset.gif");
-}
-?>
+				<?php } ?>
+				<?php
+				if ($showsearch) {
+					printSearchForm('', 'searchform', '', gettext('Search'), "$_zp_themeroot/images/drop.gif", null, null, "$_zp_themeroot/images/reset.gif");
+				}
+				?>

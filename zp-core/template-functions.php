@@ -39,6 +39,8 @@ function printThemeHeadItems() {
 	global $_zp_current_album;
 	printStandardMeta();
 	?>
+	<title><?php echo getHeadTitle(getOption('theme_head_separator'), getOption('theme_head_listparents')); ?></title>
+
 	<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jquery.js"></script>
 	<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/zenphoto.js"></script>
 	<?php
@@ -194,6 +196,7 @@ function adminToolbox() {
 					case 'image.php':
 						$inImage = true; // images are also in albums[sic]
 					case 'album.php':
+					case 'favorites.php';
 						// script is album.php
 						$albumname = $_zp_current_album->name;
 						if ($_zp_current_album->isMyItem(ALBUM_RIGHTS)) {
@@ -369,10 +372,9 @@ function printBareGalleryTitle() {
  * It supports standard gallery pages as well a custom and Zenpage news articles, categories and pages.
  *
  * @param string $separator How you wish the parts to be separated
- * @param bool $listparentalbums If the parent albums should be printed in reversed order before the current
- * @param bool $listparentpage If the parent Zenpage pages should be printed in reversed order before the current page
+ * @param bool $listparents If the parent objects should be printed in reversed order before the current
  */
-function getHeadTitle($separator = ' | ', $listparentalbums = true, $listparentpages = true) {
+function getHeadTitle($separator = ' | ', $listparents = true) {
 	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_gallery_page, $_zp_current_category, $_zp_page, $_myFavorites;
 	$mainsitetitle = html_encode(getBare(getMainSiteName()));
 	$separator = html_encode($separator);
@@ -390,8 +392,9 @@ function getHeadTitle($separator = ' | ', $listparentalbums = true, $listparentp
 			return $gallerytitle . $mainsitetitle;
 			break;
 		case 'album.php':
+		case 'favorites.php';
 		case 'image.php':
-			if ($listparentalbums) {
+			if ($listparents) {
 				$parents = getParentAlbums();
 				$parentalbums = '';
 				if (count($parents) != 0) {
@@ -406,6 +409,7 @@ function getHeadTitle($separator = ' | ', $listparentalbums = true, $listparentp
 			$albumtitle = html_encode(getBareAlbumTitle()) . $pagenumber . $separator . $parentalbums . $gallerytitle . $mainsitetitle;
 			switch ($_zp_gallery_page) {
 				case 'album.php':
+				case 'favorites.php';
 					return $albumtitle;
 					break;
 				case 'image.php':
@@ -425,7 +429,7 @@ function getHeadTitle($separator = ' | ', $listparentalbums = true, $listparentp
 			}
 			break;
 		case 'pages.php':
-			if ($listparentpages) {
+			if ($listparents) {
 				$parents = $_zp_current_zenpage_page->getParents();
 				$parentpages = '';
 				if (count($parents) != 0) {
@@ -456,21 +460,6 @@ function getHeadTitle($separator = ' | ', $listparentalbums = true, $listparentp
 			}
 			break;
 	}
-}
-
-/**
- * Function to print the html <title>title</title> within the <head> of a html page based on the current theme page
- * Usefull if you use one header.php for the header of all theme pages instead of individual ones on the theme pages
- * It prints the title and site name including the <title> tag in reversed breadcrumb order:
- * <title><title of current page> | <parent item if present> | <gallery title></title>
- * It supports standard gallery pages as well a custom and Zenpage news articles, categories and pages.
- *
- * @param string $separator How you wish the parts to be separated
- * @param bool $listparentalbums If the parent albums should be printed in reversed order before the current
- * @param bool $listparentpage If the parent Zenpage pages should be printed in reversed order before the current page
- */
-function printHeadTitle($separator = ' | ', $listparentalbums = true, $listparentpages = true) {
-	echo '<title>' . getHeadTitle($separator, $listparentalbums, $listparentpages) . '</title>';
 }
 
 /**
@@ -3846,34 +3835,34 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 		<!-- search form -->
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<script type="text/javascript">
-		// <!-- <![CDATA[
-		var within = <?php echo (int) $within; ?>;
-		function search_(way) {
-			within = way;
-			if (way) {
-				$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+			// <!-- <![CDATA[
+			var within = <?php echo (int) $within; ?>;
+			function search_(way) {
+				within = way;
+				if (way) {
+					$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
 
-			} else {
-				lastsearch = '';
-				$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-			}
-			$('#search_input').val('');
-		}
-		$('#search_form').submit(function() {
-			if (within) {
-				var newsearch = $.trim($('#search_input').val());
-				if (newsearch.substring(newsearch.length - 1) == ',') {
-					newsearch = newsearch.substr(0, newsearch.length - 1);
-				}
-				if (newsearch.length > 0) {
-					$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
 				} else {
-					$('#search_input').val('<?php echo $searchwords; ?>');
+					lastsearch = '';
+					$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
 				}
+				$('#search_input').val('');
 			}
-			return true;
-		});
-		// ]]> -->
+			$('#search_form').submit(function() {
+				if (within) {
+					var newsearch = $.trim($('#search_input').val());
+					if (newsearch.substring(newsearch.length - 1) == ',') {
+						newsearch = newsearch.substr(0, newsearch.length - 1);
+					}
+					if (newsearch.length > 0) {
+						$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+					} else {
+						$('#search_input').val('<?php echo $searchwords; ?>');
+					}
+				}
+				return true;
+			});
+			// ]]> -->
 			</script>
 			<?php echo $prevtext; ?>
 			<div>
@@ -4361,6 +4350,7 @@ function checkPageValidity($request, $gallery_page, $page) {
 	$count = NULL;
 	switch ($gallery_page) {
 		case 'album.php':
+		case 'favorites.php';
 		case 'search.php':
 			$albums_per_page = max(1, getOption('albums_per_page'));
 			$pageCount = (int) ceil(getNumAlbums() / $albums_per_page);

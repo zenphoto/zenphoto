@@ -7,7 +7,7 @@ if (class_exists('Zenpage')) {
 	<!DOCTYPE html>
 	<html>
 		<head>
-			<?php printHeadTitle(); ?>
+			
 			
 			 
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />

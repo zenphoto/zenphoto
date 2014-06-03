@@ -8,7 +8,7 @@ if (class_exists('favorites')) {
 		<head>
 			
 			<?php zp_apply_filter('theme_head'); ?>
-			<?php printHeadTitle(); ?>
+			
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 			<?php if (class_exists('RSS')) printRSSHeaderLink('Album', getAlbumTitle()); ?>
 		</head>

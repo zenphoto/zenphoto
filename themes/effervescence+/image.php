@@ -8,7 +8,7 @@ if (!defined('WEBPATH'))
 	<head>
 		
 		<?php zp_apply_filter('theme_head'); ?>
-		<?php printHeadTitle(); ?>
+		
 		<?php if (zp_has_filter('theme_head', 'colorbox::css')) { ?>
 			<script type="text/javascript">
 				// <!-- <![CDATA[

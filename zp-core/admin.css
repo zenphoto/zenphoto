@@ -272,6 +272,21 @@ ul.nav li.currentsubtab a {
 	top: -3px;
 	_top: 1px; /* IE Only */
 }
+ul.nav li.alert a {
+	border-top: 1px solid #CBCBCB;
+	border-left: 1px solid #CBCBCB;
+	border-right: 1px solid #CBCBCB;
+	color: black;
+	background: none;
+	background-color: #FF8A00;
+	background-repeat: repeat-x;
+	cursor: default;
+	height: 21px;
+	_height: 24px;
+	position: relative;
+	top: -3px;
+	_top: 1px; /* IE Only */
+}
 
 ul.nav ul {
 	visibility: hidden;
@@ -387,19 +402,20 @@ ul.nav li:hover > ul {
 	_top: 1px; /* IE Only */
 }
 
-.subnav li a:hover {
+.subnav li.alertsubtab a {
 	border-top: 1px solid #CBCBCB;
 	border-left: 1px solid #CBCBCB;
 	border-right: 1px solid #CBCBCB;
-	color: #000;
-	background-color: #F7F8F9;
+	color: #4D646F;
+	background: none;
+	background-color: #FF8A00;
+	cursor: default;
 	height: 21px;
 	_height: 24px;
 	position: relative;
 	top: -3px;
 	_top: 1px; /* IE Only */
 }
-
 
 /* Messages
 ------------------------------ */

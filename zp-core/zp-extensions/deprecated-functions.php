@@ -34,6 +34,8 @@ $plugin_notice = gettext("This plugin is <strong>NOT</strong> required for the d
 $option_interface = 'deprecated_functions';
 $plugin_is_filter = 900 | CLASS_PLUGIN;
 
+define('DEPRECATED_LOG', SERVERPATH . '/' . DATA_FOLDER . '/deprecated.log');
+
 if (OFFSET_PATH == 2) {
 	$deprecated = new deprecated_functions();
 	$listed = $deprecated->listed_functions;
@@ -41,10 +43,10 @@ if (OFFSET_PATH == 2) {
 		enableExtension('deprecated-functions', 0);
 	} else {
 		enableExtension('deprecated-functions', $plugin_is_filter);
-		//	Yes, I know some people will be annoyed that this keeps coming back,
-		//	but each release may deprecated new functions which would then just give
-		//	(perhaps unseen) errors. Better the user should disable this once he knows
-		//	his site is working.
+//	Yes, I know some people will be annoyed that this keeps coming back,
+//	but each release may deprecated new functions which would then just give
+//	(perhaps unseen) errors. Better the user should disable this once he knows
+//	his site is working.
 	}
 }
 
@@ -129,11 +131,31 @@ class deprecated_functions {
 		return $tabs;
 	}
 
+	/**
+	 * log writer
+	 * @param type $msg
+	 */
+	static function log($msg) {
+		global $debug, $_zp_mutex, $chmod;
+		if (is_object($_zp_mutex))
+			$_zp_mutex->lock();
+		$f = fopen(DEPRECATED_LOG, 'a');
+		if ($f) {
+			fwrite($f, strip_tags($msg) . "\n");
+			fclose($f);
+			clearstatcache();
+		}
+		if (is_object($_zp_mutex))
+			$_zp_mutex->unlock();
+	}
+
 	/*
 	 * used to provided deprecated function notification.
 	 */
 
-	static function notify($use) {
+	static function
+
+	notify($use) {
 		$traces = @debug_backtrace();
 		$fcn = $traces[1]['function'];
 		if (empty($fcn))
@@ -152,20 +174,63 @@ class deprecated_functions {
 			$plugin = $script;
 		}
 		if (isset($traces[1]['file']) && isset($traces[1]['line'])) {
-			$script = basename($traces[1]['file']);
+
+			$path = explode('/', str_replace(SERVERPATH . '/', '', trim(str_replace('\\', '/', $traces[1]['file']), '/')));
+			switch (array_shift($path)) {
+				case THEMEFOLDER:
+					$script = sprintf(gettext('theme %1$s:%2$s'), array_shift($path), array_pop($path));
+					break;
+				case USER_PLUGIN_FOLDER:
+					$script = sprintf(gettext('user plugin %1$s:%2$s'), array_shift($path), array_pop($path));
+					break;
+				case PLUGIN_FOLDER:
+					$script = sprintf(gettext('standard plugin %1$s:%2$s'), array_shift($path), array_pop($path));
+					break;
+				default:
+					$script = sprintf(gettext('core:%s'), array_pop($path));
+					break;
+			}
 			$line = $traces[1]['line'];
 		} else {
 			$script = $line = gettext('unknown');
 		}
+		$output = sprintf(gettext('%1$s (called from %2$s line %3$s) is deprecated.'), $fcn, $script, $line) . "\n" . $use . "\n";
 
-		if (@$traces[1]['class']) {
-			$flag = '_method';
+		if (file_exists(DEPRECATED_LOG)) {
+			$content = file_get_contents(DEPRECATED_LOG);
+			$log = !preg_match('~' . preg_quote($output) . '~', $content);
 		} else {
-			$flag = '';
+			$log = true;
 		}
-		$option = 'deprecated_' . $plugin . '_' . $fcn . $flag;
-		if (($fcn == 'function') || getOption($option)) {
-			trigger_error(sprintf(gettext('%1$s (called from %2$s line %3$s) is deprecated'), $fcn, $script, $line) . $use . ' ' . sprintf(gettext('You can disable this error message by going to the <em>deprecated-functions</em> plugin options and un-checking <strong>%s</strong> in the list of functions.' . '<br />'), $fcn), E_USER_WARNING);
+		if ($log) {
+			if (@$traces[1]['class']) {
+				$flag = '_method';
+			} else {
+				$flag = '';
+			}
+
+			$prefix = '  ';
+			$line = '';
+			$caller = '';
+			foreach ($traces as $b) {
+				$caller = (isset($b['class']) ? $b['class'] : '') . (isset($b['type']) ? $b['type'] : '') . $b['function'];
+				if (!empty($line)) { // skip first output to match up functions with line where they are used.
+					$prefix .= '  ';
+					$output .= 'from ' . $caller . ' (' . $line . ")\n" . $prefix;
+				} else {
+					$output .= '  ' . $caller . " called ";
+				}
+				$date = false;
+				if (isset($b['file']) && isset($b['line'])) {
+					$line = basename($b['file']) . ' [' . $b['line'] . "]";
+				} else {
+					$line = 'unknown';
+				}
+			}
+			if (!empty($line)) {
+				$output .= 'from ' . $line;
+			}
+			self::log($output);
 		}
 	}
 

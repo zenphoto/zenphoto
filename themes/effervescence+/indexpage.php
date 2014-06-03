@@ -13,7 +13,7 @@ if (!defined('WEBPATH'))
 			setOption('image_custom_images', getOption('effervescence_daily_album_image_effect'), false);
 		}
 		?>
-		<?php printHeadTitle(); ?>
+		
 	</head>
 
 	<body onload="blurAnchors()">

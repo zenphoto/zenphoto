@@ -18,7 +18,7 @@ $backgroundImagePath = "";
 	<head>
 		
 		<?php zp_apply_filter('theme_head'); ?>
-		<?php printHeadTitle(); ?>
+		
 		<?php $handler->theme_head($_zp_themeroot); ?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
