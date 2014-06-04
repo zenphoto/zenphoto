@@ -106,7 +106,9 @@ class ThemeOptions {
 						gettext('Disable MetaData Display?')									 => array('key'		 => 'zpmas_disablemeta', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 10,
 										'desc'	 => gettext('Check to disable the metadata (EXIF,IPTC) display on the image page.')),
-						gettext('ZenPage Search Results')											 => array('key'		 => 'zpmas_zpsearchcount', 'type'	 => OPTION_TYPE_NUMBER,
+						gettext('ZenPage Search Results')											 => array('key'		 => 'zpmas_zpsearchcount', 'type'	 => OPTION_TYPE_SLIDER,
+										'min'		 => 0,
+										'max'		 => 4,
 										'order'	 => 11,
 										'desc'	 => gettext('If using Zenpage, enter the number of search results to display for each news and pages.  Default is 2 (4 total
 				possible).')),

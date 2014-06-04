@@ -149,7 +149,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 	?>
 					$.DirtyForms.message = '<?php echo addslashes(gettext('You have unsaved changes!')); ?>';
 					$('form.dirtylistening').dirtyForms();
-
 				});
 				$(function() {
 					$(".tooltip ").tooltip({
@@ -562,6 +561,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 *    OPTION_TYPE_TEXTBOX:          A textbox
 	 *    OPTION_TYPE_PASSWORD:         A passowrd textbox
 	 *    OPTION_TYPE_CLEARTEXT:     	  A textbox, but no sanitization on save
+	 * 		OPTION_TYPE_NUMBER:						A small textbox for numbers.
 	 *    OPTION_TYPE_CHECKBOX:         A checkbox
 	 *    OPTION_TYPE_CUSTOM:           Handled by $optionHandler->handleOption()
 	 *    OPTION_TYPE_TEXTAREA:         A textarea
@@ -591,6 +591,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	define('OPTION_TYPE_PASSWORD', 11);
 	define('OPTION_TYPE_RICHTEXT', 12);
 	define('OPTION_TYPE_NUMBER', 13);
+	define('OPTION_TYPE_SLIDER', 14);
 
 	function customOptions($optionHandler, $indent = "", $album = NULL, $showhide = false, $supportedOptions = NULL, $theme = false, $initial = 'none', $extension = NULL) {
 		if (is_null($supportedOptions)) {
@@ -866,6 +867,36 @@ function printAdminHeader($tab, $subtab = NULL) {
 										<td><div id="<?php echo $key; ?>_colorpicker"></div></td>
 									</tr>
 								</table>
+							</td>
+							<?php
+							break;
+						case OPTION_TYPE_SLIDER:
+							$min = $row['min'];
+							$max = $row['max'];
+							?>
+							<td width="350" style="margin:0; padding:0">
+								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'slider-' . $key; ?>" value="1" />
+								<span id="slider_display-<?php echo $key; ?>"><?php echo $v; ?></span>
+								<input type="hidden" size="3" id="<?php echo $key; ?>" name="<?php echo $key; ?>" value="<?php echo $v; ?>" />
+								<script type="text/javascript">
+									// <!-- <![CDATA[
+									$(function() {
+										$("#slider-<?php echo $key; ?>").slider({
+											startValue: <?php echo $v; ?>,
+											value: <?php echo $v; ?>,
+											min: <?php echo $min; ?>,
+											max: <?php echo $max; ?>,
+											slide: function(event, ui) {
+												$("#<?php echo $key; ?>").val(ui.value);
+												$("#slider_display-<?php echo $key; ?>").html(ui.value);
+											}
+										});
+										$("#<?php echo $key; ?>").val($("#slider-<?php echo $key; ?>").slider("value"));
+									});
+									// ]]> -->
+								</script>
+								<div id="slider-<?php echo $key; ?>"></div>
+
 							</td>
 							<?php
 							break;
