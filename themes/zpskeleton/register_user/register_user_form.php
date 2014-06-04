@@ -57,7 +57,7 @@
 		if (getOption('register_user_captcha')) {
 			?>
 		<div>
-			<?php $captcha = $_zp_captcha->getCaptcha(gettext("Enter CAPTCHA<sdivong>*</sdivong>:")); ?>
+			<?php $captcha = $_zp_captcha->getCaptcha(gettext("Enter CAPTCHA<strong>*</strong>:")); ?>
 			<?php if (isset($captcha['html']) && isset($captcha['input'])) echo $captcha['html']; ?>
 			<?php
 			if (isset($captcha['input'])) {
