@@ -2314,6 +2314,10 @@ Zenphoto_Authority::printPasswordFormJS();
 												?>
 											</ul>
 										</div>
+										<br />
+										<p>
+											<label><input type="checkbox" name="transform_newlines" value="1" /><?php echo gettext('replace newlines'); ?></label>
+										</p>
 									</td>
 									<td>
 										<p>
@@ -2327,6 +2331,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										<p>
 											<?php echo gettext('Hint: you can drag down the <em>drag handle</em> in the lower right corner to show more selections.') ?>
 										</p>
+										<p><?php echo gettext('If <em>replace newlines</em> is selected <code>&lt;br /&gt;</code> will replace <em>newline</em> characters from image metadata destined for <em>titles</em> and <em>descriptions</em>. This happens only when the metadata is imported so you may need to refresh your metadata to see the results.'); ?></p>
 									</td>
 								</tr>
 								<?php

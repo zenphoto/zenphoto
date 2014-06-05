@@ -976,6 +976,7 @@ zp-core/load_objectClasses.php
 zp-core/no_uploader.php
 zp-core/oldhtaccess
 zp-core/password.php
+zp-core/pickSource.php
 zp-core/pluginDoc.php
 zp-core/reconfigure.php
 zp-core/rewrite.php
@@ -2087,6 +2088,10 @@ zp-core/zp-extensions/tinymce/plugins/pagebreak
 zp-core/zp-extensions/tinymce/plugins/pagebreak/plugin.min.js
 zp-core/zp-extensions/tinymce/plugins/paste
 zp-core/zp-extensions/tinymce/plugins/paste/plugin.min.js
+zp-core/zp-extensions/tinymce/plugins/pastezen
+zp-core/zp-extensions/tinymce/plugins/pastezen/pastezen.php
+zp-core/zp-extensions/tinymce/plugins/pastezen/plugin.min.example.js
+zp-core/zp-extensions/tinymce/plugins/pastezen/plugin.min.js
 zp-core/zp-extensions/tinymce/plugins/preview
 zp-core/zp-extensions/tinymce/plugins/preview/plugin.min.js
 zp-core/zp-extensions/tinymce/plugins/print
@@ -2242,4 +2247,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2244
+2249
