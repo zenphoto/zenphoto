@@ -1,0 +1,30 @@
+﻿/*---------------------------------------------------------------
+change all values of color to change color of the links
+----------------------------------------------------------------*/
+
+
+#main-menu ul li a.active, #main-menu ul li.active a {background-color: #4d93e8;}
+a, a:active, a:focus, a:hover {color: #4d93e8;}
+div.nav-img ul a, div.nav-img a {color: #4d93e8;}
+div.nav-img ul a:hover, div.nav-img a:hover {border-color:#4d93e8; background-color: #4d93e8;}
+div.pagination-nogal ul a, div.pagination-nogal ul a:visited, div.pagination-news ul a, div.pagination-news ul a:visited {border-color: #4d93e8; color: #4d93e8;}
+div.pagination-nogal ul li.current, div.pagination-news ul li.current {border-color: #4d93e8; background-color: #4d93e8;}
+div.ss-controls a:hover, div.nav-controls a:hover {background-color: #4d93e8;}
+div.pagination a, div.pagination span.current {border-color: #4d93e8;}
+div.pagination span.ellipsis {border-color: #4d93e8;}
+div.pagination span.current {background-color: #4d93e8;}
+div.pagination a:hover {border-color: #4d93e8;}
+#admin h3:hover {color: #4d93e8;}
+
+
+/*
+others example of link's colors
+#b45e2c rouge brique
+#f09018 orange
+#993300 orange brique
+#778899 gris-bleu
+#86a1b6 gris-bleu
+#9bbb35 vert amande
+#666666 gris
+#4d93e8 bleu
+*/
