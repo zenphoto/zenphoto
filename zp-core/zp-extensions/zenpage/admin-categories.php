@@ -188,6 +188,7 @@ zenpageJSCSS();
 							<?php
 						}
 						?>
+						<li><img src="images/add.png" alt="" /><?php echo gettext("pick tinyMCE:zen source"); ?></li>
 						<li><img src="images/view.png" alt="" /><?php echo gettext('View'); ?></li>
 						<?php
 						if (extensionEnabled('hitcounter')) {
