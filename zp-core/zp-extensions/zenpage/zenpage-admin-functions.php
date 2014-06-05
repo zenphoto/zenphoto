@@ -242,6 +242,11 @@ function printPagesListTable($page, $flag) {
 				}
 				?>
 			</div>
+			<div class="page-list_icon">
+				<?php
+				echo linkPickerIcon($page);
+				?>
+			</div>
 
 			<?php if (checkIfLockedPage($page)) { ?>
 				<div class="page-list_icon">
@@ -293,6 +298,9 @@ function printPagesListTable($page, $flag) {
 				<div class="page-list_icon">
 					<a href="javascript:confirmDelete('admin-pages.php?delete=<?php echo $page->getTitlelink(); ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>',deletePage)" title="<?php echo gettext("Delete page"); ?>">
 						<img src="../../images/fail.png" alt="" title="<?php echo gettext("delete"); ?>" /></a>
+				</div>
+				<div class="page-list_icon">
+					<?php echo linkPickerIcon($page, 'link_source_' . $page->getID()); ?>
 				</div>
 				<div class="page-list_icon">
 					<input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $page->getTitlelink(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
@@ -998,6 +1006,11 @@ function printCategoryListSortableTable($cat, $flag) {
 			</div>
 			<div class="page-list_icon">
 				<?php
+				echo linkPickerIcon($cat);
+				?>
+			</div>
+			<div class="page-list_icon">
+				<?php
 				if ($cat->getShow()) {
 					$title = gettext("Un-publish");
 					?>
@@ -1036,11 +1049,14 @@ function printCategoryListSortableTable($cat, $flag) {
 				<?php
 			}
 			?>
-			<div class="page-list_icon"><a
-					href="javascript:confirmDelete('admin-categories.php?delete=<?php echo js_encode($cat->getTitlelink()); ?>&amp;tab=categories&amp;XSRFToken=<?php echo getXSRFToken('delete_category') ?>',deleteCategory)"
-					title="<?php echo gettext("Delete Category"); ?>"><img
+			<div class="page-list_icon">
+				<a href="javascript:confirmDelete('admin-categories.php?delete=<?php echo js_encode($cat->getTitlelink()); ?>&amp;tab=categories&amp;XSRFToken=<?php echo getXSRFToken('delete_category') ?>',deleteCategory)"
+					 title="<?php echo gettext("Delete Category"); ?>"><img
 						src="../../images/fail.png" alt="<?php echo gettext("Delete"); ?>"
 						title="<?php echo gettext("Delete Category"); ?>" /></a>
+			</div>
+			<div class="page-list_icon">
+				<?php echo linkPickerIcon($cat, 'link_source_' . $cat->getID()); ?>
 			</div>
 			<div class="page-list_icon"><input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $cat->getTitlelink(); ?>"
 																				 onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
@@ -1397,10 +1413,12 @@ function printZenpageIconLegend() {
 		<?php
 		if (GALLERY_SECURITY == 'public') {
 			?>
-			<li><img src="../../images/lock.png" alt="" /><?php echo gettext("Has Password"); ?></li>	<li><img src="../../images/pass.png" alt="" /><img	src="../../images/action.png" alt="" /><img src="images/clock.png" alt="" /><?php echo gettext("Published/Not published/Scheduled for publishing"); ?></li>
+			<li><img src="../../images/lock.png" alt="" /><?php echo gettext("Has Password"); ?></li>
 			<?php
 		}
 		?>
+		<li><img src="images/add.png" alt="" /><?php echo gettext("pick tinyMCE:zen source"); ?></li>
+		<li><img src="../../images/pass.png" alt="" /><img	src="../../images/action.png" alt="" /><img src="images/clock.png" alt="" /><?php echo gettext("Published/Not published/Scheduled for publishing"); ?></li>
 		<li><img src="../../images/comments-on.png" alt="" /><img src="../../images/comments-off.png" alt="" /><?php echo gettext("Comments on/off"); ?></li>
 		<li><img src="../../images/view.png" alt="" /><?php echo gettext("View"); ?></li>
 		<?php

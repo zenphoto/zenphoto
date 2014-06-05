@@ -1306,10 +1306,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 					<table class="width100percent">
 						<tr>
 							<td class="leftcolumn">
-								<input type="button" value="<?php echo gettext("Link"); ?>" onclick="$('#album_link').select();" title="<?php echo gettext('Click to select link so you can copy it to your clipboard'); ?>" />
+								<?php echo linkPickerIcon($album, 'pick_link'); ?>
 							</td>
 							<td class="middlecolumn">
-								<input type="text" name="album_link" id="album_link" value="<?php echo $album->getLink(); ?>" disabled="disabled" />
+								<?php echo linkPickerItem($album, 'pick_link'); ?>
 							</td>
 						</tr>
 						<tr>
@@ -2091,6 +2091,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				<?php
 			}
 			?>
+			<li><img src="images/add.png" alt="" /><?php echo gettext("pick tinyMCE:zen source"); ?></li>
 			<li><img src="images/pass.png" alt="Published" /><img src="images/action.png" alt="" /><?php echo gettext("Published/Un-published"); ?></li>
 			<li><img src="images/comments-on.png" alt="" /><img src="images/comments-off.png" alt="" /><?php echo gettext("Comments on/off"); ?></li>
 			<li><img src="images/view.png" alt="" /><?php echo gettext("View the album"); ?></li>
@@ -2195,6 +2196,11 @@ function printAdminHeader($tab, $subtab = NULL) {
 					if (!empty($pwd)) {
 						echo '<a title="' . gettext('Password protected') . '"><img src="images/lock.png" style="border: 0px;" alt="" title="' . gettext('Password protected') . '" /></a>';
 					}
+					?>
+				</div>
+				<div class="page-list_icon">
+					<?php
+					echo linkPickerIcon($album);
 					?>
 				</div>
 				<div class="page-list_icon">
@@ -4846,5 +4852,49 @@ function clonedFrom() {
 		$zen = str_replace('\\', '/', @readlink(SERVERPATH . '/' . ZENFOLDER));
 		return dirname($zen);
 	}
+}
+
+function pickSource($obj) {
+	$params = '';
+	switch ($obj->table) {
+		case 'albums':
+			$params = 'pick[album]=' . $obj->getFileName();
+			break;
+		case 'images':
+			$params = 'pick[album]=' . $obj->album->getFileName() . '&pick[image]=' . $obj->getFileName();
+			break;
+		default:
+			$params = 'pick[' . $obj->table . ']=' . $obj->getTitleLink();
+			break;
+	}
+	return $params;
+}
+
+function linkPickerItem($obj, $id) {
+	?>
+	<input type = "text" name = "<?php echo $id; ?>" id = "<?php echo $id; ?>" value = "<?php echo $obj->getLink(); ?>" disabled = "disabled" title="<?php echo gettext('You can also copy the link to your clipboard to paste elsewhere'); ?>" />
+	<?php
+}
+
+function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
+	?>
+	<a href="javascript:
+	<?php
+	if ($id) {
+		?>
+			 $('#<?php echo $id; ?>').select();
+			 <?php
+		 }
+		 ?>
+		 $.ajax({
+		 type: 'POST',
+		 cache: false,
+		 data: '<?php echo pickSource($obj); ?>'<?php echo $extra; ?>,
+		 url: '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/pickSource.php'
+		 });"
+		 title="<?php echo gettext('pick'); ?>">
+		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="">
+	</a>
+	<?php
 }
 ?>

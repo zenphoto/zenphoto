@@ -1082,22 +1082,21 @@ echo "\n</head>";
 															<p><?php echo gettext("<strong>Size:</strong>"); ?><br /><?php echo byteConvert($image->getImageFootprint()); ?></p>
 														</td>
 														<td align="left" valign="top">
-															<input type="button" value="<?php echo gettext("Link:"); ?>" onclick="$('#image_link-<?php echo $currentimage; ?>').select();" title="<?php echo gettext('Click to select link so you can copy it to your clipboard'); ?>" />
-														</td>
+															<?php echo linkPickerIcon($image, 'image_link-' . $currentimage); ?>
 														<td style="width:100%;">
-															<input type="text" name="<?php echo $currentimage; ?>-image_link" id="image_link-<?php echo $currentimage; ?>" value="<?php echo $image->getLink(); ?>" disabled="disabled" style="width:100%;" />
+															<?php echo linkPickerItem($image, 'image_link-' . $currentimage); ?>
 														</td>
 														<td style="padding-left: 1em; text-align: left; border-bottom:none;" rowspan="14" valign="top">
 															<h2 class="h2_bordered_edit"><?php echo gettext("General"); ?></h2>
 															<div class="box-edit">
 																<label class="checkboxlabel">
-																	<input type="checkbox" id="Visible-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-Visible" value="1" <?php if ($image->getShow()) echo ' checked="checked"'; ?> />
+																	<input type="checkbox" id="Visible-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-Visible" value="1" <?php if ($image->getShow()) echo ' checked = "checked"'; ?> />
 																	<?php echo gettext("Published"); ?>
 																</label>
 																<label class="checkboxlabel">
 																	<input type="checkbox" id="allowcomments-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-allowcomments" value="1" <?php
 																	if ($image->getCommentsAllowed()) {
-																		echo ' checked="checked"';
+																		echo ' checked = "checked"';
 																	}
 																	?> />
 																				 <?php echo gettext("Allow Comments"); ?>
@@ -1110,7 +1109,7 @@ echo "\n</head>";
 																	}
 																	?>
 																	<label class="checkboxlabel">
-																		<input type="checkbox" name="reset_hitcounter<?php echo $currentimage; ?>"<?php if (!$hc) echo ' disabled="disabled"'; ?> />
+																		<input type="checkbox" name="reset_hitcounter<?php echo $currentimage; ?>"<?php if (!$hc) echo ' disabled = "disabled"'; ?> />
 																		<?php echo sprintf(ngettext("Reset hitcounter (%u hit)", "Reset hitcounter (%u hits)", $hc), $hc); ?>
 																	</label>
 																	<?php
@@ -1201,22 +1200,22 @@ echo "\n</head>";
 																<label class="checkboxlabel">
 																	<input type="radio" id="move-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="move"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>'
-																																	 , 'move');"  /> <?php echo gettext("Move"); ?>
+																																					 , 'move');"  /> <?php echo gettext("Move"); ?>
 																</label>
 																<label class="checkboxlabel">
 																	<input type="radio" id="copy-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="copy"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>'
-																																	 , 'copy');"  /> <?php echo gettext("Copy"); ?>
+																																					 , 'copy');"  /> <?php echo gettext("Copy"); ?>
 																</label>
 																<label class="checkboxlabel">
 																	<input type="radio" id="rename-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="rename"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>',
-																																	 'rename');"  /> <?php echo gettext("Rename File"); ?>
+																																					 'rename');"  /> <?php echo gettext("Rename File"); ?>
 																</label>
 																<label class="checkboxlabel">
 																	<input type="radio" id="Delete-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="delete"
 																				 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');
-																																	 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
+																																					 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
 																</label>
 																<br class="clearall" />
 																<div id="movecopydiv-<?php echo $currentimage; ?>" style="padding-top: .5em; padding-left: .5em; display: none;">
@@ -1333,7 +1332,7 @@ echo "\n</head>";
 																?>
 																<div class = "page-list_icon">
 																	<input class = "checkbox" type = "checkbox" name = "ids[]" value = "<?php echo $image->getFileName(); ?>" onclick = "triggerAllBox(this.form, 'ids[]', this.for
-																														m.allbox);" />
+																																			m.allbox);" />
 																</div>
 																<?php
 															}
@@ -1692,7 +1691,7 @@ echo "\n</head>";
 							<img	src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong>
 						</button>
 						<button type="reset" onclick="javascript:$('.deletemsg
-																											').hide();" >
+																												').hide();" >
 							<img	src="images/fail.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
 						</button>
 					</span>
@@ -1723,7 +1722,7 @@ echo "\n</head>";
 							<img	src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong>
 						</button>
 						<button type="reset" onclick="javascript:$('.deletemsg
-																															').hide();" >
+																																').hide();" >
 							<img	src="images/fail.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
 						</button>
 					</span>

@@ -316,7 +316,7 @@ printAdminHeader('edit', gettext('crop image'));
 			wmk = '!';
 		}
 
-		uri = '<?php echo WEBPATH . '/' . ZENFOLDER . "/i.php?a=$albumname&i=$imagename"; ?>' + '&w=' + new_width + '&h=' + new_height + '&cw=' + cw + '&ch=' + ch + '&cx=' + cx + '&cy=' + cy + '&wmk=' + wmk;
+		uri = '<?php echo WEBPATH . '/' . ZENFOLDER . '/i.php?a=' . pathurlencode($albumname) . '&i=' . urlencode($imagename); ?>' + '&w=' + new_width + '&h=' + new_height + '&cw=' + cw + '&ch=' + ch + '&cx=' + cx + '&cy=' + cy + '&wmk=' + wmk;
 		jQuery('#imageURI').val(uri);
 		jQuery('#imageURI').attr('size', uri.length + 10);
 		$('#crop').addClass('dirty');
@@ -383,7 +383,7 @@ printAdminHeader('edit', gettext('crop image'));
 						<input type="hidden" id="crop" name="crop" value="crop" />
 						<input type="hidden" id="performcrop" name="performcrop" value="<?php echo html_encode(sanitize($_REQUEST['performcrop'])); ?>" />
 						<p class="floatleft">
-							<input type="button" value="<?php echo gettext("Image Link:"); ?>" onclick="$('#imageURI').select();" title="<?php echo gettext('Click to select link so you can copy it to your clipboard'); ?>" />
+
 							<?php
 							echo gettext('Link image watermark');
 							$watermarks = getWatermarks();
@@ -395,9 +395,11 @@ printAdminHeader('edit', gettext('crop image'));
 								generateListFromArray(array($current), $watermarks, false, false);
 								?>
 							</select>
-
 							<br />
-							<input type="text" name="imageURI" id="imageURI" disabled="disabled" title="<?php echo gettext('Copy and insert this link for an image cropped as shown.'); ?>" />
+							<?php
+							echo linkPickerIcon($imageobj, 'imageURI', "+'&pick[picture]=' + $('#imageURI').val().replaceAll('&', ':')");
+							echo linkPickerItem($imageobj, 'imageURI');
+							?>
 						</p>
 						<p class="buttons">
 							<button type="button" onclick="resetButton();" >

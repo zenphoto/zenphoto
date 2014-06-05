@@ -214,7 +214,7 @@ datepickerJS();
 
           <table class="bordered">
             <tr>
-              <th colspan="12" id="imagenav">
+              <th colspan="13" id="imagenav">
 								<?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/zenpage/admin-news-articles.php', $options); ?>
               </th>
             </tr>
@@ -224,7 +224,7 @@ datepickerJS();
               </th>
 
 
-              <th colspan="5">
+              <th colspan="6">
 								<?php
 								$checkarray = array(
 												gettext('*Bulk actions*')			 => 'noaction',
@@ -246,7 +246,7 @@ datepickerJS();
               </th>
             </tr>
             <tr class="newstr">
-              <td class="subhead" colspan="12">
+              <td class="subhead" colspan="13">
                 <label style="float: right"><?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
                 </label>
               </td>
@@ -302,6 +302,14 @@ datepickerJS();
 
 								<?php
 								$option = getNewsAdminOptionPath(getNewsAdminOption(array('category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1, 'subpage' => 1)));
+								?>
+								<td class="page-list_icon">
+									<?php
+									echo linkPickerIcon($article);
+									?>
+								</td>
+
+								<?php
 								if (checkIfLockedNews($article)) {
 									?>
 									<td class="page-list_icon">
@@ -371,10 +379,9 @@ datepickerJS();
 										?>&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>','<?php echo js_encode(gettext('Are you sure you want to delete this article? THIS CANNOT BE UNDONE!')); ?>')" title="<?php echo gettext('Delete article'); ?>">
 											<img src="../../images/fail.png" alt="" title="<?php echo gettext('Delete article'); ?>" /></a>
 									</td>
-									<td class="page-list_icon">
-										<input type="checkbox" name="ids[]" value="<?php echo $article->getTitlelink(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
-									</td>
-								<?php } else { ?>
+									<?php
+								} else {
+									?>
 									<td class="page-list_icon">
 										<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
 									</td>
@@ -387,6 +394,9 @@ datepickerJS();
 									<?php
 								}
 								?>
+								<td class="page-list_icon">
+									<input type="checkbox" name="ids[]" value="<?php echo $article->getTitlelink(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
+								</td>
 							</tr>
 							<?php
 						}

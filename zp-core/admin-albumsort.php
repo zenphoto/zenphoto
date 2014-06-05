@@ -216,14 +216,27 @@ echo "\n</head>";
 											 width="80" height="80"  />
 									<p>
 										<input type="checkbox" name="ids[]" value="<?php echo $image->filename; ?>">
-										<a href="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/admin-edit.php?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;image=<?php echo urlencode($image->filename); ?>&amp;tab=imageinfo#IT" title="<?php echo gettext('edit'); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pencil.png" alt=""></a>
+										<a href="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/admin-edit.php?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;image=<?php echo urlencode($image->filename); ?>&amp;tab=imageinfo#IT" title="<?php echo gettext('edit'); ?>">
+											<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pencil.png" alt="">
+										</a>
 										<?php
 										if (isImagePhoto($image)) {
 											?>
-											<a href="<?php echo html_encode(pathurlencode($image->getFullImageURL())); ?>" class="colorbox" title="zoom"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/magnify.png" alt=""></a>
+											<a href="<?php echo html_encode(pathurlencode($image->getFullImageURL())); ?>" class="colorbox" title="zoom">
+												<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/magnify.png" alt="">
+											</a>
 											<?php
 										}
 										?>
+										<a href="javascript:$.ajax({
+											 type: 'POST',
+											 cache: false,
+											 data: '<?php echo pickSource($image); ?>',
+											 url: '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/pickSource.php'
+											 });"
+											 title="<?php echo gettext('pick'); ?>">
+											<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="">
+										</a>
 									</p>
 									<?php
 								}
