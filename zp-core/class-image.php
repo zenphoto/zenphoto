@@ -434,12 +434,18 @@ class Image extends MediaObject {
 			$title = $this->get('EXIFDescription');
 		}
 		if (!empty($title)) {
+			if (getoption('transform_newlines')) {
+				$title = newlineBreak($title);
+			}
 			$this->setTitle($title);
 		}
 
 		/* iptc description */
 		$desc = $this->get('IPTCImageCaption');
 		if (!empty($desc)) {
+			if (getoption('transform_newlines')) {
+				$desc = newlineBreak($desc);
+			}
 			$this->setDesc($desc);
 		}
 
