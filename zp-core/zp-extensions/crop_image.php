@@ -386,11 +386,12 @@ printAdminHeader('edit', gettext('crop image'));
 							<input type="button" value="<?php echo gettext("Image Link:"); ?>" onclick="$('#imageURI').select();" title="<?php echo gettext('Click to select link so you can copy it to your clipboard'); ?>" />
 							<?php
 							echo gettext('Link image watermark');
+							$watermarks = getWatermarks();
+							$current = IMAGE_WATERMARK;
 							?>
 							<select id="watermark" name="watermark" onchange="watermarkChange();">
-								<option value="<?php echo NO_WATERMARK; ?>" style="background-color:LightGray"><?php echo gettext('*no watermark'); ?></option>
+								<option value="" <?php if (empty($current)) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('none'); ?></option>
 								<?php
-								$watermarks = getWatermarks();
 								generateListFromArray(array($current), $watermarks, false, false);
 								?>
 							</select>
