@@ -1,0 +1,144 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: zpArdoise\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-08 21:14+0100\n"
+"PO-Revision-Date: 2013-12-23 19:10+0100\n"
+"Last-Translator: vincent3569 <vincent_bourganel@yahoo.fr>\n"
+"Language-Team: vincent3569 <vincent_bourganel@yahoo.fr>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: gettext_th\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"Language: pl_PL\n"
+"X-Generator: Poedit 1.6.3\n"
+"X-Poedit-SearchPath-0: C:\\Users\\Famille\\Documents\\_Vincent\\Site Internet"
+"\\Galerie photo\\zenphoto\\themes\\zpArdoise\n"
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/inc_footer.php:44
+msgid "You can browse with the arrows keys of your keyboard"
+msgstr "Do przeglądania możesz użyć strzałek na klawiaturze"
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/inc_print_image_statistic.php:7
+msgid "Popular images"
+msgstr "Popularne zdjęcia"
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/inc_print_image_statistic.php:15
+msgid "Most rated images"
+msgstr "Najczęściej oceniane zdjęcia"
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/news.php:9
+#: photo\zenphoto\themes\zpArdoise/news.php:11
+msgid "newer"
+msgstr "nowsze"
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/news.php:14
+#: photo\zenphoto\themes\zpArdoise/news.php:16
+msgid "older"
+msgstr "starsze"
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/themeoptions.php:52
+msgid ""
+"Image file for the logo area: enter the full filename (including extension) "
+"of the image file located in themes/zpArdoise/images/ (banniere1.jpg for "
+"example)."
+msgstr ""
+"Plik zdjęcia jako logo strony: wpisz pełną nazwę pliku (łącznie z "
+"rozszerzeniem)"
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/themeoptions.php:53
+msgid "Check to show the logo on the Image page."
+msgstr "Zaznacz aby wyświetlać logo na stronie zdjęć."
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/themeoptions.php:54
+msgid "Choose Dark or Light for color style of the site."
+msgstr "Wybierz Ciemny lub Jasny styl wyglądu strony."
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/themeoptions.php:55
+msgid ""
+"Choose the color of links: choose Default to use the default color of Dark "
+"or Light style and choose Custom to use a custom value. You can customize "
+"these values by editing the file theme/zpArdoise/css/custom.css."
+msgstr ""
+"Wybierz kolor linków: wybierz Domyślny by używać domyślnego koloru linków w "
+"Ciemnym lub Jasnym stylu; wybierz Własny by użyć własnej wartości. Możesz "
+"personalizować te wartości edytując plik file theme/zpArdoise/css/custom.css."
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/themeoptions.php:57
+msgid "Display a menu link to the Archive list."
+msgstr "Wyświetl w menu link do Archiwum"
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/themeoptions.php:59
+msgid "Check to show a tag cloud with all the tags of the gallery."
+msgstr "Zaznacz by pokazać chmurę tagów z wszystkimi tagami galerii."
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/themeoptions.php:60
+msgid ""
+"Shows a strip of thumbnails on Gallery page, depending of the selected "
+"option. NOTE: For anything other than random, the image_statistic plugin "
+"must be activated."
+msgstr ""
+"W zależności od wybranej opcji pokazuje pasek miniatur na stronie galerii. "
+"UWAGA: dla wyświetlania innego niż losowe wymagana jest aktywna wtyczka "
+"image_statistic."
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/themeoptions.php:61
+msgid ""
+"Check to use the Galleriffic script. Uncheck to use a standard display. This "
+"standard display is also displayed when javascript is disabled in the "
+"browser."
+msgstr ""
+"Zaznacz by używać skryptu Galleriffic. Odznacz by używać standardowego "
+"wyświetlania. Standardowe wyświetlanie działa również w przypadku wyłączonej "
+"obsługi javascript w przeglądarce."
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/themeoptions.php:62
+msgid ""
+"If Galleriffic is used, enter the delay of the gallerific slideshow in ms "
+"(eg 3000)."
+msgstr ""
+"Jeśli Galleriffic jest w użyciu wpisz wartość przerwy w pokazie slajdów (w "
+"milisekundach)."
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/themeoptions.php:63
+msgid ""
+"Check to display the full size image with Colorbox in album page, if "
+"galleriffic is used or not. NOTE : in that case, Image page will never be "
+"used."
+msgstr ""
+"Zaznacz by wyświetlać pełny rozmiar zdjęcia w Colorbox na stronie albumu. "
+"UWAGA: w takim przypadku strona zdjęć nie będzie używana. "
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/themeoptions.php:64
+msgid "Check to display the full size image with Colorbox in Image page."
+msgstr ""
+"Zaznacz by wyświetlać pełny rozmiar zdjęcia w Colorbox na stronie zdjęcia. "
+
+#: C:\Users\Famille\Documents\_Vincent\Site Internet\Galerie
+#: photo\zenphoto\themes\zpArdoise/themeoptions.php:65
+msgid ""
+"Show the main EXIF Data on Image page (Model, FocalLength, FNumber, "
+"ExposureTime, ISOSpeedRatings). Remember you have to check these EXIFs data "
+"on admin>image>information EXIF."
+msgstr ""
+"Pokazuj główne dane EXIF na stronia zdjęcia (Model, Odległość Ogniskowa, "
+"Wielkość przysłony, Czas ekspozycji, Szybkość ISO). Pamiętaj, że możesz "
+"sprawdzić te dane EXIF w admin>image>information EXIF."
