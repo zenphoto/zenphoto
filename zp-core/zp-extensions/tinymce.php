@@ -50,28 +50,35 @@ class tinymceOptions {
 										'selections'		 => $configs_zenphoto,
 										'null_selection' => gettext('Disabled'),
 										'desc'					 => gettext('Applies to <em>admin</em> editable text other than for Zenpage pages and news articles.')),
-						gettext('Text editor tinyZenpage')							 => array('key' => 'tinymce_tinyzenpage', 'type' => OPTION_TYPE_CHECKBOX, 'order' => 0.5, 'desc' => gettext('Enable tinyZenpage for Zenpage editors.')),
+						gettext('tinyZenpage plugin')										 => array('key'		 => 'tinymce_tinyzenpage', 'type'	 => OPTION_TYPE_CHECKBOX,
+										'order'	 => 1.5,
+										'desc'	 => gettext('Enable legacy tinyZenpage feature.')),
 						gettext('Text editor configuration - zenpage')	 => array('key'						 => 'tinymce_zenpage', 'type'					 => OPTION_TYPE_SELECTOR,
 										'order'					 => 1,
 										'selections'		 => $configs_zenpage,
 										'null_selection' => gettext('Disabled'),
-										'desc'					 => gettext('Applies to editing on the Zenpage <em>pages</em> and <em>news</em> tabs.')),
-						gettext('Custom image size')										 => array('key'		 => 'tinymce_tinyzenpage_customimagesize', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 2,
-										'desc'	 => gettext("Predefined size (px) for custom size images included using tinyZenpage.")),
-						gettext('Custom image size')										 => array('key'		 => 'tinymce_tinyzenpage_customimagesize', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 2,
-										'desc'	 => gettext("Predefined size (px) for custom size images included using tinyZenpage.")),
-						gettext('Custom thumb crop - size')							 => array('key'		 => 'tinymce_tinyzenpage_customthumb_size', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 2,
-										'desc'	 => gettext("Predefined size (px) for custom cropped thumb images included using tinyZenpage.")),
-						gettext('Custom thumb crop - width')						 => array('key'		 => 'tinymce_tinyzenpage_customthumb_cropwidth', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 2,
-										'desc'	 => gettext("Predefined crop width (%) for custom cropped thumb  images included using tinyZenpage.")),
-						gettext('Custom thumb crop - height')						 => array('key'		 => 'tinymce_tinyzenpage_customthumb_cropheight', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 2,
-										'desc'	 => gettext("Predefined crop height (%) for custom cropped thumb images included using tinyZenpage."))
+										'desc'					 => gettext('Applies to editing on the Zenpage <em>pages</em> and <em>news</em> tabs.'))
 		);
+		if (getOption('tinymce_tinyzenpage')) {
+			$tinyzenpageoptions = array(
+							gettext('Custom image size')					 => array('key'		 => 'tinymce_tinyzenpage_customimagesize', 'type'	 => OPTION_TYPE_NUMBER,
+											'order'	 => 2,
+											'desc'	 => gettext("Predefined size (px) for custom size images included using tinyZenpage.")),
+							gettext('Custom image size')					 => array('key'		 => 'tinymce_tinyzenpage_customimagesize', 'type'	 => OPTION_TYPE_NUMBER,
+											'order'	 => 2,
+											'desc'	 => gettext("Predefined size (px) for custom size images included using tinyZenpage.")),
+							gettext('Custom thumb crop - size')		 => array('key'		 => 'tinymce_tinyzenpage_customthumb_size', 'type'	 => OPTION_TYPE_NUMBER,
+											'order'	 => 2,
+											'desc'	 => gettext("Predefined size (px) for custom cropped thumb images included using tinyZenpage.")),
+							gettext('Custom thumb crop - width')	 => array('key'		 => 'tinymce_tinyzenpage_customthumb_cropwidth', 'type'	 => OPTION_TYPE_NUMBER,
+											'order'	 => 2,
+											'desc'	 => gettext("Predefined crop width (%) for custom cropped thumb  images included using tinyZenpage.")),
+							gettext('Custom thumb crop - height')	 => array('key'		 => 'tinymce_tinyzenpage_customthumb_cropheight', 'type'	 => OPTION_TYPE_NUMBER,
+											'order'	 => 2,
+											'desc'	 => gettext("Predefined crop height (%) for custom cropped thumb images included using tinyZenpage."))
+			);
+			$options = array_merge($options, $tinyzenpageoptions);
+		}
 		return $options;
 	}
 

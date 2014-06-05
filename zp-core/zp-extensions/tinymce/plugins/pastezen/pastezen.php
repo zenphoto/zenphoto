@@ -17,16 +17,31 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 		<!-- IMPORTANT: This is a legacy workaround to make the 3.x API still work!  -->
 		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/tinymce/plugins/compat3x/tiny_mce_popup.js"></script>
 
+		<script language="javascript" type="text/javascript">
+			/* IMPORTANT: This is a workaround using the plugin tiny_mce_popup.js to make the 3.x API still work. This needs to be figured out with the 4.x API! */
+			var ZenpageDialog = {
+				init: function(ed) {
+					tinyMCEPopup.resizeToInnerSize();
+				},
+				insert: function(html) {
+					tinyMCEPopup.execCommand('mceInsertContent', false, html);
+				}
+			};
+
+			tinyMCEPopup.onInit.add(ZenpageDialog.init, ZenpageDialog);
+		</script>
+
 	</head>
+
 	<body>
-		<h2><?php echo gettext('<em>tinyMCE:zen</em> ZenPhoto20 object insertion'); ?></h2>
+		<h2><?php echo gettext('ZenPhoto20 object insertion'); ?></h2>
 		<?php
 		if (isset($_SESSION['pick'])) {
 			$args = $_SESSION['pick'];
 			if (isset($args['album'])) {
 				if (isset($args['image'])) {
 					$obj = newImage(NULL, array('folder' => $args['album'], 'filename' => $args['image']));
-					$title = gettext('insert <em>image</em>: %s');
+					$title = gettext('<em>image</em>: %s');
 					$token = gettext('image with link to image');
 					if (isset($args['picture'])) {
 						$image = $args['picture'];
@@ -35,7 +50,7 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 					}
 				} else {
 					$obj = newAlbum($args['album']);
-					$title = gettext('insert <em>album</em>: %s');
+					$title = gettext('<em>album</em>: %s');
 					$token = gettext('image with link to album');
 					$image = $obj->getThumb();
 				}
@@ -45,17 +60,17 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 				$image = false;
 				if (isset($args['news'])) {
 					$obj = new ZenpageNews($args['news']);
-					$title = gettext('insert <em>news article</em>: %s');
+					$title = gettext('<em>news article</em>: %s');
 					$token = gettext('title with link to news article');
 				}
 				if (isset($args['pages'])) {
 					$obj = new ZenpagePage($args['pages']);
-					$title = gettext('insert <em>page</em>: %s');
+					$title = gettext('<em>page</em>: %s');
 					$token = gettext('title with link to page');
 				}
 				if (isset($args['news_categories'])) {
 					$obj = new ZenpageCategory($args['news_categories']);
-					$title = gettext('insert <em>category</em>: %s');
+					$title = gettext('<em>category</em>: %s');
 					$token = gettext('title with link to category');
 				}
 			}
@@ -99,7 +114,8 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 				}
 
 				function paste() {
-					window.close();
+					ZenpageDialog.insert($('#content').html());
+					tinyMCEPopup.close();
 				}
 
 				window.onload = function() {
@@ -108,7 +124,14 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 				// ]]> -->
 			</script>
 			<h3>
+				<span class="buttons">
+					<button type="button" title="<?php echo gettext('paste'); ?>" onclick="javascript:paste();">
+						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" onclick="paste();"  />
+						<?php echo gettext('paste'); ?>
+					</button>
+				</span>
 				<?php printf($title, html_encodeTagged($obj->getTitle())); ?>
+
 			</h3>
 			<p>
 				<?php
@@ -147,12 +170,5 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 			<?php
 		}
 		?>
-		<br />
-		<br />
-		<div>
-			<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" onclick="paste();" title="<?php echo gettext('paste'); ?>" />
-			&nbsp;
-			<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" onclick="window.close();" title="<?php echo gettext('close'); ?>" />
-		</div>
 	</body>
 </html>
