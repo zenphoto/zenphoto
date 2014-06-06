@@ -704,9 +704,9 @@ class RSS extends feed {
 		$feeditems = $this->getitems();
 		//NOTE: feeditems are complete HTML so necessarily must have been properly endoded by the server function!
 		if (is_array($feeditems)) {
+			header('Content-Type: application/xml');
 			$this->hitcounter();
 			$this->startCache();
-			header('Content-Type: application/xml');
 			echo '<?xml-stylesheet type="text/css" href="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/rss/rss.css" ?>' . "\n";
 			?>
 			<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
