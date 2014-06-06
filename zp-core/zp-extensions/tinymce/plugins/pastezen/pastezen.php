@@ -13,7 +13,7 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 		<?php printStandardMeta(); ?>
 		<title>tinyMCE:zen</title>
 		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.js"></script>
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/tinymce/plugins/compat3x/tiny_mce_popup.js"></script>
+		<script type="text/javascript" src="pastezen_popup.js"></script>
 
 	</head>
 
@@ -99,8 +99,8 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 				}
 
 				function paste() {
-					tinyMCEPopup.execCommand('mceInsertContent', false, $('#content').html());
-					tinyMCEPopup.close();
+					pasteZenPopup.execCommand('mceInsertContent', false, $('#content').html());
+					pasteZenPopup.close();
 				}
 
 				window.onload = function() {
