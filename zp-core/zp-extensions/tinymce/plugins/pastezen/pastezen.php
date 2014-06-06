@@ -12,24 +12,8 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 	<head>
 		<?php printStandardMeta(); ?>
 		<title>tinyMCE:zen</title>
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/htmlencoder.js"></script>
 		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.js"></script>
-		<!-- IMPORTANT: This is a legacy workaround to make the 3.x API still work!  -->
 		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/tinymce/plugins/compat3x/tiny_mce_popup.js"></script>
-
-		<script language="javascript" type="text/javascript">
-			/* IMPORTANT: This is a workaround using the plugin tiny_mce_popup.js to make the 3.x API still work. This needs to be figured out with the 4.x API! */
-			var ZenpageDialog = {
-				init: function(ed) {
-					tinyMCEPopup.resizeToInnerSize();
-				},
-				insert: function(html) {
-					tinyMCEPopup.execCommand('mceInsertContent', false, html);
-				}
-			};
-
-			tinyMCEPopup.onInit.add(ZenpageDialog.init, ZenpageDialog);
-		</script>
 
 	</head>
 
@@ -87,6 +71,7 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 				var link2 = '<?php echo $link2; ?>';
 				var title = '<?php echo html_encodeTagged($obj->getTitle()); ?>';
 				var image = '<?php echo $image; ?>';
+
 				function zenchange() {
 					var selectedlink = $('input:radio[name=link]:checked').val();
 					switch (selectedlink) {
@@ -114,7 +99,7 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 				}
 
 				function paste() {
-					ZenpageDialog.insert($('#content').html());
+					tinyMCEPopup.execCommand('mceInsertContent', false, $('#content').html());
 					tinyMCEPopup.close();
 				}
 
