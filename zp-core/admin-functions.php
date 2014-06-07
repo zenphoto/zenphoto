@@ -1009,7 +1009,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @return string
 	 */
 	function postIndexDecode($str) {
-		return strtr(urldecode(strtr($str, array('__2E__' => '.', '__25__' => '%', '__26__' => '&', '__27__' => "'"))), array('__20__' => ' ', '__2B__', '+'));
+		return str_replace('__20__', ' ', str_replace('__2B__', '+', urldecode(strtr($str, array('__2E__' => '.', '__25__' => '%', '__26__' => '&', '__27__' => "'")))));
 	}
 
 	/**
@@ -1158,13 +1158,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		}
 
 		if (count($tags) > 0) {
-			foreach ($tags as $tag) {
-				$tagLC = mb_strtolower($tag);
-				$key = array_search($tagLC, $_zp_admin_LC_taglist);
-				if ($key !== false) {
-					unset($them[$key]);
-				}
-			}
+			$them = array_diff_key($them, $tags);
 		}
 		if ($resizeable) {
 			$tagclass = 'resizeable_tagchecklist';
@@ -1476,7 +1470,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$sort[gettext('Custom')] = 'custom';
 						/*
 						 * not recommended--screws with peoples minds during pagination!
-							$sort[gettext('Random')] = 'random';
+						  $sort[gettext('Random')] = 'random';
 						 */
 						?>
 						<tr>
