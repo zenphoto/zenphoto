@@ -261,8 +261,10 @@ if (isset($_GET['action'])) {
 							$oldsort = sanitize($_POST['oldalbumimagesort'], 3);
 							if (getOption('albumimagedirection'))
 								$oldsort = $oldsort . '_desc';
-							$newsort = sanitize($_POST['albumimagesort'], 3);
-							if ($oldsort == $newsort) {
+							if (isset($_POST['singleimage'])) {
+								$single = sanitize($_POST['singleimage']);
+							}
+							if (isset($single) || $oldsort == ($newsort = sanitize($_POST['albumimagesort'], 3))) {
 								for ($i = 0; $i < $_POST['totalimages']; $i++) {
 									$filename = sanitize($_POST["$i-filename"]);
 // The file might no longer exist
@@ -274,6 +276,7 @@ if (isset($_GET['action'])) {
 											$movecopyrename_action = '';
 										}
 										if ($movecopyrename_action == 'delete') {
+											unset($single);
 											$image->remove();
 										} else {
 											if ($thumbnail = sanitize($_POST['album_thumb-' . $i])) { //selected as an album thumb
@@ -314,10 +317,11 @@ if (isset($_GET['action'])) {
 											$tags = array();
 											$l = strlen($tagsprefix);
 											foreach ($_POST as $key => $value) {
-												$key = postIndexDecode($key);
 												if (substr($key, 0, $l) == $tagsprefix) {
+													$key = sanitize(substr($key, $l));
+													$key = postIndexDecode($key);
 													if ($value) {
-														$tags[] = sanitize(substr($key, $l));
+														$tags[] = $key;
 													}
 												}
 											}
@@ -354,6 +358,7 @@ if (isset($_GET['action'])) {
 
 // Process move/copy/rename
 											if ($movecopyrename_action == 'move') {
+												unset($single);
 												$dest = sanitize_path($_POST[$i . '-albumselect']);
 												if ($dest && $dest != $folder) {
 													if ($e = $image->move($dest)) {
@@ -378,6 +383,8 @@ if (isset($_GET['action'])) {
 												$renameto = sanitize_path($_POST[$i . '-renameto']);
 												if ($e = $image->rename($renameto)) {
 													$notify = "&mcrerr=" . $e;
+												} else {
+													$single = $renameto;
 												}
 											}
 										}
@@ -402,6 +409,8 @@ if (isset($_GET['action'])) {
 					$folder = $returnalbum;
 				}
 				$qs_albumsuffix = '';
+				if (isset($single))
+					$qs_albumsuffix .= '&singleimage=' . $single;
 
 				/** SAVE MULTIPLE ALBUMS ***************************************************** */
 			} else if ($_POST['totalalbums']) {
@@ -915,6 +924,7 @@ echo "\n</head>";
 						$simage = sanitize($_GET['singleimage']);
 						if (array_search($simage, $images) !== false) {
 							$allimagecount = 1;
+							$totalimages = 1;
 							$singleimage = $simage;
 							$images = array($simage);
 						}
@@ -955,6 +965,13 @@ echo "\n</head>";
 								<input type="hidden" name="subpage" value="<?php echo html_encode($pagenum); ?>" />
 								<input type="hidden" name="tagsort" value="<?php echo html_encode($tagsort); ?>" />
 								<input type="hidden" name="oldalbumimagesort" value="<?php echo html_encode($oldalbumimagesort); ?>" />
+								<?php
+								if ($singleimage) {
+									?>
+									<input type="hidden" name="singleimage" value="<?php echo html_encode($singleimage); ?>" />
+									<?php
+								}
+								?>
 
 								<?php $totalpages = ceil(($allimagecount / $imagesTab_imageCount)); ?>
 								<table class="bordered">
@@ -1436,16 +1453,18 @@ echo "\n</head>";
 															</span>
 														</td>
 													</tr>
-													<tr>
-														<td valign="top"><?php echo gettext("Tags:"); ?></td>
-														<td>
-															<div class="box-edit-unpadded">
-																<?php tagSelector($image, 'tags_' . $currentimage . '-', false, $tagsort, true, 1); ?>
-															</div>
-														</td>
-													</tr>
 													<?php
 													if ($singleimage) {
+														?>
+														<tr>
+															<td valign="top"><?php echo gettext("Tags:"); ?></td>
+															<td>
+																<div class="box-edit-unpadded">
+																	<?php tagSelector($image, 'tags_' . $currentimage . '-', false, $tagsort, true, 1); ?>
+																</div>
+															</td>
+														</tr>
+														<?php
 														$custom = zp_apply_filter('edit_image_custom_data', '', $image, $currentimage);
 														if (empty($custom)) {
 															?>
@@ -1544,7 +1563,7 @@ echo "\n</head>";
 														?>
 														<tr>
 															<td colspan="2" style="border-bottom:none;">
-																<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&tab=imageinfo&album=' . $album->name . '&singleimage=' . $image->filename; ?>"><img src="images/options.png" /> <?php echo gettext('Edit all image data'); ?></a>
+																<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&tab=imageinfo&album=' . $album->name . '&singleimage=' . $image->filename . '&subpage=' . $pagenum; ?>"><img src="images/options.png" /> <?php echo gettext('Edit all image data'); ?></a>
 															</td>
 														</tr>
 														<?php

@@ -1104,7 +1104,7 @@ function getAllTagsUnique() {
 	$unique_tags = query($sql);
 	if ($unique_tags) {
 		while ($tagrow = db_fetch_assoc($unique_tags)) {
-			$_zp_unique_tags[] = $tagrow['name'];
+			$_zp_unique_tags[mb_strtolower($tagrow['name'])] = $tagrow['name'];
 		}
 		db_free_result($unique_tags);
 	}
@@ -1193,7 +1193,7 @@ function readTags($id, $tbl) {
 		while ($row = db_fetch_assoc($result)) {
 			$dbtag = query_single_row("SELECT `name` FROM" . prefix('tags') . " WHERE `id`='" . $row['tagid'] . "'");
 			if ($dbtag) {
-				$tags[] = $dbtag['name'];
+				$tags[mb_strtolower($dbtag['name'])] = $dbtag['name'];
 			}
 		}
 		db_free_result($result);
