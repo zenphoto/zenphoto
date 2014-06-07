@@ -1532,7 +1532,7 @@ echo "\n</head>";
 														?>
 														<tr>
 															<td colspan="2" style="border-bottom:none;">
-																<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&tab=imageinfo&album=' . $album->name . '&singleimage=' . $image->filename.'&subpage='.$pagenum; ?>"><img src="images/options.png" /> <?php echo gettext('Edit all image data'); singleimage?></a>
+																<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&tab=imageinfo&album=' . $album->name . '&singleimage=' . $image->filename.'&subpage='.$pagenum; ?>"><img src="images/options.png" /> <?php echo gettext('Edit all image data'); ?></a>
 															</td>
 														</tr>
 														<?php
