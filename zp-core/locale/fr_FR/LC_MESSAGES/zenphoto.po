@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-29 23:02-0500\n"
-"PO-Revision-Date: 2014-05-29 23:03-0500\n"
+"POT-Creation-Date: 2014-06-06 18:08-0500\n"
+"PO-Revision-Date: 2014-06-06 22:09-0500\n"
 "Last-Translator: \n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "<michel@mgagnon.net>\n"
@@ -15,15 +15,15 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-Bookmarks: 1740,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
-"X-Generator: Poedit 1.6.4\n"
+"X-Generator: Poedit 1.6.5\n"
 "X-Poedit-SearchPath-0: F:\\SITES\\SitesGitHub\\zenphoto\n"
 "X-Poedit-SearchPath-1: C:\\Users\\Famille\\Documents\\GitHub\\zenphoto\n"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/404.php:23
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/archive.php:30
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/contact.php:24
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/password.php:24
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/register.php:24
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/404.php:22
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/archive.php:29
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/contact.php:23
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/password.php:23
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/register.php:23
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/404.php:22
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/404.php:40
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/album.php:28
@@ -52,104 +52,104 @@ msgstr ""
 msgid "Gallery Index"
 msgstr "Accueil de la galerie"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/404.php:24
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/404.php:28
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/404.php:27
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/404.php:23
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/404.php:27
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/404.php:26
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:443
 msgid "Object not found"
 msgstr "Objet non trouvé"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/album.php:25
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/album.php:54
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:87
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/album.php:24
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/album.php:53
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:86
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/sidebar.php:9
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/sidebar.php:37
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/album.php:27
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/album.php:26
 msgid "Search within album"
 msgstr "Recherche dans l’album"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/album.php:25
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/album.php:24
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-globals.php:118
 msgid "search"
 msgstr "recherche"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/album.php:31
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/favorites.php:24
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/image.php:51
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/404.php:40
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/album.php:75
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/album.php:79
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/archive.php:39
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/contact.php:48
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/album.php:30
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/favorites.php:23
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/image.php:50
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/404.php:39
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/album.php:74
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/album.php:78
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/archive.php:38
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/contact.php:47
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/favorites.php:75
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/image.php:93
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/image.php:97
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/indexpage.php:77
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/indexpage.php:90
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/news.php:51
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/pages.php:41
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/register.php:47
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:110
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/slideshow.php:36
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/slideshow.php:40
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/image.php:92
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/image.php:96
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/indexpage.php:76
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/indexpage.php:89
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/news.php:50
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/pages.php:40
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/register.php:46
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:109
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/slideshow.php:35
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/slideshow.php:39
 msgid "Albums Index"
 msgstr "Racine des albums"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/album.php:43
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/album.php:46
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/favorites.php:36
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/favorites.php:39
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/index.php:38
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/index.php:41
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/search.php:57
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/search.php:60
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/album.php:47
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/album.php:50
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/favorites.php:46
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/favorites.php:49
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:48
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:51
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:147
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:150
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/album.php:34
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/favorites.php:35
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/gallery.php:34
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/search.php:140
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/album.php:42
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/album.php:45
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/favorites.php:35
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/favorites.php:38
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/index.php:37
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/index.php:40
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/search.php:56
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/search.php:59
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/album.php:46
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/album.php:49
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/favorites.php:45
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/favorites.php:48
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:47
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:50
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:146
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:149
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/album.php:33
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/favorites.php:34
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/gallery.php:33
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/search.php:139
 msgid "View album:"
 msgstr "Voir l’album :"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/album.php:65
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/favorites.php:65
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/image.php:39
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/index.php:50
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/search.php:88
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/album.php:33
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/album.php:36
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/album.php:177
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/album.php:64
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/favorites.php:64
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/image.php:38
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/index.php:49
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/search.php:87
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/album.php:32
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/album.php:35
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/album.php:176
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/favorites.php:31
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/favorites.php:34
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/favorites.php:209
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/gallery.php:95
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/image.php:60
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/image.php:62
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:306
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/album.php:42
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/album.php:74
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/favorites.php:41
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/favorites.php:72
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:43
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:59
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/image.php:44
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:174
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/album.php:30
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/album.php:70
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/favorites.php:31
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/favorites.php:58
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/gallery.php:29
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/gallery.php:43
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/image.php:33
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/news.php:55
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/search.php:165
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/gallery.php:94
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/image.php:59
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/image.php:61
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:305
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/album.php:41
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/album.php:73
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/favorites.php:40
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/favorites.php:71
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:42
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:58
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/image.php:43
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:173
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/album.php:29
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/album.php:69
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/favorites.php:30
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/favorites.php:57
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/gallery.php:28
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/gallery.php:42
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/image.php:32
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/news.php:54
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/search.php:164
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:4311
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:30
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:588
@@ -158,38 +158,38 @@ msgstr "Voir l’album :"
 msgid "prev"
 msgstr "préc."
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/album.php:65
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/favorites.php:65
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/image.php:43
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/index.php:50
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/search.php:88
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/album.php:44
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/album.php:47
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/album.php:177
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/album.php:64
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/favorites.php:64
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/image.php:42
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/index.php:49
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/search.php:87
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/album.php:43
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/album.php:46
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/album.php:176
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/favorites.php:42
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/favorites.php:45
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/favorites.php:209
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/gallery.php:95
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/image.php:70
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/image.php:72
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:306
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/album.php:42
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/album.php:74
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/favorites.php:41
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/favorites.php:72
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:43
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:59
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/image.php:46
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:174
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/album.php:30
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/album.php:70
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/favorites.php:31
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/favorites.php:58
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/gallery.php:29
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/gallery.php:43
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/image.php:36
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/news.php:59
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/search.php:165
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/gallery.php:94
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/image.php:69
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/image.php:71
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:305
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/album.php:41
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/album.php:73
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/favorites.php:40
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/favorites.php:71
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:42
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:58
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/image.php:45
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:173
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/album.php:29
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/album.php:69
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/favorites.php:30
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/favorites.php:57
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/gallery.php:28
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/gallery.php:42
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/image.php:35
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/news.php:58
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/search.php:164
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:4339
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:31
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/jplayer.php:471
@@ -199,42 +199,42 @@ msgstr "préc."
 msgid "next"
 msgstr "suiv."
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/album.php:67
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/image.php:105
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/album.php:75
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/favorites.php:73
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:82
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/image.php:103
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/news.php:72
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/news.php:109
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/pages.php:51
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/news.php:45
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/pages.php:58
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/album.php:66
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/image.php:104
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/album.php:74
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/favorites.php:72
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:81
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/image.php:102
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/news.php:71
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/news.php:108
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/pages.php:50
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/news.php:44
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/pages.php:57
 msgid "<strong>Tags:</strong>"
 msgstr "<strong>Tags :</strong> "
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/album.php:80
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/album.php:79
 #: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/sidebar.php:78
 msgid "Album RSS"
 msgstr "Flux RSS de l’album"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/album.php:81
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/archive.php:32
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/image.php:121
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/index.php:61
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/search.php:99
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/archive.php:43
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/album.php:80
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/archive.php:31
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/image.php:120
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/index.php:60
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/search.php:98
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/archive.php:42
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/archive.php:41
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/functions.php:122
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/archive.php:32
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/archive.php:31
 msgid "Archive View"
 msgstr "Archives"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/archive.php:16
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/image.php:29
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/index.php:16
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/search.php:15
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/search.php:98
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/archive.php:15
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/image.php:28
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/index.php:15
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/search.php:14
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/search.php:97
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/404.php:12
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/archive.php:12
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/gallery.php:12
@@ -244,45 +244,45 @@ msgstr "Archives"
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/password.php:12
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/register.php:13
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/search.php:16
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/archive.php:15
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:15
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:15
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/archive.php:14
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:14
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:14
 msgid "Gallery RSS"
 msgstr "Flux RSS de la galerie"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/archive.php:38
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/archive.php:75
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/archive.php:48
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/archive.php:39
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/archive.php:37
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/archive.php:74
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/archive.php:47
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/archive.php:38
 msgid "Popular Tags"
 msgstr "Tags populaires"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/contact.php:25
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/index.php:64
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/contact.php:24
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/index.php:63
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/functions.php:407
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/contact.php:42
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/functions.php:128
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/contact.php:35
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/contact.php:34
 #: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/sidebar.php:105
 #: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/sidebar.php:107
 msgid "Contact us"
 msgstr "Contactez-nous"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/contact.php:28
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/contact.php:64
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/contact.php:27
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/contact.php:63
 msgid "Contact us."
 msgstr "Contactez-nous."
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/favorites.php:42
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/favorites.php:57
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/favorites.php:41
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/favorites.php:56
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/favorites.php:124
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/favorites.php:176
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/favorites.php:61
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/favorites.php:79
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/favorites.php:53
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/favorites.php:64
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/favorites.php:41
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/favorites.php:53
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/favorites.php:52
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/favorites.php:63
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/favorites.php:40
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/favorites.php:52
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:199
 msgid "Remove"
 msgstr "Enlever"
@@ -296,15 +296,15 @@ msgstr "Palette de couleurs par défaut du thème."
 msgid "Theme Color"
 msgstr "Couleur du thème"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/image.php:23
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/image.php:22
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/colorbox/functions.php:32
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/image.php:20
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/image.php:30
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/image.php:19
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/image.php:29
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/colorbox/functions.php:32
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/image.php:19
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/image.php:29
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/image.php:22
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/image.php:28
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/image.php:21
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/image.php:27
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:139
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-plugins.php:81
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/GoogleMap.php:501
@@ -317,65 +317,65 @@ msgstr "Couleur du thème"
 msgid "close"
 msgstr "fermer"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/image.php:39
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/image.php:44
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/image.php:33
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/image.php:38
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/image.php:43
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/image.php:32
 msgid "Previous Image"
 msgstr "Image précédente"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/image.php:43
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/image.php:46
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/image.php:36
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/image.php:42
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/image.php:45
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/image.php:35
 msgid "Next Image"
 msgstr "Image suivante"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/index.php:69
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/password.php:37
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/index.php:68
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/password.php:36
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/functions.php:413
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/functions.php:134
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/password.php:39
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/password.php:38
 #: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/sidebar.php:124
 #: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/sidebar.php:126
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/password.php:35
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/password.php:34
 msgid "Register for this site"
 msgstr "Inscrivez-vous à ce site"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/password.php:26
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/password.php:33
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/password.php:28
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/password.php:27
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/password.php:25
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/password.php:32
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/password.php:27
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/password.php:26
 msgid "A password is required for the page you requested"
 msgstr "Un mot de passe est nécessaire pour accéder à cette page"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/register.php:25
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/register.php:53
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/register.php:24
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/register.php:52
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/register.php:42
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:447
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:244
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:220
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/register_user.php:55
 msgid "Register"
 msgstr "Inscrivez-vous"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/register.php:28
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/register.php:64
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/register.php:27
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/register.php:63
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/register.php:44
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/register.php:35
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/register.php:28
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/register.php:34
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/register.php:27
 msgid "User Registration"
 msgstr "Inscription d’un utilisateur"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/search.php:46
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/search.php:45
 #, php-format
 msgid "Total matches for <em>%1$s</em>: %2$u"
 msgstr "Nombre de résultats pour <em>%1$s</em> : %2$u"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/search.php:62
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/search.php:61
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1376
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:1338
 msgid "Date:"
 msgstr "Date : "
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/basic/search.php:86
+#: F:\SITES\SitesGitHub\zenphoto/themes/basic/search.php:85
 msgid "Sorry, no image matches found. Try refining your search."
 msgstr ""
 "Désolé, aucune image ne correspond. Essayez de préciser votre recherche."
@@ -423,34 +423,34 @@ msgstr "Couleurs du thème"
 msgid "Select the colors of the theme"
 msgstr "Choisir les couleurs du thème"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/404.php:36
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/album.php:74
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/archive.php:35
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/contact.php:44
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/404.php:35
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/album.php:73
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/archive.php:34
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/contact.php:43
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/favorites.php:71
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/gallery.php:47
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/image.php:92
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/news.php:47
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/pages.php:37
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/register.php:43
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:106
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/slideshow.php:35
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/gallery.php:46
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/image.php:91
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/news.php:46
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/pages.php:36
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/register.php:42
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:105
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/slideshow.php:34
 msgid "Main Index"
 msgstr "Accueil principal"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/404.php:36
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/album.php:74
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/archive.php:35
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/contact.php:44
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/404.php:35
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/album.php:73
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/archive.php:34
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/contact.php:43
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/favorites.php:71
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/gallery.php:47
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/image.php:92
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/indexpage.php:44
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/news.php:47
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/pages.php:37
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/register.php:43
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:106
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/slideshow.php:35
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/gallery.php:46
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/image.php:91
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/indexpage.php:43
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/news.php:46
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/pages.php:36
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/register.php:42
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:105
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/slideshow.php:34
 #: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/functions.php:60
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1415
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager.php:820
@@ -458,47 +458,47 @@ msgstr "Accueil principal"
 msgid "Home"
 msgstr "Accueil"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/404.php:46
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/404.php:45
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/404.php:41
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/404.php:43
 msgid "Page not found"
 msgstr "Page non trouvée"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/album.php:158
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/album.php:157
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/favorites.php:197
 msgid "Album is empty"
 msgstr "L’album est vide"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/archive.php:65
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/archive.php:64
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/archive.php:45
 msgid "Images By Date"
 msgstr "Images par date"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/archive.php:70
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/archive.php:69
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/archive.php:50
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/archive.php:43
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/archive.php:34
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/archive.php:42
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/archive.php:33
 msgid "News archive"
 msgstr "Archives des actualités"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/contact.php:54
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/contact.php:53
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/functions.php:2400
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:447
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:244
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:220
 msgid "Contact"
 msgstr "Contact"
 
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/favorites.php:51
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/indexpage.php:32
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:89
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/indexpage.php:31
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:88
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/sidebar.php:40
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/sidebar.php:46
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/archive.php:26
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/favorites.php:26
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:27
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/pages.php:27
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:49
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/search.php:54
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/archive.php:25
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/favorites.php:25
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:26
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/pages.php:26
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:48
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/search.php:53
 msgid "Search gallery"
 msgstr "Rechercher dans la galerie"
 
@@ -516,7 +516,7 @@ msgid "Personality"
 msgstr "Présentation"
 
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/functions.php:179
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/indexpage.php:82
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/indexpage.php:81
 msgid "There were no images from which to select the random heading."
 msgstr ""
 "Il n’y a aucune image parmi lesquelles en choisir une aléatoirement pour la "
@@ -661,7 +661,7 @@ msgstr "vidéo"
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/functions.php:428
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/functions.php:149
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/functions.php:151
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:68
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:67
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-globals.php:76
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinyURL.php:81
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tweet_news.php:406
@@ -677,7 +677,7 @@ msgid "sticky"
 msgstr "épinglé"
 
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/functions.php:443
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/news.php:92
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/news.php:91
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/functions.php:166
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/news.php:62
 #, php-format
@@ -685,13 +685,13 @@ msgid "Comments: %d"
 msgstr "Commentaires : %d"
 
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/functions.php:450
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/news.php:101
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/news.php:100
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/functions.php:173
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/news.php:107
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:77
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/news.php:67
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/news.php:102
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/news.php:44
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:76
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/news.php:66
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/news.php:101
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/news.php:43
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/zoom.php:61
 msgid "Categories: "
 msgstr "Catégories : "
@@ -702,14 +702,14 @@ msgstr "Catégories : "
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/functions.php:186
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/gallery.php:61
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/search.php:223
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:63
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:86
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/news.php:79
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/news.php:116
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/news.php:65
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/news.php:80
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:62
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:85
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/news.php:78
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/news.php:115
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/news.php:64
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/news.php:79
 msgid "next »"
-msgstr "suiv. »"
+msgstr "suiv. ››"
 
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/functions.php:462
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/album.php:77
@@ -717,20 +717,20 @@ msgstr "suiv. »"
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/functions.php:186
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/gallery.php:61
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/search.php:223
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:63
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:86
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/news.php:79
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/news.php:116
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/news.php:65
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/news.php:80
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:62
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:85
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/news.php:78
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/news.php:115
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/news.php:64
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/news.php:79
 msgid "« prev"
-msgstr "« préc."
+msgstr "‹‹ préc."
 
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/functions.php:482
 msgid "Add a comment"
 msgstr "Ajouter un commentaire"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/gallery.php:33
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/gallery.php:32
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/sidebar.php:13
 msgid "Search albums"
 msgstr "Recherche dans les albums"
@@ -746,77 +746,77 @@ msgstr "Démarrer"
 msgid "Stop"
 msgstr "Arrêter"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/indexpage.php:67
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/indexpage.php:66
 msgid "Picture of the day"
 msgstr "Image du jour"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/indexpage.php:78
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/indexpage.php:90
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/indexpage.php:77
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/indexpage.php:89
 msgid "Visit the image gallery"
 msgstr "Visiter la galerie de photos"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/news.php:29
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:82
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/news.php:28
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:81
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/sidebar.php:32
 msgid "Search within category"
 msgstr "Recherche dans une catégorie"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/news.php:32
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/news.php:31
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/sidebar.php:25
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/news.php:32
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/news.php:31
 msgid "Search news"
 msgstr "Recherche dans les actualités"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/password.php:32
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/album.php:35
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/archive.php:32
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/contact.php:30
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/favorites.php:34
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:35
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/image.php:54
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/news.php:42
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/pages.php:34
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/register.php:30
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:57
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/password.php:31
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/album.php:34
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/archive.php:31
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/contact.php:29
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/favorites.php:33
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:34
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/image.php:53
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/news.php:41
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/pages.php:33
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/register.php:29
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:56
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/404.php:56
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/setup/index.php:1083
 msgid "Index"
 msgstr "Accueil"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:117
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:116
 #, php-format
 msgid "Search album: %s"
 msgid_plural "Search albums: %s"
 msgstr[0] "Recherche dans l’album : %s"
 msgstr[1] "Recherche dans les albums : %s"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:120
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:119
 #, php-format
 msgid "Search category: %s"
 msgid_plural "Search categories: %s"
 msgstr[0] "Recherche dans la catégorie : %s"
 msgstr[1] "Recherche dans les catégories : %s"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:140
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:139
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/search.php:91
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:76
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/search.php:70
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:75
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/search.php:69
 #, php-format
 msgid "%1$u Hit for <em>%2$s</em>"
 msgid_plural "%1$u Hits for <em>%2$s</em>"
 msgstr[0] "%1$u affichage sur <em>%2$s</em>"
 msgstr[1] "%1$u affichages sur <em>%2$s</em>"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:151
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:150
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/search.php:110
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:87
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/search.php:81
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:86
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/search.php:80
 #, php-format
 msgid "Pages (%s)"
 msgstr "Pages (%s)"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:155
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:188
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:154
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:187
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/search.php:114
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/search.php:147
 #: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/functions.php:46
@@ -824,8 +824,8 @@ msgstr "Pages (%s)"
 msgid "Show more results"
 msgstr "Afficher plus de résultats"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:156
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:189
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:155
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:188
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/search.php:115
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/search.php:148
 #: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/functions.php:47
@@ -833,43 +833,43 @@ msgstr "Afficher plus de résultats"
 msgid "Show fewer results"
 msgstr "Afficher moins de résultats"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:184
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:183
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/search.php:143
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:107
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/search.php:101
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:106
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/search.php:100
 #, php-format
 msgid "Articles (%s)"
 msgstr "Articles (%s)"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:220
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:219
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/search.php:180
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:129
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/search.php:123
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:128
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/search.php:122
 #, php-format
 msgid "Images (%s)"
 msgstr "Images (%s)"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:224
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:223
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/search.php:184
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:134
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/search.php:128
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:133
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/search.php:127
 #, php-format
 msgid "Albums (%s)"
 msgstr "Albums (%s)"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:226
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:225
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/search.php:186
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:137
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/search.php:131
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:136
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/search.php:130
 #, php-format
 msgid "Albums (%1$s) &amp; Images (%2$s)"
 msgstr "Albums (%1$s) et images (%2$s)"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:289
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:288
 msgid "Enter your search criteria."
 msgstr "Veuillez saisir vos critères de recherche."
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:291
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/search.php:290
 #, php-format
 msgid "Sorry, no matches for <em>%s</em>. Try refining your search."
 msgstr ""
@@ -914,12 +914,12 @@ msgstr "Racine des albums"
 #: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/sidebar.php:37
 #: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/sidebar.php:84
 #: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/themeoptions.php:50
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/album.php:28
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/favorites.php:29
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/album.php:27
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/favorites.php:28
 #: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/functions.php:35
 #: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/functions.php:66
 #: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/functions.php:155
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/image.php:29
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/image.php:28
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1637
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-options.php:2381
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-options.php:2382
@@ -993,8 +993,8 @@ msgstr "Albums"
 #: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/themeoptions.php:53
 #: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/functions.php:69
 #: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/functions.php:161
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/pages.php:29
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/pages.php:35
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/pages.php:28
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/pages.php:34
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:3012
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-functions.php:3148
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:526
@@ -1070,7 +1070,7 @@ msgstr "Flux RSS"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/comment_form/functions.php:840
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/defaultCodeblocks.php:36
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/externalFeed.php:71
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:229
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:205
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/multiple_layouts.php:92
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/related_items.php:152
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/related_items.php:187
@@ -1080,15 +1080,15 @@ msgstr "Flux RSS"
 msgid "News"
 msgstr "Actualités"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/slideshow.php:56
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/album.php:27
+#: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/slideshow.php:55
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/album.php:26
 #: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/functions.php:62
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:447
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1281
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:1312
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3815
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3818
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:68
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:244
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:220
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:744
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:713
 msgid "Search"
@@ -1107,7 +1107,7 @@ msgid ""
 "Based on Effervescence 1.1 with multiple color schemes and personalities "
 "added."
 msgstr ""
-"Basé sur Effervescence 1.1 avec de nombreux coloris et options "
+"D’après Effervescence 1.1 avec de nombreux coloris et options "
 "supplémentaires."
 
 #: F:\SITES\SitesGitHub\zenphoto/themes/effervescence_plus/themeoptions.php:66
@@ -1403,7 +1403,7 @@ msgstr "Album suivant"
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/album.php:105
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/favorites.php:116
 msgid "Next album »"
-msgstr "Album suivant »"
+msgstr "Album suivant ››"
 
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/album.php:113
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/favorites.php:124
@@ -1413,7 +1413,7 @@ msgstr "Album précédent"
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/album.php:113
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/favorites.php:124
 msgid "« Prev Album"
-msgstr "« Album précédent"
+msgstr "‹‹ Album précédent"
 
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/album.php:119
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/image.php:135
@@ -1442,7 +1442,7 @@ msgstr "Image suivante"
 
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/image.php:117
 msgid "Next »"
-msgstr "Suivante »"
+msgstr "Suivante ››"
 
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/image.php:126
 msgid "Previous image"
@@ -1450,12 +1450,12 @@ msgstr "Image précédente"
 
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/image.php:127
 msgid "« Previous"
-msgstr "« Précédente"
+msgstr "‹‹ Précédente"
 
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/password.php:40
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/password.php:6
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:447
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:244
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:220
 msgid "Password required"
 msgstr "Un mot de passe est requis"
 
@@ -1472,9 +1472,9 @@ msgid "Search pages"
 msgstr "Recherche dans les pages"
 
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/sidebar.php:22
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/news.php:29
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:42
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/search.php:47
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/news.php:28
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:41
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/search.php:46
 msgid "Search category"
 msgstr "Recherche dans la catégorie"
 
@@ -1483,7 +1483,7 @@ msgid ""
 "Modded Wordpress theme from, <a href=\"http://garlandtheme.blogspot.com/"
 "\">garland</a>"
 msgstr ""
-"Thème modifié à partir du thème <a href=\"http://garlandtheme.blogspot.com/"
+"Développé à partir du thème <a href=\"http://garlandtheme.blogspot.com/"
 "\">Garland</a> de Wordpress"
 
 #: F:\SITES\SitesGitHub\zenphoto/themes/garland/themeoptions.php:75
@@ -1510,8 +1510,8 @@ msgstr ""
 "Sélectionner le titre-lien de la <em>page</em> utilisée comme page "
 "d’accueil. La sélection s’effectue parmi les pages non publiées."
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/archive.php:39
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/archive.php:30
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/archive.php:38
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/archive.php:29
 msgid "Gallery archive"
 msgstr "Archives de la galerie"
 
@@ -1522,29 +1522,29 @@ msgstr ""
 "Thème Zenpage conçu et développé par <a href=\"http://www.maltem.de\">Malte "
 "Müller</a>"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:72
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/news.php:66
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/news.php:94
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/gallery.php:71
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/news.php:65
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/news.php:93
 msgid "Comments:"
 msgstr "Commentaires :"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/image.php:68
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/image.php:67
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:24
 msgid "« prev thumbs"
-msgstr "« vignettes précédentes"
+msgstr "‹‹ vignettes précédentes"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/image.php:68
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/image.php:67
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:26
 msgid "next thumbs »"
-msgstr "vignettes suivantes »"
+msgstr "vignettes suivantes ››"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:47
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/search.php:52
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:46
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/search.php:51
 msgid "Search album"
 msgstr "Recherche dans l’album"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:171
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/search.php:162
+#: F:\SITES\SitesGitHub\zenphoto/themes/zenpage/search.php:170
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/search.php:161
 msgid "Sorry, no matches found. Try refining your search."
 msgstr "Désolé, aucune correspondance. Essayez de préciser votre recherche."
 
@@ -1646,13 +1646,13 @@ msgstr ""
 "personnalisé et l’utiliser au lieu du menu standard. Le menu standard nommé "
 "« zenpage » est créé automatiquement et utilisé par défaut."
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/404.php:32
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/404.php:31
 msgid "The Zenphoto object you are requesting cannot be found."
 msgstr "L’objet Zenphoto demandé n’a pu être trouvé."
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/archive.php:27
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/archive.php:26
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:447
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:244
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:220
 msgid "Archive view"
 msgstr "Archives"
 
@@ -1715,29 +1715,29 @@ msgid_plural "%d images"
 msgstr[0] "%u image"
 msgstr[1] "%u images"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/image.php:51
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/image.php:50
 msgid "Direct link"
 msgstr "Lien direct"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/image.php:60
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/image.php:59
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-edit.php:1429
 msgid "Tags:"
 msgstr "Tags :"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/image.php:69
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/image.php:68
 msgid "View meta data"
 msgstr "Visualiser les métadonnées"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/index.php:32
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/index.php:31
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/class-feed.php:256
 msgid "Latest images"
 msgstr "Images récentes"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/index.php:67
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/index.php:66
 msgid "Latest news"
 msgstr "Actualités récentes"
 
-#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/search.php:160
+#: F:\SITES\SitesGitHub\zenphoto/themes/zpmobile/search.php:159
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow.php:503
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/slideshow2.php:490
 msgid "View Slideshow"
@@ -3847,7 +3847,7 @@ msgid ""
 "the <a href=\"%s\">plugin options</a> for <code>rewriteTokens</code>."
 msgstr ""
 "Les <em>valeurs</em> utilisées pour la réécriture d’URIs peuvent être "
-"modifiées selon vos souhaits. Voir les <a href=\"%s\">paramètres</a> de "
+"modifiées à votre guise. Voir les <a href=\"%s\">paramètres</a> de "
 "l’extension <code>rewriteTokens</code>."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-options.php:652
@@ -5362,7 +5362,7 @@ msgstr ""
 "Sont spécifiés ici <a title=\"Regardez la page de votre album et comptez le "
 "nombre de vignettes d’albums qui tiennent dans une rangée. C’est la valeur "
 "que vous devriez utiliser.\">le nombre de vignettes d’albums (déterminé par "
-"CSS)</a> qui entrent dans une rangée et le nombre de vignettes d’albums par "
+"CSS)</a> qui tiennent dans une rangée et le nombre de vignettes d’albums par "
 "page."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-options.php:2531
@@ -5397,7 +5397,7 @@ msgstr ""
 "Sont spécifiés ici <a title=\"Regardez la page de votre album et comptez le "
 "nombre de vignettes d’images qui tiennent dans une rangée. C’est la valeur "
 "que vous devriez utiliser.\">le nombre de vignettes d’images (déterminé par "
-"CSS)</a> qui entrent dans une ligne et le nombre de vignettes d’images par "
+"CSS)</a> qui tiennent dans une ligne et le nombre de vignettes d’images par "
 "page."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-options.php:2569
@@ -5732,7 +5732,7 @@ msgstr ""
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-plugins.php:131
 msgid "Find more plugins"
-msgstr "Rechercher d’autres extensions"
+msgstr "Rechercher d’autres extensions."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-plugins.php:133
 msgid ""
@@ -5741,8 +5741,8 @@ msgid ""
 "not currently provide support."
 msgstr ""
 "<strong>Note :</strong> Le soutien de certaines extensions peut dépendre du "
-"thème choisi. Il se peut que vous ayez à modifier le thème pour utiliser les "
-"fonctionnalités de l’extension."
+"thème choisi. Il se peut que vous ayez à modifier ce thème pour y utiliser "
+"les fonctionnalités de l’extension."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-plugins.php:150
 msgid "Available Plugins"
@@ -6118,7 +6118,7 @@ msgid ""
 "theme/\">zenphoto themes page</a>."
 msgstr ""
 "Vous pouvez télécharger d’autres thèmes depuis <a href=\"http://www.zenphoto."
-"org/zp/theme/\">la page de thèmes de Zenphoto</a>."
+"org/theme/\">la page de thèmes de Zenphoto</a>."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-themes.php:182
 msgid ""
@@ -6143,7 +6143,7 @@ msgid ""
 "it. This will place a copy in your <code>/themes</code> folder for you to "
 "edit."
 msgstr ""
-"Si vous voulez modifier un thème officiel, <em>dupliquez-le</em> auparavant. "
+"Si vous voulez modifier un thème officiel, <em>dupliquez-le</em> d’abord. "
 "Cela créera une copie dans le dossier <em>/themes</em> ; il ne vous restera "
 "qu’à la personnaliser."
 
@@ -6168,7 +6168,7 @@ msgstr "Version"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-themes.php:252
 #, php-format
 msgid "Set <em>%s</em> theme options"
-msgstr "Activer les options du thème <em>%s</em>"
+msgstr "Paramétrer les options du thème <em>%s</em>"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin-themes.php:262
 msgid "Activate"
@@ -6611,7 +6611,7 @@ msgstr "Varia"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:250
 msgid "Setup » restore scripts"
-msgstr "Installation » restaurer les scripts"
+msgstr "Installation ›› restaurer les scripts"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/admin.php:255
 msgid "Restores setup files so setup can be run."
@@ -6631,7 +6631,7 @@ msgid ""
 msgstr ""
 "L’environnement d’installation n’est pas entièrement sécurisé. Vous devriez "
 "protéger les scripts pour contrer les pirates. Utilisez le "
-"bouton <strong>« Installation ›› protéger les scripts »</strong> dans la "
+"bouton <strong>« Installation ‹› protéger les scripts »</strong> dans la "
 "section des fonctions <em>utilitaires</em> de la page <em>aperçu</em> de "
 "l’administration."
 
@@ -10142,8 +10142,8 @@ msgstr "Se connecter"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1038
 msgid "I forgot my <strong>User ID</strong>/<strong>Password</strong>"
 msgstr ""
-"J’ai oublié mon <strong>identifiant d’utilisateur</strong> et/ou mon "
-"<strong>mot de passe</strong>"
+"J’ai oublié mon <strong>identifiant</strong> ou mon <strong>mot de passe</"
+"strong>"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/lib-auth.php:1060
 msgid "Enter CAPTCHA"
@@ -10851,8 +10851,8 @@ msgid ""
 msgstr ""
 "Nous recommandons fortement de désactiver <code>magic_quotes_gpc</code>. "
 "Pour plus d’information, voyez le chapitre <a href=\"http://www.zenphoto.org/"
-"news/troubleshooting-zenphoto#what-is-magic_quotes_gpc-and-why-should-it-be-"
-"disabled-\" title=\"What is magic_quotes_gpc and why should it be disabled?"
+"news/installation-problems#about-magicquotes-and-why-they-should-be-disabled"
+"\" title=\"What is magic_quotes_gpc and why should it be disabled?"
 "\"><em>Qu’est-ce que le module magic_quotes_gpc et pourquoi il doit être "
 "désactivé</em></a> du Guide de dépannage de Zenphoto."
 
@@ -10917,7 +10917,7 @@ msgstr ""
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/setup/index.php:686
 msgid "PHP <code>flock</code> support"
-msgstr "Fonction <code>flock</em> de PHP"
+msgstr "Fonction <code>flock</code> de PHP"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/setup/index.php:686
 msgid "PHP <code>flock</code> support [is not present]"
@@ -12253,7 +12253,7 @@ msgstr "Configurer les réglages par défaut de Zenphoto"
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/setup/setup-option-defaults.php:45
 #, php-format
 msgid "Migrating lib-auth data version %1$s => version %2$s"
-msgstr "La migration des données lib-auth de la version %1$s à la version %2$s"
+msgstr "Migration des données lib-auth de la version %1$s à la version %2$s"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/setup/setup-option-defaults.php:47
 msgid "failed"
@@ -12512,7 +12512,7 @@ msgstr "Se déconnecter"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:449
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:60
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:246
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:222
 msgid "My favorites"
 msgstr "Mes favoris"
 
@@ -12577,20 +12577,20 @@ msgstr "Retour à l’archive"
 msgid "The image is marked un-published."
 msgstr "L’image est marquée comme non publiée."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:2458
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:2461
 msgid "Image Info"
 msgstr "Détails sur l’image"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3311
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3314
 #, php-format
 msgid "View image: %s"
 msgstr "Voir l’image : %s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3502
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3505
 msgid "No popular tags"
 msgstr "Aucun tag populaire"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3810
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3813
 msgid ""
 "printSearchForm $album_list parameter is deprecated. Pass array(\"albums"
 "\"=>array(album, album, ...)) instead."
@@ -12598,41 +12598,41 @@ msgstr ""
 "Le paramètre $album_list de printSearchForm est obsolète. Utilisez plutôt un "
 "tableau array(\"albums\"=>array(album, album, ...))."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3826
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3829
 #, php-format
 msgid "%s within previous results"
 msgstr "%s parmi les résultats précédents"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3901
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3904
 msgid "search options"
 msgstr "options de recherche"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3901
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3904
 msgid "fields"
 msgstr "champs"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3941
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3944
 msgid "Within"
 msgstr "Parmi"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3945
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:3948
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/flag_thumbnail.php:91
 msgid "New"
 msgstr "Nouveau"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4003
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4006
 msgid "no date"
 msgstr "sans date"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4233
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4236
 msgid "The page you are trying to view is password protected."
 msgstr "La page que vous essayez d’afficher est protégée par mot de passe."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4238
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4241
 msgid "login"
 msgstr "Connexion"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4255
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4258
 msgid ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
 "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
@@ -12641,21 +12641,21 @@ msgstr ""
 "plus simple\"><span id=\"zen-part\">Zen</span><span id=\"photo-part\">PHOTO</"
 "span></a>"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4419
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4422
 msgid "Zenphoto Error:</strong> the requested object was not found."
 msgstr "Erreur Zenphoto :</strong> l’objet demandé n’a pas été trouvé."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4421
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4424
 #, php-format
 msgid "Album: %s"
 msgstr "Album : %s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4424
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4427
 #, php-format
 msgid "Image: %s"
 msgstr "Image : %s"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4427
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/template-functions.php:4430
 #, php-format
 msgid "Page: %s"
 msgstr "Page : %s"
@@ -14433,10 +14433,11 @@ msgid ""
 "Colorbox theme."
 msgstr ""
 "Colorbox est fourni avec 5 thèmes d’exemples que vous pouvez sélectionner "
-"ici. Si vous sélectionnez <em>custom</em>, vous devrez placer un dossier "
-"<em>colorbox</em> contenant un fichier <em>colorbox.css</em> et un dossier "
-"<em>images</em> dans le thème afin de supplanter la configuration standard "
-"du thème et d’utiliser un thème Colorbox personnalisé."
+"ici. Si vous sélectionnez <em>custom (dans un thème donné)</em>, vous devez "
+"placer un dossier <em>colorbox_js</em> contenant un fichier <em>colorbox."
+"css</em> et un dossier <em>images</em> à l’intérieur du dossier du thème "
+"afin de supplanter la configuration standard du thème et d’utiliser un thème "
+"Colorbox personnalisé."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/colorbox_js.php:69
 msgid ""
@@ -16195,7 +16196,7 @@ msgid ""
 msgstr "Permet aux visiteurs de voir ce site dans la langue de leur choix."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/dynamic-locale.php:165
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:67
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:63
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/sitemap-extended.php:70
 msgid ""
 "If checked links to the alternative languages will be in the form "
@@ -16207,7 +16208,7 @@ msgstr ""
 "code de langue (ex.: <code><em>fr</em></code> pour le français)."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/dynamic-locale.php:167
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:69
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:65
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/sitemap-extended.php:72
 msgid ""
 "This requires that you have created the appropriate subdomains pointing to "
@@ -16234,7 +16235,7 @@ msgstr ""
 "(sinon, un menu de sélection sera utilisé)."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/dynamic-locale.php:172
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:139
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:115
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/sitemap-extended.php:169
 msgid "Use subdomains"
 msgstr "Utiliser des sous-domaines"
@@ -16249,7 +16250,7 @@ msgstr ""
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/dynamic-locale.php:186
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/federated_logon.php:134
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:153
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:129
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/register_user.php:108
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/sitemap-extended.php:183
 msgid ""
@@ -16663,11 +16664,11 @@ msgstr "Le texte descriptif du lien vers la page des favoris."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:94
 msgid "Multiple sets"
-msgstr "Enregistrements multiples."
+msgstr "Jeux multiples."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:96
 msgid "If enabled a user may have multiple (named) favorites."
-msgstr "Si activé, un utilisateur peut avoir des favoris avec noms multiples."
+msgstr "Si activé, un utilisateur peut avoir plusieurs favoris (avec noms)."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/favoritesHandler.php:97
 msgid "Add button"
@@ -17056,7 +17057,7 @@ msgstr ""
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:10
 msgid "Create news articles when a gallery item is published."
 msgstr ""
-"Créer un article d’actualité lorsqu’un élément est publié dans la galerie."
+"Crée un article d’actualité lorsqu’un élément est publié dans la galerie."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:12
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/galleryArticles.php:97
@@ -17272,28 +17273,28 @@ msgstr ""
 "Inscrit dans l’en-tête (section Head) des pages de votre site les "
 "métabalises les plus courantes."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:71
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:67
 msgid "Cache control"
 msgstr "Paramétrage du cache"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:74
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:70
 msgid "If the browser cache should be used."
 msgstr "Si le cache du navigateur doit être utilisé."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:75
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:71
 msgid "Pragma"
 msgstr "Pragma"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:77
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:73
 msgid "If the pages should be allowed to be cached on proxy servers."
 msgstr ""
 "Indique si les pages peuvent être mises en cache par les serveurs proxy."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:78
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:74
 msgid "Robots"
 msgstr "Robots"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:80
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:76
 msgid ""
 "If and how robots are allowed to visit the site. Default is “index”. Note "
 "that you also should use a robot.txt file."
@@ -17302,19 +17303,19 @@ msgstr ""
 "ils le sont. La valeur par défaut est « index ». Vous devriez également "
 "utiliser un fichier « robots.txt »."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:81
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:77
 msgid "Revisit after"
 msgstr "Visiter de nouveau après"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:82
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:78
 msgid "Request the crawler to revisit the page after x days."
 msgstr "Demande au robot de visiter la page après x jours."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:83
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:79
 msgid "Expires"
 msgstr "Expiration"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:84
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:80
 msgid ""
 "When the page should be loaded directly from the server and not from any "
 "cache. You can either set a date/time in international date format <em>Sat, "
@@ -17327,11 +17328,11 @@ msgstr ""
 "correspond à une durée en secondes, par exemple <em>43200<em> correspond à "
 "12 heures)."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:85
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:81
 msgid "Canonical URL link"
 msgstr "Lien d’URL canonique"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:87
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:83
 msgid ""
 "This adds a link element to the head of each page with a <em>canonical url</"
 "em>. If the <code>seo_locale</code> plugin is enabled or <code>use "
@@ -17345,11 +17346,11 @@ msgstr ""
 "langue est aussi généré (<code>&lt;link&nbsp;rel=\"alternate\" hreflang=\"</"
 "code>...<code>\" href=\"</code>...<code>\" /&gt;</code>)."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:88
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:84
 msgid "Site logo"
 msgstr "Logo du site"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:89
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:85
 msgid ""
 "Enter the full url to a specific site logo image. Facebook, Google+ and "
 "others will use that as the thumb shown in link previews within posts. For "
@@ -17361,11 +17362,11 @@ msgstr ""
 "sur Facebook, Google+ et autres. Pour les pages d’images ou d’albums, la "
 "taille par défaut des vignettes est utilisée automatiquement."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:90
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:86
 msgid "Twitter name"
 msgstr "Nom Twitter"
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:91
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:87
 msgid ""
 "If you enabled Twitter card meta tags, you need to enter your Twitter user "
 "name here."
@@ -17373,11 +17374,11 @@ msgstr ""
 "Si vous autorisez les meta tags Twitter, vous devez entrer votre identifiant "
 "Twitter."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:92
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:88
 msgid "HTML meta tags"
 msgstr "Métabalises HTML "
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:138
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:114
 msgid ""
 "Which of the HTML meta tags should be used. For info about these in detail "
 "please refer to the net."
@@ -17385,7 +17386,7 @@ msgstr ""
 "Les métabalises HTML qui peuvent être utilisées (une recherche sur internet "
 "vous donnera leur signification)."
 
-#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:149
+#: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/html_meta_tags.php:125
 msgid ""
 "* This option may be set via the <a href=\"javascript:"
 "gotoName('html_meta_tags');\"><em>html_meta_tags</em></a> plugin options."
@@ -18501,8 +18502,8 @@ msgstr ""
 "l’ordre des albums et et des pages défini sur les pages d’administration. Il "
 "est recommandé de l’utiliser uniquement avec des thèmes personnalisés qui ne "
 "font pas appel à la structure d’affichage standard Zenphoto. Les fonctions "
-"standard de Zenphoto telles que « breadcrumb » et la boucle « next_album() » "
-"ne tiennent pas compte de la structure de ce menu !"
+"standard de Zenphoto telles que « breadcrumb » (le fil d’Ariane) et la "
+"boucle « next_album() » ne tiennent pas compte de la structure de ce menu."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab.php:157
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:223
@@ -19502,7 +19503,7 @@ msgstr[1] "%u étoiles"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/rating.php:345
 msgid "Submit »"
-msgstr "Soumettre »"
+msgstr "Soumettre ››"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/rating.php:393
 msgid "Vote Submitted"
@@ -20638,20 +20639,20 @@ msgstr "Le site est ouvert."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/site_upgrade.php:100
 msgid "Restore site_upgrade files"
-msgstr "Restaure les fichiers site_upgrade"
+msgstr "Restaure les fichiers « site_upgrade »"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/site_upgrade.php:104
 msgid ""
 "Restores the files in the \"plugins/site_upgrade\" folder to their default "
 "state. Note: this will overwrite any custom edits you may have made."
 msgstr ""
-"Restaure les fichiers présents dans le dossier \"plugins/site_upgrade\" dans "
-"leurs états initiaux. Note : cela va écraser toutes les modifications que "
-"vous pouvez avoir fait."
+"Restaure les fichiers présents dans le dossier « plugins/site_upgrade »  à "
+"leur état initial. Note : cela va écraser toutes les modifications que avez "
+"effectuées."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/site_upgrade.php:115
 msgid "Site » test mode"
-msgstr "Site » mode test"
+msgstr "Site ›› mode test"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/site_upgrade.php:119
 msgid "Make the site available for viewing administrators only."
@@ -20661,7 +20662,7 @@ msgstr ""
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/site_upgrade.php:130
 msgid "Site » open"
-msgstr "Site » ouvrir"
+msgstr "Site ›› ouvrir"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/site_upgrade.php:134
 msgid "Make site available for viewing."
@@ -20669,7 +20670,7 @@ msgstr "Rend le site accessible aux utilisateurs."
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/site_upgrade.php:145
 msgid "Site » close"
-msgstr "Site » fermer"
+msgstr "Site ›› fermer"
 
 #: F:\SITES\SitesGitHub\zenphoto/zp-core/zp-extensions/site_upgrade.php:149
 msgid ""
