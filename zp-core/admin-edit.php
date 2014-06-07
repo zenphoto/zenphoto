@@ -1424,6 +1424,8 @@ echo "\n</head>";
 															</span>
 														</td>
 													</tr>
+            	<?php
+													if ($singleimage) { ?>
 													<tr>
 														<td valign="top"><?php echo gettext("Tags:"); ?></td>
 														<td>
@@ -1432,8 +1434,7 @@ echo "\n</head>";
 															</div>
 														</td>
 													</tr>
-													<?php
-													if ($singleimage) {
+              <?php
 														$custom = zp_apply_filter('edit_image_custom_data', '', $image, $currentimage);
 														if (empty($custom)) {
 															?>
