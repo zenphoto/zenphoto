@@ -1138,7 +1138,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					arsort($counts, SORT_NUMERIC);
 				$them = array();
 				foreach ($counts as $tag => $count) {
-					$them[] = $tag;
+					$them[mb_strtolower($tag)] = $tag;
 				}
 			} else {
 				$them = getAllTagsUnique();
@@ -1146,7 +1146,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			$_zp_admin_ordered_taglist = $them;
 			$_zp_admin_LC_taglist = array();
 			foreach ($them as $tag) {
-				$_zp_admin_LC_taglist[] = mb_strtolower($tag);
+				$_zp_admin_LC_taglist[$tag] = $tag;
 			}
 		} else {
 			$them = $_zp_admin_ordered_taglist;
@@ -1207,7 +1207,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				<?php
 				if ($showCounts) {
 					$displaylist = array();
-					foreach ($them as $tag) {
+					foreach ($them as $tagLC => $tag) {
 						$displaylist[$tag . ' [' . $counts[$tag] . ']'] = $tag;
 					}
 				} else {
