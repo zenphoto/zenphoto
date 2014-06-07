@@ -911,7 +911,7 @@ echo "\n</head>";
 						$simage = sanitize($_GET['singleimage']); 
 						if (array_search($simage, $images) !== false) {
 							$allimagecount = 1;
-							$singleimage = true;
+							$singleimage = $simage;
 							$images = array($simage);
 						}
 					}
