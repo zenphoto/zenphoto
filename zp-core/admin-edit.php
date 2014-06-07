@@ -737,8 +737,7 @@ echo "\n</head>";
 						$pagenum = 1;
 					}
 				}
-				$images = array_slice($allimages, ($pagenum - 1) * $imagesTab_imageCount, $imagesTab_imageCount);
-
+    $images = array_slice($allimages, ($pagenum - 1) * $imagesTab_imageCount, $imagesTab_imageCount);
 				$totalimages = count($images);
 
 				$parent = dirname($album->name);
@@ -909,10 +908,10 @@ echo "\n</head>";
 				} else if ($subtab == 'imageinfo') {
 					$singleimage = NULL;
 					if (isset($_GET['singleimage'])) {
-						$simage = sanitize($_GET['singleimage']);
+						$simage = sanitize($_GET['singleimage']); 
 						if (array_search($simage, $images) !== false) {
 							$allimagecount = 1;
-							$singleimage = $simage;
+							$singleimage = true;
 							$images = array($simage);
 						}
 					}
@@ -1533,7 +1532,7 @@ echo "\n</head>";
 														?>
 														<tr>
 															<td colspan="2" style="border-bottom:none;">
-																<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&tab=imageinfo&album=' . $album->name . '&singleimage=' . $image->filename; ?>"><img src="images/options.png" /> <?php echo gettext('Edit all image data'); ?></a>
+																<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&tab=imageinfo&album=' . $album->name . '&singleimage=' . $image->filename.'&subpage='.$pagenum; ?>"><img src="images/options.png" /> <?php echo gettext('Edit all image data'); singleimage?></a>
 															</td>
 														</tr>
 														<?php
