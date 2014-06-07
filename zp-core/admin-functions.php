@@ -999,7 +999,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @param string $str
 	 */
 	function postIndexEncode($str) {
-		return strtr(urlencode($str), array('.' => '__2E__', '+' => '__20__', '%' => '__25__', '&' => '__26__', "'" => '__27__', '+' => '__2B__'));
+		return strtr(urlencode(strtr($str, array(' ' => '__20__', '+' => '__2B__'))), array('.' => '__2E__', '%' => '__25__', '&' => '__26__', "'" => '__27__', '+' => '__2B__'));
 	}
 
 	/**
@@ -1009,7 +1009,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @return string
 	 */
 	function postIndexDecode($str) {
-		return str_replace('__2B__', '+', urldecode(strtr($str, array('__2E__' => '.', '__20__' => '+', '__25__' => '%', '__26__' => '&', '__27__' => "'"))));
+		return strtr(urldecode(strtr($str, array('__2E__' => '.', '__25__' => '%', '__26__' => '&', '__27__' => "'"))), array('__20__' => ' ', '__2B__', '+'));
 	}
 
 	/**
@@ -1138,7 +1138,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					arsort($counts, SORT_NUMERIC);
 				$them = array();
 				foreach ($counts as $tag => $count) {
-					$them[] = $tag;
+					$them[mb_strtolower($tag)] = $tag;
 				}
 			} else {
 				$them = getAllTagsUnique();
@@ -1146,7 +1146,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			$_zp_admin_ordered_taglist = $them;
 			$_zp_admin_LC_taglist = array();
 			foreach ($them as $tag) {
-				$_zp_admin_LC_taglist[] = mb_strtolower($tag);
+				$_zp_admin_LC_taglist[$tag] = $tag;
 			}
 		} else {
 			$them = $_zp_admin_ordered_taglist;
@@ -1207,7 +1207,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				<?php
 				if ($showCounts) {
 					$displaylist = array();
-					foreach ($them as $tag) {
+					foreach ($them as $tagLC => $tag) {
 						$displaylist[$tag . ' [' . $counts[$tag] . ']'] = $tag;
 					}
 				} else {
@@ -1476,7 +1476,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$sort[gettext('Custom')] = 'custom';
 						/*
 						 * not recommended--screws with peoples minds during pagination!
-						  $sort[gettext('Random')] = 'random';
+							$sort[gettext('Random')] = 'random';
 						 */
 						?>
 						<tr>
