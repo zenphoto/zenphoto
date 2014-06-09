@@ -5,6 +5,7 @@
  * It uses a word black list and checks for excessive URLs
  *
  * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage spam
  */

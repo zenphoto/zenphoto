@@ -8,6 +8,8 @@
  *
  * PHP 5.3 or greater is required by the encorporated software.
  *
+ * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage uploader
  */

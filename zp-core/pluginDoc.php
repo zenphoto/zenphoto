@@ -24,6 +24,8 @@
  * Image URIs are also processed. Use the appropriate definition tokens to cause the URI to point
  * to the actual image. E.g. <var><img src="%WEBPATH%/%ZENFOLDER%/images/action.png" /></var>
  *
+ * @author Stephen Billard (sbillard)
+ *
  * @package admin
  * @subpackage development
  */

@@ -16,6 +16,8 @@
  * [<b>Note:</b> this processing takes 0.02 seconds on my test system loading the Garland theme with a
  * reasonable collection of plugins. So it may not be appropriate to use it from a performance perspective.]
  *
+ * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage example
  * @category package

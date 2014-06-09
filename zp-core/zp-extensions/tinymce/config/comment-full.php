@@ -4,6 +4,7 @@
  * The configuration parameters for TinyMCE 4.x.
  *
  * Comment form plugin default light configuration
+ * @author Stephen Billard (sbillard)
  */
 $MCEselector = "textarea.textarea_inputbox";
 $MCEplugins = "advlist autolink lists link image charmap print preview hr anchor pagebreak " .

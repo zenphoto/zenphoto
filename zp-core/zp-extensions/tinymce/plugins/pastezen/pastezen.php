@@ -1,4 +1,10 @@
 <?php
+/**
+ * ZenPhoto20 object paster for tinyMCE
+ *
+ * @author Stephen Billard (sbillard)
+ *
+ */
 // force UTF-8 Ø
 define('OFFSET_PATH', 3);
 require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))) . "/admin-globals.php");

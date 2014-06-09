@@ -21,6 +21,8 @@
  * the images <i>visible</i> fields. (These are the same options provided in the <i>Gallery behavior</i> section of
  * the gallery options tab.)
  *
+ * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage admin
  */

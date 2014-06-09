@@ -4,6 +4,8 @@
  *
  * Removes the watermark HTML from the DOM if the user does not have <var>ADMIN_RIGHTS</var>
  *
+ * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage example
  * @category package

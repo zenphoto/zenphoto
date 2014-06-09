@@ -3,6 +3,8 @@
 /**
  * Used for setting theme/plugin default options
  *
+ * @author Stephen Billard (sbillard)
+ * 
  * @package setup
  *
  */

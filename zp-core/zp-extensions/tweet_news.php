@@ -2,8 +2,9 @@
 /**
  * Use to tweet new objects as they are published
  *
- * @package plugins
  * @author Stephen Billard (sbillard)
+ *
+ * @package plugins
  * @subpackage misc
  */
 $plugin_is_filter = 9 | FEATURE_PLUGIN;

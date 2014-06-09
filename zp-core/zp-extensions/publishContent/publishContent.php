@@ -33,7 +33,7 @@ if (isset($_POST['set_defaults'])) {
 		case 'albums':
 			unset($_POST['checkAllAuto']);
 			foreach ($_POST as $key => $albumid) {
-				$album = newAlbum(postIndexDecode($key));
+				$album = newAlbum(sanitize(postIndexDecode($key)));
 				$album->setShow(1);
 				$album->save();
 			}

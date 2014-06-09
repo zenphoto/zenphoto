@@ -21,6 +21,7 @@
  * in links so long as there is not a file/folder with of the stripped suffix name.
  *
  * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage media
  */

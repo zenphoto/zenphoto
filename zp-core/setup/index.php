@@ -1,6 +1,9 @@
 <?php
 /**
  * install routine for zenphoto
+ *
+ * @author Stephen Billard (sbillard)
+ * 
  * @package setup
  */
 // force UTF-8 Ø

@@ -7,6 +7,8 @@
  * have had all definitions replaced with the definition value so that the rule\
  * is shown in the state in which it is applied.
  *
+ * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage development
  */

@@ -3,6 +3,7 @@
  * The configuration parameters for TinyMCE 4.x.
  *
  * base configuration file
+ * @author Stephen Billard (sbillard)
  */
 $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
 

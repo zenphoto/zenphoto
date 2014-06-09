@@ -9,6 +9,7 @@
  * <b>Note:</b> There is no <i>undo</i> once a crop is applied to the original image.
  *
  * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage misc
  */

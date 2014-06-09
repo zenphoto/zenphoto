@@ -3,6 +3,8 @@
 /**
  * functions common to both the core and setup's basic environment
  *
+ * @author Stephen Billard (sbillard)
+ *
  * @package core
  */
 

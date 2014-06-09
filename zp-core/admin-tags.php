@@ -1,6 +1,9 @@
 <?php
 /**
  * provides the TAGS tab of admin
+ *
+ * @author Stephen Billard (sbillard)
+ *
  * @package admin
  */
 define('OFFSET_PATH', 1);
@@ -36,7 +39,7 @@ if (count($_POST) > 0) {
 		XSRFdefender('tag_delete');
 		$kill = array();
 		foreach ($_POST as $key => $value) {
-			$key = str_replace('tags_', '', postIndexDecode($key));
+			$key = sanitize(postIndexDecode(str_replace('tags_', '', $key)));
 			$kill[] = mb_strtolower($key);
 		}
 		if (count($kill) > 0) {
@@ -67,7 +70,7 @@ if (count($_POST) > 0) {
 		foreach ($_POST as $key => $newName) {
 			if (!empty($newName)) {
 				$newName = sanitize($newName, 3);
-				$key = postIndexDecode($key);
+				$key = sanitize(postIndexDecode($key));
 				$key = substr($key, 2); // strip off the 'R_'
 				$newtag = query_single_row('SELECT `id` FROM ' . prefix('tags') . ' WHERE `name`=' . db_quote($newName));
 				$oldtag = query_single_row('SELECT `id` FROM ' . prefix('tags') . ' WHERE `name`=' . db_quote($key));

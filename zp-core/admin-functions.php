@@ -1,6 +1,9 @@
 <?php
 /**
  * support functions for Admin
+ *
+ * @author Stephen Billard (sbillard)
+ *
  * @package admin
  */
 // force UTF-8 Ø
@@ -1063,7 +1066,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		}
 		$cv = array_flip($currentValue);
 		foreach ($list as $key => $item) {
-			$listitem = postIndexEncode($prefix . $item);
+			$listitem = $prefix . postIndexEncode($item);
 			if ($localize) {
 				$display = $key;
 			} else {
@@ -1375,7 +1378,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
 																onclick="passwordClear('<?php echo $suffix; ?>');
-																				togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
+																		togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
 								</td>
 								<td>
 									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
@@ -1901,7 +1904,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -2358,10 +2361,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 		$tags = array();
 		$l = strlen($tagsprefix);
 		foreach ($_POST as $key => $value) {
-			$key = postIndexDecode($key);
 			if (substr($key, 0, $l) == $tagsprefix) {
 				if ($value) {
-					$tags[] = sanitize(substr($key, $l));
+					$tags[] = sanitize(postIndexDecode(substr($key, $l)));
 				}
 			}
 		}
@@ -3322,9 +3324,8 @@ function processManagedObjects($i, &$rights) {
 	$l_p = strlen($prefix_p = 'managed_pages_list_' . $i . '_');
 	$l_n = strlen($prefix_n = 'managed_news_list_' . $i . '_');
 	foreach ($_POST as $key => $value) {
-		$key = postIndexDecode($key);
 		if (substr($key, 0, $l_a) == $prefix_a) {
-			$key = substr($key, $l_a);
+			$key = sanitize(postIndexDecode(substr($key, $l_a)));
 			if (preg_match('/(.*)(_edit|_view|_upload|_name)$/', $key, $matches)) {
 				$key = $matches[1];
 				if (array_key_exists($key, $albums)) {
@@ -3909,9 +3910,8 @@ function bulkActionRedirect($action) {
 function bulkTags() {
 	$tags = array();
 	foreach ($_POST as $key => $value) {
-		$key = postIndexDecode($key);
 		if ($value && substr($key, 0, 10) == 'mass_tags_') {
-			$tags[] = sanitize(substr($key, 10));
+			$tags[] = sanitize(postIndexDecode(substr($key, 10)));
 		}
 	}
 	return $tags;
@@ -4419,7 +4419,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 		}
 		?>
 		<select name="subpage" class="ignoredirty" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
-										[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
+								[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
 							<?php
 							foreach ($rangeset as $page => $range) {
 								?>

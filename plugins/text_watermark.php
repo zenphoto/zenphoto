@@ -3,6 +3,7 @@
  * Utility to create simple text watermarks
  *
  * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage example
  * @category package

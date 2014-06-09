@@ -1,6 +1,9 @@
 <?php
 /**
  * admin.php is the main script for administrative functions.
+ *
+ * @author Stephen Billard (sbillard)
+ *
  * @package admin
  */
 // force UTF-8 Ø

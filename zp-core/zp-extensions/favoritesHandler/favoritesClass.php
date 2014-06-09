@@ -2,6 +2,7 @@
 
 /**
  * This is the class declaration
+ * @author Stephen Billard (sbillard)
  */
 class favorites extends AlbumBase {
 

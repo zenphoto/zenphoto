@@ -2,6 +2,9 @@
 /**
  * This template is used to reload metadata from images. Running it will process the entire gallery,
  * supplying an album name (ex: loadAlbums.php?album=newalbum) will only process the album named.
+ *
+ * @author Stephen Billard (sbillard)
+ *
  * @package admin
  */
 // force UTF-8 Ø

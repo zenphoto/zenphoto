@@ -4,6 +4,7 @@
  * PHP sendmail mailing handler
  *
  * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage mail
  */

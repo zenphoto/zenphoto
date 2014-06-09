@@ -4,8 +4,9 @@
  * This plugin will intercept the load process and force references to the index page to
  * the the single album of the installation
  *
- * @package plugins
  * @author Stephen Billard (sbillard)
+ *
+ * @package plugins
  * @subpackage example
  * @category package
  */

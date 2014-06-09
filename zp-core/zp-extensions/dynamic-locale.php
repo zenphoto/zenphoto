@@ -22,6 +22,7 @@
  * carry over to the admin pages. As will using <i>subdomains</i>.
  *
  * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage seo
  */

@@ -3,6 +3,9 @@
 
 /**
  * stores all the default values for options
+ *
+ * @author Stephen Billard (sbillard)
+ *
  * @package setup
  */
 setupLog(gettext('Set default options'), true);

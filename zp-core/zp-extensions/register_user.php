@@ -19,6 +19,7 @@
  * <b>NOTE:</b> If you change the rights of a user pending verification you have verified the user!
  *
  * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage users
  */

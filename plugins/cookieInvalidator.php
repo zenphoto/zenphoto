@@ -10,6 +10,7 @@
  *
  * Note: you will have to log in again after this action. Your login cookie is cleared as well.
  *
+ * @author Stephen Billard (sbillard)
  *
  * @package plugin
  * @subpackage development

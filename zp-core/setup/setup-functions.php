@@ -1,6 +1,9 @@
 <?php
 /**
  * setup support functions
+ *
+ * @author Stephen Billard (sbillard)
+ *
  * @package setup
  */
 // force UTF-8 Ø

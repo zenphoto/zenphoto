@@ -2,6 +2,9 @@
 
 /**
  * handles the watermarking and protecting of the full image link
+ *
+ * @author Stephen Billard (sbillard)
+ * 
  * @package core
  */
 // force UTF-8 Ø

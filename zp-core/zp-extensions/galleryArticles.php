@@ -2,8 +2,9 @@
 
 /**
  *
- * @package plugins
  * @author Stephen Billard (sbillard)
+
+ * @package plugins
  * @subpackage misc
  */
 $plugin_is_filter = 600 | THEME_PLUGIN | ADMIN_PLUGIN;
@@ -24,7 +25,6 @@ zp_register_filter('load_theme_script', 'galleryArticles::scan');
 /**
  *
  * Standard options interface
- * @author Stephen
  *
  */
 class galleryArticles {

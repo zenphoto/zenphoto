@@ -2,6 +2,8 @@
 
 /* Totally hides unpublished images from not signed in viewers.
  *
+ * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage example
  * @category package

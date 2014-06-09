@@ -2,6 +2,8 @@
 /**
  * Use this utility to reset your album thumbnails to either "random" or from an ordered field query
  *
+ * @author Stephen Billard (sbillard)
+ * 
  * @package admin
  */
 define('OFFSET_PATH', 3);

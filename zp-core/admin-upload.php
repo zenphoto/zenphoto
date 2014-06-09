@@ -1,6 +1,9 @@
 <?php
 /**
  * provides the Upload tab of admin
+ *
+ * @author Stephen Billard (sbillard)
+ *
  * @package admin
  */
 // force UTF-8 Ø

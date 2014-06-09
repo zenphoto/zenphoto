@@ -7,6 +7,7 @@
  * 		overlappingMarkerSpiderfier library 0.3 (https://github.com/jawj/OverlappingMarkerSpiderfier)
  *
  * @author Stephen Billard (sbillard) & Vincent Bourganel (vincent3569)
+ * 
  * @package plugins
  *
  */

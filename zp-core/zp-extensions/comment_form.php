@@ -12,6 +12,7 @@
  * There are several options to tune what the plugin will do.
  *
  * @author Stephen Billard (sbillard)
+ *
  * @package plugins
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;

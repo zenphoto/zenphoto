@@ -5,6 +5,7 @@
  * Place a call on <var>printUserLogin_out()</var> where you want the link or form to appear.
  *
  * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage users
  */

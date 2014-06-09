@@ -1,6 +1,7 @@
 <?php
 /**
  * This script is used to create dynamic albums from a favorites page.
+ * @author Stephen Billard (sbillard)
  * @package plugins
  * @subpackage media
  */

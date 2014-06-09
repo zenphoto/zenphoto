@@ -4,6 +4,7 @@
  * The configuration parameters for TinyMCE 4.x.
  *
  * zenphoto plugin default light configuration
+ * @author Stephen Billard (sbillard)
  */
 $MCEselector = "textarea.texteditor";
 $MCEplugins = "advlist autolink lists link image charmap print preview anchor " .
