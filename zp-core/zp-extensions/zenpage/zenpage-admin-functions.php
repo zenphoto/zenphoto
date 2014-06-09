@@ -33,10 +33,9 @@ function processTags($object) {
 	$tags = array();
 	$l = strlen($tagsprefix);
 	foreach ($_POST as $key => $value) {
-		$key = postIndexDecode($key);
 		if (substr($key, 0, $l) == $tagsprefix) {
 			if ($value) {
-				$tags[] = substr($key, $l);
+				$tags[] = sanitize(postIndexDecode(substr($key, $l)));
 			}
 		}
 	}
@@ -1640,10 +1639,9 @@ function printPublishIconLink($object, $type, $linkback = '') {
 					}
 					if ($action == 'addcats') {
 						foreach ($_POST as $key => $value) {
-							$key = postIndexDecode($key);
 							if (substr($key, 0, 3) == 'cat') {
 								if ($value) {
-									$cats[] = substr($key, 3);
+									$cats[] = sanitize(postIndexDecode(substr($key, 3)));
 								}
 							}
 						}

@@ -4,6 +4,7 @@
  * Use to insert the {@link http://www.google.com/webmasters/tools Google Webmaster Tools} verification meta tag into your site pages.
  *
  * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage admin
  */

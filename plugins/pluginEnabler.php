@@ -11,6 +11,8 @@
  * 		<li>Enable the above <i>remembered</i> set of plugins</li>
  * </ul>
  *
+ * @author Stephen Billard (sbillard)
+ *
  * @package plugins
  * @subpackage development
  * @category package

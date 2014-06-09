@@ -24,6 +24,7 @@
  * address, further access attempts from that IP accress will be ignored until a timeout has expired.
 
  * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage admin
  */

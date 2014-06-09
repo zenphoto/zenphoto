@@ -7,6 +7,8 @@
  * In its default configuration this plugin will prevent caching of all class-page pages by
  * any caching agent in the path.
  *
+ * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage example
  * @category package

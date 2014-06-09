@@ -86,8 +86,8 @@ if (isset($_GET['action'])) {
 							//then add the ones marked
 							$target = 'user_' . $i . '-';
 							foreach ($_POST as $item => $username) {
-								$item = sanitize(postIndexDecode($item));
 								if (strpos($item, $target) !== false) {
+									$item = sanitize(postIndexDecode($item));
 									$username = substr($item, strlen($target));
 									$user = Zenphoto_Authority::getAnAdmin(array('`user`=' => $username, '`valid`>=' => 1));
 									$user->setRights($group->getRights());
@@ -245,9 +245,9 @@ echo '</head>' . "\n";
 												?>
 												<em>
 													<label><input type="radio" name="<?php echo $id; ?>-type" value="group" checked="checked" onclick="javascrpt:toggle('users<?php echo $id; ?>');
-															toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('group'); ?></label>
+																			toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('group'); ?></label>
 													<label><input type="radio" name="<?php echo $id; ?>-type" value="template" onclick="javascrpt:toggle('users<?php echo $id; ?>');
-															toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('template'); ?></label>
+																			toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('template'); ?></label>
 												</em>
 												<br />
 												<input type="text" size="35" id="group-<?php echo $id ?>" name="<?php echo $id ?>-group" value=""

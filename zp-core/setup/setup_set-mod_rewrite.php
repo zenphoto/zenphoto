@@ -5,6 +5,8 @@
  * This script is accessed via a /page/setup_set-mod_rewrite?z=setup.
  * It will not be found unless mod_rewrite is working.
  *
+ * @author Stephen Billard (sbillard)
+ *
  * @package setup
  *
  */

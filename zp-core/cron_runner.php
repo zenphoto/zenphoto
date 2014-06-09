@@ -3,6 +3,10 @@
 /**
  *
  * Cron task handler
+ *
+ * @author Stephen Billard (sbillard)
+ *
+ * @package admin
  */
 if (isset($_GET['offsetPath'])) {
 	define('OFFSET_PATH', (int) $_GET['offsetPath']);

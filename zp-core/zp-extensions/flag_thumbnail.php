@@ -18,6 +18,7 @@
  * Additional icons can be used by placing them in the <var>%USER_PLUGIN_FOLDER%/flag_thumbnail</var> folder.
  *
  * @author Stephen Billard (sbillard) and Malte Müller (acrylian)
+ * 
  * @package plugins
  * @subpackage media
  */

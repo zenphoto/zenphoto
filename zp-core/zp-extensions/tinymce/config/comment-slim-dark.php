@@ -4,6 +4,7 @@
  * The configuration parameters for TinyMCE 4.x.
  *
  * Comment form plugin default light configuration
+ * @author Stephen Billard (sbillard)
  */
 $MCEcss = 'dark_content.css';
 $MCEskin = "tundora";

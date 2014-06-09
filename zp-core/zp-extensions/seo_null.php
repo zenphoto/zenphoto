@@ -2,6 +2,9 @@
 
 /**
  * Changes <i>white space</i> characters to hyphens.
+ *
+ * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage seo
  */

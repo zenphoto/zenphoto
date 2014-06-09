@@ -8,6 +8,7 @@
  * according to the player enabled.
  *
  * @author Stephen Billard (sbillard)
+ *
  * @package classes
  * @subpackage media
  */

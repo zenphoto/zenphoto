@@ -11,6 +11,7 @@
  * version of the form in a similar folder in your theme if you wish something different from the standard form.
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
+ *
  * @package plugins
  */
 $plugin_is_filter = 5 | FEATURE_PLUGIN;

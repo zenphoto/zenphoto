@@ -4,6 +4,8 @@
  * Inserts or removes the qualifiers from the version file so that the install is switched between
  * a "debug" release and a normal release.
  *
+ * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage development
  *

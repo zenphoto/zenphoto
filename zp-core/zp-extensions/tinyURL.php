@@ -10,6 +10,7 @@
  * obscure the information that they might convey.
  *
  * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage admin
  */

@@ -15,6 +15,8 @@
  * switcher controls. The <i><var>active()</var></i> method may be called to see if <i>themeSwitcher</i> will display
  * the control links.
  *
+ * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage development
  */

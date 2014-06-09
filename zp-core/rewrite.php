@@ -22,6 +22,8 @@
  * we could change that. The "R" flag may be used to cause a <var>header</var> status to be sent. However, we do not redirect
  * back to index.php, so the "R" flag is only useful if the target is a different script.
  *
+ * @author Stephen Billard (sbillard)
+ *
  * @package admin
  */
 function rewriteHandler() {

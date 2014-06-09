@@ -6,6 +6,8 @@
  * Note: PHP version 5 states that the MySQL library is "Maintenance only, Long term deprecation announced."
  * It recommends using the PDO::MySQL or the MySQLi library instead.
  *
+ * @author Stephen Billard (sbillard)
+ *
  * @package core
  */
 // force UTF-8 Ø

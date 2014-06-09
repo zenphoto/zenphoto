@@ -1,6 +1,14 @@
 <?php
 
 /**
+ * configuration handler functions
+ * 
+ * @author Stephen Billard (sbillard)
+ *
+ * @package core
+ */
+
+/**
  * Updates an item in the configuration file
  * @param unknown_type $item
  * @param unknown_type $value

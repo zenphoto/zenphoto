@@ -3,7 +3,9 @@
 /**
  * This is a shell plugin for SPAM filtering. It does almost nothing, but serves as the template
  * for more robust SPAM filters.
+ *
  * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage spam
  */

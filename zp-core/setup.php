@@ -1,4 +1,11 @@
 <?php
+/**
+ * link to setup
+ *
+ * @author Stephen Billard (sbillard)
+ *
+ * @package admin
+ */
 require_once(dirname(__FILE__) . '/admin-globals.php');
 require_once(dirname(__FILE__) . '/reconfigure.php');
 

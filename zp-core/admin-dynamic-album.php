@@ -1,6 +1,9 @@
 <?php
 /**
  * This script is used to create dynamic albums from a search.
+ *
+ * @author Stephen Billard (sbillard)
+ *
  * @package core
  */
 // force UTF-8 Ø
@@ -75,7 +78,7 @@ if (isset($_POST['savealbum'])) {
 		$searchfields = array();
 		foreach ($_POST as $key => $value) {
 			if (strpos($key, 'SEARCH_') !== false) {
-				$searchfields[] = sanitize(str_replace('SEARCH_', '', postIndexDecode($key)));
+				$searchfields[] = sanitize(postIndexDecode(str_replace('SEARCH_', '', $key)));
 			}
 		}
 		$words = sanitize($_POST['words']);

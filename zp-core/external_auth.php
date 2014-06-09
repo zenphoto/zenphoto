@@ -5,6 +5,7 @@
  * Root class for external authorizaton plugins
  *
  * @author Stephen Billard (sbillard)
+ * 
  * @package core
  */
 class external_auth {

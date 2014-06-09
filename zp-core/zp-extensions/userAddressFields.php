@@ -9,6 +9,7 @@
  * contained in the fields will be discarded.
  *
  * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage users
  *

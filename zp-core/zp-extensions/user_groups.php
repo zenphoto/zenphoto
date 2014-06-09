@@ -8,6 +8,7 @@
  * simply sets the user <i>rights</i> one time. Afterwards the user is independent from the <i>template</i>.
  *
  * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage users
  */

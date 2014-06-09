@@ -17,6 +17,7 @@
  * remove the setup scripts until you have cloned and installed all desired destinations.
  *
  * @author Stephen Billard (sbillard)
+ *
  * @package plugins
  * @subpackage admin
  */

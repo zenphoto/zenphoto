@@ -2,6 +2,9 @@
 
 /**
  * processes the authorization (or login) of admin users
+ *
+ * @author Stephen Billard (sbillard)
+ * 
  * @package admin
  */
 // force UTF-8 Ø

@@ -2,8 +2,8 @@
 /**
  * This plugin will edit the tokens in the %DATA_FOLDER% zenphoto.cfg file
  *
- *
  * @author Stephen Billard (sbillard)
+ *
  * @package plugins
  * @subpackage admin
  */

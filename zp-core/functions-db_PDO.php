@@ -2,6 +2,9 @@
 
 /**
  * database core functions for PDO implementations
+ *
+ * @author Stephen Billard (sbillard)
+ * 
  * @package core
  */
 // force UTF-8 Ø

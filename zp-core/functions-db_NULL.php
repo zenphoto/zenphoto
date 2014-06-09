@@ -3,6 +3,8 @@
 /**
  * Database core functions if no supported database is configured in PHP
  *
+ * @author Stephen Billard (sbillard)
+ *
  * @package core
  */
 // force UTF-8 Ø

@@ -1,6 +1,9 @@
 <?php
 /**
  * handles reconfiguration when the install signature has changed
+ *
+ * @author Stephen Billard (sbillard)
+ * 
  * @package core
  */
 

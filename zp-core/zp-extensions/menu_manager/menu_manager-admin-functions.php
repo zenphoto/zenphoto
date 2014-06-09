@@ -681,6 +681,7 @@ $reports) {
 		case 'menulabel':
 			$result['title'] = process_language_string_save("title", 2);
 			$result['link'] = NULL;
+			unset($_POST['link']); // to avoid later error
 			if (empty($result['title'])) {
 				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to give your menu item a <strong>title</strong>!") . " </p>";
 				return $result;

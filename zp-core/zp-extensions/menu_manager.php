@@ -11,6 +11,7 @@
  * loop for example will <b>NOT</b> take care of this menu's structure!
  *
  * @author Stephen Billard (sbillard), Malte Müller (acrylian)
+ * 
  * @package plugins
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN | THEME_PLUGIN;

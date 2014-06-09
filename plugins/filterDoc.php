@@ -2,6 +2,8 @@
 
 /* Generates doc file for filters
  *
+ * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage development
  * @category package

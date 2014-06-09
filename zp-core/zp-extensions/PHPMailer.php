@@ -4,6 +4,8 @@
  *
  * Configure the plugin options as necessary for your e-mail server.
  *
+ * @author Stephen Billard (sbillard)
+ *
  * @package plugins
  * @subpackage mail
  */

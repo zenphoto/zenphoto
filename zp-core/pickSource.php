@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * receiver for "pick" ajax
+ *
+ * @author Stephen Billard (sbillard)
+ *
+ * @package admin
+ */
 define('OFFSET_PATH', 1);
 require_once(dirname(__FILE__) . "/admin-globals.php");
 admin_securityChecks(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS, NULL);

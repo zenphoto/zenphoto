@@ -1,11 +1,7 @@
 /**
- * Popup.js
+ * pastezen tinyMCE popup
  *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
+ * @author Stephen Billard (sbillard)
  */
 
 var tinymce, tinyMCE;

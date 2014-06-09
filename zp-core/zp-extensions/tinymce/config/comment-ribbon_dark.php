@@ -4,6 +4,8 @@
  * The configuration functions for TinyMCE
  *
  * Zenpage plugin default light configuration
+ *
+ * @author Stephen Billard (sbillard)
  */
 $MCEcss = 'dark_content.css';
 $MCEskin = "tundora";

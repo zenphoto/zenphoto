@@ -3,6 +3,7 @@
  * When enabled, users will be appear not to be logged-in when viewing gallery pages
  *
  * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage development
  */

@@ -7,6 +7,8 @@
  * Candidate users must have <var>Album</var> and <var>Upload</var> rights. Users with <var>Admin</var> right or <var>Manage all album</var> rights
  * can already make root level albums, so are excluded from this plugin.
  *
+ * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage example
  * @category package

@@ -4,6 +4,8 @@
  *
  * To change what is hidden, comment lines you do want to display.
  *
+ * @author Stephen Billard (sbillard)
+ *
  * @package plugins
  * @subpackage example
  * @category package

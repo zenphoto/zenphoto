@@ -1,7 +1,9 @@
 <?php
 /**
  * user_groups log--tabs
+ *
  * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  */
 define('OFFSET_PATH', 1);

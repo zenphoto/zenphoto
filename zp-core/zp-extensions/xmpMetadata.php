@@ -28,6 +28,7 @@
  * The plugin does not present any theme interface.
  *
  * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage media
  */

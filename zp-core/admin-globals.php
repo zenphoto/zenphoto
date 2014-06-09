@@ -2,6 +2,9 @@
 
 /**
  * Initialize globals for Admin
+ *
+ * @author Stephen Billard (sbillard)
+ * 
  * @package admin
  */
 // force UTF-8 Ø

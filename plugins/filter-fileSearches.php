@@ -4,6 +4,8 @@
  * Filters out images/albums from the filesystem lists
  * This plugin is intended as an example of the use of the album_filter and image_filter filters.
  *
+ * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage example
  * @category package

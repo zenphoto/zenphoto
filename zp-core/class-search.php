@@ -2,6 +2,9 @@
 
 /**
  * search class
+ *
+ * @author Stephen Billard (sbillard)
+ * 
  * @package classes
  */
 // force UTF-8 Ø

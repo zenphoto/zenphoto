@@ -2,6 +2,9 @@
 
 /**
  * functions-i18n.php -- support functions for internationalization
+ *
+ * @author Stephen Billard (sbillard)
+ * 
  * @package core
  */
 // force UTF-8 Ø

@@ -26,6 +26,7 @@
  * Use it to be proactive in replacing these discontinued items.
  *
  * @author Stephen Billard (sbillard)
+ *
  * @package plugins
  * @subpackage development
  */

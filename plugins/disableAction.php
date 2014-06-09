@@ -6,6 +6,8 @@
  * This instance of the plugin will disable the image/album "publish" action. But it is intended mostly as an example.
  * To disable other actions you will need to examine the page HTML and change/insert code as needed.
  *
+ * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage example
  * @category package

@@ -3,6 +3,7 @@
  * Default captcha handler
  *
  * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage spam
  */

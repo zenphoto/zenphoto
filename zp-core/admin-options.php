@@ -1,6 +1,9 @@
 <?php
 /**
  * provides the Options tab of admin
+ *
+ * @author Stephen Billard (sbillard)
+ *
  * @package admin
  */
 // force UTF-8 Ø
@@ -102,7 +105,7 @@ if (isset($_GET['action'])) {
 					if ($p == '//') {
 						$p = '/';
 					}
-					//	save a cookie to see if change works
+//	save a cookie to see if change works
 					$returntab .= '&cookiepath';
 					zp_setCookie('zenphoto_cookie_path', $p, NULL, $p);
 				}
@@ -178,7 +181,7 @@ if (isset($_GET['action'])) {
 			$searchfields = array();
 			foreach ($_POST as $key => $value) {
 				if (strpos($key, 'SEARCH_') !== false) {
-					$searchfields[] = substr(sanitize(postIndexDecode($key)), 7);
+					$searchfields[] = sanitize(postIndexDecode(substr($key, 7)));
 				}
 			}
 			setOption('search_fields', implode(',', $searchfields));
@@ -307,11 +310,11 @@ if (isset($_GET['action'])) {
 		}
 		/*		 * * Theme options ** */
 		if (isset($_POST['savethemeoptions'])) {
-			$themename = sanitize($_POST['optiontheme'], 3);
+			$themename = urldecode(sanitize($_POST['optiontheme'], 3));
 			$returntab = "&tab=theme";
 			if ($themename)
 				$returntab .= '&optiontheme=' . urlencode($themename);
-			// all theme specific options are custom options, handled below
+// all theme specific options are custom options, handled below
 			if (!isset($_POST['themealbum']) || empty($_POST['themealbum'])) {
 				$themeswitch = urldecode(sanitize_path($_POST['old_themealbum'])) != '';
 			} else {
@@ -404,7 +407,7 @@ if (isset($_GET['action'])) {
 		/*		 * * Plugin Options ** */
 		if (isset($_POST['savepluginoptions'])) {
 			if (isset($_POST['checkForPostTruncation'])) {
-				// all plugin options are handled by the custom option code.
+// all plugin options are handled by the custom option code.
 				if (isset($_GET['single'])) {
 					$returntab = "&tab=plugin&single=" . sanitize($_GET['single']);
 				} else {
@@ -418,7 +421,7 @@ if (isset($_GET['action'])) {
 		if (isset($_POST['savesecurityoptions'])) {
 			$protocol = sanitize($_POST['server_protocol'], 3);
 			if ($protocol != SERVER_PROTOCOL) {
-				// force https if required to be sure it works, otherwise the "save" will be the last thing we do
+// force https if required to be sure it works, otherwise the "save" will be the last thing we do
 				httpsRedirect();
 			}
 			if (getOption('server_protocol') != $protocol) {
@@ -2806,8 +2809,10 @@ Zenphoto_Authority::printPasswordFormJS();
 
 					$plugins = array();
 					if (isset($_GET['single'])) {
+						$single = sanitize($_GET['single']);
 						$plugins = array($showExtension);
 					} else {
+						$single = false;
 						$list = array_keys(getEnabledPlugins());
 						foreach ($list as $extension) {
 							$option_interface = NULL;
@@ -2835,15 +2840,19 @@ Zenphoto_Authority::printPasswordFormJS();
 							<input type="hidden" name="savepluginoptions" value="yes" />
 							<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
 							<table class="bordered">
-								<tr>
-									<td colspan="3">
-										<p class="buttons">
-											<button type="submit" value="<?php echo gettext('save') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-											<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
-										</p>
-									</td>
-								</tr>
 								<?php
+								if ($single) {
+									?>
+									<tr>
+										<td colspan="3">
+											<p class="buttons">
+												<button type="submit" value="<?php echo gettext('save') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+												<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+											</p>
+										</td>
+									</tr>
+									<?php
+								}
 								if (!$showExtension) {
 									?>
 									<tr>
@@ -2963,14 +2972,20 @@ Zenphoto_Authority::printPasswordFormJS();
 										</th>
 										<th></th>
 									</tr>
-									<tr>
-										<td colspan="3">
-											<p class="buttons">
-												<button type="submit" value="<?php echo gettext('save') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-												<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
-											</p>
-										</td>
-									</tr>
+									<?php
+									if ($single) {
+										?>
+										<tr>
+											<td colspan="3">
+												<p class="buttons">
+													<button type="submit" value="<?php echo gettext('save') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+													<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+												</p>
+											</td>
+										</tr>
+										<?php
+									}
+									?>
 								</table> <!-- single plugin page table -->
 								<input type="hidden" name="checkForPostTruncation" value="1" />
 								<?php
@@ -3096,15 +3111,15 @@ Zenphoto_Authority::printPasswordFormJS();
 									<input type="hidden" name="login_user_field" id="login_user_field"	value="<?php echo $_zp_gallery->getUserLogonField(); ?>" />
 									<?php
 								}
-								?>
-								<tr>
-									<?php
-									$supportedOptions = $_zp_authority->getOptionsSupported();
-									if (count($supportedOptions) > 0) {
-										customOptions($_zp_authority, '');
-									}
+								$supportedOptions = $_zp_authority->getOptionsSupported();
+								if (count($supportedOptions) > 0) {
 									?>
-								</tr>
+									<tr>
+										<?php customOptions($_zp_authority, ''); ?>
+									</tr>
+									<?php
+								}
+								?>
 								<tr>
 									<td colspan="3">
 										<p class="buttons">

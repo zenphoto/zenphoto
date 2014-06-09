@@ -20,6 +20,7 @@
  * places in your theme's image.php script to activate these features.
  *
  * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage media
  */

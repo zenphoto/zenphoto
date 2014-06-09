@@ -2,6 +2,8 @@
 /*
  * Declares example macros
  *
+ * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage development
 

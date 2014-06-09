@@ -56,6 +56,7 @@
  * 	</li>
  * </ul>
  *
+ * @author Stephen Billard (sbillard)
  *
  * @package classes
  */

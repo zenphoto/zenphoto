@@ -5,6 +5,7 @@
  * It contains a link allowing him to do a password reset.
  *
  * @author Stephen Billard (sbillard)
+ * 
  * @package plugins
  * @subpackage users
  */
