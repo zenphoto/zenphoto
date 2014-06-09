@@ -1002,7 +1002,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @param string $str
 	 */
 	function postIndexEncode($str) {
-		return strtr(urlencode(strtr($str, array(' ' => '__20__', '+' => '__2B__'))), array('.' => '__2E__', '%' => '__25__', '&' => '__26__', "'" => '__27__', '+' => '__2B__'));
+		return bin2hex($str);
 	}
 
 	/**
@@ -1012,7 +1012,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @return string
 	 */
 	function postIndexDecode($str) {
-		return str_replace('__20__', ' ', str_replace('__2B__', '+', urldecode(strtr($str, array('__2E__' => '.', '__25__' => '%', '__26__' => '&', '__27__' => "'")))));
+		return hex2bin($str);
 	}
 
 	/**
