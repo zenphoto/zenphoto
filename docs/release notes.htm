@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>ZenPhoto20 release notes</title>
+	</head>
+		<style type="text/css">
+			body, td, pre {
+				color:#000;
+				font-family:Arial, Helvetica, sans-serif;
+				font-size:13px;
+				margin:8px;
+				line-height: 20px;
+			}
+			body {background:#FFF;}
+			h1 {font-size: 2em}
+			h2 {font-size: 1.5em}
+			h3 {font-size: 1.17em}
+			h4 {
+				 font-family: Arial, Helvetica, Sans-Serif;
+				 font-size: 15px;
+				 color: #396;
+				 margin-top: 20px;
+				 font-weight: normal;
+				 margin-bottom: 2px;
+			}
+			h5,
+			h6 {
+				font-family: Arial, Helvetica, Sans-Serif;
+				 font-size: 13px;
+				 font-weight: bold;
+				 color: black;
+				 margin-top: 20px;
+				 margin-bottom: 0 !important;
+			}
+			h6 {
+			font-style: italic;
+			}
+
+			code {
+				display: block;
+				color: #00008B;
+				font-size: 12px;
+				font-family: Arial, Helvetica, sans-serif;
+				background-color: #f2f2f2;
+			}
+
+			 pre {
+				color: #00008B;
+				margin-left: 0px;
+				background-color: #f2f2f2;
+				padding: 0.5em;
+				font-size: 12px;
+				font-family: Courier, Geneva, monospace;
+				overflow: auto;
+			}
+
+			tt,
+			.inlinecode {
+				color: #00008B;
+				font-size: 13px;
+				font-weight: bold !important;
+			}
+
+			a {
+			text-decoration: none;
+			color: #6c802e;
+			}
+		</style>
+	<body>
+<h1>Fresh start</h1>
+<p>ZenPhoto 20 has been forked from the Zenphoto.org 1.4.6 release. Some cleanup of code and fixes have been applied and some small new features added. Themes and plugins that are compliant with Zehphoto 1.4.6 (without use of the deprecated-functions plugin) &nbsp;will&nbsp;work with this software.&nbsp;</p>
+<p><strong>Note:</strong> part of this cleanup was to purge the deprecated functions for a fresh start. Lingering calls to these functions will now result in a PHP fault.&nbsp;If you have a custom theme it is recommended you first use the <em>check deprecated use</em> button&nbsp;in the Zenphoto 1.4.6 admin utilities to be sure that you are not using one of the functions which is no longer available.</p>
+<h1>Eliminate the concept of "suppoted" unsupported themes and plugins</h1>
+<p>Newly included&nbsp;themes: gray_highlights (an albums only theme), zpArdoise, zpEnlighten, zpfocus, zpminimal, zpmasonry, and zpskelleton.</p>
+<p>Newly included example plugins: cacheHeader, cookieInvalidator, create_album, customFieldExtender, disableAction, disableWatermark, filter-fileSearches, galleryToken, headConsolidator, no_show, pluginEnabler, showNoUserRights, single_album, and text_watermark.</p>
+<p>Inclusion of other themes and plugins will be considered by request.</p>
+<h1>General bug fixes</h1>
+<p>I have also fixed several bugs discovered either in my efforts to provide the above or from discussions on Zenphoto forums and tickets.</p>
+<p>&nbsp;</p>
+<h2>tinyMCE:zen plugin</h2>
+<p>This plugin replaces tinyZenpage as the preferred means for inserting ZenPhoto20 objects into tinyMCE editor windows.</p>
+<p>On the back end each object has a "pick" icon (<a href="https://cloud.githubusercontent.com/assets/2474007/3194486/59db3546-ecff-11e3-8c27-e5c44fd92f2b.png" target="_blank"><img src="https://cloud.githubusercontent.com/assets/2474007/3194486/59db3546-ecff-11e3-8c27-e5c44fd92f2b.png" alt="add" /></a>) that you use to select the object. The overview lists also have a pick icon for each object, so it is not necessary to browse all the way to the object's tab.</p>
+<p>Click on the icon to select the object for pasting. Then go to your tinyMCE editor window, place the cursor where you want the insertion, and select either the&nbsp;<code>zen</code>&nbsp;button or the tinyMCE:zen dropdown from the tools menu item. This will bring up the tinyMCE:zen handler. Select any options you wish and press the&nbsp;<code>paste</code>&nbsp;button.</p>
+<p>You can even paste custom sized/cropped images. The&nbsp;<code>crop image</code>&nbsp;plugin provides a pick icon that selects the size and cropping of the working crop.</p>
+<h1>Copy-able object links for all objects</h1>
+<p>A side benefit of the tinyMCE:zen implementation is that you can also use your clipboard to cut and paste links to spots other than tinyMCE editors.</p>
+<p>The administrative tabs for <em>Page</em>, <em>News articles</em>, <em>catgegory</em>,&nbsp;<em>Image</em>, and <em>Album</em> objects now provide link text that can be copied to the clipboard and pasted wherever desired. (For instance into the content of a&nbsp;<em>News article</em>.) In the case of Images, the <em>crop image</em> and <em>crop thumbnail</em> functions will give a link that will produce the cropped version of the image. These latter are easily inserted into your <em>News article</em> and <em>Page</em> contend by the <em>tinyMCE</em> insert image feature.</p>
+<h1>Purge option for theme and plugin options</h1>
+<p>This feature provides a convenient means to remove options of deleted and forgotten themes and plugins. Of coures it also allows you to "start from scratch" on current ones.</p>
+<h1>Custom option handler NUMERIC type option.</h1>
+<p>Allows themes and plugins to specify that an option be numeric. This allows a shorter input field. Also the is validated as numeric.</p>
+<h1>Favorites albums</h1>
+<p>Create albums from your favorites that can be viewed by others. Favorites albums are essentially "dynamic" albums with the criteria being the selected favoirtes instance.</p>
+<h2>Improved deprecated function handling</h2>
+<p>Use of deprecated functions is now logged rather than indicated by a PHP notice. This of course presumes that the deprecated functions plugin is enabled.</p>
+<p>These errors are logged in a new <code>deprecated</code> log to separate them from other issues and make them easily findable. Only one instance of any particular use of a deprecated function is logged, so the log is not cluttered.</p>
+<h2>Improved "dirty form" handling</h2>
+<p>We have switched the javascript that detects form changes and warns if you leave the page. This script better integrates with the <em>tinyMCE</em> editor.</p>
+<h2>elFinder Theme editor</h2>
+<p>If enabled elFinder will be used to edit themes.</p>
+<h2>Image metadata transformation&nbsp;option</h2>
+<p>There is now an option to allow newlines in image metadata to be converted to &lt;code&gt;&lt;br /&gt;&lt;/code&gt; tags. This option applies to any metadata destined to the ZenPhoto20 <em>description</em> or <em>title</em> database fields. The raw metadata is left unchanged. This transformation occurs when a new image is discovered or if medadata is refreshed.</p>
+<h2>Plugin tabs</h2>
+<p>The tab categories of plugins have been reorganized and simplified. In addition, a new tab "enabled" has been created to list all enabled plugins regardless of their category.</p>
+<p>&nbsp;</p>	</body>
+</html>
