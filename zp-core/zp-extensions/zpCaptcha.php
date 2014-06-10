@@ -5,7 +5,7 @@
  * @author Stephen Billard (sbillard)
  * 
  * @package plugins
- * @subpackage spam
+ * @subpackage admin
  */
 // force UTF-8 Ø
 

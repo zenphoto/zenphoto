@@ -11,8 +11,9 @@
  * loop for example will <b>NOT</b> take care of this menu's structure!
  *
  * @author Stephen Billard (sbillard), Malte Müller (acrylian)
- * 
+ *
  * @package plugins
+ * @subpackage theme
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN | THEME_PLUGIN;
 $plugin_description = gettext("A menu creation facility. The <em>Menu</em> tab admin interface lets you create arbitrary menu trees.");

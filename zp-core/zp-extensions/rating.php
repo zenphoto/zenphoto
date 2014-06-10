@@ -12,6 +12,7 @@
  *
  * @author Stephen Billard (sbillard)and Malte Müller (acrylian)
  * @package plugins
+ * @subpackage theme
  */
 if (!defined('OFFSET_PATH')) {
 	define('OFFSET_PATH', 3);

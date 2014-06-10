@@ -4533,6 +4533,7 @@ function getPluginTabs() {
 
 	$classXlate = array(
 					'all'					 => gettext('all'),
+					'enabled'			 => gettext('enabled'),
 					'admin'				 => gettext('admin'),
 					'demo'				 => gettext('demo'),
 					'development'	 => gettext('development'),
@@ -4547,7 +4548,7 @@ function getPluginTabs() {
 	);
 	zp_apply_filter('plugin_tabs', $classXlate);
 
-	$currentlist = $classes = $member = array();
+	$classes = $member = array();
 	foreach ($paths as $plugin => $path) {
 		$p = file_get_contents($path);
 		$i = strpos($p, '* @subpackage');
@@ -4558,6 +4559,9 @@ function getPluginTabs() {
 			$key = 'misc';
 		}
 		$classes[$key]['list'][] = $plugin;
+		if (extensionEnabled($plugin)) {
+			$active[$plugin] = $path;
+		}
 		if (array_key_exists($key, $classXlate)) {
 			$local = $classXlate[$key];
 		} else {
@@ -4568,7 +4572,18 @@ function getPluginTabs() {
 
 	ksort($classes);
 	$tabs[$classXlate['all']] = 'admin-plugins.php?page=plugins&tab=all';
-	$currentlist = array_keys($paths);
+	$tabs[$classXlate['enabled']] = 'admin-plugins.php?page=plugins&tab=active';
+	switch ($default) {
+		case 'all':
+			$currentlist = array_keys($paths);
+			break;
+		case 'active':
+			$currentlist = array_keys($active);
+			break;
+		default:
+			$currentlist = array();
+			break;
+	}
 
 
 	foreach ($classes as $class => $list) {

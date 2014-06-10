@@ -5,7 +5,7 @@
  * @author Stephen Billard (sbillard)
  *
  * @package plugins
- * @subpackage misc
+ * @subpackage admin
  */
 $plugin_is_filter = 9 | FEATURE_PLUGIN;
 $plugin_description = gettext('Tweet news articles when published.');
