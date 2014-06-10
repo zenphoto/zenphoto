@@ -7,7 +7,7 @@
  * @author Stephen Billard (sbillard)
  * 
  * @package plugins
- * @subpackage spam
+ * @subpackage admin
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext("Simple SPAM filter.");

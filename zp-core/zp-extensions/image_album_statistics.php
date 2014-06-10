@@ -9,6 +9,7 @@
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage theme
  */
 $plugin_description = gettext("Functions that provide various statistics about images and albums in the gallery.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";

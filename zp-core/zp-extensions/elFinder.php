@@ -20,7 +20,7 @@
  * @author Stephen Billard (sbillard)
  * 
  * @package plugins
- * @subpackage uploader
+ * @subpackage admin
  */
 $plugin_is_filter = defaultExtension(5 | ADMIN_PLUGIN);
 $plugin_description = gettext('Provides file handling for the <code>upload/files</code> tab and the <em>TinyMCE</em> file browser.');

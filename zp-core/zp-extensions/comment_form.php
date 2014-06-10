@@ -14,6 +14,7 @@
  * @author Stephen Billard (sbillard)
  *
  * @package plugins
+ * @subpackage theme
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext("Provides a unified comment handling facility.");

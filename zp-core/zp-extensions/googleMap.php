@@ -7,8 +7,9 @@
  * 		overlappingMarkerSpiderfier library 0.3 (https://github.com/jawj/OverlappingMarkerSpiderfier)
  *
  * @author Stephen Billard (sbillard) & Vincent Bourganel (vincent3569)
- * 
+ *
  * @package plugins
+ * @subpackage theme
  *
  */
 $plugin_is_filter = 5 | THEME_PLUGIN;

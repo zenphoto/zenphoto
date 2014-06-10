@@ -9,9 +9,9 @@
  * <b>Note:</b> There is no <i>undo</i> once a crop is applied to the original image.
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins
- * @subpackage misc
+ * @subpackage media
  */
 if (isset($_REQUEST['performcrop'])) {
 	if (!defined('OFFSET_PATH'))

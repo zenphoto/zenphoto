@@ -794,11 +794,16 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 										if (empty($custom)) {
 											?>
 											<tr>
-												<td class="topalign-nopadding"><br /><?php echo gettext("Custom:"); ?></td>
+												<td class="topalign-nopadding"><?php echo gettext("Custom:"); ?></td>
 												<td class="middlecolumn">
-													<?php
-													print_language_string_list($result->getCustomData('all'), 'custom_data', true, NULL, 'custom_data', '100%', 'zenpage_language_string_list', 10);
-													?>
+													<div id="customData_hide" class="customhide">
+														<a href="javascript:$('#customData_show').show();$('#customData_hide').hide();"><?php echo gettext('show content'); ?></a>
+													</div>
+													<div id="customData_show" style="display:none;">
+														<?php
+														print_language_string_list($result->getCustomData('all'), 'custom_data', true, NULL, 'custom_data', '100%', 'zenpage_language_string_list', 10);
+														?>
+													</div>
 												</td>
 											</tr>
 											<?php
@@ -808,7 +813,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 										if (!is_AdminEditPage("newscategory")) {
 											?>
 											<tr>
-												<td class="topalign-nopadding"><br /><?php echo gettext("Codeblocks:"); ?></td>
+												<td class="topalign-nopadding"><?php echo gettext("Codeblocks:"); ?></td>
 												<td class="topalign-nopadding middlecolumn">
 													<?php printCodeblockEdit($result, 0); ?>
 												</td>

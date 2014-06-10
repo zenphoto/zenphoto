@@ -31,7 +31,7 @@
  *
  * @author Malte Müller (acrylian)
  * @package plugins
- * @subpackage misc
+ * @subpackage media
  * @tags "file download", "download manager", download
  */
 $plugin_is_filter = 800 | ADMIN_PLUGIN | THEME_PLUGIN;
@@ -128,7 +128,7 @@ class DownloadList {
 						 onkeyup="passwordStrength('_downloadList');"
 						 value="<?php echo $x; ?>" />
 			<label><input type="checkbox" name="disclose_password_downloadList" id="disclose_password_downloadList" onclick="passwordClear('_downloadList');
-					togglePassword('_downloadList');"><?php echo gettext('Show password'); ?></label>
+							togglePassword('_downloadList');"><?php echo gettext('Show password'); ?></label>
 			<br />
 			<span class="password_field__downloadList">
 				<span id="match_downloadList"><?php echo gettext("(repeat)"); ?></span>

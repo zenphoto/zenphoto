@@ -7,7 +7,7 @@
  * @author Stephen Billard (sbillard)
  *
  * @package plugins
- * @subpackage uploader
+ * @subpackage admin
  *
  */
 $plugin_is_filter = defaultExtension(5 | ADMIN_PLUGIN);

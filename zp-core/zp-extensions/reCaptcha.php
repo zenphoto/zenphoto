@@ -24,7 +24,7 @@
  * @author Stephen Billard (sbillard)
 
  * @package plugins
- * @subpackage spam
+ * @subpackage admin
  */
 // force UTF-8 Ø
 $plugin_is_filter = 5 | CLASS_PLUGIN;

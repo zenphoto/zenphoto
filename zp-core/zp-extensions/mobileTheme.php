@@ -71,9 +71,9 @@
  * </ul>
  *
  * @package plugins
+ * @subpackage theme
  */
-
-$plugin_is_filter = 5|CLASS_PLUGIN;
+$plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext('Select your theme based on the device connecting to your site');
 $plugin_author = "Stephen Billard (sbillard)";
 
@@ -82,31 +82,33 @@ $option_interface = 'mobileTheme';
 class mobileTheme {
 
 	function __construct() {
+
 	}
 
 	function getOptionsSupported() {
 		global $_zp_gallery;
 		$themes = array();
-		foreach ($_zp_gallery->getThemes() as $theme=>$details) {
+		foreach ($_zp_gallery->getThemes() as $theme => $details) {
 			$themes[$details['name']] = $theme;
 		}
-		$options = array(gettext('Phone theme') => array('key' => 'mobileTheme_phone', 'type' => OPTION_TYPE_SELECTOR,
-																				'selections'=>$themes,
-																				'null_selection' => gettext('gallery theme'),
-																				'desc' => gettext('Select the theme to be used when a phone device connects.')),
-															gettext('Tablet theme') => array('key' => 'mobileTheme_tablet', 'type' => OPTION_TYPE_SELECTOR,
-																				'selections'=>$themes,
-																				'null_selection' => gettext('gallery theme'),
-																				'desc' => gettext('Select the theme to be used when a tablet device connects.')),
-															gettext('Test mode') => array('key' => 'mobileTheme_test', 'type' => OPTION_TYPE_SELECTOR,
-																				'selections'=>array(gettext('Phone')=>'phone',gettext('Tablet')=>'tablet'),
-																				'null_selection' => gettext('live'),
-																				'desc' => gettext('Put the plugin in <em>test mode</em> and it will simulate the selected device. If <em>live</em> is selected operations are normal.'))
+		$options = array(gettext('Phone theme')	 => array('key'						 => 'mobileTheme_phone', 'type'					 => OPTION_TYPE_SELECTOR,
+										'selections'		 => $themes,
+										'null_selection' => gettext('gallery theme'),
+										'desc'					 => gettext('Select the theme to be used when a phone device connects.')),
+						gettext('Tablet theme')	 => array('key'						 => 'mobileTheme_tablet', 'type'					 => OPTION_TYPE_SELECTOR,
+										'selections'		 => $themes,
+										'null_selection' => gettext('gallery theme'),
+										'desc'					 => gettext('Select the theme to be used when a tablet device connects.')),
+						gettext('Test mode')		 => array('key'						 => 'mobileTheme_test', 'type'					 => OPTION_TYPE_SELECTOR,
+										'selections'		 => array(gettext('Phone') => 'phone', gettext('Tablet') => 'tablet'),
+										'null_selection' => gettext('live'),
+										'desc'					 => gettext('Put the plugin in <em>test mode</em> and it will simulate the selected device. If <em>live</em> is selected operations are normal.'))
 		);
 		return $options;
 	}
 
 	function handleOption($option, $currentValue) {
+
 	}
 
 	/**
@@ -139,7 +141,7 @@ class mobileTheme {
 	 * places a link on the theme page to switch to or from the mobile theme
 	 * @param string $text link text
 	 */
-	static function controlLink($text=NULL, $before=NULL, $after=Null) {
+	static function controlLink($text = NULL, $before = NULL, $after = Null) {
 		$detect = new mobile();
 		if ($detect->isMobile()) {
 			if (zp_getCookie('mobileTheme_disable')) {
@@ -154,24 +156,24 @@ class mobileTheme {
 				$enable = 'off';
 			}
 			if ($before) {
-				echo '<span class="beforetext">'.html_encode($before).'</span>';
+				echo '<span class="beforetext">' . html_encode($before) . '</span>';
 			}
 			?>
 			<span class="mobileThemeControlLink">
 				<a href="?mobileTheme=<?php echo $enable; ?>" rel="external">
-					<?php echo html_encode($text); ?>
+			<?php echo html_encode($text); ?>
 				</a>
 			</span>
 			<?php
 			if ($after) {
-				echo '<span class="aftertext">'.html_encode($after).'</span>';
+				echo '<span class="aftertext">' . html_encode($after) . '</span>';
 			}
 		}
 	}
 
 }
 
-require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/mobileTheme/Mobile_Detect.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/mobileTheme/Mobile_Detect.php');
 
 class mobile extends Mobile_Detect {
 
@@ -195,7 +197,7 @@ class mobile extends Mobile_Detect {
 	 * @see Mobile_Detect::isTablet()
 	 */
 	function isTablet($userAgent = NULL, $httpHeaders = NULL) {
-		if (getOption('mobileTheme_test')=='tablet') {
+		if (getOption('mobileTheme_test') == 'tablet') {
 			return true;
 		}
 		return parent::isTablet();
@@ -217,5 +219,4 @@ if (isset($_GET['mobileTheme'])) {
 if (!zp_getCookie('mobileTheme_disable')) {
 	zp_register_filter('setupTheme', 'mobileTheme::theme');
 }
-
 ?>

@@ -30,6 +30,7 @@
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage theme
  */
 $plugin_is_filter = 9 | CLASS_PLUGIN;
 $plugin_description = gettext("A CMS plugin that adds the capability to run an entire gallery focused website with zenphoto.");

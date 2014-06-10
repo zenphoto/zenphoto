@@ -36,6 +36,7 @@
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage theme
  */
 $plugin_is_filter = 5 | FEATURE_PLUGIN;
 $plugin_description = gettext("Multiple <em>Theme</em> layouts");

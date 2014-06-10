@@ -2412,6 +2412,10 @@ ul.page-list {
 	background-color: #cfcfcf;
 }
 
+.customhide {
+	background-color:#F1F2F3;
+}
+
 .ui-nestedSortable-error {
 	background: red; /*#fbe3e4;*/
 	color: #8a1f11;
