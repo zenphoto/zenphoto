@@ -64,7 +64,7 @@ if ($_REQUEST['origin'] == 'upload') {
 		$rights = 0;
 		$themeRequest = sanitize($_REQUEST['themeEdit']);
 		if (zp_loggedin(THEMES_RIGHTS) && file_exists(SERVERPATH . '/' . THEMEFOLDER . '/' . $themeRequest)) {
-			if (!zenPhotoTheme($themeRequest)) {
+			if (!protectedTheme($themeRequest)) {
 				$themeAlias = sprintf(gettext('%s'), $themeRequest);
 				$themeRequest .= '/';
 				$rights = THEMES_RIGHTS;
@@ -94,7 +94,7 @@ if ($_REQUEST['origin'] == 'upload') {
 	if ($rights & THEMES_RIGHTS) {
 		$zplist = array();
 		foreach ($_zp_gallery->getThemes() as $theme => $data) {
-			if (zenPhotoTheme($theme)) {
+			if (protectedTheme($theme)) {
 				$zplist[] = preg_quote($theme);
 			}
 		}

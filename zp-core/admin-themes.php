@@ -203,7 +203,7 @@ if (count($themelist) == 0) {
 			$style = ($theme == $current_theme) ? ' ' . $current_theme_style : '';
 			$themedir = SERVERPATH . '/themes/' . internalToFilesystem($theme);
 			$themeweb = WEBPATH . "/themes/$theme";
-			if (zenPhotoTheme($theme)) {
+			if (protectedTheme($theme, true)) {
 				$whose = 'Official theme';
 				$ico = 'images/zp_gold.png';
 			} else {

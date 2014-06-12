@@ -310,7 +310,7 @@ setOptionDefault('site_email_name', 'ZenPhoto20');
 	natcasesort($themes);
 	echo gettext('Theme setup:') . '<br />';
 	foreach ($themes as $theme) {
-		if (!zenPhotoTheme($theme)) {
+		if (!protectedTheme($theme)) {
 			enableExtension('deprecated_functions', 900 | CLASS_PLUGIN);
 		}
 		?>

@@ -25,7 +25,7 @@ if (trim($folder, '/') == SERVERPATH) {
 	$success = true;
 	$targets = array(ZENFOLDER => 'dir', USER_PLUGIN_FOLDER => 'dir', 'index.php' => 'file');
 	foreach ($_zp_gallery->getThemes() as $theme => $data) {
-		if (zenPhotoTheme($theme)) {
+		if (protectedTheme($theme)) {
 			$targets[THEMEFOLDER . '/' . $theme] = 'dir';
 		}
 	}

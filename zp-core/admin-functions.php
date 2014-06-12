@@ -2870,18 +2870,21 @@ function printAdminHeader($tab, $subtab = NULL) {
 			$link = '';
 		}
 		if (empty($link) || str_replace('\\', '/', $link) == SERVERPATH . '/' . THEMEFOLDER . '/' . $theme) {
-			return !zenPhotoTheme($theme);
+			return !protectedTheme($theme);
 		} else {
 			return false;
 		}
 	}
 
-	function zenPhotoTheme($theme) {
+	function protectedTheme($theme, $distributed = false) {
 		$theme_description = array();
 		$desc = SERVERPATH . '/' . THEMEFOLDER . '/' . $theme . '/theme_description.php';
 		if (file_exists($desc)) {
 			require($desc);
-			return isset($theme_description['distribution']) && $theme_description['distribution'];
+			$protected = isset($theme_description['distribution']) && $theme_description['distribution'];
+			if ($protected && $distributed)
+				$protected = $theme_description['distribution'] == 'ZenPhoto20';
+			return $protected;
 		}
 		return false;
 	}
@@ -3807,7 +3810,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 	?>
 	<span style="float:right">
 		<select class="ignoredirty" name="checkallaction" id="checkallaction" size="1" onchange="checkFor(this);" >
-			<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
+		<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
 		</select>
 		<?php
 		if ($checkAll) {
@@ -4788,21 +4791,21 @@ function consolidatedEditMessages($subtab) {
 	if (!empty($errorbox)) {
 		?>
 		<div class="errorbox fade-message">
-			<?php echo implode('<br />', $errorbox); ?>
+		<?php echo implode('<br />', $errorbox); ?>
 		</div>
 		<?php
 	}
 	if (!empty($notebox)) {
 		?>
 		<div class="notebox fade-message">
-			<?php echo implode('<br />', $notebox); ?>
+		<?php echo implode('<br />', $notebox); ?>
 		</div>
 		<?php
 	}
 	if (!empty($messagebox)) {
 		?>
 		<div class="messagebox fade-message">
-			<?php echo implode('<br />', $messagebox); ?>
+		<?php echo implode('<br />', $messagebox); ?>
 		</div>
 		<?php
 	}
